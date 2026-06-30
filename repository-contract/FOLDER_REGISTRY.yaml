@@ -1,0 +1,60 @@
+version: 1.0
+status: approved
+folders:
+  governance:
+    path: docs/00_Project_Governance
+    document_types:
+      - constitution
+      - operating_manual
+      - approval_record
+  ai_handoff:
+    path: docs/01_AI_Handoff
+    document_types:
+      - handoff_matrix
+      - handoff_record
+  functional_design:
+    path: docs/02_Functional_Design
+    document_types:
+      - functional_specification
+      - acceptance_criteria
+  architecture_decisions:
+    path: docs/03_Architecture_Decisions
+    document_types:
+      - adr
+      - architecture_note
+  review_gates:
+    path: docs/04_Review_Gates
+    document_types:
+      - review_checklist
+      - gate_record
+  prompts:
+    path: docs/05_Prompts
+    document_types:
+      - prompt
+      - prompt_standard
+  templates:
+    path: docs/06_Templates
+    document_types:
+      - template
+  ai_output:
+    path: docs/07_Output_From_AI
+    document_types:
+      - ai_output_index
+      - draft_output
+  testing_evidence:
+    path: docs/08_Testing_Evidence
+    document_types:
+      - test_plan
+      - uat_evidence
+  security_clean_room:
+    path: docs/09_Security_Clean_Room
+    document_types:
+      - security_rule
+      - clean_room_note
+  diagrams:
+    path: docs/11_Diagrams
+    document_types:
+      - flowchart
+      - mindmap
+      - mermaid
+      - diagram_evidence
