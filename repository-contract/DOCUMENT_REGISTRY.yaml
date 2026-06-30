@@ -1,0 +1,38 @@
+version: 1.0
+status: approved
+documents:
+  ai_project_constitution:
+    folder_key: governance
+    owner_role: Executive Secretary AI
+    reviewers:
+      - PMO AI
+      - Technical Team AI
+    approval: Boss
+  repository_contract:
+    folder_key: governance
+    owner_role: Executive Secretary AI
+    reviewers:
+      - PMO AI
+      - Technical Team AI
+    approval: Boss
+  functional_specification:
+    folder_key: functional_design
+    owner_role: Functional Specification AI
+    reviewers:
+      - PMO AI
+      - Enterprise Architect AI
+    approval: Boss
+  flowchart:
+    folder_key: diagrams
+    owner_role: Diagrams Flowcharts Mindmaps AI
+    reviewers:
+      - PMO AI
+      - Technical Team AI
+    approval: Boss
+  mindmap:
+    folder_key: diagrams
+    owner_role: Diagrams Flowcharts Mindmaps AI
+    reviewers:
+      - PMO AI
+      - Knowledge Base AI
+    approval: Boss
