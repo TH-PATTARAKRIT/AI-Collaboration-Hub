@@ -1,0 +1,11 @@
+version: 1.0
+status: approved
+default_branch: SMEsPlus
+repositories:
+  ai_collaboration_hub:
+    full_name: TH-PATTARAKRIT/AI-Collaboration-Hub
+    purpose: AIOS governance, standards, registry, handoff, evidence, and AI control documents
+    owner_role: Executive Secretary AI
+    reviewer_roles:
+      - PMO AI
+      - Technical Team AI
