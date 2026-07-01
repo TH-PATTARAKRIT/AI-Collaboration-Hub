@@ -1,0 +1,218 @@
+version: 1.0
+status: approved
+project_name: SMEsPlus Enterprise Suite
+project_id: SMEPLUS-ENTERPRISE-001
+created_date: 2026-07-01
+branch: SMEsPlus
+
+# Folder Registry for 99_SMEsPlus_Enterprise_Suite
+folders:
+  governance:
+    path: 00_Project_Governance
+    owner_role: PMO AI
+    document_types:
+      - constitution
+      - operating_manual
+      - approval_record
+      - policy_document
+    description: Governance rules, constitutions, approvals, policies
+
+  ai_handoff:
+    path: 01_AI_Handoff
+    owner_role: Integration AI
+    secondary_owner: PMO AI
+    document_types:
+      - handoff_matrix
+      - handoff_record
+      - blocker_log
+      - sign_off_record
+    description: Control handoff between AI roles with evidence
+
+  functional_design:
+    path: 02_Functional_Design
+    owner_role: Functional Specification AI
+    document_types:
+      - functional_specification
+      - acceptance_criteria
+      - bpmn_diagram
+      - module_behavior
+      - handoff_package
+    description: Functional specs, BPMN, acceptance criteria
+
+  architecture_decisions:
+    path: 03_Architecture_Decisions
+    owner_role: Enterprise Architect AI
+    document_types:
+      - adr
+      - architecture_note
+      - security_decision
+      - integration_decision
+    description: Architecture Decision Records, design rationale
+
+  review_gates:
+    path: 04_Review_Gates
+    owner_role: Code Review AI
+    secondary_owner: PMO AI
+    document_types:
+      - review_checklist
+      - gate_record
+      - approval_criteria
+      - quality_standard
+    description: Quality gates, approvals, review records
+
+  prompts:
+    path: 05_Prompts
+    owner_role: PMO AI
+    secondary_owner: Knowledge Base AI
+    document_types:
+      - prompt_template
+      - prompt_standard
+      - prompt_library
+    description: Approved prompt patterns and standards
+
+  templates:
+    path: 06_Templates
+    owner_role: PMO AI
+    document_types:
+      - functional_specification_template
+      - handoff_template
+      - adr_template
+      - test_plan_template
+      - database_design_template
+      - evidence_record_template
+    description: Standard templates for all document types
+
+  ai_output:
+    path: 07_Output_From_AI
+    owner_role: PMO AI
+    secondary_owner: Knowledge Base AI
+    document_types:
+      - ai_output_index
+      - approved_deliverable
+      - raw_output_archive
+    description: AI outputs, reviewed deliverables
+
+  testing_evidence:
+    path: 08_Testing_Evidence
+    owner_role: QA UAT AI
+    document_types:
+      - test_plan
+      - uat_evidence
+      - regression_test
+      - defect_log
+      - test_result_summary
+    description: Test plans, UAT evidence, defect logs
+
+  security_clean_room:
+    path: 09_Security_Clean_Room
+    owner_role: Enterprise Architect AI
+    secondary_owner: Code Review AI
+    document_types:
+      - security_rule
+      - license_review
+      - clean_room_note
+      - compliance_checklist
+      - security_risk_register
+    description: Security rules, compliance, license review
+
+  diagrams:
+    path: 11_Diagrams
+    owner_role: Diagrams Flowcharts Mindmaps AI
+    document_types:
+      - flowchart
+      - mindmap
+      - mermaid_diagram
+      - architecture_diagram
+      - dataflow_diagram
+      - uml_diagram
+      - diagram_evidence
+    description: Flowcharts, mindmaps, architecture diagrams
+
+# Recommended Document Owners and Reviewers
+document_approval_chain:
+  functional_specification:
+    owner: Functional Specification AI
+    reviewers:
+      - PMO AI
+      - Enterprise Architect AI
+    approver: Boss
+
+  adr:
+    owner: Enterprise Architect AI
+    reviewers:
+      - PMO AI
+      - Technical Team AI
+    approver: Boss
+
+  uxui_design:
+    owner: Figma UX UI AI
+    reviewers:
+      - PMO AI
+      - Enterprise Architect AI
+    approver: Boss
+
+  code_design:
+    owner: Claude Code AI
+    reviewers:
+      - Code Review AI
+      - Technical Team AI
+    approver: Boss
+
+  test_plan:
+    owner: QA UAT AI
+    reviewers:
+      - PMO AI
+      - Functional Specification AI
+    approver: Boss
+
+  database_design:
+    owner: Database Design AI
+    reviewers:
+      - Enterprise Architect AI
+      - Technical Team AI
+    approver: Boss
+
+# Key Files Locations
+key_files:
+  bootstrap_checklist: BOOTSTRAP_CHECKLIST.md
+  quick_start_guide: QUICK_START_GUIDE.md
+  evidence_record_template: EVIDENCE_RECORD_TEMPLATE.md
+  project_index: PROJECT_INDEX.md
+  setup_completion_report: SETUP_COMPLETION_REPORT.md
+  this_registry: SMEPLUS_REGISTRY.yaml
+
+# Access Configuration
+access:
+  repository_type: public
+  repository_url: https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub
+  branch_default: SMEsPlus
+  documentation_sync: Google Drive + GitHub
+  ai_access: All AI roles can clone and read
+  contribution: Requires branch, PR, and approval
+
+# Control Rules
+control_rules:
+  evidence_required: true
+  evidence_rule: "No Evidence = No Progress"
+  multi_stage_review: true
+  review_stages: 5  # Specialist → PMO → Technical → Secretary → Boss
+  approval_authority: Boss
+  template_usage: Mandatory
+  folder_structure: Mandatory
+  naming_standard: Required
+
+# Status & Timeline
+status:
+  setup_phase: complete
+  initialization_date: 2026-07-01
+  first_delivery_target: 2026-07-15
+  templates_target: 2026-07-08
+  constitution_target: 2026-07-05
+
+# Important Notes
+notes:
+  - This registry should be reviewed and updated with official documents
+  - Google Drive serves as primary content repository
+  - GitHub serves as configuration and registry repository
+  - All Evidence Records track work between both platforms
+  - Public GitHub allows any AI role to clone and access
