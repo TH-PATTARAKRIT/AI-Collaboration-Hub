@@ -1,0 +1,9 @@
+module,business_owner,technical_owner,risk_level,gate_status,reason
+Accounting_Finance,Business Owner TBD,Technical Owner TBD,High,HOLD,"Accounting rules, tax, bank, journal, invoice integrity"
+HR_Payroll,Business Owner TBD,Technical Owner TBD,Critical,HOLD,"Employee, payroll, recruitment, private address data"
+Inventory_Purchase,Business Owner TBD,Technical Owner TBD,High,HOLD,"Stock valuation, product, purchase, warehouse dependencies"
+Sales_CRM,Business Owner TBD,Technical Owner TBD,High,HOLD,"Customer, lead, quotation, order flow"
+AI_Knowledge,Business Owner TBD,Technical Owner TBD,Critical,HOLD,Vector/AI content provenance and leakage risk
+Documents_Sign,Business Owner TBD,Technical Owner TBD,Critical,HOLD,"Uploaded documents, signatures, attachments"
+Website_eCommerce,Business Owner TBD,Technical Owner TBD,Medium,HOLD,Public website and portal exposure
+Projects_Services,Business Owner TBD,Technical Owner TBD,Medium,HOLD,"Tasks, helpdesk, service history"

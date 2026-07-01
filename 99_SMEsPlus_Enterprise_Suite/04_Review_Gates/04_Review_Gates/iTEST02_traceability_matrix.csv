@@ -1,0 +1,7 @@
+evidence_id,evidence_name,source_file,linked_adr,linked_gate,status,note
+FD-001,Module inventory,02_Functional_Design/iTEST02_module_inventory.csv,ADR-002,RG-iTEST02-ARCH-001,PASS,Used for domain slicing
+FD-002,Sensitive columns inventory,02_Functional_Design/iTEST02_sensitive_columns_inventory.csv,ADR-003,RG-iTEST02-ARCH-001,PASS,Used for privacy gate
+FD-003,Foreign key inventory,02_Functional_Design/iTEST02_foreign_keys.csv,ADR-002,RG-iTEST02-ARCH-001,PASS,Used for dependency assessment
+FD-004,Restore validation plan,02_Functional_Design/iTEST02_restore_validation_plan.md,ADR-001,RG-iTEST02-ARCH-001,HOLD,"Plan exists, evidence not attached"
+FD-005,Data governance controls,02_Functional_Design/iTEST02_data_governance_controls.md,ADR-003,RG-iTEST02-ARCH-001,CONDITIONAL,"Controls drafted, proof pending"
+FD-006,Governance flow diagram,02_Functional_Design/iTEST02_functional_design_governance_flow_diagram.md,ADR-005,RG-iTEST02-ARCH-001,PASS,Documentation flow captured
