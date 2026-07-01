@@ -1,0 +1,3 @@
+﻿risk_id,category,description,impact,likelihood,severity,owner,status,mitigation,evidence_required
+RISK-001,Security,Sensitive row data may be exposed during analysis,High,Medium,Critical,Security Owner,Open,Use metadata-only analysis and masking,Masking certificate
+RISK-002,Migration,Restore may fail due to extension mismatch,High,Medium,High,DBA,Open,Validate extensions before restore,Restore test log
