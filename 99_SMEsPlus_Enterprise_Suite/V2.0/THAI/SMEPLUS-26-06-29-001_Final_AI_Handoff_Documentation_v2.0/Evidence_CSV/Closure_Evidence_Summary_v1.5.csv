@@ -1,0 +1,10 @@
+artifact,evidence_type,record_count,location
+Dump_Table_Inventory.csv,Database tables,1395,04_Database / 12_Knowledge_Base
+Dump_Column_Inventory.csv,Database columns,13940,04_Database / 12_Knowledge_Base
+Dump_Constraint_Inventory.csv,Constraints,6682,04_Database / 12_Knowledge_Base
+Dump_Index_Inventory.csv,Indexes,1714,04_Database / 12_Knowledge_Base
+Foreign_Key_Relationship_Edges.csv,FK relationship edges,5141,05_Mapping
+Field_Level_Source_to_Dump_Mapping.csv,Field-level mapping,27682,05_Mapping
+XML_View_Action_Menu_Inventory.csv,XML views/actions/menus,6260,07_Functional
+Security_Access_Inventory.csv,Security/access rules,473,08_Technical
+Business_Rule_Method_Inventory.csv,Business rules/methods,4377,08_Technical

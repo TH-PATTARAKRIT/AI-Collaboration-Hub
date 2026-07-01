@@ -1,0 +1,1437 @@
+﻿module,source_zip,manifest_name,category,version,depends,model_records,matched_records,missing_or_extension_records
+account,01 ACCOUNT.zip,Invoicing,Accounting/Accounting,1.4,base_setup|onboarding|product|analytic|portal|digest,91,76,4
+account_3way_match,01 ACCOUNT.zip,Vendor Bill: Release to Pay,Supply Chain/Purchase,,purchase,3,3,0
+account_accountant,01 ACCOUNT.zip,Invoicing,Accounting/Accounting,1.1,account|mail_enterprise|web_tour,20,18,0
+account_accountant_batch_payment,01 ACCOUNT.zip,Account Batch Payment Reconciliation,Accounting,1.0,account_accountant|account_batch_payment,3,2,1
+account_accountant_check_printing,01 ACCOUNT.zip,Account accountant check printing,Accounting,1.0,account_accountant|account_check_printing,1,1,0
+account_accountant_fleet,01 ACCOUNT.zip,Accounting/Fleet bridge,Accounting/Accounting,1.0,account_fleet|account_accountant,2,2,0
+account_add_gln,01 ACCOUNT.zip,Add Partner GLN,Accounting/Accounting,1.0,account,1,1,0
+account_asset,01 ACCOUNT.zip,Assets Management,Accounting/Accounting,,accountant,11,9,0
+account_asset_fleet,01 ACCOUNT.zip,Assets/Fleet bridge,Accounting/Accounting,1.0,account_fleet|account_asset,3,3,0
+account_avatax,01 ACCOUNT.zip,Avatax,Accounting/Accounting,1.0,payment|account_external_tax,15,8,4
+account_avatax_geolocalize,01 ACCOUNT.zip,Avatax for geo localization,Accounting/Accounting,1.0,account_avatax|base_geolocalize,2,1,1
+account_avatax_sale,01 ACCOUNT.zip,Avatax for SO,Accounting/Accounting,1.0,sale_external_tax|account_avatax|sale,1,1,0
+account_avatax_stock,01 ACCOUNT.zip,Avatax for Inventory,Accounting/Accounting,1.0,account_avatax_sale|stock,3,2,0
+account_bank_statement_extract,01 ACCOUNT.zip,Account Bank Statement Extract,Accounting/Accounting,1.0,accountant|account_bank_statement_import|iap_extract|account_extract,5,5,0
+account_bank_statement_import,01 ACCOUNT.zip,Account Bank Statement Import,Accounting/Accounting,1.0,account_accountant|base_import,3,3,0
+account_bank_statement_import_camt,01 ACCOUNT.zip,Import CAMT Bank Statement,Accounting/Accounting,,account_bank_statement_import,1,1,0
+account_bank_statement_import_csv,01 ACCOUNT.zip,Import CSV Bank Statement,Accounting/Accounting,1.0,account_bank_statement_import|base_import,3,3,0
+account_bank_statement_import_ofx,01 ACCOUNT.zip,Import OFX Bank Statement,Accounting/Accounting,1.0,account_bank_statement_import,1,1,0
+account_bank_statement_import_qif,01 ACCOUNT.zip,Import QIF Bank Statement,Accounting/Accounting,1.0,account_bank_statement_import,1,1,0
+account_base_import,01 ACCOUNT.zip,Accounting Import,Accounting/Accounting,,account_accountant|base_import|account_asset,4,4,0
+account_batch_payment,01 ACCOUNT.zip,Batch Payment,Accounting/Accounting,1.0,account,8,3,4
+account_budget,01 ACCOUNT.zip,Budget Management,Accounting/Accounting,,accountant,3,1,2
+account_budget_purchase,01 ACCOUNT.zip,Budget Management,Accounting/Accounting,,account_budget|purchase,3,2,1
+account_check_printing,01 ACCOUNT.zip,Check Printing Base,Accounting/Accounting,1.0,account,6,5,1
+account_debit_note,01 ACCOUNT.zip,Debit Notes,Accounting/Accounting,1.0,account,3,2,1
+account_edi,01 ACCOUNT.zip,Import/Export Invoices From XML/PDF,Accounting/Accounting,1.0,account,8,4,3
+account_edi_proxy_client,01 ACCOUNT.zip,Proxy features for account_edi,Accounting/Accounting,1.0,account|certificate,3,2,1
+account_edi_ubl_cii,01 ACCOUNT.zip,Import/Export electronic invoices with UBL/CII,Accounting/Accounting,1.0,account,17,4,1
+account_external_tax,01 ACCOUNT.zip,3rd Party Tax Calculation,Accounting/Accounting,1.0,account|payment,4,3,0
+account_extract,01 ACCOUNT.zip,Account Extract,Accounting/Accounting,1.0,account|iap_extract|iap_mail|mail_enterprise|account_bank_statement_import,0,0,0
+account_fiscal_categories,01 ACCOUNT.zip,Account Fiscal Report,Accounting/Accounting,1.0,account_reports,4,3,0
+account_fiscal_categories_fleet,01 ACCOUNT.zip,Fiscal Categories on Fleets,Accounting/Accounting,1.0,account_accountant_fleet|account_fiscal_categories,6,4,0
+account_fleet,01 ACCOUNT.zip,Accounting/Fleet bridge,Accounting/Accounting,1.0,fleet|account,5,5,0
+account_followup,01 ACCOUNT.zip,Payment Follow-up Management,Accounting/Accounting,1.1,mail|sms|account_reports,7,5,1
+account_inter_company_rules,01 ACCOUNT.zip,Inter Company Module for Sale/Purchase Orders and Invoices,Productivity,1.1,account,5,4,0
+account_intrastat,01 ACCOUNT.zip,Intrastat Reports,Accounting/Accounting,1.1,account_reports,12,9,0
+account_invoice_extract,01 ACCOUNT.zip,Account Invoice Extract,Accounting/Accounting,1.0,account_extract,5,5,0
+account_invoice_extract_purchase,01 ACCOUNT.zip,Account Invoice Extract Purchase,Accounting,1.0,account_invoice_extract|purchase,1,1,0
+account_iso20022,01 ACCOUNT.zip,SEPA Credit Transfer / ISO20022,Accounting/Accounting,1.0,account_batch_payment|base_iban,15,14,1
+account_loans,01 ACCOUNT.zip,Loans Management,Accounting/Accounting,,account_asset|base_import,9,9,0
+account_online_payment,01 ACCOUNT.zip,Account Online Payment,,,account_online_synchronization|account_batch_payment|account_iso20022,3,2,1
+account_online_synchronization,01 ACCOUNT.zip,Online Bank Statement Synchronization,Accounting/Accounting,1.0,account_accountant,10,10,0
+account_payment,01 ACCOUNT.zip,Payment - Account,Accounting/Accounting,2.0,account|payment,7,7,0
+account_peppol,01 ACCOUNT.zip,Peppol,Accounting/Accounting,1.2,account_edi_proxy_client|account_edi_ubl_cii,15,7,4
+account_peppol_advanced_fields,01 ACCOUNT.zip,[DEPRECATED] Account Peppol Advanced Fields,Accounting/Accounting,1.0,account|account_edi_ubl_cii,1,1,0
+account_peppol_response,01 ACCOUNT.zip,Peppol Business Response,Accounting/Accounting,1.0,account_peppol,7,3,4
+account_qr_code_emv,01 ACCOUNT.zip,account_qr_code_emv,Accounting/Payment,1.0,account,1,1,0
+account_qr_code_sepa,01 ACCOUNT.zip,Account SEPA QR Code,Accounting/Payment,0.1,account|base_iban,1,1,0
+account_reports,01 ACCOUNT.zip,Accounting Reports,Accounting/Accounting,,account_accountant,71,45,0
+account_reports_cash_basis,01 ACCOUNT.zip,Cash Basis Accounting Reports,Accounting/Accounting,,account_reports,3,3,0
+account_saft,01 ACCOUNT.zip,Standard Audit File for Tax Base module,Accounting/Accounting,1.0,account_reports,1,0,0
+account_saft_import,01 ACCOUNT.zip,SAF-T Import,,,account_saft|account_base_import,2,1,1
+account_sepa_direct_debit,01 ACCOUNT.zip,SEPA Direct Debit,Accounting/Accounting,,base_iban|account_batch_payment|account,12,9,3
+account_tax_python,01 ACCOUNT.zip,Define Taxes as Python Code,Accounting/Accounting,1.0,account,1,1,0
+account_test,01 ACCOUNT.zip,Accounting Consistency Tests,Accounting/Accounting,1.0,account,2,0,1
+account_transfer,01 ACCOUNT.zip,Account Transfers,Accounting/Accounting,,account_accountant,5,3,2
+account_update_tax_tags,01 ACCOUNT.zip,Account - Allow updating tax grids,Accounting/Accounting,1.0,account,1,0,1
+account_winbooks_import,01 ACCOUNT.zip,Account Winbooks Import,Accounting/Accounting,,account_accountant|base_vat|account_base_import,4,3,1
+accountant,01 ACCOUNT.zip,Accounting,Accounting/Accounting,1.1,account_reports,3,2,0
+accountant_fleet,01 ACCOUNT.zip,Accounting - Fleet,Accounting/Accounting,1.0,accountant|fleet,0,0,0
+accountant_hr_expense,01 ACCOUNT.zip,Accounting - Expense,Accounting/Accounting,1.0,accountant|hr_expense,0,0,0
+accountant_knowledge,01 ACCOUNT.zip,Annual Reports,,1.0,accountant|knowledge|sign,3,0,3
+ai,02 OTHER.zip,AI,Hidden,1.0,mail,18,12,1
+ai_account,02 OTHER.zip,AI Text Draft - Accounting,Hidden,1.0,ai|account,0,0,0
+ai_app,02 OTHER.zip,AI,Hidden,1.0,attachment_indexation|ai,0,0,0
+ai_auto_install,02 OTHER.zip,AI Auto Install,Hidden,1.0,mail,0,0,0
+ai_crm,02 OTHER.zip,AI crm,Hidden,1.0,ai_app|crm,2,2,0
+ai_crm_livechat,02 OTHER.zip,AI crm livechat,Hidden,1.0,ai_crm|ai_livechat,2,2,0
+ai_documents,02 OTHER.zip,AI Documents,Hidden,1.0,ai|documents|base_automation,5,3,1
+ai_documents_account,02 OTHER.zip,AI Documents Account,Hidden,1.0,ai_documents|documents_account,3,2,1
+ai_documents_source,02 OTHER.zip,AI Documents Source,Hidden,1.0,ai|documents,2,2,0
+ai_fields,02 OTHER.zip,ai_fields,Hidden,0.1,ai,3,2,0
+ai_knowledge,02 OTHER.zip,AI Text Draft - Knowledge,Hidden,1.0,ai|knowledge,3,2,1
+ai_livechat,02 OTHER.zip,AI Livechat,AI,1.0,ai_app|im_livechat,6,6,0
+ai_server_actions,02 OTHER.zip,ai_server_actions,Hidden,0.1,ai_fields,1,0,1
+ai_website,02 OTHER.zip,AI Website Integration,Hidden,1.0,ai|website,2,2,0
+ai_website_livechat,02 OTHER.zip,AI Website Livechat Integration,Hidden,1.0,ai_website|ai_livechat|html_builder,1,1,0
+analytic,02 OTHER.zip,Analytic Accounting,Accounting/Accounting,1.2,base|mail|uom,9,7,0
+analytic_enterprise,02 OTHER.zip,Analytic Accounting Enterprise,Accounting/Accounting,0.1,web_grid|analytic|account,1,1,0
+api_doc,02 OTHER.zip,API Documentation,Hidden,1.0,web,1,1,0
+appointment,02 OTHER.zip,Appointments,Services/Appointment,1.3,calendar|phone_validation|portal|resource|web_gantt,16,15,0
+appointment_account_payment,02 OTHER.zip,Pay to Book,Marketing/Online Appointment,1.0,appointment|account_payment,8,8,0
+appointment_crm,02 OTHER.zip,Appointment Lead Generation,Services/Appointment,1.0,appointment|crm,3,3,0
+appointment_google_calendar,02 OTHER.zip,Appointment Google Calendar,Productivity,1.0,google_calendar|appointment,2,2,0
+appointment_google_reserve,02 OTHER.zip,Appointment Google Reserve,Productivity,1.0,appointment,5,4,1
+appointment_hr,02 OTHER.zip,Employees on Appointments,Services/Appointment,1.0,appointment|hr,2,2,0
+appointment_hr_recruitment,02 OTHER.zip,Recruitment tracking on appointments,Services/Appointment,1.0,appointment|hr_recruitment,2,2,0
+appointment_microsoft_calendar,02 OTHER.zip,Appointment Microsoft Calendar,Productivity,1.0,microsoft_calendar|appointment,1,1,0
+appointment_sms,02 OTHER.zip,Appointment SMS,Services/Appointment,1.0,appointment|calendar_sms,0,0,0
+approvals,02 OTHER.zip,Approvals,Human Resources/Approvals,1.1,mail|hr|product,8,3,5
+approvals_purchase,02 OTHER.zip,Approvals - Purchase,Human Resources/Approvals,1.0,approvals|purchase,5,2,3
+approvals_purchase_stock,02 OTHER.zip,Approvals - Purchase - Stock,Human Resources/Approvals,1.0,approvals_purchase|purchase_stock,2,0,2
+attachment_indexation,02 OTHER.zip,Attachments List and Document Indexation,Hidden/Tools,2.1,web,1,1,0
+auth_ldap,02 OTHER.zip,Authentication via LDAP,Hidden/Tools,,base|base_setup,4,3,1
+auth_oauth,02 OTHER.zip,OAuth2 Authentication,Hidden/Tools,,base|web|base_setup|auth_signup,4,3,1
+auth_passkey,02 OTHER.zip,Passkeys,Hidden/Tools,1.1,base_setup|web,4,4,0
+auth_passkey_portal,02 OTHER.zip,Passkeys Portal,Hidden/Tools,1.0,auth_passkey|portal,0,0,0
+auth_password_policy,02 OTHER.zip,Password Policy,Hidden/Tools,,base_setup|web,2,2,0
+auth_password_policy_portal,02 OTHER.zip,Password Policy support for Signup,Tools,,auth_password_policy|portal,1,0,0
+auth_password_policy_signup,02 OTHER.zip,Password Policy support for Signup,Hidden/Tools,,auth_password_policy|auth_signup,1,0,0
+auth_signup,02 OTHER.zip,Signup,Hidden/Tools,1.0,base_setup|mail|web,4,3,0
+auth_timeout,02 OTHER.zip,Auth Timeout,Hidden/Tools,,auth_totp|auth_totp_mail|auth_passkey|bus,5,3,0
+auth_totp,02 OTHER.zip,Two-Factor Authentication (TOTP),Extra Tools,,web,4,4,0
+auth_totp_mail,02 OTHER.zip,2FA Invite mail,Extra Tools,,auth_totp|mail,3,3,0
+auth_totp_portal,02 OTHER.zip,TOTPortal,Hidden,,portal|auth_totp,1,1,0
+barcodes,02 OTHER.zip,Barcode,Supply Chain/Inventory,2.0,web,5,3,0
+barcodes_gs1_nomenclature,02 OTHER.zip,Barcode - GS1 Nomenclature,Supply Chain/Inventory,1.0,barcodes|uom,3,2,0
+base,02 OTHER.zip,Base,Hidden,1.3,,126,88,2
+base_address_extended,02 OTHER.zip,Extended Addresses,Sales/Sales,1.1,base|contacts,3,3,0
+base_automation,02 OTHER.zip,Automation Rules,Sales/Sales,1.0,base|digest|resource|mail|sms,3,2,1
+base_automation_hr,02 OTHER.zip,Automation Rules based on Employee Contracts,Human Resources,1.0,base_automation|hr,1,1,0
+base_geolocalize,02 OTHER.zip,Partners Geolocation,Sales/Sales,2.1,base_setup,4,3,0
+base_iban,02 OTHER.zip,IBAN Bank Accounts,Accounting/Accounting,,account|web,1,1,0
+base_import,02 OTHER.zip,Base import,Hidden/Tools,2.0,web,4,3,0
+base_import_module,02 OTHER.zip,Base import module,Hidden/Tools,,web,5,4,0
+base_install_request,02 OTHER.zip,Base - Module Install Request,Hidden,,mail,3,3,0
+base_setup,02 OTHER.zip,Initial Setup Tools,Hidden,1.0,base|web,4,2,0
+base_sparse_field,02 OTHER.zip,Sparse Fields,Hidden,1.0,base,3,1,1
+base_vat,02 OTHER.zip,VAT Number Validation,Accounting/Accounting,2.0,account,4,4,0
+board,02 OTHER.zip,Dashboards,Productivity,1.0,spreadsheet_dashboard,1,0,0
+bus,02 OTHER.zip,IM Bus,Hidden,1.0,base|web,11,7,0
+calendar,02 OTHER.zip,Calendar,Productivity/Calendar,1.1,base|mail,18,15,0
+calendar_sms,02 OTHER.zip,Calendar - SMS,Productivity/Calendar,1.1,calendar|sms,3,2,0
+certificate,02 OTHER.zip,Certificate,Hidden/Tools,0.1,base_setup,2,2,0
+cloud_storage,02 OTHER.zip,Cloud Storage,Technical Settings,1.0,base_setup|mail,3,2,0
+cloud_storage_azure,02 OTHER.zip,Cloud Storage Azure,Technical Settings,1.0,cloud_storage,2,2,0
+cloud_storage_google,02 OTHER.zip,Cloud Storage Google,Technical Settings,1.0,cloud_storage,2,2,0
+cloud_storage_migration,02 OTHER.zip,Cloud Storage Migration,Technical Settings,1.0,cloud_storage,3,2,1
+contacts,02 OTHER.zip,Contacts,Sales/CRM,,base|mail,2,2,0
+contacts_enterprise,02 OTHER.zip,Contacts Enterprise,Sales/CRM,1.0,contacts|web_map,0,0,0
+crm,02 OTHER.zip,CRM,Sales/CRM,1.9,base_setup|sales_team|mail|calendar|resource|utm|web_tour|contacts|digest|phone_validation,22,21,1
+crm_enterprise,02 OTHER.zip,CRM enterprise,Sales/CRM,1.0,crm|web_cohort|web_map,1,1,0
+crm_enterprise_partner_assign,02 OTHER.zip,Enterprise Resellers,Website/Website,1.0,crm_enterprise|website_crm_partner_assign,0,0,0
+crm_helpdesk,02 OTHER.zip,Helpdesk - CRM,Services/Helpdesk,1.1,crm|helpdesk,3,3,0
+crm_iap_enrich,02 OTHER.zip,Lead Enrichment,Sales/CRM,1.1,iap_crm|iap_mail,2,2,0
+crm_iap_mine,02 OTHER.zip,Lead Generation,Sales/CRM,1.2,iap_crm|iap_mail,6,6,0
+crm_livechat,02 OTHER.zip,CRM Livechat,Sales/CRM,,crm|im_livechat,6,5,1
+crm_mail_plugin,02 OTHER.zip,CRM Mail Plugin,Sales/CRM,1.0,crm|mail_plugin,1,1,0
+crm_sale_subscription,02 OTHER.zip,CRM Sale Subscription,Sales/CRM,1.0,crm|sale_subscription,1,1,0
+crm_sms,02 OTHER.zip,SMS in CRM,Sales/CRM,1.1,crm|sms,0,0,0
+currency_rate_live,02 OTHER.zip,Live Currency Exchange Rate,Accounting/Accounting,1.0,account,2,2,0
+data_cleaning,02 OTHER.zip,Data Cleaning,Productivity/Data Cleaning,1.1,data_recycle|phone_validation|mail,10,2,8
+data_merge_crm,02 OTHER.zip,CRM Deduplication,Productivity/Data Cleaning,1.0,data_cleaning|crm,1,1,0
+data_merge_helpdesk,02 OTHER.zip,Helpdesk Merge action,Productivity/Data Cleaning,1.0,data_cleaning|helpdesk,1,1,0
+data_merge_project,02 OTHER.zip,Project Merge action,Productivity/Data Cleaning,1.0,data_cleaning|project,0,0,0
+data_merge_stock_account,02 OTHER.zip,WMS Accounting Merge,Productivity/Data Cleaning,1.0,data_cleaning|stock_account,1,0,1
+data_merge_utm,02 OTHER.zip,UTM Deduplication,Productivity/Data Cleaning,1.0,data_cleaning|utm,0,0,0
+data_recycle,02 OTHER.zip,Data Recycle,Productivity/Data Cleaning,1.3,mail,2,0,2
+databases,02 OTHER.zip,Databases,Services/Databases,1.0,project,7,4,3
+delivery,02 OTHER.zip,Delivery Costs,Sales/Delivery,1.0,sale|payment_custom,12,11,0
+delivery_bpost,02 OTHER.zip,bpost Shipping,Shipping Connectors,1.0,stock_delivery|mail,2,2,0
+delivery_dhl,02 OTHER.zip,DHL Express Shipping (Legacy),Shipping Connectors,1.0,stock_delivery|mail,2,2,0
+delivery_dhl_rest,02 OTHER.zip,DHL Express Shipping,Shipping Connectors,1.0,stock_delivery|mail,2,2,0
+delivery_easypost,02 OTHER.zip,Easypost Shipping,Shipping Connectors,1.0,stock_delivery|mail,5,3,2
+delivery_envia,02 OTHER.zip,Envia Shipping,Shipping Connectors,1.0,stock_delivery|base_address_extended|phone_validation,3,2,1
+delivery_fedex,02 OTHER.zip,Fedex Shipping (Legacy),Shipping Connectors,1.0,stock_delivery|mail,2,2,0
+delivery_fedex_rest,02 OTHER.zip,Fedex Shipping,Shipping Connectors,1.0,stock_delivery|mail,3,3,0
+delivery_iot,02 OTHER.zip,IoT for Delivery,Supply Chain/Internet of Things (IoT),1.0,iot|stock_delivery,5,4,1
+delivery_mondialrelay,02 OTHER.zip,delivery_mondialrelay,Shipping Connectors,0.1,stock_delivery,4,4,0
+delivery_sendcloud,02 OTHER.zip,Sendcloud Shipping,Shipping Connectors,1.0,stock_delivery|mail,5,3,2
+delivery_shiprocket,02 OTHER.zip,Shiprocket Shipping,Shipping Connectors,1.0,stock_delivery|mail,7,5,2
+delivery_starshipit,02 OTHER.zip,Starshipit Shipping,Shipping Connectors,1.0,stock_delivery,6,5,1
+delivery_stock_picking_batch,02 OTHER.zip,Delivery Stock Picking Batch,Supply Chain/Inventory,1.0,stock_delivery|stock_picking_batch,3,3,0
+delivery_ups,02 OTHER.zip,UPS Shipping (Legacy),Shipping Connectors,1.0,stock_delivery|mail,5,5,0
+delivery_ups_rest,02 OTHER.zip,UPS Shipping,Shipping Connectors,0.1,stock_delivery|mail,5,5,0
+delivery_usps,02 OTHER.zip,United States Postal Service (USPS) Shipping (Legacy),Shipping Connectors,1.0,stock_delivery|mail,1,1,0
+delivery_usps_rest,02 OTHER.zip,United States Postal Service (USPS) Shipping,Shipping Connectors,1.0,stock_delivery|mail,2,2,0
+digest,02 OTHER.zip,KPI Digests,Marketing,1.1,mail|portal|resource,4,4,0
+digest_enterprise,02 OTHER.zip,Digest Enterprise,Hidden,1.0,web_enterprise|digest,0,0,0
+documents,02 OTHER.zip,Documents,Productivity/Documents,1.4,base|mail|portal|web_enterprise|attachment_indexation|digest,24,18,1
+documents_account,02 OTHER.zip,Documents - Accounting,Productivity/Documents,1.0,documents|account_reports,11,10,1
+documents_account_peppol,02 OTHER.zip,Documents - Import from Peppol,Productivity/Documents,1.0,account_peppol|documents,3,2,1
+documents_approvals,02 OTHER.zip,Documents - Approvals,Productivity/Documents,1.0,documents|approvals,3,2,1
+documents_fleet,02 OTHER.zip,Documents - Fleet,Productivity/Documents,1.0,documents|fleet,3,3,0
+documents_fsm,02 OTHER.zip,Documents - FSM,Productivity/Documents,1.0,documents_project|industry_fsm,1,1,0
+documents_hr,02 OTHER.zip,Documents - HR,Productivity/Documents,1.0,documents|hr,8,7,1
+documents_hr_expense,02 OTHER.zip,Documents - Expense,Productivity/Documents,1.0,documents|hr_expense_extract,2,2,0
+documents_hr_holidays,02 OTHER.zip,Documents - Time Off,Productivity/Documents,1.0,documents_hr|hr_holidays,1,1,0
+documents_hr_payroll,02 OTHER.zip,Documents - Payroll,Productivity/Documents,1.0,documents_hr|hr_payroll,7,6,0
+documents_l10n_be_hr_payroll,02 OTHER.zip,Documents - Belgian Payroll,Human Resources/Payroll,1.0,documents_hr_payroll|l10n_be_hr_payroll,2,0,2
+documents_l10n_ch_hr_payroll,02 OTHER.zip,Documents - Swiss Payroll,Human Resources/Payroll,1.0,documents_hr_payroll|l10n_ch_hr_payroll,1,1,0
+documents_l10n_hk_hr_payroll,02 OTHER.zip,Documents - Hong Kong Payroll,Human Resources/Payroll,1.0,documents_hr_payroll|l10n_hk_hr_payroll,0,0,0
+documents_l10n_ke_hr_payroll,02 OTHER.zip,Documents - Kenyan Payroll,Human Resources/Payroll,1.0,documents_hr_payroll|l10n_ke_hr_payroll,0,0,0
+documents_l10n_mx_hr_payroll_account_edi,02 OTHER.zip,Documents - Mexican Payroll,Human Resources/Payroll,,documents_hr_payroll|l10n_mx_hr_payroll_account_edi,1,1,0
+documents_product,02 OTHER.zip,Documents - Product,Productivity/Documents,1.0,documents|product,5,5,0
+documents_project,02 OTHER.zip,Documents - Projects,Productivity/Documents,1.0,documents|project,7,7,0
+documents_project_sale,02 OTHER.zip,Documents - Project - Sale,Productivity/Documents,1.0,documents_project|sale_project,0,0,0
+documents_project_sign,02 OTHER.zip,Documents Project Sign,Productivity/Documents,1.0,documents_project|documents_sign,0,0,0
+documents_sign,02 OTHER.zip,Documents - Signatures,Productivity/Documents,1.0,documents|sign,6,6,0
+documents_spreadsheet,02 OTHER.zip,Documents Spreadsheet,Productivity/Documents,1.0,documents|spreadsheet_edition|base_import,8,7,0
+documents_spreadsheet_survey,02 OTHER.zip,Spreadsheet Survey,Productivity/Documents,1.0,documents_spreadsheet|survey,1,1,0
+equity,02 OTHER.zip,Equity,Accounting/Accounting,1.0,portal,6,5,1
+esg,02 OTHER.zip,ESG,ESG,1.0,account_reports|web_hierarchy,14,12,1
+esg_csrd,02 OTHER.zip,ESG CSRD,Hidden,1.0,esg|survey|accountant_knowledge,10,2,8
+esg_csrd_ai,02 OTHER.zip,AI - ESG CSRD,Hidden,1.0,ai_app|esg_csrd,4,1,3
+esg_csrd_hr,02 OTHER.zip,HR - ESG CSRD,Hidden,1.0,hr|esg_csrd,0,0,0
+esg_csrd_hr_fleet,02 OTHER.zip,ESG CSRD - Fleet,Hidden,1.0,esg_csrd_hr|esg_hr_fleet,1,1,0
+esg_hr,02 OTHER.zip,ESG HR,,1.0,esg|hr,1,0,1
+esg_hr_fleet,02 OTHER.zip,ESG HR Fleet,,1.0,esg|hr_fleet,6,5,1
+esg_project,02 OTHER.zip,ESG Project,,1.0,esg|project_enterprise,1,1,0
+event,02 OTHER.zip,Events Organization,Marketing/Events,1.9,barcodes|base_setup|mail|phone_validation|portal|utm,19,3,16
+event_booth,02 OTHER.zip,Events Booths,Marketing/Events,1.1,event,5,0,5
+event_booth_sale,02 OTHER.zip,Events Booths Sales,Marketing/Events,1.2,event_booth|event_sale,10,5,5
+event_crm,02 OTHER.zip,Event CRM,Marketing/Events,1.0,event|crm,6,1,5
+event_crm_sale,02 OTHER.zip,Event CRM Sale,Marketing/Events,1.0,event_crm|event_sale,1,0,1
+event_enterprise,02 OTHER.zip,Events Organization Add-on,Marketing/Events,,event|web_cohort|web_gantt|web_map,1,0,1
+event_iot,02 OTHER.zip,IoT for Events,Marketing/Events,1.0,iot|event,3,0,2
+event_product,02 OTHER.zip,Events Product,Marketing/Events,1.0,event|product|account,6,2,4
+event_sale,02 OTHER.zip,Events Sales,Marketing/Events,1.3,event_product|sale_management,10,3,7
+event_sale_iot,02 OTHER.zip,IoT for Event/Sale,Marketing/Events,1.0,iot|event_sale,0,0,0
+event_sms,02 OTHER.zip,SMS on Events,Marketing/Events,1.0,event|sms,4,1,3
+event_social,02 OTHER.zip,Event Social,Marketing/Social,1.0,event|social,3,0,3
+fleet,02 OTHER.zip,Fleet,Human Resources/Fleet,0.1,base|mail,16,14,2
+frontdesk,02 OTHER.zip,Frontdesk,Human Resources/Frontdesk,1.0,hr|sms,3,3,0
+gamification,02 OTHER.zip,Gamification,Human Resources,1.0,mail,11,11,0
+gamification_sale_crm,02 OTHER.zip,CRM Gamification,Sales/CRM,1.0,gamification|sale_crm,0,0,0
+google_account,02 OTHER.zip,Google Users,Hidden/Tools,,base_setup,1,0,0
+google_address_autocomplete,02 OTHER.zip,Google Address Autocomplete,Hidden/Tools,1.0,web,2,2,0
+google_calendar,02 OTHER.zip,Google Calendar,Productivity,1.0,google_account|calendar,9,7,0
+google_gmail,02 OTHER.zip,Google Gmail,Hidden,1.2,mail,5,4,0
+google_recaptcha,02 OTHER.zip,Google reCAPTCHA integration,Hidden,1.0,base_setup,2,1,0
+helpdesk,02 OTHER.zip,Helpdesk,Services/Helpdesk,1.6,base_setup|mail|utm|rating|web_tour|web_cohort|resource|portal|digest,19,17,2
+helpdesk_account,02 OTHER.zip,Helpdesk Account,Services/Helpdesk,,helpdesk_sale|account,3,3,0
+helpdesk_fsm,02 OTHER.zip,Helpdesk FSM,Services/Helpdesk,,project_helpdesk|industry_fsm,5,5,0
+helpdesk_fsm_report,02 OTHER.zip,Helpdesk FSM Reports,Services/Helpdesk,,helpdesk_fsm|industry_fsm_report,1,1,0
+helpdesk_fsm_sale,02 OTHER.zip,Helpdesk FSM - Sale,Services/Helpdesk,,helpdesk_fsm|helpdesk_sale_timesheet|industry_fsm_sale,1,1,0
+helpdesk_holidays,02 OTHER.zip,Helpdesk Time Off,Services/Helpdesk,1.0,helpdesk|hr_holidays_gantt,1,1,0
+helpdesk_mail_plugin,02 OTHER.zip,Helpdesk Mail Plugin,Services/Helpdesk,1.0,helpdesk|mail_plugin,0,0,0
+helpdesk_repair,02 OTHER.zip,Helpdesk Repair,Services/Helpdesk,,helpdesk_stock|repair,2,2,0
+helpdesk_sale,02 OTHER.zip,Helpdesk After Sales,Services/Helpdesk,,helpdesk|sale_management,4,2,2
+helpdesk_sale_loyalty,02 OTHER.zip,Helpdesk Sale Loyalty,Services/Helpdesk,,helpdesk_sale|sale_loyalty,3,1,2
+helpdesk_sale_timesheet,02 OTHER.zip,Sell Helpdesk Timesheet,Services/Helpdesk,,helpdesk_timesheet|sale_timesheet_enterprise|helpdesk_sale,10,8,2
+helpdesk_sms,02 OTHER.zip,Helpdesk - SMS,Services/Helpdesk,1.0,helpdesk|sms,2,2,0
+helpdesk_stock,02 OTHER.zip,Helpdesk Stock,Services/Helpdesk,,helpdesk_sale|stock,6,4,2
+helpdesk_stock_account,02 OTHER.zip,Helpdesk Stock Account,Services/Helpdesk,,helpdesk_stock|helpdesk_account,1,1,0
+helpdesk_timesheet,02 OTHER.zip,Helpdesk Timesheet,Services/Helpdesk,,timesheet_grid|project_helpdesk,10,7,3
+hr,02 OTHER.zip,Employees,Human Resources/Employees,1.1,base_setup|digest|phone_validation|resource_mail|web,30,27,1
+hr_appraisal,02 OTHER.zip,Appraisals,Human Resources/Appraisals,1.2,calendar|hr_gantt,15,14,1
+hr_appraisal_skills,02 OTHER.zip,Appraisal - Skills,Human Resources/Appraisals,1.0,hr_appraisal|hr_skills,5,4,1
+hr_appraisal_survey,02 OTHER.zip,Appraisal - Survey,Human Resources/Appraisals,1.2,hr_appraisal|survey,7,7,0
+hr_attendance,02 OTHER.zip,Attendances,Human Resources/Attendances,2.0,hr|barcodes|base_geolocalize,11,9,1
+hr_attendance_gantt,02 OTHER.zip,Attendance Gantt,Human Resources/Attendances,1.0,hr_attendance|hr_gantt,1,1,0
+hr_calendar,02 OTHER.zip,Display Working Hours in Calendar,Human Resources/Employees,1.0,hr|calendar,2,2,0
+hr_contract_salary,02 OTHER.zip,Salary Configurator,Human Resources,2.1,hr_sign|http_routing|hr_recruitment|sign,23,9,14
+hr_contract_salary_holidays,02 OTHER.zip,Salary Configurator - Holidays,Human Resources,,hr_contract_salary|hr_holidays,3,3,0
+hr_contract_salary_payroll,02 OTHER.zip,Salary Configurator - Payroll,Human Resources,,hr_contract_salary|hr_payroll,8,5,3
+hr_expense,02 OTHER.zip,Expenses,Human Resources/Expenses,2.1,account|web_tour|hr,22,19,3
+hr_expense_extract,02 OTHER.zip,Hr Expense Extract,Human Resources/Expenses,1.0,hr_expense|iap_extract|iap_mail|mail_enterprise|hr_expense_predict_product,4,4,0
+hr_expense_predict_product,02 OTHER.zip,Hr Expense Predict product,Human Resources/Expenses,1.0,hr_expense,1,1,0
+hr_expense_stripe,02 OTHER.zip,Expense cards,Human Resources/Expenses,1.0,hr_expense|certificate,19,12,6
+hr_expense_stripe_demo,02 OTHER.zip,Expense cards: Demo,Human Resources/Expenses,1.0,hr_expense_stripe,5,1,4
+hr_fleet,02 OTHER.zip,Fleet History,Human Resources,1.0,hr|fleet,10,9,1
+hr_gamification,02 OTHER.zip,HR Gamification,Human Resources,1.0,gamification|hr,6,5,1
+hr_gantt,02 OTHER.zip,Employees in Gantt,Human Resources/Employees,1.0,hr|web_gantt,0,0,0
+hr_holidays,02 OTHER.zip,Time Off,Human Resources/Time Off,1.6,hr|calendar|resource,27,22,4
+hr_holidays_attendance,02 OTHER.zip,HR Attendance Holidays,Human Resources,1.0,hr_attendance|hr_holidays,11,10,1
+hr_holidays_gantt,02 OTHER.zip,Time off Gantt,Human Resources,1.0,hr_holidays|hr_gantt,2,1,1
+hr_holidays_homeworking,02 OTHER.zip,Holidays with Remote Work,Human Resources,,hr_holidays|hr_homeworking,1,1,0
+hr_homeworking,02 OTHER.zip,Remote Work,Human Resources/Remote Work,2.0,hr,6,5,1
+hr_homeworking_calendar,02 OTHER.zip,Remote Work with calendar,Human Resources/Remote Work,1.0,hr_homeworking|calendar,3,3,0
+hr_hourly_cost,02 OTHER.zip,Employee Hourly Wage,Services/Employee Hourly Cost,1.0,hr,1,1,0
+hr_livechat,02 OTHER.zip,HR - Livechat,Human Resources,1.0,hr|im_livechat,0,0,0
+hr_maintenance,02 OTHER.zip,Maintenance - HR,Human Resources,1.0,hr|maintenance,5,4,1
+hr_mobile,02 OTHER.zip,Employees in Mobile,Human Resources/Employees,1.0,hr|web_mobile,0,0,0
+hr_org_chart,02 OTHER.zip,HR Org Chart,Human Resources,1.0,hr|web_hierarchy,4,2,2
+hr_payroll,02 OTHER.zip,Payroll,Human Resources/Payroll,,hr_work_entry_enterprise|mail|html_editor,37,32,1
+hr_payroll_account,02 OTHER.zip,Payroll Accounting,Human Resources/Payroll,,hr_payroll|accountant|base_iban,16,15,0
+hr_payroll_account_iso20022,02 OTHER.zip,SEPA Payments for Payroll,Human Resources/Payroll,1.0,hr_payroll_account|account_iso20022,4,4,0
+hr_payroll_attendance,02 OTHER.zip,Payroll - Attendance,Human Resources/Employees,,hr_work_entry_attendance|hr_payroll,4,4,0
+hr_payroll_expense,02 OTHER.zip,Expenses in Payslips,Human Resources/Payroll,1.0,hr_expense|hr_payroll_account,5,5,0
+hr_payroll_fleet,02 OTHER.zip,Payroll - Fleet,Human Resources/Payroll,1.0,hr_payroll|hr_fleet,0,0,0
+hr_payroll_holidays,02 OTHER.zip,Time Off in Payslips,Human Resources/Payroll,1.0,hr_holidays_gantt|hr_work_entry_holidays|hr_payroll,8,8,0
+hr_payroll_planning,02 OTHER.zip,Payroll - Planning,Human Resources/Employees,,hr_work_entry_planning|hr_payroll,1,1,0
+hr_payroll_sale_commission,02 OTHER.zip,Commission in Payslips,Human Resources/Payroll,1.0,sale_commission|hr_payroll,2,1,1
+hr_presence,02 OTHER.zip,Employee Presence Control,Human Resources,1.0,hr|hr_holidays|sms,6,4,1
+hr_recruitment,02 OTHER.zip,Recruitment,Human Resources/Recruitment,1.1,hr|calendar|utm|attachment_indexation|web_tour|digest,27,27,0
+hr_recruitment_ai,02 OTHER.zip,Recruitment With AI,Human Resources/Recruitment,1.0,hr_recruitment|ai,0,0,0
+hr_recruitment_extract,02 OTHER.zip,Hr Recruitment Extract,Human Resources/Recruitment,1.0,hr_recruitment|iap_extract|iap_mail|mail_enterprise,3,3,0
+hr_recruitment_integration_base,02 OTHER.zip,Recruitment Integration Base,Human Resources/Recruitment/Integration,1.0,hr_recruitment,5,2,3
+hr_recruitment_integration_monster,02 OTHER.zip,Job Board - Monster.com,Human Resources/Recruitment/Integration,1.0,hr_recruitment_integration_base|hr_recruitment_extract,8,5,3
+hr_recruitment_integration_skills_monster,02 OTHER.zip,Job Board - Monster.com (Skills),Human Resources/Recruitment/Integration,1.0,hr_recruitment_skills|hr_recruitment_integration_monster,1,0,1
+hr_recruitment_integration_website,02 OTHER.zip,Recruitment Integration website,Human Resources/Recruitment/Integration,1.0,hr_recruitment_integration_base|website_hr_recruitment,3,1,2
+hr_recruitment_integration_website_monster,02 OTHER.zip,Job Board - Monster.com (Website),Human Resources/Recruitment/Integration,1.0,hr_recruitment_integration_website|hr_recruitment_integration_monster,1,0,1
+hr_recruitment_reports,02 OTHER.zip,Recruitment Reporting,Human Resources/Recruitment,1.0,hr_recruitment,2,0,2
+hr_recruitment_sign,02 OTHER.zip,Recruitment - Signature,Human Resources/Recruitment,1.0,hr_recruitment|hr_sign,3,3,0
+hr_recruitment_skills,02 OTHER.zip,Recruitment - Skills Management,Human Resources/Recruitment,1.0,hr_skills|hr_recruitment,3,3,0
+hr_recruitment_sms,02 OTHER.zip,Recruitment - SMS,Human Resources/Recruitment,1.0,hr_recruitment|sms,1,1,0
+hr_recruitment_survey,02 OTHER.zip,Hr Recruitment Interview Forms,Human Resources,1.0,survey|hr_recruitment,5,5,0
+hr_referral,02 OTHER.zip,Employee Referral,Human Resources/Referrals,1.0,hr_recruitment|link_tracker|website_hr_recruitment|hr_recruitment_reports,23,20,3
+hr_sign,02 OTHER.zip,Contract - Signature,Human Resources,1.0,hr|sign,7,6,1
+hr_skills,02 OTHER.zip,Skills Management,Human Resources/Employees,1.0,hr,17,11,4
+hr_skills_event,02 OTHER.zip,Skills Events,Hidden,1.0,hr_skills|event,1,1,0
+hr_skills_slides,02 OTHER.zip,Skills e-learning,Human Resources/Employees,1.0,hr_skills|website_slides,5,4,1
+hr_skills_survey,02 OTHER.zip,Skills Certification,Human Resources/Employees,1.0,hr_skills|survey,3,3,0
+hr_timesheet,02 OTHER.zip,Task Logs,Services/Timesheets,1.0,hr|hr_hourly_cost|analytic|project|uom,17,13,3
+hr_timesheet_attendance,02 OTHER.zip,Timesheets/attendances reporting,Human Resources/Attendances,1.1,hr_timesheet|hr_attendance,2,1,1
+hr_work_entry,02 OTHER.zip,Work Entries,Human Resources/Employees,,hr,9,9,0
+hr_work_entry_attendance,02 OTHER.zip,Work Entries - Attendance,Human Resources/Employees,,hr_work_entry|hr_attendance,8,8,0
+hr_work_entry_enterprise,02 OTHER.zip,Work Entries - Enterprise,Human Resources/Employees,,hr_work_entry|hr_gantt,1,1,0
+hr_work_entry_holidays,02 OTHER.zip,Time Off in Payslips,Human Resources/Payroll,1.0,hr_holidays|hr_work_entry,5,5,0
+hr_work_entry_holidays_enterprise,02 OTHER.zip,Time Off in Payslips Enterprise,Human Resources/Payroll,1.0,hr_work_entry_holidays,0,0,0
+hr_work_entry_planning,02 OTHER.zip,Work Entries - Planning,Human Resources/Employees,,hr_work_entry_enterprise|planning,4,4,0
+hr_work_entry_planning_attendance,02 OTHER.zip,Attendances - Planning,Human Resources/Employees,,hr_work_entry_planning|hr_work_entry_attendance,3,3,0
+html_builder,02 OTHER.zip,HTML Builder,Uncategorized,0.1,base|html_editor|mail,0,0,0
+html_editor,02 OTHER.zip,HTML Editor,Hidden,1.0,base|bus|web,24,4,0
+http_routing,02 OTHER.zip,Web Routing,Hidden,,web,3,1,0
+iap,02 OTHER.zip,In-App Purchases,Hidden/Tools,1.1,web|base_setup,3,2,0
+iap_crm,02 OTHER.zip,IAP / CRM,Hidden/Tools,1.0,crm|iap_mail,1,1,0
+iap_extract,02 OTHER.zip,Iap Extract,Hidden/Tools,1.0,base|iap|mail|iap_mail,2,0,0
+iap_mail,02 OTHER.zip,IAP / Mail,Hidden/Tools,1.0,iap|mail,1,1,0
+im_livechat,02 OTHER.zip,Live Chat,Website/Live Chat,1.0,mail|rating|digest|utm,23,20,1
+industry_fsm,02 OTHER.zip,Field Service,Services/Field Service,1.0,project_enterprise|timesheet_grid|base_geolocalize,17,14,2
+industry_fsm_repair,02 OTHER.zip,Field Service Repair,Services/Field Service,1.0,industry_fsm_stock|repair,1,1,0
+industry_fsm_report,02 OTHER.zip,Field Service Reports,Services/Field Service,,worksheet|industry_fsm|web_studio,10,7,1
+industry_fsm_sale,02 OTHER.zip,Field Service - Sale,Services/Field Service,1.0,industry_fsm|sale_timesheet_enterprise,10,9,1
+industry_fsm_sale_report,02 OTHER.zip,Field Service Reports - Sale,Services/Field Service,,industry_fsm_sale|industry_fsm_report,5,5,0
+industry_fsm_sale_subscription,02 OTHER.zip,Field Service - Sale Subscription,Services/Field Service,1.0,industry_fsm_sale|project_sale_subscription,1,1,0
+industry_fsm_sms,02 OTHER.zip,FSM - SMS,Services/Field Service,1.0,industry_fsm|project_sms,0,0,0
+industry_fsm_stock,02 OTHER.zip,Field Service Stock,Services/Field Service,,industry_fsm_sale|sale_stock,8,8,0
+iot,02 OTHER.zip,Internet of Things,Administration/IoT,,mail|iot_base,11,7,1
+iot_base,02 OTHER.zip,IoT Base,Hidden,1.0,web,0,0,0
+iot_box_image,02 OTHER.zip,IoT Box Image Build Tools,Hidden/Tools,,,0,0,0
+iot_drivers,02 OTHER.zip,Hardware Proxy,Hidden,,,0,0,0
+knowledge,02 OTHER.zip,Knowledge,Productivity/Knowledge,1.0,web|digest|html_editor|mail|portal|web_unsplash|web_hierarchy,11,3,8
+l10n_account_edi_ubl_cii_tests,02 OTHER.zip,Testing the Import/Export invoices with UBL/CII,Accounting/Accounting,1.0,account_edi_ubl_cii|l10n_fr_account|l10n_be|l10n_de|l10n_nl|l10n_au,0,0,0
+l10n_account_withholding_tax,02 OTHER.zip,Withholding Tax on Payment,Accounting/Localizations,1.0,account,7,5,1
+l10n_account_withholding_tax_pos,02 OTHER.zip,Withholding Tax on Payment - PoS,Accounting/Localizations,1.0,l10n_account_withholding_tax|point_of_sale,1,1,0
+l10n_ae,02 OTHER.zip,United Arab Emirates - Accounting,Accounting/Localizations/Account Charts,,account|l10n_gcc_invoice,2,1,0
+l10n_ae_faf,02 OTHER.zip,United Arab Emirates - FTA VAT Audit,,1.0,l10n_ae_reports,6,5,0
+l10n_ae_hr_payroll,02 OTHER.zip,United Arab Emirates - Payroll,Human Resources/Payroll,,hr_payroll|hr_work_entry_holidays,10,10,0
+l10n_ae_hr_payroll_account,02 OTHER.zip,United Arab Emirates - Payroll with Accounting,Human Resources,,hr_payroll_account|l10n_ae|l10n_ae_hr_payroll,1,0,0
+l10n_ae_pos,02 OTHER.zip,United Arab Emirates - Point of Sale,Accounting/Localizations/Point of Sale,,l10n_gcc_pos|l10n_ae,0,0,0
+l10n_ae_reports,02 OTHER.zip,United Arab Emirates - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_ae|account_reports|account_fiscal_categories,6,4,0
+l10n_anz_ubl_pint,02 OTHER.zip,Australia & New Zealand - UBL PINT,Accounting/Localizations/EDI,1.0,account_edi_ubl_cii,2,1,0
+l10n_ar,02 OTHER.zip,Argentina - Accounting,Accounting/Localizations/Account Charts,3.7,l10n_latam_invoice_document|l10n_latam_base|account,19,11,4
+l10n_ar_edi,02 OTHER.zip,Argentinean Electronic Invoicing,Accounting/Localizations/EDI,1.1,l10n_ar|certificate,8,7,1
+l10n_ar_pos,02 OTHER.zip,Argentinean - Point of Sale with AR Doc,Accounting/Localizations/Point of Sale,1.0,l10n_ar|point_of_sale,5,1,4
+l10n_ar_reports,02 OTHER.zip,Argentinean Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_ar|account_reports,4,2,1
+l10n_ar_reports_simple,02 OTHER.zip,Argentinean Accounting IVA Simple Export,Accounting/Localizations/Reporting,1.0,l10n_ar_reports,5,3,1
+l10n_ar_stock,02 OTHER.zip,Argentinean - Stock,Accounting/Localizations,1.0,l10n_ar|stock_account,2,2,0
+l10n_ar_website_sale,02 OTHER.zip,Argentinean eCommerce,Accounting/Localizations/Website,1.0,website_sale|l10n_ar,3,3,0
+l10n_ar_withholding,02 OTHER.zip,Argentina - Payment Withholdings,Accounting/Localizations,1.0,l10n_ar|l10n_latam_check,10,6,3
+l10n_at,02 OTHER.zip,Austria - Accounting,Accounting/Localizations/Account Charts,3.2.1,account|account_edi_ubl_cii|base_iban|base_vat|l10n_din5008,2,1,0
+l10n_at_intrastat,02 OTHER.zip,Austrian Intrastat Declaration,Accounting/Localizations/Reporting,,account_intrastat|l10n_at_reports,2,2,0
+l10n_at_pos,02 OTHER.zip,Austria - Security Regulation for Point of Sale,,1.0,l10n_at|iap|point_of_sale,6,1,4
+l10n_at_reports,02 OTHER.zip,Austria - Accounting Reports,Accounting/Localizations/Reporting,2.0,l10n_at|account_reports|account_accountant,4,2,0
+l10n_at_saft,02 OTHER.zip,Austrian SAF-T Export,Accounting/Localizations/Reporting,1.1,l10n_at|account_saft,4,2,1
+l10n_au,02 OTHER.zip,Australia - Accounting,Accounting/Localizations/Account Charts,1.1,account,6,5,0
+l10n_au_aba,02 OTHER.zip,ABA Credit Transfer,Accounting/Localizations/EDI,1.0,account_batch_payment|l10n_au,6,5,1
+l10n_au_hr_payroll,02 OTHER.zip,Australia - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays|base_address_extended,15,12,3
+l10n_au_hr_payroll_account,02 OTHER.zip,Australia - Payroll with Accounting,Human Resources,,l10n_au_hr_payroll|hr_payroll_account|l10n_au|l10n_au_aba,30,14,15
+l10n_au_hr_payroll_api,02 OTHER.zip,Australia - Payroll with API,Human Resources,1.0,l10n_au_hr_payroll_account|account_edi_proxy_client|auth_timeout,18,8,9
+l10n_au_reports,02 OTHER.zip,Australian Reports - Accounting,Accounting/Localizations/Reporting,1.1,l10n_au|account_reports|account_reports_cash_basis,3,0,0
+l10n_bd,02 OTHER.zip,Bangladesh - Accounting,Accounting/Localizations/Account Charts,1.0,account,1,0,0
+l10n_bd_hr_payroll,02 OTHER.zip,Bangladesh - Payroll,Human Resources/Payroll,,hr_payroll,2,2,0
+l10n_bd_hr_payroll_account,02 OTHER.zip,Bangladesh - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_bd|l10n_bd_hr_payroll,1,0,0
+l10n_bd_reports,02 OTHER.zip,Bangladesh - Accounting Reports,,1.0.0,account_reports|l10n_bd,3,2,0
+l10n_be,02 OTHER.zip,Belgium - Accounting,Accounting/Localizations/Account Charts,2.0,account|account_edi_ubl_cii|base_iban|base_vat,7,4,0
+l10n_be_coda,02 OTHER.zip,Belgium - Import Bank CODA Statements,Accounting/Localizations,2.1,account_accountant|l10n_be|account_bank_statement_import|base_iban,1,1,0
+l10n_be_codabox,02 OTHER.zip,CodaBox,Accounting/Localizations,1.0,l10n_be_coda|l10n_be_soda|l10n_be_reports,7,3,4
+l10n_be_codaclean,02 OTHER.zip,Codaclean,Accounting/Localizations,1.0,l10n_be_coda,5,4,1
+l10n_be_fiscal_categories,02 OTHER.zip,Belgium - Fiscal Categories Data,Accounting/Accounting,1.1,l10n_be|account_fiscal_categories,1,0,0
+l10n_be_fiscal_categories_fleet,02 OTHER.zip,Belgium - Disallowed Expenses Fleet,Accounting/Accounting,1.0,account_fiscal_categories_fleet|l10n_be_fiscal_categories|l10n_be_hr_payroll_fleet,2,2,0
+l10n_be_hr_contract_salary,02 OTHER.zip,Salary Configurator (Belgium),Human Resources,,hr_contract_salary_payroll|l10n_be_hr_payroll_fleet,8,6,2
+l10n_be_hr_payroll,02 OTHER.zip,Belgium - Payroll,Human Resources/Payroll,1.0,certificate|hr_payroll|hr_work_entry_holidays|hr_payroll_holidays,54,18,31
+l10n_be_hr_payroll_account,02 OTHER.zip,Belgium - Payroll with Accounting,Human Resources,,l10n_be_hr_payroll|hr_payroll_account|l10n_be,4,2,1
+l10n_be_hr_payroll_acerta,02 OTHER.zip,Belgium - Payroll - Export to Acerta,Human Resources,1.0,l10n_be_hr_payroll,6,4,2
+l10n_be_hr_payroll_attendance,02 OTHER.zip,Belgian Payroll - Attendance,Human Resources/Employees,,hr_payroll_attendance|l10n_be_hr_payroll,1,1,0
+l10n_be_hr_payroll_dimona,02 OTHER.zip,Belgium - Payroll - Dimona,Human Resources,,l10n_be_hr_payroll,3,2,1
+l10n_be_hr_payroll_dimona_auto,02 OTHER.zip,Belgium - Payroll - Dimona - Automation,Human Resources,,l10n_be_hr_payroll_dimona|l10n_be_hr_payroll,6,2,4
+l10n_be_hr_payroll_fix,02 OTHER.zip,Belgian Payroll - Holiday Attest Fix,Human Resources/Payroll,1.0,l10n_be_hr_payroll,1,0,1
+l10n_be_hr_payroll_fleet,02 OTHER.zip,Belgium - Payroll - Fleet,Human Resources,1.0,l10n_be_hr_payroll|hr_fleet,8,7,1
+l10n_be_hr_payroll_group_s,02 OTHER.zip,Belgium - Payroll - Export to Group S,Human Resources,1.0,l10n_be_hr_payroll,7,5,2
+l10n_be_hr_payroll_partena,02 OTHER.zip,Belgium - Payroll - Export to Partena,Human Resources,1.0,l10n_be_hr_payroll,6,4,2
+l10n_be_hr_payroll_prisma,02 OTHER.zip,Belgium - Payroll - Export to Prisma,Human Resources,1.0,l10n_be_hr_payroll,6,4,2
+l10n_be_hr_payroll_sd_worx,02 OTHER.zip,Belgium - Payroll - Export to SD Worx,Human Resources,1.0,l10n_be_hr_payroll,6,4,2
+l10n_be_hr_payroll_ucm,02 OTHER.zip,Belgium - Payroll - Export to UCM,Human Resources,1.0,l10n_be_hr_payroll,6,4,2
+l10n_be_intervat,02 OTHER.zip,Belgian Intervat & Myminfin Edi,Accounting/Localizations/edi,1.0,l10n_be|l10n_be_reports|certificate,7,4,2
+l10n_be_intrastat,02 OTHER.zip,Belgian Intrastat Declaration,Accounting/Localizations/Reporting,,account_intrastat|l10n_be_reports,6,3,1
+l10n_be_pos_restaurant,02 OTHER.zip,Belgian POS Restaurant Localization,Sales/Point of Sale,1.0,pos_restaurant|l10n_be,2,0,1
+l10n_be_pos_sale,02 OTHER.zip,l10n_be_pos_sale,Sales/Point of Sale,1.0,pos_sale|l10n_be,1,0,1
+l10n_be_reports,02 OTHER.zip,Belgium - Accounting Reports,Accounting/Localizations/Reporting,1.1,l10n_be|account_reports,28,6,13
+l10n_be_reports_client_nihil,02 OTHER.zip,Belgium - Accounting Reports Client Nihil,Accounting/Localizations/Reporting,1.0,l10n_be_reports,1,0,1
+l10n_be_reports_hr_payroll,02 OTHER.zip,Belgium - Accounting Reports & Payroll Bridge,,1.0,l10n_be_reports|l10n_be_hr_payroll,1,0,0
+l10n_be_reports_sms,02 OTHER.zip,Belgium - Accounting Reports - SMS,Accounting/Localizations/Reporting,1.0,l10n_be_reports|sms,0,0,0
+l10n_be_soda,02 OTHER.zip,Belgium - Import SODA files,Accounting/Localizations,1.0,accountant|l10n_be,6,4,2
+l10n_bf,02 OTHER.zip,Burkina Faso - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_bf_reports,02 OTHER.zip,Burkina Faso - Accounting Reports,,1.0,account_reports|l10n_bf,0,0,0
+l10n_bg,02 OTHER.zip,Bulgaria - Accounting,Accounting/Localizations/Account Charts,1.0,account|base_vat,1,0,0
+l10n_bg_ledger,02 OTHER.zip,Bulgaria - Report ledger,Accounting/Localizations/Account Charts,1.0,l10n_bg,2,2,0
+l10n_bg_reports,02 OTHER.zip,Bulgaria - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_bg|account_reports,0,0,0
+l10n_bg_reports_ledger,02 OTHER.zip,Bulgaria - Accounting Reports Ledger,Accounting/Localizations/Reporting,1.0,l10n_bg_reports|l10n_bg_ledger,2,1,0
+l10n_bh,02 OTHER.zip,Bahrain - Accounting,Accounting/Localizations/Account Charts,1.0,account|l10n_gcc_invoice,1,0,0
+l10n_bh_reports,02 OTHER.zip,Bahrain - Accounting Reports,,1.0,account_reports|l10n_bh,0,0,0
+l10n_bj,02 OTHER.zip,Benin - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_bj_reports,02 OTHER.zip,Benin - Accounting Reports,,1.0,account_reports|l10n_bj,0,0,0
+l10n_bo,02 OTHER.zip,Bolivia - Accounting,Accounting/Localizations/Account Charts,2.0,account,1,0,0
+l10n_bo_reports,02 OTHER.zip,Bolivia - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_bo|account_reports,0,0,0
+l10n_br,02 OTHER.zip,Brazilian - Accounting,Accounting/Localizations/Account Charts,1.1,account|account_qr_code_emv|base_address_extended|l10n_latam_base|l10n_latam_invoice_document,11,9,1
+l10n_br_avatax,02 OTHER.zip,Avatax Brazil,Accounting/Accounting,1.0,iap|l10n_br|account_external_tax,15,9,4
+l10n_br_avatax_sale,02 OTHER.zip,Avatax Brazil Sale,Accounting/Accounting,1.0,l10n_br_avatax|sale,2,2,0
+l10n_br_edi,02 OTHER.zip,Brazilian Accounting EDI,Accounting/Localizations/EDI,1.0,l10n_br_avatax,9,4,3
+l10n_br_edi_fiscal_reform,02 OTHER.zip,Avatax Brazil Fiscal Reform,Accounting/Accounting,1.0,l10n_br_edi,12,6,4
+l10n_br_edi_pos,02 OTHER.zip,Brazilian Accounting EDI for POS,Accounting/Localizations/EDI,1.0,l10n_br_edi|point_of_sale,12,6,6
+l10n_br_edi_pos_fiscal_reform,02 OTHER.zip,Avatax Brazil POS Fiscal Reform,Accounting/Localizations/EDI,1.0,l10n_br_edi_fiscal_reform|l10n_br_edi_pos,2,1,1
+l10n_br_edi_sale,02 OTHER.zip,Brazilian Accounting EDI For Sale,Accounting/Localizations/EDI,1.0,sale_external_tax|l10n_br_edi,1,1,0
+l10n_br_edi_sale_fiscal_reform,02 OTHER.zip,Avatax Brazil Sale Fiscal Reform,Accounting/Accounting,1.0,l10n_br_edi_sale|l10n_br_avatax_sale|l10n_br_edi_fiscal_reform,1,1,0
+l10n_br_edi_stock,02 OTHER.zip,Brazilian Accounting EDI for stock,Accounting/Localizations/EDI,1.0,l10n_br_edi|sale_stock,4,4,0
+l10n_br_edi_website_sale,02 OTHER.zip,Brazilian Accounting EDI for eCommerce,Accounting/Localizations/EDI,1.0,l10n_br_edi_sale|website_sale_external_tax,2,2,0
+l10n_br_reports,02 OTHER.zip,Brazil - Accounting Reports,Accounting/Localizations/Reporting,0.1,l10n_br|account_reports,1,1,0
+l10n_br_sale_subscription,02 OTHER.zip,Brazil - Sale Subscription,Sales/Subscriptions,1.0,l10n_br|sale_subscription,1,1,0
+l10n_br_sales,02 OTHER.zip,Brazil - Sale,Sales/Sales,1.0,l10n_br|sale,1,1,0
+l10n_br_website_sale,02 OTHER.zip,Brazil - Website Sale,Sales/Sales,1.0,l10n_br|website_sale,1,1,0
+l10n_br_website_sale_fiscal_reform,02 OTHER.zip,Avatax Brazil eCommerce Fiscal Reform,Accounting/Accounting,1.0,l10n_br_edi_fiscal_reform|l10n_br_edi_website_sale,3,3,0
+l10n_ca,02 OTHER.zip,Canada - Accounting,Accounting/Localizations/Account Charts,1.1,account|base_iban,4,3,0
+l10n_ca_check_printing,02 OTHER.zip,Canadian Checks Layout,Accounting/Localizations/Check,1.0,account_check_printing|l10n_ca,2,2,0
+l10n_ca_payment_cpa005,02 OTHER.zip,CPA005 Payments,Accounting/Accounting,1.0,account_batch_payment|l10n_ca,7,5,2
+l10n_ca_reports,02 OTHER.zip,Canada - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_ca|account_reports,1,1,0
+l10n_cd,02 OTHER.zip,Democratic Republic of the Congo - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_cd_reports,02 OTHER.zip,Democratic Republic of the Congo - Accounting Reports,,1.0,account_reports|l10n_cd,0,0,0
+l10n_cf,02 OTHER.zip,Central African Republic - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_cf_reports,02 OTHER.zip,Central African Republic - Accounting Reports,,1.0,account_reports|l10n_cf,0,0,0
+l10n_cg,02 OTHER.zip,Congo - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_cg_reports,02 OTHER.zip,Congo - Accounting Reports,,1.0,account_reports|l10n_cg,0,0,0
+l10n_ch,02 OTHER.zip,Switzerland - Accounting,Accounting/Localizations/Account Charts,11.3,account|account_edi_ubl_cii|base_iban|l10n_din5008,9,5,2
+l10n_ch_hr_payroll,02 OTHER.zip,Switzerland - Swissdec Certified ELM 5.0 - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays|iap,65,11,53
+l10n_ch_hr_payroll_account,02 OTHER.zip,Switzerland - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_ch|l10n_ch_hr_payroll,1,0,0
+l10n_ch_hr_payroll_elm_transmission_5_3,02 OTHER.zip,Swissdec Certified Payroll ELM 5.3,Human Resources/Payroll,1.0,l10n_ch_hr_payroll,13,3,10
+l10n_ch_pos,02 OTHER.zip,Swiss - Point of Sale,Accounting/Localizations/Point of Sale,,l10n_ch|point_of_sale,1,0,1
+l10n_ch_reports,02 OTHER.zip,Switzerland - Accounting Reports,Accounting/Localizations/Reporting,1.1,l10n_ch|account_reports,0,0,0
+l10n_ci,02 OTHER.zip,Ivory Coast - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_ci_reports,02 OTHER.zip,Ivory Coast - Accounting Reports,,1.0,account_reports|l10n_ci,0,0,0
+l10n_cl,02 OTHER.zip,Chile - Accounting,Accounting/Localizations/Account Charts,3.1,contacts|base_vat|l10n_latam_base|l10n_latam_invoice_document|uom|account,11,9,1
+l10n_cl_edi,02 OTHER.zip,Chile - E-invoicing,Accounting/Localizations/EDI,1.2,l10n_cl|account_edi|account_debit_note|certificate,15,9,5
+l10n_cl_edi_exports,02 OTHER.zip,Electronic Exports of Goods for Chile,Accounting/Localizations/EDI,1.0,l10n_cl_edi,2,1,1
+l10n_cl_edi_factoring,02 OTHER.zip,Chile - Localization: Factoring Extension,Accounting/Localizations/EDI,1.0,l10n_cl_edi,7,4,1
+l10n_cl_edi_pos,02 OTHER.zip,Chilean module for Point of Sale,Accounting/Localizations/Point of Sale,1.0,l10n_cl_edi|point_of_sale,9,3,6
+l10n_cl_edi_stock,02 OTHER.zip,Chile - E-Invoicing Delivery Guide,Accounting/Localizations/EDI,1.0,sale_stock|l10n_cl_edi|stock_account,5,4,1
+l10n_cl_edi_website_sale,02 OTHER.zip,Chilean eCommerce,Accounting/Localizations/Website,0.0.1,website_sale|l10n_cl_edi,1,1,0
+l10n_cl_reports,02 OTHER.zip,Chile - Accounting Reports,Accounting/Localizations/Reporting,1.1,l10n_cl|account_reports,3,2,0
+l10n_cm,02 OTHER.zip,Cameroon - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_cm_reports,02 OTHER.zip,Cameroon - Accounting Reports,,1.0,account_reports|l10n_cm,0,0,0
+l10n_cn,02 OTHER.zip,China - Accounting,Accounting/Localizations/Account Charts,1.8,base|account,4,1,0
+l10n_cn_city,02 OTHER.zip,China - City Data,Accounting/Localizations,1.8,l10n_cn|base_address_extended,0,0,0
+l10n_cn_reports,02 OTHER.zip,China - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_cn|account_reports,0,0,0
+l10n_co,02 OTHER.zip,Colombia - Accounting,Accounting/Localizations/Account Charts,1.0,account_debit_note|l10n_latam_base|account,2,0,1
+l10n_co_dian,02 OTHER.zip,Electronic invoicing for Colombia with DIAN,Accounting/Localizations/EDI,1.1,account_edi_ubl_cii|l10n_co_edi|certificate,13,8,3
+l10n_co_edi,02 OTHER.zip,Electronic invoicing for Colombia with Carvajal,Accounting/Localizations/EDI,0.3,account_edi|l10n_co|product_unspsc|base_address_extended,16,11,4
+l10n_co_edi_mandate,02 OTHER.zip,Mandate invoicing for Colombia,Accounting/Localizations/EDI,1.0,l10n_co_dian,3,2,0
+l10n_co_edi_pos,02 OTHER.zip,Electronic invoicing for POS in Colombia,Accounting/Localizations/EDI,1.0,l10n_co_pos|l10n_co_dian|pos_edi_ubl,12,4,5
+l10n_co_pos,02 OTHER.zip,Colombian - Point of Sale,Accounting/Localizations/Point of Sale,1.0,l10n_co|point_of_sale,1,0,1
+l10n_co_reports,02 OTHER.zip,Colombian - Accounting Reports,Accounting/Localizations/Reporting,1.1,l10n_co|account_reports,9,0,1
+l10n_cr,02 OTHER.zip,Costa Rica - Accounting,Accounting/Localizations/Account Charts,,account,1,0,0
+l10n_cy,02 OTHER.zip,Cyprus - Accounting,Accounting/Localizations/Account Charts,1.0,account|account_edi_ubl_cii|base_vat,1,0,0
+l10n_cy_reports,02 OTHER.zip,Cyprus - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_cy|account_reports,0,0,0
+l10n_cz,02 OTHER.zip,Czech - Accounting,Accounting/Localizations/Account Charts,1.1,account|account_edi_ubl_cii|base_iban|base_vat,5,3,1
+l10n_cz_intrastat,02 OTHER.zip,Czechian Intrastat Declaration,Accounting/Localizations/Reporting,,account_intrastat|l10n_cz_reports,3,1,1
+l10n_cz_reports,02 OTHER.zip,Czech Republic- Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_cz|account_reports,8,4,0
+l10n_de,02 OTHER.zip,Germany - Accounting,Accounting/Localizations/Account Charts,3.0,base_iban|base_vat|l10n_din5008|account|account_edi_ubl_cii,11,6,1
+l10n_de_intrastat,02 OTHER.zip,German Intrastat Declaration,Accounting/Localizations/Reporting,1.0,l10n_de|account_intrastat,5,4,0
+l10n_de_pos_cert,02 OTHER.zip,Germany - Certification for Point of Sale,Accounting/Localizations/Point of Sale,0.1,l10n_de|point_of_sale|iap,10,3,7
+l10n_de_pos_res_cert,02 OTHER.zip,Germany - Certification for Point of Sale of type restaurant,Accounting/Localizations/Point of Sale,0.1,pos_restaurant|l10n_de_pos_cert,1,0,1
+l10n_de_reports,02 OTHER.zip,Germany - Accounting Reports,Accounting/Localizations/Reporting,1.1,l10n_de|account_reports,10,6,0
+l10n_din5008,02 OTHER.zip,DIN 5008,Accounting/Localizations,1.0,account,3,3,0
+l10n_din5008_account_followup,02 OTHER.zip,DIN 5008 - Payment Follow-up Management,Accounting/Localizations,1.0,l10n_din5008|account_followup,1,1,0
+l10n_din5008_expense,02 OTHER.zip,DIN 5008 - Expenses,Accounting/Localizations,1.0,l10n_din5008|hr_expense,0,0,0
+l10n_din5008_industry_fsm,02 OTHER.zip,DIN 5008 - Field Service,Accounting/Localizations,1.0,l10n_din5008|industry_fsm,1,1,0
+l10n_din5008_purchase,02 OTHER.zip,DIN 5008 - Purchase,Accounting/Localizations,,l10n_din5008|purchase,0,0,0
+l10n_din5008_repair,02 OTHER.zip,DIN 5008 - Repair,Accounting/Localizations,,l10n_din5008|repair,1,1,0
+l10n_din5008_sale,02 OTHER.zip,DIN 5008 - Sale,Accounting/Localizations,,l10n_din5008|sale,0,0,0
+l10n_din5008_sale_renting,02 OTHER.zip,DIN 5008 - Rental,Accounting/Localizations,,l10n_din5008|sale_renting,0,0,0
+l10n_din5008_stock,02 OTHER.zip,DIN 5008 - Stock,Accounting/Localizations,,l10n_din5008|stock,0,0,0
+l10n_dk,02 OTHER.zip,Denmark - Accounting,Accounting/Localizations/Account Charts,1.4,base_iban|base_vat|account|account_edi_ubl_cii,4,3,0
+l10n_dk_fik,02 OTHER.zip,Denmark - FIK Number,Accounting/Localizations,1.0,l10n_dk,2,2,0
+l10n_dk_intrastat,02 OTHER.zip,Denmark - Intrastat,Accounting/Localizations/Reporting,1.0,l10n_dk_reports|account_intrastat,4,2,1
+l10n_dk_nemhandel,02 OTHER.zip,Denmark EDI - Nemhandel,Accounting/Localizations/EDI,1.0,account_edi_proxy_client|account_edi_ubl_cii|l10n_dk,11,7,2
+l10n_dk_nemhandel_response,02 OTHER.zip,Nemhandel Business Response,Accounting/Localizations/EDI,1.0,l10n_dk_nemhandel,5,2,3
+l10n_dk_oioubl,02 OTHER.zip,Denmark - E-invoicing,Accounting/Localizations/EDI,0.1,account_edi_ubl_cii|l10n_dk,3,2,0
+l10n_dk_reports,02 OTHER.zip,Denmark - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_dk|account_reports|account_saft|documents_account,10,3,4
+l10n_dk_saft_import,02 OTHER.zip,Denmark - SAF-T Import,Accounting/Localizations,,account_saft_import|l10n_dk,1,0,1
+l10n_do,02 OTHER.zip,Dominican Republic - Accounting,Accounting/Localizations/Account Charts,2.0,account|base_iban,1,0,0
+l10n_do_check_printing,02 OTHER.zip,Dominican Republic - Checks Layout,Accounting/Localizations/Check,1.0,account_check_printing|l10n_do,2,2,0
+l10n_do_reports,02 OTHER.zip,Dominican Republic - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_do|account_reports,0,0,0
+l10n_dz,02 OTHER.zip,Algeria - Accounting,Accounting/Localizations/Account Charts,1.0,base_vat|account,1,0,0
+l10n_dz_reports,02 OTHER.zip,Algeria - Accounting Reports,Accounting/Localizations/Reporting,0.1,l10n_dz|account_reports,0,0,0
+l10n_ec,02 OTHER.zip,Ecuadorian Accounting,Accounting/Localizations/Account Charts,3.9,base|base_iban|account_debit_note|l10n_latam_invoice_document|l10n_latam_base|account,9,6,2
+l10n_ec_edi,02 OTHER.zip,Ecuadorian Accounting EDI,Accounting/Localizations/EDI,1.3,account_edi|certificate|l10n_ec,17,10,5
+l10n_ec_edi_pos,02 OTHER.zip,Ecuadorian Point of Sale,Accounting/Localizations/EDI,1.0,l10n_ec_edi|point_of_sale,8,2,6
+l10n_ec_edi_stock,02 OTHER.zip,Ecuadorian Delivery Guide,Accounting/Localizations/EDI,1.1,stock_account|l10n_ec_edi,3,3,0
+l10n_ec_reports,02 OTHER.zip,Ecuadorian Accounting Reports,Accounting/Localizations/Reporting,2.0,l10n_ec|account_reports,1,1,0
+l10n_ec_reports_ats,02 OTHER.zip,Ecuador - ATS Report,Accounting/Localizations/Reporting,1.0,l10n_ec_edi|l10n_ec_reports,2,1,0
+l10n_ec_sale,02 OTHER.zip,Ecuador - Sale,Accounting/Localizations/Sale,1.0,l10n_ec|sale,2,2,0
+l10n_ec_stock,02 OTHER.zip,Ecuador - Stock,Accounting/Localizations,1.0,l10n_ec|stock,1,0,0
+l10n_ee,02 OTHER.zip,Estonia - Accounting,Accounting/Localizations/Account Charts,1.3,account|account_edi_ubl_cii,3,2,0
+l10n_ee_intrastat,02 OTHER.zip,Estonia Intrastat Declaration,Accounting/Localizations/Reporting,1.0,l10n_ee_reports|account_intrastat,3,1,1
+l10n_ee_reports,02 OTHER.zip,Estonia - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_ee|account_reports,8,2,3
+l10n_eg,02 OTHER.zip,Egypt - Accounting,Accounting/Localizations/Account Charts,1.0,account,2,1,0
+l10n_eg_edi_eta,02 OTHER.zip,Egypt E-Invoicing,account,0.2,account_edi|l10n_eg,13,9,4
+l10n_eg_hr_payroll,02 OTHER.zip,Egypt - Payroll,Human Resources/Payroll,,hr_payroll|hr_payroll_holidays,6,6,0
+l10n_eg_hr_payroll_account,02 OTHER.zip,Egypt - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_eg|l10n_eg_hr_payroll,1,0,0
+l10n_eg_iot,02 OTHER.zip,Egypt - Internet Of Things,Administration/IoT,1.0,l10n_eg|iot,1,1,0
+l10n_eg_reports,02 OTHER.zip,Egypt - Accounting Reports,,1.0,account_reports|l10n_eg,1,1,0
+l10n_employment_hero,02 OTHER.zip,Employment Hero Payroll,Accounting,1.0,account_accountant,5,5,0
+l10n_es,02 OTHER.zip,Spain - Accounting (PGCE 2008),Accounting/Localizations/Account Charts,5.4,account|base_iban|base_vat|account_edi_ubl_cii,16,5,0
+l10n_es_edi_facturae,02 OTHER.zip,Spain - Facturae EDI,Accounting/Localizations/EDI,1.0,certificate|l10n_es,11,8,1
+l10n_es_edi_sii,02 OTHER.zip,Spain - SII EDI Suministro de Libros,Accounting/Localizations/EDI,1.1,certificate|l10n_es|account_edi,6,4,1
+l10n_es_edi_tbai,02 OTHER.zip,Spain - TicketBAI,Accounting/Localizations/EDI,1.1,l10n_es|certificate,7,5,1
+l10n_es_edi_tbai_pos,02 OTHER.zip,Spain - Point of Sale + TicketBAI,Accounting/Localizations/Point of Sale,1.0,l10n_es_edi_tbai|point_of_sale,3,1,2
+l10n_es_edi_verifactu,02 OTHER.zip,Spain - Veri*Factu,Accounting/Localizations/EDI,1.0,l10n_es,10,7,1
+l10n_es_edi_verifactu_pos,02 OTHER.zip,Spain - Veri*Factu for Point of Sale,Accounting/Localizations/Point of Sale,1.0,l10n_es_edi_verifactu|point_of_sale,5,2,3
+l10n_es_intrastat,02 OTHER.zip,Spain - Intrastat Declaration,Accounting/Localizations/Reporting,,account_intrastat|l10n_es_reports,1,1,0
+l10n_es_pos,02 OTHER.zip,[Deprecated] Spain - Point of Sale,Accounting/Localizations/Point of Sale,,point_of_sale|l10n_es,5,3,2
+l10n_es_real_estates,02 OTHER.zip,Spain - Real Estates,Accounting/Localizations,0.1,l10n_es_reports,6,2,3
+l10n_es_reports,02 OTHER.zip,Spain - Accounting (PGCE 2008) Reports,Accounting/Localizations/Reporting,4.3,l10n_es|account_reports,27,6,11
+l10n_es_reports_2024,02 OTHER.zip,Spain - Accounting Reports (2024 Update),Accounting/Localization,1.0,l10n_es_reports,1,0,1
+l10n_es_reports_2025,02 OTHER.zip,Spain - Accounting Reports (2025 Update),Accounting/Localization,1.0,l10n_es_reports,10,2,8
+l10n_es_sale_amazon,02 OTHER.zip,Spain - Amazon Connector,Sales/Sales,1.0,sale_amazon|l10n_es,1,1,0
+l10n_et,02 OTHER.zip,Ethiopia - Accounting,Accounting/Localizations/Account Charts,2.0,account,1,0,0
+l10n_et_reports,02 OTHER.zip,Ethiopia - Accounting Reports,,1.0,account_reports|l10n_et,0,0,0
+l10n_eu_iot_scale_cert,02 OTHER.zip,LNE electronic scale certification for PoS,Sales/Point of Sale,1.0,pos_iot,1,0,1
+l10n_eu_oss,02 OTHER.zip,EU One Stop Shop (OSS),Accounting/Localizations,,account,2,2,0
+l10n_eu_oss_reports,02 OTHER.zip,EU One Stop Shop (OSS) Reports,Accounting/Localizations,,account_reports|l10n_eu_oss,8,4,1
+l10n_fi,02 OTHER.zip,Finland - Accounting,Accounting/Localizations/Account Charts,13.0.2,base_iban|base_vat|account|account_edi_ubl_cii,4,3,0
+l10n_fi_intrastat,02 OTHER.zip,Finnish Intrastat Declaration,Accounting/Localizations/Reporting,1.0,account_intrastat|l10n_fi_reports,4,2,1
+l10n_fi_reports,02 OTHER.zip,Finland - Accounting Reports,Accounting/Localizations/Reporting,1.1,l10n_fi|account_reports,7,1,2
+l10n_fi_sale,02 OTHER.zip,Finland - Sale,Sales/Sales,1.0,l10n_fi|sale,1,1,0
+l10n_fr,02 OTHER.zip,France - Localizations,Accounting/Localizations/Account Charts,2.1,base,2,2,0
+l10n_fr_account,02 OTHER.zip,France - Accounting,Accounting/Localizations/Account Charts,2.3,base_iban|base_vat|account|account_edi_ubl_cii|l10n_fr,7,4,1
+l10n_fr_facturx_chorus_pro,02 OTHER.zip,France - BIS3 integration for Chorus Pro,Accounting/Localizations/EDI,1.0,account|account_edi_ubl_cii|l10n_fr_account,2,1,0
+l10n_fr_fec_import,02 OTHER.zip,France - FEC Import,Accounting/Accounting,,account_accountant|base_vat|l10n_fr_account|l10n_fr_reports|account_base_import,2,1,1
+l10n_fr_hr_holidays,02 OTHER.zip,France - Time Off,Human Resources/Time Off,1.0,hr_holidays,3,3,0
+l10n_fr_hr_payroll,02 OTHER.zip,French Payroll,Human Resources/Payroll,,hr_payroll,5,4,0
+l10n_fr_hr_payroll_account,02 OTHER.zip,France - Payroll with Accounting,Human Resources,,l10n_fr_hr_payroll|hr_payroll_account|l10n_fr_account,0,0,0
+l10n_fr_hr_work_entry_holidays,02 OTHER.zip,France - Work Entries Time Off,,1.0,l10n_fr_hr_holidays|hr_work_entry_holidays,2,2,0
+l10n_fr_intrastat,02 OTHER.zip,French Intrastat Declaration,Accounting/Localizations/Reporting,,l10n_fr_account|account_intrastat,8,4,2
+l10n_fr_pos_cert,02 OTHER.zip,France - VAT Anti-Fraud Certification for Point of Sale (CGI 286 I-3 bis),Accounting/Localizations/Point of Sale,1.1,l10n_fr_account|point_of_sale,8,2,5
+l10n_fr_reports,02 OTHER.zip,France - Accounting Reports,Accounting/Localizations/Reporting,1.2,l10n_fr_account|account_reports,10,3,5
+l10n_ga,02 OTHER.zip,Gabon - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_ga_reports,02 OTHER.zip,Gabon - Accounting Reports,,1.0,account_reports|l10n_ga,0,0,0
+l10n_gcc_invoice,02 OTHER.zip,Gulf Cooperation Council - Invoice,Accounting/Localizations,1.0.1,account,5,5,0
+l10n_gcc_invoice_stock_account,02 OTHER.zip,Gulf Cooperation Council WMS Accounting,Accounting/Localizations,1.0,l10n_gcc_invoice|stock_account,0,0,0
+l10n_gcc_pos,02 OTHER.zip,Gulf Cooperation Council - Point of Sale,Accounting/Localizations/Point of Sale,,point_of_sale|l10n_gcc_invoice,2,1,1
+l10n_gn,02 OTHER.zip,Guinea - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_gn_reports,02 OTHER.zip,Guinea - Accounting Reports,,1.0,account_reports|l10n_gn,0,0,0
+l10n_gq,02 OTHER.zip,Guinea Equatorial - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_gq_reports,02 OTHER.zip,Guinea Equatorial - Accounting Reports,,1.0,account_reports|l10n_gq,0,0,0
+l10n_gr,02 OTHER.zip,Greece - Accounting,Accounting/Localizations/Account Charts,,account|base_iban|base_vat|account_edi_ubl_cii,1,0,0
+l10n_gr_edi,02 OTHER.zip,Greece - myDATA,Accounting/Localizations,1.0,l10n_gr,12,9,2
+l10n_gr_reports,02 OTHER.zip,Greece - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_gr|account_reports,2,1,0
+l10n_gt,02 OTHER.zip,Guatemala - Accounting,Accounting/Localizations/Account Charts,3.0,base|account,1,0,0
+l10n_gt_edi,02 OTHER.zip,Guatemala - E-Invoicing,Accounting/Localizations/EDI,1.0,account_debit_note|account_tax_python|l10n_gt|l10n_latam_base,11,6,3
+l10n_gt_edi_pos,02 OTHER.zip,Guatemalan Accounting EDI for POS,Accounting/Localizations/EDI,1.0,l10n_gt_edi|point_of_sale,6,2,4
+l10n_gw,02 OTHER.zip,Guinea-Bissau - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_gw_reports,02 OTHER.zip,Guinea-Bissau - Accounting Reports,,1.0,account_reports|l10n_gw,0,0,0
+l10n_hk,02 OTHER.zip,Hong Kong - Accounting,Accounting/Localizations/Account Charts,1.0,account_qr_code_emv|account,2,1,0
+l10n_hk_hr_payroll,02 OTHER.zip,Hong Kong - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays,22,13,8
+l10n_hk_hr_payroll_account,02 OTHER.zip,Hong Kong - Payroll with Accounting,Human Resources/Payroll,1.0,hr_payroll_account|l10n_hk|l10n_hk_hr_payroll,1,0,0
+l10n_hk_hr_payroll_empf,02 OTHER.zip,Hong Kong - Payroll eMPF,Human Resources/Payroll,,l10n_hk_hr_payroll,0,0,0
+l10n_hk_reports,02 OTHER.zip,Hong Kong - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_hk|account_reports,1,0,0
+l10n_hn,02 OTHER.zip,Honduras - Accounting,Accounting/Localizations/Account Charts,0.2,base|account,1,0,0
+l10n_hr,02 OTHER.zip,Croatia - Accounting (Euro),Accounting/Localizations/Account Charts,13.0,account|base_vat,1,0,0
+l10n_hr_edi,02 OTHER.zip,Croatia - e-invoicing,Accounting/Localizations/Reporting,1.0,l10n_hr|account_edi_ubl_cii|account_peppol,16,8,4
+l10n_hr_intrastat,02 OTHER.zip,Croatian Intrastat Declaration,Accounting/Localizations/Reporting,,account_intrastat|l10n_hr_reports,2,1,1
+l10n_hr_kuna,02 OTHER.zip,Croatia - Accounting (Kuna),Accounting/Localizations/Account Charts,13.0,account,1,0,0
+l10n_hr_kuna_reports,02 OTHER.zip,Croatia (Kuna) - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_hr_kuna|account_reports,0,0,0
+l10n_hr_reports,02 OTHER.zip,Croatia - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_hr|account_reports,3,2,1
+l10n_hu,02 OTHER.zip,Hungary - Accounting,Accounting/Localizations/Account Charts,3.0,account|base_vat,3,2,0
+l10n_hu_edi,02 OTHER.zip,Hungary - E-invoicing,Accounting/Localizations/EDI,1.0.0,account_debit_note|base_iban|l10n_hu,13,8,3
+l10n_hu_reports,02 OTHER.zip,Hungary - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_hu|account_reports,0,0,0
+l10n_id,02 OTHER.zip,Indonesian - Accounting,Accounting/Localizations/Account Charts,1.3,account|base_iban|base_vat,4,2,1
+l10n_id_efaktur_coretax,02 OTHER.zip,Indonesia E-faktur (Coretax),Accounting/Localizations/EDI,1.0,l10n_id,8,5,3
+l10n_id_hr_payroll,02 OTHER.zip,Indonesia - Payroll,Human Resources/Payroll,,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays,5,5,0
+l10n_id_hr_payroll_account,02 OTHER.zip,Indonesia - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_id|l10n_id_hr_payroll,1,0,0
+l10n_id_pos,02 OTHER.zip,Indonesia - Point of Sale,Accounting/Localizations/Point of Sale,1.0,l10n_id|point_of_sale,3,0,3
+l10n_ie,02 OTHER.zip,Ireland - Accounting,Accounting/Localizations/Account Charts,2.1,account|base_iban|base_vat|account_edi_ubl_cii,3,1,0
+l10n_ie_intrastat,02 OTHER.zip,Irish Intrastat Declaration,Accounting/Localizations/Reporting,,l10n_ie|account_intrastat,1,1,0
+l10n_ie_reports,02 OTHER.zip,Ireland - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_ie|account_reports,3,1,0
+l10n_il,02 OTHER.zip,Israel - Accounting,Accounting/Localizations/Account Charts,1.1,account,1,0,0
+l10n_il_reports,02 OTHER.zip,Israel - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_il|account_reports,0,0,0
+l10n_in,02 OTHER.zip,Indian - Accounting,Accounting/Localizations/Account Charts,2.0,account_tax_python|base_vat|account_debit_note|account|iap,19,14,4
+l10n_in_asset,02 OTHER.zip,India - Accounting Assets,Accounting/Localizations/Assets,1.0,l10n_in|account_asset,2,2,0
+l10n_in_edi,02 OTHER.zip,Indian - E-invoicing,Accounting/Localizations/EDI,1.03.00,account_edi|l10n_in,8,6,1
+l10n_in_edi_gstr,02 OTHER.zip,Indian - GSTR with E-invoice,Accounting/Localizations/Reporting,,l10n_in_edi|l10n_in_reports,1,1,0
+l10n_in_ewaybill,02 OTHER.zip,Indian - E-waybill,Accounting/Localizations,2.0,l10n_in,7,4,3
+l10n_in_ewaybill_irn,02 OTHER.zip,Indian - E-waybill thru IRN,Accounting/Localizations,,l10n_in_ewaybill|l10n_in_edi,1,0,1
+l10n_in_ewaybill_stock,02 OTHER.zip,Indian - E-waybill Stock,Accounting/Localizations/EDI,1.1,l10n_in_stock|l10n_in_ewaybill,3,2,1
+l10n_in_hr_holidays,02 OTHER.zip,India - Time Off,Human Resources/Time Off,1.0,hr_holidays,4,3,1
+l10n_in_hr_payroll,02 OTHER.zip,Indian Payroll,Human Resources/Payroll,,hr_payroll_holidays|hr_payroll,19,9,8
+l10n_in_hr_payroll_account,02 OTHER.zip,India - Payroll with Accounting,Human Resources,,l10n_in_hr_payroll|hr_payroll_account|l10n_in,1,0,0
+l10n_in_pos,02 OTHER.zip,Indian - Point of Sale,Accounting/Localizations/Point of Sale,1.0,l10n_in|point_of_sale,11,6,5
+l10n_in_pos_urban_piper,02 OTHER.zip,POS UrbanPiper - India,Sales/Point of Sale,,l10n_in|pos_urban_piper,1,0,1
+l10n_in_purchase_stock,02 OTHER.zip,India Purchase and Warehouse Management,Accounting/Localizations/Purchase,1.0,l10n_in_stock|purchase_stock,3,3,0
+l10n_in_reports,02 OTHER.zip,Indian - Accounting Reports,Accounting/Localizations/Reporting,1.1,l10n_in|account_reports|accountant|account_batch_payment|barcodes|account_invoice_extract,17,11,5
+l10n_in_reports_gstr_pos,02 OTHER.zip,Indian - GSTR India eFiling with POS,Accounting/Localizations/Reporting,1.0,l10n_in_reports|point_of_sale,2,1,0
+l10n_in_sale,02 OTHER.zip,Indian - Sale Report(GST),Accounting/Localizations/Sale,1.0,l10n_in|sale,2,2,0
+l10n_in_sale_stock,02 OTHER.zip,India Sales and Warehouse Management,Accounting/Localizations/Sale,0.1,l10n_in_sale|l10n_in_stock|sale_stock,3,3,0
+l10n_in_stock,02 OTHER.zip,Indian - Stock Report(GST),Accounting/Localizations,1.0,l10n_in|stock,2,2,0
+l10n_iq,02 OTHER.zip,Iraq - Accounting,Accounting/Localizations/Account Charts,1.0,account,1,0,0
+l10n_it,02 OTHER.zip,Italy - Accounting,Accounting/Localizations/Account Charts,0.9,account|base_iban|base_vat|account_edi_ubl_cii,4,2,0
+l10n_it_edi,02 OTHER.zip,Italy - E-invoicing,Accounting/Localizations/EDI,0.4,l10n_it|account_edi_proxy_client|account_debit_note,10,6,3
+l10n_it_edi_doi,02 OTHER.zip,Italy - Declaration of Intent,Accounting/Localizations,0.1,l10n_it_edi|sale,8,6,1
+l10n_it_edi_sale,02 OTHER.zip,Italy - Sale E-invoicing,Accounting/Localizations/EDI,1.0,l10n_it_edi|sale,1,1,0
+l10n_it_hr_payroll_sd_worx,02 OTHER.zip,Italy - Payroll - Export to SD Worx,Human Resources,1.0,hr_payroll,6,4,2
+l10n_it_intrastat,02 OTHER.zip,Italian Intrastat Declaration,Accounting/Localizations/Reporting,,account_intrastat|l10n_it_reports,2,2,0
+l10n_it_pos,02 OTHER.zip,Italy - Point of Sale,Accounting/Localizations/Point of Sale,1.0,l10n_it|point_of_sale,8,3,4
+l10n_it_reports,02 OTHER.zip,Italy - Accounting Reports,Accounting/Accounting,1.0,l10n_it|account_reports,7,3,1
+l10n_it_riba,02 OTHER.zip,Italy - Bank Receipts (Ri.Ba.),Accounting/Localizations,0.1,l10n_it_edi|base_iban|account_batch_payment,5,4,1
+l10n_it_stock_ddt,02 OTHER.zip,Italy - Stock DDT,Accounting/Localizations/EDI,0.1,l10n_it_edi|stock_delivery|stock_account,3,3,0
+l10n_jo,02 OTHER.zip,Jordan - Accounting,Accounting/Localizations/Account Charts,1.0,account,1,0,0
+l10n_jo_edi,02 OTHER.zip,Jordan E-Invoicing,Accounting/Localizations/EDI,1.0,account_edi_ubl_cii|l10n_jo,7,5,0
+l10n_jo_edi_pos,02 OTHER.zip,Jordan Accounting EDI for POS,Accounting/Localizations/EDI,1.0,l10n_jo_edi|pos_edi_ubl,6,3,2
+l10n_jo_hr_payroll,02 OTHER.zip,Jordan - Payroll,Human Resources/Payroll,,hr_payroll|hr_payroll_holidays,6,6,0
+l10n_jo_hr_payroll_account,02 OTHER.zip,Jordan - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_jo|l10n_jo_hr_payroll,1,0,0
+l10n_jo_reports,02 OTHER.zip,Jordan - Accounting Reports,,1.0,account_reports|l10n_jo,0,0,0
+l10n_jp,02 OTHER.zip,Japan - Accounting,Accounting/Localizations/Account Charts,2.3,account,1,0,0
+l10n_jp_reports,02 OTHER.zip,Japan - Accounting Reports,,1.0,account_reports|l10n_jp,0,0,0
+l10n_jp_ubl_pint,02 OTHER.zip,Japan - UBL PINT,Accounting/Localizations/EDI,1.0,account_edi_ubl_cii,2,1,0
+l10n_jp_zengin,02 OTHER.zip,Japan - Zengin Payment,Accounting/Localizations/EDI,1.0,l10n_jp|account_batch_payment|account_bank_statement_import,6,5,1
+l10n_ke,02 OTHER.zip,Kenya - Accounting,Accounting/Localizations/Account Charts,1.0,account,5,3,1
+l10n_ke_edi_oscu,02 OTHER.zip,Kenya eTIMS EDI Integration,Accounting/Localizations/EDI,1.0,l10n_ke|product_unspsc,17,12,3
+l10n_ke_edi_oscu_mrp,02 OTHER.zip,Kenya ETIMS EDI Manufacturing Integration,Accounting/Localizations/EDI,1.0,l10n_ke_edi_oscu_stock|mrp,1,1,0
+l10n_ke_edi_oscu_pos,02 OTHER.zip,Kenya - Point of Sale,Accounting/Localizations/EDI,1.0,l10n_ke_edi_oscu_stock|point_of_sale,13,6,5
+l10n_ke_edi_oscu_stock,02 OTHER.zip,Kenya ETIMS EDI Stock Integration,Accounting/Localizations/EDI,1.0,l10n_ke_edi_oscu|sale_management|purchase_stock|sale_stock,12,11,1
+l10n_ke_edi_tremol,02 OTHER.zip,Kenya Tremol Device EDI Integration,Accounting/Localizations/EDI,1.0,l10n_ke,6,5,0
+l10n_ke_hr_payroll,02 OTHER.zip,Kenya - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays,9,7,1
+l10n_ke_hr_payroll_account,02 OTHER.zip,Kenya - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_ke|l10n_ke_hr_payroll,1,0,0
+l10n_ke_reports,02 OTHER.zip,Kenya - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_ke|account_reports,2,1,0
+l10n_kh,02 OTHER.zip,Cambodia - Accounting,Accounting/Localizations/Account Charts,1.0,account_qr_code_emv|l10n_account_withholding_tax,2,1,0
+l10n_kh_reports,02 OTHER.zip,Cambodia - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_kh|account_reports,1,0,0
+l10n_km,02 OTHER.zip,Comoros - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_km_reports,02 OTHER.zip,Comoros - Accounting Reports,,1.0,account_reports|l10n_km,0,0,0
+l10n_kr,02 OTHER.zip,Republic of Korea - Accounting,Accounting/Localizations/Account Charts,1.0,account,1,0,0
+l10n_kr_reports,02 OTHER.zip,Republic of Korea - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_kr|account_reports,0,0,0
+l10n_kw,02 OTHER.zip,Kuwait - Accounting,Accounting/Localizations/Account Charts,1.0,account|l10n_gcc_invoice,1,0,0
+l10n_kz,02 OTHER.zip,Kazakhstan - Accounting,Accounting/Localizations/Account Charts,1.0,account,1,0,0
+l10n_kz_reports,02 OTHER.zip,Kazakhstan - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_kz|account_reports,0,0,0
+l10n_latam_base,02 OTHER.zip,LATAM Localization Base,Accounting/Localizations,1.0,contacts|base_vat,3,2,1
+l10n_latam_check,02 OTHER.zip,Third Party and Deferred/Electronic Checks Management,Accounting/Localizations,1.0.0,account|base_vat,7,5,1
+l10n_latam_invoice_document,02 OTHER.zip,LATAM Document,Accounting/Localizations,1.0,account|account_debit_note,7,4,2
+l10n_lb_account,02 OTHER.zip,Lebanon - Accounting,Accounting/Localizations/Account Charts,1.0,account,1,0,0
+l10n_lk,02 OTHER.zip,Sri Lanka - Accounting,Accounting/Localizations/Account Charts,1.0,account|l10n_account_withholding_tax,1,0,0
+l10n_lk_reports,02 OTHER.zip,Sri Lanka - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_lk|account_reports,0,0,0
+l10n_lt,02 OTHER.zip,Lithuania - Accounting,Accounting/Localizations/Account Charts,1.0.0,account|account_edi_ubl_cii,3,2,0
+l10n_lt_hr_payroll,02 OTHER.zip,Lithuania - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays,6,6,0
+l10n_lt_hr_payroll_account,02 OTHER.zip,Lithuania - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_lt|l10n_lt_hr_payroll,1,0,0
+l10n_lt_intrastat,02 OTHER.zip,Lithuanian Intrastat Declaration,Accounting/Localizations/Reporting,1.0,l10n_lt|account_intrastat,4,2,1
+l10n_lt_reports,02 OTHER.zip,Lithuania - Accounting Reports,Accounting/Localizations/Reporting,1.0.0,account_reports|l10n_lt,6,2,2
+l10n_lt_saft,02 OTHER.zip,Lithuanian Standard Audit File for Tax,Accounting/Localizations/Reporting,1.0,l10n_lt|account_saft,1,0,0
+l10n_lt_saft_import,02 OTHER.zip,Lithuania - SAF-T Import,Accounting/Localizations,,account_saft_import|l10n_lt,1,0,1
+l10n_lu,02 OTHER.zip,Luxembourg - Accounting,Accounting/Localizations/Account Charts,2.2,account|base_iban|base_vat|account_edi_ubl_cii,1,0,0
+l10n_lu_hr_payroll,02 OTHER.zip,Luxembourg - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays,9,7,2
+l10n_lu_hr_payroll_account,02 OTHER.zip,Luxembourg - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_lu|l10n_lu_hr_payroll,1,0,0
+l10n_lu_reports,02 OTHER.zip,Luxembourg - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_lu|account_asset|account_reports|account_saft,24,6,9
+l10n_lv,02 OTHER.zip,Latvia - Accounting,Accounting/Localizations/Account Charts,1.0.0,account|base_vat|account_edi_ubl_cii,1,0,0
+l10n_lv_reports,02 OTHER.zip,Latvia - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_lv|account_reports,0,0,0
+l10n_ma,02 OTHER.zip,Morocco - Accounting,Accounting/Localizations/Account Charts,,base|account,3,2,0
+l10n_ma_hr_payroll,02 OTHER.zip,Morocco - Payroll,Human Resources/Payroll,1.0,hr_payroll,5,5,0
+l10n_ma_hr_payroll_account,02 OTHER.zip,Morocco - Payroll with Accounting,Human Resources,,l10n_ma_hr_payroll|hr_payroll_account|l10n_ma,1,0,0
+l10n_ma_reports,02 OTHER.zip,Morocco - Accounting Reports,Accounting/Localizations/Reporting,1.1,l10n_ma|account_reports,5,4,0
+l10n_mc,02 OTHER.zip,Monaco - Accounting,Accounting/Localizations/Account Charts,,l10n_fr_account|account,0,0,0
+l10n_ml,02 OTHER.zip,Mali - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_ml_reports,02 OTHER.zip,Mali - Accounting Reports,,1.0,account_reports|l10n_ml,0,0,0
+l10n_mn,02 OTHER.zip,Mongolia - Accounting,Accounting/Localizations/Account Charts,1.1,account,1,0,0
+l10n_mn_reports,02 OTHER.zip,Mongolia - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_mn|account_reports,1,0,0
+l10n_mr,02 OTHER.zip,Mauritania - Accounting,Accounting/Localizations/Account Charts,1.0,account|base_vat,1,0,0
+l10n_mr_reports,02 OTHER.zip,Mauritania - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_mr|account_reports,1,1,0
+l10n_mt,02 OTHER.zip,Malta - Accounting,Accounting/Localizations/Account Charts,1.0,account|base_vat|account_edi_ubl_cii,1,0,0
+l10n_mt_pos,02 OTHER.zip,Malta - Point of Sale,Accounting/Localizations/Point of Sale,1.0,point_of_sale,0,0,0
+l10n_mt_reports,02 OTHER.zip,Malta - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_mt|account_reports,1,1,0
+l10n_mu_account,02 OTHER.zip,Mauritius - Accounting,Accounting/Localizations/Account Charts,1.0,account,3,2,0
+l10n_mu_reports,02 OTHER.zip,Mauritius - Accounting Reports,,1.0,account_reports|l10n_mu_account,0,0,0
+l10n_mx,02 OTHER.zip,Mexico - Accounting,Accounting/Localizations/Account Charts,2.3,account,8,7,0
+l10n_mx_edi,02 OTHER.zip,EDI for Mexico,Accounting/Localizations/EDI,0.3,account_accountant|l10n_mx|base_vat|product_unspsc|certificate,21,15,5
+l10n_mx_edi_extended,02 OTHER.zip,EDI for Mexico (Advanced Features),Accounting/Localizations/EDI,0.1,l10n_mx_edi|base_address_extended,12,9,3
+l10n_mx_edi_landing,02 OTHER.zip,Odoo Mexico Localization for Stock/Landing,Accounting/Localizations/EDI,1.0,stock_landed_costs|sale_management|sale_stock|l10n_mx_edi_extended,8,8,0
+l10n_mx_edi_pos,02 OTHER.zip,Mexican Localization for the Point of Sale,Accounting/Localizations/EDI,0.1,l10n_mx_edi|point_of_sale,10,4,6
+l10n_mx_edi_sale,02 OTHER.zip,CFDI 4.0 fields for sale orders,Accounting/Localizations/EDI,1.0,sale|l10n_mx_edi,2,2,0
+l10n_mx_edi_stock,02 OTHER.zip,Mexico - Electronic Delivery Guide,Accounting/Localizations/EDI,1.2,fleet|stock_delivery|l10n_mx_edi_extended|web_map,14,6,8
+l10n_mx_edi_website_sale,02 OTHER.zip,Mexican Localization for eCommerce,Accounting/Localizations/EDI,1.0,website_sale|l10n_mx_edi_sale,1,1,0
+l10n_mx_hr_payroll,02 OTHER.zip,Mexico - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays,7,5,2
+l10n_mx_hr_payroll_account,02 OTHER.zip,Mexico - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_mx|l10n_mx_hr_payroll|l10n_mx_edi,1,0,0
+l10n_mx_hr_payroll_account_edi,02 OTHER.zip,Mexico - Payroll CFDI,Human Resources/Payroll,1.0,l10n_mx_hr_payroll_account|l10n_mx_edi,11,9,2
+l10n_mx_reports,02 OTHER.zip,Odoo Mexican Localization Reports,Accounting/Localizations/Reporting,1.0,account_reports|l10n_mx|l10n_mx_edi,6,3,0
+l10n_mx_reports_closing,02 OTHER.zip,Mexico - Month 13 Trial Balance,Accounting/Localizations/Reporting,1.0,l10n_mx_reports,2,1,0
+l10n_mx_xml_polizas,02 OTHER.zip,Odoo Mexican XML Polizas Export,Accounting/Localizations/Reporting,0.1,l10n_mx_reports|l10n_mx_edi,2,0,1
+l10n_my,02 OTHER.zip,Malaysia - Accounting,Accounting/Localizations/Account Charts,1.1,account|account_tax_python,2,1,0
+l10n_my_edi,02 OTHER.zip,Malaysia - E-invoicing,Accounting/Localizations/EDI,1.0,l10n_my|l10n_my_ubl_pint|account_edi_proxy_client,14,7,5
+l10n_my_edi_pos,02 OTHER.zip,Malaysia - E-invoicing (POS),Accounting/Localizations/EDI,1.0,l10n_my_edi|point_of_sale,4,0,3
+l10n_my_hr_payroll,02 OTHER.zip,Malaysia - Payroll,Human Resources/Payroll,,hr_payroll,4,4,0
+l10n_my_hr_payroll_account,02 OTHER.zip,Malaysia - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_my|l10n_my_hr_payroll,1,0,0
+l10n_my_reports,02 OTHER.zip,Malaysia - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_my|account_followup|account_reports,6,3,0
+l10n_my_ubl_pint,02 OTHER.zip,Malaysia - UBL PINT,Accounting/Localizations/EDI,1.0,account_edi_ubl_cii,4,3,0
+l10n_mz,02 OTHER.zip,Mozambique - Accounting,Accounting/Localizations/Account Charts,1.0,base|account,1,0,0
+l10n_mz_reports,02 OTHER.zip,Mozambique - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_mz|account_reports,0,0,0
+l10n_ne,02 OTHER.zip,Niger - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_ne_reports,02 OTHER.zip,Niger - Accounting Reports,,1.0,account_reports|l10n_ne,0,0,0
+l10n_ng,02 OTHER.zip,Nigeria - Accounting,Accounting/Localizations/Account Charts,1.0,base_vat|account,1,0,0
+l10n_ng_reports,02 OTHER.zip,Nigeria - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_ng|account_reports,1,0,0
+l10n_nl,02 OTHER.zip,Netherlands - Accounting,Accounting/Localizations/Account Charts,3.4,base_iban|base_vat|account|account_edi_ubl_cii,4,2,0
+l10n_nl_hr_payroll,02 OTHER.zip,Netherlands - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays,4,4,0
+l10n_nl_hr_payroll_account,02 OTHER.zip,Netherlands - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_nl|l10n_nl_hr_payroll,1,0,0
+l10n_nl_intrastat,02 OTHER.zip,Netherlands Intrastat Declaration,Accounting/Localizations/Reporting,,l10n_nl_reports|account_intrastat,4,3,0
+l10n_nl_reports,02 OTHER.zip,Netherlands - Accounting Reports,Accounting/Localizations/Reporting,1.5,l10n_nl|account_reports|certificate,12,5,4
+l10n_no,02 OTHER.zip,Norway - Accounting,Accounting/Localizations/Account Charts,2.1,base_iban|base_vat|account|account_edi_ubl_cii,6,5,0
+l10n_no_reports,02 OTHER.zip,Norway - Accounting Reports,Accounting/Localizations/Reporting,1.1,l10n_no|account_reports,3,1,1
+l10n_no_saft,02 OTHER.zip,Norwegian Standard Audit File for Tax,Accounting/Localizations/Reporting,1.2,l10n_no|account_saft,1,0,0
+l10n_nz,02 OTHER.zip,New Zealand - Accounting,Accounting/Localizations/Account Charts,1.2,account,4,3,0
+l10n_nz_eft,02 OTHER.zip,EFT Batch Payment,Accounting/Localizations/EDI,1.0,account_batch_payment|l10n_nz,5,4,1
+l10n_nz_reports,02 OTHER.zip,New Zealand - Accounting Reports,,1.0,account_reports|l10n_nz,0,0,0
+l10n_om,02 OTHER.zip,Oman - Accounting,Accounting/Localizations/Account Charts,1.0,account|l10n_gcc_invoice,1,0,0
+l10n_om_reports,02 OTHER.zip,Oman - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_om|account_reports,0,0,0
+l10n_pa,02 OTHER.zip,Panama - Accounting,Accounting/Localizations/Account Charts,,account,1,0,0
+l10n_pe,02 OTHER.zip,Peru - Accounting,Accounting/Localizations/Account Charts,3.1,base_vat|base_address_extended|l10n_latam_base|l10n_latam_invoice_document|account_debit_note|account,9,6,2
+l10n_pe_edi,02 OTHER.zip,EDI for Peru,Accounting/Localizations/EDI,0.1,iap|l10n_pe|product_unspsc|account_edi|account_edi_ubl_cii|certificate,13,9,2
+l10n_pe_edi_pos,02 OTHER.zip,Peruvian Localization for the Point of Sale,Accounting/Localizations/EDI,0.1,l10n_pe_edi|point_of_sale,5,1,4
+l10n_pe_edi_stock,02 OTHER.zip,Peruvian - Electronic Delivery Note,Accounting/Localizations/EDI,0.1,stock_delivery|l10n_pe_edi,6,5,1
+l10n_pe_pos,02 OTHER.zip,Peruvian - Point of Sale with Pe Doc,Accounting/Localizations/Point of Sale,1.0,l10n_pe|point_of_sale,6,2,4
+l10n_pe_reports,02 OTHER.zip,Peru - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_pe_edi|account_reports,12,5,1
+l10n_pe_reports_lib,02 OTHER.zip,Peru - Inventory and Balance Reports,Accounting/Localizations/Reporting,1.0,l10n_pe_edi|account_reports|l10n_pe_reports|l10n_pe_reports_stock,6,3,2
+l10n_pe_reports_stock,02 OTHER.zip,Peru - Stock Reports,Accounting/Localizations/Reporting,1.0,l10n_pe_edi|purchase|sale_stock,5,4,1
+l10n_ph,02 OTHER.zip,Philippines - Accounting,Accounting/Localizations/Account Charts,1.1,account|base_vat|l10n_account_withholding_tax,7,5,1
+l10n_ph_check_printing,02 OTHER.zip,Philippines Checks Layout,Accounting/Localizations/Check,1.0,account_check_printing|l10n_ph,2,2,0
+l10n_ph_reports,02 OTHER.zip,Philippines - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_ph|account_reports,8,0,1
+l10n_pk,02 OTHER.zip,Pakistan - Accounting,Accounting/Localizations/Account Charts,1.1,account,1,0,0
+l10n_pk_hr_payroll,02 OTHER.zip,Pakistan - Payroll,Human Resources/Payroll,,hr_payroll,2,2,0
+l10n_pk_hr_payroll_account,02 OTHER.zip,Pakistan - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_pk|l10n_pk_hr_payroll,1,0,0
+l10n_pk_reports,02 OTHER.zip,Pakistan - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_pk|account_reports,1,1,0
+l10n_pl,02 OTHER.zip,Poland - Accounting,Accounting/Localizations/Account Charts,2.1,base_iban|base_vat|account|account_edi_ubl_cii,7,5,1
+l10n_pl_edi,02 OTHER.zip,Polish E-Invoicing FA(3),Accounting/Localizations,,l10n_pl|certificate,5,4,0
+l10n_pl_hr_payroll,02 OTHER.zip,Poland - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays,2,2,0
+l10n_pl_hr_payroll_account,02 OTHER.zip,Poland - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_pl|l10n_pl_hr_payroll,1,0,0
+l10n_pl_intrastat,02 OTHER.zip,Polish Intrastat Declaration,Accounting/Localizations/Reporting,,account_intrastat|l10n_pl_reports,2,2,0
+l10n_pl_reports,02 OTHER.zip,Poland - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_pl|account_reports,6,2,1
+l10n_pl_reports_account_saft,02 OTHER.zip,Poland - SAFT Income Tax Report (JPK KR PD),Accounting/Localizations/Reporting,1.0,l10n_pl_reports|account_saft,1,0,0
+l10n_pl_reports_jpk_fa,02 OTHER.zip,Poland - JPK FA Reports,Accounting/Localizations/Reporting,1.0,l10n_pl|l10n_pl_edi|account_reports|base_address_extended,1,0,0
+l10n_pl_reports_pos_jpk,02 OTHER.zip,Poland - JPK_VAT PoS Enterprise,Accounting/Localizations/Reporting,1.0,l10n_pl_reports|point_of_sale,1,0,0
+l10n_pt,02 OTHER.zip,Portugal - Accounting,Accounting/Localizations/Account Charts,1.0,base|account|base_vat|account_edi_ubl_cii,3,2,0
+l10n_pt_intrastat,02 OTHER.zip,Portuguese Intrastat Declaration,Accounting/Localizations/Reporting,,l10n_pt|account_intrastat,2,2,0
+l10n_pt_reports,02 OTHER.zip,Portugal - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_pt|account_reports,3,2,0
+l10n_qa,02 OTHER.zip,Qatar - Accounting,Accounting/Localizations/Account Charts,1.0,account|l10n_gcc_invoice,1,0,0
+l10n_ro,02 OTHER.zip,Romania - Accounting,Accounting/Localizations/Account Charts,1.1,account|base_vat|account_edi_ubl_cii,2,1,0
+l10n_ro_cpv_code,02 OTHER.zip,Romania - CPV Code,Hidden,1.0,l10n_ro_edi,3,1,1
+l10n_ro_edi,02 OTHER.zip,Romania - E-invoicing,Accounting/Localizations/EDI,1.0,account_edi_ubl_cii|l10n_ro,8,5,1
+l10n_ro_edi_stock,02 OTHER.zip,Romania - E-Transport,Accounting/Localizations/EDI,1.0,stock_delivery|l10n_ro_edi|stock_picking_batch,3,2,1
+l10n_ro_edi_stock_batch,02 OTHER.zip,Romania - E-Transport Batch Pickings,Accounting/Localizations/EDI,1.0,l10n_ro_edi_stock|stock_picking_batch,3,2,1
+l10n_ro_hr_payroll,02 OTHER.zip,Romania - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays,3,3,0
+l10n_ro_hr_payroll_account,02 OTHER.zip,Romania - Payroll with Accounting,Human Resources/Payroll,1.0,hr_payroll_account|l10n_ro|l10n_ro_hr_payroll,1,0,0
+l10n_ro_intrastat,02 OTHER.zip,Romania - Intrastat Declaration,Accounting/Localizations/Reporting,1.0,account_intrastat|l10n_ro_reports,0,0,0
+l10n_ro_reports,02 OTHER.zip,Romania - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_ro|account_reports,2,0,0
+l10n_ro_saft,02 OTHER.zip,Romanian SAF-T Export,Accounting/Localizations/Reporting,1.0,l10n_ro|account_saft|account_asset,9,5,2
+l10n_ro_saft_import,02 OTHER.zip,Romania - SAF-T Import,Accounting/Localizations,,account_saft_import|l10n_ro_saft,1,0,1
+l10n_ro_saft_stock,02 OTHER.zip,Romanian SAF-T Export (Stocks),Accounting/Localizations/Reporting,1.0,account_edi_ubl_cii|l10n_ro_saft|stock_account,3,2,0
+l10n_rs,02 OTHER.zip,Serbia - Accounting,Accounting/Localizations/Account Charts,1.0,account|base_vat,2,1,0
+l10n_rs_edi,02 OTHER.zip,Serbia - eFaktura E-invoicing,Accounting/Localizations/EDI,1.0,account_edi_ubl_cii|l10n_rs,7,5,0
+l10n_rs_reports,02 OTHER.zip,Serbia - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_rs|account_reports,0,0,0
+l10n_rw,02 OTHER.zip,Rwanda - Accounting,Accounting/Localizations/Account Charts,1.0,account,1,0,0
+l10n_rw_reports,02 OTHER.zip,Rwanda - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_rw|account_reports,0,0,0
+l10n_sa,02 OTHER.zip,Saudi Arabia - Accounting,Accounting/Localizations/Account Charts,2.2,l10n_gcc_invoice|account|account_debit_note,5,3,1
+l10n_sa_edi,02 OTHER.zip,Saudi Arabia - E-invoicing,Accounting/Localizations/EDI,0.3,account_edi|account_edi_ubl_cii|l10n_sa|base_vat|certificate,16,10,3
+l10n_sa_edi_pos,02 OTHER.zip,Saudi Arabia - E-invoicing (Simplified),Accounting/Localizations/EDI,0.2,l10n_sa_pos|l10n_sa_edi,6,2,3
+l10n_sa_hr_payroll,02 OTHER.zip,Saudi Arabia - Payroll,Human Resources/Payroll,,hr_payroll|hr_work_entry_holidays,11,11,0
+l10n_sa_hr_payroll_account,02 OTHER.zip,Saudi Arabia - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_sa|l10n_sa_hr_payroll,1,0,0
+l10n_sa_pos,02 OTHER.zip,Saudi Arabia - Point of Sale,Accounting/Localizations/Point of Sale,,l10n_gcc_pos|l10n_sa,2,0,2
+l10n_sa_reports,02 OTHER.zip,Saudi Arabia - Accounting Reports,,1.0,account_reports|l10n_sa,1,1,0
+l10n_sa_withholding_tax,02 OTHER.zip,Saudi Arabia - Withholding Tax,Accounting/Localizations/Account Charts,,l10n_account_withholding_tax|l10n_sa,0,0,0
+l10n_se,02 OTHER.zip,Sweden - Accounting,Accounting/Localizations/Account Charts,1.1,account|base_vat|account_edi_ubl_cii,7,4,0
+l10n_se_bban,02 OTHER.zip,BBAN Plusgiro Bankgiro,Accounting/Localizations,1.0,account_iso20022|l10n_se,4,2,2
+l10n_se_pos,02 OTHER.zip,Sweden Registered Cash Register,Sales/Point Of Sale,1.0,pos_restaurant|pos_iot|l10n_se,4,2,2
+l10n_se_reports,02 OTHER.zip,Sweden - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_se|account_reports,3,1,0
+l10n_se_returns,02 OTHER.zip,Sweden - Accounting Returns,Accounting/Localizations/Reporting,1.0,l10n_se_reports,4,2,2
+l10n_se_sie4_export,02 OTHER.zip,Sweden - SIE 4 Export,Accounting/Accounting,1.0,account_base_import|account_reports|l10n_se,1,0,0
+l10n_se_sie4_import,02 OTHER.zip,Sweden - SIE 4 Import,Accounting/Accounting,1.0,account_base_import|l10n_se,1,0,1
+l10n_se_sie_import,02 OTHER.zip,Sweden - SIE 5 Import,Accounting/Accounting,1.0,account_base_import|l10n_se,1,0,1
+l10n_sg,02 OTHER.zip,Singapore - Accounting,Accounting/Localizations/Account Charts,2.2,account_qr_code_emv|account,5,4,0
+l10n_sg_reports,02 OTHER.zip,Singapore - Accounting Reports,Accounting/Localizations/Reporting,1.1,l10n_sg|account_reports,2,1,1
+l10n_sg_ubl_pint,02 OTHER.zip,Singapore - UBL PINT,Accounting/Localizations/EDI,1.0,account_edi_ubl_cii,4,3,0
+l10n_si,02 OTHER.zip,Slovenian - Accounting,Accounting/Localizations/Account Charts,1.1,account|base_vat|account_edi_ubl_cii,3,2,0
+l10n_si_intrastat,02 OTHER.zip,Slovenian Intrastat Declaration,Accounting/Localizations/Reporting,,account_intrastat|l10n_si_reports,0,0,0
+l10n_si_reports,02 OTHER.zip,Slovenia - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_si|account_reports,1,0,0
+l10n_sk,02 OTHER.zip,Slovak - Accounting,Accounting/Localizations/Account Charts,1.0,base_iban|base_vat|account,4,3,0
+l10n_sk_hr_payroll,02 OTHER.zip,Slovakia - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays,4,4,0
+l10n_sk_hr_payroll_account,02 OTHER.zip,Slovakia - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_sk|l10n_sk_hr_payroll,1,0,0
+l10n_sk_reports,02 OTHER.zip,Slovakia - Accounting Reports,Accounting/Localizations/Reporting,,l10n_sk|account_reports,3,1,1
+l10n_sn,02 OTHER.zip,Sénégal - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_sn_reports,02 OTHER.zip,Sénégal - Accounting Reports,,1.0,account_reports|l10n_sn,0,0,0
+l10n_syscohada,02 OTHER.zip,OHADA - Accounting,Accounting/Localizations/Account Charts,,account,2,0,0
+l10n_syscohada_reports,02 OTHER.zip,OHADA (révisé) - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_syscohada|account_reports,3,1,0
+l10n_td,02 OTHER.zip,Tchad - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_td_reports,02 OTHER.zip,Tchad - Accounting Reports,,1.0,account_reports|l10n_td,0,0,0
+l10n_test_pos_qr_payment,02 OTHER.zip,POS QR Tests,Sales/Point of Sale,1.0,point_of_sale|account_qr_code_sepa|l10n_be|l10n_ch|l10n_hk|l10n_br,0,0,0
+l10n_test_website_sale,02 OTHER.zip,Test - Ecommerce & Accouting Localizations,Hidden,1.0,l10n_br|l10n_co_edi|l10n_ec|l10n_it_edi|website_sale,0,0,0
+l10n_tg,02 OTHER.zip,Togo - Accounting,Accounting/Localizations/Account Charts,,l10n_syscohada|account,2,0,0
+l10n_tg_reports,02 OTHER.zip,Togo - Accounting Reports,,1.0,account_reports|l10n_tg,0,0,0
+l10n_th,02 OTHER.zip,Thailand - Accounting,Accounting/Localizations/Account Charts,2.0,account_qr_code_emv|account,5,3,1
+l10n_th_reports,02 OTHER.zip,Thailand - Accounting Reports,Accounting,1.0,l10n_th|account_reports,4,0,0
+l10n_tn,02 OTHER.zip,Tunisia - Accounting,Accounting/Localizations/Account Charts,1.0,account,1,0,0
+l10n_tn_reports,02 OTHER.zip,Tunisia - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_tn|account_reports,0,0,0
+l10n_tr,02 OTHER.zip,Türkiye - Accounting,Accounting/Localizations/Account Charts,1.3,account,4,3,0
+l10n_tr_hr_payroll,02 OTHER.zip,Türkiye - Payroll,Human Resources/Payroll,,hr_payroll,5,4,0
+l10n_tr_hr_payroll_account,02 OTHER.zip,Türkiye - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_tr|l10n_tr_hr_payroll,1,0,0
+l10n_tr_nilvera,02 OTHER.zip,Türkiye - Nilvera,Accounting/Accounting,1.0,l10n_tr,6,5,1
+l10n_tr_nilvera_base_vat,02 OTHER.zip,Türkiye - Nilvera/Base VAT,Accounting/Accounting,1.0,l10n_tr_nilvera|base_vat,1,1,0
+l10n_tr_nilvera_edispatch,02 OTHER.zip,Türkiye - e-Irsaliye (e-Dispatch),Accounting/Localizations,1.0,l10n_tr_nilvera|stock,4,3,1
+l10n_tr_nilvera_einvoice,02 OTHER.zip,Türkiye - Nilvera E-Invoice,Accounting/Accounting,1.0,l10n_tr_nilvera|account_edi_ubl_cii,5,3,0
+l10n_tr_nilvera_einvoice_extended,02 OTHER.zip,Türkiye - Nilvera E-Invoice Extended,Accounting/Accounting,1.0,l10n_tr_nilvera_einvoice|contacts,13,8,2
+l10n_tr_reports,02 OTHER.zip,Türkiye - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_tr|account_reports,1,0,0
+l10n_tw,02 OTHER.zip,Taiwan - Accounting,Accounting/Localizations/Account Charts,1.0,account|base_address_extended,1,0,0
+l10n_tw_edi_ecpay,02 OTHER.zip,Taiwan - E-invoicing,Accounting/Localizations/EDI,1.0,l10n_tw|base_vat,10,7,2
+l10n_tw_edi_ecpay_website_sale,02 OTHER.zip,Taiwan - E-invoicing Ecommerce,Website Sale/Localizations/EDI,,website_sale|l10n_tw_edi_ecpay,2,2,0
+l10n_tw_reports,02 OTHER.zip,Taiwan - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_tw|account_reports,0,0,0
+l10n_tz_account,02 OTHER.zip,Tanzania - Accounting,Accounting/Localizations/Account Charts,1.0,account,1,0,0
+l10n_tz_reports,02 OTHER.zip,Tanzania - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_tz_account|account_reports,0,0,0
+l10n_ua,02 OTHER.zip,Ukraine - Accounting,Accounting/Localizations/Account Charts,1.4,account,1,0,0
+l10n_ug,02 OTHER.zip,Uganda - Accounting,Accounting/Localizations/Account Charts,1.0.0,account,1,0,0
+l10n_ug_reports,02 OTHER.zip,Uganda - Accounting Reports,,1.0,account_reports|l10n_ug,0,0,0
+l10n_uk,02 OTHER.zip,United Kingdom - Accounting,Accounting/Localizations/Account Charts,1.1,account|base_iban|base_vat,2,0,0
+l10n_uk_bacs,02 OTHER.zip,UK BACS Payment Files,Accounting/Accounting,1.0,account_batch_payment|base_iban|l10n_uk,9,7,2
+l10n_uk_hmrc,02 OTHER.zip,UK - HMRC API,Accounting/Localizations/UK/HMRC,1.0,l10n_uk,3,2,1
+l10n_uk_intrastat,02 OTHER.zip,British Intrastat Declaration,Accounting/Localizations/Reporting,,l10n_uk|account_intrastat,1,1,0
+l10n_uk_reports,02 OTHER.zip,UK - Accounting Reports,Accounting/Localizations/Reporting,1.2,l10n_uk|account_reports,8,4,2
+l10n_uk_reports_cis,02 OTHER.zip,UK - Construction Industry Scheme,Accounting/Localizations/UK/CIS,1.0,l10n_uk_reports|l10n_uk_hmrc,8,3,2
+l10n_us,02 OTHER.zip,United States - Localizations,Accounting/Localizations/Account Charts,1.1,base,1,1,0
+l10n_us_1099,02 OTHER.zip,1099 Reporting,Accounting/Accounting,1.0,l10n_us|account_accountant,3,1,2
+l10n_us_account,02 OTHER.zip,United States - Accounting,Accounting/Localizations/Account Charts,1.0,l10n_us|account,2,1,0
+l10n_us_check_printing,02 OTHER.zip,US Checks Layout,Accounting/Localizations/Check,1.0,account_check_printing|l10n_us_account,2,2,0
+l10n_us_direct_deposit,02 OTHER.zip,United States - Direct Deposit,Accounting/Payment,1.0,account_batch_payment|l10n_us,6,5,1
+l10n_us_hr_payroll,02 OTHER.zip,United States - Payroll,Human Resources/Payroll,1.0,hr_payroll|hr_work_entry_holidays|hr_payroll_holidays|base_address_extended|l10n_us,11,7,4
+l10n_us_hr_payroll_account,02 OTHER.zip,United States - Payroll with Accounting,Human Resources,1.0,hr_payroll_account|l10n_us_hr_payroll|l10n_us_payment_nacha,6,3,2
+l10n_us_hr_payroll_adp,02 OTHER.zip,United States - Payroll - Export to ADP,Human Resources,1.0,l10n_us_hr_payroll,4,3,1
+l10n_us_payment_nacha,02 OTHER.zip,NACHA Payments,Accounting/Accounting,1.0,account_batch_payment|l10n_us_account,4,3,1
+l10n_us_reports,02 OTHER.zip,US - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_us_account|account_reports,2,0,0
+l10n_uy,02 OTHER.zip,Uruguay - Accounting,Accounting/Localizations/Account Charts,0.1,account|l10n_latam_invoice_document|l10n_latam_base,7,4,2
+l10n_uy_edi,02 OTHER.zip,Uruguay - Electronic Invoice,Accounting/Localizations/EDI,1.0,l10n_uy,11,7,3
+l10n_uy_edi_stock,02 OTHER.zip,Uruguay - E-Remitos,Accounting/Localizations/EDI,1.0,l10n_uy_edi|stock_account|sale_stock,4,2,2
+l10n_uy_pos,02 OTHER.zip,Uruguayan - Point of Sale,Accounting/Localizations/Point of Sale,1.0,l10n_uy|point_of_sale,0,0,0
+l10n_uy_reports,02 OTHER.zip,Uruguay - Accounting Reports,,1.0,account_reports|l10n_uy,0,0,0
+l10n_uz,02 OTHER.zip,Uzbekistan - Accounting,Accounting/Localizations/Account Charts,,account|base_vat,2,1,0
+l10n_uz_reports,02 OTHER.zip,Uzbekistan - Accounting Reports,,1.0,account_reports|l10n_uz,0,0,0
+l10n_ve,02 OTHER.zip,Venezuela - Accounting,Accounting/Localizations/Account Charts,,account,1,0,0
+l10n_vn,02 OTHER.zip,Vietnam - Accounting,Accounting/Localizations/Account Charts,2.0.3,account_qr_code_emv|base_iban|account,3,2,0
+l10n_vn_edi_viettel,02 OTHER.zip,Vietnam - E-invoicing,Accounting/Localizations/EDI,1.0,l10n_vn,9,5,3
+l10n_vn_edi_viettel_pos,02 OTHER.zip,Vietnam - POS E-invoicing,Accounting/Localizations/EDI,,l10n_vn_edi_viettel|point_of_sale,7,4,3
+l10n_vn_reports,02 OTHER.zip,Vietnam - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_vn|account_reports,3,0,0
+l10n_za,02 OTHER.zip,South Africa - Accounting,Accounting/Localizations/Account Charts,1.0,account|base_vat,1,0,0
+l10n_za_reports,02 OTHER.zip,South Africa - Accounting Reports,,1.0,account_reports|l10n_za,0,0,0
+l10n_zm_account,02 OTHER.zip,Zambia - Accounting,Accounting/Localizations/Account Charts,1.0.0,account,2,1,0
+l10n_zm_reports,02 OTHER.zip,Zambia - Accounting Reports,Accounting/Localizations/Reporting,1.0,l10n_zm_account|account_reports,0,0,0
+link_tracker,02 OTHER.zip,Link Tracker,Marketing,1.1,utm|mail,5,4,0
+loyalty,02 OTHER.zip,Coupons & Loyalty,Sales,1.0,product|portal|account,13,5,8
+lunch,02 OTHER.zip,Lunch,Human Resources/Lunch,1.0,mail,12,3,9
+mail,02 OTHER.zip,Discuss,Productivity/Discuss,1.19,base|base_setup|bus|web_tour|html_editor,83,62,2
+mail_bot,02 OTHER.zip,OdooBot,Productivity/Discuss,1.2,mail,3,2,0
+mail_bot_hr,02 OTHER.zip,OdooBot - HR,Productivity/Discuss,1.0,mail_bot|hr,0,0,0
+mail_enterprise,02 OTHER.zip,Mail Enterprise,Productivity/Discuss,,mail|web_mobile,1,0,0
+mail_group,02 OTHER.zip,Mail Group,,1.1,mail|portal,5,0,5
+mail_mobile,02 OTHER.zip,Mail Mobile,Hidden/Tools,1.1,iap_mail|mail_enterprise|web_mobile|base_setup,5,3,0
+mail_plugin,02 OTHER.zip,Mail Plugin,Sales/CRM,1.0,web|contacts|iap,3,1,1
+maintenance,02 OTHER.zip,Maintenance,Supply Chain/Maintenance,1.0,mail,7,6,0
+maintenance_worksheet,02 OTHER.zip,Worksheet for Maintenance,Supply Chain/Maintenance,1.0,maintenance|worksheet,3,2,0
+marketing_automation,02 OTHER.zip,Marketing Automation,Marketing/Marketing Automation,1.0,mass_mailing,11,3,8
+marketing_automation_crm,02 OTHER.zip,CRM in marketing automation,CRM in marketing automation,1.0,marketing_automation|crm,1,0,1
+marketing_automation_sms,02 OTHER.zip,SMS Marketing in Marketing Automation,Marketing/Marketing Automation,1.0,marketing_automation|mass_mailing_sms,7,2,5
+marketing_automation_website_sale,02 OTHER.zip,E-Commerce Marketing Automation,Marketing/Marketing Automation,1.0,marketing_automation|website_sale,1,0,1
+marketing_automation_whatsapp,02 OTHER.zip,WhatsApp in Marketing Automation,Marketing/Marketing Automation,1.0,marketing_automation|whatsapp,8,2,6
+marketing_card,02 OTHER.zip,Marketing Card,Marketing/Marketing Card,1.1,link_tracker|mass_mailing|website,7,2,5
+mass_mailing,02 OTHER.zip,Email Marketing,Marketing/Email Marketing,2.7,contacts|mail|html_builder|utm|link_tracker|social_media|web_tour|digest,30,14,13
+mass_mailing_crm,02 OTHER.zip,Mass mailing on lead / opportunities,Marketing/Email Marketing,1.0,crm|mass_mailing,3,2,1
+mass_mailing_crm_sms,02 OTHER.zip,Mass mailing sms on lead / opportunities,Marketing/Email Marketing,1.0,mass_mailing_crm|mass_mailing_sms,1,1,0
+mass_mailing_event,02 OTHER.zip,Mass mailing on attendees,Marketing/Email Marketing,1.0,event|mass_mailing,2,0,2
+mass_mailing_event_sms,02 OTHER.zip,Event Attendees SMS Marketing,Marketing/Email Marketing,1.0,event|mass_mailing|mass_mailing_event|mass_mailing_sms|sms,1,0,1
+mass_mailing_event_track,02 OTHER.zip,Mass mailing on track speakers,Marketing/Email Marketing,1.0,website_event_track|mass_mailing,2,0,2
+mass_mailing_event_track_sms,02 OTHER.zip,Track Speakers SMS Marketing,Marketing/Email Marketing,1.0,mass_mailing|mass_mailing_sms|sms|website_event_track,1,0,1
+mass_mailing_sale,02 OTHER.zip,Mass mailing on sale orders,Marketing/Email Marketing,1.0,sale|mass_mailing,3,2,1
+mass_mailing_sale_sms,02 OTHER.zip,Mass mailing sms on sale orders,Marketing/Email Marketing,1.0,mass_mailing_sale|mass_mailing_sms,1,1,0
+mass_mailing_sale_subscription,02 OTHER.zip,Mass mailing on sale subscriptions,Marketing/Email Marketing,1.0,mass_mailing_sale|sale_subscription,1,1,0
+mass_mailing_slides,02 OTHER.zip,Mass mailing on course members,Marketing/Email Marketing,1.0,website_slides|mass_mailing,1,1,0
+mass_mailing_sms,02 OTHER.zip,SMS Marketing,Marketing/Email Marketing,1.1,portal|mass_mailing|sms,11,6,5
+mass_mailing_themes,02 OTHER.zip,Mass Mailing Themes,Marketing/Email Marketing,1.2,mass_mailing,0,0,0
+microsoft_account,02 OTHER.zip,Microsoft Users,Hidden/Tools,,base_setup,2,1,0
+microsoft_calendar,02 OTHER.zip,Outlook Calendar,Productivity,1.0,microsoft_account|calendar,9,6,1
+microsoft_outlook,02 OTHER.zip,Microsoft Outlook,Hidden,1.1,mail,5,4,0
+mrp,02 OTHER.zip,Manufacturing,Supply Chain/Manufacturing,2.0,product|stock|resource,53,47,0
+mrp_account,02 OTHER.zip,Accounting - MRP,Supply Chain/Manufacturing,1.0,mrp|stock_account,18,16,0
+mrp_account_enterprise,02 OTHER.zip,Accounting - MRP,Supply Chain/Manufacturing,1.0,mrp_account,0,0,0
+mrp_accountant,02 OTHER.zip,Mrp Accounting,Supply Chain/Inventory,1.0,mrp_account|stock_accountant,1,1,0
+mrp_landed_costs,02 OTHER.zip,Landed Costs On MO,Supply Chain/Manufacturing,1.0,stock_landed_costs|mrp,1,1,0
+mrp_maintenance,02 OTHER.zip,Maintenance - MRP,Supply Chain/Manufacturing,1.0,mrp_workorder|stock_maintenance,6,6,0
+mrp_mps,02 OTHER.zip,Master Production Schedule,Supply Chain/Manufacturing,1.0,base_import|mrp|purchase_stock,11,11,0
+mrp_plm,02 OTHER.zip,Product Lifecycle Management (PLM),Supply Chain/Product Lifecycle Management (PLM),1.0,mrp,17,16,0
+mrp_product_expiry,02 OTHER.zip,Manufacturing Expiry,Supply Chain/Manufacturing,1.0,mrp|product_expiry,2,2,0
+mrp_repair,02 OTHER.zip,Mrp Repairs,Supply Chain/Inventory,1.0,repair|mrp,4,4,0
+mrp_subcontracting,02 OTHER.zip,MRP Subcontracting,Supply Chain/Manufacturing,0.1,mrp,19,18,0
+mrp_subcontracting_account,02 OTHER.zip,Subcontracting Management with Stock Valuation,Supply Chain/Manufacturing,0.1,mrp_subcontracting|mrp_account,3,3,0
+mrp_subcontracting_account_enterprise,02 OTHER.zip,Accounting - MRP Subcontracting,Supply Chain/Manufacturing,1.0,mrp_account_enterprise|mrp_subcontracting,1,0,1
+mrp_subcontracting_dropshipping,02 OTHER.zip,Dropship and Subcontracting Management,Supply Chain/Purchase,0.1,mrp_subcontracting|stock_dropshipping,8,7,0
+mrp_subcontracting_enterprise,02 OTHER.zip,MRP Subcontracting Enterprise,Supply Chain/Manufacturing,1.0,mrp_subcontracting,0,0,0
+mrp_subcontracting_landed_costs,02 OTHER.zip,Landed Costs With Subcontracting order,Supply Chain/Manufacturing,1.0,stock_landed_costs|mrp_subcontracting,1,1,0
+mrp_subcontracting_purchase,02 OTHER.zip,Purchase and Subcontracting Management,Supply Chain/Purchase,0.1,mrp_subcontracting|purchase_mrp,7,6,0
+mrp_subcontracting_quality,02 OTHER.zip,MRP Subcontracting Quality,Supply Chain/Quality,1.0,mrp_subcontracting|quality_control,1,1,0
+mrp_subcontracting_repair,02 OTHER.zip,MRP Subcontracting Repair,Supply Chain/Repair,1.0,mrp_subcontracting|repair,0,0,0
+mrp_workorder,02 OTHER.zip,MRP II,Supply Chain/Manufacturing,1.0,quality|mrp|barcodes|web_gantt|web_tour|hr_hourly_cost,21,20,0
+mrp_workorder_expiry,02 OTHER.zip,MRP II - Expiry,Supply Chain/Manufacturing,1.0,mrp_workorder|product_expiry,0,0,0
+mrp_workorder_hr_account,02 OTHER.zip,Employees cost registration on production,Supply Chain/Manufacturing,,mrp_workorder|mrp_account_enterprise,4,3,1
+mrp_workorder_iot,02 OTHER.zip,IoT features for Work Order,Supply Chain/Manufacturing,1.0,mrp_workorder|quality_iot,4,4,0
+mrp_workorder_plm,02 OTHER.zip,PLM for workorder,Supply Chain/Product Lifecycle Management (PLM),1.0,mrp_workorder|mrp_plm,6,6,0
+onboarding,02 OTHER.zip,Onboarding Toolbox,Hidden,1.2,web,4,4,0
+partner_autocomplete,02 OTHER.zip,Partner Autocomplete,Hidden/Tools,1.1,iap_mail,5,3,0
+partner_commission,02 OTHER.zip,Resellers Commissions For Subscription,Sales/Commissions,1.0,purchase|sale_subscription_partnership|website_crm_partner_assign,15,9,6
+partnership,02 OTHER.zip,Partnership / Membership,Sales/CRM,1.0,crm|sale,7,6,1
+payment,02 OTHER.zip,Payment Engine,Hidden,2.0,onboarding|portal,8,7,0
+payment_adyen,02 OTHER.zip,Payment Provider: Adyen,Accounting/Payment Providers,2.0,payment,3,3,0
+payment_aps,02 OTHER.zip,Payment Provider: Amazon Payment Services,Accounting/Payment Providers,1.0,payment,2,2,0
+payment_asiapay,02 OTHER.zip,Payment Provider: AsiaPay,Accounting/Payment Providers,1.0,payment,2,2,0
+payment_authorize,02 OTHER.zip,Payment Provider: Authorize.Net,Accounting/Payment Providers,2.0,payment,3,3,0
+payment_buckaroo,02 OTHER.zip,Payment Provider: Buckaroo,Accounting/Payment Providers,2.0,payment,2,2,0
+payment_custom,02 OTHER.zip,Payment Provider: Custom Payment Modes,Accounting/Payment Providers,2.0,payment,2,2,0
+payment_demo,02 OTHER.zip,Payment Provider: Demo,Accounting/Accounting,2.0,payment,3,3,0
+payment_dpo,02 OTHER.zip,Payment Provider: DPO,Accounting/Payment Providers,,payment,2,2,0
+payment_flutterwave,02 OTHER.zip,Payment Provider: Flutterwave,Accounting/Payment Providers,1.0,payment,3,3,0
+payment_iyzico,02 OTHER.zip,Payment Provider: Iyzico,Accounting/Payment Providers,,payment,2,2,0
+payment_mercado_pago,02 OTHER.zip,Payment Provider: Mercado Pago,Accounting/Payment Providers,1.0,payment,3,3,0
+payment_mollie,02 OTHER.zip,Payment Provider: Mollie,Accounting/Payment Providers,1.0,payment,2,2,0
+payment_nuvei,02 OTHER.zip,Payment Provider: Nuvei,Accounting/Payment Providers,,payment,2,2,0
+payment_paymob,02 OTHER.zip,Payment Provider: Paymob,Accounting/Payment Providers,1.0,payment,2,2,0
+payment_paypal,02 OTHER.zip,Payment Provider: Paypal,Accounting/Payment Providers,2.0,payment,2,2,0
+payment_razorpay,02 OTHER.zip,Payment Provider: Razorpay,Accounting/Payment Providers,1.0,payment,3,3,0
+payment_redsys,02 OTHER.zip,Payment Provider: Redsys,Accounting/Payment Providers,,payment,2,2,0
+payment_sepa_direct_debit,02 OTHER.zip,Payment Provider: Sepa Direct Debit,Accounting/Accounting,2.0,account_sepa_direct_debit|account_payment|payment_custom,7,6,1
+payment_stripe,02 OTHER.zip,Payment Provider: Stripe,Accounting/Payment Providers,2.0,payment,3,3,0
+payment_toss_payments,02 OTHER.zip,Payment Provider: Toss Payments,Accounting/Payment Providers,,payment,2,2,0
+payment_worldline,02 OTHER.zip,Payment Provider: Worldline,Accounting/Payment Providers,,payment,2,2,0
+payment_xendit,02 OTHER.zip,Payment Provider: Xendit,Accounting/Payment Providers,1.0,payment,2,2,0
+phone_validation,02 OTHER.zip,Phone Numbers Validation,Hidden,2.1,base|mail,6,4,0
+planning,02 OTHER.zip,Planning,Human Resources/Planning,1.0,hr|hr_hourly_cost|web_gantt|digest,16,13,3
+planning_attendance,02 OTHER.zip,Planning and Attendances,Hidden,1.0,planning|hr_attendance,1,0,1
+planning_holidays,02 OTHER.zip,Planning Time Off,Human Resources/Planning,1.0,planning|hr_holidays_gantt,3,3,0
+planning_hr_skills,02 OTHER.zip,Planning - Skills,Human Resources/Planning,1.0,planning|hr_skills,2,1,1
+point_of_sale,02 OTHER.zip,Point of Sale,Sales/Point of Sale,1.0.2,resource|stock_account|barcodes|html_editor|digest|phone_validation|partner_autocomplete|iot_base|google_address_autocomplete,70,46,19
+portal,02 OTHER.zip,Customer Portal,Hidden,,web|html_editor|http_routing|mail|auth_signup,12,8,0
+portal_rating,02 OTHER.zip,Portal Rating,Services,1.0,portal|rating,3,2,0
+pos_account_reports,02 OTHER.zip,pos_account_reports,Sales/Point of Sale,0.1,point_of_sale|account_reports,0,0,0
+pos_account_tax_python,02 OTHER.zip,Allow custom taxes in POS,Accounting/Accounting,1.0,account_tax_python|point_of_sale,1,1,0
+pos_adyen,02 OTHER.zip,POS Adyen,Sales/Point of Sale,1.0,point_of_sale,3,1,2
+pos_appointment,02 OTHER.zip,Point of Sale Appointment,Sales/Point of Sale,1.0,appointment|point_of_sale,6,4,2
+pos_avatax,02 OTHER.zip,POS Avatax,,1.0,point_of_sale|account_avatax,1,0,1
+pos_barcodelookup,02 OTHER.zip,POS - Barcode Lookup,Sales/Point of Sale,1.0,point_of_sale|product_barcodelookup,0,0,0
+pos_blackbox_be,02 OTHER.zip,Belgian Registered Cash Register,Sales/Point of Sale,1.0,pos_iot|l10n_be|web_enterprise|pos_hr|pos_restaurant|pos_discount|pos_self_order|pos_urban_piper,15,6,8
+pos_cashdro,02 OTHER.zip,POS Cashdro Cash Machines,Sales/Point of Sale,,point_of_sale,1,0,1
+pos_discount,02 OTHER.zip,Point of Sale Discounts,Sales/Point of Sale,1.0,point_of_sale,4,3,1
+pos_dpopay,02 OTHER.zip,PoS DPO Pay,Sales/Point of Sale,,point_of_sale,2,0,2
+pos_edi_ubl,02 OTHER.zip,Point of Sale UBL,Sales/Point of Sale,1.0,point_of_sale|account_edi_ubl_cii,1,0,0
+pos_enterprise,02 OTHER.zip,Point of Sale enterprise,Sales/Point of Sale,,web_enterprise|point_of_sale,20,6,13
+pos_enterprise_sms_whatsapp,02 OTHER.zip,POS Enterprise SMS Whatsapp,Sales/Point of Sale,1.0,pos_enterprise|whatsapp|pos_sms|pos_restaurant|pos_self_order,3,0,3
+pos_event,02 OTHER.zip,POS - Event,Technical,1.0,point_of_sale|event_product,11,0,11
+pos_event_iot,02 OTHER.zip,IoT for PoS/Event,Marketing/Events,1.0,iot|pos_event,1,0,1
+pos_event_sale,02 OTHER.zip,PoS - Event Sale,Technical,,pos_event|pos_sale,1,0,1
+pos_glory_cash,02 OTHER.zip,POS Glory Cash Machines,Sales/Point of Sale,1.0,point_of_sale,1,0,1
+pos_hr,02 OTHER.zip,POS - HR,Sales/Point of Sale,,point_of_sale|hr,11,4,6
+pos_hr_mobile,02 OTHER.zip,POS Barcode in Mobile,Human Resources/Barcode,1.0,pos_hr|web_mobile,0,0,0
+pos_hr_restaurant,02 OTHER.zip,POS HR Restaurant,Sales/Point of Sale,1.0,pos_hr|pos_restaurant,0,0,0
+pos_imin,02 OTHER.zip,POS iMin,Sales/Point of Sale,1.0,point_of_sale,1,1,0
+pos_iot,02 OTHER.zip,IoT for PoS,Sales/Point of Sale,1.0,point_of_sale|iot,8,3,5
+pos_iot_adam_scale,02 OTHER.zip,PoS IoT Adam Equipment Scales,Point of Sale,,pos_iot,0,0,0
+pos_iot_ingenico,02 OTHER.zip,PoS IoT Ingenico,Sales/Point of Sale,1.0,pos_iot,1,0,1
+pos_iot_six,02 OTHER.zip,POS IoT Six,Sales/Point Of Sale,1.0,pos_iot,3,1,2
+pos_iot_worldline,02 OTHER.zip,PoS IoT Worldline,Sales/Point of Sale,1.0,pos_iot,1,0,1
+pos_loyalty,02 OTHER.zip,Point of Sale - Coupons & Loyalty,Sales/Point Of Sale,2.0,loyalty|point_of_sale,14,5,9
+pos_mercado_pago,02 OTHER.zip,POS Mercado Pago,Sales/Point of Sale,1.0,point_of_sale,2,0,2
+pos_mobile,02 OTHER.zip,Point of Sale Mobile,Hidden,1.0,pos_enterprise|web_mobile,0,0,0
+pos_mollie,02 OTHER.zip,POS Mollie,Sales/Point of Sale,1.0,point_of_sale|payment_mollie,1,0,1
+pos_mrp,02 OTHER.zip,pos_mrp,Sales/Point of Sale,1.0,point_of_sale|mrp,3,1,2
+pos_online_payment,02 OTHER.zip,Point of Sale online payment,,,point_of_sale|account_payment,7,2,5
+pos_online_payment_self_order,02 OTHER.zip,POS Self-Order / Online Payment,Sales/Point of Sale,1.0,pos_online_payment|pos_self_order,5,2,3
+pos_online_payment_self_order_preparation_display,02 OTHER.zip,POS Self-Order / Online Payment / Preparation Display,Sales/Point of Sale,1.0,pos_online_payment_self_order|pos_enterprise,1,1,0
+pos_order_tracking_display,02 OTHER.zip,PoS Order Tracking Customer Display,Sales/Point of Sale,1.0.0,pos_enterprise|pos_self_order,3,0,2
+pos_pine_labs,02 OTHER.zip,POS Pine Labs,Sales/Point of Sale,1.0,point_of_sale,2,0,2
+pos_platform_order,02 OTHER.zip,Point of Sale - Platform Order Integration,Sales/Point of Sale,1.0,pos_enterprise|pos_restaurant,10,2,8
+pos_platform_order_gofood,02 OTHER.zip,Platform Order Provider: GoFood,Sales/Point of Sale,,pos_platform_order,5,1,4
+pos_platform_order_grabfood,02 OTHER.zip,Platform Order Provider: GrabFood,Sales/Point of Sale,,pos_platform_order,3,0,3
+pos_pricer,02 OTHER.zip,PoS Pricer,Sales/Point of Sale,1.0,product|point_of_sale,6,3,3
+pos_qfpay,02 OTHER.zip,POS QFPay,Sales/Point of Sale,1.0,point_of_sale,1,0,1
+pos_razorpay,02 OTHER.zip,POS Razorpay,Sales/Point of Sale,1.0,point_of_sale,2,0,2
+pos_repair,02 OTHER.zip,POS - Repair,Technical,,point_of_sale|repair,2,2,0
+pos_restaurant,02 OTHER.zip,Restaurant,Sales/Point of Sale,1.0,point_of_sale,10,1,9
+pos_restaurant_adyen,02 OTHER.zip,POS Restaurant Adyen,Point of Sale,1.0,pos_adyen|pos_restaurant|payment_adyen,3,0,3
+pos_restaurant_appointment,02 OTHER.zip,Point of Sale Restaurant Appointment,Sales/Point of Sale,1.0,pos_restaurant|pos_appointment,4,2,2
+pos_restaurant_loyalty,02 OTHER.zip,POS - Restaurant Loyality,Sales/Point of Sale,1.0,pos_restaurant|pos_loyalty,0,0,0
+pos_restaurant_preparation_display,02 OTHER.zip,PoS Preparation Display Restaurant,Sales/Point of Sale,1.0.0,pos_restaurant|pos_enterprise,6,0,6
+pos_restaurant_stripe,02 OTHER.zip,POS Restaurant Stripe,Point of Sale,1.0,pos_stripe|pos_restaurant|payment_stripe,0,0,0
+pos_restaurant_urban_piper,02 OTHER.zip,POS Restaurant Urban Piper,Sales/Point of Sale,,pos_restaurant|pos_urban_piper,0,0,0
+pos_safaricom,02 OTHER.zip,POS Safaricom,Sales/Point of Sale,1.0,point_of_sale,2,0,2
+pos_sale,02 OTHER.zip,POS - Sales,Sales/Point of Sale,1.1,point_of_sale|sale_management,14,9,5
+pos_sale_loyalty,02 OTHER.zip,POS - Sales Loyality,Sales/Point of Sale,1.0,pos_sale|pos_loyalty,1,1,0
+pos_sale_margin,02 OTHER.zip,POS - Sale Margin,Sales/Point of Sale,1.1,pos_sale|sale_margin,1,0,1
+pos_sale_stock_renting,02 OTHER.zip,Point of Sale Rental Stock,Point of Sale,1.0,pos_sale|sale_stock_renting,2,1,1
+pos_sale_subscription,02 OTHER.zip,Point of Sale Subscription,Point of Sale,1.0,pos_sale|sale_subscription,2,1,1
+pos_self_order,02 OTHER.zip,POS Self Order,Sales/Point Of Sale,1.0,pos_restaurant|http_routing|link_tracker,19,7,10
+pos_self_order_adyen,02 OTHER.zip,POS Self Order Adyen,Sales/Point Of Sale,,pos_adyen|pos_self_order,1,0,1
+pos_self_order_iot,02 OTHER.zip,POS Self Order IoT,Sales/Point of Sale,1.0.0,pos_iot|pos_self_order,5,2,3
+pos_self_order_pine_labs,02 OTHER.zip,POS Self Order Pine Labs,Sales/Point Of Sale,1.0,pos_pine_labs|pos_self_order,1,0,1
+pos_self_order_preparation_display,02 OTHER.zip,pos self prep display,Sales/Point of Sale,1.0.0,pos_self_order|pos_enterprise,3,0,3
+pos_self_order_qfpay,02 OTHER.zip,POS Self Order QFPay,Sales/Point Of Sale,,pos_qfpay|pos_self_order,2,0,2
+pos_self_order_razorpay,02 OTHER.zip,POS Self Order Razorpay,Sales/Point Of Sale,1.0,pos_razorpay|pos_self_order,1,0,1
+pos_self_order_sale,02 OTHER.zip,POS Self Order Sale,Sales/Point Of Sale,,pos_sale|pos_self_order,1,1,0
+pos_self_order_stripe,02 OTHER.zip,POS Self Order Stripe,Sales/Point Of Sale,,pos_stripe|pos_self_order,1,0,1
+pos_settle_due,02 OTHER.zip,Point of Sale Settle Due,Point of Sale,1.0,point_of_sale|account_followup,8,4,4
+pos_sms,02 OTHER.zip,POS - SMS,Send sms to customer for order confirmation,,point_of_sale|sms,3,1,2
+pos_stripe,02 OTHER.zip,POS Stripe,Sales/Point of Sale,1.0,point_of_sale|payment_stripe,1,0,1
+pos_tyro,02 OTHER.zip,POS Tyro,Sales/Point of Sale,1.0,point_of_sale,2,0,2
+pos_urban_piper,02 OTHER.zip,Point of Sale - UrbanPiper,Sales/Point of Sale,,pos_enterprise|pos_discount,16,5,11
+pos_urban_piper_enhancements,02 OTHER.zip,Point of Sale - UrbanPiper Enhancements,Sales/Point of Sale,,pos_urban_piper,10,4,6
+pos_urban_piper_ubereats,02 OTHER.zip,POS UrbanPiper - Uber Eats,Sales/Point of Sale,,pos_urban_piper,0,0,0
+pos_viva_com,02 OTHER.zip,PoS Viva.com,Sales/Point of Sale,1.0,point_of_sale,2,0,2
+privacy_lookup,02 OTHER.zip,Privacy,Hidden,1.0,mail,4,4,0
+product,02 OTHER.zip,Products & Pricelists,Sales/Sales,1.2,base|mail|uom,33,26,0
+product_barcodelookup,02 OTHER.zip,Product Barcode Lookup,Sales/Sales,1.0,product,5,5,0
+product_email_template,02 OTHER.zip,Product Email Template,Accounting/Accounting,,account,2,2,0
+product_expiry,02 OTHER.zip,Products Expiration Date,Supply Chain/Inventory,,stock,12,10,1
+product_margin,02 OTHER.zip,Margins by Products,Sales/Sales,,account,2,1,1
+product_matrix,02 OTHER.zip,Product Matrix,Sales/Sales,1.0,account,2,2,0
+product_unspsc,02 OTHER.zip,UNSPSC product codes,Accounting/Accounting,0.2,account,3,2,1
+project,02 OTHER.zip,Project,Services/Project,1.3,analytic|base_setup|mail|portal|rating|resource|web|web_tour|digest,29,27,1
+project_account,02 OTHER.zip,Project - Account,Accounting/Accounting,,account|project,1,1,0
+project_account_asset,02 OTHER.zip,Project Accounting Assets,Services/assets,1.0,project|account_asset,1,1,0
+project_account_budget,02 OTHER.zip,Project Budget,Services/Project,1.0,account_budget|project_enterprise,4,2,2
+project_enterprise,02 OTHER.zip,Project Enterprise,Services/Project,1.0,project|web_map|web_gantt|web_enterprise,5,4,1
+project_enterprise_hr,02 OTHER.zip,Project Enterprise HR,Services/Project,1.0,project_enterprise|hr,3,3,0
+project_enterprise_hr_skills,02 OTHER.zip,Project - Skills,Services/Project,1.0,project_enterprise|project_hr_skills,1,1,0
+project_forecast,02 OTHER.zip,Project Planning,Services/Project,1.0,project|planning|web_grid,4,3,1
+project_helpdesk,02 OTHER.zip,Project Helpdesk,Services,1.0,project_enterprise|helpdesk,4,4,0
+project_holidays,02 OTHER.zip,Project Time Off,Services/Project,1.0,project_enterprise|hr_holidays_gantt,1,1,0
+project_hr_expense,02 OTHER.zip,Project Expenses,Services/expenses,1.0,project_account|hr_expense,2,2,0
+project_hr_payroll_account,02 OTHER.zip,Project Payroll Accounting,Services/payroll/account,1.0,project|hr_payroll_account,1,1,0
+project_hr_skills,02 OTHER.zip,Project - Skills,Services/Project,1.0,project|hr_skills,3,2,1
+project_mail_plugin,02 OTHER.zip,Project Mail Plugin,Services/Project,1.0,project|mail_plugin,0,0,0
+project_mrp,02 OTHER.zip,MRP Project,Services/Project,1.0,mrp|project,5,5,0
+project_mrp_account,02 OTHER.zip,MRP Account Project,Services/Project,1.0,mrp_account|project_mrp,5,5,0
+project_mrp_sale,02 OTHER.zip,MRP Project Sale,Services/Project,1.0,project_mrp|sale_mrp|sale_project,0,0,0
+project_mrp_stock_landed_costs,02 OTHER.zip,Project MRP Landed Costs,Supply Chain/Manufacturing,1.0,project_mrp_account|mrp_landed_costs,1,1,0
+project_mrp_workorder_account,02 OTHER.zip,MRP Workorder Project Account,Services/Project,1.0,mrp_workorder_hr_account|project_mrp_account,3,3,0
+project_purchase,02 OTHER.zip,Project Purchase,Services/Project,1.0,purchase|project_account,3,3,0
+project_purchase_stock,02 OTHER.zip,Project - Purchase - Stock,Services/Project,1.0,project_purchase|project_stock,2,2,0
+project_sale_expense,02 OTHER.zip,Project - Sale - Expense,Services/Project,1.0,sale_project|sale_expense|project_hr_expense,3,3,0
+project_sale_subscription,02 OTHER.zip,Project Sales Subscription,Services/sales/subscriptions,1.0,sale_project|sale_subscription,4,4,0
+project_sms,02 OTHER.zip,Project - SMS,Services/Project,1.1,project|sms,4,4,0
+project_stock,02 OTHER.zip,Project Stock,Services/Project,1.0,stock|project,2,2,0
+project_stock_account,02 OTHER.zip,Project Stock Account,Services/Project,1.0,stock_account|project_stock,5,5,0
+project_stock_landed_costs,02 OTHER.zip,Project Stock Landed Costs,Supply Chain/Inventory,1.0,project_stock_account|stock_landed_costs,1,1,0
+project_timesheet_forecast,02 OTHER.zip,Timesheet and Planning,Services/Timesheets,1.0,timesheet_grid|project_forecast,5,3,2
+project_timesheet_forecast_sale,02 OTHER.zip,Compare timesheets and forecast for your projects,Services/Project,1.0,project_timesheet_forecast|sale_timesheet|sale_project_forecast,6,4,2
+project_timesheet_holidays,02 OTHER.zip,Timesheet when on Time Off,Human Resources,1.0,hr_timesheet|hr_holidays,7,7,0
+project_todo,02 OTHER.zip,To-Do,Productivity/To-Do,1.0,project,3,3,0
+purchase,02 OTHER.zip,Purchase,Supply Chain/Purchase,1.2,account,18,14,4
+purchase_accountant,02 OTHER.zip,Purchase Accounting,Supply Chain/Purchase,1.0,purchase|account_accountant,1,1,0
+purchase_edi_ubl_bis3,02 OTHER.zip,Import/Export electronic orders with UBL,Supply Chain/Purchase,1.0,purchase|account_edi_ubl_cii,3,2,0
+purchase_intrastat,02 OTHER.zip,Purchase Intrastat,Accounting/Accounting,,purchase|account_intrastat,1,1,0
+purchase_mrp,02 OTHER.zip,Purchase and MRP Management,Supply Chain/Purchase,1.0,mrp|purchase_stock,9,7,0
+purchase_mrp_workorder_quality,02 OTHER.zip,Full Traceability Report Demo Data,Supply Chain/Manufacturing,1.0,purchase_mrp|quality_mrp_workorder|purchase_stock,0,0,0
+purchase_product_matrix,02 OTHER.zip,Purchase Matrix,Supply Chain/Purchase,1.0,purchase|product_matrix,2,2,0
+purchase_repair,02 OTHER.zip,Purchase Repair,Supply Chain/Purchase,1.0,repair|purchase_stock,2,2,0
+purchase_requisition,02 OTHER.zip,Purchase Agreements,Supply Chain/Purchase,0.1,purchase,10,10,0
+purchase_requisition_sale,02 OTHER.zip,Purchase Requisition Sale,Supply Chain/Purchase,1.0,purchase_requisition|sale_purchase,1,1,0
+purchase_requisition_stock,02 OTHER.zip,Purchase Requisition Stock,Supply Chain/Purchase,1.2,purchase_requisition|purchase_stock,7,7,0
+purchase_stock,02 OTHER.zip,Purchase Stock,Supply Chain/Purchase,1.2,stock_account|purchase,28,22,2
+quality,02 OTHER.zip,Quality Base,Supply Chain/Quality,1.0,stock,8,8,0
+quality_control,02 OTHER.zip,Quality,Supply Chain/Quality,1.0,quality|spreadsheet_edition,14,12,0
+quality_control_iot,02 OTHER.zip,Quality checks with IoT,Supply Chain/Internet of Things (IoT),,quality_control|quality_iot,1,1,0
+quality_control_picking_batch,02 OTHER.zip,Quality - Batch Transfer,Supply Chain/Quality,1.0,quality_control|stock_picking_batch,4,4,0
+quality_control_worksheet,02 OTHER.zip,Worksheet for Quality Control,Supply Chain/Quality,1.0,quality_control|worksheet,5,4,0
+quality_iot,02 OTHER.zip,Quality Steps with IoT,Supply Chain/Internet of Things (IoT),,iot|quality,3,3,0
+quality_mrp,02 OTHER.zip,MRP features for Quality Control,Supply Chain/Quality,1.1,quality_control|mrp,7,7,0
+quality_mrp_workorder,02 OTHER.zip,MRP features for Quality Control,Supply Chain/Quality,1.0,quality_control|mrp_workorder|barcodes,8,8,0
+quality_mrp_workorder_iot,02 OTHER.zip,MRP features for Quality Control with IoT,Supply Chain/Quality,,quality_mrp_workorder|quality_control_iot|mrp_workorder_iot,1,1,0
+quality_mrp_workorder_worksheet,02 OTHER.zip,Quality Worksheet for Workorder,Supply Chain/Quality,1.0,quality_control_worksheet|quality_mrp_workorder,1,1,0
+quality_repair,02 OTHER.zip,Repair features for Quality Control,Supply Chain/Quality,1.0,quality_control|repair,4,4,0
+rating,02 OTHER.zip,Customer Rating,Productivity,1.1,mail,5,2,0
+repair,02 OTHER.zip,Repairs,Supply Chain/Inventory,1.0,sale_stock|sale_management,15,14,0
+resource,02 OTHER.zip,Resource,Hidden,1.1,base|web,7,6,0
+resource_mail,02 OTHER.zip,Resource Mail,Hidden,1.0,resource|mail,1,1,0
+room,02 OTHER.zip,Meeting Rooms,Productivity/Room,1.0,mail|web_gantt,4,0,3
+rpc,02 OTHER.zip,RPC endpoints,Extra Tools,,base,0,0,0
+sale,02 OTHER.zip,Sales,Sales/Sales,1.2,sales_team|account_payment|utm,28,24,3
+sale_account_accountant,02 OTHER.zip,Sale Accounting,Sales/Sales,1.0,sale|account_accountant,1,1,0
+sale_amazon,02 OTHER.zip,Amazon Connector,Sales/Sales,1.1,sale_management|stock_delivery,11,8,3
+sale_amazon_avatax,02 OTHER.zip,Amazon/Avatax Bridge,Sales/Sales,1.0,sale_amazon|account_avatax,2,1,1
+sale_commission,02 OTHER.zip,Sale Commission,Sales/Commission,1.0,sale_management,3,0,3
+sale_commission_margin,02 OTHER.zip,Sale Commission: Margin,Sales/Commission,1.0,sale_commission|sale_margin,1,0,1
+sale_commission_subscription,02 OTHER.zip,Sale Commission: Subscription,Sales/Commission,1.0,sale_commission|sale_subscription,1,0,1
+sale_crm,02 OTHER.zip,Opportunity to Quotation,Sales/Sales,1.0,sale|crm,4,4,0
+sale_edi_ubl,02 OTHER.zip,Import electronic orders with UBL,Sales/Sales,1.0,sale|account_edi_ubl_cii,3,2,0
+sale_enterprise,02 OTHER.zip,Sale Enterprise,Sales,,sale|web_map,0,0,0
+sale_expense,02 OTHER.zip,Sales Expense,Sales/Sales,1.0,sale_management|hr_expense,7,7,0
+sale_expense_margin,02 OTHER.zip,Sales Expense Margin,Sales/Sales,1.0,sale_expense|sale_margin,2,2,0
+sale_external_tax,02 OTHER.zip,3rd Party Tax Calculation for Sale,Accounting/Accounting,1.0,account_external_tax|sale,1,1,0
+sale_gelato,02 OTHER.zip,Gelato,Sales/Sales,,sale|delivery,8,8,0
+sale_gelato_stock,02 OTHER.zip,Gelato/Stock bridge,Sales/Sales,,sale_gelato|sale_stock,1,1,0
+sale_intrastat,02 OTHER.zip,Sale Intrastat,Accounting/Accounting,,sale|account_intrastat,2,2,0
+sale_lazada,02 OTHER.zip,Lazada Connector,Sales/Sales,,sale_management|stock_delivery,10,6,4
+sale_loyalty,02 OTHER.zip,Sale Loyalty,Sales/Sales,1.0,sale|loyalty,10,3,7
+sale_loyalty_delivery,02 OTHER.zip,Sale Loyalty - Delivery,Sales/Sales,,sale_loyalty|delivery,3,1,2
+sale_management,02 OTHER.zip,Sales,Sales/Sales,1.0,sale|digest,7,7,0
+sale_management_renting,02 OTHER.zip,Sale Management for Rental,Sales/Sales,1.0,sale_renting|sale_management,1,1,0
+sale_margin,02 OTHER.zip,Margins in Sales Orders,Sales/Sales,1.0,sale_management,3,2,1
+sale_mrp,02 OTHER.zip,Sales and MRP Management,Sales/Sales,1.0,mrp|sale_stock,8,8,0
+sale_mrp_margin,02 OTHER.zip,Sale Mrp Margin,Sales/Sales,0.1,sale_mrp|sale_stock_margin,0,0,0
+sale_mrp_renting,02 OTHER.zip,Rental Manufacturing Bridge,Sales/Sales,1.0,sale_stock_renting|sale_mrp,2,2,0
+sale_pdf_quote_builder,02 OTHER.zip,Sales PDF Quotation Builder,Sales/Sales,,sale_management,7,6,1
+sale_planning,02 OTHER.zip,Sale Planning,Sales/Sales,,sale_management|sale_service|planning,7,6,1
+sale_product_matrix,02 OTHER.zip,Sale Matrix,Sales/Sales,1.0,sale|product_matrix,3,3,0
+sale_project,02 OTHER.zip,Sales - Project,Sales/Sales,,sale_management|sale_service|project_account,16,14,2
+sale_project_forecast,02 OTHER.zip,Sale Project Forecast,Sales/Sales,,sale_planning|sale_project|project_forecast,4,4,0
+sale_project_stock,02 OTHER.zip,Sale Project - Sale Stock,Sales,1.0,sale_project|sale_stock|project_stock_account,4,4,0
+sale_project_stock_account,02 OTHER.zip,Sale Project Stock Account,Services/Project,1.0,sale_project|project_stock_account,1,1,0
+sale_purchase,02 OTHER.zip,Sale Purchase,Sales/Sales,1.0,sale|purchase,5,5,0
+sale_purchase_inter_company_rules,02 OTHER.zip,Inter Company Module for Sale/Purchase Orders and Invoices,Productivity,1.1,sale_management|purchase|account_inter_company_rules,4,4,0
+sale_purchase_project,02 OTHER.zip,Sale Purchase Project,Sales,1.0,sale_purchase|project_purchase|sale_project,1,1,0
+sale_purchase_stock,02 OTHER.zip,MTO Sale <-> Purchase,Sales/Sales,1.0,sale_stock|purchase_stock|sale_purchase,5,5,0
+sale_purchase_stock_inter_company_rules,02 OTHER.zip,Inter Company Module for Sale/Purchase Orders (with Inventory link),Productivity,1.1,sale_stock|purchase_stock|sale_purchase_inter_company_rules,6,6,0
+sale_renting,02 OTHER.zip,Rental,Sales/Sales,1.0,sale|web_gantt,12,7,5
+sale_renting_crm,02 OTHER.zip,Opportunity to Rental,Sales/Sales,1.0,sale_renting|sale_crm,3,2,1
+sale_renting_planning,02 OTHER.zip,Rental/Planning Bridge,Sales/Sales,,sale_planning|sale_renting,4,4,0
+sale_renting_project,02 OTHER.zip,Sale Renting Project,Sales/Sales,,sale_renting|sale_project,1,1,0
+sale_service,02 OTHER.zip,Sales - Service,Sales/Sales,,sale_management,1,1,0
+sale_shopee,02 OTHER.zip,Shopee Connector,Sales/Sales,,sale_management|stock_delivery,8,5,3
+sale_sms,02 OTHER.zip,Sale - SMS,Sales/Sales,1.0,sale|sms,0,0,0
+sale_stock,02 OTHER.zip,Sales and Warehouse Management,Sales/Sales,1.0,sale|stock_account,24,20,1
+sale_stock_margin,02 OTHER.zip,Sale Stock Margin,Sales/Sales,0.1,sale_stock|sale_margin,1,1,0
+sale_stock_product_expiry,02 OTHER.zip,Sale Stock Product Expiry,Sales/Sales,0.1,sale_stock|product_expiry,1,1,0
+sale_stock_renting,02 OTHER.zip,Rental Stock Management,Sales/Sales,1.0,sale_renting|sale_stock,17,14,3
+sale_subscription,02 OTHER.zip,Subscriptions,Sales/Subscriptions,1.1,account_accountant|sale_management|portal|web_cohort|rating|sms,27,17,8
+sale_subscription_external_tax,02 OTHER.zip,External Tax Calculation for Subscriptions,Accounting/Accounting,1.0,sale_external_tax|sale_subscription,1,1,0
+sale_subscription_partnership,02 OTHER.zip,Subscriptions of membership / partnership ,Sales/Subscriptions,1.0,partnership|sale_subscription,1,1,0
+sale_subscription_stock,02 OTHER.zip,Sale Subscriptions Stock,Sales/Subscriptions,1.0,sale_subscription|sale_stock,5,4,0
+sale_subscription_timesheet,02 OTHER.zip,Project Sales Subscription Timesheet,Services/sales/subscriptions,1.0,project_sale_subscription|sale_timesheet,2,2,0
+sale_timesheet,02 OTHER.zip,Sales Timesheet,Sales/Sales,,sale_project|hr_timesheet,16,14,2
+sale_timesheet_enterprise,02 OTHER.zip,Sales Timesheet: Invoicing,Sales/Sales,0.1,sale_timesheet|timesheet_grid,13,11,2
+sale_timesheet_enterprise_holidays,02 OTHER.zip,Sales Timesheet: Time Off,Sales/Sales,0.1,sale_timesheet_enterprise|project_timesheet_holidays,1,1,0
+sale_timesheet_margin,02 OTHER.zip,Service Margins in Sales Orders,Sales/Sales,1.0,sale_margin|sale_timesheet,1,1,0
+sales_team,02 OTHER.zip,Sales Teams,Sales/Sales,1.1,base|mail,4,4,0
+sign,02 OTHER.zip,Sign,Sales/Sign,1.0,mail|attachment_indexation|portal|sms|certificate,24,22,0
+sign_ai,02 OTHER.zip,Sign AI Integration,Hidden,1.0,sign|ai,0,0,0
+sign_emsigner,02 OTHER.zip,Sign emSigner,Sales/Sign,1.0,sign|iap,4,4,0
+sign_itsme,02 OTHER.zip,Sign itsme,Sales/Sign,1.0,sign|iap,4,4,0
+sms,02 OTHER.zip,SMS gateway,Sales/Sales,3.0,base|iap_mail|mail|phone_validation,18,15,1
+sms_twilio,02 OTHER.zip,Twilio SMS,Hidden/Tools,1.0,sms,8,6,2
+snailmail,02 OTHER.zip,Snail Mail,Hidden/Tools,0.4,iap_mail|mail,8,6,1
+snailmail_account,02 OTHER.zip,Snail Mail - Account,Hidden/Tools,0.1,account|snailmail,4,3,0
+snailmail_account_followup,02 OTHER.zip,Snail Mail Follow-Up,Accounting/Accounting,1.0,snailmail_account|account_followup,5,4,0
+social,02 OTHER.zip,Social Marketing,Marketing/Social Marketing,1.3,web|mail|iap|link_tracker,13,4,9
+social_crm,02 OTHER.zip,Leads statistics and generation on social,Marketing/Social Marketing,1.0,social|crm,2,0,2
+social_demo,02 OTHER.zip,Social Demo Module,Marketing/Social Marketing,1.0,social|social_facebook|social_twitter|social_linkedin|social_youtube|social_instagram|product,6,1,5
+social_facebook,02 OTHER.zip,Social Facebook,Marketing/Social Marketing,1.0,social,8,1,7
+social_instagram,02 OTHER.zip,Social Instagram,Social,1.0,social,8,1,7
+social_linkedin,02 OTHER.zip,Social LinkedIn,Marketing/Social Marketing,0.1,social|iap,8,1,7
+social_media,02 OTHER.zip,Social Media,Marketing/Social Marketing,0.1,base,1,1,0
+social_push_notifications,02 OTHER.zip,Social Push Notifications,Marketing/Social Marketing,1.1,social|website,11,4,6
+social_sale,02 OTHER.zip,Sale statistics on social,Marketing/Social Marketing,1.0,social|sale,1,0,1
+social_test_full,02 OTHER.zip,Social Tests (Full),Hidden,1.0,social_facebook|social_instagram|social_linkedin|social_push_notifications|social_twitter|social_youtube|social_crm,0,0,0
+social_twitter,02 OTHER.zip,Social X,Marketing/Social Marketing,1.1,social|iap,9,1,8
+social_youtube,02 OTHER.zip,Social YouTube,Marketing/Social Marketing,1.1,social|iap,9,1,8
+spreadsheet,02 OTHER.zip,Spreadsheet,Productivity/Dashboard,1.0,bus|web|portal,6,4,0
+spreadsheet_account,02 OTHER.zip,Spreadsheet Accounting Formulas,Accounting,1.0,spreadsheet|account,2,2,0
+spreadsheet_dashboard,02 OTHER.zip,Spreadsheet dashboard,Productivity/Dashboard,1.0,spreadsheet,3,3,0
+spreadsheet_dashboard_account,02 OTHER.zip,Spreadsheet dashboard for accounting,Productivity/Dashboard,1.0,spreadsheet_dashboard|account,0,0,0
+spreadsheet_dashboard_account_accountant,02 OTHER.zip,Spreadsheet dashboard for accounting,Productivity/Dashboard,1.0,spreadsheet_dashboard|accountant,0,0,0
+spreadsheet_dashboard_crm,02 OTHER.zip,Spreadsheet dashboard for CRM,Productivity/Dashboard,1.0,spreadsheet_dashboard|crm_enterprise,0,0,0
+spreadsheet_dashboard_documents,02 OTHER.zip,Spreadsheet Documents,Productivity/Documents,1.0,spreadsheet_dashboard_edition|documents_spreadsheet,3,3,0
+spreadsheet_dashboard_edition,02 OTHER.zip,Spreadsheet dashboard edition,Productivity/Dashboard,1.0,spreadsheet_dashboard|spreadsheet_edition,3,2,0
+spreadsheet_dashboard_event_sale,02 OTHER.zip,Spreadsheet dashboard for events,Productivity/Dashboard,1.0,spreadsheet_dashboard|event_sale,0,0,0
+spreadsheet_dashboard_helpdesk,02 OTHER.zip,Spreadsheet dashboard for helpdesk,Productivity/Dashboard,1.0,spreadsheet_dashboard|helpdesk,0,0,0
+spreadsheet_dashboard_hr_expense,02 OTHER.zip,Spreadsheet dashboard for expenses,Productivity/Dashboard,1.0,spreadsheet_dashboard|sale_expense,0,0,0
+spreadsheet_dashboard_hr_payroll,02 OTHER.zip,Spreadsheet dashboard for payroll,Productivity/Dashboard,1.0,spreadsheet_dashboard|hr_payroll,0,0,0
+spreadsheet_dashboard_hr_referral,02 OTHER.zip,Spreadsheet dashboard for recruitment,Productivity/Dashboard,1.0,spreadsheet_dashboard|hr_referral|hr_contract_salary,0,0,0
+spreadsheet_dashboard_hr_timesheet,02 OTHER.zip,Spreadsheet dashboard for time sheets,Productivity/Dashboard,1.0,spreadsheet_dashboard|hr_timesheet,0,0,0
+spreadsheet_dashboard_im_livechat,02 OTHER.zip,Spreadsheet dashboard for live chat,Productivity/Dashboard,1.0,spreadsheet_dashboard|im_livechat,0,0,0
+spreadsheet_dashboard_marketing_automation,02 OTHER.zip,Spreadsheet dashboard for marketing automation,Productivity/Dashboard,1.0,spreadsheet_dashboard|marketing_automation,0,0,0
+spreadsheet_dashboard_mrp_account,02 OTHER.zip,Spreadsheet dashboard for manufacturing,Productivity/Dashboard,1.0,spreadsheet_dashboard|mrp_account_enterprise,0,0,0
+spreadsheet_dashboard_pos_hr,02 OTHER.zip,Spreadsheet dashboard for point of sale,Productivity/Dashboard,1.0,spreadsheet_dashboard|pos_hr,0,0,0
+spreadsheet_dashboard_pos_restaurant,02 OTHER.zip,Spreadsheet dashboard for restaurants,Productivity/Dashboard,1.0,spreadsheet_dashboard|pos_hr|pos_restaurant,0,0,0
+spreadsheet_dashboard_purchase_stock,02 OTHER.zip,Spreadsheet dashboard for purchases,Productivity/Dashboard,,spreadsheet_dashboard|purchase_stock|stock_enterprise,0,0,0
+spreadsheet_dashboard_sale,02 OTHER.zip,Spreadsheet dashboard for sales,Productivity/Dashboard,1.0,spreadsheet_dashboard|sale,0,0,0
+spreadsheet_dashboard_sale_renting,02 OTHER.zip,Spreadsheet dashboard for rental,Productivity/Dashboard,1.0,spreadsheet_dashboard|sale_renting,0,0,0
+spreadsheet_dashboard_sale_subscription,02 OTHER.zip,Spreadsheet dashboard for subscriptions,Productivity/Dashboard,,spreadsheet_dashboard|sale_subscription,0,0,0
+spreadsheet_dashboard_sale_timesheet,02 OTHER.zip,Spreadsheet dashboard for time sheets,Productivity/Dashboard,1.0,spreadsheet_dashboard|sale_timesheet,0,0,0
+spreadsheet_dashboard_stock,02 OTHER.zip,Spreadsheet dashboard for stock,Productivity/Dashboard,,spreadsheet_dashboard|stock_enterprise,0,0,0
+spreadsheet_dashboard_stock_account,02 OTHER.zip,Spreadsheet dashboard for stock,Productivity/Dashboard,,spreadsheet_dashboard|stock_account,0,0,0
+spreadsheet_dashboard_website_sale,02 OTHER.zip,Spreadsheet dashboard for eCommerce,Productivity/Dashboard,1.0,spreadsheet_dashboard|website_sale,0,0,0
+spreadsheet_dashboard_website_sale_slides,02 OTHER.zip,Spreadsheet dashboard for eLearning,Productivity/Dashboard,1.0,spreadsheet_dashboard|website_sale_slides,0,0,0
+spreadsheet_edition,02 OTHER.zip,Spreadsheet,Productivity/Dashboard,1.0,spreadsheet|mail|web_enterprise,4,2,0
+spreadsheet_sale_management,02 OTHER.zip,Sale order spreadsheet,Sales/Sales,1.0,spreadsheet_edition|sale_management,4,4,0
+stock,02 OTHER.zip,Inventory,Supply Chain/Inventory,1.1,product|barcodes_gs1_nomenclature|digest,63,52,2
+stock_account,02 OTHER.zip,WMS Accounting,Supply Chain/Inventory,1.1,stock|account,24,20,0
+stock_accountant,02 OTHER.zip,Stock Accounting,Supply Chain/Inventory,1.0,stock_account|account_accountant|account_reports,1,1,0
+stock_barcode,02 OTHER.zip,Barcode,Supply Chain/Inventory,1.0,stock|web_tour|web_mobile,18,18,0
+stock_barcode_barcodelookup,02 OTHER.zip,Stock Barcode - Barcode Lookup,Supply Chain/Inventory,,product_barcodelookup|stock_barcode,0,0,0
+stock_barcode_mrp,02 OTHER.zip,MRP Barcode,Supply Chain/Inventory,1.0,stock_barcode|mrp,7,7,0
+stock_barcode_mrp_subcontracting,02 OTHER.zip,Subcontract with Barcode,Supply Chain/Inventory,1.0,stock_barcode|mrp_subcontracting,1,1,0
+stock_barcode_picking_batch,02 OTHER.zip,Barcode for Batch Transfer,Supply Chain/Inventory,1.0,stock_barcode|stock_picking_batch,5,5,0
+stock_barcode_product_expiry,02 OTHER.zip,Barcode Expiry,Supply Chain/Inventory,1.0,stock_barcode|product_expiry,3,3,0
+stock_barcode_quality_control,02 OTHER.zip,Barcode Quality bridge module,Supply Chain/Inventory,1.0,stock_barcode|quality_control,2,2,0
+stock_barcode_quality_control_picking_batch,02 OTHER.zip,Barcode/Quality/Batch Transfer bridge module,Supply Chain/Inventory,1.0,quality_control_picking_batch|stock_barcode_quality_control,1,1,0
+stock_barcode_quality_mrp,02 OTHER.zip,Barcode Quality MRP module,Supply Chain/Inventory,1.0,stock_barcode|quality_mrp,1,1,0
+stock_delivery,02 OTHER.zip,Delivery - Stock,Shipping Connectors,1.0,sale_stock|delivery,13,13,0
+stock_dropshipping,02 OTHER.zip,Drop Shipping,Supply Chain/Inventory,1.0,sale_purchase_stock,11,10,0
+stock_enterprise,02 OTHER.zip,Stock enterprise,Supply Chain/Inventory,1.0,stock|web_cohort|web_map,3,2,1
+stock_fleet,02 OTHER.zip,Stock Transport,,1.0,stock_picking_batch|fleet,5,5,0
+stock_fleet_enterprise,02 OTHER.zip,Stock Transport Enterprise,,1.0,stock_fleet|web_gantt|web_map,1,1,0
+stock_intrastat,02 OTHER.zip,Stock Intrastat,Supply Chain/Inventory,,stock_account|account_intrastat,2,1,0
+stock_landed_costs,02 OTHER.zip,WMS Landed Costs,Supply Chain/Inventory,1.1,stock_account|purchase_stock,10,10,0
+stock_maintenance,02 OTHER.zip,Stock - Maintenance,Supply Chain/Inventory,1.0,stock|maintenance,2,2,0
+stock_picking_batch,02 OTHER.zip,Warehouse Management: Batch Transfer,Supply Chain/Inventory,1.0,stock,8,8,0
+stock_sms,02 OTHER.zip,Stock - SMS,Supply Chain/Inventory,1.0,stock|sms,4,4,0
+survey,02 OTHER.zip,Surveys,Marketing/Surveys,3.7,auth_signup|http_routing|mail|web_tour|gamification,12,11,0
+survey_crm,02 OTHER.zip,Survey CRM,Marketing/Surveys,1.0,survey|crm,7,7,0
+test_access_rights,02 OTHER.zip,test of access rights and rules,Hidden/Tests,0.0.1,,0,0,0
+test_action_bindings,02 OTHER.zip,Test Action Bindings,Hidden/Tests,,,0,0,0
+test_ai_fields,02 OTHER.zip,Test AI Field,Hidden/Tests,1.0,ai_fields,5,0,5
+test_appointment_full,02 OTHER.zip,Appointment Testing Module,Hidden/Tests,1.0,appointment_crm|appointment_hr|google_calendar|microsoft_calendar|website_appointment,0,0,0
+test_assetsbundle,02 OTHER.zip,test-assetsbundle,Hidden/Tests,0.1,base,1,0,0
+test_auth_custom,02 OTHER.zip,Tests that custom auth works & is not impaired by CORS,Hidden,,,0,0,0
+test_base_automation,02 OTHER.zip,Test - Base Automation,Hidden,1.0,base_automation,12,0,12
+test_convert,02 OTHER.zip,test_convert,Hidden/Tests,0.0.1,,0,0,0
+test_converter,02 OTHER.zip,test-field-converter,Hidden/Tests,0.1,base,0,0,0
+test_crm_full,02 OTHER.zip,Test Full Crm Flow,Hidden/Tests,1.0,crm|crm_iap_enrich|crm_iap_mine|crm_sms|event_crm|sale_crm|website_crm|website_crm_iap_reveal|website_crm_partner_assign|website_crm_livechat,0,0,0
+test_data_cleaning,02 OTHER.zip,Test Data Cleaning,Hidden,,data_cleaning,1,0,1
+test_data_module,02 OTHER.zip,test module to test data only modules,Hidden/Tests,0.0.1,,0,0,0
+test_data_module_install,02 OTHER.zip,test installation of data module,Hidden/Tests,0.0.1,test_data_module,0,0,0
+test_discuss_full,02 OTHER.zip,Test Discuss (full),Productivity/Discuss,1.0,calendar|crm|crm_livechat|hr_attendance|hr_fleet|hr_holidays|hr_homeworking|im_livechat|mail|mail_bot|project_todo|website_livechat|website_sale|website_slides,0,0,0
+test_discuss_full_enterprise,02 OTHER.zip,Test Discuss Full Enterprise,Hidden,,ai|account_accountant|account_invoice_extract|approvals|documents|knowledge|mail_enterprise|sign|test_discuss_full|voip|voip_ai|voip_onsip|web_enterprise|website_helpdesk_livechat|web_studio|whatsapp,0,0,0
+test_documents_full,02 OTHER.zip,Documents Testing Module,Hidden/Tests,,account_bank_statement_extract|documents_account,0,0,0
+test_event_full,02 OTHER.zip,Test Full Event Flow,Hidden/Tests,1.0,event|event_booth|event_crm|event_crm_sale|event_sale|event_sms|payment_demo|website_event_booth_sale_exhibitor|website_event_exhibitor|website_event_sale|website_event_track|website_event_track_live|website_event_track_quiz,0,0,0
+test_event_full_enterprise,02 OTHER.zip,Event Test (all modules),Hidden/Tests,1.0,event_social|test_event_full|whatsapp_event,0,0,0
+test_html_field_history,02 OTHER.zip,Test - html_field_history,Hidden,1.0,html_editor,1,0,1
+test_http,02 OTHER.zip,Test HTTP,Hidden/Tests,1.0,web|web_tour|mail|rpc,0,0,0
+test_import_export,02 OTHER.zip,Test - Import & Export,Hidden,1.0,web|base_import|website,35,0,35
+test_inherit,02 OTHER.zip,test-inherit,Hidden/Tests,0.1,base|test_orm,18,1,13
+test_inherit_depends,02 OTHER.zip,test-inherit-depends,Hidden/Tests,1.0,test_inherit|test_orm,0,0,0
+test_inherits,02 OTHER.zip,test-inherits,Hidden/Tests,0.1,base,0,0,0
+test_inherits_depends,02 OTHER.zip,test-inherits-depends,Hidden/Tests,0.1,test_inherits,0,0,0
+test_install_auto,02 OTHER.zip,test_install_auto,Hidden/Tools,1.0,test_install_base,0,0,0
+test_install_base,02 OTHER.zip,test_install_base,Hidden/Tools,1.0,base,0,0,0
+test_install_fail,02 OTHER.zip,test_install_fail,Hidden/Tools,1.0,test_install_base,0,0,0
+test_l10n_be_hr_payroll_account,02 OTHER.zip,Test Belgian Payroll,Human Resources,,hr_contract_salary_payroll|l10n_be_hr_contract_salary|l10n_be_hr_payroll_account|l10n_be|l10n_be_hr_payroll_sd_worx|l10n_be_hr_payroll_group_s|l10n_be_hr_payroll_ucm|l10n_be_hr_payroll_partena|account_accountant|hr_payroll_account_iso20022|documents_hr_payroll|documents_hr|hr_skills,0,0,0
+test_l10n_hk_hr_payroll_account,02 OTHER.zip,Test Hong Kong Payroll,Human Resources,,l10n_hk_hr_payroll_account|documents_l10n_hk_hr_payroll|l10n_hk_hr_payroll_empf,0,0,0
+test_l10n_us_hr_payroll_account,02 OTHER.zip,Test US Payroll,Human Resources,,l10n_us_hr_payroll|l10n_us_hr_payroll_account,0,0,0
+test_lint,02 OTHER.zip,test-lint,Hidden/Tests,0.1,base,0,0,0
+test_mail,02 OTHER.zip,Mail Tests,Hidden,1.0,mail|test_orm,47,0,47
+test_mail_enterprise,02 OTHER.zip,Mail Tests (Enterprise),Hidden,1.0,ai|documents|mail|mail_bot|mail_enterprise|mass_mailing|mass_mailing_sms|marketing_automation|marketing_automation_sms|mail_mobile|portal|rating|snailmail|sms|test_mail|test_mail_full|test_mass_mailing|test_mail_sms|voip|test_whatsapp,1,0,1
+test_mail_full,02 OTHER.zip,Mail Tests (Full),Hidden,1.0,mail|mail_bot|portal|rating|mass_mailing|mass_mailing_sms|phone_validation|sms|test_mail|test_mail_sms|test_mass_mailing,6,0,6
+test_mail_sms,02 OTHER.zip,SMS Tests,Hidden,1.0,mail|sms|sms_twilio|test_orm,7,0,7
+test_main_flows,02 OTHER.zip,Test Main Flow,Hidden/Tests,1.0,web_tour|crm|sale_timesheet|purchase_stock|mrp|account,1,0,1
+test_marketing_automation,02 OTHER.zip,Marketing Automation Tests,Hidden,1.1,marketing_automation|marketing_automation_sms|marketing_automation_whatsapp|test_mail|test_mail_enterprise|test_mail_full|test_mail_sms|test_mass_mailing,4,0,4
+test_mass_mailing,02 OTHER.zip,Mass Mail Tests,Marketing/Email Marketing,1.0,mass_mailing|mass_mailing_sms|sms_twilio|test_mail|test_mail_sms,12,0,11
+test_mimetypes,02 OTHER.zip,test mimetypes-guessing,Hidden/Tests,0.1,,0,0,0
+test_orm,02 OTHER.zip,Test ORM,Hidden/Tests,1.0,base|web|web_tour,162,0,160
+test_read_group,02 OTHER.zip,test of (formatted/web)_read_group,Hidden/Tests,0.1,base|web,0,0,0
+test_resource,02 OTHER.zip,Test - Resource,Hidden,1.1,resource,1,0,1
+test_rpc,02 OTHER.zip,Test RPC,Hidden/Tests,1.0,web|rpc,0,0,0
+test_sale_product_configurators,02 OTHER.zip,Sale Product Configurators Tests,Hidden,,event_sale|sale_management|sale_product_matrix,0,0,0
+test_sale_purchase_edi_ubl,02 OTHER.zip,Test - Sale & Purchase Order EDI,Hidden,,purchase_edi_ubl_bis3|sale_edi_ubl,0,0,0
+test_sale_subscription,02 OTHER.zip,Test Sale Subscription,Sales/Subscriptions,1.0,sale_subscription|payment_demo,1,1,0
+test_search_panel,02 OTHER.zip,test_search_panel,Hidden/Tests,0.1,web,4,0,4
+test_sign,02 OTHER.zip,Test Sign,Sales/Sign,1.0,sign|sale|crm|mrp|hr_expense,0,0,0
+test_spreadsheet,02 OTHER.zip,Spreadsheet Test,Hidden,1.0,spreadsheet,1,0,1
+test_spreadsheet_edition,02 OTHER.zip,Spreadsheet Test,Hidden,1.0,spreadsheet_edition|test_spreadsheet,2,1,1
+test_testing_utilities,02 OTHER.zip,Test testing utilities,Hidden/Tests,,base|web,33,0,33
+test_themes,02 OTHER.zip,Themes Testing Module,Hidden,1.0,theme_default|theme_anelusia|theme_artists|theme_avantgarde|theme_aviato|theme_beauty|theme_bewise|theme_bistro|theme_bookstore|theme_buzzy|theme_clean|theme_cobalt|theme_enark|theme_graphene|theme_kea|theme_kiddo|theme_loftspace|theme_monglia|theme_nano|theme_notes|theme_odoo_experts|theme_orchid|theme_paptic|theme_real_estate|theme_treehouse|theme_vehicle|theme_yes|theme_zap,2,1,0
+test_timer,02 OTHER.zip,Timer Tests,Hidden/Tests,1.0,timer,2,0,2
+test_translation_import,02 OTHER.zip,test-translation-import,Hidden/Tests,0.1,base,2,0,2
+test_uninstall,02 OTHER.zip,test-uninstall,Hidden/Tests,0.1,base,0,0,0
+test_web_cohort,02 OTHER.zip,Web Cohort Tests,Hidden,1.0,web_cohort,2,0,2
+test_web_gantt,02 OTHER.zip,Web Gantt Tests,Hidden,1.0,web_gantt,2,0,2
+test_web_studio,02 OTHER.zip,Web Studio Tests,Hidden,1.0,web_studio|website|sale,6,0,6
+test_website,02 OTHER.zip,Website Test,Hidden,1.0,web_unsplash|website|theme_default,7,2,5
+test_website_modules,02 OTHER.zip,Website Modules Test,Hidden,1.0,theme_default|website|website_blog|website_event_sale|website_slides|website_livechat|website_crm_iap_reveal|website_sale_comparison|website_sale_wishlist,0,0,0
+test_website_sale_full,02 OTHER.zip,Website Sale Full Tests,Hidden,,website_sale_comparison|website_sale_renting|website_sale_wishlist,0,0,0
+test_website_slides_full,02 OTHER.zip,Test Full eLearning Flow,Hidden/Tests,1.0,website_sale_slides|website_slides_forum|website_slides_survey,0,0,0
+test_whatsapp,02 OTHER.zip,WhatsApp Tests,Hidden,1.0,contacts|mail|portal|whatsapp,6,0,6
+theme_anelusia,02 OTHER.zip,Anelusia Theme,Theme/Retail,2.1.0,theme_common,1,0,0
+theme_artists,02 OTHER.zip,Artists Theme,Theme/Creative,2.1.0,theme_common,1,0,0
+theme_avantgarde,02 OTHER.zip,Avantgarde Theme,Theme/Creative,2.0.0,theme_common,1,0,0
+theme_aviato,02 OTHER.zip,Aviato Theme,Theme/Creative,1.0.0,theme_common,1,0,0
+theme_beauty,02 OTHER.zip,Beauty Theme,Theme/Retail,2.1.0,theme_common,1,0,0
+theme_bewise,02 OTHER.zip,Be Wise Theme,Theme/Education,3.0.0,theme_common,1,0,0
+theme_bistro,02 OTHER.zip,Bistro Theme,Theme/Food,2.0.0,theme_common,1,0,0
+theme_bookstore,02 OTHER.zip,Bookstore Theme,Theme/Retail,2.1.0,theme_common,1,0,0
+theme_buzzy,02 OTHER.zip,Buzzy Theme,Theme/Corporate,1.0.0,website,1,0,0
+theme_clean,02 OTHER.zip,Clean Theme,Theme/Services,2.1.0,theme_common,1,0,0
+theme_cobalt,02 OTHER.zip,Cobalt Theme,Theme/Corporate,2.0.0,website,1,0,0
+theme_common,02 OTHER.zip,Theme Common,Hidden,1.1,website,1,0,0
+theme_default,02 OTHER.zip,Default Theme,Theme,1.0,website,0,0,0
+theme_enark,02 OTHER.zip,Enark Theme,Theme/Corporate,2.0.0,theme_common,1,0,0
+theme_graphene,02 OTHER.zip,Graphene Theme,Theme/Corporate,2.0.0,theme_common,1,0,0
+theme_kea,02 OTHER.zip,Kea Theme,Theme/Technology,2.0.0,theme_common,1,0,0
+theme_kiddo,02 OTHER.zip,Kiddo Theme,Theme/Retail,2.1.0,theme_common,1,0,0
+theme_loftspace,02 OTHER.zip,Loftspace Theme,Theme/Retail,2.1.0,theme_common,1,0,0
+theme_monglia,02 OTHER.zip,Monglia Theme,Theme/Services,2.0.0,theme_common,1,0,0
+theme_nano,02 OTHER.zip,Nano Theme,Theme/Lifestyle,2.0.0,theme_common,1,0,0
+theme_notes,02 OTHER.zip,Notes & Play Theme,Theme/Retail,2.1.0,theme_common,1,0,0
+theme_odoo_experts,02 OTHER.zip,Experts Theme,Theme/Corporate,2.1.0,theme_common,1,0,0
+theme_orchid,02 OTHER.zip,Orchid Theme,Theme/Retail,3.0.0,theme_common,1,0,0
+theme_paptic,02 OTHER.zip,Paptic Theme,Theme/Corporate,2.1.0,website,1,0,0
+theme_real_estate,02 OTHER.zip,Real Estate Theme,Theme/Services,2.0.0,theme_common,1,0,0
+theme_test_custo,02 OTHER.zip,Custom Theme (Testing suite),Theme/Hidden,,website,1,0,0
+theme_treehouse,02 OTHER.zip,Treehouse Theme,Theme/Environment,2.0.0,theme_common,1,0,0
+theme_vehicle,02 OTHER.zip,Vehicle Theme,Theme/Services,2.0.0,theme_common,1,0,0
+theme_yes,02 OTHER.zip,Yes Theme,Theme/Personal,2.0.0,theme_common,1,0,0
+theme_zap,02 OTHER.zip,Zap Theme,Theme/Corporate,2.0.0,theme_common,1,0,0
+timer,02 OTHER.zip,Timer,Services/Timesheets,1.0,web|mail,3,1,0
+timesheet_grid,02 OTHER.zip,Timesheets,Services/Timesheets,1.0,project_enterprise|web_grid|hr_timesheet|timer|hr_org_chart,13,10,2
+timesheet_grid_holidays,02 OTHER.zip,Timesheets And Timeoff,Services/Timesheets,1.0,project_timesheet_holidays|timesheet_grid,3,3,0
+transifex,02 OTHER.zip,Transifex integration,Hidden/Tools,1.0,base|web,3,0,1
+uom,02 OTHER.zip,Units of measure,Sales/Sales,1.0,base,1,1,0
+utm,02 OTHER.zip,UTM Trackers,Marketing,1.1,base|web,8,5,0
+voip,02 OTHER.zip,Phone,Productivity/Phone,2.0,base|bus|mail|phone_validation|web|web_mobile,9,5,2
+voip_ai,02 OTHER.zip,Phone - AI,Productivity/Phone,1.0,voip|ai,3,1,2
+voip_crm,02 OTHER.zip,Phone - CRM,Sales/CRM,1.0,crm|voip,4,2,1
+voip_helpdesk,02 OTHER.zip,Phone - Helpdesk,Helpdesk,1.0,voip|helpdesk,2,1,1
+voip_hr,02 OTHER.zip,Phone - Human Resources,Human Resources,1.0,voip|hr,1,0,1
+voip_hr_recruitment,02 OTHER.zip,Phone - Recruitement,Human Resources/Recruitment,1.0,hr_recruitment|voip,2,1,1
+voip_onsip,02 OTHER.zip,Phone - OnSIP,Productivity/Phone,1.0,voip,3,2,1
+voip_sale_subscription,02 OTHER.zip,Phone - Subscriptions,Sales/Subscriptions,1.0,voip|sale_subscription,1,0,1
+voip_sms,02 OTHER.zip,Phone - SMS,Sales/Sales,1.0,voip|sms,0,0,0
+web,02 OTHER.zip,Web,Hidden,1.0,base,15,11,0
+web_cohort,02 OTHER.zip,Cohort View,Hidden,,web,3,1,1
+web_enterprise,02 OTHER.zip,Web Enterprise,Hidden,1.0,web|base_setup,3,2,0
+web_gantt,02 OTHER.zip,Web Gantt,Hidden,2.0,web,3,1,1
+web_grid,02 OTHER.zip,Grid View,Hidden,0.1,web,3,1,1
+web_hierarchy,02 OTHER.zip,Web Hierarchy,Hidden,1.0,web,3,1,1
+web_map,02 OTHER.zip,Map View,Hidden,1.0,web|base_setup,6,3,1
+web_mobile,02 OTHER.zip,Mobile,Hidden,1.0,web_enterprise,1,1,0
+web_studio,02 OTHER.zip,Studio,Customizations/Studio,1.0,base_automation|base_import_module|mail|web|web_enterprise|html_editor|web_map|web_gantt|web_cohort|sms,38,26,5
+web_studio_ai_fields,02 OTHER.zip,web_studio_ai_fields,Hidden,0.1,ai_fields|web_studio,0,0,0
+web_tour,02 OTHER.zip,Tours,Hidden,1.0,web,4,3,0
+web_unsplash,02 OTHER.zip,Unsplash Image Library,Hidden,1.1,base_setup|html_editor,4,3,0
+website,02 OTHER.zip,Website,Website/Website,1.0,digest|web|html_editor|http_routing|portal|social_media|auth_signup|mail|google_recaptcha|utm|html_builder,62,42,3
+website_appointment,02 OTHER.zip,Website Appointments,Services/Appointment,1.0,appointment|website_enterprise|website_partner|html_builder,6,6,0
+website_appointment_account_payment,02 OTHER.zip,Pay to Book on Website,Services/Appointment,1.0,appointment_account_payment|website_enterprise|website_appointment,0,0,0
+website_appointment_crm,02 OTHER.zip,Website Appointment Lead Enrichment,Services/Appointment,1.0,appointment_crm|website_crm,1,1,0
+website_appointment_sale,02 OTHER.zip,Pay to Book with eCommerce,Services/Appointment,1.0,website_appointment_account_payment|website_sale,5,5,0
+website_appointment_sale_project,02 OTHER.zip,Website Appointment Sale Project,Services/Appointment,1.0,website_appointment_sale|sale_project,2,2,0
+website_blog,02 OTHER.zip,Blog,Website/Website,1.1,website_mail|website_partner|html_builder,6,2,4
+website_cf_turnstile,02 OTHER.zip,Cloudflare Turnstile,Website/Website,1.0,website,2,1,0
+website_crm,02 OTHER.zip,Contact Form,Website/Website,2.1,website|crm,3,3,0
+website_crm_iap_reveal,02 OTHER.zip,Lead Generation From Website Visits,Sales/CRM,1.1,iap_crm|iap_mail|crm_iap_mine|website_crm,4,1,2
+website_crm_iap_reveal_enterprise,02 OTHER.zip,Website Visits Lead Generation Enterprise,Sales/CRM,1.0,crm_enterprise|website_crm_iap_reveal,0,0,0
+website_crm_livechat,02 OTHER.zip,Lead Livechat Sessions,Website/Website,1.0,website_crm|website_livechat,3,3,0
+website_crm_partner_assign,02 OTHER.zip,Resellers,Website/Website,1.2,base_geolocalize|crm|account|partnership|website_partner|website_google_map|portal,8,3,5
+website_crm_sms,02 OTHER.zip,Send SMS to Visitor with leads,Website/Website,1.0,website_sms|crm,1,1,0
+website_customer,02 OTHER.zip,Customer References,Website/Website,1.0,website_crm_partner_assign|website_partner|website_google_map,3,2,1
+website_delivery_sendcloud,02 OTHER.zip,Sendcould Locations for Website Delivery,Shipping Connectors,,delivery_sendcloud|website_sale,1,1,0
+website_documents,02 OTHER.zip,Website Documents,Productivity/Documents,1.0,documents|website,1,1,0
+website_enterprise,02 OTHER.zip,Website Enterprise,Website/Website,,web_enterprise|website,2,2,0
+website_event,02 OTHER.zip,Events,Marketing/Events,1.4,event|website|website_partner|website_mail|html_builder,11,4,7
+website_event_booth,02 OTHER.zip,Online Event Booths,Marketing/Events,1.0,website_event|event_booth,3,0,3
+website_event_booth_exhibitor,02 OTHER.zip,Booths/Exhibitors Bridge,Marketing/Events,1.1,website_event_exhibitor|website_event_booth,2,0,2
+website_event_booth_sale,02 OTHER.zip,Online Event Booth Sale,Marketing/Events,1.0,event_booth_sale|website_event_booth|website_sale,3,3,0
+website_event_booth_sale_exhibitor,02 OTHER.zip,Booths Sale/Exhibitors Bridge,Marketing/Events,1.0,website_event_exhibitor|website_event_booth_sale,1,0,1
+website_event_crm,02 OTHER.zip,Website Events CRM,Website/Website,1.0,event_crm|website_event,1,0,1
+website_event_exhibitor,02 OTHER.zip,Event Exhibitors,Marketing/Events,1.1,website_event,6,1,5
+website_event_sale,02 OTHER.zip,Online Event Ticketing,Website/Website,,website_event|event_sale|website_sale,6,5,1
+website_event_social,02 OTHER.zip,Schedule push notifications on attendees,Marketing/Events,1.1,website_event|social_push_notifications,2,1,1
+website_event_track,02 OTHER.zip,Advanced Events,Marketing,1.3,website_event,13,4,9
+website_event_track_gantt,02 OTHER.zip,Enterprise Event Track,Marketing,1.0,website_event_track|web_gantt,2,0,2
+website_event_track_live,02 OTHER.zip,Live Event Tracks,Marketing/Events,1.0,website_event_track,1,0,1
+website_event_track_live_quiz,02 OTHER.zip,Quiz on Live Event Tracks,Marketing/Events,1.0,website_event_track_live|website_event_track_quiz,0,0,0
+website_event_track_quiz,02 OTHER.zip,Quizzes on Tracks,Marketing/Events,1.0,website_profile|website_event_track,6,0,6
+website_event_track_social,02 OTHER.zip,Push notification to track listeners,Marketing/Events,1.1,website_event_social|website_event_track,3,1,2
+website_forum,02 OTHER.zip,Forum,Website/Website,1.2,auth_signup|website_mail|website_profile,10,5,5
+website_generator,02 OTHER.zip,Website Generator,Website/Website,1.0.0,website|website_enterprise,4,2,1
+website_generator_sale,02 OTHER.zip,Website Generator Sale,Website/Website,1.0.0,website_generator|website_sale,1,0,1
+website_google_map,02 OTHER.zip,Google Maps,Website/Website,1.0,base_geolocalize|website_partner,0,0,0
+website_helpdesk,02 OTHER.zip,Website Helpdesk,Services/Helpdesk,,helpdesk|website,5,5,0
+website_helpdesk_forum,02 OTHER.zip,Helpdesk: Help Center,Services/Helpdesk,,website_forum|website_helpdesk,4,2,2
+website_helpdesk_knowledge,02 OTHER.zip,Helpdesk Knowledge,Website/Website,1.0,website_helpdesk|knowledge,2,1,1
+website_helpdesk_livechat,02 OTHER.zip,Website IM Livechat Helpdesk,Services/Helpdesk,,website_helpdesk|website_livechat,8,7,1
+website_helpdesk_sale_loyalty,02 OTHER.zip,website helpdesk sale,Services/Helpdesk,1.0,website_sale_loyalty|helpdesk_sale_loyalty,1,0,1
+website_helpdesk_slides,02 OTHER.zip,Website Slides Helpdesk,Services/Helpdesk,,website_helpdesk|website_slides,3,3,0
+website_helpdesk_slides_forum,02 OTHER.zip,Website Slides Forum Helpdesk,Services/Helpdesk,,website_helpdesk|website_slides_forum,0,0,0
+website_hr_recruitment,02 OTHER.zip,Online Jobs,Website/Website,1.1,hr_recruitment|website_mail,6,6,0
+website_hr_recruitment_livechat,02 OTHER.zip,Website IM Livechat HR Recruitment,Website/Live Chat,1.0,website_hr_recruitment|im_livechat,0,0,0
+website_knowledge,02 OTHER.zip,Knowledge Website,,1.0,knowledge|website,2,1,1
+website_links,02 OTHER.zip,Link Tracker,Website/Website,1.0,website|link_tracker,1,1,0
+website_livechat,02 OTHER.zip,Website Live Chat,Website/Live Chat,1.0,website|im_livechat,9,8,0
+website_mail,02 OTHER.zip,Website Mail,Website/Website,0.1,website|mail,2,0,0
+website_mail_group,02 OTHER.zip,Website Mail Group,,1.0,mail_group|website,1,0,1
+website_mass_mailing,02 OTHER.zip,Newsletter Subscribe Button,Website/Website,1.0,website|mass_mailing|google_recaptcha,1,1,0
+website_mass_mailing_sms,02 OTHER.zip,Newsletter Subscribe SMS Template,Website/Website,1.0,website_mass_mailing|mass_mailing_sms,0,0,0
+website_partner,02 OTHER.zip,Website Partner,Website/Website,0.1,website,1,1,0
+website_payment,02 OTHER.zip,Website Payment,Website/Website,1.0,website|account_payment|portal,4,4,0
+website_product_barcodelookup,02 OTHER.zip,Product Barcode Lookup for eCommerce,Sales/Sales,1.0,product_barcodelookup|website_sale,1,1,0
+website_profile,02 OTHER.zip,Website profile,Website/Website,1.0,html_editor|website_partner|gamification,3,3,0
+website_project,02 OTHER.zip,Online Task Submission,Website/Website,1.0,website|project,2,2,0
+website_sale,02 OTHER.zip,eCommerce,Website/Website,1.1,website|sale|website_payment|website_mail|portal_rating|digest|delivery|html_builder,36,33,1
+website_sale_autocomplete,02 OTHER.zip,Google places autocompletion,Website/Website,1.0,website_sale|google_address_autocomplete,2,2,0
+website_sale_collect,02 OTHER.zip,Click & Collect,Website/Website,1.0,base_geolocalize|payment_custom|website_sale_stock,8,8,0
+website_sale_collect_wishlist,02 OTHER.zip,Collect & Wishlist,Website/Website,,website_sale_wishlist|website_sale_collect,0,0,0
+website_sale_comparison,02 OTHER.zip,Product Comparison,Website/Website,1.0,website_sale,4,4,0
+website_sale_comparison_wishlist,02 OTHER.zip,Product Availability Notifications,Website/Website,,website_sale_comparison|website_sale_wishlist,0,0,0
+website_sale_dashboard,02 OTHER.zip,Website Sales Dashboard,Website/Website,1.0,website_sale,2,2,0
+website_sale_external_tax,02 OTHER.zip,External calculation for Ecommerce,Accounting/Accounting,,sale_external_tax|website_sale,1,1,0
+website_sale_fedex,02 OTHER.zip,FEDEX Locations for Website Delivery,Shipping Connectors,,delivery_fedex|website_sale,1,1,0
+website_sale_gelato,02 OTHER.zip,eCommerce/Gelato bridge,Website/Website,,sale_gelato|website_sale,3,3,0
+website_sale_loyalty,02 OTHER.zip,"Coupons, Promotions, Gift Card and Loyalty for eCommerce",Website/Website,1.0,website_sale|website_links|sale_loyalty,7,3,4
+website_sale_mass_mailing,02 OTHER.zip,Checkout Newsletter,Website/Website,1.0,website_sale|website_mass_mailing,2,2,0
+website_sale_mondialrelay,02 OTHER.zip,eCommerce Mondialrelay Delivery,Website/Website,0.1,website_sale|delivery_mondialrelay,1,1,0
+website_sale_mrp,02 OTHER.zip,Kit Availability,Website/Website,1.0,website_sale_stock|sale_mrp,1,1,0
+website_sale_renting,02 OTHER.zip,eCommerce Rental,Website/Website,1.0,website_sale|sale_renting,8,8,0
+website_sale_renting_planning,02 OTHER.zip,eCommerce Rental with Planning,Website/Website,1.0,website_sale_renting|sale_renting_planning,1,1,0
+website_sale_slides,02 OTHER.zip,Sell Courses,Website/eLearning,1.0,website_slides|website_sale,5,5,0
+website_sale_stock,02 OTHER.zip,Product Availability,Website/Website,,website_sale|sale_stock|stock_delivery,10,10,0
+website_sale_stock_renting,02 OTHER.zip,eCommerce Rental with Stock Management,Website/Website,1.0,website_sale_renting|website_sale_stock|sale_stock_renting,6,6,0
+website_sale_stock_wishlist,02 OTHER.zip,Product Availability Notifications,Website/Website,,website_sale_stock|website_sale_wishlist,2,2,0
+website_sale_subscription,02 OTHER.zip,eCommerce Subscription,Website/Website,1.0,website_sale|sale_subscription,5,5,0
+website_sale_ups,02 OTHER.zip,UPS: Bill My Account,Shipping Connectors,,delivery_ups|website_sale,1,1,0
+website_sale_wishlist,02 OTHER.zip,Shopper's Wishlist,Website/Website,1.0,website_sale,6,6,0
+website_slides,02 OTHER.zip,eLearning,Website/eLearning,2.7,portal_rating|website|website_mail|website_profile,20,20,0
+website_slides_forum,02 OTHER.zip,Forum on Courses,Website/eLearning,1.0,website_slides|website_forum,2,1,1
+website_slides_survey,02 OTHER.zip,Course Certifications,Website/eLearning,1.0,website_slides|survey,6,6,0
+website_sms,02 OTHER.zip,Send SMS to Visitor,Website/Website,1.0,website|sms,1,1,0
+website_studio,02 OTHER.zip,Website Studio,Hidden,1.0,web_studio|website,1,1,0
+website_timesheet,02 OTHER.zip,Hide Portal Timesheet Information,Website/Website,1.0,website|hr_timesheet,1,1,0
+whatsapp,02 OTHER.zip,WhatsApp Messaging,Productivity/WhatsApp,1.0,mail|phone_validation,15,5,8
+whatsapp_account,02 OTHER.zip,Whatsapp Accounting,WhatsApp,,account|whatsapp,3,2,1
+whatsapp_account_followup,02 OTHER.zip,WhatsApp Follow-Up,Marketing/WhatsApp,1.0,account_followup|whatsapp,4,3,0
+whatsapp_calendar,02 OTHER.zip,WhatsApp-Calendar,WhatsApp,1.0,calendar|whatsapp,4,3,0
+whatsapp_delivery,02 OTHER.zip,WhatsApp-Delivery,WhatsApp,,stock_delivery|whatsapp,1,1,0
+whatsapp_event,02 OTHER.zip,WhatsApp-Website-Events,Marketing/Events,,event|whatsapp,5,0,5
+whatsapp_hr_referral,02 OTHER.zip,WhatsApp - Employee Referral,Human Resources/Referrals,1.0,hr_referral|whatsapp,2,2,0
+whatsapp_payment,02 OTHER.zip,Whatsapp-Payment,WhatsApp,,payment|whatsapp,1,1,0
+whatsapp_pos,02 OTHER.zip,WhatsApp-POS,WhatsApp,,point_of_sale|whatsapp,5,1,4
+whatsapp_sale,02 OTHER.zip,WhatsApp-Sale,WhatsApp,,sale|whatsapp,1,1,0
+whatsapp_sign,02 OTHER.zip,WhatsApp-Sign,WhatsApp,,sign|whatsapp,5,4,1
+whatsapp_stock,02 OTHER.zip,Stock - WhatsApp,WhatsApp,1.0,stock_enterprise|whatsapp,3,3,0
+whatsapp_website_sale,02 OTHER.zip,WhatsApp-eCommerce,WhatsApp,,website_sale|whatsapp,3,3,0
+worksheet,02 OTHER.zip,Worksheet,Hidden,,web_studio,2,2,0

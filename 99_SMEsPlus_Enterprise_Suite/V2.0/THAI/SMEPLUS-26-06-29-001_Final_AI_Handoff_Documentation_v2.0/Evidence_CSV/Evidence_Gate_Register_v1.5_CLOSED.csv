@@ -1,0 +1,15 @@
+gate_id,gate_name,closure_status,evidence_summary,closure_basis,blocking_item
+G01,Project Charter & Governance,PASS,Project Constitution + document structure created and carried forward to Phase B.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G02,Evidence Registration,PASS,"EV-0001 01 ACCOUNT.zip, EV-0002 02 OTHER.zip, EV-0003 iTEST02 dump registered.",Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G03,Source Code Inventory,PASS,Source inventory available; module inventory records: 1436; ORM/model evidence captured.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G04,Database Table Inventory,PASS,Dump table inventory extracted: 1395 tables.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G05,Database Column Inventory,PASS,Column inventory extracted: 13940 columns.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G06,Constraint Inventory,PASS,Constraint evidence extracted: 6682 constraints.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G07,Foreign Key Relationship Inventory,PASS,Foreign-key relationship edges extracted: 5141 relationships.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G08,Index Inventory,PASS,Index evidence extracted: 1714 indexes.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G09,Model-to-Table Mapping,PASS,Model/table and field-level mapping evidence available; field mapping records: 27682.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G10,XML View / Action / Menu Inventory,PASS,XML/UI inventory evidence captured: 6260 records.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G11,Security Access Inventory,PASS,Security/access evidence captured: 473 records.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G12,Business Rule / Method Inventory,PASS,Business rule/method evidence captured: 4377 records.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G13,Knowledge Base Packaging,PASS,"Knowledge Base folder contains source, dump, mapping, security, XML, and business-rule evidence CSVs.",Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure
+G14,Final Delivery & Handoff,PASS,Final Closure Pack v1.5 created for team handoff and next module onboarding.,Evidence available in v1.4/v1.5 pack,None for Phase B baseline closure

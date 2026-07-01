@@ -1,0 +1,15 @@
+seq,folder,status,evidence,remarks
+01,01_Project_Charter,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+02,02_Project_Management,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+03,03_Source_Code,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+04,04_Database,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+05,05_Mapping,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+06,06_Architecture,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+07,07_Functional,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+08,08_Technical,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+09,09_Diagrams,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+10,10_Testing,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+11,11_Executive_Report,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+12,12_Knowledge_Base,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+13,13_Revision_History,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
+14,14_Final_Delivery,CLOSED,README/documents/evidence files present in package,Accepted for Phase B 100% baseline
