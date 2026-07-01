@@ -20,3 +20,10 @@ This folder contains generated functional-design analysis outputs from the Postg
 - Preview: https://blocksandarrows.com/api/image/itest02-core-erp-erd-overview-ghkdy2
 - Editor: https://blocksandarrows.com/editor/itest02-core-erp-erd-overview-ghkdy2
 
+
+
+## Continued Deliverables
+
+This folder now includes additional governance and delivery artifacts: functional design index, assumptions, evidence gate report, migration readiness checklist, restore validation plan, data governance controls, and repository commit plan.
+
+The current gate status remains **HOLD** for migration execution, external sharing, or AI use of row-level data until masking and restore evidence are complete.
