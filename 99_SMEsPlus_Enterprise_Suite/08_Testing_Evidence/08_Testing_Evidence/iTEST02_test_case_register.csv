@@ -1,0 +1,6 @@
+﻿test_id,test_name,type,owner,precondition,expected_result,status,evidence_required
+TC-001,Restore custom dump,Technical,DBA,Isolated DB server available,Restore completes,Pending,Restore log
+TC-002,Object count reconciliation,Technical,Restore complete,Counts match expected metadata,Pending,Reconciliation CSV
+TC-003,Extension compatibility,Technical,PostgreSQL target prepared,pg_trgm vector pg_stat_statements available,Pending,Extension query output
+TC-004,Sensitive data masking validation,Security,Restored dataset available,Restricted values masked or excluded,Pending,Masking certificate
+TC-005,Module owner review,Business,Functional design available,Owner signs off or raises gaps,Pending,Signoff matrix
