@@ -1,0 +1,6 @@
+﻿role,dump_access,restore_access,metadata_access,masked_data_access,github_commit,approval_required
+DBA,Yes,Yes,Yes,Conditional,No,Security Owner
+Security Owner,Conditional,Conditional,Yes,Yes,Yes,Project Owner
+Business Owner,No,No,Yes,Conditional,Yes,Security Owner
+AI Assistant,No,No,Yes,No,No,N/A
+Developer,No,Conditional,Yes,Conditional,Yes,Technical Lead
