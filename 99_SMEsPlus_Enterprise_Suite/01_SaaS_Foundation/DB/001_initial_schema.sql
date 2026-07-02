@@ -1,0 +1,13 @@
+-- SMEPLUS-SAAS-001_INITIAL_SCHEMA
+-- Status: PLACEHOLDER - not yet authored
+-- Owner Role: Database Design AI
+-- Reviewer: Enterprise Architect AI, PMO AI
+-- Approval: Boss
+--
+-- Why this file has no SQL yet:
+--   Depends on SDS/ERD_FOUNDATION_v0.1.md being approved first (As-Is Before To-Be, ADR-0003).
+--   Evidence Matching Round 3 confirmed no tenant_*/subscription_*/saas_* tables exist in the
+--   current production database - this schema is greenfield and must go through the ERD review
+--   gate before any DDL is written here.
+--
+-- Do not write real CREATE TABLE / migration statements until the blocker above clears.
