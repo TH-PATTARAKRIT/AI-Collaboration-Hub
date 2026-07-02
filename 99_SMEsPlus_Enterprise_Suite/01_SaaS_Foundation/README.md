@@ -1,29 +1,162 @@
-# 01_SaaS_Foundation
+# SMEsPlus SaaS Foundation
 
-**Status:** Scaffolding created 2026-07-02 — all subordinate documents are PLACEHOLDERS pending Functional Specification, ADR, and gate approval, EXCEPT the FDS architecture set (SAAS_ARCHITECTURE.md and 7 siblings), which already contains real content authored under ADR-0010 (do not overwrite).
+Version: v1.0
+Status: Approved Baseline
+Owner: SMEsPlus Product & Architecture Team
+Scope: `01_SaaS_Foundation`
 
 ## Purpose
-Home for the SaaS Foundation module's full deliverable package: Functional Design Specification (FDS), Solution Design Specification (SDS), API contract, database migrations, and UX flow specs — covering Tenant Management, Company/Branch, Identity & Access, Subscription/Module Activation, Configuration Center, Approval Foundation, Audit, Notification, and AI Assistance/Integration capabilities.
 
-## Folder structure
-- `FDS/` — Functional Design Specification package. 8 files (SAAS/APPLICATION/DATABASE/MULTI_TENANT/SECURITY/DEPLOYMENT/PERFORMANCE/INTEGRATION_ARCHITECTURE.md) already have real content under ADR-0010. `ARCHITECTURE_REVIEW.md` and `SMEPLUS-SAAS-FOUNDATION-FDS-v0.2.md` are placeholders (v0.1 of the FDS already exists and has real content; v0.2 is not yet started).
-- `SDS/` — Solution Design Specification package (all placeholder)
-- `API/` — OpenAPI contract for the SaaS Foundation module (placeholder)
-- `DB/` — Ordered SQL migration scripts (placeholder)
-- `UX/` — Per-screen UX flow specifications (placeholder)
+`01_SaaS_Foundation` เป็นศูนย์กลางเอกสารสถาปัตยกรรม การออกแบบระบบ ความปลอดภัย API ฐานข้อมูล UI/UX QA DevOps และ Deployment สำหรับระบบ SMEsPlus Enterprise Suite
 
-## Governance status (as of 2026-07-02)
-| Gate | Status |
-|---|---|
-| `17_Functional_Specification_Factory/01_SaaS_Foundation/01_Executive_Summary.md` published | Not started |
-| Architecture Decision Record (ADR) approved for Tenant/Subscription design | ADR-0010 (SaaS First) exists and is referenced by the FDS architecture set - confirm its approval status with Enterprise Architect AI before treating SDS/DB work as unblocked |
-| Evidence Matching confirms no existing schema conflicts | Done - see `07_Output_From_AI/SMEPLUS-FUNCTIONAL-DESIGN-MATCHING-MATRIX.md` and the reconciled `12_Traceability/Requirement_Matrix/SMEPLUS-FUNCTIONAL-DESIGN-MATCHING-MATRIX-v0.2.md` |
+เอกสารชุดนี้ใช้เป็น baseline ร่วมกันสำหรับทีม:
 
-Every placeholder file has a standard header (Document ID, Status, Owner Role, Reviewers, Approval, specific blocker). This is intentional per the Constitution's "No Evidence = No Progress" rule and ADR-0002/ADR-0003.
+* Product Manager
+* Business Analyst
+* UX/UI Designer
+* Frontend Developer
+* Backend Developer
+* QA Engineer
+* DevOps Engineer
+* Security Reviewer
+* Project Governance Team
 
-## Related documents
-- `07_Output_From_AI/SMEPLUS-FUNCTIONAL-DESIGN-MATCHING-MATRIX.md`
-- `07_Output_From_AI/SMEPLUS-GAP-ANALYSIS.md`
-- `07_Output_From_AI/SMEPLUS-IMPLEMENTATION-ROADMAP.md`
-- `07_Output_From_AI/SMEPLUS-CLAUDE-IMPLEMENTATION-BACKLOG.md`
-- `12_Traceability/Requirement_Matrix/SMEPLUS-FUNCTIONAL-DESIGN-MATCHING-MATRIX-v0.2.md` (reconciled with the existing v0.1 FR-ID/Jira scheme)
+## Project Vision
+
+SMEsPlus Enterprise Suite มีเป้าหมายในการสร้าง SaaS platform สำหรับธุรกิจ SME และองค์กร โดยรองรับ multi-tenant, modular business application, security by design, auditability, scalability และ automation-first delivery
+
+## Foundation Scope
+
+ขอบเขตของ SaaS Foundation ครอบคลุม:
+
+* Tenant Management
+* Company / Branch / Division Structure
+* Identity & Access Management
+* Role / Permission / Policy
+* Subscription & Module Activation
+* Approval Foundation
+* Notification Foundation
+* Integration Foundation
+* Audit & Governance
+* Reporting Foundation
+* Deployment Foundation
+
+## Out of Scope
+
+สิ่งต่อไปนี้ยังไม่อยู่ในขอบเขตของ foundation version นี้:
+
+* Full Accounting Module
+* Full Inventory Module
+* Full HR Module
+* Full CRM Module
+* Full POS Module
+* Customer Production Onboarding
+* Production Go-Live
+
+## Repository Structure
+
+```text
+01_SaaS_Foundation/
+│
+├── README.md
+├── DOCUMENT_MAP.md
+├── GLOSSARY.md
+├── ARCHITECTURE_PRINCIPLES.md
+├── ARCHITECTURE_GOVERNANCE.md
+├── ARCHITECTURE_DECISION_LOG.md
+├── TRACEABILITY_MATRIX.md
+├── VERSION_HISTORY.md
+├── CHANGELOG.md
+│
+├── ADR/
+├── FDS/
+├── SDS/
+├── API/
+├── DATABASE/
+├── SECURITY/
+├── UI/
+├── QA/
+├── DEVOPS/
+└── DEPLOYMENT/
+```
+
+## Reading Order
+
+แนะนำให้อ่านเอกสารตามลำดับนี้:
+
+1. `README.md`
+2. `DOCUMENT_MAP.md`
+3. `GLOSSARY.md`
+4. `ARCHITECTURE_PRINCIPLES.md`
+5. `ARCHITECTURE_GOVERNANCE.md`
+6. `ARCHITECTURE_DECISION_LOG.md`
+7. `FDS/SMEPLUS-SAAS-FOUNDATION-FDS.md`
+8. `SDS/SDS_FOUNDATION.md`
+9. `API/OPENAPI_FOUNDATION.yaml`
+10. `DATABASE/ERD_FOUNDATION.md`
+11. `SECURITY/SECURITY_ARCHITECTURE.md`
+12. `UI/SCREEN_SPEC_FOUNDATION.md`
+13. `QA/TEST_STRATEGY.md`
+14. `DEVOPS/CI_CD.md`
+15. `DEPLOYMENT/DEPLOYMENT_READINESS_CHECKLIST.md`
+
+## Architecture Principles
+
+โครงการนี้ยึดหลัก:
+
+* SaaS First
+* Multi-Tenant by Design
+* API First
+* Security by Design
+* Audit by Design
+* Configuration over Customization
+* Cloud Native
+* Automation First
+* Observability by Default
+* Testability by Design
+
+## Document Governance
+
+เอกสารทุกไฟล์ต้องมี:
+
+* Version
+* Status
+* Owner
+* Reviewer
+* Scope
+* Related Documents
+* Change History
+
+สถานะเอกสารที่ใช้:
+
+* Draft
+* In Review
+* Approved
+* Deprecated
+* Superseded
+
+## Traceability
+
+Requirement ทุกข้อควรสามารถตรวจสอบย้อนกลับได้ตามลำดับ:
+
+```text
+Business Requirement
+→ Functional Requirement
+→ SDS
+→ API
+→ Database
+→ UI
+→ Test Case
+→ UAT Scenario
+→ Release Checklist
+```
+
+## Approval Rule
+
+เอกสารที่มีผลต่อ architecture, security, database, API หรือ deployment ต้องได้รับการ review ก่อนเปลี่ยนเป็น `Approved`
+
+## Current Baseline
+
+Current approved structure: `01_SaaS_Foundation v1.0`
+
+This README is the entry point for all foundation-level documentation.
