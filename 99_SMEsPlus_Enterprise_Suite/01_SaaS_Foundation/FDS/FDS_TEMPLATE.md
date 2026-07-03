@@ -1,313 +1,63 @@
-# Functional Design Specification (FDS) Template
-
-Document ID: FDS-TEMPLATE-001
-
-Version: v1.0.0
-
-Status: Approved
-
-Owner: Product Team
-
-Reviewer: Architecture Team
-
-Approver: Architecture Review Board (ARB)
-
-Classification: Internal
-
----
-
-# 1. Document Information
-
-| Item | Value |
-
-|------|-------|
-
-| Project | SMEsPlus Enterprise Suite |
-
-| Module | |
-
-| Document Version | |
-
-| Status | Draft / Review / Approved |
-
-| Author | |
-
-| Reviewer | |
-
-| Approver | |
-
-| Last Updated | |
-
----
-
-# 2. Purpose
-
-อธิบายวัตถุประสงค์ของ Module
-
----
-
-# 3. Scope
-
-## In Scope
-
--
-
-## Out of Scope
-
--
-
----
-
-# 4. Stakeholders
-
-| Role | Responsibility |
-
-|------|----------------|
-
-| Product Owner | |
-
-| Business Analyst | |
-
-| Solution Architect | |
-
-| Backend Developer | |
-
-| Frontend Developer | |
-
-| QA | |
-
----
-
-# 5. Business Objectives
-
-BO-001
-
-BO-002
-
-BO-003
-
----
-
-# 6. Functional Requirements
-
-## Requirement
-
-Requirement ID
-
-Title
-
-Description
-
-Priority
-
-Actor
-
-Pre-condition
-
-Main Flow
-
-Alternative Flow
-
-Post-condition
-
-Business Rules
-
-Permission
-
-Related Screen
-
-Related API
-
-Related Database
-
-Acceptance Criteria
-
-Related Test Case
-
-Related UAT
-
----
-
-# 7. Non Functional Requirements
-
-Performance
-
-Availability
-
-Security
-
-Scalability
-
-Maintainability
-
-Reliability
-
-Monitoring
-
-Logging
-
-Backup
-
-Disaster Recovery
-
----
-
-# 8. Business Rules
-
-| Rule ID | Description |
-
-|---------|-------------|
-
-| BR-001 | |
-
----
-
-# 9. User Stories
-
-As a ...
-
-I want ...
-
-So that ...
-
----
-
-# 10. Use Cases
-
-Use Case ID
-
-Primary Actor
-
-Trigger
-
-Main Flow
-
-Alternative Flow
-
-Exception Flow
-
----
-
-# 11. Screen Mapping
-
-| Screen | Description |
-
-|---------|-------------|
-
-| | |
-
----
-
-# 12. API Mapping
-
-| Requirement | API |
-
-|-------------|-----|
-
-| | |
-
----
-
-# 13. Database Mapping
-
-| Requirement | Table |
-
-|-------------|-------|
-
-| | |
-
----
-
-# 14. Security Requirements
-
-Authentication
-
-Authorization
-
-RBAC
-
-ABAC
-
-RLS
-
-Audit
-
-Encryption
-
----
-
-# 15. Notification Requirements
-
-Email
-
-SMS
-
-Push
-
-Webhook
-
----
-
-# 16. Reporting Requirements
-
-Operational Reports
-
-Management Reports
-
-Dashboard
-
-Analytics
-
----
-
-# 17. Acceptance Criteria
-
-Given
-
-When
-
-Then
-
----
-
-# 18. Requirement Traceability
-
-| Requirement | SDS | API | DB | UX | QA |
-
-|-------------|-----|-----|----|----|----|
-
----
-
-# 19. Risks
-
-Technical Risks
-
-Business Risks
-
-Security Risks
-
-Operational Risks
-
----
-
-# 20. Future Enhancements
-
-Version Roadmap
-
-Module Expansion
-
-AI Integration
-
-Marketplace Integration
-
----
-
-# Appendix
-
-Glossary
-
-Reference Documents
-
-Architecture Decision Records
-
-Related Standards
+# FDS Template — [Domain Name]
+
+Document ID: SMEPLUS-FDS-SAAS-FOUNDATION-[DOMAIN-CODE]
+Version: 1.0.0
+Status: Draft
+Owner Role: Functional Specification AI
+Reviewers: PMO AI, Enterprise Architect AI
+Approval: Boss
+
+## 1. Purpose
+[One paragraph — why this domain exists and what business need it serves.]
+
+## 2. Scope
+In Scope:
+- [...]
+
+Out of Scope:
+- [...]
+
+## 3. Depends On / Consumed By
+Depends On: [upstream domains]
+Consumed By: [downstream domains/modules]
+
+## 4. Functional Requirements
+| ID | Requirement | Related FD-ID | Evidence Status |
+|---|---|---|---|
+| [DOMAIN]-001 | [...] | FD-0xx | See Matching Matrix |
+
+## 5. Business Rules
+BR-[DOMAIN]-001: [...]
+
+## 6. Data Entities (Conceptual)
+| Entity | Key Attributes | Notes |
+|---|---|---|
+
+## 7. Process / State Flow
+[Narrative or reference to 17_Diagrams equivalent]
+
+## 8. Permission Notes
+[Who can do what within this domain — cross-reference Role/Permission domain files]
+
+## 9. Notification Events
+[Events this domain raises that Notification domain must handle]
+
+## 10. Audit Events
+[Actions in this domain that must be captured by Audit domain]
+
+## 11. Acceptance Criteria
+AC-[DOMAIN]-001: Given [...], when [...], then [...].
+
+## 12. Open Items
+- [Unresolved questions requiring PMO/Boss/Architecture decision]
+
+## 13. Evidence Record
+| Field | Value |
+|---|---|
+| Owner | Functional Specification AI |
+| Source | [Odoo module / efaplus dump table / TBD] |
+| Timestamp | 2026-07-03 |
+| Repository | TH-PATTARAKRIT/AI-Collaboration-Hub |
+| Folder | 99_SMEsPlus_Enterprise_Suite/01_SaaS_Foundation/FDS/Domains |
+| Reviewer | Pending |
+| Status | Draft |
