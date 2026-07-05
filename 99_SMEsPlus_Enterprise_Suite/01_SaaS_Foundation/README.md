@@ -1,59 +1,87 @@
 # SMEsPlus SaaS Foundation
 
-Version: v1.0
+Version: v1.1
 Status: Approved Baseline
 Owner: SMEsPlus Product & Architecture Team
 Scope: `01_SaaS_Foundation`
 
-## Purpose
+---
 
-`01_SaaS_Foundation` เป็นศูนย์กลางเอกสารสถาปัตยกรรม การออกแบบระบบ ความปลอดภัย API ฐานข้อมูล UI/UX QA DevOps และ Deployment สำหรับระบบ SMEsPlus Enterprise Suite
+# Purpose
 
-เอกสารชุดนี้ใช้เป็น baseline ร่วมกันสำหรับทีม:
+`01_SaaS_Foundation` เป็นศูนย์กลางเอกสารสถาปัตยกรรม การออกแบบระบบ ความปลอดภัย API ฐานข้อมูล UX QA DevOps และ Deployment สำหรับระบบ SMEsPlus Enterprise Suite
 
-* Product Manager
-* Business Analyst
-* UX/UI Designer
-* Frontend Developer
-* Backend Developer
-* QA Engineer
-* DevOps Engineer
-* Security Reviewer
-* Project Governance Team
+เอกสารชุดนี้เป็น **Single Source of Truth** สำหรับ
 
-## Project Vision
+- Product Manager
+- Business Analyst
+- UX/UI Designer
+- Frontend Developer
+- Backend Developer
+- QA Engineer
+- DevOps Engineer
+- Security Reviewer
+- Project Governance Team
+- AI Engineering (ChatGPT, Claude Code, GitHub Copilot และ AI Agents)
 
-SMEsPlus Enterprise Suite มีเป้าหมายในการสร้าง SaaS platform สำหรับธุรกิจ SME และองค์กร โดยรองรับ multi-tenant, modular business application, security by design, auditability, scalability และ automation-first delivery
+---
 
-## Foundation Scope
+# Project Vision
 
-ขอบเขตของ SaaS Foundation ครอบคลุม:
+SMEsPlus Enterprise Suite มีเป้าหมายในการสร้าง Enterprise SaaS Platform สำหรับธุรกิจ SME และองค์กร
 
-* Tenant Management
-* Company / Branch / Division Structure
-* Identity & Access Management
-* Role / Permission / Policy
-* Subscription & Module Activation
-* Approval Foundation
-* Notification Foundation
-* Integration Foundation
-* Audit & Governance
-* Reporting Foundation
-* Deployment Foundation
+รองรับ
 
-## Out of Scope
+- Multi-Tenant
+- Modular Architecture
+- Security by Design
+- Auditability
+- Scalability
+- Automation-first Delivery
 
-สิ่งต่อไปนี้ยังไม่อยู่ในขอบเขตของ foundation version นี้:
+---
 
-* Full Accounting Module
-* Full Inventory Module
-* Full HR Module
-* Full CRM Module
-* Full POS Module
-* Customer Production Onboarding
-* Production Go-Live
+# AI Collaboration
 
-## Repository Structure
+SMEsPlus adopts an AI-assisted engineering model.
+
+The Foundation repository serves as the **Single Source of Truth** for
+
+- ChatGPT
+- Claude Code
+- GitHub Copilot
+- Future AI Agents
+
+AI-generated outputs must comply with
+
+- Architecture Principles
+- Governance Rules
+- Security Standards
+- Traceability Matrix
+- Repository Structure
+
+---
+
+# Foundation Scope
+
+ครอบคลุม
+
+- Tenant Management
+- Company / Branch / Division
+- Identity & Access Management
+- Role / Permission
+- Subscription
+- Module Activation
+- Approval
+- Notification
+- Integration
+- Audit
+- Reporting
+- Deployment
+
+---
+
+# Repository Structure
 
 ```text
 01_SaaS_Foundation/
@@ -72,91 +100,139 @@ SMEsPlus Enterprise Suite มีเป้าหมายในการสร้
 ├── FDS/
 ├── SDS/
 ├── API/
-├── DATABASE/
+├── DB/
 ├── SECURITY/
-├── UI/
+├── UX/
 ├── QA/
 ├── DEVOPS/
 └── DEPLOYMENT/
 ```
 
-## Reading Order
+---
 
-แนะนำให้อ่านเอกสารตามลำดับนี้:
+# Architecture Document Hierarchy
 
-1. `README.md`
-2. `DOCUMENT_MAP.md`
-3. `GLOSSARY.md`
-4. `ARCHITECTURE_PRINCIPLES.md`
-5. `ARCHITECTURE_GOVERNANCE.md`
-6. `ARCHITECTURE_DECISION_LOG.md`
-7. `FDS/SMEPLUS-SAAS-FOUNDATION-FDS.md`
-8. `SDS/SDS_FOUNDATION.md`
-9. `API/OPENAPI_FOUNDATION.yaml`
-10. `DATABASE/ERD_FOUNDATION.md`
-11. `SECURITY/SECURITY_ARCHITECTURE.md`
-12. `UI/SCREEN_SPEC_FOUNDATION.md`
-13. `QA/TEST_STRATEGY.md`
-14. `DEVOPS/CI_CD.md`
-15. `DEPLOYMENT/DEPLOYMENT_READINESS_CHECKLIST.md`
+```text
+Vision
+    ↓
+Architecture Principles
+    ↓
+FDS
+    ↓
+SDS
+    ↓
+API
+    ↓
+Database
+    ↓
+UX
+    ↓
+Development
+    ↓
+QA
+    ↓
+Deployment
+```
 
-## Architecture Principles
+---
 
-โครงการนี้ยึดหลัก:
+# Recommended Reading Order
 
-* SaaS First
-* Multi-Tenant by Design
-* API First
-* Security by Design
-* Audit by Design
-* Configuration over Customization
-* Cloud Native
-* Automation First
-* Observability by Default
-* Testability by Design
+1. README.md
+2. DOCUMENT_MAP.md
+3. GLOSSARY.md
+4. ARCHITECTURE_PRINCIPLES.md
+5. ARCHITECTURE_GOVERNANCE.md
+6. ARCHITECTURE_DECISION_LOG.md
+7. FDS/SMEPLUS-SAAS-FOUNDATION-FDS.md
+8. SDS/SDS_FOUNDATION.md
+9. API/OPENAPI_FOUNDATION.yaml
+10. DB/ERD_FOUNDATION.md
+11. SECURITY/SECURITY_ARCHITECTURE.md
+12. UX/SCREEN_SPEC_FOUNDATION.md
+13. QA/TEST_STRATEGY.md
+14. DEVOPS/CI_CD.md
+15. DEPLOYMENT/DEPLOYMENT_READINESS_CHECKLIST.md
 
-## Document Governance
+---
 
-เอกสารทุกไฟล์ต้องมี:
+# Architecture Principles
 
-* Version
-* Status
-* Owner
-* Reviewer
-* Scope
-* Related Documents
-* Change History
+- SaaS First
+- Multi-Tenant by Design
+- API First
+- Security by Design
+- Audit by Design
+- Configuration over Customization
+- Cloud Native
+- Automation First
+- Observability by Default
+- Testability by Design
 
-สถานะเอกสารที่ใช้:
+---
 
-* Draft
-* In Review
-* Approved
-* Deprecated
-* Superseded
-
-## Traceability
-
-Requirement ทุกข้อควรสามารถตรวจสอบย้อนกลับได้ตามลำดับ:
+# Traceability
 
 ```text
 Business Requirement
-→ Functional Requirement
-→ SDS
-→ API
-→ Database
-→ UI
-→ Test Case
-→ UAT Scenario
-→ Release Checklist
+    ↓
+Business Process
+    ↓
+Functional Design (FDS)
+    ↓
+Software Design (SDS)
+    ↓
+API Specification
+    ↓
+Database Design
+    ↓
+UX / Screen Specification
+    ↓
+Source Code
+    ↓
+Test Case
+    ↓
+UAT Scenario
+    ↓
+Release Readiness
+    ↓
+Production Deployment
 ```
 
-## Approval Rule
+---
 
-เอกสารที่มีผลต่อ architecture, security, database, API หรือ deployment ต้องได้รับการ review ก่อนเปลี่ยนเป็น `Approved`
+# Document Governance
 
-## Current Baseline
+ทุกเอกสารต้องมี
 
-Current approved structure: `01_SaaS_Foundation v1.0`
+- Version
+- Status
+- Owner
+- Reviewer
+- Scope
+- Related Documents
+- Change History
 
-This README is the entry point for all foundation-level documentation.
+---
+
+# Approval Rule
+
+เอกสารที่มีผลต่อ
+
+- Architecture
+- Security
+- Database
+- API
+- Deployment
+
+ต้องผ่านการ Review ก่อนเปลี่ยนสถานะเป็น **Approved**
+
+---
+
+# Current Baseline
+
+Current Approved Structure
+
+`01_SaaS_Foundation v1.1`
+
+This README is the official entry point for all Foundation documentation.
