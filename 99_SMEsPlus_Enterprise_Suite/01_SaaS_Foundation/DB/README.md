@@ -1,19 +1,45 @@
-# SaaS Foundation - Database Migrations
+## 2. สร้าง/แก้ `DB/README.md`
 
-**Status:** PLACEHOLDER folder - no migrations authored yet
-**Owner Role:** Database Design AI
-**Approval:** Boss (required before any script here runs against a real database)
+```md
+
+# DB Documentation
+
+Version: v1.0.0
+
+Status: In Progress
+
+Scope: SMEsPlus SaaS Foundation
 
 ## Purpose
-Holds the ordered SQL migration scripts for the SaaS Foundation module (Tenant, Subscription,
-Module Activation, Configuration Center, Audit) once the SDS/ERD_FOUNDATION_v0.1.md package is
-approved.
 
-## Current blocker
-No Functional Specification, ADR, or ERD exists yet for SaaS Foundation (see
-SMEPLUS-GAP-ANALYSIS.md Gap 2 and Gap 3, and SMEPLUS-IMPLEMENTATION-ROADMAP.md Gate B). Per the
-Constitution's Evidence Rule, these migration files are placeholders only until that governance
-chain is complete.
+โฟลเดอร์ `DB/` ใช้เก็บเอกสารและไฟล์ที่เกี่ยวข้องกับ Database Design ของ SMEsPlus SaaS Foundation
 
-## Naming convention (once active)
-NNN_description.sql, zero-padded, strictly sequential, one logical change per file.
+## Contents
+
+- ERD Foundation
+
+- Data Dictionary
+
+- Database Standards
+
+- Migration Scripts
+
+- RLS Policy
+
+- Seed Data
+
+## Related Documents
+
+- `FDS/`
+
+- `SDS/`
+
+- `API/`
+
+- `SECURITY/`
+
+- `QA/`
+
+## Current Status
+
+DB documentation is active and no longer a placeholder.
