@@ -1,238 +1,459 @@
 # SMEsPlus SaaS Foundation
 
-Version: v1.1
-Status: Approved Baseline
-Owner: SMEsPlus Product & Architecture Team
-Scope: `01_SaaS_Foundation`
+> Enterprise Multi-Tenant SaaS Foundation for SMEsPlus Enterprise Suite
+
+---
+
+# Document Information
+
+| Item | Value |
+
+|------|-------|
+
+| Document | README.md |
+
+| Version | v1.0.0 |
+
+| Status | Approved Baseline |
+
+| Owner | SMEsPlus Architecture Office |
+
+| Scope | SaaS Foundation |
+
+| Classification | Internal |
+
+| Last Updated | 2026-07-05 |
 
 ---
 
 # Purpose
 
-`01_SaaS_Foundation` เป็นศูนย์กลางเอกสารสถาปัตยกรรม การออกแบบระบบ ความปลอดภัย API ฐานข้อมูล UX QA DevOps และ Deployment สำหรับระบบ SMEsPlus Enterprise Suite
+`01\_SaaS\_Foundation` เป็นแพลตฟอร์มกลาง (Shared Foundation Platform)
 
-เอกสารชุดนี้เป็น **Single Source of Truth** สำหรับ
+สำหรับทุก Business Module ภายในโครงการ SMEsPlus
 
-- Product Manager
-- Business Analyst
-- UX/UI Designer
-- Frontend Developer
-- Backend Developer
-- QA Engineer
-- DevOps Engineer
-- Security Reviewer
-- Project Governance Team
-- AI Engineering (ChatGPT, Claude Code, GitHub Copilot และ AI Agents)
+Foundation นี้กำหนดมาตรฐานของระบบทั้งหมด
+
+เพื่อให้ทุก Module ใช้สถาปัตยกรรมเดียวกัน
+
+ลดการพัฒนาซ้ำ
+
+และรองรับการขยายระบบในอนาคต
 
 ---
 
-# Project Vision
+# Objectives
 
-SMEsPlus Enterprise Suite มีเป้าหมายในการสร้าง Enterprise SaaS Platform สำหรับธุรกิจ SME และองค์กร
+SaaS Foundation มีหน้าที่
 
-รองรับ
+- Multi-Tenant Platform
 
-- Multi-Tenant
-- Modular Architecture
-- Security by Design
-- Auditability
-- Scalability
-- Automation-first Delivery
-
----
-
-# AI Collaboration
-
-SMEsPlus adopts an AI-assisted engineering model.
-
-The Foundation repository serves as the **Single Source of Truth** for
-
-- ChatGPT
-- Claude Code
-- GitHub Copilot
-- Future AI Agents
-
-AI-generated outputs must comply with
-
-- Architecture Principles
-- Governance Rules
-- Security Standards
-- Traceability Matrix
-- Repository Structure
-
----
-
-# Foundation Scope
-
-ครอบคลุม
-
-- Tenant Management
-- Company / Branch / Division
 - Identity & Access Management
-- Role / Permission
-- Subscription
+
+- Organization Management
+
+- Role & Permission
+
+- Subscription Management
+
 - Module Activation
-- Approval
+
+- Approval Workflow
+
 - Notification
+
+- Audit Trail
+
 - Integration
-- Audit
-- Reporting
-- Deployment
+
+- Configuration
+
+- Security Foundation
+
+- API Standard
+
+- Database Standard
+
+- UX Standard
+
+- QA Standard
+
+- Deployment Standard
+
+---
+
+# Foundation Domains
+
+Business Capability ภายใน Foundation
+
+| Domain | Status |
+
+|---------|--------|
+
+| Tenant | ✅ |
+
+| Company | ✅ |
+
+| Branch | ✅ |
+
+| Division | ✅ |
+
+| IAM | ✅ |
+
+| Role | ✅ |
+
+| Permission | ✅ |
+
+| Role Permission | ✅ |
+
+| Subscription | ✅ |
+
+| Module | ✅ |
+
+| Subscription Module | ✅ |
+
+| Approval | ✅ |
+
+| Notification | ✅ |
+
+| Audit | ✅ |
+
+| Integration | ✅ |
+
+| Reporting | ✅ |
+
+| Configuration | ✅ |
 
 ---
 
 # Repository Structure
 
 ```text
-01_SaaS_Foundation/
+
+01\_SaaS\_Foundation/
+
 │
-├── README.md
-├── DOCUMENT_MAP.md
-├── GLOSSARY.md
-├── ARCHITECTURE_PRINCIPLES.md
-├── ARCHITECTURE_GOVERNANCE.md
-├── ARCHITECTURE_DECISION_LOG.md
-├── TRACEABILITY_MATRIX.md
-├── VERSION_HISTORY.md
-├── CHANGELOG.md
-│
+
 ├── ADR/
-├── FDS/
-├── SDS/
+
 ├── API/
+
 ├── DB/
-├── SECURITY/
-├── UX/
-├── QA/
+
+├── DEPLOYMENT/
+
 ├── DEVOPS/
-└── DEPLOYMENT/
+
+├── FDS/
+
+├── QA/
+
+├── SDS/
+
+├── SECURITY/
+
+├── UX/
+
+│
+
+├── README.md
+
+├── DOCUMENT\_MAP.md
+
+├── DOCUMENT\_NAMING\_STANDARD.md
+
+├── DOCUMENT\_QUALITY\_REPORT.md
+
+├── GLOSSARY.md
+
+├── ARCHITECTURE\_PRINCIPLES.md
+
+├── ARCHITECTURE\_GOVERNANCE.md
+
+├── ARCHITECTURE\_DECISION\_LOG.md
+
+├── TRACEABILITY\_MATRIX.md
+
+├── PROJECT\_STATUS.md
+
+├── CHANGELOG.md
+
+└── VERSION\_HISTORY.md
+
 ```
 
 ---
 
-# Architecture Document Hierarchy
+# Folder Description
 
-```text
-Vision
-    ↓
-Architecture Principles
-    ↓
-FDS
-    ↓
-SDS
-    ↓
-API
-    ↓
-Database
-    ↓
-UX
-    ↓
-Development
-    ↓
-QA
-    ↓
-Deployment
-```
+| Folder | Description |
+
+|---------|-------------|
+
+| ADR | Architecture Decision Records |
+
+| API | API Specifications และ OpenAPI |
+
+| DB | Database Design, ERD และ Data Dictionary |
+
+| DEPLOYMENT | Deployment & Migration |
+
+| DEVOPS | CI/CD และ Infrastructure |
+
+| FDS | Functional Design Specification |
+
+| QA | Testing, Test Strategy และ UAT |
+
+| SDS | Software Design Specification |
+
+| SECURITY | Security Architecture |
+
+| UX | Screen Specification และ UX Design |
 
 ---
 
-# Recommended Reading Order
+# Reading Order
+
+เอกสารควรศึกษาเรียงตามลำดับ
 
 1. README.md
-2. DOCUMENT_MAP.md
+
+2. DOCUMENT\_MAP.md
+
 3. GLOSSARY.md
-4. ARCHITECTURE_PRINCIPLES.md
-5. ARCHITECTURE_GOVERNANCE.md
-6. ARCHITECTURE_DECISION_LOG.md
-7. FDS/SMEPLUS-SAAS-FOUNDATION-FDS.md
-8. SDS/SDS_FOUNDATION.md
-9. API/OPENAPI_FOUNDATION.yaml
-10. DB/ERD_FOUNDATION.md
-11. SECURITY/SECURITY_ARCHITECTURE.md
-12. UX/SCREEN_SPEC_FOUNDATION.md
-13. QA/TEST_STRATEGY.md
-14. DEVOPS/CI_CD.md
-15. DEPLOYMENT/DEPLOYMENT_READINESS_CHECKLIST.md
+
+4. ARCHITECTURE\_PRINCIPLES.md
+
+5. ARCHITECTURE\_GOVERNANCE.md
+
+6. ARCHITECTURE\_DECISION\_LOG.md
+
+7. TRACEABILITY\_MATRIX.md
+
+8. PROJECT\_STATUS.md
+
+9. FDS/
+
+10. SDS/
+
+11. API/
+
+12. DB/
+
+13. SECURITY/
+
+14. UX/
+
+15. QA/
+
+16. DEVOPS/
+
+17. DEPLOYMENT/
 
 ---
 
-# Architecture Principles
+# Relationship with Enterprise Suite
 
-- SaaS First
-- Multi-Tenant by Design
-- API First
-- Security by Design
-- Audit by Design
-- Configuration over Customization
-- Cloud Native
-- Automation First
-- Observability by Default
-- Testability by Design
+SaaS Foundation เป็น Shared Platform
 
----
-
-# Traceability
+ที่ Business Module ทุกตัวต้องใช้งานร่วมกัน
 
 ```text
-Business Requirement
-    ↓
-Business Process
-    ↓
-Functional Design (FDS)
-    ↓
-Software Design (SDS)
-    ↓
-API Specification
-    ↓
-Database Design
-    ↓
-UX / Screen Specification
-    ↓
-Source Code
-    ↓
-Test Case
-    ↓
-UAT Scenario
-    ↓
-Release Readiness
-    ↓
-Production Deployment
+
+99\_SMEsPlus\_Enterprise\_Suite
+
+│
+
+▼
+
+01\_SaaS\_Foundation
+
+│
+
+├── Tenant
+
+├── IAM
+
+├── Role
+
+├── Permission
+
+├── Approval
+
+├── Notification
+
+├── Audit
+
+├── Integration
+
+├── Configuration
+
+│
+
+▼
+
+02\_Functional\_Design
+
+│
+
+▼
+
+17\_Functional\_Specification\_Factory
+
+│
+
+▼
+
+Accounting
+
+Sales
+
+Purchasing
+
+Inventory
+
+CRM
+
+HR
+
+POS
+
+Reporting
+
+AI
+
 ```
 
 ---
 
-# Document Governance
+# Design Principles
 
-ทุกเอกสารต้องมี
+Foundation ยึดหลัก
 
-- Version
-- Status
-- Owner
-- Reviewer
-- Scope
-- Related Documents
-- Change History
+- API First
 
----
+- Security by Design
 
-# Approval Rule
+- Multi-Tenant First
 
-เอกสารที่มีผลต่อ
+- Reuse Before Build
 
-- Architecture
-- Security
-- Database
-- API
-- Deployment
+- Configuration over Customization
 
-ต้องผ่านการ Review ก่อนเปลี่ยนสถานะเป็น **Approved**
+- Event Driven Ready
+
+- Cloud Native Ready
+
+- Modular Architecture
 
 ---
 
-# Current Baseline
+# Shared Services
 
-Current Approved Structure
+Business Module ต้องใช้ Shared Services จาก Foundation
 
-`01_SaaS_Foundation v1.1`
+- Authentication
 
-This README is the official entry point for all Foundation documentation.
+- Authorization
+
+- Tenant Isolation
+
+- Subscription
+
+- Approval
+
+- Notification
+
+- Audit
+
+- Integration
+
+- Configuration
+
+- Logging
+
+- Monitoring
+
+ห้ามสร้างระบบเหล่านี้ซ้ำภายใน Business Module
+
+---
+
+# Related Documents
+
+- DOCUMENT\_MAP.md
+
+- DOCUMENT\_QUALITY\_REPORT.md
+
+- DOCUMENT\_NAMING\_STANDARD.md
+
+- TRACEABILITY\_MATRIX.md
+
+- FDS/
+
+- SDS/
+
+- API/
+
+- DB/
+
+- SECURITY/
+
+- UX/
+
+- QA/
+
+---
+
+# Current Status
+
+| Area | Status |
+
+|------|--------|
+
+| Governance | ✅ Complete |
+
+| Foundation Architecture | ✅ Complete |
+
+| Domain FDS | ✅ Complete |
+
+| Repository Structure | ✅ Complete |
+
+| Documentation Standard | ✅ Complete |
+
+| Traceability | ✅ Complete |
+
+| Ready for Phase 3 | ✅ Yes |
+
+---
+
+# Next Phase
+
+Phase 3
+
+Software Design Specification (SDS)
+
+โดย SDS ทุกฉบับ
+
+ต้องอ้างอิง Requirement จาก FDS
+
+และใช้ Foundation Baseline เป็นมาตรฐานเดียวกัน
+
+---
+
+# Approval
+
+| Role | Status |
+
+|------|--------|
+
+| Architecture Office | Approved |
+
+| Product Team | Approved |
+
+| Repository Owner | Approved |
+
+---
+
+\*\*SMEsPlus SaaS Foundation Baseline v1.0\*\*
+
+\*\*Ready for Software Design Specification (Phase 3)\*\*
