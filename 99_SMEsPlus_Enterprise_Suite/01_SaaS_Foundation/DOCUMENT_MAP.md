@@ -1,242 +1,403 @@
 # DOCUMENT_MAP.md
 
-Version: v1.0
+Version: v1.1
 Status: Approved Baseline
 Owner: SMEsPlus Product & Architecture Team
 Scope: `01_SaaS_Foundation`
 
-## Purpose
+---
 
-เอกสารนี้ใช้เป็นแผนที่นำทางเอกสารทั้งหมดของ `01_SaaS_Foundation` เพื่อให้ทีมงานเข้าใจว่าแต่ละไฟล์มีหน้าที่อะไร ควรอ่านลำดับใด และเกี่ยวข้องกับเอกสารอื่นอย่างไร
+# Purpose
 
-## Document Groups
+เอกสารนี้เป็น **Document Navigation Guide** สำหรับ `01_SaaS_Foundation`
 
-### 1. Foundation Governance
+ใช้เป็นแผนที่นำทางเอกสารทั้งหมดของโครงการ เพื่อให้ทุกทีมเข้าใจว่า
 
-| Document                       | Purpose                                 |
-| ------------------------------ | --------------------------------------- |
-| `README.md`                    | จุดเริ่มต้นของเอกสารทั้งหมด             |
-| `DOCUMENT_MAP.md`              | แผนที่เอกสารและลำดับการอ่าน             |
-| `GLOSSARY.md`                  | นิยามคำศัพท์กลาง                        |
-| `ARCHITECTURE_PRINCIPLES.md`   | หลักการออกแบบระบบ                       |
-| `ARCHITECTURE_GOVERNANCE.md`   | กระบวนการควบคุมและอนุมัติ architecture  |
-| `ARCHITECTURE_DECISION_LOG.md` | รายการ decision สำคัญ                   |
-| `TRACEABILITY_MATRIX.md`       | ตารางเชื่อมโยง requirement ถึง test/UAT |
-| `VERSION_HISTORY.md`           | ประวัติ version ของเอกสาร               |
-| `CHANGELOG.md`                 | บันทึกการเปลี่ยนแปลง                    |
+- เอกสารแต่ละไฟล์มีหน้าที่อะไร
+- ควรอ่านลำดับใด
+- ความสัมพันธ์ระหว่างเอกสาร
+- Dependency ระหว่างเอกสาร
+- Traceability ของ Architecture
 
-### 2. Architecture Decision Records
+Document Map นี้ถือเป็น **Single Source of Truth** สำหรับการนำทางเอกสารภายใน Foundation
 
-| Folder | Purpose                                             |
-| ------ | ---------------------------------------------------- |
-| `ADR/` | เก็บเหตุผลและผลกระทบของการตัดสินใจเชิง architecture |
+---
 
-Required files:
+# AI Collaboration
 
-* `ADR_TEMPLATE.md`
-* `ADR-0001-SaaS-First.md`
-* `ADR-0002-Multi-Tenant.md`
-* `ADR-0003-API-First.md`
-* `ADR-0004-Modular-Monolith.md`
-* `ADR-0005-PostgreSQL.md`
-* `ADR-0006-RBAC-ABAC-RLS.md`
-* `ADR-0007-Audit-By-Design.md`
-* `ADR-0008-Kubernetes-Deployment.md`
+Repository นี้รองรับการทำงานร่วมกันระหว่างทีมพัฒนาและ AI
 
-### 3. Functional Design Specification
+รองรับ
 
-| Folder | Purpose                                              |
-| ------ | ---------------------------------------------------- |
-| `FDS/` | ระบุ requirement เชิง functional ของ SaaS Foundation |
+- ChatGPT
+- Claude Code
+- GitHub Copilot
+- Future AI Agents
 
-Main documents:
+AI ทุกตัวต้องอ้างอิง Repository นี้เป็นมาตรฐานเดียวกัน
 
-* `SMEPLUS-SAAS-FOUNDATION-FDS.md`
-* `FDS_TEMPLATE.md`
+AI-generated outputs ต้องสอดคล้องกับ
 
-### 4. Software Design Specification
+- Architecture Principles
+- Architecture Governance
+- Traceability Matrix
+- Security Standards
+- Repository Structure
 
-| Folder | Purpose                                                 |
-| ------ | -------------------------------------------------------- |
-| `SDS/` | อธิบาย service, domain model, flow และ component design |
+---
 
-Main documents:
+# Canonical Document Flow
 
-* `SDS_FOUNDATION.md`
-* `DOMAIN_MODEL.md`
-* `SERVICE_CATALOG.md`
+```text
+Business Vision
+        ↓
+Architecture Principles
+        ↓
+Architecture Decision Records (ADR)
+        ↓
+Functional Design Specification (FDS)
+        ↓
+Software Design Specification (SDS)
+        ↓
+API
+DB
+Security
+UX
+        ↓
+Development
+        ↓
+QA
+        ↓
+Deployment
+```
 
-### 5. API
+---
 
-| Folder | Purpose                                                   |
-| ------ | ----------------------------------------------------------- |
-| `API/` | ระบุ API contract, standard, error, pagination และ events |
+# Document Groups
 
-Main documents:
+## 1. Foundation Governance
 
-* `OPENAPI_FOUNDATION.yaml`
-* `API_GUIDELINE.md`
-* `ERROR_CODE_STANDARD.md`
-* `PAGINATION_STANDARD.md`
-* `EVENT_CATALOG.md`
+| Document | Purpose |
+|----------|---------|
+| README.md | Entry Point |
+| DOCUMENT_MAP.md | Document Navigation |
+| GLOSSARY.md | Common Terminology |
+| ARCHITECTURE_PRINCIPLES.md | Design Principles |
+| ARCHITECTURE_GOVERNANCE.md | Governance Process |
+| ARCHITECTURE_DECISION_LOG.md | Architecture Decisions |
+| TRACEABILITY_MATRIX.md | Requirement Traceability |
+| VERSION_HISTORY.md | Version Control |
+| CHANGELOG.md | Change History |
 
-### 6. Database
+---
 
-| Folder      | Purpose                                                            |
-| ----------- | -------------------------------------------------------------------- |
-| `DATABASE/` | ระบุ ERD, data dictionary, database standard และ migration scripts |
+## 2. Architecture Decision Records
 
-Main documents:
+Folder
 
-* `ERD_FOUNDATION.md`
-* `DATA_DICTIONARY.md`
-* `DATABASE_STANDARDS.md`
-* `MIGRATION/001_initial_schema.sql`
-* `MIGRATION/002_rls_policy.sql`
-* `MIGRATION/003_seed_data.sql`
+```
+ADR/
+```
 
-### 7. Security
+Purpose
 
-| Folder      | Purpose                                                                |
-| ----------- | -------------------------------------------------------------------------- |
-| `SECURITY/` | ระบุ security architecture, permission, tenant isolation และ checklist |
+Architecture Decision Records
 
-Main documents:
+ตัวอย่าง
 
-* `SECURITY_ARCHITECTURE.md`
-* `PERMISSION_MATRIX.md`
-* `TENANT_ISOLATION.md`
-* `SECURITY_CHECKLIST.md`
+- ADR_TEMPLATE.md
+- ADR-0001-SaaS-First.md
+- ADR-0002-Multi-Tenant.md
+- ADR-0003-API-First.md
+- ADR-0004-Modular-Monolith.md
+- ADR-0005-PostgreSQL.md
+- ADR-0006-RBAC-ABAC-RLS.md
+- ADR-0007-Audit-By-Design.md
+- ADR-0008-Kubernetes-Deployment.md
 
-### 8. UI
+---
 
-| Folder | Purpose                                                              |
-| ------ | ---------------------------------------------------------------------- |
-| `UI/`  | ระบุ screen specification, UI guideline, Figma mapping และ user flow |
+## 3. Functional Design
 
-Main documents:
+Folder
 
-* `SCREEN_SPEC_FOUNDATION.md`
-* `UI_GUIDELINE.md`
-* `FIGMA_MAPPING.md`
-* `USER_FLOW.md`
+```
+FDS/
+```
 
-### 9. QA
+Main Documents
 
-| Folder | Purpose                                                     |
-| ------ | ------------------------------------------------------------- |
-| `QA/`  | ระบุ test strategy, UAT scenarios, test data และ test cases |
+- SMEPLUS-SAAS-FOUNDATION-FDS.md
+- FDS_TEMPLATE.md
 
-Main documents:
+---
 
-* `TEST_STRATEGY.md`
-* `UAT_SCENARIOS.md`
-* `TEST_DATA.md`
-* `TEST_CASES.md`
+## 4. Software Design
 
-### 10. DevOps
+Folder
 
-| Folder    | Purpose                                                   |
-| --------- | ------------------------------------------------------------ |
-| `DEVOPS/` | ระบุ CI/CD, Docker, Kubernetes และ environment management |
+```
+SDS/
+```
 
-Main documents:
+Main Documents
 
-* `CI_CD.md`
-* `DOCKER.md`
-* `KUBERNETES.md`
-* `ENVIRONMENT.md`
+- SDS_FOUNDATION.md
+- DOMAIN_MODEL.md
+- SERVICE_CATALOG.md
 
-### 11. Deployment
+---
 
-| Folder        | Purpose                                                         |
-| -------------- | ------------------------------------------------------------------ |
-| `DEPLOYMENT/` | ระบุ migration plan, deployment readiness และ go-live checklist |
+## 5. API
 
-Main documents:
+Folder
 
-* `MIGRATION_PLAN.md`
-* `DEPLOYMENT_READINESS_CHECKLIST.md`
-* `GO_LIVE_CHECKLIST.md`
+```
+API/
+```
 
-## Recommended Reading Order
+Main Documents
 
-### For Executives / PM
+- OPENAPI_FOUNDATION.yaml
+- API_GUIDELINE.md
+- ERROR_CODE_STANDARD.md
+- PAGINATION_STANDARD.md
+- EVENT_CATALOG.md
 
-1. `README.md`
-2. `DOCUMENT_MAP.md`
-3. `FDS/SMEPLUS-SAAS-FOUNDATION-FDS.md`
-4. `TRACEABILITY_MATRIX.md`
-5. `DEPLOYMENT/GO_LIVE_CHECKLIST.md`
+---
 
-### For Architects
+## 6. Database
 
-1. `README.md`
-2. `ARCHITECTURE_PRINCIPLES.md`
-3. `ARCHITECTURE_GOVERNANCE.md`
-4. `ARCHITECTURE_DECISION_LOG.md`
-5. `ADR/*`
-6. `SDS/SDS_FOUNDATION.md`
-7. `SECURITY/SECURITY_ARCHITECTURE.md`
-8. `DATABASE/ERD_FOUNDATION.md`
+Folder
 
-### For Backend Developers
+```
+DB/
+```
 
-1. `SDS/SDS_FOUNDATION.md`
-2. `SDS/SERVICE_CATALOG.md`
-3. `API/API_GUIDELINE.md`
-4. `API/OPENAPI_FOUNDATION.yaml`
-5. `DATABASE/DATABASE_STANDARDS.md`
-6. `SECURITY/PERMISSION_MATRIX.md`
+Main Documents
 
-### For Frontend Developers
+- ERD_FOUNDATION.md
+- DATA_DICTIONARY.md
+- DATABASE_STANDARDS.md
 
-1. `UI/SCREEN_SPEC_FOUNDATION.md`
-2. `UI/UI_GUIDELINE.md`
-3. `UI/USER_FLOW.md`
-4. `API/OPENAPI_FOUNDATION.yaml`
-5. `SECURITY/PERMISSION_MATRIX.md`
+Migration
 
-### For QA
+- 001_initial_schema.sql
+- 002_rls_policy.sql
+- 003_seed_data.sql
 
-1. `FDS/SMEPLUS-SAAS-FOUNDATION-FDS.md`
-2. `TRACEABILITY_MATRIX.md`
-3. `QA/TEST_STRATEGY.md`
-4. `QA/TEST_CASES.md`
-5. `QA/UAT_SCENARIOS.md`
+---
 
-### For DevOps
+## 7. Security
 
-1. `DEVOPS/CI_CD.md`
-2. `DEVOPS/DOCKER.md`
-3. `DEVOPS/KUBERNETES.md`
-4. `DEVOPS/ENVIRONMENT.md`
-5. `DEPLOYMENT/DEPLOYMENT_READINESS_CHECKLIST.md`
+Folder
 
-## Dependency Rule
+```
+SECURITY/
+```
 
-เอกสาร downstream ต้องไม่ขัดแย้งกับเอกสาร upstream
+Main Documents
+
+- SECURITY_ARCHITECTURE.md
+- PERMISSION_MATRIX.md
+- TENANT_ISOLATION.md
+- SECURITY_CHECKLIST.md
+
+---
+
+## 8. UX
+
+Folder
+
+```
+UX/
+```
+
+Main Documents
+
+- SCREEN_SPEC_FOUNDATION.md
+- UI_GUIDELINE.md
+- FIGMA_MAPPING.md
+- USER_FLOW.md
+
+---
+
+## 9. QA
+
+Folder
+
+```
+QA/
+```
+
+Main Documents
+
+- TEST_STRATEGY.md
+- TEST_CASES.md
+- TEST_DATA.md
+- UAT_SCENARIOS.md
+
+---
+
+## 10. DevOps
+
+Folder
+
+```
+DEVOPS/
+```
+
+Main Documents
+
+- CI_CD.md
+- DOCKER.md
+- KUBERNETES.md
+- ENVIRONMENT.md
+
+---
+
+## 11. Deployment
+
+Folder
+
+```
+DEPLOYMENT/
+```
+
+Main Documents
+
+- MIGRATION_PLAN.md
+- DEPLOYMENT_READINESS_CHECKLIST.md
+- GO_LIVE_CHECKLIST.md
+
+---
+
+# Recommended Reading Order
+
+## Executive / PM
+
+1. README.md
+2. DOCUMENT_MAP.md
+3. ARCHITECTURE_PRINCIPLES.md
+4. FDS/
+5. TRACEABILITY_MATRIX.md
+6. DEPLOYMENT/
+
+---
+
+## Architect
+
+1. README.md
+2. Principles
+3. Governance
+4. ADR
+5. FDS
+6. SDS
+7. API
+8. DB
+9. SECURITY
+
+---
+
+## Backend
+
+1. SDS
+2. API
+3. DB
+4. SECURITY
+
+---
+
+## Frontend
+
+1. UX
+2. API
+3. SECURITY
+
+---
+
+## QA
+
+1. FDS
+2. TRACEABILITY_MATRIX
+3. TEST_STRATEGY
+4. TEST_CASES
+5. UAT
+
+---
+
+## DevOps
+
+1. DEVOPS
+2. DEPLOYMENT
+
+---
+
+# Dependency Rule
 
 ```text
 README
-→ Principles / Governance / ADR
-→ FDS
-→ SDS
-→ API / Database / UI / Security
-→ QA
-→ DevOps / Deployment
+        ↓
+Architecture Principles
+        ↓
+Architecture Governance
+        ↓
+ADR
+        ↓
+FDS
+        ↓
+SDS
+        ↓
+API
+DB
+SECURITY
+UX
+        ↓
+Development
+        ↓
+QA
+        ↓
+Deployment
 ```
 
-## Maintenance Rule
+---
 
-เมื่อมีการเปลี่ยนแปลง requirement หรือ architecture ต้องอัปเดตเอกสารที่เกี่ยวข้องอย่างน้อย:
+# Maintenance Rule
 
-* `CHANGELOG.md`
-* `VERSION_HISTORY.md`
-* `TRACEABILITY_MATRIX.md`
-* เอกสารต้นทางที่เปลี่ยน
-* เอกสาร downstream ที่ได้รับผลกระทบ
+เมื่อมีการเปลี่ยนแปลง
 
-## Approval Rule
+- Requirement
+- Architecture
+- API
+- Database
+- UX
+- Security
 
-เอกสารนี้ต้องได้รับการอัปเดตทุกครั้งที่มีการเพิ่ม ลบ หรือย้ายไฟล์ใน `01_SaaS_Foundation`
+ต้องอัปเดต
+
+- CHANGELOG.md
+- VERSION_HISTORY.md
+- TRACEABILITY_MATRIX.md
+- เอกสารต้นทาง
+- เอกสารปลายทางที่ได้รับผลกระทบ
+
+---
+
+# Approval Rule
+
+Document Map นี้ต้องได้รับการปรับปรุงทุกครั้งที่
+
+- เพิ่มเอกสาร
+- ลบเอกสาร
+- เปลี่ยนชื่อเอกสาร
+- เปลี่ยนโครงสร้าง Repository
+
+เพื่อให้ Repository มี Document Navigation ที่ถูกต้องอยู่เสมอ
+
+---
+
+# Executive Note
+
+Document Map นี้เป็นจุดเริ่มต้นของการเรียนรู้ Repository ทั้งหมด
+
+ทุกทีม รวมถึง AI ต้องอ้างอิงลำดับเอกสารตาม Document Map นี้ เพื่อให้การออกแบบ การพัฒนา การทดสอบ และการ Deploy เป็นไปในมาตรฐานเดียวกัน
