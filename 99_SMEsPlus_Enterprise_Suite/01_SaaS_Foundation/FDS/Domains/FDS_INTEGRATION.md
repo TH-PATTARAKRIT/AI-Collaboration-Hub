@@ -1,70 +1,285 @@
-# FDS — Integration
+# FDS\_INTEGRATION.md
 
-Document ID: SMEPLUS-FDS-SAAS-FOUNDATION-INT
-Version: 1.0.0
+Document ID: FDS-DOMAIN-INTEGRATION-001
+
+Version: v1.0.0
+
 Status: Draft
-Owner Role: Functional Specification AI
-Reviewers: PMO AI, Enterprise Architect AI
-Approval: Boss
 
-## 1. Purpose
-Defines Integration: the stable API contract surface that lets modules (Accounting, Purchase,
-Inventory, etc.) and external systems (e-Tax invoice, banking, SMS/LINE Notify) consume Foundation
-services without duplicating logic.
+Owner: SMEsPlus Product Team
 
-## 2. Scope
-In Scope: internal module-to-module API contract, external integration hook points, versioning.
-Out of Scope: specific external system implementation (e.g. actual e-Tax invoice integration — that
-belongs to the Accounting module FDS).
+Domain: Integration
 
-## 3. Depends On / Consumed By
-Depends On: Module
-Consumed By: all business modules, external systems
+Target Path:
 
-## 4. Functional Requirements
-| ID | Requirement | Related FD-ID | Evidence Status |
-|---|---|---|---|
-| INT-001 | Platform shall expose a stable API contract for module integration | FD-018 | GAP |
+`01\_SaaS\_Foundation/FDS/Domains/FDS\_INTEGRATION.md`
 
-## 5. Business Rules
-BR-INT-001: API contract versioning must be defined so module updates don't silently break other
-modules (supports BO-004 marketplace goal).
-BR-INT-002: External integration points are exposed only through defined hooks (event subscriptions),
-not direct database access.
+---
 
-## 6. Data Entities (Conceptual)
-| Entity | Key Attributes | Notes |
-|---|---|---|
-| APIContractVersion | id, module_code, version, deprecated_at | GAP — no existing evidence |
-| IntegrationWebhook | id, event_type, target_url, tenant_id | For external system hooks |
+# 1. Purpose
 
-## 7. Process / State Flow
-N/A — contract/configuration entity.
+Integration Domain เป็นศูนย์กลางสำหรับการเชื่อมต่อระบบภายนอกและระบบภายในของ SMEsPlus
 
-## 8. Permission Notes
-Only Admin/Platform Operator can configure external integration webhooks.
+รองรับแนวคิด API First และ Event Driven Architecture เพื่อให้ทุก Module สามารถเชื่อมต่อกันได้โดยไม่เกิดการผูกติด (Loose Coupling)
 
-## 9. Notification Events
-- integration.webhook_failed (to Admin, operational alert)
+---
 
-## 10. Audit Events
-- integration.webhook_configured, integration.api_version_deprecated
+# 2. Scope
 
-## 11. Acceptance Criteria
-AC-INT-001: Given a module is updated to a new API version, when a consuming module still calls the
-prior version, then the prior version continues to function until its declared deprecation date.
+## In Scope
 
-## 12. Open Items
-- API gateway approach is pending an Architecture ADR (see FDS_TENANT.md/master FDS Appendix C).
-- Full OpenAPI-level contract to be produced jointly with Integration AI once ADR lands.
+- API Client
 
-## 13. Evidence Record
-| Field | Value |
-|---|---|
-| Owner | Functional Specification AI |
-| Source | No confirmed source — GAP, pending Architecture ADR |
-| Timestamp | 2026-07-03 |
-| Repository | TH-PATTARAKRIT/AI-Collaboration-Hub |
-| Folder | 99_SMEsPlus_Enterprise_Suite/01_SaaS_Foundation/FDS/Domains |
-| Reviewer | Pending |
-| Status | Draft |
+- API Key
+
+- Webhook
+
+- Event Publishing
+
+- Event Subscription
+
+- Callback Endpoint
+
+- Integration Log
+
+- Retry Mechanism
+
+## Out of Scope
+
+- ESB
+
+- Message Broker Cluster
+
+- ETL Platform
+
+- Enterprise iPaaS
+
+---
+
+# 3. Actors
+
+| Actor | Description |
+
+|--------|-------------|
+
+| Platform Admin | จัดการ Integration |
+
+| Tenant Owner | จัดการ API ขององค์กร |
+
+| External System | ระบบภายนอก |
+
+| Developer | ผู้พัฒนา Integration |
+
+---
+
+# 4. Functional Requirements
+
+## FR-INT-001 Create API Client
+
+Permission
+
+integration.client.create
+
+API
+
+POST /api-clients
+
+Acceptance Criteria
+
+- Client ID Generated
+
+- Client Secret Generated
+
+- Secret Display Once
+
+- Audit Recorded
+
+---
+
+## FR-INT-002 Regenerate Secret
+
+Permission
+
+integration.client.rotate
+
+API
+
+POST /api-clients/{id}/rotate-secret
+
+Acceptance Criteria
+
+- New Secret Generated
+
+- Old Secret Revoked
+
+- Audit Recorded
+
+---
+
+## FR-INT-003 Register Webhook
+
+Permission
+
+integration.webhook.create
+
+API
+
+POST /webhooks
+
+Acceptance Criteria
+
+- HTTPS Required
+
+- Event Required
+
+- Endpoint Validated
+
+---
+
+## FR-INT-004 Send Webhook
+
+Acceptance Criteria
+
+- Retry Supported
+
+- Response Logged
+
+- Failure Recorded
+
+---
+
+## FR-INT-005 View Integration Log
+
+API
+
+GET /integration/logs
+
+Acceptance Criteria
+
+- Filter Supported
+
+- Pagination
+
+- Export
+
+---
+
+## FR-INT-006 Disable API Client
+
+Acceptance Criteria
+
+- Client Disabled
+
+- Token Revoked
+
+- Audit Recorded
+
+---
+
+# 5. Business Rules
+
+BR-INT-001
+
+API Secret แสดงได้เพียงครั้งเดียว
+
+BR-INT-002
+
+Webhook ต้องเป็น HTTPS
+
+BR-INT-003
+
+ทุก Request ต้องผ่าน Authentication
+
+BR-INT-004
+
+Integration Log ต้องเก็บย้อนหลังได้
+
+---
+
+# 6. User Stories
+
+US-INT-001
+
+As Developer
+
+I want API Client
+
+So that I can connect my application.
+
+---
+
+US-INT-002
+
+As Tenant Owner
+
+I want Webhook
+
+So that my system receives events automatically.
+
+---
+
+# 7. Screen Mapping
+
+UX-INT-001 API Client
+
+UX-INT-002 Webhook
+
+UX-INT-003 Integration Log
+
+---
+
+# 8. API Mapping
+
+POST /api-clients
+
+POST /api-clients/{id}/rotate-secret
+
+POST /webhooks
+
+GET /integration/logs
+
+---
+
+# 9. Database Mapping
+
+api\_clients
+
+api\_keys
+
+webhooks
+
+integration\_logs
+
+---
+
+# 10. Security
+
+OAuth2 Ready
+
+JWT
+
+HTTPS
+
+API Key Rotation
+
+Audit
+
+---
+
+# 11. Traceability
+
+FR → SDS → API → DB → UX → QA
+
+---
+
+# 12. Status
+
+Ready for
+
+SDS
+
+API
+
+DB
+
+SECURITY

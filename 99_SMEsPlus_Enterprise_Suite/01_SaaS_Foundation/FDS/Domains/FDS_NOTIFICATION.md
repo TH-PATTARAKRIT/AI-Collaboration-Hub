@@ -1,69 +1,213 @@
-# FDS — Notification
+# FDS\_NOTIFICATION.md
 
-Document ID: SMEPLUS-FDS-SAAS-FOUNDATION-NOT
-Version: 1.0.0
+Document ID: FDS-DOMAIN-NOTIFICATION-001
+
+Version: v1.0.0
+
 Status: Draft
-Owner Role: Functional Specification AI
-Reviewers: PMO AI, Enterprise Architect AI
-Approval: Boss
 
-## 1. Purpose
-Defines Notification: in-app and email delivery of system events (approvals, tenant lifecycle,
-subscription changes) to the right user at the right time.
+Owner: SMEsPlus Product Team
 
-## 2. Scope
-In Scope: notification generation, delivery channels (in-app, email), read/unread state.
-Out of Scope: SMS/LINE Notify integration (future hook only, see FDS_INTEGRATION.md).
+Domain: Notification
 
-## 3. Depends On / Consumed By
-Depends On: IAM, Approval
-Consumed By: all modules that raise events
+---
 
-## 4. Functional Requirements
-| ID | Requirement | Related FD-ID | Evidence Status |
-|---|---|---|---|
-| NOT-001 | Platform shall send in-app notifications for pending approvals | FD-013 | MATCHED (Odoo mail.activity pattern) |
-| NOT-002 | Platform shall send email notifications for key lifecycle events | FD-014 | MATCHED (Odoo mail.message/mail.template) |
+# 1. Purpose
 
-## 5. Business Rules
-BR-NOT-001: Notification content must include enough context (document type, reference number,
-requester) to act without opening the full record, where practical.
-BR-NOT-002: Users can mark notifications read and view notification history; history is not deleted
-on read.
+Notification Domain เป็นบริการกลางสำหรับการแจ้งเตือนผู้ใช้งานของ SMEsPlus
 
-## 6. Data Entities (Conceptual)
-| Entity | Key Attributes | Notes |
-|---|---|---|
-| Notification | id, user_id, event_type, payload, read_at | Maps to Odoo mail.message/mail.activity pattern |
-| NotificationPreference | user_id, channel, enabled | Per-user channel opt-in/out |
+รองรับการแจ้งเตือนจากทุก Module เช่น
 
-## 7. Process / State Flow
-Event Raised -> Notification Created -> Delivered (in-app + optionally email) -> Read
+- Approval
 
-## 8. Permission Notes
-Users only see their own notifications; no cross-user visibility.
+- User Invitation
 
-## 9. Notification Events
-N/A (this domain is the delivery mechanism itself)
+- Subscription
 
-## 10. Audit Events
-- notification.delivered (system-level, low priority — not part of business audit trail)
+- System Alert
 
-## 11. Acceptance Criteria
-AC-NOT-001: Given an approval request is created, when the notification event fires, then the
-assigned approver receives an in-app notification within the platform's defined latency target.
+- Security Event
 
-## 12. Open Items
-- Confirm latency target (e.g. near-real-time vs. batched) with Architecture.
-- Confirm whether SMS/LINE Notify is v1 or deferred (Thai SME market context — common expectation).
+- Business Event
 
-## 13. Evidence Record
-| Field | Value |
-|---|---|
-| Owner | Functional Specification AI |
-| Source | Odoo mail.message, mail.activity (standard, MATCHED) |
-| Timestamp | 2026-07-03 |
-| Repository | TH-PATTARAKRIT/AI-Collaboration-Hub |
-| Folder | 99_SMEsPlus_Enterprise_Suite/01_SaaS_Foundation/FDS/Domains |
-| Reviewer | Pending |
-| Status | Draft |
+---
+
+# 2. Scope
+
+## In Scope
+
+- In-App Notification
+
+- Email Notification
+
+- Push Notification (Future Ready)
+
+- Notification Template
+
+- Notification Preference
+
+- Read / Unread
+
+- Archive Notification
+
+## Out of Scope
+
+- SMS Gateway
+
+- LINE OA Integration
+
+- Marketing Campaign
+
+---
+
+# 3. Actors
+
+| Actor | Description |
+
+|--------|-------------|
+
+| User | ผู้ใช้งาน |
+
+| System | ระบบ |
+
+| Administrator | ผู้ดูแลระบบ |
+
+---
+
+# 4. Functional Requirements
+
+## FR-NTF-001 Create Notification
+
+API
+
+POST /notifications
+
+Acceptance Criteria
+
+- Notification Created
+
+- Notification Type Valid
+
+- Audit Recorded
+
+---
+
+## FR-NTF-002 View Notification
+
+API
+
+GET /notifications
+
+Acceptance Criteria
+
+- Only Current User
+
+- Pagination
+
+- Filter Supported
+
+---
+
+## FR-NTF-003 Mark As Read
+
+API
+
+PATCH /notifications/{id}/read
+
+Acceptance Criteria
+
+- Status Updated
+
+- Timestamp Recorded
+
+---
+
+## FR-NTF-004 Archive Notification
+
+API
+
+PATCH /notifications/{id}/archive
+
+Acceptance Criteria
+
+- Notification Hidden
+
+- Audit Recorded
+
+---
+
+## FR-NTF-005 Notification Preference
+
+API
+
+PATCH /notification-preferences
+
+Acceptance Criteria
+
+- Email On/Off
+
+- In-App On/Off
+
+---
+
+# 5. Business Rules
+
+BR-NTF-001
+
+Notification belongs to User
+
+BR-NTF-002
+
+Notification cannot cross Tenant
+
+BR-NTF-003
+
+Archived Notification still retained
+
+---
+
+# 6. Screen Mapping
+
+UX-NTF-001 Notification Center
+
+UX-NTF-002 Notification Preference
+
+---
+
+# 7. API Mapping
+
+POST /notifications
+
+GET /notifications
+
+PATCH /notifications/{id}/read
+
+PATCH /notifications/{id}/archive
+
+PATCH /notification-preferences
+
+---
+
+# 8. Database
+
+notifications
+
+notification\_preferences
+
+notification\_templates
+
+---
+
+# 9. Security
+
+Tenant Isolation
+
+RBAC
+
+Audit
+
+---
+
+# 10. Status
+
+Ready for SDS/API/DB

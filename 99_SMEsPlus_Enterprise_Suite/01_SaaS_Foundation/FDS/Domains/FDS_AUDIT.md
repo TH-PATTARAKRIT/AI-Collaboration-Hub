@@ -1,72 +1,357 @@
-# FDS — Audit
+# FDS\_AUDIT.md
 
-Document ID: SMEPLUS-FDS-SAAS-FOUNDATION-AUD
-Version: 1.0.0
+Document ID: FDS-DOMAIN-AUDIT-001
+
+Version: v1.0.0
+
 Status: Draft
-Owner Role: Functional Specification AI
-Reviewers: PMO AI, Enterprise Architect AI
-Approval: Boss
 
-## 1. Purpose
-Defines Audit: the immutable change log covering every governed action across Foundation and
-downstream modules. Directly supports Constitution Section 9 (Auditability) and ADR-0002 evidence
-principles.
+Owner: SMEsPlus Product Team
 
-## 2. Scope
-In Scope: audit log capture, audit trail viewer, audit export.
-Out of Scope: module-specific compliance reporting (see FDS_REPORTING.md).
+Domain: Audit & Activity Logging
 
-## 3. Depends On / Consumed By
-Depends On: IAM
-Consumed By: Reporting, QA UAT AI (evidence verification), Compliance
+Target Path:
 
-## 4. Functional Requirements
-| ID | Requirement | Related FD-ID | Evidence Status |
-|---|---|---|---|
-| AUD-001 | Platform shall log all create/update/delete actions on governed models | FD-015 | PARTIAL |
-| AUD-002 | Platform shall provide an audit trail viewer per record | FD-016 | PARTIAL |
+`01\_SaaS\_Foundation/FDS/Domains/FDS\_AUDIT.md`
 
-## 5. Business Rules
-BR-AUD-001: Every create/update/delete on a governed model produces an audit log entry with actor,
-timestamp, and before/after values.
-BR-AUD-002: Audit log entries are immutable — no update/delete through normal application paths.
-BR-AUD-003: Approval decisions are captured as first-class audit events (see FDS_APPROVAL.md
-section 10), not only as a status field change.
+---
 
-## 6. Data Entities (Conceptual)
-| Entity | Key Attributes | Notes |
-|---|---|---|
-| AuditLogEntry | id, actor_id, model, record_id, action, before, after, timestamp | Maps to Odoo mail.tracking pattern + custom extension |
+# 1. Purpose
 
-## 7. Process / State Flow
-N/A — append-only log, no lifecycle states.
+Audit Domain เป็นศูนย์กลางสำหรับจัดเก็บประวัติการทำงาน (Audit Trail)
 
-## 8. Permission Notes
-Admin, Compliance, and scoped Platform Operator can view audit trail; Branch Manager sees
-branch-scoped audit entries only; Staff has no audit access.
+ของทุก Module ภายใน SMEsPlus
 
-## 9. Notification Events
-None directly.
+Audit Log ใช้สำหรับ
 
-## 10. Audit Events
-N/A (this domain is the audit mechanism itself)
+- Security Investigation
 
-## 11. Acceptance Criteria
-AC-AUD-001: Given a governed record is updated, when the audit trail is viewed, then the change
-shows actor, timestamp, and before/after values.
+- Compliance
 
-## 12. Open Items
-- Confirm audit data retention duration aligned with tenant data retention policy (see
-  FDS_TENANT.md BR-TEN-003) — pending Legal/Compliance confirmation.
-- Confirm exact list of "governed models" requiring audit capture (currently PARTIAL evidence).
+- User Activity
 
-## 13. Evidence Record
-| Field | Value |
-|---|---|
-| Owner | Functional Specification AI |
-| Source | Odoo mail.tracking pattern (PARTIAL) + custom audit extension (GAP) |
-| Timestamp | 2026-07-03 |
-| Repository | TH-PATTARAKRIT/AI-Collaboration-Hub |
-| Folder | 99_SMEsPlus_Enterprise_Suite/01_SaaS_Foundation/FDS/Domains |
-| Reviewer | Pending |
-| Status | Draft |
+- Data Change Tracking
+
+- System Troubleshooting
+
+ทุก Module ต้องส่ง Event มายัง Audit Service
+
+---
+
+# 2. Scope
+
+## In Scope
+
+- User Activity Log
+
+- Data Change Log
+
+- Login History
+
+- Permission Change
+
+- Configuration Change
+
+- API Activity
+
+- Search Audit
+
+- Export Audit
+
+## Out of Scope
+
+- SIEM
+
+- External Log Aggregator
+
+- Infrastructure Monitoring
+
+---
+
+# 3. Actors
+
+| Actor | Description |
+
+|--------|-------------|
+
+| Platform Admin | ตรวจสอบระบบ |
+
+| Tenant Owner | ตรวจสอบข้อมูลของ Tenant |
+
+| Auditor | ผู้ตรวจสอบ |
+
+| System | ส่ง Audit Event |
+
+---
+
+# 4. Functional Requirements
+
+## FR-AUD-001 Record Audit Log
+
+API
+
+POST /audit/events
+
+Acceptance Criteria
+
+- Event Recorded
+
+- Timestamp Generated
+
+- Immutable
+
+---
+
+## FR-AUD-002 Search Audit
+
+API
+
+GET /audit/events
+
+Acceptance Criteria
+
+- Filter by User
+
+- Filter by Date
+
+- Filter by Module
+
+- Pagination
+
+---
+
+## FR-AUD-003 View Audit Detail
+
+API
+
+GET /audit/events/{id}
+
+Acceptance Criteria
+
+- Complete Event Detail
+
+- Actor
+
+- Resource
+
+- Before Value
+
+- After Value
+
+---
+
+## FR-AUD-004 Export Audit
+
+API
+
+POST /audit/export
+
+Acceptance Criteria
+
+- CSV
+
+- Excel
+
+- PDF
+
+---
+
+## FR-AUD-005 Login History
+
+API
+
+GET /audit/login-history
+
+Acceptance Criteria
+
+- Login
+
+- Logout
+
+- Failed Login
+
+---
+
+## FR-AUD-006 Configuration History
+
+Acceptance Criteria
+
+- Configuration Change
+
+- Old Value
+
+- New Value
+
+---
+
+# 5. Business Rules
+
+BR-AUD-001
+
+Audit Log cannot be edited
+
+BR-AUD-002
+
+Audit Log cannot be deleted
+
+BR-AUD-003
+
+Audit belongs to Tenant
+
+BR-AUD-004
+
+Critical Action must create Audit
+
+---
+
+# 6. User Stories
+
+US-AUD-001
+
+As Auditor
+
+I want to search audit history
+
+So that I can investigate incidents.
+
+---
+
+US-AUD-002
+
+As Platform Admin
+
+I want to export audit log
+
+So that compliance reports can be generated.
+
+---
+
+# 7. Use Cases
+
+UC-AUD-001 Search Audit
+
+1 Search
+
+2 Filter
+
+3 View Detail
+
+4 Export
+
+---
+
+UC-AUD-002 View Login History
+
+1 Select User
+
+2 View Login Timeline
+
+3 View Failed Login
+
+---
+
+# 8. Screen Mapping
+
+UX-AUD-001 Audit Dashboard
+
+UX-AUD-002 Audit Detail
+
+UX-AUD-003 Login History
+
+---
+
+# 9. API Mapping
+
+POST /audit/events
+
+GET /audit/events
+
+GET /audit/events/{id}
+
+POST /audit/export
+
+GET /audit/login-history
+
+---
+
+# 10. Database Mapping
+
+audit\_logs
+
+audit\_changes
+
+audit\_exports
+
+login\_histories
+
+---
+
+# 11. Security
+
+Read Only
+
+RBAC
+
+Tenant Isolation
+
+Immutable
+
+---
+
+# 12. Audit Fields
+
+audit\_id
+
+tenant\_id
+
+user\_id
+
+action
+
+resource
+
+resource\_id
+
+before\_value
+
+after\_value
+
+request\_id
+
+ip\_address
+
+user\_agent
+
+created\_at
+
+---
+
+# 13. Traceability
+
+FR → SDS → API → DB → UX → QA
+
+---
+
+# 14. Risks
+
+Unauthorized Audit Access
+
+Large Audit Volume
+
+Long Retention
+
+---
+
+# 15. Status
+
+Ready for
+
+SDS
+
+API
+
+DB
+
+SECURITY
+
+QA
