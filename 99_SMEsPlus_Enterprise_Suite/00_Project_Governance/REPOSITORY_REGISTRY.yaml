@@ -1,0 +1,32 @@
+version: v1.0
+status: Approved
+owner: SMEsPlus PMO / Repository Owner
+approved_by: Boss
+effective_date: 2026-07-05
+scope: 99_SMEsPlus_Enterprise_Suite
+
+repository:
+  name: AI-Collaboration-Hub
+  owner: TH-PATTARAKRIT
+  branch: SMEsPlus
+  root_path: 99_SMEsPlus_Enterprise_Suite
+  source_of_truth: GitHub Repository
+
+control_rules:
+  - No Evidence = No Progress
+  - No Gate Approval = No Move Forward
+  - Build Gate HOLD until approved
+  - Production Gate HOLD until approved
+
+major_sections:
+  - 00_Project_Governance
+  - 00_Architecture_Office
+  - 01_SaaS_Foundation
+  - 02_Functional_Design
+  - 12_Traceability
+  - 13_Jira_Control
+  - 14_Claude_Execution
+  - 15_ChatGPT_Review
+  - 16_Learning_Analysis
+  - 17_Functional_Specification_Factory
+  - Archived
