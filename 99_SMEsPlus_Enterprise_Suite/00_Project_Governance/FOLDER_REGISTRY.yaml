@@ -1,0 +1,62 @@
+version: v1.0
+status: Approved
+owner: SMEsPlus PMO / Repository Owner
+approved_by: Boss
+effective_date: 2026-07-05
+scope: 99_SMEsPlus_Enterprise_Suite
+
+folders:
+  - path: 00_Project_Governance
+    purpose: Project constitution, AI governance, standards, authority and gate control
+    owner: SMEsPlus PMO / Repository Owner
+    status: Active
+
+  - path: 00_Architecture_Office
+    purpose: Enterprise architecture office, review checklists and reference architecture
+    owner: Architecture Office
+    status: Active
+
+  - path: 01_SaaS_Foundation
+    purpose: SaaS foundation baseline, FDS/SDS/API/DB/UX/QA/Security foundation
+    owner: SMEsPlus Architecture Office
+    status: Active / PASS WITH CONTROL
+
+  - path: 02_Functional_Design
+    purpose: Functional design working area and domain functional design artifacts
+    owner: Functional Specification AI / PMO
+    status: Active / Under Review
+
+  - path: 12_Traceability
+    purpose: Requirement matrix, evidence mapping and traceability control
+    owner: PMO / Traceability Owner
+    status: Active
+
+  - path: 13_Jira_Control
+    purpose: Jira epic, issue and execution mapping
+    owner: PMO
+    status: Active
+
+  - path: 14_Claude_Execution
+    purpose: Claude AI task prompts and execution handoff
+    owner: Claude AI / PMO
+    status: Active
+
+  - path: 15_ChatGPT_Review
+    purpose: ChatGPT / Liza architecture review and cross-AI review
+    owner: Liza / ChatGPT
+    status: Active
+
+  - path: 16_Learning_Analysis
+    purpose: Learning evidence, source/database/module analysis and consolidation inputs
+    owner: Claude AI / Knowledge Engineering
+    status: Active / Evidence Review Required
+
+  - path: 17_Functional_Specification_Factory
+    purpose: Functional specification generation standards and domain packages
+    owner: Functional Specification AI
+    status: Active
+
+  - path: Archived
+    purpose: Controlled archive for duplicate, deprecated or evidence-retained artifacts
+    owner: PMO / Repository Owner
+    status: Active Archive
