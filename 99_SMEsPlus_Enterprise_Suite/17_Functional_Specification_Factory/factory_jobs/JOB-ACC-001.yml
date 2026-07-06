@@ -1,0 +1,13 @@
+job_id: JOB-ACC-001
+module: accounting_thailand
+tier: 1
+status: draft
+owner_role: Functional Specification AI
+reviewers:
+  - PMO AI
+  - Enterprise Architect AI
+approval: Boss
+source_classification: Concept Match (ADR-0006)
+notes: >
+  Pilot job for Thai Accounting Domain FDS, unblocked per Phase 2.5 -> 4
+  transition. Draft-only; does not imply Functional Design gate PASS.

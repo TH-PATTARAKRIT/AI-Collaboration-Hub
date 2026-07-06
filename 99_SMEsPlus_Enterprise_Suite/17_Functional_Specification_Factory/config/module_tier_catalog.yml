@@ -1,0 +1,17 @@
+version: 1.0
+status: draft
+owner_role: Enterprise Architect AI
+modules:
+  accounting: { tier: 1, thai_localization: true }
+  inventory: { tier: 1 }
+  stock: { tier: 1 }
+  purchase: { tier: 1 }
+  sales: { tier: 1 }
+  mrp: { tier: 1 }
+  product_master_data: { tier: 1 }
+  thai_localization_tax: { tier: 1 }
+  expenses: { tier: 1.5 }
+  hr_payroll: { tier: 1.5 }
+  crm: { tier: 2, escalate_if: "connected to quotation/sales flow" }
+  leave: { tier: 2 }
+  recruitment: { tier: 2 }
