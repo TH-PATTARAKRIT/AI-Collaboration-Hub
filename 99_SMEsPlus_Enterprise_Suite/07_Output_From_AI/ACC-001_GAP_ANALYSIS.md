@@ -1,59 +1,35 @@
 # ACC-001 Gap Analysis
 
-Version: v1.0
-Status: Review Required
+Document ID: SMEPLUS-STATE04-ACC-GAPAN-001
 Owner: Functional Specification AI
-Reviewer: Claude AI / PMO AI / Accounting-Legal Reviewer
-Project: SMEsPlus Enterprise Suite
-Control Level: L99
-Created: 2026-07-07T01:31:49+07:00
-Gate Impact: FDS Gate / Traceability Gate / Build Gate
-
----
+Reviewer: Not yet assigned
+Approver: Boss / Final Gate Owner
+Status: DRAFT
+Gate Status: HOLD
+Source: `02_Functional_Design/ACC-001 Accounting Thailand Functional Design Specification Package.md` (v1.0)
+Repository: TH-PATTARAKRIT/AI-Collaboration-Hub, branch SMEsPlus
+Generated: 2026-07-07
 
 ## Purpose
-
-This file records open gaps for ACC-001 Accounting Thailand Functional Design Specification. It converts prior draft notes into a real repository evidence artifact. It does not approve the module.
-
----
-
-## L99 Rule
-
-No Evidence = No Progress.
-
-A gap remains open until owner, evidence location, timestamp, reviewer and verification status are complete.
-
----
+Records every identified gap in the ACC-001 Accounting (Thailand) FDS package and
+its supporting batch materials, so PMO / ChatGPT L99 Review can see status without
+digging through the source document.
 
 ## Gap Register
 
-| Gap ID | Area | Gap | Impact | Owner | Evidence Required | Current Evidence | Verification Status | Gate Impact | Status | Next Action |
-|---|---|---|---|---|---|---|---|---|---|---|
-| GAP-ACC-001 | Thai Tax / VAT | VAT legal handling, VAT month, output/input VAT and ภ.พ.30 rules require accounting/legal review | Compliance risk | Accounting-Legal Reviewer | Thai accounting/tax requirement confirmation and reviewed FDS comments | ACC-001 FDS Section 6, 11, 13 | Pending Review | FDS / QA / UAT | OPEN | Accounting/legal reviewer must validate VAT scope |
-| GAP-ACC-002 | Withholding Tax | WHT rate, expense type mapping and certificate flow require owner validation | Compliance risk | Accounting-Legal Reviewer | WHT rule matrix and reviewed certificate requirement | ACC-001 FDS Section 6, 11, 13 | Pending Review | FDS / QA / UAT | OPEN | Define WHT categories and certificates required for Phase 1 |
-| GAP-ACC-003 | e-Tax / e-Receipt | Phase 1 vs later phase is not decided | Scope risk | Boss | Decision record | ACC-001 Open Question OQ-ACC-001 | Not Verified | FDS / Integration | OPEN | Boss decision required |
-| GAP-ACC-004 | Currency | THB-only or multi-currency is not decided | DB/API/reporting impact | Boss / Finance Owner | Phase scope decision | ACC-001 Open Question OQ-ACC-002 | Not Verified | DB / API / FDS | OPEN | Confirm currency scope before SDS/DB design |
-| GAP-ACC-005 | Cost Center / Project Accounting | Phase inclusion is not decided | GL/reporting impact | Finance Owner / Boss | Phase scope decision and reporting requirement | ACC-001 Open Question OQ-ACC-003 | Not Verified | FDS / DB / UX | OPEN | Confirm cost center and project accounting scope |
-| GAP-ACC-006 | Tax Report Export | Export format for ภ.พ.30 / ภ.ง.ด.3 / ภ.ง.ด.53 is not defined | UAT and compliance ambiguity | Accounting Owner | Export format specification | ACC-001 Open Question OQ-ACC-004 | Not Verified | FDS / QA / UAT | OPEN | Define required report formats and test cases |
-| GAP-ACC-007 | Bank Integration | Real bank connection vs bank statement import is undecided | API/integration risk | Boss / Finance Owner | Integration approach decision | ACC-001 Open Question OQ-ACC-005 | Not Verified | API / Integration / Security | OPEN | Confirm Phase 1 bank method |
-| GAP-ACC-008 | DB Design Evidence | DB entities are draft and not reviewed by Database Design AI | SDS/DB risk | Database Design AI | Entity model review and canonical table mapping | ACC-001 FDS Section 8 | Draft | DB Gate | OPEN | Convert data entities into reviewed DB design artifact |
-| GAP-ACC-009 | API Contract Evidence | API endpoints are draft and not reviewed by Architecture/API owner | API contract risk | Enterprise Architect AI / API Owner | API contract review | ACC-001 FDS Section 9 | Draft | API Gate | OPEN | Convert API mapping into reviewed API contract |
-| GAP-ACC-010 | UI/UX Evidence | Screen mapping exists but no Figma/UX evidence is linked | UX readiness risk | Figma UX/UI AI | Figma screen evidence or UX review artifact | ACC-001 FDS Section 10 | Draft | UX Gate | OPEN | Produce UX screen flow and evidence links |
-| GAP-ACC-011 | QA/UAT Evidence | Acceptance criteria exist but no formal test cases are reviewed | QA readiness risk | QA/UAT AI | Test case register and UAT scenarios | ACC-001 FDS Section 11 | Draft | QA / UAT Gate | OPEN | Produce ACC-001 test case package |
-| GAP-ACC-012 | Claude Review | Claude review and evidence matching are still pending | Gate cannot pass | Claude AI | Review summary, gap list, risk list, evidence decision | ACC-001 Section 15 | Pending | FDS Gate | OPEN | Send ACC-001 to Claude review |
-| GAP-ACC-013 | PMO Evidence Review | Evidence register exists but has partial/pending items | Evidence Gate cannot pass | PMO AI / Liza | Verified evidence register | `07_Output_From_AI/ACC-001_EVIDENCE_REGISTER.md` | Partial | Evidence Gate | OPEN | PMO must verify each evidence row |
-| GAP-ACC-014 | Build Readiness | FDS, SDS, API, DB, UX, QA and Traceability are not all passed | Build must remain HOLD | PMO AI / Boss | Build readiness decision pack | Quality Gate Standard | Not Approved | Build Gate | HOLD | Do not start feature coding |
+| Gap ID | Requirement / Section Affected | Gap Description | Severity | Owner | Required Action | Evidence Required | Status | Gate Impact |
+|---|---|---|---|---|---|---|---|---|
+| GAP-ACC-001 | FR-ACC-002–FR-ACC-005 (Batch scope) | No standalone module FDS files existed for ACC-002–ACC-005; only covered as sections inside ACC-001 | High | Functional Specification AI | Draft standalone FDS files split from ACC-001 (this gap-closure batch) | PMO confirmation that split files are canonical | PARTIAL — draft files created this batch, not yet reviewer-confirmed | HOLD |
+| GAP-ACC-002 | Central Traceability Matrix (`12_Traceability/Requirement_Matrix/SMEPLUS-FUNCTIONAL-DESIGN-MATCHING-MATRIX-v0.2.md`) | Only FR-ACC-001 appears in the repository-wide traceability matrix; FR-ACC-002 through FR-ACC-020 have no entry there (ACC-001's own internal §12 matrix is not the same artifact and only covers 13 of the 20 FRs) | High | Functional Specification AI / Enterprise Architect AI | Populate `12_Traceability/Requirement_Matrix/ACC-001_TRACEABILITY_MATRIX.md` (this batch) covering all 20 FRs; then reconcile with the central v0.2 matrix in a later PMO-approved step | Reviewer sign-off on reconciled traceability | PARTIAL — module-level matrix created this batch; central-matrix reconciliation NOT done (out of scope per Stop Condition) | HOLD |
+| GAP-ACC-003 | FR-ACC-011, FR-ACC-012, FR-ACC-013, FR-ACC-015, FR-ACC-018, FR-ACC-019, FR-ACC-020 | These 7 of 20 FRs in ACC-001 §5 do not appear in ACC-001's own §12 traceability matrix at all (no BR/DB/API/UI/AC mapping) | Medium | Functional Specification AI | Add these FRs to the module traceability matrix with explicit GAP status per row (done in `ACC-001_TRACEABILITY_MATRIX.md`, this batch) — mapping content itself still needs authoring | Reviewer to confirm/complete BR-DB-API-UI-AC mapping for these 7 FRs | OPEN | HOLD |
+| GAP-ACC-004 | §13 Evidence Matching, "Thai VAT / WHT details" row | ACC-001 itself records Thai VAT/WHT detail evidence as "Pending Legal Review" | High | Accounting Owner / Legal | Obtain legal/accounting sign-off on VAT (ภ.พ.30) and WHT certificate rules before these sections can move past DRAFT | Signed-off legal/compliance review note | OPEN | HOLD |
+| GAP-ACC-005 | §13 Evidence Matching, "API details" / "DB details" / "UI details" rows | ACC-001 itself records these as "Draft" (Functional AI design, not yet architecture-reviewed) | Medium | Enterprise Architect AI | Architecture review of API/DB/UI mapping in §9/§8/§10 of ACC-001 | Architecture Review sign-off | OPEN | HOLD |
+| GAP-ACC-006 | Repository structure — `02_Functional_Design/02_Functional_Design/` vs `02_Functional_Design/02_Functional_Design_v2/` | Byte-identical duplicate folders (13 files each), already logged in repo's own `DUPLICATE_FILE_REGISTER.md` as D-01 | Low (governance hygiene, not content risk) | PMO | Decide whether to archive one copy | PMO/Architect decision record | OPEN | HOLD (does not block ACC-001–005 content review, but should not be ignored) |
+| GAP-ACC-007 | `12_Traceability/Requirement_Matrix/12_Traceability/Requirement_Matrix/` | Self-nested duplicate folder holding an older v0.1 matrix vs. current v0.2 at parent level | Low | PMO | Decide whether to archive nested v0.1 copy | PMO/Architect decision record | OPEN | HOLD |
+| GAP-ACC-008 | OQ-ACC-001 through OQ-ACC-005 (ACC-001 §16 Open Questions) | Five open questions (e-Tax Invoice phase, multi-currency, cost center/project accounting, tax export format, bank integration approach) remain unanswered by Boss/Accounting Owner | Medium | Boss / Accounting Owner | Answer open questions before Functional Design gate can PASS | Boss/Accounting Owner written decision per question | OPEN | HOLD |
 
----
+## Summary
+8 gaps identified. 0 CLOSED, 2 PARTIAL (addressed within this gap-closure batch but not yet reviewer-confirmed), 6 OPEN. No gap is marked CLOSED without an independent reviewer — per constitution, this AI does not approve its own output.
 
-## L99 Decision
-
-```text
-ACC-001 GAP status = OPEN / REVIEW REQUIRED
-ACC-001 may continue to review.
-ACC-001 may not proceed to Build.
-```
-
----
-
-## End
+## Gate Impact
+All gaps carry Gate Impact = HOLD. None permit Functional Design gate PASS while open. Target state after this batch: **READY FOR CHATGPT L99 RE-REVIEW**, not APPROVED.

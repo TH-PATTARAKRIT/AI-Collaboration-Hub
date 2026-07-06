@@ -1,69 +1,52 @@
-# ACC-001 Traceability Matrix
+# ACC-001 Traceability Matrix (Module-Level)
 
-Version: v1.0
-Status: Partial / Review Required
+Document ID: SMEPLUS-STATE04-ACC-TRC-001
 Owner: Functional Specification AI
-Reviewer: PMO AI / Claude AI
-Project: SMEsPlus Enterprise Suite
-Control Level: L99
-Created: 2026-07-07T01:31:49+07:00
-Gate Impact: Traceability Gate / FDS Gate / Build Gate
-
----
-
-## Purpose
-
-This file creates a real repository traceability artifact for ACC-001 Accounting Thailand Functional Design Specification.
-
-This file does not approve build.
-
----
+Reviewer: Not yet assigned
+Approver: Boss / Final Gate Owner
+Status: DRAFT
+Gate Status: HOLD
+Source: `02_Functional_Design/ACC-001 Accounting Thailand Functional Design Specification Package.md` §5–§12
+Generated: 2026-07-07
 
 ## Traceability Rule
+No Traceability = No Gate Pass. No Gate Approval = No Next State.
 
-No ACC-001 requirement is marked MATCHED in this version because reviewer approval is incomplete.
+## Chain
+Functional Requirement → Business Rule → Business Process (Workflow) → Data Entity → API / UI → Evidence → Gap Status → UAT Case → Gate Result
 
----
+## Matrix — All 20 FRs from ACC-001 §5
 
-## Matrix
+| FR ID | Business Rule | Business Process (Workflow) | Data Entity | API / UI | Evidence | Gap Status | UAT Case | Gate Result |
+|---|---|---|---|---|---|---|---|---|
+| FR-ACC-001 Accounting Setup | BR-ACC-009 | Not in a named WF section | AccountingPeriod | API-ACC-013 / SCR-ACC-002 | EVD-04-ACC-001-DOC-20260707-002 (independently sourced, PARTIAL/MATCHED) | PARTIAL | Not yet defined | HOLD |
+| FR-ACC-002 Chart of Accounts | BR-ACC-010 | Not in a named WF section | Account | API-ACC-001, API-ACC-002 / SCR-ACC-003 | EVD-04-ACC-001-DOC-20260707-001/003 | MATCHED (internal) | Not yet defined | HOLD |
+| FR-ACC-003 Journal Entry | BR-ACC-001 | WF-ACC-001 Journal Entry Workflow | JournalEntry, JournalLine | API-ACC-003 / SCR-ACC-004, SCR-ACC-005 | EVD-04-ACC-001-DOC-20260707-001/003 | MATCHED (internal) | Not yet defined | HOLD |
+| FR-ACC-004 Journal Approval | BR-ACC-006 | WF-ACC-001 steps 4–5 | JournalEntry, AuditLog | API-ACC-004 / SCR-ACC-005 | EVD-04-ACC-001-DOC-20260707-001/003 | MATCHED (internal) | Not yet defined | HOLD |
+| FR-ACC-005 Journal Posting | BR-ACC-002 | WF-ACC-001 steps 6–8 | JournalEntry, JournalLine | API-ACC-005 / SCR-ACC-005 | EVD-04-ACC-001-DOC-20260707-001/003 | MATCHED (internal) | Not yet defined | HOLD |
+| FR-ACC-006 Reverse Journal | BR-ACC-002 | Not in a named WF section | JournalEntry | API-ACC-006 / SCR-ACC-005 | EVD-04-ACC-001-DOC-20260707-001/003 | MATCHED (internal) | Not yet defined | HOLD |
+| FR-ACC-007 Accounts Receivable | BR-ACC-008 | WF-ACC-003 AR / Receipt Workflow | Invoice, Receipt | API-ACC-007, API-ACC-012 / SCR-ACC-006 | EVD-04-ACC-001-DOC-20260707-001/003 | MATCHED (internal) | Not yet defined | HOLD |
+| FR-ACC-008 Accounts Payable | BR-ACC-007 | WF-ACC-002 Expense / AP Workflow | Bill, PaymentVoucher | API-ACC-008, API-ACC-011 / SCR-ACC-007 | EVD-04-ACC-001-DOC-20260707-001/003 | MATCHED (internal) | Not yet defined | HOLD |
+| FR-ACC-009 VAT Management | BR-ACC-008 | WF-ACC-002 / WF-ACC-003 (VAT touchpoints) | TaxInvoice | API-ACC-009 / SCR-ACC-008 | EVD-04-ACC-001-DOC-20260707-001/003/005 | PARTIAL (legal review pending) | Not yet defined | HOLD |
+| FR-ACC-010 WHT Management | BR-ACC-007 | WF-ACC-002 (WHT touchpoint) | WHTCertificate | API-ACC-010 / SCR-ACC-009 | EVD-04-ACC-001-DOC-20260707-001/003/005 | PARTIAL (legal review pending) | Not yet defined | HOLD |
+| FR-ACC-011 Tax Invoice | Not mapped in ACC-001 §12 | Not in a named WF section | TaxInvoice | SCR-ACC-010 (no API listed) | EVD-04-ACC-001-DOC-20260707-001 only | **GAP** — no BR/API mapping in source | Not yet defined | HOLD |
+| FR-ACC-012 Credit / Debit Note | Not mapped in ACC-001 §12 | Not in a named WF section | Not explicitly listed in §8 | Not listed | EVD-04-ACC-001-DOC-20260707-001 only | **GAP** — no BR/DB/API/UI mapping in source | Not yet defined | HOLD |
+| FR-ACC-013 Bank & Cash | Not mapped in ACC-001 §12 | Not in a named WF section | BankAccount | SCR-ACC-011 (no API listed) | EVD-04-ACC-001-DOC-20260707-001 only | **GAP** — no BR/API mapping in source | Not yet defined | HOLD |
+| FR-ACC-014 Period Closing | BR-ACC-004 | WF-ACC-004 Period Closing Workflow | AccountingPeriod | API-ACC-013 / SCR-ACC-012 | EVD-04-ACC-001-DOC-20260707-001/003 | MATCHED (internal) | Not yet defined | HOLD |
+| FR-ACC-015 Financial Reports | Not mapped in ACC-001 §12 | Not in a named WF section | Not explicitly listed | API-ACC-014, API-ACC-015 / SCR-ACC-013 | EVD-04-ACC-001-DOC-20260707-001 only | **GAP** — no BR mapping in source | Not yet defined | HOLD |
+| FR-ACC-016 Evidence Attachment | BR-ACC-005 | Not in a named WF section | Evidence | SCR-ACC-014 (no API listed) | EVD-04-ACC-001-DOC-20260707-001/003 | MATCHED (internal) | Not yet defined | HOLD |
+| FR-ACC-017 Audit Trail | BR-ACC-006 | Not in a named WF section | AuditLog | SCR-ACC-015 (no API listed) | EVD-04-ACC-001-DOC-20260707-001/003 | MATCHED (internal) | Not yet defined | HOLD |
+| FR-ACC-018 Export Reports | Not mapped in ACC-001 §12 | Not in a named WF section | Not explicitly listed | Not listed | EVD-04-ACC-001-DOC-20260707-001 only | **GAP** — no BR/DB/API/UI mapping in source | Not yet defined | HOLD |
+| FR-ACC-019 API Integration | Not mapped in ACC-001 §12 | Not in a named WF section | Not explicitly listed | Not listed | EVD-04-ACC-001-DOC-20260707-001 only | **GAP** — no BR/DB/API/UI mapping in source | Not yet defined | HOLD |
+| FR-ACC-020 Multi-Company / Branch Accounting | Not mapped in ACC-001 §12 | Not in a named WF section | Implied across all entities (tenant/company/branch scope) | Not listed | EVD-04-ACC-001-DOC-20260707-001 only | **GAP** — no BR/API/UI mapping in source | Not yet defined | HOLD |
 
-| FR ID | Function | Main Mapping Evidence | Evidence File | Reviewer | Gate Result | Status | Next Action |
-|---|---|---|---|---|---|---|---|
-| FR-ACC-001 | Accounting Setup | Setup / period / document numbering | ACC-001 FDS | PMO AI / Accounting Owner | REVIEW REQUIRED | PARTIAL | Confirm setup scope |
-| FR-ACC-002 | Chart of Accounts | Account model / COA screen / account API | ACC-001 FDS | Accounting Owner / DB Owner | REVIEW REQUIRED | PARTIAL | Review COA design |
-| FR-ACC-003 | Journal Entry | Journal entry rule and workflow | ACC-001 FDS | PMO AI / Accounting Owner | REVIEW REQUIRED | PARTIAL | Confirm journal validation |
-| FR-ACC-004 | Journal Approval | Reuse Approval Foundation | ACC-001 FDS / SaaS Foundation | PMO AI / Enterprise Architect AI | REVIEW REQUIRED | PARTIAL | Confirm approval reuse |
-| FR-ACC-005 | Journal Posting | Posting control | ACC-001 FDS | Accounting Owner / QA-UAT AI | REVIEW REQUIRED | PARTIAL | Review posting rule |
-| FR-ACC-006 | Reverse Journal | Reverse / adjustment control | ACC-001 FDS | Accounting Owner / QA-UAT AI | REVIEW REQUIRED | PARTIAL | Define reversal constraints |
-| FR-ACC-007 | Accounts Receivable | AR invoice and receipt flow | ACC-001 FDS | Accounting Owner / API Owner | REVIEW REQUIRED | PARTIAL | Review AR flow |
-| FR-ACC-008 | Accounts Payable | AP bill and payment voucher flow | ACC-001 FDS | Accounting Owner / API Owner | REVIEW REQUIRED | PARTIAL | Review AP flow |
-| FR-ACC-009 | VAT Management | VAT draft requirement | ACC-001 FDS / Gap Register | Accounting Compliance Reviewer | HOLD | HOLD | Compliance review required |
-| FR-ACC-010 | WHT Management | WHT draft requirement | ACC-001 FDS / Gap Register | Accounting Compliance Reviewer | HOLD | HOLD | Compliance review required |
-| FR-ACC-011 | Tax Invoice | Tax document draft requirement | ACC-001 FDS / Gap Register | Accounting Compliance Reviewer | HOLD | HOLD | Confirm document scope |
-| FR-ACC-012 | Credit / Debit Note | Draft only | ACC-001 FDS / Gap Register | Accounting Compliance Reviewer / API Owner | HOLD | GAP | Define workflow, API and AC |
-| FR-ACC-013 | Bank & Cash | Bank and cash draft flow | ACC-001 FDS / Gap Register | Boss / Finance Owner | REVIEW REQUIRED | PARTIAL | Confirm bank approach |
-| FR-ACC-014 | Period Closing | Period closing workflow | ACC-001 FDS | Accounting Owner / QA-UAT AI | REVIEW REQUIRED | PARTIAL | Review pre-close checklist |
-| FR-ACC-015 | Financial Reports | Report draft list | ACC-001 FDS / Gap Register | Accounting Owner / QA-UAT AI | REVIEW REQUIRED | PARTIAL | Define reports and AC |
-| FR-ACC-016 | Evidence Attachment | Reuse Evidence Foundation | README / Bootstrap / ACC-001 FDS | PMO AI / Liza | REVIEW REQUIRED | PARTIAL | Confirm implementation mapping |
-| FR-ACC-017 | Audit Trail | Reuse Audit Foundation | Bootstrap / ACC-001 FDS | PMO AI / Liza | REVIEW REQUIRED | PARTIAL | Confirm audit event model |
-| FR-ACC-018 | Export Reports | Draft only | ACC-001 FDS / Gap Register | Accounting Owner / QA-UAT AI | HOLD | GAP | Define export format and tests |
-| FR-ACC-019 | API Integration | Draft only | ACC-001 FDS / Evidence Register | Enterprise Architect AI / API Owner | HOLD | GAP | Produce reviewed API contract |
-| FR-ACC-020 | Multi-Company / Branch Accounting | SaaS scope reuse | SaaS Foundation / ACC-001 FDS | Enterprise Architect AI / PMO AI | REVIEW REQUIRED | PARTIAL | Validate tenant scope |
+## Status Legend
+- MATCHED (internal): mapping exists inside ACC-001 §12, not yet independently verified against source code/DB
+- PARTIAL: mapping exists but a dependent evidence item (e.g., legal review) is still pending
+- GAP: no mapping exists in ACC-001 at all for one or more chain links
 
----
+## Summary
+20 FRs total. 10 MATCHED (internal, unverified). 2 PARTIAL. 8 GAP. 0 independently verified end-to-end except FR-ACC-001 (via the central v0.2 matrix). No UAT cases defined for any FR yet.
 
-## Gate Summary
-
-| Gate | Status | Reason |
-|---|---|---|
-| FDS Gate | REVIEW REQUIRED | Draft exists but reviewer approvals are incomplete |
-| Traceability Gate | HOLD | No item is fully MATCHED yet |
-| API Gate | HOLD | API mapping is draft |
-| DB Gate | HOLD | Data entities are draft |
-| UX Gate | HOLD | No Figma evidence linked |
-| QA / UAT Gate | HOLD | Formal test cases are not yet reviewed |
-| Build Gate | HOLD | Upstream gates are not passed |
-
----
-
-## End
+## Gate Result
+HOLD — traceability is materially incomplete (8/20 FRs have no mapping at all; only 1/20 has independent source-code/DB verification). Cannot support Functional Design gate PASS in current state.

@@ -1,0 +1,142 @@
+From eb00dacb5ed379d127da79fa2d92391443f68ec5 Mon Sep 17 00:00:00 2001
+From: Claude Code AI <claude-code-ai@smesplus.local>
+Date: Mon, 6 Jul 2026 18:49:18 +0000
+Subject: [PATCH 2/2] fix(l99): restore pre-existing
+ PACKAGE_MANIFEST_SHA256.txt, use distinct manifest name for ACC gap-closure
+ batch
+
+Found this batch's manifest generation had overwritten an already-integrated
+manifest at the same root path (from the prior FDS Factory / Claude Skills /
+Master Template split package). Restored original content. This batch's
+manifest now lives at ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt instead.
+Not pushed.
+---
+ ...CC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt | 10 ++++
+ .../L99_REVIEW_BATCH_VERIFICATION_REPORT.md   | 13 ++++-
+ .../PACKAGE_MANIFEST_SHA256.txt               | 47 +++++++++++++++----
+ .../REVIEW_BATCH_INDEX.md                     |  2 +-
+ 4 files changed, 60 insertions(+), 12 deletions(-)
+ create mode 100644 99_SMEsPlus_Enterprise_Suite/ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt
+
+diff --git a/99_SMEsPlus_Enterprise_Suite/ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt b/99_SMEsPlus_Enterprise_Suite/ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt
+new file mode 100644
+index 0000000..5aed5a2
+--- /dev/null
++++ b/99_SMEsPlus_Enterprise_Suite/ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt
+@@ -0,0 +1,10 @@
++file_path|sha256|timestamp_utc|generated_by|commit_reference
++02_Functional_Design/ACC-002 Functional Design Specification.md|e579685669a3ceecb031130c482839b5203f692051d7e197cf12ff9797e212bc|2026-07-06T18:48:55Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01
++02_Functional_Design/ACC-003 Functional Design Specification.md|44f0aa3d0eb6daea438548075ab3a8e50807ce557e12170f1a79812f11f614dc|2026-07-06T18:48:55Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01
++02_Functional_Design/ACC-004 Functional Design Specification.md|bd45aadeb8a4c2d9e1b30cb1946ef71d67e110ec821db882a1ed0e3ecfc0d3eb|2026-07-06T18:48:55Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01
++02_Functional_Design/ACC-005 Functional Design Specification.md|c21a8902a95d0fb667f7c62e153fad8e11ef8ebebf336c41cd4de2df11bb626c|2026-07-06T18:48:55Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01
++07_Output_From_AI/ACC-001_EVIDENCE_REGISTER.md|21c295a0b9c7594df8e7ebab4439a0fc6403ed4ddb553763f4aab64fe4d869de|2026-07-06T18:48:55Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01
++07_Output_From_AI/ACC-001_GAP_ANALYSIS.md|30f41c1fa4017d8295086fb26db8a2d55e29fbd379960d927cc8138318c762db|2026-07-06T18:48:55Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01
++12_Traceability/Requirement_Matrix/ACC-001_TRACEABILITY_MATRIX.md|20949a78849730f5b4b91d009eff2a711a4d0b133a092a1ee0b5a436c03ad7f7|2026-07-06T18:48:55Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01
++REVIEW_BATCH_INDEX.md|7383c6939a0146450f352176eea7245bcca9f85ffdf145d55303f22d53520140|2026-07-06T18:48:55Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01
++L99_REVIEW_BATCH_VERIFICATION_REPORT.md|ea5f85f69818b0022dfaec6f4723d0eda2c70e8fb8cac65160cabc4e61ebd1c0|2026-07-06T18:48:55Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01
+diff --git a/99_SMEsPlus_Enterprise_Suite/L99_REVIEW_BATCH_VERIFICATION_REPORT.md b/99_SMEsPlus_Enterprise_Suite/L99_REVIEW_BATCH_VERIFICATION_REPORT.md
+index 1b8e3a0..b3e3e75 100644
+--- a/99_SMEsPlus_Enterprise_Suite/L99_REVIEW_BATCH_VERIFICATION_REPORT.md
++++ b/99_SMEsPlus_Enterprise_Suite/L99_REVIEW_BATCH_VERIFICATION_REPORT.md
+@@ -6,6 +6,15 @@ Repository: TH-PATTARAKRIT/AI-Collaboration-Hub, branch SMEsPlus (base commit eb
+ Working branch (local only, not pushed): feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01
+ Prepared by: Claude — Execution Mode: LOCAL_REPOSITORY_AGENT (no push/PR credentials, none requested)
+ 
++## 0. Naming Collision Found and Corrected
++A file already exists at `99_SMEsPlus_Enterprise_Suite/PACKAGE_MANIFEST_SHA256.txt`
++in the real repository (part of the previously-integrated FDS Factory /
++Claude Skills / Master Template split package, commit `eb13b21`). This batch
++initially overwrote it in error; it has been **restored to its original
++content** and this batch's manifest was instead saved under a distinct name,
++`ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt`, to avoid destroying already-
++integrated work. All references below use the corrected filename.
++
+ ## 1. Verification Scope
+ Verify that the 10 gap-closure deliverables requested by Boss/PMO exist, are
+ individually real files (not combined), and are grounded in the actual ACC-001
+@@ -17,7 +26,7 @@ untouched (HOLD).
+ | # | Required File | Exists? | Path |
+ |---|---|---|---|
+ | 1 | REVIEW_BATCH_INDEX.md | YES | `99_SMEsPlus_Enterprise_Suite/REVIEW_BATCH_INDEX.md` |
+-| 2 | PACKAGE_MANIFEST_SHA256.txt | YES | `99_SMEsPlus_Enterprise_Suite/PACKAGE_MANIFEST_SHA256.txt` |
++| 2 | ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt | YES | `99_SMEsPlus_Enterprise_Suite/ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt` |
+ | 3 | L99_REVIEW_BATCH_VERIFICATION_REPORT.md | YES | `99_SMEsPlus_Enterprise_Suite/L99_REVIEW_BATCH_VERIFICATION_REPORT.md` (this file) |
+ | 4 | ACC-001_GAP_ANALYSIS.md | YES | `99_SMEsPlus_Enterprise_Suite/07_Output_From_AI/ACC-001_GAP_ANALYSIS.md` |
+ | 5 | ACC-001_EVIDENCE_REGISTER.md | YES | `99_SMEsPlus_Enterprise_Suite/07_Output_From_AI/ACC-001_EVIDENCE_REGISTER.md` |
+@@ -27,7 +36,7 @@ untouched (HOLD).
+ | 9 | ACC-004 Functional Design Specification.md | YES | `99_SMEsPlus_Enterprise_Suite/02_Functional_Design/ACC-004 Functional Design Specification.md` |
+ | 10 | ACC-005 Functional Design Specification.md | YES | `99_SMEsPlus_Enterprise_Suite/02_Functional_Design/ACC-005 Functional Design Specification.md` |
+ 
+-All 10 present. All are individually-saved files (verified via per-file `sha256sum` in `PACKAGE_MANIFEST_SHA256.txt` — 8 distinct hashes for the 8 newly created/updated files; items 2–3 are themselves part of the manifest's own listing convention).
++All 10 present. All are individually-saved files (verified via per-file `sha256sum` in `ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt` — 8 distinct hashes for the 8 newly created/updated files; items 2–3 are themselves part of the manifest's own listing convention).
+ 
+ ## 3. Gap Closure Checklist (against `ACC-001_GAP_ANALYSIS.md`)
+ 
+diff --git a/99_SMEsPlus_Enterprise_Suite/PACKAGE_MANIFEST_SHA256.txt b/99_SMEsPlus_Enterprise_Suite/PACKAGE_MANIFEST_SHA256.txt
+index d6b1597..21289f3 100644
+--- a/99_SMEsPlus_Enterprise_Suite/PACKAGE_MANIFEST_SHA256.txt
++++ b/99_SMEsPlus_Enterprise_Suite/PACKAGE_MANIFEST_SHA256.txt
+@@ -1,9 +1,38 @@
+-file_path|sha256|timestamp_utc|generated_by|commit_reference
+-02_Functional_Design/ACC-002 Functional Design Specification.md|e579685669a3ceecb031130c482839b5203f692051d7e197cf12ff9797e212bc|2026-07-06T18:47:35Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01 (uncommitted at manifest time)
+-02_Functional_Design/ACC-003 Functional Design Specification.md|44f0aa3d0eb6daea438548075ab3a8e50807ce557e12170f1a79812f11f614dc|2026-07-06T18:47:35Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01 (uncommitted at manifest time)
+-02_Functional_Design/ACC-004 Functional Design Specification.md|bd45aadeb8a4c2d9e1b30cb1946ef71d67e110ec821db882a1ed0e3ecfc0d3eb|2026-07-06T18:47:35Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01 (uncommitted at manifest time)
+-02_Functional_Design/ACC-005 Functional Design Specification.md|c21a8902a95d0fb667f7c62e153fad8e11ef8ebebf336c41cd4de2df11bb626c|2026-07-06T18:47:35Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01 (uncommitted at manifest time)
+-07_Output_From_AI/ACC-001_EVIDENCE_REGISTER.md|21c295a0b9c7594df8e7ebab4439a0fc6403ed4ddb553763f4aab64fe4d869de|2026-07-06T18:47:35Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01 (uncommitted at manifest time)
+-07_Output_From_AI/ACC-001_GAP_ANALYSIS.md|30f41c1fa4017d8295086fb26db8a2d55e29fbd379960d927cc8138318c762db|2026-07-06T18:47:35Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01 (uncommitted at manifest time)
+-12_Traceability/Requirement_Matrix/ACC-001_TRACEABILITY_MATRIX.md|20949a78849730f5b4b91d009eff2a711a4d0b133a092a1ee0b5a436c03ad7f7|2026-07-06T18:47:35Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01 (uncommitted at manifest time)
+-REVIEW_BATCH_INDEX.md|7383c6939a0146450f352176eea7245bcca9f85ffdf145d55303f22d53520140|2026-07-06T18:47:35Z|Claude (Functional Specification AI role, this session)|base=eb13b21; local branch feature/ERPPLUS-ACC-GAP-CLOSURE-BATCH01 (uncommitted at manifest time)
++2f93dfaae3b0c5a85570c32167a8812070d20db8ce1dbc35e0a3cb8f2e5c0b5d  99_SMEsPlus_Enterprise_Suite/00_Master_Templates/00_TEMPLATE_INDEX.md  (2889 bytes)
++b6d51fbdaf8107bb588ceb13332299a682eb82f163106383c5370472c8cd9a89  99_SMEsPlus_Enterprise_Suite/00_Master_Templates/README.md  (2352 bytes)
++a44870dc2c788eb7d5c5c69e5a3ce61e44634c9d451982ed969b16e339a2c3a7  99_SMEsPlus_Enterprise_Suite/00_Master_Templates/SMEPLUS_AI_EXECUTION_TEMPLATE_L99.md  (2450 bytes)
++8570421ad4bceef7d66cadcdbc7b9cbfd79aaaf1b6a2cc1c46b2b2527ab4fa9d  99_SMEsPlus_Enterprise_Suite/00_Master_Templates/SMEPLUS_CLEAN_ROOM_LEARNING_TEMPLATE_L99.md  (2270 bytes)
++87cf8476f96ca81d64da37580c077dd1c154b5ca08bb1c0d0d457d00fda5baf5  99_SMEsPlus_Enterprise_Suite/00_Master_Templates/SMEPLUS_DOCUMENT_CONTROL_STANDARD_L99.md  (2191 bytes)
++a82e21390e66bbd2c4dbe967d6089c833b7ec24a7b8f7fb7daea3a64bc57625e  99_SMEsPlus_Enterprise_Suite/00_Master_Templates/SMEPLUS_EVIDENCE_REGISTER_TEMPLATE_L99.md  (2354 bytes)
++eb47a5b7c084a9d3168c1785abae98805bc0be2e718bbfd9436ecf72bad74c23  99_SMEsPlus_Enterprise_Suite/00_Master_Templates/SMEPLUS_GATE_REVIEW_TEMPLATE_L99.md  (2293 bytes)
++d753aad5dd8428c920185056749669d1af3edda5649dc3928ca519fc5d9d50bc  99_SMEsPlus_Enterprise_Suite/00_Master_Templates/SMEPLUS_MASTER_TEMPLATE_STANDARD_L99_v2.0.md  (7592 bytes)
++e7ef434be0ebc57a29d865ff6ef26c05aa15a38c0152d069e16f5981d68729ee  99_SMEsPlus_Enterprise_Suite/00_Master_Templates/SMEPLUS_NEXT_STATE_HANDOFF_TEMPLATE_L99.md  (1817 bytes)
++2bccf1ef4c8062d3751947b1569ca2fb7dce7d1fda33b5bb2de6ba805021ca02  99_SMEsPlus_Enterprise_Suite/00_Master_Templates/SMEPLUS_TRACEABILITY_MATRIX_TEMPLATE_L99.md  (1883 bytes)
++232aab7b8dd94990cb554d24d5023434d614b26446d04e86c2a3d88ddf684b1d  99_SMEsPlus_Enterprise_Suite/00_Master_Templates/SOURCE_COMBINED_FILE_NOTE.md  (1282 bytes)
++3b648fe287494af4ef2a890ac0e30a8a2130f5a4e6277705b8e3b87ac1da17a5  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/README.md  (439 bytes)
++7f8cf10cc2424e5eba06f2a6e7a243809a0c70d4dc3cce82a68868ac5bb8bdf7  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/SKILL_CHANGELOG.md  (153 bytes)
++266269b90cd6b87c3d64f5f6b3f0922ab04ba2c3e28405b36ab0dccbe9bf315f  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/SKILL_GOVERNANCE_RULES.md  (314 bytes)
++99707e6c0d857f9c08d2ebf4648b42cc7f00fecc4f4b67fa6df58de1852f3429  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/SKILL_INDEX.md  (942 bytes)
++055094ec3abc4de8ab74e9823bbeee0bedf3cc35806da4cda7227bafb7c25eb0  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/SKILL_TEST_PLAN.md  (215 bytes)
++1bdbaae30ebd0721560a0dc145b02601dcf8ecd92237a176db7c13878021b4b6  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/SKILL_USAGE_GUIDE.md  (258 bytes)
++aca8689228c5372e62b4d4fe11300fd1f66e8d00f02102dab48e196f8432e717  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/proposed_skill_package/.claude/skills/smesplus-clean-room-guard/SKILL.md  (211 bytes)
++2f6739c99db3b06fe914e3d15814aa3def66328e97c2cd3e960154e26c49e1a0  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/proposed_skill_package/.claude/skills/smesplus-evidence-validator/SKILL.md  (213 bytes)
++4079f7f11d09c139cafabd41adfd9c5ee3a4ff0c4279d1a045c92e447ba5d11d  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/proposed_skill_package/.claude/skills/smesplus-factory-scheduler/SKILL.md  (212 bytes)
++731c140e984164e9c50bcf43f0d65fbf32bac72291a992778bee5dcf21d0b39e  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/proposed_skill_package/.claude/skills/smesplus-fds-factory/SKILL.md  (206 bytes)
++99f45a938a12dbfdbb02d05bc24642aa9437f3f2bc71f8437ade3428b9023c30  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/proposed_skill_package/.claude/skills/smesplus-gap-risk-generator/SKILL.md  (213 bytes)
++6d6744d0cdc1889859cf088a4721106d5cfa870e542e322967e3656975c70645  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/proposed_skill_package/.claude/skills/smesplus-qa-gate-validator/SKILL.md  (212 bytes)
++4fcad1d64c4cb500b83b7951446c151e1d1b81e023a5ca753c571c67d6526bc8  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/proposed_skill_package/.claude/skills/smesplus-repository-checker/SKILL.md  (213 bytes)
++bc32b5b571f0e3d6c88dbb332237477f81b57b3fa66e2b09331f69d360cd69ea  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/proposed_skill_package/.claude/skills/smesplus-thai-localization-review/SKILL.md  (219 bytes)
++764ec56f7369cc93556b0d1f483772f22f6418ed66f2ae215a839a24e5188813  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/Claude_Skills/proposed_skill_package/.claude/skills/smesplus-traceability-generator/SKILL.md  (217 bytes)
++fb8f9e096d57a81724ef76e5c3d5491804eb22d81ce141d72b55245eb66346ae  99_SMEsPlus_Enterprise_Suite/17_Functional_Specification_Factory/GITHUB_UPDATE_CONFLICT_REPORT.md  (6375 bytes)
++b2a1d018be0b7e112f9f92b5946b61825f5b2259c3cd8b8f2fa84965fe2144b5  99_SMEsPlus_Enterprise_Suite/17_Functional_Specification_Factory/config/module_tier_catalog.yml  (476 bytes)
++0fac869a6f164efa85885ef894ca21d6d51b4d8af794d3d5052284643a09c3ce  99_SMEsPlus_Enterprise_Suite/17_Functional_Specification_Factory/docs/AI_PROVIDER_ABSTRACTION.md  (659 bytes)
++3018502e0dff92adc2a22f43d49c9dc0d480c39b2cf48ea1a13755f70549b55c  99_SMEsPlus_Enterprise_Suite/17_Functional_Specification_Factory/docs/FDS_FACTORY_BEST_PRACTICE.md  (938 bytes)
++3ee390dfc4f946e55b71c577a4671c9e72f76ae36bac3a3cfe3d8e094c53b130  99_SMEsPlus_Enterprise_Suite/17_Functional_Specification_Factory/docs/FDS_FACTORY_PIPELINE.md  (1892 bytes)
++725dd1a3eccae0688facaa95ce9160f7b731b29b6ab57b4ff45f94bc67295f73  99_SMEsPlus_Enterprise_Suite/17_Functional_Specification_Factory/docs/MODULE_TIERING_STRATEGY.md  (1455 bytes)
++42cf26a7aaccb8e194bc571e356ca5c55eb15db0441cd8298e768bfa50742b6d  99_SMEsPlus_Enterprise_Suite/17_Functional_Specification_Factory/factory_jobs/FACTORY_QUEUE.md  (178 bytes)
++937c38446eccf01a8ec7c4161f5d52062ace51f7bc161bb1e6965fb6720b13e1  99_SMEsPlus_Enterprise_Suite/17_Functional_Specification_Factory/factory_jobs/FACTORY_RUN_LOG.md  (200 bytes)
++07bd35362f31012f397c975ecd58aaefed92cfb1be47f63f5389df3d5dc6dfa7  99_SMEsPlus_Enterprise_Suite/17_Functional_Specification_Factory/factory_jobs/JOB-ACC-001.yml  (375 bytes)
++b1b06feb6210eb9f6b6f8836dc842b8a41c45bc16c23500b988b6134c1810983  99_SMEsPlus_Enterprise_Suite/17_Functional_Specification_Factory/templates/SMESPLUS_FDS_LITE_TEMPLATE.md  (381 bytes)
++694070f229d75a3a4fc24b0a15fe80177692e009fedd06e4d1e1137ff0de4206  99_SMEsPlus_Enterprise_Suite/17_Functional_Specification_Factory/templates/SMESPLUS_FDS_TEMPLATE.md  (615 bytes)
++b9f6bb5deeb1fcb9b760902a135df7e8cb39b1334412ebe8fd1069388bae8bbe  L99_PACKAGE_VERIFICATION_REPORT.md  (4666 bytes)
+diff --git a/99_SMEsPlus_Enterprise_Suite/REVIEW_BATCH_INDEX.md b/99_SMEsPlus_Enterprise_Suite/REVIEW_BATCH_INDEX.md
+index 5cc75de..67fa4cc 100644
+--- a/99_SMEsPlus_Enterprise_Suite/REVIEW_BATCH_INDEX.md
++++ b/99_SMEsPlus_Enterprise_Suite/REVIEW_BATCH_INDEX.md
+@@ -14,7 +14,7 @@ Build / Coding / Jira Execution = HOLD (no code, no Jira issues created this bat
+ | # | File | Type | Status |
+ |---|---|---|---|
+ | 1 | `REVIEW_BATCH_INDEX.md` | Index (this file) | Updated |
+-| 2 | `PACKAGE_MANIFEST_SHA256.txt` | Manifest | Updated |
++| 2 | `ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt` | Manifest | Updated |
+ | 3 | `L99_REVIEW_BATCH_VERIFICATION_REPORT.md` | Verification report | Updated |
+ | 4 | `07_Output_From_AI/ACC-001_GAP_ANALYSIS.md` | Gap analysis | Created |
+ | 5 | `07_Output_From_AI/ACC-001_EVIDENCE_REGISTER.md` | Evidence register | Created |
+-- 
+2.43.0
+
