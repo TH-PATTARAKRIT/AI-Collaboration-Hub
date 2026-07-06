@@ -1,0 +1,77 @@
+version: v1.0
+status: Approved
+owner: SMEsPlus PMO / Repository Owner
+approved_by: Boss
+effective_date: 2026-07-05
+scope: 99_SMEsPlus_Enterprise_Suite/00_Project_Governance
+
+documents:
+  - path: 00_Project_Governance/README.md
+    type: index
+    status: Active
+    owner: PMO AI
+
+  - path: 00_Project_Governance/PROJECT_CONSTITUTION.md
+    type: constitution
+    status: Approved
+    owner: SMEsPlus PMO / Repository Owner
+
+  - path: 00_Project_Governance/AI_ROLE_AND_RESPONSIBILITY.md
+    type: governance_standard
+    status: Approved
+    owner: SMEsPlus PMO / Repository Owner
+
+  - path: 00_Project_Governance/AI_COLLABORATION_STANDARD.md
+    type: governance_standard
+    status: Approved
+    owner: SMEsPlus PMO / Repository Owner
+
+  - path: 00_Project_Governance/FUNCTIONAL_SPECIFICATION_STANDARD.md
+    type: functional_standard
+    status: Approved
+    owner: Functional Specification AI / PMO
+
+  - path: 00_Project_Governance/ARCHITECTURE_GOVERNANCE_STANDARD.md
+    type: architecture_standard
+    status: Approved
+    owner: SMEsPlus Architecture Office / Liza
+
+  - path: 00_Project_Governance/DOCUMENT_STANDARD.md
+    type: document_standard
+    status: Approved
+    owner: Repository Owner
+
+  - path: 00_Project_Governance/TRACEABILITY_STANDARD.md
+    type: traceability_standard
+    status: Approved
+    owner: PMO / Traceability Owner
+
+  - path: 00_Project_Governance/QUALITY_GATE_STANDARD.md
+    type: gate_standard
+    status: Approved
+    owner: PMO / Quality Gate Owner
+
+  - path: 00_Project_Governance/APPROVAL_AUTHORITY_MATRIX.md
+    type: authority_matrix
+    status: Approved
+    owner: Boss / PMO
+
+  - path: 00_Project_Governance/MASTER_EXECUTION_ROADMAP.md
+    type: roadmap
+    status: Approved
+    owner: Liza / PMO
+
+  - path: 00_Project_Governance/REPOSITORY_REGISTRY.yaml
+    type: registry
+    status: Approved
+    owner: Repository Owner
+
+  - path: 00_Project_Governance/FOLDER_REGISTRY.yaml
+    type: registry
+    status: Approved
+    owner: Repository Owner
+
+  - path: 00_Project_Governance/DOCUMENT_REGISTRY.yaml
+    type: registry
+    status: Approved
+    owner: Repository Owner
