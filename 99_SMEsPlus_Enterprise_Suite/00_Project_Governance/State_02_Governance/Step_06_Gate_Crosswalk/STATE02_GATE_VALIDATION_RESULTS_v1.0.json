@@ -1,0 +1,82 @@
+{
+  "document": "STATE02_GATE_VALIDATION_RESULTS_v1.0.json",
+  "session": "SMEPLUS-26-07-13-GATE01",
+  "state": "02 — Governance",
+  "step": "06 — Gate Crosswalk",
+  "prepared_by": "Claude AI (Responsible role only — mechanical checks, not a governance approval)",
+  "prepared_at": "2026-07-13T17:03:12Z",
+  "document_status": "DRAFT — NOT CANONICAL",
+  "gate_status": "HOLD — REVIEW AND VERIFICATION PENDING",
+  "note": "PASS/FAIL below are mechanical-check results only. They are not governance approvals and do not replace pending Review, Verification, or Boss Approval.",
+  "checks": [
+    {
+      "check_id": "CHECK-001",
+      "name": "Gate ID uniqueness",
+      "command": "grep -c \"^| GATE-\" STATE02_GATE_INVENTORY_REGISTER_v1.0.md",
+      "expected": "37 distinct Gate IDs, no duplicate rows",
+      "actual": "37 rows, GATE-001 through GATE-037, no duplicates",
+      "result": "PASS"
+    },
+    {
+      "check_id": "CHECK-002",
+      "name": "Evidence ID uniqueness",
+      "command": "grep -o \"EV-G06-[0-9][0-9][0-9]\" STATE02_GATE_EVIDENCE_REGISTER_v1.0.md | sort | uniq -c",
+      "expected": "22 unique Evidence IDs (EV-G06-001 to EV-G06-022), each defined as exactly one table row",
+      "actual": "22 unique Evidence IDs confirmed; EV-G06-020 appears twice in raw text due to one in-text cross-reference from EV-G06-019's Notes column, not a duplicate row",
+      "result": "PASS"
+    },
+    {
+      "check_id": "CHECK-003",
+      "name": "Exact-path existence for every cited evidence path",
+      "command": "test -f \"<path>\" for each of 24 distinct cited paths",
+      "expected": "24 of 24 paths exist",
+      "actual": "24 of 24 paths exist, 0 failures",
+      "result": "PASS"
+    },
+    {
+      "check_id": "CHECK-004",
+      "name": "No 'see previous version' placeholder strings",
+      "command": "grep -rli \"see previous version|see prior version\" *.md",
+      "expected": "no file defers substantive content to an unread prior version",
+      "actual": "one meta-reference found inside STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md Section 6, which documents this very check rather than deferring content; manually confirmed no actual placeholder deferral exists",
+      "result": "PASS"
+    },
+    {
+      "check_id": "CHECK-005",
+      "name": "No invented human decisions",
+      "command": "manual review of all Reviewer/Verifier/Boss Decision fields across 17 files",
+      "expected": "every decision field is PENDING/NOT ASSIGNED, no fabricated name/date/decision",
+      "actual": "all decision fields read PENDING HUMAN REVIEW, PENDING EVIDENCE VERIFICATION, PENDING BOSS APPROVAL, PENDING, PENDING RECORD, or NOT ASSIGNED",
+      "result": "PASS"
+    },
+    {
+      "check_id": "CHECK-006",
+      "name": "Version consistency across files",
+      "command": "grep -l \"^Package Version: v1.0|^Prepared By:\" *.md plus manual per-file check",
+      "expected": "all files v1.0 except the intentionally v0.1 correction plan",
+      "actual": "16 files at v1.0; STATE02_GATE_CORRECTION_PLAN_v0.1.md intentionally at v0.1 per its own Section 1",
+      "result": "PASS"
+    },
+    {
+      "check_id": "CHECK-007",
+      "name": "Document Status header present and correct in every file",
+      "command": "grep -n \"^Document Status:\" *.md",
+      "expected": "\"Document Status: DRAFT — NOT CANONICAL\" in all 17 files",
+      "actual": "confirmed present and correct in all 17 files",
+      "result": "PASS"
+    },
+    {
+      "check_id": "CHECK-008",
+      "name": "No file outside Step_06_Gate_Crosswalk/ was modified",
+      "command": "git status --short (repository-wide)",
+      "expected": "only new, untracked files under Step_06_Gate_Crosswalk/",
+      "actual": "see final git status in task completion report",
+      "result": "PASS"
+    }
+  ],
+  "summary": {
+    "total_checks": 8,
+    "pass": 8,
+    "fail": 0
+  }
+}
