@@ -58,6 +58,22 @@ PR Status: DRAFT / OPEN / NOT MERGED
 
 The integrity manifest is included in the package. Repository publication is independently verified through GitHub file visibility and PR changed-file evidence. Cryptographic SHA-256 values remain a separate integrity-control record and must not be treated as proof of approval or Gate closure.
 
+## Final Remote Integrity Verification
+
+```text
+State 02 Step 01 Publication: COMPLETE
+Remote Package Files: 11/11
+SHA-256 Entries: 10
+SHA-256 Verification: PASS
+Integrity Verification Date: 2026-07-13 (Asia/Bangkok)
+Integrity Verification Commit: this commit (see STATE02_STEP01_EVIDENCE_REGISTER_v0.1.md and the accompanying Final Integrity Execution Result report for the exact SHA — a file cannot record its own commit hash before that commit is created)
+Step 01 Completion: 100% WITH CONTROL
+Step 02 Preparation: ALLOWED
+Governance Gate: HOLD
+```
+
+`100% WITH CONTROL` applies only to State 02 Step 01 package completeness and integrity. It does not mean: State 02 Governance Gate PASS, AC-01 through AC-05 resolved, Reviewer assigned, Verifier assigned, PR approved, or PR merged.
+
 ## Open Decisions
 
 - AC-01 — canonical AI-role naming map
