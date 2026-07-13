@@ -19,7 +19,7 @@ required fields, not to imply that any approval has occurred.
 | Item | Decision Requested | Boss Decision | Decision Date | Notes |
 |---|---|---|---|---|
 | BOSS-001 | Approve this Step 06 package as the repository's first Gate Crosswalk baseline | PENDING BOSS APPROVAL | — | Contingent on prior Review (`STATE02_GATE_REVIEW_RECORD_v1.0.md`) and Verification (`STATE02_GATE_VERIFICATION_RECORD_v1.0.md`) completing first |
-| BOSS-002 | Decide which of the 5 competing Gate models (§3, `STATE02_GATE_CROSSWALK_v1.0.md`) is canonical, or whether they should be formally merged | PENDING BOSS APPROVAL | — | See `STATE02_GATE_CORRECTION_PLAN_v0.1.md` item CP-001 |
+| BOSS-002 | Decide which of the 6 identified Gate models (§3, `STATE02_GATE_CROSSWALK_v1.0.md`) is canonical, or whether some models should be formally merged or separated by control granularity | PENDING BOSS APPROVAL | — | See `STATE02_GATE_CORRECTION_PLAN_v0.1.md` CP-001, CP-010 |
 | BOSS-003 | Resolve QA/UAT Gate Owner conflict ACF-002 / correction RC-002 (already open in Step 03) | PENDING BOSS APPROVAL | — | This package does not decide ACF-002; it only cross-references the existing open correction |
 | BOSS-004 | Approve Step 03 Canonical RACI so that GII-003 (GitHub Issue #6) can be properly derived from it, per its own stated sequencing rule | PENDING BOSS APPROVAL | — | This package was necessarily produced before that precondition; see `STATE02_GATE_ALIAS_AND_MODEL_CROSSWALK_v1.0.md` §9 |
 | BOSS-005 | Decide whether "Release Gate," "Release Readiness Gate," and "Production Gate" are one, two, or three distinct gates | PENDING BOSS APPROVAL | — | See `STATE02_GATE_CORRECTION_PLAN_v0.1.md` item CP-003 |

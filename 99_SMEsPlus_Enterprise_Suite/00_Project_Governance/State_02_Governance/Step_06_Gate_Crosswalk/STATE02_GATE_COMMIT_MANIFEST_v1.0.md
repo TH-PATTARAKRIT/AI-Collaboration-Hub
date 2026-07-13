@@ -15,8 +15,11 @@ file itself is excluded from its own hash list (self-hash exclusion, same
 convention as `PACKAGE_MANIFEST_SHA256_STATE02_STEP04_OWNERLESS.txt`).
 Regenerated: 2026-07-13, after a PR review comment identified two content
 defects (see `STATE02_GATE_CHANGELOG_v1.0.md` "Post-Review Correction"
-entry) and 6 sibling files were edited in place. Sizes and hashes below are
-post-correction values.
+entry), and again after a residual-correction execution order identified
+two further stale references in the Boss Approval Record and PR #14
+description (see `STATE02_GATE_CHANGELOG_v1.0.md` "Residual Cross-File and
+PR Metadata Correction" entry). Sizes and hashes below are current as of
+this second regeneration.
 
 ## 1. Manifest
 
@@ -31,14 +34,14 @@ post-correction values.
 | STATE02_GATE_EVIDENCE_REGISTER_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_EVIDENCE_REGISTER_v1.0.md` | 18861 | `ee776adaf34e49ae1030c89118501ae5f79f33610f97bddbfc0b7e469005d00d` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
 | STATE02_GATE_REVIEW_RECORD_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_REVIEW_RECORD_v1.0.md` | 2661 | `794aa3bc96a6783ded71389b084610c73a8c0fb8ab27cdce2f85da2cd2caece8` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
 | STATE02_GATE_VERIFICATION_RECORD_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_VERIFICATION_RECORD_v1.0.md` | 2627 | `7ff1cff89721af2b0f3ef8ea21840b7cf6b20e582b5e35fcbb72ecc1aeebc741` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
-| STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md` | 2657 | `5b132838963b1ac3723f365b635d4d1cde8cdea7db03dc7e97ce961be845217d` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
+| STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md` | 2704 | `2e8bd562220277508dd3db1fb719d264a5b00f76151a4b72bb2b7e89daad8fb7` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, residual correction (BOSS-002 model count) | Claude AI | PASS (mechanical) |
 | STATE02_GATE_CORRECTION_PLAN_v0.1.md | `Step_06_Gate_Crosswalk/STATE02_GATE_CORRECTION_PLAN_v0.1.md` | 5485 | `6225956294918bde2d4bec4df53561870d15c6a5338df61ed7453e2086930afe` | v0.1 (intentional — starter/open-items list) | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction (CP-001 count, CP-010 added) | Claude AI | PASS (mechanical) |
-| STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md` | 5921 | `58d3fc1824550c860c9b97197874995aa25ca3fc7c6c0610528dbbe7d7376fa3` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction | Claude AI | PASS (mechanical) |
-| STATE02_GATE_CHANGELOG_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_CHANGELOG_v1.0.md` | 5990 | `f764cc0f2721481eac43cbe585f71ce96379789f7489509f9c8f62bdefc71f84` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction | Claude AI | PASS (mechanical) |
+| STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md` | 8593 | `84e80c26915e6c82f824265c74da5f7ab87ea5edb7fce662629599103440ac78` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction, residual correction | Claude AI | PASS (mechanical) |
+| STATE02_GATE_CHANGELOG_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_CHANGELOG_v1.0.md` | 7903 | `c4ae5c91cfa6556c4e93181ac3b982ec14d4ca70ade185584899fe79588bdd2a` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction, residual correction | Claude AI | PASS (mechanical) |
 | STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md` | 10556 | `d3be95906979d723ded5d57942536512ed9998e297c0ce7caa64595a340a4de3` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
-| STATE02_GATE_VALIDATION_RESULTS_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_VALIDATION_RESULTS_v1.0.md` | 6884 | `5687171e95f154badaa1bc5a6334c32a74a4c60f90a56a324cd2899f06ae06eb` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction (CHECK-009 added) | Claude AI | PASS (mechanical, 9/9) |
-| STATE02_GATE_VALIDATION_RESULTS_v1.0.json | `Step_06_Gate_Crosswalk/STATE02_GATE_VALIDATION_RESULTS_v1.0.json` | 5622 | `abf4a707d90580f04013b642cf4e842659f6dd6951980f640fe5206053419aa9` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction (CHECK-009 added) | Claude AI | PASS (mechanical, 9/9) |
-| STATE02_GATE_COMMIT_MANIFEST_v1.0.md (this file) | `Step_06_Gate_Crosswalk/STATE02_GATE_COMMIT_MANIFEST_v1.0.md` | SELF — HASH EXCLUDED | SELF — HASH EXCLUDED | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, regenerated post-review | Claude AI | PASS (mechanical) |
+| STATE02_GATE_VALIDATION_RESULTS_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_VALIDATION_RESULTS_v1.0.md` | 9160 | `577363630834adb04e54ecaeb3def521a6d6106a55baef4e5f0909bf59eb2922` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction (CHECK-009), residual correction (CHECK-010) | Claude AI | PASS (mechanical, 10/10) |
+| STATE02_GATE_VALIDATION_RESULTS_v1.0.json | `Step_06_Gate_Crosswalk/STATE02_GATE_VALIDATION_RESULTS_v1.0.json` | 8467 | `34b17b6ce8e8f437d3df89069cd94b4053e2b7c50d1ec879404f963bbb7f47f3` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction (CHECK-009), residual correction (CHECK-010) | Claude AI | PASS (mechanical, 10/10) |
+| STATE02_GATE_COMMIT_MANIFEST_v1.0.md (this file) | `Step_06_Gate_Crosswalk/STATE02_GATE_COMMIT_MANIFEST_v1.0.md` | SELF — HASH EXCLUDED | SELF — HASH EXCLUDED | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, regenerated post-review, regenerated post-residual-correction | Claude AI | PASS (mechanical) |
 
 ## 2. Coverage Statement
 
@@ -47,15 +50,30 @@ regenerated: 16 hashed above plus this manifest itself (self-hash excluded,
 matching the convention in
 `Step_04_Ownerless_Execution_Control/PACKAGE_MANIFEST_SHA256_STATE02_STEP04_OWNERLESS.txt`).
 No file outside this directory is included in or affected by this manifest.
-7 of the 16 hashed files changed from their original commit due to the
-post-review correction described in `STATE02_GATE_CHANGELOG_v1.0.md`:
-`STATE02_GATE_CROSSWALK_v1.0.md`, `STATE02_GATE_INVENTORY_REGISTER_v1.0.md`,
-`STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md`,
-`STATE02_GATE_CHANGELOG_v1.0.md`, `STATE02_GATE_VALIDATION_RESULTS_v1.0.md`,
-`STATE02_GATE_VALIDATION_RESULTS_v1.0.json`, and
-`STATE02_GATE_CORRECTION_PLAN_v0.1.md` — 7 files total. The remaining 9
-hashed files are unchanged from the original commit; their hashes above are
-identical to the original manifest.
+
+Across both correction passes, 9 of the 16 hashed files have changed from
+their original commit:
+
+- **First pass** (commit `0e900ee2b0483202e359e357f4aceb4630c47efb`):
+  `STATE02_GATE_CROSSWALK_v1.0.md`, `STATE02_GATE_INVENTORY_REGISTER_v1.0.md`,
+  `STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md`,
+  `STATE02_GATE_CHANGELOG_v1.0.md`, `STATE02_GATE_VALIDATION_RESULTS_v1.0.md`,
+  `STATE02_GATE_VALIDATION_RESULTS_v1.0.json`, and
+  `STATE02_GATE_CORRECTION_PLAN_v0.1.md` — 7 files.
+- **Second pass** (this commit): `STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md`
+  (newly changed), plus `STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md`,
+  `STATE02_GATE_CHANGELOG_v1.0.md`, `STATE02_GATE_VALIDATION_RESULTS_v1.0.md`,
+  and `STATE02_GATE_VALIDATION_RESULTS_v1.0.json` (changed again, on top of
+  the first pass) — 5 files touched, 1 of which
+  (`STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md`) had not been touched before.
+
+The remaining 8 hashed files (`STATE02_GATE_ALIAS_AND_MODEL_CROSSWALK_v1.0.md`,
+`STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md`, `STATE02_GATE_AUTHORITY_MATRIX_v1.0.md`,
+`STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md`,
+`STATE02_GATE_EVIDENCE_REGISTER_v1.0.md`, `STATE02_GATE_REVIEW_RECORD_v1.0.md`,
+`STATE02_GATE_VERIFICATION_RECORD_v1.0.md`, and
+`STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md`) remain unchanged from the
+original commit; their hashes above are identical to the original manifest.
 
 ## 3. Regeneration Note
 

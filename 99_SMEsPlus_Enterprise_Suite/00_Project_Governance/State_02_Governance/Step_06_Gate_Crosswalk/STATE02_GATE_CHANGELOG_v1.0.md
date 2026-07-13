@@ -106,6 +106,39 @@ Reviewer/Verifier/Boss Decision fields remain unchanged (still PENDING) —
 this was a mechanical self-correction of Claude AI's own drafting error, not
 a governance decision.
 
+## v1.0 — 2026-07-13 — Residual Cross-File and PR Metadata Correction
+
+The prior "Post-Review Correction" entry above fixed the Crosswalk and
+Inventory Register, but a residual-correction execution order identified
+that two more locations still carried the pre-correction values — the
+`0e900ee` sweep did not check every Step 06 file or PR-level metadata.
+
+- Boss Approval Record model count corrected from 5 to 6
+  (`STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md`, item BOSS-002; Notes field
+  now cites both CP-001 and CP-010).
+- PR #14 description corrected from "five independent, non-reconciled Gate
+  sequencing models" to "six identified, independently authored Gate
+  sequencing models."
+- PR #14 description validation summary corrected from "8/8 mechanical
+  checks PASS" to "9/9 mechanical checks PASS," and a note added stating
+  the original classification-count and model-count defects were corrected
+  in commit `0e900ee2b0483202e359e357f4aceb4630c47efb`.
+- `STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md` updated with a new
+  section distinguishing Repository File Consistency, PR Metadata
+  Consistency, and Governance Decision Status, and recording the full
+  defect/correction history across both passes.
+- CHECK-010 added to `STATE02_GATE_VALIDATION_RESULTS_v1.0.md` / `.json`
+  for residual cross-file and (to the extent repo-local) PR-metadata
+  checking. Mechanical result: 10/10 PASS.
+- Manifest hashes regenerated for every file touched in this pass.
+- No governance decision, approval, verification, or merge occurred. Boss
+  Decision, Reviewer Decision, and Verifier Result fields are unchanged —
+  still PENDING everywhere. Gate Status remains `HOLD — REVIEW AND
+  VERIFICATION PENDING`; Document Status remains `DRAFT — NOT CANONICAL`.
+
+Version remains v1.0 (this is still a pre-approval correction within the
+same Draft PR; no v1.1 is created for either correction pass).
+
 ## Future Versions
 
 Any v1.1 or later of this package must record here what changed and why,

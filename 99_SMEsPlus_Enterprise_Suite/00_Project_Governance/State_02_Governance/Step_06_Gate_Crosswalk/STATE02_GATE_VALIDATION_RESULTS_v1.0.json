@@ -81,11 +81,20 @@
       "actual": "FOUND=12, PARTIAL=20, NOT FOUND IN INSPECTED SCOPE=5, sum=37, each of the 37 Gate ID rows carries exactly one Classification value (verified: no row contains a '/' or multiple classification tokens); Section 3 model table = 6 rows, all prose in STATE02_GATE_CROSSWALK_v1.0.md now says 'six' consistently (previously said 'five' in two places while the table had 6 rows — corrected)",
       "result": "PASS",
       "note": "This check did not exist in the original v1.0 validation pass and was added specifically because a PR review comment identified: (a) GATE-018 had been given two Classification values, making the prior hand-written FOUND=12 total not actually derivable from the table (13 IDs were listed against a stated total of 12), and (b) the Crosswalk's prose said 'five models' against a 6-row table. Both were real defects in the original commit, not false alarms. Both are corrected in this same commit; CHECK-009 is now a permanent, mechanical, row-derived check rather than a prose cross-check, so this class of defect cannot recur silently."
+    },
+    {
+      "check_id": "CHECK-010",
+      "name": "Cross-file and PR metadata residual count check (added after residual correction order)",
+      "command": "grep -RniE \"5 competing Gate models|five (independent|competing|identified).*Gate model|8/8 mechanical|8 of 8 mechanical\" *.md *.json (excluding lines explicitly labelled as historical-defect description); manual read of PR #14 description text",
+      "expected": "1) no active (non-historical) statement in this directory says there are five current Gate models; 2) no active statement says current validation is 8/8; 3) STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md BOSS-002 asks Boss to decide among six models; 4) STATE02_GATE_CROSSWALK_v1.0.md Section 3 model table has six rows; 5) STATE02_GATE_INVENTORY_REGISTER_v1.0.md totals are FOUND=12, PARTIAL=20, NOT FOUND=5, sum=37; 6) PR #14 description states six models and 9/9 checks; 7) every remaining occurrence of 'five' or '8/8' in this directory is explicitly labelled as a historical defect description (e.g. inside STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md's defect-history tables/sections, or STATE02_GATE_CHANGELOG_v1.0.md's changelog entries), not a live claim",
+      "actual": "1) PASS - the only 'five'/'5 competing' hits remaining in the directory are inside STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md Section 9 (labelled stale-value table) and STATE02_GATE_CHANGELOG_v1.0.md (labelled changelog entries) and STATE02_GATE_VALIDATION_RESULTS_v1.0.md/.json CHECK-009's own historical description; none are live claims; 2) PASS - same pattern for '8/8', confined to labelled historical/changelog text; 3) PASS - BOSS-002 now reads '6 identified Gate models'; 4) PASS - 6 rows, verified in CHECK-009; 5) PASS - verified in CHECK-009; 6) PASS - PR #14 description updated in the same work session as this commit to state six models and 9/9 checks (not machine-verifiable from inside the repository; asserted here as a manual step, see STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md Section 9); 7) PASS - confirmed by manual review of every remaining hit",
+      "result": "PASS",
+      "note": "This check exists because the CHECK-009 correction (commit 0e900ee2b0483202e359e357f4aceb4630c47efb) fixed the Crosswalk and Inventory Register but left two other locations stale: STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md's BOSS-002 item, and the PR #14 description itself (which is GitHub metadata, not a repository file, and so was never covered by any prior grep/git-diff-based check). CHECK-010 covers both the in-repository sweep and records the manual PR-metadata correction. Item 6 of this check cannot be re-run mechanically from within the repository in future sessions without a live GitHub API call; it is PASS as an asserted, dated fact for this specific correction, not a self-updating check."
     }
   ],
   "summary": {
-    "total_checks": 9,
-    "pass": 9,
+    "total_checks": 10,
+    "pass": 10,
     "fail": 0
   }
 }

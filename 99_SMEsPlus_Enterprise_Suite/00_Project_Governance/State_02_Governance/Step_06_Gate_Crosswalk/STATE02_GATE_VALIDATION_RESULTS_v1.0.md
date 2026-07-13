@@ -126,16 +126,50 @@ prose now says "six" to match the table. This check is now permanent and
 mechanical (row-derived), not a one-time fix.
 **Result: PASS**
 
+### CHECK-010 — Cross-File and PR Metadata Residual Count Check (added post-residual-correction)
+
+Command: `grep -RniE "5 competing Gate models|five (independent|competing|identified).*Gate model|8/8 mechanical|8 of 8 mechanical" *.md *.json` across this directory, excluding lines explicitly labelled as historical-defect description; manual read of the PR #14 description text on GitHub.
+
+Expected:
+1. No active (non-historical) statement in this directory says there are five current Gate models.
+2. No active statement says current validation is 8/8.
+3. `STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md` BOSS-002 asks Boss to decide among six models.
+4. `STATE02_GATE_CROSSWALK_v1.0.md` Section 3 model table has six rows.
+5. `STATE02_GATE_INVENTORY_REGISTER_v1.0.md` totals are FOUND=12, PARTIAL=20, NOT FOUND=5, sum=37.
+6. PR #14 description states six models and 9/9 checks.
+7. Every remaining occurrence of "five" or "8/8" in this directory is explicitly labelled as a historical defect description, not a live claim.
+
+Result: all seven sub-checks PASS. The only remaining "five"/"5 competing"
+and "8/8" hits in the directory are inside labelled historical-defect
+tables/sections of `STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md` and
+`STATE02_GATE_CHANGELOG_v1.0.md`, and inside CHECK-009's own historical
+description above — none are live claims. `BOSS-002` now reads "6
+identified Gate models." PR #14's description was updated in the same work
+session as this commit to state six models and 9/9 checks; this specific
+sub-check (item 6) is not re-runnable as a repository-local mechanical
+check in future sessions without a live GitHub API call — it is recorded
+here as an asserted, dated fact for this correction, not a self-updating
+check.
+
+This check exists because the CHECK-009 correction (commit
+`0e900ee2b0483202e359e357f4aceb4630c47efb`) fixed the Crosswalk and
+Inventory Register but left `STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md` and
+the PR #14 description itself stale — neither is covered by a
+grep/git-diff-based repository sweep alone in the case of PR metadata.
+**Result: PASS**
+
 ## 3. Overall Result
 
-**9 of 9 mechanical checks: PASS.** This is a mechanical-check PASS only. It
-does not constitute Gate approval, Review approval, Verification, or Boss
-approval, all of which remain PENDING per this package's own review,
-verification, and approval shell files. CHECK-009 documents that this
-package's first commit contained two real classification/count defects,
-identified via external PR review and corrected in the same commit that
-added CHECK-009 — this fact is preserved here rather than silently folded
-into a "clean" original record.
+**10 of 10 mechanical checks: PASS.** This is a mechanical-check PASS only.
+It does not constitute Gate approval, Review approval, Verification, or
+Boss approval, all of which remain PENDING per this package's own review,
+verification, and approval shell files. CHECK-009 and CHECK-010 together
+document that this package went through two correction passes — first for
+in-repository classification/model-count defects, then for residual stale
+references in the Boss Approval Record and PR #14 description — both
+identified externally (PR review comment, then a residual-correction
+execution order) rather than self-discovered, and both preserved here
+rather than folded into a "clean" original record.
 
 See `STATE02_GATE_VALIDATION_RESULTS_v1.0.json` for the machine-readable
 equivalent of this file.

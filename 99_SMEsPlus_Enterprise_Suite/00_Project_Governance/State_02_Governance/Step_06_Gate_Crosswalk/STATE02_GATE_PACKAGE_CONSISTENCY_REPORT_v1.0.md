@@ -79,14 +79,60 @@ Every repository path cited in `STATE02_GATE_EVIDENCE_REGISTER_v1.0.md` and
 `test -f` sweep recorded in `STATE02_GATE_VALIDATION_RESULTS_v1.0.md` /
 `.json`. Result: see that file for the row-by-row PASS/FAIL outcome.
 
-## 9. Overall Consistency Result
+## 9. Residual Cross-File and PR Metadata Correction (second correction pass)
+
+The correction recorded in Section 2 (commit `0e900ee2b0483202e359e357f4aceb4630c47efb`)
+fixed the Crosswalk, Inventory Register, and their own supporting files, but
+did not sweep every other reference to the same two numbers. Two stale
+references were found and are corrected in this same commit as this
+section:
+
+| # | Where | Stale value | Corrected value | Type |
+|---|---|---|---|---|
+| 1 | `STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md`, item BOSS-002 | "5 competing Gate models" | "6 identified Gate models" | Repository file |
+| 2 | PR #14 description (GitHub, not a repository file) | "five independent, non-reconciled Gate sequencing models" | "six identified, independently authored Gate sequencing models" | PR metadata |
+| 3 | PR #14 description (GitHub, not a repository file) | "Validation Results (8/8 mechanical checks PASS)" | "Validation Results (9/9 mechanical checks PASS)" | PR metadata |
+
+This package now distinguishes three separate consistency dimensions, since
+they were not previously tracked separately and that is what allowed items
+1–3 to slip past the first correction pass:
+
+- **Repository File Consistency** — every `.md`/`.json` file under
+  `Step_06_Gate_Crosswalk/`. Status: consistent as of this commit (see
+  Section 2 and item 1 above).
+- **PR Metadata Consistency** — the PR #14 title/description text on
+  GitHub, which is not a repository file and is not covered by any
+  in-repository grep sweep or `git diff`. Status: consistent as of this
+  commit (items 2–3 above), updated via a separate PR-description edit
+  alongside this commit.
+- **Governance Decision Status** — Reviewer, Verifier, and Boss Decision
+  fields. Status: unchanged, still 100% PENDING. Fixing stale numbers is a
+  mechanical correction, not a governance decision, and does not move any
+  of these fields.
+
+CHECK-010 in `STATE02_GATE_VALIDATION_RESULTS_v1.0.md` / `.json` is the new
+permanent mechanical check for dimension 1 and dimension 2 (to the extent a
+repository-side script can see PR text); it cannot verify GitHub PR state
+itself, so PR metadata correctness is asserted here as a manual step
+performed in the same work session as this commit, not machine-verified.
+
+## 10. Overall Consistency Result
 
 **No cross-file inconsistency remains in Gate ID usage, Evidence ID
 uniqueness, document status strings, or version labeling**, subject to the
-one documented and intentional exception in Section 5. Two real
-inconsistencies — the FOUND-count/list mismatch and the five-vs-six
-model-count mismatch, both listed in Section 2 above — were present in the
-original commit of this package, were identified by an external PR review
-comment, and are corrected in this same follow-up commit. This report does
-not retroactively describe the original commit as having been consistent;
-Section 2 records both the original defect and the correction.
+one documented and intentional exception in Section 5. Three defects across
+two correction passes are recorded, not hidden:
+
+1. FOUND-count/list mismatch (GATE-018 dual classification) — original
+   commit `0fd6423`, corrected in `0e900ee`.
+2. Five-vs-six model-count mismatch inside repository files — original
+   commit `0fd6423`, corrected in `0e900ee`.
+3. Residual five-vs-six and 8/8-vs-9/9 references in the Boss Approval
+   Record and PR #14 description, not caught by the `0e900ee` sweep because
+   that sweep did not check every file or PR metadata — corrected in this
+   commit.
+
+This report does not retroactively describe any prior commit as having been
+fully consistent. Repository File Consistency and PR Metadata Consistency
+are both CONSISTENT as of this commit. Governance Decision Status remains
+100% PENDING and is unaffected by any of the three corrections above.
