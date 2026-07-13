@@ -136,7 +136,7 @@ Expected:
 3. `STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md` BOSS-002 asks Boss to decide among six models.
 4. `STATE02_GATE_CROSSWALK_v1.0.md` Section 3 model table has six rows.
 5. `STATE02_GATE_INVENTORY_REGISTER_v1.0.md` totals are FOUND=12, PARTIAL=20, NOT FOUND=5, sum=37.
-6. PR #14 description states six models and 9/9 checks.
+6. PR #14 description states six models and 10/10 checks.
 7. Every remaining occurrence of "five" or "8/8" in this directory is explicitly labelled as a historical defect description, not a live claim.
 
 Result: all seven sub-checks PASS. The only remaining "five"/"5 competing"
@@ -144,12 +144,9 @@ and "8/8" hits in the directory are inside labelled historical-defect
 tables/sections of `STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md` and
 `STATE02_GATE_CHANGELOG_v1.0.md`, and inside CHECK-009's own historical
 description above — none are live claims. `BOSS-002` now reads "6
-identified Gate models." PR #14's description was updated in the same work
-session as this commit to state six models and 9/9 checks; this specific
-sub-check (item 6) is not re-runnable as a repository-local mechanical
-check in future sessions without a live GitHub API call — it is recorded
-here as an asserted, dated fact for this correction, not a self-updating
-check.
+identified Gate models." PR #14's description is required to state six models
+and 10/10 checks; this specific sub-check (item 6) requires a live GitHub API
+read and is not fully re-runnable as a repository-local check alone.
 
 This check exists because the CHECK-009 correction (commit
 `0e900ee2b0483202e359e357f4aceb4630c47efb`) fixed the Crosswalk and
