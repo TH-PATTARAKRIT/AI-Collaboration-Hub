@@ -1,0 +1,32 @@
+# PACKAGE_MANIFEST_SHA256_STATE02_STEP05_GOVERNANCE_INDEX.txt
+# Session: SMEPLUS-26-07-14-002
+# Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
+# Target Branch: SMEsPlus | Working Branch: claude/governance-index-consolidation-79o8k2
+# Base Commit: 43c5d95bc438263d1573501fe22c7db7cae1ae6b
+# Prepared By: Claude Code (Authorized GitHub Execution Agent — packaging only)
+# Independent Reviewer: ChatGPT L99 (NOT YET PERFORMED for this Step 05 package)
+# Independent Evidence Verifier: NOT YET NAMED (see Open Item OI-001)
+# Document Status: PREPARED FOR INDEPENDENT REVIEW
+# Gate Status: HOLD — REVIEW, VERIFICATION, AND BOSS DECISION PENDING
+# Self-Exclusion Rule: this manifest file lists SHA256 for every other Step 05
+#   deliverable in this directory; its own hash is deliberately excluded from
+#   its own body (a file cannot correctly record its own hash after including
+#   that record), consistent with the self-exclusion convention already used by
+#   the Step 03 and Step 04 manifests in this repository.
+# Coverage: 14 Step 05 deliverables (all files in this directory except this manifest)
+#
+2e58a870aa4b94cfe7c62aa70fcdcd3acf7608b8a36ba0a0971c3dbcf92d06fa  STATE02_GOVERNANCE_CLASSIFICATION_REGISTER_v1.0.md
+ede608f10c19ed50acc224ce7aae5685bfdbe9348dcbb595f0470c48d25f0fd7  STATE02_GOVERNANCE_DOCUMENT_INVENTORY_v1.0.md
+5dfe6d3a2ec2a178796bb3256734b61ee84b90d6b4443be993609a014e7e9460  STATE02_GOVERNANCE_FUNCTION_TO_DOCUMENT_MAP_v1.0.md
+1392334a22d31794c231b8e5fbc56bfd77f6ee5a60e41be2a6e9d11a93d7185b  STATE02_GOVERNANCE_INDEX_INTEGRITY_RECORD_v1.0.md
+ee0d5bce391b85a505a98aab41c074b4c3cbf8c13887fca11254244d90a0656f  STATE02_GOVERNANCE_INDEX_OPEN_ITEMS_REGISTER_v1.0.md
+8fc04aa8ece61401a4b805a24e7635c76d7afa5b0a8a0f3a1e8c082a521df9cf  STATE02_GOVERNANCE_INDEX_v1.0.md
+8cbbdf066590c4332681b75932ca6e221b19382b235fd4774f956e351104020c  STATE02_OPEN_PR_RECONCILIATION_MATRIX_v1.0.md
+828fc052e92429ebd1272abff3ae1b5000b38b3a14128b8c8d79f876b4370295  STATE02_GOVERNANCE_INDEX_SHA256_COMMAND_OUTPUT.txt
+a82ca5c7f9cd746d086e458238557fa910e6ad9b782f91685e060c2274672a8a  STATE02_STEP05_BOSS_DECISION_PACK_v0.1.md
+154f6ca7af8d11243abe04968a0c5ac8273e2d4f06317e8829f27bc676b64a65  STATE02_STEP05_COMPLETION_CHECKLIST_v1.0.md
+19219a70b525798ee118e7b80127e1013908fbffc2a57cb32d195dddf196f54a  STATE02_STEP05_EVIDENCE_REGISTER_v1.0.md
+49b614aa7bb7e5d90e44e286a48325d0eb1f6f28d7b6d8b681e1ab4a0f209125  STATE02_STEP05_EXECUTION_SUMMARY_v1.0.md
+e401e98f366e8a01e2a369f3fb3a38bc05e599222a739c5f34ae0ddde0f90208  STATE02_STEP05_L99_REVIEW_RECORD_v0.1.md
+5a4bbaf008f8c9de9b897edb69df21357782f66f5d9d924cc287d1e4ad9bb6d2  STATE02_STEP05_VERIFICATION_RECORD_v0.1.md
+SELF - HASH EXCLUDED  PACKAGE_MANIFEST_SHA256_STATE02_STEP05_GOVERNANCE_INDEX.txt
