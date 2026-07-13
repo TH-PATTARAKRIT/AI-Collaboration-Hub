@@ -34,7 +34,7 @@ and `STATE02_STEP03_STEP04_CROSSWALK_v1.0.md`.
    least the Step 03 Canonical RACI package was drafted.
 2. To produce an honest inventory of what "Gate" means in this repository,
    because the search revealed the repository has **no single canonical Gate
-   model** — it has at least 5 independently authored, non-reconciled Gate
+   model** — it has 6 independently authored, non-reconciled Gate
    sequencing schemes (`STATE02_GATE_CROSSWALK_v1.0.md` §3), plus a long tail
    of one-off named gates with no criteria (`STATE02_GATE_INVENTORY_REGISTER_v1.0.md`).
 
@@ -67,6 +67,44 @@ this writing the Canonical RACI is still `HOLD — REVIEW AND VERIFICATION
 PENDING`. This package was produced ahead of that precondition and says so
 explicitly in `STATE02_GATE_ALIAS_AND_MODEL_CROSSWALK_v1.0.md` §9 and
 `STATE02_GATE_CORRECTION_PLAN_v0.1.md` item CP-007.
+
+## v1.0 — 2026-07-13 — Post-Review Correction (same day, same PR, no version bump)
+
+An external PR review comment on PR #14 identified two real defects in the
+files committed above, before any Reviewer/Verifier/Boss sign-off occurred.
+Because no human decision had yet been recorded against the original commit,
+these are corrected in place at v1.0 (not bumped to v1.1) — there is nothing
+downstream that referenced the defective numbers as final.
+
+1. **Inventory classification mismatch.** `STATE02_GATE_INVENTORY_REGISTER_v1.0.md`
+   gave GATE-018 a dual Classification ("PARTIAL / FOUND (instance)"), so the
+   FOUND summary sentence enumerated 13 Gate IDs against a stated FOUND total
+   of 12. Fixed by enforcing one primary Classification per Gate ID
+   (GATE-018 → PARTIAL, with its one closed instance recorded in the Exact
+   Quote / Reference column, not as a second Classification). FOUND=12,
+   PARTIAL=20, NOT FOUND=5, sum=37 — now mechanically re-derivable, not
+   hand-tallied.
+2. **Gate-model count mismatch.** `STATE02_GATE_CROSSWALK_v1.0.md` §3's table
+   listed 6 models, but two prose sentences elsewhere in the same file said
+   "five." Fixed by changing both to "six," and adding a clarifying paragraph
+   on why Model 6 (State Gate Matrix) is counted in the six despite being a
+   different granularity than Models 1–5 — that classification question is
+   left open in the Correction Plan, not resolved by this fix.
+3. **Validation logic insufficiency.** The original `STATE02_GATE_VALIDATION_RESULTS_v1.0.md`
+   / `.json` validated string presence and uniqueness but did not recompute
+   classification or model-count totals from the underlying table rows —
+   which is exactly why defects 1 and 2 were not caught before commit.
+   CHECK-009 was added to both files to close this gap permanently.
+
+Files touched in this correction: `STATE02_GATE_CROSSWALK_v1.0.md`,
+`STATE02_GATE_INVENTORY_REGISTER_v1.0.md`,
+`STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md`,
+`STATE02_GATE_VALIDATION_RESULTS_v1.0.md`, `.json`, this changelog, and
+`STATE02_GATE_COMMIT_MANIFEST_v1.0.md` (hashes regenerated for every changed
+file). No Gate was declared PASS, APPROVED, or CANONICAL by this correction.
+Reviewer/Verifier/Boss Decision fields remain unchanged (still PENDING) —
+this was a mechanical self-correction of Claude AI's own drafting error, not
+a governance decision.
 
 ## Future Versions
 

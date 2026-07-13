@@ -22,6 +22,18 @@ Classification legend:
 - **PARTIAL** — named Gate with no criteria/owner, or a bare list mention.
 - **NOT FOUND IN INSPECTED SCOPE** — brief-supplied name, zero repository hits.
 
+Each Gate ID carries exactly **one** primary Classification for the purpose
+of the Section 3 summary counts. Where a Gate has both a generic,
+underspecified definition and a separate, fully-specified closed instance
+(GATE-018 is the only such case in this register), the primary Classification
+reflects the generic/repeatable definition — since that is what a future
+execution would actually be gated against — and the instance-level detail is
+recorded in the Exact Quote / Reference column rather than as a second
+Classification. This one-ID-one-classification rule was not applied
+consistently in the first draft of this register (GATE-018 was marked
+"PARTIAL / FOUND (instance)") and has been corrected below; see
+`STATE02_GATE_CORRECTION_PLAN_v0.1.md` for the tracked correction record.
+
 ## 2. Inventory
 
 | Gate ID | Gate Name (as found) | Classification | Source Path | Exact Quote / Reference |
@@ -43,7 +55,7 @@ Classification legend:
 | GATE-015 | Traceability Gate | PARTIAL | `04_Review_Gates/ACC-001_L99_REVIEW_GATE_REPORT.md`; `MODULE_SPEC_DASHBOARD.md` | `"Traceability Gate \| PARTIAL / HOLD"`; `"Gate Impact: FDS Gate, Dashboard Gate, Traceability Gate"` (line 106) |
 | GATE-016 | Security Gate | PARTIAL | `00_Architecture_Office/Governance/README.md`; `00_Architecture_Office/Review_Checklists/README.md`; `00_Architecture_Office/Review_Checklists/SMEPLUS-ARCHITECTURE-REVIEW-GATE-v0.1.md` | `"7. Security Gate: Pass security review"`; `"Security Gate: Before production"`; `"5. Security Gate"` (named in three places; the referenced `Security_Review_Checklist.md` does not exist in the repository — confirmed absent, see Search Execution Log) |
 | GATE-017 | Integration Gate | PARTIAL | `00_Architecture_Office/Governance/README.md`; `00_Architecture_Office/Review_Checklists/README.md`; `00_Architecture_Office/Review_Checklists/SMEPLUS-ARCHITECTURE-REVIEW-GATE-v0.1.md` | `"8. Integration Gate: Pass integration tests"`; `"Integration Gate: Before deployment"`; `"4. Integration Gate"` (the referenced `Integration_Review_Checklist.md` does not exist in the repository — confirmed absent) |
-| GATE-018 | Quality Gate (generic checkpoint) | PARTIAL / FOUND (instance) | `00_Architecture_Office/Governance/ARCHITECTURE_REVIEW_GATE.md` §8.3; `01_SaaS_Foundation/FDS/FDS Phase 2 Quality Gate.md` | `"### 8.3 Quality Gate — Unit tests passing / Integration tests passing / ..."` (generic, PARTIAL); `"FDS Phase 2 Quality Gate ... Status: Approved ... Decision: Phase 2 is approved as Foundation Requirement Baseline v1.0.0."` (one real, closed instance — FOUND) |
+| GATE-018 | Quality Gate (generic checkpoint) | PARTIAL | `00_Architecture_Office/Governance/ARCHITECTURE_REVIEW_GATE.md` §8.3; `01_SaaS_Foundation/FDS/FDS Phase 2 Quality Gate.md` | `"### 8.3 Quality Gate — Unit tests passing / Integration tests passing / ..."` (generic definition, no standing owner — primary basis for PARTIAL); one closed instance exists and is FOUND-quality at the instance level only: `"FDS Phase 2 Quality Gate ... Status: Approved ... Decision: Phase 2 is approved as Foundation Requirement Baseline v1.0.0."` |
 | GATE-019 | Design Gate | PARTIAL | `00_Architecture_Office/Review_Checklists/README.md`; `01_SaaS_Foundation/ARCHITECTURE_GOVERNANCE.md` (line 175) | `"Design Gate: Before implementation"`; Thai text: `"หากเอกสารข้อใดขาด ให้ถือว่ายังไม่ผ่าน Design Gate"` ("if any of these documents is missing, treat it as not having passed the Design Gate") |
 | GATE-020 | Code Review Gate | FOUND | `00_Architecture_Office/Governance/ARCHITECTURE_REVIEW_GATE.md` §8.2; `00_Architecture_Office/Review_Checklists/README.md` | `"### 8.2 Code Review Gate — Code review completed / Standards compliance verified / Test coverage adequate / Documentation complete / Security checklist passed"` |
 | GATE-021 | Implementation Gate | PARTIAL | `00_Architecture_Office/Governance/ARCHITECTURE_REVIEW_GATE.md` §8.1 | `"### 8.1 Implementation Gate — Implementation plan documented / Resource allocation confirmed / ..."` (single section, no owner stated) |
@@ -67,9 +79,13 @@ Classification legend:
 ## 3. Summary Counts
 
 - Total Gate IDs recorded: 37
-- FOUND: 12 (GATE-001, 002, 003, 004, 010, 011, 013, 018 [instance only], 020, 029, 030, 031, 032 — note GATE-018 is FOUND only at the single-instance level, PARTIAL at the generic-model level)
-- PARTIAL: 20
+- FOUND: 12 (GATE-001, 002, 003, 004, 010, 011, 013, 020, 029, 030, 031, 032 — one primary Classification per ID; GATE-018's closed instance-level FOUND evidence is noted in its row but does not count toward this total, per the one-ID-one-classification rule above)
+- PARTIAL: 20 (includes GATE-018, generic/repeatable definition)
 - NOT FOUND IN INSPECTED SCOPE: 5
+
+These counts are mechanically re-derived from the Classification column of
+the table in Section 2 (not hand-tallied) — see `CHECK-009` in
+`STATE02_GATE_VALIDATION_RESULTS_v1.0.md` / `.json`.
 
 This is a fragmented, multiply-aliased inventory, not a mature single Gate
 model. That fragmentation is itself the primary finding of this Step 06

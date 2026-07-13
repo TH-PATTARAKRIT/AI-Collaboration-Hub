@@ -25,6 +25,8 @@ verification recorded (as PENDING) in `STATE02_GATE_VERIFICATION_RECORD_v1.0.md`
 | Total Gate IDs referenced in Circular Dependency Report | Same set as Dependency Matrix | Same set (GATE-001 chain, GATE-029, GATE-030, GATE-031, GATE-032) | CONSISTENT |
 | Total Gate IDs referenced in Authority Matrix | Subset of 37 | GATE-001–005, 010, 011, 013, 030, 031, plus explicit "NOT ASSIGNED" bucket listing 006–009, 012, 014–019, 021–028, 033–037 | CONSISTENT — every Gate ID from 001–037 appears in the Authority Matrix exactly once, either with an owner claim or in the NOT ASSIGNED bucket |
 | Sum of FOUND (12) + PARTIAL (20) + NOT FOUND (5) | 37 | 12 + 20 + 5 = 37 | CONSISTENT |
+| Gate-model count: Section 3 table row count in Crosswalk vs. prose references to "N models" throughout the package | Single consistent number | Table has 6 rows; a PR review comment found two prose instances in `STATE02_GATE_CROSSWALK_v1.0.md` reading "five" instead of "six" | **CORRECTED this commit** — both prose instances now read "six"; see `STATE02_GATE_VALIDATION_RESULTS_v1.0.md` CHECK-009 |
+| Row-derived classification totals (Inventory Register) vs. hand-written summary sentence | Summary sentence enumerates exactly the IDs counted in the total | A PR review comment found GATE-018 listed with a dual "PARTIAL / FOUND (instance)" Classification, making the FOUND summary sentence list 13 IDs against a stated total of 12 | **CORRECTED this commit** — GATE-018's Classification column is now the single value PARTIAL; instance-level nuance moved to the Exact Quote / Reference column; see CHECK-009 |
 
 ## 3. Evidence ID Uniqueness
 
@@ -79,6 +81,12 @@ Every repository path cited in `STATE02_GATE_EVIDENCE_REGISTER_v1.0.md` and
 
 ## 9. Overall Consistency Result
 
-**No cross-file inconsistency was found in Gate ID usage, Evidence ID
+**No cross-file inconsistency remains in Gate ID usage, Evidence ID
 uniqueness, document status strings, or version labeling**, subject to the
-one documented and intentional exception in Section 5.
+one documented and intentional exception in Section 5. Two real
+inconsistencies — the FOUND-count/list mismatch and the five-vs-six
+model-count mismatch, both listed in Section 2 above — were present in the
+original commit of this package, were identified by an external PR review
+comment, and are corrected in this same follow-up commit. This report does
+not retroactively describe the original commit as having been consistent;
+Section 2 records both the original defect and the correction.

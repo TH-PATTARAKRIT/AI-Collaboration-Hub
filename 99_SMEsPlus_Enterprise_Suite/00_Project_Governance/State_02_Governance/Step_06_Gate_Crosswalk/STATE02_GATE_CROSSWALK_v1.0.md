@@ -46,7 +46,7 @@ register shows.
 ## 3. Headline Finding: Multiple Independent, Non-Reconciled Gate Models
 
 The repository does **not** contain one single canonical Gate model. It
-contains at least **five distinct, independently authored Gate sequencing
+contains **six distinct, independently authored Gate sequencing
 schemes**, each internally consistent but not cross-referenced to the others:
 
 | # | Model Name (as found) | Source Document | Stages |
@@ -67,6 +67,16 @@ item, in `STATE02_GATE_ALIAS_AND_MODEL_CROSSWALK_v1.0.md`. No attempt is made
 in this package to declare one model canonical over another — that decision
 requires Boss approval and is recorded as an open item in
 `STATE02_GATE_CORRECTION_PLAN_v0.1.md`.
+
+Model 6 (State Gate Matrix) is a different granularity than Models 1–5 — it
+gates each of the 12 project States as a whole, not individual deliverables
+within a State — and is not itself in conflict with Models 1–5 on any single
+Gate name. It is counted in the "six models" figure throughout this package
+because it is a distinct, independently authored Gate sequencing scheme per
+the Section 3 definition above; whether it belongs in the same model set as
+Models 1–5 or should be tracked as a separate control dimension is an open
+question, recorded as CP-item in `STATE02_GATE_CORRECTION_PLAN_v0.1.md`, not
+resolved by this crosswalk.
 
 ## 4. What Is Genuinely Well-Defined
 
@@ -115,7 +125,7 @@ re-run any gate, and does not change any status.
 
 - It does not declare any Gate PASS, FAIL, or APPROVED. All governance
   verdicts in this package are PENDING.
-- It does not pick a winner among the five Gate models in Section 3. It
+- It does not pick a winner among the six Gate models in Section 3. It
   records the aliasing and defers resolution to Boss (see
   `STATE02_GATE_CORRECTION_PLAN_v0.1.md`).
 - It does not fabricate a Gate that has no textual basis in the repository.
