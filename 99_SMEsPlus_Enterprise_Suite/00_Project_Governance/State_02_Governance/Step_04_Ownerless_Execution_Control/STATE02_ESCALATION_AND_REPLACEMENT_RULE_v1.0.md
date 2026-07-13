@@ -16,9 +16,9 @@ Gate Status: HOLD — REVIEW AND VERIFICATION PENDING
 
 | Priority | Inactivity Trigger | Action |
 |---|---|---|
-| P0 | No action or evidence within 20 minutes | Escalate and activate replacement execution |
-| P1 | No action or evidence within 4 working hours | Escalate and assign acting execution owner |
-| P2 | No action or evidence within 1 working day | Escalate for owner replacement review |
+| P0 | No action or evidence within 20 minutes | Escalate; AI Execution Agent may continue permitted operational work with evidence; Acting Owner appointment (if needed) requires explicit Boss authorization |
+| P1 | No action or evidence within 4 working hours | Escalate; prepare Acting Owner recommendation and Boss decision request; appointment requires explicit Boss authorization |
+| P2 | No action or evidence within 1 working day | Escalate; prepare owner replacement review package for Boss decision |
 
 Clock start: the moment the work item is assigned or its upstream dependency clears.
 Clock stop: the moment evidence is recorded, or a valid blocker with evidence is
