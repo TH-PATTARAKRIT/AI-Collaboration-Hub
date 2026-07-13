@@ -35,7 +35,7 @@ SHA-256 Manifest: STATE02_STEP01_PACKAGE_SHA256.txt
 Verification Result: PASS
 Verification Timestamp: 2026-07-13 (Asia/Bangkok)
 Verified Branch: state02/governance-baseline-inventory
-Verified Commit: recorded by the GitHub commit created for this controlled integrity update
+Verified Commit: this commit (exact SHA recorded in the Final Integrity Execution Result report — see git log for the commit created by this update)
 Verifier Status: Technical integrity verified by execution evidence (sha256sum -c, 10/10 OK); independent Governance Verifier remains unassigned
 Gate Impact: Step 01 integrity control completed; State 02 Governance Gate remains HOLD
 ```
