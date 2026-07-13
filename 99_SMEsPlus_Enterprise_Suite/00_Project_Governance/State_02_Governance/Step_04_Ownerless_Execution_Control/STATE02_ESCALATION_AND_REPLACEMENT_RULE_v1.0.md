@@ -16,9 +16,9 @@ Gate Status: HOLD — REVIEW AND VERIFICATION PENDING
 
 | Priority | Inactivity Trigger | Action |
 |---|---|---|
-| P0 | No action or evidence within 20 minutes | Escalate and activate replacement execution |
-| P1 | No action or evidence within 4 working hours | Escalate and assign acting execution owner |
-| P2 | No action or evidence within 1 working day | Escalate for owner replacement review |
+| P0 | No action or evidence within 20 minutes | Escalate; AI Execution Agent may continue permitted operational work with evidence; Acting Owner appointment (if needed) requires explicit Boss authorization |
+| P1 | No action or evidence within 4 working hours | Escalate; prepare Acting Owner recommendation and Boss decision request; appointment requires explicit Boss authorization |
+| P2 | No action or evidence within 1 working day | Escalate; prepare owner replacement review package for Boss decision |
 
 Clock start: the moment the work item is assigned or its upstream dependency clears.
 Clock stop: the moment evidence is recorded, or a valid blocker with evidence is
@@ -28,8 +28,10 @@ reported (`BLOCKED WITH EVIDENCE` — the owner is NOT classified inactive).
 
 ```text
 Level 0: Assigned Owner (evidence within priority window)
-Level 1: Executive Secretary / Liza — coordination escalation, acting owner assignment
-Level 2: Replacement per STATE02_OWNER_REPLACEMENT_MATRIX_v1.0.md
+Level 1: Executive Secretary / Liza — coordination and escalation only; prepares the
+         acting-owner recommendation but does not appoint or activate one
+Level 2: Replacement per STATE02_OWNER_REPLACEMENT_MATRIX_v1.0.md (Acting Owner
+         appointment requires explicit Boss authorization)
 Level 3: Authorized AI Execution Agent for all permitted operational work
 Level 4: Alternate AI / system connector with real execution capability
 Level 5: Boss — ONLY non-delegable decisions (authorization, credentials, appointments
@@ -45,7 +47,9 @@ replacement, and the single decision required (if Level 5).
 ## 4. Replacement Activation Rules
 
 1. Replacement transfers only the operational (Responsible) duty — never the
-   Accountable role without ES reassignment, and never any approval authority.
+   Accountable role and never any approval authority. Reassignment of the
+   Accountable role requires Boss authorization; Executive Secretary / Liza may
+   prepare the reassignment record but may not reassign it independently.
 2. The replaced owner's inactivity is recorded in the Ownerless Work Register with
    evidence of the missed window.
 3. A replacement executor must record evidence (commit SHA, register entry, system
