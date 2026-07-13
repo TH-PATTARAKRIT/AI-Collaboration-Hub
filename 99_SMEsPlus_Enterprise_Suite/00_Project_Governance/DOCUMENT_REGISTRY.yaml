@@ -1,40 +1,46 @@
-version: v1.0
+version: v1.1
 status: Approved
-owner: SMEsPlus PMO / Repository Owner
+owner: Executive Secretary / Repository Owner
 approved_by: Boss
 effective_date: 2026-07-05
+updated_date: 2026-07-13
 scope: 99_SMEsPlus_Enterprise_Suite/00_Project_Governance
+
+control_notes:
+  ai_pmo_role: Support Only
+  final_approval_authority: Boss
+  project_target_milestone: 2026-10-31
 
 documents:
   - path: 00_Project_Governance/README.md
     type: index
     status: Active
-    owner: PMO AI
+    owner: Executive Secretary
 
   - path: 00_Project_Governance/PROJECT_CONSTITUTION.md
     type: constitution
     status: Approved
-    owner: SMEsPlus PMO / Repository Owner
+    owner: Repository Owner
 
   - path: 00_Project_Governance/AI_ROLE_AND_RESPONSIBILITY.md
     type: governance_standard
     status: Approved
-    owner: SMEsPlus PMO / Repository Owner
+    owner: Executive Secretary
 
   - path: 00_Project_Governance/AI_COLLABORATION_STANDARD.md
     type: governance_standard
     status: Approved
-    owner: SMEsPlus PMO / Repository Owner
+    owner: Executive Secretary
 
   - path: 00_Project_Governance/FUNCTIONAL_SPECIFICATION_STANDARD.md
     type: functional_standard
     status: Approved
-    owner: Functional Specification AI / PMO
+    owner: Functional Specification Owner
 
   - path: 00_Project_Governance/ARCHITECTURE_GOVERNANCE_STANDARD.md
     type: architecture_standard
     status: Approved
-    owner: SMEsPlus Architecture Office / Liza
+    owner: Architecture Office
 
   - path: 00_Project_Governance/DOCUMENT_STANDARD.md
     type: document_standard
@@ -44,22 +50,22 @@ documents:
   - path: 00_Project_Governance/TRACEABILITY_STANDARD.md
     type: traceability_standard
     status: Approved
-    owner: PMO / Traceability Owner
+    owner: Traceability Owner
 
   - path: 00_Project_Governance/QUALITY_GATE_STANDARD.md
     type: gate_standard
     status: Approved
-    owner: PMO / Quality Gate Owner
+    owner: Assigned Gate Reviewer
 
   - path: 00_Project_Governance/APPROVAL_AUTHORITY_MATRIX.md
     type: authority_matrix
     status: Approved
-    owner: Boss / PMO
+    owner: Boss / Executive Secretary
 
   - path: 00_Project_Governance/MASTER_EXECUTION_ROADMAP.md
     type: roadmap
     status: Approved
-    owner: Liza / PMO
+    owner: Executive Secretary
 
   - path: 00_Project_Governance/REPOSITORY_REGISTRY.yaml
     type: registry
@@ -75,3 +81,39 @@ documents:
     type: registry
     status: Approved
     owner: Repository Owner
+
+  - path: 00_Project_Governance/State_01_Project_Identity/STATE01_PROJECT_CHARTER_v1.0.md
+    type: project_charter
+    status: Approved Baseline
+    owner: Executive Secretary
+    approver: Boss
+
+  - path: 00_Project_Governance/State_01_Project_Identity/STATE01_SCOPE_PRINCIPLES_RACI_v1.0.md
+    type: scope_principles_raci
+    status: Approved Baseline
+    owner: Executive Secretary
+    approver: Boss
+
+  - path: 00_Project_Governance/State_01_Project_Identity/STATE01_SOURCE_OF_TRUTH_POLICY_v1.0.md
+    type: source_of_truth_policy
+    status: Approved Baseline
+    owner: Executive Secretary
+    approver: Boss
+
+  - path: 00_Project_Governance/State_01_Project_Identity/STATE01_EVIDENCE_REGISTER.md
+    type: evidence_register
+    status: Verified
+    owner: Executive Secretary
+    approver: Boss
+
+  - path: 00_Project_Governance/State_01_Project_Identity/STATE01_GATE_REVIEW_AND_BOSS_APPROVAL_RECORD.md
+    type: gate_approval_record
+    status: Approved
+    owner: Executive Secretary
+    approver: Boss
+
+  - path: 00_Project_Governance/State_01_Project_Identity/STATE01_CLOSURE_CONFIRMATION.md
+    type: state_closure_record
+    status: Approved
+    owner: Executive Secretary
+    approver: Boss
