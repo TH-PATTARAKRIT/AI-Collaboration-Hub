@@ -139,6 +139,30 @@ that two more locations still carried the pre-correction values — the
 Version remains v1.0 (this is still a pre-approval correction within the
 same Draft PR; no v1.1 is created for either correction pass).
 
+## v1.0 — 2026-07-14 — Cross-Artifact 9/9-to-10/10 Count Alignment (third pass)
+
+The prior pass's CHECK-010 item 6 stated "9/9 checks" as the value PR #14's
+description should carry — an off-by-one error, since CHECK-010 is itself
+the 10th check, making 10/10 the correct total from the moment CHECK-010
+was added. Commit `d0a04bce567fec874e8a55c7bff4eb87dffd5742` (pushed
+directly to this branch, outside this AI session) fixed the wording inside
+`STATE02_GATE_VALIDATION_RESULTS_v1.0.md`. This pass aligns the remaining
+three locations that still said "9/9":
+
+- `STATE02_GATE_VALIDATION_RESULTS_v1.0.json` CHECK-010 `expected`/`actual`
+  text corrected to "10/10 checks."
+- PR #14 description ("Corrections after review" section and Test plan
+  checklist) corrected from "9/9 mechanical checks PASS" to "10/10
+  mechanical checks PASS."
+- `STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md` updated with a new
+  Section 10 documenting this third pass and renumbering the prior
+  "Overall Consistency Result" to Section 11.
+- Manifest hashes regenerated for every file touched in this pass.
+- No governance decision, approval, verification, or merge occurred; all
+  Reviewer/Verifier/Boss Decision fields remain unchanged (still PENDING).
+
+Version remains v1.0.
+
 ## Future Versions
 
 Any v1.1 or later of this package must record here what changed and why,

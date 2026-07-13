@@ -116,12 +116,38 @@ repository-side script can see PR text); it cannot verify GitHub PR state
 itself, so PR metadata correctness is asserted here as a manual step
 performed in the same work session as this commit, not machine-verified.
 
-## 10. Overall Consistency Result
+## 10. Cross-Artifact 9/9-to-10/10 Count Alignment (third correction pass)
+
+The second correction pass (Section 9) added CHECK-010 as the tenth
+mechanical check, which meant the correct total was always 10/10, not 9/9.
+The `STATE02_GATE_VALIDATION_RESULTS_v1.0.md` commit written for that pass
+stated CHECK-010's own item 6 as "PR #14 description states six models and
+9/9 checks" — an off-by-one self-reference error, since CHECK-010 itself is
+one of the 10 checks being counted. This was caught and fixed directly in
+the repository file by a subsequent commit
+(`d0a04bce567fec874e8a55c7bff4eb87dffd5742`, authored outside this AI
+session). That fix touched only `STATE02_GATE_VALIDATION_RESULTS_v1.0.md`
+and left three other locations still saying "9/9":
+
+| # | Where | Stale value | Corrected value | Type |
+|---|---|---|---|---|
+| 1 | `STATE02_GATE_VALIDATION_RESULTS_v1.0.json`, CHECK-010 `expected`/`actual` | "9/9 checks" | "10/10 checks" | Repository file |
+| 2 | PR #14 description, "Corrections after review" section | "Validation Results (9/9 mechanical checks PASS)" | "Validation Results (10/10 mechanical checks PASS)" | PR metadata |
+| 3 | PR #14 description, Test plan checklist | "9/9 mechanical checks PASS" | "10/10 mechanical checks PASS" | PR metadata |
+
+All three are corrected in this same commit. The Section 9 historical table
+above is left as-is (it accurately records what commit `f94e5b4` actually
+did at the time), rather than rewritten to pretend the 9/9 value was never
+written — this report's own rule in Section 6 is not to defer to unread
+prior state, but a defect that genuinely occurred is recorded as history,
+not erased.
+
+## 11. Overall Consistency Result
 
 **No cross-file inconsistency remains in Gate ID usage, Evidence ID
 uniqueness, document status strings, or version labeling**, subject to the
-one documented and intentional exception in Section 5. Three defects across
-two correction passes are recorded, not hidden:
+one documented and intentional exception in Section 5. Four defects across
+three correction passes are recorded, not hidden:
 
 1. FOUND-count/list mismatch (GATE-018 dual classification) — original
    commit `0fd6423`, corrected in `0e900ee`.
@@ -129,10 +155,13 @@ two correction passes are recorded, not hidden:
    commit `0fd6423`, corrected in `0e900ee`.
 3. Residual five-vs-six and 8/8-vs-9/9 references in the Boss Approval
    Record and PR #14 description, not caught by the `0e900ee` sweep because
-   that sweep did not check every file or PR metadata — corrected in this
-   commit.
+   that sweep did not check every file or PR metadata — corrected in
+   `f94e5b4`.
+4. 9/9-vs-10/10 off-by-one in CHECK-010's own item 6, introduced in
+   `f94e5b4`, partially fixed by `d0a04bc`, fully aligned across the JSON
+   sibling and PR #14 description in this commit.
 
 This report does not retroactively describe any prior commit as having been
 fully consistent. Repository File Consistency and PR Metadata Consistency
 are both CONSISTENT as of this commit. Governance Decision Status remains
-100% PENDING and is unaffected by any of the three corrections above.
+100% PENDING and is unaffected by any of the four corrections above.
