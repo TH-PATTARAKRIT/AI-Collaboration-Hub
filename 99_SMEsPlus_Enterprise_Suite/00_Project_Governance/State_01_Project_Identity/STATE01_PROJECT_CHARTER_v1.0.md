@@ -1,10 +1,11 @@
 # STATE 01 PROJECT CHARTER — SMEsPlus Enterprise Suite
 
 Document ID: SMEPLUS-STATE01-CHARTER-001  
-Version: 1.0  
+Version: 1.1  
 State: 01 — Project Identity  
 Status: APPROVED BASELINE  
 Approval Date: 2026-07-13  
+Milestone Update Approval Date: 2026-07-13  
 Final Approver: Boss  
 Execution Coordinator: Executive Secretary  
 AI PMO Role: Support Only
@@ -89,6 +90,14 @@ Held: feature build, broad AI coding, merge, release, production deployment, and
 
 State 01 passes when the Charter, Scope, Principles, RACI, Source-of-Truth Policy, Evidence Register, Gate Review Record, and Boss Approval Record exist in GitHub and are internally consistent.
 
-## 12. Approval
+## 12. Approved Target Milestone
 
-Boss approved execution of State 01 on 2026-07-13. This charter records that decision as the State 01 project identity baseline.
+- Previous Target Milestone: 31 July 2026
+- Approved Revised Target Milestone: 31 October 2026
+- Approval Authority: Boss
+- Approval Date: 13 July 2026
+- Control Condition: This milestone is the current project target and does not override evidence gates, quality gates, security controls, UAT requirements, infrastructure readiness, or production approval requirements.
+
+## 13. Approval
+
+Boss approved execution of State 01 on 2026-07-13. Boss subsequently approved the revised project Target Milestone of 31 October 2026 on 2026-07-13. This charter records both decisions as the State 01 project identity baseline.
