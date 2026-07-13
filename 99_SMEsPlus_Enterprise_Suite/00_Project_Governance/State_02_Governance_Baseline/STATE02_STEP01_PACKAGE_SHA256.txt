@@ -1,0 +1,28 @@
+# STATE 02 STEP 01 PACKAGE SHA-256 CONTROL RECORD
+#
+# Status: REGENERATION REQUIRED AGAINST FINAL REMOTE CONTENT
+# Control date: 2026-07-13
+# Working branch: state02/governance-baseline-inventory
+# Pull request: #11
+#
+# The prior local SHA-256 list is not reused because multiple package files were
+# corrected and published through the GitHub connector after that list was made.
+# Reusing those values would create false integrity evidence.
+#
+# Required verification command in an authenticated checkout of the final branch:
+#
+# find . -maxdepth 1 -type f \
+#   ! -name "STATE02_STEP01_PACKAGE_SHA256.txt" \
+#   -print0 | sort -z | xargs -0 sha256sum \
+#   > STATE02_STEP01_PACKAGE_SHA256.txt
+#
+# sha256sum -c STATE02_STEP01_PACKAGE_SHA256.txt
+#
+# Expected entries: 10
+# Expected verification: all 10 files OK
+#
+# Current control result:
+# Remote package publication: COMPLETE (11 files visible in PR branch)
+# Cryptographic SHA-256 verification: PENDING REGENERATION
+# Governance Gate: HOLD
+# Merge: NOT AUTHORIZED
