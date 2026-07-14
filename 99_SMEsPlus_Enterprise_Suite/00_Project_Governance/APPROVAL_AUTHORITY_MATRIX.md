@@ -2,7 +2,8 @@
 
 Version: v1.0
 Status: Approved
-Owner: SMEsPlus PMO / Boss
+Document Owner: SMEsPlus PMO (stewardship / coordination — Support Only)
+Final Approval Authority: Boss (sole Final Approver)
 Approved By: Boss
 Effective Date: 2026-07-05
 Scope: `99_SMEsPlus_Enterprise_Suite/`

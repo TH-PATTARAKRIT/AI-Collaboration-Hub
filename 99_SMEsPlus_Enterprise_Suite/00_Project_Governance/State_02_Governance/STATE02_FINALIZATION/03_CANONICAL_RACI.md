@@ -11,6 +11,22 @@ Prepared At: 2026-07-14 (UTC)
 > and classifies the overlapping RACI documents. It does not restate the RACI table; the canonical
 > content lives in the source file below.
 
+## 0. Canonical Status (authoritative — EV-D06 reconciliation)
+
+| Field | Value |
+|---|---|
+| Canonical RACI Status | **CANONICAL — CONFIRMED BY BOSS** |
+| Boss Decision | **S02-FINAL-002 — APPROVED AND APPLIED** (2026-07-14) |
+| Governance Reviewer | ChatGPT L99 |
+| Independent Evidence Verification | **PENDING against `STATE02_VERIFICATION_TARGET_COMMIT`** (the reconciled State 02 candidate; full SHA recorded in the Step 09 evidence package) |
+| Canonical RACI count | 1 · Duplicate Canonical RACI | 0 |
+
+This §0 block is the controlling status for this document. It is synchronized with the live source header
+`Step_03_Canonical_RACI/STATE02_CANONICAL_RACI_v1.0.md` ("Document Status: CANONICAL — CONFIRMED BY BOSS
+(S02-FINAL-002, 2026-07-14)"). Any earlier phrasing that framed the RACI as not-yet-canonical, HOLD, a
+candidate pending confirmation, or awaiting Boss approval is superseded and is retained below only as
+**HISTORICAL PRE-APPROVAL STATUS**.
+
 ## 1. Canonical Candidate (single)
 
 | Field | Value |
@@ -18,8 +34,8 @@ Prepared At: 2026-07-14 (UTC)
 | Canonical candidate | `00_Project_Governance/State_02_Governance/Step_03_Canonical_RACI/STATE02_CANONICAL_RACI_v1.0.md` |
 | Reason | Defines exactly one Accountable role per activity; separates Responsible / Accountable / Consulted / Informed; sets Final Approver = Boss only; explicitly bars any AI from Final Approver; enforces preparer ≠ verifier. |
 | Structural rules verified | One Accountable per row: YES · At least one Responsible per row: YES · No AI as Final Approver: YES · No ownerless row: YES (checked against the table in the source file). |
-| Current document status | PREPARED FOR REVIEW / HOLD (per source header) |
-| Recommended classification | **CANONICAL** — upon Boss confirmation (S02-FINAL-002) |
+| Current document status | **CANONICAL — CONFIRMED BY BOSS (S02-FINAL-002)** |
+| Classification | **CANONICAL — CONFIRMED** (Boss decision S02-FINAL-002, APPROVED AND APPLIED) |
 
 ## 2. Requirement Compliance Check
 
@@ -37,7 +53,7 @@ Prepared At: 2026-07-14 (UTC)
 
 | Document | Recommended Classification | Rationale |
 |---|---|---|
-| `Step_03_Canonical_RACI/STATE02_CANONICAL_RACI_v1.0.md` | **Canonical** (on Boss confirm) | Single controlled RACI model |
+| `Step_03_Canonical_RACI/STATE02_CANONICAL_RACI_v1.0.md` | **Canonical — CONFIRMED BY BOSS (S02-FINAL-002)** | Single controlled RACI model |
 | `Step_03_Canonical_RACI/STATE02_RACI_CONFLICT_TO_CORRECTION_MATRIX_v1.0.md` | Supporting | Maps ACF-001..010 → RACI corrections |
 | `Step_03_Canonical_RACI/STATE02_RACI_CORRECTION_REGISTER_v1.0.md` | Supporting | Correction register (RC-xxx) |
 | `Step_03_Canonical_RACI/STATE02_RACI_EVIDENCE_REGISTER_v1.0.md` | Supporting | Evidence trace |
@@ -53,6 +69,16 @@ No new RACI document was created. No conflicting RACI was found that would need 
 
 ## 4. Control Statement
 
-Boss is the Sole Final Approver. This confirmation does not itself make the candidate CANONICAL;
-it becomes Canonical only upon Boss approval S02-FINAL-002 plus recorded independent review and
-verification. Claude AI does not self-approve.
+Boss is the Sole Final Approver. The Canonical RACI **is CANONICAL — CONFIRMED BY BOSS under decision
+S02-FINAL-002 (APPROVED AND APPLIED, 2026-07-14)**; see §0. What remains open is **independent evidence
+verification** (ChatGPT L99) of the reconciled State 02 candidate — the canonical status itself is
+confirmed and not pending. Claude AI does not self-approve and does not self-verify.
+
+### HISTORICAL PRE-APPROVAL STATUS (superseded — retained for trace only)
+
+Before Boss decision S02-FINAL-002 was recorded/applied, this document described the RACI as a
+candidate: *"This confirmation does not itself make the candidate CANONICAL; it becomes Canonical only
+upon Boss approval S02-FINAL-002 plus recorded independent review and verification."* That pre-approval
+condition has been satisfied for the Boss-confirmation element (S02-FINAL-002 APPROVED AND APPLIED); only
+independent evidence verification remains. This paragraph is **historical** and does not describe the
+current status.

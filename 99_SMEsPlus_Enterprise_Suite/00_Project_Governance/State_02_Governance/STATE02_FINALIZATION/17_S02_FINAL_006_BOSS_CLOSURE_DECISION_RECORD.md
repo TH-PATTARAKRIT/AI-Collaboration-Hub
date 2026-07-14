@@ -47,5 +47,29 @@ This record reflects the conservative interpretation of "approve". If Boss inten
 ## 5. Control Statement
 
 Boss is the Sole Final Approver and is the author of this closure decision. Claude AI recorded the
-decision only. State 02 is **CONDITIONAL CLOSE — APPROVED, effective on ChatGPT L99 verification of
-`4da8cc8`**. No merge, release, deployment, or production change has been made.
+decision only. State 02 is **CONDITIONAL CLOSE — APPROVED, effective on ChatGPT L99 verification of the
+reconciled State 02 candidate** (see §6 target migration). No merge, release, deployment, or production
+change has been made.
+
+## 6. Verification Target Migration (EV-D16 — documentation only, original decision preserved)
+
+The Boss decision in §1–§5 is **unchanged**: CONDITIONAL CLOSE — APPROVED. Only the verification target
+commit referenced by the closure condition is migrated, applying this record's own §3.3 provision:
+*"On L99 REWORK: the specific defects are corrected on this branch and re-submitted; the Boss closure
+approval stands but remains not-yet-effective until VERIFIED."*
+
+| Field | Value |
+|---|---|
+| Original verification target (as recorded §1) | `4da8cc8423ff9f6964112b2c5b780020cb8e40fa` |
+| Reason for migration | `4da8cc8` did not contain the merged Step 08 Classification Registers; EV-D06/EV-D13/EV-D14 corrections were applied. A reconciled candidate was created integrating the current SMEsPlus baseline (Step 08) + latest PR #24 head + the corrections. |
+| Migrated verification target | **`STATE02_VERIFICATION_TARGET_COMMIT`** — the reconciled State 02 candidate; full 40-character SHA recorded in `State_02_Governance/Step_09_Evidence_Verification/03_COMMIT_AND_DIFF_VERIFICATION.md` and the PR #29 description |
+| Boss decision status | **UNCHANGED — CONDITIONAL CLOSE, APPROVED (S02-FINAL-006)** |
+| Closure effectiveness | Still requires **ChatGPT L99 VERIFIED** result — now against the migrated (reconciled) target |
+
+**Scope of this migration:** This is a documentation update that applies the record's stated rework
+provision (§3.3); it does **not** fabricate a new Boss decision and does **not** change the meaning,
+scope, or conditionality of S02-FINAL-006. If Boss intended the closure condition to be locked to
+`4da8cc8` only (so that a corrected candidate would require a fresh closure decision rather than
+inheriting this one), **Boss confirmation is required to migrate the closure condition to the new
+candidate commit** — in that case EV-D16 remains a controlled follow-up pending Boss acknowledgement.
+Claude AI does not close State 02 and does not self-verify.

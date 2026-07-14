@@ -98,6 +98,45 @@ governance files under review; other rows cite path + version (SHA obtainable vi
 - No document is classified **Archived** by this finalization. Archive is a Boss-authorized action
   under the Ownerless Standard §6 and is out of scope here.
 
+## 7c. Step-08 Classification Registers integration (EV-D13 reconciliation)
+
+The merged **Step 08 Classification Registers** package now coexists with this Governance Index in the
+reconciled State 02 candidate. It is indexed here. The Step 08 package **self-declares** Gate Status
+`HOLD` / `PREPARED FOR INDEPENDENT REVIEW` with **Boss approval not recorded (0%)** — its independent
+review and Boss Step-08 decision remain **OPEN** (a separate governance track from the S02-FINAL series).
+It therefore enters this index as **Supporting / PREPARED — HOLD (Step 08)**, not Canonical.
+
+| ID | Document / Package | Purpose | Path | Class | Step | Approval |
+|---|---|---|---|---|---|---|
+| GI-70 | `Step_08_Classification_Registers/` (22 files: docs 00–17 + manifest + records) | Single State-02 classification framework + 12 registers/matrices | …/State_02_Governance/Step_08_Classification_Registers/ | Supporting (PREPARED — HOLD) | 08 | Boss approval PENDING (not recorded); preparer self-check PASS; independent verification OPEN |
+| GI-71 | `Step_08…/03_DOCUMENT_CLASSIFICATION_REGISTER.md` | 48-doc classification register (DOC-S02-001..048) | …/Step_08_Classification_Registers/ | Supporting (PREPARED — HOLD) | 08 | see reconciliation note |
+| GI-72 | `Step_08…/02_CLASSIFICATION_CODE_DICTIONARY.md` | Classification code model | …/Step_08_Classification_Registers/ | Supporting | 08 | PREPARED — HOLD |
+| GI-73 | `Step_08…/STEP08_VALIDATION_REPORT.md` + `PACKAGE_MANIFEST_SHA256.txt` | Preparer self-check + integrity manifest | …/Step_08_Classification_Registers/ | Supporting (evidence) | 08 | preparer self-check only — not independent verification |
+
+**Authoritative classification (this Governance Index governs; EV-D13 reconciliation):**
+For every topic, Step 08 and this Index name the **same single** canonical document — there is **no
+duplicate-canonical conflict**. Two Step-08-side items are reconciled to this Index as the authoritative
+source, with the Step-08-file alignment deferred to the Step 08 independent-review cycle (controlled
+follow-up EV-D17):
+
+1. **Auth-Conflict Register v1.0 classification (CONTRADICTION-1):** authoritative = **Supporting
+   (retained)** per GI-21 and §7. Step 08 `03_DOCUMENT_CLASSIFICATION_REGISTER.md` (DOC-S02-031) labels
+   it `SUPERSEDED`; that preparer-level label is **subordinate to** this Index and is to be aligned to
+   `Supporting (retained)` in the Step 08 review. Substance agrees (v1.1 is the current tracking superset).
+2. **Canonical-candidate status vs Boss confirmation:** Step 08 holds the RACI (DOC-S02-010), Ownerless
+   Standard (DOC-S02-020) and Auth-Conflict v1.1 (DOC-S02-032) as `CANONICAL CANDIDATE — NOT EFFECTIVE,
+   PENDING BOSS`. Authoritative = **CANONICAL — CONFIRMED BY BOSS** per GI-30 (S02-FINAL-002), GI-40
+   (S02-FINAL-004) and GI-20; the Step 08 candidates reflect its pre-Boss-decision preparation state and
+   are to be reconciled to the confirmed status in the Step 08 review (its
+   `13_RECLASSIFICATION_AND_RECONCILIATION_LOG.md`).
+3. **Glossary coverage (GAP-1):** the Canonical Role Definitions Glossary (GI-60, Boss-confirmed
+   S02-FINAL-003) is **absent** from the Step 08 register and should be added in the Step 08 review.
+
+These reconciliations do **not** change any Boss-approved classification meaning; they record this Index
+(built on the S02-FINAL Boss decisions) as authoritative and defer the Step-08 package-internal edits to
+Step 08's own independent review. Step 08's package-level `HOLD / independent-review-pending` status is
+unchanged — Claude Code does not assert a Boss Step-08 approval that does not exist.
+
 ## 8. Control Statement
 
 Boss is the Sole Final Approver. Classifications recommended here take effect only upon Boss
