@@ -30,8 +30,8 @@ GTR (Gate Reviewer, recommends only).
 | Check | Result | Detail |
 |---|---|---|
 | Circular dependencies | **NONE** | Dependency chain G0→G1→{G2,G3}→G4→G5→G6→G7 is a DAG; no gate depends on a downstream gate. |
-| Missing owners | **NONE among gates** | Every gate has one Responsible and one Accountable. Note: named **Reviewer/Verifier identities** are role-appointed but PENDING RECORD (OCP-1, OCP-2) — this is an identity-record gap, not a role-definition gap. |
-| Duplicate authority | **DETECTED (source docs)** | Joint "Boss / PMO" and "PMO + Boss" wording in GI-10..12 (ACF-001..006). Crosswalk shows Boss as sole decision; correction routed to S02-FINAL-001. |
+| Missing owners | **NONE among gates** | Every gate has one Responsible and one Accountable. Reviewer/Verifier identities are now **recorded** — ChatGPT L99 under Boss S02-FINAL-005 (doc 16), independence caveat noted; L99's VERIFIED result on the final commit is pending. |
+| Duplicate authority | **DETECTED → CORRECTED** | Joint "Boss / PMO" / "PMO + Boss" wording (ACF-001..006) was corrected in source on 2026-07-14 under Boss S02-FINAL-001/003 (doc 02 §5). Post-correction scan finds **no active joint-authority wording**; remaining matches are only historical quotations inside Correction/Confirmation record tables. |
 | Unverifiable exit criteria | **NONE in this crosswalk** | Every exit criterion references a corrected file + a Boss record (both inspectable). |
 | Gates dependent only on percentage claims | **NONE** | No gate exit criterion above is "X% complete". Percentage-only claims are rejected per doc 07. |
 

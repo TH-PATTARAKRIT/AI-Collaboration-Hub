@@ -20,9 +20,9 @@ Status Model: EXECUTION COMPLETE / READY FOR REVIEW / READY FOR VERIFICATION / R
 | 02 | Authority Conflict Resolution | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | **S02-FINAL-001/003 APPROVED 2026-07-14 — corrections applied** | 10 conflicts (6×P0, 4×P1) corrected in source (doc 02 §5). Independent verification recording open (S02-FINAL-005). |
 | 03 | Canonical RACI | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | **S02-FINAL-002 APPROVED — CONFIRMED CANONICAL** | RACI v1.0 Boss Confirmation Record added. AI is not Final Approver. |
 | 04 | Ownerless Execution Control | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | **S02-FINAL-004 APPROVED — CONFIRMED CANONICAL** | Standard confirmed (doc 04). All required elements present. |
-| 05 | Canonical Governance Index | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | READY FOR BOSS ACTION | Index built (doc 05). Classifications assigned on evidence, not on file existence. |
-| 06 | Governance Gate Crosswalk | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | READY FOR BOSS ACTION | Crosswalk built (doc 06). No circular dependency detected. |
-| 07 | Evidence & Approval Standard | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | READY FOR BOSS ACTION | Standard finalized (doc 07). Percentage-without-evidence rule enforced. |
+| 05 | Canonical Governance Index | EXECUTION COMPLETE | READY FOR REVIEW | L99 (pending final) | Rolled into closure (S02-FINAL-006) | Index built (doc 05); classifications updated post-correction (GI-10..14, GI-60). |
+| 06 | Governance Gate Crosswalk | EXECUTION COMPLETE | READY FOR REVIEW | L99 (pending final) | Rolled into closure (S02-FINAL-006) | Crosswalk built (doc 06). No circular dependency; duplicate authority CORRECTED. |
+| 07 | Evidence & Approval Standard | EXECUTION COMPLETE | READY FOR REVIEW | L99 (pending final) | Rolled into closure (S02-FINAL-006) | Standard finalized (doc 07). Percentage-without-evidence rule enforced. |
 
 ## 2. Step 01 Protection Statement
 

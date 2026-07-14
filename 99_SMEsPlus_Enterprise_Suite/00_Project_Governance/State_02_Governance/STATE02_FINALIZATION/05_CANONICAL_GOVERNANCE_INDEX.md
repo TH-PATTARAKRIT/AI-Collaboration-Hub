@@ -8,7 +8,8 @@ Prepared By: Claude AI (Responsible / analysis only)
 Prepared At: 2026-07-14 (UTC)
 
 Classification legend: Canonical / Supporting / Superseded / Archived / Draft.
-Approval column values: `CLOSED BY BOSS`, `READY FOR BOSS ACTION`, `PREPARED / HOLD`, `N/A`.
+Approval column values: `CLOSED BY BOSS`, `CANONICAL — CONFIRMED BY BOSS`, `CORRECTED <date>`,
+`BASELINE OK`, `READY FOR BOSS ACTION`, `PREPARED / HOLD`, `N/A`.
 A document is **not** Canonical merely because the file exists; Canonical is recommended only where
 the document is the single controlled source for its topic and is confirmed (or recommended for Boss
 confirmation) as such.
@@ -34,11 +35,12 @@ governance files under review; other rows cite path + version (SHA obtainable vi
 
 | ID | Document | Purpose | Owner | Path | Blob SHA | Evidence | Review | Verify | Approval | Class | Step | Conflict Ref |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| GI-10 | AI_ROLE_AND_RESPONSIBILITY.md | AI roles + gate ownership | ES | 00_Project_Governance/ | `ed333098…` | Complete | Pending | Pending | READY FOR BOSS ACTION | Supporting (needs correction) | 02 | ACF-001,002,003 |
-| GI-11 | ARCHITECTURE_GOVERNANCE_STANDARD.md | Architecture gate authority | ES | 00_Project_Governance/ | `3a262218…` | Complete | Pending | Pending | READY FOR BOSS ACTION | Supporting (needs correction) | 02 | ACF-004 |
-| GI-12 | APPROVAL_AUTHORITY_MATRIX.md | Draft/Review/Approver matrix | ES | 00_Project_Governance/ | `66930ae5…` | Complete | Pending | Pending | READY FOR BOSS ACTION | Supporting (needs correction) | 02 | ACF-005,006,007 |
-| GI-13 | DOCUMENT_REGISTRY.yaml | Document registry / baseline | DC | 00_Project_Governance/ | `2c31ee69…` | Complete | Pending | Pending | READY FOR BOSS ACTION | Supporting | 02 | ACF-008 |
-| GI-14 | FOLDER_REGISTRY.yaml | Folder ownership | DC | 00_Project_Governance/ | `f307484a…` | Complete | Pending | Pending | READY FOR BOSS ACTION | Supporting (needs definition) | 02 | ACF-009 |
+| GI-10 | AI_ROLE_AND_RESPONSIBILITY.md | AI roles + gate ownership | ES | 00_Project_Governance/ | `ae297c2d` (was `ed333098`) | Complete | L99 (pending final) | L99 (pending final) | CORRECTED 2026-07-14 (S02-FINAL-001) | Supporting (corrected) | 02 | ACF-001,002,003 |
+| GI-11 | ARCHITECTURE_GOVERNANCE_STANDARD.md | Architecture gate authority | ES | 00_Project_Governance/ | `f3abdb62` (was `3a262218`) | Complete | L99 (pending final) | L99 (pending final) | CORRECTED 2026-07-14 (S02-FINAL-001) | Supporting (corrected) | 02 | ACF-004 |
+| GI-12 | APPROVAL_AUTHORITY_MATRIX.md | Draft/Review/Approver matrix | ES | 00_Project_Governance/ | `07edd185` (was `66930ae5`) | Complete | L99 (pending final) | L99 (pending final) | CORRECTED 2026-07-14 (S02-FINAL-001/003) | Supporting (corrected) | 02 | ACF-005,006,007 |
+| GI-13 | DOCUMENT_REGISTRY.yaml | Document registry / baseline | DC | 00_Project_Governance/ | `2c31ee69` (unchanged) | Complete | L99 (pending final) | L99 (pending final) | BASELINE OK — ACF-008 resolved by propagation | Supporting | 02 | ACF-008 |
+| GI-14 | FOLDER_REGISTRY.yaml | Folder ownership | DC | 00_Project_Governance/ | `ba56dc37` (was `f307484a`) | Complete | L99 (pending final) | L99 (pending final) | CORRECTED 2026-07-14 (S02-FINAL-003) | Supporting (corrected) | 02 | ACF-009 |
+| GI-60 | STATE02_CANONICAL_ROLE_DEFINITIONS_GLOSSARY_v1.0.md | Canonical PMO/role glossary | ES | …/State_02_Governance/ | (new file) | Complete | L99 (pending final) | L99 (pending final) | **CANONICAL — CONFIRMED BY BOSS (S02-FINAL-003)** | **Canonical** | 02 | ACF-007,009,010 |
 
 ## 3. Step-02 Authority Conflict Set
 

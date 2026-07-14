@@ -16,9 +16,10 @@ Gate Status: Boss-confirmed CANONICAL; independent review/verification identitie
 
 This document defines the single controlled RACI model for State 02. It removes the
 authority ambiguity identified in STEP 02 (ACF-001 through ACF-010) between the roles
-listed in Section 2. This document is DRAFT-controlled: it becomes Canonical only after
-independent Governance Review, independent Evidence Verification, and Boss approval.
-No status in this document is APPROVED, PASS, FINAL, CANONICAL, CLOSED, or COMPLETE.
+listed in Section 2. It was DRAFT-controlled until Boss confirmation; **Boss confirmed it
+CANONICAL on 2026-07-14 under decision S02-FINAL-002** (see the Boss Confirmation Record in
+Section 6). ChatGPT L99 is recorded as Governance Reviewer and Evidence Verifier under
+S02-FINAL-005; L99's VERIFIED result on the final commit remains pending.
 
 ## 2. Controlled Roles
 
@@ -30,8 +31,8 @@ No status in this document is APPROVED, PASS, FINAL, CANONICAL, CLOSED, or COMPL
 | CAI | Claude AI | Responsible execution and document preparation. May prepare RACI, matrices, registers, patches, manifests. May commit/push only when authenticated. Cannot be Accountable Owner, independent Reviewer, Evidence Verifier, or Final Approver. |
 | PMO | AI PMO | Support Only. Tracking, report preparation, evidence organization. Cannot approve, verify, pass Gate, merge, release, or deploy. |
 | RO | Repository Owner / Authorized GitHub Execution Agent | Responsible for repository write execution. Must provide real Commit SHA. Cannot declare Gate PASS. |
-| GR | Governance Reviewer | Independent review of governance meaning, classification, severity, gate impact. Role appointed (2026-07-13 order); named identity PENDING RECORD. |
-| EV | Independent Evidence Verifier | Verifies path, commit, hash, owner, approval, and evidence. Must be separate from the preparer. May be ChatGPT L99 only where evidence is system-generated and independently inspectable. Must never rely only on Claude AI self-report. Role appointed; named identity PENDING RECORD. |
+| GR | Governance Reviewer | Independent review of governance meaning, classification, severity, gate impact. **Recorded identity: ChatGPT L99** (Boss S02-FINAL-005, 2026-07-14). |
+| EV | Independent Evidence Verifier | Verifies path, commit, hash, owner, approval, and evidence. Must be separate from the preparer. May be ChatGPT L99 only where evidence is system-generated and independently inspectable. Must never rely only on Claude AI self-report. **Recorded identity: ChatGPT L99** (Boss S02-FINAL-005; independence caveat — same identity as GR — recorded in doc 16 §1). |
 | DC | Document Control | Registry maintenance, version control, classification execution, controlled publication execution after approval. |
 | FO | Functional Owner | Owns functional content correctness of domain documents. |
 | TO | Technical Owner | Owns technical content correctness and technical execution (build/release/deploy execution after approval). |
@@ -75,12 +76,14 @@ No ownerless execution activity: CONFIRMED (every row has R and A).
 
 ## 5. Relationship to STEP 02 Findings
 
-This RACI supersedes, upon Boss approval only, the conflicting authority statements
+Under Boss approval S02-FINAL-002, this RACI supersedes the conflicting authority statements
 recorded in ACF-001 through ACF-010 (see STATE02_AUTHORITY_CONFLICT_REGISTER_v1.1.md).
 The mapping is controlled in STATE02_RACI_CONFLICT_TO_CORRECTION_MATRIX_v1.0.md and
-STATE02_RACI_CORRECTION_REGISTER_v1.0.md. No source governance document is modified by
-this STEP; all source changes remain proposed in
-STATE02_RACI_SOURCE_DOCUMENT_UPDATE_PLAN_v0.1.md.
+STATE02_RACI_CORRECTION_REGISTER_v1.0.md. The corresponding source governance corrections
+were **applied on 2026-07-14 under Boss S02-FINAL-001/003** (see
+`STATE02_FINALIZATION/02_AUTHORITY_CONFLICT_DECISION_REGISTER.md` §5 for the new blob SHAs);
+the earlier `STATE02_RACI_SOURCE_DOCUMENT_UPDATE_PLAN_v0.1.md` recorded those changes while
+they were still proposed.
 
 ## 6. Boss Confirmation Record
 

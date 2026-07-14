@@ -44,14 +44,16 @@ itself (S02-FINAL-006) is Boss's, **State 02 is not eligible for unconditional c
 eligible for **CONDITIONAL CLOSE** on (a) ChatGPT L99's verification confirmation of the final commit
 and (b) the Boss closure signature S02-FINAL-006. See doc 10.
 
-## Controlled Follow-up Candidates (P2 / P1 non-blocking)
+## Controlled Follow-up Candidates — CLOSED (S02-FINAL-003 applied 2026-07-14)
 
-| ID | Item | Class | Owner | Due | Evidence Requirement | Impact |
-|---|---|---|---|---|---|---|
-| CF-01 | ACF-007 / ACF-009 ownership relabel after PMO glossary | P1 | ES/DC | On S02-FINAL-003 | Corrected registry blobs | Removes residual role ambiguity |
-| CF-02 | ACF-010 publish canonical PMO glossary document | P1 | ES/CAI | On S02-FINAL-003 | New glossary doc + SHA | Root-cause closure |
+Both former follow-up candidates were completed when Boss approved S02-FINAL-003; they are no longer
+open follow-ups:
 
-These do not affect authority integrity of the P0 set, evidence integrity, gate operation, or State
-03 and may proceed as Controlled Follow-up if Boss conditionally closes State 02.
+| ID | Item | Class | Status | Evidence |
+|---|---|---|---|---|
+| CF-01 | ACF-007 / ACF-009 ownership relabel after PMO glossary | P1 | **CLOSED — applied** | APPROVAL_AUTHORITY_MATRIX.md (`07edd185`), FOLDER_REGISTRY.yaml (`ba56dc37`) |
+| CF-02 | ACF-010 publish canonical PMO glossary document | P1 | **CLOSED — published** | `STATE02_CANONICAL_ROLE_DEFINITIONS_GLOSSARY_v1.0.md` (CANONICAL, S02-FINAL-003) |
+
+No open Controlled Follow-up item remains for State 02.
 
 Boss is the Sole Final Approver.

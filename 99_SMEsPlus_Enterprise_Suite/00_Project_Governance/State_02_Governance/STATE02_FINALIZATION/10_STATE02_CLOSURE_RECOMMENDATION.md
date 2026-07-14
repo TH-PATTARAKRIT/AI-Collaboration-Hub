@@ -27,14 +27,14 @@ evidenced** (doc 02 §5, doc 08 outcomes). Remaining conditions for closure:
 
 ## Why not RECOMMEND CLOSE
 
-As of 2026-07-14, criteria 1–4 are satisfied: Boss approved S02-FINAL-001..004, the P0 corrections
-are applied and evidenced (doc 02 §5), and the Canonical RACI and Ownerless Standard are Boss-confirmed
-CANONICAL. What is still missing for **unconditional** closure is recorded **independent
-verification** of the applied corrections: the Evidence Verifier identity is not yet named
-(S02-FINAL-005), so the corrections are applied-and-evidenced but **not independently VERIFIED**, and
-the Boss closure signature (S02-FINAL-006) has not been given. Claiming CLOSE now would assert an
-independent verification and a closure signature that do not yet exist — barred by the Evidence &
-Approval Standard (doc 07) and by SKT-02.
+As of 2026-07-14, criteria 1–4 are satisfied (Boss approved S02-FINAL-001..004; P0 corrections applied
+and evidenced in doc 02 §5; Canonical RACI and Ownerless Standard Boss-confirmed), and the
+Reviewer/Verifier identity is **recorded** — ChatGPT L99 under S02-FINAL-005 (doc 16). What is still
+missing for **unconditional** closure is the Verifier's actual **VERIFIED result on the final commit**
+(L99's first review preceded the corrections, so verification of the final commit is pending, not yet
+received) and the **Boss closure signature (S02-FINAL-006)**. Claiming CLOSE now would assert a
+verification result and a closure signature that do not yet exist — barred by the Evidence & Approval
+Standard (doc 07) and by SKT-02.
 
 ## Why not DO NOT CLOSE
 
@@ -51,12 +51,12 @@ NOT CLOSE would misclassify decision-ready work as incomplete execution.
 |---|---|---|
 | Circular gate dependency | No | Doc 06 §2 |
 | Ownerless controlled gate | No | Every gate has R + A |
-| Duplicate final authority left unresolved | Presented, not left | Routed to S02-FINAL-001 |
+| Duplicate final authority left unresolved | No — CORRECTED | Applied under S02-FINAL-001/003 (doc 02 §5) |
 | Unverifiable exit criteria | No | Doc 06 §2 |
 | Step 01 reopened without evidence | No | SKT-01 PASS |
 
-No Critical Defect blocks State 03 preparation, provided S02-FINAL-001 is approved so State 03 does
-not inherit joint-authority gate wording.
+No Critical Defect blocks State 03 preparation: S02-FINAL-001 was approved and the joint-authority
+gate wording is corrected in source, so State 03 does not inherit it.
 
 ## Authority Statement
 

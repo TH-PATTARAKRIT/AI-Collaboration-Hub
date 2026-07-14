@@ -12,16 +12,18 @@ Authorization: S02-BOSS-001..007 (per execution order). Boss = Sole Final Approv
 ## 1. What This Package Is
 
 A closure-ready State-02 governance package that **consolidates existing valid evidence** (it does
-not re-create it), resolves correctable authority wording under the locked Boss-sole-approver
-principle **by recommendation**, and presents exact Boss decisions. Claude AI did not approve its own
-work, did not close State 02, and did not modify any source governance document.
+not re-create it) and resolves correctable authority wording under the locked Boss-sole-approver
+principle. Corrections were first presented as exact Boss decisions; after Boss **approved
+S02-FINAL-001..005 on 2026-07-14**, the recommended corrections were applied to source (doc 02 §5).
+Claude AI did not approve its own work and did not close State 02; source governance documents were
+modified **only under explicit Boss authorization**, never unilaterally.
 
 ## 2. Headline Results
 
 | Item | Result |
 |---|---|
 | Step 01 | **CLOSED BY BOSS** — not reopened (no defect evidence) |
-| Step 02 Authority Conflicts | 10 consolidated (6×P0, 4×P1); all presented for exact Boss decision; source unchanged (SHAs re-verified) |
+| Step 02 Authority Conflicts | 10 consolidated (6×P0, 4×P1); corrections **applied after Boss approval** S02-FINAL-001/003 (doc 02 §5); new blob SHAs recorded |
 | Step 03 Canonical RACI | One Canonical candidate confirmed; Boss=FA, no AI as FA |
 | Step 04 Ownerless Execution | Standard finalized; all 9 required elements present |
 | Step 05 Governance Index | Built; classifications assigned on evidence |
@@ -30,12 +32,14 @@ work, did not close State 02, and did not modify any source governance document.
 | Skill Simulation | **PASS** — Critical 6/6, High 4/4, SKT 7/7 |
 | State 02 Recommendation | **RECOMMEND CONDITIONAL CLOSE** |
 
-## 3. The Decisive Gap
+## 3. The Decisive Gap (updated 2026-07-14)
 
-All authority-conflict findings remain **HOLD** because the Independent Governance Reviewer and
-Independent Evidence Verifier identities are role-appointed but **PENDING RECORD**. Recording them
-(S02-FINAL-005) is the single change that would let a future run move HOLD → VERIFIED and lift the
-recommendation from CONDITIONAL to unconditional CLOSE.
+The Independent Governance Reviewer and Evidence Verifier are now **recorded** — ChatGPT L99, under
+Boss decision S02-FINAL-005 (doc 16), with a stated independence caveat (same identity for both
+roles; permitted only against system-generated, independently inspectable evidence). Two items remain
+before unconditional closure: **(a)** ChatGPT L99's VERIFIED result against the final commit (L99's
+first review preceded the corrections; verification of the final commit is requested and pending),
+and **(b)** the Boss closure signature **S02-FINAL-006**.
 
 ## 4. Boss Decisions (see doc 08)
 
