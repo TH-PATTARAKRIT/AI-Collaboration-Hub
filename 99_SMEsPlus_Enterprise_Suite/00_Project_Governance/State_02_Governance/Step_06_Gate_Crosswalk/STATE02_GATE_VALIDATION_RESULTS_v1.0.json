@@ -90,11 +90,20 @@
       "actual": "1) PASS - the only 'five'/'5 competing' hits remaining in the directory are inside STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md Section 9 (labelled stale-value table) and STATE02_GATE_CHANGELOG_v1.0.md (labelled changelog entries) and STATE02_GATE_VALIDATION_RESULTS_v1.0.md/.json CHECK-009's own historical description; none are live claims; 2) PASS - same pattern for '8/8', confined to labelled historical/changelog text; 3) PASS - BOSS-002 now reads '6 identified Gate models'; 4) PASS - 6 rows, verified in CHECK-009; 5) PASS - verified in CHECK-009; 6) PASS - PR #14 description states six models and 10/10 checks as of this commit (not machine-verifiable from inside the repository; asserted here as a manual step, see STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md Section 10); 7) PASS - confirmed by manual review of every remaining hit",
       "result": "PASS",
       "note": "This check exists because the CHECK-009 correction (commit 0e900ee2b0483202e359e357f4aceb4630c47efb) fixed the Crosswalk and Inventory Register but left two other locations stale: STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md's BOSS-002 item, and the PR #14 description itself (which is GitHub metadata, not a repository file, and so was never covered by any prior grep/git-diff-based check). CHECK-010 covers both the in-repository sweep and records the manual PR-metadata correction. Item 6 of this check cannot be re-run mechanically from within the repository in future sessions without a live GitHub API call; it is PASS as an asserted, dated fact for this specific correction, not a self-updating check."
+    },
+    {
+      "check_id": "CHECK-011",
+      "name": "Evidence path-level SHA and graph count consistency (P0/P1 correction, added after correction order)",
+      "command": "git log -1 --format=%H -- \"<path>\" re-run against all 22 evidence paths; grep for graph-count/structural-check-count language in STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md and STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md; grep for corrected 16/22 count in active review summary and PR #14 description",
+      "expected": "1) every Evidence Register row with a path has a path-specific SHA; 2) every recorded SHA matches git log -1 --format=%H -- <path> for that exact path; 3) EV-G06-019 has its own SHA, not a pointer to EV-G06-020; 4) no active row uses commit da86bf1a40954cab86dd8c9181e271a4138f47f6; 5) Dependency Matrix states five independent graphs (34 edges); 6) Circular Dependency Report states five independent graphs and the stated structural-check count matches the detailed checks (5 structural + 1 cross-graph + 1 self-loop = 7); 7) PR #14 description and active review summary state 16 of 22 rows corrected, not 11 of 22",
+      "actual": "1) PASS - all 22 rows carry a path-specific SHA; 2) PASS - all 22 rows independently rerun, full command-by-command output in STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md Section 5; 3) PASS - EV-G06-019 now cites 39c39fdb791ecb5aea072f7316cec710fc707d8c from its own path; 4) PASS - 0 active rows cite da86bf1a40954cab86dd8c9181e271a4138f47f6; the 16 rows that did (EV-G06-002-014, 016-018) now cite 7ae04a22f976a54a3e49d1454cb82420328ab5d7, independently confirmed per-path; 5) PASS - Dependency Matrix Section 5 states 34 directed edges across 5 independent, non-intersecting graphs; 6) PASS - Circular Dependency Report Sections 1/4 state 5 graphs and 7 total checks (5 structural + 1 cross-graph + 1 self-loop, Check 7 newly added); 7) PASS - PR #14 description and this package's active review summary state 16 of 22 rows corrected plus EV-G06-019 assigned its own SHA",
+      "result": "PASS",
+      "note": "This check exists because a P0/P1 correction order found that 16 of 22 Evidence Register rows cited an unrelated commit (da86bf1a..., 'L99.99: add SMEsPlus Claude FDS designer skill'), EV-G06-019 cited no path-specific SHA at all, the Dependency Matrix/Circular Dependency Report undercounted the independent graph total as 4 instead of 5, and the circularity-check enumeration listed 6 checks instead of 7. All four defects are corrected in this same commit. This check does not constitute Review, Verification, or Boss Approval."
     }
   ],
   "summary": {
-    "total_checks": 10,
-    "pass": 10,
+    "total_checks": 11,
+    "pass": 11,
     "fail": 0
   }
 }

@@ -90,7 +90,11 @@ item.
 ## 5. Total Edge Count for Circularity Check
 
 Set A: 9 edges. Set B: GATE-030 (3) + GATE-032 (4) + GATE-031 (7) + GATE-029
-(11, inferred) = 25 edges. Combined total: **34 directed edges across 4
-independent, non-intersecting graphs** (Set A and the four Set B sub-models
-share no common nodes, since no document states an edge between them). This
-edge set is the input to `STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md`.
+(11, inferred) = 25 edges. Combined total: **34 directed edges across 5
+independent, non-intersecting graphs** — Set A, GATE-030, GATE-032,
+GATE-031, and GATE-029 (Set A and the four Set B sub-models share no
+common nodes, since no document states an edge between them). The prior
+version of this section undercounted the graph total as 4 by omitting Set
+A itself from the graph count while still including its 9 edges in the
+total; corrected 2026-07-14 (Step 06 P1 correction). This edge set is the
+input to `STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md`.

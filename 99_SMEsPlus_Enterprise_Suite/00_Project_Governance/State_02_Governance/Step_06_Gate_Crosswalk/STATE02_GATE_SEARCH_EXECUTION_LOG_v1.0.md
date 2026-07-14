@@ -76,3 +76,65 @@ exit status. All commands below were actually run; none is hypothetical.
 - Prior `Step_06_Gate_Crosswalk` package, or any file/directory named "Step
   06" or "Gate Crosswalk" — 0 hits (the only 2 textual hits both refer to
   GitHub Issue #6, a backlog item, not an existing package).
+
+## 5. Evidence Path-Level Commit Hash Revalidation (2026-07-14)
+
+Prepared At (this section): 2026-07-14T04:49:00Z (UTC), via `date -u +%FT%TZ`.
+
+### 5.1 Trigger
+
+A P0 correction order found that 16 of the 22 Evidence Register rows cited
+commit `da86bf1a40954cab86dd8c9181e271a4138f47f6` ("L99.99: add SMEsPlus
+Claude FDS designer skill"), a commit unrelated to any of those 16 files,
+and that EV-G06-019 cited no path-specific hash at all. Per correction
+order rules: no global hash replacement is permitted; each path was
+rerun individually with `git log -1 --format=%H -- "<exact-path>"`, and
+two files may only be recorded as sharing a commit when their individual
+commands independently return the same SHA.
+
+### 5.2 Command and Result — All 22 Evidence Paths
+
+Command form used for every row: `git log -1 --format=%H -- "<path>"`
+(working directory: `/home/user/AI-Collaboration-Hub`).
+
+| Evidence ID | Exact Repository Path | Returned Commit SHA | Commit Subject | Verification Timestamp (UTC) | Prior Recorded SHA | Match / Mismatch / Missing |
+|---|---|---|---|---|---|---|
+| EV-G06-001 | `99_SMEsPlus_Enterprise_Suite/03_Architecture/00_Architecture_Governance/ARCHITECTURE_GATE_MODEL.md` | `4b6103a488db9b9e8a92a1b5e1cb4244afe3c4d3` | state03: define architecture gate model A to D | 2026-07-14T04:49:00Z | `4b6103a488db9b9e8a92a1b5e1cb4244afe3c4d3` | Match |
+| EV-G06-002 | `99_SMEsPlus_Enterprise_Suite/00_Architecture_Office/Governance/ARCHITECTURE_REVIEW_GATE.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-003 | `99_SMEsPlus_Enterprise_Suite/00_Architecture_Office/Governance/README.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-004 | `99_SMEsPlus_Enterprise_Suite/00_Architecture_Office/Review_Checklists/SMEPLUS-ARCHITECTURE-REVIEW-GATE-v0.1.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-005 | `99_SMEsPlus_Enterprise_Suite/00_Architecture_Office/Review_Checklists/README.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-006 | `99_SMEsPlus_Enterprise_Suite/00_Architecture_Office/Review_Checklists/ARG_CHECKLIST.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-007 | `99_SMEsPlus_Enterprise_Suite/00_Project_Governance/QUALITY_GATE_STANDARD.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-008 | `99_SMEsPlus_Enterprise_Suite/00_Project_Governance/APPROVAL_AUTHORITY_MATRIX.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-009 | `99_SMEsPlus_Enterprise_Suite/00_Project_Governance/AI_ROLE_AND_RESPONSIBILITY.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-010 | `99_SMEsPlus_Enterprise_Suite/12_State_AI_Execution_Control/STATE_GATE_MATRIX.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-011 | `99_SMEsPlus_Enterprise_Suite/12_State_AI_Execution_Control/templates/STATE_XX_GATE_CHECKLIST.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-012 | `99_SMEsPlus_Enterprise_Suite/04_Review_Gates/ACC-001_L99_REVIEW_GATE_REPORT.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-013 | `99_SMEsPlus_Enterprise_Suite/07_Output_From_AI/Repository_Audit_2026-07-05/BUILD_READINESS_GATE_REPORT.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-014 | `99_SMEsPlus_Enterprise_Suite/01_SaaS_Foundation/FDS/FDS Phase 2 Quality Gate.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-015 | `99_SMEsPlus_Enterprise_Suite/00_Project_Governance/State_01_Project_Identity/STATE01_GATE_REVIEW_AND_BOSS_APPROVAL_RECORD.md` | `821376fe0c017cead945239a43bc1358c8b37074` | state01: record Boss approval for 31 October 2026 milestone | 2026-07-14T04:49:00Z | `821376fe0c017cead945239a43bc1358c8b37074` | Match |
+| EV-G06-016 | `99_SMEsPlus_Enterprise_Suite/MODULE_SPEC_DASHBOARD.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-017 | `99_SMEsPlus_Enterprise_Suite/00_Master_Templates/SMEPLUS_AI_EXECUTION_TEMPLATE_L99.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-018 | `99_SMEsPlus_Enterprise_Suite/01_SaaS_Foundation/ARCHITECTURE_GOVERNANCE.md` | `7ae04a22f976a54a3e49d1454cb82420328ab5d7` | L99.99: intake ACC-001 State 3 review comments | 2026-07-14T04:49:00Z | `da86bf1a40954cab86dd8c9181e271a4138f47f6` | Mismatch — corrected |
+| EV-G06-019 | `99_SMEsPlus_Enterprise_Suite/00_Project_Governance/State_02_Governance/STATE02_GITHUB_ISSUE_AUTHORITY_SCAN_ADDENDUM_v0.1.md` | `39c39fdb791ecb5aea072f7316cec710fc707d8c` | state02: add github issue authority scan addendum | 2026-07-14T04:49:00Z | (none recorded — pointed to EV-G06-020 instead) | Missing — now assigned its own SHA |
+| EV-G06-020 | `99_SMEsPlus_Enterprise_Suite/00_Project_Governance/State_02_Governance/Step_03_Canonical_RACI/STATE02_RACI_CONFLICT_TO_CORRECTION_MATRIX_v1.0.md` | `3f9c4d86f04331fe9f32c7badac4b1f3d4bc0fc8` | docs(governance): complete State 02 Step 03 RACI and Step 04 ownerless controls | 2026-07-14T04:49:00Z | `3f9c4d86f04331fe9f32c7badac4b1f3d4bc0fc8` | Match |
+| EV-G06-021 | `99_SMEsPlus_Enterprise_Suite/00_Project_Governance/State_02_Governance/Step_03_Canonical_RACI/STATE02_RACI_CORRECTION_REGISTER_v1.0.md` | `3f9c4d86f04331fe9f32c7badac4b1f3d4bc0fc8` | docs(governance): complete State 02 Step 03 RACI and Step 04 ownerless controls | 2026-07-14T04:49:00Z | `3f9c4d86f04331fe9f32c7badac4b1f3d4bc0fc8` | Match |
+| EV-G06-022 | `99_SMEsPlus_Enterprise_Suite/00_Project_Governance/State_02_Governance/Step_04_Ownerless_Execution_Control/STATE02_AI_EXECUTION_AUTHORITY_MATRIX_v1.0.md` | `3f9c4d86f04331fe9f32c7badac4b1f3d4bc0fc8` | docs(governance): complete State 02 Step 03 RACI and Step 04 ownerless controls | 2026-07-14T04:49:00Z | `3f9c4d86f04331fe9f32c7badac4b1f3d4bc0fc8` | Match |
+
+### 5.3 Result Summary
+
+- 22/22 paths resolved (0 `SOURCE NOT FOUND`, 0 `COMMIT HISTORY NOT CONFIRMED`).
+- 16 rows (EV-G06-002–014, 016–018) mismatched their prior recorded SHA
+  and were corrected to `7ae04a22f976a54a3e49d1454cb82420328ab5d7`. This
+  is a single shared SHA only because each of the 16 individual
+  `git log` commands independently returned that same value — not because
+  of a global substitution.
+- 1 row (EV-G06-019) previously had no path-specific SHA and was assigned
+  `39c39fdb791ecb5aea072f7316cec710fc707d8c` from its own independent
+  command.
+- 5 rows (EV-G06-001, EV-G06-015, EV-G06-020, EV-G06-021, EV-G06-022)
+  already carried a correct path-specific SHA; no change.
+- Reproducibility: any reviewer can rerun
+  `git log -1 --format=%H -- "<path>"` for each path above against branch
+  `claude/gate-crosswalk-v1.3-1gs5q7` and obtain the same SHA.

@@ -142,12 +142,52 @@ written — this report's own rule in Section 6 is not to defer to unread
 prior state, but a defect that genuinely occurred is recorded as history,
 not erased.
 
+## 12. Evidence Path-Level SHA and Graph Count Integrity Correction (fourth correction pass, 2026-07-14)
+
+A P0/P1 correction order dated 2026-07-14 found two independent defect
+classes that CHECK-001 through CHECK-010 did not catch, because those
+checks verify string/ID uniqueness and prose-vs-table consistency, not
+per-path commit-hash accuracy or edge/graph arithmetic:
+
+1. **Evidence commit hash integrity (P0).** 16 of the 22 Evidence Register
+   rows (EV-G06-002 through EV-G06-014, EV-G06-016 through EV-G06-018)
+   cited commit `da86bf1a40954cab86dd8c9181e271a4138f47f6` ("L99.99: add
+   SMEsPlus Claude FDS designer skill"), a commit that does not touch any
+   of those 16 files. A 17th row, EV-G06-019, cited no path-specific SHA
+   of its own and instead pointed the reader to EV-G06-020 (a different
+   file). All 22 rows were independently rerun with
+   `git log -1 --format=%H -- "<exact-path>"`; the 16 rows were corrected
+   to `7ae04a22f976a54a3e49d1454cb82420328ab5d7` (confirmed independently
+   per path, not by global substitution), and EV-G06-019 was assigned its
+   own SHA, `39c39fdb791ecb5aea072f7316cec710fc707d8c`. Full command output
+   is in `STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md` Section 5.
+2. **Independent graph count (P1).** `STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md`
+   and `STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md` stated 4
+   independent graphs, undercounting by omitting Dependency Set A itself
+   from the graph count while still including its 9 edges in the 34-edge
+   total. Corrected to 5 independent graphs (Set A, GATE-030, GATE-032,
+   GATE-031, GATE-029; 34 directed edges). The Circular Dependency Report's
+   stated check count (6) also did not match its own detailed checks once
+   a distinct self-loop check is counted; a Check 7 (Self-Loop Check) was
+   added and the total corrected to 7 (5 structural + 1 cross-graph + 1
+   self-loop).
+3. **AI review summary count.** The AI Governance Review Assistant had
+   previously reported "11 of 22 Evidence Records used the incorrect SHA"
+   in PR review commentary. The repository-derived count is 16 of 22
+   (plus EV-G06-019 separately lacking its own SHA) — corrected in the PR
+   #14 review thread and in `STATE02_GATE_CHANGELOG_v1.0.md`.
+
+`STATE02_GATE_VALIDATION_RESULTS_v1.0.md` / `.json` CHECK-011 is the new
+permanent mechanical check for this class of defect (path-level SHA
+accuracy and graph/check-count arithmetic). Mechanical validation is now
+**11 of 11 checks PASS**.
+
 ## 11. Overall Consistency Result
 
 **No cross-file inconsistency remains in Gate ID usage, Evidence ID
 uniqueness, document status strings, or version labeling**, subject to the
-one documented and intentional exception in Section 5. Four defects across
-three correction passes are recorded, not hidden:
+one documented and intentional exception in Section 5. Five defects across
+four correction passes are recorded, not hidden:
 
 1. FOUND-count/list mismatch (GATE-018 dual classification) — original
    commit `0fd6423`, corrected in `0e900ee`.
@@ -160,8 +200,12 @@ three correction passes are recorded, not hidden:
 4. 9/9-vs-10/10 off-by-one in CHECK-010's own item 6, introduced in
    `f94e5b4`, partially fixed by `d0a04bc`, fully aligned across the JSON
    sibling and PR #14 description in this commit.
+5. Evidence commit hash integrity (16 rows citing an unrelated commit, 1
+   row with no path-specific SHA) and independent graph count/check count
+   undercounted (4 vs. 5 graphs, 6 vs. 7 checks) — see Section 12,
+   corrected in this commit.
 
 This report does not retroactively describe any prior commit as having been
 fully consistent. Repository File Consistency and PR Metadata Consistency
 are both CONSISTENT as of this commit. Governance Decision Status remains
-100% PENDING and is unaffected by any of the four corrections above.
+100% PENDING and is unaffected by any of the five corrections above.

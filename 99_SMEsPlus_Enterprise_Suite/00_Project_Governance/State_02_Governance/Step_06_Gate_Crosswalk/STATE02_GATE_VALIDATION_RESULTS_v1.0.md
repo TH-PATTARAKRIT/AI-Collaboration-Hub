@@ -155,9 +155,38 @@ the PR #14 description itself stale — neither is covered by a
 grep/git-diff-based repository sweep alone in the case of PR metadata.
 **Result: PASS**
 
+### CHECK-011 — Evidence Path-Level SHA and Graph Count Consistency (added after P0/P1 correction order)
+
+Command: `git log -1 --format=%H -- "<path>"` re-run against all 22
+evidence paths in `STATE02_GATE_EVIDENCE_REGISTER_v1.0.md`; `grep` for
+graph-count and structural-check-count language in
+`STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md` and
+`STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md`; `grep` for the corrected
+16/22 count in the active review summary and PR #14 description.
+
+Expected:
+1. Every Evidence Register row with a repository path has a path-specific SHA.
+2. Every recorded SHA matches the output of `git log -1 --format=%H -- <path>` for that exact path.
+3. EV-G06-019 has its own SHA (not a pointer to EV-G06-020).
+4. No active Evidence Register row uses commit `da86bf1a40954cab86dd8c9181e271a4138f47f6` (the unrelated FDS designer skill commit).
+5. `STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md` states five independent graphs (34 edges).
+6. `STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md` states five independent graphs and the stated structural-check count matches the detailed checks (5 structural + 1 cross-graph + 1 self-loop = 7).
+7. PR #14 description and the active AI review summary state 16 of 22 rows corrected (not 11 of 22).
+
+Result:
+1. PASS — all 22 rows carry a path-specific SHA (see Evidence Register §0 Correction Note and §2).
+2. PASS — all 22 rows independently rerun; see `STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md` §5 "Evidence Path-Level Commit Hash Revalidation" for the full command-by-command reproduction.
+3. PASS — EV-G06-019 now carries `39c39fdb791ecb5aea072f7316cec710fc707d8c`, captured from its own path.
+4. PASS — 0 active rows cite `da86bf1a40954cab86dd8c9181e271a4138f47f6`; the 16 rows that previously did (EV-G06-002–014, 016–018) now cite `7ae04a22f976a54a3e49d1454cb82420328ab5d7`, independently confirmed per-path.
+5. PASS — Dependency Matrix §5 now states "34 directed edges across 5 independent, non-intersecting graphs."
+6. PASS — Circular Dependency Report §1/§4 now state 5 graphs and 7 total checks (Checks 1–5 structural, Check 6 cross-graph, Check 7 self-loop, newly added).
+7. PASS — PR #14 description and this package's active review summary state 16 of 22 rows corrected plus EV-G06-019 assigned its own SHA; see `STATE02_GATE_CHANGELOG_v1.0.md` for the dated entry.
+
+**Result: PASS**
+
 ## 3. Overall Result
 
-**10 of 10 mechanical checks: PASS.** This is a mechanical-check PASS only.
+**11 of 11 mechanical checks: PASS.** This is a mechanical-check PASS only.
 It does not constitute Gate approval, Review approval, Verification, or
 Boss approval, all of which remain PENDING per this package's own review,
 verification, and approval shell files. CHECK-009 and CHECK-010 together
@@ -166,7 +195,13 @@ in-repository classification/model-count defects, then for residual stale
 references in the Boss Approval Record and PR #14 description — both
 identified externally (PR review comment, then a residual-correction
 execution order) rather than self-discovered, and both preserved here
-rather than folded into a "clean" original record.
+rather than folded into a "clean" original record. CHECK-011 documents a
+third, P0/P1 correction pass: 16 Evidence Register rows citing an
+unrelated commit hash, and one row (EV-G06-019) with no path-specific SHA
+at all, plus an undercounted independent-graph total (4 instead of 5) and
+an incomplete circularity-check enumeration (6 instead of 7). None of
+these three correction passes constitutes Review, Verification, or Boss
+Approval — all three remain PENDING.
 
 See `STATE02_GATE_VALIDATION_RESULTS_v1.0.json` for the machine-readable
 equivalent of this file.

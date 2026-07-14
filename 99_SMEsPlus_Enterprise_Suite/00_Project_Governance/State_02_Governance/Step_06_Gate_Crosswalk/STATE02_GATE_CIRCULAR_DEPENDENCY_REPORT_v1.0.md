@@ -12,15 +12,19 @@ Gate Status: HOLD — REVIEW AND VERIFICATION PENDING
 
 The task brief suggested a "12-test battery" pattern used elsewhere in this
 repository's governance packages. The real dependency set produced by
-`STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md` is **34 directed edges across 4
-independent linear graphs with zero branching and zero stated back-edges**.
-Running 12 distinct circularity tests against 4 already-linear chains would
-manufacture redundant, non-informative checks. Instead this report runs the
-number of checks that are actually meaningful for this data: **1 structural
-check per independent graph (4 checks) + 1 cross-graph check + 1 self-loop
-check = 6 checks total.** This is fewer than 12 because the input is smaller
-and simpler than whatever precedent produced a 12-test battery; fabricating
-6 additional tests to hit a round number would not be honest.
+`STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md` is **34 directed edges across 5
+independent linear graphs with zero branching and zero stated back-edges**
+(Set A, GATE-030, GATE-032, GATE-031, GATE-029). Running 12 distinct
+circularity tests against 5 already-linear chains would manufacture
+redundant, non-informative checks. Instead this report runs the number of
+checks that are actually meaningful for this data: **1 structural check
+per independent graph (5 checks) + 1 cross-graph check + 1 self-loop check
+= 7 checks total.** This is fewer than 12 because the input is smaller and
+simpler than whatever precedent produced a 12-test battery; fabricating 5
+additional tests to hit a round number would not be honest. (Corrected
+2026-07-14: this section previously stated 4 graphs and 6 total checks,
+undercounting Dependency Set A as not being its own graph and omitting the
+self-loop check that Section 3 below did not separately enumerate.)
 
 ## 2. Method
 
@@ -81,12 +85,24 @@ between any two of the five graphs. Since no edges connect them, there can be
 no cross-graph cycle.
 **Result: NO CROSS-GRAPH EDGES FOUND; NO CYCLE POSSIBLE.**
 
+### Check 7 — Self-Loop Check
+
+Scanned all 34 edges across all 5 graphs (Checks 1–5) for any edge whose
+upstream and downstream node are the same Gate/State/Phase (a direct
+self-loop, e.g. "GATE-011 → GATE-011"). No such edge exists in
+`STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md`; every recorded edge connects two
+distinct nodes.
+**Result: NO SELF-LOOP EDGES FOUND.**
+
 ## 4. Overall Result
 
-**0 of 6 checks detected a genuine circular dependency.** 1 borderline
+**0 of 7 checks detected a genuine circular dependency.** 1 borderline
 rework/appeal loop was flagged in Check 4 for human attention; it is a normal
 appeal-and-resubmit workflow pattern, not evidence of a structural cycle in
-the Gate model.
+the Gate model. (Corrected 2026-07-14: prior version stated "0 of 6 checks"
+and did not enumerate a distinct self-loop check; Check 7 above was added
+and the graph/check counts reconciled across this report and
+`STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md`.)
 
 ## 5. Limitation
 

@@ -18,12 +18,17 @@ defects (see `STATE02_GATE_CHANGELOG_v1.0.md` "Post-Review Correction"
 entry); again after a residual-correction execution order identified two
 further stale references in the Boss Approval Record and PR #14
 description (see `STATE02_GATE_CHANGELOG_v1.0.md` "Residual Cross-File and
-PR Metadata Correction" entry); and again on 2026-07-14 after a direct
+PR Metadata Correction" entry); again on 2026-07-14 after a direct
 external commit corrected an off-by-one in CHECK-010's own item 6 (9/9
 vs. 10/10) and this session aligned the remaining stale copies (see
 `STATE02_GATE_CHANGELOG_v1.0.md` "Cross-Artifact 9/9-to-10/10 Count
-Alignment" entry). Sizes and hashes below are current as of this third
-regeneration.
+Alignment" entry); and again on 2026-07-14 (later the same day) after a
+P0/P1 correction order corrected 16 Evidence Register commit hashes,
+EV-G06-019's missing SHA, and the independent graph/check counts (see
+`STATE02_GATE_CHANGELOG_v1.0.md` "Evidence Hash and Graph Count Integrity
+Correction" entry). Sizes and hashes below are current as of this fourth
+regeneration, computed via `stat -c%s <file>` and `sha256sum <file>` run
+directly against every file in this directory.
 
 ## 1. Manifest
 
@@ -32,20 +37,20 @@ regeneration.
 | STATE02_GATE_CROSSWALK_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_CROSSWALK_v1.0.md` | 10542 | `ec6e803811f7a77885ec100a55c11d283bc56fa64b175a52cb3f4d6d63ccc480` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction | Claude AI | PASS (mechanical) |
 | STATE02_GATE_INVENTORY_REGISTER_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_INVENTORY_REGISTER_v1.0.md` | 13610 | `67e2a6179f1e7bbb7029acd85ee82bcd0972bdca78ff0ffbd28a2f9df4e7b7f9` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction | Claude AI | PASS (mechanical) |
 | STATE02_GATE_ALIAS_AND_MODEL_CROSSWALK_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_ALIAS_AND_MODEL_CROSSWALK_v1.0.md` | 9259 | `5c2ad2ce24d023645bc2b1fad48b857c01c9ac91c77caa083678697d494739c6` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
-| STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md` | 5946 | `9e70d2a90389c08412308aef4a9b71143f70d67ac22aca6f2e88139ff01b3061` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
+| STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md` | 6208 | `d9b8972525839bd8b10c234bcb07f3f980d5806b20b7a37de21df12947dd0102` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, P1 correction (graph count 4→5) | Claude AI | PASS (mechanical) |
 | STATE02_GATE_AUTHORITY_MATRIX_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_AUTHORITY_MATRIX_v1.0.md` | 6884 | `0bfe76332a1d1cc71c88bfcf7d5a17ece371041c2fe4e4a2800d7df591febb75` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
-| STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md` | 4408 | `f03f31a6dea0788cb205cd2f7c8d0b50dcbb94cfdeb50c7c07df3ed1874460ac` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
-| STATE02_GATE_EVIDENCE_REGISTER_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_EVIDENCE_REGISTER_v1.0.md` | 18861 | `ee776adaf34e49ae1030c89118501ae5f79f33610f97bddbfc0b7e469005d00d` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
+| STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md` | 5292 | `0994d8ec125f395045582828b44ceda481c724f58526fbc560a0f12e9cdff443` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, P1 correction (graph count 4→5, Check 7 self-loop added) | Claude AI | PASS (mechanical) |
+| STATE02_GATE_EVIDENCE_REGISTER_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_EVIDENCE_REGISTER_v1.0.md` | 19913 | `94a5f2acf7ed6e3b9f002b91406a9a58da981928a75d3ffbb6fcb027c9d1815f` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, P0 correction (16 rows re-hashed, EV-G06-019 assigned own SHA) | Claude AI | PASS (mechanical) |
 | STATE02_GATE_REVIEW_RECORD_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_REVIEW_RECORD_v1.0.md` | 2661 | `794aa3bc96a6783ded71389b084610c73a8c0fb8ab27cdce2f85da2cd2caece8` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
 | STATE02_GATE_VERIFICATION_RECORD_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_VERIFICATION_RECORD_v1.0.md` | 2627 | `7ff1cff89721af2b0f3ef8ea21840b7cf6b20e582b5e35fcbb72ecc1aeebc741` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
 | STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md` | 2704 | `2e8bd562220277508dd3db1fb719d264a5b00f76151a4b72bb2b7e89daad8fb7` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, residual correction (BOSS-002 model count) | Claude AI | PASS (mechanical) |
 | STATE02_GATE_CORRECTION_PLAN_v0.1.md | `Step_06_Gate_Crosswalk/STATE02_GATE_CORRECTION_PLAN_v0.1.md` | 5485 | `6225956294918bde2d4bec4df53561870d15c6a5338df61ed7453e2086930afe` | v0.1 (intentional — starter/open-items list) | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction (CP-001 count, CP-010 added) | Claude AI | PASS (mechanical) |
-| STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md` | 10447 | `59f3c4b6c36a4d8d816f5d69d1df3c313deee2b55d03eca99aa21a17103b8d29` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction, residual correction, count alignment | Claude AI | PASS (mechanical) |
-| STATE02_GATE_CHANGELOG_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_CHANGELOG_v1.0.md` | 9171 | `2dcf62e814cb075c2115dea2831d3a3d68da8daf8dc758ecbd786866311fd4ff` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction, residual correction, count alignment | Claude AI | PASS (mechanical) |
-| STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md` | 10556 | `d3be95906979d723ded5d57942536512ed9998e297c0ce7caa64595a340a4de3` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination | Claude AI | PASS (mechanical) |
-| STATE02_GATE_VALIDATION_RESULTS_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_VALIDATION_RESULTS_v1.0.md` | 9013 | `c38c9ef53ebbfc07d32f7af681a4e9a7e9ed3199a7870d5a6b727cc46497ae48` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction (CHECK-009), residual correction (CHECK-010), count alignment (external commit d0a04bc + this commit) | Claude AI | PASS (mechanical, 10/10) |
-| STATE02_GATE_VALIDATION_RESULTS_v1.0.json | `Step_06_Gate_Crosswalk/STATE02_GATE_VALIDATION_RESULTS_v1.0.json` | 8440 | `814753e8ebf547e35dde3b8d4a506a7efc96b9af6577135c1c2a0f05e2155fca` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction (CHECK-009), residual correction (CHECK-010), count alignment | Claude AI | PASS (mechanical, 10/10) |
-| STATE02_GATE_COMMIT_MANIFEST_v1.0.md (this file) | `Step_06_Gate_Crosswalk/STATE02_GATE_COMMIT_MANIFEST_v1.0.md` | SELF — HASH EXCLUDED | SELF — HASH EXCLUDED | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, regenerated post-review, regenerated post-residual-correction, regenerated post-count-alignment | Claude AI | PASS (mechanical) |
+| STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md` | 13185 | `42d1186381df8e02cba57570bd1d1f42fd2e8faca11ad1e4d94aa85748350e60` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction, residual correction, count alignment, evidence/graph correction (Section 12 added) | Claude AI | PASS (mechanical) |
+| STATE02_GATE_CHANGELOG_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_CHANGELOG_v1.0.md` | 12278 | `edfbec5aaff0ec7f9562cf6c72b8cec61af3d764fdf102bb5fcfac3cccffd10e` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction, residual correction, count alignment, evidence/graph correction | Claude AI | PASS (mechanical) |
+| STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md` | 19225 | `c3775e9815bb54fc67ab9a973e2a27a79d0513ae6fa9a9a738a10f347cedf816` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, P0 correction (§5 path-level revalidation log added) | Claude AI | PASS (mechanical) |
+| STATE02_GATE_VALIDATION_RESULTS_v1.0.md | `Step_06_Gate_Crosswalk/STATE02_GATE_VALIDATION_RESULTS_v1.0.md` | 11813 | `2efb8f2c95a3c65ad763663a26ee48fff9f819ad56fab456ca786640ad7ab57c` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction (CHECK-009), residual correction (CHECK-010), count alignment, evidence/graph correction (CHECK-011) | Claude AI | PASS (mechanical, 11/11) |
+| STATE02_GATE_VALIDATION_RESULTS_v1.0.json | `Step_06_Gate_Crosswalk/STATE02_GATE_VALIDATION_RESULTS_v1.0.json` | 11022 | `8d136c6f5c00033a19e4d3076c0dab16c7c0b852b032be6e6c1f61b1a1e0f3d9` | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, post-review correction (CHECK-009), residual correction (CHECK-010), count alignment, evidence/graph correction (CHECK-011) | Claude AI | PASS (mechanical, 11/11) |
+| STATE02_GATE_COMMIT_MANIFEST_v1.0.md (this file) | `Step_06_Gate_Crosswalk/STATE02_GATE_COMMIT_MANIFEST_v1.0.md` | SELF — HASH EXCLUDED | SELF — HASH EXCLUDED | v1.0 | DRAFT — NOT CANONICAL | n/a — v1.0 origination, regenerated post-review, regenerated post-residual-correction, regenerated post-count-alignment, regenerated post-evidence/graph-correction | Claude AI | PASS (mechanical) |
 
 ## 2. Coverage Statement
 
@@ -55,7 +60,7 @@ matching the convention in
 `Step_04_Ownerless_Execution_Control/PACKAGE_MANIFEST_SHA256_STATE02_STEP04_OWNERLESS.txt`).
 No file outside this directory is included in or affected by this manifest.
 
-Across three correction passes, 9 of the 16 hashed files have changed from
+Across four correction passes, 12 of the 16 hashed files have changed from
 their original commit:
 
 - **First pass** (commit `0e900ee2b0483202e359e357f4aceb4630c47efb`):
@@ -76,13 +81,24 @@ their original commit:
   `STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md`, and
   `STATE02_GATE_CHANGELOG_v1.0.md` — 4 files, all previously touched in
   passes 1–2.
+- **Fourth pass** (this commit, 2026-07-14 P0/P1 correction order):
+  `STATE02_GATE_EVIDENCE_REGISTER_v1.0.md` (16 rows re-hashed, EV-G06-019
+  assigned its own SHA — newly changed by content, previously untouched by
+  passes 1–3), `STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md` (§5 revalidation
+  log added — newly changed, previously untouched), `STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md`
+  (graph count 4→5 — newly changed, previously untouched),
+  `STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md` (graph count 4→5, Check
+  7 added — newly changed, previously untouched),
+  `STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md`,
+  `STATE02_GATE_CHANGELOG_v1.0.md`, `STATE02_GATE_VALIDATION_RESULTS_v1.0.md`
+  (CHECK-011 added), and `STATE02_GATE_VALIDATION_RESULTS_v1.0.json`
+  (CHECK-011 added) — 8 files, 4 newly touched for the first time
+  (Evidence Register, Search Execution Log, Dependency Matrix, Circular
+  Dependency Report) and 4 touched again from prior passes.
 
-The remaining 8 hashed files (`STATE02_GATE_ALIAS_AND_MODEL_CROSSWALK_v1.0.md`,
-`STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md`, `STATE02_GATE_AUTHORITY_MATRIX_v1.0.md`,
-`STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md`,
-`STATE02_GATE_EVIDENCE_REGISTER_v1.0.md`, `STATE02_GATE_REVIEW_RECORD_v1.0.md`,
-`STATE02_GATE_VERIFICATION_RECORD_v1.0.md`, and
-`STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md`) remain unchanged from the
+The remaining 4 hashed files (`STATE02_GATE_ALIAS_AND_MODEL_CROSSWALK_v1.0.md`,
+`STATE02_GATE_AUTHORITY_MATRIX_v1.0.md`, `STATE02_GATE_REVIEW_RECORD_v1.0.md`,
+and `STATE02_GATE_VERIFICATION_RECORD_v1.0.md`) remain unchanged from the
 original commit; their hashes above are identical to the original manifest.
 
 ## 3. Regeneration Note

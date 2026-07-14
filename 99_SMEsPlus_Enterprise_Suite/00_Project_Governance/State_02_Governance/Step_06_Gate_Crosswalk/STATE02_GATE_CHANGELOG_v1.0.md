@@ -163,6 +163,58 @@ three locations that still said "9/9":
 
 Version remains v1.0.
 
+## v1.0 — 2026-07-14 — Evidence Hash and Graph Count Integrity Correction (fourth pass)
+
+A P0/P1 correction order identified two further defect classes not caught
+by CHECK-001–CHECK-010, since those checks verify string/ID uniqueness and
+prose-vs-table consistency, not per-path commit-hash accuracy or edge/graph
+arithmetic.
+
+- **Evidence commit hash integrity (P0).** 16 of the 22 Evidence Register
+  rows (EV-G06-002 through EV-G06-014, EV-G06-016 through EV-G06-018)
+  previously carried the unrelated commit hash
+  `da86bf1a40954cab86dd8c9181e271a4138f47f6` ("L99.99: add SMEsPlus Claude
+  FDS designer skill"), which does not touch any of those 16 files.
+- **EV-G06-019 missing SHA.** A 17th row, EV-G06-019, previously lacked a
+  path-specific commit hash of its own and instead referred the reader to
+  EV-G06-020, a different file.
+- Every one of the 22 Evidence Register paths was independently rerun with
+  `git log -1 --format=%H -- "<exact-path>"` (no global hash replacement
+  performed). The 16 unrelated-hash rows were corrected to
+  `7ae04a22f976a54a3e49d1454cb82420328ab5d7` (each confirmed individually).
+  EV-G06-019 was assigned its own SHA,
+  `39c39fdb791ecb5aea072f7316cec710fc707d8c`. Full command-by-command output
+  is recorded in `STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md` §5.
+- **Graph count corrected from 4 to 5.** `STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md`
+  and `STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md` previously stated 4
+  independent graphs, undercounting by omitting Dependency Set A itself
+  from the graph count while still including its 9 edges in the 34-edge
+  total. Corrected to 5 independent, non-intersecting graphs (Set A,
+  GATE-030, GATE-032, GATE-031, GATE-029).
+- **Circularity check count reconciled.** The Circular Dependency Report's
+  stated check total (6) did not match a full enumeration once a distinct
+  self-loop check is counted. A new Check 7 (Self-Loop Check) was added;
+  total is now 7 (5 structural checks, one per graph, + 1 cross-graph check
+  + 1 self-loop check).
+- **AI review summary corrected from 11/22 to 16/22.** The AI Governance
+  Review Assistant had previously reported "11 of 22 Evidence Records used
+  the incorrect SHA" in PR #14 review commentary. The repository-derived
+  count, independently rerun, is 16 of 22, plus EV-G06-019 separately
+  lacking its own SHA (not counted among the 16, since it cited no SHA at
+  all rather than an incorrect one). This correction is recorded in the PR
+  #14 review thread.
+- `STATE02_GATE_VALIDATION_RESULTS_v1.0.md` / `.json` CHECK-011 added for
+  this defect class. Mechanical result: 11/11 PASS.
+- `STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md` updated with a new
+  Section 12 documenting this fourth pass.
+- Manifest hashes regenerated for every file touched in this pass.
+- No governance decision, approval, verification, or merge occurred. All
+  Reviewer/Verifier/Boss Decision fields remain unchanged (still PENDING).
+  Gate Status remains `HOLD — REVIEW AND VERIFICATION PENDING`; Document
+  Status remains `DRAFT — NOT CANONICAL`.
+
+Version remains v1.0.
+
 ## Future Versions
 
 Any v1.1 or later of this package must record here what changed and why,
