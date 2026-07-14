@@ -26,11 +26,14 @@ evidenced** (doc 02 §5, doc 08 outcomes). Remaining conditions for closure:
 
 ## Why not RECOMMEND CLOSE
 
-Unconditional closure requires criterion 3 (Canonical RACI **confirmed**) and recorded independent
-review/verification. Neither exists yet: the RACI is a prepared candidate awaiting Boss confirmation,
-and Reviewer/Verifier identities are PENDING RECORD (all ACF findings are HOLD). Claiming CLOSE now
-would assert approvals that do not exist — barred by the Evidence & Approval Standard (doc 07) and by
-SKT-02.
+As of 2026-07-14, criteria 1–4 are satisfied: Boss approved S02-FINAL-001..004, the P0 corrections
+are applied and evidenced (doc 02 §5), and the Canonical RACI and Ownerless Standard are Boss-confirmed
+CANONICAL. What is still missing for **unconditional** closure is recorded **independent
+verification** of the applied corrections: the Evidence Verifier identity is not yet named
+(S02-FINAL-005), so the corrections are applied-and-evidenced but **not independently VERIFIED**, and
+the Boss closure signature (S02-FINAL-006) has not been given. Claiming CLOSE now would assert an
+independent verification and a closure signature that do not yet exist — barred by the Evidence &
+Approval Standard (doc 07) and by SKT-02.
 
 ## Why not DO NOT CLOSE
 

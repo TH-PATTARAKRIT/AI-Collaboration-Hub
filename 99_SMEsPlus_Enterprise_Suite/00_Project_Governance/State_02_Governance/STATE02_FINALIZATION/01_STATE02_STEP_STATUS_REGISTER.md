@@ -17,9 +17,9 @@ Status Model: EXECUTION COMPLETE / READY FOR REVIEW / READY FOR VERIFICATION / R
 | Step | Title | Execution Status | Independent Review | Independent Verification | Boss Action | Notes |
 |---|---|---|---|---|---|---|
 | 01 | Governance Baseline Inventory | **CLOSED BY BOSS** | Complete | Complete | Complete (2026-07-13) | Locked. Not reopened — no defect evidence found (see SKT-01). |
-| 02 | Authority Conflict Resolution | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | READY FOR BOSS ACTION | Decision Register consolidated (doc 02). 10 conflicts; 6×P0, 4×P1. Corrections recommended, not applied to source. |
-| 03 | Canonical RACI | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | READY FOR BOSS ACTION | One Canonical candidate confirmed (doc 03). AI is not Final Approver. |
-| 04 | Ownerless Execution Control | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | READY FOR BOSS ACTION | Standard finalized (doc 04). All required elements present. |
+| 02 | Authority Conflict Resolution | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | **S02-FINAL-001/003 APPROVED 2026-07-14 — corrections applied** | 10 conflicts (6×P0, 4×P1) corrected in source (doc 02 §5). Independent verification recording open (S02-FINAL-005). |
+| 03 | Canonical RACI | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | **S02-FINAL-002 APPROVED — CONFIRMED CANONICAL** | RACI v1.0 Boss Confirmation Record added. AI is not Final Approver. |
+| 04 | Ownerless Execution Control | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | **S02-FINAL-004 APPROVED — CONFIRMED CANONICAL** | Standard confirmed (doc 04). All required elements present. |
 | 05 | Canonical Governance Index | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | READY FOR BOSS ACTION | Index built (doc 05). Classifications assigned on evidence, not on file existence. |
 | 06 | Governance Gate Crosswalk | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | READY FOR BOSS ACTION | Crosswalk built (doc 06). No circular dependency detected. |
 | 07 | Evidence & Approval Standard | EXECUTION COMPLETE | READY FOR REVIEW | READY FOR VERIFICATION | READY FOR BOSS ACTION | Standard finalized (doc 07). Percentage-without-evidence rule enforced. |
@@ -41,11 +41,11 @@ Step 01 — Governance Baseline Inventory is **CLOSED BY BOSS** per
 
 | ID | Open Control Point | Classification | Blocks Unconditional Closure? | Owner of Next Action |
 |---|---|---|---|---|
-| OCP-1 | Independent Governance Reviewer identity not yet recorded (role appointed 2026-07-13; named identity PENDING RECORD) | Review | Yes | Boss (appoint / confirm) |
-| OCP-2 | Independent Evidence Verifier identity not yet recorded (PENDING RECORD) | Verification | Yes | Boss (appoint / confirm) |
-| OCP-3 | P0 authority-conflict source corrections recommended but not applied (awaiting Boss authorization) | Defect correction | Yes (until decided) | Boss decision → RO/CAI execution |
-| OCP-4 | Canonical RACI and Ownerless Standard prepared but not Boss-confirmed as CANONICAL | Boss decision | Yes | Boss |
-| OCP-5 | Canonical PMO role definition / glossary not yet published (root cause of ACF-007/009/010) | Boss decision | Yes for P1 items | Boss |
+| OCP-1 | Independent Governance Reviewer identity not yet **recorded** by Boss. A PR comment on #24 claims ChatGPT L99 performed the review; not yet Boss-confirmed as the S02-FINAL-005 appointment | Review | Yes | Boss (confirm appointment) |
+| OCP-2 | Independent Evidence Verifier identity not yet named/recorded (PENDING RECORD; comment did not name one) | Verification | Yes | Boss (appoint / confirm) |
+| OCP-3 | P0 authority-conflict source corrections | Defect correction | **RESOLVED 2026-07-14** — applied under S02-FINAL-001/003 (doc 02 §5) | — |
+| OCP-4 | Canonical RACI and Ownerless Standard Boss-confirmed as CANONICAL | Boss decision | **RESOLVED 2026-07-14** — S02-FINAL-002 / 004 APPROVED | — |
+| OCP-5 | Canonical PMO role definition / glossary | Boss decision | **RESOLVED 2026-07-14** — glossary published under S02-FINAL-003 | — |
 
 None of OCP-1..5 is a Step-01 defect. Each is downstream State-02 review/verification/decision work.
 
