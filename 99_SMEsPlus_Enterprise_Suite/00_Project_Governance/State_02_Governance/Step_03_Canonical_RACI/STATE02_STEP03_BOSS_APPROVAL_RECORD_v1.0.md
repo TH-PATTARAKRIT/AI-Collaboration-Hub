@@ -67,7 +67,84 @@ target branch for the authorized RC-001..RC-010 execution (a new dedicated branc
 current branch) is to be confirmed by the Execution Coordinator before that step begins.
 This item does not block actions 1–2.
 
-## 7. Control Statement
+## 7. Acknowledged Sequencing Exception (per ChatGPT L99 Governance Review, PR #20)
+
+```text
+Exception ID:        SEQ-EXC-001
+Ambiguous/at-risk
+condition:            RC-001..RC-010 source-governance corrections were applied
+                      (commits ff6cb12, 2bb40da) before the Independent Evidence
+                      Verifier validated the recalculated SHA256 manifest, and
+                      before the Independent Governance Reviewer re-reviewed
+                      Revision R1 and the applied RC changes against the
+                      approved correction matrix.
+Why this occurred:    Boss Decision 2 (CONTROLLED SOURCE CORRECTION AUTHORIZED)
+                      explicitly authorized execution of RC-001..RC-010 "under
+                      control" with before/after evidence and rollback capability;
+                      the correction order that triggered this execution session
+                      directed application in this same pass rather than waiting
+                      for a prior independent-verification cycle to close first.
+Acknowledgement:      This sequencing is recorded here as an ACKNOWLEDGED
+                      EXCEPTION, not a completed or closed item. It does not
+                      substitute for, and does not pre-empt, Independent
+                      Evidence Verification or Independent Governance Review.
+Risk:                 If Independent Review or Verification later finds any
+                      RC-001..RC-010 change incorrect, the change is reversible
+                      via `git revert ff6cb128d9e5fc2d832cca1e7be97eef2eb356cc`
+                      per STATE02_SOURCE_CORRECTION_ROLLBACK_PLAN_v1.0.md — no
+                      history rewrite required.
+Reversibility:        Fully reversible (git revert; no force-push; no rewritten
+                      history).
+Gate impact:          Does not lift HOLD. Independent Review and Independent
+                      Verification remain required before Decision 1 can move
+                      from APPROVED IN PRINCIPLE to CANONICAL EFFECTIVE, before
+                      the applied RC-001..RC-010 corrections can be treated as
+                      final, and before Decision 4 (STEP 03 closure) can be
+                      addressed.
+Source                ChatGPT L99 Governance Review, PR #20 review comment,
+                      condition 3: "The sequencing exception (corrections
+                      applied ahead of independent verification) must be
+                      recorded as an acknowledged exception in the Boss
+                      decision record."
+Recorded By:          Claude Code (Responsible role only — records the
+                      exception; does not resolve it)
+Recorded At:          2026-07-14 (UTC)
+```
+
+## 8. ChatGPT L99 Governance Review — Received (PR #20)
+
+```text
+Result:      STRUCTURALLY ACCEPTABLE / HOLD — independent verification and Boss
+             closure decision pending. DO NOT MERGE YET.
+Positive
+findings:    Boss-only final approval consistently restored; AI PMO reduced to
+             Support Only; ambiguous standalone PMO addressed via
+             CANONICAL_ROLE_GLOSSARY.md; source changes isolated on a draft
+             branch with rollback evidence; PR discloses the sequencing
+             exception.
+Blocking
+conditions:  1. Independent Evidence Verifier must validate applied source
+                files and the latest SHA256 manifest.
+             2. Independent Governance Reviewer must re-review Revision R1 and
+                all applied RC-001..RC-010 changes against the approved
+                correction matrix.
+             3. Sequencing exception recorded as acknowledged exception —
+                see §8 above (addressed this session).
+             4. STEP 03 closure remains HOLD; no PASS/CLOSED/FINAL/CANONICAL
+                declared — CONFIRMED, no such declaration exists anywhere in
+                this package.
+             5. Merge requires Boss authorization after independent
+                review/verification evidence is attached and all review
+                threads are closed — PENDING (conditions 1 and 2 above).
+Full text on
+GitHub:      https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/pull/20
+             (review comment, ChatGPT L99, 2026-07-14)
+Transcribed By: Claude Code (Responsible role only — transcription of an
+             external review comment as inspectable evidence, not a review
+             performed by Claude and not a self-verification)
+```
+
+## 9. Control Statement
 
 This record transcribes and preserves the Boss decision as inspectable evidence. Claude
 Code does not approve, does not self-verify, and does not close STEP 03. Decision 1 is
