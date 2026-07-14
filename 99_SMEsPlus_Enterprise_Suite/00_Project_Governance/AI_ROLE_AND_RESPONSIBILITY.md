@@ -92,7 +92,7 @@ Production Gate
 6. Claude AI must not invent business requirements.
 7. Claude Code must not start implementation before Build Gate approval.
 8. Liza controls governance review but does not override Boss approval.
-9. Production remains HOLD until explicitly approved by Boss and PMO Gate.
+9. Production remains HOLD until explicitly approved by Boss.
 
 ---
 
@@ -156,8 +156,8 @@ Liza must provide:
 | Architecture Gate | Liza / Architecture Office | Must pass before SDS/API/DB/UX |
 | FDS Gate | Functional Specification AI + Claude Review + Liza | Must pass before SDS |
 | SDS Gate | Enterprise Architect / Claude Review | Must pass before API/DB/UX finalization |
-| QA / UAT Gate | QA AI + PMO | Must pass before Build Gate |
-| Build Gate | PMO + Boss | Must pass before Claude Code implementation |
+| QA / UAT Gate | Boss (approver); QA AI + AI PMO (Support Only) | Must pass before Build Gate |
+| Build Gate | Boss (approver); AI PMO (Support Only) | Must pass before Claude Code implementation |
 | Production Gate | Boss | Explicit approval only |
 
 ---

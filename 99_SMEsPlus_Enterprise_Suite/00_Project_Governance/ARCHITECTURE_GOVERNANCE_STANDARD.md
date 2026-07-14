@@ -28,7 +28,7 @@ Architecture review applies to SaaS Foundation, FDS, SDS, API, DB, UX, Security,
 
 ## Authority
 
-Architecture decisions must be documented through ADR or approved governance documents. AI may propose or review, but Boss / PMO authority is required for gate movement.
+Architecture decisions must be documented through ADR or approved governance documents. AI may propose or review, but Boss approval is required for gate movement; AI PMO provides tracking support only.
 
 ## Gate Rule
 
