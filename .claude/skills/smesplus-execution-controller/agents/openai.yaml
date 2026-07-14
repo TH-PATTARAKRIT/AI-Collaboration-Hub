@@ -1,0 +1,3 @@
+interface:
+  display_name: "SMEsPlus Claude Code Controller"
+  short_description: "Control Claude Code execution, evidence, decisions, and session handoff for SMEsPlus."
