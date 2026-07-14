@@ -1,0 +1,96 @@
+# 05 — CANONICAL GOVERNANCE INDEX
+
+Document ID: S02-FINAL-DOC-05
+State: 02 — Governance / Step 05 — Canonical Governance Index
+Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
+Evidence Commit Reviewed: `8570187bc0f13835be154d10cdc09bfa98e1dfe9`
+Prepared By: Claude AI (Responsible / analysis only)
+Prepared At: 2026-07-14 (UTC)
+
+Classification legend: Canonical / Supporting / Superseded / Archived / Draft.
+Approval column values: `CLOSED BY BOSS`, `READY FOR BOSS ACTION`, `PREPARED / HOLD`, `N/A`.
+A document is **not** Canonical merely because the file exists; Canonical is recommended only where
+the document is the single controlled source for its topic and is confirmed (or recommended for Boss
+confirmation) as such.
+
+Paths are relative to `99_SMEsPlus_Enterprise_Suite/`. Blob SHA shown for the five source-of-truth
+governance files under review; other rows cite path + version (SHA obtainable via `git hash-object`).
+
+## 1. State-01 Baseline (context — CLOSED BY BOSS)
+
+| ID | Document | Purpose | Owner | Path | Ver | Evidence | Review | Verify | Approval | Class | Step | Conflict Ref | Boss Ref |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| GI-01 | STATE01_CLOSURE_CONFIRMATION.md | State-01 closure record | ES | 00_Project_Governance/State_01_Project_Identity/ | 1.0 | Complete | Complete | Complete | CLOSED BY BOSS | Canonical | 01 | — | STATE01 closure 2026-07-13 |
+| GI-02 | STATE01_SCOPE_PRINCIPLES_RACI_v1.0.md | Identity RACI baseline | ES | …/State_01_Project_Identity/ | 1.0 | Complete | Complete | Complete | CLOSED BY BOSS | Supporting | 01 | ACF-010 (context) | STATE01 |
+| GI-03 | STATE01_SOURCE_OF_TRUTH_POLICY_v1.0.md | Source-of-truth policy | ES | …/State_01_Project_Identity/ | 1.0 | Complete | Complete | Complete | CLOSED BY BOSS | Canonical | 01 | ACF-008 (context) | STATE01 |
+
+## 2. Source-of-Truth Governance Files Under Authority Review
+
+| ID | Document | Purpose | Owner | Path | Blob SHA | Evidence | Review | Verify | Approval | Class | Step | Conflict Ref |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| GI-10 | AI_ROLE_AND_RESPONSIBILITY.md | AI roles + gate ownership | ES | 00_Project_Governance/ | `ed333098…` | Complete | Pending | Pending | READY FOR BOSS ACTION | Supporting (needs correction) | 02 | ACF-001,002,003 |
+| GI-11 | ARCHITECTURE_GOVERNANCE_STANDARD.md | Architecture gate authority | ES | 00_Project_Governance/ | `3a262218…` | Complete | Pending | Pending | READY FOR BOSS ACTION | Supporting (needs correction) | 02 | ACF-004 |
+| GI-12 | APPROVAL_AUTHORITY_MATRIX.md | Draft/Review/Approver matrix | ES | 00_Project_Governance/ | `66930ae5…` | Complete | Pending | Pending | READY FOR BOSS ACTION | Supporting (needs correction) | 02 | ACF-005,006,007 |
+| GI-13 | DOCUMENT_REGISTRY.yaml | Document registry / baseline | DC | 00_Project_Governance/ | `2c31ee69…` | Complete | Pending | Pending | READY FOR BOSS ACTION | Supporting | 02 | ACF-008 |
+| GI-14 | FOLDER_REGISTRY.yaml | Folder ownership | DC | 00_Project_Governance/ | `f307484a…` | Complete | Pending | Pending | READY FOR BOSS ACTION | Supporting (needs definition) | 02 | ACF-009 |
+
+## 3. Step-02 Authority Conflict Set
+
+| ID | Document | Purpose | Path | Ver | Class | Conflict Ref |
+|---|---|---|---|---|---|---|
+| GI-20 | STATE02_AUTHORITY_CONFLICT_REGISTER_v1.1.md | Conflict tracking superset | …/State_02_Governance/ | 1.1 | Canonical (tracking) | ACF-001..010 |
+| GI-21 | STATE02_AUTHORITY_CONFLICT_REGISTER_v1.0.md | Base finding set | …/State_02_Governance/ | 1.0 | Supporting | ACF-001..010 |
+| GI-22 | STATE02_P0_AUTHORITY_CONFLICT_LIST_v1.0.md | P0 tier list | …/State_02_Governance/ | 1.0 | Supporting | P0 subset |
+| GI-23 | STATE02_AUTHORITY_CONFLICT_SCAN_REPORT_v1.0.md | Scan report | …/State_02_Governance/ | 1.0 | Supporting | ACF-001..010 |
+| GI-24 | STATE02_AUTHORITY_SCAN_EVIDENCE_REGISTER_v1.1.md | Scan evidence | …/State_02_Governance/ | 1.1 | Supporting | ACF-001..010 |
+| GI-25 | STATE02_GITHUB_ISSUE_AUTHORITY_SCAN_ADDENDUM_v0.1.md | Issue corroboration | …/State_02_Governance/ | 0.1 | Supporting | ACF-001,002,004,005 |
+| GI-26 | STATE02_AUTHORITY_REVIEW_PACKAGE_v0.1.md | Review package | …/State_02_Governance/ | 0.1 | Supporting | — |
+| GI-27 | STATE02_AUTHORITY_VERIFICATION_PACKAGE_v0.1.md | Verification package | …/State_02_Governance/ | 0.1 | Supporting | — |
+| GI-28 | STATE02_AUTHORITY_CONFLICT_DIFF_PREPARATION_v0.1.md | Proposed diffs (not applied) | …/State_02_Governance/ | 0.1 | Supporting | ACF-001..006 |
+| GI-29 | **STATE02_FINALIZATION/02_AUTHORITY_CONFLICT_DECISION_REGISTER.md** | Consolidated decision register | …/State_02_Governance/STATE02_FINALIZATION/ | 1.0 | **Canonical** (decision view) | ACF-001..010 |
+
+## 4. Step-03 Canonical RACI Set
+
+| ID | Document | Class | Notes |
+|---|---|---|---|
+| GI-30 | Step_03_Canonical_RACI/STATE02_CANONICAL_RACI_v1.0.md | **Canonical** (on S02-FINAL-002) | Single controlled RACI |
+| GI-31 | Step_03_Canonical_RACI/STATE02_RACI_CONFLICT_TO_CORRECTION_MATRIX_v1.0.md | Supporting | ACF→RC mapping |
+| GI-32 | Step_03_Canonical_RACI/STATE02_RACI_CORRECTION_REGISTER_v1.0.md | Supporting | — |
+| GI-33 | Step_03_Canonical_RACI/STATE02_RACI_EVIDENCE_REGISTER_v1.0.md | Supporting | — |
+| GI-34 | Step_03_Canonical_RACI/STATE02_RACI_SOURCE_DOCUMENT_UPDATE_PLAN_v0.1.md | Supporting | Proposed source edits |
+| GI-35 | Step_03_Canonical_RACI/(review/validation/secretary/execution records) | Supporting | 4 records |
+| GI-36 | SMEsPlus_AI_SKILL_RACI_MATRIX_v0.1.md | Draft | Skill RACI, not governance canonical |
+
+## 5. Step-04 Ownerless Execution Set
+
+| ID | Document | Class | Notes |
+|---|---|---|---|
+| GI-40 | Step_04_Ownerless_Execution_Control/STATE02_OWNERLESS_EXECUTION_CONTROL_STANDARD_v1.0.md | **Canonical** (on S02-FINAL-004) | Single standard |
+| GI-41 | Step_04…/STATE02_ESCALATION_AND_REPLACEMENT_RULE_v1.0.md | Supporting | — |
+| GI-42 | Step_04…/STATE02_OWNER_REPLACEMENT_MATRIX_v1.0.md | Supporting | — |
+| GI-43 | Step_04…/STATE02_AI_EXECUTION_AUTHORITY_MATRIX_v1.0.md | Supporting | — |
+| GI-44 | Step_04…/(work register, evidence, review, verification, summaries, canonicalization record) | Supporting | 8 records |
+
+## 6. Step-03/04 Combined Package (prior consolidation)
+
+| ID | Document | Class |
+|---|---|---|
+| GI-50 | STATE02_STEP03_STEP04_EXECUTIVE_SUMMARY_v1.0.md | Supporting |
+| GI-51 | STATE02_STEP03_STEP04_CROSSWALK_v1.0.md | Supporting |
+| GI-52 | STATE02_STEP03_STEP04_EVIDENCE_REGISTER_v1.0.md | Supporting |
+| GI-53 | STATE02_STEP03_STEP04_COMPLETION_CHECKLIST_v1.0.md | Supporting |
+| GI-54 | STATE02_STEP03_STEP04_POST_COMMIT_EVIDENCE_ADDENDUM_v0.1.md | Supporting |
+
+## 7. Superseded / Draft Notes
+
+- No document is classified **Superseded** in this index: prior authority registers (v1.0) are
+  retained as **Supporting** (not overwritten by v1.1), and no RACI/ownerless standard was replaced
+  by a competing canonical. If Boss approves the canonical candidates, the older joint-authority
+  wording inside GI-10..14 becomes **corrected in place** (not archived) under S02-FINAL-001.
+- No document is classified **Archived** by this finalization. Archive is a Boss-authorized action
+  under the Ownerless Standard §6 and is out of scope here.
+
+## 8. Control Statement
+
+Boss is the Sole Final Approver. Classifications recommended here take effect only upon Boss
+confirmation of the relevant S02-FINAL decisions. Claude AI does not self-approve classifications.
