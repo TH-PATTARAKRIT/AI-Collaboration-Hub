@@ -1,0 +1,21 @@
+# PACKAGE_MANIFEST_SHA256_STATE02_STEP03_STEP04_CROSSWALK.txt
+# Session: SMEPLUS-26-07-13-007
+# Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
+# Target Branch: SMEsPlus
+# Original Package Commit: 3f9c4d86f04331fe9f32c7badac4b1f3d4bc0fc8
+# PR #13 Merge Commit: 1598a04723651240e11860f3eec1a316569af6e9
+# Generated: 2026-07-14T05:27:32Z by Claude AI (Responsible role only — preparer regeneration)
+# Reason: these 4 cross-step files were originally covered by the STEP 04 manifest
+#   (15-file scope). PR #15 regenerated the STEP 04 manifest to a 13-file Step-04-only
+#   canonical scope and intentionally excluded these 4 files (see
+#   Step_04_Ownerless_Execution_Control/CANONICALIZATION_RECORD_STATE02_STEP04_v1.0.md
+#   Section 4). This manifest closes that coverage gap; file contents are unchanged
+#   since original intake (hashes match the original committed values byte-for-byte).
+# Coverage: 4 cross-step control files (this manifest listed as SELF - HASH EXCLUDED)
+# Gate: HOLD — full closure evidence and Boss final approval pending
+#
+8caada97c9551cd44723ec48bbe4b281e71f018f3d3a225815bf5d5e99c44f41  STATE02_STEP03_STEP04_CROSSWALK_v1.0.md
+0c0cccb94485b457e83ff00005e3f88b21f24723a639f20999bad4a9e28ac91f  STATE02_STEP03_STEP04_COMPLETION_CHECKLIST_v1.0.md
+03489ad908f8e73c243858cedad47e75859df70350c62d243d2defca0b32c62a  STATE02_STEP03_STEP04_EVIDENCE_REGISTER_v1.0.md
+3eedc1b278227fab1c2b13665bb8892b8071bda539c1cb45622c36da45b6663c  STATE02_STEP03_STEP04_EXECUTIVE_SUMMARY_v1.0.md
+SELF - HASH EXCLUDED  PACKAGE_MANIFEST_SHA256_STATE02_STEP03_STEP04_CROSSWALK.txt
