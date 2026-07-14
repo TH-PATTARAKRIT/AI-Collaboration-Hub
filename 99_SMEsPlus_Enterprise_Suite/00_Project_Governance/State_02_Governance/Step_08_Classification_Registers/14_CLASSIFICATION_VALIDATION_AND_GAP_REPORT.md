@@ -53,7 +53,7 @@ Due Date | Gate Impact | Status.
 | Gap ID | Description | Priority | Owner | Required Action | Evidence Required | Due Date | Gate Impact | Status |
 |---|---|---|---|---|---|---|---|---|
 | GAP-08-VER | No named Independent Evidence Verifier (non-preparer) for Step 08 or any State 02 deliverable | P0 | Executive Secretary (Boss = decision authority) | Appoint and record verifier identity (S02-FINAL-005) | Verifier appointment record | DECISION REQUIRED | Blocking | OPEN |
-| GAP-08-REVIEW | Independent ChatGPT L99 governance review of Step 08 not performed | P0 | ChatGPT L99 | Perform independent governance review | L99 review record (doc 17 §3) | DECISION REQUIRED | Blocking | OPEN |
+| GAP-08-REVIEW-FINAL | Final ChatGPT L99 acceptance review pending after residual correction batch | P0 | ChatGPT L99 | Perform final acceptance review of the residual correction commits | Round-1 review record + targeted re-review result + residual correction commit | DECISION REQUIRED | Blocking until final review result | PENDING FINAL ACCEPTANCE REVIEW |
 | GAP-08-BOSS | Boss closure decision for Step 08 not recorded | P0 | Boss | Record closure decision | Boss decision record (doc 17 §5) | DECISION REQUIRED | Gate decision | OPEN |
 | GAP-08-ACF | Six P0 authority-conflict source lines remain live (ACF-001/002/004/005/006/008) | P0 | Executive Secretary | Apply Boss-approved RC corrections + independent verify | Corrected sources + verifier record | DECISION REQUIRED | Blocking | OPEN |
 | GAP-08-BRANCH | Step 08 delivered on designated branch, not the order's named PR #24 branch | P1 | Executive Secretary | Boss/L99 accept reconciliation (DEC-08-04) | Acceptance record | DECISION REQUIRED | Blocking (accept required) | OPEN |
@@ -74,10 +74,22 @@ Due Date | Gate Impact | Status.
   and PACKAGE_MANIFEST_SHA256.txt).
 - Branch inconsistency: recorded as GAP-08-BRANCH (disclosed, not an integrity failure).
 
-## 5. L99 Review Round 1 — Correction Status
+## 5. L99 Review History and Correction Status (single reconciled model)
 
-ChatGPT L99 Independent Governance Review (Round 1, commit `2907630`) returned CHANGES
-REQUIRED. Corrections applied on PR #27 (this correction commit):
+This is the single authoritative review-status model for Step 08. There is no contradictory
+"review not performed" statement anywhere in the package; that wording is superseded by the
+history below.
+
+```text
+ChatGPT L99 Round 1 Review:       COMPLETED — CHANGES REQUIRED
+  Reviewed Commit: 290763065edeccf064eef6cac3b94fbbc1efb06a (2907630)
+Claude Round-1 Corrections:       COMPLETED at commit b0e873f58a37ce539132fd71598af4296a5c2ff1
+ChatGPT L99 Targeted Re-review:   COMPLETED — RESIDUAL CORRECTIONS REQUIRED
+Claude Residual Corrections:      COMPLETED at Commit C (this residual correction batch)
+Final L99 Acceptance Review:      PENDING
+```
+
+### Round 1 findings — corrections applied (commit b0e873f)
 
 | L99 finding | Correction | Status |
 |---|---|---|
@@ -89,9 +101,20 @@ REQUIRED. Corrections applied on PR #27 (this correction commit):
 | P1-03 single Accountable Owner | Joint owners reduced to one; GAP-08-OWNER for named identity | APPLIED |
 | P1-04 semantic validator checks | CHECK-08-11..16 added to validator | APPLIED |
 
+### Targeted re-review residual findings — corrections applied (Commit C)
+
+| L99 residual finding | Correction | Status |
+|---|---|---|
+| CORRECTION 01 mapping classification consistency | Mapping record shows CANONICAL CANDIDATE SOURCE — NOT EFFECTIVE; consistency statement added | APPLIED |
+| CORRECTION 02 exact correction commit SHA | Baseline 2907630 + Round-1 b0e873f + residual Commit C recorded (addendum, manifest, doc 05/12/15); Commit D evidence-only | APPLIED |
+| CORRECTION 03 review-status reconciliation | Single review-status model; GAP-08-REVIEW → GAP-08-REVIEW-FINAL (this doc, 00, 16, 17, 12) | APPLIED |
+| CORRECTION 04 semantic validator report | STEP08_VALIDATION_REPORT.md now emits a Semantic Governance Checks table (CHECK-08-11..16) + metadata | APPLIED |
+
 ## 6. Control Statement
 
-Open P0 gaps (GAP-08-VER, -REVIEW, -BOSS, -ACF, -RACI-BOSS) block Official Step Closure.
-None can be self-resolved by the preparer. Execution Preparation is complete; Step closure
+Open P0 gaps (GAP-08-VER, GAP-08-REVIEW-FINAL, GAP-08-BOSS, GAP-08-ACF, GAP-08-RACI-BOSS)
+block Official Step Closure. None can be self-resolved by the preparer. The Final L99
+Acceptance Review is PENDING and must not be marked completed or accepted by the preparer.
+Execution Preparation is complete; Step closure
 is not. L99 review result is COMPLETED — CHANGES REQUIRED (Round 1); corrections applied and
 targeted L99 re-review requested. See doc 16 for the two-figure progress split.

@@ -12,11 +12,12 @@ Gate Status: HOLD
 ## Executive Verdict
 
 Step 08 Classification Registers preparation is COMPLETE and internally self-validated.
-ChatGPT L99 Independent Governance Review Round 1 (commit 2907630) returned CHANGES REQUIRED;
-all seven findings (P0-01..03, P1-01..04) have been corrected on PR #27 and a targeted L99
-re-review is requested. The package is NOT approved, NOT independently verified, and NOT
-closed. Five P0 items block Official Step Closure, all of which are Boss or independent-role
-decisions (verifier appointment, L99 re-review, Boss closure, ACF correction, Canonical RACI
+ChatGPT L99 Round 1 (commit 2907630) returned CHANGES REQUIRED — seven findings corrected
+(commit b0e873f). The L99 targeted re-review then returned RESIDUAL CORRECTIONS REQUIRED —
+four residual findings corrected (Commit C). The Final L99 Acceptance Review is PENDING. The
+package is NOT approved, NOT independently verified, and NOT closed. Five P0 items block
+Official Step Closure, all of which are Boss or independent-role decisions (verifier
+appointment, final L99 acceptance review, Boss closure, ACF correction, Canonical RACI
 confirmation).
 
 ## Preparation Progress
@@ -104,9 +105,13 @@ notices, not critical errors.
 
 ## Independent Review Required
 
-ChatGPT L99 Independent Governance Review Round 1 is COMPLETED — result CHANGES REQUIRED.
-Corrections applied on PR #27; a targeted L99 re-review of the corrected commit is REQUIRED
-and has not yet been performed.
+```text
+ChatGPT L99 Round 1 Review:       COMPLETED — CHANGES REQUIRED (commit 2907630)
+Claude Round-1 Corrections:       COMPLETED (commit b0e873f)
+ChatGPT L99 Targeted Re-review:   COMPLETED — RESIDUAL CORRECTIONS REQUIRED
+Claude Residual Corrections:      COMPLETED (Commit C)
+Final L99 Acceptance Review:      PENDING  (GAP-08-REVIEW-FINAL; not self-marked)
+```
 
 ## Boss Decisions Required
 
@@ -126,7 +131,9 @@ recommend or declare PASS. Gate PASS is a Boss decision supported by independent
 
 ```text
 Prepared  : 100%  (all deliverables created and self-validated)
-Reviewed  : COMPLETED — CHANGES REQUIRED (L99 Round 1); corrections applied; re-review requested
+Reviewed  : L99 Round 1 COMPLETED (CHANGES REQUIRED) → Round-1 corrections done → targeted
+            re-review COMPLETED (RESIDUAL CORRECTIONS REQUIRED) → residual corrections done →
+            Final L99 Acceptance Review PENDING
 Verified  : 0%    (no non-preparer verification)
 Approved  : 0%    (Boss has not approved)
 Closed    : No    (Step 08 not closed)

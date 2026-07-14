@@ -333,16 +333,30 @@ def scan_secrets(text, findings, source):
                                     f"Possible inline secret in {source}: {m.group()[:24]}..."))
 
 
+SEMANTIC_RULES = {
+    "CHECK-08-11": ("Effective CANONICAL requires Boss confirmation", "No violation", "doc 03"),
+    "CHECK-08-12": ("Final Decision Authority must be Boss sole", "No violation", "doc 07"),
+    "CHECK-08-13": ("Exactly one Accountable Owner", "No violation", "docs 03/04/05/06/14"),
+    "CHECK-08-14": ("No post-commit placeholders after evidence addendum", "No violation", "registers/addendum"),
+    "CHECK-08-15": ("Step 08 traces to GitHub Issue #9", "Issue #9 found", "doc 12/mapping"),
+    "CHECK-08-16": ("Decision status separated from verification status", "Required columns found", "doc 07"),
+}
+
+
 def check_semantic(pkg_dir, texts, findings):
-    """Semantic governance checks CHECK-08-11..16 (L99 Review Round 1)."""
+    """Semantic governance checks CHECK-08-11..16 (L99 Review Rounds).
+
+    Returns a list of per-check result dicts so the report can show each result
+    individually (not just an aggregate CRITICAL count)."""
     doc03 = texts.get("03") or ""
     doc07 = texts.get("07") or ""
     doc12 = texts.get("12") or ""
     mapping = texts.get("map") or ""
 
-    # CHECK-08-11: CANONICAL requires Boss-confirmation evidence; effective CANONICAL
-    # (not CANDIDATE) without Boss evidence is critical.
-    for _, rows in [(h, r) for h, r in parse_tables(doc03)]:
+    violations = {k: [] for k in SEMANTIC_RULES}
+
+    # CHECK-08-11: effective CANONICAL (not CANDIDATE) without Boss evidence is a violation.
+    for _, rows in parse_tables(doc03):
         for row in rows:
             did = col(row, "Doc ID", "Document ID")
             if not did or did.startswith("---"):
@@ -352,21 +366,18 @@ def check_semantic(pkg_dir, texts, findings):
                 ev = (col(row, "Evidence") or "").lower()
                 appr = (col(row, "Approval Authority") or "").lower()
                 if "boss" not in ev and "boss approval" not in appr and "confirm" not in ev:
-                    findings.append(Finding(CRITICAL, "CHECK-08-11",
-                                            f"{did} shows effective CANONICAL without Boss-confirmation evidence"))
+                    violations["CHECK-08-11"].append(
+                        f"{did} shows effective CANONICAL without Boss-confirmation evidence")
 
     # CHECK-08-12: No slash/joint or L99 in Final Decision Authority.
     for _, rows in parse_tables(doc07):
         for row in rows:
             fda = col(row, "Final Decision Authority")
-            if fda is None:
+            if fda is None or "---" in fda:
                 continue
             low = fda.lower()
-            if "---" in fda:
-                continue
             if "/" in fda or "l99" in low or "chatgpt" in low:
-                findings.append(Finding(CRITICAL, "CHECK-08-12",
-                                        f"Final Decision Authority not Boss-sole: '{fda}'"))
+                violations["CHECK-08-12"].append(f"Final Decision Authority not Boss-sole: '{fda}'")
 
     # CHECK-08-13: Exactly one Accountable Owner (no ' / ' joint owner) across registers.
     for tag in ("03", "04", "05", "06", "14"):
@@ -376,29 +387,40 @@ def check_semantic(pkg_dir, texts, findings):
                 if owner and " / " in owner:
                     rid = (col(row, "Doc ID", "Document ID", "WI ID", "Work Item ID",
                                "Ev ID", "Evidence ID", "RAID ID", "Gap ID") or "row")
-                    findings.append(Finding(CRITICAL, "CHECK-08-13",
-                                            f"Joint owner '{owner}' in {tag}:{rid} (need one Accountable Owner)"))
+                    violations["CHECK-08-13"].append(
+                        f"Joint owner '{owner}' in {tag}:{rid} (need one Accountable Owner)")
 
     # CHECK-08-14: POST-COMMIT placeholders forbidden once the addendum (package commit) exists.
     addendum = os.path.join(pkg_dir, "STEP08_POST_COMMIT_EVIDENCE_ADDENDUM.md")
     if os.path.isfile(addendum):
-        # Scan data registers only; doc 14 (this gap report) legitimately names the token.
         for tag in ("03", "04", "05", "06", "07", "12", "map"):
-            txt = texts.get(tag) or ""
-            if "PENDING — POST-COMMIT" in txt:
-                findings.append(Finding(CRITICAL, "CHECK-08-14",
-                                        f"POST-COMMIT placeholder still present in doc {tag} after package commit"))
+            if "PENDING — POST-COMMIT" in (texts.get(tag) or ""):
+                violations["CHECK-08-14"].append(
+                    f"POST-COMMIT placeholder still present in doc {tag} after package commit")
 
     # CHECK-08-15: Step 08 must trace to GitHub Issue #9.
     if "issue #9" not in (doc12 + mapping).lower():
-        findings.append(Finding(CRITICAL, "CHECK-08-15",
-                                "Step 08 does not trace to GitHub Issue #9 (doc 12 / mapping record)"))
+        violations["CHECK-08-15"].append(
+            "Step 08 does not trace to GitHub Issue #9 (doc 12 / mapping record)")
 
     # CHECK-08-16: Decision Status must be separate from Verification Status in doc 07.
-    if ("Boss Decision Status" not in doc07 or
-            "Independent Verification Status" not in doc07):
-        findings.append(Finding(CRITICAL, "CHECK-08-16",
-                                "doc 07 does not separate Boss Decision Status from Independent Verification Status"))
+    if ("Boss Decision Status" not in doc07 or "Independent Verification Status" not in doc07):
+        violations["CHECK-08-16"].append(
+            "doc 07 does not separate Boss Decision Status from Independent Verification Status")
+
+    results = []
+    for cid in ("CHECK-08-11", "CHECK-08-12", "CHECK-08-13", "CHECK-08-14",
+                "CHECK-08-15", "CHECK-08-16"):
+        rule, expected, source = SEMANTIC_RULES[cid]
+        vs = violations[cid]
+        passed = not vs
+        actual = expected if passed else "; ".join(vs)
+        results.append({"id": cid, "rule": rule, "expected": expected,
+                        "actual": actual, "source": source,
+                        "result": "PASS" if passed else "FAIL"})
+        for v in vs:
+            findings.append(Finding(CRITICAL, cid, v))
+    return results
 
 
 def check_related_refs(text, all_ids, findings, source):
@@ -461,6 +483,35 @@ def sha256_file(path):
     return h.hexdigest()
 
 
+def git_blob_sha(path):
+    """Compute the git blob object id (sha1) of a file's content, no git required."""
+    try:
+        with open(path, "rb") as f:
+            data = f.read()
+    except OSError:
+        return "n/a"
+    h = hashlib.sha1()
+    h.update(b"blob " + str(len(data)).encode() + b"\0")
+    h.update(data)
+    return h.hexdigest()
+
+
+def run_metadata(pkg_dir, manifest_result, exit_code):
+    """Collect report metadata from environment (with defaults) — no git calls."""
+    script_path = os.path.abspath(__file__)
+    return {
+        "Validation Timestamp": os.environ.get("STEP08_VALIDATION_TS", "generation-time"),
+        "Repository": os.environ.get("STEP08_REPO", "TH-PATTARAKRIT/AI-Collaboration-Hub"),
+        "Branch": os.environ.get("STEP08_BRANCH", "claude/state-02-classification-registers-7qwwcy"),
+        "PR Number": os.environ.get("STEP08_PR", "#27"),
+        "Validated Commit": os.environ.get("STEP08_COMMIT", "working tree (pre-commit)"),
+        "Validator Script Blob SHA": git_blob_sha(script_path),
+        "Package Path": pkg_dir,
+        "Manifest Result": manifest_result,
+        "Exit Code": str(exit_code),
+    }
+
+
 # ---- self-test (mandatory tests T08-01..T08-10) -----------------------------
 
 def self_test():
@@ -509,26 +560,46 @@ def self_test():
 
 # ---- report emission --------------------------------------------------------
 
-def emit_report(path, pkg_dir, findings, selftest_results, exit_code):
+def emit_report(path, pkg_dir, findings, selftest_results, exit_code,
+                semantic_results=None, metadata=None):
+    semantic_results = semantic_results or []
+    metadata = metadata or {}
     crit = [f for f in findings if f.level == CRITICAL]
     hold = [f for f in findings if f.level == HOLD]
     info = [f for f in findings if f.level == INFO]
-    now = os.environ.get("STEP08_VALIDATION_TS", "generation-time")
+    now = metadata.get("Validation Timestamp",
+                       os.environ.get("STEP08_VALIDATION_TS", "generation-time"))
+    sem_pass = sum(1 for r in semantic_results if r["result"] == "PASS")
+    sem_total = len(semantic_results)
+    tests_pass = sum(1 for r in selftest_results if r[4] == "PASS")
     lines = []
     lines.append("# STEP08_VALIDATION_REPORT.md")
     lines.append("")
     lines.append("Generated by validate_state02_classification.py "
-                 "(PREPARER SELF-CHECK ONLY — NOT independent verification).")
+                 "(PREPARER SELF-CHECK ONLY — NOT INDEPENDENT VERIFICATION).")
     lines.append(f"Package directory: {pkg_dir}")
     lines.append(f"Generated: {now}")
     lines.append(f"Overall result: {'CRITICAL ERRORS FOUND' if crit else 'NO CRITICAL ERRORS (HOLD/INFO may remain)'}")
     lines.append(f"Exit code: {exit_code}")
     lines.append("")
+    if metadata:
+        lines.append("## Run Metadata")
+        lines.append("")
+        for k in ("Validation Timestamp", "Repository", "Branch", "PR Number",
+                  "Validated Commit", "Validator Script Blob SHA", "Package Path",
+                  "Manifest Result", "Exit Code"):
+            if k in metadata:
+                lines.append(f"- {k}: {metadata[k]}")
+        lines.append("")
     lines.append("## Summary")
     lines.append("")
-    lines.append(f"- CRITICAL findings: {len(crit)}")
+    lines.append(f"- Mandatory Tests T08-01..T08-10: {tests_pass}/{len(selftest_results)} PASS")
+    if sem_total:
+        lines.append(f"- Semantic Checks CHECK-08-11..16: {sem_pass}/{sem_total} PASS")
+    lines.append(f"- Critical Findings: {len(crit)}")
     lines.append(f"- HOLD findings: {len(hold)}")
     lines.append(f"- INFO findings: {len(info)}")
+    lines.append(f"- Exit Code: {exit_code}")
     lines.append("")
     lines.append("## Mandatory Tests (T08-01..T08-10)")
     lines.append("")
@@ -537,6 +608,15 @@ def emit_report(path, pkg_dir, findings, selftest_results, exit_code):
     for tid, desc, expected, actual, res in selftest_results:
         lines.append(f"| {tid} | {desc} | {expected} | {actual} | {res} |")
     lines.append("")
+    if semantic_results:
+        lines.append("## Semantic Governance Checks")
+        lines.append("")
+        lines.append("| Check ID | Governance Rule | Expected Result | Actual Result | Evidence Source | Result |")
+        lines.append("|---|---|---|---|---|---|")
+        for r in semantic_results:
+            lines.append(f"| {r['id']} | {r['rule']} | {r['expected']} | "
+                         f"{r['actual']} | {r['source']} | {r['result']} |")
+        lines.append("")
     for title, group in (("CRITICAL", crit), ("HOLD", hold), ("INFO", info)):
         lines.append(f"## {title} Findings")
         lines.append("")
@@ -615,10 +695,15 @@ def run_package(pkg_dir):
 
     texts = {"03": doc03, "04": doc04, "05": doc05, "06": doc06, "07": doc07,
              "12": doc12, "14": doc14, "10": doc10, "map": mapping}
-    check_semantic(pkg_dir, texts, findings)
+    semantic_results = check_semantic(pkg_dir, texts, findings)
 
     check_manifest(pkg_dir, findings)
-    return findings
+    manifest_codes = {"HASH_MISMATCH", "STALE_MANIFEST", "MANIFEST_MISSING_FILE"}
+    manifest_bad = any(f.code in manifest_codes for f in findings)
+    no_manifest = any(f.code == "NO_MANIFEST" for f in findings)
+    manifest_result = ("NOT PRESENT" if no_manifest
+                       else ("MISMATCH/STALE" if manifest_bad else "OK (self-verified)"))
+    return findings, semantic_results, manifest_result
 
 
 def main(argv):
@@ -652,19 +737,25 @@ def main(argv):
         print(f"FAIL: package directory not found: {pkg}")
         return 2
 
-    findings = run_package(pkg)
+    findings, semantic_results, manifest_result = run_package(pkg)
     crit = [f for f in findings if f.level == CRITICAL]
-    exit_code = 0 if (not crit and selftest_ok) else 1
+    sem_fail = any(r["result"] != "PASS" for r in semantic_results)
+    exit_code = 0 if (not crit and selftest_ok and not sem_fail) else 1
     if not selftest_ok:
         exit_code = 2
 
     if report_path is None:
         report_path = os.path.join(pkg, "STEP08_VALIDATION_REPORT.md")
-    emit_report(report_path, pkg, findings, selftest_results, exit_code)
+    metadata = run_metadata(pkg, manifest_result, exit_code)
+    emit_report(report_path, pkg, findings, selftest_results, exit_code,
+                semantic_results=semantic_results, metadata=metadata)
 
+    sem_pass = sum(1 for r in semantic_results if r["result"] == "PASS")
     print(f"Findings: CRITICAL={len(crit)} "
           f"HOLD={len([f for f in findings if f.level == HOLD])} "
           f"INFO={len([f for f in findings if f.level == INFO])}")
+    print(f"Mandatory Tests: {sum(1 for r in selftest_results if r[4]=='PASS')}/{len(selftest_results)} PASS")
+    print(f"Semantic Checks: {sem_pass}/{len(semantic_results)} PASS")
     for f in crit:
         print(str(f))
     print(f"Report written: {report_path}")

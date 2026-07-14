@@ -20,8 +20,8 @@ supersession of prior State 02 steps.
 | Repository Folder | Package Topic | Status at base | Classification (this Step 08) |
 |---|---|---|---|
 | State_02_Governance/ (root docs) | Step 01/02 authority scan + conflict register | EXECUTION COMPLETE / evidence | Classified in doc 03 |
-| Step_03_Canonical_RACI/ | Step 03 — Canonical RACI | EXECUTION COMPLETE, L99 CONFIRMED (per PR history), merged | CANONICAL source DOC-S02-010 |
-| Step_04_Ownerless_Execution_Control/ | Step 04 — Ownerless Execution Control | EXECUTION COMPLETE, PARTIALLY VERIFIED, merged (PR #15) | CANONICAL source DOC-S02-020 |
+| Step_03_Canonical_RACI/ | Step 03 — Canonical RACI | EXECUTION COMPLETE, L99 CONFIRMED (per PR history), merged | CANONICAL CANDIDATE SOURCE — NOT EFFECTIVE — PENDING BOSS CONFIRMATION (DOC-S02-010) |
+| Step_04_Ownerless_Execution_Control/ | Step 04 — Ownerless Execution Control | EXECUTION COMPLETE, PARTIALLY VERIFIED, merged (PR #15) | CANONICAL CANDIDATE SOURCE — NOT EFFECTIVE — PENDING BOSS CONFIRMATION (DOC-S02-020) |
 | Step_08_Classification_Registers/ (new) | Step 08 — Classification Registers | Created by this order | This package |
 
 Step 05 (Governance Index), Step 06, and Step 07 exist only in unmerged PR branches
@@ -71,6 +71,24 @@ by cross-reference only (doc 13).
 - This order does NOT renumber, rename, reopen, or supersede Step 03 or Step 04.
 - Step 03 and Step 04 remain EXECUTION COMPLETE as merged; Step 08 classifies their outputs.
 - No prior step folder is modified, moved, or deleted.
+
+## 4a. Classification Consistency Statement (CORRECTION 01 — L99 targeted re-review)
+
+The classification stated in this Mapping Record must match
+`03_DOCUMENT_CLASSIFICATION_REGISTER.md`. No document is treated as effective CANONICAL
+unless Boss-confirmation evidence exists.
+
+The three controlling-topic documents are recorded consistently as CANONICAL CANDIDATE
+SOURCE, NOT EFFECTIVE — PENDING BOSS CONFIRMATION:
+
+```text
+DOC-S02-010 (Canonical RACI)                        — CANONICAL CANDIDATE SOURCE — NOT EFFECTIVE
+DOC-S02-020 (Ownerless Execution Control Standard)  — CANONICAL CANDIDATE SOURCE — NOT EFFECTIVE
+DOC-S02-032 (Authority Conflict Register v1.1)       — CANONICAL CANDIDATE SOURCE — NOT EFFECTIVE
+```
+
+This Mapping Record does not state or imply that any classification is effective before Boss
+confirmation (DEC-08-01).
 
 ## 5. Control Statement
 

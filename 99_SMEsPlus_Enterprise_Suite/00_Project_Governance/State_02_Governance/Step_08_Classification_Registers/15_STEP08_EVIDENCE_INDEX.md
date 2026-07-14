@@ -62,8 +62,9 @@ Excluded silently: NONE.
 
 ## 3. Control Statement
 
-The SHA-256 manifest is the authoritative hash source; this index points to it. The package
-baseline commit is `2907630` (`290763065edeccf064eef6cac3b94fbbc1efb06a`); per-file blob SHAs
-and the L99 Round-1 correction commit are recorded in
-`STEP08_POST_COMMIT_EVIDENCE_ADDENDUM.md` (P1-01 correction). No deliverable is omitted. No
-verification is claimed.
+The SHA-256 manifest is the authoritative hash source; this index points to it. Commit chain
+(recorded in `STEP08_POST_COMMIT_EVIDENCE_ADDENDUM.md`, P1-01 + CORRECTION 02): baseline
+`290763065edeccf064eef6cac3b94fbbc1efb06a` (2907630) → Round-1 correction
+`b0e873f58a37ce539132fd71598af4296a5c2ff1` (b0e873f) → residual correction Commit C (exact
+SHA written into the addendum by Commit D). Per-file blob SHAs are in the addendum. No
+deliverable is omitted. No verification is claimed.

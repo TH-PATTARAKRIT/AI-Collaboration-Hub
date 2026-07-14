@@ -73,7 +73,10 @@ E5 — 2 records  (EV-08-21 Verifier identity, EV-08-22 Boss closure) — classi
 - No E4 claim is counted as verified progress in this package.
 - Both E5 items (EV-08-21, EV-08-22) are Boss / independent-role decisions and are held,
   not self-resolved by the preparer. They are the primary blockers to Official Step Closure.
-- Post-commit evidence is now populated (P1-01 correction): the package baseline commit is
-  `2907630` (full `290763065edeccf064eef6cac3b94fbbc1efb06a`); per-file blob SHAs and the
-  correction-commit reference are recorded in `STEP08_POST_COMMIT_EVIDENCE_ADDENDUM.md`. The
-  SHA-256 column resolves to the values in `PACKAGE_MANIFEST_SHA256.txt`, which self-verifies.
+- Post-commit evidence is populated (P1-01 + CORRECTION 02). Commit chain recorded in
+  `STEP08_POST_COMMIT_EVIDENCE_ADDENDUM.md`:
+  Baseline `290763065edeccf064eef6cac3b94fbbc1efb06a` (2907630) →
+  Round-1 correction `b0e873f58a37ce539132fd71598af4296a5c2ff1` (b0e873f) →
+  Residual correction Commit C (exact SHA written into the addendum by Commit D).
+  Per-file blob SHAs are in the addendum; per-file SHA-256 in `PACKAGE_MANIFEST_SHA256.txt`
+  (self-verifies).

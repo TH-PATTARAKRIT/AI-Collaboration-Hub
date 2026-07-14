@@ -53,6 +53,7 @@ Review Record → Verification Record → Gate Result → Boss Decision
 | Authority conflicts | ACF-001..010 (DOC-S02-032) | E1 |
 | Overlapping governance PRs | PR #20, #23, #24, #25, #27 | E0 (list) |
 | Controlling GitHub Issue | Issue #9 [STATE02-GOV-007] — Governance Evidence & Document Classification Registers (verified title/owner via GitHub) | E0 |
+| Commit chain | Baseline 2907630 → Round-1 b0e873f → Residual Commit C (recorded in POST-COMMIT addendum by Commit D) | E0 |
 
 ## 4. Traceability Coverage Summary
 
@@ -63,7 +64,9 @@ GitHub Issue links    : Issue #9 [STATE02-GOV-007] is the controlling issue for 
                         (all WP-08-01..17 trace to it); Issue #5 additionally links authority scope
 PR link               : PR #27 (Step 08) + cross-referenced PR #20/#23/#24/#25
 Commit                : 2907630 (package baseline; per-file blob SHAs in POST-COMMIT addendum)
-Review                : COMPLETED — CHANGES REQUIRED (L99 Round 1); corrections applied, re-review requested
+Review                : L99 Round 1 COMPLETED (CHANGES REQUIRED, 2907630) → corrected (b0e873f) →
+                        targeted re-review COMPLETED (RESIDUAL CORRECTIONS REQUIRED) → corrected (Commit C) →
+                        Final L99 Acceptance Review PENDING (GAP-08-REVIEW-FINAL)
 Verification          : PENDING VERIFICATION (no named verifier)
 Gate                  : HOLD (all rows)
 Boss Decision         : DEC-08-01/02 RECORDED (unmerged, NOT EFFECTIVE); DEC-08-03/04/05/06 PENDING

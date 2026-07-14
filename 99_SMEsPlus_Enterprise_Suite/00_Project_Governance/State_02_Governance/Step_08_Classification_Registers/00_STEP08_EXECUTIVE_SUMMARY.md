@@ -72,38 +72,38 @@ No deliverable is marked VERIFIED, APPROVED, PASS, or CLOSED. Independent Eviden
 Verification has NOT been performed and is reserved for a non-preparer identity. Boss approval
 is NOT recorded.
 
-## 5a. L99 Independent Governance Review — Round 1 (correction applied)
-
-ChatGPT L99 reviewed commit `2907630` and returned **CHANGES REQUIRED BEFORE MERGE** with
-seven findings. All are corrected on PR #27 in the following correction commit:
+## 5a. L99 Independent Governance Review — History (single reconciled model)
 
 ```text
-P0-01 provisional CANONICAL  → CANONICAL CANDIDATE (NOT EFFECTIVE) pending Boss confirmation
-P0-02 L99 joint authority    → Final Decision Authority = Boss (sole); L99 recommend-only
-P0-03 decision vs verify mix → separate Boss Decision / Application / Verification / Merge / Effective columns
-P1-01 post-commit evidence   → POST-COMMIT addendum + per-file blob SHAs (baseline 2907630)
-P1-02 Issue #9 traceability  → Issue #9 [STATE02-GOV-007] mapped (verified via GitHub)
-P1-03 single Accountable Owner→ joint owners reduced to one; GAP-08-OWNER for named identity
-P1-04 semantic validator     → CHECK-08-11..16 added; validator re-run
+ChatGPT L99 Round 1 Review:       COMPLETED — CHANGES REQUIRED
+  Reviewed Commit: 290763065edeccf064eef6cac3b94fbbc1efb06a (2907630)
+Claude Round-1 Corrections:       COMPLETED at commit b0e873f58a37ce539132fd71598af4296a5c2ff1
+ChatGPT L99 Targeted Re-review:   COMPLETED — RESIDUAL CORRECTIONS REQUIRED
+Claude Residual Corrections:      COMPLETED at Commit C (this residual correction batch)
+Final L99 Acceptance Review:      PENDING
 ```
 
-The corrected package is submitted for **targeted L99 re-review**. Correction detail is in
-doc 14 §5 and doc 17 §4. This is Round-1 review completion, not acceptance.
+Round-1 (seven findings) and targeted-re-review (four residual findings) corrections are all
+APPLIED; detail in doc 14 §5 and doc 17 §4. The Final L99 Acceptance Review is PENDING and is
+not marked completed or accepted by the preparer (see GAP-08-REVIEW-FINAL).
 
 ## 6. Progress (two separate figures — do not combine)
 
 ```text
-Execution Preparation Progress (preparer-reported, post-correction) = 100%
-L99 Round-1 Accepted Execution Preparation (pre-correction)          = 80% (subject to re-review)
-Official Step Closure Progress = 70% (capped; independent verification + Boss approval outstanding)
+Execution Preparation:              100% PREPARER-REPORTED (post-correction)
+L99 Accepted Preparation:           PENDING FINAL TARGETED REVIEW
+Independent Evidence Verification:  0% / PENDING
+Boss Approval:                      0% / PENDING
+Step Closure:                       NOT CLOSED
+Official Step Closure Progress:     70% (capped; independent verification + Boss approval outstanding)
 ```
 
 ## 7. Submission Position
 
 ```text
 STEP 08 CLASSIFICATION REGISTERS
-CORRECTIONS APPLIED — READY FOR TARGETED L99 RE-REVIEW
-(Gate: HOLD — independent verification and Boss decision outstanding)
+RESIDUAL CORRECTIONS COMPLETED — READY FOR FINAL CHATGPT L99 ACCEPTANCE REVIEW
+(Gate: HOLD — independent verification and Boss decision pending)
 ```
 
 Boss remains the Sole Final Approver. ChatGPT L99 is the Independent Governance Reviewer

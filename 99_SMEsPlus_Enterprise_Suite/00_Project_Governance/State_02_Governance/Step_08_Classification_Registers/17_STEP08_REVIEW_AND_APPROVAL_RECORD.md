@@ -67,13 +67,37 @@ Preparer response: all seven corrected on PR #27 (see doc 14 §5); targeted re-r
 The Round-1 verdict above is transcribed from the received ChatGPT L99 review, not authored
 by Claude Code. Claude Code does not sign or self-issue the review result.
 
-### Round 2 — targeted re-review of the correction commit (ChatGPT L99 — NOT completed by preparer)
+### Review history (single reconciled model)
+
+```text
+Round 1 Review:            COMPLETED — CHANGES REQUIRED
+  Reviewed Commit:         290763065edeccf064eef6cac3b94fbbc1efb06a
+Round 1 Correction:        COMPLETED
+  Correction Commit:       b0e873f58a37ce539132fd71598af4296a5c2ff1
+Targeted Re-review:        COMPLETED — RESIDUAL CORRECTIONS REQUIRED
+Residual Correction:       COMPLETED
+  Commit: <Commit C SHA — recorded in STEP08_POST_COMMIT_EVIDENCE_ADDENDUM.md by Commit D>
+Final Acceptance Review:   PENDING CHATGPT L99
+```
+
+### Round 2 — targeted re-review (received; transcribed, not authored by preparer)
+
+```text
+Reviewer Identity: ChatGPT L99 (Independent Governance Reviewer)
+Review Result:     RESIDUAL CORRECTIONS REQUIRED (COMPLETED — targeted re-review)
+Residual findings: CORRECTION 01 (mapping classification), CORRECTION 02 (exact commit
+                   evidence), CORRECTION 03 (review-status reconciliation), CORRECTION 04
+                   (semantic validator report)
+Preparer response: all four corrected in Commit C (see doc 14 §5); Final Acceptance Review requested
+```
+
+### Round 3 — Final Acceptance Review (ChatGPT L99 — NOT completed by preparer)
 
 ```text
 Reviewer Identity: ____________________________
 Review Date:       ____________________________
-Per-item re-review of P0-01..03 / P1-01..04 corrections: ____________________________
-Governance Review Result: ____________________________  (NOT PREFILLED)
+Final acceptance of residual corrections (CORRECTION 01..04): ____________________________
+Final Governance Review Result: ____________________________  (NOT PREFILLED — PENDING)
 Open review items: ____________________________
 Reviewer Signature/Reference: ____________________________
 ```
