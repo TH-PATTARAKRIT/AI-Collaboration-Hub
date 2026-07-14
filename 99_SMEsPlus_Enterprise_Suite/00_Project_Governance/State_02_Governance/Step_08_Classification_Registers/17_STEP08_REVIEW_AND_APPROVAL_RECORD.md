@@ -76,7 +76,12 @@ Round 1 Correction:        COMPLETED
   Correction Commit:       b0e873f58a37ce539132fd71598af4296a5c2ff1
 Targeted Re-review:        COMPLETED — RESIDUAL CORRECTIONS REQUIRED
 Residual Correction:       COMPLETED
-  Commit: <Commit C SHA — recorded in STEP08_POST_COMMIT_EVIDENCE_ADDENDUM.md by Commit D>
+  Residual Correction Commit C:
+  9c206169a095d02128ecd609e8b45c3c72fda8e2
+  Evidence Addendum Commit D:
+  0a827d3d61112bd34c139a0968fa13bb84fba4ab
+Final Repository Hygiene:  COMPLETED in Commit E (Python cache removal, .gitignore,
+                           this record correction, regenerated report + manifest)
 Final Acceptance Review:   PENDING CHATGPT L99
 ```
 
@@ -136,6 +141,14 @@ Closure Signature/Reference: ____________________________
 
 ## Control Statement
 
-Sections 4–7 are intentionally blank. Claude Code does not self-review, self-verify,
-self-approve, or self-close. Step 08 remains OPEN and HOLD until these sections are
-completed by the responsible independent and Boss roles.
+Independent Governance Review history in Section 4 has been recorded.
+
+The Round 3 Final Acceptance Review fields in Section 4 remain pending and must
+be completed only by ChatGPT L99.
+
+Sections 5–7 remain pending and must be completed only by the named Independent
+Evidence Verifier, Boss, and authorized Executive Secretary roles.
+
+Claude Code does not self-review, self-verify, self-approve, or self-close. Step 08
+remains OPEN and HOLD until these pending sections are completed by the responsible
+independent and Boss roles.
