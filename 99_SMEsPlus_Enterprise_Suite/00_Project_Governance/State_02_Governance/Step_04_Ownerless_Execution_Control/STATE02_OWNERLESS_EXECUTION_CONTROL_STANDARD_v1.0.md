@@ -49,15 +49,20 @@ Required human decision is being incorrectly delegated to AI.
 ```text
 P0 work:
 No action or evidence within 20 minutes
-→ Escalate and activate replacement execution.
+→ Escalate; the Authorized AI Execution Agent may continue permitted
+  operational work with evidence. Acting Owner appointment, if required,
+  needs explicit Boss authorization. SLA expiry does not itself appoint.
 
 P1 work:
 No action or evidence within 4 working hours
-→ Escalate and assign acting execution owner.
+→ Escalate; prepare an Acting Owner recommendation and a Boss decision
+  request. Appointment of an Acting Owner requires explicit Boss
+  authorization. SLA expiry does not itself appoint.
 
 P2 work:
 No action or evidence within 1 working day
-→ Escalate for owner replacement review.
+→ Escalate; prepare an owner replacement review package for Boss decision.
+  Opening a formal replacement review and any appointment are Boss decisions.
 ```
 
 If an Owner reports a valid blocker with evidence, classify the item
@@ -70,7 +75,8 @@ Human Owner active
 → Human Owner executes.
 
 Human Owner unavailable or inactive
-→ Acting Owner assigned.
+→ Acting Owner appointed by explicit Boss authorization (SLA expiry does not
+  itself appoint; Executive Secretary / Liza may prepare the recommendation).
 
 Acting Owner unavailable
 → Authorized AI Execution Agent prepares and executes all permitted work.
