@@ -17,9 +17,10 @@ PR Number:                 #27  (base: SMEsPlus)
 Branch:                    claude/state-02-classification-registers-7qwwcy
 Baseline Package Commit:   290763065edeccf064eef6cac3b94fbbc1efb06a (2907630)
 Round-1 Correction Commit: b0e873f58a37ce539132fd71598af4296a5c2ff1 (b0e873f)
-Residual Correction Commit (C): PENDING UNTIL THIS CORRECTION IS COMMITTED
-                                (exact SHA written into this addendum by Commit D)
-Evidence Addendum Commit (D):   the evidence-only commit that records Commit C's exact SHA
+Residual Correction Commit (C): 9c206169a095d02128ecd609e8b45c3c72fda8e2 (9c20616)
+Evidence Addendum Commit (D):   the evidence-only commit that adds this recorded SHA
+                                (its own object id is visible in the PR #27 git log; D does
+                                 not verify itself)
 Commit Timestamp:          2026-07-14 (UTC)
 Merge Status:              NOT MERGED
 ```

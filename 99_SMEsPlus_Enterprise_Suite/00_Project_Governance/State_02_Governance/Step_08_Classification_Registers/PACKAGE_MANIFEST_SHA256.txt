@@ -7,8 +7,9 @@
 # Base Commit: 8570187 (Merge PR #15)
 # Baseline Package Commit: 2907630 (290763065edeccf064eef6cac3b94fbbc1efb06a)
 # Round-1 Correction Commit: b0e873f (b0e873f58a37ce539132fd71598af4296a5c2ff1)
-# Residual Correction Commit (C): recorded in STEP08_POST_COMMIT_EVIDENCE_ADDENDUM.md by Commit D
-# Regenerated: 2026-07-14 by Claude Code (Preparer / Package Integrity role) — after L99 targeted re-review residual corrections
+# Residual Correction Commit (C): 9c20616 (9c206169a095d02128ecd609e8b45c3c72fda8e2)
+# Evidence Addendum Commit (D): evidence-only; records Commit C SHA (see POST-COMMIT addendum)
+# Regenerated: 2026-07-14 by Claude Code (Preparer / Package Integrity role) — Commit D (post-commit evidence)
 # Independent Reviewer: ChatGPT L99 — Round 1 COMPLETED (CHANGES REQUIRED); Targeted Re-review COMPLETED (RESIDUAL CORRECTIONS REQUIRED); Final Acceptance Review PENDING
 # Independent Evidence Verifier: PENDING — RECORD (non-preparer identity)
 # Scope: in-package deliverables + external validation script + Skill files.
@@ -34,7 +35,7 @@ efb822afcc52c64587b407000a8635905a48e100e25534a41a9d0d14e908db69  15_STEP08_EVID
 81d4a2db44cb0d9d6467473bafb07026cca8f06e6c0884bf0f010d65102e89ea  16_BOSS_EXECUTIVE_CLASSIFICATION_REPORT.md
 b77b03acc9ff5f87f1a1238de6e50a8403ba4d03f48b7795ac4099970ef0b0df  17_STEP08_REVIEW_AND_APPROVAL_RECORD.md
 d3fe80da93c9b96ed6128f3af329b4d32bc9fe744e19ccaafabc6eb1982f6505  STATE02_STEP_NUMBERING_MAPPING_RECORD.md
-f876be2c34d9edb1ac217bd528867cb2e23f0cb1e73f5c6079e19a3ef7fa5e4a  STEP08_POST_COMMIT_EVIDENCE_ADDENDUM.md
+cabbb936009f0eda5231f242778f64bfd8de389f1171ddf7e6e7d7d057b6b592  STEP08_POST_COMMIT_EVIDENCE_ADDENDUM.md
 fc69c556b4ef7510c2dcbfadd0f10eb435307c66251b283cba7ad25d1673b44e  ../../../../.claude/skills/smeplus-state02-governance-controller/scripts/validate_state02_classification.py
 5c7a93b584ba0d063f319774db5c607420695d0c01370870fe3a49e9a6235a74  ../../../../.claude/skills/smeplus-state02-governance-controller/SKILL.md
 0e720eac3c12cc65166cce04af722a5dc753786411df562e5677039bc6e55d20  ../../../../.claude/skills/smeplus-state02-governance-controller/references/step08-classification-registers.md
