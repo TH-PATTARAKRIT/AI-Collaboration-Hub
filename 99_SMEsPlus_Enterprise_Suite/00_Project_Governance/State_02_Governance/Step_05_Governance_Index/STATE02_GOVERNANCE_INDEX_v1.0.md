@@ -102,7 +102,7 @@ preparation).
 
 ## 11. Authority Conflicts (incorporated on this branch; Boss decision pending)
 
-1. **STATE02_ESCALATION_AND_REPLACEMENT_RULE_v1.0.md** and **STATE02_OWNERLESS_WORK_REGISTER_v1.0.md**: the PR #15 authority correction (restricting Executive Secretary / Liza to nomination/escalation only, and reassigning Accountable Owner to Boss on all Ownerless Work Register rows) is now INCORPORATED byte-for-byte on this consolidation branch and validated as technically consistent with the Canonical RACI, Owner Replacement Matrix, and AI Execution Authority Matrix (`STATE02_STEP04_AUTHORITY_CORRECTION_VALIDATION_v1.0.md`, result: TECHNICALLY CONSISTENT — L99 REVIEW PENDING). Merge of PR #15 into SMEsPlus remains a Boss decision. No residual authority contradiction remains on this branch.
+1. **STATE02_ESCALATION_AND_REPLACEMENT_RULE_v1.0.md** and **STATE02_OWNERLESS_WORK_REGISTER_v1.0.md**: the PR #15 authority correction (restricting Executive Secretary / Liza to nomination/escalation only, and reassigning Accountable Owner to Boss on all Ownerless Work Register rows) is now INCORPORATED byte-for-byte on this consolidation branch and validated as technically consistent with the Canonical RACI, Owner Replacement Matrix, and AI Execution Authority Matrix (`STATE02_STEP04_AUTHORITY_CORRECTION_VALIDATION_v1.0.md`, result: TECHNICALLY CONSISTENT — L99 REVIEW PENDING). **PR #15 is now MERGED into SMEsPlus @ `8570187` (Boss/Somchart authorized)**, and this branch has been forward-integrated onto that base (byte-identical Step 04 content). No residual authority contradiction remains.
 2. Section 9's Ownerless Execution Control Standard states "No Accountable Owner is assigned" for the standard document itself — a design choice, not an oversight, but one that has not been explicitly ratified by Boss as acceptable.
 
 ## 12. Open Evidence Gaps
@@ -116,10 +116,11 @@ preparation).
 | PR | State | Head Commit | Relevance |
 |---|---|---|---|
 | #13 | MERGED | `1c4ab7c4eed6252efdc108b238465db3a5234f81` (merge commit `1598a04723651240e11860f3eec1a316569af6e9`) | Delivered the 25-file STEP 03/04 package now in SMEsPlus |
-| #15 | OPEN | `ab1f98e286d67afc9b205712b5cd08685f65acd1` | Authority correction — INCORPORATED on this branch; merge pending Boss |
+| #15 | **MERGED** @ `8570187` | `ab1f98e286d67afc9b205712b5cd08685f65acd1` | Authority correction — MERGED into SMEsPlus (Boss authorized); this branch forward-integrated onto it |
 | #16 | OPEN | `398a3f5cced9dd29c2734985933a2e747b317e1a` | Closure Evidence Pack — evidence incorporated/refreshed |
 | #17 | OPEN | `b1e3634b81c1144f619b459e55348f913b2d8e94` | Step 04 SHA256 recompute — intent incorporated; manifest superseded |
 | #18 | OPEN | `7d90380b63558f1a3772514e36018ab4b2a810ef` | Step 05 Governance Index — superseded by this consolidated branch |
+| #20 | OPEN | `5925d846…` (body cites `9e0ca37`) | STEP 03 source-correction (RC-001..010 applied) + approval package; overlaps Step 03 — see reconciliation §6 / L99 response |
 
 Full reconciliation: `STATE02_OPEN_PR_RECONCILIATION_MATRIX_v1.0.md`.
 
@@ -167,7 +168,7 @@ request is merged by this package. Boss remains the Sole Final Approver.
 
 | Index ID | Governance Function | Primary Document Candidate | Version | Path | Classification | Owner | Reviewer | Verifier | Latest Commit | PR | Jira | Integrity Status | Open Issue | Boss Decision |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| IDX-01 | Authority Model / RACI | STATE02_CANONICAL_RACI_v1.0.md | v1.0 | Step_03_Canonical_RACI/ | CANONICAL CANDIDATE | Boss | ChatGPT L99 (completed) | Claude Code (partial) | 3f9c4d8 | #13 (merged) | ERPPLUS-94 | TECHNICAL INTEGRITY CHECK PASSED — INDEPENDENT VERIFICATION PENDING | RC-007/RC-009 not yet applied | Canonical status decision |
+| IDX-01 | Authority Model / RACI | STATE02_CANONICAL_RACI_v1.0.md | v1.0 | Step_03_Canonical_RACI/ | CANONICAL CANDIDATE | Boss | ChatGPT L99 (completed) | Claude Code (partial) | 3f9c4d8 | #13 (merged) | ERPPLUS-94 | TECHNICAL INTEGRITY CHECK PASSED — INDEPENDENT VERIFICATION PENDING | RC-001..010 applied in PR #20 (pending verification); PR #20 revises this file to R1 — see reconciliation §6 | Canonical status decision |
 | IDX-02 | Gate Control | STATE02_STEP03_STEP04_COMPLETION_CHECKLIST_v1.0.md | v1.0 | State_02_Governance/ | ACTIVE CONTROLLED | Executive Secretary / Liza | ChatGPT L99 | Claude Code (partial) | 3f9c4d8 | #13 (merged) | ERPPLUS-94 | TECHNICAL INTEGRITY CHECK PASSED — INDEPENDENT VERIFICATION PENDING | None | None recorded as blocking |
 | IDX-03 | Evidence Rule | STATE02_STEP03_STEP04_EVIDENCE_REGISTER_v1.0.md | v1.0 | State_02_Governance/ | EVIDENCE RECORD | Executive Secretary / Liza | ChatGPT L99 (partial) | Claude Code (partial) | 3f9c4d8 | #13 (merged) | ERPPLUS-94 | TECHNICAL INTEGRITY CHECK PASSED — INDEPENDENT VERIFICATION PENDING | None | None |
 | IDX-04 | AI Governance | STATE02_AI_EXECUTION_AUTHORITY_MATRIX_v1.0.md | v1.0 | Step_04_Ownerless_Execution_Control/ | CANONICAL CANDIDATE | Boss | ChatGPT L99 | Claude Code (partial) | 3f9c4d8 | #13 (merged) | ERPPLUS-94 | TECHNICAL INTEGRITY CHECK PASSED — INDEPENDENT VERIFICATION PENDING | None | Canonical status decision |

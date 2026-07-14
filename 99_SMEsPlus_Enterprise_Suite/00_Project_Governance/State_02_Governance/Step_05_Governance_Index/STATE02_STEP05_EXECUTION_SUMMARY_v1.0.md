@@ -41,7 +41,7 @@ COMPLETE, APPROVED, FINAL, or CANONICAL.
 
 ## 3. What Was Produced
 
-21 files under `Step_05_Governance_Index/`: the original 15 Step 05 deliverables
+22 files under `Step_05_Governance_Index/`: the original 15 Step 05 deliverables
 (document inventory, PR reconciliation matrix, classification register, function-to-
 document map, the Governance Index itself, an integrity record with raw SHA256 output
 and a self-excluding manifest, an open items register, this execution summary, a
@@ -51,7 +51,9 @@ shells, and a Boss decision pack) plus 4 blocker-resolution deliverables added i
 the Step 03/04 Final Hash Reconciliation, and the Step 03/04 Final SHA256 raw output.
 Two execution-control registers (EXECUTION_ASSUMPTION_REGISTER.md,
 EXECUTION_EXCEPTION_REGISTER.md) were subsequently added under the non-interactive
-auto-execution order, bringing the package to 21 files.
+auto-execution order. After the ChatGPT L99 review of PR #19, an L99 review response
+(STATE02_STEP05_L99_REVIEW_RESPONSE_v1.0.md) was added and the branch was forward-integrated
+onto the PR-#15-merged SMEsPlus base, bringing the package to 22 files.
 
 ## 4. What Was Not Done (by design, per the execution order's restrictions)
 

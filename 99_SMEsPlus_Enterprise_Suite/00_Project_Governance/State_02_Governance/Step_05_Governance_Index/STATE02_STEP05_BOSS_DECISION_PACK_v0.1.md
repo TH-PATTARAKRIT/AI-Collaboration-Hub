@@ -52,22 +52,28 @@ the manifests to current bytes. Full detail:
 39 files inventoried, 0 qualified archive candidates, 0 moved, 0 deleted (adopted
 from unmerged PR #16; not independently re-executed by this package).
 
-## 9. PR Reconciliation Result
+## 9. PR Reconciliation Result (updated after ChatGPT L99 review + PR #15 merge)
 
-PR #13: MERGED (STEP 03/04 package baseline). PR #15: authority correction —
-INCORPORATED on this branch, manifest recomputed. PR #16: closure evidence/archive/
-full verification — evidence incorporated/refreshed. PR #17: Step 04 hash recompute —
-intent incorporated, manifest superseded by the byte-accurate regeneration. PR #18:
-Step 05 index — superseded by this consolidated branch. No PR merged. Full detail:
-`STATE02_OPEN_PR_RECONCILIATION_MATRIX_v1.0.md` §5.
+PR #13: MERGED (STEP 03/04 baseline). **PR #15: now MERGED into SMEsPlus @ `8570187`
+(Boss authorized)**; this branch forward-integrated onto it (byte-identical Step 04
+content). PR #16: closure evidence/archive/full verification — evidence incorporated/
+refreshed. PR #17: Step 04 hash recompute — intent incorporated, manifest superseded.
+PR #18: Step 05 index — superseded by this consolidated branch. **PR #20: STEP 03
+source-correction (RC-001..010 applied) + approval package — overlaps the Step 03
+package; recommend keep-separate, merge PR #20 first, rebase PR #19 after (Boss decides).**
+No PR merged by this branch. Full detail: `STATE02_OPEN_PR_RECONCILIATION_MATRIX_v1.0.md`
+§5–§6 and `STATE02_STEP05_L99_REVIEW_RESPONSE_v1.0.md`.
 
 ## 10. Open Blockers
 
-OI-001 (no named independent Evidence Verifier), OI-002 (PR #15 merge decision — the
-correction itself is incorporated on-branch), OI-013 (10 unresolved STEP 02 P0/P1
-findings), plus reviewer/verifier appointments and Boss approval. OI-008/OI-009 (stale
-manifests) are now CLOSED WITH EVIDENCE. Full list:
-`STATE02_GOVERNANCE_INDEX_OPEN_ITEMS_REGISTER_v1.0.md` (15 items, 2 closed with evidence).
+OI-001 (no named independent Evidence Verifier), OI-013 (STEP 02 P0/P1 findings —
+corrections applied in PR #20, verification pending), OI-016 (PR #19↔#20 integration
+path), OI-011/OI-014/OI-015 (Canonical classification, index approval, closure), plus
+reviewer/verifier appointments and Boss approval. CLOSED WITH EVIDENCE this session:
+OI-005 (PR #15 merged), OI-008/OI-009 (stale manifests). The ChatGPT L99 review of PR #19
+returned HOLD — NOT READY TO MERGE; disposed item-by-item in
+`STATE02_STEP05_L99_REVIEW_RESPONSE_v1.0.md`. Full list:
+`STATE02_GOVERNANCE_INDEX_OPEN_ITEMS_REGISTER_v1.0.md` (16 items, 3 closed with evidence).
 
 ## 11. Decision Options
 

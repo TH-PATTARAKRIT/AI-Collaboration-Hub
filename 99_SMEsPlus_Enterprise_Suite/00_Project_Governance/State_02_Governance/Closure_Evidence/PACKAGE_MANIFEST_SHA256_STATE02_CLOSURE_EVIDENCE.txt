@@ -1,15 +1,15 @@
 # PACKAGE_MANIFEST_SHA256_STATE02_CLOSURE_EVIDENCE.txt
 # Session: [SMEPLUS-26-07-14-003] State 02 — Step 05 Blocker Resolution (refreshed from -001)
 # Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
-# Execution Branch: claude/step05-blocker-resolution-ip03en | Target Branch: SMEsPlus
+# Execution Branch: claude/step05-blocker-resolution-ip03en | Target Branch: SMEsPlus @ 8570187
 # Regenerated: 2026-07-14 by Claude Code (Authorized GitHub Execution Agent)
 # Coverage: 6 Closure Evidence files (this manifest listed as SELF - HASH EXCLUDED).
-# Refreshed to consolidated state: hash-verification result now 25 MATCH / 0 MISMATCH; OI-01 CLOSED.
+# 25 MATCH / 0 MISMATCH; OI-01 CLOSED; OI-06 cross-references PR #20 source corrections.
 #
 24d0bdfa701e2b9d69e1f02b0e2efda16185d4a95039f533c96ce5b3c88911bb  STATE02_CLOSURE_EVIDENCE_INDEX_v1.0.md
 a2c36bb7d44ad7a7fabed2668b83722e8e7dfa2a3ea77696ba66e847ff9d73a1  STATE02_FINAL_EXECUTION_CHECKLIST_v1.0.md
 260b85615882604c1675cef48333af29fcd96c212c7e15cc4891e61b287c1bed  STATE02_FINAL_EVIDENCE_REGISTER_v1.0.md
-7b5f7148f351d9f3040b708595963f87cb8e58fb781950ad701ff2dc2439c63a  STATE02_FINAL_OPEN_ITEMS_REGISTER_v1.0.md
+17471b3052c03cda8bce414d329b51431672f99e69eb124dd71db133fad5b88c  STATE02_FINAL_OPEN_ITEMS_REGISTER_v1.0.md
 55245f5df82c050089f5120d289df8b2cb54571967038a1c4062185ab8b9999b  STATE02_FINAL_GATE_RECOMMENDATION_v0.1.md
 85306e4cede4c9189f9b507dec8ee71b9c94f7b290070c2c85356b182f0bb752  STATE02_BOSS_DECISION_PACK_v0.1.md
 SELF - HASH EXCLUDED  PACKAGE_MANIFEST_SHA256_STATE02_CLOSURE_EVIDENCE.txt

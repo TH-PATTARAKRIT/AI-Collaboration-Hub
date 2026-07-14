@@ -17,12 +17,16 @@ Gate Status: HOLD — REVIEW, VERIFICATION, AND BOSS DECISION PENDING
 | PR | Title | State | Base branch @ open | Head SHA | Files changed |
 |---|---|---|---|---|---|
 | #13 | docs(governance): complete State 02 Step 03 RACI and Step 04 ownerless controls | **MERGED** into SMEsPlus | SMEsPlus @ `5454d2a` | `1c4ab7c4eed6252efdc108b238465db3a5234f81` | 25 (all added) |
-| #15 | Fix Liza/ES authority contradictions in Step 04 Ownerless Execution package | OPEN / NOT MERGED | SMEsPlus @ `43c5d95` | `ab1f98e286d67afc9b205712b5cd08685f65acd1` | 6 (modified/added) |
-| #16 | [STATE02] Complete final verification, archive control, and closure evidence | OPEN / NOT MERGED | SMEsPlus @ `43c5d95` | `398a3f5cced9dd29c2734985933a2e747b317e1a` | 11 (all added) |
+| #15 | Fix Liza/ES authority contradictions in Step 04 Ownerless Execution package | **MERGED** into SMEsPlus @ `8570187` (Boss/Somchart authorized) | SMEsPlus @ `43c5d95` | `ab1f98e286d67afc9b205712b5cd08685f65acd1` | 6 (modified/added) |
+| #16 | [STATE02] Complete final verification, archive control, and closure evidence | OPEN / NOT MERGED | SMEsPlus @ `43c5d95` | `398a3f5…` (advanced to `1d9df62`) | 11 (all added) |
 | #17 | docs(governance): align Step 04 integrity status and recompute hashes | OPEN / NOT MERGED | SMEsPlus @ `43c5d95` | `b1e3634b81c1144f619b459e55348f913b2d8e94` | 3 (2 modified/added + 1 new) |
 | #18 | [STATE02] Consolidate Step 05 Governance Index | OPEN / NOT MERGED | SMEsPlus @ `43c5d95` | `7d90380b63558f1a3772514e36018ab4b2a810ef` | 15 (all added) |
+| #19 | [STATE02] Resolve Step 05 blockers and consolidate governance evidence (this branch) | OPEN / DRAFT / NOT MERGED | SMEsPlus @ `8570187` (rebased/merged forward) | branch head (post forward-merge) | consolidation |
+| #20 | [STATE02][STEP03] Complete Canonical RACI evidence and approval package | OPEN / NOT MERGED | SMEsPlus @ `43c5d95` | `5925d846…` (body cites `9e0ca37`) | 32 (source corrections + Step 03 evidence) |
 
-`43c5d95` is the current SMEsPlus HEAD (confirmed against GitHub, not a local cache) and is also the tip of this Step 05 working branch, so PR #15/#16/#17 are all based on current SMEsPlus and are mutually independent branches — none contains another's commits.
+> Base note (session -003 update): `SMEsPlus` has ADVANCED from `43c5d95` to `8570187`
+> (the merge of PR #15). PR #19 has been forward-integrated onto `8570187` and is
+> mergeable-clean; see Section 6. The `43c5d95` bases above are the PRs' original open bases. (confirmed against GitHub, not a local cache) and is also the tip of this Step 05 working branch, so PR #15/#16/#17 are all based on current SMEsPlus and are mutually independent branches — none contains another's commits.
 
 ## 2. Reconciliation Matrix
 
@@ -84,3 +88,31 @@ Post-consolidation integrity result: 25/25 manifest-comparable entries MATCH, 0 
 `STATE02_STEP03_STEP04_FINAL_HASH_RECONCILIATION_v1.0.md`). SHA-005, SHA-016, and SHA-017
 are all RESOLVED. Boss decides the actual merge sequence and whether to merge at all; no
 PR was merged by this consolidation.
+
+## 6. Post-Review Reconciliation (session -003, after ChatGPT L99 review of PR #19)
+
+**PR #15 is now MERGED** into `SMEsPlus` at `8570187` (Boss/Somchart authorized). PR #19's
+Step 04 content was already byte-identical to PR #15, so forward-integrating `SMEsPlus`
+produced only 2 integrity-artifact conflicts (canonicalization record, Step 04 manifest),
+resolved by keeping PR #19's byte-accurate regenerated versions; net file change: none.
+PR #19 is now based on `8570187` and mergeable-clean. (L99 item 1.)
+
+**PR #20 — `[STATE02][STEP03] Complete Canonical RACI evidence and approval package`**
+applies the RC-001..RC-010 source-governance corrections (root-scope docs
+`APPROVAL_AUTHORITY_MATRIX.md`, `AI_ROLE_AND_RESPONSIBILITY.md`,
+`ARCHITECTURE_GOVERNANCE_STANDARD.md`, `FOLDER_REGISTRY.yaml`; adds `CANONICAL_ROLE_GLOSSARY.md`)
+under Boss Decision 2, revises `STATE02_CANONICAL_RACI_v1.0.md` to Revision R1, and adds a
+comprehensive Step 03 evidence/approval set with its own Step 03 SHA manifest scheme.
+
+| Overlap | Detail | Impact | Recommended handling |
+|---|---|---|---|
+| `STATE02_CANONICAL_RACI_v1.0.md` | PR #20 revises to R1; PR #19's Step 03 manifest lists its pre-R1 hash `48c4c8b4…` | PR #19's Step 03 manifest / integrity record would go stale once PR #20 merges | PR #20 authoritative for Step 03; rebase PR #19 after PR #20 and re-align the Step 03 hash |
+| Step 03 manifest scheme | PR #20 adds `STATE02_STEP03_SHA256_MANIFEST_v1.x.txt`; PR #19 refreshed `PACKAGE_MANIFEST_SHA256_STATE02_STEP03_RACI.txt` | Two manifest schemes for one package ("competing canonical package" risk) | Adopt PR #20's Step 03 manifest as authoritative; PR #19 defers Step 03 manifest ownership to PR #20 |
+| RC-001..010 source corrections | PR #20 APPLIES them; PR #19 previously described RC-007/RC-009 as "not yet applied" | PR #19 narrative must not describe corrected items as unresolved | Cross-referenced in PR #19 (OI-010, GOV-022/026, GF-05, IDX-01, §12) as "applied in PR #20, pending independent verification" |
+
+**Disposition recommendation (Boss decides — L99 item 5):** keep PR #19 and PR #20 SEPARATE
+(different Steps/scopes); merge PR #20 first for Step 03 ownership; rebase PR #19 afterward and
+re-align only its Step 03 references. Do not absorb PR #20 into PR #19 (preparer cannot
+independently verify PR #20's source corrections; duplication would create competing packages).
+
+Full per-item response: `STATE02_STEP05_L99_REVIEW_RESPONSE_v1.0.md`.
