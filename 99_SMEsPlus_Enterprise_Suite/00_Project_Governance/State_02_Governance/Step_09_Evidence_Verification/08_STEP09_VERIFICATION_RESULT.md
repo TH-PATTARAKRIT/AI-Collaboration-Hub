@@ -13,6 +13,13 @@ Claude Code determines only the producer-side recommendation and does not verify
 PRODUCER RESULT: PREPARED FOR INDEPENDENT VERIFICATION
 ```
 
+> **Post-verification update (2026-07-14):** the Independent Evidence Verifier (ChatGPT L99) has since
+> returned **VERIFIED WITH CONTROLLED FOLLOW-UP** against this target/package, and Boss has **APPROVED**
+> the sole controlled follow-up (EV-D16). Both are transcribed (with citations) in the Independent
+> Evidence Verifier Record below. The producer result itself remains "PREPARED FOR INDEPENDENT
+> VERIFICATION" (Claude Code's producer-side state); the independent verdict is L99's, recorded below.
+> Step 10 remains HOLD; State-02 effective closure and any merge remain Boss decisions.
+
 ### Basis (all EV-10 PREPARED criteria met at the target)
 
 | Criterion | Status |
@@ -59,51 +66,66 @@ readiness state only; the verdict is the Independent Evidence Verifier's.
 
 ```text
 Verifier:
-ChatGPT L99 — PENDING EXECUTION
+ChatGPT L99 (Independent Evidence Verifier, Boss-authorized under S02-FINAL-005)
 
 Verification Target Commit:
 b6e9ac083a8a33993600f9490475726ffefaf995
 
-Step 09 Package Commit:
-<STEP09_PACKAGE_COMMIT — recorded in PR #29 description and the execution final report>
+Step 09 Package Commit (verified):
+09598b68afbaf41148119550d5080adbee5cde86
 
 Governance Manifest Independent Recompute:
-PENDING   (finalization 18/18 + Step 08 23/23 to be independently recomputed)
+INSPECTED via GitHub — Finalization 18/18, Step 08 23/23 pinning confirmed.
+NOT an independently-executed local byte-level hash (see caveat).
 
 Step 09 Manifest Independent Recompute:
-PENDING
+INSPECTED via GitHub — 11/11 pinning confirmed (same caveat).
 
 Repository Evidence Verification:
-PENDING
+VERIFIED WITH CONTROLLED FOLLOW-UP (independent inspection of PR #29 evidence)
 
 EV-D06 Verification:
-PENDING
+CLOSED (confirmed independently)
 
 EV-D13 Verification:
-PENDING
+CLOSED (confirmed independently)
 
 EV-D14 Verification:
-PENDING
+CLOSED (confirmed independently)
+
+EV-D15 Verification:
+CLOSED (confirmed independently)
 
 EV-D17 Verification:
-PENDING
+CLOSED (confirmed independently)
+
+Controlled follow-up:
+EV-D16 — Boss acknowledgement of the S02-FINAL-006 target migration to b6e9ac0...
+(Boss APPROVED 2026-07-14 — see Boss EV-D16 approval reference below → EV-D16 now CLOSED)
+
+Verifier caveat (as stated by L99):
+A full local `sha256sum -c` recomputation could NOT be executed in L99's runtime because the private
+repository could not be cloned there. This result therefore does not claim an independently-executed
+local byte-level hash command; it is based on independent GitHub inspection of the pinned manifests +
+commit anchors. Producer-side recomputes (finalization 18/18, Step 08 23/23, Step 09 11/11) remain
+locally reproducible by any party able to clone the repository.
 
 Final Result:
-PENDING
-
-Permitted Results:
-- VERIFIED
-- VERIFIED WITH CONTROLLED FOLLOW-UP
-- REWORK REQUIRED
-- BLOCKED
+VERIFIED WITH CONTROLLED FOLLOW-UP
 
 Verifier Timestamp:
-PENDING
+2026-07-14T14:56:28Z (UTC)
 
 Verifier Evidence Reference:
-PENDING
+PR #29 — ChatGPT L99 Independent Review (Authoritative Result):
+https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/pull/29#issuecomment-4970617618
+Boss EV-D16 approval:
+https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/pull/29#issuecomment-4970666254
 ```
 
-_Unsigned and pending. Claude Code must not populate the Independent Verifier result. The Boss-authorized
-Independent Evidence Verifier (ChatGPT L99, independence caveat per doc 05 §B.2) completes this record
-against the target commit above._
+_Transcription note: the fields above are **transcribed by Claude Code from the inspectable PR #29
+review posted by ChatGPT L99** (Independent Evidence Verifier) and the Boss EV-D16 approval, both cited
+by URL. Claude Code did **not** self-verify and did **not** sign on L99's behalf — the authoritative
+result lives in the cited PR evidence; this record only mirrors it for traceability. Step 10 remains
+HOLD; no merge, State-02 effective-closure, release, deployment, or production change is declared here.
+Boss is the sole Final Approver._

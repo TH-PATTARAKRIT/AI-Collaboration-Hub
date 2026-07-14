@@ -39,21 +39,28 @@ Rule: no defect CLOSED on a prior claim; each re-inspected at the target with di
 
 ### B.2 Remaining open / follow-up
 
-| ID | Sev | Type | Description | Evidence | Gate Impact | Status |
-|---|---|---|---|---|---|---|
-| **EV-D16** | P2 | Status | S02-FINAL-006 closure-condition target migrated (4da8cc8 → reconciled target) preserving the Boss CONDITIONAL-CLOSE decision; Boss acknowledgement of the migration recommended | doc 17 §6 | **Non-blocking** (Boss decision preserved; does not block independent verification) | **CONTROLLED FOLLOW-UP** |
+| ID | Sev | Type | Description | Evidence | Status |
+|---|---|---|---|---|---|
+| **EV-D16** | P2 | Status | S02-FINAL-006 closure-condition target migrated (4da8cc8 → reconciled target `b6e9ac0…`) preserving the Boss CONDITIONAL-CLOSE decision; Boss acknowledgement of the migration required | doc 17 §6; **Boss APPROVED 2026-07-14** — PR #29 issuecomment-4970666254 | **CLOSED** — Boss confirmed & approved the target migration; original CONDITIONAL-CLOSE decision unchanged |
 
 ### B.3 Roll-up
 
-| Severity | Open / follow-up | Closed |
+| Severity | Open | Closed |
 |---|---|---|
 | P0 | **0** | — |
 | P1 | **0** | EV-D01,02,03,04,06,07,08,10,11,13 |
-| P2 | **EV-D16 (controlled follow-up)** | EV-D05,09,12,14,15,17 |
+| P2 | **0** | EV-D05,09,12,14,15,16,17 |
 
-**Open blocking defects: 0.** **Critical (P0): 0.** Only **EV-D16** remains — a non-blocking controlled
-follow-up (Boss acknowledgement of the target migration). Owner = AI PMO; Due 2026-07-16; Independent
-Verification = PENDING until the verifier signs.
+**Open defects: 0.** **Critical (P0): 0.** EV-D16 is now **CLOSED** (Boss approved the S02-FINAL-006
+target migration, PR #29 issuecomment-4970666254). Independent Evidence Verification is **RECORDED**:
+ChatGPT L99 returned **VERIFIED WITH CONTROLLED FOLLOW-UP** against target `b6e9ac0…` / package
+`09598b6…` (doc 08 handoff; PR #29 issuecomment-4970617618) — with L99's honest caveat that it inspected
+via GitHub rather than executing a local byte-level hash. No P0/P1/P2 defect remains open.
+
+**Downstream (Boss authority — not declared here):** with EV-D16 approved and the L99 result recorded,
+the S02-FINAL-006 CONDITIONAL-CLOSE **condition is satisfied**. Declaring State 02 closure *effective*,
+and any Step 10 / merge, remain Boss decisions. A closure-confirmation draft is prepared, unsigned,
+pending Boss signature (`../STATE02_CLOSURE_CONFIRMATION_DRAFT_v0.1.md`). Step 10 remains HOLD.
 
 **EV-D17 not-overstated note:** Step 08's own step-level review/approval remains PENDING (Gate HOLD) — the
 alignment updated only the classification of the documents Step 08 classifies, reflecting existing Boss
