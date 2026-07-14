@@ -1,55 +1,52 @@
-# 00 — Step 09 Executive Summary (State 02)
+# 00 — Step 09 Executive Summary (State 02 · reconciled)
 
 Session: SMEPLUS-26-07-14-002 · Prepared By: Claude Code (Preparer/Executor only) · 2026-07-14 (UTC)
 
 ```text
-STATE 02 STEP 09 REPORT
+STATE 02 STEP 09 REPORT (RECONCILED)
 
-Candidate Commit:
-4da8cc8423ff9f6964112b2c5b780020cb8e40fa   (PR #24 head, branch claude/state-02-governance-26bzvw)
+Verification Target Commit:
+9fa57fdc17f28906af503745b9291e54be7a2aa6   (reconciled State 02 candidate)
 
 Base Commit:
-bc591f31bf9a4a7e68c00838cfdaa30e743f4262   (origin/SMEsPlus; merge-base 8570187...)
+bc591f31bf9a4a7e68c00838cfdaa30e743f4262   (origin/SMEsPlus; contains merged Step 08)
+
+Previous (superseded) target:
+4da8cc8423ff9f6964112b2c5b780020cb8e40fa
 
 PR Status:
-#24 — OPEN · NOT DRAFT · NOT MERGED
-
-PR Mergeability:
-MERGEABLE (GitHub mergeable_state = clean) — order's "MERGEABLE = FALSE" is stale (EV-D11);
-conditional item EV-D13 (PR #24 not reconciled against merged Step 08)
+PR #24 OPEN/not-draft/not-merged (head af6e4c2, MERGEABLE) · PR #29 OPEN/DRAFT (delivery)
 
 Controlled Files Identified:
-60 (State_02_Governance/ @ candidate)
+83 (State_02_Governance/, excl. Step 09 package)
 
 PR Files Checked:
-25 (+1405 / -34; 5 commits; diff-check CLEAN)
+38 vs SMEsPlus = 26 governance + 12 Step 09 (+2661/-40; diff-check CLEAN)
 
 Manifest Producer Check:
-Finalization package 17/17 OK; Step 09 package 11/11 matched (producer recompute)
+Finalization 18/18 OK; Step 09 package 11/11 matched
 
 Authority Scan:
-Final-Approver joint authority = 0; AI Final Approver = 0.
-6 live joint-ROLE residuals remain (EV-D14) → "unexplained matches = 0" NOT met
+0 active joint-role wording (EV-D14 CLOSED); 0 AI/PMO Final Approver
 
 RACI Check:
-Canonical RACI count = 1; duplicate = 0; ownerless = 0; accountable duplication = 0.
-Status contradiction EV-D06 (doc 03 "HOLD/not-yet-canonical" vs source "CANONICAL — CONFIRMED")
+Canonical count 1; duplicate 0; ownerless 0; EV-D06 status contradiction CLOSED
 
 Gate Check:
-G0–G7 — 0 ownerless, 0 missing exit evidence, Final Approver = Boss on all; Production HOLD/PROHIBITED
+G0-G7 — 0 ownerless, 0 missing exit evidence, Final Approver = Boss; Production HOLD/PROHIBITED
 
 Classification Check:
-0 duplicate-canonical topics; 0 superseded/archived misuse. Step 08 register ABSENT at candidate
-(EV-D13) → EV-07 not 100% verifiable at candidate; 1 conflicting classification (EV-D06)
+Step 08 PRESENT + 100% checked + indexed (GI-70); 0 duplicate-canonical topics.
+Residual Step 08<->Index divergence reconciled at Index; Step-08-file alignment -> EV-D17
 
 Approval Consistency:
-CONDITIONAL-CLOSE posture consistent; single contradiction = EV-D06 (RACI status)
+EV-D06 fixed; residual Step 08 candidate/HOLD vs Boss-confirmed Index -> EV-D17 (controlled follow-up)
 
 Open Defects:
-3 (EV-D06 P1, EV-D13 P1, EV-D14 P2) + 2 controlled follow-ups (EV-D09, EV-D12)
+3 (EV-D15 P2, EV-D16 P2 follow-up, EV-D17 P2 follow-up)
 
 Critical Defects:
-0 (P0 = 0)
+0 (P0 = 0; P1 open = 0)
 
 Producer Result:
 REWORK REQUIRED
@@ -71,27 +68,27 @@ HOLD
 
 ## Narrative
 
-Claude Code independently re-ran the repository evidence for State 02 at the candidate commit
-`4da8cc8` (PR #24 head) and prepared the full Step 09 package (deliverables 00–10 + SHA-256 manifest).
-The State 02 core authority model is structurally sound: **Boss is the sole Final Approver** in the
-Canonical RACI, every gate G0–G7 has an owner and exit evidence with Boss as Final Approver, Production
-remains prohibited, and the finalization package manifest recomputes 17/17.
+Per the reconciliation order, Claude Code integrated (on the authorized PR #29 branch) the current
+`SMEsPlus` baseline (with the merged **Step 08 Classification Registers**) and the latest **PR #24** head
+`af6e4c2` (including the S02-FINAL-006 Boss closure record), froze a single reconciled
+**STATE02_VERIFICATION_TARGET_COMMIT `9fa57fd…`**, and regenerated the full Step 09 evidence package
+against it. The `--no-ff` merges produced **no conflicts**.
 
-However, three evidence-backed inconsistencies remain at the candidate commit, yielding a producer
-recommendation of **REWORK REQUIRED**:
-1. **EV-D06 (P1):** the finalization RACI-confirmation doc (`03_CANONICAL_RACI.md`) still describes the
-   Canonical RACI as "PREPARED FOR REVIEW / HOLD / not-yet-canonical," contradicting the live source
-   header "CANONICAL — CONFIRMED BY BOSS (S02-FINAL-002)."
-2. **EV-D13 (P1):** the Step 08 Classification Registers are absent at the candidate commit, so EV-07
-   cannot be completed 100% against it, and PR #24 is not reconciled against the separately-merged Step 08.
-3. **EV-D14 (P2):** live joint-role residuals in `AI_ROLE_AND_RESPONSIBILITY.md` and
-   `APPROVAL_AUTHORITY_MATRIX.md` contradict the producer's categorical "no active joint-authority
-   wording" claim (none, however, assigns final approval to a non-Boss party).
+**Closed by this reconciliation:** EV-D06 (Canonical RACI status contradiction), EV-D14 (residual
+joint-role wording → 0 active), EV-D13 core (Step 08 now coexists + 100% checked + indexed via GI-70),
+EV-D09 (manifest pins the full target SHA), EV-D12 (PR #29 authorized as the reconciliation/Step 09
+branch). Finalization manifest 18/18; Step 09 manifest 11/11.
 
-Per the Step 09 executive-summary control rule, **Independent Verifier Status = PENDING**, **Boss Action
-Required = NONE**, and **Step 10 Status = HOLD**. (The order's pending-path template names "PREPARED FOR
-INDEPENDENT VERIFICATION"; the evidence at this commit meets the REWORK criteria instead, which EV-10
-expressly permits as a producer result.)
+**Producer result = REWORK REQUIRED** because real, low-severity divergences remain in the reconciled
+tree and were honestly not overwritten: the Step 08 package self-declares independent-review-pending /
+Gate HOLD / Boss approval 0%, and its internal classifications (canonical *candidates*; one "Superseded"
+label) diverge from the Boss-confirmed Governance Index. These are authoritatively reconciled at the Index
+(doc 05 §7c) and tracked as controlled follow-ups **EV-D17** (Step 08 review-cycle alignment), **EV-D16**
+(Boss acknowledgement of the S02-FINAL-006 target migration), and **EV-D15** (stale PR #24 description).
+Claude Code did not rewrite the Boss-review-pending Step 08 package or assert a Boss Step-08 approval that
+does not exist.
 
-Claude Code prepared evidence only. It did not review, verify, or approve its own work, did not merge or
-close anything, and did not modify any source governance document. Boss is the sole Final Approver.
+**Independent Verifier Status = PENDING · Boss Action Required = NONE · Step 10 Status = HOLD.** Claude
+Code prepared and reconciled evidence only; it did not review, verify, or approve its own work, did not
+merge or close anything, did not push to the PR #24 branch, and did not force-push. Boss is the sole Final
+Approver.

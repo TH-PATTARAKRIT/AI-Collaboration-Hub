@@ -1,10 +1,9 @@
-# 08 — Step 09 Verification Result (State 02 · EV-10)
+# 08 — Step 09 Verification Result (State 02 · reconciled · EV-10)
 
-Candidate Commit: `4da8cc8423ff9f6964112b2c5b780020cb8e40fa`
-Prepared By: Claude Code (Preparer/Executor only) · Prepared At: 2026-07-14 (UTC)
+STATE02_VERIFICATION_TARGET_COMMIT: `9fa57fdc17f28906af503745b9291e54be7a2aa6`
+Prepared By: Claude Code (Preparer/Executor only) · 2026-07-14 (UTC)
 
-Claude Code determines only the **producer-side recommendation**. It does not verify or approve its own
-work.
+Claude Code determines only the producer-side recommendation and does not verify or approve its own work.
 
 ---
 
@@ -14,39 +13,41 @@ work.
 PRODUCER RESULT: REWORK REQUIRED
 ```
 
-### Decision basis (against the EV-10 rule)
+### What the reconciliation closed (byte-verified at the target)
 
-The result is **REWORK REQUIRED**, not "PREPARED FOR INDEPENDENT VERIFICATION", because the following
-REWORK triggers are present at the candidate commit:
+- **EV-D06 CLOSED** — Canonical RACI status contradiction fixed (doc 03 §0/§1/§3/§4 = CANONICAL —
+  CONFIRMED BY BOSS, matching the live source header).
+- **EV-D14 CLOSED** — 0 active joint-role wording in the 5 source docs; canonical-faithful clarifications
+  applied (Boss remains sole Final Approver; no non-Boss party gained authority).
+- **EV-D13 core CLOSED** — Step 08 Classification Registers now coexist with PR #24's governance changes
+  in one reconciled tree (22 files), 100% cross-checked, integrated into the Governance Index (GI-70),
+  0 duplicate-canonical topics.
+- **EV-D09 CLOSED** — Step 09 manifest pins the full 40-char target SHA; finalization manifest de-"PR-head"-ed.
+- **EV-D12 CLOSED** — PR #29 formally authorized as the reconciliation + Step 09 delivery branch.
+- Merges done with `--no-ff`, **no conflicts**; no merge to SMEsPlus; no push to PR #24 branch; no force-push.
+- Finalization manifest 18/18; Step 09 manifest producer recompute 11/11.
 
-| Trigger (EV-10) | Present | Evidence |
+### Why REWORK (not PREPARED FOR INDEPENDENT VERIFICATION)
+
+Per EV-10, PREPARED requires (among others) EV-D13 fully closed, conflicting classifications = 0, and
+approval-status contradictions = 0. Real divergences remain physically in the reconciled tree:
+
+| Item | Detail | Ref |
 |---|---|---|
-| P1 blocking inconsistency remains | **YES** | EV-D06 (RACI status contradiction, P1); EV-D13 (Step 08 classification incomplete at candidate, P1) |
-| Status contradiction exists | **YES** | EV-D06 — source RACI "CANONICAL — CONFIRMED" vs doc 03 "PREPARED FOR REVIEW / HOLD" |
-| Active joint authority remains | PARTIAL | EV-D14 — live joint-role residuals (`AI_ROLE:154`, `APPROVAL_AUTHORITY_MATRIX:5`); none assign Final Approval to non-Boss, but "unexplained scan matches = 0" is not met |
-| Step 08 classification incomplete | **YES** | EV-D13 — `Step_08_Classification_Registers/` absent at `4da8cc8` |
-| Manifest mismatch | NO | Finalization 17/17 OK; Step 09 producer recompute 11/11 |
-| Duplicate Canonical authority | NO | Canonical RACI count = 1; 0 duplicate-canonical topics |
+| Step 08 self-declared status | "PREPARED FOR INDEPENDENT REVIEW / Gate HOLD / Boss approval 0%" — Step 08's own independent review + Boss Step-08 decision are OPEN | doc 06 B.1 |
+| Candidate vs confirmed | Step 08 holds RACI/Ownerless/Auth-Conflict as CANONICAL CANDIDATE (pending) while the Index shows them Boss-CONFIRMED | doc 06 B.2 |
+| CONTRADICTION-1 | Auth-Conflict v1.0 = "Superseded" in Step 08 vs "Supporting" in the Index | doc 06 B.2 |
+| EV-D16 | S02-FINAL-006 target migration awaits Boss acknowledgement | doc 07 B.2 |
+| EV-D15 | PR #24 description materially stale | doc 07 B.2 |
 
-### What passed (producer-side)
+These are **authoritatively reconciled at the Governance Index** (doc 05 §7c) and are **low-severity
+controlled follow-ups** (EV-D15/D16/D17), but they are not eliminated — Claude Code deliberately did **not**
+rewrite the Boss-review-pending Step 08 package or assert a Boss Step-08 approval that does not exist. That
+alignment belongs to the Step 08 independent-review cycle (plus Boss acknowledgement of the target
+migration). Reporting these honestly, and not overstating "all clean," yields **REWORK REQUIRED**.
 
-- Deliverables 00–10 + manifest exist; file inventory complete (60 controlled files); candidate commit fixed and stable.
-- Finalization manifest recompute 17/17 OK; Step 09 package manifest producer recompute 11/11.
-- Canonical RACI: 1 canonical, 0 duplicate, 0 AI Final Approver, 0 accountable duplication, 0 ownerless.
-- Gates G0–G7: 0 ownerless, 0 missing exit evidence, Final Approver = Boss on every gate, Production HOLD/PROHIBITED.
-- Reviewer=Verifier (ChatGPT L99) independence caveat recorded; Claude Code not signed as reviewer/verifier.
-- PR #24 mergeable_state = clean (MERGEABLE) — order's stale "FALSE" corrected.
-
-### Open items driving REWORK (from doc 07)
-
-- **EV-D06 (P1):** Canonical RACI status contradiction (doc 03 vs live source).
-- **EV-D13 (P1, conditional):** Step 08 classification not verifiable at the candidate; PR #24 not reconciled against merged Step 08.
-- **EV-D14 (P2):** residual live joint-role wording contradicts the producer's "no active joint-authority wording" claim.
-- Controlled follow-ups: **EV-D09** (manifest head-SHA not pinned), **EV-D12** (execution-branch reconciliation).
-
-Producer result recorded. Independent verification is required and is **not** performed by Claude Code.
-Claude Code does **not** declare VERIFIED, VERIFIED WITH CONTROLLED FOLLOW-UP, APPROVED, PASS,
-STATE 02 CLOSED, READY FOR STEP 10, or READY FOR MERGE.
+Claude Code does not declare VERIFIED, VERIFIED WITH CONTROLLED FOLLOW-UP, APPROVED, PASS, STATE 02
+CLOSED, READY FOR STEP 10, or READY FOR MERGE.
 
 ---
 
@@ -54,21 +55,36 @@ STATE 02 CLOSED, READY FOR STEP 10, or READY FOR MERGE.
 
 ```text
 Verifier:
-PENDING
+ChatGPT L99 — PENDING EXECUTION
 
 Verification Target Commit:
-4da8cc8423ff9f6964112b2c5b780020cb8e40fa
+9fa57fdc17f28906af503745b9291e54be7a2aa6
 
-Manifest Independent Recompute:
+Step 09 Package Commit:
+<STEP09_PACKAGE_COMMIT — recorded in PR #29 description and the execution final report>
+
+Governance Manifest Independent Recompute:
+PENDING
+
+Step 09 Manifest Independent Recompute:
 PENDING
 
 Repository Evidence Verification:
 PENDING
 
+EV-D06 Verification:
+PENDING
+
+EV-D13 Verification:
+PENDING
+
+EV-D14 Verification:
+PENDING
+
 Final Result:
 PENDING
 
-Permitted Final Results:
+Permitted Results:
 - VERIFIED
 - VERIFIED WITH CONTROLLED FOLLOW-UP
 - REWORK REQUIRED
@@ -81,7 +97,6 @@ Verifier Evidence Reference:
 PENDING
 ```
 
-_This section is intentionally left unsigned and pending. Claude Code must not populate an Independent
-Verifier result. The appointed Boss-authorized Independent Evidence Verifier (recorded identity:
-ChatGPT L99, subject to the independence caveat in doc 05 §B.3) completes this record against the
-verification target commit above._
+_Unsigned and pending. Claude Code must not populate the Independent Verifier result. The Boss-authorized
+Independent Evidence Verifier (recorded identity: ChatGPT L99, independence caveat per doc 05 §B.2)
+completes this record against the target commit above._

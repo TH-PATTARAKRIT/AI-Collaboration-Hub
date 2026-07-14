@@ -1,46 +1,44 @@
-# 10 — Step 09 Completion Checklist (State 02)
+# 10 — Step 09 Completion Checklist (State 02 · reconciled)
 
-Candidate Commit: `4da8cc8423ff9f6964112b2c5b780020cb8e40fa`
-Prepared By: Claude Code · Prepared At: 2026-07-14 (UTC)
-Producer Result: **REWORK REQUIRED** · Independent Verifier: PENDING
+STATE02_VERIFICATION_TARGET_COMMIT: `9fa57fdc17f28906af503745b9291e54be7a2aa6`
+Prepared By: Claude Code · 2026-07-14 (UTC) · Producer Result: **REWORK REQUIRED** · Verifier: PENDING
 
-No item is checked without a direct evidence reference.
+No box checked without a direct evidence reference.
 
-| # | Item | State | Evidence |
-|---|---|---|---|
-| 1 | Candidate commit recorded | ✅ | `4da8cc8...` — doc 01 §0, doc 03 §1 |
-| 2 | Base SHA recorded | ✅ | `origin/SMEsPlus` `bc591f3`; merge-base `8570187` — doc 03 §1 |
-| 3 | Working tree clean | ✅ | doc 03 §5 — only Step 09 files untracked; no source doc modified |
-| 4 | Controlled file inventory complete | ✅ | 60 files — doc 02 §A |
-| 5 | PR changed-file inventory complete | ✅ | 25 files, +1405/−34 — doc 02 §B, doc 03 §3 |
-| 6 | File paths verified | ✅ | `git ls-tree` @ candidate — doc 02 |
-| 7 | Blob SHAs recorded | ✅ | doc 02 §A (per-file blob SHA) |
-| 8 | Commit and diff verified | ✅ | doc 03 §2–§3 (matches GitHub metadata) |
-| 9 | Diff check completed | ✅ | `git diff --check` = CLEAN — doc 03 §3 |
-| 10 | PR mergeability recorded | ✅ | `mergeable_state: clean` = MERGEABLE — doc 03 §4 (EV-D11) |
-| 11 | SHA-256 manifest generated | ✅ | `PACKAGE_MANIFEST_SHA256.txt` — doc 04 §2 |
-| 12 | Producer manifest recompute passed | ✅ | Step 09 11/11; finalization 17/17 — doc 04 |
-| 13 | Authority scan completed | ✅ | doc 05 §A (116 matches classified) |
-| 14 | Active joint authority (Final Approver) = 0 | ✅ | doc 05 §A.2 mitigant; all Final Approver = Boss |
-| 14b | Unexplained scan matches = 0 | ❌ | 6 live residuals — EV-D14 (doc 05 §A.2) → REWORK |
-| 15 | Canonical RACI count = 1 | ✅ | doc 05 §B.1 |
-| 16 | AI Final Approver = 0 | ✅ | doc 05 §B (RACI `:40`) |
-| 17 | RACI Accountable duplication = 0 | ✅ | doc 05 §B |
-| 18 | Ownerless gate = 0 | ✅ | doc 06 §A.1 |
-| 19 | Gate exit evidence missing = 0 | ✅ | doc 06 §A |
-| 20 | Step 08 classification checked 100% | ❌ | Register absent at candidate — EV-D13 (doc 06 §B) → REWORK |
-| 21 | Approval status contradictions = 0 | ❌ | EV-D06 (RACI status) — doc 05 §B.2, doc 07 §A |
-| 22 | Defects have owner and due date | ✅ | doc 07 §B.3 (Owner=AI PMO; Due 2026-07-16) |
-| 23 | Previous defects have closure evidence | ✅ | doc 07 §B.1 (EV-D01..D11 re-inspected with byte evidence) |
-| 24 | Step 09 producer result recorded | ✅ | doc 08 §1 — REWORK REQUIRED |
-| 25 | Independent Reviewer result pending/recorded accurately | ✅ | ChatGPT L99 recorded; Step 09 package review PENDING — doc 01, doc 08 |
-| 26 | Independent Verifier result pending/recorded accurately | ✅ | PENDING — doc 08 handoff (unsigned) |
-| 27 | Boss Approval Queue prepared | ✅ | doc 09 — Boss action NONE |
-| 28 | No merge performed | ✅ | No merge/rebase/force-push — doc 03 §4–§5 |
-| 29 | No State closure declared | ✅ | doc 08 §1; posture = CONDITIONAL CLOSE, S02-FINAL-006 Open |
+| Item | State | Evidence |
+|---|---|---|
+| Current SMEsPlus baseline integrated | ✅ | merge-base(SMEsPlus,target)=bc591f3; doc 03 §1 |
+| Latest PR #24 head integrated | ✅ | `--no-ff` merge of af6e4c2; doc 03 §2 |
+| Merged Step 08 package present | ✅ | `git ls-tree -r 9fa57fd \| grep -c Step_08` = 22; doc 06 B |
+| Step 08 classification checked 100% | ✅ | 48 rows + package; doc 06 B |
+| STATE02_VERIFICATION_TARGET_COMMIT frozen | ✅ | `9fa57fd…`; governance sources unmodified post-freeze |
+| EV-D06 closed | ✅ | doc 03 `4c9d203e`; doc 05 §B.1; doc 07 |
+| EV-D13 closed (core) | ✅ (core) | Step 08 present+checked+indexed (GI-70); residual → EV-D17 |
+| EV-D14 closed | ✅ | 0 active joint-role wording; doc 05 §A |
+| EV-D09 manifest target pinned | ✅ | Step 09 manifest full SHA; doc 04 |
+| EV-D12 branch reconciliation resolved | ✅ | PR #29 authorized; doc 07 |
+| S02-FINAL-006 target consistency checked | ✅ | doc 17 §6 migrated (Boss decision preserved); EV-D16 follow-up |
+| Controlled file inventory complete | ✅ | 83 files; doc 02 |
+| Exact paths verified · Blob SHAs recorded | ✅ | doc 02 |
+| Commit and diff verified · Diff check clean | ✅ | doc 03 §3 (38 files, +2661/−40, clean) |
+| Authority scan completed | ✅ | doc 05 §A |
+| Active joint-role ambiguity = 0 | ✅ | doc 05 §A.3 |
+| Canonical RACI count = 1 · Duplicate = 0 | ✅ | doc 05 §B |
+| AI Final Approver = 0 · Accountable duplication = 0 | ✅ | doc 05 §B |
+| Ownerless gate = 0 · Gate exit evidence missing = 0 | ✅ | doc 06 §A |
+| Approval-status contradiction = 0 | ⚠ | EV-D06 fixed; residual Step 08↔Index divergence → EV-D17 (controlled follow-up) |
+| Step 09 manifest generated · producer recompute passed | ✅ | 11/11; doc 04 |
+| Independent Reviewer status accurately PENDING | ✅ | doc 08 |
+| Independent Verifier status accurately PENDING | ✅ | doc 08 handoff (unsigned) |
+| Boss action accurately identified | ✅ | NONE; doc 09 |
+| Step 10 remains HOLD | ✅ | doc 08 |
+| No PR merged | ✅ | doc 03 §4 |
+| No State closure declared effective | ✅ | S02-FINAL-006 conditional; effective on L99 VERIFIED |
 
-**Summary:** 26 of 29 items MET. Three items NOT MET are the REWORK drivers: unexplained authority-scan
-residuals (14b / EV-D14), Step 08 classification not verifiable at candidate (20 / EV-D13), and the RACI
-approval-status contradiction (21 / EV-D06). All are recorded with evidence in doc 07.
+**Summary:** the reconciliation closed EV-D06, EV-D14, EV-D09, EV-D12 and the EV-D13 core (Step 08 present,
+checked, integrated). One item is ⚠ (Step 08↔Index status/classification divergence, authoritatively
+reconciled at the Index, Step-08-file alignment deferred to EV-D17). Open controlled follow-ups:
+EV-D15 (PR #24 description), EV-D16 (Boss ack of target migration), EV-D17 (Step 08 review-cycle alignment).
+Producer result **REWORK REQUIRED**; independent verification PENDING.
 
 Verification Status: **PENDING INDEPENDENT VERIFICATION.**

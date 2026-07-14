@@ -1,137 +1,85 @@
-# 03 — Commit and Diff Verification (State 02 · Step 09 · EV-02)
+# 03 — Commit & Diff Verification (State 02 · Step 09 · reconciled · EV-02)
 
-Candidate Commit: `4da8cc8423ff9f6964112b2c5b780020cb8e40fa`
-Prepared By: Claude Code · Prepared At: 2026-07-14 (UTC)
-Reviewer: PENDING INDEPENDENT REVIEW · Verifier: PENDING INDEPENDENT VERIFICATION
-
-All commands below are reproducible against the fetched repository.
+STATE02_VERIFICATION_TARGET_COMMIT: `9fa57fdc17f28906af503745b9291e54be7a2aa6`
+STEP09_PACKAGE_COMMIT: this evidence commit (SHA in PR #29 description / final report)
+Prepared By: Claude Code · 2026-07-14 (UTC) · Reviewer/Verifier: PENDING INDEPENDENT
 
 ---
 
-## 1. Commit anchors
+## 1. Anchors (actual, re-retrieved at execution start)
 
 ```bash
-$ git rev-parse origin/claude/state-02-governance-26bzvw   # candidate (PR #24 head)
-4da8cc8423ff9f6964112b2c5b780020cb8e40fa
 $ git rev-parse origin/SMEsPlus
-bc591f31bf9a4a7e68c00838cfdaa30e743f4262
-$ git merge-base origin/SMEsPlus 4da8cc8
-8570187bc0f13835be154d10cdc09bfa98e1dfe9
+bc591f31bf9a4a7e68c00838cfdaa30e743f4262      # contains merged Step 08 registers
+$ git rev-parse origin/claude/state-02-governance-26bzvw   # PR #24 head (moved 4da8cc8 -> af6e4c2)
+af6e4c2f0e2cd7203b85305cf3a95e61c790cd08
+$ git rev-parse origin/claude/state-02-step-09-evidence-ubpslm   # PR #29 head (prev)
+619a3db07c48327d2aa9c79dac31243d6a18bc42
 ```
 
 | Field | Value |
 |---|---|
-| Base branch | `SMEsPlus` |
-| Base SHA (current `origin/SMEsPlus`) | `bc591f31bf9a4a7e68c00838cfdaa30e743f4262` |
-| PR #24 recorded base SHA (GitHub) | `8570187bc0f13835be154d10cdc09bfa98e1dfe9` |
-| Execution branch (order) | `claude/state-02-governance-26bzvw` |
-| Candidate commit SHA | `4da8cc8423ff9f6964112b2c5b780020cb8e40fa` |
-| Merge-base SHA | `8570187bc0f13835be154d10cdc09bfa98e1dfe9` |
-| Commit count (base..candidate) | **5** |
-| Changed-file count | **25** |
-| Added / deleted line totals | **+1405 / −34** |
-| Diff check result | **CLEAN** (no whitespace/conflict markers) |
-| Working-tree status (evidence branch, pre-Step09-commit) | clean except new `Step_09_Evidence_Verification/` files |
+| Base branch / SHA | `SMEsPlus` / `bc591f31bf9a4a7e68c00838cfdaa30e743f4262` |
+| Reconciled target | `9fa57fdc17f28906af503745b9291e54be7a2aa6` |
+| Merge-base(SMEsPlus, target) | `bc591f31…` (target descends from SMEsPlus) |
+| Previous target (superseded) | `4da8cc8423ff9f6964112b2c5b780020cb8e40fa` |
+| PR #24 head integrated | `af6e4c2f0e2cd7203b85305cf3a95e61c790cd08` |
+| Commit count (SMEsPlus..target) | **9** |
+| Changed-file count (target vs SMEsPlus) | **38** (26 governance + 12 Step 09 package) |
+| Added / deleted totals | **+2661 / −40** |
+| Diff-check | **CLEAN** |
+| Working-tree status | clean apart from the Step 09 package (this commit) |
 
-**Note on base divergence:** `origin/SMEsPlus` has advanced to `bc591f3` (Step 08 Classification
-Registers merged via a separate PR) since PR #24's branch diverged at `8570187`. The 3-dot diff below is
-therefore taken from the merge-base `8570187`, which is PR #24's true fork point.
-
----
-
-## 2. Commits on candidate not in base
+## 2. Reconciliation merges (authorized on PR #29 branch)
 
 ```bash
-$ git log --oneline origin/SMEsPlus..4da8cc8
-4da8cc8 docs(governance): synchronize finalization package internal status (L99 Step-09)
-3cc2365 docs(governance): record S02-FINAL-005 appointment (ChatGPT L99); ready PR #24
-a0fcf4a docs(governance): sync State 02 finalization status after S02-FINAL-001..004
-40ee413 docs(governance): apply Boss-approved State 02 corrections (S02-FINAL-001..004)
-6a8e97e docs(governance): finalize State 02 governance package (Steps 02-07) + skill simulation
+git checkout claude/state-02-step-09-evidence-ubpslm
+git reset --hard origin/claude/state-02-step-09-evidence-ubpslm    # 619a3db, clean
+git merge --no-ff origin/SMEsPlus                                  # "Already up to date" (target already on bc591f3)
+git merge --no-ff origin/claude/state-02-governance-26bzvw         # integrated af6e4c2 — NO CONFLICTS
+# then: EV-D06/D14/D16 corrections + EV-D13 Step 08 index integration -> freeze target 9fa57fd
 ```
-Count: **5**. (Order's "Known Previous Verification Target" `3cc2365` is the 2nd commit; the current
-head is `4da8cc8`.)
 
----
+**Conflict-resolution summary:** none required. The SMEsPlus merge was already-up-to-date (the branch was
+cut from `bc591f3`). The PR #24 merge added the finalization package (docs 00–17), the glossary, and the
+Step_03/Step_04/source-doc modifications; these touch files disjoint from the separately-added Step 08
+tree, so git produced a clean 3-way merge. Step 08 registers and PR #24 governance records **coexist** in
+the target tree (22 Step 08 files + 26 PR #24 governance files verified present). No `--ours`/`--theirs`,
+no force-push, no merge into SMEsPlus, no push to the PR #24 branch.
 
-## 3. Changed-file list
+## 3. Changed-file breakdown (target vs SMEsPlus, 3-dot)
 
 ```bash
-$ git diff --name-status origin/SMEsPlus...4da8cc8
-```
-```
-M  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/AI_ROLE_AND_RESPONSIBILITY.md
-M  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/APPROVAL_AUTHORITY_MATRIX.md
-M  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/ARCHITECTURE_GOVERNANCE_STANDARD.md
-M  99_SMEsPlus_Enterprise_Suite/00_Project_Governance/FOLDER_REGISTRY.yaml
-A  .../State_02_Governance/STATE02_CANONICAL_ROLE_DEFINITIONS_GLOSSARY_v1.0.md
-A  .../State_02_Governance/STATE02_FINALIZATION/00_STATE02_EXECUTIVE_SUMMARY.md
-A  .../State_02_Governance/STATE02_FINALIZATION/01_STATE02_STEP_STATUS_REGISTER.md
-A  .../State_02_Governance/STATE02_FINALIZATION/02_AUTHORITY_CONFLICT_DECISION_REGISTER.md
-A  .../State_02_Governance/STATE02_FINALIZATION/03_CANONICAL_RACI.md
-A  .../State_02_Governance/STATE02_FINALIZATION/04_OWNERLESS_EXECUTION_CONTROL_STANDARD.md
-A  .../State_02_Governance/STATE02_FINALIZATION/05_CANONICAL_GOVERNANCE_INDEX.md
-A  .../State_02_Governance/STATE02_FINALIZATION/06_GOVERNANCE_GATE_CROSSWALK.md
-A  .../State_02_Governance/STATE02_FINALIZATION/07_EVIDENCE_AND_APPROVAL_STANDARD.md
-A  .../State_02_Governance/STATE02_FINALIZATION/08_BOSS_APPROVAL_QUEUE.md
-A  .../State_02_Governance/STATE02_FINALIZATION/09_STATE02_CLOSURE_CHECKLIST.md
-A  .../State_02_Governance/STATE02_FINALIZATION/10_STATE02_CLOSURE_RECOMMENDATION.md
-A  .../State_02_Governance/STATE02_FINALIZATION/11_SKILL_TRIGGER_TEST.md
-A  .../State_02_Governance/STATE02_FINALIZATION/12_SKILL_INPUT_VALIDATION.md
-A  .../State_02_Governance/STATE02_FINALIZATION/13_SKILL_ACCEPTANCE_TEST_RESULTS.md
-A  .../State_02_Governance/STATE02_FINALIZATION/14_SKILL_FAILURE_AND_EDGE_CASES.md
-A  .../State_02_Governance/STATE02_FINALIZATION/15_SKILL_IMPROVEMENT_RECOMMENDATIONS.md
-A  .../State_02_Governance/STATE02_FINALIZATION/16_S02_FINAL_005_REVIEW_AND_VERIFICATION_RECORD.md
-A  .../State_02_Governance/STATE02_FINALIZATION/PACKAGE_MANIFEST_SHA256.txt
-M  .../State_02_Governance/Step_03_Canonical_RACI/STATE02_CANONICAL_RACI_v1.0.md
-M  .../State_02_Governance/Step_04_Ownerless_Execution_Control/STATE02_OWNERLESS_EXECUTION_CONTROL_STANDARD_v1.0.md
-```
-25 files: 4 modified source-governance docs (outside `State_02_Governance/`), 19 added +
-2 modified inside `State_02_Governance/`.
-
-```bash
-$ git diff --stat origin/SMEsPlus...4da8cc8 | tail -1
- 25 files changed, 1405 insertions(+), 34 deletions(-)
-$ git diff --check origin/SMEsPlus...4da8cc8
-(no output) → DIFF-CHECK-CLEAN
+git diff --name-status origin/SMEsPlus...9fa57fd     # 38 files: 32 A, 6 M
+git diff --stat        origin/SMEsPlus...9fa57fd | tail -1   # 38 files changed, 2661 insertions(+), 40 deletions(-)
+git diff --check       origin/SMEsPlus...9fa57fd     # (clean)
 ```
 
-Cross-check vs GitHub PR #24 metadata: `additions: 1405`, `deletions: 34`, `changed_files: 25`,
-`commits: 5` — **exact match**.
+- **26 governance files** (PR #24 set as reconciled): 4 source docs outside `State_02_Governance/`
+  (AI_ROLE, APPROVAL_AUTHORITY_MATRIX, ARCHITECTURE_GOVERNANCE_STANDARD, FOLDER_REGISTRY) + 22 inside
+  (finalization docs 00–17 + manifest, glossary, Step_03 RACI, Step_04 Ownerless). Of these, 5 were
+  further edited by this reconciliation (doc 03, doc 05, doc 17, AI_ROLE, APPROVAL_AUTHORITY_MATRIX) + the
+  regenerated finalization manifest.
+- **12 Step 09 package files** (this deliverable set 00–10 + manifest).
+- The Step 08 registers are **not** in this diff because they are already part of the `SMEsPlus` base;
+  they are present in the target tree (verified: `git ls-tree -r 9fa57fd | grep -c Step_08 = 22`).
 
----
+## 4. PR merge condition
 
-## 4. PR #24 merge condition
+| PR | State | mergeable_state | Condition |
+|---|---|---|---|
+| #24 (`…governance-26bzvw` @ af6e4c2 → SMEsPlus) | OPEN, not draft, not merged | `clean` | **MERGEABLE** |
+| #29 (`…step-09-evidence-ubpslm` @ target → SMEsPlus) | OPEN, DRAFT, not merged | (no CI checks configured) | reconciliation/evidence branch — not for merge under this order |
 
-| Field | Value (GitHub API, 2026-07-14) |
-|---|---|
-| PR state | OPEN |
-| Draft | false |
-| Merged | false |
-| `mergeable_state` | **`clean`** |
-| Merge condition | **MERGEABLE** |
-| CI / required checks | `state: pending`, `total_count: 0` → **no checks configured** |
-
-**Mergeability finding (EV-D11 update):** The order records "Last Known Mergeability: MERGEABLE = FALSE."
-At execution time GitHub reports `mergeable_state: clean` → **MERGEABLE**. The earlier non-mergeable
-condition no longer holds: PR #24 adds `STATE02_FINALIZATION/` + glossary and modifies
-Step_03/Step_04/source docs, while `SMEsPlus` separately added the disjoint `Step_08_Classification_Registers/`
-tree; because the two change-sets touch different files, GitHub computes a clean 3-way merge.
-
-**Conditional observation (not a blocker resolved here):** A clean file-level merge does **not** mean the
-merged result is governance-complete. Merging PR #24 would introduce the finalization package **without**
-reconciling it against the now-merged Step 08 registers (which the finalization Governance Index does not
-index — EV-D13). This is a conditional item for the independent verifier / Boss, recorded in doc 07.
-No merge, rebase, or force-push was performed.
-
----
+No CI checks are configured on the repository (`get_status` total_count = 0). Neither PR is merged; this
+order does not authorize merging either PR. **EV-D15:** the PR #24 *description* is materially stale
+(states docs "00–15" and S02-FINAL-005/006 "OPEN", whereas the package now has docs 00–17 and doc 16/17
+record the 005 appointment and the 006 CONDITIONAL-CLOSE approval) — recorded for the PR #24 owner; not
+edited here (PR #24 is not the authorized write branch).
 
 ## 5. Working-tree status
 
-```bash
-$ git status --short   # on claude/state-02-step-09-evidence-ubpslm, before Step 09 commit
-?? 99_SMEsPlus_Enterprise_Suite/00_Project_Governance/State_02_Governance/Step_09_Evidence_Verification/
-```
-No modifications to any file outside the Step 09 write scope. Source governance documents are untouched.
+Clean apart from the Step 09 package produced by this commit. No source governance document was modified
+after the target freeze. `git diff --check` clean.
 
 Verification Status: **PENDING INDEPENDENT VERIFICATION.**

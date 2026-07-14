@@ -1,75 +1,74 @@
-# 07 — Defect & Exception Register (State 02 · Step 09 · EV-08 / EV-09)
+# 07 — Defect & Exception Register (State 02 · Step 09 · reconciled · EV-08 / EV-09)
 
-Candidate Commit: `4da8cc8423ff9f6964112b2c5b780020cb8e40fa`
-Prepared By: Claude Code · Prepared At: 2026-07-14 (UTC)
-Reviewer: PENDING INDEPENDENT REVIEW · Verifier: PENDING INDEPENDENT VERIFICATION
-Owner (defect tracking): AI PMO · Final Approver: Boss
+STATE02_VERIFICATION_TARGET_COMMIT: `9fa57fdc17f28906af503745b9291e54be7a2aa6`
+Prepared By: Claude Code · 2026-07-14 (UTC) · Owner (tracking): AI PMO · Final Approver: Boss
+Reviewer/Verifier: PENDING INDEPENDENT
 
-Rule applied: **no defect is marked CLOSED solely because Claude previously claimed a fix.** Each prior
-defect was re-inspected at the candidate commit with direct byte evidence.
+Rule: no defect is CLOSED on a prior claim; each is re-inspected at the target with direct evidence.
 
 ---
 
-## Part A — EV-08 Approval-Status Consistency (findings feed the register below)
-
-Cross-checked headers/bodies of docs 00, 01, 02, 05, 08, 09, 10, 16, Canonical RACI, Ownerless Standard,
-PR #24 description, and PR #24 comments.
+## Part A — EV-08 Approval-Status Consistency (reconciled)
 
 | Rule | Result | Reference |
 |---|---|---|
-| Boss-approved decisions not shown Pending elsewhere | ⚠ 1 exception | RACI is Boss-CONFIRMED CANONICAL in source but doc 03 shows HOLD/not-yet → **EV-D06** |
-| Verifier identity not both Recorded and Not Named | ✅ | L99 recorded consistently (doc 16, 10, 08); result openly PENDING everywhere |
-| Canonical status not conflicting header vs body | ⚠ 1 | **EV-D06** (RACI) |
-| Closed defects not left Open without explanation | ✅ | CF-01/CF-02 CLOSED (doc 09) with applied-evidence |
-| Producer result not presented as Independent Verification | ✅ | Docs 00/01/08/16 state verification PENDING; producer ≠ verifier |
-| State 02 open until Boss closure signature | ✅ | Posture = RECOMMEND CONDITIONAL CLOSE; S02-FINAL-006 Open |
+| Boss-approved decisions not shown Pending elsewhere | ✅ (RACI EV-D06 fixed) | doc 03 §0; source `84c5e8f8` |
+| Verifier identity not both Recorded and Not Named | ✅ | L99 recorded; result openly PENDING |
+| Canonical status not conflicting header vs body | ✅ (EV-D06 fixed) | doc 03 |
+| Closed defects not left Open unexplained | ✅ | CF-01/CF-02 CLOSED (doc 09 finalization) |
+| Producer result not presented as Independent Verification | ✅ | REWORK REQUIRED; PENDING handoff |
+| State 02 open until Boss closure signature | ✅ | S02-FINAL-006 CONDITIONAL CLOSE, effective on L99 VERIFIED (doc 17) |
 
-Net EV-08: verification-pending vs approvals-applied is a **consistent CONDITIONAL-CLOSE posture** (not a
-contradiction), with the single genuine contradiction being **EV-D06** (RACI status).
+Residual status divergence: **Step 08 package vs Governance Index** (candidate/pending vs Boss-confirmed;
+Superseded vs Supporting) — authoritatively resolved at the Index, Step-08-file alignment → **EV-D17**.
+And **PR #24 description stale** → **EV-D15**.
 
----
+## Part B — Consolidated register
 
-## Part B — Consolidated Defect & Exception Register
+### B.1 Prior defects — re-inspected at target `9fa57fd`
 
-Fields: ID · Severity · Type · Description · Evidence · Owner · Due · Gate Impact · Correction · Retest ·
-Status · Closure Evidence · Independent Verification.
-
-### B.1 Prior Step 09 defects — re-inspected at `4da8cc8`
-
-| ID | Sev | Type | Re-inspection result @ candidate | Status |
+| ID | Sev | Type | Status @ target | Closure / follow-up evidence |
 |---|---|---|---|---|
-| **EV-D01** Exec Summary contradiction | P1 | Status | Doc 00 §1–§3 rewritten; no "did not modify source" vs "identities pending" contradiction found. `00:33` RECOMMEND CONDITIONAL CLOSE consistent with 08/10 | **CLOSED** — closure evidence: `00_STATE02_EXECUTIVE_SUMMARY.md` @ `4da8cc8` |
-| **EV-D02** Reviewer/Verifier pending contradiction | P1 | Status | L99 recorded as GR+EV; VERIFIED result openly PENDING (doc 16 §3). No "recorded vs not-named" contradiction | **CLOSED** — `16_...RECORD.md:15-16,42` |
-| **EV-D03** Gov Index stale SHA/status + missing GI-60 | P1 | Classification | GI-60 glossary row present (`05:43`); GI-10..14 updated to new blobs + "CORRECTED"; Review/Verify "L99 (pending final)" = expected pending, not stale | **CLOSED** — `05_CANONICAL_GOVERNANCE_INDEX.md` @ `4da8cc8` |
-| **EV-D04** Gate Crosswalk stale detection result | P1 | Gate | Doc 06:34 duplicate-authority "DETECTED → CORRECTED"; identities = L99; historical quotes distinguished. Crosswalk internally clean | **CLOSED** — `06_GOVERNANCE_GATE_CROSSWALK.md` @ `4da8cc8` |
-| **EV-D05** Boss Queue stale detail | P2 | Status | S02-FINAL-005 Outcome row added; request fields marked "(at time of request)"; 006 reason updated | **CLOSED** — `08_BOSS_APPROVAL_QUEUE.md` @ `4da8cc8` |
-| **EV-D06** Canonical RACI header/body contradiction | **P1** | RACI/Status | **NOT closed.** Source `STATE02_CANONICAL_RACI_v1.0.md:12` = "CANONICAL — CONFIRMED BY BOSS" but finalization `03_CANONICAL_RACI.md:22,57-59` = "PREPARED FOR REVIEW / HOLD… does not itself make the candidate CANONICAL" | **OPEN** |
-| **EV-D07** Closure Recommendation verifier contradiction | P1 | Status | Doc 10 `:20` "S02-FINAL-002 — Canonical RACI confirmed. DONE."; `:32-34` verifier recorded (L99), result pending. No residual "missing" contradiction in doc 10 itself | **CLOSED** — `10_STATE02_CLOSURE_RECOMMENDATION.md` @ `4da8cc8` (but see EV-D06: the contradiction now lives in doc 03, not doc 10) |
-| **EV-D08** Closure Checklist stale CF-01/CF-02 | P1 | Status | `09:54` CF-01 "CLOSED — applied"; `09:55` CF-02 "CLOSED — published"; cross-cutting "Verifier VERIFIED result… NOT MET (pending)" correctly retained | **CLOSED** — `09_STATE02_CLOSURE_CHECKLIST.md` @ `4da8cc8` |
-| **EV-D09** Manifest target/recompute control | P2 | Manifest | Recompute 17/17 OK ✅; but head SHA not pinned in manifest body (names "PR #24 head" + baseline only) | **CONTROLLED FOLLOW-UP** — doc 04 §1 |
-| **EV-D10** Missing Step 09 package | P1 | Repository | Step 09 package now created (this deliverable set 00–10 + manifest) | **CLOSED** — `Step_09_Evidence_Verification/` @ this Step 09 commit |
-| **EV-D11** PR mergeability false / conflict | P1 | Repository | GitHub `mergeable_state: clean` → MERGEABLE at execution. Order's "MERGEABLE = FALSE" is **stale** | **CLOSED (status changed)** — doc 03 §4; see EV-D13 conditional |
+| EV-D01 Exec Summary contradiction | P1 | Status | **CLOSED** | doc 00 finalization coherent (RECOMMEND CONDITIONAL CLOSE) |
+| EV-D02 Reviewer/Verifier pending contradiction | P1 | Status | **CLOSED** | doc 16 §; L99 recorded, result PENDING |
+| EV-D03 Gov Index stale SHA + missing GI-60 | P1 | Classification | **CLOSED** | GI-60 present; GI-10..14 updated blobs |
+| EV-D04 Gate Crosswalk stale detection | P1 | Gate | **CLOSED** | doc 06 crosswalk internally clean |
+| EV-D05 Boss Queue stale detail | P2 | Status | **CLOSED** | doc 08 finalization updated |
+| **EV-D06** Canonical RACI status contradiction | P1 | RACI/Status | **CLOSED** | doc 03 `4c9d203e` §0/§1/§3/§4 = CANONICAL CONFIRMED; matches source `84c5e8f8:12`. doc 05 §B.1 |
+| EV-D07 Closure Recommendation verifier contradiction | P1 | Status | **CLOSED** | doc 10 finalization; verifier recorded, result pending |
+| EV-D08 Closure Checklist stale CF-01/CF-02 | P1 | Status | **CLOSED** | doc 09 finalization CF-01/CF-02 CLOSED |
+| **EV-D09** Manifest target/recompute control | P2 | Manifest | **CLOSED** | Step 09 manifest pins full 40-char target SHA; finalization manifest names target + external SHA pointer (removes "PR head" moving phrase). doc 04 |
+| EV-D10 Missing Step 09 package | P1 | Repository | **CLOSED** | package present + regenerated at target |
+| EV-D11 PR mergeability false/conflict | P1 | Repository | **CLOSED** | PR #24 `mergeable_state: clean` = MERGEABLE |
+| **EV-D12** Execution-branch reconciliation | P2 | Repository/Process | **CLOSED** | this order formally authorizes PR #29 (`…step-09-evidence-ubpslm`) as the reconciliation + Step 09 delivery branch |
+| **EV-D13** Step 08 classification reconciliation | P1 | Classification | **CLOSED (core)** + follow-up EV-D17 | Step 08 present (22 files) + 100% checked + coexists with PR #24 + indexed via GI-70 (doc 05); duplicate-canonical = 0. doc 06 Part B |
+| **EV-D14** Residual joint-role wording | P2 | Authority | **CLOSED** | 0 active joint-role wording in 5 source docs; corrections byte-verified. doc 05 §A |
 
-### B.2 New defects / exceptions found at `4da8cc8`
+### B.2 New / open items at target
 
 | ID | Sev | Type | Description | Evidence | Gate Impact | Correction | Retest | Status |
 |---|---|---|---|---|---|---|---|---|
-| **EV-D12** | P2 | Repository/Process | Execution-branch reconciliation: order targets `claude/state-02-governance-26bzvw` (PR #24); this session's branch policy binds writes to `claude/state-02-step-09-evidence-ubpslm`. Package delivered to designated branch as a separate PR; verification target kept at PR #24 head | Order §2/§22 vs session branch policy; doc 01 §0 | Conditional (governance/process) | Boss/independent verifier confirm delivery branch, or authorize push to PR #24 branch | Re-read doc 01 §0 + PR list | **CONTROLLED FOLLOW-UP** |
-| **EV-D13** | P1 | Classification/Repository | Step 08 Classification Registers **absent at candidate `4da8cc8`** (present in SMEsPlus `bc591f3`). EV-07 cannot be executed 100% against candidate; finalization Governance Index does not index Step 08. Also: merging PR #24 would not reconcile against the merged Step 08 | `git ls-tree 4da8cc8 -- .../Step_08_Classification_Registers/` = 0; doc 06 Part B | **Conditional** | Re-verify Step 08 classification against a base that contains both change-sets, or forward-integrate before Gate Review | `git ls-tree` at the reconciled base | **OPEN (conditional)** |
-| **EV-D14** | P2 | Authority | Producer "no active joint-authority wording" claim overstated: live joint-role residuals remain — `AI_ROLE:154` Governance Gate owner "Liza / PMO" (+ `:46,:68,:125,:136`), `APPROVAL_AUTHORITY_MATRIX:5` "PMO / Boss" doc-owner. None assign Final Approval to non-Boss (mitigant) | doc 05 §A.2 (byte-verified) | Non-blocking→ makes EV-04 "unexplained matches = 0" fail | Reformat remaining AI_ROLE Gate Control rows + doc-owner metadata under Boss authority, or record explicit scoped exclusion | Re-run EV-04 grep on the 4 source docs | **OPEN** |
+| **EV-D15** | P2 | Status | PR #24 description materially stale: "docs 00–15" (now 00–17); S02-FINAL-005/006 listed OPEN though doc 16 records the 005 appointment and doc 17 records 006 CONDITIONAL-CLOSE APPROVED | GitHub PR #24 body vs target tree | Non-blocking | PR #24 owner updates the description | Re-read PR #24 body | **OPEN** (PR #24 owner; not the authorized write branch) |
+| **EV-D16** | P2 | Status | S02-FINAL-006 closure condition referenced obsolete target `4da8cc8`; migrated to the reconciled target, Boss decision preserved | doc 17 §6 (`367a5ff2`) | Conditional | Boss acknowledges the target migration (or confirms lock to `4da8cc8`) | Re-read doc 17 §6 | **CONTROLLED FOLLOW-UP** (Boss ack recommended) |
+| **EV-D17** | P2 | Classification | Step 08 register alignment to the Boss-confirmed Governance Index: CONTRADICTION-1 (Auth-Conflict v1.0 Superseded→Supporting), GAP-1 (add Glossary), candidate→confirmed status; plus Step 08's own independent review + Boss Step-08 decision (self-declared HOLD) | doc 06 Part B; Step 08 package | Conditional | Perform in the Step 08 independent-review cycle; do not unilaterally rewrite the pending Step 08 package | Re-scan Step 08 vs Index | **OPEN (controlled follow-up)** |
 
-### B.3 Severity roll-up
+### B.3 Roll-up
 
-| Severity | Open | Closed / Follow-up |
+| Severity | Open / follow-up | Closed |
 |---|---|---|
 | P0 | **0** | — |
-| P1 | **2** (EV-D06, EV-D13) | EV-D01,02,03,04,07,08,10,11 closed |
-| P2 | **1** (EV-D14) | EV-D05 closed; EV-D09, EV-D12 controlled follow-up |
+| P1 | 0 open | EV-D01,02,03,04,06,07,08,10,11,13(core) |
+| P2 | EV-D15 (open), EV-D16 (follow-up), EV-D17 (follow-up) | EV-D05,09,12,14 |
 
-**Open defects: 3** (EV-D06 P1, EV-D13 P1, EV-D14 P2). **Critical (P0): 0.**
-Controlled follow-ups: EV-D09, EV-D12.
+**Open items: 3** (EV-D15 P2, EV-D16 P2 follow-up, EV-D17 P2 follow-up). **Critical (P0): 0.**
+Owner = AI PMO; Due 2026-07-16; Independent Verification = PENDING until the verifier signs.
 
-All open defects: Owner = AI PMO; Due Date = 2026-07-16 (before Step 10 Gate Review); Independent
-Verification = PENDING until the appointed verifier signs.
+**Why still REWORK, not PREPARED:** although 0 P0/P1 remain and the two prior P1 blockers (EV-D06, EV-D14)
+are closed, the reconciled tree still contains real status/classification divergences between the Step 08
+package (self-declared HOLD / candidate / one Superseded label) and the Boss-confirmed Governance Index.
+These are authoritatively reconciled at the Index but not eliminated in the Step 08 files, and Step 08's
+own independent review + Boss Step-08 decision remain OPEN. Per the decision rule ("Step 08 classification
+incomplete / status divergence remains"), and to avoid overstating, the producer result is **REWORK
+REQUIRED** with these as low-severity controlled follow-ups for the Step 08 track + Boss ack.
 
 Verification Status: **PENDING INDEPENDENT VERIFICATION.**
