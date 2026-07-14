@@ -12,7 +12,7 @@ Exit code: 0
 - Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
 - Branch: claude/state-02-classification-registers-7qwwcy
 - PR Number: #27
-- Validated Commit: Commit E (final repository hygiene; pre-commit working tree)
+- Validated Commit: 43c65eb8c2d602f313bb936ebda5c35f9c2fc446 (Commit E content; Commit F adds evidence only)
 - Validator Script Blob SHA: 8d623cbbeda02b3e4a975ff2bb615e3a09a2c360
 - Package Path: 99_SMEsPlus_Enterprise_Suite/00_Project_Governance/State_02_Governance/Step_08_Classification_Registers
 - Manifest Result: OK (self-verified)
