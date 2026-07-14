@@ -1,19 +1,16 @@
 # PACKAGE_MANIFEST_SHA256.txt
 # State 02 Finalization Package — TH-PATTARAKRIT/AI-Collaboration-Hub
-# Generated: 2026-07-14T14:40:42Z (UTC) — reconciled candidate: EV-D06 (doc 03), EV-D13/D17 (doc 05 Step-08 alignment applied), EV-D16 (doc 17)
-# Verification target: STATE02_VERIFICATION_TARGET_COMMIT (the reconciled State 02 candidate).
-#   This manifest is contained within that commit; the full 40-char target SHA is recorded in
-#   State_02_Governance/Step_09_Evidence_Verification/03_COMMIT_AND_DIFF_VERIFICATION.md and the PR #29 description.
+# Generated: 2026-07-14T15:50:20Z (UTC) — post-closure: STATE 02 CLOSED BY BOSS (S02-FINAL-006) closure banners on docs 01, 05
+# Verification target (pre-closure, immutable): b6e9ac083a8a33993600f9490475726ffefaf995
 # Baseline (pre-correction) commit: 8570187bc0f13835be154d10cdc09bfa98e1dfe9
-# Independent recompute: cd STATE02_FINALIZATION && sha256sum -c <(grep -v '^#' PACKAGE_MANIFEST_SHA256.txt)
 # Algorithm: SHA-256 | Encoding: UTF-8 | Line endings: LF
 #
 26a0dac633c993dcddd80273abeccb51dde92528dd9d4715093daa811644cb82  00_STATE02_EXECUTIVE_SUMMARY.md
-be1b6d84549a4c4abb9dff87fef2730f8847fbee5b7641e4b8d736e8bd05477b  01_STATE02_STEP_STATUS_REGISTER.md
+027b4c7298d391fb30593e0e358d1ca37222bdef7f5e8dc683d55f6bbf2fad3d  01_STATE02_STEP_STATUS_REGISTER.md
 f7e87a5d67a95cf89ea3638c68ac971109972f5ccb76a174e720283bc294aac6  02_AUTHORITY_CONFLICT_DECISION_REGISTER.md
 46df91f6adc7ac5b62e9c061358fefec746c917ef8975d5c4dc566b4c2d5398d  03_CANONICAL_RACI.md
 7ee986123fbc0098d5be7b4f06c5e035c683a4621d41bbe51511c64ec90286de  04_OWNERLESS_EXECUTION_CONTROL_STANDARD.md
-72ea92c2ae0dc2761dade6aea1b0e0e0c6c298d39cf0de0040158e21086d11da  05_CANONICAL_GOVERNANCE_INDEX.md
+480745282b2e89b85e985918b8aef3ad5d2d2d2668481fe2eb1094ada716b70e  05_CANONICAL_GOVERNANCE_INDEX.md
 8e4a403f3f29a7248539608f02f31413082aae6506b7f5dca1008729df2df99d  06_GOVERNANCE_GATE_CROSSWALK.md
 26b8e7cbd5ad572c79569b33d78bd6734a266d5e37549e55773fcfb24b89987d  07_EVIDENCE_AND_APPROVAL_STANDARD.md
 7359e907ec25c65a8808d5302b534446ce46b16f53f96d5455d0bdc3d6dfaa1d  08_BOSS_APPROVAL_QUEUE.md
