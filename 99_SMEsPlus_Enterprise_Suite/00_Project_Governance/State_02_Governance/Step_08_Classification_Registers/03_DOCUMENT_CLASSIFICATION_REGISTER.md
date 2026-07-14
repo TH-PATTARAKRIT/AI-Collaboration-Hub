@@ -10,6 +10,28 @@ Prepared At: 2026-07-14 (UTC)
 Document Status: PREPARED FOR INDEPENDENT REVIEW
 Gate Status: HOLD
 
+## 0. Reconciliation Addendum (EV-D17 — governs where it differs from the pre-Boss body below)
+
+This register was prepared at base `8570187`, before the Boss S02-FINAL decisions were recorded. Those
+decisions (recorded in the State 02 Finalization package and the Canonical Governance Index) now exist and
+are applied to this register's **document classifications** for alignment with the Boss-confirmed Index.
+This addendum **governs** where it differs from the pre-Boss two-tier body text below. It confirms only
+Boss decisions that actually exist — no approval is invented or overstated.
+
+| Doc | Was (pre-Boss) | Now (aligned to Boss decision) | Basis |
+|---|---|---|---|
+| DOC-S02-010 Canonical RACI v1.0 | CANONICAL CANDIDATE — NOT EFFECTIVE | **EFFECTIVE CANONICAL — CONFIRMED BY BOSS** | **S02-FINAL-002** (APPROVED AND APPLIED) |
+| DOC-S02-020 Ownerless Execution Control Standard | CANONICAL CANDIDATE — NOT EFFECTIVE | **EFFECTIVE CANONICAL — CONFIRMED BY BOSS** | **S02-FINAL-004** (APPROVED AND APPLIED) |
+| DOC-S02-049 Canonical Role Definitions Glossary *(added — GAP-1)* | (absent) | **EFFECTIVE CANONICAL — CONFIRMED BY BOSS** | **S02-FINAL-003** (APPROVED AND APPLIED); Index GI-60 |
+| DOC-S02-031 Authority Conflict Register v1.0 | SUPERSEDED | **SUPPORTING (retained)** | Governance Index GI-21 (§7): no doc classified Superseded; v1.0 retained as Supporting (CONTRADICTION-1) |
+| DOC-S02-032 Authority Conflict Register v1.1 | CANONICAL CANDIDATE — NOT EFFECTIVE | **UNCHANGED — CANONICAL CANDIDATE (tracking); NOT Boss-confirmed** | No S02-FINAL decision confirms it; Index GI-20 "Canonical (tracking)" is likewise not a Boss confirmation — **not overstated** |
+
+**Scope guardrail:** this addendum aligns the *classification of the documents Step 08 classifies*. It does
+**not** approve Step 08's own deliverables: Step 08's Document Status remains **PREPARED FOR INDEPENDENT
+REVIEW / Gate HOLD**, its Final L99 Acceptance Review and Boss Step-08 decision remain **PENDING** (a
+separate governance track). Claude Code did not self-approve or self-verify. Boss remains the sole Final
+Approver.
+
 ## 1. Method
 
 Every governance document that controls or supports State 02 execution is classified with
@@ -57,7 +79,7 @@ Evidence | Related Document | Superseded By | Archive Status | Gate Impact | Las
 | DOC-S02-007 | Quality Gate Standard | GOV/QUALITY_GATE_STANDARD.md | approved | SUPPORTING | Gate rule source | Gate Control | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-024 | none | Active | Input | 2026-07-13 |
 | DOC-S02-008 | Traceability Standard | GOV/TRACEABILITY_STANDARD.md | approved | SUPPORTING | Traceability rule source | Traceability | Traceability Owner | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-012 | none | Active | Input | 2026-07-13 |
 | DOC-S02-009 | Operating Model | GOV/OPERATING_MODEL.md | approved | SUPPORTING | Operating model reference | Operating Model | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | — | none | Active | Input | 2026-07-13 |
-| DOC-S02-010 | Canonical RACI v1.0 | S03/STATE02_CANONICAL_RACI_v1.0.md | v1.0 | CANONICAL CANDIDATE (Effective: NOT EFFECTIVE — PENDING BOSS CONFIRMATION) | Proposed single controlling RACI (topic: role authority); Boss confirmation pending (DEC-08-01) | Role / Authority RACI | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path; Step 03 manifest | DOC-S02-002/003 | none | Active | Blocking | 2026-07-13 |
+| DOC-S02-010 | Canonical RACI v1.0 | S03/STATE02_CANONICAL_RACI_v1.0.md | v1.0 | EFFECTIVE CANONICAL — CONFIRMED BY BOSS (S02-FINAL-002) [§0 addendum] | Single controlling RACI (topic: role authority); Boss-confirmed S02-FINAL-002 (APPROVED AND APPLIED) | Role / Authority RACI | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path; Step 03 manifest; S02-FINAL-002 | DOC-S02-002/003 | none | Active | Blocking | 2026-07-14 |
 | DOC-S02-011 | RACI Conflict-to-Correction Matrix | S03/STATE02_RACI_CONFLICT_TO_CORRECTION_MATRIX_v1.0.md | v1.0 | SUPPORTING | Maps ACF to RC corrections | Role / Authority RACI | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-010 | none | Active | Blocking | 2026-07-13 |
 | DOC-S02-012 | RACI Correction Register | S03/STATE02_RACI_CORRECTION_REGISTER_v1.0.md | v1.0 | SUPPORTING | RC-001..010 corrections | Role / Authority RACI | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-010 | none | Active | Blocking | 2026-07-13 |
 | DOC-S02-013 | RACI Evidence Register | S03/STATE02_RACI_EVIDENCE_REGISTER_v1.0.md | v1.0 | RETAINED AS EVIDENCE | Evidence register for Step 03 | Role / Authority RACI | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-010 | none | Active | Blocking | 2026-07-13 |
@@ -67,7 +89,7 @@ Evidence | Related Document | Superseded By | Archive Status | Gate Impact | Las
 | DOC-S02-017 | RACI Execution Summary | S03/STATE02_RACI_EXECUTION_SUMMARY_v1.0.md | v1.0 | SUPPORTING | Summary of Step 03 | Role / Authority RACI | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-010 | none | Active | Input | 2026-07-13 |
 | DOC-S02-018 | RACI Secretary Review and Correction Record | S03/STATE02_RACI_SECRETARY_REVIEW_AND_CORRECTION_RECORD_v1.0.md | v1.0 | RETAINED AS EVIDENCE | ES coordination record | Role / Authority RACI | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-010 | none | Active | Input | 2026-07-13 |
 | DOC-S02-019 | Step 03 Manifest (RACI) | S03/PACKAGE_MANIFEST_SHA256_STATE02_STEP03_RACI.txt | v1.0 | RETAINED AS EVIDENCE | Integrity manifest | Role / Authority RACI | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E0 hashes | DOC-S02-010 | none | Active | Blocking | 2026-07-14 |
-| DOC-S02-020 | Ownerless Execution Control Standard | S04/STATE02_OWNERLESS_EXECUTION_CONTROL_STANDARD_v1.0.md | v1.0 | CANONICAL CANDIDATE (Effective: NOT EFFECTIVE — PENDING BOSS CONFIRMATION) | Proposed controlling standard for ownerless execution (topic: ownerless control); Boss confirmation pending | Ownerless Execution Control | Executive Secretary | ChatGPT L99 | PARTIALLY VERIFIED (L99) | Boss | E1 path; Step 04 manifest | — | none | Active | Blocking | 2026-07-13 |
+| DOC-S02-020 | Ownerless Execution Control Standard | S04/STATE02_OWNERLESS_EXECUTION_CONTROL_STANDARD_v1.0.md | v1.0 | EFFECTIVE CANONICAL — CONFIRMED BY BOSS (S02-FINAL-004) [§0 addendum] | Single controlling standard for ownerless execution; Boss-confirmed S02-FINAL-004 (APPROVED AND APPLIED) | Ownerless Execution Control | Executive Secretary | ChatGPT L99 | PARTIALLY VERIFIED (L99) | Boss | E1 path; Step 04 manifest; S02-FINAL-004 | — | none | Active | Blocking | 2026-07-14 |
 | DOC-S02-021 | Ownerless Work Register | S04/STATE02_OWNERLESS_WORK_REGISTER_v1.0.md | v1.0 | SUPPORTING | Register of ownerless work | Ownerless Execution Control | Executive Secretary | ChatGPT L99 | PARTIALLY VERIFIED (L99) | Boss | E1 path | DOC-S02-020 | none | Active | Blocking | 2026-07-13 |
 | DOC-S02-022 | Owner Replacement Matrix | S04/STATE02_OWNER_REPLACEMENT_MATRIX_v1.0.md | v1.0 | SUPPORTING | Replacement rules | Ownerless Execution Control | Executive Secretary | ChatGPT L99 | PARTIALLY VERIFIED (L99) | Boss | E1 path | DOC-S02-020 | none | Active | Blocking | 2026-07-13 |
 | DOC-S02-023 | AI Execution Authority Matrix | S04/STATE02_AI_EXECUTION_AUTHORITY_MATRIX_v1.0.md | v1.0 | SUPPORTING | AI execution limits | AI Authority | Executive Secretary | ChatGPT L99 | PARTIALLY VERIFIED (L99) | Boss | E1 path | DOC-S02-010 | none | Active | Blocking | 2026-07-13 |
@@ -78,8 +100,9 @@ Evidence | Related Document | Superseded By | Archive Status | Gate Impact | Las
 | DOC-S02-028 | Step 04 Canonicalization Record | S04/CANONICALIZATION_RECORD_STATE02_STEP04_v1.0.md | v1.0 | RETAINED AS EVIDENCE | Canonicalization evidence | Ownerless Execution Control | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-020 | none | Active | Input | 2026-07-13 |
 | DOC-S02-029 | Step 04 Manifest (Ownerless) | S04/PACKAGE_MANIFEST_SHA256_STATE02_STEP04_OWNERLESS.txt | v1.0 | RETAINED AS EVIDENCE | Integrity manifest | Ownerless Execution Control | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E0 hashes | DOC-S02-020 | none | Active | Blocking | 2026-07-13 |
 | DOC-S02-030 | Step 04 Validation Script | S04/validate_state02_step04.sh | v1.0 | SUPPORTING | Preparer self-check tool | Ownerless Execution Control | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E0 script | DOC-S02-029 | none | Active | Input | 2026-07-13 |
-| DOC-S02-031 | Authority Conflict Register v1.0 | S02/STATE02_AUTHORITY_CONFLICT_REGISTER_v1.0.md | v1.0 | SUPERSEDED | Superseded by v1.1 (tracking) | Authority Conflict | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-032 | DOC-S02-032 | Active (retained) | Input | 2026-07-13 |
-| DOC-S02-032 | Authority Conflict Register v1.1 | S02/STATE02_AUTHORITY_CONFLICT_REGISTER_v1.1.md | v1.1 | CANONICAL CANDIDATE (Effective: NOT EFFECTIVE — PENDING BOSS CONFIRMATION) | Proposed controlling authority-conflict register (topic: authority conflict); Boss confirmation pending | Authority Conflict | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path; ACF-001..010 | DOC-S02-031 | none | Active | Blocking | 2026-07-13 |
+| DOC-S02-031 | Authority Conflict Register v1.0 | S02/STATE02_AUTHORITY_CONFLICT_REGISTER_v1.0.md | v1.0 | SUPPORTING (retained) [§0 addendum — was SUPERSEDED] | Prior finding set (v1.0); retained as Supporting per Governance Index GI-21/§7 (no doc classified Superseded); v1.1 is the current tracking superset | Authority Conflict | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path; Index GI-21 | DOC-S02-032 | — | Active (retained) | Input | 2026-07-14 |
+| DOC-S02-032 | Authority Conflict Register v1.1 | S02/STATE02_AUTHORITY_CONFLICT_REGISTER_v1.1.md | v1.1 | CANONICAL CANDIDATE (Effective: NOT EFFECTIVE — PENDING BOSS CONFIRMATION) | Proposed controlling authority-conflict register (topic: authority conflict); Boss confirmation pending — no S02-FINAL decision confirms it (not overstated) | Authority Conflict | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path; ACF-001..010 | DOC-S02-031 | none | Active | Blocking | 2026-07-13 |
+| DOC-S02-049 | Canonical Role Definitions Glossary | S02/STATE02_CANONICAL_ROLE_DEFINITIONS_GLOSSARY_v1.0.md | v1.0 | EFFECTIVE CANONICAL — CONFIRMED BY BOSS (S02-FINAL-003) [§0 addendum — GAP-1 add] | Single controlling PMO/role definitions glossary; Boss-confirmed S02-FINAL-003 (APPROVED AND APPLIED); Index GI-60 | Role / Authority | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path; S02-FINAL-003; GI-60 | DOC-S02-010 | none | Active | Input | 2026-07-14 |
 | DOC-S02-033 | Authority Conflict Scan Report | S02/STATE02_AUTHORITY_CONFLICT_SCAN_REPORT_v1.0.md | v1.0 | RETAINED AS EVIDENCE | Scan evidence | Authority Conflict | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-032 | none | Active | Input | 2026-07-13 |
 | DOC-S02-034 | Authority Scan Evidence Register | S02/STATE02_AUTHORITY_SCAN_EVIDENCE_REGISTER_v1.1.md | v1.1 | RETAINED AS EVIDENCE | Scan evidence register | Authority Conflict | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-032 | none | Active | Input | 2026-07-13 |
 | DOC-S02-035 | P0 Authority Conflict List | S02/STATE02_P0_AUTHORITY_CONFLICT_LIST_v1.0.md | v1.0 | SUPPORTING | P0 subset list | Authority Conflict | Executive Secretary | ChatGPT L99 | PENDING — INDEPENDENT | Boss | E1 path | DOC-S02-032 | none | Active | Blocking | 2026-07-13 |
@@ -99,17 +122,19 @@ Evidence | Related Document | Superseded By | Archive Status | Gate Impact | Las
 
 ## 3. Canonical Candidate Topic Control Check
 
-| Governance Topic | CANONICAL CANDIDATE Document | Effective? | Competing candidate? |
+| Governance Topic | Canonical Document | Effective? (post §0 addendum) | Competing candidate? |
 |---|---|---|---|
-| Role / Authority RACI | DOC-S02-010 (Canonical RACI v1.0) | NOT EFFECTIVE — PENDING BOSS CONFIRMATION | None — single |
-| Ownerless Execution Control | DOC-S02-020 | NOT EFFECTIVE — PENDING BOSS CONFIRMATION | None — single |
-| Authority Conflict | DOC-S02-032 (v1.1) | NOT EFFECTIVE — PENDING BOSS CONFIRMATION | None (v1.0 = SUPERSEDED) |
+| Role / Authority RACI | DOC-S02-010 (Canonical RACI v1.0) | **EFFECTIVE CANONICAL — CONFIRMED BY BOSS (S02-FINAL-002)** | None — single |
+| Ownerless Execution Control | DOC-S02-020 | **EFFECTIVE CANONICAL — CONFIRMED BY BOSS (S02-FINAL-004)** | None — single |
+| Role Definitions Glossary | DOC-S02-049 | **EFFECTIVE CANONICAL — CONFIRMED BY BOSS (S02-FINAL-003)** | None — single |
+| Authority Conflict | DOC-S02-032 (v1.1) | NOT EFFECTIVE — PENDING BOSS CONFIRMATION (no S02-FINAL decision — not overstated) | None (v1.0 = Supporting, retained) |
 
-Result: exactly one CANONICAL CANDIDATE per topic; none is shown as effective/controlling
-before Boss confirmation. No unclassified document controls execution. No SUPERSEDED document
-controls execution (DOC-S02-031 removed from control, replacement named DOC-S02-032). See
-validation report (CHECK-08-11) for automated confirmation that no effective CANONICAL exists
-without Boss-confirmation evidence.
+Result: exactly one canonical document per topic. Three are **EFFECTIVE CANONICAL — CONFIRMED BY BOSS**
+under S02-FINAL-002/003/004 (see §0 addendum); the Authority-Conflict register remains a CANONICAL
+CANDIDATE because no Boss decision confirms it (not overstated). No unclassified document controls
+execution. No document is classified Superseded (DOC-S02-031 = Supporting, retained). CHECK-08-11
+(no effective CANONICAL without Boss-confirmation evidence) holds: each effective canonical cites its
+S02-FINAL Boss decision.
 
 ## 4. Notes
 

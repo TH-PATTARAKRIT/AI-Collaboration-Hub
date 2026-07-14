@@ -43,7 +43,7 @@ Claude Code
 | Functional Specification AI | Business Functional Specification | Business process, business rules, functional requirements, functional draft by domain | Source-code learning, database reverse engineering, technical implementation |
 | Claude AI | Evidence and repository validation | Repository audit, evidence matching, SaaS alignment, gap analysis, traceability, repository writing/review | Business approval, production approval, uncontrolled coding |
 | Claude Code | Development implementation | Coding only after FDS/SDS/API/DB/UX/QA gates pass | Requirement change, architecture change, merge/release without approval |
-| Repository Owner | Repository standard control | Folder standard, document standard, registry control | Bypassing Boss/PMO gate |
+| Repository Owner | Repository standard control | Folder standard, document standard, registry control | Bypassing the Boss-approved gate process |
 | Boss | Final approval authority | Business decision, gate approval, scope decision | N/A |
 
 ---
@@ -65,7 +65,7 @@ SaaS Alignment
         ↓
 Traceability Review
         ↓
-Liza / PMO Quality Gate
+Quality Gate (coordination: Liza [Executive Secretary] + AI PMO, Support Only; Final Approver: Boss)
         ↓
 SDS / API / DB / UX
         ↓
@@ -92,7 +92,7 @@ Production Gate
 6. Claude AI must not invent business requirements.
 7. Claude Code must not start implementation before Build Gate approval.
 8. Liza controls governance review but does not override Boss approval.
-9. Production remains HOLD until explicitly approved by Boss and PMO Gate.
+9. Production remains HOLD until explicitly approved by Boss.
 
 ---
 
@@ -122,7 +122,7 @@ Claude AI must review against:
 - Traceability standard
 - Reuse / Adapt / New / Retire classification
 
-## Claude AI to Liza / PMO
+## Claude AI to Liza (Executive Secretary) and AI PMO
 
 Claude AI must provide:
 
@@ -133,7 +133,7 @@ Claude AI must provide:
 - Recommended action
 - Build readiness status
 
-## Liza / PMO to Boss
+## Liza (Executive Secretary) and AI PMO to Boss
 
 Liza must provide:
 
@@ -149,15 +149,20 @@ Liza must provide:
 
 # Gate Control
 
+> Final Approval Authority for every gate below is **Boss (sole Final Approver)**, per the Canonical Gate
+> Crosswalk (`State_02_Governance/STATE02_FINALIZATION/06_GOVERNANCE_GATE_CROSSWALK.md`) and the Canonical
+> RACI. AI and AI PMO roles in the Owner column are Responsible / coordination / Support-Only functions;
+> they are **not** joint final approvers.
+
 | Gate | Owner | Status Rule |
 |---|---|---|
-| Governance Gate | Liza / PMO | Must pass before changing standards |
+| Governance Gate | Responsible: Claude AI; Accountable: Executive Secretary (Liza); Coordinated by AI PMO (Support Only); Final Approver: Boss | Must pass before changing standards |
 | Repository Gate | Claude AI + Liza | Must pass before using repository as baseline |
 | Architecture Gate | Liza / Architecture Office | Must pass before SDS/API/DB/UX |
 | FDS Gate | Functional Specification AI + Claude Review + Liza | Must pass before SDS |
 | SDS Gate | Enterprise Architect / Claude Review | Must pass before API/DB/UX finalization |
-| QA / UAT Gate | QA AI + PMO | Must pass before Build Gate |
-| Build Gate | PMO + Boss | Must pass before Claude Code implementation |
+| QA / UAT Gate | Responsible: QA AI; Coordinated by PMO; Final Approver: Boss | Must pass before Build Gate |
+| Build Gate | Responsible: Repository/Technical Owner; Coordinated by PMO; Final Approver: Boss | Must pass before Claude Code implementation |
 | Production Gate | Boss | Explicit approval only |
 
 ---
@@ -183,6 +188,20 @@ Production Gate: HOLD
 - `ARCHITECTURE_GOVERNANCE_STANDARD.md`
 - `TRACEABILITY_STANDARD.md`
 - `QUALITY_GATE_STANDARD.md`
+
+---
+
+# Correction Record
+
+| Date | Authority | Change | Conflict Ref |
+|---|---|---|---|
+| 2026-07-14 | Boss decision S02-FINAL-001 (APPROVED) | Rule 9 Production approval `Boss and PMO Gate` → `Boss` (sole final approver) | ACF-003 |
+| 2026-07-14 | Boss decision S02-FINAL-001 (APPROVED) | QA/UAT Gate owner `QA AI + PMO` → Responsible: QA AI; Coordinated by PMO; Final Approver: Boss | ACF-002 |
+| 2026-07-14 | Boss decision S02-FINAL-001 (APPROVED) | Build Gate owner `PMO + Boss` → Responsible: Repository/Technical Owner; Coordinated by PMO; Final Approver: Boss | ACF-001 |
+
+Basis: State 02 finalization package `STATE02_FINALIZATION/` (docs 02, 08). Canonical principle:
+Boss is the sole Final Approver; AI PMO = Support Only (coordination, never gate authority). Applied
+on branch `claude/state-02-governance-26bzvw`; no merge.
 - `MASTER_EXECUTION_ROADMAP.md`
 
 ---

@@ -28,7 +28,7 @@ Architecture review applies to SaaS Foundation, FDS, SDS, API, DB, UX, Security,
 
 ## Authority
 
-Architecture decisions must be documented through ADR or approved governance documents. AI may propose or review, but Boss / PMO authority is required for gate movement.
+Architecture decisions must be documented through ADR or approved governance documents. AI may propose or review, but Boss authority is required for gate movement (final approval). AI and PMO may propose or review only.
 
 ## Gate Rule
 
@@ -42,3 +42,12 @@ Architecture Foundation: PASS WITH CONTROL
 Build Gate: HOLD
 Production Gate: HOLD
 ```
+
+## Correction Record
+
+| Date | Authority | Change | Conflict Ref |
+|---|---|---|---|
+| 2026-07-14 | Boss decision S02-FINAL-001 (APPROVED) | Gate-movement authority `Boss / PMO` → `Boss` (final approval); AI and PMO may propose or review only | ACF-004 |
+
+Basis: State 02 finalization package `STATE02_FINALIZATION/` (docs 02, 08). Applied on branch
+`claude/state-02-governance-26bzvw`; no merge.
