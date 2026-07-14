@@ -1,0 +1,77 @@
+# STATE02_SOURCE_DOCUMENT_PROPOSED_PATCH_v1.0.diff
+# STATUS: PROPOSED — NOT APPLIED. Requires Boss authorization before use.
+# Session: SMEPLUS-26-07-13-007 | Inspected HEAD: 43c5d95bc438263d1573501fe22c7db7cae1ae6b
+# Prepared By: Claude Code (Responsible role only) at 2026-07-14T04:07Z
+# This file is documentation of the proposed change set. It is intentionally NOT applied
+# to the working tree. Line numbers reflect the inspected HEAD and are subject to
+# re-confirmation at application time. Base path for all targets:
+#   99_SMEsPlus_Enterprise_Suite/00_Project_Governance/
+#
+# ============================================================================
+# RC-005, RC-006, RC-007 — APPROVAL_AUTHORITY_MATRIX.md
+# ============================================================================
+--- a/99_SMEsPlus_Enterprise_Suite/00_Project_Governance/APPROVAL_AUTHORITY_MATRIX.md
++++ b/99_SMEsPlus_Enterprise_Suite/00_Project_Governance/APPROVAL_AUTHORITY_MATRIX.md
+@@ -18 +18 @@  (RC-007)
+-| Project Constitution | Liza / PMO AI | Repository Owner | Boss |
++| Project Constitution | Executive Secretary / Liza | Repository Owner | Boss |
+@@ -23 +23 @@  (RC-005)
+-| FDS Domain Artifact | Functional Specification AI | Claude AI / Liza | Boss / PMO |
++| FDS Domain Artifact | Functional Specification AI | Claude AI / Liza | Boss |
+@@ -24 +24 @@  (RC-006)
+-| SDS / API / DB / UX | Responsible technical AI | Claude AI / Architecture Office | Boss / PMO |
++| SDS / API / DB / UX | Responsible technical AI | Claude AI / Architecture Office | Boss |
+#
+# ============================================================================
+# RC-001, RC-002, RC-003 — AI_ROLE_AND_RESPONSIBILITY.md
+# ============================================================================
+--- a/99_SMEsPlus_Enterprise_Suite/00_Project_Governance/AI_ROLE_AND_RESPONSIBILITY.md
++++ b/99_SMEsPlus_Enterprise_Suite/00_Project_Governance/AI_ROLE_AND_RESPONSIBILITY.md
+@@ -95 +95 @@  (RC-003)
+-9. Production remains HOLD until explicitly approved by Boss and PMO Gate.
++9. Production remains HOLD until explicitly approved by Boss.
+@@ -159 +159 @@  (RC-002)
+-| QA / UAT Gate | QA AI + PMO | Must pass before Build Gate |
++| QA / UAT Gate | Boss (approver); QA AI + AI PMO (Support Only) | Must pass before Build Gate |
+@@ -160 +160 @@  (RC-001)
+-| Build Gate | PMO + Boss | Must pass before Claude Code implementation |
++| Build Gate | Boss (approver); AI PMO (Support Only) | Must pass before Claude Code implementation |
+#
+# ============================================================================
+# RC-004 — ARCHITECTURE_GOVERNANCE_STANDARD.md
+# ============================================================================
+--- a/99_SMEsPlus_Enterprise_Suite/00_Project_Governance/ARCHITECTURE_GOVERNANCE_STANDARD.md
++++ b/99_SMEsPlus_Enterprise_Suite/00_Project_Governance/ARCHITECTURE_GOVERNANCE_STANDARD.md
+@@ -31 +31 @@  (RC-004)
+-Architecture decisions must be documented through ADR or approved governance documents. AI may propose or review, but Boss / PMO authority is required for gate movement.
++Architecture decisions must be documented through ADR or approved governance documents. AI may propose or review, but Boss approval is required for gate movement; AI PMO provides tracking support only.
+#
+# ============================================================================
+# RC-009 — FOLDER_REGISTRY.yaml  (exact per-folder Accountable owner to be confirmed in review)
+# ============================================================================
+--- a/99_SMEsPlus_Enterprise_Suite/00_Project_Governance/FOLDER_REGISTRY.yaml
++++ b/99_SMEsPlus_Enterprise_Suite/00_Project_Governance/FOLDER_REGISTRY.yaml
+@@ -26 +26 @@  (RC-009)
+-    owner: Functional Specification AI / PMO
++    owner: Functional Specification AI (Responsible); Document Control (Accountable)
+@@ -31 +31 @@  (RC-009)
+-    owner: PMO / Traceability Owner
++    owner: Traceability Owner (Accountable); AI PMO (Support Only)
+@@ -36 +36 @@  (RC-009)
+-    owner: PMO
++    owner: Document Control (Accountable); AI PMO (Support Only)
+@@ -41 +41 @@  (RC-009)
+-    owner: Claude AI / PMO
++    owner: Claude AI (Responsible); Document Control (Accountable)
+@@ -61 +61 @@  (RC-009)
+-    owner: PMO / Repository Owner
++    owner: Repository Owner (Accountable); AI PMO (Support Only)
+#
+# ============================================================================
+# RC-008 — DOCUMENT_REGISTRY.yaml : NO CHANGE (baseline already correct; alignment target)
+# RC-010 — Canonical role glossary : ADD new controlled glossary block (content per
+#          STATE02_CANONICAL_RACI_v1.0.md Section 2) to the governance standards set.
+#          Additive; no deletion. Exact insertion point confirmed at application time.
+# ============================================================================
+#
+# END OF PROPOSED PATCH — NOT APPLIED. DO NOT APPLY WITHOUT BOSS AUTHORIZATION.
