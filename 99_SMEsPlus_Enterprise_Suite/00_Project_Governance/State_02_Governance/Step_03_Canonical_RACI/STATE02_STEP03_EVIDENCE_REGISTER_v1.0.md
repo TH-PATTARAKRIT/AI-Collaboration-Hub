@@ -32,7 +32,7 @@ recorded on push to claude/canonical-raci-evidence-xgk851>.
 
 | Evidence ID | Work Item | Owner | Evidence Path (relative to base) | Commit SHA | Timestamp | Reviewer | Verifier | Verification Status | Gate Impact |
 |---|---|---|---|---|---|---|---|---|---|
-| EVR-01 | Canonical RACI file | ES | STATE02_CANONICAL_RACI_v1.0.md | PKG 3f9c4d86 | 2026-07-13T16:16Z | ChatGPT L99 (CONFIRM) | EV PENDING | HASH MATCH; REVIEW CONFIRMED; EV PENDING | Blocking |
+| EVR-01 | Canonical RACI file (Revision R1) | ES | STATE02_CANONICAL_RACI_v1.0.md | CLS-R1 (this branch; was PKG 3f9c4d86) | 2026-07-14 (R1) | ChatGPT L99 (CONFIRM v1.0) | EV PENDING | REVIEW CONFIRMED (v1.0); R1 corrections applied per Boss; Boss Decision 1 = APPROVED IN PRINCIPLE; re-review + EV of R1 PENDING. Hash 48c4c8b4→507741ee | Blocking |
 | EVR-02 | Current-State RACI / conflict-to-correction mapping | ES | STATE02_RACI_CONFLICT_TO_CORRECTION_MATRIX_v1.0.md | PKG 3f9c4d86 | 2026-07-13T16:16Z | ChatGPT L99 (CONFIRM) | EV PENDING | HASH MATCH; EV PENDING | Input to Gate |
 | EVR-03 | Correction Register (RC-001..RC-010) | ES | STATE02_RACI_CORRECTION_REGISTER_v1.0.md | PKG 3f9c4d86 | 2026-07-13T16:16Z | ChatGPT L99 (CONFIRM) | EV PENDING | HASH MATCH; EV PENDING | Blocking |
 | EVR-04 | RC-001 through RC-010 review decisions | ES | STATE02_RACI_REVIEW_RECORD_v1.0.md §2 | REV db57fa1c | 2026-07-14 (Asia/Bangkok) | ChatGPT L99 (13 decisions, CONFIRMED) | EV PENDING | REVIEW CONFIRMED; HASH HOLD (HEX-001) | Blocking |
@@ -44,14 +44,15 @@ recorded on push to claude/canonical-raci-evidence-xgk851>.
 | EVR-10 | Source Governance Conflict Register | ES | STATE02_SOURCE_GOVERNANCE_CONFLICT_REGISTER_v1.0.md | CLS (this branch) | 2026-07-14T04:07Z | GR PENDING | EV PENDING | READY FOR BOSS AUTHORIZATION — NOT YET APPLIED | Blocking for source apply |
 | EVR-11 | Proposed Patch (NOT applied) | CAI/ES | STATE02_SOURCE_DOCUMENT_PROPOSED_PATCH_v1.0.diff | CLS (this branch) | 2026-07-14T04:07Z | GR PENDING | EV PENDING | PROPOSED — NOT APPLIED | Input to Gate |
 | EVR-12 | Change Impact Assessment | ES | STATE02_SOURCE_DOCUMENT_CHANGE_IMPACT_ASSESSMENT_v1.0.md | CLS (this branch) | 2026-07-14T04:07Z | GR PENDING | EV PENDING | READY FOR BOSS AUTHORIZATION | Input to Gate |
-| EVR-13 | Boss Approval Package | ES | STATE02_STEP03_BOSS_APPROVAL_PACKAGE_v1.0.md | CLS (this branch) | 2026-07-14T04:07Z | GR PENDING | EV PENDING | READY FOR BOSS REVIEW | Gate decision input |
+| EVR-13 | Boss Approval Package | ES | STATE02_STEP03_BOSS_APPROVAL_PACKAGE_v1.0.md | CLS (this branch) | 2026-07-14T04:07Z | GR PENDING | EV PENDING | READY FOR BOSS REVIEW → Boss responded (see EVR-14) | Gate decision input |
+| EVR-14 | Boss Approval Record (PR #20) | ES | STATE02_STEP03_BOSS_APPROVAL_RECORD_v1.0.md | CLS-R1 (this branch) | 2026-07-14 (Asia/Bangkok) | N/A (Boss decision) | N/A | RECORDED — Decision 1 APPROVED IN PRINCIPLE, Decision 2 AUTHORIZED, Decision 3 CONFIRMED, Decision 4 HOLD, PR #20 merge NOT authorized | Gate decision |
 
 ### Supporting evidence (context, not in the mandatory 13)
 
 | Evidence ID | Work Item | Owner | Evidence Path | Commit SHA | Timestamp | Verification Status |
 |---|---|---|---|---|---|---|
 | EVR-S1 | Repository Revalidation Record | ES | STATE02_STEP03_REPOSITORY_REVALIDATION_RECORD_v1.0.md | CLS (this branch) | 2026-07-14T04:07Z | PREPARED |
-| EVR-S2 | Canonical RACI Completeness Check | ES | STATE02_CANONICAL_RACI_COMPLETENESS_CHECK_v1.0.md | CLS (this branch) | 2026-07-14T04:07Z | 9 CONFIRMED / 3 PARTIALLY CONFIRMED |
+| EVR-S2 | Canonical RACI Completeness Check | ES | STATE02_CANONICAL_RACI_COMPLETENESS_CHECK_v1.0.md | CLS-R1 (this branch) | 2026-07-14 | 12 CONFIRMED / 0 PARTIALLY CONFIRMED (after R1) |
 | EVR-S3 | Source Document Correction Plan | ES | STATE02_SOURCE_DOCUMENT_CORRECTION_PLAN_v1.0.md | CLS (this branch) | 2026-07-14T04:07Z | READY FOR BOSS AUTHORIZATION |
 | EVR-S4 | Execution Summary | ES | STATE02_STEP03_EXECUTION_SUMMARY_v1.0.md | CLS (this branch) | 2026-07-14T04:07Z | PREPARED |
 | EVR-S5 | Prior package manifest (historical) | ES | PACKAGE_MANIFEST_SHA256_STATE02_STEP03_RACI.txt | PKG 3f9c4d86 | 2026-07-13T16:25Z | SUPERSEDED by v1.0 manifest; retained unmodified |
@@ -59,12 +60,13 @@ recorded on push to claude/canonical-raci-evidence-xgk851>.
 ## 3. Aggregate Status
 
 ```text
-MANDATORY EVIDENCE ITEMS           = 13 (all present with path + timestamp)
-REVIEW CONFIRMED                   = RC-001..RC-010, GII-001..GII-006, Canonical RACI
+MANDATORY EVIDENCE ITEMS           = 13 (+ EVR-14 Boss Approval Record); all with path + timestamp
+REVIEW CONFIRMED                   = RC-001..RC-010, GII-001..GII-006, Canonical RACI v1.0
+CANONICAL RACI                     = Revision R1 applied (3 items resolved); re-review + EV of R1 PENDING
 INDEPENDENT VERIFIER (EV) RESULT   = PENDING for all items (HOLD)
-HASH RESULT                        = HOLD (HEX-001 MISMATCH, HEX-002 NOT LISTED)
-SOURCE CORRECTIONS                 = PROPOSED / NOT YET APPLIED
-BOSS FINAL APPROVAL                = PENDING
+HASH RESULT                        = HOLD (see v1.1 manifest/verification; RACI + completeness re-hashed after R1)
+SOURCE CORRECTIONS                 = AUTHORIZED (Boss Decision 2) / NOT YET APPLIED / sequenced after EV
+BOSS DECISIONS                     = 1 APPROVED IN PRINCIPLE · 2 AUTHORIZED · 3 CONFIRMED · 4 (closure) HOLD
 ```
 
 ## 4. Control Statement

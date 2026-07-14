@@ -9,8 +9,9 @@ Intake Branch: claude/state-02-step-03-04-sn0sr1
 Reference Base Commit: 5454d2afb2efb4d5f2def0a744981b812b843982
 Prepared By: Claude AI (Authorized Governance Execution Agent — Responsible role only)
 Prepared At: 2026-07-13T16:16Z (UTC)
-Document Status: PREPARED FOR REVIEW
-Gate Status: HOLD — REVIEW AND VERIFICATION PENDING
+Document Status: PREPARED FOR REVIEW — Boss Decision 1: APPROVED IN PRINCIPLE (conditions apply); Revision R1 corrections applied per Boss Approval Record 2026-07-14
+Gate Status: HOLD — INDEPENDENT VERIFICATION AND BOSS CLOSURE PENDING
+Revision R1 (2026-07-14, per STATE02_STEP03_BOSS_APPROVAL_RECORD_v1.0.md): added Acting Owner (AO) role to §2; added Build Gate approval and State Closure approval rows to §3; added Replacement Review escalation cross-reference to §4. No authority direction changed — Boss remains Sole Final Approver.
 
 ## 1. Purpose
 
@@ -26,6 +27,7 @@ No status in this document is APPROVED, PASS, FINAL, CANONICAL, CLOSED, or COMPL
 |---|---|---|
 | BOSS | Boss | Sole Final Approver. Final authority for Canonical publication and for archive/supersede decisions with authority impact. Not the operational executor. |
 | ES | Executive Secretary / Liza | Accountable coordination owner. Evidence and execution coordination. Closure package preparation. Cannot independently approve own work. |
+| AO | Acting Owner | Holds Accountable authority for a specific assigned deliverable when standing ownership is delegated or temporarily vacant. Accountable for that deliverable only. Cannot approve the Gate, cannot act as Final Approver, and reverts to the standing owner on assignment. |
 | L99 | ChatGPT L99 | Independent Governance Reviewer. Governance consistency reviewer. Repository intake reviewer. Cannot be Final Approver. Cannot verify its own repository write without separate system evidence. |
 | CAI | Claude AI | Responsible execution and document preparation. May prepare RACI, matrices, registers, patches, manifests. May commit/push only when authenticated. Cannot be Accountable Owner, independent Reviewer, Evidence Verifier, or Final Approver. |
 | PMO | AI PMO | Support Only. Tracking, report preparation, evidence organization. Cannot approve, verify, pass Gate, merge, release, or deploy. |
@@ -62,6 +64,8 @@ Every activity has exactly one Accountable role. No AI is Final Approver.
 | Release | TO | BOSS | L99, FO | All roles | Boss approval record — PROHIBITED in this execution | Gate decision |
 | Deployment | TO | BOSS | L99 | All roles | Boss approval record — PROHIBITED in this execution | Gate decision |
 | Production approval | BOSS | BOSS | GTR, L99, TO | All roles | Boss-only approval record — no AI participation in approval | Gate decision |
+| Build Gate approval | BOSS | BOSS | GTR, L99, TO | ES, CAI, PMO, DC | Boss approval record (Build Gate); AI PMO = Support Only | Gate decision |
+| State Closure approval | BOSS | BOSS | GTR, L99, EV | All roles | Boss closure approval record after full evidence verification | Gate decision |
 
 ## 4. Structural Rules Enforced
 
@@ -72,6 +76,12 @@ No AI as Final Approver: CONFIRMED (BOSS only for Gate approval, Canonical publi
 No preparer as independent Verifier: CONFIRMED (CAI prepares; EV verifies; EV ≠ CAI).
 No ownerless execution activity: CONFIRMED (every row has R and A).
 ```
+
+Replacement Review escalation: when a Reviewer or Verifier is unavailable, conflicted,
+or fails to act, escalation and role replacement are governed by
+STATE02_ESCALATION_AND_REPLACEMENT_RULE_v1.0.md (Step 04). A replacement Reviewer or
+Verifier must be independent of the preparer; no AI may self-review or self-verify, and
+no replacement grants Final Approver authority to any role other than Boss.
 
 ## 5. Relationship to STEP 02 Findings
 
