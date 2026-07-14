@@ -10,6 +10,19 @@ Prepared At: 2026-07-14 (UTC)
 > Each item is decision-ready. None is written as "Pending Boss Approval / Waiting for Boss".
 > Boss selects APPROVE or REJECT and, if approving, may use the ready wording verbatim.
 
+## Decision Outcomes (recorded)
+
+| Decision ID | Boss Outcome | Date | Execution |
+|---|---|---|---|
+| S02-FINAL-001 | **APPROVED** | 2026-07-14 | Applied — source corrections on branch `claude/state-02-governance-26bzvw` (doc 02 §5) |
+| S02-FINAL-002 | **APPROVED** | 2026-07-14 | Applied — Canonical RACI status confirmed (Boss Confirmation Record in RACI v1.0) |
+| S02-FINAL-003 | **APPROVED** | 2026-07-14 | Applied — glossary published; ACF-007/009 relabels applied |
+| S02-FINAL-004 | **APPROVED** | 2026-07-14 | Applied — Ownerless Standard status confirmed CANONICAL |
+| S02-FINAL-005 | Open | — | Awaiting Boss-provided Reviewer/Verifier identities |
+| S02-FINAL-006 | Open | — | Closure decision pending (see doc 10) |
+
+No merge, release, deploy, or production change was performed. Boss remains sole Final Approver.
+
 ---
 
 ## S02-FINAL-001 — Correct P0 joint-authority wording (locked-rule enforcement)

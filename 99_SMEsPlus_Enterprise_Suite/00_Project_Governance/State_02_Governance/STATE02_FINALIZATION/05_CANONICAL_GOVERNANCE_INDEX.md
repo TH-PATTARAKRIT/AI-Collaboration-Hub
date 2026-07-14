@@ -13,6 +13,12 @@ A document is **not** Canonical merely because the file exists; Canonical is rec
 the document is the single controlled source for its topic and is confirmed (or recommended for Boss
 confirmation) as such.
 
+> **Status update 2026-07-14:** Boss APPROVED S02-FINAL-001/002/003/004. Effects now applied:
+> GI-10..14 authority wording **corrected** (doc 02 §5); GI-30 Canonical RACI and GI-40 Ownerless
+> Standard **CONFIRMED CANONICAL**; new CANONICAL role glossary added as **GI-60**
+> (`STATE02_CANONICAL_ROLE_DEFINITIONS_GLOSSARY_v1.0.md`). Independent verification recording of the
+> corrections remains open under S02-FINAL-005.
+
 Paths are relative to `99_SMEsPlus_Enterprise_Suite/`. Blob SHA shown for the five source-of-truth
 governance files under review; other rows cite path + version (SHA obtainable via `git hash-object`).
 

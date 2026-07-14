@@ -12,9 +12,9 @@ Closure eligibility criteria are taken from the execution order §7.
 | # | Closure Criterion | Status | Evidence | Blocking? |
 |---|---|---|---|---|
 | 1 | Step 01 remains CLOSED BY BOSS | **MET** | STATE01_CLOSURE_CONFIRMATION.md (Boss, 2026-07-13); SKT-01 PASS | — |
-| 2 | All P0 authority conflicts resolved **or** presented for exact Boss decision | **MET (presented)** | Doc 02 §3; doc 08 S02-FINAL-001 (ACF-001,002,004,005,006,008) | Cleared by presentation |
-| 3 | Canonical RACI confirmed | **PENDING BOSS** | Doc 03 (candidate ready); needs S02-FINAL-002 | Yes |
-| 4 | Ownerless Execution Control finalized | **MET (prepared)** / PENDING BOSS confirm | Doc 04 §2 all elements present; needs S02-FINAL-004 | Yes (confirmation) |
+| 2 | All P0 authority conflicts resolved **or** presented for exact Boss decision | **MET (corrected)** | Doc 02 §5 — ACF-001..008 applied after S02-FINAL-001/003; new blob SHAs recorded | Cleared |
+| 3 | Canonical RACI confirmed | **MET** | S02-FINAL-002 APPROVED 2026-07-14; RACI v1.0 Boss Confirmation Record | Cleared |
+| 4 | Ownerless Execution Control finalized | **MET** | S02-FINAL-004 APPROVED 2026-07-14; Ownerless Standard Boss Confirmation Record | Cleared |
 | 5 | Governance Index classifications complete | **MET (prepared)** | Doc 05 (all rows classified) | Confirm with S02-FINAL-002/004 |
 | 6 | Gate Crosswalk complete | **MET** | Doc 06 (all gates + detection results; no circular dep) | — |
 | 7 | Evidence & Approval Standard complete | **MET** | Doc 07 | — |
@@ -28,15 +28,19 @@ Closure eligibility criteria are taken from the execution order §7.
 | Independent Governance Reviewer identity recorded | **NOT MET** | RACI §2 "PENDING RECORD"; OCP-1 | Yes → S02-FINAL-005 |
 | Independent Evidence Verifier identity recorded | **NOT MET** | RACI §2 "PENDING RECORD"; OCP-2 | Yes → S02-FINAL-005 |
 
-## Checklist Verdict
+## Checklist Verdict (updated 2026-07-14 after S02-FINAL-001..004 APPROVED)
 
-- Criteria 1, 2, 6, 7, 9: **MET** on evidence.
-- Criteria 3, 4, 5, 8: **prepared**, require Boss confirmation (S02-FINAL-002/004) and (8) monitoring.
-- Independent Reviewer/Verifier identities: **NOT MET** — the decisive gap (S02-FINAL-005).
+- Criteria 1, 2, 3, 4, 6, 7, 9: **MET** on evidence (2, 3, 4 now cleared by applied corrections and
+  Boss confirmations).
+- Criterion 5 (index classifications): **MET** — confirmed by S02-FINAL-002/004.
+- Criterion 8: **MET (monitored)** — P0 authority defects are now corrected in source.
+- Independent Reviewer/Verifier identities: **NOT MET** — the sole remaining decisive gap
+  (S02-FINAL-005).
 
-Because criteria 3 and the independent review/verification records are not yet satisfied, **State 02
-is not eligible for unconditional closure**. It is eligible for **CONDITIONAL CLOSE** on completion of
-S02-FINAL-001..005. See doc 10.
+Because the independent review/verification records of the applied corrections are not yet satisfied
+(S02-FINAL-005 open) and the closure signature itself (S02-FINAL-006) is Boss's, **State 02 is not
+eligible for unconditional closure**. It is eligible for **CONDITIONAL CLOSE** on completion of
+S02-FINAL-005 and the Boss closure signature S02-FINAL-006. See doc 10.
 
 ## Controlled Follow-up Candidates (P2 / P1 non-blocking)
 

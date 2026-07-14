@@ -92,7 +92,7 @@ Production Gate
 6. Claude AI must not invent business requirements.
 7. Claude Code must not start implementation before Build Gate approval.
 8. Liza controls governance review but does not override Boss approval.
-9. Production remains HOLD until explicitly approved by Boss and PMO Gate.
+9. Production remains HOLD until explicitly approved by Boss.
 
 ---
 
@@ -156,8 +156,8 @@ Liza must provide:
 | Architecture Gate | Liza / Architecture Office | Must pass before SDS/API/DB/UX |
 | FDS Gate | Functional Specification AI + Claude Review + Liza | Must pass before SDS |
 | SDS Gate | Enterprise Architect / Claude Review | Must pass before API/DB/UX finalization |
-| QA / UAT Gate | QA AI + PMO | Must pass before Build Gate |
-| Build Gate | PMO + Boss | Must pass before Claude Code implementation |
+| QA / UAT Gate | Responsible: QA AI; Coordinated by PMO; Final Approver: Boss | Must pass before Build Gate |
+| Build Gate | Responsible: Repository/Technical Owner; Coordinated by PMO; Final Approver: Boss | Must pass before Claude Code implementation |
 | Production Gate | Boss | Explicit approval only |
 
 ---
@@ -183,6 +183,20 @@ Production Gate: HOLD
 - `ARCHITECTURE_GOVERNANCE_STANDARD.md`
 - `TRACEABILITY_STANDARD.md`
 - `QUALITY_GATE_STANDARD.md`
+
+---
+
+# Correction Record
+
+| Date | Authority | Change | Conflict Ref |
+|---|---|---|---|
+| 2026-07-14 | Boss decision S02-FINAL-001 (APPROVED) | Rule 9 Production approval `Boss and PMO Gate` → `Boss` (sole final approver) | ACF-003 |
+| 2026-07-14 | Boss decision S02-FINAL-001 (APPROVED) | QA/UAT Gate owner `QA AI + PMO` → Responsible: QA AI; Coordinated by PMO; Final Approver: Boss | ACF-002 |
+| 2026-07-14 | Boss decision S02-FINAL-001 (APPROVED) | Build Gate owner `PMO + Boss` → Responsible: Repository/Technical Owner; Coordinated by PMO; Final Approver: Boss | ACF-001 |
+
+Basis: State 02 finalization package `STATE02_FINALIZATION/` (docs 02, 08). Canonical principle:
+Boss is the sole Final Approver; AI PMO = Support Only (coordination, never gate authority). Applied
+on branch `claude/state-02-governance-26bzvw`; no merge.
 - `MASTER_EXECUTION_ROADMAP.md`
 
 ---

@@ -37,16 +37,21 @@ Independent Evidence Verifier identities are role-appointed but **PENDING RECORD
 (S02-FINAL-005) is the single change that would let a future run move HOLD → VERIFIED and lift the
 recommendation from CONDITIONAL to unconditional CLOSE.
 
-## 4. Boss Decisions Required (see doc 08)
+## 4. Boss Decisions (see doc 08)
 
-| ID | Decision | Rec. |
-|---|---|---|
-| S02-FINAL-001 | Correct P0 joint-authority wording (ACF-001,002,003,004,005,006,008) to Boss-sole | APPROVE |
-| S02-FINAL-002 | Confirm Canonical RACI | APPROVE |
-| S02-FINAL-003 | Approve canonical PMO glossary (P1 root cause) | APPROVE |
-| S02-FINAL-004 | Confirm Ownerless Execution Control Standard | APPROVE |
-| S02-FINAL-005 | Appoint/record Reviewer + Verifier identities | APPROVE |
-| S02-FINAL-006 | State 02 closure | CONDITIONAL CLOSE |
+| ID | Decision | Rec. | Outcome |
+|---|---|---|---|
+| S02-FINAL-001 | Correct P0 joint-authority wording (ACF-001,002,003,004,005,006,008) to Boss-sole | APPROVE | **APPROVED 2026-07-14 — applied** |
+| S02-FINAL-002 | Confirm Canonical RACI | APPROVE | **APPROVED — applied** |
+| S02-FINAL-003 | Approve canonical PMO glossary (P1 root cause) | APPROVE | **APPROVED — applied** |
+| S02-FINAL-004 | Confirm Ownerless Execution Control Standard | APPROVE | **APPROVED — applied** |
+| S02-FINAL-005 | Appoint/record Reviewer + Verifier identities | APPROVE | Open — awaiting identities |
+| S02-FINAL-006 | State 02 closure | CONDITIONAL CLOSE | Open — Boss signature |
+
+Applied on branch `claude/state-02-governance-26bzvw` (no merge): source corrections to
+`AI_ROLE_AND_RESPONSIBILITY.md`, `ARCHITECTURE_GOVERNANCE_STANDARD.md`, `APPROVAL_AUTHORITY_MATRIX.md`,
+`FOLDER_REGISTRY.yaml`; new CANONICAL `STATE02_CANONICAL_ROLE_DEFINITIONS_GLOSSARY_v1.0.md`; Boss
+Confirmation Records added to the Canonical RACI and Ownerless Standard. New blob SHAs in doc 02 §5.
 
 ## 5. Package Contents
 

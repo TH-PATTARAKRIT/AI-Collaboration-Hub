@@ -13,15 +13,16 @@ Prepared At: 2026-07-14 (UTC)
 RECOMMEND CONDITIONAL CLOSE
 ```
 
-Conditions (all must be satisfied and recorded as evidence):
-1. S02-FINAL-001 — P0 joint-authority wording corrected (ACF-001,002,003,004,005,006,008).
-2. S02-FINAL-002 — Canonical RACI confirmed.
-3. S02-FINAL-004 — Ownerless Execution Control Standard confirmed Canonical.
-4. S02-FINAL-005 — Independent Governance Reviewer and Evidence Verifier identities appointed and
-   recorded, and each HOLD finding moved to a recorded VERIFIED/NOT-VERIFIED result.
-5. S02-FINAL-003 — Canonical PMO glossary approved **(may instead be accepted as Controlled
-   Follow-up CF-01/CF-02 without blocking closure, at Boss discretion, since it affects only P1
-   role-ambiguity items).**
+Status update (2026-07-14): Boss APPROVED S02-FINAL-001, 002, 003, 004; all four are **applied and
+evidenced** (doc 02 §5, doc 08 outcomes). Remaining conditions for closure:
+
+1. ✅ S02-FINAL-001 — P0 joint-authority wording corrected (ACF-001..008). **DONE (applied).**
+2. ✅ S02-FINAL-002 — Canonical RACI confirmed. **DONE.**
+3. ✅ S02-FINAL-003 — Canonical PMO glossary approved and published. **DONE.**
+4. ✅ S02-FINAL-004 — Ownerless Execution Control Standard confirmed Canonical. **DONE.**
+5. ⬜ S02-FINAL-005 — Independent Governance Reviewer and Evidence Verifier identities appointed and
+   recorded, and each applied correction moved to a recorded VERIFIED result. **OPEN — decisive gap.**
+6. ⬜ S02-FINAL-006 — Boss closure signature. **OPEN — Boss's to sign.**
 
 ## Why not RECOMMEND CLOSE
 
