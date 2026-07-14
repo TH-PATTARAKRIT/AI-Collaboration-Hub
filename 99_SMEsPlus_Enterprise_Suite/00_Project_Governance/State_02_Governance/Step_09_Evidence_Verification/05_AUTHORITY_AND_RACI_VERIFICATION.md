@@ -1,6 +1,6 @@
 # 05 — Authority Scan & Canonical RACI Verification (State 02 · Step 09 · reconciled · EV-04 / EV-05)
 
-STATE02_VERIFICATION_TARGET_COMMIT: `9fa57fdc17f28906af503745b9291e54be7a2aa6`
+STATE02_VERIFICATION_TARGET_COMMIT: `b6e9ac083a8a33993600f9490475726ffefaf995`
 Prepared By: Claude Code · 2026-07-14 (UTC) · Reviewer/Verifier: PENDING INDEPENDENT
 
 ---

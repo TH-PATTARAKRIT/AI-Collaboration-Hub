@@ -1,11 +1,11 @@
 # 02 — Repository File Verification (State 02 · Step 09 · reconciled · EV-01)
 
-STATE02_VERIFICATION_TARGET_COMMIT: `9fa57fdc17f28906af503745b9291e54be7a2aa6`
+STATE02_VERIFICATION_TARGET_COMMIT: `b6e9ac083a8a33993600f9490475726ffefaf995`
 Prepared By: Claude Code · 2026-07-14 (UTC) · Reviewer/Verifier: PENDING INDEPENDENT
 
 Enumeration (reproducible):
 ```bash
-git ls-tree -r --long 9fa57fdc17f28906af503745b9291e54be7a2aa6 \
+git ls-tree -r --long b6e9ac083a8a33993600f9490475726ffefaf995 \
   -- 99_SMEsPlus_Enterprise_Suite/00_Project_Governance/State_02_Governance/
 ```
 
@@ -39,8 +39,9 @@ Step_03 RACI, Step_04 Ownerless). Full list in `03_COMMIT_AND_DIFF_VERIFICATION.
 Indexed in the Governance Index as **GI-70..73 · Supporting · PREPARED — HOLD** (Step 08 self-declares
 Gate HOLD / Boss approval 0% / independent review pending). Key file `03_DOCUMENT_CLASSIFICATION_REGISTER.md`
 blob `0a6c19df` (48-doc register). Package carries its own `PACKAGE_MANIFEST_SHA256.txt` (self-verified
-OK) and `STEP08_VALIDATION_REPORT.md` (preparer self-check: 0 critical). See doc 06 Part B for the
-classification cross-check and the Step-08↔Index reconciliation (EV-D17).
+OK; regenerated 23/23 after EV-D17 alignment) and `STEP08_VALIDATION_REPORT.md` (preparer self-check: 0
+critical). See doc 06 Part B for the classification cross-check and the applied Step-08↔Index alignment
+(EV-D17 CLOSED).
 
 ## C–I. Buckets (reconciled)
 
@@ -48,15 +49,13 @@ classification cross-check and the Step-08↔Index reconciliation (EV-D17).
   Governance Index (doc 05), Role Glossary (GI-60), Gate Crosswalk (doc 06), Authority-Decision view
   (GI-29). No duplicate-canonical per topic (incl. vs Step 08 — same single canonical named per topic).
 - **D. Supporting:** all registers/evidence/review/verification/skill-sim docs + the Step 08 package (GI-70..73).
-- **E. Superseded:** 0 in the Governance Index; **1 label divergence** inside Step 08 (DOC-S02-031 =
-  "Superseded" vs Index "Supporting") — authoritatively resolved to Supporting at the Index; Step-08-file
-  alignment deferred (EV-D17).
+- **E. Superseded:** 0. CONTRADICTION-1 resolved — Step 08 DOC-S02-031 (Auth-Conflict v1.0) reclassified
+  SUPERSEDED→**Supporting (retained)**, matching the Index (EV-D17 CLOSED).
 - **F. Archived:** 0.
 - **G. Draft:** `SMEsPlus_AI_SKILL_RACI_MATRIX_v0.1.md` (GI-36) + Step 08 WORKING DRAFT rows (labelled, not approved).
 - **H. Referenced-not-found:** 0.
-- **I. Present-not-indexed:** 0 — Step 08 was the prior gap (EV-D13); now indexed via GI-70. GAP-1 (Glossary
-  absent from the Step 08 register) is recorded for the Step 08 review (EV-D17); the Glossary itself is
-  classified in the Index (GI-60 Canonical).
+- **I. Present-not-indexed:** 0 — Step 08 indexed via GI-70. GAP-1 CLOSED: the Role Glossary is now added to
+  the Step 08 register as **DOC-S02-049 (EFFECTIVE CANONICAL — S02-FINAL-003)**, consistent with Index GI-60.
 
 ## Acceptance (EV-01, reconciled)
 

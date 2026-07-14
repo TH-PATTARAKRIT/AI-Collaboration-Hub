@@ -3,7 +3,7 @@
 Session: SMEPLUS-26-07-14-002 · Step 09 — Reconciliation & Evidence Verification
 Prepared By: Claude Code (Reconciliation & Evidence Operator — Preparer/Executor only) · 2026-07-14 (UTC)
 Reviewer: ChatGPT L99 — PENDING INDEPENDENT REVIEW · Verifier: PENDING INDEPENDENT VERIFICATION
-Producer Result: **REWORK REQUIRED** (see `08_STEP09_VERIFICATION_RESULT.md`)
+Producer Result: **PREPARED FOR INDEPENDENT VERIFICATION** (see `08_STEP09_VERIFICATION_RESULT.md`)
 
 ---
 
@@ -11,7 +11,7 @@ Producer Result: **REWORK REQUIRED** (see `08_STEP09_VERIFICATION_RESULT.md`)
 
 | Anchor | Value |
 |---|---|
-| **STATE02_VERIFICATION_TARGET_COMMIT** (reconciled candidate) | `9fa57fdc17f28906af503745b9291e54be7a2aa6` |
+| **STATE02_VERIFICATION_TARGET_COMMIT** (reconciled candidate) | `b6e9ac083a8a33993600f9490475726ffefaf995` |
 | **STEP09_PACKAGE_COMMIT** | recorded in `08` / PR #29 (this evidence commit) |
 | Previous (superseded) verification target | `4da8cc8423ff9f6964112b2c5b780020cb8e40fa` |
 | PR #24 head integrated | `af6e4c2f0e2cd7203b85305cf3a95e61c790cd08` |
@@ -27,7 +27,7 @@ The reconciliation merges were performed with `git merge --no-ff` on the authori
 conflicts** arose. No merge into `SMEsPlus`, no push to the PR #24 branch, no force-push.
 
 **Two-commit model (as ordered):**
-- `STATE02_VERIFICATION_TARGET_COMMIT` = `9fa57fd…` — stable reconciled governance content to be
+- `STATE02_VERIFICATION_TARGET_COMMIT` = `b6e9ac0…` — stable reconciled governance content to be
   independently verified (no regenerated Step 09 evidence).
 - `STEP09_PACKAGE_COMMIT` = this package commit — documents the verification of the target commit and
   pins the full 40-character target SHA.
@@ -58,13 +58,13 @@ present), and the PR #24 changed-file list.
 | B. PR #24 changed files (governance) | 26 | +1462 / −34; 4 outside `State_02_Governance/` (source docs) |
 | C. Canonical documents (single per topic) | 6 | RACI (GI-30), Ownerless (GI-40), Governance Index, Glossary (GI-60), Gate Crosswalk, Authority-Decision view (GI-29) |
 | D. Supporting documents | majority | incl. Step 08 registers (GI-70..73, PREPARED — HOLD) |
-| E. Superseded | 0 (Index); 1 label divergence in Step 08 (EV-D17) | see doc 06 |
+| E. Superseded | 0 (Step 08 label divergence resolved — EV-D17 CLOSED) | see doc 06 |
 | F. Archived | 0 | Index §7 |
 | G. Draft | ≥1 | `SMEsPlus_AI_SKILL_RACI_MATRIX_v0.1.md` (GI-36) + Step 08 WORKING DRAFT rows |
 | H. Files referenced but not found | 0 material | — |
 | I. Files present but not indexed | 0 (resolved) | Step 08 now indexed via GI-70 (EV-D13) |
 
 Per-file inventory: `02_REPOSITORY_FILE_VERIFICATION.md`. Mandatory evidence-field key unchanged from the
-base order (Evidence ID `EV09-xxx`, Owner, Path, Candidate Commit `9fa57fd…`, Blob SHA, Version, UTC
+base order (Evidence ID `EV09-xxx`, Owner, Path, Candidate Commit `b6e9ac0…`, Blob SHA, Version, UTC
 timestamp, Prepared By Claude Code, Reviewer/Verifier PENDING, Producer Result, Verification Status
 PENDING, Gate Impact). No percentage without enumerated records.

@@ -1,6 +1,6 @@
 # 09 — Step 09 Boss Approval Queue (State 02 · reconciled · EV-11)
 
-STATE02_VERIFICATION_TARGET_COMMIT: `9fa57fdc17f28906af503745b9291e54be7a2aa6`
+STATE02_VERIFICATION_TARGET_COMMIT: `b6e9ac083a8a33993600f9490475726ffefaf995`
 Prepared By: Claude Code · 2026-07-14 (UTC) · Owner: AI PMO / Secretary · Final Approver: Boss
 
 ---
@@ -11,9 +11,10 @@ Prepared By: Claude Code · 2026-07-14 (UTC) · Owner: AI PMO / Secretary · Fin
 NONE — INDEPENDENT VERIFICATION PENDING
 ```
 
-Producer result is **REWORK REQUIRED** and independent evidence verification (ChatGPT L99) has not been
-performed against the target. Boss is not asked to approve producer claims, an unverified manifest,
-incomplete defect closure, or any merge / State closure through this Step 09 decision.
+Producer result is **PREPARED FOR INDEPENDENT VERIFICATION**; the independent evidence verification
+(ChatGPT L99) against the target has **not** been performed. Boss is not asked to approve producer claims,
+an unverified manifest, or any merge / State closure through this Step 09 decision. Boss action is
+requested only after the Independent Evidence Verifier records a result.
 
 ---
 
@@ -27,13 +28,12 @@ Decision:
 Accept the Step 09 independent verification result and authorize progression to Step 10 — Gate Review.
 
 Preconditions (all must hold before this is presented):
-- Independent Evidence Verifier (ChatGPT L99) result recorded against 9fa57fd... (doc 08 handoff)
-- Blocking defects = 0 (currently: 0 P0/P1; open P2 controlled follow-ups EV-D15/D16/D17)
-- Manifest independently recomputed (finalization 18/18 + Step 09 11/11)
-- Step 08 review-cycle alignment (EV-D17) resolved or accepted as controlled follow-up
-- Step 09 Completion Checklist complete (doc 10)
+- Independent Evidence Verifier (ChatGPT L99) result recorded against b6e9ac0... (doc 08 handoff)
+- Blocking defects = 0 (met: 0 P0/P1; sole open item EV-D16 is a non-blocking controlled follow-up)
+- Manifest independently recomputed (finalization 18/18 + Step 08 23/23 + Step 09 11/11)
+- Step 09 Completion Checklist complete (doc 10 — complete)
 
-Current precondition status: NOT MET (independent verification pending)
+Current precondition status: independent verification PENDING (the only outstanding precondition)
 ```
 
 ## Related open Boss items (context only — not re-requested here)

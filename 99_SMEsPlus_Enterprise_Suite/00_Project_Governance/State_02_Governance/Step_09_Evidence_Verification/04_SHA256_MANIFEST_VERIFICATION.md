@@ -1,14 +1,18 @@
 # 04 — SHA-256 Manifest Verification (State 02 · Step 09 · reconciled · EV-03)
 
-STATE02_VERIFICATION_TARGET_COMMIT: `9fa57fdc17f28906af503745b9291e54be7a2aa6`
+STATE02_VERIFICATION_TARGET_COMMIT: `b6e9ac083a8a33993600f9490475726ffefaf995`
 Prepared By: Claude Code · 2026-07-14 (UTC) · Reviewer/Verifier: PENDING INDEPENDENT
 
 ---
 
-## 1. Finalization package manifest (regenerated after EV-D06/D13/D16 corrections)
+## 1. Governance manifests (regenerated after EV-D06/D13/D16/D17 corrections)
 
-File: `STATE02_FINALIZATION/PACKAGE_MANIFEST_SHA256.txt` (blob `e805801f` @ target). Regenerated because
-docs 03 (EV-D06), 05 (EV-D13 GI-70), and 17 (EV-D16) were edited.
+**Finalization package manifest** `STATE02_FINALIZATION/PACKAGE_MANIFEST_SHA256.txt` @ target — regenerated
+because docs 03 (EV-D06), 05 (EV-D13/D17), and 17 (EV-D16) were edited. Producer recompute: **18/18 OK**.
+
+**Step 08 package manifest** `Step_08_Classification_Registers/PACKAGE_MANIFEST_SHA256.txt` @ target —
+regenerated because docs 03, 13, 16 were edited by the EV-D17 alignment. Producer recompute: **23/23 OK**
+(covers the 22 Step 08 files + 3 referenced skill files, self-excluding the manifest).
 
 ```bash
 $ cd .../STATE02_FINALIZATION
