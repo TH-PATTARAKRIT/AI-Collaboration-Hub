@@ -142,6 +142,34 @@ written — this report's own rule in Section 6 is not to defer to unread
 prior state, but a defect that genuinely occurred is recorded as history,
 not erased.
 
+## 11. Overall Consistency Result
+
+**No cross-file inconsistency remains in Gate ID usage, Evidence ID
+uniqueness, document status strings, or version labeling**, subject to the
+one documented and intentional exception in Section 5. Five defects across
+four correction passes are recorded, not hidden:
+
+1. FOUND-count/list mismatch (GATE-018 dual classification) — original
+   commit `0fd6423`, corrected in `0e900ee`.
+2. Five-vs-six model-count mismatch inside repository files — original
+   commit `0fd6423`, corrected in `0e900ee`.
+3. Residual five-vs-six and 8/8-vs-9/9 references in the Boss Approval
+   Record and PR #14 description, not caught by the `0e900ee` sweep because
+   that sweep did not check every file or PR metadata — corrected in
+   `f94e5b4`.
+4. 9/9-vs-10/10 off-by-one in CHECK-010's own item 6, introduced in
+   `f94e5b4`, partially fixed by `d0a04bc`, fully aligned across the JSON
+   sibling and PR #14 description in this commit.
+5. Evidence commit hash integrity (16 rows citing an unrelated commit, 1
+   row with no path-specific SHA) and independent graph count/check count
+   undercounted (4 vs. 5 graphs, 6 vs. 7 checks) — see Section 12,
+   corrected in this commit.
+
+This report does not retroactively describe any prior commit as having been
+fully consistent. Repository File Consistency and PR Metadata Consistency
+are both CONSISTENT as of this commit. Governance Decision Status remains
+100% PENDING and is unaffected by any of the five corrections above.
+
 ## 12. Evidence Path-Level SHA and Graph Count Integrity Correction (fourth correction pass, 2026-07-14)
 
 A P0/P1 correction order dated 2026-07-14 found two independent defect
@@ -181,31 +209,3 @@ per-path commit-hash accuracy or edge/graph arithmetic:
 permanent mechanical check for this class of defect (path-level SHA
 accuracy and graph/check-count arithmetic). Mechanical validation is now
 **11 of 11 checks PASS**.
-
-## 11. Overall Consistency Result
-
-**No cross-file inconsistency remains in Gate ID usage, Evidence ID
-uniqueness, document status strings, or version labeling**, subject to the
-one documented and intentional exception in Section 5. Five defects across
-four correction passes are recorded, not hidden:
-
-1. FOUND-count/list mismatch (GATE-018 dual classification) — original
-   commit `0fd6423`, corrected in `0e900ee`.
-2. Five-vs-six model-count mismatch inside repository files — original
-   commit `0fd6423`, corrected in `0e900ee`.
-3. Residual five-vs-six and 8/8-vs-9/9 references in the Boss Approval
-   Record and PR #14 description, not caught by the `0e900ee` sweep because
-   that sweep did not check every file or PR metadata — corrected in
-   `f94e5b4`.
-4. 9/9-vs-10/10 off-by-one in CHECK-010's own item 6, introduced in
-   `f94e5b4`, partially fixed by `d0a04bc`, fully aligned across the JSON
-   sibling and PR #14 description in this commit.
-5. Evidence commit hash integrity (16 rows citing an unrelated commit, 1
-   row with no path-specific SHA) and independent graph count/check count
-   undercounted (4 vs. 5 graphs, 6 vs. 7 checks) — see Section 12,
-   corrected in this commit.
-
-This report does not retroactively describe any prior commit as having been
-fully consistent. Repository File Consistency and PR Metadata Consistency
-are both CONSISTENT as of this commit. Governance Decision Status remains
-100% PENDING and is unaffected by any of the five corrections above.
