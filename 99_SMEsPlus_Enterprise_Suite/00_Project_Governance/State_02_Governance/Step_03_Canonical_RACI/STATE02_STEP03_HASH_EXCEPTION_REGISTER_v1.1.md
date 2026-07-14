@@ -28,6 +28,17 @@ is closed by editing a file to force a hash match.
 | HEX-006 | `STATE02_CANONICAL_RACI_CORRECTION_RECORD_v1.0.md`, `STATE02_SOURCE_CORRECTION_BEFORE_AFTER_REGISTER_v1.0.md`, `STATE02_SOURCE_CORRECTION_EXECUTION_RECORD_v1.0.md`, `STATE02_SOURCE_CORRECTION_ROLLBACK_PLAN_v1.0.md` | NOT LISTED (new controlled files, 4) | (absent) | See `STATE02_STEP03_SHA256_MANIFEST_v1.1.txt` §A | New evidence records created this session (Tasks 1, 2b) | Added to manifest §A | No | REMEDIATED BY MANIFEST UPDATE, PENDING INDEPENDENT VERIFICATION |
 | HEX-007 | `DOCUMENT_REGISTRY.yaml` | INFORMATIONAL — scope addition, no content change | Not previously included in a Step 03 hash manifest | `49adead252d3576286a1bbfaca15fa27dc9f7b8ee787dc3b053051fed7fccbdb` | RC-008 required re-inspection of this file; it was not previously in the Step 03 manifest scope even though it was inspected in `STATE02_SOURCE_GOVERNANCE_CONFLICT_REGISTER_v1.0.md` §3 | Added to manifest §B for completeness; file content NOT modified | No | INFORMATIONAL — NO ACTION BEYOND RECORD |
 
+## 2a. Exception Register (appended — non-interactive continuity audit, this commit)
+
+Found during the pre-authorized completeness/consistency audit of the v1.1 manifest.
+Both are manifest-integrity findings from legitimate file evolution; no controlled file
+was edited to force a hash match.
+
+| Exception ID | File | Type | Prior/Manifest Hash | Actual Hash | Root Cause | Corrective Action | Boss Approval Req. | Status |
+|---|---|---|---|---|---|---|---|---|
+| HEX-008 | `STATE02_STEP03_EVIDENCE_REGISTER_v1.0.md` | MISMATCH (manifest stale) | `4e15c3ae…559c2d` (v1.1 manifest §A) | `a5db148f…4938d` (as of commit `2ed3925`; further updated this commit) | Evidence register expanded (EVR-15..24) in commit `2ed3925`, but the v1.1 manifest recorded the pre-edit hash from the same push. Legitimate content evolution; manifest snapshot was stale. | Regenerated as manifest **v1.2** with actual current bytes | No (integrity re-baseline; no authority change) | REMEDIATED BY v1.2 MANIFEST, PENDING INDEPENDENT VERIFICATION |
+| HEX-009 | `STATE02_STEP03_CLOSURE_READINESS_RECORD_v1.0.md`, `STATE02_STEP03_HASH_EXCEPTION_REGISTER_v1.1.md`, `STATE02_STEP03_INDEPENDENT_REVIEW_REQUEST_v1.0.md`, `STATE02_STEP03_INDEPENDENT_VERIFICATION_REQUEST_v1.0.md`, `STATE02_STEP03_SHA256_REVERIFICATION_RECORD_v1.0.md` | NOT LISTED (coverage gap, 5 files) | (absent from v1.1 manifest) | See v1.2 manifest §A | Files created in commits `2ed3925`, `b5a8b9f`, `9e0ca37` — at or after the v1.1 manifest snapshot; never enumerated in v1.1. | Added to manifest **v1.2** §A | No (coverage completion) | REMEDIATED BY v1.2 MANIFEST, PENDING INDEPENDENT VERIFICATION |
+
 ## 3. Carried Forward From v1.0
 
 ```text
@@ -43,8 +54,8 @@ HEX-003 (PACKAGE_MANIFEST_SHA256_STATE02_STEP03_RACI.txt, INFORMATIONAL) — NO 
 ## 4. Disposition Rules Applied
 
 ```text
-Prior manifests (v1.0, v1.1 pre-this-cycle) = retained UNMODIFIED as historical evidence.
-Current manifest (v1.1, this cycle)          = authoritative recalculated baseline.
+Prior manifests (v1.0, v1.1) = retained UNMODIFIED as historical evidence.
+Current manifest (v1.2)      = authoritative, complete recalculated baseline (all controlled files).
 No source or package file was edited to force a hash match.
 HASH RESULT remains HOLD until an Independent Evidence Verifier confirms the manifest.
 ```

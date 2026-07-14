@@ -50,12 +50,14 @@ recorded on push to claude/canonical-raci-evidence-xgk851>.
 | EVR-16 | RC-001 through RC-010 execution record | CAI | STATE02_SOURCE_CORRECTION_EXECUTION_RECORD_v1.0.md | `2bb40da` | 2026-07-14 | GR PENDING | EV PENDING | PREPARED FOR REVIEW; 9 RC items applied, RC-008 verified with no edit required | Blocking |
 | EVR-17 | Before/After Register (RC-001..RC-010) | CAI | STATE02_SOURCE_CORRECTION_BEFORE_AFTER_REGISTER_v1.0.md | `2bb40da` | 2026-07-14 | GR PENDING | EV PENDING | PREPARED FOR REVIEW; blob SHA before + commit SHA after recorded per item | Blocking |
 | EVR-18 | Rollback Plan (RC-001..RC-010) | CAI | STATE02_SOURCE_CORRECTION_ROLLBACK_PLAN_v1.0.md | `2bb40da` | 2026-07-14 | GR PENDING | EV PENDING | PREPARED FOR REVIEW; reversible via git revert `ff6cb12`, no history rewrite | Input to Gate |
-| EVR-19 | SHA256 Manifest (recalculated, post RC-001..RC-010) | CAI | STATE02_STEP03_SHA256_MANIFEST_v1.1.txt | (uncommitted at time of writing — committed in Task 7&8 push) | 2026-07-14 | GR PENDING | EV PENDING | RECALCULATED; HASH RESULT = HOLD | Blocking |
-| EVR-20 | SHA256 Reverification Record | CAI | STATE02_STEP03_SHA256_REVERIFICATION_RECORD_v1.0.md | (uncommitted at time of writing) | 2026-07-14 | GR PENDING | EV PENDING | PARTIALLY VERIFIED (preparer recalculation only, not independent verification) | Blocking |
-| EVR-21 | Hash Exception Register v1.1 | CAI | STATE02_STEP03_HASH_EXCEPTION_REGISTER_v1.1.md | (uncommitted at time of writing) | 2026-07-14 | GR PENDING | EV PENDING | OPEN — HEX-004..HEX-007 remediated by manifest update, pending independent verification | Blocking |
-| EVR-22 | Independent Review Request (placeholder) | ES | STATE02_STEP03_INDEPENDENT_REVIEW_REQUEST_v1.0.md | (uncommitted at time of writing) | 2026-07-14 | Reviewer decision field BLANK — not filled by CAI | N/A | PENDING — awaiting Independent Governance Reviewer | Blocking |
-| EVR-23 | Independent Verification Request (placeholder) | ES | STATE02_STEP03_INDEPENDENT_VERIFICATION_REQUEST_v1.0.md | (uncommitted at time of writing) | 2026-07-14 | N/A | Verifier result field BLANK — not filled by CAI | PENDING — awaiting Independent Evidence Verifier | Blocking |
-| EVR-24 | Closure Readiness Record | ES | STATE02_STEP03_CLOSURE_READINESS_RECORD_v1.0.md | (uncommitted at time of writing) | 2026-07-14 | GR PENDING | EV PENDING | HOLD — Independent Review and Verification pending | Gate decision input |
+| EVR-19 | SHA256 Manifest (recalculated, post RC-001..RC-010) | CAI | STATE02_STEP03_SHA256_MANIFEST_v1.1.txt | `2ed3925` (superseded by v1.2 — see EVR-26) | 2026-07-14 | GR PENDING | EV PENDING | RECALCULATED; HASH RESULT = HOLD; superseded by complete v1.2 manifest | Blocking |
+| EVR-20 | SHA256 Reverification Record | CAI | STATE02_STEP03_SHA256_REVERIFICATION_RECORD_v1.0.md | `2ed3925` | 2026-07-14 | GR PENDING | EV PENDING | PARTIALLY VERIFIED (preparer recalculation only, not independent verification) | Blocking |
+| EVR-21 | Hash Exception Register v1.1 | CAI | STATE02_STEP03_HASH_EXCEPTION_REGISTER_v1.1.md | `2ed3925` (+ HEX-008/009 appended, this commit) | 2026-07-14 | GR PENDING | EV PENDING | OPEN — HEX-004..HEX-009 remediated by manifest update, pending independent verification | Blocking |
+| EVR-22 | Independent Review Request (placeholder) | ES | STATE02_STEP03_INDEPENDENT_REVIEW_REQUEST_v1.0.md | `b5a8b9f` | 2026-07-14 | Reviewer decision field BLANK — not filled by CAI | N/A | PENDING — awaiting Independent Governance Reviewer | Blocking |
+| EVR-23 | Independent Verification Request (placeholder) | ES | STATE02_STEP03_INDEPENDENT_VERIFICATION_REQUEST_v1.0.md | `b5a8b9f` | 2026-07-14 | N/A | Verifier result field BLANK — not filled by CAI | PENDING — awaiting Independent Evidence Verifier | Blocking |
+| EVR-24 | Closure Readiness Record | ES | STATE02_STEP03_CLOSURE_READINESS_RECORD_v1.0.md | `9e0ca37` | 2026-07-14 | GR PENDING | EV PENDING | HOLD — Independent Review and Verification pending | Gate decision input |
+| EVR-25 | Execution Assumption Register | CAI | EXECUTION_ASSUMPTION_REGISTER.md | (this commit) | 2026-07-14 | GR PENDING | EV PENDING | PREPARED — records controlled non-interactive assumptions | Input to Gate |
+| EVR-26 | SHA256 Manifest v1.2 (complete coverage) | CAI | STATE02_STEP03_SHA256_MANIFEST_v1.2.txt | (this commit) | 2026-07-14 | GR PENDING | EV PENDING | RECALCULATED — complete coverage of all controlled files; HASH RESULT = HOLD | Blocking |
 
 ### Supporting evidence (context, not in the mandatory 13)
 
@@ -88,7 +90,7 @@ REVIEW CONFIRMED                   = RC-001..RC-010 (register-level, pre-applica
 CANONICAL RACI                     = Revision R1 applied (3 items resolved) + Correction Record (EVR-15); re-review + EV of R1 and Correction Record PENDING
 SOURCE CORRECTIONS                 = APPLIED UNDER CONTROL (Boss Decision 2) — commits ff6cb12, 2bb40da; independent review/verification PENDING
 INDEPENDENT VERIFIER (EV) RESULT   = PENDING for all items (HOLD)
-HASH RESULT                        = HOLD (see v1.1 manifest/reverification; source files + new records re-hashed after RC application)
+HASH RESULT                        = HOLD (see v1.2 manifest — complete coverage; supersedes v1.1 which omitted 5 late files + carried a stale evidence-register hash; see HEX-008/009)
 BOSS DECISIONS                     = 1 APPROVED IN PRINCIPLE · 2 AUTHORIZED (source corrections now applied under control) · 3 CONFIRMED · 4 (closure) HOLD
 ```
 
