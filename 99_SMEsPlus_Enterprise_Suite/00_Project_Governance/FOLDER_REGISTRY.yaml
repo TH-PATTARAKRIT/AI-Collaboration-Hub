@@ -1,14 +1,20 @@
 version: v1.0
 status: Approved
-owner: SMEsPlus PMO / Repository Owner
+owner: SMEsPlus PMO (Human coordination office) / Repository Owner
 approved_by: Boss
 effective_date: 2026-07-05
 scope: 99_SMEsPlus_Enterprise_Suite
 
+# Correction Record (ACF-009):
+#   2026-07-14 — Boss decision S02-FINAL-003 (APPROVED). Ambiguous "PMO" owners disambiguated to
+#   "PMO (Human coordination office)". Per the canonical role glossary
+#   (State_02_Governance/STATE02_CANONICAL_ROLE_DEFINITIONS_GLOSSARY_v1.0.md), AI PMO = Support Only
+#   and is never an Accountable Owner. Applied on branch claude/state-02-governance-26bzvw; no merge.
+
 folders:
   - path: 00_Project_Governance
     purpose: Project constitution, AI governance, standards, authority and gate control
-    owner: SMEsPlus PMO / Repository Owner
+    owner: SMEsPlus PMO (Human coordination office) / Repository Owner
     status: Active
 
   - path: 00_Architecture_Office
@@ -23,22 +29,22 @@ folders:
 
   - path: 02_Functional_Design
     purpose: Functional design working area and domain functional design artifacts
-    owner: Functional Specification AI / PMO
+    owner: Functional Specification AI / PMO (Human coordination office)
     status: Active / Under Review
 
   - path: 12_Traceability
     purpose: Requirement matrix, evidence mapping and traceability control
-    owner: PMO / Traceability Owner
+    owner: PMO (Human coordination office) / Traceability Owner
     status: Active
 
   - path: 13_Jira_Control
     purpose: Jira epic, issue and execution mapping
-    owner: PMO
+    owner: PMO (Human coordination office)
     status: Active
 
   - path: 14_Claude_Execution
     purpose: Claude AI task prompts and execution handoff
-    owner: Claude AI / PMO
+    owner: Claude AI / PMO (Human coordination office)
     status: Active
 
   - path: 15_ChatGPT_Review
@@ -58,5 +64,5 @@ folders:
 
   - path: Archived
     purpose: Controlled archive for duplicate, deprecated or evidence-retained artifacts
-    owner: PMO / Repository Owner
+    owner: PMO (Human coordination office) / Repository Owner
     status: Active Archive
