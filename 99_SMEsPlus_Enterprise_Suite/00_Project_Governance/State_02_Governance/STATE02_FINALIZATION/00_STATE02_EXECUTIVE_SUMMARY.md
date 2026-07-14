@@ -50,7 +50,7 @@ and **(b)** the Boss closure signature **S02-FINAL-006**.
 | S02-FINAL-003 | Approve canonical PMO glossary (P1 root cause) | APPROVE | **APPROVED — applied** |
 | S02-FINAL-004 | Confirm Ownerless Execution Control Standard | APPROVE | **APPROVED — applied** |
 | S02-FINAL-005 | Appoint/record Reviewer + Verifier identities | APPROVE | **APPROVED — ChatGPT L99 recorded (doc 16); L99 final-commit verification pending** |
-| S02-FINAL-006 | State 02 closure | CONDITIONAL CLOSE | Open — Boss signature |
+| S02-FINAL-006 | State 02 closure | CONDITIONAL CLOSE | **APPROVED 2026-07-14 — CONDITIONAL CLOSE (doc 17); effective on L99 VERIFIED of `4da8cc8`; no merge** |
 
 Applied on branch `claude/state-02-governance-26bzvw` (no merge): source corrections to
 `AI_ROLE_AND_RESPONSIBILITY.md`, `ARCHITECTURE_GOVERNANCE_STANDARD.md`, `APPROVAL_AUTHORITY_MATRIX.md`,
@@ -78,6 +78,7 @@ STATE02_FINALIZATION/
 ├── 14_SKILL_FAILURE_AND_EDGE_CASES.md
 ├── 15_SKILL_IMPROVEMENT_RECOMMENDATIONS.md
 ├── 16_S02_FINAL_005_REVIEW_AND_VERIFICATION_RECORD.md
+├── 17_S02_FINAL_006_BOSS_CLOSURE_DECISION_RECORD.md
 └── PACKAGE_MANIFEST_SHA256.txt
 ```
 

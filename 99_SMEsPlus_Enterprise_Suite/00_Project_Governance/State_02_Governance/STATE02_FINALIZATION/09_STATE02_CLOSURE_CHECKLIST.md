@@ -19,7 +19,7 @@ Closure eligibility criteria are taken from the execution order §7.
 | 6 | Gate Crosswalk complete | **MET** | Doc 06 (all gates + detection results; no circular dep) | — |
 | 7 | Evidence & Approval Standard complete | **MET** | Doc 07 | — |
 | 8 | No Critical Defect blocks State 03 | **MET (conditional)** | No circular dependency, no ownerless gate; P0 authority defects are correctable and do not hard-block State 03 architecture prep once S02-FINAL-001 approved | Monitor |
-| 9 | Final closure decision remains with Boss | **MET** | This package recommends only; doc 10; SKT-07 | — |
+| 9 | Final closure decision remains with Boss | **MET — Boss decided** | Boss APPROVED S02-FINAL-006 as CONDITIONAL CLOSE (doc 17), effective on L99 VERIFIED of `4da8cc8` | — |
 
 ## Independent Review / Verification Status (cross-cutting)
 
