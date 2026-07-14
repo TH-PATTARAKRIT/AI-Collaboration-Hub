@@ -24,6 +24,25 @@ evidenced** (doc 02 §5, doc 08 outcomes). Remaining conditions for closure:
    recorded, and each applied correction moved to a recorded VERIFIED result. **OPEN — decisive gap.**
 6. ⬜ S02-FINAL-006 — Boss closure signature. **OPEN — Boss's to sign.**
 
+## Canonical Decision Status
+
+This is the single authoritative status block for this document. Any other paragraph is subordinate
+to it. There is no remaining condition stating that Canonical RACI Boss confirmation is missing.
+
+```text
+S02-FINAL-001: APPROVED AND APPLIED
+S02-FINAL-002: APPROVED AND APPLIED
+S02-FINAL-003: APPROVED AND APPLIED
+S02-FINAL-004: APPROVED AND APPLIED
+
+Canonical RACI:
+APPROVED AND APPLIED ON PR BRANCH
+
+Remaining:
+S02-FINAL-005 — Independent verification identity and evidence record
+S02-FINAL-006 — Boss closure decision
+```
+
 ## Why not RECOMMEND CLOSE
 
 As of 2026-07-14, criteria 1–4 are satisfied: Boss approved S02-FINAL-001..004, the P0 corrections
