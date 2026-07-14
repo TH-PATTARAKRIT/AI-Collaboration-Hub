@@ -20,8 +20,9 @@ evidenced** (doc 02 §5, doc 08 outcomes). Remaining conditions for closure:
 2. ✅ S02-FINAL-002 — Canonical RACI confirmed. **DONE.**
 3. ✅ S02-FINAL-003 — Canonical PMO glossary approved and published. **DONE.**
 4. ✅ S02-FINAL-004 — Ownerless Execution Control Standard confirmed Canonical. **DONE.**
-5. ⬜ S02-FINAL-005 — Independent Governance Reviewer and Evidence Verifier identities appointed and
-   recorded, and each applied correction moved to a recorded VERIFIED result. **OPEN — decisive gap.**
+5. 🟡 S02-FINAL-005 — Reviewer & Verifier appointed and recorded: **DONE** (ChatGPT L99, Boss-authorized,
+   doc 16). Remaining sub-item: **L99's VERIFIED result on the final commit — OPEN** (requested via
+   PR #24 reply).
 6. ⬜ S02-FINAL-006 — Boss closure signature. **OPEN — Boss's to sign.**
 
 ## Why not RECOMMEND CLOSE

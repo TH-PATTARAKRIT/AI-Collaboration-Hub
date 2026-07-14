@@ -25,8 +25,9 @@ Closure eligibility criteria are taken from the execution order §7.
 
 | Control | Status | Evidence | Blocking? |
 |---|---|---|---|
-| Independent Governance Reviewer identity recorded | **NOT MET** | RACI §2 "PENDING RECORD"; OCP-1 | Yes → S02-FINAL-005 |
-| Independent Evidence Verifier identity recorded | **NOT MET** | RACI §2 "PENDING RECORD"; OCP-2 | Yes → S02-FINAL-005 |
+| Independent Governance Reviewer identity recorded | **MET** | ChatGPT L99 recorded under Boss S02-FINAL-005 (doc 16 §1) | Cleared |
+| Independent Evidence Verifier identity recorded | **MET** | ChatGPT L99 recorded (Boss-authorized, independence caveat) (doc 16 §1) | Cleared |
+| Verifier's VERIFIED result on the final commit | **NOT MET (pending)** | doc 16 §3 — L99 confirmation requested via PR #24 reply | Yes → completes S02-FINAL-005 |
 
 ## Checklist Verdict (updated 2026-07-14 after S02-FINAL-001..004 APPROVED)
 
@@ -34,13 +35,14 @@ Closure eligibility criteria are taken from the execution order §7.
   Boss confirmations).
 - Criterion 5 (index classifications): **MET** — confirmed by S02-FINAL-002/004.
 - Criterion 8: **MET (monitored)** — P0 authority defects are now corrected in source.
-- Independent Reviewer/Verifier identities: **NOT MET** — the sole remaining decisive gap
-  (S02-FINAL-005).
+- Independent Reviewer/Verifier identities: **MET** — ChatGPT L99 recorded under Boss S02-FINAL-005
+  (doc 16). Two items remain: (a) L99's VERIFIED result on the final commit, (b) Boss closure
+  signature S02-FINAL-006.
 
-Because the independent review/verification records of the applied corrections are not yet satisfied
-(S02-FINAL-005 open) and the closure signature itself (S02-FINAL-006) is Boss's, **State 02 is not
-eligible for unconditional closure**. It is eligible for **CONDITIONAL CLOSE** on completion of
-S02-FINAL-005 and the Boss closure signature S02-FINAL-006. See doc 10.
+Because the Verifier's confirmation of the final commit is not yet received and the closure signature
+itself (S02-FINAL-006) is Boss's, **State 02 is not eligible for unconditional closure**. It is
+eligible for **CONDITIONAL CLOSE** on (a) ChatGPT L99's verification confirmation of the final commit
+and (b) the Boss closure signature S02-FINAL-006. See doc 10.
 
 ## Controlled Follow-up Candidates (P2 / P1 non-blocking)
 

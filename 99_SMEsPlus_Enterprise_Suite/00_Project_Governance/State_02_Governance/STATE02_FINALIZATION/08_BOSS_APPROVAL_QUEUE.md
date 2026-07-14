@@ -18,8 +18,8 @@ Prepared At: 2026-07-14 (UTC)
 | S02-FINAL-002 | **APPROVED** | 2026-07-14 | Applied — Canonical RACI status confirmed (Boss Confirmation Record in RACI v1.0) |
 | S02-FINAL-003 | **APPROVED** | 2026-07-14 | Applied — glossary published; ACF-007/009 relabels applied |
 | S02-FINAL-004 | **APPROVED** | 2026-07-14 | Applied — Ownerless Standard status confirmed CANONICAL |
-| S02-FINAL-005 | Open | — | Awaiting Boss-provided Reviewer/Verifier identities |
-| S02-FINAL-006 | Open | — | Closure decision pending (see doc 10) |
+| S02-FINAL-005 | **APPROVED (appointment recorded)** | 2026-07-14 | Reviewer = Verifier = ChatGPT L99 (Boss-authorized, independence caveat). Appointment recorded in doc 16. EV confirmation of the final commit still pending L99. |
+| S02-FINAL-006 | Open | — | Closure signature pending (see doc 10) |
 
 No merge, release, deploy, or production change was performed. Boss remains sole Final Approver.
 

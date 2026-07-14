@@ -41,8 +41,8 @@ Step 01 — Governance Baseline Inventory is **CLOSED BY BOSS** per
 
 | ID | Open Control Point | Classification | Blocks Unconditional Closure? | Owner of Next Action |
 |---|---|---|---|---|
-| OCP-1 | Independent Governance Reviewer identity not yet **recorded** by Boss. A PR comment on #24 claims ChatGPT L99 performed the review; not yet Boss-confirmed as the S02-FINAL-005 appointment | Review | Yes | Boss (confirm appointment) |
-| OCP-2 | Independent Evidence Verifier identity not yet named/recorded (PENDING RECORD; comment did not name one) | Verification | Yes | Boss (appoint / confirm) |
+| OCP-1 | Independent Governance Reviewer | Review | **RESOLVED 2026-07-14** — ChatGPT L99 recorded as Reviewer under Boss S02-FINAL-005 (doc 16) | — |
+| OCP-2 | Independent Evidence Verifier | Verification | **PARTIAL 2026-07-14** — ChatGPT L99 recorded as Verifier (Boss-authorized, independence caveat); L99's VERIFIED result on the final commit still pending (doc 16 §3) | ChatGPT L99 |
 | OCP-3 | P0 authority-conflict source corrections | Defect correction | **RESOLVED 2026-07-14** — applied under S02-FINAL-001/003 (doc 02 §5) | — |
 | OCP-4 | Canonical RACI and Ownerless Standard Boss-confirmed as CANONICAL | Boss decision | **RESOLVED 2026-07-14** — S02-FINAL-002 / 004 APPROVED | — |
 | OCP-5 | Canonical PMO role definition / glossary | Boss decision | **RESOLVED 2026-07-14** — glossary published under S02-FINAL-003 | — |
