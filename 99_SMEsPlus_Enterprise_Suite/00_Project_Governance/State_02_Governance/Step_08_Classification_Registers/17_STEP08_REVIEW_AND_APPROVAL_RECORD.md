@@ -52,12 +52,27 @@ roles. No PASS or APPROVED result is prefilled.
 
 ---
 
-## 4. Independent Governance Review (ChatGPT L99 — NOT completed by preparer)
+## 4. Independent Governance Review (ChatGPT L99)
+
+### Round 1 — received (recorded by preparer as evidence handoff; NOT self-authored)
+
+```text
+Reviewer Identity: ChatGPT L99 (Independent Governance Reviewer)
+Reviewed Commit:   290763065edeccf064eef6cac3b94fbbc1efb06a (2907630)
+Review Result:     CHANGES REQUIRED BEFORE MERGE (COMPLETED — Round 1)
+Findings:          P0-01, P0-02, P0-03, P1-01, P1-02, P1-03, P1-04
+Preparer response: all seven corrected on PR #27 (see doc 14 §5); targeted re-review requested
+```
+
+The Round-1 verdict above is transcribed from the received ChatGPT L99 review, not authored
+by Claude Code. Claude Code does not sign or self-issue the review result.
+
+### Round 2 — targeted re-review of the correction commit (ChatGPT L99 — NOT completed by preparer)
 
 ```text
 Reviewer Identity: ____________________________
 Review Date:       ____________________________
-Per-item review decisions (docs 00–17): ____________________________
+Per-item re-review of P0-01..03 / P1-01..04 corrections: ____________________________
 Governance Review Result: ____________________________  (NOT PREFILLED)
 Open review items: ____________________________
 Reviewer Signature/Reference: ____________________________

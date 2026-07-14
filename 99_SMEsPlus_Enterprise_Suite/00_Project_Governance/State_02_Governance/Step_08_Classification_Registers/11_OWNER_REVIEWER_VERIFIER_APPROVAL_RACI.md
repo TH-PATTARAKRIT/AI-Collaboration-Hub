@@ -84,10 +84,10 @@ activity. No AI is Final Approver.
 
 ## 6. Approved Exceptions
 
-| Exc ID | Exception | Status |
-|---|---|---|
-| EXC-08-01 | Branch delivery deviation (doc 00 / doc 07) | PENDING Boss/L99 acceptance |
-| RACI-EXC-01 | L99 as Verifier limited to E0 system-inspectable evidence | Recorded; permitted per Canonical RACI EV role note |
+| Exc ID | Exception | Final Approval Authority | Status |
+|---|---|---|---|
+| EXC-08-01 | Branch delivery deviation (doc 00 / doc 07) | Boss (sole); L99 recommend-only | PENDING Boss acceptance |
+| RACI-EXC-01 | L99 as Verifier limited to E0 system-inspectable evidence | Boss (sole) | Recorded; permitted per Canonical RACI EV role note |
 
 ## 7. Control Statement
 

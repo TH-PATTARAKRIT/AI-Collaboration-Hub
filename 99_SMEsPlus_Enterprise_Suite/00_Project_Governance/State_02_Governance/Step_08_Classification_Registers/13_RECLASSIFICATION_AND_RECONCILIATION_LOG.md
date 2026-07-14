@@ -18,9 +18,9 @@ No reclassification is Boss-approved yet; "Approved By = PENDING" is literal.
 | ID | Prev | New | Reason | Evidence | Requested By | Reviewed By | Approved By | Effective Date | Affected Records | Rollback Method | Gate Impact |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | RCL-08-01 | UNCLASSIFIED | SUPERSEDED | Authority Conflict Register v1.0 replaced by v1.1 | E1 DOC-S02-031/032 | Claude Code | PENDING L99 | PENDING | not effective until approved | DOC-S02-031 | Restore prior register classification | Input |
-| RCL-08-02 | UNCLASSIFIED | CANONICAL (provisional) | Canonical RACI is the single controlling RACI (Boss confirmation pending) | E1 DOC-S02-010 | Claude Code | PENDING L99 | PENDING (DEC-08-01) | not effective until Boss confirms | DOC-S02-010 | Revert to SUPPORTING | Blocking |
-| RCL-08-03 | UNCLASSIFIED | CANONICAL (provisional) | Ownerless Execution Control Standard is controlling for ownerless topic | E1 DOC-S02-020 | Claude Code | PENDING L99 | PENDING | not effective until approved | DOC-S02-020 | Revert to SUPPORTING | Blocking |
-| RCL-08-04 | UNCLASSIFIED | CANONICAL (provisional) | Authority Conflict Register v1.1 controls the conflict topic | E1 DOC-S02-032 | Claude Code | PENDING L99 | PENDING | not effective until approved | DOC-S02-032 | Revert to SUPPORTING | Blocking |
+| RCL-08-02 | UNCLASSIFIED | CANONICAL CANDIDATE (NOT EFFECTIVE) | Canonical RACI is the single controlling RACI (Boss confirmation pending) | E1 DOC-S02-010 | Claude Code | PENDING L99 | PENDING (DEC-08-01) | not effective until Boss confirms | DOC-S02-010 | Revert to SUPPORTING | Blocking |
+| RCL-08-03 | UNCLASSIFIED | CANONICAL CANDIDATE (NOT EFFECTIVE) | Ownerless Execution Control Standard is controlling for ownerless topic | E1 DOC-S02-020 | Claude Code | PENDING L99 | PENDING | not effective until approved | DOC-S02-020 | Revert to SUPPORTING | Blocking |
+| RCL-08-04 | UNCLASSIFIED | CANONICAL CANDIDATE (NOT EFFECTIVE) | Authority Conflict Register v1.1 controls the conflict topic | E1 DOC-S02-032 | Claude Code | PENDING L99 | PENDING | not effective until approved | DOC-S02-032 | Revert to SUPPORTING | Blocking |
 | RCL-08-05 | Approved (registry) | SUPPORTING (State 02 control) | Root standards' control over State 02 is qualified by open ACF; RACI is controlling | E1 DOCUMENT_REGISTRY.yaml; ACF | Claude Code | PENDING L99 | PENDING | not effective until approved | DOC-S02-001..009 | Restore Approved-only classification | Input |
 
 All other Step 08 records are first-time classifications (no prior value); they are not

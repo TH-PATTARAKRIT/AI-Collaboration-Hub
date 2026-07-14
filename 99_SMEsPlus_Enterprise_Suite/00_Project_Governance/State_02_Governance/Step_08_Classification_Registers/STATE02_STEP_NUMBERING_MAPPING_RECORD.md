@@ -28,6 +28,30 @@ Step 05 (Governance Index), Step 06, and Step 07 exist only in unmerged PR branc
 (PR #18/#19 for Step 05; PR #23/#24 for the "finalization Steps 02–07" grouping). They are
 NOT present in the merged base and are NOT altered by this order.
 
+## 2a. Historical GitHub Control Mapping (P1-02 correction — L99 Review Round 1)
+
+The /L99.99 order's "Step 08 — Classification Registers" is a Boss-directed working step
+number that maps to a pre-existing GitHub governance control item. Both identities are
+preserved:
+
+```text
+Current Working Step:
+  Step 08 — Classification Registers
+Historical GitHub Control:
+  STATE02-GOV-007
+  GitHub Issue #9 — "Create Governance Evidence and Document Classification Registers"
+  (Acting Owner: Executive Secretary / Liza; Parent: Issue #3)
+Relationship:
+  Boss-directed working numbering override; historical issue identity preserved.
+  This Step 08 package is the fulfilment of Issue #9 / STATE02-GOV-007.
+```
+
+Verification: Issue #9 title, acting owner, deliverables, and acceptance criteria were read
+directly from GitHub and match this Step 08 scope (document classification register + evidence
+register; one classification per document; superseded/unclassified must not control
+execution). WP-08-01..17 therefore trace to Issue #9 (see doc 12). Issue #9 is OPEN and is
+NOT closed under this order.
+
 ## 3. Order Numbering vs Repository Numbering
 
 | Order Reference | Meaning in Order | Repository Mapping |

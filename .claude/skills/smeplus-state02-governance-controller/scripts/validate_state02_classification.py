@@ -333,6 +333,74 @@ def scan_secrets(text, findings, source):
                                     f"Possible inline secret in {source}: {m.group()[:24]}..."))
 
 
+def check_semantic(pkg_dir, texts, findings):
+    """Semantic governance checks CHECK-08-11..16 (L99 Review Round 1)."""
+    doc03 = texts.get("03") or ""
+    doc07 = texts.get("07") or ""
+    doc12 = texts.get("12") or ""
+    mapping = texts.get("map") or ""
+
+    # CHECK-08-11: CANONICAL requires Boss-confirmation evidence; effective CANONICAL
+    # (not CANDIDATE) without Boss evidence is critical.
+    for _, rows in [(h, r) for h, r in parse_tables(doc03)]:
+        for row in rows:
+            did = col(row, "Doc ID", "Document ID")
+            if not did or did.startswith("---"):
+                continue
+            cls = (col(row, "Classification") or "").upper()
+            if "CANONICAL" in cls and "CANDIDATE" not in cls:
+                ev = (col(row, "Evidence") or "").lower()
+                appr = (col(row, "Approval Authority") or "").lower()
+                if "boss" not in ev and "boss approval" not in appr and "confirm" not in ev:
+                    findings.append(Finding(CRITICAL, "CHECK-08-11",
+                                            f"{did} shows effective CANONICAL without Boss-confirmation evidence"))
+
+    # CHECK-08-12: No slash/joint or L99 in Final Decision Authority.
+    for _, rows in parse_tables(doc07):
+        for row in rows:
+            fda = col(row, "Final Decision Authority")
+            if fda is None:
+                continue
+            low = fda.lower()
+            if "---" in fda:
+                continue
+            if "/" in fda or "l99" in low or "chatgpt" in low:
+                findings.append(Finding(CRITICAL, "CHECK-08-12",
+                                        f"Final Decision Authority not Boss-sole: '{fda}'"))
+
+    # CHECK-08-13: Exactly one Accountable Owner (no ' / ' joint owner) across registers.
+    for tag in ("03", "04", "05", "06", "14"):
+        for _, rows in parse_tables(texts.get(tag) or ""):
+            for row in rows:
+                owner = col(row, "Owner")
+                if owner and " / " in owner:
+                    rid = (col(row, "Doc ID", "Document ID", "WI ID", "Work Item ID",
+                               "Ev ID", "Evidence ID", "RAID ID", "Gap ID") or "row")
+                    findings.append(Finding(CRITICAL, "CHECK-08-13",
+                                            f"Joint owner '{owner}' in {tag}:{rid} (need one Accountable Owner)"))
+
+    # CHECK-08-14: POST-COMMIT placeholders forbidden once the addendum (package commit) exists.
+    addendum = os.path.join(pkg_dir, "STEP08_POST_COMMIT_EVIDENCE_ADDENDUM.md")
+    if os.path.isfile(addendum):
+        # Scan data registers only; doc 14 (this gap report) legitimately names the token.
+        for tag in ("03", "04", "05", "06", "07", "12", "map"):
+            txt = texts.get(tag) or ""
+            if "PENDING — POST-COMMIT" in txt:
+                findings.append(Finding(CRITICAL, "CHECK-08-14",
+                                        f"POST-COMMIT placeholder still present in doc {tag} after package commit"))
+
+    # CHECK-08-15: Step 08 must trace to GitHub Issue #9.
+    if "issue #9" not in (doc12 + mapping).lower():
+        findings.append(Finding(CRITICAL, "CHECK-08-15",
+                                "Step 08 does not trace to GitHub Issue #9 (doc 12 / mapping record)"))
+
+    # CHECK-08-16: Decision Status must be separate from Verification Status in doc 07.
+    if ("Boss Decision Status" not in doc07 or
+            "Independent Verification Status" not in doc07):
+        findings.append(Finding(CRITICAL, "CHECK-08-16",
+                                "doc 07 does not separate Boss Decision Status from Independent Verification Status"))
+
+
 def check_related_refs(text, all_ids, findings, source):
     ref_ids = set(re.findall(r"\b(DOC-S02-\d+|WI-08-[A-Z0-9]+|EV-08-\d+|RAID-08-[A-Z0-9]+|"
                              r"DEC-08-\d+|GAP-08-[A-Z]+)\b", text))
@@ -508,6 +576,18 @@ def run_package(pkg_dir):
     doc05 = read("05_EVIDENCE_CLASSIFICATION_REGISTER.md")
     doc06 = read("06_RAID_CLASSIFICATION_REGISTER.md")
 
+    def read_optional(name):
+        p = os.path.join(pkg_dir, name)
+        if os.path.isfile(p):
+            with open(p, "r", encoding="utf-8") as f:
+                return f.read()
+        return ""
+
+    doc07 = read_optional("07_DECISION_AND_EXCEPTION_REGISTER.md")
+    doc12 = read_optional("12_CLASSIFICATION_TRACEABILITY_MATRIX.md")
+    doc14 = read_optional("14_CLASSIFICATION_VALIDATION_AND_GAP_REPORT.md")
+    mapping = read_optional("STATE02_STEP_NUMBERING_MAPPING_RECORD.md")
+
     # Collect IDs first for reference checks.
     for txt in (doc03, doc04, doc05, doc06):
         if txt:
@@ -532,6 +612,10 @@ def run_package(pkg_dir):
         os.path.join(pkg_dir, "10_CONFIDENTIALITY_AND_ACCESS_MATRIX.md")) else None
     if doc10:
         scan_secrets(doc10, findings, "doc 10")
+
+    texts = {"03": doc03, "04": doc04, "05": doc05, "06": doc06, "07": doc07,
+             "12": doc12, "14": doc14, "10": doc10, "map": mapping}
+    check_semantic(pkg_dir, texts, findings)
 
     check_manifest(pkg_dir, findings)
     return findings

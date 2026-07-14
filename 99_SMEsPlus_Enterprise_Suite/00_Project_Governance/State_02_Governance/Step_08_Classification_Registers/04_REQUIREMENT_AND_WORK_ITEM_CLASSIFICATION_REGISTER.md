@@ -47,7 +47,7 @@ Related GitHub Issue | Related PR | Verification Status
 
 | WI ID | Requirement | State | Step | WP | Deliverable | Owner | Priority | Status | Evidence | Due Date | Dependency | Gate Impact | Jira | GH Issue | PR | Verification |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| WI-08-A1 | Record named Independent Evidence Verifier identity | 02 | 08 | cross | S02-FINAL-005 | Boss / Executive Secretary | P0 | IN PROGRESS | E4 claim (open) | DECISION REQUIRED | none | Blocking | NOT FOUND | Issue #5 | PR #24 | NOT SUBMITTED |
+| WI-08-A1 | Record named Independent Evidence Verifier identity | 02 | 08 | cross | S02-FINAL-005 | Executive Secretary (coordination); Boss = decision authority | P0 | IN PROGRESS | E4 claim (open) | DECISION REQUIRED | none | Blocking | NOT FOUND | Issue #9 (+#5) | PR #24 | NOT SUBMITTED |
 | WI-08-A2 | Independent Governance Review of Step 08 | 02 | 08 | cross | L99 review | ChatGPT L99 | P0 | NOT STARTED | none (E5) | DECISION REQUIRED | WI-08-17 | Blocking | NOT FOUND | NOT FOUND | this PR | NOT SUBMITTED |
 | WI-08-A3 | Boss closure decision for Step 08 | 02 | 08 | cross | S02-FINAL-006 analog | Boss | P0 | NOT STARTED | none (E5) | DECISION REQUIRED | WI-08-A1,A2 | Gate decision | NOT FOUND | NOT FOUND | this PR | NOT SUBMITTED |
 | WI-08-A4 | Resolve six open P0 authority-conflict source lines (ACF) | 02 | 08 | cross | doc 03/06/07 | Executive Secretary | P0 | IN PROGRESS | E1 ACF; PR #20/#24 proposals | DECISION REQUIRED | Boss | Blocking | NOT FOUND | Issue #5 | PR #20/#24 | PARTIALLY VERIFIED |

@@ -11,31 +11,47 @@ Gate Status: HOLD
 
 ## 1. Rule
 
-Boss decisions are never inferred or manufactured. "Actual Decision = PENDING" means no
-decision has been recorded. Only decisions with a real recorded evidence source are shown
-as decided.
+Boss decisions are never inferred or manufactured. Final Decision Authority for every
+decision below is **Boss (sole)**; ChatGPT L99 may only recommend / accept-for-review — L99
+holds no final decision authority (P0-02 correction). Boss Decision Status, Application
+Status, Independent Verification Status, Merge Status, and Effective Control Status are
+recorded as **separate** fields (P0-03 correction): a Boss decision may exist while
+application, verification, merge, and effective control are still PENDING/NOT — and an
+incomplete verification never reverts a recorded Boss decision back to PENDING.
 
 ## 2. Register
 
-Fields: Decision ID | Decision Required | Decision Authority | Available Options |
-Recommended Option | Actual Decision | Decision Date | Evidence | Affected Documents |
-Affected Work Packages | Expiry Date | Exception Conditions | Gate Impact
+Fields: Decision ID | Decision Required | Final Decision Authority | Reviewer Recommendation |
+Boss Decision Status | Decision Evidence | Application Status | Independent Verification
+Status | Merge Status | Effective Control Status | Affected WPs | Gate Impact.
 
-| Dec ID | Decision Required | Authority | Available Options | Recommended | Actual Decision | Date | Evidence | Affected Docs | Affected WPs | Expiry | Exception Conditions | Gate Impact |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| DEC-08-01 | Confirm Canonical RACI (DOC-S02-010) as controlling authority model | Boss | (a) Confirm (b) Confirm with conditions (c) Reject | (a) Confirm with conditions pending independent verify | PENDING | — | E1 DOC-S02-010; PR #24 S02-FINAL-002 | DOC-S02-010; doc 11 | WP-08-11 | n/a | n/a | Blocking |
-| DEC-08-02 | Approve applying RC-001..010 authority corrections to sources | Boss | (a) Approve (b) Approve subset (c) Hold | (a) Approve pending independent verify | PENDING (PR #20 records "AUTHORIZED IN PRINCIPLE"; not independently verified) | — | E1 PR #20 body; DOC-S02-012 | DOC-S02-002/003/004/006 | WP-08-03/06 | n/a | n/a | Blocking |
-| DEC-08-03 | Appoint and record named Independent Evidence Verifier (S02-FINAL-005) | Boss | (a) Appoint L99-for-system-evidence + separate human verifier (b) Appoint other | (a) | PENDING | — | E5 EV-08-21 | doc 11; all evidence | WP-08-11/05 | n/a | Verifier ≠ preparer | Blocking |
-| DEC-08-04 | Accept branch reconciliation (deliver Step 08 on designated branch, new PR) | Boss / ChatGPT L99 | (a) Accept per PR #25 precedent (b) Require move to PR #24 branch | (a) Accept | PENDING | — | E1 doc 00; PR #25 precedent | doc 00; doc 13 | all | n/a | New PR is not a merge; no branch created to escape a block | Blocking (accept required) |
-| DEC-08-05 | Sequencing of overlapping open PRs (#20/#23/#24/#25/this) | Boss | (a) Merge order defined (b) Consolidate (c) Hold all | Provide sequencing (doc 13 recommendation) | PENDING | — | E0 PR list | doc 13 | all | n/a | n/a | Blocking |
-| DEC-08-06 | Boss closure decision for Step 08 | Boss | (a) Close (b) Close with conditions (c) Hold | Not recommended by preparer (independent review not done) | PENDING | — | E5 EV-08-22 | doc 17 | WP-08-17 | n/a | n/a | Gate decision |
+Legend — Boss Decision Status: RECORDED (with evidence) / PENDING (none recorded).
+"RECORDED (unmerged)" means a Boss decision is documented in an unmerged PR and is therefore
+not yet effective in the merged base.
+
+| Dec ID | Decision Required | Final Decision Authority | Reviewer Recommendation | Boss Decision Status | Decision Evidence | Application Status | Independent Verification Status | Merge Status | Effective Control Status | Affected WPs | Gate Impact |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| DEC-08-01 | Confirm Canonical RACI (DOC-S02-010) as controlling authority model | Boss | ChatGPT L99: confirm with conditions | RECORDED (unmerged) — PR #24 records S02-FINAL-002 "APPROVED and applied" | E1 PR #24 body S02-FINAL-002; DOC-S02-010 | APPLIED on PR #24 branch (unmerged) | PENDING (no independent verifier) | NOT MERGED | NOT EFFECTIVE (unmerged; base 8570187 unchanged) | WP-08-11 | Blocking |
+| DEC-08-02 | Approve applying RC-001..010 authority corrections to sources | Boss | ChatGPT L99: approve pending verify | RECORDED (unmerged) — PR #20 records Boss Decision 2 "AUTHORIZED → APPLIED" | E1 PR #20 body; DOC-S02-012 | APPLIED on PR #20 branch (unmerged) | PENDING (preparer-level only) | NOT MERGED | NOT EFFECTIVE (unmerged) | WP-08-03/06 | Blocking |
+| DEC-08-03 | Appoint and record named Independent Evidence Verifier (S02-FINAL-005) | Boss | ChatGPT L99: appoint L99-for-E0 + separate non-preparer verifier | PENDING | E5 EV-08-21 (not recorded) | NOT STARTED | PENDING | n/a | NOT EFFECTIVE | WP-08-11/05 | Blocking |
+| DEC-08-04 | Accept branch reconciliation (deliver Step 08 on designated branch, new PR #27) | Boss | ChatGPT L99: accept per PR #25 precedent | PENDING | E1 doc 00; PR #25 precedent | Delivered on designated branch (PR #27) | PENDING | NOT MERGED | NOT EFFECTIVE (accept required) | all | Blocking (accept required) |
+| DEC-08-05 | Sequencing of overlapping open PRs (#20/#23/#24/#25/#27) | Boss | ChatGPT L99: sequencing per doc 13 | PENDING | E0 PR list | NOT STARTED | PENDING | NOT MERGED | NOT EFFECTIVE | all | Blocking |
+| DEC-08-06 | Boss closure decision for Step 08 | Boss | Preparer makes no closure recommendation (independent verify not done) | PENDING | E5 EV-08-22 (not recorded) | NOT STARTED | PENDING | n/a | NOT EFFECTIVE | WP-08-17 | Gate decision |
+
+Note on DEC-08-01 / DEC-08-02: the referenced Boss decisions exist only in unmerged PRs
+(#24, #20). They are recorded as decisions, but their Effective Control Status is NOT
+EFFECTIVE because those PRs are not merged into the base and independent verification is
+still PENDING. This separation is the P0-03 correction: a recorded decision is not the same
+as an effective, verified, merged control.
 
 ## 3. Exceptions and Waivers
 
-| Exc ID | Exception | Authority | Requested By | Actual Decision | Conditions | Expiry | Gate Impact |
-|---|---|---|---|---|---|---|---|
-| EXC-08-01 | Deliver Step 08 on `claude/state-02-classification-registers-7qwwcy` instead of PR #24 branch (harness branch-policy constraint) | Boss | Claude Code (preparer) | PENDING (disclosed, not self-approved) | Must be accepted by Boss/L99; reconciled in doc 13; no merge implied | Until Boss decision DEC-08-04 | Blocking |
-| EXC-08-02 | Governance-controller Skill created new (no pre-existing package by that name in repo) | Boss / Executive Secretary | Claude Code (preparer) | PENDING | Skill is real files, not simulation; command discovery may need restart | On Boss acceptance | Input |
+Final approval authority for every exception is **Boss (sole)**. ChatGPT L99 recommends only.
+
+| Exc ID | Exception | Final Approval Authority | Reviewer Recommendation | Requested By | Boss Decision Status | Conditions | Expiry | Gate Impact |
+|---|---|---|---|---|---|---|---|---|
+| EXC-08-01 | Deliver Step 08 on `claude/state-02-classification-registers-7qwwcy` / new PR #27 instead of PR #24 branch (harness branch-policy constraint) | Boss | ChatGPT L99: accept (per PR #25 precedent) | Claude Code (preparer) | PENDING (disclosed, not self-approved) | Reconciled in doc 13; no merge implied | Until Boss decision DEC-08-04 | Blocking |
+| EXC-08-02 | Governance-controller Skill created new (no pre-existing package by that name in repo) | Boss | ChatGPT L99: accept | Claude Code (preparer) | PENDING | Skill is real files, not simulation | On Boss acceptance | Input |
 
 ## 4. Rejected Proposals / Supersession Decisions
 
@@ -45,6 +61,10 @@ Affected Work Packages | Expiry Date | Exception Conditions | Gate Impact
 
 ## 5. Control Statement
 
-No Boss decision above is recorded as made. Every "Actual Decision = PENDING" is literal:
-the preparer has not, and may not, decide these. Exceptions EXC-08-01/02 are disclosed for
-Boss/independent acceptance and are not self-approved.
+Final Decision Authority is Boss (sole) for every decision and exception; ChatGPT L99
+recommends only and holds no final decision authority. Where a Boss decision is RECORDED it
+is documented in an unmerged PR and is NOT EFFECTIVE until merged and independently verified.
+DEC-08-03/04/05/06 remain PENDING — the preparer has not, and may not, decide these.
+Exceptions EXC-08-01/02 are disclosed for Boss acceptance and are not self-approved. Decision
+Status is recorded separately from Application, Independent Verification, Merge, and Effective
+Control Status (P0-03).

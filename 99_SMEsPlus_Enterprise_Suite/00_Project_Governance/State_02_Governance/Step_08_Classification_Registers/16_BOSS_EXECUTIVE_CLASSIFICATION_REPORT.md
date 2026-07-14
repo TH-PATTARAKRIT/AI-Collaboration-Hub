@@ -12,10 +12,12 @@ Gate Status: HOLD
 ## Executive Verdict
 
 Step 08 Classification Registers preparation is COMPLETE and internally self-validated.
-The package is READY FOR INDEPENDENT REVIEW. It is NOT approved, NOT independently verified,
-and NOT closed. Five P0 items block Official Step Closure, all of which are Boss or
-independent-role decisions (verifier appointment, L99 review, Boss closure, ACF correction,
-Canonical RACI confirmation).
+ChatGPT L99 Independent Governance Review Round 1 (commit 2907630) returned CHANGES REQUIRED;
+all seven findings (P0-01..03, P1-01..04) have been corrected on PR #27 and a targeted L99
+re-review is requested. The package is NOT approved, NOT independently verified, and NOT
+closed. Five P0 items block Official Step Closure, all of which are Boss or independent-role
+decisions (verifier appointment, L99 re-review, Boss closure, ACF correction, Canonical RACI
+confirmation).
 
 ## Preparation Progress
 
@@ -44,14 +46,16 @@ progress.
 
 ```text
 Documents classified: 48 (DOC-S02-001..048)
-CANONICAL: 3 (Canonical RACI, Ownerless Execution Control Standard, Authority Conflict Register v1.1)
+CANONICAL CANDIDATE (NOT EFFECTIVE — pending Boss confirmation): 3
+  (Canonical RACI, Ownerless Execution Control Standard, Authority Conflict Register v1.1)
+Effective CANONICAL: 0 (none confirmed by Boss)
 SUPPORTING: 26
 RETAINED AS EVIDENCE: 14
 WORKING DRAFT: 4
 SUPERSEDED: 1 (Authority Conflict Register v1.0 → v1.1)
 ARCHIVED: 0
 UNCLASSIFIED (controlling execution): 0
-Duplicate CANONICAL per topic: 0
+Duplicate CANONICAL CANDIDATE per topic: 0
 ```
 
 ## Evidence Classification Summary
@@ -100,8 +104,9 @@ notices, not critical errors.
 
 ## Independent Review Required
 
-ChatGPT L99 independent governance review of the full Step 08 package is REQUIRED and has
-NOT been performed.
+ChatGPT L99 Independent Governance Review Round 1 is COMPLETED — result CHANGES REQUIRED.
+Corrections applied on PR #27; a targeted L99 re-review of the corrected commit is REQUIRED
+and has not yet been performed.
 
 ## Boss Decisions Required
 
@@ -121,13 +126,19 @@ recommend or declare PASS. Gate PASS is a Boss decision supported by independent
 
 ```text
 Prepared  : 100%  (all deliverables created and self-validated)
-Reviewed  : 0%    (independent L99 review not performed)
+Reviewed  : COMPLETED — CHANGES REQUIRED (L99 Round 1); corrections applied; re-review requested
 Verified  : 0%    (no non-preparer verification)
 Approved  : 0%    (Boss has not approved)
 Closed    : No    (Step 08 not closed)
 ```
 
+Preparer-reported vs L99-assessed preparation (do not conflate):
+
 ```text
-Execution Preparation Progress = 100%
+Preparer-reported Execution Preparation (post-correction) = 100%
+L99 Round-1 Accepted Execution Preparation (pre-correction) = 80%
+  (L99 deducted for provisional-CANONICAL, joint authority, decision/verification
+   conflation, and missing post-commit evidence — all now corrected on PR #27)
+Post-correction acceptance is subject to L99 targeted re-review (not self-certified).
 Official Step Closure Progress = 70% (capped until independent review + verification + Boss approval)
 ```
