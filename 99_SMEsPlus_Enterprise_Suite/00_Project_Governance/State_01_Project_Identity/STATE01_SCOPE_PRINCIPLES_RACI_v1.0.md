@@ -13,7 +13,7 @@ Out of scope unless separately approved: advanced manufacturing, advanced payrol
 
 ## Mandatory Principles
 
-1. UI/UX = Simple + Odoo-first.
+1. UI/UX = Simple + Open ERP-first.
 2. Control = SMEsPlus / Enterprise-first.
 3. Approval Engine approves only.
 4. Source Module executes.
