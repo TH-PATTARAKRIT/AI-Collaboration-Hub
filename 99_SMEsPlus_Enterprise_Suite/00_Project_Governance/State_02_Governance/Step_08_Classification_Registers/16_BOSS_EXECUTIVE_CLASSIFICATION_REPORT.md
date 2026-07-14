@@ -46,18 +46,27 @@ progress.
 ## Document Classification Summary
 
 ```text
-Documents classified: 48 (DOC-S02-001..048)
-CANONICAL CANDIDATE (NOT EFFECTIVE — pending Boss confirmation): 3
-  (Canonical RACI, Ownerless Execution Control Standard, Authority Conflict Register v1.1)
-Effective CANONICAL: 0 (none confirmed by Boss)
-SUPPORTING: 26
+Documents classified: 49 (DOC-S02-001..049)   [+DOC-S02-049 Role Definitions Glossary — GAP-1]
+Effective CANONICAL — CONFIRMED BY BOSS: 3
+  (Canonical RACI = S02-FINAL-002; Ownerless Execution Control Standard = S02-FINAL-004;
+   Role Definitions Glossary = S02-FINAL-003)   [aligned per doc 03 §0 addendum, EV-D17]
+CANONICAL CANDIDATE (NOT EFFECTIVE — no Boss decision, not overstated): 1
+  (Authority Conflict Register v1.1 — no S02-FINAL decision confirms it)
+SUPPORTING: 27   [+Authority Conflict Register v1.0, reclassified SUPERSEDED → Supporting (retained)]
 RETAINED AS EVIDENCE: 14
 WORKING DRAFT: 4
-SUPERSEDED: 1 (Authority Conflict Register v1.0 → v1.1)
+SUPERSEDED: 0
 ARCHIVED: 0
 UNCLASSIFIED (controlling execution): 0
-Duplicate CANONICAL CANDIDATE per topic: 0
+Duplicate canonical per topic: 0
 ```
+
+> **EV-D17 alignment note:** the three Boss confirmations above (S02-FINAL-002/003/004) were recorded
+> **after** this Step 08 package was prepared; they are reflected here for alignment with the Boss-confirmed
+> Governance Index. This updates the *classification of the documents Step 08 classifies* only. Step 08's
+> **own** deliverables remain **PREPARED FOR INDEPENDENT REVIEW / Gate HOLD**; the Final L99 Acceptance
+> Review and the Boss Step-08 decision remain PENDING. No Boss approval is invented or overstated; Boss
+> remains the sole Final Approver.
 
 ## Evidence Classification Summary
 

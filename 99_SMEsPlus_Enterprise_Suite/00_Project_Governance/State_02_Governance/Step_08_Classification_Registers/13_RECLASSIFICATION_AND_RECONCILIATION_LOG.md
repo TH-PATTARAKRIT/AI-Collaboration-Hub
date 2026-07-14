@@ -45,11 +45,30 @@ reclassifications and are recorded in doc 03/04/05.
 | Closure Evidence | PR #16/#19 closure packs (unmerged) | Not in merged base. Referenced; not re-executed. Boss decision governs. |
 | State 02 Finalization documents | PR #23/#24 `STATE02_FINALIZATION/` (unmerged) | Not in merged base. Their decision items (S02-FINAL-005/006) are carried as open items WI-08-A1/A3 and DEC-08-03/06. |
 
+## 3b. EV-D17 Reconciliation to Boss-confirmed Governance Index (2026-07-14)
+
+Applied under Boss authorization (State 02 Step 09 follow-up) to align this Step 08 package with the
+Boss-confirmed Canonical Governance Index. Boss decisions S02-FINAL-002/003/004 were recorded **after**
+Step 08 preparation; they are now reflected in the document classifications (doc 03 §0 addendum, doc 16).
+
+| Reclassification | From → To | Basis | Rollback |
+|---|---|---|---|
+| DOC-S02-010 Canonical RACI v1.0 | CANONICAL CANDIDATE → **EFFECTIVE CANONICAL — CONFIRMED BY BOSS** | S02-FINAL-002 (APPROVED AND APPLIED) | revert doc 03 §0/row + doc 16 |
+| DOC-S02-020 Ownerless Standard | CANONICAL CANDIDATE → **EFFECTIVE CANONICAL — CONFIRMED BY BOSS** | S02-FINAL-004 (APPROVED AND APPLIED) | revert doc 03 §0/row + doc 16 |
+| DOC-S02-049 Role Definitions Glossary (added — GAP-1) | (absent) → **EFFECTIVE CANONICAL — CONFIRMED BY BOSS** | S02-FINAL-003 (APPROVED AND APPLIED); Index GI-60 | remove row |
+| DOC-S02-031 Authority Conflict Register v1.0 | SUPERSEDED → **SUPPORTING (retained)** | Index GI-21/§7 (no doc classified Superseded); CONTRADICTION-1 | revert row |
+| DOC-S02-032 Authority Conflict Register v1.1 | **UNCHANGED** — CANONICAL CANDIDATE (not Boss-confirmed) | No S02-FINAL decision confirms it — not overstated | n/a |
+
+**Not changed:** Step 08's own step-level status remains PREPARED FOR INDEPENDENT REVIEW / Gate HOLD; the
+Final L99 Acceptance Review and Boss Step-08 decision remain PENDING. Only the classification of the
+documents Step 08 classifies was aligned; Step 08's own deliverable approval was **not** self-asserted.
+
 ## 4. Constraints Honored
 
 - No PR closed or merged under this order.
 - No document deleted; no history rewritten.
-- No reclassification made effective (all PENDING Boss / independent approval).
+- Reclassifications made effective **only** where a recorded Boss S02-FINAL decision exists (§3b);
+  all other classifications remain PENDING Boss / independent approval. No Boss approval invented or overstated.
 - Rollback method recorded for every reclassification.
 
 ## 5. Control Statement

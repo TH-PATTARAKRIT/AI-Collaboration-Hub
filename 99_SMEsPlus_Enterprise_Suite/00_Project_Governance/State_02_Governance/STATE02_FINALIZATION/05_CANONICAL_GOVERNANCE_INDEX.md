@@ -113,29 +113,28 @@ It therefore enters this index as **Supporting / PREPARED — HOLD (Step 08)**, 
 | GI-72 | `Step_08…/02_CLASSIFICATION_CODE_DICTIONARY.md` | Classification code model | …/Step_08_Classification_Registers/ | Supporting | 08 | PREPARED — HOLD |
 | GI-73 | `Step_08…/STEP08_VALIDATION_REPORT.md` + `PACKAGE_MANIFEST_SHA256.txt` | Preparer self-check + integrity manifest | …/Step_08_Classification_Registers/ | Supporting (evidence) | 08 | preparer self-check only — not independent verification |
 
-**Authoritative classification (this Governance Index governs; EV-D13 reconciliation):**
+**Authoritative classification (this Governance Index governs; EV-D13 + EV-D17 reconciliation — APPLIED):**
 For every topic, Step 08 and this Index name the **same single** canonical document — there is **no
-duplicate-canonical conflict**. Two Step-08-side items are reconciled to this Index as the authoritative
-source, with the Step-08-file alignment deferred to the Step 08 independent-review cycle (controlled
-follow-up EV-D17):
+duplicate-canonical conflict**. Under Boss authorization (State 02 Step 09 follow-up), the Step 08 package
+has now been **aligned to this Index** (doc 03 §0 addendum, doc 13 §3b, doc 16; Step 08 manifest
+regenerated). Result:
 
-1. **Auth-Conflict Register v1.0 classification (CONTRADICTION-1):** authoritative = **Supporting
-   (retained)** per GI-21 and §7. Step 08 `03_DOCUMENT_CLASSIFICATION_REGISTER.md` (DOC-S02-031) labels
-   it `SUPERSEDED`; that preparer-level label is **subordinate to** this Index and is to be aligned to
-   `Supporting (retained)` in the Step 08 review. Substance agrees (v1.1 is the current tracking superset).
-2. **Canonical-candidate status vs Boss confirmation:** Step 08 holds the RACI (DOC-S02-010), Ownerless
-   Standard (DOC-S02-020) and Auth-Conflict v1.1 (DOC-S02-032) as `CANONICAL CANDIDATE — NOT EFFECTIVE,
-   PENDING BOSS`. Authoritative = **CANONICAL — CONFIRMED BY BOSS** per GI-30 (S02-FINAL-002), GI-40
-   (S02-FINAL-004) and GI-20; the Step 08 candidates reflect its pre-Boss-decision preparation state and
-   are to be reconciled to the confirmed status in the Step 08 review (its
-   `13_RECLASSIFICATION_AND_RECONCILIATION_LOG.md`).
-3. **Glossary coverage (GAP-1):** the Canonical Role Definitions Glossary (GI-60, Boss-confirmed
-   S02-FINAL-003) is **absent** from the Step 08 register and should be added in the Step 08 review.
+1. **Auth-Conflict Register v1.0 (CONTRADICTION-1):** RESOLVED — Step 08 `03` (DOC-S02-031) reclassified
+   `SUPERSEDED → Supporting (retained)`, matching GI-21/§7.
+2. **Canonical status vs Boss confirmation:** RESOLVED (where Boss decisions exist) — Step 08 now records
+   RACI (DOC-S02-010, S02-FINAL-002), Ownerless Standard (DOC-S02-020, S02-FINAL-004) and the Glossary
+   (DOC-S02-049, S02-FINAL-003) as **EFFECTIVE CANONICAL — CONFIRMED BY BOSS**, matching GI-30/GI-40/GI-60.
+   Auth-Conflict v1.1 (DOC-S02-032) **remains CANONICAL CANDIDATE** in both Step 08 and this Index (GI-20
+   "tracking") — **no S02-FINAL decision confirms it**, so it is deliberately not made effective (not overstated).
+3. **Glossary coverage (GAP-1):** RESOLVED — the Role Definitions Glossary (GI-60) is added to the Step 08
+   register as DOC-S02-049 (EFFECTIVE CANONICAL — S02-FINAL-003).
 
-These reconciliations do **not** change any Boss-approved classification meaning; they record this Index
-(built on the S02-FINAL Boss decisions) as authoritative and defer the Step-08 package-internal edits to
-Step 08's own independent review. Step 08's package-level `HOLD / independent-review-pending` status is
-unchanged — Claude Code does not assert a Boss Step-08 approval that does not exist.
+These alignments reflect only Boss decisions that already exist and do **not** change the meaning of any
+Boss-approved classification. **Step 08's package-level status is unchanged** — it remains
+`PREPARED FOR INDEPENDENT REVIEW / Gate HOLD`; its Final L99 Acceptance Review and Boss Step-08 decision
+remain PENDING (a separate governance track, consistent with GI-70 above). Claude Code did not assert a
+Boss Step-08 approval that does not exist. **EV-D17 is CLOSED** (classification alignment applied); the
+Step 08 step-level independent review is accurately recorded as its own open track.
 
 ## 8. Control Statement
 
