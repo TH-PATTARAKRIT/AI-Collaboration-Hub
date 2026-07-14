@@ -1,12 +1,13 @@
 # Enterprise Control Layer (ARC-WP-004)
 
 Document ID: ARC-WP-004
-Version: 0.1
+Version: 0.2
 Session: [SMEPLUS-26-07-10-001]
 Control Level: /L99.99
 Status: DRAFT
-Approval Status: PREPARED FOR INDEPENDENT REVIEW / HOLD
+Approval Status: PREPARED FOR REVIEW / HOLD
 Gate Status: HOLD
+Correction Reference: L99 Review Finding P0-03 (Batch 001 remediation)
 
 ## 1. Document Control
 
@@ -14,7 +15,7 @@ Gate Status: HOLD
 |---|---|
 | Document ID | ARC-WP-004 |
 | Deliverable | ENTERPRISE_CONTROL_LAYER.md |
-| Version | 0.1 |
+| Version | 0.2 |
 | Architecture Owner | Enterprise Control Architecture AI Owner |
 | Supporting Owner | Access Architecture AI Owner |
 | Independent Reviewer | ChatGPT L99 |
@@ -57,7 +58,7 @@ ChatGPT L99.
 ## 9. Assumptions
 
 - A-001: Approval and posting are platform capabilities, not per-module features (PR-03, PR-06, PR-07).
-- A-002: A source module owns document creation; control engines govern approval and posting.
+- A-002: A source module owns and executes its business transaction; the Enterprise Control Layer **governs** (enforces policy/SoD/scope around) approval and posting but does **not itself execute** approval or posting. The Approval Engine approves; the Posting Engine posts (L99 finding P0-03).
 - A-003: Approval rules are configurable per tenant/company.
 
 ## 10. Current State
@@ -70,12 +71,27 @@ A defined control layer where source modules submit documents, the Approval Engi
 
 ## 12. Architecture Model
 
+### 12.0 Canonical Responsibility Model (controlling)
+
+```text
+Approval Engine approves only.
+Source Module executes the business transaction.
+Posting Engine posts.
+Workflow Engine controls status transition and orchestration.
+Enterprise Control Layer enforces policy, segregation of duties, restrictions and gate conditions.
+Events record immutable business facts.
+```
+
+The Enterprise Control Layer **governs and enforces the control policy around** the Approval Engine and Posting Engine. It does **not** directly execute approval or posting actions, and it **cannot bypass** the Approval Engine or Posting Engine.
+
 ### 12.1 Responsibilities
-- **Enterprise Control**: policy enforcement, SoD, exception and escalation control, restricted-action gating.
-- **Source Module** (Sales, Purchase, Inventory, etc.): creates and owns the business document lifecycle up to submission.
-- **Approval Engine**: evaluates configurable approval routes and records approve/reject decisions.
-- **Posting Engine**: executes financial/inventory posting from an approved source document only.
-- **Workflow Engine**: drives document status transitions and orchestrates approval/posting steps.
+
+- **Source Module** (Sales, Purchase, Inventory, CRM, etc.): owns the business document; validates business rules; initiates submission; **executes the authorized business transaction**. Does not perform final restricted approval. Does not post directly.
+- **Approval Engine**: evaluates approval rules; records approve/reject decisions. Does not execute source-module business operations. Does not perform posting.
+- **Posting Engine**: performs controlled ledger/stock posting; accepts only valid authorized posting requests; enforces idempotency; emits immutable posting results.
+- **Workflow Engine**: controls state transitions; coordinates the approval and posting sequence; does not replace source-module execution logic.
+- **Enterprise Control Layer**: enforces policy; enforces segregation of duties; enforces tenant/company/branch scope; blocks restricted actions; controls exceptions and escalation. Cannot bypass the Approval Engine or Posting Engine, and does not itself approve or post.
+- **Immutable Event Layer**: records business facts; append-only; does not replace operational source records unless explicitly approved by ADR (see ADR-ARC-002).
 
 ### 12.2 Control Flow
 
@@ -146,10 +162,11 @@ Approval and posting throughput are capacity dimensions (ARC-WP-011); asynchrono
 
 | AC ID | Criterion | Verification Method | Required Evidence |
 |---|---|---|---|
-| AC-001 | Source/approval/posting/workflow responsibilities separated | Review | Section 12.1 |
-| AC-002 | Posting occurs only from an approved document | Design review | Section 12.2, ADR-ARC-007 |
-| AC-003 | SoD default prevents self-approval of financial documents | Review | Section 12.3 |
-| AC-004 | Restricted actions enumerated and audited | Review | Section 12.4 |
+| AC-001 | Canonical responsibility model present; Enterprise Control governs but does not execute approval/posting | Review | Sections 12.0, 12.1 |
+| AC-002 | Source module executes the business transaction; Approval Engine approves; Posting Engine posts | Review | Section 12.1 |
+| AC-003 | Posting occurs only from an approved document | Design review | Section 12.2, ADR-ARC-007 |
+| AC-004 | SoD default prevents self-approval of financial documents | Review | Section 12.3 |
+| AC-005 | Restricted actions enumerated and audited | Review | Section 12.4 |
 
 ## 22. Evidence Requirements
 
@@ -172,7 +189,8 @@ Approval and posting throughput are capacity dimensions (ARC-WP-011); asynchrono
 | Version | Date | Change | Author | Reviewer |
 |---|---|---|---|---|
 | 0.1 | 2026-07-14 | Initial draft | Enterprise Control Architecture AI Owner (Claude Code drafting agent) | Pending (ChatGPT L99) |
+| 0.2 | 2026-07-14 | P0-03 remediation: added canonical responsibility model; clarified Enterprise Control governs (does not execute) approval/posting; source module executes the business transaction | Enterprise Control Architecture AI Owner (Claude Code Expert correction agent) | Pending (ChatGPT L99) |
 
 ## 26. Approval Status
 
-PREPARED FOR INDEPENDENT REVIEW / HOLD. Independent review and Boss decision remain mandatory.
+PREPARED FOR REVIEW / HOLD. Independent review and Boss decision remain mandatory.

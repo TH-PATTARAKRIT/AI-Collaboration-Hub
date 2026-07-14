@@ -108,6 +108,24 @@ All 13 architecture deliverables + ADR register + risk register + evidence regis
 - Provide sizing/residency, compliance regime, RPO/RTO/DR level, metered dimensions/billing boundary.
 - Authorize (or hold) Gate A / Gate B after independent review.
 
-## 13. Control Statement
+## 13. Correction Batch (L99 Review Remediation — PR #26)
 
-Claude Code AI prepared the State 03 Architecture package and repository evidence. No Architecture Gate has been approved. Independent ChatGPT L99 review and Boss final decision remain mandatory.
+Independent review verdict received: **HOLD / CORRECTION REQUIRED**. The following findings were corrected on the existing branch/PR (drafting/wording remediation only — not independent verification):
+
+- **P0-01 (ADR register incomplete)**: `ARCHITECTURE_DECISION_REGISTER.md` → v0.2. All 19 ADRs rewritten to one consistent 18-field structure (adds Positive/Negative Consequences, Related Risks, Gate Impact, Target Decision Date, Evidence References to every record). No ADR is APPROVED BY BOSS; ADR-ARC-004/013 remain DECISION REQUIRED; ADR-ARC-008 remains PROPOSED / HOLD.
+- **P0-02 (module boundary inconsistency)**: `APPLICATION_MODULE_BOUNDARY.md` → v0.2. Recast as **Controlled Hybrid Modular Architecture** with three boundary categories (in-process ERP / enterprise control / external service). Removed the uncontrolled circular-dependency diagram (Sales↔Accounting, Purchase↔Accounting); replaced with the controlled directional posting chain. ADR-ARC-010 replaced with "Controlled Hybrid Module Integration".
+- **P0-03 (Enterprise Control wording)**: `ENTERPRISE_CONTROL_LAYER.md` → v0.2 plus `APPLICATION_MODULE_BOUNDARY.md`, `LOGICAL_COMPONENT_ARCHITECTURE.md`, `SAAS_ARCHITECTURE_PRINCIPLES.md`, `ARCHITECTURE_DECISION_REGISTER.md`. Added the canonical responsibility model; clarified Enterprise Control **governs** (does not execute) approval/posting; source module executes the business transaction; Approval Engine approves; Posting Engine posts.
+- **P1-01 (NFR evidence basis)**: `NON_FUNCTIONAL_ARCHITECTURE_REQUIREMENTS.md` → v0.2. Every NFR classified (APPROVED BASELINE / PROPOSED TARGET / ASSUMPTION / TBD WITH OWNER / REQUIRED HARD CONTROL); added NFR Evidence Basis table; recorded 13 missing business/infra input gaps. No numeric target is represented as an approved baseline.
+- **P1-02 (automated validation)**: added `validate_state03_package.py` (13 controlled checks) and committed `STATE03_VALIDATION_REPORT.md` as evidence.
+- **P2-01 (PR branch note)**: corrected. Current GitHub comparison shows the branch is **2 commits ahead of `SMEsPlus`, 19 changed files, all within the State 03 package**. The earlier "carries prior unmerged State 02 governance commits" note is no longer accurate (State 02 work has merged into `SMEsPlus`) and has been removed from the PR description.
+
+Validation method: automated `validate_state03_package.py` (structure/evidence-integrity checks) — not independent approval.
+
+Remaining decisions: ADR-ARC-004, ADR-ARC-008, ADR-ARC-010, ADR-ARC-013; business inputs per GAP-IN-01..05.
+Remaining risks: 6 P0/Critical (RK-01/02/04/06/08/10) remain open.
+
+Gate recommendations after correction (assessment only, not approval): Gate A — READY FOR INDEPENDENT RE-REVIEW; Gate B — RECOMMEND HOLD.
+
+## 14. Control Statement
+
+Claude Code AI prepared and corrected the State 03 Architecture package and repository evidence. No Architecture Gate has been approved. Independent ChatGPT L99 review and Boss final decision remain mandatory.

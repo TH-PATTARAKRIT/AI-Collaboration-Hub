@@ -1,12 +1,14 @@
-# Application and Module Boundary (ARC-WP-005)
+# Application and Module Boundary (ARC-WP-005) — Controlled Hybrid Modular Architecture
 
 Document ID: ARC-WP-005
-Version: 0.1
+Version: 0.2
 Session: [SMEPLUS-26-07-10-001]
 Control Level: /L99.99
 Status: DRAFT
-Approval Status: PREPARED FOR INDEPENDENT REVIEW / HOLD
+Approval Status: PREPARED FOR REVIEW / HOLD
+Architecture Style: Controlled Hybrid Modular Architecture (PROPOSED / HOLD)
 Gate Status: HOLD
+Correction Reference: L99 Review Finding P0-02 (Batch 001 remediation)
 
 ## 1. Document Control
 
@@ -14,7 +16,7 @@ Gate Status: HOLD
 |---|---|
 | Document ID | ARC-WP-005 |
 | Deliverable | APPLICATION_MODULE_BOUNDARY.md |
-| Version | 0.1 |
+| Version | 0.2 |
 | Architecture Owner | Solution Architecture AI Owner |
 | Supporting Owner | ERP Module Architecture AI Owner |
 | Independent Reviewer | ChatGPT L99 |
@@ -57,8 +59,8 @@ ChatGPT L99.
 
 ## 9. Assumptions
 
-- A-001: Modules communicate via APIs and events, never via shared database tables (PR-12).
-- A-002: Enterprise Control, not modules, owns approval and posting.
+- A-001: The system is a **Controlled Hybrid Modular Architecture**, not pure microservices and not an uncontrolled monolith. In-process ERP modules may share ORM and transactional database access under controlled interfaces; external/cross-runtime integration uses APIs and events only (ADR-ARC-010). This corrects the v0.1 assumption that "modules communicate via APIs and events, never via shared database tables", which incorrectly forced microservices and conflicted with the Odoo-first modular ERP direction (L99 finding P0-02).
+- A-002: Source modules execute their own business transactions. The Enterprise Control Layer governs (enforces policy/SoD/scope around) approval and posting; it does not itself execute approval or posting. The Approval Engine approves, the Posting Engine posts (see ARC-WP-004; L99 finding P0-03).
 - A-003: Clean-room constraint governs all module implementations.
 
 ## 10. Current State
@@ -87,57 +89,95 @@ A clear module map with domain grouping, single source-module ownership per busi
 | Customer master | Customer CRM |
 | Approval request | Approval Engine |
 
-### 12.3 Dependency Map
+### 12.3 Controlled Hybrid Modular Architecture — Three Boundary Categories
+
+The architecture is a **Controlled Hybrid Modular Architecture**. It is neither pure microservices nor an uncontrolled monolith. Integration rules depend on which of three boundary categories applies.
+
+#### A. In-Process ERP Module Boundary
+For modules deployed within the same ERP application runtime (e.g., Sales, Purchase, Inventory, Customer CRM, Accounting operating in one Odoo-style runtime):
+- Shared ORM and transactional database access **may** be allowed.
+- Direct raw SQL access to another module's tables is **prohibited** unless formally controlled and documented.
+- Business ownership remains with the source module.
+- Cross-module operations must use defined service, model or domain interfaces.
+- Shared transaction boundaries must be documented.
+- Internal module dependency does **not** automatically require an HTTP API call.
+- Circular dependency remains **prohibited** (see ADR-ARC-011).
+
+#### B. Enterprise Control Boundary
+Approval Engine, Posting Engine, Workflow Engine and policy-control components must be reached only through explicit controlled interfaces. No source module may:
+- approve its own restricted transaction;
+- post directly outside the Posting Engine;
+- bypass segregation-of-duties controls;
+- mutate immutable audit or event records;
+- bypass tenant/company/branch scope.
+
+#### C. External Service and Integration Boundary
+APIs, events and webhooks are **mandatory** for: external systems, Make automation, mobile applications, public APIs, independent services, cross-runtime services, asynchronous integration and partner systems. Direct database integration across service boundaries is **prohibited**.
+
+### 12.4 Controlled Directional Flow (No Circular Synchronous Dependencies)
+
+The v0.1 diagram showed uncontrolled circular synchronous dependencies (Sales↔Accounting, Purchase↔Accounting). These are removed. Business flow is a controlled, directional posting chain; cross-module read/reporting needs use controlled read models, services or events — not synchronous cycles.
 
 ```mermaid
-graph LR
-  Sales --> CRM[Customer CRM]
-  Sales --> Inventory
-  Sales --> Accounting
-  Purchase --> Inventory
-  Purchase --> Accounting
-  Accounting --> Sales
-  Accounting --> Purchase
-  ApprovalEngine --> Sales
-  ApprovalEngine --> Purchase
-  WorkflowEngine --> ApprovalEngine
-  Notification --> ApprovalEngine
-  Notification --> WorkflowEngine
-  Dashboard --> Sales
-  Dashboard --> Purchase
-  Dashboard --> Inventory
-  Dashboard --> Accounting
-  Reporting --> Sales
-  Reporting --> Purchase
-  Reporting --> Inventory
-  Reporting --> Accounting
-  APIGateway --> Sales
-  APIGateway --> Purchase
+graph TD
+  subgraph InProcess[A. In-Process ERP Modules]
+    Sales[Sales - Source Module]
+    Purchase[Purchase - Source Module]
+    Inventory[Inventory - Source Module]
+    CRM[Customer CRM - Source Module]
+  end
+  subgraph Control[B. Enterprise Control Boundary]
+    WF[Workflow Engine - orchestration]
+    AP[Approval Engine - approves]
+    EC[Enterprise Control - policy/SoD/scope]
+    PE[Posting Engine - posts]
+  end
+  Ledger[(Accounting Ledger)]
+  EVT[Immutable Event]
+  Report[Reporting / Dashboard - read models]
+  Notify[Notification]
+
+  Sales -->|submit| WF
+  Purchase -->|submit| WF
+  CRM -.customer ref.-> Sales
+  Inventory -.stock ref.-> Sales
+  Inventory -.receiving ref.-> Purchase
+  WF -->|policy check| EC
+  WF -->|request approval| AP
+  WF -->|posting request if approved| PE
+  PE --> Ledger
+  PE --> EVT
+  EVT --> Report
+  EVT --> Notify
 ```
 
-### 12.4 Prohibited Dependency Patterns
-- No direct cross-module database access.
-- No circular synchronous call chains (cycles resolved via events).
+Directional concept (no cycles):
+`Source Module → Approval / Workflow Control → Posting Request → Posting Engine → Accounting Ledger → Immutable Event → Reporting / Notification`
+
+### 12.5 Prohibited Dependency Patterns
+- No **raw cross-module SQL** or direct access to another module's tables (even in-process) unless formally controlled and documented.
+- No **direct cross-service (cross-runtime) database coupling** — external/independent services integrate via API/events only.
+- No **circular synchronous** call chains (resolve via events / controlled read models).
 - No module performing posting or final approval outside the control engines.
 - No module bypassing the API Gateway for external access.
 
-### 12.5 Shared Platform Services
+### 12.6 Shared Platform Services
 Identity, entitlement, audit, notification and observability are shared services consumed by all modules through defined interfaces.
 
-### 12.6 Extension and Custom Module Strategy
+### 12.7 Extension and Custom Module Strategy
 Extension via configuration and feature flags first (AP-007); custom modules must declare dependencies and comply with control and clean-room rules. No source-code forking of the core.
 
-### 12.7 Clean-Room Implementation Boundary
+### 12.8 Clean-Room Implementation Boundary
 No module may embed code, schema or content derived directly from a proprietary source system. Learning is conceptual only (PR-16, `09_Security_Clean_Room`).
 
 ## 13. Architecture Decisions
 
-- ADR-ARC-010 (Modules integrate only via API/events, no shared tables): PROPOSED.
-- ADR-ARC-011 (No circular synchronous dependencies): PROPOSED.
+- ADR-ARC-010 (**Controlled Hybrid Module Integration** — distinguishes in-process module integration, shared-ORM transaction boundaries, controlled domain/service interfaces, external API/event boundaries, and prohibits direct cross-service database coupling): PROPOSED / HOLD. Supersedes the v0.1 "API/events only, no shared tables" formulation.
+- ADR-ARC-011 (No circular synchronous dependencies; use events / controlled read models): PROPOSED.
 
 ## 14. Security Considerations
 
-Prohibited direct DB coupling reduces lateral-movement risk; API Gateway is the single external ingress with authentication/authorization.
+Prohibited raw cross-module SQL and prohibited direct cross-service database coupling reduce lateral-movement risk; the API Gateway is the single external ingress with authentication/authorization. In-process shared-ORM access is permitted only through controlled interfaces, keeping the attack surface bounded while matching the ERP runtime reality.
 
 ## 15. Privacy and Compliance Considerations
 
@@ -171,8 +211,10 @@ Module independence allows independent scaling; high-fan-in modules (Accounting,
 |---|---|---|---|
 | AC-001 | Every module assigned to exactly one domain group | Review | Section 12.1 |
 | AC-002 | Every listed business object has one owning source module | Review | Section 12.2 |
-| AC-003 | Prohibited patterns enumerated | Review | Section 12.4 |
-| AC-004 | Clean-room boundary references clean-room policy | Link check | Section 12.7 |
+| AC-003 | Three boundary categories (in-process / control / external) defined | Review | Section 12.3 |
+| AC-004 | Prohibited patterns enumerated (raw cross-module SQL, cross-service DB coupling, sync cycles) | Review | Section 12.5 |
+| AC-005 | Dependency diagram shows no circular synchronous dependencies | Diagram review | Section 12.4 |
+| AC-006 | Clean-room boundary references clean-room policy | Link check | Section 12.8 |
 
 ## 22. Evidence Requirements
 
@@ -195,7 +237,8 @@ Module independence allows independent scaling; high-fan-in modules (Accounting,
 | Version | Date | Change | Author | Reviewer |
 |---|---|---|---|---|
 | 0.1 | 2026-07-14 | Initial draft | Solution Architecture AI Owner (Claude Code drafting agent) | Pending (ChatGPT L99) |
+| 0.2 | 2026-07-14 | P0-02 remediation: recast as Controlled Hybrid Modular Architecture (3 boundary categories); removed circular synchronous dependency diagram; replaced ADR-ARC-010 with controlled hybrid integration | Solution Architecture AI Owner (Claude Code Expert correction agent) | Pending (ChatGPT L99) |
 
 ## 26. Approval Status
 
-PREPARED FOR INDEPENDENT REVIEW / HOLD. Independent review and Boss decision remain mandatory.
+PREPARED FOR REVIEW / HOLD. Architecture style is Controlled Hybrid Modular Architecture, status PROPOSED / HOLD. Independent review and Boss decision remain mandatory.

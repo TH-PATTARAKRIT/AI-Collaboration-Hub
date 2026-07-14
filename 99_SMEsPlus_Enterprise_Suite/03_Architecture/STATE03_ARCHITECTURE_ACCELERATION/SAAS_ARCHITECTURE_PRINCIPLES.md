@@ -1,12 +1,13 @@
 # SaaS Architecture Principles (ARC-WP-001)
 
 Document ID: ARC-WP-001
-Version: 0.1
+Version: 0.2
 Session: [SMEPLUS-26-07-10-001]
 Control Level: /L99.99
 Status: DRAFT
-Approval Status: PREPARED FOR INDEPENDENT REVIEW / HOLD
+Approval Status: PREPARED FOR REVIEW / HOLD
 Gate Status: HOLD
+Correction Reference: L99 Review Finding P0-03 (Batch 001 remediation)
 
 ## 1. Document Control
 
@@ -83,7 +84,7 @@ Every capability is designed multi-tenant and subscription-driven before any sin
 UI/UX patterns follow a familiar Odoo-style operational model for SME users. Success: navigation and record patterns match the reference model while all code is independently authored under the clean-room constraint (see PR-16).
 
 ### PR-03 SMEsPlus Enterprise Control
-A dedicated Enterprise Control layer governs approvals, posting, segregation of duties and policy enforcement across modules. Success: no source module can post or approve outside the control layer's policy.
+A dedicated Enterprise Control layer **governs** approvals, posting, segregation of duties and policy enforcement across modules — it enforces policy/SoD/scope and gate conditions **around** the engines but does **not itself execute** approval or posting. The Approval Engine approves (PR-06), the Posting Engine posts (PR-07), and the source module executes its own business transaction. Success: no source module can post or approve outside the control layer's policy, and the control layer cannot bypass the Approval or Posting engines.
 
 ### PR-04 Modular Architecture
 Modules are loosely coupled, independently activatable, and declare explicit dependencies. Success: a tenant runs only the modules it is entitled to.
@@ -189,7 +190,8 @@ PR-15 requires per-tenant capacity and cost visibility; targets in ARC-WP-011.
 | Version | Date | Change | Author | Reviewer |
 |---|---|---|---|---|
 | 0.1 | 2026-07-14 | Initial draft prepared for independent review | Enterprise Architecture AI Owner (Claude Code drafting agent) | Pending (ChatGPT L99) |
+| 0.2 | 2026-07-14 | P0-03 remediation: PR-03 clarified — Enterprise Control governs (does not execute) approval/posting; engines and source-module execution made explicit | Enterprise Architecture AI Owner (Claude Code Expert correction agent) | Pending (ChatGPT L99) |
 
 ## 26. Approval Status
 
-PREPARED FOR INDEPENDENT REVIEW / HOLD. AI drafting does not equal approval. Independent ChatGPT L99 review and Boss decision remain mandatory.
+PREPARED FOR REVIEW / HOLD. AI drafting does not equal approval. Independent ChatGPT L99 review and Boss decision remain mandatory.

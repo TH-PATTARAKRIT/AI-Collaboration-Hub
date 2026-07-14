@@ -107,7 +107,7 @@ graph TD
 - Dependencies flow downward: Presentation → Application → Module → Control → Data.
 - Modules never call presentation; lower layers never call upward synchronously (use events).
 - Identity, observability and async are cross-cutting and may be used by any layer via defined interfaces.
-- Posting/approval accessible only through the Enterprise-Control layer.
+- Approval and posting are performed by the Approval Engine and Posting Engine respectively, under the governance of the Enterprise-Control layer; the Enterprise-Control layer enforces policy/SoD/scope around these engines but does not itself execute approval or posting (see ARC-WP-004 canonical responsibility model). No module reaches the Posting Engine except via the controlled approval/workflow path.
 
 ## 13. Architecture Decisions
 
@@ -151,7 +151,7 @@ Horizontal scaling per layer; async layer absorbs bursts. Event store growth is 
 | AC-001 | Nine logical layers defined with responsibilities | Review | Section 12.1 |
 | AC-002 | Component Mermaid diagram present and valid | Diagram render | Section 12.2 |
 | AC-003 | Dependency direction rules stated | Review | Section 12.3 |
-| AC-004 | Posting/approval reachable only via control layer | Review | Sections 12.2/12.3 |
+| AC-004 | Approval/posting performed by their engines under Enterprise-Control governance (control layer governs, does not execute) | Review | Sections 12.2/12.3 |
 
 ## 22. Evidence Requirements
 
