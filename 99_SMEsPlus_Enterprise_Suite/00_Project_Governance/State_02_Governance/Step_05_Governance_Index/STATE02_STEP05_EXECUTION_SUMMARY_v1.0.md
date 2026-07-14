@@ -41,7 +41,7 @@ COMPLETE, APPROVED, FINAL, or CANONICAL.
 
 ## 3. What Was Produced
 
-19 files under `Step_05_Governance_Index/`: the original 15 Step 05 deliverables
+21 files under `Step_05_Governance_Index/`: the original 15 Step 05 deliverables
 (document inventory, PR reconciliation matrix, classification register, function-to-
 document map, the Governance Index itself, an integrity record with raw SHA256 output
 and a self-excluding manifest, an open items register, this execution summary, a
@@ -49,6 +49,9 @@ completion checklist, an evidence register, blank L99 review and verification re
 shells, and a Boss decision pack) plus 4 blocker-resolution deliverables added in the
 -003 pass: the Blocker Resolution Matrix, the Step 04 Authority Correction Validation,
 the Step 03/04 Final Hash Reconciliation, and the Step 03/04 Final SHA256 raw output.
+Two execution-control registers (EXECUTION_ASSUMPTION_REGISTER.md,
+EXECUTION_EXCEPTION_REGISTER.md) were subsequently added under the non-interactive
+auto-execution order, bringing the package to 21 files.
 
 ## 4. What Was Not Done (by design, per the execution order's restrictions)
 

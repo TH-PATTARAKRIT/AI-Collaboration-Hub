@@ -73,8 +73,10 @@ Cross-Step: Checked 4 · Matches 4 · Mismatches 0 · Missing 0.
 
 ## 4. Step 05 Files (this package)
 
-All files in `Step_05_Governance_Index/` (the 15 original Step 05 deliverables plus the
-4 blocker-resolution deliverables added this session) are recorded once in
+All files in `Step_05_Governance_Index/` (the 15 original Step 05 deliverables, the 4
+blocker-resolution deliverables, and the 2 execution-control registers required by the
+non-interactive execution order — EXECUTION_ASSUMPTION_REGISTER.md and
+EXECUTION_EXCEPTION_REGISTER.md) are recorded once in
 `PACKAGE_MANIFEST_SHA256_STATE02_STEP05_GOVERNANCE_INDEX.txt`. Their untruncated current
 hashes are in `STATE02_GOVERNANCE_INDEX_SHA256_COMMAND_OUTPUT.txt`. As Step 05 is a
 newly-authored package, these are BASELINE ESTABLISHED (no prior manifest to compare).
