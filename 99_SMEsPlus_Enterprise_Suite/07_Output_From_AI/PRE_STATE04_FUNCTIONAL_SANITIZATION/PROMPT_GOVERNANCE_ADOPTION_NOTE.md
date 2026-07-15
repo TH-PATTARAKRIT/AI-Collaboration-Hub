@@ -39,6 +39,8 @@ Use **Profile D — Frontend/UI** only in STATE05, after FDS and API Contract re
 
 Profile E applies to the current PRE-STATE04 Independent Review and future STATE04 work. Independent Review requires `HIGH_REASONING`; record the Model when known, otherwise use `MODEL_NOT_DISCLOSED` with complete Platform, Agent Type, Capability Tier, Tooling Context, execution date, and evidence output. No silent downgrade is permitted.
 
+Prompt Lineage applies: every continuation, correction, handoff, or revalidation must name Parent Prompt ID, Reference Prompt IDs, Reference Type, exact Commit/PR/artifact baseline, and Previous State Snapshot. Closed prompts remain Historical Evidence and must be revalidated before reliance.
+
 ## Mandatory Restrictions
 
 - Learn only permitted abstract business behavior, business rules, data concepts, and process controls.
