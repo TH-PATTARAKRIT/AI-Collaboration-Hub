@@ -35,6 +35,10 @@ Use **Profile B — Functional Design**:
 
 Use **Profile D — Frontend/UI** only in STATE05, after FDS and API Contract readiness. Figma Design Authority, approved Design Tokens, and approved Mock API/API Contracts are mandatory.
 
+## AI Model & Capability Control
+
+Profile E applies to the current PRE-STATE04 Independent Review and future STATE04 work. Independent Review requires `HIGH_REASONING`; record the Model when known, otherwise use `MODEL_NOT_DISCLOSED` with complete Platform, Agent Type, Capability Tier, Tooling Context, execution date, and evidence output. No silent downgrade is permitted.
+
 ## Mandatory Restrictions
 
 - Learn only permitted abstract business behavior, business rules, data concepts, and process controls.
