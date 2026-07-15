@@ -1,21 +1,21 @@
 # STEP0301 Package Manifest — Governance Registry and Controlled Content Hash Verification
 #
 # Control Level: /L99.99 · Role: Sole Final Approver = Boss
-# Session ID: [SMEPLUS-26-07-15-001] · State: STATE03 · Step: STEP0301 · Current Prompt: STEP030109 · Prior Prompt: STEP030108
+# Session ID: [SMEPLUS-26-07-15-001] · State: STATE03 · Step: STEP0301 · Current Prompt: STEP030110 · Prior Prompt: STEP030109
 # Repository: TH-PATTARAKRIT/AI-Collaboration-Hub · Branch: claude/state03-step0301-architecture-baseline-inventory
 # Purpose: Verify integrity of STEP0301 controlled-content package; enable independent verification; detect defects
-# Scope: Exactly 17 controlled source files (see list below)
+# Scope: Exactly 18 controlled source files (see list below)
 # SHA256 Verification Command: sha256sum -c PACKAGE_MANIFEST_SHA256_STEP0301.txt
 # Duplicate-Record Detection Command: grep -vE '^#|^$' PACKAGE_MANIFEST_SHA256_STEP0301.txt | awk '{print $2}' | sort | uniq -d
 #
-# Generation timestamp (STEP030109): 2026-07-15T16:52:26Z
+# Generation timestamp (STEP030110): 2026-07-15T17:13:24Z
 # This manifest is regenerated after ALL controlled-file edits and must exclude itself by convention.
 #
-# Controlled Content Files (17 total):
-# Row 00-15 = STEP0301 core evidence, decision, and resolution records (excludes manifest itself)
+# Controlled Content Files (18 total):
+# Row 00-16 = STEP0301 core evidence, decision, and resolution records (excludes manifest itself)
 # No other files are authorized in this manifest.
 #
-f7b884d3058729d15cc1bf77ed817480c67ded40fe711ccb74e9bc7c4aaa71b3  00_STEP0301_EXECUTIVE_SUMMARY.md
+9c3023a0b7c3fb7e65e64320cc4cbac4f553ad482d3352cae4acf2df85c5dc3c  00_STEP0301_EXECUTIVE_SUMMARY.md
 0b8c988fd3076327ea372b5a7fc31c6597dc80049eae1b03f6a10840c50fe29e  01_STEP0301_ARCHITECTURE_DOCUMENT_INVENTORY.md
 249559bc1dc689c056736641efb0b35d7cfade36e9111f5aa13fd46e886f5adc  02_STEP0301_ARCHITECTURE_DOMAIN_COVERAGE_MATRIX.md
 724f25c8872655750b8ec2697d48b797343872c171a3e4b075efbd55e0515817  03_STEP0301_BRANCH_AND_PR_EVIDENCE_MATRIX.md
@@ -24,11 +24,12 @@ a6faa081922ae1d1ff6f8b28de053a2efd6551477e7149deff198d4332ffd772  05_STEP0301_CO
 14e5df34e699983100c293ca26ff5646bb404bd4eb10cc1e518321ec694b5369  06_STEP0301_GATE_EVIDENCE_INVENTORY.md
 410a6953f4a65df0d71c4855ce5b6b38de8c84dcd710120cee854ec4bbdfb1dc  07_STEP0301_OFFICIAL_STEP_REGISTER_FINDING.md
 c9a934f02f85ed7c748ae95b3103e74c48ef62c50b1814697ccae805b801c9bb  08_STEP0301_EVIDENCE_REGISTER.md
-149baa4e47d9964962887203a1068603fec7904a3581a897a4b510f32cf009f3  09_STEP0301_REVIEW_HANDOFF.md
+de274af45032cf4be862436f15a8920c475c8972aa83408663ee173c60fe38e0  09_STEP0301_REVIEW_HANDOFF.md
 6d86eb6b842267adbe3351fcedd3f6f2e69d2e32cd11b0d9d3af6f51c56eab08  10_STEP0301_COMPLETION_CHECKLIST.md
 30fbef0387e49fa2e6202dfeedf7efc7e6479ebfe71d94508b9313b7290935e8  11_STEP030106_BOSS_AUTHORIZATION_RECORD.md
 87e9e0fe01de58eaf80b39fb0f8ac00c3dacc306e1cf8be0c2c091b8864af31b  12_STEP030108_STATE03_STEP_REGISTER_DECISION_PACKAGE.md
 759fb24542086d7bfd8e315f68975b38e501025539504393417cd71b12dd7c7f  13_STEP030108_BOSS_STEP_REGISTER_DECISION_RECORD.md
 e3f1fd63aadd77b1036e8772aee54f4cc15368337fd6fe2cc8a8137e56e8efd5  14_STEP030109_BOSS_DECISION_IMPLEMENTATION_RECORD.md
-7d09dbe91dc3b3e2f0874c338190644cae09d7aff1f5b4e171388c1f94f4abef  15_STEP030109_BLOCKING_ISSUE_RESOLUTION_MATRIX.md
-c2ddabd09f05aa02a13cf40206d0cd1a2e710b955920e8378591a70cf46aedf4  STEP0301_EXECUTION_LOG.md
+cc8f70594cb01634b26e8c48a7fc4617383304d853cc06e8cf9485c3a5b7bf00  15_STEP030109_BLOCKING_ISSUE_RESOLUTION_MATRIX.md
+9b2405d7a9c2c717da5a5fbefc96b7bc7c61c258ef36a37fce2c8aacab619a6a  16_STEP030110_PR26_PR34_REVALIDATION_AND_EVIDENCE_BACKED_DISPOSITION.md
+105e1b62d800102bc18d67a8187be16838574a7b1ce1613d21beb98ac14934f7  STEP0301_EXECUTION_LOG.md
