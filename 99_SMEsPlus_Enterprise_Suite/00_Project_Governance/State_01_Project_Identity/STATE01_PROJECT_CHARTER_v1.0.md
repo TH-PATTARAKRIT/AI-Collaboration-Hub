@@ -20,7 +20,7 @@ AI PMO Role: Support Only
 
 ## 2. Product Vision
 
-SMEsPlus Enterprise Suite is an Odoo-first, enterprise-controlled SaaS ERP platform for Thai SMEs and enterprise-lite organizations. It must be simple to use, traceable, scalable, secure, and governed by evidence-based gates.
+SMEsPlus Enterprise Suite is an Open ERP-first, enterprise-controlled SaaS ERP platform for Thai SMEs and enterprise-lite organizations. It must be simple to use, traceable, scalable, secure, and governed by evidence-based gates.
 
 ## 3. Business Problem
 
@@ -53,7 +53,7 @@ Unless separately approved by Boss:
 
 ## 7. Core Principles
 
-- UI/UX = Simple + Odoo-first
+- UI/UX = Simple + Open ERP-first
 - Control = SMEsPlus / Enterprise-first
 - Approval Engine approves only
 - Source Module executes
