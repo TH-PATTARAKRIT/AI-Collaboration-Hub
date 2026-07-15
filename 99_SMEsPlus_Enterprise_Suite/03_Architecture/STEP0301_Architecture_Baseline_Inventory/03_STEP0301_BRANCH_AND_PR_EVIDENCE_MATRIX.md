@@ -1,21 +1,29 @@
 # 03 — STEP0301 Branch and PR Evidence Matrix
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: CORRECTION & REVALIDATION
-Re-inspected (UTC): 2026-07-15T00:20:44Z
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: DELTA REVALIDATION
+Delta re-inspected (UTC): 2026-07-15T05:27:24Z
 
 ## Reference points (authoritative via `git ls-remote origin` / GitHub metadata)
 
 | Ref | SHA | Note |
 |---|---|---|
-| SMEsPlus (target HEAD, current) | `d995ae2986c4610b102307398591dbaba60be9e0` | current remote HEAD (re-inspected) |
-| SMEsPlus (previous inspection, superseded) | `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` | advanced by 1 commit `d995ae2` (State 01 Open ERP terminology) |
-| PR #26 head (`claude/state-03-architecture-deliverables-su8cg6`) | `098798f705c0c7f25982adc56becef90e3af734a` | open, DRAFT, NOT MERGED |
+| SMEsPlus (target HEAD, current) | `c880c9d729018f8660ebb92599e098df2bde2f6d` | current remote HEAD (delta-revalidated) |
+| SMEsPlus (prior correction-run inspection, superseded) | `d995ae2986c4610b102307398591dbaba60be9e0` | advanced by 2 commits (`e6f081f`, `c880c9d`) |
+| SMEsPlus (original inspection, superseded) | `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` | original run |
+| PR #26 head (`claude/state-03-architecture-deliverables-su8cg6`) | `098798f705c0c7f25982adc56becef90e3af734a` | open, DRAFT, NOT MERGED (unchanged) |
 | PR #26 base recorded by GitHub | `8570187bc0f13835be154d10cdc09bfa98e1dfe9` | **STALE** — behind current SMEsPlus HEAD |
-| This package working branch (`claude/state03-step0301-architecture-baseline-inventory`, PR #33) | reconciled via merge of `origin/SMEsPlus` `d995ae2…` | branch diff vs SMEsPlus = 13 STEP0301 files only; no architecture source modified |
+| PR #34 head (`state03-governance-v2`) | `09b4ead92cab672037a3855ed5058bdd970960ba` | open, DRAFT, NOT MERGED — delta-discovered; base = current `c880c9d…` |
+| PR #35 head (`claude/pre-state04-functional-sanitization-20260715`) | `b61efe415b578e990ccba8707056b692c82793a0` | open, DRAFT, NOT MERGED — outside `03_Architecture/` (cross-state, CONF-13) |
+| This package working branch (`claude/state03-step0301-architecture-baseline-inventory`, PR #33) | reconciled via merges of `origin/SMEsPlus` (`d995ae2…`, then `c880c9d…` merge commit `2b4726f…`) | branch diff vs SMEsPlus = 13 STEP0301 files only; no architecture source modified |
 
-Delta since the previous inspection: exactly **1** commit (`d995ae2`), scope = State 01
-project-identity docs (`Odoo-first` → `Open ERP-first`); it changes no `03_Architecture/` file
-and no PR #26 fact. All target-branch rows below are re-confirmed at `d995ae2…`.
+Delta since the prior correction-run inspection: exactly **2** commits —
+`e6f081f` (`docs(state04): add pre-state04 functional sanitization batch 0`; 9 files added
+under `07_Output_From_AI/PRE_STATE04_FUNCTIONAL_SANITIZATION/`; outside `03_Architecture/`;
+cross-state / session-ID observation CONF-13) and `c880c9d` (`Delete .gitignore`; removed
+`__pycache__/` and `*.py[cod]` exclusions; repository-hygiene observation CONF-12). Neither
+changes a `03_Architecture/` file or a PR #26 fact. All target-branch rows below are
+re-confirmed at `c880c9d…` (blob SHAs unchanged; `git diff d995ae2 c880c9d --
+03_Architecture/` is empty).
 
 ---
 
@@ -59,7 +67,7 @@ All items below are **NOT baseline evidence on SMEsPlus** (unmerged). Path root:
 | `STATE03_VALIDATION_REPORT.md` | `edd9e9adb3297fb127bca1692b462e6646e0666b` | added (self-run 13/13) | No — not independent |
 | `validate_state03_package.py` + `PACKAGE_MANIFEST_SHA256_STATE03_ARCHITECTURE.txt` | `6be9d4b1…` / `ad342cd2…` | added | No — HASH_NOT_VERIFIED |
 
-### PR #26 changes outside the architecture folder (separation only)
+### PR #26 changes outside the architecture folder (separation only — corrected COR-10)
 
 | Path | Change |
 |---|---|
@@ -68,19 +76,33 @@ All items below are **NOT baseline evidence on SMEsPlus** (unmerged). Path root:
 | `ACC_GAP_CLOSURE_METADATA_FIX/_SUPERSEDED_DO_NOT_USE.md` | added (SUPERSEDED marker) |
 | `Archived/2026-07-14_Stale_Status_Documents/PUSH_READY.md` | renamed |
 | `CLAUDE_EXECUTION_EVIDENCE_STANDARD.md`, `CLAUDE_EXECUTION_GAP_REPORT.md` | added |
+| `CURRENT_GATE_STATUS.md` | added (previously missed in the 30-row enumeration — COR-10) |
 
-Total PR #26 changed files (GitHub `get_files`): **30** — of which **21 inside** the
-`STATE03_ARCHITECTURE_ACCELERATION/` folder (§B) and **9 outside** it (above). PR metadata also
-reports `changed_files: 31` — a 1-file discrepancy between the file list (30) and the summary
-count (31); recorded as CONF-04. The PR body's "21 files, 0 outside" is therefore correct only on
-the inside-folder subtotal (21) and **false on "0 outside"** (actual 9 outside) — CONF-03.
+Total PR #26 changed files (GitHub `get_files`, re-verified 2026-07-15T05:27:24Z): **31** — of
+which **21 inside** the `STATE03_ARCHITECTURE_ACCELERATION/` folder (§B) and **10 outside** it
+(above). The enumerated list now **equals** the GitHub summary count (`changed_files: 31`); the
+prior 30-vs-31 discrepancy (CONF-04) **no longer reproduces** and the previously recorded
+30-row list is superseded. Independent confirmation of the 31-file set remains requested
+(CONF-04 kept OPEN for reviewer confirmation). The PR body's "21 files, 0 outside" is therefore
+correct only on the inside-folder subtotal (21) and **false on "0 outside"** (actual 10
+outside) — CONF-03.
+
+### Draft PR #34 (delta-discovered) — architecture governance V2 set
+
+PR #34 (`state03-governance-v2` @ `09b4ead9…`, base = current `c880c9d…`, 10 commits) adds
+**10 files, all inside** `03_Architecture/00_Architecture_Governance/` — see File 01 §B2
+(INV-060..069) for the full list and blob SHAs. All are **PR_ONLY / UNVERIFIED**; none is
+baseline evidence on SMEsPlus; the claimed Boss approval record is not independently verified
+(CONF-14). PR #34 changes no file outside the governance folder.
 
 ## C. Evidence OTHER_BRANCH_ONLY
 
-**None found.** The only non-target branches inspected are the PR #26 head branch (covered
-in §B) and the working checkout `claude/zen-fermi-lzfpz9`, which is byte-identical to
-SMEsPlus HEAD for `03_Architecture/` (git diff empty). No architecture evidence exists
-exclusively on a third branch within the inspected scope.
+**None found.** All non-target architecture evidence within the inspected scope is attached to
+an open draft PR — PR #26 head branch (§B) and PR #34 head branch (§B addendum) — and is
+classified **PR_ONLY**, not OTHER_BRANCH_ONLY. The historical working checkout
+`claude/zen-fermi-lzfpz9` remains byte-identical to the prior SMEsPlus HEAD for
+`03_Architecture/`; the PR #35 head branch changes no `03_Architecture/` file. No architecture
+evidence exists exclusively on a branch without an open PR.
 
 ## D. Evidence MISSING (no branch)
 
@@ -94,9 +116,12 @@ recorded as P0 GAP-03. See Gap Register.
 ## E. Effect on STEP0301 Inventory
 
 1. On the **target branch**, the State 03 architecture baseline is **planning-stage only**;
-   no domain deliverable is merged.
+   no domain deliverable is merged. This is unchanged at `c880c9d…`.
 2. PR #26 supplies 12–13 domain deliverables but they are **PR_ONLY / UNVERIFIED** and must
    not be counted as baseline evidence unless independently verified and merged by Boss.
-3. The PR base is **stale**; a merge would require rebasing onto current SMEsPlus HEAD, and
+3. The PR #26 base is **stale**; a merge would require rebasing onto current SMEsPlus HEAD, and
    the file-count/"0 outside" claims in the PR body require correction before any merge
    decision.
+4. PR #34 supplies a governance V2 set (incl. Gate Model V2 and a claimed approval record)
+   that overlaps and would partially supersede target governance documents — **PR_ONLY /
+   UNVERIFIED**; disposition is a Boss decision after independent review (CONF-14).

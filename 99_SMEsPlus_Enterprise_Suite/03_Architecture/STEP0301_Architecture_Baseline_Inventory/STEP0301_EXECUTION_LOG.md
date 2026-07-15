@@ -3,12 +3,55 @@
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
 Execution role: Architecture Baseline Inventory Agent (preparer/executor only)
-Mode: CORRECTION AND REVALIDATION ONLY
+Mode: DELTA REVALIDATION, EVIDENCE CORRECTION, AND INDEPENDENT REVIEW HANDOFF PREPARATION ONLY
 Original creation timestamp (UTC): 2026-07-14T16:10:56Z
 Correction / re-inspection timestamp (UTC): 2026-07-15T00:20:44Z
+Delta revalidation timestamp (UTC): 2026-07-15T05:27:24Z
 No credentials, tokens, or secrets are recorded in this log.
 
-## 0. Correction run (this revision)
+## 0-bis. Delta revalidation run (this revision)
+
+- Previous inspection target: `d995ae2986c4610b102307398591dbaba60be9e0` (correction run).
+- Current SMEsPlus HEAD (delta-revalidated, via `git fetch --prune` + `git ls-remote`):
+  `c880c9d729018f8660ebb92599e098df2bde2f6d`.
+- Intervening commits (delta): **2** —
+  1. `e6f081fc7f9728b451d49eff3d66672c35177c77` `docs(state04): add pre-state04 functional
+     sanitization batch 0` — 9 files added under
+     `07_Output_From_AI/PRE_STATE04_FUNCTIONAL_SANITIZATION/`; outside `03_Architecture/`;
+     reuses Session ID `[SMEPLUS-26-07-15-001]`; classified cross-state observation CONF-13;
+     **not** a State 03 Architecture deliverable; no inventory/coverage/gap/Gate change.
+  2. `c880c9d729018f8660ebb92599e098df2bde2f6d` `Delete .gitignore` — removed exactly 3 lines
+     (`# Python generated caches (not authorized governance evidence)`, `__pycache__/`,
+     `*.py[cod]`); no Open ERP source/dump protection was present; hygiene observation
+     CONF-12; `.gitignore` NOT recreated/modified by this task.
+- Verified `git diff d995ae2 c880c9d -- 99_…/03_Architecture/` = empty → all target
+  architecture blob SHAs unchanged.
+- Delta-discovered open draft PRs (created after the correction run, minutes before this run):
+  **PR #34** (`state03-governance-v2` @ `09b4ead9…`, created 2026-07-15T05:11:25Z, base
+  `c880c9d…`, 10 commits, 10 files all inside `03_Architecture/00_Architecture_Governance/`)
+  → inventoried INV-060..069 / EV-50..59, observation CONF-14; **PR #35**
+  (`claude/pre-state04-functional-sanitization-20260715` @ `b61efe41…`, created
+  2026-07-15T05:15:48Z, 12 files, all outside `03_Architecture/`) → CONF-13 note only.
+- PR #26 re-verified from GitHub + local enumeration: head unchanged `098798f7…`; `get_files`
+  now returns **31 rows = summary count 31** (previously 30 — missed `CURRENT_GATE_STATUS.md`);
+  21 inside / **10 outside**; status mix 24 A / 6 M / 1 R; additions 4168 / deletions 31;
+  CONF-03 corrected (10 outside), CONF-04 updated (discrepancy no longer reproduces; kept OPEN
+  for independent confirmation).
+- Terminology re-scan (COR-14): STEP0301 pkg 0 · target `03_Architecture/` 0 · PR #34 0 ·
+  PR #26 architecture source 13 (unchanged) · target PRE-STATE 04 CSV 5 (historical source
+  refs) · PR #35 adds further occurrences (cross-state, PR_ONLY).
+- Official Step Register re-search at `c880c9d…` + open PRs #26/#34/#35:
+  **OFFICIAL_STEP_REGISTER_NOT_FOUND** re-confirmed; PR #34 WBS V2 = 24 work packages
+  (ARC-WP-201..224), not a Step Register.
+- Corrections applied: COR-09 (inspection target + delta commits), COR-10 (PR #26 enumeration
+  31 = 21 + 10), COR-11 (CONF-12), COR-12 (CONF-13), COR-13 (PR #34 inventoried; CONF-14),
+  COR-14 (terminology re-scan), COR-15 (checklist/handoff/manifest refresh).
+- Branch reconciliation: `git merge origin/SMEsPlus` (`c880c9d…`) → merge commit `2b4726f…`;
+  no conflicts; branch diff vs SMEsPlus = the 13 STEP0301 files only; no force push; no merge
+  of PR #33 or PR #26; no existing Architecture source document modified; no restricted files
+  staged (scan: zip/dump/source/credentials/tokens/pycache/.DS_Store → none).
+
+## 0. Correction run (prior revision)
 
 - Previous inspection target: `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`.
 - Current SMEsPlus HEAD (re-inspected): `d995ae2986c4610b102307398591dbaba60be9e0`.
@@ -20,7 +63,8 @@ No credentials, tokens, or secrets are recorded in this log.
   terminology finding — CONF-11; STEP0301 pkg and target arch tree clean; PR #26 = 13 `Odoo`
   occurrences, PR_ONLY, unmodified), COR-03 (gap totals 12/6/0 = 18), COR-04 (Domain 3 single
   status = PARTIAL; coverage 13/2/9 = 24), COR-05 (inventory recount; PR_ONLY 20→21, UNVERIFIED
-  21), COR-06 (PR #26 facts re-verified: 30/31 files, 21 in / 9 out), COR-07
+  21), COR-06 (PR #26 facts re-verified: 30/31 files, 21 in / 9 out — figures as recorded at
+  that run; superseded by COR-10: 31 files = 21 in / 10 out), COR-07
   (OFFICIAL_STEP_REGISTER_NOT_FOUND re-confirmed at `d995ae2`), COR-08 (checklist = PREPARED FOR
   INDEPENDENT REVIEW; branch reconciled).
 - Branch reconciliation: `git merge --no-ff origin/SMEsPlus` (`d995ae2…`) into the working branch;
@@ -31,11 +75,14 @@ No credentials, tokens, or secrets are recorded in this log.
 
 | Ref | SHA | Source |
 |---|---|---|
-| SMEsPlus (target HEAD, current) | `d995ae2986c4610b102307398591dbaba60be9e0` | `git fetch` / `git ls-remote origin refs/heads/SMEsPlus` |
-| SMEsPlus (previous inspection, superseded) | `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` | prior run; advanced by 1 commit |
-| PR #26 head `claude/state-03-architecture-deliverables-su8cg6` | `098798f705c0c7f25982adc56becef90e3af734a` | `git ls-remote` / GitHub MCP |
+| SMEsPlus (target HEAD, current) | `c880c9d729018f8660ebb92599e098df2bde2f6d` | `git fetch --prune` / `git ls-remote origin` (delta revalidation) |
+| SMEsPlus (correction-run inspection, superseded) | `d995ae2986c4610b102307398591dbaba60be9e0` | prior run; advanced by 2 commits |
+| SMEsPlus (original inspection, superseded) | `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` | original run |
+| PR #26 head `claude/state-03-architecture-deliverables-su8cg6` | `098798f705c0c7f25982adc56becef90e3af734a` | `git ls-remote` / GitHub MCP (unchanged) |
 | PR #26 base (recorded by GitHub) | `8570187bc0f13835be154d10cdc09bfa98e1dfe9` | PR #26 metadata (STALE) |
-| Working branch `claude/state03-step0301-architecture-baseline-inventory` (PR #33) | reconciled via merge of `origin/SMEsPlus` `d995ae2…` | `git merge --no-ff`; diff vs SMEsPlus = 13 STEP0301 files |
+| PR #34 head `state03-governance-v2` | `09b4ead92cab672037a3855ed5058bdd970960ba` | `git ls-remote` / GitHub MCP (delta-discovered) |
+| PR #35 head `claude/pre-state04-functional-sanitization-20260715` | `b61efe415b578e990ccba8707056b692c82793a0` | `git ls-remote` / GitHub MCP (delta-discovered; outside architecture scope) |
+| Working branch `claude/state03-step0301-architecture-baseline-inventory` (PR #33) | reconciled via merges of `origin/SMEsPlus` (`d995ae2…`, then `c880c9d…` → `2b4726f…`) | `git merge`; diff vs SMEsPlus = 13 STEP0301 files |
 
 ## 2. Commands executed (representative)
 
@@ -53,11 +100,21 @@ git grep -l -i -E "official step register|state03 ... step register|STEP0301|10 
 
 GitHub MCP: `list_pull_requests` (all), `pull_request_read` (#26 get + get_files).
 
-## 3. PR inspected
+## 3. PRs inspected
 
 - PR #26 — open, draft, base SMEsPlus, head `claude/state-03-architecture-deliverables-su8cg6`,
-  head SHA `098798f7…`, additions 4168, changed files reported 30 (list) / 31 (summary),
-  4 commits. Not merged. One comment.
+  head SHA `098798f7…`, additions 4168 / deletions 31, changed files **31** (list = summary,
+  re-verified at delta revalidation; 21 inside / 10 outside; 24 A / 6 M / 1 R), 4 commits.
+  Not merged. One comment.
+- PR #34 — open, draft, base SMEsPlus @ `c880c9d…`, head `state03-governance-v2` @
+  `09b4ead9…`, 10 commits, 10 files (all `00_Architecture_Governance/`). Not merged.
+  Delta-discovered; inventoried as PR_ONLY / UNVERIFIED (CONF-14).
+- PR #35 — open, draft, base SMEsPlus @ `c880c9d…`, head
+  `claude/pre-state04-functional-sanitization-20260715` @ `b61efe41…`, 12 files (all
+  `07_Output_From_AI/PRE_STATE04_FUNCTIONAL_SANITIZATION/`). Not merged. Cross-state
+  observation only (CONF-13).
+- PR #33 — this package's PR: open, draft, not merged; head branch
+  `claude/state03-step0301-architecture-baseline-inventory`.
 
 ## 4. Files inspected (key)
 
@@ -104,7 +161,7 @@ State 02 handover: `…/STATE02_FINALIZATION/17_S02_FINAL_006_BOSS_CLOSURE_DECIS
 
 ## 8. Control statement
 
-STEP0301 Architecture Baseline Inventory has been corrected and prepared for independent review.
-Claude Code has not approved STEP0301, has not approved any Architecture Gate, has not defined the
-total number of STATE 03 Steps, has not merged PR #33 or PR #26, and has not authorized Build,
-Release, Deploy, or Production. Boss is the sole Final Approver.
+STEP0301 Architecture Baseline Inventory has been delta-revalidated and prepared for independent
+review. Claude Code has not approved or closed STEP0301, has not approved any Architecture Gate,
+has not defined or started any later STATE 03 Step, has not merged PR #33 or PR #26, and has not
+authorized Build, Release, Deploy, or Production. Boss is the sole Final Approver.

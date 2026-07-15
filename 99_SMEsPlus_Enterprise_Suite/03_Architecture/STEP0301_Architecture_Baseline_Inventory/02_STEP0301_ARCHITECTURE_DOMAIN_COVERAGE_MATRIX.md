@@ -1,8 +1,9 @@
 # 02 — STEP0301 Architecture Domain Coverage Matrix (24 Domains)
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: CORRECTION & REVALIDATION
-Target branch: SMEsPlus @ `d995ae2986c4610b102307398591dbaba60be9e0` · Re-inspected (UTC): 2026-07-15T00:20:44Z
-Previous inspection SHA (superseded): `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` (delta commit `d995ae2` does not add/remove any domain deliverable → domain coverage unchanged by the delta)
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: DELTA REVALIDATION
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
+Delta commits `e6f081f` (PRE-STATE 04, outside `03_Architecture/`) and `c880c9d` (`.gitignore` deletion) add/remove **no** domain deliverable → domain coverage unchanged by the delta. Draft PR #34's 10 governance V2 documents (PR_ONLY / UNVERIFIED) are governance/planning artefacts and change no domain's primary coverage status.
 
 Scope source: `03_Architecture/00_Architecture_Governance/STATE03_ARCHITECTURE_SCOPE_V2.md` (24 domains, 4 groups) — confirmed present on target.
 Owner source: `…/ARCHITECTURE_DOMAIN_OWNER_MATRIX.md` — owners are **role-titles**, not named persons (OWNER_MISSING across all domains). Reviewer for every domain = ChatGPT L99 (independent review NOT yet performed → REVIEWER_MISSING in the "verified review" sense).
@@ -56,12 +57,15 @@ Location key: TARGET = SMEsPlus · PR26 = Draft PR #26 (unmerged) · NONE.
 | 23 | Business Continuity, Backup and DR | MISSING | NONE | — | ACCEPTANCE_CRITERIA_MISSING | TRACEABILITY_MISSING | GAP-09d (P0) | Gate D |
 | 24 | Capacity, Performance and Cost | MISSING | NONE | — | ACCEPTANCE_CRITERIA_MISSING | TRACEABILITY_MISSING | GAP-09e (P0) | Gate C/D |
 
-## Summary (each domain counted exactly once — COR-04 / COR-05)
+## Summary (each domain counted exactly once — COR-04 / COR-05; re-reconciled at `c880c9d…` — COR-09)
 
 - **COVERED (dedicated deliverable exists; all PR_ONLY / UNVERIFIED): 13** — 2, 4, 5, 6, 7, 9, 10, 12, 13, 14, 15, 16, 19. (Domain 6 also has a TARGET skeleton.)
 - **PARTIALLY_COVERED: 2** — 3 (SaaS — folded into WP-001 principles; single primary status = PARTIAL), 11 (Data/Database — isolation options only).
 - **MISSING (no deliverable anywhere): 9** — 1, 8, 17, 18, 20, 21, 22, 23, 24.
 - **Coverage reconciliation: 13 + 2 + 9 = 24 ✓.** Domain 3 and Domain 11 each appear once (PARTIAL) and are not also counted under COVERED or MISSING.
+- Delta revalidation note: PR #34's WBS V2 (PR_ONLY) plans one work package per domain
+  (ARC-WP-201..224, all but one NOT STARTED) — plans are not deliverables and do not change
+  any coverage status in this matrix.
 - **On the SMEsPlus target branch specifically, ZERO of the 24 domains has a merged domain deliverable.** Target coverage is limited to governance/scope/owner/evidence-skeleton artefacts.
 - **Owner status:** all 24 domains carry role-title owners only → OWNER_MISSING (named-owner confirmation required).
 - **Reviewer status:** ChatGPT L99 assigned to all; independent review NOT performed → verification pending.

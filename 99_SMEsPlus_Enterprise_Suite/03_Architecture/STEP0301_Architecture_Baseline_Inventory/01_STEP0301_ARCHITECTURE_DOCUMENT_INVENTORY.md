@@ -1,9 +1,10 @@
 # 01 — STEP0301 Architecture Document Inventory
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: CORRECTION & REVALIDATION
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: DELTA REVALIDATION
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub · Target branch: SMEsPlus
-Target HEAD SHA: `d995ae2986c4610b102307398591dbaba60be9e0` · Re-inspected (UTC): 2026-07-15T00:20:44Z
-Previous inspection SHA (superseded): `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` · Delta: 1 commit `d995ae2` (State 01 Open ERP terminology; no architecture-folder impact)
+Target HEAD SHA: `c880c9d729018f8660ebb92599e098df2bde2f6d` · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0` (correction run), `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` (original run)
+Delta since `d995ae2…`: 2 commits — `e6f081f` (PRE-STATE 04 sanitization batch 0, outside `03_Architecture/`; CONF-13) and `c880c9d` (`.gitignore` deleted; CONF-12). Neither touches an architecture file. New at delta revalidation: draft PR #34 governance V2 set inventoried in §B2 (INV-060..069; CONF-14).
 
 Legend — Primary Status: PRESENT_ON_TARGET · PR_ONLY · OTHER_BRANCH_ONLY · MISSING · DUPLICATE · CONFLICT · STALE · SUPERSEDED · UNVERIFIED.
 "Last material update" is taken from the SMEsPlus HEAD commit date (target files) or PR #26 metadata (PR files).
@@ -58,11 +59,39 @@ they are **not** the SHA-256 content hashes in PR #26's own manifest. The indepe
 reviewer must recompute SHA-256 from file content to confirm the manifest (recorded as
 HASH_NOT_VERIFIED on INV-030).
 
-## C. PR #26 changes recorded OUTSIDE the architecture acceleration folder (separation only — **9 files**, grouped)
+## B2. PR_ONLY — Draft PR #34 (`state03-governance-v2` @ `09b4ead9…`), base SMEsPlus `c880c9d…`, NOT MERGED (delta-discovered)
 
-Precise enumeration from GitHub `get_files` (COR-06): PR #26 changes **30 files** total; **21
-inside** `STATE03_ARCHITECTURE_ACCELERATION/` (§B, INV-010..030) and **9 outside** it (below).
-These 9 are **not** architecture-baseline items; they are recorded only to separate them from
+PR #34 (created 2026-07-15T05:11:25Z, after the prior inspection) adds **10** architecture
+governance V2 documents. All rows below: Primary Status = **PR_ONLY + UNVERIFIED**. None is
+baseline evidence on SMEsPlus. The claimed Boss approval record (INV-068) is itself PR_ONLY and
+not independently verified (CONF-14). Path root:
+`99_SMEsPlus_Enterprise_Suite/03_Architecture/00_Architecture_Governance/`
+
+| Inv ID | Document | File | Blob SHA (PR #34 head) | Note |
+|---|---|---|---|---|
+| INV-060 | State 03 Canonical Governance Index | `00_STATE03_CANONICAL_GOVERNANCE_INDEX.md` | `bcbe4d46bcf6a836238e9225ae2538fc150f13dc` | Source-of-truth hierarchy (CONTROLLED DRAFT) |
+| INV-061 | Architecture Deliverable Register | `ARCHITECTURE_DELIVERABLE_REGISTER.md` | `a3ef3b069cb34be37725359e574244edf23814aa` | ACTIVE REGISTER (self-declared) |
+| INV-062 | Architecture Evidence Register V2 | `ARCHITECTURE_EVIDENCE_REGISTER_V2.md` | `dbaef485ec269b44ffb4e43976d60ae8ec27a922` | Overlaps target/PR #26 evidence registers (CONF-14) |
+| INV-063 | Architecture Gate Crosswalk & Supersession | `ARCHITECTURE_GATE_CROSSWALK_AND_SUPERSESSION.md` | `d1d44fd7344d166e483bf561b5d93ebc08359789` | Declares supersession rules (unmerged) |
+| INV-064 | Architecture Gate Model V2 | `ARCHITECTURE_GATE_MODEL_V2.md` | `013016fbeaf75de2518d807fd71dcae1543d48de` | Would supersede target `ARCHITECTURE_GATE_MODEL.md` (CONF-14) |
+| INV-065 | Architecture WBS V2 (ARC-WP-201..224) | `ARCHITECTURE_WBS_V2.md` | `9597cf529327f48f03a12ab74a59ba367909baab` | 24 work packages, 1 per domain — **not** a Step Register |
+| INV-066 | Canonical Architecture RACI | `CANONICAL_ARCHITECTURE_RACI.md` | `8cb850005bfa3a2d64a2791ecdbd06ef0a4684bb` | Role separation (CONTROLLED DRAFT) |
+| INV-067 | Named Owner and Reviewer Register | `NAMED_OWNER_AND_REVIEWER_REGISTER.md` | `0177097cf45450ae95501a2dc4916b2f4321865e` | Relevant to GAP-12 (unverified, unmerged) |
+| INV-068 | Scope V2 Approval Record (claimed Boss decision `SMEPLUS-DEC-26-07-10-STATE03-001`) | `STATE03_ARCHITECTURE_SCOPE_V2_APPROVAL_RECORD.md` | `84defafd256c2486cae1a7693df4a7e1f7d534c1` | Relevant to GAP-14/CONF-07 — claim not independently verified (CONF-14) |
+| INV-069 | Trust Control Matrix | `TRUST_CONTROL_MATRIX.md` | `fec845eb6362fad2eb7d848517f642efe0fab440` | Mandatory controls (CONTROLLED DRAFT) |
+
+PR #34 additionally carries the 4 target governance files unchanged (identical blobs to
+target: `STATE03_ARCHITECTURE_SCOPE_V2.md`, `ARCHITECTURE_DOMAIN_OWNER_MATRIX.md`,
+`ARCHITECTURE_DOCUMENT_TEMPLATE.md`, `ARCHITECTURE_GATE_MODEL.md`) — these remain counted
+once as INV-001..004 (PRESENT_ON_TARGET), not double-counted here.
+
+## C. PR #26 changes recorded OUTSIDE the architecture acceleration folder (separation only — **10 files**, grouped — corrected COR-10)
+
+Precise enumeration from GitHub `get_files` re-verified at delta revalidation (COR-10): PR #26
+changes **31 files** total (the enumerated list now **equals** the GitHub summary count of 31;
+the previously recorded 30-row list is superseded — CONF-04 updated); **21 inside**
+`STATE03_ARCHITECTURE_ACCELERATION/` (§B, INV-010..030) and **10 outside** it (below).
+These 10 are **not** architecture-baseline items; they are recorded only to separate them from
 the inventory and to evidence the CONF-03 "0 outside" discrepancy.
 
 | Inv ID | Item | Path | Change | Note |
@@ -70,9 +99,11 @@ the inventory and to evidence the CONF-03 "0 outside" discrepancy.
 | INV-040 | ACC-002..005 Functional Design Specs (**4 files**) | `02_Functional_Design/ACC-002/003/004/005 Functional Design Specification.md` | modified | Outside architecture scope; contradicts PR body "0 outside" claim |
 | INV-041 | ACC gap-closure manifest + superseded marker (**2 files**) | `ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt` (modified); `ACC_GAP_CLOSURE_METADATA_FIX/_SUPERSEDED_DO_NOT_USE.md` (added) | modified/added | `_SUPERSEDED_DO_NOT_USE.md` = SUPERSEDED marker |
 | INV-042 | Archived status doc + Claude execution standard/report (**3 files**) | `Archived/2026-07-14_Stale_Status_Documents/PUSH_READY.md` (renamed); `CLAUDE_EXECUTION_EVIDENCE_STANDARD.md`, `CLAUDE_EXECUTION_GAP_REPORT.md` (added, repo root of `99_…`) | renamed/added | Outside architecture scope |
+| INV-043 | Current Gate Status doc (**1 file**) | `CURRENT_GATE_STATUS.md` (repo root of `99_…`) | added | Previously missed in the 30-row enumeration; recovered at delta revalidation (COR-10) |
 
-Out-of-folder file count: 4 + 2 + 3 = **9 files** (matches `get_files`). Status mix across all
-30 PR files: 23 added, 6 modified, 1 renamed.
+Out-of-folder file count: 4 + 2 + 3 + 1 = **10 files** (matches `get_files`). Status mix across
+all 31 PR files: **24 added, 6 modified, 1 renamed** (recounted from
+`git diff --name-status base...head`, COR-10).
 
 ## D. MISSING / PARTIAL by domain (no dedicated deliverable on any inspected branch) — see Gap Register
 

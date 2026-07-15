@@ -1,8 +1,9 @@
 # 04 — STEP0301 Architecture Gap Register
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: CORRECTION & REVALIDATION
-Target branch: SMEsPlus @ `d995ae2986c4610b102307398591dbaba60be9e0` · Re-inspected (UTC): 2026-07-15T00:20:44Z
-Previous inspection SHA (superseded): `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: DELTA REVALIDATION
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
+Delta commits `e6f081f` / `c880c9d` add or close **no** gap row (neither touches `03_Architecture/`); all 18 rows re-confirmed at `c880c9d…`. PR #34 (PR_ONLY / UNVERIFIED) supplies unverified candidate evidence for GAP-12 and GAP-14 — noted on those rows; both remain OPEN.
 
 Severity: P0 = blocks Architecture baseline / Gate B · P1 = material, needed before baseline sign-off · P2 = hygiene/traceability.
 **No gap in this register is closed by this task.** Status values used: OPEN.
@@ -25,11 +26,11 @@ Decision authority: Boss (final); ChatGPT L99 (independent review recommendation
 | GAP-09e | 24 Capacity/Performance/Cost | No Capacity/Performance/Cost Architecture | P0 | Absent | Gate C/D | Performance & FinOps AI Owner | Boss | Prepare after workload/budget inputs | OPEN |
 | GAP-10 | State 03 governance | No Official State 03 Step Register; Step count/structure not baselined (the "10 Steps" claim is unverified) | P0 | No repository evidence found | State 03 sequencing / Gate A | PMO / Architecture Governance | Boss | Boss to baseline Step Register (if desired) | OPEN |
 | GAP-11 | all domains (target) | All 24 domains have PR_ONLY or MISSING deliverables; **zero merged domain deliverables on SMEsPlus** | P0 | §B branch/PR matrix | Gate B | Domain AI Owners | Boss | Boss disposition of PR #26 + merge decision | OPEN |
-| GAP-12 | all domains | Owners are role-titles, not named persons/agents; independent review not performed | P1 | Owner Matrix (INV-003) | Gate A | Architecture Governance AI Owner | Boss | Assign named owners; schedule L99 review | OPEN |
+| GAP-12 | all domains | Owners are role-titles, not named persons/agents; independent review not performed. Delta note: PR #34 adds a `NAMED_OWNER_AND_REVIEWER_REGISTER.md` (INV-067) — PR_ONLY / UNVERIFIED, not merged → gap remains OPEN | P1 | Owner Matrix (INV-003); PR #34 INV-067 (unverified) | Gate A | Architecture Governance AI Owner | Boss | Assign named owners; schedule L99 review | OPEN |
 | GAP-13 | 3/14/19 inputs | Business/infra inputs open: sizing, compliance regime, RPO/RTO/DR, metering/billing, NFR workload/SLA/budget (PR #26 GAP-IN-01..05; 13 NFR input gaps) | P1 | INV-020 / PR #26 gap register (unverified) | Gate B/C/D | Domain AI Owners | Boss | Obtain business/infra inputs | OPEN |
-| GAP-14 | scope/gate governance | Scope V2 and Gate Model are CONTROLLED DRAFTs without traceable Boss approval provenance; treated as baseline in prior control position | P1 | INV-001/002 | Gate A | Architecture Governance AI Owner | Boss | Confirm/approve at Gate A | OPEN |
+| GAP-14 | scope/gate governance | Scope V2 and Gate Model are CONTROLLED DRAFTs without traceable Boss approval provenance **on the target branch**; treated as baseline in prior control position. Delta note: PR #34 carries a claimed approval record (`SMEPLUS-DEC-26-07-10-STATE03-001`, INV-068) — PR_ONLY / UNVERIFIED, not merged → provenance still not established on target; gap remains OPEN (see CONF-14) | P1 | INV-001/002; PR #34 INV-068 (unverified) | Gate A | Architecture Governance AI Owner | Boss | Confirm/approve at Gate A; independently verify PR #34 approval record | OPEN |
 
-## Summary (recounted directly from the rows above — COR-03)
+## Summary (recounted directly from the rows above — COR-03; re-recounted at delta revalidation — COR-09)
 
 Total gap rows in this register: **18** (GAP-01, 02, 03, 04, 05, 06, 07, 08, 09a, 09b, 09c, 09d,
 09e, 10, 11, 12, 13, 14).
@@ -45,6 +46,12 @@ architecture source is recorded as a finding/conflict (CONF-11, File 05), not as
 this keeps the gap total aligned to the 18 substantive architecture gaps. Correcting PR #26 to the
 Open ERP constitution is a later action under separate Boss authorization (STEP0301 does not
 modify PR #26).
+
+Delta revalidation note (COR-11/12/13): the `.gitignore` deletion (CONF-12), the PRE-STATE 04
+session-ID/cross-state observation (CONF-13), and the PR #34 supersession/approval-provenance
+observation (CONF-14) are recorded as controlled observations in the Conflict & Duplication
+Register, not as new gap rows — they are repository-hygiene / traceability / unmerged-PR
+matters, not missing-architecture-deliverable gaps. Gap totals are therefore unchanged.
 
 No gap is resolved, mitigated, or closed here. Closure requires the named owner's evidence,
 independent review, and Boss decision.
