@@ -6,6 +6,18 @@ Status: CONTROLLED DRAFT
 Final Approval Authority: Boss
 Independent Reviewer: ChatGPT L99
 
+## Prompt Governance Constitution Adoption
+
+Effective immediately for all new STATE03 prompts: apply **SMEsPlus Prompt Governance Constitution v1.0**, Base Prompt Standard and **Profile A — Logic Analysis & Architecture**.
+
+- Every prompt must declare a valid Session ID, Step ID, Prompt ID (`STEPxxyyzz`), execution mode, included/excluded scope, evidence baseline, acceptance criteria, and Required Final Report.
+- Architecture analysis may derive only abstract business rules, workflows, data models, indexes, and API boundaries from verified requirements and permitted evidence.
+- No final execution code is authorized by Profile A.
+- Clean Room 100%, No Evidence = No Progress, role separation, and Boss-as-Sole-Final-Approver apply.
+- This adoption does not pass any Architecture Gate, authorize build, merge, release, deployment, or production change.
+
+Reference: `00_Project_Governance/SMEPLUS_PROMPT_GOVERNANCE_CONSTITUTION_v1.0.md`; Jira ERPPLUS-96; Draft PR #36.
+
 ## Gate A — Scope Baseline
 
 Required:
