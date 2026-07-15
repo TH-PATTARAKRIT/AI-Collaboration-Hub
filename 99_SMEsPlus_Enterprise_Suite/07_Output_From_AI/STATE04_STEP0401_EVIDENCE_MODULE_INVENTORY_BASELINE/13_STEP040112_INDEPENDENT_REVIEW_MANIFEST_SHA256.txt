@@ -1,0 +1,13 @@
+STATE04 — STEP0401 — STEP040112 — Independent Review Publication — SHA-256 Manifest
+
+Current Prompt ID: STEP040112
+Parent Prompt ID: STEP040111
+Session ID: SMEPLUS-26-07-16-004
+
+Verification command:
+  sha256sum -c 13_STEP040112_INDEPENDENT_REVIEW_MANIFEST_SHA256.txt
+(run from within this package directory; this manifest file's own hash is intentionally excluded from the checksum list below)
+
+Deterministic filename order (one record only):
+
+db52e758996178ac9c5c2c95d8a3ae6327b421ced54b5892ead294e2c6eebd9e  12_STEP040112_BATCH1_INDEPENDENT_REVIEW_REPORT.md
