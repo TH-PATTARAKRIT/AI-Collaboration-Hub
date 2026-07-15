@@ -1,0 +1,14 @@
+STATE04 — STEP0401 — STEP040113 — Boss Decision Publication — SHA-256 Manifest
+
+Current Prompt ID: STEP040113
+Parent Prompt ID: STEP040112
+Session ID: SMEPLUS-26-07-16-005
+
+Verification command:
+  sha256sum -c 16_STEP040113_MANIFEST_SHA256.txt
+(run from within this package directory; this manifest file's own hash is intentionally excluded from the checksum list below)
+
+Deterministic filename order (two records only):
+
+a095111e231840b2e706bd0e128da819a4b3b180a2e0e5fd95bc1c4744a96fc4  14_STEP040113_BOSS_DECISION_AND_BATCH1_ACCEPTANCE.md
+58991fd2af962eb9835022b00299b2b43d7ee9f9332a904da3df7f466e2d8219  15_AI_MODEL_IDENTIFIER_DISCLOSURE_POLICY_ADDENDUM.md
