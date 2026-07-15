@@ -20,6 +20,8 @@ Reference: `00_Project_Governance/SMEPLUS_PROMPT_GOVERNANCE_CONSTITUTION_v1.0.md
 
 **Profile E applies:** STATE03 Architecture prompts require `HIGH_REASONING`. Record the exact Model when known; otherwise record `MODEL_NOT_DISCLOSED`, Platform, Agent Type, Tooling Context, execution date, and evidence. A model/capability downgrade must be reported before work continues.
 
+**Prompt Lineage applies:** Any STATE03 prompt that uses prior architecture work must declare Parent Prompt ID, Reference Prompt IDs, Reference Type, exact evidence baseline, and Previous State Snapshot. A closed prompt is Historical Evidence, not automatically-current status.
+
 ## Gate A — Scope Baseline
 
 Required:
