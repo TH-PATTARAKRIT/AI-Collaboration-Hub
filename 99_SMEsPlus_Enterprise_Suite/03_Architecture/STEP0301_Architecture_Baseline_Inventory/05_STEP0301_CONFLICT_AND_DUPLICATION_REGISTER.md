@@ -1,12 +1,15 @@
 # 05 — STEP0301 Conflict and Duplication Register
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: DELTA REVALIDATION
-Step ID: STEP0301 · Current Prompt ID: STEP030105 · Prior Prompt ID: STEP030104 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f` · Previous PR #33 head (STEP030104): `b9ef45d623ed2572aaff382b1378104b89fd7ca1` · Reviewer: ChatGPT L99.99 (pending) · Approver: Boss
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030109 BOSS DECISION IMPLEMENTATION AND BLOCKING-ISSUE RESOLUTION
+Step ID: STEP0301 · Current Prompt ID: STEP030109 · Prior Prompt ID: STEP030108 · Corrected Execution Prompt ID (technical): STEP030103 · Reviewer: ChatGPT L99.99 (VERIFIED WITH CONTROLLED FOLLOW-UP, recorded STEP030106; re-review of STEP030109 corrections recommended, not yet performed) · Approver: Boss
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030109) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
 
-**No conflict is resolved by this task.** Both sides of every conflict are recorded.
-Status = OPEN. Decision authority = Boss (with ChatGPT L99 independent review).
+**Most conflicts remain unresolved by this task; CONF-12 is corrected (see row below).** Both
+sides of every conflict are recorded. Status values used: OPEN, CORRECTED. Decision authority =
+Boss (with ChatGPT L99 independent review). Full resolution classification for every row is
+recorded in `15_STEP030109_BLOCKING_ISSUE_RESOLUTION_MATRIX.md` (authoritative for STEP030109
+disposition detail).
 
 | ID | Type | Description | Side A (evidence) | Side B (evidence) | Severity | Next Action | Status |
 |---|---|---|---|---|---|---|---|
@@ -21,7 +24,7 @@ Status = OPEN. Decision authority = Boss (with ChatGPT L99 independent review).
 | CONF-09 | OWNER inconsistency | Owner Matrix uses role-titles; PR deliverable index uses slightly different owner labels (e.g. "Enterprise Control Architecture AI Owner" not in the 24-row matrix) | `ARCHITECTURE_DOMAIN_OWNER_MATRIX.md` (target) | `STATE03_DELIVERABLE_INDEX.md` (PR #26) | P2 | Normalize owner taxonomy | OPEN |
 | CONF-10 | SCOPE vs ACCELERATION mismatch | Scope V2 defines 24 domains; Acceleration README defines 14 immediate work items (ARC-WP) — not a 1:1 mapping (10 domains have no WP) | Scope V2 (24 domains) | Acceleration README (14 WPs) | P1 | Boss decision on how domains map to Steps/WPs (do not auto-convert) | OPEN |
 | CONF-11 | TERMINOLOGY (Open ERP constitution) | PR #26 architecture source uses non-canonical `Odoo-first` / `Odoo-style` product terminology, conflicting with the Boss-approved **Open ERP** canonical terminology on target (established by `d995ae2`) | Open ERP constitution / target State 01 (`Open ERP-first`) | PR #26 (PR_ONLY, unmerged, head unchanged `098798f7…`): **13 occurrences** (re-confirmed at delta revalidation) across `SAAS_ARCHITECTURE_PRINCIPLES.md` (4), `APPLICATION_MODULE_BOUNDARY.md` (2), `ARCHITECTURE_DECISION_REGISTER.md` (3), `ARCHITECTURE_RISK_ASSUMPTION_REGISTER.md` (2), `LOGICAL_COMPONENT_ARCHITECTURE.md` (1), `STATE03_EXECUTION_SUMMARY.md` (1) | P1 | Align PR #26 source to Open ERP under separate Boss authorization; classify clean-room/UX-reference usages as `HISTORICAL_SOURCE_REFERENCE — NOT PROJECT CANONICAL TERMINOLOGY`. **STEP0301 does not modify PR #26.** | OPEN |
-| CONF-12 | REPOSITORY_HYGIENE (delta commit `c880c9d`) | Target-branch `.gitignore` deleted; the removed rules were exactly: `# Python generated caches (not authorized governance evidence)`, `__pycache__/`, `*.py[cod]`. Python cache files can now enter the repository as uncontrolled evidence. No Open ERP raw-source or database-dump protection existed in the deleted file, so no source/dump exposure was created by the deletion. STEP0301 validation is unaffected (no cache files exist in the STEP0301 package or staged changes). | `.gitignore` @ `d995ae2…` (blob `0bfc90a`, 3 lines) | Deletion commit `c880c9d729018f8660ebb92599e098df2bde2f6d` (`Delete .gitignore`) | P2 | Boss decision whether to restore a controlled `.gitignore`; **not recreated/modified by this task (out of authorized scope)** | OPEN |
+| CONF-12 | REPOSITORY_HYGIENE (delta commit `c880c9d`) — **CORRECTED at STEP030109** | Target-branch `.gitignore` deleted; the removed rules were exactly: `# Python generated caches (not authorized governance evidence)`, `__pycache__/`, `*.py[cod]`. Python cache files could enter the repository as uncontrolled evidence. No Open ERP raw-source or database-dump protection existed in the deleted file, so no source/dump exposure was created by the deletion. **STEP030109 restored a repository-root `.gitignore` containing exactly these 3 evidence-supported lines**, under the governing Prompt's explicit CONF-12 authorization (§8). No unrelated rule was added or overwritten — the file did not exist prior to this restoration. | `.gitignore` @ `d995ae2…` (blob `0bfc90a`, 3 lines) — before | Restoration commit (this Prompt, STEP030109) — after; recorded in Execution Log §0-impl and File 14/15 | P2 | Boss to confirm the restored `.gitignore` content is sufficient/acceptable, or specify additional entries | CORRECTED |
 | CONF-13 | CROSS-STATE TRACEABILITY (delta commit `e6f081f` / PR #35) | PRE-STATE 04 Functional Sanitization Batch 0 merged to target (9 files under `07_Output_From_AI/PRE_STATE04_FUNCTIONAL_SANITIZATION/`) and extended by draft PR #35: (a) it reuses Session ID `[SMEPLUS-26-07-15-001]` — the same Session ID as this STEP0301 order — creating cross-state traceability ambiguity; (b) it is State 04 preparation work committed while the State 03 Architecture baseline is not approved (its own gate checklist records STATE 04 Intake = NOT REACHED, Build Gate = HOLD); (c) repository governance does not classify it as a State 03 Architecture deliverable → excluded from this inventory; (d) its CSV retains 5 upstream `Odoo`/`OdooBot` module display names = `HISTORICAL_SOURCE_REFERENCE — NOT PROJECT CANONICAL TERMINOLOGY` (unlabelled in the CSV itself; labelling is a PRE-STATE 04 governance matter) | STEP0301 order Session `[SMEPLUS-26-07-15-001]` (State 03) | `e6f081f…` package headers (`Session: [SMEPLUS-26-07-15-001] PRE-STATE 04 Batch 0`); PR #35 (`b61efe41…`, cites Boss authorization `[SMEPLUS-26-07-15-004]`) | P2 | PMO/Boss: disambiguate session usage across states; confirm PRE-STATE 04 package classification and labelling; no State 03 action performed | OPEN |
 | CONF-14 | SUPERSESSION / APPROVAL PROVENANCE (draft PR #34, delta-discovered) | PR #34 (`state03-governance-v2` @ `09b4ead9…`, base current `c880c9d…`) adds a governance V2 set (Gate Model V2, Evidence Register V2, gate crosswalk/supersession, WBS V2 ARC-WP-201..224, canonical RACI, named owner register, Trust Control Matrix, governance index) that overlaps and declares supersession over target governance documents (`ARCHITECTURE_GATE_MODEL.md`, owner matrix, evidence registers) and over the ARC-WP-001..014 acceleration plan; it also carries a claimed Boss approval record (`SMEPLUS-DEC-26-07-10-STATE03-001`, session `[SMEPLUS-26-07-10-001]`). All of it is **PR_ONLY / UNVERIFIED / NOT MERGED**; the approval claim is not independently verified and its referenced document SHAs are not target blob SHAs | Target governance set (INV-001..007) + PR #26 WBS (ARC-WP-001..014) | PR #34 governance V2 set (INV-060..069) | P1 | Independent L99.99 verification of PR #34 (incl. approval-record provenance); Boss disposition; until merged by Boss decision, target governance documents remain the controlling baseline evidence | OPEN |
 
@@ -35,15 +38,17 @@ Status = OPEN. Decision authority = Boss (with ChatGPT L99 independent review).
 - No conflicting tenant/data-isolation model was found on the **target** branch (the tenant
   and isolation deliverables are PR_ONLY); any isolation-model conflict is internal to PR
   #26 and must be assessed there, not on the baseline.
-- All conflicts remain OPEN. This task does not choose a winning side.
-- **Conflict count: 14** (CONF-01..14; recounted from rows at delta revalidation). Severity
-  basis: **P1 = 8** (CONF-01, 02, 03, 06, 07, 10, 11, 14); **P2 = 6** (CONF-04, 05, 08, 09, 12,
-  13). Reconciliation: 8 + 6 = 14 ✓. Category split: repository-content 2 (CONF-01, 08) ·
-  PR self-description/metadata 3 (CONF-03, 04, 05) · stale evidence 1 (CONF-02) · unverified
-  self-validation 1 (CONF-06) · control/governance position 3 (CONF-07, 09, 10) · terminology 1
-  (CONF-11) · repository hygiene 1 (CONF-12) · cross-state traceability 1 (CONF-13) ·
-  supersession/approval provenance 1 (CONF-14). These are conflict-register counts and are
-  **not** added to the Gap Register's P0/P1/P2 totals (different counting basis).
+- **13 of 14 conflicts remain OPEN; CONF-12 is CORRECTED at STEP030109.** This task does not
+  choose a winning side on any remaining OPEN conflict.
+- **Conflict count: 14** (CONF-01..14; recounted from rows). Severity basis (unchanged by the
+  CONF-12 status change — severity is P2 either way): **P1 = 8** (CONF-01, 02, 03, 06, 07, 10,
+  11, 14); **P2 = 6** (CONF-04, 05, 08, 09, 12, 13). Reconciliation: 8 + 6 = 14 ✓. Category
+  split: repository-content 2 (CONF-01, 08) · PR self-description/metadata 3 (CONF-03, 04, 05) ·
+  stale evidence 1 (CONF-02) · unverified self-validation 1 (CONF-06) · control/governance
+  position 3 (CONF-07, 09, 10) · terminology 1 (CONF-11) · repository hygiene 1 (CONF-12,
+  CORRECTED) · cross-state traceability 1 (CONF-13) · supersession/approval provenance 1
+  (CONF-14). These are conflict-register counts and are **not** added to the Gap Register's
+  P0/P1/P2 totals (different counting basis).
 - **Open ERP terminology classification (CONF-11 / CONF-13):** the retained `Odoo` references
   inside PR #26 that support clean-room / UX-reference traceability are to be labelled
   `HISTORICAL_SOURCE_REFERENCE — NOT PROJECT CANONICAL TERMINOLOGY` when corrected; the canonical

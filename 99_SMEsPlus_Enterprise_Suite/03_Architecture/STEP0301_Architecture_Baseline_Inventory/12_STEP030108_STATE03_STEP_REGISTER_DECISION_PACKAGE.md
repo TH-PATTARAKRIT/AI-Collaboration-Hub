@@ -1,11 +1,19 @@
 # 12 — STEP030108 STATE03 Step Register Baseline Decision Package
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030108 STATE03 STEP REGISTER DECISION PACKAGE PREPARATION
-Step ID: STEP0301 · Current Prompt ID: STEP030108 · Prior Prompt ID: STEP030107 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `4ba19cdb27b5175f70dccad4192193f14fa0aa6f`
-Execution Role: Claude Code — Principal Enterprise Architect / Architecture Governance Controller / Git Evidence Auditor / Documentation Integrity Reviewer (Preparer/Executor only) · Independent Reviewer: ChatGPT L99.99 — Result recorded at STEP030106: VERIFIED WITH CONTROLLED FOLLOW-UP (unchanged; not re-run at STEP030108) · Final Approval Authority: Boss (sole)
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030108 STATE03 STEP REGISTER DECISION PACKAGE PREPARATION (header updated at STEP030109 for traceability; body preserved as the historical STEP030108 record)
+Step ID: STEP0301 · Current Prompt ID: STEP030109 (this header update) · Prompt ID at original authorship: STEP030108 · Prior Prompt ID: STEP030107 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `4ba19cdb27b5175f70dccad4192193f14fa0aa6f`
+Execution Role: Claude Code — Preparer/Executor only (not Decision Owner — corrected at STEP030109) · Independent Reviewer: ChatGPT L99.99 — Result recorded at STEP030106: VERIFIED WITH CONTROLLED FOLLOW-UP (unchanged; not re-run at STEP030108/109) · Architecture Governance Owner: PMO / Architecture Governance — named owner pending (TBD — BOSS ASSIGNMENT REQUIRED) · Final Approval Authority: Boss (sole)
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub · Target branch: SMEsPlus · Pull Request: PR #33
-Target HEAD SHA (re-confirmed, unchanged since STEP030105/106/107): `c880c9d729018f8660ebb92599e098df2bde2f6d`
+Target HEAD SHA (re-confirmed, unchanged since STEP030105/106/107/108/109): `c880c9d729018f8660ebb92599e098df2bde2f6d`
 Pre-execution PR #33 head SHA (verified against GitHub, matches Boss-reported value): `4ba19cdb27b5175f70dccad4192193f14fa0aa6f`
+
+**STEP030109 note:** Boss has since completed `13_STEP030108_BOSS_STEP_REGISTER_DECISION_RECORD.md`
+with decision **APPROVE WITH SPECIFIED CORRECTIONS** (2026-07-15), approving an **Interim
+Incremental STATE03 Step Register v0.1** that corrects the candidate register in §E below (see
+`14_STEP030109_BOSS_DECISION_IMPLEMENTATION_RECORD.md` for the corrected register). The
+candidate register in §E is preserved below **unmodified as a historical record** of what was
+originally proposed; it is not the register Boss actually approved. Do not cite §E as the
+current Boss-approved Step Register — cite File 13 §D and File 14 instead.
 
 Execution Mode: PREPARE A DECISION PACKAGE ONLY. This task does not approve the candidate
 STATE03 Step Register, does not close GAP-10, does not close STEP0301, does not pass any
@@ -119,7 +127,7 @@ governing order. No Step beyond STEP0301 has been created as an active Step dire
 | Applicable Gate | Gate A (Scope Baseline) — evidence-inventory input only; no Gate PASS issued |
 | Exit criteria | Boss reviews this decision package and the STEP0301 evidence, decides on GAP-10 and the other controlled follow-ups (File 11 §D), and issues an explicit closure decision for STEP0301 (not yet issued) |
 | Known Gap/Conflict | GAP-10 (Official Step Register not found); GAP-11 (all 24 domains PR_ONLY or MISSING on target); 16 other Gap/Conflict rows (Files 04–05) |
-| Decision Owner | Claude Code (Preparer/Executor) |
+| Decision Owner | **Corrected at STEP030109** — Claude Code is Preparer/Executor only, not Decision Owner. Architecture Governance Owner: PMO / Architecture Governance — named owner pending (TBD — BOSS ASSIGNMENT REQUIRED). |
 | Approval authority | Boss (sole Final Approver) — STEP0301 closure not yet issued |
 
 ### E.2 STEP0302 — Architecture Domain Source-Document Baseline (CANDIDATE ONLY)

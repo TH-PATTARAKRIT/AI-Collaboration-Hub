@@ -1,14 +1,17 @@
 # 04 — STEP0301 Architecture Gap Register
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030108 DECISION PACKAGE PREPARATION (over DELTA REVALIDATION)
-Step ID: STEP0301 · Current Prompt ID: STEP030108 · Prior Prompt ID: STEP030107 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `4ba19cdb27b5175f70dccad4192193f14fa0aa6f` · Reviewer: ChatGPT L99.99 (VERIFIED WITH CONTROLLED FOLLOW-UP, recorded STEP030106) · Approver: Boss
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030109 BOSS DECISION IMPLEMENTATION AND BLOCKING-ISSUE RESOLUTION
+Step ID: STEP0301 · Current Prompt ID: STEP030109 · Prior Prompt ID: STEP030108 · Corrected Execution Prompt ID (technical): STEP030103 · Reviewer: ChatGPT L99.99 (VERIFIED WITH CONTROLLED FOLLOW-UP, recorded STEP030106; re-review of STEP030109 corrections recommended, not yet performed) · Approver: Boss
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030109) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
-Delta commits `e6f081f` / `c880c9d` add or close **no** gap row (neither touches `03_Architecture/`); all 18 rows re-confirmed at `c880c9d…`. PR #34 (PR_ONLY / UNVERIFIED) supplies unverified candidate evidence for GAP-12 and GAP-14 — noted on those rows; both remain OPEN.
+Delta commits `e6f081f` / `c880c9d` add or close **no** gap row (neither touches `03_Architecture/`); the prior 18 rows are unchanged in substance. **STEP030109 change: GAP-10 is separated into GAP-10A and GAP-10B per Boss-approved correction (File 13 §D item 7), making 19 total rows.** PR #34 (PR_ONLY / UNVERIFIED) supplies unverified candidate evidence for GAP-12 and GAP-14 — noted on those rows; both remain OPEN.
 
 Severity: P0 = blocks Architecture baseline / Gate B · P1 = material, needed before baseline sign-off · P2 = hygiene/traceability.
-**No gap in this register is closed by this task.** Status values used: OPEN.
+**No gap in this register is closed by this task except GAP-10A (see row below and File 13 §D-1 / File 15).** Status values used: OPEN, CLOSED.
 Decision authority: Boss (final); ChatGPT L99 (independent review recommendation).
+Full resolution classification, evidence location, and blocking/non-blocking determination for every row below is recorded in
+`15_STEP030109_BLOCKING_ISSUE_RESOLUTION_MATRIX.md` (authoritative for STEP030109 disposition detail); this register remains the
+authoritative source for gap identification, domain mapping, and severity.
 
 | Gap ID | Domain | Description | Severity | Evidence | Gate Impact | Proposed Owner | Decision Authority | Next Action | Status |
 |---|---|---|---|---|---|---|---|---|---|
@@ -25,39 +28,50 @@ Decision authority: Boss (final); ChatGPT L99 (independent review recommendation
 | GAP-09c | 22 Observability | No Observability Architecture | P0 | Absent | Gate C/D | Observability Architecture AI Owner | Boss | Prepare | OPEN |
 | GAP-09d | 23 BC/Backup/DR | No Business Continuity/Backup/DR Architecture; RPO/RTO undefined | P0 | Absent; PR #26 records RPO/RTO/DR input gap | Gate D | Resilience Architecture AI Owner | Boss | Define RPO/RTO, prepare deliverable | OPEN |
 | GAP-09e | 24 Capacity/Performance/Cost | No Capacity/Performance/Cost Architecture | P0 | Absent | Gate C/D | Performance & FinOps AI Owner | Boss | Prepare after workload/budget inputs | OPEN |
-| GAP-10 | State 03 governance | No Official State 03 Step Register; Step count/structure not baselined (the "10 Steps" claim is unverified). STEP030108 prepared a candidate register (Files 12–13) for Boss decision; candidate is **not** approved | P0 | No repository evidence found; candidate register = `12_STEP030108_STATE03_STEP_REGISTER_DECISION_PACKAGE.md` §E | State 03 sequencing / Gate A | PMO / Architecture Governance | Boss | **DECISION PACKAGE PREPARED — BOSS DECISION REQUIRED.** Boss to complete `13_STEP030108_BOSS_STEP_REGISTER_DECISION_RECORD.md` | OPEN |
+| GAP-10A | State 03 governance | Minimum STATE03 Step Sequence Baseline: STEP0301 = OFFICIAL CURRENT STEP / NOT CLOSED; STEP0302 = OFFICIAL NEXT STEP / NOT STARTED / ENTRY BLOCKED; STEP0303+ = NOT YET BASELINED. Boss-approved as an Interim Incremental STATE03 Step Register v0.1 (APPROVE WITH SPECIFIED CORRECTIONS, 2026-07-15) | P0 | `13_STEP030108_BOSS_STEP_REGISTER_DECISION_RECORD.md` §C–D (completed, 2026-07-15); `14_STEP030109_BOSS_DECISION_IMPLEMENTATION_RECORD.md` | State 03 sequencing / Gate A | PMO / Architecture Governance (named owner: TBD — BOSS ASSIGNMENT REQUIRED) | Boss | Boss decision recorded and committed (this Prompt, STEP030109) | **CLOSED — VERIFIED EVIDENCE** |
+| GAP-10B | State 03 governance | Full STATE03 Step Count and Structure: the complete, final Step sequence, numbering, and total Step count for all of STATE03 (STEP0303 and later) remain undefined. The "10 Steps" claim remains unverified | P0 | No repository evidence found for a complete/final register beyond the interim minimum sequence in GAP-10A | State 03 sequencing / Gate A | PMO / Architecture Governance (named owner: TBD — BOSS ASSIGNMENT REQUIRED) | Boss | Boss to define and approve the complete STATE03 Step structure and total Step count in a separate, future decision | **OPEN — BLOCKING — BOSS DECISION REQUIRED** |
 | GAP-11 | all domains (target) | All 24 domains have PR_ONLY or MISSING deliverables; **zero merged domain deliverables on SMEsPlus** | P0 | §B branch/PR matrix | Gate B | Domain AI Owners | Boss | Boss disposition of PR #26 + merge decision | OPEN |
 | GAP-12 | all domains | Owners are role-titles, not named persons/agents; independent review not performed. Delta note: PR #34 adds a `NAMED_OWNER_AND_REVIEWER_REGISTER.md` (INV-067) — PR_ONLY / UNVERIFIED, not merged → gap remains OPEN | P1 | Owner Matrix (INV-003); PR #34 INV-067 (unverified) | Gate A | Architecture Governance AI Owner | Boss | Assign named owners; schedule L99 review | OPEN |
 | GAP-13 | 3/14/19 inputs | Business/infra inputs open: sizing, compliance regime, RPO/RTO/DR, metering/billing, NFR workload/SLA/budget (PR #26 GAP-IN-01..05; 13 NFR input gaps) | P1 | INV-020 / PR #26 gap register (unverified) | Gate B/C/D | Domain AI Owners | Boss | Obtain business/infra inputs | OPEN |
 | GAP-14 | scope/gate governance | Scope V2 and Gate Model are CONTROLLED DRAFTs without traceable Boss approval provenance **on the target branch**; treated as baseline in prior control position. Delta note: PR #34 carries a claimed approval record (`SMEPLUS-DEC-26-07-10-STATE03-001`, INV-068) — PR_ONLY / UNVERIFIED, not merged → provenance still not established on target; gap remains OPEN (see CONF-14) | P1 | INV-001/002; PR #34 INV-068 (unverified) | Gate A | Architecture Governance AI Owner | Boss | Confirm/approve at Gate A; independently verify PR #34 approval record | OPEN |
 
-## Summary (recounted directly from the rows above — COR-03; re-recounted at delta revalidation — COR-09)
+## Summary (recounted directly from the rows above — COR-03; re-recounted at STEP030109 following the GAP-10 split)
 
-Total gap rows in this register: **18** (GAP-01, 02, 03, 04, 05, 06, 07, 08, 09a, 09b, 09c, 09d,
-09e, 10, 11, 12, 13, 14).
+Total gap rows in this register: **19** (GAP-01, 02, 03, 04, 05, 06, 07, 08, 09a, 09b, 09c, 09d,
+09e, 10A, 10B, 11, 12, 13, 14). Row count increased from 18 to 19 at STEP030109 solely because
+GAP-10 was separated into GAP-10A and GAP-10B per Boss-approved correction (File 13 §D item 7);
+no new substantive architecture gap was added or discovered.
 
-- **P0 gaps: 12** — GAP-03, 04, 05, 06, 07, 09a, 09b, 09c, 09d, 09e, 10, 11.
+- **P0 gaps: 13** — GAP-03, 04, 05, 06, 07, 09a, 09b, 09c, 09d, 09e, 10A, 10B, 11.
 - **P1 gaps: 6** — GAP-01, 02, 08, 12, 13, 14.
 - **P2 gaps: 0** — none in this register. PR-metadata / hygiene P2 items are recorded in the
   Conflict & Duplication Register (File 05).
-- **Reconciliation: P0 + P1 + P2 = 12 + 6 + 0 = 18 = total gap rows ✓.**
+- **Reconciliation: P0 + P1 + P2 = 13 + 6 + 0 = 19 = total gap rows ✓.**
+- **Closed rows: 1** — GAP-10A (CLOSED — VERIFIED EVIDENCE, STEP030109). **Open rows: 18.**
 
 Terminology note (COR-02): the non-canonical "Odoo-first/Odoo-style" usage inside PR #26
 architecture source is recorded as a finding/conflict (CONF-11, File 05), not as a new gap row;
-this keeps the gap total aligned to the 18 substantive architecture gaps. Correcting PR #26 to the
-Open ERP constitution is a later action under separate Boss authorization (STEP0301 does not
-modify PR #26).
+this keeps the gap total aligned to the substantive architecture gaps. Correcting PR #26 to the
+Open ERP constitution requires separate Boss authorization to edit PR #26's own branch (STEP0301
+does not modify PR #26; see File 15).
 
-Delta revalidation note (COR-11/12/13): the `.gitignore` deletion (CONF-12), the PRE-STATE 04
-session-ID/cross-state observation (CONF-13), and the PR #34 supersession/approval-provenance
-observation (CONF-14) are recorded as controlled observations in the Conflict & Duplication
-Register, not as new gap rows — they are repository-hygiene / traceability / unmerged-PR
-matters, not missing-architecture-deliverable gaps. Gap totals are therefore unchanged.
+Delta revalidation note (COR-11/12/13): the `.gitignore` deletion (CONF-12, now CORRECTED —
+VERIFIED EVIDENCE at STEP030109, see File 15), the PRE-STATE 04 session-ID/cross-state
+observation (CONF-13, remains BLOCKING), and the PR #34 supersession/approval-provenance
+observation (CONF-14, remains BOSS_DECISION_REQUIRED) are recorded as controlled observations in
+the Conflict & Duplication Register, not as new gap rows — they are repository-hygiene /
+traceability / unmerged-PR matters, not missing-architecture-deliverable gaps. Gap totals are
+therefore unchanged in substance by these three items.
 
-No gap is resolved, mitigated, or closed here. Closure requires the named owner's evidence,
-independent review, and Boss decision.
+No gap is resolved, mitigated, or closed here except GAP-10A (see below). Closure of every other
+row requires the named owner's evidence, independent review, and Boss decision.
 
-**STEP030108 note:** GAP-10 status is updated to reflect that a candidate STATE03 Step Register
-decision package has been prepared (Files 12–13). This is a decision-package-prepared status
-change only — GAP-10 remains OPEN and is **not** closed by STEP030108. Closure requires Boss to
-complete File 13 with an explicit decision, approval date, and reference.
+**STEP030109 note:** Per Boss-approved correction (File 13 §D item 7), GAP-10 is separated into
+GAP-10A (Minimum STATE03 Step Sequence Baseline) and GAP-10B (Full STATE03 Step Count and
+Structure). **GAP-10A is CLOSED — VERIFIED EVIDENCE** as of this Prompt: the Boss Decision
+Record (File 13) is completed with an explicit decision (APPROVE WITH SPECIFIED CORRECTIONS),
+approval date (2026-07-15), and reference ([SMEPLUS-26-07-15-001] / STEP030109), and the
+corrected Interim Incremental STATE03 Step Register v0.1 is committed (File 14). **GAP-10B
+remains OPEN — BLOCKING — BOSS DECISION REQUIRED**: the complete STATE03 Step structure and
+total Step count are not established by this Prompt or any prior Prompt. Closing GAP-10A does
+**not** close STEP0301, pass any Gate, or start STEP0302.

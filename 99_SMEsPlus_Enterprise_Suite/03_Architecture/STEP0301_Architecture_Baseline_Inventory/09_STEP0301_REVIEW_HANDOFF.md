@@ -1,11 +1,11 @@
 # 09 — STEP0301 Independent Review Handoff
 
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
-Step ID: STEP0301 · Current Prompt ID: STEP030108 · Prior Prompt ID: STEP030107 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `4ba19cdb27b5175f70dccad4192193f14fa0aa6f`
-Execution Role: Claude Code — Preparer/Executor · Final Approval Authority: Boss
-Prepared for: Boss Final Decision on the STATE03 Step Register (Files 12–13); independent review of the underlying STEP0301 inventory already recorded (STEP030106: VERIFIED WITH CONTROLLED FOLLOW-UP)
-Mode: STEP030108 STATE03 STEP REGISTER DECISION PACKAGE PREPARATION (over STEP030107 / STEP030106 / STEP030105 / STEP030104 / STEP030103)
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030108) · Previous PR #33 head (STEP030107): `4ba19cdb27b5175f70dccad4192193f14fa0aa6f`
+Step ID: STEP0301 · Current Prompt ID: STEP030109 · Prior Prompt ID: STEP030108 · Corrected Execution Prompt ID (technical): STEP030103
+Execution Role: Claude Code — Preparer/Executor (not Decision Owner) · Final Approval Authority: Boss (sole)
+Prepared for: independent re-review of the STEP030109 Boss Decision Implementation and Blocking-Issue Resolution corrections; independent review of the underlying STEP0301 inventory already recorded (STEP030106: VERIFIED WITH CONTROLLED FOLLOW-UP)
+Mode: STEP030109 BOSS DECISION IMPLEMENTATION AND BLOCKING-ISSUE RESOLUTION (over STEP030108 / STEP030107 / STEP030106 / STEP030105 / STEP030104 / STEP030103)
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030109) · Previous PR #33 head (STEP030108): `254c40415f369af543dc90f8c0409c7a6541058b`
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0` (correction run), `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` (original run)
 Delta: 2 commits (`e6f081f` PRE-STATE 04 sanitization batch 0; `c880c9d` `.gitignore` deletion) + delta-discovered draft PRs #34 / #35 — unchanged at STEP030108
 
@@ -147,5 +147,39 @@ performed at STEP030108 (the STEP030106 result, VERIFIED WITH CONTROLLED FOLLOW-
 unchanged since no Architecture conclusion changed). This handoff is for **Boss's direct
 decision** on the candidate Step Register, not a request for further independent technical
 review of Files 00–11.
+
+## 8. STEP030109 Addendum — Boss Decision Implementation and Blocking-Issue Resolution
+
+Following Boss's completion of File 13 (APPROVE WITH SPECIFIED CORRECTIONS, 2026-07-15),
+STEP030109 added two new files and updated Files 00/04/05/06/07/08/09/10/12/Execution Log/
+Manifest:
+
+- `14_STEP030109_BOSS_DECISION_IMPLEMENTATION_RECORD.md` — records the completed Boss decision,
+  the corrected Interim Incremental STATE03 Step Register v0.1, the owner/role corrections, and
+  the control-defect corrections (File 13 completion, manifest timestamp, stale references,
+  terminology preservation).
+- `15_STEP030109_BLOCKING_ISSUE_RESOLUTION_MATRIX.md` — reviews every Gap (19 rows, post-split),
+  Conflict (14 rows), and PR disposition (PR #26, PR #34) with an explicit resolution
+  classification, evidence location, owner, reviewer, Gate impact, target Step, blocking
+  classification, and Boss-decision-required flag for each.
+
+**Independent re-review recommended, not yet performed:** the STEP030109 corrections
+(GAP-10 split, owner/role reclassification, CONF-12 `.gitignore` restoration, the blocking-issue
+resolution matrix) have not been independently reviewed by ChatGPT L99.99. The governing Prompt's
+Section 10 requires "a separate independent review and Boss closure decision" before any
+STEP0301 closure review proceeds. This handoff requests that independent re-review cover:
+
+1. That File 13 records exactly the Boss-selected option (APPROVE WITH SPECIFIED CORRECTIONS) with
+   no self-selection by the producer.
+2. That GAP-10A's CLOSED classification is properly evidenced (Boss Decision Record completed and
+   committed) and does not overstate what was actually approved (an interim minimum sequence, not
+   the complete register).
+3. That GAP-10B, and every other OPEN/BLOCKING row in File 15, is not mischaracterized as closed.
+4. That the `.gitignore` restoration (CONF-12) matches the documented before/after evidence exactly
+   and introduces no unrelated rule.
+5. That no "Odoo ERP" occurrence was introduced as canonical terminology anywhere in the STEP0301
+   package.
+6. That PR #26 and PR #34 dispositions in File 15 are marked BOSS_DECISION_REQUIRED and that
+   neither PR was merged, closed, rebased, or force-pushed under STEP030109.
 
 No Evidence = No Progress. ห้ามข้าม Gate. Boss is the sole Final Approver.
