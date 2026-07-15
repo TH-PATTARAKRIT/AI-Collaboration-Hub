@@ -25,7 +25,7 @@ rewrite, no amend of `20709ee…`, no force push**.
 | STEP030101 | Initial Architecture Baseline Inventory | EXECUTED | `52105c30334088e40f77ddbf58032cfbb8d5458a` | Prepared initial inventory |
 | STEP030102 | Correction and Revalidation | EXECUTED | `518ae121c115a3a629eab23d7db2b01376c0036f` | Corrected counts and target evidence |
 | STEP030103 | Final Delta Revalidation | EXECUTED WITH TRACEABILITY DEFECT | `20709ee225fd7779b2e62000b4d4c34b09f5568f` | Technical delta revalidation completed |
-| STEP030104 | Prompt Traceability and PR Description Correction | IN EXECUTION → EXECUTED after commit | Content Correction Commit: `__CONTENT_CORRECTION_COMMIT__` · Post-Commit Evidence Addendum (if used): `__ADDENDUM_COMMIT__` | Traceability corrected; PR #33 synchronized |
+| STEP030104 | Prompt Traceability and PR Description Correction | EXECUTED | Content Correction Commit: `0d34b3f59121debb94b22e99ec92493539d76dae` · Post-Commit Evidence Addendum: this commit (SHA reported at push in PR #33 §J / final response) | Traceability corrected; PR #33 synchronized |
 
 Commit resolution note: STEP030101 and STEP030102 SHAs were resolved conclusively from the
 package directory's Git history (three content commits: `52105c3…`, `518ae12…`, `20709ee…`,
@@ -73,8 +73,24 @@ git add .../STEP0301_Architecture_Baseline_Inventory/ ; git commit ; git push -u
 
 GitHub MCP: `pull_request_read` (#33 get), `update_pull_request` (#33 title + body).
 
-The `__CONTENT_CORRECTION_COMMIT__` / `__ADDENDUM_COMMIT__` placeholders above are replaced with
-the resulting full SHAs in the Post-Commit Evidence Addendum (§0-tr-post) after push.
+### §0-tr-post — Post-Commit Evidence Addendum (STEP030104)
+
+Two-commit pattern used (a commit cannot embed its own SHA; no history rewrite, no amend, no
+force push):
+
+- **Content Correction Commit:** `0d34b3f59121debb94b22e99ec92493539d76dae` — applied all
+  STEP030104 traceability edits (Prompt-ID headers, Prompt Execution History, EV-P01..P05,
+  handoff item 13, checklist items 21–30) and regenerated the manifest.
+- **Post-Commit Evidence Addendum:** this commit — records the Content Correction Commit SHA in
+  the Prompt Execution History (§0-tr), EV-P04, and this section, then regenerates the manifest
+  again over the two updated files. Its own SHA is reported at push in the PR #33 description
+  (§J) and the final response (a commit cannot contain its own hash).
+
+STEP030103's technical Architecture results are unchanged by both commits: domain coverage
+13+2+9=24, gaps P0 12 + P1 6 + P2 0 = 18, conflicts P1 8 + P2 6 = 14, inventory 38 (7+21+10),
+`OFFICIAL_STEP_REGISTER_NOT_FOUND`, Gate positions A PARTIAL / B–D HOLD — all carried forward.
+No Architecture source document modified; no Gap/Conflict/ADR/Risk closed; no Gate moved; no
+merge; no new branch/PR; no `.gitignore` change; no prohibited file staged.
 
 ## 0-bis. Delta revalidation run (this revision)
 
