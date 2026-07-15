@@ -1,5 +1,7 @@
 # 15 — STEP030109/110 Blocking-Issue Resolution Matrix
 
+**STEP030111 traceability note (this file is protected — not deleted, recreated, or renumbered):** Current governing Prompt is now STEP030111; Parent Prompt ID: STEP030110; Reference Prompt IDs: STEP030109, STEP030108. All Resolution Status values below (GAP-10A CLOSED, GAP-10B BLOCKING, CONF-12 CORRECTED, CONF-13/CONF-14 BLOCKING) are unchanged by STEP030111. See File 22 for STEP030111's Gap/Conflict-to-Step mapping (mapping does not close any row).
+
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030110 PR REVALIDATION AND EVIDENCE-BACKED DISPOSITION (over STEP030109 BOSS DECISION IMPLEMENTATION)
 Step ID: STEP0301 · Current Prompt ID: STEP030110 · Prior Prompt ID: STEP030109
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub · Target branch: SMEsPlus @ `cf4ef7f40e1a4b7c1a052cb0949f35c1eed2c62a` (**advanced from `c880c9d…` — PR #35 merged; no `03_Architecture/` impact; see File 19 §A-1**) · Pull Request: PR #33

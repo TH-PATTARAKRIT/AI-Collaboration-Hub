@@ -1,5 +1,7 @@
 # 05 — STEP0301 Conflict and Duplication Register
 
+**STEP030111 traceability correction:** Current Prompt ID: STEP030111 · Parent Prompt ID: STEP030110 · Reference Prompt IDs: STEP030109, STEP030108 · No Conflict row, status, priority, or count below is changed by STEP030111 (14 Conflicts, 1 Corrected / 13 Open, unchanged — see File 20/22 for STEP030111 additions). CONF-13 and CONF-14 remain OPEN — BOSS DECISION REQUIRED; not closed.
+
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030110 CONTROLLED REISSUE, BRANCH RECONCILIATION, AND BOSS DECISION IMPLEMENTATION
 Step ID: STEP0301 · Current Prompt ID: STEP030110 · Prior Prompt ID: STEP030109 (EXECUTED at commit `281fa47…`) · Corrected Execution Prompt ID (technical): STEP030103 · Reviewer: ChatGPT L99.99 (VERIFIED WITH CONTROLLED FOLLOW-UP, recorded STEP030106; re-review of STEP030109/STEP030110 corrections recommended, not yet performed) · Approver: Boss
 Target branch: SMEsPlus @ `cf4ef7f40e1a4b7c1a052cb0949f35c1eed2c62a` (STEP030110 branch reconciliation — see File 17; previously `c880c9d…` at STEP030109) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z

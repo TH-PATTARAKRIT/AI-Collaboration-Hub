@@ -1,5 +1,7 @@
 # 09 — STEP0301 Independent Review Handoff
 
+**STEP030111 traceability correction:** Current Prompt ID: STEP030111 · Parent Prompt ID: STEP030110 · Reference Prompt IDs: STEP030109, STEP030108 · This file's STEP030110-era review scope is superseded for STEP030111 purposes by File 23 (`23_STEP030111_INDEPENDENT_REVIEW_HANDOFF.md`), which is the authoritative, self-contained handoff for this Prompt. This file is retained unmodified below for historical continuity.
+
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
 Step ID: STEP0301 · Current Prompt ID: STEP030110 · Prior Prompt ID: STEP030109 (EXECUTED at commit `281fa47…`) · Corrected Execution Prompt ID (technical): STEP030103
 Execution Role: Claude Code — Preparer/Executor (not Decision Owner) · Final Approval Authority: Boss (sole)
