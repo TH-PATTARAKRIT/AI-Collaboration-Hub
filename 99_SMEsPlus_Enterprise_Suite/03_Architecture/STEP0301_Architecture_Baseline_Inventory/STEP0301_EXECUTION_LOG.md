@@ -4,7 +4,10 @@ Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.
 Step ID: STEP0301 · Current Prompt ID: STEP030110 · Prior Prompt ID: STEP030109 (EXECUTED at commit `281fa47adc3fda09c481200e9311d3b90ee88327`) · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `281fa47adc3fda09c481200e9311d3b90ee88327`
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
 Execution role: Claude Code — Preparer/Executor only (not Decision Owner — corrected at STEP030109)
-Mode: STEP030110 — CONTROLLED REISSUE, BRANCH RECONCILIATION, AND BOSS DECISION IMPLEMENTATION (within STEP0301)
+Mode: STEP030110 ran as **two concurrent executions** on this branch, both reconciled into this
+log: (a) CONTROLLED REISSUE, BRANCH RECONCILIATION, AND BOSS DECISION IMPLEMENTATION (§0-r110);
+(b) PR #26 / PR #34 REVALIDATION AND EVIDENCE-BACKED DISPOSITION (§0-r2). See §0-r110-merge for
+the reconciliation of the two.
 Original creation timestamp (UTC): 2026-07-14T16:10:56Z
 Correction / re-inspection timestamp (UTC): 2026-07-15T00:20:44Z
 Delta revalidation timestamp (UTC): 2026-07-15T05:27:24Z
@@ -14,11 +17,39 @@ Boss authorization recording timestamp (UTC): 2026-07-15T06:30:00Z (STEP030106 r
 Metadata and manifest correction timestamp (UTC): 2026-07-15 (STEP030107 run)
 Step Register decision package preparation timestamp (UTC): 2026-07-15 (STEP030108 run)
 Boss decision implementation and blocking-issue resolution timestamp (UTC): 2026-07-15T16:45:00Z (STEP030109 run, EXECUTED at commit `281fa47…`, PR #33 head verified 2026-07-15T16:53:49Z)
-Branch reconciliation and controlled reissue timestamp (UTC): 2026-07-15T17:40:00Z (STEP030110 run, this revision)
+PR revalidation and evidence-backed disposition timestamp (UTC): 2026-07-15T17:05:00Z (STEP030110 execution (b), §0-r2)
+Branch reconciliation and controlled reissue timestamp (UTC): 2026-07-15T17:14:39Z (STEP030110 execution (a), §0-r110)
+Concurrent-execution reconciliation timestamp (UTC): 2026-07-15T17:45:00Z (§0-r110-merge, this revision)
 Independent Reviewer: ChatGPT L99.99 — Result: VERIFIED WITH CONTROLLED FOLLOW-UP (recorded STEP030106; unchanged); re-review of STEP030109/STEP030110 corrections recommended, not yet performed · Architecture Governance Owner: PMO / Architecture Governance — named owner pending (TBD — BOSS ASSIGNMENT REQUIRED) · Final Approval Authority: Boss (sole)
 No credentials, tokens, or secrets are recorded in this log.
 
-## 0-r110. STEP030110 Controlled Reissue, Branch Reconciliation, and Boss Decision Implementation (this revision)
+## 0-r110-merge. STEP030110 Reconciliation of Two Concurrent Executions (this revision)
+
+Two independent Claude Code sessions executed STEP030110 concurrently on the shared PR #33
+branch: execution (a), below (§0-r110), and execution (b), below (§0-r2). Execution (b) pushed
+first (commit `d0268ec`, merged with execution (a)'s `a4947a9` at `7904e5c`); this session's push
+of execution (a) was rejected as non-fast-forward, fetched the remote state, and reconciled both
+by merge (not rebase, not force-push). Reconciliation actions taken:
+
+- Renumbered execution (b)'s `16_STEP030110_PR26_PR34_REVALIDATION_AND_EVIDENCE_BACKED_DISPOSITION.md`
+  to `19_...` to resolve a duplicate-numbering collision with execution (a)'s
+  `16_STEP030110_FULL_STATE03_STEP_REGISTER_PROPOSAL.md` (both sessions independently used the
+  next-available number "16"). No content was altered by the rename beyond the file's own title
+  line and cross-references to it in Files 00, 09, and 15.
+- Hand-merged conflicting edits in `00_STEP0301_EXECUTIVE_SUMMARY.md`, `09_STEP0301_REVIEW_HANDOFF.md`,
+  this log, and `PACKAGE_MANIFEST_SHA256_STEP0301.txt` — both executions' Prompt Execution History
+  rows, review-handoff addenda, and findings are preserved; nothing from either execution was
+  discarded.
+- `15_STEP030109_BLOCKING_ISSUE_RESOLUTION_MATRIX.md` merged cleanly (git auto-merge, no conflict) —
+  both executions' additions coexist without contradiction.
+- Manifest regenerated once, after all reconciliation edits, covering the final set of **21**
+  controlled files (00–15, 16–19, Execution Log — no manifest self-inclusion).
+
+No Gap, Conflict, or PR disposition was closed or upgraded by this reconciliation — it is purely
+a git/documentation merge of two evidence-gathering executions, neither of which itself closed
+anything beyond GAP-10A/CONF-12 (already closed/corrected at STEP030109).
+
+## 0-r110. STEP030110 Controlled Reissue, Branch Reconciliation, and Boss Decision Implementation (execution a)
 
 Purpose: correct the false "STEP030109 issued but not executed" premise carried by a
 controlling-chat reissue of this work (STEP030109 is in fact EXECUTED at commit `281fa47…`);
@@ -81,11 +112,11 @@ Gate, does not merge PR #33/#26/#34, does not rewrite history, does not force pu
 
 ### Manifest regeneration
 
-- Manifest regenerated after all above edits were finalized; expanded from 17 to 20 controlled
-  files (+ Files 16, 17, 18). See `PACKAGE_MANIFEST_SHA256_STEP0301.txt` header for the exact
-  ISO-8601 generation timestamp and `sha256sum -c` result.
+- Manifest regenerated once §0-r110-merge's reconciliation was complete; final set is **21**
+  controlled files (00–15, 16–19, Execution Log). See `PACKAGE_MANIFEST_SHA256_STEP0301.txt`
+  header for the exact ISO-8601 generation timestamp and `sha256sum -c` result.
 
-### Result
+### Result (execution a, independently — see §0-r110-merge for the reconciled overall result)
 
 `STEP030110 EXECUTED — CONTROL CORRECTIONS COMPLETE — BOSS DECISION BLOCKERS REMAIN`. STEP0301
 remains NOT CLOSED. STEP0302 remains NOT STARTED / ENTRY BLOCKED. Gate A remains subject to
@@ -93,6 +124,110 @@ independent review; Gates B–D remain unchanged (HOLD). GAP-10B remains OPEN pe
 separate decision on the File 16 candidate Step Register. CONF-13 remains BLOCKING. PR #26, PR
 #34, and PR #33 dispositions remain BOSS_DECISION_REQUIRED. No Pull Request was merged; no Gate
 was passed; no Build/Release/Deploy/Production was authorized.
+
+## 0-r2. STEP030110 PR #26 / PR #34 Revalidation and Evidence-Backed Disposition (execution b)
+
+Purpose: in response to Boss's clarification of what "approve" meant after the STEP030109
+report (PR #33 not merged yet; PR #26/#34 not merged/closed — instead revalidate both with
+evidence and prepare evidence-backed dispositions), re-verify PR #26 and PR #34 against the
+latest SMEsPlus base, produce a line-by-line Open ERP terminology-correction requirements table
+for PR #26, and independently check PR #34's approval-record commit/session provenance against
+raw git history. Within STEP0301 only. Does not merge, close, rebase, or force-push PR #26,
+PR #34, or PR #33. Does not close STEP0301. Does not start STEP0302. Does not pass any Gate.
+
+### Preflight verification (STEP030110)
+
+- `git fetch origin --prune` and `git fetch origin claude/state-03-architecture-deliverables-su8cg6 state03-governance-v2 SMEsPlus`.
+- **SMEsPlus HEAD had advanced**: `c880c9d729018f8660ebb92599e098df2bde2f6d` →
+  `cf4ef7f40e1a4b7c1a052cb0949f35c1eed2c62a`. Investigated before proceeding: `git log
+  c880c9d..cf4ef7f` shows 4 commits, all part of the merge of PR #35 ("[STATE 04] Restore
+  Pre-STATE04 Functional Sanitization Corrections"), touching 15 files exclusively under
+  `07_Output_From_AI/PRE_STATE04_FUNCTIONAL_SANITIZATION/`. `git diff --stat c880c9d cf4ef7f --
+  99_SMEsPlus_Enterprise_Suite/03_Architecture/` is **empty** — no Architecture conclusion in
+  this package changes as a result. Recorded per governing-order discipline ("revalidate every
+  value before modifying files; if the actual state differs, record the discrepancy").
+- GitHub `pull_request_read` re-confirmed for PR #26: open/draft/not merged; `mergeable_state`
+  changed from `clean` to `unknown` (GitHub has not recomputed since SMEsPlus advanced); head
+  `098798f705c0c7f25982adc56becef90e3af734a` unchanged; base `8570187bc0f13835be154d10cdc09bfa98e1dfe9`
+  now 3 commits stale (was 1).
+- GitHub `pull_request_read` re-confirmed for PR #34: open/draft/not merged; `mergeable_state`
+  changed from `clean` to `unknown`; head `09b4ead92cab672037a3855ed5058bdd970960ba` unchanged;
+  base `c880c9d729018f8660ebb92599e098df2bde2f6d` now 1 commit stale (was current).
+- GitHub `pull_request_read` for PR #35: now `state: closed`, `merged: true`,
+  `merged_at: 2026-07-15T16:50:51Z`, `merged_by: scglegacy`. Its body cites Prompt ID
+  STEP040101 and Session ID `[SMEPLUS-26-07-15-005]` — a **third** distinct Session ID for the
+  PRE-STATE04 cross-state boundary, beyond the two already recorded in File 05 CONF-13
+  (`[SMEPLUS-26-07-15-001]`, `[SMEPLUS-26-07-15-004]`). Not resolved; recorded as a deepening of
+  the existing CONF-13 ambiguity, not guessed at.
+- Working tree clean before any edit; package manifest verified: `sha256sum -c
+  PACKAGE_MANIFEST_SHA256_STEP0301.txt` → **17/17 OK** prior to this revision's edits.
+
+### Work performed (STEP030110)
+
+1. Read the actual PR #26 branch-tip content (`git show
+   origin/claude/state-03-architecture-deliverables-su8cg6:<path>`) for all 6 files previously
+   recorded as containing non-canonical terminology; confirmed exactly 13 occurrences (matching
+   the prior count) and classified each by exact file/line into 4 canonical-direction occurrences
+   (require replacement: `Odoo-first`→`Open ERP-first`, `Odoo-style`→`Open ERP-style`) and 9
+   clean-room/UX-reference occurrences (require preservation with an explicit
+   `HISTORICAL_SOURCE_REFERENCE — NOT PROJECT CANONICAL TERMINOLOGY` label). No edit was made to
+   PR #26's branch.
+2. Read the actual PR #34 branch-tip content of
+   `STATE03_ARCHITECTURE_SCOPE_V2_APPROVAL_RECORD.md` and
+   `ARCHITECTURE_GATE_CROSSWALK_AND_SUPERSESSION.md` in full.
+3. Independently verified the approval record's 4 "Referenced Commit SHA" values: confirmed via
+   `git cat-file -t` that all 4 resolve to real `commit` objects; via `git merge-base
+   --is-ancestor` that all 4 are ancestors of current SMEsPlus HEAD; via `git show -s
+   --format=%cI` that all 4 are dated 2026-07-10, consistent with the claimed Decision Date; via
+   `git ls-tree` that the blob each commit introduced is byte-identical (same blob SHA) to the
+   **current** target blob for that document. Confirmed the Session ID `[SMEPLUS-26-07-10-001]`
+   is used independently across 6 other genuine target-branch documents predating PR #34.
+   Confirmed the approval-record file's own commit (`8eace3de6b8e9ba77f842f9b3023013dff817b71`,
+   2026-07-10T16:28:13+07:00) was authored by the repository-owning account, after the 4
+   referenced document commits. Confirmed the record's own "Effective Status" section states
+   NOT APPROVED / NOT AUTHORIZED for the State 03 Architecture Baseline and Build/Release/
+   Deploy/Production, and its own crosswalk document limits supersession to
+   "SUPERSEDED AFTER APPROVED MERGE" (i.e. not yet in effect). Concluded: the commit/session
+   provenance is technically corroborated (not fabricated), but the underlying approval claim
+   remains self-recorded with no separate, independently-checkable control artifact — CONF-14 is
+   **not** resolved by this finding and independent ChatGPT L99.99 review remains required.
+4. Created `19_STEP030110_PR26_PR34_REVALIDATION_AND_EVIDENCE_BACKED_DISPOSITION.md` (numbered 16
+   at the time of this execution; renumbered to 19 at §0-r110-merge to resolve a collision with
+   a concurrently-executed STEP030110 session's own File 16) recording all of the above with full
+   evidence detail.
+5. Updated `15_STEP030109_BLOCKING_ISSUE_RESOLUTION_MATRIX.md` — CONF-11, CONF-13, CONF-14 rows
+   and both PR disposition sub-sections (§C.1, §C.2) updated with the new evidence; no row
+   upgraded to CLOSED/APPROVED by this update.
+6. Updated `09_STEP0301_REVIEW_HANDOFF.md` — added §9 STEP030110 addendum requesting independent
+   review of the new terminology audit and the approval-provenance findings.
+7. Updated `00_STEP0301_EXECUTIVE_SUMMARY.md` — header Prompt IDs, Target HEAD SHA (recording
+   the SMEsPlus advance), and Prompt Execution History extended with the STEP030110 row.
+8. This Execution Log — added this §0-r2 section; updated header timestamps and Prompt IDs.
+9. Regenerated `PACKAGE_MANIFEST_SHA256_STEP0301.txt` after all controlled-file edits above (see
+   §0-r2-mi below).
+
+### Manifest regeneration (execution b, independently) — superseded by §0-r110-merge's final regeneration
+
+- At the time of this execution: the prior 17 (Files 00–15 + Execution Log) plus 1 new file
+  (numbered 16 at the time) = 18 controlled files. This intermediate manifest was superseded when
+  execution (a)'s concurrent push was reconciled (§0-r110-merge); the final manifest covers 21
+  files (Files 00–19 + Execution Log, with the former File 16 renumbered to 19).
+
+### Architecture totals — unchanged (re-affirmed, not re-derived)
+
+Items 38 (7 present + 31 PR_ONLY) · coverage 13+2+9=24 · gap rows 19 (P0 13 + P1 6 + P2 0;
+1 closed: GAP-10A) · conflicts 14 (1 corrected: CONF-12) · Gate A PARTIAL_EVIDENCE · Gate B
+PR_ONLY+EVIDENCE_MISSING—HOLD · Gate C EVIDENCE_MISSING—HOLD · Gate D EVIDENCE_MISSING—HOLD (all
+unchanged by STEP030110 — the SMEsPlus advance touches no `03_Architecture/` file).
+
+### Control statement (STEP030110)
+
+"STEP030110 revalidates PR #26 and PR #34 against the latest SMEsPlus base, identifies exact
+Open ERP terminology corrections required for PR #26, and independently checks PR #34's
+approval-record commit/session provenance against raw git history. It does not merge, close,
+rebase, or force-push PR #26, PR #34, or PR #33. It does not treat PR #34's governance documents
+as an approved baseline. It does not close STEP0301, start STEP0302, or pass any Gate. Boss is
+the sole Final Approver for both PRs' eventual disposition."
 
 ## 0-impl. STEP030109 Boss Decision Implementation and Blocking-Issue Resolution (prior revision)
 
@@ -766,7 +901,7 @@ State 02 handover: `…/STATE02_FINALIZATION/17_S02_FINAL_006_BOSS_CLOSURE_DECIS
   the final execution report at push time. No merge of PR #33 or PR #26 performed. No push to
   SMEsPlus directly. No force push.
 
-## 8. Control statement (superseded by §0-impl for the current STEP030109 revision)
+## 8. Control statement (superseded by §0-r2 for the current STEP030110 revision)
 
 STEP0301 Architecture Baseline Inventory under Prompt STEP030105 corrected and revalidated the
 STEP0301 package manifest only. Claude Code has not approved or closed STEP0301, has not approved
@@ -774,4 +909,4 @@ any Architecture Gate, has not defined or started STEP0302 or any later STATE03 
 merged PR #33, PR #26, PR #34, or PR #35, and has not authorized Build, Release, Deploy, or
 Production. Independent ChatGPT L99.99 review remains required. Boss is the sole Final Approver.
 
-See §0-impl above for the current STEP030109 control statement, which governs this revision.
+See §0-r2 above for the current STEP030110 control statement, which governs this revision.

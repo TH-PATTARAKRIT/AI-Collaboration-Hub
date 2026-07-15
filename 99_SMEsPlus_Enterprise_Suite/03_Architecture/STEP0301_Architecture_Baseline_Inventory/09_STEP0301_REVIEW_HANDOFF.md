@@ -182,9 +182,41 @@ STEP0301 closure review proceeds. This handoff requests that independent re-revi
 6. That PR #26 and PR #34 dispositions in File 15 are marked BOSS_DECISION_REQUIRED and that
    neither PR was merged, closed, rebased, or force-pushed under STEP030109.
 
-**STEP030110 update:** this handoff request is superseded/extended by
-`18_STEP030110_INDEPENDENT_REVIEW_HANDOFF.md`, which additionally covers the STEP030109-executed
-correction, the STEP030110 branch reconciliation (File 17), and the File 16 candidate Step
-Register proposal. Items 1–6 above remain valid and are carried forward in File 18 §3.
+**STEP030110 update:** two independent STEP030110 executions ran concurrently on this branch and
+are both reconciled here (see `STEP0301_EXECUTION_LOG.md` §0-r110-merge). This handoff request is
+superseded/extended by `18_STEP030110_INDEPENDENT_REVIEW_HANDOFF.md`, which additionally covers
+the STEP030109-executed correction, the STEP030110 branch reconciliation (File 17), and the
+`16_STEP030110_FULL_STATE03_STEP_REGISTER_PROPOSAL.md` candidate Step Register proposal.
+Items 1–6 above remain valid and are carried forward in File 18 §3. The concurrent execution's PR
+#26/#34 revalidation package below is renumbered to File 19 to avoid a duplicate File 16.
+
+## 9. STEP030110 Addendum — PR #26 / PR #34 Revalidation and Evidence-Backed Disposition
+
+Following Boss's clarification that "approve" (in response to the STEP030109 report) meant, in
+part, "revalidate PR #26 and PR #34 with evidence, do not merge or close either", STEP030110
+added `19_STEP030110_PR26_PR34_REVALIDATION_AND_EVIDENCE_BACKED_DISPOSITION.md` and updated File
+15's CONF-11, CONF-13, and CONF-14 rows plus both PR disposition sub-sections. Key new evidence:
+
+1. SMEsPlus HEAD advanced (`c880c9d…` → `cf4ef7f…`, PR #35 merged) — no `03_Architecture/`
+   impact, but both PR #26 and PR #34 are now more stale than previously recorded.
+2. PR #26's 13 non-canonical terminology occurrences were audited line-by-line and classified
+   into 4 canonical-direction corrections and 9 clean-room/UX-reference preservations with exact
+   file/line references (File 19 §B.2) — not applied (PR #26's branch is out of scope).
+3. PR #34's approval-record commit/session-ID provenance was independently checked against raw
+   git history: the 4 referenced commit SHAs are real, are SMEsPlus ancestors, and match current
+   target blob content exactly; the cited Session ID is used independently elsewhere on target.
+   This corroborates the *technical* references but does **not** independently verify the
+   underlying approval *claim*, which remains self-recorded (File 19 §C.2).
+
+**Independent re-review requested for STEP030110 specifically:**
+
+1. Confirm the terminology audit in File 19 §B.2 is complete and correctly classified (spot-check
+   against the actual PR #26 file content at head `098798f705c0c7f25982adc56becef90e3af734a`).
+2. Independently assess — using the provenance findings in File 19 §C.2 as a starting evidence
+   base — whether PR #34's approval-record claim should be treated as credible, and report a
+   result distinct from "fabricated" vs "Boss-authentic and authoritative", since this Prompt's
+   producer role cannot make that judgement itself.
+3. Confirm no merge, closure, rebase, or force-push occurred on PR #26, PR #34, or PR #33 under
+   STEP030110.
 
 No Evidence = No Progress. ห้ามข้าม Gate. Boss is the sole Final Approver.
