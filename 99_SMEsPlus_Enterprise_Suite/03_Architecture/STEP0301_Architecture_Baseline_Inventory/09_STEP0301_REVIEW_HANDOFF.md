@@ -1,13 +1,13 @@
 # 09 — STEP0301 Independent Review Handoff
 
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
-Step ID: STEP0301 · Current Prompt ID: STEP030105 · Prior Prompt ID: STEP030104 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
-Execution Role: Claude Code — Preparer/Correction Executor · Final Approval Authority: Boss
-Prepared for: Independent ChatGPT L99.99 Review, then Boss decision
-Mode: STEP030105 MANIFEST DEDUPLICATION & PACKAGE INTEGRITY REVALIDATION (over STEP030104 / STEP030103) & INDEPENDENT REVIEW HANDOFF
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030105) · Previous PR #33 head (STEP030104): `b9ef45d623ed2572aaff382b1378104b89fd7ca1`
+Step ID: STEP0301 · Current Prompt ID: STEP030108 · Prior Prompt ID: STEP030107 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `4ba19cdb27b5175f70dccad4192193f14fa0aa6f`
+Execution Role: Claude Code — Preparer/Executor · Final Approval Authority: Boss
+Prepared for: Boss Final Decision on the STATE03 Step Register (Files 12–13); independent review of the underlying STEP0301 inventory already recorded (STEP030106: VERIFIED WITH CONTROLLED FOLLOW-UP)
+Mode: STEP030108 STATE03 STEP REGISTER DECISION PACKAGE PREPARATION (over STEP030107 / STEP030106 / STEP030105 / STEP030104 / STEP030103)
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030108) · Previous PR #33 head (STEP030107): `4ba19cdb27b5175f70dccad4192193f14fa0aa6f`
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0` (correction run), `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` (original run)
-Delta: 2 commits (`e6f081f` PRE-STATE 04 sanitization batch 0; `c880c9d` `.gitignore` deletion) + delta-discovered draft PRs #34 / #35
+Delta: 2 commits (`e6f081f` PRE-STATE 04 sanitization batch 0; `c880c9d` `.gitignore` deletion) + delta-discovered draft PRs #34 / #35 — unchanged at STEP030108
 
 **Review scope note (STEP030104):** the independent reviewer is asked to verify BOTH (a) the
 **STEP030103 technical delta-revalidation results** (items 1–12 below, the inventory itself) AND
@@ -130,5 +130,22 @@ prioritization of the P0 gaps.
 Claude Code prepared this package only. It did not approve or close STEP0301, did not verify
 any deliverable, did not move any Gate, did not define or start any later State 03 Step, and
 did not merge anything. Independent review and Boss decision are required to progress.
+
+## 7. STEP030108 Addendum — Boss Decision Handoff (Step Register)
+
+STEP030108 added two new files for direct Boss review and decision:
+
+- `12_STEP030108_STATE03_STEP_REGISTER_DECISION_PACKAGE.md` — the candidate STATE03 Step
+  Register, dependency/Gate sequence, confirmed-facts-vs-recommendations table, GAP-10
+  resolution options, risks of premature baselining, and Boss decision matrix.
+- `13_STEP030108_BOSS_STEP_REGISTER_DECISION_RECORD.md` — an unsigned decision template with
+  four explicit options (APPROVE / APPROVE WITH SPECIFIED CORRECTIONS / RETURN FOR REWORK /
+  HOLD — INSUFFICIENT EVIDENCE), left blank for Boss completion.
+
+No independent ChatGPT L99.99 re-review of the underlying STEP0301 inventory was required or
+performed at STEP030108 (the STEP030106 result, VERIFIED WITH CONTROLLED FOLLOW-UP, stands
+unchanged since no Architecture conclusion changed). This handoff is for **Boss's direct
+decision** on the candidate Step Register, not a request for further independent technical
+review of Files 00–11.
 
 No Evidence = No Progress. ห้ามข้าม Gate. Boss is the sole Final Approver.

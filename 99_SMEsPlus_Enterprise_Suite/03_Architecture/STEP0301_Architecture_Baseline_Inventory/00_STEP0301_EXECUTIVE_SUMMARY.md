@@ -3,12 +3,12 @@
 Session ID: [SMEPLUS-26-07-15-001]
 State / Step: STATE 03 — Architecture / STEP0301 — Architecture Baseline Inventory
 Step ID: STEP0301
-Current Prompt ID: STEP030105 (Manifest Deduplication and Package Integrity Revalidation)
-Prior Prompt ID: STEP030104 (Prompt Traceability and PR Description Correction)
+Current Prompt ID: STEP030108 (Official STATE03 Step Register Baseline Decision Package)
+Prior Prompt ID: STEP030107 (PR Metadata and Manifest Integrity Correction)
 Corrected Execution Prompt ID (technical): STEP030103 (Final Delta Revalidation)
-Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f` · Previous PR #33 head (STEP030104): `b9ef45d623ed2572aaff382b1378104b89fd7ca1`
+Previous Execution Commit: `4ba19cdb27b5175f70dccad4192193f14fa0aa6f` (STEP030107)
 Control Level: /L99.99
-Execution Mode: STEP030105 — MANIFEST DEDUPLICATION AND PACKAGE INTEGRITY REVALIDATION ONLY (within STEP0301)
+Execution Mode: STEP030108 — STATE03 STEP REGISTER BASELINE DECISION PACKAGE PREPARATION ONLY (within STEP0301); GAP-10 remains OPEN; no Step Register approved
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
 Target Branch: SMEsPlus
 Target HEAD SHA (inspected): `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030104)
@@ -36,12 +36,17 @@ Commit SHAs below are resolved from Git history of the STEP0301 package director
 | STEP030103 | Final Delta Revalidation | EXECUTED WITH TRACEABILITY DEFECT | `20709ee225fd7779b2e62000b4d4c34b09f5568f` | Technical delta revalidation completed (target `c880c9d…`); Prompt ID not recorded in package/commit |
 | STEP030104 | Prompt Traceability and PR Description Correction | EXECUTED WITH MANIFEST DEFECT | `0d34b3f…` (content) + `b9ef45d…` (addendum) | Prompt traceability + PR #33 synced; addendum introduced a manifest duplicate-record defect |
 | STEP030105 | Manifest Deduplication and Package Integrity Revalidation | EXECUTED | Correction commit SHA recorded in PR #33 §C and Execution Log §0-mi (EV-P06); not embedded in package (order §6) | Manifest deduplicated to 12 records; integrity revalidated |
+| STEP030106 | Boss Authorization to Proceed with Controlled Next Process | EXECUTED | `e18ad0a2e0032eef92de47b248298581ae0c71f9` | Independent review result recorded (VERIFIED WITH CONTROLLED FOLLOW-UP); Boss authorization recorded in File 11; non-binding STEP0302 recommendation prepared |
+| STEP030107 | PR Metadata and Manifest Integrity Correction | EXECUTED | `4ba19cdb27b5175f70dccad4192193f14fa0aa6f` | PR #33 title/description corrected; manifest governance header restored; manifest expanded to 13 records (execution log included) |
+| STEP030108 | Official STATE03 Step Register Baseline Decision Package | EXECUTED | (recorded in PR #33 §B and Execution Log §0-dec post-commit) | Candidate STATE03 Step Register assembled (Files 12–13); STEP0301 CONFIRMED CURRENT STEP; STEP0302 presented as CANDIDATE ONLY; GAP-10 remains OPEN — BOSS DECISION REQUIRED |
 
 STEP030103's technical result (inventory/coverage/gap/conflict/terminology/Gate/Step-Register
-conclusions) is **unchanged** by STEP030104 and STEP030105. STEP030104 added the missing Prompt
-traceability and synchronized PR #33; STEP030105 corrected the manifest duplicate-record defect
-and revalidated package integrity. Neither changes any Architecture conclusion or closes any
-Gap/Conflict/ADR/Risk.
+conclusions) is **unchanged** by STEP030104 through STEP030108. STEP030104 added the missing
+Prompt traceability and synchronized PR #33; STEP030105 corrected the manifest duplicate-record
+defect and revalidated package integrity; STEP030106 recorded Boss authorization to proceed;
+STEP030107 corrected PR #33 metadata and manifest integrity; STEP030108 prepared the STATE03
+Step Register decision package (Files 12–13) without approving any Step Register. None of these
+changes any Architecture conclusion or closes any Gap/Conflict/ADR/Risk.
 
 ---
 
@@ -311,10 +316,13 @@ Gap Register totals (basis = gap rows in File 04): **P0 = 12 · P1 = 6 · P2 = 0
 
 ## 13. Explicit Non-Approval Statement
 
-STEP0301 Architecture Baseline Inventory under Prompt STEP030105 corrected and revalidated the
-STEP0301 package manifest only. Claude Code has not approved or closed STEP0301, has not approved
-any Architecture Gate, has not defined or started STEP0302 or any later STATE03 Step, has not
-merged PR #33, PR #26, PR #34, or PR #35, and has not authorized Build, Release, Deploy, or
-Production. Independent ChatGPT L99.99 review remains required. Boss is the sole Final Approver.
+STEP030108 prepares the Official STATE03 Step Register Baseline Decision Package within STEP0301
+only. It does not approve the proposed Step Register, close GAP-10, close STEP0301, pass any
+Architecture Gate, start STEP0302, merge any Pull Request, or authorize Build, Release, Deploy,
+or Production. Boss is the sole Final Approver.
+
+See `12_STEP030108_STATE03_STEP_REGISTER_DECISION_PACKAGE.md` and
+`13_STEP030108_BOSS_STEP_REGISTER_DECISION_RECORD.md` for the full candidate register, Boss
+decision matrix, and unsigned decision template.
 
 No Evidence = No Progress. ห้ามข้าม Gate.

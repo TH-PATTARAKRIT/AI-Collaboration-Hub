@@ -1,9 +1,9 @@
 # 08 — STEP0301 Evidence Register
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030105 MANIFEST DEDUPLICATION & PACKAGE INTEGRITY REVALIDATION (over STEP030104 / STEP030103)
-Step ID: STEP0301 · Current Prompt ID: STEP030105 · Prior Prompt ID: STEP030104 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
-Execution Role: Claude Code — Preparer/Correction Executor · Independent Reviewer: ChatGPT L99.99 — Pending · Final Approval Authority: Boss
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030105) · Previous PR #33 head (STEP030104): `b9ef45d623ed2572aaff382b1378104b89fd7ca1`
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030108 STATE03 STEP REGISTER DECISION PACKAGE PREPARATION (over STEP030107 / STEP030106 / STEP030105 / STEP030104 / STEP030103)
+Step ID: STEP0301 · Current Prompt ID: STEP030108 · Prior Prompt ID: STEP030107 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `4ba19cdb27b5175f70dccad4192193f14fa0aa6f`
+Execution Role: Claude Code — Preparer/Executor · Independent Reviewer: ChatGPT L99.99 — Result (STEP030106): VERIFIED WITH CONTROLLED FOLLOW-UP · Final Approval Authority: Boss
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030108) · Previous PR #33 head (STEP030107): `4ba19cdb27b5175f70dccad4192193f14fa0aa6f`
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` · target-row commit SHA updated to current HEAD `c880c9d…` (all target blob SHAs unchanged — delta commits touch no `03_Architecture/` file); PR #26-row commit SHA unchanged (`098798f7…`); PR #34 rows added at delta revalidation (EV-50..59)
 Verification rule: No Evidence = No Progress. Reviewer for all rows: ChatGPT L99 (independent review PENDING).
 
@@ -40,7 +40,8 @@ Verification Status values: PRESENT_TARGET_UNVERIFIED · PR_ONLY_UNVERIFIED · N
 | EV-28 | State 03 Validation Report (self-run 13/13) | `…/STATE03_VALIDATION_REPORT.md` | PR #26 | `098798f7…` | `edd9e9adb3297fb127bca1692b462e6646e0666b` | 2026-07-15T05:27:24Z | ChatGPT L99 | PR_ONLY_UNVERIFIED (not independent) | n/a |
 | EV-29 | Validation Script | `…/validate_state03_package.py` | PR #26 | `098798f7…` | `6be9d4b12071066f04fa27e13a844490d748bdea` | 2026-07-15T05:27:24Z | ChatGPT L99 | PR_ONLY_UNVERIFIED | n/a |
 | EV-30 | SHA-256 Package Manifest (PR #26) | `…/PACKAGE_MANIFEST_SHA256_STATE03_ARCHITECTURE.txt` | PR #26 | `098798f7…` | `ad342cd27d68429a512add32816ee934415fc58b` | 2026-07-15T05:27:24Z | ChatGPT L99 | HASH_NOT_VERIFIED | n/a |
-| EV-40 | Official State 03 Step Register | (searched target `c880c9d…` + open PRs #26/#34/#35; none found) | — | — | — | 2026-07-15T05:27:24Z | ChatGPT L99 | NOT_FOUND | State 03 sequencing |
+| EV-40 | Official State 03 Step Register | (searched target `c880c9d…` + open PRs #26/#34/#35; none found; re-affirmed at STEP030108, no new search performed) | — | — | — | 2026-07-15T05:27:24Z | ChatGPT L99 | NOT_FOUND | State 03 sequencing |
+| EV-41 | Candidate STATE03 Step Register (STEP030108) | `12_STEP030108_STATE03_STEP_REGISTER_DECISION_PACKAGE.md` §E | STEP0301 package / PR #33 | recorded post-commit in Execution Log §0-dec | — | 2026-07-15 (this run) | ChatGPT L99.99 | PR_ONLY_UNVERIFIED (candidate only — not Boss-approved) | State 03 sequencing / GAP-10 |
 | EV-50 | State 03 Canonical Governance Index | `03_Architecture/00_Architecture_Governance/00_STATE03_CANONICAL_GOVERNANCE_INDEX.md` | PR #34 | `09b4ead9…` | `bcbe4d46bcf6a836238e9225ae2538fc150f13dc` | 2026-07-15T05:27:24Z | ChatGPT L99 | PR_ONLY_UNVERIFIED | Gate A |
 | EV-51 | Architecture Deliverable Register | `…/ARCHITECTURE_DELIVERABLE_REGISTER.md` | PR #34 | `09b4ead9…` | `a3ef3b069cb34be37725359e574244edf23814aa` | 2026-07-15T05:27:24Z | ChatGPT L99 | PR_ONLY_UNVERIFIED | Gate A–D |
 | EV-52 | Architecture Evidence Register V2 | `…/ARCHITECTURE_EVIDENCE_REGISTER_V2.md` | PR #34 | `09b4ead9…` | `dbaef485ec269b44ffb4e43976d60ae8ec27a922` | 2026-07-15T05:27:24Z | ChatGPT L99 | PR_ONLY_UNVERIFIED (overlaps EV-07/EV-23 — CONF-14) | all |
@@ -62,6 +63,9 @@ Verification Status values: PRESENT_TARGET_UNVERIFIED · PR_ONLY_UNVERIFIED · N
 | EV-P04 | STEP030104 traceability & PR-metadata correction commit (Content Correction Commit) | STEP0301 package (Prompt traceability + PR #33 sync) | PR #33 branch | `0d34b3f59121debb94b22e99ec92493539d76dae` (+ Post-Commit Evidence Addendum, SHA in Execution Log §0-tr-post / PR #33 §J) | STEP030104 | 2026-07-15 (this run) | ChatGPT L99.99 | PENDING_INDEPENDENT_REVIEW |
 | EV-P05 | PR #33 (this package's Pull Request) | `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/pull/33` | PR #33 | head = STEP030104 correction commit (post-commit) | STEP030104 | 2026-07-15 (this run) | ChatGPT L99.99 | OPEN / DRAFT / NOT MERGED |
 | EV-P06 | STEP030105 manifest deduplication & integrity revalidation commit | STEP0301 package (manifest regenerated + traceability) | PR #33 branch | recorded in PR #33 §C and Execution Log §0-mi (not embedded in package — per order §6, avoids self-referential cycle) | STEP030105 | 2026-07-15 (this run) | ChatGPT L99.99 | PENDING_INDEPENDENT_REVIEW |
+| EV-P07 | STEP030106 Boss authorization recording commit | STEP0301 package (File 11 created; log + checklist updated) | PR #33 branch | `e18ad0a2e0032eef92de47b248298581ae0c71f9` | STEP030106 | 2026-07-15T06:30:00Z | ChatGPT L99.99 | PRESENT_UNVERIFIED |
+| EV-P08 | STEP030107 PR metadata & manifest integrity correction commit | STEP0301 package (manifest header restored, execution log included, 13 records) | PR #33 branch | `4ba19cdb27b5175f70dccad4192193f14fa0aa6f` | STEP030107 | 2026-07-15 (this run) | ChatGPT L99.99 | PRESENT_UNVERIFIED |
+| EV-P09 | STEP030108 STATE03 Step Register decision package commit | STEP0301 package (Files 12–13 created; Files 00/04/07/08/09/10/Execution Log/Manifest updated) | PR #33 branch | recorded in PR #33 §B and Execution Log §0-dec post-commit | STEP030108 | 2026-07-15 (this run) | ChatGPT L99.99 | PENDING_INDEPENDENT_REVIEW |
 
 ### STEP030105 manifest-integrity evidence (EV-MI)
 

@@ -1,9 +1,9 @@
 # 10 — STEP0301 Completion Checklist
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030107 PR METADATA AND MANIFEST INTEGRITY CORRECTION (over STEP030106 / STEP030105 / STEP030104 / STEP030103)
-Step ID: STEP0301 · Current Prompt ID: STEP030107 · Prior Prompt ID: STEP030106 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `e18ad0a2e0032eef92de47b248298581ae0c71f9`
-Execution Role: Claude Code — Preparer/Executor · Independent Reviewer: ChatGPT L99.99 — Result: VERIFIED WITH CONTROLLED FOLLOW-UP · Final Approval Authority: Boss
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030106) · Previous PR #33 head (STEP030105): `c54bf8f97dee0c696766b8b1931f339bc46c9d93`
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030108 STATE03 STEP REGISTER DECISION PACKAGE PREPARATION (over STEP030107 / STEP030106 / STEP030105 / STEP030104 / STEP030103)
+Step ID: STEP0301 · Current Prompt ID: STEP030108 · Prior Prompt ID: STEP030107 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `4ba19cdb27b5175f70dccad4192193f14fa0aa6f`
+Execution Role: Claude Code — Preparer/Executor · Independent Reviewer: ChatGPT L99.99 — Result: VERIFIED WITH CONTROLLED FOLLOW-UP (STEP030106, unchanged) · Final Approval Authority: Boss
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030108) · Previous PR #33 head (STEP030107): `4ba19cdb27b5175f70dccad4192193f14fa0aa6f`
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
 
 Status values (only): SATISFIED_WITH_EVIDENCE · PARTIALLY_SATISFIED · NOT_SATISFIED ·
@@ -102,6 +102,28 @@ NOT_APPLICABLE · PENDING_INDEPENDENT_REVIEW · PENDING_BOSS_DECISION.
 | 61 | STEP0301_EXECUTION_LOG.md updated with STEP030107 evidence | SATISFIED_WITH_EVIDENCE | New §0-cor section added before §0-auth; defects found / corrected / validated documented; architecture totals unchanged |
 | 62 | STEP030107 changed no file outside STEP0301; no Architecture source | SATISFIED_WITH_EVIDENCE | Branch diff vs SMEsPlus = STEP0301 package files only (execution log + manifest + checklist + PR metadata); no source docs modified |
 
+### STATE03 Step Register Decision Package Controls (STEP030108)
+
+| # | Checklist Item | Status | Evidence / Note |
+|---|---|---|---|
+| 63 | Preflight: latest remote state fetched; branch/PR/SHA reconciled | SATISFIED_WITH_EVIDENCE | `git fetch origin`; GitHub `pull_request_read` confirmed PR #33 head `4ba19cdb…` unchanged; SMEsPlus HEAD `c880c9d…` unchanged |
+| 64 | Preflight: no discrepancy between PR title/body, Execution Log, Evidence Register, Completion Checklist, Package Manifest | SATISFIED_WITH_EVIDENCE | All sources agreed on STEP030107 as last-completed prompt and `4ba19cdb…` as PR #33 head prior to this execution |
+| 65 | Preflight: no uncontrolled or conflicting local change found | SATISFIED_WITH_EVIDENCE | Working tree clean before edits; only STEP0301 package files touched |
+| 66 | Every reported architecture total re-verified against source evidence | SATISFIED_WITH_EVIDENCE | 38 items / 24 domains (13+2+9) / 18 gaps / 14 conflicts / Gate A–D positions all re-read directly from Files 00–08 and reconciled |
+| 67 | Official STATE03 Step Register search re-affirmed | SATISFIED_WITH_EVIDENCE | `OFFICIAL_STEP_REGISTER_NOT_FOUND` unchanged (File 07 STEP030108 addendum) |
+| 68 | Candidate STATE03 Step Register assembled with mandatory classification | SATISFIED_WITH_EVIDENCE | File 12 §E: STEP0301 = CONFIRMED CURRENT STEP; STEP0302 = CANDIDATE ONLY; STEP0303+ = TBD — BOSS DECISION REQUIRED |
+| 69 | No candidate Step declared official, started, or created as an active Step directory | SATISFIED_WITH_EVIDENCE | No `STEP0302_*` directory created; File 12 §E.2 explicitly marks STEP0302 not started |
+| 70 | Confirmed facts separated from recommendations | SATISFIED_WITH_EVIDENCE | File 12 §G |
+| 71 | GAP-10 resolution options presented without selecting one | SATISFIED_WITH_EVIDENCE | File 12 §H (5 options, none recommended) |
+| 72 | Risks of premature baselining documented | SATISFIED_WITH_EVIDENCE | File 12 §I (6 risks) |
+| 73 | Boss Decision Matrix prepared | SATISFIED_WITH_EVIDENCE | File 12 §J |
+| 74 | Unsigned Boss decision record created with 4 explicit options, no preselection | SATISFIED_WITH_EVIDENCE | File 13 §B — all checkboxes unchecked; Section C blank |
+| 75 | GAP-10 preserved as OPEN | SATISFIED_WITH_EVIDENCE | File 04 GAP-10 row status = OPEN; File 04 STEP030108 note confirms not closed |
+| 76 | PR #33 title/description synchronized to STEP030108 | PENDING_COMMIT | To be completed at push time (see final report) |
+| 77 | Manifest regenerated with all 15 controlled files after edits | PENDING_COMMIT | To be completed after all controlled-file edits finalized (this section) |
+| 78 | No Architecture source document modified; no file outside STEP0301 touched | SATISFIED_WITH_EVIDENCE | Only `STEP0301_Architecture_Baseline_Inventory/` files edited or created |
+| 79 | Mandatory Control Statement included in package, log, PR description, final report | SATISFIED_WITH_EVIDENCE | File 12 §L; File 13 §G; Execution Log §0-dec; PR #33 description (at sync) |
+
 ## Validation Outcome
 
 All STEP0301 mechanical preparation and delta-revalidation items (1–15, 2a, 15a–15e) are
@@ -134,10 +156,20 @@ Neither STEP030104, STEP030105, STEP030106, nor STEP030107 changed any Architect
 technical totals (38 / 24 / 18 / 14) are carried forward unchanged. No Gate is marked PASS. No
 Architecture source document modified. No prohibited files staged. No merge executed. No force push.
 
-**Final producer result: `BOSS AUTHORIZED CONTROLLED NEXT PROCESS — METADATA AND MANIFEST CORRECTED — FOLLOW-UP DECISIONS REQUIRED`.**
+The STEP030108 STATE03 Step Register decision-package controls (63–79) are SATISFIED_WITH_EVIDENCE
+or PENDING_COMMIT as noted: preflight reconciliation confirmed no drift in PR #33 head, target
+HEAD, or architecture totals; the Official Step Register finding was re-affirmed (not
+re-derived); a candidate STATE03 Step Register was assembled with STEP0301 as CONFIRMED CURRENT
+STEP and every later Step as CANDIDATE ONLY or TBD; GAP-10 resolution options, premature-
+baselining risks, and a Boss Decision Matrix were prepared without selecting an outcome; and an
+unsigned Boss decision record (File 13) was created with no option preselected. GAP-10 remains
+OPEN.
 
-The STEP0301 package is prepared, independently reviewed (VERIFIED WITH CONTROLLED FOLLOW-UP), and
-authorized by Boss to proceed with controlled next-process work. PR #33 metadata and manifest integrity
-have been corrected by STEP030107. It is **not** merged. It is **not** declared PASS, APPROVED, COMPLETE,
-CLOSED, or READY FOR MERGE. No Gate is declared PASS. No Official Step count is invented. No STEP0302
-is defined or started. Boss remains the sole Final Approver for all controlled follow-up decisions.
+**Final producer result: `STEP030108 EXECUTED — STATE03 STEP REGISTER DECISION PACKAGE PREPARED — BOSS DECISION REQUIRED`.**
+
+The STEP0301 package remains prepared and independently reviewed (VERIFIED WITH CONTROLLED
+FOLLOW-UP, STEP030106). STEP030108 adds a candidate STATE03 Step Register decision package
+(Files 12–13) for Boss's direct decision. It is **not** merged. It is **not** declared PASS,
+APPROVED, COMPLETE, CLOSED, or READY FOR MERGE. No Gate is declared PASS. No Official Step count
+is invented. No STEP0302 is defined or started. GAP-10 is **not** closed. Boss remains the sole
+Final Approver for the candidate Step Register and all other controlled follow-up decisions.
