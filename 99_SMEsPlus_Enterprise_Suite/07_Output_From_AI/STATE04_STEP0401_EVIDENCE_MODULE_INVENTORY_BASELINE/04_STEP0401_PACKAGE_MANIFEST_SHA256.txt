@@ -1,0 +1,17 @@
+STATE04 — STEP0401 Evidence & Module Inventory Baseline — Package SHA-256 Manifest
+
+Current Prompt ID: STEP040110
+Parent Prompt ID: STEP040108
+Session ID: SMEPLUS-26-07-16-002
+Execution timestamp: 2026-07-15T17:26:54Z (UTC)
+
+Verification command:
+  sha256sum -c 04_STEP0401_PACKAGE_MANIFEST_SHA256.txt
+(run from within this package directory; this manifest file's own hash is intentionally excluded from the checksum list below)
+
+Deterministic filename order (four records only):
+
+fbc3d3ab871c879f44fdb96af8f473664817c8799de285675c35a76853de344f  00_STEP0401_INDEX.md
+259d3ce88ea0d2f82500fb58794a82664b477fcdae65fa1f4fda9f6447407220  01_STEP0401_FORMAL_COMMENCEMENT_RECORD.md
+533c3a71856b4a9e10fb6f3953ac1fc78b35959b58361b508a932ae94be2bc87  02_STEP0401_SCOPE_AND_ACCEPTANCE_CRITERIA.md
+d240d70140668c1286476663b1cb5a9198a4568b20f4e49faecd52546a5be0b2  03_STEP0401_EVIDENCE_INPUT_REGISTER.csv
