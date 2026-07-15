@@ -1,18 +1,93 @@
 # STEP0301 Execution Log
 
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
-Step ID: STEP0301 · Current Prompt ID: STEP030104 · Corrected Execution Prompt ID: STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
+Step ID: STEP0301 · Current Prompt ID: STEP030105 · Prior Prompt ID: STEP030104 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
 Execution role: Claude Code — Preparer/Correction Executor
-Mode: STEP030104 — TRACEABILITY AND PR METADATA CORRECTION ONLY (over STEP030103 delta revalidation)
+Mode: STEP030105 — MANIFEST DEDUPLICATION AND PACKAGE INTEGRITY REVALIDATION ONLY (within STEP0301)
 Original creation timestamp (UTC): 2026-07-14T16:10:56Z
 Correction / re-inspection timestamp (UTC): 2026-07-15T00:20:44Z
 Delta revalidation timestamp (UTC): 2026-07-15T05:27:24Z
 Traceability correction timestamp (UTC): 2026-07-15 (STEP030104 run)
+Manifest integrity revalidation timestamp (UTC): 2026-07-15 (STEP030105 run)
 Independent Reviewer: ChatGPT L99.99 — Pending · Final Approval Authority: Boss
 No credentials, tokens, or secrets are recorded in this log.
 
-## 0-tr. STEP030104 traceability correction run (this revision)
+## 0-mi. STEP030105 manifest deduplication and package integrity revalidation (this revision)
+
+Purpose: correct a manifest **duplicate-record** defect introduced by STEP030104 and
+independently revalidate STEP0301 package integrity. Within STEP0301 only; no Architecture
+conclusion changed; no later Step defined or started; no history rewrite; no force push.
+
+### Pre-execution check (STEP030105)
+
+- `git fetch origin SMEsPlus claude/state03-step0301-architecture-baseline-inventory`.
+- Latest SMEsPlus target SHA: `c880c9d729018f8660ebb92599e098df2bde2f6d` (**unchanged** — no re-inventory required).
+- PR #33: OPEN · DRAFT · NOT MERGED · mergeable clean (GitHub `pull_request_read`).
+- **Previous PR #33 head SHA:** `b9ef45d623ed2572aaff382b1378104b89fd7ca1` (matches order evidence).
+- Working tree clean; no unexpected commits or files.
+
+### Defect found (exact)
+
+`PACKAGE_MANIFEST_SHA256_STEP0301.txt` (as of head `b9ef45d…`) contained **14** checksum
+records for **12** unique controlled files — two duplicate records:
+
+- `00_STEP0301_EXECUTIVE_SUMMARY.md` (appeared twice)
+- `01_STEP0301_ARCHITECTURE_DOCUMENT_INVENTORY.md` (appeared twice)
+
+Root cause: the STEP030104 Post-Commit Evidence Addendum regenerated the manifest by capturing
+the header with `head -12` over a **10-line** comment block, which also copied the first two
+checksum lines (00 and 01), then appended a fresh full 12-file `sha256sum` list — duplicating
+records 00 and 01. `sha256sum -c` returned OK for all 14 lines because duplicate **valid**
+records still verify; checksum verification alone did not surface the governance defect. Hence
+the prior "12/12 OK" was insufficient evidence.
+
+### Correction applied (exact)
+
+- Regenerated the manifest cleanly from the actual 12 controlled files, deterministic filename
+  order, each filename exactly once, every SHA-256 recomputed from current content (no checksum
+  reused). Manifest excludes itself by convention. Header updated to STEP030105.
+- Added an explicit **duplicate-detection** governance check
+  (`awk '{print $2}' | sort | uniq -d`) in addition to `sha256sum -c`.
+
+### Validation results (STEP030105)
+
+Recorded in the Evidence Register (EV-MI section) and reproduced here:
+- Checksum records: **12** (was 14)
+- Unique filenames: **12**
+- Duplicate filenames: **0** (was 2)
+- Missing controlled files: **0**
+- Unexpected files: **0**
+- Hash mismatches: **0**
+- `sha256sum -c`: **12/12 OK**
+
+### Architecture totals — unchanged (re-affirmed, not re-derived; no new evidence)
+
+Items 38 (7 present + 31 PR_ONLY) · coverage 13+2+9=24 · gaps 18 · conflicts 14 ·
+`OFFICIAL_STEP_REGISTER_NOT_FOUND` · Gate A PARTIAL_EVIDENCE · Gate B PR_ONLY+EVIDENCE_MISSING—HOLD ·
+Gate C EVIDENCE_MISSING—HOLD · Gate D EVIDENCE_MISSING—HOLD.
+
+### Commands executed (representative, STEP030105)
+
+```
+git fetch origin SMEsPlus claude/state03-step0301-architecture-baseline-inventory
+git rev-parse origin/SMEsPlus ; git rev-parse origin/<branch>
+grep -vcE '^#|^$' PACKAGE_MANIFEST_SHA256_STEP0301.txt              # before = 14
+grep -vE '^#|^$' PACKAGE_MANIFEST_SHA256_STEP0301.txt | awk '{print $2}' | sort | uniq -d   # 00, 01
+sha256sum <12 controlled files> >> PACKAGE_MANIFEST_SHA256_STEP0301.txt   # clean regen
+grep -v '^#' PACKAGE_MANIFEST_SHA256_STEP0301.txt | sha256sum -c
+grep -vE '^#|^$' PACKAGE_MANIFEST_SHA256_STEP0301.txt | awk '{print $2}' | sort | uniq -d   # empty
+git add .../STEP0301_Architecture_Baseline_Inventory/ ; git commit ; git push -u origin <branch>
+```
+
+GitHub MCP: `pull_request_read` (#33 get), `update_pull_request` (#33 title + body).
+
+Self-referential-error prevention (per order §6): all controlled-document edits were completed
+**before** the final manifest generation; the resulting STEP030105 correction commit SHA is
+recorded in the PR #33 description and the final execution report only — it is **not** embedded
+in any controlled file (which would require another self-referential correction cycle).
+
+## 0-tr. STEP030104 traceability correction run (prior revision)
 
 Purpose: correct the STEP030103 traceability defects (missing Prompt IDs; stale PR #33
 description; commit `20709ee…` had no Prompt ID in subject/body) additively — **no Git history
@@ -244,8 +319,8 @@ State 02 handover: `…/STATE02_FINALIZATION/17_S02_FINAL_006_BOSS_CLOSURE_DECIS
 
 ## 8. Control statement
 
-STEP0301 Architecture Baseline Inventory under Prompt STEP030104 has corrected the Prompt
-traceability and PR #33 metadata for the STEP030103 technical execution. Claude Code has not
-approved or closed STEP0301, has not approved any Architecture Gate, has not defined or started
-any later STATE 03 Step, has not merged PR #33, PR #26, PR #34, or PR #35, and has not authorized
-Build, Release, Deploy, or Production. Boss is the sole Final Approver.
+STEP0301 Architecture Baseline Inventory under Prompt STEP030105 corrected and revalidated the
+STEP0301 package manifest only. Claude Code has not approved or closed STEP0301, has not approved
+any Architecture Gate, has not defined or started STEP0302 or any later STATE03 Step, has not
+merged PR #33, PR #26, PR #34, or PR #35, and has not authorized Build, Release, Deploy, or
+Production. Independent ChatGPT L99.99 review remains required. Boss is the sole Final Approver.

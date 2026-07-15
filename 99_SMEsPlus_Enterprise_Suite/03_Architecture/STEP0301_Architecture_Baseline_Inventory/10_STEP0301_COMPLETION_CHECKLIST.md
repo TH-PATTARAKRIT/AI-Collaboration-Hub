@@ -1,9 +1,9 @@
 # 10 — STEP0301 Completion Checklist
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030104 TRACEABILITY CORRECTION (over STEP030103 delta revalidation)
-Step ID: STEP0301 · Current Prompt ID: STEP030104 · Corrected Execution Prompt ID: STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030105 MANIFEST DEDUPLICATION & PACKAGE INTEGRITY REVALIDATION (over STEP030104 / STEP030103)
+Step ID: STEP0301 · Current Prompt ID: STEP030105 · Prior Prompt ID: STEP030104 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
 Execution Role: Claude Code — Preparer/Correction Executor · Independent Reviewer: ChatGPT L99.99 — Pending · Final Approval Authority: Boss
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030104) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030105) · Previous PR #33 head (STEP030104): `b9ef45d623ed2572aaff382b1378104b89fd7ca1`
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
 
 Status values (only): SATISFIED_WITH_EVIDENCE · PARTIALLY_SATISFIED · NOT_SATISFIED ·
@@ -55,6 +55,21 @@ NOT_APPLICABLE · PENDING_INDEPENDENT_REVIEW · PENDING_BOSS_DECISION.
 | 29 | No self-approval occurred | SATISFIED_WITH_EVIDENCE | Producer result limited to PREPARED FOR INDEPENDENT REVIEW; no PASS/APPROVED/VERIFIED/COMPLETE/CLOSED for STEP0301 |
 | 30 | STEP030101 / STEP030102 commit SHAs resolved from Git history | SATISFIED_WITH_EVIDENCE | `52105c3…` / `518ae12…` conclusively resolved (`git log` of package dir); no fabrication |
 
+### Manifest Integrity Controls (STEP030105)
+
+| # | Checklist Item | Status | Evidence / Note |
+|---|---|---|---|
+| 31 | Manifest duplicate-record defect identified | SATISFIED_WITH_EVIDENCE | STEP030104 head `b9ef45d…`: 14 records / 12 unique; duplicates `00`, `01` (EV-MI) |
+| 32 | Manifest regenerated cleanly (deterministic order, SHAs recomputed) | SATISFIED_WITH_EVIDENCE | 12 files, each once; every SHA-256 recomputed from current content; manifest excludes itself |
+| 33 | Checksum records = exactly 12 | SATISFIED_WITH_EVIDENCE | `grep -vcE '^#\|^$'` = 12 |
+| 34 | Unique filenames = 12; duplicate filenames = 0 | SATISFIED_WITH_EVIDENCE | Explicit `awk '{print $2}' \| sort \| uniq -d` = empty |
+| 35 | Missing controlled files = 0; unexpected files = 0 | SATISFIED_WITH_EVIDENCE | Manifest set = directory set (12 files) |
+| 36 | `sha256sum -c` = 12/12 OK; hash mismatches = 0 | SATISFIED_WITH_EVIDENCE | Verified after clean regeneration |
+| 37 | Explicit duplicate-detection run in addition to `sha256sum -c` | SATISFIED_WITH_EVIDENCE | Governance defect (duplicate valid records) is invisible to `-c` alone |
+| 38 | Architecture totals / Gate positions unchanged by STEP030105 | SATISFIED_WITH_EVIDENCE | 38 / 24 / 18 / 14; Gate A PARTIAL, B–D HOLD; OFFICIAL_STEP_REGISTER_NOT_FOUND (re-affirmed, not re-derived) |
+| 39 | Manifest generated after all controlled-file edits (no self-referential cycle) | SATISFIED_WITH_EVIDENCE | STEP030105 correction commit SHA recorded in PR #33 / report only, not embedded in package (order §6) |
+| 40 | STEP030105 changed no file outside STEP0301; no Architecture source | SATISFIED_WITH_EVIDENCE | Branch diff vs SMEsPlus = STEP0301 package files only |
+
 ## Validation Outcome
 
 All STEP0301 mechanical preparation and delta-revalidation items (1–15, 2a, 15a–15e) are
@@ -63,9 +78,12 @@ recorded; 24-domain count reconciled; gap totals reconciled; conflict totals rec
 PR #26 facts current; terminology scan current; manifest verified; no source documents
 modified; no restricted files staged; review handoff complete; no self-approval language.
 The STEP030104 Prompt-traceability controls (21–27, 29, 30) are SATISFIED_WITH_EVIDENCE; item
-28 remains PENDING_INDEPENDENT_REVIEW. Items 16–20 are PENDING_INDEPENDENT_REVIEW or
-PENDING_BOSS_DECISION by design. STEP030104 changed no Architecture conclusion — the
-STEP030103 technical totals (38 / 24 / 18 / 14) are carried forward unchanged.
+28 remains PENDING_INDEPENDENT_REVIEW. The STEP030105 manifest-integrity controls (31–40) are
+SATISFIED_WITH_EVIDENCE: the STEP030104 duplicate-record defect (14 records / 2 duplicates) is
+corrected to a clean 12-record manifest (0 duplicates, 0 missing, 0 unexpected, 0 mismatch;
+explicit duplicate-detection empty). Items 16–20 are PENDING_INDEPENDENT_REVIEW or
+PENDING_BOSS_DECISION by design. Neither STEP030104 nor STEP030105 changed any Architecture
+conclusion — the STEP030103 technical totals (38 / 24 / 18 / 14) are carried forward unchanged.
 
 **Final producer result: `PREPARED FOR INDEPENDENT REVIEW`.**
 

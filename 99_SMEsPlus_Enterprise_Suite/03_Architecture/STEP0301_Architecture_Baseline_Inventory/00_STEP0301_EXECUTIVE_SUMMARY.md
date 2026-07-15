@@ -3,11 +3,12 @@
 Session ID: [SMEPLUS-26-07-15-001]
 State / Step: STATE 03 — Architecture / STEP0301 — Architecture Baseline Inventory
 Step ID: STEP0301
-Current Prompt ID: STEP030104 (Prompt Traceability and PR Description Correction)
-Corrected Execution Prompt ID: STEP030103 (Final Delta Revalidation)
-Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
+Current Prompt ID: STEP030105 (Manifest Deduplication and Package Integrity Revalidation)
+Prior Prompt ID: STEP030104 (Prompt Traceability and PR Description Correction)
+Corrected Execution Prompt ID (technical): STEP030103 (Final Delta Revalidation)
+Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f` · Previous PR #33 head (STEP030104): `b9ef45d623ed2572aaff382b1378104b89fd7ca1`
 Control Level: /L99.99
-Execution Mode: STEP030104 — TRACEABILITY AND PR METADATA CORRECTION ONLY (over STEP030103 delta revalidation)
+Execution Mode: STEP030105 — MANIFEST DEDUPLICATION AND PACKAGE INTEGRITY REVALIDATION ONLY (within STEP0301)
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
 Target Branch: SMEsPlus
 Target HEAD SHA (inspected): `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030104)
@@ -33,11 +34,14 @@ Commit SHAs below are resolved from Git history of the STEP0301 package director
 | STEP030101 | Initial Architecture Baseline Inventory | EXECUTED | `52105c30334088e40f77ddbf58032cfbb8d5458a` | Prepared initial inventory (13-file package created) |
 | STEP030102 | Correction and Revalidation | EXECUTED | `518ae121c115a3a629eab23d7db2b01376c0036f` | Corrected counts and target evidence (target `d995ae2…`) |
 | STEP030103 | Final Delta Revalidation | EXECUTED WITH TRACEABILITY DEFECT | `20709ee225fd7779b2e62000b4d4c34b09f5568f` | Technical delta revalidation completed (target `c880c9d…`); Prompt ID not recorded in package/commit |
-| STEP030104 | Prompt Traceability and PR Description Correction | IN EXECUTION → EXECUTED after commit | Content Correction Commit recorded in Execution Log §0-tr / Evidence Register (EV-60) | Prompt traceability and PR #33 metadata corrected |
+| STEP030104 | Prompt Traceability and PR Description Correction | EXECUTED WITH MANIFEST DEFECT | `0d34b3f…` (content) + `b9ef45d…` (addendum) | Prompt traceability + PR #33 synced; addendum introduced a manifest duplicate-record defect |
+| STEP030105 | Manifest Deduplication and Package Integrity Revalidation | EXECUTED | Correction commit SHA recorded in PR #33 §C and Execution Log §0-mi (EV-P06); not embedded in package (order §6) | Manifest deduplicated to 12 records; integrity revalidated |
 
 STEP030103's technical result (inventory/coverage/gap/conflict/terminology/Gate/Step-Register
-conclusions) is **unchanged** by STEP030104. STEP030104 adds only the missing Prompt traceability
-and synchronizes PR #33 — it changes **no** Architecture conclusion and closes no Gap/Conflict/ADR/Risk.
+conclusions) is **unchanged** by STEP030104 and STEP030105. STEP030104 added the missing Prompt
+traceability and synchronized PR #33; STEP030105 corrected the manifest duplicate-record defect
+and revalidated package integrity. Neither changes any Architecture conclusion or closes any
+Gap/Conflict/ADR/Risk.
 
 ---
 
@@ -307,10 +311,10 @@ Gap Register totals (basis = gap rows in File 04): **P0 = 12 · P1 = 6 · P2 = 0
 
 ## 13. Explicit Non-Approval Statement
 
-STEP0301 Architecture Baseline Inventory under Prompt STEP030104 has corrected the Prompt
-traceability and PR #33 metadata for the STEP030103 technical execution. Claude Code has not
-approved or closed STEP0301, has not approved any Architecture Gate, has not defined or started
-any later STATE 03 Step, has not merged PR #33, PR #26, PR #34, or PR #35, and has not authorized
-Build, Release, Deploy, or Production. Boss is the sole Final Approver.
+STEP0301 Architecture Baseline Inventory under Prompt STEP030105 corrected and revalidated the
+STEP0301 package manifest only. Claude Code has not approved or closed STEP0301, has not approved
+any Architecture Gate, has not defined or started STEP0302 or any later STATE03 Step, has not
+merged PR #33, PR #26, PR #34, or PR #35, and has not authorized Build, Release, Deploy, or
+Production. Independent ChatGPT L99.99 review remains required. Boss is the sole Final Approver.
 
 No Evidence = No Progress. ห้ามข้าม Gate.

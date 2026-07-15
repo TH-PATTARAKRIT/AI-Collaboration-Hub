@@ -1,11 +1,11 @@
 # 09 — STEP0301 Independent Review Handoff
 
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
-Step ID: STEP0301 · Current Prompt ID: STEP030104 · Corrected Execution Prompt ID: STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
+Step ID: STEP0301 · Current Prompt ID: STEP030105 · Prior Prompt ID: STEP030104 · Corrected Execution Prompt ID (technical): STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
 Execution Role: Claude Code — Preparer/Correction Executor · Final Approval Authority: Boss
 Prepared for: Independent ChatGPT L99.99 Review, then Boss decision
-Mode: STEP030104 TRACEABILITY & PR-METADATA CORRECTION (over STEP030103 delta revalidation) & INDEPENDENT REVIEW HANDOFF
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030104) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+Mode: STEP030105 MANIFEST DEDUPLICATION & PACKAGE INTEGRITY REVALIDATION (over STEP030104 / STEP030103) & INDEPENDENT REVIEW HANDOFF
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030105) · Previous PR #33 head (STEP030104): `b9ef45d623ed2572aaff382b1378104b89fd7ca1`
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0` (correction run), `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` (original run)
 Delta: 2 commits (`e6f081f` PRE-STATE 04 sanitization batch 0; `c880c9d` `.gitignore` deletion) + delta-discovered draft PRs #34 / #35
 
@@ -91,6 +91,13 @@ It **approves nothing** and **moves no Gate**.
     present across the controlled files; (d) PR #33 title/description are synchronized with the
     current controlled evidence; and (e) STEP030104 changed **no** Architecture conclusion and
     closed no Gap/Conflict/ADR/Risk (Architecture totals identical to STEP030103).
+14. **STEP030105 manifest integrity** — confirm: (a) `PACKAGE_MANIFEST_SHA256_STEP0301.txt`
+    contains **exactly 12** checksum records, one per controlled file, with **0 duplicates**,
+    **0 missing**, **0 unexpected**; (b) an explicit duplicate-detection check
+    (`awk '{print $2}' | sort | uniq -d`) is **empty** — not `sha256sum -c` alone, which passed
+    even while the STEP030104 manifest held duplicate records; (c) every SHA-256 recomputes from
+    current file content (0 mismatches); and (d) STEP030105 changed **no** Architecture
+    conclusion, Gate position, or Step-Register finding (totals 38 / 24 / 18 / 14 unchanged).
 
 ## 4. Reviewer output requested
 
