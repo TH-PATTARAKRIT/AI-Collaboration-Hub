@@ -21,6 +21,7 @@ Establish a modular, traceable, Clean Room-safe prompt standard. The standard us
 8. Prompt output must preserve traceability through evidence references, commit SHA, PR status, validation result, and open gaps.
 9. Every prompt must declare an AI Platform, Agent Type, Capability Tier, Model Policy, and Tooling Context. Exact Model Name is required only when known or required by the applicable risk/control policy.
 10. High-risk work must not silently downgrade to a lower capability tier or substitute a model. The exception and impact must be reported before execution continues.
+11. Every prompt that depends on, continues, corrects, revalidates, or uses prior work context must declare Prompt Lineage and Session Traceability.
 
 ## 3. Base Prompt Standard
 
@@ -30,6 +31,7 @@ Every prompt must define:
 - Business Context: Thailand SME / Enterprise-lite; Open ERP-first; Simple UX; Enterprise-grade control
 - Repository, base branch, working branch, included and excluded scope
 - Evidence baseline: commit SHA, PR, and required inputs
+- Session Traceability & Prompt Lineage when prior work is referenced
 - AI Execution Profile: Platform, Agent Type, Capability Tier, Model, Model Policy, Tooling Context, and Execution Mode
 - Mandatory controls and forbidden actions
 - Acceptance criteria
@@ -91,7 +93,40 @@ AI may learn only abstract business behavior, business rules, data concepts, pro
 6. If a required or preferred model/capability is unavailable, do not silently downgrade. Report available capability, quality/risk impact, and recommended action before continuing.
 7. Any model or capability change during a work item must be recorded in the Required Final Report and YAML Result Manifest.
 
-## 6. Required Final Report
+## 6. Prompt Lineage & Session Traceability Control
+
+A closed prompt remains Historical Evidence and may be referenced by later prompts. Its status must never be assumed current only because the prior session was closed.
+
+Every dependent or contextual prompt must record:
+
+- Current Prompt ID
+- Parent Prompt ID, or `NONE — NEW WORKSTREAM`
+- Reference Prompt IDs
+- Reference Type: `DEPENDENCY`, `HANDOFF`, `REVALIDATION`, `CORRECTION`, or `CONTEXT ONLY`
+- Evidence Baseline: exact Commit SHA, PR, and required referenced artifacts
+- Previous State Snapshot: prior result, State/Step position, verification status, and carried-forward gaps
+
+Mandatory rules:
+
+1. Revalidate referenced evidence before relying on it.
+2. A closed prior Prompt is valid reference evidence unless superseded, revoked, or contradicted by a later approved record.
+3. A Prompt must not assert that a prior result remains current without checking the stated Commit, PR, or artifact.
+4. Any superseded reference must declare `Superseded By: STEPxxyyzz`.
+5. Any changed, superseded, or unresolved reference must be recorded in the Required Final Report and YAML Result Manifest.
+
+Required block:
+
+```markdown
+## Session Traceability & Prompt Lineage
+Current Prompt ID: STEPxxyyzz
+Parent Prompt ID: [STEPxxyyzz / NONE — NEW WORKSTREAM]
+Reference Prompt IDs: [list / NONE]
+Reference Type: [DEPENDENCY / HANDOFF / REVALIDATION / CORRECTION / CONTEXT ONLY]
+Evidence Baseline: [Commit SHA / PR / required artifacts]
+Previous State Snapshot: [result / State-Step status / verification / carried gaps]
+```
+
+## 7. Required Final Report
 
 Every applicable execution or review prompt must report:
 
@@ -103,7 +138,7 @@ Every applicable execution or review prompt must report:
 6. Open gaps, risks, and required Boss decisions
 7. Explicit confirmation of prohibited actions not performed
 
-## 7. Standard Result Manifest
+## 8. Standard Result Manifest
 
 Use this YAML structure for work that produces review, evidence, Commit, or PR outputs:
 
@@ -117,6 +152,12 @@ ai_execution_profile:
   model: "<exact name or not disclosed>"
   model_policy: REQUIRED
   tooling_context: Claude Code Desktop
+prompt_lineage:
+  parent_prompt_id: "<STEPxxyyzz or NONE — NEW WORKSTREAM>"
+  reference_prompt_ids: []
+  reference_type: "DEPENDENCY"
+  evidence_baseline: "<commit / PR / artifacts>"
+  previous_state_snapshot: "<status>"
 execution_mode: READ_ONLY_REVIEW
 result: COMPLETED
 evidence_commit: "<sha>"
@@ -135,7 +176,7 @@ prohibited_actions_not_performed:
   - production_change
 ```
 
-## 8. Applicability and Change Control
+## 9. Applicability and Change Control
 
 This directive applies immediately to all new prompts. Its incorporation into the locked STATE02 governance baseline must be handled through a controlled Governance Change Review. No existing gate, approval authority, release control, or production restriction is changed by this document.
 
