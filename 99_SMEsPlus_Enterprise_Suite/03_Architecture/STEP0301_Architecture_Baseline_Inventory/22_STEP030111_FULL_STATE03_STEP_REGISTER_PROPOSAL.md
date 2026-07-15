@@ -4,7 +4,9 @@ Session ID: [SMEPLUS-26-07-15-001] · Control Level /L99.99 · Mode: CONTROLLED 
 Current Prompt ID: STEP030111 · Parent Prompt ID: STEP030110 · Reference Prompt IDs: STEP030109, STEP030108
 Final Approval Authority: Boss — Sole Final Approver
 
-**Status of this document: CANDIDATE PROPOSAL ONLY. It does not close GAP-10B, does not approve a Step Register, and does not authorize STEP0302 entry beyond what is already Boss-approved.**
+**Status of this document: CANDIDATE PROPOSAL ONLY (historical, at time of authoring). It does not close GAP-10B, does not approve a Step Register, and does not authorize STEP0302 entry beyond what is already Boss-approved.**
+
+**STEP030113 update:** Boss selected the 11-Step Deliverable-Batch Model recommended in §2 below under BOSS-DEC-030113-02. The **official**, Boss-approved register is `27_STEP030113_OFFICIAL_STATE03_11_STEP_REGISTER_BASELINE.md`, which reuses this document's §2 structure and §4–§6 mapping tables verbatim (independently re-verified at STEP030113) and adds the full per-Step field set (In scope/Out of scope/Entry/Exit criteria etc.) required by the controlling Prompt. This document (22) is retained unmodified below for historical continuity; it is no longer the authoritative source for the Step Register going forward — File 27 is.
 
 This document builds on, and does not duplicate, `16_STEP030110_FULL_STATE03_STEP_REGISTER_PROPOSAL.md`. It carries the same recommended 11-Step structure forward (unchanged, since no Boss decision altering it has been recorded), and adds the mapping tables and third alternative structure requested by STEP030111 §11 that File 16 did not contain.
 
