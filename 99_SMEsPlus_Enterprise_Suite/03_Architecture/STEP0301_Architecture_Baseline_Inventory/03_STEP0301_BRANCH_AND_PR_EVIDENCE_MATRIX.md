@@ -1,20 +1,21 @@
 # 03 — STEP0301 Branch and PR Evidence Matrix
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
-Inspected (UTC): 2026-07-14T16:10:56Z
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: CORRECTION & REVALIDATION
+Re-inspected (UTC): 2026-07-15T00:20:44Z
 
-## Reference points (authoritative via `git ls-remote origin`)
+## Reference points (authoritative via `git ls-remote origin` / GitHub metadata)
 
 | Ref | SHA | Note |
 |---|---|---|
-| SMEsPlus (target HEAD) | `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` | current remote HEAD |
+| SMEsPlus (target HEAD, current) | `d995ae2986c4610b102307398591dbaba60be9e0` | current remote HEAD (re-inspected) |
+| SMEsPlus (previous inspection, superseded) | `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` | advanced by 1 commit `d995ae2` (State 01 Open ERP terminology) |
 | PR #26 head (`claude/state-03-architecture-deliverables-su8cg6`) | `098798f705c0c7f25982adc56becef90e3af734a` | open, DRAFT, NOT MERGED |
 | PR #26 base recorded by GitHub | `8570187bc0f13835be154d10cdc09bfa98e1dfe9` | **STALE** — behind current SMEsPlus HEAD |
-| Working checkout (`claude/zen-fermi-lzfpz9`) | `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` | identical to SMEsPlus HEAD (0/0 divergence) |
+| This package working branch (`claude/state03-step0301-architecture-baseline-inventory`, PR #33) | reconciled via merge of `origin/SMEsPlus` `d995ae2…` | branch diff vs SMEsPlus = 13 STEP0301 files only; no architecture source modified |
 
-The environment's inspecting checkout initially held a stale local tracking ref for
-SMEsPlus (`5454d2af…`); after fetch, the authoritative HEAD is `5cd3a2ca…`. All rows
-below use `5cd3a2ca…`.
+Delta since the previous inspection: exactly **1** commit (`d995ae2`), scope = State 01
+project-identity docs (`Odoo-first` → `Open ERP-first`); it changes no `03_Architecture/` file
+and no PR #26 fact. All target-branch rows below are re-confirmed at `d995ae2…`.
 
 ---
 
@@ -30,7 +31,7 @@ below use `5cd3a2ca…`.
 | `STATE03_ARCHITECTURE_ACCELERATION/AI_OWNER_ASSIGNMENT_MATRIX.md` | `4f0165765ebb454abd6f4b3703c21d1283a6fbc6` | ASSIGNMENT (identical blob in PR #26) |
 | `STATE03_ARCHITECTURE_ACCELERATION/STATE03_EVIDENCE_REGISTER.md` | `9569ceb79dc5b8f6d2be5c69ab54d74b9253f76b` | REGISTER CREATED (skeleton) — DUPLICATE of PR copy |
 
-## B. Evidence PR_ONLY — added/modified only in Draft PR #26, NOT on target (20 architecture-folder items)
+## B. Evidence PR_ONLY — added/modified only in Draft PR #26, NOT on target (21 architecture-folder items)
 
 All items below are **NOT baseline evidence on SMEsPlus** (unmerged). Path root:
 `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_ARCHITECTURE_ACCELERATION/`.
@@ -68,8 +69,11 @@ All items below are **NOT baseline evidence on SMEsPlus** (unmerged). Path root:
 | `Archived/2026-07-14_Stale_Status_Documents/PUSH_READY.md` | renamed |
 | `CLAUDE_EXECUTION_EVIDENCE_STANDARD.md`, `CLAUDE_EXECUTION_GAP_REPORT.md` | added |
 
-Total PR #26 changed files (GitHub API): **30** (PR metadata also reports `changed_files: 31`
-— a 1-file discrepancy between the file list and the summary count; recorded as CONF-04).
+Total PR #26 changed files (GitHub `get_files`): **30** — of which **21 inside** the
+`STATE03_ARCHITECTURE_ACCELERATION/` folder (§B) and **9 outside** it (above). PR metadata also
+reports `changed_files: 31` — a 1-file discrepancy between the file list (30) and the summary
+count (31); recorded as CONF-04. The PR body's "21 files, 0 outside" is therefore correct only on
+the inside-folder subtotal (21) and **false on "0 outside"** (actual 9 outside) — CONF-03.
 
 ## C. Evidence OTHER_BRANCH_ONLY
 
@@ -80,10 +84,12 @@ exclusively on a third branch within the inspected scope.
 
 ## D. Evidence MISSING (no branch)
 
-10 architecture domains have no deliverable on target, PR #26, or the working branch:
-Business/Product (1), Roadmap/Transition (8), dedicated Data/Database (11), Security (17),
-Data Governance/Privacy/Compliance (18), Infrastructure (20), Deployment/DevSecOps/Release
-(21), Observability (22), BC/Backup/DR (23), Capacity/Performance/Cost (24). See Gap Register.
+**9** architecture domains have **no** deliverable on target, PR #26, or the working branch:
+Business/Product (1), Roadmap/Transition (8), Security (17), Data Governance/Privacy/Compliance
+(18), Infrastructure (20), Deployment/DevSecOps/Release (21), Observability (22), BC/Backup/DR
+(23), Capacity/Performance/Cost (24). Domain 11 (Data/Database) is **PARTIALLY_COVERED**, not
+MISSING — its dedicated data/database deliverable is absent (isolation options only, PR_ONLY);
+recorded as P0 GAP-03. See Gap Register.
 
 ## E. Effect on STEP0301 Inventory
 

@@ -1,7 +1,8 @@
 # 07 — STEP0301 Official Step Register Finding
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
-Target branch: SMEsPlus @ `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` · Inspected (UTC): 2026-07-14T16:10:56Z
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: CORRECTION & REVALIDATION
+Target branch: SMEsPlus @ `d995ae2986c4610b102307398591dbaba60be9e0` · Re-inspected (UTC): 2026-07-15T00:20:44Z
+Previous inspection SHA (superseded): `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
 
 ## Finding
 
@@ -14,9 +15,11 @@ No approved State 03 Official Step Register exists on the SMEsPlus branch.
 ## Basis of Finding
 
 Repository search across `99_SMEsPlus_Enterprise_Suite/` on SMEsPlus HEAD
-`5cd3a2ca…` for the patterns `official step register`, `state03 … step register`,
-`state 03 … 10 step`, `STEP0301`, `STEP0302`, `architecture baseline inventory`, and
-`10 steps` returned **no matching State 03 Step Register document**.
+`d995ae2…` (re-searched at correction time; previously `5cd3a2ca…`) for the patterns
+`official step register`, `state03 … step register`, `state 03 … 10 step`, `STEP0301`,
+`STEP0302`, `architecture baseline inventory`, and `10 steps` returned **no matching State 03
+Step Register document**. The single intervening commit (`d995ae2`, State 01 Open ERP
+terminology) introduces no Step Register and does not change this finding.
 
 Related evidence found (does NOT satisfy the finding):
 

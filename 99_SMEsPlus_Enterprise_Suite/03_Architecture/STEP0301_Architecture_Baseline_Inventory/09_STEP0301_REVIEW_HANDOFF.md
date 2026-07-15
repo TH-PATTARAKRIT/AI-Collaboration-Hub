@@ -2,7 +2,9 @@
 
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
 Prepared for: Independent ChatGPT L99.99 Review, then Boss decision
-Target branch: SMEsPlus @ `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` · Inspected (UTC): 2026-07-14T16:10:56Z
+Mode: CORRECTION & REVALIDATION
+Target branch: SMEsPlus @ `d995ae2986c4610b102307398591dbaba60be9e0` · Re-inspected (UTC): 2026-07-15T00:20:44Z
+Previous inspection SHA (superseded): `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` (delta: 1 commit `d995ae2`, State 01 Open ERP terminology)
 
 ## 1. What this package is
 
@@ -31,17 +33,24 @@ It **approves nothing** and **moves no Gate**.
 
 ## 3. What the reviewer is asked to independently verify
 
-1. **Target HEAD** — confirm SMEsPlus HEAD is `5cd3a2ca…` at review time (it may advance).
+1. **Target HEAD** — confirm SMEsPlus HEAD is `d995ae2…` at review time (it may advance);
+   confirm the single delta commit `d995ae2` (State 01 Open ERP terminology) has no architecture impact.
 2. **Present-on-target set** — confirm the 7 target files and their blob SHAs (§01.A / §03.A).
-3. **PR_ONLY set** — confirm the 20 PR #26 architecture-folder items are unmerged and
+3. **PR_ONLY set** — confirm the **21** PR #26 architecture-folder items are unmerged and
    therefore not baseline evidence; recompute SHA-256 to test PR #26's own manifest (EV-30).
 4. **Conflicts** — validate CONF-01 (duplicate evidence register), CONF-02 (stale PR base),
-   CONF-03 (PR body "21 files / 0 outside" vs actual 30 files with out-of-folder changes),
-   CONF-04 (30 vs 31 file count), CONF-06 (self-validation not independent).
-5. **Coverage** — confirm the 10 MISSING domains and the 12 PR_ONLY-covered domains.
+   CONF-03 (PR body "21 files / 0 outside" vs actual **30 files = 21 inside + 9 outside**),
+   CONF-04 (30 vs 31 file count), CONF-06 (self-validation not independent), CONF-11 (Open ERP
+   terminology: 13 `Odoo` occurrences inside PR #26 architecture source, PR_ONLY).
+5. **Coverage** — confirm the **9 MISSING** domains, the **2 PARTIAL** domains (3, 11), and the
+   **13** PR_ONLY-covered domains (13 + 2 + 9 = 24).
 6. **Step Register** — independently confirm `OFFICIAL_STEP_REGISTER_NOT_FOUND` and that no
    "10 Steps" evidence exists.
 7. **Gate evidence** — confirm the Gate A–D evidence positions without issuing a Gate result.
+8. **Gap totals** — confirm the Gap Register has 18 rows (P0 12 + P1 6 + P2 0).
+9. **Terminology** — confirm canonical **Open ERP**; confirm the STEP0301 package and target
+   `03_Architecture/` are free of non-canonical product terminology; confirm PR #26's 13 `Odoo`
+   occurrences are PR_ONLY and were **not** modified by STEP0301.
 
 ## 4. Reviewer output requested
 

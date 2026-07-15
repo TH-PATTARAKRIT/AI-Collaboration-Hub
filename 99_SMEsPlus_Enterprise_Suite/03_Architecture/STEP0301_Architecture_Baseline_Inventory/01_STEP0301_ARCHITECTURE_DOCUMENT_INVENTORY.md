@@ -1,8 +1,9 @@
 # 01 — STEP0301 Architecture Document Inventory
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: CORRECTION & REVALIDATION
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub · Target branch: SMEsPlus
-Target HEAD SHA: `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` · Inspected (UTC): 2026-07-14T16:10:56Z
+Target HEAD SHA: `d995ae2986c4610b102307398591dbaba60be9e0` · Re-inspected (UTC): 2026-07-15T00:20:44Z
+Previous inspection SHA (superseded): `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` · Delta: 1 commit `d995ae2` (State 01 Open ERP terminology; no architecture-folder impact)
 
 Legend — Primary Status: PRESENT_ON_TARGET · PR_ONLY · OTHER_BRANCH_ONLY · MISSING · DUPLICATE · CONFLICT · STALE · SUPERSEDED · UNVERIFIED.
 "Last material update" is taken from the SMEsPlus HEAD commit date (target files) or PR #26 metadata (PR files).
@@ -57,21 +58,34 @@ they are **not** the SHA-256 content hashes in PR #26's own manifest. The indepe
 reviewer must recompute SHA-256 from file content to confirm the manifest (recorded as
 HASH_NOT_VERIFIED on INV-030).
 
-## C. PR #26 changes recorded OUTSIDE the architecture acceleration folder (separation only)
+## C. PR #26 changes recorded OUTSIDE the architecture acceleration folder (separation only — **9 files**, grouped)
+
+Precise enumeration from GitHub `get_files` (COR-06): PR #26 changes **30 files** total; **21
+inside** `STATE03_ARCHITECTURE_ACCELERATION/` (§B, INV-010..030) and **9 outside** it (below).
+These 9 are **not** architecture-baseline items; they are recorded only to separate them from
+the inventory and to evidence the CONF-03 "0 outside" discrepancy.
 
 | Inv ID | Item | Path | Change | Note |
 |---|---|---|---|---|
-| INV-040 | ACC-002..005 Functional Design Specs (4 files) | `02_Functional_Design/ACC-00{2,3,4,5} Functional Design Specification.md` | modified (+15 each) | Outside architecture scope; contradicts PR body "0 outside" claim |
-| INV-041 | ACC gap-closure manifest + superseded marker | `ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt` (mod); `ACC_GAP_CLOSURE_METADATA_FIX/_SUPERSEDED_DO_NOT_USE.md` (added) | modified/added | `_SUPERSEDED_DO_NOT_USE.md` = SUPERSEDED marker |
-| INV-042 | Stale status doc + Claude execution standard/report | `Archived/2026-07-14_Stale_Status_Documents/PUSH_READY.md` (renamed); `CLAUDE_EXECUTION_EVIDENCE_STANDARD.md`, `CLAUDE_EXECUTION_GAP_REPORT.md` (added) | renamed/added | Outside architecture scope |
+| INV-040 | ACC-002..005 Functional Design Specs (**4 files**) | `02_Functional_Design/ACC-002/003/004/005 Functional Design Specification.md` | modified | Outside architecture scope; contradicts PR body "0 outside" claim |
+| INV-041 | ACC gap-closure manifest + superseded marker (**2 files**) | `ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt` (modified); `ACC_GAP_CLOSURE_METADATA_FIX/_SUPERSEDED_DO_NOT_USE.md` (added) | modified/added | `_SUPERSEDED_DO_NOT_USE.md` = SUPERSEDED marker |
+| INV-042 | Archived status doc + Claude execution standard/report (**3 files**) | `Archived/2026-07-14_Stale_Status_Documents/PUSH_READY.md` (renamed); `CLAUDE_EXECUTION_EVIDENCE_STANDARD.md`, `CLAUDE_EXECUTION_GAP_REPORT.md` (added, repo root of `99_…`) | renamed/added | Outside architecture scope |
 
-## D. MISSING (no deliverable on any inspected branch) — see Gap Register
+Out-of-folder file count: 4 + 2 + 3 = **9 files** (matches `get_files`). Status mix across all
+30 PR files: 23 added, 6 modified, 1 renamed.
+
+## D. MISSING / PARTIAL by domain (no dedicated deliverable on any inspected branch) — see Gap Register
+
+Domain basis: **9 MISSING** domains (no deliverable anywhere) + **1 PARTIAL** domain (11, listed
+here for continuity but its single primary coverage status is PARTIALLY_COVERED — see File 02 §6).
+Domain 3 (SaaS) is the other PARTIAL domain and is covered via PR #26 principles (not listed as
+MISSING). Each domain carries exactly one primary coverage status (COR-04).
 
 | Inv ID | Domain | Expected Deliverable | Primary Status |
 |---|---|---|---|
 | INV-050 | 1 Business & Product Architecture | Business capability / product architecture | MISSING |
 | INV-051 | 8 Architecture Roadmap & Transition | Roadmap / transition architecture | MISSING |
-| INV-052 | 11 Data & Database Architecture | Dedicated data/database architecture (only isolation options exist) | MISSING (partial via INV-017) |
+| INV-052 | 11 Data & Database Architecture | Dedicated data/database architecture (only isolation options exist) | **PARTIALLY_COVERED** (isolation options via INV-017; no dedicated data/db deliverable → GAP-03) |
 | INV-053 | 17 Security Architecture | Security architecture baseline | MISSING |
 | INV-054 | 18 Data Governance, Privacy & Compliance | Privacy/compliance architecture | MISSING |
 | INV-055 | 20 Infrastructure Architecture | Infrastructure target architecture | MISSING |

@@ -1,7 +1,8 @@
 # 04 — STEP0301 Architecture Gap Register
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
-Target branch: SMEsPlus @ `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` · Inspected (UTC): 2026-07-14T16:10:56Z
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: CORRECTION & REVALIDATION
+Target branch: SMEsPlus @ `d995ae2986c4610b102307398591dbaba60be9e0` · Re-inspected (UTC): 2026-07-15T00:20:44Z
+Previous inspection SHA (superseded): `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
 
 Severity: P0 = blocks Architecture baseline / Gate B · P1 = material, needed before baseline sign-off · P2 = hygiene/traceability.
 **No gap in this register is closed by this task.** Status values used: OPEN.
@@ -28,11 +29,22 @@ Decision authority: Boss (final); ChatGPT L99 (independent review recommendation
 | GAP-13 | 3/14/19 inputs | Business/infra inputs open: sizing, compliance regime, RPO/RTO/DR, metering/billing, NFR workload/SLA/budget (PR #26 GAP-IN-01..05; 13 NFR input gaps) | P1 | INV-020 / PR #26 gap register (unverified) | Gate B/C/D | Domain AI Owners | Boss | Obtain business/infra inputs | OPEN |
 | GAP-14 | scope/gate governance | Scope V2 and Gate Model are CONTROLLED DRAFTs without traceable Boss approval provenance; treated as baseline in prior control position | P1 | INV-001/002 | Gate A | Architecture Governance AI Owner | Boss | Confirm/approve at Gate A | OPEN |
 
-## Summary
+## Summary (recounted directly from the rows above — COR-03)
 
-- **P0 gaps:** 11 (GAP-03, 04, 05, 06, 07, 09a–09e, 10, 11).
-- **P1 gaps:** 5 (GAP-01, 02, 08, 12, 13, 14 → counted: GAP-01, 02, 08, 12, 13, 14 = 6). *(P1 total = 6.)*
-- **P2 gaps:** see Conflict & Duplication Register (05) for PR-metadata/hygiene items.
+Total gap rows in this register: **18** (GAP-01, 02, 03, 04, 05, 06, 07, 08, 09a, 09b, 09c, 09d,
+09e, 10, 11, 12, 13, 14).
+
+- **P0 gaps: 12** — GAP-03, 04, 05, 06, 07, 09a, 09b, 09c, 09d, 09e, 10, 11.
+- **P1 gaps: 6** — GAP-01, 02, 08, 12, 13, 14.
+- **P2 gaps: 0** — none in this register. PR-metadata / hygiene P2 items are recorded in the
+  Conflict & Duplication Register (File 05).
+- **Reconciliation: P0 + P1 + P2 = 12 + 6 + 0 = 18 = total gap rows ✓.**
+
+Terminology note (COR-02): the non-canonical "Odoo-first/Odoo-style" usage inside PR #26
+architecture source is recorded as a finding/conflict (CONF-11, File 05), not as a new gap row;
+this keeps the gap total aligned to the 18 substantive architecture gaps. Correcting PR #26 to the
+Open ERP constitution is a later action under separate Boss authorization (STEP0301 does not
+modify PR #26).
 
 No gap is resolved, mitigated, or closed here. Closure requires the named owner's evidence,
 independent review, and Boss decision.

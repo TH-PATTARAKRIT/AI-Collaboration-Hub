@@ -1,7 +1,8 @@
 # 06 — STEP0301 Gate Evidence Inventory (Gate A–D)
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
-Target branch: SMEsPlus @ `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` · Inspected (UTC): 2026-07-14T16:10:56Z
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: CORRECTION & REVALIDATION
+Target branch: SMEsPlus @ `d995ae2986c4610b102307398591dbaba60be9e0` · Re-inspected (UTC): 2026-07-15T00:20:44Z
+Previous inspection SHA (superseded): `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` (delta commit does not change any Gate evidence position)
 
 **This is an evidence inventory, not a Gate approval.** No Gate PASS/FAIL is issued.
 Evidence result values used: EVIDENCE_PRESENT · PARTIAL_EVIDENCE · EVIDENCE_MISSING ·
