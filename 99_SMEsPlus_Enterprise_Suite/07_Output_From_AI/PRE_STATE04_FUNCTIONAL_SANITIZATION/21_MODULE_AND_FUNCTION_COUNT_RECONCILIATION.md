@@ -1,7 +1,7 @@
 # PRE-STATE 04 — Module and Function Count Reconciliation
 
 **Document ID:** PRE-STATE04-B0-21
-**Version:** v0.1 (Batch 0)
+**Version:** v0.3 (Batch 0 corrections restored — Sessions [SMEPLUS-26-07-15-002/003/004])
 **Status:** READY-FOR-INDEPENDENT-REVIEW
 **Owner / Prepared By:** Claude Code — PRE-STATE 04 Functional Learning Analyst
 **Evidence Basis:** Module_Inventory.csv (1,436 data rows) cross-verified against zip manifest listings; rule-based classification recorded per module in 03_SOURCE_MODULE_RECONCILIATION.csv
@@ -143,6 +143,84 @@ inventory baseline is extended (GAP-004).
 | Legal holds | 0 | no contamination event in Batch 0 |
 
 Primary Business Group totals will be reconciled against the accepted source
-total when group assignment begins (Batch 1 onward). No module has been
-assigned to a Business Group yet; therefore no group total can conflict with
-the source total at this checkpoint.
+total when group assignment begins (Batch 1 onward). Baseline modules have not
+been assigned to Business Groups; the 69 parked extras carry a preliminary
+mapping in `03A` (secondary evidence only — it does not alter primary totals).
+
+---
+
+## 7. RESTORED REVISION [SMEPLUS-26-07-15-002] — addons_extra Reconciliation (PARKED)
+
+Boss decision 2026-07-15: `addons_extra.zip` = **COMPANY-OWNED SOURCE
+EVIDENCE**. Controlled position: the 69 modules are **PARKED / PENDING
+EVIDENCE** — mapped and reconciled, but **NOT in the Controlled Baseline and
+NOT in STATE 04 intake**.
+
+### 7.1 Duplicate Reconciliation
+
+| Control | Method | Result |
+|---|---|---|
+| Exact name duplicates vs 1,436 baseline | set intersection of module names | **0** |
+| Manifest metadata extraction | 69/69 parsed (metadata fields only) | 0 errors |
+| Functional overlap candidates | curated cross-check vs baseline | **13 flagged REVIEW-REQUIRED** (e.g. `dev_print_cheque`↔`account_check_printing`; `purchase_request`↔`purchase_requisition`; `multi_level_approval*`↔`approvals`; full list in 03A). Overlaps do not reduce module counts. |
+
+### 7.2 Calculated Figure (NOT a baseline change)
+
+```
+  1,436  Controlled Learning Baseline (ACTIVE — unchanged)
++    69  Company extra modules (PARKED / PENDING EVIDENCE)
+−     0  Confirmed name-level duplicates
+= 1,505  CALCULATED figure only — takes effect ONLY upon Boss approval of
+         Controlled Delta Intake
+```
+
+### 7.3 Candidate Pool (active baseline unchanged; parked figures shown for planning)
+
+| Counter | Active (1,436 basis) | If delta intake approved (1,505 basis) |
+|---|---|---|
+| Foreign localization (`l10n_` non-Thai) | 521 | 521 |
+| Theme/Test/Demo/Noise | 99 | 99 |
+| Thailand localization priority | 2 | 11 (2 + 9 parked `l10n_th_*` = THAILAND-PRIORITY-PENDING) |
+| Remaining pool incl. Thai | 816 | 885 |
+| Remaining pool excl. Thai | 814 | 874 |
+| Pool under Batch 2 hypothesis (−8 non-prefixed country-specific) | 806 | 866 |
+
+### 7.4 Extra Classification Summary (all PARKED / PENDING EVIDENCE)
+
+| Classification | Count |
+|---|---|
+| THAILAND-PRIORITY-PENDING (`l10n_th_*`) | 9 |
+| COMPANY-SMESPLUS-CUSTOM (SMEsPlus-branded) | 13 |
+| THAILAND-RELEVANT-COMPANY-EXTRA | 4 |
+| COMPANY-EXTRA-CANDIDATE | 43 |
+| **Total** | **69** |
+
+**Erratum:** an earlier session report stated "12 `smesplus_*` modules". Exact
+counts: 11 with the `smesplus_` prefix + 2 further SMEsPlus-branded modules
+(`hide_smesplus_menu`, `monday_smesplus_connector`) = 13. Corrected without
+adjusting evidence.
+
+### 7.5 Evidence Flags
+
+- **GAP-007 (OPEN):** 43/69 manifests carry third-party author/license metadata (Ecosoft/OCA AGPL-3 incl. the entire Thai withholding-tax family; Domiup OPL-1; Webkul proprietary; Cybrosys; ForgeFlow/OCA; ACSONE/OCA). Preserved verbatim in 03A; Boss/legal review required; no certification by Claude Code.
+- **Database evidence:** 13 extras have matching tables in the reference dump (withholding-tax certificate family, `purchase_request*`, `date_range*`, `dev_print_cheque*`, `res_partner_company_type`, others in 03A).
+
+---
+
+## 8. RESTORED CORRECTION [SMEPLUS-26-07-15-003] — GAP-008 Dependency Evidence (PEND-001)
+
+| Control | Evidence |
+|---|---|
+| Artifact | `account_payment_multi_deduction-20260715T011601Z-1-001.zip`, 41,379 B, modified 2026-07-15 08:16:14+07:00, SHA-256 `a8568e6ba7359d3596ac00ccadc8ab89f14957ffed675285c0bdd454c00746c6` |
+| Manifest | "Payment Register with Multiple Deduction", version **18.0.1.0.2** (series 18.0), depends: `account` (in baseline), author Ecosoft/OCA, license AGPL-3, status Alpha |
+| Dependency verification | CONFIRMED from both manifests: `l10n_th_withholding_tax_multi` (v19.0.1.0.2) → this module + `l10n_th_withholding_tax` (v19.0.1.4) |
+| Version position | Artifact series **18.0** vs dependent series **19.0** — one major series older; API-level compatibility unverified |
+| Functional contract (neutral) | Payment registration with multiple deduction lines, each posted to a selectable account, with open/close handling and analytic distribution |
+| Database evidence | Dump contains `account_payment_deduction` (payment_id, account_id, name, amount, is_open, analytic_distribution) and `account_payment.is_multi_deduction` — contract MATCH; function active in reference system |
+| Classification | **PARTIALLY COMPATIBLE / GAP IDENTIFIED** |
+| GAP-008 status | **DEPENDENCY FOUND — VERSION COMPATIBILITY REVIEW REQUIRED** (no longer "dependency missing") |
+
+Restoration note: Sections 7–8 reconstruct the content of lost local commits
+`0374857` and `9bd54fc` from recorded session evidence, per Boss authorization
+[SMEPLUS-26-07-15-004]. See `26_CORRECTION_AND_RECOVERY_RECORD.md`. No source
+code was copied, ported, translated or modernized. Batch 1 has not started.

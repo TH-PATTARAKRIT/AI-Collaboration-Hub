@@ -1,7 +1,7 @@
 # PRE-STATE 04 — Gate Checklist
 
 **Document ID:** PRE-STATE04-B0-22
-**Version:** v0.1 (Batch 0)
+**Version:** v0.3 (Batch 0 corrections restored — Sessions [SMEPLUS-26-07-15-002/003/004])
 **Status:** REVIEW-REQUIRED
 **Owner / Prepared By:** Claude Code — PRE-STATE 04 Functional Learning Analyst
 **Evidence Basis:** Batch 0 package files 00–03, 17, 21 and their recorded evidence
@@ -31,6 +31,21 @@
 | 12 | Contamination events | none detected in Batch 0 | OBSERVED (register 19 not required yet) |
 | 13 | No self-approval statuses used | this package | OBSERVED |
 | 14 | Batch 1 not started (checkpoint stop honored) | this checklist | OBSERVED |
+
+## Restored Correction Checklist [SMEPLUS-26-07-15-002/003/004]
+
+| # | Control | Evidence | Status |
+|---|---|---|---|
+| 15 | Boss scope decision recorded (COMPANY-OWNED SOURCE EVIDENCE) | `01` row 4; `02` header; GAP-004 | CLASSIFIED |
+| 16 | Duplicate reconciliation (0 name duplicates; 13 overlap candidates flagged) | `21` §7.1 | CLASSIFIED |
+| 17 | Controlled Baseline remains 1,436; 1,505 calculated-only; extras PARKED / PENDING EVIDENCE | `21` §7.2; PEND-002 | OBSERVED |
+| 18 | All 69 extras mapped (BG, function, role, TH relevance, deps, DB evidence, ownership, overlap) | `03A` (69 rows) | PARKED-PENDING-EVIDENCE / REVIEW-REQUIRED |
+| 19 | Thailand extras marked THAILAND-PRIORITY-PENDING | `03`/`03A`; `21` §7.3 | CLASSIFIED |
+| 20 | GAP-007 ownership/license evidence preserved without certification | GAP-007; 03A columns | OPEN — REVIEW-REQUIRED |
+| 21 | GAP-008 dependency found; compatibility review recorded | PEND-001; `21` §8 | REVIEW-REQUIRED |
+| 22 | Governance finding recorded (no history rewrite/reset/revert) | `26_CORRECTION_AND_RECOVERY_RECORD.md` — DIRECT-BASE-PUBLICATION CONTROL DEVIATION | OBSERVED |
+| 23 | Lost revisions reconstructed from recorded evidence only (no recovery from deleted directory) | `26` §3 | OBSERVED |
+| 24 | Batch 1 still not started | this checklist | OBSERVED |
 
 ---
 

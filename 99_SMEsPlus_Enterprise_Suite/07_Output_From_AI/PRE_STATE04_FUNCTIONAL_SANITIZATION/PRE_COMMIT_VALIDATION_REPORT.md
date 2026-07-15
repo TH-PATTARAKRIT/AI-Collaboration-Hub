@@ -1,7 +1,7 @@
 # PRE-STATE 04 — Pre-Commit Validation Report
 
 **Document ID:** PRE-STATE04-B0-VAL
-**Version:** v0.1 (Batch 0)
+**Version:** v0.3 (Batch 0 corrections restored — Session [SMEPLUS-26-07-15-004])
 **Status:** READY-FOR-INDEPENDENT-REVIEW
 **Owner / Prepared By:** Claude Code — PRE-STATE 04 Functional Learning Analyst
 **Evidence Basis:** Git pre-flight checks, package scans, and Batch 0 evidence files (2026-07-15)
@@ -80,9 +80,23 @@ The authorized output path was isolated safely; execution continued per order §
 
 ## Control Summary
 
+## Restoration Record [SMEPLUS-26-07-15-004] — Corrective Commit
+
+| Control | Result |
+|---|---|
+| Trigger | Old working copy deleted with unpushed commits `0374857`, `9bd54fc`; v0.1 (`e6f081f`) found published directly on `SMEsPlus` (DIRECT-BASE-PUBLICATION CONTROL DEVIATION — see `26`) |
+| Method | Reconstruction from recorded session evidence only; no recovery from deleted directory; statuses per Boss controlled position (baseline 1,436; extras PARKED / PENDING EVIDENCE; THAILAND-PRIORITY-PENDING) |
+| Files in corrective commit | `00`, `01`, `02`, `03` (regenerated), `03A` (new), `17` (rewritten), `21`, `22`, `25` (new), `26` (new), this report, `24` (regenerated last) |
+| Scans | Secret scan CLEAN; no code constructs; only md/csv/txt; staged paths verified inside authorized output path |
+| Base branch | NOT modified by this session |
+
+---
+
+## Control Summary
+
 | Item | Status |
 |---|---|
-| Known evidence gaps | 6 (GAP-001…GAP-006 in `17_EVIDENCE_GAP_REGISTER.csv`) |
+| Known evidence gaps | 8 (GAP-001…GAP-008; GAP-004 resolved-parked; GAP-007 OPEN; GAP-008 dependency found) |
 | Legal holds | 0 |
 | Security holds | 0 |
 | Contamination register entries | 0 (register 19 not required for Batch 0) |
