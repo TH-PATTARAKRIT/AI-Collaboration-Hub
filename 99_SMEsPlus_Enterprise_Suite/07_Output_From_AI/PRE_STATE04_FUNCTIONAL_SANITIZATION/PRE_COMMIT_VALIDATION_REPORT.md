@@ -1,8 +1,8 @@
 # PRE-STATE 04 — Pre-Commit Validation Report
 
 **Document ID:** PRE-STATE04-B0-VAL
-**Version:** v0.1 (Batch 0)
-**Status:** READY-FOR-INDEPENDENT-REVIEW
+**Version:** v0.4 (Boss decisions applied — Prompt STEP040101, Session [SMEPLUS-26-07-15-005])
+**Status:** READY FOR INDEPENDENT REVIEW
 **Owner / Prepared By:** Claude Code — PRE-STATE 04 Functional Learning Analyst
 **Evidence Basis:** Git pre-flight checks, package scans, and Batch 0 evidence files (2026-07-15)
 **Clean Room Status:** CLEAN — metadata-level access only; no source content read
@@ -50,7 +50,7 @@ The authorized output path was isolated safely; execution continued per order §
 | 2 | Controlled naming standard | YES — numbered names per execution order §13 |
 | 3 | CSV headers present | YES — `03` (10 columns), `17` (9 columns) |
 | 4 | Markdown control headers (Document ID, Version, Status, Owner/Prepared By, Evidence Basis, Clean Room Status) | YES — all 5 `.md` files |
-| 5 | Module totals reconcile | YES — 1,436 reproduced; 521 confirmed; 99 vs 100 variance registered (GAP-005); pool 816/814 formula-driven; ~806 explained (814 − 8 non-prefixed country-specific modules) |
+| 5 | Module totals reconcile | YES — 1,436 reproduced; 521 confirmed; 99 vs 100 variance registered (GAP-005); Boss-approved Thailand-scope candidates = **808** (1,436 − 521 − 99 − 8 = 806 General/Business + 2 Thailand Localization baseline); 69 Controlled Delta references OUTSIDE baseline; 1,505 calculated-only |
 | 6 | No unsupported PASS/APPROVED claims | CONFIRMED — every occurrence of restricted words is in negation or prohibition context ("NOT approved", "may not be read as APPROVED", "Sole Final Approver") |
 | 7 | No prohibited source code content | CONFIRMED — construct scan (def/class/import odoo/XML record/template/@api) returned zero hits; package contains only module names, manifest names, categories, counts, hashes |
 | 8 | No secret or credential | CONFIRMED — pattern scan hits reviewed: "Executive **Secret**ary" (role name) and `auth_password_policy*` (module names in evidence register) are false positives; no credentials, tokens, or keys |
@@ -80,9 +80,42 @@ The authorized output path was isolated safely; execution continued per order §
 
 ## Control Summary
 
+## Restoration Record [SMEPLUS-26-07-15-004] — Corrective Commit
+
+| Control | Result |
+|---|---|
+| Trigger | Old working copy deleted with unpushed commits `0374857`, `9bd54fc`; v0.1 (`e6f081f`) found published directly on `SMEsPlus` (DIRECT-BASE-PUBLICATION CONTROL DEVIATION — see `26`) |
+| Method | Reconstruction from recorded session evidence only; no recovery from deleted directory; statuses per Boss controlled position (baseline 1,436; extras PARKED / PENDING EVIDENCE; THAILAND-PRIORITY-PENDING) |
+| Files in corrective commit | `00`, `01`, `02`, `03` (regenerated), `03A` (new), `17` (rewritten), `21`, `22`, `25` (new), `26` (new), this report, `24` (regenerated last) |
+| Scans | Secret scan CLEAN; no code constructs; only md/csv/txt; staged paths verified inside authorized output path |
+| Base branch | NOT modified by this session |
+
+---
+
+## Boss-Decision Application Record [SMEPLUS-26-07-15-005] — Prompt STEP040101
+
+| Control | Result |
+|---|---|
+| Trigger | Boss-approved decisions in PRE-STATE04 Batch 0 (Prompt STEP040101) |
+| Repository / Base / Working branch | `TH-PATTARAKRIT/AI-Collaboration-Hub` / `SMEsPlus` / `claude/pre-state04-functional-sanitization-20260715` — confirmed via `gh`; PR #35 OPEN + Draft + not merged; base = SMEsPlus |
+| GitHub CLI | **AVAILABLE** this session (`gh` 2.96.0) — supersedes the prior GITHUB-CLI-NOT-AVAILABLE note in the Publication Control Record above; PR #35 updated programmatically, base branch not modified |
+| Files corrected | `00`, `01`, `02`, `03`, `03A`, `17`, `21`, `22`, `25`, `26`, this report, new `27_INDEPENDENT_REVIEW_HANDOFF.md`; `24` regenerated last |
+| Baseline | Controlled Learning Baseline **remains 1,436**; 69 = Controlled Delta references OUTSIDE baseline; 1,505 calculated-only |
+| Thailand-scope candidates | **808** (806 General/Business + 2 Thailand Localization baseline) |
+| GAP-007 | RESOLVED FOR FUNCTIONAL LEARNING BY BOSS DECISION — lawfully acquired third-party reference evidence; copyright/license conditions remain applicable |
+| GAP-008 | CLOSED AS FUNCTIONAL LEARNING GAP — Version 18 authorized reference; new Clean Room V19 implementation required |
+| Clean Room scan | CLEAN — only `.md`/`.csv`/`.txt`; no source-code constructs; no ZIP/dump/binary staged |
+| Secret scan | CLEAN — no credentials, tokens or keys |
+| Base branch | NOT modified by this session; DIRECT-BASE-PUBLICATION deviation (`e6f081f`) preserved |
+| STEP0401 / Batch 1 / Merge | NOT formally started / NOT started / DO NOT MERGE |
+
+---
+
+## Control Summary
+
 | Item | Status |
 |---|---|
-| Known evidence gaps | 6 (GAP-001…GAP-006 in `17_EVIDENCE_GAP_REGISTER.csv`) |
+| Known evidence gaps | 8 (GAP-001…GAP-008; GAP-004 resolved; **GAP-007 RESOLVED FOR FUNCTIONAL LEARNING BY BOSS DECISION**; **GAP-008 CLOSED AS FUNCTIONAL LEARNING GAP**; GAP-001/002/003/006 evidence-gap; GAP-005 review-required) |
 | Legal holds | 0 |
 | Security holds | 0 |
 | Contamination register entries | 0 (register 19 not required for Batch 0) |

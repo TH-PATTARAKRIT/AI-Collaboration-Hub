@@ -1,5 +1,8 @@
 # PRE-STATE 04 Input Evidence Manifest (SHA-256)
 # External inputs (/Users/.../SOURCE CODE/) are evidence references only - they are OUTSIDE the repository and are NEVER committed or pushed.
+# addons_extra.zip = AUTHORIZED CONTROLLED DELTA LEARNING REFERENCE per Boss decision STEP040101 2026-07-15; 69 modules AUTHORIZED-FOR-CLEAN-ROOM-FUNCTIONAL-LEARNING / CONTROLLED-DELTA-INTAKE-PENDING, OUTSIDE the Controlled Baseline (see 25_PENDING_EVIDENCE_REGISTER.csv PEND-002). Third-party modules are lawfully acquired reference evidence; copyright/license conditions remain applicable.
+# PENDING EVIDENCE (not in Controlled Baseline):
+/Users/admin/Downloads/account_payment_multi_deduction-20260715T011601Z-1-001.zip|41379|a8568e6ba7359d3596ac00ccadc8ab89f14957ffed675285c0bdd454c00746c6|2026-07-15T01:16:14Z|REVIEW-REQUIRED|FDS Gate
 # Format: file_path|size_bytes|sha256|timestamp_utc|status|gate_impact
 # Generated: 2026-07-15 | Session: [SMEPLUS-26-07-15-001] PRE-STATE 04 Batch 0
 /Users/admin/Downloads/SOURCE CODE/01_ACCOUNT.zip|34371329|3a40f2499f2db5688c53e437ba1f51c967d4e158aae72010eed740647c1b9ba1|2026-07-15T00:08:37Z|OBSERVED|FDS Gate
