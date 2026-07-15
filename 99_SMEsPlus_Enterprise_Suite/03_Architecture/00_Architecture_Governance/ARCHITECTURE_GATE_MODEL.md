@@ -18,6 +18,8 @@ Effective immediately for all new STATE03 prompts: apply **SMEsPlus Prompt Gover
 
 Reference: `00_Project_Governance/SMEPLUS_PROMPT_GOVERNANCE_CONSTITUTION_v1.0.md`; Jira ERPPLUS-96; Draft PR #36.
 
+**Profile E applies:** STATE03 Architecture prompts require `HIGH_REASONING`. Record the exact Model when known; otherwise record `MODEL_NOT_DISCLOSED`, Platform, Agent Type, Tooling Context, execution date, and evidence. A model/capability downgrade must be reported before work continues.
+
 ## Gate A — Scope Baseline
 
 Required:
