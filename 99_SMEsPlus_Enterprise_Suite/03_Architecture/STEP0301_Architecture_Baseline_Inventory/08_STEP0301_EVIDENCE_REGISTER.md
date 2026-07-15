@@ -1,7 +1,7 @@
 # 08 — STEP0301 Evidence Register
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030109 BOSS DECISION IMPLEMENTATION AND BLOCKING-ISSUE RESOLUTION (over STEP030108 / STEP030107 / STEP030106 / STEP030105 / STEP030104 / STEP030103)
-Step ID: STEP0301 · Current Prompt ID: STEP030109 · Prior Prompt ID: STEP030108 · Corrected Execution Prompt ID (technical): STEP030103
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030110 CONTROLLED REISSUE, BRANCH RECONCILIATION, AND BOSS DECISION IMPLEMENTATION (over STEP030108 / STEP030107 / STEP030106 / STEP030105 / STEP030104 / STEP030103)
+Step ID: STEP0301 · Current Prompt ID: STEP030110 · Prior Prompt ID: STEP030109 (EXECUTED at commit `281fa47…`) · Corrected Execution Prompt ID (technical): STEP030103
 Execution Role: Claude Code — Preparer/Executor (not Decision Owner) · Independent Reviewer: ChatGPT L99.99 — Result (STEP030106): VERIFIED WITH CONTROLLED FOLLOW-UP; re-review of STEP030109 corrections recommended, not yet performed · Architecture Governance Owner: PMO / Architecture Governance — named owner pending (TBD — BOSS ASSIGNMENT REQUIRED) · Final Approval Authority: Boss (sole)
 Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030109) · Previous PR #33 head (STEP030108): `254c40415f369af543dc90f8c0409c7a6541058b`
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` · target-row commit SHA updated to current HEAD `c880c9d…` (all target blob SHAs unchanged — delta commits touch no `03_Architecture/` file); PR #26-row commit SHA unchanged (`098798f7…`); PR #34 rows added at delta revalidation (EV-50..59)

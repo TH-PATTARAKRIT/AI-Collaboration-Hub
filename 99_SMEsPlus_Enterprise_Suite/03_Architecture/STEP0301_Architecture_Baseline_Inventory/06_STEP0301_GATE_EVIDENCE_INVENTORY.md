@@ -1,7 +1,7 @@
 # 06 — STEP0301 Gate Evidence Inventory (Gate A–D)
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030109 BOSS DECISION IMPLEMENTATION AND BLOCKING-ISSUE RESOLUTION
-Step ID: STEP0301 · Current Prompt ID: STEP030109 · Prior Prompt ID: STEP030108 · Corrected Execution Prompt ID (technical): STEP030103 · Reviewer: ChatGPT L99.99 (VERIFIED WITH CONTROLLED FOLLOW-UP, recorded STEP030106) · Approver: Boss
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030110 CONTROLLED REISSUE, BRANCH RECONCILIATION, AND BOSS DECISION IMPLEMENTATION
+Step ID: STEP0301 · Current Prompt ID: STEP030110 · Prior Prompt ID: STEP030109 (EXECUTED at commit `281fa47…`) · Corrected Execution Prompt ID (technical): STEP030103 · Reviewer: ChatGPT L99.99 (VERIFIED WITH CONTROLLED FOLLOW-UP, recorded STEP030106) · Approver: Boss
 Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030109) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
 Delta commits `e6f081f` / `c880c9d` change **no** Gate A–D evidence position (neither touches `03_Architecture/`). The PRE-STATE 04 package carries its own "PRE-STATE 04 Batch 0" gate checklist — that is not a Gate A–D artefact and is classified NOT_APPLICABLE_TO_STEP0301.

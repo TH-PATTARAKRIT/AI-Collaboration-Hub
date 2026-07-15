@@ -125,6 +125,32 @@ every Owner field in §A and §B above except GAP-10A/CONF-12 (repository-hygien
 with no domain owner applicable) — i.e. all 17 remaining open Gap rows and all 13 remaining open
 Conflict rows with a populated Owner column lack a named individual.
 
+## STEP030110 Revalidation Addendum
+
+This Prompt (STEP030109) is **EXECUTED** — commit `281fa47adc3fda09c481200e9311d3b90ee88327`,
+verified on PR #33 at STEP030110 preflight (2026-07-15T16:53:49Z). STEP030110 revalidated every
+row in §A and §B against the current repository state after merging SMEsPlus HEAD `cf4ef7f…`
+(merge commit `a4947a9…`, see File 17): **no row's Resolution Status, Owner, or Gate Impact
+changes** — the merge touches zero `03_Architecture/` files. Two items received new information,
+recorded here without closing either row:
+
+- **GAP-10B** — a candidate complete Step Register is now prepared
+  (`16_STEP030110_FULL_STATE03_STEP_REGISTER_PROPOSAL.md`). This does **not** close GAP-10B;
+  the row remains **BLOCKING — BOSS DECISION REQUIRED** pending Boss's separate approval of a
+  complete register.
+- **CONF-13** — new evidence in the merged PRE-STATE04 package (Files 26–29 under
+  `07_Output_From_AI/PRE_STATE04_FUNCTIONAL_SANITIZATION/`) shows PRE-STATE04's own subsequent
+  authorization sessions consistently use `[SMEPLUS-26-07-15-002]` through
+  `[SMEPLUS-26-07-15-005]` — a distinct family from this STATE03 order's `[SMEPLUS-26-07-15-001]`.
+  This is suggestive that the original `e6f081f` header's reuse of `001` was a labelling artifact,
+  but it is not proof (no evidence explains why that one header cites `001`). Per the governing
+  Prompt's explicit "correct only when proven" instruction, **CONF-13 remains HOLD — INSUFFICIENT
+  EVIDENCE / BLOCKING**, unchanged. See File 18 for the full observation handed to the
+  Independent Reviewer.
+
+No row in §A or §B is reopened, closed, or reclassified by this addendum beyond the two
+observations above.
+
 ## E. Mandatory Control Statement
 
 "Boss approved the Interim Incremental STATE03 Step Register v0.1 with specified corrections.

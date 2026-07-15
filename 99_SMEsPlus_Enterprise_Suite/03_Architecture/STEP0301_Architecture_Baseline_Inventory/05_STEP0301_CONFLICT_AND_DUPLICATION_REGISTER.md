@@ -1,8 +1,22 @@
 # 05 — STEP0301 Conflict and Duplication Register
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030109 BOSS DECISION IMPLEMENTATION AND BLOCKING-ISSUE RESOLUTION
-Step ID: STEP0301 · Current Prompt ID: STEP030109 · Prior Prompt ID: STEP030108 · Corrected Execution Prompt ID (technical): STEP030103 · Reviewer: ChatGPT L99.99 (VERIFIED WITH CONTROLLED FOLLOW-UP, recorded STEP030106; re-review of STEP030109 corrections recommended, not yet performed) · Approver: Boss
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030109) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030110 CONTROLLED REISSUE, BRANCH RECONCILIATION, AND BOSS DECISION IMPLEMENTATION
+Step ID: STEP0301 · Current Prompt ID: STEP030110 · Prior Prompt ID: STEP030109 (EXECUTED at commit `281fa47…`) · Corrected Execution Prompt ID (technical): STEP030103 · Reviewer: ChatGPT L99.99 (VERIFIED WITH CONTROLLED FOLLOW-UP, recorded STEP030106; re-review of STEP030109/STEP030110 corrections recommended, not yet performed) · Approver: Boss
+Target branch: SMEsPlus @ `cf4ef7f40e1a4b7c1a052cb0949f35c1eed2c62a` (STEP030110 branch reconciliation — see File 17; previously `c880c9d…` at STEP030109) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+
+**STEP030110 revalidation note:** the STEP030110 merge touches zero `03_Architecture/` files (File
+17). No conflict row is added, corrected, or reclassified by this merge. **New evidence relevant
+to CONF-13** was discovered in the merged PRE-STATE04 files (`26_CORRECTION_AND_RECOVERY_RECORD.md`,
+`27_INDEPENDENT_REVIEW_HANDOFF.md`, `28_STEP040102_INDEPENDENT_REVIEW_REPORT.md`,
+`29_STEP040107_BOSS_FINAL_DECISION_AND_BATCH0_CLOSURE.md`): PRE-STATE04's own subsequent
+authorization sessions are consistently `[SMEPLUS-26-07-15-002]` through `[SMEPLUS-26-07-15-005]`
+— a distinct session family from this STATE03 order's `[SMEPLUS-26-07-15-001]`. This is
+**suggestive** that the original `e6f081f` package header's use of `[SMEPLUS-26-07-15-001]` was a
+labelling artifact rather than genuine cross-state session reuse, but it is not conclusive proof
+(no repository evidence explains *why* that one header cites `001`). Per the governing Prompt's
+explicit instruction ("correct only when the correct reference is proven"), **CONF-13 is not
+closed or corrected by this observation** and remains BLOCKING — BOSS DECISION REQUIRED below;
+the observation is recorded for Boss awareness in File 18.
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
 
 **Most conflicts remain unresolved by this task; CONF-12 is corrected (see row below).** Both

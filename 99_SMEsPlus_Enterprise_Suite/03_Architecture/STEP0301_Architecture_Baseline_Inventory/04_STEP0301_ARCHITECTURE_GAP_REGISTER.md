@@ -1,8 +1,10 @@
 # 04 — STEP0301 Architecture Gap Register
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030109 BOSS DECISION IMPLEMENTATION AND BLOCKING-ISSUE RESOLUTION
-Step ID: STEP0301 · Current Prompt ID: STEP030109 · Prior Prompt ID: STEP030108 · Corrected Execution Prompt ID (technical): STEP030103 · Reviewer: ChatGPT L99.99 (VERIFIED WITH CONTROLLED FOLLOW-UP, recorded STEP030106; re-review of STEP030109 corrections recommended, not yet performed) · Approver: Boss
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030109) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030110 CONTROLLED REISSUE, BRANCH RECONCILIATION, AND BOSS DECISION IMPLEMENTATION
+Step ID: STEP0301 · Current Prompt ID: STEP030110 · Prior Prompt ID: STEP030109 (EXECUTED at commit `281fa47…`) · Corrected Execution Prompt ID (technical): STEP030103 · Reviewer: ChatGPT L99.99 (VERIFIED WITH CONTROLLED FOLLOW-UP, recorded STEP030106; re-review of STEP030109/STEP030110 corrections recommended, not yet performed) · Approver: Boss
+Target branch: SMEsPlus @ `cf4ef7f40e1a4b7c1a052cb0949f35c1eed2c62a` (STEP030110 branch reconciliation — see File 17; previously `c880c9d…` at STEP030109) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+
+**STEP030110 revalidation note:** the STEP030110 merge (`a4947a9…`, SMEsPlus HEAD `c880c9d…` → `cf4ef7f…`) touches **zero** files under `03_Architecture/` (see File 17 for the full changed-file list — all 15 changed files are under `07_Output_From_AI/PRE_STATE04_FUNCTIONAL_SANITIZATION/`). No gap row below is added, closed, or reclassified by this merge. The 19-row total, P0/P1/P2 split, and GAP-10A/GAP-10B statuses are unchanged in substance.
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
 Delta commits `e6f081f` / `c880c9d` add or close **no** gap row (neither touches `03_Architecture/`); the prior 18 rows are unchanged in substance. **STEP030109 change: GAP-10 is separated into GAP-10A and GAP-10B per Boss-approved correction (File 13 §D item 7), making 19 total rows.** PR #34 (PR_ONLY / UNVERIFIED) supplies unverified candidate evidence for GAP-12 and GAP-14 — noted on those rows; both remain OPEN.
 

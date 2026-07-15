@@ -126,14 +126,21 @@ finalized, and its generation timestamp is the wall-clock time of that final reg
 (recorded in the manifest header itself and cross-referenced in
 `STEP0301_EXECUTION_LOG.md` §0-impl).
 
-## G. Git and PR Evidence (recorded post-commit; see final execution report for authoritative values)
+## G. Git and PR Evidence (finalized at STEP030110 — placeholders below are now filled)
 
 | Item | Value |
 |---|---|
 | Pre-execution PR #33 Head | `254c40415f369af543dc90f8c0409c7a6541058b` |
-| STEP030109 commit SHA(s) | Recorded in `STEP0301_EXECUTION_LOG.md` §0-impl and the final execution report (a commit cannot embed its own hash) |
-| Final PR #33 Head after this Prompt | Recorded in the final execution report |
+| STEP030109 commit SHA(s) | `281fa47adc3fda09c481200e9311d3b90ee88327` |
+| Final PR #33 Head after this Prompt | `281fa47adc3fda09c481200e9311d3b90ee88327` (verified via GitHub `pull_request_read`, 2026-07-15T16:53:49Z; PR #33 head unchanged until superseded by the STEP030110 merge, see File 17) |
 | PR #33 status after this Prompt | OPEN / DRAFT / NOT MERGED (unchanged) |
+
+**STEP030110 addendum:** the controlling-chat prompt that reissued this work under the label
+STEP030109/STEP030110 stated STEP030109 was "issued but not executed / no GitHub evidence." That
+statement is **factually incorrect** for this record — this Prompt (STEP030109) executed and its
+commit `281fa47…` is verifiable GitHub evidence on PR #33, confirmed by STEP030110 preflight. This
+record's classification of STEP030109 as EXECUTED (§title, §B, header) stands unchanged and is
+re-confirmed at STEP030110.
 
 ## H. Explicit Boundaries Reaffirmed
 

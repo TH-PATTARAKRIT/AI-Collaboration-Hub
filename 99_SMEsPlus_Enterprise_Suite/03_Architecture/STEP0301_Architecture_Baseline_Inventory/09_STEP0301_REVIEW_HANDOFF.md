@@ -1,10 +1,10 @@
 # 09 — STEP0301 Independent Review Handoff
 
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
-Step ID: STEP0301 · Current Prompt ID: STEP030109 · Prior Prompt ID: STEP030108 · Corrected Execution Prompt ID (technical): STEP030103
+Step ID: STEP0301 · Current Prompt ID: STEP030110 · Prior Prompt ID: STEP030109 (EXECUTED at commit `281fa47…`) · Corrected Execution Prompt ID (technical): STEP030103
 Execution Role: Claude Code — Preparer/Executor (not Decision Owner) · Final Approval Authority: Boss (sole)
 Prepared for: independent re-review of the STEP030109 Boss Decision Implementation and Blocking-Issue Resolution corrections; independent review of the underlying STEP0301 inventory already recorded (STEP030106: VERIFIED WITH CONTROLLED FOLLOW-UP)
-Mode: STEP030109 BOSS DECISION IMPLEMENTATION AND BLOCKING-ISSUE RESOLUTION (over STEP030108 / STEP030107 / STEP030106 / STEP030105 / STEP030104 / STEP030103)
+Mode: STEP030110 CONTROLLED REISSUE, BRANCH RECONCILIATION, AND BOSS DECISION IMPLEMENTATION (over STEP030108 / STEP030107 / STEP030106 / STEP030105 / STEP030104 / STEP030103)
 Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030109) · Previous PR #33 head (STEP030108): `254c40415f369af543dc90f8c0409c7a6541058b`
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0` (correction run), `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` (original run)
 Delta: 2 commits (`e6f081f` PRE-STATE 04 sanitization batch 0; `c880c9d` `.gitignore` deletion) + delta-discovered draft PRs #34 / #35 — unchanged at STEP030108
@@ -181,5 +181,10 @@ STEP0301 closure review proceeds. This handoff requests that independent re-revi
    package.
 6. That PR #26 and PR #34 dispositions in File 15 are marked BOSS_DECISION_REQUIRED and that
    neither PR was merged, closed, rebased, or force-pushed under STEP030109.
+
+**STEP030110 update:** this handoff request is superseded/extended by
+`18_STEP030110_INDEPENDENT_REVIEW_HANDOFF.md`, which additionally covers the STEP030109-executed
+correction, the STEP030110 branch reconciliation (File 17), and the File 16 candidate Step
+Register proposal. Items 1–6 above remain valid and are carried forward in File 18 §3.
 
 No Evidence = No Progress. ห้ามข้าม Gate. Boss is the sole Final Approver.
