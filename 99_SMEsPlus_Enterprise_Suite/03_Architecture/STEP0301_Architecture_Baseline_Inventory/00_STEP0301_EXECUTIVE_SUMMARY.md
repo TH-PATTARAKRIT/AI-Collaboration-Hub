@@ -2,19 +2,42 @@
 
 Session ID: [SMEPLUS-26-07-15-001]
 State / Step: STATE 03 — Architecture / STEP0301 — Architecture Baseline Inventory
+Step ID: STEP0301
+Current Prompt ID: STEP030104 (Prompt Traceability and PR Description Correction)
+Corrected Execution Prompt ID: STEP030103 (Final Delta Revalidation)
+Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
 Control Level: /L99.99
-Execution Mode: DELTA REVALIDATION, EVIDENCE CORRECTION, AND INDEPENDENT REVIEW HANDOFF PREPARATION ONLY
+Execution Mode: STEP030104 — TRACEABILITY AND PR METADATA CORRECTION ONLY (over STEP030103 delta revalidation)
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
 Target Branch: SMEsPlus
-Target HEAD SHA (inspected): `c880c9d729018f8660ebb92599e098df2bde2f6d`
+Target HEAD SHA (inspected): `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030104)
 Previous Inspection SHA (superseded): `d995ae2986c4610b102307398591dbaba60be9e0` (original run: `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`)
 Delta Re-inspection Timestamp (UTC): 2026-07-15T05:27:24Z (prior correction run: 2026-07-15T00:20:44Z)
+Execution Role: Claude Code — Preparer/Correction Executor
 Prepared By: Claude Code (Architecture Baseline Inventory Agent — preparer/executor only)
 Independent Reviewer: ChatGPT L99.99 (pending)
 Final Approval Authority: Boss (sole)
 
 Execution Mode: READ, ANALYZE, CLASSIFY, REGISTER, PREPARE EVIDENCE ONLY. No Architecture
 is redesigned, no decision is resolved, no document is approved, and no Gate is moved.
+
+---
+
+## 0-tr. Prompt Execution History (STEP0301)
+
+Commit SHAs below are resolved from Git history of the STEP0301 package directory
+(`git log -- .../STEP0301_Architecture_Baseline_Inventory/`); none is guessed.
+
+| Prompt ID | Purpose | Execution Status | Evidence Commit | Result |
+|---|---|---|---|---|
+| STEP030101 | Initial Architecture Baseline Inventory | EXECUTED | `52105c30334088e40f77ddbf58032cfbb8d5458a` | Prepared initial inventory (13-file package created) |
+| STEP030102 | Correction and Revalidation | EXECUTED | `518ae121c115a3a629eab23d7db2b01376c0036f` | Corrected counts and target evidence (target `d995ae2…`) |
+| STEP030103 | Final Delta Revalidation | EXECUTED WITH TRACEABILITY DEFECT | `20709ee225fd7779b2e62000b4d4c34b09f5568f` | Technical delta revalidation completed (target `c880c9d…`); Prompt ID not recorded in package/commit |
+| STEP030104 | Prompt Traceability and PR Description Correction | IN EXECUTION → EXECUTED after commit | Content Correction Commit recorded in Execution Log §0-tr / Evidence Register (EV-60) | Prompt traceability and PR #33 metadata corrected |
+
+STEP030103's technical result (inventory/coverage/gap/conflict/terminology/Gate/Step-Register
+conclusions) is **unchanged** by STEP030104. STEP030104 adds only the missing Prompt traceability
+and synchronizes PR #33 — it changes **no** Architecture conclusion and closes no Gap/Conflict/ADR/Risk.
 
 ---
 
@@ -284,9 +307,10 @@ Gap Register totals (basis = gap rows in File 04): **P0 = 12 · P1 = 6 · P2 = 0
 
 ## 13. Explicit Non-Approval Statement
 
-STEP0301 Architecture Baseline Inventory has been delta-revalidated and prepared for independent
-review. Claude Code has not approved or closed STEP0301, has not approved any Architecture Gate,
-has not defined or started any later STATE 03 Step, has not merged PR #33 or PR #26, and has not
-authorized Build, Release, Deploy, or Production. Boss is the sole Final Approver.
+STEP0301 Architecture Baseline Inventory under Prompt STEP030104 has corrected the Prompt
+traceability and PR #33 metadata for the STEP030103 technical execution. Claude Code has not
+approved or closed STEP0301, has not approved any Architecture Gate, has not defined or started
+any later STATE 03 Step, has not merged PR #33, PR #26, PR #34, or PR #35, and has not authorized
+Build, Release, Deploy, or Production. Boss is the sole Final Approver.
 
 No Evidence = No Progress. ห้ามข้าม Gate.

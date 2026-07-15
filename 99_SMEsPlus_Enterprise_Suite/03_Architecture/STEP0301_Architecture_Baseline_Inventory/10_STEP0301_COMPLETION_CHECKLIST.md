@@ -1,7 +1,9 @@
 # 10 — STEP0301 Completion Checklist
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: DELTA REVALIDATION
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030104 TRACEABILITY CORRECTION (over STEP030103 delta revalidation)
+Step ID: STEP0301 · Current Prompt ID: STEP030104 · Corrected Execution Prompt ID: STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
+Execution Role: Claude Code — Preparer/Correction Executor · Independent Reviewer: ChatGPT L99.99 — Pending · Final Approval Authority: Boss
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030104) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
 
 Status values (only): SATISFIED_WITH_EVIDENCE · PARTIALLY_SATISFIED · NOT_SATISFIED ·
@@ -38,6 +40,21 @@ NOT_APPLICABLE · PENDING_INDEPENDENT_REVIEW · PENDING_BOSS_DECISION.
 | 19 | Scope V2 / Gate Model confirmed as approved baseline | PENDING_BOSS_DECISION | CONF-07 / GAP-14 (PR #34 approval record unverified) |
 | 20 | Open ADRs and P0 risks resolved | PENDING_BOSS_DECISION | Out of scope for STEP0301 (inventory only) |
 
+### Prompt Traceability Controls (STEP030104)
+
+| # | Checklist Item | Status | Evidence / Note |
+|---|---|---|---|
+| 21 | Step ID follows approved naming standard (`STEP0301`) | SATISFIED_WITH_EVIDENCE | Recorded in every controlled-file header |
+| 22 | Current Prompt ID follows `STEPxxyyzz` (`STEP030104`) | SATISFIED_WITH_EVIDENCE | Header fields across files 00, 08, 09, 10 + Execution Log |
+| 23 | Prompt history STEP030101–STEP030104 recorded | SATISFIED_WITH_EVIDENCE | Executive Summary §0-tr; Execution Log §0-tr (Prompt Execution History) |
+| 24 | STEP030103 linked to commit `20709ee…` | SATISFIED_WITH_EVIDENCE | EV-P03; §0-tr; commits resolved from Git history (not guessed) |
+| 25 | STEP030104 linked to its new correction commit | SATISFIED_WITH_EVIDENCE | EV-P04; Content Correction Commit SHA recorded post-commit in Execution Log §0-tr |
+| 26 | PR #33 Description matches controlled evidence | SATISFIED_WITH_EVIDENCE | PR #33 title/body synchronized at STEP030104 (target `c880c9d…`; totals 38/24/18/14) |
+| 27 | Manifest regenerated after traceability correction | SATISFIED_WITH_EVIDENCE | `PACKAGE_MANIFEST_SHA256_STEP0301.txt` regenerated; `sha256sum -c` 12/12 OK |
+| 28 | Independent Review remains pending | PENDING_INDEPENDENT_REVIEW | ChatGPT L99.99 not yet run |
+| 29 | No self-approval occurred | SATISFIED_WITH_EVIDENCE | Producer result limited to PREPARED FOR INDEPENDENT REVIEW; no PASS/APPROVED/VERIFIED/COMPLETE/CLOSED for STEP0301 |
+| 30 | STEP030101 / STEP030102 commit SHAs resolved from Git history | SATISFIED_WITH_EVIDENCE | `52105c3…` / `518ae12…` conclusively resolved (`git log` of package dir); no fabrication |
+
 ## Validation Outcome
 
 All STEP0301 mechanical preparation and delta-revalidation items (1–15, 2a, 15a–15e) are
@@ -45,7 +62,10 @@ SATISFIED_WITH_EVIDENCE, including: latest target HEAD `c880c9d…` inspected; a
 recorded; 24-domain count reconciled; gap totals reconciled; conflict totals reconciled;
 PR #26 facts current; terminology scan current; manifest verified; no source documents
 modified; no restricted files staged; review handoff complete; no self-approval language.
-Items 16–20 are PENDING_INDEPENDENT_REVIEW or PENDING_BOSS_DECISION by design.
+The STEP030104 Prompt-traceability controls (21–27, 29, 30) are SATISFIED_WITH_EVIDENCE; item
+28 remains PENDING_INDEPENDENT_REVIEW. Items 16–20 are PENDING_INDEPENDENT_REVIEW or
+PENDING_BOSS_DECISION by design. STEP030104 changed no Architecture conclusion — the
+STEP030103 technical totals (38 / 24 / 18 / 14) are carried forward unchanged.
 
 **Final producer result: `PREPARED FOR INDEPENDENT REVIEW`.**
 

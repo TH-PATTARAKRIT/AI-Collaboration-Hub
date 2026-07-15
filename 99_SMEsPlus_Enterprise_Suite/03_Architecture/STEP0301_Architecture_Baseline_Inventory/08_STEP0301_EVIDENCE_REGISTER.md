@@ -1,7 +1,9 @@
 # 08 — STEP0301 Evidence Register
 
-Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: DELTA REVALIDATION
-Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
+Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030104 TRACEABILITY CORRECTION (over STEP030103 delta revalidation)
+Step ID: STEP0301 · Current Prompt ID: STEP030104 · Corrected Execution Prompt ID: STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
+Execution Role: Claude Code — Preparer/Correction Executor · Independent Reviewer: ChatGPT L99.99 — Pending · Final Approval Authority: Boss
+Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` (re-confirmed unchanged at STEP030104) · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91` · target-row commit SHA updated to current HEAD `c880c9d…` (all target blob SHAs unchanged — delta commits touch no `03_Architecture/` file); PR #26-row commit SHA unchanged (`098798f7…`); PR #34 rows added at delta revalidation (EV-50..59)
 Verification rule: No Evidence = No Progress. Reviewer for all rows: ChatGPT L99 (independent review PENDING).
 
@@ -49,6 +51,16 @@ Verification Status values: PRESENT_TARGET_UNVERIFIED · PR_ONLY_UNVERIFIED · N
 | EV-57 | Named Owner and Reviewer Register | `…/NAMED_OWNER_AND_REVIEWER_REGISTER.md` | PR #34 | `09b4ead9…` | `0177097cf45450ae95501a2dc4916b2f4321865e` | 2026-07-15T05:27:24Z | ChatGPT L99 | PR_ONLY_UNVERIFIED (GAP-12 candidate) | Gate A |
 | EV-58 | Scope V2 Approval Record (claimed Boss decision) | `…/STATE03_ARCHITECTURE_SCOPE_V2_APPROVAL_RECORD.md` | PR #34 | `09b4ead9…` | `84defafd256c2486cae1a7693df4a7e1f7d534c1` | 2026-07-15T05:27:24Z | ChatGPT L99 | PR_ONLY_UNVERIFIED (approval claim unverified — CONF-14 / GAP-14) | Gate A |
 | EV-59 | Trust Control Matrix | `…/TRUST_CONTROL_MATRIX.md` | PR #34 | `09b4ead9…` | `fec845eb6362fad2eb7d848517f642efe0fab440` | 2026-07-15T05:27:24Z | ChatGPT L99 | PR_ONLY_UNVERIFIED | Gate A–D |
+
+### STEP0301 prompt-execution evidence (this package's own control commits — traceability)
+
+| Ev ID | Item | Repository Path / Ref | Branch/PR | Commit SHA | Prompt ID | Timestamp (UTC) | Reviewer | Verification Status |
+|---|---|---|---|---|---|---|---|---|
+| EV-P01 | STEP030101 initial inventory commit | STEP0301 package (13 files created) | PR #33 branch | `52105c30334088e40f77ddbf58032cfbb8d5458a` | STEP030101 | 2026-07-14T16:22:02Z | ChatGPT L99.99 | PRESENT_UNVERIFIED |
+| EV-P02 | STEP030102 correction & revalidation commit | STEP0301 package (target `d995ae2…`) | PR #33 branch | `518ae121c115a3a629eab23d7db2b01376c0036f` | STEP030102 | 2026-07-15T00:33:05Z | ChatGPT L99.99 | PRESENT_UNVERIFIED |
+| EV-P03 | STEP030103 delta revalidation commit (technical execution) | STEP0301 package (target `c880c9d…`) | PR #33 branch | `20709ee225fd7779b2e62000b4d4c34b09f5568f` | STEP030103 (defect: Prompt ID not in commit/package) | 2026-07-15T05:42:34Z | ChatGPT L99.99 | PRESENT_UNVERIFIED |
+| EV-P04 | STEP030104 traceability & PR-metadata correction commit (Content Correction Commit) | STEP0301 package (Prompt traceability + PR #33 sync) | PR #33 branch | `CONTENT_CORRECTION_COMMIT — recorded post-commit in Execution Log §0-tr` | STEP030104 | 2026-07-15 (this run) | ChatGPT L99.99 | PENDING_INDEPENDENT_REVIEW |
+| EV-P05 | PR #33 (this package's Pull Request) | `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/pull/33` | PR #33 | head = STEP030104 correction commit (post-commit) | STEP030104 | 2026-07-15 (this run) | ChatGPT L99.99 | OPEN / DRAFT / NOT MERGED |
 
 ## Notes
 

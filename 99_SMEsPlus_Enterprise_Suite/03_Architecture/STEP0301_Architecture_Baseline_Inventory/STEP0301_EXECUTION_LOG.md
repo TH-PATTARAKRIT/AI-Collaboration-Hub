@@ -1,13 +1,80 @@
 # STEP0301 Execution Log
 
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99
+Step ID: STEP0301 · Current Prompt ID: STEP030104 · Corrected Execution Prompt ID: STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f`
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
-Execution role: Architecture Baseline Inventory Agent (preparer/executor only)
-Mode: DELTA REVALIDATION, EVIDENCE CORRECTION, AND INDEPENDENT REVIEW HANDOFF PREPARATION ONLY
+Execution role: Claude Code — Preparer/Correction Executor
+Mode: STEP030104 — TRACEABILITY AND PR METADATA CORRECTION ONLY (over STEP030103 delta revalidation)
 Original creation timestamp (UTC): 2026-07-14T16:10:56Z
 Correction / re-inspection timestamp (UTC): 2026-07-15T00:20:44Z
 Delta revalidation timestamp (UTC): 2026-07-15T05:27:24Z
+Traceability correction timestamp (UTC): 2026-07-15 (STEP030104 run)
+Independent Reviewer: ChatGPT L99.99 — Pending · Final Approval Authority: Boss
 No credentials, tokens, or secrets are recorded in this log.
+
+## 0-tr. STEP030104 traceability correction run (this revision)
+
+Purpose: correct the STEP030103 traceability defects (missing Prompt IDs; stale PR #33
+description; commit `20709ee…` had no Prompt ID in subject/body) additively — **no Git history
+rewrite, no amend of `20709ee…`, no force push**.
+
+### Prompt Execution History (SHAs resolved from `git log -- .../STEP0301_Architecture_Baseline_Inventory/`)
+
+| Prompt ID | Purpose | Execution Status | Evidence Commit | Result |
+|---|---|---|---|---|
+| STEP030101 | Initial Architecture Baseline Inventory | EXECUTED | `52105c30334088e40f77ddbf58032cfbb8d5458a` | Prepared initial inventory |
+| STEP030102 | Correction and Revalidation | EXECUTED | `518ae121c115a3a629eab23d7db2b01376c0036f` | Corrected counts and target evidence |
+| STEP030103 | Final Delta Revalidation | EXECUTED WITH TRACEABILITY DEFECT | `20709ee225fd7779b2e62000b4d4c34b09f5568f` | Technical delta revalidation completed |
+| STEP030104 | Prompt Traceability and PR Description Correction | IN EXECUTION → EXECUTED after commit | Content Correction Commit: `__CONTENT_CORRECTION_COMMIT__` · Post-Commit Evidence Addendum (if used): `__ADDENDUM_COMMIT__` | Traceability corrected; PR #33 synchronized |
+
+Commit resolution note: STEP030101 and STEP030102 SHAs were resolved conclusively from the
+package directory's Git history (three content commits: `52105c3…`, `518ae12…`, `20709ee…`,
+plus reconcile merges `6edeb61…` and `2b4726f…`). No SHA is guessed; the
+`COMMIT NOT UNIQUELY RESOLVED` placeholder was not required.
+
+### Pre-execution check (STEP030104)
+
+- Repository identity: `origin` = TH-PATTARAKRIT/AI-Collaboration-Hub (confirmed).
+- Current branch: `claude/state03-step0301-architecture-baseline-inventory` (existing; no new branch).
+- `git fetch origin SMEsPlus`; `git rev-parse origin/SMEsPlus` = `c880c9d729018f8660ebb92599e098df2bde2f6d`
+  → **target unchanged** since STEP030103; no new intervening commits; `03_Architecture/`
+  conclusions carried forward unchanged (no re-inventory required).
+- PR #33: open, draft, not merged; head branch contains `20709ee…` (confirmed via
+  `git branch --contains 20709ee`).
+- Working tree: only STEP0301 files edited; no unrelated / prohibited file staged.
+
+### Corrections applied (STEP030104)
+
+- Added Prompt-ID header fields (Step ID, Current Prompt ID STEP030104, Corrected Execution
+  Prompt ID STEP030103, Previous Execution Commit `20709ee…`, Execution Role, Reviewer,
+  Approver) to files 00, 08, 09, 10 and this log.
+- Added Prompt Execution History to the Executive Summary (§0-tr) and this log (§0-tr).
+- Added STEP030103/STEP030104 execution-evidence rows (EV-P01..P05) and a PR #33 reference to
+  the Evidence Register.
+- Extended the Review Handoff to request review of both the STEP030103 technical results and
+  the STEP030104 traceability correction (new item 13).
+- Added Prompt-Traceability control rows (21–30) to the Completion Checklist.
+- Regenerated `PACKAGE_MANIFEST_SHA256_STEP0301.txt`; `sha256sum -c` = 12/12 OK.
+- No Architecture source document modified; no Architecture conclusion changed; no Gap /
+  Conflict / ADR / Risk closed; no Gate moved; no merge; no new branch/PR; no force push.
+
+### Commands executed (representative, STEP030104)
+
+```
+git remote -v ; git branch --show-current ; git status --short
+git fetch origin SMEsPlus ; git rev-parse origin/SMEsPlus
+git branch --contains 20709ee225fd7779b2e62000b4d4c34b09f5568f
+git log --format='%H | %cI | %s' -- .../STEP0301_Architecture_Baseline_Inventory/
+git log --diff-filter=A -- .../00_STEP0301_EXECUTIVE_SUMMARY.md
+sha256sum <12 controlled files> > PACKAGE_MANIFEST_SHA256_STEP0301.txt
+grep -v '^#' PACKAGE_MANIFEST_SHA256_STEP0301.txt | sha256sum -c
+git add .../STEP0301_Architecture_Baseline_Inventory/ ; git commit ; git push -u origin <branch>
+```
+
+GitHub MCP: `pull_request_read` (#33 get), `update_pull_request` (#33 title + body).
+
+The `__CONTENT_CORRECTION_COMMIT__` / `__ADDENDUM_COMMIT__` placeholders above are replaced with
+the resulting full SHAs in the Post-Commit Evidence Addendum (§0-tr-post) after push.
 
 ## 0-bis. Delta revalidation run (this revision)
 
@@ -161,7 +228,8 @@ State 02 handover: `…/STATE02_FINALIZATION/17_S02_FINAL_006_BOSS_CLOSURE_DECIS
 
 ## 8. Control statement
 
-STEP0301 Architecture Baseline Inventory has been delta-revalidated and prepared for independent
-review. Claude Code has not approved or closed STEP0301, has not approved any Architecture Gate,
-has not defined or started any later STATE 03 Step, has not merged PR #33 or PR #26, and has not
-authorized Build, Release, Deploy, or Production. Boss is the sole Final Approver.
+STEP0301 Architecture Baseline Inventory under Prompt STEP030104 has corrected the Prompt
+traceability and PR #33 metadata for the STEP030103 technical execution. Claude Code has not
+approved or closed STEP0301, has not approved any Architecture Gate, has not defined or started
+any later STATE 03 Step, has not merged PR #33, PR #26, PR #34, or PR #35, and has not authorized
+Build, Release, Deploy, or Production. Boss is the sole Final Approver.

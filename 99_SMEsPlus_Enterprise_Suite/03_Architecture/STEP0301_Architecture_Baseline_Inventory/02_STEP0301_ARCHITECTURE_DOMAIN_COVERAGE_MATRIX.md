@@ -1,6 +1,7 @@
 # 02 — STEP0301 Architecture Domain Coverage Matrix (24 Domains)
 
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: DELTA REVALIDATION
+Step ID: STEP0301 · Current Prompt ID: STEP030104 · Corrected Execution Prompt ID: STEP030103 · Previous Execution Commit: `20709ee225fd7779b2e62000b4d4c34b09f5568f` · Reviewer: ChatGPT L99.99 (pending) · Approver: Boss
 Target branch: SMEsPlus @ `c880c9d729018f8660ebb92599e098df2bde2f6d` · Delta re-inspected (UTC): 2026-07-15T05:27:24Z
 Previous inspection SHAs (superseded): `d995ae2986c4610b102307398591dbaba60be9e0`, `5cd3a2ca9649f4e1d5345f8dc7e56688b5b5ef91`
 Delta commits `e6f081f` (PRE-STATE 04, outside `03_Architecture/`) and `c880c9d` (`.gitignore` deletion) add/remove **no** domain deliverable → domain coverage unchanged by the delta. Draft PR #34's 10 governance V2 documents (PR_ONLY / UNVERIFIED) are governance/planning artefacts and change no domain's primary coverage status.
