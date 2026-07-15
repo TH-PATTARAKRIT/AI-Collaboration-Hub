@@ -19,6 +19,8 @@ Establish a modular, traceable, Clean Room-safe prompt standard. The standard us
 6. Boss is the Sole Final Approver.
 7. Direct push to `SMEsPlus`, merge, release, deployment, production change, and gate closure are prohibited unless explicitly authorized by Boss.
 8. Prompt output must preserve traceability through evidence references, commit SHA, PR status, validation result, and open gaps.
+9. Every prompt must declare an AI Platform, Agent Type, Capability Tier, Model Policy, and Tooling Context. Exact Model Name is required only when known or required by the applicable risk/control policy.
+10. High-risk work must not silently downgrade to a lower capability tier or substitute a model. The exception and impact must be reported before execution continues.
 
 ## 3. Base Prompt Standard
 
@@ -28,6 +30,7 @@ Every prompt must define:
 - Business Context: Thailand SME / Enterprise-lite; Open ERP-first; Simple UX; Enterprise-grade control
 - Repository, base branch, working branch, included and excluded scope
 - Evidence baseline: commit SHA, PR, and required inputs
+- AI Execution Profile: Platform, Agent Type, Capability Tier, Model, Model Policy, Tooling Context, and Execution Mode
 - Mandatory controls and forbidden actions
 - Acceptance criteria
 - Required Final Report
@@ -64,6 +67,30 @@ AI may learn only abstract business behavior, business rules, data concepts, pro
 **Controls:** Use approved Figma Design Authority and Design Tokens only; use Mock APIs or Architecture-Gate-passed API Contracts only.  
 **Forbidden:** Production API connection, deployment, and UI workflows that bypass Approval, Posting, or Audit controls.
 
+### Profile E — AI Model & Capability Governance
+
+**Use:** Every State, Gate, prompt, and AI platform.  
+**Purpose:** Control model capability, cost, risk, reproducibility, and permitted fallback behavior without binding the project to one provider.
+
+**Required fields:**
+
+- AI Platform: Claude / ChatGPT / Figma AI / Lovable / Other
+- Agent Type: Architecture Analyst / Code Executor / Independent Reviewer / UI Generator / Other
+- Capability Tier: `HIGH_REASONING`, `STANDARD_EXECUTION`, `FAST_TRIAGE`, or `UI_GENERATION`
+- Model: exact model name when known
+- Model Policy: `REQUIRED`, `PREFERRED`, `OPTIONAL`, or `MODEL_NOT_DISCLOSED`
+- Tooling Context: Desktop / Web / API / IDE / Figma / Other
+
+**Rules:**
+
+1. Governance, Architecture, Clean Room/IP, Independent Review, and high-risk code require `HIGH_REASONING`; exact Model Name is recorded when known.
+2. Functional Design normally requires `HIGH_REASONING` or `STANDARD_EXECUTION`.
+3. Bulk classification, formatting, manifests, and low-risk administrative work may use `FAST_TRIAGE`.
+4. UI generation uses `UI_GENERATION` and remains subject to Profile D.
+5. When a provider does not disclose the Model, record `MODEL_NOT_DISCLOSED` together with Platform, Agent Type, Capability Tier, Tooling Context, execution date, and evidence output.
+6. If a required or preferred model/capability is unavailable, do not silently downgrade. Report available capability, quality/risk impact, and recommended action before continuing.
+7. Any model or capability change during a work item must be recorded in the Required Final Report and YAML Result Manifest.
+
 ## 6. Required Final Report
 
 Every applicable execution or review prompt must report:
@@ -71,9 +98,10 @@ Every applicable execution or review prompt must report:
 1. Result: `COMPLETED`, `BLOCKED`, or `REWORK REQUIRED`
 2. Scope and files created/changed
 3. Validation and evidence result
-4. Commit SHA, PR URL, and branch status
-5. Open gaps, risks, and required Boss decisions
-6. Explicit confirmation of prohibited actions not performed
+4. AI Execution Profile and any model/capability change
+5. Commit SHA, PR URL, and branch status
+6. Open gaps, risks, and required Boss decisions
+7. Explicit confirmation of prohibited actions not performed
 
 ## 7. Standard Result Manifest
 
@@ -82,6 +110,13 @@ Use this YAML structure for work that produces review, evidence, Commit, or PR o
 ```yaml
 prompt_id: STEPxxyyzz
 session_id: SMEPLUS-YY-MM-DD-XXX
+ai_execution_profile:
+  platform: Claude
+  agent_type: INDEPENDENT_REVIEWER
+  capability_tier: HIGH_REASONING
+  model: "<exact name or not disclosed>"
+  model_policy: REQUIRED
+  tooling_context: Claude Code Desktop
 execution_mode: READ_ONLY_REVIEW
 result: COMPLETED
 evidence_commit: "<sha>"
@@ -91,6 +126,7 @@ validation:
   evidence: "<report or manifest path>"
 gaps: []
 boss_decisions_required: []
+model_or_capability_changes: []
 prohibited_actions_not_performed:
   - merge
   - direct_push_to_base
