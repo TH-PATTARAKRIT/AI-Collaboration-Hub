@@ -1,8 +1,8 @@
 # PRE-STATE 04 — Module and Function Count Reconciliation
 
 **Document ID:** PRE-STATE04-B0-21
-**Version:** v0.3 (Batch 0 corrections restored — Sessions [SMEPLUS-26-07-15-002/003/004])
-**Status:** READY-FOR-INDEPENDENT-REVIEW
+**Version:** v0.4 (Boss decisions applied — Prompt STEP040101, Session [SMEPLUS-26-07-15-005])
+**Status:** READY FOR INDEPENDENT REVIEW
 **Owner / Prepared By:** Claude Code — PRE-STATE 04 Functional Learning Analyst
 **Evidence Basis:** Module_Inventory.csv (1,436 data rows) cross-verified against zip manifest listings; rule-based classification recorded per module in 03_SOURCE_MODULE_RECONCILIATION.csv
 **Clean Room Status:** CLEAN — metadata-level access only; no source content read
@@ -66,22 +66,46 @@ unknown and is registered as GAP-005 for Batch 13 confirmation.
 
 ---
 
-## 4. Remaining Candidate Pool — FORMULA-DRIVEN
+## 4. Thailand-Scope Functional Learning Candidate Calculation — BOSS-APPROVED (STEP040101)
+
+Boss decision STEP040101 (2026-07-15) adopts the following calculation:
+
+```
+  1,436   Controlled Learning Baseline
+−   521   Foreign Localization modules unrelated to Thailand
+−    99   Theme/Test/Demo/Noise modules
+−     8   non-Thai country-specific modules without the l10n_ prefix
+=   808   THAILAND-SCOPE FUNCTIONAL LEARNING CANDIDATES
+```
+
+The 808 candidates comprise:
+
+- **806 General and Business Module Candidates**
+- **2 Thailand Localization Baseline Candidates** (`l10n_th`, `l10n_th_reports`)
+
+**Classification: THAILAND-SCOPE FUNCTIONAL LEARNING CANDIDATES.** 808 is NOT
+final SMEsPlus modules, approved modules, the final Function Catalog count,
+final Functional Requirements, build scope or release scope. One module may
+contain multiple functions, and multiple modules may represent overlapping or
+consolidated business functions. The final module and function count is
+determined through later normalization, business grouping, function discovery
+and Fit–Gap–Decision activities.
+
+### Derivation trail (transparency — figures preserved)
 
 ```
 Remaining Pool (incl. Thai priority) = 1,436 − 521 (foreign l10n) − 99 (noise) = 816
 Remaining Pool (excl. Thai priority) = 816 − 2 (l10n_th*)                     = 814
+Thailand-scope candidates            = 816 − 8 (non-prefixed country-specific) = 808 (= 806 + 2 Thai)
 ```
 
-### Variance Analysis: 815 versus approximately 806
+**Prior 815 figure:** 1,436 − 521 − 100 = 815 used the preliminary noise count
+100; the reproduced noise count is 99 (Section 3, variance −1, GAP-005), giving
+816 before the 8-module exclusion. The Boss-approved calculation uses the
+reproduced 99.
 
-**815 (prior baseline):** 1,436 − 521 − 100 = 815, which includes the 2 Thai
-modules. The reproduced equivalent is 816; the difference of 1 is exactly the
-noise-count variance in Section 3.
-
-**~806 (Boss working estimate):** reproducible by evidence. A pattern scan of
-the 814-module pool (excl. Thai) found **8 country/region-specific modules
-that the `l10n_` prefix rule does not catch**:
+**The 8 non-`l10n_`-prefixed country-specific modules** (Boss-approved
+exclusion from the Thailand-scope candidate count):
 
 | Module | Category | Region specificity |
 |---|---|---|
@@ -95,15 +119,14 @@ that the `l10n_` prefix rule does not catch**:
 | `pos_blackbox_be` | Sales/Point of Sale | Belgian fiscal POS control |
 
 ```
-814 − 8 = 806
+816 − 8 = 808   (806 General/Business + 2 Thailand Localization baseline)
 ```
 
-The ~806 estimate is therefore an arithmetically exact hypothesis:
-**candidate pool excluding Thai-priority modules and the 8 non-prefixed
-country-specific modules.** These 8 remain status REVIEW-REQUIRED in
-`03_SOURCE_MODULE_RECONCILIATION.csv`; formal movement into the foreign
-exclusion registers requires Batch 2 analysis and Boss decision. The count was
-not forced.
+Per Boss decision STEP040101, these 8 modules are excluded from the
+Thailand-scope candidate count. They remain recorded in
+`03_SOURCE_MODULE_RECONCILIATION.csv`; their formal movement into the foreign
+exclusion registers (accounting-localization vs non-accounting) is still Batch 2
+work. The candidate count was derived by evidence, not forced.
 
 ---
 
@@ -133,9 +156,10 @@ inventory baseline is extended (GAP-004).
 | Foreign localization candidates | 521 | rule-reproduced |
 | Theme/Test/Demo/Noise candidates | 99 | rule-reproduced; −1 vs baseline |
 | Thailand priority modules | 2 (+9 out-of-baseline) | `l10n_th*` |
-| Non-prefixed country-specific (REVIEW-REQUIRED) | 8 | Batch 2 scope |
-| Remaining candidate pool | 816 incl. Thai / 814 excl. Thai / 806 if the 8 are excluded | formula-driven |
-| Out-of-baseline modules (addons_extra.zip) | 69 | GAP-004 |
+| Non-Thai country-specific excluded (no `l10n_` prefix) | 8 | Boss-approved exclusion (STEP040101); Batch 2 registers formalization |
+| Thailand-scope Functional Learning candidates | **808** (806 General/Business + 2 Thailand Localization baseline) | Boss-approved (STEP040101): 1,436 − 521 − 99 − 8 |
+| Controlled Delta references (addons_extra.zip) | 69 | AUTHORIZED CONTROLLED DELTA LEARNING REFERENCE; OUTSIDE Active Baseline; GAP-004 |
+| Calculated combined learning references | 1,505 | 1,436 + 69 — calculated only; NOT combined with 808 until Controlled Delta Intake approved |
 | Consolidated Business Function count | not yet counted | Batches 1–13 output |
 | Technical Dependency count | not yet counted | Batches 1–13 output (83 Hidden-category modules in pool are the primary candidates) |
 | Duplicate count | not yet counted | Batches 1–13 output |
@@ -149,12 +173,18 @@ mapping in `03A` (secondary evidence only — it does not alter primary totals).
 
 ---
 
-## 7. RESTORED REVISION [SMEPLUS-26-07-15-002] — addons_extra Reconciliation (PARKED)
+## 7. addons_extra Reconciliation — Controlled Delta Learning References
 
-Boss decision 2026-07-15: `addons_extra.zip` = **COMPANY-OWNED SOURCE
-EVIDENCE**. Controlled position: the 69 modules are **PARKED / PENDING
-EVIDENCE** — mapped and reconciled, but **NOT in the Controlled Baseline and
-NOT in STATE 04 intake**.
+Boss decision STEP040101 (2026-07-15): the 69 modules in `addons_extra.zip` are
+**AUTHORIZED CONTROLLED DELTA LEARNING REFERENCE** for Clean Room Functional
+Learning. Lifecycle: **AUTHORIZED-FOR-CLEAN-ROOM-FUNCTIONAL-LEARNING /
+CONTROLLED-DELTA-INTAKE-PENDING**. Controlled position: mapped and reconciled,
+but **OUTSIDE the 1,436-module Active Baseline** and **NOT YET APPROVED FOR
+STATE 04 intake**. Third-party modules among them are lawfully acquired
+third-party reference evidence (GAP-007 resolved for Functional Learning);
+copyright/license conditions remain applicable and third-party source code is
+not classified as SMEsPlus-owned source code. They are not combined with the
+808 Thailand-scope candidates during this execution.
 
 ### 7.1 Duplicate Reconciliation
 
@@ -168,10 +198,12 @@ NOT in STATE 04 intake**.
 
 ```
   1,436  Controlled Learning Baseline (ACTIVE — unchanged)
-+    69  Company extra modules (PARKED / PENDING EVIDENCE)
++    69  Controlled Delta Learning References (OUTSIDE Active Baseline)
 −     0  Confirmed name-level duplicates
-= 1,505  CALCULATED figure only — takes effect ONLY upon Boss approval of
-         Controlled Delta Intake
+= 1,505  Calculated Total Reference Candidates — a calculated reference figure
+         ONLY; takes effect ONLY upon Boss approval of Controlled Delta Intake.
+         NOT the Active Baseline, approved STATE04 intake, final SMEsPlus module
+         count, implementation scope or production module count.
 ```
 
 ### 7.3 Candidate Pool (active baseline unchanged; parked figures shown for planning)
@@ -183,9 +215,10 @@ NOT in STATE 04 intake**.
 | Thailand localization priority | 2 | 11 (2 + 9 parked `l10n_th_*` = THAILAND-PRIORITY-PENDING) |
 | Remaining pool incl. Thai | 816 | 885 |
 | Remaining pool excl. Thai | 814 | 874 |
-| Pool under Batch 2 hypothesis (−8 non-prefixed country-specific) | 806 | 866 |
+| General/Business candidates (excl. Thai, −8 non-prefixed country-specific) | 806 | 866 |
+| **Thailand-scope Functional Learning candidates (806 + 2 Thai)** | **808** | 868 |
 
-### 7.4 Extra Classification Summary (all PARKED / PENDING EVIDENCE)
+### 7.4 Extra Classification Summary (all AUTHORIZED CONTROLLED DELTA LEARNING REFERENCE)
 
 | Classification | Count |
 |---|---|
@@ -202,7 +235,7 @@ adjusting evidence.
 
 ### 7.5 Evidence Flags
 
-- **GAP-007 (OPEN):** 43/69 manifests carry third-party author/license metadata (Ecosoft/OCA AGPL-3 incl. the entire Thai withholding-tax family; Domiup OPL-1; Webkul proprietary; Cybrosys; ForgeFlow/OCA; ACSONE/OCA). Preserved verbatim in 03A; Boss/legal review required; no certification by Claude Code.
+- **GAP-007 (RESOLVED FOR FUNCTIONAL LEARNING BY BOSS DECISION):** 43/69 manifests carry third-party author/license metadata (Ecosoft/OCA AGPL-3 incl. the entire Thai withholding-tax family; Domiup OPL-1; Webkul proprietary; Cybrosys; ForgeFlow/OCA; ACSONE/OCA). Boss confirms these were lawfully purchased and authorizes them as **LAWFULLY ACQUIRED THIRD-PARTY REFERENCE EVIDENCE** for Clean Room Functional Learning only. Copyright/license conditions remain applicable; third-party source code is not SMEsPlus-owned source code; purchase evidence is CONFIDENTIAL / RESTRICTED / NOT PUBLICLY ATTACHED. Author/license values preserved verbatim in 03A; no ownership certification by Claude Code.
 - **Database evidence:** 13 extras have matching tables in the reference dump (withholding-tax certificate family, `purchase_request*`, `date_range*`, `dev_print_cheque*`, `res_partner_company_type`, others in 03A).
 
 ---
@@ -217,10 +250,24 @@ adjusting evidence.
 | Version position | Artifact series **18.0** vs dependent series **19.0** — one major series older; API-level compatibility unverified |
 | Functional contract (neutral) | Payment registration with multiple deduction lines, each posted to a selectable account, with open/close handling and analytic distribution |
 | Database evidence | Dump contains `account_payment_deduction` (payment_id, account_id, name, amount, is_open, analytic_distribution) and `account_payment.is_multi_deduction` — contract MATCH; function active in reference system |
-| Classification | **PARTIALLY COMPATIBLE / GAP IDENTIFIED** |
-| GAP-008 status | **DEPENDENCY FOUND — VERSION COMPATIBILITY REVIEW REQUIRED** (no longer "dependency missing") |
+| Classification | **VERSION 18 AUTHORIZED FUNCTIONAL LEARNING REFERENCE** |
+| GAP-008 status | **CLOSED AS FUNCTIONAL LEARNING GAP** (Boss decision STEP040101) — the Version 18→19 difference is not a blocker for Functional Learning |
+| Future design position | **VERSION 19-COMPATIBLE NEW CLEAN ROOM IMPLEMENTATION REQUIRED** |
+
+**Mandatory position (Boss decision STEP040101):** "Learn the functional
+behavior from the lawfully acquired Version 18 reference, independently define
+the Business Concept, Business Rules and Functional Requirements, and then
+create a new Clean Room SMEsPlus implementation compatible with Version 19."
+
+Mandatory transformation chain: Version 18 Reference Evidence → Business Concept
+→ Business Rules → Neutral Functional Requirements → SMEsPlus Design → New
+Version 19-Compatible Implementation. The prohibited path (Version 18 Source
+Code → modify/port code → Version 19 implementation) must not be used. No
+application code is created or modified in this execution.
 
 Restoration note: Sections 7–8 reconstruct the content of lost local commits
 `0374857` and `9bd54fc` from recorded session evidence, per Boss authorization
-[SMEPLUS-26-07-15-004]. See `26_CORRECTION_AND_RECOVERY_RECORD.md`. No source
-code was copied, ported, translated or modernized. Batch 1 has not started.
+[SMEPLUS-26-07-15-004]; statuses updated to the Boss decisions in Prompt
+STEP040101 [SMEPLUS-26-07-15-005]. See `26_CORRECTION_AND_RECOVERY_RECORD.md`.
+No source code was copied, ported, translated or modernized. Batch 1 has not
+started.

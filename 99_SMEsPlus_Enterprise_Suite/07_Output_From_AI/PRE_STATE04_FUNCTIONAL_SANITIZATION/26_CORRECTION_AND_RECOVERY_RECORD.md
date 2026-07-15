@@ -1,7 +1,7 @@
 # PRE-STATE 04 — Correction and Recovery Record
 
 **Document ID:** PRE-STATE04-B0-26
-**Version:** v1.0
+**Version:** v1.1 (Boss decisions applied — Prompt STEP040101, Session [SMEPLUS-26-07-15-005]; Section 2 deviation finding preserved unchanged)
 **Status:** READY-FOR-INDEPENDENT-REVIEW
 **Owner / Prepared By:** Claude Code — PRE-STATE 04 Functional Learning Analyst
 **Evidence Basis:** Git history of origin/SMEsPlus, recorded session evidence [SMEPLUS-26-07-15-001..004], SHA-256 records in this package
@@ -31,6 +31,7 @@
 - Control bypassed: Working Branch → Draft PR → Independent Review → Boss merge decision.
 - Disposition per Boss order: **no history rewrite, no reset, no automatic revert.** The deviation is recorded; the base branch is left untouched. Boss decides any further disposition.
 - Consequence: the v0.1 package is already in the base; this restoration therefore carries only the delta (the two lost correction revisions plus this record).
+- **Subsequent corrections (including Prompt STEP040101, Session [SMEPLUS-26-07-15-005]) are handled through the controlled Working Branch `claude/pre-state04-functional-sanitization-20260715` and Draft PR #35 — not by direct publication to the base branch.** The deviation on `e6f081f` is not treated as resolved merely because PR #35 exists; disposition remains with the Boss.
 
 ## 3. Reconstruction Method
 
@@ -47,16 +48,22 @@ Statuses were set to the Boss-mandated controlled position (Section 4), which
 supersedes the wording used in the lost revisions. No source code was read,
 copied, ported or translated during reconstruction.
 
-## 4. Final Controlled Position (Boss Order 2026-07-15)
+## 4. Final Controlled Position (Boss Order STEP040101, 2026-07-15, Session [SMEPLUS-26-07-15-005])
+
+This table supersedes the v0.3 controlled position with the Boss decisions in
+Prompt STEP040101. The DIRECT-BASE-PUBLICATION CONTROL DEVIATION finding in
+Section 2 is unchanged and remains recorded.
 
 | Item | Controlled Position |
 |---|---|
-| Controlled Learning Baseline | **1,436 modules** (Module_Inventory.csv) |
-| addons_extra.zip (69 modules) | **PARKED / PENDING EVIDENCE** — classified and mapped (03A) but **NOT in the Controlled Baseline** and **NOT in STATE 04 intake**; 1,505 remains a calculated figure only |
+| Controlled Learning Baseline | **1,436 modules** (Module_Inventory.csv) — unchanged |
+| Controlled Delta Learning References | **69** — Calculated Total Reference Candidates = **1,505** (calculated reference figure only) |
+| Thailand-scope Functional Learning candidates | **808** (806 General/Business + 2 Thailand Localization baseline) = 1,436 − 521 − 99 − 8; NOT combined with the 69 |
+| addons_extra.zip (69 modules) | **AUTHORIZED CONTROLLED DELTA LEARNING REFERENCE** — lifecycle AUTHORIZED-FOR-CLEAN-ROOM-FUNCTIONAL-LEARNING / CONTROLLED-DELTA-INTAKE-PENDING; **OUTSIDE the Active Baseline**; **NOT YET APPROVED FOR STATE 04 intake** |
 | Thailand extra modules (9 × `l10n_th_*` + Thailand-relevant extras) | **THAILAND-PRIORITY-PENDING** |
-| Ownership/License conflict | **GAP-007 OPEN / REVIEW REQUIRED** (43 modules with third-party author/license evidence) |
-| `account_payment_multi_deduction` | **DEPENDENCY FOUND — VERSION COMPATIBILITY REVIEW REQUIRED** (PEND-001; artifact series 18.0 vs dependent series 19.0; dump evidence matches functional contract) |
-| GAP-008 | No longer "dependency missing" |
+| Ownership/License (GAP-007) | **RESOLVED FOR FUNCTIONAL LEARNING BY BOSS DECISION** — LAWFULLY ACQUIRED THIRD-PARTY REFERENCE EVIDENCE; copyright/license conditions remain applicable; third-party source code is not SMEsPlus-owned; purchase evidence CONFIDENTIAL / RESTRICTED / NOT PUBLICLY ATTACHED |
+| `account_payment_multi_deduction` (GAP-008) | **CLOSED AS FUNCTIONAL LEARNING GAP** — VERSION 18 AUTHORIZED FUNCTIONAL LEARNING REFERENCE; new Clean Room VERSION 19-compatible implementation required (learn functional behavior only; not a code upgrade/port/migration) |
 | Batch 1 | **NOT STARTED** |
+| STEP0401 | **NOT FORMALLY STARTED** |
 | Build / Release / Deploy / Production | **NOT AUTHORIZED** |
 | Merge authority | Boss — Sole Final Approver; **DO NOT MERGE** |

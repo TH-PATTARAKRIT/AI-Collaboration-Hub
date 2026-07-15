@@ -1,8 +1,8 @@
 # PRE-STATE 04 — Input Evidence Availability Report
 
 **Document ID:** PRE-STATE04-B0-01
-**Version:** v0.3 (Batch 0 corrections restored — Sessions [SMEPLUS-26-07-15-002/003/004])
-**Status:** READY-FOR-INDEPENDENT-REVIEW
+**Version:** v0.4 (Boss decisions applied — Prompt STEP040101, Session [SMEPLUS-26-07-15-005])
+**Status:** READY FOR INDEPENDENT REVIEW
 **Owner / Prepared By:** Claude Code — PRE-STATE 04 Functional Learning Analyst
 **Evidence Basis:** Filesystem inspection + git verification + SHA-256 computation over all located inputs (2026-07-15)
 **Clean Room Status:** CLEAN — metadata-level access only; no source content read
@@ -41,7 +41,7 @@ SHA-256 values for every file below are recorded in
 | 1 | Module_Inventory.csv | `Evidence_CSV/Module_Inventory.csv` | 165,139 B / 1,436 data rows | AVAILABLE |
 | 2 | 01 ACCOUNT.zip | `/Users/admin/Downloads/SOURCE CODE/01_ACCOUNT.zip` | 34,371,329 B / 62 module manifests | AVAILABLE |
 | 3 | 02 OTHER.zip | `/Users/admin/Downloads/SOURCE CODE/02_OTHER.zip` | 504,676,674 B / 1,374 module manifests | AVAILABLE |
-| 4 | Additional source archive | `/Users/admin/Downloads/SOURCE CODE/addons_extra.zip` | 77,391,974 B / 69 module manifests | AVAILABLE — **COMPANY-OWNED SOURCE EVIDENCE** (Boss decision 2026-07-15). GAP-004 resolved; modules mapped in `03A` and held **PARKED / PENDING EVIDENCE** outside the Controlled Baseline (see PEND-002). Ownership/license evidence review open (GAP-007). |
+| 4 | Additional source archive | `/Users/admin/Downloads/SOURCE CODE/addons_extra.zip` | 77,391,974 B / 69 module manifests | AVAILABLE — **AUTHORIZED CONTROLLED DELTA LEARNING REFERENCE** (Boss decision STEP040101 2026-07-15). GAP-004 resolved; modules mapped in `03A`, lifecycle **AUTHORIZED-FOR-CLEAN-ROOM-FUNCTIONAL-LEARNING / CONTROLLED-DELTA-INTAKE-PENDING**, **OUTSIDE the Controlled Baseline** (see PEND-002). Third-party modules are lawfully acquired reference evidence (GAP-007 resolved for Functional Learning; copyright/license conditions remain applicable). |
 | 5 | PostgreSQL Database Dump | `/Users/admin/Downloads/SOURCE CODE/iTEST02_2026-06-14_14-41-19.dump` | 65,444,053 B / PostgreSQL custom dump v1.16-0 | AVAILABLE (checksum + metadata only; not restored) |
 | 6 | Dump_Table_Inventory.csv | `Evidence_CSV/Dump_Table_Inventory.csv` | 1,395 data rows | AVAILABLE |
 | 7 | Dump_Column_Inventory.csv | `Evidence_CSV/Dump_Column_Inventory.csv` | 13,940 data rows | AVAILABLE |
