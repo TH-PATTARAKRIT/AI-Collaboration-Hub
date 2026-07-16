@@ -1,0 +1,14 @@
+STATE04 — STEP0401 — STEP040115 — Boss Closure Decision Publication — SHA-256 Manifest
+
+Current Prompt ID: STEP040115
+Parent Prompt ID: STEP040114
+Session ID: SMEPLUS-26-07-16-007
+
+Verification command:
+  sha256sum -c 22_STEP040115_CLOSURE_MANIFEST_SHA256.txt
+(run from within this package directory; this manifest file's own hash is intentionally excluded from the checksum list below)
+
+Deterministic filename order (two records only):
+
+d79aef828a7a7320e0d2e55a989e8f1ea8cb2a4f8364aebc2d932f7be007af3b  20_STEP040115_BOSS_CLOSURE_DECISION.md
+4af784645ce5a7fd4f9e2a042c02fd637f514c82a6723863fc38da1029905969  21_STEP0401_FINAL_EVIDENCE_INDEX_AND_HANDOFF.md
