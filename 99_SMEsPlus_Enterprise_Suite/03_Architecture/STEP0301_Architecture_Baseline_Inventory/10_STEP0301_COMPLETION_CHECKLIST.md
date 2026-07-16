@@ -6,6 +6,8 @@
 
 **STEP030114 update:** Current Prompt ID: STEP030114 · Parent Prompt ID: STEP030113 · **STEP0301 remains NOT CLOSED.** The Exit/Closure assessment flagged as required above is now performed: Files 29–32. **Known defect disclosed by this Prompt, not corrected here:** the itemized checklist below (items 1–102) stops at STEP030109-era controls; no itemized rows exist for STEP030110–STEP030113 controls (only header-note traceability additions exist for those Prompts, above). `29_STEP030114_STEP0301_EXIT_CRITERIA_VERIFICATION_MATRIX.md` records this as EC-16 = PARTIAL (non-blocking). Recommended correction: add itemized rows 103+ covering STEP030110–STEP030113 controls at or before STEP0301 closure (File 30 §6 condition 3). This note does not itself add those rows — doing so is left to whichever Prompt performs the correction, so the correction is independently attributable and reviewable.
 
+**STEP030115 correction:** Current Prompt ID: STEP030115 · Parent Prompt ID: STEP030114 · **Controlled correction applied.** Per Boss's controlled-correction authorization (STEP030115 §8) and File 30 §6 condition 3, items 103–130 below are added, itemizing the STEP030110–STEP030114 controls that previously existed only as header-note prose. No prior conclusion, status, count, or Gate/Step position is altered by this correction — only checklist granularity is added, sourced entirely from the pre-existing Files 16–32 and independently re-verified this Prompt (File 33 §7). This closes EC-16 from PARTIAL to SATISFIED_WITH_EVIDENCE (see item 130a) as a non-material, evidence-supported correction. Items 131+ itemize STEP030115's own closure-review, controlled-correction, and Boss Final Decision controls, added after that work concluded.
+
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030110 CONTROLLED REISSUE, BRANCH RECONCILIATION, AND BOSS DECISION IMPLEMENTATION (over STEP030108 / STEP030107 / STEP030106 / STEP030105 / STEP030104 / STEP030103)
 Step ID: STEP0301 · Current Prompt ID: STEP030110 · Prior Prompt ID: STEP030109 (EXECUTED at commit `281fa47…`) · Corrected Execution Prompt ID (technical): STEP030103
 Execution Role: Claude Code — Preparer/Executor (not Decision Owner) · Independent Reviewer: ChatGPT L99.99 — Result: VERIFIED WITH CONTROLLED FOLLOW-UP (STEP030106); re-review of STEP030109 corrections recommended · Final Approval Authority: Boss (sole)
@@ -219,3 +221,93 @@ disposition), CONF-13 (session-ID disambiguation), CONF-14 / PR #34 disposition,
 (GAP-03..09e), and every unresolved P1 gap/conflict remain OPEN with Boss decisions or named
 owners still required. STEP0301 remains NOT CLOSED. STEP0302 remains NOT STARTED and ENTRY
 BLOCKED. No Gate is PASSED. No Pull Request is merged or closed.
+
+### Step Register Proposal, Branch Reconciliation, and PR Revalidation Controls (STEP030110)
+
+*Added by STEP030115 controlled correction (EC-16); sourced from Files 16–19, independently re-verified this Prompt (File 33 §7).*
+
+| # | Checklist Item | Status | Evidence / Note |
+|---|---|---|---|
+| 103 | Recurring harness branch discrepancy identified and disclosed (harness-assigned branch carried 0 STEP0301 files) | SATISFIED_WITH_EVIDENCE | Continued on PR #33's actual branch `claude/state03-step0301-architecture-baseline-inventory`, consistent with the STEP030108/109 precedent — File 17 |
+| 104 | PR #33 branch reconciliation and mergeability re-confirmed against live SMEsPlus HEAD | SATISFIED_WITH_EVIDENCE | `17_STEP030110_BRANCH_RECONCILIATION_AND_MERGEABILITY_REPORT.md` — no conflict, zero overlap with existing `03_Architecture/` content |
+| 105 | Full candidate STATE03 Step Register proposal prepared (STEP0301–STEP03xx) without declaring any Step official | SATISFIED_WITH_EVIDENCE | `16_STEP030110_FULL_STATE03_STEP_REGISTER_PROPOSAL.md` — candidate only; Boss decision still required; no Step marked official by this Prompt |
+| 106 | PR #26 and PR #34 revalidated (head, base, changed files, mergeable_state) with an evidence-backed disposition; no merge/close/rebase/force-push performed | SATISFIED_WITH_EVIDENCE | `19_STEP030110_PR26_PR34_REVALIDATION_AND_EVIDENCE_BACKED_DISPOSITION.md` — both PRs' final disposition recorded as `BOSS_DECISION_REQUIRED`; neither PR's own text claims pre-merge effect (PR #34's Gate Crosswalk confirms "SUPERSEDED AFTER APPROVED MERGE" only) |
+| 107 | Package prepared for independent review, not self-approved | SATISFIED_WITH_EVIDENCE | `18_STEP030110_INDEPENDENT_REVIEW_HANDOFF.md` |
+| 108 | No Architecture source document modified; no file outside STEP0301 scope touched; no Gate marked PASS; STEP0301 not reported CLOSED; STEP0302 not reported STARTED | SATISFIED_WITH_EVIDENCE | Branch diff vs SMEsPlus limited to STEP0301 package files; Files 16–19 headers all carry "not Final Approver, not authorized to close STEP0301 or start STEP0302" role limitation |
+
+### Branch Reconciliation, Model Traceability, and Step Register Controls (STEP030111)
+
+*Added by STEP030115 controlled correction (EC-16); sourced from Files 20–23, independently re-verified this Prompt (File 33 §7).*
+
+| # | Checklist Item | Status | Evidence / Note |
+|---|---|---|---|
+| 109 | Recurring harness branch discrepancy re-disclosed; branch reconciliation and mergeability re-confirmed | SATISFIED_WITH_EVIDENCE | `20_STEP030111_BRANCH_RECONCILIATION_AND_MERGEABILITY_REPORT.md` |
+| 110 | Model identity, session traceability, and Prompt Governance compliance formally recorded in a dedicated controlled record | SATISFIED_WITH_EVIDENCE | `21_STEP030111_MODEL_SESSION_TRACEABILITY_AND_PROMPT_GOVERNANCE_COMPLIANCE_RECORD.md` |
+| 111 | Full candidate STATE03 Step Register proposal re-issued (v2) reflecting STEP030110 disposition inputs, without declaring any Step official | SATISFIED_WITH_EVIDENCE | `22_STEP030111_FULL_STATE03_STEP_REGISTER_PROPOSAL.md` |
+| 112 | Package prepared for independent review, not self-approved | SATISFIED_WITH_EVIDENCE | `23_STEP030111_INDEPENDENT_REVIEW_HANDOFF.md` |
+| 113 | Manifest regenerated with all controlled files through File 23; no Architecture source modified; STEP0301 not reported CLOSED; STEP0302 not reported STARTED; no Gate marked PASS | SATISFIED_WITH_EVIDENCE | Execution Log records independently reproduced `25/25 OK` manifest result (0 duplicate/missing/unexpected/mismatch) at this stage, matching File 24's later re-verification |
+
+### Independent Review Controls (STEP030112)
+
+*Added by STEP030115 controlled correction (EC-16); sourced from File 24, independently re-verified this Prompt (File 33 §7).*
+
+| # | Checklist Item | Status | Evidence / Note |
+|---|---|---|---|
+| 114 | Independent review of STEP030111 deliverables performed with a non-preselected result | SATISFIED_WITH_EVIDENCE | `24_STEP030112_INDEPENDENT_REVIEW_RESULT.md` — result: **VERIFIED WITH CONTROLLED FOLLOW-UP** |
+| 115 | Manifest, domain, gap, and conflict counts independently recomputed by the reviewer, not copied from producer self-report | SATISFIED_WITH_EVIDENCE | File 24 — 26 controlled files, `sha256sum -c` 26/26 OK; 0 CRITICAL/HIGH/MEDIUM findings; 5 low-severity/observation findings (F-01 through F-05), each carried forward rather than silently dropped |
+| 116 | Reviewer-independence limitation (session-level, same-provider) disclosed rather than concealed | SATISFIED_WITH_EVIDENCE | File 24 F-01 — recommends cross-provider re-review; not treated as a defect in STEP030111 itself |
+
+### Cross-Provider Review, Boss Decision, Step Register Baseline, and Constitution Controls (STEP030113)
+
+*Added by STEP030115 controlled correction (EC-16); sourced from Files 25–28, independently re-verified this Prompt (File 33 §7).*
+
+| # | Checklist Item | Status | Evidence / Note |
+|---|---|---|---|
+| 117 | Boss-supplied cross-provider (ChatGPT /L99.99) independent review recorded without upgrading it to a Claude-Code-witnessed observation | SATISFIED_WITH_EVIDENCE | `25_STEP030113_CROSS_PROVIDER_INDEPENDENT_REVIEW_RECORD.md` — explicitly classified as BOSS-SUPPLIED CROSS-PROVIDER REVIEW EVIDENCE throughout; independently reproduces File 24's §7/§11 findings against PR #33 HEAD `86f4cf66…` with no contradiction |
+| 118 | All twelve Boss decisions transcribed and implemented without producer self-selection | SATISFIED_WITH_EVIDENCE | `26_STEP030113_BOSS_DECISION_IMPLEMENTATION_RECORD.md` — BOSS-DEC-030113-01 through -12, each with an explicit implementation-state field; PR #26 disposition = HOLD — STEP0303 RECONCILIATION AND CORRECTION; PR #34 disposition = HOLD — STEP0303 APPROVAL-PROVENANCE AND SUPERSESSION REVIEW; Gates A–D not approved (BOSS-DEC-030113-11); STEP0301 not automatically closed, STEP0302 not automatically started (BOSS-DEC-030113-12) |
+| 119 | GAP-10B closure conditions satisfied and evidenced, not closed by Step-count invention | SATISFIED_WITH_EVIDENCE | File 26 §7 (BOSS-DEC-030113-04); closure basis disclosed in File 33 §7 finding #2 as a Boss-authorized, fully-disclosed closure mechanism (not concealed) |
+| 120 | Official STATE03 11-Step Register baselined (STEP0301–STEP0311), with STEP0301 marked OFFICIAL CURRENT STEP / NOT CLOSED and STEP0302 marked OFFICIAL NEXT STEP / NOT STARTED / ENTRY BLOCKED | SATISFIED_WITH_EVIDENCE | `27_STEP030113_OFFICIAL_STATE03_11_STEP_REGISTER_BASELINE.md` §1 |
+| 121 | All 19 Gap rows, all 14 Conflict rows, and all 24 Domains mapped to a Step with 0 unmapped rows | SATISFIED_WITH_EVIDENCE | File 27 §4 (19/19), §5 (14/14), §6 (24/24) |
+| 122 | Prompt Governance Constitution baseline adopted for STATE03, with the competing unmerged PR #36 candidate disclosed rather than concealed or silently treated as superseded | SATISFIED_WITH_EVIDENCE | `28_STEP030113_PROMPT_GOVERNANCE_CONSTITUTION_BASELINE.md` — PR #36 disclosed as an unmerged, future-reconciliation item |
+| 123 | Named-Owner assignment handled via TBD placeholders through a controlled Owner Register; no name invented | SATISFIED_WITH_EVIDENCE | File 26 (BOSS-DEC-030113-09); File 27 §8 |
+| 124 | Manifest regenerated with all controlled files through File 28; no Architecture source modified; no Gate marked PASS; no Pull Request merged, closed, or force-pushed | SATISFIED_WITH_EVIDENCE | Execution Log records independently reproduced `30/30 OK` manifest result (0 duplicate/missing/unexpected/mismatch) at this stage |
+
+### Exit Criteria, Conditional Closure, Entry Readiness, and Review Handoff Controls (STEP030114)
+
+*Added by STEP030115 controlled correction (EC-16); sourced from Files 29–32, independently re-verified this Prompt (File 33 §7).*
+
+| # | Checklist Item | Status | Evidence / Note |
+|---|---|---|---|
+| 125 | STEP0301 Exit Criteria (EC-01–EC-17) independently evaluated against existing evidence, with no criterion pre-marked PASS before evaluation | SATISFIED_WITH_EVIDENCE | `29_STEP030114_STEP0301_EXIT_CRITERIA_VERIFICATION_MATRIX.md` §4–§5 — result: **16 PASS / 1 PARTIAL (EC-16) / 0 FAIL** across 17 criteria; arithmetic independently re-verified this Prompt (File 33 §7) |
+| 126 | Conditional Closure assessment prepared with both Position A and Position B presented, neither pre-selected by the producer | SATISFIED_WITH_EVIDENCE | `30_STEP030114_CONDITIONAL_CLOSURE_ASSESSMENT_AND_RECOMMENDATION.md` §3 — recommendation favors Position A subject to explicit conditions; selection itself left to Boss |
+| 127 | STEP0302 entry-readiness independently assessed against 9 explicit criteria, with no criterion misrepresented as satisfied | SATISFIED_WITH_EVIDENCE | `31_STEP030114_STEP0302_ENTRY_READINESS_AND_HANDOFF.md` — 3 SATISFIED, 2 CONDITIONALLY SATISFIED, 4 NOT SATISFIED; STEP0302 status: NOT STARTED / ENTRY BLOCKED |
+| 128 | Package prepared for independent review of Files 29–32 themselves, not self-approved | SATISFIED_WITH_EVIDENCE | `32_STEP030114_INDEPENDENT_REVIEW_HANDOFF.md` |
+| 129 | No open Gap/Conflict/Gate item silently closed or reclassified by the Exit Criteria assessment | SATISFIED_WITH_EVIDENCE | File 29 EC-15; independently re-verified this Prompt (File 33 §7) — every File 04/05 row remains OPEN, CLOSED (cited), or CORRECTED (cited); no blank or newly-altered status |
+| 130 | Manifest regenerated with all 34 controlled files (Files 00–32 + Execution Log); STEP0301 not reported CLOSED; STEP0302 not reported STARTED; no Gate marked PASS; no Pull Request merged | SATISFIED_WITH_EVIDENCE | Independently recomputed this Prompt (File 33 §7): 34 controlled files, `sha256sum -c` 34/34 OK, 0 duplicate/missing/unexpected/mismatch |
+| 130a | EC-16 (Completion Checklist itemization gap) corrected | SATISFIED_WITH_EVIDENCE | Items 103–130 above, added this Prompt (STEP030115) under Boss's controlled-correction authorization; no prior conclusion altered — see header note above and File 33 §8 |
+
+### Independent Closure Verification, Controlled Correction, and Boss Final Decision Implementation Controls (STEP030115)
+
+| # | Checklist Item | Status | Evidence / Note |
+|---|---|---|---|
+| 131 | Preflight: live PR #33 head, mergeability, SMEsPlus HEAD, PR #26/#34/#36 status all revalidated against live GitHub/Git evidence, not assumed from the controlling Prompt's expected values | SATISFIED_WITH_EVIDENCE | File 33 §5 — PR #33 head/state matched exactly; SMEsPlus HEAD had advanced from a disclosed "8 commits ahead" to 12 (all STATE04 scope, zero `03_Architecture/` overlap) — reported as a discrepancy, not silently substituted |
+| 132 | Recurring harness branch discrepancy identified and disclosed | SATISFIED_WITH_EVIDENCE | Harness pre-assigned `claude/step0301-closure-review-v7o2c7` (0 STEP0301 files, identical to live SMEsPlus); continued on PR #33's actual branch per the precedent established at STEP030106/108/109/110/111/112/113/114 — File 33 §5 |
+| 133 | Independent closure verification performed with a non-preselected result | SATISFIED_WITH_EVIDENCE | `33_STEP030115_INDEPENDENT_CLOSURE_REVIEW_RESULT.md` — result: **VERIFIED WITH CONTROLLED CORRECTION** |
+| 134 | EC-01–EC-17 and CC-01–CC-15 independently re-derived from primary source files, not copied from prior self-report | SATISFIED_WITH_EVIDENCE | File 33 §7–§8 |
+| 135 | Zero Material Closure Failure confirmed before any closure action taken | SATISFIED_WITH_EVIDENCE | File 33 §9 |
+| 136 | Controlled correction (EC-16 itemization) applied using only existing evidence; no Architecture redesigned; no future-Step Gap/Conflict closed; no PR merged | SATISFIED_WITH_EVIDENCE | Items 103–130a above; File 33 §10 |
+| 137 | All 19 Gap rows, 14 Conflict rows, and Gate A–D positions independently re-confirmed unaltered | SATISFIED_WITH_EVIDENCE | File 33 §11–§12 |
+| 138 | Boss Final Directive transcribed verbatim; Position A recorded; not invented or pre-selected by the producer | SATISFIED_WITH_EVIDENCE | `34_STEP030115_BOSS_FINAL_CLOSURE_DECISION_RECORD.md` §1–§2 |
+| 139 | STEP0301 closure implemented exactly as directed: CONTROLLED CONDITIONAL CLOSURE, not Architecture Baseline approval, not a Gate pass, not a PR merge | SATISFIED_WITH_EVIDENCE | File 34 §5 |
+| 140 | Live-evidence discrepancy (STATE04/STEP0401 already fully executed and closed on SMEsPlus independent of any STEP0301/PR #33 merge) disclosed to Boss rather than concealed or silently treated as blocking | SATISFIED_WITH_EVIDENCE | File 33 §13 Finding F-1; File 34 §7 CF-01 |
+| 141 | Frozen STEP0301 evidence baseline established with explicit supersession, change-control, and reopening rules | SATISFIED_WITH_EVIDENCE | `35_STEP030115_STEP0301_CLOSURE_CONFIRMATION_AND_FROZEN_BASELINE.md` |
+| 142 | STEP0302 New Session handover prepared without executing or authorizing STEP0302 | SATISFIED_WITH_EVIDENCE | `36_STEP030115_STEP0302_NEW_SESSION_HANDOVER.md` — Session status: PREPARED — NOT STARTED |
+| 143 | Manifest regenerated with all 38 controlled files (Files 00–36 + Execution Log); PR #33 kept OPEN/DRAFT/NOT MERGED; no Gate marked PASS; no Pull Request merged, closed, rebased, or force-pushed | PENDING_COMMIT | To be completed at push time (see Execution Log §0-clo and final report) |
+| 144 | PR #33 title/description synchronized to STEP030115 closure result | PENDING_COMMIT | To be completed at push time |
+| 145 | No file outside the authorized scope (STEP0301 package) modified | SATISFIED_WITH_EVIDENCE | `git status` / `git diff --stat` reviewed before commit; no PR #26/#34/#36 branch touched; no other repository path modified |
+
+## Final Producer Result (STEP030115)
+
+**`STEP030115 EXECUTED — CONTROLLED CORRECTION COMPLETED — STEP0301 CLOSED BY BOSS FINAL DECISION — FROZEN EVIDENCE BASELINE CREATED — STEP0302 NEW SESSION HANDOVER PREPARED — STEP0302 NOT STARTED`**
+
+Independent closure verification found zero Material Closure Failures; all 15 Closure Conditions pass; the sole PARTIAL exit criterion (EC-16) is corrected using existing evidence (items 103–130a); Boss's Final Directive is implemented as CONTROLLED CONDITIONAL CLOSURE with Position A selected and CF-01 through CF-10 carried forward; the evidence baseline is frozen (File 35); and a STEP0302 New Session handover is prepared (File 36) without starting STEP0302. No Gate is passed. No Pull Request is merged, closed, or force-pushed. STEP0302 remains NOT STARTED.

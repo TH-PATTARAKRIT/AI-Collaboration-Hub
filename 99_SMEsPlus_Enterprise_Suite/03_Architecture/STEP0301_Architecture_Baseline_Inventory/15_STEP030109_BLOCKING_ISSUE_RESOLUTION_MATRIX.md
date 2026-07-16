@@ -6,6 +6,8 @@
 
 **STEP030114 update (this file remains protected — not deleted, recreated, or renumbered):** Current governing Prompt is now STEP030114; Parent Prompt ID: STEP030113. No row's Resolution Status is changed by STEP030114. This file's rows are cross-referenced and independently re-classified into Categories A–F in `30_STEP030114_CONDITIONAL_CLOSURE_ASSESSMENT_AND_RECOMMENDATION.md` §4a/§4b, which supersedes this file's granularity for STEP0301 exit-assessment purposes without altering any Resolution Status recorded here.
 
+**STEP030115 update (this file remains protected — not deleted, recreated, or renumbered):** Current governing Prompt is now STEP030115; Parent Prompt ID: STEP030114. No row's Resolution Status is changed by STEP030115. STEP0301 is now CLOSED BY BOSS FINAL DECISION — CONTROLLED CONDITIONS CARRIED FORWARD (File 34); every row here that remains open (GAP-11..GAP-14, CONF-13, CONF-14, PR #26, PR #34) is carried forward per CF-04/CF-05/CF-07, not closed by this Prompt.
+
 Session ID: [SMEPLUS-26-07-15-001] · State 03 / STEP0301 · Control Level /L99.99 · Mode: STEP030110 PR REVALIDATION AND EVIDENCE-BACKED DISPOSITION (over STEP030109 BOSS DECISION IMPLEMENTATION)
 Step ID: STEP0301 · Current Prompt ID: STEP030110 · Prior Prompt ID: STEP030109
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub · Target branch: SMEsPlus @ `cf4ef7f40e1a4b7c1a052cb0949f35c1eed2c62a` (**advanced from `c880c9d…` — PR #35 merged; no `03_Architecture/` impact; see File 19 §A-1**) · Pull Request: PR #33

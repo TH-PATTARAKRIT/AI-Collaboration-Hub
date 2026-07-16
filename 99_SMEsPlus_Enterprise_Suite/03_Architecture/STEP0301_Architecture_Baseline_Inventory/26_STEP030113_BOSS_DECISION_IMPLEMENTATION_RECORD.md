@@ -5,6 +5,8 @@ Current Prompt ID: STEP030113 · Parent Prompt ID: STEP030112 · Reference Promp
 Evidence Link: https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/pull/33
 Final Approval Authority: Boss — Sole Final Approver
 
+**STEP030115 update:** Current Prompt ID: STEP030115 · Parent Prompt ID: STEP030114 · All 12 Boss decisions (BOSS-DEC-030113-01 through -12) recorded here remain unchanged and independently re-confirmed as still accurate (File 33 §8). Boss's STEP030115 Final Directive (File 34) is a new, separate Boss decision — the STEP0301 closure decision — layered on top of BOSS-DEC-030113-12 ("STEP0301 not automatically closed"); it does not retroactively alter any decision recorded here.
+
 ---
 
 ## 1. Purpose

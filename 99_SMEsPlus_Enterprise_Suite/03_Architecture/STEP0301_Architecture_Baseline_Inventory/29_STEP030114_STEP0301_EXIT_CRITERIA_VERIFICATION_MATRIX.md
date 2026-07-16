@@ -6,6 +6,8 @@ Evidence Link: https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/pull/33
 Role: STEP0301 Exit Criteria Verification Agent / Evidence Completeness Controller / STEP0302 Entry Readiness Assessor / Independent Review Handoff Preparer — not Final Approver, not authorized to close STEP0301, not authorized to start STEP0302, not authorized to pass any Gate, not authorized to merge any Pull Request.
 Final Approval Authority: Boss — Sole Final Approver
 
+**STEP030115 update:** Current Prompt ID: STEP030115 · Parent Prompt ID: STEP030114 · This matrix's EC-01–EC-17 findings (16 PASS / 1 PARTIAL / 0 FAIL) are independently re-verified as accurate this Prompt (File 33 §7). **EC-16 is corrected** (not by editing this file's historical record, but by adding itemized checklist rows 103–130a to `10_STEP0301_COMPLETION_CHECKLIST.md` — see File 33 §10). This file's own EC-16 row is left unedited for historical-record integrity; the correction is independently attributable to STEP030115.
+
 ---
 
 ## 1. Model Identity
