@@ -1,0 +1,137 @@
+STATE02_STEP03_STEP04_SHA256_COMMAND_OUTPUT.txt
+Session: [SMEPLUS-26-07-14-001] State 02 — Final Verification, Archive, and Closure Preparation
+Execution Branch: claude/sha256-archive-control-iqhxi2
+HEAD SHA at execution: 43c5d95bc438263d1573501fe22c7db7cae1ae6b
+Execution Timestamp (UTC): 2026-07-13T17:37:11Z
+Prepared By: Claude Code (Authorized GitHub Execution Agent — technical hash check only)
+
+=====================================================================
+$ git status -sb
+=====================================================================
+## claude/sha256-archive-control-iqhxi2
+
+=====================================================================
+$ git branch --show-current
+=====================================================================
+claude/sha256-archive-control-iqhxi2
+
+=====================================================================
+$ git rev-parse HEAD
+=====================================================================
+43c5d95bc438263d1573501fe22c7db7cae1ae6b
+
+=====================================================================
+$ git fetch origin
+=====================================================================
+From http://127.0.0.1:41729/git/TH-PATTARAKRIT/AI-Collaboration-Hub
+   5454d2a..43c5d95  SMEsPlus              -> origin/SMEsPlus
+ * [new branch]      claude/gate-crosswalk-v1.3-1gs5q7 -> origin/claude/gate-crosswalk-v1.3-1gs5q7
+ * [new branch]      claude/state-02-step-03-04-sn0sr1 -> origin/claude/state-02-step-03-04-sn0sr1
+ * [new branch]      claude/step04-authority-consistency-foit2f -> origin/claude/step04-authority-consistency-foit2f
+ * [new branch]      state01/evidence-hardening -> origin/state01/evidence-hardening
+ * [new branch]      state02/governance-baseline-inventory -> origin/state02/governance-baseline-inventory
+ * [new branch]      state03-governance-v2 -> origin/state03-governance-v2
+
+Result: origin/SMEsPlus is at 43c5d95bc438263d1573501fe22c7db7cae1ae6b, identical to
+the current HEAD of the harness-assigned execution branch
+`claude/sha256-archive-control-iqhxi2`. No separate checkout/pull/branch-create step
+was required — the assigned execution branch already carries the latest SMEsPlus
+state. Exit code: 0.
+
+=====================================================================
+$ cd 99_SMEsPlus_Enterprise_Suite/00_Project_Governance/State_02_Governance
+$ (cd Step_03_Canonical_RACI && sha256sum -c PACKAGE_MANIFEST_SHA256_STATE02_STEP03_RACI.txt)
+=====================================================================
+STATE02_CANONICAL_RACI_v1.0.md: OK
+STATE02_RACI_CONFLICT_TO_CORRECTION_MATRIX_v1.0.md: OK
+STATE02_RACI_CORRECTION_REGISTER_v1.0.md: OK
+STATE02_RACI_EVIDENCE_REGISTER_v1.0.md: OK
+STATE02_RACI_REVIEW_RECORD_v1.0.md: FAILED
+STATE02_RACI_SOURCE_DOCUMENT_UPDATE_PLAN_v0.1.md: OK
+STATE02_RACI_EXECUTION_SUMMARY_v1.0.md: OK
+STATE02_RACI_VALIDATION_RECORD_v1.0.md: OK
+sha256sum: WARNING: 1 line is improperly formatted
+sha256sum: WARNING: 1 computed checksum did NOT match
+Exit code: 1
+
+Note: the "1 line is improperly formatted" warning refers to the manifest's own
+"SELF - HASH EXCLUDED  PACKAGE_MANIFEST_SHA256_STATE02_STEP03_RACI.txt" line, which
+is not a valid sha256sum record by design (the manifest excludes itself from its
+own hash list). This is expected and is not a mismatch.
+
+=====================================================================
+$ sha256sum -c Step_04_Ownerless_Execution_Control/PACKAGE_MANIFEST_SHA256_STATE02_STEP04_OWNERLESS.txt
+(run from State_02_Governance/ so cross-step paths resolve)
+=====================================================================
+Step_04_Ownerless_Execution_Control/STATE02_OWNERLESS_EXECUTION_CONTROL_STANDARD_v1.0.md: OK
+Step_04_Ownerless_Execution_Control/STATE02_OWNERLESS_WORK_REGISTER_v1.0.md: OK
+Step_04_Ownerless_Execution_Control/STATE02_OWNER_REPLACEMENT_MATRIX_v1.0.md: OK
+Step_04_Ownerless_Execution_Control/STATE02_AI_EXECUTION_AUTHORITY_MATRIX_v1.0.md: OK
+Step_04_Ownerless_Execution_Control/STATE02_ESCALATION_AND_REPLACEMENT_RULE_v1.0.md: OK
+Step_04_Ownerless_Execution_Control/STATE02_OWNERLESS_EXECUTION_EVIDENCE_REGISTER_v1.0.md: OK
+Step_04_Ownerless_Execution_Control/STATE02_OWNERLESS_EXECUTION_REVIEW_RECORD_v1.0.md: FAILED
+Step_04_Ownerless_Execution_Control/STATE02_OWNERLESS_EXECUTION_VERIFICATION_RECORD_v1.0.md: FAILED
+Step_04_Ownerless_Execution_Control/STATE02_STEP04_EXECUTION_SUMMARY_v1.0.md: OK
+Step_04_Ownerless_Execution_Control/STATE02_STEP04_VALIDATION_RECORD_v1.0.md: OK
+STATE02_STEP03_STEP04_CROSSWALK_v1.0.md: OK
+STATE02_STEP03_STEP04_COMPLETION_CHECKLIST_v1.0.md: OK
+STATE02_STEP03_STEP04_EVIDENCE_REGISTER_v1.0.md: OK
+STATE02_STEP03_STEP04_EXECUTIVE_SUMMARY_v1.0.md: OK
+sha256sum: WARNING: 1 line is improperly formatted
+sha256sum: WARNING: 2 computed checksums did NOT match
+Exit code: 1
+
+Note: same self-exclusion pattern as STEP 03. The 2 genuine FAILED entries are
+STATE02_OWNERLESS_EXECUTION_REVIEW_RECORD_v1.0.md and
+STATE02_OWNERLESS_EXECUTION_VERIFICATION_RECORD_v1.0.md.
+
+=====================================================================
+Independent recomputation and manifest comparison (per-file, scripted; not
+reliant on sha256sum -c alone) — mismatch detail
+=====================================================================
+File: Step_03_Canonical_RACI/STATE02_RACI_REVIEW_RECORD_v1.0.md
+  Manifest SHA256:  bd0d503dfcde84086d1490a88a15abbc2cbacb65164c1151fd40450c52fdb17d
+  Computed SHA256:  587a1fb4a9a9260727cbf0fbd992e64961290d3ba60e020bf6fa149298f7977f
+  Result: MISMATCH
+  Cause (git log -- <path>): file last modified by commit
+    db57fa1cfb5eb55edc7afc0f5c8ac0feda8adb77
+    "docs(governance): complete L99 review record for State 02 Step 03"
+    which post-dates the manifest generation commit 3f9c4d8.
+
+File: Step_04_Ownerless_Execution_Control/STATE02_OWNERLESS_EXECUTION_REVIEW_RECORD_v1.0.md
+  Manifest SHA256:  7792cadf828afa3f7395093d3d28e28f1a0a5a14f8d2d68a83ba8668136f40ba
+  Computed SHA256:  7f85edf81018d86eb768ca4b16ecb0775a02f17eb944f31d0b610ecbc0142f1d
+  Result: MISMATCH
+  Cause (git log -- <path>): file last modified by commit
+    2e52cb86c4a53905373e4e942516633b5b84424a
+    "docs(governance): complete L99 review record for State 02 Step 04"
+    which post-dates the manifest generation commit 3f9c4d8.
+
+File: Step_04_Ownerless_Execution_Control/STATE02_OWNERLESS_EXECUTION_VERIFICATION_RECORD_v1.0.md
+  Manifest SHA256:  a1e287e1b83fa80bee972d4851c474e3726170d4961074dfd221c7ffb78a5142
+  Computed SHA256:  b269496367ba64a981b24dadd52075cdf008ba34d433fa0f148a9652063ef5c0
+  Result: MISMATCH
+  Cause (git log -- <path>): file last modified by commit
+    43c5d95bc438263d1573501fe22c7db7cae1ae6b
+    "docs(governance): record independent evidence verification for State 02 Step 04"
+    which post-dates the manifest generation commit 3f9c4d8.
+
+=====================================================================
+$ find "99_SMEsPlus_Enterprise_Suite/00_Project_Governance/State_02_Governance" -type f -print0 | sort -z | xargs -0 sha256sum
+=====================================================================
+Output: 39 files hashed (full State_02_Governance tree, all files, incl. this
+verification's own working set). Written to scratchpad for the duplicate-content
+check in Section 3 (archive candidate analysis). No two files in the tree share an
+identical SHA256 (checked with `sort | uniq -d` over the hash column — zero output,
+i.e. zero exact duplicates found). Exit code: 0.
+
+=====================================================================
+Summary
+=====================================================================
+Total Expected: 24
+Total Checked (hash-comparable): 22
+Total MATCH: 19
+Total MISMATCH: 3
+Total Missing: 0
+Overall exit status: 1 (non-zero because of the 3 real mismatches above; preserved
+as evidence, manifests not rewritten)
