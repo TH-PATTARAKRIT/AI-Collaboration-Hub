@@ -1,24 +1,22 @@
 # PACKAGE_MANIFEST_SHA256_STATE02_STEP04_OWNERLESS.txt
 # Session: SMEPLUS-26-07-13-007
 # Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
-# Target Branch: SMEsPlus
-# Working Branch: claude/step04-authority-consistency-foit2f
-# Base Commit: d76d7d7 (branch HEAD before Unified Authority + Integrity Order)
-# Package Commit: PENDING — recorded after commit of this order
-# Regenerated: 2026-07-13T18:40Z by Claude Code (Package Integrity Construction role)
-# Canonical file count: 13 (10 governance documents + Canonicalization Record + Validation Script + this manifest as SELF)
-# Scope note: regenerated from the prior 15-file (Step 04 + 4 cross-step) manifest to the
-#   Step 04 canonical set only; the 4 cross-step files are retained in the repository and
-#   excluded here by design (see CANONICALIZATION_RECORD_STATE02_STEP04_v1.0.md §4).
+# Target Branch: SMEsPlus | Working Branch: claude/step04-sha256-recompute-hm1wo8 (rebased onto SMEsPlus @ 8570187)
+# Base Commit: 8570187 (SMEsPlus HEAD, includes PR #15 authority consistency correction)
+# Regenerated: 2026-07-13 by Claude AI (Repository Integrity Agent role — packaging only)
+# Coverage: 10 governance documents + Canonicalization Record + Validation Script = 12 files
+# (this manifest listed as SELF - HASH EXCLUDED; paths relative to Step_04_Ownerless_Execution_Control/)
 #
-# Independent Reviewer: PENDING CHATGPT L99 REVIEW
-# Independent Evidence Verifier: PARTIALLY VERIFIED per STATE02_OWNERLESS_EXECUTION_VERIFICATION_RECORD_v1.0.md; NOT independently re-verified for files changed under this order
-# Open Evidence Item: full byte-for-byte SHA256 re-verification + L99 re-review of files changed under this order
-# Merge Status: NOT MERGED (review branch)
-# GitHub: BLOCKED (no merge/close under this order)
-# Jira: BLOCKED
-# Progress Recommendation: 25%
-# Gate: HOLD — WORK CONTINUES
+# Independent Reviewer: ChatGPT L99
+# Independent Review Status: COMPLETED — CONFIRM WITH OPEN EVIDENCE (package-level, commit 2e52cb8);
+#   per-file L99 re-review of the 3 PR #15 authority-corrected files remains open (see Canonicalization Record §2, §5)
+# Independent Evidence Verification: PARTIALLY VERIFIED
+# Open Verification Item: FULL SHA256 MANIFEST RECOMPUTATION — completed this order against post-rebase content;
+#   per-file L99 re-review of authority-corrected files is a separate open item
+# GitHub: REVIEW BRANCH ONLY — NOT MERGED
+# Jira: NO CHANGE UNDER THIS ORDER
+# Progress: 60% MAXIMUM — REVIEW COMPLETED, FULL HASH VERIFICATION PENDING
+# Gate: HOLD — HASH VERIFICATION AND CLOSURE EVIDENCE PENDING
 #
 f1406f6deec862df45745fea1d1c0d65a05cbd9c3ec7ecc92655630f8dc38d5c  STATE02_OWNERLESS_EXECUTION_CONTROL_STANDARD_v1.0.md
 cb9bb9fab264688984333d3f3b208225b3c9a4e6fb684dead027a5d0fa3841dc  STATE02_OWNERLESS_WORK_REGISTER_v1.0.md
@@ -30,6 +28,6 @@ b81d438585446034f89f818ad14c2b74dd814f52b9f41eb2a38e5d48976fd844  STATE02_AI_EXE
 b269496367ba64a981b24dadd52075cdf008ba34d433fa0f148a9652063ef5c0  STATE02_OWNERLESS_EXECUTION_VERIFICATION_RECORD_v1.0.md
 2d565b447ccbdc8c95043ad66900761c6f6c59e88064b02cb82b784b96e59b62  STATE02_STEP04_EXECUTION_SUMMARY_v1.0.md
 78e6e9d00b60063d0580b5a37baf45e28b3bfb7ab9a734efadf684f246b37532  STATE02_STEP04_VALIDATION_RECORD_v1.0.md
-b7e7830e01d1fb4d9abb895456a362d99b2e5eba46e06ae3b9b580dc6b1018a1  CANONICALIZATION_RECORD_STATE02_STEP04_v1.0.md
 0ad77695309f866a7eabe578bb19db061ab49e9426d35b2f413f4434388e42c0  validate_state02_step04.sh
+42c9cf1a55c49ac7d2bfa1176489d056e0b8a4009e8aa453f24f0f8722849022  CANONICALIZATION_RECORD_STATE02_STEP04_v1.0.md
 SELF - HASH EXCLUDED  PACKAGE_MANIFEST_SHA256_STATE02_STEP04_OWNERLESS.txt

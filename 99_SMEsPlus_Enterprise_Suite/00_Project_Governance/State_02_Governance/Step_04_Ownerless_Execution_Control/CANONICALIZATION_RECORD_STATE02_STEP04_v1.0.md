@@ -5,10 +5,13 @@ State: 02 — Governance
 Step: 04 — Ownerless Execution Control
 Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
 Target Branch: SMEsPlus
-Working Branch: claude/step04-authority-consistency-foit2f
-Base Commit (branch HEAD before this order): d76d7d7
-Prepared By: Claude Code (Package Integrity Construction role — packaging only, not review/verification)
-Prepared At: 2026-07-13T18:40Z (UTC)
+Working Branch: claude/step04-sha256-recompute-hm1wo8 (rebased onto SMEsPlus @ 8570187)
+Prior Working Branch (superseded by rebase): claude/step04-authority-consistency-foit2f
+Base Commit: 8570187 (SMEsPlus HEAD, includes PR #15 — Step 04 authority consistency +
+package integrity, Boss/Somchart authorized)
+Prepared By: Claude AI (Repository Integrity Agent role — status alignment and hash
+recomputation only; not Independent Review, not Independent Verification)
+Prepared At: 2026-07-13 (session, post-rebase reconciliation)
 
 ## 1. Purpose
 
@@ -16,6 +19,26 @@ Records package-integrity information for the State 02 Step 04 Ownerless Executi
 canonical package after the Unified Authority Consistency and Package Integrity
 Order. This record does not restate or alter governance content; it captures
 filenames, paths, hashes, change classification, and review/verification status.
+
+## 1a. Note on Rebase Reconciliation
+
+This branch (`claude/step04-sha256-recompute-hm1wo8`) was originally opened against
+an earlier `SMEsPlus` base commit (`43c5d95`) to execute a full SHA-256 recomputation
+and status-alignment order. While that PR (#17) was open, a separate authorized
+branch (`claude/step04-authority-consistency-foit2f`, PR #15) merged into `SMEsPlus`
+first, applying a genuine Accountable Owner authority correction to
+`STATE02_OWNERLESS_EXECUTION_CONTROL_STANDARD_v1.0.md`,
+`STATE02_OWNERLESS_WORK_REGISTER_v1.0.md`, and
+`STATE02_ESCALATION_AND_REPLACEMENT_RULE_v1.0.md`, and adding its own version of
+this canonicalization record and `validate_state02_step04.sh`. This branch was
+rebased onto the new `SMEsPlus` HEAD (`8570187`); all SHA-256 values below were
+recomputed against the post-rebase working tree (i.e., the authority-corrected
+content), and the per-file table and validation script below are carried forward
+from the PR #15 version rather than the pre-rebase PR #17 version, since PR #15's
+content is now the merged baseline. This reconciliation does not itself perform or
+alter the L99 re-review of the authority-corrected files (§5 Independent Review
+below still tracks that as an open item at the per-file level); it only aligns
+package-level status metadata and confirms hashes are current.
 
 ## 2. Canonical Inventory (13 files: 10 governance documents + 3 integrity artifacts)
 
@@ -33,9 +56,9 @@ Repository path (all files): `99_SMEsPlus_Enterprise_Suite/00_Project_Governance
 | STATE02_OWNERLESS_EXECUTION_VERIFICATION_RECORD_v1.0.md | 43c5d95 | b269496367ba64a981b24dadd52075cdf008ba34d433fa0f148a9652063ef5c0 | a1e287e1b83fa80bee972d4851c474e3726170d4961074dfd221c7ffb78a5142 | L99 record (independent — not altered by this order) | PARTIALLY VERIFIED (L99 record 43c5d95) | NO (L99 verification commit 43c5d95, not this order) | STAGED |
 | STATE02_STEP04_EXECUTION_SUMMARY_v1.0.md | 3f9c4d8 | 2d565b447ccbdc8c95043ad66900761c6f6c59e88064b02cb82b784b96e59b62 | 2d565b447ccbdc8c95043ad66900761c6f6c59e88064b02cb82b784b96e59b62 | L99 CONFIRM (prior review) | PARTIAL — full SHA256 pending | NO | STAGED |
 | STATE02_STEP04_VALIDATION_RECORD_v1.0.md | 3f9c4d8 | 78e6e9d00b60063d0580b5a37baf45e28b3bfb7ab9a734efadf684f246b37532 | 78e6e9d00b60063d0580b5a37baf45e28b3bfb7ab9a734efadf684f246b37532 | Preparer structural validation only | PARTIAL — full SHA256 pending | NO | STAGED |
-| CANONICALIZATION_RECORD_STATE02_STEP04_v1.0.md | working tree (this order) | SELF — computed separately after this record is final | (new artifact) | N/A — integrity artifact | N/A | NEW (created this order) | STAGED |
-| validate_state02_step04.sh | working tree (this order) | 0ad77695309f866a7eabe578bb19db061ab49e9426d35b2f413f4434388e42c0 | (new artifact) | N/A — integrity artifact | N/A | NEW (created this order) | STAGED |
-| PACKAGE_MANIFEST_SHA256_STATE02_STEP04_OWNERLESS.txt | working tree (this order) | SELF — HASH EXCLUDED; computed separately | 15-file manifest (regenerated to 13-file canonical scope) | N/A — integrity artifact | N/A | REGENERATED (this order) | STAGED |
+| CANONICALIZATION_RECORD_STATE02_STEP04_v1.0.md (this file) | PR #15, reconciled this order | SELF — HASH EXCLUDED (computed after finalization; see manifest entry for this file) | (carried from PR #15) | N/A — integrity artifact | N/A | YES (rebase reconciliation: header, §1a, this row, §5 updated this order) | STAGED |
+| validate_state02_step04.sh | PR #15 (unchanged) | 0ad77695309f866a7eabe578bb19db061ab49e9426d35b2f413f4434388e42c0 | 58c0a602debe4acd9851a4daafcfcbe2b2247c1a129bf82970b47d5f9454ecc1 (pre-rebase PR #17 copy, comment-only difference) | N/A — integrity artifact | N/A | NO (PR #15 version kept as-is; functionally identical to pre-rebase copy) | STAGED |
+| PACKAGE_MANIFEST_SHA256_STATE02_STEP04_OWNERLESS.txt | working tree (this order) | SELF — HASH EXCLUDED; computed separately | 15-file manifest (regenerated to 13-file canonical scope) | N/A — integrity artifact | N/A | YES (status metadata refreshed this order) | STAGED |
 
 ## 3. Duplicate / Filename Control Result
 
@@ -55,20 +78,30 @@ remain in the repository and in git history; no evidence is deleted.
 ## 5. Status
 
 Authority Consistency Correction:
-PREPARER-EXECUTED — PENDING CHATGPT L99 REVIEW
-
-Package Integrity Construction:
-PREPARER CHECK COMPLETED
-
-Hash Recalculation:
-PREPARER-EXECUTED
+PREPARER-EXECUTED — REVIEWED BY CHATGPT L99 at the package level (commit 2e52cb8);
+per-file re-review of the 3 authority-corrected files (§2 above, "PENDING L99
+RE-REVIEW") remains open and is NOT resolved by this reconciliation.
 
 Independent Review:
-PENDING CHATGPT L99 REVIEW
+COMPLETED — CONFIRM WITH OPEN EVIDENCE (package-level, commit 2e52cb8)
 
 Independent Verification:
-PARTIALLY VERIFIED (prior L99 record) — full byte-for-byte SHA256 recomputation and
-re-review of files changed under this order remain PENDING
+PARTIALLY VERIFIED
+
+Open Verification Item:
+FULL SHA256 MANIFEST RECOMPUTATION — completed this order (see §2 hashes, all
+recomputed against the post-rebase working tree); per-file L99 re-review of the 3
+authority-corrected files remains a separate open item.
+
+Package Integrity Construction:
+IN PROGRESS — full hash recomputation completed this order; independent closure of
+the per-file re-review item still required
+
+Gate:
+HOLD — HASH VERIFICATION AND CLOSURE EVIDENCE PENDING
+
+Final Approval:
+NOT YET GRANTED
 
 Independent Closure:
 PENDING
