@@ -12,6 +12,21 @@ Specification Package.md` §5 (FR-ACC-002), §6 (BR-ACC-010), §8, §9, §10, §
 This is a split-out draft, not a newly invented requirement — content traces back
 to the consolidated ACC-001 package.
 
+## Execution Control Metadata (Batch 01 remediation — 2026-07-14)
+
+| Field | Value |
+|---|---|
+| Draft Status | DRAFT — split from ACC-001; not independently authored |
+| Reviewer | Not yet assigned (named independent reviewer required; must not be Claude) |
+| Reviewer Sign-off | NONE |
+| Build Eligibility | NOT BUILD ELIGIBLE |
+| Execution Evidence | NONE (no build/test/execution evidence exists) |
+| Gate Status | HOLD |
+| Authoritative Gate Status | See `CURRENT_GATE_STATUS.md` (HOLD — NEED EXECUTION EVIDENCE) |
+| Batch Manifest | `ACC_GAP_CLOSURE_BATCH01_MANIFEST_SHA256.txt` |
+
+This metadata does not approve, verify, or build-qualify the document. It records that the file remains a reviewer-unconfirmed draft with no execution evidence.
+
 ## 1. Purpose
 Provide chart-of-accounts management for SMEsPlus Accounting (Thailand): creating,
 organizing, and maintaining the account tree used by all downstream journal,
