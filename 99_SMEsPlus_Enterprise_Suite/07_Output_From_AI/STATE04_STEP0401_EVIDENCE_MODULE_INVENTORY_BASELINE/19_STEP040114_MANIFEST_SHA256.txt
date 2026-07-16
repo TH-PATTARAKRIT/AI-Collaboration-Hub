@@ -1,0 +1,14 @@
+STATE04 — STEP0401 — STEP040114 — Completion Readiness Review Publication — SHA-256 Manifest
+
+Current Prompt ID: STEP040114
+Parent Prompt ID: STEP040113
+Session ID: SMEPLUS-26-07-16-006
+
+Verification command:
+  sha256sum -c 19_STEP040114_MANIFEST_SHA256.txt
+(run from within this package directory; this manifest file's own hash is intentionally excluded from the checksum list below)
+
+Deterministic filename order (two records only):
+
+4c049096f8ed49d32bf7c7f1afd820a38bd07e54454524104add0e6cb2157b63  17_STEP040114_CONTROLLED_FOLLOWUP_REGISTER.csv
+91f74f2b3123c43b6ad2b667662a367f8bab5955b19d206bd2f281e3a27b236f  18_STEP040114_COMPLETION_READINESS_REVIEW.md
