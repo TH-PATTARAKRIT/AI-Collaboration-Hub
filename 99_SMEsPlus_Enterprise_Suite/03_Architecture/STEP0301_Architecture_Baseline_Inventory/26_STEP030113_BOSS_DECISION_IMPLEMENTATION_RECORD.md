@@ -263,6 +263,10 @@ See `STEP0301_EXECUTION_LOG.md` and `PACKAGE_MANIFEST_SHA256_STEP0301.txt` (both
 - **Decisions implemented:** 10 of 12 (all except -07 and, partially, the owner-name portion of -09, both of which are explicitly IMPLEMENTATION PENDING by design — a named-owner assignment and a PRE-STATE04 file correction are not in this Prompt's scope)
 - **Decisions pending implementation:** BOSS-DEC-030113-07 (CONF-13 — pending separate STATE04-scope correction), and the owner-name-assignment component of BOSS-DEC-030113-09 (pending STEP0309)
 
+## 10a. STEP030114 Update
+
+Current Prompt ID: STEP030114 · Parent Prompt ID: STEP030113. The two decisions marked pending implementation (BOSS-DEC-030113-07 CONF-13 correction; owner-name-assignment component of BOSS-DEC-030113-09) remain pending as of this Prompt — no new evidence of their implementation was found. `30_STEP030114_CONDITIONAL_CLOSURE_ASSESSMENT_AND_RECOMMENDATION.md` §6 condition 4 makes explicit carry-forward tracking of both a stated condition of any Boss Conditional Closure decision, so they are not lost track of at STEP0301 closure.
+
 ## 11. Mandatory Non-Approval Statement
 
 This record implements Boss's twelve STEP030113 decisions. It does not close STEP0301, does not start STEP0302, does not pass any Gate, does not merge any Pull Request, and does not authorize Build, Release, Deploy, Migration, or Production. Boss is the sole Final Approver.
