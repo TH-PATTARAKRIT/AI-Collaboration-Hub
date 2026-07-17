@@ -1,0 +1,250 @@
+================================================================================
+[SMEPLUS-26-07-17-001] STEP030204 PACKAGE MANIFEST — SHA256 VERIFICATION
+================================================================================
+
+Session ID:        SMEPLUS-26-07-17-001
+Prompt ID:         STEP030204
+Parent Prompt:     STEP030203
+Execution Agent:   Claude Code
+Accountable Owner: PMO / Architecture Lead
+Document Date:    2026-07-17
+Control Level:    /L99.99
+
+================================================================================
+MANIFEST PURPOSE
+================================================================================
+
+This manifest verifies the integrity and completeness of all STEP030204
+Architecture Domain Source-Document Baseline deliverables.
+
+Requirements per STEP030204 Prompt:
+- Exclude the manifest itself ✓ (excluded from hash verification)
+- Include every controlled file ✓ (8 deliverables listed below)
+- Run sha256sum verification ✓ (performed 2026-07-17)
+- Report: 0 missing ✓
+- Report: 0 duplicate ✓
+- Report: 0 unexpected ✓
+- Report: 0 mismatch ✓
+- All controlled files verified ✓
+
+================================================================================
+DELIVERABLE FILES & SHA256 HASHES
+================================================================================
+
+Document 14 — Scope Confirmation
+---
+File: 14_STEP030204_SCOPE_CONFIRMATION.md
+Size: 5315 bytes
+SHA256: a71b93746ab12db06e9acb9eb7d8e0c7745bfd971d0560b0aa43a41323bb7d39
+Status: ✓ VERIFIED
+Evidence: Confirms 6-domain scope, out-of-scope domains, authorized work
+
+Document 15 — Domain Source Document Inventory
+---
+File: 15_STEP030204_DOMAIN_SOURCE_DOCUMENT_INVENTORY.md
+Size: 14537 bytes
+SHA256: 6117ef226f07da8ccaf2af3ba4ebfb821e0d867aa59c68425869151dfc60d960
+Status: ✓ VERIFIED
+Evidence: 10 source documents inventoried, evidence status classified
+
+Document 16 — Source-to-Domain Traceability Matrix
+---
+File: 16_STEP030204_SOURCE_TO_DOMAIN_TRACEABILITY_MATRIX.md
+Size: 11896 bytes
+SHA256: b1afee979adfb434d844fbed4e0f0ac867a234d95062da376ff448a8839d32b4
+Status: ✓ VERIFIED
+Evidence: Complete traceability across 6 domains and 10 sources
+
+Document 17 — Architecture Baseline Gap Register
+---
+File: 17_STEP030204_ARCHITECTURE_BASELINE_GAP_REGISTER.md
+Size: 20923 bytes
+SHA256: d3b39b53758e5b147ca0ada8f4e7f330af22f105ce16dab46085d38032b9b04c
+Status: ✓ VERIFIED
+Evidence: 30 gaps identified (2 critical, 11 major, 17 minor)
+
+Document 18 — Conflict and Assumption Register
+---
+File: 18_STEP030204_CONFLICT_AND_ASSUMPTION_REGISTER.md
+Size: 18459 bytes
+SHA256: f965d779ada47920a2d2385eb7da30d8d0f3c7cc2aa4466a13c238b40cfc5d83
+Status: ✓ VERIFIED
+Evidence: 0 conflicts found; 14 assumptions documented and validated
+
+Document 19 — Owner, Reviewer, and Decision Register
+---
+File: 19_STEP030204_OWNER_REVIEWER_AND_DECISION_REGISTER.md
+Size: 16789 bytes
+SHA256: 559848e8f1fd5a514059ac79bf5de41f1aa36e5efbe8173a78d77b9ac6f43985
+Status: ✓ VERIFIED
+Evidence: Ownership assigned; 5 Boss decisions pending
+
+Document 20 — Architecture Baseline Handoff
+---
+File: 20_STEP030204_ARCHITECTURE_BASELINE_HANDOFF.md
+Size: 16703 bytes
+SHA256: 67e3ba69647590daa71e5afa1d4471be0ba90998dab196a4212d60a494a23b40
+Status: ✓ VERIFIED
+Evidence: Handoff to ChatGPT /L99.99 (reviewer) and Boss (approver)
+
+Document 21 — Execution Log
+---
+File: 21_STEP030204_EXECUTION_LOG.md
+Size: 18278 bytes
+SHA256: c3af9a0f925f14d8089d46033a5c3e5a188e8cb2bb7e57c52c20254b4043cdeb
+Status: ✓ VERIFIED
+Evidence: Execution timeline, tasks, findings, compliance verification
+
+================================================================================
+PACKAGE INTEGRITY VERIFICATION
+================================================================================
+
+Total Controlled Files:        8 documents
+Total File Size:              122,900 bytes (approximately 120 KB)
+Format:                       Markdown (.md)
+Location:                     99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_ARCHITECTURE_ACCELERATION/STEP0302_ARCHITECTURE_DOMAIN_SOURCE_DOCUMENT_BASELINE/
+
+Manifest Verification Results:
+- Missing Files:              0 ✓
+- Duplicate Files:            0 ✓
+- Unexpected Files:           0 ✓
+- Hash Mismatches:            0 ✓
+- Corrupted Files:            0 ✓
+
+Overall Package Status:       ✓ COMPLETE AND VERIFIED
+
+================================================================================
+VERIFICATION INSTRUCTIONS
+================================================================================
+
+To verify the integrity of this STEP030204 package, execute the following
+command in the terminal from the deliverable directory:
+
+  cd 99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_ARCHITECTURE_ACCELERATION/STEP0302_ARCHITECTURE_DOMAIN_SOURCE_DOCUMENT_BASELINE/
+
+  sha256sum -c <<'EOF'
+a71b93746ab12db06e9acb9eb7d8e0c7745bfd971d0560b0aa43a41323bb7d39  14_STEP030204_SCOPE_CONFIRMATION.md
+6117ef226f07da8ccaf2af3ba4ebfb821e0d867aa59c68425869151dfc60d960  15_STEP030204_DOMAIN_SOURCE_DOCUMENT_INVENTORY.md
+b1afee979adfb434d844fbed4e0f0ac867a234d95062da376ff448a8839d32b4  16_STEP030204_SOURCE_TO_DOMAIN_TRACEABILITY_MATRIX.md
+d3b39b53758e5b147ca0ada8f4e7f330af22f105ce16dab46085d38032b9b04c  17_STEP030204_ARCHITECTURE_BASELINE_GAP_REGISTER.md
+f965d779ada47920a2d2385eb7da30d8d0f3c7cc2aa4466a13c238b40cfc5d83  18_STEP030204_CONFLICT_AND_ASSUMPTION_REGISTER.md
+559848e8f1fd5a514059ac79bf5de41f1aa36e5efbe8173a78d77b9ac6f43985  19_STEP030204_OWNER_REVIEWER_AND_DECISION_REGISTER.md
+67e3ba69647590daa71e5afa1d4471be0ba90998dab196a4212d60a494a23b40  20_STEP030204_ARCHITECTURE_BASELINE_HANDOFF.md
+c3af9a0f925f14d8089d46033a5c3e5a188e8cb2bb7e57c52c20254b4043cdeb  21_STEP030204_EXECUTION_LOG.md
+EOF
+
+Expected output: "OK" (all files verified)
+
+================================================================================
+MANIFEST REQUIREMENTS MET
+================================================================================
+
+Per STEP030204 Prompt Section "Manifest Requirements":
+
+✓ Exclude the manifest itself
+  → This manifest file (PACKAGE_MANIFEST_SHA256_STEP030204.txt) is listed
+    in the Git structure but NOT included in the hash verification (as
+    per manifest self-referential rule).
+
+✓ Include every controlled file
+  → All 8 deliverable documents (14, 15, 16, 17, 18, 19, 20, 21) are
+    included with hash verification.
+
+✓ Run sha256sum verification
+  → SHA256 hashes generated 2026-07-17 using standard sha256sum tool.
+
+✓ Report 0 missing
+  → All 8 required deliverables present. No missing files.
+
+✓ Report 0 duplicate
+  → Each file name is unique. No duplicate files detected.
+
+✓ Report 0 unexpected
+  → Only the 8 required STEP030204 deliverables present. No unexpected
+    files in the controlled package.
+
+✓ Report 0 mismatch
+  → All files match expected SHA256 hashes. No corruption or tampering
+    detected.
+
+✓ All controlled files verified
+  → Each deliverable file name, size, and SHA256 hash verified and
+    recorded in this manifest.
+
+================================================================================
+MANIFEST AUTHORITY & CONTROL
+================================================================================
+
+This manifest was generated by:  Claude Code (Execution Agent)
+For accountability to:            PMO / Architecture Lead
+For independent review by:        ChatGPT /L99.99
+For final approval by:            Boss
+
+Generation Date:                  2026-07-17
+Generation Tool:                  sha256sum (Linux standard)
+Generation Location:              GitHub repository branch
+                                  claude/step0302-architecture-baseline-6ygfiq
+
+Authority for Manifest Approval:  PMO / Architecture Lead (controls STEP0302)
+Authority for Independent Review: ChatGPT /L99.99
+Authority for Final Signature:    Boss (Sole Final Approver)
+
+================================================================================
+GATE CONTROL & HANDOFF STATUS
+================================================================================
+
+Gate A Status (Scope Baseline):   PARTIAL_EVIDENCE (HOLD)
+Gate B Status (Architecture):     HOLD (requires D9, D10 resolution)
+Gate C Status (Build Ready):      HOLD (dependent on Gate B)
+Gate D Status (Release Ready):    HOLD (dependent on Gate C)
+
+Manifest Status:                  ✓ COMPLETE FOR HANDOFF
+Handoff Destination:              ChatGPT /L99.99 (review)
+                                  Boss (decisions: D-001 through D-005)
+
+Next Step:                        Independent review of STEP030204 package
+                                  Boss decision on 5 pending items
+                                  Parallel authoring of D9, D10 documents
+
+================================================================================
+CONTROLLED STATEMENT
+================================================================================
+
+This STEP030204 Architecture Domain Source-Document Baseline package
+contains 8 deliverable documents, totaling approximately 123,000 bytes of
+controlled architecture baseline evidence.
+
+The package is COMPLETE, VERIFIED, and READY FOR INDEPENDENT REVIEW.
+
+No evidence has been modified or removed since generation.
+No gates have been passed.
+No merges have been approved.
+No production authorizations have been granted.
+
+The package remains under strict gate control per STEP030204 requirements:
+- Gate A: PARTIAL_EVIDENCE
+- Gate B, C, D: HOLD
+
+This manifest confirms integrity and completeness of STEP030204 deliverables.
+
+================================================================================
+MANIFEST SIGNATURE
+================================================================================
+
+Generated:  2026-07-17T14:33:00Z
+Verified:   All 8 files ✓
+Integrity:  CONFIRMED
+Status:     READY FOR INDEPENDENT REVIEW & BOSS DECISION
+
+Execution Agent:  Claude Code
+Session ID:       SMEPLUS-26-07-17-001
+Control Level:    /L99.99
+
+================================================================================
+
+*No Evidence = No Progress*
+*ห้ามข้าม Gate*
+
+================================================================================
+EOF (End of Manifest)
+================================================================================
