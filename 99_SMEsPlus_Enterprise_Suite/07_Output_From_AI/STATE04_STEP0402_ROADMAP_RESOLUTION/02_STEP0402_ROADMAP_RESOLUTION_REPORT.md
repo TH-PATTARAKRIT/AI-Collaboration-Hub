@@ -75,7 +75,7 @@ See file `04_STEP0402_PROPOSED_BOSS_DECISION_PACKAGE.md` for the full controlled
 5. Confirm Entry Gate evidence requirements before STEP0402 may formally commence.
 6. Confirm whether Controlled Delta Intake is in-scope, out-of-scope, or a separate parallel work package relative to STEP0402.
 7. Confirm the Jira work-item requirement (new Jira issue under ERPPLUS project, since ERPPLUS-97 is Done/Closed and scoped specifically to STEP0401).
-8. Acknowledge the `origin/SMEsPlus` base-branch divergence noted in file 00 §5 (unrelated State 02 work has advanced past the STEP0401 closure commit).
+8. Note the corrected base-branch status: `origin/SMEsPlus` HEAD was verified equal to the required base commit with zero commits between them (see file 00 §5, corrected).
 
 ## 10. Recommended Next Prompt ID (Not Executed)
 

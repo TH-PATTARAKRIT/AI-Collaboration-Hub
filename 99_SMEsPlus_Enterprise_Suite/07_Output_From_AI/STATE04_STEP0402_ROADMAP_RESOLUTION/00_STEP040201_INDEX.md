@@ -55,7 +55,7 @@ Per the Missing-Authority Rule, this package prepares a `PROPOSED BOSS DECISION 
 
 `afea03db1b6b12d4f8f25203ce4f6ca7a7860844` verified present in the repository via `git cat-file -t` (type: commit) and `git log`. It is the merge commit of PR #43 and is the current HEAD of the harness-assigned working branch (see §6). Commit stat: 3 files changed, 430 insertions(+), 0 deletions — matches PR #43's reported diff exactly.
 
-**Base-branch divergence note:** `origin/SMEsPlus` HEAD has since moved **ahead** of the required base commit with unrelated State 02 Governance work (commits such as `5454d2a`, `7556386`, `d538562`, `39c39fd`, `b416771` — State 02 RACI/classification/reviewer-appointment material, none STATE04/STEP0402-related). This package is built from the exact required base commit `afea03db1b6b12d4f8f25203ce4f6ca7a7860844` per the governing instruction, not from the current `origin/SMEsPlus` tip. This divergence is recorded here and is non-blocking for this additive, report-only package.
+**Base-branch divergence note (CORRECTED):** `origin/SMEsPlus` HEAD was independently verified as equal to the required base commit `afea03db1b6b12d4f8f25203ce4f6ca7a7860844`, with zero commits between them at review time. The previously cited State 02 commits (e.g., `5454d2a`, `7556386`, `d538562`, `39c39fd`, `b416771`) are ancestors of that base commit and do not constitute post-base divergence. Repository state must be re-verified before any future merge or Boss decision.
 
 ---
 
