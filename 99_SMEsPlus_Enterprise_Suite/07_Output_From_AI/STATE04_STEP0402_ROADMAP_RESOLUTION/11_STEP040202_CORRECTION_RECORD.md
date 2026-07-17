@@ -130,10 +130,11 @@ The independent review (PR #46) verified the following as factually correct:
 ## 11. PR Status
 
 - **PR #44 (Evidence Package):** OPEN / DRAFT / NOT MERGED
-  - Previous HEAD: `e15407eb4d4d83e6cc8dd5369b4a7383f17d0524`
-  - Updated with correction commit: *[to be recorded]*
+  - Previous HEAD: `e15407eb4d4d83e6cc8dd5369b4a7383f17d0524` (STEP040202-CORRECTION-01)
+  - Updated with correction commit: `c8b0915259f19cc5ad37e8748f99d6ff0d9fa350` (STEP040202-CORRECTION-02)
+  - Final HEAD after correction: `d342004f5b6fa41df3e1f952c18bb7a092ae332d` (validation update)
   - Status after correction: OPEN / DRAFT / AWAITING BOSS DECISION
-  - Branch: `claude/step0402-roadmap-governance-bbu6q9`
+  - Branch: `claude/evidence-integrity-corrections-ny40as`
 
 - **PR #46 (Independent Review):** OPEN / DRAFT / NOT MERGED
   - Correction sourced from: commit `07ca8457da2c39fa522c47e4fb0342393be07627`
