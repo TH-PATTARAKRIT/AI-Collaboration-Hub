@@ -62,7 +62,7 @@ The independent review (PR #46) verified the following as factually correct:
 
 **Previous PR #44 HEAD (before this correction):** `e15407eb4d4d83e6cc8dd5369b4a7383f17d0524`
 
-**Correction Commit SHA** (this session): *[to be recorded after push]*
+**Correction Commit SHA** (this session): `c8b0915259f19cc5ad37e8748f99d6ff0d9fa350`
 
 ---
 

@@ -11,8 +11,8 @@
 ## 1. Traceability
 
 - **Previous PR #44 HEAD:** `0c68423d04ed3dc35b8b64c3a942feb2f1aab5f3` (STEP040202-CORRECTION-01 commit)
-- **Correction Commit SHA (this session):** `[to be recorded after final push]`
-- **Final PR #44 HEAD:** `[to be recorded after final push]`
+- **Correction Commit SHA (this session):** `c8b0915259f19cc5ad37e8748f99d6ff0d9fa350` (STEP040202-CORRECTION-02 commit)
+- **Final PR #44 HEAD:** `c8b0915259f19cc5ad37e8748f99d6ff0d9fa350`
 - **PR #46 review commit:** `07ca8457da2c39fa522c47e4fb0342393be07627` (STEP040202 Independent Review)
 - **Base branch:** SMEsPlus
 - **Required base commit:** `afea03db1b6b12d4f8f25203ce4f6ca7a7860844`
@@ -63,7 +63,7 @@ sha256sum -c 06_STEP040201_MANIFEST_SHA256.txt
 - ✓ 03_STEP0402_CONFLICT_AND_GAP_REGISTER.csv: `62621d9da77f2ca10cb7089cc57cde052315020c394a042976f269444a188b99` — OK
 - ✓ 04_STEP0402_PROPOSED_BOSS_DECISION_PACKAGE.md: `18c913372f5cf37e061b01b36a65265c30e3a91d2a027e0e964be4532abb4ef8` — OK
 - ✓ 05_STEP0402_PRE_COMMENCEMENT_GATE_CHECKLIST.csv: `8a31ed0cbfa8ca03fd9b9aa3cd76a93dddf1916fa065be1e72e62752b794bfb9` — OK
-- ✓ 11_STEP040202_CORRECTION_RECORD.md: `60bfe3eb213b05911ef4e66ead307d7bf1b80997d9f04d412696f941b1b060a0` — OK
+- ✓ 11_STEP040202_CORRECTION_RECORD.md: `c38415071fd95046d27be1c13406b9d596c030be0d1ba2333cacb70ab1de172d` — OK
 
 **Result:** PASS (7/7 records verified, all hashes match)
 
