@@ -28,9 +28,9 @@
 - ✓ `[timestamp to be added]` — NONE FOUND (all replaced)
 - ✓ `TBD` text placeholders — NONE FOUND
 - ✓ `TODO` markers — NONE FOUND
-- ✓ File 11 hash — RECORDED: `60bfe3eb213b05911ef4e66ead307d7bf1b80997d9f04d412696f941b1b060a0`
+- ✓ File 11 hash — RECORDED: `a3d66438d4b5622ef67d33f5742d340c97dbc4231734d16a0d0b089a418c2f81`
 - ✓ Timestamp — RECORDED: `2026-07-17T02:28:48 UTC | 2026-07-17T09:28:48 +07`
-- ✓ Correction commit SHA — `[FINAL: recorded after push]`
+- ✓ Correction commit SHA — `98eb649becf350621048747e070f71a683dddb37`
 
 **Result:** PASS (placeholder scan complete; all values populated with actual data)
 
@@ -63,7 +63,7 @@ sha256sum -c 06_STEP040201_MANIFEST_SHA256.txt
 - ✓ 03_STEP0402_CONFLICT_AND_GAP_REGISTER.csv: `62621d9da77f2ca10cb7089cc57cde052315020c394a042976f269444a188b99` — OK
 - ✓ 04_STEP0402_PROPOSED_BOSS_DECISION_PACKAGE.md: `18c913372f5cf37e061b01b36a65265c30e3a91d2a027e0e964be4532abb4ef8` — OK
 - ✓ 05_STEP0402_PRE_COMMENCEMENT_GATE_CHECKLIST.csv: `8a31ed0cbfa8ca03fd9b9aa3cd76a93dddf1916fa065be1e72e62752b794bfb9` — OK
-- ✓ 11_STEP040202_CORRECTION_RECORD.md: `c38415071fd95046d27be1c13406b9d596c030be0d1ba2333cacb70ab1de172d` — OK
+- ✓ 11_STEP040202_CORRECTION_RECORD.md: `a3d66438d4b5622ef67d33f5742d340c97dbc4231734d16a0d0b089a418c2f81` — OK
 
 **Result:** PASS (7/7 records verified, all hashes match)
 
@@ -236,10 +236,9 @@ sha256sum -c 06_STEP040201_MANIFEST_SHA256.txt
 
 **Correction Evidence:** COMPLETE
 
-**PR #44 Status:**
+**PR #48 Status:**
 - State: OPEN / DRAFT / NOT MERGED
-- Previous HEAD: `0c68423d04ed3dc35b8b64c3a942feb2f1aab5f3` (STEP040202-CORRECTION-01)
-- Current HEAD: `[to be recorded after final push]` (STEP040202-CORRECTION-02)
+- Head SHA: `98eb649becf350621048747e070f71a683dddb37` (STEP040202-CORRECTION-02)
 - Branch: `claude/evidence-integrity-corrections-ny40as`
 
 **PR #46 Status:**
