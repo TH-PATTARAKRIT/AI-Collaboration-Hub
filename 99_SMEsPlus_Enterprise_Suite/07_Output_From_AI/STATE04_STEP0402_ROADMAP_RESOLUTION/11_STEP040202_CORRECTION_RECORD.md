@@ -79,7 +79,7 @@ The independent review (PR #46) verified the following as factually correct:
 
 **New file (11) hash:**
 ```
-[to be recorded]
+4d320fbacdc042853f3f935ede3799e6cd03fd719ad287ff042868985332f200
 ```
 
 **Updated manifest:** Covers files 00-11 (12 records after including this correction record)
@@ -177,6 +177,6 @@ No Evidence = No Progress. ห้ามข้าม Gate.
 
 ---
 
-**Record Generated:** [timestamp to be added at commit time]  
+**Record Generated:** 2026-07-17T02:28:48 UTC | 2026-07-17T09:28:48 +07  
 **Correction Authority:** STEP040202-CORRECTION-01 (Controlled Evidence Correction Agent)  
 **Boss Approval Status:** PENDING
