@@ -94,6 +94,27 @@ All 69 items now accounted for with verified mappings.
 
 ---
 
+### STEP040209 Correction: DELTA-068 Independent Review Status
+
+**Status:** CORRECTED FOR CHATGPT INDEPENDENT REVIEW
+
+| Attribute | Previous (STEP040207) | Current (STEP040209) |
+|-----------|---|---|
+| Independent_Review_Status | RESTORED BY STEP040207 | PENDING — CHATGPT / L99.99 |
+| Rationale | Recovery status label | Awaiting independent review from ChatGPT / L99.99 |
+| Reasoning | STEP040207 documented restoration from baseline | STEP040209 corrects status to reflect that restoration is completed but item remains pending independent review |
+
+**Governance Rationale:**
+- DELTA-068 restoration from authoritative baseline is preserved and recorded in STEP040207 Change Log
+- Independent_Review_Status "RESTORED BY STEP040207" was a recovery tracking label, not a final review status
+- Per STEP040209 governance, all items pending independent review must show: PENDING — CHATGPT / L99.99
+- The restoration event is documented in history; the status field now correctly reflects governance state
+
+**Files Updated:**
+- 16_STEP040204_CONTROLLED_DELTA_REGISTER.csv: DELTA-068 Independent_Review_Status corrected
+
+---
+
 ## Summary of Changes
 
 | Change Type | Count | Details |
