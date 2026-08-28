@@ -30,15 +30,13 @@ where no controlled denominator exists.
 | Overall Migration Factory progress | `TBD / BASELINE REQUIRED` — not computed from these numbers |
 | STEP progress | `TBD / BASELINE LINKAGE REQUIRED` |
 
-## COMMIT-CHAIN INTEGRITY CHECK (performed before any synthesis work began)
-Of the four commit SHAs cited in the directive's §1 continuation baseline, **three verified
-present** in `TH-PATTARAKRIT/AI-Collaboration-Hub` branch `SMEsPlus`
-(`c441443…`, `3026575…`, `45d9758…`). **One did not resolve**:
-`b2e5a2ab7f820fee351475d84a4b3c7eceb3ded3` does not exist anywhere in this repository's
-history — the branch contains exactly three commits, and the oldest is `c441443`. This is
-recorded as a discrepancy, not silently corrected or assumed to be a typo. See
-`00_SONNET_SYNTHESIS_INDEX.md` and the session closure for the full note and the Boss decision
-this raises.
+## COMMIT-CHAIN INTEGRITY CHECK — SELF-CORRECTED (SONNET-CORR-001)
+The original check in this file, performed on a **shallow clone** (`--depth 1`), wrongly
+concluded one of five cited commits did not exist. Re-verified this round on an **unshallowed**
+clone plus a direct GitHub API lookup by SHA: **all five commits are confirmed present** and
+form one linear chain on `SMEsPlus` (`b2e5a2a` -> `c441443` -> `3026575` -> `45d9758` ->
+`947af38`). The error was a tooling/method defect (shallow clone truncating `git log`), not a
+repository defect. See `00_SONNET_SYNTHESIS_INDEX.md` for full detail and root-cause statement.
 
 ## HONEST STATEMENT
 This synthesis pass reasons over structural, source, and now cross-triangulated evidence to a

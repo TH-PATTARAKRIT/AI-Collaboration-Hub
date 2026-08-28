@@ -3,24 +3,33 @@
 
 # 00 — SONNET SYNTHESIS INDEX
 
-## ⚠ COMMIT-CHAIN DISCREPANCY — VERIFIED BEFORE ANY SYNTHESIS WORK BEGAN
-The directive's §1 continuation baseline cites four commits. Verification against
-`TH-PATTARAKRIT/AI-Collaboration-Hub` branch `SMEsPlus` (fetched fresh, reset to remote HEAD):
+## ⚠ COMMIT-CHAIN CLAIM — SELF-CORRECTED THIS ROUND (SONNET-CORR-001)
+The prior version of this file claimed `b2e5a2ab7f820fee351475d84a4b3c7eceb3ded3` "does not
+exist anywhere in this repository." **That claim was wrong, and the error was mine.**
 
-| Cited SHA | Cited as | Verification |
+**Root cause, confirmed:** the working clone used to verify the commit chain was created with
+`git clone --depth 1` (a shallow clone), which fetches only the branch tip with no ancestor
+history. `git log --oneline` on that clone showed exactly 3 commits — not because the
+repository has 3 commits, but because a depth-1 clone cannot show more. I treated that
+truncated log as proof of absence. **This is the same class of error the CORR-001 round
+retracted for the CHECK-constraint claim: absence in a derived, incomplete instrument is not
+absence in the system** — except this time I made it myself, in the same session that had just
+documented the lesson.
+
+**Corrected, independently re-verified this round** by unshallowing the clone
+(`git fetch --unshallow`) and confirming via both local git and the GitHub API directly:
+
+| SHA | Cited as | Verification |
 |---|---|---|
-| `b2e5a2ab7f820fee351475d84a4b3c7eceb3ded3` | Initial A0/A1 Evidence | **NOT FOUND** — does not exist anywhere in this repository's history |
-| `c44144387061f3cd48665d499641ce0da540a731` | A0/A1 Closure | **PRESENT** — the branch's oldest commit |
-| `3026575f842aaf97a128263fabb2fdf99d41639d` | DOMAIN_01 Corrected Evidence | **PRESENT** |
-| `45d9758b61508e33dc05d9c343b6fb34a6e5bf0c` | DOMAIN_01 Corrective Closure | **PRESENT** |
+| `b2e5a2ab7f820fee351475d84a4b3c7eceb3ded3` | A0/A1 Evidence | **CONFIRMED PRESENT** — direct parent of `c441443`; message: "Team A A0/A1 expert deep-research inventory pack" |
+| `c44144387061f3cd48665d499641ce0da540a731` | A0/A1 Closure | CONFIRMED PRESENT |
+| `3026575f842aaf97a128263fabb2fdf99d41639d` | Fable Accounting Corrective Evidence | CONFIRMED PRESENT |
+| `45d9758b61508e33dc05d9c343b6fb34a6e5bf0c` | Corrective Closure | CONFIRMED PRESENT |
+| `947af38ae728a22e3305e8923a0b8d38a9a3c99b` | Sonnet Deep Logical Synthesis | CONFIRMED PRESENT |
 
-The branch contains **exactly three commits**. This is stated plainly, not resolved by
-assumption — the A0/A1 evidence content (module register, source landscape, quarantine
-register) IS present on the branch, inside the `c441443` commit tree, so **no evidence is
-missing from the repository**; only the specific fourth SHA cited does not resolve. Possible
-explanations (none confirmed): a local commit that was amended/squashed before push, a citation
-from a different clone or fork, or a transcription error. **Boss/PMO decision required** — see
-session closure.
+All five commits form a single linear chain on branch `SMEsPlus` (376 commits total reachable
+from tip as of this correction). **No evidence was ever missing from the repository; my
+verification method was.**
 
 ## ARTIFACTS IN THIS DIRECTORY
 | # | File | Content |

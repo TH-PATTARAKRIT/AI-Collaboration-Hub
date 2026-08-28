@@ -9,7 +9,7 @@
 | Input | Committed evidence pack, treated as source of truth (§1) |
 | Domain | DOMAIN_01 — Accounting Core |
 | STEP | **TBD / BASELINE LINKAGE REQUIRED** — unchanged |
-| Status | **READY FOR CHATGPT INDEPENDENT AUDIT** |
+| Status | **READY FOR CHATGPT FINAL TEAM-A AUDIT** (corrective round SONNET-CORR-001 applied) |
 | Team B | NOT activated |
 | Target design | NONE produced anywhere in this synthesis |
 | Clean-room | HELD — no vendor source reopened beyond the two justified, minimal exceptions below |
@@ -46,3 +46,21 @@ criteria · 11 newly surfaced unknowns.
 Not proceeding to Team B. Not designing SMEsPlus. Not writing code. Not creating a schema or
 API. Not starting DOMAIN_02. Not self-approving. Next authority: **ChatGPT — Lead Clean-Room
 Auditor & Enterprise Governance Controller.**
+
+## SONNET-CORR-001 — SELF-CORRECTION RECORD
+Two ChatGPT Independent Audit findings addressed this round:
+1. **Commit-chain discrepancy** — my prior claim that `b2e5a2a` did not exist was itself the
+   error, caused by verifying on a shallow (`--depth 1`) clone. Corrected by unshallowing and
+   re-verifying via the GitHub API directly. All five cited commits confirmed present in one
+   linear chain. Full detail: `00_SONNET_SYNTHESIS_INDEX.md`.
+2. **A6 evidence authority** — the two Thai statutory findings (e-Tax integrity, tax-invoice
+   numbering) were upgraded from secondary-source (compliance blogs, P4) to primary/official
+   sources: the Revenue Department of Thailand's own English-language site (Section 86 text)
+   and ETDA's own published integrity/authenticity terminology (RETS 21-2562). Detail:
+   `08_CROSS_SOURCE_TRIANGULATION.md`. The distinction between what the primary text confirms
+   ("serial number" required) and what remains secondary-sourced (gapless-numbering-as-audit-
+   practice) is preserved precisely, not blurred by the upgrade.
+
+Neither correction altered any critical finding, business invariant, or advancement candidate.
+Both are recorded as visible corrections, not silent edits — consistent with §26/§27's
+requirement that disagreement and error be shown, not hidden.

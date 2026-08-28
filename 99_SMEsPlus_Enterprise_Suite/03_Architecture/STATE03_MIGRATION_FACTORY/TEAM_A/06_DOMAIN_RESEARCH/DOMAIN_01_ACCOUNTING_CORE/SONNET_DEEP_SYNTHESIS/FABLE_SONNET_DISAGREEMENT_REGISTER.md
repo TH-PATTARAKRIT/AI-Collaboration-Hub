@@ -64,3 +64,29 @@ Beyond the three items above, this round's independent re-derivation of Part 1's
 classifications, critical findings, database evidence, and gap register **confirms** them.
 Where Part 1 already performed a self-correction (the CORR-001 CHECK-constraint retraction),
 this round found that correction to be sound and did not re-open it.
+
+## SONNET-CORR-001 SELF-CORRECTION (not a Fable/Sonnet disagreement — a Sonnet error, corrected)
+Recorded here for completeness rather than omitted, even though it is not a disagreement with
+Fable's Part 1 work: it is an error Sonnet introduced and then corrected within Part 2 itself.
+
+```
+CLAIM MADE:        commit b2e5a2ab7f820fee351475d84a4b3c7eceb3ded3 does not exist in the
+                   repository (00_SONNET_SYNTHESIS_INDEX.md, original version)
+ROOT CAUSE:        verification was performed on a shallow clone (`git clone --depth 1`),
+                   which fetches only the branch tip with no ancestor history; `git log` on
+                   that clone showed 3 commits because that is all a depth-1 clone contains,
+                   not because the repository has 3 commits
+CORRECTION METHOD: unshallowed the clone (`git fetch --unshallow`) and independently
+                   re-verified via the GitHub API directly by SHA, bypassing local git
+                   reachability entirely as a second, independent check
+RESULT:            all 5 cited commits confirmed present in one linear chain; the claim of a
+                   missing commit is RETRACTED
+IMPACT:            none on any critical finding, invariant, rule, or advancement candidate —
+                   this was a provenance/audit-trail bookkeeping error, not a domain-content
+                   error
+LESSON:            identical in kind to the CORR-001 (Part 1) retraction of the "zero CHECK
+                   constraints" claim: a derived or truncated instrument's silence is not proof
+                   of absence. This lesson was documented in Part 1 and then violated by
+                   Sonnet in Part 2 before being caught by ChatGPT's independent audit — a
+                   genuine illustration of why independent audit exists as a gate.
+```

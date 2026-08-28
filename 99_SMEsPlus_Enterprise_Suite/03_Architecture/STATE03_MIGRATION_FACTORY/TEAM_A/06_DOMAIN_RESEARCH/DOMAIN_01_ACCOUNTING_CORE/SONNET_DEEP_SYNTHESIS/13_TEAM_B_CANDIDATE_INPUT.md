@@ -13,10 +13,12 @@
   record), never destructive (in-place alteration of the original).
 - Foreign-currency transactions must be recognised at a valid exchange rate and — per IFRS —
   monetary balances must be remeasured to the functional currency at each reporting date.
-- Certain statutorily regulated documents (confirmed: Thai e-Tax invoices/receipts) must carry
-  provable integrity via a licensed digital signature and be retained for a defined period.
-- Statutorily numbered documents (confirmed: Thai tax invoices) require genuinely sequential
-  numbering; numbering gaps are a recognised audit concern.
+- Certain statutorily regulated documents (confirmed by official source: Thai e-Tax
+  invoices/receipts) must carry provable content integrity and origin authenticity, and be
+  retained for a defined period.
+- Statutorily numbered documents (confirmed by official source: Thai tax invoices) must state
+  a serial number as a mandatory particular; a stronger "must be gapless / gaps are audited"
+  characterization is plausible but remains secondary-sourced, not officially confirmed.
 - Accounting records generally must be retained for a defined statutory period (Thailand:
   5–7 years) and be available for independent audit.
 
@@ -58,10 +60,11 @@ entity's own books — not merely on its raw status. Full reasoning: `06_STATE_E
 ## REGULATORY REQUIREMENTS (Thailand, evidenced this round)
 - Financial statements: prepared, retained, independently audited (Accounting Act B.E. 2543).
 - Record retention: 5–7 years.
-- e-Tax invoices/receipts: provable integrity via licensed digital signature (Electronic
-  Transactions Act) — confirmed narrow scope, not confirmed to extend to the general ledger.
-- Tax invoices: genuinely sequential numbering (Revenue Code §86, P4 secondary-source
-  confidence) — confirmed narrow scope, not confirmed to extend to all journal entries.
+- e-Tax invoices/receipts: provable content integrity and origin authenticity (ETDA, official
+  source, RETS 21-2562) — confirmed narrow scope, not confirmed to extend to the general ledger.
+- Tax invoices: mandatory serial number (Revenue Department of Thailand, official source,
+  Revenue Code §86) — confirmed narrow scope; the stronger gapless-numbering characterization
+  remains P4 secondary-source only, not confirmed to extend to all journal entries.
 
 ## CROSS-ERP COMMON PATTERNS
 Reversal (not deletion/edit) as the correction mechanism for posted documents (validated
