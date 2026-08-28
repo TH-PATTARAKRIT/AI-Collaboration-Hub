@@ -1,6 +1,6 @@
 # Current Position
 
-Updated: 2026-08-28 Asia/Bangkok
+Updated: 2026-08-29 Asia/Bangkok
 
 ## Status Report
 
@@ -11,7 +11,7 @@ Updated: 2026-08-28 Asia/Bangkok
 | BOARD Progress | TBD / BASELINE REQUIRED |
 | STATE | TBD — current binding evidence required |
 | STATE Progress | TBD / BASELINE REQUIRED |
-| STEP | DR9 Boss Final Gate |
+| STEP | Post-DR9 Critical Evidence Closure |
 | STEP Progress | TBD / authoritative STEP weighting required |
 | Deep Research Control Coverage | 7 / 12 inspectable or reviewed controls = 58.3%; research-control metric only |
 | Code Research | Historical evidence reviewed; current 1,502-record baseline HOLD |
@@ -19,13 +19,13 @@ Updated: 2026-08-28 Asia/Bangkok
 | Code ↔ DB Mapping | Historical 27,682-row evidence reviewed; current row-level reconciliation HOLD |
 | Business Semantics | Independent Clean-Room Functional & Domain Blueprint prepared and reviewed PASS WITH CONTROL |
 | Clean-Room Review | PASS WITH CONTROL; legal/license and domain-owner reviews outstanding |
-| Gate | DR9 FINAL GATE — HOLD RECOMMENDATION |
-| Evidence | Detailed research reports, blueprint, gap/risk register, DR8 gate report, evidence registers, and final report committed to Draft PR #62 |
+| Gate | DR9 FINAL GATE — **BOSS DECISION: HOLD** |
+| Evidence | Detailed research reports, blueprint, gap/risk register, DR8 gate report, evidence registers, final report, and Boss decision record on Draft PR #62 |
 | Open Gaps | 15 total: 10 Critical, 5 High |
 | Blockers | Current archive hashes/manifests, 66-record delta, current classification, dump identity, two-column delta, current mapping lineage, behavioral/data-quality evidence, independent owner reviews |
 | Owner | Enterprise Functional Architect & Clean-Room Systems Analyst |
-| Next Action | Boss decides PASS / PASS WITH CONTROL / HOLD / FAIL-RETURN at DR9 |
-| Boss Decision Required | YES |
+| Next Action | Execute controlled Critical Evidence Closure; re-run DR8 only after evidence is inspectable, then return to a new DR9 Boss Final Gate |
+| Boss Decision Required | NO — current DR9 decision recorded as HOLD; new Boss decision required only after re-entry to Final Gate or an earlier governance stop condition |
 
 ## Current Source Intake
 
@@ -45,6 +45,7 @@ FAIL: 0 / 12
 CONTROL COVERAGE: 7 / 12 = 58.3%
 DR8 VERDICT: HOLD
 DR9 RECOMMENDATION: HOLD
+DR9 BOSS DECISION: HOLD — APPROVED 2026-08-29
 ```
 
 The 58.3% figure does not represent Board, STATE, or STEP progress.
@@ -68,17 +69,19 @@ Supporting documents:
 3. `03_CODE_DB_MAPPING/CODE_DB_MAPPING_RECONCILIATION_REPORT.md`
 4. `04_BUSINESS_SEMANTICS/CLEAN_ROOM_FUNCTIONAL_DOMAIN_BLUEPRINT.md`
 5. `05_EXCEPTION_GAPS/RESEARCH_GAP_AND_RISK_REGISTER.md`
-6. `06_CLEAN_ROOM_CONTROL/CLEAN_ROOM_INDEPENDENT_REVIEW.md`
-7. `07_RESEARCH_SUMMARY/DR8_EVIDENCE_GATE_REPORT.md`
-8. `99_EVIDENCE_REGISTER/DEEP_RESEARCH_EVIDENCE_REGISTER.csv`
-9. `99_EVIDENCE_REGISTER/RESEARCH_EXCEPTION_REGISTER.csv`
-10. `99_EVIDENCE_REGISTER/CLEAN_ROOM_CLASSIFICATION_REGISTER.csv`
-11. `99_EVIDENCE_REGISTER/SHA256_MANIFEST.csv`
+6. `05_EXCEPTION_GAPS/CRITICAL_EVIDENCE_CLOSURE_PLAN.md`
+7. `06_CLEAN_ROOM_CONTROL/CLEAN_ROOM_INDEPENDENT_REVIEW.md`
+8. `07_RESEARCH_SUMMARY/DR8_EVIDENCE_GATE_REPORT.md`
+9. `08_FINAL_GATE_PACK/DR9_BOSS_DECISION_RECORD.md`
+10. `99_EVIDENCE_REGISTER/DEEP_RESEARCH_EVIDENCE_REGISTER.csv`
+11. `99_EVIDENCE_REGISTER/RESEARCH_EXCEPTION_REGISTER.csv`
+12. `99_EVIDENCE_REGISTER/CLEAN_ROOM_CLASSIFICATION_REGISTER.csv`
+13. `99_EVIDENCE_REGISTER/SHA256_MANIFEST.csv`
 
-## Recommended Boss Decision
+## Boss Final Decision
 
 ```text
 HOLD
 ```
 
-Reason: the independent blueprint and historical evidence are inspectable, but current source/database/mapping identity and the complete SHA-256 evidence chain are not verified.
+Decision effect: preserve the independent blueprint and research evidence as controlled review material, continue closure of the 10 Critical Evidence Gaps, do not declare Deep Research Complete, and do not merge/release/deploy.
