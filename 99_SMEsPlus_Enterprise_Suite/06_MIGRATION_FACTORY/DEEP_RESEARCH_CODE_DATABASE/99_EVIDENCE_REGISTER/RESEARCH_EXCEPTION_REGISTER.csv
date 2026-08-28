@@ -1,0 +1,1 @@
+exception_id,phase,domain_id,exception_class,description,source_artifact,source_path,evidence_location,detected_timestamp,severity,owner,reviewer,verification_status,required_resolution,due_date,status,gate_impact,boss_decision_required,notes
