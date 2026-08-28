@@ -75,3 +75,23 @@ Routine approvals between phases are not required.
 5. PR #62 remains Draft/Open/Not Merged.
 6. `No Evidence = No Progress` and `Never Skip Gate` remain binding.
 7. A future PASS or PASS WITH CONTROL requires a new evidence-gate review and a new Boss decision.
+
+---
+
+## DEC-DEEP-CD-003 — Evidence Closure Continuation Approval
+
+| Field | Value |
+|---|---|
+| Decision Date | 2026-08-29 Asia/Bangkok |
+| Decision Authority | Boss — Sole Final Approver |
+| Decision | **APPROVED — PROCEED TO NEXT STEP** |
+| Authorized Step | **EC-01 — Source Identity & Integrity Verification** |
+| Following Step | EC-02 only after EC-01 closure evidence is verified |
+| Gate Rule | EC-01 cannot be marked PASS without inspectable SHA-256, file size, timestamp, archive member inventory, evidence location, owner, and verifier |
+| Routine Approval | NOT REQUIRED for EC-01 through EC-10 within existing scope |
+| Merge / Release / Deploy | NOT AUTHORIZED |
+| CLASS-D Source Body | NOT AUTHORIZED; remains quarantined |
+
+### Execution Note
+
+Boss approval authorizes immediate evidence collection. It does not waive EC-01 evidence requirements and does not authorize skipping directly to EC-02.
