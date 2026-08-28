@@ -18,17 +18,18 @@ Updated: 2026-08-29 Asia/Bangkok
 | EC-02 | **PASS WITH CONTROL** — source lineage reconciled to 1,504 current observed modules |
 | EC-03 | **HOLD / ACTIVE GATE** — two OPL-1 Ksolves modules lack approved A/B/C/D classification; independent legal/license sign-off open |
 | EC-04 | **TECHNICAL EVIDENCE REVIEWED / PASS WITH CONTROL; WORKFLOW PARKED BY EC-03** |
+| EC-05 | **EVIDENCE REVIEWED / HOLD** — historical 27,682-row mapping is inspectable, but current row-level mapping SHA/timestamp/source↔dump binding is not yet located |
 | Code Research | Current observed inventory = 1,504 modules / 93,859 files / 0 manifest parse errors; approved/frozen baseline remains 1,502 unless governance advances it |
 | Database Research | Dump identity cryptographically evidenced; current DB reference remains 2026-06-14 snapshot; freshness control open |
-| Code ↔ DB Mapping | Historical 27,682-row evidence reviewed; current mapping lineage still HOLD |
+| Code ↔ DB Mapping | Historical mapping evidence exists; current mapping lineage remains HOLD under DR-GAP-008 |
 | Business Semantics | Independent Clean-Room Functional & Domain Blueprint remains PASS WITH CONTROL / review baseline only |
-| Clean-Room Review | CLASS-D identities now evidenced and quarantine active; current 1,504 classification incomplete |
-| Gate | **POST-DR9 EVIDENCE CLOSURE — PARKED AT EC-03** |
+| Clean-Room Review | CLASS-D identities evidenced and quarantine active; current 1,504 classification incomplete |
+| Gate | **POST-DR9 EVIDENCE CLOSURE — PARKED AT EC-03; EC-04/EC-05 EVIDENCE PREPARED WITHOUT GATE ADVANCEMENT** |
 | Critical Gap Position | 4 of 10 closed/pass-with-control; 6 of 10 remain HOLD; gap metric only |
 | Open Critical Gaps | DR-GAP-003, DR-GAP-008, DR-GAP-009, DR-GAP-011, DR-GAP-012, DR-GAP-014 |
 | High Gaps | DR-GAP-006 evidence found with control; DR-GAP-007, 010, 013, 015 remain open |
 | Owner | Enterprise Functional Architect & Clean-Room Systems Analyst / PMO evidence-control roles by item |
-| Next Action | Resolve EC-03 classification treatment without weakening proprietary-source controls; meanwhile prepare EC-05 mapping-lineage evidence but do not represent downstream gate advancement |
+| Next Action | Continue locating a current mapping artifact with SHA-256 + timestamp + source/dump lineage; prepare EC-06 taxonomy only, but do not represent EC-06 as sequentially active while EC-03/EC-05 remain HOLD |
 | Boss Decision Required | **NO for continued evidence collection.** A governance decision will be needed before EC-03 closure if the two Ksolves modules require formal A/B/C/D assignment or if any quarantine/legal control is to change. |
 
 ## Canonical Source Identity — Reconciled
@@ -80,17 +81,22 @@ Creator / server markers: pg_dump 18.4 / PostgreSQL 18.4
 
 Two copies are reported byte-identical in Team A evidence. The 13,940 → 13,942 column delta is reported row-level reconciled in prior MIG-A-001 evidence; direct inclusion of that underlying delta register remains a final-integrity control.
 
+## Mapping Evidence Position
+
+Historical `Field_Level_Source_to_Dump_Mapping.csv` and `Source_to_Dump_Mapping_Validation.csv` are inspectable. Historical total = 27,682 rows and direct matches = 7,703. However, current certification still requires a row-level mapping artifact explicitly bound to the current source manifest and dump SHA-256, with its own SHA-256 and generation timestamp.
+
 ## Current Evidence Documents Added / Updated
 
 1. `01_SOURCE_CODE_RESEARCH/EC01_SOURCE_IDENTITY_EXECUTION.md`
 2. `01_SOURCE_CODE_RESEARCH/EC02_SOURCE_BASELINE_LINEAGE_RECONCILIATION.md`
 3. `06_CLEAN_ROOM_CONTROL/EC03_CLASSIFICATION_LICENSE_CONTROL.md`
 4. `02_DATABASE_RESEARCH/EC04_DATABASE_IDENTITY_SCHEMA_EVIDENCE.md`
-5. `00_GOVERNANCE/SOURCE_INTAKE_REGISTER.csv`
-6. `05_EXCEPTION_GAPS/CRITICAL_EVIDENCE_CLOSURE_PLAN.md`
-7. `99_EVIDENCE_REGISTER/DEEP_RESEARCH_EVIDENCE_REGISTER.csv`
-8. `99_EVIDENCE_REGISTER/CLEAN_ROOM_CLASSIFICATION_REGISTER.csv`
-9. `99_EVIDENCE_REGISTER/SHA256_MANIFEST.csv`
+5. `03_CODE_DB_MAPPING/EC05_CURRENT_MAPPING_LINEAGE_REVIEW.md`
+6. `00_GOVERNANCE/SOURCE_INTAKE_REGISTER.csv`
+7. `05_EXCEPTION_GAPS/CRITICAL_EVIDENCE_CLOSURE_PLAN.md`
+8. `99_EVIDENCE_REGISTER/DEEP_RESEARCH_EVIDENCE_REGISTER.csv`
+9. `99_EVIDENCE_REGISTER/CLEAN_ROOM_CLASSIFICATION_REGISTER.csv`
+10. `99_EVIDENCE_REGISTER/SHA256_MANIFEST.csv`
 
 ## Sequential Control
 
@@ -99,11 +105,13 @@ EC-01 PASS WITH CONTROL
   ↓
 EC-02 PASS WITH CONTROL
   ↓
-EC-03 HOLD  ← CURRENT GATE
+EC-03 HOLD  ← CURRENT SEQUENTIAL GATE
   ↓
-EC-04 evidence reviewed but gate parked
+EC-04 technical evidence reviewed / gate parked
   ↓
-EC-05 mapping-lineage evidence preparation may continue, but no sequential PASS claim
+EC-05 mapping evidence reviewed / HOLD
+  ↓
+EC-06 may be prepared only; no sequential PASS claim
 ```
 
 Boss prior DR9 decision remains `HOLD`. PR #62 remains Draft/Open/Not Merged. No coding, release, deployment, production migration, target schema freeze, or CLASS-D source-body research is authorized.
