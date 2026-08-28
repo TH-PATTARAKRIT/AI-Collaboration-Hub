@@ -11,43 +11,74 @@ Updated: 2026-08-28 Asia/Bangkok
 | BOARD Progress | TBD / BASELINE REQUIRED |
 | STATE | TBD — current binding evidence required |
 | STATE Progress | TBD / BASELINE REQUIRED |
-| STEP | Deep Research Source Intake and Baseline Reconciliation |
-| STEP Progress | TBD / APPROVED DENOMINATOR REQUIRED |
-| Deep Research Progress | TBD / domain denominators not established |
-| Code Research | Intake started; current source-body verification pending |
-| Database Research | Historical evidence located; current version revalidation required |
-| Code ↔ DB Mapping | Historical mapping located; current reconciliation required |
-| Business Semantics | Not yet claimed as verified |
-| Gate | DR0 / DR1 boundary — HOLD until current intake lineage is established |
-| Evidence | Workspace and registers initialized |
-| Open Gaps | Current archive hashes, contents, classifications, source baseline delta, dump lineage, current mapping lineage |
-| Blockers | Current uploaded ZIP bodies are not yet inspectable through the active evidence channel |
+| STEP | DR9 Boss Final Gate |
+| STEP Progress | TBD / authoritative STEP weighting required |
+| Deep Research Control Coverage | 7 / 12 inspectable or reviewed controls = 58.3%; research-control metric only |
+| Code Research | Historical evidence reviewed; current 1,502-record baseline HOLD |
+| Database Research | Historical structural evidence reviewed with limitation; current database baseline HOLD |
+| Code ↔ DB Mapping | Historical 27,682-row evidence reviewed; current row-level reconciliation HOLD |
+| Business Semantics | Independent Clean-Room Functional & Domain Blueprint prepared and reviewed PASS WITH CONTROL |
+| Clean-Room Review | PASS WITH CONTROL; legal/license and domain-owner reviews outstanding |
+| Gate | DR9 FINAL GATE — HOLD RECOMMENDATION |
+| Evidence | Detailed research reports, blueprint, gap/risk register, DR8 gate report, evidence registers, and final report committed to Draft PR #62 |
+| Open Gaps | 15 total: 10 Critical, 5 High |
+| Blockers | Current archive hashes/manifests, 66-record delta, current classification, dump identity, two-column delta, current mapping lineage, behavioral/data-quality evidence, independent owner reviews |
 | Owner | Enterprise Functional Architect & Clean-Room Systems Analyst |
-| Next Action | Verify source archive identity and contents, reconcile current inventory, classify legal/clean-room treatment, then proceed sequentially |
-| Boss Decision Required | NO — routine execution authorized through DR8 |
+| Next Action | Boss decides PASS / PASS WITH CONTROL / HOLD / FAIL-RETURN at DR9 |
+| Boss Decision Required | YES |
 
 ## Current Source Intake
 
 | Source ID | Artifact | Status | Evidence Claim Allowed |
 |---|---|---|---|
-| SRC-INT-001 | `01_ACCOUNT(1).zip` | RECEIVED / BODY VERIFICATION PENDING | Receipt only |
-| SRC-INT-002 | `02_OTHER(1).zip` | RECEIVED / BODY VERIFICATION PENDING | Receipt only |
-| SRC-INT-003 | `addons_extra(1).zip` | RECEIVED / BODY VERIFICATION PENDING | Receipt only |
+| SRC-INT-001 | `01_ACCOUNT(1).zip` | RECEIVED / BODY AND SHA-256 VERIFICATION PENDING | Receipt only |
+| SRC-INT-002 | `02_OTHER(1).zip` | RECEIVED / BODY AND SHA-256 VERIFICATION PENDING | Receipt only |
+| SRC-INT-003 | `addons_extra(1).zip` | RECEIVED / BODY AND SHA-256 VERIFICATION PENDING | Receipt only |
+
+## Evidence Gate Summary
+
+```text
+STRICT PASS: 3 / 12
+PASS WITH CONTROL: 4 / 12
+HOLD: 5 / 12
+FAIL: 0 / 12
+CONTROL COVERAGE: 7 / 12 = 58.3%
+DR8 VERDICT: HOLD
+DR9 RECOMMENDATION: HOLD
+```
+
+The 58.3% figure does not represent Board, STATE, or STEP progress.
 
 ## Historical Lineage Position
 
-Historical evidence indicates a prior source inventory of 1,436 modules, comprising 62 ACCOUNT modules and 1,374 OTHER modules. This historical measurement is a lineage anchor only and is not the current source baseline.
+Historical evidence verifies 1,436 source modules, 1,395 tables, 13,940 columns, 6,682 constraints, 5,141 foreign-key edges, 1,714 indexes, 27,682 field mappings, 6,260 XML/UI records, 473 security records, and 4,377 business-method records.
 
-The current working claim of 1,502 source records therefore requires a proven delta of 66 records, including exact artifact, path, version, classification, and hash lineage.
+The current working baseline of 1,502 source records and approximately 13,942 columns requires explicit current lineage. The source delta is 66 records and the column delta is 2 observations; neither delta is currently verified.
 
-## Active Holds
+## Final Gate Pack
 
-1. Authoritative Board / STATE / STEP binding
-2. Current source manifest and archive identity
-3. Current CLASS-A/B/C/D classification register
-4. CLASS-D quarantine confirmation for all 12 claimed records
-5. Current database inventory and dump identity
-6. Current 27,682 mapping-register lineage
-7. Historical HOLD-to-PASS closure reconciliation
+Primary final report:
 
-No percentage may be inferred from these holds.
+`08_FINAL_GATE_PACK/DEEP_RESEARCH_CODE_DATABASE_FINAL_REPORT.md`
+
+Supporting documents:
+
+1. `01_SOURCE_CODE_RESEARCH/SOURCE_CODE_FORENSIC_RESEARCH_REPORT.md`
+2. `02_DATABASE_RESEARCH/DATABASE_FORENSIC_RESEARCH_REPORT.md`
+3. `03_CODE_DB_MAPPING/CODE_DB_MAPPING_RECONCILIATION_REPORT.md`
+4. `04_BUSINESS_SEMANTICS/CLEAN_ROOM_FUNCTIONAL_DOMAIN_BLUEPRINT.md`
+5. `05_EXCEPTION_GAPS/RESEARCH_GAP_AND_RISK_REGISTER.md`
+6. `06_CLEAN_ROOM_CONTROL/CLEAN_ROOM_INDEPENDENT_REVIEW.md`
+7. `07_RESEARCH_SUMMARY/DR8_EVIDENCE_GATE_REPORT.md`
+8. `99_EVIDENCE_REGISTER/DEEP_RESEARCH_EVIDENCE_REGISTER.csv`
+9. `99_EVIDENCE_REGISTER/RESEARCH_EXCEPTION_REGISTER.csv`
+10. `99_EVIDENCE_REGISTER/CLEAN_ROOM_CLASSIFICATION_REGISTER.csv`
+11. `99_EVIDENCE_REGISTER/SHA256_MANIFEST.csv`
+
+## Recommended Boss Decision
+
+```text
+HOLD
+```
+
+Reason: the independent blueprint and historical evidence are inspectable, but current source/database/mapping identity and the complete SHA-256 evidence chain are not verified.
