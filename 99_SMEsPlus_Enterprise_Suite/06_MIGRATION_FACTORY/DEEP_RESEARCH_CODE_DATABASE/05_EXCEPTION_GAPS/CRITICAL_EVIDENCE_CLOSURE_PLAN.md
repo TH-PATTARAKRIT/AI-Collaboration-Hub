@@ -10,24 +10,24 @@ Status: `CONTROLLED EVIDENCE CLOSURE / EC-03 ACTIVE HOLD / NO BUILD AUTHORITY`
 
 Close the Critical Evidence Gaps identified at DR9 before the Deep Research package may be represented as complete or returned for a new Final Gate decision.
 
-This plan does not authorize coding, production schema finalization, migration engine implementation, merge, release, deployment, or CLASS-D source-body research.
+No coding, production schema finalization, migration-engine implementation, merge, release, deployment, Team B activation, or CLASS-D source-body research is authorized.
 
-## 2. Critical Closure Register — Reconciled Status
+## 2. Critical Closure Register — Current Status
 
 | Priority | Gap ID | Required Closure Evidence | Owner | Current Evidence Position | Current Status |
 |---:|---|---|---|---|---|
-| 1 | DR-GAP-001 | Canonical source SHA-256, byte size, timestamp, structural inventory | Source Evidence Owner | Team A `SOURCE_MANIFEST.md` + `.sha256` + source-tree inventory identify canonical `01_ACCOUNT.zip`, `02_OTHER.zip`, `addons_extra.zip`; Chat attachment aliases not byte-compared | **PASS WITH CONTROL / CLOSED FOR CANONICAL SOURCE** |
-| 2 | DR-GAP-002 | Current source manifest and row-level historical/current lineage | Source Research Lead | Reconciled: 1,436 historical rows = 1,433 unique; +69 unique = 1,502 approved baseline; +2 Ksolves = 1,504 current observed | **PASS WITH CONTROL / LINEAGE CLOSED** |
-| 3 | DR-GAP-003 | Module-level A/B/C/D and license treatment for current observed source | Governance / License Reviewer | 1,502 approved counts reconcile; 1,504 current adds two OPL-1 Ksolves modules without approved A/B/C/D class | **HOLD — ACTIVE EC-03 BLOCKER** |
-| 4 | DR-GAP-004 | Explicit identification and governance treatment for 12 CLASS-D records | Boss / Governance | All 12 named in current quarantine register; Boss DR9 decision preserves quarantine; no body research authorized | **PASS / CLOSED** |
-| 5 | DR-GAP-005 | Database dump identity, hash, version, and schema/restore evidence | Database Evidence Owner | Dump SHA-256 `d67fff6d…39d8c0`, 65,444,053 bytes, PostgreSQL custom format, pg_dump/server 18.4; prior R3C restore chain referenced | **PASS WITH CONTROL / IDENTITY CLOSED** |
-| 6 | DR-GAP-008 | Current 27,682-row mapping register, SHA-256, timestamp, source/dump version lineage | Mapping Lead | Not yet directly inspected in current closure sequence | **HOLD** |
-| 7 | DR-GAP-009 | Semantic classification of unmatched/not-found mapping records | Mapping + Business Owners | No current row-level semantic disposition pack verified | **HOLD** |
-| 8 | DR-GAP-011 | Data-quality validation pack: orphan, duplicate, cross-company, quantity/value, ledger-balance, evidence-integrity | Data Quality Lead | Not yet executed/verified in this closure sequence | **HOLD** |
-| 9 | DR-GAP-012 | Per-domain executed behavioral evidence | Functional Owners / QA | Domain behavioral proof not yet complete | **HOLD** |
-| 10 | DR-GAP-014 | Independent legal/license review and clean-room treatment sign-off | Legal / License Reviewer | License surface identified; formal independent sign-off absent | **HOLD** |
+| 1 | DR-GAP-001 | Canonical source identity/hash/inventory | Source Evidence Owner | `SOURCE_MANIFEST.md` + `.sha256` + source tree identify canonical archives | **PASS WITH CONTROL / CLOSED FOR CANONICAL SOURCE** |
+| 2 | DR-GAP-002 | Current source manifest and historical/current lineage | Source Research Lead | 1,436 rows = 1,433 unique; +69 = 1,502 approved; +2 Ksolves = 1,504 observed | **PASS WITH CONTROL / LINEAGE CLOSED** |
+| 3 | DR-GAP-003 | A/B/C/D + license treatment for 1,504 observed modules | Governance / License Reviewer | 1,502 approved classification reconciles; 2 Ksolves OPL-1 modules remain unclassified | **HOLD — EC-03 BLOCKER** |
+| 4 | DR-GAP-004 | 12 CLASS-D identities + treatment | Boss / Governance | All 12 identified; quarantine preserved | **PASS / CLOSED** |
+| 5 | DR-GAP-005 | Database dump identity/hash/version | Database Evidence Owner | Dump hash/size/format/18.4 markers evidenced | **PASS WITH CONTROL / IDENTITY CLOSED** |
+| 6 | DR-GAP-008 | Current 27,682-row mapping with SHA/timestamp/source↔dump binding | Mapping Lead | Historical mapping inspectable; current cryptographic lineage artifact still not found | **HOLD — EC-05** |
+| 7 | DR-GAP-009 | Semantic disposition of unmatched/not-found mapping rows | Mapping + Business Owners | EC-06 taxonomy prepared; no current row-level disposition pack because EC-05 lineage remains open | **HOLD** |
+| 8 | DR-GAP-011 | Data-quality / accounting / inventory validation | Data Quality Lead | DOMAIN_01 has stronger structural DB evidence but no customer-row balance/orphan/cross-company proof | **HOLD — PARTIAL STRUCTURAL SUPPORT ONLY** |
+| 9 | DR-GAP-012 | Per-domain executed behavioral evidence | Functional Owners / QA | DOMAIN_01 mechanisms and structural evidence are substantial; independent re-audit returned CORR-002 and data-level/operational proof is incomplete | **HOLD — PARTIAL DOMAIN SUPPORT ONLY** |
+| 10 | DR-GAP-014 | Independent legal/license review and sign-off | Legal / License Reviewer | Narrow official Thai regulatory corroboration added; module-level independent legal/license sign-off absent | **HOLD** |
 
-### Critical gap count after EC-01 through EC-04 evidence reconciliation
+### Critical gap count
 
 ```text
 CLOSED / PASS OR PASS WITH CONTROL: 4
@@ -35,14 +35,14 @@ OPEN / HOLD: 6
 FAIL: 0
 ```
 
-This is a gap-closure count only; it is not Board/STATE/STEP progress.
+This is a gap-closure metric only; it is not Board/STATE/STEP progress.
 
-## 3. High-Severity Gaps Still Tracked
+## 3. High-Severity Gaps
 
-| Gap | Position |
+| Gap | Current Position |
 |---|---|
-| DR-GAP-006 — 13,940 → 13,942 column delta | `PASS WITH CONTROL EVIDENCE FOUND` in Team A DB register; direct underlying row-level delta register should still be included in final integrity pack |
-| DR-GAP-007 — stronger constraint/FK/index validation | OPEN |
+| DR-GAP-006 — 13,940 → 13,942 column delta | `PASS WITH CONTROL EVIDENCE FOUND`; direct underlying row-level delta register remains final-integrity evidence |
+| DR-GAP-007 — stronger constraints/FK/index validation | **REDUCED / OPEN** — direct pg_restore census now gives FK 5,141; CONSTRAINT 1,860; INDEX 1,808; historical index 1,714 and constraint headline 6,682 require taxonomy reconciliation |
 | DR-GAP-010 — reverse DB-only inventory | OPEN |
 | DR-GAP-013 — authoritative Board/STATE/STEP binding | OPEN |
 | DR-GAP-015 — independent domain-owner review | OPEN |
@@ -50,10 +50,6 @@ This is a gap-closure count only; it is not Board/STATE/STEP progress.
 No High item is silently waived.
 
 ## 4. Corrected Source-Lineage Rule
-
-The prior closure-plan wording `1,436 → 1,502 / 66-record delta` is superseded by inspectable evidence.
-
-Correct lineage:
 
 ```text
 1,436 historical rows
@@ -64,22 +60,43 @@ Correct lineage:
 = 1,504 current observed modules
 ```
 
-The 1,502 baseline is not automatically advanced by this evidence review. The two Ksolves records are carried into EC-03 as `UNCLASSIFIED / OPL-1 / SAFE INTERIM BLACK-BOX-METADATA TREATMENT`.
+The two Ksolves records remain `UNCLASSIFIED / OPL-1 / BLACK-BOX-METADATA ONLY` pending governance classification. No class is invented by the reviewer.
 
-## 5. Execution Position
+## 5. DOMAIN_01 Accounting Core Audit Control
+
+Latest source evidence commit reviewed: `947af38ae728a22e3305e8923a0b8d38a9a3c99b`.
+
+Independent verdict:
+
+```text
+HOLD / RETURN TO TEAM A FOR CORR-002
+```
+
+CORR-002 must address:
+
+1. provenance-code taxonomy collision;
+2. sanitized Team B candidate classification/category mixing;
+3. Thai regulatory claim scope and official-source anchors;
+4. direct-vs-historical DB object-count definitions;
+5. unresolved continuation commit `b2e5a2a...`;
+6. evidence completeness and domain status refresh.
+
+This partial accounting evidence does not close DR-GAP-011 or DR-GAP-012.
+
+## 6. Execution Position
 
 ```text
 EC-01 Source Identity                         PASS WITH CONTROL
     ↓
 EC-02 Source Manifest + Lineage              PASS WITH CONTROL
     ↓
-EC-03 Classification / License / CLASS-D     HOLD — ACTIVE GATE
+EC-03 Classification / License / CLASS-D     HOLD — CURRENT SEQUENTIAL GATE
     ↓
-EC-04 Database Identity + Schema Evidence    TECHNICAL EVIDENCE REVIEWED / PARKED BY EC-03
+EC-04 Database Identity + Schema Evidence    TECHNICAL PASS WITH CONTROL / PARKED
     ↓
-EC-05 Current Code ↔ DB Mapping Lineage      NOT GATE-ACTIVE
+EC-05 Current Code ↔ DB Mapping Lineage      HOLD
     ↓
-EC-06 Unmatched + DB-Only Semantics
+EC-06 Unmatched + DB-Only Semantics          PREPARED ONLY
     ↓
 EC-07 Data Quality / Accounting / Inventory Validation
     ↓
@@ -92,30 +109,30 @@ EC-10 Evidence Manifest + DR8 Re-run
 New DR9 Boss Final Gate
 ```
 
-Evidence collection may continue without idle waiting, but no downstream gate may be represented as sequentially passed while EC-03 remains HOLD.
+Evidence collection may continue without idle waiting, but no downstream gate is represented as sequentially passed while EC-03 remains HOLD.
 
-## 6. Re-entry Criteria for DR8
+## 7. Re-entry Criteria for DR8
 
 DR8 may be re-run only when, at minimum:
 
-1. canonical current source identity and hashes are preserved in the evidence register;
-2. 1,436-row / 1,433-unique / 1,502-approved / 1,504-observed lineage is preserved and reviewable;
+1. canonical source identity/hashes remain inspectable;
+2. source lineage remains reviewable;
 3. all 1,504 observed modules have approved classification/license treatment or formally approved exclusions;
-4. CLASS-D records remain identified and governed;
+4. CLASS-D remains identified/governed;
 5. database dump and current mapping register are cryptographically identified;
-6. unmatched and DB-only facts have semantic disposition;
-7. data-quality and business-behavior evidence is inspectable;
-8. legal/license review is recorded;
-9. evidence owner, timestamp, verifier, status, and gate impact are populated;
-10. SHA-256 manifest is regenerated for the final evidence package.
+6. unmatched/DB-only facts have row-level semantic disposition;
+7. data-quality and executed business-behavior evidence is inspectable;
+8. independent legal/license review is recorded;
+9. evidence owner/timestamp/verifier/status/gate impact are populated;
+10. final SHA-256 manifest is regenerated.
 
-## 7. Gate Rule
+## 8. Gate Rule
 
-A closure item may move from HOLD only when evidence location, owner, timestamp, verifier/reviewer, verification status, and gate impact are inspectable.
+A closure item moves from HOLD only when evidence location, owner, timestamp, verifier/reviewer, verification status, and gate impact are inspectable.
 
 `No Evidence = No Progress.`  
 `Never Skip Gate.`
 
-## 8. Current Authority
+## 9. Current Authority
 
 Boss has approved continued controlled evidence closure under the existing scope. Routine evidence collection does not require repeated approval. Governance decisions that change approved baseline/classification or relax CLASS-D/legal controls are not self-issued.
