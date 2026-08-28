@@ -18,7 +18,7 @@ Historical artifacts remain accessible:
 - historical Phase B mapping total: 27,682 rows
 - direct historical matches: 7,703
 
-The historical field-level mapping schema contains:
+Historical field-level mapping schema:
 
 `index, evidence, module, path, class, model, table, field, field_type, inherited_model, expected_db_column, mapping_status`
 
@@ -31,8 +31,6 @@ Observed historical statuses include:
 
 ## Current Working Distribution
 
-The current research working baseline retains the following arithmetic:
-
 | Working status | Count |
 |---|---:|
 | MATCHED_COLUMN | 7,703 |
@@ -42,27 +40,55 @@ The current research working baseline retains the following arithmetic:
 | NO_MODEL_TABLE_INFERRED | 27 |
 | **Total** | **27,682** |
 
-The arithmetic reconciles to 27,682, but arithmetic alone does not establish current lineage.
+Arithmetic reconciles, but arithmetic alone does not establish current lineage.
 
-## Current-Lineage Problem
+## Current Source / Dump Anchors
 
-EC-01/EC-02 established that the current observed source is 1,504 modules, while 1,502 remains the last approved baseline and historical Phase B had 1,436 rows / 1,433 unique technical names.
+Current observed source evidence:
 
-EC-04 established the dump identity as:
+```text
+1,504 modules observed
+1,502 last approved baseline
+93,859 files
+0 manifest parse errors
+```
 
-- `iTEST02_2026-06-14_14-41-19.dump`
-- SHA-256 `d67fff6dbd3a957a5089e3bd7f982b1f8a98b954e8be2e40e6c227a70339d8c0`
+Selected database evidence:
 
-A current mapping gate requires a row-level mapping artifact whose provenance explicitly binds to:
+```text
+iTEST02_2026-06-14_14-41-19.dump
+SHA-256 d67fff6dbd3a957a5089e3bd7f982b1f8a98b954e8be2e40e6c227a70339d8c0
+65,444,053 bytes
+```
 
-1. the source manifest/version used;
-2. the database dump hash/version used;
-3. generation timestamp;
-4. row-level status;
-5. SHA-256 of the mapping artifact;
-6. reviewer/verifier.
+## Current-Lineage Exit Requirements
 
-No such current mapping artifact has yet been located in the inspectable GitHub/File Library evidence reviewed in this closure sequence.
+A current mapping gate requires one row-level artifact explicitly carrying:
+
+1. source manifest/version identity;
+2. source manifest hash or immutable evidence reference;
+3. dump SHA-256/version identity;
+4. generation timestamp;
+5. row-level mapping status;
+6. SHA-256 of mapping artifact;
+7. owner;
+8. reviewer/verifier;
+9. verification status and gate impact.
+
+## Search Trace Performed
+
+Current evidence search was executed across the accessible project evidence stores using combinations of:
+
+- `27,682` / `27682`;
+- `Field_Level_Source_to_Dump_Mapping`;
+- `Source_to_Dump_Mapping_Validation`;
+- `MATCHED_COLUMN` + `TABLE_NOT_FOUND_IN_DUMP` + `NOT_FOUND_IN_DUMP`;
+- `04_MAPPING_EVIDENCE`;
+- recent Drive artifacts from the current Migration Factory period.
+
+Results located historical reports, handoff references, source-baseline reconciliation, and the current DB/source identity evidence. They did **not** locate a current 27,682-row mapping artifact that simultaneously contains its own SHA-256/generation timestamp and explicit binding to the current source identity plus dump SHA-256.
+
+Therefore negative search evidence is recorded as a controlled HOLD, not treated as proof that the artifact never existed.
 
 ## Gate Test
 
@@ -71,29 +97,40 @@ No such current mapping artifact has yet been located in the inspectable GitHub/
 | Historical 27,682-row mapping exists | PASS |
 | Historical mapping rows inspectable | PASS |
 | Current distribution arithmetic reconciles | PASS |
-| Current mapping file SHA-256 | HOLD / NOT FOUND |
-| Current mapping generation timestamp | HOLD / NOT FOUND |
-| Explicit binding to current 1,504 observed source or approved 1,502 source manifest | HOLD |
-| Explicit binding to dump SHA-256 `d67fff6d…39d8c0` | HOLD |
+| Current mapping artifact located | HOLD / NOT FOUND IN ACCESSIBLE CURRENT EVIDENCE |
+| Current mapping file SHA-256 | HOLD |
+| Current mapping generation timestamp | HOLD |
+| Explicit source manifest/hash binding | HOLD |
+| Explicit dump SHA-256 binding | HOLD |
 | Row-level normalized current status register | HOLD |
 
 ## Gate Result
 
-`EC-05 = HOLD`
+```text
+EC-05 = HOLD
+DR-GAP-008 = OPEN
+```
 
-`DR-GAP-008 = OPEN`
+Historical mapping evidence remains valid as historical forensic evidence, but cannot be promoted to current certification solely because its row count remains 27,682.
 
-Historical mapping evidence remains valid as historical forensic evidence, but it cannot be promoted to current certification solely because the row count remains 27,682.
+## Rebind Procedure If Current Artifact Remains Unlocated
 
-## Next Control
+Without modifying source or database:
 
-Do not represent EC-06 as sequentially active until EC-05 current mapping lineage is inspectable.
+1. choose the canonical source manifest/evidence reference;
+2. choose the identified dump SHA-256;
+3. ingest the historical row-level mapping only as an input candidate;
+4. re-evaluate every row against the selected source/dump evidence;
+5. emit the normalized current status taxonomy;
+6. generate a new mapping artifact timestamp + SHA-256;
+7. record lineage from each output row to source/dump evidence;
+8. independently verify arithmetic and sample semantics;
+9. preserve the historical mapping unchanged.
 
-Permitted preparation while HOLD:
+This procedure is evidence regeneration/reconciliation only; it is not target-schema design or migration-engine implementation.
 
-- retain normalized status taxonomy;
-- identify exact missing mapping evidence fields;
-- locate the current mapping register from existing Team A / Mapping evidence stores;
-- prepare a rebind/reconciliation procedure without changing source or database.
+## Sequential Control
 
-No source code reuse, target schema freeze, migration implementation, merge, release, or deployment is authorized.
+EC-06 may remain prepared but is not represented as sequentially active/passed while EC-05 is HOLD. EC-03 also remains the current upstream sequential gate.
+
+`No Evidence = No Progress.`
