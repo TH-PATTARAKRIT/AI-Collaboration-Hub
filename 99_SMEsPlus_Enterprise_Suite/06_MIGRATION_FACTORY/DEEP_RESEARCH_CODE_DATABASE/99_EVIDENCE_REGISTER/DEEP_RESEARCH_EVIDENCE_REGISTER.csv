@@ -1,0 +1,1 @@
+evidence_id,research_item_id,phase,domain_id,evidence_type,artifact_name,artifact_path,artifact_version,artifact_timestamp,sha256,source_system,access_status,lineage_status,scope_status,owner,evidence_location,reviewer,verifier,verification_status,gate_impact,notes
