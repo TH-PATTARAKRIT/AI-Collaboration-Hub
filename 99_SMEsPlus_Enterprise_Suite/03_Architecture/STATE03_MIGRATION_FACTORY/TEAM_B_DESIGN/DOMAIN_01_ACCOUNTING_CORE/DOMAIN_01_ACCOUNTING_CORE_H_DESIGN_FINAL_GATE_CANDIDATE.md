@@ -168,16 +168,19 @@ STEP %    : TBD / BASELINE LINKAGE REQUIRED
 ## Gate Status
 
 ```
-DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND 2 APPLIED
-PENDING: verified push of the Round 2 corrective-round commit
+DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND 2 APPLIED AND PUSHED
+READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 2 corrections)
 ```
+
+Round 2 corrective commit `06676d17e018397c262644d652fefc00639dab2a` pushed to
+`TH-PATTARAKRIT/AI-Collaboration-Hub`, branch `SMEsPlus`, and independently verified two ways
+(fresh `git fetch` + `rev-parse` match, and a direct GitHub API commit lookup bypassing local
+git). Full evidence: [N — Closure Evidence](DOMAIN_01_ACCOUNTING_CORE_N_CORR_B2_CLOSURE_EVIDENCE.md).
 
 Superseded prior statuses (kept visible, not deleted): "READY FOR CHATGPT INDEPENDENT DESIGN
 AUDIT" (true as of `6c18dd323...`/`727b5300...`) → returned by Round 1 audit → "READY FOR
 CHATGPT INDEPENDENT RE-AUDIT" (true as of `552934d78...`/`4e279c748...`) → returned by Round 2
-re-audit. This line will be updated again, in place, once the Round 2 corrective commit is
-pushed and independently verified against `origin/SMEsPlus`, at which point the status
-becomes **READY FOR CHATGPT INDEPENDENT RE-AUDIT** for Round 2's corrections specifically.
+re-audit → this status, true as of `06676d17e...`, specifically for Round 2's corrections.
 
 ## Open Assumptions — Explicitly Not Resolved by This Report
 

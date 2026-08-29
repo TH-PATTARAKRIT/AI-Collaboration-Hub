@@ -6,7 +6,7 @@
 | Branch | SMEsPlus |
 | Starting SHA (Round-1 closure this round corrects forward from) | `4e279c748cb5f07e7518eb5340bd92c8973fb6bf` |
 | Repository tip when Round 2 began (M audit + N/A directive publications) | `8a6ee11729b85320d770300a9df6ac92d2893bb1` |
-| Final commit SHA | *(recorded immediately below, filled in after commit)* |
+| Final commit SHA | `06676d17e018397c262644d652fefc00639dab2a` |
 | Owner role | Team B — Independent Clean-Room Design Executor (Claude Sonnet 5) |
 | Evidence timestamp | 2026-08-29 (session SMEPLUS-26-08-29-MIG-B-D01-CORR2-001) |
 
@@ -81,6 +81,9 @@ Next authority:    ChatGPT Independent Re-Audit (of Round 2's corrections)
 ## Push Record
 
 ```
-Final commit SHA : (recorded below, immediately after commit)
-Push             : (recorded below, immediately after push and independent verification)
+Final commit SHA : 06676d17e018397c262644d652fefc00639dab2a
+Push             : VERIFIED — two independent methods:
+                    (1) git fetch + rev-parse origin/SMEsPlus == local HEAD
+                    (2) GitHub API direct commit lookup (bypassing local git),
+                        sha and full commit message both confirmed matching
 ```
