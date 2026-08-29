@@ -67,16 +67,21 @@ production is not optional or configurable:
 | `Consumed` | Any recorded downstream-consumption trigger fires against a COMMITTED entry (§4) | ...the consuming action itself later fails or is retracted — the fact that consumption was *attempted/recorded* stays on the trail |
 | `PeriodClosed` | CAP-04 locks an **ordinary Period** to new Posting/Amendment — corrected at CORR-B2-03: this is a posting lock only, never a Revenue/Expense reset or Current Earnings transfer (that is `FiscalYearClosed`, below) | — |
 | `PeriodReopened` *(added at CORR-B01)* | An authorized CO-08 action reopens a closed **ordinary Period** | ...no entry in it ends up amendable, because every one of them was independently consumed — the event is still recorded, since the reopen itself is the auditable fact, regardless of its practical effect |
-| `FiscalYearClosed` *(added at CORR-B2-03/04, distinguished from `PeriodClosed`)* | CAP-09 (redefined) commits the one Current-Earnings-transfer Entry (MP-11) that closes a Fiscal Year | — |
+| `FiscalYearClosed` *(added at CORR-B2-03/04; corrected at CORR-B3-05 — no longer posts any Entry)* | An authorized action locks the whole Fiscal Year (extending Period Lock's scope) and declares it closed for reporting purposes. **Posts no financial Entry** — Current Earnings becomes part of Reported Retained Earnings via B07 §1e's derived formula, not through anything CAP-02 commits | — |
 | `Remeasured` | CAP-06 produces a remeasurement adjustment | — |
 
 **`CarriedForward` removed at CORR-B2-03/04, deliberately, not silently.** Round 1 listed
 this as the event produced when CAP-09 posts an opening-balance fact at ordinary Period
 close. Per B07 §1d's corrected model, ordinary carry-forward is now **implicit** — nothing is
-posted, so there is no event to record. The one genuine posted fact Fiscal Year Close
-produces is fully covered by `FiscalYearClosed` above (which triggers MP-11's Entry, itself
-producing an ordinary `Posted` event like any other Entry — no separate event type is needed
-for the Entry itself, only for the Fiscal-Year-Close *action* that authorizes posting it).
+posted, so there is no event to record.
+
+**`FiscalYearClosed` corrected again at CORR-B3-05 — it never produced a posted Entry either,
+despite what the Round-2 text here claimed.** The Round-2 version of this note said Fiscal
+Year Close's "one genuine posted fact... triggers MP-11's Entry, itself producing an ordinary
+`Posted` event" — this was the same error `M-AUD-07` found in B08 MP-11 directly, repeated
+here. Corrected: `FiscalYearClosed` is a pure declaration/lock event, structurally identical
+in kind to `PeriodClosed` (just wider in scope), and produces no `Posted` event because it
+posts nothing.
 
 ### 3a. Correction vs. Restatement — Which Applies *(new, added at CORR-B2-01/02)*
 
@@ -102,22 +107,131 @@ Mode 1 (B08, corrected) filters by Recorded At, not Effective Date — a Restate
 Effective Date can change Mode-2 ("current/restated") results but structurally cannot change
 any Mode-1 ("as originally known") result for a time before the Restatement was Recorded.
 
-**Correcting an error discovered in an already-closed Fiscal Year — corrected once already
-within this same round, kept visible.** An earlier draft of this paragraph required a
-mandatory "Prior Period Adjustment" line backdated against Retained Earnings whenever a
-Restatement's target Fiscal Year had already closed. Working through
-[B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 11 with real numbers found that
-requirement over-engineered and unnecessary: **the simpler, standard treatment is sufficient
-and is what this design requires instead.** An error discovered after its Fiscal Year has
-closed is recognized as an **ordinary, current-dated Entry** against a current-period
-Revenue/Expense account (the well-established "current-period recognition of a prior-period
-error" treatment) — this alone keeps today's Balance Sheet correct, with no special clearing
-mechanism needed, because both sides of the expanded equation (MP-02) move together in the
-*current* Fiscal Year. The Restatement classification test (first part of this section)
-still applies exactly as stated, and remains available — at CO-15's stricter tier — for the
-separate, comparative-reporting purpose of showing what the *prior* year's figures would look
-like restated (Mode 2 query, backdated Effective Date); it is simply not *required* for
-current Balance Sheet correctness, which was this paragraph's original, mistaken premise.
+**Correcting an error discovered in an already-closed Fiscal Year — corrected TWICE now
+within this same document, both versions kept visible, not deleted.** An earlier draft
+required a mandatory "Prior Period Adjustment" line backdated against Retained Earnings
+whenever a Restatement's target Fiscal Year had already closed; [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md)
+Test 11 found that over-engineered and replaced it with a second claim: that an **ordinary,
+current-dated Entry** against current-period Revenue/Expense is *sufficient* treatment,
+universally, for any error discovered after its Fiscal Year closed. **ChatGPT's Round 3 audit
+(`M-AUD-06`) correctly found this second claim wrong too** — not over-engineered this time,
+but under-engineered: it silently assumed every such error is *immaterial*, when IAS 8
+(verified against the primary standard text, not memory) draws a hard line at materiality
+that this design had simply never represented. **Corrected now, per §3b below:** whether an
+ordinary current-dated Entry is acceptable, or whether mandatory retrospective Restatement
+(backdated into the actual erroneous period, excluded from current-period P&L) is required
+instead, depends entirely on a materiality judgment this domain's design does not — and per
+the standard itself, must not — make on anyone's behalf. The Restatement classification test
+(first part of this section) is unchanged and still correctly identifies *when* a correction
+is backdated into a consumed period; §3b adds the further, IAS-8-required question of
+*whether backdating is optional or mandatory* for that correction.
+
+### 3b. Error vs. Estimate vs. Formal Restatement — IAS 8 Classification *(new, added at CORR-B3-01/02)*
+
+Grounded in IAS 8 *Accounting Policies, Changes in Accounting Estimates and Errors*
+(primary source fetched and read this round, not recalled from memory — paragraph
+references below are to that text). Thailand's TAS 8 is described, in secondary sources, as
+substantively aligned with IAS 8 following TFAC's 2023-bound-volume revisions; this design
+cites IAS 8 as the primary authority and flags TAS 8's alignment as evidenced only at
+secondary-source confidence, not independently verified against TAS 8's own primary text —
+consistent with this project's own P1/P4 confidence discipline.
+
+**Four cases, not one, and this domain's design must route a discovery through all of them
+before deciding how to record it:**
+
+```
+DISCOVERY
+  |
+  v
+Is this a NEW piece of information/development about present status or future
+benefits (IAS 8 para 5, 34)?
+  YES -> CHANGE IN ACCOUNTING ESTIMATE. Not an error (para 34 states this explicitly).
+         Applied PROSPECTIVELY (para 36-38): recognized in the period of change (and
+         future periods, if the change affects both) via an ordinary, current-dated
+         Entry. This is this domain's EXISTING ordinary-Entry machinery, unchanged,
+         and is the CORRECT treatment for this case -- not every "ordinary Entry"
+         answer from Round 2 was wrong, only its universal application to errors.
+  NO, this is a failure to use (or misuse of) reliable information that WAS
+  available when the affected period's statements were authorized (para 5's
+  definition, quoted precisely, not paraphrased loosely) -> ERROR. Continue below.
+  |
+  v
+Were the affected period's own financial statements already authorized for issue
+when this was discovered?
+  NO (still the current, not-yet-authorized period) -> CURRENT-PERIOD ERROR
+         (para 41). Corrected before authorization, via this domain's existing
+         Amendment (if unconsumed) or Correction (if consumed) machinery --
+         unchanged, and correct for this case.
+  YES -> PRIOR-PERIOD ERROR. Continue below.
+  |
+  v
+Is the error MATERIAL (IAS 1 para 7's definition, as IAS 8 para 5 adopts it --
+a qualitative, judgment-based test; this design does NOT compute, infer, or
+default a numeric threshold, per this round's explicit instruction)?
+  This is a POLICY/JUDGMENT INPUT to this domain's design, supplied by whoever is
+  authorized to make it (CO-16, B09, new) -- never guessed, never defaulted to
+  either answer by this domain's own logic.
+  |
+  +-- IMMATERIAL -> may be corrected via an ordinary, current-dated Entry (the
+  |    Round-2 Test 11 treatment remains valid, but ONLY for this narrower case).
+  |
+  +-- MATERIAL -> MANDATORY Retrospective Restatement (para 42), continue to
+       B04 §3c/B08 for the mechanics -- an ordinary current-dated Entry against
+       current-period Revenue/Expense is NOT an available treatment for this case.
+```
+
+### 3c. Material Prior-Period Error — Retrospective Restatement Mechanics *(new, added at CORR-B3-02/03/04)*
+
+For a Material Prior-Period Error (§3b), this domain's design requires, mapped directly onto
+IAS 8's own structure (paragraphs cited, not invented):
+
+1. **Ordinary case (para 42(a)):** a Restatement (§3a) is created with Effective Date
+   backdated into the actual period(s) the error occurred in, among the comparative periods
+   this domain's design presents. This changes MP-09 Mode 2 for those periods — "restating
+   the comparative amounts for the prior period(s) presented in which the error occurred" is
+   exactly what a backdated Restatement, as already designed in §3a, produces.
+2. **Error predates the earliest comparative period presented (para 42(b)):** the Restatement
+   instead targets the *opening* Balance Sheet position of the earliest presented comparative
+   period. Under B07 §1e's derived Reported-Retained-Earnings formula, this requires no new
+   mechanism — restating an earlier-still Fiscal Year's Current Earnings (via the same
+   Restatement, backdated further) automatically changes every later period's opening
+   position, because §1e's formula sums *every* closed Fiscal Year's (current) Current
+   Earnings, not just the one directly targeted.
+3. **Always excluded from current-period P&L (para 41/46):** BR-07/CO-15's existing
+   Restatement-authorization gate already prevents a Restatement from being silently confused
+   with an ordinary Correction; this domain's design additionally requires that a *Material*
+   Prior-Period Error's Restatement is **never** satisfied by an ordinary current-dated Entry
+   — §3b's decision tree makes this the only path once "material" is the judgment reached.
+4. **Impracticable to determine period-specific effects for one or more presented prior
+   periods (para 43/44):** the Restatement targets the *earliest period for which retrospective
+   restatement is practicable* instead — which "may be the current period" (para 44's own
+   words) if nothing earlier is practicable. This domain's design does not fabricate a
+   period-specific figure it cannot actually support with evidence — practicability is itself
+   a judgment input (CO-16), not something this domain computes.
+5. **Impracticable to determine the cumulative effect at the start of the current period
+   (para 45):** the Restatement instead corrects prospectively from the earliest date
+   practicable — i.e., a Restatement whose Effective Date is the earliest practicable point,
+   not a fabricated reconstruction of the full historical chain.
+6. **No hindsight (para 53):** a Restatement's content must reflect only what was knowable —
+   evidence of circumstances that existed at the time, available when the original period's
+   statements were authorized — never information that only became available afterward. This
+   domain's design does not verify this substantively (it is a content-quality question for
+   whoever prepares the Restatement, not something CAP-02 can check), but states it as an
+   explicit design expectation rather than leaving it unmentioned.
+
+None of this requires new machinery beyond what §3a (Restatement) and B07 §1c (Effective
+Date/Recorded At) and §1e (Reported Retained Earnings) already provide — IAS 8 compliance is
+achieved by using the *existing* temporal and Restatement model correctly and completely,
+not by adding a parallel mechanism.
+
+**Why this is a design decision this domain must encode, not a judgment call left silently
+implicit:** IAS 8 para 41 states plainly that material prior-period errors are excluded from
+current-period profit or loss precisely because discovery happened in the current period —
+the Round-2 design's failure was treating "discovered now" as sufficient justification for
+"recognized now," which is exactly the reasoning the standard rules out. Para 46 states the
+correction of a prior period error is excluded from profit or loss for the period in which
+the error is discovered — stated here as the specific, load-bearing sentence that closes
+`M-AUD-06`, cited rather than paraphrased into something weaker.
 
 ## 4. The Consumption Gate — The Core Design Decision
 

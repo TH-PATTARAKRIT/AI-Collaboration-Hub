@@ -7,6 +7,7 @@
 | Scope | Source-neutral — applies to migration from *any* source system, not written against the reference system's specific shape |
 | Hard rule | **No source-system internal identifier is ever used as this domain's own identity** (B07 §4) |
 | **Corrected (Round 2)** | **CORR-B2-03/04 (2026-08-29)** — MG-C03/C04/C07 re-verified against B07 §1c/§1d's corrected temporal model and confirmed still accurate (not weakened); MG-C14 added to address a new question the model raises: what a migrated Entry's Recorded At should be. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
+| **Re-verified (Round 3, light touch)** | **CORR-B3-04 (2026-08-29)** — checked against B04 §3b/§3c's new IAS 8 error/restatement classification and B07 §1e/B08 MP-11's no-posted-close rewrite (`M-AUD-06`/`M-AUD-07`). MG-C03 confirmed still accurate and unweakened: migration opening balance remains an ordinary, MP-01-governed Entry dated at cutover — structurally unrelated to Fiscal Year Close (which now posts no Entry at all, B08 MP-11) and unrelated to Prior-Period Error restatement (B04 §3c, which restates comparative *reporting*, never re-opens or re-dates the migration cutover Entry itself). No rewrite required; see [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) Test 13 for the worked confirmation. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 
 | ID | Area | Canonical Requirement | Rationale |
 |---|---|---|---|
@@ -43,6 +44,9 @@ No source internal ID used as identity : CONFIRMED (MG-C01, MG-C08)
 MG-C13 added post-hoc via B16 red-team review (13th item, beyond the 12 mandated) : CONFIRMED
 MG-C14 added at CORR-B2-03/04 (14th item, Recorded-At scope for migration)        : CONFIRMED
 MG-C03/C04/C07 re-verified against B07 §1c/§1d's Round-2 temporal model, unweakened : CONFIRMED
+MG-C03 re-verified against B04 §3b/§3c and B08 MP-11's Round-3 no-posted-close/
+  restatement model, unweakened, no rewrite required (CORR-B3-04)                  : CONFIRMED
 ```
 
-**B10 = COMPLETE.**
+**B10 = COMPLETE.** *(Re-verified, not rewritten, at CORR-B3-04 — see header. All 14 items
+unchanged in substance since Round 2.)*

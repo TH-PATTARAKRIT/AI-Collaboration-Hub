@@ -6,6 +6,7 @@
 | Phase | B9 — Control & Audit Design Objectives |
 | Scope | Design objectives only. No access-control code, permission schema, or role table below. |
 | **Corrected (Round 2)** | **CORR-B2-01/02 (2026-08-29)** — CO-14/CO-15 added, required by B08/B04's temporal-model and Restatement corrections. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 3)** | **CORR-B3-04 (2026-08-29)** — CO-16 added (materiality is a policy input, never computed or invented by this domain's design), required by B04 §3b/§3c's new IAS 8 classification, which references CO-16 by name. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 
 ## CO-01 — Authorization
 
@@ -189,6 +190,30 @@ higher bar rather than inheriting Correction's low-friction tier by default.
 **Basis:** `M-AUD-04`'s acceptance requirement that formal restatement be "explicit,
 auditable, and separately reconstructable" — no direct Team A source ID.
 
+## CO-16 — Materiality Is a Policy Input, Never a Computed or Invented Threshold *(added at CORR-B3-04)*
+
+**Objective:** whether a Prior-Period Error is **Material** or **Immaterial** (B04 §3b's
+classification decision tree) is never computed, defaulted, or invented by this domain's
+design — no numeric threshold (percentage of Revenue, absolute currency amount, or any other
+formula) is proposed anywhere in this design pack. Materiality is supplied, per correction, as
+an explicit judgment input from an authorized role (a Controller, CFO, or equivalent
+policy-setting authority — the specific role is a Boss-level/organizational decision, not a
+Team B design decision), and that judgment — who made it, when, and what it was — is itself an
+auditable fact (CO-07) attached to the classification.
+**Why this control exists, not just the classification concept in B04:** without a named
+control objective, a future implementation could "helpfully" fill the gap with an invented
+default threshold, which would silently convert a required professional judgment (IAS 8 itself
+defines materiality only qualitatively — see IAS 8 para 5's cross-reference to the
+Framework/IAS 1, and states no numeric bright line) into a false sense of automation. This
+control exists specifically to block that failure mode at the design level, the same way CO-06
+blocks "the safe path becomes the harder one" as a design-level failure mode rather than
+trusting implementation discipline alone.
+**Basis:** `M-AUD-06`'s underlying finding and IAS 8 (verified from primary-source PDF text)
+paras 5, 41 — materiality is defined by reference to whether omission/misstatement could
+influence users' economic decisions, a qualitative judgment test, never a formula. No direct
+Team A source ID, since this control did not exist before this domain's own Round 3
+correction.
+
 ## Acceptance Check
 
 ```
@@ -201,6 +226,10 @@ No objective overclaims regulatory scope beyond B01 §7/§11 : CONFIRMED (CO-07,
   explicitly separate "this domain's own design choice" from "confirmed legal requirement")
 CO-13 added post-hoc via B16 red-team review (13th item, beyond the 12 mandated) : CONFIRMED
 CO-14/CO-15 added at CORR-B2-01/02 (14th/15th items, temporal model + Restatement) : CONFIRMED
+CO-16 added at CORR-B3-04 (16th item, materiality as policy input, never computed) : CONFIRMED
+  — directly closes the risk that a future implementation invents a numeric materiality
+  threshold this design never authorized
 ```
 
-**B9 = COMPLETE.**
+**B9 = COMPLETE.** *(Corrected at CORR-B2-01/02/CORR-B3-04 — CO-14/CO-15 added Round 2, CO-16
+added Round 3. CO-01..13 unchanged since their respective original passes.)*

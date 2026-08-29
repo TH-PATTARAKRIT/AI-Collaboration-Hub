@@ -108,6 +108,37 @@ line that turned out to be unnecessary once worked through with real numbers). T
 regression built specifically to catch defects also self-corrected mid-construction is treated
 here as the process working precisely as intended, at every level, not as a further concern.
 
+## 4c. Addendum — It Happened a Third Time *(added at CORR-B3-01..08)*
+
+A third independent re-audit found two more findings the Round-2 corrective round — including
+its own focused regression, B19 — did not catch: B19 Test 11's own conclusion ("an ordinary
+current-dated Entry is always sufficient" for a Restatement crossing a closed Fiscal Year
+boundary) was never tested against materiality at all, and MP-11 (introduced *by* Round 2's own
+correction) directly contradicted this same design's repeated "Revenue/Expense never reset by a
+posted action" claim while also being a genuine arithmetic bug. Three things are worth stating
+plainly, continuing §4a/§4b's pattern rather than treating each round's fix as evidence the
+underlying blind spot has closed:
+
+**First**, this is now the third time this domain's own review process has missed a defect that
+independent re-audit found on its first attempt at that specific defect — B16's red-team, then
+B18's regression, then B19's regression, each caught real things within their own scope and
+each still missed something an outside perspective found immediately after. This is no longer
+surprising, and treating it as surprising each time would itself be a failure to learn from
+§3's original prediction and §4b's confirmation of it. **Second**, one of this round's two
+findings (`M-AUD-07`) was introduced by Round 2's OWN corrective fix — MP-11 did not exist
+before CORR-B2-03/04; the mechanism built to fix `M-AUD-05` is what created the contradiction
+`M-AUD-07` then found. A corrective round is not risk-free simply because it fixes a real,
+correctly-identified problem — the fix itself is new design surface that needs the same
+adversarial scrutiny as anything else, and in this case needed a further round to get right.
+**Third**, this round's own regression (B20) again self-corrected mid-construction — while
+working Tests 4/5 with real numbers, B07 §1e's formula was found arithmetically already correct
+for an impracticability adjustment, but not stated explicitly enough to be obviously so,
+and was annotated as a direct result. A fourth consecutive round of "the regression built to
+verify this round's fix also independently improved on its own first draft" is, at this point,
+evidence about this project's process (real regression testing reliably finds something,
+every single round, when the numbers are actually worked rather than asserted) more than it is
+evidence about this specific correction's quality — both are true, and both are recorded.
+
 ## 5. Verdict
 
 ```
@@ -116,9 +147,15 @@ CORRECTIVE ROUND 1 APPLIED (CORR-B01/B02/B03) — 3 BLOCKING defects found by in
   corrected; 1 further precision gap found and fixed during focused regression (B18)
 CORRECTIVE ROUND 2 APPLIED (CORR-B2-01..05) — 2 more BLOCKING defects found by independent
   re-audit, corrected; regression (B19) self-corrected one over-engineered requirement
-Design internally coherent, self-corrected where found lacking twice over, honestly bounded
-Not independently re-verified since Round 2's correction — that is ChatGPT re-audit's role next
+CORRECTIVE ROUND 3 APPLIED (CORR-B3-01..08) — 2 more findings found by independent re-audit
+  (one of which was introduced by Round 2's own fix), corrected; regression (B20)
+  self-corrected one formula-documentation gap
+Design internally coherent, self-corrected where found lacking three times over, honestly
+  bounded — including the honest observation that self-correction alone has never yet been
+  sufficient without an independent pass finding something further
+Not independently re-verified since Round 3's correction — that is ChatGPT re-audit's role next
 Not Final Pass — Boss and ChatGPT re-audit remain outstanding
 ```
 
-**Self-review complete, corrective addendum applied. Proceeding to Final Gate Candidate (H).**
+**Self-review complete, corrective addendum applied (three rounds). Proceeding to Final Gate
+Candidate (H).**

@@ -7,6 +7,7 @@
 | Status | **Team B recommendation only. None of the recommendations below are approved design until Boss Final Gate.** |
 | **Corrected** | **CORR-B01 / CORR-B03 (2026-08-29)** — DT-02 revised: ChatGPT's independent audit found the original recommendation internally contradictory, not merely one reasonable option among others (see DT-02 below for the full account, kept visible). DT-07 added for the historical-void design choice CORR-B03 required. |
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04 (2026-08-29)** — DT-08 (Continuous vs. Segmented Ledger) and DT-09 (backdating rules) added, required by ChatGPT's Round 2 findings `M-AUD-04`/`M-AUD-05`. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 3)** | **CORR-B3-05 (2026-08-29)** — DT-10 added (posted Fiscal-Year-Close Entry vs. no-posted-close derived-formula model for MP-11), required by ChatGPT's Round 3 finding `M-AUD-07`. DT-08's Option A description carried a now-superseded implementation detail (the posted MP-11 Entry) — annotated below, not silently edited; the Continuous-vs-Segmented decision itself is unaffected. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 
 Originally six, then seven, now **nine**, decisions were significant enough — either because
 B04–B12 flagged them as assumptions requiring gate review, or because a real, defensible
@@ -252,9 +253,12 @@ alongside the other six.
 carry-forward models before choosing one.
 
 - **Option A — Continuous Ledger (adopted).** Asset/Liability/Equity accounts accumulate
-  all-time (MP-09); ordinary Period close is a posting lock only; Fiscal Year Close posts
-  exactly one Current-Earnings-transfer Entry (MP-11); Revenue/Expense are Fiscal-Year-bounded
-  by the aggregation formula itself, not reset by any posted action. Benefit: no
+  all-time (MP-09); ordinary Period close is a posting lock only; ~~Fiscal Year Close posts
+  exactly one Current-Earnings-transfer Entry (MP-11);~~ **corrected at CORR-B3-05: Fiscal
+  Year Close posts no Entry — Current Earnings becomes part of Reported Retained Earnings via
+  a derived formula, B07 §1e/B08 MP-11 as rewritten; see DT-10 below for that specific
+  decision.** Revenue/Expense are Fiscal-Year-bounded by the aggregation formula itself, not
+  reset by any posted action — this part was correct in Round 2 and is unchanged. Benefit: no
   opening-balance Entry is ever created for Balance Sheet categories, so there is nothing to
   double-count with historical activity — the double-counting risk is eliminated structurally,
   not managed procedurally. Risk: none identified that Option B avoids while Option A does not
@@ -325,6 +329,61 @@ choice among equals.
 
 ---
 
+## DT-10 — Fiscal Year Close: Posted Closing Entry vs. Derived Reporting Formula *(new, added at CORR-B3-05)*
+
+**Context:** ChatGPT's Round 3 audit (`M-AUD-07`) found MP-11 (as drafted at CORR-B2-03/04)
+internally contradictory — it described a posted Entry debiting Revenue and crediting Expense,
+directly conflicting with this same design's repeated claim that Revenue/Expense are never
+reset by a posted action — and, traced literally, a genuine arithmetic bug (such an Entry,
+dated within the year it closes, would corrupt that year's own historical MP-09 query). The
+audit's own direction was explicit: resolve by choosing exactly one coherent model, not by
+retaining both. Two candidate models were compared.
+
+- **Option A — Posted Fiscal-Year-Close Entry (Round 2's model, superseded).** Fiscal Year
+  Close commits exactly one ordinary, balanced Entry: debit every Revenue account, credit every
+  Expense account, net difference (Current Earnings) posted to a designated Equity account.
+  Benefit: conceptually familiar (mirrors a traditional manual "closing entry" bookkeeping
+  step); Equity's new balance is a stored fact, not a computation, so any consumer reading
+  Equity directly sees the post-close figure with no formula to evaluate. Risk (fatal, not
+  merely a tradeoff): the Entry's own Effective Date necessarily falls either inside the
+  closing Fiscal Year (corrupting that year's own MP-09 query, per `M-AUD-07`'s traced defect)
+  or inside the new Fiscal Year (posting into the NEW year's Revenue/Expense, which is exactly
+  the "never reset by a posted action" claim being violated, just shifted one day forward) —
+  there is no dating choice under Option A that avoids one of these two defects, because the
+  defect is structural to positing an Entry at all, not a wording problem.
+- **Option B — Derived Reporting Formula, no posted Entry (adopted).** Fiscal Year Close posts
+  no Entry. It is a purely declarative Audit Event (`FiscalYearClosed`, B04) marking a Fiscal
+  Year's Current Earnings as closed. Reported Retained Earnings (B07 §1e, new) is computed at
+  report time as the formally-designated Retained Earnings account's own direct-posting balance
+  plus the sum, over every closed Fiscal Year, of that year's Current Earnings (MP-09 Mode 2,
+  Fiscal-Year-bounded). Benefit: structurally immune to both of Option A's defects — there is no
+  Entry to mis-date, so no historical query can ever be corrupted by the close action itself,
+  and Revenue/Expense truly are never reset by any posted action, resolving the contradiction
+  exactly as `M-AUD-07` required. A later Restatement (B04 §3c) of a closed Fiscal Year's
+  Current Earnings flows through Reported Retained Earnings automatically, with no separate
+  "prior period adjustment" entry needed — the same property B19 Test 11 originally (if for the
+  wrong, unqualified reason) concluded. Risk: Equity is no longer a single stored balance a
+  naive query can read directly — any consumer that wants "current Equity including all closed
+  earnings" must evaluate the formula (or a maintained, explicitly-derived materialized view of
+  it), not just sum one account. This is a real implementation-complexity cost, not a modeling
+  flaw — it is the same category of cost MP-09 Mode 1/Mode 2 already impose for temporal
+  correctness, and is judged worth paying for the same reason: correctness over convenience.
+
+| | Accounting correctness | Auditability | Complexity | Migration impact | Multi-company | SaaS impact | Maintainability | Advancement potential |
+|---|---|---|---|---|---|---|---|---|
+| A (superseded) | **Incorrect** — internally contradictory, and a genuine arithmetic bug under this domain's own aggregation model; no dating choice rescues it | Medium — the closing Entry is itself auditable, but its presence actively misleads a reader of the closing year's own history | Lower on paper, but only because the defect is hidden rather than absent | Neutral | Neutral | Neutral | Low — every future reader must re-discover why the closing Entry looks like it corrupts YTD figures | Does not resolve `M-AUD-07`; would need re-correcting again |
+| B (adopted) | Correct by construction — no posted fact exists that could ever corrupt a historical query or contradict the never-reset claim | Highest — one declarative event, one formula, both fully traceable | Higher implementation cost (a derived figure, possibly requiring a materialized view) but lower conceptual cost (fewer contradictory claims to reconcile) | Neutral — MG-C03 unaffected (re-verified, B10) | Neutral | Neutral | Highest | Directly resolves `M-AUD-07`; also retroactively validates B19 Test 11's original conclusion with a correct rationale |
+
+**Recommendation:** **Option B**, with high confidence — Option A was not a reasonable
+alternative retained for balance; it is the specific defect this correction exists to remove,
+and no variant of it (including changing the Entry's date) avoids the underlying structural
+problem. **Not independently approved by Boss** — flagged for Final Gate; this is a required
+fix to satisfy `M-AUD-07`'s explicit acceptance requirement (resolve the contradiction by
+choosing exactly one coherent model), the same category as DT-02's Round-1 resolution and
+DT-08/DT-09's Round-2 resolutions.
+
+---
+
 ## Acceptance Check
 
 ```
@@ -332,9 +391,12 @@ No decision jumped directly to one design without showing alternatives : CONFIRM
 Every recommendation marked as Team B-only, not approved              : CONFIRMED
 Rejected options retained (not deleted) to show they were considered   : CONFIRMED (DT-02
   original Option A, DT-03 Option C, DT-06 Option B, DT-07 Option B, DT-08 Option B,
-  DT-09 Option C)
+  DT-09 Option C, DT-10 Option A)
 ```
 
-**B13 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-03/04 — DT-02 revised in place with the
-original recommendation kept visible and explicitly withdrawn as incoherent, not silently
-replaced; DT-07 is new. DT-01, DT-03..06 are unchanged from the original B13 pass.)*
+**B13 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-03/04/CORR-B3-05 — DT-02 revised
+in place with the original recommendation kept visible and explicitly withdrawn as incoherent,
+not silently replaced; DT-07 new at Round 1 close-out, DT-08/DT-09 new at Round 2, DT-10 new
+this round. DT-01, DT-03..06 are unchanged from the original B13 pass. DT-08's Option A
+description carries a Round-3 annotation correcting a stale implementation detail; the
+Continuous-vs-Segmented decision itself is unaffected.)*

@@ -7,6 +7,7 @@
 | Method | Starts from Team A's INV-01..06 (`04_BUSINESS_INVARIANT_REGISTER.md`), independently re-evaluated against this domain's own B02–B04 design, plus six independently justified additions |
 | **Corrected** | **CORR-B01 / CORR-B02 / CORR-B03 (2026-08-29)** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) prompted corrections to BINV-06 (period-close no longer a Consumption trigger, per B04 §4), BINV-10 (now explicitly states the Current Earnings transfer that makes MP-02's corrected proof hold post-closing), and a new BINV-11 (historical as-of reproducibility). See [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found BINV-11's Round-1 guarantee insufficient against backdated Corrections (`M-AUD-04`) and BINV-10's "Period close" scope overgeneralized Team A's year-end-specific evidence (`M-AUD-05`). BINV-10 and BINV-11 both substantially rewritten below; new BINV-12 added (Recorded At immutability — the mechanism BINV-11's Round-2 guarantee depends on). See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 3)** | **CORR-B3-04/05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) found BINV-10's Round-2 text still described Fiscal Year Close as posting a Current-Earnings-transfer Entry (`M-AUD-07`), and found no invariant guaranteed IAS 8's mandatory exclusion of material prior-period errors from current-period profit or loss (`M-AUD-06`). BINV-10 rewritten again below (no-posted-close model); new BINV-13 added (material prior-period error P&L exclusion). See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 
 ## 1. Independent Evaluation Method
 
@@ -299,6 +300,63 @@ Residual assumption:    The year-end closing *process* that triggers this comput
                         particular closing procedure achieves it.
 ```
 
+```
+ROUND 3 CORRECTION (CORR-B3-05, kept visible — do not delete the Round 2 statement above):
+ChatGPT's Round 3 audit (`M-AUD-07`) found the Round-2 statement above still describes Fiscal
+Year Close as posting "exactly one Entry (MP-11) transferring Current Earnings ... into a
+designated formal Equity account." This directly contradicts the same statement's own next
+sentence ("Revenue/Expense accounts are never 'reset' by any posted action") — MP-11 as
+originally drafted was literally a Revenue/Expense-resetting Entry — and, traced through MP-09's
+all-time-but-category-bounded aggregation, would corrupt the closing Fiscal Year's own
+historical query (an Entry dated inside the year it closes changes what MP-09 Mode 1/Mode 2
+compute for any as-of date within that year). The independent statement is corrected below.
+
+Independent statement (superseding the Round 2 text above):
+                        **Fiscal Year Close posts NO Entry at all.** It is a purely declarative
+                        Audit Event (`FiscalYearClosed`, B04, corrected at CORR-B3-05) that
+                        locks the Fiscal Year and marks its Current Earnings as closed. What
+                        was previously called the "Current-Earnings transfer" is not a posted
+                        fact but a **reporting-time derivation**: Reported Retained Earnings
+                        (B07 §1e, new) = the formally-designated Retained Earnings account's
+                        own direct-posting balance (e.g. dividend declarations) + the sum, over
+                        every closed Fiscal Year, of that year's Current Earnings computed via
+                        MP-09 Mode 2. No Entry ever debits Revenue or credits Expense to
+                        "close" a year; Revenue/Expense read zero for a new Fiscal Year purely
+                        because MP-09's aggregation is Fiscal-Year-bounded for those categories
+                        (unchanged from the Round-2 reasoning above) — carry-forward across a
+                        Fiscal Year boundary is exactly as implicit as carry-forward across an
+                        ordinary Period boundary, just additionally gated on the year being
+                        closed.
+Why required:           A posted closing Entry is not merely inelegant — it is a genuine
+                        arithmetic bug once combined with this domain's own all-time-summation
+                        model (MP-09), and it directly contradicts BINV-10's own stated
+                        Revenue/Expense-never-reset principle. Removing it removes both defects
+                        by removing the one posted fact that could ever violate them, consistent
+                        with `M-AUD-07`'s explicit direction to resolve the contradiction by
+                        choosing exactly one coherent model.
+Accounting basis:       B07 §1d/§1e (new), MP-09 Mode 1/Mode 2 (B08, unchanged mechanism),
+                        MP-11 (B08, corrected at CORR-B3-05 to match)
+Regulatory basis:       None specific — supports general statement reliability and internal
+                        consistency of the domain's own posted-fact model
+Failure consequence:    (unchanged from Round 2) a posted opening-balance Entry at ordinary
+                        Period boundaries double-counts; (Round 3 addition) a posted
+                        Fiscal-Year-Close Entry corrupts the closing year's own historical
+                        query and contradicts this domain's Revenue/Expense-never-reset claim
+                        — both are now structurally impossible because no such Entry exists.
+Enforcement objective:  Reported Retained Earnings is computed, not stored — there is no
+                        posted balance to corrupt, and no closing-Entry code path to omit,
+                        double-post, or get the sign wrong on. CAP-09 (B02, corrected) exposes
+                        only a declare-closed action, never an entry-posting action, for
+                        Fiscal Year Close.
+Evidence:               `M-AUD-07` (the corrective trigger), B07 §1e (the replacement formula),
+                        [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) Tests 9-11
+                        (numeric verification)
+Residual assumption:    Unchanged from Round 2 — the year-end closing *process* that triggers
+                        the `FiscalYearClosed` declaration was noted by Team A as
+                        unread/unobserved (MR-07); this invariant states the required outcome,
+                        not a particular UI/workflow for reaching it.
+```
+
 ### BINV-11 — Historical As-of Reproducibility *(new, added at CORR-B03; rewritten at CORR-B2-01/02)*
 
 ```
@@ -383,6 +441,60 @@ Residual assumption:    None — this is a closure requirement on this domain's 
                         (same category as BINV-07), not an external fact requiring evidence.
 ```
 
+### BINV-13 — Material Prior-Period Error P&L Exclusion *(new, added at CORR-B3-04)*
+
+```
+Independent statement: When an Entry (or Correction/Void) is classified a **Material
+                        Prior-Period Error** (B04 §3b's decision tree, grounded in IAS 8 paras
+                        5/41/46), its correction is never reported as part of the current
+                        period's profit or loss. Under Mode 2 (current/restated) aggregation,
+                        the correction's effect appears only in: (a) the restated comparative
+                        amount(s) for the specific prior period(s) presented that it affects,
+                        and (b) the opening balance of Retained Earnings (via B07 §1e's formula)
+                        for the earliest period presented, if the error predates every
+                        comparative period shown. It never appears as a line item inside the
+                        current period's own Revenue/Expense aggregation.
+Why required:           IAS 8 para 42 requires an entity to correct material prior-period
+                        errors retrospectively by restating comparative amounts, and para 46
+                        makes explicit this correction "is not included in profit or loss for
+                        the period in which the error is discovered." Without a named invariant,
+                        nothing structurally prevents a future implementation from doing the
+                        simpler thing — dumping the correction into the current period's own
+                        P&L, which is exactly the defect `M-AUD-06` found in this domain's own
+                        Round-2 design (B19 Test 11's unqualified "ordinary current-dated Entry
+                        is sufficient" conclusion).
+Accounting basis:       IAS 8 paras 41, 42, 46 (verified from primary-source PDF text, not
+                        secondary summary); TAS 8 (secondary-source confirmed alignment only —
+                        confidence distinction preserved per B14's provenance discipline)
+Regulatory basis:       IAS 8 / TAS 8 — Accounting Policies, Changes in Accounting Estimates
+                        and Errors
+Failure consequence:    A material prior-period error corrected through the current period's
+                        own P&L overstates or understates that period's genuine operating
+                        result, misleading any reader comparing current-period performance
+                        against prior periods or against budget/forecast — precisely the
+                        distortion IAS 8's retrospective-restatement requirement exists to
+                        prevent.
+Enforcement objective:  B04 §3b's classification decision tree is the enforcement mechanism —
+                        every Entry/Correction/Void must be classified before it is committed,
+                        and only the Material-Prior-Period-Error branch (§3c) reaches the
+                        restatement path described above; every other branch (current-period
+                        error, estimate change, immaterial error) is explicitly permitted to
+                        use ordinary current-dated recognition instead (B04 §3b/§3c) — this
+                        invariant does not overclaim more restriction than the standard itself
+                        requires.
+Evidence:               `M-AUD-06` (the corrective trigger), B04 §3b/§3c (the classification
+                        and mechanics), [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md)
+                        Tests 2-5 (numeric verification across the four IAS-8-driven
+                        sub-cases: ordinary material error, error before earliest comparative,
+                        both impracticability sub-cases)
+Residual assumption:    **Materiality itself is never computed or invented by this domain's
+                        design** (CO-16, B09, new) — it is supplied as a policy/judgment input
+                        by whoever authorizes the correction, consistent with IAS 8's own
+                        refusal to state a numeric threshold. This invariant is conditioned on
+                        that classification already having been made correctly; it does not
+                        itself validate the materiality judgment.
+```
+
 ## 3. Coverage Check Against Mandatory Areas
 
 ```
@@ -395,12 +507,17 @@ Auditability            : BINV-06, BINV-07, BINV-08             — COVERED (thr
                            judged insufficient to cover with a single invariant given this is
                            the domain's central weakness)
 Independently added     : BINV-09 (classification integrity), BINV-10 (continuity integrity,
-                           rewritten Round 2), BINV-11 (historical reproducibility, rewritten
-                           Round 2), BINV-12 (recording-time immutability, added Round 2)
+                           rewritten Round 2, rewritten again Round 3), BINV-11 (historical
+                           reproducibility, rewritten Round 2), BINV-12 (recording-time
+                           immutability, added Round 2), BINV-13 (material prior-period error
+                           P&L exclusion, added Round 3)
 ```
 
-**B5 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04 — see header. Corrections
-are additive to this record, not a rewrite of it: BINV-01..05, 07..09 are unchanged from the
-original B5 pass. BINV-06 was amended once (Round 1). BINV-10 and BINV-11 were each amended
-twice (Round 1, then substantially rewritten Round 2) with every prior version kept visible.
-BINV-12 is new this round.)*
+**B5 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-04/05 — see header.
+Corrections are additive to this record, not a rewrite of it: BINV-01..05, 07..09 are unchanged
+since the original B5 pass. BINV-06 was amended once (Round 1). BINV-11 was amended once
+(Round 1), then substantially rewritten (Round 2). BINV-10 was amended once (Round 1),
+substantially rewritten (Round 2), then rewritten a third time (Round 3, `M-AUD-07` —
+no-posted-close model) — every prior version kept visible at each step. BINV-12 was new at
+Round 2. BINV-13 is new this round (Round 3, `M-AUD-06` — material prior-period error P&L
+exclusion, IAS 8 paras 41/42/46).)*

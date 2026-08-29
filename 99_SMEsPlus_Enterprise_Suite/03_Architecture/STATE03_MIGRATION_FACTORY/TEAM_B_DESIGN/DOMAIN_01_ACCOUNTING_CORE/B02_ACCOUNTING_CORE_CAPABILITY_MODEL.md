@@ -6,6 +6,7 @@
 | Phase | B2 — Accounting Core Capability Model |
 | Method | Derived from business responsibility (B01 register), not from reference-system module boundaries |
 | **Corrected (Round 2)** | **CORR-B2-03/04 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`, finding `M-AUD-05`) found CAP-09 generalized Team A's year-end-specific evidence to every ordinary Period close, risking double-counted balances. CAP-09 renamed and rescoped below to Fiscal Year Close only. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 3)** | **CORR-B3-05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`, finding `M-AUD-07`) found the Round-2 text below still described CAP-09 as posting "exactly one Current-Earnings-transfer Entry" — directly contradicting the domain's own repeated claim that Revenue/Expense are never reset by a posted action, and, traced literally, a real arithmetic bug (such an Entry would corrupt the closing year's own historical query). Corrected: CAP-09 now posts **no financial Entry at all**; Current Earnings becomes part of Reported Retained Earnings through [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1e's derived reporting formula. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 
 ## 1. Framing
 
@@ -178,35 +179,57 @@ identified. Each is stated independently of how (or whether) a reference system 
 - **Downstream dependents:** internal/external audit, [B09](B09_CONTROL_AUDIT_DESIGN_OBJECTIVES.md)
   control objectives, dispute resolution.
 
-### CAP-09 — Fiscal Year Close & Earnings Transfer *(renamed and rescoped at CORR-B2-03/04, was "Period-End Carry-Forward")*
+### CAP-09 — Fiscal Year Close & Earnings Transfer *(renamed and rescoped at CORR-B2-03/04, was "Period-End Carry-Forward"; "Earnings Transfer" re-scoped again at CORR-B3-05 to mean a logical/reporting transfer, never a posted Entry)*
 
-- **What exists (corrected):** the ChatGPT Round 2 audit (`M-AUD-05`) found the original
-  version of this capability generalized Team A's year-end-specific evidence (BF-09) to
+- **What exists (corrected at CORR-B2-03/04):** the ChatGPT Round 2 audit (`M-AUD-05`) found the
+  original version of this capability generalized Team A's year-end-specific evidence (BF-09) to
   *every* ordinary Period close, and — because B08 MP-09 sums all-time — risked
   double-counting balance-sheet activity against a posted "opening balance" fact. Corrected:
-  this capability now does exactly one thing, at Fiscal Year Close only — transfer Current
+  this capability now does exactly one thing, at Fiscal Year Close only — ~~transfer Current
   Earnings (Revenue − Expenses for the closing Fiscal Year, MP-02/MP-11) into a designated
-  formal Equity account, via one ordinary, balanced Entry. Balance-sheet carry-forward across
+  formal Equity account, via one ordinary, balanced Entry.~~ Balance-sheet carry-forward across
   *ordinary* Period boundaries is **implicit** (B07 §1d) — this capability has nothing to do
   with it, and posts nothing at ordinary Period close.
+- **What exists (corrected again at CORR-B3-05):** the struck-through clause above is exactly
+  the defect the Round 3 audit (`M-AUD-07`) found — it described a posted, balanced Entry
+  debiting Revenue and crediting Expense, which contradicts this same capability's own claim
+  (previous bullet) that Revenue/Expense are never reset by a posted action, and which, traced
+  literally, would corrupt the closing Fiscal Year's own historical query (an Entry dated
+  inside the year it closes would zero out that year's own Revenue/Expense when read
+  as-of any date within it). Corrected: CAP-09 posts **no financial Entry**. It performs
+  exactly one thing at Fiscal Year Close — an authorized declaration/lock action (the
+  `FiscalYearClosed` Audit Event, [B04](B04_BUSINESS_LIFECYCLE_EVENT_MODEL.md)) that
+  (a) extends Period Lock to the whole Fiscal Year and (b) marks that year's Current Earnings
+  as closed, so it becomes eligible for inclusion in Reported Retained Earnings. The "transfer"
+  is a **reporting-time derivation** ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1e's formula
+  sums every closed Fiscal Year's Current Earnings, computed via MP-09 Mode 2), not a
+  bookkeeping action this capability performs.
 - **Why it exists:** the one thing an ordinary Period-Control lock (CAP-04) cannot itself
   represent is the genuine economic event of a fiscal year's result becoming part of
-  permanent capital — that is a real transfer, not a bookkeeping reset, and needs its own
-  capability, scoped precisely to when it actually happens (year-end), not generalized to
-  every posting-lock event.
+  permanent, reportable capital — that is a real change of status (a year moving from "open"
+  to "closed, counted in Retained Earnings"), not a bookkeeping reset or a posted transaction,
+  and needs its own capability, scoped precisely to when it actually happens (year-end), not
+  generalized to every posting-lock event.
 - **Owner:** Accounting Core.
-- **Financial truth maintained:** immediately after Fiscal Year Close, Equity includes the
-  full transferred Current Earnings, Revenue/Expense correctly read zero for the new Fiscal
+- **Financial truth maintained:** immediately after Fiscal Year Close, Reported Retained
+  Earnings (B07 §1e, a derived reporting figure — not a ledger balance) includes the closing
+  year's full Current Earnings, Revenue/Expense correctly read zero for the new Fiscal
   Year (a consequence of MP-09's category-bounded aggregation, not a separate reset action),
-  and no Balance Sheet amount is duplicated (B07 §1d; verified numerically,
-  [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 9).
+  and no Balance Sheet amount is duplicated (B07 §1d/§1e; verified numerically,
+  [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 9 and
+  [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) Tests 9-11).
 - **Inputs:** an authorized Fiscal Year Close action (a higher authorization tier than
   ordinary Period reopen, given its blast radius — CO-08 tiering extended).
-- **Outputs:** exactly one Current-Earnings-transfer Entry, itself a normal CAP-02-committed
-  fact (MP-11).
-- **Downstream dependents:** CAP-02 (the transfer Entry is itself committed through it),
-  financial reporting (a Fiscal Year Close is what makes the simple accounting equation,
-  MP-02, hold again using the updated Equity figure).
+- **Outputs (corrected at CORR-B3-05):** ~~exactly one Current-Earnings-transfer Entry, itself
+  a normal CAP-02-committed fact (MP-11).~~ No Entry. One `FiscalYearClosed` Audit Event
+  (CAP-08), which is what CAP-02 and every reporting query consult to determine which Fiscal
+  Years are closed for MP-09 Mode-2/B07 §1e purposes.
+- **Downstream dependents (corrected at CORR-B3-05):** ~~CAP-02 (the transfer Entry is itself
+  committed through it)~~ CAP-08 (the `FiscalYearClosed` event is recorded through it, not
+  CAP-02 — there is no financial fact for CAP-02 to commit), financial reporting (a Fiscal Year
+  Close is what makes the closing year's Current Earnings eligible for Reported Retained
+  Earnings, B07 §1e, and what makes the simple accounting equation, MP-02, read using an
+  updated Equity figure going forward).
 
 ## 3. Deliberately Not Vendor Module Boundaries
 
@@ -248,6 +271,12 @@ CAP-03 (Correction & Reversal) ────────────────�
 *(Corrected at CORR-B2-03/04: CAP-09 no longer depends on ordinary CAP-04 Period-close
 events — it depends on a distinct, authorized Fiscal Year Close action. Ordinary
 carry-forward is implicit, B07 §1d, and produces no capability-triggering event at all.)*
+
+*(Note added at CORR-B3-05: the diagram's placement of CAP-09 on the bus feeding CAP-08
+directly — not through CAP-02 — was already correct and did not need to change. It is this
+section's prose, not the diagram, that previously (incorrectly) described CAP-09 as producing
+a fact for CAP-02 to commit; the prose above is now corrected to match what the diagram always
+showed.)*
 
 Every arrow into CAP-02 represents a capability CAP-02 must consult before a fact becomes
 authoritative — this is the structural expression of ADV-01: the guarantee is non-optional

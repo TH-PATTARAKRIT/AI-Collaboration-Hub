@@ -4,7 +4,7 @@
 |---|---|
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B15 — Traceability & Consistency Verification |
-| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit (Round 1) and recorded in §3a; two more were found by ChatGPT's Round 2 re-audit and recorded in §3b — all with equal transparency. |
+| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit (Round 1) and recorded in §3a; two more were found by ChatGPT's Round 2 re-audit and recorded in §3b; two more were found by ChatGPT's Round 3 re-audit and recorded in §3c — all with equal transparency. |
 
 ## 1. Full Chain Traces (Exemplars)
 
@@ -168,6 +168,55 @@ minimized: single-executor design and single-executor regression testing have a 
 blind spot for exactly this category of error, which is the whole reason independent
 re-audit — not a third round of this domain's own review — is what actually catches it.
 
+## 3c. Corrective Round 3 — Issues Found by ChatGPT Re-Audit and Resolved *(added at CORR-B3-01..08)*
+
+Two further defects, found by ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`)
+— **after** this domain's own §3a and §3b corrective rounds, meaning the pattern named at the
+end of §3b's own entry repeated a third time: neither was caught by
+[B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md)'s 15-scenario Round-2 regression, despite
+that regression genuinely finding and fixing one design over-reach of its own (its Test 11).
+
+**Issue 8 (`M-AUD-06`) — B19 Test 11's "ordinary current-dated Entry is sufficient" conclusion
+was universalized without a materiality branch.** Round 2's own regression, working through a
+prior-year restatement scenario, concluded a simple current-dated recognition was always
+sufficient — correctly identifying that its own *first* draft (a mandatory backdated Prior
+Period Adjustment line) was over-engineered, but incorrectly generalizing the simplified
+conclusion to every case, rather than only the immaterial case. IAS 8 (verified from
+primary-source PDF text, paras 41/42/46) requires mandatory retrospective restatement,
+specifically excluded from current-period profit or loss, for prior-period errors that are
+**material** — a distinction B19 Test 11 never drew. **Resolution:** B04 §3b adds a full
+Error/Estimate/Materiality classification decision tree (citing IAS 8 paras 5/34/36-38/41/46
+directly); §3c adds the retrospective restatement mechanics for the material branch
+specifically; B05 adds BINV-13 (material prior-period error P&L exclusion, new); B09 adds
+CO-16 (materiality is a policy input, never computed, new); B19 Test 11 itself is annotated
+with a visible correction note (not rewritten) pointing to
+[B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md)'s corrected treatment.
+
+**Issue 9 (`M-AUD-07`) — MP-11 (Round 2) directly contradicted this domain's own
+"Revenue/Expense never reset by a posted action" claim, and was a genuine arithmetic bug.**
+MP-11, as added at CORR-B2-03/04, defined Fiscal Year Close as posting one Entry debiting
+Revenue and crediting Expense — literally a posted reset of exactly the accounts B07 §1d and
+MP-02's own post-closing paragraph claimed were never reset by a posted action. Tracing the
+wording further (not merely noting the contradiction) showed it was worse than inconsistent:
+combined with MP-09's Effective-Date-bounded aggregation, such an Entry — dated anywhere
+within the Fiscal Year it closes — would corrupt that year's own historical query. **Resolution:**
+no-posted-close model adopted (compared against the superseded posted-Entry model,
+[B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md) DT-10) — Fiscal Year Close becomes a purely
+declarative Audit Event; B07 §1e defines Reported Retained Earnings as a derived reporting
+formula, never a posted balance; B08 MP-11 rewritten to match, with the Round-2 text kept
+fully visible above the correction; B02 CAP-09, B05 BINV-10 propagated to match.
+
+**Pattern note, continued from §3a and §3b:** both issues are, again, instances of the same
+root category named twice already — Issue 8 is a scope-generalization error (a conclusion
+correct for one case silently applied to all cases, the same shape as Issue 7's
+`M-AUD-05` scope error); Issue 9 is a direct internal contradiction between two claims this
+domain's own design made about the same subject (the same shape as Issue 6's temporal
+contradiction). That this pattern recurred a third time, even after being explicitly named
+twice, is recorded honestly, not minimized, for the same reason given in §3b: independent
+re-audit — not a fourth round of this domain's own self-review — is structurally what catches
+this category of error, and the self-review document (G, §4c) records this pattern explicitly
+rather than treating each round's fix as evidence the underlying blind spot has closed.
+
 ## 4. Contradictory Rules Check
 
 Beyond Issue 2 (resolved above), no other rule pair was found to assert incompatible
@@ -188,6 +237,19 @@ already-COMMITTED target at link-creation time — links only ever point from ne
 reachable through chaining (B04 §6, B07 §3). **No circular definitions found.**
 
 ## 6. Unresolved Critical Assumptions Register (consolidated)
+
+**Round 3 note (CORR-B3-07):** none of the six Team B design assumptions below is narrowed,
+widened, or resolved by this round's corrections. Round 3's subject matter (IAS 8 error/
+estimate/materiality classification, retrospective restatement mechanics, and the Fiscal
+Year Close posted-Entry-vs-derived-formula resolution) does not bear on rounding method,
+period-close/reopen/consumption timing, chart-of-accounts structure, tamper-evidence scope,
+correction-shape flexibility, or the CO-02/CO-06 coupling — the six rows are reproduced below
+unchanged, per this directive's explicit instruction not to resolve an assumption merely to
+make the pack look more complete. Materiality itself (the one new judgment-input concept this
+round introduces) is **not** added as a seventh assumption, because it is not an open design
+question this domain defers to Boss — CO-16 (B09, new) already closes it as a settled design
+decision: materiality is explicitly and permanently out of this domain's computation scope,
+supplied externally, which is a resolved design choice, not an unresolved one.
 
 | Assumption | First flagged | Disposition (per B01 §7 categories) |
 |---|---|---|
@@ -224,23 +286,30 @@ No orphan critical design decision       : CONFIRMED (§2)
 Contradictory rules                       : 1 found internally (Issue 2), RESOLVED explicitly
                                              (§3); 3 defects found by Round-1 independent audit,
                                              RESOLVED (§3a); 2 more found by Round-2 re-audit,
-                                             RESOLVED (§3b); 1 stale statement found during
+                                             RESOLVED (§3b); 2 more found by Round-3 re-audit,
+                                             RESOLVED (§3c); 1 stale statement found during
                                              Round-2 re-verification and corrected (§5)
-Circular definitions                      : NONE, re-verified Round 2 (§5)
+Circular definitions                      : NONE, re-verified Round 2 (§5); re-checked Round 3
+                                             — the new B07 §1e formula and B04 §3b/§3c
+                                             classification introduce no new dependency that
+                                             could cycle back on Consumption, Period Lock, or
+                                             Restatement
 Unresolved critical assumptions           : 6 Team B assumptions (#2 revised/narrowed twice,
-                                             Round 1 and Round 2, not withdrawn) + 3
-                                             carried-forward Team A items, ALL VISIBLE (§6),
-                                             none hidden
+                                             Round 1 and Round 2, not withdrawn; unchanged by
+                                             Round 3, see §6 note) + 3 carried-forward Team A
+                                             items, ALL VISIBLE (§6), none hidden
 Regulatory overreach                      : NONE (§7)
-Vendor leakage                            : NONE (§8, cross-checked against B14; re-confirmed
-                                             unaffected by Round 2's temporal/fiscal model —
-                                             both are grounded in accounting mathematics and
-                                             this domain's own prior vocabulary, not vendor
-                                             structure)
+Vendor leakage                             : NONE (§8, cross-checked against B14; re-confirmed
+                                             unaffected by Round 2's temporal/fiscal model and
+                                             again by Round 3's IAS 8 classification and
+                                             no-posted-close model — all three are grounded in
+                                             accounting standards/mathematics and this domain's
+                                             own prior vocabulary, not vendor structure)
 ```
 
-**B15 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04 — §3a and §3b added, §5
-corrected (a stale pre-Round-1 statement found during Round 2 re-verification), §6 assumption
-#2 revised in place twice, with every prior wording kept visible, not deleted, per
-instruction. §1, §2, §4, §7, §8 re-verified as still accurate after Round 2's corrections: no
-new orphans, no new overreach, no new vendor leakage.)*
+**B15 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-01..08 — §3a, §3b,
+and §3c added, §5 corrected (a stale pre-Round-1 statement found during Round 2
+re-verification), §6 assumption #2 revised in place twice (Round 1, Round 2) and explicitly
+confirmed unchanged at Round 3, with every prior wording kept visible, not deleted, per
+instruction. §1, §2, §4, §7, §8 re-verified as still accurate after Round 3's corrections: no
+new orphans, no new overreach, no new vendor leakage, no new circularity.)*

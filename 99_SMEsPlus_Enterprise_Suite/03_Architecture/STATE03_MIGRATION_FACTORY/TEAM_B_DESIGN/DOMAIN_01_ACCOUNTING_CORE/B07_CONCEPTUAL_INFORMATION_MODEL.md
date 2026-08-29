@@ -7,6 +7,7 @@
 | Scope | Business concepts, meaning, ownership, relationships, cardinality, identity. **No physical schema, SQL, ORM, index, or vendor field/PK/FK below.** |
 | **Corrected** | **CORR-B02 (2026-08-29)** — §1a's closing claim ("this is what makes Assets = Liabilities + Equity meaningful") overstated what Normal Balance Side alone proves; corrected below, and a new §1b defines Current Earnings. **CORR-B01** — the Consumption Record row's "four B04 §4 trigger kinds" corrected to three (period close removed as a trigger). See [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found two further defects: an Entry's single "date" property let a backdated Correction rewrite relied-upon history (M-AUD-04), and Current Earnings (§1b) was bounded "since the last close" — ambiguous between ordinary Period close and Fiscal-Year close, matching M-AUD-05's finding that CAP-09 overgeneralized BF-09's year-end-specific rule. Fixed below: Entry now has two distinct temporal properties (§1c), and a new **Fiscal Year** entity is added. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 3)** | **CORR-B3-01..05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) found (1) prior-period error treatment did not comply with IAS 8's mandatory retrospective restatement for material errors (`M-AUD-06`, verified against primary IAS 8 text, paragraphs 5/41-48/50-53 — not memory or secondary sources); (2) §1d's "no posted action ever touches Revenue/Expense" claim directly contradicted MP-11's actual definition, which did (`M-AUD-07`). §1b/§1d rewritten: Fiscal Year Close is now purely declarative (no posted Entry); Reported Retained Earnings is a new derived reporting formula (§1e). See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 
 ## 1. Conceptual Entities
 
@@ -65,13 +66,17 @@ Two equivalent ways to state the answer:
   Earnings)` — i.e., for reporting purposes, Equity-plus-not-yet-closed-Current-Earnings
   behaves as the simple equation's "Equity" term. This is a restatement, not a separate fact.
 
-**Corrected at CORR-B2-03/04:** at **Fiscal Year Close** (CAP-09, redefined — not ordinary
-Period close), Current Earnings is transferred into a formal Equity account via exactly one
-new committed Entry. Revenue/Expense accounts are **not reset by any posted action** — see
-§1d: their zero-point for the new Fiscal Year is a consequence of how they are aggregated
-(bounded by Fiscal Year start), not something anyone resets. After Fiscal Year Close, Current
-Earnings is zero again for the new Fiscal Year (nothing has been dated into it yet) and the
-simple equation holds directly, using the now-updated formal Equity figure. See
+**Corrected at CORR-B2-03/04, corrected again at CORR-B3-05:** at **Fiscal Year Close**
+(CAP-09, redefined — not ordinary Period close), Current Earnings becomes part of **Reported**
+Retained Earnings (§1e) — **not via a posted Entry** (the Round-2 wording here claimed
+exactly one new committed Entry did this; that claim directly contradicted the very next
+sentence's "not reset by any posted action" and, worse, was mathematically unsound if taken
+literally — see §1d's Round-3 correction for why). Revenue/Expense accounts are **not reset
+by any posted action** — see §1d: their zero-point for the new Fiscal Year is a consequence
+of how they are aggregated (bounded by Fiscal Year start), not something anyone resets.
+After Fiscal Year Close, Current Earnings is zero again for the new Fiscal Year (nothing has
+been dated into it yet) and the simple equation holds directly, using the now-updated
+Reported Retained Earnings figure (§1e). See
 [B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-02 for the full proof.
 
 ### 1c. Entry Temporal Properties — Effective Date and Recorded At *(new, added at CORR-B2-01/02)*
@@ -122,16 +127,73 @@ both contribute to the same balance. **Resolved by adopting a Continuous Ledger 
   This is what makes YTD reporting correct across ordinary Period boundaries (B08 MP-09) and
   what makes the zero-point for a new Fiscal Year automatic rather than something that must
   be reset by a posted action.
-- **The one genuine new fact Fiscal Year Close creates** is the Current Earnings transfer
-  into formal Equity (§1b) — because Equity, unlike Revenue/Expense, *is* an all-time
-  cumulative Balance Sheet category, and the transfer is a real economic event (this year's
-  result becoming part of permanent capital), not a bookkeeping reset.
+- **Fiscal Year Close posts NO Entry at all — corrected at CORR-B3-05.** The Round-2 text
+  here originally said Fiscal Year Close "creates" a Current Earnings transfer Entry into
+  Equity, while [B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-11 (also Round 2)
+  separately defined that Entry as directly debiting Revenue and crediting Expense accounts.
+  ChatGPT's Round 3 audit (`M-AUD-07`) correctly found these two statements contradictory —
+  and working through it precisely showed the contradiction was not merely cosmetic: an
+  Entry that debits Revenue/credits Expense, dated within the Fiscal Year being closed, would
+  itself be included in that same Fiscal Year's own Mode-1/Mode-2 aggregation (B08 MP-09),
+  silently zeroing out the very P&L figures BINV-11 promises stay reproducible. **Fixed:**
+  Fiscal Year Close is now purely a declarative, authorized action — an Audit Event
+  (`FiscalYearClosed`, B04 §3) that locks the Fiscal Year, exactly like an ordinary Period
+  Lock but scoped to the whole year. It posts nothing. See §1e for how Current Earnings then
+  becomes part of Reported Retained Earnings without any Entry moving it.
 
 This is also why a **migration opening balance** (B10 MG-C03) is not an instance of this
 pattern: under a Continuous Ledger, there is no recurring "carry-forward" business event to
 be an instance of. A migration opening balance is a one-time, distinct act — establishing the
 starting point of a ledger that has no prior history *in this system* to sum over — not a
 periodic transfer between two periods that both already exist in the same ledger.
+
+### 1e. Reported Retained Earnings — A Derived Reporting Formula, Not a Posted Balance *(new, added at CORR-B3-05)*
+
+Because Fiscal Year Close posts no Entry (§1d), **formal Retained Earnings is not a ledger
+account that "receives" each year's Current Earnings through a journal posting** — it is a
+**derived reporting figure**, computed the same way Current Earnings itself already was
+(B07 §1b) rather than through a physical transfer:
+
+```
+Reported Retained Earnings(Company C, as of date D) =
+    all-time balance of the formally-designated Retained Earnings account
+      (direct postings only — e.g. dividend declarations; a real, distinct
+      business event, not part of closing)
+  + SUM over every Fiscal Year that closed before D of:
+      that Fiscal Year's Current Earnings, computed via MP-09's Mode-2
+      (current/restated) Fiscal-Year-bounded aggregation for that year
+```
+
+This is not a new mathematical claim — it is [B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md)
+MP-02's already-proven "reporting form" (`Assets = Liabilities + (Equity + Current
+Earnings)`), applied across every closed Fiscal Year instead of only the current one. Two
+properties follow directly, both required by the Round 3 findings:
+
+1. **No double counting, ever** — nothing is posted at Fiscal Year Close, so there is nothing
+   to duplicate against the historical Revenue/Expense activity that produced each year's
+   Current Earnings in the first place.
+2. **A later Restatement of a closed Fiscal Year (B04 §3a/§3b) automatically flows through**
+   — because Reported Retained Earnings sums each closed year's Current Earnings *as MP-09
+   Mode 2 computes it today*, a Restatement that changes a prior year's Mode-2 figures
+   changes Reported Retained Earnings for every later date with no separate "prior period
+   adjustment" entry required. This is precisely the property [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md)
+   Test 11 needed but, on its first attempt, tried to achieve with a superfluous posted line —
+   it is now a structural consequence of this formula instead.
+
+**Annotation added at CORR-B3-06, while constructing [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md)
+Tests 4/5 (kept as an addition, not a restructure — the formula above is unchanged):** IAS 8
+para 43 requires that when a material prior-period error's *period-specific* effects cannot be
+determined (after genuine effort), the correction is applied by restating the opening balances
+of assets/liabilities/equity for the earliest period for which restatement IS practicable —
+**not attributed to any single closed Fiscal Year's own Current Earnings term**, because that
+attribution is exactly what para 43 says cannot be reliably made. This is already representable
+by the formula above with no change: such a correction is a **direct posting to the
+formally-designated Retained Earnings account** (the formula's first term — the same term that
+already covers dividend declarations), dated at the earliest practicable point, rather than a
+restatement of any specific year's Mode-2 Current Earnings (the formula's second, summed term).
+The formula did not previously say this explicitly, which [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md)
+Test 4's construction flagged as worth stating outright rather than leaving for a future reader
+to re-derive.
 
 ## 2. Deliberately Excluded From This List
 

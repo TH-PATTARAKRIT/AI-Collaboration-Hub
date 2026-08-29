@@ -7,6 +7,7 @@
 | Method | Extends Team A's MR-01..08 (evidence of what the reference system does or fails to guarantee) into this domain's own mathematical design commitments. No implementation — formulas are stated over the conceptual entities of B07, not over any storage structure. |
 | **Corrected** | **CORR-B02 / CORR-B03 (2026-08-29)** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) found MP-02's original proof mathematically incomplete for an open reporting period, and MP-09's original VOID handling time-inconsistent for historical as-of queries. Both are corrected below, in place, with the original reasoning kept visible rather than deleted. Full comparison of alternatives: [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04/05 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found the Round-1 MP-09 fix still incomplete (a backdated Correction could rewrite history — `M-AUD-04`) and MP-02's "Current Earnings since the last close" wording repeated the exact period/fiscal-year ambiguity CAP-09 had (`M-AUD-05`). MP-09 rebuilt with a two-mode temporal model; MP-02 and a new MP-11 reconciled to Fiscal Year Close specifically. Full record: [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 3)** | **CORR-B3-05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`, finding `M-AUD-07`) found MP-11 (Round 2, below) literally defined a posted Entry debiting Revenue and crediting Expense — directly contradicting this same document's and B07's repeated claim that Revenue/Expense are never reset by a posted action, and, traced through MP-09's aggregation, a genuine arithmetic bug (it would corrupt the closing year's own historical query). MP-11 rewritten below to the no-posted-close, derived-Reported-Retained-Earnings model (B07 §1e); MP-02's post-closing special case paragraph corrected to match. Full record: [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 
 ### MP-01 — Double-Entry Balance
 
@@ -72,22 +73,32 @@ Current Earnings (B07 §1b): define Current Earnings = Revenue − Expenses, **b
               algebraic regrouping of the proven identity, not a new assumption.
 
 Post-closing special case: **corrected at CORR-B2-03/04 — this is Fiscal Year Close, not
-              ordinary Period close.** At Fiscal Year Close, CAP-09/BINV-10 (redefined,
+              ordinary Period close.** ~~At Fiscal Year Close, CAP-09/BINV-10 (redefined,
               B07 §1d) transfers Current Earnings into a formal Equity account via exactly
-              one new committed Entry. Revenue/Expense are not "reset" by any posted action —
-              their zero-point for the new Fiscal Year follows automatically from the
-              Fiscal-Year-bounded aggregation (MP-09, corrected). An ordinary Period close
-              (month/quarter) does none of this — it only locks posting/amendment (B07 §1d)
-              — so the expanded equation's Revenue/Expense terms continue accumulating
-              uninterrupted across ordinary Period boundaries within the same Fiscal Year,
-              which is what makes YTD reporting correct (verified numerically,
-              [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 8). Immediately after
-              Fiscal Year Close, Revenue = Expenses = 0 for
-              the new Fiscal Year. Substituting Revenue = Expenses = 0 into the expanded equation
-              collapses it exactly to the simple form: Assets = Liabilities + Equity — using
-              the NOW-UPDATED Equity figure. The simple equation is therefore proven as the
-              special case of the expanded one where Revenue = Expenses = 0, not asserted
-              independently for "after closing" as a separate claim.
+              one new committed Entry.~~ **Corrected again at CORR-B3-05 (kept struck through,
+              not deleted): this is exactly the defect `M-AUD-07` found — no Entry is ever
+              posted at Fiscal Year Close.** Revenue/Expense are not "reset" by any posted
+              action — their zero-point for the new Fiscal Year follows automatically from the
+              Fiscal-Year-bounded aggregation (MP-09, corrected), unchanged from the Round-2
+              reasoning. What changes at CORR-B3-05 is what happens to the *closing* Fiscal
+              Year's Current Earnings: it becomes part of Reported Retained Earnings, a
+              **derived reporting figure** (B07 §1e, new formula), not a posted Equity-account
+              balance. An ordinary Period close (month/quarter) does none of this — it only
+              locks posting/amendment (B07 §1d) — so the expanded equation's Revenue/Expense
+              terms continue accumulating uninterrupted across ordinary Period boundaries
+              within the same Fiscal Year, which is what makes YTD reporting correct (verified
+              numerically, [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 8).
+              Immediately after Fiscal Year Close, Revenue = Expenses = 0 for the new Fiscal
+              Year (again, automatic from MP-09's category bound — no entry required).
+              Substituting Revenue = Expenses = 0 into the expanded equation collapses it
+              exactly to the simple form: Assets = Liabilities + Equity — using the
+              NOW-UPDATED **Reported** Equity figure, i.e. Equity(ledger, all-time) + Reported
+              Retained Earnings(B07 §1e), not a single all-in-one ledger Equity balance. The
+              simple equation is therefore proven as the special case of the expanded one
+              where Revenue = Expenses = 0, not asserted independently for "after closing" as
+              a separate claim — this part of the Round-2 proof needed no change; only the
+              *mechanism* by which Equity's reporting value updates (derived, not posted) was
+              wrong.
 
 Inputs:       every COMMITTED Line for the Company, each Line's Account Category and Normal
               Balance Side (B07 §1a)
@@ -370,12 +381,17 @@ Proof requirement: this domain's design obligation is that Period Lock and Consu
 ```
 
 **Distinguished from MP-11 (new, below):** MP-10 governs ordinary Period locking only. It has
-no bearing on Revenue/Expense resetting or Current Earnings transfer — that is exclusively
-MP-11's concern, per CORR-B2-03/04. Conflating the two was the exact shape of `M-AUD-05`.
+no bearing on Revenue/Expense's zero-point or Current Earnings' becoming reportable — that is
+exclusively MP-11's concern, per CORR-B2-03/04 *(and, per CORR-B3-05, MP-11's concern is now a
+declaration + derived-formula computation, not a posting — the boundary between MP-10 and
+MP-11 is unaffected by that change)*. Conflating the two was the exact shape of `M-AUD-05`.
 
-### MP-11 — Fiscal Year Close Arithmetic *(new, added at CORR-B2-03/04)*
+### MP-11 — Fiscal Year Close Arithmetic *(new, added at CORR-B2-03/04; rewritten at CORR-B3-05)*
 
 ```
+ROUND 2 STATEMENT (kept visible, not deleted — this is exactly what ChatGPT's Round 3 audit,
+`M-AUD-07`, found wrong):
+
 Principle:    Fiscal Year Close commits exactly one new Entry per Company: Lines that debit
               Revenue accounts (zeroing their Fiscal-Year-bounded contribution going forward,
               per MP-09's category bound — no other Revenue/Expense Line is touched) and
@@ -393,18 +409,75 @@ Invariant:    BINV-10 (corrected) — this is the ONE genuine new committed fact
 Boundary:     this Entry's Lines only ever touch Revenue, Expense, and one designated Equity
               account — never Asset or Liability accounts, which need no closing action at
               all under the Continuous Ledger model
-Rounding:     MP-04 applies to the computed Current Earnings amount exactly as to any other
-              computed value
-Exception:    none — Fiscal Year Close is itself gated by an authorized action (extends
-              CO-08's tiering, at least as strict as ordinary Period reopen, since its blast
-              radius — an entire Fiscal Year — is larger)
+
+WHY THIS WAS WRONG (`M-AUD-07`, verified by tracing the literal wording, not just by the
+audit's say-so): two independent defects, not one.
+  (1) Internal contradiction — this same document's own MP-02 post-closing paragraph, and
+      B07 §1d, both state "Revenue/Expense are never reset by any posted action." A Line that
+      debits every Revenue account and credits every Expense account IS a posted reset of
+      those exact accounts. The two claims cannot both be true; this MP-11 text was the one
+      that had to give, since the "never reset" claim is required elsewhere (MP-09's category-
+      bounded aggregation is what actually zeroes the new year — a posted zeroing Entry is
+      redundant with it at best, and double-zeroes at worst).
+  (2) Real arithmetic bug, not just inconsistency — MP-09 sums Revenue/Expense by Effective
+      Date within the current Fiscal Year (Mode 1 and Mode 2 alike). An Entry dated at the
+      closing Fiscal Year's own end, with Lines touching Revenue and Expense, has an Effective
+      Date INSIDE that same Fiscal Year. MP-09, evaluated for any as-of date D within the
+      closing year up to and including the close date, would include this Entry's Revenue/
+      Expense Lines in that year's OWN Current Earnings computation — corrupting the very
+      figure the Entry was trying to record. (Dating it one day into the NEW Fiscal Year
+      avoids that specific corruption but reintroduces defect (1) by posting into the new
+      year's own Revenue/Expense, and still contradicts "never reset by any posted action."
+      There is no dating choice that rescues the posted-Entry model — this is what makes it a
+      genuine bug, not a wording problem.)
+
+CORRECTED STATEMENT (CORR-B3-05, supersedes the Round-2 statement above):
+
+Principle:    Fiscal Year Close commits **no Entry**. It performs exactly one thing: an
+              authorized declaration (the `FiscalYearClosed` Audit Event, B04, corrected)
+              that (a) locks the Fiscal Year to further ordinary posting [subsuming CAP-04's
+              Period Lock for every Period within it] and (b) marks that Fiscal Year's Current
+              Earnings as **closed** — eligible for inclusion in Reported Retained Earnings.
+              "Fiscal Year Close Arithmetic" is now the arithmetic of a REPORTING FORMULA
+              (B07 §1e), not of a posted Entry:
+                Reported Retained Earnings(Company C, as of date D) =
+                    balance_current(the formally-designated Retained Earnings account, C, D)
+                      (direct postings only — e.g. dividend declarations; MP-09 Mode 2,
+                      all-time, exactly like any other Equity account)
+                  + Σ over every Fiscal Year Y that closed before D of:
+                      CurrentEarnings(C, Y) computed via MP-09 Mode 2, Fiscal-Year-bounded,
+                      for Y
+Inputs:       the set of Fiscal Years closed before date D (a fact recorded by
+              `FiscalYearClosed` events, not by any Entry); MP-09 Mode 2 aggregation for each
+Outputs:      no Entry. One `FiscalYearClosed` Audit Event per Fiscal Year closed (CAP-08),
+              consumed by the Reported Retained Earnings formula above wherever Equity is
+              reported.
+Invariant:    BINV-10 (corrected again, Round 3) and the new BINV-13 (B05) — the formula above
+              IS the enforcement mechanism; there is no posted fact for either invariant to
+              protect, so no posted fact can violate them
+Boundary:     the formula's summation term only ever reads Revenue/Expense Lines already
+              governed by MP-09's existing category bound — it introduces no new Line, no new
+              Entry, and touches no Asset or Liability account, exactly preserving the Round-2
+              boundary's intent (Balance Sheet categories need no closing action) while
+              removing the one posted fact that violated it
+Rounding:     MP-04 applies to each Fiscal Year's computed Current Earnings term exactly as to
+              any other computed value; the formula is a sum of already-rounded terms, so no
+              new rounding is introduced by the summation itself
+Exception:    none — declaring a Fiscal Year closed is itself gated by an authorized action
+              (extends CO-08's tiering, at least as strict as ordinary Period reopen, since its
+              blast radius — an entire Fiscal Year — is larger); this is unchanged from Round 2,
+              only the thing being gated (a declaration, not a posting) has changed
 Proof requirement: **worked numerically, not just symbolically** —
-              [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 9 traces a full example
-              from pre-close Balance Sheet and P&L, through this one closing Entry, to the
-              post-close Balance Sheet, confirming (a) the simple equation holds immediately
-              after close using the updated Equity figure, (b) no Balance Sheet amount is
-              duplicated, and (c) the new Fiscal Year's Revenue/Expense correctly start from
-              zero with no entry required to make that true
+              [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) Tests 9-11 trace a full
+              example from pre-close Balance Sheet and P&L, through Fiscal Year Close (no
+              Entry posted), to the post-close Reported Retained Earnings figure, confirming
+              (a) the simple equation holds immediately after close using the derived Reported
+              Equity figure, (b) no Balance Sheet amount is duplicated, (c) the new Fiscal
+              Year's Revenue/Expense correctly start from zero with no entry required, and
+              (d) — the specific defect (2) above — that the closing year's OWN historical
+              query, evaluated as-of any date up to and including the close date, is
+              unaffected by the close itself (nothing was posted, so there is nothing for such
+              a query to pick up)
 ```
 
 ## Acceptance Check
@@ -413,7 +486,7 @@ Proof requirement: **worked numerically, not just symbolically** —
 All 11 mandated areas addressed : CONFIRMED (Double-entry=MP-01, Accounting equation=MP-02,
   Monetary precision=MP-03, Rounding=MP-04, Currency conversion=MP-05, Functional currency=
   MP-06, Foreign currency=MP-05/06, Reversal arithmetic=MP-07, Correction arithmetic=MP-08,
-  Aggregation=MP-09, Period cutoff=MP-10, Fiscal Year Close=MP-11 new)
+  Aggregation=MP-09, Period cutoff=MP-10, Fiscal Year Close=MP-11, rewritten Round 3)
 No implementation proposed                : CONFIRMED — every formula is over B07's conceptual
                                              entities, none over a storage structure
 Rounding gap (Team A OQ-03) not left silent: CONFIRMED — MP-04 proposes a default and flags it
@@ -422,11 +495,19 @@ MP-02 proof mathematically complete for open AND closed periods (CORR-B02) : CON
 MP-09 time-consistent for historical as-of queries, backdating-proof (CORR-B03, CORR-B2-01/02) : CONFIRMED
 MP-09 category-bounded, no carry-forward double-counting (CORR-B2-03/04)   : CONFIRMED,
   verified numerically (B19)
+MP-11 posts no Entry; no internal contradiction with "Revenue/Expense never reset by a
+  posted action"; no corruption of the closing year's own historical query (CORR-B3-05,
+  `M-AUD-07`)                                                              : CONFIRMED,
+  verified numerically (B20)
 ```
 
-**B8 = COMPLETE.** *(Corrected at CORR-B02/CORR-B03/CORR-B2-01..05 — MP-02, MP-09 amended in
-place twice each, MP-10 clarified, MP-11 new, with every prior claim kept visible above each
-correction, not deleted. MP-01, MP-03..07 are unchanged since the original B8 pass. MP-08 was
-amended once (a cross-reference to Void as its zero-net instance, CORR-B03). MP-10's
-invariant line was corrected at CORR-B01 to match B04/B05's Period-Lock/Consumption
-separation, and again clarified at CORR-B2-03 to distinguish it from the new MP-11.)*
+**B8 = COMPLETE.** *(Corrected at CORR-B02/CORR-B03/CORR-B2-01..05/CORR-B3-05 — MP-02, MP-09
+amended in place twice each, MP-10 clarified, MP-11 new at Round 2 then rewritten at Round 3,
+with every prior claim kept visible above each correction, not deleted. MP-01, MP-03..07 are
+unchanged since the original B8 pass. MP-08 was amended once (a cross-reference to Void as its
+zero-net instance, CORR-B03). MP-10's invariant line was corrected at CORR-B01 to match
+B04/B05's Period-Lock/Consumption separation, and again clarified at CORR-B2-03 to distinguish
+it from the new MP-11, with a light Round-3 note confirming that boundary is unaffected by
+MP-11's own rewrite. MP-11 itself was rewritten at CORR-B3-05 from a posted-closing-Entry
+model to a no-posted-close, derived-Reported-Retained-Earnings-formula model, per `M-AUD-07`
+— the Round-2 text is kept fully visible above the correction, not deleted.)*

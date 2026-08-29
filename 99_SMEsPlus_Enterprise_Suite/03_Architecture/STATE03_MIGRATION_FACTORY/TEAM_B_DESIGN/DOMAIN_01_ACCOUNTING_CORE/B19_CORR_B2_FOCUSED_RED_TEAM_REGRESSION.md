@@ -5,7 +5,7 @@
 | Session | SMEPLUS-26-08-29-MIG-B-D01-CORR2-001 |
 | Source of truth | Directive §10 — 15 mandatory scenarios, tested against the CORR-B2-corrected design |
 | Personas | Senior Accountant, Financial Controller, External Auditor, Month-End Close Operator, Fiscal-Year Close Operator, Migration Architect, Historical Reporting Reviewer, SaaS Domain Architect, Clean-room Reviewer |
-| Result | **15/15 PASS. One genuine new requirement (Prior Period Adjustment) was found while constructing Test 11 and fixed (B04 §3a) before this document was finalized — not glossed over.** |
+| Result | **15/15 PASS. One genuine new requirement (Prior Period Adjustment) was found while constructing Test 11 and fixed (B04 §3a) before this document was finalized — not glossed over.** **SUPERSEDED NOTICE, added at CORR-B3-01/02 (kept visible, not deleted): ChatGPT's Round 3 re-audit (`M-AUD-06`) found Test 11's own conclusion incomplete — correct for immaterial prior-period errors only, silently generalized to all of them. Test 11's PASS verdict is NOT ACCEPTED AS FINAL as originally scoped; see the correction note inline at Test 11 and [B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) Tests 2-5 for the corrected, materiality-aware treatment. The other 14 tests are unaffected by this finding.** |
 
 Money amounts below are illustrative units, chosen for arithmetic clarity, not a specific
 currency. "Recorded At" is abbreviated to the day for readability; the actual guarantee
@@ -348,6 +348,29 @@ Disposition:            **B04 §3a's Prior Period Adjustment paragraph (added ea
                         purposes, not as a Balance-Sheet-correctness requirement.
 ```
 
+**CORRECTION NOTE, added at CORR-B3-01/02 (kept visible above, not deleted or rewritten) —
+ChatGPT's Round 3 re-audit (`M-AUD-06`) found this test's own conclusion, above, wrong:**
+"recognizing the correction as an ordinary current-dated fact is always sufficient" was
+correct for the specific 50-currency Payable example this test worked through, but the test
+never asked whether that example was **material**, and generalized its answer as if
+materiality were irrelevant. IAS 8 (verified from primary-source text, paras 41/42/46)
+requires mandatory retrospective restatement — excluded from current-period P&L — specifically
+for **material** prior-period errors; an ordinary current-dated Entry remains correct only for
+current-period errors, changes in accounting estimate, and *immaterial* prior-period errors
+(B04 §3b's classification tree, new). This test's own Balance-Sheet-balancing argument (the
+worked arithmetic above, re-derived from a false start) is not wrong on its own terms — it
+correctly shows a current-dated Entry keeps the current Balance Sheet in balance — but
+"keeps the Balance Sheet in balance" and "is the IAS-8-compliant treatment" are not the same
+claim, and this test's Finding/Disposition conflated them. **This test's PASS verdict and
+"15/15 PASS" contribution to this document's Result line (top of file) is NOT ACCEPTED AS
+FINAL** — ChatGPT's Round 3 audit explicitly marked it "FAIL / REQUIRES REDESIGN" pending
+this correction. The corrected, materiality-aware treatment (both the immaterial branch, where
+this test's original conclusion is retained as still-correct, and the material branch, where
+B04 §3c's retrospective restatement mechanics now apply instead) is worked with real numbers
+in [B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md)
+Tests 2-5. Treat this Test 11 as superseded by those four tests for the material-error case,
+and as confirmed (not contradicted) for the immaterial-error case.
+
 ## Test 12 — Migration opening balance vs. ordinary carry-forward
 
 ```
@@ -446,7 +469,21 @@ Regressions into any prior-fixed defect:        0
 New CRITICAL/HIGH defects:                      0
 ```
 
-**B19 = COMPLETE.** Test 9 and Test 11 are deliberately left showing their own false starts
-rather than only the final clean numbers — this project's discipline is to show the work, not
-polish away the process that found the right answer, including when the process corrects
-this very document's own reasoning mid-construction.
+**SUPERSEDED NOTICE (CORR-B3-01/02, kept visible, not deleted):** Test 11's PASS above is
+**not accepted as final** — ChatGPT's Round 3 re-audit (`M-AUD-06`) found its conclusion
+incomplete (correct only for immaterial prior-period errors, silently generalized to the
+material case, which IAS 8 paras 41/42/46 treat differently — mandatory retrospective
+restatement, excluded from current-period P&L). This document's own "15/15 PASS, 0 new
+CRITICAL/HIGH defects" claim must be read with that qualification: the miscount is not in the
+arithmetic above (which is accurate for the scenario as originally scoped) but in the scope
+itself. See the inline correction note at Test 11 and
+[B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md)
+Tests 2-5 for the materiality-aware replacement. The other 14 tests in this document are
+unaffected and remain accepted as final.
+
+**B19 = COMPLETE, WITH TEST 11 SUPERSEDED AS OF CORR-B3-01/02.** Test 9 and Test 11 are
+deliberately left showing their own false starts rather than only the final clean numbers —
+this project's discipline is to show the work, not polish away the process that found the
+right answer, including when the process corrects this very document's own reasoning
+mid-construction, and including when a LATER independent audit finds that correction itself
+still incomplete. That is recorded here rather than silently fixed by editing Test 11's text.
