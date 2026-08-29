@@ -15,15 +15,23 @@
 | PMO artifact commit | `3d42b10f9cc2a29c2b60dc0260d53f99260f22b4` |
 | STEP | TBD / BASELINE LINKAGE REQUIRED |
 | Decision authority | Boss only |
-| Current status | AWAITING BOSS DECISION |
+| Current status | BOSS APPROVED — TEAM A PASS / CONTROLLED TEAM B HANDOFF AUTHORIZED |
 
-## 1. Decision requested
+## 1. Boss decision
 
-Boss is requested to decide whether DOMAIN_01 Accounting Core Team A evidence may be released as **sanitized candidate input** to Team B for independent clean-room design.
+Boss has reviewed the DOMAIN_01 Accounting Core decision package and approved Team A PASS with controlled progression to the next process.
 
-This Gate does NOT authorize coding, development, migration execution, deployment, release, production, or reuse of vendor implementation.
+**BOSS DECISION: OPTION A — APPROVE WITH CONTROL**
 
-## 2. Evidence position
+Authorized scope:
+
+- DOMAIN_01 Accounting Core Team A is accepted as PASS at the Boss Gate.
+- Sanitized Team A evidence is authorized for controlled handoff to Team B.
+- Team B may begin independent clean-room design for DOMAIN_01 only.
+
+This decision does NOT authorize coding, development, migration execution, deployment, release, production, or reuse of vendor implementation.
+
+## 2. Evidence position accepted by Boss
 
 - Team A Part 1 forensic/source evidence exists and is committed.
 - Team A Part 2 independent logical synthesis exists and is committed.
@@ -34,19 +42,17 @@ This Gate does NOT authorize coding, development, migration execution, deploymen
 - Team B Candidate Input is sanitized and contains no direct vendor object/method/table design.
 - Residual Class G/evidence gaps remain open and receive zero progress credit.
 
-## 3. Recommended decision
+## 3. Approved decision meaning
 
-**Recommended: APPROVE WITH CONTROL — DOMAIN_01 SANITIZED HANDOFF TO TEAM B**
+Boss approval means:
 
-Recommended meaning:
+- Team A DOMAIN_01 Accounting Core has passed the controlled research/evidence Gate.
+- Team B may consume the sanitized Domain candidate package.
+- Vendor-specific or quarantined material is NOT approved as design authority.
+- Open evidence gaps remain open and are NOT silently closed by this approval.
+- Development remains unauthorized.
 
-- approve Team B to consume the sanitized Domain candidate package;
-- do not approve vendor-specific or quarantined material as design authority;
-- do not declare the Domain fully researched in every possible source/data dimension;
-- do not close open evidence gaps;
-- do not authorize development.
-
-## 4. Mandatory controls if approved
+## 4. Mandatory controls carried into Team B
 
 1. Team B must design independently from neutralized business requirements and principles.
 2. Raw vendor source and Class E/F implementation detail must not be used as target architecture.
@@ -57,39 +63,52 @@ Recommended meaning:
 7. Team B must document how proposed design improves measurably over the reference capability.
 8. No development/coding may begin from this Gate.
 9. STEP/STATE/Project official percentage remains TBD where weighting/binding is not approved.
+10. The stale historical wording remaining in the Sonnet triangulation/unknown documentation is a non-blocking documentation-reconciliation carry-forward item. Team B must rely on the corrected official-source conclusions: ETDA official evidence is accepted for the narrow e-Tax integrity scope; Revenue Department official evidence is accepted for the mandatory tax-invoice serial-number scope; general-ledger-wide tamper-evidence and universal gapless journal numbering remain OPEN unless separately proven.
 
-## 5. Boss decision options
-
-### OPTION A — APPROVE WITH CONTROL (RECOMMENDED)
-
-Authorize DOMAIN_01 sanitized Team A evidence to enter Team B independent clean-room design under all controls above.
-
-### OPTION B — HOLD
-
-Keep DOMAIN_01 at Team A/PMO Gate and require specified residual evidence gaps to close before Team B begins.
-
-### OPTION C — RETURN FOR REVISION
-
-Return a defined finding/artifact to Team A or ChatGPT/PMO for corrective action. Boss must identify the required correction.
-
-### OPTION D — REJECT
-
-Reject DOMAIN_01 handoff because the evidence or clean-room boundary is insufficient. Boss must identify the controlling reason.
-
-## 6. Decision record — Boss only
+## 5. Team A Gate result
 
 ```text
-BOSS DECISION: AWAITING
-OPTION: TBD
-DECISION DATE: TBD
-CONDITIONS: TBD
-AUTHORIZED TEAM B START: NO — PENDING BOSS DECISION
+TEAM A DOMAIN_01 STATUS: PASS — BOSS APPROVED WITH CONTROL
+CHATGPT FINAL AUDIT: REVIEW PASS
+PMO VERIFICATION: VERIFIED WITH CARRY-FORWARD
+BOSS GATE: APPROVED
+TEAM B HANDOFF: AUTHORIZED — SANITIZED INPUT ONLY
 DEVELOPMENT AUTHORIZED: NO
 PRODUCTION AUTHORIZED: NO
 ```
 
-## 7. Final control
+## 6. Next process authorized
 
-Only Boss may change `BOSS DECISION: AWAITING` to an approval/hold/revision/reject decision.
+The next controlled process is:
+
+`TEAM B — DOMAIN_01 ACCOUNTING CORE INDEPENDENT CLEAN-ROOM DESIGN`
+
+Team B authority is limited to:
+
+- independent domain design;
+- business-rule synthesis;
+- neutral lifecycle/event design;
+- independent information/domain modeling;
+- advancement hypothesis/design-option analysis;
+- measurable improvement criteria;
+- open-question and residual-gap handling.
+
+Team B is NOT authorized by this Gate to start coding or implementation.
+
+## 7. Decision record — Boss only
+
+```text
+BOSS DECISION: APPROVED WITH CONTROL
+OPTION: A
+DECISION DATE: 2026-08-29
+CONDITIONS: Mandatory controls in Section 4 remain in force
+AUTHORIZED TEAM B START: YES — DOMAIN_01 SANITIZED INPUT ONLY
+DEVELOPMENT AUTHORIZED: NO
+PRODUCTION AUTHORIZED: NO
+```
+
+## 8. Final control
+
+This approval closes the Team A Boss Gate for DOMAIN_01 Accounting Core and opens the controlled Team B design process only.
 
 **Boss is the sole Final Approver. No Evidence = No Progress. Never Skip Gate.**
