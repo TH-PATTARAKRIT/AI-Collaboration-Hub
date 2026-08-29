@@ -11,7 +11,7 @@ Status: `GLOBAL DR9 HOLD / EC-03 CLASS-C RULING RECORDED / STRUCTURED REGISTER +
 | `README.md` | Workspace purpose, boundaries, phases, and folder map | CREATED |
 | `00_GOVERNANCE/SESSION_CHARTER.md` | Authority, scope, role, prohibited actions, gate authority | CREATED |
 | `00_GOVERNANCE/DECISION_LOG.md` | Boss execution authorization + DR9 HOLD + continuation + Ksolves CLASS-C ruling | **CURRENT THROUGH DEC-DEEP-CD-004** |
-| `00_GOVERNANCE/CURRENT_POSITION.md` | Current evidence-backed position | **UPDATED AFTER BOSS CLASS-C RULING** |
+| `00_GOVERNANCE/CURRENT_POSITION.md` | Current evidence-backed position | **UPDATED AFTER BOSS CLASS-C RULING + ERPPLUS-102** |
 | `00_GOVERNANCE/EXECUTION_PLAN.md` | DR0–DR9 plan and exit criteria | CREATED |
 | `00_GOVERNANCE/SOURCE_INTAKE_REGISTER.csv` | Conversation aliases + canonical source identities | RECONCILED |
 
@@ -87,6 +87,7 @@ Clean-room review = `REVIEW PASS`. Required correction sequence remains `CORR-B0
 | `ERPPLUS-99` | Earlier Team A CORR-002 task | DONE AS SUPERSEDED / NO COMPLETION CREDIT |
 | `ERPPLUS-100` | DOMAIN_01 Team B targeted design revision | TO DO / ASSIGNEE UNASSIGNED / DUE TBD |
 | `ERPPLUS-101` | EC-05 current mapping recovery/rebind | TO DO / ASSIGNEE UNASSIGNED / DUE TBD |
+| `ERPPLUS-102` | EC-03 Ksolves CLASS-C structured-register validation + legal control | **TO DO / ASSIGNEE UNASSIGNED / DUE TBD** |
 
 Named assignee and due date remain Red Flags for schedule-progress claims. No owner/date is invented.
 
