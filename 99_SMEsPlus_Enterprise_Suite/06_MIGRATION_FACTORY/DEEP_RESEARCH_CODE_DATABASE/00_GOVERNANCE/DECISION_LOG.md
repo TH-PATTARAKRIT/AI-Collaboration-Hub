@@ -95,3 +95,45 @@ Routine approvals between phases are not required.
 ### Execution Note
 
 Boss approval authorizes immediate evidence collection. It does not waive EC-01 evidence requirements and does not authorize skipping directly to EC-02.
+
+---
+
+## DEC-DEEP-CD-004 — EC-03 Ksolves Classification Ruling
+
+| Field | Value |
+|---|---|
+| Decision Date/Time | 2026-08-29T16:12+07:00 |
+| Decision Authority | Boss — Sole Final Approver |
+| Gate | EC-03 — Classification / License / CLASS-D Control |
+| Decision | **APPROVED — OPTION C / CLASS-C** |
+| Scope | `ks_dashboard_ninja` and `ks_dn_advance` only |
+| License Evidence | OPL-1 |
+| Approved Research Boundary | Observable behavior / metadata / documented capability only |
+| Source-Body Transfer | NOT AUTHORIZED |
+| ORM/Class/Method/Table/Schema Translation | NOT AUTHORIZED |
+| Existing 12 CLASS-D Items | UNCHANGED / QUARANTINE RETAINED |
+| Independent Legal/License Sign-off | STILL REQUIRED / DR-GAP-014 OPEN |
+| Global DR9 | REMAINS HOLD |
+
+### Decision Evidence
+
+The EC-03 Ksolves decision pack presented Option C as the Evidence-Gate recommendation. The Boss then issued the explicit instruction `ดำเนินการได้เลยนะครับผม` directly in response to that decision boundary. The instruction is recorded as approval to proceed with the recommended CLASS-C treatment for both Ksolves modules.
+
+### Controlled Effect
+
+Governance classification arithmetic becomes:
+
+```text
+CLASS-A 19
+CLASS-B 710
+CLASS-C 763
+CLASS-D 12
+TOTAL   1504
+```
+
+This decision resolves the Boss-classification ruling only. It does not by itself close `DR-GAP-003` because the structured `CLEAN_ROOM_CLASSIFICATION_REGISTER.csv` must still be updated, validated, and independently verified. The required validator could not be executed in the current runtime due a container client error, so no false structured-register completion is claimed.
+
+`DR-GAP-014` remains OPEN. EC-03 therefore remains HOLD pending structured-register validation and independent legal/license control.
+
+`No Evidence = No Progress.`  
+`Never Skip Gate.`
