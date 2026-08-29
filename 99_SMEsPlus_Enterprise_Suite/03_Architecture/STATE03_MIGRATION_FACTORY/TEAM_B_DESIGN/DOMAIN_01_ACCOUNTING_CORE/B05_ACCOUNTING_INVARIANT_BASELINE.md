@@ -4,7 +4,8 @@
 |---|---|
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B5 — Business Invariant Baseline |
-| Method | Starts from Team A's INV-01..06 (`04_BUSINESS_INVARIANT_REGISTER.md`), independently re-evaluated against this domain's own B02–B04 design, plus four independently justified additions |
+| Method | Starts from Team A's INV-01..06 (`04_BUSINESS_INVARIANT_REGISTER.md`), independently re-evaluated against this domain's own B02–B04 design, plus five independently justified additions |
+| **Corrected** | **CORR-B01 / CORR-B02 / CORR-B03 (2026-08-29)** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) prompted corrections to BINV-06 (period-close no longer a Consumption trigger, per B04 §4), BINV-10 (now explicitly states the Current Earnings transfer that makes MP-02's corrected proof hold post-closing), and a new BINV-11 (historical as-of reproducibility). See [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
 
 ## 1. Independent Evaluation Method
 
@@ -140,8 +141,9 @@ Residual assumption:    None material — this is the domain's most confidently 
 ### BINV-06 — Immutability of Consumed Fact
 
 ```
-Independent statement: Once a COMMITTED Entry is consumed (B04 §4: filed, reconciled,
-                        referenced downstream, or its period closed), its content is
+Independent statement: Once a COMMITTED Entry is consumed (B04 §4, corrected at CORR-B01:
+                        filed, reconciled, or referenced downstream — period close is
+                        deliberately NOT one of these triggers, see below), its content is
                         permanently frozen; the only path to changing what it effectively
                         represents is a linked correction (BINV-05), never in-place mutation.
 Why required:           The audit trail is only as strong as its weakest mutability control —
@@ -159,10 +161,16 @@ Enforcement objective:  This is what B04's consumption gate exists to guarantee 
                         response to ADV-04 (this domain's highest-priority advancement
                         objective).
 Evidence:               INV-06, CF-06, ADV-04, ADV-07, disagreement-03 (priority elevation)
-Residual assumption:    The consumption-trigger list (B04 §4) is this domain's own design
-                        judgment, not something Team A's evidence dictated in this exact form
-                        — flagged explicitly as a Team B design assumption requiring gate
-                        review (see B13, B16).
+Residual assumption:    The consumption-trigger list (B04 §4, now three items, not four) is
+                        this domain's own design judgment, not something Team A's evidence
+                        dictated in this exact form — flagged explicitly as a Team B design
+                        assumption requiring gate review (see B13, B16). **Corrected at
+                        CORR-B01:** period close was originally a fourth trigger here; removing
+                        it was necessary, not optional — the original wording was internally
+                        contradictory against BINV-07 below, not merely an assumption someone
+                        might reasonably have chosen differently. Period status now governs
+                        Amendment availability through a separate mechanism (B04 §4's Period
+                        Lock), never through this invariant.
 ```
 
 ### BINV-07 — Consumption Record Permanence *(new, Team B addition)*
@@ -241,29 +249,94 @@ Residual assumption:    Whether accounts may be deprecated (stop accepting new a
                         not this invariant's concern.
 ```
 
-### BINV-10 — Carry-Forward Correctness *(new, Team B addition)*
+### BINV-10 — Carry-Forward Correctness *(new, Team B addition; strengthened at CORR-B02)*
 
 ```
-Independent statement: The opening balance of period N+1 for a carry-forward account equals
-                        the closing balance of period N for that account, computed by CAP-09,
-                        never independently keyed.
+Independent statement: The opening balance of period N+1 for a carry-forward (Asset/
+                        Liability/Equity) account equals the closing balance of period N for
+                        that account, computed by CAP-09, never independently keyed.
+                        **Strengthened at CORR-B02:** closing a period must additionally
+                        transfer the closing Current Earnings (Revenue − Expenses for the
+                        period, MP-02) into a designated formal Equity account, and reset every
+                        Revenue/Expense account to zero for period N+1 — this is what makes
+                        MP-02's simple equation (Assets = Liabilities + Equity) hold again
+                        immediately after close, as a special case of the expanded equation
+                        (Assets + Expenses = Liabilities + Equity + Revenue) with Expenses and
+                        Revenue both reset to zero.
 Why required:           A manually entered opening balance that does not tie to the prior
                         period's actual close is a silent break in the ledger's continuity —
                         the kind of gap that would be invisible until an audit specifically
-                        checks the roll-forward.
-Accounting basis:       BF-09 (balance-sheet carry-forward / P&L reset)
+                        checks the roll-forward. Separately, if Current Earnings were not
+                        transferred into Equity at close, the closing balance sheet would not
+                        balance under the simple equation at all — a defect distinct from, but
+                        related to, the one ChatGPT's audit found in the open-period proof.
+Accounting basis:       BF-09 (balance-sheet carry-forward / P&L reset), MP-02 (corrected)
 Regulatory basis:       None specific — supports general statement reliability
 Failure consequence:    Opening and closing balances diverge across a period boundary with no
                         forced mechanism to catch it — comparative statements silently
-                        disagree with each other.
+                        disagree with each other; or, if Current Earnings is not transferred,
+                        a "closed" balance sheet still fails to balance under the simple
+                        equation, contradicting the very point of closing.
 Enforcement objective:  CAP-09's carry-forward output (B02 §2) is itself a CAP-02-committed
                         fact (B04 §3 `CarriedForward` event) — computed and posted through the
                         same gates as any other Entry, not a special manual step outside them.
-Evidence:               AP-14 / BF-09, independently elevated to invariant status this phase
+                        The Current Earnings transfer is part of this same computed, posted
+                        event, not a separate manual journal entry a user must remember.
+Evidence:               AP-14 / BF-09, MP-02 (corrected at CORR-B02), independently elevated to
+                        invariant status this phase
 Residual assumption:    The year-end closing *process* that triggers this computation was
                         noted by Team A as unread/unobserved (MR-07 residual note) — this
                         invariant states the required outcome; it does not assume any
                         particular closing procedure achieves it.
+```
+
+### BINV-11 — Historical As-of Reproducibility *(new, added at CORR-B03)*
+
+```
+Independent statement: For any account, company, and historical date D, re-evaluating
+                        MP-09's balance-as-of-D aggregation must produce an identical result
+                        regardless of when the computation is performed, PROVIDED no
+                        Correction or Void dated <= D has been committed since (a Correction
+                        or Void is itself a new, separately-dated Entry, so in practice this
+                        proviso is never violated — see below). **Precision added during
+                        CORR-B05 regression testing:** this guarantee is UNCONDITIONAL only
+                        for CONSUMED facts, because BR-07 makes Amendment impossible on a
+                        consumed Entry — the only way to change its effective content is a
+                        Correction/Void, which is separately dated and therefore cannot alter
+                        an as-of-D result for D before that date. For an UNCONSUMED Entry, an
+                        in-place Amendment performed after D but before the query genuinely
+                        CAN change what "as of D" reports — this is intentional, not a defect:
+                        "unconsumed" precisely means nothing has yet relied on the value, so
+                        there is no historical truth to protect. BINV-11 is a guarantee about
+                        RELIED-UPON history, not about every number that was ever transiently
+                        visible before anyone depended on it.
+Why required:           A financial report issued "as of D" is itself a historical fact; a
+                        later discovery that something dated before D should be voided or
+                        corrected does not change what was true and reported as of D — it
+                        creates a new fact, dated at or after the discovery, that changes the
+                        position from that point forward. Silently rewriting a historical as-of
+                        result breaks exactly the audit/reproducibility property this domain
+                        exists to protect.
+Accounting basis:       Direct consequence of BINV-05 (traceable correction is additive,
+                        dated) applied to aggregation, not merely to individual Entries
+Regulatory basis:       Supports RG-01/RG-02 — an independently audited, retained financial
+                        record must mean the same thing on re-examination as it did when issued
+Failure consequence:    ChatGPT's independent audit (`D01-B-AUD-03`) found this concretely:
+                        under the original design, an Entry valid and committed at D1, later
+                        voided at D2, would be silently excluded from a "balance as of D1"
+                        query performed after D2 — a later event retroactively rewriting an
+                        earlier historical truth.
+Enforcement objective:  MP-09 (B08, corrected) no longer filters by an Entry's *current*
+                        status at all — every COMMITTED Entry's own Lines count at their own
+                        date, unconditionally; a Void or Correction is itself a separately
+                        dated Entry (B04 §5/§6) whose own Lines only affect aggregations dated
+                        on or after *that* Entry's own date. Historical reproducibility is
+                        therefore a structural consequence of date-based filtering, not a
+                        separately maintained guarantee that could drift out of sync with it.
+Evidence:               Derived design requirement, prompted by ChatGPT's independent audit
+                        `D01-B-AUD-03`; no direct Team A source ID
+Residual assumption:    None material — this invariant is a direct, provable consequence of
+                        MP-09's corrected formula (B08), not an independent judgment call.
 ```
 
 ## 3. Coverage Check Against Mandatory Areas
@@ -277,7 +350,10 @@ Correction traceability : BINV-05                               — COVERED
 Auditability            : BINV-06, BINV-07, BINV-08             — COVERED (three, not one —
                            judged insufficient to cover with a single invariant given this is
                            the domain's central weakness)
-Independently added     : BINV-09 (classification integrity), BINV-10 (continuity integrity)
+Independently added     : BINV-09 (classification integrity), BINV-10 (continuity integrity),
+                           BINV-11 (historical reproducibility, added at CORR-B03)
 ```
 
-**B5 = COMPLETE.**
+**B5 = COMPLETE.** *(Corrected at CORR-B01/B02/B03 — see header. Corrections are additive
+to this record, not a rewrite of it: BINV-01..05, 07..09 are unchanged from the original
+B5 pass; BINV-06 and BINV-10 were amended in place with the amendment visible; BINV-11 is new.)*

@@ -5,6 +5,7 @@
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B7 — Conceptual Information Model |
 | Scope | Business concepts, meaning, ownership, relationships, cardinality, identity. **No physical schema, SQL, ORM, index, or vendor field/PK/FK below.** |
+| **Corrected** | **CORR-B02 (2026-08-29)** — §1a's closing claim ("this is what makes Assets = Liabilities + Equity meaningful") overstated what Normal Balance Side alone proves; corrected below, and a new §1b defines Current Earnings. **CORR-B01** — the Consumption Record row's "four B04 §4 trigger kinds" corrected to three (period close removed as a trigger). See [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
 
 ## 1. Conceptual Entities
 
@@ -20,19 +21,49 @@
 | **Exchange Rate** | A (currency pair, date) → rate fact, external to this domain's own authority but consumed by it | Identified by currency pair and date | CAP-06 (consumer, not source of truth) |
 | **Correction Link** | The permanent, directed relationship between a correcting Entry and the Entry it corrects (B04 §6) | Identified by the ordered pair (correcting Entry, corrected Entry); see §3 cardinality rule | CAP-03 |
 | **Audit Event** | One immutable record of a state-changing action (B04 §3) | A permanent, append-only identity; never reused, never edited | CAP-08 |
-| **Consumption Record** | A specialization of Audit Event marking that a specific COMMITTED Entry has been consumed, and by which of the four B04 §4 trigger kinds | Identified by (Entry, trigger kind, occurrence) — an Entry may accumulate multiple Consumption Records over time (e.g., referenced downstream, *then* its period closes); only the *first* one matters for BINV-06, but all are retained (BINV-07) | CAP-08, triggered by CAP-02/03/04/09 |
+| **Consumption Record** | A specialization of Audit Event marking that a specific COMMITTED Entry has been consumed, and by which of the three B04 §4 trigger kinds *(corrected at CORR-B01 — was four; period close is no longer one of them)* | Identified by (Entry, trigger kind, occurrence) — an Entry may accumulate multiple Consumption Records over time (e.g., filed, *then* separately referenced downstream); only the *first* one matters for BINV-06, but all are retained (BINV-07) | CAP-08, triggered by whichever capability observes the external event (filing/reconciliation are typically reported by domains outside this one, per B03 §3; downstream reference — including CAP-09's own carry-forward, which references the prior period's closing Entries — is observed within this domain) |
 
-### 1a. Account Category — Normal Balance Side *(added at B16 §11, Persona 1 fix)*
+### 1a. Account Category — Normal Balance Side *(added at B16 §11, Persona 1 fix; corrected at CORR-B02)*
 
 The red-team pass found that [MP-02](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md)'s
 proof of the accounting equation as a corollary of MP-01 depends on "Account Category
 correctly determines its normal balance side" — a property this entity list never actually
 stated. Stated explicitly now: **every Account Category carries a Normal Balance Side
-(debit-normal or credit-normal)**, fixed for the category (asset/expense categories are
-debit-normal; liability/equity/revenue categories are credit-normal — standard accounting
-convention, PR-01/PR-02, not an independent invention). An Account's aggregate balance
-(MP-09) is interpreted against its Category's Normal Balance Side — this is what makes
-"Assets = Liabilities + Equity" a meaningful sum rather than an arbitrary one.
+(debit-normal or credit-normal)**, fixed for the category (**Asset and Expense** categories
+are debit-normal; **Liability, Equity, and Revenue** categories are credit-normal — standard
+accounting convention, PR-01/PR-02, not an independent invention). An Account's aggregate
+balance (MP-09) is interpreted against its Category's Normal Balance Side.
+
+**Corrected at CORR-B02:** the previous version of this paragraph claimed Normal Balance Side
+alone is "what makes `Assets = Liabilities + Equity` meaningful." ChatGPT's independent audit
+(`D01-B-AUD-02`) correctly found this incomplete — Normal Balance Side alone proves the
+*expanded* equation (`Assets + Expenses = Liabilities + Equity + Revenue`), which holds at
+every moment, open period or not. The *simple* equation is a special case of the expanded one
+(true exactly when Revenue and Expenses are both zero — i.e., after closing) — see §1b and
+[B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-02 for the corrected proof.
+
+### 1b. Current Earnings *(new, added at CORR-B02)*
+
+**Current Earnings** is a derived concept, not a separately stored entity — like Ledger
+(B03 §2), it is a computed view, not something with its own identity or lifecycle. It is
+defined as: `Current Earnings = (sum of Revenue-category account balances) − (sum of
+Expense-category account balances)`, for the accounting period since the last close. It
+exists specifically to answer the question the simple accounting equation cannot answer on
+its own during an open period: where does the net effect of not-yet-closed Revenue and
+Expense activity sit, for reporting purposes? Two equivalent ways to state the answer:
+
+- **Expanded form (always true, open or closed):** `Assets + Expenses = Liabilities + Equity
+  + Revenue` — a direct corollary of BINV-01 (every Entry balances) plus Normal Balance Side
+  (§1a), with no additional assumption.
+- **Reporting form (regroup the same equation):** `Assets = Liabilities + (Equity + Current
+  Earnings)` — i.e., for reporting purposes, Equity-plus-not-yet-closed-Current-Earnings
+  behaves as the simple equation's "Equity" term. This is a restatement, not a separate fact.
+
+At period close (CAP-09, BINV-10), Current Earnings is transferred into a formal Equity
+account and Revenue/Expense accounts reset to zero for the new period — after which Current
+Earnings is zero again and the simple equation holds directly, using the now-updated formal
+Equity figure. See [B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-02 for the full
+proof.
 
 ## 2. Deliberately Excluded From This List
 

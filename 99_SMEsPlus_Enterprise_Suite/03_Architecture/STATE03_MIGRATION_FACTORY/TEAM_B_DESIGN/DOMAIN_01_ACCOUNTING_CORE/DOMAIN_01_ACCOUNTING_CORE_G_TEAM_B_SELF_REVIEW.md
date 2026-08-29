@@ -71,13 +71,33 @@ finds a seventh assumption this pass missed, would not surprise Team B — that 
 what the next gate exists to catch, and precisely why this document does not claim more
 confidence than the process has actually earned yet.
 
+## 4a. Addendum — This Happened *(added at CORR-B01/B02/B03)*
+
+ChatGPT's independent audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) found exactly the
+class of defect §4 anticipated — and found it in three places, not one: the Consumption Gate's
+interaction with period reopen (`D01-B-AUD-01`), an incomplete mathematical proof neither this
+self-review nor B16's red-team caught (`D01-B-AUD-02`), and a historical-reproducibility defect
+in VOID handling (`D01-B-AUD-03`). All three are corrected
+([CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md)), and a focused
+regression against real numeric examples ([CORR-B05](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md))
+found and fixed one further precision gap. This is recorded here not to claim credit for having
+predicted it, but because §4's honesty about this design's actual confidence level — not
+higher than the process had earned — is exactly what made this corrective round routine
+process rather than a crisis: nothing about the corrections required abandoning B0–B17's
+underlying capability model, lifecycle concepts, or invariant baseline — three specific,
+locatable defects were fixed within the existing structure, and independent audit is what
+found them because it was always going to have to be independent audit, not another round of
+Team B looking at its own work.
+
 ## 5. Verdict
 
 ```
-TEAM B SELF-REVIEW COMPLETE
+TEAM B SELF-REVIEW COMPLETE (original pass)
+CORRECTIVE ROUND APPLIED (CORR-B01/B02/B03) — 3 BLOCKING defects found by independent audit,
+  corrected; 1 further precision gap found and fixed during focused regression
 Design internally coherent, self-corrected where found lacking, honestly bounded
-Not independently verified
-Not Final Pass — Boss and ChatGPT audit remain outstanding
+Not independently re-verified since correction — that is ChatGPT re-audit's role next
+Not Final Pass — Boss and ChatGPT re-audit remain outstanding
 ```
 
-**Self-review complete. Proceeding to Final Gate Candidate (H).**
+**Self-review complete, corrective addendum applied. Proceeding to Final Gate Candidate (H).**

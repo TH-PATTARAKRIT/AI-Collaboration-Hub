@@ -8,9 +8,10 @@
 | Board | Board06 — Data & Canonical Model |
 | Domain | DOMAIN_01 — Accounting Core |
 | Team | Team B — Independent Clean-Room Design |
-| Directive | SMEPLUS-26-08-29-MIG-B-D01-E2E-001 |
+| Directive | SMEPLUS-26-08-29-MIG-B-D01-E2E-001, corrective round SMEPLUS-26-08-29-MIG-B-D01-CORR-001 |
 | Date | 2026-08-29 |
 | Executor | Claude Sonnet 5 |
+| **Corrective round applied** | **CORR-B01/B02/B03 (2026-08-29)** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) found three BLOCKING defects, all corrected: a Consumption/Period-reopen contradiction, an incomplete accounting-equation proof, and time-inconsistent historical as-of balances after VOID. Full record: [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md) and [B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md) (which itself found and fixed one further precision gap). This is the corrected state of the design — the pre-correction state is preserved, visibly, inside each affected B0x file, not deleted. |
 
 ## 1. Executive Summary
 
@@ -24,9 +25,14 @@ altered, with no forced trace. This design closes that gap structurally (a Consu
 same discipline — measured advancement, not imitation — across nine further capability areas
 ([B12](B12_REFERENCE_TO_ADVANCEMENT_DESIGN.md)). An internal red-team pass
 ([B16](B16_TEAM_B_INTERNAL_RED_TEAM_REVIEW.md)) found and fixed six real design gaps before
-this pack was assembled. Clean-room provenance was independently verified twice
-([B14](B14_CLEAN_ROOM_PROVENANCE_MATRIX.md), [B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §8):
-zero critical vendor-derived design risk.
+this pack was first assembled. A subsequent **independent** ChatGPT audit found three further,
+more severe (BLOCKING) defects the internal review had missed entirely — all three corrected
+in a targeted round, with a focused regression against real numeric examples (not just
+algebraic assertions) finding and fixing one additional precision gap
+([CORR_B05](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md)). Clean-room provenance was independently
+verified twice before the corrective round ([B14](B14_CLEAN_ROOM_PROVENANCE_MATRIX.md),
+[B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §8) and re-confirmed unaffected by it (B15 §3a):
+zero critical vendor-derived design risk, throughout.
 
 ## 2. Authorized Input
 
@@ -69,17 +75,22 @@ explicit out-of-scope list: [B03](B03_DOMAIN_BOUNDARY_MODEL.md).
 
 ## 7. Lifecycle / Event Model
 
-Four states (DRAFT, COMMITTED, VOIDED, SUPERSEDED — the last a Team B addition), nine forced
-event types, and the Consumption Gate — the domain's central original design contribution,
-extending Team A's neutral observation into an actual enforced mechanism:
-[B04](B04_BUSINESS_LIFECYCLE_EVENT_MODEL.md).
+Four states (DRAFT, COMMITTED, VOIDED, SUPERSEDED — the last a Team B addition), ten forced
+event types (including `PeriodReopened`, added at CORR-B01), and the Consumption Gate — the
+domain's central original design contribution, extending Team A's neutral observation into an
+actual enforced mechanism. **Corrected at CORR-B01/B03:** Period Lock and Consumption are now
+two independent, orthogonal gates on Amendment (period close is no longer a Consumption
+trigger — three triggers, not four); Void is now always a dated, linked Correction Entry,
+never a status flip. [B04](B04_BUSINESS_LIFECYCLE_EVENT_MODEL.md).
 
 ## 8. Invariant Baseline
 
-Ten invariants (BINV-01..10): six independently re-evaluated from Team A's INV-01..06, four
-newly added (Consumption Record Permanence, Audit Evidence Independence, Account Category
-Immutability, Carry-Forward Correctness). All six mandated coverage areas confirmed:
-[B05](B05_ACCOUNTING_INVARIANT_BASELINE.md).
+Eleven invariants (BINV-01..11, the last added at CORR-B03): six independently re-evaluated
+from Team A's INV-01..06, five newly added (Consumption Record Permanence, Audit Evidence
+Independence, Account Category Immutability, Carry-Forward Correctness, and now Historical
+As-of Reproducibility). All six mandated coverage areas confirmed. **Corrected at CORR-B01:**
+BINV-06's trigger list fixed to match B04. **Strengthened at CORR-B02:** BINV-10 now requires
+the Current Earnings transfer at close. [B05](B05_ACCOUNTING_INVARIANT_BASELINE.md).
 
 ## 9. Business Rule Baseline
 
@@ -99,10 +110,15 @@ Balance Side and tenant/company-scoped Audit Event identity:
 
 ## 11. Accounting & Mathematical Design Principles
 
-Ten principles (MP-01..10) covering all eleven mandated areas, including an explicit proof
-that the accounting equation is a corollary of per-entry balance (not a separate check), a
-proof that a constructed reversal is automatically balanced, and a proposed rounding policy
-where Team A's evidence left the question open (flagged for gate confirmation):
+Ten principles (MP-01..10) covering all eleven mandated areas, including a full proof of the
+expanded accounting equation (`Assets + Expenses = Liabilities + Equity + Revenue`, holding
+unconditionally, with the simple equation as the closed-period special case — **corrected at
+CORR-B02** after the original proof was found incomplete for open periods, and verified
+numerically against a worked example in [CORR-B05](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md)),
+a proof that a constructed reversal is automatically balanced, a time-consistent aggregation
+formula (**corrected at CORR-B03** — no longer filters by an Entry's current status, only by
+date, closing a historical-rewrite defect), and a proposed rounding policy where Team A's
+evidence left the question open (flagged for gate confirmation):
 [B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md).
 
 ## 12. Control / Audit Design Objectives
@@ -132,21 +148,29 @@ in Team A's ADV-01..08), each with a chosen design mechanism and a measurement c
 
 ## 16. Design Options / Trade-offs
 
-Six significant decisions formally compared across eight dimensions each, with Team-B-only
-recommendations explicitly marked not-yet-approved: [B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md).
+Seven significant decisions (was six; DT-07 added at CORR-B03) formally compared across eight
+dimensions each, with Team-B-only recommendations explicitly marked not-yet-approved.
+**Revised at CORR-B01:** DT-02's original recommendation was withdrawn as internally
+contradictory (not merely reconsidered) and replaced with a coherent option, kept visible
+alongside the withdrawal: [B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md).
 
 ## 17. Clean-Room Provenance
 
 Every material decision mapped to Accounting Standard / Regulatory Requirement / Industry
 Principle / Cross-ERP Pattern / Team A Fact / Migration Requirement / Independent Reasoning.
 Three vendor-adjacent terms individually reviewed and confirmed traceability-only.
-**Critical Vendor-Derived Design Risk = 0**: [B14](B14_CLEAN_ROOM_PROVENANCE_MATRIX.md).
+**Critical Vendor-Derived Design Risk = 0**, re-confirmed unaffected by the CORR-B01/B02/B03
+corrections: [B14](B14_CLEAN_ROOM_PROVENANCE_MATRIX.md).
 
 ## 18. Traceability
 
 Full chains traced end-to-end for three exemplar threads; one ID-space collision and one
-rule-interaction gap found and resolved explicitly (not silently); zero orphan critical
-decisions, zero circular definitions, zero regulatory overreach:
+rule-interaction gap found internally and resolved explicitly (not silently). **Three further,
+more severe (BLOCKING) defects were subsequently found by ChatGPT's independent audit — not
+by this domain's own traceability pass — and are recorded with equal transparency, including
+the honest note that this domain's own review missed them:**
+[B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §3a. Zero orphan critical decisions, zero circular
+definitions, zero regulatory overreach, before and after correction:
 [B15](B15_DESIGN_TRACEABILITY_MATRIX.md).
 
 ## 19. Residual Unknowns
@@ -159,17 +183,27 @@ the two items — OQ-01, OQ-02 — explicitly checked against this design's depe
 ## 20. Assumptions
 
 Six Team B design assumptions requiring gate confirmation, consolidated in
-[B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §6: rounding method (round-half-up), period-close as
-automatic consumption trigger, chart-of-accounts template/instance structure, audit-trail
-tamper-evidence scope beyond evidenced legal requirement, flexible correction shape, and the
-CO-02/CO-06 configuration-coupling rule found during traceability review.
+[B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §6: rounding method (round-half-up); period-close
+vs. consumption (**revised at CORR-B01** — the internal contradiction is fixed, a narrower
+residual question about reopen time-limits remains open); chart-of-accounts template/instance
+structure; audit-trail tamper-evidence scope beyond evidenced legal requirement; flexible
+correction shape (Void, B13 DT-07, is now understood as an instance of this same flexibility);
+and the CO-02/CO-06 configuration-coupling rule found during traceability review. **No
+assumption was resolved by Team B itself during the corrective round** — assumption #2's
+revision was a required fix to an incoherent design, distinguished explicitly from the other
+five genuine open choices (see [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md) §6).
 
 ## 21. Red-Team Findings
 
-Ten personas engaged; six real, substantive gaps found and fixed (not merely noted); two
-areas checked and confirmed already-adequate without padding; two areas confirmed correctly
-out of this phase's scope. Full record, including the fixes' exact text:
-[B16](B16_TEAM_B_INTERNAL_RED_TEAM_REVIEW.md).
+Ten personas engaged in the original pass; six real, substantive gaps found and fixed (not
+merely noted); two areas checked and confirmed already-adequate without padding; two areas
+confirmed correctly out of this phase's scope. **Honest addendum added at CORR-B01/B02/B03**
+([B16](B16_TEAM_B_INTERNAL_RED_TEAM_REVIEW.md) §13): none of the ten personas caught any of
+the three defects the subsequent independent audit found. A further, focused seven-persona
+regression against the corrected design ([CORR-B05](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md))
+tested eight adversarial scenarios, including two verified with real worked numbers (not just
+algebra), and found one additional precision gap — fixed before this pack was updated. Full
+record, including every fix's exact text: [B16](B16_TEAM_B_INTERNAL_RED_TEAM_REVIEW.md).
 
 ## 22. Acceptance Criteria
 
@@ -191,6 +225,10 @@ Critical orphan design decisions = 0         : YES (B15)
 Class G items still visible                  : YES (B01 §11, B15 §6, this section §19)
 Regulatory scope not overstated              : YES (B09 CO-07/CO-11, B15 §7)
 Internal Red-Team completed                  : YES (B16)
+Independent audit findings corrected         : YES — all 3 BLOCKING findings from
+                                                `aa60c2d0497cefe804d37953bbfaa597c3476d79`
+                                                resolved (CORR_B01_B02_B03_CORRECTIVE_ROUND.md)
+Focused regression completed                 : YES (B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md)
 ```
 
 ## 23. Measured Advancement Criteria (summary — full detail in B12)

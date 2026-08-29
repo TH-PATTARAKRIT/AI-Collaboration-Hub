@@ -5,11 +5,12 @@
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B13 — Design Options & Trade-off Register |
 | Status | **Team B recommendation only. None of the recommendations below are approved design until Boss Final Gate.** |
+| **Corrected** | **CORR-B01 / CORR-B03 (2026-08-29)** — DT-02 revised: ChatGPT's independent audit found the original recommendation internally contradictory, not merely one reasonable option among others (see DT-02 below for the full account, kept visible). DT-07 added for the historical-void design choice CORR-B03 required. |
 
-Six decisions were significant enough — either because B04–B12 flagged them as assumptions
-requiring gate review, or because a real, defensible alternative existed and picking one
-without showing the other was considered would understate the actual design effort — to
-warrant a formal option comparison rather than a single stated choice.
+Originally six, now seven, decisions were significant enough — either because B04–B12
+flagged them as assumptions requiring gate review, or because a real, defensible alternative
+existed and picking one without showing the other was considered would understate the actual
+design effort — to warrant a formal option comparison rather than a single stated choice.
 
 ---
 
@@ -46,34 +47,48 @@ Boss confirmation, particularly given OQ-03 remains open.**
 
 ---
 
-## DT-02 — Period Close as Automatic Consumption Trigger
+## DT-02 — Period Close vs. Consumption *(REVISED at CORR-B01 — original recommendation withdrawn as internally contradictory, not merely reconsidered)*
 
-**Context:** B04 §4 chose to treat period close as an automatic, blanket consumption
-trigger for every Entry within it, rather than relying solely on explicit, individually
-recorded external-reliance events.
+**Original context (kept visible, not deleted):** B04 §4 originally chose to treat period
+close as an automatic, blanket consumption trigger for every Entry within it, and this
+document's original DT-02 compared that against "consumption tracked only via explicit
+triggers, period close unrelated" and recommended keeping the automatic-trigger design.
+**ChatGPT's independent audit (`D01-B-AUD-01`) found that recommendation internally
+contradictory**: B04 also described period reopen as restoring correctability, which cannot
+be true if period-close-triggered consumption is, per BINV-07, permanent and never retracted.
+This was not a legitimate trade-off between two coherent options — Option A as originally
+written was not actually a coherent option at all once BINV-07 is taken seriously. The
+comparison below replaces the original one.
 
-- **Option A — Period close is automatic consumption (chosen in B04).** Benefit: simple,
-  conservative, closes most of GAP-D01-22's practical surface without a separate permission
-  model. Risk: possibly over-broad — an entry in a closed period that was never actually
-  externally relied upon becomes just as frozen as one that was.
-- **Option B — Consumption tracked only via explicit triggers (filed, reconciled,
-  referenced); period close is a separate, unrelated concept.** Benefit: more precisely
-  matches the actual underlying harm Team A's own reasoning identified (`06_STATE_EVENT_
-  LOGIC_ANALYSIS.md`: harm is breaking a chain of trust to something *external*). Risk:
-  requires every possible external-reliance event to be correctly and completely captured —
-  a missed trigger type silently reopens a mutation path BINV-06 exists to close, which is a
-  worse failure mode than Option A's over-breadth.
+- **Option A (original, now rejected as incoherent) — Period close is automatic, permanent
+  consumption.** Cannot coexist with a reopen mechanism that restores correctability, given
+  BINV-07. Rejecting this is not a preference — it is a requirement, once BINV-06/07 are held
+  fixed (and they must be: they protect the domain's central invariant, INV-06/CF-06).
+- **Option B (original) — Consumption tracked only via explicit triggers; period close
+  unrelated.** Still valid as stated, but incomplete on its own: it never explained what (if
+  anything) governs Amendment *timing* while a period is closed, leaving that question
+  implicitly unanswered.
+- **Option C (new, adopted) — Period Lock and Consumption as two independent, orthogonal
+  gates on Amendment.** Period open/closed status (CAP-04/BINV-02) gates *whether Amendment
+  is currently permitted*, reversibly, via authorized reopen (CO-08). Consumption
+  (statutory filing / reconciliation / downstream reference — three triggers, not four)
+  gates *whether Amendment is ever permitted again*, irreversibly (BINV-06/07, unchanged).
+  Amendment requires both conditions to hold; either alone is not enough. This is Option B's
+  correct trigger list, combined with an explicit, separate answer to the timing question
+  Option B left implicit.
 
 | | Accounting correctness | Auditability | Complexity | Migration impact | Multi-company | SaaS impact | Maintainability | Advancement potential |
 |---|---|---|---|---|---|---|---|---|
-| A | Conservative, never under-protects | High — one rule to verify | Low | Directly usable for MG-C04/C07 | Neutral | Neutral | High | Directly implements ADV-04/07 |
-| B | Precise, but only as complete as its trigger list | High if complete; silently lower if a trigger is missed | Higher — needs a maintained, complete trigger taxonomy | Requires migration to also classify historical consumption event-by-event | Neutral | Neutral | Lower — trigger list must be revisited as new domains are added | Same target, weaker guarantee |
+| A (rejected) | Internally contradictory — not evaluable as a coherent design | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
+| B (superseded by C) | Correct trigger list, but silent on lock timing | High if complete; silently lower if a trigger is missed | Higher — needs a maintained, complete trigger taxonomy | Requires migration to also classify historical consumption event-by-event | Neutral | Neutral | Lower — trigger list must be revisited as new domains are added | Same target, weaker guarantee |
+| C (adopted) | Correct: two independent, individually-sound conditions, matching Team A's own original insight ("safe to correct before external consumption") precisely | High — two separately verifiable rules, neither doing the other's job | Low-Medium — reuses existing Period (BINV-02) and Consumption (BINV-06/07) machinery, no new entity | Directly usable for MG-C04/C07 (migrated history: independently both consumed AND — since its period is imported already-closed — locked) | Neutral | Neutral | High — no special-case reconciliation between two mechanisms that used to silently conflict | Directly implements ADV-04/07, now without the contradiction |
 
-**Recommendation:** **Option A**, retaining B04's original choice — a conservative default
-that fails safe (over-protecting) is preferable to a precise one that fails unsafe (a missed
-trigger silently permitting mutation) for the domain's central invariant. **Not approved —
-flagged explicitly since it directly affects how much of the ledger becomes immutable, which
-Boss should weigh with full visibility into the trade-off, not just the chosen outcome.**
+**Recommendation:** **Option C**, adopted and applied to B04/B05/B08 in this corrective
+round. This is not offered as one reasonable choice among equals the way DT-01's rounding
+method is — Option A was not coherent, and Option C is the minimal, most precisely-scoped fix
+available (reuses existing concepts, adds no new entity, and is a strict refinement of Option
+B). **Still not independently approved by Boss** — flagged for Final Gate exactly as
+before, but now as a corrected, internally consistent design rather than a contradictory one.
 
 ---
 
@@ -193,13 +208,51 @@ review, though this is the lowest-controversy recommendation in this register.**
 
 ---
 
+## DT-07 — Historical Void Semantics *(new, added at CORR-B03)*
+
+**Context:** the original B04 §5 allowed an unconsumed COMMITTED Entry to move directly to
+VOIDED via a status flip, and MP-09 excluded VOIDED Entries' Lines from aggregation based on
+current status. ChatGPT's independent audit (`D01-B-AUD-03`) found this breaks historical
+reproducibility: a later void changes what an earlier "as of" query reports.
+
+- **Option A (adopted) — Voiding is always a dated, linked Correction Entry (a pure MP-07
+  reversal, no replacement value).** Benefit: no new temporal-tracking machinery — MP-09's
+  existing "date <= D" filter already produces correct, prospective-only semantics for free,
+  since the voiding Entry's Lines are dated at the void's own (later) date. Unifies Void and
+  Correction into one mechanism (simplification, not just a fix). Risk: a void is now always
+  at least as "heavy" as any other correction — no lighter-weight status-flip path remains,
+  though B04 §5 argues this cost is minimal given Amendment already requires full logging.
+- **Option B — Keep Void as a distinct status; make MP-09 filter on the void's *effective
+  date* rather than current status.** Benefit: preserves a conceptually distinct Void
+  mechanism, closer to the original design's shape. Risk: raises an unresolved sub-question
+  Option B does not itself answer — should "effective date" be the void *event's* date
+  (prospective, correct) or the *original entry's* date (retroactive, and itself a
+  reintroduction of the same historical-rewrite problem, just relocated to a different
+  field)? Requires new machinery (tracking a void's effective date separately from its
+  current status) that Option A does not need at all.
+
+| | Accounting correctness | Auditability | Complexity | Migration impact | Multi-company | SaaS impact | Maintainability | Advancement potential |
+|---|---|---|---|---|---|---|---|---|
+| A | Correct — prospective semantics fall out of existing date-filtering, no new failure mode possible | High — a void is a fully evidenced Entry like any other | Lower — removes a special case from MP-09 rather than adding one | Neutral — MG-C05's linkage preservation already covers this shape | Neutral | Neutral | Highest — one mechanism (Correction Link) instead of two (status flip + Correction Link) | Directly resolves `D01-B-AUD-03` |
+| B | Correct only if effective-date is defined as the void event's date, and only once that new field is added and consistently populated | Medium — depends on a field not currently modeled | Higher — new effective-date concept, plus a design decision about what it means that Option A avoids entirely | Neutral | Neutral | Neutral | Lower — two mechanisms to keep synchronized | Also resolves the finding, at higher cost |
+
+**Recommendation:** **Option A**, adopted and applied to B04/B07/B08 in this corrective
+round — it resolves the audit finding with a net reduction in mechanism count, not an
+addition, and does not leave an unresolved sub-question (Option B's effective-date semantics)
+the way Option B would. **Not independently approved by Boss** — flagged for Final Gate
+alongside the other six.
+
+---
+
 ## Acceptance Check
 
 ```
 No decision jumped directly to one design without showing alternatives : CONFIRMED
 Every recommendation marked as Team B-only, not approved              : CONFIRMED
-Rejected options retained (not deleted) to show they were considered   : CONFIRMED (DT-03
-  Option C, DT-06 Option B)
+Rejected options retained (not deleted) to show they were considered   : CONFIRMED (DT-02
+  original Option A, DT-03 Option C, DT-06 Option B, DT-07 Option B)
 ```
 
-**B13 = COMPLETE.**
+**B13 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03 — DT-02 revised in place with the
+original recommendation kept visible and explicitly withdrawn as incoherent, not silently
+replaced; DT-07 is new. DT-01, DT-03..06 are unchanged from the original B13 pass.)*

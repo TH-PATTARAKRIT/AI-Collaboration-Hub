@@ -5,6 +5,7 @@
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B8 — Accounting & Mathematical Design Principles |
 | Method | Extends Team A's MR-01..08 (evidence of what the reference system does or fails to guarantee) into this domain's own mathematical design commitments. No implementation — formulas are stated over the conceptual entities of B07, not over any storage structure. |
+| **Corrected** | **CORR-B02 / CORR-B03 (2026-08-29)** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) found MP-02's original proof mathematically incomplete for an open reporting period, and MP-09's original VOID handling time-inconsistent for historical as-of queries. Both are corrected below, in place, with the original reasoning kept visible rather than deleted. Full comparison of alternatives: [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
 
 ### MP-01 — Double-Entry Balance
 
@@ -25,28 +26,73 @@ Proof requirement: a Posting attempt (CAP-02) must be able to demonstrate, for a
               not merely that it was true when the Entry was first drafted
 ```
 
-### MP-02 — Accounting Equation (Aggregate Corollary, Not a Separate Check)
+### MP-02 — Accounting Equation (Corrected at CORR-B02)
 
 ```
-Principle:    Assets = Liabilities + Equity, evaluated across the whole Ledger for one Company
-              at one point in time
-Inputs:       every COMMITTED Line for the Company, each Line's Account Category (B07)
-Outputs:      a value that must be zero: (Assets) − (Liabilities + Equity)
-Invariant:    PR-02, derivable — not independently enforced
-Boundary:     **This is not a fourth check alongside MP-01.** If (a) every Entry satisfies
-              MP-01 individually, and (b) every Account's Category correctly determines its
-              normal balance side (BINV-09), the accounting equation holds in aggregate as a
-              mathematical consequence — it does not require its own separate validation
-              pass. Stating this explicitly matters: a design that checked the equation
-              independently would be doing redundant work and could mask a Category-mapping
-              defect by "fixing" the aggregate number without fixing the root cause.
+ORIGINAL CLAIM (kept visible, not deleted): "If every Entry satisfies MP-01 and every
+Account Category has the correct normal balance side, then Assets = Liabilities + Equity
+holds across the whole Ledger as a mathematical corollary — during an open period, with no
+further condition." ChatGPT's independent audit (`D01-B-AUD-02`) correctly found this
+INCOMPLETE: it silently assumed Revenue and Expense accounts are empty or already closed,
+which is not true during an open reporting period. The corrected proof below does not
+require that assumption.
+
+Principle (corrected — expanded form, holds unconditionally):
+              Assets + Expenses = Liabilities + Equity + Revenue
+              — true at every point in time, open period or closed, with no additional
+              assumption beyond MP-01 and Normal Balance Side (B07 §1a).
+
+Proof:        Sum MP-01 (Σdebit = Σcredit per Entry) over every COMMITTED Entry for the
+              Company: total debit postings, all accounts = total credit postings, all
+              accounts (grand totals; a direct sum of a per-entry identity that holds for
+              every entry is itself an identity — no new assumption introduced).
+              Partition all accounts into two groups by Normal Balance Side (B07 §1a):
+              DEBIT-NORMAL = Asset ∪ Expense; CREDIT-NORMAL = Liability ∪ Equity ∪ Revenue.
+              Let D_dn, C_dn = total debit/credit postings to the debit-normal group;
+              D_cn, C_cn = total debit/credit postings to the credit-normal group.
+              Grand-total identity: D_dn + D_cn = C_dn + C_cn.
+              Rearrange:            D_dn − C_dn = C_cn − D_cn.
+              By definition, balance(debit-normal account) = debit − credit, so the left
+              side is exactly Σ(Asset balances) + Σ(Expense balances) = Assets + Expenses.
+              By definition, balance(credit-normal account) = credit − debit, so the right
+              side is exactly Σ(Liability) + Σ(Equity) + Σ(Revenue) balances.
+              Therefore: Assets + Expenses = Liabilities + Equity + Revenue. QED — no
+              assumption about period state was used anywhere in this derivation.
+
+Current Earnings (B07 §1b): define Current Earnings = Revenue − Expenses (both measured
+              since the last close). Regrouping the proven expanded equation:
+              Assets = Liabilities + (Equity + Current Earnings)
+              — i.e., for REPORTING purposes, "Equity + not-yet-closed Current Earnings"
+              plays the role the simple equation expects "Equity" to play. This is an
+              algebraic regrouping of the proven identity, not a new assumption.
+
+Post-closing special case: at period close, CAP-09/BINV-10 (corrected) transfers Current
+              Earnings into a formal Equity account and resets Revenue/Expense to zero for
+              the new period. Substituting Revenue = Expenses = 0 into the expanded equation
+              collapses it exactly to the simple form: Assets = Liabilities + Equity — using
+              the NOW-UPDATED Equity figure. The simple equation is therefore proven as the
+              special case of the expanded one where Revenue = Expenses = 0, not asserted
+              independently for "after closing" as a separate claim.
+
+Inputs:       every COMMITTED Line for the Company, each Line's Account Category and Normal
+              Balance Side (B07 §1a)
+Outputs:      the expanded equation always; the simple equation exactly when Revenue =
+              Expenses = 0 (i.e., post-close, or a company/period with no P&L activity yet)
+Invariant:    the expanded form is now stated as the actual invariant this domain relies on;
+              the simple form is a derived special case, never assumed to hold mid-period
+Boundary:     **Still not a fourth check alongside MP-01.** The expanded equation is a proven
+              corollary of MP-01 + Normal Balance Side, exactly as the (incomplete) original
+              claimed for the simple form — the correction is to *which* equation is claimed
+              unconditionally, not to the "no separate check needed" design principle itself,
+              which remains correct and is now on solid mathematical ground.
 Rounding:     inherits MP-04; since it is a sum of already-balanced, already-rounded Entries,
               no new rounding is introduced at the aggregate level
 Exception:    none
-Proof requirement: this domain's design obligation is to keep MP-01 and the Category-to-
-              normal-balance mapping (CAP-01) correct — the equation's truth is evidence that
-              both hold, and its failure would indicate a defect in one of them, not in some
-              separate "equation-enforcement" mechanism this domain does not build
+Proof requirement: this domain's design obligation is to keep MP-01, the Category-to-normal-
+              balance mapping (CAP-01), and the CAP-09 Current-Earnings-transfer step (BINV-10,
+              corrected) correct — the expanded equation's truth is evidence all three hold;
+              the simple equation's truth, specifically, is additionally evidence that closing
+              was performed correctly for the period in question
 ```
 
 ### MP-03 — Monetary Precision
@@ -183,6 +229,10 @@ Boundary:     this design does not mandate one mechanical shape for every correc
               are both valid instances of this principle. The choice between them is a
               usability question for a later, non-domain-design phase (how a user expresses a
               correction), not a mathematical one — either shape satisfies BINV-05 identically.
+              **Void (B04 §5, corrected at CORR-B03) is the specific instance of this pattern
+              where the correction is a pure MP-07 reversal with no accompanying replacement
+              value** — not a fourth arithmetic shape, just the "zero net effect" special case
+              of what this principle already covers.
 Rounding:     MP-04 applies to any newly computed amount (e.g., a delta)
 Exception:    none
 Proof requirement: regardless of shape, the correction Entry must pass MP-01 exactly as any
@@ -190,53 +240,92 @@ Proof requirement: regardless of shape, the correction Entry must pass MP-01 exa
               unchecked operation
 ```
 
-### MP-09 — Aggregation (Account Balance / Trial Balance)
+### MP-09 — Aggregation (Account Balance / Trial Balance) — Corrected at CORR-B03
 
 ```
-Principle:    balance(Account A, Company C, as-of date D) = Σ (signed amount of every Line
-              referencing A) over every COMMITTED Entry belonging to C with date ≤ D, EXCLUDING
-              Lines belonging to a VOIDED Entry, and INCLUDING Lines belonging to a SUPERSEDED
-              Entry (a correction adjusts the aggregate by adding its own Lines to the sum —
-              it does not remove the original's Lines from it)
-Inputs:       every COMMITTED Line for the Company up to date D
+ORIGINAL FORMULA (kept visible, not deleted): "...EXCLUDING Lines belonging to a VOIDED
+Entry..." — filtered by the Entry's CURRENT status. ChatGPT's independent audit
+(`D01-B-AUD-03`) correctly found this time-inconsistent: an Entry valid at D1 and voided
+later at D2 would vanish from a "balance as of D1" query performed after D2, even though it
+was genuinely part of the truth as of D1. A later event must not rewrite an earlier as-of
+result. The corrected formula below removes the status-based exclusion entirely.
+
+Principle (corrected): balance(Account A, Company C, as-of date D) = Σ (signed amount of
+              every Line referencing A) over every COMMITTED Entry belonging to C with
+              date <= D. **No status-based exclusion of any kind** — not for VOIDED, not for
+              SUPERSEDED. Every COMMITTED Entry's own Lines count at their own date,
+              unconditionally.
+Why this is now correct for VOID: per B04 §5 (corrected), voiding is itself a dated
+              Correction Entry (a full reversal, MP-07, tagged as void) — it is not a status
+              flip on the original. The voiding Entry's own (negating) Lines are dated at
+              *its own* date (the point the void was recorded), and therefore only enter this
+              sum for D >= that date, through the ordinary "date <= D" filter — no special
+              case is needed, because voiding was never structurally different from any other
+              correction once §5 was fixed. This is why the correction to MP-09 is a
+              SIMPLIFICATION (one fewer special case) rather than added complexity.
+Inputs:       every COMMITTED Line for the Company with date <= D
 Outputs:      a single signed amount per Account (a trial balance is this formula evaluated
               for every Account of a Company simultaneously)
-Invariant:    this is the formula every downstream reporting capability (outside this domain,
-              B03 §3) is entitled to assume is available and correct
+Invariant:    BINV-11 (new, added at CORR-B03) — this is the formula every downstream
+              reporting capability (outside this domain, B03 §3) is entitled to assume is
+              available, correct, AND time-consistent
 Boundary:     "as-of date D" — not "as-of period," to allow both an as-of-today balance and a
-              reconstructed historical balance using the same formula
+              reconstructed historical balance using the same formula, with the same
+              guarantee, for both
 Rounding:     the sum of already-rounded Line amounts; no re-rounding of the aggregate itself
               (a trial balance total must equal the exact sum of its already-exact
               components — this is precisely what MP-03's precision floor exists to guarantee)
 Exception:    none — this is the one formula every other capability in the domain exists to
-              keep trustworthy; it has no special cases by design
+              keep trustworthy; it now has *fewer* special cases than the original, not more
 Proof requirement: re-evaluating this formula for the same (A, C, D) at two different times
-              must produce the same result if nothing new has been committed with date ≤ D in
-              between — this is the mathematical restatement of BINV-06/BINV-07 (immutability
-              plus consumption permanence): a closed-period balance is a fixed point of this
-              formula, not a moving target
+              must produce the identical result, PROVIDED no Correction or Void dated <= D has
+              been committed since — and, per the corrected formula, a Correction or Void
+              dated > D structurally cannot affect the result at all, because it is filtered
+              out by date before status is ever considered. **Scope precision (added at
+              CORR-B05):** this is unconditional for CONSUMED facts (BR-07 forecloses
+              Amendment, leaving Correction/Void — both dated — as the only path). For an
+              UNCONSUMED fact, an in-place Amendment is a different operation from a
+              Correction/Void, is not date-anchored the same way, and CAN legitimately change
+              an as-of-D result computed before consumption occurs — by design, per BINV-11.
+              This is now a structural guarantee of the formula's shape for the case that
+              matters (relied-upon history), not a blanket claim for every number ever
+              transiently computed.
 ```
 
-### MP-10 — Period Cutoff Stability
+### MP-10 — Period Cutoff Stability — Corrected at CORR-B01
 
 ```
-Principle:    once a Period closes (CAP-04), MP-09 evaluated as of that Period's end date
-              produces the same result forever afterward, for that Company
-Inputs:       a closed Period's end date; MP-09's aggregation
-Outputs:      a stable, reproducible balance
-Invariant:    BINV-02 + BINV-06 combined — this principle is where those two invariants meet:
-              period closure is treated as a Consumption trigger (B04 §4) specifically because
-              it is what makes this stability property true
-Boundary:     an authorized, recorded period reopen (B09) breaks this stability deliberately
-              and visibly — the principle holds "as long as the Period remains closed," not
-              unconditionally forever, and a reopen event is itself an Audit Event that
-              explains any subsequent change in the reported result
+Principle:    once a Period closes (CAP-04), no new Posting or Amendment can occur within it
+              (BR-05, BR-14 corrected) while it remains closed — this is a **lock** property,
+              distinct from BINV-11's **historical reproducibility** property (MP-09), which
+              holds regardless of Period status entirely.
+Inputs:       a Period's open/closed status; MP-09's aggregation
+Outputs:      no new activity enters a closed Period while it stays closed
+Invariant:    BINV-02 (period lock) — **corrected: no longer BINV-02 + BINV-06 combined.**
+              The original version of this principle treated period closure as a Consumption
+              trigger, conflating a timing/lock property with a permanence/immutability
+              property. ChatGPT's independent audit (`D01-B-AUD-01`) found this produced a
+              direct contradiction against BINV-07's "never retracted" guarantee once reopen
+              was also described as restoring correctability. The two properties are now
+              cleanly separated (B04 §4): **Period Lock** (this principle) governs *whether
+              new activity can enter*, and is reversible by an authorized reopen (CO-08).
+              **Consumption** (BINV-06/07, unaffected by Period status) governs *whether an
+              already-committed fact can ever be mutated*, and is never reversible. Historical
+              reproducibility (BINV-11, MP-09) holds unconditionally, independent of both.
+Boundary:     an authorized, recorded period reopen (CO-08) restores Posting/Amendment
+              eligibility for that Period going forward — and, because Consumption was never
+              entangled with Period status, reopen restores Amendment specifically only for
+              entries that are independently still unconsumed (B04 §4's corrected gate rule).
+              A reopen never resurrects an already-consumed entry's amendability, and never
+              changes any historical as-of result (BINV-11) for dates before the reopen.
 Rounding:     none beyond MP-04/MP-09
-Exception:    an authorized reopen, per B09 — never a silent one
-Proof requirement: this domain's design obligation is that stability is achievable *because*
-              of BINV-06's enforcement, not achievable *despite* mutability still being
-              possible through some other path — the two must be the same mechanism, not two
-              independent hopes
+Exception:    an authorized reopen, per CO-08 — never a silent one; its effect is now
+              precisely scoped (previous paragraph), not "everything in the period becomes
+              correctable again"
+Proof requirement: this domain's design obligation is that Period Lock and Consumption remain
+              two independently checkable conditions on Amendment (B04 §4's gate rule) — never
+              re-merged into one mechanism, which is exactly the conflation that produced the
+              original contradiction
 ```
 
 ## Acceptance Check
@@ -250,6 +339,11 @@ No implementation proposed                : CONFIRMED — every formula is over 
                                              entities, none over a storage structure
 Rounding gap (Team A OQ-03) not left silent: CONFIRMED — MP-04 proposes a default and flags it
                                              explicitly as requiring gate confirmation
+MP-02 proof mathematically complete for open AND closed periods (CORR-B02) : CONFIRMED
+MP-09 time-consistent for historical as-of queries (CORR-B03)              : CONFIRMED
 ```
 
-**B8 = COMPLETE.**
+**B8 = COMPLETE.** *(Corrected at CORR-B02/CORR-B03 — MP-02 and MP-09 amended in place, with
+the original claims kept visible above each correction, not deleted. MP-01, MP-03..08, MP-10's
+lock/consumption separation are otherwise unchanged from the original B8 pass; MP-10's
+invariant line was also corrected, at CORR-B01, to match B04/B05's fix.)*

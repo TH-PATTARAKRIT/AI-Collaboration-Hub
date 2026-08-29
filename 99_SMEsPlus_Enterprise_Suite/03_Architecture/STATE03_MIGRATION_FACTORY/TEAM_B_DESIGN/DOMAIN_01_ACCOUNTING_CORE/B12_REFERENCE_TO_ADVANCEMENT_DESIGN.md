@@ -5,6 +5,7 @@
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B12 — Reference-to-Advancement Design (mandatory) |
 | Principle | Understand the reference deeply. Rebuild independently. Improve measurably. Do not copy the reference. Do not merely match it. |
+| **Corrected** | **CORR-B01 (2026-08-29)** — the mechanism AD-04/AD-07 point to (B04 §4's Consumption Gate) was corrected after ChatGPT's independent audit found it internally contradictory. **The advancement objectives and measurement criteria below are unchanged** — the fix was to the mechanism's internal consistency, not to what it is trying to achieve. See [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
 
 Team A's `12_REFERENCE_TO_ADVANCEMENT_REGISTER.md` supplied eight candidate problem
 statements (ADV-01..08), explicitly as input, not approved design. This phase converts each

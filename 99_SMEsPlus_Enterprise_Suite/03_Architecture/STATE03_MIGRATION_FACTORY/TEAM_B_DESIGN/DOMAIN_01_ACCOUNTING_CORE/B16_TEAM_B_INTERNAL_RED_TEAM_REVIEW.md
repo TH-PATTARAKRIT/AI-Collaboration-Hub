@@ -157,4 +157,21 @@ Non-governance defects fixed autonomously                         : CONFIRMED (�
 Design honestly assessed as better on SOME axes, not oversold on ALL : CONFIRMED (Persona 10)
 ```
 
-**B16 = COMPLETE.**
+## 13. Addendum — What This Review Missed *(added at CORR-B01/B02/B03)*
+
+Recorded honestly, not to satisfy a checklist but because it is true and relevant: this
+review's Senior Accountant, External Auditor, and Clean-room Reviewer personas (§ Persona 1,
+2, 10) each touched the areas that turned out to contain the three BLOCKING defects the
+subsequent ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`)
+found — Persona 1 caught the *symptom* of the MP-02 gap (a missing Normal Balance Side
+property) without catching the deeper mathematical incompleteness it was symptomatic of;
+none of the ten personas questioned the period-close/consumption/reopen interaction or the
+VOID/historical-aggregation interaction at all. This is recorded as a genuine limitation of
+this review, not retroactively reframed as something it "basically" caught. The corrective
+round's own findings and fixes are in
+[CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md) and
+[B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §3a, not restated here — this addendum exists only
+to correct this document's own implicit claim of thoroughness for future readers.
+
+**B16 = COMPLETE.** *(Addendum added at CORR-B01/B02/B03; §1–§12 otherwise unchanged from
+the original B16 pass.)*
