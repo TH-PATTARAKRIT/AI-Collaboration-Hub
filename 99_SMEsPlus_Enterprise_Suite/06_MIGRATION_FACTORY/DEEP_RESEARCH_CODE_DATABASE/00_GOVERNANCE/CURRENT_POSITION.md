@@ -64,6 +64,11 @@ DR-GAP-014                       = OPEN — independent legal/license sign-off
 EC-03                            = HOLD
 ```
 
+Execution control: `ERPPLUS-102 — Ksolves CLASS-C Register Validation & Legal Control`  
+Assignee: `UNASSIGNED`  
+Due date: `TBD`  
+Schedule progress cannot be claimed until these PMO fields are resolved.
+
 No false PASS is claimed.
 
 ## Source Identity and Lineage
@@ -141,6 +146,7 @@ Jira:
 
 - `ERPPLUS-100` — DOMAIN_01 Team B targeted revision; assignee UNASSIGNED; due date TBD.
 - `ERPPLUS-101` — EC-05 mapping recovery/rebind; assignee UNASSIGNED; due date TBD.
+- `ERPPLUS-102` — EC-03 Ksolves structured-register validation + legal control; assignee UNASSIGNED; due date TBD.
 
 These remain PMO Red Flags for schedule-progress claims; no assignee/date is invented.
 
