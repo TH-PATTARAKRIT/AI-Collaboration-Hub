@@ -1,8 +1,11 @@
 # DOMAIN_01 Round-3 Authoritative Reconciliation Note
 
-Session: `[SMEPLUS-26-08-28-DEEP-CD-001]`
-
-Status: `HOLD BEFORE PMO / ROUND-3 CORRECTION REQUIRED`
+Session: `[SMEPLUS-26-08-28-DEEP-CD-001]`  
+Evidence date: `2026-08-29 Asia/Bangkok`  
+Owner: `Migration Factory Governance / DOMAIN_01 Evidence Reconciliation`  
+Reviewer / Verifier: `ChatGPT — Independent Design Auditor / Evidence Gate Review`  
+Verification Status: `HOLD BEFORE PMO / ROUND-3 CORRECTION REQUIRED`  
+Gate Impact: `BLOCK PMO / BLOCK BOSS FINAL GATE`
 
 ## Verified authoritative evidence
 
@@ -34,5 +37,5 @@ Jira control: `ERPPLUS-100` updated to the Round-3 requirements.
 
 Global EC-03 remains HOLD independently because structured classification-register validation and independent legal/license sign-off remain open. EC-05 also remains HOLD under `ERPPLUS-101`.
 
-`No Evidence = No Progress.`
+`No Evidence = No Progress.`  
 `Never Skip Gate.`
