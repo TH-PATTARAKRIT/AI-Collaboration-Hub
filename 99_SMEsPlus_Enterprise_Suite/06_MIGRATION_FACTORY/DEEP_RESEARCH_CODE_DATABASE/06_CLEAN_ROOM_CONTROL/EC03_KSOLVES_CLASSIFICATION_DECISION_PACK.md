@@ -5,142 +5,118 @@ Date: 2026-08-29 Asia/Bangkok
 Gate: `EC-03 — Classification / License / CLASS-D Control`  
 Decision Authority: Boss — Sole Final Approver  
 Prepared By: ChatGPT L99 / Clean-Room Evidence Gate Review  
-Status: `READY FOR GOVERNANCE DECISION / NO CLASS ASSIGNED BY AI`
+Status: `BOSS DECISION RECORDED — OPTION C / CLASS-C FOR BOTH KSOLVES MODULES`
 
-## 1. Decision Required
+## 1. Decision Scope
 
-Two current observed modules are outside the approved 1,502-module A/B/C/D classification baseline:
+Two current observed modules were outside the approved 1,502-module A/B/C/D classification baseline:
 
-| Module | Current License Evidence | Current Project Treatment | Formal A/B/C/D Status |
-|---|---|---|---|
-| `ks_dashboard_ninja` | OPL-1 | metadata / black-box behavioral only; no implementation transfer | UNCLASSIFIED |
-| `ks_dn_advance` | OPL-1 | metadata / black-box behavioral only; no implementation transfer | UNCLASSIFIED |
+| Module | License Evidence | Prior Treatment | Boss-Approved Class | Effective Treatment |
+|---|---|---|---|---|
+| `ks_dashboard_ninja` | OPL-1 | metadata / black-box behavioral only | **CLASS-C** | observable behavior / metadata / documented capability only; no source-body or implementation transfer |
+| `ks_dn_advance` | OPL-1 | metadata / black-box behavioral only | **CLASS-C** | observable behavior / metadata / documented capability only; no source-body or implementation transfer |
 
-Current observed source = 1,504 modules. Approved STEP040301 baseline remains 1,502 modules.
+Current observed source = 1,504 modules. The Boss ruling extends the classification disposition to the two current Ksolves additions without changing the existing 12 CLASS-D identities.
 
-No class is assigned by this document.
+## 2. Boss Decision
 
-## 2. Existing Project Class Controls
-
-### CLASS-A
-
-Research may proceed only to the extent supported by license and governance. Output must still be normalized into business semantics and independent target design.
-
-### CLASS-B
-
-Controlled functional/semantic learning. Structural translation is prohibited; independent design rationale remains mandatory.
-
-### CLASS-C
-
-Black-box or documented behavior only. Evidence uses observable inputs, outputs, lifecycle and business consequences. Implementation-body transfer is prohibited.
-
-### CLASS-D
-
-Quarantined. No source-body research, detailed extraction or target influence without explicit Boss/legal governance authorization.
-
-The existing 12 CLASS-D identities remain separately quarantined and are not changed by this decision pack.
-
-## 3. Evidence Position
-
-Observed and already evidenced:
-
-- both modules are present in the current 1,504 source inventory;
-- both are recorded with OPL-1 license evidence in the current manifest inventory;
-- project evidence identifies them as purchased third-party modules;
-- current safe treatment is already `METADATA / BLACK-BOX BEHAVIORAL ONLY; NO IMPLEMENTATION TRANSFER`;
-- no evidence currently authorizes their implementation bodies to influence SMEsPlus Core;
-- no evidence currently requires reclassifying any of the existing 12 CLASS-D items.
-
-## 4. Controlled Decision Options
-
-### Option A — Assign CLASS-A
-
-Effect: broader research treatment subject to licensing/governance controls.
-
-Gate concern: not supported by current evidence. No evidence demonstrates that broad implementation-level research is necessary or appropriate for these purchased OPL-1 modules.
-
-### Option B — Assign CLASS-B
-
-Effect: controlled functional/semantic learning with stronger access than black-box-only treatment.
-
-Gate concern: would expand the current safe boundary. Additional license/legal rationale should be recorded before this option is used.
-
-### Option C — Assign CLASS-C
-
-Effect: formalizes the current safe interim treatment:
+The Boss was presented with four controlled options and an Evidence-Gate recommendation for Option C. In the immediately following project instruction, the Boss explicitly authorized proceeding.
 
 ```text
-observable behavior / metadata / documented capability only
-NO source-body transfer
-NO method/class/table/schema translation
-NO vendor-specific implementation influence on target design
+[ ] OPTION A — CLASS-A for both Ksolves modules
+[ ] OPTION B — CLASS-B for both Ksolves modules
+[X] OPTION C — CLASS-C for both Ksolves modules
+[ ] OPTION D — CLASS-D / QUARANTINE for both modules
+[ ] CUSTOM
 ```
 
-Evidence alignment: strongest alignment with the treatment already applied in Team A and EC-03 evidence.
+Boss Decision: `APPROVED — OPTION C / CLASS-C FOR BOTH KSOLVES MODULES`  
+Decision Date/Time: `2026-08-29T16:12+07:00`  
+Decision Evidence: Current project session `[SMEPLUS-26-08-28-DEEP-CD-001]`; Boss message `ดำเนินการได้เลยนะครับผม` issued directly after the CLASS-C recommendation and decision boundary.  
+Decision Authority: `Boss — Sole Final Approver`
 
-### Option D — Assign CLASS-D
+## 3. CLASS-C Control Boundary
 
-Effect: full quarantine pending explicit future ruling.
+The following controls are mandatory for both modules:
 
-Use when governance/legal review concludes that even black-box/documented behavior should not be consumed by the research/design process.
+```text
+ALLOW:
+- observable behavior
+- metadata
+- documented capability
+- business input/output/lifecycle consequences
 
-## 5. Evidence-Gate Recommendation
+PROHIBIT:
+- source-body transfer
+- method/class/table/schema translation
+- vendor-specific implementation influence on SMEsPlus target design
+- direct reuse, porting, cloning, or structural reproduction
+```
 
-**Recommendation for Boss consideration: Option C — CLASS-C**, strictly as a project clean-room control position and **not as legal advice**.
+This is a project clean-room governance classification. It is **not** legal advice and does not constitute independent legal/license sign-off.
 
-Rationale:
+## 4. Classification Arithmetic After Boss Ruling
 
-1. It matches the already-evidenced safe interim treatment.
-2. It preserves the ability to understand observable capability without implementation transfer.
-3. It does not require source-body access.
-4. It keeps the new Node.js/TypeScript SMEsPlus Core independent from the purchased vendor implementation.
-5. It avoids silently expanding the research boundary while still allowing business-behavior comparison.
+The last approved 1,502 classification baseline was:
 
-This recommendation does not itself close EC-03.
+```text
+CLASS-A 19
+CLASS-B 710
+CLASS-C 761
+CLASS-D 12
+TOTAL   1502
+```
 
-## 6. Decision Effect
+Applying the Boss ruling to the two current Ksolves additions yields the current governance disposition:
 
-If Boss selects CLASS-C for both modules:
+```text
+CLASS-A 19
+CLASS-B 710
+CLASS-C 763
+CLASS-D 12
+TOTAL   1504
+```
 
-- current 1,504 source can receive complete A/B/C/D assignment at the classification layer;
-- `DR-GAP-003` may move to evidence review for closure, subject to the row-level classification register being updated and independently verified;
-- `DR-GAP-014` **remains OPEN** because independent legal/license sign-off is a separate control;
-- EC-03 therefore remains at least `PASS WITH CONTROL / LEGAL HOLD` until the independent legal/license requirement is dispositioned.
+This arithmetic records the approved classification decision. It does not by itself certify the structured row-level register because the mandatory evidence-register validator could not be executed in the current runtime.
 
-If Boss selects CLASS-D:
+## 5. Gate Effect
 
-- both modules join quarantine and remain excluded from source-body research;
-- DR-GAP-003 can still be structurally resolved once the classification register is updated and verified;
-- DR-GAP-014 remains separately open.
+| Control | Result after Boss ruling |
+|---|---|
+| Ksolves A/B/C/D governance decision | **PASS — BOSS APPROVED CLASS-C** |
+| Current 1,504 classification arithmetic | **RECONCILED AT GOVERNANCE DECISION LEVEL** |
+| Structured `CLEAN_ROOM_CLASSIFICATION_REGISTER.csv` update/validator | **HOLD — validator runtime unavailable** |
+| DR-GAP-003 | **HOLD PENDING STRUCTURED REGISTER UPDATE + INDEPENDENT VERIFICATION** |
+| DR-GAP-004 | **CLOSED — 12 CLASS-D identities known / quarantine active** |
+| DR-GAP-014 | **OPEN — independent legal/license sign-off required** |
+| EC-03 | **HOLD / LEGAL + REGISTER-VALIDATION CONTROL** |
 
-If Boss selects CLASS-A or CLASS-B:
+The class decision removes the Boss-decision blocker for the two Ksolves modules, but EC-03 is not declared PASS because `No Evidence = No Progress` still requires validated row-level evidence and independent legal/license disposition.
 
-- additional license/governance evidence should be attached before any access boundary is expanded.
+## 6. Existing CLASS-D Boundary
+
+The 12 existing CLASS-D modules remain unchanged and quarantined. This Boss decision does not authorize source-body research, detailed extraction, or target-design influence from CLASS-D material.
 
 ## 7. Mandatory Non-Actions
-
-Regardless of option:
 
 - do not copy vendor code;
 - do not translate vendor ORM/classes/methods/tables into target design;
 - do not provide proprietary source details to the development team;
 - do not alter the existing 12 CLASS-D quarantine without a separate ruling;
-- do not treat a class decision as legal/license sign-off;
-- do not close global DR9 or authorize build/release/deploy.
+- do not treat CLASS-C assignment as legal/license sign-off;
+- do not close global DR9;
+- do not authorize build, release, deployment, production migration, or target schema freeze.
 
-## 8. Boss Decision Record
+## 8. Next Control Action
 
-```text
-[ ] OPTION A — CLASS-A for both Ksolves modules
-[ ] OPTION B — CLASS-B for both Ksolves modules
-[ ] OPTION C — CLASS-C for both Ksolves modules (Evidence-Gate Recommendation)
-[ ] OPTION D — CLASS-D / QUARANTINE for both modules
-[ ] CUSTOM — item-by-item classification or other controlled ruling
-```
+1. Update the two Ksolves rows in `99_EVIDENCE_REGISTER/CLEAN_ROOM_CLASSIFICATION_REGISTER.csv` from `UNCLASSIFIED_CURRENT_ADDITION` to `CLASS-C`.
+2. Reconcile CLASS-C count from 761 to 763 and total current classification to 1,504.
+3. Run the mandatory evidence-register validator.
+4. Independently review the updated structured register.
+5. Keep `DR-GAP-014` open until independent legal/license sign-off is evidenced.
 
-Boss Decision: `PENDING`  
-Decision Date: `TBD`  
-Decision Evidence: `TBD`
+The current runtime returned a client error on the validator execution environment, so steps 1–4 are not falsely represented as complete.
 
 `No Evidence = No Progress.`  
-`Never Skip Gate.`
+`Never Skip Gate.`  
+`Boss is the sole Final Approver.`
