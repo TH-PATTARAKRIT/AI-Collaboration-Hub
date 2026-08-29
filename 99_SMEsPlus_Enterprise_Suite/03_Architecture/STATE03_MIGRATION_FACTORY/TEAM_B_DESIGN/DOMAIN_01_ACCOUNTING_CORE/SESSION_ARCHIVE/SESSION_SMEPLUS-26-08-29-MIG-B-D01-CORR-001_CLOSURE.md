@@ -90,15 +90,16 @@ grounded in accounting mathematics (CORR-B02), the domain's own prior design voc
 Repository     : TH-PATTARAKRIT/AI-Collaboration-Hub
 Branch         : SMEsPlus
 Previous       : 727b53008d58d3be5750a310707a195834e86c00
-Corrective SHA : (recorded after commit, below)
-Push           : (recorded after push and independent verification, below)
+Corrective SHA : 552934d780f75e50dc67338138919303b5b63795
+Push           : VERIFIED — git fetch/rev-parse match AND direct GitHub API lookup, both
+                 confirming 552934d780f75e50dc67338138919303b5b63795 as origin/SMEsPlus HEAD
 ```
 
 ## Final Gate Status
 
 ```
-CORRECTIVE ROUND APPLIED
-READY FOR CHATGPT RE-AUDIT (pending verified push — see H for final status update)
+CORRECTIVE ROUND APPLIED AND PUSHED
+READY FOR CHATGPT RE-AUDIT
 ```
 
 ## Next Authority

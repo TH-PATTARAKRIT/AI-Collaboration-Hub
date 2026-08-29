@@ -144,18 +144,20 @@ STEP %    : TBD / BASELINE LINKAGE REQUIRED
 ## Gate Status
 
 ```
-DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND APPLIED
-PENDING: verified push of the corrective-round commit
+DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND APPLIED AND PUSHED
+READY FOR CHATGPT INDEPENDENT RE-AUDIT
 ```
+
+Corrective-round commit `552934d780f75e50dc67338138919303b5b63795` pushed to
+`TH-PATTARAKRIT/AI-Collaboration-Hub`, branch `SMEsPlus`, and independently verified two ways
+(fresh `git fetch` + `rev-parse` match, and a direct GitHub API commit lookup bypassing local
+git). Full evidence: [L — Closure Evidence](DOMAIN_01_ACCOUNTING_CORE_L_CORR_B_CLOSURE_EVIDENCE.md).
 
 Superseded pre-correction status (kept visible, not deleted): "READY FOR CHATGPT INDEPENDENT
 DESIGN AUDIT," true as of commits `6c18dd32b34ae6428757892048a756c1f575245a` /
 `727b53008d58d3be5750a310707a195834e86c00` — that audit is exactly what returned the three
-findings this round corrects. This line will be updated again, in place, once the
-corrective-round commit is pushed and independently verified against `origin/SMEsPlus` (same
-two-step discipline as the original push), at which point the status becomes **READY FOR
-CHATGPT RE-AUDIT**, not a repeat of the same "independent design audit" label — this is
-specifically a re-audit of corrected material.
+findings this round corrects. This status is specifically a **re-audit** request for
+corrected material, not a repeat of the original "independent design audit" label.
 
 ## Open Assumptions — Explicitly Not Resolved by This Report
 
