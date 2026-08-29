@@ -7,7 +7,7 @@
 
 ```
 Current Phase:          CORRECTIVE ROUND 3 COMPLETE — CORR-B3-01..08 applied, accounting-
-                         standard regression run, pending final commit + push
+                         standard regression run, commit pushed and independently verified
 Completed Phases:       B0-B20 (evidence-backed) + 3 targeted corrective rounds
 Total Phases:           18 + 3 targeted corrective rounds
 TEAM B Working Progress: 18 / 18 mandatory phases evidence-backed; 7/7 total audit findings
@@ -36,11 +36,12 @@ Accounting Standard Evidence: IAS 8 read at primary-source level (fetched PDF, p
 Clean-room Risk:        0 critical (B14, cross-checked B15 §8, re-confirmed unaffected after
                          all three corrective rounds, B15 §3c) — IAS 8/TAS 8 are accounting-
                          standard evidence, not vendor structure
-Blockers:               None. Corrective round 3 complete pending push verification.
+Blockers:               None. Corrective round 3 complete, pushed, and independently verified.
 Git Status:             Round 1 pushed (commits 6c18dd32.../727b5300.../552934d7.../
-                         4e279c74...). Round 2 pushed (commit 06676d17e...). Round 3
-                         corrective commit pending push — see session closure for final SHA
-                         once pushed.
-Next Phase:             STOP after verified push. Next authority: ChatGPT Independent Design
+                         4e279c74...). Round 2 pushed (commit 06676d17e...). Round 3 pushed
+                         (commit 478f94777397a83aaeef4f7cd6e3559f750634ba) — verified two
+                         independent ways (git fetch/rev-parse match, GitHub API direct
+                         lookup); see Q — Closure Evidence.
+Next Phase:             STOP (per instruction). Next authority: ChatGPT Independent Design
                          Re-Audit (Round 3 corrections) → PMO Verification → Boss Final Gate.
 ```

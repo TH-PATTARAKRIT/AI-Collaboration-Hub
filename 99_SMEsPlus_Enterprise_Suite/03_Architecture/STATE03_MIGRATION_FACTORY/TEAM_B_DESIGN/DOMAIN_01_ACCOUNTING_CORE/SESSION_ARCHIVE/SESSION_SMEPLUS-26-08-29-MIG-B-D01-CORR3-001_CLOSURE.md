@@ -124,16 +124,19 @@ Mode 1/Mode 2, Continuous Ledger), not vendor structure.
 ```
 Repository       : TH-PATTARAKRIT/AI-Collaboration-Hub
 Branch           : SMEsPlus
-Previous         : 06676d17e018397c262644d652fefc00639dab2a
-Round 3 SHA       : (recorded after commit — see Q — Closure Evidence for the filled-in value)
-Push             : (recorded after commit and verified two independent ways — see Q)
+Previous (Round 2 closure) : 06676d17e018397c262644d652fefc00639dab2a
+Tip when Round 3 began     : 0dda2bbb7002752dbcdd63a451c413a27e25fe1d
+Round 3 SHA       : 478f94777397a83aaeef4f7cd6e3559f750634ba
+Push             : VERIFIED — git fetch/rev-parse match AND direct GitHub API lookup, both
+                    confirming 478f94777397a83aaeef4f7cd6e3559f750634ba as origin/SMEsPlus HEAD
+                    (19 files changed, author identity confirmed matching)
 ```
 
 ## Final Gate Status
 
 ```
-CORRECTIVE ROUND 3 APPLIED, PENDING PUSH VERIFICATION
-WILL READ "READY FOR CHATGPT INDEPENDENT RE-AUDIT" ONCE PUSH IS VERIFIED
+CORRECTIVE ROUND 3 APPLIED AND PUSHED
+READY FOR CHATGPT INDEPENDENT RE-AUDIT
 ```
 
 ## Next Authority
