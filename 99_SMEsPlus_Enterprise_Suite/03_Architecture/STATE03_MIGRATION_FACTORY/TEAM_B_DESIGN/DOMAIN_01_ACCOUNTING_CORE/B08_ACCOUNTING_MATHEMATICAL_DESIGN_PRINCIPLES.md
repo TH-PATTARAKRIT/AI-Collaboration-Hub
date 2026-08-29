@@ -6,6 +6,7 @@
 | Phase | B8 — Accounting & Mathematical Design Principles |
 | Method | Extends Team A's MR-01..08 (evidence of what the reference system does or fails to guarantee) into this domain's own mathematical design commitments. No implementation — formulas are stated over the conceptual entities of B07, not over any storage structure. |
 | **Corrected** | **CORR-B02 / CORR-B03 (2026-08-29)** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) found MP-02's original proof mathematically incomplete for an open reporting period, and MP-09's original VOID handling time-inconsistent for historical as-of queries. Both are corrected below, in place, with the original reasoning kept visible rather than deleted. Full comparison of alternatives: [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 2)** | **CORR-B2-01/02/03/04/05 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found the Round-1 MP-09 fix still incomplete (a backdated Correction could rewrite history — `M-AUD-04`) and MP-02's "Current Earnings since the last close" wording repeated the exact period/fiscal-year ambiguity CAP-09 had (`M-AUD-05`). MP-09 rebuilt with a two-mode temporal model; MP-02 and a new MP-11 reconciled to Fiscal Year Close specifically. Full record: [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 
 ### MP-01 — Double-Entry Balance
 
@@ -59,16 +60,30 @@ Proof:        Sum MP-01 (Σdebit = Σcredit per Entry) over every COMMITTED Entr
               Therefore: Assets + Expenses = Liabilities + Equity + Revenue. QED — no
               assumption about period state was used anywhere in this derivation.
 
-Current Earnings (B07 §1b): define Current Earnings = Revenue − Expenses (both measured
-              since the last close). Regrouping the proven expanded equation:
+Current Earnings (B07 §1b): define Current Earnings = Revenue − Expenses, **both measured
+              since the start of the current Fiscal Year — corrected at CORR-B2-03/04**
+              (round 1's "since the last close" wording was exactly the period/fiscal-year
+              ambiguity ChatGPT's Round 2 audit flagged, `M-AUD-05`; an ordinary Period close
+              is a posting lock only, B07 §1d, and does not bound this sum). Regrouping the
+              proven expanded equation:
               Assets = Liabilities + (Equity + Current Earnings)
               — i.e., for REPORTING purposes, "Equity + not-yet-closed Current Earnings"
               plays the role the simple equation expects "Equity" to play. This is an
               algebraic regrouping of the proven identity, not a new assumption.
 
-Post-closing special case: at period close, CAP-09/BINV-10 (corrected) transfers Current
-              Earnings into a formal Equity account and resets Revenue/Expense to zero for
-              the new period. Substituting Revenue = Expenses = 0 into the expanded equation
+Post-closing special case: **corrected at CORR-B2-03/04 — this is Fiscal Year Close, not
+              ordinary Period close.** At Fiscal Year Close, CAP-09/BINV-10 (redefined,
+              B07 §1d) transfers Current Earnings into a formal Equity account via exactly
+              one new committed Entry. Revenue/Expense are not "reset" by any posted action —
+              their zero-point for the new Fiscal Year follows automatically from the
+              Fiscal-Year-bounded aggregation (MP-09, corrected). An ordinary Period close
+              (month/quarter) does none of this — it only locks posting/amendment (B07 §1d)
+              — so the expanded equation's Revenue/Expense terms continue accumulating
+              uninterrupted across ordinary Period boundaries within the same Fiscal Year,
+              which is what makes YTD reporting correct (verified numerically,
+              [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 8). Immediately after
+              Fiscal Year Close, Revenue = Expenses = 0 for
+              the new Fiscal Year. Substituting Revenue = Expenses = 0 into the expanded equation
               collapses it exactly to the simple form: Assets = Liabilities + Equity — using
               the NOW-UPDATED Equity figure. The simple equation is therefore proven as the
               special case of the expanded one where Revenue = Expenses = 0, not asserted
@@ -245,51 +260,77 @@ Proof requirement: regardless of shape, the correction Entry must pass MP-01 exa
 ```
 ORIGINAL FORMULA (kept visible, not deleted): "...EXCLUDING Lines belonging to a VOIDED
 Entry..." — filtered by the Entry's CURRENT status. ChatGPT's independent audit
-(`D01-B-AUD-03`) correctly found this time-inconsistent: an Entry valid at D1 and voided
-later at D2 would vanish from a "balance as of D1" query performed after D2, even though it
-was genuinely part of the truth as of D1. A later event must not rewrite an earlier as-of
-result. The corrected formula below removes the status-based exclusion entirely.
+(`D01-B-AUD-03`) correctly found this time-inconsistent. **CORR-B03's fix (also kept
+visible, not deleted):** removed the status-based exclusion, filtering only by Effective
+Date <= D. **That fix was still incomplete**, per ChatGPT's Round 2 audit (`M-AUD-04`):
+Effective Date alone does not prevent a Correction from being *backdated* — committed today,
+but claiming an Effective Date in an already-relied-upon historical period (e.g., because
+that period was reopened). A single-date formula cannot distinguish "this was always going
+to affect D1" from "this was made to affect D1 after the fact." Corrected again below —
+this time by introducing the second temporal axis (B07 §1c) the single-date formula was
+missing, and by making the aggregation category-aware (B07 §1d) to close `M-AUD-05` in the
+same pass.
 
-Principle (corrected): balance(Account A, Company C, as-of date D) = Σ (signed amount of
-              every Line referencing A) over every COMMITTED Entry belonging to C with
-              date <= D. **No status-based exclusion of any kind** — not for VOIDED, not for
-              SUPERSEDED. Every COMMITTED Entry's own Lines count at their own date,
-              unconditionally.
-Why this is now correct for VOID: per B04 §5 (corrected), voiding is itself a dated
-              Correction Entry (a full reversal, MP-07, tagged as void) — it is not a status
-              flip on the original. The voiding Entry's own (negating) Lines are dated at
-              *its own* date (the point the void was recorded), and therefore only enter this
-              sum for D >= that date, through the ordinary "date <= D" filter — no special
-              case is needed, because voiding was never structurally different from any other
-              correction once §5 was fixed. This is why the correction to MP-09 is a
-              SIMPLIFICATION (one fewer special case) rather than added complexity.
-Inputs:       every COMMITTED Line for the Company with date <= D
-Outputs:      a single signed amount per Account (a trial balance is this formula evaluated
-              for every Account of a Company simultaneously)
-Invariant:    BINV-11 (new, added at CORR-B03) — this is the formula every downstream
-              reporting capability (outside this domain, B03 §3) is entitled to assume is
-              available, correct, AND time-consistent
-Boundary:     "as-of date D" — not "as-of period," to allow both an as-of-today balance and a
-              reconstructed historical balance using the same formula, with the same
-              guarantee, for both
+**Two aggregation MODES are now defined, not one — this is the structural fix, not a patch:**
+
+Principle (corrected, Round 2):
+  MODE 1 — AS ORIGINALLY KNOWN, as-of business date D, as of recording-time T:
+    balance_known(A, C, D, T) = Σ (signed amount of every Line referencing A) over every
+    COMMITTED Entry belonging to C where Effective Date <= D AND Recorded At <= T
+  MODE 2 — CURRENT / RESTATED, as-of business date D (T implicitly "now"):
+    balance_current(A, C, D) = Σ (signed amount of every Line referencing A) over every
+    COMMITTED Entry belonging to C where Effective Date <= D
+    (equivalently, balance_current(A,C,D) = balance_known(A,C,D,now) )
+  BOTH modes are additionally CATEGORY-BOUNDED (B07 §1d):
+    Asset/Liability/Equity (Balance Sheet): no lower Effective-Date bound (all-time)
+    Revenue/Expense (Income Statement): lower-bounded by the start of the Fiscal Year
+    containing D
+
+Why this closes M-AUD-04: Recorded At (B07 §1c) is system-generated at the instant of
+              commitment and can never be set to a value earlier than the actual moment of
+              commitment. Therefore, for any fixed T, no Entry committed after T can EVER
+              satisfy "Recorded At <= T" — not now, not ever in the future — regardless of
+              what Effective Date it claims. `balance_known(A, C, D, T)`, once T has passed,
+              is a PROVABLY fixed point: nothing that happens after T, including a backdated
+              Correction claiming Effective Date <= D, can change it. This is what BINV-11
+              (corrected below) now guarantees, and the guarantee is structural (a property
+              of the formula's shape), not procedural (a rule someone could forget to follow).
+Why this closes M-AUD-05: category-bounding Revenue/Expense to the current Fiscal Year, and
+              leaving Asset/Liability/Equity unbounded (all-time), is what B07 §1d's
+              Continuous Ledger model requires — see B07 §1d for why this eliminates the
+              double-counting risk entirely (no opening-balance Entry is ever created for
+              Balance Sheet categories, so there is nothing to double with historical
+              activity). Verified numerically: [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md)
+              Tests 1, 8, 9.
+`balance_current` (Mode 2) is what an ordinary "what is the balance today" or "what is the
+              balance as of a past date, using everything we know now" query returns — it is
+              intentionally allowed to reflect a later, legitimate Restatement (B04 §5,
+              corrected). The two modes are NEVER interchangeable, and a consumer of either
+              must know which one it is looking at — a new control objective, CO-14
+              (B09, added this round), requires every report to be explicitly labeled with
+              which mode produced it.
+Inputs:       every COMMITTED Line for the Company, each with Effective Date and Recorded At
+              (B07 §1c); the query's (D) and, for Mode 1, (T)
+Outputs:      a single signed amount per Account per mode (a trial balance is either mode
+              evaluated for every Account of a Company simultaneously — the two are never
+              silently blended into one report)
+Invariant:    BINV-11 (corrected, Round 2) for Mode 1; BINV-10 (corrected, Round 2) for the
+              category-bounding this formula depends on
+Boundary:     "as-of business date D" — allows both a current and a reconstructed historical
+              balance; "as-of recording-time T" (Mode 1 only) — allows reconstructing what a
+              report generated at any past moment actually showed
 Rounding:     the sum of already-rounded Line amounts; no re-rounding of the aggregate itself
-              (a trial balance total must equal the exact sum of its already-exact
-              components — this is precisely what MP-03's precision floor exists to guarantee)
-Exception:    none — this is the one formula every other capability in the domain exists to
-              keep trustworthy; it now has *fewer* special cases than the original, not more
-Proof requirement: re-evaluating this formula for the same (A, C, D) at two different times
-              must produce the identical result, PROVIDED no Correction or Void dated <= D has
-              been committed since — and, per the corrected formula, a Correction or Void
-              dated > D structurally cannot affect the result at all, because it is filtered
-              out by date before status is ever considered. **Scope precision (added at
-              CORR-B05):** this is unconditional for CONSUMED facts (BR-07 forecloses
-              Amendment, leaving Correction/Void — both dated — as the only path). For an
-              UNCONSUMED fact, an in-place Amendment is a different operation from a
-              Correction/Void, is not date-anchored the same way, and CAN legitimately change
-              an as-of-D result computed before consumption occurs — by design, per BINV-11.
-              This is now a structural guarantee of the formula's shape for the case that
-              matters (relied-upon history), not a blanket claim for every number ever
-              transiently computed.
+              (MP-03's precision floor)
+Exception:    none for Mode 1 (structurally guaranteed, see above). Mode 2 has no exception
+              either — it is DEFINED to reflect all currently-known facts, so there is nothing
+              for an exception to carve out
+Proof requirement: for any fixed (A, C, D, T), `balance_known(A, C, D, T)` must return the
+              identical value no matter when it is computed, with NO proviso — this is now
+              unconditional, not "provided no Correction/Void dated <= D is committed since"
+              (Round 1's proviso, which is exactly what M-AUD-04 found insufficient — a
+              backdated Correction WOULD have a date <= D, so the Round-1 proviso could always
+              be violated). The Round-2 formula makes the guarantee hold by construction: T,
+              not D, is what nothing can retroactively violate.
 ```
 
 ### MP-10 — Period Cutoff Stability — Corrected at CORR-B01
@@ -328,22 +369,64 @@ Proof requirement: this domain's design obligation is that Period Lock and Consu
               original contradiction
 ```
 
+**Distinguished from MP-11 (new, below):** MP-10 governs ordinary Period locking only. It has
+no bearing on Revenue/Expense resetting or Current Earnings transfer — that is exclusively
+MP-11's concern, per CORR-B2-03/04. Conflating the two was the exact shape of `M-AUD-05`.
+
+### MP-11 — Fiscal Year Close Arithmetic *(new, added at CORR-B2-03/04)*
+
+```
+Principle:    Fiscal Year Close commits exactly one new Entry per Company: Lines that debit
+              Revenue accounts (zeroing their Fiscal-Year-bounded contribution going forward,
+              per MP-09's category bound — no other Revenue/Expense Line is touched) and
+              credit Expense accounts, with the net difference (Current Earnings) posted to
+              a designated formal Equity account (Retained Earnings or equivalent) — or the
+              reverse direction if Current Earnings is negative (a loss)
+Inputs:       Current Earnings for the closing Fiscal Year (MP-02's derived value, computed
+              from MP-09 Mode 2 over the Fiscal Year's own bound)
+Outputs:      one new, ordinary, independently-balanced Entry (MP-01 applies to it exactly
+              like any other), dated at the Fiscal Year's end
+Invariant:    BINV-10 (corrected) — this is the ONE genuine new committed fact Fiscal Year
+              Close produces; everything else (Revenue/Expense's zero-point for the new
+              Fiscal Year, Asset/Liability/Equity's carry-forward) is implicit in MP-09's
+              category-bounded aggregation and requires no additional posted fact (B07 §1d)
+Boundary:     this Entry's Lines only ever touch Revenue, Expense, and one designated Equity
+              account — never Asset or Liability accounts, which need no closing action at
+              all under the Continuous Ledger model
+Rounding:     MP-04 applies to the computed Current Earnings amount exactly as to any other
+              computed value
+Exception:    none — Fiscal Year Close is itself gated by an authorized action (extends
+              CO-08's tiering, at least as strict as ordinary Period reopen, since its blast
+              radius — an entire Fiscal Year — is larger)
+Proof requirement: **worked numerically, not just symbolically** —
+              [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 9 traces a full example
+              from pre-close Balance Sheet and P&L, through this one closing Entry, to the
+              post-close Balance Sheet, confirming (a) the simple equation holds immediately
+              after close using the updated Equity figure, (b) no Balance Sheet amount is
+              duplicated, and (c) the new Fiscal Year's Revenue/Expense correctly start from
+              zero with no entry required to make that true
+```
+
 ## Acceptance Check
 
 ```
 All 11 mandated areas addressed : CONFIRMED (Double-entry=MP-01, Accounting equation=MP-02,
   Monetary precision=MP-03, Rounding=MP-04, Currency conversion=MP-05, Functional currency=
   MP-06, Foreign currency=MP-05/06, Reversal arithmetic=MP-07, Correction arithmetic=MP-08,
-  Aggregation=MP-09, Period cutoff=MP-10)
+  Aggregation=MP-09, Period cutoff=MP-10, Fiscal Year Close=MP-11 new)
 No implementation proposed                : CONFIRMED — every formula is over B07's conceptual
                                              entities, none over a storage structure
 Rounding gap (Team A OQ-03) not left silent: CONFIRMED — MP-04 proposes a default and flags it
                                              explicitly as requiring gate confirmation
 MP-02 proof mathematically complete for open AND closed periods (CORR-B02) : CONFIRMED
-MP-09 time-consistent for historical as-of queries (CORR-B03)              : CONFIRMED
+MP-09 time-consistent for historical as-of queries, backdating-proof (CORR-B03, CORR-B2-01/02) : CONFIRMED
+MP-09 category-bounded, no carry-forward double-counting (CORR-B2-03/04)   : CONFIRMED,
+  verified numerically (B19)
 ```
 
-**B8 = COMPLETE.** *(Corrected at CORR-B02/CORR-B03 — MP-02 and MP-09 amended in place, with
-the original claims kept visible above each correction, not deleted. MP-01, MP-03..08, MP-10's
-lock/consumption separation are otherwise unchanged from the original B8 pass; MP-10's
-invariant line was also corrected, at CORR-B01, to match B04/B05's fix.)*
+**B8 = COMPLETE.** *(Corrected at CORR-B02/CORR-B03/CORR-B2-01..05 — MP-02, MP-09 amended in
+place twice each, MP-10 clarified, MP-11 new, with every prior claim kept visible above each
+correction, not deleted. MP-01, MP-03..07 are unchanged since the original B8 pass. MP-08 was
+amended once (a cross-reference to Void as its zero-net instance, CORR-B03). MP-10's
+invariant line was corrected at CORR-B01 to match B04/B05's Period-Lock/Consumption
+separation, and again clarified at CORR-B2-03 to distinguish it from the new MP-11.)*

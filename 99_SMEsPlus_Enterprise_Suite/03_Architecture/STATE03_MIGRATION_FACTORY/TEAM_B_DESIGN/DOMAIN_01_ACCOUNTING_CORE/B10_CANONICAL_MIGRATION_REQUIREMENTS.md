@@ -6,6 +6,7 @@
 | Phase | B10 — Migration-Facing Canonical Requirements |
 | Scope | Source-neutral — applies to migration from *any* source system, not written against the reference system's specific shape |
 | Hard rule | **No source-system internal identifier is ever used as this domain's own identity** (B07 §4) |
+| **Corrected (Round 2)** | **CORR-B2-03/04 (2026-08-29)** — MG-C03/C04/C07 re-verified against B07 §1c/§1d's corrected temporal model and confirmed still accurate (not weakened); MG-C14 added to address a new question the model raises: what a migrated Entry's Recorded At should be. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 
 | ID | Area | Canonical Requirement | Rationale |
 |---|---|---|---|
@@ -22,6 +23,7 @@
 | MG-C11 | Reconciliation | After migration, MP-09's trial-balance aggregation, evaluated in the new system as of the cutover date, must reconcile exactly to the source system's own trial balance as of the same date — any variance (e.g., from a rounding-method change, MP-04) must be individually explained and approved, never left as an unreconciled residual. | An unreconciled residual at cutover is a permanent, compounding unknown in every subsequent period — this is the one point where getting it wrong is nearly impossible to detect later without deliberately re-checking against the source. |
 | MG-C12 | Exception handling | A source fact that cannot be cleanly migrated (fails MG-C10 validation, has an unreconstructable MG-C05 linkage, or carries an ambiguous MG-C06 currency basis) is routed to a migration exception queue. It blocks only that specific fact, never the whole migration batch, and is never silently dropped or silently force-corrected to make it pass. | Matches this project's "No Evidence = No Progress" principle applied to migration specifically — an exception queue is how that principle stays operational rather than aspirational under real migration pressure and deadlines. |
 | MG-C13 | Unposted source activity at cutover *(added at B16 §11, Persona 4 fix)* | A source-system fact still in an unposted/draft/in-progress state at the moment of cutover must be explicitly dispositioned, not silently dropped or silently auto-posted: either (a) migrated as a new DRAFT Entry (B04 §2) for the business to complete in the target system, or (b) explicitly excluded and left for completion in the source system before that source is retired — the choice is a per-migration business decision, but silence is not an available third option. | The red-team pass (B16, Migration Architect persona) found B10 addressed only already-committed source data; a real migration project always has *something* mid-flight at cutover, and guessing what happens to it is exactly the kind of unrecorded assumption this project's evidence discipline exists to prevent. |
+| MG-C14 | Recorded At for migrated Entries *(added at CORR-B2-03/04)* | Every migrated Entry's Recorded At (B07 §1c) equals the moment this system accepts it during migration — never a value copied or inferred from the source system's own history. Effective Date is migrated faithfully (MG-C06); Recorded At is not, and cannot be, because it did not exist as a concept in the source. This means every migrated Entry's MP-09 Mode-1 ("as originally known") result, computed in the NEW system, has T >= migration time — the new system cannot reconstruct what the OLD system displayed on an arbitrary past date, only what THIS system's Ledger shows from migration onward. | Reconstructing the source system's own historical reporting is that system's concern, not this domain's — conflating the two would mean silently claiming a stronger guarantee (BINV-11) than migration can actually deliver. Stated explicitly so it is a known, accepted scope boundary rather than a gap discovered later. |
 
 ## Interaction With B05 Residual Assumptions
 
@@ -39,6 +41,8 @@ All 12 mandated areas covered         : CONFIRMED
 Source-neutral (no reference-system-specific requirement) : CONFIRMED
 No source internal ID used as identity : CONFIRMED (MG-C01, MG-C08)
 MG-C13 added post-hoc via B16 red-team review (13th item, beyond the 12 mandated) : CONFIRMED
+MG-C14 added at CORR-B2-03/04 (14th item, Recorded-At scope for migration)        : CONFIRMED
+MG-C03/C04/C07 re-verified against B07 §1c/§1d's Round-2 temporal model, unweakened : CONFIRMED
 ```
 
 **B10 = COMPLETE.**

@@ -6,16 +6,18 @@
 | Phase | B7 — Conceptual Information Model |
 | Scope | Business concepts, meaning, ownership, relationships, cardinality, identity. **No physical schema, SQL, ORM, index, or vendor field/PK/FK below.** |
 | **Corrected** | **CORR-B02 (2026-08-29)** — §1a's closing claim ("this is what makes Assets = Liabilities + Equity meaningful") overstated what Normal Balance Side alone proves; corrected below, and a new §1b defines Current Earnings. **CORR-B01** — the Consumption Record row's "four B04 §4 trigger kinds" corrected to three (period close removed as a trigger). See [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 2)** | **CORR-B2-01/02/03/04 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found two further defects: an Entry's single "date" property let a backdated Correction rewrite relied-upon history (M-AUD-04), and Current Earnings (§1b) was bounded "since the last close" — ambiguous between ordinary Period close and Fiscal-Year close, matching M-AUD-05's finding that CAP-09 overgeneralized BF-09's year-end-specific rule. Fixed below: Entry now has two distinct temporal properties (§1c), and a new **Fiscal Year** entity is added. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 
 ## 1. Conceptual Entities
 
 | Entity | Business meaning | Identity principle | Owning capability |
 |---|---|---|---|
 | **Company** | A legal entity whose books are kept separately (CAP-05) | A stable business identifier, independent of any source-system internal ID | CAP-05 |
-| **Account Category** | A fixed classification governing statement placement and year-end carry-forward behavior (BINV-09) | A closed, small set defined at the domain level, not per company | CAP-01 |
+| **Account Category** | A fixed classification governing statement placement and carry-forward behavior (BINV-09) — **corrected Round 2:** carry-forward behavior is now defined precisely per §1b/§1d, not a generic "year-end" gloss | A closed, small set defined at the domain level, not per company | CAP-01 |
 | **Account** | A node in one Company's chart of accounts | Stable once created; its Category is mutable only before first use (BR-08) | CAP-01 |
-| **Period** | A bounded span of time with one authoritative open/closed status (BINV-02) | Identified by its Company and the span it covers; never two overlapping Periods answer for the same date/company/class | CAP-04 |
-| **Entry** | A Financial Fact expressed in double-entry form (B03 §2) | A permanent, system-assigned identity that exists independently of any human-readable document number (see §4) | CAP-02 |
+| **Fiscal Year** *(new, Round 2)* | A bounded span of time, composed of one or more contiguous Periods, that defines the horizon over which Income Statement (Revenue/Expense) activity accumulates before being closed to Equity (§1b, §1d) | Identified by its Company and the span it covers; exactly one Fiscal Year contains any given date for a Company | CAP-09 (renamed/rescoped, §2) |
+| **Period** | A bounded span of time with one authoritative open/closed status (BINV-02) — an ordinary **posting lock**, distinct from and nested within a Fiscal Year; closing a Period never itself resets or transfers anything (corrected Round 2 — see §1d) | Identified by its Company and the span it covers; never two overlapping Periods answer for the same date/company/class; belongs to exactly one Fiscal Year | CAP-04 |
+| **Entry** | A Financial Fact expressed in double-entry form (B03 §2) | A permanent, system-assigned identity that exists independently of any human-readable document number (see §4); **carries two distinct temporal properties, not one — see §1c (Round 2 correction)** | CAP-02 |
 | **Line** | One attribution within an Entry (B03 §2) | Identified only in relation to its owning Entry — a Line has no independent existence | CAP-02 |
 | **Currency Context** | The relationship between a transaction currency and a Company's functional currency for a given Entry (B03 §2) | Identified by the (Entry, currency pair) it applies to, not stored independently of the Entry it values | CAP-06 |
 | **Exchange Rate** | A (currency pair, date) → rate fact, external to this domain's own authority but consumed by it | Identified by currency pair and date | CAP-06 (consumer, not source of truth) |
@@ -42,15 +44,19 @@ every moment, open period or not. The *simple* equation is a special case of the
 (true exactly when Revenue and Expenses are both zero — i.e., after closing) — see §1b and
 [B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-02 for the corrected proof.
 
-### 1b. Current Earnings *(new, added at CORR-B02)*
+### 1b. Current Earnings *(new, added at CORR-B02; re-bounded at CORR-B2-03/04)*
 
 **Current Earnings** is a derived concept, not a separately stored entity — like Ledger
 (B03 §2), it is a computed view, not something with its own identity or lifecycle. It is
 defined as: `Current Earnings = (sum of Revenue-category account balances) − (sum of
-Expense-category account balances)`, for the accounting period since the last close. It
-exists specifically to answer the question the simple accounting equation cannot answer on
-its own during an open period: where does the net effect of not-yet-closed Revenue and
-Expense activity sit, for reporting purposes? Two equivalent ways to state the answer:
+Expense-category account balances)`, **for the current Fiscal Year** (from that Fiscal
+Year's start date through the query date) — **corrected at CORR-B2-03/04: "since the last
+close" (the original round-1 wording) was exactly the ambiguity ChatGPT's Round 2 audit
+flagged (`M-AUD-05`).** An ordinary Period closing (a posting lock, §1d) never bounds this
+sum — only a Fiscal Year boundary does. It exists specifically to answer the question the
+simple accounting equation cannot answer on its own during an open Fiscal Year: where does
+the net effect of not-yet-closed Revenue and Expense activity sit, for reporting purposes?
+Two equivalent ways to state the answer:
 
 - **Expanded form (always true, open or closed):** `Assets + Expenses = Liabilities + Equity
   + Revenue` — a direct corollary of BINV-01 (every Entry balances) plus Normal Balance Side
@@ -59,11 +65,73 @@ Expense activity sit, for reporting purposes? Two equivalent ways to state the a
   Earnings)` — i.e., for reporting purposes, Equity-plus-not-yet-closed-Current-Earnings
   behaves as the simple equation's "Equity" term. This is a restatement, not a separate fact.
 
-At period close (CAP-09, BINV-10), Current Earnings is transferred into a formal Equity
-account and Revenue/Expense accounts reset to zero for the new period — after which Current
-Earnings is zero again and the simple equation holds directly, using the now-updated formal
-Equity figure. See [B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-02 for the full
-proof.
+**Corrected at CORR-B2-03/04:** at **Fiscal Year Close** (CAP-09, redefined — not ordinary
+Period close), Current Earnings is transferred into a formal Equity account via exactly one
+new committed Entry. Revenue/Expense accounts are **not reset by any posted action** — see
+§1d: their zero-point for the new Fiscal Year is a consequence of how they are aggregated
+(bounded by Fiscal Year start), not something anyone resets. After Fiscal Year Close, Current
+Earnings is zero again for the new Fiscal Year (nothing has been dated into it yet) and the
+simple equation holds directly, using the now-updated formal Equity figure. See
+[B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-02 for the full proof.
+
+### 1c. Entry Temporal Properties — Effective Date and Recorded At *(new, added at CORR-B2-01/02)*
+
+ChatGPT's Round 2 audit (`M-AUD-04`) found that this domain's Entry concept had only one
+temporal property ("date"), used for two different purposes at once: determining which
+Period an Entry belongs to, *and* determining what counts toward a historical "as of"
+aggregation (B08 MP-09). Collapsing these let a backdated Correction silently rewrite
+already-relied-upon history — because nothing distinguished "when this economically
+happened" from "when the system actually accepted this fact." Fixed by splitting Entry's
+temporal identity into two independent properties, corrected here and reflected in B08's
+aggregation model:
+
+- **Effective Date** — the date the accounting effect belongs to, from the business
+  perspective (e.g., "this sale happened on March 15"). Business-meaningful, chosen by
+  whoever proposes the Entry (subject to the ordinary Period-lock check, BR-05), and the
+  basis for "which Period is this in." This is what the pre-Round-2 design called "date."
+- **Recorded At** — the moment CAP-02 actually accepted the Entry as authoritative (Posting,
+  B04 §7). **System-generated, assigned exactly once, at the instant of commitment; never
+  user-settable, never editable, never backdated** — this is the property that makes it
+  structurally impossible to fake "this was known earlier than it actually was." See
+  [B05](B05_ACCOUNTING_INVARIANT_BASELINE.md) BINV-12 (new).
+
+Effective Date answers "what period does this belong to and what did it change." Recorded At
+answers "when could anyone possibly have known about this." B08 MP-09's two aggregation
+modes (§1c continued in B08) are built on exactly this distinction, and neither property is
+redundant with the other — an ordinary, same-day Entry has Effective Date ≈ Recorded At, but
+a Correction or Restatement typically does not, and the difference between them is precisely
+what the historical-reproducibility guarantee depends on.
+
+### 1d. Carry-Forward Is Implicit, Not a Posted Fact *(new, added at CORR-B2-03/04)*
+
+ChatGPT's Round 2 audit (`M-AUD-05`) found that CAP-09/BINV-10 (round 1) described carry-
+forward as an *explicit committed fact* — a new "opening balance" Entry posted at every
+Period close — while B08 MP-09 sums *all* historical Lines dated ≤ D. Combined, these two
+statements double-count: the original historical activity and the new opening-balance Entry
+both contribute to the same balance. **Resolved by adopting a Continuous Ledger model**
+(compared against a Segmented-Period alternative in
+[B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md) DT-09):
+
+- **Asset / Liability / Equity accounts (Balance Sheet categories) accumulate all-time** —
+  their balance as of any date D is the sum of every Line ever posted against them with
+  Effective Date ≤ D, with no periodic re-assertion. Carry-forward across an ordinary Period
+  boundary is therefore **implicit** — a mathematical consequence of the aggregation formula,
+  not a fact anyone has to post. Nothing is created, so nothing can double-count.
+- **Revenue / Expense accounts (Income Statement categories) accumulate within the current
+  Fiscal Year only** — bounded below by the current Fiscal Year's start date, not all-time.
+  This is what makes YTD reporting correct across ordinary Period boundaries (B08 MP-09) and
+  what makes the zero-point for a new Fiscal Year automatic rather than something that must
+  be reset by a posted action.
+- **The one genuine new fact Fiscal Year Close creates** is the Current Earnings transfer
+  into formal Equity (§1b) — because Equity, unlike Revenue/Expense, *is* an all-time
+  cumulative Balance Sheet category, and the transfer is a real economic event (this year's
+  result becoming part of permanent capital), not a bookkeeping reset.
+
+This is also why a **migration opening balance** (B10 MG-C03) is not an instance of this
+pattern: under a Continuous Ledger, there is no recurring "carry-forward" business event to
+be an instance of. A migration opening balance is a one-time, distinct act — establishing the
+starting point of a ledger that has no prior history *in this system* to sum over — not a
+periodic transfer between two periods that both already exist in the same ledger.
 
 ## 2. Deliberately Excluded From This List
 

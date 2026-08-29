@@ -8,10 +8,11 @@
 | Board | Board06 — Data & Canonical Model |
 | Domain | DOMAIN_01 — Accounting Core |
 | Team | Team B — Independent Clean-Room Design |
-| Directive | SMEPLUS-26-08-29-MIG-B-D01-E2E-001, corrective round SMEPLUS-26-08-29-MIG-B-D01-CORR-001 |
+| Directive | SMEPLUS-26-08-29-MIG-B-D01-E2E-001, corrective rounds SMEPLUS-26-08-29-MIG-B-D01-CORR-001 and SMEPLUS-26-08-29-MIG-B-D01-CORR2-001 |
 | Date | 2026-08-29 |
 | Executor | Claude Sonnet 5 |
-| **Corrective round applied** | **CORR-B01/B02/B03 (2026-08-29)** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) found three BLOCKING defects, all corrected: a Consumption/Period-reopen contradiction, an incomplete accounting-equation proof, and time-inconsistent historical as-of balances after VOID. Full record: [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md) and [B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md) (which itself found and fixed one further precision gap). This is the corrected state of the design — the pre-correction state is preserved, visibly, inside each affected B0x file, not deleted. |
+| **Corrective round 1 applied** | **CORR-B01/B02/B03 (2026-08-29)** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) found three BLOCKING defects, all corrected: a Consumption/Period-reopen contradiction, an incomplete accounting-equation proof, and time-inconsistent historical as-of balances after VOID. Full record: [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md) and [B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md). |
+| **Corrective round 2 applied** | **CORR-B2-01..05 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found two further BLOCKING defects: a backdated Correction could still rewrite relied-upon history (`M-AUD-04`), and CAP-09 overgeneralized Team A's year-end-specific carry-forward rule to every ordinary Period close, risking double-counted balances (`M-AUD-05`). Fixed with a two-temporal-axis model (Effective Date / Recorded At) and a Continuous Ledger with Fiscal Year Close as a distinct event from ordinary Period Lock. Full record: [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md) and [B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) (which itself found and corrected one over-engineered requirement in its own first draft). This is the corrected state of the design — every pre-correction state is preserved, visibly, inside each affected B0x file, not deleted. |
 
 ## 1. Executive Summary
 
@@ -33,6 +34,23 @@ algebraic assertions) finding and fixing one additional precision gap
 verified twice before the corrective round ([B14](B14_CLEAN_ROOM_PROVENANCE_MATRIX.md),
 [B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §8) and re-confirmed unaffected by it (B15 §3a):
 zero critical vendor-derived design risk, throughout.
+
+**Round 2:** a second independent re-audit found the Round-1 fix for historical
+reproducibility still incomplete (a backdated Correction could rewrite relied-upon history)
+and found that the carry-forward model had silently generalized Team A's year-end-specific
+evidence to every ordinary Period close, risking double-counted balances. Both are corrected:
+Entry now carries two distinct temporal properties (Effective Date, business-meaningful;
+Recorded At, system-generated and immutable — [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md)
+§1c), and the domain adopts a Continuous Ledger where ordinary Period close is a lock only
+and Fiscal Year Close is a distinct, separately-authorized event that posts exactly one
+Current-Earnings-transfer Entry ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1d,
+[B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-11). The focused Round 2
+regression ([B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md)) verified every mathematical
+claim with real worked numbers — including a case where the regression's own first-draft
+requirement (a mandatory "Prior Period Adjustment" line) turned out to be over-engineered and
+was simplified, visibly, rather than left standing uncorrected. Clean-room provenance
+re-confirmed unaffected a second time ([B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §3b): zero
+critical vendor-derived design risk, still.
 
 ## 2. Authorized Input
 
@@ -225,10 +243,14 @@ Critical orphan design decisions = 0         : YES (B15)
 Class G items still visible                  : YES (B01 §11, B15 §6, this section §19)
 Regulatory scope not overstated              : YES (B09 CO-07/CO-11, B15 §7)
 Internal Red-Team completed                  : YES (B16)
-Independent audit findings corrected         : YES — all 3 BLOCKING findings from
+Independent audit findings corrected (Round 1) : YES — all 3 BLOCKING findings from
                                                 `aa60c2d0497cefe804d37953bbfaa597c3476d79`
                                                 resolved (CORR_B01_B02_B03_CORRECTIVE_ROUND.md)
-Focused regression completed                 : YES (B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md)
+Focused regression completed (Round 1)       : YES (B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md)
+Independent audit findings corrected (Round 2) : YES — both BLOCKING findings from
+                                                `04e44b06489d8bea6c8d39410050d68cf08bce21`
+                                                resolved (CORR_B2_CORRECTIVE_ROUND.md)
+Focused regression completed (Round 2)       : YES (B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md)
 ```
 
 ## 23. Measured Advancement Criteria (summary — full detail in B12)

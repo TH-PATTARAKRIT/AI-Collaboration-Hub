@@ -6,6 +6,7 @@
 | Phase | B4 — Business Lifecycle & Event Model |
 | Builds on | B01 LC-01..04, ADV-04, ADV-07, INV-06 — extends Team A's *neutral observation* into an actual Team B *design decision* |
 | **Corrected** | **CORR-B01 / CORR-B03 (2026-08-29)** — ChatGPT Independent Design Audit (commit `aa60c2d0497cefe804d37953bbfaa597c3476d79`) found two material defects in this document's original version: (1) period close was modeled as an automatic, *permanent* Consumption trigger, which directly contradicted BINV-07's "never retracted" guarantee once this document also described period reopen as restoring correctability — those two claims cannot both be true; (2) direct VOID excluded an entry's Lines from historical as-of aggregation based on *current* status, which lets a later event silently rewrite an earlier as-of result. §4 and §5 below are corrected in place; the reasoning that led to each correction is kept visible, not deleted — see [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md) for the full comparison of alternatives considered. |
+| **Corrected (Round 2)** | **CORR-B2-01/02/03 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found (1) a backdated Correction could still rewrite relied-upon history, since Entry had only one temporal property (`M-AUD-04`) — fixed by adopting B07 §1c's Effective-Date/Recorded-At split, reflected below; (2) "period close" as used throughout this document conflated an ordinary posting lock with Fiscal Year Close specifically (`M-AUD-05`) — every reference below is now precise about which one applies. A new correction-purpose, **Restatement**, is introduced for backdated corrections into already-consumed periods. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 
 ## 1. What This Phase Adds Beyond Team A's Input
 
@@ -60,13 +61,63 @@ production is not optional or configurable:
 | `Captured` | Fact enters DRAFT | ...it is later discarded without ever posting |
 | `Posted` | DRAFT → COMMITTED (CAP-02) | ...the entry is corrected the next second |
 | `Amended` | An in-place content change to a COMMITTED entry that is both unconsumed and in an open Period (§4, corrected at CORR-B01) | ...the amendment is itself later superseded |
-| `Corrected` | A Correction/Reversal Entry is committed, linking to and superseding an original (§6) | ...the original was itself already a correction |
-| `Voided` | COMMITTED → VOIDED, via a linked Correction Entry tagged as void (§5, corrected at CORR-B03 — never a bare status flip, never from DRAFT) | ...the void is later found to be itself mistaken (which requires a further, new, linked correction — voids are not undone by mutation) |
+| `Corrected` | A Correction/Reversal Entry is committed, linking to and superseding an original (§6), Effective Date >= its own Recorded At's period *or* the target has no independent Consumption — an ordinary correction (§4a, added Round 2) | ...the original was itself already a correction |
+| `Restated` *(added at CORR-B2-01/02)* | A Correction/Reversal Entry is committed whose Effective Date falls within a period where the target Entry has an independent Consumption Record — a distinguished, higher-scrutiny correction (§4a) | ...the restatement itself is later found mistaken (a further Restatement, chained, per B04 §6's existing chain rules) |
+| `Voided` | COMMITTED → VOIDED, via a linked Correction Entry tagged as void (§5, corrected at CORR-B03 — never a bare status flip, never from DRAFT); may itself be an ordinary void or a Restated void per the same test as `Corrected` above | ...the void is later found to be itself mistaken (which requires a further, new, linked correction — voids are not undone by mutation) |
 | `Consumed` | Any recorded downstream-consumption trigger fires against a COMMITTED entry (§4) | ...the consuming action itself later fails or is retracted — the fact that consumption was *attempted/recorded* stays on the trail |
-| `PeriodClosed` | CAP-04 closes a period | — |
-| `PeriodReopened` *(added at CORR-B01)* | An authorized CO-08 action reopens a closed period | ...no entry in it ends up amendable, because every one of them was independently consumed — the event is still recorded, since the reopen itself is the auditable fact, regardless of its practical effect |
+| `PeriodClosed` | CAP-04 locks an **ordinary Period** to new Posting/Amendment — corrected at CORR-B2-03: this is a posting lock only, never a Revenue/Expense reset or Current Earnings transfer (that is `FiscalYearClosed`, below) | — |
+| `PeriodReopened` *(added at CORR-B01)* | An authorized CO-08 action reopens a closed **ordinary Period** | ...no entry in it ends up amendable, because every one of them was independently consumed — the event is still recorded, since the reopen itself is the auditable fact, regardless of its practical effect |
+| `FiscalYearClosed` *(added at CORR-B2-03/04, distinguished from `PeriodClosed`)* | CAP-09 (redefined) commits the one Current-Earnings-transfer Entry (MP-11) that closes a Fiscal Year | — |
 | `Remeasured` | CAP-06 produces a remeasurement adjustment | — |
-| `CarriedForward` | CAP-09 produces an opening-balance fact | — |
+
+**`CarriedForward` removed at CORR-B2-03/04, deliberately, not silently.** Round 1 listed
+this as the event produced when CAP-09 posts an opening-balance fact at ordinary Period
+close. Per B07 §1d's corrected model, ordinary carry-forward is now **implicit** — nothing is
+posted, so there is no event to record. The one genuine posted fact Fiscal Year Close
+produces is fully covered by `FiscalYearClosed` above (which triggers MP-11's Entry, itself
+producing an ordinary `Posted` event like any other Entry — no separate event type is needed
+for the Entry itself, only for the Fiscal-Year-Close *action* that authorizes posting it).
+
+### 3a. Correction vs. Restatement — Which Applies *(new, added at CORR-B2-01/02)*
+
+A Correction/Void (§5, §6) is classified as an ordinary **Correction** or as a **Restatement**
+by one test, applied at the moment it is committed:
+
+```
+IF the target Entry (the one being corrected/voided) has an independent Consumption Record
+   (B04 §4: filed, reconciled, or referenced downstream) AND the correcting Entry's Effective
+   Date falls within a period that Record already covers:
+       -> RESTATEMENT. Produces a `Restated` event, not `Corrected`/`Voided`. Requires
+          authorization at least as strict as Fiscal Year Close (CO-08 tiering extended,
+          B09 CO-15, new). The correcting Entry's Recorded At is, as always, the true
+          commitment time — a Restatement does not and cannot claim a false Recorded At.
+ELSE:
+       -> ORDINARY CORRECTION. Produces `Corrected`/`Voided` as before B04 §5/§6 already
+          describe. No additional authorization tier beyond CO-06's existing requirement.
+```
+
+This is the direct design answer to `M-AUD-04`'s acceptance requirement: a Restatement is
+never silently indistinguishable from an ordinary same-day correction, and — because MP-09
+Mode 1 (B08, corrected) filters by Recorded At, not Effective Date — a Restatement's backdated
+Effective Date can change Mode-2 ("current/restated") results but structurally cannot change
+any Mode-1 ("as originally known") result for a time before the Restatement was Recorded.
+
+**Correcting an error discovered in an already-closed Fiscal Year — corrected once already
+within this same round, kept visible.** An earlier draft of this paragraph required a
+mandatory "Prior Period Adjustment" line backdated against Retained Earnings whenever a
+Restatement's target Fiscal Year had already closed. Working through
+[B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 11 with real numbers found that
+requirement over-engineered and unnecessary: **the simpler, standard treatment is sufficient
+and is what this design requires instead.** An error discovered after its Fiscal Year has
+closed is recognized as an **ordinary, current-dated Entry** against a current-period
+Revenue/Expense account (the well-established "current-period recognition of a prior-period
+error" treatment) — this alone keeps today's Balance Sheet correct, with no special clearing
+mechanism needed, because both sides of the expanded equation (MP-02) move together in the
+*current* Fiscal Year. The Restatement classification test (first part of this section)
+still applies exactly as stated, and remains available — at CO-15's stricter tier — for the
+separate, comparative-reporting purpose of showing what the *prior* year's figures would look
+like restated (Mode 2 query, backdated Effective Date); it is simply not *required* for
+current Balance Sheet correctness, which was this paragraph's original, mistaken premise.
 
 ## 4. The Consumption Gate — The Core Design Decision
 
@@ -266,7 +317,10 @@ stateDiagram-v2
 | When does a fact become authoritative? | At successful Posting (§7) — one synchronous transition, no partial commitment |
 | When can it change? | Via a logged Amendment, if and only if BOTH unconsumed and its Period is open (§4, corrected at CORR-B01) — the two conditions are independent and both must hold |
 | When must it become immutable? | Permanently, the instant it is consumed (§4) — Period status (open, closed, or reopened) never affects this. Separately, Amendment is also unavailable, non-permanently, whenever the Period is locked |
-| How is correction represented? | As a permanent, bidirectional, chainable relationship between Entries (§6), not a field or flag — Void (§5) is this same relationship, tagged by purpose, corrected at CORR-B03 |
-| What constitutes a new accounting fact? | Every Posting, Correction, Void, Remeasurement (CAP-06), and Carry-Forward (CAP-09) — nothing is a free edit once consumed, and nothing is ever a bare status flip |
+| How is correction represented? | As a permanent, bidirectional, chainable relationship between Entries (§6), not a field or flag — Void (§5) is this same relationship, tagged by purpose, corrected at CORR-B03; a backdated correction into an already-consumed period is further distinguished as a **Restatement** (§3a, Round 2) |
+| What constitutes a new accounting fact? | Every Posting, Correction, Restatement, Void, Remeasurement (CAP-06), and the one Entry Fiscal Year Close produces (CAP-09/MP-11) — **corrected Round 2:** ordinary carry-forward is no longer on this list, because it is not a posted fact at all (§3a note, B07 §1d) — nothing is a free edit once consumed, and nothing is ever a bare status flip |
+| Which temporal axis does aggregation filter on? *(new question, Round 2)* | Two, not one (B07 §1c) — Effective Date determines Period/Fiscal-Year membership; Recorded At, immutable (BINV-12), is what makes "as originally known" (MP-09 Mode 1) provably stable. See B08 MP-09. |
 
-**B4 = COMPLETE.**
+**B4 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-01/02/03 — see header. §3a is new
+this round; the event table gained `Restated` and `FiscalYearClosed`, lost `CarriedForward`
+(removed deliberately, explained above, not silently deleted).)*

@@ -5,6 +5,7 @@
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B9 — Control & Audit Design Objectives |
 | Scope | Design objectives only. No access-control code, permission schema, or role table below. |
+| **Corrected (Round 2)** | **CORR-B2-01/02 (2026-08-29)** — CO-14/CO-15 added, required by B08/B04's temporal-model and Restatement corrections. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 
 ## CO-01 — Authorization
 
@@ -164,6 +165,30 @@ infrastructure-level tamper-resistance (encryption at rest, storage-level access
 infrastructure audit logging) is a platform/infrastructure concern outside DOMAIN_01's
 boundary (B03 §4), not a gap in this domain's own design.
 
+## CO-14 — Temporal Mode Labeling *(added at CORR-B2-01/02)*
+
+**Objective:** every report or query result derived from MP-09 (B08, corrected) must be
+explicitly labeled with which temporal mode produced it — "as originally known as of
+[recording-time T]" (Mode 1) or "current / restated as of [business date D]" (Mode 2) — never
+presented as an unlabeled single number. This is the control-layer enforcement of
+ChatGPT's Round 2 acceptance requirement (`M-AUD-04`): "do not let one silently masquerade as
+the other."
+**Basis:** B08 MP-09 (corrected), BINV-11 (corrected) — no direct Team A source ID, since this
+distinction did not exist before this domain's own Round 2 correction.
+
+## CO-15 — Restatement Authorization Tier *(added at CORR-B2-01/02)*
+
+**Objective:** a Restatement (B04 §3a — a Correction/Void whose target has independent
+Consumption and whose Effective Date falls within the period that Consumption covers)
+requires an authorization tier at least as strict as Fiscal Year Close (CO-08 tiering
+extended) — stricter than an ordinary Correction (CO-06). This is deliberately asymmetric
+with CO-06's "safe path not harder" principle: CO-06 governs the choice between Amendment and
+ordinary Correction for the *same* underlying risk level; Restatement is a *different*, higher
+risk level (rewriting the "current" view of an already-relied-upon period), and earns its own,
+higher bar rather than inheriting Correction's low-friction tier by default.
+**Basis:** `M-AUD-04`'s acceptance requirement that formal restatement be "explicit,
+auditable, and separately reconstructable" — no direct Team A source ID.
+
 ## Acceptance Check
 
 ```
@@ -175,6 +200,7 @@ No access-control code/schema proposed : CONFIRMED
 No objective overclaims regulatory scope beyond B01 §7/§11 : CONFIRMED (CO-07, CO-11 both
   explicitly separate "this domain's own design choice" from "confirmed legal requirement")
 CO-13 added post-hoc via B16 red-team review (13th item, beyond the 12 mandated) : CONFIRMED
+CO-14/CO-15 added at CORR-B2-01/02 (14th/15th items, temporal model + Restatement) : CONFIRMED
 ```
 
 **B9 = COMPLETE.**

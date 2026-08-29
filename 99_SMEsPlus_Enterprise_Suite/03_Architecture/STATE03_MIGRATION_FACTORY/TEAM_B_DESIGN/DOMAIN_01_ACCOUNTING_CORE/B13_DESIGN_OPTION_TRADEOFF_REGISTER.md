@@ -6,11 +6,13 @@
 | Phase | B13 — Design Options & Trade-off Register |
 | Status | **Team B recommendation only. None of the recommendations below are approved design until Boss Final Gate.** |
 | **Corrected** | **CORR-B01 / CORR-B03 (2026-08-29)** — DT-02 revised: ChatGPT's independent audit found the original recommendation internally contradictory, not merely one reasonable option among others (see DT-02 below for the full account, kept visible). DT-07 added for the historical-void design choice CORR-B03 required. |
+| **Corrected (Round 2)** | **CORR-B2-01/02/03/04 (2026-08-29)** — DT-08 (Continuous vs. Segmented Ledger) and DT-09 (backdating rules) added, required by ChatGPT's Round 2 findings `M-AUD-04`/`M-AUD-05`. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 
-Originally six, now seven, decisions were significant enough — either because B04–B12
-flagged them as assumptions requiring gate review, or because a real, defensible alternative
-existed and picking one without showing the other was considered would understate the actual
-design effort — to warrant a formal option comparison rather than a single stated choice.
+Originally six, then seven, now **nine**, decisions were significant enough — either because
+B04–B12 flagged them as assumptions requiring gate review, or because a real, defensible
+alternative existed and picking one without showing the other was considered would understate
+the actual design effort — to warrant a formal option comparison rather than a single stated
+choice.
 
 ---
 
@@ -244,15 +246,95 @@ alongside the other six.
 
 ---
 
+## DT-08 — Continuous Ledger vs. Segmented-Period Ledger *(new, added at CORR-B2-03/04)*
+
+**Context:** ChatGPT's Round 2 audit (`M-AUD-05`) required comparing at least two conceptual
+carry-forward models before choosing one.
+
+- **Option A — Continuous Ledger (adopted).** Asset/Liability/Equity accounts accumulate
+  all-time (MP-09); ordinary Period close is a posting lock only; Fiscal Year Close posts
+  exactly one Current-Earnings-transfer Entry (MP-11); Revenue/Expense are Fiscal-Year-bounded
+  by the aggregation formula itself, not reset by any posted action. Benefit: no
+  opening-balance Entry is ever created for Balance Sheet categories, so there is nothing to
+  double-count with historical activity — the double-counting risk is eliminated structurally,
+  not managed procedurally. Risk: none identified that Option B avoids while Option A does not
+  also avoid.
+- **Option B — Segmented-Period Ledger.** Each Period has its own local ledger horizon;
+  explicit opening-balance facts seed each new segment; aggregation sums only within the
+  selected segment. Benefit: might match a mental model where "each period is a fresh start."
+  Risk: requires MP-09 to know which segment a query falls in and to explicitly exclude prior
+  segments' raw activity while still including their net effect via the opening fact — this
+  is exactly the mechanism that, done even slightly wrong (as Round 1's design was), produces
+  `M-AUD-05`'s double-count. It also does not match how Balance Sheet accounts actually work
+  (a bank balance does not "restart" every month) — Option B would need special-casing to
+  distinguish Balance Sheet from Income Statement categories to correctly model this,
+  effectively rediscovering Option A's category-bounding from a more complex starting point.
+
+| | Accounting correctness | Auditability | Complexity | Migration impact | Multi-company | SaaS impact | Maintainability | Advancement potential |
+|---|---|---|---|---|---|---|---|---|
+| A | Correct by construction — no redundant fact exists to disagree with historical activity | Highest — one continuous ledger, one aggregation rule, category-bounded | Lowest — fewer concepts (no per-segment opening-balance mechanism) | Simplest — MG-C03's opening balance is the ledger's one true seed, not a repeating pattern (B07 §1d) | Neutral | Neutral | Highest | Directly resolves `M-AUD-05` |
+| B | Correct only if segment boundaries and category-specific exclusion are implemented exactly right — the exact class of defect that produced the finding being corrected | Lower — a reader must know which segment a number belongs to | Higher — needs an explicit segment concept MP-09 must resolve before aggregating | More complex — migration would need to map onto artificial segments | Neutral | Neutral | Lower | Also resolves the finding, at higher risk of reintroducing it |
+
+**Recommendation:** **Option A**, with high confidence — Option B was evaluated and found to
+reintroduce, by a different route, the exact risk this correction exists to close. **Not
+independently approved by Boss** — flagged for Final Gate alongside the other assumptions,
+though this recommendation is a required fix (per `M-AUD-05`'s acceptance criteria), not a
+discretionary preference between two equally-valid options, the same category as DT-02's
+Round-1 resolution.
+
+---
+
+## DT-09 — Backdating Rules for Ordinary Entries vs. Corrections *(new, added at CORR-B2-01/02)*
+
+**Context:** ChatGPT's Round 2 audit (`M-AUD-04`) required comparing at least two defensible
+approaches to backdated corrections rather than either banning all backdating or leaving the
+original "no special rule" answer unchanged.
+
+- **Option A — Query-layer safety only (adopted, combined with Option B below).** Rely
+  entirely on MP-09 Mode 1's Recorded-At filtering (B08, corrected) to make backdated
+  Corrections harmless to historical reproducibility, with no new restriction on what
+  Corrections are allowed to do. Benefit: minimal new control machinery; CO-06's "safe path
+  not harder" principle is fully preserved for genuinely low-risk cases. Risk alone: a human
+  could still mistake a Mode-2 (current/restated) view for Mode-1 (as originally known),
+  since nothing at the *write* layer distinguishes a routine same-day correction from a
+  months-later backdated one.
+- **Option B — Write-layer distinction: Restatement as a separate, higher-authorization
+  correction purpose (adopted, combined with Option A above).** A Correction/Void whose
+  target has independent Consumption AND whose Effective Date falls within the consumed
+  period is classified as a Restatement (B04 §3a), requiring CO-15's stricter authorization
+  and producing its own `Restated` event. Benefit: closes the human/process-error gap Option
+  A alone leaves open — a Restatement is never silently indistinguishable from an ordinary
+  correction, satisfying `M-AUD-04`'s explicit requirement. Risk: adds one new classification
+  test and one new authorization tier — real but proportionate given the risk it addresses.
+- **Option C — Ban all backdating into any previously-closed-then-reopened period.**
+  Considered and rejected: unnecessarily rigid (Team A's own reasoning, carried since B04 §4's
+  original design, already established that genuinely unconsumed corrections shortly after
+  close are legitimate business practice), and not required once Option A makes backdating
+  provably harmless to Mode-1 history regardless.
+
+| | Accounting correctness | Auditability | Complexity | Migration impact | Multi-company | SaaS impact | Maintainability | Advancement potential |
+|---|---|---|---|---|---|---|---|---|
+| A+B (adopted) | Correct — structurally safe (A) plus explicit, auditable distinction (B) | Highest — Mode-1 provably stable; Restatements separately visible | Medium — one classification test, one new authorization tier | Neutral | Neutral | Neutral | High | Directly resolves `M-AUD-04` per its own stated acceptance requirement |
+| A alone | Correct at the query layer, but silent at the write layer — exactly the "does not let one masquerade as the other" failure mode `M-AUD-04` warns against | Medium | Lowest | Neutral | Neutral | Neutral | Medium | Resolves the data-correctness half only |
+| C (rejected) | Correct but unnecessarily conservative | High | Low | Neutral | Neutral | Neutral | High | Does not address the human/process-error gap either, and forecloses legitimate low-risk corrections |
+
+**Recommendation:** **A+B combined**, adopted and applied to B04 §3a, B08 MP-09, B09 CO-15,
+B11 scenario 10. **Not independently approved by Boss** — flagged for Final Gate; this is a
+required fix to satisfy `M-AUD-04`'s explicit acceptance requirement, not a discretionary
+choice among equals.
+
+---
+
 ## Acceptance Check
 
 ```
 No decision jumped directly to one design without showing alternatives : CONFIRMED
 Every recommendation marked as Team B-only, not approved              : CONFIRMED
 Rejected options retained (not deleted) to show they were considered   : CONFIRMED (DT-02
-  original Option A, DT-03 Option C, DT-06 Option B, DT-07 Option B)
+  original Option A, DT-03 Option C, DT-06 Option B, DT-07 Option B, DT-08 Option B,
+  DT-09 Option C)
 ```
 
-**B13 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03 — DT-02 revised in place with the
+**B13 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-03/04 — DT-02 revised in place with the
 original recommendation kept visible and explicitly withdrawn as incoherent, not silently
 replaced; DT-07 is new. DT-01, DT-03..06 are unchanged from the original B13 pass.)*

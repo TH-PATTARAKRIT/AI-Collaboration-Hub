@@ -5,6 +5,7 @@
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B2 — Accounting Core Capability Model |
 | Method | Derived from business responsibility (B01 register), not from reference-system module boundaries |
+| **Corrected (Round 2)** | **CORR-B2-03/04 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`, finding `M-AUD-05`) found CAP-09 generalized Team A's year-end-specific evidence to every ordinary Period close, risking double-counted balances. CAP-09 renamed and rescoped below to Fiscal Year Close only. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 
 ## 1. Framing
 
@@ -177,22 +178,35 @@ identified. Each is stated independently of how (or whether) a reference system 
 - **Downstream dependents:** internal/external audit, [B09](B09_CONTROL_AUDIT_DESIGN_OBJECTIVES.md)
   control objectives, dispute resolution.
 
-### CAP-09 — Period-End Carry-Forward
+### CAP-09 — Fiscal Year Close & Earnings Transfer *(renamed and rescoped at CORR-B2-03/04, was "Period-End Carry-Forward")*
 
-- **What exists:** the mechanics of transitioning balances from one accounting period to the
-  next: balance-sheet accounts carry forward, income-statement accounts reset to zero (BF-09).
-- **Why it exists:** without this, "period closed" (CAP-04) has no defined effect on opening
-  positions for the next period — the two capabilities are related but distinct: one answers
-  *whether* posting is allowed, the other defines *what carries over* when it stops being
-  allowed.
+- **What exists (corrected):** the ChatGPT Round 2 audit (`M-AUD-05`) found the original
+  version of this capability generalized Team A's year-end-specific evidence (BF-09) to
+  *every* ordinary Period close, and — because B08 MP-09 sums all-time — risked
+  double-counting balance-sheet activity against a posted "opening balance" fact. Corrected:
+  this capability now does exactly one thing, at Fiscal Year Close only — transfer Current
+  Earnings (Revenue − Expenses for the closing Fiscal Year, MP-02/MP-11) into a designated
+  formal Equity account, via one ordinary, balanced Entry. Balance-sheet carry-forward across
+  *ordinary* Period boundaries is **implicit** (B07 §1d) — this capability has nothing to do
+  with it, and posts nothing at ordinary Period close.
+- **Why it exists:** the one thing an ordinary Period-Control lock (CAP-04) cannot itself
+  represent is the genuine economic event of a fiscal year's result becoming part of
+  permanent capital — that is a real transfer, not a bookkeeping reset, and needs its own
+  capability, scoped precisely to when it actually happens (year-end), not generalized to
+  every posting-lock event.
 - **Owner:** Accounting Core.
-- **Financial truth maintained:** opening balance of period N+1 for account A equals the
-  closing balance of period N if A's category carries forward, else zero — computed, not
-  manually re-entered, and itself a traceable fact through CAP-02/CAP-08.
-- **Inputs:** a period-close event from CAP-04.
-- **Outputs:** opening-balance facts for the new period.
-- **Downstream dependents:** CAP-02 (opening balances are themselves committed facts),
-  financial reporting.
+- **Financial truth maintained:** immediately after Fiscal Year Close, Equity includes the
+  full transferred Current Earnings, Revenue/Expense correctly read zero for the new Fiscal
+  Year (a consequence of MP-09's category-bounded aggregation, not a separate reset action),
+  and no Balance Sheet amount is duplicated (B07 §1d; verified numerically,
+  [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 9).
+- **Inputs:** an authorized Fiscal Year Close action (a higher authorization tier than
+  ordinary Period reopen, given its blast radius — CO-08 tiering extended).
+- **Outputs:** exactly one Current-Earnings-transfer Entry, itself a normal CAP-02-committed
+  fact (MP-11).
+- **Downstream dependents:** CAP-02 (the transfer Entry is itself committed through it),
+  financial reporting (a Fiscal Year Close is what makes the simple accounting equation,
+  MP-02, hold again using the updated Equity figure).
 
 ## 3. Deliberately Not Vendor Module Boundaries
 
@@ -228,8 +242,12 @@ CAP-07 (Regulated Document Integrity) ──────────────
                                                                     │
 CAP-03 (Correction & Reversal) ───────────────────────────────────┤
                                                                     │
-CAP-04 (Period Control) ──▶ CAP-09 (Carry-Forward) ────────────────┘
+(Fiscal Year Close, authorized) ──▶ CAP-09 (Earnings Transfer) ────┘
 ```
+
+*(Corrected at CORR-B2-03/04: CAP-09 no longer depends on ordinary CAP-04 Period-close
+events — it depends on a distinct, authorized Fiscal Year Close action. Ordinary
+carry-forward is implicit, B07 §1d, and produces no capability-triggering event at all.)*
 
 Every arrow into CAP-02 represents a capability CAP-02 must consult before a fact becomes
 authoritative — this is the structural expression of ADV-01: the guarantee is non-optional

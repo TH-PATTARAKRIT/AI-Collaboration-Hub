@@ -4,7 +4,7 @@
 |---|---|
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B15 — Traceability & Consistency Verification |
-| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit and are recorded in §3a with equal transparency. |
+| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit (Round 1) and recorded in §3a; two more were found by ChatGPT's Round 2 re-audit and recorded in §3b — all with equal transparency. |
 
 ## 1. Full Chain Traces (Exemplars)
 
@@ -130,6 +130,44 @@ finding and fixing six other real gaps — recorded honestly as a limitation of 
 review, not smoothed over. This is precisely why directive §0 requires an independent audit
 before PMO/Boss Gate, not a second round of the same reviewer's own red-team.
 
+## 3b. Corrective Round 2 — Issues Found by ChatGPT Re-Audit and Resolved *(added at CORR-B2-01..04)*
+
+Two further defects, found by ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`)
+— **after** this domain's own §3a corrective round, meaning the pattern in §3a's closing
+note repeated: neither was caught by [B18](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md)'s
+10-scenario regression, despite that regression genuinely finding and fixing one precision
+gap of its own.
+
+**Issue 6 (`M-AUD-04`) — Backdated corrections could still rewrite relied-upon history.**
+Round 1's BINV-11 fix filtered by Effective Date alone; a Correction committed after the fact
+could still claim an Effective Date inside an already-relied-upon, reopened period. Team A's
+own B11 Scenario 10 ("no special rule" for backdating) was never revisited for corrections
+specifically when it was written, and the Round-1 corrective round did not revisit it either.
+**Resolution:** Entry split into Effective Date and Recorded At (B07 §1c); MP-09 rebuilt with
+two aggregation modes, the "as originally known" mode filtered by the immutable Recorded At
+(BINV-12, new); a distinguished Restatement correction-purpose (B04 §3a) for backdated
+corrections into consumed periods, with its own authorization tier (CO-15). Full comparison:
+[B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md) DT-09.
+
+**Issue 7 (`M-AUD-05`) — CAP-09 overgeneralized Team A's year-end-specific carry-forward rule.**
+B01 BF-09 (authorized input) explicitly says year-end; B02's original CAP-09 applied the same
+rule to every ordinary Period close, and — combined with MP-09's all-time summation — created
+a genuine double-counting risk (verified: the Round-1 design, if taken literally, would have
+produced Feb Cash = 200 instead of 100 in [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md)
+Test 1's scenario). **Resolution:** Continuous Ledger model adopted (B07 §1d) — ordinary
+carry-forward is implicit (no posted fact, nothing to double-count); CAP-09 renamed and
+rescoped to Fiscal Year Close only, posting exactly one Current-Earnings-transfer Entry
+(MP-11). Full comparison: [B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md) DT-08.
+
+**Pattern note, continued from §3a:** both issues are, again, instances of the same root
+category Team A identified in the reference system (CF-06's field-conflation pattern) —
+Issue 6 conflated "when this happened" with "when this could be known"; Issue 7 conflated
+"an ordinary posting lock" with "a fiscal year's economic closing event." That this pattern
+recurred even after §3a's corrective round explicitly named it is recorded honestly, not
+minimized: single-executor design and single-executor regression testing have a structural
+blind spot for exactly this category of error, which is the whole reason independent
+re-audit — not a third round of this domain's own review — is what actually catches it.
+
 ## 4. Contradictory Rules Check
 
 Beyond Issue 2 (resolved above), no other rule pair was found to assert incompatible
@@ -138,18 +176,23 @@ are complementary partitions of the same state space (consumed vs. not), not a c
 
 ## 5. Circular Definition Check
 
-Traced: Consumption (B04 §4) depends on Period-close (CAP-04), which does not depend on
-Consumption — no cycle. SUPERSEDED status depends on an incoming Correction Link, which can
-only attach to an already-COMMITTED target at link-creation time — links only ever point from
-newer to older, so no cycle is reachable through chaining (B04 §6, B07 §3). **No circular
-definitions found.**
+Traced (re-verified Round 2, this statement corrected — the original B15 pass predated
+CORR-B01 and described a dependency that no longer exists): Consumption (B04 §4) and Period
+Lock (CAP-04) are, since CORR-B01, explicitly independent — neither depends on the other,
+which is the whole point of separating them. Restatement (B04 §3a, new Round 2) depends on
+BOTH (it is defined by a Consumption Record existing AND an Effective Date falling in the
+period it covers), but neither Consumption nor Period Lock depends on Restatement — no cycle.
+SUPERSEDED status depends on an incoming Correction Link, which can only attach to an
+already-COMMITTED target at link-creation time — links only ever point from newer to older
+(by Recorded At, now that the two temporal axes are distinct, B07 §1c), so no cycle is
+reachable through chaining (B04 §6, B07 §3). **No circular definitions found.**
 
 ## 6. Unresolved Critical Assumptions Register (consolidated)
 
 | Assumption | First flagged | Disposition (per B01 §7 categories) |
 |---|---|---|
 | Rounding method = round-half-up | B08 MP-04, B13 DT-01 | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE** |
-| **REVISED at CORR-B01 (was: "period close as automatic, blanket consumption trigger" — that framing is withdrawn, not carried forward, per ChatGPT audit `D01-B-AUD-01`).** Now: Period Lock and Consumption are two independent, orthogonal gates on Amendment (three consumption triggers: filed, reconciled, referenced — period close is not one). The mechanism itself is now internally consistent, not an open judgment call; the residual open question is narrower: whether an authorized reopen should carry any additional restriction beyond CO-08's authorization tier (e.g., a maximum time window after close) — this domain has not designed one. | B04 §4 (corrected), B13 DT-02 (revised) | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE**, narrowed in scope from the original |
+| **REVISED at CORR-B01, FURTHER NARROWED at CORR-B2-01/02 (was: "period close as automatic, blanket consumption trigger" — that framing is withdrawn, not carried forward, per ChatGPT audit `D01-B-AUD-01`).** Now: Period Lock and Consumption are two independent, orthogonal gates on Amendment (three consumption triggers: filed, reconciled, referenced — period close is not one). Round 2 added the Restatement mechanism (B04 §3a, CO-15) specifically for backdated corrections into consumed periods, which — combined with MP-09 Mode 1's structural safety (BINV-11/12) — makes the residual open question from Round 1 (should reopen carry a time-window restriction?) lower-stakes than it was, though still genuinely undesigned: even without a time limit on ordinary reopen, a Restatement into a truly consumed period now requires CO-15's stricter tier and cannot corrupt Mode-1 history regardless of timing. | B04 §3a/§4 (corrected), B08 MP-09 (corrected), B09 CO-15, B13 DT-02/DT-09 | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE**, narrowed in scope twice now |
 | Chart of accounts template/instance structure (Option B) | B07 §2, B13 DT-03 | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE** (also **CARRIED FORWARD** from Team A's GAP-D01-05, itself still open) |
 | Audit trail tamper-evidence extended beyond evidenced legal scope | B09 CO-07, B13 DT-04 | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE** |
 | Correction shape left flexible (both reversal-repost and delta permitted); Void (B04 §5, corrected) is now understood as the zero-net instance of this same flexibility, not a separate question | B08 MP-08, B13 DT-05, B13 DT-07 (new) | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE** |
@@ -179,18 +222,25 @@ categories.
 ```
 No orphan critical design decision       : CONFIRMED (§2)
 Contradictory rules                       : 1 found internally (Issue 2), RESOLVED explicitly
-                                             (§3); 3 further, more severe defects found by
-                                             independent audit and RESOLVED explicitly (§3a)
-Circular definitions                      : NONE (§5)
-Unresolved critical assumptions           : 6 Team B assumptions (one revised/narrowed at
-                                             CORR-B01, not withdrawn) + 3 carried-forward Team A
-                                             items, ALL VISIBLE (§6), none hidden
+                                             (§3); 3 defects found by Round-1 independent audit,
+                                             RESOLVED (§3a); 2 more found by Round-2 re-audit,
+                                             RESOLVED (§3b); 1 stale statement found during
+                                             Round-2 re-verification and corrected (§5)
+Circular definitions                      : NONE, re-verified Round 2 (§5)
+Unresolved critical assumptions           : 6 Team B assumptions (#2 revised/narrowed twice,
+                                             Round 1 and Round 2, not withdrawn) + 3
+                                             carried-forward Team A items, ALL VISIBLE (§6),
+                                             none hidden
 Regulatory overreach                      : NONE (§7)
-Vendor leakage                            : NONE (§8, cross-checked against B14)
+Vendor leakage                            : NONE (§8, cross-checked against B14; re-confirmed
+                                             unaffected by Round 2's temporal/fiscal model —
+                                             both are grounded in accounting mathematics and
+                                             this domain's own prior vocabulary, not vendor
+                                             structure)
 ```
 
-**B15 = COMPLETE.** *(Corrected at CORR-B01/B02/B03 — §3a added, §6 assumption #2 revised in
-place with the original wording kept visible, not deleted, per instruction. §1, §2, §4, §5,
-§7, §8 unchanged from the original B15 pass and re-verified as still accurate after the
-correction: no new orphans, no new circularity, no new overreach, no new vendor leakage were
-introduced by CORR-B01/02/03's edits.)*
+**B15 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04 — §3a and §3b added, §5
+corrected (a stale pre-Round-1 statement found during Round 2 re-verification), §6 assumption
+#2 revised in place twice, with every prior wording kept visible, not deleted, per
+instruction. §1, §2, §4, §7, §8 re-verified as still accurate after Round 2's corrections: no
+new orphans, no new overreach, no new vendor leakage.)*

@@ -89,14 +89,35 @@ locatable defects were fixed within the existing structure, and independent audi
 found them because it was always going to have to be independent audit, not another round of
 Team B looking at its own work.
 
+## 4b. Addendum — It Happened Again *(added at CORR-B2-01..05)*
+
+A second independent re-audit found two more BLOCKING defects the Round-1 corrective round —
+including its own focused regression, B18 — did not catch: a backdated Correction could still
+rewrite relied-upon history, and the carry-forward model silently generalized year-end-
+specific evidence to every ordinary Period close. Both are corrected. Two things are worth
+stating plainly rather than smoothing over. **First:** this is now the second time this
+domain's own review process (first B16's red-team, now B18's regression) has missed a defect
+that a genuinely independent perspective found on the first attempt — a pattern, not a
+one-off, and one this document's §3 already predicted the *shape* of ("this is
+single-perspective work wearing ten hats, not ten independent reviewers"). **Second:**
+correcting it required real design work, not a patch — a new temporal model (Effective Date
+vs. Recorded At) and a materially different carry-forward mechanism (Continuous Ledger,
+Fiscal Year Close as its own event) — and the Round 2 regression (B19) itself caught and
+corrected an over-engineered requirement in its *own* first draft (a Prior Period Adjustment
+line that turned out to be unnecessary once worked through with real numbers). That a
+regression built specifically to catch defects also self-corrected mid-construction is treated
+here as the process working precisely as intended, at every level, not as a further concern.
+
 ## 5. Verdict
 
 ```
 TEAM B SELF-REVIEW COMPLETE (original pass)
-CORRECTIVE ROUND APPLIED (CORR-B01/B02/B03) — 3 BLOCKING defects found by independent audit,
-  corrected; 1 further precision gap found and fixed during focused regression
-Design internally coherent, self-corrected where found lacking, honestly bounded
-Not independently re-verified since correction — that is ChatGPT re-audit's role next
+CORRECTIVE ROUND 1 APPLIED (CORR-B01/B02/B03) — 3 BLOCKING defects found by independent audit,
+  corrected; 1 further precision gap found and fixed during focused regression (B18)
+CORRECTIVE ROUND 2 APPLIED (CORR-B2-01..05) — 2 more BLOCKING defects found by independent
+  re-audit, corrected; regression (B19) self-corrected one over-engineered requirement
+Design internally coherent, self-corrected where found lacking twice over, honestly bounded
+Not independently re-verified since Round 2's correction — that is ChatGPT re-audit's role next
 Not Final Pass — Boss and ChatGPT re-audit remain outstanding
 ```
 
