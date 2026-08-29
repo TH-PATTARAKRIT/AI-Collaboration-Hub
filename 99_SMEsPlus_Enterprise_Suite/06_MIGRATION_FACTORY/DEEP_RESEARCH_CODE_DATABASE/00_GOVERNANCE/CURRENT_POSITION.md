@@ -16,15 +16,15 @@ Updated: 2026-08-29 Asia/Bangkok
 | Prior DR8 Research-Control Coverage | 7 / 12 = 58.3% — historical gate metric only; NOT recalculated until DR8 re-run |
 | EC-01 | **PASS WITH CONTROL** — canonical source identity/hashes inspected |
 | EC-02 | **PASS WITH CONTROL** — lineage reconciled to 1,504 current observed modules; approved baseline remains 1,502 |
-| EC-03 | **HOLD / CURRENT GLOBAL SEQUENTIAL GATE** — 2 Ksolves OPL-1 modules remain unclassified A/B/C/D; independent legal/license sign-off open |
+| EC-03 | **HOLD / CURRENT GLOBAL SEQUENTIAL GATE** — 2 Ksolves OPL-1 modules remain unclassified A/B/C/D; decision pack prepared; independent legal/license sign-off open |
 | EC-04 | **TECHNICAL PASS WITH CONTROL / GLOBAL WORKFLOW PARKED BY EC-03** — dump identity cryptographically evidenced |
-| EC-05 | **HOLD** — historical 27,682-row mapping is inspectable; no current mapping artifact with SHA-256 + timestamp + explicit current source/dump binding located |
+| EC-05 | **HOLD** — historical 27,682-row mapping inspectable; qualifying current mapping lineage not located; recovery search + controlled rebind procedure now published |
 | EC-06 | **PREPARED ONLY / NOT GLOBALLY SEQUENTIALLY ACTIVE** |
 | DOMAIN_01 Team A | **AUTHORITATIVE CHAIN ADVANCED** — ChatGPT Team-A audit PASS to PMO; PMO verified with carry-forward; Boss approved Team A and controlled Team B handoff |
-| DOMAIN_01 Team B | **AUTHORIZED FOR DOMAIN_01 DESIGN ONLY; 18/18 working phases evidenced; INDEPENDENT AUDIT = HOLD BEFORE PMO / TARGETED REVISION REQUIRED** |
+| DOMAIN_01 Team B | **AUTHORIZED FOR DOMAIN_01 DESIGN ONLY; 18/18 working phases evidenced; INDEPENDENT AUDIT = HOLD BEFORE PMO / CORR-B01..B07 DIRECTIVE ISSUED** |
 | Code Research | Current observed source = 1,504 modules / 93,859 files / 0 manifest parse errors |
 | Database Research | Dump SHA-256 evidenced; direct pg_restore object census strengthens evidence but historical count-definition drift remains open |
-| Code ↔ DB Mapping | Historical 27,682 evidence remains historical-only for current certification; DR-GAP-008 OPEN |
+| Code ↔ DB Mapping | Historical 27,682 evidence remains historical-only for current certification; `ERPPLUS-101` controls recovery/rebind; DR-GAP-008 OPEN |
 | Business Semantics | Global clean-room blueprint remains PASS WITH CONTROL / review baseline only; DOMAIN_01 Team B design is not yet PMO-cleared |
 | Clean-Room Review | DOMAIN_01 Team B clean-room review = REVIEW PASS; global CLASS-D quarantine remains active; current 1,504 module classification incomplete |
 | Gate | **GLOBAL POST-DR9 CLOSURE PARKED AT EC-03. DOMAIN_01 scoped design correction runs under its separate Boss-authorized domain chain.** |
@@ -32,10 +32,10 @@ Updated: 2026-08-29 Asia/Bangkok
 | Open Critical Gaps | DR-GAP-003, DR-GAP-008, DR-GAP-009, DR-GAP-011, DR-GAP-012, DR-GAP-014 |
 | High Gaps | DR-GAP-006 reduced with prior evidence; DR-GAP-007 reduced by direct census but still open; DR-GAP-010, 013, 015 open |
 | Current DOMAIN_01 Blockers | D01-B-AUD-01 consumption vs period-reopen contradiction; D01-B-AUD-02 incomplete accounting-equation proof; D01-B-AUD-03 historical as-of instability after direct VOID |
-| Jira | `ERPPLUS-99` = SUPERSEDED / closed without completion credit; `ERPPLUS-100` = active targeted Team B revision task |
-| Owner | Global evidence-control roles by item; DOMAIN_01 corrective owner role = Team B Independent Clean-Room Design Executor; named assignee UNASSIGNED |
-| Next Action | Execute DOMAIN_01 CORR-B01..CORR-B07, then stop for ChatGPT re-audit; continue EC-05 mapping-lineage recovery in parallel without claiming global gate advancement |
-| Boss Decision Required | **NO for the current targeted correction/evidence search.** Boss Final Gate remains closed until independent re-audit and PMO pass; separate global DR9 re-entry remains pending global evidence closure. |
+| Jira | `ERPPLUS-99` = SUPERSEDED / Done with no completion credit; `ERPPLUS-100` = Team B targeted design revision; `ERPPLUS-101` = EC-05 mapping recovery/rebind |
+| Owner | DOMAIN_01 corrective owner role = Team B Independent Clean-Room Design Executor; EC-05 owner role = Mapping Lead / Evidence Reconciliation Executor; named assignees remain UNASSIGNED |
+| Next Action | Team B executes CORR-B01..B07 then stops for ChatGPT re-audit; Mapping Lead executes EC-05 recovery/rebind; no global gate advancement is claimed |
+| Boss Decision Required | **EC-03 Ksolves classification decision pack is ready.** This decision can be made independently and does not block the already-authorized DOMAIN_01 targeted correction or EC-05 evidence recovery. New global DR9 Final Gate is not yet open. |
 
 ## Canonical Source Identity
 
@@ -68,6 +68,21 @@ CLASS-D 12
 ```
 
 The two Ksolves additions remain `UNCLASSIFIED / CONTROLLED / BLACK-BOX-METADATA ONLY` pending governance classification. The scoped DOMAIN_01 design authorization does not waive this global EC-03 control.
+
+## EC-03 Ksolves Decision Boundary
+
+Decision artifact:
+
+`06_CLEAN_ROOM_CONTROL/EC03_KSOLVES_CLASSIFICATION_DECISION_PACK.md`
+
+Current evidence supports only the existing safe treatment for:
+
+- `ks_dashboard_ninja` — OPL-1 / purchased third-party / black-box-metadata only;
+- `ks_dn_advance` — OPL-1 / purchased third-party / black-box-metadata only.
+
+Evidence-Gate recommendation for Boss consideration is **Option C — CLASS-C**, because it formalizes the existing observable-behavior-only treatment without expanding source-body access. This is a project clean-room recommendation, not legal advice and not an AI-issued classification decision.
+
+Even if Boss assigns CLASS-C, `DR-GAP-014` remains OPEN until independent legal/license sign-off is evidenced.
 
 ## Database Evidence
 
@@ -109,6 +124,9 @@ Authoritative chain:
     ↓
 aa60c2d0497cefe804d37953bbfaa597c3476d79
   ChatGPT Independent Team B Design Audit = RETURN FOR TARGETED REVISION / HOLD BEFORE PMO
+    ↓
+b46ac2f4b738f810932f7ff540a9405964161cc2
+  ChatGPT CORR-B01..CORR-B07 Targeted Revision Directive
 ```
 
 ### Current DOMAIN_01 Independent Audit Findings
@@ -125,7 +143,17 @@ Required corrective sequence is `CORR-B01` through `CORR-B07`, ending at `READY 
 
 ## EC-05 Mapping Evidence Position
 
-Historical `Field_Level_Source_to_Dump_Mapping.csv` / `Source_to_Dump_Mapping_Validation.csv` remain inspectable with 27,682 historical rows and 7,703 direct matches. Re-search of GitHub and Google Drive has not located a current mapping artifact carrying all required lineage fields: mapping SHA-256, generation timestamp, source manifest/version, dump SHA-256, row-level current status, and verifier. Therefore:
+Historical `Field_Level_Source_to_Dump_Mapping.csv` / `Source_to_Dump_Mapping_Validation.csv` remain inspectable with 27,682 historical rows and 7,703 direct matches. The Drive `Source_to_Dump_Mapping_Validation_Report.docx` found in the current search is version v1.1 dated 2026-06-29 and therefore historical rather than current-lineage proof.
+
+Search trace:
+
+`03_CODE_DB_MAPPING/EC05_MAPPING_LINEAGE_SEARCH_TRACE_2026-08-29.md`
+
+Controlled rebind procedure:
+
+`03_CODE_DB_MAPPING/EC05_MAPPING_REBIND_PROCEDURE.md`
+
+A qualifying current mapping artifact still requires its own hash/timestamp and explicit binding to the selected source manifest and dump SHA-256. Until produced or recovered:
 
 ```text
 EC-05 = HOLD
@@ -156,9 +184,9 @@ Team B Design Evidence 18/18 working phases
   ↓
 Independent Team B Audit = HOLD BEFORE PMO
   ↓
-Targeted CORR-B01..B07
+CORR-B01..CORR-B07 directive issued
   ↓
-ChatGPT Re-Audit (next gate)
+ChatGPT Re-Audit (next gate after corrected evidence exists)
 ```
 
-Boss DR9 global decision remains `HOLD`. PR #62 remains Draft/Open/Not Merged. No production coding, target physical schema freeze, migration implementation, release, deployment, production migration, or CLASS-D source-body research is authorized.
+Boss global DR9 decision remains `HOLD`. PR #62 remains Draft/Open/Not Merged. No production coding, target physical schema freeze, migration implementation, release, deployment, production migration, or CLASS-D source-body research is authorized.
