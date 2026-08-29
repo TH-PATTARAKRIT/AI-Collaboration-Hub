@@ -129,10 +129,25 @@ STEP %    : TBD / BASELINE LINKAGE REQUIRED
 
 ```
 DESIGN FINAL GATE CANDIDATE PREPARED
-NOT YET READY FOR CHATGPT INDEPENDENT DESIGN AUDIT
+READY FOR CHATGPT INDEPENDENT DESIGN AUDIT
 ```
 
-Per directive §16, readiness requires GitHub commit + verified push + session closure in
-addition to the design evidence itself — none of which have occurred yet at the time this
-document was first written. This status will be updated in place once those three steps are
-complete, per directive §17's prohibition on declaring readiness prematurely.
+**Updated in place, per this document's own statement that it would be.** GitHub commit
+`6c18dd32b34ae6428757892048a756c1f575245a` and the session-closure commit that follows it
+(see [Session Closure](SESSION_ARCHIVE/SESSION_SMEPLUS-26-08-29-MIG-B-D01-E2E-001_CLOSURE.md)
+for both SHAs) have been pushed to `TH-PATTARAKRIT/AI-Collaboration-Hub`, branch `SMEsPlus`,
+and push was verified against `origin/SMEsPlus` directly (not assumed from local state alone)
+before this status line was changed from NOT YET to READY.
+
+## Open Assumptions — Explicitly Not Resolved by This Report
+
+The six items below are **ASSUMPTION / OPEN FOR FINAL GATE**. Per explicit instruction this
+session, they are not escalated as a question here and not resolved by this executor —
+Boss confirms or revises them at the Final Gate, not before:
+
+1. Rounding method = round-half-up (B08 MP-04, B13 DT-01)
+2. Period close as automatic, blanket consumption trigger (B04 §4, B13 DT-02)
+3. Chart-of-accounts template/instance structure (B07 §2, B13 DT-03)
+4. Audit-trail tamper-evidence scope beyond evidenced legal requirement (B09 CO-07, B13 DT-04)
+5. Correction shape left flexible — both reversal-repost and delta permitted (B08 MP-08, B13 DT-05)
+6. CO-02/CO-06 configuration-coupling rule (B15 §3 Issue 2)
