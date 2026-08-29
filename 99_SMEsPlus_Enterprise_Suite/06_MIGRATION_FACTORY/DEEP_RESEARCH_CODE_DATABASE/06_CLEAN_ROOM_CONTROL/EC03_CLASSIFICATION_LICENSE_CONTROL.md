@@ -3,7 +3,7 @@
 Session: `[SMEPLUS-26-08-28-DEEP-CD-001]`  
 Date: 2026-08-29 Asia/Bangkok  
 Reviewer: ChatGPT L99 / Clean-Room Evidence Review  
-Status: `HOLD — CLASS-D IDENTIFIED AND CONTROLLED; TWO CURRENT MODULES UNCLASSIFIED`
+Status: `HOLD — BOSS CLASSIFICATION RULING COMPLETE; STRUCTURED REGISTER VALIDATION + LEGAL SIGN-OFF OPEN`
 
 ## Objective
 
@@ -38,22 +38,34 @@ Team A independently re-derived the 12 undeclared-license records from the fresh
 | 11 | `smesplus_special_access_rights` | SMEsPlus Co.,Ltd | 19.0.1.0 | QUARANTINED / SECURITY-CRITICAL |
 | 12 | `smesplus_uom_ext` | undeclared | 19.0.1.0 | QUARANTINED |
 
-Boss DR9 HOLD decision already preserves CLASS-D quarantine and does not authorize source-body research. Therefore identification/control of the 12 records is now evidenced.
+Boss DR9 HOLD preserves CLASS-D quarantine and does not authorize source-body research.
 
 `DR-GAP-004 = CLOSED — IDENTITIES KNOWN / QUARANTINE ACTIVE`
 
 Rights confirmation remains a separate legal/license control and does not convert any CLASS-D module into research-cleared source.
 
-## Current 1,504 Observed Source — Two Additional Modules
+## Current 1,504 Observed Source — Boss Classification Ruling
 
-The fresh source scan adds:
+The fresh source scan adds two purchased OPL-1 Ksolves modules. Boss decision `DEC-DEEP-CD-004` approves **Option C / CLASS-C** for both:
 
-| Module | License Evidence | Ownership Position | A/B/C/D Status | Safe Interim Treatment |
+| Module | License Evidence | Ownership Position | Boss-Approved A/B/C/D Status | Mandatory Treatment |
 |---|---|---|---|---|
-| `ks_dashboard_ninja` | OPL-1 | purchased third-party module | UNCLASSIFIED | METADATA / BLACK-BOX BEHAVIORAL ONLY; NO IMPLEMENTATION TRANSFER |
-| `ks_dn_advance` | OPL-1 | purchased third-party module | UNCLASSIFIED | METADATA / BLACK-BOX BEHAVIORAL ONLY; NO IMPLEMENTATION TRANSFER |
+| `ks_dashboard_ninja` | OPL-1 | purchased third-party module | **CLASS-C** | observable behavior / metadata / documented capability only; no source-body or implementation transfer |
+| `ks_dn_advance` | OPL-1 | purchased third-party module | **CLASS-C** | observable behavior / metadata / documented capability only; no source-body or implementation transfer |
 
-No A/B/C/D class is invented in this review. The two records remain controlled until an approved classification decision is recorded.
+Decision evidence: current project session `[SMEPLUS-26-08-28-DEEP-CD-001]`, Boss instruction at `2026-08-29T16:12+07:00`, recorded in `EC03_KSOLVES_CLASSIFICATION_DECISION_PACK.md` and `00_GOVERNANCE/DECISION_LOG.md`.
+
+## Current Governance Classification Arithmetic
+
+```text
+CLASS-A 19
+CLASS-B 710
+CLASS-C 763
+CLASS-D 12
+TOTAL   1504
+```
+
+This arithmetic reflects the Boss ruling. The structured evidence register still requires controlled update + validation before DR-GAP-003 can be closed.
 
 ## License Surface Observed in Current Inventory
 
@@ -77,6 +89,22 @@ This distribution is evidence for clean-room treatment, not permission to reuse 
 - `.../01_SOURCE_REGISTRY/MODULE_MASTER_REGISTER_FULL.csv`
 - `.../10_SESSION_ARCHIVE/SESSION_SMEPLUS-26-08-28-MIG-A-EXPERT-DR-001_CLOSURE.md`
 - evidence commit reviewed: `c44144387061f3cd48665d499641ce0da540a731`
+- Boss decision record: `00_GOVERNANCE/DECISION_LOG.md` / `DEC-DEEP-CD-004`
+- Ksolves decision record: `06_CLEAN_ROOM_CONTROL/EC03_KSOLVES_CLASSIFICATION_DECISION_PACK.md`
+
+## Structured Register Control
+
+`99_EVIDENCE_REGISTER/CLEAN_ROOM_CLASSIFICATION_REGISTER.csv` still contains the pre-decision state for CR-013 and CR-014. The Evidence Gate Reporter requires the structured register validator to run before that register is promoted.
+
+Two container-runtime attempts returned a client error. Therefore:
+
+```text
+Boss classification decision = EVIDENCED
+Structured register update/validator = NOT YET VALIDATED
+No Evidence = No Progress
+```
+
+The CSV is intentionally not declared current/verified until the validator can execute and the changed rows receive independent review.
 
 ## Gate Test
 
@@ -85,15 +113,17 @@ This distribution is evidence for clean-room treatment, not permission to reuse 
 | Approved 1,502 class totals reconcile | PASS |
 | 12 CLASS-D identities inspectable | PASS |
 | CLASS-D quarantine maintained | PASS |
-| Current 1,504 source all assigned A/B/C/D | HOLD — two Ksolves modules unclassified |
-| Module-level legal/license sign-off | HOLD |
-| Proprietary implementation allowed into target design | NO |
+| Boss classification ruling for two Ksolves modules | **PASS — CLASS-C** |
+| Governance arithmetic for current 1,504 source | **PASS WITH CONTROL — 19/710/763/12** |
+| Structured row-level classification register updated + validator passed | **HOLD — runtime unavailable** |
+| Independent module-level legal/license sign-off | **HOLD** |
+| Proprietary implementation allowed into target design | **NO** |
 
 ## Gate Result
 
-`EC-03 = HOLD`
+`EC-03 = HOLD — REGISTER VALIDATION + INDEPENDENT LEGAL/LICENSE CONTROL`
 
-`DR-GAP-003 = OPEN — 1,504-current classification not complete`
+`DR-GAP-003 = HOLD — BOSS CLASSIFICATION RULING COMPLETE; STRUCTURED REGISTER UPDATE/VALIDATION PENDING`
 
 `DR-GAP-004 = CLOSED — CLASS-D identities and quarantine evidenced`
 
@@ -101,6 +131,9 @@ This distribution is evidence for clean-room treatment, not permission to reuse 
 
 ## Downstream Control
 
-EC-04 database evidence may be collected and independently reviewed, but the controlled closure sequence must not be represented as having passed EC-03 until classification/legal controls above are resolved.
+The previous Boss-decision blocker has been removed. Evidence work may continue within already-authorized scope, but EC-03 must not be represented as PASS until the structured register is updated/validated and the legal/license control is independently dispositioned.
 
-No routine Boss action is requested merely to continue evidence collection. A governance decision will be required before EC-03 can be closed if the two Ksolves modules must be formally assigned to A/B/C/D or if CLASS-D treatment is to change.
+No CLASS-D source-body research, implementation transfer, target schema freeze, build, merge, release, deploy, or production migration is authorized.
+
+`No Evidence = No Progress.`  
+`Never Skip Gate.`
