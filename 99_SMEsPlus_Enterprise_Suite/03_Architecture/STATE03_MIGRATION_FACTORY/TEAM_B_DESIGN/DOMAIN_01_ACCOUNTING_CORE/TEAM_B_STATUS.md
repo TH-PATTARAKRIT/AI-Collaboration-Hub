@@ -57,12 +57,12 @@ Git Status:             Round 1 pushed (commits 6c18dd32.../727b5300.../552934d7
                          (commits 478f94777.../19dd7cc906...). Round 4 pushed (commits
                          b50dceb7.../404e769d...). Round 5 pushed (commit
                          406dfc128dac4f61b0a543e818b4b9605aa88264). Round 6 pushed (commits
-                         9d2af07.../da18311...). Round 7 pushed (commit RECORDED_AFTER_PUSH) —
-                         verified two independent ways (git fetch/rev-parse match, GitHub API
-                         direct lookup); see AC — Closure Evidence. No unrelated concurrent
-                         commits landed this round (only the expected directive/audit
-                         publications) — first round without a concurrent-governance-commit
-                         incident.
+                         9d2af07.../da18311...). Round 7 pushed (commit
+                         1779258d66a15c149212afb95a8ea5924e084cfe) — verified two independent
+                         ways (git fetch/rev-parse match, GitHub API direct lookup); see AC —
+                         Closure Evidence. No unrelated concurrent commits landed this round
+                         (only the expected directive/audit publications) — first round without
+                         a concurrent-governance-commit incident.
 Jira Governance:         ERPPLUS-100 Assignee = UNASSIGNED, Due Date = TBD/empty, Status = To
                          Do — independently re-verified this round via direct Jira lookup, not
                          assumed carried-forward; preserved as governance red flags, not
