@@ -9,6 +9,7 @@
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04 (2026-08-29)** — DT-08 (Continuous vs. Segmented Ledger) and DT-09 (backdating rules) added, required by ChatGPT's Round 2 findings `M-AUD-04`/`M-AUD-05`. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-05 (2026-08-29)** — DT-10 added (posted Fiscal-Year-Close Entry vs. no-posted-close derived-formula model for MP-11), required by ChatGPT's Round 3 finding `M-AUD-07`. DT-08's Option A description carried a now-superseded implementation detail (the posted MP-11 Entry) — annotated below, not silently edited; the Continuous-vs-Segmented decision itself is unaffected. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-03 (2026-08-30)** — DT-11 added (boundary-driven vs. explicit-unclosed-component vs. mandatory-atomic-close models for Fiscal-Year reporting inclusion), required by ChatGPT's Round 4 finding `M-AUD-09`. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 5)** | **CORR-B5-05 (2026-08-30)** — DT-12 added (boundary immutability vs. versioned Fiscal Calendar models for historical safety), required by ChatGPT's Round 5 finding `M-AUD-12`. See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
 
 Originally six, then seven, now **nine**, decisions were significant enough — either because
 B04–B12 flagged them as assumptions requiring gate review, or because a real, defensible
@@ -454,6 +455,59 @@ immediately before/after the declaration), the same category as DT-08/DT-09/DT-1
 
 ---
 
+## DT-12 — Fiscal Calendar Historical Safety: Boundary Immutability vs. Versioned Calendar *(new, added at CORR-B5-05)*
+
+**Context:** ChatGPT's Round 5 audit (`M-AUD-12`) found no protection against a Fiscal Year's
+Start/End boundary being silently edited after it had already governed real accounting facts —
+required comparing at least two models rather than asserting a fix.
+
+- **Option A — Boundary immutability after first authoritative use.** Once a Fiscal Year
+  contains any COMMITTED Entry, is Elapsed, or has been referenced by an issued/consumed
+  report, its Start/End become permanently frozen; a future calendar adjustment always creates
+  a new, separate Fiscal Year definition. Benefit: the simplest possible rule — one boolean,
+  no versioning machinery, trivial to audit ("is it frozen, yes or no"). Risk: a genuine
+  configuration mistake caught almost immediately (before anything of substance has relied on
+  the specific boundary) is treated identically to a change requested after months of real
+  reliance — both permanently blocked, forcing an "abandon and recreate" workaround even for
+  the harmless, zero-consequence case.
+- **Option B — Versioned Fiscal Calendar (adopted).** A Fiscal Year's boundary is itself a
+  versioned, effective-dated fact, mirroring the Effective-Date/Recorded-At split (§1c) and the
+  Known/Current split (§1g) this design already uses elsewhere — not a new kind of mechanism,
+  the same one applied one level up, to the calendar definition instead of to an Entry. Before
+  first authoritative use, a correction updates the one current version harmlessly (no report
+  or Entry yet exists that could have "known" a different boundary, so there is nothing for a
+  Known view to diverge from). After first use, a change is a formal, CO-15-tier-or-stricter,
+  audited action (a new `FiscalYearBoundaryChanged` Audit Event, B04), never a silent overwrite
+  — the old version remains permanently queryable for Known-viewpoint reconstruction, and an
+  existing Entry's Fiscal-Year membership is never moved without a further, separately-gated
+  reclassification. Benefit: strictly generalizes Option A's protection everywhere it actually
+  matters (post-reliance behavior is functionally Option A's rule) while adding a narrow,
+  harmless escape hatch for the pre-reliance case. Risk: more machinery than Option A in the
+  abstract — a genuine versioning concept plus an authorization tier — but this exactly mirrors
+  machinery this design already accepted for Restatement (CO-15) and for Entry temporal
+  properties (§1c), not a new category of complexity.
+- **Option C — a different model.** Considered and rejected: no alternative was found that
+  preserves historical reproducibility as strongly as Option B while being simpler. A bespoke
+  third mechanism would only duplicate versioning + authorization-tiering machinery this design
+  already has, under a different name, for no proven benefit over reusing it directly.
+
+| | Accounting correctness | Auditability | Complexity | Migration impact | Multi-company | SaaS impact | Maintainability | Advancement potential |
+|---|---|---|---|---|---|---|---|---|
+| A (rejected) | Correct once frozen, but forces an awkward workaround for harmless pre-reliance corrections | High — one boolean, trivial to check | Lowest in the abstract | Neutral — MG-C16 addresses migration-time setup either way | Neutral | Negative — a trivial early config typo becomes a forced "recreate the Fiscal Year" operation, a real SaaS-usability cost | High once frozen, low during the awkward pre-reliance workaround | Resolves `M-AUD-12`, at a real, avoidable operational cost |
+| B (adopted) | Correct in both the pre- and post-reliance cases, by construction | Highest — versioned facts, an Audit Event, Known-view reconstruction all explicit | Higher machinery in the abstract, but all of it reused from existing design patterns (§1c, §1g, CO-15) | Neutral — MG-C16 confirms initial calendar setup is always pre-reliance | Neutral (per-Company, unchanged) | Neutral — no harmless case is over-gated | Highest — one consistent pattern (versioned fact + Known/Current) instead of a special-cased "frozen bit" | Directly resolves `M-AUD-12`, with no operational cost for the harmless case |
+| C (rejected) | Unproven — no candidate model was found | N/A | N/A | N/A | N/A | N/A | N/A | Does not resolve `M-AUD-12` without first being specified and shown at least equivalent to B |
+
+**Recommendation:** **Option B**, with high confidence — it strictly dominates Option A (same
+protection where protection matters, less operational friction where it doesn't) and reuses
+this design's own established vocabulary rather than inventing a parallel "frozen bit" concept
+that would exist nowhere else in the domain. **Not independently approved by Boss** — flagged
+for Final Gate; the exact authorization tier for a post-reliance change is additionally flagged
+as a new, seventh Team B assumption ([B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §6), distinct
+from this DT's own recommendation (Option B vs. A vs. C), which IS a required fix to satisfy
+`M-AUD-12`'s acceptance requirement, the same category as DT-08 through DT-11's resolutions.
+
+---
+
 ## Acceptance Check
 
 ```
@@ -461,12 +515,13 @@ No decision jumped directly to one design without showing alternatives : CONFIRM
 Every recommendation marked as Team B-only, not approved              : CONFIRMED
 Rejected options retained (not deleted) to show they were considered   : CONFIRMED (DT-02
   original Option A, DT-03 Option C, DT-06 Option B, DT-07 Option B, DT-08 Option B,
-  DT-09 Option C, DT-10 Option A, DT-11 Options B and C)
+  DT-09 Option C, DT-10 Option A, DT-11 Options B and C, DT-12 Options A and C)
 ```
 
-**B13 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-03/04/CORR-B3-05/CORR-B4-03 —
-DT-02 revised in place with the original recommendation kept visible and explicitly withdrawn
-as incoherent, not silently replaced; DT-07 new at Round 1 close-out, DT-08/DT-09 new at Round
-2, DT-10 new at Round 3, DT-11 new this round. DT-01, DT-03..06 are unchanged from the
-original B13 pass. DT-08's Option A description carries a Round-3 annotation correcting a
-stale implementation detail; the Continuous-vs-Segmented decision itself is unaffected.)*
+**B13 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-03/04/CORR-B3-05/CORR-B4-03/
+CORR-B5-05 — DT-02 revised in place with the original recommendation kept visible and
+explicitly withdrawn as incoherent, not silently replaced; DT-07 new at Round 1 close-out,
+DT-08/DT-09 new at Round 2, DT-10 new at Round 3, DT-11 new at Round 4, DT-12 new this round.
+DT-01, DT-03..06 are unchanged from the original B13 pass. DT-08's Option A description
+carries a Round-3 annotation correcting a stale implementation detail; the Continuous-vs-
+Segmented decision itself is unaffected.)*

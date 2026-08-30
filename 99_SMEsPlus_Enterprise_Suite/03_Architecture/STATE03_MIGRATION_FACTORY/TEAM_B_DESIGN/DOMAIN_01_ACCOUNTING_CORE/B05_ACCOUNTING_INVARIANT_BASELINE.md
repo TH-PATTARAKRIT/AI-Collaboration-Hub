@@ -9,6 +9,7 @@
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found BINV-11's Round-1 guarantee insufficient against backdated Corrections (`M-AUD-04`) and BINV-10's "Period close" scope overgeneralized Team A's year-end-specific evidence (`M-AUD-05`). BINV-10 and BINV-11 both substantially rewritten below; new BINV-12 added (Recorded At immutability — the mechanism BINV-11's Round-2 guarantee depends on). See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-04/05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) found BINV-10's Round-2 text still described Fiscal Year Close as posting a Current-Earnings-transfer Entry (`M-AUD-07`), and found no invariant guaranteed IAS 8's mandatory exclusion of material prior-period errors from current-period profit or loss (`M-AUD-06`). BINV-10 rewritten again below (no-posted-close model); new BINV-13 added (material prior-period error P&L exclusion). See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-01/02/03 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) found BINV-10's Round-3 formula double-counted the designated Retained Earnings account against ledger Equity (`M-AUD-08`), and gated Fiscal-Year earnings inclusion on `FiscalYearClosed`'s declaration timing rather than the Fiscal Year's own calendar boundary (`M-AUD-09`). BINV-10 rewritten a fourth time; new BINV-14 added (Reported Equity non-duplication and declaration-independence). See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 5)** | **CORR-B5-01/02/05 (2026-08-30)** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`) found MP-09's mixed-horizon output was silently treated as a balanced Trial Balance when it is not, once a Fiscal Year has elapsed (`M-AUD-11`), and found no invariant protected a Fiscal Year's boundary dates from silent retroactive editing (`M-AUD-12`). New BINV-15 added (Trial Balance output non-confusion); new BINV-16 added (Fiscal Year boundary historical safety). See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
 
 ## 1. Independent Evaluation Method
 
@@ -608,6 +609,115 @@ Residual assumption:    Same as BINV-10's Round-4 residual note — which accoun
                         configured per Company (CAP-01), not re-derived by this invariant.
 ```
 
+### BINV-15 — Trial Balance Output Non-Confusion *(new, added at CORR-B5-01/02)*
+
+```
+Independent statement: This domain's design produces (at most) three distinct, precisely-named
+                        outputs that could each colloquially be called a "balance" or
+                        "trial balance" — and they are never confused with one another, in any
+                        report, artifact, or design document this domain produces:
+                        (a) the **Raw Cumulative Trial Balance** — every Account Category on
+                        one common horizon (ledger inception through D, MP-09
+                        `CumulativeAccountBalance`), balanced directly and unconditionally;
+                        (b) the **Current-Fiscal-Year Reporting Balance** — Balance Sheet
+                        cumulative, Income Statement Fiscal-Year-bounded (MP-09
+                        `FiscalYearActivity` for Revenue/Expense) — a genuine reporting view,
+                        but NEVER itself labeled "balanced" or "a Trial Balance," because it
+                        is not, once any Fiscal Year has elapsed; (c) the **Balanced
+                        Presentation Trial Balance**, if retained — (b) plus one explicit,
+                        clearly-labeled, never-posted derived bridge line (MP-12 Proof G3).
+Why required:           ChatGPT's Round 5 audit (`M-AUD-11`) found this domain's own Round-4
+                        design (MP-12 Proof G) silently conflated (a) and (b) — claiming (b)
+                        balances "via Proof A" when Proof A's precondition (one common horizon)
+                        does not hold for (b) once a Fiscal Year has elapsed. Verified failure:
+                        Company X, D = Jan 5 2025 — (b)'s mixed-horizon sum is off by exactly
+                        250 (the prior elapsed Fiscal Year's Current Earnings). Without a named
+                        invariant forbidding this conflation, a future implementation (or a
+                        future corrective round) could silently reintroduce it, exactly as
+                        Round 4 did despite Round 4's own Proof A/B being careful about
+                        horizons everywhere except Proof G.
+Accounting basis:       B08 MP-09 (renamed/split), MP-12 Proofs G1-G4 (rebuilt) — internal
+                        mathematical consistency, not an external accounting-standard citation
+Regulatory basis:       None specific — internal consistency and reporting reliability
+Failure consequence:    A reader (or an implementation) trusting (b) as if it were a balanced
+                        Trial Balance would observe an unexplained imbalance equal to every
+                        elapsed Fiscal Year's accumulated Current Earnings — and, worse, might
+                        "fix" the apparent imbalance by reintroducing a posted closing Entry
+                        (exactly the `M-AUD-07`/`M-AUD-09` defects this design has twice now
+                        rejected) rather than recognizing that (b) was never supposed to
+                        balance on its own.
+Enforcement objective:  MP-09's renaming (CumulativeAccountBalance vs. FiscalYearActivity, no
+                        formula named merely "Account Balance / Trial Balance" any longer) and
+                        MP-12's G1/G2/G3 structure ARE the enforcement mechanism — there is no
+                        single formula left in this design whose name or output could be
+                        mistaken for "the balanced Trial Balance" without the reader first
+                        choosing which of G1/G2/G3 they mean.
+Evidence:               `M-AUD-11` (the corrective trigger), B08 MP-09/MP-12 (corrected),
+                        [B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md)
+                        Tests 1-4 (numeric verification, including the exact failure case)
+Residual assumption:    None beyond MP-12's own — this is a closure requirement on this
+                        domain's own design terminology (same category as BINV-07), not an
+                        external fact requiring evidence.
+```
+
+### BINV-16 — Fiscal Year Boundary Historical Safety *(new, added at CORR-B5-05)*
+
+```
+Independent statement: A Fiscal Year's Start/End boundary that has governed any COMMITTED
+                        accounting fact, has elapsed, or has been referenced by an issued/
+                        consumed report cannot be changed in place in a way that silently
+                        changes historical classification or reporting. A post-reliance
+                        boundary change is always a formal, audited, CO-15-tier-or-stricter
+                        action (B07 §1h, new), recorded as a new versioned fact, never a
+                        silent overwrite of the old value — and, by default, never
+                        retroactively moves an already-COMMITTED Entry's Fiscal-Year
+                        membership without a further, separately-gated reclassification
+                        action.
+Why required:           ChatGPT's Round 5 audit (`M-AUD-12`) found that B07 §1e's Elapsed test
+                        (CORR-B4-03) — a pure calendar comparison, deliberately given no
+                        viewpoint parameter — depends entirely on a Fiscal Year's Start/End
+                        boundary being a fixed, trustworthy fact. Nothing in the Round-4 design
+                        actually protected that boundary from retroactive editing. `Recorded
+                        At` (BINV-12) protects Entry-level backdating; nothing protected the
+                        calendar configuration those Entries are measured against.
+Accounting basis:       B07 §1h (new) — an internally-derived historical-reproducibility
+                        requirement, the same category as BINV-11/BINV-12, not a cited external
+                        accounting standard
+Regulatory basis:       None specific — no Thai-specific regulatory requirement is invented for
+                        this control (explicitly, per directive instruction); it is derived
+                        entirely from this domain's own historical-reproducibility discipline
+Failure consequence:    Without this invariant, an administrator could silently change which
+                        Fiscal Years are Elapsed at any date D, which Revenue/Expense Lines
+                        belong to which Fiscal Year's Current Earnings, which terms enter
+                        Reported Retained Earnings, and what `ReportedEquity_Known(C,D,T)`
+                        reconstructs — all without any Entry, Correction, Restatement, or
+                        (before this correction) even an Audit Event — defeating BINV-11's
+                        reproducibility guarantee from a direction Entry-level immutability
+                        never covered.
+Enforcement objective:  B07 §1h's Versioned Fiscal Calendar model IS the enforcement mechanism
+                        — pre-reliance changes update the one current version harmlessly
+                        (nothing yet depends on the old value); post-reliance changes require
+                        the new `FiscalYearBoundaryChanged` Audit Event (B04, new) at an
+                        authorization tier at least as strict as Restatement (CO-15, reused),
+                        and the old version remains permanently queryable for any
+                        Known-viewpoint reconstruction with T fixed before the change.
+Evidence:               `M-AUD-12` (the corrective trigger), B07 §1h (the model and its
+                        comparison against boundary-immutability-after-use),
+                        [B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md)
+                        Tests 12-15 (numeric verification, including an attempted silent edit
+                        being rejected/routed through controlled semantics, a post-consumption
+                        report remaining reproducible, an authorized future-dated change, and
+                        multi-company calendar isolation)
+Residual assumption:    The exact authorization tier for a post-reliance boundary change is a
+                        genuine open Boss-level policy question (flagged as new Team B
+                        assumption #7, [B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §6, and
+                        [H](DOMAIN_01_ACCOUNTING_CORE_H_DESIGN_FINAL_GATE_CANDIDATE.md)) — this
+                        invariant states CO-15's tier as the working default (reusing an
+                        existing tier rather than inventing a new one), not as a settled,
+                        evidence-derived answer the way CO-16's materiality-policy-input
+                        decision was.
+```
+
 ## 3. Coverage Check Against Mandatory Areas
 
 ```
@@ -624,16 +734,19 @@ Independently added     : BINV-09 (classification integrity), BINV-10 (continuit
                            reproducibility, rewritten Round 2), BINV-12 (recording-time
                            immutability, added Round 2), BINV-13 (material prior-period error
                            P&L exclusion, added Round 3), BINV-14 (Reported Equity
-                           non-duplication and declaration-independence, added Round 4)
+                           non-duplication and declaration-independence, added Round 4),
+                           BINV-15 (Trial Balance output non-confusion, added Round 5),
+                           BINV-16 (Fiscal Year boundary historical safety, added Round 5)
 ```
 
-**B5 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-04/05/CORR-B4-01..03
-— see header. Corrections are additive to this record, not a rewrite of it: BINV-01..05, 07..09
-are unchanged since the original B5 pass. BINV-06 was amended once (Round 1). BINV-11 was
-amended once (Round 1), then substantially rewritten (Round 2). BINV-10 was amended once
-(Round 1), substantially rewritten (Round 2), rewritten a third time (Round 3, `M-AUD-07` —
-no-posted-close model), then rewritten a fourth time (Round 4, `M-AUD-08`/`M-AUD-09` —
-non-overlapping decomposition and boundary-driven inclusion) — every prior version kept
-visible at each step. BINV-12 was new at Round 2. BINV-13 is new at Round 3 (`M-AUD-06` —
-material prior-period error P&L exclusion, IAS 8 paras 41/42/46). BINV-14 is new this round
-(Round 4, `M-AUD-08`/`M-AUD-09`).)*
+**B5 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-04/05/CORR-B4-01..03/
+CORR-B5-01/02/05 — see header. Corrections are additive to this record, not a rewrite of it:
+BINV-01..05, 07..09 are unchanged since the original B5 pass. BINV-06 was amended once
+(Round 1). BINV-11 was amended once (Round 1), then substantially rewritten (Round 2). BINV-10
+was amended once (Round 1), substantially rewritten (Round 2), rewritten a third time (Round 3,
+`M-AUD-07` — no-posted-close model), then rewritten a fourth time (Round 4, `M-AUD-08`/
+`M-AUD-09` — non-overlapping decomposition and boundary-driven inclusion) — every prior version
+kept visible at each step. BINV-12 was new at Round 2. BINV-13 is new at Round 3 (`M-AUD-06` —
+material prior-period error P&L exclusion, IAS 8 paras 41/42/46). BINV-14 is new at Round 4
+(`M-AUD-08`/`M-AUD-09`). BINV-15/16 are new this round (Round 5, `M-AUD-11`/`M-AUD-12` —
+Trial Balance output non-confusion and Fiscal Year boundary historical safety).)*

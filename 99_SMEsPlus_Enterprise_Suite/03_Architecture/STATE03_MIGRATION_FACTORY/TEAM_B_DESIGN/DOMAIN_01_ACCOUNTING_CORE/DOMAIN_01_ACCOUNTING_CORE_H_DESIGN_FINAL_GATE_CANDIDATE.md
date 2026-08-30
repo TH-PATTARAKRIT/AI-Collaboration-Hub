@@ -11,7 +11,8 @@
 | **Corrective round 1** | **CORR-B01/B02/B03, session SMEPLUS-26-08-29-MIG-B-D01-CORR-001** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) returned this design for targeted revision with three BLOCKING findings. All three corrected; full record in [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md) and [B18](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md). |
 | **Corrective round 2** | **CORR-B2-01..05, session SMEPLUS-26-08-29-MIG-B-D01-CORR2-001** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) returned this design for a second targeted revision with two further BLOCKING findings. Both corrected; full record in [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md) and [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md). |
 | **Corrective round 3** | **CORR-B3-01..08, session SMEPLUS-26-08-29-MIG-B-D01-CORR3-001** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) returned this design for a third targeted revision with two further findings — one of which (`M-AUD-07`) was introduced by Round 2's own corrective fix (MP-11). Both corrected; full record in [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md) and [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md). |
-| **Corrective round 4** | **CORR-B4-01..08, session SMEPLUS-26-08-30-MIG-B-D01-CORR4-001** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) returned this design for a fourth targeted revision with three further findings — two of which (`M-AUD-08`, `M-AUD-09`) were introduced by Round 3's own corrective fix (B07 §1e), the second consecutive round with a self-inflicted finding. All three corrected; full record in [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md) and [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md). This document now reflects the four-times-corrected state. |
+| **Corrective round 4** | **CORR-B4-01..08, session SMEPLUS-26-08-30-MIG-B-D01-CORR4-001** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) returned this design for a fourth targeted revision with three further findings — two of which (`M-AUD-08`, `M-AUD-09`) were introduced by Round 3's own corrective fix (B07 §1e). All three corrected; full record in [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md) and [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md). |
+| **Corrective round 5** | **CORR-B5-01..08, session SMEPLUS-26-08-30-MIG-B-D01-CORR5-001** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`) returned this design for a fifth targeted revision with two further findings — one of which (`M-AUD-11`) was introduced by Round 4's own corrective fix (B08 MP-12), the THIRD instance of this specific self-inflicted-finding sub-pattern. Both corrected; full record in [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md) and [B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md). This document now reflects the five-times-corrected state. |
 
 ## Boss Authorization Baseline
 
@@ -37,186 +38,144 @@ migration implementation, or API — per directive §12, not authorized this pha
 
 ## Design Evidence Summary
 
-Eighteen phases (B0–B17) complete, plus four targeted corrective rounds. Nine capabilities
+Eighteen phases (B0–B17) complete, plus five targeted corrective rounds. Nine capabilities
 (CAP-09 renamed/rescoped to Fiscal Year Close only, Round 2; corrected at CORR-B3-05 to post no
-financial Entry; declaration scope corrected again at CORR-B4-03 to govern posting lock only,
-never reporting inclusion), ten domain-boundary concepts, a four-state lifecycle with an
-original Consumption Gate mechanism (Period Lock and Consumption independently gate Amendment;
-Restatement added Round 2 as a distinguished correction purpose; `FiscalYearClosed` corrected at
-CORR-B3-05 to be purely declarative and again at CORR-B4-03 to have no reporting effect),
-**fourteen** invariants (BINV-11 rewritten, BINV-12 added, Round 2; BINV-10 rewritten again and
-BINV-13 added, Round 3; BINV-10 rewritten a fourth time and BINV-14 added, Round 4), fifteen
+financial Entry; declaration scope corrected at CORR-B4-03 to govern posting lock only; extended
+at CORR-B5-05 to also own Fiscal Year boundary-change governance), ten domain-boundary concepts,
+a four-state lifecycle with an original Consumption Gate mechanism, **sixteen** invariants
+(BINV-11 rewritten, BINV-12 added, Round 2; BINV-10 rewritten again and BINV-13 added, Round 3;
+BINV-10 rewritten a fourth time and BINV-14 added, Round 4; BINV-15/16 added, Round 5), fifteen
 business rules, **twelve** conceptual entities (Fiscal Year and the Effective-Date/Recorded-At
-split added Round 2; Reported Retained Earnings formula added Round 3, corrected and extended
-with Reported Equity (§1f) and viewpoint parameterization (§1g) at Round 4, B07), **twelve**
-mathematical design principles (MP-09 rebuilt with a two-temporal-mode model, MP-11 new for
-Fiscal Year Close arithmetic, Round 2; MP-11 rewritten at CORR-B3-05; MP-11 cross-reference
-corrected and new MP-12 added at Round 4 — a full seven-proof re-derivation of the reporting
-equation), **sixteen** control objectives (CO-14/CO-15 added Round 2; CO-16 added Round 3;
-CO-14 scope extended Round 4), **fifteen** migration requirements (MG-C14 added Round 2; MG-C03
-re-verified Round 3; MG-C15 added Round 4 — designated Retained Earnings account
-configuration), **twenty** exception scenarios (scenario 19 added Round 3; scenario 20 added
-Round 4 — delayed Fiscal Year Close, resolved by design), nine advancement items with
-measurable criteria, **eleven** formally compared design-option decisions (DT-08/DT-09 added
-Round 2; DT-10 added Round 3; DT-11 added Round 4 — three fiscal-boundary-timing models
-compared). Full index:
+split added Round 2; Reported Retained Earnings added Round 3; Reported Equity (§1f) and
+viewpoint parameterization (§1g) added Round 4; Fiscal Year boundary versioning (§1h) added
+Round 5, B07), **twelve** mathematical design principles (MP-09 rebuilt with a two-temporal-mode
+model, MP-11 new, Round 2; MP-11 rewritten Round 3; MP-11 cross-reference corrected and MP-12
+added Round 4; **MP-09 renamed and split, MP-12 Proof G rebuilt into G1-G4, Round 5**),
+**sixteen** control objectives (CO-14/CO-15 added Round 2; CO-16 added Round 3; CO-14 scope
+extended Round 4 and again Round 5; CO-15 extended Round 5), **sixteen** migration requirements
+(MG-C14 added Round 2; MG-C15 added Round 4; MG-C11 corrected and MG-C16 added Round 5),
+**twenty-one** exception scenarios (scenario 19 added Round 3; scenario 20 added Round 4;
+scenario 21 added Round 5), nine advancement items with measurable criteria, **twelve**
+formally compared design-option decisions (DT-08/DT-09 added Round 2; DT-10 added Round 3;
+DT-11 added Round 4; DT-12 added Round 5). Full index:
 [F — Design Evidence Pack](DOMAIN_01_ACCOUNTING_CORE_F_TEAM_B_DESIGN_EVIDENCE_PACK.md).
 
 ## Clean-room Status
 
-**Critical Vendor-Derived Design Risk = 0**, verified five times now (B14 direct check, B15 §8
-independent cross-check, B15 §3b re-confirmation after Round 2, B15 §3c re-confirmation after
-Round 3, B15 §3d re-confirmation after Round 4). The temporal-model and fiscal-close concepts
-introduced in Round 2, the IAS 8-grounded classification and no-posted-close model introduced in
-Round 3, and the Reported Equity decomposition/boundary-driven timing/viewpoint mathematics
-introduced in Round 4 are all grounded in accounting standards and mathematics/algebra, and this
-domain's own prior vocabulary — no vendor structure entered the design at any round.
+**Critical Vendor-Derived Design Risk = 0**, verified six times now (B14 direct check, B15 §8
+independent cross-check, B15 §3b/§3c/§3d/§3e re-confirmations after Rounds 2-5). Every
+correction across all five rounds is grounded in accounting standards, mathematics/algebra, and
+this domain's own prior vocabulary — no vendor structure entered the design at any round.
 
 ## Traceability Status
 
 Zero orphan critical design decisions. One ID-space collision and one rule-interaction gap
 found internally (B15 §3, Round 1); three defects found by Round-1 independent audit (§3a);
 two more found by Round-2 re-audit (§3b); two more found by Round-3 re-audit (§3c); three more
-found by Round-4 re-audit (§3d), two of which were introduced by Round 3's own fix — all
-resolved and recorded, none hidden. One stale pre-Round-1 statement in B15's own circularity
-check was found and corrected during Round 2 re-verification; re-checked again in Round 3 and
-Round 4, no new circularity introduced. Zero circular definitions. Zero confirmed regulatory
-overreach.
+found by Round-4 re-audit (§3d), two of which were introduced by Round 3's own fix; two more
+found by Round-5 re-audit (§3e), one of which was introduced by Round 4's own fix — all
+resolved and recorded, none hidden. Zero circular definitions, re-checked after every round.
+Zero confirmed regulatory overreach.
 
 ## Unknown Status
 
 Team A's full 20-item residual register carries forward unchanged and unresolved by this
-design phase (correctly — Class G unknowns are never converted into requirements). Six Team B
-design assumptions remain (assumption #2 revised twice — Round 1 and Round 2 — narrowed further
-each time, never resolved by Team B itself; **unchanged by Round 3 and Round 4** — neither
-round's findings bear on any of the six assumptions' subject matter, B15 §6) — a different
-category from Team A's carried-forward unknowns, not conflated with them.
+design phase. **Seven** Team B design assumptions remain (assumption #2 revised twice — Round
+1 and Round 2 — narrowed further each time, never resolved by Team B itself; unchanged by
+Round 3 and Round 4; **#7 newly added at Round 5** — Fiscal Year boundary change authorization
+tier, B15 §6) — a different category from Team A's carried-forward unknowns, not conflated
+with them.
 
 ## Advancement Status
 
-Nine advancement items, each with a stated reference-system limitation, an independent
-business requirement, a chosen design mechanism, and a measurement criterion — not merely
-aspirational objectives, and unaffected by any of the four corrective rounds (all four corrected
-mechanism internals, not the underlying advancement objectives; B12 was inspected and confirmed
-genuinely unaffected at Round 3 and again at Round 4, light-touch, no file edit required either
-time). Summary table:
+Nine advancement items, unaffected by any of the five corrective rounds (all five corrected
+mechanism internals, not the underlying advancement objectives; B12 confirmed genuinely
+unaffected at Round 3, Round 4, and Round 5, light-touch each time). Summary table:
 [F §23](DOMAIN_01_ACCOUNTING_CORE_F_TEAM_B_DESIGN_EVIDENCE_PACK.md#23-measured-advancement-criteria-summary--full-detail-in-b12).
 
 ## Critical Findings
 
-**Round 1 — three BLOCKING findings, all corrected:** `D01-B-AUD-01` (Consumption/period-
-reopen contradiction), `D01-B-AUD-02` (incomplete accounting-equation proof), `D01-B-AUD-03`
-(time-inconsistent historical as-of after VOID). One further precision gap found during B18's
-regression and fixed. Full record: [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md).
+**Round 1 — three BLOCKING findings, all corrected:** `D01-B-AUD-01/02/03`. Full record:
+[CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md).
 
-**Round 2 — two further BLOCKING findings, both corrected:** `M-AUD-04` (a backdated
-Correction could still rewrite relied-upon history — closed with an Effective-Date/Recorded-At
-split and a two-mode aggregation model, BINV-11/12) and `M-AUD-05` (CAP-09 overgeneralized
-Team A's year-end-specific carry-forward evidence to every ordinary Period close, risking
-double-counted balances — closed with a Continuous Ledger model and Fiscal Year Close as a
-distinct event, BINV-10/MP-11). One requirement in this round's own first draft (a mandatory
-Prior Period Adjustment line) was found over-engineered while verifying it with real numbers
-(B19 Test 11) and simplified, visibly, before this pack was finalized. Full record:
-[CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md).
+**Round 2 — two further BLOCKING findings, both corrected:** `M-AUD-04`/`M-AUD-05`. Full
+record: [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md).
 
-**Round 3 — two further findings, both corrected:** `M-AUD-06` (B19 Test 11's own Round-2
-conclusion — "an ordinary current-dated Entry is always sufficient" for a Restatement crossing
-a closed Fiscal Year — was silently generalized without ever testing materiality; IAS 8, read
-at primary-source level, requires mandatory retrospective restatement, excluded from
-current-period profit or loss, specifically for *material* prior-period errors — closed with a
-full IAS 8-grounded classification tree, B04 §3b/§3c, BINV-13, CO-16) and `M-AUD-07` (MP-11,
-introduced by Round 2's own fix, directly contradicted this design's own "Revenue/Expense never
-reset by a posted action" claim and was a genuine arithmetic bug that would corrupt the closing
-year's own historical query — closed with a no-posted-close model, B07 §1e, B08 MP-11
-rewritten, compared against the superseded posted-Entry model at B13 DT-10). One
-formula-documentation gap in this round's own first draft (B07 §1e not explicitly covering an
-impracticability adjustment) was found while verifying it with real numbers (B20 Tests 4/5) and
-annotated, visibly, before this pack was finalized. Full record:
+**Round 3 — two further findings, both corrected:** `M-AUD-06`/`M-AUD-07`. Full record:
 [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md).
 
 **Round 4 — three further findings, all corrected, two introduced by Round 3's own fix:**
-`M-AUD-08` (Reported Equity, per Round 3's informal `Equity(ledger, all-time) + Reported
-Retained Earnings` formula, double-counted the designated Retained Earnings account — closed
-with a non-overlapping decomposition, B07 §1f, Other Ledger Equity explicitly excluding that
-account) — introduced by Round 3's own B07 §1e/B08 MP-02 fix, not pre-existing; `M-AUD-09`
-(Reported Retained Earnings depended on the `FiscalYearClosed` *declaration*'s timing rather
-than the Fiscal Year's own calendar boundary, meaning a routine operational close delay would
-silently omit real earnings from every report — closed with boundary-driven "Elapsed"
-inclusion, B07 §1e corrected, three models compared at B13 DT-11) — also introduced by Round
-3's own fix; `M-AUD-10` (Reported Retained Earnings had no defined Mode-1 viewpoint despite the
-Round-3 regression relying on one — closed with viewpoint-parameterized `_Known`/`_Current`
-functions, B07 §1g, built directly on MP-09's existing mechanism). A full seven-proof algebraic
-re-derivation from the Raw Ledger Identity to the Reported Financial-Statement Identity was
-performed (B08 MP-12, new), closing a gap where Round 3 had asserted the transformation rather
-than proving it. This round's own regression (B21) did not surface a further gap during
-construction — the first round of which that is true. None remain open. Full record:
+`M-AUD-08`/`M-AUD-09`/`M-AUD-10`. Full record:
 [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md).
 
+**Round 5 — two further findings, both corrected, one introduced by Round 4's own fix:**
+`M-AUD-11` (CRITICAL — B08 MP-12's own Round-4 Proof G silently claimed MP-09's mixed-horizon
+output was a balanced Raw Trial Balance; traced against Team B's own numbers and found false
+by exactly the prior elapsed Fiscal Year's Current Earnings — closed by renaming/splitting
+MP-09 into `CumulativeAccountBalance`/`FiscalYearActivity` and rebuilding MP-12 Proof G into
+G1/Raw Cumulative Trial Balance, G2/Current-Fiscal-Year Reporting Balance (not balanced),
+G3/Balanced Presentation Trial Balance with an explicit never-posted bridge, G4/Known vs.
+Current) — introduced by Round 4's own MP-12 fix, not pre-existing; `M-AUD-12` (HIGH — Fiscal
+Year boundaries, relied upon by Round 4's new Elapsed test, had no protection against silent
+retroactive editing — closed with a Versioned Fiscal Calendar model, B07 §1h, compared against
+boundary-immutability at B13 DT-12, adding a genuine seventh Team B assumption for the exact
+authorization tier). This round's own regression (B22) did not surface a further gap during
+construction — the second consecutive round of which that is true. None remain open. Full
+record: [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md).
+
 Separately, the original internal red-team pass (B16) found and fixed six further,
-non-blocking design gaps before this pack was first assembled. **Pattern across all four
-rounds, stated plainly:** neither B16's ten-persona red-team, nor B18's ten-scenario regression,
-nor B19's fifteen-scenario regression, nor B20's fifteen-scenario regression caught any of the
-findings the following round's independent re-audit found — every one of the eight
-post-Round-1 findings (`M-AUD-04` through `M-AUD-10`) was found only by genuinely independent
-re-audit, not by this domain's own review at any depth tried so far. Two of these eight
-(`M-AUD-07`, and now both `M-AUD-08`/`M-AUD-09`) were introduced by the immediately preceding
-round's own corrective fix — the second consecutive round in which a correction's own new
-design surface needed a further correction, which G §4d states should inform how much
-confidence Boss places in the design's current state, not be read as "probably fine now." See
-[G §4d](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md) for the full, unminimized reflection
-on this, now spanning four rounds.
+non-blocking design gaps before this pack was first assembled. **Pattern across all five
+rounds, stated plainly:** neither B16's red-team, nor any of B18/B19/B20/B21's regressions,
+caught any of the findings the following round's independent re-audit found — every one of the
+ten post-Round-1 findings (`M-AUD-04` through `M-AUD-12`) was found only by genuinely
+independent re-audit. THREE of these ten (`M-AUD-07`; `M-AUD-08`/`M-AUD-09`; `M-AUD-11`) were
+introduced by the immediately preceding round's own corrective fix — a recurring sub-pattern
+across three of the last four rounds, which [G §4e](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md)
+states should inform how much confidence Boss places in the design's current state, not be
+read as "probably fine now, fifth time's the charm." G §4e explicitly declines to predict
+whether a sixth round would find nothing further.
 
 ## Critical Assumptions
 
-Six Team B design assumptions require Boss/gate confirmation, none silently treated as
+**Seven** Team B design assumptions require Boss/gate confirmation, none silently treated as
 settled: (1) rounding method = round-half-up; (2) **revised at CORR-B01, narrowed further at
-CORR-B2-01/02, unchanged by Round 3 and Round 4** — Period Lock and Consumption are independent,
-orthogonal gates on Amendment; Restatement (B04 §3a) now handles backdated corrections into
-consumed periods at its own authorization tier (CO-15); the residual open question is whether
-an authorized ordinary reopen should carry any time-window restriction beyond CO-08's tier —
-narrower than either prior version of this assumption, not resolved, and not touched by Round
-3's or Round 4's findings (error classification, Fiscal Year Close posting semantics, and
-reporting-equity mathematics — none concern reopen timing); (3) chart-of-accounts
-template/instance structure (Option B, itself building on Team A's still-open GAP-D01-05);
-(4) audit-trail tamper-evidence scope extended beyond the narrowly evidenced Thai legal
-requirement; (5) correction shape left flexible (full-reversal and delta both permitted; Void
-and Restatement are both understood as instances of this same flexibility, not separate
-questions); (6) the CO-02/CO-06 configuration-coupling rule found during B15 traceability
-review. **Materiality (CO-16, Round 3) and the designated Retained Earnings account
-configuration (B07 §1f/B10 MG-C15, Round 4) are explicitly NOT a seventh/eighth assumption** —
-both are settled design decisions (materiality externally supplied, never computed by this
-domain; the designated account a required, unambiguous per-Company migration fact), not open
-questions deferred to Boss. Full detail:
+CORR-B2-01/02, unchanged by Rounds 3-5** — Period Lock and Consumption are independent,
+orthogonal gates on Amendment; residual open question: should an authorized ordinary reopen
+carry a time-window restriction beyond CO-08's tier?; (3) chart-of-accounts template/instance
+structure; (4) audit-trail tamper-evidence scope beyond evidenced legal requirement;
+(5) correction shape left flexible; (6) the CO-02/CO-06 configuration-coupling rule.
+**(7) NEW at Round 5** — the exact authorization tier for a post-reliance Fiscal Year boundary
+change (B07 §1h, BINV-16): this domain's working default reuses CO-15's Restatement tier, but
+no independent evidence settles whether that specific tier is correct for this specific action.
+**Materiality (CO-16, Round 3) and the designated Retained Earnings account configuration
+(B07 §1f/B10 MG-C15, Round 4) remain explicitly NOT additional assumptions** — both are settled
+design decisions, unlike assumption #7, which is a genuine open policy question. Full detail:
 [B15 §6](B15_DESIGN_TRACEABILITY_MATRIX.md#6-unresolved-critical-assumptions-register-consolidated).
 
 ## Residual Gaps
 
 The design's weakest points, stated in [G — Self-Review](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md)
-§3/§4d: six unconfirmed assumptions (above); AD-05's thin single-source evidentiary base; no
-validation yet against real workflow/usage; TAS 8 confirmed only via secondary sources,
-never independently read at primary-source level the way IAS 8 itself was — an evidentiary
-confidence asymmetry stated explicitly, not blended into a single "accounting standards"
-confidence level; and now explicitly — a demonstrated, four-times-repeated pattern of this
-domain's own review process missing defects that independent re-audit found on its first pass,
-including two consecutive cases (`M-AUD-07`, then `M-AUD-08`/`M-AUD-09`) where the missed defect
-was introduced by this domain's own immediately preceding corrective round. This should inform
-how much confidence Boss places in any future *unaudited* Team B self-assessment specifically —
-and, per G §4d's own explicit caution, should not be read as evidence the underlying difficulty
-has now resolved simply because Round 4's own regression found nothing further; that is a fact
-about Round 4's construction, not a guarantee about Round 5, should one prove necessary.
+§3/§4e: seven unconfirmed assumptions (above, one new this round); AD-05's thin evidentiary
+base; no validation against real workflow/usage; TAS 8's secondary-source-only confidence,
+stated explicitly, never blended with IAS 8's primary-source confidence; and now explicitly — a
+demonstrated, five-times-repeated pattern of this domain's own review process missing defects
+independent re-audit found on its first pass, including THREE cases (not two) where the missed
+defect was introduced by this domain's own immediately preceding corrective round. Per G §4e's
+own explicit caution, this should not be read as evidence the underlying difficulty has now
+resolved simply because Round 5's own regression (like Round 4's) found nothing further; that
+is a fact about each round's own construction, not a guarantee about the next round, should one
+prove necessary.
 
 ## Carry-forward Items
 
 Team A's STEP binding (TBD), 12 CLASS-D quarantine items, A4 mapping review items, progress-
-weighting baseline (all TBD per Boss Gate §4/Handoff §6, unchanged by this domain pass);
-Team A's OQ-01 (Thai statutory scope beyond e-Tax/tax-invoice) and OQ-02 (whether reference
-implements IAS 21 remeasurement at all) — both confirmed in B15 §6 as not blocking this
-domain's design regardless of how they resolve.
+weighting baseline (all TBD per Boss Gate §4/Handoff §6); Team A's OQ-01/OQ-02 — both confirmed
+in B15 §6 as not blocking this domain's design regardless of how they resolve.
 
 ## TEAM B Working Progress
 
 ```
-18 / 18 mandatory phases evidence-backed (B0–B17), plus 4 targeted corrective rounds
+18 / 18 mandatory phases evidence-backed (B0–B17), plus 5 targeted corrective rounds
 ```
 Reported strictly as **TEAM B DOMAIN WORKING PROGRESS** — not converted to Project/STATE/STEP
 percentage, per directive §14 (no approved project weighting exists).
@@ -231,30 +190,25 @@ STEP %    : TBD / BASELINE LINKAGE REQUIRED
 
 ## ChatGPT Audit Required
 
-**YES — Round 4 re-audit, of the CORR-B4 corrections specifically.**
+**YES — Round 5 re-audit, of the CORR-B5 corrections specifically.**
 
 ## PMO Verification Required
 
 **YES** (unchanged — remains HOLD until re-audit passes). Separately, Jira `ERPPLUS-100`'s
-Assignee (UNASSIGNED) and Due Date (TBD/empty) remain unresolved governance red flags, per
-Round 4's audit — preserved as found, not invented by this executor.
+Assignee (UNASSIGNED) and Due Date (TBD/empty) remain unresolved governance red flags —
+preserved as found, not invented by this executor.
 
 ## Boss Final Decision Required
 
-**YES** — including specific confirmation or revision of the six Critical Assumptions above.
+**YES** — including specific confirmation or revision of the seven Critical Assumptions above.
 
 ## Gate Status
 
 ```
-DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND 4 APPLIED AND PUSHED
-READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 4 corrections)
+DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND 5 APPLIED, PENDING PUSH VERIFICATION
+STATUS WILL READ "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 5 corrections)" ONCE THE
+CORR-B5 COMMIT IS PUSHED AND INDEPENDENTLY VERIFIED (see W — Closure Evidence, once complete)
 ```
-
-Round 4 corrective commit `b50dceb7fdd9f0d017ab7b13abf64ac404ee8598` pushed to
-`TH-PATTARAKRIT/AI-Collaboration-Hub`, branch `SMEsPlus`, and independently verified two ways
-(fresh `git fetch` + `rev-parse` match, and a direct GitHub API commit lookup bypassing local
-git — sha, message, author identity, and 19-file count all confirmed matching). Full evidence:
-[T — Closure Evidence](DOMAIN_01_ACCOUNTING_CORE_T_CORR_B4_CLOSURE_EVIDENCE.md).
 
 Superseded prior statuses (kept visible, not deleted): "READY FOR CHATGPT INDEPENDENT DESIGN
 AUDIT" (true as of `6c18dd323...`/`727b5300...`) → returned by Round 1 audit → "READY FOR
@@ -262,36 +216,40 @@ CHATGPT INDEPENDENT RE-AUDIT" (true as of `552934d78...`/`4e279c748...`) → ret
 re-audit → "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 2 corrections)" (true as of
 `06676d17e...`) → returned by Round 3 re-audit → "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round
 3 corrections)" (true as of `478f94777...`/`19dd7cc90...`) → returned by Round 4 re-audit →
-this status, true as of `b50dceb7fdd9f0d017ab7b13abf64ac404ee8598`, specifically for Round 4's
-corrections.
+"READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 4 corrections)" (true as of
+`b50dceb7...`/`404e769d...`) → returned by Round 5 re-audit → this status, PENDING as of this
+document's own authoring, to be updated once the CORR-B5 commit SHA is known and independently
+confirmed (see [W — Closure Evidence](DOMAIN_01_ACCOUNTING_CORE_W_CORR_B5_CLOSURE_EVIDENCE.md)).
 
 ## Open Assumptions — Explicitly Not Resolved by This Report
 
-The six items below are **ASSUMPTION / OPEN FOR FINAL GATE**. Per explicit instruction across
-all four corrective rounds, they are not escalated as a question here and not resolved by this
-executor — Boss confirms or revises them at the Final Gate, not before:
+The seven items below are **ASSUMPTION / OPEN FOR FINAL GATE**. They are not escalated as a
+question here and not resolved by this executor — Boss confirms or revises them at the Final
+Gate, not before:
 
 1. Rounding method = round-half-up (B08 MP-04, B13 DT-01)
-2. **Revised at CORR-B01, narrowed further at CORR-B2-01/02, unchanged by Round 3 and Round 4**
-   — Period Lock and Consumption are independent, orthogonal gates on Amendment; Restatement
-   (B04 §3a, CO-15) handles backdated corrections into consumed periods separately. Residual
-   open question, narrower than either prior version: should an authorized ordinary reopen
-   carry a time-window restriction beyond CO-08's tier? (B04 §3a/§4, B13 DT-02/DT-09)
+2. **Revised at CORR-B01, narrowed further at CORR-B2-01/02, unchanged by Rounds 3-5** — Period
+   Lock and Consumption are independent, orthogonal gates on Amendment; residual open question:
+   should an authorized ordinary reopen carry a time-window restriction beyond CO-08's tier?
+   (B04 §3a/§4, B13 DT-02/DT-09)
 3. Chart-of-accounts template/instance structure (B07 §2, B13 DT-03)
 4. Audit-trail tamper-evidence scope beyond evidenced legal requirement (B09 CO-07, B13 DT-04)
-5. Correction shape left flexible — both reversal-repost and delta permitted; Void (DT-07) and
-   Restatement (Round 2) are both instances of this same flexibility (B08 MP-08, B13 DT-05)
+5. Correction shape left flexible — both reversal-repost and delta permitted (B08 MP-08, B13
+   DT-05)
 6. CO-02/CO-06 configuration-coupling rule (B15 §3 Issue 2)
+7. **NEW at CORR-B5-05.** Fiscal Year boundary change authorization tier — this domain's
+   working default reuses CO-15's Restatement tier; no independent evidence settles whether
+   that specific tier is correct, too strict, or too lax for this specific action (B07 §1h,
+   B05 BINV-16, B13 DT-12)
 
 **Materiality (CO-16, Round 3) and the designated Retained Earnings account configuration
-(B07 §1f/B10 MG-C15, Round 4) are explicitly not additional items on this list** — both are
-closed design decisions, not open ones: this domain's design never computes or invents a
-materiality threshold, and requires exactly one unambiguous designated account per Company,
-full stop — both are the resolution, not a deferral.
+(B07 §1f/B10 MG-C15, Round 4) remain explicitly not additional items on this list** — both are
+closed design decisions, not open ones, unlike item 7 above.
 
 ## Jira Governance Facts — Preserved, Not Invented
 
-Per Round 4's explicit instruction, `ERPPLUS-100`'s Assignee (`UNASSIGNED`) and Due Date
-(`TBD`/empty) are preserved exactly as found in this document and in the evidence comment —
-neither is a design assumption this domain resolves; both are PMO/Boss-level control facts
-outside this executor's authority, flagged as red flags, not filled in.
+Per explicit instruction across Rounds 4-5, `ERPPLUS-100`'s Assignee (`UNASSIGNED`) and Due
+Date (`TBD`/empty) are preserved exactly as found, independently re-verified this round via
+direct Jira lookup rather than assumed carried-forward — neither is a design assumption this
+domain resolves; both are PMO/Boss-level control facts outside this executor's authority,
+flagged as red flags, not filled in.

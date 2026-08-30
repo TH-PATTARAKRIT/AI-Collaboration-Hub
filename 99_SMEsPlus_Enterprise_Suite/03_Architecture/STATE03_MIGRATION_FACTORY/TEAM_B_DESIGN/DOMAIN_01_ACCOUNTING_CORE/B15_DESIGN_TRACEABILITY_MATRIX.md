@@ -4,8 +4,9 @@
 |---|---|
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B15 — Traceability & Consistency Verification |
-| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit (Round 1) and recorded in §3a; two more were found by ChatGPT's Round 2 re-audit and recorded in §3b; two more were found by ChatGPT's Round 3 re-audit and recorded in §3c; three more were found by ChatGPT's Round 4 re-audit and recorded in §3d — all with equal transparency. |
+| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit (Round 1) and recorded in §3a; two more were found by ChatGPT's Round 2 re-audit and recorded in §3b; two more were found by ChatGPT's Round 3 re-audit and recorded in §3c; three more were found by ChatGPT's Round 4 re-audit and recorded in §3d; two more were found by ChatGPT's Round 5 re-audit and recorded in §3e — all with equal transparency. |
 | **Corrected (Round 4)** | **CORR-B4-01..08 (2026-08-30)** — new §3d added for `M-AUD-08`/`M-AUD-09`/`M-AUD-10`. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 5)** | **CORR-B5-01..08 (2026-08-30)** — new §3e added for `M-AUD-11`/`M-AUD-12`; §6 gains a genuine seventh Team B assumption (Fiscal Year boundary change authorization tier). See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
 
 ## 1. Full Chain Traces (Exemplars)
 
@@ -280,6 +281,54 @@ document it is meant to hold accountable simply never made the claim being teste
 observations are recorded plainly, in the same spirit as every prior round's pattern note, and
 are reflected in [G §4d](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md).
 
+## 3e. Corrective Round 5 — Issues Found by ChatGPT Re-Audit and Resolved *(added at CORR-B5-01..08)*
+
+Two further defects, found by ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`)
+— **after** this domain's own §3a-§3d corrective rounds. Both are, in different ways, direct
+descendants of Round 4's own corrective work: `M-AUD-11` is a defect Round 4's OWN fix (MP-12)
+introduced; `M-AUD-12` is a gap Round 4's OWN new concept (the Elapsed test, B07 §1e) exposed
+by relying on a fact (the Fiscal Year boundary) this design had never previously needed to
+protect.
+
+**Issue 13 (`M-AUD-11`, CRITICAL) — MP-12 Proof G claimed MP-09's mixed-horizon output was a
+balanced Raw Trial Balance; it is not, once a Fiscal Year has elapsed.** Proof A/B (Round 4)
+were careful to use one common horizon throughout their own derivation; Proof G then silently
+reused Proof A's name and conclusion for a DIFFERENT, mixed-horizon quantity, without
+re-checking whether Proof A's precondition (one common horizon) still held for it. It did not
+— verified against Team B's own B21 Test 5 numbers (Company X, Jan 5 2025: mixed-horizon debit
+1250 vs. credit 1000, off by exactly 250). **Resolution:** MP-09 renamed and split into
+`CumulativeAccountBalance` (the true single-horizon formula) and `FiscalYearActivity`
+(Revenue/Expense only, Fiscal-Year-bounded, never itself called a Trial Balance); MP-12 Proof G
+rebuilt into G1 (Raw Cumulative Trial Balance, genuinely balanced)/G2 (Current-Fiscal-Year
+Reporting Balance, explicitly NOT balanced)/G3 (Balanced Presentation Trial Balance, with an
+explicit, permanently-not-postable derived bridge line)/G4 (Known vs. Current, applied to
+G1-G3); new BINV-15 (B05) makes the non-confusion requirement an explicit invariant; CO-14
+(B09) extended to require G1/G2/G3 labeling. Full comparison and worked re-verification:
+[B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-12,
+[B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md) Tests 1-4.
+
+**Issue 14 (`M-AUD-12`, HIGH) — Fiscal Year boundaries were used as timeless facts with no
+protection against silent retroactive editing.** B07 §1e's Elapsed test (Round 4) deliberately
+takes no viewpoint parameter, reasoning that a calendar boundary is a pure fact independent of
+when it's queried — correct as far as it went, but Round 4 never asked whether that boundary
+could itself be silently changed after Entries, Elapsed determinations, or issued reports had
+already relied on it. **Resolution:** B07 §1h (new) adopts a Versioned Fiscal Calendar model
+(compared against boundary-immutability-after-use and a rejected open "Option C" at
+[B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md) DT-12) — pre-reliance corrections remain free and
+ungated; post-reliance changes require a new, CO-15-tier-or-stricter `FiscalYearBoundaryChanged`
+Audit Event (B04, new), never a silent overwrite, with the old boundary version permanently
+queryable for Known-viewpoint reconstruction. New BINV-16 (B05) formalizes the invariant. The
+exact authorization tier is flagged as a new, seventh Team B assumption (§6, below), not
+resolved by this domain's own evidence the way CO-16's materiality decision was.
+
+**Pattern note, continued from §3a-§3d:** this is the fifth consecutive corrective round in
+which independent re-audit found what this domain's own process did not — and, notably, BOTH
+of this round's findings trace directly to Round 4's own new design surface (MP-12's proof
+structure; the Elapsed test's implicit calendar-timelessness assumption), continuing the
+"a corrective round's own fix is new attack surface" observation §3d first made explicit for
+`M-AUD-08`/`M-AUD-09`. Reflected in
+[G §4e](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md).
+
 ## 4. Contradictory Rules Check
 
 Beyond Issue 2 (resolved above), no other rule pair was found to assert incompatible
@@ -325,6 +374,18 @@ not an open judgment call in the sense the six assumptions are — it has exactl
 answer per Company (which account the source system actually used), not a range of
 defensible choices awaiting Boss's preference.
 
+**Round 5 note (CORR-B5-07):** assumptions #1-6 are unchanged, for the same reason as Round 3
+and Round 4 — this round's findings (Trial Balance output labeling, Fiscal Calendar historical
+safety) are pure internal-consistency/mathematics corrections with no bearing on their subject
+matter. **Unlike Round 3 and Round 4, this round adds a genuine seventh assumption** (below) —
+the exact authorization tier for a post-reliance Fiscal Year boundary change (B07 §1h, BINV-16)
+is a real open policy question this domain's own evidence does not settle, unlike materiality
+(CO-16, closed by IAS 8's own refusal to state a threshold) or the designated Retained Earnings
+account (MG-C15, closed because it has exactly one factually correct answer per Company). This
+domain's working default (reuse CO-15's existing Restatement tier) is stated as a default, not
+asserted as the settled answer — flagged explicitly, per the directive's instruction, rather
+than hidden inside B07 §1h's prose.
+
 | Assumption | First flagged | Disposition (per B01 §7 categories) |
 |---|---|---|
 | Rounding method = round-half-up | B08 MP-04, B13 DT-01 | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE** |
@@ -333,6 +394,7 @@ defensible choices awaiting Boss's preference.
 | Audit trail tamper-evidence extended beyond evidenced legal scope | B09 CO-07, B13 DT-04 | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE** |
 | Correction shape left flexible (both reversal-repost and delta permitted); Void (B04 §5, corrected) is now understood as the zero-net instance of this same flexibility, not a separate question | B08 MP-08, B13 DT-05, B13 DT-07 (new) | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE** |
 | CO-02/CO-06 configuration coupling (Issue 2 above) | B15 §3 (new) | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE** |
+| **NEW at CORR-B5-05.** Fiscal Year boundary change authorization tier: a post-reliance change to a Fiscal Year's Start/End boundary (B07 §1h) requires an authorized `FiscalYearBoundaryChanged` action — this domain's working default reuses Restatement's tier (CO-15), on the reasoning that re-partitioning which Fiscal Year a transaction belongs to carries comparable blast radius to restating a period's current view, but no independent evidence (Team A or accounting-standard) settles whether that specific tier is correct, too strict, or too lax for this specific action. | B07 §1h (new), B05 BINV-16 (new), B09 CO-15 (extended), B13 DT-12 (new) | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE**, new this round |
 | Whether Thai law extends tamper-evidence/gapless-numbering beyond e-Tax/tax-invoice scope | B01 §11 OQ-01 | **CARRIED FORWARD** (unchanged from Team A — this domain's design does not depend on the answer either way, per CO-07's explicit separation) |
 | IAS 21 remeasurement — whether reference system does this at all | B01 §11 OQ-02 | **OUT OF DOMAIN for this question specifically** — this domain designs CAP-06 to satisfy the standard regardless of the answer (AD-08), so the carried-forward unknown does not block design, only migration-time comparison |
 | Full 20-item Team A residual unknown register | `11_RESIDUAL_UNKNOWN_REGISTER.md` | **CARRIED FORWARD**, incorporated by reference (B01 §11) |
@@ -363,32 +425,39 @@ Contradictory rules                       : 1 found internally (Issue 2), RESOLV
                                              RESOLVED (§3b); 2 more found by Round-3 re-audit,
                                              RESOLVED (§3c); 3 more found by Round-4 re-audit,
                                              RESOLVED (§3d, two of which were introduced by
-                                             Round 3's own fix — see §3d pattern note);
-                                             1 stale statement found during Round-2
-                                             re-verification and corrected (§5)
-Circular definitions                      : NONE, re-verified Round 2 (§5); re-checked Round 3
-                                             and again Round 4 — the new B07 §1f/§1g
-                                             decompositions and B08 MP-12 introduce no new
-                                             dependency that could cycle back on Consumption,
-                                             Period Lock, Restatement, or the Elapsed test
-Unresolved critical assumptions           : 6 Team B assumptions (#2 revised/narrowed twice,
-                                             Round 1 and Round 2, not withdrawn; unchanged by
-                                             Round 3 and Round 4, see §6 notes) + 3
-                                             carried-forward Team A items, ALL VISIBLE (§6),
-                                             none hidden
+                                             Round 3's own fix); 2 more found by Round-5
+                                             re-audit, RESOLVED (§3e, both of which trace
+                                             directly to Round 4's own new design surface —
+                                             see §3e pattern note); 1 stale statement found
+                                             during Round-2 re-verification and corrected (§5)
+Circular definitions                      : NONE, re-verified Round 2 (§5); re-checked Round 3,
+                                             Round 4, and Round 5 — the new B07 §1f/§1g/§1h
+                                             decompositions and B08 MP-09/MP-12 (corrected)
+                                             introduce no new dependency that could cycle back
+                                             on Consumption, Period Lock, Restatement, or the
+                                             Elapsed test
+Unresolved critical assumptions           : 7 Team B assumptions (#2 revised/narrowed twice,
+                                             Round 1 and Round 2, not withdrawn; #1, #3-6
+                                             unchanged by Round 3 and Round 4; #7 NEW at
+                                             Round 5, Fiscal Year boundary change authorization
+                                             tier — see §6 notes) + 3 carried-forward Team A
+                                             items, ALL VISIBLE (§6), none hidden
 Regulatory overreach                      : NONE (§7)
 Vendor leakage                             : NONE (§8, cross-checked against B14; re-confirmed
                                              unaffected by Round 2's temporal/fiscal model, by
                                              Round 3's IAS 8 classification and no-posted-close
-                                             model, and by Round 4's reporting-equity
-                                             mathematics — all four are grounded in accounting
+                                             model, by Round 4's reporting-equity mathematics,
+                                             and by Round 5's Trial Balance/Fiscal Calendar
+                                             corrections — all five are grounded in accounting
                                              standards/mathematics and this domain's own prior
                                              vocabulary, not vendor structure)
 ```
 
-**B15 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-01..08/CORR-B4-01..08
-— §3a, §3b, §3c, and §3d added, §5 corrected (a stale pre-Round-1 statement found during
-Round 2 re-verification), §6 assumption #2 revised in place twice (Round 1, Round 2) and
-explicitly confirmed unchanged at Round 3 and Round 4, with every prior wording kept visible,
-not deleted, per instruction. §1, §2, §4, §7, §8 re-verified as still accurate after Round 4's
-corrections: no new orphans, no new overreach, no new vendor leakage, no new circularity.)*
+**B15 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-01..08/CORR-B4-01..08/
+CORR-B5-01..08 — §3a, §3b, §3c, §3d, and §3e added, §5 corrected (a stale pre-Round-1 statement
+found during Round 2 re-verification), §6 assumption #2 revised in place twice (Round 1,
+Round 2) and explicitly confirmed unchanged at Round 3 and Round 4, with every prior wording
+kept visible, not deleted, per instruction. §6 gains a genuine seventh assumption at Round 5 —
+the first round to add one since the original six were established. §1, §2, §4, §7, §8
+re-verified as still accurate after Round 5's corrections: no new orphans, no new overreach,
+no new vendor leakage, no new circularity.)*

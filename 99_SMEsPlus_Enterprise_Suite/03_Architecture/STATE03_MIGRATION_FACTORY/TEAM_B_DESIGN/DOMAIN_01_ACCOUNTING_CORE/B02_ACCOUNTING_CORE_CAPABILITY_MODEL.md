@@ -8,6 +8,7 @@
 | **Corrected (Round 2)** | **CORR-B2-03/04 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`, finding `M-AUD-05`) found CAP-09 generalized Team A's year-end-specific evidence to every ordinary Period close, risking double-counted balances. CAP-09 renamed and rescoped below to Fiscal Year Close only. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`, finding `M-AUD-07`) found the Round-2 text below still described CAP-09 as posting "exactly one Current-Earnings-transfer Entry" — directly contradicting the domain's own repeated claim that Revenue/Expense are never reset by a posted action, and, traced literally, a real arithmetic bug (such an Entry would corrupt the closing year's own historical query). Corrected: CAP-09 now posts **no financial Entry at all**; Current Earnings becomes part of Reported Retained Earnings through [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1e's derived reporting formula. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-03 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`, finding `M-AUD-09`) found the Round-3 text below still tied Reported Retained Earnings' inclusion of a Fiscal Year to CAP-09's own declaration — meaning a delayed declaration would silently drop a real, elapsed Fiscal Year's earnings from every report. Corrected: CAP-09's declaration now governs **posting-lock scope only**; Reported Retained Earnings inclusion is boundary-driven ("Elapsed," [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1e), never declaration-driven. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 5)** | **CORR-B5-05 (2026-08-30)** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`, finding `M-AUD-12`) found no capability governed changing a Fiscal Year's own boundary after it had already governed real facts. CAP-09 extended to own this action, gated at Restatement's tier, via the new `FiscalYearBoundaryChanged` event. See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
 
 ## 1. Framing
 
@@ -256,6 +257,16 @@ identified. Each is stated independently of how (or whether) a reference system 
   Earnings updates automatically at each Fiscal Year's own boundary (B07 §1e), whether or not
   CAP-09 has yet been exercised for that year. CAP-09's only true downstream dependent is CAP-04
   (ordinary posting/amendment eligibility within the now-locked Fiscal Year).**
+- **Fiscal Year boundary governance (new, added at CORR-B5-05):** CAP-09, as the owning
+  capability for the Fiscal Year entity (B07 §1), is also where a post-reliance boundary
+  change (B07 §1h, `M-AUD-12`) is authorized and recorded — a new `FiscalYearBoundaryChanged`
+  Audit Event (B04, new), at an authorization tier at least as strict as Restatement (CO-15,
+  reused). This is a distinct action from ordinary Fiscal Year Close: it changes the Fiscal
+  Year's own *definition*, not its lock status, and — unlike Fiscal Year Close — is expected
+  to be rare, since it is gated specifically to protect against the exact silent-history-
+  rewrite risk `M-AUD-12` identified. Pre-reliance corrections to a Fiscal Year's boundary
+  (before any Entry, elapse, or issued report has depended on it) require no such event —
+  they are ordinary CAP-01 chart-configuration updates.
 
 ## 3. Deliberately Not Vendor Module Boundaries
 

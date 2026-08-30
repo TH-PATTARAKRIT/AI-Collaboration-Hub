@@ -8,6 +8,7 @@
 | **Corrected (Round 2)** | **CORR-B2-01/02 (2026-08-29)** — CO-14/CO-15 added, required by B08/B04's temporal-model and Restatement corrections. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-04 (2026-08-29)** — CO-16 added (materiality is a policy input, never computed or invented by this domain's design), required by B04 §3b/§3c's new IAS 8 classification, which references CO-16 by name. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-04 (2026-08-30)** — CO-14's mode-labeling scope extended to explicitly cover Reported Retained Earnings / Reported Equity (B07 §1g), required by ChatGPT's Round 4 finding `M-AUD-10`. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 5)** | **CORR-B5-02/05 (2026-08-30)** — CO-14's scope extended again to cover B08 MP-12's three Trial Balance outputs (`M-AUD-11`); CO-15's authorization tier extended (reused, not reinvented) to cover post-reliance Fiscal Year boundary changes (`M-AUD-12`), B07 §1h. See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
 
 ## CO-01 — Authorization
 
@@ -167,7 +168,7 @@ infrastructure-level tamper-resistance (encryption at rest, storage-level access
 infrastructure audit logging) is a platform/infrastructure concern outside DOMAIN_01's
 boundary (B03 §4), not a gap in this domain's own design.
 
-## CO-14 — Temporal Mode Labeling *(added at CORR-B2-01/02; scope extended at CORR-B4-04)*
+## CO-14 — Temporal Mode Labeling *(added at CORR-B2-01/02; scope extended at CORR-B4-04, CORR-B5-02)*
 
 **Objective:** every report or query result derived from MP-09 (B08, corrected) must be
 explicitly labeled with which temporal mode produced it — "as originally known as of
@@ -183,11 +184,20 @@ B20 Test 8 already relied on a Mode-1 reading of them — this extension closes 
 without inventing a new control, since the underlying requirement ("do not let one silently
 masquerade as the other") already applied in substance; only the enumeration of which outputs
 it covers was incomplete.
-**Basis:** B08 MP-09 (corrected), BINV-11 (corrected), B07 §1g (new), B08 MP-12 (new) —
+**Extended again at CORR-B5-02 (`M-AUD-11`):** this labeling requirement additionally covers
+which of B08 MP-12's three outputs a presentation is showing — the Raw Cumulative Trial
+Balance (Proof G1), the Current-Fiscal-Year Reporting Balance (Proof G2, never itself labeled
+"balanced" or "a Trial Balance"), or the Balanced Presentation Trial Balance (Proof G3). Any
+presentation carrying G3's derived bridge line must carry the exact label "DERIVED PRESENTATION
+COMPONENT — NOT A POSTED FINANCIAL FACT" (or an equivalent, equally explicit annotation)
+alongside it — the same "do not let one silently masquerade as the other" principle CO-14 has
+enforced since Round 2, now extended to a case ChatGPT's Round 5 audit found this domain's own
+Round-4 design had itself violated (MP-12 Proof G calling G2 "the Raw Trial Balance").
+**Basis:** B08 MP-09 (corrected), BINV-11 (corrected), B07 §1g (new), B08 MP-12 (corrected) —
 no direct Team A source ID, since this distinction did not exist before this domain's own
 Round 2 correction.
 
-## CO-15 — Restatement Authorization Tier *(added at CORR-B2-01/02)*
+## CO-15 — Restatement Authorization Tier *(added at CORR-B2-01/02; scope extended at CORR-B5-05)*
 
 **Objective:** a Restatement (B04 §3a — a Correction/Void whose target has independent
 Consumption and whose Effective Date falls within the period that Consumption covers)
@@ -197,8 +207,17 @@ with CO-06's "safe path not harder" principle: CO-06 governs the choice between 
 ordinary Correction for the *same* underlying risk level; Restatement is a *different*, higher
 risk level (rewriting the "current" view of an already-relied-upon period), and earns its own,
 higher bar rather than inheriting Correction's low-friction tier by default.
+**Extended at CORR-B5-05 (`M-AUD-12`):** this same authorization tier is reused, not
+reinvented, for a post-reliance Fiscal Year boundary change (B07 §1h, new
+`FiscalYearBoundaryChanged` event, B04) — re-partitioning which Fiscal Year a transaction
+belongs to carries a comparable blast radius to restating a period's "current" view, so it
+earns the same bar. **The exact tier is flagged as a new, seventh Team B assumption** ([B15](B15_DESIGN_TRACEABILITY_MATRIX.md)
+§6) — reusing CO-15's tier is this domain's working default, not a fact this domain's evidence
+independently settles the way, for example, CO-16's materiality-policy-input decision is.
 **Basis:** `M-AUD-04`'s acceptance requirement that formal restatement be "explicit,
-auditable, and separately reconstructable" — no direct Team A source ID.
+auditable, and separately reconstructable" — no direct Team A source ID. `M-AUD-12`'s
+requirement that a Fiscal Year boundary change be gated, audited, and never silent — also no
+direct Team A source ID.
 
 ## CO-16 — Materiality Is a Policy Input, Never a Computed or Invented Threshold *(added at CORR-B3-04)*
 
@@ -241,6 +260,7 @@ CO-16 added at CORR-B3-04 (16th item, materiality as policy input, never compute
   threshold this design never authorized
 ```
 
-**B9 = COMPLETE.** *(Corrected at CORR-B2-01/02/CORR-B3-04/CORR-B4-04 — CO-14/CO-15 added
-Round 2, CO-16 added Round 3, CO-14 scope extended Round 4 (no new CO — still 16 total). CO-01..13
-unchanged since their respective original passes.)*
+**B9 = COMPLETE.** *(Corrected at CORR-B2-01/02/CORR-B3-04/CORR-B4-04/CORR-B5-02/05 — CO-14/
+CO-15 added Round 2, CO-16 added Round 3, CO-14 scope extended Round 4 and again Round 5,
+CO-15 scope extended Round 5 (no new CO either round — still 16 total). CO-01..13 unchanged
+since their respective original passes.)*

@@ -168,6 +168,44 @@ that the underlying difficulty has resolved. Whether a fifth round would find no
 not something this document can honestly claim to know in advance; it is exactly the kind of
 question independent re-audit exists to answer, not self-review.
 
+## 4e. Addendum — It Happened a Fifth Time, Confirming §4d's Own Prediction *(added at CORR-B5-01..08)*
+
+§4d closed by saying plainly that whether a fifth round would find nothing further "is not
+something this document can honestly claim to know in advance." A fifth independent re-audit
+has now happened, and it found two more findings: `M-AUD-11` (MP-12's own Proof G, Round 4's
+new mathematical machinery, silently mislabeled a mixed-horizon quantity as a balanced Trial
+Balance) and `M-AUD-12` (the Elapsed test, also Round 4's new machinery, relied on a Fiscal
+Year boundary that nothing protected from silent retroactive editing). §4d's prediction was
+correct to withhold confidence — the underlying difficulty did not resolve simply because
+Round 4's own regression (B21) happened to find nothing further during construction.
+
+**Three observations, continuing rather than repeating §4a-§4d's pattern:** **First**, this is
+now the fifth consecutive round in which independent re-audit found what this domain's own
+process did not. **Second**, `M-AUD-11` is the THIRD instance of a specific, now-clearly-
+recurring sub-pattern: a corrective round's own new mathematical machinery containing a defect
+the same round's own careful work elsewhere did not catch (`M-AUD-07` from Round 2's MP-11;
+`M-AUD-08`/`M-AUD-09` from Round 3's B07 §1e; now `M-AUD-11` from Round 4's own MP-12 Proof G,
+written in the very same round as MP-12's otherwise-careful Proofs A-F). **Third**, `M-AUD-12`
+is a genuinely different shape of finding from the other seven post-Round-1 findings — not a
+wrong formula and not an internal contradiction, but a *missing protection* for a fact
+(the Fiscal Year boundary) that Round 4's own new concept (the Elapsed test) began relying on
+without anyone — including this domain's own construction of that concept — asking "what
+stops this input itself from being silently changed?" This is worth naming as its own category,
+distinct from "the arithmetic was wrong": a correctly-reasoned new mechanism can still leave a
+new *dependency* unprotected, and that is a different failure mode than a wrong proof, requiring
+a different kind of scrutiny (asking "what could invalidate this input" rather than "is this
+derivation correct") that this domain's own review has not yet reliably applied to its own new
+concepts, three rounds running.
+
+**What this means, stated as plainly as §4d stated its own version:** two consecutive rounds
+now (Round 4 and Round 5) have each contained a defect traceable to the immediately preceding
+round's own new design surface. Round 5's own regression (B22) again found nothing further
+during construction — the second consecutive round of which that is true — but for the same
+reason §4d gave and this document will keep giving: that is a fact about this round's
+construction discipline, not a claim the underlying difficulty has resolved. This document
+will not predict whether a sixth round would find nothing further, for the same honest reason
+§4d would not predict a fifth.
+
 ## 5. Verdict
 
 ```
@@ -180,16 +218,21 @@ CORRECTIVE ROUND 3 APPLIED (CORR-B3-01..08) — 2 more findings found by indepen
   (one of which was introduced by Round 2's own fix), corrected; regression (B20)
   self-corrected one formula-documentation gap
 CORRECTIVE ROUND 4 APPLIED (CORR-B4-01..08) — 3 more findings found by independent re-audit
-  (two of which were introduced by Round 3's own fix — the second consecutive round with a
-  self-inflicted finding), corrected; regression (B21) found no further gap during
-  construction, the first round of which that is true
-Design internally coherent, self-corrected where found lacking four times over, honestly
+  (two of which were introduced by Round 3's own fix), corrected; regression (B21) found no
+  further gap during construction, the first round of which that is true
+CORRECTIVE ROUND 5 APPLIED (CORR-B5-01..08) — 2 more findings found by independent re-audit
+  (one of which, `M-AUD-11`, was introduced by Round 4's own fix — the third instance of this
+  specific sub-pattern; the other, `M-AUD-12`, a missing protection for a dependency Round 4's
+  own new concept introduced), corrected; regression (B22) found no further gap during
+  construction, the second consecutive round of which that is true
+Design internally coherent, self-corrected where found lacking five times over, honestly
   bounded — including the honest observation that self-correction alone has never yet been
-  sufficient without an independent pass finding something further, and that two of the last
-  four rounds corrected defects the immediately preceding round's own fix introduced
-Not independently re-verified since Round 4's correction — that is ChatGPT re-audit's role next
+  sufficient without an independent pass finding something further, that three of the last
+  four rounds corrected defects the immediately preceding round's own fix introduced, and that
+  this document explicitly declines to predict whether a sixth round would find nothing further
+Not independently re-verified since Round 5's correction — that is ChatGPT re-audit's role next
 Not Final Pass — Boss and ChatGPT re-audit remain outstanding
 ```
 
-**Self-review complete, corrective addendum applied (four rounds). Proceeding to Final Gate
+**Self-review complete, corrective addendum applied (five rounds). Proceeding to Final Gate
 Candidate (H).**

@@ -9,6 +9,7 @@
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found two further defects: an Entry's single "date" property let a backdated Correction rewrite relied-upon history (M-AUD-04), and Current Earnings (§1b) was bounded "since the last close" — ambiguous between ordinary Period close and Fiscal-Year close, matching M-AUD-05's finding that CAP-09 overgeneralized BF-09's year-end-specific rule. Fixed below: Entry now has two distinct temporal properties (§1c), and a new **Fiscal Year** entity is added. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-01..05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) found (1) prior-period error treatment did not comply with IAS 8's mandatory retrospective restatement for material errors (`M-AUD-06`, verified against primary IAS 8 text, paragraphs 5/41-48/50-53 — not memory or secondary sources); (2) §1d's "no posted action ever touches Revenue/Expense" claim directly contradicted MP-11's actual definition, which did (`M-AUD-07`). §1b/§1d rewritten: Fiscal Year Close is now purely declarative (no posted Entry); Reported Retained Earnings is a new derived reporting formula (§1e). See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-01/02/03/04 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) found §1e's Round-3 formula, combined with B08 MP-02's reporting equation, double-counted the designated Retained-Earnings account's direct-posted balance (`M-AUD-08`); found §1e's "closed before D" boundary made Reported Retained Earnings depend on when an operator *declares* Fiscal Year Close, not on the Fiscal Year's own calendar boundary — a genuine reporting hole if that declaration is ever delayed (`M-AUD-09`); and found §1e defined Reported Retained Earnings using MP-09 Mode 2 only, with no defined Mode-1 ("as originally known") counterpart, despite B20 Test 8 relying on one (`M-AUD-10`). §1e corrected (Fiscal-Year inclusion is now boundary-driven, "elapsed," not declaration-driven); new §1f defines a non-overlapping Reported Equity decomposition; new §1g defines viewpoint-parameterized Known/Current functions. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 5)** | **CORR-B5-05 (2026-08-30)** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`) found §1e's Elapsed test relies on a Fiscal Year's Start/End boundary as if it were timeless, with no protection against that boundary being silently edited after it has already governed real accounting facts (`M-AUD-12`). New §1h defines a Versioned Fiscal Calendar model (compared against boundary-immutability-after-use), protecting historical reproducibility from calendar-configuration changes the same way `Recorded At` already protects it from Entry-level backdating. See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
 
 ## 1. Conceptual Entities
 
@@ -17,7 +18,7 @@
 | **Company** | A legal entity whose books are kept separately (CAP-05) | A stable business identifier, independent of any source-system internal ID | CAP-05 |
 | **Account Category** | A fixed classification governing statement placement and carry-forward behavior (BINV-09) — **corrected Round 2:** carry-forward behavior is now defined precisely per §1b/§1d, not a generic "year-end" gloss | A closed, small set defined at the domain level, not per company | CAP-01 |
 | **Account** | A node in one Company's chart of accounts | Stable once created; its Category is mutable only before first use (BR-08) | CAP-01 |
-| **Fiscal Year** *(new, Round 2)* | A bounded span of time, composed of one or more contiguous Periods, that defines the horizon over which Income Statement (Revenue/Expense) activity accumulates before being closed to Equity (§1b, §1d) | Identified by its Company and the span it covers; exactly one Fiscal Year contains any given date for a Company | CAP-09 (renamed/rescoped, §2) |
+| **Fiscal Year** *(new, Round 2; boundary corrected to be a versioned fact at CORR-B5-05)* | A bounded span of time, composed of one or more contiguous Periods, that defines the horizon over which Income Statement (Revenue/Expense) activity accumulates before being closed to Equity (§1b, §1d) | Identified by its Company and the span it covers; exactly one Fiscal Year contains any given date for a Company. **Its Start/End boundary is itself a versioned, historically-safe configuration fact, not a bare immutable-from-creation date pair — see §1h (new, CORR-B5-05).** | CAP-09 (renamed/rescoped, §2) |
 | **Period** | A bounded span of time with one authoritative open/closed status (BINV-02) — an ordinary **posting lock**, distinct from and nested within a Fiscal Year; closing a Period never itself resets or transfers anything (corrected Round 2 — see §1d) | Identified by its Company and the span it covers; never two overlapping Periods answer for the same date/company/class; belongs to exactly one Fiscal Year | CAP-04 |
 | **Entry** | A Financial Fact expressed in double-entry form (B03 §2) | A permanent, system-assigned identity that exists independently of any human-readable document number (see §4); **carries two distinct temporal properties, not one — see §1c (Round 2 correction)** | CAP-02 |
 | **Line** | One attribution within an Entry (B03 §2) | Identified only in relation to its owning Entry — a Line has no independent existence | CAP-02 |
@@ -376,6 +377,112 @@ original issuance moment; a report showing "today's best current understanding, 
 Restatements since" uses `_Current(C, D)`. Numeric proof, including a later Restatement that
 changes the Current view while the Known view stays fixed: [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md)
 Tests 8-9.
+
+### 1h. Fiscal Year Boundary Versioning & Historical Safety *(new, added at CORR-B5-05)*
+
+ChatGPT's Round 5 audit (`M-AUD-12`) found a gap this design had not yet addressed: §1e's
+**Elapsed** test (CORR-B4-03) compares a query date D against a Fiscal Year's configured Start/
+End boundary, and — deliberately, per CORR-B4-03's own reasoning — that comparison takes no
+viewpoint parameter, because a calendar boundary was treated as a pure, timeless fact. But
+nothing in this design, before this correction, actually protected that boundary FROM being
+retroactively edited after it had already governed real accounting facts. If an administrator
+could silently move a Fiscal Year's End Date after Entries, Elapsed determinations, Reported
+Retained Earnings figures, or issued reports had already relied on the old boundary, every one
+of those could change with no Entry, no Correction, no Restatement, and no Audit Event — a
+silent historical rewrite that would defeat BINV-11's reproducibility guarantee from a
+direction Entry-level `Recorded At` immutability (BINV-12) never protected against, because
+the boundary is a fact ABOUT the Fiscal Year, not a fact carried BY any individual Entry.
+
+**Required invariant (formalized as BINV-16, B05):** a Fiscal Year boundary that has governed
+any COMMITTED accounting fact, has elapsed, or has been referenced by an issued/consumed
+report cannot be changed in place in a way that silently changes historical classification or
+reporting.
+
+**Three models compared, per the directive's explicit requirement to choose and justify one
+rather than assert a fix:**
+
+- **Option A — Boundary immutability after first authoritative use.** Once a Fiscal Year
+  contains any COMMITTED Entry, is Elapsed, or has been referenced by an issued/consumed
+  report, its Start/End become permanently frozen; any future calendar adjustment creates a
+  new, separate Fiscal Year definition rather than touching the frozen one. Simplest possible
+  rule — a single boolean, no versioning machinery. Risk: a genuine configuration mistake
+  caught almost immediately (e.g., a Fiscal Year accidentally configured with the wrong End
+  Date, discovered before anything of substance has relied on the specific boundary) is treated
+  identically to a change requested after months of real reliance — both are permanently
+  blocked, forcing an awkward "abandon and recreate" workaround even for the harmless,
+  no-consequence case.
+- **Option B — Versioned Fiscal Calendar (adopted).** A Fiscal Year's boundary is itself a
+  versioned, effective-dated conceptual fact, exactly mirroring the Effective-Date/Recorded-At
+  and Known/Current vocabulary this design already uses for Entries (§1c) and for Reported
+  Retained Earnings/Equity (§1g) — not a new kind of mechanism, the same one applied one level
+  up. Before first authoritative use, a correction simply updates the one current version (no
+  Known-view divergence is even possible, since nothing yet exists that could have "known" a
+  different boundary). After first authoritative use, a change is a formal, audited, gated
+  action — never a silent overwrite — recorded as a new version with its own effective/recorded
+  time, at an authorization tier at least as strict as Restatement's (CO-15, reused, not a new
+  tier invented from scratch). The old version remains permanently queryable: any Known-view
+  reconstruction with T fixed before the change uses the boundary version authoritative as of
+  T; Current-view reporting uses the latest authoritative version. Changing a boundary does
+  **not**, by itself, retroactively move any existing COMMITTED Entry's Fiscal-Year membership
+  — an Entry's membership is fixed by the boundary version authoritative when it was Recorded,
+  unless a separate, explicit reclassification action is taken (itself gated at least as
+  strictly as a Restatement, since re-classifying which Fiscal Year a transaction belongs to is
+  economically equivalent to correcting its date).
+- **Option C — a different model.** Not adopted: Option B already generalizes Option A's exact
+  protection (once anything has relied on a boundary, changing it requires the same weight of
+  process Option A would have forced by outright prohibition) while adding a narrow, harmless
+  escape hatch for the pre-reliance case Option A handles awkwardly. No alternative was found
+  that preserves historical reproducibility as strongly as Option B while being simpler; a
+  bespoke third mechanism would only duplicate machinery (versioning + authorization tiering)
+  this design already has for other facts.
+
+**Why Option B, not Option A, stated plainly:** Option A is not wrong, and in fact Option B's
+post-reliance behavior IS Option A's rule, applied as the default once anything has relied on
+the boundary — Option B does not weaken Option A's protection anywhere it actually matters.
+Option B is adopted because it additionally handles the pre-reliance case without an awkward
+workaround, reusing vocabulary (versioned fact, Known/Current, authorization tier) this design
+has already committed to elsewhere, rather than introducing a one-off "frozen bit" concept
+that exists nowhere else in the domain.
+
+**Required fields for a post-reliance boundary change, per the directive:**
+
+- **Authority:** an authorization tier at least as strict as Restatement (CO-15) — reusing the
+  existing tier rather than a new one, since the audit did not evidence a need for a stricter
+  or laxer tier specifically for this fact type. **Flagged as a new, seventh Team B assumption
+  below** — the exact tier is a genuine open policy question, not one this domain's evidence
+  settles unilaterally.
+- **Audit evidence:** a new Audit Event (`FiscalYearBoundaryChanged`, B04, new), append-only,
+  recording the old version, the new version, the authorizing actor, and the effective/recorded
+  time — the same evidentiary shape as every other governed action in this design (CAP-08).
+- **Effective time:** the new boundary version's own Effective Date (when it becomes
+  authoritative for Current-view purposes) and Recorded At (when this system accepted the
+  change) — the same two-axis split already used for Entries (§1c), applied to calendar
+  versions instead.
+- **Historical Known view:** unaffected, permanently, for any T before the change's Recorded
+  At — reconstructs using the boundary version that was actually authoritative as of T.
+- **Current/restated view:** reflects the latest authoritative boundary version from its
+  Effective Date forward.
+- **Impact on Fiscal-Year membership of existing Entries:** none, by default — a boundary
+  change alone never moves an existing Entry's Fiscal-Year membership. A separate, explicit
+  reclassification action is required if that is genuinely intended, gated at least as strictly
+  as the boundary change itself.
+- **Policy-change vs. formal-restatement classification:** a pre-reliance correction is an
+  ordinary configuration update (no gate beyond ordinary CAP-01 chart authority). A
+  post-reliance change is always a **policy/configuration change with restatement-tier
+  authorization** — it is not itself a Prior-Period Error under B04 §3b/§3c's classification
+  (nothing was mis-recorded; the calendar definition is being deliberately changed going
+  forward or, in the reclassification case, an explicit separate action is taken), but it earns
+  Restatement's authorization weight because its blast radius (which Fiscal Year a transaction
+  belongs to) is comparable.
+- **Required Gate:** any post-reliance boundary change is visible in Reported Financial
+  Statements exactly like any other CO-15-tier action — logged, attributable, never silent —
+  and, per this domain's standing discipline, remains a Team B design requirement, not a
+  self-approved implementation detail.
+
+No Thai-specific regulatory requirement is invented for this control — it is derived entirely
+from this domain's own historical-reproducibility discipline (BINV-11, extended), the same
+category of internally-derived requirement as BINV-12 (Recorded-At immutability) was at
+CORR-B2-01/02.
 
 ## 2. Deliberately Excluded From This List
 

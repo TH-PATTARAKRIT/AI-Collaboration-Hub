@@ -9,6 +9,7 @@
 | **Corrected (Round 2)** | **CORR-B2-01/02/03 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found (1) a backdated Correction could still rewrite relied-upon history, since Entry had only one temporal property (`M-AUD-04`) — fixed by adopting B07 §1c's Effective-Date/Recorded-At split, reflected below; (2) "period close" as used throughout this document conflated an ordinary posting lock with Fiscal Year Close specifically (`M-AUD-05`) — every reference below is now precise about which one applies. A new correction-purpose, **Restatement**, is introduced for backdated corrections into already-consumed periods. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-01/02/05 (2026-08-29)** — *(header row added retroactively at CORR-B4-07 — this round's body edits were made but this summary row was omitted at the time, a gap noticed and fixed while propagating Round 4, not a Round-4 finding itself)*. ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) required (1) an IAS 8-grounded Error/Estimate/Materiality classification, added as new §3b/§3c (`M-AUD-06`); (2) removal of the `FiscalYearClosed` event table row's claim that it triggers a posted Entry (`M-AUD-07`). See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-03 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`, finding `M-AUD-09`) found the `FiscalYearClosed` event table row still implied Reported Retained Earnings *waits* for this declaration. Corrected: this event now governs Period Lock scope only; reporting inclusion is boundary-driven ("Elapsed," B07 §1e), never declaration-driven. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 5)** | **CORR-B5-05 (2026-08-30)** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`, finding `M-AUD-12`) found no Audit Event existed for a Fiscal Year boundary change, leaving the calendar dates the Elapsed test relies on unprotected against silent retroactive editing. New `FiscalYearBoundaryChanged` event added (B07 §1h). See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
 
 ## 1. What This Phase Adds Beyond Team A's Input
 
@@ -71,6 +72,7 @@ production is not optional or configurable:
 | `PeriodReopened` *(added at CORR-B01)* | An authorized CO-08 action reopens a closed **ordinary Period** | ...no entry in it ends up amendable, because every one of them was independently consumed — the event is still recorded, since the reopen itself is the auditable fact, regardless of its practical effect |
 | `FiscalYearClosed` *(added at CORR-B2-03/04; corrected at CORR-B3-05 — no longer posts any Entry; scope corrected at CORR-B4-03 — governs posting lock only, never reporting inclusion)* | An authorized action locks the whole Fiscal Year (extending Period Lock's scope) to new Posting/Amendment. ~~declares it closed for reporting purposes~~ — **corrected at CORR-B4-03 (`M-AUD-09`): this event has no reporting effect at all.** **Posts no financial Entry** — Current Earnings becomes part of Reported Retained Earnings via B07 §1e's derived formula, which triggers on the Fiscal Year having **elapsed** (its own calendar End Date passing), never on this declaration. A Fiscal Year is routinely elapsed-but-not-yet-closed for a real operational window; reporting is correct throughout it | — |
 | `Remeasured` | CAP-06 produces a remeasurement adjustment | — |
+| `FiscalYearBoundaryChanged` *(new, added at CORR-B5-05)* | An authorized, CO-15-tier action changes a Fiscal Year's Start/End boundary AFTER that boundary has already governed a COMMITTED Entry, elapsed, or been referenced by an issued/consumed report (B07 §1h) — pre-reliance corrections require no such event, since nothing has yet depended on the old value | ...the boundary change itself is later found mistaken (a further, chained `FiscalYearBoundaryChanged`, same authorization tier — never a silent revert) |
 
 **`CarriedForward` removed at CORR-B2-03/04, deliberately, not silently.** Round 1 listed
 this as the event produced when CAP-09 posts an opening-balance fact at ordinary Period
@@ -449,7 +451,9 @@ stateDiagram-v2
 | Which temporal axis does aggregation filter on? *(new question, Round 2)* | Two, not one (B07 §1c) — Effective Date determines Period/Fiscal-Year membership; Recorded At, immutable (BINV-12), is what makes "as originally known" (MP-09 Mode 1) provably stable. See B08 MP-09. |
 
 **B4 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-01/02/03/CORR-B3-01/02/05/
-CORR-B4-03 — see header. §3a is new at Round 2; §3b/§3c new at Round 3; the event table
-gained `Restated` and `FiscalYearClosed`, lost `CarriedForward` (removed deliberately,
+CORR-B4-03/CORR-B5-05 — see header. §3a is new at Round 2; §3b/§3c new at Round 3; the event
+table gained `Restated` and `FiscalYearClosed`, lost `CarriedForward` (removed deliberately,
 explained above, not silently deleted); `FiscalYearClosed`'s own description was corrected at
-Round 3 (no posted Entry) and again at Round 4 (no reporting-inclusion effect, `M-AUD-09`).)*
+Round 3 (no posted Entry) and again at Round 4 (no reporting-inclusion effect, `M-AUD-09`).
+`FiscalYearBoundaryChanged` is new at Round 5, protecting the calendar facts `FiscalYearClosed`
+and the Elapsed test (B07 §1e) both depend on from silent retroactive editing (`M-AUD-12`).)*

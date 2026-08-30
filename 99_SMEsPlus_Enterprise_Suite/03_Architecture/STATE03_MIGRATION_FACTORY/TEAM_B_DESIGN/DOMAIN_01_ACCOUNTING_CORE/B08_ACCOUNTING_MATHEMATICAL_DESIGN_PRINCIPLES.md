@@ -9,6 +9,7 @@
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04/05 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found the Round-1 MP-09 fix still incomplete (a backdated Correction could rewrite history — `M-AUD-04`) and MP-02's "Current Earnings since the last close" wording repeated the exact period/fiscal-year ambiguity CAP-09 had (`M-AUD-05`). MP-09 rebuilt with a two-mode temporal model; MP-02 and a new MP-11 reconciled to Fiscal Year Close specifically. Full record: [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`, finding `M-AUD-07`) found MP-11 (Round 2, below) literally defined a posted Entry debiting Revenue and crediting Expense — directly contradicting this same document's and B07's repeated claim that Revenue/Expense are never reset by a posted action, and, traced through MP-09's aggregation, a genuine arithmetic bug (it would corrupt the closing year's own historical query). MP-11 rewritten below to the no-posted-close, derived-Reported-Retained-Earnings model (B07 §1e); MP-02's post-closing special case paragraph corrected to match. Full record: [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-01/02/03/05 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) found MP-02's "Reported Equity" formula double-counted the designated Retained Earnings account's balance (`M-AUD-08`) and that Reported Retained Earnings depended on `FiscalYearClosed` declaration timing rather than the Fiscal Year's own calendar boundary (`M-AUD-09`). MP-02's post-boundary paragraph and MP-11 both corrected to cross-reference the fix; new MP-12 added, formally re-proving the Raw Ledger Identity → Reported Financial-Statement Identity transformation (Proofs A-G) that Round 3 had not actually re-derived after introducing mixed-horizon reporting. Full record: [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 5)** | **CORR-B5-01/02/03/04 (2026-08-30)** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`) found MP-09's category-bounded aggregation, silently reused by MP-12 Proof G as "the Raw Trial Balance," does NOT actually balance once a Fiscal Year has elapsed (`M-AUD-11`, CRITICAL — a genuine arithmetic contradiction, not a labeling nuance, verified against Team B's own B21 Test 5 numbers). MP-09 renamed and split into `CumulativeAccountBalance` (the true single-horizon raw formula) and `FiscalYearActivity` (the Revenue/Expense-only, Fiscal-Year-bounded formula, never itself called a Trial Balance); MP-12 Proof G rebuilt into G1 (Raw Cumulative Trial Balance)/G2 (Current-FY Reporting Balance, not balanced)/G3 (Balanced Presentation Trial Balance, with an explicit never-posted derived bridge line)/G4 (Known vs. Current). Full record: [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
 
 ### MP-01 — Double-Entry Balance
 
@@ -286,7 +287,7 @@ Proof requirement: regardless of shape, the correction Entry must pass MP-01 exa
               unchecked operation
 ```
 
-### MP-09 — Aggregation (Account Balance / Trial Balance) — Corrected at CORR-B03
+### MP-09 — Cumulative Account Balance & Fiscal-Year Activity *(renamed from "Aggregation (Account Balance / Trial Balance)" at CORR-B5-02 — "Trial Balance" removed from this principle's own name; corrected at CORR-B03)*
 
 ```
 ORIGINAL FORMULA (kept visible, not deleted): "...EXCLUDING Lines belonging to a VOIDED
@@ -312,56 +313,115 @@ Principle (corrected, Round 2):
     balance_current(A, C, D) = Σ (signed amount of every Line referencing A) over every
     COMMITTED Entry belonging to C where Effective Date <= D
     (equivalently, balance_current(A,C,D) = balance_known(A,C,D,now) )
-  BOTH modes are additionally CATEGORY-BOUNDED (B07 §1d):
+  ~~BOTH modes are additionally CATEGORY-BOUNDED (B07 §1d):
     Asset/Liability/Equity (Balance Sheet): no lower Effective-Date bound (all-time)
     Revenue/Expense (Income Statement): lower-bounded by the start of the Fiscal Year
-    containing D
+    containing D~~
 
-Why this closes M-AUD-04: Recorded At (B07 §1c) is system-generated at the instant of
-              commitment and can never be set to a value earlier than the actual moment of
-              commitment. Therefore, for any fixed T, no Entry committed after T can EVER
-              satisfy "Recorded At <= T" — not now, not ever in the future — regardless of
-              what Effective Date it claims. `balance_known(A, C, D, T)`, once T has passed,
-              is a PROVABLY fixed point: nothing that happens after T, including a backdated
-              Correction claiming Effective Date <= D, can change it. This is what BINV-11
-              (corrected below) now guarantees, and the guarantee is structural (a property
-              of the formula's shape), not procedural (a rule someone could forget to follow).
-Why this closes M-AUD-05: category-bounding Revenue/Expense to the current Fiscal Year, and
-              leaving Asset/Liability/Equity unbounded (all-time), is what B07 §1d's
-              Continuous Ledger model requires — see B07 §1d for why this eliminates the
-              double-counting risk entirely (no opening-balance Entry is ever created for
-              Balance Sheet categories, so there is nothing to double with historical
-              activity). Verified numerically: [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md)
-              Tests 1, 8, 9.
-`balance_current` (Mode 2) is what an ordinary "what is the balance today" or "what is the
-              balance as of a past date, using everything we know now" query returns — it is
-              intentionally allowed to reflect a later, legitimate Restatement (B04 §5,
-              corrected). The two modes are NEVER interchangeable, and a consumer of either
-              must know which one it is looking at — a new control objective, CO-14
-              (B09, added this round), requires every report to be explicitly labeled with
-              which mode produced it.
+**CORRECTED AT CORR-B5-01/02 (kept struck through above, not deleted — this is exactly what
+ChatGPT's Round 5 audit, `M-AUD-11`, found wrong):** baking category-bounding directly into
+`balance_known`/`balance_current` silently made this principle's own base formula a
+MIXED-HORIZON quantity (all-time for Balance Sheet categories, Fiscal-Year-bounded for Income
+Statement categories) — and MP-12 Proof G (Round 4) then incorrectly treated that mixed-horizon
+output as if it were, by itself, a balanced Raw Trial Balance. It is not: at any query date
+after a Fiscal Year has elapsed, summing debit-normal mixed-horizon balances against
+credit-normal mixed-horizon balances does NOT reproduce MP-01's per-Entry identity, because
+Revenue/Expense Lines dated in an elapsed Fiscal Year are excluded from one side of the sum
+while the Asset/Liability/Equity Lines they originally balanced against remain included on the
+other (worked failure case, Company X, D = Jan 5 2025: mixed-horizon Debit = Assets 1250,
+mixed-horizon Credit = direct Equity 1000 — off by exactly 250, the prior elapsed Fiscal Year's
+Current Earnings — see [B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md)
+Test 3 for the full worked reproduction).
+
+**`balance_known`/`balance_current` are corrected to be the pure CUMULATIVE aggregation —
+ONE common Effective-Date lower bound for every Account Category alike, with NO
+category-specific exception — and are renamed accordingly (same formula shape, same Mode
+1/Mode 2 viewpoint mechanism, unchanged; only the erroneous category-bounding clause is
+removed):**
+
+  CumulativeAccountBalance_Known(A, C, D, T)  ≡  balance_known(A, C, D, T), corrected:
+    = Σ (signed amount of every Line referencing A) over every COMMITTED Entry belonging to C
+      where Effective Date <= D AND Recorded At <= T
+      — measured from ledger inception through D, for EVERY Account Category alike (Asset,
+      Liability, Equity, Revenue, Expense) — no category-specific lower bound, ever
+  CumulativeAccountBalance_Current(A, C, D)  ≡  balance_current(A, C, D), corrected:
+    = Σ (signed amount of every Line referencing A) over every COMMITTED Entry belonging to C
+      where Effective Date <= D
+      (equivalently, CumulativeAccountBalance_Current(A,C,D) =
+       CumulativeAccountBalance_Known(A,C,D,now))
+
+**A separate, new, narrower pair of formulas captures Fiscal-Year-bounded activity — meaningful
+for Revenue/Expense specifically, and NEVER itself claimed to be a balanced Trial Balance:**
+
+  FiscalYearActivity_Known(A, C, D, T)   [A a Revenue or Expense account]
+    = Σ (signed amount of every Line referencing A) over every COMMITTED Entry belonging to C
+      where FiscalYearStart(C, D) <= Effective Date <= D AND Recorded At <= T
+  FiscalYearActivity_Current(A, C, D)    [A a Revenue or Expense account]
+    = Σ (signed amount of every Line referencing A) over every COMMITTED Entry belonging to C
+      where FiscalYearStart(C, D) <= Effective Date <= D
+    (equivalently, FiscalYearActivity_Current(A,C,D) = FiscalYearActivity_Known(A,C,D,now))
+
+  where FiscalYearStart(C, D) is the Start Date of the Fiscal Year that contains D for Company
+  C (B07 §1, corrected at CORR-B5-05 to be a versioned, historically-safe fact — see §1h).
+
+B07 §1b's Current Earnings is FiscalYearActivity_Current(Revenue,C,D) minus
+FiscalYearActivity_Current(Expense,C,D) — a direct renaming/clarification of what this
+principle already computed for that concept, not a new calculation. B07 §1e's Reported
+Retained Earnings formula is corrected to cite `FiscalYearActivity` explicitly (not bare
+"Mode 2") for exactly this reason.
+
+Why this closes M-AUD-04 (unchanged from Round 2): Recorded At (B07 §1c) is system-generated at
+              the instant of commitment and can never be set to a value earlier than the actual
+              moment of commitment. Therefore, for any fixed T, no Entry committed after T can
+              EVER satisfy "Recorded At <= T" — not now, not ever in the future — regardless of
+              what Effective Date it claims. `CumulativeAccountBalance_Known(A, C, D, T)` (and,
+              by the identical mechanism, `FiscalYearActivity_Known`), once T has passed, is a
+              PROVABLY fixed point: nothing that happens after T can change it. This is what
+              BINV-11 (corrected below) now guarantees, and the guarantee is structural (a
+              property of the formula's shape), not procedural.
+Why this closes M-AUD-05 (unchanged from Round 2, now correctly scoped): `FiscalYearActivity`
+              being lower-bounded by the current Fiscal Year, while `CumulativeAccountBalance`
+              remains unbounded for every category including Revenue/Expense, is what B07
+              §1d's Continuous Ledger model requires — see B07 §1d for why this eliminates the
+              double-counting risk entirely. Verified numerically:
+              [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Tests 1, 8, 9 and
+              [B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md) Tests 1-3.
+`_Current` is what an ordinary "what is the balance/activity today" or "as of a past date,
+              using everything we know now" query returns — it is intentionally allowed to
+              reflect a later, legitimate Restatement (B04 §3a/§3c). The two viewpoints are
+              NEVER interchangeable, and a consumer of either must know which one it is looking
+              at (CO-14, extended). **Neither `CumulativeAccountBalance` alone, summed across
+              every Account, NOR `FiscalYearActivity` mixed into a per-Account "reporting
+              balance" (Balance Sheet cumulative + Income Statement Fiscal-Year-bounded) is,
+              by that fact alone, a "Trial Balance" — see MP-12 Proof G1/G2/G3 (corrected) for
+              the three precisely-named, precisely-scoped outputs this domain actually
+              produces, and which one (if any) is a genuinely balanced object.**
 Inputs:       every COMMITTED Line for the Company, each with Effective Date and Recorded At
-              (B07 §1c); the query's (D) and, for Mode 1, (T)
-Outputs:      a single signed amount per Account per mode (a trial balance is either mode
-              evaluated for every Account of a Company simultaneously — the two are never
-              silently blended into one report)
-Invariant:    BINV-11 (corrected, Round 2) for Mode 1; BINV-10 (corrected, Round 2) for the
-              category-bounding this formula depends on
+              (B07 §1c); the query's (D) and, for the Known viewpoint, (T); for
+              `FiscalYearActivity`, additionally the Fiscal Year definition governing D
+              (B07 §1h, corrected — a versioned, historically-safe fact, not a bare date pair)
+Outputs:      a single signed amount per Account, per formula (`CumulativeAccountBalance` or
+              `FiscalYearActivity`), per viewpoint (Known or Current). **Corrected at
+              CORR-B5-02: this principle's output is never itself labeled "a Trial Balance" —
+              that label, and the precise conditions under which a balanced object exists, are
+              defined exclusively in MP-12 (corrected).**
+Invariant:    BINV-11 (corrected, Round 2) for the Known viewpoint of both formulas; BINV-10
+              (corrected) for the Continuous Ledger model `FiscalYearActivity`'s bounding
+              depends on; the new BINV-15 (B05, CORR-B5-05) for the Fiscal Year definition's
+              own historical safety, which `FiscalYearActivity` and the Elapsed test (B07 §1e)
+              both now depend on
 Boundary:     "as-of business date D" — allows both a current and a reconstructed historical
-              balance; "as-of recording-time T" (Mode 1 only) — allows reconstructing what a
-              report generated at any past moment actually showed
+              balance/activity figure; "as-of recording-time T" (Known viewpoint only) — allows
+              reconstructing what a report generated at any past moment actually showed
 Rounding:     the sum of already-rounded Line amounts; no re-rounding of the aggregate itself
               (MP-03's precision floor)
-Exception:    none for Mode 1 (structurally guaranteed, see above). Mode 2 has no exception
-              either — it is DEFINED to reflect all currently-known facts, so there is nothing
-              for an exception to carve out
-Proof requirement: for any fixed (A, C, D, T), `balance_known(A, C, D, T)` must return the
-              identical value no matter when it is computed, with NO proviso — this is now
-              unconditional, not "provided no Correction/Void dated <= D is committed since"
-              (Round 1's proviso, which is exactly what M-AUD-04 found insufficient — a
-              backdated Correction WOULD have a date <= D, so the Round-1 proviso could always
-              be violated). The Round-2 formula makes the guarantee hold by construction: T,
-              not D, is what nothing can retroactively violate.
+Exception:    none for the Known viewpoint (structurally guaranteed, see above). The Current
+              viewpoint has no exception either — it is DEFINED to reflect all currently-known
+              facts, so there is nothing for an exception to carve out
+Proof requirement: for any fixed (A, C, D, T), `CumulativeAccountBalance_Known(A, C, D, T)` (and
+              `FiscalYearActivity_Known`) must return the identical value no matter when it is
+              computed, with NO proviso — unconditional, per BINV-11/12's structural guarantee,
+              exactly as established at CORR-B2-01/02 and unaffected by this round's renaming.
 ```
 
 ### MP-10 — Period Cutoff Stability — Corrected at CORR-B01
@@ -528,18 +588,23 @@ Proof requirement: **worked numerically, not just symbolically** —
               a query to pick up)
 ```
 
-### MP-12 — Reported Equity Reconciliation *(new, added at CORR-B4-01/02/03/05)*
+### MP-12 — Reported Equity Reconciliation *(new, added at CORR-B4-01/02/03/05; Proof G rebuilt at CORR-B5-03/04)*
 
 ```
-Principle:    the Raw Ledger Identity (every account, one consistent all-time horizon) and the
-              Reported Financial-Statement Identity (Balance Sheet categories all-time,
-              Income Statement categories current-Fiscal-Year-bounded, Equity re-grouped per
-              B07 §1f, Retained Earnings folding in every elapsed Fiscal Year per B07 §1e) are
-              two presentations of the SAME underlying balanced ledger — this principle proves
-              the second is a valid, non-double-counting, viewpoint-safe transformation of the
-              first, required by ChatGPT's Round 4 audit (`M-AUD-08`) after Round 3 introduced
-              mixed-horizon reporting concepts (B07 §1d/§1e) without formally re-deriving the
-              equation from MP-02's original, single-horizon proof.
+Principle:    three precisely-named, precisely-scoped outputs — the Raw Cumulative Trial
+              Balance (every account, one consistent horizon, ledger inception through D), the
+              Current-Fiscal-Year Reporting Balance (Balance Sheet cumulative, Income Statement
+              Fiscal-Year-bounded — a genuine reporting view, but NOT itself balanced), and,
+              where retained, the Balanced Presentation Trial Balance (the reporting balance
+              plus one explicit, never-posted derived bridge line) — are all reconciled here to
+              the SAME underlying ledger. This principle proves the transformation between them
+              is valid, non-double-counting, and viewpoint-safe, required by ChatGPT's Round 4
+              audit (`M-AUD-08`) after Round 3 introduced mixed-horizon reporting concepts
+              (B07 §1d/§1e) without formally re-deriving the equation from MP-02's original,
+              single-horizon proof, and corrected again at CORR-B5-03/04 after ChatGPT's Round
+              5 audit (`M-AUD-11`) found Proof G had, despite Proof A/B's own care, silently
+              re-conflated the mixed-horizon reporting view with a claim of balance that only
+              the true Raw Cumulative Trial Balance is entitled to.
 
 PROOF A — Raw Ledger Identity:
               Exactly [MP-02](#mp-02--accounting-equation-corrected-at-corr-b02)'s proven
@@ -557,9 +622,11 @@ PROOF B — Reporting Transformation (raw identity to reported identity):
               Revenue/Expense partition exhaustively and disjointly by Fiscal Year:
                 RawRevenue(all-time) = Σ over every Fiscal Year Y of Revenue(Y)
                 RawExpenses(all-time) = Σ over every Fiscal Year Y of Expense(Y)
-              Define CE(Y) = Revenue(Y) − Expense(Y) for each Fiscal Year Y (MP-09 Mode 2,
-              Fiscal-Year-bounded — B07 §1b's Current Earnings concept, applied to every
-              Fiscal Year, not only the current one). Rearranging Proof A:
+              Define CE(Y) = Revenue(Y) − Expense(Y) for each Fiscal Year Y, where Revenue(Y)/
+              Expense(Y) are MP-09's `FiscalYearActivity_Current` formula (corrected at
+              CORR-B5-02) evaluated for Fiscal Year Y specifically — B07 §1b's Current Earnings
+              concept, applied to every Fiscal Year, not only the current one. Rearranging
+              Proof A:
                 RawAssets − RawLiabilities − RawEquity(all-time) = Σ over every Y of CE(Y)
               As of any query date D, only Fiscal Years up to and including the one containing
               D can have any Lines dated into them — split the sum into every ELAPSED Fiscal
@@ -633,51 +700,143 @@ PROOF F — Fiscal Close Declaration Invariant (CORR-B4-03's mandatory requireme
               declaration is not one of those inputs. This satisfies CORR-B4-03's mandatory
               invariant by construction, not by a separate argument bolted onto the formula.
 
-PROOF G — Trial Balance vs. Financial Statements (both presentations tie to one ledger):
-              The Raw Trial Balance is MP-09's direct output for every account, each under its
-              own natural bound (Balance Sheet categories all-time, Income Statement
-              categories current-Fiscal-Year-bounded — exactly what MP-09 (B08, unchanged)
-              already computes, no further transformation). It balances via Proof A + MP-09's
-              existing category-bounded aggregation. The Reported Financial Statements
-              presentation applies exactly one further transformation beyond the raw Trial
-              Balance: re-grouping the Equity category's own account balances into "Other
-              Ledger Equity" + "Reported Retained Earnings" (B07 §1f), where the latter
-              additionally sums in every elapsed Fiscal Year's Current Earnings (Proof B). No
-              financial fact exists in the Reported Financial Statements that the raw Trial
-              Balance does not already contain individually — Reported Retained Earnings is a
-              computed regrouping of balances the Trial Balance already shows, never a
-              synthetic or posted line of its own. [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md)
-              Tests 3-4 verify this tie-out with real numbers, including a multi-Equity-account
-              Company (Test 2).
+PROOF G — Trial Balance vs. Financial Statements *(REBUILT at CORR-B5-03/04 — see below;
+              Round-4 version kept visible immediately after, struck through, per `M-AUD-11`)*:
 
-Inputs:       every COMMITTED Line for the Company (Proof A/B); the query date D and, for
-              Mode 1, the recording-time cutoff T (Proof D); which Fiscal Years have elapsed
-              as of D (B07 §1e); which Equity account is the designated Retained Earnings
-              account for the Company (B07 §1f, a one-time chart-configuration fact, CAP-01)
-Outputs:      Reported Equity, Reported Retained Earnings, and Other Ledger Equity, each in
-              both reporting viewpoints (B07 §1g) — six figures per (Company, D[, T]), never
-              silently blended
-Invariant:    BINV-10 (corrected again, Round 4) and the new BINV-14 (B05) — no account is
-              ever summed into more than one of Reported Retained Earnings / Other Ledger
-              Equity (Proof B's disjoint decomposition); Reported Equity is identical
-              immediately before and after any `FiscalYearClosed` declaration absent new
-              financial facts (Proof F)
-Boundary:     this principle proves the RELATIONSHIP between the raw and reported identities;
-              it does not change MP-01, MP-09, or the Elapsed/Closed definitions themselves
-              (B07 §1e/§1d) — it is a reconciliation proof, not a new posting rule
+~~The Raw Trial Balance is MP-09's direct output for every account, each under its own
+natural bound (Balance Sheet categories all-time, Income Statement categories
+current-Fiscal-Year-bounded — exactly what MP-09 (B08, unchanged) already computes, no
+further transformation). It balances via Proof A + MP-09's existing category-bounded
+aggregation. The Reported Financial Statements presentation applies exactly one further
+transformation beyond the raw Trial Balance: re-grouping the Equity category's own account
+balances into "Other Ledger Equity" + "Reported Retained Earnings" (B07 §1f)...~~
+
+**WHY THIS WAS WRONG (`M-AUD-11`, CRITICAL — verified by tracing the literal claim against
+Team B's own numbers, not just by the audit's say-so):** the struck-through text called
+MP-09's *mixed-horizon* per-account output (Balance Sheet cumulative, Income Statement
+Fiscal-Year-bounded) "the Raw Trial Balance," and claimed it balances "via Proof A." But
+Proof A's identity holds only when EVERY category shares ONE common horizon — the moment
+Revenue/Expense are truncated to the current Fiscal Year while Equity remains all-time
+(uncorrected for prior elapsed years' earnings), the resulting SET of numbers no longer sums
+to Proof A's identity on its own. Direct failure, Company X, D = Jan 5 2025 (FY2024 elapsed,
+FY2025 in progress, no activity yet): MP-09's mixed-horizon output gives Assets(cumulative)
+1250 debit, direct RE(cumulative) 1000 credit, Revenue(FY2025-bounded) 0, Expense
+(FY2025-bounded) 0 — mixed-horizon debit total 1250 vs. credit total 1000, off by exactly 250
+(FY2024's Current Earnings). This is not a rounding slip or an edge case; it is the direct,
+inevitable consequence of truncating one side of a balanced equation and not the other. The
+struck-through Proof G never actually re-derived a balance for this mixed-horizon object —
+it merely asserted one, reusing Proof A's name without re-checking whether Proof A's
+precondition (one common horizon) still held. It did not.
+
+**CORRECTED — three separate, precisely-named, precisely-scoped outputs (supersedes the
+struck-through text above), exactly as CORR-B5-01 requires:**
+
+PROOF G1 — Raw Cumulative Trial Balance (Output A):
+              Every Account Category, EVERY one, aggregated via
+              `CumulativeAccountBalance_Current` (MP-09, corrected at CORR-B5-02 — one common
+              lower horizon, ledger inception through D, no category-specific exception):
+                Σ CumulativeAccountBalance_Current(A, C, D) over every debit-normal A
+                  = Σ CumulativeAccountBalance_Current(A, C, D) over every credit-normal A
+              This is EXACTLY Proof A's per-account generalization — it balances directly and
+              unconditionally, for the same reason Proof A does (a direct sum of MP-01's
+              per-Entry identity over a single, common, consistently-applied horizon). Company
+              X, D = Jan 5 2025: debit 1250 (Assets) + 150 (cumulative Expense, NOT
+              FY2025-bounded) = 1400; credit 1000 (direct RE) + 400 (cumulative Revenue, NOT
+              FY2025-bounded) = 1400. BALANCED — this is the genuine Raw Cumulative Trial
+              Balance, and it is the ONLY object in this principle entitled to be called a
+              "Trial Balance" without further qualification.
+
+PROOF G2 — Current-Fiscal-Year Reporting Transformation (Output B, from Proof B above):
+              `FiscalYearActivity_Current` (MP-09, corrected) partitions cumulative Revenue/
+              Expense into every elapsed Fiscal Year's contribution plus the Fiscal Year in
+              progress — exactly Proof B's derivation, restated using the corrected MP-09
+              names:
+                Σ over every ELAPSED Y of CE(Y)  +  CE(FY_now)
+                  = RawAssets − RawLiabilities − RawEquity(all-time)   [Proof B, rearranged]
+              The resulting per-account "reporting balance" set — Balance Sheet accounts at
+              `CumulativeAccountBalance_Current`, Revenue/Expense accounts at
+              `FiscalYearActivity_Current` — is a genuine, useful REPORTING view (it is what
+              Balance Sheet + current-period P&L accounts actually read), but it is **NOT, by
+              itself, a balanced Trial Balance** — Company X, D = Jan 5 2025: this mixed set
+              gives exactly the 1250-vs-1000 imbalance traced above. Stating this explicitly,
+              by name, is the direct fix for `M-AUD-11`: this output is named "Current-Fiscal-
+              Year Reporting Balance," never "Trial Balance," anywhere in this design pack.
+
+PROOF G3 — Balanced Presentation Trial Balance (Output C, if a balanced current-FY-style
+              presentation is wanted under the no-posted-close model):
+              Take Proof G2's reporting-balance set and add exactly ONE further line —
+              the same accumulated-elapsed-Fiscal-Year-earnings quantity Proof B already
+              derives as Reported Retained Earnings' second summand:
+                DERIVED PRESENTATION COMPONENT — NOT A POSTED FINANCIAL FACT:
+                  "Accumulated Elapsed-Fiscal-Year Earnings" = Σ over every ELAPSED Y of CE(Y)
+              Adding this one line to Proof G2's set restores balance exactly:
+                Σ (G2 debit-normal balances)
+                  = Σ (G2 credit-normal balances) + Σ over every ELAPSED Y of CE(Y)
+              Company X, D = Jan 5 2025: debit 1250 (Assets) + 0 (FY2025 Expense) = 1250;
+              credit 1000 (direct RE) + 0 (FY2025 Revenue) + 250 (the derived bridge line,
+              exactly FY2024's Current Earnings) = 1250. BALANCED. This bridge line is
+              **never posted, never a committed Entry, never a Line** — it exists only inside
+              a presentation computation, is recomputed fresh every time the presentation is
+              produced, and is IDENTICAL to Reported Retained Earnings' own second term
+              (B07 §1e) — this is not a fourth quantity to keep synchronized, it is the same
+              quantity, reused. A presentation carrying this bridge line MUST display the
+              label above verbatim (or an equivalent explicit "derived, not posted"
+              annotation) — [CO-14](B09_CONTROL_AUDIT_DESIGN_OBJECTIVES.md), extended at
+              CORR-B5-02, requires this exactly as it requires Mode/viewpoint labeling.
+
+PROOF G4 — Known vs. Current, applied to G1/G2/G3:
+              Every quantity in G1/G2/G3 has a Known-viewpoint counterpart, built the same way
+              every other Known-viewpoint quantity in this design is built (MP-09's Known
+              formulas, B07 §1g): substitute `CumulativeAccountBalance_Known(A,C,D,T)` for
+              `_Current` and `FiscalYearActivity_Known(A,C,D,T)` for `_Current` throughout.
+              G1's Raw Cumulative TB, G2's Reporting Balance, and G3's bridge line all balance
+              identically under the Known viewpoint, for the same reason Proof D established:
+              Proof A's grand-total identity holds for any consistent Entry subset, including
+              the Recorded-At-filtered one. A later Restatement can change every Current-view
+              figure in G1/G2/G3 (as Proof E already establishes) while every Known-view figure
+              (fixed T) remains exactly reproducible — including the G3 bridge line itself,
+              which is exactly why B07 §1g's viewpoint parameterization was required in the
+              first place (`M-AUD-10`).
+
+No financial fact exists in G2 or G3 that G1 does not already contain individually —
+Reported Retained Earnings, Other Ledger Equity, and G3's bridge line are all computed
+regroupings of balances G1 already shows, never synthetic or posted lines of their own.
+[B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md) Tests 1-4 verify all four
+proofs with real numbers, including the exact failure case above, now shown to pass once each
+output is correctly named and scoped.
+
+Inputs:       every COMMITTED Line for the Company (Proof A/B/G1); the query date D and, for
+              the Known viewpoint, the recording-time cutoff T (Proof D/G4); which Fiscal Years
+              have elapsed as of D (B07 §1e, corrected — a versioned, historically-safe fact,
+              §1h); which Equity account is the designated Retained Earnings account for the
+              Company (B07 §1f, a one-time chart-configuration fact, CAP-01/MG-C15)
+Outputs:      Reported Equity, Reported Retained Earnings, Other Ledger Equity, the Raw
+              Cumulative Trial Balance (G1), the Current-Fiscal-Year Reporting Balance (G2, not
+              itself balanced), and — if retained — the Balanced Presentation Trial Balance
+              (G3, with its explicit derived bridge line), each in both reporting viewpoints
+              (B07 §1g) — never silently blended, and never mislabeled as one another
+Invariant:    BINV-10 (corrected again, Round 4) and BINV-14 (B05) for the non-duplication and
+              declaration-independence properties; the new BINV-15 (B05, CORR-B5-01/02) for
+              the requirement that G1/G2/G3 are never confused with one another in any report
+              or artifact this domain produces
+Boundary:     this principle proves the RELATIONSHIP between the raw cumulative ledger and the
+              reported/presentation identities; it does not change MP-01, MP-09, or the
+              Elapsed/Closed definitions themselves (B07 §1e/§1d) — it is a reconciliation
+              proof, not a new posting rule. G3's bridge line is explicitly, permanently
+              excluded from ever becoming a postable/committable fact — introducing a posted
+              version of it would silently resurrect exactly the posted-closing-Entry model
+              this design rejected at CORR-B3-05/CORR-B4-03 for `M-AUD-07`/`M-AUD-09`.
 Rounding:     inherits MP-04 throughout; every term summed is already a rounded, already-
               balanced quantity, so no new rounding is introduced by the regrouping itself
 Exception:    none
 Proof requirement: **worked numerically, not just symbolically** —
-              [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) Tests 1-4 verify Proofs A-C and
-              the non-double-counting property with real numbers (including a multi-Equity-
-              account Company); Tests 5-7 verify Proof F (the delayed-close invariant) by
-              tracing a Fiscal Year through its calendar boundary, an interval with no
-              declaration, and the eventual delayed declaration, confirming Reported Equity is
-              identical throughout the gap and unchanged by the declaration itself; Tests 8-9
-              verify Proofs D/E (Known vs. Current) by reconstructing an originally-issued
-              Balance Sheet after a later Restatement and confirming the Known view is
-              unaffected while the Current view reflects the Restatement
+              [B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md) Tests 1-4
+              verify G1 (mid-first-Fiscal-Year and post-boundary), G2 (numerically distinct
+              from G1, and explicitly NOT claimed balanced), and G3 (the bridge line,
+              balancing exactly once); [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md)
+              Tests 1-4 remain valid for what they actually verified (Proofs A-C and the
+              Reported Equity non-double-counting property) and are not superseded by this
+              correction, only more precisely named
 ```
 
 ## Acceptance Check
@@ -686,9 +845,10 @@ Proof requirement: **worked numerically, not just symbolically** —
 All 11 mandated areas addressed : CONFIRMED (Double-entry=MP-01, Accounting equation=MP-02,
   Monetary precision=MP-03, Rounding=MP-04, Currency conversion=MP-05, Functional currency=
   MP-06, Foreign currency=MP-05/06, Reversal arithmetic=MP-07, Correction arithmetic=MP-08,
-  Aggregation=MP-09, Period cutoff=MP-10, Fiscal Year Close=MP-11, rewritten Round 3, further
-  corrected Round 4; MP-12 new at Round 4, beyond the 11 mandated — Reported Equity
-  Reconciliation)
+  Aggregation=MP-09 (renamed "Cumulative Account Balance & Fiscal-Year Activity" at
+  CORR-B5-02 — "Trial Balance" removed from this principle's own name), Period cutoff=MP-10,
+  Fiscal Year Close=MP-11, rewritten Round 3, further corrected Round 4; MP-12 new at Round 4,
+  beyond the 11 mandated — Reported Equity Reconciliation, Proof G rebuilt Round 5)
 No implementation proposed                : CONFIRMED — every formula is over B07's conceptual
                                              entities, none over a storage structure
 Rounding gap (Team A OQ-03) not left silent: CONFIRMED — MP-04 proposes a default and flags it
@@ -706,20 +866,29 @@ Reported Equity does not double-count the designated Retained Earnings account; 
   Raw Ledger Identity formally re-derived into the Reported Financial-Statement Identity via
   Proofs A-G (CORR-B4-01/02/03/05, `M-AUD-08`/`M-AUD-09`)                  : CONFIRMED,
   verified numerically (B21)
+MP-09's mixed-horizon per-account output is never claimed to be a balanced Trial Balance;
+  the true Raw Cumulative Trial Balance (Proof G1), the Current-Fiscal-Year Reporting Balance
+  (Proof G2, explicitly not balanced), and the Balanced Presentation Trial Balance (Proof G3,
+  with an explicit never-posted bridge line) are three separately-named, separately-scoped
+  outputs (CORR-B5-01/02/03/04, `M-AUD-11`)                                : CONFIRMED,
+  verified numerically (B22), including the exact failure case the audit traced
 ```
 
-**B8 = COMPLETE.** *(Corrected at CORR-B02/CORR-B03/CORR-B2-01..05/CORR-B3-05/CORR-B4-01..05 —
-MP-02, MP-09 amended in place twice each, MP-10 clarified, MP-11 new at Round 2 then rewritten
-at Round 3 then cross-reference-corrected at Round 4, MP-12 new at Round 4, with every prior
-claim kept visible above each correction, not deleted. MP-01, MP-03..07 are unchanged since the
-original B8 pass. MP-08 was amended once (a cross-reference to Void as its zero-net instance,
-CORR-B03). MP-10's invariant line was corrected at CORR-B01 to match B04/B05's Period-Lock/
-Consumption separation, and again clarified at CORR-B2-03 to distinguish it from the new
-MP-11, with a light Round-3 note confirming that boundary is unaffected by MP-11's own
-rewrite. MP-11 itself was rewritten at CORR-B3-05 from a posted-closing-Entry model to a
-no-posted-close, derived-Reported-Retained-Earnings-formula model, per `M-AUD-07`, then
-corrected again at CORR-B4-01/02/03 to remove its own copy of the now-fixed formula in favor
-of a cross-reference to B07 §1e/§1f (avoiding two authoritative copies of the same formula
-drifting apart, exactly the risk that let the Round-3 double-count go unnoticed in two places
-at once). MP-02's post-boundary paragraph was corrected a third time at CORR-B4-01/02/03. MP-12
-is new this round, formally proving what Round 3 had only asserted.)*
+**B8 = COMPLETE.** *(Corrected at CORR-B02/CORR-B03/CORR-B2-01..05/CORR-B3-05/CORR-B4-01..05/
+CORR-B5-01..04 — MP-02, MP-09 amended in place multiple times each, MP-10 clarified, MP-11 new
+at Round 2 then rewritten at Round 3 then cross-reference-corrected at Round 4, MP-12 new at
+Round 4 then Proof G rebuilt at Round 5, with every prior claim kept visible above each
+correction, not deleted. MP-01, MP-03..08 are unchanged since their respective original passes
+(MP-08 amended once, CORR-B03, a cross-reference to Void). MP-10's invariant line was corrected
+at CORR-B01 to match B04/B05's Period-Lock/Consumption separation, and again clarified at
+CORR-B2-03 to distinguish it from the new MP-11, with a light Round-3 note confirming that
+boundary is unaffected by MP-11's own rewrite. MP-11 itself was rewritten at CORR-B3-05 from a
+posted-closing-Entry model to a no-posted-close, derived-Reported-Retained-Earnings-formula
+model, per `M-AUD-07`, then corrected again at CORR-B4-01/02/03 to remove its own copy of the
+now-fixed formula in favor of a cross-reference to B07 §1e/§1f. MP-02's post-boundary paragraph
+was corrected a third time at CORR-B4-01/02/03. MP-12 was new at Round 4, formally proving what
+Round 3 had only asserted — and its own Proof G was found, at Round 5, to have silently
+re-introduced a mixed-horizon-vs-balance conflation despite Proof A/B's own care; rebuilt into
+G1-G4, per `M-AUD-11`. MP-09 itself was renamed at CORR-B5-02, removing "Trial Balance" from
+its own title — the single word choice that most directly enabled Round 4's Proof G to
+misdescribe MP-09's output as already-balanced.)*
