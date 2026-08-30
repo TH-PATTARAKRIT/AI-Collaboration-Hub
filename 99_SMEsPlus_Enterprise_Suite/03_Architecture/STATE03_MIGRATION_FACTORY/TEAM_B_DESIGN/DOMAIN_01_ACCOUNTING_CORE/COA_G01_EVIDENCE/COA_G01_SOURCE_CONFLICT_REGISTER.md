@@ -27,11 +27,13 @@ Local file `STATE03_DETAILED_FOLLOWUP/STATE03_BOSS_REVIEW_SUMMARY.md` and three 
 - Even under the later "closed" status, route (b) (black-box observation) is authorized only at the planning level and has **not been executed** — the one database dump checked (`iTEST02`) contained 6 journal entries and zero withholding-tax certificates, insufficient to serve as real financial-statement evidence.
 - Status: **HOLD / EVIDENCE REQUIRED.** Treat S1 as "planning-baseline authorized, evidence not yet produced" rather than either "open" or "resolved" — neither local label alone is accurate for a Gate-level record.
 
-## C-04 — Residual unknown count mismatch ("20" vs. actual register of 11)
+## C-04 — Residual unknown count mismatch ("20" vs. actual register of 11) — **RESOLVED IN ROUND 2 (2026-08-31)**
 
 Multiple GitHub governance documents (`AH_BOSS_FINAL_GATE_RULING.md`, PMO/ChatGPT audit docs) cite a "Team A residual unknowns" figure, and `AH_BOSS_FINAL_GATE_RULING.md` itself already flags this figure as requiring reconciliation: *"the residual register currently contains a declared summary total that requires reconciliation against the individually enumerated open/partially-open IDs... RESIDUAL UNKNOWN COUNT = RECONCILIATION REQUIRED."* Direct inspection of the actual register (`TEAM_A/09_OPEN_QUESTIONS/UNKNOWN_AND_EVIDENCE_GAP_REGISTER.md`) finds **11** enumerated items (`Q-01`–`Q-04`, `G-05`–`G-11`), not 20, and the number "20" does not appear anywhere in that file.
 
-- Status: **CONFLICTING EVIDENCE — already flagged upstream, now independently confirmed.** This session does not overwrite the "20" figure used elsewhere; it records that the primitive register itself supports only 11 as of this reading. See `COA_G01_OPEN_UNKNOWN_REGISTER.md` for the full list.
+- **Round 1 status (superseded):** CONFLICTING EVIDENCE — flagged but not traced to source.
+- **Round 2 resolution:** Traced. The "20" figure originates from a *different, Domain-01-specific* document: `TEAM_A/06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE/SONNET_DEEP_SYNTHESIS/11_RESIDUAL_UNKNOWN_REGISTER.md`, which states verbatim: `"TOTAL OPEN AFTER THIS ROUND = 20"` (9 items carried forward from Part 1 + 11 new items `GAP-D01-14..24`, after 3 partial resolutions and 1 permanently-uncloseable item). The **11**-item register (`09_OPEN_QUESTIONS/`) is **program-wide** (module restore, dump freshness, rights/ownership — not Domain-01-specific). The **20**-item register is **Domain-01 Accounting-Core-specific**, produced by a later, deeper research pass than the 11-item register. These are two genuinely different documents at two different scopes, not one register miscounted.
+- Status: **RESOLVED — different scopes confirmed, not a contradiction.** Both figures are individually correct for what they each measure. Downstream Gates citing "Team A residual unknowns" should specify which register they mean going forward. Full detail: `COA_G01_PRE_PROMPT_FINDING_CLOSURE_REGISTER_R2.md` Q-03.
 
 ## C-05 — Independent Review historical conflict (pre-existing, carried forward)
 
@@ -44,3 +46,17 @@ Multiple GitHub governance documents (`AH_BOSS_FINAL_GATE_RULING.md`, PMO/ChatGP
 `B14_CLEAN_ROOM_PROVENANCE_MATRIX.md` records overall Critical Vendor-Derived Design Risk = 0 and is marked COMPLETE, but its 16-row matrix contains **zero** entries citing any of the three `COA_STANDARD` documents (`DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md`, `DOMAIN_01_COA_BASE_KERNEL_AND_AI_CONSOLIDATION_STANDARD.md`, `DOMAIN_01_COA_ODOO18_TAB_SOURCE_INVENTORY.md`) or Account Type taxonomy work. Only one row addresses COA at all, and it covers template/instance sharing generally (citation `GAP-D01-05`), not these three documents.
 
 - Status: **HOLD / EVIDENCE REQUIRED.** See `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` for the detailed gap analysis. This is not treated as a clean-room *violation* (no vendor-derived risk was found where B14 did look) — it is treated as a **coverage gap**: the specific COA_STANDARD artifacts have not yet been run through a dedicated clean-room check.
+
+## C-07 — Commits `c530138`/`8fceca0` self-declare COA-G01 PASS with no independent review trail (new, Round 2, 2026-08-31)
+
+Between the Round 2 remediation prompt being published (commit `157a496`, 00:16:52) and this Round 2 session starting, two commits were pushed by the same author/committer, unsigned, 20 seconds apart: `c530138` (adds `COA_STANDARD/DOMAIN_01_COA_G01_SOURCE_BASELINE_RECONCILIATION.md`, asserting inline `"ChatGPT Independent Evidence Review = PASS / VERIFIED FOR COA-G01 SCOPE"`) and `8fceca0` (updates the `AL` evidence index to state `"COA-G01 blocking evidence gaps = 0"`).
+
+Investigation findings (full detail: `COA_G01_CURRENT_STATE_ADDENDUM_R2.md`):
+- No separate ChatGPT audit artifact exists anywhere in `CHATGPT_AUDIT/` for this claim (that directory's last COA-G01-relevant activity predates Round 2 by hours).
+- No PMO artifact exists in `PMO_VERIFICATION/` for this claim.
+- No Jira comment exists on `ERPPLUS-132` for this claim — breaking this project's own established pattern of a matching Jira comment for every prior GitHub evidence push.
+- The document does not address any of the AR record's R/E/Q findings by ID, and does not resolve C-01, C-02, or C-06 above.
+- It adds a fourth, still-uncovered document to the `COA_STANDARD/` clean-room coverage gap (C-06).
+- Its claim of having "directly re-verified" the Odoo18 workbook "in connected Drive" is unaccompanied by any extraction artifact, hash, or log (see `COA_G01_WORKBOOK_PROVENANCE_AND_ROW_LINEAGE_R2.md` §5).
+
+- Status: **CONFLICTING EVIDENCE / UNVERIFIED SELF-DECLARED RESULT**, per explicit Boss/user control instruction. Both commits are preserved unmodified — not deleted, reverted, or renamed. Neither commit's PASS declaration is used as COA-G01 closure evidence. This is not a claim of bad faith; it is a claim that independent verification for this specific declaration does not exist anywhere in the evidence base.

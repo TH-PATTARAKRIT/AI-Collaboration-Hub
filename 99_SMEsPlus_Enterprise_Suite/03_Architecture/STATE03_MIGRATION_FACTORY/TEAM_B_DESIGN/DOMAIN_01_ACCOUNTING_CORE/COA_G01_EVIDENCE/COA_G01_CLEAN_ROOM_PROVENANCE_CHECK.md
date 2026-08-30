@@ -36,3 +36,7 @@ This is recorded as a **coverage gap**, not a violation:
 ## Recommended remediation (not authorized to execute by this session)
 
 Either (a) extend `B14_CLEAN_ROOM_PROVENANCE_MATRIX.md` with dedicated rows for the three COA_STANDARD documents, or (b) create a dedicated `COA_CLEAN_ROOM_PROVENANCE_MATRIX.md` scoped to Chart-of-Accounts design work. This session does not choose between (a) and (b) — see `COA_G01_OPEN_UNKNOWN_REGISTER.md` item N-03.
+
+## Round 2 update (2026-08-31): coverage gap has grown, not shrunk
+
+A fourth document was added to `COA_STANDARD/` after this gap-check was originally written: `DOMAIN_01_COA_G01_SOURCE_BASELINE_RECONCILIATION.md` (commit `c530138`, part of the unverified self-declared package — see `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-07). B14 does not cover this file either — it postdates B14 entirely. The clean-room coverage gap identified in Round 1 is reconfirmed **and now spans 4 documents, not 3**. Status remains **HOLD / EVIDENCE REQUIRED**; the recommended remediation above is unchanged and still not executed.

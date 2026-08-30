@@ -1,11 +1,17 @@
 # DOMAIN_01 Thailand COA Closure — Evidence Index
 
-Date: 2026-08-31
+Date: 2026-08-31 (Round 2 correction)
 Jira: ERPPLUS-132
 Boss Authorization Commit: `e8cc4d942d7f5c611ca3add0266c39196515b636`
 Boss SaaS Architecture Amendment Commit: `c084a741b22e3352992fbeb0c212cbd1463efb92`
 Boss Cross-Gate SaaS Invariants Ruling: `e16b29f35d8011723a6e2593994bc226870d9fd7`
-COA-G01 Evidence Package Commit: `c530138fd33b5651d56e3542be6d35f8d3d72111`
+COA-G01 Round 1 Evidence Package Commit: `00daa7d74478e59e9516593811b9e8fb5344bd2b`
+Commit `c530138fd33b5651d56e3542be6d35f8d3d72111`: preserved, but reclassified — see below.
+COA-G01 Round 2 Remediation: see `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_G01_EVIDENCE/COA_G01_CURRENT_STATE_ADDENDUM_R2.md`
+
+## Round 2 correction notice (2026-08-31)
+
+Commit `c530138` and the immediately following index update (superseded by this correction) declared `ChatGPT Independent Evidence Review = PASS` and `COA-G01 blocking evidence gaps = 0`. A full provenance investigation (Round 2 session `SMEPLUS-26-08-30-COA-G01R2-001`) found **no separate independent review artifact, no PMO artifact, and no Jira record** supporting that declaration — the PASS text was written inline, in the same commit, by the same unsigned author, 20 seconds after the evidence it purports to review. This is classified `CONFLICTING EVIDENCE / UNVERIFIED SELF-DECLARED RESULT` and is **not** used as Gate closure evidence. Full rationale: `COA_G01_CURRENT_STATE_ADDENDUM_R2.md`; conflict record: `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-07. Commit `c530138` itself is preserved unmodified — only this index's characterization of it is corrected.
 
 ## Current Gate
 
@@ -15,9 +21,11 @@ Current execution Gate:
 
 `COA-G01 — Source Baseline Reconciliation`
 
-Execution package is now complete for review.
+Round 2 remediation package is complete for independent review. This index does **not** declare that independent review has occurred.
 
-`ChatGPT Independent Evidence Review = PASS / VERIFIED FOR COA-G01 SCOPE`
+`ChatGPT Independent Evidence Review = NOT YET PERFORMED (the c530138/8fceca0 self-declaration is not accepted as this review — see correction notice above)`
+
+`COA-G01 Gate Status = HOLD / EVIDENCE REQUIRED` (per `COA_G01_GATE_REPORT.md` §15.3 — genuine open items: C-01, C-02, C-06, Class E/F, SI-10, N-01)
 
 `Boss Final COA-G01 Gate Decision = PENDING`
 
@@ -53,7 +61,7 @@ Enforcement:
 
 | Gate | Owner Role | Evidence | Reviewer | Status | Gate Impact |
 |---|---|---|---|---|---|
-| COA-G01 Source Baseline Reconciliation | Team A Evidence + controlled reconciliation | `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_G01_SOURCE_BASELINE_RECONCILIATION.md` + SI-01..SI-10 matrix, commit `c530138f...` | ChatGPT | **EXECUTION PACKAGE COMPLETE / REVIEW PASS / BOSS DECISION PENDING** | **Blocks G02 until Boss decision** |
+| COA-G01 Source Baseline Reconciliation | Team A Evidence + controlled reconciliation (Round 1 + Round 2) | `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_G01_EVIDENCE/` (21 files: 15 Round 1 + 6 Round 2) + SI-01..SI-10 matrix | ChatGPT (pending — not yet performed) | **HOLD / EVIDENCE REQUIRED** (see `COA_G01_GATE_REPORT.md` §15.3) | **Blocks G02 until Boss decision** |
 | COA-G02 Base COA Kernel Discovery | Team B Design after G01 approval | TBD + SI-01..SI-10 compliance evidence required | ChatGPT | NOT STARTED | Blocks G03/G04 |
 | COA-G03 AI Semantic Consolidation | Team B Design | TBD + SI-01..SI-10 compliance evidence required | ChatGPT | NOT STARTED | Blocks canonical freeze |
 | COA-G04 Account Type & Account Group Architecture | Team B Design | Existing 19-type Boss ruling + new artifact TBD + SI compliance | ChatGPT | PARTIAL BASELINE / OPEN | Blocks G04S |
@@ -85,9 +93,9 @@ Reconciled target rule:
 
 Source conflicts are preserved and routed, not silently corrected. Key examples include inconsistent accumulated-depreciation source classifications and source tax accounts under generic Account Types.
 
-`COA-G01 blocking evidence gaps = 0 identified for G01 scope.`
+`COA-G01 open conflicts = 7 (C-01..C-07, see COA_G01_SOURCE_CONFLICT_REGISTER.md); open unknowns = 5 (N-01..N-05); SI-10 = HOLD at classification scope; Class E/F = EVIDENCE_MISSING.`
 
-`COA-G01 SI-01..SI-10 unresolved applicable items = 0 for G01 scope.`
+`COA-G01 SI-01..SI-09 = PASS at G01 classification scope; SI-10 = HOLD even at classification scope — COA-G01 is therefore not reportable as PASS per the Audit Veto rule below.`
 
 This does not claim G04S/G07 runtime or architecture proof is complete.
 

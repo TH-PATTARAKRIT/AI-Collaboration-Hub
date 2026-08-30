@@ -77,3 +77,36 @@ Suggested minimum remediation to reach a future PROPOSED PASS:
 ## 14. Progress percentages
 
 `% Board`, `% STATE`, `% STEP` = **TBD / NO APPROVED BASELINE.** No approved denominator or evidence-weighted baseline exists for these metrics (consistent with prior sessions' findings, e.g. `AH_BOSS_FINAL_GATE_RULING.md`'s "STEP linkage = TBD / BASELINE LINKAGE REQUIRED"). No percentage is estimated by this report.
+
+---
+
+## 15. ROUND 2 UPDATE (session `SMEPLUS-26-08-30-COA-G01R2-001`, 2026-08-31)
+
+### 15.1 What Round 2 did
+
+1. Investigated and classified commits `c530138`/`8fceca0` (pushed after the Round 2 prompt but before this session) as `CONFLICTING EVIDENCE / UNVERIFIED SELF-DECLARED RESULT` — full rationale in `COA_G01_CURRENT_STATE_ADDENDUM_R2.md` and `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-07. Neither commit is used as closure evidence; both preserved unmodified.
+2. Dispositioned all 24 AR-record findings (Q-01..08, R-01..08, E-01..08) by ID — `COA_G01_PRE_PROMPT_FINDING_CLOSURE_REGISTER_R2.md`.
+3. Produced 6 new deliverables: Current State Addendum, Team A Source Class A Reconciliation, Workbook Provenance & Row Lineage, Account Concept Field Completeness, TBRAC TB-01..TB-13 Matrix, Pre-Prompt Finding Closure Register.
+4. Updated in place (not replaced): Source Conflict Register (C-04 resolved, C-07 added), Open Unknown Register (11-vs-20 resolved), Clean-Room Provenance Check (coverage gap confirmed larger), SAAS Invariant Compliance (SI-08 contradiction re-checked and found already cured; competing `c530138` matrix noted, not merged).
+5. Rebuilt `COA_G01_EVIDENCE_MANIFEST.md` and `COA_G01_SHA256SUMS.txt` over the full, current package.
+
+### 15.2 What remains genuinely open (why this is not PASS)
+
+- **C-01** — substantial local S1–S11/T1–T9/`STEP0303R2`–R5 evidence still not committed to GitHub (Boss decision required on porting scope/method).
+- **C-02** — `STEP0303R2` self-contradiction in local records, unresolved anomaly, cause not established.
+- **C-06** — clean-room provenance coverage gap for `COA_STANDARD/`, now spanning 4 documents (grew, not shrank).
+- **Class E/F** — Boss-provided Thai COA requirements and Thai financial-statement presentation example remain `EVIDENCE_MISSING`, reconfirmed absent by an independent whole-volume search this session.
+- **SI-10** — still `HOLD` at classification scope; no dedicated SI-10 compliance analysis exists yet.
+- **N-01** — the Odoo18 workbook file itself is confirmed unrecoverable from this environment (no local copy, no hash, anywhere on the volume).
+
+None of these are fabricatable. Each requires either a Boss decision (porting scope, evidence-route funding, STEP0303R2 adjudication) or primary evidence that does not currently exist.
+
+### 15.3 Terminal status
+
+**`HOLD / EVIDENCE REQUIRED`**
+
+This is not `FAIL / FROZEN` — no SI violation and no unsafe/contradictory assumption was found; the open items are evidence gaps and unresolved process anomalies, not violations. This is not `TEAM B REMEDIATION CANDIDATE — READY FOR CHATGPT INDEPENDENT AUDIT` — that status would represent that the remediation package is complete and self-consistent enough to submit for a genuine independent audit; the C-01/C-02/C-06/Class-E/Class-F/SI-10/N-01 items above are real, named, unresolved gaps, not housekeeping, and several require a Boss decision this session has no authority to make. `HOLD / EVIDENCE REQUIRED` is the accurate, honest status — consistent with Round 1's own proposed status, now on a substantially more complete and internally consistent evidence base, with the `c530138`/`8fceca0` self-approval attempt investigated and correctly not accepted as closure evidence.
+
+### 15.4 Stop Line (reaffirmed)
+
+COA-G02 was **not** started. No coding, schema design, API design, or provisioning-service design was performed. Development Authorization remains NOT GRANTED. Production Authorization remains NOT GRANTED. This session does not self-approve COA-G01.

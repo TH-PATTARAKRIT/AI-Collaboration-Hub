@@ -46,6 +46,42 @@
 - Any primary Thai Revenue Department regulatory source (class H) — not invoked, per the Gate-appropriate evidence boundary (deferred to COA-G06).
 - GitHub branches other than `SMEsPlus` (e.g. the ~50 `claude/...`, `agent/...`, `governance/...` branches visible in `git branch -a`) — not reviewed; this pass reconciles the `SMEsPlus` branch head only, as instructed.
 
+## ROUND 2 ADDITIONS (session `SMEPLUS-26-08-30-COA-G01R2-001`, 2026-08-31)
+
+### New GitHub documents read
+
+`00_Architecture_Governance/THAILAND_BUSINESS_REALITY_USER_FITNESS_CONTROL_V1.md` (commit `d57cca7`, Jira `ERPPLUS-134`) — governing source for `COA_G01_TBRAC_TB01_TB13_MATRIX_R2.md`.
+
+`TEAM_A/06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE/` — all 31 files (not individually read by Round 1; read in full this session).
+
+`TEAM_A/06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE/SONNET_DEEP_SYNTHESIS/` — all 17 files (not read by Round 1; read in full this session — source of the "20 residual unknowns" trace).
+
+`TEAM_A/09_OPEN_QUESTIONS/UNKNOWN_AND_EVIDENCE_GAP_REGISTER.md` — re-read for the 11-vs-20 scope reconciliation.
+
+`CHATGPT_AUDIT/` — all 18 files (full Team B independent-audit chronology, Rounds 1–8, read this session for `COA_G01_TEAM_A_SOURCE_CLASS_A_RECONCILIATION_R2.md` §5 and to check for any audit trail covering `c530138`).
+
+`PMO_VERIFICATION/` — all 4 files.
+
+`TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/B14_CLEAN_ROOM_PROVENANCE_MATRIX.md` — re-read in full to reconfirm the coverage gap now spans 4 `COA_STANDARD` documents.
+
+`TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_G01_SOURCE_BASELINE_RECONCILIATION.md` (commit `c530138`) — read in full; content investigated and classified `CONFLICTING EVIDENCE / UNVERIFIED SELF-DECLARED RESULT`, not adopted as evidence.
+
+`BOSS_GATE/` — full current `ls -la` listing taken to confirm the `AH`/`AQ` letter-collision pattern and the current file set.
+
+Jira `ERPPLUS-132` — full comment history (8 comments) read via the Atlassian connector to establish the Jira-side audit trail (or its absence, for `c530138`/`8fceca0`).
+
+### New Round 2 deliverables produced (this folder)
+
+`COA_G01_CURRENT_STATE_ADDENDUM_R2.md`, `COA_G01_TEAM_A_SOURCE_CLASS_A_RECONCILIATION_R2.md`, `COA_G01_WORKBOOK_PROVENANCE_AND_ROW_LINEAGE_R2.md`, `COA_G01_CONCEPT_FIELD_COMPLETENESS_R2.md`, `COA_G01_TBRAC_TB01_TB13_MATRIX_R2.md`, `COA_G01_PRE_PROMPT_FINDING_CLOSURE_REGISTER_R2.md`, `SESSION_CLOSURE_R2.md`.
+
+### Round 1 files updated in place this session (not replaced)
+
+`COA_G01_SOURCE_CONFLICT_REGISTER.md` (C-04 resolved, C-07 added), `COA_G01_OPEN_UNKNOWN_REGISTER.md` (11-vs-20 reconciliation added, N-01..N-05 Round 2 status added), `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` (4th uncovered document noted), `COA_G01_SAAS_INVARIANT_COMPLIANCE.md` (SI-08 contradiction check, `c530138` competing matrix noted), `COA_G01_GATE_REPORT.md` (§15 Round 2 update and terminal status appended).
+
+### GitHub document also updated this session (outside this folder)
+
+`BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AL_COA_CLOSURE_EVIDENCE_INDEX.md` — corrected to remove the unqualified PASS/zero-gaps claims introduced by commit `8fceca0`, without deleting prior text from git history.
+
 ## Verification instrument
 
-`COA_G01_SHA256SUMS.txt` (this folder) contains SHA-256 checksums of every file produced by this session, computed after all content was finalized and immediately before the local commit.
+`COA_G01_SHA256SUMS.txt` (this folder) contains SHA-256 checksums of every file in this folder (Round 1 + Round 2), recomputed after all Round 2 content was finalized and immediately before the local commit. Reproducible verification command recorded in that file's header.

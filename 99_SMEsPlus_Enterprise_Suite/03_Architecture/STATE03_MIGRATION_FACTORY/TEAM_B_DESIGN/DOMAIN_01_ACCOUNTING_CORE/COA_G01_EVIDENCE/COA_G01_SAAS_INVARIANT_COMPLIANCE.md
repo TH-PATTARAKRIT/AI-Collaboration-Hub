@@ -36,3 +36,9 @@ A PASS at G01-classification-scope is **not** a claim that the invariant is enfo
 Per the Audit Veto rule ("no Gate may be reported PASS... while an applicable SI remains unresolved"): **COA-G01 cannot be reported PASS while SI-10 remains HOLD at classification scope.** This is the primary technical driver of the overall Gate recommendation in `COA_G01_GATE_REPORT.md`.
 
 All nine execution-scope columns marked HOLD are expected and do not block COA-G01 (they are explicitly out of G01's Gate-appropriate scope) — they are recorded here so COA-G04S/G05/G06/G07 inherit an accurate starting checklist rather than re-deriving it.
+
+## Round 2 note (2026-08-31)
+
+The AR Pre-Prompt Challenge record (finding R-03) flagged a possible internal contradiction where "SI-08 is described as HOLD/not PASS and also concluded PASS/VERIFIED." Direct re-inspection this session finds **no contradiction in this matrix or in Jira comment `10909`** — SI-08 is consistently `PASS / VERIFIED` at classification scope and `HOLD` at execution scope in every place it appears. The contradictory state the Five-Unit Challenge observed predates this matrix's creation and was already cured by Round 1. See `COA_G01_PRE_PROMPT_FINDING_CLOSURE_REGISTER_R2.md` R-03.
+
+Separately, commit `c530138` (2026-08-31, unverified — see `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-07) contains a second, competing SI-01..SI-10 matrix that reaches similar per-invariant conclusions but was produced with no independent review trail. This matrix (the Round 1 artifact you are reading) remains the Gate's controlling SI compliance record; the `c530138` matrix is not merged into it and is not treated as corroboration, since it shares the same unresolved provenance problem as the rest of that commit.
