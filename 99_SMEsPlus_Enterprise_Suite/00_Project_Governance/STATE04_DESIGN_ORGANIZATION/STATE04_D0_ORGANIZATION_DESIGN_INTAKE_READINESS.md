@@ -1,8 +1,8 @@
 # STATE04 D0 — ORGANIZATION & DESIGN INTAKE READINESS
 
 Document ID: SMEPLUS-26-08-30-STATE04-D0-001  
-Version: v1.0  
-Status: HOLD / STAFFING & INTAKE NOT YET VERIFIED  
+Version: v1.1  
+Status: FAIL / FROZEN — OWNERLESS D0 MOBILIZATION  
 Owner: Executive Secretary / SMEsPlus PMO (coordination only)  
 Decision Authority: Boss — Sole Final Approver  
 Effective Date: 2026-08-30  
@@ -21,13 +21,13 @@ D0 does not test whether a design is good. It verifies that the correct accounta
 STATE04 ORGANIZATION BASELINE = APPROVED
 TEAM01–TEAM10 ROLE DEFINITIONS = APPROVED
 TEAM11 AUDIT VETO MODEL        = APPROVED
-D0 NAMED STAFFING              = HOLD / UNASSIGNED
+D0 NAMED STAFFING              = FAIL / FROZEN — UNASSIGNED
 D0 DUE DATES                   = TBD
 D0 STRUCTURED REGISTER         = CREATED / VALIDATOR EXECUTION NOT EVIDENCED
-STATE04 DESIGN-START CREDIT    = HOLD
+STATE04 DESIGN-START CREDIT    = FROZEN / NO PROGRESS CREDIT
 ```
 
-Reason: organizational roles are approved, but the ten Design Team Leads, Team11 Cross-Domain Lead, actual review-cycle expert identities, due dates and team-specific approved intake packages have not yet been evidenced.
+Reason: organizational roles are approved, but the ten Design Team Leads, Team11 Cross-Domain Lead, actual review-cycle expert identities, due dates and team-specific approved intake packages have not yet been evidenced. Under Evidence Gate rules, ownerless work is `FAIL / FROZEN`, not PASS or ordinary HOLD.
 
 No Evidence = No Progress.
 
@@ -60,17 +60,17 @@ TEAM11 additionally requires:
 
 | Team | Role Baseline | Named Lead | Audit Veto Pairing | Due Date | D0 Position |
 |---|---|---|---|---|---|
-| TEAM01 Functional & Domain | Approved | UNASSIGNED — ยังไม่ได้แต่งตั้ง | 11.1 capability exists; actual review-cycle identity required | TBD — ยังไม่กำหนด | HOLD |
-| TEAM02 SaaS & Platform | Approved | UNASSIGNED | 11.2 role approved; reviewer UNASSIGNED | TBD | HOLD |
-| TEAM03 Data & Database | Approved | UNASSIGNED | 11.3 role approved; reviewer UNASSIGNED | TBD | HOLD |
-| TEAM04 Integration / API / Event | Approved | UNASSIGNED | 11.4 role approved; reviewer UNASSIGNED | TBD | HOLD |
-| TEAM05 Security / IAM / Approval / Audit | Approved | UNASSIGNED | 11.5 role approved; reviewer UNASSIGNED | TBD | HOLD |
-| TEAM06 Reporting & Analytics | Approved | UNASSIGNED | 11.6 role approved; reviewer UNASSIGNED | TBD | HOLD |
-| TEAM07 Localization & Compliance | Approved | UNASSIGNED | 11.7 role approved; reviewer UNASSIGNED | TBD | HOLD |
-| TEAM08 Migration & Canonical Mapping | Approved | UNASSIGNED | 11.8 role approved; reviewer UNASSIGNED | TBD | HOLD |
-| TEAM09 NFR / Reliability / Operability | Approved | UNASSIGNED | 11.9 role approved; reviewer UNASSIGNED | TBD | HOLD |
-| TEAM10 AI Capability & Automation | Approved | UNASSIGNED | 11.10 role approved; reviewer UNASSIGNED | TBD | HOLD |
-| TEAM11 Audit Veto Office | Approved | Cross-Domain Lead UNASSIGNED | Expert-cell roles approved | TBD | HOLD |
+| TEAM01 Functional & Domain | Approved | UNASSIGNED — ยังไม่ได้แต่งตั้ง | 11.1 capability exists; actual review-cycle identity required | TBD — ยังไม่กำหนด | FROZEN |
+| TEAM02 SaaS & Platform | Approved | UNASSIGNED | 11.2 role approved; reviewer UNASSIGNED | TBD | FROZEN |
+| TEAM03 Data & Database | Approved | UNASSIGNED | 11.3 role approved; reviewer UNASSIGNED | TBD | FROZEN |
+| TEAM04 Integration / API / Event | Approved | UNASSIGNED | 11.4 role approved; reviewer UNASSIGNED | TBD | FROZEN |
+| TEAM05 Security / IAM / Approval / Audit | Approved | UNASSIGNED | 11.5 role approved; reviewer UNASSIGNED | TBD | FROZEN |
+| TEAM06 Reporting & Analytics | Approved | UNASSIGNED | 11.6 role approved; reviewer UNASSIGNED | TBD | FROZEN |
+| TEAM07 Localization & Compliance | Approved | UNASSIGNED | 11.7 role approved; reviewer UNASSIGNED | TBD | FROZEN |
+| TEAM08 Migration & Canonical Mapping | Approved | UNASSIGNED | 11.8 role approved; reviewer UNASSIGNED | TBD | FROZEN |
+| TEAM09 NFR / Reliability / Operability | Approved | UNASSIGNED | 11.9 role approved; reviewer UNASSIGNED | TBD | FROZEN |
+| TEAM10 AI Capability & Automation | Approved | UNASSIGNED | 11.10 role approved; reviewer UNASSIGNED | TBD | FROZEN |
+| TEAM11 Audit Veto Office | Approved | Cross-Domain Lead UNASSIGNED | Expert-cell roles approved | TBD | FROZEN |
 
 ## 5. Approved Upstream Design Intake Model
 
@@ -114,7 +114,7 @@ Every activated Design Team must receive an intake package containing, as applic
 - acceptance criteria required from design;
 - clean-room boundary statement.
 
-Missing mandatory intake evidence keeps D0 on HOLD even when staffing exists.
+Missing mandatory intake evidence keeps D0 `FAIL / FROZEN` when the item is ownerless or evidence-missing; once ownership exists but review/linkage remains incomplete, the item may move to `HOLD` as appropriate.
 
 ## 7. Terminology Control
 
@@ -126,7 +126,8 @@ Key interpretation:
 TBD          = To Be Determined / ยังไม่กำหนด
 UNASSIGNED   = ยังไม่ได้แต่งตั้งผู้รับผิดชอบ
 N/A          = ตรวจแล้วว่าไม่อยู่ในขอบเขต + evidence required
-HOLD         = evidence/control incomplete; cannot progress normally
+HOLD         = evidence exists but review/linkage/control is incomplete
+FAIL/FROZEN  = missing/inaccessible evidence or ownerless critical control
 ```
 
 ## 8. Structured Register Validation
@@ -137,18 +138,16 @@ The Evidence Gate Reporter validator execution was attempted in the current runt
 
 - no structured-validator PASS is claimed;
 - register existence is evidenced;
-- validator verification remains HOLD;
+- validator verification remains not evidenced;
 - a future validator run must be attached before structured-register validation credit is granted.
 
 ## 9. Immediate Control Actions
 
-1. Assign / evidence the accountable Team Lead for TEAM01–TEAM10.
-2. Assign / evidence Team11 Cross-Domain Audit Veto Lead.
-3. Assign actual Team11 expert identities for each activated review cycle; 11.1 may use existing EXPERT IBPV capability only when actual reviewer identity is recorded and independence is confirmed.
-4. Bind each team to its approved intake package and repository output path.
-5. Record due dates or explicit schedule exceptions.
-6. Re-run the structured Evidence Gate validator when execution runtime is available.
-7. Do not issue D0 PASS until owner + evidence + timestamp + verifier + gate impact are inspectable.
+1. `ERPPLUS-127` — assign/evidence accountable Team Leads, Team11 Cross-Domain Lead, actual Audit Expert identities and due dates.
+2. `ERPPLUS-128` — bind each Design Team to approved upstream intake packages and controlled output paths.
+3. `ERPPLUS-129` — re-run structured Evidence Gate validator and attach generated report when runtime is available.
+4. `ERPPLUS-130` — establish per-deliverable Cross-Team Mandatory Review Matrix with explicit `REQUIRED` or evidence-backed `N/A` dispositions.
+5. Do not issue D0 PASS until owner + evidence + timestamp + verifier + gate impact are inspectable.
 
 ## 10. Authority Boundary
 
