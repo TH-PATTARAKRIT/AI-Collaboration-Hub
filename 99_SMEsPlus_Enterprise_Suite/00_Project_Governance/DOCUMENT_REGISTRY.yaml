@@ -1,4 +1,4 @@
-version: v1.2
+version: v1.3
 status: Approved
 owner: Executive Secretary / Repository Owner
 approved_by: Boss
@@ -158,4 +158,22 @@ documents:
     type: audit_expert_register
     status: HOLD
     owner: Team11 Audit Veto Office
+    approver: Boss
+
+  - path: 00_Project_Governance/STATE04_DESIGN_ORGANIZATION/STATE04_ROLE_STATUS_TERMINOLOGY.md
+    type: terminology_standard
+    status: Approved Working Standard
+    owner: Executive Secretary / SMEsPlus PMO
+    approver: Boss
+
+  - path: 00_Project_Governance/STATE04_DESIGN_ORGANIZATION/STATE04_D0_READINESS_EVIDENCE_REGISTER.csv
+    type: d0_evidence_register
+    status: HOLD
+    owner: Executive Secretary / SMEsPlus PMO
+    approver: Boss
+
+  - path: 00_Project_Governance/STATE04_DESIGN_ORGANIZATION/STATE04_D0_ORGANIZATION_DESIGN_INTAKE_READINESS.md
+    type: d0_gate_control
+    status: HOLD
+    owner: Executive Secretary / SMEsPlus PMO
     approver: Boss
