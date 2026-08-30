@@ -139,6 +139,35 @@ evidence about this project's process (real regression testing reliably finds so
 every single round, when the numbers are actually worked rather than asserted) more than it is
 evidence about this specific correction's quality — both are true, and both are recorded.
 
+## 4d. Addendum — It Happened a Fourth Time, and Twice Was Self-Inflicted *(added at CORR-B4-01..08)*
+
+A fourth independent re-audit found three more findings the Round-3 corrective round —
+including its own regression, B20 — did not catch: Reported Equity double-counted the
+designated Retained Earnings account (`M-AUD-08`), Reported Retained Earnings depended on
+operational close-declaration timing rather than the Fiscal Year's own calendar boundary
+(`M-AUD-09`), and no Mode-1 viewpoint was ever formally defined for Reported Retained Earnings
+despite the Round-3 regression relying on one (`M-AUD-10`). Two of these three — `M-AUD-08` and
+`M-AUD-09` — were **introduced by Round 3's own corrective fix** for `M-AUD-07`, not
+pre-existing gaps Round 3 merely failed to notice in prior design. This is worth stating more
+sharply than §4c's parallel observation about `M-AUD-07`/Round 2, because it is now a *pattern
+within the pattern*: this is the second consecutive round in which a corrective round's own new
+design surface has itself needed a further corrective round, not merely the fourth round in
+which independent audit outperformed this domain's own review.
+
+**What this means, stated plainly rather than smoothed into reassurance:** fixing a
+correctly-identified defect is not the same as fixing it completely, and a design pack that has
+now required four rounds of independent correction — two of them correcting defects the prior
+correction itself introduced — should not be read by Boss or PMO as "probably fine now, fourth
+time's the charm." It should be read as evidence that this domain's mathematical core (the
+reporting-equity model specifically) has proven unusually difficult for single-executor design
+and single-executor regression to get right on the first attempt, consistently across three
+consecutive rounds of trying. Round 4's own regression (B21) did not itself surface a further
+gap during construction — the first round of which that is true — but §4c's own words apply
+here too: this is evidence about this specific round's construction discipline, not a claim
+that the underlying difficulty has resolved. Whether a fifth round would find nothing further is
+not something this document can honestly claim to know in advance; it is exactly the kind of
+question independent re-audit exists to answer, not self-review.
+
 ## 5. Verdict
 
 ```
@@ -150,12 +179,17 @@ CORRECTIVE ROUND 2 APPLIED (CORR-B2-01..05) — 2 more BLOCKING defects found by
 CORRECTIVE ROUND 3 APPLIED (CORR-B3-01..08) — 2 more findings found by independent re-audit
   (one of which was introduced by Round 2's own fix), corrected; regression (B20)
   self-corrected one formula-documentation gap
-Design internally coherent, self-corrected where found lacking three times over, honestly
+CORRECTIVE ROUND 4 APPLIED (CORR-B4-01..08) — 3 more findings found by independent re-audit
+  (two of which were introduced by Round 3's own fix — the second consecutive round with a
+  self-inflicted finding), corrected; regression (B21) found no further gap during
+  construction, the first round of which that is true
+Design internally coherent, self-corrected where found lacking four times over, honestly
   bounded — including the honest observation that self-correction alone has never yet been
-  sufficient without an independent pass finding something further
-Not independently re-verified since Round 3's correction — that is ChatGPT re-audit's role next
+  sufficient without an independent pass finding something further, and that two of the last
+  four rounds corrected defects the immediately preceding round's own fix introduced
+Not independently re-verified since Round 4's correction — that is ChatGPT re-audit's role next
 Not Final Pass — Boss and ChatGPT re-audit remain outstanding
 ```
 
-**Self-review complete, corrective addendum applied (three rounds). Proceeding to Final Gate
+**Self-review complete, corrective addendum applied (four rounds). Proceeding to Final Gate
 Candidate (H).**

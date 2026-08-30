@@ -8,6 +8,7 @@
 | **Corrected** | **CORR-B02 / CORR-B03 (2026-08-29)** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) found MP-02's original proof mathematically incomplete for an open reporting period, and MP-09's original VOID handling time-inconsistent for historical as-of queries. Both are corrected below, in place, with the original reasoning kept visible rather than deleted. Full comparison of alternatives: [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04/05 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found the Round-1 MP-09 fix still incomplete (a backdated Correction could rewrite history — `M-AUD-04`) and MP-02's "Current Earnings since the last close" wording repeated the exact period/fiscal-year ambiguity CAP-09 had (`M-AUD-05`). MP-09 rebuilt with a two-mode temporal model; MP-02 and a new MP-11 reconciled to Fiscal Year Close specifically. Full record: [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`, finding `M-AUD-07`) found MP-11 (Round 2, below) literally defined a posted Entry debiting Revenue and crediting Expense — directly contradicting this same document's and B07's repeated claim that Revenue/Expense are never reset by a posted action, and, traced through MP-09's aggregation, a genuine arithmetic bug (it would corrupt the closing year's own historical query). MP-11 rewritten below to the no-posted-close, derived-Reported-Retained-Earnings model (B07 §1e); MP-02's post-closing special case paragraph corrected to match. Full record: [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 4)** | **CORR-B4-01/02/03/05 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) found MP-02's "Reported Equity" formula double-counted the designated Retained Earnings account's balance (`M-AUD-08`) and that Reported Retained Earnings depended on `FiscalYearClosed` declaration timing rather than the Fiscal Year's own calendar boundary (`M-AUD-09`). MP-02's post-boundary paragraph and MP-11 both corrected to cross-reference the fix; new MP-12 added, formally re-proving the Raw Ledger Identity → Reported Financial-Statement Identity transformation (Proofs A-G) that Round 3 had not actually re-derived after introducing mixed-horizon reporting. Full record: [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 
 ### MP-01 — Double-Entry Balance
 
@@ -72,15 +73,15 @@ Current Earnings (B07 §1b): define Current Earnings = Revenue − Expenses, **b
               plays the role the simple equation expects "Equity" to play. This is an
               algebraic regrouping of the proven identity, not a new assumption.
 
-Post-closing special case: **corrected at CORR-B2-03/04 — this is Fiscal Year Close, not
-              ordinary Period close.** ~~At Fiscal Year Close, CAP-09/BINV-10 (redefined,
-              B07 §1d) transfers Current Earnings into a formal Equity account via exactly
-              one new committed Entry.~~ **Corrected again at CORR-B3-05 (kept struck through,
-              not deleted): this is exactly the defect `M-AUD-07` found — no Entry is ever
-              posted at Fiscal Year Close.** Revenue/Expense are not "reset" by any posted
+Post-Fiscal-Year-boundary special case: **corrected at CORR-B2-03/04 — this is Fiscal Year
+              boundary, not ordinary Period close.** ~~At Fiscal Year Close, CAP-09/BINV-10
+              (redefined, B07 §1d) transfers Current Earnings into a formal Equity account via
+              exactly one new committed Entry.~~ **Corrected again at CORR-B3-05 (kept struck
+              through, not deleted): this is exactly the defect `M-AUD-07` found — no Entry is
+              ever posted at Fiscal Year Close.** Revenue/Expense are not "reset" by any posted
               action — their zero-point for the new Fiscal Year follows automatically from the
               Fiscal-Year-bounded aggregation (MP-09, corrected), unchanged from the Round-2
-              reasoning. What changes at CORR-B3-05 is what happens to the *closing* Fiscal
+              reasoning. What changes at CORR-B3-05 is what happens to the *elapsed* Fiscal
               Year's Current Earnings: it becomes part of Reported Retained Earnings, a
               **derived reporting figure** (B07 §1e, new formula), not a posted Equity-account
               balance. An ordinary Period close (month/quarter) does none of this — it only
@@ -88,22 +89,37 @@ Post-closing special case: **corrected at CORR-B2-03/04 — this is Fiscal Year 
               terms continue accumulating uninterrupted across ordinary Period boundaries
               within the same Fiscal Year, which is what makes YTD reporting correct (verified
               numerically, [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 8).
-              Immediately after Fiscal Year Close, Revenue = Expenses = 0 for the new Fiscal
+              ~~Immediately after Fiscal Year Close, Revenue = Expenses = 0 for the new Fiscal
               Year (again, automatic from MP-09's category bound — no entry required).
               Substituting Revenue = Expenses = 0 into the expanded equation collapses it
               exactly to the simple form: Assets = Liabilities + Equity — using the
               NOW-UPDATED **Reported** Equity figure, i.e. Equity(ledger, all-time) + Reported
-              Retained Earnings(B07 §1e), not a single all-in-one ledger Equity balance. The
-              simple equation is therefore proven as the special case of the expanded one
-              where Revenue = Expenses = 0, not asserted independently for "after closing" as
-              a separate claim — this part of the Round-2 proof needed no change; only the
-              *mechanism* by which Equity's reporting value updates (derived, not posted) was
-              wrong.
+              Retained Earnings(B07 §1e), not a single all-in-one ledger Equity balance.~~
+              **Corrected at CORR-B4-01/02/03 (kept struck through, not deleted — this is
+              exactly the defect `M-AUD-08`/`M-AUD-09` found):** two errors in the passage
+              above. First, "Equity(ledger, all-time) + Reported Retained Earnings" **double-
+              counts** the designated Retained Earnings account's own balance, since that
+              account is itself inside `Equity(ledger, all-time)` — corrected to the
+              non-overlapping decomposition B07 §1f defines (`Other Ledger Equity` +
+              `Reported Retained Earnings`, no account in both). Second, "immediately after
+              Fiscal Year Close" tied the transition to the operator's *declaration*, not the
+              Fiscal Year's own calendar boundary — corrected to trigger on the Fiscal Year
+              having **elapsed** (B07 §1e), so the transition happens on time even if the
+              `FiscalYearClosed` declaration is delayed. **Corrected form:** the moment a
+              Fiscal Year Y elapses (its End Date passes), and for any later Fiscal Year Y'
+              in progress where Y' has zero Revenue/Expense so far, the expanded equation
+              collapses to the simple form using the corrected Reported Equity figure —
+              `Assets = Liabilities + Reported Equity`, where `Reported Equity = Other Ledger
+              Equity(B07 §1f) + Reported Retained Earnings(B07 §1e, corrected)`. Full
+              re-derivation from the raw ledger identity, including the Fiscal-Year-boundary
+              invariant and both reporting viewpoints: [MP-12](#mp-12--reported-equity-
+              reconciliation-new-added-at-corr-b4-01020305), new this round.
 
 Inputs:       every COMMITTED Line for the Company, each Line's Account Category and Normal
               Balance Side (B07 §1a)
 Outputs:      the expanded equation always; the simple equation exactly when Revenue =
-              Expenses = 0 (i.e., post-close, or a company/period with no P&L activity yet)
+              Expenses = 0 for the Fiscal Year in progress (i.e., once the prior Fiscal Year
+              has elapsed and before the new one records any activity)
 Invariant:    the expanded form is now stated as the actual invariant this domain relies on;
               the simple form is a derived special case, never assumed to hold mid-period
 Boundary:     **Still not a fourth check alongside MP-01.** The expanded equation is a proven
@@ -115,10 +131,14 @@ Rounding:     inherits MP-04; since it is a sum of already-balanced, already-rou
               no new rounding is introduced at the aggregate level
 Exception:    none
 Proof requirement: this domain's design obligation is to keep MP-01, the Category-to-normal-
-              balance mapping (CAP-01), and the CAP-09 Current-Earnings-transfer step (BINV-10,
-              corrected) correct — the expanded equation's truth is evidence all three hold;
-              the simple equation's truth, specifically, is additionally evidence that closing
-              was performed correctly for the period in question
+              balance mapping (CAP-01), and the elapsed-Fiscal-Year Reported Retained Earnings
+              step (BINV-10, corrected) correct — the expanded equation's truth is evidence
+              both hold; the simple equation's truth, specifically, is additionally evidence
+              that the boundary-driven transition computed correctly for the Fiscal Year in
+              question. **This principle no longer names "closing was performed correctly" as
+              the thing the simple equation's truth is evidence of — corrected at CORR-B4-03,
+              since the transition no longer depends on a closing action having occurred at
+              all.**
 ```
 
 ### MP-03 — Monetary Precision
@@ -438,7 +458,7 @@ Principle:    Fiscal Year Close commits **no Entry**. It performs exactly one th
               that (a) locks the Fiscal Year to further ordinary posting [subsuming CAP-04's
               Period Lock for every Period within it] and (b) marks that Fiscal Year's Current
               Earnings as **closed** — eligible for inclusion in Reported Retained Earnings.
-              "Fiscal Year Close Arithmetic" is now the arithmetic of a REPORTING FORMULA
+              ~~"Fiscal Year Close Arithmetic" is now the arithmetic of a REPORTING FORMULA
               (B07 §1e), not of a posted Entry:
                 Reported Retained Earnings(Company C, as of date D) =
                     balance_current(the formally-designated Retained Earnings account, C, D)
@@ -446,8 +466,8 @@ Principle:    Fiscal Year Close commits **no Entry**. It performs exactly one th
                       all-time, exactly like any other Equity account)
                   + Σ over every Fiscal Year Y that closed before D of:
                       CurrentEarnings(C, Y) computed via MP-09 Mode 2, Fiscal-Year-bounded,
-                      for Y
-Inputs:       the set of Fiscal Years closed before date D (a fact recorded by
+                      for Y~~
+Inputs:       ~~the set of Fiscal Years closed before date D~~ (a fact recorded by
               `FiscalYearClosed` events, not by any Entry); MP-09 Mode 2 aggregation for each
 Outputs:      no Entry. One `FiscalYearClosed` Audit Event per Fiscal Year closed (CAP-08),
               consumed by the Reported Retained Earnings formula above wherever Equity is
@@ -467,6 +487,34 @@ Exception:    none — declaring a Fiscal Year closed is itself gated by an auth
               (extends CO-08's tiering, at least as strict as ordinary Period reopen, since its
               blast radius — an entire Fiscal Year — is larger); this is unchanged from Round 2,
               only the thing being gated (a declaration, not a posting) has changed
+
+**CORRECTED AGAIN AT CORR-B4-01/02/03 (kept struck through above, not deleted — this is
+exactly what ChatGPT's Round 4 audit, `M-AUD-08`/`M-AUD-09`, found wrong):** two further
+defects in the Round-3 statement's formula, both in B07 §1e (which this principle only
+restated, so the fix is defined there and cross-referenced here, not duplicated):
+  (1) `M-AUD-08` — the formula's own reference to "Retained Earnings account, C, D ... exactly
+      like any other Equity account" invited exactly the double-count `M-AUD-08` found in
+      B08 MP-02's companion "Reported Equity" formula: the designated Retained Earnings
+      account is inside the Equity category, so summing it here AND inside a separate
+      "Equity(ledger, all-time)" term (as MP-02's post-boundary paragraph did) counts it
+      twice. Corrected: B07 §1f now defines "Other Ledger Equity" to explicitly exclude the
+      designated Retained Earnings account, so Reported Equity's two terms never overlap.
+  (2) `M-AUD-09` — "Fiscal Year Y that **closed** before D" made Reported Retained Earnings
+      depend on when the `FiscalYearClosed` *declaration* happened, not on the Fiscal Year's
+      own calendar end — a real reporting hole if that declaration is ever delayed past the
+      year's actual end (worked failure scenario: [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md)
+      Test 5). Corrected: B07 §1e now sums over every Fiscal Year that has **elapsed** as of
+      D (End Date <= D, a pure calendar fact) — completely independent of whether
+      `FiscalYearClosed` has been declared. **This principle's own "eligible for inclusion"
+      language above is corrected by this note: `FiscalYearClosed` marks a Fiscal Year
+      LOCKED, not eligible — eligibility for Reported Retained Earnings was never actually
+      this event's concern, once elapsed replaces closed as the reporting-inclusion test.**
+The authoritative formula, both non-overlapping and boundary-driven, together with its full
+re-derivation from the raw ledger identity, now lives at [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md)
+§1e/§1f/§1g and [MP-12](#mp-12--reported-equity-reconciliation-new-added-at-corr-b4-01020305)
+below — this principle's role is now limited to what `FiscalYearClosed` itself does (a
+declaration/lock, nothing more), not the reporting arithmetic that follows from it.
+
 Proof requirement: **worked numerically, not just symbolically** —
               [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) Tests 9-11 trace a full
               example from pre-close Balance Sheet and P&L, through Fiscal Year Close (no
@@ -480,13 +528,167 @@ Proof requirement: **worked numerically, not just symbolically** —
               a query to pick up)
 ```
 
+### MP-12 — Reported Equity Reconciliation *(new, added at CORR-B4-01/02/03/05)*
+
+```
+Principle:    the Raw Ledger Identity (every account, one consistent all-time horizon) and the
+              Reported Financial-Statement Identity (Balance Sheet categories all-time,
+              Income Statement categories current-Fiscal-Year-bounded, Equity re-grouped per
+              B07 §1f, Retained Earnings folding in every elapsed Fiscal Year per B07 §1e) are
+              two presentations of the SAME underlying balanced ledger — this principle proves
+              the second is a valid, non-double-counting, viewpoint-safe transformation of the
+              first, required by ChatGPT's Round 4 audit (`M-AUD-08`) after Round 3 introduced
+              mixed-horizon reporting concepts (B07 §1d/§1e) without formally re-deriving the
+              equation from MP-02's original, single-horizon proof.
+
+PROOF A — Raw Ledger Identity:
+              Exactly [MP-02](#mp-02--accounting-equation-corrected-at-corr-b02)'s proven
+              expanded equation, with every term measured over the SAME horizon (all-time, no
+              Fiscal-Year bound applied to any category, including Revenue/Expense):
+                RawAssets + RawExpenses(all-time) = RawLiabilities + RawEquity(all-time)
+                                                     + RawRevenue(all-time)
+              Already proven (MP-02) as a direct corollary of MP-01 + Normal Balance Side
+              (B07 §1a) — not reproven here, only cited as the base identity this principle
+              transforms.
+
+PROOF B — Reporting Transformation (raw identity to reported identity):
+              Every Line has exactly one Effective Date, and exactly one Fiscal Year contains
+              any given date for a Company (B07 §1, Fiscal Year's identity principle) — so
+              Revenue/Expense partition exhaustively and disjointly by Fiscal Year:
+                RawRevenue(all-time) = Σ over every Fiscal Year Y of Revenue(Y)
+                RawExpenses(all-time) = Σ over every Fiscal Year Y of Expense(Y)
+              Define CE(Y) = Revenue(Y) − Expense(Y) for each Fiscal Year Y (MP-09 Mode 2,
+              Fiscal-Year-bounded — B07 §1b's Current Earnings concept, applied to every
+              Fiscal Year, not only the current one). Rearranging Proof A:
+                RawAssets − RawLiabilities − RawEquity(all-time) = Σ over every Y of CE(Y)
+              As of any query date D, only Fiscal Years up to and including the one containing
+              D can have any Lines dated into them — split the sum into every ELAPSED Fiscal
+              Year (End Date <= D, B07 §1e) plus the one Fiscal Year currently in progress
+              (call it FY_now, the Fiscal Year containing D):
+                RawAssets − RawLiabilities − RawEquity(all-time)
+                    = Σ over every ELAPSED Y of CE(Y)  +  CE(FY_now)
+              Decompose RawEquity(all-time) per B07 §1f — exhaustively and disjointly, since
+              "Other Ledger Equity" is defined as every Equity-category account EXCEPT the one
+              designated Retained Earnings account:
+                RawEquity(all-time) = DirectRE(all-time) + OtherLedgerEquity(all-time)
+              Substitute and regroup:
+                RawAssets = RawLiabilities + OtherLedgerEquity(all-time)
+                    + [DirectRE(all-time) + Σ over every ELAPSED Y of CE(Y)]  +  CE(FY_now)
+              The bracketed term is exactly B07 §1e's corrected Reported Retained Earnings
+              formula. Substituting B07 §1f's ReportedEquity = OtherLedgerEquity +
+              ReportedRetainedEarnings:
+                RawAssets = RawLiabilities + ReportedEquity  +  CE(FY_now)
+              Since CE(FY_now) = Revenue(FY_now) − Expense(FY_now):
+                Assets + Expense(FY_now) = Liabilities + ReportedEquity + Revenue(FY_now)
+              QED — the Reported Financial-Statement Identity is derived from the Raw Ledger
+              Identity by substitution alone, introducing no new assumption beyond Proof A,
+              B07 §1e's elapsed-boundary definition, and B07 §1f's non-overlapping
+              decomposition. (Asset and Liability categories require no transformation at all
+              — they are all-time in both the raw and reported views; only Equity is
+              re-grouped, and only Revenue/Expense are Fiscal-Year-partitioned.)
+
+PROOF C — Current-Fiscal-Year Reporting Form (Proof B's conclusion, stated as the target form
+              CORR-B4-05 requires):
+                Assets + CurrentFY Expenses = Liabilities + Reported Equity + CurrentFY Revenue
+              — where Reported Equity = Other Ledger Equity (B07 §1f) + Reported Retained
+              Earnings (B07 §1e), non-overlapping by construction.
+
+PROOF D — Historical Mode 1 (as-originally-known):
+              Proof A's grand-total identity (Σdebit = Σcredit per COMMITTED Entry) holds for
+              ANY consistent subset of Entries summed over — in particular, restricting to
+              Entries with Recorded At <= T (MP-09 Mode 1) is exactly as valid a subset as "all
+              Entries," since the per-Entry identity MP-01 requires is unaffected by which
+              Entries are included. Proof B's algebra therefore goes through unchanged with
+              every term replaced by its Mode-1/`_Known(D,T)` counterpart (B07 §1g):
+                Assets_Known(D,T) + CurrentFY Expenses_Known(D,T)
+                    = Liabilities_Known(D,T) + ReportedEquity_Known(D,T)
+                      + CurrentFY Revenue_Known(D,T)
+              Nothing in Proof A-C's derivation referenced "now" or "all currently-known
+              facts" — it is viewpoint-agnostic by construction, so this equation is not a new
+              proof, only Proof C evaluated at a fixed recording-time cutoff.
+
+PROOF E — Restated Mode 2 (current/restated, after a legitimate Restatement):
+              A Restatement is itself an ordinary, MP-01-balanced Correction Entry (B04 §3a/
+              §3c) — it adds new Lines to the "as of now" set Mode 2 sums over. Since Proof
+              A-C make no assumption about WHICH Entries exist, only that MP-01 holds for
+              each, the equation holds after a Restatement's Lines are added exactly as it
+              held before — no special-casing required. This is the formal justification for
+              the qualitative claim B07 §1e property 2 already made (a Restatement "flows
+              through" with no separate posted adjustment): it flows through because Proof
+              A-C's derivation is agnostic to which specific balanced Entries exist at query
+              time, restated or not.
+
+PROOF F — Fiscal Close Declaration Invariant (CORR-B4-03's mandatory requirement):
+              Let D_before and D_after be two query moments with no Entry committed between
+              them (no new financial fact) and no Fiscal-Year End Date crossed between them.
+              Every term in Proof C's equation — Assets, Liabilities, Other Ledger Equity,
+              Reported Retained Earnings, CurrentFY Revenue/Expense — is a function purely of
+              (a) which Entries are COMMITTED as of the query moment and (b) which Fiscal
+              Years have ELAPSED as of the query moment (B07 §1e, a pure calendar fact). A
+              `FiscalYearClosed` declaration is **neither** — it changes no Entry's commitment
+              status and it changes no Fiscal Year's End Date. It does not appear as a term,
+              or inside any term's definition, anywhere in Proof A-E. Therefore:
+                ReportedEquity(D_before) = ReportedEquity(D_after)
+              — not merely provably equal, but computed from the identical inputs, since the
+              declaration is not one of those inputs. This satisfies CORR-B4-03's mandatory
+              invariant by construction, not by a separate argument bolted onto the formula.
+
+PROOF G — Trial Balance vs. Financial Statements (both presentations tie to one ledger):
+              The Raw Trial Balance is MP-09's direct output for every account, each under its
+              own natural bound (Balance Sheet categories all-time, Income Statement
+              categories current-Fiscal-Year-bounded — exactly what MP-09 (B08, unchanged)
+              already computes, no further transformation). It balances via Proof A + MP-09's
+              existing category-bounded aggregation. The Reported Financial Statements
+              presentation applies exactly one further transformation beyond the raw Trial
+              Balance: re-grouping the Equity category's own account balances into "Other
+              Ledger Equity" + "Reported Retained Earnings" (B07 §1f), where the latter
+              additionally sums in every elapsed Fiscal Year's Current Earnings (Proof B). No
+              financial fact exists in the Reported Financial Statements that the raw Trial
+              Balance does not already contain individually — Reported Retained Earnings is a
+              computed regrouping of balances the Trial Balance already shows, never a
+              synthetic or posted line of its own. [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md)
+              Tests 3-4 verify this tie-out with real numbers, including a multi-Equity-account
+              Company (Test 2).
+
+Inputs:       every COMMITTED Line for the Company (Proof A/B); the query date D and, for
+              Mode 1, the recording-time cutoff T (Proof D); which Fiscal Years have elapsed
+              as of D (B07 §1e); which Equity account is the designated Retained Earnings
+              account for the Company (B07 §1f, a one-time chart-configuration fact, CAP-01)
+Outputs:      Reported Equity, Reported Retained Earnings, and Other Ledger Equity, each in
+              both reporting viewpoints (B07 §1g) — six figures per (Company, D[, T]), never
+              silently blended
+Invariant:    BINV-10 (corrected again, Round 4) and the new BINV-14 (B05) — no account is
+              ever summed into more than one of Reported Retained Earnings / Other Ledger
+              Equity (Proof B's disjoint decomposition); Reported Equity is identical
+              immediately before and after any `FiscalYearClosed` declaration absent new
+              financial facts (Proof F)
+Boundary:     this principle proves the RELATIONSHIP between the raw and reported identities;
+              it does not change MP-01, MP-09, or the Elapsed/Closed definitions themselves
+              (B07 §1e/§1d) — it is a reconciliation proof, not a new posting rule
+Rounding:     inherits MP-04 throughout; every term summed is already a rounded, already-
+              balanced quantity, so no new rounding is introduced by the regrouping itself
+Exception:    none
+Proof requirement: **worked numerically, not just symbolically** —
+              [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) Tests 1-4 verify Proofs A-C and
+              the non-double-counting property with real numbers (including a multi-Equity-
+              account Company); Tests 5-7 verify Proof F (the delayed-close invariant) by
+              tracing a Fiscal Year through its calendar boundary, an interval with no
+              declaration, and the eventual delayed declaration, confirming Reported Equity is
+              identical throughout the gap and unchanged by the declaration itself; Tests 8-9
+              verify Proofs D/E (Known vs. Current) by reconstructing an originally-issued
+              Balance Sheet after a later Restatement and confirming the Known view is
+              unaffected while the Current view reflects the Restatement
+```
+
 ## Acceptance Check
 
 ```
 All 11 mandated areas addressed : CONFIRMED (Double-entry=MP-01, Accounting equation=MP-02,
   Monetary precision=MP-03, Rounding=MP-04, Currency conversion=MP-05, Functional currency=
   MP-06, Foreign currency=MP-05/06, Reversal arithmetic=MP-07, Correction arithmetic=MP-08,
-  Aggregation=MP-09, Period cutoff=MP-10, Fiscal Year Close=MP-11, rewritten Round 3)
+  Aggregation=MP-09, Period cutoff=MP-10, Fiscal Year Close=MP-11, rewritten Round 3, further
+  corrected Round 4; MP-12 new at Round 4, beyond the 11 mandated — Reported Equity
+  Reconciliation)
 No implementation proposed                : CONFIRMED — every formula is over B07's conceptual
                                              entities, none over a storage structure
 Rounding gap (Team A OQ-03) not left silent: CONFIRMED — MP-04 proposes a default and flags it
@@ -499,15 +701,25 @@ MP-11 posts no Entry; no internal contradiction with "Revenue/Expense never rese
   posted action"; no corruption of the closing year's own historical query (CORR-B3-05,
   `M-AUD-07`)                                                              : CONFIRMED,
   verified numerically (B20)
+Reported Equity does not double-count the designated Retained Earnings account; Reported
+  Retained Earnings inclusion is boundary-driven (Elapsed), not declaration-driven (Closed);
+  Raw Ledger Identity formally re-derived into the Reported Financial-Statement Identity via
+  Proofs A-G (CORR-B4-01/02/03/05, `M-AUD-08`/`M-AUD-09`)                  : CONFIRMED,
+  verified numerically (B21)
 ```
 
-**B8 = COMPLETE.** *(Corrected at CORR-B02/CORR-B03/CORR-B2-01..05/CORR-B3-05 — MP-02, MP-09
-amended in place twice each, MP-10 clarified, MP-11 new at Round 2 then rewritten at Round 3,
-with every prior claim kept visible above each correction, not deleted. MP-01, MP-03..07 are
-unchanged since the original B8 pass. MP-08 was amended once (a cross-reference to Void as its
-zero-net instance, CORR-B03). MP-10's invariant line was corrected at CORR-B01 to match
-B04/B05's Period-Lock/Consumption separation, and again clarified at CORR-B2-03 to distinguish
-it from the new MP-11, with a light Round-3 note confirming that boundary is unaffected by
-MP-11's own rewrite. MP-11 itself was rewritten at CORR-B3-05 from a posted-closing-Entry
-model to a no-posted-close, derived-Reported-Retained-Earnings-formula model, per `M-AUD-07`
-— the Round-2 text is kept fully visible above the correction, not deleted.)*
+**B8 = COMPLETE.** *(Corrected at CORR-B02/CORR-B03/CORR-B2-01..05/CORR-B3-05/CORR-B4-01..05 —
+MP-02, MP-09 amended in place twice each, MP-10 clarified, MP-11 new at Round 2 then rewritten
+at Round 3 then cross-reference-corrected at Round 4, MP-12 new at Round 4, with every prior
+claim kept visible above each correction, not deleted. MP-01, MP-03..07 are unchanged since the
+original B8 pass. MP-08 was amended once (a cross-reference to Void as its zero-net instance,
+CORR-B03). MP-10's invariant line was corrected at CORR-B01 to match B04/B05's Period-Lock/
+Consumption separation, and again clarified at CORR-B2-03 to distinguish it from the new
+MP-11, with a light Round-3 note confirming that boundary is unaffected by MP-11's own
+rewrite. MP-11 itself was rewritten at CORR-B3-05 from a posted-closing-Entry model to a
+no-posted-close, derived-Reported-Retained-Earnings-formula model, per `M-AUD-07`, then
+corrected again at CORR-B4-01/02/03 to remove its own copy of the now-fixed formula in favor
+of a cross-reference to B07 §1e/§1f (avoiding two authoritative copies of the same formula
+drifting apart, exactly the risk that let the Round-3 double-count go unnoticed in two places
+at once). MP-02's post-boundary paragraph was corrected a third time at CORR-B4-01/02/03. MP-12
+is new this round, formally proving what Round 3 had only asserted.)*

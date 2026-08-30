@@ -7,6 +7,7 @@
 | Personas | Senior Accountant, Thai CPA/Accounting Standards Reviewer, Financial Controller, External Auditor, Fiscal-Year Close Operator, Historical Reporting Reviewer, Migration Architect, SaaS Domain Architect, Clean-room Reviewer |
 | Accounting standard evidence | IAS 8 *Accounting Policies, Changes in Accounting Estimates and Errors* — read at primary-source level (PDF text, paras 1-54), not from memory or secondary summary. TAS 8 confirmed only via secondary sources as "substantively aligned" — this confidence asymmetry is preserved throughout, per B14's provenance discipline, and is never silently upgraded to primary-source confidence. |
 | Result | **15/15 PASS. One design refinement found and applied while constructing Tests 4/5 (see Finding, Test 4) — not glossed over.** |
+| **Terminology note (Round 4)** | **CORR-B4-01/02 (2026-08-30)** — ChatGPT's Round 4 re-audit (`M-AUD-08`) found that this document's own "Reported Equity" language, if read against B08 MP-02's Round-3 informal phrasing (`Equity(ledger, all-time) + Reported Retained Earnings`), would double-count the designated Retained Earnings account. Every worked example below happens to use only ONE Equity account (the designated Retained Earnings account itself, `OtherLedgerEquity = 0` throughout) — see the note immediately below for why this document's own arithmetic was never actually wrong, only the general formula's documentation was incomplete. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md) and [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) for the corrected, multi-account-verified formula and full new regression coverage. |
 
 Money amounts below are illustrative units, chosen for arithmetic clarity, not a specific
 currency. Tests 9-12 and 14 share one continuing worked scenario ("Company X"), built up
@@ -15,6 +16,29 @@ position, not a fresh assumption — the same discipline B19 used for its Tests 
 and 13 use their own smaller, self-contained figures where a shared scenario would obscure
 rather than clarify the specific point under test. "Recorded At" is abbreviated to the day for
 readability; the actual guarantee (BINV-12) is instant-level.
+
+### Reported Equity Terminology Note, added at CORR-B4
+
+Every "Reported Equity" figure computed in Tests 9, 10, 11, 12, and 14 below (Company X) is
+numerically correct and requires **no restatement** — but the reasoning needs one clarifying
+sentence, added here rather than editing each test's own text, per this project's
+"annotate, don't silently rewrite" discipline. Company X, throughout this document, has
+exactly one Equity account: the designated Retained Earnings account itself. Under B07 §1f's
+corrected decomposition (added at CORR-B4-01/02), Other Ledger Equity = every Equity account
+EXCEPT the designated one = the empty set = 0 for Company X. So Reported Equity = Other Ledger
+Equity (0) + Reported Retained Earnings = Reported Retained Earnings, exactly what every test
+below already computed. The double-counting defect `M-AUD-08` found lived in B08 MP-02's
+general prose (which informally suggested adding a *separate* "ledger Equity" term on top),
+never in this document's own arithmetic, which implicitly treated Reported Equity and Reported
+Retained Earnings as identical — correct for a single-Equity-account Company, but not stated as
+a deliberate simplification until now. [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) Test 2
+extends this regression to a genuine multi-Equity-account Company to verify the general formula
+directly, which no test in this document did. Separately, every "Fiscal Year that closed
+before D" phrase below should be read as "elapsed as of D" per B07 §1e's CORR-B4-03 correction
+— for every test in this document, the Fiscal Year Close declaration was assumed to happen
+exactly at the boundary, so the distinction never affected these specific results either;
+[B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) Tests 5-7 specifically test the delayed-close
+case this document never constructed.
 
 ## Company X — Running Balances (reference table, updated as tests proceed)
 

@@ -8,6 +8,7 @@
 | **Corrected** | **CORR-B01 / CORR-B03 (2026-08-29)** — DT-02 revised: ChatGPT's independent audit found the original recommendation internally contradictory, not merely one reasonable option among others (see DT-02 below for the full account, kept visible). DT-07 added for the historical-void design choice CORR-B03 required. |
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04 (2026-08-29)** — DT-08 (Continuous vs. Segmented Ledger) and DT-09 (backdating rules) added, required by ChatGPT's Round 2 findings `M-AUD-04`/`M-AUD-05`. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-05 (2026-08-29)** — DT-10 added (posted Fiscal-Year-Close Entry vs. no-posted-close derived-formula model for MP-11), required by ChatGPT's Round 3 finding `M-AUD-07`. DT-08's Option A description carried a now-superseded implementation detail (the posted MP-11 Entry) — annotated below, not silently edited; the Continuous-vs-Segmented decision itself is unaffected. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 4)** | **CORR-B4-03 (2026-08-30)** — DT-11 added (boundary-driven vs. explicit-unclosed-component vs. mandatory-atomic-close models for Fiscal-Year reporting inclusion), required by ChatGPT's Round 4 finding `M-AUD-09`. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 
 Originally six, then seven, now **nine**, decisions were significant enough — either because
 B04–B12 flagged them as assumptions requiring gate review, or because a real, defensible
@@ -384,6 +385,75 @@ DT-08/DT-09's Round-2 resolutions.
 
 ---
 
+## DT-11 — Fiscal-Year Reporting Inclusion: Boundary-Driven vs. Explicit-Unclosed-Component vs. Mandatory-Atomic-Close *(new, added at CORR-B4-03)*
+
+**Context:** ChatGPT's Round 4 audit (`M-AUD-09`) found the Round-3 formula (B07 §1e, before
+this round's correction) gated a Fiscal Year's inclusion in Reported Retained Earnings on the
+`FiscalYearClosed` *declaration*, not on the Fiscal Year's own calendar boundary — meaning a
+routine, expected delay in the operational close process (reconciliation, review — commonly
+days to weeks) would silently omit real, already-elapsed earnings from every report until the
+declaration finally happened. The audit required comparing at least two models; the CORR-B4-001
+directive explicitly required three. All three are evaluated below.
+
+- **Option A — Boundary-driven reporting (adopted).** A Fiscal Year's Current Earnings enter
+  Reported Retained Earnings automatically the instant its own End Date passes (B07 §1e's
+  "Elapsed" test) — a pure calendar fact, never gated on any declaration. `FiscalYearClosed`
+  (CAP-09) continues to govern posting-lock scope only (identical in kind to ordinary
+  `PeriodClosed`, just wider). Benefit: eliminates the reporting hole structurally — there is no
+  "waiting" state for Reported Retained Earnings to be wrong in, since the declaration was never
+  one of the formula's inputs. Reuses the "orthogonal gates" pattern this domain already
+  established for Period Lock vs. Consumption (CORR-B01) and Period Lock vs. Fiscal-Year-Lock
+  (CORR-B2-03/04) rather than inventing a new mechanism. Risk: Reported Retained Earnings for an
+  elapsed-but-undeclared year continues to update as ordinary pre-close entries are added
+  (exactly as it always did before elapse, and exactly as any Mode-2 figure already does after a
+  later Restatement) — this is a genuine, intended property (the figure is always "current best
+  understanding"), not a defect, but it does mean the number can still move during the close
+  window, which some readers may initially find less "final-feeling" than a formally closed
+  figure — mitigated by CO-14's mode-labeling (a report can always show the Mode-1 "as known at
+  T" figure instead, which IS fixed, alongside the Mode-2 figure, per B07 §1g).
+- **Option B — Explicit Unclosed Prior-Year Earnings component (rejected).** Completed-but-
+  not-yet-declared-closed earnings remain a separate, named reported-equity line item until the
+  declaration, at which point they reclassify into Reported Retained Earnings proper — with the
+  directive's own required property that total Reported Equity is unchanged by the
+  reclassification. Benefit: gives `FiscalYearClosed` continued reporting-visible meaning beyond
+  pure lock/governance (an auditor can see "is this figure final or still provisional" as its
+  own line), which arguably mirrors how some real financial statements distinguish
+  "Current Year Earnings" from "Retained Earnings" pending formal close. Risk: introduces a
+  second stored/tracked reported-equity component and a reclassification step that must itself
+  be proven equation-preserving (extra proof surface, extra implementation surface) — and the
+  provisional/final distinction it buys is already available more simply: CAP-04's own Period
+  Lock status (extended to Fiscal-Year scope by `FiscalYearClosed`) already answers "is this
+  year still open to ordinary posting," without needing a second dollar-value component to
+  encode the same distinction. Rejected as unnecessary complexity given Option A already
+  achieves the required invariant with fewer moving parts.
+- **Option C — Mandatory atomic close before the next Fiscal Year may open (rejected).** Block
+  all new-Fiscal-Year postings until the prior year's `FiscalYearClosed` is declared, or make
+  the close-and-open transition a single atomic action. Benefit: would eliminate the gap by
+  construction, same as Option A, if actually achievable instantaneously. Risk (fatal): real
+  close processes (reconciliation, adjusting entries, review) take genuine calendar time — this
+  option would either force an artificial "atomic" close that skips real review (undermining the
+  close process's own purpose) or block legitimate new-year business activity for days or weeks
+  while the prior year is finalized, which no real business would accept and which B01/B02's own
+  evidence never authorized as a requirement. The directive explicitly warned against adopting
+  this "merely to save the current formula" — evaluated on its own operational merits, it fails
+  independently of that warning: it does not survive contact with how closing actually works.
+  Rejected outright, not merely disfavored.
+
+| | Accounting correctness | Auditability | Complexity | Migration impact | Multi-company | SaaS impact | Maintainability | Advancement potential |
+|---|---|---|---|---|---|---|---|---|
+| A (adopted) | Correct by construction — no declaration-dependent state for the reporting equation to be wrong in | High — Mode-1/Mode-2 labeling (CO-14, extended) already distinguishes "still moving" from "fixed as of T" | Lowest — reuses the existing Elapsed/Closed orthogonal-gates pattern, no new component | Neutral — MG-C03/MG-C15 unaffected | Neutral (per-Company Fiscal Year boundaries, unchanged) | Neutral | Highest | Directly resolves `M-AUD-09` |
+| B (rejected) | Correct, if the reclassification step is proven equation-preserving (extra proof burden) | High, but via a second component rather than reusing existing lock-status visibility | Higher — new stored component, new reclassification step | Neutral | Neutral | Neutral | Medium — two components to keep synchronized | Also resolves the finding, at higher implementation cost for no proven benefit over A |
+| C (rejected) | Would be correct if truly atomic, but operationally unachievable — real close takes real time | High in theory, blocked in practice by the operational conflict below | Low conceptually, but only by ignoring an operational requirement | Neutral | Neutral | Negative — blocks legitimate new-period activity, a real SaaS-usability regression | Low — fights the reality of how closing works | Does not resolve `M-AUD-09` without an unrealistic operational constraint |
+
+**Recommendation:** **Option A**, with high confidence — it resolves `M-AUD-09` with the least
+new mechanism, is consistent with this domain's existing orthogonal-gates design language, and
+Option C fails on operational grounds independent of the audit's own caution against adopting it
+reflexively. **Not independently approved by Boss** — flagged for Final Gate; this is a required
+fix to satisfy `M-AUD-09`'s explicit acceptance requirement (prove identical Reported Equity
+immediately before/after the declaration), the same category as DT-08/DT-09/DT-10's resolutions.
+
+---
+
 ## Acceptance Check
 
 ```
@@ -391,12 +461,12 @@ No decision jumped directly to one design without showing alternatives : CONFIRM
 Every recommendation marked as Team B-only, not approved              : CONFIRMED
 Rejected options retained (not deleted) to show they were considered   : CONFIRMED (DT-02
   original Option A, DT-03 Option C, DT-06 Option B, DT-07 Option B, DT-08 Option B,
-  DT-09 Option C, DT-10 Option A)
+  DT-09 Option C, DT-10 Option A, DT-11 Options B and C)
 ```
 
-**B13 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-03/04/CORR-B3-05 — DT-02 revised
-in place with the original recommendation kept visible and explicitly withdrawn as incoherent,
-not silently replaced; DT-07 new at Round 1 close-out, DT-08/DT-09 new at Round 2, DT-10 new
-this round. DT-01, DT-03..06 are unchanged from the original B13 pass. DT-08's Option A
-description carries a Round-3 annotation correcting a stale implementation detail; the
-Continuous-vs-Segmented decision itself is unaffected.)*
+**B13 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-03/04/CORR-B3-05/CORR-B4-03 —
+DT-02 revised in place with the original recommendation kept visible and explicitly withdrawn
+as incoherent, not silently replaced; DT-07 new at Round 1 close-out, DT-08/DT-09 new at Round
+2, DT-10 new at Round 3, DT-11 new this round. DT-01, DT-03..06 are unchanged from the
+original B13 pass. DT-08's Option A description carries a Round-3 annotation correcting a
+stale implementation detail; the Continuous-vs-Segmented decision itself is unaffected.)*

@@ -7,6 +7,8 @@
 | Builds on | B01 LC-01..04, ADV-04, ADV-07, INV-06 — extends Team A's *neutral observation* into an actual Team B *design decision* |
 | **Corrected** | **CORR-B01 / CORR-B03 (2026-08-29)** — ChatGPT Independent Design Audit (commit `aa60c2d0497cefe804d37953bbfaa597c3476d79`) found two material defects in this document's original version: (1) period close was modeled as an automatic, *permanent* Consumption trigger, which directly contradicted BINV-07's "never retracted" guarantee once this document also described period reopen as restoring correctability — those two claims cannot both be true; (2) direct VOID excluded an entry's Lines from historical as-of aggregation based on *current* status, which lets a later event silently rewrite an earlier as-of result. §4 and §5 below are corrected in place; the reasoning that led to each correction is kept visible, not deleted — see [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md) for the full comparison of alternatives considered. |
 | **Corrected (Round 2)** | **CORR-B2-01/02/03 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found (1) a backdated Correction could still rewrite relied-upon history, since Entry had only one temporal property (`M-AUD-04`) — fixed by adopting B07 §1c's Effective-Date/Recorded-At split, reflected below; (2) "period close" as used throughout this document conflated an ordinary posting lock with Fiscal Year Close specifically (`M-AUD-05`) — every reference below is now precise about which one applies. A new correction-purpose, **Restatement**, is introduced for backdated corrections into already-consumed periods. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 3)** | **CORR-B3-01/02/05 (2026-08-29)** — *(header row added retroactively at CORR-B4-07 — this round's body edits were made but this summary row was omitted at the time, a gap noticed and fixed while propagating Round 4, not a Round-4 finding itself)*. ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) required (1) an IAS 8-grounded Error/Estimate/Materiality classification, added as new §3b/§3c (`M-AUD-06`); (2) removal of the `FiscalYearClosed` event table row's claim that it triggers a posted Entry (`M-AUD-07`). See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 4)** | **CORR-B4-03 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`, finding `M-AUD-09`) found the `FiscalYearClosed` event table row still implied Reported Retained Earnings *waits* for this declaration. Corrected: this event now governs Period Lock scope only; reporting inclusion is boundary-driven ("Elapsed," B07 §1e), never declaration-driven. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 
 ## 1. What This Phase Adds Beyond Team A's Input
 
@@ -67,7 +69,7 @@ production is not optional or configurable:
 | `Consumed` | Any recorded downstream-consumption trigger fires against a COMMITTED entry (§4) | ...the consuming action itself later fails or is retracted — the fact that consumption was *attempted/recorded* stays on the trail |
 | `PeriodClosed` | CAP-04 locks an **ordinary Period** to new Posting/Amendment — corrected at CORR-B2-03: this is a posting lock only, never a Revenue/Expense reset or Current Earnings transfer (that is `FiscalYearClosed`, below) | — |
 | `PeriodReopened` *(added at CORR-B01)* | An authorized CO-08 action reopens a closed **ordinary Period** | ...no entry in it ends up amendable, because every one of them was independently consumed — the event is still recorded, since the reopen itself is the auditable fact, regardless of its practical effect |
-| `FiscalYearClosed` *(added at CORR-B2-03/04; corrected at CORR-B3-05 — no longer posts any Entry)* | An authorized action locks the whole Fiscal Year (extending Period Lock's scope) and declares it closed for reporting purposes. **Posts no financial Entry** — Current Earnings becomes part of Reported Retained Earnings via B07 §1e's derived formula, not through anything CAP-02 commits | — |
+| `FiscalYearClosed` *(added at CORR-B2-03/04; corrected at CORR-B3-05 — no longer posts any Entry; scope corrected at CORR-B4-03 — governs posting lock only, never reporting inclusion)* | An authorized action locks the whole Fiscal Year (extending Period Lock's scope) to new Posting/Amendment. ~~declares it closed for reporting purposes~~ — **corrected at CORR-B4-03 (`M-AUD-09`): this event has no reporting effect at all.** **Posts no financial Entry** — Current Earnings becomes part of Reported Retained Earnings via B07 §1e's derived formula, which triggers on the Fiscal Year having **elapsed** (its own calendar End Date passing), never on this declaration. A Fiscal Year is routinely elapsed-but-not-yet-closed for a real operational window; reporting is correct throughout it | — |
 | `Remeasured` | CAP-06 produces a remeasurement adjustment | — |
 
 **`CarriedForward` removed at CORR-B2-03/04, deliberately, not silently.** Round 1 listed
@@ -82,6 +84,17 @@ Year Close's "one genuine posted fact... triggers MP-11's Entry, itself producin
 here. Corrected: `FiscalYearClosed` is a pure declaration/lock event, structurally identical
 in kind to `PeriodClosed` (just wider in scope), and produces no `Posted` event because it
 posts nothing.
+
+**`FiscalYearClosed`'s reporting role corrected again at CORR-B4-03.** Even after the fix
+above removed the posted Entry, the Round-3 table row still said this event "marks that year's
+Current Earnings as closed, so it becomes eligible for inclusion in Reported Retained
+Earnings" — implying Reported Retained Earnings *waits* for this declaration. ChatGPT's Round
+4 audit (`M-AUD-09`) correctly found this a real reporting hole: a delayed declaration would
+delay a real, already-elapsed Fiscal Year's earnings from appearing in any report. Corrected:
+this event is now understood as governing **Period Lock scope only** (identical in kind to
+`PeriodClosed`, exactly as stated above) — it has never had, and now explicitly does not have,
+any bearing on what Reported Retained Earnings includes. That is governed entirely by whether
+a Fiscal Year has **elapsed** (B07 §1e), a pure calendar fact independent of this event.
 
 ### 3a. Correction vs. Restatement — Which Applies *(new, added at CORR-B2-01/02)*
 
@@ -432,9 +445,11 @@ stateDiagram-v2
 | When can it change? | Via a logged Amendment, if and only if BOTH unconsumed and its Period is open (§4, corrected at CORR-B01) — the two conditions are independent and both must hold |
 | When must it become immutable? | Permanently, the instant it is consumed (§4) — Period status (open, closed, or reopened) never affects this. Separately, Amendment is also unavailable, non-permanently, whenever the Period is locked |
 | How is correction represented? | As a permanent, bidirectional, chainable relationship between Entries (§6), not a field or flag — Void (§5) is this same relationship, tagged by purpose, corrected at CORR-B03; a backdated correction into an already-consumed period is further distinguished as a **Restatement** (§3a, Round 2) |
-| What constitutes a new accounting fact? | Every Posting, Correction, Restatement, Void, Remeasurement (CAP-06), and the one Entry Fiscal Year Close produces (CAP-09/MP-11) — **corrected Round 2:** ordinary carry-forward is no longer on this list, because it is not a posted fact at all (§3a note, B07 §1d) — nothing is a free edit once consumed, and nothing is ever a bare status flip |
+| What constitutes a new accounting fact? | Every Posting, Correction, Restatement, Void, and Remeasurement (CAP-06) — **corrected Round 2:** ordinary carry-forward is no longer on this list, because it is not a posted fact at all (§3a note, B07 §1d) — nothing is a free edit once consumed, and nothing is ever a bare status flip. **Corrected again at CORR-B3-05:** Fiscal Year Close's Entry (CAP-09/MP-11) is also removed from this list — this row was left stale through Round 3 itself (a gap fixed while propagating Round 4, not a Round-4 finding) — Fiscal Year Close produces only the `FiscalYearClosed` Audit Event, no Entry, per B08 MP-11's Round-3 rewrite |
 | Which temporal axis does aggregation filter on? *(new question, Round 2)* | Two, not one (B07 §1c) — Effective Date determines Period/Fiscal-Year membership; Recorded At, immutable (BINV-12), is what makes "as originally known" (MP-09 Mode 1) provably stable. See B08 MP-09. |
 
-**B4 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-01/02/03 — see header. §3a is new
-this round; the event table gained `Restated` and `FiscalYearClosed`, lost `CarriedForward`
-(removed deliberately, explained above, not silently deleted).)*
+**B4 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-01/02/03/CORR-B3-01/02/05/
+CORR-B4-03 — see header. §3a is new at Round 2; §3b/§3c new at Round 3; the event table
+gained `Restated` and `FiscalYearClosed`, lost `CarriedForward` (removed deliberately,
+explained above, not silently deleted); `FiscalYearClosed`'s own description was corrected at
+Round 3 (no posted Entry) and again at Round 4 (no reporting-inclusion effect, `M-AUD-09`).)*

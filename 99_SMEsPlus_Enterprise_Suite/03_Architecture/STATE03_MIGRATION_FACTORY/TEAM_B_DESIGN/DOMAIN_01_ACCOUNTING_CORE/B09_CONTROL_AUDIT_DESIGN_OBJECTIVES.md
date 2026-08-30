@@ -7,6 +7,7 @@
 | Scope | Design objectives only. No access-control code, permission schema, or role table below. |
 | **Corrected (Round 2)** | **CORR-B2-01/02 (2026-08-29)** — CO-14/CO-15 added, required by B08/B04's temporal-model and Restatement corrections. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-04 (2026-08-29)** — CO-16 added (materiality is a policy input, never computed or invented by this domain's design), required by B04 §3b/§3c's new IAS 8 classification, which references CO-16 by name. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 4)** | **CORR-B4-04 (2026-08-30)** — CO-14's mode-labeling scope extended to explicitly cover Reported Retained Earnings / Reported Equity (B07 §1g), required by ChatGPT's Round 4 finding `M-AUD-10`. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 
 ## CO-01 — Authorization
 
@@ -166,7 +167,7 @@ infrastructure-level tamper-resistance (encryption at rest, storage-level access
 infrastructure audit logging) is a platform/infrastructure concern outside DOMAIN_01's
 boundary (B03 §4), not a gap in this domain's own design.
 
-## CO-14 — Temporal Mode Labeling *(added at CORR-B2-01/02)*
+## CO-14 — Temporal Mode Labeling *(added at CORR-B2-01/02; scope extended at CORR-B4-04)*
 
 **Objective:** every report or query result derived from MP-09 (B08, corrected) must be
 explicitly labeled with which temporal mode produced it — "as originally known as of
@@ -174,8 +175,17 @@ explicitly labeled with which temporal mode produced it — "as originally known
 presented as an unlabeled single number. This is the control-layer enforcement of
 ChatGPT's Round 2 acceptance requirement (`M-AUD-04`): "do not let one silently masquerade as
 the other."
-**Basis:** B08 MP-09 (corrected), BINV-11 (corrected) — no direct Team A source ID, since this
-distinction did not exist before this domain's own Round 2 correction.
+**Extended at CORR-B4-04 (`M-AUD-10`):** this labeling requirement explicitly covers Reported
+Retained Earnings and Reported Equity ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1g's
+`_Known(C,D,T)` / `_Current(C,D)` functions), not only raw MP-09 balance queries. ChatGPT's
+Round 4 audit found these derived figures were left out of CO-14's original scope even though
+B20 Test 8 already relied on a Mode-1 reading of them — this extension closes that scope gap
+without inventing a new control, since the underlying requirement ("do not let one silently
+masquerade as the other") already applied in substance; only the enumeration of which outputs
+it covers was incomplete.
+**Basis:** B08 MP-09 (corrected), BINV-11 (corrected), B07 §1g (new), B08 MP-12 (new) —
+no direct Team A source ID, since this distinction did not exist before this domain's own
+Round 2 correction.
 
 ## CO-15 — Restatement Authorization Tier *(added at CORR-B2-01/02)*
 
@@ -231,5 +241,6 @@ CO-16 added at CORR-B3-04 (16th item, materiality as policy input, never compute
   threshold this design never authorized
 ```
 
-**B9 = COMPLETE.** *(Corrected at CORR-B2-01/02/CORR-B3-04 — CO-14/CO-15 added Round 2, CO-16
-added Round 3. CO-01..13 unchanged since their respective original passes.)*
+**B9 = COMPLETE.** *(Corrected at CORR-B2-01/02/CORR-B3-04/CORR-B4-04 — CO-14/CO-15 added
+Round 2, CO-16 added Round 3, CO-14 scope extended Round 4 (no new CO — still 16 total). CO-01..13
+unchanged since their respective original passes.)*

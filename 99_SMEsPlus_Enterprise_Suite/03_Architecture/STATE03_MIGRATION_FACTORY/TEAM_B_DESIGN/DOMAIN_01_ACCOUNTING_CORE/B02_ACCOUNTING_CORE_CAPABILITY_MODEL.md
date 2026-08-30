@@ -7,6 +7,7 @@
 | Method | Derived from business responsibility (B01 register), not from reference-system module boundaries |
 | **Corrected (Round 2)** | **CORR-B2-03/04 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`, finding `M-AUD-05`) found CAP-09 generalized Team A's year-end-specific evidence to every ordinary Period close, risking double-counted balances. CAP-09 renamed and rescoped below to Fiscal Year Close only. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`, finding `M-AUD-07`) found the Round-2 text below still described CAP-09 as posting "exactly one Current-Earnings-transfer Entry" — directly contradicting the domain's own repeated claim that Revenue/Expense are never reset by a posted action, and, traced literally, a real arithmetic bug (such an Entry would corrupt the closing year's own historical query). Corrected: CAP-09 now posts **no financial Entry at all**; Current Earnings becomes part of Reported Retained Earnings through [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1e's derived reporting formula. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 4)** | **CORR-B4-03 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`, finding `M-AUD-09`) found the Round-3 text below still tied Reported Retained Earnings' inclusion of a Fiscal Year to CAP-09's own declaration — meaning a delayed declaration would silently drop a real, elapsed Fiscal Year's earnings from every report. Corrected: CAP-09's declaration now governs **posting-lock scope only**; Reported Retained Earnings inclusion is boundary-driven ("Elapsed," [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1e), never declaration-driven. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 
 ## 1. Framing
 
@@ -199,11 +200,24 @@ identified. Each is stated independently of how (or whether) a reference system 
   as-of any date within it). Corrected: CAP-09 posts **no financial Entry**. It performs
   exactly one thing at Fiscal Year Close — an authorized declaration/lock action (the
   `FiscalYearClosed` Audit Event, [B04](B04_BUSINESS_LIFECYCLE_EVENT_MODEL.md)) that
-  (a) extends Period Lock to the whole Fiscal Year and (b) marks that year's Current Earnings
-  as closed, so it becomes eligible for inclusion in Reported Retained Earnings. The "transfer"
-  is a **reporting-time derivation** ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1e's formula
-  sums every closed Fiscal Year's Current Earnings, computed via MP-09 Mode 2), not a
-  bookkeeping action this capability performs.
+  ~~(a) extends Period Lock to the whole Fiscal Year and (b) marks that year's Current
+  Earnings as closed, so it becomes eligible for inclusion in Reported Retained Earnings.~~
+  The "transfer" is a **reporting-time derivation** ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md)
+  §1e's formula sums every closed Fiscal Year's Current Earnings, computed via MP-09 Mode 2),
+  not a bookkeeping action this capability performs.
+- **What exists (corrected again at CORR-B4-03):** the struck-through clause immediately above
+  is exactly the defect ChatGPT's Round 4 audit (`M-AUD-09`) found — it tied Reported Retained
+  Earnings' *inclusion* of a Fiscal Year's Current Earnings to this capability's own
+  declaration, meaning a delayed declaration would make a real, elapsed Fiscal Year's earnings
+  silently vanish from every report until someone got around to declaring it closed. **CAP-09
+  now does only (a) — it extends Period Lock (posting/amendment eligibility) to the whole
+  Fiscal Year.** It does **not** gate Reported Retained Earnings inclusion at all: B07 §1e's
+  formula sums every Fiscal Year that has **elapsed** (its own calendar End Date has passed),
+  independent of whether `FiscalYearClosed` has been declared for it — the same "orthogonal
+  gates" pattern this capability model has used since CORR-B01 separated Period Lock from
+  Consumption. A Fiscal Year is routinely elapsed-but-not-yet-closed for a real operational
+  window (reconciliation, review); reports remain correct throughout that window, and CAP-09's
+  eventual declaration changes only whether the year can still accept new ordinary postings.
 - **Why it exists:** the one thing an ordinary Period-Control lock (CAP-04) cannot itself
   represent is the genuine economic event of a fiscal year's result becoming part of
   permanent, reportable capital — that is a real change of status (a year moving from "open"
@@ -211,25 +225,37 @@ identified. Each is stated independently of how (or whether) a reference system 
   and needs its own capability, scoped precisely to when it actually happens (year-end), not
   generalized to every posting-lock event.
 - **Owner:** Accounting Core.
-- **Financial truth maintained:** immediately after Fiscal Year Close, Reported Retained
-  Earnings (B07 §1e, a derived reporting figure — not a ledger balance) includes the closing
-  year's full Current Earnings, Revenue/Expense correctly read zero for the new Fiscal
-  Year (a consequence of MP-09's category-bounded aggregation, not a separate reset action),
-  and no Balance Sheet amount is duplicated (B07 §1d/§1e; verified numerically,
-  [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 9 and
-  [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) Tests 9-11).
+- **Financial truth maintained:** ~~immediately after Fiscal Year Close~~ **from the moment a
+  Fiscal Year elapses (corrected at CORR-B4-03 — not from whenever CAP-09 happens to be
+  exercised)**, Reported Retained Earnings (B07 §1e, a derived reporting figure — not a ledger
+  balance) includes the elapsed year's full Current Earnings, Revenue/Expense correctly read
+  zero for the new Fiscal Year (a consequence of MP-09's category-bounded aggregation, not a
+  separate reset action), Reported Equity never double-counts the designated Retained Earnings
+  account against Other Ledger Equity (B07 §1f, `M-AUD-08`), and no Balance Sheet amount is
+  duplicated (B07 §1d/§1e/§1f; verified numerically,
+  [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md) Test 9,
+  [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) Tests 9-11, and
+  [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) Tests 1-7).
 - **Inputs:** an authorized Fiscal Year Close action (a higher authorization tier than
   ordinary Period reopen, given its blast radius — CO-08 tiering extended).
-- **Outputs (corrected at CORR-B3-05):** ~~exactly one Current-Earnings-transfer Entry, itself
-  a normal CAP-02-committed fact (MP-11).~~ No Entry. One `FiscalYearClosed` Audit Event
-  (CAP-08), which is what CAP-02 and every reporting query consult to determine which Fiscal
-  Years are closed for MP-09 Mode-2/B07 §1e purposes.
-- **Downstream dependents (corrected at CORR-B3-05):** ~~CAP-02 (the transfer Entry is itself
-  committed through it)~~ CAP-08 (the `FiscalYearClosed` event is recorded through it, not
-  CAP-02 — there is no financial fact for CAP-02 to commit), financial reporting (a Fiscal Year
-  Close is what makes the closing year's Current Earnings eligible for Reported Retained
-  Earnings, B07 §1e, and what makes the simple accounting equation, MP-02, read using an
-  updated Equity figure going forward).
+- **Outputs (corrected at CORR-B3-05, boundary role corrected at CORR-B4-03):** ~~exactly one
+  Current-Earnings-transfer Entry, itself a normal CAP-02-committed fact (MP-11).~~ No Entry.
+  One `FiscalYearClosed` Audit Event (CAP-08), which is what CAP-02, CAP-04's reopen check, and
+  CO-08's authorization tiering consult to determine which Fiscal Years are still open for
+  **posting/amendment**. ~~Which Fiscal Years are closed for MP-09 Mode-2/B07 §1e purposes~~ —
+  **no longer this event's concern (CORR-B4-03): reporting queries never consult
+  `FiscalYearClosed` at all; they consult only each Fiscal Year's own End Date (B07 §1e's
+  Elapsed test).**
+- **Downstream dependents (corrected at CORR-B3-05, further corrected at CORR-B4-03):** ~~CAP-02
+  (the transfer Entry is itself committed through it)~~ CAP-08 (the `FiscalYearClosed` event is
+  recorded through it, not CAP-02 — there is no financial fact for CAP-02 to commit), ~~financial
+  reporting (a Fiscal Year Close is what makes the closing year's Current Earnings eligible for
+  Reported Retained Earnings, B07 §1e, and what makes the simple accounting equation, MP-02,
+  read using an updated Equity figure going forward)~~. **Financial reporting is corrected to
+  NOT be a downstream dependent of CAP-09's declaration at all (`M-AUD-09`) — Reported Retained
+  Earnings updates automatically at each Fiscal Year's own boundary (B07 §1e), whether or not
+  CAP-09 has yet been exercised for that year. CAP-09's only true downstream dependent is CAP-04
+  (ordinary posting/amendment eligibility within the now-locked Fiscal Year).**
 
 ## 3. Deliberately Not Vendor Module Boundaries
 

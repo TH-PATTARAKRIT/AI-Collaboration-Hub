@@ -4,7 +4,8 @@
 |---|---|
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B15 — Traceability & Consistency Verification |
-| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit (Round 1) and recorded in §3a; two more were found by ChatGPT's Round 2 re-audit and recorded in §3b; two more were found by ChatGPT's Round 3 re-audit and recorded in §3c — all with equal transparency. |
+| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit (Round 1) and recorded in §3a; two more were found by ChatGPT's Round 2 re-audit and recorded in §3b; two more were found by ChatGPT's Round 3 re-audit and recorded in §3c; three more were found by ChatGPT's Round 4 re-audit and recorded in §3d — all with equal transparency. |
+| **Corrected (Round 4)** | **CORR-B4-01..08 (2026-08-30)** — new §3d added for `M-AUD-08`/`M-AUD-09`/`M-AUD-10`. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 
 ## 1. Full Chain Traces (Exemplars)
 
@@ -217,6 +218,68 @@ re-audit — not a fourth round of this domain's own self-review — is structur
 this category of error, and the self-review document (G, §4c) records this pattern explicitly
 rather than treating each round's fix as evidence the underlying blind spot has closed.
 
+## 3d. Corrective Round 4 — Issues Found by ChatGPT Re-Audit and Resolved *(added at CORR-B4-01..08)*
+
+Three further defects, found by ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`)
+— **after** this domain's own §3a, §3b, and §3c corrective rounds. Two of the three
+(`M-AUD-08`, `M-AUD-09`) were defects **introduced by Round 3's own corrective fix** for
+`M-AUD-07` — the no-posted-close model itself, not a pre-existing gap Round 3 merely failed to
+notice.
+
+**Issue 10 (`M-AUD-08`) — Reported Equity double-counted the designated Retained Earnings
+account.** B07 §1e (Round 3) defined Reported Retained Earnings as the designated RE account's
+direct balance plus accumulated closed-Fiscal-Year earnings; B08 MP-02's companion paragraph
+separately described "Reported Equity" as `Equity(ledger, all-time) + Reported Retained
+Earnings` — but the designated RE account is itself inside `Equity(ledger, all-time)`, so its
+balance was summed twice. **Resolution:** B07 §1f (new) partitions Equity into two disjoint
+sets — Other Ledger Equity (every Equity account EXCEPT the designated RE account) and
+Reported Retained Earnings (which alone covers that account) — so Reported Equity's two terms
+never overlap. B08 MP-02/MP-12 corrected to match; full comparison and worked multi-account
+proof: [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) Test 2.
+
+**Issue 11 (`M-AUD-09`) — Reported Retained Earnings depended on operational close timing, not
+the Fiscal Year's own calendar boundary.** B07 §1e (Round 3) summed "every Fiscal Year that
+closed before D" — closed meaning `FiscalYearClosed` had been declared. A real, expected delay
+between a Fiscal Year's actual end and its formal close declaration (reconciliation, review)
+would silently omit that year's earnings from every report for the duration of the gap.
+**Resolution:** Fiscal-Year inclusion redefined as boundary-driven ("Elapsed" — End Date <=
+query date, a pure calendar fact, B07 §1e) rather than declaration-driven; `FiscalYearClosed`
+now governs posting-lock scope only. Three models compared (boundary-driven; an explicit
+"unclosed earnings" component; mandatory atomic close), with the third rejected on independent
+operational grounds, not merely because the audit cautioned against it:
+[B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md) DT-11. Worked delayed-close proof:
+[B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) Tests 5-7.
+
+**Issue 12 (`M-AUD-10`) — Reported Retained Earnings/Equity had no defined Mode-1 ("as
+originally known") version, despite the Round-3 regression (B20 Test 8) already relying on
+one.** The regression's *behavior* was correct; the *formula* it was supposedly testing never
+actually defined that behavior, meaning a literal implementation of B07 §1e would let a later
+Restatement silently alter an already-issued historical report — violating BINV-11's
+reproducibility guarantee one level up from where BINV-11 itself is proven. **Resolution:**
+B07 §1g (new) parameterizes Reported Retained Earnings and Reported Equity by reporting
+viewpoint (`_Known(C,D,T)` / `_Current(C,D)`), built directly on MP-09's existing Mode 1/Mode 2
+split rather than inventing new machinery; CO-14's mode-labeling requirement extended to cover
+these outputs explicitly (B09). Worked reconstruction proof:
+[B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) Tests 8-9.
+
+**Pattern note, continued from §3a/§3b/§3c:** this is the fourth consecutive corrective round
+in which independent re-audit found what this domain's own process — including its own
+regression testing — did not. Two new observations belong here, beyond simply reaffirming the
+pattern named three times already. **First**, `M-AUD-08` and `M-AUD-09` were not latent defects
+Round 3 merely failed to notice in pre-existing design — they were defects Round 3's OWN fix
+for `M-AUD-07` introduced. A corrective round's output is new design surface with the same
+defect potential as any other design surface, and this is now direct, repeated evidence of that
+(the same observation G §4c makes, from the self-review angle, about this specific instance).
+**Second**, `M-AUD-10` illustrates a distinct failure shape from the first three rounds' worth
+of findings: not a wrong formula and not a wrong scope, but a formula whose *regression test*
+(B20 Test 8) exercised a behavior the *formula itself* never actually specified. Real, worked
+numeric regression testing is this project's core verification discipline — but Issue 12 shows
+it is not sufficient on its own if the authoritative specification the regression is supposedly
+validating was left silently under-defined; the regression can look green while the design
+document it is meant to hold accountable simply never made the claim being tested. Both
+observations are recorded plainly, in the same spirit as every prior round's pattern note, and
+are reflected in [G §4d](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md).
+
 ## 4. Contradictory Rules Check
 
 Beyond Issue 2 (resolved above), no other rule pair was found to assert incompatible
@@ -250,6 +313,17 @@ round introduces) is **not** added as a seventh assumption, because it is not an
 question this domain defers to Boss — CO-16 (B09, new) already closes it as a settled design
 decision: materiality is explicitly and permanently out of this domain's computation scope,
 supplied externally, which is a resolved design choice, not an unresolved one.
+
+**Round 4 note (CORR-B4-07):** likewise, none of the six assumptions is narrowed, widened, or
+resolved by this round's corrections. Round 4's subject matter (Reported Equity's non-
+overlapping decomposition, Fiscal-Year-boundary-driven reporting inclusion, and Mode-1/Mode-2
+viewpoint parameterization) is pure reporting-formula mathematics — it does not touch rounding
+method, period-close/reopen/consumption timing, chart-of-accounts structure, tamper-evidence
+scope, correction-shape flexibility, or the CO-02/CO-06 coupling either. The designated
+Retained Earnings account (B07 §1f, B10 MG-C15) is a required migration-configuration fact,
+not an open judgment call in the sense the six assumptions are — it has exactly one correct
+answer per Company (which account the source system actually used), not a range of
+defensible choices awaiting Boss's preference.
 
 | Assumption | First flagged | Disposition (per B01 §7 categories) |
 |---|---|---|
@@ -287,29 +361,34 @@ Contradictory rules                       : 1 found internally (Issue 2), RESOLV
                                              (§3); 3 defects found by Round-1 independent audit,
                                              RESOLVED (§3a); 2 more found by Round-2 re-audit,
                                              RESOLVED (§3b); 2 more found by Round-3 re-audit,
-                                             RESOLVED (§3c); 1 stale statement found during
-                                             Round-2 re-verification and corrected (§5)
+                                             RESOLVED (§3c); 3 more found by Round-4 re-audit,
+                                             RESOLVED (§3d, two of which were introduced by
+                                             Round 3's own fix — see §3d pattern note);
+                                             1 stale statement found during Round-2
+                                             re-verification and corrected (§5)
 Circular definitions                      : NONE, re-verified Round 2 (§5); re-checked Round 3
-                                             — the new B07 §1e formula and B04 §3b/§3c
-                                             classification introduce no new dependency that
-                                             could cycle back on Consumption, Period Lock, or
-                                             Restatement
+                                             and again Round 4 — the new B07 §1f/§1g
+                                             decompositions and B08 MP-12 introduce no new
+                                             dependency that could cycle back on Consumption,
+                                             Period Lock, Restatement, or the Elapsed test
 Unresolved critical assumptions           : 6 Team B assumptions (#2 revised/narrowed twice,
                                              Round 1 and Round 2, not withdrawn; unchanged by
-                                             Round 3, see §6 note) + 3 carried-forward Team A
-                                             items, ALL VISIBLE (§6), none hidden
+                                             Round 3 and Round 4, see §6 notes) + 3
+                                             carried-forward Team A items, ALL VISIBLE (§6),
+                                             none hidden
 Regulatory overreach                      : NONE (§7)
 Vendor leakage                             : NONE (§8, cross-checked against B14; re-confirmed
-                                             unaffected by Round 2's temporal/fiscal model and
-                                             again by Round 3's IAS 8 classification and
-                                             no-posted-close model — all three are grounded in
-                                             accounting standards/mathematics and this domain's
-                                             own prior vocabulary, not vendor structure)
+                                             unaffected by Round 2's temporal/fiscal model, by
+                                             Round 3's IAS 8 classification and no-posted-close
+                                             model, and by Round 4's reporting-equity
+                                             mathematics — all four are grounded in accounting
+                                             standards/mathematics and this domain's own prior
+                                             vocabulary, not vendor structure)
 ```
 
-**B15 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-01..08 — §3a, §3b,
-and §3c added, §5 corrected (a stale pre-Round-1 statement found during Round 2
-re-verification), §6 assumption #2 revised in place twice (Round 1, Round 2) and explicitly
-confirmed unchanged at Round 3, with every prior wording kept visible, not deleted, per
-instruction. §1, §2, §4, §7, §8 re-verified as still accurate after Round 3's corrections: no
-new orphans, no new overreach, no new vendor leakage, no new circularity.)*
+**B15 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-01..08/CORR-B4-01..08
+— §3a, §3b, §3c, and §3d added, §5 corrected (a stale pre-Round-1 statement found during
+Round 2 re-verification), §6 assumption #2 revised in place twice (Round 1, Round 2) and
+explicitly confirmed unchanged at Round 3 and Round 4, with every prior wording kept visible,
+not deleted, per instruction. §1, §2, §4, §7, §8 re-verified as still accurate after Round 4's
+corrections: no new orphans, no new overreach, no new vendor leakage, no new circularity.)*

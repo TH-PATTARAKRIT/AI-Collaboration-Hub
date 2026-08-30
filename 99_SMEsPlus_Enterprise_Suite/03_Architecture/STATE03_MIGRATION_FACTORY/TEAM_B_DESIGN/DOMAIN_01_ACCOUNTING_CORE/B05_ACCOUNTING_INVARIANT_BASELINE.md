@@ -8,6 +8,7 @@
 | **Corrected** | **CORR-B01 / CORR-B02 / CORR-B03 (2026-08-29)** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) prompted corrections to BINV-06 (period-close no longer a Consumption trigger, per B04 §4), BINV-10 (now explicitly states the Current Earnings transfer that makes MP-02's corrected proof hold post-closing), and a new BINV-11 (historical as-of reproducibility). See [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found BINV-11's Round-1 guarantee insufficient against backdated Corrections (`M-AUD-04`) and BINV-10's "Period close" scope overgeneralized Team A's year-end-specific evidence (`M-AUD-05`). BINV-10 and BINV-11 both substantially rewritten below; new BINV-12 added (Recorded At immutability — the mechanism BINV-11's Round-2 guarantee depends on). See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-04/05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) found BINV-10's Round-2 text still described Fiscal Year Close as posting a Current-Earnings-transfer Entry (`M-AUD-07`), and found no invariant guaranteed IAS 8's mandatory exclusion of material prior-period errors from current-period profit or loss (`M-AUD-06`). BINV-10 rewritten again below (no-posted-close model); new BINV-13 added (material prior-period error P&L exclusion). See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 4)** | **CORR-B4-01/02/03 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) found BINV-10's Round-3 formula double-counted the designated Retained Earnings account against ledger Equity (`M-AUD-08`), and gated Fiscal-Year earnings inclusion on `FiscalYearClosed`'s declaration timing rather than the Fiscal Year's own calendar boundary (`M-AUD-09`). BINV-10 rewritten a fourth time; new BINV-14 added (Reported Equity non-duplication and declaration-independence). See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 
 ## 1. Independent Evaluation Method
 
@@ -251,7 +252,7 @@ Residual assumption:    Whether accounts may be deprecated (stop accepting new a
                         not this invariant's concern.
 ```
 
-### BINV-10 — Carry-Forward Correctness *(new, Team B addition; rewritten at CORR-B2-03/04)*
+### BINV-10 — Carry-Forward Correctness *(new, Team B addition; rewritten at CORR-B2-03/04, CORR-B3-05, and CORR-B4-01/02/03)*
 
 ```
 ROUND 1 STATEMENT (kept visible, not deleted): "The opening balance of period N+1 ... equals
@@ -355,6 +356,70 @@ Residual assumption:    Unchanged from Round 2 — the year-end closing *process
                         the `FiscalYearClosed` declaration was noted by Team A as
                         unread/unobserved (MR-07); this invariant states the required outcome,
                         not a particular UI/workflow for reaching it.
+```
+
+```
+ROUND 4 CORRECTION (CORR-B4-01/02/03, kept visible — do not delete the Round 2/3 statements
+above): ChatGPT's Round 4 audit found two further defects in the Round-3 statement above.
+`M-AUD-08`: "the formally-designated Retained Earnings account's own direct-posting balance...
++ the sum... of that year's Current Earnings" — added to a separately-stated "ledger Equity"
+figure elsewhere in this design (B08 MP-02) — double-counts that account's balance, since it
+sits inside both. `M-AUD-09`: "every closed Fiscal Year" made this invariant depend on
+`FiscalYearClosed`'s *declaration* timing, not the Fiscal Year's own calendar boundary — a
+delayed declaration would silently drop a real, already-elapsed year's earnings from every
+report. Both corrected below.
+
+Independent statement (superseding the Round 3 text above):
+                        **Carry-forward across a Fiscal Year boundary is boundary-driven and
+                        non-overlapping, not declaration-driven or double-counted.** Reported
+                        Retained Earnings (B07 §1e, corrected) sums the designated Retained
+                        Earnings account's direct-posted balance plus every ELAPSED Fiscal
+                        Year's Current Earnings (End Date <= query date — a calendar fact,
+                        never gated on `FiscalYearClosed` having been declared). Reported
+                        Equity (B07 §1f, new) is Other Ledger Equity (every Equity-category
+                        account EXCEPT the designated Retained Earnings account) plus Reported
+                        Retained Earnings — a partition of the Equity category into two
+                        disjoint sets of accounts, so every account contributes exactly once.
+                        `FiscalYearClosed` continues to lock the Fiscal Year against ordinary
+                        posting/amendment (unchanged from Round 3) but has no bearing
+                        whatsoever on either sum.
+Why required:           A double-counted Retained Earnings balance overstates Reported Equity
+                        by exactly that balance — as material an error as the double-count
+                        `M-AUD-05` originally found in Round 2, just relocated to a different
+                        term. A declaration-gated boundary makes reporting truth depend on
+                        operator timing, which is precisely the kind of dependency the
+                        Continuous Ledger philosophy (B07 §1d, since Round 2) exists to avoid.
+                        Both are closed by the same two changes: partition Equity
+                        non-overlappingly, and gate Fiscal-Year inclusion on the calendar
+                        boundary rather than the declaration.
+Accounting basis:       B07 §1e/§1f (corrected/new), B08 MP-12 (new — full re-derivation from
+                        the raw ledger identity, Proofs A-G)
+Regulatory basis:       None specific — supports general statement reliability
+Failure consequence:    (`M-AUD-08`) Reported Equity overstated by the designated Retained
+                        Earnings account's own balance, every single time it is computed —
+                        not an edge case, a standing error in every report under the Round-3
+                        formula; (`M-AUD-09`) Reported Equity understated by exactly an
+                        elapsed-but-undeclared Fiscal Year's Current Earnings, for as long as
+                        the operational close process takes — routinely days to weeks, not a
+                        rare edge case either.
+Enforcement objective:  Both defects are closed structurally, by the formula's own shape, not
+                        by a rule someone must remember to follow: `M-AUD-08` cannot recur
+                        because Other Ledger Equity is DEFINED to exclude the one account
+                        Reported Retained Earnings already covers; `M-AUD-09` cannot recur
+                        because `FiscalYearClosed` is not a term, or inside any term, of either
+                        formula (B08 MP-12 Proof F proves Reported Equity is referentially
+                        identical immediately before and after the declaration, absent new
+                        financial facts).
+Evidence:               `M-AUD-08`/`M-AUD-09` (the corrective triggers), B08 MP-12 Proofs A-G
+                        (the full re-derivation), [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md)
+                        Tests 1-7 (numeric verification, including the delayed-close scenario)
+Residual assumption:    Unchanged from Round 2/3 — the year-end closing *process* that
+                        triggers the `FiscalYearClosed` declaration remains an operational
+                        matter this invariant does not prescribe. New this round: which
+                        specific ledger account is "the designated Retained Earnings account"
+                        for a Company is a one-time chart-configuration fact (CAP-01, B10
+                        MG-C03) this invariant assumes is correctly and uniquely set, not
+                        itself re-derived or validated by this formula.
 ```
 
 ### BINV-11 — Historical As-of Reproducibility *(new, added at CORR-B03; rewritten at CORR-B2-01/02)*
@@ -495,6 +560,54 @@ Residual assumption:    **Materiality itself is never computed or invented by th
                         itself validate the materiality judgment.
 ```
 
+### BINV-14 — Reported Equity Non-Duplication and Declaration-Independence *(new, added at CORR-B4-01/02/03)*
+
+```
+Independent statement: For every Company C and date D: (a) **Non-duplication** — no
+                        Equity-category account's balance is ever summed into more than one of
+                        {Other Ledger Equity, Reported Retained Earnings} (B07 §1f); the
+                        designated Retained Earnings account contributes through Reported
+                        Retained Earnings alone, every other Equity account through Other
+                        Ledger Equity alone. (b) **Declaration-independence** — Reported Equity
+                        (C, D) is a function only of (i) which Entries are COMMITTED as of D
+                        and (ii) which Fiscal Years have ELAPSED as of D (B07 §1e); no
+                        `FiscalYearClosed` Audit Event's presence, absence, or timing appears
+                        in the computation. Consequently, for any two moments D1 < D2 with no
+                        Entry committed and no Fiscal Year End Date crossed between them,
+                        ReportedEquity(C, D1) = ReportedEquity(C, D2), regardless of any
+                        `FiscalYearClosed` declaration recorded between D1 and D2.
+Why required:           (a) closes `M-AUD-08` — without an explicit non-duplication guarantee,
+                        nothing structurally prevents a future implementation from summing the
+                        designated Retained Earnings account's balance twice (once directly,
+                        once inside Reported Retained Earnings), overstating every report by
+                        that amount. (b) closes `M-AUD-09` — without an explicit declaration-
+                        independence guarantee, nothing structurally prevents a future
+                        implementation from silently gating Reported Retained Earnings on
+                        `FiscalYearClosed` (the most tempting, name-matching implementation
+                        choice, and exactly the mistake the Round-3 formula itself made),
+                        reintroducing the delayed-close reporting hole.
+Accounting basis:       B07 §1e/§1f (corrected/new), B08 MP-12 Proofs B and F
+Regulatory basis:       None specific — internal consistency and reporting reliability
+Failure consequence:    (a) Reported Equity systematically overstated by the designated
+                        Retained Earnings account's own balance; (b) Reported Equity
+                        systematically understated by every elapsed-but-undeclared Fiscal
+                        Year's Current Earnings, for the duration of the operational close gap
+Enforcement objective:  B07 §1f's account partition IS the (a) enforcement mechanism — there is
+                        no separate "exclude RE from ledger Equity" step to omit, because Other
+                        Ledger Equity is defined by exclusion from the start. B07 §1e's Elapsed
+                        test IS the (b) enforcement mechanism — there is no
+                        `FiscalYearClosed`-checking step in the Reported Retained Earnings
+                        formula to accidentally add, because the formula never references that
+                        event at all (B08 MP-12 Proof F derives (b) from this fact directly,
+                        not as a separately-argued property)
+Evidence:               `M-AUD-08`/`M-AUD-09` (the corrective triggers), B08 MP-12 (Proofs B, F),
+                        [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) Tests 1, 2, 5, 6, 7
+                        (numeric verification of both (a) and (b))
+Residual assumption:    Same as BINV-10's Round-4 residual note — which account is "the
+                        designated Retained Earnings account" is assumed correctly and uniquely
+                        configured per Company (CAP-01), not re-derived by this invariant.
+```
+
 ## 3. Coverage Check Against Mandatory Areas
 
 ```
@@ -507,17 +620,20 @@ Auditability            : BINV-06, BINV-07, BINV-08             — COVERED (thr
                            judged insufficient to cover with a single invariant given this is
                            the domain's central weakness)
 Independently added     : BINV-09 (classification integrity), BINV-10 (continuity integrity,
-                           rewritten Round 2, rewritten again Round 3), BINV-11 (historical
+                           rewritten Round 2, Round 3, and Round 4), BINV-11 (historical
                            reproducibility, rewritten Round 2), BINV-12 (recording-time
                            immutability, added Round 2), BINV-13 (material prior-period error
-                           P&L exclusion, added Round 3)
+                           P&L exclusion, added Round 3), BINV-14 (Reported Equity
+                           non-duplication and declaration-independence, added Round 4)
 ```
 
-**B5 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-04/05 — see header.
-Corrections are additive to this record, not a rewrite of it: BINV-01..05, 07..09 are unchanged
-since the original B5 pass. BINV-06 was amended once (Round 1). BINV-11 was amended once
-(Round 1), then substantially rewritten (Round 2). BINV-10 was amended once (Round 1),
-substantially rewritten (Round 2), then rewritten a third time (Round 3, `M-AUD-07` —
-no-posted-close model) — every prior version kept visible at each step. BINV-12 was new at
-Round 2. BINV-13 is new this round (Round 3, `M-AUD-06` — material prior-period error P&L
-exclusion, IAS 8 paras 41/42/46).)*
+**B5 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-04/05/CORR-B4-01..03
+— see header. Corrections are additive to this record, not a rewrite of it: BINV-01..05, 07..09
+are unchanged since the original B5 pass. BINV-06 was amended once (Round 1). BINV-11 was
+amended once (Round 1), then substantially rewritten (Round 2). BINV-10 was amended once
+(Round 1), substantially rewritten (Round 2), rewritten a third time (Round 3, `M-AUD-07` —
+no-posted-close model), then rewritten a fourth time (Round 4, `M-AUD-08`/`M-AUD-09` —
+non-overlapping decomposition and boundary-driven inclusion) — every prior version kept
+visible at each step. BINV-12 was new at Round 2. BINV-13 is new at Round 3 (`M-AUD-06` —
+material prior-period error P&L exclusion, IAS 8 paras 41/42/46). BINV-14 is new this round
+(Round 4, `M-AUD-08`/`M-AUD-09`).)*

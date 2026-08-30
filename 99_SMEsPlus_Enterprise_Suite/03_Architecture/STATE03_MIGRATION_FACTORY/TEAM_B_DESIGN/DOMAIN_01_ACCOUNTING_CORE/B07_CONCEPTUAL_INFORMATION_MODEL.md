@@ -8,6 +8,7 @@
 | **Corrected** | **CORR-B02 (2026-08-29)** — §1a's closing claim ("this is what makes Assets = Liabilities + Equity meaningful") overstated what Normal Balance Side alone proves; corrected below, and a new §1b defines Current Earnings. **CORR-B01** — the Consumption Record row's "four B04 §4 trigger kinds" corrected to three (period close removed as a trigger). See [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 2)** | **CORR-B2-01/02/03/04 (2026-08-29)** — ChatGPT's Round 2 re-audit (`04e44b06489d8bea6c8d39410050d68cf08bce21`) found two further defects: an Entry's single "date" property let a backdated Correction rewrite relied-upon history (M-AUD-04), and Current Earnings (§1b) was bounded "since the last close" — ambiguous between ordinary Period close and Fiscal-Year close, matching M-AUD-05's finding that CAP-09 overgeneralized BF-09's year-end-specific rule. Fixed below: Entry now has two distinct temporal properties (§1c), and a new **Fiscal Year** entity is added. See [CORR_B2_CORRECTIVE_ROUND.md](CORR_B2_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 3)** | **CORR-B3-01..05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) found (1) prior-period error treatment did not comply with IAS 8's mandatory retrospective restatement for material errors (`M-AUD-06`, verified against primary IAS 8 text, paragraphs 5/41-48/50-53 — not memory or secondary sources); (2) §1d's "no posted action ever touches Revenue/Expense" claim directly contradicted MP-11's actual definition, which did (`M-AUD-07`). §1b/§1d rewritten: Fiscal Year Close is now purely declarative (no posted Entry); Reported Retained Earnings is a new derived reporting formula (§1e). See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 4)** | **CORR-B4-01/02/03/04 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) found §1e's Round-3 formula, combined with B08 MP-02's reporting equation, double-counted the designated Retained-Earnings account's direct-posted balance (`M-AUD-08`); found §1e's "closed before D" boundary made Reported Retained Earnings depend on when an operator *declares* Fiscal Year Close, not on the Fiscal Year's own calendar boundary — a genuine reporting hole if that declaration is ever delayed (`M-AUD-09`); and found §1e defined Reported Retained Earnings using MP-09 Mode 2 only, with no defined Mode-1 ("as originally known") counterpart, despite B20 Test 8 relying on one (`M-AUD-10`). §1e corrected (Fiscal-Year inclusion is now boundary-driven, "elapsed," not declaration-driven); new §1f defines a non-overlapping Reported Equity decomposition; new §1g defines viewpoint-parameterized Known/Current functions. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 
 ## 1. Conceptual Entities
 
@@ -147,7 +148,7 @@ be an instance of. A migration opening balance is a one-time, distinct act — e
 starting point of a ledger that has no prior history *in this system* to sum over — not a
 periodic transfer between two periods that both already exist in the same ledger.
 
-### 1e. Reported Retained Earnings — A Derived Reporting Formula, Not a Posted Balance *(new, added at CORR-B3-05)*
+### 1e. Reported Retained Earnings — A Derived Reporting Formula, Not a Posted Balance *(new, added at CORR-B3-05; boundary condition corrected at CORR-B4-03)*
 
 Because Fiscal Year Close posts no Entry (§1d), **formal Retained Earnings is not a ledger
 account that "receives" each year's Current Earnings through a journal posting** — it is a
@@ -155,45 +156,226 @@ account that "receives" each year's Current Earnings through a journal posting**
 (B07 §1b) rather than through a physical transfer:
 
 ```
+ROUND 3 FORMULA (kept visible, not deleted — this is exactly what ChatGPT's Round 4 audit,
+`M-AUD-09`, found wrong):
+
 Reported Retained Earnings(Company C, as of date D) =
     all-time balance of the formally-designated Retained Earnings account
       (direct postings only — e.g. dividend declarations; a real, distinct
       business event, not part of closing)
-  + SUM over every Fiscal Year that closed before D of:
+  + SUM over every Fiscal Year that CLOSED before D of:
       that Fiscal Year's Current Earnings, computed via MP-09's Mode-2
       (current/restated) Fiscal-Year-bounded aggregation for that year
 ```
 
-This is not a new mathematical claim — it is [B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md)
-MP-02's already-proven "reporting form" (`Assets = Liabilities + (Equity + Current
-Earnings)`), applied across every closed Fiscal Year instead of only the current one. Two
-properties follow directly, both required by the Round 3 findings:
+**WHY THIS WAS WRONG (`M-AUD-09`):** "closed" here meant "has had a `FiscalYearClosed` Audit
+Event declared for it" — an authorized, operator-triggered action (§1d, B02 CAP-09). Nothing
+in this domain's design requires that declaration to happen *at* the Fiscal Year's own calendar
+boundary — the whole point of separating governance/lock actions from posted facts (§1d) is
+that a declaration is a discrete, authorized, potentially-delayed human/process action, not an
+instantaneous one. If FY2024 ends Dec 31 but `FiscalYearClosed` for FY2024 is not declared
+until Jan 15, then on Jan 5 — with the Round-3 formula above — FY2024's Current Earnings would
+be excluded from Reported Retained Earnings (it is not yet "closed"), while FY2025's Revenue/
+Expense would correctly still read zero (nothing dated in FY2025 yet). The result: Assets would
+reflect FY2024's activity (it was never un-posted), but Reported Equity would not — the
+reporting equation would fail by exactly FY2024's Current Earnings amount, *solely* because an
+operator had not yet clicked a button. Reporting truth must never depend on operational close
+timing this way.
 
-1. **No double counting, ever** — nothing is posted at Fiscal Year Close, so there is nothing
-   to duplicate against the historical Revenue/Expense activity that produced each year's
-   Current Earnings in the first place.
-2. **A later Restatement of a closed Fiscal Year (B04 §3a/§3b) automatically flows through**
-   — because Reported Retained Earnings sums each closed year's Current Earnings *as MP-09
-   Mode 2 computes it today*, a Restatement that changes a prior year's Mode-2 figures
-   changes Reported Retained Earnings for every later date with no separate "prior period
-   adjustment" entry required. This is precisely the property [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md)
+**CORRECTED FORMULA (CORR-B4-03, supersedes the Round-3 formula above):**
+
+```
+Reported Retained Earnings(Company C, as of date D) =
+    all-time balance of the formally-designated Retained Earnings account
+      (direct postings only — e.g. dividend declarations; a real, distinct
+      business event, not part of closing)
+  + SUM over every Fiscal Year that has ELAPSED as of D of:
+      that Fiscal Year's Current Earnings, computed via MP-09's Mode-2
+      (current/restated) Fiscal-Year-bounded aggregation for that year
+
+  where a Fiscal Year has ELAPSED as of D  <=>  its own defined End Date <= D
+  (a pure calendar fact about the Fiscal Year and the query date — never about
+  whether any `FiscalYearClosed` Audit Event has been recorded)
+```
+
+**Elapsed and Closed are now two deliberately independent concepts, on the same "orthogonal
+gates" pattern this domain has used since CORR-B01's Period-Lock/Consumption split (B04 §4)
+and CORR-B2-03/04's Period-Lock/Fiscal-Year-Lock split:**
+
+- **Elapsed** (new term, this correction) — a pure calendar fact: has the Fiscal Year's own
+  End Date passed as of the query date D? Governs **reporting inclusion only** — whether that
+  year's Current Earnings counts toward Reported Retained Earnings. Requires no authorization,
+  no action, no Audit Event — it is true or false by construction, the instant the calendar
+  date passes.
+- **Closed** (unchanged concept, scope clarified this correction) — has an authorized
+  `FiscalYearClosed` declaration (§1d, B02 CAP-09) been recorded for the year? Governs
+  **posting-lock scope only** — whether ordinary new activity or Amendment can still enter that
+  Fiscal Year without an authorized reopen (CO-08). Has **zero effect** on Reported Retained
+  Earnings — corrected here to state this explicitly, closing exactly the gap `M-AUD-09` found.
+
+A Fiscal Year is routinely Elapsed-but-not-yet-Closed for a real, often multi-week window
+(the ordinary close/reconciliation/review process) — this is normal, expected operation, not
+an edge case or a failure state, and the corrected formula treats it as such: FY2024's Current
+Earnings enter Reported Retained Earnings automatically the instant Dec 31 2024 passes,
+continuing to update (via Mode 2) as ordinary pre-close entries, corrections, or later
+Restatements are dated into FY2024 — exactly the same living, current computation Reported
+Retained Earnings has always been, with no discontinuity at the close declaration. See
+[B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md) DT-11 for the full comparison against two
+rejected alternative models, and
+[B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md#reported-equity-terminology-note-added-at-corr-b4)/
+[B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) Tests 5-7 for the numeric proof.
+
+This is not a new mathematical claim beyond the boundary-condition fix above — it remains
+[B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-02's "reporting form" (`Assets =
+Liabilities + (Equity + Current Earnings)`), applied across every elapsed Fiscal Year instead
+of only the current one. Three properties follow, the third added this round:
+
+1. **No double counting from postings, ever** — nothing is posted at Fiscal Year Close, so
+   there is nothing to duplicate against the historical Revenue/Expense activity that produced
+   each year's Current Earnings in the first place. (This property does NOT by itself prevent
+   double-counting the direct Retained-Earnings balance against other Equity accounts when
+   forming a total Reported Equity figure — that is a separate defect, `M-AUD-08`, fixed in
+   §1f below, not by this formula.)
+2. **A later Restatement of an elapsed Fiscal Year (B04 §3a/§3b) automatically flows through**
+   — because Reported Retained Earnings sums each elapsed year's Current Earnings *as MP-09
+   Mode 2 computes it today*, a Restatement that changes a prior year's Mode-2 figures changes
+   Reported Retained Earnings for every later date with no separate "prior period adjustment"
+   entry required. This is precisely the property [B19](B19_CORR_B2_FOCUSED_RED_TEAM_REGRESSION.md)
    Test 11 needed but, on its first attempt, tried to achieve with a superfluous posted line —
    it is now a structural consequence of this formula instead.
+3. **Reporting correctness never depends on operational close timing (new, CORR-B4-03)** —
+   because inclusion is calendar-boundary-driven, not declaration-driven, a delayed
+   `FiscalYearClosed` declaration changes nothing about what any report computes; it changes
+   only whether that Fiscal Year can still accept ordinary new postings without an authorized
+   reopen.
 
 **Annotation added at CORR-B3-06, while constructing [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md)
-Tests 4/5 (kept as an addition, not a restructure — the formula above is unchanged):** IAS 8
-para 43 requires that when a material prior-period error's *period-specific* effects cannot be
-determined (after genuine effort), the correction is applied by restating the opening balances
-of assets/liabilities/equity for the earliest period for which restatement IS practicable —
-**not attributed to any single closed Fiscal Year's own Current Earnings term**, because that
-attribution is exactly what para 43 says cannot be reliably made. This is already representable
-by the formula above with no change: such a correction is a **direct posting to the
-formally-designated Retained Earnings account** (the formula's first term — the same term that
-already covers dividend declarations), dated at the earliest practicable point, rather than a
-restatement of any specific year's Mode-2 Current Earnings (the formula's second, summed term).
-The formula did not previously say this explicitly, which [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md)
-Test 4's construction flagged as worth stating outright rather than leaving for a future reader
-to re-derive.
+Tests 4/5 (kept as an addition, not a restructure — the formula's shape is unchanged by this
+note; only "closed" vs "elapsed" terminology, corrected above at CORR-B4-03, applies to it
+now):** IAS 8 para 43 requires that when a material prior-period error's *period-specific*
+effects cannot be determined (after genuine effort), the correction is applied by restating
+the opening balances of assets/liabilities/equity for the earliest period for which
+restatement IS practicable — **not attributed to any single elapsed Fiscal Year's own Current
+Earnings term**, because that attribution is exactly what para 43 says cannot be reliably made.
+This is already representable by the formula above with no change: such a correction is a
+**direct posting to the formally-designated Retained Earnings account** (the formula's first
+term — the same term that already covers dividend declarations), dated at the earliest
+practicable point, rather than a restatement of any specific year's Mode-2 Current Earnings
+(the formula's second, summed term). The formula did not previously say this explicitly, which
+[B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) Test 4's construction flagged as worth
+stating outright rather than leaving for a future reader to re-derive.
+
+### 1f. Reported Equity — A Non-Overlapping Decomposition *(new, added at CORR-B4-01/02)*
+
+ChatGPT's Round 4 audit (`M-AUD-08`) found that this design never precisely defined "Reported
+Equity" as a total — [B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-02's Round-3
+post-closing paragraph informally described it as "`Equity(ledger, all-time) +` Reported
+Retained Earnings," but the formally-designated Retained Earnings account (§1e's first term) is
+itself one of the accounts inside the Equity Account Category (§1a/CAP-01) — so
+`Equity(ledger, all-time)` **already contains** that account's direct-posted balance, and
+adding the full Reported Retained Earnings figure on top counts it a second time. Worked
+example (the exact one the audit cited, from [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md)):
+direct Retained Earnings balance entering FY2024 = 1000; FY2024 Current Earnings = 250;
+correct Reported Equity = 1250 — the old, informal `Equity(ledger,all-time) + Reported RE`
+phrasing, read literally with a single Equity account, computes `1000 + 1250 = 2250`, which is
+wrong by exactly the duplicated 1000.
+
+**Corrected: Equity is partitioned into two mutually exclusive sets of accounts, and Reported
+Equity is the sum of both, with no account counted in more than one term.**
+
+```
+Other Ledger Equity(Company C, as of date D) =
+    all-time balance, summed over every Equity-category account for C
+      EXCEPT the one formally-designated Retained Earnings account
+      (e.g. Share Capital, Additional Paid-in Capital, Other Reserves —
+      whatever Equity accounts a Company's chart (CAP-01) defines beyond
+      the single designated Retained Earnings account)
+
+Reported Equity(Company C, as of date D) =
+    Other Ledger Equity(C, D)
+  + Reported Retained Earnings(C, D)                              [§1e, corrected]
+```
+
+Because "the designated Retained Earnings account" is excluded, by definition, from "Other
+Ledger Equity," and because §1e's Reported Retained Earnings term is the *only* place that
+account's balance is summed, **every Equity-category account contributes to Reported Equity
+through exactly one term, never two.** This holds regardless of how many other Equity accounts
+a Company's chart defines (verified for the multi-account case at
+[B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) Test 2) — "Other Ledger Equity" is simply
+whatever remains once the one designated account is set aside; it is not itself a new kind of
+account or a new posted concept, only a reporting-time re-grouping of accounts that already
+exist under CAP-01.
+
+**Which account is "the designated Retained Earnings account" is a one-time, per-Company
+configuration fact** (part of CAP-01's chart setup, confirmed at migration cutover — B10
+MG-C03, re-verified at CORR-B4-07 — and unique per Company: exactly one account holds this
+designation, never zero, never more than one), not something a report infers from an account's
+name or a query re-derives differently each time.
+
+### 1g. Reporting Viewpoint — Known vs. Current, Applied to Reported Retained Earnings and Reported Equity *(new, added at CORR-B4-04)*
+
+ChatGPT's Round 4 audit (`M-AUD-10`) found that §1e's formula (both the Round-3 version and
+the CORR-B4-03 correction above) is defined only in terms of MP-09 **Mode 2** ("current/
+restated") — yet [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) Test 8 already relied on
+an "as originally known" (Mode 1) version of Reported Retained Earnings to prove a later
+Restatement cannot silently alter an already-issued historical report. The regression's
+*behavior* was correct; the authoritative *formula* never actually defined that behavior. If an
+implementation followed §1e literally, a later Restatement of an elapsed Fiscal Year would
+change Reported Retained Earnings even when reconstructing an *earlier, already-issued*
+Balance Sheet — directly violating the historical-reproducibility guarantee ([B05](B05_ACCOUNTING_INVARIANT_BASELINE.md)
+BINV-11) this domain has held since CORR-B03.
+
+**Corrected: every Reported Retained Earnings / Reported Equity figure takes an explicit
+reporting-viewpoint parameter, exactly mirroring MP-09's existing Mode 1 / Mode 2 split — no
+new temporal mechanism is invented, this is that same mechanism applied one level up.**
+
+```
+ReportedRetainedEarnings_Current(C, D)     — "Mode 2" / current-restated view (§1e, as
+                                              corrected above): every constituent term
+                                              (the direct RE balance, each elapsed FY's
+                                              Current Earnings) evaluated via MP-09 Mode 2
+                                              (balance_current) — reflects every legitimate
+                                              fact known as of NOW, including later
+                                              Restatements.
+
+ReportedRetainedEarnings_Known(C, D, T)    — "Mode 1" / as-originally-known view: every
+                                              constituent term evaluated via MP-09 Mode 1
+                                              (balance_known(..., T)) instead — i.e. filtered
+                                              additionally by Recorded At <= T. A Restatement
+                                              Recorded after T cannot affect this value, for
+                                              any T, ever (the same unconditional guarantee
+                                              BINV-11/BINV-12 already provide for MP-09 itself
+                                              — inherited here directly, not reproven from
+                                              scratch).
+
+OtherLedgerEquity_Current(C, D)            — §1f's first term, MP-09 Mode 2
+OtherLedgerEquity_Known(C, D, T)           — §1f's first term, MP-09 Mode 1
+
+ReportedEquity_Current(C, D)     = OtherLedgerEquity_Current(C, D)
+                                  + ReportedRetainedEarnings_Current(C, D)
+ReportedEquity_Known(C, D, T)    = OtherLedgerEquity_Known(C, D, T)
+                                  + ReportedRetainedEarnings_Known(C, D, T)
+```
+
+**The Elapsed test itself (§1e) never takes a viewpoint parameter.** Whether a Fiscal Year's
+End Date is `<= D` is a fact about the Fiscal Year's own configuration and the query date D
+alone — Fiscal Year boundaries are not themselves posted facts subject to Recorded-At framing,
+so there is nothing for a Mode-1/Mode-2 split to apply to at that step. Viewpoint only affects
+*which Lines* count toward each elapsed year's Current Earnings and the direct RE balance —
+exactly the same place MP-09's existing split already applies it. This is a direct, structural
+benefit of CORR-B4-03's boundary-driven ("Elapsed") redefinition: had Fiscal-Year inclusion
+remained declaration-driven (the superseded Round-3 model), a *second*, independent
+viewpoint question would have existed ("was the `FiscalYearClosed` declaration itself known as
+of T?") — CORR-B4-03 removes that question entirely, not merely defers it.
+
+**The two views must never be silently blended** — the same requirement [CO-14](B09_CONTROL_AUDIT_DESIGN_OBJECTIVES.md)
+already imposes on raw MP-09 output, extended by this correction to explicitly cover Reported
+Retained Earnings and Reported Equity as well (B09, corrected). A report reconstructing an
+originally-issued Balance Sheet uses `_Known(C, D, T)` with T fixed at (or before) the report's
+original issuance moment; a report showing "today's best current understanding, including any
+Restatements since" uses `_Current(C, D)`. Numeric proof, including a later Restatement that
+changes the Current view while the Known view stays fixed: [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md)
+Tests 8-9.
 
 ## 2. Deliberately Excluded From This List
 
