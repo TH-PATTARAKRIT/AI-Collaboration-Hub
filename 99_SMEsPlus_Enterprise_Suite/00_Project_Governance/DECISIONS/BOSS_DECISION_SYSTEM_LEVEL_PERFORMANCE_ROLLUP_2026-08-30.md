@@ -118,6 +118,12 @@ The following are prohibited:
 
 A material Parent / End-to-End / Whole-System performance failure can hold the IDTM Gate, IESA Final Assurance or Production Gate even when all individual Test Cases are functionally correct.
 
+## Explicit Boss Confirmation
+
+On 2026-08-30 at 11:53 +07:00, Boss explicitly reconfirmed and approved the governing principle that per-Test-Case performance measurement is used to locate Optimization targets, while the final performance judgment must be based on the speed of the complete combined system under controlled End-to-End and Whole-System workloads.
+
+This confirmation is part of the authoritative Boss Decision evidence.
+
 ## Authority
 
 This ruling clarifies and strengthens `SMEPLUS-POL-PERF-001`.
