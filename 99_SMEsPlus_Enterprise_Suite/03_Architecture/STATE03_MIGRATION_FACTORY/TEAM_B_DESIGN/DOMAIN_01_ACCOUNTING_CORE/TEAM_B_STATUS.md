@@ -7,7 +7,7 @@
 
 ```
 Current Phase:          CORRECTIVE ROUND 4 COMPLETE — CORR-B4-01..08 applied, reporting-
-                         equity regression run, pending final commit + push
+                         equity regression run, commit pushed and independently verified
 Completed Phases:       B0-B21 (evidence-backed) + 4 targeted corrective rounds
 Total Phases:           18 + 4 targeted corrective rounds
 TEAM B Working Progress: 18 / 18 mandatory phases evidence-backed; 10/10 total audit findings
@@ -41,14 +41,16 @@ Accounting Standard Evidence: IAS 8 read at primary-source level (fetched PDF, p
 Clean-room Risk:        0 critical (B14, cross-checked B15 §8, re-confirmed unaffected after
                          all four corrective rounds, B15 §3d) — accounting standards and
                          mathematics/algebra, not vendor structure
-Blockers:               None. Corrective round 4 complete pending push verification.
+Blockers:               None. Corrective round 4 complete, pushed, and independently verified.
 Git Status:             Round 1 pushed (commits 6c18dd32.../727b5300.../552934d7.../
                          4e279c74...). Round 2 pushed (commit 06676d17e...). Round 3 pushed
-                         (commits 478f94777.../19dd7cc906...). Round 4 corrective commit
-                         pending push — see session closure for final SHA once pushed.
+                         (commits 478f94777.../19dd7cc906...). Round 4 pushed (commit
+                         b50dceb7fdd9f0d017ab7b13abf64ac404ee8598) — verified two independent
+                         ways (git fetch/rev-parse match, GitHub API direct lookup); see T —
+                         Closure Evidence.
 Jira Governance:         ERPPLUS-100 Assignee = UNASSIGNED, Due Date = TBD/empty — preserved
                          as governance red flags per Round 4's explicit instruction, not
                          invented by this executor.
-Next Phase:             STOP after verified push. Next authority: ChatGPT Independent Design
+Next Phase:             STOP (per instruction). Next authority: ChatGPT Independent Design
                          Re-Audit (Round 4 corrections) → PMO Verification → Boss Final Gate.
 ```

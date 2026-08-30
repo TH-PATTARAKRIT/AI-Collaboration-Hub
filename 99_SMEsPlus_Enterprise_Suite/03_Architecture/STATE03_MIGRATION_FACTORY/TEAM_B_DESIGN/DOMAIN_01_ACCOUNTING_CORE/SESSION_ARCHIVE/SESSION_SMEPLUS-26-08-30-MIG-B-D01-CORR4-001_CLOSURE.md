@@ -131,16 +131,19 @@ comment, per explicit instruction not to invent either value.
 ```
 Repository       : TH-PATTARAKRIT/AI-Collaboration-Hub
 Branch           : SMEsPlus
-Previous         : 19dd7cc906ac0b995ee1642a6f83b38943673996
-Round 4 SHA       : (recorded after commit — see T — Closure Evidence for the filled-in value)
-Push             : (recorded after commit and verified two independent ways — see T)
+Previous (Round 3 closure) : 19dd7cc906ac0b995ee1642a6f83b38943673996
+Tip when Round 4 began     : 5371f4d6b495aa26279c3b2aa5f30a4859036558
+Round 4 SHA       : b50dceb7fdd9f0d017ab7b13abf64ac404ee8598
+Push             : VERIFIED — git fetch/rev-parse match AND direct GitHub API lookup, both
+                    confirming b50dceb7fdd9f0d017ab7b13abf64ac404ee8598 as origin/SMEsPlus HEAD
+                    (19 files changed, author identity confirmed matching)
 ```
 
 ## Final Gate Status
 
 ```
-CORRECTIVE ROUND 4 APPLIED, PENDING PUSH VERIFICATION
-WILL READ "READY FOR CHATGPT INDEPENDENT RE-AUDIT" ONCE PUSH IS VERIFIED
+CORRECTIVE ROUND 4 APPLIED AND PUSHED
+READY FOR CHATGPT INDEPENDENT RE-AUDIT
 ```
 
 ## Next Authority

@@ -246,10 +246,15 @@ Round 4's audit — preserved as found, not invented by this executor.
 ## Gate Status
 
 ```
-DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND 4 APPLIED, PENDING PUSH VERIFICATION
-STATUS WILL READ "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 4 corrections)" ONCE THE
-CORR-B4 COMMIT IS PUSHED AND INDEPENDENTLY VERIFIED (see T — Closure Evidence, once complete)
+DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND 4 APPLIED AND PUSHED
+READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 4 corrections)
 ```
+
+Round 4 corrective commit `b50dceb7fdd9f0d017ab7b13abf64ac404ee8598` pushed to
+`TH-PATTARAKRIT/AI-Collaboration-Hub`, branch `SMEsPlus`, and independently verified two ways
+(fresh `git fetch` + `rev-parse` match, and a direct GitHub API commit lookup bypassing local
+git — sha, message, author identity, and 19-file count all confirmed matching). Full evidence:
+[T — Closure Evidence](DOMAIN_01_ACCOUNTING_CORE_T_CORR_B4_CLOSURE_EVIDENCE.md).
 
 Superseded prior statuses (kept visible, not deleted): "READY FOR CHATGPT INDEPENDENT DESIGN
 AUDIT" (true as of `6c18dd323...`/`727b5300...`) → returned by Round 1 audit → "READY FOR
@@ -257,9 +262,8 @@ CHATGPT INDEPENDENT RE-AUDIT" (true as of `552934d78...`/`4e279c748...`) → ret
 re-audit → "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 2 corrections)" (true as of
 `06676d17e...`) → returned by Round 3 re-audit → "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round
 3 corrections)" (true as of `478f94777...`/`19dd7cc90...`) → returned by Round 4 re-audit →
-this status, PENDING as of this document's own authoring, to be updated to its final, verified
-form once the CORR-B4 commit SHA is known and independently confirmed (see
-[T — Closure Evidence](DOMAIN_01_ACCOUNTING_CORE_T_CORR_B4_CLOSURE_EVIDENCE.md)).
+this status, true as of `b50dceb7fdd9f0d017ab7b13abf64ac404ee8598`, specifically for Round 4's
+corrections.
 
 ## Open Assumptions — Explicitly Not Resolved by This Report
 
