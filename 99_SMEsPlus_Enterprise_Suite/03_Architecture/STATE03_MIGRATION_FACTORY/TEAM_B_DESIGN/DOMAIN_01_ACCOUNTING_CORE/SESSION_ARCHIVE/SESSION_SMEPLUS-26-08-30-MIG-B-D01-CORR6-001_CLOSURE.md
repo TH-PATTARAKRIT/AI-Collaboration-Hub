@@ -139,12 +139,20 @@ Repository       : TH-PATTARAKRIT/AI-Collaboration-Hub
 Branch           : SMEsPlus
 Previous (Round 5 closure) : 275c446a89fca1f972e240844a451ed7f7ef1df9
 Tip when Round 6 began     : 21819aeaf18e5fd2a2c4f92c7782026063ef8803
-Additional unrelated governance commits landed before push (EXPERT IDTM appointment/charter/
-  policy/gate) : 21819aea/e49c71f3/f60c5eff/1f50ce48/58b4b78f/c2e3771b — no file overlap with
-  Team B's DOMAIN_01_ACCOUNTING_CORE evidence; confirmed individually via `git show --stat`
-Round 6 SHA       : (recorded after commit)
-Push             : (recorded after commit) — to be VERIFIED via git fetch/rev-parse match AND
-                    direct GitHub API lookup
+Additional unrelated governance commits landed before push, TWO separate batches:
+  Batch 1 (EXPERT IDTM appointment/charter/policy/gate) : 21819aea/e49c71f3/f60c5eff/1f50ce48/
+    58b4b78f/c2e3771b
+  Batch 2 (cross-module performance budget/rollup policy, EXPERT IDTM/IESA charter extensions,
+    landed between design-work completion and push-time, moving the tip to
+    285eddd59d0dd283e5829e74bb9563d8daf2ea72) : 48e24cb/0f3584f/d8d369a/e8af224/45cb348/
+    1b80f49/4cea861/da5afcb/791e1f7/76ee663/2e108db/3601e2f/b48347c/6ae00b4/8688bdb/285eddd
+  — no file overlap with Team B's DOMAIN_01_ACCOUNTING_CORE evidence in either batch, confirmed
+    via `git show --stat` (batch 1, individually) and `git diff --stat`/`--name-only` (batch 2,
+    full range)
+Round 6 SHA       : 9d2af07fbb26231ae2c86fa281702a544f111dc5
+Push             : VERIFIED — git fetch/rev-parse match AND direct GitHub API lookup, both
+                    confirming 9d2af07fbb26231ae2c86fa281702a544f111dc5 as origin/SMEsPlus HEAD
+                    (18 files changed, author identity confirmed matching)
 ```
 
 ## Final Gate Status

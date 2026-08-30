@@ -240,10 +240,14 @@ DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND 6 APPLIED AND PUSHED
 READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 6 corrections)
 ```
 
-Round 6 corrective commit `(recorded after commit)` pushed to
+Round 6 corrective commit `9d2af07fbb26231ae2c86fa281702a544f111dc5` pushed to
 `TH-PATTARAKRIT/AI-Collaboration-Hub`, branch `SMEsPlus`, and independently verified two ways
 (fresh `git fetch` + `rev-parse` match, and a direct GitHub API commit lookup bypassing local
-git). Full evidence:
+git — sha, message, author identity, and 18-file count all confirmed matching). Fifteen
+unrelated governance commits (cross-module performance budget/rollup policy and governance,
+EXPERT IDTM/IESA charter extensions) landed on this branch before this round's push; confirmed
+zero file overlap before proceeding, pushed cleanly on the first attempt from that tip, no
+content lost on either side. Full evidence:
 [Z — Closure Evidence](DOMAIN_01_ACCOUNTING_CORE_Z_CORR_B6_CLOSURE_EVIDENCE.md).
 
 Superseded prior statuses (kept visible, not deleted): "READY FOR CHATGPT INDEPENDENT DESIGN
@@ -255,8 +259,8 @@ re-audit → "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 2 corrections)" (tru
 "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 4 corrections)" (true as of
 `b50dceb7...`/`404e769d...`) → returned by Round 5 re-audit → "READY FOR CHATGPT INDEPENDENT
 RE-AUDIT (Round 5 corrections)" (true as of `406dfc128dac4f61b0a543e818b4b9605aa88264`) →
-returned by Round 6 re-audit → this status, true as of `(recorded after commit)`, specifically
-for Round 6's corrections.
+returned by Round 6 re-audit → this status, true as of
+`9d2af07fbb26231ae2c86fa281702a544f111dc5`, specifically for Round 6's corrections.
 
 ## Open Assumptions — Explicitly Not Resolved by This Report
 

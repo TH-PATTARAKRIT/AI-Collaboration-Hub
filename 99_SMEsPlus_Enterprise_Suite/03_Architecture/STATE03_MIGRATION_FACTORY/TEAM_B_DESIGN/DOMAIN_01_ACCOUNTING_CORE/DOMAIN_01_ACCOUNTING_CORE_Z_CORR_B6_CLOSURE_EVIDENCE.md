@@ -5,8 +5,8 @@
 | Repository | TH-PATTARAKRIT/AI-Collaboration-Hub |
 | Branch | SMEsPlus |
 | Starting SHA (Round-5 closure this round corrects forward from) | `275c446a89fca1f972e240844a451ed7f7ef1df9` |
-| Repository tip when Round 6 began | `21819aeaf18e5fd2a2c4f92c7782026063ef8803` (8 commits landed since Round 5's closure: 6 unrelated governance/testing-policy commits — `21819ae`/`e49c71f`/`f60c5ef`/`1f50ce4`/`58b4b78`/`c2e3771`, confirmed zero overlap with `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/` via `git show <sha> --stat` for each — plus the expected `873e091` CORR6-001 directive publication and `b0ce666` Round 6 audit publication) |
-| Final commit SHA | `(recorded after commit)` |
+| Repository tip when Round 6 began | `21819aeaf18e5fd2a2c4f92c7782026063ef8803` (8 commits landed since Round 5's closure: 6 unrelated governance/testing-policy commits — `21819ae`/`e49c71f`/`f60c5ef`/`1f50ce4`/`58b4b78`/`c2e3771`, confirmed zero overlap with `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/` via `git show <sha> --stat` for each — plus the expected `873e091` CORR6-001 directive publication and `b0ce666` Round 6 audit publication). A SECOND batch of 15 unrelated governance commits (cross-module performance budget/rollup policy, EXPERT IDTM/IESA charter extensions) landed between design-work completion and push-time, moving the tip to `285eddd59d0dd283e5829e74bb9563d8daf2ea72` — confirmed zero file overlap via `git diff --stat`/`--name-only` against the full range before the worktree was built from that new tip |
+| Final commit SHA | `9d2af07fbb26231ae2c86fa281702a544f111dc5` |
 | Owner role | Team B — Independent Clean-Room Design Executor (Claude Sonnet 5) |
 | Evidence timestamp | 2026-08-30 (session SMEPLUS-26-08-30-MIG-B-D01-CORR6-001) |
 
@@ -101,10 +101,11 @@ Next authority:    ChatGPT Independent Re-Audit (of Round 6's corrections)
 ## Push Record
 
 ```
-Final commit SHA : (recorded after commit)
-Push             : (recorded after commit) — to be verified two independent methods:
+Final commit SHA : 9d2af07fbb26231ae2c86fa281702a544f111dc5
+Push             : VERIFIED — two independent methods:
                     (1) git fetch + rev-parse origin/SMEsPlus == local HEAD
+                        (both = 9d2af07fbb26231ae2c86fa281702a544f111dc5)
                     (2) GitHub API direct commit lookup (bypassing local git),
                         sha, full commit message, author identity, and file count
-                        all to be confirmed matching
+                        (18) all confirmed matching
 ```
