@@ -1,7 +1,7 @@
 # INDEPENDENT DEEP TEST MATRIX GATE
 
 Gate ID: SMEPLUS-GATE-IDTM-001
-Version: v1.0
+Version: v1.1
 Status: BOSS APPROVED / MANDATORY
 Effective Date: 2026-08-30
 Independent Executor: EXPERT IDTM
@@ -10,7 +10,7 @@ Final Decision Authority: Boss
 
 ## 1. Purpose
 
-Prevent EXPERT IESA Final Assurance and Production-readiness consideration until SMEsPlus has completed an independent 100% AI-executed 10-Dimension Deep Test Matrix with controlled tolerance, evidence, remediation, retest and Test Adequacy proof.
+Prevent EXPERT IESA Final Assurance and Production-readiness consideration until SMEsPlus has completed an independent 100% AI-executed 10-Dimension Deep Test Matrix with controlled tolerance, performance/speed evidence, remediation, optimization, retest and Test Adequacy proof.
 
 ## 2. Entry Criteria
 
@@ -22,8 +22,10 @@ The Gate may begin only when the applicable controlled evidence exists:
 - controlled test environment and dataset
 - approved Deep Test Matrix version and denominator
 - approved Test Case tolerances
+- approved Performance Budgets / baselines for applicable flows
 - risk/requirement/invariant traceability
 - defect and known-issue registers
+- Performance Optimization Register
 - IESA Pre-Assurance Challenge input, where applicable
 
 Missing material evidence is `EVIDENCE MISSING`, not PASS.
@@ -50,14 +52,16 @@ Approved Dimension Coverage = 100%
 Approved Test Case Execution = 100%
 Critical Test Case Execution = 100%
 Executed Test Case Evidence Capture = 100%
+Applicable Test Case Speed/Performance Evidence = 100%
 Failed/Remediated Case Retest = 100%
+Optimization Retest = 100% where optimization occurred
 ```
 
 Blocked or missing evidence must remain visible and cannot be counted as PASS.
 
 ## 5. Tolerance Requirement
 
-Each Test Case must define its tolerance before execution.
+Each Test Case must define its functional/data tolerance before execution.
 
 ```text
 0% <= T_case <= 0.001%
@@ -67,7 +71,31 @@ Critical integrity/security/statutory classes defined by project policy have `T_
 
 A Test Case with missing or post-hoc tolerance is not Gate-valid evidence.
 
-## 6. Mandatory Cross-Domain Proof
+## 6. Performance / Speed Requirement
+
+Performance / Speed is a mandatory cross-cutting test property governed by `SMEPLUS-POL-PERF-001`.
+
+Every applicable Test Case must declare a Performance Budget before execution and record Actual Performance after execution.
+
+As applicable, evidence must include:
+
+- workload / dataset / concurrency condition
+- target latency or duration
+- p50 / p95 / p99 where statistically meaningful
+- maximum latency for critical flows where required
+- throughput
+- timeout / error rate
+- baseline version
+- allowed regression / degradation threshold
+- actual result and variance
+- bottleneck classification
+- Optimization Required? YES / NO
+
+Performance / Speed targets are not automatically governed by the `0.001%` functional defect ceiling. They use approved workload-specific budgets and regression thresholds.
+
+A Test Case can be functionally correct and still fail Performance Governance.
+
+## 7. Mandatory Cross-Domain Proof
 
 IDTM must test material end-to-end transactions across domains, not merely isolated module functions.
 
@@ -92,7 +120,9 @@ Sales
 
 Equivalent controlled scenarios must be defined for Purchase, Inventory, Assets, Expense, Tax/WHT, Approval and other applicable domains.
 
-## 7. Zero-Defect Challenge
+Cross-domain proof must record both correctness and material elapsed-time/bottleneck evidence where applicable.
+
+## 8. Zero-Defect Challenge
 
 If full matrix execution produces `0 BUG FOUND`, Gate exit is prohibited until the Zero-Defect Challenge Protocol is completed.
 
@@ -104,35 +134,38 @@ Non-critical injected-fault miss rate: `<= 0.001%` with a pre-frozen denominator
 
 Escaped seeded/mutation defects are `TEST ADEQUACY GAP` and require Matrix/Oracle improvement plus rerun.
 
-## 8. Defect Loop
+## 9. Defect / Performance Remediation Loop
 
 ```text
-IDTM finds defect or adequacy gap
-→ Gate HOLD
-→ Team C remediation where implementation change is required
-→ Team D regression / compliance recheck
+IDTM finds defect / adequacy gap / performance bottleneck
+→ Gate HOLD where material
+→ Team C remediation / optimization
+→ Team D regression / compliance / performance recheck
 → IDTM independent retest
-→ evidence reconciliation
+→ before/after evidence reconciliation
 → Gate reassessment
 ```
 
-## 9. Exit Criteria
+## 10. Exit Criteria
 
 The Gate may issue `READY FOR IESA FINAL ASSURANCE` only when:
 
 - all 10 applicable dimensions are covered
 - approved matrix execution = 100%
-- required evidence capture = 100%
+- required functional evidence capture = 100%
+- applicable performance evidence capture = 100%
 - Critical zero-tolerance open defects = 0
 - Test Case tolerance breaches are remediated/retested or explicitly ruled by Boss
+- material performance regressions/budget breaches are remediated/retested or explicitly ruled by Boss
+- Optimization findings have before/after evidence where remediation occurred
 - Zero-Defect Challenge completed when triggered
 - injected-fault detection is within approved tolerance
 - no hidden BLOCKED / UNKNOWN / EVIDENCE MISSING items are counted as PASS
-- open residual risks are explicitly registered
+- open residual functional and performance risks are explicitly registered
 
 This Gate does not authorize Production.
 
-## 10. Gate Result Categories
+## 11. Gate Result Categories
 
 - MATRIX EXECUTION COMPLETE
 - VERIFIED WITHIN DECLARED TOLERANCE
@@ -140,19 +173,29 @@ This Gate does not authorize Production.
 - CRITICAL INVARIANT VIOLATION
 - TEST ADEQUACY GAP FOUND
 - MUTATION / SEEDED DEFECT ESCAPED
+- PERFORMANCE WITHIN BUDGET
+- PERFORMANCE REGRESSION FOUND
+- BOTTLENECK FOUND
+- OPTIMIZATION REQUIRED
+- PERFORMANCE EVIDENCE MISSING
+- PERFORMANCE RETEST REQUIRED
 - EVIDENCE MISSING
 - RETEST REQUIRED
 - DEEP TEST GATE HOLD
 - READY FOR IESA FINAL ASSURANCE
 
-## 11. Authority Boundary
+## 12. Authority Boundary
 
 EXPERT IDTM cannot declare Final Approval or Production Approval.
 
-EXPERT IESA Final Assurance follows this Gate and independently judges system-level ERP/SaaS readiness using IDTM and all other controlled evidence.
+EXPERT IESA Final Assurance follows this Gate and independently judges system-level ERP/SaaS readiness using IDTM and all other controlled evidence, including performance/optimization evidence.
 
 Boss remains the Sole Final Approver.
 
 **No Evidence = No Progress**
+
+**No Performance Baseline = No Performance PASS**
+
+**Functional correctness does not excuse unacceptable speed**
 
 **Never Skip Gate**
