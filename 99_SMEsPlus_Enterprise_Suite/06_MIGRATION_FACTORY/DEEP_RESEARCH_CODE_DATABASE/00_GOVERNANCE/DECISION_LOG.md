@@ -135,5 +135,63 @@ This decision resolves the Boss-classification ruling only. It does not by itsel
 
 `DR-GAP-014` remains OPEN. EC-03 therefore remains HOLD pending structured-register validation and independent legal/license control.
 
+---
+
+## DEC-DEEP-CD-005 — Deep Research Team Separation & Mandatory Independent Review Gate
+
+| Field | Value |
+|---|---|
+| Decision Date/Time | 2026-08-30T18:31+07:00 |
+| Decision Authority | Boss — Sole Final Approver |
+| Scope | `[SMEPLUS-26-08-28-DEEP-CD-001]` Deep Research / Migration Factory control flow |
+| Decision | **APPROVED — OPERATING MODEL CLARIFICATION** |
+| Team A | Research, split into A1 Source/Code/Technical Research and A2 Database/Data/Behavior/Business Research |
+| Team B | Analysis & Canonical Transformation; produces Candidate SMEsPlus Design/Functional Input only |
+| Independent Review | **MANDATORY before Team B output may enter SMEsPlus design or development** |
+| Independent Review Role | Team D — Independent Design & Clean-room Review, consistent with the supplied Project Operating Model visual |
+| PMO | Governance/evidence completeness verification after independent review and before Boss Gate |
+| Boss Gate | Sole Final Approval before promotion to Approved SMEsPlus Design Input/Baseline |
+| Team C / Engineering | Downstream only after reviewed + Boss-approved input and separate design/development authorization |
+| Claude AI | Executor/design agent only; not Source of Truth; cannot self-approve or bypass independent review |
+| Build / Merge / Release / Deploy | NOT AUTHORIZED by this decision |
+| Global DR9 | REMAINS HOLD |
+
+### Boss Intent Captured
+
+The Deep Research Session must primarily create evidence-backed business/domain truth from Source + Database + Behavior and transform it into vendor-neutral candidate input that can be used to challenge and verify Claude AI outputs.
+
+The control chain is:
+
+```text
+Team A1 + Team A2 Research
+    -> Team A Evidence Package
+    -> Team B Analysis & Canonical Transformation
+    -> Candidate SMEsPlus Design / Functional Input
+    -> Team D Independent Review
+       -> HOLD/FAIL: return to Team B, or to Team A when research evidence is defective
+       -> PASS: PMO Governance Verification
+    -> Boss Gate
+    -> Approved SMEsPlus Design Input
+    -> authorized downstream Design / Development / Team C Engineering
+```
+
+### Mandatory Interpretation
+
+1. `TEAM B OUTPUT != APPROVED SMEsPlus DESIGN`.
+2. Team B cannot self-approve.
+3. Independent review must precede design/development handoff.
+4. PMO verification is separate from technical/domain independent review.
+5. Boss remains the sole Final Approver.
+6. Existing DOMAIN_01 Team B artifacts/corrective rounds remain preserved as evidence and history; this decision does not delete or rewrite them.
+7. Existing independent ChatGPT audits/re-audits may serve as evidence of the independent-review function but do not constitute Boss approval.
+8. Project Operating Model v1.0 remains historical evidence; the next visual revision should move the Independent Review Gate before Team C/downstream engineering for this Deep Research/Migration sub-flow.
+9. Cross-State work is allowed, but no STATE04/STATE06 progress is inherited automatically from Deep Research completion.
+10. Board/STATE/STEP percentages remain TBD unless an approved denominator/weight and evidence are available.
+
+### Controlled Artifacts
+
+- `00_GOVERNANCE/DEEP_RESEARCH_SESSION_OPERATING_MODEL_V1_1.md`
+- `06_CLEAN_ROOM_CONTROL/TEAM_B_INDEPENDENT_REVIEW_GATE.md`
+
 `No Evidence = No Progress.`  
 `Never Skip Gate.`
