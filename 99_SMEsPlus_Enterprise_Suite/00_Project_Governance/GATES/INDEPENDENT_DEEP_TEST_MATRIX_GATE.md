@@ -1,7 +1,7 @@
 # INDEPENDENT DEEP TEST MATRIX GATE
 
 Gate ID: SMEPLUS-GATE-IDTM-001
-Version: v1.1
+Version: v1.2
 Status: BOSS APPROVED / MANDATORY
 Effective Date: 2026-08-30
 Independent Executor: EXPERT IDTM
@@ -10,7 +10,7 @@ Final Decision Authority: Boss
 
 ## 1. Purpose
 
-Prevent EXPERT IESA Final Assurance and Production-readiness consideration until SMEsPlus has completed an independent 100% AI-executed 10-Dimension Deep Test Matrix with controlled tolerance, performance/speed evidence, remediation, optimization, retest and Test Adequacy proof.
+Prevent EXPERT IESA Final Assurance and Production-readiness consideration until SMEsPlus has completed an independent 100% AI-executed 10-Dimension Deep Test Matrix with controlled tolerance, hierarchical performance/speed evidence, remediation, optimization, retest and Test Adequacy proof.
 
 ## 2. Entry Criteria
 
@@ -22,7 +22,8 @@ The Gate may begin only when the applicable controlled evidence exists:
 - controlled test environment and dataset
 - approved Deep Test Matrix version and denominator
 - approved Test Case tolerances
-- approved Performance Budgets / baselines for applicable flows
+- approved local and parent Performance Budgets / baselines for applicable flows
+- Performance hierarchy / parent-child traceability where applicable
 - risk/requirement/invariant traceability
 - defect and known-issue registers
 - Performance Optimization Register
@@ -53,6 +54,7 @@ Approved Test Case Execution = 100%
 Critical Test Case Execution = 100%
 Executed Test Case Evidence Capture = 100%
 Applicable Test Case Speed/Performance Evidence = 100%
+Applicable Parent / E2E Performance Evidence = 100%
 Failed/Remediated Case Retest = 100%
 Optimization Retest = 100% where optimization occurred
 ```
@@ -75,7 +77,16 @@ A Test Case with missing or post-hoc tolerance is not Gate-valid evidence.
 
 Performance / Speed is a mandatory cross-cutting test property governed by `SMEPLUS-POL-PERF-001`.
 
-Every applicable Test Case must declare a Performance Budget before execution and record Actual Performance after execution.
+Every applicable Test Case and applicable Parent / End-to-End Flow must declare a Performance Budget before execution and record Actual Performance after execution.
+
+Applicable evidence must preserve the hierarchy:
+
+- P0 — Atomic operation / DB query / internal step
+- P1 — Test Case / API action / screen action
+- P2 — Module / business function / screen flow
+- P3 — Cross-Module / Cross-Domain business process
+- P4 — End-to-End ERP user journey / business transaction
+- P5 — Whole-system workload / mixed-tenant / peak operating profile
 
 As applicable, evidence must include:
 
@@ -85,15 +96,22 @@ As applicable, evidence must include:
 - maximum latency for critical flows where required
 - throughput
 - timeout / error rate
+- end-to-end wall-clock duration
+- critical path / bottleneck stage
 - baseline version
 - allowed regression / degradation threshold
 - actual result and variance
-- bottleneck classification
 - Optimization Required? YES / NO
 
-Performance / Speed targets are not automatically governed by the `0.001%` functional defect ceiling. They use approved workload-specific budgets and regression thresholds.
+Rules:
 
-A Test Case can be functionally correct and still fail Performance Governance.
+1. `Child Test Case PASS != Parent Flow PASS`.
+2. Parent / E2E performance must be measured directly under the frozen workload.
+3. Slow critical paths, tail latency and orchestration/rendering/queue/dependency overhead may not be hidden by averages.
+4. A Parent / E2E budget failure is `OPTIMIZATION REQUIRED` even when all child Test Cases are functionally correct.
+5. Optimization retest must cover both the local bottleneck and the original Parent / E2E failure point.
+
+Performance / Speed targets are not automatically governed by the `0.001%` functional defect ceiling. They use approved workload-specific budgets and regression thresholds.
 
 ## 7. Mandatory Cross-Domain Proof
 
@@ -120,7 +138,7 @@ Sales
 
 Equivalent controlled scenarios must be defined for Purchase, Inventory, Assets, Expense, Tax/WHT, Approval and other applicable domains.
 
-Cross-domain proof must record both correctness and material elapsed-time/bottleneck evidence where applicable.
+Cross-domain proof must record both correctness and End-to-End performance evidence.
 
 ## 8. Zero-Defect Challenge
 
@@ -141,7 +159,7 @@ IDTM finds defect / adequacy gap / performance bottleneck
 → Gate HOLD where material
 → Team C remediation / optimization
 → Team D regression / compliance / performance recheck
-→ IDTM independent retest
+→ IDTM independent local + parent/E2E retest
 → before/after evidence reconciliation
 → Gate reassessment
 ```
@@ -153,11 +171,12 @@ The Gate may issue `READY FOR IESA FINAL ASSURANCE` only when:
 - all 10 applicable dimensions are covered
 - approved matrix execution = 100%
 - required functional evidence capture = 100%
-- applicable performance evidence capture = 100%
+- applicable Test Case performance evidence capture = 100%
+- applicable Parent / E2E / System-Level performance evidence capture = 100%
 - Critical zero-tolerance open defects = 0
 - Test Case tolerance breaches are remediated/retested or explicitly ruled by Boss
-- material performance regressions/budget breaches are remediated/retested or explicitly ruled by Boss
-- Optimization findings have before/after evidence where remediation occurred
+- material local or Parent / E2E performance regressions/budget breaches are remediated/retested or explicitly ruled by Boss
+- Optimization findings have before/after evidence at the original failure level
 - Zero-Defect Challenge completed when triggered
 - injected-fault detection is within approved tolerance
 - no hidden BLOCKED / UNKNOWN / EVIDENCE MISSING items are counted as PASS
@@ -174,10 +193,13 @@ This Gate does not authorize Production.
 - TEST ADEQUACY GAP FOUND
 - MUTATION / SEEDED DEFECT ESCAPED
 - PERFORMANCE WITHIN BUDGET
+- LOCAL PERFORMANCE PASS / PARENT FLOW FAIL
+- SYSTEM-LEVEL PERFORMANCE FAIL
 - PERFORMANCE REGRESSION FOUND
 - BOTTLENECK FOUND
 - OPTIMIZATION REQUIRED
 - PERFORMANCE EVIDENCE MISSING
+- PERFORMANCE ROLL-UP EVIDENCE MISSING
 - PERFORMANCE RETEST REQUIRED
 - EVIDENCE MISSING
 - RETEST REQUIRED
@@ -188,13 +210,15 @@ This Gate does not authorize Production.
 
 EXPERT IDTM cannot declare Final Approval or Production Approval.
 
-EXPERT IESA Final Assurance follows this Gate and independently judges system-level ERP/SaaS readiness using IDTM and all other controlled evidence, including performance/optimization evidence.
+EXPERT IESA Final Assurance follows this Gate and independently judges system-level ERP/SaaS readiness using IDTM and all other controlled evidence, including local-to-system performance/optimization evidence.
 
 Boss remains the Sole Final Approver.
 
 **No Evidence = No Progress**
 
 **No Performance Baseline = No Performance PASS**
+
+**No System-Level Performance Evidence = No System-Level Performance PASS**
 
 **Functional correctness does not excuse unacceptable speed**
 
