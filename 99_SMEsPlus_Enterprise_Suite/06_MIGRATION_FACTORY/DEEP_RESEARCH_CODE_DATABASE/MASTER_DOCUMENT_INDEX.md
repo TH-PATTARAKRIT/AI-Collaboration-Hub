@@ -2,7 +2,7 @@
 
 Session: `[SMEPLUS-26-08-28-DEEP-CD-001]`
 
-Status: `GLOBAL DR9 HOLD / EC-03 CLASS-C RULING RECORDED / VALIDATION+LEGAL HOLD / DOMAIN_01 ROUND-3 TARGETED CORRECTION / EC-05 RECOVERY ACTIVE`
+Status: `GLOBAL DR9 HOLD / EC-03 CLASS-C RULING RECORDED / VALIDATION+LEGAL HOLD / DOMAIN_01 ROUND-4 TARGETED CORRECTION / EC-05 RECOVERY ACTIVE`
 
 ## Governance and Control
 
@@ -11,7 +11,7 @@ Status: `GLOBAL DR9 HOLD / EC-03 CLASS-C RULING RECORDED / VALIDATION+LEGAL HOLD
 | `README.md` | Workspace purpose, boundaries, phases, and folder map | CREATED |
 | `00_GOVERNANCE/SESSION_CHARTER.md` | Authority, scope, prohibited actions, gate authority | CREATED |
 | `00_GOVERNANCE/DECISION_LOG.md` | Boss execution authorization + DR9 HOLD + continuation + Ksolves CLASS-C ruling | CURRENT THROUGH `DEC-DEEP-CD-004` |
-| `00_GOVERNANCE/CURRENT_POSITION.md` | Current evidence-backed position | **RECONCILED THROUGH DOMAIN_01 ROUND-3 AUDIT** |
+| `00_GOVERNANCE/CURRENT_POSITION.md` | Current evidence-backed position | **RECONCILED THROUGH DOMAIN_01 ROUND-4 AUDIT** |
 | `00_GOVERNANCE/EXECUTION_PLAN.md` | DR0–DR9 plan and exit criteria | CREATED |
 | `00_GOVERNANCE/SOURCE_INTAKE_REGISTER.csv` | Source aliases + canonical identities | RECONCILED |
 
@@ -58,26 +58,30 @@ CLASS-C = observable behavior / metadata / documented capability only. No source
 | Independent Re-Audit Round 2 | `04e44b06489d8bea6c8d39410050d68cf08bce21` | HOLD / ROUND 2 REQUIRED |
 | Round 2 Correction | `06676d17e018397c262644d652fefc00639dab2a` | VERIFIED REMOTE |
 | Round 2 Closure | `5a07cab8272c12c90b817164aca1a1dd603071af` | VERIFIED REMOTE |
-| Independent Re-Audit Round 3 | `f6fb633fd141f45caf047bc94d75f84420e1cc6d` | **HOLD / TARGETED REVISION ROUND 3** |
-| Round 3 Executor Prompt | `0dda2bbb7002752dbcdd63a451c413a27e25fe1d` | **CORR-B3-01..08 ISSUED** |
+| Independent Re-Audit Round 3 | `f6fb633fd141f45caf047bc94d75f84420e1cc6d` | HOLD / ROUND 3 REQUIRED |
+| Round 3 Correction | `478f94777397a83aaeef4f7cd6e3559f750634ba` | **VERIFIED REMOTE** |
+| Round 3 Closure | `19dd7cc906ac0b995ee1642a6f83b38943673996` | **VERIFIED REMOTE** |
+| Independent Re-Audit Round 4 | `9c0a3f2d179994a20f01db16d5713989a78c0b2a` | **HOLD / TARGETED REVISION ROUND 4** |
+| Round 4 Executor Prompt | `5371f4d6b495aa26279c3b2aa5f30a4859036558` | **CORR-B4-01..08 ISSUED** |
 
-### Round-3 reviewer position
+### Round-4 reviewer position
 
-- `M-AUD-04` temporal model — CLOSED at reviewer level, subject to accounting-treatment regression.
-- `M-AUD-05` ordinary-period/fiscal-year double-count core defect — CORE CLOSED; reporting semantics still require clarification.
-- `M-AUD-06` prior-period error / IAS 8-TAS 8 treatment — **CRITICAL / BLOCK PMO**.
-- `M-AUD-07` fiscal-close MP-11 vs no-posted-reset narrative — **HIGH / BLOCK FINAL GATE**.
+- `M-AUD-06` prior-period error / IAS 8 treatment — CLOSED at domain-design level; Thailand-specific primary-text provenance boundary remains.
+- `M-AUD-07` posted fiscal-close contradiction — CORE CLOSED by no-posted-close model.
+- `M-AUD-08` raw-ledger vs reported-equity mathematics — **CRITICAL / BLOCK PMO**.
+- `M-AUD-09` fiscal-boundary close-timing continuity — **CRITICAL / BLOCK PMO**.
+- `M-AUD-10` viewpoint-aware Reported RE/Equity — **HIGH / BLOCK FINAL GATE**.
 
-Required current sequence is `CORR-B3-01` → `CORR-B3-08`, then mandatory stop at `READY FOR CHATGPT INDEPENDENT RE-AUDIT`.
+Required current sequence is `CORR-B4-01` → `CORR-B4-08`, followed by mandatory stop at `READY FOR CHATGPT INDEPENDENT RE-AUDIT`.
 
-Repository search in the current control turn found the Round-3 directive but no later CORR-B3 corrective-content commit. No Round-3 completion credit is claimed.
+Repository evidence search at 2026-08-30 09:13 Asia/Bangkok found the Round-4 audit and executor prompt, but no later Round-4 corrective-content commit. No Round-4 completion credit is claimed.
 
 ## Jira Execution Control
 
 | Jira | Purpose | Current Position |
 |---|---|---|
 | `ERPPLUS-99` | Earlier Team A CORR-002 | SUPERSEDED / NO COMPLETION CREDIT |
-| `ERPPLUS-100` | DOMAIN_01 Team B targeted revision | **UPDATED TO ROUND-3 REQUIREMENTS / TO DO / ASSIGNEE UNASSIGNED / DUE TBD** |
+| `ERPPLUS-100` | DOMAIN_01 Team B targeted revision | **UPDATED TO ROUND-4 REQUIREMENTS / TO DO / ASSIGNEE UNASSIGNED / DUE TBD** |
 | `ERPPLUS-101` | EC-05 mapping recovery/rebind | TO DO / ASSIGNEE UNASSIGNED / DUE TBD |
 | `ERPPLUS-102` | EC-03 Ksolves CLASS-C register validation + legal control | TO DO / ASSIGNEE UNASSIGNED / DUE TBD |
 
@@ -92,7 +96,7 @@ historical mapping rows = 27,682
 historical direct matches = 7,703
 ```
 
-Current certification remains HOLD because no qualifying artifact was located with all mandatory current-lineage evidence:
+Current certification remains HOLD because no qualifying artifact has been located with all mandatory current-lineage evidence:
 
 - mapping SHA-256;
 - generation timestamp;
@@ -110,7 +114,7 @@ Current certification remains HOLD because no qualifying artifact was located wi
 | `01_SOURCE_CODE_RESEARCH/` | CANONICAL SOURCE + LINEAGE RECONCILED |
 | `02_DATABASE_RESEARCH/` | DUMP IDENTITY PWC; COUNT-TAXONOMY RECONCILIATION OPEN |
 | `03_CODE_DB_MAPPING/` | HISTORICAL EVIDENCE INSPECTABLE / CURRENT LINEAGE HOLD / RECOVERY ACTIVE |
-| `04_BUSINESS_SEMANTICS/` | GLOBAL REVIEW BASELINE PWC; DOMAIN_01 ROUND-3 CORRECTION REQUIRED |
+| `04_BUSINESS_SEMANTICS/` | GLOBAL REVIEW BASELINE PWC; DOMAIN_01 ROUND-4 CORRECTION REQUIRED |
 | `05_EXCEPTION_GAPS/` | ACTIVE |
 | `06_CLEAN_ROOM_CONTROL/` | EC-03 CLASS-C RULING RECORDED; VALIDATION/LEGAL HOLD |
 | `07_RESEARCH_SUMMARY/` | PRIOR GLOBAL DR8 HOLD PRESERVED |
