@@ -205,10 +205,18 @@ preserved as found, not invented by this executor.
 ## Gate Status
 
 ```
-DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND 5 APPLIED, PENDING PUSH VERIFICATION
-STATUS WILL READ "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 5 corrections)" ONCE THE
-CORR-B5 COMMIT IS PUSHED AND INDEPENDENTLY VERIFIED (see W — Closure Evidence, once complete)
+DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND 5 APPLIED AND PUSHED
+READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 5 corrections)
 ```
+
+Round 5 corrective commit `406dfc128dac4f61b0a543e818b4b9605aa88264` pushed to
+`TH-PATTARAKRIT/AI-Collaboration-Hub`, branch `SMEsPlus`, and independently verified two ways
+(fresh `git fetch` + `rev-parse` match, and a direct GitHub API commit lookup bypassing local
+git — sha, message, author identity, and 19-file count all confirmed matching). Four unrelated
+governance commits (EXPERT IESA appointment/charter/assurance gate) landed on this branch
+before this round's push; confirmed zero file overlap before proceeding, pushed cleanly on the
+first attempt from that tip, no content lost on either side. Full evidence:
+[W — Closure Evidence](DOMAIN_01_ACCOUNTING_CORE_W_CORR_B5_CLOSURE_EVIDENCE.md).
 
 Superseded prior statuses (kept visible, not deleted): "READY FOR CHATGPT INDEPENDENT DESIGN
 AUDIT" (true as of `6c18dd323...`/`727b5300...`) → returned by Round 1 audit → "READY FOR
@@ -217,9 +225,8 @@ re-audit → "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 2 corrections)" (tru
 `06676d17e...`) → returned by Round 3 re-audit → "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round
 3 corrections)" (true as of `478f94777...`/`19dd7cc90...`) → returned by Round 4 re-audit →
 "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 4 corrections)" (true as of
-`b50dceb7...`/`404e769d...`) → returned by Round 5 re-audit → this status, PENDING as of this
-document's own authoring, to be updated once the CORR-B5 commit SHA is known and independently
-confirmed (see [W — Closure Evidence](DOMAIN_01_ACCOUNTING_CORE_W_CORR_B5_CLOSURE_EVIDENCE.md)).
+`b50dceb7...`/`404e769d...`) → returned by Round 5 re-audit → this status, true as of
+`406dfc128dac4f61b0a543e818b4b9605aa88264`, specifically for Round 5's corrections.
 
 ## Open Assumptions — Explicitly Not Resolved by This Report
 

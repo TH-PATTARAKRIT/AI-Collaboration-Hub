@@ -125,16 +125,22 @@ comment, per explicit instruction not to invent either value.
 ```
 Repository       : TH-PATTARAKRIT/AI-Collaboration-Hub
 Branch           : SMEsPlus
-Previous         : 404e769d8741142f1aa1f4482e8cd20e1f486cef
-Round 5 SHA       : (recorded after commit — see W — Closure Evidence for the filled-in value)
-Push             : (recorded after commit and verified two independent ways — see W)
+Previous (Round 4 closure) : 404e769d8741142f1aa1f4482e8cd20e1f486cef
+Tip when Round 5 began     : dd77047df3a1de827009caa980110850ba56faa5
+Additional unrelated governance commits landed before push (EXPERT IESA appointment/charter/
+  assurance gate) : f88eb1cad2310e104351b70ed951e52ac5bf3c77 — no file overlap with Team B's
+  DOMAIN_01_ACCOUNTING_CORE evidence; pushed cleanly on the first attempt from this tip
+Round 5 SHA       : 406dfc128dac4f61b0a543e818b4b9605aa88264
+Push             : VERIFIED — git fetch/rev-parse match AND direct GitHub API lookup, both
+                    confirming 406dfc128dac4f61b0a543e818b4b9605aa88264 as origin/SMEsPlus HEAD
+                    (19 files changed, author identity confirmed matching)
 ```
 
 ## Final Gate Status
 
 ```
-CORRECTIVE ROUND 5 APPLIED, PENDING PUSH VERIFICATION
-WILL READ "READY FOR CHATGPT INDEPENDENT RE-AUDIT" ONCE PUSH IS VERIFIED
+CORRECTIVE ROUND 5 APPLIED AND PUSHED
+READY FOR CHATGPT INDEPENDENT RE-AUDIT
 ```
 
 ## Next Authority
