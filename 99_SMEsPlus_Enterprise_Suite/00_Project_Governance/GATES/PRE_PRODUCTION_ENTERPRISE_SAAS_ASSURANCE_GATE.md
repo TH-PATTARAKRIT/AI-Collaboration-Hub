@@ -1,7 +1,7 @@
 # PRE-PRODUCTION ENTERPRISE & SAAS ASSURANCE GATE
 
 Gate ID: SMEPLUS-GATE-PP-IESA-001
-Version: v1.1
+Version: v1.2
 Status: BOSS APPROVED / MANDATORY
 Effective Date: 2026-08-30
 Owner of Evidence Coordination: PMO
@@ -10,7 +10,7 @@ Final Decision Authority: Boss
 
 ## 1. Purpose
 
-Prevent Production/customer release until the completed SMEsPlus solution has been independently assessed at whole-system ERP and SaaS level, including performance/scalability fitness for intended customer workloads.
+Prevent Production/customer release until the completed SMEsPlus solution has been independently assessed at whole-system ERP and SaaS level, including performance/scalability fitness for intended customer workloads and direct End-to-End/System-Level performance evidence.
 
 This Gate is mandatory after Team D and EXPERT IDTM evidence and before Production/customer use.
 
@@ -29,6 +29,8 @@ The Gate may begin only when the applicable evidence is available, including:
 - data reconciliation evidence
 - accounting/financial reconciliation evidence where applicable
 - Performance Budget / baseline register
+- Performance Budget hierarchy / parent-child roll-up evidence
+- direct Module / Cross-Domain / End-to-End / Whole-System performance results where applicable
 - load/stress/soak evidence
 - Performance Optimization Register with before/after evidence
 - performance regression history for controlled builds where available
@@ -84,31 +86,63 @@ Sales
 
 Equivalent controlled scenarios must be defined for Purchase, Inventory, Assets, Expense, Approval, Tax/WHT and other applicable domains.
 
-Cross-domain proof must include material elapsed-time / bottleneck evidence where performance affects intended operational use.
+Cross-domain proof must include direct End-to-End wall-clock, critical-path and bottleneck evidence where performance affects intended operational use.
 
 ## 5. Performance / Speed Assurance Requirement
 
 IESA must independently assess Performance / Speed using controlled evidence, not informal impressions.
 
+Performance evidence must be reconciled across the applicable hierarchy:
+
+- P0 — Atomic operation / DB query / internal step
+- P1 — Test Case / API action / screen action
+- P2 — Module / business function / screen flow
+- P3 — Cross-Module / Cross-Domain business process
+- P4 — End-to-End ERP user journey / business transaction
+- P5 — Whole-system workload / mixed-tenant / peak operating profile
+
 As applicable, the assurance must examine:
 
 - business critical-flow duration
+- user-visible page/screen readiness
 - p50 / p95 / p99 latency where statistically meaningful
 - maximum latency for critical flows where required
 - throughput and saturation behavior
 - concurrency impact
 - timeout / retry / error rate
 - batch/report/background-job duration
-- cross-domain elapsed time and bottleneck stage
-- frozen Performance Budget / baseline
+- cross-domain elapsed time and critical-path bottleneck stage
+- frozen local and parent Performance Budgets / baselines
 - allowed regression / degradation threshold
 - before/after Optimization evidence
 - expected customer workload and peak-load fitness
 - growth / scalability headroom
 
+IESA must not infer whole-system performance readiness merely because isolated Test Cases or Modules pass.
+
+```text
+Child Test Case PASS
+!= Parent Flow PASS
+!= End-to-End ERP PASS
+!= Whole-System Performance PASS
+```
+
 A functional PASS does not override a material Performance FAIL.
 
-## 6. Gate Result Categories
+## 6. System-Level Anti-Masking Rule
+
+IESA must challenge and reject, where applicable:
+
+- averages that hide a slow critical business flow
+- local PASS results used as substitutes for missing End-to-End evidence
+- missing p95/p99 tail-latency analysis on material flows
+- missing orchestration/rendering/queue/dependency overhead
+- Optimization claims that improve a child component but do not improve the original Parent / End-to-End failure
+- workload profiles that do not represent the intended customer operating model
+
+A complete page, business process or ERP transaction that exceeds its approved Performance Budget is a Performance Gap even when every component independently meets its own local target.
+
+## 7. Gate Result Categories
 
 IESA may report:
 
@@ -120,6 +154,9 @@ IESA may report:
 - SAAS READINESS GAP FOUND
 - SECURITY / TENANT ISOLATION GAP FOUND
 - PERFORMANCE / SCALABILITY GAP FOUND
+- LOCAL PERFORMANCE PASS / SYSTEM PERFORMANCE FAIL
+- SYSTEM-LEVEL PERFORMANCE FAIL
+- PERFORMANCE ROLL-UP EVIDENCE MISSING
 - PERFORMANCE EVIDENCE MISSING
 - OPTIMIZATION REQUIRED BEFORE PRODUCTION
 - OPERATIONS READINESS GAP FOUND
@@ -131,7 +168,7 @@ IESA may report:
 
 Only Boss may issue the Production/release approval.
 
-## 7. Blocking Rule
+## 8. Blocking Rule
 
 Any unresolved Critical finding means:
 
@@ -143,15 +180,15 @@ Customer Go-Live = HOLD
 
 unless Boss explicitly accepts the risk or provides a written exception.
 
-A material performance bottleneck that makes the intended workload operationally unusable, unstable or materially outside the approved Performance Budget may also keep Release/Production on HOLD.
+A material Parent / End-to-End / Whole-System performance bottleneck that makes the intended workload operationally unusable, unstable or materially outside the approved Performance Budget may also keep Release/Production on HOLD.
 
-## 8. Remediation / Optimization Loop
+## 9. Remediation / Optimization Loop
 
 ```text
 IESA Finding
 → Relevant Owner remediation / optimization
 → Team D or responsible independent evidence re-verification where required
-→ IDTM independent performance retest where applicable
+→ IDTM independent local + Parent/E2E performance retest where applicable
 → IESA Re-Assurance
 → READY FOR BOSS DECISION
 → Boss Decision
@@ -159,7 +196,7 @@ IESA Finding
 
 IESA must not perform the remediation it later independently verifies.
 
-## 9. Required Final Package to Boss
+## 10. Required Final Package to Boss
 
 1. Executive Assurance Result
 2. IESA Evidence Register
@@ -168,22 +205,26 @@ IESA must not perform the remediation it later independently verifies.
 5. Security/Tenant Isolation Result
 6. Performance/Scalability Result
 7. Performance Budget / Baseline Review
-8. Performance Optimization Register Review
-9. Reliability/Recovery Result
-10. Accounting/Financial Integrity Result
-11. Integration Resilience Result
-12. Operations/DR/Upgrade/Rollback Result
-13. Open Gap Register
-14. Residual Risk Register
-15. Conditions / Required Follow-ups
-16. Production Recommendation
-17. Explicit statement of what remains unproven
+8. Performance Hierarchy / Roll-Up Review
+9. End-to-End / Whole-System Performance Result
+10. Performance Optimization Register Review
+11. Reliability/Recovery Result
+12. Accounting/Financial Integrity Result
+13. Integration Resilience Result
+14. Operations/DR/Upgrade/Rollback Result
+15. Open Gap Register
+16. Residual Risk Register
+17. Conditions / Required Follow-ups
+18. Production Recommendation
+19. Explicit statement of what remains unproven
 
-## 10. Governing Rules
+## 11. Governing Rules
 
 **No Evidence = No Progress**
 
 **No Performance Baseline = No Performance PASS**
+
+**No System-Level Performance Evidence = No System-Level Performance PASS**
 
 **Never Skip Gate**
 
