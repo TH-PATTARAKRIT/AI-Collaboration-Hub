@@ -10,8 +10,9 @@
 | **Corrected (Round 3)** | **CORR-B3-05 (2026-08-29)** — DT-10 added (posted Fiscal-Year-Close Entry vs. no-posted-close derived-formula model for MP-11), required by ChatGPT's Round 3 finding `M-AUD-07`. DT-08's Option A description carried a now-superseded implementation detail (the posted MP-11 Entry) — annotated below, not silently edited; the Continuous-vs-Segmented decision itself is unaffected. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-03 (2026-08-30)** — DT-11 added (boundary-driven vs. explicit-unclosed-component vs. mandatory-atomic-close models for Fiscal-Year reporting inclusion), required by ChatGPT's Round 4 finding `M-AUD-09`. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 5)** | **CORR-B5-05 (2026-08-30)** — DT-12 added (boundary immutability vs. versioned Fiscal Calendar models for historical safety), required by ChatGPT's Round 5 finding `M-AUD-12`. See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 6)** | **CORR-B6-02 (2026-08-30)** — DT-13 added (prospective-only vs. atomic-retroactive-restatement models for post-reliance Fiscal-Year-membership change), required by ChatGPT's Round 6 finding `M-AUD-14`. See [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md). |
 
-Originally six, then seven, now **nine**, decisions were significant enough — either because
+Originally six, then seven, then nine, now **ten**, decisions were significant enough — either because
 B04–B12 flagged them as assumptions requiring gate review, or because a real, defensible
 alternative existed and picking one without showing the other was considered would understate
 the actual design effort — to warrant a formal option comparison rather than a single stated
@@ -508,6 +509,47 @@ from this DT's own recommendation (Option B vs. A vs. C), which IS a required fi
 
 ---
 
+## DT-13 — Post-Reliance Fiscal-Year Membership Change: Prospective-Only vs. Atomic Retroactive Restatement *(new, added at CORR-B6-02)*
+
+**Context:** ChatGPT's Round 6 audit (`M-AUD-14`) found DT-12's adopted Versioned Fiscal
+Calendar model (Option B there) under-specified for Current-viewpoint reporting once a
+post-reliance boundary version and old Entry membership can coexist — a distinct question from
+DT-12's own (whether the boundary can be protected/versioned at all): this DT asks what
+Current-viewpoint reporting does once a legitimate post-reliance change is underway.
+
+- **Option A — Prospective-Only Change After Reliance.** The ordinary boundary-versioning
+  mechanism (`FiscalYearBoundaryChanged`, DT-12's Option B) may never reach backward over any
+  date reliance already covers. Historical membership stays frozen; genuine historical
+  correction requires a separate, dedicated, atomic mechanism.
+- **Option B — Retroactive Change with Atomic Restatement/Reclassification.** The ordinary
+  boundary-versioning mechanism itself may reach backward, PROVIDED it also reclassifies every
+  affected Entry's membership in the same atomic action.
+- **Option C — a different model.** Considered and rejected: no alternative was found that
+  resolves the coherence requirement (one authoritative membership per viewpoint, no reachable
+  hybrid state) with less machinery than a refined Option A already reuses.
+
+| | Accounting correctness | Auditability | Complexity | Migration impact | Multi-company | SaaS impact | Maintainability | Advancement potential |
+|---|---|---|---|---|---|---|---|---|
+| A (adopted, refined) | Correct by construction — no reachable hybrid state, since the lightweight mechanism is constitutionally barred from reliance and the heavyweight mechanism is atomic by definition | Highest — two cleanly separated mechanisms, each with an unambiguous, narrow purpose | Slightly higher than a single overloaded mechanism (two named events, not one), but each individually simpler than a "sometimes-atomic" version of one mechanism | Neutral — MG-C16 (pre-reliance migration setup) is unaffected either way | Neutral (per-Company, unchanged) | Positive — the common, lightweight case (pre-reliance/future correction) stays cheap; the rare, heavy case is clearly and separately gated | Highest — mirrors this design's existing Correction-vs-Restatement separation (CO-06/CO-15) for Entries, applied one level up, rather than inventing new machinery | Directly resolves `M-AUD-14`, completing Option A's own referenced-but-unspecified reclassification path |
+| B (rejected as the general mechanism) | Correct only if the atomicity requirement is followed without exception — nothing in Round 5's own text (before this round) enforced that, which is exactly how `M-AUD-14` arose | High, if implemented correctly, but the mechanism itself must additionally guarantee atomicity as a special case some invocations need and others don't | Lower on paper (one mechanism) but effectively higher in practice — that one mechanism must behave differently (atomic vs. not) depending on whether reliance exists, which is exactly the ambiguity that produced the finding | Neutral | Neutral | Neutral — but the single mechanism's dual purpose makes its authorization/UX harder to reason about for both the lightweight and heavyweight cases | Lower — one mechanism serving two purposes is harder to keep coherent than two mechanisms each serving one, as this round's own finding demonstrates | Resolves `M-AUD-14` only if the atomicity requirement this round adds is bolted onto the existing event — functionally converges on Option A's two-mechanism shape anyway, under one name instead of two |
+| C (rejected) | Unproven — no candidate model was found | N/A | N/A | N/A | N/A | N/A | N/A | Does not resolve `M-AUD-14` without first being specified and shown at least equivalent to A |
+
+**Recommendation:** **Option A, refined** — with high confidence. Round 5's own design was
+already, in substance, an incompletely-specified Option B (a boundary version was permitted to
+exist "unless a separate...action is taken," leaving the two actions independently timed); that
+gap, not the concept of retroactive correction itself, produced `M-AUD-14`. Rather than forcing
+strict atomicity onto the existing `FiscalYearBoundaryChanged` event (Option B, literally read),
+this design keeps that event scoped to its original, lightweight, pre-reliance/future-only
+purpose and introduces one new, dedicated, atomic mechanism (`FiscalYearMembershipRestated`,
+[B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1j, [B04](B04_BUSINESS_LIFECYCLE_EVENT_MODEL.md))
+for the rare case that reaches into reliance — mirroring, not duplicating, this design's
+existing Correction-vs-Restatement separation for Entries. **Not independently approved by
+Boss** — flagged for Final Gate, same status as DT-12; the authorization tier question DT-12
+already flagged as Team B assumption #7 is unchanged by this DT (it selects WHICH mechanism
+applies WHEN, not WHAT tier governs either one).
+
+---
+
 ## Acceptance Check
 
 ```
@@ -515,13 +557,13 @@ No decision jumped directly to one design without showing alternatives : CONFIRM
 Every recommendation marked as Team B-only, not approved              : CONFIRMED
 Rejected options retained (not deleted) to show they were considered   : CONFIRMED (DT-02
   original Option A, DT-03 Option C, DT-06 Option B, DT-07 Option B, DT-08 Option B,
-  DT-09 Option C, DT-10 Option A, DT-11 Options B and C, DT-12 Options A and C)
+  DT-09 Option C, DT-10 Option A, DT-11 Options B and C, DT-12 Options A and C, DT-13 Option B)
 ```
 
 **B13 = COMPLETE.** *(Corrected at CORR-B01/CORR-B03/CORR-B2-03/04/CORR-B3-05/CORR-B4-03/
-CORR-B5-05 — DT-02 revised in place with the original recommendation kept visible and
+CORR-B5-05/CORR-B6-02 — DT-02 revised in place with the original recommendation kept visible and
 explicitly withdrawn as incoherent, not silently replaced; DT-07 new at Round 1 close-out,
-DT-08/DT-09 new at Round 2, DT-10 new at Round 3, DT-11 new at Round 4, DT-12 new this round.
-DT-01, DT-03..06 are unchanged from the original B13 pass. DT-08's Option A description
-carries a Round-3 annotation correcting a stale implementation detail; the Continuous-vs-
-Segmented decision itself is unaffected.)*
+DT-08/DT-09 new at Round 2, DT-10 new at Round 3, DT-11 new at Round 4, DT-12 new at Round 5,
+DT-13 new this round. DT-01, DT-03..06 are unchanged from the original B13 pass. DT-08's
+Option A description carries a Round-3 annotation correcting a stale implementation detail; the
+Continuous-vs-Segmented decision itself is unaffected.)*

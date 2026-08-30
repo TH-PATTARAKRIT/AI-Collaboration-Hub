@@ -4,9 +4,10 @@
 |---|---|
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B15 — Traceability & Consistency Verification |
-| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit (Round 1) and recorded in §3a; two more were found by ChatGPT's Round 2 re-audit and recorded in §3b; two more were found by ChatGPT's Round 3 re-audit and recorded in §3c; three more were found by ChatGPT's Round 4 re-audit and recorded in §3d; two more were found by ChatGPT's Round 5 re-audit and recorded in §3e — all with equal transparency. |
+| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit (Round 1) and recorded in §3a; two more were found by ChatGPT's Round 2 re-audit and recorded in §3b; two more were found by ChatGPT's Round 3 re-audit and recorded in §3c; three more were found by ChatGPT's Round 4 re-audit and recorded in §3d; two more were found by ChatGPT's Round 5 re-audit and recorded in §3e; two more were found by ChatGPT's Round 6 re-audit and recorded in §3f — all with equal transparency. |
 | **Corrected (Round 4)** | **CORR-B4-01..08 (2026-08-30)** — new §3d added for `M-AUD-08`/`M-AUD-09`/`M-AUD-10`. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 5)** | **CORR-B5-01..08 (2026-08-30)** — new §3e added for `M-AUD-11`/`M-AUD-12`; §6 gains a genuine seventh Team B assumption (Fiscal Year boundary change authorization tier). See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 6)** | **CORR-B6-01..08 (2026-08-30)** — new §3f added for `M-AUD-13`/`M-AUD-14`; §6's seventh assumption confirmed unchanged, not narrowed or widened. See [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md). |
 
 ## 1. Full Chain Traces (Exemplars)
 
@@ -329,6 +330,58 @@ structure; the Elapsed test's implicit calendar-timelessness assumption), contin
 `M-AUD-08`/`M-AUD-09`. Reflected in
 [G §4e](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md).
 
+## 3f. Corrective Round 6 — Issues Found by ChatGPT Re-Audit and Resolved *(added at CORR-B6-01..08)*
+
+Two further defects, found by ChatGPT's Round 6 re-audit (`b0ce666dad72909411a49690d0f642313d94dd13`)
+— **both tracing directly to Round 5's own new §1h text**, making this the fourth instance of
+the self-inflicted-finding sub-pattern (§3d/§3e first named it) and the first where BOTH of one
+round's findings originate in the SAME single prior-round section.
+
+**Issue 15 (`M-AUD-13`, CRITICAL) — B07 §1g's Round-4 claim that "the Elapsed test never takes a
+viewpoint parameter" directly contradicted §1h's own Round-5 Known/Current calendar model,
+which was never revised to match.** §1g was correct when written; §1h's Round-5 addition made it
+false, and nothing in Round 5's own corrective work went back to reconcile the two. **Resolution:**
+§1g corrected in place (struck through, not deleted); new §1i formalizes
+`FiscalYearDefinition_Known(C,Y,T)`/`_Current(C,Y)` and `Elapsed_Known(Y,D,T)`/`_Current(Y,D)`,
+proven a fixed point once T has passed by the same Recorded-At argument BINV-11/12 already
+establish for Entries. Propagated into B08 MP-09 (`FiscalYearStart_Known/Current`) and MP-12
+(Proofs D/G4, corrected to route every boundary lookup through the matching viewpoint). Full
+record: [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1i,
+[B23](B23_CORR_B6_FISCAL_CALENDAR_VIEWPOINT_AND_MEMBERSHIP_REGRESSION.md) Tests 1, 6, 7.
+
+**Issue 16 (`M-AUD-14`, CRITICAL) — §1h's Round-5 model left Current-viewpoint reporting
+under-specified once a post-reliance boundary version and old Entry membership can coexist.**
+§1h permitted a new boundary version to exist "unless a separate, explicit reclassification
+action is taken" — leaving that action undefined and un-gated as atomic, so a new version and
+stale Entry membership could coexist indefinitely with no defined Current-viewpoint reporting
+behavior. **Resolution:** new B07 §1j selects and fully specifies a change model — Option A
+(Prospective-Only Change After Reliance), refined with a new, dedicated, atomic
+`FiscalYearMembershipRestated` mechanism (B04) that moves the boundary AND reclassifies affected
+Entries' Current-viewpoint membership in one indivisible action, never two independently-timed
+ones. `Membership_Known(E,T)`/`Membership_Current(E)` formalized; the proven invariant
+`Membership_Current(E) = Membership_Known(E,RecordedAt(E))` (absent an explicit Restatement)
+closes the "which membership is authoritative" question directly. B07's Fiscal Year identity
+statement corrected to be viewpoint/version-safe (CORR-B6-05), with no-overlap/no-coverage-gap/
+transition-preservation/future-validation invariants stated explicitly. Compared against a
+strict, unrefined reading of Option B (Retroactive Change with Atomic Restatement applied to the
+EXISTING `FiscalYearBoundaryChanged` mechanism itself) at
+[B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md) DT-13 (new) — rejected because it would overload
+one mechanism with two conceptually distinct purposes rather than cleanly separating them, as
+this design already does for Entries (Correction vs. Restatement). New BINV-17 (B05) formalizes
+the coherence requirement. Full record: [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1j,
+[B23](B23_CORR_B6_FISCAL_CALENDAR_VIEWPOINT_AND_MEMBERSHIP_REGRESSION.md) Tests 2-5, 8-15.
+
+**Pattern note, continued from §3a-§3e:** this is the SIXTH consecutive corrective round in
+which independent re-audit found what this domain's own process did not, and the fourth
+consecutive instance of the self-inflicted-finding sub-pattern (Round 3 introduced `M-AUD-07`'s
+predecessor gap; Round 4's own MP-12 introduced `M-AUD-11`; Round 5's own new §1h introduced
+BOTH of this round's findings at once). Unlike §3d/§3e's cases, where a round's fix introduced a
+single new formula-level defect, this round's findings are the first to arise from an outright
+textual CONTRADICTION between two sections of this domain's own design (§1g vs. §1h) rather than
+a defect internal to one formula — a qualitatively different failure mode this domain's own
+process had not previously exhibited. Reflected in
+[G §4f](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md).
+
 ## 4. Contradictory Rules Check
 
 Beyond Issue 2 (resolved above), no other rule pair was found to assert incompatible
@@ -386,6 +439,17 @@ domain's working default (reuse CO-15's existing Restatement tier) is stated as 
 asserted as the settled answer — flagged explicitly, per the directive's instruction, rather
 than hidden inside B07 §1h's prose.
 
+**Round 6 note (CORR-B6-07):** assumptions #1-6 are unchanged, for the same reason as every
+prior round — this round's findings (Fiscal Calendar viewpoint coherence and post-reliance
+membership semantics) are pure internal-consistency corrections with no bearing on their subject
+matter. **The seventh assumption (authorization tier) is likewise unchanged in wording** — this
+round selects WHICH mechanism (`FiscalYearBoundaryChanged` vs. the new
+`FiscalYearMembershipRestated`) applies WHEN, and both continue to reuse CO-15's tier as a
+working default; it does not narrow, widen, or settle WHAT that tier should be. No eighth
+assumption is added: choosing Option A over Option B for the change model (DT-13) is a design
+decision this domain makes and justifies, the same category as DT-08 through DT-12's own
+resolutions, not an open policy question deferred to Boss.
+
 | Assumption | First flagged | Disposition (per B01 §7 categories) |
 |---|---|---|
 | Rounding method = round-half-up | B08 MP-04, B13 DT-01 | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE** |
@@ -428,36 +492,51 @@ Contradictory rules                       : 1 found internally (Issue 2), RESOLV
                                              Round 3's own fix); 2 more found by Round-5
                                              re-audit, RESOLVED (§3e, both of which trace
                                              directly to Round 4's own new design surface —
-                                             see §3e pattern note); 1 stale statement found
-                                             during Round-2 re-verification and corrected (§5)
+                                             see §3e pattern note); 2 more found by Round-6
+                                             re-audit, RESOLVED (§3f, both tracing directly to
+                                             Round 5's own new §1h text — the fourth consecutive
+                                             self-inflicted-finding instance, and the first
+                                             arising from a textual contradiction rather than a
+                                             single formula's own defect); 1 stale statement
+                                             found during Round-2 re-verification and corrected
+                                             (§5)
 Circular definitions                      : NONE, re-verified Round 2 (§5); re-checked Round 3,
-                                             Round 4, and Round 5 — the new B07 §1f/§1g/§1h
-                                             decompositions and B08 MP-09/MP-12 (corrected)
-                                             introduce no new dependency that could cycle back
-                                             on Consumption, Period Lock, Restatement, or the
-                                             Elapsed test
+                                             Round 4, Round 5, and Round 6 — the new B07
+                                             §1f/§1g/§1h/§1i/§1j decompositions and B08
+                                             MP-09/MP-12 (corrected) introduce no new dependency
+                                             that could cycle back on Consumption, Period Lock,
+                                             Restatement, or the Elapsed test —
+                                             `FiscalYearMembershipRestated` depends on
+                                             `FiscalYearBoundaryChanged` having NOT applied (its
+                                             scope is mutually exclusive, not layered), so no
+                                             cycle is introduced between the two new-this-round
+                                             mechanisms either
 Unresolved critical assumptions           : 7 Team B assumptions (#2 revised/narrowed twice,
                                              Round 1 and Round 2, not withdrawn; #1, #3-6
-                                             unchanged by Round 3 and Round 4; #7 NEW at
-                                             Round 5, Fiscal Year boundary change authorization
-                                             tier — see §6 notes) + 3 carried-forward Team A
-                                             items, ALL VISIBLE (§6), none hidden
+                                             unchanged by Round 3, Round 4, and Round 6; #7 NEW
+                                             at Round 5, Fiscal Year boundary change
+                                             authorization tier, confirmed unchanged at Round 6
+                                             — see §6 notes) + 3 carried-forward Team A items,
+                                             ALL VISIBLE (§6), none hidden
 Regulatory overreach                      : NONE (§7)
 Vendor leakage                             : NONE (§8, cross-checked against B14; re-confirmed
                                              unaffected by Round 2's temporal/fiscal model, by
                                              Round 3's IAS 8 classification and no-posted-close
                                              model, by Round 4's reporting-equity mathematics,
-                                             and by Round 5's Trial Balance/Fiscal Calendar
-                                             corrections — all five are grounded in accounting
+                                             by Round 5's Trial Balance/Fiscal Calendar
+                                             corrections, and by Round 6's viewpoint/membership
+                                             corrections — all six are grounded in accounting
                                              standards/mathematics and this domain's own prior
-                                             vocabulary, not vendor structure)
+                                             vocabulary (Known/Current, Effective/Recorded,
+                                             CO-15's tier), not vendor structure)
 ```
 
 **B15 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-01..08/CORR-B4-01..08/
-CORR-B5-01..08 — §3a, §3b, §3c, §3d, and §3e added, §5 corrected (a stale pre-Round-1 statement
-found during Round 2 re-verification), §6 assumption #2 revised in place twice (Round 1,
-Round 2) and explicitly confirmed unchanged at Round 3 and Round 4, with every prior wording
-kept visible, not deleted, per instruction. §6 gains a genuine seventh assumption at Round 5 —
-the first round to add one since the original six were established. §1, §2, §4, §7, §8
-re-verified as still accurate after Round 5's corrections: no new orphans, no new overreach,
-no new vendor leakage, no new circularity.)*
+CORR-B5-01..08/CORR-B6-01..08 — §3a, §3b, §3c, §3d, §3e, and §3f added, §5 corrected (a stale
+pre-Round-1 statement found during Round 2 re-verification), §6 assumption #2 revised in place
+twice (Round 1, Round 2) and explicitly confirmed unchanged at Round 3, Round 4, and Round 6,
+with every prior wording kept visible, not deleted, per instruction. §6 gains a genuine seventh
+assumption at Round 5 — the first round to add one since the original six were established —
+confirmed unchanged in wording and scope-of-question at Round 6. §1, §2, §4, §7, §8 re-verified
+as still accurate after Round 6's corrections: no new orphans, no new overreach, no new vendor
+leakage, no new circularity.)*

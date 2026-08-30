@@ -10,6 +10,7 @@
 | **Corrected (Round 3)** | **CORR-B3-05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`, finding `M-AUD-07`) found MP-11 (Round 2, below) literally defined a posted Entry debiting Revenue and crediting Expense — directly contradicting this same document's and B07's repeated claim that Revenue/Expense are never reset by a posted action, and, traced through MP-09's aggregation, a genuine arithmetic bug (it would corrupt the closing year's own historical query). MP-11 rewritten below to the no-posted-close, derived-Reported-Retained-Earnings model (B07 §1e); MP-02's post-closing special case paragraph corrected to match. Full record: [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-01/02/03/05 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) found MP-02's "Reported Equity" formula double-counted the designated Retained Earnings account's balance (`M-AUD-08`) and that Reported Retained Earnings depended on `FiscalYearClosed` declaration timing rather than the Fiscal Year's own calendar boundary (`M-AUD-09`). MP-02's post-boundary paragraph and MP-11 both corrected to cross-reference the fix; new MP-12 added, formally re-proving the Raw Ledger Identity → Reported Financial-Statement Identity transformation (Proofs A-G) that Round 3 had not actually re-derived after introducing mixed-horizon reporting. Full record: [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 5)** | **CORR-B5-01/02/03/04 (2026-08-30)** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`) found MP-09's category-bounded aggregation, silently reused by MP-12 Proof G as "the Raw Trial Balance," does NOT actually balance once a Fiscal Year has elapsed (`M-AUD-11`, CRITICAL — a genuine arithmetic contradiction, not a labeling nuance, verified against Team B's own B21 Test 5 numbers). MP-09 renamed and split into `CumulativeAccountBalance` (the true single-horizon raw formula) and `FiscalYearActivity` (the Revenue/Expense-only, Fiscal-Year-bounded formula, never itself called a Trial Balance); MP-12 Proof G rebuilt into G1 (Raw Cumulative Trial Balance)/G2 (Current-FY Reporting Balance, not balanced)/G3 (Balanced Presentation Trial Balance, with an explicit never-posted derived bridge line)/G4 (Known vs. Current). Full record: [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 6)** | **CORR-B6-01/04 (2026-08-30)** — ChatGPT's Round 6 re-audit (`b0ce666dad72909411a49690d0f642313d94dd13`) found `FiscalYearActivity`'s `FiscalYearStart(C,D)` boundary lookup was never itself viewpoint-parameterized, and MP-12 Proofs D/G4 evaluated the Known viewpoint's Line-filtering without also evaluating its Fiscal-Year-boundary lookup under the same viewpoint — the exact "historical facts @ T + current calendar @ now" hybrid `M-AUD-13`/`M-AUD-14` forbid. `FiscalYearStart` corrected to `FiscalYearStart_Known/Current` ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1i); Proofs D and G4 corrected to route every boundary lookup through the matching viewpoint explicitly. See [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md). |
 
 ### MP-01 — Double-Entry Balance
 
@@ -355,14 +356,21 @@ for Revenue/Expense specifically, and NEVER itself claimed to be a balanced Tria
 
   FiscalYearActivity_Known(A, C, D, T)   [A a Revenue or Expense account]
     = Σ (signed amount of every Line referencing A) over every COMMITTED Entry belonging to C
-      where FiscalYearStart(C, D) <= Effective Date <= D AND Recorded At <= T
+      where FiscalYearStart_Known(C, D, T) <= Effective Date <= D AND Recorded At <= T
   FiscalYearActivity_Current(A, C, D)    [A a Revenue or Expense account]
     = Σ (signed amount of every Line referencing A) over every COMMITTED Entry belonging to C
-      where FiscalYearStart(C, D) <= Effective Date <= D
+      where FiscalYearStart_Current(C, D) <= Effective Date <= D
     (equivalently, FiscalYearActivity_Current(A,C,D) = FiscalYearActivity_Known(A,C,D,now))
 
-  where FiscalYearStart(C, D) is the Start Date of the Fiscal Year that contains D for Company
-  C (B07 §1, corrected at CORR-B5-05 to be a versioned, historically-safe fact — see §1h).
+  where FiscalYearStart_Known(C, D, T) / FiscalYearStart_Current(C, D) is the Start Date of the
+  Fiscal Year that contains D for Company C, looked up under the matching viewpoint's boundary
+  definition (B07 §1i, new at CORR-B6-01 — corrected from a single bare `FiscalYearStart(C,D)`,
+  kept struck through immediately below, not deleted, because ChatGPT's Round 6 audit
+  (`M-AUD-13`) found the bare, unparameterized form is exactly what lets a `_Known(...,T)`
+  formula silently consult TODAY's calendar for the boundary step while correctly restricting
+  to Recorded-At <= T for the Line-filtering step — the forbidden hybrid CORR-B6-04 names. ~~where
+  FiscalYearStart(C, D) is the Start Date of the Fiscal Year that contains D for Company C (B07
+  §1, corrected at CORR-B5-05 to be a versioned, historically-safe fact — see §1h).~~
 
 B07 §1b's Current Earnings is FiscalYearActivity_Current(Revenue,C,D) minus
 FiscalYearActivity_Current(Expense,C,D) — a direct renaming/clarification of what this
@@ -398,8 +406,12 @@ Why this closes M-AUD-05 (unchanged from Round 2, now correctly scoped): `Fiscal
               produces, and which one (if any) is a genuinely balanced object.**
 Inputs:       every COMMITTED Line for the Company, each with Effective Date and Recorded At
               (B07 §1c); the query's (D) and, for the Known viewpoint, (T); for
-              `FiscalYearActivity`, additionally the Fiscal Year definition governing D
-              (B07 §1h, corrected — a versioned, historically-safe fact, not a bare date pair)
+              `FiscalYearActivity`, additionally the Fiscal Year definition governing D, looked
+              up under the SAME viewpoint as the rest of the query — `FiscalYearDefinition_Known(C,Y,T)`/
+              `FiscalYearStart_Known(C,D,T)` for the Known viewpoint,
+              `FiscalYearDefinition_Current(C,Y)`/`FiscalYearStart_Current(C,D)` for Current
+              (B07 §1i, new at CORR-B6-01 — corrected from a single bare, unparameterized
+              lookup, `M-AUD-13`)
 Outputs:      a single signed amount per Account, per formula (`CumulativeAccountBalance` or
               `FiscalYearActivity`), per viewpoint (Known or Current). **Corrected at
               CORR-B5-02: this principle's output is never itself labeled "a Trial Balance" —
@@ -670,9 +682,28 @@ PROOF D — Historical Mode 1 (as-originally-known):
                 Assets_Known(D,T) + CurrentFY Expenses_Known(D,T)
                     = Liabilities_Known(D,T) + ReportedEquity_Known(D,T)
                       + CurrentFY Revenue_Known(D,T)
-              Nothing in Proof A-C's derivation referenced "now" or "all currently-known
+              ~~Nothing in Proof A-C's derivation referenced "now" or "all currently-known
               facts" — it is viewpoint-agnostic by construction, so this equation is not a new
-              proof, only Proof C evaluated at a fixed recording-time cutoff.
+              proof, only Proof C evaluated at a fixed recording-time cutoff.~~ **CORRECTED AT
+              CORR-B6-04 (kept struck through above, not deleted — this is exactly what
+              ChatGPT's Round 6 audit, `M-AUD-13`/`M-AUD-14`, found incomplete):** true for the
+              LINE-content step, but Proof B's algebra also depends on "which Fiscal Year is
+              FY_now" and "which Fiscal Years are ELAPSED as of D" (Proof B's own split of the
+              summation) — and THAT determination is itself a viewpoint-sensitive lookup since
+              [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1h/§1i (Round 5/6). Stating "every term
+              replaced by its `_Known(D,T)` counterpart" without saying so explicitly invites
+              exactly the forbidden hybrid CORR-B6-04 names: filtering Lines by Recorded At <= T
+              while silently determining "elapsed"/"FY_now" against TODAY's calendar. **Made
+              explicit: "elapsed" and "FY_now" in this proof's Known-viewpoint form are
+              `Elapsed_Known(Y,D,T)` and the Fiscal Year containing D under
+              `FiscalYearDefinition_Known(C,Y,T)` — never `Elapsed_Current`/
+              `FiscalYearDefinition_Current`, even though the equation is otherwise "Proof C
+              evaluated at a fixed recording-time cutoff."** With that reading, the proof's
+              conclusion is unchanged — nothing in Proof A-C's derivation referenced "now" for
+              the LINE-existence step, so restricting to a single consistent Entry subset (Mode
+              1) is still exactly as valid as summing over all Entries (Mode 2) — provided the
+              Fiscal-Year-boundary lookup embedded in "CurrentFY"/"elapsed" is drawn from the
+              SAME cutoff T, not from "now."
 
 PROOF E — Restated Mode 2 (current/restated, after a legitimate Restatement):
               A Restatement is itself an ordinary, MP-01-balanced Correction Entry (B04 §3a/
@@ -789,14 +820,32 @@ PROOF G4 — Known vs. Current, applied to G1/G2/G3:
               every other Known-viewpoint quantity in this design is built (MP-09's Known
               formulas, B07 §1g): substitute `CumulativeAccountBalance_Known(A,C,D,T)` for
               `_Current` and `FiscalYearActivity_Known(A,C,D,T)` for `_Current` throughout.
-              G1's Raw Cumulative TB, G2's Reporting Balance, and G3's bridge line all balance
+              ~~G1's Raw Cumulative TB, G2's Reporting Balance, and G3's bridge line all balance
               identically under the Known viewpoint, for the same reason Proof D established:
               Proof A's grand-total identity holds for any consistent Entry subset, including
-              the Recorded-At-filtered one. A later Restatement can change every Current-view
-              figure in G1/G2/G3 (as Proof E already establishes) while every Known-view figure
-              (fixed T) remains exactly reproducible — including the G3 bridge line itself,
-              which is exactly why B07 §1g's viewpoint parameterization was required in the
-              first place (`M-AUD-10`).
+              the Recorded-At-filtered one.~~ **CORRECTED AT CORR-B6-04 (kept struck through
+              above, not deleted — the same gap `M-AUD-13`/`M-AUD-14` found in Proof D applies
+              here identically):** `FiscalYearActivity_Known(A,C,D,T)` is itself only
+              well-defined once its own boundary lookup is viewpoint-consistent — per MP-09's
+              own Round-6 correction (above), this means `FiscalYearStart_Known(C,D,T)`, never a
+              bare or `_Current` lookup. **Made explicit: G2's split between "elapsed" and
+              "FY_now," and G3's
+              derived bridge line's own summation ("every ELAPSED Y"), use `Elapsed_Known(Y,D,T)`
+              /`FiscalYearDefinition_Known(C,Y,T)` throughout when evaluating the Known
+              viewpoint** — with that reading, G1's Raw Cumulative TB, G2's Reporting Balance,
+              and G3's bridge line all balance identically under the Known viewpoint, for the
+              same reason Proof D (corrected) establishes: Proof A's grand-total identity holds
+              for any consistent Entry subset, including the Recorded-At-filtered one, PROVIDED
+              the Fiscal-Year-boundary lookup embedded in "elapsed"/"FY_now" is drawn from that
+              same cutoff T throughout, not from "now." A later Restatement can change every
+              Current-view figure in G1/G2/G3 (as Proof E already establishes), and a later
+              `FiscalYearMembershipRestated` event ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md)
+              §1j, new) can likewise change every Current-view figure, while every Known-view
+              figure (fixed T) remains exactly reproducible either way — including the G3 bridge
+              line itself, which is exactly why B07 §1g's viewpoint parameterization was
+              required in the first place (`M-AUD-10`), and exactly why §1i/§1j's viewpoint-aware
+              boundary lookup is required to make that parameterization actually hold for the
+              calendar too (`M-AUD-13`/`M-AUD-14`).
 
 No financial fact exists in G2 or G3 that G1 does not already contain individually —
 Reported Retained Earnings, Other Ledger Equity, and G3's bridge line are all computed
@@ -872,13 +921,19 @@ MP-09's mixed-horizon per-account output is never claimed to be a balanced Trial
   with an explicit never-posted bridge line) are three separately-named, separately-scoped
   outputs (CORR-B5-01/02/03/04, `M-AUD-11`)                                : CONFIRMED,
   verified numerically (B22), including the exact failure case the audit traced
+MP-09's Fiscal-Year-boundary lookup, and MP-12 Proofs D/G4, are viewpoint-parameterized
+  end-to-end — no `_Known(...,T)` formula anywhere in this principle silently consults today's
+  calendar for "elapsed"/"FY_now" while filtering Lines by Recorded At <= T
+  (CORR-B6-01/04, `M-AUD-13`/`M-AUD-14`)                                   : CONFIRMED,
+  verified numerically (B23)
 ```
 
 **B8 = COMPLETE.** *(Corrected at CORR-B02/CORR-B03/CORR-B2-01..05/CORR-B3-05/CORR-B4-01..05/
-CORR-B5-01..04 — MP-02, MP-09 amended in place multiple times each, MP-10 clarified, MP-11 new
-at Round 2 then rewritten at Round 3 then cross-reference-corrected at Round 4, MP-12 new at
-Round 4 then Proof G rebuilt at Round 5, with every prior claim kept visible above each
-correction, not deleted. MP-01, MP-03..08 are unchanged since their respective original passes
+CORR-B5-01..04/CORR-B6-01/04 — MP-02, MP-09 amended in place multiple times each, MP-10
+clarified, MP-11 new at Round 2 then rewritten at Round 3 then cross-reference-corrected at
+Round 4, MP-12 new at Round 4 then Proof G rebuilt at Round 5 then Proofs D/G4 corrected at
+Round 6 for viewpoint-consistent boundary lookups, with every prior claim kept visible above
+each correction, not deleted. MP-01, MP-03..08 are unchanged since their respective original passes
 (MP-08 amended once, CORR-B03, a cross-reference to Void). MP-10's invariant line was corrected
 at CORR-B01 to match B04/B05's Period-Lock/Consumption separation, and again clarified at
 CORR-B2-03 to distinguish it from the new MP-11, with a light Round-3 note confirming that

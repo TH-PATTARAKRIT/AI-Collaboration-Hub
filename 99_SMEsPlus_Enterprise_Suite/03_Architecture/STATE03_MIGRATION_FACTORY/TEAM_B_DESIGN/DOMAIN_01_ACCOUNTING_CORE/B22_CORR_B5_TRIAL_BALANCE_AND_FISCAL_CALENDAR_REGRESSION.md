@@ -448,6 +448,19 @@ Disposition:             n/a
 
 ## Test 12 — Attempt to edit elapsed Fiscal-Year End Date (post-reliance, via COMMITTED Entries)
 
+**Coherence note (Round 6):** this test's own arithmetic and refusal-path outcome were never
+wrong. ChatGPT's Round 6 audit (`M-AUD-14`) found this test's outcome (b) — "FY2024 Version 2
+... created ... existing COMMITTED Entries dated within Dec2024 ... do NOT move" — exercised a
+state Round 5's own design left under-specified for Current-viewpoint reporting: a new boundary
+version coexisting indefinitely with old, un-reclassified Entry membership. Round 6 corrects
+this: `FiscalYearBoundaryChanged` (outcome (b) here) can no longer reach backward over reliance
+at all — it is refused, exactly like outcome (a), not "created." A genuine reclassification
+requires the new, atomic `FiscalYearMembershipRestated` mechanism instead
+([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1j), re-examined with full worked numbers at
+[B23](B23_CORR_B6_FISCAL_CALENDAR_VIEWPOINT_AND_MEMBERSHIP_REGRESSION.md) Test 4. This test's
+own PASS verdict is not reversed — refusal of the silent-edit attempt was, and remains, correct
+— only outcome (b)'s framing is superseded, not deleted, below.
+
 ```
 Inputs:                  Company X, April/2026: an attempt is made to change FY2024's End
                          Date from Dec31/2024 to Nov30/2024 — FY2024 has extensive reliance
@@ -494,6 +507,12 @@ Disposition:             n/a
 ```
 
 ## Test 13 — Attempt to edit boundary after a report was consumed (the "issued/consumed report" trigger, distinct from Test 12's "COMMITTED Entry" trigger)
+
+**Coherence note (Round 6):** this test's own PASS verdict and its core figure (500, unchanged)
+are unaffected by Round 6's correction — the issued report's own Known-viewpoint reproducibility
+was never in question. Only this test's "an authorized change creates Version 2" aside carries
+the same Round-6 coherence note as Test 12, above: a genuine post-June/2026 reclassification now
+requires `FiscalYearMembershipRestated`, not `FiscalYearBoundaryChanged`.
 
 ```
 Inputs:                  Company Y, immediately after migration cutover (Jan1/2026): a report

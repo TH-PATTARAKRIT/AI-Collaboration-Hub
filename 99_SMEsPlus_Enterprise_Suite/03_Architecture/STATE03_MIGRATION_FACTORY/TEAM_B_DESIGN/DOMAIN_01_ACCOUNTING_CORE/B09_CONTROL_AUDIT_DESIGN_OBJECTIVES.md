@@ -9,6 +9,7 @@
 | **Corrected (Round 3)** | **CORR-B3-04 (2026-08-29)** — CO-16 added (materiality is a policy input, never computed or invented by this domain's design), required by B04 §3b/§3c's new IAS 8 classification, which references CO-16 by name. See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-04 (2026-08-30)** — CO-14's mode-labeling scope extended to explicitly cover Reported Retained Earnings / Reported Equity (B07 §1g), required by ChatGPT's Round 4 finding `M-AUD-10`. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 5)** | **CORR-B5-02/05 (2026-08-30)** — CO-14's scope extended again to cover B08 MP-12's three Trial Balance outputs (`M-AUD-11`); CO-15's authorization tier extended (reused, not reinvented) to cover post-reliance Fiscal Year boundary changes (`M-AUD-12`), B07 §1h. See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 6)** | **CORR-B6-01/02 (2026-08-30)** — CO-14's scope extended again to cover which Fiscal-Year-boundary viewpoint (`_Known`/`_Current`, B07 §1i) and which membership (`Membership_Known`/`Membership_Current`, B07 §1j) a presentation is using (`M-AUD-13`/`M-AUD-14`); CO-15's authorization tier extended (reused, not reinvented) to cover the new `FiscalYearMembershipRestated` event (B04, B07 §1j). See [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md). |
 
 ## CO-01 — Authorization
 
@@ -168,7 +169,7 @@ infrastructure-level tamper-resistance (encryption at rest, storage-level access
 infrastructure audit logging) is a platform/infrastructure concern outside DOMAIN_01's
 boundary (B03 §4), not a gap in this domain's own design.
 
-## CO-14 — Temporal Mode Labeling *(added at CORR-B2-01/02; scope extended at CORR-B4-04, CORR-B5-02)*
+## CO-14 — Temporal Mode Labeling *(added at CORR-B2-01/02; scope extended at CORR-B4-04, CORR-B5-02, CORR-B6-01/02)*
 
 **Objective:** every report or query result derived from MP-09 (B08, corrected) must be
 explicitly labeled with which temporal mode produced it — "as originally known as of
@@ -193,11 +194,21 @@ COMPONENT — NOT A POSTED FINANCIAL FACT" (or an equivalent, equally explicit a
 alongside it — the same "do not let one silently masquerade as the other" principle CO-14 has
 enforced since Round 2, now extended to a case ChatGPT's Round 5 audit found this domain's own
 Round-4 design had itself violated (MP-12 Proof G calling G2 "the Raw Trial Balance").
-**Basis:** B08 MP-09 (corrected), BINV-11 (corrected), B07 §1g (new), B08 MP-12 (corrected) —
-no direct Team A source ID, since this distinction did not exist before this domain's own
-Round 2 correction.
+**Extended again at CORR-B6-01/02 (`M-AUD-13`/`M-AUD-14`):** this labeling requirement
+additionally covers (a) which Fiscal-Year-boundary viewpoint a Fiscal Year lookup used —
+`FiscalYearDefinition_Known(C,Y,T)`/`Elapsed_Known(Y,D,T)` vs. `FiscalYearDefinition_Current(C,Y)`/
+`Elapsed_Current(Y,D)` (B07 §1i) — never left implicit or assumed to be "whichever the reader
+expects," and (b) which of `Membership_Known(E,T)`/`Membership_Current(E)` (B07 §1j) an Entry's
+displayed Fiscal-Year membership reflects, whenever the two could differ (i.e., after any
+`FiscalYearMembershipRestated` event). ChatGPT's Round 6 audit found this domain's own Round-5
+design had left the calendar-boundary step of a `_Known(...,T)` computation unlabeled and
+unparameterized in prose (§1g), exactly the gap this control exists to close — the same
+principle, one more level of the design it now must reach.
+**Basis:** B08 MP-09 (corrected), BINV-11 (corrected), B07 §1g (corrected)/§1i/§1j (new), B08
+MP-12 (corrected) — no direct Team A source ID, since this distinction did not exist before this
+domain's own Round 2 correction.
 
-## CO-15 — Restatement Authorization Tier *(added at CORR-B2-01/02; scope extended at CORR-B5-05)*
+## CO-15 — Restatement Authorization Tier *(added at CORR-B2-01/02; scope extended at CORR-B5-05, CORR-B6-02)*
 
 **Objective:** a Restatement (B04 §3a — a Correction/Void whose target has independent
 Consumption and whose Effective Date falls within the period that Consumption covers)
@@ -214,10 +225,20 @@ belongs to carries a comparable blast radius to restating a period's "current" v
 earns the same bar. **The exact tier is flagged as a new, seventh Team B assumption** ([B15](B15_DESIGN_TRACEABILITY_MATRIX.md)
 §6) — reusing CO-15's tier is this domain's working default, not a fact this domain's evidence
 independently settles the way, for example, CO-16's materiality-policy-input decision is.
+**Extended again at CORR-B6-02 (`M-AUD-14`):** this same tier additionally governs the new
+`FiscalYearMembershipRestated` event (B04, B07 §1j) — the atomic, post-reliance action that
+moves both a Fiscal Year's Current-viewpoint boundary and affected Entries' Current-viewpoint
+membership together. This is a heavier-weight sibling of `FiscalYearBoundaryChanged` (which
+Round 6 correspondingly scopes down to pre-reliance/future-Fiscal-Year use only, B07 §1h/§1j),
+not a third, independently-tiered mechanism — reusing CO-15's bar for the same reason the
+Round-5 extension did: re-partitioning which Fiscal Year a transaction belongs to, after
+reliance, carries a comparable blast radius to restating a period's current view.
 **Basis:** `M-AUD-04`'s acceptance requirement that formal restatement be "explicit,
 auditable, and separately reconstructable" — no direct Team A source ID. `M-AUD-12`'s
 requirement that a Fiscal Year boundary change be gated, audited, and never silent — also no
-direct Team A source ID.
+direct Team A source ID. `M-AUD-14`'s requirement that a post-reliance membership
+reclassification be atomic, not two independently-timed actions — also no direct Team A source
+ID.
 
 ## CO-16 — Materiality Is a Policy Input, Never a Computed or Invented Threshold *(added at CORR-B3-04)*
 
@@ -260,7 +281,7 @@ CO-16 added at CORR-B3-04 (16th item, materiality as policy input, never compute
   threshold this design never authorized
 ```
 
-**B9 = COMPLETE.** *(Corrected at CORR-B2-01/02/CORR-B3-04/CORR-B4-04/CORR-B5-02/05 — CO-14/
-CO-15 added Round 2, CO-16 added Round 3, CO-14 scope extended Round 4 and again Round 5,
-CO-15 scope extended Round 5 (no new CO either round — still 16 total). CO-01..13 unchanged
-since their respective original passes.)*
+**B9 = COMPLETE.** *(Corrected at CORR-B2-01/02/CORR-B3-04/CORR-B4-04/CORR-B5-02/05/CORR-B6-01/02
+— CO-14/CO-15 added Round 2, CO-16 added Round 3, CO-14 scope extended Round 4, Round 5, and
+again Round 6, CO-15 scope extended Round 5 and again Round 6 (no new CO any round — still 16
+total). CO-01..13 unchanged since their respective original passes.)*

@@ -206,6 +206,51 @@ construction discipline, not a claim the underlying difficulty has resolved. Thi
 will not predict whether a sixth round would find nothing further, for the same honest reason
 §4d would not predict a fifth.
 
+## 4f. Addendum — It Happened a Sixth Time, and Both Findings Trace to One Section *(added at CORR-B6-01..08)*
+
+§4e declined to predict a sixth round. A sixth independent re-audit has now happened, and it
+found two more findings: `M-AUD-13` (B07 §1g's Round-4 claim that the Elapsed test "never takes
+a viewpoint parameter" directly contradicted §1h's own Round-5 Known/Current calendar model,
+never revised to match) and `M-AUD-14` (§1h's own Round-5 post-reliance change model was
+under-specified for Current-viewpoint reporting, permitting a new boundary version and stale
+Entry membership to coexist indefinitely).
+
+**Three observations, continuing rather than repeating §4a-§4e's pattern:** **First**, this is
+now the SIXTH consecutive round in which independent re-audit found what this domain's own
+process did not — the longest run of consecutive corrective rounds this domain has required.
+**Second**, this is the FOURTH instance of the self-inflicted-finding sub-pattern §3d first
+named — but the first instance where BOTH of one round's findings trace to the SAME single
+prior-round section (Round 5's §1h) rather than being spread across different formulas or
+concepts. Round 5's own new text, written to fix `M-AUD-12`, both (a) contradicted an adjacent,
+untouched section (§1g) it should have revised but did not, and (b) left its own central new
+mechanism (the post-reliance change model) referencing a "separate reclassification action" it
+never itself specified. **Third**, this round's findings are qualitatively different from every
+prior self-inflicted instance: `M-AUD-07`, `M-AUD-08`/`M-AUD-09`, and `M-AUD-11` were each
+defects INTERNAL to one formula or proof — an equation that, worked through, did not hold.
+`M-AUD-13` is not a formula defect at all — it is a direct textual CONTRADICTION between two
+sections of this domain's own design, each individually coherent when read alone, incoherent
+only when read together. This is a failure mode this domain's own cross-section consistency
+check ([B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §4, "Contradictory Rules Check") exists
+specifically to catch, and did not, until independent audit found it — worth naming plainly
+rather than treating B15's own "NONE found" conclusions in §4 as more reliable than they have
+now been shown to be for a same-domain, different-round contradiction.
+
+**What this means, stated as plainly as §4d/§4e stated their own versions:** three consecutive
+rounds now (Round 4, Round 5, and Round 6) have each contained at least one defect traceable to
+the immediately preceding round's own new design surface — not merely the fourth occurrence
+across six rounds, but the third in an unbroken row. Round 6's own regression (B23) again found
+nothing further during construction beyond the two findings the audit itself named — the third
+consecutive round of which that is true — and this document gives the same answer §4d/§4e gave:
+that is a fact about this round's construction discipline, not a claim the underlying difficulty
+has resolved. This document will not predict whether a seventh round would find nothing further.
+What can be stated honestly is narrower and more specific than a general confidence claim: this
+round's fix (B07 §1i/§1j) was deliberately built to close the exact TWO shapes of gap this
+round's own findings exposed (an un-propagated viewpoint parameter, and an under-specified
+change model) by reusing this domain's own established vocabulary rather than introducing new
+mechanism — the same design discipline §4e's Third observation noted this domain's review had
+"not yet reliably applied to its own new concepts, three rounds running." Whether that
+discipline holds on a seventh independent look is, again, not this document's to predict.
+
 ## 5. Verdict
 
 ```
@@ -225,14 +270,20 @@ CORRECTIVE ROUND 5 APPLIED (CORR-B5-01..08) — 2 more findings found by indepen
   specific sub-pattern; the other, `M-AUD-12`, a missing protection for a dependency Round 4's
   own new concept introduced), corrected; regression (B22) found no further gap during
   construction, the second consecutive round of which that is true
-Design internally coherent, self-corrected where found lacking five times over, honestly
+CORRECTIVE ROUND 6 APPLIED (CORR-B6-01..08) — 2 more findings found by independent re-audit
+  (BOTH tracing to Round 5's own new §1h text — the fourth instance of the self-inflicted-
+  finding sub-pattern, and the first arising from a textual contradiction between two sections
+  rather than a defect internal to one formula), corrected; regression (B23) found no further
+  gap during construction, the third consecutive round of which that is true
+Design internally coherent, self-corrected where found lacking six times over, honestly
   bounded — including the honest observation that self-correction alone has never yet been
-  sufficient without an independent pass finding something further, that three of the last
-  four rounds corrected defects the immediately preceding round's own fix introduced, and that
-  this document explicitly declines to predict whether a sixth round would find nothing further
-Not independently re-verified since Round 5's correction — that is ChatGPT re-audit's role next
+  sufficient without an independent pass finding something further, that three CONSECUTIVE
+  rounds (4, 5, and 6) each corrected a defect the immediately preceding round's own fix
+  introduced, and that this document explicitly declines to predict whether a seventh round
+  would find nothing further
+Not independently re-verified since Round 6's correction — that is ChatGPT re-audit's role next
 Not Final Pass — Boss and ChatGPT re-audit remain outstanding
 ```
 
-**Self-review complete, corrective addendum applied (five rounds). Proceeding to Final Gate
+**Self-review complete, corrective addendum applied (six rounds). Proceeding to Final Gate
 Candidate (H).**

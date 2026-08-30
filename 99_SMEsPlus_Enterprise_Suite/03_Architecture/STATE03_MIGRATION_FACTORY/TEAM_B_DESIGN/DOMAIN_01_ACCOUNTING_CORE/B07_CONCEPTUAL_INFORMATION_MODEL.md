@@ -10,6 +10,7 @@
 | **Corrected (Round 3)** | **CORR-B3-01..05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) found (1) prior-period error treatment did not comply with IAS 8's mandatory retrospective restatement for material errors (`M-AUD-06`, verified against primary IAS 8 text, paragraphs 5/41-48/50-53 — not memory or secondary sources); (2) §1d's "no posted action ever touches Revenue/Expense" claim directly contradicted MP-11's actual definition, which did (`M-AUD-07`). §1b/§1d rewritten: Fiscal Year Close is now purely declarative (no posted Entry); Reported Retained Earnings is a new derived reporting formula (§1e). See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-01/02/03/04 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) found §1e's Round-3 formula, combined with B08 MP-02's reporting equation, double-counted the designated Retained-Earnings account's direct-posted balance (`M-AUD-08`); found §1e's "closed before D" boundary made Reported Retained Earnings depend on when an operator *declares* Fiscal Year Close, not on the Fiscal Year's own calendar boundary — a genuine reporting hole if that declaration is ever delayed (`M-AUD-09`); and found §1e defined Reported Retained Earnings using MP-09 Mode 2 only, with no defined Mode-1 ("as originally known") counterpart, despite B20 Test 8 relying on one (`M-AUD-10`). §1e corrected (Fiscal-Year inclusion is now boundary-driven, "elapsed," not declaration-driven); new §1f defines a non-overlapping Reported Equity decomposition; new §1g defines viewpoint-parameterized Known/Current functions. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 5)** | **CORR-B5-05 (2026-08-30)** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`) found §1e's Elapsed test relies on a Fiscal Year's Start/End boundary as if it were timeless, with no protection against that boundary being silently edited after it has already governed real accounting facts (`M-AUD-12`). New §1h defines a Versioned Fiscal Calendar model (compared against boundary-immutability-after-use), protecting historical reproducibility from calendar-configuration changes the same way `Recorded At` already protects it from Entry-level backdating. See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 6)** | **CORR-B6-01/02/03/05 (2026-08-30)** — ChatGPT's Round 6 re-audit (`b0ce666dad72909411a49690d0f642313d94dd13`) found §1g's Round-4 claim that "the Elapsed test never takes a viewpoint parameter" directly contradicts §1h's own Round-5 Known/Current calendar model, which §1h itself never revised to match (`M-AUD-13`) — and found §1h's post-reliance change model under-specified for Current-viewpoint reporting once a new boundary version and old Entry membership can coexist (`M-AUD-14`). §1g corrected below; new §1i formalizes `FiscalYearDefinition_Known/Current` and `Elapsed_Known/Current`; new §1j selects and fully specifies a change model (Option A, refined — prospective-only via `FiscalYearBoundaryChanged`, with a new, dedicated `FiscalYearMembershipRestated` mechanism for genuine post-reliance correction), formalizes `Membership_Known/Current`, and restates the Fiscal Year identity principle (§1, below) as viewpoint/version-safe. See [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md). |
 
 ## 1. Conceptual Entities
 
@@ -18,7 +19,7 @@
 | **Company** | A legal entity whose books are kept separately (CAP-05) | A stable business identifier, independent of any source-system internal ID | CAP-05 |
 | **Account Category** | A fixed classification governing statement placement and carry-forward behavior (BINV-09) — **corrected Round 2:** carry-forward behavior is now defined precisely per §1b/§1d, not a generic "year-end" gloss | A closed, small set defined at the domain level, not per company | CAP-01 |
 | **Account** | A node in one Company's chart of accounts | Stable once created; its Category is mutable only before first use (BR-08) | CAP-01 |
-| **Fiscal Year** *(new, Round 2; boundary corrected to be a versioned fact at CORR-B5-05)* | A bounded span of time, composed of one or more contiguous Periods, that defines the horizon over which Income Statement (Revenue/Expense) activity accumulates before being closed to Equity (§1b, §1d) | Identified by its Company and the span it covers; exactly one Fiscal Year contains any given date for a Company. **Its Start/End boundary is itself a versioned, historically-safe configuration fact, not a bare immutable-from-creation date pair — see §1h (new, CORR-B5-05).** | CAP-09 (renamed/rescoped, §2) |
+| **Fiscal Year** *(new, Round 2; boundary corrected to be a versioned fact at CORR-B5-05; identity principle corrected to be viewpoint/version-safe at CORR-B6-05)* | A bounded span of time, composed of one or more contiguous Periods, that defines the horizon over which Income Statement (Revenue/Expense) activity accumulates before being closed to Equity (§1b, §1d) | Identified by its Company and the span it covers; ~~exactly one Fiscal Year contains any given date for a Company~~ — **corrected at CORR-B6-05 (`M-AUD-14`): incomplete once boundary versions exist. For one Company and one authoritative calendar viewpoint/version (a fixed Known cutoff T, or the Current viewpoint), exactly one Fiscal Year governs any eligible date — see §1j.** Its Start/End boundary is itself a versioned, historically-safe configuration fact, not a bare immutable-from-creation date pair — see §1h (new, CORR-B5-05) and §1i/§1j (new, CORR-B6-01/02/03/05). | CAP-09 (renamed/rescoped, §2) |
 | **Period** | A bounded span of time with one authoritative open/closed status (BINV-02) — an ordinary **posting lock**, distinct from and nested within a Fiscal Year; closing a Period never itself resets or transfers anything (corrected Round 2 — see §1d) | Identified by its Company and the span it covers; never two overlapping Periods answer for the same date/company/class; belongs to exactly one Fiscal Year | CAP-04 |
 | **Entry** | A Financial Fact expressed in double-entry form (B03 §2) | A permanent, system-assigned identity that exists independently of any human-readable document number (see §4); **carries two distinct temporal properties, not one — see §1c (Round 2 correction)** | CAP-02 |
 | **Line** | One attribution within an Entry (B03 §2) | Identified only in relation to its owning Entry — a Line has no independent existence | CAP-02 |
@@ -358,16 +359,35 @@ ReportedEquity_Known(C, D, T)    = OtherLedgerEquity_Known(C, D, T)
                                   + ReportedRetainedEarnings_Known(C, D, T)
 ```
 
-**The Elapsed test itself (§1e) never takes a viewpoint parameter.** Whether a Fiscal Year's
+~~**The Elapsed test itself (§1e) never takes a viewpoint parameter.** Whether a Fiscal Year's
 End Date is `<= D` is a fact about the Fiscal Year's own configuration and the query date D
 alone — Fiscal Year boundaries are not themselves posted facts subject to Recorded-At framing,
 so there is nothing for a Mode-1/Mode-2 split to apply to at that step. Viewpoint only affects
 *which Lines* count toward each elapsed year's Current Earnings and the direct RE balance —
-exactly the same place MP-09's existing split already applies it. This is a direct, structural
-benefit of CORR-B4-03's boundary-driven ("Elapsed") redefinition: had Fiscal-Year inclusion
-remained declaration-driven (the superseded Round-3 model), a *second*, independent
-viewpoint question would have existed ("was the `FiscalYearClosed` declaration itself known as
-of T?") — CORR-B4-03 removes that question entirely, not merely defers it.
+exactly the same place MP-09's existing split already applies it.~~ **CORRECTED AT CORR-B6-01
+(kept struck through above, not deleted — this is exactly what ChatGPT's Round 6 audit,
+`M-AUD-13`, found wrong):** this claim was true when written — at Round 4, a Fiscal Year
+boundary genuinely was a bare, unversioned fact. **§1h, written the very next round (Round 5),
+made the boundary itself a versioned fact with its own Known/Current views — directly
+contradicting this paragraph's claim, which was never revised to match.** This is the fourth
+instance of this design's own "self-inflicted finding" pattern (G §4e), and the first to arise
+from an outright contradiction between two pieces of this domain's own text rather than a
+single formula's internal defect. **The Elapsed test DOES take a viewpoint parameter, exactly
+since §1h's Round-5 correction — formalized this round as `Elapsed_Known(Y,D,T)` /
+`Elapsed_Current(Y,D)`, built on `FiscalYearDefinition_Known(C,Y,T)` /
+`FiscalYearDefinition_Current(C,Y)`, see new §1i below.** Viewpoint affects both which Lines
+count toward each elapsed year's Current Earnings (as this paragraph originally, correctly,
+said — the "which Lines" step is unchanged) AND, since §1h, which boundary VERSION determines
+"elapsed" in the first place (added by §1h but never reflected here until this correction).
+Every formula immediately above and every formula built on this one — `FiscalYearActivity_*`
+(B08 MP-09), Reported Retained Earnings/Equity's "elapsed" summation, MP-12 Proofs D/G4 — must
+route the boundary lookup itself through `_Known`/`_Current` explicitly (§1i), never through a
+bare or implicitly-Current lookup, or the exact forbidden hybrid CORR-B6-04 names — "historical
+financial facts @ T + current calendar version @ now" — silently results. This remains a
+direct, structural benefit of CORR-B4-03's boundary-driven ("Elapsed") redefinition over the
+superseded declaration-driven Round-3 model: the ONLY viewpoint question Elapsed now has is
+"which boundary version" (§1i), never also "was the declaration itself known as of T" (CORR-B4-03
+still removes that second question entirely, unaffected by this correction).
 
 **The two views must never be silently blended** — the same requirement [CO-14](B09_CONTROL_AUDIT_DESIGN_OBJECTIVES.md)
 already imposes on raw MP-09 output, extended by this correction to explicitly cover Reported
@@ -422,12 +442,28 @@ rather than assert a fix:**
   time, at an authorization tier at least as strict as Restatement's (CO-15, reused, not a new
   tier invented from scratch). The old version remains permanently queryable: any Known-view
   reconstruction with T fixed before the change uses the boundary version authoritative as of
-  T; Current-view reporting uses the latest authoritative version. Changing a boundary does
+  T; Current-view reporting uses the latest authoritative version. ~~Changing a boundary does
   **not**, by itself, retroactively move any existing COMMITTED Entry's Fiscal-Year membership
   — an Entry's membership is fixed by the boundary version authoritative when it was Recorded,
   unless a separate, explicit reclassification action is taken (itself gated at least as
   strictly as a Restatement, since re-classifying which Fiscal Year a transaction belongs to is
-  economically equivalent to correcting its date).
+  economically equivalent to correcting its date).~~ **CORRECTED AT CORR-B6-02 (kept struck
+  through above, not deleted — this is exactly what ChatGPT's Round 6 audit, `M-AUD-14`, found
+  under-specified):** leaving "a separate, explicit reclassification action" undefined let a new
+  boundary version and the old, un-reclassified Entry membership coexist indefinitely, with no
+  rule for what Current-viewpoint reporting should do with that state —
+  [B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md) Test 12 exercised exactly
+  this gap without resolving it. **Corrected: this mechanism (`FiscalYearBoundaryChanged`) is
+  now constitutionally scoped to never reach backward over any date that already has reliance —
+  its Version Effective Date must fall no earlier than the point reliance began, full stop.**
+  For a Fiscal Year with zero reliance (a pre-reliance correction, or a genuinely future,
+  not-yet-begun Fiscal Year, [B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md)
+  Test 14), this mechanism is unchanged and remains lightweight. Genuinely correcting an
+  already-relied-upon Fiscal Year's own effective boundary is no longer this mechanism's concern
+  at all — it requires the new, dedicated `FiscalYearMembershipRestated` action (§1j, new),
+  which moves the boundary AND reclassifies affected Entries' Current-viewpoint membership in
+  one atomic, auditable step, never as two independently-timed actions. Full model comparison
+  and mechanics: §1j.
 - **Option C — a different model.** Not adopted: Option B already generalizes Option A's exact
   protection (once anything has relied on a boundary, changing it requires the same weight of
   process Option A would have forced by outright prohibition) while adding a narrow, harmless
@@ -462,18 +498,30 @@ that exists nowhere else in the domain.
   At — reconstructs using the boundary version that was actually authoritative as of T.
 - **Current/restated view:** reflects the latest authoritative boundary version from its
   Effective Date forward.
-- **Impact on Fiscal-Year membership of existing Entries:** none, by default — a boundary
+- **Impact on Fiscal-Year membership of existing Entries:** ~~none, by default — a boundary
   change alone never moves an existing Entry's Fiscal-Year membership. A separate, explicit
   reclassification action is required if that is genuinely intended, gated at least as strictly
-  as the boundary change itself.
+  as the boundary change itself.~~ **CORRECTED AT CORR-B6-02 (`M-AUD-14`):** this
+  `FiscalYearBoundaryChanged` mechanism specifically is now scoped so it can never reach
+  backward over reliance at all (see the Option B bullet's Round-6 correction, above) — so for
+  THIS event, the impact on existing Entry membership is not merely "none by default," it is
+  **none, unconditionally, by construction**, since it is constitutionally barred from ever
+  touching a boundary that reliance already covers. A genuine post-reliance membership
+  correction is not this event at all — it is the new `FiscalYearMembershipRestated` event
+  (§1j), which explicitly and atomically DOES move affected Entries' Current-viewpoint
+  membership, as its defining purpose, never as an optional afterthought.
 - **Policy-change vs. formal-restatement classification:** a pre-reliance correction is an
   ordinary configuration update (no gate beyond ordinary CAP-01 chart authority). A
-  post-reliance change is always a **policy/configuration change with restatement-tier
-  authorization** — it is not itself a Prior-Period Error under B04 §3b/§3c's classification
-  (nothing was mis-recorded; the calendar definition is being deliberately changed going
-  forward or, in the reclassification case, an explicit separate action is taken), but it earns
-  Restatement's authorization weight because its blast radius (which Fiscal Year a transaction
-  belongs to) is comparable.
+  post-reliance `FiscalYearBoundaryChanged` change (necessarily to a future, not-yet-relied-upon
+  Fiscal Year only, per the Round-6 scope correction above) is a **policy/configuration change
+  with restatement-tier authorization** — it is not itself a Prior-Period Error under B04
+  §3b/§3c's classification (nothing was mis-recorded; the calendar definition is being
+  deliberately changed going forward). ~~or, in the reclassification case, an explicit separate
+  action is taken~~ **A genuine reclassification is never this event — it is
+  `FiscalYearMembershipRestated` (§1j, new), which is deliberately given its own name and its
+  own full audit-field requirements precisely because it is not merely "policy going forward,"
+  it directly rewrites Current-viewpoint history and earns being classified and evidenced as
+  such.**
 - **Required Gate:** any post-reliance boundary change is visible in Reported Financial
   Statements exactly like any other CO-15-tier action — logged, attributable, never silent —
   and, per this domain's standing discipline, remains a Team B design requirement, not a
@@ -483,6 +531,221 @@ No Thai-specific regulatory requirement is invented for this control — it is d
 from this domain's own historical-reproducibility discipline (BINV-11, extended), the same
 category of internally-derived requirement as BINV-12 (Recorded-At immutability) was at
 CORR-B2-01/02.
+
+### 1i. Viewpoint-Aware Fiscal Year Definition and Elapsed *(new, added at CORR-B6-01)*
+
+ChatGPT's Round 6 audit (`M-AUD-13`) found a direct contradiction this design had not noticed:
+§1g states the Elapsed test "never takes a viewpoint parameter... there is nothing for a
+Mode-1/Mode-2 split to apply to at that step" — true when written at Round 4, when a Fiscal
+Year's boundary genuinely was a bare, unversioned fact. §1h, written the very next round, made
+the boundary itself a versioned fact with its own Known/Current views — directly contradicting
+§1g's claim, which was never revised to match. §1g is corrected above (struck through, not
+deleted). This section supplies the formal definitions that correction, and every downstream
+reporting formula, now require.
+
+**Every Fiscal Year boundary lookup must go through one of these two functions from this point
+forward — never a bare, unparameterized lookup — mirroring the Effective-Date/Recorded-At split
+already applied to Entries (§1c) and, since Round 5, to boundary versions themselves (§1h):**
+
+```
+FiscalYearDefinition_Current(C, Y) =
+    the (Start Date, End Date) of the version of Fiscal Year Y's boundary, for Company C, with
+    the latest Version Effective Date <= now, among every version of Y recorded to date
+    — i.e., "the latest authoritative version from its Effective Date forward," §1h's own
+    Round-5 wording, given a formal name here for the first time.
+
+FiscalYearDefinition_Known(C, Y, T) =
+    the (Start Date, End Date) of the version of Fiscal Year Y's boundary, for Company C, with
+    the latest Version Effective Date <= T, among every version of Y with Version Recorded
+    At <= T
+    — i.e., reconstructing exactly which version was BOTH knowable (Recorded by T) AND already
+    in force (Effective by T), from T's own vantage point. Structurally identical to MP-09
+    Mode 1 (B08), applied to the calendar instead of to Lines.
+
+Elapsed_Current(Y, D)            = FiscalYearDefinition_Current(C, Y).EndDate <= D
+Elapsed_Known(Y, D, T)           = FiscalYearDefinition_Known(C, Y, T).EndDate <= D
+
+FiscalYearStart_Current(C, D)    = the Start Date of whichever Fiscal Year Y contains D under
+                                    FiscalYearDefinition_Current(C, Y)
+FiscalYearStart_Known(C, D, T)   = the Start Date of whichever Fiscal Year Y contains D under
+                                    FiscalYearDefinition_Known(C, Y, T)
+```
+
+**Why this closes `M-AUD-13`:** `FiscalYearDefinition_Known(C,Y,T)` filters by Version Recorded
+At <= T — exactly the mechanism BINV-11/12 already prove unconditional for Entries — so any
+calendar version created after T is automatically excluded from consideration for that T,
+regardless of what date range it claims to govern. `FiscalYearDefinition_Known`, and therefore
+`Elapsed_Known` and everything built on it, is a **fixed point once T has passed: no later
+boundary version, of any kind, can ever change it.** This is not a new guarantee invented for
+the calendar — it is BINV-11/12's own structural argument, applied one level up, exactly as
+§1h's Round-5 framing already claimed but §1g's un-updated prose then contradicted.
+
+**The defect was never in the underlying Known-view logic — it was that §1g's prose told an
+implementer there was "nothing to parameterize," so a Known-viewpoint report built against that
+prose alone would use `FiscalYearDefinition_Current`/`Elapsed_Current` (today's calendar) for
+the boundary step while correctly using Recorded-At filtering for the Line step — producing
+exactly the forbidden hybrid CORR-B6-04 names explicitly: "historical financial facts @ T +
+current calendar version @ now."** Every place this design references "which Fiscal Years have
+elapsed as of D" or "the Fiscal Year containing D" inside a `_Known(...,T)` formula must now
+explicitly use `Elapsed_Known`/`FiscalYearDefinition_Known`/`FiscalYearStart_Known` — never the
+bare or `_Current` form — propagated at
+[B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-09/MP-12 (Proofs D, G4, corrected
+this round).
+
+### 1j. Post-Reliance Fiscal-Year Membership — Change Model, Reconciliation, and Cardinality *(new, added at CORR-B6-02/03/05)*
+
+ChatGPT's Round 6 audit (`M-AUD-14`) found §1h's Round-5 model under-specified for Current
+reporting: it allows an authorized post-reliance boundary version (e.g., FY2024's End Date
+changed from Dec 31 to Nov 30) to exist while affected Entries' Fiscal-Year membership stays
+frozen under the OLD version, with no rule for what Current-viewpoint `FiscalYearActivity`,
+Elapsed earnings, Reported Retained Earnings, or cross-year comparative reporting should do
+with that state. [B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md) Test 12
+exercised exactly this gap without resolving it (annotated this round).
+
+**At least two models compared, per the directive's requirement:**
+
+- **Option A — Prospective-Only Change After Reliance.** Once a Fiscal Year has governed any
+  COMMITTED Entry, is Elapsed, or has been referenced by an issued/consumed report, the
+  ordinary `FiscalYearBoundaryChanged` mechanism (§1h) may never again reach backward over any
+  date that reliance already covers. Historical Fiscal-Year membership, once established, is
+  otherwise permanently frozen; genuinely correcting it requires a separate, formal
+  reclassification path, not a calendar-version bump.
+- **Option B — Retroactive Change with Atomic Restatement/Reclassification.** A boundary
+  version may become effective over already-relied-upon dates directly through
+  `FiscalYearBoundaryChanged` itself, PROVIDED that one controlled operation also defines the
+  reclassification of every affected Entry's membership, atomically, in the same action.
+- **Option C — a different model.** Not adopted; see below.
+
+**Adopted: Option A — with its own required "separate formal reclassification path" (referenced
+by Option A's own definition, but not itself specified) given full mechanics here. This is the
+completion of Option A's own stated requirement, not a third, invented model.**
+
+**Why Option A, not Option B, stated plainly:** Option B's own failure mode is exactly what
+produced `M-AUD-14` in the first place. §1h's Round-5 wording already permitted, in substance,
+an incompletely-specified Option B — a boundary version was allowed to exist "unless a separate,
+explicit reclassification action is taken," meaning the version change and the reclassification
+could be two separate, independently-timed actions. That gap — not the concept of retroactive
+change itself — is what created the hybrid state the audit found incoherent. Fully fusing them
+into one mandatory atomic action (a strict reading of Option B) would remove the incoherence,
+but at the cost of overloading one mechanism with two conceptually distinct purposes: ordinary,
+lightweight, forward-looking calendar policy ([B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md)
+Test 14's zero-reliance case) and historical correction (economically equivalent to a
+Restatement, and properly carrying a Restatement's full evidentiary weight, per BINV-05's
+"traceable correction is always a new, linked, dated fact" pattern already applied to Entries).
+Option A keeps `FiscalYearBoundaryChanged` scoped to its original, lightweight purpose and
+introduces one new, dedicated, heavier mechanism — `FiscalYearMembershipRestated` — for the rare
+case of correcting an already-relied-upon Fiscal Year's own effective boundary. This mirrors,
+rather than duplicates, this design's existing separation between an ordinary Correction
+(CO-06's low-friction tier) and a Restatement (CO-15's higher tier) for Entries, applied one
+level up to the calendar, for the same reason.
+
+**`FiscalYearMembershipRestated` (new Audit Event, B04) — required fields, adopting Option B's
+own evidentiary requirements for the one case that does reach into reliance:**
+
+- **Scope:** the specific Fiscal Year(s) whose Current-viewpoint boundary changes, and the
+  specific set of affected Entries (or an unambiguous rule identifying them) whose
+  Current-viewpoint membership reclassifies. A retroactive change to one Fiscal Year's End Date
+  routinely requires a paired change to the adjacent Fiscal Year's Start Date too (see the
+  cardinality invariant below), so this event's scope covers every Fiscal Year the action
+  touches, never just one in isolation.
+- **Old version / new version:** the boundary values before and after, for every affected
+  Fiscal Year.
+- **Reason, actor, Recorded At, Effective Date:** the same evidentiary shape as
+  `FiscalYearBoundaryChanged` and every other governed action in this design (CAP-08).
+- **Affected reporting periods:** every Fiscal Year, and every already-issued comparative
+  report, whose Current-viewpoint figures change as a result — logged explicitly, never left
+  for a reader to infer.
+- **Authorization tier:** the same CO-15-tier-or-stricter bar as `FiscalYearBoundaryChanged`
+  and ordinary Restatement (reused, not reinvented — same open seventh-assumption caveat,
+  [B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §6).
+- **Atomicity (the specific requirement `M-AUD-14` found missing):** the boundary change and
+  the membership reclassification are the SAME action, indivisibly — there is no reachable
+  state, at any point, where a new Current-viewpoint boundary exists for an already-relied-upon
+  Fiscal Year while affected Entries' Current-viewpoint membership has not yet been updated to
+  match. Unlike `FiscalYearBoundaryChanged`, which never moves Entry membership by design,
+  `FiscalYearMembershipRestated` always does, as part of what it is.
+- **Known view, unconditionally unaffected:** for any T before this event's own Recorded At,
+  every `_Known(...,T)` formula (§1i) reconstructs using the boundary version and membership
+  authoritative at T — structurally guaranteed by §1i's Recorded-At filtering, not argued
+  separately.
+
+**Membership, formalized (closing `M-AUD-14`'s Entry-membership question, CORR-B6-03):**
+
+```
+Membership_Known(E, T)   = the Fiscal Year Y, under FiscalYearDefinition_Known(C, Y, T) for
+                            every Y of Company C, whose [Start, End] contains E's Effective
+                            Date — defined for any T >= E's own Recorded At.
+
+Membership_Current(E)    = the Fiscal Year Y, under FiscalYearDefinition_Current(C, Y) for
+                            every Y of Company C, whose [Start, End] contains E's Effective
+                            Date — UNLESS a FiscalYearMembershipRestated event has explicitly
+                            reclassified E to a different Y, in which case Membership_Current(E)
+                            is that explicitly reclassified Y.
+```
+
+**Proved, not merely asserted — the invariant Option A's constraint delivers:** absent any
+`FiscalYearMembershipRestated` event naming E, `Membership_Current(E) = Membership_Known(E,
+RecordedAt(E))`, permanently. This holds because Option A forbids `FiscalYearBoundaryChanged`
+from ever moving a boundary backward over a date that already has reliance — so the calendar
+version that determined E's membership at the moment E was Recorded can never be superseded, for
+E's own Effective Date, except by the one mechanism that updates membership explicitly,
+atomically, and auditably. An Entry's Fiscal-Year membership, under Current viewpoint, therefore
+never silently drifts — it is either exactly what it was at Record-time, or it was explicitly,
+atomically, auditably reclassified. There is no third state.
+
+**Acceptance criterion (CORR-B6-03's own requirement) met directly:** for any (Company, Entry,
+viewpoint), exactly one Fiscal Year is authoritative — `Membership_Known(E,T)` for a fixed T, or
+`Membership_Current(E)`, never both interpretations available at once, and never an Entry left
+unresolved between two versions. If Known and Current memberships differ (only possible after a
+`FiscalYearMembershipRestated` event), both remain independently reconstructable and are never
+displayed without their governing viewpoint labeled ([CO-14](B09_CONTROL_AUDIT_DESIGN_OBJECTIVES.md),
+extended).
+
+**Cardinality/Identity, corrected (CORR-B6-05) — replaces §1's Fiscal Year identity principle
+above, which read "exactly one Fiscal Year contains any given date for a Company," incomplete
+once versions exist:**
+
+```
+For one Company and one authoritative calendar viewpoint/version (a fixed Known cutoff T, or
+the Current viewpoint), exactly one Fiscal Year governs any eligible date.
+```
+
+Supporting invariants, each evaluated within one viewpoint at a time, never mixed across two:
+
+- **No overlap:** within one authoritative version-set (fixed Known-T, or Current), no two
+  Fiscal Years' [Start, End] spans for the same Company may overlap. Checked before any
+  boundary change (ordinary `FiscalYearBoundaryChanged` or the new `FiscalYearMembershipRestated`)
+  is accepted — a proposed change that would create an overlap under its own resulting Current
+  viewpoint is rejected before activation, never accepted and reconciled after the fact.
+- **No coverage gap:** every COMMITTED Line with an Effective Date must have a determinate
+  Fiscal Year home for `FiscalYearActivity`/Elapsed purposes (MP-09) — continuous coverage is
+  not an invented Thai-specific or generic regulatory mandate, it is derived directly from
+  MP-09's own requirement that every Revenue/Expense Line resolve to exactly one Fiscal Year's
+  activity, with no date left unhomed. A proposed change that would leave any date uncovered
+  under its own resulting viewpoint is rejected before activation, on the same check as the
+  no-overlap rule — this is why `FiscalYearMembershipRestated`'s scope routinely covers a PAIR
+  of adjacent Fiscal Years (the one shrinking, the one absorbing the gap), never one boundary
+  edited in isolation.
+- **Transition preservation:** both checks are evaluated against the FULL resulting set of a
+  Company's Current-viewpoint Fiscal Year boundaries, not just the one version being changed in
+  isolation — a change is validated against its neighbors before acceptance, every time.
+- **Future-dated validation:** an ordinary `FiscalYearBoundaryChanged` action for a future,
+  not-yet-relied-upon Fiscal Year ([B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md)
+  Test 14) is validated against this same no-overlap/no-gap check before it is accepted as the
+  new Current-viewpoint definition — future-dated does not mean unchecked.
+- **No implementation storage invented:** the above states required properties of the
+  conceptual Fiscal Year/Version entities (§1, §1h, §1i) and the validation they must pass — it
+  does not propose a table, index, or storage mechanism, per §2's standing exclusion.
+
+**Option C — not adopted:** no alternative was found that resolves `M-AUD-14`'s coherence
+requirement (one authoritative membership per viewpoint, no hybrid state ever reachable) with
+less machinery than Option A-refined already reuses from this design's own established patterns
+(Known/Current, Effective/Recorded, CO-15's tier, BINV-05's traceable-correction shape). A
+bespoke third mechanism would only duplicate what §1h and this section already provide under a
+different name.
+
+Full comparison table: [B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md) DT-13 (new). Numeric
+verification: [B23](B23_CORR_B6_FISCAL_CALENDAR_VIEWPOINT_AND_MEMBERSHIP_REGRESSION.md).
 
 ## 2. Deliberately Excluded From This List
 
@@ -565,6 +828,19 @@ No physical table/column/index/type            : CONFIRMED
 No vendor field/method/PK/FK name               : CONFIRMED
 Every entity has an explicit owning capability   : CONFIRMED (traces to B02)
 Every cardinality rule ties to a B05 invariant   : CONFIRMED (see §3 right-hand column)
+§1g/§1h no longer contradictory; Elapsed test is viewpoint-aware, formalized at §1i
+                                                 : CONFIRMED (CORR-B6-01, `M-AUD-13`)
+Post-reliance change model selected and fully specified, including its own required
+  reclassification path; no hybrid boundary-version/Entry-membership state reachable
+                                                 : CONFIRMED (CORR-B6-02/03, `M-AUD-14`,
+                                                   §1j, [B13](B13_DESIGN_OPTION_TRADEOFF_REGISTER.md) DT-13)
+Fiscal Year identity restated as viewpoint/version-safe; no overlap, no coverage gap,
+  transition preservation, future-dated validation-before-activation, no storage invented
+                                                 : CONFIRMED (CORR-B6-05, §1j)
 ```
 
-**B7 = COMPLETE.**
+**B7 = COMPLETE.** *(Corrected at CORR-B02/CORR-B2-01..04/CORR-B3-01..05/CORR-B4-01..04/
+CORR-B5-05/CORR-B6-01..05 — see header. §1g corrected in place (Round 6) rather than only
+extended, since its own prose directly contradicted §1h; §1i/§1j are new this round, formalizing
+what §1h's Round-5 addition left implicit or under-specified. Every prior version of every
+corrected passage remains visible above each correction, struck through, never deleted.)*

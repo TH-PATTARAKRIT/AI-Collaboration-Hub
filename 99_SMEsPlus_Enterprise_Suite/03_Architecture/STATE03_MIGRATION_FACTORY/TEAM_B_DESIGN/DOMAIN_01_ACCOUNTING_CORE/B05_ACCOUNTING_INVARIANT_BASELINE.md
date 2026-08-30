@@ -10,6 +10,7 @@
 | **Corrected (Round 3)** | **CORR-B3-04/05 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) found BINV-10's Round-2 text still described Fiscal Year Close as posting a Current-Earnings-transfer Entry (`M-AUD-07`), and found no invariant guaranteed IAS 8's mandatory exclusion of material prior-period errors from current-period profit or loss (`M-AUD-06`). BINV-10 rewritten again below (no-posted-close model); new BINV-13 added (material prior-period error P&L exclusion). See [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 4)** | **CORR-B4-01/02/03 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) found BINV-10's Round-3 formula double-counted the designated Retained Earnings account against ledger Equity (`M-AUD-08`), and gated Fiscal-Year earnings inclusion on `FiscalYearClosed`'s declaration timing rather than the Fiscal Year's own calendar boundary (`M-AUD-09`). BINV-10 rewritten a fourth time; new BINV-14 added (Reported Equity non-duplication and declaration-independence). See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 5)** | **CORR-B5-01/02/05 (2026-08-30)** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`) found MP-09's mixed-horizon output was silently treated as a balanced Trial Balance when it is not, once a Fiscal Year has elapsed (`M-AUD-11`), and found no invariant protected a Fiscal Year's boundary dates from silent retroactive editing (`M-AUD-12`). New BINV-15 added (Trial Balance output non-confusion); new BINV-16 added (Fiscal Year boundary historical safety). See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 6)** | **CORR-B6-01/02/03 (2026-08-30)** — ChatGPT's Round 6 re-audit (`b0ce666dad72909411a49690d0f642313d94dd13`) found BINV-16 protected the boundary from silent editing but never guaranteed the Elapsed test's own viewpoint-consistency (`M-AUD-13`), nor that an Entry's Fiscal-Year membership resolves to exactly one authoritative answer per viewpoint once a post-reliance change legitimately occurs (`M-AUD-14`). New BINV-17 added (Fiscal-Year Membership Viewpoint Coherence). See [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md). |
 
 ## 1. Independent Evaluation Method
 
@@ -718,6 +719,73 @@ Residual assumption:    The exact authorization tier for a post-reliance boundar
                         decision was.
 ```
 
+### BINV-17 — Fiscal-Year Membership Viewpoint Coherence *(new, added at CORR-B6-01/02/03)*
+
+```
+Independent statement: (a) **Viewpoint-consistent boundary lookup** — every Elapsed
+                        determination and every Fiscal-Year-boundary lookup embedded in a
+                        `_Known(...,T)` formula uses the boundary version knowable/authoritative
+                        AT T (`FiscalYearDefinition_Known`/`Elapsed_Known`, B07 §1i), never
+                        today's `_Current` boundary; a `_Current` formula uses today's latest
+                        authoritative version. The two are never mixed within one report. (b)
+                        **Single authoritative membership per viewpoint** — for any Entry E and
+                        any fixed viewpoint (a Known cutoff T, or Current), exactly one Fiscal
+                        Year is E's authoritative membership (`Membership_Known(E,T)`/
+                        `Membership_Current(E)`, B07 §1j); an Entry is never left interpretable
+                        under two incompatible calendar versions at once. (c) **No unresolved
+                        hybrid state** — a post-reliance boundary change and any affected Entry's
+                        membership reclassification occur atomically, in one action
+                        (`FiscalYearMembershipRestated`, B04/B07 §1j); there is no reachable
+                        state where a new boundary version exists for an already-relied-upon
+                        Fiscal Year while affected Entries' Current-viewpoint membership has not
+                        yet been updated to match.
+Why required:           ChatGPT's Round 6 audit found two related gaps in Round 5's own new
+                        design surface: `M-AUD-13` — B07 §1g's claim that Elapsed "never takes a
+                        viewpoint parameter" directly contradicted §1h's own Known/Current
+                        boundary model, meaning a literal implementation could silently use
+                        today's calendar inside a historical reconstruction. `M-AUD-14` — §1h
+                        permitted a post-reliance boundary version to exist without a
+                        synchronized Entry-membership update, leaving Current-viewpoint
+                        reporting formulas with no defined answer during the gap. Both are, in
+                        different ways, a single underlying risk: a report that is not
+                        consistently anchored to one viewpoint throughout.
+Accounting basis:       B07 §1i/§1j (new) — an internally-derived coherence requirement, the
+                        same category as BINV-11/BINV-12/BINV-16, not a cited external
+                        accounting standard
+Regulatory basis:       None specific — no Thai-specific regulatory requirement is invented for
+                        this control; it is derived entirely from this domain's own
+                        historical-reproducibility discipline, extended to the calendar's
+                        membership semantics
+Failure consequence:    Without (a), a Known-viewpoint report (e.g., a reconstruction of a
+                        Balance Sheet originally issued at T) could silently change after a
+                        later, legitimate calendar policy change — defeating BINV-11's guarantee
+                        from a direction Entry-level immutability alone cannot reach. Without
+                        (b)/(c), a Current-viewpoint report generated during an unsynchronized
+                        gap could show December activity under FY2024 in one query and FY2025 in
+                        another, with no way to tell which is authoritative — a silent internal
+                        contradiction, not merely an inconvenience.
+Enforcement objective:  (a) is enforced structurally by B07 §1i's Recorded-At-filtered
+                        `FiscalYearDefinition_Known` — the same mechanism BINV-11/12 already
+                        prove unconditional, applied one level up. (b)/(c) are enforced by B07
+                        §1j's adopted change model (Option A, refined): `FiscalYearBoundaryChanged`
+                        is constitutionally barred from reaching backward over reliance, so the
+                        only mechanism that CAN move a relied-upon Entry's membership
+                        (`FiscalYearMembershipRestated`) is defined to do so atomically, by
+                        construction — there is no intermediate, partially-applied state for an
+                        implementation to accidentally expose.
+Evidence:               `M-AUD-13`/`M-AUD-14` (the corrective triggers), B07 §1i/§1j (the
+                        formulas and the adopted model),
+                        [B23](B23_CORR_B6_FISCAL_CALENDAR_VIEWPOINT_AND_MEMBERSHIP_REGRESSION.md)
+                        (numeric verification, all 15 mandatory scenarios)
+Residual assumption:    Same as BINV-16's — the exact authorization tier for a post-reliance
+                        change (now covering both `FiscalYearBoundaryChanged`'s pre-reliance/
+                        future-only scope and the new `FiscalYearMembershipRestated`) remains the
+                        genuine open Boss-level policy question flagged as Team B assumption #7
+                        ([B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §6) — unchanged, not narrowed
+                        or widened, by this round's corrections, since this round selects WHICH
+                        mechanism applies WHEN, not WHAT tier governs it.
+```
+
 ## 3. Coverage Check Against Mandatory Areas
 
 ```
@@ -736,17 +804,21 @@ Independently added     : BINV-09 (classification integrity), BINV-10 (continuit
                            P&L exclusion, added Round 3), BINV-14 (Reported Equity
                            non-duplication and declaration-independence, added Round 4),
                            BINV-15 (Trial Balance output non-confusion, added Round 5),
-                           BINV-16 (Fiscal Year boundary historical safety, added Round 5)
+                           BINV-16 (Fiscal Year boundary historical safety, added Round 5),
+                           BINV-17 (Fiscal-Year Membership Viewpoint Coherence, added Round 6)
 ```
 
 **B5 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-04/05/CORR-B4-01..03/
-CORR-B5-01/02/05 — see header. Corrections are additive to this record, not a rewrite of it:
-BINV-01..05, 07..09 are unchanged since the original B5 pass. BINV-06 was amended once
-(Round 1). BINV-11 was amended once (Round 1), then substantially rewritten (Round 2). BINV-10
-was amended once (Round 1), substantially rewritten (Round 2), rewritten a third time (Round 3,
-`M-AUD-07` — no-posted-close model), then rewritten a fourth time (Round 4, `M-AUD-08`/
-`M-AUD-09` — non-overlapping decomposition and boundary-driven inclusion) — every prior version
-kept visible at each step. BINV-12 was new at Round 2. BINV-13 is new at Round 3 (`M-AUD-06` —
-material prior-period error P&L exclusion, IAS 8 paras 41/42/46). BINV-14 is new at Round 4
-(`M-AUD-08`/`M-AUD-09`). BINV-15/16 are new this round (Round 5, `M-AUD-11`/`M-AUD-12` —
-Trial Balance output non-confusion and Fiscal Year boundary historical safety).)*
+CORR-B5-01/02/05/CORR-B6-01/02/03 — see header. Corrections are additive to this record, not a
+rewrite of it: BINV-01..05, 07..09 are unchanged since the original B5 pass. BINV-06 was amended
+once (Round 1). BINV-11 was amended once (Round 1), then substantially rewritten (Round 2).
+BINV-10 was amended once (Round 1), substantially rewritten (Round 2), rewritten a third time
+(Round 3, `M-AUD-07` — no-posted-close model), then rewritten a fourth time (Round 4,
+`M-AUD-08`/`M-AUD-09` — non-overlapping decomposition and boundary-driven inclusion) — every
+prior version kept visible at each step. BINV-12 was new at Round 2. BINV-13 is new at Round 3
+(`M-AUD-06` — material prior-period error P&L exclusion, IAS 8 paras 41/42/46). BINV-14 is new
+at Round 4 (`M-AUD-08`/`M-AUD-09`). BINV-15/16 are new at Round 5 (`M-AUD-11`/`M-AUD-12` — Trial
+Balance output non-confusion and Fiscal Year boundary historical safety). BINV-17 is new this
+round (Round 6, `M-AUD-13`/`M-AUD-14` — Fiscal-Year membership viewpoint coherence, the fourth
+consecutive round in which independent re-audit found a gap in this domain's own immediately
+prior round's new design surface).)*
