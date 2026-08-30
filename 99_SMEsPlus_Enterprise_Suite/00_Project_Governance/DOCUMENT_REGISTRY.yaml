@@ -1,9 +1,9 @@
-version: v1.1
+version: v1.2
 status: Approved
 owner: Executive Secretary / Repository Owner
 approved_by: Boss
 effective_date: 2026-07-05
-updated_date: 2026-07-13
+updated_date: 2026-08-30
 scope: 99_SMEsPlus_Enterprise_Suite/00_Project_Governance
 
 control_notes:
@@ -116,4 +116,46 @@ documents:
     type: state_closure_record
     status: Approved
     owner: Executive Secretary
+    approver: Boss
+
+  - path: 00_Project_Governance/DECISIONS/BOSS_DECISION_STATE04_DESIGN_ORGANIZATION_AUDIT_VETO_2026-08-30.md
+    type: boss_decision
+    status: Approved
+    owner: Executive Secretary
+    approver: Boss
+
+  - path: 00_Project_Governance/STATE04_DESIGN_ORGANIZATION/STATE04_DESIGN_ORGANIZATION_BASELINE_v1.0.md
+    type: state04_design_organization_baseline
+    status: Approved
+    owner: Executive Secretary
+    approver: Boss
+
+  - path: 00_Project_Governance/STATE04_DESIGN_ORGANIZATION/TEAM11_INDEPENDENT_AUDIT_VETO_CHARTER_v1.0.md
+    type: independent_audit_veto_charter
+    status: Approved
+    owner: Team11 Audit Veto Office
+    approver: Boss
+
+  - path: 00_Project_Governance/STATE04_DESIGN_ORGANIZATION/STATE04_TEAM_ROSTER_REGISTER.csv
+    type: staffing_register
+    status: HOLD
+    owner: Executive Secretary / SMEsPlus PMO
+    approver: Boss
+
+  - path: 00_Project_Governance/STATE04_DESIGN_ORGANIZATION/STATE04_DESIGN_GATE_MATRIX.csv
+    type: gate_matrix
+    status: Approved
+    owner: Team11 Audit Veto Office
+    approver: Boss
+
+  - path: 00_Project_Governance/STATE04_DESIGN_ORGANIZATION/STATE04_STAKEHOLDER_INTERFACE_MATRIX.csv
+    type: stakeholder_interface_matrix
+    status: Approved
+    owner: Executive Secretary / SMEsPlus PMO
+    approver: Boss
+
+  - path: 00_Project_Governance/STATE04_DESIGN_ORGANIZATION/TEAM11_AUDIT_EXPERT_REGISTER.csv
+    type: audit_expert_register
+    status: HOLD
+    owner: Team11 Audit Veto Office
     approver: Boss
