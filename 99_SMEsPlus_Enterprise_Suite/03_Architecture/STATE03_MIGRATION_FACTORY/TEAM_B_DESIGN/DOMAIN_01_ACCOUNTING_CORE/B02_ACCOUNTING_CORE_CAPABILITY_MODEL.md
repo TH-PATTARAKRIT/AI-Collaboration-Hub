@@ -10,6 +10,7 @@
 | **Corrected (Round 4)** | **CORR-B4-03 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`, finding `M-AUD-09`) found the Round-3 text below still tied Reported Retained Earnings' inclusion of a Fiscal Year to CAP-09's own declaration — meaning a delayed declaration would silently drop a real, elapsed Fiscal Year's earnings from every report. Corrected: CAP-09's declaration now governs **posting-lock scope only**; Reported Retained Earnings inclusion is boundary-driven ("Elapsed," [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1e), never declaration-driven. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 5)** | **CORR-B5-05 (2026-08-30)** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`, finding `M-AUD-12`) found no capability governed changing a Fiscal Year's own boundary after it had already governed real facts. CAP-09 extended to own this action, gated at Restatement's tier, via the new `FiscalYearBoundaryChanged` event. See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 6)** | **CORR-B6-02 (2026-08-30)** — ChatGPT's Round 6 re-audit (`b0ce666dad72909411a49690d0f642313d94dd13`, finding `M-AUD-14`) found the Round-5 `FiscalYearBoundaryChanged` action left a gap for what happens to Entry membership when it reaches into reliance. CAP-09's boundary-governance bullet corrected below: `FiscalYearBoundaryChanged` is now scoped to never reach backward over reliance; CAP-09 additionally owns the new, atomic `FiscalYearMembershipRestated` action for genuine post-reliance correction. See [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 7)** | **CORR-B7-01/05 (2026-08-30)** — ChatGPT's Round 7 re-audit (`c22f236d0bf8b550636fc665a04c46281ca3d017`, finding `M-AUD-15`) found CAP-04's active Outputs/Downstream-dependents text still described a closed-period record "CAP-06 relies on for carry-forward" and CAP-06 as the capability "that defines when carry-forward is triggered" — stale since ordinary carry-forward became implicit at CORR-B2-03/04 and CAP-06 has never had anything to do with it. CAP-04 corrected below to name only its actual current outputs/dependents. CAP-09's title also renamed (dropping the ambiguous "& Earnings Transfer," per CORR-B7-05) to reflect its current, broader scope. See [CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md](CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md). |
 
 ## 1. Framing
 
@@ -38,8 +39,17 @@ identified. Each is stated independently of how (or whether) a reference system 
 - **Inputs:** account creation/edit requests; deprecation requests.
 - **Outputs:** a queryable, versioned chart of accounts; a category-membership answer for
   every account, for every point in time.
-- **Downstream dependents:** CAP-02 (every line needs a valid account), CAP-06 (statement
-  placement), all reporting/consolidation capabilities outside this domain.
+- **Downstream dependents:** ~~CAP-02 (every line needs a valid account), CAP-06 (statement
+  placement), all reporting/consolidation capabilities outside this domain.~~ **CORRECTED AT
+  CORR-B7-04 (kept struck through above, not deleted — found during this round's dependency
+  sanity sweep, the same category of defect as `M-AUD-15`):** CAP-02 (every line needs a valid
+  account), all reporting/consolidation capabilities outside this domain (statement placement
+  itself is a reporting-layer concern, consumed there, not by CAP-06). **CAP-06 is not, and has
+  never actually been, a consumer of "statement placement"** — CAP-06 is Currency Recognition &
+  Remeasurement; nothing in its own definition (below) reads or depends on an account's
+  category-driven statement placement. This stale cross-reference predates every corrective
+  round and was never caught because no round's own scope previously required re-examining
+  CAP-01's dependency list specifically.
 
 ### CAP-02 — Financial Fact Capture & Commitment
 
@@ -86,7 +96,7 @@ identified. Each is stated independently of how (or whether) a reference system 
   the original fact and needs to know it was corrected rather than silently changed underneath
   it.
 
-### CAP-04 — Period Control
+### CAP-04 — Period Control *(Outputs/Downstream-dependents corrected at CORR-B7-01)*
 
 - **What exists:** the single authoritative answer to "is this date, for this transaction
   class, open for posting right now" — and the mechanism for closing that answer off.
@@ -100,10 +110,26 @@ identified. Each is stated independently of how (or whether) a reference system 
   something an originating domain is trusted to have already checked.
 - **Inputs:** period-close requests; override/exception requests (which must themselves be
   authorized and recorded, not a silent code-level bypass — see [B09](B09_CONTROL_AUDIT_DESIGN_OBJECTIVES.md)).
-- **Outputs:** an open/closed determination, consultable by CAP-02 for every commitment
-  attempt; a closed-period record that CAP-06 relies on for carry-forward.
-- **Downstream dependents:** CAP-02 (gates every commitment), CAP-06 (defines when carry-
-  forward is triggered), external financial reporting (defines what's frozen).
+- **Outputs:** ~~an open/closed determination, consultable by CAP-02 for every commitment
+  attempt; a closed-period record that CAP-06 relies on for carry-forward.~~ **CORRECTED AT
+  CORR-B7-01 (kept struck through above, not deleted — this is exactly what ChatGPT's Round 7
+  audit, `M-AUD-15`, found stale):** an open/closed determination, consultable by CAP-02 for
+  every commitment/amendment attempt; an authorized, recorded reopen action when exercised
+  (CO-08). This determination is never itself a carry-forward fact and triggers no carry-
+  forward mechanism — ordinary carry-forward across a Period boundary is implicit, a pure
+  consequence of MP-09's all-time aggregation (B07 §1d), not something this capability, or any
+  capability, outputs or triggers.
+- **Downstream dependents:** ~~CAP-02 (gates every commitment), CAP-06 (defines when carry-
+  forward is triggered), external financial reporting (defines what's frozen).~~ **CORRECTED AT
+  CORR-B7-01:** CAP-02 (gates every commitment/amendment attempt against this determination),
+  CAP-08 (every close/reopen action is itself an audit-evidenced event, [B04](B04_BUSINESS_LIFECYCLE_EVENT_MODEL.md)
+  §3), external financial reporting (a legitimate consumer of "what is frozen as of this date"
+  — a claim about posting eligibility only, never a claim about carry-forward). **CAP-06
+  (Currency Recognition & Remeasurement) is not, and has never actually been, a downstream
+  dependent of this capability** — the stale cross-reference above named the wrong capability
+  for a mechanism (carry-forward) that itself no longer exists as a triggered event; CAP-06's
+  own remeasurement trigger is a reporting-date event (B02 CAP-06, below), independent of
+  Period Control entirely.
 
 ### CAP-05 — Company / Entity Boundary Enforcement
 
@@ -177,12 +203,20 @@ identified. Each is stated independently of how (or whether) a reference system 
 - **Financial truth maintained:** for any committed fact, its complete history of
   commitment/correction/void events is independently reconstructable without relying on the
   mutable record having preserved it.
-- **Inputs:** every state-changing action from CAP-02, CAP-03, CAP-04.
+- **Inputs:** ~~every state-changing action from CAP-02, CAP-03, CAP-04.~~ **CORRECTED AT
+  CORR-B7-04 (kept struck through above, not deleted — found during this round's dependency
+  sanity sweep — an incompleteness, not a stale claim: CAP-07 and CAP-09 each already state,
+  in their own sections, that they feed CAP-08, but this field never reciprocally listed
+  them):** every state-changing action from CAP-02, CAP-03, CAP-04, CAP-07 (the integrity-seal/
+  numbering action itself, per CAP-07's own "Downstream dependents"), and CAP-09 (the
+  `FiscalYearClosed`/`FiscalYearBoundaryChanged`/`FiscalYearMembershipRestated` events, per
+  CAP-09's own "Downstream dependents," recorded through CAP-08 directly, never through CAP-02,
+  since none of them is a financial fact for CAP-02 to commit).
 - **Outputs:** an immutable event stream, queryable per fact, per period, per actor.
 - **Downstream dependents:** internal/external audit, [B09](B09_CONTROL_AUDIT_DESIGN_OBJECTIVES.md)
   control objectives, dispute resolution.
 
-### CAP-09 — Fiscal Year Close & Earnings Transfer *(renamed and rescoped at CORR-B2-03/04, was "Period-End Carry-Forward"; "Earnings Transfer" re-scoped again at CORR-B3-05 to mean a logical/reporting transfer, never a posted Entry)*
+### CAP-09 — Fiscal Year Close & Boundary Governance *(renamed and rescoped at CORR-B2-03/04, was "Period-End Carry-Forward"; "Earnings Transfer" re-scoped at CORR-B3-05 to mean a logical/reporting transfer, never a posted Entry; renamed again at CORR-B7-05 — the audit found the word "Transfer" alone, even re-scoped in a footnote, risked being read by an implementer as a posted transfer, and the capability's own scope has since grown at CORR-B5-05/CORR-B6-02 to include Fiscal Year boundary and membership governance, which "Earnings Transfer" never named at all. The old title is preserved here, not deleted, as correction history.)*
 
 - **What exists (corrected at CORR-B2-03/04):** the ChatGPT Round 2 audit (`M-AUD-05`) found the
   original version of this capability generalized Team A's year-end-specific evidence (BF-09) to
@@ -313,7 +347,7 @@ CAP-07 (Regulated Document Integrity) ──────────────
                                                                     │
 CAP-03 (Correction & Reversal) ───────────────────────────────────┤
                                                                     │
-(Fiscal Year Close, authorized) ──▶ CAP-09 (Earnings Transfer) ────┘
+(Fiscal Year Close, authorized) ──▶ CAP-09 (Close & Boundary Governance) ─┘
 ```
 
 *(Corrected at CORR-B2-03/04: CAP-09 no longer depends on ordinary CAP-04 Period-close

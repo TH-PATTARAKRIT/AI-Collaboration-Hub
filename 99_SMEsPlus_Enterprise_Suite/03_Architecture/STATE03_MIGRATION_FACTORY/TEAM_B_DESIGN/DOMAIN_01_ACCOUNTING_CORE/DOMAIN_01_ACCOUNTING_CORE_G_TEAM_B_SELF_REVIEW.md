@@ -251,6 +251,57 @@ mechanism — the same design discipline §4e's Third observation noted this dom
 "not yet reliably applied to its own new concepts, three rounds running." Whether that
 discipline holds on a seventh independent look is, again, not this document's to predict.
 
+## 4g. Addendum — A Seventh Round, But a Different Shape of Miss *(added at CORR-B7-01..08)*
+
+§4f named the fourth self-inflicted-finding instance and predicted nothing about a seventh
+round. A seventh independent re-audit has now happened, and it found two more findings —
+`M-AUD-15` and `M-AUD-16` — but this round breaks the pattern §3d-§3f (and §4d-§4f) established,
+rather than extending it.
+
+**What is different, stated plainly:** every prior post-Round-1 finding traced to text a
+corrective round itself had recently written or revised — new mathematical machinery
+(`M-AUD-07`, `M-AUD-11`), a formula left declaration-driven instead of boundary-driven
+(`M-AUD-08`/`M-AUD-09`), a viewpoint left unformalized (`M-AUD-10`), a contradiction between two
+adjacent sections both touched within one recent round (`M-AUD-13`/`M-AUD-14`). `M-AUD-15` and
+`M-AUD-16` are neither. Both trace to text that has existed, unedited, since the **original**
+B02/B07 pass, before even Round 1's own corrections — CAP-04 has never once appeared in any
+prior round's "Corrected" header row, and the Consumption Record row's own carry-forward
+example was edited once, at CORR-B01, for a completely unrelated reason (trigger count), never
+re-examined for whether its own illustrative content had aged out. Six rounds of increasingly
+careful, increasingly targeted mathematical correction swept through B07 and B08 repeatedly
+without ever circling back to re-read CAP-04's or the Consumption Record row's own, adjacent,
+much-less-frequently-touched text.
+
+**Named precisely, this is a different risk category from the self-inflicted-finding
+sub-pattern** (§3g, [B15](B15_DESIGN_TRACEABILITY_MATRIX.md)): call it **correction
+blast-radius miss** — a piece of text a nearby, contemporaneous correction plausibly should
+have swept up, but did not, because it sat just outside that correction's own explicitly scoped
+boundary. This is not a failure of the "stay narrowly scoped to the named finding" discipline
+this whole session has followed since Round 1 — that discipline is correct, and abandoning it in
+favor of speculative broad rewrites every round would have been worse, not better. It is a
+disclosure that narrow scoping has a real, now-demonstrated cost: text just outside a
+correction's boundary can go unexamined for a long time, even while everything textually
+adjacent to it keeps changing.
+
+**What this round's own method adds, worth naming as a genuine process improvement rather than
+only a finding:** [B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §8a's Dependency Sanity Matrix — built
+by re-reading every capability's own stated dependencies against its targets' actual current
+definitions — found two FURTHER stale/incomplete edges beyond the two the audit itself named
+(CAP-01's own stale CAP-06 claim; CAP-08's incomplete Inputs list), neither of which the audit
+flagged. This is the first round in which Team B's own process caught something independent
+re-audit had not yet found, in the specific area the audit's finding was about — a narrower,
+more honest claim than "the internal process is catching up to independent audit in general,"
+but a genuine one, worth recording without overclaiming it.
+
+**What this means, stated as plainly as every prior addendum has:** this round does not lengthen
+the self-inflicted-finding streak (§4f's four instances stand at four, not five) — the
+underlying mathematical/reporting core that produced Rounds 3-6's findings shows no seventh
+symptom here. It does confirm a separate, real gap: this domain's own corrective process has not
+had, until this round, any mechanism for periodically re-examining text OUTSIDE a given round's
+own named scope for staleness accumulated from EARLIER rounds' changes. Whether that gap is now
+closed by having done it once, or needs to recur periodically as a standing practice, is a
+question for Boss and PMO to weigh, not this document to resolve unilaterally.
+
 ## 5. Verdict
 
 ```
@@ -275,15 +326,23 @@ CORRECTIVE ROUND 6 APPLIED (CORR-B6-01..08) — 2 more findings found by indepen
   finding sub-pattern, and the first arising from a textual contradiction between two sections
   rather than a defect internal to one formula), corrected; regression (B23) found no further
   gap during construction, the third consecutive round of which that is true
-Design internally coherent, self-corrected where found lacking six times over, honestly
+CORRECTIVE ROUND 7 APPLIED (CORR-B7-01..08) — 2 more findings found by independent re-audit
+  (M-AUD-15/M-AUD-16, NEITHER tracing to a recent round's new text — both predate Round 1
+  entirely, a different risk category named "correction blast-radius miss," distinct from the
+  self-inflicted-finding sub-pattern), corrected; 2 further stale/incomplete items found by
+  this domain's own dependency sanity sweep, beyond what the audit itself named; regression
+  (B24, a new reading-comprehension method rather than numeric verification) found no further
+  contradiction during construction
+Design internally coherent, self-corrected where found lacking seven times over, honestly
   bounded — including the honest observation that self-correction alone has never yet been
   sufficient without an independent pass finding something further, that three CONSECUTIVE
   rounds (4, 5, and 6) each corrected a defect the immediately preceding round's own fix
-  introduced, and that this document explicitly declines to predict whether a seventh round
-  would find nothing further
-Not independently re-verified since Round 6's correction — that is ChatGPT re-audit's role next
+  introduced, that Round 7 surfaced a SEPARATE risk category (stale text outside any round's
+  own scope) this process had no prior mechanism for catching, and that this document
+  explicitly declines to predict whether an eighth round would find nothing further
+Not independently re-verified since Round 7's correction — that is ChatGPT re-audit's role next
 Not Final Pass — Boss and ChatGPT re-audit remain outstanding
 ```
 
-**Self-review complete, corrective addendum applied (six rounds). Proceeding to Final Gate
+**Self-review complete, corrective addendum applied (seven rounds). Proceeding to Final Gate
 Candidate (H).**

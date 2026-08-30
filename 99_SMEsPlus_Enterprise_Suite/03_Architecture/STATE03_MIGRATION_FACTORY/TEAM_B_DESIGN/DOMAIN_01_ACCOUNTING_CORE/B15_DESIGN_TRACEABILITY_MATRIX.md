@@ -4,10 +4,11 @@
 |---|---|
 | Domain | DOMAIN_01 — Accounting Core |
 | Phase | B15 — Traceability & Consistency Verification |
-| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit (Round 1) and recorded in §3a; two more were found by ChatGPT's Round 2 re-audit and recorded in §3b; two more were found by ChatGPT's Round 3 re-audit and recorded in §3c; three more were found by ChatGPT's Round 4 re-audit and recorded in §3d; two more were found by ChatGPT's Round 5 re-audit and recorded in §3e; two more were found by ChatGPT's Round 6 re-audit and recorded in §3f — all with equal transparency. |
+| Method | Genuine audit — findings below are real, not a rubber stamp. Two consistency issues were found internally and are resolved explicitly, not silently; three further, more severe defects were subsequently found by ChatGPT's independent audit (Round 1) and recorded in §3a; two more were found by ChatGPT's Round 2 re-audit and recorded in §3b; two more were found by ChatGPT's Round 3 re-audit and recorded in §3c; three more were found by ChatGPT's Round 4 re-audit and recorded in §3d; two more were found by ChatGPT's Round 5 re-audit and recorded in §3e; two more were found by ChatGPT's Round 6 re-audit and recorded in §3f; two more were found by ChatGPT's Round 7 re-audit, plus two further stale cross-references found by this domain's own dependency sanity sweep, recorded in §3g/§8a — all with equal transparency. |
 | **Corrected (Round 4)** | **CORR-B4-01..08 (2026-08-30)** — new §3d added for `M-AUD-08`/`M-AUD-09`/`M-AUD-10`. See [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 5)** | **CORR-B5-01..08 (2026-08-30)** — new §3e added for `M-AUD-11`/`M-AUD-12`; §6 gains a genuine seventh Team B assumption (Fiscal Year boundary change authorization tier). See [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md). |
 | **Corrected (Round 6)** | **CORR-B6-01..08 (2026-08-30)** — new §3f added for `M-AUD-13`/`M-AUD-14`; §6's seventh assumption confirmed unchanged, not narrowed or widened. See [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md). |
+| **Corrected (Round 7)** | **CORR-B7-01..08 (2026-08-30)** — new §3g added for `M-AUD-15`/`M-AUD-16`, both pure active-semantic staleness predating every prior corrective round (a new risk category, "correction blast-radius miss," distinct from the self-inflicted-finding pattern); new §8a adds a Dependency Sanity Matrix, which itself found two further stale/incomplete cross-references beyond the two audit-named findings. See [CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md](CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md). |
 
 ## 1. Full Chain Traces (Exemplars)
 
@@ -382,6 +383,66 @@ a defect internal to one formula — a qualitatively different failure mode this
 process had not previously exhibited. Reflected in
 [G §4f](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md).
 
+## 3g. Corrective Round 7 — Issues Found by ChatGPT Re-Audit and Resolved *(added at CORR-B7-01..08)*
+
+Two further defects, found by ChatGPT's Round 7 re-audit (`c22f236d0bf8b550636fc665a04c46281ca3d017`)
+— **neither introduced by any prior corrective round's own new text; both predate every
+corrective round entirely**, a different shape from every one of §3a-§3f's findings. This is
+the first round whose findings are pure staleness (an active statement never updated after the
+mechanism it described was redesigned elsewhere) rather than a new defect in freshly-written
+text.
+
+**Issue 17 (`M-AUD-15`, HIGH) — B02 CAP-04's active Outputs/Downstream-dependents text still
+named CAP-06 as the consumer of a "closed-period record... for carry-forward," and as the
+capability that "defines when carry-forward is triggered."** This text existed, unedited, since
+the original B02 pass — CAP-04 itself has never once appeared in any prior round's own
+"Corrected" header row, even though the carry-forward concept it references was completely
+redesigned at CORR-B2-03/04 (implicit carry-forward adopted) and CORR-B3-05 (no posted Entry at
+all). CAP-06 (Currency Recognition & Remeasurement) has never had anything to do with
+carry-forward at any point in this design's history. **Resolution:** CAP-04's Outputs/
+Downstream-dependents corrected to name only current, accurate consumers (CAP-02, CAP-08,
+external reporting); the stale CAP-06 claim removed, with the prior text kept visible, struck
+through. Full record: [B02](B02_ACCOUNTING_CORE_CAPABILITY_MODEL.md) CAP-04.
+
+**Issue 18 (`M-AUD-16`, HIGH) — B07's Consumption Record entity row still named, as an active
+example of downstream-reference Consumption, "CAP-09's own carry-forward, which references the
+prior period's closing Entries."** `CarriedForward` was removed as an event at CORR-B2-03/04;
+CAP-09/Fiscal Year Close has posted no Entry, and referenced no prior Entry, since CORR-B3-05.
+This row WAS edited at CORR-B01 (correcting the trigger count from four to three), but that edit
+touched only the count, never re-examining the row's own illustrative example — which had
+already been describing a mechanism CORR-B01 itself was, in the very same round, in the process
+of narrowing. **Resolution:** the stale example replaced with a currently-valid one (a
+Correction/Reversal Entry, which genuinely is "computed from or references" the Entry it
+targets); an explicit statement added that no Period/Fiscal-Year lock or boundary event is an
+automatic Consumption trigger. Full record: [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1,
+Consumption Record row.
+
+**Self-found during this round's own CORR-B7-03/04 sweep, beyond the two audit-named findings**
+(disclosed per this domain's standing transparency discipline, not merely the two items the
+audit itself named): **(a)** B02 CAP-01's downstream-dependents list also named CAP-06 as a
+consumer of "statement placement" — the same shape of stale/incorrect CAP-06 cross-reference as
+`M-AUD-15`, corrected identically. **(b)** B02 CAP-08's own Inputs field listed only CAP-02/
+CAP-03/CAP-04 as sources, while CAP-07 and CAP-09 each separately claim, in their own sections,
+to feed CAP-08 directly — an internal inconsistency, not itself a claim about a removed
+mechanism, but caught by the same systematic cross-check and corrected for completeness. **(c)**
+[B18](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md) Test 5 (Round 1's own regression, never
+touched since) still described the pre-CORR-B2-03/04 posted-Entry carry-forward mechanism as its
+active scenario text — annotated, not rewritten, since its own numeric conclusion was never
+wrong. Full dependency sanity matrix: §8a, below.
+
+**Pattern note, continued from §3a-§3f:** this is the SEVENTH consecutive corrective round in
+which independent re-audit found what this domain's own process did not — but, distinctly from
+every prior round, THIS round's own two named findings are not new attack surface from a recent
+fix; they are original-B02/B07 text that six rounds of increasingly sophisticated mathematical
+correction never revisited, because every round's own scope was drawn narrowly around the
+specific finding it was asked to fix (per explicit standing instruction not to restart prior
+phases) — a legitimate, correct discipline that nonetheless left CAP-04's and the Consumption
+Record row's own stale cross-references sitting untouched through six rounds of neighboring
+change. This is a distinct risk category from the self-inflicted-finding pattern §3d-§3f named:
+call it **correction blast-radius miss** — a piece of text a nearby, contemporaneous correction
+should plausibly have swept up, but did not, because it sat just outside that correction's own
+named scope. Reflected in [G §4g](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md).
+
 ## 4. Contradictory Rules Check
 
 Beyond Issue 2 (resolved above), no other rule pair was found to assert incompatible
@@ -450,6 +511,13 @@ assumption is added: choosing Option A over Option B for the change model (DT-13
 decision this domain makes and justifies, the same category as DT-08 through DT-12's own
 resolutions, not an open policy question deferred to Boss.
 
+**Round 7 note (CORR-B7-07):** assumptions #1-7 are all unchanged in wording — this round's
+corrections (stale CAP-04/CAP-01/CAP-08/Consumption-Record cross-references, CAP-09's title)
+are pure active-semantic/dependency hygiene with zero bearing on any of the seven assumptions'
+subject matter. No eighth assumption is added: every correction this round has exactly one
+correct current answer, traceable to an already-settled prior-round decision, not a newly
+surfaced open policy question.
+
 | Assumption | First flagged | Disposition (per B01 §7 categories) |
 |---|---|---|
 | Rounding method = round-half-up | B08 MP-04, B13 DT-01 | **TEAM B DESIGN ASSUMPTION — REQUIRES GATE** |
@@ -479,6 +547,58 @@ bottom out in a vendor artifact rather than an AS/RG/IP/XP/TF/MR/IR category): *
 chain traced in §1 and spot-checked across B02–B13 bottoms out in one of the seven approved
 categories.
 
+## 8a. Active-Semantic Dependency Sanity Matrix *(new, added at CORR-B7-04)*
+
+Built by re-reading every capability's (CAP-01..09) own Inputs/Outputs/Downstream-dependents
+fields against the actual current definition of every capability it names, plus every
+event/invariant/principle cluster the directive specifically flagged. This is the method that
+found the two self-found items in §3g(a)/(b), beyond the two audit-named findings.
+
+| Source | Target | Why Dependency Exists | Current Responsibility of Target | Evidence | Status | Disposition |
+|---|---|---|---|---|---|---|
+| CAP-01 | CAP-02 | Every Line needs a valid, categorized Account | Chart of Accounts Governance | B02 CAP-01/CAP-02 | Valid | none |
+| CAP-01 | external reporting | Statement placement is category-driven | outside this domain | B02 CAP-01 | Valid | none |
+| CAP-01 | CAP-06 | *(claimed: "statement placement")* | Currency Recognition & Remeasurement — does not consume statement placement | B02 CAP-01 | **Stale** | **CORRECTED CORR-B7-04** — removed |
+| CAP-02 | CAP-04 | Commitment must consult period open/closed before accepting a fact | Period Control | B02 CAP-02/CAP-04 | Valid | none |
+| CAP-02 | CAP-05 | Commitment must consult company-boundary before accepting a fact | Company Boundary Enforcement | B02 CAP-02/CAP-05 | Valid | none |
+| CAP-02 | CAP-08 | Every commitment is itself a state-changing action | Audit Trail & Evidence Provision | B02 CAP-02/CAP-08 | Valid | none |
+| CAP-03 | CAP-02 | A Correction/Reversal is itself a financial fact, gated identically | Financial Fact Capture & Commitment | B02 CAP-03 | Valid | none |
+| CAP-03 | CAP-08 | Every correction is a state-changing action | Audit Trail & Evidence Provision | B02 CAP-03/CAP-08 | Valid | none |
+| CAP-04 | CAP-02 | Gates every commitment/amendment attempt | Financial Fact Capture & Commitment | B02 CAP-04 (corrected) | Valid | none |
+| CAP-04 | CAP-06 | *(claimed: "carry-forward trigger")* | Currency Recognition & Remeasurement — does not own or trigger carry-forward | B02 CAP-04 | **Stale** (`M-AUD-15`) | **CORRECTED CORR-B7-01** — removed |
+| CAP-04 | CAP-08 | Every close/reopen is itself an audit-evidenced event | Audit Trail & Evidence Provision | B02 CAP-04 (corrected) | Valid (new this round) | none |
+| CAP-09 | CAP-04 | `FiscalYearClosed` extends Period Lock's scope to the whole Fiscal Year | Period Control | B02 CAP-09 "Downstream dependents" | Valid | none |
+| CAP-06 | CAP-02 | Every foreign-currency commitment routes through remeasurement recognition | Financial Fact Capture & Commitment | B02 CAP-06 | Valid | none |
+| CAP-07 | CAP-08 | Integrity-seal/numbering action is itself a state-changing action | Audit Trail & Evidence Provision | B02 CAP-07 "Downstream dependents" | Valid | none |
+| CAP-08 | (receives from) CAP-02/03/04/07/09 | Every state-changing action across the domain is audit-evidenced | Audit Trail & Evidence Provision (CAP-08 itself) | B02 CAP-08 (corrected) | Valid (CAP-07/CAP-09 added this round) | none |
+| CAP-09 | CAP-08 | `FiscalYearClosed`/`FiscalYearBoundaryChanged`/`FiscalYearMembershipRestated` recorded through CAP-08 directly, never CAP-02 (no financial fact exists) | Audit Trail & Evidence Provision | B02 CAP-09 | Valid | none |
+| Ordinary `PeriodClosed` | Consumption (BINV-06/07) | *(never claimed — explicitly the opposite)* | Consumption gated solely by B04 §4's three trigger kinds | B04 §4, corrected at CORR-B01 | Valid — zero active edge exists | none |
+| `FiscalYearClosed` | Reported Retained Earnings (B07 §1e) | *(never claimed since CORR-B4-03 — explicitly the opposite)* | Reported RE inclusion is boundary-driven (Elapsed), never declaration-driven | B02 CAP-09, B07 §1e | Valid — zero active edge exists | none |
+| `FiscalYearClosed` | posted Entry | *(never claimed since CORR-B3-05 — explicitly the opposite)* | CAP-09 posts no financial Entry, ever | B02 CAP-09, B04 event table | Valid — zero active edge exists | none |
+| `FiscalYearBoundaryChanged` | Entry membership | *(never moves it — constitutionally barred from reaching into reliance since CORR-B6-02)* | Membership changes only via `FiscalYearMembershipRestated` | B07 §1h/§1j, B04 event table | Valid | none |
+| `FiscalYearMembershipRestated` | Entry membership + boundary (atomic) | The one mechanism that DOES move both, together, for the post-reliance case | B07 §1j | B04 event table, B07 §1j | Valid | none |
+| Consumption Record (downstream-reference trigger) | CAP-09 carry-forward | *(claimed — CAP-09 posts nothing to reference)* | no such mechanism exists | B07 §1, Consumption Record row | **Stale** (`M-AUD-16`) | **CORRECTED CORR-B7-02** — replaced with a Correction/Reversal example |
+| B07 §1i (`FiscalYearDefinition_Known/Current`, `Elapsed_Known/Current`) | B08 MP-09 `FiscalYearActivity`, MP-12 Proofs D/G4 | Every Fiscal-Year-boundary lookup inside a viewpoint-parameterized formula must use the matching viewpoint | B08 MP-09/MP-12 (corrected at CORR-B6-01/04) | B07 §1i, B08 MP-09/MP-12 | Valid | none |
+| BINV-10 (Carry-Forward Correctness) | B07 §1d | Ordinary carry-forward is implicit, a pure consequence of MP-09's aggregation, never a posted fact or triggered event | B07 §1d | B05 BINV-10 | Valid | none |
+| BINV-17 (Membership Viewpoint Coherence) | B07 §1i/§1j | Every boundary/membership lookup must be viewpoint-consistent, never a reachable hybrid state | B07 §1i/§1j | B05 BINV-17 | Valid | none |
+
+**Acceptance, checked directly against the four required criteria:**
+
+```
+Zero active dependency edges to a responsibility the target no longer owns : CONFIRMED — the
+  three stale edges found (CAP-04→CAP-06, CAP-01→CAP-06, Consumption Record→CAP-09 carry-
+  forward) are all corrected above, none remain
+Zero active references to removed `CarriedForward` behavior                : CONFIRMED — every
+  remaining "carry-forward" reference in the pack describes the CURRENT implicit mechanism
+  (B07 §1d, B05 BINV-10) or is explicitly historical/struck-through
+Zero active implication that CAP-06 owns carry-forward                     : CONFIRMED — both
+  CAP-04→CAP-06 and CAP-01→CAP-06 stale edges removed this round
+Zero active implication that FiscalYearClose posts an earnings-transfer Entry : CONFIRMED —
+  unchanged since CORR-B3-05, re-verified this round, no regression
+Zero active implication that ordinary Period close automatically causes Consumption : CONFIRMED
+  — unchanged since CORR-B01, re-verified this round, no regression
+```
+
 ## 9. Acceptance Check
 
 ```
@@ -497,46 +617,55 @@ Contradictory rules                       : 1 found internally (Issue 2), RESOLV
                                              Round 5's own new §1h text — the fourth consecutive
                                              self-inflicted-finding instance, and the first
                                              arising from a textual contradiction rather than a
-                                             single formula's own defect); 1 stale statement
-                                             found during Round-2 re-verification and corrected
-                                             (§5)
-Circular definitions                      : NONE, re-verified Round 2 (§5); re-checked Round 3,
-                                             Round 4, Round 5, and Round 6 — the new B07
-                                             §1f/§1g/§1h/§1i/§1j decompositions and B08
-                                             MP-09/MP-12 (corrected) introduce no new dependency
-                                             that could cycle back on Consumption, Period Lock,
-                                             Restatement, or the Elapsed test —
-                                             `FiscalYearMembershipRestated` depends on
-                                             `FiscalYearBoundaryChanged` having NOT applied (its
-                                             scope is mutually exclusive, not layered), so no
-                                             cycle is introduced between the two new-this-round
-                                             mechanisms either
+                                             single formula's own defect); 2 more found by
+                                             Round-7 re-audit plus 2 further found by this
+                                             round's own dependency sanity sweep, RESOLVED (§3g/
+                                             §8a — pure active-semantic staleness predating every
+                                             prior round, not new-attack-surface); 1 stale
+                                             statement found during Round-2 re-verification and
+                                             corrected (§5)
+Circular definitions                      : NONE, re-verified Round 2 (§5); re-checked Round 3
+                                             through Round 7 — the new B07 §1f/§1g/§1h/§1i/§1j
+                                             decompositions and B08 MP-09/MP-12 (corrected)
+                                             introduce no new dependency that could cycle back
+                                             on Consumption, Period Lock, Restatement, or the
+                                             Elapsed test — `FiscalYearMembershipRestated`
+                                             depends on `FiscalYearBoundaryChanged` having NOT
+                                             applied (its scope is mutually exclusive, not
+                                             layered), so no cycle is introduced between the two
+                                             mechanisms either; the Round-7 dependency sanity
+                                             matrix (§8a) independently re-traces every
+                                             capability edge and finds none
 Unresolved critical assumptions           : 7 Team B assumptions (#2 revised/narrowed twice,
                                              Round 1 and Round 2, not withdrawn; #1, #3-6
-                                             unchanged by Round 3, Round 4, and Round 6; #7 NEW
-                                             at Round 5, Fiscal Year boundary change
+                                             unchanged by Round 3, Round 4, Round 6, and Round 7;
+                                             #7 NEW at Round 5, Fiscal Year boundary change
                                              authorization tier, confirmed unchanged at Round 6
-                                             — see §6 notes) + 3 carried-forward Team A items,
-                                             ALL VISIBLE (§6), none hidden
+                                             and Round 7 — see §6 notes) + 3 carried-forward
+                                             Team A items, ALL VISIBLE (§6), none hidden
 Regulatory overreach                      : NONE (§7)
 Vendor leakage                             : NONE (§8, cross-checked against B14; re-confirmed
                                              unaffected by Round 2's temporal/fiscal model, by
                                              Round 3's IAS 8 classification and no-posted-close
                                              model, by Round 4's reporting-equity mathematics,
                                              by Round 5's Trial Balance/Fiscal Calendar
-                                             corrections, and by Round 6's viewpoint/membership
-                                             corrections — all six are grounded in accounting
-                                             standards/mathematics and this domain's own prior
-                                             vocabulary (Known/Current, Effective/Recorded,
-                                             CO-15's tier), not vendor structure)
+                                             corrections, by Round 6's viewpoint/membership
+                                             corrections, and by Round 7's active-semantic
+                                             consolidation (pure internal-consistency cleanup,
+                                             no new design content) — all seven are grounded in
+                                             accounting standards/mathematics and this domain's
+                                             own prior vocabulary, not vendor structure)
 ```
 
 **B15 = COMPLETE.** *(Corrected at CORR-B01/B02/B03/CORR-B2-01..04/CORR-B3-01..08/CORR-B4-01..08/
-CORR-B5-01..08/CORR-B6-01..08 — §3a, §3b, §3c, §3d, §3e, and §3f added, §5 corrected (a stale
-pre-Round-1 statement found during Round 2 re-verification), §6 assumption #2 revised in place
-twice (Round 1, Round 2) and explicitly confirmed unchanged at Round 3, Round 4, and Round 6,
-with every prior wording kept visible, not deleted, per instruction. §6 gains a genuine seventh
-assumption at Round 5 — the first round to add one since the original six were established —
-confirmed unchanged in wording and scope-of-question at Round 6. §1, §2, §4, §7, §8 re-verified
-as still accurate after Round 6's corrections: no new orphans, no new overreach, no new vendor
-leakage, no new circularity.)*
+CORR-B5-01..08/CORR-B6-01..08/CORR-B7-01..08 — §3a, §3b, §3c, §3d, §3e, §3f, and §3g added, new
+§8a (Dependency Sanity Matrix), §5 corrected (a stale pre-Round-1 statement found during Round 2
+re-verification), §6 assumption #2 revised in place twice (Round 1, Round 2) and explicitly
+confirmed unchanged at Round 3, Round 4, Round 6, and Round 7, with every prior wording kept
+visible, not deleted, per instruction. §6 gains a genuine seventh assumption at Round 5 — the
+first round to add one since the original six were established — confirmed unchanged in wording
+and scope-of-question at Round 6 and Round 7. §1, §2, §4, §7, §8 re-verified as still accurate
+after Round 7's corrections: no new orphans, no new overreach, no new vendor leakage, no new
+circularity. Round 7 is the first round whose own corrections are pure active-semantic
+consolidation — removing stale cross-references to a removed mechanism — rather than new design
+content, per its own directive's scope.)*

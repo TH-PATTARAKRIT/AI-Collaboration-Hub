@@ -2,6 +2,7 @@
 
 | Field | Value |
 |---|---|
+| **Coherence-annotated (Round 7)** | **CORR-B7-03 (2026-08-30)** — this document had never been touched since Round 1, and Test 5's scenario text still described the pre-CORR-B2-03/04/CORR-B3-05 posted-Entry carry-forward mechanism as if current. Annotated below, not rewritten — Test 5's own numeric conclusion was never wrong. See [CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md](CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md). |
 | Session | SMEPLUS-26-08-29-MIG-B-D01-CORR-001 |
 | Source of truth | `DOMAIN_01_ACCOUNTING_CORE_K_CORR_B_EXECUTOR_PROMPT.md` (commit `f363ee127b17d0d2743c4c2fde402bd39eabc633`) §CORR-B05 — ten scenarios, tested against the corrected design (CORR-B01/B02/B03) |
 | Personas | Senior Accountant, External Auditor, CFO, Migration Architect, Period-Close Operator, Historical Reporting Reviewer, Clean-room Reviewer |
@@ -81,6 +82,25 @@ residual_risk:        none
 ```
 
 ### Test 5 — Close/carry-forward equation transition
+
+**Coherence note (Round 7, CORR-B7-03):** this test's own numeric conclusion (the simple
+equation holds post-close, using the updated Equity figure) has never been wrong and is
+re-verified independently, under the current design, at
+[B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) Tests 9-11 and
+[B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-12 Proof F. The scenario text below
+predates CORR-B2-03/04 and CORR-B3-05 and describes the mechanism this design used at Round 1
+only — "CAP-09 transfers Current Earnings... resets Revenue/Expense to zero" — which was
+removed as internally contradictory and arithmetically unsound (`M-AUD-07`) two rounds later.
+ChatGPT's Round 7 audit (`M-AUD-15`/`M-AUD-16`, and this domain's own CORR-B7-03 sweep) found
+this scenario text was never annotated when the mechanism it describes was superseded, unlike
+[B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md)/[B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md)/[B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md)'s
+own later terminology annotations for comparable gaps. **Kept visible below as the historical
+record it is, not deleted — but it is no longer current design authority for HOW the equation
+transition happens, only for the fact THAT it holds numerically.** Under the current design, no
+Entry is posted at Fiscal Year Close and Revenue/Expense are never reset by any posted action —
+the same post-close position is reached instead through B07 §1e's derived Reported Retained
+Earnings formula, applied once the relevant Fiscal Year has Elapsed (never through a "period
+closes... resets" mechanism as this test's scenario line describes).
 
 ```
 scenario:             Continuing Test 4: period closes; CAP-09 transfers Current Earnings

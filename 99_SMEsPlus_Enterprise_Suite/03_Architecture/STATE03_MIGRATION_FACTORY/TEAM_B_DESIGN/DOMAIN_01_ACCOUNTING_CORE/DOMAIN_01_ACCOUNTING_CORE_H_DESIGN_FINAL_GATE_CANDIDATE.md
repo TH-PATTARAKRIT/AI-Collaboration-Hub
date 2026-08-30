@@ -13,7 +13,8 @@
 | **Corrective round 3** | **CORR-B3-01..08, session SMEPLUS-26-08-29-MIG-B-D01-CORR3-001** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) returned this design for a third targeted revision with two further findings — one of which (`M-AUD-07`) was introduced by Round 2's own corrective fix (MP-11). Both corrected; full record in [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md) and [B20](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md). |
 | **Corrective round 4** | **CORR-B4-01..08, session SMEPLUS-26-08-30-MIG-B-D01-CORR4-001** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) returned this design for a fourth targeted revision with three further findings — two of which (`M-AUD-08`, `M-AUD-09`) were introduced by Round 3's own corrective fix (B07 §1e). All three corrected; full record in [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md) and [B21](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md). |
 | **Corrective round 5** | **CORR-B5-01..08, session SMEPLUS-26-08-30-MIG-B-D01-CORR5-001** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`) returned this design for a fifth targeted revision with two further findings — one of which (`M-AUD-11`) was introduced by Round 4's own corrective fix (B08 MP-12), the THIRD instance of this specific self-inflicted-finding sub-pattern. Both corrected; full record in [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md) and [B22](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md). |
-| **Corrective round 6** | **CORR-B6-01..08, session SMEPLUS-26-08-30-MIG-B-D01-CORR6-001** — ChatGPT's Round 6 re-audit (`b0ce666dad72909411a49690d0f642313d94dd13`) returned this design for a sixth targeted revision with two further findings, BOTH introduced by Round 5's own corrective fix (B07 §1h) — the FOURTH instance of this self-inflicted-finding sub-pattern, and the first arising from a textual contradiction between two sections rather than a defect internal to one formula. Both corrected; full record in [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md) and [B23](B23_CORR_B6_FISCAL_CALENDAR_VIEWPOINT_AND_MEMBERSHIP_REGRESSION.md). This document now reflects the six-times-corrected state. |
+| **Corrective round 6** | **CORR-B6-01..08, session SMEPLUS-26-08-30-MIG-B-D01-CORR6-001** — ChatGPT's Round 6 re-audit (`b0ce666dad72909411a49690d0f642313d94dd13`) returned this design for a sixth targeted revision with two further findings, BOTH introduced by Round 5's own corrective fix (B07 §1h) — the FOURTH instance of this self-inflicted-finding sub-pattern, and the first arising from a textual contradiction between two sections rather than a defect internal to one formula. Both corrected; full record in [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md) and [B23](B23_CORR_B6_FISCAL_CALENDAR_VIEWPOINT_AND_MEMBERSHIP_REGRESSION.md). |
+| **Corrective round 7** | **CORR-B7-01..08, session SMEPLUS-26-08-30-MIG-B-D01-CORR7-001** — ChatGPT's Round 7 re-audit (`c22f236d0bf8b550636fc665a04c46281ca3d017`) returned this design for a seventh targeted revision with two further findings, NEITHER introduced by a recent round's new text — both predate Round 1 entirely (stale CAP-04/Consumption-Record cross-references to a removed carry-forward mechanism), a distinct risk category ("correction blast-radius miss") from the prior self-inflicted-finding pattern. Both corrected, plus two further stale/incomplete dependency edges found by this domain's own sweep; full record in [CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md](CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md) and [B24](B24_CORR_B7_ACTIVE_SEMANTIC_AND_DEPENDENCY_REGRESSION.md). This document now reflects the seven-times-corrected state. |
 
 ## Boss Authorization Baseline
 
@@ -39,11 +40,13 @@ migration implementation, or API — per directive §12, not authorized this pha
 
 ## Design Evidence Summary
 
-Eighteen phases (B0–B17) complete, plus six targeted corrective rounds. Nine capabilities
+Eighteen phases (B0–B17) complete, plus seven targeted corrective rounds. Nine capabilities
 (CAP-09 renamed/rescoped to Fiscal Year Close only, Round 2; corrected at CORR-B3-05 to post no
 financial Entry; declaration scope corrected at CORR-B4-03 to govern posting lock only; extended
 at CORR-B5-05 to also own Fiscal Year boundary-change governance; scope-corrected at CORR-B6-02
-to add the new atomic membership-reclassification action), ten domain-boundary concepts, a
+to add the new atomic membership-reclassification action; CAP-04's own stale carry-forward
+cross-reference and CAP-01/CAP-08's own stale/incomplete dependency edges corrected, and CAP-09
+retitled to drop an ambiguous word, at CORR-B7-01/04/05), ten domain-boundary concepts, a
 four-state lifecycle with an original Consumption Gate mechanism, **seventeen** invariants
 (BINV-11 rewritten, BINV-12 added, Round 2; BINV-10 rewritten again and BINV-13 added, Round 3;
 BINV-10 rewritten a fourth time and BINV-14 added, Round 4; BINV-15/16 added, Round 5;
@@ -68,11 +71,12 @@ items with measurable criteria, **thirteen** formally compared design-option dec
 
 ## Clean-room Status
 
-**Critical Vendor-Derived Design Risk = 0**, verified seven times now (B14 direct check, B15 §8
-independent cross-check, B15 §3b/§3c/§3d/§3e/§3f re-confirmations after Rounds 2-6). Every
-correction across all six rounds is grounded in accounting standards, mathematics/algebra, and
+**Critical Vendor-Derived Design Risk = 0**, verified eight times now (B14 direct check, B15 §8
+independent cross-check, B15 §3b/§3c/§3d/§3e/§3f/§3g re-confirmations after Rounds 2-7). Every
+correction across all seven rounds is grounded in accounting standards, mathematics/algebra, and
 this domain's own prior vocabulary (Known/Current, Effective/Recorded, CO-15's tier) — no
-vendor structure entered the design at any round.
+vendor structure entered the design at any round. Round 7's corrections are pure internal-
+consistency/terminology hygiene, introducing no new design content at all.
 
 ## Traceability Status
 
@@ -81,25 +85,28 @@ found internally (B15 §3, Round 1); three defects found by Round-1 independent 
 two more found by Round-2 re-audit (§3b); two more found by Round-3 re-audit (§3c); three more
 found by Round-4 re-audit (§3d), two of which were introduced by Round 3's own fix; two more
 found by Round-5 re-audit (§3e), one of which was introduced by Round 4's own fix; two more
-found by Round-6 re-audit (§3f), BOTH of which were introduced by Round 5's own fix — all
-resolved and recorded, none hidden. Zero circular definitions, re-checked after every round —
-Round 6's own cross-reference from `FiscalYearMembershipRestated` to `FiscalYearBoundaryChanged`
-verified mutually exclusive in scope, not circular. Zero confirmed regulatory overreach.
+found by Round-6 re-audit (§3f), BOTH of which were introduced by Round 5's own fix; two more
+found by Round-7 re-audit (§3g), NEITHER introduced by a recent round — both predate Round 1
+entirely — plus two further stale/incomplete dependency edges found by this domain's own §8a
+sweep, beyond what the audit itself named — all resolved and recorded, none hidden. Zero
+circular definitions, re-checked after every round, including Round 7's own full dependency
+walk (B15 §8a). Zero confirmed regulatory overreach.
 
 ## Unknown Status
 
 Team A's full 20-item residual register carries forward unchanged and unresolved by this
 design phase. **Seven** Team B design assumptions remain (assumption #2 revised twice — Round
 1 and Round 2 — narrowed further each time, never resolved by Team B itself; unchanged by
-Round 3, Round 4, and Round 6; **#7 added at Round 5** — Fiscal Year boundary change
-authorization tier, confirmed unchanged in wording at Round 6, B15 §6) — a different category
-from Team A's carried-forward unknowns, not conflated with them.
+Round 3, Round 4, Round 6, and Round 7; **#7 added at Round 5** — Fiscal Year boundary change
+authorization tier, confirmed unchanged in wording at Round 6 and Round 7, B15 §6) — a different
+category from Team A's carried-forward unknowns, not conflated with them.
 
 ## Advancement Status
 
-Nine advancement items, unaffected by any of the six corrective rounds (all six corrected
-mechanism internals, not the underlying advancement objectives; B12 confirmed genuinely
-unaffected at Round 3 through Round 6, light-touch each time). Summary table:
+Nine advancement items, unaffected by any of the seven corrective rounds (all seven corrected
+mechanism internals or, at Round 7, only stale cross-references, not the underlying advancement
+objectives; B12 confirmed genuinely unaffected at Round 3 through Round 7, light-touch each
+time). Summary table:
 [F §23](DOMAIN_01_ACCOUNTING_CORE_F_TEAM_B_DESIGN_EVIDENCE_PACK.md#23-measured-advancement-criteria-summary--full-detail-in-b12).
 
 ## Critical Findings
@@ -145,57 +152,75 @@ viewpoint/version-safe). This round's own regression (B23) did not surface a fur
 beyond the two the audit itself named — the third consecutive round of which that is true. None
 remain open. Full record: [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md).
 
+**Round 7 — two further findings, both corrected, NEITHER introduced by a recent round's own
+text:** `M-AUD-15` (HIGH — B02 CAP-04's active Outputs/Downstream-dependents text still named
+CAP-06 as the consumer of a "closed-period record... for carry-forward" — stale since ordinary
+carry-forward became implicit at CORR-B2-03/04; CAP-06 has never had any role in carry-forward
+at any point — closed by correcting CAP-04's Outputs/Downstream-dependents to name only current,
+accurate consumers); `M-AUD-16` (HIGH — B07's Consumption Record entity row still named, as an
+active example, "CAP-09's own carry-forward, which references the prior period's closing
+Entries" — a mechanism removed at CORR-B2-03/04 and CORR-B3-05 — closed by substituting a
+currently-valid example, a Correction/Reversal Entry, and stating explicitly that no lock/
+boundary event is an automatic Consumption trigger). Both findings predate Round 1 entirely — a
+distinct risk category from every prior round's, named "correction blast-radius miss" in
+[B15 §3g](B15_DESIGN_TRACEABILITY_MATRIX.md). Two further stale/incomplete
+dependency edges (CAP-01's own stale CAP-06 claim; CAP-08's incomplete Inputs list) were found
+and corrected by this domain's own [B15 §8a](B15_DESIGN_TRACEABILITY_MATRIX.md) Dependency
+Sanity Matrix sweep, beyond what the audit itself named. This round's own regression (B24, a new
+reading-comprehension method) found no further contradiction beyond these four items. None
+remain open. Full record: [CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md](CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md).
+
 Separately, the original internal red-team pass (B16) found and fixed six further,
-non-blocking design gaps before this pack was first assembled. **Pattern across all six
+non-blocking design gaps before this pack was first assembled. **Pattern across all seven
 rounds, stated plainly:** neither B16's red-team, nor any of B18/B19/B20/B21/B22's regressions,
 caught any of the findings the following round's independent re-audit found — every one of the
-twelve post-Round-1 findings (`M-AUD-04` through `M-AUD-14`) was found only by genuinely
-independent re-audit. FOUR of these twelve (`M-AUD-07`; `M-AUD-08`/`M-AUD-09`; `M-AUD-11`;
+fourteen post-Round-1 findings (`M-AUD-04` through `M-AUD-16`) was found only by genuinely
+independent re-audit. FOUR of these fourteen (`M-AUD-07`; `M-AUD-08`/`M-AUD-09`; `M-AUD-11`;
 `M-AUD-13`/`M-AUD-14`) were introduced by the immediately preceding round's own corrective fix
 — a recurring sub-pattern across FOUR of the last five rounds, THREE of them consecutive
-(Round 4, 5, and 6 each in a row), which [G §4f](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md)
-states should inform how much confidence Boss places in the design's current state, not be
-read as "probably fine now, sixth time's the charm." G §4f explicitly declines to predict
-whether a seventh round would find nothing further, and separately notes that `M-AUD-13` is a
-qualitatively new failure shape — a direct textual contradiction between two sections of this
-domain's own design, not a defect internal to one formula.
+(Round 4, 5, and 6). `M-AUD-15`/`M-AUD-16` (Round 7) break that pattern rather than extend it —
+neither traces to any round's recent text; both predate Round 1. [G §4g](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md)
+names this as a separate, real gap this domain's own process had no prior mechanism for
+catching (text outside any given round's own explicitly-scoped correction, left unexamined
+while everything textually adjacent to it kept changing) — distinct from, not a continuation
+of, the self-inflicted-finding sub-pattern G §4f already named. G §4g explicitly declines to
+predict whether an eighth round would find nothing further.
 
 ## Critical Assumptions
 
 **Seven** Team B design assumptions require Boss/gate confirmation, none silently treated as
 settled: (1) rounding method = round-half-up; (2) **revised at CORR-B01, narrowed further at
-CORR-B2-01/02, unchanged by Rounds 3, 4, and 6** — Period Lock and Consumption are independent,
-orthogonal gates on Amendment; residual open question: should an authorized ordinary reopen
-carry a time-window restriction beyond CO-08's tier?; (3) chart-of-accounts template/instance
-structure; (4) audit-trail tamper-evidence scope beyond evidenced legal requirement;
-(5) correction shape left flexible; (6) the CO-02/CO-06 configuration-coupling rule.
-**(7) added at Round 5, confirmed unchanged at Round 6** — the exact authorization tier for a
-post-reliance Fiscal Year boundary change (B07 §1h, BINV-16, and now also `FiscalYearMembershipRestated`,
-B07 §1j): this domain's working default reuses CO-15's Restatement tier for BOTH mechanisms, but
-no independent evidence settles whether that specific tier is correct for either action — Round
-6 selected WHICH mechanism applies WHEN (DT-13), not WHAT tier governs it, so this assumption's
-wording is unchanged, not resolved or widened. **Materiality (CO-16, Round 3) and the designated
-Retained Earnings account configuration (B07 §1f/B10 MG-C15, Round 4) remain explicitly NOT
-additional assumptions** — both are settled design decisions, unlike assumption #7, which is a
-genuine open policy question. Full detail:
+CORR-B2-01/02, unchanged by Rounds 3, 4, 6, and 7** — Period Lock and Consumption are
+independent, orthogonal gates on Amendment; residual open question: should an authorized
+ordinary reopen carry a time-window restriction beyond CO-08's tier?; (3) chart-of-accounts
+template/instance structure; (4) audit-trail tamper-evidence scope beyond evidenced legal
+requirement; (5) correction shape left flexible; (6) the CO-02/CO-06 configuration-coupling
+rule. **(7) added at Round 5, confirmed unchanged at Round 6 and Round 7** — the exact
+authorization tier for a post-reliance Fiscal Year boundary change (B07 §1h/§1j, BINV-16/17):
+this domain's working default reuses CO-15's Restatement tier for both `FiscalYearBoundaryChanged`
+and `FiscalYearMembershipRestated`, but no independent evidence settles whether that specific
+tier is correct for either action. Round 7 touched neither the change-model nor its
+authorization tier at all, only active-text hygiene — this assumption's wording is unchanged.
+**Materiality (CO-16, Round 3) and the designated Retained Earnings account configuration
+(B07 §1f/B10 MG-C15, Round 4) remain explicitly NOT additional assumptions** — both are settled
+design decisions, unlike assumption #7, which is a genuine open policy question. Full detail:
 [B15 §6](B15_DESIGN_TRACEABILITY_MATRIX.md#6-unresolved-critical-assumptions-register-consolidated).
 
 ## Residual Gaps
 
 The design's weakest points, stated in [G — Self-Review](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_REVIEW.md)
-§3/§4f: seven unconfirmed assumptions (above, unchanged this round); AD-05's thin evidentiary
+§3/§4g: seven unconfirmed assumptions (above, unchanged this round); AD-05's thin evidentiary
 base; no validation against real workflow/usage; TAS 8's secondary-source-only confidence,
-stated explicitly, never blended with IAS 8's primary-source confidence; and now explicitly — a
-demonstrated, six-times-repeated pattern of this domain's own review process missing defects
-independent re-audit found on its first pass, including FOUR cases (not three) where the missed
-defect was introduced by this domain's own immediately preceding corrective round — THREE of
-them consecutive (Rounds 4, 5, and 6 in a row). Per G §4f's own explicit caution, this should
-not be read as evidence the underlying difficulty has now resolved simply because Round 6's own
-regression (like Round 4's and Round 5's) found nothing further beyond the audit's own two named
-findings; that is a fact about each round's own construction, not a guarantee about the next
-round, should one prove necessary. G §4f additionally notes `M-AUD-13`'s own failure shape (a
-textual contradiction between two design sections) is new to this pattern, not a repeat of the
-prior three formula-internal instances.
+stated explicitly, never blended with IAS 8's primary-source confidence; a demonstrated,
+seven-times-repeated pattern of this domain's own review process missing defects independent
+re-audit found on its first pass, including FOUR cases where the missed defect was introduced
+by this domain's own immediately preceding corrective round (THREE of them consecutive, Rounds
+4-6) and TWO further cases (Round 7) that were neither self-inflicted nor caught by any prior
+round — stale text that predated every corrective round and sat outside every round's own
+explicitly-scoped correction until this round's dedicated sweep found it. Per G §4g's own
+explicit caution, this should not be read as evidence the underlying gap is now closed simply
+because it was found and fixed once; whether "correction blast-radius miss" recurs is a fact
+about future rounds, not one this round can guarantee against.
 
 ## Carry-forward Items
 
@@ -206,7 +231,7 @@ in B15 §6 as not blocking this domain's design regardless of how they resolve.
 ## TEAM B Working Progress
 
 ```
-18 / 18 mandatory phases evidence-backed (B0–B17), plus 6 targeted corrective rounds
+18 / 18 mandatory phases evidence-backed (B0–B17), plus 7 targeted corrective rounds
 ```
 Reported strictly as **TEAM B DOMAIN WORKING PROGRESS** — not converted to Project/STATE/STEP
 percentage, per directive §14 (no approved project weighting exists).
@@ -221,7 +246,7 @@ STEP %    : TBD / BASELINE LINKAGE REQUIRED
 
 ## ChatGPT Audit Required
 
-**YES — Round 6 re-audit, of the CORR-B6 corrections specifically.**
+**YES — Round 7 re-audit, of the CORR-B7 corrections specifically.**
 
 ## PMO Verification Required
 
@@ -236,19 +261,15 @@ preserved as found, not invented by this executor.
 ## Gate Status
 
 ```
-DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND 6 APPLIED AND PUSHED
-READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 6 corrections)
+DESIGN FINAL GATE CANDIDATE — CORRECTIVE ROUND 7 APPLIED AND PUSHED
+READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 7 corrections)
 ```
 
-Round 6 corrective commit `9d2af07fbb26231ae2c86fa281702a544f111dc5` pushed to
+Round 7 corrective commit `(recorded after commit)` pushed to
 `TH-PATTARAKRIT/AI-Collaboration-Hub`, branch `SMEsPlus`, and independently verified two ways
 (fresh `git fetch` + `rev-parse` match, and a direct GitHub API commit lookup bypassing local
-git — sha, message, author identity, and 18-file count all confirmed matching). Fifteen
-unrelated governance commits (cross-module performance budget/rollup policy and governance,
-EXPERT IDTM/IESA charter extensions) landed on this branch before this round's push; confirmed
-zero file overlap before proceeding, pushed cleanly on the first attempt from that tip, no
-content lost on either side. Full evidence:
-[Z — Closure Evidence](DOMAIN_01_ACCOUNTING_CORE_Z_CORR_B6_CLOSURE_EVIDENCE.md).
+git). Full evidence:
+[AC — Closure Evidence](DOMAIN_01_ACCOUNTING_CORE_AC_CORR_B7_CLOSURE_EVIDENCE.md).
 
 Superseded prior statuses (kept visible, not deleted): "READY FOR CHATGPT INDEPENDENT DESIGN
 AUDIT" (true as of `6c18dd323...`/`727b5300...`) → returned by Round 1 audit → "READY FOR
@@ -259,8 +280,10 @@ re-audit → "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 2 corrections)" (tru
 "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 4 corrections)" (true as of
 `b50dceb7...`/`404e769d...`) → returned by Round 5 re-audit → "READY FOR CHATGPT INDEPENDENT
 RE-AUDIT (Round 5 corrections)" (true as of `406dfc128dac4f61b0a543e818b4b9605aa88264`) →
-returned by Round 6 re-audit → this status, true as of
-`9d2af07fbb26231ae2c86fa281702a544f111dc5`, specifically for Round 6's corrections.
+returned by Round 6 re-audit → "READY FOR CHATGPT INDEPENDENT RE-AUDIT (Round 6 corrections)"
+(true as of `9d2af07fbb26231ae2c86fa281702a544f111dc5`/`da183110e1fa185af6add3002e1f9a2e239cada0`)
+→ returned by Round 7 re-audit → this status, true as of `(recorded after commit)`, specifically
+for Round 7's corrections.
 
 ## Open Assumptions — Explicitly Not Resolved by This Report
 
@@ -269,20 +292,20 @@ question here and not resolved by this executor — Boss confirms or revises the
 Gate, not before:
 
 1. Rounding method = round-half-up (B08 MP-04, B13 DT-01)
-2. **Revised at CORR-B01, narrowed further at CORR-B2-01/02, unchanged by Rounds 3, 4, and 6**
-   — Period Lock and Consumption are independent, orthogonal gates on Amendment; residual open
-   question: should an authorized ordinary reopen carry a time-window restriction beyond
+2. **Revised at CORR-B01, narrowed further at CORR-B2-01/02, unchanged by Rounds 3, 4, 6, and
+   7** — Period Lock and Consumption are independent, orthogonal gates on Amendment; residual
+   open question: should an authorized ordinary reopen carry a time-window restriction beyond
    CO-08's tier? (B04 §3a/§4, B13 DT-02/DT-09)
 3. Chart-of-accounts template/instance structure (B07 §2, B13 DT-03)
 4. Audit-trail tamper-evidence scope beyond evidenced legal requirement (B09 CO-07, B13 DT-04)
 5. Correction shape left flexible — both reversal-repost and delta permitted (B08 MP-08, B13
    DT-05)
 6. CO-02/CO-06 configuration-coupling rule (B15 §3 Issue 2)
-7. **Added at CORR-B5-05, confirmed unchanged at CORR-B6-02.** Fiscal Year boundary change
-   authorization tier — this domain's working default reuses CO-15's Restatement tier for both
-   `FiscalYearBoundaryChanged` and the new `FiscalYearMembershipRestated`; no independent
-   evidence settles whether that specific tier is correct, too strict, or too lax for either
-   action (B07 §1h/§1j, B05 BINV-16/BINV-17, B13 DT-12/DT-13)
+7. **Added at CORR-B5-05, confirmed unchanged at CORR-B6-02 and CORR-B7-01..08.** Fiscal Year
+   boundary change authorization tier — this domain's working default reuses CO-15's
+   Restatement tier for both `FiscalYearBoundaryChanged` and `FiscalYearMembershipRestated`; no
+   independent evidence settles whether that specific tier is correct, too strict, or too lax
+   for either action (B07 §1h/§1j, B05 BINV-16/BINV-17, B13 DT-12/DT-13)
 
 **Materiality (CO-16, Round 3) and the designated Retained Earnings account configuration
 (B07 §1f/B10 MG-C15, Round 4) remain explicitly not additional items on this list** — both are

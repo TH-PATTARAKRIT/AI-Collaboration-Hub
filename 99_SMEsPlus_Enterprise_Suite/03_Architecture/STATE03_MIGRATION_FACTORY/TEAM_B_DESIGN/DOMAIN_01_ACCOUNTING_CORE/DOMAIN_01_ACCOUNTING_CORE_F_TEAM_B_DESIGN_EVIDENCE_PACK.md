@@ -8,7 +8,7 @@
 | Board | Board06 — Data & Canonical Model |
 | Domain | DOMAIN_01 — Accounting Core |
 | Team | Team B — Independent Clean-Room Design |
-| Directive | SMEPLUS-26-08-29-MIG-B-D01-E2E-001, corrective rounds SMEPLUS-26-08-29-MIG-B-D01-CORR-001, SMEPLUS-26-08-29-MIG-B-D01-CORR2-001, SMEPLUS-26-08-29-MIG-B-D01-CORR3-001, SMEPLUS-26-08-30-MIG-B-D01-CORR4-001, SMEPLUS-26-08-30-MIG-B-D01-CORR5-001, and SMEPLUS-26-08-30-MIG-B-D01-CORR6-001 |
+| Directive | SMEPLUS-26-08-29-MIG-B-D01-E2E-001, corrective rounds SMEPLUS-26-08-29-MIG-B-D01-CORR-001, SMEPLUS-26-08-29-MIG-B-D01-CORR2-001, SMEPLUS-26-08-29-MIG-B-D01-CORR3-001, SMEPLUS-26-08-30-MIG-B-D01-CORR4-001, SMEPLUS-26-08-30-MIG-B-D01-CORR5-001, SMEPLUS-26-08-30-MIG-B-D01-CORR6-001, and SMEPLUS-26-08-30-MIG-B-D01-CORR7-001 |
 | Date | 2026-08-30 |
 | Executor | Claude Sonnet 5 |
 | **Corrective round 1 applied** | **CORR-B01/B02/B03 (2026-08-29)** — ChatGPT Independent Design Audit (`aa60c2d0497cefe804d37953bbfaa597c3476d79`) found three BLOCKING defects, all corrected: a Consumption/Period-reopen contradiction, an incomplete accounting-equation proof, and time-inconsistent historical as-of balances after VOID. Full record: [CORR_B01_B02_B03_CORRECTIVE_ROUND.md](CORR_B01_B02_B03_CORRECTIVE_ROUND.md) and [B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md). |
@@ -16,7 +16,8 @@
 | **Corrective round 3 applied** | **CORR-B3-01..08 (2026-08-29)** — ChatGPT's Round 3 re-audit (`f6fb633fd141f45caf047bc94d75f84420e1cc6d`) found two further findings: Round 2's own Fiscal Year Close fix (MP-11) directly contradicted this design's "Revenue/Expense never reset by a posted action" claim and was a genuine arithmetic bug (`M-AUD-07`), and the Round-2 regression's own conclusion about prior-period corrections was never tested against materiality, contrary to IAS 8's mandatory retrospective-restatement requirement for material errors (`M-AUD-06`). Fixed with a full IAS 8-grounded Error/Estimate/Materiality classification ([B04](B04_BUSINESS_LIFECYCLE_EVENT_MODEL.md) §3b/§3c) and a no-posted-close model where Fiscal Year Close is purely declarative and Reported Retained Earnings is a derived reporting formula ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1e). Full record: [CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md](CORR_B3_ACCOUNTING_STANDARD_CORRECTIVE_ROUND.md) and [B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md](B20_CORR_B3_ACCOUNTING_STANDARD_REGRESSION.md) (which itself found and fixed one formula-documentation gap in its own first draft). |
 | **Corrective round 4 applied** | **CORR-B4-01..08 (2026-08-30)** — ChatGPT's Round 4 re-audit (`9c0a3f2d179994a20f01db16d5713989a78c0b2a`) found three further findings, two of which (`M-AUD-08`, `M-AUD-09`) were introduced by Round 3's own fix rather than pre-existing: Reported Equity double-counted the designated Retained Earnings account (`M-AUD-08`); Reported Retained Earnings depended on `FiscalYearClosed` declaration timing rather than the Fiscal Year's own calendar boundary (`M-AUD-09`); Reported Retained Earnings had no defined Mode-1 ("as originally known") viewpoint despite the Round-3 regression relying on one (`M-AUD-10`). Fixed with a non-overlapping Reported Equity decomposition ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1f), boundary-driven ("Elapsed") Fiscal-Year reporting inclusion (§1e, corrected), viewpoint-parameterized Known/Current formulas (§1g), and a full algebraic re-derivation from the Raw Ledger Identity ([B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md) MP-12, Proofs A-G). Full record: [CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md](CORR_B4_REPORTING_EQUITY_CORRECTIVE_ROUND.md) and [B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md](B21_CORR_B4_REPORTING_EQUITY_REGRESSION.md) (the first regression round whose own construction did not surface a further gap). |
 | **Corrective round 5 applied** | **CORR-B5-01..08 (2026-08-30)** — ChatGPT's Round 5 re-audit (`de7492afd0af0f58185f3f36940a77f2389aa8b8`) found two further findings, one of which (`M-AUD-11`) was introduced by Round 4's own fix: MP-12's own Proof G (Round 4) mislabeled MP-09's mixed-horizon output as a balanced Raw Trial Balance, when it is not once any Fiscal Year has elapsed (`M-AUD-11`, CRITICAL); and Fiscal Year boundaries, relied upon by Round 4's new Elapsed test, had no protection against silent retroactive editing (`M-AUD-12`, HIGH). Fixed with MP-09 renamed and split into `CumulativeAccountBalance`/`FiscalYearActivity` ([B08](B08_ACCOUNTING_MATHEMATICAL_DESIGN_PRINCIPLES.md)), MP-12 Proof G rebuilt into G1 (Raw Cumulative Trial Balance)/G2 (Current-FY Reporting Balance, not balanced)/G3 (Balanced Presentation TB, with an explicit never-posted derived bridge)/G4 (Known vs. Current), and a Versioned Fiscal Calendar model ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1h). Full record: [CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md](CORR_B5_TRIAL_BALANCE_FISCAL_CALENDAR_CORRECTIVE_ROUND.md) and [B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md](B22_CORR_B5_TRIAL_BALANCE_AND_FISCAL_CALENDAR_REGRESSION.md) (the second consecutive regression round whose own construction did not surface a further gap). |
-| **Corrective round 6 applied** | **CORR-B6-01..08 (2026-08-30)** — ChatGPT's Round 6 re-audit (`b0ce666dad72909411a49690d0f642313d94dd13`) found two further findings, BOTH introduced by Round 5's own fix: B07 §1g's Round-4 claim that the Elapsed test "never takes a viewpoint parameter" directly contradicted §1h's own Round-5 Known/Current calendar model, never revised to match (`M-AUD-13`, CRITICAL); and §1h's own post-reliance change model permitted a new boundary version to coexist indefinitely with stale Entry membership, with no defined Current-viewpoint reporting behavior (`M-AUD-14`, CRITICAL). Fixed with §1g corrected in place, new §1i formalizing `FiscalYearDefinition_Known/Current` and `Elapsed_Known/Current` ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md)), and new §1j adopting Option A (Prospective-Only Change After Reliance), refined with a new, atomic `FiscalYearMembershipRestated` mechanism ([B04](B04_BUSINESS_LIFECYCLE_EVENT_MODEL.md)). Full record: [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md) and [B23_CORR_B6_FISCAL_CALENDAR_VIEWPOINT_AND_MEMBERSHIP_REGRESSION.md](B23_CORR_B6_FISCAL_CALENDAR_VIEWPOINT_AND_MEMBERSHIP_REGRESSION.md) (the third consecutive regression round whose own construction did not surface a further gap beyond the audit's own findings). This is the corrected state of the design — every pre-correction state is preserved, visibly, inside each affected B0x file, not deleted. |
+| **Corrective round 6 applied** | **CORR-B6-01..08 (2026-08-30)** — ChatGPT's Round 6 re-audit (`b0ce666dad72909411a49690d0f642313d94dd13`) found two further findings, BOTH introduced by Round 5's own fix: B07 §1g's Round-4 claim that the Elapsed test "never takes a viewpoint parameter" directly contradicted §1h's own Round-5 Known/Current calendar model, never revised to match (`M-AUD-13`, CRITICAL); and §1h's own post-reliance change model permitted a new boundary version to coexist indefinitely with stale Entry membership, with no defined Current-viewpoint reporting behavior (`M-AUD-14`, CRITICAL). Fixed with §1g corrected in place, new §1i formalizing `FiscalYearDefinition_Known/Current` and `Elapsed_Known/Current` ([B07](B07_CONCEPTUAL_INFORMATION_MODEL.md)), and new §1j adopting Option A (Prospective-Only Change After Reliance), refined with a new, atomic `FiscalYearMembershipRestated` mechanism ([B04](B04_BUSINESS_LIFECYCLE_EVENT_MODEL.md)). Full record: [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md) and [B23_CORR_B6_FISCAL_CALENDAR_VIEWPOINT_AND_MEMBERSHIP_REGRESSION.md](B23_CORR_B6_FISCAL_CALENDAR_VIEWPOINT_AND_MEMBERSHIP_REGRESSION.md) (the third consecutive regression round whose own construction did not surface a further gap beyond the audit's own findings). |
+| **Corrective round 7 applied** | **CORR-B7-01..08 (2026-08-30)** — ChatGPT's Round 7 re-audit (`c22f236d0bf8b550636fc665a04c46281ca3d017`) found two further findings, NEITHER introduced by a recent round — both predate Round 1 entirely: B02 CAP-04's active text still named CAP-06 as the consumer of a "closed-period record... for carry-forward" (`M-AUD-15`, HIGH — carry-forward became implicit at CORR-B2-03/04; CAP-06 never had any role in it); B07's Consumption Record row still named "CAP-09's own carry-forward, which references the prior period's closing Entries" as an active example (`M-AUD-16`, HIGH — that mechanism was removed at CORR-B2-03/04/CORR-B3-05). Fixed by correcting both cross-references to name current, accurate content, plus two further self-found items (CAP-01's own stale CAP-06 claim; CAP-08's incomplete Inputs list) via a full [B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §8a Dependency Sanity Matrix sweep. CAP-09 retitled to drop the ambiguous word "Transfer." Full record: [CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md](CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md) and [B24_CORR_B7_ACTIVE_SEMANTIC_AND_DEPENDENCY_REGRESSION.md](B24_CORR_B7_ACTIVE_SEMANTIC_AND_DEPENDENCY_REGRESSION.md) (a new reading-comprehension regression method; no further contradiction found beyond the four items disclosed). This is the corrected state of the design — every pre-correction state is preserved, visibly, inside each affected B0x file, not deleted. |
 
 ## 1. Executive Summary
 
@@ -180,6 +181,38 @@ newly-earned confidence, per [G §4f](DOMAIN_01_ACCOUNTING_CORE_G_TEAM_B_SELF_RE
 Clean-room provenance re-confirmed unaffected a sixth time
 ([B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §3f): zero critical vendor-derived design risk, still.
 
+**Round 7:** a seventh independent re-audit found two further findings, NEITHER introduced by
+a recent round's own text — the first round whose findings break the self-inflicted-finding
+pattern rather than extend it. B02 CAP-04's active Outputs/Downstream-dependents text still
+named CAP-06 as the consumer of a "closed-period record... for carry-forward" (`M-AUD-15`,
+HIGH) — stale since ordinary carry-forward became implicit at CORR-B2-03/04; CAP-04 itself had
+never once appeared in any prior round's own "Corrected" header row. B07's Consumption Record
+entity row still named, as an active example, "CAP-09's own carry-forward, which references the
+prior period's closing Entries" (`M-AUD-16`, HIGH) — a mechanism removed at CORR-B2-03/04 and
+CORR-B3-05, never swept up when this same row was edited at CORR-B01 for an unrelated reason
+(trigger count). Both corrected: CAP-04's dependency list now names only current, accurate
+consumers ([B02](B02_ACCOUNTING_CORE_CAPABILITY_MODEL.md)); the Consumption Record row's stale
+example replaced with a currently-valid one (a Correction/Reversal Entry,
+[B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1). Per the directive's own instruction to also fix
+any other artifact found stale, a full Dependency Sanity Matrix
+([B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §8a) was built by re-reading every capability's own
+stated dependencies against its targets' actual current definitions — finding two further items
+beyond the two the audit named: CAP-01's own stale CAP-06 claim ("statement placement"), and
+CAP-08's incomplete Inputs list (missing CAP-07/CAP-09, both of which separately claim to feed
+it). [B18](B18_CORR_B_FOCUSED_RED_TEAM_REGRESSION.md) Test 5 (Round 1's own regression, never
+touched since) was found still describing the pre-Round-2 posted-Entry carry-forward mechanism
+and was annotated, not rewritten — its own numeric conclusion was never wrong. CAP-09 was
+retitled from "Fiscal Year Close & Earnings Transfer" to "Fiscal Year Close & Boundary
+Governance," per the directive's explicit instruction to remove an ambiguous word rather than
+merely footnote around it. The focused Round 7 regression
+([B24](B24_CORR_B7_ACTIVE_SEMANTIC_AND_DEPENDENCY_REGRESSION.md)) is the first to use a
+reading-comprehension method rather than numeric/temporal verification — 9 personas, 15
+mandatory scenarios, 15/15 pass, no further contradiction found beyond the four items already
+disclosed. Clean-room provenance re-confirmed unaffected a seventh time
+([B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §3g): zero critical vendor-derived design risk,
+still — this round introduced no new design content at all, only removed stale cross-references
+to an already-removed mechanism.
+
 ## 2. Authorized Input
 
 `TEAM_A/06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE/SONNET_DEEP_SYNTHESIS/13_TEAM_B_CANDIDATE_INPUT.md`,
@@ -208,14 +241,20 @@ module shape ([B02](B02_ACCOUNTING_CORE_CAPABILITY_MODEL.md) §3).
 ## 5. Capability Model
 
 Nine capabilities: Chart of Accounts Governance, Financial Fact Capture & Commitment,
-Correction & Reversal, Period Control, Company/Entity Boundary Enforcement, Currency
-Recognition & Remeasurement, Regulated Document Integrity, Audit Trail & Evidence Provision,
-Fiscal Year Close & Earnings Transfer *(renamed from "Period-End Carry-Forward" at
-CORR-B2-03/04; corrected again at CORR-B3-05 — this section's name for it was left stale
-through Round 2 and is fixed here — posts no financial Entry; "Earnings Transfer" now names a
-reporting-time derivation, [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md) §1e, not a posted
-action)*. Full definitions, ownership, and dependency graph:
-[B02](B02_ACCOUNTING_CORE_CAPABILITY_MODEL.md).
+Correction & Reversal, Period Control *(Outputs/Downstream-dependents corrected at CORR-B7-01
+— a stale claim that CAP-06 relies on this capability for carry-forward, predating every
+corrective round, `M-AUD-15`)*, Company/Entity Boundary Enforcement, Currency Recognition &
+Remeasurement, Regulated Document Integrity, Audit Trail & Evidence Provision *(Inputs
+corrected at CORR-B7-04 to reciprocate CAP-07/CAP-09's own already-stated dependency on it)*,
+Fiscal Year Close & Boundary Governance *(renamed from "Period-End Carry-Forward" at
+CORR-B2-03/04; "Earnings Transfer" corrected at CORR-B3-05 — this section's name for it was
+left stale through Round 2 and is fixed here — posts no financial Entry; retitled again at
+CORR-B7-05, dropping "Earnings Transfer" entirely — the word alone risked being misread as a
+posted transfer despite the re-scoping footnote, and the capability's own scope has since grown
+to include Fiscal Year boundary/membership governance, which the old title never named)*. Chart
+of Accounts Governance's own downstream-dependents list also corrected at CORR-B7-04 (a stale
+"CAP-06, statement placement" claim, self-found, same category as `M-AUD-15`). Full definitions,
+ownership, and dependency graph: [B02](B02_ACCOUNTING_CORE_CAPABILITY_MODEL.md).
 
 ## 6. Domain Boundaries
 
@@ -266,11 +305,14 @@ two new rules (BR-14 Amendment, BR-15 Consumption recording):
 
 ## 10. Conceptual Information Model
 
-Eleven conceptual entities, cardinality rules tied to specific invariants, three identity
+**Twelve** conceptual entities *(corrected at CORR-B7-03 — this section had never been updated
+to reflect the Fiscal Year entity added at Round 2, and still said "Eleven"; found during this
+round's active-semantic sweep)*, cardinality rules tied to specific invariants, three identity
 principles (no source-ID reuse; identity independent of display numbers; Audit Events
-identified by append-only sequence alone), amended during red-team review to add Normal
-Balance Side and tenant/company-scoped Audit Event identity:
-[B07](B07_CONCEPTUAL_INFORMATION_MODEL.md).
+identified by append-only sequence alone), amended during red-team review to add Normal Balance
+Side and tenant/company-scoped Audit Event identity, and at Round 6/7 to add viewpoint-aware
+Fiscal Year definition/membership (§1i/§1j) and to correct the Consumption Record entity's own
+stale downstream-reference example (`M-AUD-16`): [B07](B07_CONCEPTUAL_INFORMATION_MODEL.md).
 
 ## 11. Accounting & Mathematical Design Principles
 
@@ -372,10 +414,10 @@ Principle / Cross-ERP Pattern / Team A Fact / Migration Requirement / Independen
 Three vendor-adjacent terms individually reviewed and confirmed traceability-only.
 **Critical Vendor-Derived Design Risk = 0**, re-confirmed unaffected by the CORR-B01/B02/B03
 corrections, again by CORR-B2-01..05, again by CORR-B3-01..08, again by CORR-B4-01..08, again
-by CORR-B5-01..08, and again by CORR-B6-01..08 (Fiscal Calendar viewpoint/membership coherence
-is internal-consistency/algebraic reasoning, not vendor structure — the same evidentiary
-category as PR-01/PR-02, not a new category requiring re-review of B14 itself):
-[B14](B14_CLEAN_ROOM_PROVENANCE_MATRIX.md).
+by CORR-B5-01..08, again by CORR-B6-01..08, and again by CORR-B7-01..08 (Round 7's corrections
+are pure active-semantic/dependency hygiene, removing stale cross-references to an
+already-removed mechanism — no new design content, nothing to newly vet against vendor
+structure): [B14](B14_CLEAN_ROOM_PROVENANCE_MATRIX.md).
 
 ## 18. Traceability
 
@@ -388,11 +430,15 @@ ChatGPT's Round 2 re-audit (§3b); two more were found by ChatGPT's Round 3 re-a
 three more were found by ChatGPT's Round 4 re-audit (§3d), two of which were introduced by
 Round 3's own fix; two more were found by ChatGPT's Round 5 re-audit (§3e), one of which was
 introduced by Round 4's own fix; two more were found by ChatGPT's Round 6 re-audit (§3f), BOTH
-of which were introduced by Round 5's own fix — the pattern named at §3a is recorded as having
-recurred a sixth time, not minimized:** [B15](B15_DESIGN_TRACEABILITY_MATRIX.md)
-§3a/§3b/§3c/§3d/§3e/§3f. Zero orphan critical decisions, zero circular definitions, zero
-regulatory overreach, before and after all six correction rounds:
-[B15](B15_DESIGN_TRACEABILITY_MATRIX.md).
+of which were introduced by Round 5's own fix; two more were found by ChatGPT's Round 7
+re-audit (§3g), NEITHER introduced by a recent round — both predate Round 1 entirely — plus two
+further stale/incomplete dependency edges (and one stale summary count in this document's own
+§10) found by this domain's own §8a dependency sanity sweep — the pattern named at §3a is
+recorded as having recurred a seventh time, with Round 7 breaking rather than extending the
+self-inflicted-finding sub-pattern §3d-§3f established:**
+[B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §3a/§3b/§3c/§3d/§3e/§3f/§3g. Zero orphan critical
+decisions, zero circular definitions, zero regulatory overreach, before and after all seven
+correction rounds: [B15](B15_DESIGN_TRACEABILITY_MATRIX.md).
 
 ## 19. Residual Unknowns
 
@@ -443,7 +489,15 @@ question is unchanged in wording, since Round 6 selects WHICH mechanism applies 
 (DT-13), not WHAT tier governs either mechanism — a design decision this domain makes and
 justifies, not an open policy question (see
 [CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md](CORR_B6_FISCAL_CALENDAR_VIEWPOINT_MEMBERSHIP_CORRECTIVE_ROUND.md)
-§9 and [B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §6's Round 6 note).
+§9 and [B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §6's Round 6 note). **Round 7 likewise narrowed
+or resolved none of the seven, and adds no eighth** — its findings and self-found corrections
+are pure active-semantic/dependency hygiene (stale cross-references to an already-removed
+mechanism, an ambiguous title, an unmaintained count), with zero bearing on rounding method,
+period-close/consumption timing, chart-of-accounts structure, tamper-evidence scope,
+correction-shape flexibility, the CO-02/CO-06 coupling, or the Fiscal Year boundary
+authorization tier (see
+[CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md](CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md)
+§9 and [B15](B15_DESIGN_TRACEABILITY_MATRIX.md) §6's Round 7 note).
 
 ## 21. Red-Team Findings
 
@@ -534,6 +588,24 @@ Fiscal Year cardinality/identity restated as viewpoint/version-safe; no-overlap/
   gap/transition-preservation/future-validation invariants stated, no storage invented
   (Round 6)                                     : YES — B07 §1/§1j
 Jira governance red flags (owner/due date) preserved, not invented (Round 6) : YES —
+                                                `ERPPLUS-100` remains UNASSIGNED / TBD
+  (independently re-verified via direct Jira lookup, not assumed carried-forward)
+Independent audit findings corrected (Round 7) : YES — both findings from
+                                                `c22f236d0bf8b550636fc665a04c46281ca3d017`
+                                                resolved (CORR_B7_ACTIVE_SEMANTIC_CONSOLIDATION_ROUND.md),
+                                                NEITHER introduced by a recent round — both
+                                                predate Round 1 entirely
+Active-Semantic & Dependency regression completed (Round 7) : YES
+  (B24_CORR_B7_ACTIVE_SEMANTIC_AND_DEPENDENCY_REGRESSION.md) — first reading-comprehension-
+  method regression; no further contradiction found beyond the four items disclosed
+CAP-04/CAP-01 stale CAP-06 cross-references removed; CAP-08 Inputs completed; Consumption
+  Record's stale CAP-09 carry-forward example replaced with a currently-valid one (Round 7) :
+                                                YES — B02 CAP-01/04/08, B07 §1, B15 §8a
+Dependency Sanity Matrix built, all four required acceptance criteria confirmed (Round 7) :
+                                                YES — B15 §8a
+CAP-09 retitled to remove an ambiguous word, per explicit directive instruction (Round 7) :
+                                                YES — B02 CAP-09
+Jira governance red flags (owner/due date) preserved, not invented (Round 7) : YES —
                                                 `ERPPLUS-100` remains UNASSIGNED / TBD
   (independently re-verified via direct Jira lookup, not assumed carried-forward)
 ```
