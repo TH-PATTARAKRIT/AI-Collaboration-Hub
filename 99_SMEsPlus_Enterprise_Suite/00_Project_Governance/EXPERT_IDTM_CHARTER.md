@@ -1,7 +1,7 @@
 # EXPERT_IDTM_CHARTER.md
 
 Document ID: SMEPLUS-26-08-30-IDTM-CHARTER-001
-Version: v1.0
+Version: v1.1
 Status: BOSS APPROVED / EFFECTIVE
 Effective Date: 2026-08-30
 Appointed By: Boss
@@ -18,7 +18,7 @@ Thai: **ทีมผู้เชี่ยวชาญอิสระด้าน
 
 Independently execute a 100% AI-driven, evidence-producing Deep Multi-Dimensional Test Matrix against the completed SMEsPlus implementation before EXPERT IESA issues its final ERP & SaaS assurance conclusion.
 
-The mission is not merely to demonstrate that normal scenarios pass. EXPERT IDTM must actively attempt to expose defects, invariant violations, race conditions, state corruption, cross-domain inconsistencies, tenant-isolation failures, resilience failures and hidden edge cases.
+The mission is not merely to demonstrate that normal scenarios pass. EXPERT IDTM must actively attempt to expose defects, invariant violations, race conditions, state corruption, cross-domain inconsistencies, tenant-isolation failures, resilience failures, performance/scalability bottlenecks and hidden edge cases.
 
 A result of `0 BUG FOUND` is not treated as proof of zero defects. It automatically triggers the Zero-Defect Challenge Protocol and Test Adequacy Verification defined by project policy.
 
@@ -56,11 +56,11 @@ Boss Release / Production Decision
 Production / Customer Use
 ```
 
-If IDTM finds a material defect:
+If IDTM finds a material defect or performance gap:
 
 ```text
 IDTM Finding
-→ Team C Remediation
+→ Team C Remediation / Optimization
 → Team D Regression / Compliance Recheck
 → IDTM Independent Retest
 → IESA Final Assurance only after controlled evidence is complete
@@ -105,6 +105,7 @@ Where technically feasible, IDTM shall separate AI responsibilities into indepen
 - AI Test Executor
 - AI Financial / Data / State Oracle
 - AI Security / Tenant Isolation Tester
+- AI Performance / Scalability Analyzer
 - AI Evidence Collector
 - AI Independent Test Reviewer
 
@@ -130,14 +131,24 @@ Each material Test Case must identify, as applicable:
 - Expected Audit Trail
 - Expected Integration / Event State
 - Expected Error / Recovery Behaviour
-- Expected performance/SLO threshold where applicable
 - Test Tolerance and denominator
-- Actual Result
-- Evidence location / hashes / logs / traces / screenshots / reconciliation output
+- Performance Budget ID
+- workload / dataset / concurrency condition
+- target latency / duration / throughput as applicable
+- p50 / p95 / p99 where statistically meaningful
+- maximum latency for critical flows where required
+- approved regression/degradation threshold
+- Actual Functional Result
+- Actual Performance Result
+- variance vs performance target/baseline
+- evidence location / hashes / logs / traces / screenshots / reconciliation output
+- Optimization Required? YES / NO
 - Verdict and Severity
 - Retest reference where applicable
 
 `No Test Evidence = Test Not Executed.`
+
+`No Performance Baseline = No Performance PASS.`
 
 ## 9. Mandatory Zero-Defect Challenge
 
@@ -176,9 +187,27 @@ Critical categories defined by project policy have `Tolerance = 0`.
 
 For count-based occurrence tolerance, the denominator must be frozen before execution. `0.001% = 0.00001` as a fraction; therefore an integer failure allowance remains zero for a denominator below 100,000 observations.
 
-Performance/SLO thresholds are separate acceptance criteria and must not be misrepresented as permission for functional/data errors.
+## 11. Performance / Speed Governance
 
-## 11. Allowed IDTM Status
+Performance / Speed measurement is mandatory for every applicable IDTM Test Case across all 10 dimensions, not only Dimension 7.
+
+Performance targets are governed by `SMEPLUS-POL-PERF-001` and use controlled Performance Budgets rather than the functional `0.001%` defect-tolerance formula.
+
+IDTM must, where applicable:
+
+- measure latency/duration and throughput
+- capture p50/p95/p99 tail latency where statistically meaningful
+- record maximum latency for critical flows where required
+- measure behavior under the approved concurrency/workload
+- identify module/API/query/job/integration bottlenecks
+- compare actual performance with the frozen baseline
+- classify material regressions
+- create `OPTIMIZATION REQUIRED` findings
+- independently retest after Team C optimization and Team D regression recheck
+
+A Test Case can be functionally correct and still fail Performance Governance.
+
+## 12. Allowed IDTM Status
 
 EXPERT IDTM may issue evidence-based results such as:
 
@@ -188,6 +217,11 @@ EXPERT IDTM may issue evidence-based results such as:
 - CRITICAL INVARIANT VIOLATION
 - TEST ADEQUACY GAP FOUND
 - MUTATION / SEEDED DEFECT ESCAPED
+- PERFORMANCE WITHIN BUDGET
+- PERFORMANCE REGRESSION FOUND
+- BOTTLENECK FOUND
+- OPTIMIZATION REQUIRED
+- PERFORMANCE RETEST REQUIRED
 - EVIDENCE MISSING
 - RETEST REQUIRED
 - DEEP TEST GATE HOLD
@@ -195,14 +229,18 @@ EXPERT IDTM may issue evidence-based results such as:
 
 EXPERT IDTM may not declare `FINAL APPROVED`, `BOSS APPROVED`, `PRODUCTION APPROVED` or `RELEASE APPROVED`.
 
-## 12. Governing Principles
+## 13. Governing Principles
 
 **No Evidence = No Progress**
+
+**No Performance Baseline = No Performance PASS**
 
 **Never Skip Gate**
 
 **Zero bugs found is not evidence of zero bugs.**
 
 **Zero bugs found triggers Test Adequacy Verification.**
+
+**Functional correctness does not excuse unacceptable speed.**
 
 **Boss = Sole Final Approver**
