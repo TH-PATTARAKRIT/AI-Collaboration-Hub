@@ -27,7 +27,7 @@ Control Level: /L99.99
 
 | Item / Task | Owner | Evidence location | Timestamp | Reviewer / Verifier | Verification Status | Gate Impact |
 |---|---|---|---|---|---|---|
-| Create controlled New Claude Code Session prompt for COA-G01 SaaS evidence remediation | ChatGPT / PMO Secretary | This artifact; Boss approval in current controlled session | 2026-08-30T14:56:22Z | Boss final authority / ChatGPT drafting review | BOSS AUTHORIZED PROMPT / GITHUB SYNC REQUIRED | Authorizes G01 remediation only; G02 remains blocked |
+| Create and publish controlled New Claude Code Session prompt for COA-G01 SaaS evidence remediation | ChatGPT / PMO Secretary | GitHub Branch `SMEsPlus`; this artifact path and commit history | 2026-08-30T15:34:53Z | Boss final authority / ChatGPT GitHub verification | BOSS AUTHORIZED / GITHUB PUBLISHED / VERIFIED | Authorizes G01 remediation only; G02 remains blocked |
 
 ## 1. Session Authorization
 
