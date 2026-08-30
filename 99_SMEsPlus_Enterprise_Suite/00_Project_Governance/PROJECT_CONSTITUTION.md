@@ -1,6 +1,6 @@
 # PROJECT_CONSTITUTION.md
 
-Version: v1.3
+Version: v1.4
 Status: Approved
 Owner: SMEsPlus PMO / Repository Owner
 Approved By: Boss
@@ -27,6 +27,9 @@ This document is the project constitution for SMEsPlus Enterprise Suite. It defi
 11. Every controlled Test Case must define its Tolerance before execution; the ordinary project ceiling is `0.001%`, with stricter/zero tolerance required where defined.
 12. `0 BUG FOUND` is not evidence of zero defects and automatically triggers Test Adequacy Verification before Production-readiness evidence is trusted.
 13. Critical integrity, financial and tenant-isolation failures may be designated `Tolerance = 0` and must not be averaged into a low overall defect percentage.
+14. Every applicable controlled flow/Test Case must define a Performance / Speed Budget before execution and record Actual Performance after execution.
+15. A functional PASS does not hide or override a material Performance / Scalability failure.
+16. No Performance Baseline = No Performance PASS. Performance Optimization must be evidence-based and must not break business, accounting, security or data-integrity invariants.
 
 ## Authority Model
 
@@ -38,13 +41,13 @@ This document is the project constitution for SMEsPlus Enterprise Suite. It defi
 | Claude AI | Repository review, evidence matching, SaaS alignment, gap analysis |
 | Functional Specification AI | Business functional specification draft |
 | Team A | Source learning, business evidence extraction, neutral observation and evidence preparation |
-| Team B | Independent SMEsPlus canonical domain and process design |
-| Figma / UX Team | UX, screen, interaction and developer-handoff design based on controlled Team B business/process inputs; must not guess Business Logic |
-| EXPERT IBPV | Independent Business Process & Design Verification; reports directly to Boss only; no Team/Board/PMO may alter its independent findings |
-| Team C / Claude Code | Engineering / implementation only after Pre-Development Design Gate and Boss approval |
-| Team D | Independent QA / clean-room / compliance audit after implementation evidence exists |
-| EXPERT IDTM | Independent 100% AI Deep Test Matrix & System Verification; reports directly to Boss only; produces independent deep-test and Test-Adequacy evidence |
-| EXPERT IESA | Independent ERP & SaaS Intelligence Assurance after implementation, Team D and IDTM evidence; reports directly to Boss only; no Team/Board/PMO may alter its independent findings |
+| Team B | Independent SMEsPlus canonical domain and process design; defines applicable business performance expectations/workload assumptions |
+| Figma / UX Team | UX, screen, interaction and developer-handoff design based on controlled Team B business/process inputs; must not guess Business Logic; defines perceived-performance behavior where applicable |
+| EXPERT IBPV | Independent Business Process & Design Verification; reports directly to Boss only; verifies flow feasibility including material performance expectations |
+| Team C / Claude Code | Engineering / implementation only after Pre-Development Design Gate and Boss approval; owns instrumentation, profiling and Optimization remediation |
+| Team D | Independent QA / clean-room / compliance audit after implementation evidence exists; records applicable performance regression evidence |
+| EXPERT IDTM | Independent 100% AI Deep Test Matrix & System Verification; reports directly to Boss only; produces independent deep-test, Test-Adequacy and performance/scalability evidence |
+| EXPERT IESA | Independent ERP & SaaS Intelligence Assurance after implementation, Team D and IDTM evidence; reports directly to Boss only; independently assesses performance/scalability and Production fitness |
 
 ## EXPERT IBPV — Independent Business Process & Design Verification
 
@@ -90,6 +93,7 @@ EXPERT IBPV must independently verify, as applicable:
 - Figma Screen/Interaction Flow against Team B business rules
 - Traceability from approved business evidence to Team B/Figma design
 - Open assumptions, unknowns, conflicts and evidence gaps
+- Material business-flow / UX performance expectations and pre-build performance risks where applicable
 
 ### Allowed IBPV Status
 
@@ -100,6 +104,7 @@ EXPERT IBPV may issue only evidence-based verification findings such as:
 - GAP FOUND
 - CONFLICT FOUND
 - EVIDENCE MISSING
+- PERFORMANCE FEASIBILITY GAP FOUND
 - REWORK REQUIRED
 - NOT READY FOR DEVELOPMENT
 - READY FOR BOSS DECISION
@@ -112,7 +117,7 @@ Effective 2026-08-30, Boss formally appoints **EXPERT IDTM — Independent Deep 
 
 ### Purpose
 
-IDTM independently executes the approved 10-Dimension Deep Test Matrix using 100% AI execution and produces evidence that attempts to expose defects under normal, boundary, adversarial, concurrent, failure, recovery and cross-domain conditions.
+IDTM independently executes the approved 10-Dimension Deep Test Matrix using 100% AI execution and produces evidence that attempts to expose defects under normal, boundary, adversarial, concurrent, failure, recovery, performance/scalability and cross-domain conditions.
 
 IDTM is an evidence producer and deep-system verifier. It does not replace IESA system-level assurance and does not replace Boss approval.
 
@@ -122,7 +127,7 @@ IDTM is an evidence producer and deep-system verifier. It does not replace IESA 
 2. EXPERT IDTM is independent from Team A, Team B, Figma/UX, EXPERT IBPV, Team C, Team D, EXPERT IESA, Boards, PMO and delivery owners.
 3. PMO may register, preserve and route IDTM evidence but may not direct, rewrite, suppress or override an IDTM finding.
 4. IDTM must not repair the Production Code it independently tests.
-5. Team C performs remediation; Team D performs regression/compliance recheck; IDTM performs independent retest.
+5. Team C performs remediation/Optimization; Team D performs regression/compliance/performance recheck; IDTM performs independent retest.
 6. The code-authoring AI must not be the sole AI that creates, executes and judges its own acceptance evidence.
 7. Material disagreements between delivery teams and IDTM must be recorded and escalated directly to Boss.
 
@@ -147,13 +152,15 @@ For each frozen Approved Matrix version:
 - Approved Test Case Execution = 100%
 - Critical Test Case Execution = 100%
 - Executed Test Case Evidence Capture = 100%
+- Applicable Test Case Performance / Speed Evidence Capture = 100%
 - Failed/Remediated Case Independent Retest = 100%
+- Optimization Retest = 100% where Optimization occurred
 
 100% matrix execution does not mean 100% bug-free guarantee and does not prove every theoretically possible combination has been tested.
 
 ### Test Tolerance Rule
 
-Every controlled Test Case must declare its Tolerance before execution:
+Every controlled Test Case must declare its functional/data Tolerance before execution:
 
 ```text
 0% <= T_case <= 0.001%
@@ -164,6 +171,25 @@ A stricter target is allowed. A value above `0.001%` is prohibited unless Boss e
 Critical categories defined by the approved Test Tolerance Policy have `Tolerance = 0`, including tenant leakage, Critical privilege escalation, posted Debit/Credit imbalance, silent financial corruption, unauthorized/duplicate financial posting, irrecoverable controlled-data loss, Critical inventory-integrity breach and defined exact statutory/security invariants.
 
 The denominator/metric must be frozen before execution. A percentage without a denominator is not valid evidence.
+
+### Performance / Speed Rule
+
+Every applicable IDTM Test Case must also declare a controlled **Performance Budget** before execution and record Actual Performance after execution.
+
+Performance / Speed is governed by `SMEPLUS-POL-PERF-001` and must be measured using appropriate workload-specific metrics such as:
+
+- latency / duration
+- p50 / p95 / p99 where statistically meaningful
+- maximum latency for critical flows where required
+- throughput
+- timeout / error rate
+- concurrency condition
+- baseline version
+- allowed regression / degradation threshold
+
+The project must not automatically reuse the functional `0.001%` defect-tolerance ceiling as a latency-deviation threshold. Performance and functional correctness are separate controls.
+
+A functionally correct Test Case may still be `OPTIMIZATION REQUIRED` or `PERFORMANCE GATE HOLD`.
 
 ### Zero-Defect Challenge Rule
 
@@ -204,6 +230,12 @@ Team C — Engineering / Development
 - CRITICAL INVARIANT VIOLATION
 - TEST ADEQUACY GAP FOUND
 - MUTATION / SEEDED DEFECT ESCAPED
+- PERFORMANCE WITHIN BUDGET
+- PERFORMANCE REGRESSION FOUND
+- BOTTLENECK FOUND
+- OPTIMIZATION REQUIRED
+- PERFORMANCE EVIDENCE MISSING
+- PERFORMANCE RETEST REQUIRED
 - EVIDENCE MISSING
 - RETEST REQUIRED
 - DEEP TEST GATE HOLD
@@ -219,7 +251,7 @@ Effective 2026-08-30, Boss formally appoints **EXPERT IESA — Independent ERP &
 
 IESA independently determines whether the completed solution is genuinely ready to be considered for customer/Production use at whole-system ERP and SaaS level after Figma/UX, Team C implementation, Team D independent QA/clean-room/compliance and EXPERT IDTM deep-test evidence exist.
 
-IESA may perform a Pre-Assurance Challenge before IDTM execution to identify assurance evidence or risk scenarios that the matrix should address. This Pre-Assurance phase does not issue a Production-readiness verdict.
+IESA may perform a Pre-Assurance Challenge before IDTM execution to identify assurance evidence, workload assumptions, performance budgets or risk scenarios that the matrix should address. This Pre-Assurance phase does not issue a Production-readiness verdict.
 
 IESA Final Assurance occurs after IDTM Gate evidence.
 
@@ -272,6 +304,7 @@ EXPERT IESA independently assesses, as applicable:
 - Production Operations Readiness
 - Enterprise ERP Fitness for intended customer use
 - IDTM Test Matrix adequacy and residual-risk evidence
+- Performance Budget completeness, Optimization evidence and expected workload fitness
 
 ### Allowed IESA Status
 
@@ -285,6 +318,8 @@ EXPERT IESA may issue evidence-based findings such as:
 - SAAS READINESS GAP FOUND
 - SECURITY / TENANT ISOLATION GAP FOUND
 - PERFORMANCE / SCALABILITY GAP FOUND
+- PERFORMANCE EVIDENCE MISSING
+- OPTIMIZATION REQUIRED BEFORE PRODUCTION
 - OPERATIONS READINESS GAP FOUND
 - TEST ADEQUACY CONCERN
 - EVIDENCE MISSING
@@ -294,6 +329,47 @@ EXPERT IESA may issue evidence-based findings such as:
 
 EXPERT IESA may not declare `FINAL APPROVED`, `BOSS APPROVED`, `PRODUCTION APPROVED`, or `RELEASE APPROVED`.
 
+## Performance / Speed Governance — Lifecycle-Wide
+
+Effective 2026-08-30, Boss establishes mandatory Performance / Speed Governance across all applicable delivery stages.
+
+### Lifecycle Rule
+
+```text
+Team B → define business timing / workload expectations
+Figma / UX → define perceived-performance behavior
+IBPV → verify performance feasibility / flow risk
+Team C → instrument, baseline, profile, optimize
+Team D → regression performance measurement
+IESA Pre-Assurance → challenge workload/performance evidence
+IDTM → 100% applicable Test Case speed evidence + deep load/stress/soak/performance tests
+IESA Final → independent performance/scalability assurance
+Production Operations → monitor against approved baseline and feed continuous Optimization
+```
+
+### Mandatory Performance Principle
+
+Each applicable controlled flow/Test Case must have:
+
+- a frozen Performance Budget / target
+- controlled workload/data/concurrency conditions
+- Actual Performance evidence
+- comparison to baseline/target
+- explicit Optimization decision where exceeded
+- retest evidence after Optimization
+
+A project-wide average may not hide a slow critical flow. Tail latency and bottleneck concentration must be reviewed where material.
+
+### Performance vs Functional Tolerance
+
+Functional/data error tolerance remains governed by:
+
+```text
+0% <= T_case <= 0.001%
+```
+
+Performance / Speed uses workload-specific units and approved regression thresholds. No universal `0.001%` latency deviation is imposed by this Constitution.
+
 ## Lifecycle Ruling — IDTM & IESA
 
 A new numbered STATE is **not required at this time**.
@@ -302,9 +378,11 @@ IDTM is established as a mandatory independent Deep Test Matrix Gate within the 
 
 IESA is established as a mandatory independent assurance/control layer through the Pre-Production Enterprise & SaaS Assurance Gate.
 
+Performance / Speed Governance is a cross-cutting mandatory control and does not require a new STATE at this time.
+
 This preserves existing STATE numbering and historical traceability while adding hard controls before Final Assurance and Production/customer use.
 
-If future evidence shows that IDTM or IESA requires a standalone lifecycle STATE, PMO may submit a controlled STATE-baseline Change Request to Boss. No STATE renumbering is authorized by the current ruling.
+If future evidence shows that IDTM, IESA or Performance Engineering requires a standalone lifecycle STATE, PMO may submit a controlled STATE-baseline Change Request to Boss. No STATE renumbering is authorized by the current ruling.
 
 ## Standard Execution Flow
 
@@ -312,24 +390,24 @@ If future evidence shows that IDTM or IESA requires a standalone lifecycle STATE
 Governance
 → Learning / Knowledge Base
 → SaaS Foundation
-→ Functional Specification
+→ Functional Specification + Business Performance Expectations
 → Evidence Review
 → Team B Independent Canonical Design
-→ Figma / UX Design
-→ EXPERT IBPV Independent Process & Design Verification
+→ Figma / UX Design + Perceived-Performance Behavior
+→ EXPERT IBPV Independent Process / Design / Performance-Feasibility Verification
 → Pre-Development Design Gate
 → Boss Decision
 → SDS / API / DB / Engineering Preparation
-→ Team C Development
-→ Team D Independent QA / Clean-room / Compliance Audit
+→ Team C Development + Instrumentation / Baseline / Optimization
+→ Team D Independent QA / Clean-room / Compliance + Performance Regression
 → IESA Pre-Assurance Challenge
-→ EXPERT IDTM 100% AI 10-Dimension Deep Test Matrix
+→ EXPERT IDTM 100% AI 10-Dimension Deep Test Matrix + Applicable Speed Evidence
 → Independent Deep Test Matrix Gate
 → Infrastructure / Deployment / Operations Evidence Reconciliation
 → EXPERT IESA Final ERP & SaaS Intelligence Assurance
 → Pre-Production Enterprise & SaaS Assurance Gate
 → Boss Release / Production Decision
-→ Production / Customer Use
+→ Production / Customer Use + Continuous Performance Monitoring
 ```
 
 ## Gate Rule
@@ -338,14 +416,14 @@ A downstream phase may not proceed unless the upstream gate is explicitly approv
 
 EXPERT IBPV findings do not replace Boss approval. A Critical unresolved IBPV gap keeps Development on HOLD unless Boss explicitly rules otherwise.
 
-A Critical zero-tolerance IDTM defect, material tolerance breach, incomplete approved matrix execution, missing mandatory evidence, or unresolved Test Adequacy gap keeps IESA Final Assurance progression on HOLD unless Boss explicitly rules otherwise.
+A Critical zero-tolerance IDTM defect, material Test Tolerance breach, incomplete approved matrix execution, missing mandatory evidence, unresolved Test Adequacy gap, or material unresolved Performance / Scalability gap can keep IESA Final Assurance progression on HOLD unless Boss explicitly rules otherwise.
 
-EXPERT IESA findings do not replace Boss approval. A Critical unresolved IESA gap keeps Release/Production/Customer Go-Live on HOLD unless Boss explicitly accepts the risk or rules otherwise.
+EXPERT IESA findings do not replace Boss approval. A Critical unresolved IESA gap or material Production-fitness performance gap keeps Release/Production/Customer Go-Live on HOLD unless Boss explicitly accepts the risk or rules otherwise.
 
 ## Current Control Status
 
 ```text
-Project Constitution: APPROVED — v1.3
+Project Constitution: APPROVED — v1.4
 EXPERT IBPV: APPOINTED BY BOSS — ACTIVE GOVERNANCE UNIT
 IBPV Reporting Line: DIRECT TO BOSS ONLY
 IBPV Pre-Development Verification: MANDATORY
@@ -355,12 +433,15 @@ IDTM AI Execution: 100% OF APPROVED 10-DIMENSION MATRIX
 Test Case Tolerance Ceiling: <= 0.001%
 Critical Tolerance Classes: 0%
 Zero-Bug Result: TEST ADEQUACY CHALLENGE MANDATORY
+Performance / Speed Budget: MANDATORY FOR APPLICABLE CONTROLLED FLOWS / TEST CASES
+Performance Evidence: MANDATORY THROUGH DESIGN / BUILD / QA / IDTM / IESA / OPERATIONS
+Performance Optimization Register: MANDATORY FOR MATERIAL SPEED GAPS
 Independent Deep Test Matrix Gate: MANDATORY BEFORE IESA FINAL ASSURANCE
 EXPERT IESA: APPOINTED BY BOSS — ACTIVE INDEPENDENT ASSURANCE UNIT
 IESA Reporting Line: DIRECT TO BOSS ONLY
 IESA Pre-Assurance Challenge: ALLOWED / NO FINAL VERDICT
 Pre-Production Enterprise & SaaS Assurance Gate: MANDATORY
-New numbered STATE for IDTM/IESA: NOT REQUIRED AT THIS TIME
+New numbered STATE for IDTM/IESA/Performance Governance: NOT REQUIRED AT THIS TIME
 AI Role Model: APPROVED
 Functional Specification Standard: APPROVED FOR USE
 Build Gate: HOLD unless domain-specific Boss approval exists
