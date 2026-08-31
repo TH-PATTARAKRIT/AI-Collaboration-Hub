@@ -31,6 +31,10 @@ Per the Boss SaaS Context Clarification (`BOSS_GATE/..._AQ_...md`), every concep
 | Thai statutory reference data (WHT income types/rates/conditions) | Cross-cutting configuration, not a fixed account type | Should be Platform-published versioned reference data (supports SI-10) | Company may reference but should not fork | VERIFIED FACT (local, not yet on GitHub — see C-01); classification as "must be versioned data, not code" is a design implication, not itself Boss-ruled yet | Local finding S4 |
 | Thai party identity (tax ID + tax branch + Thai company title) | Party/master-data concept, not an account type | n/a | Company-scoped master data | VERIFIED FACT (local, not yet on GitHub — see C-01) | Local finding S3 |
 
+## ROUND 2 UPDATE (2026-08-31): relationship to `COA_G01_CONCEPT_FIELD_COMPLETENESS_R2.md`
+
+This document defines the **concept universe** (which concepts exist and their Tenant/Company Context relevance) and remains authoritative for that scope. `COA_G01_CONCEPT_FIELD_COMPLETENESS_R2.md` (new, Round 2) is the authoritative document for the **full 17-field completeness** required by AS §8.7 (Source, Source Evidence, Business Meaning, Thailand Relevance, Account Type, Financial Class, Normal Balance, Reconciliation behaviour, Tax relevance, FS relevance, System/control dependency, Base Kernel candidacy, Canonicalization relevance, Evidence strength, **Evidence Character and Fact Status kept as two distinct, non-merged fields per CORR1**, Conflict/Gap/Unknown, Clean-room status) for each of the 19 Account Types. The two documents do not duplicate authority: this file scopes *what* the concepts are; the Round 2 completeness document scopes *every mandatory fact about each one*.
+
 ## Explicitly out of scope for this concept universe
 
 - Row-level mapping of the 389 Odoo18 workbook rows to canonical SMEsPlus accounts — that is COA-G03 (AI Semantic Consolidation) work, not COA-G01.

@@ -6,6 +6,29 @@
 
 Disposition values used: **RESOLVED** (genuine new evidence closes the question), **PARTIALLY RESOLVED** (real progress, residual gap remains), **OPEN** (unchanged from Round 1), **HOLD** (requires a Boss decision this session cannot make), **CARRY-FORWARD** (explicitly out of G01 scope, routed to a later Gate).
 
+## CORR1 correction notice (2026-08-31)
+
+The Jira-facing summary posted for the original Round 2 comment (`10913`) mislabeled its own item count (stated "13 items" against a list of 19, and folded the S-series into the Q/R/E tally inconsistently). **The authoritative, reproducible count is below.** No individual disposition below was changed by this correction — every Q/R/E/S verdict is exactly as originally determined; only the summary arithmetic and its presentation were wrong.
+
+### Authoritative totals
+
+**AS Prompt §9 scope (Q-01..08, R-01..08, E-01..08 — 24 items, addressed "by ID" per the controlling prompt):**
+
+| Disposition | Count | IDs |
+|---|---:|---|
+| RESOLVED | **14** | Q-01, Q-02, Q-03, Q-05, Q-06, Q-08, R-01, R-03, R-04, E-01, E-04, E-05, E-06, E-08 |
+| PARTIALLY RESOLVED | **4** | Q-07, R-05, R-06, E-03 |
+| OPEN | **6** | Q-04, R-02, R-07, R-08, E-02, E-07 |
+| **Total** | **24** | |
+
+**S-01..S-05 (Scope/Authority Concerns — tracked separately; not part of the AS §9 "by ID" 24-item requirement, but addressed as part of the overall Round 2 boundary discipline):**
+
+| Disposition | Count | IDs |
+|---|---:|---|
+| RESOLVED | **5** | S-01, S-02, S-03, S-04, S-05 |
+
+**Combined (Q+R+E+S, 29 items total, for reference only — this combined figure is not the AS §9 count and should not be cited as "the 24"):** 19 RESOLVED, 4 PARTIALLY RESOLVED, 6 OPEN.
+
 ## Q — Questions to Consider
 
 | ID | Question | Disposition | Evidence |

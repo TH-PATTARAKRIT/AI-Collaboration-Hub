@@ -82,6 +82,20 @@ Jira `ERPPLUS-132` — full comment history (8 comments) read via the Atlassian 
 
 `BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AL_COA_CLOSURE_EVIDENCE_INDEX.md` — corrected to remove the unqualified PASS/zero-gaps claims introduced by commit `8fceca0`, without deleting prior text from git history.
 
+## CORR1 ADDITIONS (Boss directive `COA-G01R2-CORR1`, 2026-08-31)
+
+### New file
+
+`COA_G01_CORR1_POST_PUBLICATION_CLOSURE.md` — confirms the correction package, branch, file count, SHA-256 verification result, and restated Gate status.
+
+### Files updated in place (CORR1)
+
+`COA_G01_PRE_PROMPT_FINDING_CLOSURE_REGISTER_R2.md` (finding-count arithmetic corrected: 14/4/6=24 for Q/R/E, S tracked separately), `COA_G01_SOURCE_BASELINE_REGISTER.md`, `COA_G01_THAI_RELEVANCE_REGISTER.md`, `COA_G01_ACCOUNT_CONCEPT_UNIVERSE.md` (all three previously untouched, now updated), `COA_G01_CONCEPT_FIELD_COMPLETENESS_R2.md` (fully rebuilt: 19 per-type subsections, all 17 AS §8.7 fields explicit, Evidence Character/Fact Status separated), `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` (real document-level review of all 4 COA_STANDARD documents executed), `COA_G01_TBRAC_TB01_TB13_MATRIX_R2.md` (TB-06 corrected to an allowed status), `COA_G01_TEAM_A_SOURCE_CLASS_A_RECONCILIATION_R2.md` (62/64/65 file-count reproducibly reconciled, `06_DOMAIN_RESEARCH` off-by-one corrected), `COA_G01_GATE_REPORT.md` (§16 CORR1 section appended).
+
+### GitHub document also updated (outside this folder)
+
+`BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AL_COA_CLOSURE_EVIDENCE_INDEX.md` — Gate status label corrected to `HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED`.
+
 ## Verification instrument
 
-`COA_G01_SHA256SUMS.txt` (this folder) contains SHA-256 checksums of every file in this folder (Round 1 + Round 2), recomputed after all Round 2 content was finalized and immediately before the local commit. Reproducible verification command recorded in that file's header.
+`COA_G01_SHA256SUMS.txt` (this folder) contains SHA-256 checksums of every file in this folder (Round 1 + Round 2 + CORR1), recomputed after all CORR1 content was finalized and immediately before the local commit. Reproducible verification command recorded in that file's header.

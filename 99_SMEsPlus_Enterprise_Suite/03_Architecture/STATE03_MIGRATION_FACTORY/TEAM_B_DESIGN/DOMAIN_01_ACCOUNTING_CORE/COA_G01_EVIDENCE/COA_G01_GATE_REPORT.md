@@ -110,3 +110,13 @@ This is not `FAIL / FROZEN` — no SI violation and no unsafe/contradictory assu
 ### 15.4 Stop Line (reaffirmed)
 
 COA-G02 was **not** started. No coding, schema design, API design, or provisioning-service design was performed. Development Authorization remains NOT GRANTED. Production Authorization remains NOT GRANTED. This session does not self-approve COA-G01.
+
+---
+
+## 16. CORR1 targeted correction (2026-08-31)
+
+Boss directive `COA-G01R2-CORR1` identified 7 specific defects in the Round 2 package (finding-count arithmetic, 3 untouched mandatory files, merged Evidence Character/Fact Status fields, a restate-only clean-room section, a non-allowed TBRAC status value, an unreconciled file count, and residual reliance risk on `c530138`/`8fceca0`). All 7 were corrected — full detail in `COA_G01_CORR1_POST_PUBLICATION_CLOSURE.md`.
+
+**Corrected terminal status:** `HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED` — the same substantive open items as §15.2 (C-01, C-02, C-06, Class E/F, SI-10, N-01) remain genuinely open; this status label additionally records that a Boss-directed correction cycle occurred, per the Boss directive's explicit current-control statement.
+
+**Stop Line (reaffirmed again):** COA-G02 not started. Development/Production not authorized. No self-approval claimed. This session explicitly stops and requests the ChatGPT independent re-audit named in the Boss directive.

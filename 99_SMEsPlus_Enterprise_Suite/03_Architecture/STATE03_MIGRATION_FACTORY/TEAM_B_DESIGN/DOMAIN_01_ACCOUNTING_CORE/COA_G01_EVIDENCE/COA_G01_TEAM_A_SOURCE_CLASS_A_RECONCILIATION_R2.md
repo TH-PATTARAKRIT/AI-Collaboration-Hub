@@ -4,13 +4,13 @@
 |---|---|---|---|---|---|---|
 | Inventory substantive Team A Accounting Core evidence (process, state/event, integration, security, edge-case, migration, data) and record inclusion/exclusion/relevance | Claude (session SMEPLUS-26-08-30-COA-G01R2-001) | GitHub `SMEsPlus` branch, `TEAM_A/` tree | 2026-08-31 | ChatGPT Independent Review (pending); Boss (pending) | Class A = **VERIFIED FACT, evidenced to structural/rule/mechanism depth; not to operational-behaviour or statutory depth (by Team A's own explicit statement)** | Closes AR record Q-02/E-01 |
 
-## 1. Full inventory (62 files read this session, `TEAM_A/` tree)
+## 1. Full inventory (62 markdown files read / 65 files total in cited paths — see §1a for the reproducible reconciliation, corrected under CORR1)
 
 | Location | Files | Content |
 |---|---|---|
 | `01_SOURCE_REGISTRY/` | 8 md + 2 machine files | Governance verification, source landscape, database dump register, module master register (1,504 modules, SHA-256 `f11b1d74…5e5faac`), source baseline reconciliation, source manifest, source tree inventory |
 | `04_EVIDENCE_PACKS/DOMAIN_01_ACCOUNTING_CORE/` | 1 file, 166 lines | Canonical Claude evidence pack summary |
-| `06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE/` | 31 files | Part 1 (Fable) domain research: capability map, function register, process register, business rule register (BR-01..21), state/event register, mathematical model register, data semantic register, database observation (4 files), configuration/security/automation/integration/report/edge-case/migration/cross-vendor/provenance/classification/quarantine/unknown registers, Team B candidate input, evidence completeness, domain status |
+| `06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE/` | **32 files** (corrected — see §1a) | Part 1 (Fable) domain research: capability map, function register, process register, business rule register (BR-01..21), state/event register, mathematical model register, data semantic register, database observation (4 files), configuration/security/automation/integration/report/edge-case/migration/cross-vendor/provenance/classification/quarantine/unknown registers, Team B candidate input, evidence completeness, domain status |
 | `06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE/SONNET_DEEP_SYNTHESIS/` | 17 files | Part 2 (Sonnet) deep logic synthesis: critical-finding reasoning, accounting-principle register, business-invariant register (GR-xx), state/event logic analysis, mathematical reasoning, cross-source triangulation, exception/failure analysis, classification reassessment, **residual unknown register (20-item)**, Team B candidate input v2, evidence completeness, Fable/Sonnet disagreement register |
 | `09_OPEN_QUESTIONS/` | 1 file, 26 lines | Program-level **11-item** unknown/evidence-gap register (not domain-specific) |
 | `05_QUARANTINE/` | 2 files | Clean-room quarantine register (11 gated items: 5 OEEL-1 modules, 3 CLASS-D holds, 2 `ks_*`, vendor pattern/dump-row-data) |
@@ -18,6 +18,33 @@
 | `02_MULTI_SOURCE_RESEARCH/` | README only | No Accounting-Core content |
 
 Directories referenced by the AS prompt as `07_CROSS_DOMAIN_ANALYSIS/` and `08_MIGRATION_ANALYSIS/` **do not exist** as top-level Team A folders — migration classification content is instead inside `06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE/17_MIGRATION_CLASSIFICATION.md`. This is recorded as a naming-assumption correction, not a missing-evidence finding.
+
+## 1a. File-count reconciliation (CORR1 — 62 vs. 64 vs. 65, reproducible)
+
+This session's first pass stated "62 files read" but its own per-directory table (before correction) summed to 61 due to an off-by-one miscount of `06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE/` (numbered files run `00`–`25` inclusive = **26** files, not 25; miscounted as 25+6 loose = 31 instead of the correct 26+6 = **32**). All three figures below are independently reproducible and are **not mutually contradictory** — each measures a different, explicitly-scoped population.
+
+**Reproducible commands (run from `TEAM_A/`):**
+```
+find "01_SOURCE_REGISTRY" "04_EVIDENCE_PACKS/DOMAIN_01_ACCOUNTING_CORE" \
+     "06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE" "09_OPEN_QUESTIONS" \
+     "05_QUARANTINE" "02_MULTI_SOURCE_RESEARCH" -type f -name "*.md" | wc -l
+# -> 62
+
+find "01_SOURCE_REGISTRY" "04_EVIDENCE_PACKS/DOMAIN_01_ACCOUNTING_CORE" \
+     "06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE" "09_OPEN_QUESTIONS" \
+     "05_QUARANTINE" "02_MULTI_SOURCE_RESEARCH" -type f | wc -l
+# -> 64
+
+# + A2_SYSTEM_KNOWLEDGE_MAP.md (TEAM_A/ root, outside all six subdirectories above) = 65
+```
+
+| Count | Scope | Composition |
+|---|---:|---|
+| **62** | Markdown documents read as evidence, within the 6 cited subdirectories | 8 (`01_SOURCE_REGISTRY`, incl. `README.md`) + 1 (`04_EVIDENCE_PACKS`) + 32 (`06_DOMAIN_RESEARCH` top level, corrected) + 17 (`SONNET_DEEP_SYNTHESIS`) + 1 (`09_OPEN_QUESTIONS`) + 2 (`05_QUARANTINE`) + 1 (`02_MULTI_SOURCE_RESEARCH`) = 62 |
+| **64** | All files (any extension) within the same 6 subdirectories | 62 markdown + 2 non-markdown machine files in `01_SOURCE_REGISTRY` (`MODULE_MASTER_REGISTER_FULL.csv`, `SOURCE_MANIFEST.sha256`) — present, verified to exist, not individually "read" as prose evidence since they are a raw data dump and a checksum file respectively |
+| **65** | All files, including `A2_SYSTEM_KNOWLEDGE_MAP.md` | `A2_SYSTEM_KNOWLEDGE_MAP.md` sits directly under `TEAM_A/` root, outside all six enumerated subdirectories — 64 + 1 = 65 |
+
+**Corrected statement for this document:** "62 markdown files read as Class A evidence, plus 2 non-markdown machine files and 1 root-level system-knowledge-map file verified present (65 files total across all cited paths, 64 excluding the root-level map)." The original "62" claim was directionally correct but rested on an internally inconsistent per-directory sum (61, due to the `06_DOMAIN_RESEARCH` off-by-one); it is now independently reproducible from the commands above.
 
 ## 2. Evidence-category completeness (mandatory categories from AS §8.2)
 

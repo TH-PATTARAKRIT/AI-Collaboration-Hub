@@ -26,6 +26,27 @@ All items in this register originate from the local `STATE03` architecture findi
 
 Despite Thai statutory tax accounts (VAT/WHT/CIT structures) being evidenced as behavior/data-model facts above, **no actual Thai P&L or Balance Sheet presentation layout or filled example was found anywhere in GitHub or the local `ACCOUNT` folder.** This is recorded as EVIDENCE_MISSING in `COA_G01_SOURCE_BASELINE_REGISTER.md` (class F) and must not be inferred or fabricated by any downstream Gate using this register. The one database dump checked locally (`iTEST02`) contained 6 journal entries and zero WHT certificates — insufficient to derive a presentation example even indirectly.
 
+## ROUND 2 UPDATE (2026-08-31): TBRAC cross-reference and explicit Fact Status separation
+
+`COA_G01_TBRAC_TB01_TB13_MATRIX_R2.md` (new, Round 2) formally applies the Thailand Business Reality & User Fitness Control (commit `d57cca7`, Jira `ERPPLUS-134`) to COA-G01. Cross-references from this register:
+
+- **TB-05 (Thai Compliance Reality)** governs findings S1–S5/T1–T9 above: `HOLD / EVIDENCE REQUIRED` — statutory claims are correctly deferred to COA-G06, not asserted as regulatory-verified here.
+- **TB-09 (Digital Government & e-Tax Ecosystem)** governs the tax-related workbook rows (VAT/WHT/CIT concepts, see `COA_G01_CONCEPT_FIELD_COMPLETENESS_R2.md`): `HOLD / EVIDENCE REQUIRED`.
+- **TB-06 (Document Reality)** governs the Thai financial-statement presentation gap: `HOLD / EVIDENCE REQUIRED`, confirmed evidence-missing.
+
+Per CORR1 correction, every finding in this register carries **two distinct, non-merged fields**, restated explicitly here to remove any ambiguity:
+
+| ID | Evidence Character | Fact Status |
+|---|---|---|
+| S1 | Source Observation (source-code structural observation: statutory report logic lives in a gated OEEL-1 module) | VERIFIED FACT (at the source-observation layer only — not a statement of Thai statutory law itself) |
+| S2 | Source Observation | VERIFIED FACT (source-system posting-timing behavior only) |
+| S3 | Source Observation | VERIFIED FACT (source-system data-model requirement only) |
+| S4 | Source Observation | VERIFIED FACT (source-system data-model requirement only) |
+| S5 | Source Observation | VERIFIED FACT (source-system data-model requirement only) |
+| T1–T9 | Source Observation | VERIFIED FACT (vendor source-code behavior observation only) |
+
+None of the above is `Regulatory Verification` or `Real-User Validation` Evidence Character — no item in this register has been elevated beyond what a source-code/template observation actually supports, consistent with TB-05/TB-08's "no marketing claim without product evidence" and "usability must be measured, not assumed" principles.
+
 ## Boundary statement (repeated for downstream Gates)
 
 Every finding above is a **source-system behavior observation**, evidenced against Odoo/`l10n_th`/Odoo18-workbook artifacts under clean-room rules (business facts and semantics only — no architecture, schema, ORM, or code copied). None of these findings license copying Odoo's own Thai-localization module architecture into SMEsPlus SaaS Core; SI-10 requires the opposite — that SMEsPlus implement the underlying Thai business facts through its own, non-hard-coded localization layer.
