@@ -44,16 +44,18 @@ answering "who owns this fact, and who else touches it."
 
 | Fact | Field | Owner (claimed by schema) | Owner (actually implemented) | Status |
 |---|---|---|---|---|
-| Sale order is approved | `sale_order.level1_approved_by`/`level2_approved_by` | Unknown — no model declares these fields | **No implementation found anywhere** — Sale's only real gate is state+product-presence; credit is advisory | EVIDENCE_MISSING — critical (Phase 3 §08 item 1) |
-| Purchase order is approved | `purchase_order.level1_approved_by`/`level2_approved_by` PLUS the separately-real `_approval_allowed()` amount-threshold gate | Two DIFFERENT mechanisms coexist on one model | Real: `po_double_validation` (single amount-threshold, PO-06/08). Orphaned: the level1/level2 columns, zero source | EVIDENCE_MISSING for the orphaned half; VERIFIED FACT for the real half (Phase 4 §03) |
-| Purchase request is approved | `purchase_request.state='approved'` PLUS orphaned `level1_approved_by` etc. | `purchase.request` module (native buttons) OR `multi_level_approval_configuration` (if data-configured) | The wizard-gate (PREQ-13) reads `purchase_request.state`, which is set by whichever mechanism is actually live — **this cannot be determined from source alone** | EVIDENCE_MISSING — the PR→PO conversion gate's true upstream authority is unresolved (Phase 4 §03/§05) |
+| Sale order is approved | `sale_order.level1_approved_by`/`level2_approved_by` | **CLOSED (CORR-003)**: module `sale_order_level_approve` (first-party SMEsPlus, installed) — source code not in this extraction | Sale's confirmation gate itself is still state+product-presence only (credit advisory); the level1/level2 workflow is a separate, real, pre-confirmation approval layer whose exact trigger point relative to `action_confirm()` is unproven without the module's source | RESOLVED — ACTIVE HISTORICAL CONTROL WITH OWNERSHIP EVIDENCE (module identified; internal logic still EVIDENCE_MISSING pending source) |
+| Purchase order is approved | `purchase_order.level1_approved_by`/`level2_approved_by` PLUS the separately-real `_approval_allowed()` amount-threshold gate | **CLOSED (CORR-003)**: module `purchase_request_level_approve_po` (third-party, "BH Pro International", installed) — real, live `to_check_level` PO state discovered in data, source code not in this extraction | Two DIFFERENT mechanisms genuinely coexist on one model: `po_double_validation` (real, sourced, single-threshold) AND the level1/level2 workflow (real, installed, heavily used on `level1_user_id`/`level2_user_id` assignment — but `level1_approved_by`/`level2_approved_by` are populated on **zero** of 27,874 rows in this dataset) | RESOLVED for ownership/existence; VERIFIED FACT for `po_double_validation`; internal workflow logic of the level1/level2 module still EVIDENCE_MISSING pending source |
+| Purchase request is approved | `purchase_request.state='approved'` PLUS orphaned `level1_approved_by` etc. | **CLOSED (CORR-003)**: module `purchase_request_level_approve` (same third-party author, installed) owns the level1/level2 fields; a *separate*, minor Odoo-Studio pilot (`x_review_result`/`x_need_approval`, referencing the confirmed-uninstalled `multi_level_approval` engine) also exists but touches only 4 of 2,199 rows | The wizard-gate (PREQ-13) reads `purchase_request.state`, which live data shows is genuinely, actively used (1,945 `approved`, 96 `rejected`, 104 `approved_level1`) — **this IS a real, exercised approval workflow**, not an ambiguous one | RESOLVED — ACTIVE HISTORICAL CONTROL, confirmed by both metadata and heavy real usage; internal button/workflow logic still EVIDENCE_MISSING pending source |
 
-**This section is the fact-ownership answer to the single largest open question in GROUP A research**: three
-models (`sale_order`, `purchase_order`, `purchase_request`) each have a *claimed* two-level-approval fact owner
-(the orphaned columns) that does not match any *actual* owning code anywhere in the source tree. Downstream
-consumers of "is this approved" (the PR→PO wizard, PREQ-13, being the one case where approval state is a real,
-sourced, hard gate) read `state`, not the orphaned columns — so the practical fact-ownership chain is intact
-even though the elaborate two-level schema sitting alongside it is unexplained.
+**This section originally documented the single largest open question in GROUP A research; per the CORR-003
+corrective update above, ownership is now identified** for all three models — `sale_order_level_approve`,
+`purchase_request_level_approve_po`, and `purchase_request_level_approve` are real, installed, actively-used
+(on Purchase Request and, for approver-assignment, on Purchase Order) modules whose source code is simply absent
+from this extraction. Downstream consumers of "is this approved" (the PR→PO wizard, PREQ-13) read `state`, which
+data confirms IS genuinely driven by this real workflow on Purchase Request — the practical fact-ownership chain
+was always intact; what was missing was only the *citable source* for the mechanism setting that state, which is
+now a scoped "request the module source" action item rather than an open mystery.
 
 ## 05 — Handoff points where ownership crosses a module boundary (summary)
 

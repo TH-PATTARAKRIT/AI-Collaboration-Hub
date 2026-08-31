@@ -136,6 +136,39 @@ three models and two research phases.
   (`ir_model_fields`/`ir_model_data` filtered to these three models) to resolve — recommended as a follow-up data
   pull before any target design decision assumes either approval path is safe to ignore or safe to carry forward.
 
+## CORRECTIVE UPDATE (Session SMEPLUS-26-08-31-MIG-A-GRPA-SIP-CORR-003) — RESOLVED
+
+The row-level data pull recommended immediately above was performed: the full `iTEST02` dump (not just its
+schema) was restored into a local scratch PostgreSQL instance and queried directly. **Status upgraded from
+EVIDENCE_MISSING to `RESOLVED — ACTIVE HISTORICAL CONTROL WITH OWNERSHIP EVIDENCE`.** Full evidence in
+`19_TEAM_A_CORRECTIVE_CLOSURE_REPORT.md`; key facts:
+
+- `ir_model_fields` shows `level1_user_id`/`level2_user_id`/`level1_approved_by`/`level2_approved_by`/approval-
+  dates/`reject_reason` on all three models with **`state='base'`** (Python-source-declared, NOT Studio/manual) —
+  the module that declares them was simply never included in the `SOURCE CODE` extraction.
+- `ir_model_data` names the exact owning modules: **`sale_order_level_approve`** (first-party, author "SMEsPlus",
+  `smeplus.cloud`) on `sale.order`; **`purchase_request_level_approve_po`** and **`purchase_request_level_approve`**
+  (third-party, author "BH Pro International") on `purchase.order`/`purchase.request` respectively.
+- `ir_module_module` confirms all three `state='installed'` with real version strings (19.0.1.0.0 / 19.0.1.2.0 /
+  19.0.1.2.1) — this is genuine, actively-installed functionality, not dead schema.
+- Live data confirms **real historical usage**: 98.5% of `purchase_order` rows have `level1_user_id` set (though
+  `level1_approved_by` is populated on **zero** rows — the "assign approver" half is used, the "record actual
+  approval" half never was, in this dataset); `purchase_request` shows a genuinely active workflow (`state`
+  distribution includes 1,945 `approved`, 96 `rejected`).
+- **Bonus discovery**: live `purchase_order.state` values include `to_check_level` (131 rows) — a state value
+  **not present** in the base `purchase` module's Selection documented in §02 above. This is direct evidence that
+  `purchase_request_level_approve_po` extends the state machine itself; its exact override could not be cited to
+  a `.py` line (source unavailable) — recorded as SUPPORTED INFERENCE from live data, not directly-read source.
+- Separately, `x_review_result`/`x_has_request_approval`/`x_need_approval` are confirmed **`state='manual'`**
+  (genuine Odoo Studio/dynamic fields, present only on `purchase.order`/`purchase.request`, never `sale.order`) —
+  distinct from the three real modules above. `x_need_approval`'s stored compute code genuinely references
+  `multi.approval.type.compute_need_approval()`, but that model's tables do not exist in this database — a small,
+  separate, likely-abandoned pilot (10 PO rows, 4 PR rows, narrow 2-day window), non-functional in this snapshot.
+
+**Action item for PMO/Boss**: request the source code for `sale_order_level_approve`,
+`purchase_request_level_approve_po`, and `purchase_request_level_approve` to complete this evidence chain with
+file+line citations for their internal workflow logic (currently characterized by data/metadata only, not source).
+
 ---
 
 # 04 — CANCELLATION
@@ -156,6 +189,35 @@ three models and two research phases.
   (Phase 2 GRPA-01/02) not implying a symmetric cancellation cascade.
 - **Confidence**: High. **Unknown**: whether `purchase_stock` overrides `button_cancel()` to cascade into receipts
   — not opened this pass.
+
+## CORRECTIVE UPDATE (Session SMEPLUS-26-08-31-MIG-A-GRPA-SIP-CORR-003) — CLOSED
+
+`purchase_stock/models/purchase_order.py` L186–233 **does** override `button_cancel()`, with a real, precisely
+state-partitioned cascade. Full evidence in `19_TEAM_A_CORRECTIVE_CLOSURE_REPORT.md`; summary by receipt scenario:
+
+- **Not yet received**: every linked `stock.move` is unreserved and cancelled; MTO downstream chains are either
+  cascade-cancelled or diverted to make-to-stock per `purchase_order_line.propagate_cancel` (default `True`).
+- **Partially received**: Odoo's own backorder mechanics guarantee a picking is never left holding a mix of done
+  and pending moves — the completed portion is always split onto its own (already-`done`) picking before or at
+  validation. So at cancel time there are two separate pickings: the done one is **spared** (chatter note only,
+  nothing else touched), the backorder one is fully cancelled exactly like the not-yet-received case. Partial
+  cancellation success happens at the **order** level (some pickings survive, others don't), never inside one
+  picking record — this is structural, not merely unhandled.
+- **Fully received**: no picking/move is ever touched; a chatter note is posted; physical stock/valuation already
+  posted stands untouched.
+- The stock-side cascade runs **before** the base `locked`/vendor-bill gate (`super().button_cancel()` is called
+  last) — if that gate raises, the raise happens inside the same DB transaction as the already-executed stock
+  writes, so Odoo's standard transaction rollback discards them together (flagged as inference about transactional
+  behavior, not directly sourced from a test).
+- **Precision correction to Phase 2's MOV-31** (`02_INVENTORY_CAPABILITY_MODEL.md`): `stock.move._action_cancel()`'s
+  "cannot cancel a done move" guard is an **all-or-nothing check over the whole recordset** passed to the call, not
+  a per-move skip — a single done move anywhere in a batch blocks the entire batch. The exception is keyed on the
+  **destination location's `usage=='inventory'`** (Inventory Loss/scrap-adjustment), not a separate "scrap move"
+  concept. `stock.picking.action_cancel()` itself is confirmed to be shared, generic code (not Purchase-specific)
+  — Purchase's only contribution is which pickings/moves it hands to that shared method.
+- **Not assumed symmetric with Sale** — this was derived independently from `purchase_stock`/`stock` source per
+  the corrective prompt's explicit instruction. A literal Sale-vs-Purchase cancellation diff remains a possible
+  future comparison, not performed here.
 
 ---
 
@@ -317,3 +379,25 @@ Read in full: `purchase/models/purchase_order_line.py` (751 lines), `purchase_st
 9. **Unresolved, needed before this cluster is closed for Fit-Gap purposes**: whether `purchase_stock` cascades
    `button_cancel()` into receipts; the declaring module for `sale_line_id`/`purchase_request_id` on
    `purchase_order_line`; full contents of `stock_dropshipping/models/stock.py`. All EVIDENCE_MISSING, not guessed.
+
+## CORRECTIVE UPDATE (Session SMEPLUS-26-08-31-MIG-A-GRPA-SIP-CORR-003)
+
+Items 1, 2, and the `button_cancel()` half of item 9 above are **RESOLVED** by a targeted corrective follow-up
+(full evidence in `19_TEAM_A_CORRECTIVE_CLOSURE_REPORT.md` and inline in §03/§04 above, respectively):
+
+- **Item 1/2 (orphaned approval schema)**: identified as three real, actively-installed modules
+  (`sale_order_level_approve` — first-party SMEsPlus; `purchase_request_level_approve_po` and
+  `purchase_request_level_approve` — third-party "BH Pro International") via row-level `ir_model_fields`/
+  `ir_model_data`/`ir_module_module` forensics against a full restore of the `iTEST02` dump. Not orphaned/dead —
+  their source code is simply missing from this extraction. Live data confirms real historical usage on Purchase
+  Request specifically; Purchase Order's "approver assigned" field is near-universally populated but "approved by"
+  never is, in this dataset. A separate, minor Odoo-Studio-driven pilot integration with the (confirmed genuinely
+  uninstalled) `multi_level_approval` engine was also found, unrelated to the three real modules.
+- **Item 9 (`button_cancel()` cascade)**: fully traced — see §04's corrective update above for the complete
+  before/partial/full-receipt behavior.
+- **`sale_line_id`/`purchase_request_id` declaring modules**: `sale_line_id` was already resolved in the original
+  session's Phase 5 (`sale_purchase` module, subcontract-service scenario — see
+  `05_INTEGRATED_E2E_LIFECYCLE_MAP.md`); `purchase_request_id` is now trivially explained by this session's Cluster
+  C findings (`addons_extra/purchase_request`, already partially sourced in §05 below).
+- **Still open, not addressed by this corrective session**: full contents of `stock_dropshipping/models/stock.py`
+  (narrow, low-priority, out of this session's four correction clusters).

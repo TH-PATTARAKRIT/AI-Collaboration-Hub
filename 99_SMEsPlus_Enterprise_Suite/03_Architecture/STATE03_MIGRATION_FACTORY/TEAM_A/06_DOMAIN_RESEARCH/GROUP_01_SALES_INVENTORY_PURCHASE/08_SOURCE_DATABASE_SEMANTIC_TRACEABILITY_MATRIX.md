@@ -51,9 +51,32 @@ specifically searched for and not found.
 | Model(s)/Table(s) | Orphaned columns | Search performed | Evidence | Severity |
 |---|---|---|---|---|
 | `res.partner` | `brand_id`, `parent_company_id`, `bh_parent_company_code`, `is_hq_brand`, `hq_brand_id`, `hq_brand_count`, `store_type_id`, plus 13 `x_studio_*` columns | Full-tree grep across `01 ACCOUNT`, `02 OTHER`, `addons_extra` | Phase 1 PTY-21, CO-24 | Medium — plausible Odoo-Studio/production customization; suggests a real multi-brand/multi-HQ retail structure never captured in this extraction |
-| `sale_order`, `purchase_order`, `purchase_request` (all three) | `level1_user_id`, `level2_user_id`(missing on `purchase_request`), `level1_approved_by`, `level2_approved_by`, `level1_approved_date`, `level2_approved_date`, `reject_reason`, `x_review_result`, `x_has_request_approval` | Exhaustive full-tree grep, multiple independent passes across three separate research phases | Sales SO-43 (item 1); Purchase PO-21..34, DBX-01..06 | **Critical — the single largest open governance question in GROUP A research.** The one module whose manifest most directly promises this (`multi_level_approval_configuration`) is confirmed to have zero code wiring to two of the three models AND its own storage tables were never installed in this database — it cannot be the mechanical origin. `x_review_result`/`x_has_request_approval` circumstantially match that module's dynamic-field-creation pattern; the `level1_*`/`level2_*`/`reject_reason` fields do not match any known module's pattern at all. |
-| `purchase_order_level_reject`, `purchase_request_level_reject` (whole tables) | `order_id`/`request_id`, `current_state`, `mode`, `reason` | Exhaustive grep for the table name and every plausible model-name variant | Purchase PO-23, DBX-04 | Critical — same investigation as above; two purpose-built audit-log tables with no owning model anywhere |
-| `product_template` (subset) | `code`, `part_thickness`, `part_length`, `part_type_wi`, `part_code_id`, `product_revise_id`, `holding_conditions` | Full grep of `product/models/`, `stock/models/product.py`, opened `addons_extra` product modules | Phase 1 PRD-17/19 | Low-medium — reads like an unrelated vertical (manufacturing/cold-chain), not migration-blocking for GROUP A itself but worth flagging to whoever scopes Product master data fully |
+| `sale_order`, `purchase_order`, `purchase_request` (all three) | `level1_user_id`, `level2_user_id`(missing on `purchase_request`), `level1_approved_by`, `level2_approved_by`, `level1_approved_date`, `level2_approved_date`, `reject_reason`, `x_review_result`, `x_has_request_approval` | Exhaustive full-tree grep, multiple independent passes across three separate research phases | Sales SO-43 (item 1); Purchase PO-21..34, DBX-01..06 | **~~Critical~~ RESOLVED (CORR-003) — see §03a below.** Was: the single largest open governance question in GROUP A research; row-level dump forensics identified the exact owning modules. Row preserved unedited for audit trail. |
+| `purchase_order_level_reject`, `purchase_request_level_reject` (whole tables) | `order_id`/`request_id`, `current_state`, `mode`, `reason` | Exhaustive grep for the table name and every plausible model-name variant | Purchase PO-23, DBX-04 | **~~Critical~~ RESOLVED (CORR-003)** — same investigation as above; both tables show **zero rows** in this dataset (confirmed by live query), i.e. genuinely present in schema, present in an installed module, but never actually used to log a rejection in this specific database. |
+| `product_template` (subset) | `code`, `part_thickness`, `part_length`, `part_type_wi`, `part_code_id`, `product_revise_id`, `holding_conditions` | Full grep of `product/models/`, `stock/models/product.py`, opened `addons_extra` product modules | Phase 1 PRD-17/19 | Low-medium — reads like an unrelated vertical (manufacturing/cold-chain), not migration-blocking for GROUP A itself but worth flagging to whoever scopes Product master data fully. **Not addressed by this corrective session** — remains open. |
+
+## 03a — CORRECTIVE UPDATE (Session SMEPLUS-26-08-31-MIG-A-GRPA-SIP-CORR-003): approval schema resolved
+
+Full data+schema restore of the `iTEST02` dump into a local scratch PostgreSQL instance, then direct queries
+against `ir_model_fields`/`ir_model_data`/`ir_module_module` (full method and evidence in
+`19_TEAM_A_CORRECTIVE_CLOSURE_REPORT.md`). Result: **`RESOLVED — ACTIVE HISTORICAL CONTROL WITH OWNERSHIP
+EVIDENCE`**, not orphaned:
+
+| Model | Owning module | Type | Install state | Live usage |
+|---|---|---|---|---|
+| `sale.order` | `sale_order_level_approve` | First-party (author "SMEsPlus") | `installed`, v19.0.1.0.0 | Both existing rows have `level1_user_id` set (n=2, too small to characterize) |
+| `purchase.order` | `purchase_request_level_approve_po` | Third-party (author "BH Pro International") | `installed`, v19.0.1.2.0 | 98.5% of 27,874 rows have `level1_user_id` set; `level1_approved_by`/`reject_reason` on 0 rows; live `state` includes an undocumented `to_check_level` value (131 rows) not in base `purchase` |
+| `purchase.request` | `purchase_request_level_approve` | Third-party (same author) | `installed`, v19.0.1.2.1 | Genuinely active: `state` distribution shows 1,945 `approved`, 96 `rejected`, 104 `approved_level1` of 2,199 rows |
+
+`ir_model_fields.state='base'` on all these columns confirms Python-source declaration (not Studio) — their
+absence from three separate source-grep passes is an **extraction-completeness gap** (these three modules' code
+was never included in the `SOURCE CODE` export), not a schema mystery. Separately, `x_review_result`/
+`x_has_request_approval`/`x_need_approval` are confirmed `state='manual'` (genuine Studio/dynamic fields, present
+only on Purchase Order/Request, not Sale Order) with a compute snippet referencing the confirmed-uninstalled
+`multi_level_approval` engine — real but non-functional in this DB snapshot, and touching only 10+4 rows total.
+
+**Action item**: request the source of the three named modules from PMO/Boss to complete file+line citations for
+their internal workflow logic.
 
 ## 04 — Conflicts (source and DB actively disagree — both recorded, neither silently resolved)
 
@@ -95,9 +118,10 @@ Business Capability: "Does a two-level manager approval gate exist for Purchase 
 - **Wide**: 12 models/tables carry columns from other, unopened modules — 4 of these (`purchase.order.line`,
   `purchase.order`, plus the two closed in Phase 5) have their declaring module **confirmed**, not merely
   inferred; the remainder are SUPPORTED INFERENCE only.
-- **Orphaned**: 3 model families (`res.partner`'s brand/HQ cluster; the cross-model approval schema; a narrow
-  `product.template` manufacturing-vertical cluster) — the approval schema is by far the highest-severity item and
-  should be the lead item in the eventual Fit-Gap pack's Unknown register.
+- **Orphaned**: originally 3 model families; **updated (CORR-003): now 2** (`res.partner`'s brand/HQ cluster; a
+  narrow `product.template` manufacturing-vertical cluster) — the cross-model approval schema was resolved to
+  three real, named, installed modules via row-level dump forensics and is no longer orphaned (see §03a); it
+  remains an "extraction-completeness" action item (request module source), not an "Orphaned"-category unknown.
 - **Conflict**: 3 documented, all resolved in favor of the code+schema agreement over stale/aspirational
   documentation (translation files, module manifests) — none required inventing a tiebreaker, each had an
   independent second source (the DB schema itself) confirming which side was current.

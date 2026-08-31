@@ -28,11 +28,11 @@
 | 11 | Sequence fallback sentinel differs between Sale (`"New"`) and Purchase (`"/"`) with no functional reason found | Placeholder-before-numbering convention | **REJECT** (as an inconsistency) — pick ONE sentinel for the target | A genuine inconsistency, not a business rule |
 | 12 | Purchase's cancellation gate is dual (locked OR open vendor bill); Sale's is single (locked only) | Cancellation preconditions | **UNKNOWN** | Could be intentional (AP exposure is a harder blocker than AR) or accidental — not resolvable from source alone |
 
-## 03 — The orphaned approval schema — the pack's highest-priority UNKNOWN
+## 03 — The two-level approval schema — RECLASSIFIED (was the pack's highest-priority UNKNOWN)
 
 | # | Reference Observation | Generic Business Semantic | Candidate | Rationale |
 |---|---|---|---|---|
-| 13 | A complete two-level manager-approval DB schema exists on three models with zero implementing source anywhere | Sequential, per-person, auditable approval with a reject reason | **UNKNOWN — highest priority** | This cannot be classified ADAPT/EXTEND/REJECT until its origin and operational status are resolved (row-level data pull recommended). If it turns out to be a genuine, still-desired requirement (e.g., abandoned mid-implementation), it is a strong **EXTEND** candidate on top of Purchase's already-working single-threshold gate. If it's dead/orphaned schema, **REJECT** outright. Team A cannot make this call from source. |
+| 13 | ~~A complete two-level manager-approval DB schema exists on three models with zero implementing source anywhere~~ **UPDATED (CORR-003)**: identified as three real, actively-installed modules (`sale_order_level_approve` first-party; `purchase_request_level_approve_po`/`purchase_request_level_approve` third-party "BH Pro International"), with genuine historical usage confirmed on Purchase Request and partial usage (approver-assignment only) on Purchase Order | Sequential, per-person, auditable approval with a reject reason — **now known to be a real, working, historically-used feature**, not hypothetical schema | **EXTEND** (upgraded from UNKNOWN) — on top of Purchase's already-working single-threshold gate (`po_double_validation`), for Purchase Request specifically, where live data shows genuine use (1,945 approved, 96 rejected of 2,199 records). **UNKNOWN remains** for Purchase Order specifically, since `level1_approved_by` is populated on 0 of 27,874 rows there — it's unclear whether the "approval recording" half of that workflow was ever actually completed in practice vs. only the "assign an approver" half. Sale Order's version has only 2 historical records — sample too small to classify with confidence. | Source code for the three modules is still needed (action item raised in `04_PURCHASE_CAPABILITY_MODEL.md` §03) before Team B can design against this with full confidence — the DATA proves the feature is real and was used; it does not yet prove every workflow rule inside the modules. |
 
 ## 04 — Structural gaps found (things the source does NOT do, worth a deliberate SMEsPlus decision)
 
@@ -52,10 +52,17 @@ propose Fit-Gap candidates for Accounting Core's own domain.
 ## 06 — Summary counts
 
 - **ADAPT candidates**: 6 (items 1-6)
-- **UNKNOWN candidates**: 7 (items 7, 10, 12, 13, 14, 16, plus the underlying-requirement half of 8)
+- **UNKNOWN candidates**: 6 (items 7, 10, 12, 14, 16, plus the underlying-requirement half of 8) — item 13 is
+  reclassified below and no longer counted here
 - **REJECT candidates**: 5 (items 8's duplication, 9's collision, 11, 17, plus the naming-trap noted in 17)
-- **EXTEND candidates**: 1 tentative (item 15), 1 conditional (item 13 if the orphaned schema proves to be a real
-  abandoned requirement)
+- **EXTEND candidates**: 2 confirmed (item 15; item 13's Purchase-Request half, upgraded from UNKNOWN by CORR-003
+  dump forensics), 1 remaining UNKNOWN sub-item (item 13's Purchase-Order half, and Sale-Order's small-sample half)
+
+**Updated (Session CORR-003)**: item 13 (the two-level approval schema) moved from a single "highest-priority
+UNKNOWN" to a mixed classification — real and EXTEND-worthy on Purchase Request (confirmed active use), still
+UNKNOWN on Purchase Order (assigned-but-never-approved pattern in the data) and Sale Order (sample too small).
+See §03 above for the full breakdown.
 
 No item above is a Team A decision. This pack is a classification PROPOSAL for Team B / Boss review, built
-entirely from evidence already cited across Phases 1-9 of this research chain.
+entirely from evidence already cited across Phases 1-9 of this research chain plus the CORR-003 corrective
+follow-up.

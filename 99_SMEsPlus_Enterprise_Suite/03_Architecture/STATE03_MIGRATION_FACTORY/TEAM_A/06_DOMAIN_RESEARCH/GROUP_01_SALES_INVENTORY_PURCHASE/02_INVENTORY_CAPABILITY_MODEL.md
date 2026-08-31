@@ -68,7 +68,7 @@ Read in full: `stock_move.py` (2675 lines), `stock_move_line.py` (1236 lines).
 | MOV-27 | stock_move.py | L1756–1813 | `_update_reserved_quantity`: calls `stock.quant._get_reserve_quantity`, creates/updates move lines; `taken_quantity` may be **less than** requested (partial reservation) |
 | MOV-28 | stock_move.py | L1818–1821 | `_should_bypass_reservation()` = bypass location OR non-storable product |
 | MOV-30 | stock_move.py | L1894–2035 | `_action_assign()`: "considered reserved once Σ(reserved_qty for move lines) = `product_qty`" |
-| MOV-31 | stock_move.py | L2037–2077 | `_action_cancel()`: cannot cancel a `done` move (except scrap) — raises UserError instructing a return instead |
+| MOV-31 | stock_move.py | L2037–2077 | `_action_cancel()`: cannot cancel a `done` move (except scrap) — raises UserError instructing a return instead. **CORRECTIVE PRECISION UPDATE (session CORR-003, POCANC-13)**: re-read at L2038-2039 for a Purchase-cancellation follow-up — the exact guard is `any(move.state=='done' and move.location_dest_usage!='inventory' for move in self)`, i.e. an **all-or-nothing check over the whole recordset** passed to the call (one done move anywhere in a batch blocks the entire batch, not just itself), and the exception is keyed on the **destination location's `usage=='inventory'`** (Inventory Loss/scrap-adjustment), not a separate "scrap move" concept. See `04_PURCHASE_CAPABILITY_MODEL.md` §04 for the full cascade this feeds into. |
 | MOV-32 | stock_move.py | L2094–2162 | `_action_done()`: `_create_backorder()` called **before** `move_line_ids._action_done()` executes the physical transfer |
 | MOV-34 | stock_move.py | L2167–2183 | `_create_backorder()`: if `quantity < product_uom_qty`, remainder split via `_split()` into a new move — the literal backorder mechanism |
 | MOV-37 | stock_move.py | L2261–2281 | `_recompute_state()`: `quantity>=product_uom_qty`→assigned; `0<quantity<product_uom_qty`→partially_available; make_to_order-unfinished→waiting; else confirmed |
@@ -433,6 +433,28 @@ this one file).
 - **Confidence**: High for the trigger chain and core/extension boundary. **Unknown**: `stock.rule.Procurement`
   helper class's own field definition (constructor usage seen at 7 positional args; class body not opened).
 
+## CORRECTIVE UPDATE (Session SMEPLUS-26-08-31-MIG-A-GRPA-SIP-CORR-003)
+
+The `stock.rule.Procurement` "Unknown" above and REPL-10/11's `_run_buy`/selection-registration citations are now
+**CLOSED** by a targeted corrective follow-up. Full findings live in the corrective closure report
+(`19_TEAM_A_CORRECTIVE_CLOSURE_REPORT.md`); key facts folded in here per DELTA-FIRST (original REPL-01..15 rows
+above are preserved unedited — this is additive):
+
+| ID | File | Anchor | What it evidences |
+|---|---|---|---|
+| BUY-01 | purchase_stock/models/stock_rule.py | L58–59 | `_run_buy(self, procurements)` confirmed as the real (only) method name — `Procurement` itself is a `typing.NamedTuple` with 8 positional fields: `product_id, product_qty, product_uom, location_id, name, origin, company_id, values` (closes the "class body not opened" unknown) |
+| BUY-08/22 | stock_rule.py | L99, L358–390 | `_run_buy` searches for and **reuses an existing draft PO** matching a vendor/company/picking-type/currency domain (`_make_po_get_domain`) before creating a new one — consolidation aggressiveness is a **per-vendor setting** (`partner.group_rfq`), not hardcoded |
+| BUY-09/21 | stock_rule.py | L104–115, L326–356 | New PO created `with_user(SUPERUSER_ID)`; field map includes `partner_id`, `user_id=partner.buyer_id.id` (buyer comes from the **vendor's** record, not the acting user), `picking_type_id`, `currency_id`, `date_order` (computed from lead time) |
+| SEL-01 | purchase_stock/models/stock_rule.py | L18–20 | `action = fields.Selection(selection_add=[('buy', 'Buy')], ondelete={'buy': 'cascade'})` — confirmed verbatim, additive to the base 3-value Selection |
+| MTO-03/08 | stock/models/stock_move.py | L1541, **L1580** | The exact MTO re-trigger call site, previously unresolved: `_action_confirm()` detects `procure_method=='make_to_order'` and calls `self.env['stock.rule'].run(procurement_requests, ...)` at line 1580, batched per-confirm-call. `_action_assign()` was checked and confirmed to NOT re-trigger (it only skips reservation on MTO moves) |
+| MTO-10 | stock_move.py | L1700–1701 | `_prepare_procurement_values()` sets `move_dest_ids = self` for MTO moves — the exact linkage field connecting a chained replenishment move to the new PO line, backed at the DB level by `stock_move_created_purchase_line_rel` (junction table, `ON DELETE CASCADE`) |
+
+**Net effect**: the full chain "Sales delivery → chained MTO move → `_action_confirm()` L1580 →
+`stock.rule.run()` → `'buy'` rule matched → `_run_buy()` → draft-PO reuse-or-create → PO line with
+`move_dest_ids` linking back to the original move" is now evidenced end-to-end with no remaining gap. Cross-ref:
+this closes E2E Scenario 2's `_run_buy()` unknown in `05_INTEGRATED_E2E_LIFECYCLE_MAP.md` and Gap Register items
+Critical #3, High #6, High #7 in `14_UNKNOWN_CONFLICT_EVIDENCE_GAP_REGISTER.md`.
+
 ---
 
 # 10 — PUT-AWAY (`stock.putaway.rule`)
@@ -503,3 +525,8 @@ this one file).
 10. **Unresolved from this phase, needed before the Quantity Semantics Register can be finalized**: `stock.rule`'s
     `Procurement` class body and `_get_rule()`; `stock_move.is_in`/`is_out` column semantics; `returned_move_ids`
     field definition; `produce_line_ids` (likely MRP). All EVIDENCE_MISSING, not guessed.
+    **CORRECTIVE UPDATE (session CORR-003)**: the `Procurement` class body is now CLOSED (a `typing.NamedTuple`
+    with 8 positional fields — see §09's corrective addendum, BUY-01) and the MTO re-trigger call site that
+    depends on `_get_rule()`'s resolution is also CLOSED (`stock_move.py` L1580, see §09). `is_in`/`is_out`,
+    `returned_move_ids`, and `produce_line_ids` remain open — out of scope for this corrective session's four
+    clusters.

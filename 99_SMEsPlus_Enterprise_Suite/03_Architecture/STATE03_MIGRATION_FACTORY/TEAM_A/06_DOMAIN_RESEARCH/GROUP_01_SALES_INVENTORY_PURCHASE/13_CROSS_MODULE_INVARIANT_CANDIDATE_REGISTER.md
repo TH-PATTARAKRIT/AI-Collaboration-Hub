@@ -58,7 +58,17 @@ draws a hard line between "the database enforces this" and "the application mere
 | 5 | Sale's `_is_readonly()` includes `locked`; Purchase's does not | Purchase PO-13 vs Sales SO-23 |
 | 6 | Sale's `action_draft()` restricts which prior states can return to draft; Purchase's `button_draft()` has no precondition at all | Purchase PO-09 vs Sales SO-18 |
 | 7 | Sale's deletion allows `draft` OR `cancel`; Purchase's requires `cancel` exactly | Purchase PO-12/36 vs Sales SO-29 |
-| 8 | Purchase's post-confirmation cancellation cascade into `stock.picking` was never confirmed to exist (unlike Sale's, which is test-confirmed) | Purchase §04 EVIDENCE_MISSING |
+| 8 | ~~Purchase's post-confirmation cancellation cascade into `stock.picking` was never confirmed to exist~~ **CLOSED (CORR-003)**: it exists, is state-partitioned by receipt scenario, and is provably symmetric-in-effect with Sale's (both spare `done` pickings, both fully cancel not-done ones) even though derived independently and not merely assumed | Purchase §04 corrective update |
+
+## CORRECTIVE UPDATE (Session SMEPLUS-26-08-31-MIG-A-GRPA-SIP-CORR-003)
+
+Two new invariant candidates, confirmed by row-level dump forensics (not source code) — added here as a distinct
+category since their evidence type differs from everything else in this register:
+
+| # | Candidate invariant | Enforcement level | Evidence |
+|---|---|---|---|
+| 1 | A `stock.move` cancellation guard is evaluated over the **whole recordset** passed to `_action_cancel()`, not per-move — one `done` move anywhere in a batch blocks the entire batch | ORM method guard, precision-corrected from the original MOV-31 summary | `02_INVENTORY_CAPABILITY_MODEL.md` MOV-31 corrective note, POCANC-13 |
+| 2 | A `stock.picking` can never hold a mix of `done` and still-pending moves at the moment of cancellation — Odoo's own backorder mechanics guarantee any partial-completion state is always already split across two picking records before cancellation logic ever runs | Structural (a consequence of `_create_backorder`/`_action_done`'s own design), not an explicit constraint | `04_PURCHASE_CAPABILITY_MODEL.md` §04 corrective update, POCANC-18..20 |
 
 ## 05 — Governing note for Team B
 

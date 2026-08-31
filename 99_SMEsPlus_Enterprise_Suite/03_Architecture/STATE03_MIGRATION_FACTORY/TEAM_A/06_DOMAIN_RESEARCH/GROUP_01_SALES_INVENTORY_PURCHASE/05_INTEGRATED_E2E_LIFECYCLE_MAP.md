@@ -265,3 +265,26 @@ scope by design (governance §19: interface/dependency observation only).
 - **The orphaned two-level approval schema (Phase 3/4) sits upstream of every scenario that begins with
   "confirmed"** — none of the 12 scenarios above required or found evidence of that mechanism actually gating
   any of these flows; it remains a separate, unresolved governance question, not a blocking factor for this map.
+
+## CORRECTIVE UPDATE (Session SMEPLUS-26-08-31-MIG-A-GRPA-SIP-CORR-003)
+
+Both items in the "weakest link" bullet above are now **CLOSED**. Full evidence in
+`19_TEAM_A_CORRECTIVE_CLOSURE_REPORT.md`, `02_INVENTORY_CAPABILITY_MODEL.md` §09, and
+`04_PURCHASE_CAPABILITY_MODEL.md` §04:
+
+- **Scenario 2's `_run_buy()` gap**: `purchase_stock/models/stock_rule.py` L58-165 fully traced. It resolves a
+  vendor per `product.supplierinfo`, searches for and reuses an existing draft PO matching a vendor/company/
+  picking-type/currency domain before creating a new one, and the exact MTO re-trigger call site is
+  `stock_move.py` L1580 (`_action_confirm()`, not `_action_assign()`). The `move_dest_ids` link back to the
+  originating chained move is backed at the DB level by `stock_move_created_purchase_line_rel`.
+- **Scenario 7/8's Purchase cancellation cascade**: `purchase_stock/models/purchase_order.py` L186-233 fully
+  traced, state-partitioned by receipt scenario (not-yet-received: full cancel + unreserve; partially-received:
+  the done portion is always already split onto its own picking by Odoo's backorder mechanics before cancel time,
+  so it's spared while the backorder picking is fully cancelled; fully-received: nothing touched but a chatter
+  note). This is now proven **structurally airtight**, not merely "probably symmetric with Sale" — it was derived
+  independently, per the corrective prompt's explicit no-assumed-symmetry instruction.
+
+The orphaned two-level approval schema (third bullet above) is also now resolved to three real, named, installed
+modules — see `04_PURCHASE_CAPABILITY_MODEL.md` §03's corrective update. It remains true that none of the 12
+scenarios in this map found evidence of that mechanism gating any commercial flow directly (its live usage is on
+`purchase.request`'s own approval state, upstream of the PR→PO wizard, not on order confirmation itself).

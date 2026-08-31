@@ -53,19 +53,28 @@ the full file list and SHA-256 integrity values).
 
 ## 05 — Unknowns / Conflicts (see `14_UNKNOWN_CONFLICT_EVIDENCE_GAP_REGISTER.md` for full detail)
 
-**3 Critical, 6 High, 10 Medium, 4 Low** open items, plus **5 items resolved during this research effort** (audit
-trail preserved). The single highest-priority Critical item — an orphaned two-level manager-approval DB schema
+**AS OF THIS ORIGINAL REPORT**: 3 Critical, 6 High, 10 Medium, 4 Low open items, plus 5 items resolved during this
+research effort. The single highest-priority Critical item — an orphaned two-level manager-approval DB schema
 spanning `sale_order`, `purchase_order`, and `purchase_request` with zero corresponding source code anywhere —
-was investigated across two full research phases (Sales, Purchase) and is genuinely unresolvable from source code
-alone; it requires a row-level data pull (`ir_model_fields`/`ir_model_data`) that is out of this session's
-read-only-source scope.
+was investigated across two full research phases (Sales, Purchase) and was, at the time of this report, believed
+genuinely unresolvable from source code alone.
+
+**SUPERSEDED — see `19_TEAM_A_CORRECTIVE_CLOSURE_REPORT.md`**: a follow-up corrective session
+(SMEPLUS-26-08-31-MIG-A-GRPA-SIP-CORR-003) performed the row-level data pull this report predicted would be
+needed, by restoring the full `iTEST02` dump (not just its schema) into a local scratch database. All 3 Critical
+items are now closed. Current counts: **0 Critical, 3 High, 10 Medium, 4 Low** open, plus **9 items resolved**
+across both sessions. This paragraph is added for audit-trail continuity; the original counts above are left
+unedited.
 
 ## 06 — Red Flags
 
-1. **The orphaned approval schema** (§05 above) — the top item carried to Fit-Gap and to whoever gates Team B.
-2. **Purchase's post-confirmation cancellation cascade into `stock.picking` was never verified** — Sale's
-   equivalent is test-confirmed; Purchase's is not, creating an asymmetric confidence level between the two
-   commercial modules on this one specific behavior.
+1. ~~**The orphaned approval schema** (§05 above) — the top item carried to Fit-Gap and to whoever gates Team B.~~
+   **CLOSED (CORR-003)** — identified as three real, installed, first-/third-party modules via dump forensics.
+   See `19_TEAM_A_CORRECTIVE_CLOSURE_REPORT.md`.
+2. ~~**Purchase's post-confirmation cancellation cascade into `stock.picking` was never verified**~~ **CLOSED
+   (CORR-003)** — Sale's equivalent is test-confirmed; Purchase's is now independently traced and confirmed
+   structurally equivalent in effect (both spare done pickings, both fully cancel not-done ones), though derived
+   from Purchase's own source, not assumed from Sale's.
 3. **A recurring pattern of uncoordinated duplicate customizations** was found at least three times independently
    (two Thai "branch" modules, two `default_code` auto-generators, two byte-identical "amount to text" modules) —
    this is a build-hygiene/governance signal about how this codebase has evolved, worth surfacing to the Boss
@@ -97,7 +106,7 @@ Recommended, in priority order:
 | Unknowns preserved (not guessed) | ✅ (23 open items across 4 severity tiers, none resolved by invention) |
 | Clean-room boundaries respected | ✅ — no vendor source code, schema, or architecture was copied into a target design; this entire evidence chain is business-fact/semantic extraction only, per the governing directive |
 | Thailand claims evidence-classified | ✅ — every Thailand-related finding uses the TBRAC vocabulary and is deliberately capped below "Verified Thai Business Reality" per governance §17's stricter rule |
-| Required deliverables and evidence manifest present | ✅ (18/18, SHA-256 verified) |
+| Required deliverables and evidence manifest present | ✅ — **wording corrected in CORR-003**: 16 content deliverables (01-16) each have a directly-computed SHA-256 in `17_GROUP_A_EVIDENCE_MANIFEST.md`; files 17 and 18 (this manifest and this report) are necessarily excluded from their own hash listing (a file cannot hash its own final content before it is finished writing). The original "18/18, SHA-256 verified" phrasing overstated coverage. See `20_GROUP_A_FINAL_SHA256_MANIFEST.txt` for a reproducible external hash list covering 01-19. |
 | No hidden Scope expansion occurred | ✅ — all research stayed within Sales/Inventory/Purchase plus the minimum Shared-Master dependency depth required; Accounting Core, MRP, CRM, and e-commerce were only registered as external dependencies (§15), never researched in depth |
 | Downstream work has NOT begun | ✅ — no target schema, target API, or target architecture was proposed anywhere in this evidence chain; the Fit-Gap pack (#16) explicitly defers all ADAPT/EXTEND/REJECT/UNKNOWN calls to Team B/Boss |
 | Team A Evidence Gate Candidate Report produced | ✅ (this document) |

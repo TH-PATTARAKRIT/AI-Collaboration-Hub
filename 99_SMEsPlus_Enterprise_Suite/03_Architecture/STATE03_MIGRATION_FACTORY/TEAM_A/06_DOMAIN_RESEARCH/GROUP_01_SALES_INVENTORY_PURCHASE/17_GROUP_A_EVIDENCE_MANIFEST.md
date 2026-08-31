@@ -27,12 +27,24 @@
 | 00a | `00_NEW_SESSION_PROMPT_..._GRP01-SIP-DR-001.md` (prior session prompt, prompt-only, no deliverable) | `bccfd7b3035cbf37ec5d14d669a37486612fb766bf6d9c0f2681f1f4f4ba1811` |
 | 00b | `00_NEW_SESSION_PROMPT_..._GRPA-SIP-DR-002.md` (this session's prompt) | `2ec2a714083354a91cf07f041afbf57e0721a998f2a5d7cd717c0138f2a4e7e4` |
 
+## 01a — Integrity coverage note (added in corrective session CORR-003)
+
+The table above lists SHA-256 for the 16 content deliverables (01-16) plus the two session-prompt files (00a/00b)
+— **18 rows, all independently verifiable** (`shasum -a 256 <file>`). This manifest (17) and the Evidence Gate
+Report (18) are not, and cannot be, listed with a self-hash here, since a file's hash cannot include its own
+final content. File 19 (`19_TEAM_A_CORRECTIVE_CLOSURE_REPORT.md`) and this file's own final version are covered
+instead by the separate external manifest `20_GROUP_A_FINAL_SHA256_MANIFEST.txt`, which lists files 01-19
+(excluding itself, per the same self-hash limitation). Any statement elsewhere in this evidence chain reading
+"18/18 SHA-256 verified" without this qualification has been corrected — see
+`18_TEAM_A_EVIDENCE_GATE_CANDIDATE_REPORT.md` §08.
+
 ## 02 — Primary evidence sources consumed (local, not committed to this repo)
 
 | Source | Location | Role |
 |---|---|---|
 | Odoo-19 source tree | `ACCOUNT/01 ACCOUNT/SOURCE CODE/` (`01 ACCOUNT/`, `02 OTHER/`, `addons_extra/`) on the local project volume | Primary evidence for all model/method/field citations |
-| Database schema extraction | `ACCOUNT/01 ACCOUNT/iTEST02_2026-06-14_14-41-19.dump` → schema-only SQL extracted via `pg_restore --schema-only` (libpq 18.4, no live DB required) to a scratch file (`schema_only.sql`, ~214,294 lines) | Primary evidence for all DB table/column/constraint citations |
+| Database schema extraction | `ACCOUNT/01 ACCOUNT/iTEST02_2026-06-14_14-41-19.dump` → schema-only SQL extracted via `pg_restore --schema-only` (libpq 18.4, no live DB required) to a scratch file (`schema_only.sql`, ~214,294 lines) | Primary evidence for all DB table/column/constraint citations, Phases 1-8 |
+| Database **full** (schema+data) extraction — **added in CORR-003** | Same dump, restored in full into a local scratch PostgreSQL 16 instance (`initdb`/`pg_restore -j4`, 18 unrelated errors on an AI-embedding table ignored), queried directly via `psql`, then the instance was stopped and is not persisted | Primary evidence for row-level/metadata forensics resolving the orphaned approval schema (Critical #1) — see `19_TEAM_A_CORRECTIVE_CLOSURE_REPORT.md` |
 | `DOMAIN_01_ACCOUNTING_CORE/` (already-existing, separate domain research) | `TEAM_A/06_DOMAIN_RESEARCH/DOMAIN_01_ACCOUNTING_CORE/` | Style precedent; DELTA-FIRST reuse source for Tax/Payment-Term baseline check (Phase 1) |
 
 ## 03 — Deliverables required by governance §22 not produced as separate files (consolidated instead)
