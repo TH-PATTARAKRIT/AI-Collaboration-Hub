@@ -64,6 +64,45 @@ each answers a genuinely distinct business question that both Sales and Purchase
   *derived* Available/Forecasted views (§03), consistent with the domain-boundary rule that Inventory owns
   physical fact exclusively. TEAM B treats a future design exposing raw reservation totals to Sales/Purchase as a
   boundary violation, not a convenience.
+- **Reservation-claim atomicity (CORR-010 closure, `FV006-EVT-005`).** Formal IBPV FV-006/RV-009 found that the
+  Stock Position bin's enforced write-time uniqueness (§02 above, [12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md)
+  §11) protects against a duplicate *row insert* but does not by itself extend to the Reservation *claim* step
+  here: two simultaneous claims against the same bin could each evaluate Available quantity before either claim's
+  effect is durably recorded, and both proceed as if the other had not happened — a double-allocation/over-claim
+  risk distinct from, and not solved by, either the bin-uniqueness rule or the general Confirm/Movement-Execution
+  idempotency invariant ([12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §11).
+  - **Canonical owner of claim truth**: Inventory, exclusively — unchanged from
+    [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §01; Sales/Purchase never perform or witness the
+    claim mechanics, only the resulting Movement Instruction state.
+  - **Precondition for a valid claim**: the bin's Available quantity, evaluated at the moment the claim is
+    committed (not at some earlier read the claim may have started from), must be sufficient to cover the amount
+    the claim actually commits — zero, partial, or full.
+  - **Atomicity invariant**: the evaluate-then-commit sequence for a claim against a specific bin (the same
+    Product + Location + [Traceability Unit] + [Handling Unit] + [Ownership context] key defined in §02) must be
+    atomic relative to every other claim against that **same** bin — stated as an observable outcome, not a
+    mechanism: the sum of every claim committed against a bin may never exceed that bin's On-Hand quantity at the
+    time each claim is evaluated, as if every simultaneous claim against the same bin had in fact been evaluated
+    one at a time, in some order. No lock, compare-and-swap, serializable-transaction, or queue mechanism is
+    prescribed — only this business-observable guarantee.
+  - **Outcome of competing claims**: each claim against a bin receives a definite, mutually-exclusive-with-every-
+    other-claim outcome (full, partial, or zero), consistent with the "partial reservation is a valid outcome, not
+    an error" rule above. This design does not prescribe which claim is favored when two together exceed
+    Available (first-evaluated, priority, or any other tie-break) — that is a business-policy question, not a
+    structural one, and is registered as open rather than invented (see
+    [18](18_UNKNOWN_CONFLICT_AND_CARRY_FORWARD_REGISTER.md) §07). What the invariant requires unconditionally is
+    that no claim's outcome is silently dropped: a claim that receives less than requested (including zero) still
+    produces the observable "partially claimed"/"nothing claimed yet" condition on its own Movement Instruction.
+  - **Scope**: the atomicity requirement is per-bin — two claims against genuinely different bins (different
+    Location, different Traceability Unit, etc.) are unrelated and carry no atomicity requirement between them.
+    The bin key is always resolved within one Company (via Location, §02) within one Tenant (the outermost
+    boundary, [14](14_SAAS_MULTI_COMPANY_TENANT_BOUNDARY_MODEL.md) §02) — the atomicity invariant never needs to,
+    and does not, reach across a Company or Tenant boundary.
+  - **Retry/idempotency composition**: a retried or redelivered claim attempt for the **same** Movement
+    Instruction's business identity is governed by the general idempotency invariant
+    ([12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §11, which explicitly names `Stock Reserved` as
+    a covered trigger) — it must expose the original claim's already-recorded outcome, never evaluate and commit a
+    second time. Releasing a Reservation (on cancellation) increases Available for the *next* claim's evaluation;
+    it never retroactively reopens or invalidates a claim already committed.
 
 ## 05 — Transfer Operation, Fulfillment Continuation, and Reversal
 

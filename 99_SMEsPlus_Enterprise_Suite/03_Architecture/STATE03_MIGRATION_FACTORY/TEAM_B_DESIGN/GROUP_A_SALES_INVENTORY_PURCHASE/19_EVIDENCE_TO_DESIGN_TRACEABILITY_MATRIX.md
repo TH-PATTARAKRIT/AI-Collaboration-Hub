@@ -51,13 +51,18 @@ Evidence: `02` §04 MOV-31, precision-corrected by CORR-003 to an all-or-nothing
 
 ```
 Evidence: `04` §03 (full cross-model approval-schema investigation, CORR-003 resolution)
-→ Business Semantic: a real, historically-used, sequential multi-level approval control exists on at least one
-  document type, with unverifiable internal logic
+→ Business Semantic: a real, historically-used, multi-level approval control (levels numbered/labeled for audit
+  purposes only — not an enforced-sequence claim, per the CORR-008/CORR-010 wording correction in `13`§03) exists
+  on at least one document type, with unverifiable internal logic
 → TEAM B Decision: design the vendor-neutral shape (EXTEND); explicitly HOLD the internal logic per governing
   prompt §11's mandatory Unknown control
 → Confidence: RESOLVED — ACTIVE HISTORICAL CONTROL WITH OWNERSHIP EVIDENCE (evidence) / HOLD (internal logic)
 → Recorded in: 13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md §03 (APR-002)
 ```
+
+**CORR-010 wording correction (`FV006-SOD-004`):** this worked example previously used unqualified "sequential"
+language Formal IBPV RV-009 found missed by TEAM B's own CORR-008 keyword sweep (which never searched for
+"sequential"); corrected above to match the qualifier already applied everywhere else this control is described.
 
 ```
 Evidence: `03` §05 SRET-01..08, `04` §07 POL-29/30 (both full-file-grep negative)

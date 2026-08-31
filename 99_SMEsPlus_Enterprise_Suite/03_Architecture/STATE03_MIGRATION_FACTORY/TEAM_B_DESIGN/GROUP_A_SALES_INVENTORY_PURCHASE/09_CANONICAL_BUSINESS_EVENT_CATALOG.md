@@ -9,7 +9,7 @@ Every event below is business-semantic and vendor-neutral, named for what happen
 method. An event qualifies for this catalog only if at least one other domain observes or reacts to it (per
 governing prompt §13.4) — purely internal recomputation is not catalogued as an event.
 
-## 00A — Event Transport Semantics (CORR-008 closure, `FV006-EVT-002`)
+## 00A — Event Transport Semantics (CORR-008 closure, `FV006-EVT-002`; ordering clause corrected by CORR-010, `FV006-EVT-004`)
 
 No row below previously stated whether its emission/consumption is synchronous, asynchronous, ordered, or how a
 failed consumer should behave — a systemic gap Formal IBPV FV-006 Deliverable 05 found underlying two separate
@@ -21,26 +21,74 @@ race-condition findings. TEAM B closes this once, catalog-wide, rather than per 
   characterizes as "direct/synchronous" — concretely, `Supply Commitment Confirmed`'s Inventory-facing
   fulfillment-request effect (§02 below).
 - **Asynchronous, at-least-once delivery** — emission completes independently of consumption; the consumer may
-  process the event after a delay, and the same event may be redelivered. Ordering is guaranteed only within a
-  single originating document line's own event sequence (e.g., a given Commercial Commitment line's own events
-  are FIFO relative to each other); no ordering guarantee holds *across* different event types or different
-  lines. This is the classification for every event characterized elsewhere in this package as
-  "indirect/event-driven" — concretely, `Commercial Fulfillment Requested` and every other Sales-originated
-  event in §01 below, and every cross-domain notification not explicitly marked synchronous above.
+  process the event after a delay, and the same event may be redelivered. This is the classification for every
+  event characterized elsewhere in this package as "indirect/event-driven" — concretely, `Commercial Fulfillment
+  Requested` and every other Sales-originated event in §01 below, and every cross-domain notification not
+  explicitly marked synchronous above.
 - **Consumer-failure behavior** — a consumer that fails to process a delivered event must not silently drop it:
   redelivery/retry must be safe (governed by the idempotency contract, `FV006-INT-001` —
   [12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §11), and if the event remains unprocessed past a
   policy-configured window, the condition must surface as an observable `Handoff Unresolved` status rather than
-  fail silently (`FV006-INT-002` — §04A below, cross-referenced from
+  fail silently (`FV006-INT-002` — §03A below, cross-referenced from
   [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §02).
 - **Per-table default**: unless a row in §01–§04 below states otherwise, an event is Asynchronous / at-least-once
   by default; only the rows explicitly named "direct/synchronous" in this package (Supply Commitment's
   Inventory-facing effects) are Synchronous.
 
-This section does not resolve the two named race-condition findings themselves
-(`FV006-EVT-004`, `FV006-EVT-005`) — those remain outside CORR-008's nine-finding scope and stay open, tracked
-in [18_UNKNOWN_CONFLICT_AND_CARRY_FORWARD_REGISTER.md](18_UNKNOWN_CONFLICT_AND_CARRY_FORWARD_REGISTER.md). It
-closes only the systemic transport-semantics absence that was their stated contributing cause.
+**Ordering and value-currency rule (CORR-010 closure, `FV006-EVT-004`) — replaces the prior ordering clause.**
+Formal IBPV RV-009 Deliverable 06 independently found the prior wording self-contradictory: it stated, in the
+same breath, that "a given [Commercial Commitment] line's own events are FIFO relative to each other"
+(line-scoped, type-agnostic) and that "no ordering guarantee holds *across* different event types or different
+lines" (denies exactly that guarantee) — two opposite answers for the one case that matters most: two
+different-typed events on the same line, precisely the scenario `FV006-EVT-004` describes. TEAM B replaces both
+clauses with one rule that removes the contradiction by making same-line delivery order immaterial to
+correctness, instead of asserting an ordering guarantee this transport model cannot enforce without prescribing
+infrastructure:
+
+- **No cross-line, no cross-document ordering guarantee** (unchanged): events originating from two different
+  document lines, or two different documents, carry no relative-ordering guarantee of any kind.
+- **Same-line events, any event type: ordering-independent-by-design.** For any event whose consuming effect
+  depends on a value-bearing field of its originating document line (concretely: `Commercial Fulfillment
+  Requested`, `Commercial Line Quantity Changed`, and `Supply Commitment Line Quantity Changed`), the event is a
+  **trigger to reconcile**, not a **carrier of the value to apply**. On receipt of such an event, the consuming
+  domain (Inventory) must read the line's then-current, authoritative field values directly from the originating
+  Commitment — never a value captured in the event's own payload at emission time — before computing or updating
+  the dependent physical fact (a Movement Instruction's planned quantity, in particular). Consuming the same event
+  again, or consuming two same-line events of different types in either order, therefore converges on the
+  identical outcome: whatever the line's current authoritative state is at the moment each reconciliation happens.
+  This extends, to cross-domain event consumption specifically, the same "never trust a stored/carried value where
+  a live, authoritative source exists" principle already adopted for Movement Instruction's actual-so-far quantity
+  ([05](05_INVENTORY_CORE_CANONICAL_DESIGN.md) §01) and for line-level remaining quantity
+  ([06](06_SALES_CANONICAL_DESIGN.md) §03).
+  - This directly closes the scenario `FV006-EVT-004` named: confirming a commitment and then immediately editing
+    the line's Ordered quantity fires `Commercial Fulfillment Requested` and `Commercial Line Quantity Changed` in
+    quick succession; whichever is processed first, the Movement Instruction that results is created/adjusted by
+    reading Ordered quantity as it stands at the moment of that processing — never a pre-edit value silently
+    retained, because no step in this rule ever applies a payload-carried quantity independent of a fresh read.
+  - If a reconciling event is processed before any Movement Instruction yet exists (e.g., `Quantity Changed`
+    processed before the `Fulfillment Requested` event that will create the instruction), the reconciliation is a
+    no-op with nothing yet to adjust — not a lost update, because the instruction, once created (by the
+    possibly-later-processed `Fulfillment Requested` event), is itself created by reading the line's then-current
+    quantity, which already reflects the change. No separate replay of the earlier event is required for
+    correctness.
+  - This rule composes with, and does not replace, the idempotency invariant (`FV006-INT-001` —
+    [12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §11) and `Handoff Unresolved` detection
+    (`FV006-INT-002` — §03A below): if the *first* handoff (the fulfillment/receipt-instruction creation itself)
+    never occurs at all, that is total non-delivery, caught by `Handoff Unresolved` — a distinct failure mode from
+    mis-ordering, which this rule does not need to, and does not, address.
+  - No lock, queue, compare-and-swap, or messaging-technology mechanism is prescribed here — only the business
+    rule that value-bearing consumption must be re-derived from current authoritative state, never from an
+    event's frozen payload.
+- **Registration**: `FV006-EVT-004` is registered and closed in
+  [18](18_UNKNOWN_CONFLICT_AND_CARRY_FORWARD_REGISTER.md) §07 (CORR-010). The prior claim in this section that it
+  was "tracked in file 18" was independently found false by Formal IBPV RV-009 Deliverable 06 (zero occurrences on
+  direct inspection); it is corrected here by actually registering the finding, not by restating the claim.
+
+**`FV006-EVT-005` (Reservation-claim atomicity) is a separate, distinct concurrency concern** — not an
+event-transport/ordering question, since it concerns a read-then-write race inside a single Inventory-internal
+action rather than delivery order between two events. It is closed in
+[05](05_INVENTORY_CORE_CANONICAL_DESIGN.md) §04 and registered in
+[18](18_UNKNOWN_CONFLICT_AND_CARRY_FORWARD_REGISTER.md) §07 (CORR-010).
 
 ## 01 — Events Originating in Commercial Demand (Sales)
 
@@ -89,7 +137,8 @@ physical fulfillment request; Supply commitment → physical receipt expectation
 for their success path. TEAM B adds the two events below so a failed or stalled handoff is business-observable
 rather than silently assumed to never fail — full owner/status/retry/convergence detail is in
 [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §02 and
-[12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §13; this table records only the event shape.
+[12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §13A (**CORR-010 citation correction** — previously
+misread as plain §13, the unrelated, unchanged SLA-lateness section); this table records only the event shape.
 
 | Event | Preconditions | Fact/state change | Consumers |
 |---|---|---|---|

@@ -6,10 +6,14 @@
 ## 01 — Supply Lifecycle
 
 Canonical states: `Draft` → (`Sent`, engagement-tracking only, same non-behavioral status as Sales' `Sent`) →
-[`Pending Approval`, conditional] → `Committed` → `Cancelled`, with `Draft` reachable from any prior state (TEAM
-B notes the reference system's unrestricted `button_draft()`-equivalent as a genuine, evidenced **asymmetry**
-against Sales' more restricted return-to-draft — see §07 below for TEAM B's independent decision on whether to
-preserve it).
+[`Pending Approval`, conditional] → `Committed` → `Cancelled`; `Pending Approval` may also resolve to `Rejected`
+instead of `Committed` (see the CORR-008 closure below) — with `Draft` reachable from any prior state, including
+`Rejected` (TEAM B notes the reference system's unrestricted `button_draft()`-equivalent as a genuine, evidenced
+**asymmetry** against Sales' more restricted return-to-draft — see §07 below for TEAM B's independent decision on
+whether to preserve it). **CORR-010 precision fix (`FV006-STE-004`):** this enumeration previously omitted
+`Rejected` even though it is a canonical state reachable from `Pending Approval` — Formal IBPV RV-009 found this
+summary line was not updated when `Rejected` was introduced below, repeating a defect pattern the original
+Formal IBPV FV-006 review had already caught once in this exact section (`FV006-STE-003`).
 
 **`Pending Approval` is a genuine third phase Sales' lifecycle has no equivalent of** — TEAM B adopts this as a
 real, evidenced business-semantic difference (not an accident), because Purchase's real approval gate
@@ -32,7 +36,13 @@ internal trigger/permission logic — that internal logic remains `HOLD`, per §
   [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) §03 (an approve/reject event with actor, timestamp, and a
   mandatory rejection reason), applied here specifically to the Supply Commitment document type.
 - **Owner**: Purchase (the Supply Commitment document type), coordinated with the Approval Control concept
-  ([13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) §03) that raises the rejection.
+  ([13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) §02, APR-001 — the Amount-Threshold Approval control that
+  actually produces the `Pending Approval`/`Rejected` transition; **not** §03's Sequential Level-Based Approval, a
+  distinct control this document type does not use for this gate). **CORR-010 citation correction**: the
+  pre-correction text named §03 here, which Formal IBPV RV-009 independently confirmed contains no reference
+  anywhere to the `Rejected` state or the `Supply Commitment Rejected` event — the coordination is, and was always
+  meant to be, with §02, which now carries the matching cross-reference (see
+  [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) §02 Event Impact row).
 - **Downstream demand withdrawal**: §03 below clarifies (also as part of this CORR-008 closure) that the
   Inventory-facing receipt fulfillment request is created directly/synchronously at Confirm time on **both**
   branches (`Committed` or `Pending Approval`), and held `Blocked` (not-yet-executed, non-actionable) for the

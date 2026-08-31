@@ -95,10 +95,15 @@ affordance is an open, evidence-flagged business question**, not resolved here �
 
 ## 07 — Approval
 
-A real, historically-used, sequential per-level approval control exists on Sales commitments in the evidence
-(confirmed installed and used, though internal workflow logic is a Controlled Carry-Forward Unknown). TEAM B
-designs the vendor-neutral shape only — see [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) — and does not
-invent the missing internal logic.
+A real, historically-used, per-level approval control exists on Sales commitments in the evidence (confirmed
+installed and used, though internal workflow logic is a Controlled Carry-Forward Unknown). **CORR-010 wording
+correction (`FV006-SOD-004`):** "sequential" here names the levels' numbering/labeling convention only (Level 1,
+Level 2, ...), not an assertion that level-to-level gating is enforced in strict order — the same qualifier
+already applied at every other point of use in [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) §03/§06 and
+[07](07_PURCHASE_CANONICAL_DESIGN.md) §03. Formal IBPV RV-009 independently found this sentence was missed by
+TEAM B's own CORR-008 keyword sweep, which never searched for "sequential." TEAM B designs the vendor-neutral
+shape only — see [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) — and does not invent the missing internal
+logic.
 
 ## 08 — Cross-Domain Dependencies Summary
 

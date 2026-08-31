@@ -103,3 +103,23 @@ this closure and are added here rather than silently assumed:
 
 Full per-finding closure detail, including the exact corrected sections and residual-unknown statements, is in
 [22_TEAM_B_CORR008_FINDING_CLOSURE_REGISTER.md](CORRECTIVE_CORR_008/22_TEAM_B_CORR008_FINDING_CLOSURE_REGISTER.md).
+
+## 07 — CORR-010 Registration: `FV006-EVT-001`, `FV006-EVT-004`, `FV006-EVT-005` (Zero-Silent-Drop)
+
+Formal IBPV RV-009 (Deliverables 06, 07, 11) independently found that none of these three findings — despite a
+CORR-008-era claim in [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00A that two of them were "tracked in file
+18" — actually appeared anywhere in this register, before or after CORR-008. That claim was false and is
+corrected in [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00A. This section supplies the actual registration,
+per the governing charter's zero-silent-drop principle.
+
+| # | Item | Classification | Disposition |
+|---|---|---|---|
+| N10 | `FV006-EVT-004` — ordering race between same-line, different-typed events (`Commercial Fulfillment Requested` vs. `Commercial Line Quantity Changed`) | **CLOSED BY TEAM B CORRECTION (CORR-010)** | The self-contradictory ordering clause is replaced by an ordering-independent-by-design reconciliation rule in [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00A: any event whose effect depends on a value-bearing line field is a trigger to re-read current authoritative state, never a carrier of the value to apply — making same-line delivery order immaterial to correctness rather than asserting an unenforceable ordering guarantee. Full closure detail: [30_CORR010_EVENT_RACE_AND_RESERVATION_ATOMICITY_CLOSURE.md](CORRECTIVE_CORR_010/30_CORR010_EVENT_RACE_AND_RESERVATION_ATOMICITY_CLOSURE.md). |
+| N11 | `FV006-EVT-005` — Reservation-claim atomicity, competing simultaneous claims against the same Stock Position bin | **CLOSED BY TEAM B CORRECTION (CORR-010)** | A per-bin evaluate-then-commit atomicity invariant is added in [05](05_INVENTORY_CORE_CANONICAL_DESIGN.md) §04: the sum of committed claims against one bin may never exceed that bin's On-Hand quantity at evaluation time, stated as an observable guarantee with no locking/transaction mechanism prescribed. Which claim is favored when two together exceed Available is registered as a separate, genuinely open business-policy question (see N12 below), not invented. Full closure detail: [30_CORR010_EVENT_RACE_AND_RESERVATION_ATOMICITY_CLOSURE.md](CORRECTIVE_CORR_010/30_CORR010_EVENT_RACE_AND_RESERVATION_ATOMICITY_CLOSURE.md). |
+| N12 | Tie-break policy when two simultaneous Reservation claims together exceed a bin's Available quantity (which claim, if any, is favored) | `CONTROLLED CARRY-FORWARD` | Not a structural gap — the atomicity invariant (N11) holds regardless of which claim is favored. Business-policy default (first-evaluated, priority-customer, or another rule) deferred to Boss/business, consistent with how every other policy default in this package (Over-Fulfillment, Confirmation Gate, `Rejected`-resubmission) is carried forward rather than silently defaulted. |
+| N13 | `FV006-EVT-001` — dead-event-catalog question: do `Commercial Commitment Locked`, `Fulfillment Continuation Created`, and `Put-Away Resolved` violate [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00's own cross-domain-observer inclusion rule (each currently lists only its own emitting domain as Consumer)? | `CONTROLLED CARRY-FORWARD` — explicitly registered, not resolved | TEAM B does not delete these three rows solely to make the register clean (no evidence supports removing a business-real internal signal), and does not retroactively rewrite §00's inclusion rule without evidence that the rule itself is wrong. Both forks of the original question (revise the rule, or strip the three rows) remain open; CORR8-07's Traceability/Handling-Unit design correctly avoided deepening this question by not adding a fourth self-referential row, but did not resolve it either. Registered here for the first time so it is not lost. Disposition owner: TEAM B (if a future evidence-based reason favors one fork) or Boss (if the inclusion rule itself should be relaxed as a policy matter). |
+
+**Zero-silent-drop statement**: all three items were independently confirmed by Formal IBPV RV-009 to be absent
+from this register despite `FV006-EVT-004`/`005` being described elsewhere as present here. That description was
+false; this section is the correction. No item above is closed by assertion alone — N10 and N11 cite the exact
+corrected sections; N12 and N13 are carried forward openly rather than resolved without evidence or invented.

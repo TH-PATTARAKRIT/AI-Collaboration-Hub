@@ -40,7 +40,7 @@ independently-configurable Approval Control mechanisms, never as one merged conc
 | Business Fact(s) | Supply Commitment approval state |
 | Owner | Purchase |
 | Lifecycle/State Impact | Introduces the `Pending Approval` phase in [07](07_PURCHASE_CANONICAL_DESIGN.md) §01 |
-| Event Impact | Supply Commitment Confirmed (may branch); Supply Commitment Approved |
+| Event Impact | Supply Commitment Confirmed (may branch); Supply Commitment Approved; Supply Commitment Rejected (**CORR-010 cross-reference**, `FV006-STE-004`/`FV006-EVT-003` — this control's denial path is fully designed in [07](07_PURCHASE_CANONICAL_DESIGN.md) §01 and [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §02; this row only records that APR-001, not APR-002 below, is the control that raises it — Formal IBPV RV-009 found no cross-reference existed here despite one being claimed) |
 | Quantity/Value Impact | None directly; gates on commitment total value |
 | Cross-Domain Dependency | None beyond Purchase itself |
 | Thailand/User Reality Status | N/A |

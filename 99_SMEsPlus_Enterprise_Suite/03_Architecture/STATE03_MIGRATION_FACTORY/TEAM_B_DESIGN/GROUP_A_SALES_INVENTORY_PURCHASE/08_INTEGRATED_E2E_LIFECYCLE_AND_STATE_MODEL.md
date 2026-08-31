@@ -167,17 +167,23 @@ double-click/network-retry/message-redelivery risk named in Formal IBPV FV-006 D
 prescribing any implementation mechanism (no lock, queue, or framework choice is specified here — see
 [12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §11 for the full business-invariant statement).
 
-## 12 — Cross-Domain Handoff Failure / Compensation (CORR-008 closure, `FV006-INT-002`)
+## 12 — Cross-Domain Handoff Failure / Compensation (CORR-008 closure, `FV006-INT-002`; citations corrected by CORR-010)
 
 Full detail is recorded in [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §02 (Handoff Resolution
-column) and [12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §13; this section states only how it
-binds into the E2E chains above. Both Hard handoffs in §01 above (Commercial commitment → physical fulfillment
-request; Supply commitment → physical receipt expectation) are business-observable, not silently assumed to
-always succeed: if the receiving side (Inventory) does not emit its confirming event (`Movement Instruction
-Confirmed`) within the transport-semantics window stated in
-[09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §07, the handoff surfaces as `Handoff Unresolved` on the initiating
-Commitment rather than remaining silently pending forever. Resolution is always re-triggerable (safe, because
-retry is idempotent per §11 above) and requires no invented compensating-reversal mechanism, since no physical
-fact was yet created on the failed side. See
+column) and [12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §13A (**CORR-010 citation correction** —
+previously misread as plain §13, the unrelated, unchanged SLA-lateness section, which §12 of that same file
+explicitly warns readers not to confuse with §13A); this section states only how it binds into the E2E chains
+above. Both Hard handoffs in §01 above (Commercial commitment → physical fulfillment request; Supply commitment →
+physical receipt expectation) are business-observable, not silently assumed to always succeed: if the receiving
+side (Inventory) does not emit its confirming event (`Movement Instruction Confirmed`) within the
+transport-semantics window stated in [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00A (**CORR-010 citation
+correction** — file `09` has no §07), the handoff surfaces as `Handoff Unresolved` on the initiating Commitment
+rather than remaining silently pending forever. **Non-disappearance guarantee (CORR-010 addition):** once set,
+`Handoff Unresolved` is cleared only by the convergence criterion in
+[12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §13A (the confirming event being observed) — it
+cannot be manually dismissed, auto-expired, or dropped by an unrelated archival/cleanup process; Formal IBPV
+RV-009 found this guarantee only inferable, not affirmatively stated, before this correction. Resolution is
+always re-triggerable (safe, because retry is idempotent per §11 above) and requires no invented
+compensating-reversal mechanism, since no physical fact was yet created on the failed side. See
 [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §02 for the full owner/status/retry/convergence/audit
 statement.

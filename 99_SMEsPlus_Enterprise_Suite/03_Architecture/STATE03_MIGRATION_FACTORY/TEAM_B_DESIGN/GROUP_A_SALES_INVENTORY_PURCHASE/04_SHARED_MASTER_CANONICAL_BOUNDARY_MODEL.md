@@ -159,6 +159,25 @@ extends the same discipline to the concepts that previously had no stated rule.
 - **Legitimate exceptions**: TEAM B identifies none. A Shared Master concept record with **zero** historical
   references (never selected on any Commitment, Physical, or Control/Financial-Handoff fact) may still be deleted
   outright — the rule above binds only once a historical reference exists.
+- **Evidenced-vs-extended labeling (CORR-010 closure, per-item precision required by Formal IBPV RV-009
+  Deliverable 07).** This rule's three governing citations (`UOM-06`, `PAY-07`, `CUR-08`) directly evidence
+  deletion/deactivation protection for exactly **3** of the 13 concepts in scope: UOM, Payment Term, Currency.
+  Two more — Warehouse/Location and Company/Branch — carry a **different**, evidenced protection (TEAM A
+  evidence, `01_SHARED_MASTER_DEPENDENCY_MAP.md` §11/§12: immutability of a specific field after creation —
+  owning-company FK for Warehouse, hierarchy position for Company/Branch), not a deletion/archival protection;
+  this rule does not claim that citation for them, and their inclusion above rests on this rule's own
+  generalization, the same as the remaining 8. The remaining **8** concepts (Party, Product/Service, Product
+  Classification, Sales Price Rule, Vendor Price Reference, Tax Rule, Document Sequence, Cost Dimension) carry
+  **no** individually-evidenced deletion/archival/deactivation protection of any kind — this rule's application to
+  them is TEAM B's own policy extension, generalizing from the 3 directly-evidenced cases, not a second,
+  independently-evidenced fact. TEAM B's prior CORR-008 re-verification question undercounted this unevidenced
+  set (naming 5 concepts); the accurate count, stated here, is **10** — the 8 with no individual evidence at all,
+  plus Warehouse/Location and Company/Branch, whose evidenced protection is of a different kind than the one this
+  rule claims for them. This labeling does not change the rule's scope or effect — every listed concept remains
+  covered — it only makes explicit which 3 of 13 are directly evidenced and which 10 are TEAM B's design
+  extension, the same evidenced-vs-extended discipline already applied to the Tenant concept
+  ([14](14_SAAS_MULTI_COMPANY_TENANT_BOUNDARY_MODEL.md) §02) and the Financial Handoff Contract
+  ([10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §04).
 
 ## 09 — Summary Boundary Table
 

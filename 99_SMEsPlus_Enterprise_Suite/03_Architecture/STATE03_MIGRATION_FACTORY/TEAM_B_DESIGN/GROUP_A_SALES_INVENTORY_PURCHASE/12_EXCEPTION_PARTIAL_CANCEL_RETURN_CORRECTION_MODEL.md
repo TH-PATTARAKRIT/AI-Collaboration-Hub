@@ -112,10 +112,17 @@ not an afterthought. Each entry states what evidence showed, what TEAM B indepen
   [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00A). TEAM B closes this with one general, vendor-neutral
   business invariant, without prescribing any lock, queue, or framework mechanism:
 
-  > **Idempotency invariant**: every action that transitions a Commitment (`Commercial Commitment Confirmed`,
-  > `Supply Commitment Confirmed`, `Supply Commitment Approved`/`Rejected`) or triggers a `Movement Executed`
-  > event carries a business identity — the specific commitment being confirmed, or the specific instruction
-  > being executed. A repeated invocation carrying the **same** business identity as an action already applied
+  > **Idempotency invariant**: every action that (a) transitions a Commitment (`Commercial Commitment Confirmed`,
+  > `Supply Commitment Confirmed`, `Supply Commitment Approved`/`Rejected`), (b) creates or reconciles a
+  > fulfillment/receipt instruction in response to `Commercial Fulfillment Requested`, `Commercial Line Quantity
+  > Changed`, or `Supply Commitment Line Quantity Changed` (named explicitly here — **CORR-010 precision fix**:
+  > the protected-effects list below already covered this trigger; Formal IBPV RV-009 Deliverable 06 found the
+  > trigger-enumeration wording narrower than its own effects list and than
+  > [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00A), (c) commits a Reservation claim (`Stock Reserved` —
+  > **CORR-010 addition**, `FV006-EVT-005`, see [05](05_INVENTORY_CORE_CANONICAL_DESIGN.md) §04), or (d) triggers
+  > a `Movement Executed` event, carries a business identity — the specific commitment being confirmed, the
+  > specific line being reconciled, the specific claim being evaluated, or the specific instruction being
+  > executed. A repeated invocation carrying the **same** business identity as an action already applied
   > must produce **no additional business effect**: no second Movement Instruction, no second Reservation, and
   > no second Financial Handoff write. The repeat must be observably distinguishable from a genuine new action —
   > it must expose the original action's already-recorded outcome, never silently error and never silently
@@ -171,6 +178,10 @@ not an afterthought. Each entry states what evidence showed, what TEAM B indepen
   - **Convergence criterion**: the handoff transitions back to `Handoff Resolved` the moment Inventory's
     confirming event (`Movement Instruction Confirmed`, or the equivalent receipt-expectation acknowledgment) is
     observed.
+  - **Non-disappearance guarantee (CORR-010 addition)**: a `Handoff Unresolved` status, once set, can be cleared
+    only by the convergence criterion above — no manual dismissal, auto-expiry, or archival/cleanup process may
+    clear or hide it. Formal IBPV RV-009 found this guarantee only inferable (from the absence of a stated
+    alternative clearing path), not affirmatively stated; it is now stated explicitly.
   - **Audit trail**: `Handoff Unresolved Detected` and `Handoff Resolved` are themselves catalogued, timestamped
     events ([09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §03A).
   - **Duplicate-prevention interaction**: re-triggering a stalled handoff is the same action as a normal retry

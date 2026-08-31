@@ -30,13 +30,14 @@ justified from the canonical designs in files 04–09, not restated from evidenc
 | Approval state (sequential level-based) | Sales / Purchase / Internal Demand Request (shared Approval Control concept) | Level approve/reject action | No other domain | Owning document's lifecycle (internal trigger logic HOLD — see [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md)) |
 | Traceability Unit (lot/serial) | Inventory | Created on the first Movement Execution that establishes a new lot/serial identity (or an explicit registration action prior to first movement, e.g., a vendor-supplied lot/serial captured at receipt) | No other domain — hard rule, same as Movement Instruction/Execution | Sales, Purchase (read-only traceability query only, never by event subscription — see [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00) — **CORR-008 closure, `FV006-DFO-001`** |
 | Handling Unit (package) — live instance | Inventory | Pack / repack / unpack actions during a not-yet-executed transfer | No other domain | Sales, Purchase (read-only traceability query only) — **CORR-008 closure, `FV006-DFO-001`** |
-| Handling Unit (package) — historical snapshot | Inventory | Frozen automatically the moment the transfer operation it belongs to completes ([03](03_CANONICAL_BUSINESS_FACT_AND_CONCEPT_CATALOG.md) §03) — this freeze event **is** the live instance's lifecycle-end | No other domain; the snapshot itself is then immutable and permanent (never expires, never deleted — see [04](04_SHARED_MASTER_CANONICAL_BOUNDARY_MODEL.md) §09) | Sales, Purchase (read-only traceability query only) — **CORR-008 closure, `FV006-DFO-001`** |
+| Handling Unit (package) — historical snapshot | Inventory | Frozen automatically the moment the transfer operation it belongs to completes ([03](03_CANONICAL_BUSINESS_FACT_AND_CONCEPT_CATALOG.md) §03) — this freeze event **is** the live instance's lifecycle-end | No other domain; the snapshot itself is then immutable and permanent (never expires, never deleted — see [04](04_SHARED_MASTER_CANONICAL_BOUNDARY_MODEL.md) §08 — **CORR-010 citation correction**: previously misread as §09, the plain Written-by/Read-by Summary Boundary Table, which contains no permanence statement; the correct target is §08's General Archival/Non-Deletion Rule) | Sales, Purchase (read-only traceability query only) — **CORR-008 closure, `FV006-DFO-001`** |
 
 **CORR-008 lifecycle-end statement (`FV006-DFO-001`):** a Traceability Unit's lifecycle ends (closes) when its
 full tracked quantity has been fully consumed/shipped out and no Stock Position row references it as on-hand; it
 is never deleted — it transitions to a permanent `Closed/Exhausted` status, remaining resolvable for every
 historical Movement Execution that references it, consistent with the general Shared-Master-style preservation
-principle in [04](04_SHARED_MASTER_CANONICAL_BOUNDARY_MODEL.md) §08 even though a Traceability Unit is a Physical
+principle in [04](04_SHARED_MASTER_CANONICAL_BOUNDARY_MODEL.md) §08 (the same §08 the Handling Unit snapshot row
+above now correctly cites) even though a Traceability Unit is a Physical
 fact, not a Shared Master concept. A Handling Unit's live-instance lifecycle ends at transfer-operation
 completion (above); the resulting historical snapshot has no further lifecycle-end — it is permanent.
 
