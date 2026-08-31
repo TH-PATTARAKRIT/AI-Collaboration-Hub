@@ -14,6 +14,7 @@ Governing Evidence Standard: `SMEPLUS-GOV-LEP-001`
 ## 1. Current Control Result
 
 - `BACKBONE EXECUTION ROADMAP = ESTABLISHED / CANONICAL`
+- `BOSS BACKBONE DIRECTION = ARCHIVED / CANONICAL`
 - `ACCOUNTING CORE = CONTINUES UNDER EXISTING DOMAIN_01 / COA GATES`
 - `INVENTORY CORE TEAM A = NEW PROMPT ISSUED / EXECUTION RESULT PENDING`
 - `ACCOUNTING x INVENTORY CROSS-PROOF = NOT YET STARTED`
@@ -29,8 +30,8 @@ This is traceability status only. It is not completion evidence for Inventory ex
 | Seq | Item / Task | Owner | Evidence Location | Immutable Commit / Artifact | Reviewer / Verifier | Verification Status | Gate Impact | Preservation Status |
 |---|---|---|---|---|---|---|---|---|
 | 01 | Existing STATE03 Learning Priority Matrix | Architecture Governance | `03_Architecture/00_Architecture_Governance/STATE03_ENTERPRISE_MODULE_LEARNING_PRIORITY_MATRIX.csv` | canonical `SMEsPlus` file; exact historical commit varies by update | PMO / current canonical read | `VERIFIED CURRENT FILE EXISTS` | Provides dependency evidence; not final target scope | `CANONICAL_COPY_VERIFIED` |
-| 02 | Boss Backbone Direction — `Inventory / Store -> Accounting Core` | Boss | Controlled session decision archived separately | Current session / archive pending at index creation | PMO | `BOSS DIRECTED` | Establishes sequencing direction; no Development authority | `ARCHIVE REQUIRED` until session archive commit exists |
-| 03 | Jira Backbone Control | PMO | `ERPPLUS-137` | Jira issue 10911 | Jira | `RECORDED` | Execution tracking / governance linkage | `CANONICAL REFERENCE VERIFIED` |
+| 02 | Boss Backbone Direction — `Inventory / Store -> Accounting Core` | Boss | `00_Project_Governance/SESSION_ARCHIVE/SESSION_SMEPLUS-26-08-31-STATE03-BACKBONE-ROADMAP-001.md` | `f895d186e17fad704e48a8d64fa619168e1985b2` | PMO / repository verification | `BOSS DIRECTION RECORDED / ARCHIVED` | Establishes sequencing direction; no Development authority | `CANONICAL_COPY_VERIFIED` |
+| 03 | Jira Backbone Control | PMO | `ERPPLUS-137` | Jira issue 10911 | Jira | `RECORDED` | Execution tracking / governance linkage | `CANONICAL_REFERENCE_VERIFIED` |
 | 04 | STATE03 Accounting <= Inventory Backbone Execution Roadmap | PMO / Architecture Governance | `STATE03_ACCOUNTING_INVENTORY_BACKBONE_EXECUTION_ROADMAP.md` | `4c3e4e8fbddb6a4231ea7704dba86f0315302072` | PMO / Boss direction | `ROADMAP ESTABLISHED` | Controls sequencing; does not grant product Gate PASS | `CANONICAL_COPY_VERIFIED` |
 | 05 | Inventory Core Five-Unit Pre-Prompt Readiness | PMO / Governance | `TEAM_A/06_DOMAIN_RESEARCH/INVENTORY_CORE_BACKBONE/00_PRE_PROMPT_READINESS_SMEPLUS-26-08-31-MIG-A-INV-BB-R01.md` | `9d997ff34605ff98e9567502d6be54a77e81265f` | Five-Unit challenge lenses consolidated by PMO | `READY — TEAM A EVIDENCE RECONCILIATION ONLY` | Permits Team A prompt issuance only | `CANONICAL_COPY_VERIFIED` |
 | 06 | Inventory Core Team A New Prompt | PMO / Team A Governance | `TEAM_A/06_DOMAIN_RESEARCH/INVENTORY_CORE_BACKBONE/01_NEW_SESSION_PROMPT_SMEPLUS-26-08-31-MIG-A-INV-BB-R01.md` | `5f616d98e2f99c6037a0bc9633c5618200bc2021` | PMO / New Prompt Governance | `PROMPT ISSUED` | No execution completion credit | `CANONICAL_COPY_VERIFIED` |
