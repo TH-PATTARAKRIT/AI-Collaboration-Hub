@@ -54,6 +54,6 @@ Scoped, not blanket — full breakdown in Deliverable 14. Headline: all nine COR
 3. Committed in logical batches (see git log on the dedicated branch for exact commit messages/SHAs).
 4. Pushed the dedicated branch to `origin`.
 
-Final pushed commit SHA is recorded by the executor immediately after push, appended below this line once available.
+**Final pushed commit SHA: `822d12ad29448d9888e9f319c53f2add1dcbcbdc`** — confirmed via `git log -1` against `origin/ibpv/group-a-sip-formal-reverification-009` after push; working tree clean, branch up to date with origin, no other repository state touched.
 
 **Independent experts verify the design; only Boss decides whether the lifecycle may advance.**
