@@ -130,6 +130,18 @@ The Cross-Gate ruling is a mandatory audit control, not a recommendation.
 
 Any applicable SI violation or unresolved evidence gap prevents the affected Gate from receiving closure credit and prevents final COA handoff unless Boss separately issues a controlled exception ruling.
 
+## CORR5 correction (2026-08-31, findings `AUD4-01`..`AUD4-03`)
+
+ChatGPT's CORR4 independent re-audit found the current COA-G01 blocker set inconsistent across this index, the Gate Report, the Source Conflict Register, the CORR4 closure and Jira comment `10922` (`AUD4-01`); found C-06/B14 status contradictory (`AUD4-02`); and found this index's current-state metadata stale with no explicit C-05 disposition (`AUD4-03`). All three are corrected. The single canonical current blocker set, per `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_G01_EVIDENCE/COA_G01_CURRENT_BLOCKER_AND_DISPOSITION_MATRIX_R5.md`, is:
+
+- **N-04 / Source Class F** — `CURRENT COA-G01 BLOCKER`, `EVIDENCE_MISSING / ACCESS_DENIED / OPEN`.
+- **N-05 (`STEP0303R2` cause)** and **C-03 (S1 substantive status)** — `ACCEPTED RESIDUAL UNKNOWN — BOSS DECISION REQUIRED`.
+- **C-05** (historical PR #53/#58 Independent Review conflict) — `HISTORICAL / NON-G01 CARRY-FORWARD`, governed by the pre-existing Boss `STEP030210` Conditional Pass ruling; not a current G01 blocker, not silently dropped.
+- **C-06/B14 dedicated-check method** — `RESOLVED / ACCEPTED DEDICATED-CHECK METHOD` (was contradictorily `HOLD` in one artifact and `RESOLVED` in another; now one status everywhere).
+- **SI-10 execution-scope proof, Base Kernel count, final canonical COA count** — explicitly `LATER-GATE` / `OUT OF SCOPE / PROHIBITED IN CORR5`, not current G01 blockers.
+
+This does not change `COA-G01 Gate Status`, which remains `HOLD / EVIDENCE REQUIRED` below — CORR5 corrects blocker-set *presentation consistency* only; it does not close N-04, and N-05/C-03 remain open pending Boss decision. `CORR5 TARGETED CORRECTION PACKAGE = SUBMITTED FOR CHATGPT INDEPENDENT RE-AUDIT`. `COA-G02 = NOT STARTED / NOT AUTHORIZED`.
+
 ## Governance Red Flags / Carry-Forward
 
 - Jira Assignee = UNASSIGNED.

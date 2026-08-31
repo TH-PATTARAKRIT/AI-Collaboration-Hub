@@ -66,6 +66,8 @@ All five reconfirmed **OPEN** at the close of Round 2 — none closed by Round 2
 
 **Current open N-series count = 2 (N-04, N-05).** N-01, N-02, N-03 are `RESOLVED`.
 
+**CORR5 current-state disposition (2026-08-31, finding `AUD4-01`):** raw fact status above is unchanged — N-04 and N-05 remain `OPEN`. For Gate-blocker-set purposes, `COA_G01_CURRENT_BLOCKER_AND_DISPOSITION_MATRIX_R5.md` records the canonical current classification: **N-04 = `CURRENT COA-G01 BLOCKER`**; **N-05 = `ACCEPTED RESIDUAL UNKNOWN — BOSS DECISION REQUIRED`** (existence resolved per C-02 above; cause remains genuinely `UNKNOWN` and is not converted to fact by this reclassification — only its Gate-disposition label changes, from being listed alongside N-04 as an undifferentiated blocker to being explicitly routed to Boss decision).
+
 ## Items explicitly NOT re-opened by this session
 
 - The 19 active Account Types Boss ruling — treated as settled target design, not reopened.

@@ -183,3 +183,39 @@ The local clone normally used for this session's earlier CORR1–CORR3 work was 
 Per directive §6, this session evaluates whether every G01 exit criterion is evidenced. **It is not** — N-04/Class F remains genuinely blocked and N-05's cause remains genuinely unknown; both are real, named, unresolved gaps, not housekeeping.
 
 **`COA-G01 = HOLD / EVIDENCE REQUIRED`** (not `PROPOSED PASS` — directive §6 reserves that status for when every exit criterion is evidenced, which is not the case here). **`COA-G02 = NOT STARTED / NOT AUTHORIZED`.** No ChatGPT Audit PASS, PMO verification, or Boss approval is claimed. No Base Kernel discovery, schema/API design, coding, build, deployment, or release occurred. This session stops and requests the next ChatGPT independent re-audit.
+
+---
+
+## 20. CORR5 targeted correction (2026-08-31)
+
+ChatGPT's independent re-audit of CORR4 (commit `00e56ea0205852f571c394a231a337fd8658baa9`, `CHATGPT_AUDIT/DOMAIN_01_ACCOUNTING_CORE_AG_COA_G01_CORR4_INDEPENDENT_REAUDIT.md`) disposed CORR4 as `CORR4 EXECUTION / PUBLICATION = VERIFIED`, `CORR4 SHA-256 INTEGRITY = PASS / VERIFIED — 99/99`, `CORR4 TARGETED REMEDIATION = PARTIALLY ACCEPTED`, overall `HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED`, and identified 3 new findings — `AUD4-01`, `AUD4-02`, `AUD4-03` — all classified as narrow current-state/register-reconciliation defects, not new substantive research gaps. Boss authorized a narrow `COA-G01R2-CORR5` limited to correcting exactly these three.
+
+### 20.1 `AUD4-01` — Current COA-G01 blocker set was inconsistent across controlling artifacts
+
+**Corrected.** `COA_G01_CURRENT_BLOCKER_AND_DISPOSITION_MATRIX_R5.md` is now the single canonical current blocker/disposition matrix, applied consistently to this report (§20.4 below), `COA_G01_SOURCE_CONFLICT_REGISTER.md`, `COA_G01_OPEN_UNKNOWN_REGISTER.md`, and `BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AL_COA_CLOSURE_EVIDENCE_INDEX.md`. It separates genuine current G01 blockers from accepted residual unknowns, Later-Gate execution evidence, and prohibited/out-of-scope future counts, with zero silent drop of C-03/C-05/C-06/N-04/N-05.
+
+### 20.2 `AUD4-02` — C-06/B14 current status was contradictory
+
+**Corrected.** `C-06 = RESOLVED / ACCEPTED DEDICATED-CHECK METHOD` is now the single current status, recorded consistently in `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-06 and the disposition matrix. All 4 controlling facts (B14 not extended; dedicated check covers all 3 current `COA_STANDARD` documents; dedicated check passed CORR3 independent re-audit; non-extension is an intentional, registered method decision) were independently re-confirmed this pass with no later contrary evidence. B14 itself remains unmodified.
+
+### 20.3 `AUD4-03` — Source Conflict Register current metadata was stale; C-05 lacked a current Gate disposition
+
+**Corrected.** `COA_G01_SOURCE_CONFLICT_REGISTER.md` now carries an explicit `CURRENT STATE — CORR5` summary for C-01 through C-07, and its Round 1 header is labeled `HISTORICAL / SUPERSEDED — NOT CURRENT GATE STATE`. C-05 is explicitly classified `HISTORICAL / NON-G01 CARRY-FORWARD` (governed by the pre-existing Boss `STEP030210` Conditional Pass ruling, which already treats it as controlling regardless of the underlying PR #53/#58 discrepancy) rather than silently omitted from the Gate decision basis.
+
+### 20.4 Current canonical COA-G01 blocker set (per `COA_G01_CURRENT_BLOCKER_AND_DISPOSITION_MATRIX_R5.md`)
+
+- **N-04 / Source Class F** — `CURRENT COA-G01 BLOCKER`, `EVIDENCE_MISSING / ACCESS_DENIED / OPEN`.
+- **N-05 (`STEP0303R2` cause)** and **C-03 (S1 substantive status)** — `ACCEPTED RESIDUAL UNKNOWN — BOSS DECISION REQUIRED`; existence/visibility resolved, substantive/cause disposition awaits an explicit Boss (or Boss/PMO) ruling.
+- **SI-10 execution-scope proof** — `LATER-GATE EXECUTION EVIDENCE — NOT A CORR5/G01 DELIVERABLE`, deferred to COA-G04S/COA-G06.
+- **Base Kernel count, final canonical COA count** — `OUT OF SCOPE / PROHIBITED IN CORR5`; not estimated, not frozen.
+- **PMO Verification, Boss Gate Decision** — `PENDING / OUT OF CORR5 EXECUTION SCOPE`.
+
+No other item is a current COA-G01 blocker.
+
+### 20.5 Terminal status
+
+Per CORR5 §10, this correction may be reported as submitted for independent audit only when `AUD4-01`, `AUD4-02` and `AUD4-03` are each corrected without silently or falsely closing N-04, N-05 or C-03/C-05, and every changed/current artifact agrees. That condition is met.
+
+**`CORR5 TARGETED CORRECTION PACKAGE = SUBMITTED FOR CHATGPT INDEPENDENT RE-AUDIT`**
+
+**`COA-G01 = HOLD / EVIDENCE REQUIRED — BOSS DECISION PENDING`** (not stricter — no new contradiction was found this pass). **`COA-G02 = NOT STARTED / NOT AUTHORIZED`.** No Gate PASS, PMO verification, or Boss approval is claimed. No Base Kernel discovery, schema/API design, coding, Development or Production occurred. This session stops and requests the next ChatGPT independent re-audit.

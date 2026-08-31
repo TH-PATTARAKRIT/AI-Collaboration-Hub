@@ -75,4 +75,8 @@ Recomputed mechanically after all CORR4 edits (self-referential note: this file 
 
 **COA-G01 was not self-approved. ChatGPT Independent Audit PASS, PMO verification, and Boss approval are not claimed. COA-G02 was NOT started.** Development Authorization: NOT GRANTED. Production Authorization: NOT GRANTED. No Base Kernel discovery, schema/API design, coding, build, deployment, or release occurred. B14 was not modified. No historical evidence was deleted or rewritten.
 
+## CORR5 additive clarification (2026-08-31)
+
+ChatGPT's independent re-audit of this CORR4 package (commit `00e56ea0205852f571c394a231a337fd8658baa9`) found the "Exact remaining substantive COA-G01 blockers" list above internally inconsistent with the Gate Report, Source Conflict Register, Jira comment `10922` and the SI matrix (`AUD4-01`), and found the §4.7 `RESOLVED` disposition for B14 control presentation contradicting `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-06's then-current `HOLD` (`AUD4-02`). Nothing above this note is edited or rewritten. The canonical current disposition superseding the list above is now `COA_G01_CURRENT_BLOCKER_AND_DISPOSITION_MATRIX_R5.md`: N-04 remains a current blocker; N-05 and C-03 are reclassified `ACCEPTED RESIDUAL UNKNOWN — BOSS DECISION REQUIRED` rather than undifferentiated blockers; C-06/B14 is now `RESOLVED / ACCEPTED DEDICATED-CHECK METHOD`, confirming (not contradicting) this section's own §4.7 disposition. Full detail: `COA_G01_CORR5_POST_PUBLICATION_CLOSURE.md`.
+
 No Evidence = No Progress. Never Skip Gate. Boss is the sole Final Approver.

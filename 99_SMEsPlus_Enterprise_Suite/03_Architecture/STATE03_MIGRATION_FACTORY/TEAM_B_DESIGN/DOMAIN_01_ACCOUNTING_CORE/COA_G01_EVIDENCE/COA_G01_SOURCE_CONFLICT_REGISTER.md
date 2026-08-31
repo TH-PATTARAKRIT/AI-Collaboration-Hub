@@ -4,7 +4,23 @@
 |---|---|---|---|---|---|---|
 | Register every conflict found between evidence sources during COA-G01 remediation | Claude (session SMEPLUS-26-08-30-COA-G01R-001) | GitHub `SMEsPlus` branch; local `ACCOUNT` folder | 2026-08-30 22:27 +0700 | ChatGPT Independent Review (pending); Boss (pending) | HOLD / EVIDENCE REQUIRED — unresolved conflicts below | Blocks PROPOSED PASS until each conflict is adjudicated or explicitly accepted as a known residual |
 
-None of the conflicts below have been resolved by this session. Resolution requires Boss adjudication or a dedicated evidence-gathering step; they are registered, not closed.
+**HISTORICAL / SUPERSEDED — NOT CURRENT GATE STATE.** The line above ("None of the conflicts below have been resolved") is preserved as the accurate Round 1 (2026-08-30) snapshot. It is not current. See the `CURRENT STATE — CORR5` section immediately below for the canonical current disposition of every conflict.
+
+## CURRENT STATE — CORR5 (2026-08-31, finding `AUD4-03`)
+
+Per `COA_G01_CURRENT_BLOCKER_AND_DISPOSITION_MATRIX_R5.md`, the canonical current disposition of every conflict in this register is:
+
+| ID | Historical/original status | Current status | Controlling evidence | Current G01 relevance | Current Gate impact | Owner/action if open |
+|---|---|---|---|---|---|---|
+| C-01 | HOLD / EVIDENCE REQUIRED (Round 1) | **RESOLVED / VERIFIED** | `COA_G01_LOCAL_STATE03_SOURCE_PORT_MANIFEST_R4.md` (CORR4) | Not a current blocker | None | Closed |
+| C-02 | CONFLICTING EVIDENCE (Round 1) | **RESOLVED for current-existence; cause = see N-05** | `COA_G01_STEP0303R2_CONTRADICTION_RECONCILIATION_R4.md` (CORR4) | Existence not a current blocker | None (existence); see N-05 for cause | Closed for existence; cause routed to `ACCEPTED RESIDUAL UNKNOWN — BOSS DECISION REQUIRED` |
+| C-03 | HOLD / EVIDENCE REQUIRED (Round 1) | **Visibility RESOLVED; substantive status = `ACCEPTED RESIDUAL UNKNOWN — BOSS DECISION REQUIRED`** | `COA_G01_CURRENT_BLOCKER_AND_DISPOSITION_MATRIX_R5.md` | Not a current blocker in the classification-matrix sense; open pending Boss/PMO disposition | Does not block Gate presentation; blocks a "settled" claim | Boss/PMO decision |
+| C-04 | CONFLICTING EVIDENCE — flagged (Round 1) | **RESOLVED — different scopes confirmed, not a contradiction** | This register, C-04 section (Round 2) | Not a current blocker | None | Closed |
+| C-05 | Pre-existing, carried forward (Round 1) | **HISTORICAL / NON-G01 CARRY-FORWARD** | This register, C-05 section; Boss `STEP030210` Conditional Pass ruling | Not a current COA-G01 blocker; retained so it is never silently dropped | None for COA-G01 | Out of COA-G01 scope; PMO/Independent Audit only if PR #53/#58 is ever independently re-adjudicated |
+| C-06 | HOLD / EVIDENCE REQUIRED (Round 1–CORR4) | **RESOLVED / ACCEPTED DEDICATED-CHECK METHOD** | See C-06 section below (CORR5) | Not a current blocker | None | Closed |
+| C-07 | CONFLICTING EVIDENCE / UNVERIFIED SELF-DECLARED RESULT (Round 2) | **HISTORICAL / NON-G01 CARRY-FORWARD** — file reverted by repository owner outside any COA-G01 session | This register, C-07 section (CORR1/CORR2) | Not a current blocker; classification retained as permanent historical record | None | Closed as historical |
+
+None of the conflicts below have been resolved by this session *(historical, Round 1 statement — no longer current; see table above)*. Resolution requires Boss adjudication or a dedicated evidence-gathering step; they are registered, not closed *(historical, Round 1 statement)*.
 
 ## C-01 — GitHub and local evidence bases have diverged (CONFLICTING EVIDENCE / MAJOR)
 
@@ -54,6 +70,8 @@ Multiple GitHub governance documents (`AH_BOSS_FINAL_GATE_RULING.md`, PMO/ChatGP
 - Status: **HOLD / EVIDENCE REQUIRED.** See `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` for the detailed gap analysis. This is not treated as a clean-room *violation* (no vendor-derived risk was found where B14 did look) — it is treated as a **coverage gap**: the specific COA_STANDARD artifacts have not yet been run through a dedicated clean-room check.
 
 **CORR2 status update (2026-08-31):** the phrase "three COA_STANDARD documents" above is, and always was, the correct current-branch count (the finding briefly described 4 during the `c530138` window; that file is now deleted — see C-07). All 3 have since been run through a dedicated clean-room check (`COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md`, CORR2 section): 2 `VERIFIED CLEAN-ROOM BOUNDARY`, 1 closed this session by adding an explicit source-column disclaimer. **B14 itself remains unmodified and still does not cover any of the 3** — this finding's core claim (B14 non-coverage) is unchanged and still accurate. Status remains **HOLD / EVIDENCE REQUIRED**: the dedicated review is not yet independently re-verified, and B14's own coverage gap is a standing, deliberate-choice condition, not something CORR2 closes.
+
+**CORR5 resolution (2026-08-31, finding `AUD4-02`):** `C-06 = RESOLVED / ACCEPTED DEDICATED-CHECK METHOD`. This corrects the standing dual-status contradiction that `AUD4-02` identified between this line (`HOLD`) and `COA_G01_CORR4_POST_PUBLICATION_CLOSURE.md` §4.7 (`RESOLVED`). Direct inspection this pass independently re-confirmed all four controlling facts: (1) B14 itself is not extended — confirmed unmodified; (2) the dedicated `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` covers all 3 current `COA_STANDARD` documents at document level; (3) that dedicated check independently passed ChatGPT's CORR3 re-audit (`AUD3` acceptance matrix, "Current `COA_STANDARD` population" = PASS — `CHATGPT_AUDIT/DOMAIN_01_ACCOUNTING_CORE_AF_COA_G01_CORR3_INDEPENDENT_REAUDIT.md`); (4) `COA_G01_OPEN_UNKNOWN_REGISTER.md` N-03 records B14 non-extension as an intentional method decision (option (b) taken over option (a)), `RESOLVED` since CORR2. No later contrary evidence exists. This does not modify B14 itself and does not expand its scope — see `COA_G01_CURRENT_BLOCKER_AND_DISPOSITION_MATRIX_R5.md` for the canonical record.
 
 ## C-07 — Commits `c530138`/`8fceca0` self-declare COA-G01 PASS with no independent review trail (new, Round 2, 2026-08-31)
 

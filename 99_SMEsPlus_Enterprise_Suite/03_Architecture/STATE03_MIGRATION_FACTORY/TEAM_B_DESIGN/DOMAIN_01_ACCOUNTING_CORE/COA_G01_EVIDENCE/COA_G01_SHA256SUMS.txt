@@ -1,17 +1,25 @@
-# COA-G01 Evidence Package — SHA-256 verification (CORR4, 2026-08-31, final)
+# COA-G01 Evidence Package — SHA-256 verification (CORR5, 2026-08-31, final)
 #
-# Reproducible verification (two steps — this file mixes paths relative to this folder,
-# including the entire COA_G01_SOURCE_PORT/STATE03_LOCAL/ subtree, with paths relative to
-# the `99_SMEsPlus_Enterprise_Suite/` repo root for the AQ ruling and the 3 COA_STANDARD
-# documents, both of which live outside this folder):
+# Reproducible verification (three steps — this file mixes paths relative to this folder,
+# including the entire COA_G01_SOURCE_PORT/STATE03_LOCAL/ subtree, a path relative to
+# `STATE03_MIGRATION_FACTORY/` for the AQ ruling, and paths relative to the git clone
+# root (the parent of `99_SMEsPlus_Enterprise_Suite/`) for the 3 COA_STANDARD documents —
+# both of which live outside this folder. CORR5 correction: the AQ ruling's path does not
+# contain the literal string "99_SMEsPlus", so a single two-way grep split (as used through
+# CORR4) silently misroutes it into the "local" bucket and fails when checked from this
+# folder. The three-step split below is exact — every line is checked from a directory
+# where its path actually resolves, and was re-run and confirmed 102/102 OK this pass):
 #
-#   1) From this folder (COA_G01_EVIDENCE/), verify the 95 local files (32 top-level
+#   1) From this folder (COA_G01_EVIDENCE/), verify the 98 local files (35 top-level
 #      Markdown deliverables + 63 ported COA_G01_SOURCE_PORT/STATE03_LOCAL/ files):
-#        grep -v '^#' COA_G01_SHA256SUMS.txt | grep -v '99_SMEsPlus' > /tmp/local_check.txt
+#        grep -v '^#' COA_G01_SHA256SUMS.txt | grep -v '99_SMEsPlus' | grep -v 'BOSS_GATE/' | grep -v '^$' > /tmp/local_check.txt
 #        shasum -a 256 -c /tmp/local_check.txt
-#   2) From the `99_SMEsPlus_Enterprise_Suite/` repo root, verify the AQ ruling and the 3
-#      COA_STANDARD documents (4 entries):
-#        shasum -a 256 -c <(grep '99_SMEsPlus' COA_G01_EVIDENCE/COA_G01_SHA256SUMS.txt)
+#   2) From `STATE03_MIGRATION_FACTORY/` (three levels up from this folder), verify the
+#      AQ ruling (1 entry):
+#        grep 'BOSS_GATE/' TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_G01_EVIDENCE/COA_G01_SHA256SUMS.txt | shasum -a 256 -c -
+#   3) From the git clone root (the folder containing `99_SMEsPlus_Enterprise_Suite/`),
+#      verify the 3 COA_STANDARD documents:
+#        shasum -a 256 -c <(grep '99_SMEsPlus' 99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_G01_EVIDENCE/COA_G01_SHA256SUMS.txt)
 #
 # To regenerate (run from this folder):
 #   find . -type f ! -name "COA_G01_SHA256SUMS.txt" | sed 's#^\./##' | sort | \
@@ -20,14 +28,18 @@
 #     | sed 's#\.\./\.\./\.\./##' >> COA_G01_SHA256SUMS.txt
 #   shasum -a 256 ../COA_STANDARD/*.md | sed 's#\.\./#99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/#' >> COA_G01_SHA256SUMS.txt
 #
-# Per Boss directive COA-G01R2-CORR4 Sec8, all counts recomputed mechanically (not copied
-# from any prior count), AFTER this checksum file and the new CORR4 closure artifacts were
-# both written (self-referential count, same convention established in CORR3).
-# Files physically in COA_G01_EVIDENCE/: 96 (95 covered here + this checksum file itself).
-# Operational SHA-256 entries: 99 (95 local + 1 external AQ ruling + 3 external
-# COA_STANDARD documents). Independently re-verified by this session: all 99 entries
+# Per CORR5 directive §8, all counts recomputed mechanically (not copied from any prior
+# count), AFTER this checksum file and the new CORR5 closure artifacts were both written
+# (self-referential count, same convention established in CORR3/CORR4).
+# Files physically in COA_G01_EVIDENCE/: 99 (98 covered here + this checksum file itself).
+# Operational SHA-256 entries: 102 (98 local + 1 external AQ ruling + 3 external
+# COA_STANDARD documents). Independently re-verified by this session: all 102 entries
 # return OK, zero missing, zero unexpected, zero duplicate paths (2026-08-31).
 #
+152263852bd3f776e5e00748d1d1274769cc1f28dc9c10d4fb6261d414065d06  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md
+20fecab305e86df8081fd259e90fa49130f7278c323b7cd3d29945c85b71cf20  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_BASE_KERNEL_AND_AI_CONSOLIDATION_STANDARD.md
+fce24200f2a368f5fa26f9da984d0cdc36af537dd9f9979a47685f55036d928a  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_ODOO18_TAB_SOURCE_INVENTORY.md
+bf550a60f8732c4c36ab231a720aef2505790d3907b474df76beedd778a95757  BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AQ_BOSS_SAAS_CONTEXT_CLARIFICATION_AND_G01_REMEDIATION_AUTHORIZATION.md
 e87b59d90f3b2b8b1ba399af4c7b42647487d5af45bbfc44a8bb3459ca24b124  COA_G01_ACCOUNT_CONCEPT_UNIVERSE.md
 b6e0089bff2f8924fa60ac95d52a0d3ad6b1b46f2a9c76d741ddfb2247dfdc5f  COA_G01_BASE_KERNEL_CANDIDATE_INPUT.md
 5605d70fb80b3c5e37f28616124636bcb2b9457a2a847c3518555ad0dd0f2d4b  COA_G01_BOSS_THAI_COA_REQUIREMENTS_REGISTER_R4.md
@@ -36,20 +48,22 @@ c9c7cc9af561142e0ae544c547146ca8fafc6957161961ec89eba8addeb6b0d0  COA_G01_CLEAN_
 d0ce127c73fbce6d0600e316a23f18996e8f9b5f577f6d31ebc683ecccba8ff8  COA_G01_CORR1_POST_PUBLICATION_CLOSURE.md
 c1f889a18d81e238c4a8a2cba4adbfde1eb56eef92b6db578f1c916dcb04230e  COA_G01_CORR2_POST_PUBLICATION_CLOSURE.md
 85d00ba62344fed93df1828571ce6a45c68cbd881cda11b86912885dc0b45f67  COA_G01_CORR3_POST_PUBLICATION_CLOSURE.md
-8974f6f08030f4ecba3023648aa93f033985ec07aee542d67d1ac01be805655b  COA_G01_CORR4_POST_PUBLICATION_CLOSURE.md
+30ff9af889a4c46a1225939f188e636722a8478dcb74aaf5c46a2b0cc1ea3f86  COA_G01_CORR4_POST_PUBLICATION_CLOSURE.md
+d0e2a343e43e2f95bef6fab6fcdcd608fb55c3834d6eac21d9f3a340a68d56f3  COA_G01_CORR5_POST_PUBLICATION_CLOSURE.md
 eafda61283de9cb8fd2587dc6be4f679130a133005a77700a6f1f8822d709308  COA_G01_CROSS_TENANT_SOURCE_OBSERVATION_REGISTER.md
+b316c69652704976a98a5277e0cce8dcfe548e2f7bdc8ae2d551c815e8a0c7ed  COA_G01_CURRENT_BLOCKER_AND_DISPOSITION_MATRIX_R5.md
 437aaba8237d99c7948cb98ef9b3a77068e8b924c7faddfe8ec1d8efe7233b22  COA_G01_CURRENT_STATE_ADDENDUM_R2.md
-efcf2ae6cb800b9fa13f6a1c0bd31ca16285bf00fe57aef7f8b1e98463b344a6  COA_G01_EVIDENCE_MANIFEST.md
-1b88aed3b1440884a0998915f8edd54629d3742dabec0225750b7a68d58b14e7  COA_G01_GATE_REPORT.md
+65d1b9d46670fde45e3193542ef4af45f543d5b93cd3886e7552b33558e5050a  COA_G01_EVIDENCE_MANIFEST.md
+8ea2b084505d2b500da2640fd80652e209753abc711a293c4884cdafcee198f0  COA_G01_GATE_REPORT.md
 2446ef4691f7c4626fb53ddfb118e9b146696a17a57de2b8051fa45fc492cbcf  COA_G01_LOCAL_STATE03_SOURCE_PORT_MANIFEST_R4.md
-23952ebdc905b09c3637f18eb436ca268e5a08a267eabd050f049b0e563bf0bc  COA_G01_OPEN_UNKNOWN_REGISTER.md
+bbe4c81341e4a6a8736eac0461e93768aa8a5bedb67dac4c2e6f4a461702f37d  COA_G01_OPEN_UNKNOWN_REGISTER.md
 1c0d16bd454e61e275e348fc2564829cf1fdee459f95da828437985a5102ecfb  COA_G01_PRE_PROMPT_FINDING_CLOSURE_REGISTER_R2.md
 05e2bcc89f3e07dd1eaca2e482d10ec0c722e785aa5cdc73530eedb3d8fb26cb  COA_G01_PRIMARY_SOURCE_RECOVERY_REGISTER_R4.md
 9989f303268eda7831c68ece6e779b153de0f20a3df544566f85b7628e9285a0  COA_G01_SAAS_CONTEXT_BOUNDARY_REGISTER.md
 34c0b2e02514b3766eb6943bde104fef556e427f36da0f1672106786f4792e9f  COA_G01_SAAS_INVARIANT_COMPLIANCE.md
 204794885dad1d984bf2d121b8ffea93742c504606ce0d835e2bef3f0548d4dc  COA_G01_SI10_CLASSIFICATION_ANALYSIS_R4.md
 5308e0eda5c58af7243909f1b8cae62301c1c9c2d02bf6f5b0033bcb025200ce  COA_G01_SOURCE_BASELINE_REGISTER.md
-97e4b613f1751307bad96cf6a2bb969eff0539f1e4a9fa4c259fc6fd65e478af  COA_G01_SOURCE_CONFLICT_REGISTER.md
+e7bd9342cb54d13eed19b4a07fdf57b6f966e73662985aafc57af422c7053859  COA_G01_SOURCE_CONFLICT_REGISTER.md
 37e10eead9604ff0c64f7bf8a981c70c569a826862732456ead4b840d8c148ee  COA_G01_SOURCE_PORT/STATE03_LOCAL/STATE03_DETAILED_FOLLOWUP/STATE03_AUDIT_VETO_REVIEW.md
 bdf51d962a077b8d1005384ab23419ac6224612e265cb654174e765b1f38de3f  COA_G01_SOURCE_PORT/STATE03_LOCAL/STATE03_DETAILED_FOLLOWUP/STATE03_BOSS_REVIEW_SUMMARY.md
 2427f71f198448912ad4a5899a67eab214df52c8ae2cb4c3ba3f7398e7c7f42a  COA_G01_SOURCE_PORT/STATE03_LOCAL/STATE03_DETAILED_FOLLOWUP/STATE03_CARRY_FORWARD_REGISTER.csv
@@ -123,7 +137,4 @@ eb10ff939f6011fc5a41bb964bd1e11f2135603a408545de1dbe3fdacb5dcc7b  COA_G01_WORKBO
 634adb21d9bbc90e3b1e0b5d29c6022d11b0c52b84a890aee5fcc7879ded9023  SESSION_CLOSURE.md
 1dff1fd3349b657377a6473b7b3cd03e905b50e17e7e246c335aee3d10c1c3a7  SESSION_CLOSURE_R2.md
 2255d5bcbeab43def61875aa6508838313ae62c1cb6e3a38669764b4c73e6bad  SESSION_CLOSURE_R4.md
-bf550a60f8732c4c36ab231a720aef2505790d3907b474df76beedd778a95757  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AQ_BOSS_SAAS_CONTEXT_CLARIFICATION_AND_G01_REMEDIATION_AUTHORIZATION.md
-152263852bd3f776e5e00748d1d1274769cc1f28dc9c10d4fb6261d414065d06  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md
-20fecab305e86df8081fd259e90fa49130f7278c323b7cd3d29945c85b71cf20  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_BASE_KERNEL_AND_AI_CONSOLIDATION_STANDARD.md
-fce24200f2a368f5fa26f9da984d0cdc36af537dd9f9979a47685f55036d928a  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_ODOO18_TAB_SOURCE_INVENTORY.md
+59293bb5b11fae47e9cf9b4b3ccf2c66390a8f980811e844f3c7153a3d53056c  SESSION_CLOSURE_R5.md

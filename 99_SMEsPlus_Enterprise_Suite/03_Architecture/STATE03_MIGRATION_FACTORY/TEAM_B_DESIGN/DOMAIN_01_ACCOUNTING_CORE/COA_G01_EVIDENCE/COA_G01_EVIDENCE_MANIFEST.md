@@ -58,6 +58,24 @@
 
 `TEAM_A/09_OPEN_QUESTIONS/UNKNOWN_AND_EVIDENCE_GAP_REGISTER.md` — re-read for the 11-vs-20 scope reconciliation.
 
+## CORR5 ADDITIONS (2026-08-31, directive `SMEPLUS-26-08-31-COA-G01R2-CORR5-001`)
+
+### New documents produced
+
+`COA_G01_CURRENT_BLOCKER_AND_DISPOSITION_MATRIX_R5.md`, `COA_G01_CORR5_POST_PUBLICATION_CLOSURE.md`, `SESSION_CLOSURE_R5.md`.
+
+### Documents re-read in full for CORR5 (current-state reconciliation, `AUD4-01`..`AUD4-03`)
+
+`COA_G01_SOURCE_CONFLICT_REGISTER.md`; `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md`; `COA_G01_CORR4_POST_PUBLICATION_CLOSURE.md` §4.7; `CHATGPT_AUDIT/DOMAIN_01_ACCOUNTING_CORE_AF_COA_G01_CORR3_INDEPENDENT_REAUDIT.md`; `CHATGPT_AUDIT/DOMAIN_01_ACCOUNTING_CORE_AG_COA_G01_CORR4_INDEPENDENT_REAUDIT.md`; `BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AV_BOSS_DIRECTIVE_COA_G01R2_CORR4_EVIDENCE_CLOSURE.md`; `BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AW_COA_G01R2_CORR5_PRE_PROMPT_INDEPENDENT_CHALLENGE_SUMMARY.md`; `COA_G01_GATE_REPORT.md`; `COA_G01_OPEN_UNKNOWN_REGISTER.md`; `BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AL_COA_CLOSURE_EVIDENCE_INDEX.md`.
+
+### Documents updated in place (additive CORR5 sections/notes only)
+
+`COA_G01_GATE_REPORT.md` (§20); `COA_G01_SOURCE_CONFLICT_REGISTER.md` (`CURRENT STATE — CORR5` section, C-06 resolution); `COA_G01_OPEN_UNKNOWN_REGISTER.md` (CORR5 disposition note); `COA_G01_CORR4_POST_PUBLICATION_CLOSURE.md` (CORR5 additive clarification); `BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AL_COA_CLOSURE_EVIDENCE_INDEX.md` (CORR5 correction section); this manifest; `COA_G01_SHA256SUMS.txt` (rebuilt, corrected 3-step reproducible verification recipe).
+
+### Current evidence-folder counts (recomputed mechanically, post-CORR5)
+
+Files physically in `COA_G01_EVIDENCE/`: **99** (35 top-level Markdown deliverables + 63 ported `COA_G01_SOURCE_PORT/STATE03_LOCAL/` files + 1 checksum file). Local files in the operational SHA-256 set: **98**. Total operational SHA-256 entries: **102** (98 local + 1 external `AQ` ruling + 3 external `COA_STANDARD` documents). Independently re-verified: **102/102 `OK`**, zero missing, zero unexpected, zero duplicate paths.
+
 `CHATGPT_AUDIT/` — all 18 files (full Team B independent-audit chronology, Rounds 1–8, read this session for `COA_G01_TEAM_A_SOURCE_CLASS_A_RECONCILIATION_R2.md` §5 and to check for any audit trail covering `c530138`).
 
 `PMO_VERIFICATION/` — all 4 files.
