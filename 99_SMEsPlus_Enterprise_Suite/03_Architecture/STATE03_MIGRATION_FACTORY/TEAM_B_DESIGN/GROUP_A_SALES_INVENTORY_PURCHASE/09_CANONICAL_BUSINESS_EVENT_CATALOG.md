@@ -9,6 +9,39 @@ Every event below is business-semantic and vendor-neutral, named for what happen
 method. An event qualifies for this catalog only if at least one other domain observes or reacts to it (per
 governing prompt §13.4) — purely internal recomputation is not catalogued as an event.
 
+## 00A — Event Transport Semantics (CORR-008 closure, `FV006-EVT-002`)
+
+No row below previously stated whether its emission/consumption is synchronous, asynchronous, ordered, or how a
+failed consumer should behave — a systemic gap Formal IBPV FV-006 Deliverable 05 found underlying two separate
+race-condition findings. TEAM B closes this once, catalog-wide, rather than per event:
+
+- **Synchronous / transactional** — emission and consumption occur within the same commitment action's boundary;
+  the emitting action does not complete until the consuming side has accepted or rejected the event. This is the
+  classification for every event [08](08_INTEGRATED_E2E_LIFECYCLE_AND_STATE_MODEL.md) §01/§10 already
+  characterizes as "direct/synchronous" — concretely, `Supply Commitment Confirmed`'s Inventory-facing
+  fulfillment-request effect (§02 below).
+- **Asynchronous, at-least-once delivery** — emission completes independently of consumption; the consumer may
+  process the event after a delay, and the same event may be redelivered. Ordering is guaranteed only within a
+  single originating document line's own event sequence (e.g., a given Commercial Commitment line's own events
+  are FIFO relative to each other); no ordering guarantee holds *across* different event types or different
+  lines. This is the classification for every event characterized elsewhere in this package as
+  "indirect/event-driven" — concretely, `Commercial Fulfillment Requested` and every other Sales-originated
+  event in §01 below, and every cross-domain notification not explicitly marked synchronous above.
+- **Consumer-failure behavior** — a consumer that fails to process a delivered event must not silently drop it:
+  redelivery/retry must be safe (governed by the idempotency contract, `FV006-INT-001` —
+  [12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §11), and if the event remains unprocessed past a
+  policy-configured window, the condition must surface as an observable `Handoff Unresolved` status rather than
+  fail silently (`FV006-INT-002` — §04A below, cross-referenced from
+  [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §02).
+- **Per-table default**: unless a row in §01–§04 below states otherwise, an event is Asynchronous / at-least-once
+  by default; only the rows explicitly named "direct/synchronous" in this package (Supply Commitment's
+  Inventory-facing effects) are Synchronous.
+
+This section does not resolve the two named race-condition findings themselves
+(`FV006-EVT-004`, `FV006-EVT-005`) — those remain outside CORR-008's nine-finding scope and stay open, tracked
+in [18_UNKNOWN_CONFLICT_AND_CARRY_FORWARD_REGISTER.md](18_UNKNOWN_CONFLICT_AND_CARRY_FORWARD_REGISTER.md). It
+closes only the systemic transport-semantics absence that was their stated contributing cause.
+
 ## 01 — Events Originating in Commercial Demand (Sales)
 
 | Event | Preconditions | Fact/state change | Consumers |
@@ -26,8 +59,9 @@ governing prompt §13.4) — purely internal recomputation is not catalogued as 
 
 | Event | Preconditions | Fact/state change | Consumers |
 |---|---|---|---|
-| Supply Commitment Confirmed | Draft/Sent, product presence on every real line | State → Committed or → Pending Approval, per the amount-threshold gate | Inventory (receipt fulfillment request, direct/synchronous); Shared Master (opportunistic Vendor Price Reference extension) |
-| Supply Commitment Approved | Pending Approval, authorized actor | State → Committed | Inventory (unblocks the already-created fulfillment request) |
+| Supply Commitment Confirmed | Draft/Sent, product presence on every real line | State → Committed or → Pending Approval, per the amount-threshold gate | Inventory (receipt fulfillment request created directly/synchronously in **both** cases; held `Blocked` if the state lands in Pending Approval — CORR-008 closure, `FV006-STE-004`/`FV006-EVT-003`, see [07](07_PURCHASE_CANONICAL_DESIGN.md) §01/§03); Shared Master (opportunistic Vendor Price Reference extension) |
+| Supply Commitment Approved | Pending Approval, authorized actor | State → Committed | Inventory (unblocks the already-created, `Blocked` fulfillment request) |
+| Supply Commitment Rejected | Pending Approval, authorized actor denies | State → Rejected | Inventory (stands down the already-created, not-yet-executed fulfillment request via the standard not-yet-executed cascade, [08](08_INTEGRATED_E2E_LIFECYCLE_AND_STATE_MODEL.md) §05); Purchase (permanent audit history, actor+reason+timestamp) — **CORR-008 closure, `FV006-EVT-003`, cross-ref `FV006-STE-004`** |
 | Supply Commitment Line Quantity Changed (post-commitment) | Commitment confirmed | Ordered quantity changes | Inventory (adjusts the receipt expectation) |
 | Supply Commitment Cancelled | Not fully received, or received with the completed portion isolated | Not-yet-received fulfillment cancelled; received portion spared | Inventory |
 | Internal Demand Request Approved | Pending Approval | State → Approved | Enables Internal-Demand-to-Supply-Commitment conversion |
@@ -47,6 +81,26 @@ governing prompt §13.4) — purely internal recomputation is not catalogued as 
 | Reversal Executed | Source Transfer Operation fully executed | New opposing Movement Execution recorded, linked to the original | Sales/Purchase (traceability only) |
 | Supply Need Raised | Stock Position forecast crosses policy threshold | Supply Need Event emitted | Purchase (or another registered fulfiller) |
 | Put-Away Resolved | Receipt-direction instruction executed | Destination sub-location assigned | (Inventory-internal) |
+
+## 03A — Handoff Reconciliation Events (CORR-008 closure, `FV006-INT-002`)
+
+Both Hard handoffs in [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §02 (Commercial commitment →
+physical fulfillment request; Supply commitment → physical receipt expectation) were previously documented only
+for their success path. TEAM B adds the two events below so a failed or stalled handoff is business-observable
+rather than silently assumed to never fail — full owner/status/retry/convergence detail is in
+[10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §02 and
+[12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §13; this table records only the event shape.
+
+| Event | Preconditions | Fact/state change | Consumers |
+|---|---|---|---|
+| Handoff Unresolved Detected | A Hard handoff's confirming event (`Movement Instruction Confirmed`) has not been observed within the transport-semantics window (§00A) since the initiating commitment reached `Committed` | Initiating Commitment (Sales or Purchase) gains a visible `Handoff Unresolved` status | Sales/Purchase (surfaces to the user); Inventory (informational — the missing routing/creation condition is on its side) |
+| Handoff Resolved | The confirming event (`Movement Instruction Confirmed`, or equivalent receipt-expectation acknowledgment) is subsequently observed for a Commitment previously in `Handoff Unresolved` | `Handoff Unresolved` status clears | Sales/Purchase (clears the visible status; no other state change — the underlying Movement Instruction proceeds through its own normal lifecycle) |
+
+Re-triggering a stalled handoff (a retried Confirm or an explicit "retry handoff" action) is always safe to
+attempt, since it is covered by the same idempotency contract as every other Confirm/Movement Execution action
+(`FV006-INT-001` — [12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §11). No compensating-reversal
+event is introduced, since a `Handoff Unresolved` condition by definition means no physical fact was yet created
+on the receiving side — there is nothing to compensate, only something to detect and re-trigger.
 
 ## 04 — Events Originating in the Financial Handoff Boundary (Interface Only)
 

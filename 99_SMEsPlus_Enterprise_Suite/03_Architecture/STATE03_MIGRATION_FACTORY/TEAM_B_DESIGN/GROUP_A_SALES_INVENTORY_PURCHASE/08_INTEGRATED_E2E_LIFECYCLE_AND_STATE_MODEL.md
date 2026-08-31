@@ -28,9 +28,16 @@ Never-Assume-Equivalence reminders evidence records (`07` §06) is adopted here 
 ## 01 — Canonical E2E Scenario 1: Buy → Receive → Stock → Sell → Reserve → Deliver
 
 ```
-Supply Commitment confirmed → [Pending Approval, if gated] → Committed
-  → emits a Movement Instruction directly/synchronously into the receiving Location
-  → Movement Execution recorded → Stock Position increments
+Supply Commitment confirmed
+  → emits a Movement Instruction directly/synchronously into the receiving Location, IMMEDIATELY, regardless of
+    whether the commitment itself lands in Committed or Pending Approval (CORR-008 closure, FV006-STE-004 /
+    FV006-EVT-003 — see [07](07_PURCHASE_CANONICAL_DESIGN.md) §01/§03 for the full rationale)
+  → if Pending Approval: the created instruction is held BLOCKED (not-yet-executed, non-actionable) until the
+    gate resolves
+      → Approved: instruction unblocks, proceeds normally to execution
+      → Rejected: instruction is stood down via the SAME not-yet-executed cascade used for Cancellation (§05
+        below) — no separate stand-down mechanism, no orphaned fulfillment request
+  → [if Committed directly, or once unblocked] Movement Execution recorded → Stock Position increments
   → Purchase's Received quantity re-derives from the now-executed instruction
 
 Commercial Commitment confirmed
@@ -146,3 +153,31 @@ arrives) and does not require a routing decision. Forcing symmetry here would ei
 routing of meaningful complexity or add unneeded indirection to Purchase's receipt path. This is a considered
 `ADAPT` of an architecture pattern (per [05](05_INVENTORY_CORE_CANONICAL_DESIGN.md) §07's reflective-dispatch
 principle for the Sales side specifically), not an unexamined carry-over.
+
+## 11 — Retry / Idempotency Contract for Confirm and Movement Execution (CORR-008 closure, `FV006-INT-001`)
+
+Full detail and the general vendor-neutral invariant are recorded in
+[12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §11; this section states only how it binds into the
+E2E chains above. Every state-changing action named in §01–§09 above — `Commercial Commitment Confirmed`,
+`Supply Commitment Confirmed`, `Supply Commitment Approved`/`Rejected`, and every `Movement Executed` trigger —
+is a **business-identity-idempotent** action: a repeated invocation carrying the same business identity as an
+already-applied action (the same commitment confirm, the same specific execution) produces no additional
+Movement Instruction, no additional Reservation, and no additional Financial Handoff write. This closes the
+double-click/network-retry/message-redelivery risk named in Formal IBPV FV-006 Deliverable 10 without
+prescribing any implementation mechanism (no lock, queue, or framework choice is specified here — see
+[12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §11 for the full business-invariant statement).
+
+## 12 — Cross-Domain Handoff Failure / Compensation (CORR-008 closure, `FV006-INT-002`)
+
+Full detail is recorded in [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §02 (Handoff Resolution
+column) and [12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §13; this section states only how it
+binds into the E2E chains above. Both Hard handoffs in §01 above (Commercial commitment → physical fulfillment
+request; Supply commitment → physical receipt expectation) are business-observable, not silently assumed to
+always succeed: if the receiving side (Inventory) does not emit its confirming event (`Movement Instruction
+Confirmed`) within the transport-semantics window stated in
+[09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §07, the handoff surfaces as `Handoff Unresolved` on the initiating
+Commitment rather than remaining silently pending forever. Resolution is always re-triggerable (safe, because
+retry is idempotent per §11 above) and requires no invented compensating-reversal mechanism, since no physical
+fact was yet created on the failed side. See
+[10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §02 for the full owner/status/retry/convergence/audit
+statement.

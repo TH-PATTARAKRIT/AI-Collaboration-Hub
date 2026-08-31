@@ -102,6 +102,10 @@ each answers a genuinely distinct business question that both Sales and Purchase
   deliberate elevation of an evidenced pattern into an explicit design requirement: a naive "just keep one live
   table" implementation would silently lose what a completed shipment actually contained if the live package
   record is later reused or emptied.
+- **CORR-008 cross-reference (`FV006-DFO-001`)**: both facts' owner, changing event, who-else-may-write, and
+  lifecycle-end are now recorded explicitly in
+  [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §01 — Inventory owns both, exclusively, consistent
+  with this section's framing.
 
 ## 07 — Supply Need Signaling and Put-Away
 

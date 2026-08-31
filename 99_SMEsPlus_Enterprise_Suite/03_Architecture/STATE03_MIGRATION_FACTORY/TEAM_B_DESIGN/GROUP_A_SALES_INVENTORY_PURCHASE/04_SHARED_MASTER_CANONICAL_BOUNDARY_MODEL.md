@@ -125,7 +125,42 @@ requirement.
   evidence without modification — it is the one Shared Master concept where Sales and Purchase evidence showed
   **zero** asymmetry.
 
-## 08 — Summary Boundary Table
+## 08 — General Archival / Non-Deletion Rule (CORR-008 closure, `FV006-DFO-005`)
+
+TEAM A's own evidence independently shows the reference system already protects at least three Shared Master
+concepts against deletion/deactivation once referenced by a transaction: `UOM-06` (protected UoMs "cannot be
+deleted, only archived"), `PAY-07` (payment-term deletion "blocked if any `account.move` still references the
+term"), `CUR-08` ("a currency used by any company cannot be deactivated"). This canonical model previously carried
+that protection forward only for UOM's conversion ratio ([03](03_CANONICAL_BUSINESS_FACT_AND_CONCEPT_CATALOG.md)
+§01) and Warehouse's owning-company assignment, with no general rule stated for Party, Product/Service, Tax Rule,
+Payment Term, Currency, or Document Sequence — a completeness gap Formal IBPV FV-006 Deliverable 06 found bears
+directly on audit-history integrity, since a hard-deleted master record referenced by a historical Commitment,
+Physical, or Control/Financial-Handoff fact would leave that historical record with a dangling or ambiguous
+reference.
+
+**General rule**: any Shared Master concept in this file (Party, Product/Service, Product Classification, UOM,
+Sales Price Rule, Vendor Price Reference, Tax Rule, Payment Term, Currency, Document Sequence, Cost Dimension,
+Warehouse/Location, Company/Branch) that has been referenced by at least one historical Commitment, Physical, or
+Control/Financial-Handoff fact **must never be hard-deleted**. Once so referenced, the concept transitions to an
+**Archived/Retired** status — it becomes unavailable for selection on new transactions but remains permanently
+resolvable for every historical fact that already references it. This generalizes, uniformly across every
+Shared Master concept, the specific protections already evidenced for UOM, Payment Term, and Currency, and
+extends the same discipline to the concepts that previously had no stated rule.
+
+- **Scope**: every Shared Master concept listed in §09's Summary Boundary Table below.
+- **Owner**: Shared Master administration (the same owner that already governs create/maintain actions for each
+  concept, per §09) — no transaction domain (Sales/Purchase/Inventory) gains a new write path from this rule.
+- **Archive/retire semantics**: an Archived/Retired record is excluded from selection lists for new commitments
+  but is not otherwise altered — every field a historical fact already snapshotted or referenced remains exactly
+  as it was.
+- **Reference preservation**: a historical Commitment, Physical, or Control/Financial-Handoff fact's reference to
+  an Archived/Retired master record remains fully resolvable indefinitely; this rule never breaks a link that
+  already exists at the moment of archival.
+- **Legitimate exceptions**: TEAM B identifies none. A Shared Master concept record with **zero** historical
+  references (never selected on any Commitment, Physical, or Control/Financial-Handoff fact) may still be deleted
+  outright — the rule above binds only once a historical reference exists.
+
+## 09 — Summary Boundary Table
 
 | Shared Master concept | Written by | Read by |
 |---|---|---|

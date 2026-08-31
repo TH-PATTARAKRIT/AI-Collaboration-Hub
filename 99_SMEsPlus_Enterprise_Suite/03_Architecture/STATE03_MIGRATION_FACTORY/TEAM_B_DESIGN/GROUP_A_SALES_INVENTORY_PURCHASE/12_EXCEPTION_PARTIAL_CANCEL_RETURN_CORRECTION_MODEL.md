@@ -47,6 +47,11 @@ not an afterthought. Each entry states what evidence showed, what TEAM B indepen
   question (not resolved here): should SMEsPlus offer a Sales-initiated RMA affordance beyond the current
   warehouse-only entry point? Carried as `HYPOTHESIS / REQUIRES REAL USER VALIDATION` per Boss Gate §4.3 — see
   [17](17_TEAM_B_INDEPENDENT_DESIGN_DECISION_FIT_GAP_REGISTER.md).
+- **CORR-008 note (`FV006-DFO-001`)**: a Reversal preserves whatever Traceability Unit / Handling Unit identity
+  was recorded on the Movement Execution(s) it reverses — this linkage is never dropped, consistent with
+  Reversal's own mandatory traceability-link requirement
+  ([03](03_CANONICAL_BUSINESS_FACT_AND_CONCEPT_CATALOG.md) §03) and with the ownership/lifecycle statement now
+  recorded in [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §01.
 
 ## 06 — Cancellation Before Confirmation
 
@@ -100,6 +105,28 @@ not an afterthought. Each entry states what evidence showed, what TEAM B indepen
   the Stock Position bin's uniqueness (per [05](05_INVENTORY_CORE_CANONICAL_DESIGN.md) §02) to be an **enforced**
   invariant a target implementation must guarantee at write time (e.g., via a concurrency-safe upsert or
   equivalent), not merely an application convention cleaned up later. This is a deliberate strengthening.
+- **CORR-008 closure (`FV006-INT-001`) — general Confirm / Movement Execution idempotency contract.** The
+  disposition above was scoped only to the Stock Position bin case; Formal IBPV FV-006 Deliverable 10 found no
+  stated contract for the far more common case of a retried Confirm action or a redelivered fulfillment-request
+  message (double-click, network retry, at-least-once redelivery per
+  [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00A). TEAM B closes this with one general, vendor-neutral
+  business invariant, without prescribing any lock, queue, or framework mechanism:
+
+  > **Idempotency invariant**: every action that transitions a Commitment (`Commercial Commitment Confirmed`,
+  > `Supply Commitment Confirmed`, `Supply Commitment Approved`/`Rejected`) or triggers a `Movement Executed`
+  > event carries a business identity — the specific commitment being confirmed, or the specific instruction
+  > being executed. A repeated invocation carrying the **same** business identity as an action already applied
+  > must produce **no additional business effect**: no second Movement Instruction, no second Reservation, and
+  > no second Financial Handoff write. The repeat must be observably distinguishable from a genuine new action —
+  > it must expose the original action's already-recorded outcome, never silently error and never silently
+  > repeat the effect.
+
+  This closes the gap named in `FV006-INT-001` (Critical) for exactly the categories the finding named: a
+  retried Confirm and a redelivered fulfillment-request/Movement-Execution trigger. It generalizes, rather than
+  replaces, the Stock Position bin strengthening above — that remains the one place this invariant is stated at
+  the physical-write level specifically; this paragraph states it at the document/command layer generally.
+  Cross-referenced from [08](08_INTEGRATED_E2E_LIFECYCLE_AND_STATE_MODEL.md) §11 and
+  [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00A.
 
 ## 12 — Cross-Warehouse / Cross-Company Cases
 
@@ -115,6 +142,42 @@ not an afterthought. Each entry states what evidence showed, what TEAM B indepen
   an SLA/lateness mechanism without a stated business need would violate the no-invented-certainty principle.
   Registered as an open item in
   [18_UNKNOWN_CONFLICT_AND_CARRY_FORWARD_REGISTER.md](18_UNKNOWN_CONFLICT_AND_CARRY_FORWARD_REGISTER.md).
+  **This item is unchanged by CORR-008** and must not be confused with §13A below, which is a distinct, now-closed
+  question (a technical handoff-write failure, not business lateness).
+
+## 13A — Downstream / Cross-Domain Handoff-Write Failure (CORR-008 closure, `FV006-INT-002`)
+
+- **Distinguished from §13 above**: §13 is about a shipment or document being *late* (a business-timing
+  condition); this section is about the *technical* handoff write itself failing or never occurring — e.g.,
+  Inventory cannot resolve a routing rule and never creates the Movement Instruction a Commercial or Supply
+  Commitment expects, or a "direct, synchronous" receipt-expectation write fails partway. Formal IBPV FV-006
+  Deliverable 10 found neither case addressed anywhere in this design.
+- **TEAM B decision**: both Hard handoffs named in
+  [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §02 (Commercial commitment → physical fulfillment
+  request; Supply commitment → physical receipt expectation) are now business-observable rather than
+  success-path-only:
+  - **Owner of the unresolved handoff**: the initiating Commitment (Sales or Purchase) remains the owner of
+    record of the handoff obligation until Inventory's confirming event is observed.
+  - **Visible status**: a `Handoff Unresolved` status becomes visible on the initiating Commitment once the
+    transport-semantics window ([09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00A) elapses without the
+    confirming event — this is a new, explicit Control/Financial-handoff-adjacent fact, not a hidden internal
+    state.
+  - **Retry eligibility**: always eligible — safe by construction, because retry is covered by the idempotency
+    invariant in §11 above (`FV006-INT-001`).
+  - **Compensation/reconciliation responsibility**: no compensating-reversal mechanism is invented. A
+    `Handoff Unresolved` condition means, by definition, that no physical fact was yet created on the receiving
+    side — there is nothing to reverse, only something to detect and re-trigger. This deliberately avoids
+    inventing an unevidenced compensation mechanism while still closing the completeness gap.
+  - **Convergence criterion**: the handoff transitions back to `Handoff Resolved` the moment Inventory's
+    confirming event (`Movement Instruction Confirmed`, or the equivalent receipt-expectation acknowledgment) is
+    observed.
+  - **Audit trail**: `Handoff Unresolved Detected` and `Handoff Resolved` are themselves catalogued, timestamped
+    events ([09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §03A).
+  - **Duplicate-prevention interaction**: re-triggering a stalled handoff is the same action as a normal retry
+    and is governed by the same idempotency contract (§11) — no separate duplicate-prevention rule is needed.
+- **Residual scope note**: this closure does not extend to Cross-Warehouse/Cross-Company exception effects
+  during a handoff failure (a separate, narrower, non-blocking item — `FV006-INT-003` — which remains outside
+  CORR-008's nine-finding scope and is unchanged).
 
 ## 14 — Approval Rejection
 
@@ -125,6 +188,12 @@ not an afterthought. Each entry states what evidence showed, what TEAM B indepen
   timestamp, attachable at any approval level — full detail in
   [13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md). Internal trigger
   logic remains `HOLD / EVIDENCE REQUIRED FOR THIS DECISION POINT`.
+- **CORR-008 closure (`FV006-STE-004` / `FV006-EVT-003`)**: this generic shape is now explicitly instantiated for
+  the Supply Commitment document type's own `Pending Approval` → `Rejected` transition, including the resulting
+  state, the downstream Inventory fulfillment-request stand-down, and the resubmission path — see
+  [07](07_PURCHASE_CANONICAL_DESIGN.md) §01 and [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §02 for the full
+  closure. This section's generic shape is unchanged; what was missing was its explicit application to the
+  Supply Commitment's own state/event model, which is now supplied.
 
 ## 15 — Line Deletion After Commitment
 

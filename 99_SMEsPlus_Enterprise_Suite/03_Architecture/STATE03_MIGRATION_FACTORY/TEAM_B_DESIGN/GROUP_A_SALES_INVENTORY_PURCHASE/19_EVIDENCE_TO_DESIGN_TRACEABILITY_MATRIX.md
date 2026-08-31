@@ -96,6 +96,20 @@ every item in Team A's Unknown/Conflict/Evidence Gap Register (post-CORR-003: 0 
 Low) and every item in the governing prompt's mandatory six-item carry-forward list has a recorded disposition.
 No item was silently dropped between the evidence package and this design package.
 
+## 05A — CORR-008 Lineage Note
+
+This file, as originally written, reflects the frozen pre-correction design package (commit `b98a3b9f...`). It is
+**not rewritten** by CORR-008 — the worked examples and deliverable index above remain accurate statements of
+that baseline's evidence lineage. What CORR-008 adds is a **parallel** traceability chain for the nine corrected
+findings, recorded in
+[26_TEAM_B_CORR008_DELTA_AND_TRACEABILITY_REGISTER.md](CORRECTIVE_CORR_008/26_TEAM_B_CORR008_DELTA_AND_TRACEABILITY_REGISTER.md)
+in the same governance-required chain format used here (`Formal IBPV Finding → pre-correction statement →
+governing evidence → correction decision → corrected artifact/section → re-verification question`), plus a
+dedicated SaaS/Tenant traceability artifact,
+[23_TEAM_B_CORR008_SAAS_TENANT_BASELINE_RECONCILIATION.md](CORRECTIVE_CORR_008/23_TEAM_B_CORR008_SAAS_TENANT_BASELINE_RECONCILIATION.md).
+A future reader tracing any of the nine CORR-008 findings should start at file 26, not attempt to locate them in
+the worked examples below (which predate the correction and were not selected to illustrate these nine).
+
 ## 05 — Internal Coherence Check
 
 Cross-references between files 02–18 were verified to resolve to real section anchors within this folder (not to

@@ -16,6 +16,52 @@ real, evidenced business-semantic difference (not an accident), because Purchase
 (§03) is a test-confirmed, working hard control, unlike Sales' advisory-only credit check. A Supply Commitment
 that fails the approval-allowed check does not error — it transitions to `Pending Approval` and waits.
 
+**CORR-008 closure (`FV006-STE-004` / `FV006-EVT-003`) — Approval-denial exit path.** `Pending Approval`
+previously had no stated exit for a denied approval, leaving an open vendor-facing commitment with no closure
+mechanism and, per Formal IBPV FV-006 Deliverables 04 and 05, a possible orphaned Inventory fulfillment request.
+TEAM B independently designs the business-semantic closure below, without inventing the missing legacy modules'
+internal trigger/permission logic — that internal logic remains `HOLD`, per §03 below and
+[13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) §00/§03, and is unaffected by this closure:
+
+- **Resulting state**: `Pending Approval` → `Rejected`, a new named state distinct from `Cancelled` — `Rejected`
+  carries approval-denial semantics (one authorized approver's decision, with a mandatory reason) that a general
+  `Cancelled` (withdrawal for any reason, by any authorized actor, at any stage) does not. `Rejected` is reachable
+  only from `Pending Approval`.
+- **Denial event**: `Supply Commitment Rejected` (added to [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §02) —
+  reuses the generic Approval Control rejection-event shape already defined in
+  [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) §03 (an approve/reject event with actor, timestamp, and a
+  mandatory rejection reason), applied here specifically to the Supply Commitment document type.
+- **Owner**: Purchase (the Supply Commitment document type), coordinated with the Approval Control concept
+  ([13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) §03) that raises the rejection.
+- **Downstream demand withdrawal**: §03 below clarifies (also as part of this CORR-008 closure) that the
+  Inventory-facing receipt fulfillment request is created directly/synchronously at Confirm time on **both**
+  branches (`Committed` or `Pending Approval`), and held `Blocked` (not-yet-executed, non-actionable) for the
+  `Pending Approval` branch specifically — see
+  [08](08_INTEGRATED_E2E_LIFECYCLE_AND_STATE_MODEL.md) §01. On denial, that already-created, not-yet-executed
+  instruction is stood down using the **same** not-yet-executed-instruction cascade already defined for
+  Cancellation ([08](08_INTEGRATED_E2E_LIFECYCLE_AND_STATE_MODEL.md) §05,
+  [12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §07) — no separate stand-down mechanism is
+  invented; `Rejected` reuses the existing cascade rather than introducing a second one. This closes the
+  orphaned-fulfillment-request risk both Deliverable 04 and Deliverable 05 of Formal IBPV FV-006 identified.
+- **Audit history**: the rejection event's actor, timestamp, and reason are permanently retained on the Supply
+  Commitment's history, consistent with every other rejection event in this design
+  ([12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §14).
+- **Resubmission / correction classification**: `Rejected` → `Draft` is permitted, consistent with the
+  "`Draft` reachable from any prior state" rule stated above — a resubmitted commitment re-enters the lifecycle
+  from `Draft` and, on re-confirmation, creates a fresh fulfillment request; it never resumes or reuses the
+  rejected instance's withdrawn instruction. Whether a resubmitted commitment must restart at Approval Level 1 or
+  may resume at the level it was rejected from is governed by the Approval Control's own internal transition
+  logic, which remains `HOLD` — TEAM B does not invent an answer here, consistent with
+  [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) §03.
+- **Residual unknown, explicitly registered**: whether `Rejected` should auto-transition back to `Draft` or
+  require an explicit manual resubmission action is a business-policy nuance, not a structural gap — the state,
+  event, owner, downstream-withdrawal, and audit shape above are all structurally complete and do not depend on
+  this nuance. TEAM B's default recommendation, absent a Boss ruling: require an explicit manual resubmission
+  action (mirroring the manual-reset pattern already adopted for every other return-to-`Draft` transition in this
+  design) rather than a silent auto-reset, since an unprompted state change immediately after a human rejection
+  decision would itself be a control-integrity risk. Carried forward in
+  [22_TEAM_B_CORR008_FINDING_CLOSURE_REGISTER.md](CORRECTIVE_CORR_008/22_TEAM_B_CORR008_FINDING_CLOSURE_REGISTER.md).
+
 ## 02 — Order Line and Quantities
 
 Canonical quantities: **Ordered** (commitment), **Received** (derived, dispatched by fulfillment method, same
@@ -41,17 +87,25 @@ TEAM B's independent classification, reasoned from evidence, not inherited from 
 1. **Amount-threshold approval** — a real, working, test-confirmed hard gate: below a configured threshold, or
    for a user holding an approval-manager role, a commitment self-approves on confirmation; above it, or without
    the role, it lands in `Pending Approval` until an authorized user acts. TEAM B `ADAPT`s this pattern in full —
-   it is simple, evidenced, and needs no correction.
+   it is simple, evidenced, and needs no correction. **CORR-008 clarification (`FV006-STE-004` /
+   `FV006-EVT-003`, coordinated with §01 above):** the Inventory-facing receipt fulfillment request (§06 below)
+   is created directly/synchronously at Confirm time regardless of which branch the commitment lands in; on the
+   `Pending Approval` branch it is held `Blocked` until the gate resolves (unblocked on Approval, stood down via
+   the standard not-yet-executed cascade on Rejection — see §01 above). This removes a prior internal ambiguity
+   between this file and [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §02 about whether the fulfillment request
+   exists before or only after approval; the answer is now stated once, here and in
+   [08](08_INTEGRATED_E2E_LIFECYCLE_AND_STATE_MODEL.md) §01, and both are kept consistent with it.
 2. **Sequential per-level approval** — confirmed real, installed, and (on the internal-demand-request concept,
    §04) heavily used historically; on the Supply Commitment concept itself, data shows the "assign an approver"
    half is used far more than the "record the approval" half, leaving genuine doubt whether the full workflow was
    ever completed in practice for that specific document type. TEAM B's independent decision: design the
-   **vendor-neutral shape** of a multi-level approval capability (N ordered levels, each with an assigned
-   approver, an approval or rejection event, a timestamp, and a rejection reason) as a first-class Approval
-   Control concept usable by both this and the internal-demand-request concept — but explicitly **HOLD** on any
-   claim about its exact trigger conditions or transition rules, since the internal button/workflow logic is a
-   Controlled Carry-Forward Unknown per Boss Gate §4.1. Full detail in
-   [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md).
+   **vendor-neutral shape** of a multi-level approval capability (N numbered levels — "numbered" for audit/
+   display purposes only, not an enforced-sequence claim, per the CORR-008 wording clarification in
+   [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md) §03 — each with an assigned approver, an approval or
+   rejection event, a timestamp, and a rejection reason) as a first-class Approval Control concept usable by both
+   this and the internal-demand-request concept — but explicitly **HOLD** on any claim about its exact trigger
+   conditions or transition rules, since the internal button/workflow logic is a Controlled Carry-Forward Unknown
+   per Boss Gate §4.1. Full detail in [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md).
 
 These two mechanisms are **not the same concept** and must not be merged into one approval model — TEAM B treats
 conflating them as a design error the evidence specifically warns against (`04` §03 synthesis).

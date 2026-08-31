@@ -28,20 +28,31 @@ justified from the canonical designs in files 04–09, not restated from evidenc
 | Invoiced quantity | Sales / Purchase (each its own), but **backward-derived** | Financial Handoff posts a record | Financial Handoff is the actual source of truth; Sales/Purchase only mirror it | Sales/Purchase billing-status computation |
 | Approval state (amount-threshold) | Purchase | Confirm action evaluated against threshold/role | No other domain | Supply Commitment lifecycle |
 | Approval state (sequential level-based) | Sales / Purchase / Internal Demand Request (shared Approval Control concept) | Level approve/reject action | No other domain | Owning document's lifecycle (internal trigger logic HOLD — see [13](13_APPROVAL_CONTROL_SOD_REQUIREMENT_MODEL.md)) |
+| Traceability Unit (lot/serial) | Inventory | Created on the first Movement Execution that establishes a new lot/serial identity (or an explicit registration action prior to first movement, e.g., a vendor-supplied lot/serial captured at receipt) | No other domain — hard rule, same as Movement Instruction/Execution | Sales, Purchase (read-only traceability query only, never by event subscription — see [09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00) — **CORR-008 closure, `FV006-DFO-001`** |
+| Handling Unit (package) — live instance | Inventory | Pack / repack / unpack actions during a not-yet-executed transfer | No other domain | Sales, Purchase (read-only traceability query only) — **CORR-008 closure, `FV006-DFO-001`** |
+| Handling Unit (package) — historical snapshot | Inventory | Frozen automatically the moment the transfer operation it belongs to completes ([03](03_CANONICAL_BUSINESS_FACT_AND_CONCEPT_CATALOG.md) §03) — this freeze event **is** the live instance's lifecycle-end | No other domain; the snapshot itself is then immutable and permanent (never expires, never deleted — see [04](04_SHARED_MASTER_CANONICAL_BOUNDARY_MODEL.md) §09) | Sales, Purchase (read-only traceability query only) — **CORR-008 closure, `FV006-DFO-001`** |
+
+**CORR-008 lifecycle-end statement (`FV006-DFO-001`):** a Traceability Unit's lifecycle ends (closes) when its
+full tracked quantity has been fully consumed/shipped out and no Stock Position row references it as on-hand; it
+is never deleted — it transitions to a permanent `Closed/Exhausted` status, remaining resolvable for every
+historical Movement Execution that references it, consistent with the general Shared-Master-style preservation
+principle in [04](04_SHARED_MASTER_CANONICAL_BOUNDARY_MODEL.md) §08 even though a Traceability Unit is a Physical
+fact, not a Shared Master concept. A Handling Unit's live-instance lifecycle ends at transfer-operation
+completion (above); the resulting historical snapshot has no further lifecycle-end — it is permanent.
 
 ## 02 — Handoff Points (Cross-Domain, With Hard/Advisory Classification)
 
-| Handoff | From → To | Mechanism | Hard or advisory? |
-|---|---|---|---|
-| Commercial commitment → physical fulfillment request | Sales → Inventory | Event-driven, indirect (Inventory resolves routing) | Hard — the only way a confirmed commercial line produces a Movement Instruction |
-| Supply commitment → physical receipt expectation | Purchase → Inventory | Direct, synchronous | Hard |
-| Physical execution → commercial/supply derived quantity | Inventory → Sales/Purchase | Read-only compute | Advisory in that neither domain blocks on it directly — but the resulting quantity becomes an input to the next hard gate (billing) |
-| Fulfillment quantity → billing eligibility | Sales/Purchase → Financial Handoff | Billable-Now written verbatim | Hard |
-| Financial posting → re-derived invoiced quantity | Financial Handoff → Sales/Purchase | Backward read of a posted record | Hard (drives whether more may be billed) |
-| Internal demand → supply commitment | Internal Demand Request → Purchase | Hard-gated on Approved | Hard |
-| Stock shortage → supply need | Inventory → (registered fulfiller, typically Purchase) | Reflective/pluggable dispatch | Hard trigger, soft binding (Inventory does not know who will respond) |
-| Commercial line (scoped product config) → draft supply commitment | Sales → Purchase | Direct write, narrowly scoped | Hard, but scope-limited — not the general case |
-| Physical reversal → traceability | Inventory → Sales/Purchase | Read-only linkage | Advisory (informational only; neither domain gates on it) |
+| Handoff | From → To | Mechanism | Hard or advisory? | Failure detection / resolution (CORR-008, `FV006-INT-002`) |
+|---|---|---|---|---|
+| Commercial commitment → physical fulfillment request | Sales → Inventory | Event-driven, indirect (Inventory resolves routing) | Hard — the only way a confirmed commercial line produces a Movement Instruction | **Owner of unresolved handoff:** the Commercial Commitment (Sales) is the owner of record until Inventory's confirming event is observed. **Visible status:** if `Movement Instruction Confirmed` is not observed within the asynchronous transport window ([09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §00A), the commitment surfaces `Handoff Unresolved` ([09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §03A). **Retry:** always eligible, idempotent (`FV006-INT-001`). **Convergence:** clears to `Handoff Resolved` the moment the confirming event is observed. **Compensation:** none invented — no physical fact yet exists to compensate; detection + re-trigger only. **Audit:** `Handoff Unresolved Detected` / `Handoff Resolved` are themselves catalogued, timestamped events. |
+| Supply commitment → physical receipt expectation | Purchase → Inventory | Direct, synchronous | Hard | Same owner/status/retry/convergence/audit model as above, applied to the synchronous path: because this handoff is synchronous, a failure to write the receipt expectation is expected to surface immediately as part of the Confirm action's own outcome rather than after a wait window; if it is instead observed only after the fact (e.g., the write partially completed), the same `Handoff Unresolved` / `Handoff Resolved` pair applies, owned by the Supply Commitment. |
+| Physical execution → commercial/supply derived quantity | Inventory → Sales/Purchase | Read-only compute | Advisory in that neither domain blocks on it directly — but the resulting quantity becomes an input to the next hard gate (billing) | Not applicable — this is a pull-based derived read, not a handoff that can be "unresolved" in the sense above. |
+| Fulfillment quantity → billing eligibility | Sales/Purchase → Financial Handoff | Billable-Now written verbatim | Hard | Out of CORR-008 scope — the Financial Handoff boundary's own failure semantics are Accounting Core's domain, per [15](15_ACCOUNTING_AND_EXTERNAL_INTERFACE_DEPENDENCY_MODEL.md). |
+| Financial posting → re-derived invoiced quantity | Financial Handoff → Sales/Purchase | Backward read of a posted record | Hard (drives whether more may be billed) | Out of CORR-008 scope, same reason as above. |
+| Internal demand → supply commitment | Internal Demand Request → Purchase | Hard-gated on Approved | Hard | Not a Hard handoff in the `FV006-INT-002` sense (both sides are within Purchase's own authority, not a cross-domain write); no compensation mechanism required. |
+| Stock shortage → supply need | Inventory → (registered fulfiller, typically Purchase) | Reflective/pluggable dispatch | Hard trigger, soft binding (Inventory does not know who will respond) | Not one of the two Hard handoffs named in `FV006-INT-002`'s finding text; unresolved-fulfiller risk for this dispatch remains tracked separately in [18](18_UNKNOWN_CONFLICT_AND_CARRY_FORWARD_REGISTER.md) and is not re-scoped by this CORR-008 closure. |
+| Commercial line (scoped product config) → draft supply commitment | Sales → Purchase | Direct write, narrowly scoped | Hard, but scope-limited — not the general case | Not one of the two Hard handoffs named in `FV006-INT-002`'s finding text; out of this closure's scope. |
+| Physical reversal → traceability | Inventory → Sales/Purchase | Read-only linkage | Advisory (informational only; neither domain gates on it) | Not applicable — read-only linkage, not a handoff that can be "unresolved." |
 
 ## 03 — Never-Assume-Equivalence Reminders (Adopted, Restated for This Matrix)
 

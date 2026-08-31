@@ -3,6 +3,16 @@
 
 # 20 — TEAM B FORMAL IBPV READINESS REPORT
 
+> **CORR-008 supersession notice.** This report documents TEAM B's readiness claim for the **pre-correction**
+> design package (commit `b98a3b9f...`), as submitted to Formal IBPV FV-006. Formal IBPV returned
+> `FORMAL IBPV COMPLETE — REWORK REQUIRED / NOT READY FOR DEVELOPMENT` against that package (see
+> `EXPERT_IBPV/GROUP_A_SALES_INVENTORY_PURCHASE/FORMAL_VERIFICATION_FV_006/14_IBPV_INDEPENDENT_VERIFICATION_REPORT.md`).
+> This document is retained unmodified as the historical record of that submission and is **not** current
+> readiness evidence. The current, post-correction readiness status is in
+> [25_TEAM_B_CORR008_FORMAL_IBPV_REVERIFICATION_READINESS.md](CORRECTIVE_CORR_008/25_TEAM_B_CORR008_FORMAL_IBPV_REVERIFICATION_READINESS.md).
+> Do not cite this file's §01 Terminal Status or §04 Acceptance Criteria Checklist as the design package's current
+> state — both predate CORR-008.
+
 ## 01 — Terminal Status
 
 ```

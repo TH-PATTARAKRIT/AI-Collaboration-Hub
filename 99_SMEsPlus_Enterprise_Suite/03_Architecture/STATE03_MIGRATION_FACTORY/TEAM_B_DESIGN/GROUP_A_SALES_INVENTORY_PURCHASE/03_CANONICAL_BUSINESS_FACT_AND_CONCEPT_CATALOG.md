@@ -35,6 +35,13 @@ Every business fact below is classified into exactly one of four types, per gove
 | Company / Branch | Reference | Hierarchy position immutable after creation (evidenced invariant); currency must match root (evidenced invariant) | |
 | Cost Dimension (Analytic) | Reference | N/A | Definitions shareable; usage on a posted line is always company-attributed |
 
+**CORR-008 addition (`FV006-DFO-005`)**: every concept in the table above, once referenced by at least one
+historical Commitment, Physical, or Control/Financial-Handoff fact, is also subject to the general
+Archival/Non-Deletion rule now stated in
+[04](04_SHARED_MASTER_CANONICAL_BOUNDARY_MODEL.md) §08 — hard deletion is prohibited once referenced; the
+concept is archived/retired instead. This generalizes what was previously stated only for UOM's conversion ratio
+and Warehouse's owning-company assignment (both still individually noted above) to every row in this table.
+
 ## 02 — Commercial Demand (Sales) Facts
 
 | Fact | Type | Immutable-after-occurrence? |
@@ -59,8 +66,8 @@ Every business fact below is classified into exactly one of four types, per gove
 | Transfer operation (grouping document) | Commitment→Physical (state-derived) | State is entirely derived from constituent movement-instruction states, never authored independently |
 | Fulfillment continuation (backorder) | Commitment | A new commitment carrying forward unexecuted quantity; the original transfer's completed portion remains immutable |
 | Reversal (return) | Physical | Immutable once executed, same as any other movement execution; carries a mandatory traceability link to the movement it reverses |
-| Traceability unit (lot/serial) | Reference/Physical hybrid | Existence is a reference fact; its location/quantity is always derived from contributing physical movements, never stored independently |
-| Handling unit (package) | Physical, with a live/historical split | **A first-class design decision, not a footnote**: the *current* handling-unit membership is a live, mutable fact; a *historical snapshot* is taken and frozen at the moment a transfer operation completes. TEAM B treats these as two distinct fact instances, not one fact with a "done" flag — collapsing them loses real information (evidenced: `02` §08 synthesis). |
+| Traceability unit (lot/serial) | Reference/Physical hybrid | Existence is a reference fact; its location/quantity is always derived from contributing physical movements, never stored independently. **Owner, changing event, and lifecycle-end are recorded in [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §01 (CORR-008 closure, `FV006-DFO-001`) — this catalog states its fact-type only.** |
+| Handling unit (package) | Physical, with a live/historical split | **A first-class design decision, not a footnote**: the *current* handling-unit membership is a live, mutable fact; a *historical snapshot* is taken and frozen at the moment a transfer operation completes. TEAM B treats these as two distinct fact instances, not one fact with a "done" flag — collapsing them loses real information (evidenced: `02` §08 synthesis). **Owner, changing event, and lifecycle-end are recorded in [10](10_FACT_OWNERSHIP_HANDOFF_AND_DEPENDENCY_MATRIX.md) §01 (CORR-008 closure, `FV006-DFO-001`) — this catalog states its fact-type only.** |
 | Supply need signal | Derived | Recomputed continuously from stock position vs. policy thresholds; not itself a persisted commitment |
 
 ## 04 — Supply Commitment (Purchase) Facts

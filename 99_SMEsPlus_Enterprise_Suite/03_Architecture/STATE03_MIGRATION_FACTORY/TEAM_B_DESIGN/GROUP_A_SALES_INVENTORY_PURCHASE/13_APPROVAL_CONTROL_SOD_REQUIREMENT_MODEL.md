@@ -30,12 +30,13 @@ independently-configurable Approval Control mechanisms, never as one merged conc
 | Field | Content |
 |---|---|
 | Decision ID | APR-001 |
-| Business Problem / Need | Prevent self-approval of a supply commitment above a value threshold without oversight |
-| Approved Evidence Input | `04` §02 PO-06/07/08, test-confirmed |
-| Evidence Status | VERIFIED FACT |
+| Business Problem / Need | Require oversight of a supply commitment above a value threshold: (a) a role-based authority gate — an actor without the approval-authority role cannot approve it — **and** (b) an identity-based exclusion — the commitment's own creator/requester may not approve it, regardless of role. **CORR-008 correction (`FV006-SOD-001`):** the prior wording of this row asserted "prevent self-approval" as the business need while specifying only the role-based mechanism below, which does not by itself exclude a role-holding creator from approving their own commitment. TEAM B corrects the wording to state both requirements explicitly, and adds (b) as an explicit new requirement — see the added row "Identity-Based Self-Approval Exclusion" below. |
+| Approved Evidence Input | `04` §02 PO-06/07/08, test-confirmed (role-based gate only — see Unknown/Assumption row for what (b) is and is not evidenced by) |
+| Evidence Status | VERIFIED FACT (role-based gate); (b) is a TEAM B target-design addition, not evidenced — see Unknown/Assumption row |
 | Team A Candidate | ADAPT (Fit-Gap #2) |
-| TEAM B Independent Decision | `ADAPT` unmodified as a Purchase-side Approval Control: a configurable threshold amount (currency-converted where the commitment's currency differs from the threshold's reference currency) and an approval-authority role; a commitment above threshold and without an authorized actor transitions to Pending Approval instead of erroring |
-| Rationale | Clean, simple, working control with no ambiguity in evidence |
+| TEAM B Independent Decision | `ADAPT` unmodified as a Purchase-side Approval Control: a configurable threshold amount (currency-converted where the commitment's currency differs from the threshold's reference currency) and an approval-authority role; a commitment above threshold and without an authorized actor transitions to Pending Approval instead of erroring. **CORR-008 addition:** independently of the role check, the acting approver's identity must be evaluated against the commitment's own creator/requester identity at the moment of approval; if they match, the approval attempt is refused with an explicit reason (reusing the same explicit-rejection UX pattern already required below for an unauthorized-role attempt), regardless of whether the matching actor also holds the approval-authority role. |
+| Identity-Based Self-Approval Exclusion (CORR-008 addition, `FV006-SOD-001`) | A commitment's creator/requester identity and its approver identity, for any given approval action, must be independently evaluable and must not be equal. This composes with, and extends, the general SoD data-shape requirement in §05 below (which requires requester/approver identities to be *distinguishable* in the data model) by additionally requiring that distinguishability be *enforced* — not merely representable — at the amount-threshold control specifically. TEAM B does not claim this was how any legacy module's internal logic behaved (that internal logic remains outside evidence, per §00); this is a target business-control requirement stated independently of the unverified legacy internals, closing the gap between APR-001's stated purpose and its previously role-only mechanism. Whether role-based gating alone would have been an acceptable control strength, versus mandatory creator exclusion being required, was Formal IBPV's identified open policy question (`FV006-SOD-001`); TEAM B resolves it here by requiring the stronger (identity-exclusion) control, consistent with the stated business need this control has always claimed to serve. |
+| Rationale | Clean, simple, working control with no ambiguity in evidence for the role-based half; the identity-based half is added because the control's own stated purpose ("prevent self-approval") otherwise remains unmet by its specified mechanism, which is a gap Formal IBPV independently identified as certifiable-blocking for this control's stated purpose specifically |
 | Business Fact(s) | Supply Commitment approval state |
 | Owner | Purchase |
 | Lifecycle/State Impact | Introduces the `Pending Approval` phase in [07](07_PURCHASE_CANONICAL_DESIGN.md) §01 |
@@ -57,6 +58,13 @@ control.
 
 ## 03 — Sequential Level-Based Approval (`EXTEND`, Internal Logic `HOLD`)
 
+> **CORR-008 reading note (`FV006-SOD-004`):** "Sequential" in this section's title, and "sequential" in the
+> Business Problem/Need row below, name the *numbering/labeling* convention (Level 1, Level 2, ... — a data
+> shape) and the general multi-person sign-off *need*. Neither asserts that level-to-level **gating** is enforced
+> in strict order. Whether gating is actually enforced in sequence remains `HOLD / EVIDENCE REQUIRED FOR THIS
+> DECISION POINT`, stated explicitly in the "TEAM B Independent Decision" row below and consistent with §00's
+> disclaimer. Read the title and this row's "sequential" as a name, not a settled enforcement claim.
+
 | Field | Content |
 |---|---|
 | Decision ID | APR-002 |
@@ -64,7 +72,7 @@ control.
 | Approved Evidence Input | `04` §03 (full cross-model investigation), `07` §04 (approval fact table), Boss Gate §4.1 |
 | Evidence Status | RESOLVED — ACTIVE HISTORICAL CONTROL WITH OWNERSHIP EVIDENCE (existence, installation, and real usage); internal workflow logic EVIDENCE_MISSING |
 | Team A Candidate | UPDATED to EXTEND (Fit-Gap #13), with an explicit UNKNOWN remainder on the Purchase-commitment-level half |
-| TEAM B Independent Decision | `EXTEND` — design a vendor-neutral **Approval Control** concept: N ordered approval levels, each carrying an assigned approver, an approve/reject event with timestamp, and a rejection reason; attachable to any commitment-type document (Commercial Commitment, Supply Commitment, Internal Demand Request) that a business configures to require it. Internal trigger conditions, exact level-to-level transition rules, and exact permission checks are **not** designed — `HOLD / EVIDENCE REQUIRED FOR THIS DECISION POINT` |
+| TEAM B Independent Decision | `EXTEND` — design a vendor-neutral **Approval Control** concept: N approval levels, each carrying an assigned approver, an approve/reject event with timestamp, and a rejection reason; attachable to any commitment-type document (Commercial Commitment, Supply Commitment, Internal Demand Request) that a business configures to require it. **CORR-008 wording correction (`FV006-SOD-004`):** the levels are numbered/labeled (Level 1, Level 2, ...) for audit and display purposes only — this numbering is a data-shape/labeling convention, not an assertion that levels are enforced in strict sequential gating order. Whether Level 2 may act before Level 1 completes (i.e., whether gating is actually enforced in sequence) is part of the internal trigger/transition logic below and remains **not** designed — `HOLD / EVIDENCE REQUIRED FOR THIS DECISION POINT`. Internal trigger conditions, the exact level-to-level transition/gating rule, and exact permission checks are **not** designed. |
 | Rationale | The DATA proves the feature is real and was used (heaviest, clearly-completed usage on the Internal Demand Request concept: large share approved/rejected in evidence); it does not prove every internal workflow rule. Designing the generic shape without the internal logic keeps this design evidence-honest while still giving Formal IBPV something concrete to review |
 | Business Fact(s) | Approval level assignment, approval/rejection event, rejection reason |
 | Owner | The owning commitment/request document (Sales, Purchase, or Internal Demand Request) |
@@ -115,12 +123,19 @@ each level**, so that a future SoD control (self-approval prevention) can be enf
 This is a minimal, evidence-supportable requirement (both real mechanisms in evidence separate requester/approver
 roles) — TEAM B does not specify the enforcement algorithm itself, only that the data shape must support it.
 
+**CORR-008 cross-reference (`FV006-SOD-001`)**: §02 above now *enforces* this distinguishability specifically for
+APR-001 (identity-based self-approval exclusion), not merely represents it. This section's requirement remains
+the general, document-type-agnostic data-shape baseline every Approval Control instance (APR-001 and APR-002
+alike) must satisfy; §02's addition is the first place that baseline is turned into an enforced control rather
+than left as a representable-but-unenforced data shape.
+
 ## 06 — Summary Table
 
 | Control | Status | TEAM B Disposition | HOLD? |
 |---|---|---|---|
-| Purchase amount-threshold approval | Real, working | `ADAPT` | No |
-| Sequential level-based approval (generic shape) | Real, historically used | `EXTEND` | No (shape only) |
-| Sequential level-based approval (internal workflow logic) | Real but source-unavailable | Not designed | **Yes** |
+| Purchase amount-threshold approval — role-based gate | Real, working | `ADAPT` | No |
+| Purchase amount-threshold approval — identity-based self-approval exclusion | New TEAM B requirement (CORR-008, `FV006-SOD-001`) | `EXTEND` | No |
+| Sequential level-based approval (generic shape; "sequential" = numbering/labeling only, per CORR-008 note in §03) | Real, historically used | `EXTEND` | No (shape only) |
+| Sequential level-based approval (internal workflow / level-to-level gating logic) | Real but source-unavailable | Not designed | **Yes** |
 | Sales confirmation hard-gate (credit/availability) | Not present in reference (advisory-only) | New configurable policy, no default fixed | No (policy shape), Yes (default value, deferred to Boss) |
-| SoD data-shape requirement | Inferred from both real mechanisms | `EXTEND` (minimal) | No |
+| SoD data-shape requirement (general baseline) | Inferred from both real mechanisms | `EXTEND` (minimal) | No |

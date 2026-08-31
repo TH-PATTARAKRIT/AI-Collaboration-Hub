@@ -64,9 +64,42 @@ new capability requirement TEAM B introduced because the evidence package (sourc
 deployment) had no occasion to address SaaS multi-tenancy at all. It is noted here for completeness so a future
 reviewer does not mistake its absence from Team A's evidence for an oversight.
 
+**CORR-008 update (`FV006-SAAS-001`, `FV006-XDF-006`, `FV006-GAP-007`):** Formal IBPV FV-006 independently
+confirmed that the *need* for a Tenant concept is traceable to an approved project baseline (State01 Project
+Charter/Scope Principles, Architecture Governance Standard's "Multi-Tenant by Design" principle) — it is not, and
+was never, an unevidenced invention. What this note originally under-stated is that the *specific structural
+shape* TEAM B designed to satisfy that need (§02–§05 of file 14) is a TEAM B canonical design choice without an
+independent structural baseline to verify it against — a distinct, narrower claim than "no evidence basis at
+all." Boss has directed that the underlying multi-tenancy requirement is not to be re-decided by this
+correction; the reclassification here is a traceability/labeling correction, not a re-approval request. Full
+statement-by-statement classification is in
+[14](14_SAAS_MULTI_COMPANY_TENANT_BOUNDARY_MODEL.md) §08 and
+[23_TEAM_B_CORR008_SAAS_TENANT_BASELINE_RECONCILIATION.md](CORRECTIVE_CORR_008/23_TEAM_B_CORR008_SAAS_TENANT_BASELINE_RECONCILIATION.md).
+This register entry (§04) is retained, corrected in place rather than deleted, so the original disclosure remains
+visible alongside its correction.
+
 ## 05 — No Silent Drops — Completeness Statement
 
 Every item in Team A's `14_UNKNOWN_CONFLICT_EVIDENCE_GAP_REGISTER.md` (3 originally-Critical, now 0 open;
 3 High; 10 Medium; 4 Low) has an explicit disposition above. Every item in the governing prompt's mandatory
 six-item carry-forward list (§16) has an explicit disposition. Every new Unknown TEAM B's own design reasoning
 surfaced is registered in §03, not resolved by invention.
+
+## 06 — CORR-008 Residual-Unknown Update
+
+CORR-008 closed eight design-completeness findings (`FV006-STE-004`/`EVT-003`, `FV006-INT-001`/`002`,
+`FV006-SOD-004`/`001`, `FV006-EVT-002`, `FV006-DFO-001`, `FV006-DFO-005`) and one traceability/classification
+finding (`FV006-SAAS-001`/`003`, `FV006-XDF-006`, `FV006-GAP-007`) from Formal IBPV FV-006. None of the nine
+required inventing a new Unknown to close — each was closed either by stating a business-semantic design
+decision TEAM B had standing to make (denial wind-down, idempotency, handoff-failure detection, wording
+precision, self-approval identity check, transport semantics, traceability/handling-unit ownership, archival
+rule) or by correcting a classification (SaaS/Tenant). Two residual, explicitly-registered nuances resulted from
+this closure and are added here rather than silently assumed:
+
+| # | Item | Classification | Disposition |
+|---|---|---|---|
+| N8 | Whether `Rejected` (Supply Commitment approval denial) auto-transitions to `Draft` or requires an explicit manual resubmission action | `CONTROLLED CARRY-FORWARD` | TEAM B recommends explicit manual resubmission (no silent auto-reset); default deferred to Boss/business per [07](07_PURCHASE_CANONICAL_DESIGN.md) §01 |
+| N9 | The precise duration of the transport-semantics window before a Hard handoff surfaces `Handoff Unresolved` | `CONTROLLED CARRY-FORWARD` | A policy-configurable value, not a structural gap — the mechanism, ownership, and observability are fully designed ([09](09_CANONICAL_BUSINESS_EVENT_CATALOG.md) §03A, [12](12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md) §13A); only the specific window length is left configurable, consistent with how every other policy default in this package (Over-Fulfillment, Confirmation Gate) is handled |
+
+Full per-finding closure detail, including the exact corrected sections and residual-unknown statements, is in
+[22_TEAM_B_CORR008_FINDING_CLOSURE_REGISTER.md](CORRECTIVE_CORR_008/22_TEAM_B_CORR008_FINDING_CLOSURE_REGISTER.md).
