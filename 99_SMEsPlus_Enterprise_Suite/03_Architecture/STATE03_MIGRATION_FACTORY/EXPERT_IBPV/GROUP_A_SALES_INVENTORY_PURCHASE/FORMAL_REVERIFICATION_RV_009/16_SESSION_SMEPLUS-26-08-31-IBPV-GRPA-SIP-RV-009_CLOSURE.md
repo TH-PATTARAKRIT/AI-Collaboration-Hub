@@ -54,6 +54,6 @@ Scoped, not blanket — full breakdown in Deliverable 14. Headline: all nine COR
 3. Committed in logical batches (see git log on the dedicated branch for exact commit messages/SHAs).
 4. Pushed the dedicated branch to `origin`.
 
-**Final pushed commit SHA: `822d12ad29448d9888e9f319c53f2add1dcbcbdc`** — confirmed via `git log -1` against `origin/ibpv/group-a-sip-formal-reverification-009` after push; working tree clean, branch up to date with origin, no other repository state touched.
+**Final pushed commit SHA (deliverable-content state): `822d12ad29448d9888e9f319c53f2add1dcbcbdc`** — this is the branch HEAD after all 17 deliverables reached their final content, confirmed via `git log -1` against `origin/ibpv/group-a-sip-formal-reverification-009` immediately after that push. One further housekeeping commit (`25b14971eacd823f02bb4beec919a7da10f446e4`) followed to record this SHA in this document and refresh file 17's hash of this file accordingly — inherently one commit behind by the same self-reference limitation file 17 §1 and TEAM B's file 28 both already document (a record cannot contain its own resulting hash/SHA at the moment it is written). Authoritative final state: `git log -1 origin/ibpv/group-a-sip-formal-reverification-009`; working tree clean, branch up to date with origin, no other repository state touched.
 
 **Independent experts verify the design; only Boss decides whether the lifecycle may advance.**
