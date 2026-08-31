@@ -144,3 +144,42 @@ The ChatGPT independent re-audit of CORR2 (commit `8f5fa522a3f1a3553584eb5d50632
 Consistency sweep (directive §4.4) additionally found and corrected a stale "20 vs 11" framing in this Gate Report's §8 (already resolved in Round 2, but not reflected in that summary bullet).
 
 **Terminal status:** `HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED`. COA-G02 not started. B14 not modified (not authorized by this directive). No Gate PASS, PMO verification, or Boss approval claimed. This session stops again and requests the next ChatGPT independent re-audit, per the directive's stop line.
+
+---
+
+## 19. CORR4 targeted remediation (2026-08-31)
+
+Boss directive `COA-G01R2-CORR4` authorized a substantial evidence-recovery pass: recover the Odoo18 workbook by direct Drive access, reconcile Source Class E from Boss-authored GitHub rulings, port the local `STATE03`/`T1-T9`/`STEP0303R2`–`R5` sources into the GitHub Source of Record, reconcile the `STEP0303R2` contradiction without converting its cause to fact, produce dedicated SI-10 classification evidence, attempt Source Class F recovery, and formally present the B14 non-extension decision.
+
+### 19.1 What was recovered/resolved
+
+- **N-01 (workbook) = `RESOLVED`.** Recovered by direct Google Drive file ID, downloaded, independently SHA-256-hashed (exact match to the directive's claimed hash), and its content independently parsed: 389 rows, 14 types, full distribution and reconcile split exact match, 7 row-level spot-checks against the existing GitHub extraction with zero discrepancies. Raw binary intentionally not committed to GitHub. See `COA_G01_PRIMARY_SOURCE_RECOVERY_REGISTER_R4.md`.
+- **C-01 / N-02 (local evidence port) = `RESOLVED`.** 63 files across S1–S11, T1–T9, `STEP0303R2`–`R5`, and their two parent evidence packs — security-scanned (zero credentials/PII found), ported byte-for-byte, independently re-hashed with zero mismatches. See `COA_G01_LOCAL_STATE03_SOURCE_PORT_MANIFEST_R4.md`.
+- **C-02 (STEP0303R2 existence) = `RESOLVED` for current-existence; N-05 (cause) = `OPEN`, `UNKNOWN`.** Full chronology built from primary timestamps: the folder was complete at 22:25:13; the "not found" claims were written 4–14 minutes later. Existence is settled; cause is explicitly **not** converted to fact. See `COA_G01_STEP0303R2_CONTRADICTION_RECONCILIATION_R4.md`.
+- **SI-10 = `PASS / VERIFIED` at classification scope** (corrected from `HOLD`). Dedicated analysis using the now-ported S1/S3/S4/S5 findings passes all 6 sub-criteria. See `COA_G01_SI10_CLASSIFICATION_ANALYSIS_R4.md`.
+- **Source Class E = `PARTIALLY RESOLVED`.** Nearly every G01-relevant requirement is now traced to an exact Boss-authored GitHub ruling/section. See `COA_G01_BOSS_THAI_COA_REQUIREMENTS_REGISTER_R4.md`.
+- **B14 presentation** formally recorded per directive §4.7: B14 not extended (unmodified); dedicated check covers all 3 current documents; that check passed CORR3's independent review; non-extension is an intentional, registered method decision. See `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` CORR4 section.
+
+### 19.2 What remained blocked, and was reported as such rather than fabricated
+
+**N-04 / Source Class F = `OPEN`, reclassified `ACCESS_DENIED`.** Boss provided a specific Drive file ID for the Thai financial-statement example (`งบการเงิน 2567.pdf`); both `get_file_metadata` and `read_file_content` returned `Requested entity was not found` on the connected account — the same account that successfully recovered the workbook. Not classified as nonexistent; no redacted structure, hash, or DBD reconciliation is fabricated in its absence. See `COA_G01_THAI_FINANCIAL_STATEMENT_PRESENTATION_SOURCE_R4.md`.
+
+An initial keyword-search attempt to locate both Drive files (6 distinct search strategies) also failed for the workbook — a false negative caused by cross-account sharing that direct-ID access resolved. This is recorded for completeness: search failure is not proof of nonexistence, exactly as it turned out for the workbook and exactly as directive guidance anticipated.
+
+### 19.3 Working-copy isolation (unplanned, reported)
+
+The local clone normally used for this session's earlier CORR1–CORR3 work was found, at CORR4 start, to have moved to a different git branch entirely (`ibpv/group-a-sip-formal-verification-006`) — actively in use by a concurrent, unrelated Team B "Group A" session on the same machine. This session continued using its previously-established isolated clone (`AI-Collaboration-Hub-CORR3/`) rather than disturbing that branch checkout, consistent with directive §3.4 ("if the normal clone contains unrelated unpushed work, do not reset, merge, stage or push it — use a fresh isolated clone").
+
+### 19.4 Remaining substantive COA-G01 blockers after CORR4
+
+- **N-04 / Class F** — `ACCESS_DENIED`, not recoverable this pass.
+- **N-05** — `STEP0303R2` cause remains genuinely `UNKNOWN`.
+- **C-03** — S1 status conflict: visibility resolved (both documents now ported), substantive open/closed question unchanged (route (b) still not executed) — correctly out of CORR4 scope.
+- **SI-10 execution-scope proof** — remains COA-G04S/G06 work; only classification scope is closed.
+- Base Kernel count, final canonical COA count — still `TBD / EVIDENCE REQUIRED`, untouched (directive explicitly prohibits freezing these).
+
+### 19.5 Terminal status
+
+Per directive §6, this session evaluates whether every G01 exit criterion is evidenced. **It is not** — N-04/Class F remains genuinely blocked and N-05's cause remains genuinely unknown; both are real, named, unresolved gaps, not housekeeping.
+
+**`COA-G01 = HOLD / EVIDENCE REQUIRED`** (not `PROPOSED PASS` — directive §6 reserves that status for when every exit criterion is evidenced, which is not the case here). **`COA-G02 = NOT STARTED / NOT AUTHORIZED`.** No ChatGPT Audit PASS, PMO verification, or Boss approval is claimed. No Base Kernel discovery, schema/API design, coding, build, deployment, or release occurred. This session stops and requests the next ChatGPT independent re-audit.

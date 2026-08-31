@@ -1,0 +1,12 @@
+action_id,action,scope_status,change_request_flag,impact,evidence_link,owner,due_date,boss_decision_required,note
+PMO-R3-01,Supply approved .docx template,BOSS_DECISION_REQUIRED,NO,Gate,STEP0303R2;STEP0303R3,Boss,UNKNOWN,YES,"5 docx outstanding across two steps; python-docx available, generation immediate once supplied"
+PMO-R3-02,Authorise S1 route (b) reference-system observation,BOSS_DECISION_REQUIRED,NO,Gate;Timeline;Cost,STEP040304R3C,Boss,UNKNOWN,YES,Only remaining route to close S1
+PMO-R3-03,Confirm gap-free statutory sequence with RD,BOSS_DECISION_REQUIRED,NO,Gate;Timeline,STEP0303R1 §2.10,Boss,UNKNOWN,YES,External statutory confirmation
+PMO-R3-04,Correct duplicate database artefact,IN_SCOPE,NO,Gate,STEP040304R3A,Boss,UNKNOWN,YES,Evidence-integrity defect
+PMO-R3-05,Rule generic WHT engine inclusion,BOSS_DECISION_REQUIRED,NO,Scope,STEP040302,Boss,UNKNOWN,YES,Carried
+PMO-R3-06,Rule 8 residual localization modules,BOSS_DECISION_REQUIRED,NO,Scope,STEP040302R2A,Boss,UNKNOWN,YES,Carried
+PMO-R3-07,Rule payroll WHT (PND1) scope,BOSS_DECISION_REQUIRED,NO,Scope,STEP040304R3B,Boss,UNKNOWN,YES,Carried
+PMO-R3-08,Rule rendering engine selection,BOSS_DECISION_REQUIRED,NO,Gate,STEP0303 §2.5,Boss,UNKNOWN,YES,Requirement evidenced; engine not
+PMO-R3-09,Rule language/API/version specifics,BOSS_DECISION_REQUIRED,NO,Team;Timeline,STEP0303 §2.7,Boss,UNKNOWN,YES,"TypeScript et al were [J], unruled"
+PMO-R3-10,Reconcile infrastructure direction vs deferred hosting,IN_SCOPE,NO,Gate,STEP0303R2 R4;STEP0303R3 R7,Archimedes,UNKNOWN,NO,R7 sets Proxmox/ReadyIDC as direction; R4 deferral still holds for cloud vendor and frontend
+PMO-R3-11,Frontend / cloud vendor future gate,CHANGE_REQUEST,YES,Timeline;Cost;Team,STEP0303R2 R4,Boss,UNKNOWN,YES,Will require its own gate

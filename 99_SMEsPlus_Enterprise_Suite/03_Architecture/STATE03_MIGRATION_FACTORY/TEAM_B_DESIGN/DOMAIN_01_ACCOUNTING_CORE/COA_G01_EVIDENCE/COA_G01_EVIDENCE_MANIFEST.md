@@ -146,3 +146,25 @@ Recomputed directly from the CORR3 working tree, 2026-08-31, **after** this mani
 ## Verification instrument
 
 `COA_G01_SHA256SUMS.txt` (this folder) contains SHA-256 checksums of every file in the operational set above (Round 1 + Round 2 + CORR1 + CORR2 + CORR3), recomputed after all CORR3 content was finalized and immediately before the local commit. Reproducible verification command recorded in that file's header.
+
+## CORR4 ADDITIONS (Boss directive `COA-G01R2-CORR4`, 2026-08-31)
+
+### New files
+
+`COA_G01_PRIMARY_SOURCE_RECOVERY_REGISTER_R4.md`, `COA_G01_BOSS_THAI_COA_REQUIREMENTS_REGISTER_R4.md`, `COA_G01_LOCAL_STATE03_SOURCE_PORT_MANIFEST_R4.md`, `COA_G01_STEP0303R2_CONTRADICTION_RECONCILIATION_R4.md`, `COA_G01_SI10_CLASSIFICATION_ANALYSIS_R4.md`, `COA_G01_THAI_FINANCIAL_STATEMENT_PRESENTATION_SOURCE_R4.md` (blocker-record stub), `COA_G01_CORR4_POST_PUBLICATION_CLOSURE.md`, `SESSION_CLOSURE_R4.md`.
+
+### New directory — 63 ported local source files
+
+`COA_G01_SOURCE_PORT/STATE03_LOCAL/` — full byte-for-byte port of `STEP040304R5_STATE03_FREEZE_EVIDENCE_PACK` (S1–S11), `STEP0303_TOOLCHAIN_MATRIX` (T1–T9), `STEP0303R2`–`R5`, `STATE03_DETAILED_FOLLOWUP`, and `STEP040304R2_STATE03_EVIDENCE_PACK`. Security-scanned clean (zero credentials/PII), independently re-hashed with zero mismatches. See `COA_G01_LOCAL_STATE03_SOURCE_PORT_MANIFEST_R4.md` for the full per-file table.
+
+### GitHub document updated (outside this folder)
+
+`TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/` documents were **not** modified this pass (SI-10 classification cites them, does not edit them). `BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AL_COA_CLOSURE_EVIDENCE_INDEX.md` was updated: SI-10 corrected to PASS, Class E/F CORR4 status, file counts, conflicts/unknowns summary.
+
+### Files updated in place (CORR4)
+
+`COA_G01_SOURCE_BASELINE_REGISTER.md` (Classes A/D/E/F), `COA_G01_SOURCE_CONFLICT_REGISTER.md` (C-01, C-02, C-03), `COA_G01_OPEN_UNKNOWN_REGISTER.md` (N-01, N-02, N-04, N-05), `COA_G01_THAI_RELEVANCE_REGISTER.md`, `COA_G01_ACCOUNT_CONCEPT_UNIVERSE.md`, `COA_G01_SAAS_INVARIANT_COMPLIANCE.md` (SI-10 PASS), `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` (no change needed — B14 CORR4 section already covers §4.7), `COA_G01_GATE_REPORT.md` (§19 CORR4 section appended), this manifest.
+
+### Operational SHA-256 set — expanded this pass
+
+The rebuilt `COA_G01_SHA256SUMS.txt` now covers: **95 local files** (32 top-level Markdown deliverables + all 63 files in `COA_G01_SOURCE_PORT/STATE03_LOCAL/`) + 1 external `AQ` ruling + 3 external `COA_STANDARD` documents = **99 total operational entries**. Physically, `COA_G01_EVIDENCE/` now contains **96 files** (95 above + the checksum file itself). All counts recomputed mechanically from the working tree — not copied from any prior count — and independently re-verified: 99/99 `OK`, zero missing, zero unexpected, zero duplicate paths.

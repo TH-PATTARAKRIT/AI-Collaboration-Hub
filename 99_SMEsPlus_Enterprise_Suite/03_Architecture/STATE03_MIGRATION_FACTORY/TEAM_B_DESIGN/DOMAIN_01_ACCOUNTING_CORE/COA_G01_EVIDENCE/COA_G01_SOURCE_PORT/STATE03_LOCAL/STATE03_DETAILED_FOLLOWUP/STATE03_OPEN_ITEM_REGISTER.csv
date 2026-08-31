@@ -1,0 +1,9 @@
+Open Item ID,Item,SCOPE_STATUS,Status,Owner,Next Action,Evidence
+OI-001,S1 Thai statutory report specification,BOSS_DECISION_REQUIRED,OPEN,Boss,Authorize/defer route (b); route (a) remains valid and route (c) struck,R6 declaration
+OI-002,STEP0303R2 Boss Toolchain Ruling & Selection Gate,BOSS_DECISION_REQUIRED,OPEN,Boss,Rule on [E]/[J] toolchain rows; nothing selected until decision,STEP0303/R1 Boss Review
+OI-003,Duplicate DB closure artefact L6,IN_SCOPE,OPEN,PMO / Evidence Controller,Correct 14-presented/13-distinct artefact defect without changing frozen findings,R6 declaration
+OI-004,Generic WHT engine dependency ruling,BOSS_DECISION_REQUIRED,OPEN,Boss / Architecture,Decide l10n_account_withholding_tax dependency status,R6 declaration
+OI-005,8 residual localization modules,BOSS_DECISION_REQUIRED,OPEN,Boss / Architecture,Direct disposition,R6 declaration
+OI-006,PND1 payroll WHT scope,BOSS_DECISION_REQUIRED,OPEN,Boss / Functional Architecture,Decide scope from existing schema evidence,R6 declaration
+OI-007,Latest evidence GitHub synchronization,IN_SCOPE,OPEN,PMO / Evidence Controller,Prepare controlled archive/sync action; no merge authorized,Current reconciliation
+OI-008,Approved DOCX template,IN_SCOPE,BLOCKED,PMO / Document Control,Supply/approve DOCX template before DOCX deliverables,Template catalogue review

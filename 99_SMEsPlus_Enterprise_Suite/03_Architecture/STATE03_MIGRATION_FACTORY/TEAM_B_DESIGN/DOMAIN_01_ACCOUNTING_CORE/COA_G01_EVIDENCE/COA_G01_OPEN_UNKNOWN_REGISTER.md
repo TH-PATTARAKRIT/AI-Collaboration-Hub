@@ -4,7 +4,7 @@
 |---|---|---|---|---|---|---|
 | Consolidate every open unknown/evidence gap relevant to COA-G01 from all reconciled sources | Claude (session SMEPLUS-26-08-30-COA-G01R-001) | GitHub `SMEsPlus` branch; local `ACCOUNT` folder | 2026-08-30 22:27 +0700 (historical — see CORR3 current-state line below) | ChatGPT Independent Review (pending); Boss (pending) | HOLD / EVIDENCE REQUIRED (historical, Round 1 snapshot) | None of these items are closed by this session *(historical, Round 1 statement — no longer current, see below)*; closing any of them requires new evidence, not reclassification |
 
-**CORR3 current-state correction (2026-08-31, finding `AUD2-03`):** the header row above is preserved as the accurate Round 1 (2026-08-30) snapshot — it is **not** current. As of CORR2 (2026-08-31, commit `a4cebfc`), **N-03 is `RESOLVED`**; **N-01, N-02, N-04, N-05 remain `OPEN`** — current open N-series count = **4**, not 5. This mechanical recount does not reopen or reclassify N-03; it corrects only the top-of-document summary that had not been updated to match the detailed CORR2 section further down this file.
+**CORR3 current-state correction (2026-08-31, finding `AUD2-03`):** the header row above is preserved as the accurate Round 1 (2026-08-30) snapshot — it is **not** current. As of CORR2 (2026-08-31, commit `a4cebfc`), **N-03 is `RESOLVED`**; **N-01, N-02, N-04, N-05 remain `OPEN`** — open N-series count was **4** at CORR3. **Superseded by CORR4 (see the CORR4 section below): N-01 and N-02 are now also `RESOLVED`; current open N-series count = 2 (N-04, N-05).**
 
 Rule enforced throughout: **Do not convert UNKNOWN into FACT.**
 
@@ -56,6 +56,15 @@ All five reconfirmed **OPEN** at the close of Round 2 — none closed by Round 2
 ## CORR2 status of N-03 (2026-08-31)
 
 **RESOLVED.** The "grew from 3 to 4" description above is stale: the 4th document (`c530138`) was deleted by the repository owner's commit `58ab36d`, confirmed independently — current `COA_STANDARD/` count is 3 (see `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-07, `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` CORR2 section). N-03's actual question — "should B14 be extended, or should a new, separate clean-room check artifact be created" — is answered by this session's own conduct: **option (b)** was taken. `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` is that dedicated artifact, now providing document-level coverage for all 3 current documents. B14 itself was explicitly not modified. This resolves the *decision* (which path); it does not claim B14-level completeness or independent verification — those remain open per `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` CORR2 part 6. N-01, N-02, N-04, N-05 remain **OPEN**, unchanged by CORR2.
+
+## CORR4 status of N-01, N-02, N-04, N-05 (2026-08-31)
+
+- **N-01 = `RESOLVED`.** The Boss-approved `Odoo18` workbook file was recovered by direct Google Drive file ID, downloaded, independently SHA-256 hashed (exact match), and its content independently parsed and cross-checked row-by-row against the existing GitHub extraction — zero discrepancies. See `COA_G01_PRIMARY_SOURCE_RECOVERY_REGISTER_R4.md` §1. The raw binary itself is intentionally not committed to GitHub, per Boss's own N-01 disposition (access-controlled Drive only) — this is not a residual gap, it is the ruled disposition.
+- **N-02 = `RESOLVED`.** All 63 files across S1–S11, T1–T9, and `STEP0303R2`–`R5` (plus their two parent evidence packs) were security-scanned, ported byte-for-byte, and independently re-hashed with zero mismatches. See `COA_G01_LOCAL_STATE03_SOURCE_PORT_MANIFEST_R4.md`.
+- **N-04 = `OPEN`, reclassified `ACCESS_DENIED`.** Boss provided a specific Drive file ID for the Thai financial-statement example; both `get_file_metadata` and `read_file_content` returned "not found" on the connected account. Not classified as nonexistent; no substitute evidence fabricated. See `COA_G01_THAI_FINANCIAL_STATEMENT_PRESENTATION_SOURCE_R4.md`.
+- **N-05 = `OPEN`.** The `STEP0303R2` chronology is now fully reconstructed from primary timestamps (see `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-02, `COA_G01_STEP0303R2_CONTRADICTION_RECONCILIATION_R4.md`) — existence is settled, but **the cause of the original search miss remains genuinely `UNKNOWN`** and is not converted to fact.
+
+**Current open N-series count = 2 (N-04, N-05).** N-01, N-02, N-03 are `RESOLVED`.
 
 ## Items explicitly NOT re-opened by this session
 

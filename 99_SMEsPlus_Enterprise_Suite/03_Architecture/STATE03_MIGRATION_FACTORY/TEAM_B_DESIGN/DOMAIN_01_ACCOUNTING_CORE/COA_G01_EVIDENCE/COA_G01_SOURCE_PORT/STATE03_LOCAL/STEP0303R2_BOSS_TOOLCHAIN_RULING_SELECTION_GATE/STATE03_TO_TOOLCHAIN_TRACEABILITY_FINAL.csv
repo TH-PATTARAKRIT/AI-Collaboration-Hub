@@ -1,0 +1,12 @@
+frozen_finding,finding_summary,toolchain_coverage,decision_state,linked_items,covered_in_approved_baseline
+S2,"WHT recognised at payment, not invoice","§2.1 Persistence — decimal money, transactional posting",BOSS_DECISION_REQUIRED,OPEN-01,NO
+S3,Thai party identity exceeds generic partner model,§2.12 i18n Thai/English pair; annex T7 tax branch + title,"BOSS_APPROVED (i18n part, R1+R3)",TC-12,PARTIAL
+S4,Statutory reference data must be versioned data,§2.1 effective-dated rows,BOSS_DECISION_REQUIRED,OPEN-01,NO
+S5,Tenancy = tenant -> legal entity -> tax branch,§2.1 RLS; §2.8 tenant resolution; §2.9 job scoping,"PARTIAL — §2.8/§2.9 approved, §2.1 unruled",TC-08;TC-09;OPEN-01,PARTIAL
+S6,Payment gateway independent of storefront,§2.6 Integration boundaries,BOSS_DECISION_REQUIRED,OPEN-01,NO
+S7,Tenant-administrable data-driven RBAC,§2.2 Policy-as-data; §2.8 tenant resolution ordering,"PARTIAL — §2.8 approved, §2.2 unruled",TC-08;OPEN-01,PARTIAL
+S8,One request/approval abstraction,§2.3 Workflow service,BOSS_DECISION_REQUIRED,OPEN-01,NO
+S9,Journal entry is the extension hotspot,§2.1 typed core + JSONB extension,BOSS_DECISION_REQUIRED,OPEN-01,NO
+S10,Audit trail as platform service,§2.4 Audit/eventing; §2.15 observability,"PARTIAL — §2.15 approved, §2.4 unruled",TC-15;OPEN-01,PARTIAL
+S11,Print layout is configuration data,§2.5 Rendering; annex T3 Thai text shaping,BOSS_DECISION_REQUIRED,OPEN-01,NO
+S1,Thai statutory reporting NOT source-observable,No toolchain row selectable until specification exists,OPEN_ITEM,OPEN-03,NO

@@ -11,21 +11,27 @@ None of the conflicts below have been resolved by this session. Resolution requi
 The GitHub `SMEsPlus` branch's `BOSS_GATE`, `TEAM_A`, and `TEAM_B_DESIGN` evidence makes no mention of the local `STATE03` architecture findings (S1–S11), the Thai localization toolchain findings (T1–T9), or the `STEP0303R2` through `STEP0303R5` Boss toolchain rulings — all of which exist, dated and evidenced, in the local `SMEsPlus ENTERPRISE SUITE/ACCOUNT` working folder outside this repository. Per session control, "GitHub is the project Source of Record," yet substantive frozen evidence currently exists **only** locally and has never been committed.
 
 - Impact: Findings directly relevant to SI-01/SI-02 (S5: Tenant → Company → Tax Branch model) and SI-10 (S1/S4: Thai statutory logic must live in versioned data/localization layer, not hard-coded core) are not visible to anyone reviewing only the GitHub record.
-- Status: **HOLD / EVIDENCE REQUIRED.** This register does not port the local findings into GitHub beyond citing them (see `COA_G01_THAI_RELEVANCE_REGISTER.md` and the AQ ruling, §4) — a full port/reconciliation is a distinct remediation task requiring Boss authorization on how much local material becomes committed evidence.
+- Status (Round 1–CORR3): **HOLD / EVIDENCE REQUIRED.**
+
+**CORR4 update (2026-08-31): `RESOLVED`.** Per Boss directive `COA-G01R2-CORR4` §4.3 ("source-preserving safe port plus manifest"), all 63 files across `STEP040304R5_STATE03_FREEZE_EVIDENCE_PACK` (S1–S11), `STEP0303_TOOLCHAIN_MATRIX` (T1–T9), `STEP0303R2`–`R5`, `STATE03_DETAILED_FOLLOWUP`, and `STEP040304R2_STATE03_EVIDENCE_PACK` were security-scanned (zero credentials/PII found), copied byte-for-byte into `COA_G01_SOURCE_PORT/STATE03_LOCAL/`, and independently re-hashed with zero mismatches. Full detail: `COA_G01_LOCAL_STATE03_SOURCE_PORT_MANIFEST_R4.md`. S1/S4/S5 (the findings this conflict specifically named as SI-01/SI-02/SI-10-relevant) are now primary-sourced in `COA_G01_SI10_CLASSIFICATION_ANALYSIS_R4.md`.
 
 ## C-02 — `STEP0303R2` existence is self-contradicted in local records
 
 Local file `STATE03_DETAILED_FOLLOWUP/STATE03_BOSS_REVIEW_SUMMARY.md` and three sibling registers state: *"No STEP0303R2 execution artifact was found locally or in the current GitHub evidence search."* However, a fully populated local folder `01 ACCOUNT/STEP0303R2_BOSS_TOOLCHAIN_RULING_SELECTION_GATE/` exists with 11 files, including a recorded Boss ruling (`BOSS_TOOLCHAIN_RULING_RECORD.md`, dated 2026-08-24) — and its filesystem timestamps (22:23–22:25) **predate** the follow-up registers that claim it is missing (22:29–22:40, same day).
 
-- Status: **CONFLICTING EVIDENCE — unresolved anomaly.** This session does not adjudicate why the follow-up registers missed an artifact that already existed in the same parent directory. Flagged for Boss/PMO review; not silently resolved in either direction.
+- Status (Round 1–CORR3): **CONFLICTING EVIDENCE — unresolved anomaly.**
+
+**CORR4 update (2026-08-31): `RESOLVED` for current-existence; cause remains `UNKNOWN`.** Both the folder and the three "not found" claims were independently re-verified against primary local timestamps (not re-asserted from a prior report): the folder was complete at 22:25:13; the three claims were written 22:29:34, 22:37:56, and 22:39:06 — 4 to 14 minutes *after* the folder was already complete. The folder's existence is no longer in question — it is the controlling evidence, now ported and hashed. **The cause of why the "not found" search missed it is explicitly retained as `UNKNOWN`** (N-05) — not converted to fact. Full chronology: `COA_G01_STEP0303R2_CONTRADICTION_RECONCILIATION_R4.md`.
 
 ## C-03 — S1 (Thai statutory report specification) status conflict
 
 `STATE03_DETAILED_FOLLOWUP` (dated 2026-08-24) records S1 as `BOSS_DECISION_REQUIRED` / open. A later local artifact, `STEP0303R5_PLANNING_BASELINE_CLOSURE/STEP0303R5_FINAL_STATUS.md` (dated 2026-08-24, but part of a sequence continuing through 2026-08-28), records: *"S1 = CLOSED — BOSS AUTHORIZED PLANNING BASELINE... Approved route: ROUTE (b) — black-box observation... Scope: PLANNING BASELINE AUTHORISATION ONLY."*
 
-- Both are local-only (see C-01) and neither has been committed to GitHub.
+- Both were local-only (see C-01) and had not been committed to GitHub.
 - Even under the later "closed" status, route (b) (black-box observation) is authorized only at the planning level and has **not been executed** — the one database dump checked (`iTEST02`) contained 6 journal entries and zero withholding-tax certificates, insufficient to serve as real financial-statement evidence.
 - Status: **HOLD / EVIDENCE REQUIRED.** Treat S1 as "planning-baseline authorized, evidence not yet produced" rather than either "open" or "resolved" — neither local label alone is accurate for a Gate-level record.
+
+**CORR4 update (2026-08-31):** both documents (`STATE03_DETAILED_FOLLOWUP/`, `STEP0303R5_PLANNING_BASELINE_CLOSURE/`) are now ported and GitHub-inspectable — see `COA_G01_LOCAL_STATE03_SOURCE_PORT_MANIFEST_R4.md`. This resolves the *visibility* half of C-03 (both statements are now on the record). The *substantive* conflict — whether S1 is open or closed — is unchanged: route (b) remains un-executed, and this is not CORR4 scope (directive §9 explicitly prohibits inferring or recreating missing Thai statement evidence). Status remains **HOLD / EVIDENCE REQUIRED**.
 
 ## C-04 — Residual unknown count mismatch ("20" vs. actual register of 11) — **RESOLVED IN ROUND 2 (2026-08-31)**
 

@@ -1,0 +1,5 @@
+item_id,item,classification,boss_ruling,reason,matrix_ref,owner,due_date,boss_decision_required
+DEF-01,Frontend framework / stack,DEFERRED,R4,Not required to close the STATE03 backend/toolchain baseline,§2.16,Boss,UNKNOWN,NO
+DEF-02,Hosting topology and region,DEFERRED,R4,Not required to close the STATE03 backend/toolchain baseline,§2.17,Boss,UNKNOWN,NO
+DEF-03,Cloud vendor selection,DEFERRED,R4,"No vendor selected; commercial decision, explicitly prohibited in this step",§2.17,Boss,UNKNOWN,NO
+DEF-04,PDPA deep research,DEFERRED,R2,Boss ruled guardrail-only; PDPA is NOT a blocker and no deep research is to be opened,§2.13,Boss,UNKNOWN,NO

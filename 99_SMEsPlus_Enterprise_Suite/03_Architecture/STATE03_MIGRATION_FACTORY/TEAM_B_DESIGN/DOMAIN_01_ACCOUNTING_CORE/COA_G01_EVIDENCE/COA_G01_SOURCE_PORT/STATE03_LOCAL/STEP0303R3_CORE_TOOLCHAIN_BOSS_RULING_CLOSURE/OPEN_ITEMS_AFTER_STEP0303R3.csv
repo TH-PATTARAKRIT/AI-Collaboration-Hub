@@ -1,0 +1,11 @@
+item_id,item,classification,scope_status,change_request_flag,impact,reason,evidence_link,owner,due_date,boss_decision_required
+OPEN-R3-01,S1 Thai statutory reporting open dependency,OPEN_ITEM,IN_SCOPE,NO,Gate;Timeline,Explicitly not closed by this step; route (b) still unauthorised,STEP040304R6,Boss,UNKNOWN,YES
+OPEN-R3-02,Gap-free statutory sequence requirement,OPEN_ITEM,BOSS_DECISION_REQUIRED,NO,Gate;Timeline,Requires external RD/legal confirmation; not assumed,STEP0303R1 §2.10,Boss,UNKNOWN,YES
+OPEN-R3-03,Duplicate database artefact correction,OPEN_ITEM,IN_SCOPE,NO,Gate,"V2.0 closure pack: 14 files, 13 distinct artefacts",STEP040304R3A,Boss,UNKNOWN,YES
+OPEN-R3-04,Generic WHT engine ruling,OPEN_ITEM,BOSS_DECISION_REQUIRED,NO,Scope,Carried since STEP040302 R4,STEP040302,Boss,UNKNOWN,YES
+OPEN-R3-05,8 residual non-TH localization modules,OPEN_ITEM,BOSS_DECISION_REQUIRED,NO,Scope,Outside the l10n_* prefix rule,STEP040302R2A,Boss,UNKNOWN,YES
+OPEN-R3-06,Payroll WHT (PND1) scope,OPEN_ITEM,BOSS_DECISION_REQUIRED,NO,Scope,Decidable on schema evidence alone,STEP040304R3B,Boss,UNKNOWN,YES
+OPEN-R3-07,Approved .docx template,OPEN_ITEM,BOSS_DECISION_REQUIRED,NO,Gate,TEMPLATE_NOT_FOUND at both R2 and R3; 5 docx now outstanding,STEP0303R2;STEP0303R3,Boss,UNKNOWN,YES
+OPEN-R3-08,Frontend stack / cloud vendor,DEFERRED,CHANGE_REQUEST,NO,Timeline;Cost;Team,"Deferred at STEP0303R2 R4; R7 sets infrastructure direction only (Proxmox/ReadyIDC), not cloud vendor or frontend",STEP0303R2 R4;STEP0303R3 R7,Boss,UNKNOWN,YES
+OPEN-R3-09,Rendering engine selection,OPEN_ITEM,BOSS_DECISION_REQUIRED,NO,Gate,"R5 permits selection only where evidence already supports it; evidence supports the requirement, not a named engine",STEP0303 §2.5;Annex T3,Boss,UNKNOWN,YES
+OPEN-R3-10,"Language/runtime specifics beyond 'Node.js' (e.g. TypeScript), API style, framework versions",OPEN_ITEM,BOSS_DECISION_REQUIRED,NO,Team;Timeline,§10 prohibits selecting versions unless evidenced; TypeScript was [J] and was not ruled,STEP0303 §2.7,Boss,UNKNOWN,YES

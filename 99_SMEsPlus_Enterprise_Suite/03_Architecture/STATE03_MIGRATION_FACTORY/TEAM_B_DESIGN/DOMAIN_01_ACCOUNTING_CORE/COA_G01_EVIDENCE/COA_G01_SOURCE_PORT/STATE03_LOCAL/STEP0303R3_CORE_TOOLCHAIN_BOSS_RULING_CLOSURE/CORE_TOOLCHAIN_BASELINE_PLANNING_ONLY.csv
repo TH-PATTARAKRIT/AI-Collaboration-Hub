@@ -1,0 +1,31 @@
+item_id,matrix_ref,planning_baseline_item,classification,evidence_or_basis,boss_ruling,development_status
+CT-01,§2.1,Backend core = Node.js SaaS,BOSS_APPROVED_PLANNING_BASELINE,"Project identity, Boss-declared",R1,NO_DEVELOPMENT_AUTHORIZED
+CT-02,§2.1,"Relational, transactional datastore direction (PostgreSQL-class) — direction only, no vendor lock, no version, no schema",EVIDENCE_CONFIRMED,"Reference evidence base: 1,395 tables, 6,682 constraints, 5,141 FK edges; S2/S9 require transactional exactness",R1,NO_DEVELOPMENT_AUTHORIZED
+CT-03,§2.1,"Money represented as exact decimal, never floating point",EVIDENCE_CONFIRMED,WHT computed as rate*base/100; float money in a statutory filing is a defect,R1,NO_DEVELOPMENT_AUTHORIZED
+CT-04,§2.1,"Statutory reference data effective-dated, not updated in place",EVIDENCE_CONFIRMED,S4 - rates change by decree; a filing must reproduce rates in force on its date,R1,NO_DEVELOPMENT_AUTHORIZED
+CT-05,§2.2,"Tenant-administered, data-driven RBAC evaluated at runtime",EVIDENCE_CONFIRMED,S7; reference built dynamic.access.right because static groups were insufficient,R2,NO_DEVELOPMENT_AUTHORIZED
+CT-06,§2.2,Authorisation scoped tenant -> legal entity -> tax branch,EVIDENCE_CONFIRMED,S5 - Thai filings are produced per tax branch,R2,NO_DEVELOPMENT_AUTHORIZED
+CT-07,§2.2,Auditability and least privilege are baseline properties,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R2,R2,NO_DEVELOPMENT_AUTHORIZED
+CT-08,§2.3,One request/approval abstraction,EVIDENCE_CONFIRMED,S8 - identical _STATES duplicated across two request modules,R3,NO_DEVELOPMENT_AUTHORIZED
+CT-09,§2.3,Responsibility split: Approval Engine approves only; Source Module executes; Posting Engine posts,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R3 - refines S8/S9,R3,NO_DEVELOPMENT_AUTHORIZED
+CT-10,§2.3,Events are immutable facts,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R3; consistent with S10,R3,NO_DEVELOPMENT_AUTHORIZED
+CT-11,§2.4,"Audit trail is a platform service, not per-feature code",EVIDENCE_CONFIRMED,S10 - tracking on request states; certificate inherits mail thread/activity,R4,NO_DEVELOPMENT_AUTHORIZED
+CT-12,§2.4,Events immutable; evidence must support Gate review,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R4,R4,NO_DEVELOPMENT_AUTHORIZED
+CT-13,§2.5,"Print layout is configuration data, not code",EVIDENCE_CONFIRMED,S11 - cheque.setting carries 76 layout fields,R5,NO_DEVELOPMENT_AUTHORIZED
+CT-14,§2.5,"Rendering must satisfy Thai text shaping and line-breaking (no inter-word spaces, stacked marks)",EVIDENCE_CONFIRMED,Annex T3; cheque and WHT certificate forms,R5,NO_DEVELOPMENT_AUTHORIZED
+CT-15,§2.5,Specific rendering engine NOT selected,JUDGMENT_RECOMMENDED,"R5 permits selection only if evidence already supports it; evidence supports the REQUIREMENT, not a named engine",R5,NO_DEVELOPMENT_AUTHORIZED
+CT-16,§2.5,XLSX is a first-class statutory output format,EVIDENCE_CONFIRMED,Thai WHT report module declares xlsxwriter/xlrd and ships an XLSX report,R5,NO_DEVELOPMENT_AUTHORIZED
+CT-17,§2.6,Integration via adapters; must support Make / API / external automation pathway,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R6,R6,NO_DEVELOPMENT_AUTHORIZED
+CT-18,§2.6,No vendor-specific integration lock-in,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R6,R6,NO_DEVELOPMENT_AUTHORIZED
+CT-19,§2.6,"Payment gateway is a backend service, independent of any storefront",EVIDENCE_CONFIRMED,S6 - payment_2c2p depended on website_sale in the reference; coupling not inherited,R6,NO_DEVELOPMENT_AUTHORIZED
+CT-20,§2.7,GitHub = source code / PR / evidence,BOSS_APPROVED_PLANNING_BASELINE,"Boss ruling R7 - organisational direction, no project evidence basis",R7,NO_DEVELOPMENT_AUTHORIZED
+CT-21,§2.7,Jira = task execution control,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R7,R7,NO_DEVELOPMENT_AUTHORIZED
+CT-22,§2.7,Claude Code = coding agent / executor,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R7,R7,NO_DEVELOPMENT_AUTHORIZED
+CT-23,§2.7,ChatGPT / Archimedes = architect / governance / review controller,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R7,R7,NO_DEVELOPMENT_AUTHORIZED
+CT-24,§2.7,Codex = code quality audit / technical review,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R7,R7,NO_DEVELOPMENT_AUTHORIZED
+CT-25,§2.7,Playwright = primary automated testing; Selenium = fallback only,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R7,R7,NO_DEVELOPMENT_AUTHORIZED
+CT-26,§2.7,Figma = UX/UI authority,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R7,R7,NO_DEVELOPMENT_AUTHORIZED
+CT-27,§2.7,Google Drive + GitHub = document repository,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R7,R7,NO_DEVELOPMENT_AUTHORIZED
+CT-28,§2.7,Make = integration / automation,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R7,R7,NO_DEVELOPMENT_AUTHORIZED
+CT-29,§2.7,Proxmox / ReadyIDC = infrastructure direction until further freeze,BOSS_APPROVED_PLANNING_BASELINE,Boss ruling R7 - supersedes STEP0303R2 R4 DEFERRED for infrastructure only; cloud vendor still not selected,R7,NO_DEVELOPMENT_AUTHORIZED
+CT-30,§2.7,Statutory golden-file tests for every Thai report,EVIDENCE_CONFIRMED,S1/S4 - statutory output correctness cannot be asserted by unit tests alone,R7,NO_DEVELOPMENT_AUTHORIZED

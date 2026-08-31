@@ -1,0 +1,11 @@
+action_id,action,scope_status,change_request_flag,impact,evidence_link,owner,due_date,boss_decision_required,note
+PMO-01,Rule on STEP0303 §2.1–§2.7 core toolchain domains,BOSS_DECISION_REQUIRED,YES,Gate;Timeline;Team,STEP0303_BOSS_REVIEW.md,Boss,UNKNOWN,YES,Highest-consequence domains incl. persistence and authorisation remain unruled
+PMO-02,Authorise S1 route (b) reference-system observation,BOSS_DECISION_REQUIRED,NO,Gate;Timeline;Cost,STEP040304R3C,Boss,UNKNOWN,YES,Only remaining route to close S1
+PMO-03,Confirm gap-free statutory sequence requirement with RD,BOSS_DECISION_REQUIRED,NO,Gate;Timeline,§2.10,Boss,UNKNOWN,YES,External legal/statutory confirmation required
+PMO-04,Correct duplicate database artefact in V2.0 closure pack,IN_SCOPE,NO,Gate,STEP040304R3A,Boss,UNKNOWN,YES,"Evidence-integrity defect, uncorrected"
+PMO-05,Rule on generic WHT engine inclusion,BOSS_DECISION_REQUIRED,NO,Scope,STEP040302,Boss,UNKNOWN,YES,Carried since STEP040302
+PMO-06,Rule on 8 residual non-TH localization modules,BOSS_DECISION_REQUIRED,NO,Scope,STEP040302R2A,Boss,UNKNOWN,YES,Outside the l10n_* prefix rule
+PMO-07,Rule on payroll WHT (PND1) scope,BOSS_DECISION_REQUIRED,NO,Scope,STEP040304R3B,Boss,UNKNOWN,YES,Decidable on schema evidence alone
+PMO-08,Supply or approve project .docx template,BOSS_DECISION_REQUIRED,NO,Gate,STEP0303R2 §7,Boss,UNKNOWN,YES,3 docx deliverables blocked: TEMPLATE_NOT_FOUND
+PMO-09,Correct R1 count discrepancy (nine vs eight domains),IN_SCOPE,NO,Gate,STEP0303R1,Claude/Archimedes,UNKNOWN,YES,Error originated in STEP0303R1 wording
+PMO-10,Frontend / hosting / cloud vendor selection,CHANGE_REQUEST,YES,Timeline;Cost;Team,§2.16;§2.17,Boss,UNKNOWN,YES,Deferred by R4; will need a future gate

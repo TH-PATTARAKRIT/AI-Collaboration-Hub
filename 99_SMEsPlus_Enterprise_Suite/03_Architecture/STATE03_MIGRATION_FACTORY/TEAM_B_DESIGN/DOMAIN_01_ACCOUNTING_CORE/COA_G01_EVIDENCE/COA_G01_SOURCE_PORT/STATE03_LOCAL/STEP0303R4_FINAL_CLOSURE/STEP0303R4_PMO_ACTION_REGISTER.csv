@@ -1,0 +1,13 @@
+action_id,issue,status,change_request_flag,impact,evidence_link,owner,due_date,boss_decision_required,resolution
+PMO-R4-01,Approved DOCX template not found,BLOCKED,NO,Gate;Timeline,STEP0303R4_TEMPLATE_GATE_REPORT.md,Boss,UNKNOWN,YES,"Exhaustive scan: 0 .dotx/.dotm; 48/48 .docx opened, 0 self-identified templates; 0 in zips. 5 DOCX outstanding (R2:3, R3:2). Boss must supply or approve a template. | R5: no new template supplied since R4; BLOCKED maintained; 5 deliverables prepared as TEMPLATE-READY SOURCE CONTENT."
+PMO-R4-02,S1 route authorisation,CLOSED,NO,Gate;Timeline;Cost,STEP0303R4_S1_BOSS_DECISION_RECORD.md,Boss,UNKNOWN,NO,Boss AUTHORIZED route (b) on 2026-08-24 as PLANNING BASELINE ONLY. S1 recorded CLOSED - BOSS AUTHORIZED PLANNING BASELINE. Observation work NOT yet executed and NOT authorised as development.
+PMO-R4-03,Gap-free statutory sequence requirement (NOT S1),OPEN,NO,Gate;Timeline,STEP0303R1 §2.10,Boss,UNKNOWN,YES,Distinct item from S1; requires Thai Revenue Department confirmation. Prompt conflated it with S1 - see Template/QA reports.
+PMO-R4-04,Duplicate database artefact correction,OPEN,NO,Gate,STEP040304R3A,Boss,UNKNOWN,YES,"V2.0 closure pack: 14 files, 13 distinct artefacts"
+PMO-R4-05,Generic WHT engine ruling,OPEN,NO,Scope,STEP040302,Boss,UNKNOWN,YES,Carried since STEP040302 R4
+PMO-R4-06,8 residual non-TH localization modules,OPEN,NO,Scope,STEP040302R2A,Boss,UNKNOWN,YES,Outside l10n_* prefix rule
+PMO-R4-07,Payroll WHT (PND1) scope,OPEN,NO,Scope,STEP040304R3B,Boss,UNKNOWN,YES,Decidable on schema evidence alone
+PMO-R4-08,Rendering engine selection,OPEN,NO,Gate,STEP0303R3 CT-15,Boss,UNKNOWN,YES,"R5 permitted selection only if evidenced; requirement evidenced, engine not"
+PMO-R4-09,Language/API/version specifics,OPEN,NO,Team;Timeline,STEP0303 §2.7,Boss,UNKNOWN,YES,"TypeScript etc were [J], unruled"
+PMO-R4-10,Frontend stack / cloud vendor,DEFERRED,YES,Timeline;Cost;Team,STEP0303R2 R4,Boss,UNKNOWN,YES,Deferred; R7 set infrastructure direction only (Proxmox/ReadyIDC)
+PMO-R5-01,Execute S1 route (b) observation and produce Thai statutory report specification,OPEN,NO,Timeline;Cost;Team,STEP0303R5_BOSS_DECISION_RECORD.md,Boss,UNKNOWN,YES,"Route authorised at planning-baseline level; the observation work itself is a separate future authorisation. S1 closure is governance closure, not specification delivery."
+PMO-R5-02,Convert 5 template-ready source documents to DOCX,BLOCKED,NO,Gate,STEP0303R5_TEMPLATE_READY_DELIVERABLE_INDEX.md,Boss,UNKNOWN,YES,Content prepared and conversion-ready; blocked solely on the approved template.

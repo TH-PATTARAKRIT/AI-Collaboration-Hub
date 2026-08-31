@@ -1,0 +1,6 @@
+Gap ID,Scope,EVIDENCE_STATUS,Finding,SCOPE_STATUS,Gate Impact,Owner,Next Action
+GAP-001,STEP0303R2,MISSING,No STEP0303R2 execution artifact found locally or in current GitHub evidence search,BOSS_DECISION_REQUIRED,VETO_REQUIRED,Boss,Run decision-only selection gate after Boss review
+GAP-002,DOCX Template,TEMPLATE_NOT_FOUND,Official SMEsPlus template catalogue found but package is Markdown-only and HOLD/READY FOR REVIEW; no approved DOCX template verified,IN_SCOPE,VETO_REQUIRED,PMO / Document Control,Provide/approve DOCX template before requested DOCX files
+GAP-003,GitHub Evidence Synchronization,PARTIAL,STEP0303 and STEP040304R4/R5/R6 exist locally but exact later artifacts were not found in current GitHub search/index,IN_SCOPE,VETO_REQUIRED,PMO / Evidence Controller,Prepare controlled synchronization plan; no PR/merge authorized here
+GAP-004,Independent Review Historical Record,CONFLICTED,PR #53 says Independent Review complete while later PR #58 records PENDING,IN_SCOPE,HOLD,Audit-Veto,Retain discrepancy; STEP030210 Boss decision controls Gate B
+GAP-005,S1 Thai statutory report specification,MISSING,R6 records S1 OPEN on routes (a)+(b); route (b) not yet authorized,BOSS_DECISION_REQUIRED,HOLD,Boss / Architecture,Authorize/defer route (b); route (c) remains struck

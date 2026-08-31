@@ -1,0 +1,9 @@
+item_id,item,classification,decision_state,blocks_state04,reason,impact,evidence_link,owner,due_date,boss_decision_required
+OPEN-01,"Core toolchain domains §2.1–§2.7 (persistence, authorisation, workflow, audit, rendering, integration, dev toolchain)",BOSS_DECISION_REQUIRED,BOSS_DECISION_REQUIRED,YES,STEP0303 ruling sheet R1–R6 was never answered; these domains carry the highest-consequence decisions,Gate,STEP0303_BOSS_REVIEW.md,Boss,UNKNOWN,YES
+OPEN-02,Gap-free statutory sequence requirement,OPEN_ITEM,OPEN_PENDING_RD_CONFIRMATION,NO,Requires external Thai Revenue Department / legal confirmation; must not be assumed,Gate;Timeline,§2.10 STEP0303R1_MATRIX_COMPLETION.md,Boss,UNKNOWN,YES
+OPEN-03,S1 Thai statutory reporting open dependency,OPEN_ITEM,CARRY_FORWARD_OPEN_ITEMS,NO,Carried forward from STATE03 freeze without solving; route (b) not authorised,Gate;Timeline,STEP040304R6_DECLARATION_RECORD.md,Boss,UNKNOWN,YES
+OPEN-04,Duplicate database artefact correction,OPEN_ITEM,CARRY_FORWARD_OPEN_ITEMS,NO,"V2.0 closure pack presents 14 files, 13 distinct artefacts",Gate,STEP040304R3A_DB_EVIDENCE_INVENTORY,Boss,UNKNOWN,YES
+OPEN-05,Generic WHT engine ruling (l10n_account_withholding_tax),OPEN_ITEM,CARRY_FORWARD_OPEN_ITEMS,NO,Carried since STEP040302 R4,Scope,STEP040302 BOSS_REVIEW,Boss,UNKNOWN,YES
+OPEN-06,8 residual non-TH localization modules,OPEN_ITEM,CARRY_FORWARD_OPEN_ITEMS,NO,Do not match the l10n_* prefix rule; left in place deliberately,Scope,STEP040302R2A_EVIDENCE.md,Boss,UNKNOWN,YES
+OPEN-07,Payroll WHT scope (PND1 fund fields),OPEN_ITEM,CARRY_FORWARD_OPEN_ITEMS,NO,Decidable on schema evidence alone; dump columns empty,Scope,STEP040304R3B drift analysis,Boss,UNKNOWN,YES
+OPEN-08,R1 count discrepancy: ruling says nine added domains; matrix contains eight (§2.8–§2.15),OPEN_ITEM,BOSS_DECISION_REQUIRED,NO,"Numbering error originated in STEP0303R1 wording, quoted into the ruling; recorded as eight",Gate,§2.8-§2.15,Claude/Archimedes,UNKNOWN,YES

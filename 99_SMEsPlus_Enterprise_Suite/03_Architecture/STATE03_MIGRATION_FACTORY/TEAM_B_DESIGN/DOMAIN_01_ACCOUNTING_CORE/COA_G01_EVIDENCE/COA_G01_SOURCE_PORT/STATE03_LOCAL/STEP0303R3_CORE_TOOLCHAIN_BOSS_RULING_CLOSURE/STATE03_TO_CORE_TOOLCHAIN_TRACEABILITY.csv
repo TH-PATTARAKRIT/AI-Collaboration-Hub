@@ -1,0 +1,12 @@
+frozen_finding,finding_summary,matrix_ref,baseline_items,decision_state,covered_after_STEP0303R3
+S2,"WHT recognised at payment, not invoice",§2.1,CT-02;CT-03,BOSS_APPROVED_PLANNING_BASELINE,YES
+S3,Thai party identity exceeds generic partner model,§2.1 + TC-12 (R2 gate),CT-02,BOSS_APPROVED_PLANNING_BASELINE,YES
+S4,Statutory reference data must be versioned data,§2.1,CT-04,BOSS_APPROVED_PLANNING_BASELINE,YES
+S5,Tenancy = tenant -> legal entity -> tax branch,§2.2,CT-06,BOSS_APPROVED_PLANNING_BASELINE,YES
+S6,Payment gateway independent of storefront,§2.6,CT-19,BOSS_APPROVED_PLANNING_BASELINE,YES
+S7,Tenant-administrable data-driven RBAC,§2.2,CT-05;CT-07,BOSS_APPROVED_PLANNING_BASELINE,YES
+S8,One request/approval abstraction,§2.3,CT-08;CT-09,BOSS_APPROVED_PLANNING_BASELINE,YES
+S9,Journal entry is the extension hotspot,§2.1 + §2.3,CT-02;CT-09,BOSS_APPROVED_PLANNING_BASELINE,YES
+S10,Audit trail as platform service,§2.4,CT-11;CT-12,BOSS_APPROVED_PLANNING_BASELINE,YES
+S11,Print layout is configuration data,§2.5,CT-13;CT-14;CT-16,BOSS_APPROVED_PLANNING_BASELINE,YES
+S1,Thai statutory reporting NOT source-observable,none - no toolchain row selectable,OPEN-R3-01,OPEN_ITEM,NO - REMAINS OPEN

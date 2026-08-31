@@ -30,6 +30,17 @@ Everything below "What was checked" is preserved, unedited history (Round 1 → 
 
 **Net status:** genuine progress (document-level review now complete and covers all 3 current documents; the one open content gap is closed) but **not** a clean-room `PASS` — independent verification is pending and B14's own coverage gap persists by design choice, not oversight. Overall clean-room status for COA-G01 remains **HOLD / EVIDENCE REQUIRED**.
 
+## CORR4 (2026-08-31): B14 control presentation, per Boss directive `COA-G01R2-CORR4` §4.7
+
+The independent verification requested above has since occurred: ChatGPT's CORR3 re-audit (commit `f37a3076fff7a81bcb2e2e02fadcb0445f91fca8`) independently re-verified this document's CORR2/CORR3 content and passed it (`AUD3` acceptance matrix row "Current `COA_STANDARD` population" = `PASS`; see `CHATGPT_AUDIT/DOMAIN_01_ACCOUNTING_CORE_AF_COA_G01_CORR3_INDEPENDENT_REAUDIT.md`). Per directive §4.7, the following is now stated explicitly, without rewriting `B14_CLEAN_ROOM_PROVENANCE_MATRIX.md` itself (it was not touched, and is not touched by this CORR4 pass either):
+
+1. **B14 itself is not extended.** It remains exactly as authored, with its original 16 rows and zero citations of any `COA_STANDARD` document. This is a fact about the historical B14 artifact, not a claim this session makes false or true — it is simply unmodified.
+2. **All 3 current `COA_STANDARD` documents are covered by the dedicated check** — this document, part 3 of the CORR2 section above, provides document-level clean-room classification for all 3 (2 `VERIFIED CLEAN-ROOM BOUNDARY` outright, 1 closed to the same status in CORR2 by adding an explicit disclaimer to the source document itself).
+3. **The dedicated check passed the CORR3 independent integrity review** — see the CORR3 audit citation above; ChatGPT independently re-read this document and the 3 `COA_STANDARD` documents and did not find a residual clean-room defect.
+4. **B14 non-extension is an intentional method decision, not an unregistered gap.** `COA_G01_OPEN_UNKNOWN_REGISTER.md` item N-03 explicitly recorded this choice (option (b): build a separate dedicated artifact rather than extend B14) as `RESOLVED` in CORR2. It is not an oversight, and it is not silently un-decided — it is a registered, evidenced decision.
+
+This does not change the overall clean-room status: independent re-verification of the CORR4 changes elsewhere in this pass is still pending, so overall COA-G01 clean-room status remains **HOLD / EVIDENCE REQUIRED**, consistent with the Gate as a whole.
+
 ## What was checked
 
 `B14_CLEAN_ROOM_PROVENANCE_MATRIX.md` was read in full. It records:

@@ -1,0 +1,12 @@
+finding,summary,classification,covered,baseline_items,evidence_basis,evidence_link,state
+S1,Thai statutory reporting NOT source-observable,BOSS_APPROVED_PLANNING_BASELINE,YES,S1-ROUTE-B (observation route authorised; specification work not yet performed),"Boss authorisation 2026-08-24 of route (b) black-box observation; routes (a) available, (c) struck",STEP0303R5_BOSS_DECISION_RECORD.md,CLOSED_AS_PLANNING_BASELINE (route authorised; observation not yet executed)
+S2,WHT recognised at payment not invoice,BOSS_APPROVED_PLANNING_BASELINE,YES,CT-02;CT-03,wt_tax_id on move line AND payment; PND query filters payment_state,STEP0303R3 ruling R1,CLOSED_AS_PLANNING_BASELINE
+S3,Thai party identity exceeds generic partner model,BOSS_APPROVED_PLANNING_BASELINE,YES,CT-02;TC-12,l10n_th_partner branch/name_company; 503 jsonb i18n columns,STEP0303R2 R1/R3;STEP0303R3 R1,CLOSED_AS_PLANNING_BASELINE
+S4,Statutory reference data must be versioned,BOSS_APPROVED_PLANNING_BASELINE,YES,CT-04,Rates change by decree; filing must reproduce rates in force,STEP0303R3 ruling R1,CLOSED_AS_PLANNING_BASELINE
+S5,Tenancy = tenant -> legal entity -> tax branch,BOSS_APPROVED_PLANNING_BASELINE,YES,CT-06;TC-08;TC-09,Thai filings produced per tax branch; company scoping throughout,STEP0303R2 R1;STEP0303R3 R2,CLOSED_AS_PLANNING_BASELINE
+S6,Payment gateway independent of storefront,BOSS_APPROVED_PLANNING_BASELINE,YES,CT-19;CT-17;CT-18,payment_2c2p depended on website_sale in reference,STEP0303R3 ruling R6,CLOSED_AS_PLANNING_BASELINE
+S7,Tenant-administrable data-driven RBAC,BOSS_APPROVED_PLANNING_BASELINE,YES,CT-05;CT-06;CT-07,dynamic.access.right by module/model; static groups insufficient,STEP0303R3 ruling R2,CLOSED_AS_PLANNING_BASELINE
+S8,One request/approval abstraction,BOSS_APPROVED_PLANNING_BASELINE,YES,CT-08;CT-09;CT-10,Identical _STATES duplicated across two request modules,STEP0303R3 ruling R3,CLOSED_AS_PLANNING_BASELINE
+S9,Journal entry is the extension hotspot,BOSS_APPROVED_PLANNING_BASELINE,YES,CT-02;CT-09,account.move extended 10x across Boss Extra,STEP0303R3 ruling R1/R3,CLOSED_AS_PLANNING_BASELINE
+S10,Audit trail as platform service,BOSS_APPROVED_PLANNING_BASELINE,YES,CT-11;CT-12;TC-15,tracking on state fields; cert inherits mail thread,STEP0303R2 R1;STEP0303R3 R4,CLOSED_AS_PLANNING_BASELINE
+S11,Print layout is configuration data,BOSS_APPROVED_PLANNING_BASELINE,YES,CT-13;CT-14;CT-16,cheque.setting 76 layout fields; Thai shaping annex T3,STEP0303R3 ruling R5,CLOSED_AS_PLANNING_BASELINE

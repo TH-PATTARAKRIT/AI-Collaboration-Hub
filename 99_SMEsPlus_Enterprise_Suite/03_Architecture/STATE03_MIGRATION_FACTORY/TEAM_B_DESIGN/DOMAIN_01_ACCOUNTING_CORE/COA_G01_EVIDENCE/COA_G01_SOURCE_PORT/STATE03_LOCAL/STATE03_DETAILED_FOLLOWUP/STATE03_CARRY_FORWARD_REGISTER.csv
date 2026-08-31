@@ -1,0 +1,11 @@
+Carry ID,Item,Target,SCOPE_STATUS,Status,Control
+CF-STATE04-001,C1 Purchase Requisition with approval/procurement/project/Thai urgency,STATE04,IN_SCOPE,ACCEPTED BASELINE,Functional design only; no coding
+CF-STATE04-002,C2 Employee advance-and-clear accounting cycle,STATE04,IN_SCOPE,ACCEPTED BASELINE,Functional design only; no coding
+CF-STATE04-003,C3 Data-driven tenant-administrable access control,STATE04,IN_SCOPE,ACCEPTED BASELINE,Functional/Security design only
+CF-STATE04-004,C4 Configurable cheque/document layout,STATE04,IN_SCOPE,ACCEPTED BASELINE,Functional/Document design only
+CF-STATE04-005,C5 Fiscal period abstraction for Thai WHT reporting,STATE04,IN_SCOPE,ACCEPTED BASELINE,S1 dependency applies to statutory report definitions
+CF-STATE04-006,C6 Sales dimensions brand/channel/office,STATE04,IN_SCOPE,ACCEPTED BASELINE,Functional/Data design only
+CF-STATE04-007,C7 supporting capabilities,STATE04,IN_SCOPE,ACCEPTED BASELINE,Decompose under controlled functional design
+CF-STATE04-008,C8 journal-extension hotspot lesson,STATE04,IN_SCOPE,ACCEPTED BASELINE,Use as design constraint; no source reuse
+CF-STATE04-009,S1 open Thai statutory report specification,STATE04,BOSS_DECISION_REQUIRED,OPEN DEPENDENCY,Do not finalize statutory report definitions without evidence
+CF-STATE04-010,19 permanent black-box modules,STATE04,IN_SCOPE,STANDING CONDITION,Behavior/capability statements only; never parse source body
