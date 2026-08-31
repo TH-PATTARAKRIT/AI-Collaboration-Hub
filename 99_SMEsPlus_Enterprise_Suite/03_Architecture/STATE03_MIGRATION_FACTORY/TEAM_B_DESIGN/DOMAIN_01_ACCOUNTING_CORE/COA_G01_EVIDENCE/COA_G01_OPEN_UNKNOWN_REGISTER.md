@@ -2,7 +2,9 @@
 
 | Item / Task | Owner | Evidence location | Timestamp | Reviewer / Verifier | Verification Status | Gate Impact |
 |---|---|---|---|---|---|---|
-| Consolidate every open unknown/evidence gap relevant to COA-G01 from all reconciled sources | Claude (session SMEPLUS-26-08-30-COA-G01R-001) | GitHub `SMEsPlus` branch; local `ACCOUNT` folder | 2026-08-30 22:27 +0700 | ChatGPT Independent Review (pending); Boss (pending) | HOLD / EVIDENCE REQUIRED | None of these items are closed by this session; closing any of them requires new evidence, not reclassification |
+| Consolidate every open unknown/evidence gap relevant to COA-G01 from all reconciled sources | Claude (session SMEPLUS-26-08-30-COA-G01R-001) | GitHub `SMEsPlus` branch; local `ACCOUNT` folder | 2026-08-30 22:27 +0700 (historical — see CORR3 current-state line below) | ChatGPT Independent Review (pending); Boss (pending) | HOLD / EVIDENCE REQUIRED (historical, Round 1 snapshot) | None of these items are closed by this session *(historical, Round 1 statement — no longer current, see below)*; closing any of them requires new evidence, not reclassification |
+
+**CORR3 current-state correction (2026-08-31, finding `AUD2-03`):** the header row above is preserved as the accurate Round 1 (2026-08-30) snapshot — it is **not** current. As of CORR2 (2026-08-31, commit `a4cebfc`), **N-03 is `RESOLVED`**; **N-01, N-02, N-04, N-05 remain `OPEN`** — current open N-series count = **4**, not 5. This mechanical recount does not reopen or reclassify N-03; it corrects only the top-of-document summary that had not been updated to match the detailed CORR2 section further down this file.
 
 Rule enforced throughout: **Do not convert UNKNOWN into FACT.**
 

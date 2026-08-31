@@ -21,11 +21,11 @@ Current execution Gate:
 
 `COA-G01 — Source Baseline Reconciliation`
 
-Round 2 remediation package is complete for independent review. This index does **not** declare that independent review has occurred.
+Round 2 remediation package, CORR1 and CORR2 have been independently re-audited by ChatGPT (commit `8f5fa522a3f1a3553584eb5d5063238eec6a88a2`, `CHATGPT_AUDIT/DOMAIN_01_ACCOUNTING_CORE_AE_COA_G01_CORR2_INDEPENDENT_REAUDIT.md`). This index does **not** declare that this review resulted in PASS — its disposition was `CORR2 TARGETED CORRECTIONS = PARTIALLY ACCEPTED`, `HOLD / CORRECTION REQUIRED`, driving the authorized CORR3 pass below.
 
-`ChatGPT Independent Evidence Review = NOT YET PERFORMED (the c530138/8fceca0 self-declaration is not accepted as this review — see correction notice above)`
+`ChatGPT Independent Evidence Review = PERFORMED for CORR2 (commit 8f5fa52, result: HOLD / CORRECTION REQUIRED — 3 findings AUD2-01..03, corrected by CORR3); CORR3 itself is pending its own independent re-audit as of this commit (the c530138/8fceca0 self-declaration remains rejected — see correction notice above, not accepted as any part of this review chain)`
 
-`COA-G01 Gate Status = HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED` (per Boss directives `COA-G01R2-CORR1` and `COA-G01R2-CORR2`, and `COA_G01_GATE_REPORT.md` §§16–17 — genuine open items unchanged: C-01, C-02, Class E/F, SI-10, N-01; C-06 narrowed by CORR2 to "B14 unextended, pending independent re-verification" rather than an unreviewed 4-document gap; CORR1 and CORR2 correction cycles applied and closed, see `COA_G01_CORR1_POST_PUBLICATION_CLOSURE.md` and `COA_G01_CORR2_POST_PUBLICATION_CLOSURE.md`)
+`COA-G01 Gate Status = HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED` (per Boss directives `COA-G01R2-CORR1`, `COA-G01R2-CORR2`, and `COA-G01R2-CORR3`, and `COA_G01_GATE_REPORT.md` §§16–18 — genuine open items unchanged: C-01, C-02, Class E/F, SI-10, N-01; C-06 narrowed by CORR2 to "B14 unextended, pending independent re-verification"; CORR1, CORR2 and CORR3 correction cycles applied and closed, see `COA_G01_CORR1_POST_PUBLICATION_CLOSURE.md`, `COA_G01_CORR2_POST_PUBLICATION_CLOSURE.md` and `COA_G01_CORR3_POST_PUBLICATION_CLOSURE.md`)
 
 `Boss Final COA-G01 Gate Decision = PENDING`
 
@@ -61,7 +61,7 @@ Enforcement:
 
 | Gate | Owner Role | Evidence | Reviewer | Status | Gate Impact |
 |---|---|---|---|---|---|
-| COA-G01 Source Baseline Reconciliation | Team A Evidence + controlled reconciliation (Round 1 + Round 2) | `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_G01_EVIDENCE/` (21 files: 15 Round 1 + 6 Round 2) + SI-01..SI-10 matrix | ChatGPT (pending — not yet performed) | **HOLD / EVIDENCE REQUIRED** (see `COA_G01_GATE_REPORT.md` §15.3) | **Blocks G02 until Boss decision** |
+| COA-G01 Source Baseline Reconciliation | Team A Evidence + controlled reconciliation (Round 1 + Round 2 + CORR1 + CORR2 + CORR3) | `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_G01_EVIDENCE/` — **25 files physically present (24 Markdown + 1 SHA-256 checksum file), recomputed CORR3, 2026-08-31, including the CORR3 closure artifact itself**; 28 total operational SHA-256 entries (24 local Markdown + 1 external `AQ` ruling + 3 `COA_STANDARD` documents) + SI-01..SI-10 matrix | ChatGPT (CORR2 re-audit performed, commit `8f5fa52`; CORR3 pending its own re-audit) | **HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED** (see `COA_G01_GATE_REPORT.md` §§15.3, 16–18) | **Blocks G02 until Boss decision** |
 | COA-G02 Base COA Kernel Discovery | Team B Design after G01 approval | TBD + SI-01..SI-10 compliance evidence required | ChatGPT | NOT STARTED | Blocks G03/G04 |
 | COA-G03 AI Semantic Consolidation | Team B Design | TBD + SI-01..SI-10 compliance evidence required | ChatGPT | NOT STARTED | Blocks canonical freeze |
 | COA-G04 Account Type & Account Group Architecture | Team B Design | Existing 19-type Boss ruling + new artifact TBD + SI compliance | ChatGPT | PARTIAL BASELINE / OPEN | Blocks G04S |
@@ -73,27 +73,29 @@ Enforcement:
 
 ## COA-G01 Evidence Summary
 
-Reconciled source layers:
+**CORR3 correction notice (2026-08-31, finding `AUD2-02`):** the "Reconciled source layers" list immediately below previously stated the workbook was *"directly re-verified in connected Drive during G01 execution"* and listed Thai COA business requirements / financial-statement presentation as if reconciled. Both statements originated from the rejected `c530138`/`8fceca0` self-declared package (see correction notice above and `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-07) and were never independently verified. They are corrected below to evidence-supported wording. This is not treated as a new conflict requiring a new register entry — it is the same C-07 provenance issue, previously corrected everywhere *except* this specific bullet list, which the CORR2 independent re-audit caught.
 
-- Team A Accounting Core deep research and direct source anchors.
-- Authorized Accounting Core source semantics.
-- Thailand localization source: 144 rows / 15 instantiated Account Types.
-- Boss-approved Odoo18 workbook: 389 rows / 14 observed Account Type labels; directly re-verified in connected Drive during G01 execution.
-- Boss Thai COA business requirements.
-- Thai financial-statement presentation principles and official Thai reporting anchors at G01 classification level.
-- Existing Boss / PMO / ChatGPT audit evidence.
-- Primary Thai regulatory sources at concept level for VAT/WHT/CIT/reporting claims.
+Reconciled source layers (corrected, CORR3):
+
+- Team A Accounting Core deep research and direct source anchors — `VERIFIED FACT`.
+- Authorized Accounting Core source semantics — `VERIFIED FACT`.
+- Thailand localization source: 144 rows / 15 instantiated Account Types — `VERIFIED FACT` (source observation only, not a target-count ruling — see the CORR3 supersession notice in `COA_STANDARD/DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md`).
+- Boss-approved Odoo18 workbook: 389 rows / 14 observed Account Type labels — `VERIFIED FACT` as a controlled extraction (commit `ae2b0719`). **The primary workbook file itself is not recoverable in the current environment** (`COA_G01_WORKBOOK_PROVENANCE_AND_ROW_LINEAGE_R2.md`); the "directly re-verified in connected Drive" claim from commit `c530138` is **unverified and is not used as Gate evidence**.
+- Boss Thai COA business requirements (**Source Class E**) — `EVIDENCE_MISSING`. No such document has been located in GitHub or the local filesystem at any point in this Gate's history. Governance rulings (`AG`, `AJ`, etc.) are Boss target decisions, not a substitute for a Boss-provided *requirements* document, and are not used as one.
+- Thai financial-statement presentation principles / official Thai reporting anchors (**Source Class F**) — `EVIDENCE_MISSING`. No genuine Thai P&L/Balance Sheet presentation layout or filled example exists anywhere in reviewed sources. Generic TFAC/DBD/Revenue Department URLs or report-type names are not treated as a substitute.
+- Existing Boss / PMO / ChatGPT audit evidence — `VERIFIED FACT`, **excluding** the rejected `c530138`/`8fceca0` self-declaration (C-07).
+- Primary Thai regulatory sources at concept level for VAT/WHT/CIT/reporting claims — `VERIFIED FACT` at concept-citation level only; not a statutory-verification claim (deferred to COA-G06).
 
 Reconciled target rule:
 
 - Core source universe = 19 Account Types.
 - `l10n_th` observation = 15 Account Types.
 - Odoo18 workbook observation = 14 labels.
-- SMEsPlus Local Thailand target = 19 ACTIVE Account Types by Boss ruling.
+- SMEsPlus Local Thailand target = 19 ACTIVE Account Types by Boss ruling (not 15 — see the CORR3 supersession notice in `COA_STANDARD/DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md`, finding `AUD2-01`).
 
 Source conflicts are preserved and routed, not silently corrected. Key examples include inconsistent accumulated-depreciation source classifications and source tax accounts under generic Account Types.
 
-`COA-G01 open conflicts = 7 (C-01..C-07, see COA_G01_SOURCE_CONFLICT_REGISTER.md); open unknowns = 5 (N-01..N-05); SI-10 = HOLD at classification scope; Class E/F = EVIDENCE_MISSING.`
+`COA-G01 open conflicts = 7 (C-01..C-07, see COA_G01_SOURCE_CONFLICT_REGISTER.md); open unknowns = 4 (N-01, N-02, N-04, N-05 — N-03 RESOLVED in CORR2); SI-10 = HOLD at classification scope; Class E/F = EVIDENCE_MISSING (confirmed, not inferred).`
 
 `COA-G01 SI-01..SI-09 = PASS at G01 classification scope; SI-10 = HOLD even at classification scope — COA-G01 is therefore not reportable as PASS per the Audit Veto rule below.`
 

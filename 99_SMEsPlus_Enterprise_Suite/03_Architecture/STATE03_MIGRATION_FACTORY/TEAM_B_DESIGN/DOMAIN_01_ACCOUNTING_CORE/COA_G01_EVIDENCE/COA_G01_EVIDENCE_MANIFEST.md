@@ -118,6 +118,31 @@ Jira `ERPPLUS-132` — full comment history (8 comments) read via the Atlassian 
 
 The rebuilt `COA_G01_SHA256SUMS.txt` covers: every current file in this folder except the checksum file itself; the Boss authorization artifact AQ (existing convention, unchanged); and, **new this pass**, all 3 current `COA_STANDARD` documents (`DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md`, `DOMAIN_01_COA_BASE_KERNEL_AND_AI_CONSOLIDATION_STANDARD.md`, `DOMAIN_01_COA_ODOO18_TAB_SOURCE_INVENTORY.md`) — these were reviewed as evidence in CORR1/CORR2 but never previously included in this folder's own checksum manifest.
 
+## CORR3 ADDITIONS (Boss directive `COA-G01R2-CORR3`, 2026-08-31)
+
+### New file
+
+`COA_G01_CORR3_POST_PUBLICATION_CLOSURE.md` — confirms the CORR3 correction package per directive §5.
+
+### GitHub document updated (outside this folder)
+
+`TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md` — controlled supersession notice added (finding `AUD2-01`): the document's original "15 active Thailand types" recommendation is marked historical/superseded; current target restated as 19 ACTIVE by Boss ruling. Source evidence (15/144/14/389 counts) preserved unaltered. **Already included in the SHA-256 operational set since CORR2.**
+
+### Files updated in place (CORR3)
+
+`BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AL_COA_CLOSURE_EVIDENCE_INDEX.md` (finding `AUD2-02`: rejected Connected Drive claim and misleading Class E/F "reconciled source layers" bullets replaced with evidence-supported wording, Source Classes E/F explicitly restated `EVIDENCE_MISSING`; finding `AUD2-03`: file count corrected 21→25 physical/24 markdown/28 operational (including this CORR3 closure artifact itself), open-unknown count corrected 5→4, ChatGPT review status updated to reflect the CORR2 audit having occurred), `COA_G01_OPEN_UNKNOWN_REGISTER.md` (top metadata row given an explicit CORR3 current-state correction: open N-series = 4, not 5), `COA_G01_GATE_REPORT.md` (§8 given a CORR3 current-state correction; §18 CORR3 section appended), this manifest.
+
+### Mechanical file-count recomputation (finding `AUD2-03`, per directive §6 — not copied from the prior count)
+
+Recomputed directly from the CORR3 working tree, 2026-08-31, **after** this manifest and the new CORR3 closure artifact were both written (self-referential count — see the note in `COA_G01_CORR3_POST_PUBLICATION_CLOSURE.md`):
+- Files physically present in `COA_G01_EVIDENCE/`: **25** (24 Markdown + 1 SHA-256 checksum file — `ls -1 | wc -l`).
+- Markdown files in the SHA-256 operational set: **24** (`ls -1 *.md | wc -l`).
+- Total operational SHA-256 entries: **28** (24 local Markdown + 1 external `AQ` ruling + 3 external `COA_STANDARD` documents).
+
+### SHA-256 operational set — composition unchanged from CORR2 (local Markdown + AQ + 3 COA_STANDARD documents), one file added to the local Markdown count (this CORR3 closure artifact)
+
+24 local Markdown + `AQ` + 3 `COA_STANDARD` documents = 28 entries; every hash recomputed to reflect CORR3 edits.
+
 ## Verification instrument
 
-`COA_G01_SHA256SUMS.txt` (this folder) contains SHA-256 checksums of every file in the operational set above (Round 1 + Round 2 + CORR1 + CORR2), recomputed after all CORR2 content was finalized and immediately before the local commit. Reproducible verification command recorded in that file's header.
+`COA_G01_SHA256SUMS.txt` (this folder) contains SHA-256 checksums of every file in the operational set above (Round 1 + Round 2 + CORR1 + CORR2 + CORR3), recomputed after all CORR3 content was finalized and immediately before the local commit. Reproducible verification command recorded in that file's header.

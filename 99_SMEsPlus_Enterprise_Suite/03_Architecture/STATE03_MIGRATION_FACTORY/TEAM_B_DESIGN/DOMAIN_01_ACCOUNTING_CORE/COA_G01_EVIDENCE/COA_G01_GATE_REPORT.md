@@ -48,6 +48,8 @@ All 15 artifacts required by the session prompt exist in `TEAM_B_DESIGN/DOMAIN_0
 - **C-06:** clean-room provenance matrix (B14) does not specifically cover the three COA_STANDARD documents.
 - 5 new unknowns (`N-01`–`N-05`) surfaced by this session, none closed — see `COA_G01_OPEN_UNKNOWN_REGISTER.md`.
 
+**CORR3 current-state correction (2026-08-31, finding `AUD2-03`):** the two bullets above are preserved as accurate Round 1 (2026-08-30) snapshots — they are **not** current. C-04 was resolved in Round 2 (the 11-item and 20-item registers are different, non-contradictory scopes — see `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-04 and `COA_G01_OPEN_UNKNOWN_REGISTER.md`). Of the 5 unknowns, **N-03 is `RESOLVED`** as of CORR2 (commit `a4cebfc`); **N-01, N-02, N-04, N-05 remain `OPEN`** — current open N-series count = **4**.
+
 ## 9. Thai financial-statement evidence status
 
 **EVIDENCE_MISSING — confirmed absent, not fabricated.** No genuine Thai P&L/Balance Sheet presentation layout or example exists in GitHub or the local `ACCOUNT` folder. See `COA_G01_SOURCE_BASELINE_REGISTER.md` (class F) and `COA_G01_THAI_RELEVANCE_REGISTER.md`.
@@ -128,3 +130,17 @@ Boss directive `COA-G01R2-CORR1` identified 7 specific defects in the Round 2 pa
 Boss directive `COA-G01R2-CORR2` identified that ChatGPT's independent re-audit of CORR1 found a residual internal contradiction: `COA_G01_PRE_PROMPT_FINDING_CLOSURE_REGISTER_R2.md` (R-08, E-07) still described the temporary 4-document `COA_STANDARD` state, even though `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` and `COA_G01_SOURCE_CONFLICT_REGISTER.md` (C-07) already correctly reflected its reversion to 3 documents. This is now corrected: R-08 and E-07 moved `OPEN` → `PARTIALLY RESOLVED`; the Q/R/E summary table was recomputed mechanically (now 14 RESOLVED / 6 PARTIALLY RESOLVED / 4 OPEN = 24, up from 14/4/6); N-03 marked `RESOLVED` (the method decision — dedicated artifact, not B14 extension — was made and executed); an explicit clean-room disclaimer was added to `COA_STANDARD/DOMAIN_01_COA_ODOO18_TAB_SOURCE_INVENTORY.md` itself, closing that document's content-level coverage gap. B14 itself was **not** modified. Full detail: `COA_G01_CORR2_POST_PUBLICATION_CLOSURE.md`.
 
 **Terminal status unchanged in kind, restated:** `HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED`. Independent re-verification of the CORR2 changes is pending — not claimed as complete. COA-G02 not started. This session stops again and requests the next ChatGPT independent re-audit.
+
+---
+
+## 18. CORR3 targeted correction (2026-08-31)
+
+The ChatGPT independent re-audit of CORR2 (commit `8f5fa522a3f1a3553584eb5d5063238eec6a88a2`, `CHATGPT_AUDIT/DOMAIN_01_ACCOUNTING_CORE_AE_COA_G01_CORR2_INDEPENDENT_REAUDIT.md`) disposed CORR2 as `CORR2 PUBLICATION = VERIFIED` / `CORR2 TARGETED CORRECTIONS = PARTIALLY ACCEPTED` and identified 3 new findings (AUD2-01, AUD2-02, AUD2-03), all classified `CONFLICTING EVIDENCE`. Boss authorized a narrow CORR3 to correct exactly these three. All three corrected:
+
+- **AUD2-01** (MAJOR): `COA_STANDARD/DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md` still recommended a "15 active Thailand Account Type" target with 4 types "RESERVED," readable as contradicting the Boss-approved 19-active baseline. Corrected: an explicit controlled supersession notice added near the Executive Result, and the "Controlled Design Recommendation"/"Gate Impact" sections marked historical/superseded in place. Source evidence (15/144/14/389 counts) preserved unaltered.
+- **AUD2-02** (MAJOR): the Boss Gate Evidence Index's "Reconciled source layers" list retained the rejected `c530138` claim that the workbook was "directly re-verified in connected Drive," and listed Thai COA business requirements / financial-statement presentation as if reconciled. Corrected: replaced with evidence-supported wording; Source Classes E and F explicitly restated as `EVIDENCE_MISSING`; the rejected claim preserved only as clearly labeled historical/rejected text.
+- **AUD2-03** (MODERATE/GATE-AFFECTING): current counts had gone stale — evidence index cited 21 files (actual, including this CORR3 closure artifact itself: 25 physically present, 24 markdown, 28 total SHA-256 operational entries); open-unknown count still said 5 after N-03's CORR2 resolution (actual: 4). Corrected: all counts recomputed mechanically and restated at every location found in the consistency sweep (this Gate Report §8, the Evidence Index, the Open Unknown Register header).
+
+Consistency sweep (directive §4.4) additionally found and corrected a stale "20 vs 11" framing in this Gate Report's §8 (already resolved in Round 2, but not reflected in that summary bullet).
+
+**Terminal status:** `HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED`. COA-G02 not started. B14 not modified (not authorized by this directive). No Gate PASS, PMO verification, or Boss approval claimed. This session stops again and requests the next ChatGPT independent re-audit, per the directive's stop line.

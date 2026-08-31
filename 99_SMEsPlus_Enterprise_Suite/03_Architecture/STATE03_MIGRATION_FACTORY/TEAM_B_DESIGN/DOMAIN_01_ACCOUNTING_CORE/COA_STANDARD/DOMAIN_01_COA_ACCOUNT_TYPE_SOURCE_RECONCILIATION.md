@@ -14,6 +14,18 @@ Three evidence layers now reconcile as follows:
 
 Therefore, for SMEsPlus Local Thailand, the evidence-backed candidate Account Type baseline is **15 active Thailand types**, subject to Boss/PMO freeze. The four remaining core types are source-supported but not used by the inspected Thailand template.
 
+> ## ⚠ CONTROLLED SUPERSESSION NOTICE (added CORR3, 2026-08-31, directive `COA-G01R2-CORR3`, finding `AUD2-01`)
+>
+> **The "15 active Thailand types" recommendation below is historical and superseded for target design.** It remains as a preserved record of the source-observation reasoning at the time it was written (2026-08-30) — it is **not** current target authority.
+>
+> **The Boss-approved SMEsPlus Local Thailand target is 19 ACTIVE Account Types**, ruled in `BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AJ_BOSS_ACCOUNT_TYPE_19_ACTIVE_RULING.md` and reaffirmed throughout `AL`, `AG`, `AO`, `AP`, and every COA-G01 Round 2/CORR1/CORR2 artifact. That ruling **supersedes** the "15 active + 4 reserved" recommendation this document originally made.
+>
+> Two governing principles, unchanged since AS Prompt §5 and restated here for a current reader:
+> - `Template omission != Business prohibition` — the 4 types absent from the inspected `l10n_th` template are not thereby excluded from the SMEsPlus target.
+> - `Source observation count != target capability count` — 15 is what the inspected Thai template happens to instantiate; it was never itself a target-count ruling.
+>
+> The 15/144/14/389 source counts below remain accurate, unaltered evidence. Only the **design recommendation** built on top of them ("Active Thailand Account Type Candidate = 15", "Core-only types = Reserved") is superseded — see the marked sections below.
+
 ## Evidence Sources
 
 ### A. Team A Deep Research
@@ -132,7 +144,9 @@ Four source-supported types are not used in `l10n_th/account.account-th.csv`:
 
 This does **not** prove these concepts are invalid for Thailand. It proves only that the inspected Thailand source COA template does not instantiate them as Account Types.
 
-## Controlled Design Recommendation
+## Controlled Design Recommendation — ⚠ HISTORICAL, SUPERSEDED (see CORR3 notice above; do not treat as current target)
+
+*As originally written, 2026-08-30 — preserved for the record, not current:*
 
 For the current **SMEsPlus Local Thailand** scope:
 
@@ -148,14 +162,20 @@ Keep the four non-instantiated core types as `RESERVED / SOURCE-SUPPORTED / NOT 
 
 Do not silently delete them from provenance; do not include them in the default SMEsPlus Thailand COA without evidence.
 
-## Gate Impact
+**CURRENT STATE (CORR3, 2026-08-31): the above recommendation was overtaken by the Boss `AJ` ruling. The current target is 19 ACTIVE Account Types — none of the 4 types this section calls "reserved" are excluded from the current SMEsPlus Local Thailand target.**
+
+## Gate Impact — ⚠ HISTORICAL, SUPERSEDED (see CORR3 notice above)
+
+*As originally written, 2026-08-30:*
 
 - Previous statement `Odoo18 tab has 14 Account Types`: **still correct as workbook observation**.
 - Interpretation `SMEsPlus Thailand should have only 14 types`: **not supported**.
-- Evidence-backed Thailand candidate: **15 active types**.
+- Evidence-backed Thailand candidate: **15 active types**. *(Superseded — see CORR3 notice: current target is 19 ACTIVE by Boss ruling, not 15.)*
 - Core source universe: **19 types**.
-- Difference requiring explicit control: **4 core-only reserved types**.
+- Difference requiring explicit control: **4 core-only reserved types**. *(Superseded — these 4 are part of the current 19-active target, not reserved.)*
 
 No development authorization is created by this reconciliation.
+
+**CORR3 current-state restatement:** core source universe = 19 (unchanged, still accurate). Inspected `l10n_th` template instantiates 15 of them (unchanged, still accurate observation). Boss-approved current SMEsPlus Local Thailand target = **19 ACTIVE** (not 15; supersedes this document's original recommendation). See `BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AJ_BOSS_ACCOUNT_TYPE_19_ACTIVE_RULING.md`.
 
 No Evidence = No Progress. Never Skip Gate. Boss is the sole Final Approver.
