@@ -120,4 +120,14 @@ Prohibited:
 - module-architecture cloning
 - vendor implementation copying
 
+### Source column names — explicit disclaimer (added CORR2, 2026-08-31, directive `COA-G01R2-CORR2`)
+
+`id`, `name`, `reconcile`, `code`, and `account_type` (the five business columns in the "Business columns observed" table above) are **observed source-workbook column names only**. They are:
+
+- **not** proposed SMEsPlus canonical IDs, schema fields, ORM names, table design, or implementation architecture of any kind;
+- cited solely as evidence of what the Boss-approved source workbook contains, consistent with the "Governance treatment" column already stated for each in the table above;
+- **Account Code and Account Name are not canonical identity** — restated here explicitly (this is SI-05, applied consistently throughout every COA-G01 artifact).
+
+Only business facts and business semantics may be learned from this extraction. No SMEsPlus database, API, or model design is created, implied, or authorized by this document.
+
 No Evidence = No Progress. Never Skip Gate. Boss is the sole Final Approver.

@@ -62,7 +62,7 @@
 
 `PMO_VERIFICATION/` — all 4 files.
 
-`TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/B14_CLEAN_ROOM_PROVENANCE_MATRIX.md` — re-read in full to reconfirm the coverage gap now spans 4 `COA_STANDARD` documents.
+`TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/B14_CLEAN_ROOM_PROVENANCE_MATRIX.md` — re-read in full; at the time of this CORR1 read, the coverage gap spanned 4 `COA_STANDARD` documents (the temporary `c530138` file was still present). **Corrected CORR2:** current count is 3 — see `COA_G01_CORR2_POST_PUBLICATION_CLOSURE.md`.
 
 `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_G01_SOURCE_BASELINE_RECONCILIATION.md` (commit `c530138`) — read in full; content investigated and classified `CONFLICTING EVIDENCE / UNVERIFIED SELF-DECLARED RESULT`, not adopted as evidence.
 
@@ -96,6 +96,28 @@ Jira `ERPPLUS-132` — full comment history (8 comments) read via the Atlassian 
 
 `BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AL_COA_CLOSURE_EVIDENCE_INDEX.md` — Gate status label corrected to `HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED`.
 
+## CORR2 ADDITIONS (Boss directive `COA-G01R2-CORR2`, 2026-08-31)
+
+### New file
+
+`COA_G01_CORR2_POST_PUBLICATION_CLOSURE.md` — confirms the CORR2 correction package per directive §4.6.
+
+### GitHub document updated (outside this folder)
+
+`TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_ODOO18_TAB_SOURCE_INVENTORY.md` — explicit source-column clean-room disclaimer added per directive §4.2. **Now included in the SHA-256 operational set below, per directive §4.5.**
+
+### Files updated in place (CORR2)
+
+`COA_G01_PRE_PROMPT_FINDING_CLOSURE_REGISTER_R2.md` (R-08/E-07 corrected, Q/R/E totals recomputed mechanically to 14/6/4=24), `COA_G01_SOURCE_CONFLICT_REGISTER.md` (C-06 status update, C-07 current-vs-historical clarification), `COA_G01_OPEN_UNKNOWN_REGISTER.md` (N-03 resolved), `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` (new CORR2 six-part current-state section), `COA_G01_CURRENT_STATE_ADDENDUM_R2.md` (chronology items 9–10 added), `COA_G01_GATE_REPORT.md` (§15.2 corrected, §17 CORR2 section appended), this manifest.
+
+### GitHub document also updated (outside this folder)
+
+`BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AL_COA_CLOSURE_EVIDENCE_INDEX.md` — references both CORR1 and CORR2; C-06 description narrowed to its current, accurate form.
+
+### SHA-256 operational set, per directive §4.5 (explicit)
+
+The rebuilt `COA_G01_SHA256SUMS.txt` covers: every current file in this folder except the checksum file itself; the Boss authorization artifact AQ (existing convention, unchanged); and, **new this pass**, all 3 current `COA_STANDARD` documents (`DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md`, `DOMAIN_01_COA_BASE_KERNEL_AND_AI_CONSOLIDATION_STANDARD.md`, `DOMAIN_01_COA_ODOO18_TAB_SOURCE_INVENTORY.md`) — these were reviewed as evidence in CORR1/CORR2 but never previously included in this folder's own checksum manifest.
+
 ## Verification instrument
 
-`COA_G01_SHA256SUMS.txt` (this folder) contains SHA-256 checksums of every file in this folder (Round 1 + Round 2 + CORR1), recomputed after all CORR1 content was finalized and immediately before the local commit. Reproducible verification command recorded in that file's header.
+`COA_G01_SHA256SUMS.txt` (this folder) contains SHA-256 checksums of every file in the operational set above (Round 1 + Round 2 + CORR1 + CORR2), recomputed after all CORR2 content was finalized and immediately before the local commit. Reproducible verification command recorded in that file's header.

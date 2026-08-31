@@ -49,7 +49,11 @@ Neither figure is wrong; they measure different populations. Of the 11 program-l
 
 ## Round 2 status of N-01..N-05 (2026-08-31)
 
-All five reconfirmed **OPEN** — none closed by Round 2, each requires a Boss decision or new primary evidence this session cannot manufacture: N-01 (workbook file itself unrecoverable — independently reconfirmed by whole-volume search, see `COA_G01_WORKBOOK_PROVENANCE_AND_ROW_LINEAGE_R2.md`), N-02 (local-evidence porting scope/method), N-03 (clean-room coverage extension method — now more urgent, coverage gap grew from 3 to 4 uncovered documents), N-04 (which route closes Class F), N-05 (cause of the `STEP0303R2` self-contradiction, C-02 — unresolved).
+All five reconfirmed **OPEN** at the close of Round 2 — none closed by Round 2, each requires a Boss decision or new primary evidence this session cannot manufacture: N-01 (workbook file itself unrecoverable — independently reconfirmed by whole-volume search, see `COA_G01_WORKBOOK_PROVENANCE_AND_ROW_LINEAGE_R2.md`), N-02 (local-evidence porting scope/method), N-03 (clean-room coverage extension method — at Round 2 close, described as "more urgent" because the coverage gap had temporarily grown to 4 documents; corrected below), N-04 (which route closes Class F), N-05 (cause of the `STEP0303R2` self-contradiction, C-02 — unresolved).
+
+## CORR2 status of N-03 (2026-08-31)
+
+**RESOLVED.** The "grew from 3 to 4" description above is stale: the 4th document (`c530138`) was deleted by the repository owner's commit `58ab36d`, confirmed independently — current `COA_STANDARD/` count is 3 (see `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-07, `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` CORR2 section). N-03's actual question — "should B14 be extended, or should a new, separate clean-room check artifact be created" — is answered by this session's own conduct: **option (b)** was taken. `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` is that dedicated artifact, now providing document-level coverage for all 3 current documents. B14 itself was explicitly not modified. This resolves the *decision* (which path); it does not claim B14-level completeness or independent verification — those remain open per `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` CORR2 part 6. N-01, N-02, N-04, N-05 remain **OPEN**, unchanged by CORR2.
 
 ## Items explicitly NOT re-opened by this session
 

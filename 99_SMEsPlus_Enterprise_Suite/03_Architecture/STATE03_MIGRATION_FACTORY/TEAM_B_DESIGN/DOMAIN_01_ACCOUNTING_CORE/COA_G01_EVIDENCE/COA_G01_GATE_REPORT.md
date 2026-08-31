@@ -94,7 +94,7 @@ Suggested minimum remediation to reach a future PROPOSED PASS:
 
 - **C-01** — substantial local S1–S11/T1–T9/`STEP0303R2`–R5 evidence still not committed to GitHub (Boss decision required on porting scope/method).
 - **C-02** — `STEP0303R2` self-contradiction in local records, unresolved anomaly, cause not established.
-- **C-06** — clean-room provenance coverage gap for `COA_STANDARD/`, now spanning 4 documents (grew, not shrank).
+- **C-06** — clean-room provenance coverage gap for `COA_STANDARD/`. **Corrected CORR2 (2026-08-31):** current document count is 3, not 4 (the 4th, from `c530138`, was reverted by the repository owner — see C-07). All 3 now have a dedicated document-level clean-room review (`COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` CORR2 section); B14 itself remains unmodified/uncovered by design choice, and independent re-verification of this session's own review is pending.
 - **Class E/F** — Boss-provided Thai COA requirements and Thai financial-statement presentation example remain `EVIDENCE_MISSING`, reconfirmed absent by an independent whole-volume search this session.
 - **SI-10** — still `HOLD` at classification scope; no dedicated SI-10 compliance analysis exists yet.
 - **N-01** — the Odoo18 workbook file itself is confirmed unrecoverable from this environment (no local copy, no hash, anywhere on the volume).
@@ -120,3 +120,11 @@ Boss directive `COA-G01R2-CORR1` identified 7 specific defects in the Round 2 pa
 **Corrected terminal status:** `HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED` — the same substantive open items as §15.2 (C-01, C-02, C-06, Class E/F, SI-10, N-01) remain genuinely open; this status label additionally records that a Boss-directed correction cycle occurred, per the Boss directive's explicit current-control statement.
 
 **Stop Line (reaffirmed again):** COA-G02 not started. Development/Production not authorized. No self-approval claimed. This session explicitly stops and requests the ChatGPT independent re-audit named in the Boss directive.
+
+---
+
+## 17. CORR2 targeted correction (2026-08-31)
+
+Boss directive `COA-G01R2-CORR2` identified that ChatGPT's independent re-audit of CORR1 found a residual internal contradiction: `COA_G01_PRE_PROMPT_FINDING_CLOSURE_REGISTER_R2.md` (R-08, E-07) still described the temporary 4-document `COA_STANDARD` state, even though `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` and `COA_G01_SOURCE_CONFLICT_REGISTER.md` (C-07) already correctly reflected its reversion to 3 documents. This is now corrected: R-08 and E-07 moved `OPEN` → `PARTIALLY RESOLVED`; the Q/R/E summary table was recomputed mechanically (now 14 RESOLVED / 6 PARTIALLY RESOLVED / 4 OPEN = 24, up from 14/4/6); N-03 marked `RESOLVED` (the method decision — dedicated artifact, not B14 extension — was made and executed); an explicit clean-room disclaimer was added to `COA_STANDARD/DOMAIN_01_COA_ODOO18_TAB_SOURCE_INVENTORY.md` itself, closing that document's content-level coverage gap. B14 itself was **not** modified. Full detail: `COA_G01_CORR2_POST_PUBLICATION_CLOSURE.md`.
+
+**Terminal status unchanged in kind, restated:** `HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED`. Independent re-verification of the CORR2 changes is pending — not claimed as complete. COA-G02 not started. This session stops again and requests the next ChatGPT independent re-audit.

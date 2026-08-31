@@ -25,7 +25,7 @@ Round 2 remediation package is complete for independent review. This index does 
 
 `ChatGPT Independent Evidence Review = NOT YET PERFORMED (the c530138/8fceca0 self-declaration is not accepted as this review — see correction notice above)`
 
-`COA-G01 Gate Status = HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED` (per Boss directive `COA-G01R2-CORR1` and `COA_G01_GATE_REPORT.md` §16 — genuine open items unchanged: C-01, C-02, C-06, Class E/F, SI-10, N-01; CORR1 correction cycle applied and closed, see `COA_G01_CORR1_POST_PUBLICATION_CLOSURE.md`)
+`COA-G01 Gate Status = HOLD / CORRECTION REQUIRED + EVIDENCE REQUIRED` (per Boss directives `COA-G01R2-CORR1` and `COA-G01R2-CORR2`, and `COA_G01_GATE_REPORT.md` §§16–17 — genuine open items unchanged: C-01, C-02, Class E/F, SI-10, N-01; C-06 narrowed by CORR2 to "B14 unextended, pending independent re-verification" rather than an unreviewed 4-document gap; CORR1 and CORR2 correction cycles applied and closed, see `COA_G01_CORR1_POST_PUBLICATION_CLOSURE.md` and `COA_G01_CORR2_POST_PUBLICATION_CLOSURE.md`)
 
 `Boss Final COA-G01 Gate Decision = PENDING`
 

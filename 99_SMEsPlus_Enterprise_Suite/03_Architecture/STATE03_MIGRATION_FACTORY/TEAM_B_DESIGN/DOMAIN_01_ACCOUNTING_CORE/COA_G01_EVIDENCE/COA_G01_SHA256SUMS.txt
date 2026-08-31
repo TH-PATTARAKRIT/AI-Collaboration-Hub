@@ -1,39 +1,44 @@
-# COA-G01 Evidence Package — SHA-256 verification (CORR1, 2026-08-31, final)
+# COA-G01 Evidence Package — SHA-256 verification (CORR2, 2026-08-31, final)
 #
-# Reproducible verification (two steps — this file mixes paths relative to this folder
-# with one path relative to the `99_SMEsPlus_Enterprise_Suite/` repo root, for the AQ ruling
-# which lives outside this folder):
+# Reproducible verification (three groups — this file mixes paths relative to this folder
+# with paths relative to the `99_SMEsPlus_Enterprise_Suite/` repo root, for the AQ ruling and
+# the 3 COA_STANDARD documents, both of which live outside this folder):
 #
-#   1) From this folder (COA_G01_EVIDENCE/), verify the 22 local files:
+#   1) From this folder (COA_G01_EVIDENCE/), verify the 23 local files:
 #        grep -v '^#' COA_G01_SHA256SUMS.txt | grep '\.md$' | grep -v '99_SMEsPlus' > /tmp/local_check.txt
 #        shasum -a 256 -c /tmp/local_check.txt
-#   2) From the `99_SMEsPlus_Enterprise_Suite/` repo root, verify the AQ ruling line:
+#   2) From the `99_SMEsPlus_Enterprise_Suite/` repo root, verify the AQ ruling and the 3
+#      COA_STANDARD documents (4 entries):
 #        shasum -a 256 -c <(grep '99_SMEsPlus' COA_G01_EVIDENCE/COA_G01_SHA256SUMS.txt)
 #
 # To regenerate (run from this folder):
 #   shasum -a 256 $(ls *.md | sort) > COA_G01_SHA256SUMS.txt
 #   shasum -a 256 ../../../BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AQ_BOSS_SAAS_CONTEXT_CLARIFICATION_AND_G01_REMEDIATION_AUTHORIZATION.md \
 #     | sed 's#\.\./\.\./\.\./##' >> COA_G01_SHA256SUMS.txt
+#   shasum -a 256 ../COA_STANDARD/*.md | sed 's#\.\./#99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/#' >> COA_G01_SHA256SUMS.txt
 #
-# This is the final CORR1 manifest, computed after the mid-correction reconciliation of
-# commit 58ab36d (repository owner's revert of the c530138 file). Independently
-# re-verified by this session: all 23 entries return OK (2026-08-31).
+# Per Boss directive COA-G01R2-CORR2 §4.5, this manifest newly includes all 3 current
+# COA_STANDARD documents (previously reviewed as evidence but never checksummed here).
+# Independently re-verified by this session: all 27 entries return OK (2026-08-31).
+# Zero missing, zero unexpected entries relative to the operational set defined in
+# COA_G01_EVIDENCE_MANIFEST.md.
 #
 0d93036601d73a398b72593c05296b2d112c81ebf01b429cfe4d060c6f1d49ad  COA_G01_ACCOUNT_CONCEPT_UNIVERSE.md
 b6e0089bff2f8924fa60ac95d52a0d3ad6b1b46f2a9c76d741ddfb2247dfdc5f  COA_G01_BASE_KERNEL_CANDIDATE_INPUT.md
-6c2cbcdf15f6cef5ef3c3132f6930527d94cd3a366c5fd4ccbb53c73837e1a60  COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md
+f81ac5c6c85bb63c708c45bcc4891faec59f38221d24d53cd5fe2c1f830ff62c  COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md
 927b7a8fb52c20d60034b77e8aeb638cf26cb106cb50899a6b09e38fc55eb372  COA_G01_CONCEPT_FIELD_COMPLETENESS_R2.md
 d0ce127c73fbce6d0600e316a23f18996e8f9b5f577f6d31ebc683ecccba8ff8  COA_G01_CORR1_POST_PUBLICATION_CLOSURE.md
+c1f889a18d81e238c4a8a2cba4adbfde1eb56eef92b6db578f1c916dcb04230e  COA_G01_CORR2_POST_PUBLICATION_CLOSURE.md
 eafda61283de9cb8fd2587dc6be4f679130a133005a77700a6f1f8822d709308  COA_G01_CROSS_TENANT_SOURCE_OBSERVATION_REGISTER.md
-270dc67b962f82d630b020c8eb34cc493a02fe5e9f6a7223a33e94925c912234  COA_G01_CURRENT_STATE_ADDENDUM_R2.md
-cf0eb4d0cd225998d2c8a45796b3e4350f7b1ff5e7056de4f5df553139992bbf  COA_G01_EVIDENCE_MANIFEST.md
-62ad31445eed617d1fa3858309eebdc0462734cfb76cb82df047887d5ed6583b  COA_G01_GATE_REPORT.md
-2f54423c4e67fb01b0af52e1a274f790612f5f4ffb1e86f65651b40703657733  COA_G01_OPEN_UNKNOWN_REGISTER.md
-7425a35b415dfd95649c6b519aea1a8d0f72c2832bb90a25dc48ab23dbc296de  COA_G01_PRE_PROMPT_FINDING_CLOSURE_REGISTER_R2.md
+437aaba8237d99c7948cb98ef9b3a77068e8b924c7faddfe8ec1d8efe7233b22  COA_G01_CURRENT_STATE_ADDENDUM_R2.md
+f2608e4c4121df04c3a19dcefbaea5da57edb1013bd947d5349a871fa0ef9ec4  COA_G01_EVIDENCE_MANIFEST.md
+28e318e309ceefefdf6942123aab448de2c70a88cc97e2e59f5dd3f3b7e92884  COA_G01_GATE_REPORT.md
+56079781c8c68350a0addf039829e68bbb79307a1da26bf8e5ece2fff96f64b3  COA_G01_OPEN_UNKNOWN_REGISTER.md
+1c0d16bd454e61e275e348fc2564829cf1fdee459f95da828437985a5102ecfb  COA_G01_PRE_PROMPT_FINDING_CLOSURE_REGISTER_R2.md
 9989f303268eda7831c68ece6e779b153de0f20a3df544566f85b7628e9285a0  COA_G01_SAAS_CONTEXT_BOUNDARY_REGISTER.md
 1fa58a8505bac8ed4b250f4977150b68ecbe798c6c93ab0fdf1b8917d038cc06  COA_G01_SAAS_INVARIANT_COMPLIANCE.md
 21fb197e58d44ede135eae59da84e063dbeae37985f4798312bab2565b388b10  COA_G01_SOURCE_BASELINE_REGISTER.md
-fd51dfa8a7582d98005bed84952af8e371cfc78bc61e2dccf0c061afe520a577  COA_G01_SOURCE_CONFLICT_REGISTER.md
+ea88a5be7a3ce44c8391bcce1afd9bb13ca735e001399004643af1e50c5ed601  COA_G01_SOURCE_CONFLICT_REGISTER.md
 56c507d137683f0406c5a660a7aee641c70f255ec2cb6361fff07e3f86e8f6f7  COA_G01_TBRAC_TB01_TB13_MATRIX_R2.md
 a8739afb691434ccd0a31447fb4712500922b77aa5dc5c5d4f6b39fdca87e13e  COA_G01_TEAM_A_SOURCE_CLASS_A_RECONCILIATION_R2.md
 c314b9326f1b34db12915c4d8a1c4dba6489f20d7b6d45180bc589a43a2f18af  COA_G01_TEMPLATE_VERSION_UPGRADE_SOURCE_REGISTER.md
@@ -42,3 +47,6 @@ eb10ff939f6011fc5a41bb964bd1e11f2135603a408545de1dbe3fdacb5dcc7b  COA_G01_WORKBO
 634adb21d9bbc90e3b1e0b5d29c6022d11b0c52b84a890aee5fcc7879ded9023  SESSION_CLOSURE.md
 1dff1fd3349b657377a6473b7b3cd03e905b50e17e7e246c335aee3d10c1c3a7  SESSION_CLOSURE_R2.md
 bf550a60f8732c4c36ab231a720aef2505790d3907b474df76beedd778a95757  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/DOMAIN_01_ACCOUNTING_CORE_AQ_BOSS_SAAS_CONTEXT_CLARIFICATION_AND_G01_REMEDIATION_AUTHORIZATION.md
+128c6510b543e1c09b63e2713916ef27a79e2270ea39aa09e850b532db56a549  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md
+20fecab305e86df8081fd259e90fa49130f7278c323b7cd3d29945c85b71cf20  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_BASE_KERNEL_AND_AI_CONSOLIDATION_STANDARD.md
+fce24200f2a368f5fa26f9da984d0cdc36af537dd9f9979a47685f55036d928a  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/COA_STANDARD/DOMAIN_01_COA_ODOO18_TAB_SOURCE_INVENTORY.md

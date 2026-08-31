@@ -4,6 +4,32 @@
 |---|---|---|---|---|---|---|
 | Verify clean-room provenance coverage specifically for COA-G01 evidence and the COA_STANDARD design artifacts | Claude (session SMEPLUS-26-08-30-COA-G01R-001) | `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/B14_CLEAN_ROOM_PROVENANCE_MATRIX.md` | 2026-08-30 22:27 +0700 | ChatGPT Independent Review (pending); Boss (pending) | HOLD / EVIDENCE REQUIRED — coverage gap identified | Blocks claiming clean-room PASS specifically for COA_STANDARD/COA-G01 work; does not indicate any actual violation |
 
+## CORR2 (2026-08-31): current-state reconciliation, per Boss directive `COA-G01R2-CORR2`
+
+Everything below "What was checked" is preserved, unedited history (Round 1 → Round 2 → CORR1, including the temporary 4-document state and its reversal). This section is the single current-state summary requested by CORR2, split into the six parts the directive specifies. Nothing below this section was deleted or rewritten.
+
+**1. Current branch documents.** `COA_STANDARD/` presently contains exactly **3** documents: `DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md`, `DOMAIN_01_COA_BASE_KERNEL_AND_AI_CONSOLIDATION_STANDARD.md`, `DOMAIN_01_COA_ODOO18_TAB_SOURCE_INVENTORY.md`. Verified by direct listing as of this CORR2 pass.
+
+**2. Historical deleted `c530138` document.** `DOMAIN_01_COA_G01_SOURCE_BASELINE_RECONCILIATION.md` existed on the branch from commit `c530138` (2026-08-31 00:18:56) until commit `58ab36d` (2026-08-31 08:07:09, repository owner, outside this session) deleted it as "accidental WEBSITE-session write." It is **not** part of the current document set and is not re-added. Its CORR1 review finding (`CONFLICTING EVIDENCE`, row 4 of the table below) is retained as a historical record only — it describes a document that no longer exists on this branch.
+
+**3. Document-level clean-room classification (current 3 documents).**
+
+| Document | Classification (this session) | Note |
+|---|---|---|
+| `DOMAIN_01_COA_ACCOUNT_TYPE_SOURCE_RECONCILIATION.md` | `VERIFIED CLEAN-ROOM BOUNDARY` | Unchanged from CORR1 — vendor keys cited as evidence only, in an explicitly separated column, never adopted as target identifiers. |
+| `DOMAIN_01_COA_BASE_KERNEL_AND_AI_CONSOLIDATION_STANDARD.md` | `VERIFIED CLEAN-ROOM BOUNDARY` | Unchanged from CORR1 — original methodology, no vendor architecture citation. |
+| `DOMAIN_01_COA_ODOO18_TAB_SOURCE_INVENTORY.md` | `VERIFIED CLEAN-ROOM BOUNDARY (content-level, this session) — pending independent re-verification` | **Changed from CORR1's `COVERAGE GAP`.** The document's own blocking gap (missing explicit disclaimer separating observed source-column names from target schema) was closed this CORR2 pass by adding the disclaimer directly to the source document (see its "Source column names — explicit disclaimer" section, added 2026-08-31). This session's own re-read finds no remaining content-level clean-room issue. This is not self-certified as final — it is offered for the ChatGPT independent re-audit this directive requests, not asserted as already independently confirmed. |
+
+**4. B14 historical coverage — unchanged, not modified by this session.** `B14_CLEAN_ROOM_PROVENANCE_MATRIX.md` still contains zero rows citing any of the 3 current `COA_STANDARD` documents or Account Type taxonomy work generally. This session did **not** edit B14. The gap in B14's own coverage is a separate, still-open fact from the document-level classifications in part 3 above — closing the document-level gap does not retroactively add rows to B14.
+
+**5. Current dedicated COA clean-room review coverage.** This document (`COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md`) is the dedicated, COA-specific clean-room review artifact referenced by `COA_G01_OPEN_UNKNOWN_REGISTER.md` item N-03 option (b). It now provides document-level coverage for all 3 current `COA_STANDARD` documents (part 3 above) — something no artifact provided before Round 2. N-03's underlying question ("extend B14, or create a separate dedicated artifact") is answered by this session's own conduct: option (b) was taken; B14 was not extended.
+
+**6. Remaining gap.** Two residual items, both requiring action this session cannot itself provide:
+   - **Independent re-verification** of the content-level clean-room classifications in part 3 (all three, but especially the just-closed Odoo18 Tab Source Inventory item) has not occurred — that is precisely what this CORR2 pass requests from the ChatGPT independent re-audit.
+   - **B14 itself remains uncovered** for these 3 documents (part 4). This session does not extend B14 (not authorized, and doing so wasn't chosen as the remediation path — see part 5). Whether B14 should ever be formally extended, versus this dedicated artifact remaining the permanent COA-specific supplement, is a Boss/PMO governance decision, not decided here.
+
+**Net status:** genuine progress (document-level review now complete and covers all 3 current documents; the one open content gap is closed) but **not** a clean-room `PASS` — independent verification is pending and B14's own coverage gap persists by design choice, not oversight. Overall clean-room status for COA-G01 remains **HOLD / EVIDENCE REQUIRED**.
+
 ## What was checked
 
 `B14_CLEAN_ROOM_PROVENANCE_MATRIX.md` was read in full. It records:

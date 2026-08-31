@@ -8,17 +8,21 @@ Disposition values used: **RESOLVED** (genuine new evidence closes the question)
 
 ## CORR1 correction notice (2026-08-31)
 
-The Jira-facing summary posted for the original Round 2 comment (`10913`) mislabeled its own item count (stated "13 items" against a list of 19, and folded the S-series into the Q/R/E tally inconsistently). **The authoritative, reproducible count is below.** No individual disposition below was changed by this correction — every Q/R/E/S verdict is exactly as originally determined; only the summary arithmetic and its presentation were wrong.
+The Jira-facing summary posted for the original Round 2 comment (`10913`) mislabeled its own item count (stated "13 items" against a list of 19, and folded the S-series into the Q/R/E tally inconsistently). **The authoritative, reproducible count is below.** No individual disposition was changed by the CORR1 correction — every Q/R/E/S verdict was exactly as originally determined; only the summary arithmetic and its presentation were wrong.
 
-### Authoritative totals
+## CORR2 correction notice (2026-08-31)
+
+R-08 and E-07 moved from `OPEN` to `PARTIALLY RESOLVED` (see their rows above) following the CORR2 clean-room reconciliation. The table below is recomputed mechanically from the current per-row statuses — it is not a re-estimate.
+
+### Authoritative totals (recomputed mechanically from the per-row table above, post-CORR2)
 
 **AS Prompt §9 scope (Q-01..08, R-01..08, E-01..08 — 24 items, addressed "by ID" per the controlling prompt):**
 
 | Disposition | Count | IDs |
 |---|---:|---|
 | RESOLVED | **14** | Q-01, Q-02, Q-03, Q-05, Q-06, Q-08, R-01, R-03, R-04, E-01, E-04, E-05, E-06, E-08 |
-| PARTIALLY RESOLVED | **4** | Q-07, R-05, R-06, E-03 |
-| OPEN | **6** | Q-04, R-02, R-07, R-08, E-02, E-07 |
+| PARTIALLY RESOLVED | **6** | Q-07, R-05, R-06, R-08, E-03, E-07 |
+| OPEN | **4** | Q-04, R-02, R-07, E-02 |
 | **Total** | **24** | |
 
 **S-01..S-05 (Scope/Authority Concerns — tracked separately; not part of the AS §9 "by ID" 24-item requirement, but addressed as part of the overall Round 2 boundary discipline):**
@@ -27,7 +31,7 @@ The Jira-facing summary posted for the original Round 2 comment (`10913`) mislab
 |---|---:|---|
 | RESOLVED | **5** | S-01, S-02, S-03, S-04, S-05 |
 
-**Combined (Q+R+E+S, 29 items total, for reference only — this combined figure is not the AS §9 count and should not be cited as "the 24"):** 19 RESOLVED, 4 PARTIALLY RESOLVED, 6 OPEN.
+**Combined (Q+R+E+S, 29 items total, for reference only — this combined figure is not the AS §9 count and should not be cited as "the 24"):** 19 RESOLVED, 6 PARTIALLY RESOLVED, 4 OPEN.
 
 ## Q — Questions to Consider
 
@@ -53,7 +57,7 @@ The Jira-facing summary posted for the original Round 2 comment (`10913`) mislab
 | R-05 | Canonical concept, template, company instance and posting-account layers are not consistently separated | **PARTIALLY RESOLVED** | `COA_G01_CONCEPT_FIELD_COMPLETENESS_R2.md` now applies this distinction consistently for the 19 Account Types. Full architectural design of the four layers remains COA-G04S scope (not attempted here). |
 | R-06 | COA is treated mainly as taxonomy while posting events, origin modules, exception lifecycle and SoD dependencies are incomplete | **PARTIALLY RESOLVED** | `COA_G01_TEAM_A_SOURCE_CLASS_A_RECONCILIATION_R2.md` shows Process (PR-01..07) and Edge-case (EC-01..18) evidence is substantial; Security (SEC-01..05, explicitly scoped out of this domain) and Integration (INT-01..10, coupling-only, "no research performed on the deferred side") evidence is thin by the Team A researchers' own admission. This is not a G01 defect — it is an accurately labeled evidence boundary. Do-Not-Merge controls relying on thin categories (security, integration) are flagged as lower-confidence in the concept-field table. |
 | R-07 | Primary workbook is not preserved as controlled evidence although the 389-row extraction exists | **OPEN — confirmed, independently re-verified this session** | `COA_G01_WORKBOOK_PROVENANCE_AND_ROW_LINEAGE_R2.md` — whole-volume search this session found **zero** copies of the workbook `.xlsx` file or any Drive-sync cache anywhere on the volume. Only the Google Drive URL/ID is recorded. This is worse than a reproducibility gap: the primary artifact is genuinely unrecoverable from this environment if the Drive link ever becomes inaccessible. Registered as N-01 (Round 1) and reconfirmed, not resolved. |
-| R-08 | B14 clean-room matrix does not specifically cover the three COA_STANDARD documents | **OPEN — confirmed, and scope has grown** | `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` update (below) — the `COA_STANDARD/` folder now holds **4** documents (the unverified `c530138` file was added after Round 1's gap-check), none of which B14 covers. The gap is unresolved and larger than when first registered. |
+| R-08 | B14 clean-room matrix does not specifically cover the three COA_STANDARD documents | **PARTIALLY RESOLVED (corrected CORR2, 2026-08-31 — supersedes the CORR1 text below)** | Current `COA_STANDARD/` count is **3** (the temporary 4th document from `c530138` was deleted by the repository owner's commit `58ab36d`, confirmed independently — see `COA_G01_SOURCE_CONFLICT_REGISTER.md` C-07). `COA_G01_CLEAN_ROOM_PROVENANCE_CHECK.md` now provides document-level clean-room review covering all 3 current documents (2 `VERIFIED CLEAN-ROOM BOUNDARY`, 1 closed this session by adding an explicit disclaimer to the source document). **B14 itself remains unextended** — this session did not and does not modify B14; a dedicated separate artifact was the chosen remediation path (`COA_G01_OPEN_UNKNOWN_REGISTER.md` N-03), not extending B14. Independent re-verification of this session's own document-level review is pending — not claimed as complete. *(CORR1 text, superseded: "OPEN — confirmed, and scope has grown... the COA_STANDARD/ folder now holds 4 documents... The gap is unresolved and larger than when first registered." This was accurate at the moment CORR1 was written but became stale once the repository owner's revert was discovered mid-CORR1 and was not propagated to this row — corrected now.)* |
 
 ## E — Evidence / Validation Concerns
 
@@ -65,7 +69,7 @@ The Jira-facing summary posted for the original Round 2 comment (`10913`) mislab
 | E-04 | Mandatory per-concept fields are incomplete | **RESOLVED** | `COA_G01_CONCEPT_FIELD_COMPLETENESS_R2.md` — all 17 mandatory fields from AS §8.7 populated for all 19 Account Types plus the significant cross-cutting concepts already identified in Round 1's `COA_G01_ACCOUNT_CONCEPT_UNIVERSE.md`. |
 | E-05 | TBRAC TB-01..TB-13 applicability/compliance matrix is absent | **RESOLVED** | `COA_G01_TBRAC_TB01_TB13_MATRIX_R2.md` — new matrix built directly from `THAILAND_BUSINESS_REALITY_USER_FITNESS_CONTROL_V1.md` (commit `d57cca7`), applied at G01 scope. |
 | E-06 | Thai WHT timing, Tax Branch and Thai party identity observations may not be regulatory-verified facts | **RESOLVED — Evidence Character correctly applied** | These items (S2, S3, S5) are tagged `Evidence Character: Source Observation`, `Fact Status: VERIFIED FACT (at the source-observation layer only)` throughout — never elevated to `Regulatory Verification`. See `COA_G01_TBRAC_TB01_TB13_MATRIX_R2.md` TB-05. |
-| E-07 | Clean-room coverage does not include all COA evidence used by G01 | **OPEN — confirmed, scope grown (see R-08)** | Same finding as R-08. |
+| E-07 | Clean-room coverage does not include all COA evidence used by G01 | **PARTIALLY RESOLVED (corrected CORR2, 2026-08-31 — see R-08)** | Same finding and same correction as R-08. |
 | E-08 | Operational hashes were reported as independently recalculated by the Audit VETO advisory lens, but this PMO record does not independently recreate that calculation | **RESOLVED** | This session independently ran and recorded a fresh SHA-256 computation over the full, updated evidence package — see rebuilt `COA_G01_EVIDENCE_MANIFEST.md` and `COA_G01_SHA256SUMS.txt`, with the exact verification command recorded. |
 
 ## S — Scope / Authority Concerns
