@@ -1,0 +1,49 @@
+# CORR-007A SHA-256 Manifest
+# Session: SMEPLUS-26-09-01-CORR007A-GRPA-M18-WHT-50TWI-001
+# Generated: 2026-09-01
+# All hashes computed directly via `shasum -a 256` against the files at the paths shown.
+
+## A. Boss-uploaded evidence
+
+5988085deba46ff9796ef43c51d4d83209011d2e1c935e495a3d7949542b2c0a  ACCOUNT/01 ACCOUNT/SOURCE CODE/addons_extra/l10n_th_withholding_tax_cert_form.zip
+8e0969a3229a36b28f7fd4bf1107387de808a71f8345f1473267c90ee161c94b  ACCOUNT/01 ACCOUNT/SOURCE CODE/addons_extra/l10n_th_withholding_tax_cert_form/static/src/img/WithholdingCert.jpg  (referenced by report; == extracted copy of Boss's WithholdingCert.jpg)
+c77939e4fe85828d3e434f6792657b03353d2513b7184dc6f055181fee718f10  ACCOUNT/01 ACCOUNT/SOURCE CODE/addons_extra/l10n_th_withholding_tax_cert_form/static/src/img/fix/WithholdingCert.jpg  (unreferenced spare copy)
+
+## B. l10n_th_withholding_tax_cert_form (print/report module — cited files)
+
+dfc9a1978d6072fe5c8310e798f4a4c81527140fe3d45b22b51861255d5c8bd9  .../l10n_th_withholding_tax_cert_form/__manifest__.py
+0cb35b49b926d48a5b2bf60025eec2fbb62c9abb302ee9db78f0d26f9e6255b2  .../l10n_th_withholding_tax_cert_form/models/withholding_tax_cert.py
+9eda88a7c6c2e3553bb4502958639bc48d65d01d2e123c6843d37d99331d7a59  .../l10n_th_withholding_tax_cert_form/views/withholding_tax_cert.xml
+4b565bfb52319c0d3b5baed7e6bd231a06cd69daaf7fcc4b057fd55aa4f40f9c  .../l10n_th_withholding_tax_cert_form/reports/withholding_report_pdf.py
+c6d08973a58ada4d63f8c02462de80fe2a16571e4f5f8fa81f51e18394245aff  .../l10n_th_withholding_tax_cert_form/reports/layout.xml
+51b604e00db7f9f0079316cd260a4ccd8979f478d23a4cd232732b7972caeda1  .../l10n_th_withholding_tax_cert_form/data/report_data.xml
+7e4e9830e880c7700eae2c7ea77779cfb05e13c73a7837dceeb72d05d5ba40e2  .../l10n_th_withholding_tax_cert_form/data/paper_format.xml
+cd82528354ec39f84e889608967bf3659f4865f6a084bc6e49a96bb363eda60c  .../l10n_th_withholding_tax_cert_form/static/scss/style_report.scss
+5f6fc77382f13711c12b88279b7b66fd67f3c3a2ea2645940edf3e77139dad2b  .../l10n_th_withholding_tax_cert_form/tests/test_wt_cert_form.py
+85d8a872026b351ec24408c439ce58353ebc0244911db9a7222f2385518f3de2  .../l10n_th_withholding_tax_cert_form/readme/DESCRIPTION.rst
+
+## C. l10n_th_withholding_tax_cert (base model module — dependency context, cited files)
+
+c935212ebf19f4bc224f5104a1ded92fe0a17f4fc5f9c75104ec61b164a90a95  .../l10n_th_withholding_tax_cert/__manifest__.py
+7df08a7d94b1473b06e4c74df45e25594f2fc139af45778a9ce14c9810a79088  .../l10n_th_withholding_tax_cert/models/withholding_tax_cert.py
+
+## D. l10n_th_partner (branch-field evidence, cited to prove architectural disconnect)
+
+70c770de01f29c8cb4618a4db3dfafb105d0db4e9ec42a234d78dbb8b2433dd7  .../l10n_th_partner/models/res_partner.py
+e447820028216e9e850f240ed00784f4a0a78f79b978fd2a4cca44e24ed87948  .../l10n_th_partner/models/res_company.py
+544638af0b475fefeb239f9e5c0206b1cf6cee83f395b320415b21c3c4b0310d  .../l10n_th_partner/views/res_partner_view.xml
+
+## E. CORR-007A deliverables (this package)
+
+5f43b7a5a17036dce655ca8bbffb4ca74d4a24377b75bbc7c6560badb7ed55ff  01_CORR007A_SOURCE_LOCATION_PROOF.md
+e8442c431a3bb0c3704e0d699986da477a247f649f15508325bd334bb0a734d3  02_CORR007A_50TWI_FIELD_MAPPING_MATRIX.md
+bac16e80d8340126fd157a0d596831dbfce09bd37adb34179b56eb841783dd26  03_CORR007A_RENDER_PRINT_PROOF.md
+1965d36b851010510d3b7d0df76d69d609aa9a309284564a59521fe6ab4852c5  04_CORR007A_PND3_PND53_BOUNDARY_STATEMENT.md
+c3f53548d60d4e4e771579954356aac8b2e83377b1dfa2f4e1679bcf0f99f9f4  05_CORR007A_FINAL_DISPOSITION_AND_BOSS_RECOMMENDATION.md
+
+## F. Prior evidence relied upon by reference (not re-hashed; hash on file in CORR-006 package)
+
+46a848375b4878f6d4b3e82cfeab4e2e6d6cb552  (git commit) CORR-006 base commit, branch audit/inventory-core-corr006-boss-high-reproof-008
+.../l10n_th_reports/models/tax_report_pnd.py  (examined and hashed under CORR-006, not re-examined in this session; cited by reference only in Team 4 boundary statement)
+
+# End of manifest.
