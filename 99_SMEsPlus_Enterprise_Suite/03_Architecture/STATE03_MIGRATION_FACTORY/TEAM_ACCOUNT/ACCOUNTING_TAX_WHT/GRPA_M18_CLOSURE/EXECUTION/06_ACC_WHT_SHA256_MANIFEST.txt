@@ -43,6 +43,16 @@ fb67fd4f163319e8c112762c2cdfd95cfcfa86c7dd964ecf6c0c96ec813537dc  addons_extra/l
 a12d64e133b64b56d25b9eba8273d4a13b6ec2be0965d76c0c92887d1d2f9085  addons_extra/l10n_th_withholding_tax_multi/views/account_payment_view.xml
 fccb905dcd1a903e6947e8cf34f85ec403e791c854d64db4c5f0f836f6f7f0cb  addons_extra/l10n_th_withholding_tax_multi/README.rst
 01c6c0558fd7230d055469325c8f386317b34dcd985518f3a2b975293b0bf8e5  addons_extra/l10n_th_withholding_tax_multi/__manifest__.py
+519bef123449293235d018439c50830f02712f1c4565082a0420dcd23690d989  addons_extra/l10n_th_withholding_tax_multi/tests/test_withholding_tax_multi.py  (added in Boss WHT Decision follow-up round; test_02/test_04 are direct-evidence basis for 09's proof items 1-2)
+3cecf13e670db1922e9c98ee47db0ac31c4379c6bc52e6dc4681974b45c12d7a  addons_extra/l10n_th_withholding_tax_multi/tests/account_withholding_tax_test.xml  (added same round; defines the wt_account_5 5% fixture used alongside the base module's wt_account_3 3% fixture)
+
+NOT FOUND IN TREE (confirmed absent, cited for the record — see 09 §0/§6): the OCA base module
+`account_payment_multi_deduction`, declared as a hard dependency in
+`addons_extra/l10n_th_withholding_tax_multi/__manifest__.py`. A `find` across the full source tree
+returned zero matches. This module's actual mechanics (how a `deduction_ids` transient record
+becomes a posted `account.move.line` at `payment.post()` time) could not be independently
+source-verified in this session — evidence for that step rests on `l10n_th_withholding_tax_multi`'s
+own test assertions and its own in-tree override code, not on having read the OCA module itself.
 
 ## B. l10n_th_withholding_tax_cert + l10n_th_withholding_tax_cert_form (50-twi certificate model + print layer)
 
@@ -106,8 +116,9 @@ a409a5d9fc5a50358bc8e80895ff9191677f631af3251c3bd5568afa3b4ca761  01_ACC_WHT_PUR
 e52bb7801a79c709a2d83644e3371a91ecc4dc253f97a5af45b383ff149e27b9  02_ACC_WHT_SALES_SIDE_PROOF.md
 5afdc54a4b1c730d8f26f499e70d8876a57331b191e3ef4f6be13eb1a047e6e7  03_ACC_WHT_50TWI_GAP_CLOSURE.md
 7a30c810b3d159a584b68e2aa726596e6d01c7d4645c2a192ef09f9dd0a961b7  04_ACC_WHT_PND3_PND53_FILING_PROOF.md
-dc95be921807efab3b6769206b64502045ccb489e1523168ad8d54a9b0269a1e  05_ACC_WHT_FINAL_DISPOSITION_AND_BOSS_RECOMMENDATION.md  (SUPERSEDES the ea59c690... hash recorded earlier in this file's own edit history — updated in place after the ACC-WHT-06 addendum was incorporated, see Section F)
+d4c29235408e310f623ab5b9966fc2d50c331932df0099b3b58dbc3b60a71d44  05_ACC_WHT_FINAL_DISPOSITION_AND_BOSS_RECOMMENDATION.md  (SUPERSEDES the dc95be92... hash previously recorded here — updated in place after Boss's Partial Acceptance decision and document 09, see Section G)
 23b0059f7d914ee20333a4488bb3125a8dd89202fa6b9fc915db8a47b6626570  08_ACC_WHT_MULTI_TYPE_MULTI_RATE_CHALLENGE.md  (mid-session Boss Challenge Addendum response; cites no evidence files beyond those already in Sections A-C above)
+a77d0028c5453ec3807607efcdfd793399329f2f40092dd3a7373070141e0942  09_ACC_WHT_MULTI_MODULE_TARGETED_PROOF.md  (Boss WHT Decision follow-up — targeted proof of l10n_th_withholding_tax_multi; cites the 2 new files added to Section A2 above, plus files already covered by Sections A-C)
 
 (06_ACC_WHT_SHA256_MANIFEST.txt — this file — and 07_ACC_WHT_SESSION_CLOSURE.md are not
 self-hashed, consistent with CORR-007A precedent: a manifest cannot practically include its own
@@ -127,15 +138,37 @@ the value now recorded there; (3) this manifest (06) was updated to add document
 revised document 05 hash. No source-tree evidence file (Sections A-C) needed re-hashing, since
 document 08 cites only files already covered by this manifest.
 
+## G. Boss WHT Decision follow-up round (Partial Acceptance; ACC-WHT-06 targeted proof)
+
+Boss reviewed the ACC-WHT-06 finding in `08` and issued a Partial Acceptance decision: the
+Inventory-to-Accounting/Tax domain transfer is accepted; full WHT closure is not; `ACC-WHT-06`
+stays HIGH unless `l10n_th_withholding_tax_multi` is proven part of the required deployed module
+set, per a six-item targeted-proof requirement. This session responded by: (1) reading a test file
+not previously examined, `tests/test_withholding_tax_multi.py`, and its fixture (both newly added
+to Section A2 above); (2) producing `09_ACC_WHT_MULTI_MODULE_TARGETED_PROOF.md`, answering all six
+required items with direct test-oracle evidence where available (proof items 1-2) and clearly
+flagged chained-evidence-only status where a direct test does not exist (proof items 3-4), plus a
+confirmed NOT FOUND for sales-side testing (proof item 5); (3) editing `05` in place again to
+record Boss's decision verbatim, update the `ACC-WHT-06` disposition row, and update the Boss
+Decision Options / Final Status sections accordingly; (4) updating this manifest. This round's work
+was performed in an isolated git worktree, separate from the shared `AI-Collaboration-Hub` folder,
+following the branch-collision incident from the prior round (recorded in the session's own
+conversation history, not restated in these deliverables) — no risk of a repeat collision this
+round. **Two hashes cited in the draft of `09` were caught and corrected before this manifest was
+finalized: they had been written without first running the hash computation, a violation of this
+session's own evidence discipline that was self-identified and fixed immediately** (see `09` §0 for
+the corrected values, which match Section A2 above exactly).
+
 ## Summary
 
-Total distinct evidence files hashed: 46 (Sections A-C, source tree) + 6 (Section E, this
-session's own deliverables, including the ACC-WHT-06 addendum) = 52. Zero files were missing or
-unreadable. Zero hash mismatches were found against any document's inline citations. One
-appendix-only transcription artifact was found and corrected (Section D). Stock/inventory
-dependency: zero references to stock.move, stock.quant, or stock.picking found anywhere across
-all files in Sections A-C, independently confirmed by Team A5 with a fresh repo-wide grep in
-addition to each team's own module-scoped greps (see
+Total distinct evidence files hashed: 48 (Sections A-C, source tree, including the 2 files added
+in Section G) + 7 (Section E, this session's own deliverables, including 09) = 55. Zero files were
+missing or unreadable. Zero hash mismatches remain against any document's inline citations (one
+was caught and self-corrected during drafting, per Section G). One appendix-only transcription
+artifact was found and corrected (Section D). Stock/inventory dependency: zero references to
+stock.move, stock.quant, or stock.picking found anywhere across all files in Sections A-C,
+independently confirmed by Team A5 with a fresh repo-wide grep in addition to each team's own
+module-scoped greps (see
 05_ACC_WHT_FINAL_DISPOSITION_AND_BOSS_RECOMMENDATION.md §1 and §3). One HIGH GAP was found in
 response to the ACC-WHT-06 addendum: the base `l10n_th_withholding_tax` module's payment write-off
 mechanism does not correctly tag GL lines for multi-rate documents (see 08, §2.2/§5/§9).
