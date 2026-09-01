@@ -1,249 +1,499 @@
-# SMEsPlus NEW PROMPT Governance Standard — STATE03+ Pre-Prompt Independent Challenge Rule
+# SMEsPlus NEW PROMPT Governance Standard — 9 Veto Challenge Council + 9 Special Team Challenge
 
-Document ID: SMEPLUS-26-08-30-PRE-PROMPT-CHALLENGE-001
-Version: v1.1
-Status: BOSS APPROVED / EFFECTIVE
-Effective Date: 2026-08-30
-Project: SMEsPlus ENTERPRISE SUITE
-Scope: Every controlled New Prompt / New Session Prompt / Carry-Forward Prompt / Corrective Prompt / Deep Research Prompt / Execution Prompt from STATE03 onward
-Final Approval Authority: Boss
-Supersedes: v1.0 of this document
+Document ID: `SMEPLUS-26-08-30-PRE-PROMPT-CHALLENGE-001`  
+Version: `v2.0`  
+Status: `BOSS APPROVED / EFFECTIVE`  
+Effective Date: `2026-09-02`  
+Project: `SMEsPlus ENTERPRISE SUITE`  
+Scope: `Every controlled Session and every controlled Prompt from STATE03 onward`  
+Control Level: `/L999.999`  
+Final Approval Authority: `Boss — Sole Final Approver`  
+Supersedes: `v1.1` of this document
+
+---
 
 ## 1. Boss Ruling
 
-Boss approves this rule as the mandatory **NEW PROMPT Governance Standard** for SMEsPlus from STATE03 onward.
+Boss approves a mandatory two-layer independent challenge structure for every controlled Session and Prompt:
 
-Every controlled New Prompt shall be challenged before execution so that the execution Team receives a prompt whose intent, scope, authority, material unknowns, evidence expectations and acceptance conditions are sufficiently clear.
+1. **9 Veto Challenge Council — PRIMARY FUNCTION**
+2. **9 Special Team Challenge — SECONDARY / DEEP-INVESTIGATION FUNCTION**
 
-The five mandatory independent challenge functions are:
+Both challenge layers report directly to Boss for authority purposes.
 
-1. Audit VETO — Evidence / Governance Challenge
-2. TBRAC — Thailand Business Reality Challenge
-3. EXPERT IBPV — Business Process & Design Challenge
-4. EXPERT IDTM — Deep Test / Integrity Challenge
-5. EXPERT IESA — ERP & SaaS System-Level Challenge
+PMO / Secretary is the **Evidence Custodian, Challenge Coordinator and Record Keeper only**. PMO does not command the Council, does not command the Special Teams, does not vote on behalf of Boss and does not convert challenge findings into approval.
 
-The purpose is to reduce avoidable rework, hidden assumptions, confirmation bias, scope creep and downstream control failures.
+Every controlled Session and Prompt must be challenged **before** the final executable Prompt is issued.
 
-The purpose is NOT to obtain a predetermined answer, provide an answer key, force agreement with Boss, prescribe the expected research result, or allow downstream reviewers to control the current execution Team.
+Mandatory principles:
 
-Mandatory interpretation:
+`Challenge First -> Prompt Second -> Execution Third.`  
+`Ask until materially clear — not until everyone agrees.`  
+`No repeated question without a material delta.`  
+`No reset-to-zero challenge.`  
+`Boss Idea != Verified Requirement != Approved Scope != Proven Business Fact.`  
+`No Evidence = No Progress.`  
+`Never Skip Gate.`  
+`Boss = Sole Final Approver.`
 
-`Ask until materially clear — not until everyone agrees.`
+---
 
-`Boss Idea != Verified Requirement != Approved Scope != Proven Business Fact.`
+## 2. Purpose
 
-`Independent experts challenge the questions; the authorized Team discovers the answers.`
+The challenge system exists to prevent:
 
-## 2. Control Objective
+- hidden assumptions;
+- confirmation bias;
+- repeated questioning that loses prior learning;
+- stale Prompt construction;
+- scope creep;
+- lifecycle / Gate skipping;
+- clean-room contamination;
+- accounting / inventory / migration contradictions;
+- SaaS / tenant / security control gaps;
+- AI overreach;
+- unresolved material unknowns being silently treated as facts;
+- loss of challenge history between Sessions.
 
-The Pre-Prompt Challenge Gate must answer, to the extent applicable:
+The objective is not to make every AI agree. The objective is to expose material uncertainty early, preserve the learning, investigate the uncertainty when needed, and present Boss with a traceable basis for decision.
 
-- What exactly is Boss asking to accomplish?
-- Why is the work being requested?
-- What is explicitly in scope and out of scope?
-- Which facts are verified, unverified, assumed, conflicting or unknown?
-- What authority does the execution Team have?
-- What actions are prohibited?
-- What evidence is required?
-- What conditions constitute acceptance, HOLD or FAIL/FROZEN?
-- Which material risks or blind spots should the execution Team investigate without prescribing the answer?
-- Does the Prompt accidentally expand Scope, skip a Gate, contaminate clean-room boundaries, or authorize Development/Production without authority?
+---
 
-The challenge process shall eliminate material ambiguity where reasonably possible, but must preserve legitimate Unknowns when evidence does not yet exist.
+## 3. Authority Structure
 
-## 3. Team Boundary Rule — No Cross-Team Execution
+```text
+                         BOSS
+                  Sole Final Approver
+                          |
+              +-----------+-----------+
+              |                       |
+              v                       v
+   9 VETO CHALLENGE COUNCIL     PMO / SECRETARY
+       PRIMARY FUNCTION          Evidence Custodian
+              |                  No approval authority
+              |
+       Material Unknown /
+       Conflict / Blind Spot
+              |
+              v
+    9 SPECIAL TEAM CHALLENGE
+       SECONDARY FUNCTION
+      Deep Investigation only
+              |
+              v
+       Evidence / Finding
+              |
+              v
+   9 VETO CHALLENGE COUNCIL
+              |
+       Gate Recommendation
+              |
+              v
+             BOSS
+```
 
-Each Team owns and executes only its approved lifecycle scope.
+The Council and Special Teams are independent challenge functions. Neither replaces the authorized lifecycle execution Team.
 
-Examples:
+`Challenge != Execution.`  
+`Challenge != Approval.`  
+`Challenge != Scope Creation.`
 
-- Team A performs source learning / evidence extraction within Team A scope.
-- Team B performs independent canonical design within Team B scope.
-- Team C performs engineering / implementation within Team C scope after authorization.
-- Team D performs independent QA / clean-room / compliance work within Team D scope after the lifecycle reaches Team D.
+---
 
-A Team that is not the current authorized execution Team must not enter the current Team's execution work, co-author its findings, prescribe its conclusion, or impose its downstream test/design method on the current Team.
+## 4. 9 Veto Challenge Council — Primary Standing Function
 
-`No Cross-Team Execution.`
+The Council must challenge **every controlled Session and every controlled Prompt** before final issuance.
 
-`No Downstream Team may control Upstream Research.`
+Each mandate must remain materially distinct. Duplicate questioning is prohibited unless a documented delta justifies reopening.
 
-## 4. Current Team Autonomy
+### Council 01 — Audit VETO / Evidence & Governance
 
-The currently authorized Team has full execution authority inside its approved scope, subject only to project governance, evidence rules, clean-room rules, approved Gates and Boss rulings.
+Challenge:
 
-Independent challenge functions may question and recommend; they do not take over execution.
+- evidence sufficiency and traceability;
+- contradictions;
+- Gate / authority conflicts;
+- unsupported completion claims;
+- scope creep;
+- lifecycle jump;
+- missing owner / verifier / timestamp / evidence location;
+- Boss ruling conflicts.
 
-The execution Team must remain free to discover evidence that contradicts expectations, Boss assumptions, AI assumptions, vendor assumptions or reviewer assumptions.
+### Council 02 — TBRAC / Thailand Business Reality & User Fitness
 
-No reviewer may convert a hypothesis into a required conclusion merely because it appears plausible.
+Challenge:
 
-## 5. Mandatory Five-Unit Pre-Prompt Challenge
+- real Thai business practice;
+- user/persona fitness;
+- industry/company variation;
+- Thailand document / operational reality;
+- real-user validation;
+- unsupported generalization from one company or reference ERP.
 
-Before finalizing every controlled New Prompt, all five challenge functions shall perform a pre-prompt review. Review depth may scale with Prompt risk, but participation of the five challenge lenses remains mandatory for controlled New Prompts.
+### Council 03 — EXPERT IBPV / Business Process & Design Integrity
 
-### 5.1 Audit VETO — Evidence / Governance Challenge
+Challenge:
 
-Purpose:
+- process completeness;
+- state / event ownership;
+- cross-module flow;
+- exceptions;
+- approval / segregation of duties;
+- user flow;
+- traceability;
+- design contradictions.
 
-- challenge evidence sufficiency;
-- challenge unsupported assumptions;
-- identify governance/Gate conflicts;
-- identify material unknowns, contradictions and missing evidence;
-- identify accidental Scope expansion;
-- identify unauthorized Build / Production / write actions;
-- ask questions that should be resolved or explicitly carried as Unknown.
+Formal IBPV lifecycle authority remains unchanged; this pre-prompt role is a challenge function only unless the lifecycle has formally reached IBPV.
 
-Audit VETO must NOT prescribe the business answer or force the execution Team to produce a predetermined finding.
+### Council 04 — EXPERT IDTM / Data, Identity, Reconciliation & Integrity
 
-### 5.2 TBRAC — Thailand Business Reality Challenge
+Challenge:
 
-Purpose:
+- canonical identity;
+- reconciliation;
+- migration integrity;
+- duplicate / idempotency risk;
+- data lineage;
+- historical continuity;
+- edge-case integrity;
+- testability of material invariants.
 
-- challenge whether Thailand business reality has been overlooked;
-- challenge textbook/vendor assumptions against real Thai operating practice;
-- raise user/persona, document, compliance, industry-variation and real-user-validation questions where materially relevant;
-- identify areas where authoritative Thai evidence or real-user validation may be required;
-- identify whether a Founder/Boss observation should remain a hypothesis pending evidence.
+Formal IDTM lifecycle authority remains unchanged.
 
-TBRAC must NOT provide an answer key for the execution Team or force the Team to conclude that a particular Thai practice is correct without evidence.
+### Council 05 — EXPERT IESA / ERP & SaaS System Integrity
 
-### 5.3 EXPERT IBPV — Business Process & Design Challenge
+Challenge:
 
-IBPV may raise questions and recommendations about potential business-process, cross-module, state/event, ownership, exception, approval/SoD, user-flow and traceability blind spots.
+- ERP-wide architecture coherence;
+- tenant / company boundaries;
+- cross-domain integrity;
+- performance / resilience implications;
+- interoperability;
+- platform boundary;
+- production-assurance implications.
 
-At pre-prompt stage IBPV is advisory only unless the lifecycle has formally reached IBPV Verification.
+Formal IESA lifecycle authority remains unchanged.
 
-IBPV must NOT design the answer for Team A/Team B, rewrite the current Team's work, or prescribe a future verification checklist as the current Team's required conclusion.
+### Council 06 — Financial, Accounting, Tax & Statutory VETO
 
-### 5.4 EXPERT IDTM — Deep Test / Integrity Challenge
+Challenge:
 
-IDTM may raise questions and recommendations about possible blind spots that could later create deep-test difficulty, including integrity, concurrency, edge-case, tenant/security, integration/idempotency, performance, recovery, audit/SoD or cross-domain concerns.
+- accounting ownership and financial truth;
+- posting / reversal / period / cut-off implications;
+- AR/AP / tax / asset / reporting impacts;
+- financial reconciliation;
+- Thailand tax or statutory claims that require authoritative evidence;
+- conflicts with controlled Accounting Core contracts.
 
-At pre-prompt stage IDTM is advisory only unless the lifecycle has formally reached IDTM Deep Test execution.
+This Council does not invent accounting answers where evidence or Boss-approved policy is absent.
 
-IDTM must NOT turn its future 10-Dimension Deep Test Matrix into an answer key for upstream research. It must not require the current Team to study only what IDTM later intends to test.
+### Council 07 — Security, Privacy & Resilience VETO
 
-### 5.5 EXPERT IESA — ERP & SaaS System-Level Challenge
+Challenge:
 
-IESA may raise questions and recommendations about potential ERP/SaaS system-level implications, cross-domain integrity, tenancy, multi-company, security, performance, resilience, operational coherence, migration and future production-assurance concerns.
+- access control;
+- tenant isolation;
+- sensitive data exposure;
+- PDPA/privacy implications;
+- audit/security evidence;
+- backup / recovery / continuity;
+- destructive / irreversible actions;
+- secrets / credentials / production risk.
 
-At pre-prompt stage IESA is advisory only unless the lifecycle has formally reached IESA Pre-Assurance or Final Assurance.
+### Council 08 — Clean-Room, IP & Provenance VETO
 
-IESA must NOT prescribe target architecture, predetermined findings or production-readiness conclusions to an upstream Team.
+Challenge:
 
-## 6. Prompt Risk Classification
+- source-code reuse / cloning / contamination risk;
+- license / provenance ambiguity;
+- vendor architecture leakage into target design;
+- raw customer/source evidence handling;
+- source / learning / target boundary;
+- evidence-chain integrity.
 
-Every controlled New Prompt shall be classified before execution.
+Mandatory invariant:
 
-### LOW RISK
+`Reference ERP behavior = Evidence / Learning Input, not target architecture by default.`
 
-Examples: read-only lookup, factual extraction, formatting, controlled summary or analysis that cannot materially alter Scope, architecture, data, configuration or Gate status.
+### Council 09 — AI Control, Automation & Human Oversight VETO
 
-Required treatment:
+Challenge:
 
-- five-unit lightweight screening;
-- no unnecessary interrogation if no material issue is found;
-- any discovered material risk automatically escalates the Prompt to MEDIUM or HIGH.
+- AI being used where deterministic control is required;
+- unsupported AI certainty;
+- explainability / provenance;
+- human override / escalation;
+- AI tutor / guard / reviewer boundaries;
+- autonomous action authority;
+- user dependency on AI;
+- failure mode if AI output is wrong.
 
-### MEDIUM RISK
+Mandatory invariant:
 
-Examples: design proposal, mapping, architecture option, business rule interpretation, migration design, controlled configuration proposal, evidence-based recommendation.
+`AI may assist, detect, recommend, challenge and explain; deterministic controls must not rely solely on probabilistic AI.`
 
-Required treatment:
+---
 
-- full five-unit Pre-Prompt Challenge;
-- consolidated material questions;
+## 5. 9 Special Team Challenge — Secondary Deep-Investigation Function
+
+The 9 Special Teams mirror the 9 Council mandates above.
+
+They are **not** automatically activated in full for every Prompt.
+
+They are activated only when the Council identifies a material issue that cannot be responsibly resolved by current evidence or prior controlled learning.
+
+Typical activation triggers:
+
+- material Unknown;
+- conflicting evidence;
+- repeated defect / regression;
+- accounting / inventory contradiction;
+- architecture collision;
+- Thailand business-reality uncertainty;
+- tax / statutory uncertainty;
+- SaaS / tenant / security uncertainty;
+- clean-room / provenance uncertainty;
+- migration / historical continuity uncertainty;
+- AI-control uncertainty;
+- two or more Council mandates materially disagree;
+- Boss explicitly requests deep challenge.
+
+Special Team outputs must contain:
+
+- Challenge ID;
+- exact question investigated;
+- reason for activation;
+- evidence inspected;
+- evidence location / hash / commit where available;
+- finding;
+- unresolved Unknown / Conflict;
+- risk / Gate impact;
+- recommended disposition;
+- reviewer / verifier;
+- timestamp.
+
+A Special Team may investigate deeply, but it may not self-approve lifecycle progression.
+
+---
+
+## 6. Independent First-Pass Rule — Anti-Groupthink
+
+For MEDIUM / HIGH risk Prompts, and any Prompt with a material issue, each Council mandate must perform an independent first pass **before** seeing the fresh findings of the other Council mandates.
+
+Process:
+
+```text
+Prompt Delta Pack
+      |
+      +--> Council 01 independent finding
+      +--> Council 02 independent finding
+      +--> Council 03 independent finding
+      +--> Council 04 independent finding
+      +--> Council 05 independent finding
+      +--> Council 06 independent finding
+      +--> Council 07 independent finding
+      +--> Council 08 independent finding
+      `--> Council 09 independent finding
+                |
+                v
+        PMO duplicate suppression
+                |
+                v
+        Council deliberation / consolidation
+```
+
+The purpose is to prevent nine nominal voices from becoming one copied opinion.
+
+`9 Units != 9 Independent Thoughts unless first-pass independence is preserved.`
+
+---
+
+## 7. Challenge Continuity — No Reset-to-Zero
+
+Every new Session and every new Prompt must begin by loading the **current challenge state**, not by starting the challenge from the beginning.
+
+Mandatory prior records to read, when applicable:
+
+- previous Prompt / Session record;
+- prior Challenge Readiness Record;
+- Challenge Continuity Ledger;
+- Unknown / Conflict Register;
+- Evidence Chain Index;
+- Boss decisions / overrides;
+- current frozen input commit;
+- current Gate status;
+- latest independent review / correction / re-verification.
+
+The challenge process must then operate **DELTA-FIRST**.
+
+### 7.1 Mandatory Prompt Delta Pack
+
+Before Council review, PMO prepares only the material delta:
+
+- what changed since the previous Prompt;
+- new Boss intent;
+- new evidence;
+- changed Scope / authority;
+- new or reopened Unknown;
+- new contradiction;
+- new Gate / lifecycle impact;
+- unresolved carry-forward items that remain material.
+
+### 7.2 Prohibited Repetition
+
+A Council or Special Team must not ask the same question again merely because a new Session or Prompt has started.
+
+A prior question may be reopened only if at least one documented Delta Trigger exists:
+
+- new evidence contradicts prior resolution;
+- baseline / Boss ruling changed;
+- scope materially changed;
+- upstream/downstream dependency changed;
+- regression reintroduced the issue;
+- prior answer was only provisional / carry-forward;
+- evidence location became unavailable or untrustworthy;
+- new law / regulation / authoritative evidence materially changes the question;
+- the question was previously closed without adequate evidence and the deficiency is now detected.
+
+Every reopened question must state:
+
+`Why reopened now?`  
+`What changed?`  
+`Which prior Challenge ID is being reopened?`
+
+Without a valid Delta Trigger:
+
+`DUPLICATE QUESTION = SUPPRESS.`
+
+---
+
+## 8. Challenge Continuity Ledger
+
+Every controlled Group / Domain / Workstream must maintain or reference a Challenge Continuity Ledger.
+
+Minimum fields:
+
+```text
+Challenge_ID
+Council_Mandate
+Question_Fingerprint
+Question
+First_Raised_In
+Risk
+Evidence_Required
+Status
+Resolution_Evidence
+Boss_Decision
+Carry_Forward
+Last_Reviewed_In
+Delta_Trigger
+Reopen_Reason
+Affected_Scope_or_Gate
+Special_Team_Activated
+Notes
+```
+
+Controlled challenge statuses:
+
+- `NEW`
+- `OPEN`
+- `EVIDENCE_REQUIRED`
+- `CONFLICTING_EVIDENCE`
+- `CARRY_FORWARD`
+- `RESOLVED`
+- `CLOSED_WITH_EVIDENCE`
+- `REOPENED_WITH_DELTA`
+- `SUPERSEDED`
+- `DUPLICATE_SUPPRESSED`
+
+Historical challenge rows must not be deleted simply because they were resolved.
+
+---
+
+## 9. Mandatory Challenge Sequence for Every Controlled Session / Prompt
+
+```text
+1. Load Previous Controlled Context
+2. Load Challenge Continuity Ledger
+3. Load Unknown / Conflict / Evidence Chain
+4. Build Prompt Delta Pack
+5. Classify Risk
+6. 9 Veto Council Independent First Pass
+7. Suppress Duplicate / Previously Resolved Questions
+8. Consolidate Only New / Reopened Material Challenges
+9. Activate relevant Special Team(s) only if triggered
+10. Special Team Deep Investigation / Evidence
+11. Return findings to 9 Veto Council
+12. PMO Prompt Readiness Record
+13. READY / HOLD / FAIL-FROZEN
+14. Boss Decision / Exception where required
+15. Final Controlled New Prompt
+16. Authorized Team Execution
+17. Update Challenge Ledger + Evidence Chain
+```
+
+If there is no new material question after Delta review, record:
+
+`NO NEW MATERIAL CHALLENGE — PRIOR CONTROLLED QUESTIONS CARRIED FORWARD.`
+
+This is an acceptable outcome and is preferable to manufacturing repetitive questions.
+
+---
+
+## 10. Prompt Risk Classification
+
+Every controlled Prompt must still receive all 9 Council lenses; risk changes depth, not participation.
+
+### LOW
+
+- 9-Council DELTA screening;
+- duplicate suppression mandatory;
+- Special Team normally not activated;
+- if material risk appears, escalate to MEDIUM / HIGH.
+
+### MEDIUM
+
+- full 9-Council DELTA challenge;
+- independent first pass;
+- Prompt Readiness Record mandatory;
+- Special Team activated where material investigation is required.
+
+### HIGH
+
+Examples include Accounting/Tax, Inventory Backbone, migration write/execution, security/tenant control, sensitive data transformation, irreversible configuration, Development authorization, Production action, Boss Freeze, Release, regulatory claim.
+
+Required:
+
+- full 9-Council independent challenge;
 - Prompt Readiness Record;
-- unresolved material items explicitly carried as Unknown / HOLD where applicable.
+- blocking Unknown prevents execution unless Boss-controlled exception exists;
+- relevant Special Team deep investigation where required;
+- no lifecycle promotion until evidence is preserved.
 
-### HIGH RISK
+---
 
-Examples: Scope change, Accounting/Tax rule, migration write/execution, security/tenant control, sensitive data transformation, irreversible configuration, Development authorization, Production action, Boss Freeze, regulatory claim or Release decision.
+## 11. Mandatory Consolidated Pre-Prompt Output
 
-Required treatment:
+PMO must consolidate Council and Special Team inputs into:
 
-- full five-unit Pre-Prompt Challenge;
-- mandatory Prompt Readiness Record;
-- unresolved blocking issue prevents Prompt execution;
-- Boss-controlled exception required for any explicit override of a blocking governance/risk finding.
+1. `NEW MATERIAL QUESTIONS`
+2. `REOPENED QUESTIONS WITH DELTA`
+3. `DUPLICATE QUESTIONS SUPPRESSED`
+4. `RISKS / BLIND SPOTS`
+5. `EVIDENCE / VALIDATION CONCERNS`
+6. `SCOPE / AUTHORITY CONCERNS`
+7. `SPECIAL TEAM ACTIVATIONS`
+8. `BLOCKING UNKNOWNS / CONFLICTS`
+9. `CARRY-FORWARD ITEMS`
+10. `NO NEW MATERIAL CHALLENGE`, where applicable.
 
-Risk classification changes review depth; it does not authorize work outside the approved lifecycle or Scope.
+Only material questions that can change Scope, architecture, business semantics, evidence sufficiency, risk, Gate result or execution authority should reach Boss.
 
-## 7. No Answer-Key / Confirmation-Bias Rule
+---
 
-Independent challenge functions must operate using a `Question / Risk / Blind Spot / Evidence Gap` model, not an `Expected Answer / Mandatory Conclusion` model.
+## 12. Prompt Readiness Record — v2.0
 
-Preferred form:
-
-```text
-Question:
-What happens if the transaction is partially completed and then cancelled?
-
-Risk:
-Cross-module state may become inconsistent.
-
-Evidence concern:
-Source observation and target business semantics must be reconciled.
-
-Recommendation:
-Consider whether this scenario is material to the current approved scope.
-```
-
-Prohibited form:
-
-```text
-Expected Answer:
-The current Team must conclude that state X must transition to Y and must use rule Z.
-```
-
-Also prohibited:
-
-- asking questions only to validate Boss's preferred conclusion;
-- converting Boss experience into verified Thailand-wide business fact without evidence;
-- converting AI consensus into approval;
-- treating majority agreement among the five challenge functions as a Boss decision.
-
-## 8. Scope Protection Rule
-
-Pre-Prompt Challenge may discover a Scope Gap, but it may not silently expand Scope.
-
-Required handling:
-
-```text
-Potential Missing Capability
-→ Evidence / Business Need
-→ Baseline Check
-→ IN-SCOPE: route to controlled execution
-   OR
-→ OUT-OF-SCOPE: Gap / Change Request / Boss Decision
-```
-
-Anything outside the current Team's approved scope is carry-forward only unless separately authorized.
-
-`Stronger Scope Verification != Automatic Scope Expansion.`
-
-## 9. Mandatory Consolidated Pre-Prompt Output
-
-Before a controlled New Prompt is finalized, PMO/ChatGPT shall consolidate the five independent inputs into these categories:
-
-1. `QUESTIONS TO CONSIDER`
-2. `RISKS / BLIND SPOTS`
-3. `EVIDENCE / VALIDATION CONCERNS`
-4. `SCOPE / AUTHORITY CONCERNS`
-5. `OPTIONAL SCOPE-SAFE RECOMMENDATIONS`
-6. `BLOCKING UNKNOWNS / CONFLICTS`
-
-Each material item must identify its originating challenge function.
-
-PMO must remove duplicate questions and present Boss only with questions that can materially change Scope, architecture, business semantics, evidence sufficiency, risk or execution authority.
-
-The purpose is not to create an AI committee meeting for every trivial detail.
-
-## 10. Prompt Readiness Record
-
-Every MEDIUM/HIGH controlled New Prompt, and every LOW Prompt escalated due to material findings, shall have a concise Prompt Readiness Record before execution.
+Every controlled Prompt must have a traceable Challenge result. MEDIUM/HIGH must have a full record.
 
 Minimum fields:
 
@@ -251,20 +501,26 @@ Minimum fields:
 PROMPT READINESS RECORD
 
 Prompt / Session ID:
+Parent Prompt / Session:
 Current STATE / STEP / Domain:
 Current Authorized Execution Team:
-Risk Class: LOW / MEDIUM / HIGH
+Risk Class:
 
-Boss Intent:
-Expected Outcome:
-In Scope:
-Out of Scope:
-Known / Verified Facts:
-Unverified Assumptions:
-Critical Unknowns / Conflicts:
-Five-Unit Challenge Summary:
+Boss Intent Delta:
+Changed Evidence:
+Changed Scope / Authority:
+Previous Challenge Ledger Ref:
+Open Carry-Forward Challenges:
+
+9 Veto Council Summary:
+New Material Questions:
+Reopened Questions + Delta Trigger:
+Duplicate Questions Suppressed:
+Special Teams Activated:
+Special Team Evidence / Findings:
+
 Resolved Before Execution:
-Carry-Forward Unknowns:
+Remaining Unknowns / Conflicts:
 Execution Authority:
 Prohibited Actions:
 Evidence Required:
@@ -275,154 +531,233 @@ Readiness Status:
 READY / HOLD / FAIL-FROZEN
 
 Boss Exception / Override:
-NONE or explicit evidence reference
+NONE or exact evidence reference
 ```
 
-A Prompt Readiness Record is governance evidence. It is not execution evidence and creates no progress credit by itself.
+A Challenge / Readiness PASS is governance evidence only. It creates no execution progress credit.
 
-## 11. Readiness Decision Rules
+---
+
+## 13. Readiness Rules
 
 ### READY
 
-Use only when:
+Only when:
 
-- Boss intent is sufficiently clear;
-- Scope and authority are controlled;
-- no unresolved blocking Unknown remains;
-- required pre-execution evidence is available or explicitly planned within authorized scope;
-- the five challenge functions have no unresolved blocking governance conflict.
+- intent delta is clear;
+- prior learning has been loaded;
+- duplicate questions are suppressed;
+- no unresolved blocking conflict remains;
+- Scope / authority is controlled;
+- evidence plan is inspectable;
+- Council has no unresolved blocking Veto;
+- required Special Team findings are available or intentionally deferred without blocking the current authorized scope.
 
 ### HOLD
 
 Use when:
 
-- material information/evidence is incomplete;
-- a question can change Scope, architecture, accounting semantics, security, compliance or migration outcome;
-- linkage/authority is unclear;
-- a required reviewer/evidence source is unavailable.
+- material evidence is missing;
+- a new/reopened question can change architecture, accounting, inventory, security, migration, Scope or compliance outcome;
+- a required Special Team investigation is incomplete;
+- authority / linkage is unclear;
+- challenge history cannot be reconstructed.
 
 ### FAIL / FROZEN
 
 Use when:
 
-- the Prompt contradicts an approved Boss ruling or frozen baseline;
-- execution would skip a mandatory Gate;
-- execution would create unacceptable clean-room, tenant, financial, security or compliance risk;
-- required authority is absent;
-- a material contradiction cannot be safely carried as an Unknown.
+- mandatory Gate would be skipped;
+- Prompt contradicts Boss-approved baseline without controlled change;
+- clean-room / tenant / financial / security / evidence-chain control is materially violated;
+- lifecycle promotion occurs without authority;
+- challenge history was erased or manipulated to hide a material finding.
 
-## 12. Boss Authority / No Majority Vote
+---
 
-The five challenge functions do not govern by majority vote.
+## 14. No Answer-Key / No Confirmation Bias
 
-They challenge, provide evidence, identify uncertainty and recommend status.
+Council and Special Teams must challenge using:
 
-Boss remains Sole Final Approver for business decisions, controlled exceptions, Scope decisions, Gate approvals, Release and Production authority.
+`Question -> Risk -> Evidence Gap -> Investigation Need`
 
-If Boss explicitly overrides a material recommendation, preserve at minimum:
+not:
 
-- Boss Override Decision;
-- reason/rationale;
-- known risk;
-- evidence considered;
-- compensating control if applicable;
-- timestamp;
-- affected Gate / Prompt.
+`Expected Answer -> Required Conclusion`.
 
-An override does not permit an AI to erase the original challenge finding.
+They must not:
 
-## 13. Team D Clarification
+- ask questions only to validate Boss's preferred answer;
+- force the authorized Team to reach a predetermined conclusion;
+- treat AI consensus as approval;
+- convert Boss experience into verified Thailand-wide truth without evidence;
+- design the execution Team's answer for it.
 
-Team D is NOT part of the five mandatory pre-prompt advisory functions for another Team's work.
+The authorized Team must remain free to discover evidence that contradicts Boss, AI, vendor or reviewer assumptions.
 
-Team D enters only when the approved lifecycle reaches Team D, or when Team D itself is the current authorized execution Team.
+---
 
-Therefore, for a Team A or Team B Prompt, Team D shall not:
+## 15. Scope Protection
 
-- participate in the upstream Team's execution;
-- define upstream research/design scope;
-- prescribe what the upstream Team must discover;
-- impose Team D's future QA checklist as an upstream answer key;
-- co-author upstream evidence or findings.
-
-This protects both upstream autonomy and Team D independence.
-
-## 14. Prompt Construction Rule
-
-After independent challenge, PMO/ChatGPT may strengthen the New Prompt by adding:
-
-- questions that reduce foreseeable evidence gaps;
-- explicit Unknown / Conflict handling;
-- clean-room and evidence controls;
-- scope-safe exception areas worth examining;
-- applicable Thailand reality checks;
-- SaaS/tenant/security implications;
-- measurable acceptance criteria where evidence permits;
-- carry-forward warnings for future Teams.
-
-PMO/ChatGPT must NOT convert reviewer questions into predetermined answers or allow downstream units to control the current Team's methodology.
-
-The current Team's Prompt remains an execution instruction for that Team only.
-
-## 15. Evidence / Repository Rule
-
-For controlled MEDIUM/HIGH New Prompts, preserve the Prompt Readiness Record with the Prompt/session evidence in the approved GitHub project structure.
-
-Where a Jira execution item exists, record the relevant Prompt ID, GitHub evidence path/commit and current readiness status in Jira.
-
-Required governance principle:
-
-`No Evidence = No Progress.`
-
-Pre-Prompt review approval alone does not count as Team execution progress, STATE progress, STEP progress, Development authorization or Production authorization.
-
-## 16. Formal Lifecycle Authority Remains Unchanged
-
-This Pre-Prompt Governance Standard does not move any Team or Expert Unit from its approved lifecycle position.
-
-- Team A remains Team A.
-- Team B remains Team B.
-- Team C remains Team C.
-- Team D remains Team D.
-- IBPV Formal Verification remains at the approved Pre-Development position.
-- IDTM Formal Deep Test remains at the approved Deep Test position.
-- IESA Formal Pre-Assurance / Final Assurance remains at the approved assurance positions.
-
-Early recommendations do not count as formal Gate execution or Gate completion.
-
-No Development, Release or Production authority is granted by this document.
-
-## 17. Operating Standard
-
-For every controlled New Prompt from STATE03 onward:
+Challenge may discover a Scope Gap; it cannot silently convert that Gap into Scope.
 
 ```text
-Boss Intent
-→ Prompt Risk Classification
-→ Five-Unit Independent Challenge
-→ Consolidated Material Questions / Risks / Unknowns
-→ Clarification / Evidence Check
-→ Prompt Readiness Record where required
-→ READY / HOLD / FAIL-FROZEN
-→ Boss-controlled decision where required
-→ Final Controlled Prompt
-→ Authorized Execution Team executes only within approved scope
+Challenge
+-> Gap
+-> Evidence
+-> Baseline Check
+-> IN-SCOPE: Controlled Action
+   OR
+-> OUT-OF-SCOPE: Change Request / Boss Decision
 ```
 
-Mandatory principles:
+`Increasing rigor of scope verification != increasing scope.`
 
-`Ask until materially clear — not until everyone agrees.`
+---
 
-`No Answer Key Before Research.`
+## 16. Boss Authority / No Majority Vote
 
-`No Cross-Team Execution.`
+Neither 9 Veto Council nor 9 Special Teams decide by majority vote.
 
-`No Downstream Control of Upstream Research.`
+They challenge, investigate, provide evidence and recommend.
 
-`Stronger Scope Verification != Automatic Scope Expansion.`
+Boss remains Sole Final Approver.
 
-`No Evidence = No Progress.`
+A Boss Override of a material Veto must preserve:
 
-`Never Skip Gate.`
+- Challenge ID;
+- original finding;
+- Boss decision;
+- rationale;
+- known risk;
+- evidence considered;
+- compensating control;
+- owner for later closure where applicable;
+- timestamp;
+- affected Prompt / Gate.
 
+The original Veto finding must never be erased.
+
+---
+
+## 17. PMO / Secretary Role
+
+PMO / Secretary is responsible for:
+
+- retrieving prior controlled context;
+- preparing the Delta Pack;
+- enforcing Question Fingerprint / duplicate suppression;
+- maintaining Challenge Continuity Ledger;
+- coordinating Council / Special Team evidence flow;
+- preserving independent first-pass findings;
+- consolidating material questions without changing their meaning;
+- maintaining Prompt Readiness Record;
+- maintaining Evidence Chain and Session archive;
+- recording Jira / GitHub linkage;
+- raising Red Flags to Boss.
+
+PMO / Secretary must not:
+
+- decide a Veto by itself;
+- suppress a unique material challenge merely because it is inconvenient;
+- reopen closed questions without a Delta Trigger;
+- manufacture new questions to make the process appear rigorous;
+- convert a Challenge finding into Scope or approval;
+- replace Boss authority.
+
+---
+
+## 18. Formal Lifecycle Boundaries Remain Unchanged
+
+This standard does not itself authorize:
+
+- Team B;
+- Team C / Development;
+- Team D;
+- Production;
+- Release;
+- deployment;
+- schema / code changes;
+- statutory claims;
+- Scope expansion.
+
+Formal IBPV / IDTM / IESA stages remain at their approved lifecycle positions.
+
+Pre-Prompt participation never counts as formal lifecycle execution credit.
+
+---
+
+## 19. Evidence Preservation
+
+For every controlled Session / Prompt, preserve at minimum:
+
+- Prompt / Session ID;
+- Parent Prompt / Session;
+- Delta Pack or concise delta summary;
+- 9-Council challenge result;
+- Special Team activation and result where applicable;
+- Challenge Ledger update;
+- Prompt Readiness status;
+- final Prompt;
+- immutable GitHub commit / evidence reference where applicable;
+- Jira linkage where applicable;
+- Boss decision / override where applicable.
+
+Hard controls:
+
+`No Challenge Evidence = No Controlled Prompt Execution.`  
+`No Evidence Preservation = No Lifecycle Promotion.`  
+`No Evidence Chain Seal = No Team C.`
+
+---
+
+## 20. Operating Standard / L999.999
+
+For every controlled Session and every controlled Prompt:
+
+```text
+PRIOR LEARNING
+    ↓
+LOAD CHALLENGE LEDGER
+    ↓
+DELTA PACK
+    ↓
+9 VETO COUNCIL — INDEPENDENT FIRST PASS
+    ↓
+DUPLICATE SUPPRESSION
+    ↓
+NEW / REOPENED MATERIAL CHALLENGES ONLY
+    ↓
+9 SPECIAL TEAM CHALLENGE — IF TRIGGERED
+    ↓
+EVIDENCE / FINDINGS
+    ↓
+9 VETO COUNCIL DISPOSITION
+    ↓
+PMO READINESS RECORD
+    ↓
+READY / HOLD / FAIL-FROZEN
+    ↓
+BOSS DECISION WHERE REQUIRED
+    ↓
+FINAL NEW PROMPT
+    ↓
+AUTHORIZED EXECUTION
+    ↓
+UPDATE LEARNING / CHALLENGE LEDGER / EVIDENCE CHAIN
+```
+
+Final mandatory principles:
+
+`Challenge First -> Prompt Second -> Execution Third.`  
+`No reset-to-zero challenge.`  
+`No repeated question without a material delta.`  
+`Closed-with-evidence questions stay closed unless a Delta Trigger exists.`  
+`New evidence may reopen old questions — but reopening must be traceable.`  
+`Independent First Pass before Council convergence.`  
+`Special Team investigates; Council challenges; PMO preserves; Boss decides.`  
+`No Answer Key Before Research.`  
+`No Cross-Team Execution.`  
+`No Evidence = No Progress.`  
+`Never Skip Gate.`  
 `Boss = Sole Final Approver.`
