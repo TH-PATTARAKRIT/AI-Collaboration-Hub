@@ -74,17 +74,29 @@ Boss raised two further addenda: whether Product Category (not company) truly ow
 policy, and a request for a 4-role independent AI expert panel. On the latter, this session flagged
 directly that the work is produced by one model, not four independent parties, and Boss selected an
 honest four-analytical-lens framing instead (recorded in
-`10_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md` §0). Both addenda are answered in
-`09_CORR007B_PRODUCT_CATEGORY_VALUATION_FUNCTIONAL_DESIGN_REVIEW.md` and
-`10_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md`, which resolved one gap (G-4, the manual-trigger UI
-path) and named one new gap (G-7, empty PDF/XLSX export stubs in the reference module). The consolidated
-current position is `11_CORR007B_N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION.md`.
+`14_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md` §0, originally numbered `10`). Both addenda are
+answered in `09_CORR007B_PRODUCT_CATEGORY_VALUATION_FUNCTIONAL_DESIGN_REVIEW.md` and
+`14_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md`, which resolved one gap (G-4, the manual-trigger UI
+path) and named one new gap (G-7, empty PDF/XLSX export stubs in the reference module). The addendum-4
+technical consolidation is `15_CORR007B_N_A12_01_ADDENDUM4_EVIDENCE_DISPOSITION.md` (originally numbered
+`11`).
 
-**`N-A12-01` remains High**, reclassified as: **ACCOUNT-LED MONTHLY CLOSE, YEAR-END CLOSE, STOCK
-CUT-OFF, INVENTORY VALUATION METHOD, PERIODIC/PERPETUAL POSTING BEHAVIOR, CARRY-FORWARD BALANCE, AND
-RETAINED EARNINGS FUNCTIONAL DESIGN GAP.** Current position of record:
-`11_CORR007B_N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION.md` (consolidates files 03/08/09/10, all
-retained on the branch for audit-trail continuity, none individually current on their own).
+A concurrent session subsequently produced its own addendum-5 governance ruling — files `10`-`13`
+(`9_VETO_CHALLENGE_COUNCIL_REPORT`, `9_SPECIAL_TEAM_CHALLENGE_REPORT`, `CLEAN_ROOM_COMPLIANCE_REVIEW`,
+and `N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION`) — which collided with this session's original `10`
+and `11` numbers. Per Boss's direction, the pushed session's files `10`-`13` are kept exactly as
+authored and are the **standing governance-level disposition**; this session's colliding files were
+renumbered to `14`/`15` (not deleted or content-changed) and cross-referenced against file `13`'s
+findings in `16_CORR007B_CLEANUP_SUPERSESSION_INDEX.md`.
+
+**`N-A12-01` remains High**, per the standing governance disposition in
+`13_CORR007B_N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION.md`: **N-A12-01 — ACCOUNT-LED MONTHLY CLOSE,
+YEAR-END CLOSE, STOCK CUT-OFF, PRODUCT CATEGORY VALUATION POLICY, PERIODIC/PERPETUAL POSTING BEHAVIOR,
+CARRY-FORWARD BALANCE, GL RECONCILIATION, AND RETAINED EARNINGS FUNCTIONAL DESIGN GAP — HIGH UNTIL
+PROVEN.** `Account + Inventory Backbone Reference Baseline = HOLD` (file 13 §6). See
+`16_CORR007B_CLEANUP_SUPERSESSION_INDEX.md` §4 for which of file 13's `NOT PROVEN` sub-items already have
+cited technical evidence in files 08/09/14/15, and which (the SMEsPlus target close design itself)
+genuinely remain unproduced pending Team B authorization.
 
 ## 4. GitHub links
 
@@ -95,8 +107,13 @@ Populate after push (see `07_CORR007B_SESSION_CLOSURE.md` for push status):
 - `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/03_CORR007B_N_A12_01_CROSS_YEAR_CONTINUITY_PROOF.md`
 - `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/08_CORR007B_N_A12_01_ACCOUNT_LED_INVENTORY_PERIOD_CLOSE_FUNCTIONAL_DESIGN_PROOF.md`
 - `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/09_CORR007B_PRODUCT_CATEGORY_VALUATION_FUNCTIONAL_DESIGN_REVIEW.md`
-- `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/10_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md`
-- `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/11_CORR007B_N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION.md`
+- `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/10_CORR007B_9_VETO_CHALLENGE_COUNCIL_REPORT.md`
+- `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/11_CORR007B_9_SPECIAL_TEAM_CHALLENGE_REPORT.md`
+- `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/12_CORR007B_CLEAN_ROOM_COMPLIANCE_REVIEW.md`
+- `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/13_CORR007B_N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION.md`
+- `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/14_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md`
+- `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/15_CORR007B_N_A12_01_ADDENDUM4_EVIDENCE_DISPOSITION.md`
+- `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/16_CORR007B_CLEANUP_SUPERSESSION_INDEX.md`
 - `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/04_CORR007B_FINAL_HIGH_DISPOSITION_REGISTER.md`
 - `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/05_CORR007B_BOSS_DECISION_RECOMMENDATION.md`
 - `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/06_CORR007B_SHA256_MANIFEST.txt`
@@ -124,10 +141,10 @@ Populate after push (see `07_CORR007B_SESSION_CLOSURE.md` for push status):
 | G-3 — backdate enforcement at `stock.picking`, not per-line | Inventory design decision | Team B | Inventory Design Freeze | Confirm document-level granularity is acceptable for SMEsPlus multi-line transfers. |
 | G-5 — migration-cutover opening-balance cross-proof | Cross-domain evidence | Team A + Accounting/Tax jointly | Future joint Accounting x Inventory cross-proof session | No migration cutover across a fiscal-year boundary until this cross-proof exists. |
 | G-6 — no source-evidenced year-end P&L-to-Retained-Earnings closing entry; confirmed no Thai-localization module fills this gap either | New functional design decision (not inherited from Odoo reference) | Team B jointly with Accounting/Tax (Thai statutory requirement) | Inventory Design Freeze + Accounting close-book design | If Thai statutory close-book requires an explicit entry, SMEsPlus must design one — it cannot be assumed present. |
-| G-7 — `stock_valuation_report.py` PDF/XLSX export methods are empty stubs (source-verified, `10_...md` §4) | Code defect, not a design decision | Team A / follow-up code review | Before this report screen is relied on for a printable audit artifact | Do not assume Print PDF/XLSX buttons work; verify or implement before UAT. |
+| G-7 — `stock_valuation_report.py` PDF/XLSX export methods are empty stubs (source-verified, `14_...md` §4) | Code defect, not a design decision | Team A / follow-up code review | Before this report screen is relied on for a printable audit artifact | Do not assume Print PDF/XLSX buttons work; verify or implement before UAT. |
 
-(G-4 — manual closing-trigger UI path — was open in `08_...md` but was resolved in `10_...md` §4 by
-reading `controller.js` in full; it is not carried forward as an open item.)
+(G-4 — manual closing-trigger UI path — was open in `08_...md` but was resolved in `14_...md` §4, file
+originally numbered `10`, by reading `controller.js` in full; it is not carried forward as an open item.)
 
 ## 7. Gate impact
 
@@ -150,22 +167,30 @@ be resolved before Team B/Team C work in their respective areas can be considere
 
 **A. ACCEPT CLOSURE/DISPOSITION OF `GRPA-M15` AND `N-A7-01`** — accept `GRPA-M15` as RESOLVED and
 `N-A7-01` as RESOLVED AS SOURCE BEHAVIOR (design policy still required), individually or together.
-`N-A12-01` is not offered for closure under this option — it remains High per Boss's own reopening.
+`N-A12-01` is not offered for closure under this option — it remains High per the standing governance
+disposition (file 13).
 
-**B. ACCEPT THE 8-ITEM CARRY-FORWARD/OPEN LIST** — accept the items in §6 (including the six named
-`N-A12-01` sub-gaps G-1..G-6) as the correct forward-tracking mechanism, with the named owners, gates,
-and stop conditions, while `N-A12-01` itself continues to be counted as an open Inventory High item.
+**B. ACCEPT THE OPEN ITEM LIST AS-IS** — accept the items in §6 as the correct forward-tracking
+mechanism, with the named owners, gates, and stop conditions, while `N-A12-01` itself continues to be
+counted as an open Inventory High Functional Design Gap per file 13.
 
 **C. KEEP INVENTORY GATE HOLD** — decline some or all of the `GRPA-M15`/`N-A7-01` dispositions above and
-keep additional items counted as Inventory High blockers pending further evidence. (`N-A12-01` is already
-held High regardless of this option, per Boss's reopening.)
+keep additional items counted as Inventory High blockers pending further evidence. `N-A12-01` remains
+High regardless of this option.
 
-**D. REQUEST FRESH INDEPENDENT RE-REVIEW** — commission a further independent pass (e.g. an IDR-style
-session, as was done for CORR-005) before accepting this package's dispositions.
+**D. CONTINUE BOSS CHALLENGE** — the mechanism outlined in file 13 §7 ("Required Next Deliverables") to
+commission the SMEsPlus-original clean-room close design remains available; this package's technical
+evidence (files 08, 09, 14, 15, cross-referenced in file 16 §4) is offered as the input to that design
+work, not as a substitute for it.
 
 ## 10. Final status
 
-**CORR-007B COMPLETE — READY FOR BOSS INVENTORY 3-HIGH DECISION**
+**`CORR-007B` = OPEN FOR BOSS CHALLENGE.**
 
-This is not a Gate PASS declaration. This is not Team B or Team C authorization. Boss remains the sole
-Final Approver of every disposition in this package.
+- `N-A12-01` = **HIGH FUNCTIONAL DESIGN GAP**, per the standing governance disposition
+  (`13_CORR007B_N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION.md`). Not resolved. Not closed.
+- `Account + Inventory Backbone Reference Baseline` = **HOLD** (file 13 §6). Not published.
+- `GRPA-M15` and `N-A7-01` dispositions (§3 above) stand, unaffected by the `N-A12-01` governance round.
+- This is not a Gate PASS declaration. This is not Team B or Team C authorization. Boss remains the sole
+  Final Approver of every disposition in this package. Boss Challenge remains pending — this package
+  (including the documentation cleanup recorded in file 16) does not conclude it.

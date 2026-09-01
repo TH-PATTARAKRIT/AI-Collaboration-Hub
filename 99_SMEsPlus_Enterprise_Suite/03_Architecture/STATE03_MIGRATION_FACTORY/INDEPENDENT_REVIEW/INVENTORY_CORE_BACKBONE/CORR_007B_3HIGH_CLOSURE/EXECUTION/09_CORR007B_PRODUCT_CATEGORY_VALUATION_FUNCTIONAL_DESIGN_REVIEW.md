@@ -166,4 +166,5 @@ underlying GL mechanics (which accounts move value where) were already fully pro
 **`N-A12-01` disposition is unchanged by this file: HIGH REMAINS.** This file strengthens the evidence
 base; it does not close the item. See `04_CORR007B_FINAL_HIGH_DISPOSITION_REGISTER.md` and
 `05_CORR007B_BOSS_DECISION_RECOMMENDATION.md` (both updated) and the four-lens challenge in
-`10_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md`.
+`14_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md` (originally numbered `10`; see
+`16_CORR007B_CLEANUP_SUPERSESSION_INDEX.md` for why).

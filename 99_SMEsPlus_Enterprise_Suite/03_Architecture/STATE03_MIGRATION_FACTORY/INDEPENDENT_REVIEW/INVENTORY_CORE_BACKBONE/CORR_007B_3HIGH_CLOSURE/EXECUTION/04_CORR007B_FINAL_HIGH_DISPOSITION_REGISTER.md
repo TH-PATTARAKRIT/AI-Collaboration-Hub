@@ -82,12 +82,21 @@ Output" accounts) matches source; (4) a request for independent multi-role chall
 flagged as needing honest reframing (there is one model here, not four independent parties) — Boss
 selected the honest-lens framing. Both are answered in
 `09_CORR007B_PRODUCT_CATEGORY_VALUATION_FUNCTIONAL_DESIGN_REVIEW.md` and
-`10_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md`, consolidated in
-`11_CORR007B_N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION.md`, which is now this register's single
-source of truth for `N-A12-01` (superseding files 03 and 08 individually, though both remain on the
-branch). Net effect on the gap register: one gap resolved (manual-trigger UI path, file 10 §4), one new
-gap named (empty PDF/XLSX export stubs, file 10 §4) — 6 open gaps, not the 6-named/0-resolved state file
-08 alone would suggest.
+`14_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md`, consolidated in
+`15_CORR007B_N_A12_01_ADDENDUM4_EVIDENCE_DISPOSITION.md`. Net effect on the gap register: one gap
+resolved (manual-trigger UI path, file 14 §4), one new gap named (empty PDF/XLSX export stubs, file 14
+§4) — 6 open gaps, not the 6-named/0-resolved state file 08 alone would suggest.
+
+**Documentation cleanup note (later pass)**: files `14` and `15` above were originally numbered `10` and
+`11`. A concurrent session independently produced its own addendum-5 governance ruling — a "9 Veto
+Challenge Council" / "9 Special Team Challenge" / clean-room review / revised disposition — using file
+numbers `10`-`13`. That session's `13_CORR007B_N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION.md` is now
+the **standing governance-level disposition** for `N-A12-01`, per Boss's direction; this register's own
+`11_CORR007B_N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION.md` reference above was renumbered to `15`
+and retitled to avoid an identical-name collision with file `13`. See
+`16_CORR007B_CLEANUP_SUPERSESSION_INDEX.md` for the full renumbering map and an explicit cross-reference
+showing which of file `13`'s `NOT PROVEN` sub-items already have cited evidence in files `08`, `09`,
+`14`, and `15` — no evidence conclusion or gap status changed, only file numbers and one title.
 
 ## 4. Challenge 3 — `N-A12-01` (superseded — see §4a)
 
@@ -179,12 +188,24 @@ before this item can move. `GRPA-M18` exposure to this package is confirmed nil 
 in the file 08 addendum work. Team B and Team C authorization is confirmed nil throughout.
 
 One additional audit note: Boss's fourth addendum requested a "4-role AI Expert Panel" with independent
-reporting authority. This session raised the point directly with Boss before producing file 10 — the
-work is done by one model, not four independent reviewers, and labeling it otherwise would misstate this
-package's own provenance in a document meant to carry audit weight. Boss agreed to an honest four-lens
-framing (file 10 §0). This is recorded here because it is exactly the kind of unsupported-authority claim
-this audit function exists to catch, including when the source of the claim is Boss's own instruction
-rather than a prior team's overreach.
+reporting authority. This session raised the point directly with Boss before producing file 14 (then
+numbered `10`) — the work is done by one model, not four independent reviewers, and labeling it
+otherwise would misstate this package's own provenance in a document meant to carry audit weight. Boss
+agreed to an honest four-lens framing (file 14 §0). This is recorded here because it is exactly the kind
+of unsupported-authority claim this audit function exists to catch, including when the source of the
+claim is Boss's own instruction rather than a prior team's overreach.
+
+## 9. Final status (post documentation-cleanup pass)
+
+- **`CORR-007B` = OPEN FOR BOSS CHALLENGE.** Not closed. This session performed a documentation cleanup
+  (file renumbering, cross-referencing) only — see `16_CORR007B_CLEANUP_SUPERSESSION_INDEX.md`. It did
+  not resolve, close, or downgrade any item.
+- **`N-A12-01` = HIGH FUNCTIONAL DESIGN GAP**, per the standing governance disposition in
+  `13_CORR007B_N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION.md`. `GRPA-M15` and `N-A7-01` dispositions
+  are unaffected and unchanged (§2, §3 above).
+- **`Account + Inventory Backbone Reference Baseline` = HOLD**, per file 13 §6. Not published, not ready
+  for downstream reliance.
+- No Gate PASS is declared. Team B is not authorized. Team C is not authorized.
 
 This register is a recommendation to Boss, not a Gate PASS declaration. See
 `05_CORR007B_BOSS_DECISION_RECOMMENDATION.md`.
