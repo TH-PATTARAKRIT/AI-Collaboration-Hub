@@ -200,6 +200,28 @@ Deeply test all material financial truth semantics, including:
 
 Explicitly separate `Accounting business requirement` from `Thai statutory requirement` and `source ERP behavior`.
 
+Mandatory WHT challenge sub-track:
+
+- purchase-side WHT;
+- sales-side WHT;
+- service-only WHT boundary;
+- multiple WHT types/rates in one PO, vendor bill, payment, or certificate;
+- line-level WHT tagging and allocation;
+- `l10n_th_withholding_tax_multi` proof where relevant;
+- 50 TWI certificate source/mapping/render boundary;
+- PND3 / PND53 report/export boundary;
+- Legal/Tax statutory review boundary.
+
+Mandatory monthly/year-end close sub-track:
+
+- accounting close is monthly;
+- every monthly close carries ending balances forward to the next month;
+- month 12 is still a monthly close, but also performs year-end close;
+- income and expense close;
+- net profit/loss transfer to retained earnings;
+- retained earnings under Equity / Account Category 3;
+- period lock, reopen, correction and restatement controls.
+
 ### Track 07 — Security / Privacy / Resilience VETO
 
 Deeply test architecture evidence for:
@@ -352,6 +374,7 @@ Publish under a dedicated controlled reopen execution path for this Session:
 15. `15_ACCOUNT_REOPEN_DEEP_REVALIDATION_REPORT.md`
 16. `16_ACCOUNT_REOPEN_SHA256_MANIFEST.txt`
 17. `17_SESSION_CLOSURE_SMEPLUS-26-09-02-ACC-REOPEN-001.md`
+18. `18_ACCOUNT_PENDING_JOINT_SESSION_3_INTERFACE_REGISTER.md`
 
 If any deliverable cannot be supported, create it with `HOLD / EVIDENCE REQUIRED` and explain the missing evidence.
 
@@ -387,3 +410,118 @@ Those require their normal controlled Gates and Boss decision.
 `No Evidence Preservation = No Lifecycle Promotion.`  
 `Never Skip Gate.`  
 `Boss = Sole Final Approver.`
+
+---
+
+## 11. Boss Addendum — Account Reopen Strengthening
+
+This Account Reopen session must incorporate the Boss-approved Dual Challenge Mandate and the latest Account / Inventory boundary controls.
+
+### 11.1 Dual Challenge Mandate
+
+1. `9 Veto Challenge Council` is the primary mandatory Gate challenge body.
+2. `9 Special Team Challenge` is the supplementary deep-dive mechanism for Boss-identified risks.
+3. Both report directly to Boss only.
+4. Neither may declare Gate PASS, authorize Team B, authorize Team C, authorize development, merge, release, or production.
+5. Boss remains the sole Final Approver.
+
+### 11.2 Clean-room Principles
+
+All evidence, findings, and recommendations must enforce these four principles:
+
+1. `Reference Only` — Odoo / SAP / Salesforce / Legacy / Dump are for learning and business-semantic proof only.
+2. `No Copy / No Clone / No Reuse` — no source code, XML, QWeb, ORM, schema, workflow, naming pattern, or application architecture reuse.
+3. `Migrate Business Facts + Business Semantics Only` — not legacy application architecture.
+4. `SMEsPlus Target Design Must Be Original` — clean-room Node.js SaaS target design with Boss approval.
+
+Every deliverable must explicitly state its Clean-room impact or Clean-room boundary.
+
+### 11.3 Account-specific Mandatory Deep Challenges
+
+This Account Reopen must deeply test and publish evidence for:
+
+1. Purchase-side WHT.
+2. Sales-side WHT.
+3. Multiple WHT types/rates in one PO, vendor bill, payment, certificate, and filing report.
+4. `l10n_th_withholding_tax_multi` and any equivalent multi-rate WHT evidence.
+5. Service-only WHT boundary.
+6. 50 TWI certificate.
+7. PND3 / PND53 filing/export.
+8. Legal/Tax statutory review boundary.
+9. Monthly close.
+10. Month 12 year-end close.
+11. Retained earnings under Equity / Account Category 3.
+12. Period lock / reopen / correction / restatement.
+13. Account-owned requirements for Inventory valuation interface.
+
+### 11.4 Parallel-session Safety
+
+This Account session is expected to run in parallel with Inventory Reopen.
+
+Before execution, the executor must:
+
+1. create an isolated Account worktree;
+2. create/use a dedicated Account execution branch;
+3. verify the current branch before every commit;
+4. never reuse the Inventory session worktree or branch;
+5. never commit Account evidence to an Inventory branch;
+6. never commit Inventory evidence to an Account branch;
+7. not push until final branch verification is complete.
+
+Required branch:
+
+`audit/account-reopen-2026-09-02-acc-reopen-001`
+
+Required execution folder:
+
+`99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/EXECUTION/`
+
+### 11.5 Cross-domain Boundary
+
+Account may define Financial Truth and Accounting requirements.
+
+Account must not close Inventory-owned source findings.
+
+Inventory-dependent items must be routed to one of these statuses:
+
+- `ACCOUNT_INTERFACE_REQUIREMENT`
+- `PENDING_INVENTORY_SESSION`
+- `PENDING_ACCOUNT_INVENTORY_JOINT_SESSION`
+- `OUT_OF_ACCOUNT_SCOPE`
+
+Account must not independently close:
+
+- Product Category valuation policy as Stock Truth;
+- Manual vs Automated Inventory valuation behavior as Inventory mechanism;
+- Periodic vs Perpetual Stock movement impact;
+- stock.move / stock.quant / stock.picking findings;
+- Inventory valuation to GL reconciliation;
+- Inventory closing / opening quantity proof.
+
+These must be carried to Inventory Reopen or the later Account x Inventory Joint Reopen.
+
+### 11.6 Mandatory Session 3 Interface Register
+
+The additional deliverable `18_ACCOUNT_PENDING_JOINT_SESSION_3_INTERFACE_REGISTER.md` must list:
+
+1. Account-owned conclusions ready for later joint use.
+2. Inventory-dependent open questions.
+3. Joint Account x Inventory questions.
+4. Required evidence for Session 3.
+5. Blocked baseline assumptions.
+6. Owner and target gate for each pending interface.
+7. Whether the item blocks Account-only understanding, Inventory-only understanding, or Joint Backbone publication.
+
+### 11.7 Final Reinforced Stop Condition
+
+This Account Reopen may end only at evidence publication and recommendation.
+
+It must not declare:
+
+- Account final closure;
+- Inventory closure;
+- Account x Inventory Backbone baseline;
+- Gate PASS;
+- Team B authorization;
+- Team C authorization;
+- Development authorization.
