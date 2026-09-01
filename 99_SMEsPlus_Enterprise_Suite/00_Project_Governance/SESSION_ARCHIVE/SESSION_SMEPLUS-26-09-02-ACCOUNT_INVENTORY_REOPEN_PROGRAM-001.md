@@ -57,7 +57,7 @@ Final New Session Prompt:
 
 `.../REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/01_NEW_SESSION_PROMPT_SMEPLUS-26-09-02-ACC-REOPEN-001.md`
 
-Commit: `f6050fccfd971626eeced36227167f9b21ff4e7a`
+Commit: `8aeddae8f3a29b0424237f36085da61a0af29e24`
 
 Readiness: `READY — ACCOUNT FULL REOPEN DEEP REVALIDATION`.
 
@@ -79,7 +79,7 @@ Final New Session Prompt:
 
 `.../REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/01_NEW_SESSION_PROMPT_SMEPLUS-26-09-02-INV-REOPEN-001.md`
 
-Commit: `2ccc818b0f86b4c750420fa600dc2c2045d697fe`
+Commit: `3473b46bdb3bd4e11a417be591abd90e85cd5963`
 
 Readiness: `READY — INVENTORY FULL REOPEN DEEP REVALIDATION`.
 
@@ -116,8 +116,8 @@ The Joint Session may research immediately, but final Cross-Proof freeze remains
 | Item | Owner | Evidence | Timestamp | Verifier | Status | Gate Impact |
 |---|---|---|---|---|---|---|
 | Master Reopen Program | Boss / PMO record | `42e04e6...` | 2026-09-02 | GitHub canonical record | PASS / VERIFIED AS GOVERNANCE RECORD | Opens controlled reopen program only |
-| Account Challenge + Prompt | PMO / 9 mandates | `4fb9db0...`, `f6050fc...` | 2026-09-02 | GitHub canonical record | PASS / PROMPT ISSUED | No execution completion credit |
-| Inventory Challenge + Prompt | PMO / 9 mandates | `3cfb26f...`, `2ccc818...` | 2026-09-02 | GitHub canonical record | PASS / PROMPT ISSUED | No execution completion credit |
+| Account Challenge + Prompt | PMO / 9 mandates | `4fb9db0...`, `8aeddae...` | 2026-09-02 | GitHub canonical record | PASS / PROMPT ISSUED | No execution completion credit |
+| Inventory Challenge + Prompt | PMO / 9 mandates | `3cfb26f...`, `3473b46...` | 2026-09-02 | GitHub canonical record | PASS / PROMPT ISSUED | No execution completion credit |
 | Joint Challenge + Prompt | PMO / 9 mandates | `1173661...`, `81bc808...` | 2026-09-02 | GitHub canonical record | PASS / PROMPT ISSUED | No final Cross-Proof credit |
 | Account Execution Evidence | Executor TBD | TBD | TBD | Independent review TBD | HOLD / EVIDENCE REQUIRED | Blocks Account Reopen conclusion |
 | Inventory Execution Evidence | Executor TBD | TBD | TBD | Independent review TBD | HOLD / EVIDENCE REQUIRED | Blocks Inventory Reopen conclusion |
