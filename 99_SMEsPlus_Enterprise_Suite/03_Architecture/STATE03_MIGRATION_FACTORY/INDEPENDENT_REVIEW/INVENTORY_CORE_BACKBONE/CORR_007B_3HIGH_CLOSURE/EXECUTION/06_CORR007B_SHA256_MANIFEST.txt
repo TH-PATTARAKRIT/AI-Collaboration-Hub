@@ -1,0 +1,62 @@
+# CORR-007B SHA-256 Manifest
+# Session: SMEPLUS-26-09-02-CORR007B-3HIGH-CLOSURE-001
+# Generated: 2026-09-02
+# All hashes computed directly via `shasum -a 256` against the files at the paths shown.
+# Source paths are relative to "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/" (local filesystem,
+# outside the AI-Collaboration-Hub git repository, per 01_SOURCE_REGISTRY/README.md governance rule
+# against committing raw source). Deliverable and evidence-CSV paths are relative to the repository root.
+
+## A. GRPA-M15 — purchase_order_line source citations (Team I1)
+
+d396d041d18e4093fb6c5717e358dbb9f4c23f5f0413176f035716d2bdd12957  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/purchase_stock/models/purchase_order_line.py
+d9e28a48feeb40f2e16e1ce30116fa51f5b77f6ea52f8cd1fb00d6bc1c12da28  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/purchase_stock/models/purchase_order.py
+046b9974be297feb55a08c69a5809ec37ac5d6b840ea95b61fc970b9f4cd45bd  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/sale_purchase_stock/models/purchase_order.py
+0e2d73e2f2e25cdb04c72992726e13adc023b46deb09278b056a49eac6faa0d0  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/purchase_requisition/models/purchase.py
+f5f8ee9ac4f54c0c6e3a8aba16ef9a7ec94a257a3301343a63e089e29a35793d  ACCOUNT/01 ACCOUNT/SOURCE CODE/addons_extra/order_line_sequence/models/purchase_order_line.py
+12c37c3e2390f16f4b1eb836e39290bb32f3be5c20de130f8a97160fab65f66e  ACCOUNT/01 ACCOUNT/SOURCE CODE/addons_extra/purchase_order_lines_discount/models/purchase_order_line.py
+7dbd39384ecd98f90f02b4eea5375cfcc2c9c6bc182f8e89f4515f2091743b32  ACCOUNT/01 ACCOUNT/SOURCE CODE/addons_extra/purchase_request/models/purchase_order.py
+48a03c85b6672fdbd07bc73be8e4119ee0793edcc9185cbe516641f15bbcbcc4  ACCOUNT/01 ACCOUNT/SOURCE CODE/addons_extra/purchase_request/models/stock_move.py
+23115c095270c91c1bce4e82885061aed068a62d660cfb116aa831e4a01bdc7c  ACCOUNT/01 ACCOUNT/SOURCE CODE/addons_extra/purchase_request/models/purchase_request_line.py
+8cb8faf43485c07d07b46c7d4bb48a7949d35c2841eeed4c179c5e3a76422d99  ACCOUNT/01 ACCOUNT/SOURCE CODE/addons_extra/purchase_request/__manifest__.py
+
+## B. GRPA-M15 — dump/schema and module-registry evidence (Team I1)
+
+3b66426173126777a0a6c38df45e29c5ce13e48c537a05d988129cf5665a91a3  99_SMEsPlus_Enterprise_Suite/V2.0/THAI/SMEPLUS-26-06-29-001_Final_AI_Handoff_Documentation_v2.0/Evidence_CSV/Dump_Column_Inventory.csv
+c894eb73366a4a6fc4f528093da70d1a78094b34b5819d69537666180b98b53c  99_SMEsPlus_Enterprise_Suite/V2.0/THAI/SMEPLUS-26-06-29-001_Final_AI_Handoff_Documentation_v2.0/Evidence_CSV/Foreign_Key_Relationship_Edges.csv
+a5667402d7f8c5474fa1dc05f958396f29c4836ff4369fc732d8659a2d1bc8dc  99_SMEsPlus_Enterprise_Suite/V2.0/THAI/SMEPLUS-26-06-29-001_Final_AI_Handoff_Documentation_v2.0/Evidence_CSV/Field_Level_Source_to_Dump_Mapping.csv
+f11b1d74731dabd1cbe5e5d0c671c4daee1dc0c3d960cfabd1440f93d5e5faac  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/01_SOURCE_REGISTRY/MODULE_MASTER_REGISTER_FULL.csv
+
+## C. N-A7-01 — count freeze / conflict source citations (Team I2)
+
+88f228daee5ab549171da31e6528eb60a6e1997ec3d968757a49cc52f08c57ee  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock/models/stock_quant.py
+01ab68d06d3bf15f011364c540cb072b0befb308dd8d964b8fb7cdfc12b9412e  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock/wizard/stock_inventory_conflict.py
+9064709079d013d0e4cc4a458c35309ae3ea4937657d0274863a0c95b1ee8061  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock/wizard/stock_inventory_warning.py
+
+## D. N-A12-01 — fiscal-year / cross-year continuity source citations (Team I3)
+
+18438c5c2928a0901646dd81fd8dcdf821d9bbdd8d1635d1d014f43c3ed6a890  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/models/stock_quant.py
+f308c78b6c6bc6525163a1c648d11d5561e44afc1f813d86d2c7e77b13615e16  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/wizard/stock_inventory_adjustment_name.py
+8f8b81a3827f760dfc355e7f057a6ae119a1c4f4643551e72d79968a94225296  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/models/stock_picking.py
+048dbd2e3955de6b7bcc9edd33bddf7c5d9deb45c1a406a21f5727a367671341  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/models/stock_move.py
+0093c380deaf42379784e8f610e595adb3a0f8af95434d6b17c0f9d25a58da84  ACCOUNT/01 ACCOUNT/SOURCE CODE/01 ACCOUNT/account/models/company.py
+68e97527cd44c29d4a2ed9eaef56250c17de97f75dd9fae17901e79e1bb0b445  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/models/res_company.py
+fb897abff9502c4228ba73b91c653acef15625305d662ebc64fbe01da622b757  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/tests/test_account_move.py
+9726a2bd69bc26d7ead8124df5692f54252b0654e248dc249ab2a0a60147c365  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/tests/test_stockvaluation.py
+
+## E. CORR-007B deliverables (this package)
+
+452508cd874c26c3fe76ce2c42f200eb31cd16b27a010babcfec95077b282a05  01_CORR007B_GRPA_M15_PURCHASE_ORDER_LINE_DRIFT_PROOF.md
+8bd0fadaf91548b673afac5ea52c6d9c974b2b23f4ed970f2476b39c97cae449  02_CORR007B_N_A7_01_COUNT_FREEZE_CONFLICT_PROOF.md
+0f2ee8475a0506142ca2eb746ba32efdb1a79e63f1ce98378b79faa3426204bc  03_CORR007B_N_A12_01_CROSS_YEAR_CONTINUITY_PROOF.md
+932f9503ca48d9db44c6a3c77ef6df7ea030d9ea8d76dd74e183a56b7e3058bb  04_CORR007B_FINAL_HIGH_DISPOSITION_REGISTER.md
+d4c974af8b59d425bb5feda440f57057ebc45f80cc53ca4129b5c696bc0d3164  05_CORR007B_BOSS_DECISION_RECOMMENDATION.md
+
+## F. Prior evidence relied upon by reference (re-hashed this session to confirm no drift since original publication; not re-examined line-by-line beyond what is cited in files 01-04)
+
+deceb7339b39eba309236782f159f8393224f5fd  (git commit) CORR-007A base commit, branch audit/inventory-core-corr007a-grpa-m18-wht-50twi-009
+c9434e2a3af6b9a77933cc4193566a532c4391e0690135b69eb83b9b600e2975  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_006_BOSS_HIGH_REPROOF/EXECUTION/01_CORR006_BOSS_HIGH_ESCALATION_REPROOF_REPORT.md
+a50bf958cb0690fb303861e2509b6ca204367ca20ee62b3df9c19b5b570d6989  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/06_DOMAIN_RESEARCH/INVENTORY_CORE_BACKBONE/CORRECTIVE_CORR_005/EXECUTION/03_CORR005_RESIDUAL_BLOCKER_AND_CARRY_FORWARD_REGISTER.md
+fb10a0d8fdc4c6217086844d73eaff9133f80daa057c4189054d220a1b583910  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/IDR_007/EXECUTION/06_IDR007_RESIDUAL_COUNT_AND_SEVERITY_RECOMPUTATION.md
+c3f53548d60d4e4e771579954356aac8b2e83377b1dfa2f4e1679bcf0f99f9f4  99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007A_GRPA_M18_WHT_50TWI/EXECUTION/05_CORR007A_FINAL_DISPOSITION_AND_BOSS_RECOMMENDATION.md  (hash matches CORR-007A's own manifest entry — confirms no drift)
+
+# End of manifest.
