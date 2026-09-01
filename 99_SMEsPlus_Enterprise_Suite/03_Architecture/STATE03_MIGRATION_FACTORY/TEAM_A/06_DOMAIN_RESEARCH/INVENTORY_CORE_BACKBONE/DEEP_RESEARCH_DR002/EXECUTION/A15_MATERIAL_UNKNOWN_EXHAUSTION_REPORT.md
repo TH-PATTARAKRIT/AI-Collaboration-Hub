@@ -25,16 +25,18 @@
 | Manufacturing RM/WIP/FG handoffs | A8 §3 |
 | Sales/Purchase fulfillment boundaries | A8 §1–2 |
 | Valuation/costing and Inventory→Accounting interface | A9 (the pass's central deepening deliverable) |
-| Timing/cut-off | **`EVIDENCE_MISSING` — N-A7-03/N-A9-02, explicitly registered, not silently dropped** |
-| Duplicate/retry/concurrency | A6 §5, A13 §3; DB-level locking specifically `EVIDENCE_MISSING` (N-CONC-01) |
+| Timing/cut-off | Originally `EVIDENCE_MISSING` (N-A7-03/N-A9-02); **`RESOLVED` per CORR-005 (2026-09-01)** — see A7 §4, A9 §7 |
+| Duplicate/retry/concurrency | A6 §5, A13 §3; DB-level locking specifically `EVIDENCE_MISSING` (N-CONC-01, unaffected by CORR-005 — out of the five-High scope) |
 | Migration-invalid/direct-SQL states | A12 §11 |
-| SaaS tenant/warehouse isolation risk | A10; enforcement mechanism itself `EVIDENCE_MISSING` (N-A13-02) |
+| SaaS tenant/warehouse isolation risk | A10; enforcement mechanism originally `EVIDENCE_MISSING` (N-A13-02); **`RESOLVED (ORM-layer)` per CORR-005 (2026-09-01)** — see A13 §5; SAAS-03 DB-layer gap remains separately open, unchanged |
 | Thailand operational reality | A11 (reused GROUP A register, no new Thailand-specific claims fabricated) |
 | Evidence for the later Cross-Proof | A16 |
 
-**All 22 mandatory coverage domains have explicit coverage** — 19 with direct evidence, 3 with an honestly registered `EVIDENCE_MISSING`/`PARTIALLY VERIFIED` disposition (timing/cutoff, DB-level concurrency locking, SaaS enforcement mechanism) rather than fabricated closure. This satisfies Amendment §4 criterion 1 ("every mandatory domain has explicit coverage") — explicit coverage does not require every domain to resolve to VERIFIED.
+**All 22 mandatory coverage domains have explicit coverage.** As of original session close: 19 with direct evidence, 3 with an honestly registered `EVIDENCE_MISSING`/`PARTIALLY VERIFIED` disposition (timing/cutoff, DB-level concurrency locking, SaaS enforcement mechanism) rather than fabricated closure. As of CORR-005 reconciliation (2026-09-01): 21 with direct evidence (timing/cutoff and the SaaS enforcement mechanism are now resolved); DB-level concurrency locking (N-CONC-01) remains an honestly registered gap, out of the five-High reconciliation scope. This satisfies Amendment §4 criterion 1 ("every mandatory domain has explicit coverage") — explicit coverage does not require every domain to resolve to VERIFIED.
 
 ## 2. Unknown/Conflict/Gap count reconciliation (authoritative, cross-checked against A14)
+
+### As of original DR-002 session close (2026-08-31) — preserved for audit trail
 
 | Severity | Open | Resolved this pass | Resolved pre-existing (re-confirmed) |
 |---|---:|---:|---:|
@@ -45,6 +47,17 @@
 | **Total open** | **26** | — | — |
 
 Counts are mechanically reconciled against the itemized tables in `A14_UNKNOWN_CONFLICT_EVIDENCE_GAP_REGISTER.md` Part 1 and Part 2 — every ID counted here appears there with full mandatory fields.
+
+### CORR-005 reconciled counts (2026-09-01) — current authoritative view
+
+Per `A14_UNKNOWN_CONFLICT_EVIDENCE_GAP_REGISTER.md` §Part 3, all five originally-open High items are reconciled against Independent Review IER-003 and binding Boss rulings: 3 are `RESOLVED` (evidence-verified closed) and 2 are reclassified `CONTROLLED CARRY-FORWARD` (Migration/TBRAC/Accounting-Tax-owned, not Inventory-blocking, not proven as target fact). This is a disposition change, not a re-research: it does not touch the Medium (14) or Low (7) counts, none of which were among the five High items.
+
+| View | Critical | High | Medium | Low | Total |
+|---|---:|---:|---:|---:|---:|
+| **Open Inventory Research Blockers** | 0 | **0** (was 5) | 14 | 7 | **21** (was 26) |
+| **Controlled Carry-Forwards** (not counted above) | — | 2 items (H2, H3) + 1 future-implementation/test item (N-A13-02 residual) | — | — | 3 |
+
+This recount is recomputed from the reconciled register, not a mechanical copy of the original `0 Critical / 5 High / 14 Medium / 7 Low`.
 
 ## 3. Exhaustion criteria evaluation (Amendment §4)
 
@@ -64,14 +77,20 @@ Counts are mechanically reconciled against the itemized tables in `A14_UNKNOWN_C
 
 ## 4. Terminal disposition
 
+### As of original DR-002 session close (2026-08-31) — preserved for audit trail
+
 **Five High-severity items remain open and explicitly blocking** (GRPA-H4, GRPA-H5, GRPA-H8, N-A7-03/N-A9-02 timing/cutoff, N-A13-02 tenant-isolation enforcement mechanism). Per the Amendment's own standard, a package may claim `MATERIAL UNKNOWN EXHAUSTION ACHIEVED` only when High findings are **closed or explicitly blocking with disclosed materiality** — not silently absent. All five here are the latter, not the former: they are disclosed, classified, and actionable, but not closed.
 
-Per DR-002 §11's own three-way terminal-status choice, the honest disposition is:
+Per DR-002 §11's own three-way terminal-status choice, the honest disposition was:
 
-### `HOLD / EVIDENCE REQUIRED — MATERIAL UNKNOWN EXHAUSTION NOT ACHIEVED`
+`HOLD / EVIDENCE REQUIRED — MATERIAL UNKNOWN EXHAUSTION NOT ACHIEVED`
 
-This is **not** `FAIL / FROZEN` — no clean-room violation, no unsafe assumption, and no evidence-integrity failure was found; every open item is a genuine, named, unresolved research gap or an environmentally-blocked follow-up (DB restore, record-rule reading), not a control failure. This is also **not** a claim that this pass added no value — 19 of 22 mandatory domains reached explicit, well-cited coverage, one Critical-tier structural discovery was made (no `stock.valuation.layer`), two GROUP A Medium items were newly resolved, and the valuation/Accounting-interface deepening the Amendment specifically mandated (§0 of A9) was substantively delivered. The honest status is `HOLD`, not `PASS`, because five High-severity items remain genuinely open.
+This was **not** `FAIL / FROZEN` — no clean-room violation, no unsafe assumption, and no evidence-integrity failure was found; every open item was a genuine, named, unresolved research gap or an environmentally-blocked follow-up (DB restore, record-rule reading), not a control failure.
 
-Team A does not self-declare Boss Gate PASS, Team B authorization, Development Ready, Release Ready, or Production Ready — none of these are claimed anywhere in this package.
+### CORR-005 reconciled disposition (2026-09-01)
+
+Per `A14` §Part 3, all five originally-open High items are now reconciled: 3 `RESOLVED` by IER-003 primary-source re-performance (GRPA-H4, N-A7-03/N-A9-02, N-A13-02's ORM-layer question), 2 `CONTROLLED CARRY-FORWARD` by binding Boss scope ruling (GRPA-H5, GRPA-H8) — neither closed as a technical fact, both explicitly tracked outside Inventory's research scope. **0 of 5 originally-open High items remain an open Inventory research blocker.**
+
+This reconciliation **does not, by itself, constitute `MATERIAL UNKNOWN EXHAUSTION ACHIEVED`, Boss Gate PASS, or any form of Team A self-approval.** Team A does not self-declare Boss Gate PASS, Team B authorization, Development Ready, Release Ready, or Production Ready — none of these is claimed here. What this reconciliation does establish, honestly and with full citation: the specific High-severity blocking condition that produced the original `HOLD` — five genuinely open High items — no longer exists in that form. Whether this satisfies the Amendment §4 exhaustion standard for the High tier, and whether the Inventory Evidence Gate is ready for a Boss decision, is a determination for the mandatory Independent Delta Re-Review that must follow this reconciliation, not a determination this document makes for itself. The 14 Medium and 7 Low items in A14 are unaffected by this reconciliation and remain open exactly as before.
 
 No Evidence = No Progress. No Material Unknown Exhaustion = No Inventory Evidence Gate PASS. Never Skip Gate.

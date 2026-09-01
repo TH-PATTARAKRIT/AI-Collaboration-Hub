@@ -32,6 +32,7 @@ Per DR-002 Mandatory Question #16 ("which source-specific technical behaviors mu
 | `uom.uom.relative_uom_id` self-referential tree replacing `uom.category` | Same caution |
 | String-literal branching on `type`/`picking_type.code` throughout the integration modules | A vendor technical-debt pattern (also flagged in GROUP A's External Dependency register §10) — explicitly **not** a pattern to replicate |
 | The three unresolved third-party approval modules' existence and observed usage statistics | Business-fact evidence (a customer uses layered approval) is fair to carry forward; their internal Python logic is quarantined by construction — it is not even available to read (source absent from the machine) |
+| `bh_parent_company` module (CORR-005, 2026-09-01): field *names/existence* (`brand_id`, `parent_company_id`, `hq_brand_id`, `is_hq_brand`, `store_type_id`, `bh_parent_company_code`) confirmed via `ir_model_data` by IER-003 | Per the Boss Inventory Scope Ruling, `bh_*`/`bhpro_*` modules are excluded from SMEsPlus source learning entirely — this is a hard quarantine, stronger than the other rows above: no further source acquisition, reading, or business-logic inference from this module is authorized, at all, for any team. Legacy-data provenance (column existence, for migration data-loss avoidance) is the only permitted carry-forward — see A12 §12 |
 
 ## 5. Statement
 

@@ -1,5 +1,13 @@
 # Inventory DR-002 Evidence Package — SHA-256 verification (2026-08-31, final)
 #
+# ADDENDUM (2026-09-01, non-destructive): CORR-005 register reconciliation
+# edited A5, A7, A9, A10, A12, A13, A14, A15, A16, A17, A18 in place (adding
+# dated correction notes, preserving original text for audit trail). The
+# hashes below describe the frozen 2026-08-31 state and will no longer match
+# those files' current content by design -- this is expected, not tampering.
+# Current-state verification is CORRECTIVE_CORR_005/EXECUTION/
+# 07_CORR005_FINAL_SHA256_MANIFEST.txt, not this file.
+#
 # Consistent with this project's established convention (see the Account CORR1-5
 # packages): a file cannot cite the hash of the commit that introduces it, and a
 # manifest file cannot self-hash. This file therefore covers the 20 other

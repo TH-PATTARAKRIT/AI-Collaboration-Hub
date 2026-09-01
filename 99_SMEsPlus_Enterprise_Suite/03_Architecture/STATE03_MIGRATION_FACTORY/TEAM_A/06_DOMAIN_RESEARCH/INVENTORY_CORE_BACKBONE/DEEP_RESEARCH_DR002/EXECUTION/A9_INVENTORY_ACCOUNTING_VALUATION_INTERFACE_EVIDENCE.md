@@ -78,7 +78,9 @@ Instead, valuation data lives **directly on `stock.move` itself** (fields below)
 
 ## 7. Date/cutoff interaction
 
-Not directly evidenced this pass at the field level (see A7 §4 — the same open gap applies here: no `date`/period-lock field was read during this specific research pass). **Registered as the single most material open item feeding Lane C Cross-Proof scenario 6**, in A14 (N-A9-02).
+Not directly evidenced this pass at the field level (see A7 §4 — the same open gap applies here: no `date`/period-lock field was read during this specific research pass). Originally registered as the single most material open item feeding Lane C Cross-Proof scenario 6, in A14 (N-A9-02).
+
+> **CORR-005 correction (2026-09-01) — `RESOLVED`**: see A7 §4's CORR-005 correction for the full citation (`stock/models/stock_move.py` date fields + `stock_account/models/stock_picking.py`'s lock-period constraint, verified by IER-003). N-A9-02 closes together with N-A7-03 — they are the same underlying gap, registered as one combined entry in A14.
 
 ## 8. Source dependencies on journals/accounts/COA
 

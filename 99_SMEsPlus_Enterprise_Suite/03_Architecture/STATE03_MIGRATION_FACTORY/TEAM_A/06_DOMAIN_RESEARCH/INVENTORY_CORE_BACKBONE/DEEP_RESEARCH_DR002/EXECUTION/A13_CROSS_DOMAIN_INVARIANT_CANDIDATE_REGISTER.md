@@ -33,7 +33,9 @@ These are **research candidates**, not proven SMEsPlus invariants and not execut
 ## 5. Tenant/company isolation
 
 **Candidate**: no Inventory record should be readable/writable across `company_id` boundaries without explicit multi-company sharing configuration.
-**Evidence**: `company_id` is the only scoping field on `stock.move` (A10 SAAS-01) — this candidate cannot be verified as *enforced* from source reading alone (record-rule/ACL definitions were not read this pass); registered as **`EVIDENCE_MISSING — RECORD RULES NOT YET READ`** in A14 (N-A13-02), not assumed either way.
+**Evidence**: `company_id` is the only scoping field on `stock.move` (A10 SAAS-01) — this candidate could not be verified as *enforced* from source reading alone during this pass (record-rule/ACL definitions were not read this pass); originally registered as `EVIDENCE_MISSING — RECORD RULES NOT YET READ` in A14 (N-A13-02).
+
+> **CORR-005 correction (2026-09-01) — `VERIFIED WITH CONDITIONS`, superseding "record rules not yet read"**: Independent Review IER-003 ([08_IER003_HIGH_H5_COMPANY_ACL_TENANT_REVIEW.md](../../../../../INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/IER_003/EXECUTION/08_IER003_HIGH_H5_COMPANY_ACL_TENANT_REVIEW.md)) read `stock/security/ir.model.access.csv` (full) and `stock/security/stock_security.xml` (full) and found comprehensive, company-scoped `ir.rule` row-level enforcement (`domain_force: [('company_id', 'in', company_ids)]` or equivalent) across every core Stock Truth-bearing model (`stock.quant`, `stock.move`, `stock.move.line`, `stock.picking`, `stock.warehouse`, `stock.location`, and 10 others). This is a real, ORM-layer enforcement mechanism, confirmed by direct read, not assumed. **This does not close SAAS-03** (A10) — `ir.rule` is an ORM/application-layer mechanism, not a DB-layer `ROW LEVEL SECURITY` policy or CHECK constraint; SAAS-03's DB-layer gap remains open and unchanged, a separate concern. See [A14](A14_UNKNOWN_CONFLICT_EVIDENCE_GAP_REGISTER.md) §Part 3.
 
 ## 6. Lot/serial product consistency
 

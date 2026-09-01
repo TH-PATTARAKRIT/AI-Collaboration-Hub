@@ -2,7 +2,7 @@
 
 | Item / Task | Owner | Evidence location | Timestamp | Reviewer / Verifier | Verification Status | Gate Impact |
 |---|---|---|---|---|---|---|
-| Synthesize the full DR-002 Account-grade Inventory Deep Research pass into one executive report | Claude (Team A, session `SMEPLUS-26-08-31-MIG-A-INV-BB-DR-002`) | This folder (`INVENTORY_CORE_BACKBONE/DEEP_RESEARCH_DR002/EXECUTION/`) | 2026-08-31 | Independent Evidence Review (required next); Boss (sole Final Approver) | **HOLD / EVIDENCE REQUIRED — MATERIAL UNKNOWN EXHAUSTION NOT ACHIEVED** | Boss Inventory Evidence Gate decision remains PENDING; blocks Team B Inventory design |
+| Synthesize the full DR-002 Account-grade Inventory Deep Research pass into one executive report | Claude (Team A, session `SMEPLUS-26-08-31-MIG-A-INV-BB-DR-002`) | This folder (`INVENTORY_CORE_BACKBONE/DEEP_RESEARCH_DR002/EXECUTION/`) | 2026-08-31 | Independent Evidence Review (required next); Boss (sole Final Approver) | **HOLD / EVIDENCE REQUIRED — MATERIAL UNKNOWN EXHAUSTION NOT ACHIEVED** (2026-08-31; superseded by CORR-005 reconciliation below, 2026-09-01 — see §6) | Boss Inventory Evidence Gate decision remains PENDING; blocks Team B Inventory design |
 
 ## 1. What this session did
 
@@ -33,7 +33,9 @@
 
 ## 4. Unknown/Conflict/Gap summary
 
-0 Critical open, 5 High open (all explicitly blocking with disclosed materiality, not silently carried), 14 Medium open, 7 Low open. 1 GROUP A Medium item newly resolved this pass; 1 GROUP A Medium item independently re-corroborated; 3 GROUP A Critical items independently re-corroborated as already resolved (A14, A15 §2).
+**As of original session close (2026-08-31)**: 0 Critical open, 5 High open (all explicitly blocking with disclosed materiality, not silently carried), 14 Medium open, 7 Low open. 1 GROUP A Medium item newly resolved this pass; 1 GROUP A Medium item independently re-corroborated; 3 GROUP A Critical items independently re-corroborated as already resolved (A14, A15 §2).
+
+**CORR-005 reconciled (2026-09-01)**: 0 Critical / **0 High** (was 5) / 14 Medium / 7 Low open Inventory research blockers — **21 total**, not a mechanical copy of the original count. 3 controlled carry-forwards (Migration/TBRAC/Accounting-Tax and future implementation/test verification, not Inventory-blocking) tracked separately. Full disposition table: `A14_UNKNOWN_CONFLICT_EVIDENCE_GAP_REGISTER.md` §Part 3; `A15_MATERIAL_UNKNOWN_EXHAUSTION_REPORT.md` §2/§4.
 
 ## 5. Relationship to the frozen GROUP A package
 
@@ -41,12 +43,18 @@ This pass explicitly does **not** restart or discard the GROUP A Sales+Inventory
 
 ## 6. Terminal statement
 
-**`TEAM A INVENTORY DEEP RESEARCH — HOLD / EVIDENCE REQUIRED — MATERIAL UNKNOWN EXHAUSTION NOT ACHIEVED`**
+**Original (2026-08-31): `TEAM A INVENTORY DEEP RESEARCH — HOLD / EVIDENCE REQUIRED — MATERIAL UNKNOWN EXHAUSTION NOT ACHIEVED`**
 
-This is the honest, evidence-supported disposition per DR-002 §11 and the Amendment §4 exhaustion standard (full reasoning in A15). This is not a claim of failure or clean-room violation — no such violation was found (A17) — and it is not a claim that no progress was made: substantial, precisely-cited primary research was produced, one Critical-tier structural discovery was made, and the Amendment's specific valuation-deepening mandate was substantively delivered. It is a claim that five High-severity items remain genuinely, explicitly open and that closing them (particularly N-A7-03/N-A9-02 timing/cutoff and N-A13-02 tenant-isolation enforcement) is the honest prerequisite before this package could instead claim `MATERIAL UNKNOWN EXHAUSTION ACHIEVED`.
+This was the honest, evidence-supported disposition per DR-002 §11 and the Amendment §4 exhaustion standard (full reasoning in A15, as it stood 2026-08-31). It was not a claim of failure or clean-room violation — no such violation was found (A17) — and it was not a claim that no progress was made: substantial, precisely-cited primary research was produced, one Critical-tier structural discovery was made, and the Amendment's specific valuation-deepening mandate was substantively delivered.
+
+### CORR-005 reconciled terminal statement (2026-09-01)
+
+**`TEAM A INVENTORY DR-002 REGISTER RECONCILIATION COMPLETE — READY FOR INDEPENDENT DELTA RE-REVIEW — INVENTORY EVIDENCE GATE NOT YET APPROVED`**
+
+All five originally-open High-severity items (the specific condition that produced the 2026-08-31 `HOLD`) are reconciled per `A14` §Part 3: 3 `RESOLVED` by IER-003 primary-source re-performance, 2 `CONTROLLED CARRY-FORWARD` by binding Boss scope ruling. 0 open Inventory research blockers remain at High severity; 14 Medium and 7 Low items remain open, unaffected by this reconciliation. This reconciliation is documentation-correction only — no new primary Inventory source research was performed by CORR-005 itself; every citation was already established by IER-003.
 
 `COA-G01`/other Accounting Gate statuses are unaffected by this report — this is a Team A Inventory research deliverable, not an Accounting Gate action.
 
-`TEAM B INVENTORY DESIGN = NOT AUTHORIZED.` `TEAM C / DEVELOPMENT = NOT AUTHORIZED.` `PMO VERIFICATION = PENDING.` `BOSS INVENTORY EVIDENCE GATE = PENDING.`
+`TEAM B INVENTORY DESIGN = NOT AUTHORIZED.` `TEAM C / DEVELOPMENT = NOT AUTHORIZED.` `PMO VERIFICATION = PENDING.` `BOSS INVENTORY EVIDENCE GATE = PENDING — REQUIRES INDEPENDENT DELTA RE-REVIEW FIRST.`
 
 No Evidence = No Progress. No Material Unknown Exhaustion = No Inventory Evidence Gate PASS. Never Skip Gate. Boss is the sole Final Approver.
