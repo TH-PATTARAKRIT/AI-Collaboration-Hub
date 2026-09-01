@@ -19,8 +19,8 @@ Mandatory governance inputs:
 - NEW PROMPT Governance v2.0: `03b4244b2101e8c0a89d36255cc654fc2537c748`
 - 9 Veto / 9 Special Team Charter: `5d81d628b9b159f89a93da7ab920c42ef8f09555`
 - Global Challenge Ledger: `f8d940900896a5a11e7232bac0e829fc5a60e908`
-- Account Reopen Prompt: `f6050fccfd971626eeced36227167f9b21ff4e7a`
-- Inventory Reopen Prompt: `2ccc818b0f86b4c750420fa600dc2c2045d697fe`
+- Account Reopen Prompt: `8aeddae8f3a29b0424237f36085da61a0af29e24`
+- Inventory Reopen Prompt: `3473b46bdb3bd4e11a417be591abd90e85cd5963`
 
 This is a new joint research session. It does not merge Accounting and Inventory ownership.
 
