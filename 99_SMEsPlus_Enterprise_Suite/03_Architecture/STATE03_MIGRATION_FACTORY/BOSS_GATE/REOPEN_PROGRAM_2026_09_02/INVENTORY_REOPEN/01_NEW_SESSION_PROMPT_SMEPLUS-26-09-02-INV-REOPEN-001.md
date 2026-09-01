@@ -353,6 +353,7 @@ Publish under a dedicated controlled reopen execution path:
 17. `17_INVENTORY_REOPEN_DEEP_REVALIDATION_REPORT.md`
 18. `18_INVENTORY_REOPEN_SHA256_MANIFEST.txt`
 19. `19_SESSION_CLOSURE_SMEPLUS-26-09-02-INV-REOPEN-001.md`
+20. `20_INVENTORY_PENDING_JOINT_SESSION_3_INTERFACE_REGISTER.md`
 
 If evidence is missing, create the deliverable with `HOLD / EVIDENCE REQUIRED`. Do not fabricate closure.
 
@@ -381,3 +382,121 @@ Do NOT self-declare Inventory Boss Gate PASS, Team B authorization, Team C autho
 `No Evidence Preservation = No Lifecycle Promotion.`  
 `Never Skip Gate.`  
 `Boss = Sole Final Approver.`
+
+---
+
+## 11. Boss Addendum — Inventory Reopen Parallel Safety and Boundary Strengthening
+
+This Inventory Reopen session must incorporate the Boss-approved parallel execution control, Dual Challenge Mandate, and the latest Account / Inventory boundary rules.
+
+### 11.1 Dual Challenge Mandate
+
+1. `9 Veto Challenge Council` is the primary mandatory Gate challenge body.
+2. `9 Special Team Challenge` is the supplementary deep-dive mechanism for Boss-identified risks.
+3. Both report directly to Boss only.
+4. Neither may declare Gate PASS, authorize Team B, authorize Team C, authorize development, merge, release, or production.
+5. Boss remains the sole Final Approver.
+
+### 11.2 Clean-room Principles
+
+All Inventory evidence, findings, and recommendations must enforce these four principles:
+
+1. `Reference Only` — Odoo / SAP / Salesforce / Legacy / Dump are for learning and business-semantic proof only.
+2. `No Copy / No Clone / No Reuse` — no source code, XML, QWeb, ORM, schema, workflow, naming pattern, or application architecture reuse.
+3. `Migrate Business Facts + Business Semantics Only` — not legacy application architecture.
+4. `SMEsPlus Target Design Must Be Original` — clean-room Node.js SaaS target design with Boss approval.
+
+Every deliverable must explicitly state its Clean-room impact or Clean-room boundary.
+
+### 11.3 Inventory-specific Mandatory Deep Challenges
+
+This Inventory Reopen must deeply test and publish evidence for:
+
+1. Product Category / Product Group valuation-policy ownership and boundary.
+2. Manual vs Automated inventory valuation as source behavior and target hypothesis.
+3. Periodic vs Perpetual stock/accounting behavior as an interface issue, not an Inventory-only closure.
+4. Standard / FIFO / AVCO or other costing behavior only where source/dump evidence supports it.
+5. `stock.move`, `stock.quant`, `stock.picking`, valuation layer and physical movement semantics.
+6. Physical count / cycle count / adjustment / freeze / conflict / backdate behavior.
+7. Stock cut-off as of period close date.
+8. Opening and closing stock quantity continuity.
+9. Stock valuation handoff requirements to Accounting.
+10. Stockable / Consumable / Service routing and edge cases.
+11. Product Category-level financial-account configuration as evidence only, not target design cloning.
+12. Inventory-owned facts required for later Account x Inventory Joint Session.
+
+### 11.4 Parallel-session Safety
+
+This Inventory session is expected to run in parallel with Account Reopen.
+
+Before execution, the executor must:
+
+1. create an isolated Inventory worktree;
+2. create/use a dedicated Inventory execution branch;
+3. verify the current branch before every commit;
+4. never reuse the Account session worktree or branch;
+5. never reuse the Joint session worktree or branch;
+6. never commit Inventory evidence to an Account or Joint branch;
+7. never commit Account or Joint evidence to the Inventory branch;
+8. not push until final branch verification is complete;
+9. include a branch/worktree verification note in the session closure.
+
+Required branch:
+
+`audit/inventory-reopen-2026-09-02-inv-reopen-001`
+
+Required execution folder:
+
+`99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/EXECUTION/`
+
+### 11.5 Cross-domain Boundary
+
+Inventory may define Stock Truth and Inventory-owned facts.
+
+Inventory must not close Account-owned findings.
+
+Accounting-dependent items must be routed to one of these statuses:
+
+- `INVENTORY_OWNED_STOCK_FACT`
+- `ACCOUNTING_INTERFACE_REQUIREMENT`
+- `PENDING_ACCOUNT_SESSION`
+- `PENDING_ACCOUNT_INVENTORY_JOINT_SESSION`
+- `OUT_OF_INVENTORY_SCOPE`
+
+Inventory must not independently close:
+
+- COA / Account Type / Account Group conclusions;
+- final journal entry design;
+- VAT / WHT / CIT statutory conclusions;
+- retained earnings / current-year earnings logic;
+- Account lock-date policy as Accounting truth;
+- Inventory valuation to GL reconciliation as final Accounting closure;
+- Account x Inventory Backbone baseline.
+
+These must be carried to Account Reopen or the later Account x Inventory Joint Reopen.
+
+### 11.6 Mandatory Session 3 Interface Register
+
+The additional deliverable `20_INVENTORY_PENDING_JOINT_SESSION_3_INTERFACE_REGISTER.md` must list:
+
+1. Inventory-owned conclusions ready for later joint use.
+2. Accounting-dependent open questions.
+3. Joint Account x Inventory questions.
+4. Required evidence for Session 3.
+5. Blocked baseline assumptions.
+6. Owner and target gate for each pending interface.
+7. Whether the item blocks Inventory-only understanding, Account-only understanding, or Joint Backbone publication.
+
+### 11.7 Final Reinforced Stop Condition
+
+This Inventory Reopen may end only at evidence publication and recommendation.
+
+It must not declare:
+
+- Inventory final closure;
+- Account closure;
+- Account x Inventory Backbone baseline;
+- Gate PASS;
+- Team B authorization;
+- Team C authorization;
+- Development authorization.
