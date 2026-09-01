@@ -1,10 +1,12 @@
 # CORR-007B SHA-256 Manifest
 # Session: SMEPLUS-26-09-02-CORR007B-3HIGH-CLOSURE-001
-# Generated: 2026-09-02
+# Generated: 2026-09-02; updated same day after Boss's two N-A12-01 functional-design addenda (file 08).
 # All hashes computed directly via `shasum -a 256` against the files at the paths shown.
 # Source paths are relative to "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/" (local filesystem,
 # outside the AI-Collaboration-Hub git repository, per 01_SOURCE_REGISTRY/README.md governance rule
 # against committing raw source). Deliverable and evidence-CSV paths are relative to the repository root.
+# Hashes for files 04 and 05 reflect their POST-ADDENDUM content (N-A12-01 reopened, HIGH REMAINS) —
+# the earlier pre-addendum hashes recorded lower in this manifest's git history are superseded.
 
 ## A. GRPA-M15 — purchase_order_line source citations (Team I1)
 
@@ -47,9 +49,53 @@ fb897abff9502c4228ba73b91c653acef15625305d662ebc64fbe01da622b757  ACCOUNT/01 ACC
 
 452508cd874c26c3fe76ce2c42f200eb31cd16b27a010babcfec95077b282a05  01_CORR007B_GRPA_M15_PURCHASE_ORDER_LINE_DRIFT_PROOF.md
 8bd0fadaf91548b673afac5ea52c6d9c974b2b23f4ed970f2476b39c97cae449  02_CORR007B_N_A7_01_COUNT_FREEZE_CONFLICT_PROOF.md
-0f2ee8475a0506142ca2eb746ba32efdb1a79e63f1ce98378b79faa3426204bc  03_CORR007B_N_A12_01_CROSS_YEAR_CONTINUITY_PROOF.md
-932f9503ca48d9db44c6a3c77ef6df7ea030d9ea8d76dd74e183a56b7e3058bb  04_CORR007B_FINAL_HIGH_DISPOSITION_REGISTER.md
-d4c974af8b59d425bb5feda440f57057ebc45f80cc53ca4129b5c696bc0d3164  05_CORR007B_BOSS_DECISION_RECOMMENDATION.md
+0f2ee8475a0506142ca2eb746ba32efdb1a79e63f1ce98378b79faa3426204bc  03_CORR007B_N_A12_01_CROSS_YEAR_CONTINUITY_PROOF.md  (superseded by file 11 per Boss addenda; retained for audit-trail continuity, not current position)
+298c8b654caf36955f2cca875b5d502756ce8c5a03338d42e46b20f9afbd462a  04_CORR007B_FINAL_HIGH_DISPOSITION_REGISTER.md  (post-addenda 1-4: N-A12-01 reopened, gap register finalized)
+9f1829c3ca840d31459f611c99aa6c8755f62c0b30d9bc3daff0406958c314c8  05_CORR007B_BOSS_DECISION_RECOMMENDATION.md  (post-addenda 1-4: N-A12-01 reopened, gap register finalized)
+4c1f97db7808e53712d4154c5472227c5fcd7f2aa4d50b5e55cab2ec3a5466f0  08_CORR007B_N_A12_01_ACCOUNT_LED_INVENTORY_PERIOD_CLOSE_FUNCTIONAL_DESIGN_PROOF.md  (Boss addenda 1-2 response; superseded by file 11 as current position, retained)
+129a8bbdc746b1fdc23eec6607e3a61f99b0c728536a541104fef5c307287516  09_CORR007B_PRODUCT_CATEGORY_VALUATION_FUNCTIONAL_DESIGN_REVIEW.md  (Boss addendum 3 response)
+c9503ea1e112d4431650cb81d8eb68059a3c5c73725adb706d763b97a84ed3dc  10_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md  (Boss addendum 4 response — honest 4-lens framing, see file §0)
+78d3c970c035e961175c03075cb39cb12a92d692a1e99e028bf1084e1cfc300c  11_CORR007B_N_A12_01_REVISED_FUNCTIONAL_DESIGN_DISPOSITION.md  (current position of record for N-A12-01, consolidates files 03/08/09/10)
+
+## E2. Superseded pre-addendum hashes of files 04/05 (for audit trail — DO NOT rely on these as current)
+
+932f9503ca48d9db44c6a3c77ef6df7ea030d9ea8d76dd74e183a56b7e3058bb  04_CORR007B_FINAL_HIGH_DISPOSITION_REGISTER.md  (version 1, pre-addenda, N-A12-01 shown as controlled carry-forward)
+d4c974af8b59d425bb5feda440f57057ebc45f80cc53ca4129b5c696bc0d3164  05_CORR007B_BOSS_DECISION_RECOMMENDATION.md  (version 1, pre-addenda, N-A12-01 shown as controlled carry-forward)
+5ae76924d1f48f702859139cf89c05b57ce516e8a06ab7b5ccb53145508d588c  04_CORR007B_FINAL_HIGH_DISPOSITION_REGISTER.md  (version 2, post-addenda 1-2 only, before files 09-11 existed)
+7946266aaa24d6fe51d864c4ede55257a2206290718e77f569a591d99208fe4c  05_CORR007B_BOSS_DECISION_RECOMMENDATION.md  (version 2, post-addenda 1-2 only, before files 09-11 existed)
+
+## E3. N-A12-01 functional design proof — source citations (file 08, Boss addenda)
+
+048dbd2e3955de6b7bcc9edd33bddf7c5d9deb45c1a406a21f5727a367671341  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/models/stock_move.py  (already listed in §D; re-cited for _should_create_account_move, _create_account_move, _action_done)
+a53bff663ede6bef0acc1f92aa8bf7c040351357d9ff309464d64b6added1ab7  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/models/product.py
+ca84b7604ca7b59a0d867effbda9758196f5cd2dbaca64b39e8e00d7b588fd4c  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/report/stock_valuation_report.py
+cbdbdb254894309da89cdfc224e838bd0c2784496b8399396dc5247023f639c1  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/data/stock_account_data.xml  (already listed; re-cited for property_valuation/property_cost_method defaults)
+f35b6354f5c23b3e2e3320821670edf8c4bd9adbea638abba0932ae23e449f10  ACCOUNT/01 ACCOUNT/SOURCE CODE/01 ACCOUNT/account_accountant/wizard/account_change_lock_date.py
+da01e69b49216071c546ee41e33e274e23ca2dd62faf5cc03ce0dc716a5cc2da  ACCOUNT/01 ACCOUNT/SOURCE CODE/01 ACCOUNT/account/models/account_lock_exception.py
+469205dfa8db47be15f73d5f066b7239750c44bdafd7c84eee60ffdd9e75bcb0  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/__manifest__.py
+4c2b266710fde9527c0b882b48dc83901be5aefee642bfd5572388f4ea20d048  ACCOUNT/01 ACCOUNT/SOURCE CODE/01 ACCOUNT/account_reports/models/account_report.py
+0093c380deaf42379784e8f610e595adb3a0f8af95434d6b17c0f9d25a58da84  ACCOUNT/01 ACCOUNT/SOURCE CODE/01 ACCOUNT/account/models/company.py  (already listed in §D; re-cited for account_opening_move_id, get_unaffected_earnings_account, _update_opening_move)
+68e97527cd44c29d4a2ed9eaef56250c17de97f75dd9fae17901e79e1bb0b445  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/models/res_company.py  (already listed in §D; re-cited for action_close_stock_valuation, stock_value, stock_accounting_value, _get_last_closing_date, _save_closing_id)
+
+## E4. Product Category valuation review — source citations (file 09, Boss addendum 3)
+
+c636f20dafa87735eef884127c127629e104048dab60954f31bd4c5320280198  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/models/stock_location.py
+fe902b4941fc4221fdfb9e98c83da343bee7992d736080e2917664b2556e5c42  ACCOUNT/01 ACCOUNT/SOURCE CODE/01 ACCOUNT/account/models/product.py
+eb003c337d40fe01834d5aac13e41b12a9016700acf6b28606d6b6b0bae797fc  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/product/models/product_category.py
+44bf51e60a394d364f9965a500296b213d7a1c0e219077514debaf2d63857d9f  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/point_of_sale/tests/test_pos_stock_account.py  (Stock Input/Output legacy-field reference, not a declaration)
+e6e7cf77bedd7e91bca328f8a9ecc0c00c385ba744304ab721c11625fae17a86  ACCOUNT/01 ACCOUNT/SOURCE CODE/addons_extra/om_data_remove/models/model.py  (same legacy-field reference)
+ec1dc36f299296f4b38e67fddc63e91e53fea90a1f15fac7312a81e16d2d6b2f  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/point_of_sale/models/product_category.py  (checked — confirmed does NOT declare the legacy fields either)
+a53bff663ede6bef0acc1f92aa8bf7c040351357d9ff309464d64b6added1ab7  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/models/product.py  (already listed §E3; re-cited for ProductCategory class boundary, property_valuation/property_cost_method full declarations)
+
+## E5. Four-lens challenge — source and dump citations (file 10, Boss addendum 4)
+
+aa38972d74f06c6f6f073e3a2d53347c9b2d5af0529f49f72c6dbcdff571acdf  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/static/src/stock_valuation/controller.js  (resolves G-4)
+4fbbf31d8d3e8a95740c4a2fe9777f9874a1496a8f827b14ff1dd55a9a956aeb  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_landed_costs/models/stock_landed_cost.py  (stock_valuation_adjustment_lines table ownership, checked-and-cleared)
+ca84b7604ca7b59a0d867effbda9758196f5cd2dbaca64b39e8e00d7b588fd4c  ACCOUNT/01 ACCOUNT/SOURCE CODE/02 OTHER/stock_account/report/stock_valuation_report.py  (already listed §E3; re-cited for action_print_as_pdf/xlsx empty stubs, G-7)
+3b66426173126777a0a6c38df45e29c5ce13e48c537a05d988129cf5665a91a3  99_SMEsPlus_Enterprise_Suite/V2.0/THAI/SMEPLUS-26-06-29-001_Final_AI_Handoff_Documentation_v2.0/Evidence_CSV/Dump_Column_Inventory.csv  (already listed §B; re-cited for stock_valuation_adjustment_lines columns)
+# Dump_Table_Inventory.csv and Dump_Index_Inventory.csv (Database Design lens, file 10 §2) are part of
+# the same Evidence_CSV pack as the files already hashed in §B; the specific rows quoted in file 10 are
+# reproducible from that pack. Not separately re-hashed here — no modification was made to those files.
 
 ## F. Prior evidence relied upon by reference (re-hashed this session to confirm no drift since original publication; not re-examined line-by-line beyond what is cited in files 01-04)
 
