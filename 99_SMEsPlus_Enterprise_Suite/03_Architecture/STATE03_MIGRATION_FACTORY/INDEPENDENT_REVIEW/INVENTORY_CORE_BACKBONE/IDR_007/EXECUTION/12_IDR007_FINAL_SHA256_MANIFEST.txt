@@ -1,0 +1,27 @@
+# IDR-007 Evidence Package — SHA-256 manifest (2026-09-01, final)
+#
+# Covers deliverables 01-11 of this session (IDR_007/EXECUTION/). This file
+# (12) cannot cite its own hash, consistent with this project's established
+# convention (A19, CORR-005's 07 manifest).
+#
+# Computed directly from the files on disk after they were written, via:
+#   shasum -a 256 <file>
+#
+# Physical files in this deliverable set: 12 (01-11 covered here + this
+# manifest file itself, excluded from self-hash).
+# Operational SHA-256 entries: 11.
+#
+fa9fbac9a5819f5481881c4c1dc7a2fcaf2bce0170158bbe6c5e4d0f6bc51d58  01_IDR007_PREFLIGHT_AND_FROZEN_BASELINE_VERIFICATION.md
+d6813bd27a4cf6120fee73635bd99954e5d66c010a1365470ea03c7202b62683  02_IDR007_CORR005_SHA256_REPRODUCTION.md
+991cfce891a38161814349773ea141290df8a9607ba17f9044af677f7d374dad  03_IDR007_FIVE_HIGH_INDEPENDENT_REPERFORMANCE.md
+15a75249ced958c3a79f4393f1d8439a99fac13b7b72f61669138b10492ffd9e  04_IDR007_H2_SCOPE_EXCLUSION_AUDIT.md
+ed3b2ec46dd442147253cddcefc14ae2554e34f9da9662afcce0e0acc4d597f8  05_IDR007_H3_BRANCH_BASELINE_AND_CARRY_FORWARD_AUDIT.md
+fb10a0d8fdc4c6217086844d73eaff9133f80daa057c4189054d220a1b583910  06_IDR007_RESIDUAL_COUNT_AND_SEVERITY_RECOMPUTATION.md
+747ff93c6d86a0e0d5e662733c45fe7ff6750a7c09df684c871ce85f46b19a4e  07_IDR007_CONTROLLED_CARRY_FORWARD_AUDIT.md
+778426003b88c104881dcafed9b1465f116d02c69a970f452eabc2dfbf0b094b  08_IDR007_CROSS_FILE_CONSISTENCY_AND_CLEAN_ROOM_REVIEW.md
+052ebb4d597e9551ef54739f9f2883786b009cee3f30d9e3bb8cee02443e6d32  09_IDR007_INDEPENDENT_DELTA_REVIEW_REPORT.md
+04902075ee626c316a49ced61a756d99b3bc0da8d58f78c1face7a8594fe0ea2  10_IDR007_BOSS_INVENTORY_EVIDENCE_GATE_RECOMMENDATION.md
+d9b92e6b7894c15a38246a76ffaf7933ed857cc355c6e22ae996bca90aeeef70  11_IDR007_SESSION_CLOSURE.md
+#
+# Reproducible verification (run from this folder, EXECUTION/):
+#   for f in 0[1-9]_*.md 1[01]_*.md; do shasum -a 256 "$f"; done
