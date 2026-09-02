@@ -8,7 +8,7 @@
 | Repository | `TH-PATTARAKRIT/AI-Collaboration-Hub` |
 | Canonical Branch | `SMEsPlus` (base `788479552971940a126a542da5343944f7f3e0d4`) |
 | Execution Branch | `audit/account-menu-process-deep-study-2026-09-02-001` (unmerged; merge is a Boss decision, file 20 EG-11) |
-| Publication commit (package) | `PENDING — filled in by closure commit` |
+| Publication commit (package) | `184ca6341e1d68ef808a88e7da726e98be00e485` (closure commit recorded below) |
 | Executor | Claude (this session); Boss = Sole Final Approver |
 | Terminal classification | `READY FOR BOSS FINAL GATE REVIEW - PROCESS REFERENCE ONLY` |
 
