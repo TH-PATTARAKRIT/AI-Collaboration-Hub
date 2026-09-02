@@ -6,22 +6,48 @@ STATE: `STATE03 — Architecture`
 Jira: `ERPPLUS-139`  
 Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`  
 Canonical Branch: `SMEsPlus`  
-Execution Branch: `audit/inventory-reopen-2026-09-02-inv-reopen-001`  
-Execution Commit: `170af9ea7a5afd127abcaae0ffb40aaa1fa25d4d`  
-Clean-Room Remediation Branch: `audit/inventory-core-corr007b-3high-closure-010`  
-Clean-Room Remediation Commit: `9996072aa3a353dca99de4b22e8611171e24baf4`  
+Current Prompt Branch: `prompt/inventory-final-solution-v1-2026-09-02-001`  
+Authoritative Inventory Source: `audit/inventory-cleanroom-containment-2026-09-02-001`  
 Control Level: `/L999.999`  
-Boss: `Sole Final Approver`
+Boss: `Sole Final Approver`  
+Current Status: `BOSS AUTHORIZED INVENTORY FINAL SOLUTION V1.0 DESIGN PREPARATION — NOT DEVELOPMENT AUTHORIZATION`
 
 ---
 
 ## 1. Purpose
 
-This file records the direct session/prompt/evidence/remediation links for the Inventory Reopen package so Boss can find the active New Session, Claude execution prompt, published execution evidence, and clean-room remediation evidence from GitHub without relying on chat memory.
+This file records the direct GitHub links for the Inventory Reopen, Menu Deep Challenge, Clean-Room Re-Audit, Clean-Room Containment, Boss authorization, and Inventory Final Solution v1.0 New Session Prompt.
+
+This register is intended to prevent reliance on chat memory and to give Boss and the next AI executor a traceable GitHub entry point.
 
 ---
 
-## 2. Canonical GitHub Links
+## 2. Boss Decisions Now Recorded
+
+| Decision | Status | Direct Link |
+|---|---|---|
+| Boss selected containment branch as authoritative Inventory clean-room source | Recorded / unmerged | [10_BOSS_RULING_AUTHORITATIVE_SOURCE.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-cleanroom-containment-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/CLEANROOM_CONTAINMENT_EXECUTION/10_BOSS_RULING_AUTHORITATIVE_SOURCE.md) |
+| Boss authorized Inventory Final Solution v1.0 design preparation | Published | [09_BOSS_AUTHORIZATION_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/prompt/inventory-final-solution-v1-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/09_BOSS_AUTHORIZATION_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md) |
+| Inventory Final Solution v1.0 New Session Prompt | Published / ready for Claude execution | [10_NEW_SESSION_PROMPT_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/prompt/inventory-final-solution-v1-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/10_NEW_SESSION_PROMPT_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md) |
+
+---
+
+## 3. Current Final Solution v1.0 Prompt Status
+
+| Item | Value |
+|---|---|
+| Prompt branch | `prompt/inventory-final-solution-v1-2026-09-02-001` |
+| Authorization commit | `498128637aeaf949269c3b86fb6c961be12b0162` |
+| New Prompt commit | `a713da8a7e3464cb42328d06b8df123160a5a643` |
+| Execution branch instructed | `design/inventory-final-solution-v1-2026-09-02-001` |
+| Required output folder | `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/FINAL_SOLUTION/INVENTORY/V1_0/` |
+| Scope | Final Solution v1.0 design evidence only |
+| Not authorized | Coding, database implementation, Team C development, merge, production, release |
+| Final Gate | Boss-only |
+
+---
+
+## 4. Inventory Reopen Evidence Links
 
 | Item | Status | Direct Link |
 |---|---|---|
@@ -34,27 +60,45 @@ This file records the direct session/prompt/evidence/remediation links for the I
 
 ---
 
-## 3. Clean-Room Remediation Links
+## 5. Menu Deep Challenge Evidence Links
+
+| Item | Status | Direct Link |
+|---|---|---|
+| Menu Boss Final Gate Package | Published / unmerged | [25_BOSS_FINAL_GATE_PACKAGE.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/25_BOSS_FINAL_GATE_PACKAGE.md) |
+| Menu Coverage Register | Published | [02_INVENTORY_MENU_COVERAGE_REGISTER.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/02_INVENTORY_MENU_COVERAGE_REGISTER.md) |
+| Object Impact Matrix | Published | [03_INVENTORY_OBJECT_IMPACT_MATRIX.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/03_INVENTORY_OBJECT_IMPACT_MATRIX.md) |
+| Process Handoff Map | Published | [04_INVENTORY_PROCESS_HANDOFF_MAP.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/04_INVENTORY_PROCESS_HANDOFF_MAP.md) |
+| Menu-by-Menu Process Map | Published | [06_INVENTORY_MENU_BY_MENU_PROCESS_MAP.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/06_INVENTORY_MENU_BY_MENU_PROCESS_MAP.md) |
+| Menu Impact Matrix | Published | [07_INVENTORY_MENU_IMPACT_MATRIX.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/07_INVENTORY_MENU_IMPACT_MATRIX.md) |
+| Thai Menu and Report Naming Register | Published / unvalidated names | [17_THAI_MENU_AND_REPORT_NAMING_REGISTER.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/17_THAI_MENU_AND_REPORT_NAMING_REGISTER.md) |
+| AI Expert Overlay Review | Published | [23_AI_EXPERT_OVERLAY_REVIEW.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/23_AI_EXPERT_OVERLAY_REVIEW.md) |
+
+---
+
+## 6. Clean-Room / C-05 Evidence Links
 
 | Item | Status | Direct Link |
 |---|---|---|
 | Clean-Room Remediation Commit | Published / Unmerged | [9996072aa3a353dca99de4b22e8611171e24baf4](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/commit/9996072aa3a353dca99de4b22e8611171e24baf4) |
-| Remediated CORR-007B file 08 | Current branch surface remediated | [08_CORR007B_N_A12_01_ACCOUNT_LED_INVENTORY_PERIOD_CLOSE_FUNCTIONAL_DESIGN_PROOF.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/08_CORR007B_N_A12_01_ACCOUNT_LED_INVENTORY_PERIOD_CLOSE_FUNCTIONAL_DESIGN_PROOF.md) |
-| Remediated CORR-007B file 09 | Current branch surface remediated | [09_CORR007B_PRODUCT_CATEGORY_VALUATION_FUNCTIONAL_DESIGN_REVIEW.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/09_CORR007B_PRODUCT_CATEGORY_VALUATION_FUNCTIONAL_DESIGN_REVIEW.md) |
-| Clean-Room Remediation Record | Published | [17_CORR007B_CLEAN_ROOM_REMEDIATION_RECORD.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/17_CORR007B_CLEAN_ROOM_REMEDIATION_RECORD.md) |
+| Clean-Room Re-Audit Boss Package | Published | [11_BOSS_FINAL_GATE_PACKAGE.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-cleanroom-reaudit-2026-09-02-002/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/CLEANROOM_REAUDIT_EXECUTION/11_BOSS_FINAL_GATE_PACKAGE.md) |
+| C-05 Clean-Room Re-Audit | Published | [02_CORR007B_C05_CLEAN_ROOM_REAUDIT.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-cleanroom-reaudit-2026-09-02-002/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/CLEANROOM_REAUDIT_EXECUTION/02_CORR007B_C05_CLEAN_ROOM_REAUDIT.md) |
+| Remediation Action Register | Published | [10_REMEDIATION_ACTION_REGISTER.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-cleanroom-reaudit-2026-09-02-002/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/CLEANROOM_REAUDIT_EXECUTION/10_REMEDIATION_ACTION_REGISTER.md) |
+| Containment Branch | Boss selected authoritative source / unmerged | [audit/inventory-cleanroom-containment-2026-09-02-001](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/tree/audit/inventory-cleanroom-containment-2026-09-02-001) |
+| Containment Boss Package | Published | [06_BOSS_FINAL_GATE_PACKAGE.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-cleanroom-containment-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/CLEANROOM_CONTAINMENT_EXECUTION/06_BOSS_FINAL_GATE_PACKAGE.md) |
+| Containment Session Closure | Published | [09_SESSION_CLOSURE_SMEPLUS-26-09-02-INV-CLEANROOM-CONTAINMENT-001.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-cleanroom-containment-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/CLEANROOM_CONTAINMENT_EXECUTION/09_SESSION_CLOSURE_SMEPLUS-26-09-02-INV-CLEANROOM-CONTAINMENT-001.md) |
 
 ---
 
-## 4. Session URLs
+## 7. Session URLs
 
 | Session Type | URL | Status | Note |
 |---|---|---|---|
 | ChatGPT PMO preparation session | `PENDING_BOSS_PROVIDED_URL` | HOLD / EVIDENCE REQUIRED | Codex cannot read the browser conversation URL unless Boss provides it. |
-| Claude Sonnet 5 Max execution session | `PENDING_BOSS_PROVIDED_URL` | EXECUTION EVIDENCE PUBLISHED | To be updated after Boss provides the Claude execution session URL. |
+| Claude Final Solution v1.0 execution session | `PENDING_BOSS_PROVIDED_URL` | PENDING EXECUTION | To be updated after Boss provides the Claude execution session URL. |
 
 ---
 
-## 5. Governance Lock
+## 8. Governance Lock
 
 `AI Audit SMEsPlus` means:
 
@@ -66,35 +110,36 @@ Boss remains the sole Final Approver.
 
 ---
 
-## 6. Current Evidence Status
+## 9. Current Evidence Status
 
 | Area | Evidence Status |
 |---|---|
-| Prompt readiness | Published |
-| Claude execution prompt | Published |
-| Execution branch | Published / unmerged |
-| Execution deliverables | 20/20 published |
-| Clean-room remediation | Files `08` and `09` rewritten as clean-room business-learning summaries; remediation record published |
-| Terminal status | `INVENTORY FULL REOPEN DEEP REVALIDATION COMPLETE — READY FOR INDEPENDENT REOPEN AUDIT` |
+| Inventory Reopen | 20/20 deliverables published / unmerged |
+| Menu Deep Challenge | 29/29 required files published / 29 menus mapped / unmerged |
+| Clean-room re-audit | C-05 surface remediated; history containment risk recorded |
+| Containment remediation | Option D executed; warning + downstream reliance lock + Menu-10 wording fix published |
+| Authoritative source | Boss selected `audit/inventory-cleanroom-containment-2026-09-02-001` |
+| Final Solution v1.0 authorization | Published |
+| Final Solution v1.0 New Prompt | Published / ready for Claude execution |
 | Gate PASS | Not declared |
 | Team B / Team C / Development | Not authorized |
-| Final Gate | Pending Boss |
+| Final Gate | Pending Boss after Final Solution v1.0 execution package lands |
 
 ---
 
-## 7. Key Boss Review Item
+## 10. Key Boss Review Item
 
-`C-05` remains Boss-visible but is now remediated at the current branch surface:
+`C-05` remains controlled as follows:
 
-- Track: Clean-Room / IP / Provenance VETO
-- Original issue: CORR-007B `N-A12-01` evidence package contained implementation-level source excerpts in files `08`/`09`.
-- Current action: files `08`/`09` rewritten as clean-room learning summaries; Layer 2 Audit Quarantine rules added in file `17`.
-- Current impact: no product merge, no Team B reliance, no development authorization.
-- Required action: independent Clean-Room Re-Audit before Team B/C reliance.
+- Current branch surface is remediated.
+- Pre-remediation source-code-like material remains reachable through git history.
+- Boss chose non-destructive containment first: warning label, downstream reliance lock, and clean-room wording remediation.
+- Boss selected the containment branch as the authoritative Inventory source of record for the next design step.
+- No history rewrite, deletion, merge, or development authorization has been granted.
 
 ---
 
-## 8. Update Requirement
+## 11. Update Requirement
 
 When Boss provides the actual ChatGPT or Claude session URL, update this file with the real direct session link before considering the session record complete.
 
