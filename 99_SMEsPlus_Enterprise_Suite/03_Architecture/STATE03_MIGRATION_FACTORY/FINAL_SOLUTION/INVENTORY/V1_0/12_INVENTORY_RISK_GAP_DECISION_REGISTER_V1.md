@@ -83,6 +83,7 @@ None of these can be made by an Inventory session. All are `BLOCKING` for the pa
 | `GAP-FS-20` | Eight of the 29 menus rest on no prior evidence and were written as this session's design hypothesis: landed cost, variants, warehouse analysis, storage categories, put-away rules, attributes, packagings, barcode formats. | `MATERIAL` | Boss to commission validation |
 | `GAP-FS-21` | The five internal location roles remain benchmark-derived and unvalidated; what Thai SME warehouses actually use is unknown. | `MATERIAL` | Thai field validation |
 | `GAP-FS-22` | Whether the reservation policy should default to reserve-on-confirm or reserve-on-pick for Thai SMEs. | `MATERIAL` | Thai user validation |
+| `GAP-FS-23` | **Resilience under partial failure is not designed anywhere in this package** — an interrupted count, a scan device losing connectivity mid-operation, an interrupted planning run. Raised by this session's own challenge layer (file 13, lanes V-7 / S-7 / E-1) as a gap this session created rather than inherited. | `MATERIAL` | Inventory |
 
 ---
 
@@ -111,14 +112,14 @@ All are `HOLD / EVIDENCE REQUIRED` and routed to the **Accounting-Tax track**. T
 | Clean-room and provenance risks | 5 |
 | Carried conflicts and unknowns | 10 |
 | Joint Accounting ↔ Inventory decisions | 12 |
-| Design gaps raised or carried | 22 |
+| Design gaps raised or carried | 23 |
 | Thai statutory items held | 9 |
-| **Total open items** | **58** |
+| **Total open items** | **59** |
 
 | Severity | Count |
 |---|---:|
 | `BLOCKING` (in whole or for a named part) | 20 |
-| `MATERIAL` | 29 |
+| `MATERIAL` | 30 |
 | `HOLD / EVIDENCE REQUIRED` (statutory) | 9 |
 | Closed by this session | **0** |
 
