@@ -27,7 +27,7 @@ Boss has selected the following branch as the current authoritative Inventory cl
 
 `audit/inventory-cleanroom-containment-2026-09-02-001`
 
-Use this branch first for Inventory clean-room containment, menu coverage, C-05 warning label, and Menu-10 corrected wording.
+Use this branch first for Inventory clean-room containment, menu coverage, C-05 warning label, Menu-10 corrected wording, and the Boss vocabulary policy: use `OpenSource reference ERP` / `reference ERP` wording in new design content; do not use vendor-specific ERP names.
 
 Direct authoritative source:
 
@@ -53,7 +53,7 @@ Authorized for the next Claude session:
 This authorization does not permit:
 
 - source code reuse;
-- Odoo model/schema/ORM/workflow cloning;
+- OpenSource/reference ERP model/schema/ORM/workflow cloning;
 - database implementation;
 - API implementation;
 - UI coding;
