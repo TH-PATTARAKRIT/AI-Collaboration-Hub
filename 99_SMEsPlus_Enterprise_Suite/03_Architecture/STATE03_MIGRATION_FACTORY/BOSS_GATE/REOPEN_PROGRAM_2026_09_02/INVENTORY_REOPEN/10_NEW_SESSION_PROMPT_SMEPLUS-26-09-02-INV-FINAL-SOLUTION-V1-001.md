@@ -53,11 +53,11 @@ You must enforce:
 - `Clean Room First`
 - `Reference systems are learning sources only`
 
-Do not copy or reproduce source code, ORM models, database schema, proprietary field names, method names, XML/QWeb structure, menu XML, or implementation workflow from Odoo/OpenERP/SAP/Salesforce or any other reference system.
+Do not copy or reproduce source code, ORM models, database schema, proprietary field names, method names, XML/QWeb structure, menu XML, or implementation workflow from any OpenSource ERP, commercial ERP, legacy ERP, or other reference system.
 
 You may use prior evidence only as business-learning input. Rewrite all solution language as SMEsPlus-owned Thai SME ERP design.
 
-If you must mention a reference system, mention it only as `reference ERP`, `benchmark ERP`, or `prior evidence source`. Do not rely on vendor-specific structure as final design authority.
+Vocabulary lock: in all newly written Final Solution v1.0 design content, use `OpenSource reference ERP`, `reference ERP`, `benchmark ERP`, or `prior evidence source`. Do not use vendor-specific ERP product names unless they appear inside immutable historical GitHub paths/links that must be cited exactly. Do not rely on vendor-specific structure as final design authority.
 
 ---
 
@@ -206,7 +206,7 @@ Before closing, verify and record:
 1. All 29 menus/functions are covered.
 2. Each menu has Purpose/Input/Process/Output/Accounting-Control Impact.
 3. All outputs are SMEsPlus-owned wording.
-4. No source code, ORM, field, method, XML/QWeb, or schema copying exists.
+4. No source code, ORM, field, method, XML/QWeb, schema copying, or vendor-specific ERP naming exists in new design content.
 5. C-05 warning and history containment are preserved.
 6. Menu-10 clean-room wording fix is preserved.
 7. Thai menu names are marked as unvalidated unless validated evidence exists.
