@@ -1,170 +1,190 @@
-# CORR-007B — Boss Addendum: Product Category Valuation Policy Review
+# CORR-007B — Clean-Room Learning Summary: Product Category Valuation Policy
 
-Session: `SMEPLUS-26-09-02-CORR007B-3HIGH-CLOSURE-001` (Boss Addendum 3, `N-A12-01`)
-Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`
-Branch: `audit/inventory-core-corr007b-3high-closure-010`
-Base commit: `deceb7339b39eba309236782f159f8393224f5fd`
-Timestamp: 2026-09-02
-Mode: Evidence-first / clean-room / no development authorization / read-only
+Session: `SMEPLUS-26-09-02-CORR007B-3HIGH-CLOSURE-001`  
+Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`  
+Branch: `audit/inventory-core-corr007b-3high-closure-010`  
+Mode: Clean-room remediation / business-semantics learning / no development authorization
 
-## 0. Relationship to file 08
+## 0. Clean-Room Remediation Notice
 
-Boss's third addendum states the prior proof is still insufficient and asks specifically whether
-Product Category — not company, not product — is the true owner of costing/valuation policy, using
-screenshot terminology ("Standard Price", "Automated"/"Manual", "Stock Journal"/"Stock Input"/"Stock
-Output"/"Stock Valuation Accounts"). Most of the underlying mechanism was already proven in
-`08_..._FUNCTIONAL_DESIGN_PROOF.md` §15–§20 (the `periodic`/`real_time` selection, its class location was
-not yet nailed down explicitly, and category-vs-company precedence was shown via one compute method but
-not fully walked through). This file closes that specific gap and independently checks Boss's screenshot
-terminology against source rather than assuming a 1:1 label match.
+This file is the current clean-room learning version of the prior file `09`.
 
-## 1. Proof point 1 — Product Category is the owner of costing method and valuation policy
+The previous version contained implementation-level excerpts that should not be used for Team B, Team C, or Development handoff. This rewritten version keeps the same learning structure and business conclusions while removing source code, method names, field declarations, file paths, and vendor-specific implementation instructions.
 
-`stock_account/models/product.py:660` — `class ProductCategory(models.Model):` (full class boundary
-confirmed: next class starts elsewhere in the file; `property_valuation` at `:666-675` and
-`property_cost_method` at `:676-689` are both declared inside this class, not on `ProductTemplate`
-(`:12`) or `ProductProduct` (`:163`), which are separate classes earlier in the same file).
+This file is a business-learning artifact only. It is not a Gate PASS and does not authorize Team B, Team C, or Development.
 
-Both fields are `company_dependent=True` — meaning the same `product.category` record can hold a
-different value per company, but for a given company, **the category is the object that carries the
-setting**, matching Boss's clarification exactly. Confirmed.
+## 1. Purpose
 
-## 2. Proof point 2 — how products inherit valuation behavior from Product Category
+Boss challenged whether inventory valuation policy belongs at the product category level and how that affects standard cost, moving/average cost, FIFO, periodic valuation, perpetual valuation, stock journal, stock valuation, stock variation, and reconciliation.
 
-`stock_account/models/product.py:73-77` (already cited in file 08 §16, re-verified in full context this
-session):
+This document answers that challenge in clean-room language without exposing source implementation.
 
-```
-@api.depends('categ_id.property_valuation')
-def _compute_valuation(self):
-    for product_template in self:
-        product_template.valuation = (
-            product_template.categ_id.with_company(product_template.company_id).property_valuation
-            or self.env.company.inventory_valuation
-        )
-```
+## 2. Clean-Room Boundary
 
-Precedence, proven directly from this compute method: **category value, if set, wins; if the category
-has no value set for the current company, fall back to `res.company.inventory_valuation`.** The same
-pattern applies to `cost_method` at `:62-68` against `categ_id.property_cost_method`. There is no
-product-template-level or product-variant-level override field — confirmed by the same full-tree search
-already reported in file 08 §16 ("no field found at that granularity").
+Allowed in this document:
 
-## 3. Proof point 3 — Manual vs. Automated valuation, reconciled against source terminology
+- business meaning of product category valuation policy;
+- decision matrix for SMEsPlus;
+- accounting impact at business-rule level;
+- risk and open gap classification;
+- acceptance criteria for future functional design.
 
-Boss's screenshot uses "Automated" / "Manual". The actual field (`stock_account/models/product.py:666-675`,
-full declaration read) is:
+Not allowed in this document:
 
-```
-property_valuation = fields.Selection(
-    string="Inventory Valuation",
-    selection=[
-        ('periodic', 'Periodic (at closing)'),
-        ('real_time', 'Perpetual (at invoicing)'),
-    ],
-    ...
-    help="""Periodic: The accounting entries are suggested manually in the inventory valuation report.
-    Perpetual: An accounting entry is automatically created to value the inventory when a product is
-    billed or invoiced.
-    """)
-```
+- source code;
+- method names;
+- field names;
+- class names;
+- file paths;
+- vendor-specific account-field structure;
+- instruction that SMEsPlus must copy the reference system.
 
-**This is the same field already proven in file 08, not a different one.** The selection *values*
-(`periodic`/`real_time`) and this source snapshot's UI *labels* ("Periodic (at closing)"/"Perpetual (at
-invoicing)") do not literally say "Manual"/"Automated" — but the field's own help text uses exactly that
-language ("suggested **manually**" vs. "**automatically** created"), so Boss's screenshot vocabulary is
-evidence-consistent with this field, most likely reflecting a different Odoo release's shorter button
-labels for the identical two options. This is reported precisely rather than silently assumed identical,
-because getting the field right matters more than getting the label right.
+## 3. Business Finding: Product Category as Valuation Policy Owner
 
-## 4. Proof points 4–5 — mapping Manual/Periodic and Automated/Perpetual to posting behavior
+The business learning is that Product Category can act as the policy owner for inventory valuation behavior. This means products under the same category may share valuation timing, costing method, and related accounting treatment.
 
-Unchanged from file 08 §17 (`_should_create_account_move()`, `stock_move.py:630-635`, re-cited, not
-re-derived): `product_id.valuation == 'real_time'` is the sole method-dependent condition in the
-per-move posting gate. Periodic ⇔ deferred-to-closing behavior; Perpetual ⇔ per-move immediate posting.
-No new evidence needed here beyond file 08; the mapping Boss asks for is exactly the one already proven.
+For SMEsPlus, this should not be copied mechanically. It should be treated as a design candidate:
 
-## 5. Proof point 6 — Standard Price / FIFO / AVCO effect on valuation and close
+| Policy Owner Option | Meaning | Design Risk |
+|---|---|---|
+| Company-level policy | One default valuation behavior per company. | Simple, but may be too broad for mixed product types. |
+| Product Category policy | Products in the same category share valuation behavior. | Good for control, but category governance becomes critical. |
+| Product-level policy | Each product can have its own valuation behavior. | Flexible, but high audit and maintenance risk. |
+| SMEsPlus-native valuation policy object | A separate controlled policy can be assigned to product groups/categories. | Strong governance, but requires original design and more UX. |
 
-`stock_account/models/product.py:676-689` (`property_cost_method`, full declaration read) — three
-values: `standard` (fixed cost per product, set manually, variance absorbed via
-`property_price_difference_account_id` under Perpetual — file 08 §20), `fifo` and `average` (both
-recomputed from actual move history via `_run_fifo_batch`/`_run_average_batch`, `product.py:256-263`,
-already cited file 08 §18). Cost method and valuation timing (Periodic/Perpetual) are **independent
-axes** — any of the three cost methods can be paired with either valuation timing; source does not couple
-them. Confirmed by the field declarations being entirely separate selections with no mutual constraint
-found in either field's definition or compute logic.
+Recommended direction for review: do not assume the reference structure is the target. Decide the SMEsPlus policy owner explicitly.
 
-## 6. Proof point 7 — does `stock.move` create or skip accounting entries by category setting?
+## 4. Product Inheritance Logic in Business Terms
 
-Identical to §4 — the gate reads `self.product_id.valuation`, a related/compute field ultimately sourced
-from the product's category (via §2's precedence chain). No separate category-level gate exists;
-category flows through the product to the move via this single computed field. Confirmed, not
-re-derived.
+The clean-room learning is that a product can inherit valuation behavior from a higher-level business grouping, with a fallback default if no category-specific policy exists.
 
-## 7. Proof point 8 — how Product Category accounts drive GL posting
+SMEsPlus must decide:
 
-| Boss's screenshot term | Field found in source | Class / model | Citation | Status |
-|---|---|---|---|---|
-| Stock Journal | `property_stock_journal` (category) / `account_stock_journal_id` (company) | `product.category` / `res.company` | `stock_account/models/product.py:691-692`; `res_company.py:12` | **Found**, both levels. |
-| Stock Valuation Account | `property_stock_valuation_account_id` | `product.category` | `stock_account/models/product.py:694-698` | **Found.** |
-| Stock Variation Account | `account_stock_variation_id` (related to the above) | `product.category` | `stock_account/models/product.py:702-704` | **Found** — this is the P&L-side true-up/expense-equivalent account (file 08 §20). |
-| Price Difference Account | `property_price_difference_account_id` | `product.category` | `stock_account/models/product.py:699-701` | **Found**, Perpetual/standard-cost only (field help text says so explicitly). |
-| **Stock Input Account** | `property_stock_account_input_categ_id` | — | Referenced only in `point_of_sale/tests/test_pos_stock_account.py:41` and `addons_extra/om_data_remove/models/model.py:265` | **NOT declared as a field anywhere in the available core module source** (`stock`, `stock_account`, `account`, `product`, `point_of_sale/models/product_category.py` all checked directly). |
-| **Stock Output Account** | `property_stock_account_output_categ_id` | — | Same two reference-only locations | **Same — not declared.** |
-| Expense Account | `property_account_expense_categ_id` | `product.category` | `account/models/product.py:23-24` (`class ProductCategory`, `account` module) | **Found** — owned by `account`, not `stock_account`. |
-| Income Account | `property_account_income_categ_id` | `product.category` | `account/models/product.py:16-17` | **Found** — owned by `account`, not `stock_account`. |
-| (Not in Boss's list, but the modern equivalent of Input/Output) | `stock.location.valuation_account_id` | `stock.location`, not `product.category` | `stock_account/models/stock_location.py:11-14` (full 41-line file read) | **Found** — this is the actual interim/contra account used by `_get_account_move_line_vals` (`stock_move.py:215-224`, file 08 §7) for Perpetual per-move postings. It lives on the **location** (e.g. the Supplier or Customer virtual location), not on the category. |
+1. Can category override company default?
+2. Can product override category?
+3. Can a company use different valuation policies for different product categories?
+4. Can a category have different policies per company in a multi-company SaaS tenant?
+5. What happens when a product moves from one category to another?
+6. What happens to historical valuation if the policy changes?
 
-**Named finding, reported precisely rather than smoothed into a match**: Boss's screenshot most likely
-reflects a materially older Odoo release where "Stock Input Account"/"Stock Output Account" were
-`product.category` fields (this was true in Odoo ≤ 16). In this source baseline, that classic two-account
-category-level design has been replaced by a **location-level** `valuation_account_id` for the
-Perpetual/real-time contra-posting, plus the category-level Stock Valuation / Stock Variation / Price
-Difference accounts already proven above. This is a genuine architecture difference between what Boss's
-screenshot shows and what this source snapshot implements, not a proof failure — SMEsPlus functional
-design must use the location-based model actually present in source, not the category-based
-Input/Output model from the screenshot.
+These are Team B functional design questions, not evidence conclusions.
 
-## 8. Proof points 9–11 — month-end close (Manual/Periodic), reconciliation (Automated/Perpetual), year-end
+## 5. Manual vs. Automated / Periodic vs. Perpetual
 
-Unchanged from file 08 §7, §18–§19, §22 — no new mechanism was found beyond what those sections already
-prove. Re-stated briefly for completeness, not re-derived: Periodic month-end = `action_close_stock_
-valuation` computing and posting the value gap (file 08 §7); Perpetual "reconciliation" = the same
-`stock_value()`/`stock_accounting_value()` pair run as a check rather than as the primary posting
-mechanism, surfaced via `stock_account.stock.valuation.report` (file 08 §7); year-end = no
-month-12-specific code path and no source-evidenced P&L-to-Retained-Earnings closing entry (file 08
-§22, G-6) — this conclusion is unchanged by the category-level investigation in this file.
+Boss's screenshot language can be understood at business level as two valuation timing patterns:
 
-## 9. Proof point 12 — Account × Inventory Functional Design Matrix by Product Category
+| Business Label | Clean-Room Meaning | Accounting Impact |
+|---|---|---|
+| Manual / Periodic | Accounting value is summarized at closing rather than posted for every movement. | Month-end close becomes the main valuation event. |
+| Automated / Perpetual | Accounting value is recognized closer to each stock movement. | GL is updated continuously, then reconciled. |
 
-| Category setting | GL impact of a `stock.move` | When value is known | Accounts touched | Governing citation |
-|---|---|---|---|---|
-| `property_valuation = 'real_time'` (Automated/Perpetual), any cost method | Immediate, per move, at validation | Continuously | Stock Valuation (asset) ↔ `stock.location.valuation_account_id`; Price Difference (standard cost variance only) | `stock_move.py:168-224`, `product.py:694-701` |
-| `property_valuation = 'periodic'` (Manual/Periodic), any cost method | None at move time; deferred | Only after `action_close_stock_valuation` runs | Stock Valuation (asset) ↔ Stock Variation (P&L true-up) | `stock_move.py:630-635`; `res_company.py:49-263` |
-| `property_cost_method = 'standard'` | Move valued at `product.standard_price` | Known instantly (fixed cost) | Price Difference absorbs bill-vs-standard gap (Perpetual only) | `product.py:679-681`, `:699-701` |
-| `property_cost_method = 'fifo'`/`'average'` | Move valued by consuming/averaging actual cost layers | Recomputed as of any `at_date` via `_run_fifo_batch`/`_run_average_batch` | Same Stock Valuation/Variation accounts as above | `product.py:256-263` (cited file 08 §18) |
-| No category override set | Falls back to `res.company.inventory_valuation`/`cost_method` | Same as whichever method the company default resolves to | Falls back to `res.company.account_stock_journal_id`/`account_stock_valuation_id` when category-level accounts are unset | `product.py:73-84`; `res_company.py:12-38` |
+SMEsPlus must define the labels used in its own UI. It does not need to adopt the reference system's wording.
 
-## 10. Evidence integrity
+## 6. Cost Method Learning
 
-All newly-cited files this session (`stock_account/models/stock_location.py`,
-`account/models/product.py`, `product/models/product_category.py`,
-`point_of_sale/tests/test_pos_stock_account.py`, `addons_extra/om_data_remove/models/model.py`,
-`point_of_sale/models/product_category.py`) are hashed in `06_CORR007B_SHA256_MANIFEST.txt` §E4.
+Valuation timing and cost calculation method are separate concepts.
 
-## 11. Disposition
+| Cost Method | Business Meaning | Design Consideration |
+|---|---|---|
+| Standard cost | Product value uses a controlled fixed cost until changed. | Easy to explain; needs variance handling. |
+| Average cost | Product value changes based on accumulated cost history. | Practical for many SMEs; requires clear recalculation and audit rules. |
+| FIFO | Product value follows first-in-first-out cost layers. | Strong audit trail; more complex migration and reversal handling. |
 
-This file adds one confirmed structural fact (Product Category is the proven owner, class-verified) and
-one genuine negative finding (Stock Input/Output accounts are not declared fields in this source
-baseline; the modern equivalent is location-level) to the six gaps already named in file 08. It does not
-introduce a seventh gap on its own — the Input/Output finding is folded into file 08's G-6 territory as a
-terminology/architecture-version reconciliation note for Team B, not a new open risk, because the
-underlying GL mechanics (which accounts move value where) were already fully proven in file 08 §7 and
-§20 using the accounts that do exist in source.
+SMEsPlus must decide which methods are allowed, by which product group, and whether method changes are locked after transactions exist.
 
-**`N-A12-01` disposition is unchanged by this file: HIGH REMAINS.** This file strengthens the evidence
-base; it does not close the item. See `04_CORR007B_FINAL_HIGH_DISPOSITION_REGISTER.md` and
-`05_CORR007B_BOSS_DECISION_RECOMMENDATION.md` (both updated) and the four-lens challenge in
-`14_CORR007B_AI_EXPERT_PANEL_CHALLENGE_REPORT.md` (originally numbered `10`; see
-`16_CORR007B_CLEANUP_SUPERSESSION_INDEX.md` for why).
+## 7. Inventory Accounts and Accounting Mapping
+
+The clean-room learning is that inventory valuation requires at least the following accounting concepts:
+
+| Accounting Concept | Business Meaning | SMEsPlus Design Requirement |
+|---|---|---|
+| Stock valuation asset | Balance sheet value of inventory on hand. | Must reconcile to stock quantity/value. |
+| Stock variation or COGS-related account | Profit and loss impact from inventory movement or valuation adjustment. | Must align with Thai accounting policy. |
+| Price difference / variance | Difference between expected cost and actual purchase cost. | Must be controlled and reportable. |
+| Stock journal | Journal used for inventory valuation entries. | Must be explicitly configured and auditable. |
+| Income / expense mapping | Category-level or product-level revenue and expense treatment. | Must not be confused with inventory valuation itself. |
+| Inbound/outbound clearing concept | Temporary or contra treatment for receipt/delivery timing. | Must be designed in SMEsPlus terms, not copied from reference naming. |
+
+The prior evidence indicates that screenshot terminology and reference-system terminology may not map one-to-one. SMEsPlus should define its own accounting labels and mapping rules.
+
+## 8. Category-Level Valuation Matrix
+
+A clean-room Team B design should produce a matrix at least at this level:
+
+| Category Setting | Movement-Time GL Impact | Close-Time GL Impact | Required Control |
+|---|---|---|---|
+| Periodic + Standard cost | Usually none or limited during movement. | Closing calculates inventory value and variance. | Strong monthly close checklist. |
+| Periodic + Average cost | Movement affects quantity; value is summarized later. | Closing recalculates value by accumulated cost. | Cost recomputation proof and cut-off control. |
+| Periodic + FIFO | Movement affects quantity; value is summarized later. | Closing must respect layer order. | Layer integrity and migration proof. |
+| Perpetual + Standard cost | Movement can create accounting impact immediately. | Close checks variance and reconciliation. | Variance account and exception control. |
+| Perpetual + Average cost | Movement can update accounting value based on average cost. | Close validates remaining differences. | Recalculation and backdate governance. |
+| Perpetual + FIFO | Movement can update accounting value using cost layers. | Close validates layer and GL consistency. | Strong reversal/return handling. |
+
+This matrix is not final design. It is the minimum structure Team B must complete before Gate review.
+
+## 9. Multi-Company / SaaS Implications
+
+Because SMEsPlus is SaaS and multi-company, valuation policy must be designed with tenant and company isolation from the beginning.
+
+Required questions:
+
+1. Is Product Category shared across companies?
+2. If shared, can each company assign different valuation behavior to the same category?
+3. If one company changes valuation method, does it affect another company?
+4. How are standard templates protected from tenant customization?
+5. How is reporting comparability preserved across companies?
+6. Can a tenant customize category valuation policy without breaking canonical reporting?
+
+These questions connect directly to the SaaS invariants and must not be left implicit.
+
+## 10. Screenshot Terminology Risk
+
+Boss's screenshot terms are useful as business prompts, but not as final target labels.
+
+Risk: if Team B copies labels from a reference screen, SMEsPlus may inherit a historical implementation model rather than designing its own control model.
+
+Clean-room handling:
+
+| Screenshot Term Type | Handling |
+|---|---|
+| Business concept | Keep and translate into SMEsPlus semantics. |
+| Vendor UI label | Do not copy automatically. |
+| Vendor account structure | Treat as learning input only. |
+| Thai accounting requirement | Validate separately with Accounting/Tax. |
+| SMEsPlus target label | Create independently and approve through Gate. |
+
+## 11. Open Gaps Preserved
+
+| Gap | Clean-Room Statement | Owner |
+|---|---|---|
+| Category policy owner | SMEsPlus has not approved whether valuation policy sits at company, category, product, or separate policy object. | Team B / Boss |
+| Periodic vs. perpetual support | SMEsPlus has not approved whether one or both modes are supported. | Team B / Accounting |
+| Cost method governance | Method change, lock, backdate, and migration rules are not approved. | Team B / Audit |
+| Account mapping | Stock valuation, variation, variance, COGS, and clearing treatment need Thai accounting validation. | Accounting/Tax + Team B |
+| Multi-company behavior | Category valuation behavior per company/tenant is not yet designed. | IESA / Team B |
+| Historical reporting | What happens after policy changes remains undecided. | Team B / Reporting |
+
+## 12. Acceptance Criteria for a Future SMEsPlus Design
+
+A future Team B document must show:
+
+1. approved valuation policy owner;
+2. category/company/product override rules;
+3. allowed cost methods;
+4. allowed valuation timing modes;
+5. account mapping matrix;
+6. migration opening balance rule;
+7. backdate and correction governance;
+8. effect on Balance Sheet and Profit and Loss;
+9. Thai statutory/accounting validation;
+10. clean-room review result before Team C handoff.
+
+## 13. Disposition
+
+`N-A12-01` remains:
+
+`HIGH FUNCTIONAL DESIGN GAP — REOPENED`
+
+This file confirms that the Product Category valuation topic can be learned and discussed safely in clean-room business terms. It does not close the item, does not approve a target design, and does not authorize downstream development.
+
+Boss remains the sole Final Approver.
