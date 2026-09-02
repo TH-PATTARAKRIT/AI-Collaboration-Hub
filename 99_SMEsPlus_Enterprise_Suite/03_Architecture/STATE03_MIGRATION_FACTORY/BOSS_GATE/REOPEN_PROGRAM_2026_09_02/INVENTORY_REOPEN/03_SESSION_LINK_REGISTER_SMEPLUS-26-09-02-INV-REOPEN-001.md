@@ -8,6 +8,8 @@ Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`
 Canonical Branch: `SMEsPlus`  
 Execution Branch: `audit/inventory-reopen-2026-09-02-inv-reopen-001`  
 Execution Commit: `170af9ea7a5afd127abcaae0ffb40aaa1fa25d4d`  
+Clean-Room Remediation Branch: `audit/inventory-core-corr007b-3high-closure-010`  
+Clean-Room Remediation Commit: `9996072aa3a353dca99de4b22e8611171e24baf4`  
 Control Level: `/L999.999`  
 Boss: `Sole Final Approver`
 
@@ -15,7 +17,7 @@ Boss: `Sole Final Approver`
 
 ## 1. Purpose
 
-This file records the direct session/prompt/evidence links for the Inventory Reopen package so Boss can find the active New Session, Claude execution prompt, and published execution evidence from GitHub without relying on chat memory.
+This file records the direct session/prompt/evidence/remediation links for the Inventory Reopen package so Boss can find the active New Session, Claude execution prompt, published execution evidence, and clean-room remediation evidence from GitHub without relying on chat memory.
 
 ---
 
@@ -32,7 +34,18 @@ This file records the direct session/prompt/evidence links for the Inventory Reo
 
 ---
 
-## 3. Session URLs
+## 3. Clean-Room Remediation Links
+
+| Item | Status | Direct Link |
+|---|---|---|
+| Clean-Room Remediation Commit | Published / Unmerged | [9996072aa3a353dca99de4b22e8611171e24baf4](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/commit/9996072aa3a353dca99de4b22e8611171e24baf4) |
+| Remediated CORR-007B file 08 | Current branch surface remediated | [08_CORR007B_N_A12_01_ACCOUNT_LED_INVENTORY_PERIOD_CLOSE_FUNCTIONAL_DESIGN_PROOF.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/08_CORR007B_N_A12_01_ACCOUNT_LED_INVENTORY_PERIOD_CLOSE_FUNCTIONAL_DESIGN_PROOF.md) |
+| Remediated CORR-007B file 09 | Current branch surface remediated | [09_CORR007B_PRODUCT_CATEGORY_VALUATION_FUNCTIONAL_DESIGN_REVIEW.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/09_CORR007B_PRODUCT_CATEGORY_VALUATION_FUNCTIONAL_DESIGN_REVIEW.md) |
+| Clean-Room Remediation Record | Published | [17_CORR007B_CLEAN_ROOM_REMEDIATION_RECORD.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-core-corr007b-3high-closure-010/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/INDEPENDENT_REVIEW/INVENTORY_CORE_BACKBONE/CORR_007B_3HIGH_CLOSURE/EXECUTION/17_CORR007B_CLEAN_ROOM_REMEDIATION_RECORD.md) |
+
+---
+
+## 4. Session URLs
 
 | Session Type | URL | Status | Note |
 |---|---|---|---|
@@ -41,7 +54,7 @@ This file records the direct session/prompt/evidence links for the Inventory Reo
 
 ---
 
-## 4. Governance Lock
+## 5. Governance Lock
 
 `AI Audit SMEsPlus` means:
 
@@ -53,7 +66,7 @@ Boss remains the sole Final Approver.
 
 ---
 
-## 5. Current Evidence Status
+## 6. Current Evidence Status
 
 | Area | Evidence Status |
 |---|---|
@@ -61,6 +74,7 @@ Boss remains the sole Final Approver.
 | Claude execution prompt | Published |
 | Execution branch | Published / unmerged |
 | Execution deliverables | 20/20 published |
+| Clean-room remediation | Files `08` and `09` rewritten as clean-room business-learning summaries; remediation record published |
 | Terminal status | `INVENTORY FULL REOPEN DEEP REVALIDATION COMPLETE — READY FOR INDEPENDENT REOPEN AUDIT` |
 | Gate PASS | Not declared |
 | Team B / Team C / Development | Not authorized |
@@ -68,18 +82,19 @@ Boss remains the sole Final Approver.
 
 ---
 
-## 6. Key Boss Review Item
+## 7. Key Boss Review Item
 
-`C-05` remains Boss-only review / HOLD:
+`C-05` remains Boss-visible but is now remediated at the current branch surface:
 
 - Track: Clean-Room / IP / Provenance VETO
-- Issue: CORR-007B `N-A12-01` evidence package reportedly contains verbatim fenced-code-block reproductions of actual Odoo source in files 08/09.
+- Original issue: CORR-007B `N-A12-01` evidence package contained implementation-level source excerpts in files `08`/`09`.
+- Current action: files `08`/`09` rewritten as clean-room learning summaries; Layer 2 Audit Quarantine rules added in file `17`.
 - Current impact: no product merge, no Team B reliance, no development authorization.
-- Required action: Boss / Independent Reopen Audit review before downstream reliance.
+- Required action: independent Clean-Room Re-Audit before Team B/C reliance.
 
 ---
 
-## 7. Update Requirement
+## 8. Update Requirement
 
 When Boss provides the actual ChatGPT or Claude session URL, update this file with the real direct session link before considering the session record complete.
 
