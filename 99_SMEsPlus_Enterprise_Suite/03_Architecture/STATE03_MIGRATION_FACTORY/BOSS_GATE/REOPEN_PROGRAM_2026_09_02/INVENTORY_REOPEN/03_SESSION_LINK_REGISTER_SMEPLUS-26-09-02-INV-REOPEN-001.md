@@ -10,7 +10,7 @@ Current Prompt Branch: `prompt/inventory-final-solution-v1-2026-09-02-001`
 Authoritative Inventory Source: `audit/inventory-cleanroom-containment-2026-09-02-001`  
 Control Level: `/L999.999`  
 Boss: `Sole Final Approver`  
-Current Status: `BOSS AUTHORIZED INVENTORY FINAL SOLUTION V1.0 DESIGN PREPARATION — NOT DEVELOPMENT AUTHORIZATION`
+Current Status: `BOSS AUTHORIZED INVENTORY FINAL SOLUTION V2.0 DESIGN PREPARATION — ACCOUNTING COGS GAP DEPENDENCY — NOT DEVELOPMENT FINAL GATE`
 
 ---
 
@@ -29,6 +29,8 @@ This register is intended to prevent reliance on chat memory and to give Boss an
 | Boss selected containment branch as authoritative Inventory clean-room source | Recorded / unmerged | [10_BOSS_RULING_AUTHORITATIVE_SOURCE.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-cleanroom-containment-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/CLEANROOM_CONTAINMENT_EXECUTION/10_BOSS_RULING_AUTHORITATIVE_SOURCE.md) |
 | Boss authorized Inventory Final Solution v1.0 design preparation with OpenSource/reference ERP wording policy | Published | [09_BOSS_AUTHORIZATION_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/prompt/inventory-final-solution-v1-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/09_BOSS_AUTHORIZATION_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md) |
 | Inventory Final Solution v1.0 New Session Prompt | Published / ready for Claude execution | [10_NEW_SESSION_PROMPT_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/prompt/inventory-final-solution-v1-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/10_NEW_SESSION_PROMPT_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md) |
+| Boss authorized Inventory Final Solution v2.0 preparation with Accounting COGS dependency | Published / not development Final Gate | [11_BOSS_RULING_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V2-001.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/prompt/inventory-final-solution-v2-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/11_BOSS_RULING_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V2-001.md) |
+| Inventory Final Solution v2.0 New Session Prompt | Published / wait for Accounting COGS Gap evidence before valuation finalization | [12_NEW_SESSION_PROMPT_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V2-001.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/prompt/inventory-final-solution-v2-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/12_NEW_SESSION_PROMPT_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V2-001.md) |
 
 ---
 
@@ -123,7 +125,7 @@ Boss remains the sole Final Approver.
 | Final Solution v1.0 New Prompt | Published / ready for Claude execution / OpenSource wording policy applied |
 | Gate PASS | Not declared |
 | Team B / Team C / Development | Not authorized |
-| Final Gate | Pending Boss after Final Solution v1.0 execution package lands |
+| Final Gate | V1.0 reached Boss review; V2.0 authorized as design preparation only; Development Final Gate remains blocked pending Accounting COGS Gap |
 
 ---
 
