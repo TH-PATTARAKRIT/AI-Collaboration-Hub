@@ -21,7 +21,7 @@ Standing facts (carry-forward): zero migration/ETL code exists; the migration pl
 | MENU-CF-13 Barcodes | Barcode values per product/pack/lot | Nomenclature rules | barcode | Overlapping formats | HOLD (`GAP-MD-19`) |
 | MENU-CF-02 Warehouses | Code, name, address, company; branch attribute separately | Step-policy configuration objects | warehouse code | Warehouse ≠ tax branch (`GRPA-H8`) | CARRY_FORWARD |
 | MENU-CF-03 Locations | Full path, type, warehouse, archive state | View-node internals | location path | Stock in view/virtual locations; orphan bins | CARRY_FORWARD |
-| MENU-CF-06 Operation types | Document series, prefixes, last numbers | Picking-type object model | series code | Shared sequences across warehouses | CARRY_FORWARD |
+| MENU-CF-06 Operation types | Document series, prefixes, last numbers | Document-type object model | series code | Shared sequences across warehouses | CARRY_FORWARD |
 | MENU-CF-04/05 Routes, Rules | Business policy statement per warehouse/product ("2-step receipt from date X") | Rule/route objects | policy id | Regenerated per tenant, never copied (`SAAS-04`) | CARRY_FORWARD |
 | MENU-CF-07/08 Storage, Putaway | Optional: storage classes; putaway policy statements | Rule objects | class code | No evidence | HOLD |
 | MENU-CF-12 Reordering | Min/max/route per product-location as policy | Reorder-rule objects | product + location | Rules on archived products / wrong UoM | CARRY_FORWARD |

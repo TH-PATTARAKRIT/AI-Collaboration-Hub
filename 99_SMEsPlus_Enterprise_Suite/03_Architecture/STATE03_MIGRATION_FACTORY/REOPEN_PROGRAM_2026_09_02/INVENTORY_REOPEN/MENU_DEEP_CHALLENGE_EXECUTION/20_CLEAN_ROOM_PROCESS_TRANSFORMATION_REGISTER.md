@@ -85,7 +85,7 @@ A mechanical sweep of the 29 output files was run before publication for: fenced
 |---|---|---|
 | Default-by-absence: benchmark behaviour becomes design because no Thai evidence competes | Count policy, backdate governance, product kinds, branch fields | Real-user validation before Team B; explicit decision records |
 | Bundle-by-inheritance: Product Category owning both valuation and putaway | Category design | One joint Category design pass |
-| Vocabulary transcription: state machine, picking types, model names in Team B schema | Team B kickoff | Re-apply clean-room checklist to lifecycle documents; this package's Thai templates as the vocabulary source |
+| Vocabulary transcription: state machine, document-type names, model names in Team B schema | Team B kickoff | Re-apply clean-room checklist to lifecycle documents; this package's Thai templates as the vocabulary source |
 | AI migration agent reproducing source structures under "necessary business fact" | Migration Factory | Extend quarantine discipline to migration code; human design review |
 | Account vocabulary transliteration into Thai CoA | Accounting design | Independent Thai CoA definition (TFRS for NPAEs) |
 

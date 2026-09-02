@@ -52,7 +52,7 @@ This scan is a mechanical control by the authoring session. It is **not** the in
 
 ## 7. GitHub Publication
 
-Filled after push (see §7.1 below).
+Published to GitHub; record below.
 
 ### 7.1 Publication Record
 
@@ -60,13 +60,27 @@ Filled after push (see §7.1 below).
 |---|---|
 | Repository | `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub` |
 | Branch | `audit/inventory-menu-deep-challenge-2026-09-02-001` |
-| Evidence commit SHA | `PENDING — filled in closure update commit` |
-| Closure update commit SHA | `PENDING — reported in Boss handoff` |
-| Direct links | Listed in §7.2 after push |
+| Evidence commit SHA | `473db147dd01859ff313b2920aba9d85bacff619` (29 deliverables + prompt 04, pushed to origin) |
+| Closure update commit SHA | reported in the Boss handoff message (this file cannot contain its own commit hash) |
+| Direct links | §7.2 |
 
 ### 7.2 Direct Links
 
-PENDING — filled after push.
+| Item | Direct link |
+|---|---|
+| Branch | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/tree/audit/inventory-menu-deep-challenge-2026-09-02-001 |
+| Evidence commit | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/commit/473db147dd01859ff313b2920aba9d85bacff619 |
+| Execution folder | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/tree/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION |
+| Boss Final Gate Package | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/25_BOSS_FINAL_GATE_PACKAGE.md |
+| Menu Coverage Register | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/02_INVENTORY_MENU_COVERAGE_REGISTER.md |
+| Object Impact Matrix | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/03_INVENTORY_OBJECT_IMPACT_MATRIX.md |
+| Process Handoff Map | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/04_INVENTORY_PROCESS_HANDOFF_MAP.md |
+| Menu-by-Menu Process Map | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/06_INVENTORY_MENU_BY_MENU_PROCESS_MAP.md |
+| Menu Impact Matrix | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/07_INVENTORY_MENU_IMPACT_MATRIX.md |
+| Thai Menu and Report Naming Register | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/17_THAI_MENU_AND_REPORT_NAMING_REGISTER.md |
+| AI Expert Overlay Review | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/23_AI_EXPERT_OVERLAY_REVIEW.md |
+| Session Closure (this file) | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-menu-deep-challenge-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MENU_DEEP_CHALLENGE_EXECUTION/28_SESSION_CLOSURE_SMEPLUS-26-09-02-INV-MENU-DEEP-CHALLENGE-001.md |
+
 
 ## 8. Next Action
 
