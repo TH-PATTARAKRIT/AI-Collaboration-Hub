@@ -1,0 +1,22 @@
+# SHA-256 Manifest — Inventory Final Solution v2.0
+# Session: SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V2-001 | Jira: ERPPLUS-139
+# Execution Branch: design/inventory-final-solution-v2-2026-09-02-001
+# Computed after files 00-09 and 11 reached final form. This manifest is generated
+# from the files as committed and is itself committed alongside them and 11_SESSION_CLOSURE.
+# Algorithm: SHA-256 (shasum -a 256)
+
+83d4b5d49b8d9e85ebdef95646018e5ec04ff810576b907aa7240a774a057a59  00_EXECUTION_CHECKPOINT_LOG.md
+821f02429336dcf3ec12c2fe89db6d8e4c80c05e4e7b21065fea8e84fb4d435f  01_EVIDENCE_INTAKE_REGISTER.md
+d367fa85b679c5a1325486bf7944a443130dbe3209c740bc4a92e52e92fcce38  02_ACCOUNTING_COGS_DEPENDENCY_REGISTER.md
+c7ca63f1fc1158da03d537a6f10ad68967e5ac13d8f9eb10d73f698dcc22ba6e  03_INVENTORY_V1_TO_V2_DELTA_MAP.md
+eef5c1b40114664943050aacc5faca97fcd35e6a0a0b3376caf71b3b2f3b8f17  04_VALUATION_COGS_PERIOD_CLOSE_DECISION_MATRIX.md
+3f75383b2d845e8015528a24e3f047964f14aac69719ce7629ab9e3bc20f13e6  05_INVENTORY_V2_FUNCTIONAL_DELTA_DESIGN.md
+07d888dc2eea875a7e7db7ecf474a7507e134bfe82f56eba0a027bba0c7c1edc  06_AAS_PLUS_AND_PMO_REVIEW_V2.md
+7db687c805024a1406faf4065ece96f608dc153be700fc731017395bcbcb6684  07_RISK_GAP_DECISION_REGISTER_V2.md
+4dc59d632cff2817affd82bdc4136c3e7093d63388bcaf0f563784c0359f55e6  08_BOSS_FINAL_GATE_PACKAGE.md
+e32b462fa9417ce8066c8c9abf8f297466cf0212c12d39f91c69d1b39e579d70  09_NEXT_PROMPT_RECOMMENDATION.md
+a2f43e330d518ed516363579982502dc73ece201c7391b39e7d4858c6c283f4e  11_SESSION_CLOSURE_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V2-001.md
+
+# Not included: this file itself (10_SHA256_MANIFEST.txt) cannot contain its own hash.
+# Verify: cd to this directory and run `shasum -a 256 -c 10_SHA256_MANIFEST.txt` after
+# stripping the comment lines, or recompute per-file with `shasum -a 256 <file>`.
