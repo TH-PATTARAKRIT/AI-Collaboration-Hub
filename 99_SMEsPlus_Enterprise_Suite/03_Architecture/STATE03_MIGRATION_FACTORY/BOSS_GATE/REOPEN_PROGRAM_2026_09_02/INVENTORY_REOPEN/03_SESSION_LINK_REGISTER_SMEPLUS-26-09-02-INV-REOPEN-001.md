@@ -6,7 +6,7 @@ STATE: `STATE03 — Architecture`
 Jira: `ERPPLUS-139`  
 Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`  
 Canonical Branch: `SMEsPlus`  
-Current Prompt Branch: `prompt/inventory-final-solution-v1-2026-09-02-001`  
+Current Prompt Branch: `prompt/inventory-final-solution-v2-2026-09-02-001`  
 Authoritative Inventory Source: `audit/inventory-cleanroom-containment-2026-09-02-001`  
 Control Level: `/L999.999`  
 Boss: `Sole Final Approver`  
@@ -34,18 +34,19 @@ This register is intended to prevent reliance on chat memory and to give Boss an
 
 ---
 
-## 3. Current Final Solution v1.0 Prompt Status
+## 3. Final Solution Prompt Status
 
 | Item | Value |
 |---|---|
-| Prompt branch | `prompt/inventory-final-solution-v1-2026-09-02-001` |
+| V1.0 prompt branch | `prompt/inventory-final-solution-v1-2026-09-02-001` |
+| V2.0 prompt branch | `prompt/inventory-final-solution-v2-2026-09-02-001` |
 | Authorization commit | `7086f3a634608b47e77fc387bf106d0b9dfe3695` |
 | New Prompt commit | `3ee5cc3bb8ff8a41a98194db0878ee2e073efc50` |
 | Execution branch instructed | `design/inventory-final-solution-v1-2026-09-02-001` |
 | Required output folder | `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/FINAL_SOLUTION/INVENTORY/V1_0/` |
 | Scope | Final Solution v1.0 design evidence only; OpenSource/reference ERP wording only |
 | Not authorized | Coding, database implementation, Team C development, merge, production, release |
-| Final Gate | Boss-only |
+| Final Gate | Boss-only; V2.0 is not Development Final Gate |
 
 ---
 
