@@ -27,7 +27,7 @@ This register is intended to prevent reliance on chat memory and to give Boss an
 | Decision | Status | Direct Link |
 |---|---|---|
 | Boss selected containment branch as authoritative Inventory clean-room source | Recorded / unmerged | [10_BOSS_RULING_AUTHORITATIVE_SOURCE.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-cleanroom-containment-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/CLEANROOM_CONTAINMENT_EXECUTION/10_BOSS_RULING_AUTHORITATIVE_SOURCE.md) |
-| Boss authorized Inventory Final Solution v1.0 design preparation | Published | [09_BOSS_AUTHORIZATION_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/prompt/inventory-final-solution-v1-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/09_BOSS_AUTHORIZATION_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md) |
+| Boss authorized Inventory Final Solution v1.0 design preparation with OpenSource/reference ERP wording policy | Published | [09_BOSS_AUTHORIZATION_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/prompt/inventory-final-solution-v1-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/09_BOSS_AUTHORIZATION_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md) |
 | Inventory Final Solution v1.0 New Session Prompt | Published / ready for Claude execution | [10_NEW_SESSION_PROMPT_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/prompt/inventory-final-solution-v1-2026-09-02-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/10_NEW_SESSION_PROMPT_SMEPLUS-26-09-02-INV-FINAL-SOLUTION-V1-001.md) |
 
 ---
@@ -37,11 +37,11 @@ This register is intended to prevent reliance on chat memory and to give Boss an
 | Item | Value |
 |---|---|
 | Prompt branch | `prompt/inventory-final-solution-v1-2026-09-02-001` |
-| Authorization commit | `498128637aeaf949269c3b86fb6c961be12b0162` |
-| New Prompt commit | `a713da8a7e3464cb42328d06b8df123160a5a643` |
+| Authorization commit | `7086f3a634608b47e77fc387bf106d0b9dfe3695` |
+| New Prompt commit | `3ee5cc3bb8ff8a41a98194db0878ee2e073efc50` |
 | Execution branch instructed | `design/inventory-final-solution-v1-2026-09-02-001` |
 | Required output folder | `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/FINAL_SOLUTION/INVENTORY/V1_0/` |
-| Scope | Final Solution v1.0 design evidence only |
+| Scope | Final Solution v1.0 design evidence only; OpenSource/reference ERP wording only |
 | Not authorized | Coding, database implementation, Team C development, merge, production, release |
 | Final Gate | Boss-only |
 
@@ -120,7 +120,7 @@ Boss remains the sole Final Approver.
 | Containment remediation | Option D executed; warning + downstream reliance lock + Menu-10 wording fix published |
 | Authoritative source | Boss selected `audit/inventory-cleanroom-containment-2026-09-02-001` |
 | Final Solution v1.0 authorization | Published |
-| Final Solution v1.0 New Prompt | Published / ready for Claude execution |
+| Final Solution v1.0 New Prompt | Published / ready for Claude execution / OpenSource wording policy applied |
 | Gate PASS | Not declared |
 | Team B / Team C / Development | Not authorized |
 | Final Gate | Pending Boss after Final Solution v1.0 execution package lands |
@@ -135,6 +135,7 @@ Boss remains the sole Final Approver.
 - Pre-remediation source-code-like material remains reachable through git history.
 - Boss chose non-destructive containment first: warning label, downstream reliance lock, and clean-room wording remediation.
 - Boss selected the containment branch as the authoritative Inventory source of record for the next design step.
+- Boss vocabulary policy for new design content: use `OpenSource reference ERP` / `reference ERP`; avoid vendor-specific ERP product names.
 - No history rewrite, deletion, merge, or development authorization has been granted.
 
 ---
