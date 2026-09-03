@@ -84,12 +84,36 @@ pilot system.
 
 1. **§93** — one commit rather than a commit per checkpoint. Reason and impact in
    `43_PMO_GOVERNANCE_VERIFICATION.md` §8.
-2. **§96** — Jira not updated; the Atlassian connector is not authorised in this
-   session. **Open governance action: attach this record and `43` to the Jira issue
-   manually.**
+2. *(withdrawn)* — §96 was initially recorded as unmet on the untested assumption,
+   inherited from the prior session, that the Atlassian connector was unauthorised.
+   **It was authorised.** §96 is met: epic `ERPPLUS-17` updated, comment `10991`,
+   2026-09-04. The correction is logged as `REV-11`, deliberately retained rather
+   than quietly fixed, because it repeats the same error pattern this session
+   corrected in the prior one.
 3. **§92** — the prompt's recommended `research/` branch prefix was used in preference
    to this workspace's established `audit/` convention.
 
-## 7. Final commit
+## 7. Jira record (§96)
 
-Recorded at the Final Gate handoff (§95).
+| | |
+|---|---|
+| Issue | `ERPPLUS-17` — *Fixed Asset Module Delivery* (Epic) |
+| Link | https://scgl.atlassian.net/browse/ERPPLUS-17 (comment `10991`) |
+| Recorded status | **READY FOR BOSS FINAL REVIEW GATE — MATERIAL BLOCKERS REMAIN.** Not DONE |
+| Issue status field | Not transitioned — that is a Boss/PMO decision |
+
+## 8. Final commit
+
+- First commit: `6c7512e5fa611cd73a0a517231c4c3d35323c352`
+- Final commit: recorded in the Final Gate handoff below and in the branch head.
+
+## 9. Final Gate handoff (§95)
+
+| | |
+|---|---|
+| Repository | https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub |
+| Branch | `research/asset-deep-l1-l6-2026-09-04-001` — **not merged into `SMEsPlus`** |
+| Evidence root | `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ASSET_REOPEN/ASSET_DEEP_L1_L6/RESEARCH_V2/` |
+| Boss pack | `.../RESEARCH_V2/44_BOSS_FINAL_REVIEW_PACK.md` — **the Layer 1 file, start here** |
+| Session record | `.../BOSS_GATE/REOPEN_SESSIONS/2026_09_04/00_ASSET_DEEP_L1_L6_SESSION_RECORD.md` |
+| Jira | `ERPPLUS-17` |

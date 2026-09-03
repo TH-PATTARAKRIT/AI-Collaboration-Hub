@@ -89,4 +89,4 @@ must not be transcribed into any Team-B-facing package (`00`).
 | UAT build identity | `UNR-05` |
 | Product documentation | **Deliberately not used.** This session worked from source only |
 | TFAC primary texts | `UNR-20` |
-| Jira connector | Not authorised — `43` §5 |
+| ~~Jira connector~~ | **Withdrawn — it was authorised.** Assumed unavailable without testing; corrected as `REV-11`. Jira record at `43` §10 |

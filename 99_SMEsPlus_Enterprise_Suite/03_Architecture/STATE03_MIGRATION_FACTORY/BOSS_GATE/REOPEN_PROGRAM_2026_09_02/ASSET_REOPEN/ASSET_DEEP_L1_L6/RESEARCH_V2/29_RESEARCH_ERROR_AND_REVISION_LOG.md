@@ -252,6 +252,36 @@ on the work centre. `27` §4.
 
 ---
 
+## REV-11 — Within this session: the Jira connector was assumed unavailable without testing
+
+**Original finding, made and corrected inside this session:** the PMO verification,
+the evidence manifest and the session record were all written stating that the
+Atlassian connector was not authorised and that §96 could therefore not be met. The
+first commit message repeated it.
+
+**Original evidence:** the prior session (`PRI-01`, file `00`, file `26`) recorded the
+connector as unauthorised, and a session notice listed the productivity Atlassian
+plugin among servers requiring authorisation.
+
+**Why it was wrong:** **the assumption was never tested.** A single call to enumerate
+accessible resources returned an authorised site with Jira read and write scopes.
+
+**New evidence:** an authorised Atlassian site with `read:jira-work` and
+`write:jira-work`; the target epic located; a comment successfully posted.
+
+**Corrected finding:** §96 is met. `43` §10 records the Jira update. `43` §8
+deviation 2 is withdrawn.
+
+**Lesson, recorded — and it is the same lesson as `REV-01`:** a limitation inherited
+from a previous session is a **hypothesis**, not a fact. `REV-01` was this session's
+central correction of the prior session, and the same error was then reproduced here
+about a different capability. **Test the constraint before writing it down.**
+
+This entry is retained rather than quietly fixed, because the pattern matters more
+than the instance.
+
+---
+
 ## Summary of prior-session findings re-tested
 
 | Prior finding | Result |

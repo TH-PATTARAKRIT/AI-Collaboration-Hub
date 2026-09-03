@@ -77,7 +77,10 @@ A SHA-256 manifest of all files in this package is generated at commit time and
 stored as `SHA256SUMS.txt` alongside these files.
 
 Repository, branch, and commit identity are recorded in the session record and
-reported at the Final Gate handoff (§95).
+reported at the Final Gate handoff (§95). The Jira record is at `43` §10.
+
+**Note:** `SHA256SUMS.txt` is regenerated after the post-`REV-11` corrections, so the
+hashes correspond to the final commit, not the first.
 
 ## 6. Reviewer
 
