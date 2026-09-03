@@ -8,7 +8,7 @@ Session: `SMEPLUS-26-09-03-COGS-TARGETED-RESOLUTION-001`
 
 ## 2. Terminal State
 
-**PASS WITH CONDITIONS** (file `21`). Not `PASS` (bare), not `FAIL` in either form. Two disclosed conditions: (a) tool-unavailability claims inherited from the orchestrating context, not independently re-tested by this session; (b) deliverable volume should not be read as resolution progress — 0 of 59 unknowns closed.
+**PARTIAL RESOLUTION — CONTROLLED DECISIONS REQUIRED** (file `21`; corrected from a first draft that briefly used non-permitted `PASS`-wording before this package was finalized). Two disclosed conditions: (a) tool-unavailability claims inherited from the orchestrating context, not independently re-tested by this session; (b) deliverable volume should not be read as resolution progress — 0 of 59 unknowns closed.
 
 ## 3. What Was Actually Resolved vs. Routed
 

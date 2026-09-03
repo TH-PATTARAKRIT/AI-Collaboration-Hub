@@ -19,7 +19,7 @@ Per file `02` §4, the branch actually named for the Joint Closure session (`aud
 - Five-model COGS recognition options analysis (A–E), each classified, none recommended (file `11`).
 - Attempted resolution of `CGS-U03` and `CGS-U34`/`CGS-U36`, both remaining HOLD, with the `CGS-U36` Audit VETO flag explicitly preserved (files `12`, `13`).
 - Impact matrix tying the three priority JTs and two named `CGS-U` items to Account-module and Inventory-v2.0 consequences (file `17`).
-- 12-question adversarial self-challenge (file `19`) and 12-point independent audit, verdict `PASS WITH CONDITIONS` (file `21`).
+- 12-question adversarial self-challenge (file `19`) and 12-point independent audit, verdict `PARTIAL RESOLUTION — CONTROLLED DECISIONS REQUIRED` (file `21`; an earlier draft of that file briefly used non-permitted `PASS`-wording and was corrected before this package was finalized).
 
 ## 4. Can Parent Joint Closure Resume?
 
