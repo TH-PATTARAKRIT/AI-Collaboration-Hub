@@ -80,15 +80,43 @@ set contains no statement of which is canonical, no guard preventing both from b
 installed, and no reconciliation between them.
 
 Consequence for reconciliation: for the same company and the same month, the two reports
-can legitimately return **different totals**, because
+can legitimately return **different totals**.
 
-- `RPT-06`/`RPT-08` exclude every supply whose tax group is not named `VAT 7%`, including
-  all zero-rated and exempt supplies, which `RPT-04`/`RPT-05` include; and
-- `RPT-06`/`RPT-08` exclude every partnerless supply, which `RPT-04`/`RPT-05` include.
+An earlier statement of this section claimed the difference is "systematic and
+one-directional" and that the SMEsPlus reports are a strict subset of the vendor reports.
+**That was overstated and is corrected here.** Four reasons, each source-derivable:
 
-The difference is therefore **systematic and one-directional**: the SMEsPlus reports are a
-subset of the vendor reports. This is stated as a derivable property of the two predicates,
-not as a measured result — no execution was performed (`U-02`).
+1. **The unit differs, so "subset" is not defined at row level.** The vendor generator emits
+   one row per **move** (`l10n_th_reports/models/tax_report_vat.py:123` iterates moves).
+   The SMEsPlus handler emits one row per group of
+   `date, tax_period, move_name, ref, tax_names, partner fields, type_tax_use, group name,
+   tax_repartition_line_id` (`account_generic_tax_report.py:60-70`). A move carrying two
+   distinct taxes in the same group produces **more** SMEsPlus rows than vendor rows.
+2. **The vendor path carries the same class of label dependency.** It resolves its tags by
+   the literal report-line names `1. Sales amount`, `5. Output tax`,
+   `6. Purchase amount…`, `7. Input tax…` (`tax_report_vat.py:38-39`, `:49-50`), through a
+   plain name equality (`account/models/account_account_tag.py:88-96`). If any of those
+   four names is changed or missing, the tag set is empty, the domain matches nothing, and
+   the **vendor** report empties while the SMEsPlus one does not — the reverse direction.
+3. **The SMEsPlus handler imposes no tag predicate at all.** A tax placed in the `VAT 7%`
+   group whose repartition lines carry no report tag appears on the SMEsPlus report and not
+   on the vendor report. Under the shipped Thai template that set happens to be empty.
+4. **The magnitude is unstable.** Given `P07-F-01`, the SMEsPlus set can be the empty set.
+
+Corrected statement: **on the shipped Thai tag and group configuration, and only there, the
+SMEsPlus main reports select a subset of the moves the vendor reports select. The
+containment is a property of that configuration, not of the two predicates, and it is
+reversible at two separately named mutable labels.** No execution was performed (`U-02`).
+
+## 5A. Further Report Defects Found During Independent Challenge
+
+| ID | Defect | Evidence | Class |
+|---|---|---|---|
+| `P07-F-41` | The `Tax Name` column of the two main SMEsPlus VAT reports is structurally empty. The column selects `tl.tax_names` where `tl` is the **tax line** (`account_generic_tax_report.py:47`, `:54`), but `tax_names` is computed from `tax_ids` (`smesplus_account_reports/models/account_move_line.py:9-13`), which is empty on a tax line except under base-affecting cascades. The purchase-zero report reads the same field from the **base** line (`:420`) and does populate it. | declared at `data/generic_tax_report.xml:55-59`, `:191-195` | source-derived, not executed (`U-02`) |
+| `P07-F-42` | Zero-rated and exempt VAT are probably grouped with, and closed against, the **withholding tax** control accounts. The four 0%/EXEMPT taxes carry a blank `tax_group_id` in the template, but `account.tax.tax_group_id` is `required=True, compute='_compute_tax_group_id', precompute=True` (`account/models/account_tax.py:156-161`) and the fallback takes the first Thai group under `_order = 'sequence asc, id'` (`:274-291`, `:28`). Every Thai group ships at the default sequence, so the lowest id wins, and the template creates `tax_group_1` = `WHT 1%` first — whose settlement accounts are `213500 WHT Payable` / `114401 WHT Receivable`. | `l10n_th/data/template/account.tax-th.csv`, `account.tax.group-th.csv` | **INFERRED from record-creation order during template load; NOT executed.** Class `D — UNKNOWN` pending a runtime check. If confirmed, zero-rated exports and exempt supplies close against withholding control accounts and a 0% VAT line is labelled `WHT 1%` in the invoice tax summary. Verification is `P07-U-20`. |
+| `P07-F-43` | In all four SMEsPlus handlers, `return res` sits **outside** the `for column_group_key` loop while `res` is initialised **inside** it (`:186`, `:379`, `:569`), so with more than one column group only the last group's rows survive. Present in the predecessor file as well, so it is not a migration regression. | `account_generic_tax_report.py` | source-derived, not executed |
+| `P07-F-44` | Dead and duplicated code introduced or retained by the migration: a second, unused query build (`:230`, `:406`), a `tax_details_query` computed and never referenced in the sale-zero handler (`:239`), and `table_references` / `search_condition` passed to `SQL()` for placeholders that do not occur in the statement (`:74-75`). | same file | source-derived |
+| `P07-F-45` | Sign asymmetry in the sale-zero handler: the base is accumulated with `sign` and the tax without it (`:299-300`), while both are displayed with `sign` (`:333`, `:337`). Numerically inert only because `amount_tax` is pinned to zero by the row predicate; it renders `-0.00` per row against `0.00` in the total. | same file | source-derived |
 
 ## 6. Licence Dependency of Statutory Function
 

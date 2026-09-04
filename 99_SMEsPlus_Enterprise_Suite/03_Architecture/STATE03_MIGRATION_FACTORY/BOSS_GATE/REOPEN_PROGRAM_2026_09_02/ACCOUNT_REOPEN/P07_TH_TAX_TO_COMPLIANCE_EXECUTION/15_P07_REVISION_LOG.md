@@ -61,6 +61,31 @@ Seven of the eight were caught by mechanically executing a declared control — 
 pattern, counting both sides, checking for a later instrument, reading the method — rather
 than by re-reading the draft. Re-reading the draft caught nothing in this session.
 
+## 4A. Errors Found by Independent Challenge, Not by the Author
+
+The eight errors in §4 were caught before publication by the session's own controls. The
+following were **not** caught by the session and were found by the four AAS-03 experts.
+They are listed separately because the distinction is the whole point of the control.
+
+| ID | Error | Found by | Correction | Where |
+|---|---|---|---|---|
+| `REV-E-09` | "`tax_period_date` is read by nothing." | `AAS-03/A` | A reader exists — a hidden list column. Narrowed to "no report, compute, domain or SQL reads it". The author had **read that view file earlier in the session** and still wrote the absolute. | `04 §3`, `11 P07-N-02` |
+| `REV-E-10` | Files `06` and `08` asserted system-wide negatives with no class and no boundary, while `02`, `03` and `05` registered theirs. | `AAS-03/C` | Negative-claim registers added to both. Of the negatives left unregistered, three were then found wrong or over-stated; **no registered negative has failed**. The correlation is recorded as evidence that the control does real work. | `06 §6`, `08 §6` |
+| `REV-E-11` | The declared dependency-closure pattern was never run, so the population was understated by ten members — one of which the package simultaneously cited as evidence and registered as a broken dependency. | `AAS-03/D` | Population corrected 15 → 25. Recorded as a `PATTERN` failure, not a `PATH SET` failure. | `13 §5.1` |
+| `REV-E-12` | The PND token census, offered as proof of a denominator, did not reproduce: it had been taken without the declared exclusions. | `AAS-03/B` | Corrected counts published beside the originals. Qualitative conclusions unchanged. | `13 §5.2` |
+| `REV-E-13` | "113 of 138" — the numerator counted files and the denominator counted something else. The defective ratio had already reached the Layer-1 file. | `AAS-03/D` | Corrected to 94 of 126, with both commands published. This is a `UNIT` failure inside the very finding whose closing note congratulated this session for catching a `-maxdepth` error in the same enumeration. | `12 §5`, `19 §5` |
+| `REV-E-14` | The restatement check was certified as executed while naming three files that did not exist, and excluding the files where restatement actually happens. | `AAS-03/D` | Check executed properly; four class-`B`-to-unqualified restatements found, **all in the Layer-1 file**, plus a count error. All corrected. The Layer-1 file had passed the vendor-token scrub cleanly on the same content — the two controls are independent. | `11 §5.1` |
+| `REV-E-15` | Seven further substantive claims were refuted and eight overstated, including "no guard prevents both withholding frameworks acting on one payment" (a guard exists, and it silently discards), "the zero/exempt taxes have no tax group" (they resolve to a withholding group), and "the Thai tax-invoice wording is a hard-coded English literal" (it is translated). | all four | Each corrected in the body; none left standing with a challenge attached. | `16 §3`, `§4` |
+
+Two of the reviewers' findings **escalated** the severity of the session's own headline
+findings rather than reducing them (`P07-F-01`, `P07-F-42`), and both were reached
+independently by two reviewers. The session's own severity assignment was too low in both
+cases.
+
+**Net for the round:** the author caught 8 errors in its own unpublished drafts; the
+reviewers caught 15 in its published ones and contributed 31 new findings. No error in this
+round was caught by the author re-reading its own published text.
+
 ## 5. Method Notes for the Next Round
 
 | # | Note |
@@ -69,3 +94,6 @@ than by re-reading the draft. Re-reading the draft caught nothing in this sessio
 | `REV-M-02` | No database and no runtime evidence was used (`U-02`). Every behavioural statement is derived from source. Statements about what a user would observe (`04 §5`) are derivations, not observations, and are labelled as such. |
 | `REV-M-03` | The declared source set is the Account module's own source index. Which addon copy is deployed in production is `U-01` and was not determined. Findings bind to the declared set. |
 | `REV-M-04` | Under `EC-07`, two consecutive clean independent passes are required before a Final Research Gate. This session is **one** pass with one round of independent challenge. It cannot and does not claim `EC-07`. |
+| `REV-M-05` | `U-12` (excess-VAT carry-forward mechanism) was opened as an untraced unknown and **closed within the session** by reading the report expression tree. Closing it produced `P07-F-40`, which is more material than the unknown was. Two further inferences were tested during that trace and refuted: that the carry-forward was unimplemented, and that the return periodicity was simply unset rather than defaulted. Both are recorded here rather than published as findings. |
+| `REV-M-06` | `P07-U-14` was opened as `HOLD — SCOPE EVIDENCE REQUIRED` and **closed as a decidable finding** during the round: the tenant boundary is specified in this very clone at status `NEW`, and no tenant ORM model exists anywhere on the volume. The routing that would have deferred it to P11 said the evidence lay "outside the P07 population" — it lay six directories up, in the same working tree. This is the programme's recorded "never declare no-access from a working-tree search" defect recurring in a milder form, and it was caught by a reviewer, not the author. |
+| `REV-M-07` | The controls that worked in this round were, in order of yield: **running a declared pattern** (8 self-caught errors), and **disjoint adversarial review with an explicit instruction to report wrong paths in the brief** (15 corrections, 31 new findings, 2 severity escalations). The control that yielded nothing was re-reading the draft. A next round should spend its self-review budget on executing declared patterns rather than on re-reading. |

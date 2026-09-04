@@ -1,0 +1,128 @@
+# P07 — EVIDENCE MANIFEST
+
+Session ID: `SMEPLUS-26-09-04-ACC-P07-TAX-TH-REV2-001`
+Classification: `LAYER 2 — AUDIT QUARANTINE` (except file `19`, which is `LAYER 1`)
+Date: `2026-09-04`
+
+## 1. Repository Lineage
+
+| Item | Value |
+|---|---|
+| Repository | `TH-PATTARAKRIT/AI-Collaboration-Hub` |
+| Canonical branch | `SMEsPlus` (not modified) |
+| Working branch | `research/account-p07-th-tax-compliance-2026-09-04-001` |
+| Branch point | `88f52cd7ba6dc40b8951c4bfc4e0016af7cbb7ad` |
+| Package path | `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/P07_TH_TAX_TO_COMPLIANCE_EXECUTION` |
+| Merge | **NONE.** Boss decides. |
+
+## 2. Package Digests (SHA-256)
+
+| File | Bytes | SHA-256 |
+|---|---|---|
+| `00_P07_FINDINGS_REGISTER.md` | 15365 | `25db0ec4af27b5dc8f6f5babd4e5402c781392c08cc34592c8f5f17be51f4326` |
+| `01_P07_THAI_TAX_REQUIREMENT_REGISTER.md` | 22552 | `fcfd2d3d14d8618bcbdc18481c56330a5209215f94c1d027b90c9fba57ca9aa0` |
+| `02_P07_VAT_EVENT_MODEL.md` | 12222 | `eeefedb5c410b810ccc73ed38048f8f379bbfaf251f6083dd6065ac768886b48` |
+| `03_P07_WHT_EVENT_MODEL.md` | 22527 | `3530ded1a145af56216a9c2183702af73d15beac7a71189db66dc761911f0dee` |
+| `04_P07_TAX_POINT_MATRIX.md` | 8316 | `c7a3583773fee637c42f98230f88a068573babd5e1a43942b715a464b26cdd58` |
+| `05_P07_TAX_DOCUMENT_MATRIX.md` | 12460 | `263f3db5ebb536404c04cb441485d9924a9caf8d3d9352a9a7a574466a59422b` |
+| `06_P07_EVENT_TO_GL_MATRIX.md` | 14872 | `d7dc4003badc3cbbbdac9bd6fa566668df1d2287bb26aca1fc907830b2e2946d` |
+| `07_P07_TAX_REPORT_TRACEABILITY.md` | 13744 | `165ff71195c17f9863239a89404413b7e13ec76523681c3040619a400cb2c584` |
+| `08_P07_CORRECTION_ADJUSTMENT_MATRIX.md` | 15231 | `c28b943d19677d978e6425fd1b7e14d428f378245e2e8b3f3946e3504f198d81` |
+| `09_P07_STATUTORY_SOURCE_REGISTER.md` | 15887 | `6da27be6694516e726030e295b9e11607d059198d29a49e63cdfca2a524eabee` |
+| `10_P07_CROSS_PROCESS_OWNERSHIP.md` | 7122 | `8a378fbb7b9fc1161e6ddd7aef766f14e58c375b97fcffebaa7f19c252b6a5f4` |
+| `11_P07_CONTRADICTION_REGISTER.md` | 15713 | `03c9baa42f6360e0e9989230bc77bdc0bc0376d57dbb655b46875cb696de2d2e` |
+| `12_P07_DEPENDENCY_REGISTER.md` | 12406 | `eb456b12a2847e534f6c03c326f47e896bd339396ba468a3a6ffa451e5b33fa4` |
+| `13_P07_SOURCE_LINK_REGISTER.md` | 15189 | `4e19180df75479aadc3768718c1cda1f7ecd4cc955c7af4b9b23d8943fcb6515` |
+| `15_P07_REVISION_LOG.md` | 16404 | `32ecde280d89774a6db461dc6052fc26ddabafbedd6bad479f0730a59b126a8b` |
+| `16_P07_AAS03_CHALLENGE.md` | 9989 | `064b64a398d9e17b0c095573f6ed4ae5527e3991c178f6f74c5df753a2d9a4ed` |
+| `17_P07_AAS_PLUS.md` | 7031 | `afdd8ec09a6c0e40f93c0c6eb15715e77da17e4d9d306f8aab37441cc92b15ae` |
+| `18_P07_PMO.md` | 9934 | `ecb08a9117fa9af7e33e81faf2dab9be6dd99fb8ef4925545573dc66c03ad1a1` |
+| `19_P07_CORE_RECON_HANDOFF_PACK.md` | 10831 | `fdd3ce6859f02dd8b99a2c04b362733050a907523a00307fa7a56f4230d16edc` |
+| `20_P07_SCOPE_OWNERSHIP_MATRIX.md` | 16170 | `67b13f2d43023f8c67ea7dc8454514aad9d0a159cf4c293493afaa26eb8a15b5` |
+
+## 3. Primary Evidence Sources Cited
+
+| Source class | Location | Use |
+|---|---|---|
+| Reference-ERP source, declared PATH SET | `/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/ACCOUNT/01 ACCOUNT/SOURCE CODE/{01 ACCOUNT, 02 OTHER, addons_extra}` | every Layer-2 citation in this package |
+| Comparison surfaces, excluded | the roots tabled at `13 §2.1` | `P07-N-03`, `P07-F-47`, `P07-D-01` |
+| Statutory text | `www.rd.go.th/english/*`, retrieved 2026-09-04 | `09 §2`, sources `S-01`…`S-34` |
+| Statutory instrument reporting | secondary, for the rate-reduction decree only | `S-35`, held at `U-04` |
+| Project governance | `bootstrap/AI_BOOTSTRAP_PACKAGE.md`; `99_SMEsPlus_Enterprise_Suite/00_Project_Governance/SMEPLUS_VERY_DEEP_RESEARCH_8_CRITERIA_UNIVERSAL_EXIT_CONSTITUTION.md`; `FR_DETAIL_TENANT_MANAGEMENT.md` | `13 §1`, `18 §2`, `P07-F-50` |
+
+**No database was queried. No code was executed.** Every behavioural statement in this
+package is source-derived; `U-02` applies package-wide.
+
+## 4. Clean-Room Scrub Result
+
+Mechanical scan of the Layer-1 file `19_P07_CORE_RECON_HANDOFF_PACK.md` for vendor tokens
+— model prefixes, field names, module names, file extensions, ORM identifiers, and the
+translation-key and rate literals that appear in the Layer-2 files:
+
+    grep -nEi 'account\.[a-z_]+|res\.[a-z_]+|l10n_|odoo|\.py|ir\.[a-z]|sudo|_compute|
+               __manifest__|xlsx|move_id|partner_id|tax_line_id|price_subtotal|
+               payment_state|addons|jsonb|en_US|VAT 7' 19_P07_CORE_RECON_HANDOFF_PACK.md
+
+**Result: zero matches**, re-run after every edit to that file, including after the §8
+rewrite that introduced the translation-trigger material. Thai statutory terms
+(ใบกำกับภาษี, ภ.พ.30, ภ.ง.ด.3 / 53 / 54) appear in Layer-2 files only and are legal terms,
+not vendor tokens.
+
+Files `00`–`18` and `20` are `LAYER 2 — AUDIT QUARANTINE` and carry `file:line` citations
+by design. They must not be transcribed into any downstream reference package.
+
+## 5. Reproduction Commands
+
+Every quantitative claim in this package can be re-run:
+
+    # PATH SET manifest counts (13 §2)          -> 62 / 1371 / 69
+    find "<root>/<member>" -maxdepth 2 -name "__manifest__.py" | wc -l
+
+    # return-type peer baseline (P07-F-37)      -> 118
+    grep -rl 'model="account.return.type"' "<02 OTHER>" --include=*.xml \
+      | sed 's|.*/02 OTHER/||; s|/.*||' | sort -u | wc -l
+
+    # fiscal-position peer baseline (P07-F-38)  -> 94 of 126
+    find "<02 OTHER>" -maxdepth 4 -name 'account.fiscal.position-*.csv' \
+      | sed 's|.*/02 OTHER/||; s|/.*||' | sort -u | wc -l
+    find "<02 OTHER>" -maxdepth 4 -name 'account.tax-*.csv' \
+      | sed 's|.*/02 OTHER/||; s|/.*||' | sort -u | wc -l
+
+    # PND token census (13 §5.2)                -> 99 / 77 / 9 / 12 / 2 / 1
+    grep -rIoi --exclude-dir=__pycache__ --exclude='*.po' --exclude='*.pot' \
+      -e pnd3 -e pnd53 -e pnd3a -e pnd1 -e 'pnd 54' -e pnd2 <PATH SET> | wc -l
+
+    # tenant ORM model, whole volume (P07-F-50) -> 0
+    grep -rlE "_name *= *['\"][a-z_.]*tenant" --include='*.py' /Volumes/iMacSys | wc -l
+
+    # tax_period consumers (P07-N-02)
+    grep -rn 'tax_period' <PATH SET> | grep -v __pycache__ | grep -v '\.po'
+
+## 6. Deliverable Coverage Against the Session Directive
+
+| Directive deliverable | File |
+|---|---|
+| `P07_THAI_TAX_REQUIREMENT_REGISTER.md` | `01` |
+| `P07_VAT_EVENT_MODEL.md` | `02` |
+| `P07_WHT_EVENT_MODEL.md` | `03` |
+| `P07_TAX_POINT_MATRIX.md` | `04` |
+| `P07_TAX_DOCUMENT_MATRIX.md` | `05` |
+| `P07_EVENT_TO_GL_MATRIX.md` | `06` |
+| `P07_TAX_REPORT_TRACEABILITY.md` | `07` |
+| `P07_CORRECTION_ADJUSTMENT_MATRIX.md` | `08` |
+| `P07_STATUTORY_SOURCE_REGISTER.md` | `09` |
+| `P07_CROSS_PROCESS_OWNERSHIP.md` | `10` |
+| `P07_CONTRADICTION_REGISTER.md` | `11` |
+| `P07_DEPENDENCY_REGISTER.md` | `12` |
+| `P07_SOURCE_LINK_REGISTER.md` | `13` |
+| `P07_EVIDENCE_MANIFEST.md` | `14` (this file) |
+| `P07_REVISION_LOG.md` | `15` |
+| `P07_AAS03_CHALLENGE.md` | `16` |
+| `P07_AAS_PLUS.md` | `17` |
+| `P07_PMO.md` | `18` |
+| `P07_CORE_RECON_HANDOFF_PACK.md` | `19` |
+| — added by `SMEPLUS-26-09-04-ACC-REV2-CORR1` | `20_P07_SCOPE_OWNERSHIP_MATRIX.md` |
+| — added after independent challenge found 39 dangling finding references | `00_P07_FINDINGS_REGISTER.md` |
+
+All eighteen named deliverables are present. Two files were added: one required by the
+mid-session constitution correction, one required to make the other twenty readable.

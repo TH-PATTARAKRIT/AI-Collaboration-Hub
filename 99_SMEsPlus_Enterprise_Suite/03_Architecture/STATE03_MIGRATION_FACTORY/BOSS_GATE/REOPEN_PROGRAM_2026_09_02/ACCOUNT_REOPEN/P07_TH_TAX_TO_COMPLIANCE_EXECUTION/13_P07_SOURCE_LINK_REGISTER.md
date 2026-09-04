@@ -38,6 +38,17 @@ Enumeration command (proves the path set rather than repeating a habit):
 
     find "<root>/<member>" -maxdepth 2 -name "__manifest__.py" | wc -l
 
+Two truncations in that command are disclosed here because they were undeclared in the
+first issue of this register:
+
+- Removing `-maxdepth 2` returns **1374** for `02 OTHER`, not 1371. The three extra are
+  install-test fixtures nested at depth 13 inside `base/tests/`. The depth limit is doing
+  exclusion work and is now stated as such.
+- `addons_extra` contains **71** entries, not 69: the 69 module directories plus two
+  archives, `l10n_th_withholding_tax_cert_form.zip` and `l10n_th_withholding_tax_multi.zip`
+  — archived copies of population members, inside the PATH SET, never opened or
+  version-compared in this session. Carried as `P07-U-22`.
+
 Generation evidence: the extra set declares `"version": "19.0.x"` throughout and the
 base set contains modules introduced in the 19 line. The declared source set is
 therefore the **v19 reference generation**. This is stated as an attribute of the
@@ -48,6 +59,10 @@ declared set, not as a claim about what is deployed in production (see `U-01`).
 Excluded sets exist on the same volume and were located, so their exclusion is a
 decision, not an omission:
 
+All excluded roots below are absolute paths on the `/Volumes/iMacSys` volume, **not**
+relative to the execution folder in §1. The base was undeclared in the first issue of this
+register and is stated here.
+
 | Excluded root | Reason |
 |---|---|
 | `CLAUDE AI/SMEsPlus18/odoo-18.0+e.20250608/odoo/addons` (790 manifests) | Prior-generation (v18) base. Retained as a comparison surface only. |
@@ -55,6 +70,15 @@ decision, not an omission:
 | `ODOO/ODOO-COMMUNITY/Odoo14/addons` (127) | v14 legacy line. Used **only** to establish that four Thai tax modules exist there and not in the declared set (`P07-N-03`). |
 | `CLAUDE AI/MIGRATION/ODOO18/18.0.5_account/*` | Account-line build; near-duplicate of the declared extra set at a different version string. |
 | `95_BHPRO_PROJECT/*`, `ODOO/ODOO-COMMUNITY/ODOO19/efaplus-custom/*` | Different products. Out of scope. |
+| `ODOO/ODOO-COMMUNITY/ODOO19/SMEsPlus-SMEsPlus_Extra19` (83 manifests) | **Same generation as the declared set and a strict superset of it for the P07 modules** — it contains all nine Thai withholding modules *and* `account_payment_multi_deduction`. Added after independent challenge. |
+| `CLAUDE AI/MIGRATION/SMEsPlus19/01_extra_module/SMEsPlus_19.0.2` (75 manifests) | Same generation; also contains `account_payment_multi_deduction`. Added after independent challenge. |
+| `CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/.../01_extra/addons_extra` (69 manifests) | Same generation and the same module count as the declared set; does **not** contain `account_payment_multi_deduction`. Added after independent challenge. |
+
+**Consequence for `P07-D-01`.** Two of the three roots above are the same generation as the
+declared set and do contain the dependency that `P07-D-01` reports as unsatisfiable. That
+finding is therefore an artefact of **set composition**, not of a missing artefact, and it
+cannot be closed until the Boss fixes which extra-addon set is canonical (`U-01`). Stated
+here rather than left implied.
 
 ## 3. POPULATION — What one member is
 
@@ -105,8 +129,59 @@ carried as `U-11`.
 | 14 | `bm_thai_rd_vat_company_search` | `addons_extra` | Third-party (proprietary `OPL-1`) | Partner master data from the Revenue Department VAT service API |
 | 15 | `l10n_th_base_location` | `addons_extra` | Third-party | Thai address hierarchy |
 
-`POPULATION = 15`. Modules 1–3 are vendor; 4–6 are SMEsPlus-authored; 7–15 are
-third-party, three of them carrying SMEsPlus co-authorship in the manifest.
+`POPULATION = 15` **as first enumerated. That enumeration was refuted during independent
+challenge and is corrected in §5.1.**
+
+### 5.1 Population Correction — the First Enumeration Was Incomplete
+
+The population of 15 above was produced by the four name-based patterns of §4. Independent
+challenge established that it is **not closed under this register's own PATTERN 5**
+(manifest `depends`-graph closure), which was declared with "none known" false-negative
+modes and then not run to closure. Running it adds ten members that are in the PATH SET and
+were outside the population:
+
+| Added member | Set | Why it is tax-relevant |
+|---|---|---|
+| `partner_company_type` | `addons_extra` | Defines `partner_company_type_id`, the field behind the statutory `Title` column of PND3 and PND53, and behind the partner's stored legal name. **It is cited as evidence in `20 §6` and registered as a broken dependency in `12 §1` while sitting outside the population** — evidence base and population were different sets. |
+| `partner_firstname` | `addons_extra` | Imported by `l10n_th_partner/models/res_partner.py:7`; supplies the name composition that produces the payee name on statutory output. |
+| `convert_amount_text_to_thai` | `addons_extra` | **Byte-identical duplicate of population member 13** (`l10n_th_amount_to_text`) except for one description asset; same version string, same override of the Thai amount-in-words used on the s.50 bis certificate. Matches none of the four declared patterns — this is the `U-11` residue **materialised**, and it was findable by a `*thai*` glob that was never run. `P07-F-48`. |
+| `account_update_tax_tags` | `01 ACCOUNT` | Manifest: *"Allow updating tax grids on existing entries."* A module in the declared set whose entire purpose is mutating tax tags on already-posted moves — i.e. mutating the inputs to the statutory registers after filing. Directly material to `08 §4` `A-15` and to `19` `POS-9`, and absent from the first issue of this package. `P07-F-49`. |
+| `report_xlsx`, `report_xlsx_helper`, `date_range`, `base_location`, `base_location_geonames_import` | `addons_extra` | Declared dependencies of the WHT report module; carry the date-range and export machinery of a statutory report. |
+| `account`, `account_reports`, `account_qr_code_emv` | `01 ACCOUNT` | The frameworks every finding in this package resolves into. |
+
+**Corrected `POPULATION = 25`** (15 + 10). Three of the ten are materially tax-bearing in
+their own right (`partner_company_type`, `convert_amount_text_to_thai`,
+`account_update_tax_tags`); the remainder are framework and utility members whose inclusion
+matters for dependency closure rather than for tax semantics.
+
+**Method finding, recorded against this register itself.** The defect is not that a pattern
+was missing — PATTERN 5 was declared, with its false-negative modes acknowledged as "none
+known" — but that a **declared pattern was not run to closure**. Under the project's
+Denominator Completeness Rule this is a PATTERN failure, not a PATH SET failure, and the
+PATH SET is the half this register spends its length proving. Carried as `REV-E-11` in
+`15 §4`.
+
+### 5.2 PND Token Census — Corrected
+
+`03 §4.1` cited a token census as the proof of its denominator. Re-run with this register's
+declared exclusions (text files only, `__pycache__`, `.po` and `.pot` excluded), the counts
+are:
+
+| Token | First issue | Corrected |
+|---|---|---|
+| `pnd3` | 105 | **99** |
+| `pnd53` | 92 | **77** |
+| `pnd3a` | 12 | **9** |
+| `pnd1` | 10 | **12** |
+| `pnd 54` | 1 | **2** |
+| `pnd2` | 0 | **1**, and that one hit is base64 noise inside an unrelated theme asset |
+
+The first issue's counts were taken without the declared exclusions and included
+translation catalogues; `pnd1` moved in the opposite direction, which is the signature of an
+undeclared filter rather than a simple over-count. **The qualitative conclusions of
+`03 §4.1` are unchanged** — PND 54 is provisioned in the chart and nowhere else, and no
+genuine PND 2 artefact exists — but a denominator that does not reproduce is a defect in
+its own right. `REV-E-12`.
 
 ## 6. Evidence Citation Convention
 

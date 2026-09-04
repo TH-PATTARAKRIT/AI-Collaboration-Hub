@@ -144,25 +144,100 @@ leaves the model defect in place.
 | `W-M-01` | The WHT amount is computed as a float division with no explicit rounding to the currency's decimal places, then subtracted from the payment amount. | `wizard/account_payment_register.py:50-60` |
 | `W-M-02` | `price_subtotal` is in the **document** currency; `self.amount` is in the **payment** currency. No conversion is applied between them. | same |
 | `W-M-03` | Recomputation is suppressed after the first pass by a transient flag, so a later change of payment date or currency does not recompute the withholding. | `wizard/account_payment_register.py:28`, `:38-41`, `:70` |
-| `W-M-04` | Previously posted withholding is subtracted using `debit − credit` over payment lines carrying `wt_tax_id` on posted moves, filtered on payment state not in `canceled`/`rejected`. | `wizard/account_payment_register.py:54-57` |
+| `W-M-04` | **The "less withholding already posted" subtraction cannot subtract.** The expression is `amount_wt -= sum(debit) - sum(credit)` over payment lines carrying `wt_tax_id`. On a vendor payment the withholding write-off is a **credit**, so `debit - credit` is ≤ 0 for any line subset containing it, and `-=` of a non-positive number never reduces `amount_wt`. If `wt_tax_id` lands on every line of the balanced payment entry — which `models/account_move.py:25-26` makes likely, since the compute falls through to `rec.payment_id.wt_tax_id` for **every** line of an `entry` move — the expression is exactly zero. Either way a second partial payment re-withholds the full invoice amount. An earlier draft described this loop as if it netted. | `wizard/account_payment_register.py:54-57`; corrected during independent challenge |
 
 ## 6. Two Frameworks, One Fact
 
 | Aspect | Framework A (vendor) | Framework B (third-party) |
 |---|---|---|
 | Model | withholding taxes as `account.tax` extensions | a separate `account.withholding.tax` catalogue mirroring `account.tax` |
-| Accounting effect | its own posting path | payment-difference write-off |
+| Accounting effect | real tax lines via `_prepare_tax_lines` (`l10n_account_withholding_tax/models/account_withholding_line.py:379-385`) | payment-difference write-off |
+| Own numbering | a per-withholding sequence (`account_withholding_line.py:371-372`) | none — the certificate reuses the journal entry number (`withholding_tax_cert.py:252`) |
 | Thai statutory output | none | PND3 / PND53 / certificate |
-| Interaction guard | **none found** | **none found** |
+| Reaches a Thai database | only by deliberate install: no `auto_install`, and the only manifests depending on it are `l10n_kh`, `l10n_ph`, `l10n_sa_withholding_tax`, `l10n_lk` and `l10n_account_withholding_tax_pos` — **no Thai module** | installed as part of the Thai extra set |
 
-Both are present in the declared source set. Because Framework B's synchroniser turns any
-`account.tax` flagged `wt_tax` into an `account.withholding.tax`, and Framework A operates
-on `account.tax` directly, a single configured tax can be visible to both mechanisms.
-No code in the declared set prevents both from being applied to one payment. This is the
-duplicate-recognition surface the session directive requires to be attacked; it is
-recorded as `P07-F-16` and carried into `11_P07_CONTRADICTION_REGISTER.md`.
+### 6.1 `P07-F-16` Restated — a Guard Exists, and It Is Worse Than None
 
-## 7. Negative Claims Made in This File
+An earlier statement of this finding said no guard prevents both frameworks from applying
+to one payment. **That was wrong, and the truth is more serious.** A guard exists in the
+base application:
+
+    # We don't support to combine 'write_off_lines' and 'withholding_lines' together ...
+    if withholding_lines and write_off_lines:
+        write_off_lines = []
+        write_off_amount_currency = 0.0
+        write_off_balance = 0.0
+
+`account/models/account_payment.py:341-345`. Both frameworks converge here: the vendor path
+supplies `withholding_lines` through `_prepare_move_withholding_lines`
+(`account_payment.py:283-285`, extended at
+`l10n_account_withholding_tax/models/account_payment.py:102-107`), while the Thai path
+arrives as `write_off_line_vals`.
+
+So if both are active on one payment, the Thai withholding line is **silently discarded** —
+while the payment amount has *already* been reduced by the Thai wizard
+(`wizard/account_payment_register.py:60`). The result is a payment that is short by the
+withholding amount with no corresponding withholding entry, and no error.
+
+The corrected finding has two limbs:
+
+- **Posting layer:** an undocumented silent-discard guard, which converts a
+  double-recognition risk into a **silent under-recognition** defect. Worse than the
+  absence originally reported, and of a different kind.
+- **Reporting layer:** **no guard.** The vendor path produces real tax lines, so it lands in
+  PND branch 1, while the same invoice can already be reported by branch 2 — genuine
+  double counting in the statutory return. This limb of the original finding survives.
+
+Mitigating the exposure: the vendor module is not auto-installed and no Thai module depends
+on it, so it reaches a Thai database only by deliberate installation. `P07-F-16` is
+therefore **conditional on a configuration choice**, not a defect of the shipped Thai set.
+Carried into `11_P07_CONTRADICTION_REGISTER.md` in the restated form.
+
+## 7. Provisioning and Installability of the Withholding Path
+
+Added after independent challenge. These findings change how the rest of this file should
+be read: the path analysed above is, on a fresh install of the declared source set,
+**not operable at all**.
+
+| ID | Finding | Evidence |
+|---|---|---|
+| `P07-F-51` | **The withholding path is inert on a fresh install.** `account.account-th.csv` has no column for the withholding-account flag, and the flag is set nowhere in the declared set except a test fixture (`l10n_th_withholding_tax/tests/account_withholding_tax_test.xml:6`) and a form default. With no account flagged: the withholding account field's domain `[('wt_account','=',True)]` is empty (`models/account_withholding_tax.py:15`), the certificate wizard's required account field has an empty domain (`create_withholding_tax_cert.py:14-20`), and ticking the withholding flag on any shipped `tax_wht_*` raises `UserError` (`models/account.py:78-81`). §2.2's "synchronised from any tax flagged `wt_tax`" is therefore conditional on a provisioning step the declared set does not perform. |
+| `P07-F-52` | The withholding wizard reads `payment.move_line_ids` (`wizard/account_payment_register.py:56`), a field defined **only** in the certificate module (`l10n_th_withholding_tax_cert/models/account_payment.py:23`), on which the withholding module does not depend (`__manifest__.py:9` = `["account", "l10n_th_reports"]`). Installing the withholding module alone raises on any payment against a line carrying a withholding tax. |
+| `P07-F-55` | Neither withholding test suite can execute. Both import `SavepointCase` from `odoo.tests.common` (`tests/test_withholding_tax.py:5`; `tests/test_wt_cert.py:7`); the declared set contains only `SavepointCaseWithUserDemo`. `test_wt_cert.py:6` imports `get_resource_path`, which has zero occurrences in the declared set. Further v13/v14 API appears throughout (`user_type_id`, `"type"` on the move, `browse_ref` called on the class). `test_withholding_tax.py:132-136` asserts an error raised by code that is commented out (`wizard/account_payment_register.py:76-86`). **There is no regression coverage for the withholding path in either direction** — nothing in the tests contradicts this file's findings, and nothing verifies them. |
+| `P07-F-57` | Latent index error: the candidate filter reads `invoice_repartition_line_ids[0].tag_ids[0].name` (`models/account_move.py:70`, `:79`) while guarding only on the union `invoice_repartition_line_ids.tag_ids`. A purchase tax tagged on the tax line but not the base line raises. Latent because the shipped Thai chart tags base lines. |
+
+### 7.1 The Derivation in §3 Rests on a File This Package Did Not Cite
+
+§3 concludes that branch 2 reports the invoice line. That is only true because an
+SMEsPlus-added ORM override injects the withholding tax's **base** repartition tags onto the
+invoice base line: `l10n_th_withholding_tax/models/account_tax.py:7-22`
+(`_add_accounting_data_to_base_line_tax_details`). The PND domain is membership of the
+income / remittance / surcharge tags (`l10n_th_reports/models/tax_report_pnd.py:98`,
+`:135`). Without that override the invoice line carries no matching tag and branch 2 returns
+nothing.
+
+The derivation in §3 is therefore **correct but was incompletely argued**: it omitted the
+mechanism that makes its own subject reachable. Recorded because an argument that omits a
+load-bearing link is not reproducible, even when its conclusion survives.
+
+### 7.2 A Third Divergent Computation of the Same Amount
+
+§3 `W-C-03` records two independent computations of one withholding fact. There is a
+**third**: the certificate takes `abs(move_line.balance)` from the real write-off line
+(`l10n_th_withholding_tax_cert/models/withholding_tax_cert.py:302-303`, selected by account
+at `:309-320`). So one tax fact yields three computations drawn from two different source
+lines — the ledger write-off, the recomputed PND figure, and the certificate figure. The
+certificate is the only one of the three that reads the posted amount.
+
+### 7.3 A Third Writer of Withholding Lines
+
+`l10n_th_withholding_tax_multi` writes `wt_tax_id` and tax tags onto per-line deduction
+entries (`models/account_payment.py:85-92`). Those lines carry a payment id and no tax line
+id, so they are invisible to **both** PND branches for the same two reasons as the ordinary
+write-off. The module is not installable from the declared set (`P07-F-20`), so this is a
+latent third path rather than a live one.
+
+## 8. Negative Claims Made in This File
 
 | ID | Claim | Class | Boundary |
 |---|---|---|---|

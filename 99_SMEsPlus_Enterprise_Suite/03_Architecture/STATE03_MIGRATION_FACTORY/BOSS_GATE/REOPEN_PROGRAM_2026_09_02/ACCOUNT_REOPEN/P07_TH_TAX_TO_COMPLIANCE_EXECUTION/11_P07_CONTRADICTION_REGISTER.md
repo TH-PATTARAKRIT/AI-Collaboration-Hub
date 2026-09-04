@@ -45,7 +45,8 @@ behaviour.
 | `P07-C-16` | The certificate is issued in duplicate, immediately on every withholding (`S-31`) | Manual wizard, no duplicate-copy record | material |
 | `P07-C-17` | The return states the tax withheld of **each person** (`S-33`) | Amount recomputed from rate × base rather than read from the ledger | material |
 | `P07-C-18` | Reports must be retained 5 years (`S-26`) | The statutory certificate is unlinkable by the billing group | material |
-| `P07-C-19` | Zero-rated (`S-07`) and exempt (`S-81` via `S-11` context) are distinct classes | Both keyed on move-level `amount_tax = 0` | material |
+| `P07-C-19` | Zero-rated (`S-07`) and exempt are distinct classes | Both keyed on move-level `amount_tax = 0` | material |
+| `P07-C-24` | The VAT taxable period is the calendar month (`S-15` `S-34`) | Taken from a company-level setting with seven options, defaulting to monthly; the Thai localisation asserts nothing | material — the statutory period is a coincidence of a platform default, and the excess-VAT carry-forward resolves against it |
 
 ## 4. Source Contradictions
 
@@ -66,7 +67,7 @@ stated scope · `B` not found in searched scope · `C` not yet searched · `D` u
 | ID | Claim | Class | Declared boundary |
 |---|---|---|---|
 | `P07-N-01` | No tax-invoice numbering sequence distinct from the accounting document sequence | `A` | PATH SET `13 §2`; patterns `sequence`, `ir.sequence`, `tax_invoice`; 15 modules of `13 §5`; `l10n_th` read in full |
-| `P07-N-02` | No consumer of `account.move.line.tax_period_date` | `A` | all three roots, all file types, `__pycache__`/`.po`/`.pot` excluded; pattern `tax_period` |
+| `P07-N-02` | No **functional** consumer of `account.move.line.tax_period_date`: no report, compute, domain or SQL reads it. It does have one reader — a readonly, `optional="hide"` list column. | `A` | all three roots, all file types, `__pycache__`/`.po`/`.pot` excluded; pattern `tax_period`. **Corrected during independent challenge**: the first statement of this claim said "read by nothing", which was false. See `15 §4` `REV-E-09`. |
 | `P07-N-03` | Four Thai tax-document modules absent from the declared set | `A` within scope, `E` at volume scope | directory-name search, declared set and whole volume |
 | `P07-N-05` | No branch-level VAT return object | `B` | Thai module population; the base `account.return` framework was later found and is reported at `P07-F-37` — the branch dimension remains not found |
 | `P07-N-06` | No VAT tax-point determination logic | `B` | PATH SET `13 §2`; patterns `13 §4`; all 15 modules read for tax-date handling |
@@ -79,14 +80,45 @@ stated scope · `B` not found in searched scope · `C` not yet searched · `D` u
 | `P07-N-13` | No traced executor of the month-end WHT consolidation described in the chart | `C — NOT YET SEARCHED` | the base tax-closing path was **not** examined; recorded as `P07-U-17` |
 | `P07-N-14` | No abbreviated tax invoice, debit note or substitute tax invoice class in the Thai modules | `B` | Thai module population; the base document typology was not re-enumerated |
 | `P07-N-15` | **WITHDRAWN.** Originally: the whole filing/close segment is absent. | `E — CONTRADICTED` | Replaced by `P07-F-37`, a measured provisioning gap on a framework that exists. Withdrawal recorded at `15 §4`. |
+| `P07-N-16`…`P07-N-19` | Four negatives registered in `06 §6` (income-side tags; no report selecting the income-side fact; no canonical withholding shape; blank tax-group cells in the CSV). | `A`, `A`, `B`, `A` | as stated in `06 §6`; `P07-N-19` is explicitly a statement about the CSV, **not** about the resulting records |
+| `P07-N-20`…`P07-N-24` | Five negatives registered in `08 §6` (debit-note class; report snapshot; tax-period object; refund-claim representation; and the **positive** immutability assumption, recorded as unverified). | `B`, `B`, `B`, `B`, `C` | as stated in `08 §6` |
+| `P07-N-25` | No tenant ORM model exists anywhere on the storage volume, while the tenant boundary is specified with status `NEW`. | `A — VERIFIED ABSENCE` | all `.py` files under `/Volumes/iMacSys`; specification at `FR_DETAIL_TENANT_MANAGEMENT.md`. See `P07-F-50`. |
 
-### 5.1 Restatement Check
+**Registers added after challenge.** Files `06` and `08` originally carried no
+negative-claim register at all, while `02`, `03` and `05` did. Independent challenge tested
+both sets: **every negative that had been registered with a class and a boundary survived;
+three of the unregistered ones were found to be wrong or over-stated** (`GL-02`'s "no tax
+group", `GL-01`'s "every PND handler", and `08 §5.4`'s "no workflow"). The correlation
+between "unregistered" and "wrong" is itself the finding, and it is the strongest available
+evidence that the negative-claim control does real work rather than ceremonial work.
 
-The project rule warns that class `B`/`C`/`D` claims are upgraded to `A` in **summaries**,
-not in the body. Every summary statement in this package was checked against this table.
-Two claims are class `A`, and both carry their scope in the same sentence wherever they
-appear. No class `B`, `C` or `D` claim is restated without its qualifier in
-`16`, `17`, `18` or `19`.
+### 5.1 Restatement Check — Executed, and It Failed on First Run
+
+The project rule warns that class `B`/`C`/`D` claims are upgraded to class `A` in
+**summaries** rather than in the body.
+
+The first issue of this section asserted that the check had been performed package-wide and
+had passed. That assertion was **defective in two ways**, both found by independent
+challenge: it named `16`, `17` and `18` as its coverage when those files did not yet exist,
+and it excluded `01`–`15` and `20`, which is where restatement actually happens. A control
+that certifies against absent artefacts cannot have been run as written.
+
+The check was then executed properly, over every file in the package. It found **four
+class-`B`-to-unqualified restatements, all of them in `19` — the one file cleared for
+downstream reference** — plus one internal count error:
+
+| Location | Restated claim | Underlying class | Disposition |
+|---|---|---|---|
+| `19` `POS-7` | "the filing entity's own attribute is read by nothing" | bounded in `20 §6` to the declared set | **corrected**: now "no statutory report examined in this research reads it" |
+| `19` `POS-8` | "no rule of precedence" | `P07-N-18`, class `B` | **corrected**: now "no rule of precedence was found in the material examined", and the silent-discard guard is stated |
+| `19` `POS-9` | "without leaving a trace" | no registered negative supported the absolute | **corrected**: replaced with the positive mechanism — the figure is a render-time computation over live master data |
+| `19` §4 | "can never be filed from the system" | `P07-N-11`, class `A` for four reporting layers but `E` at the chart layer | **corrected**: now "no means of filing it was found anywhere in the material examined" |
+| `19` §7 | "three design decisions" followed by four items | count error | **corrected** to four |
+
+Every one of these was in the Layer-1 file. The lesson recorded for the next round is that
+**the clean-room scrub and the restatement check are different controls**: `19` passed the
+vendor-token scrub cleanly on first run and failed the restatement check on the same
+content. Recorded as `REV-E-14`.
 
 ## 6. Contradictions Not Resolvable by P07
 

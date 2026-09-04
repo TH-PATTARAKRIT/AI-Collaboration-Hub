@@ -69,8 +69,38 @@ where the invariant is broken.
 |---|---|---|
 | `V-I-01` | **One tax fact, two report implementations.** The same statutory output/input tax books are produced by two independent code paths with different selection logic, different column semantics and different branch sources: the vendor XLSX generator as overridden by SMEsPlus, and the SMEsPlus dynamic reports. Neither is declared canonical. | `l10n_th_reports/models/tax_report_vat.py:58` vs `l10n_th_reports_ext/models/tax_report_vat.py:11` vs `smesplus_account_reports/models/account_generic_tax_report.py:23` |
 | `V-I-02` | **One tax fact, two period attributes.** The period a supply belongs to is determined by the accounting date, while a second period attribute is stored on the move and shown next to it on the same report row. A reader of that report sees two dates and no rule for which governs. | `account_generic_tax_report.py:26` (selection) vs `:38`, `:102-108` (display) |
-| `V-I-03` | **One canonical event, two base amounts.** The main reports take the base from the tax repartition detail; the zero-rate reports take it from the raw line balance and take the tax from the **move header** `amount_tax`. A move with several zero-rated lines repeats the header tax amount on every line. | `account_generic_tax_report.py:49-50` vs `:250-251`, `:420-423` |
-| `V-I-04` | **Row inclusion depends on a mutable label rather than on the tax fact.** A row reaches the statutory report only if its tax group's English name is exactly `VAT 7%`. The predicate is a company-mutable, translatable label standing in for "is this a standard-rated Thai VAT supply". | `account_generic_tax_report.py:88` |
+| `V-I-03` | **One canonical event, two base amounts.** The main reports take the base from the tax repartition detail; the zero-rate reports take it from the raw line balance. The repeated move-header `amount_tax` on the zero reports is numerically inert, because `amount_tax = 0` is itself the row predicate (`:283`, `:454`) — this was over-stated in an earlier draft and is corrected here. The **live** defect on the same SQL is on the base side: the inner join to `account_move_line_account_tax_rel` (`:254`, `:425`) emits one row per (line × tax) each carrying the line's full `balance`, and every row is accumulated (`:299`, `:472`), so a base line carrying two taxes double-counts the statutory base. Latent on the shipped Thai template, where adding a second tax makes `amount_tax` non-zero. | `account_generic_tax_report.py:49-50` vs `:250-254`, `:420-425` |
+| `V-I-04` | **Row inclusion depends on a translation mapping rather than on the tax fact.** A row reaches the statutory report only if the raw stored value of its tax group's name equals the dict `{'en_US': 'VAT 7%'}`. See §5.1 — this is materially worse than a mutable-label dependency. | `account_generic_tax_report.py:45`, `:88` |
+
+### 5.1 `V-I-04` in Full — Why It Is a Total-Loss Failure, Not a Selective One
+
+The predicate compares a Python dict literal against a value selected raw from the
+database:
+
+- `account_generic_tax_report.py:45` selects `atg.name AS group_name` with no language
+  context and no `->>` extraction, so the driver returns the whole stored value.
+- `account.tax.group.name` is declared `fields.Char(required=True, translate=True)`
+  (`account/models/account_tax.py:32`), so that stored value is a **translation mapping**,
+  not a string. This is why the author of the predicate had to write a dict literal at all.
+- The Thai chart template ships a Thai name for that group: `account.tax.group-th.csv`
+  carries a `name@th_TH` column whose value for `tax_group_vat_7` is
+  `ภาษีมูลค่าเพิ่ม 7%`.
+- `chart_template._load_translations` (`account/models/chart_template.py:1475-1534`, via
+  `_get_field_translation` at `:1452`) imports those `@lang` values into the stored mapping
+  when the language is installed.
+
+Consequently, on a Thai-language deployment the stored value carries **two** entries and
+the equality against a single-entry dict is false for **every** row. `res` stays empty, so
+the handler emits not even a total line (`:144`). Both the Sale VAT Report and the Purchase
+VAT Report — the s.87 statutory books — render **no data at all**, silently, with no error.
+
+The base application demonstrates the correct handling of exactly this hazard elsewhere:
+`account/models/account_account_tag.py:84` deliberately forces `with_context(lang='en_US')`
+before comparing tag names.
+
+Boundary and class: derived from source, **not executed** (`U-02`). The trigger condition
+is "Thai is an installed language on the deployment", which is the expected condition for a
+Thai tenant. Recorded as `P07-F-01`, and it is the highest-severity finding in this package.
 
 ## 6. The Two Parallel Report Implementations
 

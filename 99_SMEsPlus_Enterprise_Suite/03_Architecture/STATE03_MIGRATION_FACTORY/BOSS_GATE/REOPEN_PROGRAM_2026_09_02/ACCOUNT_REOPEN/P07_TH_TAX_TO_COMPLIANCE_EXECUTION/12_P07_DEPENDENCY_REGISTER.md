@@ -18,6 +18,10 @@ Date: `2026-09-04`
 | `P07-D-08` | `bm_thai_rd_vat_company_search` → external Revenue Department VAT service | **external service dependency**, proprietary module (`OPL-1`, priced) | **OPEN** | `__manifest__.py`. Availability, rate limits, data-protection posture and tenant boundary of the egress were not assessed (`P07-U-15`). |
 | `P07-D-09` | WHT certificate print → `l10n_th_amount_to_text` | declared | satisfied | `l10n_th_withholding_tax_cert_form/__manifest__.py:11` |
 | `P07-D-10` | WHT report → `report_xlsx_helper`, `date_range`, `l10n_th_partner` | declared | satisfied | `l10n_th_withholding_tax_report/__manifest__.py:12-18` |
+| `P07-D-26` | `l10n_th_withholding_tax` → `l10n_th_partner`, `partner_company_type` | **undeclared** | **BROKEN, and worse than `P07-D-02`** | The manifest declares `["account", "l10n_th_reports"]` (`__manifest__.py:9`), yet the PND override runs **raw SQL** against `partner.branch` (`models/tax_report_pnd.py:33`, `:68`) and `res_partner_company_type` (`:48`, `:50`, `:83`, `:85`). Raw SQL fails with a database error rather than an attribute error, and this is the module that **produces the PND3 and PND53 statutory returns**. Found by applying the `P07-D-02` check to the whole population instead of one module. `P07-F-54` |
+| `P07-D-27` | Withholding path → its own test suites | declared by the modules | **NON-EXECUTABLE** | Both suites import symbols absent from this generation; one asserts an error from commented-out code. No regression coverage exists for the withholding path. `P07-F-55` |
+| `P07-D-28` | `l10n_th_withholding_tax` (AGPL-3) → `l10n_th_reports` (`OEEL-1`) | declared | **LICENCE INVERSION — OPEN, routed** | A copyleft module hard-depending on an Enterprise-licensed module. Related to `P07-D-07`; competence sits outside this session. `P07-F-56` |
+| `P07-D-29` | Thai amount-in-words on the s.50 bis certificate | two byte-identical modules in the same addons path | **NON-DETERMINISTIC** | `convert_amount_text_to_thai` and `l10n_th_amount_to_text` are byte-identical apart from one description asset, carry the same version string, and both override the same method. `P07-D-09` records this dependency as satisfied — it is satisfied twice. `P07-F-48` |
 
 ## 2. Data and Configuration Dependencies
 
@@ -33,6 +37,7 @@ statutory output fragile.
 | `P07-D-15` | Branch column | `company_registry` in two reports, `branch` in two others | two statutory reports disagree about the same taxpayer's branch |
 | `P07-D-16` | Sales-side WHT reporting | tags on `tax_wht_income_*`, which are empty as shipped | the fact is reported nowhere (`W-K-08`) |
 | `P07-D-17` | Report period membership | the accounting date, not the tax point | facts fall in the wrong statutory month (`04 §5`) |
+| `P07-D-25` | The VAT return period, and the `previous_return_period` scope of the excess-VAT carry-forward | a company-level periodicity setting with seven values, defaulting to monthly, asserted nowhere by the Thai localisation | a company set to any non-monthly value silently files on a non-statutory period and carries forward against the wrong prior period (`P07-F-40`) |
 
 `P07-D-11` deserves separate emphasis: the VAT rate is a **Royal Decree reduction of a 10%
 statutory rate, renewed annually with a fixed expiry** (`S-06`, `S-35`, `P-09`). The
@@ -79,13 +84,32 @@ the peer population rather than by inspecting Thailand alone.
 | ID | Capability | Framework present | Thai provisioning | Peer baseline in `02 OTHER` |
 |---|---|---|---|---|
 | `P07-F-37` | Return filing: instance, state, statutory deadline, compliance check | `account.return`, `account.return.type`, `account.return.check` with `deadline_periodicity`, `deadline_days_delay`, `states_workflow`, `payment_partner_bank_id` | **one** return type named `Tax`, no deadline, no workflow; PND3/PND53/PND54 not registered | **118** modules ship `account.return.type` data |
-| `P07-F-38` | Fiscal position / tax mapping — named explicitly in the session directive | `account.fiscal.position` template loading, and a `fiscal_position_ids` column in the tax template format | **none.** `l10n_th/data/template/` contains four files and no fiscal position template; every `fiscal_position_ids` cell in `account.tax-th.csv` is empty | **113** of **138** chart-template directories ship `account.fiscal.position-*.csv` |
+| `P07-F-38` | Fiscal position / tax mapping — named explicitly in the session directive | `account.fiscal.position` template loading, and a `fiscal_position_ids` column in the tax template format | **none.** `l10n_th/data/template/` contains four files and no fiscal position template; every `fiscal_position_ids` cell in `account.tax-th.csv` is empty. Further, `filter_fiscal_position` is **commented out on all four** SMEsPlus statutory VAT reports (`smesplus_account_reports/data/generic_tax_report.xml:6`, `:76`, `:139`, `:212`) — tax mapping was not merely unprovisioned, it was explicitly disabled on the s.87 registers | **94** of the **126** directories that ship a chart of accounts — see the correction below |
 
 `P07-F-38` means there is no Thai tax mapping for export customers, non-VAT-registered
 vendors, exempt or promoted entities, or overseas payees — the last being exactly the
-PND 54 case that has a general-ledger account and nothing else (`03 §4.1`). Enumeration
-method: `find "<02 OTHER>" -maxdepth 4 -name 'account.fiscal.position-*.csv'`. The first
-run of this pattern used `-maxdepth 3` and returned zero; the depth was wrong, not the
-population. The corrected run is the one reported, and the error is recorded in
-`15_P07_REVISION_LOG.md` §4 because a pattern that silently returns zero is the exact
-failure mode the project's enumeration rule exists to prevent.
+PND 54 case that has a general-ledger account and nothing else (`03 §4.1`).
+
+**Denominator correction.** The first issue of this finding reported "113 of 138". Both
+numbers were defective and the defect was found by independent challenge:
+
+| | First issue | Corrected |
+|---|---|---|
+| Numerator UNIT | **files** matching `account.fiscal.position-*.csv` (113) | **directories** shipping at least one (94). Nineteen modules ship two each, so the file count silently over-counts modules. |
+| Denominator | 138, from a `find -type d -name template` that double-counts | **126** — the directories that ship an `account.tax-*.csv`, i.e. that define a chart at all. This is the only denominator with a stated definition. |
+| Ratio | 113 of 138 (82%) | **94 of 126 (75%)** |
+
+The UNIT was switched between numerator and denominator mid-count. That is precisely the
+`UNIT` clause of the project's Denominator Completeness Rule, failing inside the finding
+whose own closing note congratulated this session for catching a `-maxdepth` error in the
+same enumeration. **The substantive conclusion is unchanged — Thailand ships none, and
+three-quarters of chart-shipping peers ship one — but the ratio as first published was
+wrong, and it had already propagated into the Layer-1 handoff file.** Recorded as
+`REV-E-13`; the earlier `-maxdepth 3` error is `REV-E-04`.
+
+Enumeration commands, both stated so the count can be reproduced:
+
+    find "<02 OTHER>" -maxdepth 4 -name 'account.fiscal.position-*.csv' \
+      | sed 's|.*/02 OTHER/||; s|/.*||' | sort -u | wc -l      -> 94
+    find "<02 OTHER>" -maxdepth 4 -name 'account.tax-*.csv' \
+      | sed 's|.*/02 OTHER/||; s|/.*||' | sort -u | wc -l      -> 126

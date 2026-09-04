@@ -39,7 +39,7 @@ consequence of that inversion.
 | `account.move.date` (accounting date) | base application | posting | **every** tax report's period filter in the declared set |
 | `account.move.invoice_date` (document date) | base application | user | one display column, added by the SMEsPlus override of the vendor XLSX report (`l10n_th_reports_ext/models/tax_report_vat.py:175`, header "Bill Date") |
 | `account.move.tax_period` (tax point) | `smesplus_tax_period_date/models/tax_period.py:23` | user, on the move form | one display column on the SMEsPlus Sale/Purchase VAT reports (`smesplus_account_reports/models/account_generic_tax_report.py:38`, `:92-108`, `:415`, `:475-489`) |
-| `account.move.line.tax_period_date` | `smesplus_tax_period_date/models/tax_period.py:36` | `create()` only, and only for lines that already carry `tax_line_id` at create time | **nothing** |
+| `account.move.line.tax_period_date` | `smesplus_tax_period_date/models/tax_period.py:36` | `create()` only, and only for lines that already carry `tax_line_id` at create time | **no report, compute, domain or SQL.** Its sole reader is a readonly, `optional="hide"` list column (`smesplus_tax_period_date/views/view_tax_period.xml:30`) — class `A`, boundary: PATH SET of `13 §2`, all file types, `__pycache__` excluded |
 
 ## 4. The Removed Substitution
 

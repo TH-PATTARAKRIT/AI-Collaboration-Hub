@@ -42,8 +42,8 @@ What follows from this, each item checked against `S-19`/`S-20`:
 
 | Statutory particular or property | Status |
 |---|---|
-| The word "tax invoice" in a prominent place | present, as a hard-coded English literal in the template |
-| Serial number of the tax invoice | **the accounting document name is used**; there is no tax-invoice sequence and no book number (`P07-N-01`) |
+| The word "tax invoice" in a prominent place | **present and correctly translated.** An earlier draft called this a hard-coded English literal; that was refuted during independent challenge — `l10n_th/i18n/th.po:126-127` maps `Tax Invoice` to `ใบกำกับภาษี` as a view term, and the template renders under the partner's language (`report_invoice.xml:22-23`). This statutory particular is **satisfied**. |
+| Serial number of the tax invoice | **the accounting document name is used** — written directly into the column headed `Tax Invoice No.` (`l10n_th_reports/models/tax_report_vat.py:148` under the header at `:113`); no tax-invoice sequence and no book number was found (`P07-N-01`) |
 | Date of issuance | the invoice date is printed; no record of the moment of issuance was found — class `B`, boundary: the 15 modules of `13 §5` read in full for document handling |
 | VAT clearly separated | inherited from the base layout |
 | Issuer and purchaser identification, including branch | printed, but from an inconsistently-sourced branch (`P07-F-06`) |
@@ -51,10 +51,39 @@ What follows from this, each item checked against `S-19`/`S-20`:
 | Issued immediately at the tax point | no issuance event was found — class `B`, same boundary as the row above — so compliance cannot be evidenced either way |
 | Immutability once issued | the underlying accounting document governs; a re-print produces a new rendering with no version identity |
 
-Because no such object was found within the boundary declared above, four downstream requirements are structurally unavailable
-rather than merely unimplemented: original-invoice reference on credit and debit notes
-(`S-23` `S-24`), the abbreviated-invoice class (`S-22`), the substitute invoice (`U-08`),
-and any per-document retention or issuance audit trail (`S-26`).
+Because no such object was found within the boundary declared above, four downstream
+requirements are structurally unavailable rather than merely unimplemented:
+original-invoice reference on credit and debit notes (`S-23` `S-24`), the
+abbreviated-invoice class (`S-22`), the substitute invoice (`U-08`), and any per-document
+retention or issuance audit trail (`S-26`).
+
+### 2.1 The Substitution Covers One Title State of Thirteen
+
+The Thai template replaces only the `invoice_title` node. In the base layout
+(`account/views/report_invoice.xml:62-110`) that node fires solely for
+`move_type == 'out_invoice'` **and** `state == 'posted'`. Its siblings —
+`draft_invoice_title`, `cancelled_invoice_title`, `credit_note_title`,
+`vendor_bill_title`, `proforma_invoice_title` and the remaining variants — are untouched.
+A draft, cancelled, pro-forma, credit-note or vendor-bill rendering under a Thai company
+therefore prints the base wording. By comparison `l10n_zm_account/views/report_invoice.xml:9-24`
+replaces six. `P07-F-46`.
+
+### 2.2 This Is a Regression, Not a Greenfield Gap
+
+`P07-N-03` records that four Thai tax-document modules exist in the v14 tree and not in the
+declared set. Connecting that to `D-01` changes what the finding means. In the excluded v14
+tree, `l10n_th_tax_invoice/models/account_move.py:14` declares a first-class model
+`account.move.tax.invoice` carrying `tax_invoice_number` (`:18`), `tax_invoice_date`
+(`:19`), `period_date` (`:17`), `report_late_mo` (`:20`) and `reversing_id` / `reversed_id`
+(`:74`, `:77`); and `l10n_th_tax_invoice/models/account.py:9-15` adds a
+`taxinv_sequence_id` to the journal.
+
+**Every capability this matrix finds structurally absent — document object, own number, own
+sequence, own document date, own tax period, cancel-by-reference — existed as a first-class
+model in the prior generation of this product line.** `D-01`, `A-04` and `A-13` are
+therefore a **regression**, and their remediation is a restoration rather than a design
+from nothing. `P07-F-47`. Boundary: the v14 tree enumerated at `13 §2.1`; whether the
+capability was deliberately dropped, superseded, or lost in migration is `P07-U-18`.
 
 ## 3. The Withholding Certificate Is an Object — Assessed on Its Merits
 
@@ -66,7 +95,7 @@ It is therefore assessed against `S-31` rather than dismissed.
 | Identity | `name` computed and stored, tracked (`withholding_tax_cert.py:77-82`) | present |
 | Date | `date` computed and stored; separate `payment_date`, required, indexed (`:83-89`, `:114-119`) | present, and the **payment date is carried explicitly** — the correct statutory anchor under `S-30` |
 | Issuer / payee | `company_partner_id`, `supplier_partner_id`, with related tax identifiers (`:131-172`) | present |
-| Income type | 16-value s.40 selection covering 40(1)–40(4)(b) sub-classes and 3 เตรส (`:16-64`) | **the most statutorily faithful classification anywhere in the declared set** |
+| Income type | **15**-value s.40 selection covering 40(1)–40(4)(b) sub-classes and 3 เตรส (`:16-64`), counted entry by entry | **the most statutorily faithful classification in the declared set** |
 | Form type | `income_tax_form` over `pnd1`/`pnd3`/`pnd3a`/`pnd53` (`:9-14`, `:173-180`) | narrower than the chart provisions (`03 §4.1`) |
 | Tax payer condition | `tax_payer` over `withholding` / `paid_one_time` (`:66`, `:188-195`) | two values; the statutory code set is held at `U-09`, and the PND export ignores this field entirely (`W-K-02`) |
 | Lifecycle | `draft` / `done` / `cancel`, with `ref_wt_cert_id` linking a replacement to the cancelled certificate (`:90-102`) | present, and cancellation is by reference rather than by deletion — the correct pattern |

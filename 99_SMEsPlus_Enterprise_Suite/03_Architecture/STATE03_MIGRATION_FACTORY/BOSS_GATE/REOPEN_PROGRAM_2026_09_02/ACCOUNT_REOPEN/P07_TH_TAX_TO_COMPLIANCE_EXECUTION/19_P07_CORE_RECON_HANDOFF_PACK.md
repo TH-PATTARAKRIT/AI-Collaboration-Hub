@@ -39,9 +39,9 @@ report; it is a question of which process owns the tax period.
 | `POS-4` | A partial payment withholds on the amount paid. | Today a first partial payment causes the whole document's withholding to be reported. |
 | `POS-5` | The payee's legal personality (natural person or juristic person) is a typed master-data attribute, and the withholding form and income category are typed attributes of the withholding definition. | Today the form is inferred from a contact-structure flag and from a substring of a translatable label; the income category is inferred from the tax rate. |
 | `POS-6` | The tax invoice is a document object with its own identity, its own number, an issuance moment, a copy, and immutability once issued — and credit and debit notes reference the tax invoice they adjust. | Without a document object, the statutory reference requirement on adjustments cannot be met at all, and no issuance can be evidenced. |
-| `POS-7` | The filing unit is the **place of business**, and the branch attribute of the filing entity is distinct from the branch attribute of a counterparty. | The return is filed per place of business unless a consolidation approval exists. Today three different branch attributes are used interchangeably and the filing entity's own attribute is read by nothing. |
-| `POS-8` | Exactly one mechanism records a withholding, and exactly one implementation produces each statutory register. | Two withholding mechanisms and two register implementations currently coexist with no rule of precedence; the two register implementations can return different totals for the same month. |
-| `POS-9` | A filed figure is fixed by a filing record, and any later change that would alter it is visible as an adjustment. | Four ordinary, non-privileged master-data or payment actions currently change the content of an already-filed statutory report without touching the ledger and without leaving a trace. |
+| `POS-7` | The filing unit is the **place of business**, and the branch attribute of the filing entity is distinct from the branch attribute of a counterparty. | The return is filed per place of business unless a consolidation approval exists. Today three different branch attributes are used interchangeably, and no statutory report examined in this research reads the filing entity's own attribute. |
+| `POS-8` | Exactly one mechanism records a withholding, and exactly one implementation produces each statutory register. | Two withholding mechanisms and two register implementations coexist. No rule of precedence was found in the material examined. Where both withholding mechanisms are active on one payment, the platform silently discards one of the two entries **after** the payment amount has already been reduced by the other. The two register implementations can return different totals for the same month. |
+| `POS-9` | A filed figure is fixed by a filing record, and any later change that would alter it is visible as an adjustment. | At least seven ordinary, non-privileged master-data or payment actions change the content of an already-filed statutory report without touching the ledger. Two of them rewrite monetary amounts and statutory classifications. The reported figure is a render-time computation over live master data, so no filed figure is reproducible. |
 
 ## 3. What Reaches No Statutory Report Today
 
@@ -64,7 +64,8 @@ recorded at payment is reported through the originating bill.
 The chart of accounts provisions an account for withholding on payments abroad, and names
 the remittance form in its description, in both languages. No tax definition, no
 classification, no report, no certificate type and no filing entry exists for it. A posting
-can be made to that account and can never be filed from the system.
+can be made to that account, and no means of filing it was found anywhere in the material
+examined.
 
 The same shape, less severely, applies to withholding on employment income and to one
 further certificate variant.
@@ -77,7 +78,7 @@ localisations present in the same source set, not by inspecting Thailand alone.
 | Capability | Framework present in the platform | Thai provisioning | Peer baseline |
 |---|---|---|---|
 | Filing records with statutory deadlines, filing states and compliance checks | yes, fully featured | one generically-named return, no deadline, no workflow; the two principal withholding returns are not registered at all | 118 country localisations provision it |
-| Tax mapping (fiscal position) — export customers, non-registered vendors, exempt or promoted entities, overseas payees | yes | none whatsoever | 113 of 138 country chart sets provision it |
+| Tax mapping (fiscal position) — export customers, non-registered vendors, exempt or promoted entities, overseas payees | yes | none provisioned, and the mapping filter is switched off on all four statutory registers | 94 of the 126 country chart sets that define a chart provision it |
 
 The overseas-payee case is the same obligation as §4: the mapping that would route it does
 not exist either.
@@ -96,7 +97,7 @@ not exist either.
 
 ## 7. Legal Questions That Must Be Answered Before Design
 
-These are held open. No position in §2 depends on them, but three design decisions do.
+These are held open. No position in §2 depends on them, but four design decisions do.
 
 1. The instrument and conditions under which input tax may be claimed in a later tax month
    than the tax invoice date. This is the legal basis for a purchase-side tax point that
@@ -108,14 +109,29 @@ These are held open. No position in §2 depends on them, but three design decisi
 
 ## 8. Standing Structural Risk
 
-The reduced rate of value added tax currently in force is a **temporary reduction of the
-statutory rate, granted by decree and renewed annually with a fixed expiry**. The reduction
-in force at the date of this pack has been extended by one year and is not about to lapse.
+Two statutory registers admit a transaction only when a rate-bearing descriptive label
+matches a fixed stored value exactly. Three separate events make that match fail, and in
+every one of them the register returns **no data at all**, silently, with no error and no
+warning:
 
-The risk is structural, not calendar-driven: one statutory register admits a transaction
-only if a rate-bearing label matches a fixed literal. A future reversion to the statutory
-rate, or a rename of that label, empties the register with no error and no warning. Any
-design that encodes the current rate into a selection rule inherits an annual expiry.
+1. **Presenting the system in Thai.** The label is a translatable text. Adding a Thai
+   translation of it — the expected act for a Thai deployment — changes the stored value in
+   a way the comparison does not tolerate. On the evidence examined this is the immediate
+   and likely trigger, not a remote one, and it is the single most serious finding of this
+   research.
+2. **Renaming the label**, which is an ordinary configuration action available to a normal
+   accounting user.
+3. **A change in the rate of value added tax.** The reduced rate currently in force is a
+   temporary reduction of the statutory rate, granted by decree and renewed annually with a
+   fixed expiry. The reduction in force at the date of this pack has been extended by one
+   year and is not about to lapse — but any design that encodes the current rate into a
+   selection rule inherits that annual expiry.
+
+The design consequence is the same for all three: **statutory inclusion must be decided by
+what a transaction is, never by what a label says.** A related defect follows the same
+pattern — the zero-rated and exempt tax definitions carry no group of their own, so they
+adopt the first one available, which is a withholding group, and settle against withholding
+control accounts rather than tax ones.
 
 ## 9. Terminal State
 
