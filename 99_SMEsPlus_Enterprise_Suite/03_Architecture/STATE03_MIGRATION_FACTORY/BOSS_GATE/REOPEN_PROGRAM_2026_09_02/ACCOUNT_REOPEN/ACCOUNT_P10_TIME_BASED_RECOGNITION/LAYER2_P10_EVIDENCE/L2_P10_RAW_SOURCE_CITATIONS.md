@@ -108,3 +108,24 @@ Every item below was **re-verified by the primary author against primary source*
 ### 3.1 Author re-verification statement
 
 Of the 23 challenge-originated items, **14 were re-read line-by-line by the primary author** and are carried as VERIFIED FACT without qualification. **9 are carried as reviewer-supplied with class `B`** and are marked in the table. Per `Independent Review != Truth`, none of the nine is used as the sole support for a Layer 1 finding that changes a gate outcome; each is cross-referenced to an author-verified item or is recorded in the unknown register.
+
+## 4. Deployed-Database Evidence (Stage E cross-layer correlation)
+
+Added after `P10-R-08`. Source: three readable deployed database archives on the execution host; a fourth is class `C` (archive format not openable by the host's tooling). Extraction script `p10_scripts/p10_enum_03_deployed_schema.sh`, raw output `raw/P10_ENUM_03_DEPLOYED_SCHEMA.txt`.
+
+Databases: A (`BK12MAY26_2026-08-03`), B (`iEVING_2026-07-23`), C (`iSMEs_2026-07-11`), D (`iTEST02_2026-07-14`, unreadable).
+
+| ID | Observation | Databases | Class |
+|----|-------------|-----------|-------|
+| `E-P10-069` | `public.account_move_line` carries `deferred_start_date` and `deferred_end_date` | A, B — **absent in C** | VERIFIED FACT |
+| `E-P10-070` | `public.account_move_deferred_rel` exists | A, B — absent in C | VERIFIED FACT |
+| `E-P10-071` | `public.res_company` carries all eight deferral configuration columns | A (195 cols), B (188 cols) — absent in C | VERIFIED FACT |
+| `E-P10-072` | `public.account_account` has **no `company_id` column**; company linkage is only `public.account_account_res_company_rel (account_account_id, res_company_id)` | A, B. **C has `company_id integer NOT NULL`** | VERIFIED FACT |
+| `E-P10-073` | Chart sharing: A = 545 relation rows, 544 distinct accounts, 11 distinct companies, **1 account in more than one company**. B = 544 rows, 544 accounts, 11 companies, **0 accounts shared** | A, B | VERIFIED FACT |
+| `E-P10-074` | `public.res_company` holds **44 rows** in each of A and B. All 44 have `generate_deferred_expense_entries_method = on_validation`, `deferred_expense_amount_computation_method = month`, `generate_deferred_revenue_entries_method = on_validation`, `deferred_revenue_amount_computation_method = month`. **Asymmetric configurations: 0.** 43 of 44 have at least one deferral account or journal set | A, B | VERIFIED FACT |
+| `E-P10-075` | `public.account_move_deferred_rel` contains **0 rows** in both A and B. The data-only extraction artefact is **886 bytes, header only**, proving an empty table rather than a failed extraction | A, B | VERIFIED FACT |
+| `E-P10-076` | `public.account_loan*` present in A and B, **absent in C**. `public.account_transfer_model` **absent in A and B, present in C**. `public.account_asset` present in all three | A, B, C | VERIFIED FACT |
+
+### 4.1 Control applied
+
+Every zero above is reported together with the byte size of the artefact it was counted from. This control was adopted from a peer session's recorded lesson, in which an empty extraction produced six fabricated class-`A` absences caught only by a line count.

@@ -3,6 +3,8 @@
 Session: `SMEPLUS-26-09-04-ACC-P10-TBR-REV2-001`
 Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub` · Branch: `research/account-p10-time-based-recognition-2026-09-04-001`
 
+**Revision 2**, regenerated after `P10-R-08` — the deployed-database correlation added `22_P10_DEPLOYED_EVIDENCE_CORRELATION.md`, a third enumeration script, a parsing helper, one raw output and eight evidence items, and corrected three exit criteria. The checksums below supersede revision 1 in commit `8296609`.
+
 This manifest is generated last, so it carries the checksum of every other artefact and not its own. Its numeric prefix reflects generation order; the required filename is preserved verbatim.
 
 ---
@@ -22,29 +24,32 @@ This manifest is generated last, so it carries the checksum of every other artef
 | `a6d867e4faf75613f96ff433ae001501e19287e5f08973ddb1f9b2e2e9635db7` | `09_P10_EVENT_TO_GL_MATRIX.md` |
 | `fea7631c5f705133459b9ef66e0107ee47e3296dd2ad4a30e07e719c1e97b122` | `10_P10_CROSS_PROCESS_OWNERSHIP.md` |
 | `a9a58674acd92618bff2c3a51af9f7edd5381658cd8f8336dc57291f18964cf0` | `10b_P10_SCOPE_OWNERSHIP_MATRIX.md` |
-| `768f85248852a5ba428858772a8ea1dea73d48df3c5f3bc1accb5dd3501409a2` | `11_P10_CONTRADICTION_REGISTER.md` |
+| `355b39db1692506b6427c44fff7b3d737b3f93abf38e351e0328911a87eeee80` | `11_P10_CONTRADICTION_REGISTER.md` |
 | `24d68911896c3d1a6ef433055e584d76f6c709215d64e594c0263d0703277116` | `12_P10_SOURCE_LINK_REGISTER.md` |
-| `78438bce11ac0aa0b79deb53c5e0c8be60946ee3117734ea0c1bf817df23477c` | `13_P10_NEGATIVE_CLAIM_REGISTER.md` |
-| `257731f6710b498ffe9db817d2a93c5cde1c38925407013e724ed6688456741e` | `13b_P10_UNKNOWN_REGISTER.md` |
-| `6a1d6d6ea085e40538d51e8df3093d0a4dfe877abef4877654fbce6f37465cf2` | `14_P10_REVISION_LOG.md` |
-| `c9801f0d96b94fe3b8b00313e15709f49f8a79f41677c6aadac36a0971fe1162` | `15_P10_AAS03_CHALLENGE.md` |
+| `9aa1cac7353049ec757f50ad1a8f8f6f5b5c4f09117eea5602e824940c25e2e4` | `13_P10_NEGATIVE_CLAIM_REGISTER.md` |
+| `eb55156060b1d54f953d89273711ac8599bc33e7355ccf9a866fb6d47d502928` | `13b_P10_UNKNOWN_REGISTER.md` |
+| `69cfc6974f401cd58be0ced405666b6a0d6ceb8966d36800117f9abaed9d25fc` | `14_P10_REVISION_LOG.md` |
+| `ef3fc32479d3b531bf5c39a074adf6edb9d8af19ee671bd9d45a310b6bb65aef` | `15_P10_AAS03_CHALLENGE.md` |
 | `8595803804030fefc6238d571e88f92a155a8d6e759b453204747f21207af74f` | `16_P10_AAS_PLUS.md` |
-| `f6f6ef371f61bf342d0a543c74d1b01b3feb4b62677e95c33d7024fd2bc34cd0` | `17_P10_PMO.md` |
-| `121cbfafa13395d6783c9353575e9776fd702bae883fbe4253f74fb3c941d961` | `18_P10_CORE_RECON_HANDOFF_PACK.md` |
+| `c225d006269ba80c5641763df36c3770c9bdd7898417c3cab8e67659ef5be0ff` | `17_P10_PMO.md` |
+| `37929602fea5cb0a1705b3b8eac7cf178328044512f0633050b7ba2774121ce2` | `18_P10_CORE_RECON_HANDOFF_PACK.md` |
 | `2a7ec0eebe908178437ca13178739934119e4a240f1eec508089e1bee3102a9a` | `19_P10_DEPENDENCY_REGISTER.md` |
-| `86cc2aa89d3669f64074b351167ddca843c16b5b6e06a2fd5ac271356403cdad` | `20_P10_FINAL_GATE_REPORT.md` |
-| `eebe0811318aff5ee234cc0694b2cad348196e40d6201b4388974fa07499be88` | `21_P10_EVIDENCE_MANIFEST.md` |
+| `8c03f92dc54a997769990ad9ab3b58518ffc6b72f85c6ee32b4ec0f9b10d4feb` | `20_P10_FINAL_GATE_REPORT.md` |
+| `9aaa67e4e2ff8c8ad8989389737bc1dea2a8d2a41cbc92aef2ecb6c90e539204` | `22_P10_DEPLOYED_EVIDENCE_CORRELATION.md` |
 
 ## 2. Layer 2 — Audit Quarantine (Boss / PMO / AI-Audit only)
 
 | SHA-256 | File |
 |---------|------|
 | `62d28ced5e6b1af7c7c6a97b1523b20d4cd5c253982f349ef245a4fdaaeeba8a` | `CHALLENGE/L2_AAS03_CHALLENGE_RECORDS.md` |
-| `11b59743b4cd25a881cf6152a5d3c7ed9a2d0b9dc67e270f373b511b5c05946b` | `LAYER2_P10_EVIDENCE/L2_P10_RAW_SOURCE_CITATIONS.md` |
+| `aa807c5799c343b597bd512c2d7cc924fa83623f9888ce3a98eb001df846f0e5` | `LAYER2_P10_EVIDENCE/L2_P10_RAW_SOURCE_CITATIONS.md` |
 | `ad84977d6365340a75adaa89eed615d33c884f96ff97e77618d551ea782b7dc7` | `LAYER2_P10_EVIDENCE/p10_scripts/p10_enum_01_path_set.sh` |
 | `23659a3c4eb66306de123354b21db5f4341df29b41046c02de00a20a86910e94` | `LAYER2_P10_EVIDENCE/p10_scripts/p10_enum_02_mechanisms.sh` |
+| `145973ce6b5d9e703945e952d9365078ec58a973d6b3b78c451c760e5efd1d4b` | `LAYER2_P10_EVIDENCE/p10_scripts/p10_enum_03_deployed_schema.sh` |
+| `0ed989b21423ac010740ef06bd40bf2dbd3628b670838136082b726b3825f234` | `LAYER2_P10_EVIDENCE/p10_scripts/p10_parse_copy_blocks.py` |
 | `585bbd086f0bfb7fba722770d6aac51b3dd3b1185cb18be103e0182e53fbfe1a` | `LAYER2_P10_EVIDENCE/raw/P10_ENUM_01_PATH_SET.txt` |
 | `d15e1833e427a7378dd6c7d02c210abce426901536c8075883371371f0a966ff` | `LAYER2_P10_EVIDENCE/raw/P10_ENUM_02_MECHANISMS.txt` |
+| `4a4c6d30ed0aa5c93044d6ca60010ec75be02b1982b402b84f474fa8f1acc546` | `LAYER2_P10_EVIDENCE/raw/P10_ENUM_03_DEPLOYED_SCHEMA.txt` |
 
 ## 3. Deliverable Conformance
 
@@ -52,29 +57,35 @@ Every filename required by the process directive is present, verbatim, with a nu
 
 `P10_TIME_BASED_RECOGNITION_MODEL` · `P10_DEFERRED_REVENUE_TRACE` · `P10_DEFERRED_EXPENSE_TRACE` · `P10_ACCRUAL_TRACE` · `P10_SCHEDULE_ENGINE_SEMANTIC_RESEARCH` · `P10_PERIOD_RECOGNITION_MATRIX` · `P10_MODIFICATION_REVERSAL_MATRIX` · `P10_ASSET_COMPARISON_MATRIX` · `P10_EVENT_TO_GL_MATRIX` · `P10_CROSS_PROCESS_OWNERSHIP` · `P10_CONTRADICTION_REGISTER` · `P10_SOURCE_LINK_REGISTER` · `P10_EVIDENCE_MANIFEST` · `P10_REVISION_LOG` · `P10_AAS03_CHALLENGE` · `P10_AAS_PLUS` · `P10_PMO` · `P10_CORE_RECON_HANDOFF_PACK`
 
-Added under `SMEPLUS-26-09-04-ACC-REV2-CORR1` and the 8-Criteria Constitution's package requirements:
+Added under `SMEPLUS-26-09-04-ACC-REV2-CORR1`, the 8-Criteria Constitution's package requirements, and the deployed-evidence correction:
 
-`P10_SCOPE_OWNERSHIP_MATRIX` · `P10_NEGATIVE_CLAIM_REGISTER` · `P10_UNKNOWN_REGISTER` · `P10_DEPENDENCY_REGISTER` · `P10_FINAL_GATE_REPORT`
+`P10_SCOPE_OWNERSHIP_MATRIX` · `P10_NEGATIVE_CLAIM_REGISTER` · `P10_UNKNOWN_REGISTER` · `P10_DEPENDENCY_REGISTER` · `P10_FINAL_GATE_REPORT` · `P10_DEPLOYED_EVIDENCE_CORRELATION`
 
 ## 4. Reproducibility
 
 | Artefact | How a third party reproduces it |
 |----------|--------------------------------|
-| Path-set enumeration | Run `LAYER2_P10_EVIDENCE/p10_scripts/p10_enum_01_path_set.sh` unmodified |
-| Mechanism enumeration | Run `LAYER2_P10_EVIDENCE/p10_scripts/p10_enum_02_mechanisms.sh` unmodified |
+| Path-set enumeration | Run `p10_scripts/p10_enum_01_path_set.sh` unmodified |
+| Mechanism enumeration | Run `p10_scripts/p10_enum_02_mechanisms.sh` unmodified |
+| Deployed-database correlation | Run `p10_scripts/p10_enum_03_deployed_schema.sh` unmodified; parse extracted data with `p10_scripts/p10_parse_copy_blocks.py` |
 | Every source citation | Layer 2 §1 and §3 give path, line and method against the declared reference root |
+| Every deployed-database observation | Layer 2 §4, with the raw probe output in `raw/P10_ENUM_03_DEPLOYED_SCHEMA.txt` |
 | Every challenge finding | Layer 2 `CHALLENGE/` records the assignment, the verdict, the settling location and the declared search boundary |
 
-Both scripts declare POPULATION, PATTERN, UNIT and PATH SET in their headers. **The mechanism enumeration's pattern was disproved during this session** and its declared false-negative modes are recorded in `05` §1; the script is shipped unchanged so a reader can reproduce the disproved result and see the defect for themselves.
+All three enumeration scripts declare POPULATION, PATTERN, UNIT and PATH SET in their headers. **The mechanism enumeration's pattern was disproved during this session** and its declared false-negative modes are recorded in `05` §1; the script is shipped unchanged so a reader can reproduce the disproved result and see the defect. The deployed-database script prints the byte size of every artefact next to every zero it reports, so an empty extraction cannot be read as an empty table.
 
 ## 5. Scan Records
 
 | Scan | Command class | Result |
 |------|---------------|--------|
-| Clean-room vendor tokens over Layer 1 | extended-regex scan for vendor model, path, directory and identifier tokens | Two violations found and corrected before commit; final scan returns no match |
+| Clean-room vendor tokens over Layer 1 | extended-regex scan for vendor model, path, directory and identifier tokens | Two violations found and corrected before the first commit; final scan returns no match |
 | Prohibited verdict wording over the whole package | extended-regex scan for bare pass/fail verdicts | Final scan returns no match |
-| System-wide negatives over Layer 1 | scan for absolute negative phrasing | Every survivor carries a declared boundary and a class letter; three claims rewritten, two downgraded |
+| System-wide negatives over Layer 1 | scan for absolute negative phrasing | Every survivor carries a declared boundary and a class letter; three claims rewritten, two downgraded, one later withdrawn as contradicted |
 
 ## 6. Integrity Statement
 
-No finding in this package was silently overwritten. Seven corrections to the primary author's work are recorded in `14_P10_REVISION_LOG.md` with what was originally written, why it was wrong, and who found it. Nine reviewer-supplied items admitted without author re-verification are marked as such in `15` §2 and are never the sole support for a gate-changing conclusion.
+No finding in this package was silently overwritten. **Eight** corrections to the primary author's work are recorded in `14_P10_REVISION_LOG.md` with what was originally written, why it was wrong, and who found it — seven from independent challenge, one from a peer session's recorded lesson, none from the author's own review. Nine reviewer-supplied items admitted without author re-verification are marked in `15` §2 and are never the sole support for a gate-changing conclusion.
+
+## 7. Accepted Clean-Room Exception
+
+Section 2 lists the filenames of this session's own enumeration and parsing scripts, one of which carries a source-file extension. Those are SMEsPlus artefacts, not vendor identifiers; the clean-room rule targets the latter. No other exception was taken.

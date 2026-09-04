@@ -12,7 +12,9 @@ Assessed against `SMEPLUS-DR-EXIT-8C-001`, the Very Deep Research 8-Criteria Uni
 ### `EC-01` Scope Bounded — **SATISFIED WITH A DECLARED FLOOR**
 The research universe is bounded to one declared reference root, stated with its module count and the command that produced it. The mechanism population is declared as **a floor of eight, not a total**, with the pattern's false-negative modes written down. A second directory at the same build string holds a materially different module population and is recorded as a divergence.
 
-What is **not** bounded: the database, runtime, UI, migration and client-side surfaces — all `UNBOUNDED / NOT YET ENUMERABLE` because no such access existed. The remainder is not proven non-gating; see `EC-04`.
+**Corrected after `P10-R-08`.** The database surface **is** bounded: four deployed archives enumerated on a declared path set, three read, one class `C` because the host's tooling cannot open its archive format (`22_P10_DEPLOYED_EVIDENCE_CORRELATION.md`).
+
+What remains unbounded: the runtime, UI, migration and client-side surfaces — `UNBOUNDED / NOT YET ENUMERABLE`. The remainder is not proven non-gating; see `EC-04`.
 
 ### `EC-02` Enumeration Converged — **NOT SATISFIED**
 The author's enumeration was disproved by an independent challenge using a different pattern, which then disproved its own completeness in the same report. Two disciplined enumerations of one bounded surface returned different populations. That is the definition of non-convergence, and it is the fifth consecutive occurrence of this defect class in the programme.
@@ -21,7 +23,10 @@ The author's enumeration was disproved by an independent challenge using a diffe
 Fifteen material unknowns, every one dispositioned, none unclassified. Seven are gating: five are Boss decisions research cannot resolve, two require runtime access. No blocker belonging to this scope has been routed to a later wave to conceal it — the asset-lifecycle route is explicitly assigned to the Asset programme because P10's scope is the kernel question, not the asset object.
 
 ### `EC-04` Tolerance-Zero Closed — **NOT SATISFIED**
-Two company-boundary defects are source-verified and **not runtime-reproduced**:
+
+**Deployed evidence added after `P10-R-08` bounds the realised exposure without closing the criterion.** In the two deployed databases that carry the function, zero recognition entries have ever been generated, all 44 companies hold one identical configuration (so the allocation-policy defect cannot currently diverge), and the chart of accounts is almost unshared (so the cross-company defect would most likely fail loudly today). None of that reproduces or refutes the code behaviour: reading stored data is a layer above reading source and a layer below running the system.
+
+Two company-boundary defects are source-verified and **not reproduced by execution**:
 - a company-scoped allocation policy resolved from the executing scope rather than the owning scope, reachable through the automatic posting routine even in a single-company-per-user tenant;
 - a scopeless report object performing a company-scoped act, whose safer outcome depends on a chart-of-accounts configuration rather than on a control.
 
@@ -39,20 +44,22 @@ One pass has run. It produced seven material corrections to the primary author's
 ### `EC-08` Final Knowledge Package Complete — **SATISFIED FOR WHAT IT COVERS**
 All required artefacts exist: semantic model, three traces, five matrices, scope ownership, cross-process ownership, contradiction / negative-claim / unknown / dependency / revision registers, source-link register, evidence manifest with checksums, challenge record, AAS+ position with a decision package, PMO record, and the handoff pack. Repository, branch, commit and Jira lineage are recorded.
 
-Missing, and declared missing: any evidence layer other than source. Cross-layer correlation — Stage E of the canonical acquisition flow — **could not be performed at all**.
+**Corrected after `P10-R-08`.** Stage E cross-layer correlation **was** performed, across the source layer and the deployed-database layer, and is documented in `22_P10_DEPLOYED_EVIDENCE_CORRELATION.md`. It produced one new finding and materially re-ordered the practical priority of several others.
+
+Still missing, and declared missing: the runtime, UI and migration layers, and one deployed archive the host's tooling cannot open.
 
 ## 2. Gate Summary
 
 | Criterion | Status |
 |-----------|--------|
-| `EC-01` Scope Bounded | SATISFIED, with a declared floor and four unbounded surfaces |
+| `EC-01` Scope Bounded | SATISFIED, with a declared floor; database surface bounded, three surfaces still unbounded |
 | `EC-02` Enumeration Converged | **NOT SATISFIED** |
 | `EC-03` Unknown Exhausted | SATISFIED |
 | `EC-04` Tolerance-Zero Closed | **NOT SATISFIED** |
 | `EC-05` Contradiction Resolution Complete | SATISFIED |
 | `EC-06` Negative Claim Controlled | SATISFIED |
 | `EC-07` Two Consecutive Clean Independent Passes | **NOT SATISFIED** — count is zero |
-| `EC-08` Final Knowledge Package Complete | SATISFIED for source-layer scope |
+| `EC-08` Final Knowledge Package Complete | SATISFIED for the source and deployed-database layers |
 
 ## 3. Recommendation
 
@@ -63,7 +70,7 @@ Three of eight criteria are not satisfied, and one of the three is a tolerance-z
 **What HOLD does not block.** The P10 decision package (`16` §5) is complete on its own criteria and should be released to the Boss now. Six downstream processes are waiting on rulings that no further research can produce. Holding the research gate and releasing the decision package are consistent acts, and the constitution's Stage J requires the second one.
 
 **What lifts the HOLD.** In order of criticality:
-1. Runtime and database reproduction of the two company-boundary defects — the only route to closing `EC-04` either way.
+1. **Executing** reproduction of the two company-boundary defects — the only route to closing `EC-04` either way. The database layer is now read and does not settle them.
 2. A second independent pass with disjoint assignments, including the three declared-unsearched surfaces and a model-declaration scan across the whole reference root.
 3. A third pass, clean, to satisfy `EC-07`'s consecutive requirement.
 4. The Boss rulings on `P10-D-02` and `P10-D-05`, which are prerequisites to specifying the kernel rather than to closing the gate.

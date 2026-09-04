@@ -29,7 +29,8 @@ Every material contradiction records: the competing claims, the evidence for eac
 | **Type** | Data-specific |
 | **Disposition** | **RESOLVED AS CONDITIONAL, NOT AS A CHOICE.** Both outcomes are real; which one occurs is decided by a configuration that is not a control. |
 | **Consequence** | The safer outcome is an accident. `P10-S-02` stands regardless of which branch a given tenant is on. |
-| **Evidence still required** | Runtime reproduction under both chart configurations. Recorded in the unknown register as `P10-U-02`. |
+| **Evidence still required** | An **executing** reproduction under both chart configurations. Recorded as `P10-U-02`. |
+| **Deployed evidence added after `P10-R-08`** | Both deployed databases carrying the function have the shareable chart shape and **no scalar company column at all** — the old structural guarantee is gone. But only 1 account of 544 in one and 0 of 544 in the other are actually shared, so today the loud branch is the likely one. This bounds the realised exposure; it does not change the conditional. |
 
 ## `P10-C-03` — How many time-based recognition mechanisms exist?
 
@@ -110,4 +111,27 @@ Every material contradiction records: the competing claims, the evidence for eac
 | Both claims stand; inference forbidden | 1 (`C-04`) |
 | HOLD / EVIDENCE REQUIRED, routed to Accounting-Tax | 2 (`C-05`, `C-06`) |
 | Declared, not resolved | 1 (`C-07`) |
+| **Unresolved as a difference of opinion** | **0** |
+
+
+## `P10-C-10` — The package's own evidence-base declaration contradicted the host
+
+| | |
+|---|---|
+| **Claim A** | "This session had source evidence only; no database access existed." Asserted in three Layer 1 documents. |
+| **Claim B** | Four deployed database archives were present on the execution host, three readable with installed tooling. |
+| **Type** | Evidence-integrity — a negative claim about the research's own evidence base, made without the search that would support it |
+| **Disposition** | **RESOLVED IN FAVOUR OF B.** Claim A withdrawn and replaced by `22_P10_DEPLOYED_EVIDENCE_CORRELATION.md`. |
+| **Consequence** | One new finding, eight new evidence items, corrections to three exit criteria, and a material re-ordering of which defects are live versus latent. |
+| **How it was found** | Not by the author's review and not by any of the four challenges — none was scoped to the evidence base. It surfaced from a **peer session's recorded lesson** that these archives exist and are readable. |
+| **Lesson** | A declared absence of evidence is a negative claim and needs a declared search, exactly like any other. See `14` `P10-R-08`. |
+
+### Summary, revised
+
+| Disposition | Count |
+|-------------|-------|
+| Resolved on evidence | 6 |
+| Both claims stand; inference forbidden | 1 |
+| HOLD / EVIDENCE REQUIRED, routed to Accounting-Tax | 2 |
+| Declared, not resolved | 1 |
 | **Unresolved as a difference of opinion** | **0** |

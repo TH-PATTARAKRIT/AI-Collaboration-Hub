@@ -88,3 +88,26 @@ Silent overwrite of contradicted or corrected findings is prohibited. Every corr
 | Reviewer findings admitted without author re-verification, and marked as such | 9 |
 
 **The author corrected none of its own material errors.** This is stated plainly because the programme's own standing lesson is that self-review does not replace independent review, and this round is another instance rather than an exception. The practical consequence for the gate is recorded in `20_P10_FINAL_GATE_REPORT.md` `EC-07`: one independent pass has completed, not two, and the pass that completed produced seven material corrections — which is not the profile of a converged round.
+
+
+---
+
+## `P10-R-08` — The package declared a single evidence layer without searching for the others
+
+| | |
+|---|---|
+| **Originally written** | "This session had source evidence only — no database, runtime or UI access", in the PMO record, the gate report and the handoff pack. The gate report used it to explain why Stage E cross-layer correlation "could not be performed at all". |
+| **Why wrong** | Four deployed database archives were sitting on the execution host, three of them readable with tooling already installed. The author never looked. The claim was a **negative about the author's own evidence base, asserted without the search that would support it** — the exact defect class the project's negative-claim standard exists to prevent, committed in the document that assesses compliance with that standard. |
+| **Found by** | Not by the author's review, and not by any of the four challenges — none of which was scoped to the evidence base itself. It was found while writing the session memory, on reading a **peer session's** recorded lesson that database dumps exist on this host and are readable primary evidence. |
+| **Replaced with** | `22_P10_DEPLOYED_EVIDENCE_CORRELATION.md`, a shipped extraction script, raw output, eight new evidence items, one new finding (`P10-F-37`), and corrections to `EC-01`, `EC-04` and `EC-08`. |
+| **What it changed** | Materially. The estate is on **two different product lines with different sets of time-based mechanisms**; one deployed database has **no deferral structure at all**; all 44 companies use the **weakest** of the two generation paths; **zero** deferral entries have ever been generated; and the chart of accounts is structurally shareable but currently almost unshared. None of that was knowable from source. |
+| **Standing lesson reinforced** | Test the evidence base before declaring it. "No access" is a negative claim and needs a search like any other. A peer session had already learned this and written it down — **the lesson was available and unread until after the package was pushed.** |
+
+### Correction arithmetic, updated
+
+| | Count |
+|---|-------|
+| Material corrections to the primary author's work | **8** |
+| Of which found by the author's own review | **0** |
+| Of which found by independent challenge | 7 |
+| Of which found by reading a peer session's recorded lesson | 1 |
