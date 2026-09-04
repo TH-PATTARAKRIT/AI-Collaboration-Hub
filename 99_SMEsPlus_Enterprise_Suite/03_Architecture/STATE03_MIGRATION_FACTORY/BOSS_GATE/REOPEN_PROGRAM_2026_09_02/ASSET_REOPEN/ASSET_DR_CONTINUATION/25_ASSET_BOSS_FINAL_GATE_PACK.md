@@ -421,7 +421,8 @@ Both are close. Neither needs more research.
 | Architecture frozen | **No** |
 | Boss approval claimed | **No** |
 | Predecessor branches | Both intact on the remote and unmodified |
-| Jira | See the session hand-off note accompanying this pack |
+| Jira | `ERPPLUS-17` — *Fixed Asset Module Delivery*, the authoritative Asset issue. Session recorded as a comment. **Not moved to Done** — Boss is sole Final Approver |
+| Final Gate Pack | `.../ASSET_REOPEN/ASSET_DR_CONTINUATION/25_ASSET_BOSS_FINAL_GATE_PACK.md` on the branch above |
 
 **Terminal state: READY FOR BOSS FINAL GATE.**
 

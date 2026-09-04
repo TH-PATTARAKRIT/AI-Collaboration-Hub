@@ -145,7 +145,7 @@ read as the domain being complete.
 | Prior sessions overwritten | **No** — both predecessor branches intact on the remote |
 | "PASS" used as a session or domain verdict | **No** — used only as an AAS+ per-area verdict, as §22 requires |
 | Layer discipline observed | Yes — `25` is Layer 1, everything else Layer 2 |
-| Jira updated | See `25` §25 |
+| Jira updated | **Yes** — `ERPPLUS-17` *Fixed Asset Module Delivery*, the authoritative Asset issue, updated by comment. The connector was **tested**, not assumed unavailable — the baseline's `REV-11` records that assumption as a prior error. Issue **not** transitioned to Done |
 
 ## 11. Declared deviations
 
