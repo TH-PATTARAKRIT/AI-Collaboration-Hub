@@ -49,7 +49,7 @@ Claude model:
 This session is authorized for:
 
 - Inventory Deep Research R4.
-- L1-L12 minimum execution.
+- L1-L12 mandatory full-depth execution.
 - L13+ conditional auto-escalation with evidence.
 - Inventory Final Solution v2.0 preparation.
 
