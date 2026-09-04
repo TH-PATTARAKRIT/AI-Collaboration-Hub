@@ -5,7 +5,8 @@
 
 ## 0. SESSION COMMIT
 
-Recorded in the follow-up commit `manifest: record P09 session commit` and in the session closure report. The checksums below cover the package as committed in the first commit.
+Package commit: **`16f884f`** (`16f884ff5eed32a0f9e01758c0ca14545a673d38`) on `research/account-p09-plan-to-analyze-2026-09-04-001`.
+The checksums below cover the package as committed at `16f884f`; this line is the only content added afterwards.
 
 ## 1. CHECKSUMS
 

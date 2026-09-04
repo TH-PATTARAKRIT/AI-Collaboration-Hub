@@ -14,7 +14,7 @@
 | Working branch | `research/account-p09-plan-to-analyze-2026-09-04-001` |
 | Base commit | `88f52cd` |
 | Package path | `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/ACCOUNT_P09_PLAN_TO_ANALYZE/` |
-| Session commit | recorded in `PACKAGE_MANIFEST_SHA256.md` §0 and in the session closure report |
+| Session commit | **`16f884f`** — `research(account): P09 Plan-to-Analyze management accounting deep research` |
 | Merge | **not merged, not requested** |
 | Files | 28 — 21 Layer 1 (including this file, the index and the checksum manifest), 6 Layer 2, plus the checksum manifest itself; 27 files are checksummed |
 

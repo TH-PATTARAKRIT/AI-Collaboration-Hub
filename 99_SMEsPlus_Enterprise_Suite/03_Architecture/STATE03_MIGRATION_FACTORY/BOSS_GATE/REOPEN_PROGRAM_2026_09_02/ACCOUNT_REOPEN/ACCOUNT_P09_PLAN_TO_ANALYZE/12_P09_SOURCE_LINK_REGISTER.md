@@ -56,7 +56,7 @@ It records **where each Layer 1 claim's evidence lives**, so that any claim can 
 | Base commit | `88f52cd` — *governance: approve canonical evidence acquisition flow* |
 | Package path | `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/ACCOUNT_P09_PLAN_TO_ANALYZE/` |
 | Merge status | **not merged, not requested.** Boss decides. |
-| Session commit | recorded in `P09_EVIDENCE_MANIFEST` §1 after commit |
+| Session commit | **`16f884f`** |
 
 ## 5. JIRA EVIDENCE
 
