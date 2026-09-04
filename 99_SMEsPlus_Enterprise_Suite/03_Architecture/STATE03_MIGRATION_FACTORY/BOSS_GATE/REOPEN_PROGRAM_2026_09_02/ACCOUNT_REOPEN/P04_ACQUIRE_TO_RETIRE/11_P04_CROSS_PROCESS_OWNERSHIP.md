@@ -150,7 +150,27 @@ shared method, no shared settings.
 posted by the same scheduled action — so **both** are subject to the silent
 lock-date re-dating of §3.
 
-## 6. Peer dependencies
+## 6. Cross-process publication actually performed
+
+The correction requires P11 to reconcile scope semantics across P01–P10
+**continuously**. P01 through P11 were confirmed to be executing **concurrently**
+at the time of this session. Rather than record dependencies and leave them
+undiscovered, P04 published its findings to the owning sessions directly.
+
+| Sent to | Content |
+|---------|---------|
+| **P11** | Both unresolved scope questions (`P04-SC-03`, `P04-SC-04`); the narrowing of the prior company-optional finding and the test applied to it; all seven cross-process findings; and the handover-residue governance item with a recommended carry-forward rule |
+| **P08** | The silent lock-date re-dating, with its mechanism, the estate's own test result, its extension to the hard lock and to time-based recognition entries, and the contrast with the hard-refused disposal. Plus: no year-close entry exists; no sub-ledger reconciliation exists; and the **tax book** gap re-opened as `P04-B-13` with P08 named as owner |
+| **P09** | The analytic cancellation, the divergent-distribution residue, the non-enforcement of mandatory plans on every programmatic post, the un-attributed capitalized addition, and the plan-versus-amount scope split (`P04-PD-04`) |
+| **P03** | The nine-path enumeration with its declared unit **and its honest caveat**, the standard-costing ledger mismatch, the three further reconciliation failures, the re-verified operation-to-equipment gap, and the work-centre scope defect assigned to them (`P04-B-35`, `P04-PD-01`) |
+| **P07** | All five statutory sources retrieved this session, with the classification discipline attached — so the retrieval is not duplicated — and the three tax questions routed to them (`P04-B-24`, `P04-B-39`, `P04-B-25`), plus the unresearched borrowing-cost item (`P04-B-05`) |
+
+This is publication, **not** agreement. Every ownership ruling in §1–§5 that
+assigns a fact to another process remains **provisional on that process's own
+determination**, and no peer dependency was treated as closed by having been
+communicated.
+
+## 7. Peer dependencies
 
 | ID | Dependency | Owner | Status |
 |----|-----------|-------|--------|
