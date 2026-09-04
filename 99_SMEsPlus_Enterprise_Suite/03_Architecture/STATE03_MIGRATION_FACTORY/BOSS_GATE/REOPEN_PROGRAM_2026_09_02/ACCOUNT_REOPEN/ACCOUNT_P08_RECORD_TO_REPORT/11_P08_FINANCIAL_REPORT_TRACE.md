@@ -8,7 +8,9 @@ A statement is a named definition owning ordered rows and ordered columns. Each 
 
 `FR-01` — **Six derivation strategies exist**, and only three of them can be expressed as a filter over journal items. `FACT VERIFIED`. Denominator declared: 6 strategies, 5 with a batch implementation plus one evaluated separately; 5 of 6 are in the auditable set; **3 of 6** can be translated into a journal-item filter.
 
-`FR-02` — Across the shipped statement pack, **90 of 158** value definitions (57%) use the one strategy that is excluded from the auditable set outright. `FACT VERIFIED`; denominator = every value-definition declaration in the pack's data files, by declared pattern.
+`FR-02` — Across the shipped statement pack, **90** value definitions use the one strategy that is excluded from the auditable set outright. The **numerator of 90 is `FACT VERIFIED` and was independently reproduced by a reviewer.**
+
+**The percentage is withdrawn.** The draft published "90 of 158 (57%)" and described the denominator as arriving "by declared pattern" — **no such pattern was declared anywhere in the package**, and a reviewer attempting to reproduce 158 obtained 145 and 164 under two defensible patterns and could not reach 158 under any. Under the programme's own rule that no percentage may be published without a verified denominator, the figure is withdrawn rather than repaired. The finding it supported — that the excluded strategy **dominates** the shipped pack — stands on the numerator and on the two reproducible denominators, both of which put it above half.
 
 ## 2. The eight statutory outputs
 

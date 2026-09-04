@@ -23,9 +23,9 @@ This pack is what Core Accounting Reconciliation needs from P08 and nothing more
 
 | # | Question | P08's answer |
 |---|---|---|
-| 1 | What is the accounting source of truth? | The journal item. Everything above it in the chain is transient; everything below it is a projection or a reading. |
+| 1 | What is the accounting source of truth? | The journal item, **within the ledger**. Everything above it in the chain is transient; the general ledger and the partner subledger below it are projections. **Outside the ledger, genuine separate subsidiary stores exist** — the fixed-asset register and the inventory valuation record — and nothing reconciles either to it. |
 | 2 | Is the general ledger a store? | No. It is a reading of the journal items. There is no separate ledger table. |
-| 3 | Is the subledger a store? | No. It is a projection of journal items net of the matching graph — **and, in the party dimension, a projection of the matching graph itself**. |
+| 3 | Is the subledger a store? | **The partner subledger is not** — it is a projection of journal items net of the matching graph, and in the party dimension a projection of the matching graph itself. **The fixed-asset register and the inventory valuation record are**, and the kernel imposes no reconciliation obligation on either. |
 | 4 | Is the financial report derived? | Mostly. Three stored value classes are **not** derived from journal items, and no ledger control reaches them. |
 | 5 | Is the general ledger original or derived truth? | **Both, and nothing marks which.** Under a document-generated entry it is derived with a recoverable origin; under a manual journal it is the first and only assertion. No field distinguishes them. |
 | 6 | Can one business fact produce two accounting effects undetected? | Yes. There is no accounting-event identity to be *one* of — `A VERIFIED ABSENCE` across all 22 declared roots. |

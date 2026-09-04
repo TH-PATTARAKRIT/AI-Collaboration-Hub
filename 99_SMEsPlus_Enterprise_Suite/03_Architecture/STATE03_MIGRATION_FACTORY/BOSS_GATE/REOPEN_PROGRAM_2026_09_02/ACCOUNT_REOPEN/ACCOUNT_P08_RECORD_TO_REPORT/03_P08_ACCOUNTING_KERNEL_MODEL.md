@@ -31,7 +31,7 @@ Answering it requires separating three things that the benchmark fuses: what a l
 
 ### 2.2 The consequence
 
-`KRN-01` — **The journal item is the only durable accounting fact in the benchmark.** Everything above it in the chain is transient; everything below it is a projection. `FACT VERIFIED`.
+`KRN-01` — **The journal item is the only durable accounting fact *in the ledger*.** Everything above it in the chain is transient; the partner subledger and the general ledger below it are projections. **Corrected after independent review, which found the accepted peer correction `REV-P-02` had not been propagated here:** the statement does **not** hold across the wider system — the **fixed-asset register and the inventory valuation record are genuine separate stores** carrying independently maintained values, and nothing reconciles either to the ledger. See `KRN-05a`. `FACT VERIFIED` as re-worded.
 
 `KRN-02` — **The journal entry is the accounting representation of an accounting event, and it is also the event's only record.** There is no object behind it. `FACT VERIFIED`. Prior Wave A reached this conclusion on a narrower search; P08 reproduces it at full model-population scope, which upgrades its evidential standing without changing its content.
 
@@ -147,7 +147,7 @@ The directive asks specifically whether the general ledger is original truth, de
 
 | Statement | Class |
 |---|---|
-| The journal item is the only durable accounting fact in the benchmark | `FACT VERIFIED` |
+| The journal item is the only durable accounting fact **in the ledger**; genuine separate subsidiary stores exist outside it | `FACT VERIFIED` as re-worded — the unqualified form was `CONTRADICTED` by the P04 peer finding and is withdrawn |
 | No accounting-event object exists | `A VERIFIED ABSENCE`, scope stated in §2.1 |
 | No posting-instruction object exists | `A VERIFIED ABSENCE`, same scope |
 | The subledger is a projection of items **and** the matching graph | `FACT VERIFIED` |

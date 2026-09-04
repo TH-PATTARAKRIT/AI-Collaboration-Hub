@@ -56,15 +56,16 @@ At P08's close, no peer process had committed output. P08 recorded the interface
 | `P08-BD-02` | May a tenant author a statutory statement layout, or only a management one? |
 | `P08-BD-03` | May the platform hold a rate source, or must every tenant supply its own? |
 | `P08-BD-04` | Are the accounting event and the posting instruction stored objects, or an append-only log? |
-| `P08-BD-05` | Which of the 22 reference roots does SMEsPlus target? |
+| `P08-BD-05` | Which of the 22 reference roots does SMEsPlus target? **Put with a stated limitation:** the product-line column supporting this decision is reproducible for only 14 of the 22 roots; the other 8 are inferred from directory naming and are marked as such. |
 | `P08-BD-06` | Is the year-end result posted, or derived at report time? This determines whether a year can be reopened at all. **A reference implementation of the derived option exists and is described in this package; none of the posted option was found, class `B`.** *(Premise corrected after independent review.)* |
-| `P08-BD-07` | Does the FX ruling's prohibition extend to the earliest-rate-ever substitution, not only to parity? |
+| `P08-BD-07` | Does the FX ruling's prohibition extend to the earliest-rate-ever substitution, not only to parity? **Premise corrected after independent review:** parity is present in **22 of 22** declared roots, so it is not avoidable by root choice; the earliest-rate-ever tier is present in **21 of 22** and is therefore **implementation-version dependent**. The draft stated the inverse of both. |
 | `P08-BD-08` | Must reporting resolve a measurement identically to posting? |
 | `P08-BD-09` | Is an analytic dimension a fact or an attribution? |
 | `P08-BD-10` | The sequencing question of `P08-CONTRA-15`. |
 | `P08-BD-12` | Does SMEsPlus hold a consolidation ledger with its own posted eliminations, minority-interest allocations and cumulative translation adjustment, or is consolidation a pure derivation with no adjustment capability? Raised by independent review, which observed the package's own consolidation requirement left eliminations with no home. |
 | `P08-BD-13` | What is a company's functional currency, may it change, and where does a cumulative translation adjustment sit? |
 | `P08-BD-14` | Does SMEsPlus carry a parallel cash-basis measurement, or does one ledger serve both bases? Related to `P08-BD-11`. |
+| `P08-BD-15` | Which negative-claim class table governs the programme? Two instruments define `B`, `D` and `E` differently — see `P08-CONTRA-17`. |
 | `P08-BD-11` | How many measurement bases must SMEsPlus carry over one set of accounting events, and in what form — parallel books, parallel valuations on one fact, or a derived adjustment layer? Raised by P04's re-opening of the tax-book gap. |
 
 Each of these is normative, not factual. Further research cannot resolve any of them, which is why they are recorded here rather than left open as unknowns.

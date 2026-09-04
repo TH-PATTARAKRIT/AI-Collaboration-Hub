@@ -82,3 +82,12 @@ Script retained at `/tmp/rootscan.sh` for the session; reproduced from the patte
 | `EV-P-11` | Settlement item references: `account/models/account_partial_reconcile.py:14-19` — `debit_move_id` / `credit_move_id`, `required=True`, no explicit `ondelete` → framework default for required = `RESTRICT` (`odoo/fields.py:3189-3197`). |
 | `EV-P-12` | Warehouse-manager grant on the settlement record: `sale_stock/security/ir.model.access.csv:14` — `1,1,1,1` on `account.partial.reconcile` to `stock.group_stock_manager`. |
 | `EV-P-13` | Unconditional item-deletion audit record: `account/models/account_move_line.py:1709-1721` — `move._message_log("Journal Item %s deleted", tracking_value_ids=…)` for any move with `posted_before`, independent of the retention flag. |
+
+## 5. Corrections to §1 and §3 after independent review
+
+| Item | Correction |
+|---|---|
+| Version split | **14 on the 18 line, 8 on the 19 line** (draft said 13/9). Product line is readable from a version file in **14 of 22** roots; the other 8 — `R-04`, `R-07`, `R-08`, `R-09`, `R-12`, `R-14`, `R-19`, `R-20` — are **INFERRED from directory naming** and are marked so. |
+| `RS-A-01` residual | Non-marketing matches across the set are `calendar.event`, `calendar.event.type`, `barcodes.barcode_events_mixin`, plus a print-report model in 9 roots. None accounting. |
+| `RS-P-01` | **Inverted in the draft.** `R-18` (`ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo_old`) — file **present and complete** (22 847 bytes, dated 2024-10-04), holding an **older two-tier resolver**: `COALESCE((SELECT r.rate … WHERE r.currency_id = c.id AND r.name <= %s AND (r.company_id IS NULL OR r.company_id = %s) ORDER BY r.company_id, r.name DESC LIMIT 1), 1.0)` at `addons/base/models/res_currency.py:121-135`. Therefore: **parity present 22/22**; **earliest-rate-ever tier present 21/22, absent in `R-18`**. |
+| `RS-A-03` | A reviewer widened the pattern to **all file types**, not only program files, across all 22 roots: still **0**. The `.sql` / trigger / migration-script surface remains `C NOT YET SEARCHED` — candidate files exist in 7 roots and were not opened. |

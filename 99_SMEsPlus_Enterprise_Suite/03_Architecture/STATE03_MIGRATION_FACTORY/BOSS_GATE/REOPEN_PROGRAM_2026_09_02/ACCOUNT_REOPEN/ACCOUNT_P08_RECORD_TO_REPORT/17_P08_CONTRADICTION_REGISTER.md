@@ -29,6 +29,13 @@ Every material contradiction records the competing claims, the evidence for each
 | `P08-CONTRA-12` | A prior round claimed "no fiscal-year model exists"; a later round contradicted it | P08 confirms the year entity exists, and confirms the surviving load-bearing claim — that no closing, locking or state attaches to it | **Contradiction already resolved by the prior programme; P08 does not re-open it, and does not re-import the withdrawn wording** |
 | `P08-CONTRA-13` | A prior round claimed "no rate-type dimension exists"; a later round contradicted it | P08 confirms the dimension exists, is derived at query time, is assigned by account classification rather than by transaction, and attaches to no posted fact | **Prior contradiction upheld; P08 adds the reason the dimension is nonetheless unusable for a posted fact** |
 
+## 2A. Contradictions between two governing instruments, raised not resolved
+
+| ID | Statement |
+|---|---|
+| `P08-CONTRA-17` | **Two governing instruments define the negative-claim class letters differently.** The ratified standard defines `B` = *not found in searched scope*, `D` = *unknown*, `E` = *contradicted*. A later closure-round compliance artefact defines `B` = *searched, not answerable from source*, `D` = *residual of a closed search*, `E` = *no evidence found, reported as absence — prohibited as a conclusion*. The letters `A` and `C` agree; `B`, `D` and `E` do not. **P08 uses the ratified standard's table and says so in `00` §2.** Which table governs is a `BOSS CONTROLLED DECISION` — `P08-BD-15` — and until it is settled, any cross-round comparison of class letters is unsafe. |
+| `P08-CONTRA-18` | **The class-`A` prohibition's closing condition is stated two ways in the same parent package.** One line makes it "until the root set is declared", which this session satisfies; the gating register and the gate report make it "which reference core root does SMEsPlus target", which this session cannot satisfy because it is a programme declaration. P08 records both readings and takes neither silently. See `01A` §1. |
+
 ## 3. Contradiction between a Boss instrument and a session assumption
 
 | ID | Statement |
