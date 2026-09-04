@@ -200,10 +200,22 @@ chart, which sets both the boolean and the accounts. `EV-P02-042`, `EV-P02-044`.
 is material: any P02 accounting design that assumes perpetual valuation is assuming a configuration
 the Thai localisation does not deliver.
 
-**`FACT VERIFIED` — P02-F-05c (ASYMMETRY).** The Thai chart **does** provide an interim account for
-the inbound direction — `Uninvoiced Receipts (2103, liability)` — and provides **no** counterpart
-for the outbound direction. The purchase side of the interim mechanism is chart-supported; the
-sales side is not. `EV-P02-044`
+**`CONTRADICTED` — P02-F-05c, WITHDRAWN.** This originally claimed that the Thai chart supports the
+**inbound** interim direction and not the outbound one. **The independent challenge refuted it and the
+primary session verified the refutation.**
+
+The chart does define an account named `Uninvoiced Receipts (2103, liability)`, but that account occurs
+**exactly once in the whole localisation — in its own definition row** (`EV-P02-081`). It is **not** wired
+to the inbound stock-account property, or to any property at all: the Thai template sets **four** property
+accounts — receivable, payable, expense category, income category — and it is none of them
+(`EV-P02-043`).
+
+**Corrected statement — `FACT VERIFIED`: the Thai chart supports NEITHER interim direction.** It contains
+a bare, unconnected liability account whose name suggests the purchase-side role and which nothing uses.
+There is no asymmetry; there is a **uniform absence**. The corrected finding is simpler and stronger: an
+implementer configuring perpetual valuation under this chart must create interim and valuation accounts by
+hand **for both directions**. The symmetry question routed to P01 on the strength of the withdrawn claim
+is withdrawn with it — see `10_P02_CROSS_PROCESS_OWNERSHIP.md` D-05.
 
 **`BOSS CONTROLLED DECISION` — P02-B-01.** SMEsPlus must decide whether cost-of-sales timing is a
 *policy* (tenant-configurable, versioned, effective-dated, period-locked, and validated against the
@@ -255,12 +267,23 @@ Detail in `03_P02_DELIVERY_COGS_TRACE.md`. `FACT VERIFIED` `EV-P02-015`, `EV-P02
 | Date | Rule | Tag | Evidence |
 |---|---|---|---|
 | Document date (tax point) | If blank at posting, **silently set to the system's current date** for customer invoices. For vendor bills a blank date is a hard error instead. | `FACT VERIFIED` | `EV-P02-012` |
-| Accounting date (GL period) | If it violates a lock date, it is **silently moved forward** to the earliest open period; posting is **not** refused. | `FACT VERIFIED` | `EV-P02-013`, `EV-P02-014` |
+| Accounting date (GL period) | If it violates a lock date it is **silently moved forward and posting is not refused**. The target is **not** "the earliest open period" — see P02-F-08b. | `FACT VERIFIED` | `EV-P02-013`, `EV-P02-014` |
 
 **`FACT VERIFIED` — P02-F-08 (TOLERANCE-ZERO CANDIDATE): posting into a locked period does not
 fail; it silently relocates the entry to a different period and leaves the document date behind.**
 
-**`FACT VERIFIED` — the tax consequence, corrected by the T3 evidence track.** The tax report keys
+**`FACT VERIFIED` — P02-F-08b: the relocation is capped at today and is NOT guaranteed to reach an open
+period.** Raised by the independent challenge, verified by the primary session. The target is *the day
+after the last violated lock*, snapped to a period end, then **capped at today** for a sale document
+(`EV-P02-014`). Where the effective lock date lies **in the future**, that cap returns **today — still
+inside the locked window** — and **nothing re-checks after the move** (`EV-P02-013`).
+
+A future lock date is reachable: the settings wizard refuses one (`EV-P02-082`), but the company-level
+write validation does **not** — it checks only hard-lock decrease or removal, unreconciled statement lines
+and unhashed entries (`EV-P02-083`). A lock date written directly, by import or by interface call, may be
+in the future.
+
+**`FACT VERIFIED` — the tax consequence, corrected by the T3 evidence track. The tax report keys
 on the **accounting date**, not the document date (`EV-P02-056`). The divergence is therefore not
 "tax sees one date, the ledger sees another" — it is sharper than that:
 
@@ -324,7 +347,7 @@ Analysed in `11_P02_EDGE_CASE_MATRIX.md` §6 and §7 and in the T4 evidence extr
 
 | # | Business fact | Canonical owner (reference) | Second mutable holder of the same fact | Consequence |
 |---|---|---|---|---|
-| 1 | How much left the warehouse | the movement ledger | the order line's delivered-quantity field, which is **stored and writable at the data layer** — see `05` §3a for the exact reachability | Revenue under delivery-based invoicing can be driven by an asserted number rather than by the outflow ledger — `EV-P02-002`, `EV-P02-070` |
+| 1 | How much left the warehouse | the movement ledger | the delivered-quantity field — **but only for the three derivation methods with no outflow behind them**; for goods it is a recomputed cache of the ledger, not a second holder. Corrected after independent challenge — `05` §3a | Revenue under delivery-based billing rests on an **unevidenced assertion** for services, milestones and timesheets — `EV-P02-002`, `EV-P02-070`, `EV-P02-084` |
 | 2 | How much has been billed | the posted invoice set | a second counter that also counts drafts | Two answers to one question — `EV-P02-005`, `EV-P02-006` |
 | 3 | What the goods cost | the valuation layer created at outflow | the cost re-derived at invoice post, with a standard-price top-up when layers run out | Cost of sales ≠ inventory relieved — `EV-P02-019`, `EV-P02-020` |
 | 4 | When the sale happened | the document date | the accounting date, silently movable | Tax period ≠ GL period — `EV-P02-013` |

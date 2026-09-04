@@ -101,6 +101,46 @@ reading was wrong, the original statement is preserved alongside the correction.
 | **Materiality** | Maximum — it is the structural summary of this package. |
 | **Disposition** | `11_P02_EDGE_CASE_MATRIX.md` §4; `18_P02_PMO.md` §2. |
 
+### C-12 — The Thai inbound-interim asymmetry does not exist
+
+**Original:** the Thai chart supports the purchase-side interim mechanism and not the sales side.
+**Contradicted by:** the account occurs once, in its own definition row, wired to nothing (`EV-P02-081`).
+**Correct:** neither direction is chart-supported — a **uniform absence**, not an asymmetry.
+**Materiality:** high — it was a headline in `01` and `07` and it routed a false question to P01.
+**Disposition:** withdrawn and replaced by P02-F-38c. Raised by independent challenge **CH-01**, verified.
+
+### C-13 — Owner-restricted stock does not produce a phantom cost line on an order-linked invoice
+
+**Original:** two confirmed phantom-cost paths follow from the eligibility mismatch.
+**Contradicted by:** the re-derivation subtracts owner-excluded quantity before the top-up, the result is
+zero, and the generator's zero-skip fires (`EV-P02-020`, `EV-P02-016`).
+**Correct:** **one** confirmed instance, the unpicked-completion case. The owner-restricted path survives
+only where no order line is linked, which is already P02-F-21.
+**Materiality:** moderate — it removes a claimed defect and reclassifies an edge case as sound.
+**Disposition:** `03` §5a. Raised by **CH-02**, verified.
+
+### C-14 — The reset-to-draft control exists and is wired on one side only
+
+**Contradiction:** the package treated the destruction of cost lines as an absence of control.
+**Actual:** a guard exists that would prevent it, and the link it tests is written in **one** non-test
+place in the whole root — on the **purchase** side (`EV-P02-092`, `EV-P02-086`).
+**Materiality:** high, and it makes the fix cheap: the control is already built.
+**Disposition:** P02-F-24b; collapses with P02-F-15 into one root cause. Raised by **CH-03**, verified.
+
+### C-15 — The obligation ledger does not resolve six findings
+
+**Contradiction:** `10` §2 claimed six; three of the six are **one defect described three times** and
+three are untouched by it (the service case, the producer defect, the chart gap).
+**Materiality:** high — it was the package's principal handoff to Core Accounting Reconciliation.
+**Disposition:** `10` §2a; `17` D-I corrected and D-VI split out; H-01 corrected. Raised by **CH-13**.
+
+### C-16 — A summary count did not reproduce from its own table
+
+**Contradiction:** `11` §9 stated totals that a mechanical recount of the table beneath them contradicts.
+**Materiality:** high as a **method** matter — this is the enumeration failure the denominator rule exists
+to prevent, and it was found by an outside reader.
+**Disposition:** recounted and restated; recorded as `RE-07`. Raised by **CH-14**.
+
 ## 2. Contradictions Between Evidence Tracks
 
 **None found.** The four tracks were run independently against the same root with independently declared

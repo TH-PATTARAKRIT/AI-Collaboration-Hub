@@ -18,7 +18,7 @@
 
 | ID | Accounting event | Trigger | Date used | Journal | Conditional on | Tag |
 |---|---|---|---|---|---|---|
-| AE-01 | **Inventory relief on outflow** | movement completion with a picked line | **today** — not the movement's own date | stock journal from the product category | storable **and** real-time valuation **and** not owner-restricted | `FACT VERIFIED` `EV-P02-023`, T1 §1, T4 §8 |
+| AE-01 | **Inventory relief on outflow** | movement completion with a picked line | **three branches** — a forced-period date if present, else the linked accounting line's date, else **today**. The ordinary delivery case is the third: today, not the movement's own date. Corrected after independent challenge. | stock journal from the product category | storable **and** real-time valuation **and** not owner-restricted | `FACT VERIFIED` `EV-P02-093`, `EV-P02-023` |
 | AE-02 | **Revenue + receivable + output tax** | customer-invoice post | accounting date, silently movable | sale journal | — | `FACT VERIFIED` `EV-P02-026` |
 | AE-03 | **Cost of sales** | customer-invoice post, **same document as AE-02** | same as AE-02 | same as AE-02 | split recognition on **and** storable **and** real-time valuation | `FACT VERIFIED` `EV-P02-015`, `EV-P02-018` |
 | AE-04 | Interim-account matching | immediately after AE-02/AE-03 post | n/a — matching, not an entry | n/a | account reconcilable **and** real-time valuation **and** a linked completed customer-direction movement | `FACT VERIFIED` `EV-P02-041` |
@@ -39,7 +39,7 @@ across 13 accounting events. This is the consolidated answer:
 
 | Rule | Events | Consequence |
 |---|---|---|
-| **Today (system clock)** | AE-01, AE-05 | Inventory relief is dated when the record was validated, **not when the goods moved**. A picking validated on the 3rd for goods that left on the 1st books on the 3rd. `FACT VERIFIED` T4 §8 |
+| **Today (system clock)** — the third of three branches, and the ordinary case | AE-01, AE-05 | Inventory relief is dated when the record was validated, **not when the goods moved**. A picking validated on the 3rd for goods that left on the 1st books on the 3rd. The other two branches — a forced-period date, and the linked accounting line's date — are reachable and were originally omitted. `FACT VERIFIED` `EV-P02-093` |
 | **Accounting date, silently movable past a lock** | AE-02, AE-03, AE-06, AE-07, AE-12 | Revenue, tax and cost land in a later period than the document says. `FACT VERIFIED` `EV-P02-013` |
 | **Payment date** | AE-08, AE-11 (register) | — |
 | **Exchange-journal lock-adjusted date, raised to the later line date** | AE-09 | The realised gain or loss is **not** dated on the settlement. `FACT VERIFIED` T2 §3 |
@@ -74,9 +74,9 @@ Stated per the Negative Claim Control.
 
 | Attack | Result | Tag |
 |---|---|---|
-| **Double inventory relief** on one outflow | **Blocked** — completion is idempotent by the already-done check, and a completed movement cannot be cancelled or reversed; the only path back is a return, which is a *new* event with its own entry. | `FACT VERIFIED` `EV-P02-022`, T1 §6 |
+| **Double inventory relief** on one outflow | **Blocked procedurally, not structurally.** The already-completed check is a filter within one call, not a database constraint; there is **no uniqueness key** on (movement, valuation layer). A completed movement cannot be cancelled or reversed, and the only path back is a return, which is a *new* event with its own entry. Corrected after independent challenge, which noted the package applied a stricter standard to cost-of-sales than to this. | `FACT VERIFIED` `EV-P02-022`, T1 §6 |
 | **Double cost of sales** on one invoice | **No idempotency guard exists.** Protection is ordering-dependent, not structural. Residual exposure detailed in `03_P02_DELIVERY_COGS_TRACE.md` §6. | `FACT VERIFIED` (absence) / `UNRESOLVED — EVIDENCE REQUIRED` (exploitability) |
-| **Double revenue** on one order | **Blocked** through the order path; **not blocked** through a manual invoice or a hand-made credit note. A duplicate **detector** covering customer invoices does exist — same company, partner, type, total and date — but **no code path consults it for a sale document**, and its database index is created for purchase documents only. | `FACT VERIFIED` `04_P02_REVENUE_AR_TRACE.md` §4, §11 |
+| **Double revenue** on one order | **Defaulted, not blocked**, through the order path — the billable quantity supplies the invoice line's *default* quantity and **no constraint ties an invoice line to an order line's remainder** (`EV-P02-066`); the quantity is editable on the draft. Not addressed at all through a manual invoice or a hand-made credit note. A duplicate **detector** covering customer invoices does exist — same company, partner, type, total and date — but **no code path consults it for a sale document**, and its database index is created for purchase documents only. | `FACT VERIFIED` `04_P02_REVENUE_AR_TRACE.md` §4, §11 |
 | **Double tax** | Follows revenue exactly — same document, same lines. **No independent tax duplication path found** in the searched scope. | `NOT FOUND IN SEARCHED SCOPE` |
 | **Double settlement** | Matching consumes the smaller residual, so a second match against a settled line allocates zero. **Blocked by arithmetic.** But matching rows are **freely destructible across a closed period**, so the *state* is not durable. | `FACT VERIFIED` T2 §2, §7 |
 | **Double valuation** of one physical unit | **Reachable.** The unit is valued once by the outflow layer and again, independently, by the invoice-post cost re-derivation, with a standard-price top-up when the layers are insufficient. The two are reconciled by **balance matching in a clearing account**, not by identity. | `FACT VERIFIED` `03_P02_DELIVERY_COGS_TRACE.md` §1, §4 |

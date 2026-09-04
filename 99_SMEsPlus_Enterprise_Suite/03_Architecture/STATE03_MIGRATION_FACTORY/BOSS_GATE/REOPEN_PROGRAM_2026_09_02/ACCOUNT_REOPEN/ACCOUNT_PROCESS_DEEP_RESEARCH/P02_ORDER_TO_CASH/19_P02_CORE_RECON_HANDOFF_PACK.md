@@ -74,14 +74,16 @@ into cost recognition.
 **Eight of these nine positions are absent, unowned, or optional in the benchmark.** Each absence
 produced an observed class of silently-wrong ledger states.
 
-**And the absences follow a pattern worth stating plainly.** In the Thai reference chart of accounts —
-enumerated completely — the **purchase** side has both an interim goods position and a cash-clearing
-position, and the **sales** side has neither. The chart models what the business owes and the cash it
-pays out; it does not model what is owed to the business between delivery and billing, nor cash received
-but not yet cleared. **Every position Order-to-Cash needs in order to be auditable between its own events
-is a position that chart does not have.** This is not a localisation defect to be worked around — it is
-the reason the process has nowhere to put value in transit, and it is why P02-R-02 and P02-R-05 are stated
-as structural requirements rather than as configuration.
+**And the absence is uniform, which is a cleaner statement than the one this pack originally carried.**
+In the benchmark's Thai chart of accounts — enumerated completely — there is **no position for value in
+transit in either direction**. An account exists whose name suggests the purchase-side role, and it is
+connected to nothing. **Every position Order-to-Cash needs in order to be auditable between its own events
+is a position that chart does not have** — and so is the purchase-side equivalent. This is not a
+localisation quirk to work around; it is the reason the process has nowhere to put value in transit, and
+it is why P02-R-02 and P02-R-05 are stated as structural requirements rather than as configuration.
+
+*(An earlier draft of this pack claimed the purchase side was supported and the sales side was not. That
+claim was refuted by independent challenge and is withdrawn.)*
 
 ### 3.2 Date discipline
 
@@ -222,7 +224,19 @@ All eight are **held**. This package has no authority to state Thai law and does
 | S-07 | Does Thai law require gap-less, immutable, sequentially numbered tax invoices? |
 | S-08 | Is the standard rate current, and must other rates be reported separately? |
 
-**One structural finding that is not statutory but must reach the tax track:** in the benchmark
+**Three structural findings that are not statutory but must reach the tax track:**
+
+**First, and most serious.** The benchmark localisation's **statutory support export writes the accounting
+date into a column headed "Invoice Date"**. The accounting date is the one that posting can silently
+relocate. So the schedule a company hands to its accountant in support of its VAT return prints, under a
+heading that says *Invoice Date*, a date that is not the invoice date and may fall in a different month,
+quarter or fiscal year. Whether that is a filing defect or a labelling defect is question S-01/S-04; that
+it is a defect is a code fact, not a legal opinion.
+
+**Second.** Four of the six VAT taxes in that chart carry **no tax group**, and the report counts tax
+exclusively from the standard-rate group — so a zero-rated or exempt sale is grouped nowhere.
+
+**Third.** in the benchmark
 localisation, the taxes representing **withholding suffered on the company's own receipts** carry no
 report tags, while the taxes representing withholding the company collects and remits all do. Because the
 statutory reports select rows by tag, **customer-side withholding appears on no report at all.** That is
@@ -239,6 +253,14 @@ This package is **research output**. It is not a design, not a specification, an
   — whether cost-of-sales generation is exploitably non-idempotent — cannot be closed without it.
 - Six process areas were **not searched** and could contribute further Order-to-Cash events:
   subscriptions, point of sale, e-commerce, rental, projects, and manufacturing.
+- **Eight business situations have no analysis in this work and are open gaps, not settled questions:**
+  drop-shipping; **customer credit control**, which is a gate *before* the first step of this process and is
+  absent from it entirely; period-end revaluation of open foreign-currency receivables; bill-and-hold;
+  outbound consignment; warranty and return provisions arising at the point of sale; freight and delivery
+  charges with their tax treatment; and serial- or lot-identified cost of sales.
+- An independent adversarial review of this work produced **twenty findings that changed it**, including
+  **two that refuted conclusions it had stated as verified fact**. It examined roughly **half** the
+  underlying evidence; the other half has been reviewed once, not twice.
 - The benchmark is a **learning source only**. Nothing here authorises copying its code, schema, data
   structures, workflow implementation or interface.
 - Two consecutive clean independent passes have **not** occurred. This is the first Order-to-Cash package

@@ -10,9 +10,10 @@ account is given in §5 for the Thai chart, whose 27 accounts are a complete enu
 | AE | Accounting event | Debit | Credit | Amount basis | Tag |
 |---|---|---|---|---|---|
 | AE-01 | Inventory relief on outflow | *Outbound Stock (Goods Delivered)* | *Inventory Valuation* | quantity × costing-method cost at outflow | `FACT VERIFIED` |
+| AE-03b | **Cost of sales debited to Revenue** | *Revenue* | *Outbound Stock (Goods Delivered)* | the AE-03 amount, when the product's accounts yield no expense account — **netting revenue against itself on the same document, with no error** | `FACT VERIFIED` `EV-P02-090` |
 | AE-02a | Revenue | *Accounts Receivable* | *Revenue* | invoice line net of discount | `FACT VERIFIED` |
 | AE-02b | Output tax | *Accounts Receivable* | *Output VAT* | tax on the post-discount base | `FACT VERIFIED` |
-| AE-03 | Cost of sales | *Cost of Sales* | *Outbound Stock (Goods Delivered)* | **invoice line quantity** × re-derived average cost, with a **standard-price top-up** | `FACT VERIFIED` |
+| AE-03 | Cost of sales | *Cost of Sales* — **or, where the product yields no expense account, the sale journal's default account, which the chart sets to *Revenue*** (`EV-P02-090`, `EV-P02-091`) | *Outbound Stock (Goods Delivered)* | **invoice line quantity** × re-derived average cost, with a **standard-price top-up** | `FACT VERIFIED` |
 | AE-04 | Interim matching | — | — | matches AE-01 against AE-03 in the outbound stock account; **best-effort, conditional, silent when skipped** | `FACT VERIFIED` |
 | AE-05 | Inventory restoration on return | *Inventory Valuation* | *Outbound Stock (Goods Delivered)* | **original layer cost** under FIFO/average; **current standard price** under standard costing | `FACT VERIFIED` |
 | AE-06a | Revenue reversal | *Revenue* | *Accounts Receivable* | credit-note line | `FACT VERIFIED` |
@@ -131,7 +132,7 @@ The Thai chart is a **complete enumeration of 27 accounts** (`EV-P02-044`).
 | Outstanding Receipts | Outstanding Cheques, 1201 — **classified as a current LIABILITY** | **absent in substance.** A receipt not yet cleared at the bank is an **asset** (undeposited funds). A current-liability account named for outstanding cheques is the **payment**-side position, not the receipt-side one. The Thai chart supplies the outbound-cash clearing role and **not** the inbound-cash clearing role. |
 | Year-end earnings | Income Summary, 3400 | yes — but **no closing entry posts to it** (T4 §7) |
 | **Outbound Stock (Goods Delivered)** | — | **ABSENT** |
-| **Inbound Stock (Goods Received)** | Uninvoiced Receipts, 2103 | present — **the purchase side has an interim account; the sales side does not** |
+| **Inbound Stock (Goods Received)** | Uninvoiced Receipts, 2103 — **defined but wired to nothing** | **absent in substance.** The account exists as a row and occurs nowhere else in the localisation; it is not assigned to the inbound stock property or to any property (`EV-P02-081`). Original claim of a purchase-side advantage **withdrawn** after independent challenge. |
 | **Deferred Output VAT (cash-basis transition)** | — | **ABSENT** |
 | **Customer Advances / Contract Liability** | — | **ABSENT** |
 | **Bad-debt / impairment allowance** | — | **ABSENT** |
@@ -141,18 +142,26 @@ The Thai chart is a **complete enumeration of 27 accounts** (`EV-P02-044`).
 exactly the four positions where P02 leaves value in limbo: goods delivered not invoiced, deferred output
 tax, customer advances, and bad debt. `VERIFIED ABSENCE` within the declared 27-account population.
 
-**`FACT VERIFIED` — P02-F-38b (THE PATTERN BEHIND THE GAP).** The four absent roles and the one absent in
-substance are **all on the sales side**, and each has a **present purchase-side counterpart**:
+**`CONTRADICTED` — P02-F-38b, WITHDRAWN AND REPLACED.** This originally claimed that the chart is
+structurally asymmetric — purchase side supported, sales side not. **The independent challenge refuted it
+and the primary session verified the refutation.** The inbound interim account is defined as a row and is
+**wired to nothing** (`EV-P02-081`); the Thai template assigns four property accounts and it is none of
+them (`EV-P02-043`).
+
+**Replacement finding — `FACT VERIFIED` — P02-F-38c (UNIFORM ABSENCE).**
 
 | Direction | Interim goods position | Cash clearing position |
 |---|---|---|
-| **Purchase (P01)** | Uninvoiced Receipts, 2103 — **present** | Outstanding Cheques, 1201 — **present** |
-| **Sale (P02)** | — **absent** | — **absent in substance** |
+| **Purchase (P01)** | a defined account, **wired to nothing** | Outstanding Cheques, 1201 — an **outbound-cash** position |
+| **Sale (P02)** | **absent** | **absent** |
 
-The chart is **structurally asymmetric**: it models the obligations the business owes and the cash it pays
-out, and does not model the obligations owed to the business between delivery and billing, or the cash
-received but not yet cleared. **Every position P02 needs in order to be auditable between its events is a
-position this chart does not have.**
+The chart does not model value in transit **in either direction**. It offers an account name that looks
+like the purchase-side interim role and connects it to nothing, and it offers no sales-side equivalent at
+all. **Every position P02 needs in order to be auditable between its own events is a position this chart
+does not have** — and so is the purchase-side equivalent, which is P01's problem, not a P02 advantage.
+
+The replacement is **simpler and stronger** than the claim it replaces: there is no asymmetry to explain,
+only a uniform absence to fill.
 
 **Incidental observation, routed out of P02 scope.** The two accumulated-depreciation accounts in the same
 chart are typed as **depreciation expense** rather than as contra-assets. That is an Asset-module concern,

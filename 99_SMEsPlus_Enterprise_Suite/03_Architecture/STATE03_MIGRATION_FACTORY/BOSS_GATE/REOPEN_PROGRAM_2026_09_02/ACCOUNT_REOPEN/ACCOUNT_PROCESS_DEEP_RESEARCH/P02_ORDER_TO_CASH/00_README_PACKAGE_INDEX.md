@@ -22,7 +22,7 @@ It contains reference-ERP source citations in `path:line — method` form. Those
 evidence for Boss / PMO / AI-Audit only. They must **not** be transcribed into any downstream
 clean-room reference package, Functional Design document, or Team B artefact.
 
-**One exception:** `18_P02_CORE_RECON_HANDOFF_PACK.md` is authored as **LAYER 1 (clean-room)**.
+**One exception:** `19_P02_CORE_RECON_HANDOFF_PACK.md` is authored as **LAYER 1 (clean-room)**.
 It carries no vendor model name, field name, module path, method name, or file extension, and is
 the only file in this package cleared for downstream semantic transfer.
 
@@ -119,6 +119,27 @@ follows, so that no level is claimed without a file behind it.
 **Two of the eleven very-expert requirements are not discharged, both for the same reason: this session
 had no database and no runtime.** That is stated here rather than buried, because it bounds what this
 package can support.
+
+## 3b. Configuration Premise — Applies To Every Cost Finding In This Package
+
+Stated here once, prominently, because the independent challenge found it was assumed in eleven files and
+declared in none.
+
+**Every cost-of-sales finding in files `02`, `03`, `06`, `07` and `11` presumes all three of:**
+
+1. split cost recognition is **on** at company level;
+2. the product is **storable**;
+3. its category is under **real-time** valuation.
+
+**A Thai company as shipped has none of the three.** The chart does not set the recognition boolean and
+the installer defaults it off (`EV-P02-042`, `EV-P02-043`); valuation defaults to manual/periodic by data
+(`EV-P02-100`); and real-time valuation cannot even be switched on until three stock accounts exist, which
+that chart does not supply (`EV-P02-044`, `EV-P02-045`). The recognition toggle is, moreover, exposed in
+**exactly one place in the whole reference root**, and that place is an Enterprise module
+(`EV-P02-101`) — so for a Community-equivalent deployment there is no settings-page route to it at all.
+
+**Read every cost finding in this package as conditional on that premise.** Where the premise does not
+hold, the finding is replaced by the more serious one in `01` S5: cost of sales is recognised **nowhere**.
 
 ## 4. Absolute Invariant Under Test
 

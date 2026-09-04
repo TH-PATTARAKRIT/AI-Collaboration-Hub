@@ -63,7 +63,7 @@ freely destructible.**
 |---|---|---|
 | Correcting a completed movement's quantity | Permitted. Produces **new** correction layers and a **new** journal entry — nothing is amended in place. Correct design. | `FACT VERIFIED` T1 §6 |
 | **The date of that correction entry** | **Today** — not the movement it corrects. A correction made on the 30th books in a different period from the movement. | `FACT VERIFIED` T1 C8 |
-| **The date of the original valuation entry** | **Today** — not the movement's own date. A picking validated on the 3rd for goods that left on the 1st books on the 3rd. | `FACT VERIFIED` T4 §8 |
+| **The date of the original valuation entry** | **Three branches, not one** — a forced-period date if present, else **the linked accounting line's date**, else **today**. The package originally stated only the third and tagged it `FACT VERIFIED`; corrected after independent challenge. The ordinary delivery case is the third branch. | `FACT VERIFIED` `EV-P02-093` |
 | Re-pointing a completed movement's locations across the valuation boundary | **Blocked.** | `FACT VERIFIED` T1 §6 |
 | Backdating an invoice | The document date is free. The accounting date **may be silently moved forward**. | `FACT VERIFIED` `EV-P02-013` |
 | **Backdating a stock valuation entry** | The **only** path is a user-writable accounting-date field on the inventory-adjustment route, which has **no constraint and no lock comparison**. Complete denominator: **8 lines, 3 files; not one tests a lock date.** | `FACT VERIFIED` T4 §8 |
@@ -85,6 +85,8 @@ already being posted:
 be created freely.
 
 What it silently reschedules instead of blocking (T4 §6b) — **four paths**: posting, document
+
+**And the relocation is capped at TODAY, so it is not guaranteed to reach an open period.** Where the effective lock date lies in the future the cap returns today — still inside the locked window — and nothing re-checks. A future lock date is reachable because the company-level write validation does not refuse one, even though the settings wizard does (`EV-P02-082`, `EV-P02-083`). Raised by independent challenge, verified. — `FACT VERIFIED`
 duplication, cash-basis tax entries, and the computed accounting date on purchase documents. The user is
 **warned, not stopped**, and the warning is not retained on the document.
 
@@ -127,7 +129,33 @@ separation — what the code does / what the localisation asserts / what the law
 | S-07 | Does Thai law require gap-less, immutable, sequentially numbered tax invoices? | Revenue Code s.86/4(2), s.87; Accounting Act B.E. 2543 |
 | S-08 | Is 7% the currently effective standard rate, and must other rates be reported separately? | Revenue Code s.80 and the current Royal Decree |
 
-**The one O2C-specific tax finding that is not statutory but structural:**
+**Three O2C-specific tax findings that are not statutory but structural.** All three were raised or
+confirmed after the independent challenge.
+
+**`FACT VERIFIED` — P02-F-51 (THE STATUTORY SUPPORT EXPORT MISLABELS THE DATE).** The Thai sales-tax
+spreadsheet export writes a column headed **"Invoice Date"** and fills it with the **accounting date**
+(`EV-P02-094`). The withholding export does the same, under a heading reading "Invoice/Bill Date"
+(`EV-P02-095`). Since the accounting date is the one that posting can silently relocate (P02-F-08), **the
+schedule a Thai company hands to its accountant in support of its VAT return prints, under a heading that
+says *Invoice Date*, a date that is not the invoice date and may fall in a different month, quarter or
+fiscal year.** Whether that is a filing defect or a labelling defect is the statutory question S-01/S-04;
+that it is a defect at all is a code fact.
+
+**`FACT VERIFIED` — P02-F-52 (FOUR OF SIX VAT TAXES HAVE NO TAX GROUP).** In the Thai chart, only the 7%
+input/output pair is assigned to a tax group; the zero-rated and exempt pairs carry an **empty** group
+(`EV-P02-096`). The spreadsheet report counts tax **exclusively** from the 7% group, so a zero-rated or
+exempt sale is grouped nowhere in the invoice tax totals.
+
+**`FACT VERIFIED` — P02-F-53 (A SIGN DEFECT IN THE THAI TAX DATA).** The **refund** tax repartition of the
+zero-rated input tax carries a **positive** report sign where every sibling carries a negative one — the
+same tax's own base refund line, the standard input tax's refund line, and the exempt input tax's refund
+line are all negative (`EV-P02-097`). A credit note against a zero-rated purchase therefore **adds** to
+the input-tax line of the VAT return instead of subtracting. Zero-rating makes the amount nil in the
+ordinary case, so the defect is **latent rather than active** — but it is a defect in the localisation
+data, and it is a purchase-side one, so it is routed to P01 and to the Thailand tax process rather than
+resolved here.
+
+**The original O2C-specific finding, retained:**
 
 **`FACT VERIFIED` — P02-F-50.** The **sale-side** withholding taxes carry **no report tags**, while all
 eight purchase-side ones do. Because the statutory withholding reports select rows **exclusively by tag**,
@@ -175,9 +203,9 @@ the discount cannot be recognised before the revenue.
 | 2 | Delivery before invoice | intended shape | ok |
 | 3 | Delivered, never invoiced | permanent clearing debit, no ageing | defect class |
 | 4 | Billed, never delivered | permanent clearing credit at standard price | defect class |
-| 5 | Outflow complete, no picked line | **no financial record at all** | tolerance-zero |
+| 5 | Outflow complete, no picked line — **reachable via a MIXED picking**, and concealed on the movement-level field | **no financial record at all** | tolerance-zero |
 | 6 | Consumable product sold | no cost effect anywhere | by design, but silent |
-| 7 | Owner-restricted stock sold | valuation excluded; **cost line still created** | defect class |
+| 7 | Owner-restricted stock sold, order-linked invoice | **no cost line is created** — original claim refuted; see `03` §5a | ok |
 | 8 | Partial delivery, order billing | no billing effect | by design |
 | 9 | Partial delivery, delivery billing | consistent | ok |
 | 10 | Backorder, ask/always | consistent | ok |
@@ -209,7 +237,13 @@ the discount cannot be recognised before the revenue.
 | 36 | Discount-only invoice | **prevented** | ok |
 | 37 | Promotion / loyalty interaction | **NOT YET SEARCHED** — outside the declared path set | unknown |
 
-**37 cases: 8 sound, 21 defect classes, 7 tolerance-zero candidates, 1 unknown.**
-The seven tolerance-zero candidates are carried to `18_P02_PMO.md` §3 under EC-04.
+**37 cases, recounted from the table itself after the independent challenge showed the original totals did
+not reproduce:** 8 `ok`, 18 `defect class`, 6 `tolerance-zero`, 1 `contradiction`, 1 `narrowed`,
+1 `by design`, 1 `by design, but silent`, 1 `unknown`.
+
+The original headline read "8 sound, 21 defect classes, 7 tolerance-zero, 1 unknown" and **did not
+reproduce from its own table**. That is exactly the enumeration failure the SMEsPlus denominator rule
+exists to prevent, and it was found by an outside reader rather than by this session. Recorded as `RE-07`.
+The **six** tolerance-zero candidates are carried to `18_P02_PMO.md` §3 under EC-04.
 **The one unknown (case 37) is a declared exclusion, not a verified absence**, and is recorded as such in
 `14_P02_EVIDENCE_MANIFEST.md` §2.2.

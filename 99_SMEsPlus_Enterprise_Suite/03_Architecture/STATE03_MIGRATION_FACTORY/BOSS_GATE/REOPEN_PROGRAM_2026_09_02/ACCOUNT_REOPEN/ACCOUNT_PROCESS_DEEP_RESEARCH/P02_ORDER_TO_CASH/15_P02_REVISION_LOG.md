@@ -50,10 +50,28 @@ Preserved, not deleted, per the constitution.
 
 | **RE-06** | "The receivable ledger has no duplicate-recognition control at all." | **Wrong.** A duplicate **detector** exists and covers customer invoices, matching on company, commercial partner, document type, total amount and document date. It is **display-only** on the sales side — its only behavioural consumer suppresses automatic posting of **vendor bills** — and its database index is created for purchase documents only. | The primary session **re-testing its own negative claim** before the independent challenge ran. | **High.** The corrected finding is **stronger** than the original: the system already knows how to detect a duplicated customer invoice and does not act on it. Full correction in `04` §11. |
 
-**Pattern observation, recorded as method evidence.** All six corrections came from **re-reading
+| **RE-07** | `11` §9 stated "8 sound, 21 defect classes, 7 tolerance-zero, 1 unknown". | The table beneath it gives 8 `ok`, **18** `defect class`, **6** `tolerance-zero`, and four other classes. **The headline did not reproduce from its own table.** | Independent challenge **CH-14**; recounted mechanically by the primary session. | **High as a method matter.** This is precisely the enumeration failure the SMEsPlus denominator rule exists to prevent, in the file most likely to be read as a summary. |
+| **RE-08** | "The Thai chart supports the inbound interim direction and not the outbound." | **Wrong.** The account is wired to nothing; neither direction is supported. | Independent challenge **CH-01**; re-derived and confirmed. | **Maximum.** It was a headline in two files and it routed a false symmetry question to P01. |
+| **RE-09** | "Two confirmed phantom-cost paths follow from the eligibility mismatch." | **One.** The owner-restricted path produces no cost line on an order-linked invoice. | Independent challenge **CH-02**; re-derived and confirmed. | Moderate — removes a claimed defect and reclassifies an edge case as sound. |
+| **RE-10** | "The obligation ledger resolves six findings." | **Three of the six are one defect described three times; three are untouched by it.** | Independent challenge **CH-13**; the arithmetic is checkable against the package's own text. | **High.** It was the package's principal structural handoff. |
+| **RE-11** | `03` §5 tagged idempotency `FACT VERIFIED` while `03` §6 explicitly declined to advance it. | The two halves carry different tags and the summary row took the stronger one. | Independent challenge **CH-15**. | Moderate — the adversarial-section-not-summary failure inside a single file. |
+| **RE-12** | The configuration premise (split recognition on, storable, real-time) was assumed in eleven files and declared in none. | Now declared once, package-wide, in `00` §3b. | Independent challenge **CH-19**/**CH-30**. | High — without it, eleven files reason about a configuration the package's own headline says a Thai company does not have. |
+
+**Pattern observation, recorded as method evidence.** The first six corrections came from **re-reading
 primary source after writing a conclusion**, or from re-deriving a track's finding — none came from a
 reviewer. Each first-pass statement was
-plausible and each was narrowed by source. Two of the six (RE-04, RE-05) were **overstatements of scale
+plausible and each was narrowed by source. **RE-07 through RE-12 came from the independent challenge, and they are of a different kind.** The
+self-found corrections were reachability and scale qualifications around findings that were themselves
+correct. The challenge-found ones include **two outright refutations of `FACT VERIFIED` statements**
+(RE-08, RE-09), **one inflated structural claim** (RE-10), **one count that did not reproduce from its own
+table** (RE-07), and **one undeclared package-wide premise** (RE-12).
+
+The pattern is unambiguous and is recorded as method evidence: **self-review corrected the edges of
+findings; independent review corrected the findings, the counts and the claims built on top of them.**
+Nothing in the detailed citations was found to be fabricated or misread — **what failed was
+aggregation.**
+
+Two of the first six (RE-04, RE-05) were **overstatements of scale
 or reachability around a finding that was itself correct** — which is the specific failure mode that makes
 a finding easy to dismiss on review even though its substance holds. This is precisely the failure mode the negative-claim standard
 describes, and it is the reason the independent challenge in `16_P02_AAS03_CHALLENGE.md` was commissioned
@@ -157,5 +175,15 @@ Stated plainly so no reader over-relies on this package.
 5. **Localisation modules were not enumerated as their own denominator** for the year-close negative claim.
 6. **Only two localisation modules exist in this tree**, which bounds every claim about chart defaults.
 7. **All Thai statutory questions are held.** This package has no authority to state Thai law and does not.
-8. **`EC-07` is not satisfied.** Two consecutive clean independent passes have not occurred — this is the
-   first package on P02 and the first independent challenge is only now complete.
+8. **`EC-07` is not satisfied, and the first pass was not clean.** One independent challenge has run. It
+   produced **twenty package-changing findings and six accepted coverage gaps**, including **two outright
+   refutations of statements this package had tagged `FACT VERIFIED`**. A second consecutive clean pass has
+   not occurred and cannot be claimed.
+9. **The challenge examined roughly half the evidence base.** It verified **no** citation in the return /
+   credit / refund or settlement / FX / deposit extracts, so `08`, `09`, accounting events AE-05…AE-13 and
+   edge cases 18–30 are **once-verified, not twice-verified**. There is no basis for assuming the
+   unexamined half is cleaner than the examined half.
+10. **Eight business situations have no case in this package** and are accepted as gaps, not closed:
+    drop-shipping, credit control, period-end unrealised FX revaluation, bill-and-hold, outbound
+    consignment, warranty/return provision at point of sale, freight charges and their tax treatment, and
+    serial/lot-identified cost of sales.

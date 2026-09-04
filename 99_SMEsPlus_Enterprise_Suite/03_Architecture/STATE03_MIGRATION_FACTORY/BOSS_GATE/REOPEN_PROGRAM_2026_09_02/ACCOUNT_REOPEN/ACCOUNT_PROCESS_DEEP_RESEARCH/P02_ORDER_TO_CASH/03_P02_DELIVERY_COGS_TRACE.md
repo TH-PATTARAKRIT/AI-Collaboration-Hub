@@ -37,12 +37,21 @@ Answer, stated once and then evidenced:
  [H10] Best-effort matching of H6 and H9 in the outbound stock account
 ```
 
-**`FACT VERIFIED` — P02-F-15 (STRUCTURAL, HEADLINE).** There is **no reference from the cost
-journal line back to the valuation layer that relieved the inventory**. The cost lines are keyed to
-the *invoice line* that originated them (`EV-P02-050`), not to the outflow. H9 does not consume H5;
-it independently re-computes a value from the same underlying layers (`EV-P02-021`). H5 and H9 are
-therefore two independent valuations of the same physical event, reconciled afterwards by balance
-matching in a clearing account rather than by identity.
+**`FACT VERIFIED` — P02-F-15 (STRUCTURAL, HEADLINE) — restated after independent challenge.** The
+relation **exists on the model** — the valuation layer carries a link to an accounting document line
+(`EV-P02-085`) — and **the cost generator does not populate it**. Across the whole reference root that
+link is written in exactly **one** non-test place, and it is on the **purchase** side (`EV-P02-086`).
+
+The accurate statement is therefore not "no reference exists" but **"the reference exists and the sales
+side does not wire it"** — which matters, because §7 shows the same unwired link disables a control that
+would otherwise protect the cost lines. Two findings collapse into one root cause and one fix.
+
+With that correction the substance stands: there is **no populated reference from the cost journal line
+back to the valuation layer that relieved the inventory**. The cost lines are keyed to the *invoice line*
+that originated them (`EV-P02-050`), not to the outflow. H9 does not consume H5; it independently
+re-computes a value from the same underlying layers (`EV-P02-021`). H5 and H9 are therefore two
+independent valuations of the same physical event, reconciled afterwards by balance matching in a clearing
+account rather than by identity.
 
 This is the single most important structural finding in P02. Every double-COGS and
 valuation-divergence case below is a consequence of it.
@@ -55,12 +64,29 @@ Three conditions must all hold for a completed outflow to be valued. `FACT VERIF
 2. its quantity is non-zero,
 3. **at least one of its movement lines carries the picked marker.**
 
-Condition 3 is a separate, stored, user-writable boolean (`EV-P02-038`, `EV-P02-051`).
+Condition 3 is a separate, stored, writable boolean (`EV-P02-038`, `EV-P02-051`).
 
-**`FACT VERIFIED` — P02-F-16 (TOLERANCE-ZERO CANDIDATE).** A movement can reach completed status
-with no picked line. The goods are gone operationally; **no valuation layer, no inventory relief and
-no journal entry exist**. There is no exception, no queue, and no report that lists completed
-outflows without valuation.
+**`FACT VERIFIED` — P02-F-16 (TOLERANCE-ZERO CANDIDATE) — reachability corrected after independent
+challenge.** A movement can reach completed status with no picked line, in which case **no valuation
+layer, no inventory relief and no journal entry exist**, with no exception, no queue and no report.
+
+**The original statement did not say how that state is reached, and the answer both narrows and sharpens
+the finding.** Validating a picking in which **nothing** is picked does *not* reach it: the validation
+routine force-sets the picked marker on every movement when the picking has quantities and no picked
+movement (`EV-P02-087`), and that set propagates to the movement lines (`EV-P02-088`).
+
+**The reachable case is the MIXED picking.** The force-set is skipped as soon as **any** movement is
+picked. Every *other* movement that has a quantity but no picked line then reaches completion and is
+silently dropped from valuation. **That is one ordinary user action — part-picking a multi-line delivery —
+not an exotic state.**
+
+**`FACT VERIFIED` — P02-F-16b (THE FIELD A REVIEWER WOULD QUERY CONCEALS IT).** After completion the
+**movement** reads as picked while its **lines** do not, because the movement-level marker is computed as
+*completed or any line picked* (`EV-P02-089`) whereas the valuation gate reads the **line** marker and
+runs before completion. A reconciliation query written against the movement-level field — the obvious one
+— **will not return a single one of these.** The original claim that the hole is "undetectable because
+there is nothing to query" was wrong in a way that **understated** it: it **is** queryable, on the
+movement-line marker, and the natural field actively hides it.
 
 **`DESIGN CANDIDATE` DC-03-01.** In SMEsPlus, physical completion and valuation must be one atomic
 transaction. A completed outflow without a valuation record must be structurally unrepresentable,
@@ -142,16 +168,33 @@ This is a complete, self-contained phantom-COGS path requiring only the ability 
 | Accounts | debit = expense from the product's accounts (or the journal default); credit = the outbound stock account | `FACT VERIFIED` | `EV-P02-016` |
 | Sign | inverted for credit notes | `FACT VERIFIED` | `EV-P02-016` |
 | Skip | skipped when the computed amount or the unit price rounds to zero | `FACT VERIFIED` | `EV-P02-016` |
-| Idempotency | **none** — see §6 | `FACT VERIFIED` | `EV-P02-016`, `EV-P02-028` |
+| **Expense account fallback** | when the product's accounts yield no expense account the debit goes to **the journal's default account** — and on a sale journal the chart sets that to the **income** account (`EV-P02-090`, `EV-P02-091`). Cost of sales is then debited to Income, netting revenue against itself on the same document, with no error. | `FACT VERIFIED` | `EV-P02-090` |
+| Idempotency | **absent as a guard** — `FACT VERIFIED`. **Exploitability is `UNRESOLVED — EVIDENCE REQUIRED`** and the two halves must not be collapsed into one tag. See §6. | split — see §6 | `EV-P02-016`, `EV-P02-028` |
 | Reversibility | reset-to-draft and cancel both **delete** the cost lines | `FACT VERIFIED` | `EV-P02-017` |
 | Copying | cost lines are stripped when a document is duplicated | `FACT VERIFIED` | `EV-P02-053` |
 
-**`FACT VERIFIED` — P02-F-22 (ELIGIBILITY MISMATCH).** The eligibility test for creating a cost line
-is *storable + real-time valuation*. The eligibility test for creating a valuation entry at outflow
-is *storable + real-time valuation* **and additionally** not owner-restricted and with a picked
-line. The invoice-side test is **strictly weaker** than the delivery-side test. Every condition that
-suppresses the delivery entry but not the invoice entry is a phantom-cost path. Two are confirmed:
-owner-restricted stock (`EV-P02-025`) and the unpicked completion case (`EV-P02-022`).
+**`FACT VERIFIED` — P02-F-22 (ELIGIBILITY MISMATCH) — one of its two instances refuted after
+independent challenge.** The eligibility test for creating a cost line is *storable + real-time
+valuation*. The test for creating a valuation entry at outflow is *storable + real-time valuation*
+**and additionally** not owner-restricted and with a picked line. The invoice-side test is **strictly
+weaker**, and that remains true.
+
+The package originally claimed **two** confirmed phantom-cost paths follow from it. Only one does.
+
+### 5a. Owner-restricted stock — claim refuted for the order-linked path
+
+**`CONTRADICTED`.** The cost re-derivation **subtracts owner-excluded quantity from the shortfall before
+the standard-price top-up** (`EV-P02-020`). For a wholly owner-restricted delivery on an order-linked
+invoice: nothing is valued, the shortfall reduces to zero, no top-up occurs, the computed unit cost is
+zero, and the generator's own zero-skip then **creates nothing** (`EV-P02-016`). **No phantom cost line is
+produced.**
+
+The path survives **only** on entry point B — an invoice line with no order line behind it — where the
+delivery-aware branch is never entered and the base behaviour returns standard price unconditionally
+(`EV-P02-021`, `EV-P02-019`). That is already recorded as P02-F-21 and is not a second, independent
+finding.
+
+**Corrected count: P02-F-22 has ONE confirmed instance — the unpicked-completion case — not two.**
 
 ## 6. The Idempotency Question — DOUBLE COGS ATTACK
 
@@ -163,17 +206,31 @@ field that records which invoice line a cost line came from is written but **nev
 duplicate prevention** — its only reader is the cost re-derivation, which uses it to *exclude
 already-posted quantities*, not to block regeneration. `EV-P02-050`, `EV-P02-021`.
 
-**What actually prevents duplication today.** The generator runs inside the post routine, and the
-post routine normally either (a) posts the document in the same transaction, or (b) raises and rolls
-back. Documents that are posted are then protected by the state check that refuses to post an
-already-posted document (`EV-P02-054`).
+**What actually prevents duplication today — corrected after independent challenge.** The package
+originally located the protection in transaction behaviour. The real primary protection is simpler and
+stronger: **the interactive path never uses soft mode.** The manual post action calls the routine in
+**hard** mode (`EV-P02-029`), and in hard mode nothing is deferred, so no document reaches the deferred
+state with cost lines attached along that path. The auto-post job likewise defers nothing, because its own
+search is bounded to dates at or before today (`EV-P02-030`). Documents that do post are then protected by
+the state check that refuses to post an already-posted document (`EV-P02-054`).
 
-**The residual exposure.** `SUPPORTED INTERPRETATION` — P02-F-23. The post routine contains a
-**soft** mode in which future-dated documents are *not* posted but are instead deferred and left in
-draft (`EV-P02-031`). The cost generator has already run by that point (`EV-P02-015`). A document
-that traverses this path retains a pair of cost lines while remaining in draft; the later post
-creates a second pair, and the state check does not fire because the document is still draft. The
-generator's own exclusion filter guarantees it will not notice the existing pair.
+**A partial control does exist, and it is not this one.** The origin field **is** read — to net
+already-posted cost quantity out of the re-derivation (`EV-P02-050`). That is duplicate control **at the
+value level, within one document's computation**. It does **not** prevent a second pair of lines from
+being created. The distinction matters: a second pair generated after the netting has already run would be
+valued at zero rather than doubling the cost — so the exposure, if reachable, is more likely to be
+**duplicate lines** than **duplicate value**. Establishing which is part of the C-04 test.
+
+**The residual exposure, narrowed.** `SUPPORTED INTERPRETATION` — P02-F-23. Soft mode defers future-dated
+documents and leaves them in draft (`EV-P02-031`), and the cost generator has already run by that point
+(`EV-P02-015`). A document that traverses this path retains a pair of cost lines while remaining in draft;
+a later post creates a second pair, and the state check does not fire because the document is still draft.
+The generator's exclusion filter guarantees it will not notice the existing pair.
+
+**The precondition is narrower than originally implied:** it requires a **future-dated sale document
+posted through a soft-mode caller**. Enumerating soft-mode callers in the sales domain finds them **only
+in the subscription module**, which is outside this package's declared path set. So the exposure is real in
+mechanism and **unestablished in reachability**, and it stays `UNRESOLVED — EVIDENCE REQUIRED`.
 
 **Evidence required to close this** (`UNRESOLVED — EVIDENCE REQUIRED`, tracked as C-04 in
 `12_P02_CONTRADICTION_REGISTER.md`): a runtime reproduction on a database, posting a future-dated
@@ -188,6 +245,20 @@ Regardless of that outcome:
 — not by relying on the ordering of a posting routine.
 
 ## 7. Reset-To-Draft: The Cost/Revenue Asymmetry
+
+**`FACT VERIFIED` — P02-F-24b (THE CONTROL EXISTS AND IS NOT WIRED FOR SALES).** Raised by the independent
+challenge, verified by the primary session. The reference **does** carry a guard that hides the
+reset-to-draft action entirely when a document's lines carry valuation layers (`EV-P02-092`). It would
+prevent exactly the destruction described below.
+
+It never fires on a customer invoice, because the link it tests is written in **one** non-test place in the
+whole reference root, and that place is on the **purchase** side (`EV-P02-086`). A customer invoice's cost
+lines never populate it, so the action stays available and the cost half of the entry stays destructible
+while the revenue half does not.
+
+**This is the same unwired link as P02-F-15.** One root cause — the sales-side cost generator does not
+record which valuation layer it consumed — produces both the missing traceability and the inoperative
+guard. It also makes the fix cheap: **the control is already built.**
 
 **`FACT VERIFIED` — P02-F-24.** Resetting a posted customer invoice to draft **deletes** its cost
 lines (`EV-P02-017`). The revenue and receivable lines survive the round trip as ordinary document

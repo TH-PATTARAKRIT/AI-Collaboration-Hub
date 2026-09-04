@@ -97,23 +97,26 @@ re-derivation that is **too strong**, and the correction is recorded here rather
 |---|---|---|
 | **Data layer** | The field is stored with its read-only attribute **cleared** — it is writable by any programmatic path: import, external interface, automation, scripted correction. | `EV-P02-002` |
 | **Interface layer** | The field is rendered **read-only whenever the derivation method is not manual**, in both the form and the list view. | `EV-P02-070` |
-| **Which method applies** | **Manual** for service lines, and for goods when the inventory module is not installed. **Outflow-derived** for goods when it is. | `EV-P02-071` |
+| **Which method applies** | The derivation-method selection has **five** values, not two: `manual` and `analytic` in the base sales module, extended by `stock_move`, `milestones` and `timesheet`. Corrected after independent challenge. | `EV-P02-071`, `EV-P02-084` |
 
-**Corrected statement — `FACT VERIFIED`:**
+**Corrected statement — `FACT VERIFIED`, revised twice:**
 
-- For **service lines**, the delivered quantity is a **pure human assertion with no independent
-  operational event behind it**, and it is the sole determinant of billable quantity under
-  delivery-based billing. This is the intended design for services, but it means revenue recognition on
-  services rests entirely on an unverified assertion that emits no event record.
-- For **goods with inventory installed**, the interface prevents casual overwriting. The field remains
-  writable **at the data layer**, so an import, an interface call or an automation can still set it — and
-  the value persists until a dependency on the outflow side changes and forces a recompute.
-- **Either way, the field is a value, not a ledger.** It carries no event record, no actor, no timestamp
-  and no provenance distinguishing an asserted value from a derived one.
+- For **goods with inventory installed** (`stock_move`), the field is **not a second holder of the fact at
+  all.** The interface blocks editing, and the compute **assigns** the outflow-derived value on every
+  change to a linked movement's state, quantity or unit (`EV-P02-084`). A programmatic write is therefore
+  **transient** — it survives only until the next dependency change. The field is a **materialised cache
+  of the outflow ledger**, not a competing source of truth. The package's first two statements of this
+  finding were both too strong; this is the third, and it is the one that matches the code.
+- The **genuine** second holder exists only where the method has **no outflow behind it at all** —
+  `manual` (services), `analytic` (expense re-invoicing), `milestones` and `timesheet`. For those the
+  quantity governing revenue **is** a permanent human assertion, with no independent operational event
+  and no event record.
 
-**What survives the correction, and it is the part that matters:** the fact *how much left the business*
-still has **two holders** — the outflow ledger and this field — and the one that governs revenue is the
-field, not the ledger.
+**What survives the correction, and it is the part that matters:** for **services, expense re-invoicing,
+milestones and timesheets** — a large share of SME revenue — the quantity that governs revenue
+recognition has **no ledger behind it at all**. That is sharper and narrower than "the field competes with
+the ledger", and it points at a different design question: **how is the performance of a service
+evidenced?** The reference's answer is that it is not.
 
 **`SUPPORTED INTERPRETATION`.** The interface read-only attribute is a **presentation control, not a data
 control**. In a SaaS ERP with an external interface it is not a boundary at all.

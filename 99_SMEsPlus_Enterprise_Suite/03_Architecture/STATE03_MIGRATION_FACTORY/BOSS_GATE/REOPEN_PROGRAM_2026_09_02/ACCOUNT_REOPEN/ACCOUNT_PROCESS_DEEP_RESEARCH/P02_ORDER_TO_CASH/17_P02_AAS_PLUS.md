@@ -35,15 +35,23 @@ collapse into **five structural decisions**, and the rest follow.
 
 ### D-I — The Obligation Ledger
 
-*Resolves: DC-02-02, DC-03-01, DC-03-02, DC-05-01, DC-07-01, DC-08-02, DC-10-01, and P02-R-01/24/25/29.*
+*Resolves: DC-02-02, DC-03-02, DC-08-02, DC-10-01, and P02-R-01/24/29. **Does NOT resolve** DC-03-01 (a producer defect), the chart gap in `07` §5, or the service case — see `10` §2a.*
 
 Between the physical outflow and the billing there is **one ledger of economic obligations**. The outflow
 writes rows; the billing consumes rows; cost of sales is the value on the rows consumed. Each row is
 relieved once and attributed once, structurally. An unconsumed row is a **visible, ageable position**.
 
-This single decision removes, at the root: the second delivered-quantity holder, the second cost
-derivation, the standard-price fallback, the unowned clearing account, the invoice-quantity coupling into
-cost, and the unpicked-completion hole. **It is the highest-value change in the package by a wide margin.**
+This decision removes, at the root, the **second cost derivation** and everything that follows from it —
+the standard-price fallback, the double-valuation class and the invoice-quantity coupling into cost, which
+the package had counted as three findings and which are one.
+
+**It does not remove**, and must be accompanied by: `D-VI` below (atomic completion, for the
+unpicked-completion hole), the chart requirement in `07` §5 (for the unowned clearing position), and an
+explicit statement of what an obligation row contains for a **service**, which no design candidate in this
+package currently supplies. `10` §2a records the corrected count.
+
+**It remains the highest-value single change in the package** — but on one defect properly counted, not
+six.
 
 ### D-II — Events, Not Fields
 
@@ -78,6 +86,19 @@ wildcard.
 This is the decision the reference most clearly does not make, and the one whose absence produced the most
 subtle defect in the package — a clearing-account reconciliation that silently does nothing when the
 acting company and the document's company differ.
+
+### D-VI — Physical Completion And Valuation Are One Act
+
+*Resolves: DC-03-01, and P02-R-25.*
+
+Separated out from D-I after the independent challenge showed it is a **producer** defect that no
+downstream ledger can absorb: the valuation gate runs before any ledger could be written, so a ledger
+inherits the gate exactly. A completed outflow without a valuation record must be structurally
+unrepresentable.
+
+The challenge also established that the reachable case is the **mixed picking**, and that the field a
+reviewer would naturally query — the movement-level marker — **conceals** it (`03` §2). Any control built
+here must be built on the movement-**line** marker.
 
 ### D-V — Close Means Closed
 
@@ -154,4 +175,31 @@ and records that it is a position, not a fact.
 
 ## 5. Independent Challenge Findings
 
-Recorded in `16_P02_AAS03_CHALLENGE.md` and folded into §6 below.
+Recorded in full in `16_P02_AAS03_CHALLENGE.md` — twenty package-changing findings and six accepted
+coverage gaps, every one of the twenty independently re-derived by the primary session before it changed
+anything.
+
+**AAS+ records the four that changed a *design position*, not merely a statement:**
+
+| # | What changed | Design consequence |
+|---|---|---|
+| 1 | The obligation ledger resolves **one** defect counted three times, not six. | `D-I` narrowed; **`D-VI` split out** as an independent decision. The package's principal structural handoff was overstated and is now stated at its true weight. |
+| 2 | The delivered-quantity field is a **cache** for goods; the real second holder is the four methods with no outflow behind them. | The design question moves from *"how do we stop two holders disagreeing?"* to **"how is the performance of a service evidenced?"** — a different and harder question the package had not asked. |
+| 3 | The reset-to-draft guard **already exists** and is wired on the purchase side only. | A control the package proposed to build is already built. The fix is wiring, not design. |
+| 4 | Cost of sales can be debited to **Revenue** when the product yields no expense account. | A new failure mode with no design candidate against it, and it nets revenue against itself on one document with no error. |
+
+**AAS+ position on the challenge itself.** The panel examined roughly **half** the evidence base and found
+twenty defects, two of which refuted verified facts. **There is no basis for treating the unexamined half
+as sound**, and AAS+ declines to synthesise any conclusion from `08`, `09` or accounting events AE-05
+through AE-13 as though it were twice-verified. It is not.
+
+## 6. Preserved Disagreement Arising From The Challenge
+
+**DIS-06 — whether an obligation ledger can serve a service sale at all.**
+
+| Position | Argument |
+|---|---|
+| **A** | It can. A service obligation row is written by whatever asserts performance — a timesheet, a milestone, a completion confirmation — and the ledger is agnostic about what produced the row. |
+| **B** | It cannot, and pretending otherwise is the reference's own mistake repeated. For goods the ledger row is *evidence*; for a service it would be *an assertion recorded in a ledger-shaped table*, which adds ceremony without adding truth. The honest design names the assertion as an assertion. |
+| **Where they agree** | Whatever it is called, it must carry **who asserted, when, and on what basis** — which is `D-II`. |
+| **Status** | Unresolved. Raised by the challenge, not by the primary session, and preserved.

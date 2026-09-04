@@ -22,6 +22,24 @@ Tenant = security / customer boundary. Company = legal / accounting / business b
 Each row below is determined from business, legal and accounting semantics plus source evidence, and each
 row that cannot be determined is held.
 
+## 0a. Denominator Declaration
+
+Added after the independent challenge observed that this file made counted claims with no declared basis.
+
+- **POPULATION** — the P02 objects and operations enumerated in `05_P02_BUSINESS_EVENT_REGISTER.md` (24
+  business events) and `06_P02_ACCOUNTING_EVENT_REGISTER.md` (13 accounting events), plus the
+  configuration and reference objects those events read.
+- **PATTERN** — for each, the eight scope questions of correction `SMEPLUS-26-09-04-ACC-REV2-CORR1` §4.
+- **PATH SET** — the evidence for the *company-level* determinations is
+  `L2_AUDIT_QUARANTINE/T4_SCOPE_BOUNDARY_AND_CLOSE_EVIDENCE.md`, whose own denominator is declared in its
+  §0 and was **independently reproduced** by the primary session (the 71-field / 31-unvalidated count and
+  the 9,431-file population both reproduce exactly). **This file inherits that denominator and declares
+  the inheritance rather than restating it.**
+- **UNIT** — one object or one operation.
+- **Declared limit** — every *tenant-level* determination in this file is a `DESIGN CANDIDATE` derived
+  from business semantics. **The reference has no tenant concept**, so no tenant row can be, or is,
+  evidenced.
+
 ## 1. Method Statement
 
 For every material P02 object and operation the eight correction questions are answered:

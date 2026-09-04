@@ -45,9 +45,28 @@ P02 owns *the sale occurred*. In the reference these are the same record, and th
 - The two are connected by an **obligation ledger** that Inventory writes into and P02 consumes from, in
   which each unit is **relieved exactly once and attributed exactly once**.
 
-This one structure resolves, at the root, six of the findings in this package: the two competing delivered
-quantities, the two competing cost derivations, the missing outbound-stock owner, the double-valuation
-class, the unpicked-completion hole, and the invoice-quantity coupling into cost.
+### 2a. What The Obligation Ledger Actually Resolves — Corrected
+
+The first draft claimed this one structure resolves six findings. **The independent challenge showed the
+count was inflated and the primary session accepts the correction.**
+
+| Original claim | Verdict |
+|---|---|
+| two competing cost derivations | **resolved** |
+| the double-valuation class | **the same defect, described differently** |
+| the invoice-quantity coupling into cost | **the same defect again** |
+| two competing delivered quantities | **not resolved.** For services, milestones and timesheets there is no outflow to write into the ledger — the assertion *is* the event (`05` §3a). A ledger fed only by the physical side has nothing to record for a service sale. |
+| the unpicked-completion hole | **not resolved.** That is a defect in the **producer** — the gate runs before any ledger could be written (`03` §2). The fix is `DC-03-01`, atomicity, which is a different change. |
+| the missing outbound-stock owner | **not resolved.** That is a **chart** gap (`07` §5). A ledger does not create an account. |
+
+**Corrected statement:** the obligation ledger resolves **one defect that this package had counted three
+times**, and it is still the highest-value single change — but it must be accompanied by `DC-03-01`
+(atomic completion), by the chart requirement in `07` §5, and by an explicit answer to *what an obligation
+row contains for a service*, which no design candidate in this package currently states.
+
+**`SUPPORTED INTERPRETATION`.** Counting one defect three times and then claiming a fix for "six findings"
+is the kind of inflation that survives self-review and does not survive an outside reader. It is recorded
+here rather than quietly corrected.
 
 ## 3. Dependency Register
 
@@ -57,7 +76,7 @@ class, the unpicked-completion hole, and the invoice-quantity coupling into cost
 | **D-02** | **Inventory — multi-tenant invariants** | The invariant set and its ruling-conformance package define the boundary rules P02's outflow consumption must satisfy. P02 does **not** restate or re-adjudicate them. | `20_P02_SCOPE_OWNERSHIP_MATRIX.md` SF-04 | `DEPENDENCY OPEN` |
 | **D-03** | **Core Accounting — Wave A** | Four Wave A findings are confirmed independently from the O2C side and are **not** re-adjudicated here: the silent 1:1 FX fallback, the system-derived accounting date, the absence of a year-close entry, and the absence of event identity. | `09` §4, `01` S7, `06` §3, `05` §3 | `DEPENDENCY OPEN` |
 | **D-04** | **Core Accounting — GB-08 FX ruling** | A Boss ruling on FX rate ownership and missing-rate policy exists. P02 adds arm 2 of the fallback (the undated earliest-rate arm), which is more likely and less visible than the 1:1 arm the ruling addressed. | `09` §4 | `DEPENDENCY OPEN` — **material delta supplied** |
-| **D-05** | **P01 — Procure-to-Pay** | The vendor-side mirror: whether the purchase return / debit-note pair shows the same structural independence, and whether the inbound interim account has the owner the outbound one lacks. The Thai chart **does** supply an inbound interim account and **not** an outbound one, which suggests the two sides are not symmetric. | `07` §5, `08` §10 | `PEER DEPENDENCY OPEN` — **P02 continues; this blocks only the symmetry conclusion** |
+| **D-05** | **P01 — Procure-to-Pay** | The vendor-side mirror: whether the purchase return / debit-note pair shows the same structural independence. **The symmetry premise originally attached to this dependency is WITHDRAWN** — the inbound interim account is defined but wired to nothing, so neither direction is chart-supported (`EV-P02-081`). Two purchase-side items are additionally routed to P01: the zero-rated input-tax **sign defect** (`EV-P02-097`) and the observation that the reset-to-draft guard is wired on the purchase side only (`EV-P02-086`). | `08` §10 | `PEER DEPENDENCY OPEN` — **P02 continues; nothing here blocks a P02 conclusion** |
 | **D-06** | **P11 — cross-process scope reconciliation** | The three scope holds. | `20` §4, §5, §6 | `PEER DEPENDENCY OPEN` |
 | **D-07** | **Accounting-Tax track** | Eight Thai statutory questions, each with its named sources. | `11` §7 | `HOLD — STATUTORY EVIDENCE REQUIRED` |
 
@@ -83,7 +102,7 @@ offered to the cross-process reconciliation — not a claim that the named proce
 
 | # | Handoff | Type |
 |---|---|---|
-| H-01 | The **obligation-ledger requirement** (§2) — the single structural change that resolves six findings. | requirement |
+| H-01 | The **obligation-ledger requirement** (§2). **The original claim that it resolves six findings is withdrawn** — see §2a. It resolves one defect that the package had described three times, and leaves three of the six untouched. | requirement |
 | H-02 | The **five missing account roles** and the requirement that *goods delivered not invoiced* be a controlled subledger with mandatory ageing and a close gate. | requirement |
 | H-03 | The **six competing date rules** across 13 accounting events, and the requirement for one declared rule per event class with occurrence and recognition dates carried separately. | requirement |
 | H-04 | The **lock-date semantics finding**: the reference's lock is a period *redirect*, not a period *bar*; it is bypassable by an all-users no-expiry exception and by a context sentinel used in partner merge; and it does not gate the matching state at all. | evidence + requirement |

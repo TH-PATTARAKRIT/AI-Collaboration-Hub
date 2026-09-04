@@ -20,7 +20,7 @@ Design document, or Team B artefact.** They exist so Boss, PMO and AI-Audit can 
 | Database access | **none.** No runtime execution, no query, no dump. Every statement in this package is static-source derived unless explicitly marked otherwise. |
 | Secondary roots consulted | ORM core module of the same distribution (T4 only) |
 
-## 2. Register — `EV-P02-001` … `EV-P02-069`
+## 2. Register — `EV-P02-001` … `EV-P02-097`
 
 | EV | `path:line` | Subject |
 |---|---|---|
@@ -73,7 +73,7 @@ Design document, or Team B artefact.** They exist so Boss, PMO and AI-Audit can 
 | 047 | `R/stock_account/models/stock_move.py:491-497` | Runtime guard raising when an account cannot be resolved at outflow |
 | 048 | `R/sale/models/product_template.py:170-171` | Goods default to **invoice-on-order** when the policy is empty |
 | 049 | `R/stock/models/stock_picking.py:1585` | The backorder remainder has its picked marker cleared |
-| 050 | `R/stock_account/models/account_move.py:257-261` | The cost-line origin field — written, **never read for duplicate prevention** |
+| 050 | `R/stock_account/models/account_move.py:257-261`; its one non-trivial reader at `R/sale_stock/models/account_move.py:176-183` | The cost-line origin field. **Corrected after independent challenge:** it *is* read — to net already-posted cost quantity out of a re-derivation, which is duplicate control **at the value level for one document**. It is **not** read to prevent a second pair of lines being generated, which is the guard `03` §6 shows is absent. Complete denominator: **4 occurrences root-wide.** |
 | 051 | `R/stock/models/stock_move_line.py:41` | The picked marker on the movement line — stored, writable |
 | 052 | `R/stock_account/models/stock_valuation_layer.py:75-81` | Entry validation is gated on real-time valuation |
 | 053 | `R/stock_account/models/account_move.py:27-36` | Cost lines are stripped on copy unless the copy is a cancelling reversal |
@@ -104,6 +104,32 @@ Design document, or Team B artefact.** They exist so Boss, PMO and AI-Audit can 
 | 078 | `R/sale/models/sale_order_line.py:178-182` | The line discount — stored, writable, precomputed |
 | 079 | `R/sale/models/res_company.py:30-39` | The whole-order discount product, constrained to a **service billed on ordered quantity** |
 | 080 | `R/sale/models/sale_order_line.py:1014-1022` and `R/sale/models/sale_order.py:624-632` | Discount lines are flagged as not billable alone; an order whose only billable lines are such lines reports nothing to bill |
+
+### 2a. Evidence added during and after the independent challenge
+
+| EV | `path:line` | Subject |
+|---|---|---|
+| 081 | `R/l10n_th/data/template/account.account-th.csv:12` | The "Uninvoiced Receipts" account occurs **once in the whole localisation — in its own definition row** and is wired to nothing |
+| 082 | `R/account_accountant/wizard/account_change_lock_date.py:246` | The settings wizard refuses a lock date in the future |
+| 083 | `R/account/models/company.py:475-528` | The company-level write validation **does not** refuse a future lock date — it checks only hard-lock decrease/removal, unreconciled statement lines and unhashed entries |
+| 084 | `R/sale_stock/models/sale_order_line.py:193`, `:209`; selection extended at `R/sale_stock/models/sale_order_line.py:16`, `R/sale_project/models/sale_order_line.py:14`, `R/sale_timesheet/models/sale_order_line.py:11` over the base pair at `R/sale/models/sale_order_line.py:225-228` | The outflow-derived compute **assigns** on every dependency change; the method selection has **five** values |
+| 085 | `R/stock_account/models/stock_valuation_layer.py:38` and `R/stock_account/models/account_move.py:256` | The valuation-layer ↔ accounting-line relation **exists on the model** |
+| 086 | `R/purchase_stock/models/account_move_line.py:302` | …and is written in **exactly one non-test place in the whole root**, on the **purchase** side |
+| 087 | `R/stock/models/stock_picking.py:1486-1487` | Validation **force-sets** the picked marker when the picking has quantities and no picked movement |
+| 088 | `R/stock/models/stock_move.py:267-269` | …and that set propagates to the movement lines |
+| 089 | `R/stock/models/stock_move.py:260-265` | The movement-level picked marker is computed as *completed **or** any line picked* — so it reads true after completion even when no line is picked |
+| 090 | `R/stock_account/models/account_move.py:125` | Cost-of-sales expense fallback: the **journal's default account** |
+| 091 | `R/account/models/chart_template.py:686-687` | …and the chart sets a **sale** journal's default account to the **income** account |
+| 092 | `R/stock_account/models/account_move.py:13-17` | A guard hides reset-to-draft when a document's lines carry valuation layers — inoperative on the sales side because of `EV-P02-086` |
+| 093 | `R/stock_account/models/stock_move.py:669-675` | The valuation-entry date has **three** branches, not one |
+| 094 | `R/l10n_th_reports/models/tax_report_vat.py:114`, `:138` | The Thai sales-tax export writes the **accounting date** into a column headed **"Invoice Date"** |
+| 095 | `R/l10n_th_reports/models/tax_report_pnd.py:22`, `:41` | The withholding export does the same under "Invoice/Bill Date" |
+| 096 | `R/l10n_th/data/template/account.tax-th.csv:10`, `:14`, `:18`, `:22` | Four of the six Thai VAT taxes carry an **empty** tax group |
+| 097 | `R/l10n_th/data/template/account.tax-th.csv:13` vs `:5`, `:12`, `:21` | A **sign defect**: the zero-rated input tax's refund repartition is positive where every sibling is negative |
+| 098 | `R/account/models/partner.py:519-529` | A customer credit limit exists on the partner and is company-dependent — **not covered by this package** |
+| 099 | `R/stock_account/models/stock_move.py:175`, `:751-759`; module `R/stock_dropshipping` | Drop-shipping has its own valuation path and produces an **additional** journal entry — **not covered by this package** |
+| 100 | `R/stock_account/data/stock_account_data.xml:5` | The valuation-mode default is set to manual/periodic by data |
+| 101 | `R/account_accountant/models/res_config_settings.py:12` and `R/account_accountant/views/res_config_settings_views.xml:37` | The split-recognition toggle is exposed in **exactly one place in the whole root**, and it is an Enterprise module |
 
 ## 3. Track Evidence
 
