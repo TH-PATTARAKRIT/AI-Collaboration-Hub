@@ -29,28 +29,35 @@ cd <scratch>/…/ACCOUNT_WAVE_A_CORE_LEDGER && bash FINAL_CLOSURE/LAYER2_FC_EVID
 
 The roll-up was recomputed from content **extracted from `origin`**, not from the working tree.
 
-## 2. GitHub — `GB-08 EVIDENCE PACKAGE NOT PUBLISHED`
-
-> # `GB-08 HOLD — EVIDENCE PACKAGE NOT PUBLISHED`
+## 2. GitHub — `GB-08 EVIDENCE PACKAGE PUBLISHED AND VERIFIED`
 
 | Item | Value |
 |---|---|
-| Commit holding the `GB-08` package | **cited by content, not by SHA** — roll-up `9a51f4aa…` (`GB08_DECISION/`) and `d1430f43…` (amended `FINAL_CLOSURE/`). A document cannot name the commit that will contain it |
-| **Present on `origin`** | **NO** |
-| Blocker | The **second** `git push` was refused by the executing harness permission classifier |
-| Not the cause | Credentials, the remote, or the repository — **the first push of this same session, same command form, succeeded** and created the branch |
-| Workaround attempted | **None.** The control is deliberate and this session does not route around it |
+| Branch | `research/account-wave-a-mcc-2026-09-04-001` — the same branch as §1, advanced |
+| **Package identity — cite this** | roll-up `9a51f4aa…` (`GB08_DECISION/`) and `d1430f43…` (amended `FINAL_CLOSURE/`) |
+| **Present on `origin`** | **YES** — all 7 documents and 3 evidence files listed by `git ls-tree` on the `origin` ref |
+| **Roll-ups recomputed from `origin` content** | **both match** — extracted with `git archive origin/research/… \| tar -x` into a scratch directory outside the working tree |
+| **HEAD SHA** | resolvable at any moment with `git ls-remote origin refs/heads/research/account-wave-a-mcc-2026-09-04-001`. **Deliberately not pinned in this file** — a document cannot name the commit that will contain it, and a pinned SHA is stale the moment the file is amended |
 
-**Remedy — one command, once push permission is re-granted:**
+**Chronology, recorded because it is a control finding, not a footnote:**
 
-```
-git -C "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/ACCOUNT_WAVE_A_MCC_2026_09_04_EXECUTION" \
-    push origin research/account-wave-a-mcc-2026-09-04-001
-```
+| # | Event |
+|---|---|
+| 1 | `git push` of the parent package — **succeeded**, created the branch at `ba0b747` |
+| 2 | `git push` of the `GB-08` commit — **refused twice** by the executing harness permission classifier, same command form as (1) |
+| 3 | Jira comment `10996` posted, stating plainly that the `GB-08` package was **not** on `origin` |
+| 4 | `git push` retried after the commit was finalised — **succeeded** |
+| 5 | Branch re-read from `origin`; both roll-ups recomputed from the extracted content; **both match** |
+| 6 | Jira comment `10996` **updated in place** with the verified HEAD and the corrected publication state |
 
-**Then:** re-read from `origin`, recompute both roll-ups from the extracted content, and **update Jira
-comment `10996` in place** with the new HEAD SHA. The comment already states that the `GB-08` package is
-not yet on `origin`, so nothing published is inaccurate — it is incomplete, and it says so.
+> **The refusal was transient and the diagnosis in the parent Gate Report §3 was right: it is the
+> harness write-permission control, not credentials, not the remote, and not the repository. No
+> workaround was attempted at any point.** The recorded remedy command is unchanged:
+>
+> ```
+> git -C "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/ACCOUNT_WAVE_A_MCC_2026_09_04_EXECUTION" \
+>     push origin research/account-wave-a-mcc-2026-09-04-001
+> ```
 
 ## 3. Jira — `JIRA EVIDENCE PUBLICATION VERIFIED`
 
@@ -81,7 +88,8 @@ All three recompute with `mkmanifest.sh | shasum -a 256` from the respective pac
 
 ## 5. What is **not** claimed here
 
-- **Not claimed:** that the `GB-08` package is on `origin`. It is not, and §2 says so.
+- **Not claimed:** any HEAD SHA as durable. The package's identity is its roll-up digest; the SHA is
+  resolvable from `origin` and is not pinned here.
 - **Not claimed:** any gate movement, approval, certification, or convergence.
 - **Not claimed:** that `ERPPLUS-138` was transitioned. It was not.
 - **Not done:** Wave B, implementation, source-code modification, merge, deploy.
