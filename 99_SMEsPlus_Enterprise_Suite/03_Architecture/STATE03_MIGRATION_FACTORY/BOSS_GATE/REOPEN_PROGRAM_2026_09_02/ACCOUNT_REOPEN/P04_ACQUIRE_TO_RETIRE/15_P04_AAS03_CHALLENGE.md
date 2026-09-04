@@ -59,7 +59,7 @@ partly, four have no host.
 **Disagreement recorded — `D-P04-03`.** E1 would re-score the disposal-date row
 as PARTLY MET; E3 and E4 hold that a requirement with no enforcement and no
 evidence trail is not partly met by user diligence. **Not resolved.**
-E2's VAT item is registered as **P04-B-38**.
+E2's VAT item was **researched the same session rather than left open** — see `07` §5.5. It is **narrowed** to a reconciliation gap on the sale path (`P04-B-38`) and **escalated** on the disposal path, where a donation or scrapping produces **no tax invoice** against a VAT definition that does not require consideration (`P04-B-39`, High). E2's position on being raised late stands: it should have been in scope from the start.
 
 ## Level 4 — The cost handoff and the veto (`06`)
 
@@ -74,8 +74,7 @@ the veto's second limb is wider.
 | **E2** | **No Thai-specific position on the mechanism count.** But if the third `BLK-07` option is adopted, the depreciation **charge** changes, and that has direct tax consequences under `LAW-01` / `LAW-02` that are **unresearched**. The option must not be presented to the Boss without that caveat attached |
 
 **Consensus:** the veto is not dischargeable by this session, and its second limb
-is wider. **E3's unit caveat is adopted** and is stated in `06` §2.1 and in the
-handoff pack. **E2's caveat is adopted** and appears in `09` §3 and `06` §7.
+is wider. **E3's unit caveat is adopted** and is stated in `06` §2.3. **E2's caveat is adopted** and appears in `09` §3 and `06` §7.
 
 ## Level 5 — Scope (`20`)
 

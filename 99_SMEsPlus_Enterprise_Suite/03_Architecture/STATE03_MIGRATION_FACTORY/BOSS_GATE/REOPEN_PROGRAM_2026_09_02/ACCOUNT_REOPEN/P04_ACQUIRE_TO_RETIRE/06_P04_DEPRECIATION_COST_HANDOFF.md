@@ -53,6 +53,39 @@ carries the **AAS+ veto's second limb** — the requirement to prove that exactl
 > Class: **FACT VERIFIED.** Severity: this **materially widens the AAS+ veto's
 > second limb**, it does not satisfy it.
 
+### 2.3 The unit caveat — stated because the comparison invites a false one
+
+Adopted from `15` Level 4, expert E3.
+
+**Nine is correct under the declared unit and is not comparable to the prior
+count of two, because the prior count did not declare a unit.** A reader
+setting "nine" against "two" is comparing two different measurements, not
+observing a sevenfold discovery.
+
+The declared unit is **disjunctive**: a path counts if it has its own rate
+field, **or** its own driver quantity, **or** its own destination ledger. Under
+that unit, the nine are not equally distinct, and the package says so:
+
+| Path | Distinct by | Strength |
+|------|-------------|----------|
+| M1, M2 | destination (valuation vs a standalone relief entry) | strong — they are separate entries |
+| M7, M8, M9 | own driver **and** own destination | strong |
+| M3, M6 | own rate field **and** own driver | strong as inputs; their **destination** is shared with M1/M2 and M4 |
+| M4 | own destination ledger (analytic, one-sided) | strong |
+| **M5** | a **second distribution of the same value** to different analytic accounts | **weakest** — it is a second call, not a second computation |
+
+Under a stricter unit — "own monetary computation" — the count would be smaller.
+Under a looser one — "own code path producing a monetary record" — it would be
+larger.
+
+What does **not** change under any unit, and is the point of the enumeration:
+
+- the same work-centre hour is monetised **more than twice**;
+- at least two of the paths **do not reconcile with each other** (P04-F-43,
+  P04-F-44) and one produces a **live ledger mismatch**;
+- the veto's single-mechanism proof must therefore be discharged against a
+  **declared** enumeration, not against a count carried forward by assertion.
+
 ## 3. Six ways the nine paths fail to reconcile
 
 | ID | Failure | Class |

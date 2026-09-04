@@ -184,6 +184,46 @@ primary evidence permits, and states precisely what remains open.
 | Possible 30-day advance notice | P04-LAW-03 | If confirmed, a **notification date must precede the destruction date by 30 days**, and the system must be able to prove it did. This is a *dated control*, not a document field |
 | Scrap ≠ disposal ≠ sale, for evidence purposes | §5.1 vs §5.2 | The estate's single disposal action **cannot carry three different evidence regimes**. This is why P04-B-12 (scrap as a distinct event) is an evidence requirement and not a cosmetic one |
 
+### 5.5 Value-added tax on the disposal of a fixed asset — researched and closed
+
+Raised at `15` Level 3 by the statutory expert as an item **no package had
+addressed**, and researched immediately rather than left open.
+
+**Source `P04-LAW-F` — ประมวลรัษฎากร มาตรา 77/1 (8) และ (9).**
+
+| Provision | Operative text | Consequence |
+|-----------|----------------|-------------|
+| มาตรา 77/1 (8) — **"ขาย"** | *จำหน่าย จ่าย โอนสินค้า **ไม่ว่าจะมีประโยชน์หรือค่าตอบแทนหรือไม่*** | A "sale" for VAT **does not require consideration**. Sub-paragraphs additionally deem certain acts a sale, including **(ง)** applying goods to a purpose other than the direct conduct of the business, per criteria issued by the Director-General; **(จ)** goods missing from the stock record; **(ฉ)** goods remaining on cessation of business |
+| มาตรา 77/1 (9) — **"สินค้า"** | *ทรัพย์สินที่มีรูปร่างและไม่มีรูปร่าง* … | "Goods" is **tangible and intangible property**. It is **not** limited to property held for resale. A fixed asset is goods |
+
+| ID | Position | Class |
+|----|----------|-------|
+| **P04-LAW-04** | A VAT-registered person **selling a fixed asset is making a sale of goods**. Output tax arises and a tax invoice must be issued | **FACT VERIFIED** from the Revenue Code definitions |
+| **P04-LAW-05** | Because consideration is **not** required by the definition, **a disposal by donation is also a sale** for VAT purposes | **FACT VERIFIED** as to the definition; **SUPPORTED INTERPRETATION** as to the tax base and any exemption, which were not researched |
+| **P04-LAW-06** | Applying an asset to a non-business purpose, an asset **missing from the record**, and assets **remaining on cessation** are each deemed a sale under a sub-paragraph, with (ง) governed by criteria issued by the Director-General that this session did not retrieve | **SUPPORTED INTERPRETATION** — the deeming provisions are verified; their scope for fixed assets is not |
+
+#### What this does to the estate's two retire paths
+
+| Path | VAT consequence | Estate behaviour | Verdict |
+|------|-----------------|------------------|---------|
+| **Sell** — proceeds taken from a **posted customer invoice** | Output tax arises; the customer invoice carries it | The tax is on the customer invoice, which exists **independently** of the asset entry. **Nothing checks that the two agree** | **Workable, unverified.** `P04-B-38` narrowed to a reconciliation gap |
+| **Dispose** — **no proceeds, no customer invoice** | Where the disposal is a **donation**, or is a deemed sale under a sub-paragraph, **output tax still arises** | The no-proceeds path produces **no customer invoice and therefore no tax invoice**. Nothing prompts one | **DEFECT** |
+
+> **P04-F-63.** The estate's no-proceeds disposal path is the **only** way to
+> record a donation, a scrapping, or a write-off — and it produces **no tax
+> invoice**, while Thai VAT law defines a sale without requiring consideration
+> and separately deems several such acts to be sales. A donation recorded
+> through the disposal path is, on the face of the definitions, **an unrecorded
+> output-tax event**.
+> Class: **FACT VERIFIED** as to the estate; **SUPPORTED INTERPRETATION** as to
+> the tax outcome, which depends on the Director-General's criteria and on any
+> exemption. Severity **High**. Routed to the Accounting-Tax track as
+> **P04-B-39**.
+
+This is a second, independent reason why **scrap must be a retire event distinct
+from disposal** (`P04-BD-07`): the two differ not only in their evidence regime
+(§5.1 versus §5.2) but in whether an output-tax event arises at all.
+
 ### 5.4 Tax gain or loss on disposal — still open
 
 A prior package established that Thai tax gain or loss on disposal is computed on
@@ -207,3 +247,4 @@ point — it must not disappear from the register a second time.
 | **P04-F-34** | Of seven TAS 16 derecognition requirements, **one is met, two are partly met, and four have no host in the estate** | FACT VERIFIED (estate) vs manual |
 | **P04-F-30/31/32** | New TAS 16 evidence on depreciation cessation, full depreciation and units-of-production zero charge — bearing directly on `BD-01` and `BLK-07` | ACCOUNTING STANDARD INTERPRETATION |
 | **P04-F-19** | Every disposal silently rewrites the company's gain and loss account defaults | FACT VERIFIED, High |
+| **P04-F-63** | The no-proceeds disposal path — the only way to record a donation, a scrapping or a write-off — produces **no tax invoice**, while the VAT definition of a sale does not require consideration | FACT VERIFIED (estate) / SUPPORTED INTERPRETATION (tax), High |

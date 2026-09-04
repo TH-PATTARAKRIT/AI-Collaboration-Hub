@@ -159,11 +159,13 @@ originates. It is not a setting.
 | Destruction of a **damaged fixed asset**: the loss is deductible where destruction is **proved** and the **auditor certifies** it | The retire event must carry evidence and a certification artefact. It carries neither |
 | Destruction of **goods and scrap**: approval, witnesses, an auditor as witness, written certification, and **30 days' advance notice** to the tax authority | A single retire action **cannot carry two different evidence regimes**. Scrap must be a distinct event |
 | Acquisition by **hire purchase or instalment**: a tax invoice on each instalment due date; tax computed per instalment | No acquisition path exists for this ordinary Thai purchase form |
+| A transfer of property is a **sale** for value-added tax **whether or not there is consideration**, and several acts — applying an asset to a non-business purpose, an asset missing from the record, assets remaining on closure — are separately deemed sales | The retire path that records a donation, a scrapping or a write-off produces **no tax document at all**. On the face of the definitions that is an unrecorded output-tax event |
 | Tax depreciation is capped by statutory **ceilings**, so book and tax figures diverge by design | **There is no tax book and no tax written-down value.** The reconciliation is external and manual |
 
-Two statutory questions are deliberately left open and routed to the
+Three statutory questions are deliberately left open and routed to the
 Accounting-Tax track rather than answered by inference: whether the 30-day
-notice regime reaches fixed assets, and the tax treatment of a gain on disposal.
+notice regime reaches fixed assets, the tax treatment of a gain on disposal, and
+the precise value-added-tax outcome of a disposal without consideration.
 
 ## 3. What Core Accounting Reconciliation should take from P04
 
