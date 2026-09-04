@@ -1,0 +1,63 @@
+# ACCOUNT WAVE A — FINAL CLOSURE EVIDENCE MANIFEST (SHA-256)
+
+Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-FC-001` · Layer 1 clean-room
+Parent `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-MCC-001` (`aad8a1e25dfd08473c8fefbc90158f82d643e942`)
+Generated `2026-09-04T14:13:35+0700`
+
+> **Recommendation only. Boss is the sole Final Approver.**
+>
+> **`ER-CORE-8` — hash the package BEFORE review.** Any reviewer verdict on this package must name
+> the roll-up digest below. The parent round shipped a package that changed while it was under
+> review (`MCC_J` `J-17`); this manifest exists so that cannot happen silently here.
+
+## 1. Roll-up
+
+| Measure | Value |
+|---|---|
+| Files manifested | **14** |
+| Markdown lines | **2378** |
+| **Roll-up digest (SHA-256 of the per-file digest list)** | `9d3b8f1f4a6c62cd010369817c195daee93ea7f03a1378a0aa8e08b320da3bfa` |
+| Execution commit | `0a101b95c4f375e9d743dfa52ea3e6a9b050f69c` (pre-manifest; final commit differs) |
+| Branch | `research/account-wave-a-mcc-2026-09-04-001` |
+| Published on `origin` | **NO** — see Gate Report §3 |
+
+## 2. Per-file SHA-256
+
+| SHA-256 | File |
+|---|---|
+| `c723cd09b0b4c5af26ce87cdb7e371fd149598a84e78ddbde9305317a14acdd4` | `ACCOUNT_WAVE_A_FINAL_BALANCED_BUT_WRONG_REGISTER.md` |
+| `bbc18122ddbfbd56b9ceebd21ba2e59929eb69d1d2ba5022ace6a6b0b1110584` | `ACCOUNT_WAVE_A_FINAL_CLOSURE_MASTER.md` |
+| `9560ce5bc1a9a3df0744f8aa76a7c3cc881c61e307ebfdb9b57b989a98fcbc83` | `ACCOUNT_WAVE_A_FINAL_GATING_UNKNOWN_REGISTER.md` |
+| `fc61cd3b1450fce4dd77e3c045768e80d639bfd0f5259bb01e18c86e737667c3` | `ACCOUNT_WAVE_A_FINAL_METHOD_CONVERGENCE_REPORT.md` |
+| `23392ac72ec96504a8813d928decdc3fc5de2f15fad9c3c1c29678084421c0ba` | `ACCOUNT_WAVE_A_FINAL_NEGATIVE_CLAIM_COMPLIANCE.md` |
+| `51e6796b2162f6eae557283c6c70a4824ecb0695a2ee5118a1741195cb34b36d` | `ACCOUNT_WAVE_A_FINAL_RESEARCH_GATE_REPORT.md` |
+| `62e0d825659213727aba62f10272fcda54ee52c35d731b2612485c6a0fcd942b` | `ACCOUNT_WAVE_A_FINAL_TOLERANCE_ZERO_REGISTER.md` |
+| `04d67227ae3a44931c9b2a653e9ca4cf48d93fda1b43e10e7d8dd907f0e978ff` | `ACCOUNT_WAVE_A_GB08_BOSS_DECISION_PACKAGE.md` |
+| `2b53afff3eed6a6317a4599dec053fab6629fbf0d3d679e8663186cb5aac0514` | `ACCOUNT_WAVE_A_MCU04_FINAL_DISPOSITION.md` |
+| `c9292de0b754ac7f4331f998376fb31c577be13b4f2a40ad57958095516b4307` | `ACCOUNT_WAVE_B_NEW_SESSION_PROMPT_DRAFT.md` |
+| `8d86b918ce9f6b8db221026f2bd405317b3523aabbe3e38c9997fc4040cf3ec9` | `ACCOUNT_WAVE_B_READINESS_PACKAGE.md` |
+| `3bbb6d201f9fb8f92e69ae92f056baf532969fc4120b34c16efb8275ad24cf61` | `LAYER2_FC_EVIDENCE/fcscan.sh` |
+| `21985838853402636050e1b0041bed35feba134db892fa281070b16af3661a38` | `LAYER2_FC_EVIDENCE/mkmanifest.sh` |
+| `5e2049fe8744935a694f77adceb49bf59746e0eba4b6c251d85673f9001a99e5` | `SMEPLUS_VERY_DEEP_RESEARCH_STANDARD_CANDIDATE_L99999_99999.md` |
+
+## 3. Reproduce
+
+From `ACCOUNT_WAVE_A_CORE_LEDGER/`:
+
+```
+./FINAL_CLOSURE/LAYER2_FC_EVIDENCE/mkmanifest.sh | shasum -a 256
+```
+
+Compare against the roll-up digest in §1. The compliance scan is re-runnable the same way:
+
+```
+./FINAL_CLOSURE/LAYER2_FC_EVIDENCE/fcscan.sh
+```
+
+## 4. Parent package integrity
+
+| Check | Result |
+|---|---|
+| Tracked files modified outside `FINAL_CLOSURE/` | **0** |
+| Parent `MCC` package altered | **NO** — `DR-NC-06`: superseded parent text stands unedited |
+| Source / product code modified | **NO** |

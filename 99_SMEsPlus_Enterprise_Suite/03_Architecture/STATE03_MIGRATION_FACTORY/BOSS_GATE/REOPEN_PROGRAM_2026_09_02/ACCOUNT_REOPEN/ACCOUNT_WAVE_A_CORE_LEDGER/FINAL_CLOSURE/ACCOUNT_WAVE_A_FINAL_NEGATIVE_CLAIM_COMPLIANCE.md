@@ -20,51 +20,64 @@ Scan script: `LAYER2_FC_EVIDENCE/fcscan.sh` — re-runnable, deterministic.
 
 ---
 
-## 2. Machine scan — executed
+## 2. Machine scan — executed on the COMPLETE package
+
+> **Re-run after the last document was written, not before.** An earlier run of this scan, taken when
+> the package held 6 files, is superseded. **Publishing those figures against a 13-file package would
+> have been `FC-F1`'s exact defect committed by the file that reports `FC-F1`** — the mechanism
+> (`ER-CORE-3`: recompute every published count from the source before publishing) caught it.
 
 ```
-FINAL_CLOSURE            files=6    lines=1170
+FINAL_CLOSURE               files=13   lines=2365
 METHOD_CONVERGENCE_CLOSURE  files=20   lines=4329
 METHOD_CONVERGENCE          files=15   lines=2507
 ```
 
 | Unbounded-negative token | `FC` | `MCC` |
 |---|---|---|
-| `does not exist` | 1 | 10 |
-| `there is no` | 5 | 10 |
-| `no rule` | 2 | 1 |
-| `no constraint` | 0 | 3 |
-| `no such` | 0 | 4 |
-| `nowhere` | 0 | 4 |
-| `impossible` | 0 | 2 |
+| `does not exist` | 6 | 10 |
+| `there is no` | 7 | 10 |
+| `no rule` | 3 | 1 |
+| `no constraint` | 2 | 3 |
+| `no such` | 1 | 4 |
+| `nowhere` | 1 | 4 |
+| `impossible` | 1 | 2 |
+| `never occurs` | 0 | 0 |
+| **TOTAL** | **21** | **34** |
 
 | Bounding token | `FC` | `MCC` |
 |---|---|---|
-| `declared pattern` | 8 | 20 |
-| `path set` | 16 | 57 |
-| `bounded` | 20 | 100 |
-| `NOT YET SEARCHED` | 2 | 4 |
-| `outside the bound` | **1** | **0** |
-| `NEGATIVE-CLAIM` notice | 4 | 6 |
+| `declared pattern` | 11 | 20 |
+| `path set` | 30 | 57 |
+| `bounded` | 34 | 100 |
+| `NOT YET SEARCHED` | 4 | 4 |
+| **`outside the bound`** | **2** | **0** |
+| `NEGATIVE-CLAIM` notice | 14 | 6 |
+| `class \`A\`` | 24 | 10 |
+| `class \`C\`` | 3 | 8 |
+| **TOTAL** | **122** | **205** |
 
-**Density check.** `FC` carries **8 unbounded-negative tokens in 1,170 lines** against **46 bounding
-tokens** — a ratio of **5.8 bounding statements per unbounded negative**. `MCC`: 34 against 191, ratio
-**5.6**. **The control is being applied at a consistent and adequate density in both packages.**
+**Density.** `FC`: **122 bounding statements against 21 unbounded negatives = 5.8 : 1** over 2,365
+lines. `MCC`: **205 against 34 = 6.0 : 1** over 4,329 lines. **The control is applied at an equivalent
+and adequate density in both packages; this round did not relax it.**
 
 ---
 
 ## 3. Prohibited-wording scan — `CLEAN`
 
-Every occurrence in `FC` of a verdict token was read individually:
+Every occurrence in `FC` of a verdict token was read individually — **26 + 5 + 5 + 1 = 37 hits, all
+37 inspected:**
 
 | Token | Hits | Every hit is |
 |---|---|---|
-| ` PASS` | 11 | `passes` (plural), *"`CONDITIONAL PASS` **is unavailable**"*, *"a conditional pass … **is a `PASS` with a different label**"* — **all prohibitions or grammar; no verdict** |
-| `APPROVED` | 1 | *"**Not declared:** … final approved …"* — a **non**-declaration |
-| `FINAL APPROVAL` | 1 | *"**No AI may declare** Final Approval"* — a prohibition |
-| `CERTIFIED` | 0 | — |
+| `PASS` | 26 | `passes` (plural noun/verb) · *"**Why not** `PASS`"* · *"`CONDITIONAL PASS` **is unavailable**"* · *"a conditional pass … **is a `PASS` with a different label**"* · the Wave B draft listing the **permitted verdict vocabulary** for a future session. **No verdict declared** |
+| `APPROVED` | 5 | *"Boss is the sole Final **Approver**"* · *"**Not declared:** … final approved"* · this file's own audit rows. **No approval declared** |
+| `FINAL APPROVAL` | 5 | *"**No AI may declare** Final Approval"* and quotations of it. **A prohibition** |
+| `CERTIFIED` | 1 | *"No `PASS`, approval or **certification** is declared anywhere in this package."* **A denial** |
 
 > **No `PASS`, approval or certification is declared anywhere in this package.**
+> Every hit is a prohibition, a non-declaration, a heading explaining why a verdict is **not** used, or
+> a future session's permitted vocabulary.
 
 ---
 
@@ -128,8 +141,8 @@ class `A` **relative to an undeclared scope**, which is class `E` wearing class 
 | Dimension | Verdict |
 |---|---|
 | This round's own negative claims | **COMPLIANT** — 0 class `E`; every claim bounded; bounds quantified |
-| Prohibited verdict wording | **CLEAN** — 0 |
-| Control density | **ADEQUATE** — 5.8 bounding statements per unbounded negative |
+| Prohibited verdict wording | **CLEAN** — 37 hits, all 37 inspected, **0 verdicts declared** |
+| Control density | **ADEQUATE** — 122 bounding statements against 21 unbounded negatives (5.8 : 1), measured on the complete 13-file package |
 | **`MC-05` programme-wide** | **`NOT MET`** — every historical class `A` is scoped to ≤1 of 22 roots and none declares it |
 | Correction backlog | **NOT CLEARED, and growing** |
 
