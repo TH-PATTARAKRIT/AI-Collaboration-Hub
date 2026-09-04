@@ -48,8 +48,10 @@ Purpose:
 |---|---|
 | Boss Authorization | `9c7eeb20e3a59edd0ea13a623d8e53b2391d80d7` |
 | New Session Prompt | `13cbc9eb682de594242c743f6beb2267f6179773` |
-| Session Link Register | `598a761b100fdde20319a4c91889d7cd1f22bb95` |
-| Register correction | `THIS_COMMIT` |
+| Initial Session Link Register | `598a761b100fdde20319a4c91889d7cd1f22bb95` |
+| Register placeholder correction | `fdfbcf19567647a1d8073b956fef70f1dc3914e5` |
+
+The live branch tip is the authoritative latest commit for this register state.
 
 ---
 
