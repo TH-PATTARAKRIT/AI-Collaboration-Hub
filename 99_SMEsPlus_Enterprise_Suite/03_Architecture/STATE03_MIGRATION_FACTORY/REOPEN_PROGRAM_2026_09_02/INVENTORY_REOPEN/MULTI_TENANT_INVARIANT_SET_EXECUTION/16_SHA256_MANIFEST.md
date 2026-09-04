@@ -38,7 +38,7 @@ This manifest covers files `00` through `15`. It does not contain its own digest
 | 12 | `12_AAS_PLUS_CHALLENGE_VERDICT.md` | `4e390a7d9cb945adb00da328bf83d98ba279e2a5dec238070262bd3492089dcc` |
 | 13 | `13_PMO_NEXT_GATE_RECOMMENDATION.md` | `aab1938842a41c4082fbda6a9d21603a65ce5116c2011e8ed3f09dcdb2cb9199` |
 | 14 | `14_BOSS_DECISION_PACKAGE.md` | `d609bcbf030f197c5cde2990d49172cca5bd8b6724f007d3ff270a1160609a77` |
-| 15 | `15_SESSION_CLOSURE.md` | `c7de2682b93fac8d39fc4e59a3f373a67c3dc75c3c7e0760d9df73fcfad90f58` |
+| 15 | `15_SESSION_CLOSURE.md` | `e9da19f54d51f48d0a333e462dc8d506f17129e2f4b5e5f98d1cf3f3dbcb35a7` |
 
 ---
 
@@ -59,8 +59,9 @@ Any mismatch means the file has changed since publication and the package must n
 | Branch | `design/inventory-multitenant-invariant-set-2026-09-04-001` |
 | Branch base | `prompt/inventory-multitenant-invariant-set-2026-09-04-001` @ `e9d37ee` |
 | Merge to canonical branch | Not performed |
-| Publication commit | `PENDING — recorded by the manifest refresh commit` |
-| Branch pushed | `PENDING` |
+| Publication commit | `fdef8d1ea9f35c9ea491fa108b40b6be5f13c48c` |
+| Branch pushed | **Yes** — `origin/design/inventory-multitenant-invariant-set-2026-09-04-001` |
+| Manifest refresh commit | Recorded by the commit that carries this refreshed manifest. `15_SESSION_CLOSURE.md` was updated after the publication commit to record the publication SHA and the direct links; its digest above is the refreshed one |
 
 ---
 

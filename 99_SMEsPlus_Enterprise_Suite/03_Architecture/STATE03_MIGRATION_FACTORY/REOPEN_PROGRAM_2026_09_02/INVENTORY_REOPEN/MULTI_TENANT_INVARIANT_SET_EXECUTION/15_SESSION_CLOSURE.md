@@ -160,8 +160,8 @@ Programme evidence records that subagent output has previously drifted into proh
 | Branch base | `prompt/inventory-multitenant-invariant-set-2026-09-04-001` @ `e9d37ee` |
 | Output folder | `.../REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/` |
 | Files published | 17 (`00` .. `16`) |
-| Publication commit | Recorded at `16` §4 |
-| Branch pushed | Recorded at `16` §4 |
+| Publication commit | `fdef8d1ea9f35c9ea491fa108b40b6be5f13c48c` |
+| Branch pushed | **Yes** — `origin/design/inventory-multitenant-invariant-set-2026-09-04-001` |
 | Merge to canonical branch | **Not performed, not requested** |
 | Files changed outside the output folder | **0** |
 
@@ -178,6 +178,48 @@ Applying additionally to every valuation-related section:
 This session does not declare, and is not empowered to declare: `PASS`, `APPROVED`, `CLOSED`, `FINAL SOLUTION ACCEPTED`, `READY FOR DEVELOPMENT`, `READY FOR PRODUCTION`, `TEAM B AUTHORIZED`, `TEAM C AUTHORIZED`, merge approval, or release authorization.
 
 **Items closed by this session: 0.**
+
+---
+
+## 9. Direct Links
+
+| Item | Link |
+|---|---|
+| Execution branch | [design/inventory-multitenant-invariant-set-2026-09-04-001](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/tree/design/inventory-multitenant-invariant-set-2026-09-04-001) |
+| Output folder | [MULTI_TENANT_INVARIANT_SET_EXECUTION](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/tree/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION) |
+| Publication commit | [fdef8d1](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/commit/fdef8d1ea9f35c9ea491fa108b40b6be5f13c48c) |
+
+| File | Link |
+|---|---|
+| `00_EXECUTION_CHECKPOINT_LOG.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/00_EXECUTION_CHECKPOINT_LOG.md) |
+| `01_EVIDENCE_INTAKE_AND_SOURCE_VERIFICATION.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/01_EVIDENCE_INTAKE_AND_SOURCE_VERIFICATION.md) |
+| `02_RISK_U03_GAP_FS10_PROBLEM_STATEMENT.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/02_RISK_U03_GAP_FS10_PROBLEM_STATEMENT.md) |
+| `03_INVENTORY_MULTI_TENANT_INVARIANT_SET.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/03_INVENTORY_MULTI_TENANT_INVARIANT_SET.md) |
+| `04_CONTEXT_OWNERSHIP_AND_VISIBILITY_MATRIX.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/04_CONTEXT_OWNERSHIP_AND_VISIBILITY_MATRIX.md) |
+| `05_FUNCTION_ENFORCEMENT_POINT_MATRIX.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/05_FUNCTION_ENFORCEMENT_POINT_MATRIX.md) |
+| `06_CROSS_MODULE_HANDOFF_CONTRACT_FIELDS.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/06_CROSS_MODULE_HANDOFF_CONTRACT_FIELDS.md) |
+| `07_L9_ISOLATION_PROOF_MATRIX.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/07_L9_ISOLATION_PROOF_MATRIX.md) |
+| `08_FAILURE_EDGE_CASE_AND_LEAKAGE_ATTACK_REGISTER.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/08_FAILURE_EDGE_CASE_AND_LEAKAGE_ATTACK_REGISTER.md) |
+| `09_DATA_IDENTITY_IMMUTABILITY_AND_REPLAY_REQUIREMENTS.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/09_DATA_IDENTITY_IMMUTABILITY_AND_REPLAY_REQUIREMENTS.md) |
+| `10_REPORTING_AND_RECONCILIATION_PROOF_REQUIREMENTS.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/10_REPORTING_AND_RECONCILIATION_PROOF_REQUIREMENTS.md) |
+| `11_OPEN_ITEMS_AND_DEPENDENCY_REGISTER.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/11_OPEN_ITEMS_AND_DEPENDENCY_REGISTER.md) |
+| `12_AAS_PLUS_CHALLENGE_VERDICT.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/12_AAS_PLUS_CHALLENGE_VERDICT.md) |
+| `13_PMO_NEXT_GATE_RECOMMENDATION.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/13_PMO_NEXT_GATE_RECOMMENDATION.md) |
+| `14_BOSS_DECISION_PACKAGE.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/14_BOSS_DECISION_PACKAGE.md) |
+| `15_SESSION_CLOSURE.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/15_SESSION_CLOSURE.md) |
+| `16_SHA256_MANIFEST.md` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/design/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MULTI_TENANT_INVARIANT_SET_EXECUTION/16_SHA256_MANIFEST.md) |
+
+---
+
+## 10. Source And Control Links
+
+| Item | Link |
+|---|---|
+| Boss authorization `21_...` | [open](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/prompt/inventory-multitenant-invariant-set-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/21_BOSS_AUTHORIZATION_SMEPLUS-26-09-04-INV-MT-INVARIANT-SET-001.md) |
+| Source review branch | [review/inventory-r4-aas-pmo-review-2026-09-04-001](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/tree/review/inventory-r4-aas-pmo-review-2026-09-04-001) |
+| Source review tip | [e218e5b](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/commit/e218e5b550a2a8f839f295876f0a3ff1ce3e69d4) |
+| Minimum Handoff Data Contract | [d9e845e](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/commit/d9e845e) |
+| 22-Scenario Cross-Proof Baseline | [296b495](https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/commit/296b495) |
 
 ---
 
