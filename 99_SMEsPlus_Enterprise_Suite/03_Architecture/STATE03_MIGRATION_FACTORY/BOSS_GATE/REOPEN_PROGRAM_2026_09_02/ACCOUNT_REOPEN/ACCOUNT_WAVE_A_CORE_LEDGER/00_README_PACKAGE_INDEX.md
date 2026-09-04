@@ -61,3 +61,37 @@ Every `EV-0NN` reference in a Layer 1 file resolves to an entry in
 - Reference implementation is a **benchmark, not an authority**. Nothing is adopted because the reference does it.
 - Thai statutory positions are `HOLD / EVIDENCE REQUIRED` and routed to the Accounting-Tax track. Thai names are candidate / UNVALIDATED.
 - This package makes **no approval, no gate movement, and no implementation authorisation**. Boss is the sole Final Approver.
+
+---
+
+## CORR1 — Evidence Reconciliation & Negative-Claim Rescoping (2026-09-04)
+
+Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORR1-001`, branch
+`research/account-wave-a-corr1-2026-09-04-001`, parent commit `f8bc069`.
+
+**CORR1 is the governing layer.** Where a numbered file above conflicts with a CORR1 file, the CORR1
+file governs. Numbered files are retained unedited for lineage and carry a correction banner.
+
+| File | Content | Layer |
+|---|---|---|
+| `CORR1/C01_ACCOUNT_WAVE_A_CORR1_MASTER_RECONCILIATION.md` | master reconciliation and lineage | 1 |
+| `CORR1/C02_ACCOUNT_WAVE_A_ACCEPTED_CORRECTIONS_REGISTER.md` | all 20 accepted corrections, reconciled into the artefacts | 1 |
+| `CORR1/C03_ACCOUNT_WAVE_A_CONTRADICTED_CLAIMS_REGISTER.md` | the 6 contradicted claims, re-examined | 1 |
+| `CORR1/C04_ACCOUNT_WAVE_A_NEGATIVE_CLAIM_SCOPE_REGISTER.md` | negative-claim rescoping, classes A–E | 1 |
+| `CORR1/C05_ACCOUNT_WAVE_A_SEVERE_FINDINGS_REGISTER.md` | the 5 severe findings, independently reconciled | 1 |
+| `CORR1/C06_ACCOUNT_WAVE_A_FX_MISSING_RATE_FORENSIC.md` | missing-rate forensic | **2** |
+| `CORR1/C07_ACCOUNT_WAVE_A_DATE_SEMANTIC_MATRIX.md` | date semantics, 7 concepts | **2** |
+| `CORR1/C08_ACCOUNT_WAVE_A_L11_RECONCILIATION_RERUN.md` | L11 re-run + BALANCED BUT WRONG register — **supersedes file 18** | 1 |
+| `CORR1/C09_ACCOUNT_WAVE_A_CONTROL_SUPPRESSION_REACHABILITY.md` | `GAP-C04` closed | **2** |
+| `CORR1/C10_ACCOUNT_WAVE_A_CORR1_GATE_REPORT.md` | CORR1 gate report — **supersedes file 26** | 1 |
+| `CORR1/L12_FRESH_REVIEW/` | fresh independent adversarial review, two reviewers | **2** |
+| `99_SMEsPlus_Enterprise_Suite/00_PROJECT_STANDARD/SMEPLUS_DEEP_RESEARCH_NEGATIVE_CLAIM_STANDARD.md` | project-wide negative-claim control standard | 1 |
+
+### New governing rule issued by CORR1
+
+> `NO EVIDENCE FOUND ≠ FUNCTION DOES NOT EXIST`
+
+Absence of evidence within a searched scope shall not be reported as absence of behaviour across the
+whole system. Every material negative claim declares its search boundary and carries a class
+(`A` verified absence within scope · `B` not found in searched scope · `C` not yet searched ·
+`D` unknown · `E` contradicted). B, C and D are never converted to A.

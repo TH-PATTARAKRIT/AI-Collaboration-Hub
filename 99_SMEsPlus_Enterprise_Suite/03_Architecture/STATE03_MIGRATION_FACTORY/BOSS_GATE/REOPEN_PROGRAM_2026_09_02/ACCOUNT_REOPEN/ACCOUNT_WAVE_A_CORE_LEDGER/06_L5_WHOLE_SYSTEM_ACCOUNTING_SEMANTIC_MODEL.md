@@ -1,3 +1,7 @@
+> **CORR1 CORRECTION NOTICE.** Amended by session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORR1-001`.
+> Corrections landing here: `COR-01, COR-02, COR-10`. Governing text where they conflict with the body below: CORR1/C04; CORR1/C07.
+> Prior findings are retained unedited for lineage; see `CORR1/C02_..._ACCEPTED_CORRECTIONS_REGISTER.md`.
+
 # 06 — LEVEL 5: WHOLE-SYSTEM ACCOUNTING SEMANTIC MODEL
 
 Layer 1 clean-room · cites `EV-0NN` and `COR-0N` · Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORE-001`

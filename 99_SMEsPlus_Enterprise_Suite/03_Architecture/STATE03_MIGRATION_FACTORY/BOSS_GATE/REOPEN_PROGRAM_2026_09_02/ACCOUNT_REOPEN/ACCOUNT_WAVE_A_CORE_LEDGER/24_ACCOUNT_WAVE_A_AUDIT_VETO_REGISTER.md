@@ -1,3 +1,7 @@
+> **CORR1 CORRECTION NOTICE.** Amended by session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORR1-001`.
+> Corrections landing here: `VETO-01`. Governing text where they conflict with the body below: CORR1/C03 CC-02 — veto accepted, resolved by correction.
+> Prior findings are retained unedited for lineage; see `CORR1/C02_..._ACCEPTED_CORRECTIONS_REGISTER.md`.
+
 # 24 — LEVEL 12: ADVERSARIAL CHALLENGE & AUDIT VETO REGISTER
 
 Layer 1 clean-room · Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORE-001`

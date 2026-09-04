@@ -1,3 +1,7 @@
+> **SUPERSEDED BY CORR1.** This file is retained for lineage and is no longer the governing text.
+> Governing text: `CORR1/C10_ACCOUNT_WAVE_A_CORR1_GATE_REPORT.md` (session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORR1-001`).
+> Nothing below has been deleted or edited; read it as the state before correction.
+
 # 26 — ACCOUNT WAVE A — FINAL RESEARCH GATE REPORT
 
 Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORE-001` · Wave A — Core Ledger & Closing

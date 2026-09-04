@@ -1,3 +1,7 @@
+> **CORR1 CORRECTION NOTICE.** Amended by session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORR1-001`.
+> Corrections landing here: `COR-03, COR-10, COR-13`. Governing text where they conflict with the body below: CORR1/C04 — GAP-H01 rescoped; Thai items unchanged (HOLD).
+> Prior findings are retained unedited for lineage; see `CORR1/C02_..._ACCEPTED_CORRECTIONS_REGISTER.md`.
+
 # 21 — ACCOUNT_WAVE_A_UNKNOWN / EVIDENCE GAP REGISTER
 
 Layer 1 clean-room · Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORE-001`

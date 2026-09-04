@@ -1,3 +1,7 @@
+> **CORR1 CORRECTION NOTICE.** Amended by session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORR1-001`.
+> Corrections landing here: `COR-03, COR-09, COR-14, COR-17`. Governing text where they conflict with the body below: CORR1/C08 Part 2 (BALANCED BUT WRONG).
+> Prior findings are retained unedited for lineage; see `CORR1/C02_..._ACCEPTED_CORRECTIONS_REGISTER.md`.
+
 # 19 — LEVEL 6: CONTRADICTION / FAILURE / EDGE CASE REGISTER
 
 Layer 1 clean-room · Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORE-001`

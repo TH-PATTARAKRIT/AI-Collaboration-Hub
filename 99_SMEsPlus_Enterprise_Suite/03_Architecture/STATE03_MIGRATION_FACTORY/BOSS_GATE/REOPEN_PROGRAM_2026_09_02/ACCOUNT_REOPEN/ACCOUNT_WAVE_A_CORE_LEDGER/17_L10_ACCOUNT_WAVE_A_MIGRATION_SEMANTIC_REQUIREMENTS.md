@@ -1,3 +1,7 @@
+> **CORR1 CORRECTION NOTICE.** Amended by session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORR1-001`.
+> Corrections landing here: `COR-12`. Governing text where they conflict with the body below: CORR1/C05 SF-05.
+> Prior findings are retained unedited for lineage; see `CORR1/C02_..._ACCEPTED_CORRECTIONS_REGISTER.md`.
+
 # 17 — LEVEL 10: ACCOUNTING MIGRATION SEMANTIC REQUIREMENTS
 
 Layer 1 clean-room · Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORE-001`

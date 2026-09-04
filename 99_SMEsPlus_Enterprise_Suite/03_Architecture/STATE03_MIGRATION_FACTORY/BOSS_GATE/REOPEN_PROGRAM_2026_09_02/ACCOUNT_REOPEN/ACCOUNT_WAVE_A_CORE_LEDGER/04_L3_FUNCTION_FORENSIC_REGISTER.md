@@ -1,3 +1,7 @@
+> **CORR1 CORRECTION NOTICE.** Amended by session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORR1-001`.
+> Corrections landing here: `COR-02, COR-03, COR-04, COR-08, COR-17`. Governing text where they conflict with the body below: CORR1/C02 Part 2.
+> Prior findings are retained unedited for lineage; see `CORR1/C02_..._ACCEPTED_CORRECTIONS_REGISTER.md`.
+
 # 04 — LEVEL 3: FUNCTION FORENSIC REGISTER
 
 Layer 1 clean-room · cites `EV-0NN` · Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORE-001`

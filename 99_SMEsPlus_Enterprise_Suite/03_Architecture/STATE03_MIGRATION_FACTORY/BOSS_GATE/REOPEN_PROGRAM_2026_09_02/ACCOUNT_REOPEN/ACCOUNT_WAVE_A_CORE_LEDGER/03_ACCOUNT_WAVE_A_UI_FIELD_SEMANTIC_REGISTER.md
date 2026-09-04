@@ -1,3 +1,7 @@
+> **CORR1 CORRECTION NOTICE.** Amended by session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORR1-001`.
+> Corrections landing here: `COR-02, COR-03, COR-06, COR-15, COR-16, COR-19`. Governing text where they conflict with the body below: CORR1/C07 governs the accounting-date row.
+> Prior findings are retained unedited for lineage; see `CORR1/C02_..._ACCEPTED_CORRECTIONS_REGISTER.md`.
+
 # 03 — LEVEL 2: UI / FIELD / CONFIGURATION FORENSIC — SEMANTIC REGISTER
 
 Layer 1 clean-room · cites `EV-0NN` · Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORE-001`

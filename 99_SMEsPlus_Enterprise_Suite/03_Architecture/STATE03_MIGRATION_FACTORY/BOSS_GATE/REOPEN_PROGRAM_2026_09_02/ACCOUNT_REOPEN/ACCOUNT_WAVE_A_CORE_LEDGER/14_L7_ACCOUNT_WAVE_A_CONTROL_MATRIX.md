@@ -1,3 +1,7 @@
+> **CORR1 CORRECTION NOTICE.** Amended by session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORR1-001`.
+> Corrections landing here: `COR-04, COR-05, COR-07, COR-08, COR-15, COR-16, COR-19`. Governing text where they conflict with the body below: CORR1/C05; IC-01 restated per COR-07.
+> Prior findings are retained unedited for lineage; see `CORR1/C02_..._ACCEPTED_CORRECTIONS_REGISTER.md`.
+
 # 14 — LEVEL 7: ACCOUNTING CONTROL & INTERNAL CONTROL MATRIX
 
 Layer 1 clean-room · Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORE-001`

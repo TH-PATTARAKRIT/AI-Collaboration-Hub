@@ -1,3 +1,7 @@
+> **SUPERSEDED BY CORR1.** This file is retained for lineage and is no longer the governing text.
+> Governing text: `CORR1/C08_ACCOUNT_WAVE_A_L11_RECONCILIATION_RERUN.md` (session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORR1-001`).
+> Nothing below has been deleted or edited; read it as the state before correction.
+
 # 18 — LEVEL 11: CORE LEDGER RECONCILIATION PROOF MATRIX
 
 Layer 1 clean-room · Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-CORE-001`
