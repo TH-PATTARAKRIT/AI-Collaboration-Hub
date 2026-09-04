@@ -124,7 +124,7 @@ negative finding in two research packages"*. Business-SME and Thai statutory inp
 
 ## 26. Remaining blockers
 
-**13 P11 blockers, `0` closed.** Inherited: `GB-01`…`GB-08`; `MCU-21` and 17 gating unknowns;
+**15 P11 blockers, `0` closed.** (`P11-B-14`/`P11-B-15` added by `P11_PEER_INTAKE_DELTA_02.md`.) Inherited: `GB-01`…`GB-08`; `MCU-21` and 17 gating unknowns;
 `T0-01`…`T0-12`; `JT-01`…`JT-12`; `BLK-01`, `BLK-02`, `BLK-07`, `BLK-08`; `P06`'s 42.
 **Correction backlog: 86 accepted findings, corrected in this session at source for the Boss-control
 and evidence-integrity classes; the register-level count and membership corrections are scoped to
@@ -173,6 +173,8 @@ The two critical ones are the ones that matter:
 | `D-8` | **Generalise the handoff contract** (`P11-F-02`) to all producers, with elements 17 (owning process) and 18 (declared scope) | `BC-02` binds Inventory→Accounting only; nine producers hand facts to the ledger under no contract | Boss |
 | `D-9` | **Commission `SME-Q-02` / `SME-Q-03` and the Thai statutory questions** | **No AI may answer on the business's behalf** | Boss |
 | `D-10` | **Authorise P11 CORR1** against the terminal peer packages | The round's own premise expired | Boss |
+| `D-11` | **Declare the exception to "unrelated independent companies = separate tenants by default", and who may grant it** | The correction states a default and names **no** exception and **no** authority. Raised by `P04-SC-03`; the same gap `X3-F11` found independently. Until declared, P11 rules the default operates as **absolute** | Boss |
+| `D-12` | **Rule whether a company hierarchy may span a tenant boundary.** P11 recommends **NO**, derived from the absolute invariant *no cross-tenant financial access/effect* plus the parent-cascading hard lock | Raised by `P04-SC-04`. **The ruling alone does not discharge P04's HOLD** — an enforced tenant-assignment invariant of the `MTI-04` class is additionally required | Boss |
 
 ---
 
