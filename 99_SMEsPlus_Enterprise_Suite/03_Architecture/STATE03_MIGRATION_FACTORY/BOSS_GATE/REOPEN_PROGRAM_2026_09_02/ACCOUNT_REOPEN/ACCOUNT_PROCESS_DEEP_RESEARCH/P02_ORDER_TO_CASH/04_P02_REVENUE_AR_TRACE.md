@@ -145,10 +145,10 @@ Four independent attempts, each with its evidenced outcome.
 | 3 | Post, reset to draft, post again | **Blocked** for revenue: the same document cannot be posted twice while posted, and re-posting re-derives the same lines. **Not equivalent for cost** — see `03_P02_DELIVERY_COGS_TRACE.md` §7. | `FACT VERIFIED` | `EV-P02-054`, `EV-P02-017` |
 | 4 | Credit-note the invoice, then re-invoice the order | **Reachable, and asymmetric.** A credit note raised **through the reversal path or from the order** carries the order-line link and restores billable quantity, so re-invoicing is intended. A credit note raised **by hand in Accounting** does **not** carry the link, does **not** restore billable quantity, and the order continues to read as fully invoiced while its revenue has been reversed. | `FACT VERIFIED` | T1 §5 |
 
-**`FACT VERIFIED` — P02-F-31 (HEADLINE FOR THIS FILE).** The double-revenue control is **entirely
+**`FACT VERIFIED` — P02-F-31 (HEADLINE FOR THIS FILE).** The double-revenue **control** is **entirely
 order-centric**. It lives in a counter on the order line. Every path that does not go through the
-order — a manual invoice, a hand-made credit note — is outside the control. The receivable ledger
-itself has **no** duplicate-recognition control at all.
+order — a manual invoice, a hand-made credit note — is outside it. The receivable ledger has a
+duplicate **detector** but no duplicate **control** — see §11.
 
 **`DESIGN CANDIDATE` DC-04-04.** The duplicate-revenue control must sit on the **economic obligation**
 (the shipped/performed unit), not on the order document. Every revenue-recognising document must
@@ -238,10 +238,45 @@ interim period's reported revenue**. `SUPPORTED INTERPRETATION`.
 construction**, not by configuration. The account must not be resolvable to revenue, and the release of
 the liability must be an explicit accounting event, not a negative line inheriting the deposit's account.
 
+## 11. Duplicate Detection On Customer Invoices — Self-Correction
+
+**The original claim in this file's first draft was that no duplicate-recognition control exists on the
+receivable ledger. That claim was wrong.** It is corrected here and preserved rather than deleted, per the
+constitution.
+
+**`FACT VERIFIED` — a duplicate detector does exist, and it covers customer invoices.** A computed field
+on the accounting document lists other documents it may duplicate (`EV-P02-074`). For an **outbound**
+document the match condition is: **same company, same commercial partner, same document type, same total
+amount, and the same document date** (`EV-P02-075`). For an inbound document it matches on reference and
+year instead.
+
+**`FACT VERIFIED` — it is display-only for customer invoices.** Its **only** behavioural consumer is on
+the **purchase** side: it suppresses automatic posting of a vendor bill when a potential duplicate is
+detected (`EV-P02-076`). **Nothing in the posting routine consults it for a customer invoice.** On the
+sales side it surfaces only as an interface decoration.
+
+**`FACT VERIFIED` — and it is unindexed outbound.** The supporting database index is created **only for
+purchase documents** (`EV-P02-077`). The customer-invoice detection therefore runs without one.
+
+**Corrected position, and it is stronger than the original claim, not weaker:**
+
+> **The reference already knows how to detect a duplicated customer invoice — it simply does not act on
+> what it finds.** The detection exists, the match condition is sound, and the result is shown to the user
+> and then ignored by the machinery.
+
+**`DESIGN CANDIDATE` DC-04-07.** SMEsPlus must not repeat this shape. A detected duplicate revenue
+document is either **blocked**, or **accepted with a recorded, attributed override reason**. A warning
+that no code path consults is not a control, and its presence makes the gap harder to see, not easier.
+
+**Method note.** This correction was produced by the primary session **re-testing its own negative
+claim** before the independent challenge ran. It is the exact defect class the negative-claim standard
+names: `NO EVIDENCE FOUND != FUNCTION DOES NOT EXIST`. The original search looked for a *constraint* and
+concluded there was no *mechanism*. Recorded as `RE-06` in `15_P02_REVISION_LOG.md`.
+
 ## 10. Negative Claims
 
 | Claim | Classification | Search boundary |
 |---|---|---|
 | Order confirmation creates no revenue and no receivable | `NOT FOUND IN SEARCHED SCOPE` | Confirmation routine and its extension point; no accounting-document creation reached. Localisation and third-party extensions not searched. |
 | No unearned-revenue mechanism exists in the O2C path | `NOT FOUND IN SEARCHED SCOPE` | Invoice-line account derivation, order-to-invoice preparation, down-payment path — sales and accounting modules only. Deferred-revenue and subscription modules **not** searched. |
-| The receivable ledger has no duplicate-recognition control | `NOT FOUND IN SEARCHED SCOPE` | The posting routine and its overrides, plus the document-level constraint set. Searched for uniqueness constraints on (partner, amount, date) and for any duplicate-invoice detection; the only detection found is an advisory abnormal-amount/date warning that is **disabled by default** (`EV-P02-069`). |
+| The receivable ledger has no duplicate-recognition control | **`CONTRADICTED` — see §11** | A detection mechanism **does** exist. The original negative claim was wrong and is corrected below rather than removed. |

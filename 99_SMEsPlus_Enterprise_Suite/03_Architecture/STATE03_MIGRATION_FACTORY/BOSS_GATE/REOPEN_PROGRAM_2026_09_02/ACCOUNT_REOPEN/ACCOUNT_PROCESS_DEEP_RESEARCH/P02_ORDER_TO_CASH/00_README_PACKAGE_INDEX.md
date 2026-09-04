@@ -83,7 +83,42 @@ as verdicts anywhere in this package.
 | 17 | `17_P02_AAS_PLUS.md` | AAS+ synthesis, preserved disagreements | L2 |
 | 18 | `18_P02_PMO.md` | PMO control view and gate recommendation | L2 |
 | 19 | `19_P02_CORE_RECON_HANDOFF_PACK.md` | Clean-room handoff to Core Accounting Reconciliation | **L1** |
+| 20 | `20_P02_SCOPE_OWNERSHIP_MATRIX.md` | PLATFORM / TENANT / COMPANY scope determination — added by correction `SMEPLUS-26-09-04-ACC-REV2-CORR1` | L2 |
 | — | `L2_AUDIT_QUARANTINE/` | Raw evidence extracts from parallel research tracks | L2 |
+
+## 3a. Research Depth Map — L1 … L6 And The Very-Expert Layer
+
+Depth label for this session: `VERY DEEP / L99999.99999`. The structured levels map to deliverables as
+follows, so that no level is claimed without a file behind it.
+
+| Level | Question | Where answered |
+|---|---|---|
+| **L1 — Domain semantics** | What is Order-to-Cash, and what are its irreducible facts? | `01` §1–§2; `19` §1 |
+| **L2 — Model and relationship** | Which records hold those facts, how are they related, and which fields are derived, stored or writable? | `01` §3; `05` §1; `13` |
+| **L3 — Function forensic** | Which code path produces each effect, under exactly which branch? | `03`, `04`, and the four track extracts |
+| **L4 — Event and state** | What business events exist, what accounting events exist, and what triggers each? | `05`, `06` |
+| **L5 — Accounting effect** | What does each event do to the ledger, and where can it leave the ledger wrong? | `07`, `09` |
+| **L6 — Control and boundary** | What controls exist, what do they actually block, and where is the boundary? | `11`, `20`, `12` |
+
+**Very-expert layer**, as required by the directive:
+
+| Requirement | Where discharged | Result |
+|---|---|---|
+| Source proof | throughout | **discharged** — 73 evidence identifiers |
+| **Database proof** | — | **NOT DISCHARGED.** No database access existed for this session. Declared in `14` §4 and `15` §6. |
+| **Runtime proof** | — | **NOT DISCHARGED.** Same cause. It is why `C-04` remains open. |
+| Event-to-ledger | `07` | discharged |
+| Revenue / cost separation | `02`, `03`, `04` | discharged |
+| Return and reversal | `08` | discharged |
+| Thai tax | `11` §7; T3 extract | discharged as **evidence**; every **statutory** conclusion is held |
+| SaaS boundary | `20`; T4 extract | discharged at company level; tenant level is design candidate, since the reference has no tenant concept |
+| Double-recognition attack | `06` §4 | discharged — six attacks, results stated individually |
+| Period-close attack | `11` §6 | discharged |
+| Cross-process reconciliation | `10` | discharged as **routing**; the reconciliation itself is Core Accounting's |
+
+**Two of the eleven very-expert requirements are not discharged, both for the same reason: this session
+had no database and no runtime.** That is stated here rather than buried, because it bounds what this
+package can support.
 
 ## 4. Absolute Invariant Under Test
 

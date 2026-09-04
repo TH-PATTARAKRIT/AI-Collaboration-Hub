@@ -74,6 +74,15 @@ into cost recognition.
 **Eight of these nine positions are absent, unowned, or optional in the benchmark.** Each absence
 produced an observed class of silently-wrong ledger states.
 
+**And the absences follow a pattern worth stating plainly.** In the Thai reference chart of accounts —
+enumerated completely — the **purchase** side has both an interim goods position and a cash-clearing
+position, and the **sales** side has neither. The chart models what the business owes and the cash it
+pays out; it does not model what is owed to the business between delivery and billing, nor cash received
+but not yet cleared. **Every position Order-to-Cash needs in order to be auditable between its own events
+is a position that chart does not have.** This is not a localisation defect to be worked around — it is
+the reason the process has nowhere to put value in transit, and it is why P02-R-02 and P02-R-05 are stated
+as structural requirements rather than as configuration.
+
 ### 3.2 Date discipline
 
 **Requirement P02-R-10.** Every accounting event must carry **two dates**:

@@ -97,6 +97,10 @@ Design document, or Team B artefact.** They exist so Boss, PMO and AI-Audit can 
 | 071 | `R/sale/models/sale_order_line.py:827-840` and `R/sale_stock/models/sale_order_line.py:182-192` | The derivation method: **manual** for services and for goods without the inventory module; **outflow-derived** for goods with it |
 | 072 | `R/account/models/account_move.py:630-635` | The origin field on the accounting document is a **character field**, read-only, with no relation behind it |
 | 073 | `R/sale/models/account_move.py:23`, `:46-48` | A header-level source-order **count** exists as a computed, non-stored traversal through the per-line link — a derivable view, not a stored relation |
+| 074 | `R/account/models/account_move.py:691`, `:1831-1835` | A computed duplicate-document field exists on the accounting document |
+| 075 | `R/account/models/account_move.py:1867-1875` | The **outbound** match condition: same total amount **and** the same document date, within the same company, partner and document type |
+| 076 | `R/account/models/account_move.py:5026-5037` | Its **only** behavioural consumer — suppression of automatic posting, on the **purchase** side only |
+| 077 | `R/account/models/account_move.py:753-759` | The supporting index is created **for purchase documents only** |
 
 ## 3. Track Evidence
 

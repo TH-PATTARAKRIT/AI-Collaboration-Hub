@@ -128,7 +128,7 @@ The Thai chart is a **complete enumeration of 27 accounts** (`EV-P02-044`).
 | FX Gain / FX Loss | Gain Account 4200 / Loss Account 5500 | yes |
 | Withholding suffered (asset) | Withholding Income Tax, 1520 | yes |
 | Withholding collected (liability) | Withholding Tax, 2320 | yes |
-| Outstanding Receipts | Outstanding Cheques, 1201 | **partial — a cheque-specific account, not a general outstanding-receipts account** |
+| Outstanding Receipts | Outstanding Cheques, 1201 — **classified as a current LIABILITY** | **absent in substance.** A receipt not yet cleared at the bank is an **asset** (undeposited funds). A current-liability account named for outstanding cheques is the **payment**-side position, not the receipt-side one. The Thai chart supplies the outbound-cash clearing role and **not** the inbound-cash clearing role. |
 | Year-end earnings | Income Summary, 3400 | yes — but **no closing entry posts to it** (T4 §7) |
 | **Outbound Stock (Goods Delivered)** | — | **ABSENT** |
 | **Inbound Stock (Goods Received)** | Uninvoiced Receipts, 2103 | present — **the purchase side has an interim account; the sales side does not** |
@@ -140,6 +140,24 @@ The Thai chart is a **complete enumeration of 27 accounts** (`EV-P02-044`).
 **four are absent from the Thai chart and one is only partially present.** The four absent roles are
 exactly the four positions where P02 leaves value in limbo: goods delivered not invoiced, deferred output
 tax, customer advances, and bad debt. `VERIFIED ABSENCE` within the declared 27-account population.
+
+**`FACT VERIFIED` — P02-F-38b (THE PATTERN BEHIND THE GAP).** The four absent roles and the one absent in
+substance are **all on the sales side**, and each has a **present purchase-side counterpart**:
+
+| Direction | Interim goods position | Cash clearing position |
+|---|---|---|
+| **Purchase (P01)** | Uninvoiced Receipts, 2103 — **present** | Outstanding Cheques, 1201 — **present** |
+| **Sale (P02)** | — **absent** | — **absent in substance** |
+
+The chart is **structurally asymmetric**: it models the obligations the business owes and the cash it pays
+out, and does not model the obligations owed to the business between delivery and billing, or the cash
+received but not yet cleared. **Every position P02 needs in order to be auditable between its events is a
+position this chart does not have.**
+
+**Incidental observation, routed out of P02 scope.** The two accumulated-depreciation accounts in the same
+chart are typed as **depreciation expense** rather than as contra-assets. That is an Asset-module concern,
+not an O2C one; it is recorded here only because it was observed while enumerating the complete 27-account
+population, and is routed to the Asset track without adjudication.
 
 **`HOLD — CROSS-PROCESS RECONCILIATION REQUIRED` — P02-X-02.** The SMEsPlus chart of accounts is a Core
 Accounting deliverable, not a P02 deliverable. P02 supplies the requirement: **these five roles must

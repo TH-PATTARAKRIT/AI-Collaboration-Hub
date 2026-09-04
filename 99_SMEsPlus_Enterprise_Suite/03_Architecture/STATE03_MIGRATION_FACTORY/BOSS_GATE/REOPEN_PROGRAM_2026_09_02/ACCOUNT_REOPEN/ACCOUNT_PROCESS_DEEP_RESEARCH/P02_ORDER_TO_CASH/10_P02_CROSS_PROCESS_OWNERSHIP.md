@@ -64,6 +64,21 @@ class, the unpicked-completion hole, and the invoice-quantity coupling into cost
 **Per the correction's cross-process rule, none of D-01 … D-07 stopped this session.** Each blocks only
 the specific conclusion named in its "Blocks" column. All unaffected work was completed.
 
+### 3a. Peer Execution State At The Time Of This Package
+
+P01 through P11 were **all executing in parallel** while this session ran. P02 therefore had access to
+**none** of their conclusions and asserts nothing about them. Specifically:
+
+- P02 does **not** know what P01 concluded about the vendor-side mirror (**D-05**).
+- P02 does **not** know what the record-to-report, bank-to-reconcile, or Thailand tax-to-compliance
+  processes concluded, and its statutory and settlement holds are routed to them **as questions, not as
+  positions**.
+- P02 does **not** know what P11 will rule on scope semantics (**D-06**), and its three scope holds are
+  stated as evidence plus a design candidate, never as a determination.
+
+Where this package names an owner for a fact (§1), that is **P02's proposal for who should own it**,
+offered to the cross-process reconciliation — not a claim that the named process has accepted it.
+
 ## 4. What P02 Hands To Core Accounting Reconciliation
 
 | # | Handoff | Type |
