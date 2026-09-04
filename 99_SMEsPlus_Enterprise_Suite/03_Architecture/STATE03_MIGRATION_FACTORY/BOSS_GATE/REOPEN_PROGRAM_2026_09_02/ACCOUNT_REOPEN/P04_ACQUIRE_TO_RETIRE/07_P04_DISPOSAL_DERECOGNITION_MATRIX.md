@@ -43,11 +43,41 @@ carrying amount = original value − accumulated depreciation
 Salvage value sits **inside** the carrying amount, because it is never
 depreciated.
 
-### 2.1 Six behaviours of that entry
+### 2.1 The entry is not merely unposted — it can be silently destroyed
+
+Found by independent challenge and verified directly this session.
+
+The routine that clears entries before an asset operation filters
+`state == 'draft'` **OR** `(posted AND not already reversed AND date > the
+operation date)`.
+
+> **The draft branch carries NO date test.** Every draft entry on the asset is
+> unlinked-or-reversed, whatever its date.
+
+The disposal entry left in draft by `P04-F-13` is exactly such an entry.
+Therefore any subsequent operation that runs that routine — **re-opening the
+closed asset, pausing it, or re-evaluating it** — **silently deletes the
+derecognition entry.** No warning, no message, no trace on the asset beyond the
+entry's disappearance.
+
+> **P04-F-65.** The derecognition entry is not only never posted by the system
+> (`P04-F-13`); it is **silently deleted by an ordinary subsequent operation**.
+> The asset remains in the closed state, its cost and accumulated depreciation
+> remain in the ledger, and the only record that a derecognition was ever
+> computed is gone.
+> Class: **FACT VERIFIED.** Severity **High**. Registered `P04-B-40`.
+
+This also resolves `P04-B-19` in the worst direction. The question was whether
+re-opening a disposed asset is *blocked* by its own draft disposal entry. It is
+not blocked — where the operation date does not precede the draft entry the
+guard does not fire, and the entry is **removed** instead. Registered as
+`P04-B-19`, **re-classified from UNRESOLVED to FACT VERIFIED**.
+
+### 2.2 Six behaviours of that entry
 
 | ID | Behaviour | Class |
 |----|-----------|-------|
-| **P04-F-13** | **The entry is created in DRAFT and the system never posts it**, while the asset has already been written to the closed state | FACT VERIFIED, **High** |
+| **P04-F-13** | **No path in the disposal flow posts the entry.** It is created in draft while the asset has already been written to the closed state. Scope stated precisely after independent challenge: the confirm path and the tail of the modify wizard *do* post every non-posted entry on an asset without discriminating by type — so the entry can be posted by a **later, unrelated** operation, at that operation's discretion, or destroyed by one (`P04-F-65`). What no path does is post it **as part of the disposal** | FACT VERIFIED, **High** |
 | **P04-F-26** | A **zero** difference still writes a **zero-value line to the loss account**, because the branch tests "greater than zero" | FACT VERIFIED |
 | **P04-F-27** | The stored "net gain on sale" figure uses a book value that **includes children's book value**, while the posted difference is computed **per asset**. The two can diverge | PRIOR EVIDENCE (P2 `CTR-05`), re-confirmed |
 | **P04-F-19** | The wizard's gain/loss account fields reach the entry **only by rewriting the company default**, with elevated privilege | FACT VERIFIED, **High for control** |
@@ -244,7 +274,7 @@ point — it must not disappear from the register a second time.
 | **P04-F-13** | The derecognition entry is created in draft and never posted by the system | FACT VERIFIED, High |
 | **P04-F-29** | An impairment is recorded as, and labelled as, ordinary depreciation | FACT VERIFIED, High |
 | **P04-F-33** | The Thai destruction instructions cover goods and scrap; fixed-asset destruction rests on a **different** authority with **different** evidence | FACT VERIFIED |
-| **P04-F-34** | Of seven TAS 16 derecognition requirements, **one is met, two are partly met, and four have no host in the estate** | FACT VERIFIED (estate) vs manual |
+| **P04-F-34** | Of seven TAS 16 derecognition requirements: **one met, two partly met, three with no host, and one — the disposal date tied to the transfer of control — a control gap rather than a missing host** (the date field exists; nothing ties it to a control event or evidences it). The earlier wording, *four have no host*, conflated the two and asserted as settled a count that `15` `D-P04-03` records as an **open disagreement** between the experts. Both positions are preserved | FACT VERIFIED (estate) vs manual; **the fourth row is disputed** |
 | **P04-F-30/31/32** | New TAS 16 evidence on depreciation cessation, full depreciation and units-of-production zero charge — bearing directly on `BD-01` and `BLK-07` | ACCOUNTING STANDARD INTERPRETATION |
-| **P04-F-19** | Every disposal silently rewrites the company's gain and loss account defaults | FACT VERIFIED, High |
+| **P04-F-19** | A disposal in which the wizard's gain/loss field is written silently rewrites the company's defaults | FACT VERIFIED, High |
 | **P04-F-63** | The no-proceeds disposal path — the only way to record a donation, a scrapping or a write-off — produces **no tax invoice**, while the VAT definition of a sale does not require consideration | FACT VERIFIED (estate) / SUPPORTED INTERPRETATION (tax), High |

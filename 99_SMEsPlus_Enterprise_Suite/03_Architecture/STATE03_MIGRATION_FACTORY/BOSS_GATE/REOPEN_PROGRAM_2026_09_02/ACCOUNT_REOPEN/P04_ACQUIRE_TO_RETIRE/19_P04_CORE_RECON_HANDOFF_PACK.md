@@ -59,15 +59,20 @@ The divergence runs in both directions: it exists at acquisition, and it exists
 at retirement — **retiring an asset does not retire its equipment.**
 
 There is a third break behind them: the operational routing step references a
-**work centre** and nothing else. It cannot say **which machine** performed the
+**production resource group** and nothing else. It cannot say **which machine** performed the
 work. This is the structural basis of the Boss's long-standing concern, and it is
 confirmed.
 
 ### 1.4 Retirement is where the accounting is weakest
 
-- The **derecognition entry is created in draft and the system never posts it.**
-  The asset is marked closed first. An asset can read "Closed" indefinitely while
-  its cost and accumulated depreciation remain in the ledger.
+- The **derecognition entry is created in draft, and no part of the retirement
+  itself posts it.** The asset is marked closed first. An asset can read "Closed"
+  indefinitely while its cost and accumulated depreciation remain in the ledger.
+- **Worse: that draft entry is silently deleted by ordinary later activity.** The
+  routine that clears pending entries before any asset operation removes **every**
+  pending entry regardless of its date. Re-opening, pausing or re-valuing the
+  asset therefore destroys the derecognition entry without warning, leaving no
+  record that a retirement was ever computed.
 - There is **no transfer**, **no impairment**, **no scrap distinct from disposal**
   and **no partial disposal**.
 - An impairment can only be recorded as **accelerated depreciation**, and appears
@@ -80,8 +85,11 @@ confirmed.
   transfer of control**.
 
 Measured against the Thai standard on property, plant and equipment: of seven
-derecognition requirements, **one is met, two are partly met, and four have no
-host in the reference behaviour**. Four require new design, not configuration.
+derecognition requirements, **one is met, two are partly met, three have no host
+in the reference behaviour, and one — tying the disposal date to the transfer of
+control — is a control gap rather than a missing capability**. The reviewers
+disagree on how to score that last one, and the disagreement is recorded rather
+than resolved.
 
 ### 1.5 A depreciation charge aimed at a closed period is moved, not refused
 
@@ -115,8 +123,8 @@ A reconciliation between the asset register and the general ledger must be
 Thai accounting standards **require** the depreciation of production equipment to
 enter the conversion cost of inventory. In the reference behaviour:
 
-- **No route feeds a machine's depreciation into the work-centre rate.** That rate
-  is a number a human types.
+- **No route feeds a machine's depreciation into the production resource rate.**
+  That rate is a number a human types.
 - The route everyone believed existed — attribution through the cost-centre
   dimension — **nets to zero**. Both sides of a depreciation entry carry the same
   attribution and the two amounts cancel. Depreciation reaches the cost centre and
@@ -174,7 +182,7 @@ the precise value-added-tax outcome of a disposal without consideration.
 | 1 | **Asset register to ledger reconciliation** | It does not exist, six ways to break it are verified, and none is detected |
 | 2 | **Locked-period policy: refuse or re-date** | The current behaviour silently moves a charge into the wrong financial year |
 | 3 | **Automatic posting of the derecognition entry** | Otherwise a closed asset's cost stays in the ledger indefinitely |
-| 4 | **One mechanism for machine cost into product cost** | Up to five monetisations of the same hour, plus a live ledger mismatch under one costing configuration |
+| 4 | **One mechanism for machine cost into product cost** | The same production hour is monetised by several independent routines — six, seven or nine depending on how a distinct routine is counted, and the counting rule is declared — plus a live ledger mismatch under one costing configuration |
 | 5 | **Attribution of capitalized additions** | Unattributed by construction, against a standing requirement that everything be attributed |
 | 6 | **Gain and loss segregation on disposal** | One account pair per entity cannot support class-level or production-versus-administrative reporting |
 | 7 | **Tax book** | Without it the entity cannot compute its own tax position |

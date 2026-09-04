@@ -19,18 +19,37 @@ Per the denominator rule, the four elements are declared before any count.
 
 | Element | Declaration |
 |---------|-------------|
-| **POPULATION** | Every module in the reference-ERP v18 Enterprise build `20250608` addons root (797 modules) plus every module in the project custom addon set, v18 line (60 modules). Total **857 modules**. |
+| **POPULATION** | Every installable module in the reference-ERP v18 Enterprise build `20250608` addons root — **790**, being the directories that carry a module manifest — plus the project custom addon set, v18 line — **65 directories**. Total **855**. See §1.2 for how these figures were obtained and what they correct. |
 | **PATTERN** | (a) `grep -rn --include='*.py' "account\.asset"` excluding `/i18n/`; (b) `grep -rn --include='*.xml' 'model="account\.asset'`; (c) `grep -rn --include='*.py' "_inherit *= *['\"]account\.asset"`; (d) `grep -rn --include='*.py' -E "asset_model_ids\|create_asset"`; (e) `grep -rn --include='*.js' "account\.asset"`; (f) per-module case-insensitive `asset` probe over the procurement, receipt and expense modules; (g) `grep -rn "ir.cron"` over the asset module. |
 | **PATH SET** | `<EV-CODE>/addons/` and `<EV-CUST>/addons/`, both to full depth. |
 | **UNIT** | One module that references the asset model; and separately, one code location that instantiates an asset record. |
 
 **Verification that the root is complete:** a search for further addons roots
 inside the build returned a single hit, i.e. community and enterprise modules are
-merged into one tree. The 797 figure is therefore a population, not a sample.
+merged into one tree. The enumeration is therefore a population, not a sample.
 
-### 1.1 Result of the enumeration
+### 1.1 Correction to the denominator, executed
 
-Of 857 modules, **five** reference the asset model at all:
+Prior packages and this session's own first draft quoted **797** as a module
+population. Executed directly:
+
+| Measure | Count |
+|---------|-------|
+| Entries a directory listing reports in the reference addons root | 797 (it hides one dotfile; 798 entries exist) |
+| Of which are **directories** | **791** |
+| Of which carry a module manifest — the **installable-module population** | **790** |
+| Entries in the custom addons root | 68 |
+| Of which are **directories** | **65** |
+
+The one directory of the 791 that carries **no** manifest is a web-integration
+module reduced to an empty translation folder — a module stripped to nothing.
+The 790 figure excludes it, and that exclusion is stated rather than silent.
+No negative finding in this package changes: the searches covered the whole tree
+either way. See `05` §2.1 and `18` `P04-REV-01`.
+
+### 1.2 Result of the enumeration
+
+Of the 855 modules, **five** reference the asset model at all:
 
 | Module | Layer | Relationship to the asset record | Creates an asset? |
 |--------|-------|----------------------------------|-------------------|
@@ -42,11 +61,35 @@ Of 857 modules, **five** reference the asset model at all:
 
 **FACT VERIFIED.** Exactly one module in the estate instantiates an asset record.
 
-Consequence worth stating plainly: the custom advance-expense-request module
-declares a dependency on the asset engine while contributing no asset behaviour.
-Installing it therefore **silently activates the asset engine** in a tenant that
-may not have intended it. Classified **FACT VERIFIED** (structural coupling with
-no functional coupling).
+### 1.3 The custom advance-expense module — corrected after independent challenge
+
+The earlier statement that this module is a *"manifest dependency only"* whose
+sole asset reference is a *"demo record"* was **wrong in both particulars**.
+
+| Claim | Corrected |
+|-------|-----------|
+| It is a demo record | The file lives in a `demo/` folder, but it is listed under the manifest's **`data`** key. The manifest's **`demo` key is commented out**. **It therefore loads on every install, not only in demo mode.** |
+| It contributes no behaviour | It **creates a general-ledger account** — a hard-coded code `555555`, "Employee Advance Expense", expense type, reconcilable — and a service product whose expense account points at it. The record is marked no-update, so it persists |
+| Its asset reference is incidental | The account record **explicitly sets the capitalization automation flag** to "no" |
+
+> **P04-F-10 (restated).** Installing this custom module does not merely activate
+> the asset engine through a manifest dependency. It **injects a fixed
+> general-ledger account into the chart of accounts of every company that
+> installs it**, and it **sets that account's capitalization flag from a data
+> file**.
+> Class: **FACT VERIFIED.** Severity **High** for multi-company deployment.
+> Registered `P04-B-41`.
+
+Two consequences for P04:
+
+1. **It is direct evidence for `UC-02` / `UC-04` in §3.1.** The capitalization
+   designation is being written by a **data file**, not by an accountant in the
+   interface. This package argued that every non-interface write path bypasses
+   the interface-only controls; here is one, shipped, in the project's own
+   custom estate, writing that exact field.
+2. A chart of accounts is **company legal-accounting truth** (`20` §2.1). A
+   module that writes into it on install is making a company-scoped accounting
+   decision from platform-scoped packaging.
 
 ---
 
@@ -63,7 +106,7 @@ no functional coupling).
 | 7 | **Import / migration** | **PRESENT** | The model is a plain persisted model with no import restriction. A purpose-built migration field for previously-recognised depreciation exists. XML data load is also a live creation path. |
 | 8a | **Revaluation creates a child asset** | **PRESENT — a second genuine instantiation point** | The modify wizard, on a net value increase, posts a journal entry and then creates a **child asset whose source document is that system-generated entry**. |
 | 8b | Asset split | **ABSENT as an event** | The nearest capability splits **at creation time** — one bill line into N assets — driven by an account-level flag. There is no post-creation split. |
-| 8c | Subscription / contract | **ABSENT** | Fourteen subscription modules exist in the population; none appears in the asset-reference result set. |
+| 8c | Subscription / contract | **ABSENT** | A name match on `subscription` over the reference addons root returns **13** directories (12 excluding a test module); **none** appears in the asset-reference result set. |
 | 8d | Lease / IFRS 16 right-of-use | **ABSENT** | No module matching a lease or IFRS-16 naming exists in the population. The loans module, the nearest neighbour, links to assets but creates none. |
 | 8e | Copy / duplicate | **PRESENT** | Standard record duplication. The link to the source bill lines is **not copied**, so a duplicate is detached from its origin. |
 | 8f | Scheduled / cron creation | **ABSENT** | No scheduled action exists in the asset module. |
@@ -221,7 +264,7 @@ Attributes of the child:
 - its life is clipped to the parent's remaining life;
 - its depreciation start is the wizard date plus one day;
 - **it carries no analytic distribution, and neither does the entry that created
-  it** — see `06_P04_DEPRECIATION_COST_HANDOFF.md`, finding P04-F-06. This is the
+  it** — see `06_P04_DEPRECIATION_COST_HANDOFF.md`, finding **P04-F-53**. This is the
   point at which the Boss's 100 % attribution requirement is broken by the
   reference behaviour.
 

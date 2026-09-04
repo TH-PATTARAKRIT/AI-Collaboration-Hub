@@ -51,7 +51,7 @@ none writes an accounting effect.
 
 | ID | Event | Behaviour | Class |
 |----|-------|-----------|-------|
-| **EV-23** | Cancelling the source bill | Attempts to **archive** every asset created from its lines, with **no state filter** — while the archive guard raises unless the asset is closed or a model | FACT VERIFIED as a code path; whether it is reachable is **UNRESOLVED** (no test exercises it) |
+| **EV-23** | Cancelling the source bill | Attempts to **archive** every asset created from its lines, with **no state filter**, while the archive guard raises unless the asset is closed or a model. Every automatically created asset is draft or running, so **the guard always raises**. Corrected after independent challenge: this is not an unresolved reachability question. **Cancelling a vendor bill that auto-created an asset is hard-blocked, with an error about archiving** — a message that does not describe the situation | **FACT VERIFIED** |
 | **EV-24** | Resetting the source bill to draft | Refuses if any linked asset is beyond draft; **deletes** linked draft assets | FACT VERIFIED |
 
 ## 3. Event-level control findings
@@ -63,10 +63,10 @@ none writes an accounting effect.
 | **P04-F-15** | The downward-revaluation entry is **labelled as an ordinary depreciation** in the ledger. The wizard passes a distinguishing reference that the entry builder never reads. Only a stored type code distinguishes it | FACT VERIFIED | Medium |
 | **P04-F-16** | Confirmation posts an asset's **entire life** in one action. Combined with the absence of a lock-date check on confirm, a single action can post into a closed period | PRIOR EVIDENCE (P2 `UNR-09`), re-confirmed | **High** |
 | **P04-F-17** | Writing to the asset rewrites accounts on **already-posted** depreciation entries **by line ordinal** — even-numbered lines take the accumulated-depreciation account, odd-numbered lines the expense account. This is applied to the **disposal entry too**, whose lines are asset cost, accumulated depreciation, income and gain/loss — not a two-line depreciation pair | FACT VERIFIED | **High** |
-| **P04-F-18** | A blank account link causes the corresponding leg to be **silently dropped**, producing an unbalanced entry. Because the disposal entry is left in draft (P04-F-13), nothing surfaces until a user posts it | FACT VERIFIED | **High** |
-| **P04-F-19** | The disposal wizard's gain and loss account fields do not reach the entry. They reach it only by **rewriting the company-level default**, executed with elevated privilege. **Every disposal silently reconfigures the company for all future disposals** | FACT VERIFIED | **High for control** |
+| **P04-F-23** | A blank account link causes the corresponding leg to be **silently dropped**, producing an unbalanced entry. Because the disposal entry is left in draft (P04-F-13), nothing surfaces until a user posts it. *(Identifier corrected: this and the former `P04-F-18` were the same finding under two numbers; `P04-F-18` is withdrawn — see `18` `P04-REV-12`.)* | FACT VERIFIED | **High** |
+| **P04-F-19** | The disposal wizard's gain and loss account fields do not reach the entry. They reach it only by **rewriting the company-level default**, executed with elevated privilege. **A disposal in which the wizard's account field is written silently reconfigures the company for all future disposals** | FACT VERIFIED | **High for control** |
 
-**P04-F-13, F-18 and F-19 compound.** A disposal can leave the company
+**P04-F-13, F-23 and F-19 compound.** A disposal can leave the company
 misconfigured, produce an unbalanced draft entry because of that
 misconfiguration, and leave the asset reading "Closed" with nothing posted —
 with no error raised at any point in the sequence.

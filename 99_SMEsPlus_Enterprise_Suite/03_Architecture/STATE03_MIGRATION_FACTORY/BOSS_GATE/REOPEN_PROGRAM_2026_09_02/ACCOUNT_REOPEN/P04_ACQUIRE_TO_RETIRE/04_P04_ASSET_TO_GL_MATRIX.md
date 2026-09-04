@@ -126,8 +126,8 @@ packages:
    including on the disposal entry (P04-F-17).
 5. The derecognition entry is **left in draft**, so a closed asset's cost and
    accumulated depreciation remain in the ledger indefinitely (P04-F-13).
-6. Duplication **detaches** the copy from its source journal items (P04-F-08 in
-   `01`), so cost appears in the sub-ledger with no ledger counterpart.
+6. Duplication **detaches** the copy from its source journal items (`01` §2,
+   mechanism 8e), so cost appears in the sub-ledger with no ledger counterpart.
 
 > **P04-F-25.** There is no mechanism in the estate that would detect any of the
 > six. A design that reconciles the asset sub-ledger to the ledger must be

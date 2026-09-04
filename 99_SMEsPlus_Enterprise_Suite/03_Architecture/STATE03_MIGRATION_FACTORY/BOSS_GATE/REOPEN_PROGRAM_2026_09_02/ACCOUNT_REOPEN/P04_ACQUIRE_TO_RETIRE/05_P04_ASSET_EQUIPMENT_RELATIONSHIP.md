@@ -37,8 +37,8 @@ project–asset bridge. None of them is an equipment or maintenance module.
 ### 2.1 A correction to the population figure this programme has been quoting
 
 Prior packages state the reference population as **797 modules** — the phrase
-appears in **21 files across the two source-based packages**, once carrying the
-classification `FACT VERIFIED (negative)`. Two independent research streams in
+appears in **22 files across the two source-based packages** — 10 and 12 —
+once carrying the classification `FACT VERIFIED (negative)`. Two independent research streams in
 this session repeated it. Executed directly this session:
 
 | Measure | Count |
@@ -48,9 +48,15 @@ this session repeated it. Executed directly this session:
 | Of which carry a module manifest — the **installable-module population** | **790** |
 
 > **P04-F-36.** The figure `797` is an **entry count**, not a module count. The
-> installable-module population is **790**. Six of the counted entries are files
-> — a licence, a readme, a contributing guide, a copyright notice, a package
-> initialiser, and a stray temporary write artefact.
+> installable-module population is **790**.
+> The root holds **791 directories and 7 non-directory entries** — a licence, a
+> readme, a contributing guide, a copyright notice, a package initialiser, a
+> stray temporary write artefact, and a platform metadata dotfile. A listing that
+> hides dotfiles reports 797 of those 798 entries, which is where `797` comes
+> from.
+> The one directory of 791 carrying **no manifest** is a web-integration module
+> reduced to an empty translation folder. The 790 figure excludes it; the
+> exclusion is stated rather than silent.
 > Class: **FACT VERIFIED.**
 
 The correction does not change any negative finding — the search covered the
@@ -67,9 +73,23 @@ something has written into the reference tree. Registered **P04-B-26**.
 | PATTERN | Full field-set read of the routing-operation model, plus `grep -rn "equipment"` over the manufacturing and work-order model packages |
 | PATH SET | The manufacturing modules of the reference build |
 
-**Result.** The routing-operation model declares 20 fields. **None is an
-equipment reference.** The equipment keyword returns **zero hits** across the
-manufacturing and work-order model packages.
+**Result, corrected after independent challenge.** The routing-operation model
+declares **22** fields in its base definition, and **four** modules inherit it,
+adding **4** more — a registration flag, two quality-point fields and an employee
+ratio. The full field set is therefore **26**, and **none of the 26 is an
+equipment reference**. All four inheritors were read.
+
+The earlier statement that the model declares 20 fields was a **count of one
+file that did not follow the inheritors** — under-scoped in exactly the way this
+package's own rule targets.
+
+The equipment keyword does **not** return zero hits across the manufacturing and
+work-order model packages: it returns **one**, in the help text of an
+effectiveness metric on the work-centre model (*"Overall Equipment
+Effectiveness"*). It is prose, not a field and not a reference. The corrected
+negative is: **no equipment field or reference exists on the routing-operation
+model or anywhere in the manufacturing and work-order model packages**; the sole
+textual occurrence is a help string.
 
 The only equipment link found anywhere in the manufacturing area is
 **equipment → work centre**, declared by a maintenance-manufacturing bridge —

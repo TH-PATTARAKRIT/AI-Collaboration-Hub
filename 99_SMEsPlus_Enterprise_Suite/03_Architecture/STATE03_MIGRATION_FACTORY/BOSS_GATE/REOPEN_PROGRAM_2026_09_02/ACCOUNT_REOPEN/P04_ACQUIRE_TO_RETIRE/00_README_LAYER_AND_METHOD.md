@@ -35,7 +35,7 @@ research evidence only.
 
 | ID | Root | Type | Notes |
 |----|------|------|-------|
-| `EV-CODE` | Reference ERP v18 Enterprise source tree, build `20250608` | Primary source code | 797 modules. The version family the target UAT runs. |
+| `EV-CODE` | Reference ERP v18 Enterprise source tree, build `20250608` | Primary source code | **790 installable modules** (791 directories; the figure `797` quoted by prior packages is an entry count — see `01` §1.1). The version family the target UAT runs. |
 | `EV-CUST` | Project custom addon set, v18 line | Primary source code | Custom / localisation extensions. |
 | `EV-LEG` | Legacy v14 source tree (standard + custom) | Primary source code | Predecessor system. |
 | `EV-RT` | Runtime ORM read-out captured 2026-08-26 against UAT db `idemo18_uat` | Runtime system evidence | `search_read` / `search_count` results. **Field set and domain are bounded — see §4.** |

@@ -76,6 +76,21 @@ the state-comparison pattern declared in `13_P04_SOURCE_LINK_REGISTER.md`:
 | **any → transferred** | No such state — see stage 10 |
 | **any → under construction / not yet in service** | No such state. This is the assets-under-construction gap; it was named in a prior fit/gap register and has never been designed |
 
+## 3A. Two arcs this map originally omitted
+
+Added after independent challenge.
+
+| Arc | Behaviour | Consequence |
+|-----|-----------|-------------|
+| **Any operation → the pending-entry clearing routine → deletion** | The routine that clears pending entries before pause, re-evaluation, re-opening and disposal filters *draft* **or** *(posted and dated after the operation date)*. **The draft branch carries no date test.** Every pending entry on the asset is removed whatever its date | The draft derecognition entry left by a disposal is **silently deleted** by any of those later operations. `P04-B-40` |
+| **Any state → archive, via cancellation of the source document** | Cancelling the source accounting document attempts to archive **every** asset created from its lines, with no state filter, while the archive guard raises unless the asset is closed or a model | Every automatically created asset is draft or running, so **the guard always raises**. The arc drawn in §1 as "archive (only from closed)" is the *guard's* rule; this arc is the *attempt*, and the two disagree. Corrected in `03` `EV-23` |
+
+A third interaction is registered but not traced: re-evaluating an asset that
+already carries gross-increase children writes method and period to those
+children unconditionally and re-posts their schedules. The interaction with an
+existing child's own schedule is **untested in the estate and unresolved here**.
+Registered `P04-B-42`.
+
 ## 4. What P04 owns that is not in the estate at all
 
 These are lifecycle stages the SMEsPlus design must originate rather than adapt.

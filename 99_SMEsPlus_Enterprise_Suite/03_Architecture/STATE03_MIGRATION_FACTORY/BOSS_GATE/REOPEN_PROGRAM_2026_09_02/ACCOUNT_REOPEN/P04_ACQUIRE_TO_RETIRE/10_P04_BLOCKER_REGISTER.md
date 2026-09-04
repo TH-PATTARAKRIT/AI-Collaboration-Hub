@@ -57,7 +57,7 @@ Per `08` §5. These were never closed; they stopped appearing.
 | **P04-B-11** | **No revaluation surplus / equity component.** A downward revaluation posts to depreciation expense; on derecognition TAS 16 requires the surplus to go **directly to retained earnings** | FACT VERIFIED | Design |
 | **P04-B-12** | **Scrap is not an asset event.** One action cannot carry the two different Thai evidence regimes | FACT VERIFIED | `P04-BD-07` plus design |
 | **P04-B-18** | A child asset already closed with zero residual passes the sale guard **yet is still fed the parent's customer-invoice lines** | UNRESOLVED — no test exercises it | One runtime test |
-| **P04-B-19** | Whether **re-opening a disposed asset** works at all: the path refuses when a draft entry predates the operation date, and the draft disposal entry is exactly such an entry | UNRESOLVED — no test covers it | One runtime test |
+| **P04-B-19** | **Re-classified from UNRESOLVED to FACT VERIFIED after independent challenge.** Re-opening a disposed asset is **not** blocked by its own draft disposal entry. Where the operation date does not precede that entry, no guard fires and the clearing routine — whose draft branch carries **no date test** — **silently deletes it**. See `P04-B-40` | **FACT VERIFIED** | Closed as a question; carried as `P04-B-40` as a defect |
 | **P04-B-20** | **No derecognition trigger for "no future economic benefit expected"** — TAS 16's second criterion. No idle state, no benefit test, no impairment concept | FACT VERIFIED | Design |
 | **P04-B-21** | **Donation as a disposal form** is expressible only as a no-proceeds disposal, losing its tax and VAT character | FACT VERIFIED | Design plus an Accounting-Tax ruling |
 | **P04-B-22** | The **disposal date** is a free-text field defaulting to today, with no link to a control-transfer event. TAS 16 requires the date the recipient obtains control | FACT VERIFIED | Design |
@@ -68,7 +68,7 @@ Per `08` §5. These were never closed; they stopped appearing.
 | ID | Statement | Class | Closes on |
 |----|-----------|-------|-----------|
 | **P04-B-17** | **No sub-ledger to general-ledger reconciliation exists**, and **six** verified mechanisms can break the agreement, with nothing that would detect any of them | FACT VERIFIED | Design. Must be originated, not adapted |
-| **P04-B-31** | **A depreciation entry aimed at a locked period is silently re-dated, not rejected.** The estate's own test asserts a charge for one fiscal year posting into the next, carrying its full value with it. The behaviour applies to the hard lock as well | FACT VERIFIED | Design decision: refuse rather than re-date. **Owner P08.** See §8 |
+| **P04-B-31** | **A depreciation entry aimed at a locked period is silently re-dated, not rejected.** The estate's own board-computation test `test_post_moves_after_lock_date` sets a fiscal-year lock of 30 June 2021 and asserts a 31 December 2020 charge of 12 000 posting as **31 July 2021** — seven months later, in the following fiscal year, at full value. The hard lock is covered too. **The behaviour lives in the accounting core's generic posting routine, not in the asset module**, so it applies to every programmatically posted entry in the product | FACT VERIFIED | Design decision: refuse rather than re-date. **Owner P08** (core, not asset). See §8 |
 | **P04-B-32** | **Confirmation posts an asset's entire life in one action with no lock-date check** | PRIOR EVIDENCE re-confirmed | Design |
 | **P04-B-33** | Writing to an asset rewrites accounts on **already-posted** entries **by line ordinal**, including on the disposal entry, whose lines are not a two-line depreciation pair | FACT VERIFIED | Design |
 | **P04-B-34** | Every disposal **silently rewrites the company's gain and loss account defaults**, with elevated privilege | FACT VERIFIED | Design |
@@ -77,12 +77,23 @@ Per `08` §5. These were never closed; they stopped appearing.
 
 | ID | Statement | Class | Closes on |
 |----|-----------|-------|-----------|
-| **P04-B-26** | **Evidence-root integrity.** A stray temporary write artefact was found in the reference source tree. Something has written into an evidence root | FACT VERIFIED | Confirm the artefact's origin; re-verify the tree's integrity if it cannot be explained |
+| **P04-B-26** | **Evidence-root integrity — narrowed after independent challenge.** The stray artefact is a **zero-byte** temporary file dated months before this session: a writability probe, not a mutation of module content. Separately, **one directory of 791 carries no manifest and no content** — a web-integration module reduced to an empty translation folder. Neither undermines any finding; both mean *"primary source complete for the declared path set"* needs the qualifier that one module in the tree is empty | FACT VERIFIED, **severity reduced** | Stated. No further action unless the empty module is material to another process |
 | **P04-B-27** | The **third `BLK-07` option** requires a reliable expected-total-output estimate per asset, reviewed annually. Nothing holds one | DESIGN CANDIDATE | `P04-BD-05` |
-| **P04-B-28** | A **company-less asset group's** visibility under the parent-of rule is not decidable from source — it may be visible to none or to all | UNRESOLVED | One runtime check |
+| **P04-B-28** | **CLOSED — the source decides it, and this package over-claimed uncertainty.** The parent-of operator drops falsy identifiers and expands to a membership test over ancestor identifiers, so a null company can never match; and the asset security rules **omit** the explicit null-company alternative that the framework's own company helper adds. **A company-less asset group is visible to no one.** Runtime query `Q-13` is withdrawn as unnecessary and repurposed to count such groups, which would otherwise be invisible and undeleted | **FACT VERIFIED** | Closed. The residual is a data question, not a behaviour question |
 | **P04-B-30** | **TAS 16 standard text** not retrieved. All TAS 16 findings in this package rest on TFAC's explanatory manual, which states on every page that it is **not part of the standards**. This also affects the acquisition-cost composition paragraphs | **HOLD / EVIDENCE REQUIRED** | Retrieve the gazetted standard text. Continues prior `HOLD-03` |
 | **P04-B-35** | **Work-centre company-optionality** is a scope violation on the corrected constitution's own terms: it creates a financial effect and cannot answer which company owns it | FACT VERIFIED (estate) / SUPPORTED INTERPRETATION (scope) | **PEER DEPENDENCY — P03**, plus one runtime count |
 | **P04-B-36** | **Handover residue control.** At least ten registered items ceased to appear across three packages without being closed, while each package's lineage statement was true as written | FACT VERIFIED | A carry-forward rule that tracks **open items**, not only conclusions |
+
+## 6A. New — raised by independent challenge (2)
+
+Both were found by the independent adversarial review and **verified directly**
+by this session before being registered. See `16` §3.
+
+| ID | Statement | Class | Closes on |
+|----|-----------|-------|-----------|
+| **P04-B-40** | **The draft derecognition entry is silently DELETED by ordinary later activity.** The routine that clears pending entries before any asset operation filters *draft* **or** *(posted and dated after the operation date)* — and **the draft branch carries no date test**. Every pending entry on the asset is removed whatever its date. Re-opening, pausing or re-valuing a closed asset therefore destroys its derecognition entry with no warning and no trace. Compounds `P04-F-13` from "never posted" to "never posted, and destroyable" | **FACT VERIFIED** | Design: the derecognition entry must post as part of the retirement, or be protected from the clearing routine |
+| **P04-B-42** | **Repeated re-evaluation of an asset that already carries gross-increase children.** The modify wizard writes method and period to the children unconditionally and re-posts their schedules. The interaction with an existing child's own schedule is **untested in the estate** and untraced here | UNRESOLVED | One runtime test |
+| **P04-B-41** | **A custom module injects a general-ledger account into every company that installs it.** Its data file — listed under the manifest's `data` key, with the `demo` key commented out, so it loads on **every** install — creates a hard-coded account (code `555555`, expense type, reconcilable) plus a product pointing at it, and **explicitly sets that account's capitalization automation flag from the data file**. A chart of accounts is company legal-accounting truth; a module writing into it on install makes a company-scoped accounting decision from platform-scoped packaging. It is also live proof of `01` §3.1 `UC-02`/`UC-04`: the designation is written by a non-interface path | **FACT VERIFIED** | Deployment decision plus a scope ruling on what an installable module may write into a chart of accounts |
 
 ## 7A. New — asset master data, recognition timing and indirect tax (5)
 
@@ -106,7 +117,7 @@ correction, are recorded in `18_P04_REVISION_LOG.md` as `P04-REV-10`.
 | **1** | **BLK-07** + the single-mechanism proof | The AAS+ veto. No costing implementation may begin. The second limb is **wider** after this session — nine paths (`06` §2) |
 | **2** | **P04-B-31** — silent re-dating into an unlocked period | It is not a design gap; it is **live behaviour that misstates a fiscal year**, asserted by the estate's own test. Any migration or parallel-run that posts a back-dated depreciation entry is exposed today |
 | **3** | **P04-B-17** — no sub-ledger reconciliation, six ways to break it, none detected | It is the control that would catch most of the others |
-| **4** | **P04-F-13 / P04-B-06** — the derecognition entry is never posted by the system | An asset reads "Closed" while its cost and accumulated depreciation stay in the ledger |
+| **4** | **P04-F-13 + P04-B-40** — the derecognition entry is never posted by the retirement, **and is silently deleted by ordinary later activity** | An asset reads "Closed" while its cost and accumulated depreciation stay in the ledger — and the only record that a retirement was computed can disappear without trace. Raised from its original rank on the independent review's evidence |
 | **5** | **P04-B-02 / B-03** — the live population's origin and upstream linkage are unknown | Two queries. They gate every migration statement |
 | **6** | **P04-B-35** — work-centre company-optionality | The narrowed, sharper form of the prior SaaS finding |
 
@@ -123,7 +134,7 @@ adds five, all read-only and all one execution each:
 | **Q-10** | Assets grouped by presence and namespace of an external identifier — **unbounded** | `P04-B-02` |
 | **Q-11** | Count of assets with a non-empty source-journal-item link | `P04-B-03`, `P04-B-01` |
 | **Q-12** | Accounts carrying an automation mode other than "no", with their attached model count and account type | `01` §UC-02, UC-03 |
-| **Q-13** | Asset groups with no company, and their visibility | `P04-B-28` |
+| **Q-13** | Asset groups with no company — **repurposed**. `P04-B-28` is closed from source: such a group is visible to no one. The query now counts groups that exist but cannot be seen or deleted by any user | data hygiene, not behaviour |
 | **Q-14** | Work centres and equipment records with no company | `P04-B-35` |
 
 The prior package's priority-1 query — the **installed-module list of the running

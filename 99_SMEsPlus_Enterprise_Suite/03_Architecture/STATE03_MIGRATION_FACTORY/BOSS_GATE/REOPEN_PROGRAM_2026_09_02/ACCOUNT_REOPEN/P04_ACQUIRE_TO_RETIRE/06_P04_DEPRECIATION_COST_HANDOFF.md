@@ -45,26 +45,51 @@ carries the **AAS+ veto's second limb** — the requirement to prove that exactl
 | **M8** | Work-in-progress wizard | date-bounded cost calculation | date-bounded | **GL** — Dr work-in-progress, Cr valuation and an overhead account; auto-reversed the next day |
 | **M9** | Standard cost from the bill of materials | work-centre hourly cost **+** employee cost × a ratio | **planned** duration, not actual | **GL**, baked into standard price |
 
-> **P04-F-42.** The same work-centre hour is monetised by **up to five
-> independent paths** — three analytic-only and two producing general-ledger
-> entries. The prior count of "two live mechanisms, and a third proposed" is
-> **understated**. Nine distinct paths were found under the declared pattern and
-> path set.
-> Class: **FACT VERIFIED.** Severity: this **materially widens the AAS+ veto's
-> second limb**, it does not satisfy it.
+> **P04-F-42.** The same work-centre hour is monetised by **several independent
+> paths** — analytic-only and general-ledger. Under the unit declared in §2.1 the
+> count is **7**; under a per-posting-artefact unit it is **9**; under the
+> strictest per-computation unit it is **6**. See §2.3, which was corrected after
+> independent challenge showed the headline figure of 9 was not reproducible from
+> the declared unit.
+> The prior count of "two live mechanisms, and a third proposed" is **understated
+> under every one of the three units**.
+> Class: **FACT VERIFIED** as to the paths; the **count is unit-dependent and the
+> unit is declared**. Severity: this **materially widens the AAS+ veto's second
+> limb**, it does not satisfy it.
 
 ### 2.3 The unit caveat — stated because the comparison invites a false one
 
 Adopted from `15` Level 4, expert E3.
 
-**Nine is correct under the declared unit and is not comparable to the prior
-count of two, because the prior count did not declare a unit.** A reader
-setting "nine" against "two" is comparing two different measurements, not
-observing a sevenfold discovery.
+**Corrected after independent challenge. Executed strictly, the unit declared
+in §2.1 yields SEVEN, not nine.**
 
-The declared unit is **disjunctive**: a path counts if it has its own rate
-field, **or** its own driver quantity, **or** its own destination ledger. Under
-that unit, the nine are not equally distinct, and the package says so:
+The declared unit is disjunctive — own rate field, **or** own driver quantity,
+**or** own destination ledger. Applied literally:
+
+- **M1 and M2 collapse into one.** They share the rate, the driver, and the
+  destination ledger (both produce general-ledger entries).
+- **M4 and M5 collapse into one.** Both consume the *identical* computed value
+  and both write to the analytic ledger.
+
+**The honest count under the declared unit is 7.** The figure 9 is only reachable
+under a **different** unit — *own posting artefact*, which separates a valuation
+write from a standalone relief entry, and separates two distributions of one
+value into two sets of analytic lines. Reaching 9 by re-reading "destination
+ledger" as "destination entry" would be **changing the unit after the count**,
+which `00` §4 forbids. It is corrected here rather than defended.
+
+| Unit | Count |
+|------|-------|
+| Own rate field **or** own driver **or** own destination **ledger** — as declared in §2.1 | **7** |
+| Own posting artefact — a stricter separation of what actually lands | **9** |
+| Own monetary **computation** — the strictest reading | **6** (M5 and M3 fold in) |
+
+**Neither figure is comparable to the prior count of two, because the prior count
+declared no unit at all.** A reader setting any of these against "two" is
+comparing different measurements, not observing a discovery.
+
+The paths are not equally distinct, and the package says so:
 
 | Path | Distinct by | Strength |
 |------|-------------|----------|
@@ -72,11 +97,7 @@ that unit, the nine are not equally distinct, and the package says so:
 | M7, M8, M9 | own driver **and** own destination | strong |
 | M3, M6 | own rate field **and** own driver | strong as inputs; their **destination** is shared with M1/M2 and M4 |
 | M4 | own destination ledger (analytic, one-sided) | strong |
-| **M5** | a **second distribution of the same value** to different analytic accounts | **weakest** — it is a second call, not a second computation |
-
-Under a stricter unit — "own monetary computation" — the count would be smaller.
-Under a looser one — "own code path producing a monetary record" — it would be
-larger.
+| **M5** | a **second distribution of the same value** to different analytic accounts | **weakest** — a second call, not a second computation. It satisfies **none** of the three declared disjuncts and is the reason the strict count is 7 |
 
 What does **not** change under any unit, and is the point of the enumeration:
 
@@ -84,9 +105,10 @@ What does **not** change under any unit, and is the point of the enumeration:
 - at least two of the paths **do not reconcile with each other** (P04-F-43,
   P04-F-44) and one produces a **live ledger mismatch**;
 - the veto's single-mechanism proof must therefore be discharged against a
-  **declared** enumeration, not against a count carried forward by assertion.
+  **declared** enumeration, not against a count carried forward by assertion —
+  and the enumeration must state its unit, which is why this section exists.
 
-## 3. Six ways the nine paths fail to reconcile
+## 3. Six ways the paths fail to reconcile
 
 | ID | Failure | Class |
 |----|---------|-------|
@@ -109,12 +131,26 @@ accumulated-depreciation line is a credit; the expense line is a debit. The
 analytic amounts are computed from the signed balance and are therefore mirror
 images.
 
-> **P04-F-49.** **They cancel.** When an asset carries an analytic distribution,
-> the net analytic impact of its depreciation entry is **zero**. Depreciation
-> does **not** reach production cost centres through the analytic distribution —
-> it reaches them and immediately unreaches them.
-> Class: **FACT VERIFIED.** This **contradicts** the prior premise. Carried to
-> `12_P04_CONTRADICTION_REGISTER.md` as `P04-CTR-02`.
+> **P04-F-49.** **They cancel — in net balance, not in existence.** Stated
+> precisely, after independent challenge sharpened it:
+>
+> **Two analytic lines are created**, one per entry line, each carrying its own
+> general-ledger account and the same distribution. Their amounts are exact
+> mirrors, so **the net analytic balance of a depreciation entry is zero**.
+>
+> The difference matters, and it decides what `BD-02` needs:
+> - An analytic report that **groups or filters by general-ledger account**, or
+>   that excludes balance-sheet accounts, **shows the full depreciation charge on
+>   the cost centre.** The attribution exists at line level.
+> - Any report that **sums the cost centre** — which is what a cost centre is
+>   for — **shows zero**.
+>
+> So the prior premise that *"depreciation already reaches production cost
+> centres through the analytic distribution"* is **true at line level and false
+> at balance level**. It is not a mechanism that can carry cost into product cost,
+> because the amount that would be carried nets to nothing; but the data is
+> present and a **report change** — not new behaviour — recovers it.
+> Class: **FACT VERIFIED.** Carried to `12` as `P04-CTR-02`.
 
 And the complementary case is worse:
 
@@ -125,6 +161,15 @@ And the complementary case is worse:
 > different codes, so the two lines can receive **different** distributions —
 > producing a **non-zero, unbalanced analytic residue with no economic meaning**.
 > Class: **FACT VERIFIED.** Severity **High**.
+
+> **P04-F-64.** **The same construction applies to the disposal entry.** Every
+> line of the disposal entry — asset cost, accumulated depreciation, the
+> neutralised income line **and the gain or loss line** — carries the asset's
+> distribution, and the entry is balanced. So **the gain or loss on disposal also
+> nets to zero in the analytic ledger**, by identical construction. A second
+> `BD-02` breach, and one this session did not see until independent challenge
+> pointed at it.
+> Class: **FACT VERIFIED.**
 
 ### 4.1 What this does to the veto
 
@@ -222,6 +267,6 @@ Registered as blocker **P04-B-27**.
 | Question | Position |
 |----------|----------|
 | Does depreciation reach product cost today? | **Through the general ledger, no** — no route feeds a machine's depreciation into the work-centre rate. **Through the analytic ledger, no** — it nets to zero (P04-F-49) |
-| How many mechanisms would have to be proved off? | **Nine**, enumerated in §2 |
+| How many mechanisms would have to be proved off? | **Seven** under the declared unit, **nine** counting each posting artefact separately — enumerated in §2, with the unit question settled in §2.3 |
 | Is the veto dischargeable by this session? | **No.** Both limbs remain open, and the second is wider |
 | What is new for the Boss? | A **third compliant option** at `BLK-07` (§7); a **real general-ledger mismatch** under standard costing (P04-F-44); the **analytic cancellation** (P04-F-49); the **un-analytic capitalized addition** (P04-F-53); and the fact that **mandatory plans cannot enforce attribution** (P04-F-52) |

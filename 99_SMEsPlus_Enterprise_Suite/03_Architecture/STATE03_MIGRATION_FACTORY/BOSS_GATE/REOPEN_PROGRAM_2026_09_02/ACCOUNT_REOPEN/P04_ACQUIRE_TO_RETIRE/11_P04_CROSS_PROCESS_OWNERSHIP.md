@@ -80,17 +80,38 @@ post, **the location's valuation account overrides the product category**.
 ### The headline
 
 > **P04-F-61.** A depreciation entry aimed at a **locked** period is **silently
-> re-dated forward**, not rejected. The posting routine detects the violation and
-> **mutates the entry's date** to just after the lock, then the lock check passes
-> because the date has already changed. The estate's own test asserts this: with
-> a lock at one fiscal year end, an entry generated for a date inside the locked
-> year is asserted to post **seven months later**, in the following fiscal year,
-> **carrying its full value with it**. The behaviour applies to the hard lock too.
+> re-dated forward**, not rejected. The posting routine computes the violated
+> lock dates and **mutates the entry's date** to the accounting date derived from
+> the last violated lock — the lock date plus one day, rolled to the end of that
+> period. The subsequent lock check then passes, because the date has already
+> changed. The violated-lock lookup is called with the hard flag set, so the
+> **hard lock is covered too**.
+>
+> **Citation, given precisely because it was challenged.** The estate's own test
+> `test_post_moves_after_lock_date`, in the asset module's board-computation test
+> file, sets a fiscal-year lock of **30 June 2021** and confirms an asset whose
+> board carries a **31 December 2020** entry of 12 000. It asserts that entry
+> posts as **31 July 2021** — a **seven-month** shift, into the **following**
+> fiscal year, **carrying its full 12 000**.
+>
+> An independent review challenged this citation as non-existent, having searched
+> only the module's main test file. The test is in the **board-computation** test
+> file. The challenge was **not sustained**; the citation is now given by test
+> name and file so it is verifiable without repeating the search. See `18`
+> `P04-REV-11`.
 > Class: **FACT VERIFIED.** Severity **High.** Registered `P04-B-31`.
 
-Contrast: **disposal is hard-blocked** by the same lock date. So the estate
-refuses one asset operation at the lock and silently re-dates another — an
-inconsistency inside a single module.
+Contrast: **disposal is hard-blocked** by the same lock date, with an explicit
+error. So one asset operation is refused at the lock and another is silently
+re-dated.
+
+**Stated correctly after independent challenge:** the two behaviours do **not**
+sit in one module. The hard refusal is asset-module code. The silent re-dating is
+the **accounting core's generic posting routine**, and therefore applies to
+**every programmatically posted entry in the product** — depreciation, disposal,
+inventory valuation, manufacturing relief and time-based recognition alike. The
+finding is not an asset-domain quirk; it is a core behaviour that the asset
+domain merely makes visible. **Owner: P08.**
 
 | Business fact | Owner | Ruling |
 |---------------|-------|--------|
