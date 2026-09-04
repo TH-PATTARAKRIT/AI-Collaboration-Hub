@@ -36,7 +36,7 @@ This manifest covers files `00` through `13`. It does not contain its own digest
 | 10 | `10_AAS_PLUS_INDEPENDENT_REVIEW_VERDICT.md` | `1cb54cffb8d9e57fda0e455eef484ff2c37a2045d05bd2e8df56a956261aaa4a` |
 | 11 | `11_PMO_NEXT_CONTROLLED_ACTION_RECOMMENDATION.md` | `f0f22f27f8dd6c3de3f2dabd383723686527d516086dd04feaa62b5f50efe0fd` |
 | 12 | `12_BOSS_DECISION_PACKAGE.md` | `3023ecb5c7d7a09e7895a296289c0192bddf96f28a5e5085639cd05243ccc4a6` |
-| 13 | `13_SESSION_CLOSURE.md` | `0686ffa71a291c9c9c6134414f6a111ea4a7eabb2dc92dc503f18fd366accfac` |
+| 13 | `13_SESSION_CLOSURE.md` | `37d4b0431cd645891014f58683d0f9e9410dae667c3bcf2530de5232000bde22` |
 
 ---
 
@@ -57,8 +57,9 @@ Any mismatch means the file has changed since publication and the package must n
 | Branch | `review/inventory-r4-aas-pmo-review-2026-09-04-001` |
 | Branch base | `prompt/inventory-r4-aas-pmo-review-2026-09-04-001` @ `9c0facf` |
 | Merge to canonical branch | Not performed |
-| Publication commit | `PUBLICATION_COMMIT_PLACEHOLDER` |
-| Branch pushed | `BRANCH_PUSHED_PLACEHOLDER` |
+| Publication commit | `fb5cc6198b1c1d8d58fa836c2fb33e11c8242d1a` |
+| Manifest refresh commit | recorded by the commit that carries this refreshed manifest |
+| Branch pushed | Yes — `origin/review/inventory-r4-aas-pmo-review-2026-09-04-001` |
 
 ---
 

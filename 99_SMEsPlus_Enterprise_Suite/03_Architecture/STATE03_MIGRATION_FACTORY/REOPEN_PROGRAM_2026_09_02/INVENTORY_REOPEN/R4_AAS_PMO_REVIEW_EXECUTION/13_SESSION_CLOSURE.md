@@ -145,8 +145,8 @@ Stated plainly. These scans cover the **Layer 1 published text**, which is the o
 | File count | 15 (`00` through `14`) |
 | SHA-256 manifest | `14_SHA256_MANIFEST.md` |
 | Merge to canonical | Not performed |
-| Publication commit | `PUBLICATION_COMMIT_PLACEHOLDER` |
-| Branch pushed | `BRANCH_PUSHED_PLACEHOLDER` |
+| Publication commit | `fb5cc6198b1c1d8d58fa836c2fb33e11c8242d1a` |
+| Branch pushed | Yes — `origin/review/inventory-r4-aas-pmo-review-2026-09-04-001` |
 
 ---
 
@@ -173,3 +173,15 @@ The full ranked list of twelve is at `11` §3 and `12` §3.
 `No Evidence = No Progress.`
 `Never Skip Gate.`
 `Boss = Sole Final Approver.`
+
+---
+
+## 10. Direct Links
+
+- **Publication commit:** https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/commit/fb5cc6198b1c1d8d58fa836c2fb33e11c8242d1a
+- **Branch:** https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/tree/review/inventory-r4-aas-pmo-review-2026-09-04-001
+- **Output folder:** https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/tree/review/inventory-r4-aas-pmo-review-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/R4_AAS_PMO_REVIEW_EXECUTION
+- **Boss Decision Package:** https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/review/inventory-r4-aas-pmo-review-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/R4_AAS_PMO_REVIEW_EXECUTION/12_BOSS_DECISION_PACKAGE.md
+- **AAS+ Verdict:** https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/review/inventory-r4-aas-pmo-review-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/R4_AAS_PMO_REVIEW_EXECUTION/10_AAS_PLUS_INDEPENDENT_REVIEW_VERDICT.md
+- **PMO Recommendation:** https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/review/inventory-r4-aas-pmo-review-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/R4_AAS_PMO_REVIEW_EXECUTION/11_PMO_NEXT_CONTROLLED_ACTION_RECOMMENDATION.md
+- **Lane Split Register:** https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/review/inventory-r4-aas-pmo-review-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/R4_AAS_PMO_REVIEW_EXECUTION/05_92_OPEN_ITEMS_LANE_SPLIT_REGISTER.md
