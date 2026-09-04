@@ -36,8 +36,10 @@ project–asset bridge. None of them is an equipment or maintenance module.
 
 ### 2.1 A correction to the population figure this programme has been quoting
 
-Prior packages, and two independent research streams in this session, state the
-reference population as **797 modules**. Executed directly this session:
+Prior packages state the reference population as **797 modules** — the phrase
+appears in **21 files across the two source-based packages**, once carrying the
+classification `FACT VERIFIED (negative)`. Two independent research streams in
+this session repeated it. Executed directly this session:
 
 | Measure | Count |
 |---------|-------|
@@ -54,7 +56,7 @@ reference population as **797 modules**. Executed directly this session:
 The correction does not change any negative finding — the search covered the
 whole tree either way. It is recorded because this programme's standing rule is
 that a denominator may not be author-chosen, and `797` has been repeated as a
-population in three packages without being executed. The stray temporary write
+population across two packages and two research streams without being executed. The stray temporary write
 artefact is separately noted as an **evidence-root integrity observation**:
 something has written into the reference tree. Registered **P04-B-26**.
 
