@@ -1,0 +1,320 @@
+# 01 — P04 UPSTREAM CAPITALIZATION TRACE
+
+Session: `SMEPLUS-26-09-04-ACC-P04-A2R-REV2-001`
+Layer: **2 — audit quarantine**
+Status: research evidence. No implementation. No merge.
+
+This file answers one question the three prior Asset packages did not ask:
+**by what mechanism does a fixed asset come into existence, and which business
+document is the source of truth for the capitalization decision?**
+
+The governing prompt required that no single mechanism be assumed. Seven
+candidates were named and each was tested independently.
+
+---
+
+## 1. Declared enumeration
+
+Per the denominator rule, the four elements are declared before any count.
+
+| Element | Declaration |
+|---------|-------------|
+| **POPULATION** | Every module in the reference-ERP v18 Enterprise build `20250608` addons root (797 modules) plus every module in the project custom addon set, v18 line (60 modules). Total **857 modules**. |
+| **PATTERN** | (a) `grep -rn --include='*.py' "account\.asset"` excluding `/i18n/`; (b) `grep -rn --include='*.xml' 'model="account\.asset'`; (c) `grep -rn --include='*.py' "_inherit *= *['\"]account\.asset"`; (d) `grep -rn --include='*.py' -E "asset_model_ids\|create_asset"`; (e) `grep -rn --include='*.js' "account\.asset"`; (f) per-module case-insensitive `asset` probe over the procurement, receipt and expense modules; (g) `grep -rn "ir.cron"` over the asset module. |
+| **PATH SET** | `<EV-CODE>/addons/` and `<EV-CUST>/addons/`, both to full depth. |
+| **UNIT** | One module that references the asset model; and separately, one code location that instantiates an asset record. |
+
+**Verification that the root is complete:** a search for further addons roots
+inside the build returned a single hit, i.e. community and enterprise modules are
+merged into one tree. The 797 figure is therefore a population, not a sample.
+
+### 1.1 Result of the enumeration
+
+Of 857 modules, **five** reference the asset model at all:
+
+| Module | Layer | Relationship to the asset record | Creates an asset? |
+|--------|-------|----------------------------------|-------------------|
+| the asset module | `EV-CODE` | Owner of the model | **Yes** |
+| the loans module | `EV-CODE` | Links assets to a loan through an asset-group dimension; adds two related fields and a smart button | No |
+| the project–asset bridge | `EV-CODE` | Counts and filters existing assets by analytic distribution | No |
+| the custom equipment-sequence module | `EV-CUST` | Adds an equipment reference field; overrides confirm to stamp an equipment status | No |
+| the custom advance-expense-request module | `EV-CUST` | **Manifest dependency only.** Its sole asset reference is a demo record setting the automation flag to "no" | No |
+
+**FACT VERIFIED.** Exactly one module in the estate instantiates an asset record.
+
+Consequence worth stating plainly: the custom advance-expense-request module
+declares a dependency on the asset engine while contributing no asset behaviour.
+Installing it therefore **silently activates the asset engine** in a tenant that
+may not have intended it. Classified **FACT VERIFIED** (structural coupling with
+no functional coupling).
+
+---
+
+## 2. The seven candidate mechanisms, tested
+
+| # | Candidate | Verdict | Basis |
+|---|-----------|---------|-------|
+| 1 | **Purchase item / purchase order line** | **ABSENT** | No asset reference of any kind found in the procurement modules under the declared path set and pattern. No field, no hook, no instantiation. |
+| 2 | **Goods receipt / stock move** | **ABSENT — doubly blocked** | (a) no asset reference found in the inventory or inventory-valuation modules; (b) even if a valuation entry reached the creation hook, it is rejected twice: the hook processes only invoice-type documents, and valuation/interim accounts are of a current-asset type that the eligibility computation deliberately excludes. |
+| 3 | **Vendor bill / supplier invoice line** | **PRESENT — the only automatic path** | The creation hook is invoked from the **posting** transition of the accounting document. |
+| 4 | **Expense** | **PRESENT, but only as a re-entry into #3, and only for the employee-paid mode** | The employee-paid path builds a vendor-bill-type document, which then flows through #3. The company-paid path builds a document with no invoice type, which the hook filters out. **Company-paid expenses can never auto-capitalize.** |
+| 5 | **Manual capitalization** | **PRESENT — three distinct sub-paths** | (a) direct creation from the asset menu; (b) "turn selected journal items into an asset" from posted journal items; (c) "save as model", which creates a second record in model state. |
+| 6 | **Construction / WIP accumulation then capitalization** | **ABSENT** | No construction-in-progress or work-in-progress asset model exists under the declared path set. The project–asset bridge only counts assets; it creates none. |
+| 7 | **Import / migration** | **PRESENT** | The model is a plain persisted model with no import restriction. A purpose-built migration field for previously-recognised depreciation exists. XML data load is also a live creation path. |
+| 8a | **Revaluation creates a child asset** | **PRESENT — a second genuine instantiation point** | The modify wizard, on a net value increase, posts a journal entry and then creates a **child asset whose source document is that system-generated entry**. |
+| 8b | Asset split | **ABSENT as an event** | The nearest capability splits **at creation time** — one bill line into N assets — driven by an account-level flag. There is no post-creation split. |
+| 8c | Subscription / contract | **ABSENT** | Fourteen subscription modules exist in the population; none appears in the asset-reference result set. |
+| 8d | Lease / IFRS 16 right-of-use | **ABSENT** | No module matching a lease or IFRS-16 naming exists in the population. The loans module, the nearest neighbour, links to assets but creates none. |
+| 8e | Copy / duplicate | **PRESENT** | Standard record duplication. The link to the source bill lines is **not copied**, so a duplicate is detached from its origin. |
+| 8f | Scheduled / cron creation | **ABSENT** | No scheduled action exists in the asset module. |
+
+All ABSENT verdicts above are to be read as
+*"not found under the declared path set using the declared pattern"*.
+
+### 2.1 The headline answer
+
+> **The capitalization source of truth is the posted vendor bill (or a manually
+> selected posted journal item). It is never the purchase order, never the goods
+> receipt, and never the product.**
+> Classification: **FACT VERIFIED.**
+
+---
+
+## 3. Where the capitalization decision actually lives
+
+The designation "this is a capitalizable account" lives **exclusively on the
+chart of accounts**. It does not live on the product, the product category, the
+journal, the purchase document, or the asset model.
+
+```
+account type ∈ {fixed asset, non-current asset}
+        │  (eligibility computation)
+        ▼
+"can create asset"  — COMPUTED, NOT STORED
+        │  gates visibility of the whole automation section
+        ▼
+"create asset"  ∈ { no | create in draft | create and validate }
+        │  required, defaults to "no", change-tracked
+        ▼
+"asset models"  — many-to-many to asset records in model state
+        │  change-tracked; MAY BE EMPTY
+        ├── "multiple assets per line" — boolean, defaults false
+        ▼
+asset.model  → asset.fixed-asset-account
+```
+
+### 3.1 Six control observations on that chain
+
+| ID | Observation | Class |
+|----|-------------|-------|
+| **UC-01** | The eligibility flag is **computed and not stored**. It therefore cannot be searched, used in a record rule, or used in a server-side domain without recomputation. Any control that tries to report "which accounts are capitalization-enabled" cannot filter on it directly. | FACT VERIFIED |
+| **UC-02** | The requirement that an asset model be attached when the mode is "create and validate" is a **view-level attribute only**. There is no model-level constraint. An ORM write or a data import can therefore set "create and validate" with **no** asset model attached. | FACT VERIFIED |
+| **UC-03** | With no asset model attached, the creation loop still runs **once with no model**, producing an asset with **no method, no duration and no depreciation or expense account inherited**. With N models attached, **N assets are created per qualifying line**. | FACT VERIFIED |
+| **UC-04** | The depreciation and expense accounts are `required` **in the view only**. The field definitions carry no requirement and there is no model-level constraint. An imported or ORM-created asset can carry blanks; the failure surfaces late, as a database check violation caught and re-raised at confirm time. | FACT VERIFIED |
+| **UC-05** | The "multiple assets per line" flag is cleared **only by an on-change** when automation is switched off. An ORM write can leave it set while automation is off. Dormant, but it becomes live the moment automation is re-enabled. | FACT VERIFIED |
+| **UC-06** | The model's own configuration is applied **after** insertion, not during it. Where the mode is "create and validate", confirmation runs immediately afterwards and posts the whole depreciation schedule. A misconfigured account therefore produces a fully posted schedule before any human sees the record. | FACT VERIFIED |
+
+**UC-02 + UC-03 + UC-04 together** are the material upstream control finding of
+this session: three of the four values that determine every future depreciation
+entry are enforced only by the user interface. Every non-interface write
+path — import, migration, integration, scripted correction — bypasses all three.
+This is directly load-bearing for the migration population described in §6.
+
+---
+
+## 4. The automatic path in detail
+
+**Trigger:** the **posting** state transition of an accounting document — not the
+confirmation of any upstream operational document. The hook runs with elevated
+privilege.
+
+**Per-line eligibility.** All of the following must hold:
+
+1. the document is of an invoice type;
+2. the line's account is of a fixed-asset or non-current-asset type;
+3. the account's automation mode is not "no";
+4. the line total is non-zero **and positive**;
+5. the line has no asset yet and is not a tax line;
+6. **not** (the document is a sale-type document **and** the account's internal
+   group is the asset group).
+
+### 4.1 A structural consequence of conditions 2 and 6
+
+The internal group is derived from the first token of the account type. Both
+eligible account types therefore always yield the asset group. Condition 6
+consequently cancels **every** sale-type document that passed condition 2.
+
+> **In this build the automatic path is reachable only from purchase-type
+> documents.** The revenue-recognition half of the engine's own description has
+> **no live automatic entry point**.
+> Classification: **FACT VERIFIED** (from the code path); the *intent* behind the
+> exclusion is **UNRESOLVED**.
+
+This matters for P10 — Time-Based Recognition. Any SMEsPlus design that expects
+to drive deferred **revenue** through this engine automatically is designing
+against a path that does not execute.
+
+### 4.2 What happens to the source journal item
+
+**Nothing.** It is not reversed, not re-classified, not re-posted. It is only
+**joined** to the asset through a many-to-many relation table. The source
+document is stamped with an "asset move type" of purchase, and a note is written
+to the asset's message log.
+
+This is a clean design in one respect — the original accounting is preserved —
+and a control gap in another: **the asset sub-ledger and the general ledger are
+joined by a relation table, not by a balancing entry.** Nothing in the creation
+path proves that the sum of asset cost equals the balance of the fixed-asset
+account. See `04_P04_ASSET_TO_GL_MATRIX.md` §5.
+
+### 4.3 Surviving link fields, source document → asset
+
+| Direction | Link | Nature |
+|-----------|------|--------|
+| journal item → assets | many-to-many, relation table, **not copied on duplicate** | the only durable upstream link |
+| asset → journal items | many-to-many, inverse side, **not copied on duplicate** | the only durable upstream link |
+| document → assets | **computed, not stored** | not searchable |
+| depreciation entry → asset | many-to-one, cascade delete, not copied | this is the **downstream** link, not the source-document link |
+
+### 4.4 The two-hop problem (P01 boundary)
+
+The purchase order and the goods receipt each leave a reference **on the journal
+item**, not on the asset. Reaching a purchase order from an asset therefore
+requires the two-hop traversal
+
+```
+asset → source journal items → purchase order line → purchase order
+```
+
+and **that traversal is nowhere materialized on the asset record**.
+
+Consequences, all **FACT VERIFIED**:
+
+- There is no stored field by which "which purchase order produced this asset"
+  can be reported, searched, grouped, or made the subject of a record rule.
+- If the join to the source journal item is lost — by duplication (§2, 8e), by
+  a correction that unlinks lines, or by a migration that creates the asset
+  without lines — the upstream trace is **irrecoverable from the asset record**.
+- The prompt's mandatory chain *"always trace financial fact to initiating
+  business event"* is therefore **not satisfiable by stored data** for assets in
+  this build. It is satisfiable only by a live two-hop join, and only while the
+  join survives.
+
+This is registered as blocker **P04-B-01**.
+
+---
+
+## 5. The second instantiation point: revaluation creates a child asset
+
+On a net value increase, the modify wizard **first posts a journal entry**, and
+**then** creates a child asset whose source journal items are the debit line of
+that very entry.
+
+> The child asset's "source document" is a **system-generated journal entry with
+> no external business document behind it at all.**
+> Classification: **FACT VERIFIED.**
+
+Attributes of the child:
+
+- it carries **no asset model** — method, period and accounts are copied field by
+  field from the parent;
+- its life is clipped to the parent's remaining life;
+- its depreciation start is the wizard date plus one day;
+- **it carries no analytic distribution, and neither does the entry that created
+  it** — see `06_P04_DEPRECIATION_COST_HANDOFF.md`, finding P04-F-06. This is the
+  point at which the Boss's 100 % attribution requirement is broken by the
+  reference behaviour.
+
+A downward revaluation creates **only** a journal entry and no asset.
+
+---
+
+## 6. Runtime evidence, and what it does and does not establish
+
+Source: `EV-RT`, an ORM read-out captured 2026-08-26 against the UAT database.
+
+### 6.1 What is established
+
+| Statement | Basis | Class |
+|-----------|-------|-------|
+| The population of asset records in states other than "model", across companies 1 and 2, is **280**, all in company 1. | Unbounded query (`limit 10000`) over the stated domain; returned 280 rows. | **FACT VERIFIED** |
+| **All 280** carry **no asset model**. | Same query, grouped. | **FACT VERIFIED** |
+| The state distribution is draft 35, running 217, on-hold 1, closed 27. | Per-state counts. | **FACT VERIFIED** |
+| **35** of the 280 carry a completely empty account triple. | Same query, grouped by triple. | **FACT VERIFIED** |
+| At least **10** asset records carry migration external identifiers under a migration module namespace. | Bounded query — see §6.2. | **FACT VERIFIED, but not a population statement** |
+
+### 6.2 What is NOT established — a declared bound
+
+The external-identifier query in that capture was **restricted to a hand-picked
+list of 26 candidate identifiers**. It returned 10 of them. Therefore:
+
+> **The proportion of the 280 assets that originate from migration rather than
+> from any other mechanism is NOT established by `EV-RT`.**
+> The query's own domain was name-bounded; promoting its result to a population
+> statement would be exactly the denominator defect this programme has already
+> recorded once.
+
+Classified **UNRESOLVED**. Registered as blocker **P04-B-02**. The closing
+evidence is a single unbounded count of asset records grouped by presence and
+namespace of an external identifier — a query that takes one execution.
+
+### 6.3 What the capture could not answer at all
+
+The capture's field list contains **12 fields** and does **not** include the
+link to source journal items. Therefore:
+
+> Whether any of the 280 assets carries a link to a source vendor bill is
+> **not observable** from `EV-RT`. "No upstream link observed" would be a false
+> negative produced by the capture's own field selection, not a finding.
+
+Classified **UNRESOLVED**. Registered as blocker **P04-B-03**.
+
+### 6.4 The one inference that is safe, and why it is only an inference
+
+The controlled model list in `EV-HND` shows 16 asset models already normalised
+in the target, while `EV-RT` shows **all 280 live assets carrying none of them**.
+A population created by the automatic vendor-bill path with a configured account
+would carry the account's attached model. A population created by import would
+not.
+
+> **SUPPORTED INTERPRETATION:** the live asset population was created by a path
+> that does not attach an asset model — import/migration and/or manual creation —
+> rather than by the automatic vendor-bill path.
+> This is **not** FACT VERIFIED: manual creation without a model, and automatic
+> creation from an account with no model attached (§UC-03), produce the same
+> observable. Three mechanisms remain consistent with the evidence.
+
+---
+
+## 7. Thai acquisition forms the estate does not model
+
+Two acquisition forms that are ordinary in Thailand have **no host** in this
+build. Both are recorded here because they are upstream of capitalization and
+therefore in P04 scope.
+
+| Form | Status in the estate | Statutory note | Class |
+|------|---------------------|----------------|-------|
+| **Hire purchase / instalment sale** (เช่าซื้อ / ซื้อขายผ่อนชำระ) — the ordinary way machinery and vehicles are acquired by Thai SMEs | No acquisition mechanism found under the declared path set; the loans module links to assets but capitalizes nothing | Revenue Department instruction **ป.36/2536** (15 Nov 2536) prescribes the VAT treatment: the lessor issues a tax invoice **on each instalment due date**, and VAT is computed per instalment, not on the whole contract at inception | Estate finding **FACT VERIFIED**; statutory citation **FACT VERIFIED**; the SMEsPlus treatment is a **DESIGN CANDIDATE** and is **HOLD / EVIDENCE REQUIRED** pending the Accounting-Tax track |
+| **Borrowing-cost capitalization** (TAS 23) — interest capitalized into a qualifying asset's cost | Tested directly: under pattern `original_value\|capitaliz` across the loans module, **no write of loan interest into asset cost was found**. Loan interest is directed to an expense account | Not researched in this session | Estate finding **FACT VERIFIED** (scoped); statutory position **UNRESOLVED** |
+
+Registered as blocker **P04-B-04** (hire purchase) and **P04-B-05**
+(borrowing cost).
+
+---
+
+## 8. Summary of upstream findings
+
+| ID | Finding | Class |
+|----|---------|-------|
+| **P04-F-01** | The capitalization source of truth is the **posted vendor bill or a manually selected posted journal item** — never the purchase order, never the goods receipt, never the product. | FACT VERIFIED |
+| **P04-F-02** | The capitalization designation lives **only on the chart of accounts**. There is no product-level or category-level fixed-asset designation anywhere in the population. | FACT VERIFIED |
+| **P04-F-03** | Three of the four values that determine every future depreciation entry — automation mode with no model, and both depreciation accounts — are enforced **by the user interface only**. Every non-interface write path bypasses them. | FACT VERIFIED |
+| **P04-F-04** | The automatic path is reachable **only from purchase-type documents**; the sale-side exclusion cancels every sale document that would otherwise qualify. | FACT VERIFIED |
+| **P04-F-05** | The source journal item is **never reversed or re-classified**; asset and ledger are joined by a **relation table, not a balancing entry**. | FACT VERIFIED |
+| **P04-F-06** | The upstream link to the purchase order exists **only on the journal item**, requiring a two-hop join that is nowhere stored on the asset. The mandatory "trace to initiating business event" is **not satisfiable from stored asset data**. | FACT VERIFIED |
+| **P04-F-07** | A second instantiation point exists: revaluation creates a **child asset sourced from a system-generated journal entry**, with no external business document and **no analytic distribution**. | FACT VERIFIED |
+| **P04-F-08** | **Company-paid employee expenses can never auto-capitalize**; only the employee-paid mode re-enters the vendor-bill path. | FACT VERIFIED |
+| **P04-F-09** | No construction-in-progress / WIP capitalization mechanism was found under the declared path set. | FACT VERIFIED (scoped negative) |
+| **P04-F-10** | A custom module declares a dependency on the asset engine while contributing no asset behaviour, so installing it silently activates the engine. | FACT VERIFIED |
+| **P04-F-11** | The live asset population (280) carries **no asset model at all**, and 35 carry an empty account triple. | FACT VERIFIED |
+| **P04-F-12** | The **origin mechanism** of the live population is **not established**; the runtime capture that appeared to show migration origin was identifier-bounded. | UNRESOLVED |
