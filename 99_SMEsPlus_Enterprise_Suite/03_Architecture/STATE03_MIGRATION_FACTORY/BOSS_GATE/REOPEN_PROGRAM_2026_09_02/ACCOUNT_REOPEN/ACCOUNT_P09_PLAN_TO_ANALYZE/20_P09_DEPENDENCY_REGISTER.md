@@ -26,6 +26,13 @@ Per §7 of the constitution correction: recorded as `PEER DEPENDENCY OPEN`; all 
 | **PD-05** | whether a tenant may span jurisdictions — decides whether a TENANT-scoped budget is admissible at all | P07 TH Tax Compliance / P11 | P09 proposes TENANT-scoped budgets as legitimate (BC-08). If a tenant may not span jurisdictions the proposal narrows |
 | **PD-06** | the platform definition of tenant | P11 | P09 **assumes** a tenant concept throughout and does not own it. Every TENANT determination in `P09_SCOPE_OWNERSHIP_MATRIX` is conditional on this |
 | **PD-07** | the bill-line overwrite path and its sales mirror are P09 findings inside another process's territory | P01, P02 | handed over as findings, **not adjudicated**. P09 does not rule on another process's ownership model |
+| **P04-PD-04** | **ACCEPTED, owner P09.** The analytic **plan** is a TENANT candidate (a reporting structure); the **distributed amount** is a COMPANY financial fact. They are different objects and must be scoped separately. | raised by P04, owned by P09 | **P09 accepts and records convergence.** `19` §3 reached the same determination independently, from a different domain, without sight of P04's. P04's sharper corollary is adopted below as **MA-11**. |
+
+**MA-11 (new, adopted from `P04-PD-04`).** A **company-scoped attribution requirement shall never be enforced through a tenant-scoped structure.** Relying on the analytic plan — a TENANT-scoped reporting structure — to enforce a COMPANY-scoped attribution obligation is a **scope mismatch in the design intention**, independent of whether the enforcement mechanism fires at runtime.
+
+This is a stronger statement than P09's own MA-08 and MA-09: those require scope to be *declared* and *consistently enforced*; MA-11 additionally requires that **the object carrying an obligation be of the same scope as the fact the obligation governs.**
+
+*Why it matters here:* the reference pattern's obligation mechanism sits on the plan, and its enforcement is gated twice over — by execution context, then by row type. Even if both gates were removed, the control would still be a tenant-scoped structure policing a company-scoped financial attribution.
 
 ## C. EVIDENCE DEPENDENCIES — SOMETHING MUST BE LOOKED AT
 
@@ -39,6 +46,8 @@ Per §7 of the constitution correction: recorded as `PEER DEPENDENCY OPEN`; all 
 | **DEP-P09-08** | a compensating upgrade script in other modules' migration directories | X2 | C | enumeration of those directories |
 | **DEP-P09-09** | whether any deployed tenant view strips the node the runtime view-patch depends on | X4 | C | a sweep of the tenant custom view set |
 | **DEP-P09-10** | whether an ordinary accountant role inherits write on the ledger row — decides the least-privilege answer for allocation edits | X4 | C | trace the group implication chain |
+| **DEP-P09-12** | whether any **other** event type allocates both legs of a balanced pair symmetrically, and therefore also nets to zero | P09, on the P04 finding | C | a sweep for the pattern across every event producer |
+| **DEP-P09-13** | the full set of programmatic posting paths that bypass mandatory-axis validation | P04, reported to P09 | **B from P09's position** | P09 re-running P04's call-site enumeration |
 
 ## D. DECISION DEPENDENCIES — BOSS DETERMINATION REQUIRED
 
@@ -61,6 +70,7 @@ Per §7 of the constitution correction: recorded as `PEER DEPENDENCY OPEN`; all 
 | HOLD-TH-03 | a **statutory** Thai module differs between deployment copies | Accounting-Tax track, elevated |
 | HOLD-EQ-01 | non-asset equipment cost design | DEC-P09-03 |
 | HOLD-BC-01 | ledger-visible commitment | DEC-P09-04 |
+| HOLD-AS-01 | whether a prior Asset package's costing-veto premise survives the P04 depreciation finding | **Boss.** P09 does not adjudicate between parallel evidence tracks |
 
 ## F. WHAT P09 DEPENDS ON NOTHING FOR
 
@@ -74,4 +84,4 @@ Stated explicitly, so the open list above is not read as "P09 delivered nothing"
 
 ## G. TERMINAL STATE
 
-**2 BLOCKING · 7 PEER OPEN · 8 EVIDENCE OPEN · 5 BOSS DETERMINATIONS · 7 HELD. NO DEPENDENCY CLOSED BY ASSUMPTION. NO GATE MOVED.**
+**2 BLOCKING · 7 PEER OPEN + 1 PEER ACCEPTED (`P04-PD-04`, position MA-11 adopted) · 10 EVIDENCE OPEN · 5 BOSS DETERMINATIONS · 8 HELD. NO DEPENDENCY CLOSED BY ASSUMPTION. NO GATE MOVED.**

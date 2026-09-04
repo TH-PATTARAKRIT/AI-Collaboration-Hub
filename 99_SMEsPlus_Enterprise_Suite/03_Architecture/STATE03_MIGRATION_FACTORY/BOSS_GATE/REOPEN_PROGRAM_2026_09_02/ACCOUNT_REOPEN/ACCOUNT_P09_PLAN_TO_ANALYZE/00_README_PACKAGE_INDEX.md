@@ -62,6 +62,12 @@ No reference-product file path, model name, method name or code fragment appears
 | `LAYER2_AUDIT_QUARANTINE/EXPERT_REVIEW/X3_…INTEGRATION_LOCALIZATION_REVIEW` | 5 findings; Thai enumeration; **CH-CAND-05 disproved** |
 | `LAYER2_AUDIT_QUARANTINE/EXPERT_REVIEW/X4_…CODE_UI_ARCHITECT_REVIEW` | 6 findings; access matrix; CH-CAND-06 confirmed |
 
+## 3A. POST-PUBLICATION AMENDMENT
+
+The package was amended after its first commit (`16f884f`) by a **verified incoming correction from the P04 process**. P04 established that a posted asset depreciation allocates **both** legs of a balanced pair, so the two management records are mirror images and **net to zero** — the cost centre is debited and credited in the same posting. P09 re-verified all three steps from primary source before accepting, corrected row E19 of `08`, added rows E20 and E21, added positions EA-06 and EA-07, contradictions CN-20 and CN-21, edge cases EC-56 to EC-59, and accepted peer dependency `P04-PD-04` with position MA-11.
+
+Full record at `14` §R9. **A published P09 finding was corrected by another process; that is recorded, not smoothed over.**
+
 ## 4. THE SIX HEADLINE FINDINGS
 
 1. **The management dimension is physical schema, not scoped data.** Eleven independently-found defects follow from that one choice (`16` §2). Fixing them individually would be eleven patches on a representation that regenerates them.
@@ -70,6 +76,7 @@ No reference-product file path, model name, method name or code fragment appears
 4. **A financial report can present, as posted ledger data, records that were never posted** — the ledger table is replaced by a view built from management records and stamped with a literal posted state.
 5. **A dimension-filtered reallocation moves the whole balance when only a share was allocated**, and writes no dimension onto the entries it posts. A misallocation, not a duplication.
 6. **Two of the eight constitutional trace steps have no carrier at all** — the financial-event identity and the cost object. The trace cannot be inherited; it must be authored.
+7. *(added post-publication)* **An allocation applied symmetrically to both legs of a balanced pair attributes nothing.** Asset depreciation does exactly this, so depreciation reaches the cost centre and leaves it in the same posting. The complementary case — no allocation on the asset — lets each leg find its own, so a balanced pair can be attributed to two different cost objects, producing a residue that corresponds to no economic event.
 
 ## 5. CONTROL RESULTS
 
@@ -81,6 +88,7 @@ No reference-product file path, model name, method name or code fragment appears
 | denominator rule | **caught 2 author defects** — an author-chosen producer list wrong by 5 members, and a population stated in the wrong unit |
 | brief-error clause | **fired twice**, both returned as findings by reviewers |
 | independent adversarial challenge | **13 corrections and 15 findings returned against the author; none originated with the author** |
+| incoming peer correction, verified before acceptance | **1** — a published finding corrected by the P04 process; author-originated material corrections in this session remain **zero** |
 
 ## 6. WHAT THIS PACKAGE DOES NOT DO
 

@@ -31,6 +31,9 @@ Three registers: contradictions **inside the reference pattern**; contradictions
 | **CN-18** | The upgrade path aborts on a state that the module's own runtime code treats as normal and handles gracefully. | Confirmed by challenge. |
 | **CN-19** | Inter-company mirroring drops the allocation silently and lets the **receiving** company's default outrank the **sending** document, while the module's own test asserts the empty outcome as correct. | Confirmed by challenge. |
 
+| **CN-20** | An allocation is copied to **both** legs of a balanced pair and the analytic amount is the negated signed balance — so the mechanism that exists to attribute a cost is arithmetically guaranteed to attribute **nothing**. The system faithfully records two management facts whose sum is zero. | Confirmed by P09 on an incoming peer finding. |
+| **CN-21** | When the source object carries **no** allocation the key is *deliberately omitted* so that each row may find its own — which for a balanced pair means the two legs can be attributed to **different** cost objects, producing a residue that corresponds to no economic event. The fallback designed to add information can subtract correctness. | Mechanism confirmed; outcome configuration-dependent. |
+
 ## B. CONTRADICTIONS BETWEEN SESSION PARTICIPANTS — PRESERVED, NOT RESOLVED
 
 Per the constitution, AAS+ preserves disagreement. These are live.
@@ -44,6 +47,8 @@ Per the constitution, AAS+ preserves disagreement. These are live.
 | **DIS-05** | X1 flagged a count discrepancy against the evidence base and declined to call it an error. | The research team reconciled it as two correct measurements of different units. | **No party was wrong.** Retained in full because the *unit* defect it exposed is the project's own standing lesson. |
 | **DIS-06** | X4 could not locate the access rows for the budget objects and declared class B, routing it as a dependency. | No other participant searched for them. | **Open.** Recorded as `DEP-P09-04`. Not closed by anyone's assumption. |
 | **DIS-07** | The research team's original scope position asserted tenant **and** company context for every analytic object. | The scope-aware constitution correction supersedes that wording. | **The correction prevails.** The superseded position is retained verbatim in `P09_REVISION_LOG` §R1 so that the over-constraint is legible rather than erased. |
+| **DIS-08** | P09 published row E19 stating that a posted depreciation produces management records from the asset's own allocation. | P04 established that those records **net to zero**. | **B prevails on effect.** A was true of the records and false of the effect. P09 re-verified all three steps from primary source before accepting. Corrected in place, logged at `14` §R9. **A peer process corrected a published P09 finding; that is recorded, not smoothed over.** |
+| **DIS-09** | P04 reports that its finding contradicts a premise underpinning a standing costing veto recorded by a prior Asset package. | The prior Asset package holds the original premise. | **P09 does not adjudicate.** Two parallel evidence tracks disagreeing is a Boss-level reconciliation, not a P09 determination. Recorded as a pointer in `E01` Part D and nothing more. |
 
 ## C. HELD — EVIDENCE REQUIRED
 
@@ -56,6 +61,7 @@ Per the constitution, AAS+ preserves disagreement. These are live.
 | HOLD-SC-02 | whether the deployed tenant custom set contains the department dimension at all | D | PD-06 → P11 |
 | HOLD-EQ-01 | how non-asset equipment cost should be tracked — **no reference precedent exists** | design decision | Boss determination; see `P09_COST_OBJECT_MODEL` CO-03 |
 | HOLD-BC-01 | whether SMEsPlus requires commitment accounting visible in the ledger | design decision | Boss determination; PD-03 → P01 |
+| HOLD-AS-01 | whether the prior Asset package's costing-veto premise survives the P04 finding | cross-track reconciliation | **Boss.** P09 does not adjudicate between parallel evidence tracks |
 
 ## D. NOT SEARCHED — NEVER TO BE RESTATED AS ABSENCE
 
@@ -74,7 +80,9 @@ Carried forward verbatim from the evidence base and the matrices. Each is class 
 | NS-09 | statutory export formats outside the three export-family name patterns | C |
 | NS-10 | which of the three tenant custom copies is deployed | **D** |
 | NS-11 | whether an ordinary accountant role inherits write on the ledger row | C |
+| NS-12 | whether any other event type allocates both legs of a balanced pair symmetrically | C |
+| NS-13 | the full set of programmatic posting paths bypassing mandatory-axis validation | **B from P09's position** — enumerated by P04, not re-enumerated by P09 |
 
 ## E. TERMINAL STATE
 
-**19 INTERNAL CONTRADICTIONS RECORDED · 7 PARTICIPANT DISAGREEMENTS PRESERVED UNRESOLVED · 7 ITEMS HELD · 11 UNSEARCHED ITEMS DECLARED. NO GATE MOVED.**
+**21 INTERNAL CONTRADICTIONS RECORDED · 9 PARTICIPANT DISAGREEMENTS PRESERVED UNRESOLVED · 8 ITEMS HELD · 13 UNSEARCHED ITEMS DECLARED. NO GATE MOVED.**

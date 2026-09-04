@@ -69,6 +69,7 @@ Every revision, correction and superseded position, in the order it occurred. Su
 | DIS-03 | "transferred as if it were total" | a **misallocation**: the whole balance moves, and the unallocated fraction is not picked up anywhere either | X1 |
 | COR-REV-01 | the "no ledger link" finding, read as implying a homogeneous summable population | the record asserts at least five structurally different facts across producers | X1 |
 | COR-X4-04 | the confirmed-budget lock is a view attribute *(implying raw programmatic access is needed to defeat it)* | it is reopenable through the normal interface via an unguarded state reset | X4 |
+| R9 | `08` row E19 — depreciation produces management records from the asset own allocation | the records are produced **and net to zero**; the allocation is applied to both legs of a balanced pair | **P04**, post-publication |
 
 ## R6 — CONTROLS THAT FIRED DURING EXECUTION
 
@@ -81,10 +82,31 @@ Every revision, correction and superseded position, in the order it occurred. Su
 | prohibited-verdict-vocabulary scan | run mechanically across every produced file before commit; result recorded in `P09_EVIDENCE_MANIFEST` |
 | clean-room vendor-token scan | run mechanically across every Layer 1 file before commit; result recorded in `P09_EVIDENCE_MANIFEST` |
 
+## R9 — INCOMING CORRECTION FROM P04, AFTER PUBLICATION
+
+**Received:** from the P04 (Acquire-to-Retire) process after the P09 package was published at `16f884f`.
+**Handling:** every claim was **re-verified by P09 against primary source before acceptance.** A peer report is not evidence; the source is.
+
+| Field | Content |
+|---|---|
+| **Original finding** | *(superseded wording, retained)* `08` row E19 recorded that a posted asset depreciation produces management records from the asset own allocation, linked through the ordinary posting path. |
+| **What was wrong** | The row was **true of the records and false of the effect.** The allocation is written onto **both** rows of the depreciation entry; analytic-line creation runs over all rows with no account-type filter; and the analytic amount is the **negated signed balance** times the share. The two rows of a balanced pair therefore produce mirror-image analytic amounts that **cancel**. |
+| **Verification performed by P09** | three locations read directly: the asset-side value builder that sets the key on both rows under an explicit guard; the creation routine iterating the entire row set; the amount builder negated-balance formula. All three confirmed. Class **A**. |
+| **Updated classification** | Row E19 corrected; row **E20** added for the complementary no-allocation case (each row computes its own allocation from its own account, so a balanced pair can be attributed to two different cost objects, giving a non-zero residue — mechanism class A, outcome class D per deployment); row **E21** added for programmatic posts. |
+| **Architecture impact** | **EA-06** added (allocate only the rows carrying the effect; symmetric allocation of a balanced pair attributes nothing, by arithmetic). **EA-07** added (allocate an event rows as one event and verify the result against the intended attribution). Contradictions **CN-20** and **CN-21** added. Edge cases **EC-56 … EC-59** added. |
+| **Cross-process impact** | P04 reports the finding contradicts a premise underpinning a standing costing veto held by a prior Asset package. **P09 records this as a pointer and does not adjudicate** — reconciling parallel evidence tracks is a Boss-level decision. Registered as `HOLD-AS-01` and `DIS-09`. |
+| **Evidence required** | whether any **other** event type allocates both legs of a balanced pair symmetrically — class **C, not searched**; P09 did not sweep for the pattern. |
+
+**Second correction in the same message — extends EV-P09-017.** P09 had recorded that the 100 % obligation check is opt-in by execution context. P04 supplied a **second, independent gate**: the validation routine filters to product display type, so entries with no product-type rows are skipped even when the flag is set. **P09 verified the row-type gate directly.** P04 accompanying enumeration of the posting call sites was **not** re-run by P09 and is carried at class **B from P09 position**, not restated as P09 class A.
+
+**Third item — scope, accepted as convergence.** P04 scopes the analytic **plan** as a TENANT candidate and the **distributed amount** as a COMPANY financial fact. This **independently reproduces** P09 own determination in `19` §3, reached from a different domain without sight of it. P04 sharper corollary is adopted as **MA-11** (`20` §B, `P04-PD-04`).
+
+**Assessment recorded, not softened:** this is the **second** time in this session that a published P09 claim was corrected by someone other than its author, and the first time by another process rather than a commissioned reviewer. The count of author-originated material corrections in this session remains **zero**.
+
 ## R7 — WHAT WAS NOT REVISED, AND WHY
 
 No finding was withdrawn on the basis of inconvenience, and no class-B, class-C or class-D item was converted to class A at any point in this session. The unsearched list in `P09_CONTRADICTION_REGISTER` §D is the same length at the end of the session as when each item was raised, with the single exception of one class-C residue closed by transcription (COR-REV-02).
 
 ## R8 — TERMINAL STATE
 
-**REVISION LOG CLOSED FOR THIS SESSION. ONE CONSTITUTION CORRECTION ABSORBED WITHOUT RESET. TWO AUTHOR DENOMINATOR DEFECTS RECORDED. FOUR WORDINGS SUPERSEDED. ONE CANDIDATE DISPROVED. NO GATE MOVED.**
+**REVISION LOG: ONE CONSTITUTION CORRECTION ABSORBED WITHOUT RESET · TWO AUTHOR DENOMINATOR DEFECTS · FIVE WORDINGS SUPERSEDED · ONE CANDIDATE DISPROVED · ONE POST-PUBLICATION CORRECTION FROM A PEER PROCESS, VERIFIED BEFORE ACCEPTANCE. NO GATE MOVED.**

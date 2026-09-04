@@ -83,6 +83,15 @@ Each row states a condition, what the reference pattern does, the evidence class
 | EC-54 | a query filters by allocation **percentage** rather than by dimension value | no index supports it; it is a full scan by construction | A | index the allocation shape the business actually queries |
 | EC-55 | the upgrade script runs on a database where the privileged-axis parameter is unset | it unpacks a query result without an existence guard and aborts — although the module's own runtime code treats that same state as expected and handles it | A | upgrade paths shall handle every state the runtime declares possible |
 
+## H. SYMMETRIC ALLOCATION OF A BALANCED PAIR *(added after publication; see `14` §R9)*
+
+| ID | Condition | Reference-pattern behaviour | Class | SMEsPlus requirement |
+|---|---|---|---|---|
+| EC-56 | an allocation is written onto **both** rows of a balanced two-row entry | both rows produce management records; the amount is the negated signed balance times the share, so the records are mirror images and **net to zero** | A — verified by P09 on an incoming peer finding | an allocation shall be applied only to the rows carrying the effect being attributed (EA-06) |
+| EC-57 | the same entry when the source object carries **no** allocation | the key is deliberately omitted and **each row computes its own** allocation, keyed on its own account; two accounts can select two different allocations, giving a **non-zero unbalanced residue** with no economic meaning | mechanism A; outcome **D** per deployment | rows of one event shall be allocated as one event, and the result shall be checked against the intended attribution (EA-07) |
+| EC-58 | mandatory-axis validation on a **programmatic** post | does not fire — opt-in by execution context **and** restricted to product-type rows, of which such entries have none | product-type restriction A; call-site enumeration B from P09's position | obligation shall be a property of the data, enforced at the storage layer for every path (DM-06) |
+| EC-59 | a management record exists but attributes nothing | there is no state, marker or report distinguishing "allocated to zero net effect" from "meaningfully allocated" | A | a management record whose net contribution is nil shall be identifiable as such |
+
 ## G. OPEN — NOT SEARCHED, NEVER TO BE RESTATED AS ABSENCE
 
 | ID | Item | Class |
@@ -92,7 +101,9 @@ Each row states a condition, what the reference pattern does, the evidence class
 | EC-U-03 | producers reached through a variable-held model name | C |
 | EC-U-04 | a compensating migration for non-management-record plan-column carriers, in other modules' migration directories | C |
 | EC-U-05 | which of the three tenant custom copies is deployed, and therefore whether the department dimension exists at all | D |
+| EC-U-06 | whether any other event type allocates both legs of a balanced pair symmetrically | C |
+| EC-U-07 | the full set of programmatic posting paths bypassing mandatory-axis validation | B from P09's position |
 
 ## TERMINAL STATE
 
-**MATRIX ISSUED. 6 ROWS CONFIRMED BY INDEPENDENT CHALLENGE, 1 ROW DISPROVED AS AN EXPOSURE CLAIM, 1 NEW ROW ADDED BY THE CHALLENGE THAT DISPROVED IT, 5 ITEMS OPEN. NO GATE MOVED.**
+**MATRIX ISSUED AND EXTENDED AFTER PUBLICATION. 6 ROWS CONFIRMED BY INDEPENDENT CHALLENGE · 1 DISPROVED AS AN EXPOSURE CLAIM · 1 ADDED BY THE CHALLENGE THAT DISPROVED IT · 4 ADDED BY A VERIFIED INCOMING PEER FINDING · 7 ITEMS OPEN. NO GATE MOVED.**

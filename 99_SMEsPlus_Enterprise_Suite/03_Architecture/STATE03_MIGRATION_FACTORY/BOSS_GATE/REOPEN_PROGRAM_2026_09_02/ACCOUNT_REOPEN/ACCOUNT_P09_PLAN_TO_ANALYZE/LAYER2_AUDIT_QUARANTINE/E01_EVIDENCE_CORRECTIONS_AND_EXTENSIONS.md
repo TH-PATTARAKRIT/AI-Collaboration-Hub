@@ -145,3 +145,50 @@ E00 routed five candidates. Two are upgraded, one is added.
 | CH-CAND-06 | **new** — a distribution write on a posted, lock-dated, hash-chained entry passes every guard and leaves no trace (EV-P09-100/101/102) | mechanism class A on three independent lists; composite routed for challenge |
 
 **END OF E01.**
+
+---
+
+## PART D — INCOMING CORRECTIONS FROM P04 (ACQUIRE-TO-RETIRE), INDEPENDENTLY VERIFIED
+
+Received from the P04 process after the P09 package was published at `16f884f`. **Every claim below was re-verified by P09 against primary source before acceptance** — not accepted on the strength of the peer report. Verification commands are recorded in the search boundary at the end of this part.
+
+### COR-P04-01 — **A depreciation entry's net analytic impact is zero.** Corrects P09's own `08` row E19.
+
+Verified mechanism, three steps:
+1. The asset's distribution is written onto **both** generated rows. The source is explicit: `account_asset/models/account_move.py:295-299` sets the key on `move_line_1` **and** `move_line_2`, guarded by a comment stating the key is set only when the asset carries a distribution.
+2. Analytic-line creation is invoked on **all** rows of the posted entry with no account-type filter (`account/models/account_move_line.py:3149-3159`, iterating `for line in self`, called from the posting action on the entry's whole row set).
+3. The amount is the **negated signed balance** times the share (`account_move_line.py:3187`, `amount = -self.balance * distribution / 100.0`).
+
+The accumulated-depreciation row is a credit and the expense row a debit, so their balances are equal and opposite, so the two analytic amounts are **mirror images and cancel**.
+
+**Effect:** depreciation reaches the cost centre and leaves it in the same posting. Two analytic records exist; their net contribution to the dimension is nil.
+Class **A** — all three locations read by P09 in this verification pass.
+
+**What this corrects in the published P09 package:** row **E19** of `08_P09_EVENT_TO_ANALYTIC_MATRIX` stated that a posted depreciation produces management records from the asset's own allocation, linked via the ordinary posting path. That is true of the *records* and **false of the *effect***. The row is corrected in place and the correction is logged at `14` §R9.
+
+**Cross-track pointer, not an adjudication:** P04 reports that a prior Asset package recorded "depreciation already reaches production cost centres through the analytic distribution" as one of two live mechanisms underpinning a standing costing veto, and that this premise is contradicted. **P09 records this as a pointer only.** Reconciling two parallel evidence tracks is a Boss-level decision and P09 does not adjudicate it.
+
+### COR-P04-02 — **The no-distribution case produces an unbalanced analytic residue.**
+
+Where the asset carries **no** distribution, the key is deliberately omitted from the row values (same guard, `account_move.py:295-299`). Each row then computes its own distribution through the ordinary compute, which is keyed on **its own account** among other selectors. The accumulated-depreciation account and the depreciation-expense account are different accounts, so account-prefix rules can select **different** distributions for the two rows — yielding a non-zero, unbalanced analytic residue with no economic meaning.
+
+**Precision required, and stated:** the *mechanism* is class **A** (the omission guard and the per-row compute are both in source). Whether two different distributions are actually selected depends on the configured rule set — **class D for any given deployment**, and it must not be reported as an unconditional outcome.
+
+### COR-P04-03 — **Mandatory-plan validation has a second, independent block, which P09 did not record.** Extends EV-P09-017.
+
+P09 recorded that the 100 % check is opt-in by execution context. P04 supplies a second gate, verified here: the validation routine filters its rows to **product display type only** (`account/models/account_move_line.py:3118`). Depreciation entries have no product-type rows, so **even with the context flag set, they are skipped**.
+
+P04 additionally reports that the context flag is set only from user-interface posting paths, so no programmatic post carries it — depreciation, disposal, inventory valuation, the manufacturing labour relief entry, deferred recognition, and automatic asset confirmation. **P09 verified the product-type filter directly; it did not re-enumerate the flag's call sites in this pass** — that enumeration is P04's, class **B** from P09's position, and is not restated here as P09's own class A.
+
+**Combined statement:** obligation of an analytic dimension is enforced on a subset of user-interface paths, over a subset of row types. It is not a property of the data.
+
+### COR-P04-04 — Further P04 consequences recorded as pointers, not as P09 findings
+
+Reported by P04 in its own domain; P09 did not verify these and records them at P04's stated class so they are not lost:
+- an asset never consults the account-prefix rules that govern ordinary manual journal items, so a rule an accountant believes universal is invisible to assets;
+- changing an asset's distribution rewrites only **draft** entries (consistent with P09's own X3-02), so an asset and its posted history permanently disagree;
+- capitalising an addition creates a child record with **no** distribution, and the creating entry carries none — so every subsequent depreciation of a capitalised addition is un-attributed by construction;
+- the project-to-asset bridge **counts** assets whose distribution mentions a project's axis value, so an asset split across two projects is counted under both — a count, not a partition.
+
+### Search boundary for Part D
+`grep -n "analytic_distribution"` over the two asset model files; targeted reads of `account/models/account_move_line.py:3112-3160` (the validation routine and the creation routine) and `:3174-3206` (the amount builder). Three of the four claims were verified directly; the fourth group is recorded at P04's class, unverified by P09 and marked as such. No database executed.

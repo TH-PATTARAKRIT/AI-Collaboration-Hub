@@ -78,7 +78,7 @@ The reference pattern pre-fills an allocation from a rule set. Selection semanti
 
 | Property | Reference pattern | Class | SMEsPlus requirement |
 |---|---|---|---|
-| totals to 100 % | only when the axis is mandatory **and** the caller opts in by execution context; no model or storage constraint | A within the analytic module | **DM-06** enforce at the storage layer for every axis; not defeatable by a caller flag |
+| totals to 100 % | **two independent gates, both of which must be passed for the check to run at all**: the caller must opt in by execution context, **and** the row must be of product display type. Entries with no product-type rows — depreciation among them — are skipped even when the flag is set. No model or storage constraint. | A within the analytic module; the row-type gate verified separately after publication | **DM-06** enforce at the storage layer for every axis **and every row type**; not defeatable by a caller flag or a row-type filter |
 | referential integrity to the dimension value | **none** — ids live inside a schemaless payload; dangling references are an expected state and are filtered on read | A | **DM-07** allocation shall be relationally integral |
 | scope consistency with the carrier | enforced on the one privileged axis only; structurally unattachable to the payload | A / B | **DM-08** enforce uniformly at the storage layer for every axis |
 | residual when under-allocated | none; the remainder is unrepresented | A | **DM-09** named visible residual |
@@ -94,6 +94,8 @@ The reference pattern pre-fills an allocation from a rule set. Selection semanti
 
 **DM-U-03 — Alternative reporting aggregation for the 7 non-groupable carriers.** Class **C — not searched.** Recorded so that it is not later restated as an absence.
 
+**DM-U-04 — The full set of posting paths that bypass obligation enforcement.** Enumerated by the P04 process and reported to P09. **P09 verified the row-type gate directly from source but did not re-enumerate the call sites**, so this is class **B from P09's position** and is not restated here as a P09 class-A finding.
+
 ## 6. TERMINAL STATE
 
-**MATRIX ISSUED. DM-01 … DM-11 ARE PROPOSALS. DM-U-01 … DM-U-03 ARE OPEN. NO GATE MOVED.**
+**MATRIX ISSUED AND AMENDED AFTER PUBLICATION. DM-01 … DM-11 ARE PROPOSALS. DM-U-01 … DM-U-04 ARE OPEN. NO GATE MOVED.**
