@@ -35,7 +35,7 @@ session closed, **6 had published — and 2 were already at a later commit than 
 | 5 | The unified registers, the scope-ownership matrix, the ownership test | **`NOT CONVERGED` — 86 findings, 3 critical** |
 
 **The recommendation is `HOLD`.** Not because the work is thin, but because `0 of 8` exit criteria are
-met, `13+2` tolerance-zero boundaries stand unresolved, `4+3` vetoes are undischarged, and the round's
+met, `13+2` tolerance-zero boundaries stand unresolved — and `T0-13` is **reachable today inside a single company**, independently of any Boss ruling, `4+3` vetoes are undischarged, and the round's
 own instruments failed under independent test.
 
 ## 2. Whole business process map

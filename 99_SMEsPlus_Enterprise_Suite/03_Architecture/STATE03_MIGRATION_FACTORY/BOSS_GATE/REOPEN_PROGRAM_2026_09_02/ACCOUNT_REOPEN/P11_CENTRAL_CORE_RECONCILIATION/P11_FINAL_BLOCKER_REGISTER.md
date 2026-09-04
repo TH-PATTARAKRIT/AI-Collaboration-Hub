@@ -26,7 +26,7 @@ Every blocker ends as **exactly one** of the ten permitted statuses. No vague st
 | `P11-B-13` | **The unified event-to-GL matrix has not been reconciled against the published peer matrices** (`P03`, `P04`, `P06` each publish one; `P06` alone carries 31 event→entry rows) | **`HOLD — PEER PROCESS REQUIRED`** |
 | `P11-B-14` | **The exception to "unrelated independent companies = separate tenants by default" is undeclared, and no granting authority is named** (`P11-SR-01`) | **`HOLD — BOSS DECISION REQUIRED`** → `D-11` |
 | `P11-B-15` | **Whether a company hierarchy may span a tenant boundary is unruled, and no enforced tenant-assignment invariant exists** (`P11-SR-02`) | **`HOLD — BOSS DECISION REQUIRED`** → `D-12` |
-| **`P11-B-16`** | **`T0-13` — a financial effect may cross a tenant boundary SILENTLY.** An act in one tenant can mis-periodise another's books with no error, no refusal and no trace (`P11-F-06`, composed from `P04-F-66` + `P04-B-31`) | **`HOLD — BOSS DECISION REQUIRED`** · **tolerance-zero** |
+| **`P11-B-16`** | **`T0-13` — an accounting fact may be SILENTLY MUTATED, at any scope.** Widened at Delta 04: the defect needs **no tenant boundary and no company hierarchy** — inside a single company an entry aimed at a locked period is already re-dated with no refusal and no trace (`P04-F-68`, `FACT VERIFIED`). **Reachable today, so it stands whatever the Boss rules on `D-12`.** Close condition: **refuse, OR record an attributable trace** | **`HOLD — BOSS DECISION REQUIRED`** · **tolerance-zero** · **present defect, not prospective risk** |
 
 **16 blockers. 0 closed by this session.** `P11-B-13`…`P11-B-16` added by Deltas 01–03.
 

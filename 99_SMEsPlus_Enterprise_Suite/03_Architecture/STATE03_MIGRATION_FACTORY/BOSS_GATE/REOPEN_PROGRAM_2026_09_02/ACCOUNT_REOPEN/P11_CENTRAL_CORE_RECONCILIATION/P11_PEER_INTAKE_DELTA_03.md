@@ -49,10 +49,24 @@ attributable act with an obvious victim. The compound is **undetectable from ins
 tenant**, and it corrupts period attribution rather than blocking work. A tenant cannot report, escalate
 or even notice a harm it has no signal for.
 
-**Classification.** `P11-F-06` is `P11-DERIVED` **from two `FACT VERIFIED` peer findings**; the
-composition is P11's, the components are P04's. Neither component was composed by its owner, because
-`P04-F-66` and `P04-B-31` sit in different files answering different questions — **which is the
-whole argument for a cross-process seat existing at all.**
+**Classification — CORRECTED at `P11_PEER_INTAKE_DELTA_04.md` §2, `P11-E-17`.**
+
+> **The text below was published and is FALSE. It is retained struck through, per the carry-forward
+> rule, because a correction that deletes its error leaves no lineage.**
+>
+> ~~`P11-F-06` is `P11-DERIVED` from two `FACT VERIFIED` peer findings; the composition is P11's, the
+> components are P04's. Neither component was composed by its owner, because `P04-F-66` and
+> `P04-B-31` sit in different files answering different questions — which is the whole argument for a
+> cross-process seat existing at all.~~
+
+**The truth.** The compound — including the exact phrase *"silently mis-periodised entries in the
+other tenant's books"* — was composed **by P04**, in `20_P04_SCOPE_OWNERSHIP_MATRIX.md` at `3c10b4e`
+under the heading *"Compounding with `P04-B-31`"* — **the same commit P11 cited two lines earlier as
+the source of `P04-F-66`** — and was sent to P11 verbatim before intake. `P11-F-06` is therefore
+**`PEER-PUBLISHED`, owner P04**, carried by P11.
+
+**What P11 did contribute, stated exactly because it is smaller:** P11's `SR-02` question is what sent
+P04 to read the lock-date implementation. **The value was the prompt, not the composition.**
 
 ## 3. `T0-13` — a new tolerance-zero boundary
 
@@ -61,7 +75,7 @@ opened.
 
 | id | Boundary | Status |
 |---|---|---|
-| **`T0-13`** | **A financial effect may not cross a tenant boundary silently.** No mechanism may re-date, re-attribute or otherwise mutate an accounting fact in one tenant as a consequence of an act in another, and no such effect may occur without a refusal or a recorded, attributable trace | **`UNRESOLVED`** |
+| **`T0-13`** | ~~A financial effect may not cross a tenant boundary silently.~~ **WIDENED at Delta 04 §1 — this drafting was too narrow and would be satisfied by a system that still misstates a fiscal year inside one company.** Governing text: **an accounting fact may not be silently mutated, at any scope** — refuse, or leave an attributable trace | **`UNRESOLVED`** |
 
 This sits **beside** `T0-04` (tenant isolation), not inside it. `T0-04` asks whether a boundary is
 crossed. `T0-13` asks whether the crossing is **detectable**, and the two have different remedies: an

@@ -179,3 +179,91 @@ reconciliation was scheduled before the things it reconciles existed.
 > found 86, including a broken evidence script and a rule stated one way and applied another. A
 > round that reported only its self-caught errors would have published a false picture of its own
 > reliability.
+
+---
+
+# PART 3 — POST-PUBLICATION, PEER-CAUGHT
+
+## `P11-E-15` — a count published without its declared population
+
+Logged in full at `P11_PEER_INTAKE_DELTA_03.md` §5. P11 published *"the fourth instance in the
+programme and the second in this session"* **without declaring the population it counted over** — in
+the delta arguing that counts must declare their population. Reconciled by declaring both units.
+
+## `P11-E-16` — a tolerance-zero boundary drafted narrower than P11's own evidence
+
+**Where.** `T0-13`, as opened at `P11_PEER_INTAKE_DELTA_03.md` §3.
+
+**Error.** Scoped to *tenant crossings*. `P04-F-68` (`FACT VERIFIED`) establishes the silent re-dating
+needs **no tenant boundary and no company hierarchy** — inside a single company an entry aimed at a
+locked period is already mutated with no refusal and no trace. **A boundary that can be satisfied
+while the defect persists is not a boundary.**
+
+**Why it is worse than the peer reported.** P04 found the wider scope in P04's evidence. **P11 already
+had it in its own.** `P11_UNIFIED_ACCOUNTING_EVENT_REGISTER.md` §2 records four accounting events
+**invisible at the moment they occur**, two of which are **single-company re-datings** — `UAE-04`
+(*"the posted record carries no trace that its date was moved"*) and `UAE-05` (*Visible?* **no**;
+*"fires with no lock configured"*). Neither needs a tenant. Both predate `T0-13` by four documents.
+
+**Cause, identified rather than described.** `T0-13` was drafted *while* composing the cross-tenant
+compound and took its scope from the case in front of it rather than from the register that already
+generalised it. **A boundary derived from its triggering instance inherits that instance's scope.**
+Recorded as a method note: when opening a tolerance-zero boundary, re-derive its scope from the
+register, never from the finding that prompted it.
+
+**Correction.** Widened to every scope — `PLATFORM`, `TENANT`, `COMPANY` — with the tenant crossing as
+the aggravated case. `T0-13` is consequently **not contingent on `D-12`** and is a **present defect,
+not a prospective risk**.
+
+## `P11-E-17` — an attribution published without opening the file cited two lines earlier
+
+**Where.** `P11_PEER_INTAKE_DELTA_03.md` §2, classification paragraph.
+
+**Error.** P11 published that the `P04-F-66` + `P04-B-31` compound *"is P11's… neither component was
+composed by its owner"*, and drew from it *"the whole argument for a cross-process seat existing at
+all"*. **The compound, and the exact phrase P11 used as its headline, were composed by P04** in
+`20_P04_SCOPE_OWNERSHIP_MATRIX.md` at `3c10b4e`, under the heading *"Compounding with `P04-B-31`"* —
+**the same commit P11 cited two lines earlier as the source of `P04-F-66`** — and were sent to P11
+verbatim under an explicit heading before intake.
+
+**Aggravating.** The heading appeared in **P11's own terminal output**: the grep run to verify
+`P04-F-66` printed lines 232–234 of that file. P11 saw the heading, did not open the passage, and
+published a claim about it.
+
+**Class.** Identical to `P11-E-15` — a claim published without its evidence opened — **committed in
+the same message that logged `P11-E-15`.** The peer's own framing is adopted: *"It confirms your rule
+rather than undermining it."* Seventh instance across five actors.
+
+**Correction.** `P11-F-06` reclassified `PEER-PUBLISHED`, owner P04. The false text is retained struck
+through at source, with lineage. The surviving P11 contribution is stated exactly and is smaller:
+**the value was the prompt, not the composition** — P11's `SR-02` question is what sent P04 to read
+the lock-date implementation.
+
+**And the example was replaced.** The claim *"this is the argument for a cross-process seat"* now
+attaches to a case P11 verified independently at `P07`@`ecc6059`: a statutory definition P04 had read
+and P07 had not produced two gaps in P07's own VAT model — a missing deemed-supply row (`P07-D-30`:
+*"the VAT limb is P07's and is the half that would otherwise be missed"*) and a *"no instalment tax
+point found"* recorded **without knowing the rule it was measuring against** (`P07-F-59`). **The
+second is a negative claim whose boundary was unknowable from inside one process.** That is the
+argument; the lock-date compound was not.
+
+---
+
+## Summary — all three parts
+
+| Measure | Count |
+|---|---|
+| Errors made by this session | **16** |
+| Self-caught before the challenge | 3 |
+| Self-caught in parallel with the challenge | 4 |
+| Found only by independent challenge | 6, including both CRITICAL |
+| **Found only by a peer process, after publication** | **3** — `P11-E-15` (partly), `P11-E-16`, `P11-E-17` |
+| Corrections published **at source** rather than as footnotes | **all** |
+
+> **The controlling lesson, fifth recorded instance and now demonstrated three ways:** self-review
+> found 3; independent adversarial challenge found 86; **a peer process reading the same evidence
+> found 3 more that both had missed — two of them errors about P11's own material.**
+>
+> No single control was sufficient. The peer catch is the one that could not have been bought by
+> running the challenge harder, because it required a second party who had **written** the evidence
+> P11 was citing.
