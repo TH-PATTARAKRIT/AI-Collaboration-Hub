@@ -109,6 +109,16 @@ about this reconciliation and it is stated first, not last.
 
 > ## `PEER DEPENDENCY OPEN × 10`
 > **0 of 10 peer processes have published any artefact at any commit SHA.**
+>
+> ### `SUPERSEDED — SNAPSHOT_UTC=2026-09-04T22:41:38+0700`
+> **This table is a reading at that instant and is no longer true.** By
+> `SNAPSHOT_UTC=2026-09-04T23:16:15+0700` — 35 minutes later — **six** peer branches existed on
+> `origin`, and two of them were already at a **later SHA** than this session read. The corrected
+> register is `P11_PEER_INTAKE_DELTA_01.md`, which supersedes this section. The table is retained
+> unedited for lineage, per the programme's carry-forward rule.
+>
+> Independently contradicted at review time by `X4-F01`, and declined as `NOT DECIDABLE` by `X1`
+> rather than endorsed.
 
 Reproduction: `LAYER2_P11_EVIDENCE/p11_scripts/peer_intake.sh`, output at
 `LAYER2_P11_EVIDENCE/peer_intake_output.txt`. Snapshot of unpublished work-in-progress:
