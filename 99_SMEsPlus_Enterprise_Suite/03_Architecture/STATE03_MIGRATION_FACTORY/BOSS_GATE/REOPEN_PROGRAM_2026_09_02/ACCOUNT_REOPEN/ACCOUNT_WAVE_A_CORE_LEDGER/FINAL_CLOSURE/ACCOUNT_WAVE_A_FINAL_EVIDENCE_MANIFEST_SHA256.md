@@ -21,6 +21,25 @@ Generated `2026-09-04T14:13:35+0700`
 | Branch | `research/account-wave-a-mcc-2026-09-04-001` |
 | Published on `origin` | **NO** — see Gate Report §3 |
 
+## 1a. Amendment `2026-09-04` — `GB-08` round
+
+| Measure | Value |
+|---|---|
+| **Roll-up digest, `FINAL_CLOSURE/` as published at `ba0b747`** | `f6d168fdc95cad5114c6ab9ce3de21e230b9bba607b0ef436533b11491ff3781` |
+| **Verified from `origin`** | **YES** — recomputed from content extracted with `git archive origin/research/account-wave-a-mcc-2026-09-04-001` into a scratch directory, then `mkmanifest.sh \| shasum -a 256`. **Match.** |
+| **Roll-up digest, `FINAL_CLOSURE/` after this amendment** | `d1430f43d6807ba2ea32662bef9086e598788fa9419e5eea31efdbed9466254b` |
+| Files changed by the amendment | **2** |
+| `ACCOUNT_WAVE_A_FINAL_RESEARCH_GATE_REPORT.md` | `1e18eb32ade647b0013cba53a8c211257a8c291f8a8804b0003ada9aa829d6df` → `a6185191f251ffb86259a8a7daf2773c71a2fb0f420f3a3b3a4a70259fe0b1da` — publication status, the §5 denominator correction, and a new §9 `GB-08` status section |
+| `ACCOUNT_WAVE_A_GB08_BOSS_DECISION_PACKAGE.md` | `04d67227ae3a44931c9b2a653e9ca4cf48d93fda1b43e10e7d8dd907f0e978ff` → `4d226f24205717b78826612d211ad9083abf8ae29728a6da64c0ea3fa10357b2` — **supersession banner only.** The original body is left unaltered so the six corrections stay auditable against what was published |
+| Files unchanged | **12 of 14** — every digest in §2 other than the two above still verifies |
+| **Companion package** | `../GB08_DECISION/`, roll-up `9a51f4aaed8e63e94c41a153951dd8d5a62689463bf913854aaa658c0f4c0a72` |
+| Published on `origin` | **YES** — branch `research/account-wave-a-mcc-2026-09-04-001`, re-read from `origin`. Gate Report §3a |
+
+> **§2 below is the manifest as published at `ba0b747` and is deliberately not rewritten.** A manifest
+> whose history is overwritten cannot show that a package changed under review — which is the defect
+> `ER-CORE-8` exists to prevent. The two changed digests are named above; regenerate with
+> `mkmanifest.sh` to confirm the other twelve.
+
 ## 2. Per-file SHA-256
 
 | SHA-256 | File |

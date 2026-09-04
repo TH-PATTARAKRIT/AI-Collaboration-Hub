@@ -1,0 +1,104 @@
+== 1. POPULATION ==
+volume        : /Volumes/iMacSys
+pattern       : */addons/base/models/res_currency.py
+roots found   : 22
+     1	./CLAUDE AI/MIGRATION/ODOO18/18.0.1/odoo
+     2	./CLAUDE AI/MIGRATION/ODOO18/18.0.2_community_enterprise/odoo
+     3	./CLAUDE AI/MIGRATION/ODOO18/18.0.3_smeplus/odoo
+     4	./CLAUDE AI/MIGRATION/ODOO18/enterprise
+     5	./CLAUDE AI/MIGRATION/ODOO18/odoo-18.0+e.20250608/odoo
+     6	./CLAUDE AI/MIGRATION/ODOO18/odoo-18.0.post20260605/odoo
+     7	./CLAUDE AI/MIGRATION/ODOO18/odoo-18_community
+     8	./CLAUDE AI/MIGRATION/SMEsPlus19/02_enterprise
+     9	./CLAUDE AI/SMEsPlus/SMEsPlus18/01_base_community
+    10	./CLAUDE AI/SMEsPlus/SMEsPlus19/SMEsPlus/odoo-19.0+e.20260417/odoo
+    11	./CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/02_enterprise/odoo-19.0+e.20260417/odoo
+    12	./CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/04_Odoo to SMEsPlus/Odoo19 community to SMEsPlus
+    13	./CLAUDE AI/SMEsPlus18/odoo-18.0+e.20250608/odoo
+    14	./ODOO/ODOO-COMMUNITY/ODOO19
+    15	./ODOO/ODOO-COMMUNITY/Odoo18/t8master
+    16	./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server
+    17	./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo
+    18	./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo_old
+    19	./ODOO/ODOO-COMMUNITY/SMEsPlus19/SOURCE CODE 
+    20	./ODOO/ODOO-COMMUNITY/SMEsPlus19/enterprise
+    21	./ODOO/ODOO-COMMUNITY/SMEsPlus19/odoo-19.0+e.20260312/odoo
+    22	./ODOO/SOURCE CODE/ODOO 18/odoo-18.0.post20260605/odoo
+
+== 2. NESTING (roots are not disjoint) ==
+CONTAINS: ./ODOO/ODOO-COMMUNITY/Odoo18/t8master  ->  ./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server
+CONTAINS: ./ODOO/ODOO-COMMUNITY/Odoo18/t8master  ->  ./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo
+CONTAINS: ./ODOO/ODOO-COMMUNITY/Odoo18/t8master  ->  ./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo_old
+CONTAINS: ./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server  ->  ./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo
+CONTAINS: ./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server  ->  ./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo_old
+
+== 3/4/5. PER-ROOT TESTS ==
+#   SHA256(12)     D1-string    D1-structural D3-files  modules root
+1   277f428f0566   PRESENT      ROOT_ID_PREF  0         805     ./CLAUDE AI/MIGRATION/ODOO18/18.0.1/odoo
+2   277f428f0566   PRESENT      ROOT_ID_PREF  0         803     ./CLAUDE AI/MIGRATION/ODOO18/18.0.2_community_enterprise/odoo
+3   277f428f0566   PRESENT      ROOT_ID_PREF  0         499     ./CLAUDE AI/MIGRATION/ODOO18/18.0.3_smeplus/odoo
+4   09af473416f6   ABSENT       plain         11        1423    ./CLAUDE AI/MIGRATION/ODOO18/enterprise
+5   784a62e190a7   ABSENT       plain         0         793     ./CLAUDE AI/MIGRATION/ODOO18/odoo-18.0+e.20250608/odoo
+6   277f428f0566   PRESENT      ROOT_ID_PREF  0         457     ./CLAUDE AI/MIGRATION/ODOO18/odoo-18.0.post20260605/odoo
+7   784a62e190a7   ABSENT       plain         0         646     ./CLAUDE AI/MIGRATION/ODOO18/odoo-18_community
+8   09af473416f6   ABSENT       plain         11        1423    ./CLAUDE AI/MIGRATION/SMEsPlus19/02_enterprise
+9   784a62e190a7   ABSENT       plain         0         455     ./CLAUDE AI/SMEsPlus/SMEsPlus18/01_base_community
+10  09af473416f6   ABSENT       plain         12        1436    ./CLAUDE AI/SMEsPlus/SMEsPlus19/SMEsPlus/odoo-19.0+e.20260417/odoo
+11  09af473416f6   ABSENT       plain         12        1436    ./CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/02_enterprise/odoo-19.0+e.20260417/odoo
+12  09af473416f6   ABSENT       plain         11        477     ./CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/04_Odoo to SMEsPlus/Odoo19 community to SMEsPlus
+13  784a62e190a7   ABSENT       plain         0         1753    ./CLAUDE AI/SMEsPlus18/odoo-18.0+e.20250608/odoo
+14  09af473416f6   ABSENT       plain         11        1559    ./ODOO/ODOO-COMMUNITY/ODOO19
+15  784a62e190a7   ABSENT       plain         0         2636    ./ODOO/ODOO-COMMUNITY/Odoo18/t8master
+16  784a62e190a7   ABSENT       plain         0         1304    ./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server
+17  784a62e190a7   ABSENT       plain         0         637     ./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo
+18  5f241365cb9a   ABSENT       plain         0         28      ./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo_old
+19  09af473416f6   ABSENT       plain         11        1424    ./ODOO/ODOO-COMMUNITY/SMEsPlus19/SOURCE CODE 
+20  09af473416f6   ABSENT       plain         11        1429    ./ODOO/ODOO-COMMUNITY/SMEsPlus19/enterprise
+21  09af473416f6   ABSENT       plain         12        1424    ./ODOO/ODOO-COMMUNITY/SMEsPlus19/odoo-19.0+e.20260312/odoo
+22  277f428f0566   PRESENT      ROOT_ID_PREF  0         683     ./ODOO/SOURCE CODE/ODOO 18/odoo-18.0.post20260605/odoo
+
+== 6. RESOLVER UNIQUENESS (res.currency._get_rates / _get_conversion_rate) ==
+./CLAUDE AI/MIGRATION/ODOO18/18.0.1/odoo/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./CLAUDE AI/MIGRATION/ODOO18/18.0.1/odoo/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/MIGRATION/ODOO18/18.0.2_community_enterprise/odoo/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./CLAUDE AI/MIGRATION/ODOO18/18.0.2_community_enterprise/odoo/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/MIGRATION/ODOO18/18.0.3_smeplus/odoo/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./CLAUDE AI/MIGRATION/ODOO18/18.0.3_smeplus/odoo/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/MIGRATION/ODOO18/enterprise/addons/base/models/res_currency.py:120:    def _get_rates(self, company, date):
+./CLAUDE AI/MIGRATION/ODOO18/enterprise/addons/base/models/res_currency.py:273:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/MIGRATION/ODOO18/odoo-18.0+e.20250608/odoo/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./CLAUDE AI/MIGRATION/ODOO18/odoo-18.0+e.20250608/odoo/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/MIGRATION/ODOO18/odoo-18.0.post20260605/odoo/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./CLAUDE AI/MIGRATION/ODOO18/odoo-18.0.post20260605/odoo/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/MIGRATION/ODOO18/odoo-18_community/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./CLAUDE AI/MIGRATION/ODOO18/odoo-18_community/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/MIGRATION/SMEsPlus19/02_enterprise/addons/base/models/res_currency.py:120:    def _get_rates(self, company, date):
+./CLAUDE AI/MIGRATION/SMEsPlus19/02_enterprise/addons/base/models/res_currency.py:273:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/SMEsPlus/SMEsPlus18/01_base_community/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./CLAUDE AI/SMEsPlus/SMEsPlus18/01_base_community/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/SMEsPlus/SMEsPlus19/SMEsPlus/odoo-19.0+e.20260417/odoo/addons/base/models/res_currency.py:120:    def _get_rates(self, company, date):
+./CLAUDE AI/SMEsPlus/SMEsPlus19/SMEsPlus/odoo-19.0+e.20260417/odoo/addons/base/models/res_currency.py:273:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/02_enterprise/odoo-19.0+e.20260417/odoo/addons/base/models/res_currency.py:120:    def _get_rates(self, company, date):
+./CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/02_enterprise/odoo-19.0+e.20260417/odoo/addons/base/models/res_currency.py:273:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/04_Odoo to SMEsPlus/Odoo19 community to SMEsPlus/addons/base/models/res_currency.py:120:    def _get_rates(self, company, date):
+./CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/04_Odoo to SMEsPlus/Odoo19 community to SMEsPlus/addons/base/models/res_currency.py:273:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./CLAUDE AI/SMEsPlus18/odoo-18.0+e.20250608/odoo/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./CLAUDE AI/SMEsPlus18/odoo-18.0+e.20250608/odoo/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./ODOO/ODOO-COMMUNITY/ODOO19/addons/base/models/res_currency.py:120:    def _get_rates(self, company, date):
+./ODOO/ODOO-COMMUNITY/ODOO19/addons/base/models/res_currency.py:273:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./ODOO/ODOO-COMMUNITY/Odoo18/t8master/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./ODOO/ODOO-COMMUNITY/Odoo18/t8master/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo_old/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo_old/addons/base/models/res_currency.py:261:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./ODOO/ODOO-COMMUNITY/SMEsPlus19/SOURCE CODE /addons/base/models/res_currency.py:120:    def _get_rates(self, company, date):
+./ODOO/ODOO-COMMUNITY/SMEsPlus19/SOURCE CODE /addons/base/models/res_currency.py:273:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./ODOO/ODOO-COMMUNITY/SMEsPlus19/enterprise/addons/base/models/res_currency.py:120:    def _get_rates(self, company, date):
+./ODOO/ODOO-COMMUNITY/SMEsPlus19/enterprise/addons/base/models/res_currency.py:273:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./ODOO/ODOO-COMMUNITY/SMEsPlus19/odoo-19.0+e.20260312/odoo/addons/base/models/res_currency.py:120:    def _get_rates(self, company, date):
+./ODOO/ODOO-COMMUNITY/SMEsPlus19/odoo-19.0+e.20260312/odoo/addons/base/models/res_currency.py:273:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):
+./ODOO/SOURCE CODE/ODOO 18/odoo-18.0.post20260605/odoo/addons/base/models/res_currency.py:121:    def _get_rates(self, company, date):
+./ODOO/SOURCE CODE/ODOO 18/odoo-18.0.post20260605/odoo/addons/base/models/res_currency.py:266:    def _get_conversion_rate(self, from_currency, to_currency, company=None, date=None):

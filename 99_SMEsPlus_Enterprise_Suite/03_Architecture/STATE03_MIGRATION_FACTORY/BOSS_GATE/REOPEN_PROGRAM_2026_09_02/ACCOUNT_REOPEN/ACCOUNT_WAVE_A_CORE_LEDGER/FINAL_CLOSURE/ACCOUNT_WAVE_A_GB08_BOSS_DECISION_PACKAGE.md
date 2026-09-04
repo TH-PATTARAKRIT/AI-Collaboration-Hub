@@ -10,6 +10,24 @@ Parent `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-MCC-001` · Programme `SMEPLUS-26-09-04-
 
 ---
 
+> # SUPERSEDED `2026-09-04` — read `../GB08_DECISION/` first
+>
+> Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-GB08-001` re-tested **every** claim in this file from primary
+> source over **all 22 roots**. **Six were reproduced exactly. Six are corrected.** This file is left
+> unaltered below so the corrections are auditable against what was published at commit `ba0b747`.
+>
+> | Corrected here | Superseded by |
+> |---|---|
+> | §3 `Δ1` *"narrows resolution to the acting branch"* · §6 *"the functional amount differs between V18-B and v19"* | **`GB08-F1` / `GB08-C1` / `GB08-C4`** — `Δ1` **does not change which rate row is selected**. `_get_rates` scopes by `company.root_id`, and `branch.root_id == root.root_id`. **There is no v18-vs-v19 branch-rate divergence to decide between** |
+> | §4 the par fallback listed as a `Δ3` (UNSTABLE) property · §9 *"freeze to v18"* offered as a way to avoid it | **`GB08-C2` / `GB08-C5`** — `COALESCE(…, 1.0)` is in `_get_rates` in **all four** variants. It is on the **STABLE** axis and **no version choice removes it** |
+> | §2.2 property 1 *"No record rule is applied to `res.currency.rate`"* | **`GB08-C3`** — a **global rule exists and is stable** (`base_security.xml:62–66`); it is `Δ3` that does not apply it |
+> | §2.4 *"1,753 of 23,530"* | **`GB08-C6`** — arithmetic reproduced exactly; the **denominator overlaps** (three nested roots). Disjoint total `21,561` over `19` roots |
+> | §10 Options `A`–`D` | **Retained and reconciled**, not discarded — they are the **freeze axis**. The **rate-ownership axis** `S1`–`S4` is added, with the crossing matrix, in `../GB08_DECISION/ACCOUNT_WAVE_A_GB08_OPTIONS_REGISTER.md` |
+>
+> **Current package:** `../GB08_DECISION/ACCOUNT_WAVE_A_GB08_BOSS_DECISION_PACKAGE.md`
+
+---
+
 ## 1. Affected concept, table and semantic
 
 | Element | Value |
