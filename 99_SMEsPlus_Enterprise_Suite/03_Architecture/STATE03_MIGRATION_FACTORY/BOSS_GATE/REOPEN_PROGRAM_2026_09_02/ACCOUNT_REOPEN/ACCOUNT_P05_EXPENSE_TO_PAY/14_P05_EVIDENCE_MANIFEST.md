@@ -11,7 +11,7 @@
 | Working branch | `research/account-p05-expense-to-pay-2026-09-04-001` |
 | Base commit | `88f52cd7ba6dc40b8951c4bfc4e0016af7cbb7ad` |
 | Commit 1 | `64b10cd` — traces, registers, scope-aware correction (interim, before the challenges returned) |
-| Commit 2 | see §5 — challenge consolidation, corrections, final registers |
+| Commit 2 | `1172f79` — challenge consolidation, corrections, final registers, terminal HOLD |
 | Merge status | **Never merged.** Boss decides. |
 
 ## 2. Evidence Classes Used
@@ -90,7 +90,7 @@ shasum -a 256 *.md
 | `16_P05_AAS03_CHALLENGE.md` | 16487 | `bca451badc1b2fec452bb754b39fa2f8e13ed20399986be10eae202425e99cf9` |
 | `17_P05_AAS_PLUS.md` | 12876 | `1ccc4f26798646ea3116bcf3468f46d5fc4bc7f366cb686688137b87d2f49bf4` |
 | `18_P05_PMO.md` | 10443 | `b6ef5d02eaa9a6459ab83403790b5fbe32200ee9ad8c1dda5898afe633714569` |
-| `19_P05_CORE_RECON_HANDOFF_PACK.md` | 8963 | `7521a6f54e27b9a3812bae6cc76d84503d41a67e32a6ffd77b27107deda58da4` |
+| `19_P05_CORE_RECON_HANDOFF_PACK.md` | 8988 | `b1d64ed6dffa45c0d30eb3dd9892c7b0268110353dafebea5e75427f4073e5ec` |
 | `20_P05_UNRESOLVED_REGISTER.md` | 4662 | `737e0706225a2e484440c93c1f46b6154aaddb85a4f173a5102c845765853138` |
 | `21_P05_NEGATIVE_CLAIM_REGISTER.md` | 13694 | `c995ff8e46ea3c83b85e0a9375d3b2532aecbc7367de66b2a067806a759196d3` |
 | `22_P05_SCOPE_OWNERSHIP_MATRIX.md` | 14168 | `18374ef1e2bac977e4c109581b9a800d94da1e4e3aad4a24ea87cd558165faa4` |

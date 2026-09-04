@@ -154,6 +154,6 @@ Against the eight criteria of `SMEPLUS-DR-EXIT-8C-001`:
 | Base commit | `88f52cd7ba6dc40b8951c4bfc4e0016af7cbb7ad` |
 | Package path | `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/ACCOUNT_P05_EXPENSE_TO_PAY/` |
 | Merge status | **Not merged. Never to be merged without Boss decision.** |
-| Commit SHAs | see `14 §1` |
+| Commit SHAs | `64b10cd`, `1172f79` — see `14 §1` |
 | Integrity | SHA-256 manifest at `14 §2` |
 | Jira | `NOT SUPPLIED` — see `18 §2` |
