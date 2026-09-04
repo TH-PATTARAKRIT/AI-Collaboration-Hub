@@ -31,6 +31,8 @@ consequence of that inversion.
 | `TP-08` | Input tax on a purchase | The tax month of the tax invoice, subject to the deferred-claim rule held at `U-03` | `S-09` `S-11` | move accounting date of the bill | **PARTIAL** — the deferral the rule permits is precisely what `account.move.tax_period` was built to express, and that field does not drive selection |
 | `TP-09` | Withholding tax | **The moment of payment** | `S-30` | the **invoice's** accounting date, via the second UNION branch of the PND query | **NO** |
 | `TP-10` | Self-assessed VAT on foreign services | On remittance under s.83/6 | `S-17` | not modelled | **NOT FOUND IN SEARCHED SCOPE** |
+| `TP-11` | **Hire purchase / instalment sale** where ownership does not pass on delivery | **Each instalment due date**, with a tax invoice issued on each | `S-38` | not modelled; the acquisition path itself is absent from the reference estate per P04 | **NOT FOUND IN SEARCHED SCOPE** — `P07-F-59` |
+| `TP-12` | **Supply without consideration** — donation, scrapping, application to a non-business purpose, stock shortfall, goods on cessation | The act itself is a sale; no consideration is required | `S-36` `S-37` | not modelled; no output-tax event and no document | **NOT FOUND IN SEARCHED SCOPE** — `P07-F-58`; extent held at `U-23` |
 
 ## 3. The Three Date Attributes Available, and What Reads Them
 

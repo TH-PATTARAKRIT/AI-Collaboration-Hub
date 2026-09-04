@@ -33,6 +33,9 @@ Status vocabulary (no `PASS` wording is used anywhere in this package):
 | `R-V-03` | The tax base is the total value received or receivable, excluding the output tax. | `S-05` | Base amounts are taken from the repartition engine (`tdr.base_amount`) or from `price_subtotal`. | `MET-IN-SOURCE` | — |
 | `R-V-04` | Zero-rated supplies (s.80/1) are a distinct class from exempt supplies (s.81). | `S-07` | The localisation ships `Output VAT 0%` and `Output VAT Exempted` as separate taxes, mapped to distinct report lines `2. Less sales subject to 0% tax rate` and `3. Less exempted sales` (`l10n_th/data/template/account.tax-th.csv`). The SMEsPlus "Zero" reports do **not** distinguish them: both are selected by `account_move_line__move_id.amount_tax = 0` (`account_generic_tax_report.py:279-280`, `:474-476`). | `PARTIAL` | `P07-F-05` |
 
+| `R-V-25` | **A supply does not require consideration.** Donation, scrapping, application of goods to a non-business purpose, stock shortfall and goods remaining on cessation are supplies; a fixed asset is "goods". | `S-36` `S-37` `P-11` | No deemed-supply mechanism, no output-tax event and no tax document for any no-consideration transfer was found. The disposal path produces no tax invoice. | `NOT FOUND IN SEARCHED SCOPE` | `P07-F-58` |
+| `R-V-26` | **Hire purchase / instalment sale**: liability arises as each instalment falls due, and a tax invoice is required on every instalment due date. | `S-38` `P-12` | No instalment-driven tax point and no per-instalment document issuance was found. Compounds with `R-V-10` and `R-V-11`: there is no tax-invoice object to issue per instalment even if the tax point were correct. | `NOT FOUND IN SEARCHED SCOPE` | `P07-F-59` |
+
 ## 3. VAT — Tax Point and Period
 
 | ID | Requirement | Source | Observed in declared source set | Status | Finding |

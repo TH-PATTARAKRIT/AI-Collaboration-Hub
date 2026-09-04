@@ -38,6 +38,33 @@ where the invariant is broken.
 | Tax report | Output tax report and input tax report, entered within 3 working days | `S-25` |
 | Filing / adjustment / close | Monthly return by the 15th of the following month, **per place of business**; net = output − input for the tax month; credit/debit notes adjust in the month issued or received; excess credit carried forward or refunded | `S-15` `S-09` `S-13` `S-14` `S-18` |
 
+### 2A. Supplies Without Consideration — Absent From the First Issue of This File
+
+This section was added after peer evidence from P04 caused this session to retrieve
+s.77/1(8) and (9), which it had not read. **The first issue of this event model treated
+every source business event as consideration-based** — a sale, a service or an import — and
+was wrong to.
+
+Verified at `rd.go.th/5205.html`: `ขาย` is `จำหน่าย จ่าย โอนสินค้าไม่ว่าจะมีประโยชน์หรือ
+ค่าตอบแทนหรือไม่`, and `สินค้า` is tangible **and** intangible property not limited to goods
+held for resale. So the following are supplies, and each is a link in the chain of §1 that
+this package had no row for:
+
+| Act | Limb | Output-tax event in the declared set |
+|---|---|---|
+| Donation or free transfer | the plain words of `S-36` | none found |
+| Conditional sale, ownership not yet passed | (ก) | none found |
+| Delivery to an agent for resale | (ข) | none found |
+| Export | (ค) | zero-rated tax exists, but see `P07-F-05` for whether it reaches a register |
+| Applying goods otherwise than to the direct conduct of the business | (ง), bounded by Director-General criteria — **held at `U-23`** | none found |
+| Goods short against the stock report | (จ) | none found |
+| Goods remaining on cessation of business | (ฉ) | none found |
+
+`P07-F-58` — the researched system recognises output tax only where a consideration-bearing
+document exists. Five of the seven limbs above have no representation at all, and the
+disposal path that would carry the first of them produces no tax document. The **extent** of
+limb (ง) is held; the **existence** of the definitional gap is verified and is not held.
+
 ## 3. Implemented VAT Event Chain in the Declared Source Set
 
 | Link | Implementation | Evidence |

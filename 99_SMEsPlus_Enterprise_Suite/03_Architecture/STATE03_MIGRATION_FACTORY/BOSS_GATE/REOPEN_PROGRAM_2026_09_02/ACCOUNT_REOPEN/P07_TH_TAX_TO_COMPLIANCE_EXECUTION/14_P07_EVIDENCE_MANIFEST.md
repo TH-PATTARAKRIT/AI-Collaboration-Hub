@@ -19,19 +19,19 @@ Date: `2026-09-04`
 
 | File | Bytes | SHA-256 |
 |---|---|---|
-| `00_P07_FINDINGS_REGISTER.md` | 15365 | `25db0ec4af27b5dc8f6f5babd4e5402c781392c08cc34592c8f5f17be51f4326` |
-| `01_P07_THAI_TAX_REQUIREMENT_REGISTER.md` | 22552 | `fcfd2d3d14d8618bcbdc18481c56330a5209215f94c1d027b90c9fba57ca9aa0` |
-| `02_P07_VAT_EVENT_MODEL.md` | 12222 | `eeefedb5c410b810ccc73ed38048f8f379bbfaf251f6083dd6065ac768886b48` |
+| `00_P07_FINDINGS_REGISTER.md` | 16490 | `9de51d9ae25d76c7c259ae4e6c2dd0d5f54f744ad24ebeee32ea46997ea19b85` |
+| `01_P07_THAI_TAX_REQUIREMENT_REGISTER.md` | 23430 | `20ba6bb949bf7395785800f5438933d730167223cde374240a95076cf460f47d` |
+| `02_P07_VAT_EVENT_MODEL.md` | 14037 | `1f0a3536ca3fbdea7869176efd91cdc4ce11f4d604ddbb0cd0905e644e580ab1` |
 | `03_P07_WHT_EVENT_MODEL.md` | 22527 | `3530ded1a145af56216a9c2183702af73d15beac7a71189db66dc761911f0dee` |
-| `04_P07_TAX_POINT_MATRIX.md` | 8316 | `c7a3583773fee637c42f98230f88a068573babd5e1a43942b715a464b26cdd58` |
+| `04_P07_TAX_POINT_MATRIX.md` | 8964 | `efac07084e0293866bc69409b08fe1c96137735b11369371c4ca15de0e3a5012` |
 | `05_P07_TAX_DOCUMENT_MATRIX.md` | 12460 | `263f3db5ebb536404c04cb441485d9924a9caf8d3d9352a9a7a574466a59422b` |
 | `06_P07_EVENT_TO_GL_MATRIX.md` | 14872 | `d7dc4003badc3cbbbdac9bd6fa566668df1d2287bb26aca1fc907830b2e2946d` |
 | `07_P07_TAX_REPORT_TRACEABILITY.md` | 13744 | `165ff71195c17f9863239a89404413b7e13ec76523681c3040619a400cb2c584` |
 | `08_P07_CORRECTION_ADJUSTMENT_MATRIX.md` | 15231 | `c28b943d19677d978e6425fd1b7e14d428f378245e2e8b3f3946e3504f198d81` |
-| `09_P07_STATUTORY_SOURCE_REGISTER.md` | 15887 | `6da27be6694516e726030e295b9e11607d059198d29a49e63cdfca2a524eabee` |
+| `09_P07_STATUTORY_SOURCE_REGISTER.md` | 19612 | `0c9407167dbf18382806d98f3e7737020e64595a0591f674394cb3592cdea896` |
 | `10_P07_CROSS_PROCESS_OWNERSHIP.md` | 7122 | `8a378fbb7b9fc1161e6ddd7aef766f14e58c375b97fcffebaa7f19c252b6a5f4` |
-| `11_P07_CONTRADICTION_REGISTER.md` | 15713 | `03c9baa42f6360e0e9989230bc77bdc0bc0376d57dbb655b46875cb696de2d2e` |
-| `12_P07_DEPENDENCY_REGISTER.md` | 12406 | `eb456b12a2847e534f6c03c326f47e896bd339396ba468a3a6ffa451e5b33fa4` |
+| `11_P07_CONTRADICTION_REGISTER.md` | 16194 | `02e3c560ea1f1f097167e643a18c221eb9c21f98bd1ddf5fcca323a4107edc72` |
+| `12_P07_DEPENDENCY_REGISTER.md` | 13060 | `4686c8e13b1c9e21274de0dad0e7bcbcdfc734694c2173d3f709dca8008c99c9` |
 | `13_P07_SOURCE_LINK_REGISTER.md` | 15189 | `4e19180df75479aadc3768718c1cda1f7ecd4cc955c7af4b9b23d8943fcb6515` |
 | `15_P07_REVISION_LOG.md` | 16404 | `32ecde280d89774a6db461dc6052fc26ddabafbedd6bad479f0730a59b126a8b` |
 | `16_P07_AAS03_CHALLENGE.md` | 9989 | `064b64a398d9e17b0c095573f6ed4ae5527e3991c178f6f74c5df753a2d9a4ed` |
@@ -39,6 +39,7 @@ Date: `2026-09-04`
 | `18_P07_PMO.md` | 9934 | `ecb08a9117fa9af7e33e81faf2dab9be6dd99fb8ef4925545573dc66c03ad1a1` |
 | `19_P07_CORE_RECON_HANDOFF_PACK.md` | 10831 | `fdd3ce6859f02dd8b99a2c04b362733050a907523a00307fa7a56f4230d16edc` |
 | `20_P07_SCOPE_OWNERSHIP_MATRIX.md` | 16170 | `67b13f2d43023f8c67ea7dc8454514aad9d0a159cf4c293493afaa26eb8a15b5` |
+| `21_P07_PEER_EVIDENCE_INTAKE_P04.md` | 11327 | `3c1c37d578bad3f5426d708b43816824040d432700e92e872a21a9e33c23b006` |
 
 ## 3. Primary Evidence Sources Cited
 
@@ -123,6 +124,9 @@ Every quantitative claim in this package can be re-run:
 | `P07_CORE_RECON_HANDOFF_PACK.md` | `19` |
 | — added by `SMEPLUS-26-09-04-ACC-REV2-CORR1` | `20_P07_SCOPE_OWNERSHIP_MATRIX.md` |
 | — added after independent challenge found 39 dangling finding references | `00_P07_FINDINGS_REGISTER.md` |
+| — added on intake of peer statutory evidence from P04 | `21_P07_PEER_EVIDENCE_INTAKE_P04.md` |
 
-All eighteen named deliverables are present. Two files were added: one required by the
-mid-session constitution correction, one required to make the other twenty readable.
+All eighteen named deliverables are present. Three files were added: one required by the
+mid-session constitution correction, one required to make the others readable, and one
+recording peer statutory evidence taken in from P04 and the disposition of three questions
+it routed here.

@@ -73,6 +73,8 @@ Recorded under the Scope-Aware Correction §7. None stopped this session.
 | `P07-D-21` | P06 | Payment date as the withholding anchor, allocation, reversal linkage, FX policy | `W-C-01`, `W-C-02`, `W-M-02` cannot be closed by P07 alone |
 | `P07-D-22` | P08 | Tax settlement mechanism; acceptance that a tax fact and its accounting entry may fall in different periods; tax-period state | `O-03` ownership cannot be restored to P07 |
 | `P07-D-23` | P10 | Rule that deferral affects recognition timing only, never tax-period membership | Risk of a second, competing period attribute |
+| `P07-D-30` | P04 | Evidence closing whether the destruction regime extends to fixed assets, **and** whether an unevidenced destruction is a deemed sale carrying output tax under `S-36`(จ). P04 framed the question on deductibility alone; the VAT limb is P07's and is the half that would otherwise be missed. | `U-24` stays `HOLD — STATUTORY EVIDENCE REQUIRED` |
+| `P07-D-31` | P04 / whichever process owns corporate income tax | Retrieval of corporate income tax authority for gain on disposal. P07 declines to answer it: `09` holds no CIT authority and answering from VAT and withholding sources would be inference across statutes. | `U-25` open |
 | `P07-D-24` | P11 | What contains the unbounded `res.company` search inside the cross-company tax-unit mechanism, given that the mechanism carries no tenant constraint (`P07-F-39`) | `P07-U-14` stays `HOLD — SCOPE EVIDENCE REQUIRED`; the Thai VAT reports opt into this mechanism by configuration |
 
 ## 5. Provisioning Gaps Against a Measured Peer Baseline

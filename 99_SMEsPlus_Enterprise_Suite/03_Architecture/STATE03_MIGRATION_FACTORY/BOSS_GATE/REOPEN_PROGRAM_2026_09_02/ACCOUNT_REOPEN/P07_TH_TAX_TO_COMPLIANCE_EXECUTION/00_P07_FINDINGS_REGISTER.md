@@ -78,7 +78,13 @@ No finding in this package is runtime-observed. No database was queried (`13 §7
 | `P07-F-54` | `S2` | The PND3/PND53 producer runs raw SQL against two tables supplied by modules it does not declare as dependencies, so an incomplete install fails with a database error at the moment of filing. | `SRC-CHAL` | `12 P07-D-26` |
 | `P07-F-55` | `S2` | Neither withholding test suite can execute: both import symbols that do not exist in this generation, and one asserts an error raised by commented-out code. There is no regression coverage for the withholding path in either direction. | `SRC-CHAL` | `12 P07-D-27` |
 | `P07-F-56` | `S3` | Licence inversion: an AGPL-3 module hard-depends on an Enterprise-licensed module, and two LGPL-3 SMEsPlus modules inherit from Enterprise-licensed code. Routed, not adjudicated. | `SRC` | `12 P07-D-07` |
+| `P07-F-58` | `S1` | A supply does not require consideration under Thai VAT, and a fixed asset is "goods". Donation, scrapping, application to a non-business purpose, stock shortfall and goods on cessation are supplies; the researched system has **no output-tax event and no tax document for any of them**, and the disposal path produces no tax invoice. Definitional limb verified; the extent of the non-business-use limb is held at `U-23`. | `SRC` + `VERIFIED` statute | `21 §3`, `02 §2A` |
+| `P07-F-59` | `S1` | A hire purchase or instalment sale — the ordinary Thai route for machinery and vehicles — carries a tax point and a **tax invoice on every instalment due date**. The researched system has no instalment tax point, no tax-invoice object to issue, and no mapping to route the contract; the three gaps compound rather than overlap. | `SRC` + `VERIFIED` statute | `21 §4` |
 | `P07-F-57` | `S3` | Latent index error in the withholding candidate filter: it indexes the first tag of the first repartition line while guarding only on the union of tags. Latent because the shipped chart tags base lines. | `SRC-CHAL` | `03 §4 W-K-03` |
+
+`P07-F-58` and `P07-F-59` were added after intake of peer evidence from P04 and independent
+retrieval of the statute behind it. Both close gaps this package had — not defects it
+inherited. See `21_P07_PEER_EVIDENCE_INTAKE_P04.md`.
 
 **Identifiers not issued:** `P07-F-08`, `-17`, `-22`…`-25`, `-28`, `-29`, `-31`, `-32`,
 `-33`. These numbers were consumed during drafting by observations that were merged into
@@ -90,15 +96,15 @@ finding.
 
 | Severity | Count |
 |---|---|
-| `S1` — statutory output wrong, absent or silently empty | 19 |
+| `S1` — statutory output wrong, absent or silently empty | 21 |
 | `S2` — not reproducible, or an unenforced boundary | 16 |
 | `S3` — correctness or maintainability | 12 |
-| **Total issued** | **47** |
+| **Total issued** | **49** |
 
 | Evidence state | Count |
 |---|---|
 | `SRC-CHAL` — independently re-verified by an adversarial reviewer | 26 |
-| `SRC` | 14 |
+| `SRC` | 16 |
 | `MEAS` | 6 |
 | `INF` | 1 |
 
