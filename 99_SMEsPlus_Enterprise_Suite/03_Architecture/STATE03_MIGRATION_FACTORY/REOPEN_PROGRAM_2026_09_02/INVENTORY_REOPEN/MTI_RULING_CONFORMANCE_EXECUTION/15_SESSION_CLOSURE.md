@@ -176,8 +176,8 @@ Every carried identifier family was checked for renumbering, retirement or mergi
 | Repository | `TH-PATTARAKRIT/AI-Collaboration-Hub` |
 | Execution branch | `design/inventory-mti-ruling-conformance-2026-09-05-001` |
 | Branch base | `a57bd555ed3dbb3e351032be7a5025d17bedb7e3` |
-| Package commit | `PUBLICATION_COMMIT_PLACEHOLDER` |
-| Final commit | `FINAL_COMMIT_PLACEHOLDER` |
+| Package commit | `c130d9b13ca2ba2f038554091cf4530447404e2a` |
+| Final commit | **the branch tip.** A commit cannot contain its own hash, so the record commit is identified by the remote tip rather than quoted here. Verify with `git ls-remote origin design/inventory-mti-ruling-conformance-2026-09-05-001` |
 | Files published | **17** |
 | Manifest | `16_SHA256_MANIFEST.md`, covering `00` through `15` |
 | Merge to `SMEsPlus` | **Not performed, not requested** |

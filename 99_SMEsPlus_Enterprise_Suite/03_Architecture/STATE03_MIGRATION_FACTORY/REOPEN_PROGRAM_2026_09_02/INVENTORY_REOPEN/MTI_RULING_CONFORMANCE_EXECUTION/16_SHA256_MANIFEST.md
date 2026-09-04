@@ -38,7 +38,7 @@ This manifest covers files `00` through `15`. It does not contain its own digest
 | 12 | `12_AAS_PLUS_CHALLENGE_VERDICT.md` | `84210170365dfd31387f5b630823ccc6825f5b8ed63820beede3b1d4c0ed302c` |
 | 13 | `13_PMO_NEXT_GATE_RECOMMENDATION.md` | `d78d04b4a13ea231ef866829d7de752925504e986d3e31698c430d757b78be76` |
 | 14 | `14_BOSS_DECISION_PACKAGE.md` | `323fbead9b10f52fca580ad2246ae8adfbe9f042b16845721120a31b55f9e475` |
-| 15 | `15_SESSION_CLOSURE.md` | `045c24534e71e8edc4c224a76de19064aa54da9f6f8f63a83fd4a24ed1aa54bd` |
+| 15 | `15_SESSION_CLOSURE.md` | `cbec8b46d4c23b93111ca561b0fc40efe79d2f1f30ced884cc37f8d7d28f66eb` |
 
 **16 files. 350,201 bytes.**
 
@@ -56,8 +56,8 @@ This session recomputed the manifests of all four upstream packages by the same 
 
 | Item | Commit |
 |---|---|
-| Package commit — files `00` through `16` | `PUBLICATION_COMMIT_PLACEHOLDER` |
-| Final commit — this manifest's publication record and `15` §6 | `FINAL_COMMIT_PLACEHOLDER` |
+| Package commit — files `00` through `16` | `c130d9b13ca2ba2f038554091cf4530447404e2a` |
+| Final commit — this manifest's publication record and `15` §6 | **the branch tip.** A commit cannot contain its own hash; verify with `git ls-remote origin design/inventory-mti-ruling-conformance-2026-09-05-001` |
 | Branch base | `a57bd555ed3dbb3e351032be7a5025d17bedb7e3` |
 
 ---
