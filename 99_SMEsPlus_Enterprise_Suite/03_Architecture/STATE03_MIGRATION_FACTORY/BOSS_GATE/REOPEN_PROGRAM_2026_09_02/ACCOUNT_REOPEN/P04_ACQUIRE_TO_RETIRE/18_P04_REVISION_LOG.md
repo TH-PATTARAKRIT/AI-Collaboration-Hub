@@ -74,12 +74,23 @@ different actors, none of them careless:
 | 4 | This session again | Counted a routing model's fields in one file without following its four inheritors (`16` §3.1 item 4) |
 | 5 | **P11**, reported by P11 | Its peer-intake script was inert by construction, so its empty result was an artefact rather than a measurement |
 
-P11 counts the programme-wide tally differently, and the two framings count
-different populations over different scopes. **Neither is wrong and the number is
-not the point.** The point is that three sessions, one adversarial reviewer and
-one author all committed it inside a programme whose standing rule already names
-it — and that every instance was caught the same way: **by executing the count
-rather than reading the report**.
+| 6 | **P11**, self-logged as `P11-E-15` | Published a count of these instances **without declaring its population** — in the file arguing that counts must declare their population |
+
+**The two tallies are now reconciled**, and the reconciliation is more instructive
+than either number. P11 and P04 published different counts of one phenomenon.
+P11 then declared both populations: P11's was *"instances recorded in a P11
+register"*; P04's was *"instances observed by or reported to P04"*. **Neither is
+a denominator of the other.** Under P04's population, P11's own undeclared count
+is a sixth instance; under P11's, it is not an instance at all — which is
+precisely why the unit had to be declared before either tally could be read.
+
+**Reconciled statement: at least six instances across five actors — and the one
+count that was not executed is the one still being argued about.**
+
+The point is that three sessions, one adversarial reviewer and one author all
+committed it inside a programme whose standing rule already names it — and that
+every instance was caught the same way: **by executing the count, or by reading
+the source, rather than by reading the report**.
 
 That is the argument for the positive-control rule in §3, and it is the strongest
 evidence this package can offer for why the independent-review requirement is not

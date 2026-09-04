@@ -237,6 +237,50 @@ period instead. A cross-tenant hierarchy would therefore not produce a visible
 failure; it would produce **silently mis-periodised entries in the other tenant's
 books**.
 
+#### 4.2.2 The detectability boundary — and why it is not only a tenant question
+
+P11 opened a tolerance-zero boundary on this evidence, `T0-13`:
+
+> A financial effect may not cross a tenant boundary silently. No mechanism may
+> re-date, re-attribute or otherwise mutate an accounting fact in one tenant as a
+> consequence of an act in another, and no such effect may occur without a
+> **refusal or a recorded, attributable trace**.
+
+P11's framing of why it sits **beside** rather than **inside** the existing
+isolation boundary is adopted, because it is the right distinction and P04 had
+not made it: one asks whether a boundary is **crossed**, the other whether the
+crossing is **detectable**, and the remedies differ — an isolation invariant
+closes the first, only a refusal-or-trace guarantee closes the second.
+
+**P04 extends it, on its own evidence.** `T0-13` is scoped to tenant crossings.
+The detectability defect this session found is **not scoped to tenant crossings
+at all**:
+
+> **P04-F-68.** The silent re-dating requires **no tenant boundary and no company
+> hierarchy** to do damage. Inside a **single company**, an entry aimed at a
+> locked period is already mutated into an open one with **no refusal and no
+> trace** — the estate's own test asserts a charge migrating into the following
+> fiscal year at full value. The cross-tenant case is the **worst** instance of
+> the defect, not its only one.
+> Class: **FACT VERIFIED.**
+
+Consequence: a control written only against tenant crossings would leave the
+same mechanism misstating a fiscal year **inside one company today**. The
+detectability requirement — *refuse, or leave an attributable trace* — belongs at
+**every** scope, not only at the tenant boundary. `P04-B-31`'s close condition is
+restated accordingly.
+
+#### 4.2.3 The expiry rule is now named
+
+P11 generalised `P04-B-44` into a standing position (`SCP-09`): a scope
+determination taken against behaviour the programme is **obliged to change** must
+record its **expiry trigger** — it is a dated reading, not a standing fact.
+
+Both P04 instances are covered by it: the machine register (`P04-B-44`) and the
+work centre. This package had found the pattern twice and stated it once, in
+prose, without naming it. It is named now, and both determinations in §2 and §4.1
+carry their trigger.
+
 **Exact lift condition for the hold**, adopted from P11 verbatim in substance:
 
 > An invariant of the class that admits **no exception**, asserting that every

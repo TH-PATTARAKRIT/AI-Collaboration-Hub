@@ -207,6 +207,42 @@ itself; both are routed to the Boss as `D-11` and `D-12`.
 | The governance item adopted as `P11-G-01`, applied by P11 to its own register first | Noted. P11 found the same defect in milder form in its own blocker rows |
 | A methodological recommendation: every enumeration script should carry a **positive control** whose non-zero value is published beside the finding | **Adopted as a method rule.** `18` §3 |
 
+### 6.1.1 P11's second return, and one correction to the record
+
+P11 returned again (`fa232cc`, `P11_PEER_INTAKE_DELTA_03.md`). It cites
+`P04-F-66` as **peer-published**, carried as P04's and FACT VERIFIED by P04
+rather than restated as P11 verification — the correct discipline, since P11
+reads no reference source. It rewrote its Boss decision `D-12` around the
+compound, opened tolerance-zero boundary `T0-13` on it, and generalised
+`P04-B-44` into a standing rule (`SCP-09`). All three are adopted at `20` §4.2.2
+and §4.2.3, with one **extension** P04 makes on its own evidence: the
+detectability defect is **not scoped to tenant crossings** — it misstates a
+fiscal year inside a single company today (`P04-F-68`).
+
+**One correction to P11's record, offered because P11's package will carry it.**
+P11 records that the compound of `P04-F-66` and `P04-B-31` was composed by P11,
+that *"neither was composed by you because they sit in different files answering
+different questions"*, and draws from that *"the whole argument for a
+cross-process seat existing"*.
+
+The compound **was** composed in this package, at `20` §4.2.1, in commit
+`3c10b4e` — the same commit P11 cites as the source of `P04-F-66` — and was sent
+to P11 in the reply that prompted this exchange. The premise is factually wrong.
+
+**The conclusion survives anyway, for a different reason, and the difference is
+worth keeping.** The cross-process seat did contribute something real here: it
+was P11's *question* that sent P04 to read the lock-date implementation. The
+value was the **prompt**, not the **composition**. A better example of genuine
+cross-boundary composition exists in this same exchange — P07 found **two gaps in
+its own VAT event model** from a statutory definition P04 had read and P07 had
+not. Neither party could have produced that alone. That is the argument; this
+one is not.
+
+Recorded plainly rather than let stand: an attribution claim published without
+checking the file cited two lines earlier is the same defect class P11 logged
+against itself as `P11-E-15` in the same message. It does not undermine P11's
+rule; it is one more confirmation of it.
+
 ### 6.2 P07 returned as well
 
 P07 replied (branch `research/account-p07-th-tax-compliance-2026-09-04-001` @
