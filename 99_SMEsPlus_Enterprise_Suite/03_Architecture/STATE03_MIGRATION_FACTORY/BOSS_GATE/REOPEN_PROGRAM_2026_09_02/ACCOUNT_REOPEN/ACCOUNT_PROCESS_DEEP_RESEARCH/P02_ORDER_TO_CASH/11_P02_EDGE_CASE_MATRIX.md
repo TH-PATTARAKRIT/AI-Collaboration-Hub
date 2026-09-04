@@ -134,6 +134,25 @@ eight purchase-side ones do. Because the statutory withholding reports select ro
 **withholding suffered on the company's own receipts appears on neither report.** This is a code fact, not
 a legal one, and it is asymmetric within the localisation itself.
 
+## 7a. Discount And Promotion
+
+The directive names discount and promotion explicitly. Findings:
+
+| Case | Behaviour | Tag |
+|---|---|---|
+| **Line discount** | A percentage on the order line, **stored and writable**, copied verbatim to the invoice line. Tax is computed on the **post-discount** unit price, so revenue and tax share one base. | `FACT VERIFIED` `EV-P02-058`, `EV-P02-062`, `EV-P02-078` |
+| **Whole-order discount** | Applied as a **separate order line** carrying a company-configured discount product, constrained to be a **service billed on ordered quantity**. | `FACT VERIFIED` `EV-P02-079` |
+| **The accounting consequence of that constraint** | Because the discount product is a **service billed on order**, a whole-order discount is billable **immediately and in full**, independent of what has been delivered. Under delivery-based billing this means **the discount can be recognised before the revenue it discounts.** | `SUPPORTED INTERPRETATION` |
+| **The guard that exists** | A discount line is flagged as one that should **not be invoiced alone**, and an order whose only billable lines are such lines is reported as having nothing to bill. | `FACT VERIFIED` `EV-P02-080` |
+| **What the guard does not cover** | It prevents a discount-only invoice. It does **not** prevent a partial delivery invoice from carrying the **whole** discount, because the discount line's billable quantity is not proportioned to delivery. | `SUPPORTED INTERPRETATION` |
+| **Which account the discount hits** | The discount product's own income account — so a discount is **negative revenue on a possibly different account**, not a reduction of the revenue line it discounts. | `FACT VERIFIED` `EV-P02-026` |
+| **Promotions and loyalty** | **NOT YET SEARCHED.** The loyalty and promotion modules are outside the declared path set. **This is a declared exclusion, not a verified absence**, and promotions are a plausible source of further O2C accounting events. | `NOT YET SEARCHED` |
+
+**`DESIGN CANDIDATE` DC-11-02.** A discount is a **modification of the revenue of specific obligations**,
+not an independent service line. In SMEsPlus it must be proportioned to the obligations it discounts and
+must reduce the revenue of those obligations, so that a partial delivery carries a partial discount and
+the discount cannot be recognised before the revenue.
+
 ## 8. Multi-Company And Intercompany Edge Cases
 
 | Case | Finding | Tag |
@@ -186,6 +205,11 @@ a legal one, and it is asymmetric within the localisation itself.
 | 32 | Partner merge inside a hard-locked period | **check disabled by construction** | tolerance-zero |
 | 33 | Valuation entry re-dated by a lock | **valuation report and ledger disagree, undetected** | defect class |
 | 34 | Cross-company single-step delivery | **refused** | ok |
+| 35 | Whole-order discount on a partially delivered order | discount billable in full while revenue is not | defect class |
+| 36 | Discount-only invoice | **prevented** | ok |
+| 37 | Promotion / loyalty interaction | **NOT YET SEARCHED** — outside the declared path set | unknown |
 
-**34 cases: 7 sound, 20 defect classes, 7 tolerance-zero candidates.**
+**37 cases: 8 sound, 21 defect classes, 7 tolerance-zero candidates, 1 unknown.**
 The seven tolerance-zero candidates are carried to `18_P02_PMO.md` §3 under EC-04.
+**The one unknown (case 37) is a declared exclusion, not a verified absence**, and is recorded as such in
+`14_P02_EVIDENCE_MANIFEST.md` §2.2.

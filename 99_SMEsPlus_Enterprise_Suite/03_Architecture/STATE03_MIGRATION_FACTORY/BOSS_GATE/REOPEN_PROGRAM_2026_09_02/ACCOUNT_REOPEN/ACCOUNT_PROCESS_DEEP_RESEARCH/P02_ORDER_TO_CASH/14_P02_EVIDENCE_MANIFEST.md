@@ -89,7 +89,7 @@ Each is a **closed denominator** — the population is a literal in the source, 
 
 ## 3. Evidence Identifiers
 
-**77 evidence identifiers**, `EV-P02-001` … `EV-P02-077`, each resolving to `path:line` in
+**80 evidence identifiers**, `EV-P02-001` … `EV-P02-080`, each resolving to `path:line` in
 `13_P02_SOURCE_LINK_REGISTER.md`. Four track extracts carry their own citations under their own declared
 denominators.
 

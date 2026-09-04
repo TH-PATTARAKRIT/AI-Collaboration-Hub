@@ -101,6 +101,9 @@ Design document, or Team B artefact.** They exist so Boss, PMO and AI-Audit can 
 | 075 | `R/account/models/account_move.py:1867-1875` | The **outbound** match condition: same total amount **and** the same document date, within the same company, partner and document type |
 | 076 | `R/account/models/account_move.py:5026-5037` | Its **only** behavioural consumer — suppression of automatic posting, on the **purchase** side only |
 | 077 | `R/account/models/account_move.py:753-759` | The supporting index is created **for purchase documents only** |
+| 078 | `R/sale/models/sale_order_line.py:178-182` | The line discount — stored, writable, precomputed |
+| 079 | `R/sale/models/res_company.py:30-39` | The whole-order discount product, constrained to a **service billed on ordered quantity** |
+| 080 | `R/sale/models/sale_order_line.py:1014-1022` and `R/sale/models/sale_order.py:624-632` | Discount lines are flagged as not billable alone; an order whose only billable lines are such lines reports nothing to bill |
 
 ## 3. Track Evidence
 
