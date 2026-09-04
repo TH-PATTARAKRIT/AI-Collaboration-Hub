@@ -32,7 +32,7 @@ Session `SMEPLUS-26-09-04-ACC-P11-CORE-RECON-REV2-001` · CP-11 · Layer 1 clean
 | `EC-01` | Scope bounded | **NOT MET.** The business denominator is `UNBOUNDED` by declaration — correctly. But `X1-F08`/`X1-F14` establish that the **published-evidence** denominator is bounded and was **under-extracted four ways**, which is P11's own defect, not the population's |
 | `EC-02` | Enumeration converged | **NOT MET.** A first round cannot converge, and this one did not: 86 findings on first independent contact, including a defect in its own evidence script |
 | `EC-03` | Unknown exhausted | **NOT MET as an outcome.** 13 P11 blockers dispositioned, **0 closed**; inherited unknowns unchanged. No unknown routed forward to hide it — the routing re-test is clean |
-| `EC-04` | Tolerance-zero closed | **NOT MET.** 12 inherited boundaries, **0 resolved**; `P03` hands forward 8 more, 2 designated `Tolerance = 0`. `CONDITIONAL PASS` unavailable **by rule** |
+| `EC-04` | Tolerance-zero closed | **NOT MET.** **13 boundaries, 0 resolved** — 12 inherited plus `T0-13` opened by this session (`P11_PEER_INTAKE_DELTA_03.md`); `P03` hands forward 8 more, 2 designated `Tolerance = 0`. `CONDITIONAL PASS` unavailable **by rule** |
 | `EC-05` | Contradiction resolution complete | **NOT MET.** 7 cross-package contradictions found (4 closed, 3 held), 14 carried unresolved, **4 standing vetoes undischarged** plus 2 opened here and `P06`'s own |
 | `EC-06` | Negative claim controlled | **NOT MET.** The double-counting register's boundary is correct and held under attack — but `X2-F11`, `X1-F11` and `X4-F14` show it was **not applied package-wide**, and `X4-F14` shows the demotion was simultaneously over-broad and inconsistent with P11's own reliance |
 | `EC-07` | Two consecutive clean independent passes | **NOT MET, and furthest from met.** One pass, 86 findings, 3 critical. Zero clean passes |
@@ -64,8 +64,7 @@ Reported, not converted into gate approval, per constitution §7. One session; 2
 > ## `RECOMMEND HOLD`
 >
 > Under `SMEPLUS-DR-EXIT-8C-001` §10, `RECOMMEND CONDITIONAL PASS` is available only for explicitly
-> non-tolerance-zero residuals. **Twelve inherited tolerance-zero boundaries stand unresolved and
-> `P03` hands forward two more.** A conditional pass whose conditions are the tolerance-zero set is a
+> non-tolerance-zero residuals. **Thirteen tolerance-zero boundaries stand unresolved and `P03` hands forward two more.** A conditional pass whose conditions are the tolerance-zero set is a
 > pass with a different label, and the standard forbids it.
 
 ### 6.1 The next controlled action, in order

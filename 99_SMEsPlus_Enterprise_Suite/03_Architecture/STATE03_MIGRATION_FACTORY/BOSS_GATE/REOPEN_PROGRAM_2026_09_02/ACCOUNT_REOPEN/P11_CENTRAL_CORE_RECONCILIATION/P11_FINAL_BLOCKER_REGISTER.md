@@ -23,8 +23,12 @@ Every blocker ends as **exactly one** of the ten permitted statuses. No vague st
 | `P11-B-10` | **The `22`-scenario cross-proof baseline stands at 0 of 22 evidenced** — 30 of 30 producer debit/credit cells withheld, 0 of 10 handoffs contract-compliant | **`HOLD — PEER PROCESS REQUIRED`** |
 | `P11-B-11` | **Analytic is not a subledger of record**, so no `P09` figure reconciles to the ledger across a correction | **`HOLD — BOSS DECISION REQUIRED`** |
 | `P11-B-12` | **`P05` and `P10` producer contracts are not established at all** | **`HOLD — PEER PROCESS REQUIRED`** |
+| `P11-B-13` | **The unified event-to-GL matrix has not been reconciled against the published peer matrices** (`P03`, `P04`, `P06` each publish one; `P06` alone carries 31 event→entry rows) | **`HOLD — PEER PROCESS REQUIRED`** |
+| `P11-B-14` | **The exception to "unrelated independent companies = separate tenants by default" is undeclared, and no granting authority is named** (`P11-SR-01`) | **`HOLD — BOSS DECISION REQUIRED`** → `D-11` |
+| `P11-B-15` | **Whether a company hierarchy may span a tenant boundary is unruled, and no enforced tenant-assignment invariant exists** (`P11-SR-02`) | **`HOLD — BOSS DECISION REQUIRED`** → `D-12` |
+| **`P11-B-16`** | **`T0-13` — a financial effect may cross a tenant boundary SILENTLY.** An act in one tenant can mis-periodise another's books with no error, no refusal and no trace (`P11-F-06`, composed from `P04-F-66` + `P04-B-31`) | **`HOLD — BOSS DECISION REQUIRED`** · **tolerance-zero** |
 
-**12 blockers. 0 closed by this session.**
+**16 blockers. 0 closed by this session.** `P11-B-13`…`P11-B-16` added by Deltas 01–03.
 
 ## 2. Inherited blockers P11 carries forward without weakening
 
@@ -32,7 +36,7 @@ Every blocker ends as **exactly one** of the ten permitted statuses. No vague st
 |---|---|---|
 | `GB-01`…`GB-08` | Account Wave A's eight | **`HOLD`**; `GB-08` `BOSS DECISION REQUIRED` |
 | `MCU-21` | **The reference core root set is undeclared. 22 roots exist** | **`HOLD — BOSS DECISION`**; cost to close **hours, mechanical** |
-| `T0-01`…`T0-12` | Twelve tolerance-zero boundaries | **`UNRESOLVED` ×12, `0` resolved.** `CONDITIONAL PASS` unavailable **by rule** |
+| `T0-01`…`T0-12` | Twelve inherited tolerance-zero boundaries | **`UNRESOLVED` ×12, `0` resolved.** `CONDITIONAL PASS` unavailable **by rule** |
 | `MCU-01`…`MCU-20` | 17 standing gating unknowns, 8 ledger-gating | **`HOLD`** |
 | `JT-01`…`JT-12` | Twelve Joint decisions | **12 open; `JT-01`/`JT-04`/`JT-05` `NOT DECIDABLE`** |
 | `BLK-01`, `BLK-02` | Asset UAT items | **`HOLD — UAT REQUIRED`** |

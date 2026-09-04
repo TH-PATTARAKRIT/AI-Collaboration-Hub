@@ -35,7 +35,7 @@ session closed, **6 had published — and 2 were already at a later commit than 
 | 5 | The unified registers, the scope-ownership matrix, the ownership test | **`NOT CONVERGED` — 86 findings, 3 critical** |
 
 **The recommendation is `HOLD`.** Not because the work is thin, but because `0 of 8` exit criteria are
-met, `12+2` tolerance-zero boundaries stand unresolved, `4+3` vetoes are undischarged, and the round's
+met, `13+2` tolerance-zero boundaries stand unresolved, `4+3` vetoes are undischarged, and the round's
 own instruments failed under independent test.
 
 ## 2. Whole business process map
@@ -124,7 +124,7 @@ negative finding in two research packages"*. Business-SME and Thai statutory inp
 
 ## 26. Remaining blockers
 
-**15 P11 blockers, `0` closed.** (`P11-B-14`/`P11-B-15` added by `P11_PEER_INTAKE_DELTA_02.md`.) Inherited: `GB-01`…`GB-08`; `MCU-21` and 17 gating unknowns;
+**16 P11 blockers, `0` closed.** (`P11-B-14`/`P11-B-15` from Delta 02; `P11-B-16` carries the new tolerance-zero boundary `T0-13` from Delta 03.) (`P11-B-14`/`P11-B-15` added by `P11_PEER_INTAKE_DELTA_02.md`.) Inherited: `GB-01`…`GB-08`; `MCU-21` and 17 gating unknowns;
 `T0-01`…`T0-12`; `JT-01`…`JT-12`; `BLK-01`, `BLK-02`, `BLK-07`, `BLK-08`; `P06`'s 42.
 **Correction backlog: 86 accepted findings, corrected in this session at source for the Boss-control
 and evidence-integrity classes; the register-level count and membership corrections are scoped to
@@ -174,7 +174,7 @@ The two critical ones are the ones that matter:
 | `D-9` | **Commission `SME-Q-02` / `SME-Q-03` and the Thai statutory questions** | **No AI may answer on the business's behalf** | Boss |
 | `D-10` | **Authorise P11 CORR1** against the terminal peer packages | The round's own premise expired | Boss |
 | `D-11` | **Declare the exception to "unrelated independent companies = separate tenants by default", and who may grant it** | The correction states a default and names **no** exception and **no** authority. Raised by `P04-SC-03`; the same gap `X3-F11` found independently. Until declared, P11 rules the default operates as **absolute** | Boss |
-| `D-12` | **Rule whether a company hierarchy may span a tenant boundary.** P11 recommends **NO**, derived from the absolute invariant *no cross-tenant financial access/effect* plus the parent-cascading hard lock | Raised by `P04-SC-04`. **The ruling alone does not discharge P04's HOLD** — an enforced tenant-assignment invariant of the `MTI-04` class is additionally required | Boss |
+| `D-12` | **Rule whether a company hierarchy may span a tenant boundary.** P11 recommends **NO**. **Restated after source corroboration (`P11_PEER_INTAKE_DELTA_03.md`): the Boss is deciding not whether a parent may close a child's period, but whether an act in one tenant may SILENTLY MIS-PERIODISE another tenant's books — no error, no refusal, no trace — through a traversal the source documents as deliberately reaching companies the caller cannot access, producing a lock that cannot be undone** | Raised by `P04-SC-04`; corroborated from primary source by `P04-F-66` (`FACT VERIFIED`) and compounded with `P04-B-31`. **The ruling alone does not discharge the HOLD** — an enforced tenant-assignment invariant of the `MTI-04` class is additionally required | Boss |
 
 ---
 

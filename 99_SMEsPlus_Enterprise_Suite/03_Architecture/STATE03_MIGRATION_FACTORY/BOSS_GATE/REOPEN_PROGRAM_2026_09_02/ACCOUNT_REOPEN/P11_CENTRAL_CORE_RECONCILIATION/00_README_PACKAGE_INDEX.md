@@ -17,6 +17,7 @@ Jira `ERPPLUS-138` · Date `2026-09-04`
 | 1 | `ACCOUNTING_BOSS_FINAL_GATE_PACK.md` | **The decision pack.** 31 sections, 10 named Boss decisions |
 | 2 | `P11_PEER_INTAKE_DELTA_01.md` | **Read second.** The round's premise changed during the session |
 | 2b | `P11_PEER_INTAKE_DELTA_02.md` | P04's two scope questions answered; P04's narrowing accepted with a time-indexed qualification |
+| 2c | `P11_PEER_INTAKE_DELTA_03.md` | `SR-02` corroborated from source and **escalated**; `T0-13` opened; `D-12` restated |
 | 3 | `P11_AAS03_FINAL_CHALLENGE.md` | Four expert panels · 86 findings · 3 critical · 0 disputed |
 | 4 | `P11_AAS_PLUS_FINAL_CONSOLIDATION.md` | Agreements, contradictions, risks, 2 vetoes upheld |
 | 5 | `P11_PMO_FINAL_REVIEW.md` | 8-criteria assessment · `RECOMMEND HOLD` · next controlled actions |
