@@ -1,0 +1,18 @@
+== A. total remote branches (denominator) ==
+     134
+== B. branches whose name matches a P01..P10 process slug ==
+(none)
+== C. any tracked path segment matching ^P(0[1-9]|10)_ on ANY ref ==
+(end C)
+== D. local peer clone commit counts ahead of origin/SMEsPlus ==
+ACCOUNT_P01_P2P_2026_09_04_EXECUTION  commits_ahead=0  worktree_changes=       0  branch=research/account-p01-procure-to-pay-2026-09-04-001
+ACCOUNT_P02_O2C_2026_09_04_EXECUTION  commits_ahead=0  worktree_changes=       1  branch=research/account-p02-order-to-cash-2026-09-04-001
+ACCOUNT_P03_M2C_2026_09_04_EXECUTION  commits_ahead=0  worktree_changes=       1  branch=research/account-p03-manufacture-to-cost-2026-09-04-001
+ACCOUNT_P04_A2R_2026_09_04_EXECUTION  commits_ahead=0  worktree_changes=       1  branch=research/account-p04-acquire-to-retire-2026-09-04-001
+ACCOUNT_P05_E2P_2026_09_04_EXECUTION  commits_ahead=0  worktree_changes=       0  branch=research/account-p05-expense-to-pay-2026-09-04-001
+ACCOUNT_P06_B2R_2026_09_04_EXECUTION  commits_ahead=0  worktree_changes=       1  branch=research/account-p06-bank-to-reconcile-2026-09-04-001
+ACCOUNT_P07_TAX_TH_2026_09_04_EXECUTION  commits_ahead=0  worktree_changes=       0  branch=research/account-p07-th-tax-compliance-2026-09-04-001
+ACCOUNT_P08_R2R_2026_09_04_EXECUTION  commits_ahead=0  worktree_changes=       1  branch=research/account-p08-record-to-report-2026-09-04-001
+ACCOUNT_P09_PLAN_TO_ANALYZE_2026_09_04_EXECUTION  commits_ahead=0  worktree_changes=       0  branch=research/account-p09-plan-to-analyze-2026-09-04-001
+ACCOUNT_P10_TBR_2026_09_04_EXECUTION  commits_ahead=0  worktree_changes=       0  branch=research/account-p10-time-based-recognition-2026-09-04-001
+ACCOUNT_P11_CORE_RECON_2026_09_04_EXECUTION  commits_ahead=0  worktree_changes=       1  branch=research/account-core-reconciliation-2026-09-04-001
