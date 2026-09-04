@@ -38,7 +38,7 @@ This manifest covers files `00` through `15`. It does not contain its own digest
 | 12 | `12_PMO_RECOMMENDATION.md` | `0e85249861ff267046b05da0ed28c02f29c005c0634427dbe1b200fb893ec37d` |
 | 13 | `13_NEW_SESSION_PROMPT_INVENTORY_MTI_CONTROLLED_REMEDIATION.md` | `2777c522522bbb367c4ad46c7aac6f9c76fe9957278a2cb5d9099ce62dece5e7` |
 | 14 | `14_BOSS_DECISION_PACKAGE.md` | `8f5329fa6a6eb2a97ff4d2a24d807100a5132b2e107f37eb4dd422c4f6ade65d` |
-| 15 | `15_SESSION_CLOSURE.md` | `135fbe142be765e8d0c172a3b2a8d39e1fb31642a68a65814754ceb0acbbb82e` |
+| 15 | `15_SESSION_CLOSURE.md` | `cf37735e0ff361adbcf78efdd4c650026ef618d9a4573e92884503ccf4600c6d` |
 
 ---
 
@@ -64,7 +64,8 @@ Digests recomputed by this session over the upstream packages it read, compared 
 | Branch base | `6897cc9e81057d36baccc747a0be4f6363e0cd67` |
 | Files covered by this manifest | **16** — `00` through `15` |
 | Files in package including this manifest | **17** |
-| Publication commit | Recorded at §5 after push |
+| Initial publication commit | `7a901d37427fe2e4add912af7a9ebe1e5d833ac0` |
+| Manifest completion commit | the commit immediately following `7a901d3` on this branch. It changes only this file, and this file carries no digest of itself, so every digest at §2 remains valid |
 | Merge to `SMEsPlus` | **Not performed, not requested** |
 
 ---

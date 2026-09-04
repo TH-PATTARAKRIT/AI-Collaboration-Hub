@@ -151,7 +151,7 @@ Scanned for prohibited verdict wording across all 17 files. Every occurrence of 
 | Boss Ruling `MTI-D-01` + AAS+ correction | `SMEPLUS-26-09-04-INV-MTI-D01-…-001` | `ruling/inventory-mti-d01-product-master-scope-2026-09-04-001` | `d84fe49` |
 | Boss Ruling `MTI-D-02` + AAS+ advice | `SMEPLUS-26-09-04-INV-MTI-D02-…-001` | `ruling/inventory-mti-d02-authorization-granularity-2026-09-04-001` | `13b3e63` |
 | Boss Ruling `MTI-D-03` + AAS+ advice | `SMEPLUS-26-09-04-INV-MTI-D03-…-001` | `ruling/inventory-mti-d03-tenant-changeable-boundary-2026-09-04-001` | `6897cc9` |
-| **This package** | `SMEPLUS-26-09-04-INV-MTI-RULING-CONSOLIDATION-001` | `governance/inventory-mti-ruling-consolidation-2026-09-04-001` | See `16` §4 |
+| **This package** | `SMEPLUS-26-09-04-INV-MTI-RULING-CONSOLIDATION-001` | `governance/inventory-mti-ruling-consolidation-2026-09-04-001` | `7a901d3` + manifest completion |
 | **Next, prepared not commissioned** | `SMEPLUS-26-09-05-INV-MTI-CONTROLLED-REMEDIATION-001` | `design/inventory-mti-ruling-conformance-2026-09-05-001` | Not created |
 
 ---
