@@ -29,12 +29,23 @@
 
 Per `CORR1 §7`, P05 does **not** stop for peers.
 
-| Peer | Branch | State at time of writing |
+| Peer | Branch | State |
 |---|---|---|
-| P01 Procure-to-Pay | `research/account-p01-procure-to-pay-2026-09-04-001` | at base `88f52cd`, no committed output |
-| P02 Order-to-Cash | `research/account-p02-order-to-cash-2026-09-04-001` | at base `88f52cd`, no committed output |
-| P03 Manufacture-to-Cost | `research/account-p03-manufacture-to-cost-2026-09-04-001` | at base `88f52cd`, no committed output |
-| P04, P06–P11 | not found among remote branches | not started, or not yet pushed |
+| P01 Procure-to-Pay | *(no remote branch)* | working clone exists locally at base `88f52cd`; **nothing pushed** |
+| P02 Order-to-Cash | `research/account-p02-order-to-cash-2026-09-04-001` | pushed, `47c2b18`, 21 files |
+| P03 Manufacture-to-Cost | `research/account-p03-manufacture-to-cost-2026-09-04-001` | pushed, `812cc5c`, 25 files |
+| P04 Acquire-to-Retire | `research/account-p04-acquire-to-retire-2026-09-04-001` | pushed, `f206ac5`, 19 files |
+| P05 Expense-to-Pay | `research/account-p05-expense-to-pay-2026-09-04-001` | **this session** |
+| P06 Bank-to-Reconcile | `research/account-p06-bank-to-reconcile-2026-09-04-001` | pushed, `4146bb1`, 20 files |
+| P09 Plan-to-Analyze | `research/account-p09-plan-to-analyze-2026-09-04-001` | pushed, `0d792d9`, 28 files |
+| P07, P08, P10, P11 | not found among remote branches | not started, or not yet pushed |
+
+> **Status revision.** An earlier draft of this table recorded P01/P02/P03 as "at base, no committed
+> output" and P04–P11 as "not found". That was accurate when written and **stale by the time the
+> package was finalised**: five peer sessions pushed during this session's execution. The table above
+> is the state at final push. P05 read none of their content — the peer packages arrived after P05's
+> own findings were fixed, so there is **no cross-contamination** in either direction, and equally
+> **no reconciliation has been performed**. That reconciliation is P11's, not P05's.
 
 `PEER DEPENDENCY OPEN` recorded for `D-10`, `D-11`. All unaffected P05 work has continued.
 
