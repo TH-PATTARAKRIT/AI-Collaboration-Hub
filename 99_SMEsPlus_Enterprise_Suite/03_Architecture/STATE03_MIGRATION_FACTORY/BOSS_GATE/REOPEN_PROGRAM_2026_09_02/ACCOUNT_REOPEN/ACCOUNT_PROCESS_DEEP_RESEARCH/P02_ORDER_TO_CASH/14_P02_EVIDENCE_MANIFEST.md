@@ -100,12 +100,20 @@ denominators.
 
 ## 4. Reproducibility Statement
 
-Every `FACT VERIFIED` in this package is reproducible by read-only shell inspection of the root in §2.1.
-**No tooling, no database, no execution is required — and none was available.**
+Every `FACT VERIFIED` in the source-derived files is reproducible by read-only shell inspection of the root
+in §2.1 — no tooling and no server required.
 
-**This is the package's principal limitation.** One material question — whether cost-of-sales generation
-is exploitably non-idempotent — is `UNRESOLVED — EVIDENCE REQUIRED` for exactly this reason, and the
-specific reproduction that would settle it is written out in `12_P02_CONTRADICTION_REGISTER.md` C-04.
+**Deployed-database findings are separate and carry their own record.** They are reproducible by offline
+extraction from the archive named in `21_P02_DEPLOYED_DATABASE_EVIDENCE.md` §1, using restore tooling
+already present on the host, **with no server started, nothing restored and nothing written**.
+
+**The package originally declared that no database evidence existed and used that as its principal
+limitation. The declaration was false and untested** — five deployed archives were on the host throughout.
+Recorded as `RE-13` and `C-17`; what one pass produced is in `21`.
+
+**What remains genuinely absent is runtime execution.** `C-04` is still `UNRESOLVED — EVIDENCE REQUIRED`,
+now for a narrower and more informative reason: the deployed database examined carries **zero**
+cost-of-sales lines, because split recognition is off there — **so it cannot exhibit duplicated ones.**
 
 ## 5. Clean-Room Control
 
@@ -120,13 +128,12 @@ specific reproduction that would settle it is written out in `12_P02_CONTRADICTI
 
 ## 6. Package Inventory And SHA-256
 
-Generated at CP-FINAL over the package directory. Hashes are of the files as committed.
-
-Generated at CP-FINAL. The manifest file itself is excluded (it cannot hash its own final content).
+Generated at CP-FINAL over the package directory. The manifest file itself is excluded — it cannot hash
+its own final content.
 
 | File | SHA-256 | Bytes |
 |---|---|---|
-| `00_README_PACKAGE_INDEX.md` | `213b37a6d92b59886b6b600f7611652f505467db8839d3f285cb07962d1ce762` | 9967 |
+| `00_README_PACKAGE_INDEX.md` | `cf5839bea37096b9ecfe9517d229c57840bc39f59cbf1f60cecab5ff6b7aa5e6` | 12642 |
 | `01_P02_PROCESS_MAP.md` | `399f34ad1a30f670e25cea730323e91b9ab4ad0003df20ebb103c8e826fd4c5b` | 24902 |
 | `02_P02_INVOICE_POLICY_MATRIX.md` | `75109d0f4dfee623b9349fd5b7b06f7f50ddac1347ddb54c1ea09811655e6a5d` | 9083 |
 | `03_P02_DELIVERY_COGS_TRACE.md` | `c7e1c40c63328a670ad84a99142f8007e49018a9fb90d2ccb145b38e9d4930a0` | 20672 |
@@ -138,17 +145,18 @@ Generated at CP-FINAL. The manifest file itself is excluded (it cannot hash its 
 | `09_P02_PAYMENT_RECONCILIATION_MATRIX.md` | `aa5c1e1470d3844300c43b8816595ac9a1ff93d069cc2a9d9ef7a4d5710dab1e` | 11965 |
 | `10_P02_CROSS_PROCESS_OWNERSHIP.md` | `6716a38fe361d3310b246b6645c3f452c4248b64eac96b36da7f1838bcc65875` | 11142 |
 | `11_P02_EDGE_CASE_MATRIX.md` | `1864669506be50b180eabed4353336c76c791bc01ad6d91fa65dfa366e42c6c7` | 21561 |
-| `12_P02_CONTRADICTION_REGISTER.md` | `c061e590a6a1c2a984fda37c2cb3a21c2a12e034c601fab16d2ea840eeeb68fc` | 20404 |
-| `13_P02_SOURCE_LINK_REGISTER.md` | `c6fb7bbb1dd195c8935464354a4a697a7ef7c1ee64bf3338efa7bfc1709eda6c` | 17242 |
-| `15_P02_REVISION_LOG.md` | `75037573734b2006b4f6f5e004680d057240dc8e865739ff818835ea4a3e9640` | 20787 |
+| `12_P02_CONTRADICTION_REGISTER.md` | `a2592fe72902b9de25451d5db7b36ec79c5ef1ddfe1140b72b448cd26e43f022` | 22243 |
+| `13_P02_SOURCE_LINK_REGISTER.md` | `e795098c2d40f830c862c4005171c322ecc03426b97bb04f555187c4a525ceeb` | 17345 |
+| `15_P02_REVISION_LOG.md` | `55ade105c8c70ac6d2d0b88e087c8b0a789539e0ee6dda94c6d6b20ab12f4939` | 21987 |
 | `16_P02_AAS03_CHALLENGE.md` | `db16ea602f01aca9d0d2317291382fdaf02bd91d45e19bc6bd6abe2184edb28d` | 13815 |
 | `17_P02_AAS_PLUS.md` | `feb7960323a502105984f82ba408705387149891f5d8e29e637129dd2d0a3587` | 13204 |
-| `18_P02_PMO.md` | `777110b378d499f9df7ac7895a80d0dd68ac6992092a3a613e52374a055f2a21` | 11028 |
-| `19_P02_CORE_RECON_HANDOFF_PACK.md` | `248f530dc34a4a91e591ddabef96012eb439496de2827cf819960a8bb5ecf76d` | 18816 |
+| `18_P02_PMO.md` | `e0c6afee789484c0534d35cd9714d2bd7d51bc921c4790fdfac847fceae48bc5` | 12374 |
+| `19_P02_CORE_RECON_HANDOFF_PACK.md` | `e71cd4152271e6be58e22303befdc9b147d227bcd2c4f0c086a101883b0858f8` | 19400 |
 | `20_P02_SCOPE_OWNERSHIP_MATRIX.md` | `2d8b1f1609707b3383e0ab3b3b8727f5b802d39e5e57e737eb5e7fb05020b48a` | 20277 |
+| `21_P02_DEPLOYED_DATABASE_EVIDENCE.md` | `6d15018b8a0ee82f347cbc9ee0cb0bcaef134519460d4f586df407b637e89aa3` | 10631 |
 | `L2_AUDIT_QUARANTINE/T1_RETURN_CREDIT_REFUND_EVIDENCE.md` | `c578f92e3e9855e013aee8a41e394181846b777ea76f7cac2ed706e82206d3b8` | 23754 |
 | `L2_AUDIT_QUARANTINE/T2_PAYMENT_RECONCILIATION_EVIDENCE.md` | `b71883d42bb567b43579c9d668c6704f0e8ed2675c67e4460532ada8d6072f0d` | 28868 |
 | `L2_AUDIT_QUARANTINE/T3_TAX_VAT_WHT_THAI_EVIDENCE.md` | `05702ce52c6e28c0bd3aad2ae87bfb809c16ef67369488104e5b89423b815b6e` | 30198 |
 | `L2_AUDIT_QUARANTINE/T4_SCOPE_BOUNDARY_AND_CLOSE_EVIDENCE.md` | `cfeb7eb3310501209ea48062129247ee1986bcfc0ab3701433182ce3e1eaf6ed` | 35586 |
 
-**Package total:** 25 files, 5590 lines, 439545 bytes.
+**Package total:** 26 files, 5837 lines, 458528 bytes.

@@ -28,7 +28,7 @@ selection, checkpoint approval, or routine confirmation was requested.
 | Aspect | Statement |
 |---|---|
 | Evidence basis | Primary reference source, read-only, static. |
-| **Database access** | **None.** No runtime execution, no query, no dump. Every statement is static-source derived unless explicitly marked. This is a declared limitation, not an oversight — it is why `C-04` remains `UNRESOLVED — EVIDENCE REQUIRED`. |
+| **Database access** | **Obtained late, after the error recorded as `RE-13`.** The package originally declared none, on an untested negative claim. One deployed archive was extracted offline; results in `21_P02_DEPLOYED_DATABASE_EVIDENCE.md`. **Runtime execution remains absent**, and that is the real reason `C-04` stays open. |
 | Parallelism | Four independent evidence tracks plus one independent adversarial challenge. |
 | Track authority | **None.** `Independent Review != Truth. Verified Evidence = Truth Basis.` **All eight material track findings were independently re-derived by the primary session** from the same root — five during drafting, three afterwards. The re-derivation of the last three produced **one correction to a track overstatement** (`12` C-11), which is the method's only material catch and the reason the rule exists. |
 | Denominators | Declared as POPULATION / PATTERN / PATH SET / UNIT wherever an enumeration is presented as complete, per the standing denominator-completeness rule. |
@@ -56,6 +56,8 @@ Preserved, not deleted, per the constitution.
 | **RE-10** | "The obligation ledger resolves six findings." | **Three of the six are one defect described three times; three are untouched by it.** | Independent challenge **CH-13**; the arithmetic is checkable against the package's own text. | **High.** It was the package's principal structural handoff. |
 | **RE-11** | `03` §5 tagged idempotency `FACT VERIFIED` while `03` §6 explicitly declined to advance it. | The two halves carry different tags and the summary row took the stronger one. | Independent challenge **CH-15**. | Moderate — the adversarial-section-not-summary failure inside a single file. |
 | **RE-12** | The configuration premise (split recognition on, storable, real-time) was assumed in eleven files and declared in none. | Now declared once, package-wide, in `00` §3b. | Independent challenge **CH-19**/**CH-30**. | High — without it, eleven files reason about a configuration the package's own headline says a Thai company does not have. |
+
+| **RE-13** | "This session had no database or runtime evidence" — repeated in six deliverables and used to explain two undischarged requirements and one open unknown. | **False, and never tested.** Five deployed database archives were on the execution host with restore tooling installed. A declared absence of evidence is a **negative claim**, and this one had no declared search behind it. | Reading a **peer session's memory file**, which recorded the identical error on P10. **Not** found by six self-corrections, and **not** by the twenty-finding independent challenge — every review was scoped at the findings, none at the evidence base. | **Maximum.** It is the package's most-repeated limitation, it bounded the exit assessment, and it was wrong. What one pass over that evidence produced is in `21` — an empirical confirmation of the package's central mechanism claim, and one live exposure the package had not identified. |
 
 **Pattern observation, recorded as method evidence.** The first six corrections came from **re-reading
 primary source after writing a conclusion**, or from re-deriving a track's finding — none came from a
@@ -175,6 +177,8 @@ Stated plainly so no reader over-relies on this package.
 5. **Localisation modules were not enumerated as their own denominator** for the year-close negative claim.
 6. **Only two localisation modules exist in this tree**, which bounds every claim about chart defaults.
 7. **All Thai statutory questions are held.** This package has no authority to state Thai law and does not.
+0. **The package's own statement of what evidence it had was wrong** (`RE-13`), and no review caught it.
+   **Scope one review at the evidence base itself, not only at the findings.**
 8. **`EC-07` is not satisfied, and the first pass was not clean.** One independent challenge has run. It
    produced **twenty package-changing findings and six accepted coverage gaps**, including **two outright
    refutations of statements this package had tagged `FACT VERIFIED`**. A second consecutive clean pass has

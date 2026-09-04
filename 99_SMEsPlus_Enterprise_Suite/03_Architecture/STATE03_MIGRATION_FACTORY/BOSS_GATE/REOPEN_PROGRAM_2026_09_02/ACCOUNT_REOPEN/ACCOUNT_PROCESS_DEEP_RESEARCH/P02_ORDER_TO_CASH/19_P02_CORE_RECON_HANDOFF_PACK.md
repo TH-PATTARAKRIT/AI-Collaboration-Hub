@@ -249,8 +249,15 @@ an asymmetry inside the localisation itself, not a question of law.
 This package is **research output**. It is not a design, not a specification, and not an authorisation.
 
 - Nothing here has been implemented, tested or proven at runtime.
-- **No database or runtime evidence exists** for any statement in the P02 package. One material question
-  — whether cost-of-sales generation is exploitably non-idempotent — cannot be closed without it.
+- **A live deployment was examined, and it confirmed the central mechanism finding by direct count:** in a
+  Thai company carrying 447,384 journal lines, the invoice-side cost mechanism has **never executed**. That
+  deployment recognises cost at delivery instead, with **no position connecting cost to the revenue it
+  belongs to** — so a shipment billed in a later period puts the two in different periods permanently, and
+  **nothing in the system can detect it**. That exposure is live, not theoretical.
+- **Runtime execution was still not performed.** Whether cost recognition can be generated twice remains
+  open and cannot be settled by reading data.
+- An earlier draft of this pack stated that **no** database evidence existed. That was wrong and untested,
+  and it is withdrawn.
 - Six process areas were **not searched** and could contribute further Order-to-Cash events:
   subscriptions, point of sale, e-commerce, rental, projects, and manufacturing.
 - **Eight business situations have no analysis in this work and are open gaps, not settled questions:**

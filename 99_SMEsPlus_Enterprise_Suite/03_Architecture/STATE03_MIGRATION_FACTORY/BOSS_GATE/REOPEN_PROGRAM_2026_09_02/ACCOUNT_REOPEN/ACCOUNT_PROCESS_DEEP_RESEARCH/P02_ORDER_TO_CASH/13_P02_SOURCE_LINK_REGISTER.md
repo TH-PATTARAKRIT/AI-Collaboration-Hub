@@ -17,7 +17,7 @@ Design document, or Team B artefact.** They exist so Boss, PMO and AI-Audit can 
 | Nature | Reference ERP source tree — **learning / benchmark only** |
 | Build identifier | as embedded in the root path above |
 | Access | read-only; **no file in the reference tree was modified during this session** |
-| Database access | **none.** No runtime execution, no query, no dump. Every statement in this package is static-source derived unless explicitly marked otherwise. |
+| Database access | **Obtained late** — see `21_P02_DEPLOYED_DATABASE_EVIDENCE.md` and `RE-13`. Every citation in **this register** is static-source; deployed-database evidence carries its own extraction record in `21` §1. **Runtime execution was not performed.** |
 | Secondary roots consulted | ORM core module of the same distribution (T4 only) |
 
 ## 2. Register — `EV-P02-001` … `EV-P02-097`

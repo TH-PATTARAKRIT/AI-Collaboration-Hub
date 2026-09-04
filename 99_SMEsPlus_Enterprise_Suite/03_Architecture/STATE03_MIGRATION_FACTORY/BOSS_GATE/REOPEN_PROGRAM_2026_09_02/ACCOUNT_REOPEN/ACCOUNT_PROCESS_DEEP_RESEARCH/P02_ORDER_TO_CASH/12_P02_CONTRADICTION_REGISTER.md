@@ -43,7 +43,7 @@ reading was wrong, the original statement is preserved alongside the correction.
 |---|---|
 | **The verified half** | **`FACT VERIFIED`** — the generator iterates product lines and creates a new pair of cost lines each time it runs; the set it iterates **excludes cost lines**, so existing pairs are invisible to it; and the origin field it writes is **never read for duplicate prevention** (complete denominator: 4 occurrences root-wide). `EV-P02-016`, `EV-P02-028`, `EV-P02-050` |
 | **The unresolved half** | Whether a document can traverse the posting routine, have cost lines created, and then **not** post — leaving them on a draft document that a later post duplicates. The mechanism exists (`EV-P02-015`, `EV-P02-031`); whether any caller reaches it with a future-dated sale document is **not established**. |
-| **Evidence required to close** | A runtime reproduction on a database: post a future-dated customer invoice for a storable, real-time-valued product through a soft-post caller, then post it again and count the cost lines. **This session had no database access and could not execute it.** |
+| **Evidence required to close** | A runtime reproduction: post a future-dated customer invoice for a storable, real-time-valued product through a soft-post caller, then post it again and count the cost lines. **The originally stated reason — no database access — was itself an untested negative claim and is withdrawn (`RE-13`).** The real position is narrower and is itself a finding: the deployed database examined has **zero** cost-of-sales lines, because split recognition is off there, **so it cannot exhibit duplicated ones**. Closing `C-04` needs either a deployment with split recognition on, or a live transaction. |
 | **Status** | `UNRESOLVED — EVIDENCE REQUIRED` |
 | **Why it does not gate the design position** | The **absence of the guard** is itself the finding. `DC-03-02` requires idempotency by construction regardless of whether the reference is exploitable today. |
 
@@ -140,6 +140,17 @@ three are untouched by it (the service case, the producer defect, the chart gap)
 **Materiality:** high as a **method** matter — this is the enumeration failure the denominator rule exists
 to prevent, and it was found by an outside reader.
 **Disposition:** recounted and restated; recorded as `RE-07`. Raised by **CH-14**.
+
+### C-17 — The package's statement of its own evidence base was false
+
+| Field | Content |
+|---|---|
+| **Original** | "This session had no database or runtime evidence", repeated across six deliverables and used to explain two undischarged very-expert requirements and one open gating unknown. |
+| **Contradicted by** | **Five deployed database archives on the execution host**, with restore tooling already installed. One was extracted offline and is reported in `21_P02_DEPLOYED_DATABASE_EVIDENCE.md`. |
+| **How it was found** | A **peer session's memory file** recording the identical error on another process. **Not** by six self-corrections; **not** by the twenty-finding independent challenge. |
+| **Why both reviews missed it** | Both were scoped at **the findings**. Neither was scoped at **the evidence base**. A negative claim about what evidence exists is still a negative claim and needs a declared search. |
+| **Materiality** | **Maximum.** It bounded the exit assessment, and it moved `EC-06` from partially satisfied to **not satisfied** — because a negative-claim control that governs findings but not the evidence base is not a control. |
+| **What the evidence then produced** | An **empirical confirmation** of the package's central mechanism claim (447,384 journal lines, **zero** cost-of-sales lines, exactly as predicted from the deployed configuration), a **correction** to the "Thai default" claim, and **one live exposure the package had not identified** (`21` §4.3). |
 
 ## 2. Contradictions Between Evidence Tracks
 

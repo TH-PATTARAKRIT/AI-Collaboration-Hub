@@ -84,6 +84,7 @@ as verdicts anywhere in this package.
 | 18 | `18_P02_PMO.md` | PMO control view and gate recommendation | L2 |
 | 19 | `19_P02_CORE_RECON_HANDOFF_PACK.md` | Clean-room handoff to Core Accounting Reconciliation | **L1** |
 | 20 | `20_P02_SCOPE_OWNERSHIP_MATRIX.md` | PLATFORM / TENANT / COMPANY scope determination — added by correction `SMEPLUS-26-09-04-ACC-REV2-CORR1` | L2 |
+| 21 | `21_P02_DEPLOYED_DATABASE_EVIDENCE.md` | **Deployed-database evidence** — added after discovering the declared no-database-access statement was an untested negative claim | L2 |
 | — | `L2_AUDIT_QUARANTINE/` | Raw evidence extracts from parallel research tracks | L2 |
 
 ## 3a. Research Depth Map — L1 … L6 And The Very-Expert Layer
@@ -105,8 +106,8 @@ follows, so that no level is claimed without a file behind it.
 | Requirement | Where discharged | Result |
 |---|---|---|
 | Source proof | throughout | **discharged** — 73 evidence identifiers |
-| **Database proof** | — | **NOT DISCHARGED.** No database access existed for this session. Declared in `14` §4 and `15` §6. |
-| **Runtime proof** | — | **NOT DISCHARGED.** Same cause. It is why `C-04` remains open. |
+| **Database proof** | `21_P02_DEPLOYED_DATABASE_EVIDENCE.md` | **DISCHARGED for configuration and posting-outcome questions.** Originally declared undischarged **on an untested negative claim** — five deployed archives were on the host. See `21` §0 and `RE-13`. |
+| **Runtime proof** | — | **NOT DISCHARGED.** Reading a database is not executing the system. `C-04` needs a transaction, not a table. |
 | Event-to-ledger | `07` | discharged |
 | Revenue / cost separation | `02`, `03`, `04` | discharged |
 | Return and reversal | `08` | discharged |
@@ -152,14 +153,51 @@ ONE BUSINESS FACT
 Attack surfaces exercised: DOUBLE POSTING · DOUBLE VALUATION · DOUBLE COGS · DOUBLE REVENUE ·
 DOUBLE AR · DOUBLE TAX · DOUBLE SETTLEMENT.
 
-## 5. Headline Position (detail in `18_P02_PMO.md`)
+## 5. Headline Position (detail in `18_P02_PMO.md` and `21_P02_DEPLOYED_DATABASE_EVIDENCE.md`)
 
-The reference process does **not** satisfy the absolute invariant as a single coherent design.
-It satisfies it *per subsystem* while allowing the subsystems to disagree with one another. The
-governing structural fact discovered in this research is:
+The reference process does **not** satisfy the absolute invariant as a single coherent design. It satisfies
+it *per subsystem* while allowing the subsystems to disagree with one another.
 
-> **In P02 the quantity that drives revenue and the quantity that drives cost of sales are two
-> independent, separately mutable counters, and the accounting event that recognises cost is
-> owned by the invoice, not by the physical outflow that actually consumed the inventory.**
+**The governing structural fact:**
 
-Everything else in this package is a consequence of, or an exception to, that sentence.
+> **The accounting event that recognises cost is owned by the invoice, not by the physical outflow that
+> actually consumed the inventory — so the quantity driving revenue and the quantity driving cost of sales
+> are derived independently, and the two are reconciled after the fact by balance matching in an account
+> that nobody owns.**
+
+**What that produces, established after independent challenge:**
+
+> **The physical event is immutable, the accounting event is reversible, and the settlement history is
+> freely destructible — including across a closed period. The durability ordering is exactly inverted
+> relative to accounting importance.**
+
+**Confirmed against a deployed database** (`21`): in a live Thai company carrying **447,384 journal lines**
+and **74,982 valuation layers**, the invoice-side cost-of-sales mechanism has **never executed — not
+once**. That deployment recognises cost at delivery instead, straight to an expense account, with **no
+position of any kind connecting it to the revenue it belongs to** — so a shipment invoiced in a later
+period puts cost and revenue in different periods **permanently and undetectably**.
+
+Everything else in this package is a consequence of, or an exception to, those three statements.
+
+## 6. Terminal Position And Reliance
+
+**Terminal state:** `READY FOR CORE ACCOUNTING RECONCILIATION` — which is this session's mandated endpoint
+and is a **handoff, not an exit**.
+
+`18_P02_PMO.md` recommends **HOLD** against the eight-criteria exit gate: **0 of 8 satisfied, 5 partially,
+3 not**, with **six tolerance-zero candidates open**.
+
+Three things bound reliance on this package and are stated here rather than buried:
+
+1. **One independent challenge has run and it was not clean** — twenty package-changing findings, two of
+   which **refuted statements this package had tagged `FACT VERIFIED`**. It examined roughly **half** the
+   evidence base; the other half is once-verified, not twice-verified.
+2. **The package's own most-repeated limitation was false.** It declared no database evidence existed;
+   five deployed archives were on the host. Recorded as `RE-13`; what one pass produced is in `21`.
+   **No review caught it, because every review was scoped at the findings and none at the evidence base.**
+3. **Eight ordinary business situations have no analysis here** — drop-shipping, credit control,
+   period-end unrealised FX revaluation, bill-and-hold, outbound consignment, warranty provisions, freight
+   charges, and serial/lot-identified cost of sales.
+
+No gate is declared satisfied. No implementation is authorised. No merge is proposed. Boss is the sole
+final approver.
