@@ -191,13 +191,37 @@ assigns a fact to another process remains **provisional on that process's own
 determination**, and no peer dependency was treated as closed by having been
 communicated.
 
+### 6.1 What came back
+
+P11 replied (branch `research/account-core-reconciliation-2026-09-04-001` @
+`aaa4eeb`, `P11_PEER_INTAKE_DELTA_02.md`). Its terminal state is unchanged —
+**HOLD, 15 blockers, 0 closed**. Neither of its two rulings is adopted by P11
+itself; both are routed to the Boss as `D-11` and `D-12`.
+
+| What P11 sent | What P04 did with it |
+|---------------|----------------------|
+| Both scope questions answered, **both holds confirmed rather than lifted**, with an exact lift condition for the hierarchy question | **Adopted.** `20` §3 and §4.2.1. The lift condition converts a vague hold into a closable one |
+| The reasoning that a hierarchy edge carries a **second** traversal mechanism — the lock date — making a spanning hierarchy a cross-tenant *financial* effect | **Verified independently against primary source rather than cited.** It holds, and P04 found a detail P11 did not have: the traversal is privileged *by design*, with a source comment saying so, and the hard lock is irreversible. `P04-F-66`, `P04-B-43` |
+| A qualification on P04's equipment scope: TENANT **only while** the absorption path is absent, and TAS 2 ¶12 obliges building it | **Adopted in full.** It changes the shelf life of the determination, which is now recorded with its expiry trigger. `20` §4.1.1, `P04-B-44` |
+| `SCP-08` — the semantics of an absent scope value must be defined; "unset" may never mean "all" | **Adopted as a cross-reference** on `P04-B-28` |
+| The governance item adopted as `P11-G-01`, applied by P11 to its own register first | Noted. P11 found the same defect in milder form in its own blocker rows |
+| A methodological recommendation: every enumeration script should carry a **positive control** whose non-zero value is published beside the finding | **Adopted as a method rule.** `18` §3 |
+
+**One thing P04 does not adopt uncritically.** P11 counts this session's
+60/46/65 enumeration as *"the fourth independent instance in the programme and
+the second in this session"*. P04's own count for this session is **three**
+(`16` §3.2), and P11's own inert-by-construction script makes a further one.
+The two framings count different populations over different scopes; neither is
+wrong, and **the number is not the point** — the point is that the defect
+recurred, from five different actors, none of whom was careless.
+
 ## 7. Peer dependencies
 
 | ID | Dependency | Owner | Status |
 |----|-----------|-------|--------|
 | **P04-PD-01** | Work-centre scope and company ownership | P03 | **OPEN** |
-| **P04-PD-02** | May a company hierarchy span tenants | P11 | **OPEN** |
-| **P04-PD-03** | May one tenant hold unrelated companies | P11 | **OPEN** |
+| **P04-PD-02** | May a company hierarchy span tenants | P11 | **ANSWERED, STILL OPEN.** P11 recommends **NO** (`P11-SR-02`), routed to Boss as `D-12`, and states its ruling **confirms this hold rather than lifting it** — no published invariant makes tenant assignment binding, so the span cannot be shown unreachable. P04 corroborated the reasoning from primary source and found it **stronger than P11 had it** (`P04-F-66`). Lift condition at `20` §4.2.1 |
+| **P04-PD-03** | May one tenant hold unrelated companies | P11 | **ANSWERED, STILL OPEN.** P11 reports the exception is **undeclared** (`P11-SR-01`), routed to Boss as `D-11`. Operative consequence P04 adopts now: an undeclared exception cannot be self-granted, so **the default operates as absolute** |
 | **P04-PD-04** | Analytic plan scope | P09 | **OPEN** |
 | **P04-PD-05** | Chart-of-accounts scope for the capitalization designation | P08 | **OPEN** |
 | **P04-PD-06** | Ownership of the capital-versus-expense classification on the purchase document | P01 | **OPEN** |

@@ -60,16 +60,16 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `07_P04_DISPOSAL_DERECOGNITION_MATRIX.md` | `3bb56965e3c88884cbbc8e5be5dab350ec3a11169fdc3731c3fc0c275506cee3` |
 | `08_P04_PRIOR_EVIDENCE_RECONCILIATION.md` | `e5970d358e188c1e0f5b99c8138f5cb09610b09885bf6b80ea51be4fbef780fe` |
 | `09_P04_BOSS_DECISION_REGISTER.md` | `9b868be27dcdc5ca19f969ffa12a924de7b2d250f84e690458c6ae28d2c40dd5` |
-| `10_P04_BLOCKER_REGISTER.md` | `4405b8a83199c2cb1a31e138df103ee968be45b47a2302b1fc9eec101e3aca77` |
-| `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `9a6fc9a19dc48c12ceb932309e4fc7479c1f72ec95ba38470090595687ba1ba5` |
+| `10_P04_BLOCKER_REGISTER.md` | `88b466e27e6d035aedf6a5becdf5b4c423d3f8d8da4619762d3079a4f8b69fc9` |
+| `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `b3cc13c48af6021468518ad7072ae8074dd6bca8d1a3ac5b11529a6e325dc39c` |
 | `12_P04_CONTRADICTION_REGISTER.md` | `4a54d8b13cfff34602ef2d1c9a2c10b8a43934ff943dfaf4cad6904874038e79` |
 | `13_P04_SOURCE_LINK_REGISTER.md` | `81bf79393e93e88e8a423ba2fdfe5e82f504bf062fff8753a0a1651492c686f5` |
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
 | `16_P04_AAS_PLUS.md` | `b8ddb76b3179fcd52047e71ade1f5ed7826782db44c138ac05752d9774e8627f` |
-| `17_P04_PMO.md` | `ad69d0ccd419db3d620fb0fdb700510da788dc8e65c6258686f0d8705865f2bd` |
-| `18_P04_REVISION_LOG.md` | `314604c9fa11142a1a5edf42575fe2e84287a5cec5a29169662daf7fa67342a1` |
+| `17_P04_PMO.md` | `5396e1533e92025316d8a3cb63df538321486b97ec4664309a3eddf69731db9e` |
+| `18_P04_REVISION_LOG.md` | `d8069b413766b244de3cddadc8e88813d8a58b9a78c3783f60509ac65d2a9fc3` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `f0bc531d02e68857c9577e710026ed74b9084766041b6506a184862d66203b6a` |
-| `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `86326f4ef4bea0f9c03832abc0cc08b64881b43a89e14674faf01de3f3e82ff9` |
+| `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `fe0ac584ba30e1bf33ca0205990ed631b9c5dc1eacdfadc6c50ba7c98d1e275b` |
 
 ## 3. Evidence roots and their bounds
 
@@ -86,13 +86,14 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **64** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`) |
-| Blockers (`P04-B-nn`) — register rows | **42** — 3 re-registered from the handover residue, 39 opened by this session |
+| Findings (`P04-F-nn`) defined | **65** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`) |
+| Blockers (`P04-B-nn`) — register rows | **44** — 3 re-registered from the handover residue, 41 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
 | Revisions | 13 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
+| Recurrences of the bounded-enumeration defect, this session | **5**, from 5 different actors — `18` §5 |
 | Expert disagreements preserved | 4 new · 7 inherited and re-opened · 2 between this session and the independent reviewer |
 | Scope determinations | 14 objects and 10 operations classified; 2 on **HOLD — SCOPE EVIDENCE REQUIRED** |
-| Peer dependencies | 8, all **OPEN**; findings published to 5 owning sessions |
+| Peer dependencies | 8; findings published to 5 owning sessions. **P11 replied**: 2 answered and **still open** — both routed to Boss, both holds confirmed rather than lifted (`11` §6.1) |
 | Statutory sources retrieved this session | 6 |
 
 Every count in this table was produced by executing a match over the package,

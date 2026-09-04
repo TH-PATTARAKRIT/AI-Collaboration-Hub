@@ -41,7 +41,8 @@ streams, and in itself.
 | **A single ruling is not a general instruction** | `P04-LAW-D` is used for what it decides and not extended by analogy; the extension question is registered (`P04-B-24`) |
 | **Cite the corrections, not the headline** | Prior packages were read for their contradiction, unresolved-evidence and adversarial sections, not their summary tables. That is how the handover residue in `08` §5 was found |
 | **Preserve disagreement** | Four new expert disagreements are open in `15`; seven inherited ones are re-opened in `12` §3; and two positions where this session and the independent reviewer still differ are preserved at `16` §3.2 rather than resolved |
-| **Do not take another agent at face value** | The independent review's headline finding was **verified against source before being acted on, and was disproved**. Twenty-four of its twenty-five findings were adopted. Both outcomes are recorded (`16` §3.1, §3.2) |
+| **Do not take another agent at face value** | The independent review's headline finding was **verified against source before being acted on, and was disproved**. Twenty-four of its twenty-five findings were adopted. Both outcomes are recorded (`16` §3.1, §3.2). The same rule was applied to a **peer process**: P11's reasoning on the lock-date traversal was verified against primary source rather than cited, and proved **stronger** than P11 had it (`P04-F-66`) |
+| **Every enumeration carries a positive control** | Adopted from P11 after its own peer-intake script was found by independent review to be **inert by construction** — a shell option in a piped loop meant its declared pattern could never return a hit, so its empty result was an **artefact, not a measurement**. The rule: a script that produces a count must also produce a value known to be non-zero, and that value must be **published beside the finding**. An empty result from an unproven script is not evidence of absence; it is evidence of nothing |
 
 ## 4. Constitution correction applied mid-session
 
@@ -58,7 +59,34 @@ received during execution.
 | Do not stop for peer processes | Eight peer dependencies opened; **none** stopped this session |
 | Do not ask the Boss to select scope options | No question was put. Scope was resolved from business, legal and accounting semantics where possible, and placed on **HOLD — SCOPE EVIDENCE REQUIRED** where not (`P04-SC-01`, `P04-SC-02`) |
 
-**One consequence worth stating.** The correction did not merely relax a rule —
+## 5. The recurrence this session should be remembered for
+
+The same defect — **an enumeration bounded to a subset of its own population,
+producing a confident false negative** — occurred five times, from five
+different actors, none of them careless:
+
+| # | Actor | Instance |
+|---|-------|----------|
+| 1 | A parallel research stream in this session | Counted 46 custom modules and concluded *"no custom module touches the asset domain"*. False; there are two |
+| 2 | This session's own first draft | Cited five blocker identifiers it never registered (`P04-REV-10`) |
+| 3 | The **independent adversarial reviewer**, briefed specifically to catch this | Declared the lock-date citation disproved, having searched one of two relevant test files (`P04-REV-11`) |
+| 4 | This session again | Counted a routing model's fields in one file without following its four inheritors (`16` §3.1 item 4) |
+| 5 | **P11**, reported by P11 | Its peer-intake script was inert by construction, so its empty result was an artefact rather than a measurement |
+
+P11 counts the programme-wide tally differently, and the two framings count
+different populations over different scopes. **Neither is wrong and the number is
+not the point.** The point is that three sessions, one adversarial reviewer and
+one author all committed it inside a programme whose standing rule already names
+it — and that every instance was caught the same way: **by executing the count
+rather than reading the report**.
+
+That is the argument for the positive-control rule in §3, and it is the strongest
+evidence this package can offer for why the independent-review requirement is not
+a formality.
+
+## 6. One consequence of the scope correction worth stating
+
+ The correction did not merely relax a rule —
 it **sharpened** a finding. The prior company-optional finding covered four
 object classes at High severity on a rule that no longer applies to all of them.
 Narrowed to the work centre, it becomes a scope violation **on the correction's

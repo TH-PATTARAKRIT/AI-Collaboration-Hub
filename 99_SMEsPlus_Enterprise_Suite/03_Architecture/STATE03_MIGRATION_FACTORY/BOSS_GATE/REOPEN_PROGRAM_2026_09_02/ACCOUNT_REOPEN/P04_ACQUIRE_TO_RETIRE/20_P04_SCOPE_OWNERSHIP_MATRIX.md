@@ -88,8 +88,8 @@ unaffected work continued.
 |----|----------|-------------------------------|
 | **P04-SC-01** | Is the **asset model** tenant-owned or company-owned in SMEsPlus? | Business semantics point to tenant: it is a policy template that posts nothing. But it carries the depreciation **method and duration**, which are company accounting-policy elections (§2.2). The resolution is a design decision about whether the template holds a *default* or the *truth*. **HOLD — SCOPE EVIDENCE REQUIRED** |
 | **P04-SC-02** | Is the **internal-usage accumulator** tenant or company? | `BD-01` makes it a management concept with no statutory effect, which permits tenant scope. If it ever prices an inter-company usage charge it becomes a company financial fact. The trigger condition is undesigned. **HOLD — SCOPE EVIDENCE REQUIRED** |
-| **P04-SC-03** | May one **tenant** hold companies that are unrelated to each other? | The correction says unrelated independent companies are separate tenants **by default**. "By default" implies an exception exists. Which exception, and who may grant it, is a platform-governance decision outside P04. **PEER DEPENDENCY OPEN — P11** |
-| **P04-SC-04** | Does the SMEsPlus **company hierarchy** ever span a tenant boundary? | Determines whether the estate's upward-traversing visibility rule (§4.1) is a tenant breach or a tenant-internal choice. **PEER DEPENDENCY OPEN — P11** |
+| **P04-SC-03** | May one **tenant** hold companies that are unrelated to each other? | **ANSWERED BY P11, and it remains a HOLD.** P11 (`P11-SR-01`, branch `research/account-core-reconciliation-2026-09-04-001` @ `aaa4eeb`) reports that **the exception is undeclared**: the corrected constitution states the default and names neither an exception nor a granting authority. Routed to Boss as `D-11`. **Operative consequence P04 adopts now:** under *missing required scope = DENY* and *required ownership cannot be proven = DENY*, an undeclared exception **cannot be self-granted**, so **the default operates as absolute** until the Boss names one. P04 therefore treats "unrelated independent companies are separate tenants" as an absolute rule for every determination in this matrix |
+| **P04-SC-04** | Does the SMEsPlus **company hierarchy** ever span a tenant boundary? | **ANSWERED BY P11 as a recommendation, and the HOLD stands.** P11 (`P11-SR-02`) recommends **NO** — a hierarchy may not span a tenant boundary — derived from the standing "no cross-tenant financial access or effect" invariant plus the fact that a parent-child edge carries at least two traversal mechanisms. Routed to Boss as `D-12`. **P11 states explicitly that its ruling confirms this hold and does not lift it**, because no published invariant makes tenant assignment binding, so the span cannot be shown unreachable. §4.2 is updated with the lift condition and with P04's own primary-source corroboration |
 
 ## 4. Revalidation of findings affected by the superseded assumption
 
@@ -116,7 +116,7 @@ objects on a rule that no longer applies to all of them.
 
 | Object | Company-optional in the estate? | Correct scope | Verdict under the corrected rule |
 |--------|-------------------------------|---------------|----------------------------------|
-| **Equipment / machine record** | Yes | **TENANT** (§2.2) | **NOT A DEFECT.** Company-optional is correct for a tenant-scoped operational register |
+| **Equipment / machine record** | Yes | **TENANT — *conditionally, and the condition expires*** (§4.1.1) | **NOT A DEFECT TODAY.** Company-optional is correct for a tenant-scoped operational register **for as long as no absorption path exists** |
 | **Work centre** | Yes | **COMPANY** — its rate has a direct financial effect (§2.2) | **STILL A DEFECT.** A company-optional object that feeds inventory valuation cannot prove which company owns the financial effect. Question 7 of the correction is unanswerable for it |
 | **Bill of materials, routing operation** | Yes | **TENANT candidate** for the structure; the **valuation** it drives is COMPANY | **PARTLY A DEFECT** — the structure may be tenant-scoped; the costing consequence may not be ownerless |
 | **Asset group** | Yes — company defaulted, **not required** | **TENANT candidate** (§2.1) | **NOT A DEFECT in principle**, with one mechanical caveat — see below |
@@ -132,10 +132,41 @@ effect and no owning company is a scope violation on the correction's own terms
 Recorded as **P04-F-55**, class **FACT VERIFIED** as to the estate's behaviour,
 **SUPPORTED INTERPRETATION** as to the scope assignment of each object.
 
+#### 4.1.1 The machine register's TENANT scope is conditional and dated — adopted from P11
+
+P11 accepted this narrowing with one qualification (`P11-F-05`), which P04
+**adopts in full** because it is correct and because it changes the shelf life of
+the determination:
+
+> The machine register is TENANT-scoped **with no financial effect only because
+> the absorption path is absent.** TAS 2 ¶12 makes absorption of production-
+> equipment depreciation into inventory **required, not permitted** — a position
+> already closed on standard text by a prior package. **On the day SMEsPlus
+> builds the absorption path it is obliged to build, the machine record becomes
+> the carrier of a financial effect, and the scope test forces COMPANY.**
+
+So the determination is **correct now and expires on that change**. It is
+recorded here **with its condition attached, not as a standing fact**:
+
+| | |
+|---|---|
+| **Determination** | Machine / equipment register = **TENANT** |
+| **Condition it rests on** | No mechanism carries machine depreciation into inventory conversion cost. Verified this session — `06` §8: no route feeds depreciation into the resource rate, and the analytic route nets to zero |
+| **Expiry trigger** | The first SMEsPlus mechanism that carries machine depreciation into product cost — which TAS 2 ¶12 **obliges** the design to build |
+| **Scope on expiry** | **COMPANY**, by the same test that already forces it for the work centre |
+| **Consequence if missed** | A tenant-scoped, company-less object silently becomes the carrier of a company financial effect, and question 7 becomes unanswerable for it — the exact defect this narrowing corrected for the work centre would reappear on the machine |
+
+Registered `P04-B-44`. This is the second time in this package that a scope
+determination has been found to depend on the **absence** of a capability the
+standard requires; the first was the work centre. **A scope matrix built against
+a system that does not yet comply with the standard has a shelf life**, and
+saying so is part of the determination.
+
 **Architecture impact.** The SMEsPlus rule is not "add a company everywhere". It
 is: *an object may be company-less only if it is proven TENANT- or
-PLATFORM-scoped and creates no financial effect.* The work centre fails that
-test; the machine register passes it.
+PLATFORM-scoped and creates no financial effect* — **and the proof must be
+re-tested whenever a financial effect is added.* The work centre fails the test
+today; the machine register passes it today and is scheduled to fail it.
 
 **Cross-process impact.** P03 owns the work centre. **PEER DEPENDENCY OPEN —
 P03.** P04 does not resolve it and does not stop for it.
@@ -171,7 +202,51 @@ answer.
 > tenants. The prior finding asserted the security character without
 > establishing the hierarchy question.
 > Class: **FACT VERIFIED** (the rule); **HOLD — SCOPE EVIDENCE REQUIRED** (its
-> security character).
+> security character). **The hold stands** — see §4.2.1.
+
+#### 4.2.1 A second traversal mechanism, verified from primary source
+
+P11 reasons that a parent-child edge carries **at least two** traversal
+mechanisms, the second being the lock date, and that this converts a spanning
+hierarchy from a visibility problem into a **cross-tenant financial effect**.
+P11 derived that from standing invariants. **P04 verified it directly against
+the accounting core**, and it holds — with a detail P11 did not have.
+
+| Behaviour | Evidence | Class |
+|-----------|----------|-------|
+| The effective hard lock date of a company is the **maximum over its entire parent chain**, computed with **elevated privilege** and with archived companies included | The compute walks the parent set and takes the maximum | **FACT VERIFIED** |
+| The same parent-chain traversal is used for the **soft** lock dates | The soft-lock resolver iterates the parent set | **FACT VERIFIED** |
+| The traversal is **deliberately privileged to reach companies the user cannot see** — the code carries an explicit comment saying elevated privilege is needed *because the user might not have access to a parent company* | Source comment at the soft-lock resolver | **FACT VERIFIED** |
+| The hard lock date is **irreversible**: removing it raises, and setting it earlier than the current value raises | Two explicit guards | **FACT VERIFIED** |
+
+> **P04-F-66.** A parent company's lock date **cascades to every descendant,
+> irreversibly, through a deliberately privileged traversal that the code itself
+> documents as reaching companies the user cannot access.** If a company
+> hierarchy could span a tenant boundary, a parent in one tenant would
+> **irreversibly close an accounting period for a company in another** — not a
+> visibility leak but a **cross-tenant financial effect**, executed with elevated
+> privilege and impossible to undo.
+> Class: **FACT VERIFIED.** This corroborates P11's `P11-SR-02` reasoning from
+> primary source rather than by citation.
+
+**Compounding with `P04-B-31`.** This session already established that an entry
+aimed at a locked period is **silently re-dated forward rather than refused**.
+Put together: the lock that cannot be reversed and cascades across the hierarchy
+is the same lock that **does not refuse** — it moves the entry into an open
+period instead. A cross-tenant hierarchy would therefore not produce a visible
+failure; it would produce **silently mis-periodised entries in the other tenant's
+books**.
+
+**Exact lift condition for the hold**, adopted from P11 verbatim in substance:
+
+> An invariant of the class that admits **no exception**, asserting that every
+> company's tenant assignment is **stored and non-null** and that **no
+> company-hierarchy edge may connect two companies with different tenant
+> assignments** — plus a **continuous conformance control** asserting it.
+
+Until both exist, the span cannot be shown unreachable and the security
+character of `P04-F-56` stays **HOLD — SCOPE EVIDENCE REQUIRED**. Registered
+`P04-B-43`.
 
 **One mechanical caveat, new this session.** The asset **group** may have no
 company, and the visibility rule tests a parent-of relation on that company. A
