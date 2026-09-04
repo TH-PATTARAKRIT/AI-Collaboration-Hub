@@ -50,12 +50,21 @@ session opened.**
 |---|---|---|
 | Repository | `TH-PATTARAKRIT/AI-Collaboration-Hub` | `git remote get-url origin` |
 | Branch | `research/account-wave-a-mcc-2026-09-04-001` | `git branch --show-current` |
-| **Execution commit** | **`0a101b95c4f375e9d743dfa52ea3e6a9b050f69c`** | `git rev-parse HEAD` |
+| **First closure commit** | `0a101b95c4f375e9d743dfa52ea3e6a9b050f69c` | `git rev-parse` |
+| **Branch HEAD at publication** | assigned by the final commit; **recorded in the Jira comment at posting time** | see note below |
+| **Content identity — cite this** | **manifest roll-up digest**, `ACCOUNT_WAVE_A_FINAL_EVIDENCE_MANIFEST_SHA256.md` §1 | `mkmanifest.sh \| shasum -a 256` |
 | Parent `MCC` commit | `aad8a1e25dfd08473c8fefbc90158f82d643e942` | `git merge-base --is-ancestor` → **yes** |
 | Grandparent `MC` commit | `33cdc6fa009c4eafcca543c253ccad19e97fd0dc` | `git merge-base --is-ancestor` → **yes** |
 | Working tree | **clean, 0 uncommitted** | `git status --porcelain` |
 | Scope | **only `FINAL_CLOSURE/`** — 0 files touched elsewhere | `git diff --cached --name-only` |
 | **Branch present on `origin`** | **NO** | `git ls-remote --heads origin \| grep -c mcc` → **`0`** |
+
+> **Why the content digest and not a commit SHA.** A commit cannot contain its own SHA, so a package
+> that cites its own commit is always one commit stale. **The manifest roll-up digest is
+> content-addressed and has no such regress** — it is stable, independently recomputable by
+> `mkmanifest.sh | shasum -a 256`, and it is what a reviewer should name under `ER-CORE-8`. The branch
+> HEAD SHA is resolved and published **at posting time**, which is the only moment it is knowable and
+> the moment the Jira comment is written.
 
 ### What changed from the parent round, and what did not
 
@@ -109,8 +118,8 @@ Jira with a dead branch link, and §3 permits the comment **only after** live Gi
 **The package is not published. A comment citing a branch absent from `origin` is the fabricated
 evidence trail the instruction forbids.**
 
-**The comment is drafted and ready. It will carry the live branch link, commit
-`0a101b95c4f375e9d743dfa52ea3e6a9b050f69c` and the manifest roll-up digest, and it will be posted by
+**The comment is drafted and ready. It will carry the live branch link, the branch HEAD SHA resolved
+at posting time, and the manifest roll-up digest, and it will be posted by
 the next session immediately after the push lands and is re-read from `origin`.**
 
 ---

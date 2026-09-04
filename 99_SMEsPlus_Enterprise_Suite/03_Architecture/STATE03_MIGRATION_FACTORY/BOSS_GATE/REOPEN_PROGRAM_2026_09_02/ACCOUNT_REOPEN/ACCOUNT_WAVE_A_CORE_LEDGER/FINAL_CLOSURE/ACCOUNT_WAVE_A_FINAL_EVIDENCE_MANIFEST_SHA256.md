@@ -15,9 +15,9 @@ Generated `2026-09-04T14:13:35+0700`
 | Measure | Value |
 |---|---|
 | Files manifested | **14** |
-| Markdown lines | **2378** |
-| **Roll-up digest (SHA-256 of the per-file digest list)** | `9d3b8f1f4a6c62cd010369817c195daee93ea7f03a1378a0aa8e08b320da3bfa` |
-| Execution commit | `0a101b95c4f375e9d743dfa52ea3e6a9b050f69c` (pre-manifest; final commit differs) |
+| Markdown lines | **2387** |
+| **Roll-up digest (SHA-256 of the per-file digest list)** | `f6d168fdc95cad5114c6ab9ce3de21e230b9bba607b0ef436533b11491ff3781` |
+| Citable identity | **the roll-up digest above** — content-addressed, no commit-SHA regress |
 | Branch | `research/account-wave-a-mcc-2026-09-04-001` |
 | Published on `origin` | **NO** — see Gate Report §3 |
 
@@ -30,7 +30,7 @@ Generated `2026-09-04T14:13:35+0700`
 | `9560ce5bc1a9a3df0744f8aa76a7c3cc881c61e307ebfdb9b57b989a98fcbc83` | `ACCOUNT_WAVE_A_FINAL_GATING_UNKNOWN_REGISTER.md` |
 | `fc61cd3b1450fce4dd77e3c045768e80d639bfd0f5259bb01e18c86e737667c3` | `ACCOUNT_WAVE_A_FINAL_METHOD_CONVERGENCE_REPORT.md` |
 | `23392ac72ec96504a8813d928decdc3fc5de2f15fad9c3c1c29678084421c0ba` | `ACCOUNT_WAVE_A_FINAL_NEGATIVE_CLAIM_COMPLIANCE.md` |
-| `51e6796b2162f6eae557283c6c70a4824ecb0695a2ee5118a1741195cb34b36d` | `ACCOUNT_WAVE_A_FINAL_RESEARCH_GATE_REPORT.md` |
+| `1e18eb32ade647b0013cba53a8c211257a8c291f8a8804b0003ada9aa829d6df` | `ACCOUNT_WAVE_A_FINAL_RESEARCH_GATE_REPORT.md` |
 | `62e0d825659213727aba62f10272fcda54ee52c35d731b2612485c6a0fcd942b` | `ACCOUNT_WAVE_A_FINAL_TOLERANCE_ZERO_REGISTER.md` |
 | `04d67227ae3a44931c9b2a653e9ca4cf48d93fda1b43e10e7d8dd907f0e978ff` | `ACCOUNT_WAVE_A_GB08_BOSS_DECISION_PACKAGE.md` |
 | `2b53afff3eed6a6317a4599dec053fab6629fbf0d3d679e8663186cb5aac0514` | `ACCOUNT_WAVE_A_MCU04_FINAL_DISPOSITION.md` |
