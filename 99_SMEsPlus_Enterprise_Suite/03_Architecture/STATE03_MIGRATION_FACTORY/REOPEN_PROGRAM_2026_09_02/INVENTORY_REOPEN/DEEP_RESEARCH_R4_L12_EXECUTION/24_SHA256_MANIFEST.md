@@ -46,7 +46,7 @@ This manifest covers files `00` through `23`. It does not contain its own digest
 | 20 | `20_RISK_GAP_DECISION_REGISTER.md` | `ee572e0ba9636bd9fa60f42aad8e43192204bde1d2548e89b97304f91241eb6f` |
 | 21 | `21_PMO_REVIEW_AND_RECOMMENDATION.md` | `fc45308da083d21573b0989e647ed3c5764d73dbcedc90b995095d72f779af91` |
 | 22 | `22_BOSS_REVIEW_PACKAGE.md` | `bd7f3d469da59dc42384f394a53dcfa8f601a83f1f4c8bb1cfed227745ee0529` |
-| 23 | `23_SESSION_CLOSURE.md` | `0def86f982a8c80e8c749b0d2bde31b07fe90b7d953aafac7a45fea809dd9a49` |
+| 23 | `23_SESSION_CLOSURE.md` | `24ada03ff87ff44a9792454830b5926f829ee1a2b76ea733d4d5a9d8dad7006e` |
 
 ---
 
@@ -65,7 +65,8 @@ Any mismatch means the file has changed since publication and the package must n
 | Branch | `audit/inventory-deep-research-r4-l12-2026-09-04-001` |
 | Branch base | `prompt/inventory-deep-research-r4-l12-2026-09-04-001` @ `6aa9247` |
 | Merge to canonical branch | Not performed |
-| Publication commit | `PENDING_PUSH — recorded below after push` |
+| Publication commit | `bdef58142cb0cbc19f8dde44b3494c20df8b7806` |
+| Branch pushed | Yes — `origin/audit/inventory-deep-research-r4-l12-2026-09-04-001` |
 
 ---
 

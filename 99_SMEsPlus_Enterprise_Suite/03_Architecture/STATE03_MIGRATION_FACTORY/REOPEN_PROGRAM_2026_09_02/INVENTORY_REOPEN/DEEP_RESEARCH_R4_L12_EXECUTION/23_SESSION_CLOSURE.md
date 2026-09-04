@@ -142,10 +142,12 @@ Every hit was hand-traced. All are either explicit negations ("no PASS declared"
 | File count | 25 |
 | SHA-256 manifest | `24_SHA256_MANIFEST.md` |
 | Merge to canonical | Not performed |
-| Publication commit | Recorded in `24_SHA256_MANIFEST.md` §4 after push |
+| Publication commit | `bdef58142cb0cbc19f8dde44b3494c20df8b7806` |
+| Branch pushed | Yes |
 
 ### 7.1 Direct links
 
+- **Publication commit:** https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/commit/bdef58142cb0cbc19f8dde44b3494c20df8b7806
 - **Branch:** https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/tree/audit/inventory-deep-research-r4-l12-2026-09-04-001
 - **Output folder:** https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/tree/audit/inventory-deep-research-r4-l12-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/DEEP_RESEARCH_R4_L12_EXECUTION
 - **Boss Review Package:** https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/blob/audit/inventory-deep-research-r4-l12-2026-09-04-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/DEEP_RESEARCH_R4_L12_EXECUTION/22_BOSS_REVIEW_PACKAGE.md
