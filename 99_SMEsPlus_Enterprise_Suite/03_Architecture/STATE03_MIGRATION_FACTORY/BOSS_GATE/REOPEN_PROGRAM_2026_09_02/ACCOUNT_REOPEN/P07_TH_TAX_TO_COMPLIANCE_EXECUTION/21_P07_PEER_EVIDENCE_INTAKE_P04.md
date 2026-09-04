@@ -89,13 +89,23 @@ its facts and is not a general rule. Converting it into one would be exactly the
 `B`-to-`A` upgrade the negative-claim standard prohibits.
 
 **P07 adds a limb P04 did not name, and it is a VAT limb, not an income-tax one.** P04
-framed the question entirely around deductibility under มาตรา 65 ตรี (13). But under the now
-verified `S-36`, sub-paragraph (จ) deems **goods short against the stock report** to be a
-sale. A destruction that is not properly evidenced therefore risks being treated as a
-deemed supply carrying **output tax**, independently of whether the write-off is deductible.
-Deductibility and deemed supply are separate consequences of one act. The evidence needed to
-close `P04-B-24` must cover both; retrieving only the income-tax authority would close half
-the question. Recorded as `U-24`.
+framed the question entirely around deductibility under มาตรา 65 ตรี (13). Under the verified
+`S-36` an unevidenced destruction also risks being treated as a **deemed supply carrying
+output tax**, independently of whether the write-off is deductible. Deductibility and deemed
+supply are separate consequences of one act, and the evidence closing `P04-B-24` must cover
+both. Recorded as `U-24`.
+
+**Correction — P07 named the wrong limb, and P04 caught it.** The first issue of this
+section routed the deemed sale through s.77/1(8)**(จ)**, goods short against the stock
+report. P04 refined it and P07 verified the refinement at source: (จ) is anchored to the
+s.87(3) report, and `S-39` limits that report to registrants carrying on a business of
+**selling goods**, with no mention of fixed assets anywhere in s.87. A fixed asset used in
+the business is not an entry in that report and cannot be short from it. **The route is
+(ง).** The full disposition, including the classification carried over from P04 —
+FACT VERIFIED on the anchoring and the scope, SUPPORTED INTERPRETATION on the conclusion,
+because the prescribed *contents* of the report (`U-26`) were not retrieved — is at
+`09 §6`. The substance of P07's widening is unaffected; only the limb, and therefore the
+retrieval that closes it, changes.
 
 ### `P04-B-39` — no-proceeds disposal produces no tax invoice while VAT deems it a sale
 
@@ -108,11 +118,27 @@ plain words. On the definitions alone, the peer's no-proceeds disposal path is a
 **unrecorded output-tax event**. This is `P07-F-58`, and it is P07's finding to carry, not
 P04's, because the missing artefact is a tax document and an output-tax event.
 
-What remains held is the **extent**, not the existence: the (ง) limb operates by
-Director-General criteria that were not retrieved, and any applicable exemption under s.81
-was not examined. `U-23`. So the finding is stated as: *these acts fall within the
-definition of a sale; whether a particular act is relieved requires the criteria and the
-exemption list*.
+What remains held is the **extent**, not the existence.
+
+**Progress on that hold in this exchange.** P04 pointed out that `U-23` and `U-24` limb B
+converge on the same missing evidence, so one retrieval advances both. That retrieval was
+made: **ประกาศอธิบดีกรมสรรพากร เกี่ยวกับภาษีมูลค่าเพิ่ม (ฉบับที่ 2)**, 25 December 2534,
+effective 1 January 2535, is now in the register as `S-40` with its operative clause. It
+provides a safe harbour for `นำบริการหรือนำสินค้าไปใช้` in production, service provision,
+business administration, or for the benefit of assets held in the business — conditioned on
+`ต้องเป็นการใช้ในกิจการที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม`, use in a VAT-liable business.
+
+`U-23` is therefore **narrowed, not closed**, and the residual is specific: the announcement
+is cited to s.77/1(10)(ก), the **services** limb, while its operative text names goods. Whether
+it is also the prescribed criteria under s.77/1(8)(ง) is not settled by its own text, and no
+separate announcement under (8)(ง) was located. Two consequences follow either way, and both
+are usable now: the safe harbour does **not** reach use in an exempt business, and it does
+not reach a transfer out of the business at all — so donation and scrapping remain outside
+it on any reading.
+
+`U-26` — the prescribed contents of the s.87(3) report, which is what settles the (จ)
+question in either direction — was requested by P04, attempted in the same pass, and **not
+located**. It is carried open rather than reported as closed.
 
 ### `P04-B-25` — Thai tax treatment of gain on disposal
 
@@ -147,9 +173,18 @@ a later instrument showed a further extension to 30 September 2027 (`11 P07-C-21
 `15 REV-E-07`).
 
 Two independent sessions, the same failure mode — **a secondary summary contradicting the
-primary text it purports to summarise** — and in both cases it was caught only by reading
-the primary source. Recorded because it is now a pattern across sessions, not a one-off, and
-it belongs in the programme's method register rather than in either package alone.
+primary text it purports to summarise** — caught in both cases only by reading the primary.
+
+P04 named the rule (*a summary may LOCATE a source; it may never BE the evidence*), applied
+it successfully on the next retrieval in the same exchange, and reported having no route to
+the programme method register. P07 does have one. Both classes — this one and the
+bounded-enumeration false negative, on which P04 contributes five instances and P07 four —
+are therefore filed as
+`99_SMEsPlus_Enterprise_Suite/00_PROJECT_STANDARD/SMEPLUS_EVIDENCE_SUBSTITUTION_STANDARD_PROPOSED.md`,
+marked **PROPOSED, NOT ADOPTED**, on this unmerged branch, following the precedent of the
+negative-claim standard. It binds nothing and claims no gate consequence. It is written from
+both sessions' failures — P07 violated one class four times and the other once in the round
+that produced it.
 
 ## 7. What Changed in This Package
 

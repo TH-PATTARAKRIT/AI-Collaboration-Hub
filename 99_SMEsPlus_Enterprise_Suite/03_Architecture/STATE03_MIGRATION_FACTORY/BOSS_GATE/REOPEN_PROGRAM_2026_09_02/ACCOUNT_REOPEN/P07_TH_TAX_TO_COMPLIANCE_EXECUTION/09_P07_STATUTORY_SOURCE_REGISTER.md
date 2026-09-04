@@ -73,6 +73,8 @@ the operative rule as published, and the page from which it was read.
 | `S-36` | LAW | Revenue Code s.77/1(8) | **"ขาย" = `จำหน่าย จ่าย โอนสินค้าไม่ว่าจะมีประโยชน์หรือค่าตอบแทนหรือไม่`** — a sale **does not require consideration**. Acts deemed to be sales include (ก) conditional sale where ownership has not passed, (ข) delivery to an agent for resale, (ค) export, (ง) applying goods otherwise than to the direct conduct of the business, per Director-General criteria, (จ) goods short against the stock report, (ฉ) goods remaining on cessation, (ช) other cases by regulation. | rd.go.th/5205.html |
 | `S-37` | LAW | Revenue Code s.77/1(9) | **"สินค้า" = `ทรัพย์สินที่มีรูปร่างและไม่มีรูปร่างที่อาจมีราคาและถือเอาได้`** — tangible and intangible property; **not** limited to property held for resale, so a fixed asset is goods. | rd.go.th/5205.html |
 | `S-38` | RD-REQ | คำสั่งกรมสรรพากร ที่ ป.36/2536 (15 Nov 1993), on s.78(2) and s.86 | Hire purchase / instalment sale where ownership does not pass on delivery: **VAT liability arises as each instalment falls due** (`ความรับผิด...เกิดขึ้นเมื่อถึงกำหนดชำระราคาตามงวด`), and **a tax invoice must be issued on every instalment due date** (`ต้องออกใบกำกับภาษี...ทุกครั้งเมื่อถึงกำหนดชำระราคาตามงวด`). Extended identically to instalment purchase agreements. | rd.go.th/3606.html |
+| `S-39` | LAW | Revenue Code s.87(3) and closing paragraph | The goods and raw material report is required `เฉพาะผู้ประกอบการจดทะเบียนที่ประกอบกิจการขายสินค้า` — **only of registrants carrying on a business of selling goods**. s.87 makes no mention of `ทรัพย์สินถาวร` in either direction, and provides `รายงานที่ต้องจัดทำ...ให้เป็นไปตามแบบที่อธิบดีกำหนด` — the Director-General prescribes the form and particulars. | rd.go.th/5209.html |
+| `S-40` | RD-REQ | ประกาศอธิบดีกรมสรรพากร เกี่ยวกับภาษีมูลค่าเพิ่ม (ฉบับที่ 2), 25 Dec 2534, effective 1 Jan 2535, issued under s.77/1(10)(ก) | The safe harbour for own-business use: `ผู้ประกอบการจดทะเบียนนำบริการหรือนำสินค้าไปใช้ในการผลิตสินค้า การให้บริการ การบริหารงานของกิจการ หรือเพื่อประโยชน์ของทรัพย์สินที่มีไว้ในการประกอบกิจการให้บริการของตนเอง ทั้งนี้ **ต้องเป็นการใช้ในกิจการที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม**`. Note carefully: the announcement is cited to **s.77/1(10)(ก)**, the *services* limb, while its operative text names `นำบริการ**หรือนำสินค้า**`. Whether it is also the prescribed criteria under **s.77/1(8)(ง)** (goods) is **not settled by its own text**, and no separate announcement under (8)(ง) was located. | rd.go.th/3419.html |
 | `S-35` | REGULATION | Royal Decrees reducing the s.80 rate | The 10% statutory rate has been reduced to **7%** by successive Royal Decrees since 1992. The reduction in force at the date of this package runs to **30 September 2026**; the Thai Cabinet approved a further one-year extension on **27 July 2026** and the Revenue Department issued a confirming notice on **2 August 2026**, extending 7% from **1 October 2026 to 30 September 2027**. | Secondary reporting of Cabinet/RD action — see `U-04` |
 
 ## 3. Derived Statutory Positions Used in This Package
@@ -106,9 +108,10 @@ Not used to support any conclusion in this package.
 | `U-08` | The statutory basis and required particulars of the **substitute tax invoice** (ใบแทนใบกำกับภาษี) and of copy/original marking. | Determines whether the absence of these document classes is a gap or a non-requirement. | `HOLD — STATUTORY EVIDENCE REQUIRED`. |
 | `U-09` | The prescribed **condition-of-withholding codes** (withheld at source / borne by payer permanently / borne by payer once) and their required use on PND schedules and on the s.50 bis certificate. | `P07-F-14` observes a hard-coded condition value; the statutory code set must be confirmed before the gap is sized. | `HOLD — STATUTORY EVIDENCE REQUIRED`. |
 | `U-10` | The authoritative mapping of **s.40 income categories to PND form and to withholding rate**, including the rates outside {1%, 2%, 3%, 5%}. | `P07-F-13` finds income type derived from rate; the correct mapping is needed to specify the replacement. | `HOLD — STATUTORY EVIDENCE REQUIRED`. |
-| `U-23` | The **Director-General criteria under s.77/1(8)(ง)** bounding when applying goods otherwise than to the direct conduct of the business is a deemed sale, and any s.81 exemption reaching these acts. | Fixes the **extent** of `P07-F-58`. The definitional limb is verified and is not held; only the scope is. | `HOLD — STATUTORY EVIDENCE REQUIRED`. Routed in from P04 as `P04-B-39`. |
-| `U-24` | Whether the destruction regime of ป.79/2541 as replaced by ป.84/2542 — approval, witnesses, auditor certification, 30 days' advance notice — extends to **fixed assets**, and separately whether an unevidenced destruction is a deemed sale under `S-36`(จ). | Two consequences of one act: deductibility and output tax. Retrieving only the income-tax authority closes half the question. | `HOLD — STATUTORY EVIDENCE REQUIRED`. Routed in from P04 as `P04-B-24`; P07 concurs it is not answerable by inference. |
-| `U-25` | Thai **corporate income tax** treatment of gain on disposal of an asset. | Raised in three successive asset packages and dropped from each. | `OPEN — OUT OF P07 SCOPE AS RESEARCHED`. This register holds **no** corporate income tax authority, so P07 declines to answer it and carries it with an explicit evidence requirement rather than dropping it again. Routed in from P04 as `P04-B-25`. |
+| `U-23` | Whether ประกาศอธิบดีฯ (ฉบับที่ 2) — now retrieved as `S-40` — is **also** the prescribed criteria under s.77/1(8)(ง) for *goods*, given that it is cited to the services limb s.77/1(10)(ก) while its operative text names goods; and whether any s.81 exemption reaches these acts. | Fixes the **extent** of `P07-F-58`. | **NARROWED, still `HOLD`.** No longer "criteria not retrieved" — the instrument is located, dated and its operative clause is in this register. What is unresolved is its **applicability to the goods limb**. Routed in from P04 as `P04-B-39`. |
+| `U-26` | The **prescribed contents** of the s.87(3) goods and raw material report, per the Director-General announcement authorised by `S-39`. | Settles, either way, whether limb (จ) can reach a fixed asset — see §6. | `HOLD — STATUTORY EVIDENCE REQUIRED`. Not retrieved. Requested by P04 and attempted in the same pass as `S-40`; not located. |
+| `U-24` | Whether the destruction regime of ป.79/2541 as replaced by ป.84/2542 extends to **fixed assets**, and separately whether an unevidenced destruction of a fixed asset is a **deemed sale** — by the route settled at §6, which is (ง) and not (จ). | Two consequences of one act: deductibility and output tax. Retrieving only the income-tax authority closes half the question. | `HOLD — STATUTORY EVIDENCE REQUIRED`. Routed in from P04 as `P04-B-24`; P07 widened it to two limbs, P04 adopted the widening, and P04 then corrected P07's route — see §6. |
+| `U-25` | Thai **corporate income tax** treatment of gain on disposal of an asset. | Raised in three successive asset packages and dropped from each. **P04 has since escalated the cause rather than re-routing the question: no process in the P01–P11 wave owns corporate income tax scope, which is why it fell out of three registers — there was nobody to ask.** That is a scoping decision for the Boss, surfaced at P04 `09 §5A`, and P07 supports it. The tax-book blocker `P04-B-13` and tax written-down value sit behind the same gap. | `OPEN — OUT OF P07 SCOPE AS RESEARCHED`. This register holds **no** corporate income tax authority, so P07 declines to answer it and carries it with an explicit evidence requirement rather than dropping it again. Routed in from P04 as `P04-B-25`. |
 
 ## 5. Rejected Source
 
@@ -123,3 +126,32 @@ public and Layer-1 safe) and is referenced by Layer-2 evidence files that carry 
 ERP identifiers. The Layer-1 clean-room transfer of P07 is
 `19_P07_CORE_RECON_HANDOFF_PACK.md`, which restates the requirements in neutral
 vocabulary with no vendor model, field, path or menu name.
+
+## 6. Corrected Deemed-Sale Route for a Fixed Asset — P07 Was Wrong on the Limb
+
+P07 widened `P04-B-24` by naming a deemed-sale limb alongside the deductibility question.
+P04 adopted the widening and **corrected the limb**. P07 verified the correction at source
+before adopting it, and adopts it.
+
+| Step | Position |
+|---|---|
+| P07's original route | s.77/1(8)**(จ)** — goods short against the stock report |
+| P04's refinement | (จ) is not free-standing: it reads `มีสินค้าขาดจากรายงานสินค้าและวัตถุดิบตามมาตรา 87(3)`, anchored to a **named** report, and `S-39` limits that report to registrants carrying on a business of **selling goods**. A fixed asset used in the business is not an entry in it, so it cannot be "short from" it. The route for a fixed asset is **(ง)**. |
+| P07 verification | `S-39` retrieved independently at `rd.go.th/5209.html`. The scope wording is exactly as P04 reported, and s.87 mentions fixed assets nowhere. **P04's refinement is adopted.** |
+| Classification carried forward, unchanged from P04 | The anchoring of (จ) to s.87(3), and the scope of s.87(3), are **FACT VERIFIED**. The conclusion that (จ) cannot reach a fixed asset is **SUPPORTED INTERPRETATION**, because the definitive answer lies in the prescribed *contents* of the s.87(3) report — `U-26`, not retrieved. If that announcement sweeps in assets, the refinement fails and P07's original route stands. |
+
+**What this changes in P07:** `21 §5` named (จ) as the route for an unevidenced destruction.
+That is corrected to (ง). The *substance* of P07's widening is untouched — an unevidenced
+disposal of a fixed asset still has a deemed-sale limb carrying output tax, independent of
+deductibility. Only the limb changes, and with it the retrieval that closes it.
+
+**Why the route matters more than it looks.** `U-23` (extent of the (ง) limb) and `U-24`
+limb B now converge on the **same** missing evidence. One retrieval advances both. Chasing
+the (จ) / stock-report authority instead would have answered a question that, on the
+verified scope of `S-39`, probably does not arise for fixed assets at all. P04 is right that
+this changes which retrieval to spend, and the retrieval was spent accordingly: `S-40` was
+located and retrieved in this pass; `U-26` was attempted and not located.
+
+**Net position after two exchanges.** P04 corrected P07 on the limb; P07 corrected P04 on
+the number of limbs. Neither correction was resisted by either side, and both are recorded
+against the session that got it wrong rather than folded into a summary.

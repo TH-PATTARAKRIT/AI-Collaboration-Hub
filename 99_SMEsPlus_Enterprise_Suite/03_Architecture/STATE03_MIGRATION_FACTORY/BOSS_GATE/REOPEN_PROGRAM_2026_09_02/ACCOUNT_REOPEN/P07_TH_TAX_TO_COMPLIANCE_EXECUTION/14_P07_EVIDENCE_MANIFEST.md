@@ -28,7 +28,7 @@ Date: `2026-09-04`
 | `06_P07_EVENT_TO_GL_MATRIX.md` | 14872 | `d7dc4003badc3cbbbdac9bd6fa566668df1d2287bb26aca1fc907830b2e2946d` |
 | `07_P07_TAX_REPORT_TRACEABILITY.md` | 13744 | `165ff71195c17f9863239a89404413b7e13ec76523681c3040619a400cb2c584` |
 | `08_P07_CORRECTION_ADJUSTMENT_MATRIX.md` | 15231 | `c28b943d19677d978e6425fd1b7e14d428f378245e2e8b3f3946e3504f198d81` |
-| `09_P07_STATUTORY_SOURCE_REGISTER.md` | 19612 | `0c9407167dbf18382806d98f3e7737020e64595a0591f674394cb3592cdea896` |
+| `09_P07_STATUTORY_SOURCE_REGISTER.md` | 25320 | `06409e6589bc1a457bec27c3b983e9d5aab7fd9e1a1eee6966e21440776bf72f` |
 | `10_P07_CROSS_PROCESS_OWNERSHIP.md` | 7122 | `8a378fbb7b9fc1161e6ddd7aef766f14e58c375b97fcffebaa7f19c252b6a5f4` |
 | `11_P07_CONTRADICTION_REGISTER.md` | 16194 | `02e3c560ea1f1f097167e643a18c221eb9c21f98bd1ddf5fcca323a4107edc72` |
 | `12_P07_DEPENDENCY_REGISTER.md` | 13060 | `4686c8e13b1c9e21274de0dad0e7bcbcdfc734694c2173d3f709dca8008c99c9` |
@@ -39,7 +39,7 @@ Date: `2026-09-04`
 | `18_P07_PMO.md` | 9934 | `ecb08a9117fa9af7e33e81faf2dab9be6dd99fb8ef4925545573dc66c03ad1a1` |
 | `19_P07_CORE_RECON_HANDOFF_PACK.md` | 10831 | `fdd3ce6859f02dd8b99a2c04b362733050a907523a00307fa7a56f4230d16edc` |
 | `20_P07_SCOPE_OWNERSHIP_MATRIX.md` | 16170 | `67b13f2d43023f8c67ea7dc8454514aad9d0a159cf4c293493afaa26eb8a15b5` |
-| `21_P07_PEER_EVIDENCE_INTAKE_P04.md` | 11327 | `3c1c37d578bad3f5426d708b43816824040d432700e92e872a21a9e33c23b006` |
+| `21_P07_PEER_EVIDENCE_INTAKE_P04.md` | 14106 | `ceb0a72f1197e1de8876d96734f57f57b5145254ed1621c576add0b07ddc12df` |
 
 ## 3. Primary Evidence Sources Cited
 
@@ -125,6 +125,7 @@ Every quantitative claim in this package can be re-run:
 | — added by `SMEPLUS-26-09-04-ACC-REV2-CORR1` | `20_P07_SCOPE_OWNERSHIP_MATRIX.md` |
 | — added after independent challenge found 39 dangling finding references | `00_P07_FINDINGS_REGISTER.md` |
 | — added on intake of peer statutory evidence from P04 | `21_P07_PEER_EVIDENCE_INTAKE_P04.md` |
+| — filed outside this package, for Boss ratification | `00_PROJECT_STANDARD/SMEPLUS_EVIDENCE_SUBSTITUTION_STANDARD_PROPOSED.md` |
 
 All eighteen named deliverables are present. Three files were added: one required by the
 mid-session constitution correction, one required to make the others readable, and one
