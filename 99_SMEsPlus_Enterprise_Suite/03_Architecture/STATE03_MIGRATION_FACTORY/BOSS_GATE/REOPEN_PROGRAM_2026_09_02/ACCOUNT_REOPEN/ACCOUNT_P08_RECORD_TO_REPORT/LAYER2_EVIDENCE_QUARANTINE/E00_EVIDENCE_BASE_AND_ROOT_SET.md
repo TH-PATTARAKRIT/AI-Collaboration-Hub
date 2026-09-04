@@ -64,3 +64,21 @@ CUST18 = `/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo18/EXTRA MODULE/smeplus-custo
 | `RS-P-01` | `grep -rn "COALESCE((%s), (%s), 1.0)" --include=res_currency.py <root>` | present in 21/22; absent only in the 28-module partial tree |
 
 Script retained at `/tmp/rootscan.sh` for the session; reproduced from the pattern text above.
+
+## 4. Literal patterns behind the Layer 1 identifiers
+
+| Ref | Literal pattern |
+|---|---|
+| `EV-P-01` | `find <root>/addons -maxdepth 2 -name "__manifest__.py"` |
+| `EV-P-02` | `ast.literal_eval` over each `__manifest__.py` |
+| `EV-P-03` | `find <REF18> -maxdepth 1 -type d -name 'l10n_*'` |
+| `EV-P-04` | `grep -rEh "^\s*_name = ['\"]account\." --include="*.py" <REF18>` → extract → `sort -u` |
+| `EV-P-05` | `grep -rEho "_name = ['\"][a-z_.]*event[a-z_.]*['\"]" --include="*.py" <root>` per root → dedup → exclude `event.*`, `website.event*`. Residual non-marketing matches across the set: `calendar.event`, `calendar.event.type`, `barcodes.barcode_events_mixin`, and in 9 roots a `report.event_iot.*` print model. None accounting. |
+| `EV-P-06` | `grep -rEho "_name = ['\"]account\.period['\"]\|_name = ['\"][a-z_.]*accounting.period[a-z_.]*['\"]" --include="*.py" <root>` |
+| `EV-P-07` | (i) `grep -rEl "CHECK ?\(.*(sum\|SUM).*(debit\|credit\|balance)" --include="*.py" <root>` ; (ii) `grep -rEl "CREATE (OR REPLACE )?TRIGGER" --include="*.py" --include="*.sql" <root>` ; (iii) `grep -rEl "DEFERRABLE\|EXCLUDE USING" --include="*.py" --include="*.sql" <root>` restricted to accounting tables. Exclusion-constraint capability demonstrated elsewhere in the framework at `hr_work_entry/models/hr_work_entry.py:58` (`EXCLUDE USING GIST`). |
+| `EV-P-08` | Partner-merge raw-SQL path: `base/wizard/base_partner_merge.py` `_merge` → `_update_foreign_keys` → `_update_foreign_keys_generic('res.partner', …)`, raw `UPDATE "<table>" SET "<column>"`, skipping only tables named `base_partner_merge_*`. `account_move_line.partner_id` is a stored `Many2one` with `ondelete='restrict'` and is repointed. Refusal set in `_merge`: >3 contacts, parent/child relation, >1 linked user, differing e-mail (**auto-disabled for an administrator caller**). Five wizard definitions in the target root: `base`, `mail`, `website`, `loyalty`, `account`. |
+| `EV-P-09` | Retention cannot be disabled once entries exist: `account/models/company.py:317-322 _check_audit_trail_records` raises when `check_account_audit_trail` is false and any move exists for the company. |
+| `EV-P-10` | Deletion log gated on the flag: `account/models/account_move.py:3304-3312 _get_unlink_logger_message` filters `m.posted_before and m.company_id.check_account_audit_trail`; the `if not self._context.get('force_delete'): pass` at `:3307-3308` is dead code. |
+| `EV-P-11` | Settlement item references: `account/models/account_partial_reconcile.py:14-19` — `debit_move_id` / `credit_move_id`, `required=True`, no explicit `ondelete` → framework default for required = `RESTRICT` (`odoo/fields.py:3189-3197`). |
+| `EV-P-12` | Warehouse-manager grant on the settlement record: `sale_stock/security/ir.model.access.csv:14` — `1,1,1,1` on `account.partial.reconcile` to `stock.group_stock_manager`. |
+| `EV-P-13` | Unconditional item-deletion audit record: `account/models/account_move_line.py:1709-1721` — `move._message_log("Journal Item %s deleted", tracking_value_ids=…)` for any move with `posted_before`, independent of the retention flag. |

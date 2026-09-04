@@ -34,14 +34,15 @@ This pack is what Core Accounting Reconciliation needs from P08 and nothing more
 | 9 | Is a closed period closed? | There is no period object. Closing is the movement of a date, reversible by writing an earlier one, leaving a field-change entry as its only evidence. |
 | 10 | Will a past-period statement re-run to the same number? | No. At least eleven routes change it, of which two are unguarded master-data edits on accounts that already carry postings. |
 
-## 3. The six invariants Core Reconciliation should carry forward
+## 3. The invariants Core Reconciliation should carry forward
 
+0. **The accounting identity: the items of an entry sum to zero in every currency frame, enforced at the persistence layer, with no caller-supplied waiver.** *(`KRN-INV-00`, added after independent review — the draft's invariant list omitted the very invariant the package calls its most important finding.)*
 1. `ONE FACT → ONE ACCOUNTING EFFECT` — enforceable only at the accounting-event node, which must exist.
 2. A posted financial fact is immutable, **at the persistence layer**, with no caller-supplied waiver.
 3. Every posted fact carries its provenance: event, instruction, actor, measurement context, tenant, company.
 4. Correction is by new fact only.
-5. **A tenant-scope mutation may never rewrite a company-scope posted fact.**
-6. Every object with a financial effect has exactly one owning company; where ownership cannot be proven, the operation is denied.
+5. **A tenant-scope mutation may never rewrite a company-scope posted fact, and may never silently change a company-scope issued statement.**
+6. Every object with a financial effect has exactly one owning company; where ownership cannot be proven, the operation is denied. *(Now `KRN-INV-08` in the kernel model — the draft carried it here and not there.)*
 
 ## 4. The six things that must be reconciled with peers
 
@@ -71,4 +72,8 @@ Debit and credit per business event. Those belong to the producing processes and
 
 ## 7. Terminal state
 
-`READY FOR CORE ACCOUNTING RECONCILIATION` — meaning the ledger contract is stated, the evidence is preserved and the open items are named. It does **not** mean approved, complete, converged, frozen, merged, or authorised to implement. Boss alone decides.
+**`HANDOFF PREPARED — CORE ACCOUNTING RECONCILIATION`.** The ledger contract is stated, the evidence is preserved, and the open items are named.
+
+*(Corrected after independent review: the draft used a readiness label, which this session's own governance prohibits — a readiness declaration for a module, wave, state or gate is not available to this session in any form, including one immediately followed by a disclaimer.)*
+
+This package declares no readiness, no approval, no completeness, no convergence, no freeze, no merge and no implementation authority. Its gate position is a **recommendation** and is stated in `26_P08_FINAL_RESEARCH_GATE_REPORT.md`. Boss alone decides.

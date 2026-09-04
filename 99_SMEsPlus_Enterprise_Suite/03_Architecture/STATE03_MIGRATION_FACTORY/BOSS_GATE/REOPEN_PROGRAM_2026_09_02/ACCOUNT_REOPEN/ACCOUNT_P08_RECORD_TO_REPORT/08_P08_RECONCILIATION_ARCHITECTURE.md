@@ -60,7 +60,13 @@ Three system paths and one operator-driven path emit accounting facts on matchin
 
 ## 8. Authorisation
 
-`REC-24` — Both settlement models grant create, write and delete to the **billing** tier, and **no isolation rule of any kind exists on either** (`A VERIFIED ABSENCE`, scope = every configuration file of the target root referencing those two models). The five eligibility guards live in the calling routine, not in the models, so a direct write reaches none of them; the only self-check is that both currency fields are populated. `FACT VERIFIED`; reachability by a given user is `C NOT YET SEARCHED`.
+`REC-24` — Both settlement models grant create, write and delete to the **billing** tier — and, in a second grant the draft missed, to the **warehouse-manager** role, which holds full create, write and delete on the partial-settlement record. **No isolation rule of any kind exists on either model** (`A VERIFIED ABSENCE`, scope = every configuration file of the target root referencing those two models). The five eligibility guards live in the calling routine, not in the models, so a direct write reaches none of them; the only self-check is that both currency fields are populated. `FACT VERIFIED`; reachability by a given user is `C NOT YET SEARCHED`.
+
+## 8A. The one database-level protection in the settlement graph
+
+`REC-25` — **Corrected after independent review.** The package had characterised the settlement graph as having no persistence-layer protection. It has exactly one, and it is the only such object in the accounting layer: the settlement record's two item references are **required with no explicit delete behaviour**, which resolves to **restrict**. An item participating in a settlement therefore cannot be deleted at the database layer, whatever the application does. `FACT VERIFIED`.
+
+This does not soften `REC-24`: the record can still be created and deleted freely by two ordinary roles with no isolation rule. What it changes is the claim that nothing below application code protects an accounting relationship — one thing does, and it is worth carrying into the design as the pattern to generalise.
 
 ## 9. Requirements
 

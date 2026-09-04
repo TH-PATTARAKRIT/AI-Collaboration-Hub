@@ -53,7 +53,7 @@ Consequences, all `FACT VERIFIED`: a soft close is **reversible** by writing an 
 
 ## 5. Year close
 
-`PC-21` — **No year-end closing entry is generated.** Four independent search patterns over the target root return no result-appropriation mechanism. Across the declared 22-root set the vocabulary pattern's count varies with build completeness and the matches were not each opened, so the root-set-wide form of this claim is held at `B NOT FOUND IN SEARCHED SCOPE` (`RS-B-01`) rather than promoted. Within the target root, `A VERIFIED ABSENCE`, scope = every Python and configuration file of that root under four declared patterns.
+`PC-21` — **No year-end closing entry is generated.** Four independent search patterns over the target root return no result-appropriation mechanism. Across the declared 22-root set the vocabulary pattern's count varies with build completeness and the matches were not each opened, so the root-set-wide form of this claim is held at `B NOT FOUND IN SEARCHED SCOPE` (`RS-B-01`) rather than promoted. **Downgraded to `B NOT FOUND IN SEARCHED SCOPE` at every scope, after independent review.** The draft claimed class `A` at target-root scope "under four declared patterns" — patterns that were not in fact published anywhere in the package. More importantly, the reason the package itself gave for refusing to promote the root-set-wide form — that a vocabulary pattern cannot distinguish a result-appropriation routine from a tax-closing or session-closing one — applies **identically** at target-root scope. Narrowing the scope does not increase the pattern's power to discriminate. The claim is therefore class `B` everywhere, and `P08-BD-06` must be read accordingly.
 
 `PC-22` — Retained-earnings carry-forward is a **report-time computation**, defined declaratively: the current year's unallocated result is the income-statement net-result line measured from the start of the fiscal year, plus amounts already booked to the single designated undistributed-result account; prior years are the sum of all revenue and expense balances from inception plus that account's balance, less the current-year figure. `FACT VERIFIED`.
 
@@ -79,6 +79,17 @@ Consequences, all `FACT VERIFIED`: a soft close is **reversible** by writing an 
 `PC-32` — Post-close adjustments are made by an accrual routine creating offsetting entries at a user-chosen date against designated deferral accounts in a designated book. The adjustment lands in whatever calendar month its date falls in and is **indistinguishable in the ledger from an operational transaction of that month**; the only separators are the book and the accounts. Entries carry no adjustment marker. `FACT VERIFIED`.
 `PC-33` — **The only close-shaped state machine in the system governs the tax return, not the accounting period.** It maintains one unposted return entry per period per registration, dated to the period end, deliberately consuming no number; refuses to proceed if more than one exists; and on posting advances the tax cut-off to its own date and snapshots the return. `FACT VERIFIED`. It is also the benchmark's own demonstration that a period-bound close **can** be a posted, dated, single-instance fact — which is the pattern `P08-RQ-PC-01` asks for.
 
+## 7A. Questions this file should have asked and did not
+
+Raised after independent review. Each is in the record-to-report domain and none was covered by any requirement in the package.
+
+| ID | Question | Disposition |
+|---|---|---|
+| `P08-Q-01` | **Reversal dating.** A reversal takes any date the operator supplies, **including one earlier than the entry it reverses**. The package's date requirements cover closed periods only; an antedated reversal inside an **open** period restates a prior month and nothing forbids it. | New requirement `P08-RQ-PC-09`: a reversal is dated on or after the fact it reverses, or the operation is refused. |
+| `P08-Q-02` | **Opening-balance integrity.** The business-event register carries an opening-balance load and the event matrix gives it a journal, accounts and a date rule, but no requirement says the opening trial balance must foot, must be a single dated declaration naming its authority, or must be non-repostable. | New requirement `P08-RQ-PC-10`. See also the `KRN-INV-01` exception. |
+| `P08-Q-03` | **Functional currency.** The measurement file assigns scopes to the observation, the policy and the applied rate, and never asks what a company's functional currency is, whether it may change, what happens to comparatives when it does, or where a cumulative translation adjustment sits. | `BOSS CONTROLLED DECISION` `P08-BD-13`. |
+| `P08-Q-04` | **Accrual versus cash basis.** The event register shows a cash-basis tax mechanism posting on the system clock and crossing a year boundary. The package never asks whether SMEsPlus carries a parallel cash-basis measurement, or whether one ledger can serve both. | `BOSS CONTROLLED DECISION` `P08-BD-14`; related to `P08-BD-11` (measurement bases). |
+
 ## 8. Requirements
 
 | ID | Candidate requirement |
@@ -89,5 +100,7 @@ Consequences, all `FACT VERIFIED`: a soft close is **reversible** by writing an 
 | `P08-RQ-PC-04` | Reopen is a governed event with its own authority, its own artefact and a required reason. Granting and revoking a derogation require **different** authorities. |
 | `P08-RQ-PC-05` | Every derogation produces a record. There is no configuration of a derogation that produces none — and the widest grant produces the most evidence, not the least. |
 | `P08-RQ-PC-06` | Issuing a statement is itself a fact. Reopening a period after issuance marks every statement issued from it as superseded. |
-| `P08-RQ-PC-07` | Whether the year-end result is posted or derived is a `BOSS CONTROLLED DECISION` — `P08-BD-06`. It determines whether a year can be reopened at all. No reference implementation exists either way. |
+| `P08-RQ-PC-07` | Whether the year-end result is posted or derived is a `BOSS CONTROLLED DECISION` — `P08-BD-06`. It determines whether a year can be reopened at all. **A reference implementation of the *derived* option exists and is described at `PC-22`/`FR-03`; no implementation of the *posted* option was found, class `B`.** *(Corrected after independent review: the draft said "no reference implementation exists either way", which this package's own three files refute — Boss would have decided on a premise the package contradicts.)* |
 | `P08-RQ-PC-08` | One fiscal-calendar definition, at `COMPANY` scope, consulted identically by numbering and by reporting. |
+| `P08-RQ-PC-09` | A reversal is dated on or after the fact it reverses. An antedated reversal is refused, in an open period as well as a closed one. |
+| `P08-RQ-PC-10` | An opening balance is a single dated declaration that names its authority and its basis, must foot, and cannot be re-posted. |

@@ -21,8 +21,8 @@ Answering it requires separating three things that the benchmark fuses: what a l
 | Layer | Exists as a persisted object in the benchmark? | Evidence class |
 |---|---|---|
 | Source business document | **Yes**, in each producing process | FACT VERIFIED |
-| Accounting event | **No** | **A VERIFIED ABSENCE** — scope: all 1 533 distinct model names declared across the 790 modules of the reference build; 39 contain the word *event* and all 39 belong to the event-management (marketing) domain |
-| Posting instruction | **No** — it is a transient dictionary built inside each producer's posting method and discarded | A VERIFIED ABSENCE within the same scope |
+| Accounting event | **No** | **A VERIFIED ABSENCE** — scope: all 1 533 distinct model names declared across the 790 modules of the target root; **39** contain the word *event*, of which **36 belong to the event-management domain and 3 do not** — a calendar appointment, its type, and a barcode-scanning mixin. **None of the 39 is an accounting construct.** *(Corrected after independent review: the draft said "all 39 belong to the event-management domain", which is false. The conclusion is unaffected; the evidence line was wrong, in the sentence underpinning the package's most load-bearing absence.)* |
+| Posting instruction | **No** — it is a transient structure built inside each producer's posting routine and discarded | **B NOT FOUND IN SEARCHED SCOPE** *(downgraded after independent review: the scope quoted was a model-name census on the token "event", which is orthogonal to a posting-instruction object. No pattern capable of falsifying this claim has been declared, so it may not carry class A.)* |
 | Journal entry | **Yes** | FACT VERIFIED |
 | Journal item | **Yes** | FACT VERIFIED |
 | Subledger | **No** — it is a query over journal items net of matching links | A VERIFIED ABSENCE, scope: every model whose name contains *reconcile* (7, of which 2 are state and 5 are configuration or transient) plus the four report engines that produce partner open-item output |
@@ -39,7 +39,11 @@ Answering it requires separating three things that the benchmark fuses: what a l
 
 `KRN-04` — **The financial report layer holds independent truth.** Three stores exist whose values are not derived from journal items: externally supplied values, values entered by hand directly on a statement cell, and values carried forward and materialised at close. A cell fed from any of them reports a number that no posting supports, and no ledger control reaches it. `FACT VERIFIED`.
 
-`KRN-05` — **Therefore the benchmark's answer to the critical question is: the general ledger is original truth, and the financial report is derived truth *except* where it is not.** The exception is not marginal. It is a designed feature with its own store, its own edit action, and a manager-level permission with no change history.
+`KRN-05` — **RESTATED AT THE CORRECT LAYER after independent review.** The draft answered "the general ledger is original truth, and the report is derived truth except where it is not". That is incoherent against this file's own `KRN-03`: a reading cannot hold original truth. The corrected answer:
+
+> **The journal item is both original and derived truth, and nothing marks which.** The general ledger is **uniformly derived** — it is a reading of the items with no independent content. The report layer holds **three further independent truth bearers** (externally supplied values, hand-entered statement values, carried-forward values materialised at close), and its **definition is a fourth**: the formulas are retroactively editable by one ordinary role with no change history, so the definition determines the reported figure independently of any fact.
+
+**There are therefore at least four independent truth bearers in the benchmark, not two**, and the binary framing of the draft understated the package's own evidence.
 
 ## 3. Where original truth actually sits, layer by layer
 
@@ -78,7 +82,7 @@ The directive asks specifically whether the general ledger is original truth, de
 
 `DESIGN CANDIDATE` throughout. No implementation authority. Scope labels per the corrected scope model.
 
-### 5.1 Seven objects, of which the benchmark has four
+### 5.1 Nine objects, of which the benchmark has four
 
 | # | Object | Scope | Mutable after commitment? | Present in benchmark? |
 |---|---|---|---|---|
@@ -89,10 +93,24 @@ The directive asks specifically whether the general ledger is original truth, de
 | `K5` | **Financial fact (journal item)** — one signed amount on one account, in one currency, with its measurement context | `COMPANY` | **never** once posted | yes |
 | `K6` | **Settlement fact** — a matching link between financial facts, with its own event date | `COMPANY` | **never**; undone only by a new settlement fact | partly — the link exists, the event date does not |
 | `K7` | **Finality declaration** — the assertion that a period is closed, as an object | `COMPANY` | forward only | **no** — it is a bare date |
+| `K8` | **Period** — the object the finality declaration attaches to, carrying state | `COMPANY` | state transitions only | **no** |
+| `K9` | **Issued statement** — the fact that a statement was produced, for a company, for a period, from a named definition version against a named data state | `COMPANY` | **never** | **no** |
+
+**`K8` and `K9` were added after independent review.** `06` §5 already required both in the mandated trace, and `09`/`11` already carried requirements that depend on them, while the object list stopped at seven — four published files required objects the design deliverable did not define.
 
 ### 5.2 The five invariants that follow
 
-`KRN-INV-01` — **ONE FACT → ONE ACCOUNTING EFFECT.** Every `K4` names exactly one `K2`, and every `K2` may produce at most one `K4` per company. This is the invariant the directive names, and it is unenforceable without `K2`, because there is nothing to be *one* of. In the benchmark, the same business fact posted twice yields two equally valid entries and nothing detects it.
+`KRN-INV-00` — **THE ACCOUNTING IDENTITY.** The `K5` items of a `K4` sum to zero, **in every currency frame the entry uses**, enforced at the persistence layer, with no caller-supplied waiver and no configuration that disables it.
+
+**Added after independent review.** The draft's invariant set omitted the double-entry identity entirely, while the same package called its absence "the single most important requirement" and "the most severe finding". A kernel that does not state the invariant it exists to protect cannot be handed to anyone. It is numbered `00` because it precedes all the others.
+
+`KRN-INV-01` — **ONE FACT → ONE ACCOUNTING EFFECT.** Stated as **two** constraints, because the draft's single constraint did not deliver the capability it was sold on:
+- **`01a` (`K1`→`K2`):** a `K2` is uniquely determined by `(K1, posting rule, recognition point)`. A second attempt to assert the same accounting consequence for the same business fact is **refused on collision**, not recorded as a second event. This is the idempotency key, and it is where duplicate detection actually lives.
+- **`01b` (`K2`→`K4`):** every `K4` names exactly one `K2`, and every `K2` produces at most one `K4` per company.
+
+**Corrected after independent review.** The draft stated only `01b` and then claimed duplicate detection as a capability. `01b` alone does not deliver it: two postings of one business fact create two `K2`s and two lawful `K4`s and the invariant is satisfied. `06` §5 also placed the invariant at the second node while `03` placed it on the third-to-fourth arrow; `01a`/`01b` resolves that disagreement by stating both.
+
+**`KRN-INV-01` exception, stated explicitly.** Two posting classes have no `K1` behind them and are **not** defects: an **opening-balance declaration** and a **restatement**. Each is admitted as a `K2` whose origin is a declaration rather than a business fact, and each must name its authority, its date and its basis. Without this exception the kernel as drafted forbade migration entirely — which this package's own business-event register requires. A **reversal** is a `K2` in its own right, linked to the `K2` it reverses; that is what makes `KRN-INV-04` (correction by new fact) coherent rather than circular.
 
 `KRN-INV-02` — **A posted financial fact is immutable, and immutability is a property of the persistence layer, not of a code path.** The benchmark's balance assertion, posted-record protection, deletion guards and tamper seal are all application-layer checks, and three of the four are suppressible by a request parameter supplied by the caller.
 
@@ -100,24 +118,30 @@ The directive asks specifically whether the general ledger is original truth, de
 
 `KRN-INV-04` — **Correction is by new fact only.** The benchmark already demonstrates the pattern in one place — its period-transfer and account-transfer routines generate new posted entries, reconcile them against the originals, and annotate both sides, leaving the originals untouched. That pattern is the model; the destructive paths beside it are not.
 
-`KRN-INV-05` — **A tenant-scope mutation may never rewrite a company-scope posted fact.** It may only add a new company-scope fact. This is the general form of the counterparty reach-through recorded in `P08_SCOPE_OWNERSHIP_MATRIX.md` §2.7 and is the rule that would have prevented it.
+`KRN-INV-05` — **A tenant-scope mutation may never rewrite a company-scope posted fact, and may never silently change a company-scope issued statement.** Either requires an explicit, auditable company-scope restatement fact.
+
+**Restated after independent review.** The draft covered only posted facts. That wording permits the two most consequential restatement routes this package itself established, because neither touches a posted fact: retroactive re-classification of an account, and retroactive edit of a statement's own formulas — both tenant-scope objects rewriting a **derivation input**. It also failed to cover an account-flag change that rewrites stored open amounts by direct database statement. The invariant is the one this session offers P11 as its most transferable output, and it must not travel in the under-stated form.
 
 `KRN-INV-06` — **Every subsidiary store that carries an independently maintained value has a stated control-account relationship and a periodic proof that the two agree; the failure of that proof is itself an accounting event.** (`P08-RQ-KRN-01`.)
 
 `KRN-INV-07` — **A financial fact carries its measurement basis, and the kernel supports more than one basis over one set of accounting events without duplicating the events.** (`P08-RQ-KRN-02`.)
 
+`KRN-INV-08` — **Every object with a financial effect has exactly one owning company. Where ownership cannot be proven, the operation is denied.**
+
+**Added after independent review**: the handoff pack was carrying this forward as a sixth invariant to Core Reconciliation while the kernel model declared only five. A downstream reader taking the two documents together received two different invariant sets.
+
 ### 5.3 What this makes possible that the benchmark cannot do
 
 | Capability | Requires |
 |---|---|
-| Detect that one business fact was posted twice | `K2` |
+| Detect that one business fact was posted twice | `K2` **and `KRN-INV-01a`** — `K2` alone is not enough |
 | Explain why an entry says what it says, years later | `K3` |
 | Re-run a prior period's statement and get the same answer | `K7` plus `KRN-INV-02` |
-| Prove the ledger from stored data without trusting the code that wrote it | `KRN-INV-02` at persistence level |
+| Prove the ledger from stored data without trusting the code that wrote it | `KRN-INV-00` and `KRN-INV-02`, both at persistence level |
 | Distinguish a derived entry from an asserted one | `K2` presence or absence |
 | Prove the fixed-asset register agrees with the ledger | `KRN-INV-06` |
 | Produce a tax position without a second ledger | `KRN-INV-07` |
-| Reopen a period and know what was issued before the reopen | `K7` as an object, plus statement issuance as a fact |
+| Reopen a period and know what was issued before the reopen | `K8` and `K9` |
 
 ## 6. Classification summary
 
@@ -129,5 +153,5 @@ The directive asks specifically whether the general ledger is original truth, de
 | The subledger is a projection of items **and** the matching graph | `FACT VERIFIED` |
 | The report layer holds three independent value stores | `FACT VERIFIED` |
 | The general ledger is both original and derived truth, unmarked | `SUPPORTED INTERPRETATION` built on the four facts above |
-| The seven-object kernel `K1`..`K7` | `DESIGN CANDIDATE` |
+| The nine-object kernel `K1`..`K9` | `DESIGN CANDIDATE` |
 | Whether SMEsPlus adopts `K2`/`K3` as stored objects or as an append-only log | `BOSS CONTROLLED DECISION` `P08-BD-04` |

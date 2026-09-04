@@ -21,7 +21,7 @@ These are the ones no user asks for. They are the dangerous ones, and P08 owns a
 | `AE-07` | **Cost allocations destroyed** | an entry is returned to unposted | **no** | not at all | FACT VERIFIED |
 | `AE-08` | **Posted history restated by an account re-code or re-classification** | an account's code or classification is written | **no** | not applicable | FACT VERIFIED |
 | `AE-09` | **Posted history restated by an account merge** | administrative merge | **no** — the operation writes no record of any kind | not at all | FACT VERIFIED |
-| `AE-10` | **Counterparty on posted items rewritten across every company** | counterparty consolidation, available to a contacts role | **no** — logged on the counterparty, not on the entries | not at all | FACT VERIFIED |
+| `AE-10` | **Counterparty on posted items rewritten across every company** | commercial-partner re-parenting, available to a contacts role | **no** — logged on the counterparty, not on the entries | not at all | FACT VERIFIED |
 | `AE-11` | **Tax cut-off advanced** | a tax return entry is posted | yes | only by the narrow tax-specific path | FACT VERIFIED |
 | `AE-12` | **Statement figures materialised as stored values** | a cut-off date is moved, in either direction | **no** | pre-existing values are never overwritten | FACT VERIFIED |
 | `AE-13` | **Entry number reallocated** | administrative renumbering, or a custom re-dating utility | partly | not at all | FACT VERIFIED |

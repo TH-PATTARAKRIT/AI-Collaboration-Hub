@@ -41,6 +41,6 @@ For each of the twenty producer events `BE-01`..`BE-18`, `BE-21`, `BE-22` in `12
 
 ## Part 3 — What the matrix establishes
 
-1. **Three accounting events are emitted by the ledger itself** (`M-01`, `M-02`, and the reversal half of `M-03`), and **two of them can be attributed to a period other than the one the underlying event belongs to** — one by forward relocation, one by taking the system clock.
+1. **Seven ledger-emitted effects are tabulated in Part 1, of which three arise with no user asking for them** — the settlement difference, the cash-basis tax entry, and the reversal half of a reversal — and **two of those three can be attributed to a period other than the one the underlying event belongs to**, one by forward relocation and one by taking the system clock. *(Corrected after independent review: the draft said "three accounting events are emitted by the ledger" while its own Part 1 tabulated seven and the accounting-event register lists fifteen. The three are the unrequested subset, not the total.)*
 2. **The only events with no debit and credit at all are period close and year appropriation**, because they post nothing. Both are marked `NOT APPLICABLE` with the reason, not left blank.
 3. **One event's owning company is selected by recordset position.** `M-01` under a cross-company match. That is not an accounting rule; it is an artefact of list order, and it is a tolerance-zero item.

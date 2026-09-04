@@ -21,7 +21,7 @@ and imposed the consequent rule on every subsequent session:
 | `POPULATION` | every reference core root present on the project evidence volume |
 | `PATTERN` | a whole-volume file search for the framework currency-model file at its canonical path within a base tree, reduced to the containing root, sorted. The literal command is recorded in `LAYER2_EVIDENCE_QUARANTINE/E00` §1. |
 | `PATH SET` | the whole evidence volume, not a chosen subtree |
-| `UNIT` | one core root (one directory containing a framework `addons/base` tree) |
+| `UNIT` | one core root (one directory containing a framework base module tree) |
 | `DENOMINATOR` | **22** |
 
 **The pattern's own boundary, declared:** a core root that omits or relocates the framework currency model is not discovered by it. The figure 22 is class `A` **over this declared pattern**, and is not a proof that 22 is the total number of roots on the volume. This reproduces the prior round's figure exactly and independently, from a different session, on the same declared pattern — which is the reproduction the method-convergence standard asks for and had not previously had.
@@ -65,15 +65,15 @@ Three of P08's highest-impact negatives were re-run **across all 22 roots**, not
 
 | ID | Claim | Pattern | Result across 22 roots | Class |
 |---|---|---|---|---|
-| `RS-A-01` | **No accounting-event model exists.** | `grep -rEho "_name = ['\"][a-z_.]*event[a-z_.]*['\"]" --include=*.py <root>` per root, deduplicated, with the event-management and framework namespaces excluded | **0 accounting-event models in 22 of 22 roots.** The only residual match in 9 roots is a print-report model belonging to the event-management domain. | **A VERIFIED ABSENCE, scope = the declared 22-root set** |
-| `RS-A-02` | **No accounting-period entity exists.** | `grep -rEho "_name = ['\"]account\.period['\"]\|_name = ['\"][a-z_.]*accounting.period[a-z_.]*['\"]" --include=*.py <root>` per root | **0 in 22 of 22 roots.** | **A VERIFIED ABSENCE, scope = the declared 22-root set** |
-| `RS-A-03` | **No database-level constraint enforces per-entry balance.** | `grep -rEl "CHECK ?\(.*(sum\|SUM).*(debit\|credit\|balance)" --include=*.py <root>` per root | **0 files in 22 of 22 roots.** | **A VERIFIED ABSENCE, scope = the declared 22-root set** |
+| `RS-A-01` | **No accounting-event model exists.** | anchored model-name census per root, filtered to names containing the event token, deduplicated, with the event-management and framework namespaces excluded (`EV-P-05`) | **0 accounting-event models in 22 of 22 roots.** Residual matches belong to event management, calendar and barcode scanning; **none is an accounting construct**. | **A VERIFIED ABSENCE, scope = the declared 22-root set** |
+| `RS-A-02` | **No accounting-period entity exists.** | anchored model-name census per root, filtered to accounting-period name forms (`EV-P-06`) | **0 in 22 of 22 roots.** | **A VERIFIED ABSENCE, scope = the declared 22-root set** |
+| `RS-A-03` | **No database-level object enforces per-entry balance.** | **AMENDED after independent review.** Union of three patterns per root: (i) declared check-constraint bodies containing a sum over debit, credit or balance; (ii) trigger creation in program or schema files; (iii) deferred or exclusion constructs (`EV-P-07`). The original pattern was (i) alone, which **structurally could not have falsified the claim**, because a row-level check cannot aggregate across rows. | **0, 0 and 0 in 22 of 22 roots.** The framework demonstrably can emit an exclusion constraint elsewhere, so the capability exists and is not used for the ledger. | **A VERIFIED ABSENCE on the amended pattern, scope = the declared 22-root set** |
 
 A fourth scan was run and is **not** promoted, because its pattern is vocabulary-based rather than structural:
 
 | ID | Claim | Result | Class |
 |---|---|---|---|
-| `RS-B-01` | No year-end result-appropriation entry generator exists | Files matching the vocabulary pattern: 0 in 7 roots, 3 in 1 root, 8–9 in 5 roots, 19 in 1 root, 24 in 8 roots. The matches were not each opened. | **B NOT FOUND IN SEARCHED SCOPE** — the count varies with build completeness, and a vocabulary pattern cannot distinguish a result-appropriation generator from a tax-closing or session-closing routine. Not upgraded. |
+| `RS-B-01` | No year-end result-appropriation entry generator exists | Files matching the vocabulary pattern: 0 in 7 roots, 3 in 1 root, 8–9 in 5 roots, 19 in 1 root, 24 in 8 roots. The matches were not each opened. | **B NOT FOUND IN SEARCHED SCOPE at every scope** — the count varies with build completeness, and a vocabulary pattern cannot distinguish a result-appropriation generator from a tax-closing or session-closing routine. **The same objection applies at target-root scope**, so the narrower claim previously carried at class `A` in the close model is downgraded to `B` as well. |
 
 And one positive is recorded because it is root-set-wide and bears directly on a frozen Boss semantic:
 

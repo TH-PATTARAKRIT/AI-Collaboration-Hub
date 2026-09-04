@@ -79,10 +79,16 @@ This file is an attack on the ledger's integrity assumptions, conducted against 
 
 ## D. Attacks that cross a boundary
 
-### `AT-17` — Rewrite a posted fact from outside accounting
-**Mechanism.** Counterparty consolidation — a contacts-role operation — rewrites the counterparty on **posted** items, across every company, with the period-lock check **explicitly suppressed** by an internal sentinel.
+### `AT-17` — Rewrite a posted fact from outside accounting (path 1: re-parenting)
+**Mechanism.** **Commercial-partner re-parenting** — setting one contact as another's invoicing parent, a contacts-role operation — rewrites the counterparty on **posted** items, across every company, with the period-lock check **explicitly suppressed** by an internal sentinel. *(Renamed after independent review: the draft called this "counterparty consolidation", which points a downstream reader at the merge wizard — a different and weaker path, now `AT-17b`.)*
 **Note on the sentinel.** It is an object-identity comparison and therefore **cannot** be forged from a client-supplied context. The attack is not a context injection; it is that a legitimate tenant-scope operation was given the ability to reach company-scope posted facts. Class `SV-3` in the scope matrix.
 **Control.** The operation refuses when the surviving counterparty's tax identity differs, and refuses on sealed entries. **Unsealed entries — the default — absorb the change silently**, and the message is logged on the counterparty, not on the affected entries.
+
+### `AT-17b` — Rewrite a posted fact from outside accounting (path 2: contact merge)
+**Mechanism.** The contact **merge** wizard repoints every foreign key to the contact table by **raw database statement**, skipping only its own working tables. The posted item's counterparty reference is such a key and is repointed.
+**Why it is worse than `AT-17`.** Because the write never enters the object layer, the period check is not suppressed — it is **never reached**; the seal is **not consulted**, so the "refuses on sealed entries" mitigation credited to `AT-17` **does not hold here**; and there is **no tax-identity refusal** on this path at all. The merge's own refusals are a contact-count limit, a parent/child relation, more than one linked user, and a differing e-mail — the last of which is **auto-disabled when the caller is an administrator**. The only trace is a log line.
+**Status.** `FACT VERIFIED` for the mechanism, read by an expert reviewer across the five merge-wizard definitions in the target root and confirmed against source. Reachability by a given role is `C NOT YET SEARCHED`.
+**Effect on this file.** It invalidates the mitigation count in §E as originally written. *(Added after independent review; the package had reported only path 1.)*
 
 ### `AT-18` — Settle across two companies and put the whole difference in one
 **Mechanism.** The settlement company guard compares the **root** of the company tree, not the company. The difference entry then selects **one** company by recordset position and posts the entire gain or loss there, with no compensating entry in the other, no error and no warning.
@@ -111,10 +117,19 @@ This file is an attack on the ledger's integrity assumptions, conducted against 
 |---|---|---|
 | Duplicate posting | — | `AT-01`, `AT-02`, `AT-03` |
 | Orphan posting | — | `AT-04`..`AT-09` |
-| Invariant attacks | — | `AT-10`..`AT-16` |
-| Boundary attacks | — | `AT-17`..`AT-22` |
+| Invariant attacks | **`AT-15` on the ordinary delete path only** | `AT-10`..`AT-14`, `AT-16`, and `AT-15` on the caller-supplied path |
+| Boundary attacks | — | `AT-17`, `AT-17b`, `AT-18`..`AT-22` |
 
-**Twenty-two attacks. None is stopped outright.** Three are mitigated in part: duplicate detection warns on document references; the lock-bypass sentinel is unreachable from a client context; and settlement search filtering survives the custom access override.
+**Twenty-three attacks. Twenty-two are not stopped, and the twenty-third is stopped on one path and open on another.** *(Corrected after independent review: the draft's flat "none is stopped outright" was stronger than its own body, which had already recorded that the ordinary deletion action is refused because the cascade to the items meets the item-level guard.)*
+
+Mitigations that exist, stated precisely so the count is not misread:
+- duplicate detection **warns** on document references, for two document types, and does not reach manual entries;
+- the lock-bypass sentinel is an object-identity comparison and is **unreachable from a client-supplied context** — but `AT-17b` shows a path that does not need it;
+- settlement **search** filtering survives the custom access override, while read, write and delete on known identifiers do not;
+- the settlement record's item references are **restrict** at the database layer, so an item in a settlement cannot be deleted there;
+- the ordinary deletion action refuses a posted entry.
+
+**The pattern is unchanged by the corrections:** every control that matters is enforced in application code, and application code is reachable from callers that can decline to run it. The five mitigations above are four narrow guards and one database constraint — none of them an accounting invariant.
 
 The pattern across all twenty-two is one thing: **every control in the benchmark's ledger is enforced in application code, and application code is reachable from callers that can choose not to run it.** The four controls that live below application code are per-item sign and non-null checks and a partial uniqueness index on the entry number — none of which is an accounting invariant.
 

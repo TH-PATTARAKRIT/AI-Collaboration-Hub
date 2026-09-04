@@ -32,6 +32,7 @@ Session `SMEPLUS-26-09-04-ACC-P08-R2R-REV2-001` · Layer 1 · scope model per `S
 | currency and measurement **as applied to a posting** | procurement and sales document lifecycle — P01/P02 |
 | the statement layer and its derivability | analytic/management accounting — P09 |
 | the ledger contract every producer must satisfy | cross-process reconciliation of scope semantics — P11 |
+| the **ledger form** of an opening-balance load | the **data** of a migration load — migration track |
 
 ## 3. The ledger contract — P08's outbound obligation to every peer
 
@@ -61,6 +62,6 @@ P08's full assignment set is `01_P08_SCOPE_OWNERSHIP_MATRIX.md`. The three split
 
 The third generalises to the rule P08 believes is the single most transferable output of this session:
 
-> **A tenant-scope mutation may never rewrite a company-scope posted fact. It may only add a new company-scope fact.**
+> **A tenant-scope mutation may never rewrite a company-scope posted fact, and may never silently change a company-scope issued statement. Either requires an explicit, auditable company-scope restatement fact.**
 
 Every process will encounter that boundary. P08 recommends P11 adopt it as a cross-process invariant, and records that P08 cannot adopt it on P11's behalf.

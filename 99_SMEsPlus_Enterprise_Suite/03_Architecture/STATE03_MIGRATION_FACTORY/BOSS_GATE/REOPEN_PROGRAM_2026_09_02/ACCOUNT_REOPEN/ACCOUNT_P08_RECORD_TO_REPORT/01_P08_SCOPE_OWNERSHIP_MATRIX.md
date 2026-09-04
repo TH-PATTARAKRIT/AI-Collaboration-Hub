@@ -11,12 +11,26 @@ Each row answers the eight mandated questions. `SMEsPlus scope` entries are `DES
 ## 1. Method note — why the object list is not author-chosen
 
 POPULATION: every accounting model declared in the reference build.
-PATTERN: `grep -rEh "^\s*_name = ['\"]account\." --include=*.py <REF18> | extract | sort -u`
+PATTERN: anchored model-name census over the target root, filtered to the accounting namespace, deduplicated (`EV-P-04`)
 PATH SET: `REF18` (790 modules).
 UNIT: one model.
 DENOMINATOR: **131**.
 
-The 131 were collapsed to **29 material objects** by merging each model with its own line/detail models and its transient wizards, and by excluding objects owned by another process (analytic, tax computation, asset, payment instrument, bank statement, EDI, loans, followup, online synchronisation, spreadsheet, import, deferred reports) — those are recorded as `PEER DEPENDENCY OPEN` rows against P01–P07 and P09–P10 rather than decided here. The collapse rule is stated so an independent reviewer can reproduce the 29 from the 131.
+The matrix presents **42 rows**. The relationship between the 131 models, the rows, and the distinct benchmark objects is published below rather than asserted.
+
+**Corrected after independent review.** An earlier draft claimed the 131 collapsed to "29 material objects" and said the collapse was reproducible from a prose exclusion list. **It was not reproducible, and the number was wrong.** A prose list of excluded domains is author-chosen, which the programme's own denominator rule forbids, and the stated count did not tie to the rows presented. The arithmetic is therefore shown in full:
+
+| Step | Count |
+|---|---|
+| Rows in this matrix | **42** |
+| less rows describing an object that **does not exist in the benchmark** — `SC-JE-03` accounting event, `SC-JE-07` provenance, `SC-CL-02` period-as-object, `SC-RP-06b` consolidated statements | −4 |
+| rows describing a benchmark object | 38 |
+| less **P08 splits** of one benchmark object across several rows — the account (`SC-CA-03`+`04`, −1), the rate table (`SC-FX-02`+`03`+`04`, −2), the statement definition (`SC-RP-01`+`02`+`03`, −2), the counterparty (`SC-SH-01`+`02`, −1) | −6 |
+| **distinct benchmark objects covered** | **32** |
+
+The four splits are the substantive output of the scope analysis: each is a place where the benchmark has one object and P08 finds two or three scopes fused inside it.
+
+Excluded from the 32, and recorded as `PEER DEPENDENCY OPEN` rather than decided here: objects owned by another process — analytic, tax computation, asset, payment instrument, bank statement, electronic invoicing, loans, follow-up, banking synchronisation, spreadsheet, import, deferred reporting.
 
 ## 2. The matrix
 
@@ -87,12 +101,20 @@ Read scope-aware, those are not four bugs. They are **one object being asked to 
 | `SC-CL-01` | Fiscal calendar definition | `COMPANY` | `COMPANY` | `COMPANY` | `COMPANY` | `COMPANY` | no | — | company legal/accounting |
 | `SC-CL-02` | Accounting period as an object *(does not exist in the benchmark)* | `COMPANY` | `COMPANY` | `COMPANY` | state transitions only | `COMPANY` | no | — | company legal/accounting |
 | `SC-CL-03` | Finality declaration (the close itself) | `COMPANY` | `COMPANY` | `COMPANY` | forward only | `COMPANY` | no | — | company legal/accounting |
-| `SC-CL-04` | Relaxation of a finality declaration (lock exception) | `COMPANY` | `COMPANY` | `TENANT` may audit | `COMPANY` | `COMPANY` | no | — | company legal/accounting |
-| `SC-CL-05` | Retention / audit-trail policy | `PLATFORM` or `TENANT` — **not** `COMPANY` | `PLATFORM`/`TENANT` | `TENANT` | `PLATFORM`/`TENANT` | `COMPANY` | no | — | platform or tenant policy |
+| `SC-CL-04` | Relaxation of a finality declaration (derogation) | **`TENANT` or above grants**; `COMPANY` may request, never self-grant | `COMPANY` | `TENANT` | **not `COMPANY`** | `COMPANY` | no | — | tenant control over a company act |
+| `SC-CL-05` | Retention / audit-trail policy | `PLATFORM` **floor**, immutable downward; `COMPANY` may **extend only** | `PLATFORM`/`TENANT` | `TENANT` | `PLATFORM`/`TENANT` sets the floor; `COMPANY` may lengthen | `COMPANY` | no | — | platform floor over a company obligation |
 
 `SC-CL-01` is `COMPANY` because a fiscal year is a legal attribute of a legal entity. The benchmark delegates it to the root of the company tree, so a subsidiary cannot hold its own year-end. For a platform whose tenants include groups with differing statutory year-ends per entity, that is an over-constraint in the benchmark, not in SMEsPlus. `P08-CONTRA-09`.
 
-`SC-CL-05` is the one row where the correction **loosens** nothing and **tightens** something. Whether posted entries may ever be hard-deleted is not a company's decision to make about itself; a tenant administrator who can switch retention off can erase the evidence of their own erasure. The benchmark makes it a company-level boolean that is off by default. Placing it at `PLATFORM` (or at `TENANT` with no path to disable once any entry exists) is `P08-RQ-CL-01`, and it is a tolerance-zero candidate, `P08-T0-05`.
+`SC-CL-04` was re-assigned after independent review. The draft made the derogation `COMPANY`-owned and `COMPANY`-mutable, with the tenant allowed only to audit. The reviewer applied this package's **own** argument for retention to it, and it holds: granting and revoking a derogation are the same authority; the widest grant available produces **no record at all**; and the derogation's own audit trail depends on a company-level switch with no default. A company administrator can therefore grant themselves an unbounded, unrecorded reopen and switch off the log that would show it. Under the corrected model that is a scope *decision*, not a defect — so the decision is corrected: **the grant sits above the company.**
+
+`SC-CL-05` is the one row where the correction **loosens** nothing and **tightens** something.
+
+**The draft's stated attack path is withdrawn — it is contradicted.** The draft argued that "an administrator who can switch retention off can erase the evidence of their own erasure". Independent review found, and P08 verified, that the option **cannot be disabled once any entry exists for the company** — a constraint refuses it. That path does not exist.
+
+**The requirement survives on the stronger and different ground the draft also recorded:** the option is **off by default**, so an installation that never enabled it never needs to disable it, and on that installation a forced deletion of a posted entry leaves no record of any kind. Reasoning from the default, not from a disable path, is the correct basis, and the row's assignment is unchanged. Placing it at `PLATFORM` (or at `TENANT` with no path to disable once any entry exists) is `P08-RQ-CL-01`, and it is a tolerance-zero candidate, `P08-T0-05`.
+
+**Refined after independent review:** the direction of the tightening is right, but excluding `COMPANY` outright was wrong. A retention period is an obligation of a legal entity, and entities inside one tenant may face different ones. The rule is therefore a **platform floor that a company may extend and may never shorten**.
 
 ### 2.6 Reporting
 
@@ -103,13 +125,15 @@ Read scope-aware, those are not four bugs. They are **one object being asked to 
 | `SC-RP-03` | A produced statement (a run, for a company, for a period) | `COMPANY` | `COMPANY` | `COMPANY` | none once issued | `COMPANY` | no | — | company legal/accounting |
 | `SC-RP-04` | Externally supplied / manually entered statement value | `COMPANY` | `COMPANY` | `COMPANY` | authorised restatement only | `COMPANY` | **yes in effect** — it changes a reported figure without a posting | the reported company | company legal/accounting |
 | `SC-RP-05` | Carried-forward value materialised at close | `COMPANY` | `COMPANY` | `COMPANY` | none | `COMPANY` | **yes in effect** | the reported company | company legal/accounting |
-| `SC-RP-06` | Consolidated view across companies | `TENANT` | `TENANT` | `TENANT` | derived only | — | no | — | tenant-owned derivation |
+| `SC-RP-06a` | **Management** multi-company aggregation | `TENANT` | `TENANT` | `TENANT` | derived only | `TENANT` | no | — | tenant-owned derivation |
+| `SC-RP-06b` | **Consolidated financial statements** | `COMPANY` (the consolidating parent) | `COMPANY` | `COMPANY` | eliminations and translation adjustments as company-scope posted facts | `COMPANY` | **yes** | the consolidating parent | company legal/accounting |
+| `SC-RP-07` | **Statutory jurisdiction filing output** (a return or extract bearing a legal identity) | `COMPANY` | `COMPANY` | `COMPANY` | none once filed; layout is `PLATFORM` | `COMPANY` | **yes in effect** | the filing company | company legal/accounting |
 
 `SC-RP-01`/`SC-RP-02` versus `SC-RP-03` is the second split the benchmark does not make. The benchmark's statement definitions carry **no company dimension and no isolation rule**, and one ordinary accounting role holds full create/update/delete on them with no change history. In a single-tenant deployment that is a configuration surface. In a shared multi-tenant deployment it is a cross-tenant surface, because the object that decides what every tenant's balance sheet says is owned by nobody. `FACT VERIFIED`, `EV-RPT-17`. Under the corrected model the resolution is not "add a company id" — it is that a **statutory layout is platform reference data that tenants must not be able to edit at all**, while a **management layout is tenant-owned**. `P08-RQ-RP-01`.
 
 `SC-RP-04` carries `FIN = yes in effect` deliberately. It is not a posting, and no ledger control reaches it, yet it changes the number a statement reports. Any control model that protects the ledger and ignores this object protects the wrong thing. `P08-T0-06`.
 
-`SC-RP-06` is `TENANT` scope and is a **derivation**, never a store. A consolidated figure is not owned by any company, so it cannot be a company-scope fact; and it must never be writable, because a writable consolidated figure would be a financial assertion with no owning company — a `REQUIRED OWNERSHIP CANNOT BE PROVEN` case.
+`SC-RP-06a` is `TENANT` scope and is a **derivation**, never a store. A consolidated figure is not owned by any company, so it cannot be a company-scope fact; and it must never be writable, because a writable consolidated figure would be a financial assertion with no owning company — a `REQUIRED OWNERSHIP CANNOT BE PROVEN` case.
 
 ### 2.7 Shared reference data that the ledger depends on
 
@@ -135,17 +159,21 @@ Applying the model to the benchmark yields five recurring violation shapes. They
 
 | Class | Shape | Instances found in P08 |
 |---|---|---|
-| `SV-1` | An object is given an **undeclared group scope** between tenant and company | `SC-CA-04`, `SC-JE-01`, `SC-CL-01`, `SC-FX-04` |
+| `SV-1` | An object is given an **undeclared group scope** between tenant and company | `SC-CA-04`, `SC-JE-01`, `SC-JE-06` (the numbering series, which the seal chain orders on), `SC-CL-01`, and the **rate master** behind `SC-FX-02`/`SC-FX-03` |
 | `SV-2` | **One object serves several scopes**, with different callers applying different rules | `SC-FX-02/03/04` (four rules, one table) |
-| `SV-3` | A **tenant-scope mutation reaches through and rewrites a company-scope posted fact** | `SC-SH-02`, and `SC-CA-03`→`SC-CA-04` re-coding, and account consolidation |
+| `SV-3` | A **tenant-scope mutation reaches through and rewrites a company-scope posted fact, or silently changes a company-scope issued statement** | `SC-SH-02`; `SC-CA-03`→`SC-CA-04` re-coding; account consolidation; **statement-layout and grouping edits restating an issued statement**; **an account flag change rewriting stored open amounts by direct database statement** |
 | `SV-4` | An object with a **financial effect has no owning company** | `SC-RC-01` (matching record with no isolation rule), `SC-RP-04` (manual statement value) |
-| `SV-5` | **Tenant or company policy stored at platform scope**, or platform policy left to company discretion | `SC-SH-05`; and inversely `SC-CL-05` (retention left to the company) |
+| `SV-5a` | **Tenant or company policy stored at platform scope** — remediation: move the policy down to its owning scope | `SC-SH-05` |
+| `SV-5b` | **Platform or tenant policy left to company discretion** — remediation: move the policy up | `SC-CL-05` (retention), `SC-CL-04` (derogation grant) |
+| `SV-6` | **Ownership taken from the ambient session context** rather than from the object whose ownership is at stake | `FX-07` (conversion resolves under the active company, not the fact's company); the statutory extract's filer identity and its very availability; a statutory filing's rounding precision; two custom withholding objects capturing ownership from the ambient company |
 
 `SV-4` is the class that maps directly onto the correction's `REQUIRED OWNERSHIP CANNOT BE PROVEN = DENY`. Every `SV-4` instance is a tolerance-zero candidate by construction.
 
+`SV-6` was **added after independent review** and is the class that maps onto the correction's second denial rule most directly: ambient-context ownership is ownership *assumed* rather than *proven*. It is distinct from `SV-2` — in `SV-2` one object serves several scopes; in `SV-6` the object has exactly one correct scope and the code selects the wrong **instance** of it. `FX-07` was previously filed under `SV-2`, which lost the diagnosis, and is re-filed here.
+
 ## 4. Findings materially affected by the withdrawn "tenant+company everywhere" reading
 
-Recorded in full, with the six mandated columns, in `P08_REVISION_LOG.md` §2. Summary of the affected set:
+Recorded in full, with the six mandated columns, in `21_P08_REVISION_LOG.md` §2. Summary of the affected set:
 
 | Finding | Was classified | Now classified |
 |---|---|---|

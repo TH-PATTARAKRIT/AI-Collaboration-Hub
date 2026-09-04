@@ -81,13 +81,15 @@ Reference-source paths are Layer 2 and are held only in `LAYER2_EVIDENCE_QUARANT
 
 | Population | Pattern | Path set | Unit | Count |
 |---|---|---|---|---|
-| Reference modules present in the build | `find <REF18> -maxdepth 2 -name __manifest__.py` | `REF18` | module | **790** |
-| Manifests machine-parsed without error | `ast.literal_eval` over each manifest | `REF18` | module | **790 of 790** |
+| Reference modules present in the build | file search for a module descriptor at module-root depth (`EV-P-01`) | `REF18` | module | **790** |
+| Module descriptors machine-parsed without error | literal evaluation of each descriptor (`EV-P-02`) | `REF18` | module | **790 of 790** |
 | Modules declaring a direct dependency on the accounting kernel | parsed `depends` list contains the kernel module | `REF18` | module | **37** |
 | Modules in the transitive dependency closure of the accounting kernel | reverse-dependency closure over parsed `depends` | `REF18` | module | **334** |
-| Localization modules present in this build | `find <REF18> -maxdepth 1 -type d -name 'l10n_*'` | `REF18` | module | **2** (both Thailand) |
+| Localization modules present in this build | directory search on the localization naming convention (`EV-P-03`) | `REF18` | module | **2** (both Thailand) |
 
-`FACT VERIFIED.` The transitive figure of **334 of 790** modules is the upper bound of the set that can reach the ledger in this build. It is the denominator against which any "which modules post to the ledger" claim in this package must be read.
+`FACT VERIFIED` for the count of **334 of 790**.
+
+**The draft additionally called 334 "the upper bound of the set that can reach the ledger". That is CONTRADICTED by this package's own attack file** and is withdrawn: one custom module reaches every model by overriding the access check on the universal base object without depending on the accounting kernel at all, and another writes to ledger tables by direct database statement without passing through the object layer. Neither is in the 334. The correct reading is: **334 is the denominator of modules that reach the ledger *through the accounting kernel's dependency graph*** — which is not the same as the set that can reach the ledger.
 
 The localization count of **2** is `FACT VERIFIED` for `REF18` and is **not** a statement about the reference product generally — this build is pruned. Classified `B NOT FOUND IN SEARCHED SCOPE` for any wider claim.
 
@@ -115,6 +117,6 @@ Recorded at bootstrap:
 
 ## 7. Delta-first rule applied
 
-Prior Account core-ledger work exists on six unmerged branches. P08 imports it as **prior evidence / audit lineage** and does not re-derive completed forensic work without a material delta. Where P08 re-examines a prior claim, the reason is recorded in `P08_REVISION_LOG.md` and the prior claim's lineage is preserved, never silently overwritten.
+Prior Account core-ledger work exists on six unmerged branches. P08 imports it as **prior evidence / audit lineage** and does not re-derive completed forensic work without a material delta. Where P08 re-examines a prior claim, the reason is recorded in `21_P08_REVISION_LOG.md` and the prior claim's lineage is preserved, never silently overwritten.
 
 Prior corrections are cited from correction and adversarial sections, never from headline summary tables — headline tables in this programme have repeatedly been found to contradict the corrections inside the same document.

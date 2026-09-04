@@ -86,7 +86,23 @@ The object layer's own isolation rule still filters the population, but it filte
 
 **What is not stated here.** Whether such an extract satisfies or breaches any Thai statutory filing requirement is `HOLD / EVIDENCE REQUIRED` and is routed to the Accounting-Tax track. P08 records the mechanism only, and routes the content to P07 as `XP-06`.
 
+**Independently reproduced and extended by an expert reviewer, and the extension matters.** Two further mechanisms were established that P08's own reading had not:
+- The correct path exists **in the same module**. The withholding-tax handler scopes its population through the report engine's own filter builder, which carries the report's company set and re-applies the isolation rules. The value-added-tax extract does not. One module, two paths, one scoped and one not.
+- The two populations genuinely differ. These reports inherit a multi-company filter mode whose company set resolves to a tax unit, or to the entity's branches sharing a tax registration — **never** to the set of entities merely activated in the session. So the on-screen report and the exported extract cover **different populations**, and neither the file nor the sheet carries an entity column, so the difference is invisible in the output. There is also no jurisdiction predicate, so an entity outside the jurisdiction is included.
+
 **Why it belongs in P08 and not only in P07.** It is an instance of the general class this file establishes: **the statement layer carries no owning-entity scope of its own**, so every statement's scope is whatever its caller happened to activate. The tax extract is the instance where that produces a document bearing a legal identity.
+
+## 7B. The same shape in the project's own custom layer
+
+`FR-26` — A statutory withholding filing selects its population on a **counterparty reference** rather than on the owning entity. The certificate object captures ownership **twice and independently** — once as an entity link, once as that entity's counterparty record — and the isolation rule enforces only the first, while the filing query filters only on the second. One of the two is copyable and the other is not, so a duplicated certificate is owned by one entity, visible under that entity's isolation rule, and **files under another**.
+
+`FACT VERIFIED` for the field declarations and the query, read by an expert reviewer and confirmed by P08 against source. Whether a duplicate action is exposed on that object was **not** established — `C NOT YET SEARCHED`. Nothing was executed.
+
+This is the same shape as `FR-25` and as the counterparty reach-through of the attack file: a **tenant-scope object used as the selector for a company-scope act**. It is `SV-3` and `SV-6` together, and it is the reason both classes exist.
+
+`FR-27` — Statutory identity fields — registration number, name, address, branch — are joined **live from tenant master data at export time**, not read from the posted fact. `FR-23` enumerates eleven routes by which re-running a past statement returns a different *number*; this is a route by which it returns different *statutory identities*. It is added to that list.
+
+**No statement is made here about what any jurisdiction requires.** All of it is `HOLD / EVIDENCE REQUIRED`, routed to the Accounting-Tax track, and routed to P07 as `XP-06`. P08 records mechanisms only.
 
 ## 8. Requirements
 
@@ -98,6 +114,6 @@ The object layer's own isolation rule still filters the population, but it filte
 | `P08-RQ-FR-04` | A statement value not derived from facts is a distinct, governed, auditable object with its own authorisation — never an edit made on a cell. |
 | `P08-RQ-FR-05` | Statutory layouts are platform reference data, immutable to tenants. Management layouts are tenant-owned. A produced statement is company-owned. |
 | `P08-RQ-FR-06` | Draft entries are never included in an issued statement, and the inclusion state is on the face of every rendering, ungated. |
-| `P08-RQ-FR-07` | A consolidated view is a derivation and is never writable. A missing translation measurement refuses; it never passes through at parity and never silently drops the fact. |
+| `P08-RQ-FR-07` | A **management** multi-company aggregation is a derivation and is never writable. A **consolidated financial statement** is the consolidating parent's own artefact: its eliminations, minority-interest allocations and consolidation adjustments are company-scope posted facts, not derivations. In both cases a missing translation measurement refuses — it never passes through at parity and never silently drops the fact. *(The blanket "never writable" of the draft is withdrawn after independent review: it made eliminations unrepresentable.)* |
 | `P08-RQ-FR-08` | The cash-flow classification is a property of the accounting event, not an optional tag on the counterparty account, and the statement carries no unexplained residual. |
 | `P08-RQ-FR-09` | A statement that bears a legal entity's identity is produced for **exactly that entity**, and its population is scoped by that entity — never by whatever the caller happened to activate. |

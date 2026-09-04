@@ -44,7 +44,7 @@ At P08's close, no peer process had committed output. P08 recorded the interface
 | `P08-U-07` | Whether the two rate-type shortcut sets produce a wrong figure or an unused row | `D UNKNOWN` | runtime trial |
 | `P08-U-08` | Which of the 22 roots the deployed system runs | `D UNKNOWN` → `P08-BD-05` | a programme declaration |
 | `P08-U-09` | The archive file inside the project custom addon set was listed but not content-searched | `C NOT YET SEARCHED` | extract and sweep |
-| `P08-U-10` | The 67 custom modules other than those examined were not reviewed for isolation behaviour | `C NOT YET SEARCHED` | a bounded sweep — **this is the highest-value remaining search**, given what the one module examined turned out to contain |
+| `P08-U-10` | The project custom addon set holds **65** modules with a manifest; this session examined roughly a dozen, and an independent reviewer opened 8 of the Thai localization modules. **The remainder were not reviewed for isolation behaviour.** | `C NOT YET SEARCHED` | a bounded sweep — **this is the highest-value remaining search**. Two of the eight Thai modules an independent reviewer opened yielded scope findings on first reading, which is the same two-of-two pattern that warns an empty class means unsearched, not absent |
 | `P08-U-12` | Whether any mechanism reconciles a genuine subsidiary store (fixed-asset register, inventory valuation) to the ledger | `C NOT YET SEARCHED` | a bounded search P08 did not run; P04 reports six break mechanisms and no detector |
 | `P08-U-11` | Thai statutory requirements bearing on statement format, retention and the accounting date | `HOLD / EVIDENCE REQUIRED` | authoritative evidence, Accounting-Tax track |
 
@@ -57,11 +57,14 @@ At P08's close, no peer process had committed output. P08 recorded the interface
 | `P08-BD-03` | May the platform hold a rate source, or must every tenant supply its own? |
 | `P08-BD-04` | Are the accounting event and the posting instruction stored objects, or an append-only log? |
 | `P08-BD-05` | Which of the 22 reference roots does SMEsPlus target? |
-| `P08-BD-06` | Is the year-end result posted, or derived at report time? This determines whether a year can be reopened at all. No reference implementation exists either way. |
+| `P08-BD-06` | Is the year-end result posted, or derived at report time? This determines whether a year can be reopened at all. **A reference implementation of the derived option exists and is described in this package; none of the posted option was found, class `B`.** *(Premise corrected after independent review.)* |
 | `P08-BD-07` | Does the FX ruling's prohibition extend to the earliest-rate-ever substitution, not only to parity? |
 | `P08-BD-08` | Must reporting resolve a measurement identically to posting? |
 | `P08-BD-09` | Is an analytic dimension a fact or an attribution? |
 | `P08-BD-10` | The sequencing question of `P08-CONTRA-15`. |
+| `P08-BD-12` | Does SMEsPlus hold a consolidation ledger with its own posted eliminations, minority-interest allocations and cumulative translation adjustment, or is consolidation a pure derivation with no adjustment capability? Raised by independent review, which observed the package's own consolidation requirement left eliminations with no home. |
+| `P08-BD-13` | What is a company's functional currency, may it change, and where does a cumulative translation adjustment sit? |
+| `P08-BD-14` | Does SMEsPlus carry a parallel cash-basis measurement, or does one ledger serve both bases? Related to `P08-BD-11`. |
 | `P08-BD-11` | How many measurement bases must SMEsPlus carry over one set of accounting events, and in what form — parallel books, parallel valuations on one fact, or a derived adjustment layer? Raised by P04's re-opening of the tax-book gap. |
 
 Each of these is normative, not factual. Further research cannot resolve any of them, which is why they are recorded here rather than left open as unknowns.

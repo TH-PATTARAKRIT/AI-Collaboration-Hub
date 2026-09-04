@@ -23,7 +23,20 @@ Session `SMEPLUS-26-09-04-ACC-P08-R2R-REV2-001` · Layer 1 · evidence in `LAYER
 
 `JPM-10` — **The parameter is caller-supplied and unfiltered.** The framework's remote-call entry point pops the caller's context dictionary and applies it wholesale to the object being acted on; no allowlist, denylist, key validation or type check was found at the dispatch layer. `FACT VERIFIED` for the dispatch mechanism; the negative on filtering is `B NOT FOUND IN SEARCHED SCOPE` — scope: the framework's call entry point, its model-service layer, and its HTTP layer.
 
-`JPM-11` — **No database constraint enforces per-entry balance.** `A VERIFIED ABSENCE`, scope = the declared constraints and table-initialisation routines of the entry and item models. Database-level constraints that *do* exist: a unique index on (entry number, book) restricted to posted, non-placeholder entries; a check that debit and credit are not both non-zero on one item; and a check that the reporting-currency and transaction-currency amounts agree in sign.
+`JPM-11` — **No database-level object enforces per-entry balance.** **Re-issued after independent review on an amended pattern**, because the original pattern could not have falsified the claim: a row-level check constraint cannot aggregate across rows, so a real balance constraint could only be a trigger, a constraint trigger, or a deferred/exclusion construct — none of which the original pattern matched. The amended pattern is the union of (i) declared check-constraint bodies containing a sum over debit, credit or balance, (ii) trigger creation, and (iii) deferred or exclusion constructs, over program and schema files, across **all 22 declared roots**. Result: **0, 0 and 0 in 22 of 22**. The framework demonstrably can emit an exclusion constraint — it does so elsewhere for an unrelated domain — so the capability exists and is not used for the ledger. `A VERIFIED ABSENCE` on the amended pattern.
+
+`JPM-11a` — **The persistence-layer object set, enumerated properly.** The draft asserted "four objects below application code" and stated it two contradictory ways in two files. Corrected enumeration — POPULATION: every database-level integrity object attaching to the entry, the item and the two settlement tables; PATTERN: declared check constraints, index-creation routines, and every foreign key in or out of those tables with its delete behaviour resolved to the framework default; PATH SET: the target root's non-test program files; UNIT: one database object:
+
+| Object class | Count |
+|---|---|
+| Check constraints | **4** — all on the item: debit/credit exclusivity, sign coherence between the two currency amounts, account-required on accountable lines, and null-forcing on presentation lines. **Zero on the entry. Zero on either settlement table.** |
+| Unique indexes | **1** — the partial index on (number, book) |
+| Explicit non-unique indexes | 12 |
+| Incoming foreign keys to those four tables | 46 — of which **6 cascade**, 3 restrict, 37 null out |
+| Outgoing foreign keys from the item | 19 — of which **2 cascade** (to the entry, and to the account) |
+| Triggers, deferred or exclusion constructs | **0**, in 22 of 22 roots |
+
+Two consequences the draft missed in both directions. **Protective:** the settlement record's two item references are required with no explicit delete behaviour, which resolves to **restrict** — so an item participating in a settlement cannot be deleted at the database layer whatever the application does. That is the *only* database-level object in the system protecting an accounting relationship, and the package had asserted there was none. **Destructive:** the item's references to its entry and to its account both **cascade**, so deleting either destroys the items, and the analytic line cascades from the item in turn.
 
 **Consequence.** The defining invariant of double-entry bookkeeping is the *weakest* control in the kernel, while four lesser per-item rules are genuine database constraints. This inversion was reported in prior Wave A work; P08 reproduces it independently and adds the dispatch-layer evidence that makes the suppression caller-reachable rather than merely internal.
 
@@ -33,11 +46,11 @@ Session `SMEPLUS-26-09-04-ACC-P08-R2R-REV2-001` · Layer 1 · evidence in `LAYER
 
 `JPM-13` — That protection is itself waived by a caller-supplied context key, used at seven places in product code. `FACT VERIFIED`.
 
-`JPM-14` — Attributes **not** protected include the entry number, the external reference and the narrative. On the item side, only tax attributes are unconditionally frozen; account, amount, counterparty and label remain writable on a posted item whenever the period is open and the item is unmatched. `FACT VERIFIED`.
+`JPM-14` — Attributes **not** protected include the entry number, the external reference and the narrative — though the first two are tracked, so an edit to them leaves a chatter trail, deletable while the retention option is off; the narrative is not tracked and leaves nothing. On the item side, only tax attributes are unconditionally frozen; account, amount, counterparty and label remain writable on a posted item whenever the period is open and the item is unmatched. `FACT VERIFIED`.
 
 `JPM-15` — **Items can be added to a posted entry.** The deletion path checks the parent's posted state; the creation path does not. Adding balanced pairs to an already-posted entry is not refused, and the period check on that path fires only for items that would move a tax return. `FACT VERIFIED`.
 
-`JPM-16` — **A journal item's parent entry is mutable.** A link command on the entry's item collection re-parents an existing item from one entry to another; both entries are added to the balance container, so the operation succeeds whenever both remain balanced. `FACT VERIFIED`.
+`JPM-16` — **A journal item's parent entry is mutable**, and the mechanism is asymmetric in a way the draft missed. Both a link command **and a set command** on the entry's item collection re-parent an existing item; both entries enter the balance container, so the operation succeeds whenever both remain balanced. **The posted-record guard iterates only the entry being written**, so the *source* entry is never checked: writing the item collection of a **draft** entry can take an item out of a **posted** entry with no suppression key at all. Re-parenting *into* a posted entry does require the key. `FACT VERIFIED` — sharpened by independent review.
 
 ## 4. The seal
 
@@ -60,9 +73,14 @@ Session `SMEPLUS-26-09-04-ACC-P08-R2R-REV2-001` · Layer 1 · evidence in `LAYER
 
 ## 6. Deletion
 
-`JPM-26` — Three independent guards exist and each has a defeat: the chain guard is waived for any administrator, for any company in simplified-entry mode, and by a caller-supplied key; the retention guard depends on a company setting that is **off by default** and is waived by the same key; the seal guard applies only where sealing was enabled. `FACT VERIFIED`.
-`JPM-27` — On a default configuration a posted entry that happens to be last in its number chain is deletable by an ordinary billing user. `SUPPORTED INTERPRETATION`, built on `JPM-26` and the permission finding below.
-`JPM-28` — The evidence of a forced deletion is a **server log line**, not a database record. `FACT VERIFIED`.
+`JPM-26` — **Five** independent guards exist — two at entry level and three at item level — and the entry-level pair each has a defeat. *(Corrected after independent review: the draft counted three and omitted the three item-level guards entirely.)* The entry-level pair: the chain guard is waived for any administrator, for any company in simplified-entry mode, and by a caller-supplied key; the retention guard depends on a company setting that is **off by default** and is waived by the same key; the seal guard applies only where sealing was enabled. `FACT VERIFIED`.
+`JPM-27` — **Corrected after independent review.** The draft said a posted entry last in its number chain "is deletable by an ordinary billing user". That conflates two paths and is wrong for one of them:
+- **Through the ordinary delete action: refused.** The entry's deletion cascades to its items without adding the suppression key, and the item-level guard refuses deletion of an item whose parent is posted. The path requires a prior return-to-unposted.
+- **Through a caller supplying the suppression key: reachable**, and then all five guards are defeated at once.
+`SUPPORTED INTERPRETATION` for the second path, which was not executed.
+`JPM-28` — **Corrected after independent review, and the truth is worse than the draft stated.** The routine that builds the deletion log message filters to entries whose company has the retention option **enabled**. On a default installation that option is off, so a forced deletion of a posted entry leaves **no log line and no database record — no evidence at all**. The draft's "the evidence is a server log line" describes only the non-default case.
+
+`JPM-28a` — **Against that, one real audit record does survive, and the draft missed it.** Deleting an *item* from an entry that has been posted before writes a tracked-field message onto the entry, **unconditionally**, independent of the retention option. That is a database record, not a log line. Its boundary: when the whole entry is deleted the message dies with it, and such messages are themselves deletable while the retention option is off. `FACT VERIFIED`.
 `JPM-29` — The item-to-entry and item-to-account references both carry database-level cascade deletion; the application guard protecting an account with postings is declared not to apply during module removal. `FACT VERIFIED`; the cascade consequence is `SUPPORTED INTERPRETATION`.
 
 ## 7. Authorisation

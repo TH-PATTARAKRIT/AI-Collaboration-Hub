@@ -54,7 +54,7 @@ The chart layer contributes three answers to *what is the accounting source of t
 | `P08-RQ-COA-05` | Number uniqueness and number visibility must share one scope. A refusal must never disclose an object outside the requester's visibility. | COA-05 |
 | `P08-RQ-COA-06` | The number-per-entity contract must be settled explicitly: either the number is a tenant/entity attribute or a group attribute. The benchmark's split between a per-entity interface and a per-root store is a defect, not a model. | COA-06, COA-07 |
 | `P08-RQ-COA-07` | Account merge must not exist as a data-manipulation operation on a posted chart. If a merge capability is required, it must be a mapping, leaving both identities intact. | COA-21, COA-22 |
-| `P08-RQ-COA-08` | Control-account status must be a declared property with its own posting restrictions — see `P08_MANUAL_GL_CONTROL.md`. | COA-13 |
+| `P08-RQ-COA-08` | Control-account status must be a declared property with its own posting restrictions — see `07_P08_MANUAL_GL_CONTROL.md`. | COA-13 |
 
 ## 4. Open items carried to the registers
 

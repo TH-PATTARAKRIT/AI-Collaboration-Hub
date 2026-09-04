@@ -44,7 +44,7 @@ P08 owns the ledger, not the producing processes. This register therefore enumer
 | `BE-22` | Intercompany counterpart document created | P01 / P02 boundary | a document appearing in another company's books without that company's action |
 | `BE-23` | Opening balance loaded | migration track | the only posting with no business event behind it |
 
-Twenty-three events, of which **P08 owns three** (`BE-19`, `BE-20`, `BE-23`) and the ledger contract for the other twenty.
+Twenty-three events, of which **P08 owns two outright** (`BE-19`, `BE-20`), **shares one with the migration track** (`BE-23`, whose ledger form P08 owns and whose data P08 does not), and owns **the ledger contract for the other twenty**. *(Corrected after independent review, which found this file assigning `BE-23` to the migration track in one column and to P08 in the next sentence.)*
 
 ## 4. What the ledger requires of every producer
 
