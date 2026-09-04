@@ -212,6 +212,27 @@ deployed.**
 
 ---
 
+## 9. Evidence publication — declared, not assumed
+
+> # `GITHUB EVIDENCE PUBLICATION NOT VERIFIED`
+> # `JIRA EVIDENCE PUBLICATION NOT VERIFIED`
+>
+> **Per the round instruction §18, session completion is NOT claimed.**
+
+The package is committed on `research/account-wave-a-mcc-2026-09-04-001` with the parent commit
+verified as an ancestor and a clean working tree. **The push was refused by the executing harness's
+permission classifier**, and `git ls-remote` independently confirms the branch is absent from
+`origin`. **No workaround was attempted.**
+
+Jira reachability was **tested, not inherited**: the connector is authenticated and holds write
+scope, and the governing issue is `ERPPLUS-138` (status `To Do`). **No comment was posted**, because
+its purpose is to point at a published package and the package is not published — a comment citing a
+non-existent branch is the fabricated evidence trail §18 forbids.
+
+Full detail, remedy command and the address the branch will occupy: **`MCC_L_PUBLICATION_STATUS.md`**.
+
+---
+
 > ### FIGURE-GOVERNANCE NOTICE
 > `MCC_00_CANONICAL_FIGURES_REGISTER.md` governs every published figure and disposition in this
 > package. Where a figure here differs from a row in `MCC_00`, **`MCC_00` governs**.

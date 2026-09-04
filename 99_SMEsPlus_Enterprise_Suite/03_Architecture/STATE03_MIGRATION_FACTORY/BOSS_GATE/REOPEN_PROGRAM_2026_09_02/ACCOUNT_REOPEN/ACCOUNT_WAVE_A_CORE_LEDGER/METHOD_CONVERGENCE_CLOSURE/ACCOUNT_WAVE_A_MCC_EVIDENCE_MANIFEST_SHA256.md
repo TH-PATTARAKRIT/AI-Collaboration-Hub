@@ -2,7 +2,7 @@
 
 Session `SMEPLUS-26-09-04-ACCOUNT-WAVE-A-MCC-001` · Branch `research/account-wave-a-mcc-2026-09-04-001`
 Parent commit `33cdc6fa009c4eafcca543c253ccad19e97fd0dc`
-Generated 2026-09-04T06:26:16Z UTC
+Generated 2026-09-04T06:38:34Z UTC
 
 > Reproduce with: `shasum -a 256 <file>` from the package directory.
 > The manifest excludes itself.
@@ -11,7 +11,7 @@ Generated 2026-09-04T06:26:16Z UTC
 
 | SHA-256 | Lines | File |
 |---|---|---|
-| `06b644b877c13d2b1a970dde87485d464167052fe3761cd04119a99c0bbdd126` | 222 | `ACCOUNT_WAVE_A_MCC_FINAL_GATE_REPORT.md` |
+| `0b0acd7c72996e7457a4716f0b191ba976c9b893d5096ad03dcbe91baf6f3907` | 243 | `ACCOUNT_WAVE_A_MCC_FINAL_GATE_REPORT.md` |
 | `555dcc148d14798acdc01ce708bff128113d9fede2ed3cfdb67185d062b1fec3` | 171 | `ACCOUNT_WAVE_A_MCC_MASTER_RECONCILIATION.md` |
 | `b340efddb2a6ade19607f159f363a02927173228839b6d5c75c2f3d070374a9a` | 84 | `MCC_00_CANONICAL_FIGURES_REGISTER.md` |
 | `bd9eb6f24877bd614ec66017b7111a8a84ff86eab82d146e1cacdf341ae084f3` | 218 | `MCC_A_CANONICAL_BASELINE_RECONCILIATION.md` |
@@ -25,6 +25,7 @@ Generated 2026-09-04T06:26:16Z UTC
 | `7f086a059fe23c49a03db27aa8f40d5b7f100fa2a02995a2ab5cbc07a87621c8` | 174 | `MCC_I_MC01_MC10_TARGETED_RERUN.md` |
 | `b0d7486e9283b9e4431dfd77d7878106d12b9ab3b9504159cdb419580bbc90df` | 311 | `MCC_J_FRESH_EXPERT_AND_AUDIT_CHALLENGE.md` |
 | `f86f9e5af1327ada97135db258e63130d541ff0728e3157c24f9a6594bbba118` | 259 | `MCC_K_REUSABLE_METHOD_DELTA.md` |
+| `4f78be346ceb58ade06508770b57977586e1362b990ca1d539c20958fb93c3d4` | 104 | `MCC_L_PUBLICATION_STATUS.md` |
 
 ## Layer 2 — audit quarantine (vendor tokens; Boss / PMO / AI-Audit only)
 
@@ -46,9 +47,9 @@ Generated 2026-09-04T06:26:16Z UTC
 
 | Measure | Value |
 |---|---|
-| Files | **25** |
-| Lines | **4329** |
-| **Roll-up digest** (SHA-256 of the sorted per-file digest list) | `a4fdfc9486d6de0f26da728493945031318ca67d59e02d07ed8a78910108c481` |
+| Files | **26** |
+| Lines | **4454** |
+| **Roll-up digest** (SHA-256 of the sorted per-file digest list) | `7ca5a2af4b01e15de774b62ff1d59e4156043d426384960f80d1c5a00ac27752` |
 
 ## Parent-package integrity — verified unmodified by this session
 
