@@ -57,18 +57,18 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `04_P04_ASSET_TO_GL_MATRIX.md` | `f97d5e4239b9fd1eb4ed4bbce5a03173185f2df336ec5c9f234c30b944531dd6` |
 | `05_P04_ASSET_EQUIPMENT_RELATIONSHIP.md` | `196e3ffd03beeb7336aa7b97040144605dd005bd7af32e7280fa2de48b39d703` |
 | `06_P04_DEPRECIATION_COST_HANDOFF.md` | `36608d4e537b31990d1f446ccdd0f9360dbc7d01f166c9ebb42772417fcaf958` |
-| `07_P04_DISPOSAL_DERECOGNITION_MATRIX.md` | `bea9fb94c1451fbfe4725730cbaa5e36bf0302d4fa6f16f64106c5384d5fcd05` |
+| `07_P04_DISPOSAL_DERECOGNITION_MATRIX.md` | `73498c37afaceb7557a1a4f304eeb7a53c943bf77364926f85e69038c756b413` |
 | `08_P04_PRIOR_EVIDENCE_RECONCILIATION.md` | `e5970d358e188c1e0f5b99c8138f5cb09610b09885bf6b80ea51be4fbef780fe` |
 | `09_P04_BOSS_DECISION_REGISTER.md` | `ed7c666609c4671dff808d313b7eab6f79303903dd99b3e8abab5c29007c8005` |
-| `10_P04_BLOCKER_REGISTER.md` | `a18acaed6b99550d4721f1e12f3c403cc644ef51ec7017db25b00aac9b6e0010` |
-| `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `f183a608b61f973683a9aa7188954c0b92971749a368b2fe2ea68bbc28009ab4` |
+| `10_P04_BLOCKER_REGISTER.md` | `ee89f200827d2c7f1d1889df2eb2a3b8d264caf2f5ae8572e99579ee55c83891` |
+| `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `cac12acde576a0c431697b6cac9171eda524d18bd66332e9b939bd5978ad6374` |
 | `12_P04_CONTRADICTION_REGISTER.md` | `4a54d8b13cfff34602ef2d1c9a2c10b8a43934ff943dfaf4cad6904874038e79` |
-| `13_P04_SOURCE_LINK_REGISTER.md` | `cb8fee7cc20895013fe958800238d53787873b844806fc12391e77293ce883b4` |
+| `13_P04_SOURCE_LINK_REGISTER.md` | `69084e95d38bd5840ba34f87fc25dba792143eaa6e199797220e390ef8c4e652` |
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
 | `16_P04_AAS_PLUS.md` | `b8ddb76b3179fcd52047e71ade1f5ed7826782db44c138ac05752d9774e8627f` |
 | `17_P04_PMO.md` | `5396e1533e92025316d8a3cb63df538321486b97ec4664309a3eddf69731db9e` |
-| `18_P04_REVISION_LOG.md` | `b318c0eba766fce9be7c79fcc98068fdce6d0ac81c91f3f55c581ab3bdaf7ddd` |
-| `19_P04_CORE_RECON_HANDOFF_PACK.md` | `f0bc531d02e68857c9577e710026ed74b9084766041b6506a184862d66203b6a` |
+| `18_P04_REVISION_LOG.md` | `920fc7e6a0a882130fc532aba221ac9c19e663453a8bb16487e33664821eaa68` |
+| `19_P04_CORE_RECON_HANDOFF_PACK.md` | `b7ecee10f8bf9da61cab652452af17dcecd59835234dd510eed66617479e2b34` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `2668029b796086ba37f4bbf940cac5f3a126e990c8e7991aeccd5d648c92ad32` |
 
 ## 3. Evidence roots and their bounds
@@ -86,15 +86,15 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **67** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`) |
+| Findings (`P04-F-nn`) defined | **68** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`) |
 | Blockers (`P04-B-nn`) — register rows | **44** — 3 re-registered from the handover residue, 41 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
-| Revisions | 13 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
-| Recurrences of the bounded-enumeration defect | **at least 6 across 5 actors**, reconciled with P11 after both sessions published counts over undeclared populations — `18` §5 |
+| Revisions | 14 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
+| Recurrences of the enumeration / unit defect | **7 instances across 4 actors**, executed row by row. The seventh is **this package's own earlier arithmetic**, which counted instances as actors, was published twice, and survived a reconciliation exchange about counting — `18` §5, `P04-REV-14` |
 | Expert disagreements preserved | 4 new · 7 inherited and re-opened · 2 between this session and the independent reviewer |
 | Scope determinations | 14 objects and 10 operations classified; 2 on **HOLD — SCOPE EVIDENCE REQUIRED** |
 | Peer dependencies | 8; findings published to 5 owning sessions. **P11 and P07 replied**: P11 answered 2 (**still open**) and returned twice more; P07 dispositioned 3 and returned 2 to P04 — both routed to Boss, both holds confirmed rather than lifted (`11` §6.1) |
-| Statutory sources retrieved this session | **7** |
+| Statutory sources | **7 retrieved by this session · 1 taken in as peer-published** (`P04-LAW-H`, retrieved by P07; reliance stated) |
 
 Every count in this table was produced by executing a match over the package,
 not by carrying a figure forward. Two counts in earlier drafts were quoted

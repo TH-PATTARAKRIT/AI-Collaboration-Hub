@@ -273,6 +273,45 @@ addressed**, and researched immediately rather than left open.
 | **P04-LAW-05** | Because consideration is **not** required by the definition, **a disposal by donation is also a sale** for VAT purposes | **FACT VERIFIED** as to the definition; **SUPPORTED INTERPRETATION** as to the tax base and any exemption, which were not researched |
 | **P04-LAW-06** | Applying an asset to a non-business purpose, an asset **missing from the record**, and assets **remaining on cessation** are each deemed a sale under a sub-paragraph, with (ง) governed by criteria issued by the Director-General that this session did not retrieve | **SUPPORTED INTERPRETATION** — the deeming provisions are verified; their scope for fixed assets is not |
 
+#### 5.5.1 The safe harbour, retrieved by P07 — and it does not shelter disposal
+
+P07 retrieved the Director-General announcement this package and P07 had both
+been holding as the missing evidence: **ประกาศอธิบดีกรมสรรพากร เกี่ยวกับ
+ภาษีมูลค่าเพิ่ม (ฉบับที่ 2)**, 25 ธันวาคม 2534, in force 1 มกราคม 2535
+(`P04-LAW-H`, retrieved by P07 and taken in as peer-published). Operative text:
+
+> ผู้ประกอบการจดทะเบียนนำบริการหรือนำสินค้าไปใช้ในการผลิตสินค้า การให้บริการ การบริหารงานของกิจการ
+> หรือเพื่อประโยชน์ของทรัพย์สินที่มีไว้ในการประกอบกิจการให้บริการของตนเอง **ทั้งนี้ ต้องเป็นการใช้ในกิจการ
+> ที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม**
+
+**An unresolved ambiguity is carried, not smoothed over.** P07 reports the
+announcement is **cited to มาตรา 77/1 (10)(ก)** — the *services* limb — while its
+operative text names **นำบริการหรือนำสินค้า**, services *or goods*. Whether it is
+also the prescribed criteria under **(8)(ง)** for goods is **not settled by its
+own text**, and P07 found **no separate announcement issued under (8)(ง)**.
+Neither session resolves that by inference.
+
+**Two consequences hold on either reading of the ambiguity, and both bear
+directly on the retire paths:**
+
+| # | Consequence | Effect here |
+|---|-------------|-------------|
+| 1 | The safe harbour is conditioned on use **in a VAT-liable business** (*ต้องเป็นการใช้ในกิจการที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม*) | It **does not reach** use in an exempt business |
+| 2 | It covers **use** (*นำ…ไปใช้*), **not transfer** | **Donation and scrapping fall outside it entirely**, however the (10)(ก) versus (8)(ง) question resolves |
+
+> **P04-F-69.** The estate's no-proceeds disposal path — the only way to record a
+> donation, a scrapping or a write-off — is **not sheltered by the self-supply
+> safe harbour**, because that harbour covers *use* and these are *transfers* or
+> *destructions*. The exposure recorded at `P04-F-63` therefore **survives the
+> retrieval that might have closed it**, and survives it on the plain text
+> rather than on the unresolved limb question.
+> Class: **FACT VERIFIED** as to the announcement's scope (peer-retrieved, text
+> quoted); **SUPPORTED INTERPRETATION** as to the tax outcome, which still needs
+> the exemption list and the unresolved (8)(ง) question.
+
+`P04-B-39` is **narrowed, not closed** — matching P07's own disposition of its
+`U-23`.
+
 #### What this does to the estate's two retire paths
 
 | Path | VAT consequence | Estate behaviour | Verdict |

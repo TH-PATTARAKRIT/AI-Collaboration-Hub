@@ -28,6 +28,7 @@ streams, and in itself.
 | **P04-REV-10** | An internal consistency check across the package found **five blocker identifiers referenced in one file and absent from the blocker register** — asset tagging and physical verification, component depreciation, third-party compensation, the received-not-billed recognition gap, and value-added tax on the sale of a fixed asset | They were registered as `10` §7A. The check itself is the point: a register that other files cite but do not populate is exactly how an open item stops appearing. The same defect this package documents across three prior packages (`08` §5) was present in its own first draft, and was caught by executing a cross-reference rather than reading the register |
 | **P04-REV-11** | The **independent adversarial reviewer** asserted that this package's lock-date evidence citation was disproved — *"no such test exists"* — having enumerated the lock-date occurrences in the asset module's **main test file** only | The test exists, in the module's **board-computation** test file. It sets a fiscal-year lock of 30 June 2021 and asserts a 31 December 2020 entry of 12 000 posting as **31 July 2021** — seven months later, into the following fiscal year, at full value. Every particular the review called wrong is right. **This is the third instance in this session of an enumeration bounded to a subset of its own population producing a confident false negative** — and it was committed by the reviewer briefed specifically to catch that defect. The reviewer's *methodological* point was adopted: the citation now names the test and its file |
 | **P04-REV-12** | One finding carried **two identifiers** — `P04-F-18` and `P04-F-23` were the same blank-account-drops-a-leg finding, both cited downstream | Merged onto `P04-F-23`; `P04-F-18` **withdrawn**, with the withdrawal stated at the surviving row rather than silently deleted |
+| **P04-REV-14** | This package's own recurrence table published *"five times, from five different actors"* and then *"six instances across five actors"* — **counting instances as actors**. Two rows are the same actor, and so are two others | Corrected to **7 instances across 4 actors**, with the arithmetic executed row by row rather than asserted (§5). The error was published **twice**, survived a full reconciliation exchange with P11 **about counting**, and was caught only when a peer's message put pressure on the number. Registered as the **seventh instance of the class it documents**, and the correction sent to P07, whose proposed method standard had inherited it |
 | **P04-REV-13** | Twenty-two further corrections adopted from the independent review, itemised at `16` §3.1 — including the old denominator surviving in `01`, a mechanism count not reproducible from its own declared unit, a false mechanical negative, an under-scoped field count, an over-claimed uncertainty, a mis-located contradiction, an over-strong analytic claim, a missed disposal-side consequence, two new blockers, a governance file certifying files that did not exist, and a quoted blocker count in the file that certifies denominator discipline | All corrected in place. Two — `P04-B-40` and `P04-B-41` — are **new blockers of material severity** that this session would not have found |
 
 ## 3. Method rules this session enforced on itself
@@ -62,39 +63,61 @@ received during execution.
 
 ## 5. The recurrence this session should be remembered for
 
-The same defect — **an enumeration bounded to a subset of its own population,
-producing a confident false negative** — occurred five times, from five
-different actors, none of them careless:
+The same defect — **an enumeration bounded to a subset of its own population, or
+counted over an undeclared or conflated unit, producing a confident false
+statement** — occurred **seven times**, from **four distinct actors**, none of
+them careless.
+
+**The seventh instance is this table's own earlier arithmetic**, and it is the
+reason the counting is now spelled out row by row.
 
 | # | Actor | Instance |
 |---|-------|----------|
 | 1 | A parallel research stream in this session | Counted 46 custom modules and concluded *"no custom module touches the asset domain"*. False; there are two |
-| 2 | This session's own first draft | Cited five blocker identifiers it never registered (`P04-REV-10`) |
+| 2 | **This session**, first draft | Cited five blocker identifiers it never registered (`P04-REV-10`) |
 | 3 | The **independent adversarial reviewer**, briefed specifically to catch this | Declared the lock-date citation disproved, having searched one of two relevant test files (`P04-REV-11`) |
-| 4 | This session again | Counted a routing model's fields in one file without following its four inheritors (`16` §3.1 item 4) |
+| 4 | **This session**, again | Counted a routing model's fields in one file without following its four inheritors (`16` §3.1 item 4) |
 | 5 | **P11**, reported by P11 | Its peer-intake script was inert by construction, so its empty result was an artefact rather than a measurement |
-
 | 6 | **P11**, self-logged as `P11-E-15` | Published a count of these instances **without declaring its population** — in the file arguing that counts must declare their population |
+| 7 | **This session**, again — `P04-REV-14` | Published *"five times, from five different actors"* and then *"six instances across five actors"*, when rows 2 and 4 are the **same actor** and rows 5 and 6 are the **same actor**. **Instances were counted as actors.** Published twice, and it survived an entire reconciliation exchange with P11 **about counting discipline** without either session noticing |
 
-**The two tallies are now reconciled**, and the reconciliation is more instructive
-than either number. P11 and P04 published different counts of one phenomenon.
-P11 then declared both populations: P11's was *"instances recorded in a P11
-register"*; P04's was *"instances observed by or reported to P04"*. **Neither is
-a denominator of the other.** Under P04's population, P11's own undeclared count
-is a sixth instance; under P11's, it is not an instance at all — which is
-precisely why the unit had to be declared before either tally could be read.
+**Executed arithmetic, since asserting it is what went wrong:**
 
-**Reconciled statement: at least six instances across five actors — and the one
-count that was not executed is the one still being argued about.**
+| Actor | Instances |
+|-------|-----------|
+| A parallel research stream | 1 |
+| **This session (P04)** | **3** — rows 2, 4, 7 |
+| The independent adversarial reviewer | 1 |
+| **P11** | **2** — rows 5, 6 |
+| **Total** | **7 instances · 4 distinct actors** |
 
-The point is that three sessions, one adversarial reviewer and one author all
-committed it inside a programme whose standing rule already names it — and that
-every instance was caught the same way: **by executing the count, or by reading
-the source, rather than by reading the report**.
+### The reconciliation with P11, and what it did not catch
 
-That is the argument for the positive-control rule in §3, and it is the strongest
-evidence this package can offer for why the independent-review requirement is not
-a formality.
+P11 and P04 published different counts of one phenomenon. P11 declared both
+populations — P11's *"instances recorded in a P11 register"*, P04's *"instances
+observed by or reported to P04"* — and neither is a denominator of the other.
+That reconciliation was correct as far as it went, and **both sessions were
+arguing about the population while the unit was wrong in P04's own table.**
+Declaring a population does not save a count whose **unit** is conflated.
+
+**Reconciled statement: seven instances across four actors — and the count that
+took longest to correct is the one inside the section about counting.**
+
+### Why it is recorded rather than quietly fixed
+
+P07 has taken P04's figure into a proposed programme method standard, where it
+reads as *"nine actors across two domains"*. That figure inherits this error:
+P07's four instances plus P04's five **instances** were added, and the sum was
+labelled **actors**. The correction has been sent to P07 for that reason —
+an error in a method standard about counting would be worse than the error it
+corrects.
+
+The point stands and is sharper for the seventh instance: three sessions, one
+adversarial reviewer and one author all committed this inside a programme whose
+standing rule already names it. Every instance was caught the same way — **by
+executing the count, or by reading the source, rather than by reading the
+report** — and the last one was caught only because a peer's message put pressure
+on a number nobody had re-executed.
 
 ## 6. One consequence of the scope correction worth stating
 

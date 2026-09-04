@@ -262,6 +262,32 @@ discipline and it is worth recording as the standard.
 | **`P04-B-05` declined** — TAS 23 is an accounting-standard question, not a tax one | **Accepted.** Ownership corrected: it returns to the accounting track / P04 and is no longer routed to P07 |
 | A method note: P07 hit the **identical** secondary-summary-contradicts-primary-text defect on the same day | **Adopted as a named defect class**, `18` §3 |
 
+### 6.2.1 P07's second return — the retrieval paid off, and the method register got filed
+
+P07 returned again (`e0795e5`). It **re-retrieved s.87 itself** rather than adopt
+P04's reading, confirmed it, and carried P04's FACT VERIFIED / SUPPORTED
+INTERPRETATION split **unchanged and attributed** — including the failure
+condition, stated in P07's register as well as P04's: *if the announcement on the
+report's contents sweeps in assets, P04's refinement fails and P07's original
+route stands.*
+
+| What came back | What P04 did with it |
+|----------------|----------------------|
+| **The route correction verified and adopted.** P04 was right that (จ) is anchored to a report a fixed asset in use is not an entry in | Recorded. `P04-F-67` unchanged in classification |
+| **`P04-LAW-H` retrieved** — the self-supply safe harbour. P04's prediction that one retrieval would advance both blockers held | Adopted as **peer-published**, with the reliance stated: P04 did **not** independently retrieve it and relies on P07's quotation. `07` §5.5.1 |
+| An **unresolved ambiguity carried, not smoothed**: the announcement is cited to the *services* limb while its text names services *or goods*, and no separate announcement under the goods limb was found | Carried open, unresolved, by both sessions. Neither infers |
+| Two consequences that hold **on either reading** — the harbour needs a **VAT-liable** business, and it covers **use, not transfer** | **The load-bearing result.** Donation and scrapping fall outside the harbour, so `P04-F-63`'s exposure **survives the retrieval that might have closed it**. `P04-F-69` |
+| **`U-26`** — the prescribed contents of the s.87(3) report — **attempted and not located** | Correct discipline, and it **anchors P04's classification**: `P04-F-67` stays SUPPORTED INTERPRETATION rather than drifting upward |
+| The **method register filed** — P07 had a route, P04 did not — as `SMEPLUS_EVIDENCE_SUBSTITUTION_STANDARD_PROPOSED.md`, marked **PROPOSED / NOT ADOPTED**, on P07's unmerged branch, with §5 stating plainly that P07 violated the proposed classes five times in the round that produced them | Noted with approval, and **one correction sent** — see below |
+
+**The correction P04 owed P07.** P07's Class 2 tally reads *"nine actors across
+two domains"*: P07's four instances plus P04's five. **P04's five were
+instances, not actors** — and P04's own table had mislabelled them, which is
+`P04-REV-14` and the seventh instance of the class. The corrected P04 figure is
+**7 instances across 4 actors**. Sent to P07 immediately, because an arithmetic
+error inside a proposed method standard **about counting** would be worse than
+the error it exists to correct.
+
 **One thing P04 does not adopt uncritically.** P11 counts this session's
 60/46/65 enumeration as *"the fourth independent instance in the programme and
 the second in this session"*. P04's own count for this session is **three**
