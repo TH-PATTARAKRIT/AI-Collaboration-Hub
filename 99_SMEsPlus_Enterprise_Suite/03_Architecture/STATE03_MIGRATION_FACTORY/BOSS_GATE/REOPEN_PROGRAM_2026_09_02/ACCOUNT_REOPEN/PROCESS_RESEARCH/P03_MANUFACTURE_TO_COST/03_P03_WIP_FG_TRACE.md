@@ -49,6 +49,13 @@ Result — 6 occurrences, 4 files:
 | `mrp_subcontracting_account/models/stock_move.py:31` | **splits the credit — relieves it, for subcontracting only** |
 | `mrp_subcontracting_account_enterprise/report/mrp_cost_structure.py:27` | report read |
 
+**The documentation states the inverse of the behaviour.** The production-account field's
+help text (`mrp_account/models/product.py:126-128`) reads: *"If there are any
+workcenter/employee costs, this value will remain on the account once the production is
+completed."* Work-centre and employee costs are **exactly what `_post_labour` clears**. The
+residue that genuinely remains — `extra_cost` — is not mentioned. A reader following the
+help text looks for the balance in the wrong place. Raised by P04, verified here — `25` §4.
+
 **Conclusion.** Subcontract `extra_cost` *is* relieved, by a different mechanism
 (`_generate_valuation_lines_data` splits the credit line between component cost and
 service cost, crediting the service half to the stock-input account). Manually entered
@@ -106,6 +113,18 @@ Step 3:  Production  Dr W                          ← posted anyway
 --------------------------------------------------
 Residual on Production:  Dr (R + W − standard×qty)
 ```
+
+**What the standard contains** — supplied by P04, verified here (`25` §4): the standard
+price is built by `_compute_bom_price` (`mrp_account/models/product.py:87-94`) from
+**planned** duration x `_total_cost_per_hour`, i.e. the work-centre rate plus, where the
+employee bridge is installed, the employee rate x ratio
+(`mrp_workorder_hr_account/models/mrp_routing.py:10-11`).
+
+So the mismatch is sharper than the arithmetic above alone shows:
+
+> **Standard overhead on *planned* duration is credited to the production account; actual
+> overhead on *actual* duration is debited to it. The difference is stranded, with no
+> variance account and no report line pointing at it.**
 
 The work-centre cost is **debited to the production account and credited to an expense
 account, while never entering inventory**. The expense account is relieved for a cost that

@@ -24,6 +24,11 @@ For manufacturing, three independent measures of the same economic reality exist
 
 **None of the three pairs reconciles.** `FACT VERIFIED`.
 
+**A fourth failure, internal to C** — added after P04 peer review. The analytic ledger does
+not reconcile **to itself**: `DC-14` distributes the identical value twice, over the
+work-centre distribution and the project distribution, with no plan-collision check. Where
+both resolve to one analytic account, C carries the work-centre cost twice. `25` §3.
+
 ## 3. Why this matters more than it appears
 
 The reference product provides a reconciliation surface — `action_view_stock_valuation_layers`

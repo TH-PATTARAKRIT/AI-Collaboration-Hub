@@ -32,6 +32,12 @@ evidence too.
 | `DC-11` | `_post_labour` resolves company-dependent accounts in the **user's** company, not the MO's | `FACT VERIFIED` | **Critical — tenant isolation** |
 | `DC-12` | Employee cost is converted at the currency rate **twice** in the cost-structure report | `FACT VERIFIED` | Medium — reporting only |
 | `DC-13` | Unbuild releases finished goods at the **first** valuation layer's unit cost | `FACT VERIFIED` | Medium |
+| `DC-14` | **The identical value is distributed twice into the analytic ledger** — work-centre distribution and project distribution, no guard, no plan-collision check | `FACT VERIFIED` (mechanism) | **High** |
+| `DC-15` | The labour relief entry writes an entry marker onto every time log and **never reads it as a guard** — no idempotence marker exists | `FACT VERIFIED` (absence) | Medium |
+
+`DC-14` and `DC-15` were raised by **P04 — Acquire-to-Retire** and independently verified
+from primary source before adoption. Full verification record, including where P03 rates
+`DC-14` **higher** than P04 does: `25` §3.
 
 ## 2. `DC-01` — one machine-hour, N injections · **the headline**
 

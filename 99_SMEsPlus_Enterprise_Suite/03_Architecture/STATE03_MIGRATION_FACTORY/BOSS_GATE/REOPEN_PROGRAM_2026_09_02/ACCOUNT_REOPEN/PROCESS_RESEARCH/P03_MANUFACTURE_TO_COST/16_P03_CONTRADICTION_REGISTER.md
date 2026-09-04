@@ -17,6 +17,7 @@ stronger claim than a defect and is used sparingly.
 | `CTR-P03-04` | The rate snapshot is honoured by every display path and ignored by every posting path | `04` §3 | **CONTRADICTED** |
 | `CTR-P03-05` | Capitalisation is gated on cost method; relief is gated on valuation mode | `mrp_account/models/mrp_production.py:63-64` vs `:74` | **CONTRADICTED** |
 | `CTR-P03-06` | A cost rate that produces a `COMPANY`-scoped financial effect sits on a record permitted to have **no company** | `mrp/models/mrp_workcenter.py:43` vs `:497` — `18` §4 | **CONTRADICTED** |
+| `CTR-P03-07` | **The production-account help text names as permanent the residue that is cleared, and omits the one that remains** | `mrp_account/models/product.py:126-128` vs `mrp_account/models/mrp_production.py:82-84` — `25` §4 | **CONTRADICTED** |
 
 ## 2. Gaps — absent rather than contradictory
 
@@ -41,6 +42,8 @@ stronger claim than a defect and is used sparingly.
 | `SCOPE-Q-01` | Analytic plan — `TENANT` or `COMPANY`? | **HOLD — SCOPE EVIDENCE REQUIRED** |
 | `SCOPE-Q-02` | Productivity-loss taxonomy — `PLATFORM` with tenant extension, or `TENANT`? | **HOLD — SCOPE EVIDENCE REQUIRED** |
 | `SCOPE-Q-03` | May one tenant's BOM reference another tenant's product? | **HOLD — SCOPE EVIDENCE REQUIRED** |
+| `UNR-P03-05` | Incidence of `DC-14` — whether both analytic distributions resolve to a common account in the target configuration | `UNRESOLVED` |
+| `UNR-P03-06` | Whether a second labour relief post is reachable — `DC-15` | `UNRESOLVED` |
 
 ## 4. Contradictions with **prior SMEsPlus evidence** — none
 
@@ -57,6 +60,21 @@ P03 checked its findings against the Asset, COGS, Inventory and Account Wave A l
 
 **No contradiction with prior SMEsPlus evidence was found.** Recorded explicitly, because a
 clean result on this check is itself a finding and its absence would have been material.
+
+### Peer cross-check — P04 Acquire-to-Retire
+
+| P04 claim | P03 result |
+|---|---|
+| Extra unit cost never relieved | **Agrees** — `DC-03`, reached independently |
+| Analytic ledger and GL disagree on one work order | **Agrees** — `DC-05`, reached independently |
+| The operation has no equipment field | **Agrees** — `04` §2, and Asset `07` §2 makes three |
+| Standard-costing GL mismatch | **Agrees**, and P04 supplies the standard's content — `03` §4 |
+| Nine monetisation paths vs P03's two | **Not a contradiction — a unit difference.** P03's `01` §3 declared no unit and is corrected; `25` §2 |
+| M5 is the weakest of the nine | **P03 dissents — it is stronger than P04 rates it.** `DC-14`, `25` §3 |
+| Equipment register is `TENANT`, company-optional correct | **Agrees for the register; P03 dissents on extending it to the asset.** `25` §6 |
+
+**One agreement corrected P03, one dissent is preserved for P11, and no claim was adopted
+without independent source verification.**
 
 ## 5. A correction this session applied to itself
 

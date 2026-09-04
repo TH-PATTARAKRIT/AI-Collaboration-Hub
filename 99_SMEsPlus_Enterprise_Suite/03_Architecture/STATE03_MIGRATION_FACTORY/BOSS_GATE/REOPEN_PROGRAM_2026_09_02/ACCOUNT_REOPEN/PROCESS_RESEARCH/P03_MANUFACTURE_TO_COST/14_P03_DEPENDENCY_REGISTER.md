@@ -24,6 +24,9 @@ rest of the session.
 | `DEP-10` | `BD-P03-01` — does SMEsPlus recognise manufacturing variance? | `AE-13`, `10` §6 | **Boss** | **BOSS CONTROLLED DECISION** |
 | `DEP-11` | Cross-process reconciliation of the scope determinations in `18` §3 | Whether P03's `TENANT` candidates bind P01–P10 | **P11** | **PEER DEPENDENCY OPEN** |
 | `DEP-12` | `SCOPE-Q-01` … `SCOPE-Q-03` — `18` §5 | `R-15`; the tenant/company split of analytic and taxonomy objects | P11 + business semantics | **HOLD — SCOPE EVIDENCE REQUIRED** |
+| `DEP-13` | **`SCOPE-02` / P04 `P04-B-35`** — count of work centres with no company | Closes the work-centre scope defect assigned to P03 by P04 | UAT runtime count | **HOLD — UAT REQUIRED**, one query |
+| `DEP-14` | Incidence of `DC-14` — do the work-centre and project analytic distributions resolve to a common account in the target configuration? | Magnitude of the analytic double distribution, not its existence | UAT / configuration | **UNRESOLVED** — `UNR-P03-05` |
+| `DEP-15` | Reachability of a second labour relief post — `DC-15` | Whether the missing idempotence marker is exploitable | Runtime tracing | **UNRESOLVED** — `UNR-P03-06` |
 
 ## 2. Dependencies P03 deliberately did **not** attempt to close
 

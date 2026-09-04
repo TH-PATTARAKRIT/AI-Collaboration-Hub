@@ -25,7 +25,7 @@ inventory value. The canonical target is exactly **1**.
 | `CC-04` | **Direct labour (employee)** | Yes | `_cal_cost()` employee half → `_cal_price` | 1 financial | `FACT VERIFIED` |
 | `CC-05` | Subcontract / outside processing | Yes | `extra_cost` ← subcontract receipt price | 1 | `FACT VERIFIED` |
 | `CC-06` | Manual extra cost | Yes | `extra_cost`, keyed by a human | 1 capitalisation, **0 relief** | `FACT VERIFIED` |
-| `CC-07` | **Equipment depreciation** | **No path** | — | **0** | `FACT VERIFIED`, scope §3 |
+| `CC-07` | **Equipment depreciation** | **No path — and the one candidate path is structurally incapable**, §5 | — | **0** | `FACT VERIFIED`, scope §3 |
 | `CC-08` | Factory building depreciation | **No path** | — | **0** | `FACT VERIFIED`, scope §3 |
 | `CC-09` | Right-of-use asset depreciation | **No path** | — | **0** | `FACT VERIFIED`, scope §3 |
 | `CC-10` | Maintenance — planned | **No path** | — | **0** | `FACT VERIFIED`, scope §3 |
@@ -103,3 +103,22 @@ double-charges labour, and no control detects it.
 **`DC-02` in `05` records this.** The SMEsPlus requirement it generates:
 *the content of every cost rate must be a declared, validated attribute of the rate, not
 a convention in an administrator's head.*
+
+## 5. Why the believed depreciation route cannot work — verified after P04 peer review
+
+`CC-07` … `CC-09` are recorded above as "no path". The route practitioners most often
+assume carries depreciation into a cost pool is the **analytic dimension**. It cannot.
+
+`account_asset/models/account_move.py:297-299` sets `analytic_distribution` on **both**
+lines of the depreciation entry. The two lines are equal and opposite, so the analytic
+amounts generated are `+x` and `-x`.
+
+> **The analytic dimension nets to zero on a depreciation entry and can never accumulate a
+> depreciation cost pool.**
+
+`FACT VERIFIED`. Raised by P04 and independently verified from source here — `25` §5.
+
+**This statement survives `DEP-04`**, unlike the rest of §2: it does not depend on which
+modules are installed, only on how the depreciation entry is built. It is therefore the
+strongest single element of the `02` §2 conclusion, and the one a reviewer should attack
+last rather than first.

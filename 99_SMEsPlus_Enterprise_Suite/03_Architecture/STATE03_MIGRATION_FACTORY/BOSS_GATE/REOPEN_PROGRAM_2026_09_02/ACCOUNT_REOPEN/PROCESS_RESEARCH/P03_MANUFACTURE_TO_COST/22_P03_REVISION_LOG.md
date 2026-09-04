@@ -15,7 +15,8 @@ Serves as both the revision log and the research-error register required by
 | `R1` | Self-challenge, `19_P03_AAS03_CHALLENGE.md` | Ten corrections `C-01` … `C-10`, applied in place |
 | `R2` | **`SMEPLUS-26-09-04-ACC-REV2-CORR1` received mid-session** | Scope revalidation; `18_P03_SCOPE_OWNERSHIP_MATRIX.md` created; `06` §5, `14`, `16` revised |
 | `R3` | AAS+ audit, `20_P03_AAS_PLUS.md` | `AASP-01` and `AASP-03` applied in place; `AASP-02`, `AASP-04`, `AASP-05` recorded as unrepaired and disclosed |
-| `R4` | Closure | Clean-room scan, manifest, push |
+| `R4` | Closure | Clean-room scan, manifest, push at `812cc5c` |
+| `R5` | **Inbound peer evidence from P04 — Acquire-to-Retire**, after push | Every claim independently re-verified from source. Two new findings `DC-14`/`DC-15`; two sharpened; `CC-07` strengthened; **the `01` §3 denominator corrected**; **one scope downgrade `REV-S-05`**; AAS+ veto second limb widened. Record: `25` |
 
 **No reset occurred. No evidence was discarded. No completed work was repeated.**
 
@@ -96,6 +97,24 @@ that is exactly the problem". Ownership ≠ availability was the instrument that
 **The correction produced a finding, not merely a relaxation.** Recorded because that is
 the strongest evidence available that CORR1 was applied substantively rather than
 cosmetically.
+
+### `REV-S-05` — P03's first **downgrade** under CORR1
+
+| Field | Content |
+|---|---|
+| **Original finding** | `18` §3 gave one row, *"Machine / equipment — `COMPANY`"* |
+| **Scope assumption used** | That anything touching an asset is company-scoped |
+| **Why over-constrained** | It conflates the **equipment register** with the **asset**. The register creates no financial effect of its own, so requiring company context on it is over-constrained, and company-optional is correct |
+| **Correct scope analysis** | Register = `TENANT`, company-optional correct. Asset = `COMPANY`, unchanged. Work-centre **rate** = `COMPANY`, reinforced as `SCOPE-02` |
+| **Updated classification** | **DOWNGRADED** for the register; unchanged for the asset and the rate |
+| **Architecture impact** | Narrows `SCOPE-01`'s blast radius; `R-15` unaffected |
+| **Cross-process impact** | Raised by P04; P03 **dissents** from extending the tenant reading to assets — preserved for P11 |
+| **Evidence required** | None for the downgrade; `DEP-13` for `SCOPE-02` |
+
+**This is the correction operating in both directions.** Before `R5`, `22` §3 recorded two
+findings strengthened, one new, and **zero downgrades** — a pattern that is evidence of a
+correction being applied selectively. A scope correction that only ever makes findings
+worse is not being applied honestly.
 
 ### Findings checked and **not** materially affected
 

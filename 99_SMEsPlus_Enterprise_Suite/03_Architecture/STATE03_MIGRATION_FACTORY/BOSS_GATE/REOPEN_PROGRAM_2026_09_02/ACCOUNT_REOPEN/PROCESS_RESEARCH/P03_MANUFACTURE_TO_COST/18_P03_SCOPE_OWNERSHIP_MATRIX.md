@@ -65,7 +65,8 @@ financial effect and which scope owns that effect.
 | **Routing / operation** | **`TENANT`** | `TENANT` | `TENANT` | `COMPANY` | No | Travels with the BOM |
 | **Work centre — as a resource** | **`TENANT`** | `TENANT` | `TENANT` | `COMPANY` | No | Scheduling resource; `ASSET_DR_CONTINUATION/07` §3 demoted it to resource group |
 | **Work-centre hourly rate** | **`COMPANY`** | `COMPANY` | `COMPANY` | `COMPANY` | **Yes — `COMPANY`** | It is a costing parameter that lands in a legal entity's inventory value. **Splitting it from the resource is a P03 scope conclusion — §4** |
-| Machine / equipment | `COMPANY` | `COMPANY` | `COMPANY` | `COMPANY` | Yes — `COMPANY` | An asset is owned by a legal entity. Asset track owns this |
+| **Machine / equipment *register*** | **`TENANT`** | `TENANT` | `TENANT` | `COMPANY` | **No** | **Corrected after P04 peer review — `25` §6.** The register creates no financial effect of its own, so company-optional is correct for it. P03's original single row over-constrained this |
+| The **asset** behind the machine | `COMPANY` | `COMPANY` | `COMPANY` | `COMPANY` | Yes — `COMPANY` | Depreciation is a company-scoped financial effect. Asset track owns this. **P03 dissents from any reading that extends P04's tenant narrowing to assets — `25` §6** |
 | **Manufacturing order** | **`COMPANY`** | `COMPANY` | `COMPANY` | `COMPANY` | **Yes — `COMPANY`** | It consumes and produces a legal entity's inventory |
 | Work order | `COMPANY` | `COMPANY` | `COMPANY` | `COMPANY` | Yes — `COMPANY` | Related to the MO's company (`mrp/models/mrp_workorder.py:50`) |
 | **Time log** | **`COMPANY`** | `COMPANY` | `COMPANY` | `TENANT` for analytics | **Yes — `COMPANY`** | It is the evidence for a company's conversion cost |
@@ -100,6 +101,13 @@ company-guarded object and did not separate resource scope from rate scope.
 `R-15`: **the costing rate must be a `COMPANY`-scoped object distinct from the
 `TENANT`-scoped resource it prices.** `DESIGN CANDIDATE`. Not authorised for
 implementation; the AAS+ veto stands.
+
+**`SCOPE-02` — assigned to P03 by P04 as `P04-B-35` / `P04-PD-01`, accepted.** Stated in
+CORR1's own terms: the work-centre rate lands in inventory valuation, therefore it creates
+a financial effect, therefore CORR1 question 7 — *which company owns that financial
+effect?* — must be answerable. On a company-optional work centre it is not.
+**Missing required scope = DENY.** Severity High. **Closing evidence: one runtime count of
+work centres with no company.** Carried as `DEP-13`.
 
 ## 5. Unresolved scope questions
 

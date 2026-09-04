@@ -41,7 +41,20 @@ At every link this session asked one question and only one:
 
 ## 3. The two cost injection points, stated precisely
 
-Everything in the chain reduces to exactly two writers:
+**Declared unit — added after P04 peer review; see `25` §2.**
+
+> **POPULATION:** the module set of `02` §3. **PATTERN:** any function that writes a value
+> reaching inventory carrying value. **PATH SET:** the declared source root.
+> **UNIT: one writer that changes the carrying value of inventory.**
+
+The original text of this section asserted "exactly two writers" **with no declared unit**,
+which is the defect `smeplus-denominator-completeness-rule` names. Under the unit now
+declared the count is two. Under P04's broader disjunctive unit — own rate field **or** own
+driver **or** own destination ledger — the count is **nine**, correctly including the
+analytic and planning paths this section excludes. Both are right under their own unit;
+neither supersedes the other. See `25` §2.
+
+Under the unit declared here, the chain reduces to exactly two writers:
 
 ### Injection point 1 — `_cal_price()`
 `mrp_account/models/mrp_production.py:40-65 — MrpProduction._cal_price`

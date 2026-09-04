@@ -133,3 +133,14 @@ makes either meaningful.
 **`AASP-VETO-01`: no P03 costing implementation may begin.** This is a continuation of the
 Asset veto, not a new one, and it is not a Boss decision that this session can take or
 lift.
+
+### The veto's second limb is now wider — P04
+
+P04 reports, and P03 accepts without qualification, that the second limb — proving that
+**exactly one** mechanism carries machine cost into product cost — must now be discharged
+against a **declared population of nine monetisation paths**, not two.
+
+This follows directly from the denominator correction in `25` §2 and it makes the veto
+**harder** to discharge. AAS+ records that as the correct outcome: a proof obligation that
+grew when its population was properly declared was under-specified before, not
+over-specified now.

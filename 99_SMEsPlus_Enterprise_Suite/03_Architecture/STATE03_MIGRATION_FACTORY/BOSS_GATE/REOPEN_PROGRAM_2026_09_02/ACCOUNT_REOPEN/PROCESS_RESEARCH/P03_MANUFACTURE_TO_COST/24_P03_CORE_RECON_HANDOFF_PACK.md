@@ -35,6 +35,12 @@ standard adopted by this project's asset lineage, most of those elements **belon
 conversion cost. Inventory produced under this model is therefore understated by
 construction, and cost of sales is understated with it.
 
+**And the route most practitioners assume carries equipment depreciation into cost does not
+work.** Where a cost-analysis dimension is attached to a depreciation entry, it is attached
+to *both* sides of that entry, which are equal and opposite — so the dimension nets to zero
+and can never accumulate a depreciation cost pool. This is the one part of the exclusion
+list that does not depend on which optional components are installed.
+
 ## 3. The nine behaviours Core Accounting must expect
 
 | # | Behaviour | Ledger consequence |
@@ -49,8 +55,20 @@ construction, and cost of sales is understated with it.
 | 8 | Work-in-progress on the balance sheet is a **reversing accrual**, valued on a different basis from the consumption it accrues for, with no order-level detail, and editable before posting | The period-end WIP figure cannot be substantiated order by order |
 | 9 | Conversion cost is company-scoped, but the accounts for its entry are resolved against the **acting user's** company | In a multi-company group, entries can reach the wrong legal entity's accounts |
 
+| 10 | The same conversion value is distributed **twice** into the analytic ledger — once against the resource's own allocation, once against the order's — with no collision check | Where both allocations resolve to one analytic account, the analytic ledger carries the cost twice |
+| 11 | The relief entry stamps a marker on every time record and never reads it back as a guard | There is no idempotence control on the entry. Whether a second post is reachable is unproven |
+
 Behaviours 1 and 9 are designated `Tolerance = 0`. So are six further boundaries listed in
 §6.
+
+**On behaviour 3** — the field documentation states the inverse of what happens: it names
+the conversion costs as remaining on the account, when those are precisely what the relief
+entry clears, and does not mention the manually entered cost that genuinely remains.
+Staff following the documentation will look for the balance in the wrong place.
+
+**On behaviour 4** — the standard side of the mismatch is built from **planned** duration,
+while the relief is built from **actual** duration. The difference is stranded with no
+variance account and no report line pointing at it.
 
 ## 4. The five reconciliation queries
 
@@ -64,6 +82,7 @@ estimated or assumed anywhere in this package.**
 | `RQ-03` | Relief entries whose date differs from the corresponding finished-goods receipt date | Behaviour 6 |
 | `RQ-04` | Work orders whose costed hours exceed their overlap-merged elapsed hours | Behaviour 1 |
 | `RQ-05` | Entries whose company differs from the originating order's company | Behaviour 9 |
+| `RQ-06` | Analytic entries carrying the same conversion value under two allocations that resolve to one account | Behaviour 10 |
 
 `RQ-01` is the priority: it is the only query that separates two defects which otherwise
 conceal each other.
@@ -74,6 +93,7 @@ conceal each other.
 |---|---|
 | Inventory value vs production-account movement | **No** — the account additionally carries the relief entry and both residues |
 | Production-account movement vs analytic cost | **No** — analytic uses a different elapsed-time basis **and** omits the labour component |
+| The analytic ledger **against itself** | **No** — the same value can be distributed twice under two allocations, with no collision check |
 | Absorbed labour vs posted payroll | **No bridge was found.** The rate is a standing parameter; payroll is an actual; nothing reconciles the difference, and the system recognises no labour rate variance |
 
 Core Accounting should not spend effort attempting these three reconciliations before the
