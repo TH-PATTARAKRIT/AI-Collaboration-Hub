@@ -76,6 +76,24 @@ Neither changes the decision. Both change what complying with it requires.
 | **PMO: no controlled design freeze at this gate** | — | Unchanged. This session **does not declare an asset final freeze**, as instructed |
 | **Independence limitation on the veto** | P3's audit was a structured self-challenge by the same session that did the work | **Materially relevant.** This session's own parallel streams disagreed on a population and one produced a false negative (`05` §6) — direct evidence for treating the veto's scope as a floor |
 
+## 5A. One ownership gap the Boss should see
+
+`P04-B-25` — the Thai **corporate income tax** treatment of a gain on disposal —
+was raised in the earliest Asset package, dropped from three registers without
+being closed, re-opened here, and has now been **explicitly and correctly
+declined by P07**: its statutory register is VAT, withholding and tax-document
+authority **by design**, and answering from those sources would be inference
+across statutes.
+
+> **No process in the P01–P11 wave owns corporate-income-tax scope.**
+> The blocker is not that the question is hard. It is that **there is nobody to
+> ask**, and that is why it fell out of three registers rather than being
+> answered.
+
+The same gap covers the tax-book blocker (`P04-B-13`) and the tax written-down
+value it depends on. This is a **scoping decision**, not a research question, and
+it is put here because only the Boss can assign the scope.
+
 ## 6. What this session does **not** ask the Boss to do
 
 - It does not ask for confirmation of anything recorded here.

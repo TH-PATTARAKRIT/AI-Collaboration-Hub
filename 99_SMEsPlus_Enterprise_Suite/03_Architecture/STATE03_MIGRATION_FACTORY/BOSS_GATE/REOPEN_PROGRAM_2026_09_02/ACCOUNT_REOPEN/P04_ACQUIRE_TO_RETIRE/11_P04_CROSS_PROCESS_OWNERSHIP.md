@@ -207,6 +207,25 @@ itself; both are routed to the Boss as `D-11` and `D-12`.
 | The governance item adopted as `P11-G-01`, applied by P11 to its own register first | Noted. P11 found the same defect in milder form in its own blocker rows |
 | A methodological recommendation: every enumeration script should carry a **positive control** whose non-zero value is published beside the finding | **Adopted as a method rule.** `18` §3 |
 
+### 6.2 P07 returned as well
+
+P07 replied (branch `research/account-p07-th-tax-compliance-2026-09-04-001` @
+`ecc6059`, `21_P07_PEER_EVIDENCE_INTAKE_P04.md`). It **did not adopt P04's
+summaries as its statutory basis** — it re-retrieved and read the two sources
+material to its own package at source before use, and marked the other three
+*accepted-as-peer, supporting no conclusion*. That is the correct intake
+discipline and it is worth recording as the standard.
+
+| What came back | What P04 did with it |
+|----------------|----------------------|
+| **Two gaps in P07's own work closed by P04's evidence**: its VAT event model had **no deemed-supply row at all**, and it had recorded "no instalment tax point found" without knowing the rule it was measuring against | Noted. Both were found by reading definitions P07 had not opened — the value of publishing evidence rather than conclusions |
+| **`P04-B-24` is scoped too narrowly** — P04 asked only about **deductibility**, when the same act can carry **output tax** independently | **Adopted.** The blocker now has two limbs. See `07` §5.2.1 |
+| The deemed-sale route named as sub-paragraph **(จ)**, goods short from the stock report | **Refined, not accepted.** (จ) is anchored to the s.87(3) report, which is required only of goods-selling registrants and in which a fixed asset is not an entry. For a fixed asset the route is **(ง)**. Verified against the statute (`P04-LAW-G`, `P04-F-67`). **The refinement changes which retrieval closes it**, and makes `P04-B-24` and `P04-B-39` converge on the same evidence |
+| **`P04-B-39` promoted** from question to a P07 finding at the definitional level; extent held pending the (ง) criteria and the exemption list | Accepted. P07 owns it — the missing artefact is a tax document |
+| **`P04-B-25` declined**, because P07's register holds **no corporate income tax authority at all** and answering from VAT sources would be inference across statutes | **Accepted as correct.** The blocker now records a **named ownership gap**: no process owns corporate-income-tax scope, and that gap is itself the blocker |
+| **`P04-B-05` declined** — TAS 23 is an accounting-standard question, not a tax one | **Accepted.** Ownership corrected: it returns to the accounting track / P04 and is no longer routed to P07 |
+| A method note: P07 hit the **identical** secondary-summary-contradicts-primary-text defect on the same day | **Adopted as a named defect class**, `18` §3 |
+
 **One thing P04 does not adopt uncritically.** P11 counts this session's
 60/46/65 enumeration as *"the fourth independent instance in the programme and
 the second in this session"*. P04's own count for this session is **three**

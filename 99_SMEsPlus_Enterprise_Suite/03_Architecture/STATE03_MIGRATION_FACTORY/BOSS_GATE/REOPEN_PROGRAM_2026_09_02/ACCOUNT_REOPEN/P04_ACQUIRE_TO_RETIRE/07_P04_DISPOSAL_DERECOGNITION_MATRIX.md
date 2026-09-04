@@ -202,6 +202,47 @@ remaining book value was deductible. The operative answer:
 | **P04-LAW-02** | On the facts of that ruling, deduction was allowed **without prior notice** to the officer, with the ruling directing future destructions to the instruction at §5.1 | **FACT VERIFIED** from the ruling text |
 | **P04-LAW-03** | Whether the 30-day advance-notice regime of ป.84/2542 extends to **fixed assets** — given that its own scope names goods and scrap, while the ruling points a taxpayer towards it — is **not settled by these two sources**. A single ruling is persuasive, not general | **HOLD / EVIDENCE REQUIRED** — routed to the Accounting-Tax track. Registered **P04-B-24** |
 
+#### 5.2.1 The question was framed too narrowly — widened after P07 challenge
+
+P07 (Thailand Tax-to-Compliance) accepted the hold and objected to the **scope**
+of the question, correctly:
+
+> This package scoped `P04-B-24` to **deductibility** under มาตรา 65 ตรี (13).
+> But under the deemed-sale limb of มาตรา 77/1 (8), an unevidenced destruction
+> can carry **output tax** independently of whether the write-off is deductible.
+> **One act, two tax consequences.** Retrieving only the income-tax authority
+> closes half the question.
+
+**The widening is adopted.** The refinement below is P04's, and it changes which
+retrieval closes it.
+
+P07 named sub-paragraph **(จ)** — goods short from the stock report — as the
+deemed-sale route. Read against primary text, **(จ) is unlikely to reach a fixed
+asset at all**:
+
+| Element | Primary text | Class |
+|---------|--------------|-------|
+| (จ) is not free-standing — it is anchored to a **named report** | *"มีสินค้าขาดจากรายงานสินค้าและวัตถุดิบตามมาตรา 87 (3)"* | **FACT VERIFIED** |
+| That report is required **only of registrants carrying on a business of selling goods** | มาตรา 87 (3): *"รายงานสินค้าและวัตถุดิบเฉพาะผู้ประกอบการจดทะเบียนที่ประกอบกิจการขายสินค้า"* | **FACT VERIFIED** |
+| มาตรา 87 says **nothing** about fixed assets, in either direction | Read in full | **FACT VERIFIED (scoped negative)** |
+
+> **P04-F-67.** A fixed asset used in the business is **not an entry in the
+> s.87(3) goods-and-raw-materials report**, so it cannot be *"short from"* that
+> report. The deemed-sale route that reaches the destruction of a **fixed asset**
+> is therefore **(ง)** — applying goods to a use other than the conduct of the
+> business, subject to criteria issued by the Director-General — **not (จ)**.
+> Class: the anchoring and the report's scope are **FACT VERIFIED**; the
+> conclusion that (จ) cannot reach a fixed asset is **SUPPORTED INTERPRETATION**,
+> because the definitive answer lies in the **prescribed contents** of the
+> s.87(3) report, which this session did not retrieve.
+
+**Consequence, and it is a useful one.** `P04-B-24` and `P04-B-39` now converge
+on the **same missing evidence** — the Director-General's criteria under (ง).
+One retrieval advances both. Retrieving the (จ) / stock-report authority instead
+would answer a question that does not arise for fixed assets.
+
+`P04-B-24` is restated in `10` §5 with both limbs and the corrected route.
+
 This closes the prior package's dropped disposal-documentation item as far as
 primary evidence permits, and states precisely what remains open.
 
