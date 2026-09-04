@@ -1,5 +1,5 @@
 # [SMEPLUS-26-09-04-INV-DEEP-RESEARCH-R4-L12-001]
-# New Session Prompt — Inventory Deep Research R4 / L1-L12 Minimum / v2.0 Preparation / L9999.9999
+# New Session Prompt — Inventory Deep Research R4 / L1-L12 Mandatory Full Depth + L13+ No Ceiling / v2.0 Preparation / L9999.9999
 
 Project: `SMEsPlus ENTERPRISE SUITE`  
 STATE: `STATE03 — Architecture`  
@@ -41,7 +41,7 @@ If Accounting COGS Gap evidence is required but unavailable for final valuation 
 
 Perform Inventory Deep Research R4 using the new central SMEsPlus standard:
 
-`ALL MODULE DEEP RESEARCH STANDARD = LEVEL 1 TO LEVEL 12 MINIMUM`
+`ALL MODULE DEEP RESEARCH STANDARD = LEVEL 1 TO LEVEL 12 MANDATORY FULL DEPTH + L13+ NO CEILING`
 
 Inventory R4 must confirm, deepen, and gap-fill the prior Inventory evidence so it can prepare Inventory Final Solution v2.0.
 
@@ -104,7 +104,7 @@ Every menu must be traced through L1-L12, or explicitly marked as `HOLD` with re
 
 ---
 
-## 5. L1-L12 Minimum Deep Research Requirements
+## 5. L1-L12 Mandatory Full Depth + L13+ No Ceiling Deep Research Requirements
 
 ### L1 — Domain Understanding
 
@@ -308,7 +308,7 @@ Create all outputs under:
 
 `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/DEEP_RESEARCH_R4_L12_EXECUTION/`
 
-Minimum required files:
+Mandatory full-depth output files:
 
 | No. | File |
 |---:|---|
