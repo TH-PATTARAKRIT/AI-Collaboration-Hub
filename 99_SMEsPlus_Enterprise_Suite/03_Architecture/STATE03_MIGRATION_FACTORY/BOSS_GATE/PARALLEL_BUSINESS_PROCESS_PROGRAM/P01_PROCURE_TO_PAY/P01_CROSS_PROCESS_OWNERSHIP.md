@@ -154,3 +154,82 @@ When each peer process session runs, it must accept or contest these P01 positio
 | `HO-04` | P01 does not decide FX rate policy | Account |
 | `HO-05` | The received-not-billed obligation has two competing representations and needs one owner | Account + Inventory |
 | `HO-06` | The cross-company trigger surface is a platform decision, not a process decision | SaaS / Platform Architecture |
+
+---
+
+# ADDENDUM — PEER STATUS CORRECTED, AND TWO PEER ITEMS ANSWERED
+
+Added after the package was committed, following a re-fetch of the remote at the end of the
+session.
+
+## A.1 Correction to §1
+
+§1 states that no peer process branch existed. **That was true at session start and is now
+stale.** A re-fetch shows **six** peer process branches published on the same day:
+`P02` Order-to-Cash · `P03` Manufacture-to-Cost · `P04` Acquire-to-Retire ·
+`P05` Expense-to-Pay · `P06` Bank-to-Reconcile · `P09` Plan-to-Analyze.
+
+The original statement carried its false-negative mode explicitly — *"a peer session running in
+another workspace that has not pushed would not appear"* — and that is exactly what happened.
+The declared mode was the right one; the claim is corrected here rather than rewritten above,
+per the rule that an earlier conclusion is never deleted.
+
+Every `PEER-P01-*` row marked **NOT YET EXECUTED** in `P01_DEPENDENCY_REGISTER.md` §2 should be
+read as **PUBLISHED — RECONCILIATION NOT YET PERFORMED**. P01 does **not** adjudicate against
+these packages; that is cross-process reconciliation work, and P11's.
+
+## A.2 P05 asks P01 a direct question — answered
+
+P05 records: *"Advance to vendor — P01 owns it … PEER DEPENDENCY OPEN — P01 must state whether
+it owns vendor advances."*
+
+**P01's answer: yes, P01 accepts ownership of the vendor-advance event.**
+
+Basis, from P01's own evidence:
+
+- In the base capability, vendor advances are **bill-first**: an advance is recorded as a vendor
+  bill and then attached to a purchase order. The routine that does so has exactly one caller in
+  the whole root, and there is **no order-side advance wizard** — class **A within `R1`**
+  (`EV-P01-37`).
+- The project's custom vendor-advance module sits on the purchase capability and is inside
+  P01's module closure.
+
+Two qualifications P05 should carry:
+
+1. **P01 has not traced the custom vendor-advance module's own behaviour.** It was assigned to
+   an expert and is carried as SUPPORTED INTERPRETATION, not FACT VERIFIED. Ownership of the
+   *event* is asserted; the *mechanism* is not yet evidenced by P01.
+2. P05 reports that on its own advance path the disbursement debits a profit-and-loss expense
+   account with **no advance asset account**. If the vendor-advance module shares that pattern,
+   a vendor advance would be expensed on payment and then expensed again on the bill.
+   **P01 has not tested this and does not assert it** — it is recorded as a joint edge case for
+   whichever session traces the custom module.
+
+## A.3 A cross-process contradiction on withholding tax
+
+| | |
+|---|---|
+| **P05's position** | The withholding overlap between P01, P02 and P05 is **"Low — single implementation"**, on the basis that all three reach the same payment-register extension |
+| **P01's position** | **Two parallel and incompatible withholding mechanisms exist** — one treating withholding as a tax on the bill, the other as a write-off at payment — auto-mirrored into each other, with the reporting layer unioning both sources |
+| **P01's verified additions** | The partial-payment netting term is computed with the wrong sign, so withholding **compounds** across partial vendor payments (`CONTRA-P01-09`, re-derived by this session). Two shipped copies of the certificate module map a corporate counterparty to **opposite statutory forms** (`CONTRA-P01-10`, read directly in both copies) |
+| **Why the two views differ** | P05 looked at the *call path* — and on that axis it is right: the same extension is reached. P01 looked at the *mechanisms and the shipped copies* — and on those axes there is more than one of each. **Both observations are correct about different things.** |
+| **Disposition** | **HOLD — CROSS-PROCESS RECONCILIATION REQUIRED.** P01 does not overrule P05. The risk rating "Low", however, rests on a single-implementation premise that P01's evidence does not support, and P01 asks that the rating be revisited in reconciliation |
+| **Routed to** | P11, and the Accounting-Tax track for the statutory axis (`DEP-P01-04`) |
+
+## A.4 A methodological convergence worth recording
+
+P05 reports that its first enumeration returned **every module absent** because an unquoted
+shell glob was expanded before the search ran. P01 produced **six fabricated class-A absences**
+from an extraction that silently wrote empty files (`ERR-P01-06`), and its Functional Design
+expert hit the same class twice more.
+
+**Four independent instances, in two independent sessions, on the same day, of a tooling
+artefact presenting as a verified absence** — and in every case the absence would have been the
+strongest class of claim the negative-claim standard permits.
+
+This is no longer an incident. It is a systemic property of how this research is conducted, and
+it warrants a programme-level control rather than four separate lessons:
+
+> **No enumeration may report a zero without also reporting the size of what it searched, and
+> no zero result may be published until the query has been re-run in a second, differently-shaped
+> form.**
