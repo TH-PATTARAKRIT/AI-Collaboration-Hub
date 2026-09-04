@@ -21,8 +21,15 @@ Session `SMEPLUS-26-09-04-ACC-P05-E2P-REV2-001`
 
 **UNIT** = one directory containing a `__manifest__.py`.
 **PATTERN** = literal filename `__manifest__.py`, no name filtering.
-**INDEPENDENCE CAVEAT** — the path set above was chosen by this session. Reviewer Expert 2 was
-tasked to re-derive it with independent patterns; see `16 §5`.
+**INDEPENDENCE CAVEAT — DISCHARGED, WITH A DEFECT FOUND.** The path set above was chosen by this
+session, so it was not independent of the claims it bounds. AAS-03 Expert 2 re-derived it with its own
+patterns and confirmed the module counts, while finding three defects in the primary research's
+enumeration: (i) **no UNIT was declared**, so its file counts were not comparable to anyone else's;
+(ii) `find -name '__manifest__.py'` returns 791 for `addons`, not 790, because of an embedded copy at
+`point_of_sale/tools/posbox/.../addons`; (iii) `CUSTOM` has **65** manifests against 68 directory
+entries. Most importantly, Expert 2 established that a negative claim the primary research had bounded
+to `ENT18/addons` is **contradicted by `addons_archive`** — a root inside its own declared path set
+(`21 NC-E-05`). Corrected populations and units are carried in `21 §1`.
 
 ### 1.2 P05 Material Module Population
 
@@ -95,7 +102,7 @@ is asserted per row; violations are flagged and carried to `11_CONTRADICTION_REG
 | `EX-01` | The advance request is simultaneously the requisition document, the approval document **and** the accounting document. It creates AND posts a vendor bill from its own button with no separate accounting event owner and no state assertion in Python. | `CUSTOM/scgl_advance_expense_request/models/advance_expense_request.py:239-273` | HIGH |
 | `EX-02` | The accounting event is emitted by the **approval** transition, not by a posting transition. `_do_approve` calls `_do_create_moves()` before `approval_state` is written, under `sudo()`, explicitly so that approvers without accounting rights can create entries. | `ENT18/hr_expense/models/hr_expense_sheet.py:711-721`, `746-760` | HIGH |
 | `EX-03` | One claim produces **N** accounting objects on the company-paid branch — the loop is over `expense_line_ids`, not over sheets. Cardinality of the accounting fact does not equal cardinality of the business fact. | `ENT18/hr_expense/models/hr_expense_sheet.py:763-767` | MEDIUM |
-| `EX-04` | Petty cash claims are routed through the employee-reimbursement branch; the only code that would redirect the credit to the petty cash account targets a method absent from this platform version. | `CUSTOM/hr_expense_petty_cash/models/hr_expense_sheet.py:96`; `.../hr_expense.py:72-79`; token absent from `ENT18` — see `21 NC-03` | **TOLERANCE-ZERO** |
+| `EX-04` | Petty cash claims are routed through the employee-reimbursement branch; the only code that would redirect the credit to the petty cash account targets a method absent from this platform version. **Upheld on four independent lines by AAS-03 Expert 2 — see `05 §6`.** A **second** dead path exists in the same module: the holder's journal never reaches the bill either (`E2-01`). | `CUSTOM/hr_expense_petty_cash/models/hr_expense_sheet.py:96`; `.../hr_expense.py:72-79`; token absent from `ENT18` — see `21 NC-03` | **TOLERANCE-ZERO** |
 | `EX-05` | Cash returned by an employee is credited to `line_ids[0].account_id` — the first advance line's account — regardless of how many lines with how many accounts the advance had. | `CUSTOM/scgl_advance_expense_request/wizard/advance_request_reconcile.py:73` | HIGH |
 | `EX-06` | Refusal after approval `unlink()`s the draft entry. The accounting artefact of an approved-then-refused claim leaves no trace. | `ENT18/hr_expense/models/hr_expense_sheet.py:733-734` | MEDIUM |
 | `EX-07` | Reset clears the sheet↔entry link entirely (`Command.clear()`), and `_reverse_moves` nulls `expense_sheet_id` on the original. Both the original and its reversal become orphans of the claim. | `ENT18/hr_expense/models/hr_expense_sheet.py:602-604`; `ENT18/hr_expense/models/account_move.py:87-90` | HIGH |
@@ -117,8 +124,8 @@ is asserted per row; violations are flagged and carried to `11_CONTRADICTION_REG
 | DB | one `account.move` `move_type='in_invoice'`, `expense_sheet_id` set | `models/hr_expense_sheet.py:829-842`; `models/account_move.py:12` |
 | Operational truth | The employee is owed money | — |
 | Accounting event | Vendor bill against the employee's work contact | `models/hr_expense_sheet.py:834-835` |
-| Journal | DR expense account per line / CR payable of the work contact | `models/hr_expense.py:1004-1019`; `models/hr_expense_sheet.py:895-899` |
-| Payable | Vendor AP account of the employee's partner — **not a distinct employee-payable account** | `models/hr_expense_sheet.py:899` |
+| Journal | DR expense account per line / CR payable of the work contact. **Note (AAS-03 Expert 2):** the credit is produced by core `_compute_needed_terms` (`ENT18/account/models/account_move.py:1232`), **not** by `_get_expense_account_destination` — hr_expense's override of `_compute_needed_terms` is gated on `company_account` (`hr_expense/models/account_move.py:62`). | `models/hr_expense.py:1004-1019`; `ENT18/account/models/account_move.py:1232`; `ENT18/account/models/account_move_line.py:547` |
+| Payable | Vendor AP account of the employee's partner — **not a distinct employee-payable account** | `ENT18/account/models/account_move_line.py:547`; cf. `models/hr_expense_sheet.py:895-899` (the company-paid analogue) |
 | Settlement | `action_register_payment` → `account.payment.register` on the move's lines | `models/hr_expense_sheet.py:606-614` |
 | Reconciliation | Standard AP reconciliation; `_reconcile_payments` flips the sheet to `done` at zero residual | `wizard/account_payment_register.py:33-41` |
 | Report / Close | `accounting_date` derived by `_calculate_default_accounting_date`, which consults the fiscal lock | `models/hr_expense_sheet.py:798-822` |
@@ -161,7 +168,9 @@ is asserted per row; violations are flagged and carried to `11_CONTRADICTION_REG
 | Claim | `payment_mode='petty_cash'` (selection_add) | `.../hr_expense.py:11-14` |
 | Balance control | Sheet constraint compares claim to holder balance | `.../hr_expense_sheet.py:55-83` |
 | Routing | Grouped with `own_account` in the forked `_do_create_moves` | `.../hr_expense_sheet.py:96` |
-| **GL redirection** | `_get_account_move_line_values` override — **method absent from this platform version** | `.../hr_expense.py:72-79`; `21 NC-03` |
+| **GL redirection** | `_get_account_move_line_values` override — **method absent from this platform version**; byte-identical to its v14 ancestor | `.../hr_expense.py:72-79`; `21 NC-03` |
+| **Journal routing** | **Also dead.** `journal_id` is a stored compute **without `readonly=False`** (`ENT18/hr_expense/models/hr_expense_sheet.py:212-217`), and `_compute_journal_id` (`:273-279`) consults `payment_method_line_id` only for `company_account`. The custom module's `default=_default_journal_id` on a stored computed field is inert. **The holder's journal never reaches the bill**, and the field is `invisible` for non-own-account sheets so it cannot be corrected in the UI. | `hr_expense_petty_cash/models/hr_expense_sheet.py:13-33, 51-52`; `E2-01` |
+| **Test coverage** | **Zero effective coverage on v18.** The test module is byte-identical to its v14 ancestor and `setUp` fails at line 19 on a v14-only xmlid. | `E2-01` |
 | Company scope | `petty.cash` has no `company_id`, no record rule, and a **global** `unique(partner_id)` | `petty_cash.py:12-36` |
 
 ## 5. Approval Topology

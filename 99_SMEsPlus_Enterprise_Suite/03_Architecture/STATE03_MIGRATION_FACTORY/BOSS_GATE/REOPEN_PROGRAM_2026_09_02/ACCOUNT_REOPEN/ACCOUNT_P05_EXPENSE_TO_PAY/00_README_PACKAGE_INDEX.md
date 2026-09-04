@@ -12,13 +12,13 @@
 | Execution Model | Claude Opus 5 (high) |
 | Autonomy | FULL — Boss interaction at FINAL GATE ONLY |
 | Governing Constitution | `SMEPLUS-DR-EXIT-8C-001` (8-Criteria Universal Exit) |
-| Terminal State | See `19_P05_CORE_RECON_HANDOFF_PACK.md` §9 |
+| Terminal State | `HOLD — EVIDENCE REQUIRED` — see `19 §9`. `READY FOR CORE ACCOUNTING RECONCILIATION` is **not** declared. |
 
 ## Layer Classification (Clean Room Learning Directive v2.0, Policy A)
 
 | Layer | Meaning | Files |
 |---|---|---|
-| **Layer 2 — AUDIT QUARANTINE** | Contains reference-ERP `file:line` citations. Boss / PMO / AI-Audit ONLY. **Must not be transcribed into any Team B reference package.** | 01–16, 18, 20, 21 |
+| **Layer 2 — AUDIT QUARANTINE** | Contains reference-ERP `file:line` citations. Boss / PMO / AI-Audit ONLY. **Must not be transcribed into any Team B reference package.** | 01–16, 18, 20, 21, 22 |
 | **Layer 1 — CLEAN ROOM** | Business semantics only. No vendor model, field, path, method or menu name. | 17 (`P05_AAS_PLUS.md` §6 Design Input), 19 (`CORE_RECON_HANDOFF_PACK` §1–§6) |
 
 ## File Register
@@ -47,6 +47,7 @@
 | 19 | `19_P05_CORE_RECON_HANDOFF_PACK.md` | — | 1 / 2 mixed, marked inline |
 | 20 | `20_P05_UNRESOLVED_REGISTER.md` | Unresolved Register | 2 |
 | 21 | `21_P05_NEGATIVE_CLAIM_REGISTER.md` | Negative Claim Control (`EC-06`) | 2 |
+| 22 | `22_P05_SCOPE_OWNERSHIP_MATRIX.md` | Scope Ownership (added under `SMEPLUS-26-09-04-ACC-REV2-CORR1`) | 2 |
 
 ## Reading Order Rule (`ER-AASR-1`)
 

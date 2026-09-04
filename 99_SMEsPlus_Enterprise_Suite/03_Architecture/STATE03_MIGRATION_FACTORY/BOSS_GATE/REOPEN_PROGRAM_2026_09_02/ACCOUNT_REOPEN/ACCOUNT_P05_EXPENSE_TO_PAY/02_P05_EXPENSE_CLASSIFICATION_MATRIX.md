@@ -72,7 +72,7 @@ this by attempting to rewrite the *credit* side after the fact — the mechanism
 | Divergence risk | Because the bill debits the **core-resolved** account while both clearing paths credit the **advance line's** `account_id` (`05 §4`), the two can be different accounts. Neither is validated against the other. | Expert 3 §1 |
 | What is credited? | The requester's partner payable — the standard `in_invoice` payment-term line. | `advance_expense_request.py:261` |
 | When is expense recognised? | **At advance disbursement**, before any cost is incurred or evidenced. | `advance_expense_request.py:272` `action_post()` |
-| Is `advance_expense_request_line.account_id` used? | Written by an onchange; **not passed** into the bill. Reviewer Expert 3 tasked to prove whether it is read anywhere — see `16 §4`. | `advance_expense_request_line.py:100-104, 131` |
+| Is `advance_expense_request_line.account_id` used? | Written by an onchange; **not passed** into the bill. **SETTLED by AAS-03 Expert 3** (whose own hypothesis that it was never read was disproved): it **is** read, in exactly two places — `wizard/advance_request_reconcile.py:73` and `models/account_move.py:90` — both the **credit side of a clearing entry**. It is never validated and never required, which is exactly why the clearing collapse at `05 §4 GL-05` is reachable. | `advance_expense_request_line.py:100-104, 131`; `16 §4.3` |
 
 > **`CD-01` DESIGN CANDIDATE / CONTRADICTION** — This makes `PREPAID EXPENSE` and `EMPLOYEE RECEIVABLE`
 > structurally absent and creates a double-recognition exposure: the advance debits the expense account,
@@ -86,14 +86,19 @@ this by attempting to rewrite the *credit* side after the fact — the mechanism
 |---|---|---|
 | Master record | `petty.cash`: holder partner, petty cash account, max limit, computed balance | `petty_cash.py:12-33` |
 | Holder identity | A `res.partner`, **not** an `hr.employee` | `petty_cash.py:13-17` |
-| Balance | Non-stored compute: Σ(debit−credit) of posted lines on (`partner_id`, `account_id`) | `petty_cash.py:38-49` |
+| Balance | Non-stored compute: Σ(debit−credit) of posted lines on (`partner_id`, `account_id`) | `petty_cash.py:38-50` |
 | Company scope | **None.** No `company_id`, no record rule, `unique(partner_id)` is global. | `petty_cash.py:12-36` |
 | Uniqueness consequence | One partner cannot hold a float in two companies of the same database. | `petty_cash.py:34-36` |
-| Balance consequence | The compute has no company domain, so the balance sums lines across **all** companies. | `petty_cash.py:42-48` |
+| Balance consequence | **CORRECTED BY AAS-03 EXPERT 2.** The primary research claimed the balance sums across all companies. The written domain does omit company, **but the search is not `sudo()`**, so the core record rule `account.account_move_line_comp_rule` (`ENT18/account/security/account_security.xml:153`) *does* company-filter it. The real defect is different and arguably worse: **the same float record shows a different balance to different users**, depending on each user's allowed companies. Class C. | `petty_cash.py:42-48`; `ENT18/account/security/account_security.xml:153` |
+| Genuine unscoped access | `hr_expense_petty_cash/models/account_move.py:24` does `self.env["petty.cash"].sudo().search([("partner_id","=",…)], limit=1)` — **sudo, unscoped, `limit=1`**. With the global `unique(partner_id)`, a partner holds exactly one float record system-wide, so **company B's vendor bills are gated by company A's float configuration** (`:33-38` raises if that account appears on any line). Class C. This, not the balance compute, is the citation `TZ-02` should carry. | Expert 2 §1 |
+| Currency | `petty_cash_balance` and `petty_cash_limit` are bare `Float` with **no currency field** — the same defect class as the WHT amount (`07`). | `petty_cash.py:23-30` |
+| Compute staleness | `@api.depends("partner_id","account_id")` omits the journal lines the method actually reads, so the balance is stale within a transaction. The v14 tests worked around this by calling `_compute_petty_cash_balance()` by hand. | `petty_cash.py:38-39` |
 
 > **`TZ-02` TOLERANCE-ZERO — company isolation.** Both consequences above are structural, not
-> configuration-dependent. Expert 2 tasked to search the whole custom tree for any other module that
-> adds company scoping to `petty.cash`; see `16 §4` and `21 NC-05`.
+> configuration-dependent. **SETTLED by AAS-03 Expert 2:** an independent search of the whole custom
+> tree (5087 files, patterns declared at `21 NC-05`) finds **no other module touching `petty.cash`,
+> no `ir.rule` for it anywhere, and zero `company_id`/`check_company` in the module** — class **A**
+> within that root. Expert 2 also corrected which consequence follows; see the two rows above.
 >
 > **SCOPE REVALIDATION (`CORR1`)** — `TZ-02` was originally framed on a blanket
 > "Tenant+Company mandatory everywhere" assumption. It is **upheld and re-derived** in
@@ -113,10 +118,21 @@ Positive counter-evidence that qualifies the negative: `liability_credit_card` *
 the cash-flow report (`ENT18/account_reports/models/account_journal_report.py:637, 838, 843, 974`;
 `account_cash_flow_report.py:195`).
 
-**Conclusion, correctly classed:** a corporate-card *account type* exists; a corporate-card
-*process* — card master, statement import mapped to a card, clearing, employee attribution —
-was **NOT FOUND IN SEARCHED SCOPE** (`21 NC-04`, class **B**). This is **not** a statement that the
-capability cannot be built or does not exist elsewhere. Class B is not upgraded.
+> **CORRECTED AND EXTENDED BY AAS-03 EXPERT 2.** The primary research's counter-evidence was
+> incomplete. A **first-class corporate-card construct does exist in v18** and was missed:
+> `account.journal.type` includes `('credit', 'Credit Card')`
+> (`ENT18/account/models/account_journal.py:98`), with
+> `default_account_id_types['credit'] = 'liability_credit_card'` (`:379`), an auto-provisioning
+> `_prepare_credit_account_vals` (`:767`) and a lookup at `:844`. Because
+> `_get_expense_account_destination` for company-paid expenses uses `payment_method_line_id.journal_id`
+> (`hr_expense_sheet.py:879`), **the company-paid expense path can already be pointed at a credit-card
+> journal today.**
+
+**Conclusion, correctly classed and restated:** a corporate-card *account type* **and a corporate-card
+journal type* both exist and are reachable from the company-paid expense path. What was
+**NOT FOUND IN SEARCHED SCOPE** is a corporate-card *process model* — card master, statement import
+mapped to a card, cardholder allocation, clearing (`21 NC-04`, class **B**). This is **not** a
+statement that the capability cannot be built. Class B is not upgraded.
 
 ## 6. Classification Gap Summary
 

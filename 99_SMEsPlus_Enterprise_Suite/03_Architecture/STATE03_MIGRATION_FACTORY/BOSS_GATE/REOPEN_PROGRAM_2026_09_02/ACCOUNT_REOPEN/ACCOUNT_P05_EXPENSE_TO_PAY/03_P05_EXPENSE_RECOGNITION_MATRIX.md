@@ -105,7 +105,7 @@ the **expense date**. Ageing and entry date diverge by construction. `P05-F-new-
 | `RI-04` | Amount, currency, date, product and quantity remain writable on the expense line after posting; nothing propagates the change to the posted line. | `hr_expense.py:613-643` | FACT VERIFIED |
 | `RI-05` | The advance recognises expense at disbursement with `tax_ids` explicitly emptied, so neither VAT nor WHT attaches to the recognised amount. | `advance_expense_request.py:255` | FACT VERIFIED |
 | `RI-06` | The advance's accounting date is the **server's** date (`date.today()`), not the user's context date. Across a UTC offset this shifts period assignment at month and year boundaries. | `advance_expense_request.py:263-264` | FACT VERIFIED |
-| `RI-07` | `button_post_bill` asserts no state in Python. Whether approval actually gates recognition depends on view-level gating alone. Expert 3 tasked to settle. | `advance_expense_request.py:239-273`; `16 §4` | SUPPORTED INTERPRETATION |
+| `RI-07` | `button_post_bill` asserts no state in Python. **SETTLED by AAS-03 Expert 3:** it is gated solely by view `invisible` and a view-level `groups=`, both display-only, so by RPC it posts a vendor bill **from any state**. It also lacks `ensure_one()` while reassigning its result each iteration. | `advance_expense_request.py:239-289`; `views/advance_expense_request_view.xml:11`; `10 E3-03` | FACT VERIFIED |
 
 ## 6. What SMEsPlus Must Decide
 

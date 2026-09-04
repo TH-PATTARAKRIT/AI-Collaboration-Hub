@@ -58,7 +58,7 @@ Total `__manifest__.py` under the `ENT18` parent: **1753**.
 | `models/account_move_line.py` | 12, 14-16, 24-27, 29-30 | `GL-02`, `EC-05`, `P05-F-21` |
 | `models/account_payment.py` | 11-18, 20-28, 49-52 | `C-01`, `EF-16`, `TZ-04` |
 | `wizard/account_payment_register.py` | 13-22, 24-31, 33-41 | `SR-05`, `EF-17`, `P05-F-new-02` |
-| `security/` | assigned to Expert 1 | `16 §4` |
+| `security/hr_expense_security.xml`, `security/ir_rule.xml`, `security/ir.model.access.csv` | `ir_rule.xml:23-28, 38-48, 49-54, 78-83, 84-89`; `ir.model.access.csv:3, 13-14, 15` | `E1-01`, `E1-12`, `TZ-09`, `04 §6` |
 
 ### 4.2 `ENT18/account`
 

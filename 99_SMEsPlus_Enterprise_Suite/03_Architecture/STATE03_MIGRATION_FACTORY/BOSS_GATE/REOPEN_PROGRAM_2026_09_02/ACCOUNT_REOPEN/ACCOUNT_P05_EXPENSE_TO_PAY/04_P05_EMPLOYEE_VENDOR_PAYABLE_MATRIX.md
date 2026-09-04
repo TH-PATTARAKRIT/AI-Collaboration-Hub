@@ -42,12 +42,14 @@ company's own partner, in which case it falls back to `partner_id` itself.
 `:38-45` adds `show_commercial_partner_warning`, true when the commercial partner **is** the company's
 own partner on an `in_invoice` whose partner has employees — i.e. the platform ships a UI warning for
 the case where an employee's contact is mis-parented to the company, which would make the company owe
-itself. **The warning is the only control; there is no constraint.** `P05-F-27`.
+itself. **The warning is the only control.** Declared boundary: `ENT18/addons/hr_expense`, all files;
+Expert 1 independently searched for a block and found none — *"view-level warning only; there is no
+block"*. Class **B** beyond that module. `P05-F-27`.
 
 | Consequence | Class |
 |---|---|
 | AP ageing and partner-ledger reports aggregate by `commercial_partner_id`. Where `work_contact_id` and `user_partner_id` resolve to different commercial parents, one employee's balance splits across two ledger identities. | SUPPORTED INTERPRETATION |
-| If the employee has no linked user, `user_partner_id` is empty; the value written to `commercial_partner_id` at create time is then false, before the compute overrides it. | SUPPORTED INTERPRETATION — Expert 1 tasked (`16 §4`) |
+| If the employee has no linked user, `user_partner_id` is empty; the value written to `commercial_partner_id` at create time is then false, before the compute overrides it. | SUPPORTED INTERPRETATION — Expert 1 confirmed the split and the override chain but did not execute this branch; held at `SUPPORTED INTERPRETATION`, closure needs runtime (`20 U-02`) |
 | An employee whose contact is a child of the company partner produces a bill on which the company is its own creditor; shipped mitigation is a warning flag only. | FACT VERIFIED |
 
 ## 4. Company-Paid Branch — the `vendor_id` Problem
@@ -74,7 +76,8 @@ It is nevertheless written to **four** places on the company-paid branch:
 > **`P05-F-24` FACT VERIFIED** — a company-paid expense with `vendor_id` unset produces a *supplier*
 > payment with **no partner**. Its outstanding line cannot be matched to a vendor, and the entry
 > carries no counterparty identity. There is no constraint requiring `vendor_id` on this branch.
-> Expert 1 tasked to find any view-level `required` and to state whether view-level is the only gate.
+> **SETTLED by AAS-03 Expert 1:** the view **confirms rather than guards** — `hr_expense_views.xml:247`
+> renders `vendor_id` with no `required` and no `readonly`. There is therefore no gate at any layer.
 
 Note also: `check_company` is absent, so `vendor_id` is not constrained to the sheet's company.
 
@@ -101,7 +104,7 @@ trial balance requires a partner-level report, not an account-level one. `P05-F-
 
 | Object | Company field | Record rule | Cross-company exposure |
 |---|---|---|---|
-| `hr.expense` | `company_id`, `_check_company_auto = True` (`hr_expense.py:17`) | core `hr_expense/security/ir_rule.xml` — Expert 1 tasked to enumerate | Constrained |
+| `hr.expense` | `company_id`, `_check_company_auto = True` (`hr_expense.py:17`) | `hr_expense/security/ir_rule.xml:23-28` — **enumerated by Expert 1: an employee has read/write/create/unlink on all of their own expenses with NO state clause**, which is what makes `TZ-03` exploitable | Company-constrained, **state-unconstrained** |
 | `hr.expense.sheet` | `company_id` required, readonly (`hr_expense_sheet.py:59-65`); `_check_expense_lines_company` constraint (`:440-444`) | as above | Constrained |
 | `hr.expense.sheet.employee_journal_id` | `check_company=True` (`:155`) | — | Constrained |
 | `hr.expense.vendor_id` | **no `check_company`** | — | **Unconstrained** |

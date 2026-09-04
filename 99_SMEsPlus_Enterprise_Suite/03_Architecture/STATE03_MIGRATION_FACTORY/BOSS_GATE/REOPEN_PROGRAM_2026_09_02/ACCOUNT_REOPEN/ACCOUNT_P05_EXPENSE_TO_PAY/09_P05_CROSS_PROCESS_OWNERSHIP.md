@@ -56,7 +56,7 @@ Three P05 findings restate, in a different surface, conclusions already reached 
 | Expense by nature | Yes | via the resolved expense account |
 | Expense by cost centre | Partial | debit line only; advance chain carries none (`AN-02`) |
 | Employee payable balance | Partial | only by partner, not by account (`04 §5`) |
-| Advance outstanding balance | **No** | there is no advance asset account (`GL-04`) |
+| Advance outstanding balance | **No** | no advance asset account exists on this path — the disbursement debits a P&L expense account, verified by Expert 3 against the core resolution chain and confirmed as the **shipped default** (`05 §3 GL-04`, `10 E3-01`) |
 | Float position | **Disputed** | depends on `TZ-01` |
 | WHT payable and certificate basis | Pending | Expert 4 (`16 §4`) |
 | Claim-to-entry audit trail | **No** | `SR-07` |

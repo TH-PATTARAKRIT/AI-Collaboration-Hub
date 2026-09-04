@@ -158,8 +158,18 @@ types, literal token, no filter). It occurs in `LEGACY14` in three modules inclu
 own v14 ancestor. It is a **v14-era API**.
 
 Meanwhile `hr_expense_petty_cash/models/hr_expense_sheet.py:96` groups `petty_cash` with
-`own_account`, so the claim is built by `_prepare_bills_vals`, whose credit comes from
-`_get_expense_account_destination` — the **employee's** payable (`hr_expense_sheet.py:895-899`).
+`own_account`, so the claim is built by `_prepare_bills_vals`.
+
+> **MECHANISM CORRECTED BY AAS-03 EXPERT 2.** The primary research attributed the credit to
+> `_get_expense_account_destination` (`hr_expense_sheet.py:895-899`). **That method is never called on
+> the own-account / petty-cash branch.** Its only callers are `hr_expense/models/account_payment.py:17`,
+> `hr_expense/models/hr_expense.py:938` (`_prepare_payments_vals`, company-paid only) and
+> `hr_expense/models/account_move.py:74` — and that last one sits inside `_compute_needed_terms`
+> **guarded by `if move.expense_sheet_id.payment_mode == 'company_account'` at `:62`**. For a
+> petty-cash sheet the guard is false, so core `_compute_needed_terms`
+> (`ENT18/account/models/account_move.py:1232`) runs and the payment-term line's account falls to the
+> standard partner-payable resolution (`account_move_line.py:547` `_compute_account_id`).
+> **The conclusion is unchanged; the citation was wrong.**
 
 **Therefore the actual entry appears to be:**
 
@@ -171,11 +181,40 @@ Meanwhile `hr_expense_petty_cash/models/hr_expense_sheet.py:96` groups `petty_ca
 …with the petty cash account never credited, and `petty_cash_balance` — which sums posted lines on
 (holder partner, petty cash account) — never decreasing as a result of a claim.
 
-> **`TZ-01` TOLERANCE-ZERO / DISPUTED.** This is the single highest-consequence claim in the package:
-> it converts a cash-float disbursement into an employee reimbursement liability and leaves the float
-> balance permanently overstated. It is stated here as `SUPPORTED INTERPRETATION` pending Expert 2's
-> adversarial verdict (`16 §4`), which was specifically tasked to disprove it using the module's own
-> test file as decisive evidence. **It is not promoted to `FACT VERIFIED` in this file.**
+> **`TZ-01` TOLERANCE-ZERO — UPHELD BY AAS-03 EXPERT 2 ON FOUR INDEPENDENT LINES, AND UNDERSTATED.**
+> Expert 2 attacked the claim from four angles; all four confirm it.
+>
+> **(a) The port never touched it.** A `diff -rq` of the v14 and v18 module trees shows 10 differing
+> files. `models/hr_expense.py:72-79` — the override — is **byte-identical to v14**, while the porter
+> edited every other method in that same file. It was never re-pointed at a v18 API.
+> **(b) It was live in v14.** The v14 module's own test calls `sheet.action_sheet_move_create()`
+> (`LEGACY14/hr_expense_petty_cash/tests/test_hr_expense_petty_cash.py:252`), the v14 entry point that
+> consumed the hook; two sibling LEGACY14 modules chain-override the same name.
+> **(c) Nothing in `ENT18` routes to it.** 0 files, whole tree, all file types, both `addons` and
+> `addons_archive`. Naming variants `_get_account_move_line`, `account_move_line_values`,
+> `move_line_values`, `_prepare_account_move_line`, `_prepare_move_line*` were all tried; only
+> `_prepare_move_lines_vals` exists. Structurally the v14 hook returned *a list of lines per expense*
+> so `[-1]` was the credit line; the v18 method returns **one dict for one debit line** and the payable
+> counterpart is not in that list at all — the idiom has no v18 analogue and could not be mechanically
+> retrofitted.
+> **(d) The tests are decisive, and they cannot run.** `tests/` is **byte-identical between v14 and
+> v18** — a pure v14 artefact. `setUp` dies at **line 19** on `env.ref("account.data_account_type_payable")`
+> (that xmlid: 0 files in `ENT18`), and six further v14-only APIs follow (`user_type_id`,
+> `hr.expense.unit_amount`, `hr_expense.air_ticket`, `action_sheet_move_create`, `account_move_id`).
+> The suite therefore **never reaches** the assertion that would have caught the dead redirection.
+> The module ships **zero effective test coverage on v18**.
+>
+> **Resulting GL effect, with Expert 2's confidence classes:** `move_type='in_invoice'`, journal = the
+> sheet's `journal_id`, partner = the employee's work contact (class A); DR the expense account from
+> `_get_base_account()` (class A); CR the work contact's `property_account_payable_id` via the standard
+> payment-term line (class C on the exact resolution order, **class A** on "it is not
+> `petty.cash.account_id` and not `petty.cash.partner_id`").
+>
+> **Net: identical to a plain employee reimbursement. The float account is never credited and the
+> holder's balance never decreases** — the balance query filters on `account_id = petty_cash.account_id`,
+> which no expense line ever carries. `_check_petty_cash_amount` therefore degenerates into a **one-way
+> ratchet: it sees top-ups and never drawdowns.** `TZ-01` is promoted to `FACT VERIFIED` on limbs (a)–(d)
+> and the GL consequence is carried at Expert 2's stated classes, not above them.
 
 ## 7. `AE-09` — WHT
 
@@ -199,5 +238,5 @@ Producer: `l10n_th_withholding_tax/wizard/account_payment_register.py:16-26, 59-
 | Accrued expense recognition + reversal | **None** | `21 NC-09` class B |
 | Employee receivable on over-advance | **None** — the over-advance is a *credit to expense* | `GL-05` |
 | Corporate card clearing | **None** | `21 NC-04` class B |
-| Tax non-deductible split | Expert 4 tasked — `account_disallowed_expenses` not yet mapped | `20 U-04` |
+| Tax non-deductible split | **SETTLED by AAS-03 Expert 4: none.** `account_disallowed_expenses` is **report-only** — a read-only SQL aggregation with no write path to any journal (class **A**) — and has **no connection to `hr_expense`** (class **A**). See `07 §6`. | `07 TX-24` |
 | Analytic allocation | Present on the debit line only | `06` |
