@@ -14,7 +14,7 @@ Status: `APPROVED AS CENTRAL DEEP RESEARCH STANDARD — NOT DEVELOPMENT FINAL GA
 
 Boss approved the following central standard:
 
-`ALL MODULE DEEP RESEARCH STANDARD = LEVEL 1 TO LEVEL 12 MINIMUM`
+`ALL MODULE DEEP RESEARCH STANDARD = LEVEL 1 TO LEVEL 12 MANDATORY FULL DEPTH + L13+ NO CEILING`
 
 This standard applies to Deep Research, Final Solution Preparation, Reopen, and Forensic Learning across all SMEsPlus modules.
 
@@ -39,7 +39,7 @@ It is not intended to slow small hotfixes, minor corrections, or narrow implemen
 | L11 | Reconciliation / End-to-End Proof | Require end-to-end proof and reconciliation against expected outcomes. |
 | L12 | Adversarial Challenge / Audit Veto | Independent challenge before any Gate recommendation. |
 
-`L12` is the minimum Deep Research standard.
+`L12` is the mandatory full-depth Deep Research standard with no ceiling.
 
 ---
 
@@ -93,4 +93,4 @@ This ruling must be applied to the next Inventory Deep Research session:
 
 `SMEPLUS-26-09-04-INV-DEEP-RESEARCH-R4-L12-001`
 
-Inventory must perform L1-L12 as minimum scope and may open L13+ if evidence requires.
+Inventory must perform L1-L12 as mandatory full-depth scope and may open L13+ if evidence requires.
