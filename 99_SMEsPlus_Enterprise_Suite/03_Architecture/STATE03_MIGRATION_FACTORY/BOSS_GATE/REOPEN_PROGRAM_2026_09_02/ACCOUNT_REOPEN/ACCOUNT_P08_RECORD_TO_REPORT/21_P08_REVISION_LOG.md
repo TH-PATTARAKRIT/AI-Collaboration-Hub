@@ -40,3 +40,15 @@ Correction `SMEPLUS-26-09-04-ACC-REV2-CORR1`, received mid-execution. Columns as
 ## 4. Independent-review revisions
 
 Recorded in `22_P08_AAS03_CHALLENGE.md`. Every reviewer finding is verified before acceptance; findings reduced or rejected on verification are recorded alongside those accepted, so that the reviewer's own error rate is visible.
+
+## 5. Revisions arising from an inbound peer finding (P04 — Acquire-to-Retire)
+
+Full handling in `09A_P08_PEER_INBOUND_P04_LOCK_REDATE.md`. Every peer claim was verified against primary source before acceptance.
+
+| ID | Original P08 position | What changed it | Corrected position |
+|---|---|---|---|
+| `REV-P-01` | "Posting silently relocates the accounting date when the requested date falls in a locked period." Which locks participate was left unstated. | P04's finding, verified: the violation lookup used by the posting routine passes the hard-lock flag set | **Corrected and sharpened.** The **irrevocable** lock also relocates rather than refuses on this path. The prior wording would have been read as implying the irrevocable lock refuses, and it does not. |
+| `REV-P-02` | "There is no subledger; it is a projection." | P04's finding, accepted: the fixed-asset register and the inventory valuation record are **genuine separate stores** | **Corrected — the original was too broad.** The *partner* subledger is a projection. Where a genuine subsidiary store exists, the kernel imposes **no reconciliation obligation at all**. New requirement `P08-RQ-KRN-01`. The absence of a reconciliation mechanism is class `C` for P08, which did not run that search. |
+| `REV-P-03` | The kernel assumed one measurement basis per fact, without saying so. | P04 re-opening the tax-book gap | **Made explicit.** New requirement `P08-RQ-KRN-02` and new decision `P08-BD-11`. The statutory half is `HOLD / EVIDENCE REQUIRED` and no P08 conclusion rests on it. |
+
+`REV-P-02` is the most important revision in this log: it was produced by a peer working in a different domain, and neither this session's own work nor its four commissioned adversarial reviews had surfaced it.

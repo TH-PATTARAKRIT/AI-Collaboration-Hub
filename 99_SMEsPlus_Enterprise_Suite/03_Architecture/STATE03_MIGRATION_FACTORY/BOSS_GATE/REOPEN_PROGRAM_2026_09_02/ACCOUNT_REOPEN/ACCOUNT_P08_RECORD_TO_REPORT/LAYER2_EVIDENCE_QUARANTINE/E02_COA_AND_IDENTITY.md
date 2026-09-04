@@ -127,3 +127,15 @@
 | `EV-CUST-06` | `import_bridge_axis/wizard/import_journal_entry.py:124-150 create_journal_entry` — number and date from the file, company lookup commented out `:153-161`, journal lookup by name only `:137`, partner auto-create `:126-134` |
 | `EV-CUST-07` | `scgl_tax_period_date/models/tax_period.py` — `@api.model` on a multi-create signature; propagates on create only |
 | `EV-CUST-08` | elevated ledger creation in the custom layer: `scgl_purchase_advance_payment/wizard/purchase_advance.py:203`; `hr_expense_petty_cash/models/hr_expense_sheet.py:103,115`; `scgl_advance_expense_request/wizard/advance_request_reconcile.py:40,86`, `models/advance_expense_request.py:271`; `account_discount_catalog/wizard/account_order_discount.py:119` |
+
+## Jurisdiction reporting
+| Ref | Citation |
+|---|---|
+| `EV-RPT-15` | `l10n_th_reports/models/tax_report_vat.py:40`, `:50`, `:62`, `:64-66` build the domain (journal type, payment state, date, state) — **no company term**; `:67 self.env['account.move'].search(domain)`; header stamped from `self.env.company` at `:103-107` including `vat` and `l10n_th_branch_name`. Sibling `tax_report_pnd.py` in the same module scopes correctly. |
+
+## Peer-inbound verification (P04)
+| Ref | Citation |
+|---|---|
+| `EV-CL-17` | `account/models/company.py:646-662 _get_violated_lock_dates` → `_get_lock_date_violations(..., fiscalyear=True, sale=…, purchase=…, tax=has_tax, **hard=True**)` at `:659`; consumed by `account/models/account_move.py:5694-5701` and by `_post` at `:4933-4936`, which assigns `move.date = move._get_accounting_date(...)` |
+| `EV-CL-18` | `account_asset/tests/test_board_compute.py:1263 test_post_moves_after_lock_date` — lock `2021-06-30` at `:1267`; pre-validate schedule asserts a draft move dated `2020-12-31` (`:1274`); post-validate schedule asserts the same 12 000 charge **posted at `2021-07-31`** (`:1285`) |
+| `EV-CL-19` | `account_asset/wizard/asset_modify.py:241-242` — `if self.date <= ..._get_user_fiscal_lock_date(...): raise UserError("You can't re-evaluate the asset before the lock date.")` |

@@ -69,6 +69,8 @@ Consequences, all `FACT VERIFIED`: a soft close is **reversible** by writing an 
 `PC-27` — An **irrevocably** locked period cannot be reopened by anyone; no override path was found. `FACT VERIFIED` for the three refusal sites; the absence of any other path is `B NOT FOUND IN SEARCHED SCOPE`.
 `PC-28` — Reopening leaves **no reopen record**, requires no stated reason, requires no approval, and imposes no obligation to re-close. `FACT VERIFIED`.
 `PC-29` — **Reopening does not invalidate issued statements.** Snapshotted figures persist and are explicitly protected from overwrite; nothing marks them stale when the underlying period is reopened and re-posted. The single exception is narrow and tax-only. `FACT VERIFIED`.
+`PC-29a` — **The irrevocable lock refuses a *reopen*, but it does not refuse a *posting*.** On the ordinary posting path the violation lookup passes the hard flag set, so an entry aimed at an irrevocably locked period is **relocated forward and posted**, not rejected. The product's own test asserts this, moving a full annual charge across a fiscal-year boundary. Verified by P08 after an inbound peer finding; see `09A`. The same cut-off **hard-refuses** an asset re-evaluation with an explicit error — one control, two opposite behaviours, recorded as `P08-CONTRA-16`.
+
 `PC-30` — **The one genuinely irreversible control is the entry seal, not the period lock.** A sealed entry cannot be unposted under any circumstance. Period lock and entry seal are complementary: the first makes a span unwritable, the second makes an individual record un-reversible. `FACT VERIFIED`.
 
 ## 7. Closing adjustments

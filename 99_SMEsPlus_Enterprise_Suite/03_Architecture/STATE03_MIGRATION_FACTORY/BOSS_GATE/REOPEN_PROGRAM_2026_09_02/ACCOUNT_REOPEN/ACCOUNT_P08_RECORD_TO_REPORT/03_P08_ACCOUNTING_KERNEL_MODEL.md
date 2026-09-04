@@ -54,7 +54,11 @@ Answering it requires separating three things that the benchmark fuses: what a l
 | General ledger | **Derived presentation of the journal items** | No independent content |
 | Financial report | **Derived, plus three independent stores** | See `KRN-04` |
 
-`KRN-06` — **The subledger is a projection of journal items *and the matching graph*.** This is stronger than "the subledger is derived". A line posted without a counterparty is attributed to a counterparty *because it was matched*; un-matching removes it from that party's statement. The matching graph is therefore not a settlement artefact sitting beside the ledger — it is load-bearing for the ledger's own party dimension. `FACT VERIFIED`.
+`KRN-05a` — **CORRECTED after an inbound peer finding (P04).** The statement "there is no subledger, only a projection" is too broad and is narrowed here. It holds for the **partner** subledger. It does **not** hold for the **fixed-asset register** or the **inventory valuation record**, which are genuine separate stores carrying independently maintained values. For those, the kernel imposes **no reconciliation obligation at all** — no control-account relationship, no periodic proof, no exception when the two disagree. That is a gap in the kernel, not in the producing module, and P08 owns it. New requirement `P08-RQ-KRN-01`. The absence of a reconciliation mechanism is class `C NOT YET SEARCHED` for P08's own scope; see `09A`.
+
+`KRN-05b` — **The kernel carries one measurement basis per fact.** A second statutory or tax basis over the same events is not expressible without duplicating the ledger. New requirement `P08-RQ-KRN-02`; new decision `P08-BD-11`. See `09A` §5.
+
+`KRN-06` — **The partner subledger is a projection of journal items *and the matching graph*.** This is stronger than "the subledger is derived". A line posted without a counterparty is attributed to a counterparty *because it was matched*; un-matching removes it from that party's statement. The matching graph is therefore not a settlement artefact sitting beside the ledger — it is load-bearing for the ledger's own party dimension. `FACT VERIFIED`.
 
 ## 4. Manual journals — where the boundary moves
 
@@ -98,6 +102,10 @@ The directive asks specifically whether the general ledger is original truth, de
 
 `KRN-INV-05` — **A tenant-scope mutation may never rewrite a company-scope posted fact.** It may only add a new company-scope fact. This is the general form of the counterparty reach-through recorded in `P08_SCOPE_OWNERSHIP_MATRIX.md` §2.7 and is the rule that would have prevented it.
 
+`KRN-INV-06` — **Every subsidiary store that carries an independently maintained value has a stated control-account relationship and a periodic proof that the two agree; the failure of that proof is itself an accounting event.** (`P08-RQ-KRN-01`.)
+
+`KRN-INV-07` — **A financial fact carries its measurement basis, and the kernel supports more than one basis over one set of accounting events without duplicating the events.** (`P08-RQ-KRN-02`.)
+
 ### 5.3 What this makes possible that the benchmark cannot do
 
 | Capability | Requires |
@@ -107,6 +115,8 @@ The directive asks specifically whether the general ledger is original truth, de
 | Re-run a prior period's statement and get the same answer | `K7` plus `KRN-INV-02` |
 | Prove the ledger from stored data without trusting the code that wrote it | `KRN-INV-02` at persistence level |
 | Distinguish a derived entry from an asserted one | `K2` presence or absence |
+| Prove the fixed-asset register agrees with the ledger | `KRN-INV-06` |
+| Produce a tax position without a second ledger | `KRN-INV-07` |
 | Reopen a period and know what was issued before the reopen | `K7` as an object, plus statement issuance as a fact |
 
 ## 6. Classification summary

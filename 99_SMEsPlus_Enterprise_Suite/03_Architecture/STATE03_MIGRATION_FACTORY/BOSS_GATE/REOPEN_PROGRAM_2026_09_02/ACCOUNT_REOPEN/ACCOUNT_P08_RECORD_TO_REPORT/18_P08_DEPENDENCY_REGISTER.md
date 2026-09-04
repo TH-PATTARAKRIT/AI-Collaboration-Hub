@@ -23,6 +23,7 @@ At P08's close, no peer process had committed output. P08 recorded the interface
 | `XP-01` | P01, P02 | recognition point per document event | `PEER DEPENDENCY OPEN` |
 | `XP-02` | P03 | the valuation-to-ledger handoff boundary | `PEER DEPENDENCY OPEN` |
 | `XP-03` | P04 | depreciation period-attribution rule | `PEER DEPENDENCY OPEN` |
+| `XP-10` | P04 → P08 | **inbound, received and closed**: irrevocable-lock relocation, the re-evaluation/posting contrast, the separate-subsidiary-store correction, and the tax-book gap re-registered as `P04-B-13` | **RECEIVED, VERIFIED, ACCEPTED** — see `09A` |
 | `XP-04` | P05 | which company owns an expense claim's ledger effect | `PEER DEPENDENCY OPEN` |
 | `XP-05` | P06 | the settlement event's own date | `PEER DEPENDENCY OPEN` |
 | `XP-06` | P07 | the tax point as a carrier distinct from the accounting date; statutory statement layouts | `PEER DEPENDENCY OPEN` + `HOLD / EVIDENCE REQUIRED` |
@@ -44,6 +45,7 @@ At P08's close, no peer process had committed output. P08 recorded the interface
 | `P08-U-08` | Which of the 22 roots the deployed system runs | `D UNKNOWN` → `P08-BD-05` | a programme declaration |
 | `P08-U-09` | The archive file inside the project custom addon set was listed but not content-searched | `C NOT YET SEARCHED` | extract and sweep |
 | `P08-U-10` | The 67 custom modules other than those examined were not reviewed for isolation behaviour | `C NOT YET SEARCHED` | a bounded sweep — **this is the highest-value remaining search**, given what the one module examined turned out to contain |
+| `P08-U-12` | Whether any mechanism reconciles a genuine subsidiary store (fixed-asset register, inventory valuation) to the ledger | `C NOT YET SEARCHED` | a bounded search P08 did not run; P04 reports six break mechanisms and no detector |
 | `P08-U-11` | Thai statutory requirements bearing on statement format, retention and the accounting date | `HOLD / EVIDENCE REQUIRED` | authoritative evidence, Accounting-Tax track |
 
 ## 4. Boss decisions this session raises
@@ -60,5 +62,6 @@ At P08's close, no peer process had committed output. P08 recorded the interface
 | `P08-BD-08` | Must reporting resolve a measurement identically to posting? |
 | `P08-BD-09` | Is an analytic dimension a fact or an attribution? |
 | `P08-BD-10` | The sequencing question of `P08-CONTRA-15`. |
+| `P08-BD-11` | How many measurement bases must SMEsPlus carry over one set of accounting events, and in what form — parallel books, parallel valuations on one fact, or a derived adjustment layer? Raised by P04's re-opening of the tax-book gap. |
 
 Each of these is normative, not factual. Further research cannot resolve any of them, which is why they are recorded here rather than left open as unknowns.

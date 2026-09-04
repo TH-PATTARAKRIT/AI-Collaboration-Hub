@@ -76,6 +76,18 @@ A statement is a named definition owning ordered rows and ordered columns. Each 
 
 `FR-24` — Countermeasures exist, and **all of them sit at the journal-entry layer. None sits at the report layer.** The lock dates and the entry seal constrain the ledger; they constrain nothing in the statement layer. The seal freezes a sealed entry's date, but not the account it points at, nor that account's code or classification, nor any statement definition. `FACT VERIFIED`.
 
+## 7A. A statutory extract whose population is not scoped to the entity it names
+
+`FR-25` — In the jurisdiction-specific reporting module of the target root, the value-added-tax extract builds its document population from a filter containing **journal type, settlement state and date only — no owning-entity term** — and then stamps the **currently active entity's** name, tax registration number and branch name onto the output header.
+
+The object layer's own isolation rule still filters the population, but it filters by the set of entities **activated in the session**, not by the single entity whose identity is printed. Where an operator has more than one entity active, the extract therefore presents one entity's identity over a document set that may span several.
+
+`FACT VERIFIED` for the mechanism — read directly and independently confirmed by this session's lead author. The sibling withholding-tax handler in the same module scopes correctly, which is what makes this a defect rather than a design.
+
+**What is not stated here.** Whether such an extract satisfies or breaches any Thai statutory filing requirement is `HOLD / EVIDENCE REQUIRED` and is routed to the Accounting-Tax track. P08 records the mechanism only, and routes the content to P07 as `XP-06`.
+
+**Why it belongs in P08 and not only in P07.** It is an instance of the general class this file establishes: **the statement layer carries no owning-entity scope of its own**, so every statement's scope is whatever its caller happened to activate. The tax extract is the instance where that produces a document bearing a legal identity.
+
 ## 8. Requirements
 
 | ID | Candidate requirement |
@@ -88,3 +100,4 @@ A statement is a named definition owning ordered rows and ordered columns. Each 
 | `P08-RQ-FR-06` | Draft entries are never included in an issued statement, and the inclusion state is on the face of every rendering, ungated. |
 | `P08-RQ-FR-07` | A consolidated view is a derivation and is never writable. A missing translation measurement refuses; it never passes through at parity and never silently drops the fact. |
 | `P08-RQ-FR-08` | The cash-flow classification is a property of the accounting event, not an optional tag on the counterparty account, and the statement carries no unexplained residual. |
+| `P08-RQ-FR-09` | A statement that bears a legal entity's identity is produced for **exactly that entity**, and its population is scoped by that entity — never by whatever the caller happened to activate. |

@@ -18,6 +18,8 @@ Every material contradiction records the competing claims, the evidence for each
 | `P08-CONTRA-08` | A tamper-seal chain asserts a property of **one company's** records; the benchmark chains on a per-book series and a book is tree-scoped, so a chain may span companies | semantic vs implementation | Business semantic governs | `SC-JE-08` |
 | `P08-CONTRA-09` | A fiscal year is a legal attribute of a **legal entity**; the benchmark delegates it to the **root** of the company tree | semantic vs implementation | Business semantic governs. Whether one tenant may hold companies with differing year-ends is `P08-SC-U-01` | `SC-CL-01` |
 
+| `P08-CONTRA-16` | The same period cut-off **hard-refuses** an asset re-evaluation with an explicit error, and **silently relocates** an entry posted through the ordinary posting routine — including when the cut-off violated is the irrevocable one | implementation-specific | **Both stand.** One control, two opposite behaviours in one module. The cause is structural: a period has no state, so each code path chooses how to honour the date | `P08-PEER-02`; `P08-RQ-PC-02` |
+
 ## 2. Contradictions between this session and prior programme evidence
 
 | ID | Prior claim | P08 finding | Disposition |
