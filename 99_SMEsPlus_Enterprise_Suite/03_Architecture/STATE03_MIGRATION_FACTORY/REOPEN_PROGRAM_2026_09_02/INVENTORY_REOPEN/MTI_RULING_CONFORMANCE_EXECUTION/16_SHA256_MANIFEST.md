@@ -62,7 +62,21 @@ This session recomputed the manifests of all four upstream packages by the same 
 
 ---
 
-## 5. Non-Authorization Lock
+## 5A. Addendum — File `17`, Added After The Package Commit
+
+`17_POST_PUBLICATION_ADDENDUM_8_CRITERIA_EXIT_CONSTITUTION.md` was added after commit `c130d9b`, on discovering that a project-wide mandatory governance control — `SMEPLUS-DR-EXIT-8C-001`, commit `40c55dcc2b6f93c7f1c350ded6463d628bf5c4b0` on `SMEsPlus` — was adopted **seventeen minutes before** this package's first commit and therefore could not have been in the evidence set at `01`.
+
+**Files `00` through `15` are byte-unchanged by the addendum. Every digest at §2 above remains valid**, which was re-verified before this section was written.
+
+| No. | File | SHA-256 |
+|---:|---|---|
+| 17 | `17_POST_PUBLICATION_ADDENDUM_8_CRITERIA_EXIT_CONSTITUTION.md` | `3d00bec7373f057e8d81f98ff5bf3de8e03ac471eb5ba5f63ba84fd52abf8491` |
+
+The addendum records this package as **`PROVISIONAL / NON-CANONICAL`** under §9 of that constitution, supersedes the rank 1 recommendation from **one** independent pass to **two consecutive clean** independent passes under `EC-07`, and maps this package's negative-claim classes and verdicts to the constitution's enumerations. **It re-opens no conclusion, moves no count, closes no item and discharges no veto.**
+
+---
+
+## 6. Non-Authorization Lock
 
 `No Evidence = No Progress.`
 `Never Skip Gate.`
