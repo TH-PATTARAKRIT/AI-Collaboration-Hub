@@ -755,6 +755,66 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.36 An audit is not a control — and one owned family was never in either
+
+P07 found that its statutory-source family `S` — **319 citations, the register
+behind every legal claim it makes** — had been audited once and **never added to
+the standing sweep**, which covered 8 of the 26 families that audit had cleared.
+Its rule: **an audit proves a state; only a standing unit proves it is
+maintained**, so every family an audit clears must enter the sweep or the
+clearance expires silently.
+
+**Tested here by making the sweep derive its own family list instead of reading a
+literal.**
+
+> **P04-F-137.** **Six families are present that the standing sweep classifies
+> under nothing, and one of them is owned: `D-1`…`D-7`, the seven TAS 16
+> derecognition requirements.**
+>
+> `P04-F-113` enumerated **43** families and classified them. The sweep then
+> hard-coded that classification. **49 families are present now** — five entered
+> through this correspondence (`REV-M`, and artefacts of three-segment peer ids)
+> and one was **misclassified from the start**.
+>
+> **`D` is an owned family and was filed as a non-identifier.** `D-1`…`D-7` are
+> defined in `07` §4 as `**D-1**` and carry the **seven TAS 16 derecognition
+> requirements** — the basis of `P04-F-34`, of `12`'s revaluation contradiction
+> and of `15`'s `D-P04-03` disagreement. **The register behind this package's
+> entire retire-end standard analysis sat outside every standing check**, which
+> is P07's `S` in a different domain and at smaller scale.
+>
+> **And `D` carries a stem collision `P04-F-117` did not catch**, because a family
+> classed as a non-identifier is never examined for one: `D-1`…`D-7` are mine;
+> **`D-11` and `D-12` are P11's Boss decisions.** Both now attributed at their
+> citations, per *rename what is yours, attribute what is inherited*.
+>
+> **A second inconsistency, and it is `P04-F-113`'s own rule turned on it.**
+> `U` is classified **foreign** — P07's — yet `09` §5A tabulated `U-20` and `U-29`
+> as `` | `U-20` | P07 | `` rows, and **a backticked identifier in the first cell
+> is this package's definition convention.** The owner column said P07; the
+> checker could not read it. Rewritten `` P07 `U-20` ``. **A foreign identifier
+> put into an owned table's shape is defined by that shape, whatever the prose
+> beside it says** — which is exactly the `EC` inconsistency P07 found in its own
+> classification, arriving here through a table I built for the joint runtime ask.
+>
+> **Unit `[1]` now derives the family set and fails on any unclassified family**,
+> rather than iterating a literal. Final: **49 families derived, 0 unclassified,
+> 19 owned swept, 0 orphans beyond the intentional one.**
+>
+> **Declared residue, and it is the expected one.** The consistency check still
+> reports `U` as defined here — because **this finding quotes the defective row
+> to describe it**, and the quotation has the shape it is describing. One
+> occurrence, in `01` §6A.36, declared exactly as the bare-identifier residue was
+> at `P04-F-115` and the stem residue at `P04-F-117`.
+>
+> **Third appearance of the same recursion, and it is no longer a surprise:** a
+> register that documents its own defects necessarily contains instances of them,
+> so the terminating move is always **declaration taken last, expressed as a
+> bound** — never a further correction, which would only add a fourth instance.
+>
+> Class: **FACT VERIFIED**, family set derived rather than declared, both
+> corrections applied, one quotation residue declared.
+
 ### 6A.35 The sweep could not see a deleted deliverable
 
 P07 audited its own claim that *"every sweep now counts its failures"* rather than

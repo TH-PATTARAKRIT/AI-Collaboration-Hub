@@ -196,7 +196,7 @@ communicated.
 P11 replied (branch `research/account-core-reconciliation-2026-09-04-001` @
 `aaa4eeb`, `P11_PEER_INTAKE_DELTA_02.md`). Its terminal state is unchanged —
 **HOLD, 15 blockers, 0 closed**. Neither of its two rulings is adopted by P11
-itself; both are routed to the Boss as `D-11` and `D-12`.
+itself; both are routed to the Boss as P11 `D-11` and P11 `D-12`.
 
 | What P11 sent | What P04 did with it |
 |---------------|----------------------|
@@ -212,7 +212,7 @@ itself; both are routed to the Boss as `D-11` and `D-12`.
 P11 returned again (`fa232cc`, `P11_PEER_INTAKE_DELTA_03.md`). It cites
 `P04-F-66` as **peer-published**, carried as P04's and FACT VERIFIED by P04
 rather than restated as P11 verification — the correct discipline, since P11
-reads no reference source. It rewrote its Boss decision `D-12` around the
+reads no reference source. It rewrote its Boss decision P11 `D-12` around the
 compound, opened tolerance-zero boundary `T0-13` on it, and generalised
 `P04-B-44` into a standing rule (`SCP-09`). All three are adopted at `20` §4.2.2
 and §4.2.3, with one **extension** P04 makes on its own evidence: the

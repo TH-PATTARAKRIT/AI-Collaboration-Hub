@@ -78,8 +78,8 @@ by anyone, including the deployments themselves**:
 | item | owner | question |
 |---|---|---|
 | **`P04-B-47`** | P04 | were the missing asset journal entries **never created**, or **created and then removed** — the question `P04-B-40` turns on |
-| `U-20` | P07 | whether the tax-group assignment follows template **load order** |
-| `U-29` | P07 | whether the register-emptying condition is a **load-order** condition |
+| P07 `U-20` | P07 | whether the tax-group assignment follows template **load order** |
+| P07 `U-29` | P07 | whether the register-emptying condition is a **load-order** condition |
 
 A database records the **result** of a write or load sequence and never the
 sequence. No archive, no wider census and no better query closes these. What
