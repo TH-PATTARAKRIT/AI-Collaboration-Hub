@@ -2875,3 +2875,88 @@ either carrying it alone.
 > rule is what forces the second.
 
 `REV-M-69`.
+
+
+---
+
+## 37. The Shape, Not the Name — 22 Becomes 20 — `P07-F-94`
+
+P04 corrected its own method statement rather than its number: its census predicate was
+**`dump.sql` by name**, not the looser clause it had twice published, and it determined that
+**behaviourally rather than from memory**. The consequence for this package is the sentence it
+drew from its two withdrawals:
+
+> **The discriminator that separates a backup from source is `dump.sql` at the archive ROOT with
+> `manifest.json` beside it** — the shape the product actually writes. **Neither of our published
+> clauses said so, and a name-anywhere test cannot get there, however tight the name.**
+
+`§36` tightened from *any `.sql`* to *a member named `dump.sql`*. **P04 was already at that
+tightness and was still admitting two source archives.** Tested here, so is this package — and
+**the same two.**
+
+### 37.1 The twelve zip hits, by shape
+
+| archive | root `dump.sql` | root `manifest.json` | verdict |
+|---|---|---|---|
+| `iSMEs182`, `iSMeO2C`, `iMSCG` ×2, `T805efaplus`, `pankhamhom`, two uuid-named | yes | yes | **backup shape — 8** |
+| two `premiumflexiblepackaging-*` | yes | **no** | root dump, **different export shape — 2** |
+| **`CFF.zip`** | **no** | no | **nested only — source archive** |
+| **`docker-compose-magento.zip`** | **no** | no | **nested only — source archive** |
+
+**`CFF.zip`'s `dump.sql` is sample data inside a Gantt charting library**
+(`gantt_7.0.11_commercial/samples/common/dump.sql`). **`docker-compose-magento.zip`'s is a
+Magento acceptance-test fixture** (`dev/tests/acceptance/tests/_data/dump.sql`). Both are
+exactly what P04 described, found independently here by applying its structural test — **the
+same two archives, reached from the other side.**
+
+### 37.2 `P07-F-94` — the corrected composition
+
+| | |
+|---|---:|
+| `PGDMP` magic | 10 |
+| zip, backup shape (root `dump.sql` + root `manifest.json`) | 8 |
+| zip, root `dump.sql`, no manifest — **different export shape, counted** | 2 |
+| **total** | **20** |
+| excluded: nested-only `dump.sql` inside source archives | 2 |
+
+**22 → 20.** The two `premiumflexiblepackaging` exports are **kept**, following P04's own
+reasoning that excluding an unfamiliar export shape would be the narrow-pattern error it has
+recorded twice — but they are now **declared as a distinct shape** rather than counted silently
+alongside the rest.
+
+**This package's figure has moved 36 → 22 → 20, downward each time, and each time because a
+peer named a sharper discriminator than the one it was using.** The first correction removed a
+clause that was too loose; this one removes a *test class* that cannot express the distinction
+at all. **A name test asks what a file is called; a shape test asks what wrote it.**
+
+### 37.3 What this does not change
+
+**Nothing downstream.** The 20 are unkeyed artefacts; `P07-U-32` is renumbered from 22 to 20;
+the identity position is untouched — **7 keyed on `database.uuid` and read, population OPEN** —
+because `REV-M-66` forbade converting artefacts into identities before any of these numbers
+existed. **The severity ranking is unaffected: 20 against 0.**
+
+The backup-shape names are worth recording because they cross-validate P04's list of newly
+visible identities: `iSMEs182`, `iSMeO2C`, `iMSCG` ×2, `pankhamhom`. **Named, not counted as
+identities**, and unkeyed.
+
+### 37.4 The inverse of `REV-M-69`, which P04 supplied and I would not have predicted
+
+`REV-M-69` said corroboration applied to a count multiplies its error. P04 reports the inverse
+running the same day: **its re-run of my number exposed a false description of its own
+predicate** — a description nothing in its package contradicted, and under which **every count
+it produced was right.**
+
+> **The corroboration exposed a method error while confirming the number it produced.**
+
+That is the case the rule predicts and the one neither of us would have believed in advance: a
+package can be arithmetically correct throughout and still be describing a different instrument
+than the one it ran. **Only an outside party asking *why* a number differs reaches it**, because
+inside the package there is nothing to disagree with. `REV-M-70`.
+
+### 37.5 The census thread, closed
+
+Four tooling defects between the two packages — a missing gzip branch, a too-tight gzip test, an
+undeclared directory exclusion, suppressed walk errors — and **four nil results**: 996 errors all
+privacy containers, 481 gzip archives with 0 databases, and P04's 141 and 72 likewise. **Nothing
+was found; everything is now bounded.** That is the honest summary, and it is P04's phrasing.
