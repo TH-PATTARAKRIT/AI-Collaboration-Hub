@@ -262,7 +262,7 @@ Two consequences that must be stated with it, so it is not adopted casually:
 1. Units-of-production requires a **reliable expected-total-output estimate per
    asset**, reviewed annually. Nothing in the estate holds one.
 2. It **changes the depreciation charge itself**, which has tax consequences
-   (`HOLD-02`, `HOLD-05`) that this session did not research.
+   (prior package `HOLD-02`, `HOLD-05`) that this session did not research.
 
 Registered as blocker **P04-B-27**.
 

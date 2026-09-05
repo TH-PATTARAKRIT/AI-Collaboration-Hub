@@ -745,6 +745,51 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.14 The family list was itself an author-chosen population
+
+> **P04-F-113.** **The 14 families audited at `P04-F-111` were hand-picked from a
+> list filtered at a frequency floor this package never declared. Enumerated
+> without a floor there are 43.** P07 audited **46** and found **26 owned**
+> against its own 8 — so its coverage gap was larger than this package's, and
+> neither of us found ours without the other stating a number.
+>
+> The defect is the one this package records more than any other, arriving in the
+> **audit of the check itself**: `P04-F-111` declared *"14 owned families"* as
+> though the denominator were given. It was **selected** — families appearing
+> twice or more, chosen by eye.
+>
+> Full enumeration, no floor, every identifier-shaped token:
+>
+> | class | families | note |
+> |---|---:|---|
+> | **owned — audited** | **17** | 309 citations |
+> | **foreign by attribution** | 14 | `P11-*`, `SCP`, `U`, `REV-E`, `P07-F`, `P2 REV`, `HOLD` (prior package), and bare `F` where it means P07's |
+> | **not identifiers** | 12 | `TAS-02`, `IFRS-16`, `SHA-256`, `Layer-1`, `Tier-1`, `ERPPLUS-17`, `DBD-01` … |
+>
+> **Four families had never been checked at all**, the largest being the **event
+> register `EV-01`…`EV-24`** — the spine of `03` — together with the use-case set
+> `UC-01`…`UC-06`, the specified-query set `Q-10`…`Q-14`, and `HOLD-nn`.
+>
+> **Result: 309 citations across 17 owned families, one undefined** — the
+> intentional withdrawal notice `P04-F-18`. Control: a deliberately absent
+> identifier is reported.
+>
+> **One reclassification.** `HOLD-02`, `HOLD-03` and `HOLD-05` are **prior-package
+> identifiers**. `07` attributed one of them (*"from the prior package"*) and `06`
+> attributed none, so two citations were indistinguishable from unresolved local
+> ids. Attribution added — the same rule already applied to `P2 REV-03` and
+> `P07's F-65`. **A foreign identifier without its attribution is an orphan to
+> every reader and every checker.**
+>
+> **And reclassifying `HOLD` moved it out of the audited set**, which is the
+> point: a family's class is a **judgement**, and the check must be re-run after
+> the judgement changes. The first run of this sweep still listed `HOLD` as owned
+> and reported its three ids as orphans **after** the finding above had
+> reclassified them — the register and the checker disagreed for one run.
+>
+> Class: **FACT VERIFIED**, coverage stated: 43 families enumerated, 17 audited,
+> 26 classified out with reasons.
+
 ### 6A.13 The identifier check covered 2 of 14 families
 
 P07 extended its orphan check beyond the one family it was written for and found
