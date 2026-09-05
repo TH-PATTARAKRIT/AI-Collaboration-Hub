@@ -314,7 +314,7 @@ first published.**
 
 | Measure | Count |
 |---|---|
-| Errors made by this session | **21** |
+| Errors made by this session | **22** |
 | Self-caught before the challenge | 3 |
 | Self-caught in parallel with the challenge | 4 |
 | Found only by independent adversarial challenge | 6, including both CRITICAL |
@@ -405,3 +405,30 @@ up without either party's permission**.
 > adversarial challenge could not have produced.** Deference is the failure mode a cooperative
 > exchange creates; four expert panels instructed to attack could not have surfaced it, because
 > nothing in that setting rewards it.
+
+## `P11-E-22` — an incapacity asserted and never tested, inside the rule about what can be executed
+
+**Where.** `P11_PEER_INTAKE_DELTA_05.md` §3 and `P11-G-02`: *"`P04`'s half: carried `PEER-PUBLISHED`,
+not re-derived, **because P11 cannot open the artefacts it rests on**."*
+
+**Trigger.** `P04` confessed `P04-REV-19` — it had claimed it could not read P11's register, the claim
+was **false and never tested**, and one `git fetch` disproved it. **P11 tested its own analogous
+statement rather than treating the confession as one-sided.**
+
+**Executed.** `git show <P04>:…/18_P04_REVISION_LOG.md` at `ae525fc` returns **20** `P04-REV` ids and,
+at line 103, `| **Total** | **9 instances · 4 distinct actors** |`. **`P04`'s half is enumerable from
+its published package. P11's stated reason was false.**
+
+**Class.** The negative-claim defect turned on P11's **own capabilities** — the programme's *"never
+declare no code access from a working-tree search"*, committed about a **peer** instead of a source
+tree, **by the author of the rule about what can and cannot be executed across a boundary**.
+
+**Correction, adopting `P04`'s bound.** A cross-party **tally** may be unexecutable — neither party can
+enumerate the other's unpublished drafts. A cross-party **citation** is always verifiable, because the
+branch is published. `P11-G-02` stands for tallies over unpublished material and **never licensed
+declining to open a published artefact**. `P04`'s half is now carried **verified-as-stated**, with
+per-row classification left to its owner.
+
+> **Both parties asserted an untested incapacity about the other while jointly building a rule about
+> what can be executed across the boundary between them.** Neither noticed until one of them ran the
+> command.

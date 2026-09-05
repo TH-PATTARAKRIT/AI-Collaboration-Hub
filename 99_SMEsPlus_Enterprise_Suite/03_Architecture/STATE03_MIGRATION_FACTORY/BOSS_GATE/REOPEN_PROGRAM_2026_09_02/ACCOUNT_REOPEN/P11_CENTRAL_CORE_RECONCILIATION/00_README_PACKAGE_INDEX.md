@@ -19,6 +19,7 @@ Jira `ERPPLUS-138` · Date `2026-09-04`
 | 2b | `P11_PEER_INTAKE_DELTA_02.md` | P04's two scope questions answered; P04's narrowing accepted with a time-indexed qualification |
 | 2c | `P11_PEER_INTAKE_DELTA_03.md` | `SR-02` corroborated from source and **escalated**; `T0-13` opened; `D-12` restated |
 | 2d | `P11_PEER_INTAKE_DELTA_04.md` | `T0-13` **widened to every scope**; an attribution corrected against P11 |
+| 2h | `P11_PEER_INTAKE_DELTA_08.md` | A defeat test answered **against** P11; `T0-13` narrow a third time; an untested incapacity |
 | 2g | `P11_PEER_INTAKE_DELTA_07.md` | A stale `PEER-PUBLISHED` half, and the gap in `P11-G-02` that let it rot |
 | 2f | `P11_METHOD_PROPOSAL_OCCASION_SCOPED_GENERALISATION.md` | A third method-defect pattern, authored at `P07`'s request after it declined the pattern for its own standard, with reasons |
 | 2e | `P11_PEER_INTAKE_DELTA_05.md` | `P11-E-17` reclassified to the secondary-source class; its **id corrected** before it entered a programme standard; a cross-party count rule opened |

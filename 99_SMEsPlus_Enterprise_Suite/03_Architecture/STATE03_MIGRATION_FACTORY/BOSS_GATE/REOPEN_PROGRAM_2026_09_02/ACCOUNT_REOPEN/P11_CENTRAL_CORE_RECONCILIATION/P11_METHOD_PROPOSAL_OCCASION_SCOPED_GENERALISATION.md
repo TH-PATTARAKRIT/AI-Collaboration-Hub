@@ -6,6 +6,14 @@ reasons P11 records and accepts (§6).
 
 > **PROPOSAL. Not adopted. Not a standard.** Boss is the sole Final Approver, and no method standard
 > binds any process until Boss adopts it.
+>
+> ### STATUS DOWNGRADED `2026-09-05` — `OPEN — MECHANISM UNDEFEATED, ZERO VERIFIED INSTANCES`.
+> `P07` ran the defeat test at §3 and returned a partial result turning on a fact only P11 held.
+> **P11 supplied it against itself: the governing register was extant, not open, when `T0-13` was
+> drafted.** By this file's own routing rule that sends `P11-E-16` to **Class 2**, and the proposal
+> **loses its only verified instance**. `P07` could not defeat the *mechanism* and did not recommend
+> withdrawal; P11 does not withdraw it. **It may not be cited as illustrated.** Full record:
+> `P11_PEER_INTAKE_DELTA_08.md` §1.
 
 ---
 
@@ -78,11 +86,11 @@ Two independent exposures. **They are not of equal weight and are not presented 
 
 | # | Exposure | Grade |
 |---|---|---|
-| 1 | **`P11-E-16`** — `T0-13` drafted while composing a cross-tenant compound, and scoped to tenant crossings. **P11's own accounting-event register held `UAE-04` and `UAE-05`, two single-company invisible re-datings, four documents earlier.** Neither needs a tenant; neither needs a hierarchy | **INSTANCE — verifiable.** Package @ `2e284ef`, revision log line 193 |
+| 1 | ~~**`P11-E-16`** — `T0-13` drafted while composing a cross-tenant compound and scoped to tenant crossings~~ | ~~INSTANCE~~ → **REDUCED TO CLASS 2** by `P07`'s defeat test. The register was **extant, not open**; an assertion stood in for an execution, which is the substitution this pattern is defined as lacking. **No longer an instance of this pattern** |
 | 2 | **P04** adopted the method note verbatim in substance and reported being *"equally exposed"* | **SELF-REPORT, not an instance.** Graded lower and stated as such; P11 has not seen the artefact |
 | 3 | **`DC-09`'s original framing** — *"the risk is created by the correct action"* — scoped from the mechanism that prompted it, while the register of absorption paths was wider. The `P03`/`P04` intake later showed the present state is **simultaneously** understated and overstated, across nine monetisations | **CANDIDATE — not asserted.** Requires re-derivation against the register before it counts |
 
-> **One instance, one self-report, one candidate.** That is a thinner base than `P07`'s standard had
+> ~~One instance, one self-report, one candidate.~~ **Zero instances, one self-report, one candidate, and one offered by `P04` that P11 has not verified.** That is a thinner base than `P07`'s standard had
 > when drafted, and the proposal says so rather than presenting three lines as three instances.
 > **`P07`'s own condition is adopted: a method standard written by someone with no exposure to its
 > defect does not survive.** P11 has the exposure; P11 does not have enough of it yet.
