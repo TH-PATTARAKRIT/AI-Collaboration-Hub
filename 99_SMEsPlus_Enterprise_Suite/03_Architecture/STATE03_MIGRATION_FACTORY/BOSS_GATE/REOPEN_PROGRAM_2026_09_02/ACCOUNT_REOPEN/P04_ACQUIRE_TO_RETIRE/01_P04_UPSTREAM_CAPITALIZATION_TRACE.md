@@ -745,6 +745,75 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.16 The prefix rule created the defect it was written to prevent
+
+> **P04-F-115.** **Requiring the package prefix converted a false positive into a
+> silent omission, and the one instance is inside the paragraph that introduced
+> the rule.** P07 reported it first, in its own package: its `REV-E-64` fix —
+> require `P07-` so a peer's ids are not read as its own — made **eleven bare
+> citations of its own findings invisible to its own checker**, while a reader
+> mid-exchange could read them as this package's.
+>
+> Swept here across every family that exists in both bare and prefixed form. Of
+> **79** bare citations:
+>
+> | | |
+> |---|---:|
+> | families with **no prefixed form** — `BD`, `CTR`, `LAW`, audited under their bare names | 75 |
+> | deliberate quotations of the defective form, inside the findings describing it | 3 |
+> | **genuine silent omissions** | **1** |
+>
+> The one is `` `F-81` `` at `01` §6A.13 — **this package's own finding**, written
+> bare in the sentence explaining that P07's checker had reported `P07-F-81`
+> when the match was a citation of *this package's* `F-81`. **The rule and its
+> violation are in the same sentence.** Written out.
+>
+> **The two defects have one root and each fix creates the other:**
+>
+> > **An identifier without its package prefix is ambiguous, and requiring the
+> > prefix converts a false positive into a silent omission. Neither is safe;
+> > only writing identifiers out in full is.**
+>
+> P07's formulation, adopted verbatim. **The operative rule for this package is
+> narrower and worth stating separately**: a family is safe when it has **exactly
+> one canonical form** and the check audits that form. `BD`, `CTR` and `LAW` have
+> no prefixed form and are audited bare — correctly. The failure mode is a family
+> existing in **two** forms, which was true only of `P04-F`/`F`, `P04-B`/`B` and
+> `P04-REV`/`REV`. **Count the forms, not the identifiers.**
+>
+> **The regress is real and this is where it stops.** A **dual-form check** was
+> added as sweep unit `1b` — bare citations of any family that also exists in
+> prefixed form, minus those carrying attribution. Its first run reported **4**,
+> and **all four are quotations of the defective form inside the findings
+> describing it** — including one this very finding introduced by quoting `F-81`
+> a second time. *Writing about bare identifiers creates bare identifiers.*
+>
+> The terminating move is **declaration, not further correction** — and it took
+> two attempts, both defeated by the act of writing them:
+>
+> 1. Keyed on **line numbers**: invalidated immediately, because adding the
+>    paragraph shifted every line below it. *An allowlist keyed on position is
+>    invalidated by the edit that creates it.*
+> 2. Re-keyed on **file and count**: also wrong on its first run, because
+>    **writing the counts down added one more occurrence of each identifier being
+>    counted.**
+>
+> The declaration is therefore taken **after** the describing text is final, and
+> the three quoted identifiers in this file stand at **4, 2 and 2** occurrences.
+> The check flags any **increase** on those, or any occurrence in another file.
+> This paragraph is written to add none.
+>
+> **That is the whole shape of the regress in three lines**, and it is not a
+> curiosity: a self-describing register changes what it describes, so the only
+> stable declaration is one taken last and expressed as a bound rather than a
+> list. **A residue that is enumerated is
+> not the same defect as a residue that is unknown** — and chasing it to zero
+> would require the finding to stop describing what it found.
+>
+> Class: **FACT VERIFIED**, 79 bare citations classified, 1 corrected, 4 retained
+> as declared quotations at `01` §6A.13 and §6A.16, keyed on count rather than
+> line number.
+
 ### 6A.15 "27 modules wide" was the size of the gap, not the size of the exposure
 
 P07 closed its widest open item by applying two filters in order — **generation
@@ -881,7 +950,7 @@ P07 extended its orphan check beyond the one family it was written for and found
 > **Three fixes, each from a defect this exchange produced:**
 > - **Peer families are excluded by name.** P07 found its extended check reporting
 >   `P07-F-81` as an orphan when the match was a citation of *this package's*
->   `F-81`. **In a two-package exchange, identifier collision is the normal case,
+>   `P04-F-81`. **In a two-package exchange, identifier collision is the normal case,
 >   not an edge case**, so the prefix is required and peer families are declared.
 > - **Own identifiers are no longer elided.** Lists such as *"`P04-B-16`, `B-18`,
 >   `B-19`, `B-28`"* were readable and unmatchable; nine such elisions across five
