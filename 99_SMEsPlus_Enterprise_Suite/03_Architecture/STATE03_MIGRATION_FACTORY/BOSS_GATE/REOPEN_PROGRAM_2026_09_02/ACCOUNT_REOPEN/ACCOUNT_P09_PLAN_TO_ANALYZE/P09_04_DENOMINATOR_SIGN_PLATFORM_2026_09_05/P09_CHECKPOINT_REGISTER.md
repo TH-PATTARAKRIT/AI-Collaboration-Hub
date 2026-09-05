@@ -36,6 +36,7 @@
 | `CP-P09DFINAL` | final commit and resume state | **SUPERSEDED — MATERIAL DELTA** | published `c029df3`; the challenge returned afterwards |
 | `CP-P09D25` | **challenge correction** *(added)* | **COMPLETE — EVIDENCE VERIFIED** | verdict withdrawn; denominator 17,465; gross movement 154,922,194.55 |
 | `CP-P09D26` | **peer v18 corroboration** *(added)* | **COMPLETE — EVIDENCE VERIFIED** | P04 delta `72286ce` consumed and re-derived; **`B7` partly withdrawn**, **`B5` raised to CRITICAL**; P04's "14" corrected to **13 measurable, all 13 at 0.00**; clean-room scan caught two version tokens in the draft — scrubbed before publication |
+| `CP-P09D27` | **evidence-base census / `B5` discharge** *(added)* | **COMPLETE — EVIDENCE VERIFIED** | double-keyed census: **19 distinct artefacts vs a declared 6**; 17 in scope, 2 excluded on generation grounds; 4 newly measured; 8 unread; `DEP-P09-23` discharged; **4 author errors caught before publication**; rules `NC-12`, `NC-13` |
 
 ## MATERIAL DELTA THIS ROUND
 

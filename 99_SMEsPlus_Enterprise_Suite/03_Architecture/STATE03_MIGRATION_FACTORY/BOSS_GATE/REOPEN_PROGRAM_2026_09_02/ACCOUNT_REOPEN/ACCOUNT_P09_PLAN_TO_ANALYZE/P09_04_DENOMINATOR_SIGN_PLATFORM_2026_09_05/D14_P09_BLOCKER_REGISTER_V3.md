@@ -11,13 +11,16 @@
 | **B8** | **`TH-F-02`** — one of four builds admits balance-sheet types to consumption; depreciation consumption collapses under it | **CRITICAL → challenged, see §2** | gate text read directly; population reproduced exactly | **latent** — no deployment has the budget module on a matching version | P08 semantics · P11 build choice | determine which build each server runs |
 | **B2** | non-asset equipment costing has no reference precedent | HIGH | prior rounds | latent | **Boss** | an architectural decision |
 | **B3** | budget control policy undecided | HIGH | prior rounds | latent | **Boss** | a business choice |
-| **B5** | **evidence-base and denominator discipline not applied to the author's own work** | **CRITICAL — raised from HIGH (`D26`)** | **five consecutive rounds, five distinct defects**: a truncated listing · a template read as a deployment · a version mismatch from an incomplete population · a silent sub-population · **a path set excluding most of the host** | **live** | P09 | every population declares its path set and is run unbounded; every count states its subject and unit |
+| **B5** | **evidence-base and denominator discipline not applied to the author's own work** | **CRITICAL — raised from HIGH (`D26`)** | **six consecutive rounds, nine distinct defects**: a truncated listing · a template read as a deployment · a version mismatch from an incomplete population · a silent sub-population · a path set excluding most of the host · **and, in `D27`, four more — a conflated unit, a loop that silently processed 10 of 16 files, a filename-keyed census that missed the largest artefact on the host, and an extraction returning well-formed empty results on two of four artefacts.** `D27`'s four were **all caught before publication** — the first round in this programme where that is true | **live** | P09 | every population declares its path set and is run unbounded; every count states its subject and unit |
+| **`DEP-P09-23`** | artefact readability claim — *the restore client rejects its header version* | **DISCHARGED (`D27`)** | the artefact reads without error and lists 1,315 populated tables; the claim was true when written and was never rechecked after the client was upgraded for an unrelated purpose | **closed** | P09 | a capability claim about your own tooling expires when the tooling changes |
 | **B4** | which tenant deployment copy is live | MEDIUM | prior rounds | latent | environment | a deployment fact |
 | ~~B6~~ | Thai chart typing decision | **CLOSED** | v19 template types correctly | — | — | discharged |
 
 **8 enumerated · 7 open · 1 closed · CRITICAL 3 · HIGH 3 · MEDIUM 1.**
 
 **After `D26`: CRITICAL 3 (B1, B8, **B5**) · HIGH 3 (B7 narrowed, B2, B3) · MEDIUM 1 (B4).** The composition changed — `B5`, a defect in P09's own method, is now CRITICAL and `B7` is narrowed.
+
+**After `D27`: unchanged in composition — CRITICAL 3 (B1, B8, `B5`) · HIGH 3 (B7 narrowed, B2, B3) · MEDIUM 1 (B4); `DEP-P09-23` discharged.** `B5` stays **CRITICAL** and is **narrowed, not closed**: the census is now complete and double-keyed (19 distinct artefacts against a declared 6, 17 in scope), but **8 in-scope artefacts remain unread**. `B5` closes when they are read, not when they are counted.
 
 ## 2. CRITICAL SEVERITIES — INDEPENDENTLY CHALLENGED
 
