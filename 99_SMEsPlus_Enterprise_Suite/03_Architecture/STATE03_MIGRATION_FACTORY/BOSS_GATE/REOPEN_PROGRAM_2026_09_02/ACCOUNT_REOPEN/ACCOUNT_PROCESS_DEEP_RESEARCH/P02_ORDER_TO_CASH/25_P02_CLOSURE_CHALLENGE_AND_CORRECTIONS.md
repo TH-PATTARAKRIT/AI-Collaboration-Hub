@@ -238,3 +238,47 @@ move.
 inferred rather than checked, a denominator built on the wrong key, a total that does not sum, a claim
 contradicted four lines below itself, and a date field chosen by convenience and then caveated instead of
 tested.
+
+---
+
+## 8. The Corrected Denominator — Re-Derived By The Primary Session
+
+Both missed archives were opened by the primary session, and the database UUID was read from **every**
+archive independently. **The panel's grouping reproduces exactly.**
+
+| Distinct database (UUID) | Archive files | Generation | Companies (latest snapshot) | Journal lines | **COGS** | Valuation-layer table |
+|---|---|---|---|---|---|---|
+| `45a8e08e…` **iSMEs** | 1 | **16.0** | 1 | 447,384 | **0** | present |
+| `a1430edc…` iTEST02 | **2** (same db, two dates) | 19.0 | 1 | 32 | **0** | absent |
+| `1f6338ae…` iEVING | **2** (same db, two dates) | 19.0 | 44 | 15 | **0** | absent |
+| `f4a44cce…` iEVING | **1 — previously unopened** | 19.0 | 1 | 0 | **0** | absent |
+| `66d1b52a…` BK12MAY26 | **2** — one previously unopened | 19.0 | 44 | 563 | **0** | absent |
+| **TOTAL** | **8 files → 5 databases** | **1 × 16.0, 4 × 19.0, 0 × 18.0** | **91** | **447,994** | **0** | |
+
+**`FACT VERIFIED` — TC-01-CORRECTED.**
+
+- **8 archive files, 5 distinct deployed databases.** Not 6, and not 5-with-different-membership.
+- **91 company records**, counting the largest snapshot per database. Not 93.
+- **447,994 journal lines** on the same basis.
+- **Zero cost-of-sales lines — in every database, on both bases, without exception.**
+- **Generation distribution: one database on 16.0 carrying 99.9% of all transactions; four on 19.0
+  carrying 610 journal lines between them; and NONE on 18.0** — the generation the package's entire
+  source analysis was written against.
+
+**`FACT VERIFIED` — TC-02 SURVIVES THE CORRECTION.** The headline conclusion is unchanged by every
+denominator correction: **no deployed database in the available estate has ever generated a cost-of-sales
+journal line.** Two newly-opened archives were checked specifically for this and both returned zero.
+
+**`FACT VERIFIED` — TC-35 (NEW, AND IT REFRAMES THE PACKAGE).** The estate contains **no deployment of the
+generation this package analysed**. The source work is sound and is now formally **unattached to any
+deployed instance**:
+
+| Generation | Source available on this host | Deployed databases | Transaction volume |
+|---|---|---|---|
+| 16.0 | **none** | **1** | **99.9%** |
+| 18.0 | full tree — the package's primary root | **0** | — |
+| 19.0 | full tree | **4** | 0.1% |
+
+**The generation carrying essentially all the transactions is the one whose source cannot be read here.**
+That is the single largest evidence-base gap in the package, and it was not visible until the generation
+label was checked rather than inferred.
