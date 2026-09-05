@@ -63,3 +63,19 @@ Full handling in `09A_P08_PEER_INBOUND_P04_LOCK_REDATE.md`. Every peer claim was
 | `REV-P-03` | The kernel assumed one measurement basis per fact, without saying so. | P04 re-opening the tax-book gap | **Made explicit.** New requirement `P08-RQ-KRN-02` and new decision `P08-BD-11`. The statutory half is `HOLD / EVIDENCE REQUIRED` and no P08 conclusion rests on it. |
 
 `REV-P-02` is the most important revision in this log: it was produced by a peer working in a different domain, and neither this session's own work nor its four commissioned adversarial reviews had surfaced it.
+
+---
+
+# CLOSURE DELTA — targeted forensic closure
+
+**19 corrections. 0 self-caught.** Each was re-run by the author against primary evidence before adoption; each carries a contradiction ID; the withdrawn wording is quoted, not replaced.
+
+| Wave | Corrections | Source |
+|---|---|---|
+| Author revalidation, phases A–C | 3 first-pass class-A results withdrawn as pattern artefacts; the version premise broken and repaired; the accounting-event class-A claim withdrawn | self |
+| **AAS-03 expert challenge** | **19 further, none self-caught** — `P08-CONTRA-22` … `-42` | E1, E2, E3, E4 |
+| Author follow-through on the experts' one convergent lifting condition | The package had **searched the wrong custom tree**; a tax-period carrier P08 had told a peer could not exist is populated on 61,157 posted entries | self, prompted |
+
+**Two reviewer claims were rejected on verification** and are recorded as rejected in `48` §5. Reviewer findings are not automatically true.
+
+**The correction of a correction:** the author's own re-run of the orphan population reached 9,754; a third reviewer showed the correct figure is **6,585**. A correction is not exempt from the discipline it applies.

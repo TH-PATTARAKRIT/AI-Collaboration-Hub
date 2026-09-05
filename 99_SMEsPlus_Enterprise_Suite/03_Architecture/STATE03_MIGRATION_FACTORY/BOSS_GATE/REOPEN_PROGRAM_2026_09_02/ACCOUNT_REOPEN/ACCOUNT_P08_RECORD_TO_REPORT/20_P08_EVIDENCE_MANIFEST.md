@@ -85,3 +85,84 @@ Source code — **yes**, the primary layer. Configuration and view definitions �
 ## 7. Reproduction
 
 Every enumeration in this package declares POPULATION, PATTERN, PATH SET and UNIT. Literal patterns are held in `LAYER2_EVIDENCE_QUARANTINE/E00` §4 behind `EV-P-*` identifiers, so that Layer 1 stays vendor-token free and the patterns remain reproducible by anyone holding Layer 2. An independent reviewer re-ran the root discovery, all 22 module counts, all three root-set-wide scans and eight Layer-2 citations, and reproduced every one exactly.
+
+---
+
+# CLOSURE DELTA — SHA-256 roll-up, targeted forensic closure
+
+Session `SMEPLUS-26-09-04-ACC-P08-R2R-TARGETED-FORENSIC-CLOSURE-001`. Computed at the close of the round over every Layer-1 artifact.
+
+| Artifact | Bytes | SHA-256 |
+|---|---|---|
+| `00A_P08_SCOPE_AWARE_CONSTITUTION_CORRECTION.md` | 4570 | `963c1045bfd5f85d…` |
+| `00_P08_SESSION_GOVERNANCE_BOOTSTRAP.md` | 8730 | `31dcce642440fd5d…` |
+| `01A_P08_ROOT_SET_DECLARATION.md` | 11265 | `5db779d3f4956c40…` |
+| `01_P08_SCOPE_OWNERSHIP_MATRIX.md` | 24921 | `6989c04a6e56ecf5…` |
+| `02_P08_COA_SEMANTIC_MODEL.md` | 9229 | `25f4a75819d9410e…` |
+| `03_P08_ACCOUNTING_KERNEL_MODEL.md` | 19389 | `77d57b248246b586…` |
+| `04_P08_ACCOUNT_IDENTITY_MODEL.md` | 5276 | `07cf6073e2ac1cb8…` |
+| `05_P08_JOURNAL_POSTING_MODEL.md` | 16262 | `d7f512f783ffa796…` |
+| `06_P08_SOURCE_TO_GL_TRACE.md` | 4614 | `10308226953d3ef7…` |
+| `07_P08_MANUAL_GL_CONTROL.md` | 5644 | `08499d144f061d01…` |
+| `08_P08_RECONCILIATION_ARCHITECTURE.md` | 9950 | `f46d7600846c3b09…` |
+| `09A_P08_PEER_INBOUND_P04_LOCK_REDATE.md` | 7628 | `8503e10257084f57…` |
+| `09_P08_PERIOD_CLOSE_MODEL.md` | 15676 | `d9f1eb5cc9e7f616…` |
+| `10_P08_CURRENCY_FX_MODEL.md` | 9137 | `2ea4606f25b60c21…` |
+| `11_P08_FINANCIAL_REPORT_TRACE.md` | 17263 | `a3752a9ebc628407…` |
+| `12_P08_BUSINESS_EVENT_REGISTER.md` | 5157 | `c13b486957ba8feb…` |
+| `13_P08_ACCOUNTING_EVENT_REGISTER.md` | 5351 | `395112337338f765…` |
+| `14_P08_EVENT_TO_GL_MATRIX.md` | 4963 | `5b35b5ef811f826f…` |
+| `15_P08_CROSS_PROCESS_OWNERSHIP.md` | 5478 | `c57d02e01d275871…` |
+| `16_P08_ORPHAN_DUPLICATE_POSTING_ATTACK.md` | 15137 | `b2735c56c3782921…` |
+| `17_P08_CONTRADICTION_REGISTER.md` | 11966 | `6320bf4785b79c02…` |
+| `18_P08_DEPENDENCY_REGISTER.md` | 7770 | `c9b4abb5e719e0a0…` |
+| `19_P08_SOURCE_LINK_REGISTER.md` | 4177 | `fed8fec17f8b7f3b…` |
+| `20_P08_EVIDENCE_MANIFEST.md` | 8841 | `be28bb89936451f4…` |
+| `21_P08_REVISION_LOG.md` | 10612 | `1565046483d1a1b7…` |
+| `22_P08_AAS03_CHALLENGE.md` | 14134 | `48f76ee400c9aea1…` |
+| `23_P08_AAS_PLUS.md` | 5579 | `823074f1c0bdcaec…` |
+| `24_P08_PMO.md` | 4145 | `d26306e88b36c078…` |
+| `25_P08_CORE_RECON_HANDOFF_PACK.md` | 7341 | `295f4ddf80028711…` |
+| `26_P08_FINAL_RESEARCH_GATE_REPORT.md` | 7891 | `0c72f71e290fa025…` |
+| `27_P08_TOLERANCE_ZERO_REGISTER.md` | 5744 | `3e32d6f65db55cc6…` |
+| `28_P08_UNKNOWN_REGISTER.md` | 6410 | `bc67c78d15fd2b77…` |
+| `29_P08_NEGATIVE_CLAIM_REGISTER.md` | 8386 | `b3c561f55298c473…` |
+| `30_P08_CONTROL_MATRIX.md` | 5066 | `6d19b6a955f4c939…` |
+| `31_P08_FUNCTION_COVERAGE_REGISTER.md` | 2342 | `6da1ed1e03b755f4…` |
+| `32_P08_FAILURE_EDGE_CASE_REGISTER.md` | 3806 | `167409bfa52eb766…` |
+| `33_P08_CURRENT_STATE_RECONCILIATION.md` | 2988 | `6bf222f5d2a03fd7…` |
+| `34_P08_CLASS_A_ROOT_SET_REVALIDATION.md` | 7106 | `b76d889ab8385c68…` |
+| `35_P08_SUPPORTED_INTERPRETATION_CLOSURE.md` | 11038 | `66105053cf684271…` |
+| `36_P08_PERIOD_CLOSE_CONTROL_RECONCILIATION.md` | 6019 | `1b9da45fc03f3f92…` |
+| `37_P08_SCOPE_AWARE_ACCOUNTING_MATRIX.md` | 5395 | `38dc09493136d476…` |
+| `38_P08_ORPHAN_DUPLICATE_FINANCIAL_EFFECT_ATTACK.md` | 5753 | `0a248792b54fc583…` |
+| `39_P08_ACCOUNTING_EVENT_IDENTITY_FORENSIC.md` | 7517 | `cb0a9e7253a93774…` |
+| `40_P08_VERSION_PREMISE_CORRECTION.md` | 5087 | `5f4a4216803d430f…` |
+| `41_P08_JOURNAL_ITEM_TRUTH_ROLE_MATRIX.md` | 6833 | `52f904bd5b2b326b…` |
+| `42_P08_CUSTOM_LEDGER_MODULE_SWEEP.md` | 8004 | `a835a0f944b74a46…` |
+| `43_P08_DOUBLE_ENTRY_ENFORCEMENT_MATRIX.md` | 5468 | `64e40286ee9b0574…` |
+| `44_P08_CONTEXT_CONTROL_ATTACK.md` | 6216 | `8d0fd603ff570ec3…` |
+| `45_P08_SOURCE_TO_REPORT_TRUTH_TRACE.md` | 11929 | `7dd77905d85e7244…` |
+| `46_P08_CROSS_PROCESS_EVIDENCE_RECONCILIATION.md` | 20548 | `01a723f9439342e8…` |
+| `47_P08_EXPERT_CHALLENGE_CORRECTIONS.md` | 18947 | `77eaf2f47bb96ebe…` |
+| `48_P08_AAS03_TARGETED_CHALLENGE.md` | 18892 | `78c0a17c80fa97ea…` |
+| `49_P08_UNSEARCHED_TREE_DISCHARGE.md` | 9489 | `90e665fc65fdee96…` |
+| `50_P08_AAS_PLUS_TARGETED_CONSOLIDATION.md` | 9328 | `14c795f5c080a882…` |
+| `51_P08_PMO_TARGETED_EXIT_REVIEW.md` | 7742 | `01a2a65b12deba11…` |
+| `52_P08_CORE_RECON_HANDOFF_PACK_V2.md` | 9543 | `289ca152d9247a67…` |
+
+**Layer-1 artifacts: 56 · total bytes: 506101**
+
+Layer-2 quarantine is hashed separately and is not published in Layer 1.
+
+## Evidence bases used this round
+
+| Base | Line | Standing |
+|---|---|---|
+| Reference source tree | **18.0** | searched |
+| Custom tree A | **18.0** | searched — **and it does not match any deployed database** |
+| Custom tree B | **16.0** | **NOT searched until this round**; matches `DB-SM`; 58 modules covering 45 of 190 installed |
+| `DB-SM` offline extract | **16.0** | read-only, no server started |
+| `DB-BK`, `DB-EV` offline extracts | **19.0** | read-only, no server started |
+| Fourth deployed dump | unknown | **declared unreadable by one tool and not retried** — `P08-U-22` |
+| Peer packages on origin | — | **8 of 9 read this round.** The prior record that no peer had published is withdrawn |

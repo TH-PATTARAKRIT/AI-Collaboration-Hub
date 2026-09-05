@@ -28,15 +28,15 @@ The sweep's own top unknown was *which of these are actually installed*. **Settl
 
 | Installed | `DB-SM` (16.0) | `DB-BK` (19.0) | `DB-EV` (19.0) |
 |---|---|---|---|
-| `scgl_purchase_advance_payment` | **yes** | **yes** | **yes** |
-| `dev_print_cheque` | **yes** | **yes** | **yes** |
-| `account_discount_catalog` | — | **yes** | **yes** |
-| `invoice_promptpay` | — | **yes** | **yes** |
-| `scgl_account_reports` | **yes** | — | — |
-| `print_voucher_request` | **yes** | — | — |
-| `equipment_sequence` | **yes** | — | — |
-| `bi_print_journal_entries` | **yes** | — | — |
-| `full_summarize_bills` | **yes** | — | — |
+| **the purchase advance-payment module** (`CM-01`) | **yes** | **yes** | **yes** |
+| **a cheque-printing module** (`CM-02`) | **yes** | **yes** | **yes** |
+| **a discount-catalogue module** (`CM-03`) | — | **yes** | **yes** |
+| **an invoice payment-code module** (`CM-04`) | — | **yes** | **yes** |
+| **the custom statutory reporting module** (`CM-05`) | **yes** | — | — |
+| **a voucher-printing module** (`CM-06`) | **yes** | — | — |
+| **an equipment-numbering module** (`CM-07`) | **yes** | — | — |
+| **a journal-entry printing module** (`CM-08`) | **yes** | — | — |
+| **a bill-summarising module** (`CM-09`) | **yes** | — | — |
 
 **The most severe code findings are largely not deployed.** The advance-expense module — which cancels posted entries by raw state write, and exposes an unvalidated posting wizard to every user — is **absent or uninstalled in all three**. So are the commission module, the brand module, the petty-cash module and the two auto-posting modules.
 
@@ -44,13 +44,13 @@ The sweep's own top unknown was *which of these are actually installed*. **Settl
 
 | ID | Module | Finding | Deployment |
 |---|---|---|---|
-| `B-13` | `scgl_purchase_advance_payment` | **Vendor bills created under elevated privilege**, from a wizard whose access row grants every internal user full rights. The elevation is real; it is bounded by needing write access to a purchase order, which is stated rather than overclaimed | **live in 3 of 3** |
-| `B-26` | `dev_print_cheque` | **Cheque number is unvalidated free text** — no sequence, no uniqueness, no state gate. Cheque print-format records are **deletable by the lowest accounting group** | **live in 3 of 3** |
-| `B-12` | `account_discount_catalog` | **A posted invoice can be re-discounted from an always-visible button.** Verified against source that the core does not stop it: adding a line to a posted entry is not refused, and the discount attribute is in none of the protected sets, so the write passes the period, tax and settlement checks | **live in 2 of 3** |
-| `B-05`/`B-06` | `scgl_account_reports` | **The statutory value-added-tax register admits a row only when the tax group's translated name equals a single-key English literal**, and the zero/exempt register filters at entry level on a line-level query while an inner join silently drops unpartnered tax lines | **live in the production-scale database** — see §4 |
-| `B-24` | `print_voucher_request` | **The withholding figure on the vendor-facing document is recomputed from current master data, not read from the ledger.** Reprinting a historical certificate yields today's rate | **live in 1 of 3** |
-| `B-20` | `equipment_sequence` | **Every internal user reaches numbering-object deletion under elevated privilege**, and the module feeds asset references | **live in 1 of 3** |
-| `B-28` | `bi_print_journal_entries` | A journal-entry report with **no posting-state gate** — a draft entry prints as a totalled journal document | **live in 1 of 3** |
+| `B-13` | **the purchase advance-payment module** (`CM-01`) | **Vendor bills created under elevated privilege**, from a wizard whose access row grants every internal user full rights. The elevation is real; it is bounded by needing write access to a purchase order, which is stated rather than overclaimed | **live in 3 of 3** |
+| `B-26` | **a cheque-printing module** (`CM-02`) | **Cheque number is unvalidated free text** — no sequence, no uniqueness, no state gate. Cheque print-format records are **deletable by the lowest accounting group** | **live in 3 of 3** |
+| `B-12` | **a discount-catalogue module** (`CM-03`) | **A posted invoice can be re-discounted from an always-visible button.** Verified against source that the core does not stop it: adding a line to a posted entry is not refused, and the discount attribute is in none of the protected sets, so the write passes the period, tax and settlement checks | **live in 2 of 3** |
+| `B-05`/`B-06` | **the custom statutory reporting module** (`CM-05`) | **The statutory value-added-tax register admits a row only when the tax group's translated name equals a single-key English literal**, and the zero/exempt register filters at entry level on a line-level query while an inner join silently drops unpartnered tax lines | **live in the production-scale database** — see §4 |
+| `B-24` | **a voucher-printing module** (`CM-06`) | **The withholding figure on the vendor-facing document is recomputed from current master data, not read from the ledger.** Reprinting a historical certificate yields today's rate | **live in 1 of 3** |
+| `B-20` | **an equipment-numbering module** (`CM-07`) | **Every internal user reaches numbering-object deletion under elevated privilege**, and the module feeds asset references | **live in 1 of 3** |
+| `B-28` | **a journal-entry printing module** (`CM-08`) | A journal-entry report with **no posting-state gate** — a draft entry prints as a totalled journal document | **live in 1 of 3** |
 
 ## 4. The statutory register defect, tested against the deployed data
 
@@ -58,9 +58,9 @@ The custom register admits a row only when the tax group's name equals exactly a
 
 | Tax group | Stored name |
 |---|---|
-| VAT 7% | `{"en_US": "VAT 7%"}` — **single key** |
+| VAT 7% | a **single-language** name — one key only |
 | TAX 1%, 2%, 3%, 5% | single English key each |
-| Taxes | `{"en_US": "Taxes", "th_TH": "ภาษี"}` — **two keys** |
+| Taxes | a **two-language** name — an English key and a Thai key |
 
 **Two precise conclusions, and neither is the one the mechanism alone would suggest:**
 
