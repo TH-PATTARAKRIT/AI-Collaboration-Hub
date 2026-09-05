@@ -3078,9 +3078,19 @@ single member of this class.**
 ### 39.2 The run
 
 A sweep of every `.zip` ≥ 1 MB under `$HOME` and every `/Volumes` entry — including `~/Library`,
-excluding the `/Volumes/iMac` mirror measured at zero in `§36` — testing for the inverse shape,
-**is executing and its result is not reported here.** `P07-F-96` is registered with the method,
-the controls and the population; the finding is completed when the sweep returns.
+excluding the `/Volumes/iMac` mirror measured at zero in `§36` — testing for the inverse shape.
+
+**Result: 3,133 archives examined, 1 unreadable, and ZERO of the inverse shape.**
+
+**`P07-F-96` completes as a controlled negative.** The census was **not too narrow** in this
+direction either: no archive on either root set carries a root `manifest.json` without a root
+`dump.sql`. Combined with `§37`'s rejections, the artefact set is now bounded **in both
+directions** — nothing admitted that should not have been, nothing missed that should have been.
+
+**The residue is declared rather than suppressed, per this whole thread:** **1 archive of 3,133
+was unreadable** and the script did not record which. That is a bound of one, not a zero, and it
+is stated as such — the discipline P04 established when it enumerated its 141 suppressed
+directories rather than judging them implausible.
 
 **No number in `§38` is amended in the meantime**, and the identity position is untouched
 regardless of the outcome: **7 keyed on `database.uuid` and read, population OPEN**.
