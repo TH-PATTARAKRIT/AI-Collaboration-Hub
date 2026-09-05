@@ -124,7 +124,7 @@ Answered for the **class** of economic fact, with the exceptions named. `?` = no
 | 4 | **What financial fact exists?** | `F3`, created only by an accounting event. **27 of 32 accounting events have no verified posting pattern** |
 | 5 | **When does it become accounting truth?** | At recognition — **which for cost of sales (`JT-04`) and return cost (`JT-05`) is `NOT DECIDABLE`**, and for goods-received value (`JT-03`) has no stable pattern to imitate |
 | 6 | **Which journal effect occurs?** | Verified for 5 core-ledger events. Withheld for all 15 producer rows |
-| 7 | **Which subledger owns the balance?** | See `P11_SUBLEDGER_ARCHITECTURE.md`. **Analytic is derived and destructible; it is not a subledger of record** |
+| 7 | **Which subledger owns the balance?** | **RE-ANSWERED `2026-09-05` at `P11_SUBLEDGER_RERUN_B17.md`: seven of ten candidates are DERIVED VIEWS under P11's own stated rule, and *no reconciliation may be claimed against them*. Only the inventory valuation record and the asset register survive as *of record*, both with an unverified agreement rule.** Five fail for one substrate reason: their detail *is* journal items, and a posted item is editable in place |
 | 8 | **How is it settled?** | `F4`. **Over-reconciliation is unguarded** (`T0-05`) |
 | 9 | **How is it reconciled?** | See `P11_SETTLEMENT_RECONCILIATION_ARCHITECTURE.md`. Inventory-to-GL agreement **holds at the closing boundary, not continuously** |
 | 10 | **How is it reversed?** | Reverse-and-re-enter only. **The reference default is destructive and is `REJECT`** |

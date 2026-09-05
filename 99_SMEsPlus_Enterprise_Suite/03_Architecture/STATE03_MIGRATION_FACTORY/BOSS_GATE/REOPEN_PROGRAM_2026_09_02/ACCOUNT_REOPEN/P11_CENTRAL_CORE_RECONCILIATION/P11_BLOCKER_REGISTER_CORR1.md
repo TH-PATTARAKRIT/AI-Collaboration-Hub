@@ -34,7 +34,7 @@
 | `B-14` | Tenancy exception undeclared (`SR-01`) | med | unchanged | — | **YES** | no | `D-11` |
 | `B-15` | Hierarchy-spans-tenant unruled (`SR-02`) | high | unchanged | — | **YES** | no | `D-12` + an enforced `MTI-04`-class invariant |
 | `B-16` | `T0-13` silent mutation, any scope | **T0** | **STRENGTHENED** | `P10` | YES | **YES** — reaches `P10` recognition entries | Refuse, **or** an attributable trace; trace mandatory where nothing is refused |
-| `B-17` | `X2-F06` CRITICAL unrepaired | **CRITICAL** | unchanged | — | — | **no — deliberately** | Ten subledger rows re-run against the **stated** rule |
+| `B-17` | `X2-F06` CRITICAL unrepaired | **CRITICAL** | **CLOSED** | — | — | **YES — CLOSED BY WORK** | **DISCHARGED.** Ten rows re-run against the stated rule with `X2-F07`/`F08`/`F09` applied to the row data: **0 unqualified, 2 qualified, 7 derived views, 1 unknown.** `P11_SUBLEDGER_RERUN_B17.md` |
 | `B-18` | Five unmarked repairs (`P11-G-03`) | med | **CLOSED** | — | — | **YES — CLOSED BY WORK** | **DISCHARGED.** Four converted to marked form carrying their superseded values (the fifth already stated its prior figures); erasure audit **re-run over the whole set**, controls first (pos 19 / neg 0): **20 strikethroughs, 0 erased** |
 
 ## 3. Changed by CORR1
@@ -42,7 +42,7 @@
 | Movement | Count | Ids |
 |---|---|---|
 | **DISCHARGED — evidence superseded** | **2** | `B-01`, `B-12` |
-| **CLOSED — WORK COMPLETED AND VERIFIED** | **1** | `B-18` — the only blocker this CORR1 closes, and it closed because the work was done |
+| **CLOSED — WORK COMPLETED AND VERIFIED** | **2** | `B-17` (the **CRITICAL**) and `B-18`. **Both closed because the work was done and verified, neither because its wording improved** |
 | **Evidence materially strengthened, blocker OPEN** | **5** | `B-02`, `B-03`, `B-11`, `B-13`, `B-16` |
 | Reduced in scope, open | 1 | `B-08` |
 | Unchanged | 10 | the rest |
@@ -55,7 +55,10 @@
 | **`B-20`** | **`P01` contradicts the generation P11's event-to-GL matrix assumes.** The deployed v19 databases have **no goods-received clearing account and no valuation-layer table**; the bridge is a **v18** mechanism and *"two of three readable live databases cannot run it."* `P01` states Core Accounting *"should not reconcile against a mechanism until the target generation is established"* | **`HOLD — BOSS DECISION REQUIRED`** · routed to `D-1`. **P11 does not resolve it** |
 | **`B-19`** | **Peer publication order silently selected P11's reconciliation depth** (`P11-F-12`). Nine deltas were written against the three-to-four peers that happened to publish first, while `P08` — holding the root-set declaration, the class-`A` event-identity absence, and the strongest form of the balance-invariant finding — was never consumed | **`HOLD — DESIGN RESOLUTION REQUIRED`** · closure: adopt `P11-G-04` and re-run intake ranked by relevance to open items |
 
-> ### `18 → 20` registered; **2 discharged · 1 CLOSED by completed work · 17 open · 0 closed by improved wording.**
+> ### `18 → 20` registered; **2 discharged · 2 CLOSED by completed work · 16 open · 0 closed by improved wording.**
+>
+> **`B-17` was the head of the correction backlog and the round's only `CRITICAL`. Closing it made the
+> package's headline worse — three subledgers of record became zero — which is the correction working.**
 >
 > **`B-01` and `B-12` are discharged by evidence arriving, not by argument** — the precise distinction
 > this register exists to preserve. **No blocker moved because its wording improved**, and the

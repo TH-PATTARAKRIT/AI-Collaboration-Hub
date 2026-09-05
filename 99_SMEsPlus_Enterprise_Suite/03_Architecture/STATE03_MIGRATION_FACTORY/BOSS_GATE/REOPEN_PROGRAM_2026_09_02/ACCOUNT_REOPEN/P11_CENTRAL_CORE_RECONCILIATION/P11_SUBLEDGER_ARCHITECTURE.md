@@ -33,7 +33,10 @@ claimed against it.
 | **WIP** | WIP control | `P03` | ✔ | `?` | ✔ | **✘ — `JT-09` open** | **`HOLD`** |
 | **Deferred schedules** | deferral control | `P10` | `?` | `?` | `?` | `?` | **`UNKNOWN — EVIDENCE REQUIRED`** |
 
-**10 candidates. 3 unqualified. 4 qualified-with-a-defect. 1 rejected. 2 unknown.**
+~~**10 candidates. 3 unqualified. 4 qualified-with-a-defect. 1 rejected. 2 unknown.**~~
+
+> ### SUPERSEDED `2026-09-05` — this §2 applied *"fails both"* while §1 states *"fails `S3` **or** `S4`"* (`X2-F06`, **CRITICAL**).
+> **Re-run against the stated rule at `P11_SUBLEDGER_RERUN_B17.md`: 0 unqualified · 2 qualified · 7 derived views · 1 unknown.** The superseded table above is retained unedited for lineage, per `P11-G-03`. **Do not cite it.**
 
 ## 3. The rejection matters most
 
