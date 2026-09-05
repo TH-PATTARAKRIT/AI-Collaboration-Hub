@@ -745,6 +745,74 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30.
 
+### 6A.5 Is the source this package read the source that is deployed?
+
+Untestable until `P04-F-90` produced a same-generation deployment. Now testable,
+and run on P07's finding that its own excluded source root **was** the deployed
+code.
+
+> **P04-F-93.** **The declared source scope is not the deployed source scope, in
+> both directions.** Against `idemo18_uat` (`551ab874`, v18, 361 installed
+> modules):
+>
+> | Measure | Count |
+> |---|---:|
+> | Installed modules in the deployment | **361** |
+> | Present in the declared reference tree | 306 |
+> | Present in the declared custom set (65 dirs) | 28 |
+> | **Installed and in NEITHER declared root** | **27** |
+> | **Declared-custom modules NOT installed here** | **37 of 65** |
+>
+> So **27 modules are running in the v18 deployment that this package's declared
+> source scope never contained**, and **37 of the 65 custom directories it did
+> read are not installed in this deployment at all.** The declared set overlaps
+> the deployed set by 28 modules out of 65 declared and 55 deployed-custom.
+>
+> **`13` §1 declares the source scope by *description* — *"Reference ERP v18
+> Enterprise source tree, build `20250608`"* and *"Project custom addon set, v18
+> line"* — and names no path.** That is the same defect as the undeclared archive
+> path set (`P04-F-88`, withdrawn), one level up: **a source scope stated as a
+> description cannot be audited, and cannot be shown to be the deployed one.**
+>
+> **And the build string does not identify the tree.** Two directories on this
+> host carry build `20250608` and hold **793** and **1753** manifests
+> respectively. Whichever this package read, *naming the build did not name the
+> code* — P07 reached the same conclusion from the other side, where two copies
+> of a module carried one version string and differed by 279 changed lines in a
+> single file.
+>
+> Class: **FACT VERIFIED.** Counts executed against `ir_module_module` in the
+> archive and against manifest enumeration in both trees.
+
+> **P04-F-94.** **Part of the deployed behaviour cannot be read from this host at
+> all.** Of the 27 modules deployed and outside both declared roots, source is
+> present for some — `scgl_account_coa_control` (three copies),
+> `scgl_multi_approve_core` (three), and `scgl_date_range_auto_period`, which
+> sits **one directory above the declared custom root**, the same shape as the
+> archive that sat one directory outside the declared path set. For others
+> **no directory of that name exists anywhere under `/Volumes` or `$HOME`** —
+> including **`equipment_fleet`** and **`journal_entries_report`**.
+>
+> **Stated as exposure, not as an assessment — this package has not read any of
+> them.** What can be said is which load-bearing findings sit in the path of an
+> unread deployed module *by name*:
+>
+> | Unread deployed module | Findings it could touch | Source on host? |
+> |---|---|---|
+> | `scgl_account_coa_control` | capitalization designation lives **on the chart-of-accounts account** — the source-of-truth finding | yes |
+> | `scgl_date_range_auto_period` | period assignment — the **silent re-dating** finding and `P04-B-31` | yes |
+> | `equipment_fleet` | the Operation–Equipment gap, machine identity, `BD-03` | **no** |
+> | `scgl_multi_approve_core` / `_purchase_request` | the upstream purchase path into capitalization | yes |
+> | `journal_entries_report` | reporting over the entries the reconciliation reads | **no** |
+>
+> **No finding is withdrawn and none is confirmed by this.** The honest statement
+> is that every source-derived finding in this package is bounded to a source
+> scope that is **now known not to be the deployed one**, and that the gap is
+> **27 modules wide**, at least two of which cannot be closed from this host.
+>
+> Class: **FACT VERIFIED** as to the enumeration; **UNRESOLVED** as to effect.
+> Registered as blocker `P04-B-46`.
+
 > **P04-F-89.** **This package published two integrity records and let them
 > disagree.** `SHA256SUMS.txt` and the manifest's own per-file hash table were in
 > agreement at `abf265c`, `b27040e` and `c57d846`, and **disagreed on 6 of 20
