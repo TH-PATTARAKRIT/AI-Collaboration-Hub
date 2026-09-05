@@ -168,6 +168,22 @@ summary. **The bound of `RE-23` applies to all of them**: these are facts about 
 | `EV-P02-119` | `R19/stock_account/models/product.py:73-77` | `_compute_valuation` — `categ_id.with_company(product_template.company_id).property_valuation or self.env.company.inventory_valuation`. Two-level fallback with no account requirement; **two different company sources in one resolution** (`CORR1` scope observation). |
 | `EV-P02-120` | `R18/sale/models/sale_order_line.py:508-514` | `_compute_tax_id` sets `tax_id = False` for `product_type == 'combo'` in the line's own compute — the basis for **refuting** the combo-tax onchange bypass as an O2C exposure (`SC-16`). |
 
+### 2d. Deployed-population evidence (`28`, four-generation measure)
+
+Extraction is offline throughout — `pg_restore -a -n public -t <table>`; **no server started, nothing
+restored**. Identity is `ir_config_parameter → database.uuid`. Column positions are read from each
+`COPY` header by name.
+
+| EV | Citation | Subject |
+|---|---|---|
+| `EV-P02-121` | content-test sweep, 16,624 files >1MB tested by signature | **39 database-bearing artefacts** on this host; two independently written instruments agree on all 39. Closes the **path set**, not the estate. |
+| `EV-P02-122` | `database.uuid` across the 39 | **17 distinct databases, 4 generations.** Ratios: `occ_sim` 7→1, `iTEST02` 10→1, and **`iEVING` 2 artefacts → 2 DIFFERENT uuids** (`P02-F-28a`). |
+| `EV-P02-123` | `account_move_line.display_type` across all 17 | **`cogs` occurs 0 times in 2,553,914 journal lines**, every zero injection-controlled (`P02-F-28b`). Reproduces `DB-11`'s five values to the digit. |
+| `EV-P02-124` | `stock_valuation_layer` in the four 19.0 databases | **Table absent in all four** — deployed confirmation of a previously source-only claim (`P02-F-28c`). |
+| `EV-P02-125` | `stock_valuation_layer.account_move_id`, `551ab874` and `57d32e15` | **47,242 layers → 0 accounting entries**; 56 → 0. Outcome 3 **measured**, against a spread reaching 100% (`P02-F-28d`). |
+| `EV-P02-126` | `ir_module_module` in `a6664233` (`occ_sim`) | `stock`, `stock_account`, `sale_management` all **`uninstalled`**, while `account_move_line` has 124 TOC entries in the same archive — the absence there is **module state, not generation** (`P02-F-28e`); bears on `C-04`. |
+| `EV-P02-127` | v14 `account_account` / `account_account_type` vs v16+ `account_account.account_type` | Generation 14.0 reaches cost-of-revenue through `user_type_id`; the predicate is **not portable across generations** and was rewritten rather than assumed. |
+
 ## 3. Track Evidence
 
 Citations produced by the four parallel research tracks are held in their own extracts, each carrying its

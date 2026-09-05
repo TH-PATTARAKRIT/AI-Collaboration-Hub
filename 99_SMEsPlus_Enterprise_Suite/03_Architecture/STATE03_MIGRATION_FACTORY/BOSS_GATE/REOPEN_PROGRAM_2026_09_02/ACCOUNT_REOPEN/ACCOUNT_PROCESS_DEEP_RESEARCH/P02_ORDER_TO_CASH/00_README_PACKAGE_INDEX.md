@@ -89,6 +89,9 @@ as verdicts anywhere in this package.
 | 23 | `23_P02_CLOSURE_RECONCILIATION_REGISTER.md` | Boss-policy separation, tolerance-zero reconciliation, exit criteria, scope, peers | L2 |
 | 24 | `24_P02_EIGHT_BUSINESS_SCENARIOS.md` | The eight previously uncovered scenarios, across both readable generations | L2 |
 | 25 | `25_P02_CLOSURE_CHALLENGE_AND_CORRECTIONS.md` | **Second independent challenge — 7 refutations, 2 new reference defects, corrected denominator** | L2 |
+| 26 | `26_P02_V18_DEPLOYMENT_EVIDENCE.md` | The first genuine v18 deployment (`idemo18_uat`) — the only company found anywhere with split recognition ON; `C-04` reclassified to `AUTHORISATION REQUIRED` | L2 |
+| 27 | `27_P02_SOURCE_SCOPE_AND_POPULATION_BOUND.md` | Source-scope bound (`RE-23`), instrument controls run against P02's own negatives, and the three peer exchanges — including `C-33`, where the package was found asserting a fact and its negation in two files | L2 |
+| 28 | `28_P02_POPULATION_CLOSURE_AND_FOUR_GENERATION_MEASURE.md` | **Population closed as a path-set question.** 16,624 files signature-tested → 39 artefacts → **17 databases, 4 generations, 2,553,914 journal lines, zero `cogs` markers, every zero injection-controlled.** v19's deleted valuation layer confirmed in deployment; outcome 3 measured directly at 47,242 layers → 0 entries | L2 |
 | — | `L2_AUDIT_QUARANTINE/` | Raw evidence extracts from parallel research tracks | L2 |
 
 ## 3a. Research Depth Map — L1 … L6 And The Very-Expert Layer

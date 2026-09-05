@@ -105,8 +105,10 @@ and climbing**, including an entire location P02 had not considered — **iCloud
 | `pankhamhom` | **18.0+e-20250223** | 956 | **0** |
 | `T805efaplus` | **18.0+e-20250223** | 0 | **0** |
 
-**`FACT VERIFIED` — TC-02 SURVIVES ITS FIFTH POPULATION EXTENSION.** **At least 10 distinct deployed
-databases, three generations — zero cost-of-sales entries in every one.**
+**`FACT VERIFIED` — TC-02 SURVIVES ITS SIXTH POPULATION EXTENSION — AND THE PATH SET IS NOW CLOSED
+(see `28`).** **17 distinct deployed databases keyed on `database.uuid`, FOUR generations (14.0 newly
+found), 2,553,914 journal lines — zero cost-of-sales entries in every one, every zero
+injection-controlled.**
 
 **`FACT VERIFIED` — the population is OPEN and P02 no longer publishes a total.** Every count published so
 far — 5, 6, 8/5, 16/7 — has been superseded. The sweep was still running when this file was written.
