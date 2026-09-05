@@ -755,6 +755,54 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.30 The disagreement resolved — and I had misdescribed my own predicate
+
+P07 re-classified its 36 **by why each artefact matched** and found **14 were
+source-code archives**, each caught by a **0 KB `neutralize.sql` shipped inside a
+module** — one of them a zip of its own declared source set. **36 → 22. Under the
+strict criterion the two sweeps reconcile exactly: 22 = 22.** My three tests found
+nothing because **none of them was the cause**: the cause was a clause in its
+scan, not a coverage difference in mine.
+
+**Checking the same clause against my census found a defect in my *description*,
+not my count.**
+
+> **P04-F-129.** **`P04-F-126` and `P04-F-127` misstate this package's own census
+> predicate. The zip test did not accept "any `.sql` or a `manifest.json`" — it
+> required a member named `dump.sql`.** I attributed the predicate of the earlier
+> **reconnaissance** scan to the **census**, and published it twice.
+>
+> Determined from behaviour rather than memory: `odoo-19.0.zip` (73
+> `neutralize.sql` members) and `02_OTHER.zip` (260) **match the loose clause and
+> are absent from the census**, while `CFF.zip` and `docker-compose-magento.zip`
+> **are present** — and each of those contains a member *named* `dump.sql`. The
+> census clause is therefore `grep 'dump\.sql'`, unanchored.
+>
+> **The two withdrawals at `P04-F-126` were correct, for a better reason than I
+> gave.** `CFF.zip`'s `dump.sql` is **sample data inside a Gantt charting
+> library**; `docker-compose-magento.zip`'s is a **Magento acceptance-test
+> fixture**. Same failure mode as P07's `neutralize.sql` — *a database-shaped
+> filename shipped inside source* — reached by a different filename.
+>
+> **So name-anywhere is insufficient, and that is the transferable half.** P07
+> tightened from *any `.sql`* to *a member named `dump.sql`*; this package was
+> already there and **was still admitting two source archives.** The discriminator
+> that actually separates a backup from source is **`dump.sql` at the archive
+> root with `manifest.json` beside it** — the shape the product writes — and
+> neither of our published clauses said so.
+>
+> **`P04-F-126`'s 39 is unaffected**: the two were already withdrawn on
+> re-testing, and the source archives never entered. **What changes is that the
+> method statement was wrong and is now correct.**
+>
+> **And the reason it was found at all is worth recording.** I did not re-read my
+> script; I ran its clause against three archives and compared the answers to the
+> census output. **A method statement is a claim, and the only way to check it is
+> to execute it and see whether the results match what was published.**
+>
+> Class: **FACT VERIFIED** — predicate determined behaviourally, four archives
+> tested, census output compared.
+
 ### 6A.29 A cross-party count disagreement, left unreconciled
 
 P07's `~/Library` re-run reports **36 database artefacts** in the subtree its
@@ -874,7 +922,9 @@ importantly — **its unit.**
 > lie under that path.**
 >
 > **The census pattern was over-inclusive and two artefacts are withdrawn.** The
-> zip test accepted **any** `.sql` file or a `manifest.json`. Re-tested for the
+> zip test required a member **named `dump.sql`, anywhere in the archive** —
+> *not* "any `.sql` or a `manifest.json`", which was this package's own
+> misdescription of it, corrected at `P04-F-129`. Re-tested for the
 > Odoo backup shape, `CFF.zip` and `docker-compose-magento.zip` contain **neither
 > `dump.sql` nor `manifest.json`** and are not database artefacts. Two others —
 > `premiumflexiblepackaging-*-exact_fs.zip` — contain `dump.sql` **without** a
