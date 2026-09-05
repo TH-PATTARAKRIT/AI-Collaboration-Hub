@@ -116,11 +116,83 @@ Named modules material to P01:
 | `account_accountant` | installed | 18.0.1.1 |
 | `l10n_th` | installed | 18.0.2.0 |
 
-`ir_module_module.latest_version` is the only stored version instrument in an Odoo-lineage
-database. Its limits are stated in `P01_FALSE_ZERO_CONTROL_REGISTER.md §5` and it is the subject
-of a standing disproof assignment in `P01_S18_AAS03_FRESH_CHALLENGE.md`.
+### 4.1 `latest_version` alone cannot carry this claim — and the identity does not rest on it
 
-**CLASSIFICATION: FACT VERIFIED — the deployed application series is 18.**
+AAS-03 Expert B was assigned to disprove this identity. **It could not — but it showed that the
+instrument the first version of this document relied on is insufficient**, and replaced it with a
+better one. Adopted after verification.
+
+`ir_module_module.latest_version` is an ordinary `character varying` column that Odoo writes at
+module load. It can misreport in at least four ways: a plain `UPDATE`; a restore of an older
+database into newer code (this one fails safe — it would read `14.0`); the reverse, a newer database
+served by older code; and a partial migration. There is no mixture here — the histogram over all
+1,369 rows is exactly `{'18.0': 361, NULL: 1,008}` and `published_version` is NULL throughout — but
+**uniformity is consistent with a clean upgrade and with a bulk `UPDATE` alike. It does not
+discriminate.**
+
+### 4.2 The schema is the instrument, and it says series 18
+
+**Data can be forged; a column cannot be conjured by the data sitting in it.** The ORM creates and
+renames columns from the model definitions of the code that actually runs.
+
+Schema extracted in full: `pg_restore --schema-only` → 5,219,881 bytes, rc 0, empty stderr,
+**1,122 `CREATE TABLE public.` statements** — reconciling exactly to the TOC's 1,122 `TABLE` and
+1,122 `TABLE DATA` entries.
+
+**POPULATION** for every claim below: those 1,122 tables and their columns. **UNIT:** one column or
+one table.
+
+**Series-18 shape present.** Each is a *rename* or an *addition*, so a leftover column cannot
+explain it — and in every case the old name is **absent**, which is what distinguishes a clean
+migration from an accretion:
+
+| Observation | Implication |
+|---|---|
+| `account_move.origin_payment_id` present; **`account_move.payment_id` absent** | the 18.0 rename was applied and left no orphan |
+| `product_template.is_storable` present; **`detailed_type` absent from all 1,122 tables** | 18.0 replaced one with the other |
+| `product_template.lot_valuated` and `stock_valuation_layer.lot_id` present | per-lot valuation, an 18.0 `stock_account` addition |
+| `product_category.property_stock_account_production_cost_id` present | 18.0 `mrp_account` addition |
+| `mail_canned_response` present; **`mail_shortcode` absent** | 18.0 rename |
+| `account_move_send_wizard` **and** `account_move_send_batch_wizard` both present | the 18.0 send-flow split |
+| five `base_cache_signaling_{assets,default,groups,routing,templates}` sequences, not one | 18.0 split the sequence per cache |
+
+**Series ≥ 17 shape present, ruling out 14/15/16:** `ir_property` **absent from all 1,122 tables**;
+`stock_lot` present and `stock_production_lot` absent; `account_account.code_store` present; and
+**every company-dependent property is a jsonb column on the record** — which is the series-17
+storage model and is exactly what the valuation-policy proof relies on.
+
+**Series-19 shape absent, ruling out the version above:** `res_groups_privilege` — the model
+introduced in 19 alongside `res.groups.privilege_id` — is **not among the 1,122 tables**.
+*Positive control that this probe can return PRESENT:* the same loop in the same execution returned
+PRESENT for `stock_lot`, `mail_canned_response`, `account_move_send_wizard`,
+`account_move_send_batch_wizard`, `product_packaging`, `uom_uom`, `uom_category`,
+`account_bank_statement_line`, `account_asset` and `res_users_settings`.
+
+### 4.3 No migration residue — this database was not upgraded in place
+
+Sweep over the full schema (case-insensitive substring, 1,122 tables and all their columns):
+`legacy` **0 hits** · `openupgrade` **0 hits** · `migration` **0 hits** · `_14_0` / `_15_0` /
+`_16_0` / `_17_0` **0 hits each**.
+
+In-place upgrade tooling renames dropped columns to `<name>_legacy_<version>` and adds its own
+bookkeeping tables. **None exist**, and no paired old/new column names survive. Combined with §4.2:
+
+> **This database was created as a series-18 database on 2026-08-18. It is not a series-14 database
+> that was upgraded.** Module `write_date` timestamps show a dependency-ordered install sequence
+> beginning **fifteen seconds** after `database.create_date` — `mail` 06:09:27, `product` 06:09:35,
+> `stock` 06:09:58, `purchase` 06:10:05, `purchase_stock` 06:10:14 — all at `18.0.x`.
+
+**This removes the scenario in which series-14 code ever ran against these tables**, and it settles
+what §6.3's `v14 2026:` markers mean: see §6.3.
+
+**CLASSIFICATION: FACT VERIFIED — the deployed application series is 18, established from the
+schema, corroborated by `latest_version` rather than resting on it.**
+
+*Caveat declared rather than hidden:* mapping each column to an Odoo release is an attribution.
+The **internal consistency** argument needs no such mapping — a schema with no
+`payment_id`/`origin_payment_id` pair and no `detailed_type`/`is_storable` pair has been migrated
+cleanly rather than accreted, whatever the labels. The **absolute series label** does depend on the
+attribution, and corroborating it column-by-column against the reference trees is an open action.
 
 ---
 
@@ -210,7 +282,13 @@ behavioural inference drawn across the full 47,801.
 The `ref` field of 15,434 of the 15,522 journal entries is non-empty, and its content carries
 markers of the form `[v14 STJ/UB/00087 - …] STJ/2026/04/0505`. Journal 45 is named
 **`MIG26 / "COA Migration 2026"`**. The predecessor system was a **series-14** installation whose
-ledger was migrated into this database. This is recorded because it bears directly on §6.2 and on
+ledger was migrated into this database.
+
+> **What those markers do and do not prove.** They are **descriptive strings about the provenance of
+> the business event**, written *into* a series-18 database *by series-18 code* running a migration
+> load. They are **not** evidence that series-14 code ever touched this database — §4.3 shows it
+> never did. Reading *"carries v14-migration descriptions"* as *"was written by v14"* would be
+> wrong, and this document says so explicitly because the first version left the door open. This is recorded because it bears directly on §6.2 and on
 the valuation-policy question in `P01_S18_PERIODIC_PERPETUAL_POLICY_PROOF.md`: the predecessor's
 journal prefix was `STJ`, the stock journal, which indicates the **predecessor posted stock
 journal entries**. The series-18 system does not. That is a change between generations, not a
@@ -270,7 +348,8 @@ The population is the archive, not the estate; nothing here is a claim about any
 | 4 companies configured, 2 transacting | **FACT VERIFIED** |
 | 15,522 journal entries / 47,801 valuation layers | **FACT VERIFIED** |
 | 96.2% of valuation layers are migrated predecessor history | **FACT VERIFIED** |
-| Predecessor was series 14 and posted stock-journal entries | **SUPPORTED INTERPRETATION** — read from `ref` text, not from a version registry of the predecessor |
+| Predecessor was series 14 and posted stock-journal entries | **SUPPORTED INTERPRETATION** — read from `ref` text, not from a version registry of the predecessor. **And it is a statement about the *predecessor system*, never about this database**: no series-14 code ever ran here (§4.3) |
+| Identity established from `latest_version` alone | **INSUFFICIENT — CORRECTED.** The schema is the instrument (§4.2) |
 | Data age vs database age | **UNRESOLVED — EVIDENCE REQUIRED** for any claim beyond §6.2 |
 
 ---
