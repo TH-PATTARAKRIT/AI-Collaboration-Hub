@@ -900,10 +900,9 @@ any of it was used.
 newer client, so a default client reports it *unreadable*, not *absent*.
 
 **`P07-F-66` — a sixth identity, in a third generation, with a real transacted population.**
-`§10.2` published **7 snapshots · 5 identities** as a corrected census. It is **8 · 6** at
-minimum, and `§10`'s figure is now marked **SUPERSEDED AND A LOWER BOUND** rather than replaced,
-because a full content sweep across `$HOME` and every mounted volume is still executing and this
-package will not publish a second census it has not finished.
+`§10.2` published **7 snapshots · 5 identities** as a corrected census. It was marked **SUPERSEDED AND A LOWER BOUND** rather than
+replaced while the full content sweep was still executing. **That sweep has since finished:
+15 snapshots · 7 identities · 3 generations — see `§13`.**
 
 ### 12.2 Why `§10` missed it, which is not the reason `§10` gave
 
@@ -971,3 +970,89 @@ The other artefacts P04 lists by name — further `iEVING`, `BK12MAY26`, `iMSCG`
 `iErpOCC`, `iSCErP` copies and a simulation-lab set — are **name-matched candidates, not
 counted here**. Turning a candidate list into a census is the error this section exists to
 record. They are counted when the content sweep finishes and each is keyed on `database.uuid`.
+
+
+---
+
+## 13. The Census, Finished — 15 Snapshots · 7 Identities · 3 Generations — `P07-F-67`
+
+`§12` marked the population a **lower bound** rather than publishing a number that was not
+finished. The sweep has finished. This is the number, with the root set declared.
+
+### 13.1 Declared method
+
+**Roots:** `$HOME` and **every entry in `/Volumes`** — enumerated at run time, not chosen.
+**Filter:** none by extension. **Signatures:** `PGDMP` magic bytes; ZIP central directory
+containing `dump.sql`. Files under 1 MB skipped. **Identity key:** `database.uuid` from
+`ir_config_parameter`. **Generation key:** `base` row of `ir_module_module`.
+
+### 13.2 A raw path count is not an artefact count
+
+The sweep returns **57 path hits**. That is not the answer. `/Volumes/iMac` is a **mount of
+this same machine**, containing `/Users/admin` and `/Volumes/iMacSys` again — and containing
+them **twice**, once directly and once under `System/Volumes/Data`. Every artefact therefore
+appears three times, and one appears fifteen.
+
+**A content census over mounted roots inflates whenever one root is a mirror of another**, and
+the inflation is invisible in the total: 57 is a perfectly reproducible number that means
+nothing. Deduplicated: **19 real file paths, 15 distinct artefacts.**
+
+### 13.3 The population
+
+| identity (`database.uuid`) | snapshots | `base` | generation |
+|---|---:|---|---|
+| `a1430edc-…` | 2 | `19.0.1.3` | v19 |
+| `f4a44cce-…` | 1 | `19.0.1.3` | v19 |
+| `1f6338ae-…` | 1 | `19.0.1.3` | v19 |
+| `66d1b52a-…` | 2 | `19.0.1.3` | v19 |
+| `551ab874-…` | 1 | `18.0.1.3` | **v18** |
+| `a6664233-…` | **7** | `18.0.1.3` | **v18** |
+| `45a8e08e-…` | 1 | `16.0.1.3` | v16 |
+
+**15 snapshots · 7 identities · 3 generations.** Published census history for this one
+population: **5 · 4 → 7 · 5 → 15 · 7.** Every correction came from a peer, none from a check
+inside this package.
+
+`a6664233` is a **simulation lab**: seven sequential snapshots of one database taken within a
+single day, six in a `snapshots/` directory and one filed under `evidence/`. Seven files, one
+identity — the filename-is-not-identity rule from `§10.1` cutting the other way, and the
+reason `15 · 7` is not `15 · 13`.
+
+### 13.4 Every finding re-run at the final population
+
+**`P07-F-01` — prevalence unchanged: 1 of 4 in-generation identities.** The two new identities
+are v18 and store `{"en_US": "VAT 7%"}` with no Thai translation, so they neither confirm nor
+weaken it. Three census corrections have not moved this figure once the generation filter is
+applied, which is the first stable denominator in this file.
+
+**`P07-F-42` — 7 of 7 identities, 3 of 3 generations.** `P07-F-67`. In `a6664233` the 16
+zero-rate taxes land in groups `1, 6, 11, 16`; in `551ab874`, groups `2, 7, 12, 17`. Both sets
+are **exactly the lowest-id tax group of each company**, and in `551ab874` the ids do not begin
+at 1. The target group is named `Taxes` in v16, `TAX 1%` in both v18 identities, `WHT 1%` in
+v19 — **and is a withholding or generic group in every one of the seven, never a VAT group.**
+This is now the best-evidenced finding in the package by a very large margin, and it remains
+classed `INF` on the load-order link.
+
+**`P07-F-63` — a second fresh install, in a second generation, also zero.** `a6664233` holds
+**0 move lines** and **0 of 152 accounts flagged**; `f4a44cce` (v19) holds 0 move lines and 0
+of 237. Two never-transacted installs in two generations, both zero. Every transacted identity
+flags some and **no two agree**: 3 of 586, 2 of 544, 2 of 544, 2 of 658, 1 of 339. The
+never-provisioned half now has two independent positive controls rather than one.
+
+**`P07-F-61` — corrected precision, `REV-E-52`.** Published as *"present and empty in all 7
+snapshots"*. At 15 snapshots that is wrong in one identity: in `a6664233` the table is **absent
+from the archive TOC entirely** — the module is not installed — not present-and-empty. Correct
+statement: **present and empty in 6 of 7 identities; absent in the seventh.** The conclusion is
+unchanged; the distinction is exactly the empty-versus-absent one this file introduced at
+`§10.4`, so publishing it wrongly one section later is worth the record.
+
+**`P07-F-62` — unchanged.** Certificates exist in 2 of 7 identities (`45a8e08e` 5,201,
+`551ab874` 332); the five others hold 0 or 1.
+
+### 13.5 What this does not settle
+
+Seven identities is what **this host** holds. It is not a claim about deployments, and no
+finding here is denominated over customers, sites or installations — only over databases found
+on one machine. `P07-U-01` remains open, and `P07-U-28` is untouched by any of this: which
+**copy of the source** these databases run is a separate question from how many databases there
+are, and it is still decided against the declared path set in one module and undecidable in two.
