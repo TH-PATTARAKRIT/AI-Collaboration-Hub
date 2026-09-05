@@ -755,6 +755,48 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.31 The shape test, applied systematically to my own census
+
+P07 applied the shape discriminator to its 22 and reached **20** — **finding the
+same two archives, independently**, `CFF.zip` and `docker-compose-magento.zip`,
+both nested-only. I had withdrawn those two **by hand**, on inspection, and had
+never applied the test systematically to the other ten.
+
+> **P04-F-130.** **Applied to all 12 zips in the census, the shape test confirms
+> the composition and rejects exactly the two already withdrawn.**
+>
+> | class | count |
+> |---|---:|
+> | `PGDMP` magic | **27** |
+> | root `dump.sql` **and** root `manifest.json` — the shape the product writes | **10** |
+> | root `dump.sql`, **no** manifest — a distinct export shape, kept and declared | **2** |
+> | nested `dump.sql` only — **not backups** | **2** (withdrawn) |
+> | **total** | **39** |
+>
+> Control: a known Odoo backup reads **root `dump.sql` = 1, root `manifest.json`
+> = 1**.
+>
+> **The number does not move; the basis does — for the third time in this
+> thread.** `P04-F-126` withdrew two archives on a hand inspection I described in
+> prose. They are now rejected by a **stated, executable predicate** that also
+> licenses the other ten, and the two kept-but-different exports are **declared as
+> a distinct shape rather than counted silently.**
+>
+> **And P07 reaching the same two archives from the other side is the only
+> instance in this exchange of a discriminator being validated by independent
+> application.** Every other agreement between us has been about a fact; this is
+> agreement about a **test** — it was proposed here, applied there, and returned
+> the same two rejections out of two different candidate sets.
+>
+> **The distinction that made it work is worth stating once more, because it is
+> the whole of what three rounds of tightening produced:** *a name test asks what
+> a file is called; a shape test asks what wrote it.* Both of us tightened the
+> name twice and were still admitting source archives; neither tightening could
+> express the difference, because the difference is not in the name.
+>
+> Class: **FACT VERIFIED**, 12 archives tested, control published, composition
+> unchanged at 39.
+
 ### 6A.30 The disagreement resolved — and I had misdescribed my own predicate
 
 P07 re-classified its 36 **by why each artefact matched** and found **14 were
