@@ -114,13 +114,29 @@ matches a fixed stored value exactly. Three separate events make that match fail
 every one of them the register returns **no data at all**, silently, with no error and no
 warning:
 
-1. **Presenting the system in Thai.** The label is a translatable text. Adding a Thai
-   translation of it — the expected act for a Thai deployment — changes the stored value in
-   a way the comparison does not tolerate. This is the immediate trigger, not a remote one,
-   and it is the single most serious finding of this research. **Measured prevalence: the
-   failing stored value is present in 1 of the 4 same-generation deployed databases examined
-   (7 database snapshots, 5 distinct databases, 4 of the current generation).** The other
-   three function correctly. That distribution is the reason the finding is ranked where it
+1. **Loading the Thai chart of accounts while the Thai language is already active.** The
+   label is a translatable text, and when the chart is loaded into a system where Thai is
+   already switched on, the label is stored in both languages in a way the comparison does
+   not tolerate.
+
+   **Corrected against the deployed databases.** An earlier issue of this pack said the
+   trigger was *presenting the system in Thai*. That is **wrong**: Thai is switched on in
+   four of the five systems examined and only **one** of them carries the two-language
+   label — including a system with several thousand records set to Thai. Switching the
+   language on afterwards does not change labels already stored. What separates the one
+   affected system from the others is the **order** in which the language and the chart of
+   accounts were set up, which is not visible in the system afterwards. This is the immediate trigger, not a remote one,
+   and it is the most serious finding of this research. **Measured prevalence: the failing
+   stored value is present in 1 of the 4 same-generation deployed databases examined
+   (15 database snapshots, 7 distinct databases, 4 of the current generation).** The other
+   three function correctly.
+
+   **And the exposure is prospective, not realised — with a measured size.** The one affected
+   system carries **two or three** taxed lines, so nothing of consequence has yet been lost
+   there. The two systems holding real volume — **5,202** and **32,672** taxed lines — are
+   the ones **not** affected. So the defect currently fires only where there is nothing to
+   lose, and every system with something to lose is one set-up ordering away from it. That is
+   the reason it is ranked where it is. That distribution is the reason the finding is ranked where it
    is rather than the reason to discount it: a fault that is silent in three systems out of
    four cannot be found by exercising a system that works, and the three working systems are
    the ones not yet presented in Thai.

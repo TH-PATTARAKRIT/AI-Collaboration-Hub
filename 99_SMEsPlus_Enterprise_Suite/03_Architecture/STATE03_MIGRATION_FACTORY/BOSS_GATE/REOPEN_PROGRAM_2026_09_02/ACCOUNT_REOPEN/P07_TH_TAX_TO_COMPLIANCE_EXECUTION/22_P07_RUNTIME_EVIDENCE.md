@@ -1337,3 +1337,97 @@ for. And a null that behaves like nothing is not safe either: it reads as a clea
 The two failure modes are opposite in appearance and identical in cause — **the test could not
 see its inputs, and said nothing about that** — so the control is the same for both: publish
 what the test could see, next to what it found.
+
+
+---
+
+## 17. The Headline's Unmeasured Clause — `P07-F-01`'s Trigger Is Refuted — `P07-F-72`, `P07-F-73`
+
+P04 sharpened `REV-M-30` one level in: **a finding and the clause of it that was never measured
+are two claims, and only the measured one was ever defended** — adding that *the exhaustive
+testing of the first clause is what made the second one feel safe.* `P07-F-42` had that shape
+and `§15` cost it a mechanism. Applied to the headline finding of this package, it costs more.
+
+`P07-F-01` as published: *the registers admit a row only if the group name equals
+`{'en_US': 'VAT 7%'}`; that name is translatable; **installing Thai — the expected act for a
+Thai deployment — changes the stored value and empties both registers, silently.*** The
+predicate was verified in source and the stored name measured in 7 identities. **Neither the
+trigger nor the consequence was ever measured.**
+
+### 17.1 The trigger is refuted — `P07-F-72`
+
+| identity | `th_TH` active | partners on `th_TH` | group name carries `th_TH` |
+|---|---|---:|---|
+| `a1430edc` | **yes** | 12 | **YES — fires** |
+| `1f6338ae` | no | 0 | no |
+| `66d1b52a` | **yes** | 5 | **no** |
+| `551ab874` v18 | **yes** | **3,480** | **no** |
+| `45a8e08e` v16 | **yes** | 15 | **no** |
+
+**Thai is active in 4 of 5 identities and only 1 carries the translation.** Installing Thai
+does **not** put a `th_TH` value into the tax group's name. The published trigger — the single
+sentence that made this finding urgent — is **false**.
+
+**What the data does show.** In the firing identity all five groups were created **in one
+transaction, already carrying both languages, and never edited** (`create_date` =
+`write_date` = 2026-02-02 12:46:35, `create_uid` = `write_uid` = 1). In `66d1b52a` the groups
+were created `en_US`-only and Thai was activated **afterwards** — and activating it did not
+retro-translate them. In the v16 identity one group *was* edited later and does carry a Thai
+name; the VAT group, untouched, does not.
+
+So the condition is **the chart template being loaded while Thai is already active** — an
+**install-order** property, not a language-installation one. `FACT` for the data pattern
+(create/write timestamps, 7 identities); `SUPPORTED INTERPRETATION` for the mechanism, since
+the loader has not been executed. `P07-U-29` opened to close it by execution.
+
+### 17.2 The consequence was never measured either — `P07-F-73`
+
+| identity | move lines | **VAT-7% tax lines** | fires? |
+|---|---:|---:|---|
+| `a1430edc` @06-14 | 23 | **2** | **YES** |
+| `a1430edc` @07-14 | 32 | **3** | **YES** |
+| `1f6338ae` | 15 | 3 | no |
+| `66d1b52a` | 563 | 12 | no |
+| `551ab874` v18 | 40,353 | **5,202** | no |
+| `45a8e08e` v16 | 447,384 | **32,672** | no |
+
+**The only identity in which the defect fires holds 2 to 3 VAT-7% tax lines.** The two
+deployments where an empty statutory register would matter — 5,202 and 32,672 rows — are
+exactly the two that do not fire. **The consequence has never been observed on a populated
+deployment**, and in the deployment where it does occur the register would return two rows if
+the predicate worked.
+
+### 17.3 What `P07-F-01` is, restated
+
+- **The defect is real and unchanged.** A statutory register's row predicate compares a
+  translatable field against an untranslated literal. Verified in source; not disputed.
+- **The exposure is prospective, and its magnitude is now measured.** Any populated deployment
+  that loads or reloads the Thai chart while Thai is active takes the predicate out — **5,202
+  and 32,672 VAT-bearing tax lines** in the two populated identities are what would be at risk.
+  That is a better statement for a decision-maker than the one it replaces, because it is a
+  number rather than an adjective.
+- **The severity argument survives and is sharpened.** *A defect silent in three deployments of
+  four cannot be found by testing a system that works* — and it is worse than that: **the
+  defect fires only where there is no data to reveal it**, and every deployment with data to
+  lose is one install-order away from it.
+- **What is withdrawn** is *"installing Thai empties both registers"* as a statement of
+  observed cause, and *"the single most serious finding of this research"* as a claim resting
+  on an unmeasured consequence. Severity stays `S1`; the basis changes from realised to
+  prospective-with-measured-magnitude.
+
+### 17.4 Both headline findings reduce to template load order
+
+`P07-F-42` is classed `INF` on an unexecuted **load-order** link (`P07-U-20`). `P07-F-01`'s
+real trigger is now measured as a **load-order** condition. **The two headline findings of this
+package share a root cause that neither of them named**, and it is the one thing about a
+deployment that leaves no trace afterwards: the order in which language and chart were
+installed. `P07-U-20` and `P07-U-29` should be closed together, by execution, not by reading.
+
+### 17.5 The pattern, three instances deep
+
+Three compound findings this session, all the same shape: `P07-F-51` (split, revealed
+`P07-F-63`), `P07-F-42` (mechanism withdrawn, `P07-F-70`), `P07-F-01` (trigger refuted,
+consequence unmeasured). In each the measured clause was tested across every identity available
+and the unmeasured clause travelled with it untouched. P04's diagnosis is exactly right:
+**the exhaustive testing of the first clause is what made the second one feel safe.** A
+7-of-7 result on one clause is not evidence about the other, and it reads like it is.
