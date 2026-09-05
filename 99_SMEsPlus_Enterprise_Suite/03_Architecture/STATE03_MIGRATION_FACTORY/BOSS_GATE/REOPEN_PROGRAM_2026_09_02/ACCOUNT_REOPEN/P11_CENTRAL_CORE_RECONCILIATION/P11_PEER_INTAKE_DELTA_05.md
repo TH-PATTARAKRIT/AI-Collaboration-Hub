@@ -84,9 +84,12 @@ reconciliation function is most exposed to and least protected against.
 > **`P11-G-02`: a cross-party count is published as two declared halves, each executed by its owner,
 > never as one number.** P11 adopts it for its own registers immediately.
 
-**P11's half, executed:** two instances — the inert intake script (`P11-E-12`) and the
-undeclared-population tally (`P11-E-15`). **P04's half:** carried as `PEER-PUBLISHED` at `cc332d9`,
-not re-derived, because P11 cannot open the artefacts it rests on.
+**P11's half:** ~~two instances — the inert intake script (`P11-E-12`) and the undeclared-population
+tally (`P11-E-15`)~~ — **WRONG, and asserted rather than enumerated. Corrected at `P11-E-19`: the half
+is FIVE** (`P11-E-03`, `-E-12`, `-E-15`, `-E-18`, `-E-19`), enumerated by parsing the log. **`P11-E-18`
+was logged in this same delta**, four paragraphs above the figure that omitted it.
+**P04's half:** carried as `PEER-PUBLISHED` at `cc332d9`, not re-derived, because P11 cannot open the
+artefacts it rests on.
 
 ## 4. `P11-E-16` belongs on neither shelf
 

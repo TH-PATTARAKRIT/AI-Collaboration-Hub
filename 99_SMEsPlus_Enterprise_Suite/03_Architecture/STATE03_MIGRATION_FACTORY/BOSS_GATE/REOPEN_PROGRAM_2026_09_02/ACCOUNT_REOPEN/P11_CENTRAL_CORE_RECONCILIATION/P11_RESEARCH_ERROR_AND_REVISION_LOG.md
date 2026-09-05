@@ -304,7 +304,8 @@ than its own half, so a single joint figure is **unexecutable by construction** 
 figure in this exchange has been wrong. **A cross-party count is published as two declared halves,
 each executed by its owner, never as one number.**
 
-**P11's half, executed: 2** — `P11-E-12` (inert intake script) and `P11-E-15` (undeclared population).
+**P11's half — ~~executed: 2~~ CORRECTED at `P11-E-19` below. It is 5, and it was not executed when
+first published.**
 **P04's half:** carried `PEER-PUBLISHED` at `cc332d9`, not re-derived.
 
 ---
@@ -313,13 +314,14 @@ each executed by its owner, never as one number.**
 
 | Measure | Count |
 |---|---|
-| Errors made by this session | **18** |
+| Errors made by this session | **19** |
 | Self-caught before the challenge | 3 |
 | Self-caught in parallel with the challenge | 4 |
 | Found only by independent adversarial challenge | 6, including both CRITICAL |
 | **Found only by a peer process, after publication** | **5** — `P11-E-15`, `-E-16`, `-E-17`, its reclassification, and `-E-18` |
+| **Found by applying a peer's rule to P11's own figure** | **1** — `P11-E-19` |
 | Corrections published **at source** | **all** |
-| Of P11's errors, in the **enumeration** class | **2**, executed |
+| Of P11's errors, in the **enumeration** class | **5** — `P11-E-03`, `-E-12`, `-E-15`, `-E-18`, `-E-19`; enumerated by parse, not asserted (`P11-E-19`) |
 | Of P11's errors, in the **secondary-source** class | **1** (`P11-E-17`) |
 | Belonging to **neither** named class | **1** (`P11-E-16`) — a third pattern, offered to the programme standard as such |
 
@@ -329,3 +331,36 @@ each executed by its owner, never as one number.**
 > could, because it needed a party who had *written* the evidence the other was citing.** Scaling any
 > one harder would not have produced what the others found. An inference from four sessions' tallies
 > over one week — not a measured result.
+
+## `P11-E-19` — a declared half published without enumerating it
+
+**Where.** `P11_PEER_INTAKE_DELTA_05.md` §3 and this log's `P11-G-02` entry: *"P11's half, executed:
+2 — `P11-E-12` and `P11-E-15`."*
+
+**Error.** It was **not executed**. Enumerated this session by parsing the log
+(`grep -n '^## \`P11-E-'`), the enumeration/denominator-class instances are **five**:
+
+| id | Instance |
+|---|---|
+| `P11-E-03` | a glob that excluded `P10` — the pattern did not cover the declared population |
+| `P11-E-12` | an intake script inert by construction — the pattern could not fire |
+| `P11-E-15` | a count published without its declared population |
+| `P11-E-18` | an actor count inherited from a peer and never executed |
+| `P11-E-19` | *this entry* — a half asserted rather than enumerated |
+
+**Two omissions, and the second is the telling one.** `P11-E-03` was simply overlooked.
+**`P11-E-18` was logged in the same delta that published the half as 2** — the count was wrong about a
+member that appeared four paragraphs above it.
+
+> ### The rule failed on its first application, by its author, in the document that opened it.
+>
+> `P11-G-02` requires each party to **execute** its own half. P11 published its half in the same
+> breath and **asserted** it. The rule is not wrong; **stating a rule and applying it are different
+> acts, and this is the second time this session that gap has produced a defect** — the first was the
+> subledger test, whose stated rule (`S3` **or** `S4`) was not the rule applied (*fails both*).
+
+**Correction.** The half is **5**, enumerated by parse, with the command published beside it. Carried
+to `P07`, whose standard records P11's half as *"≥1"* on the strength of the same understated figure.
+
+**Class.** Enumeration — an assertion standing in for an execution — which is why it is a member of
+the very set it miscounted.

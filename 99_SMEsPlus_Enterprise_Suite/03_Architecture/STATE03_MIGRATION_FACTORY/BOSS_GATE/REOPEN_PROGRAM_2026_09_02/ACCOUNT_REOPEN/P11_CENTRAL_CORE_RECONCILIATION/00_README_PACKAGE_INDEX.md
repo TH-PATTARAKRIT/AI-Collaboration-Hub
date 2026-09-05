@@ -19,6 +19,7 @@ Jira `ERPPLUS-138` · Date `2026-09-04`
 | 2b | `P11_PEER_INTAKE_DELTA_02.md` | P04's two scope questions answered; P04's narrowing accepted with a time-indexed qualification |
 | 2c | `P11_PEER_INTAKE_DELTA_03.md` | `SR-02` corroborated from source and **escalated**; `T0-13` opened; `D-12` restated |
 | 2d | `P11_PEER_INTAKE_DELTA_04.md` | `T0-13` **widened to every scope**; an attribution corrected against P11 |
+| 2f | `P11_METHOD_PROPOSAL_OCCASION_SCOPED_GENERALISATION.md` | A third method-defect pattern, authored at `P07`'s request after it declined the pattern for its own standard, with reasons |
 | 2e | `P11_PEER_INTAKE_DELTA_05.md` | `P11-E-17` reclassified to the secondary-source class; its **id corrected** before it entered a programme standard; a cross-party count rule opened |
 | 3 | `P11_AAS03_FINAL_CHALLENGE.md` | Four expert panels · 86 findings · 3 critical · 0 disputed |
 | 4 | `P11_AAS_PLUS_FINAL_CONSOLIDATION.md` | Agreements, contradictions, risks, 2 vetoes upheld |
