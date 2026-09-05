@@ -13,7 +13,7 @@
 | Commit 1 | `64b10cd` — traces, registers, scope-aware correction (interim, before the challenges returned) |
 | Commit 2 | `1172f79` — challenge consolidation, corrections, final registers |
 | Commit 3 | `40166d0`, `9b1006b` — commit lineage, peer-table correction |
-| **Evidence-base repair** | `120e1bd` exhaustive search + v18 DB · `8b4edbc` Challenge D corrections · final commit in `19 §10` |
+| **Evidence-base repair** | `120e1bd` exhaustive search + v18 DB · `8b4edbc` Challenge D · `3fda0b2` all four challenges, foundation contradicted · final commit below |
 | **Targeted closure** | `f0037b8` U-01/U-02 evidence · `61e158a` two published findings corrected · `068c71c` TX-01 measured · `d8d8f6f` all four experts' corrections · final commit in `19 §10` |
 | Merge status | **Never merged.** Boss decides. |
 
@@ -140,7 +140,7 @@ shasum -a 256 *.md
 | `63_P05_AAS_PLUS_SUPPLEMENTAL_VETO_RECHECK.md` | 3725 | `1340dc69b3d9878e205a80592fa2bc0ba27d36ecc1d620c86390bed313293b78` |
 | `64_P05_PMO_SUPPLEMENTAL_REVIEW.md` | 6574 | `46b25a37c9c541f8ca9a16bf5ad5d908edf22ef938e26361799b58b41276b782` |
 | `65_P05_P11_EVIDENCE_BASE_AND_LIVE_RISK_SUPPLEMENT.md` | 5386 | `d24c7b80eb000958d2ddbaec97cc84ba3da8857506b75bf229525497a7c3c927` |
-| `66_P05_AUTO_RESUME_STATE.md` | 3815 | `ab211d657249140859c2ed920790ce8a91c9aab026f2e37a91d4007736ec2616` |
+| `66_P05_AUTO_RESUME_STATE.md` | 3855 | `62870b3587c38518669788539709f9393e0cd77ad964c423951e78b01a128a43` |
 
 > **`14_P05_EVIDENCE_MANIFEST.md` is deliberately excluded from its own table** — a file cannot
 > contain its own hash. All 66 other files are listed. Verify them with `shasum -a 256 *.md`, and

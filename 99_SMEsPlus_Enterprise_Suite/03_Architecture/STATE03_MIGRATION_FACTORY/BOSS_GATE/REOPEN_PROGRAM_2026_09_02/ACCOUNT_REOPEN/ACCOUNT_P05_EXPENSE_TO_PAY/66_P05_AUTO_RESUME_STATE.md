@@ -9,7 +9,7 @@
 | PROCESS | P05 — Expense-to-Pay |
 | BRANCH | `research/account-p05-expense-to-pay-2026-09-04-001` |
 | BASELINE COMMIT IN | `96748109c1d56e7084a5d22ea3a1241d7e45336d` |
-| CURRENT COMMIT | see `§ Final Commit` below |
+| CURRENT COMMIT | `3fda0b2c3b76ab2f47e1d0a10eeeb43703497d2f` (+ this manifest commit) |
 | LAST VERIFIED CHECKPOINT | `CP-P05EFINAL` |
 | CURRENT CHECKPOINT | `CP-P05EFINAL` — complete |
 | CURRENT SUBSTEP | none — round complete |
