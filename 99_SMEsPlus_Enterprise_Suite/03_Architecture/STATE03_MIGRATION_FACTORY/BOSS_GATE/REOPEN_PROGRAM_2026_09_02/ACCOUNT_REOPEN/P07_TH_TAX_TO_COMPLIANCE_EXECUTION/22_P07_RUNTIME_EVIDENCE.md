@@ -174,6 +174,25 @@ unavailable while the two halves shared one sentence. `REV-E-34`.
 The correction from the first issue stands: **"inert as shipped" is correct; "cannot work" is
 withdrawn** and was never stated, only readable.
 
+**And the split concealed a finding, not just a distinction — `P07-F-63`.** P04 reported the
+same effect on splitting its own compound claim, and the shape holds here. Half `b` at full
+strength is not *"operators supply the flag"*. It is:
+
+> **Every deployment examined independently discovered and performed an undocumented
+> provisioning step that the localisation never performs — and each arrived at a different
+> answer.** Three identities, three operators, three counts: 3 of 586, 1 of 339, 2 of 544.
+> In-generation alone it is two operators and two different answers.
+
+So the flag is not an optional refinement: it is a **de facto requirement the shipped
+localisation omits**, and because it is omitted there is no guidance on *which* accounts
+qualify — producing divergent configurations of a field that gates the entire withholding
+path (`half a`). That statement was unavailable while the halves shared a sentence, because
+the configuration half read as a property of the chart rather than as a **consistent
+independent action by every operator**.
+
+**A compound claim does not merely under-describe its evidence; it can conceal the
+finding.** P04's formulation, and this is the second instance of it in two packages.
+
 ### 4.6 Two New Findings from the Data
 
 | ID | Finding | Evidence |

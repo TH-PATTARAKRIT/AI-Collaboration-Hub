@@ -80,12 +80,37 @@ entry carries its post-challenge state, not its draft state.
 | `P07-F-56` | `S3` | Licence inversion: an AGPL-3 module hard-depends on an Enterprise-licensed module, and two LGPL-3 SMEsPlus modules inherit from Enterprise-licensed code. Routed, not adjudicated. | `SRC` | `12 P07-D-07` |
 | `P07-F-58` | `S1` | A supply does not require consideration under Thai VAT, and a fixed asset is "goods". Donation, scrapping, application to a non-business purpose, stock shortfall and goods on cessation are supplies; the researched system has **no output-tax event and no tax document for any of them**, and the disposal path produces no tax invoice. Definitional limb verified; the extent of the non-business-use limb is held at `U-23`. | `SRC` + `VERIFIED` statute | `21 §3`, `02 §2A` |
 | `P07-F-59` | `S1` | A hire purchase or instalment sale — the ordinary Thai route for machinery and vehicles — carries a tax point and a **tax invoice on every instalment due date**. The researched system has no instalment tax point, no tax-invoice object to issue, and no mapping to route the contract; the three gaps compound rather than overlap. | `SRC` + `VERIFIED` statute | `21 §4` |
+| `P07-F-60` | — | **WITHDRAWN 2026-09-05.** Claimed no statutory withholding certificate has ever been issued. Refuted: a v16 identity holds 5,201 and the second in-generation identity holds one. Kept as a row rather than deleted so the identifier resolves; replaced by `P07-F-62`. | withdrawn | `22 §8.1`, `15 REV-E-29` |
+| `P07-F-61` | `S3` | The cross-company tax-unit mechanism the Thai VAT registers opt into is **unused** — `account_tax_unit` empty in 2 of 2 in-generation identities plus v16. So `P07-F-39`'s unbounded-company-search exposure is **latent in every deployment examined**, not active. Scoping for `P07-U-14`, which stays open. | runtime | `22 §4.6`, `§8`, `§9` |
 | `P07-F-62` | `S2` | **5,201 withholding certificates** in one **v16** deployment (§9 — out of the declared generation; the in-generation identity holds one) carry the 15-value s.40 income-type taxonomy — the most statutorily faithful classification in the declared set — while the PND export ignores that field and derives income type from the tax rate. The divergence has a real, sizeable population on the correct side of it. Replaces the withdrawn `P07-F-60`. | runtime, 3 identities | `22 §8.1` |
+| `P07-F-63` | `S2` | The withholding-account flag the localisation never provisions is a **de facto required provisioning step**: 3 of 3 identities independently performed it and **each arrived at a different answer** — 3 of 586, 1 of 339, 2 of 544 accounts flagged (in-generation: two operators, two answers). The step being undocumented, there is no guidance on which accounts qualify, so a field that gates the whole withholding path (`P07-F-51a`) is configured divergently in every deployment examined. Surfaced only by splitting the compound `P07-F-51`. | runtime, 3 identities | `22 §4.5`, `15 REV-M-18` |
 | `P07-F-57` | `S3` | Latent index error in the withholding candidate filter: it indexes the first tag of the first repartition line while guarding only on the union of tags. Latent because the shipped chart tags base lines. | `SRC-CHAL` | `03 §4 W-K-03` |
 
 `P07-F-58` and `P07-F-59` were added after intake of peer evidence from P04 and independent
 retrieval of the statute behind it. Both close gaps this package had — not defects it
 inherited. See `21_P07_PEER_EVIDENCE_INTAKE_P04.md`.
+
+**Orphan check.** Every `P07-F-nn` cited anywhere in the package now resolves to a row here.
+Run mechanically — parse this register's definition rows, collect every citation across all
+files, diff the two sets — after P04 reported the same class of defect in its own package for
+the third time. It found two: `P07-F-61` was **created in `22 §4.6` and never added here**,
+and `P07-F-60` was **withdrawn without leaving a row**, so a reader looking either up found
+nothing. Both are exactly the defect this register was written to fix (`§0`), reappearing in
+the register itself. `REV-E-36`.
+
+**Re-running it immediately caught a third — mine, one edit old.** `P07-F-63` was created in
+`22 §4.5` in the *same* edit that added the two rows above, and went in with no row here. The
+defect recurred **inside its own correction**, and the same pass left `P07-F-60`'s row one
+column short. This is the yield fact, not a confession: the first run found two defects both
+older than a day; the second found one ninety seconds old. **A check cheap enough to re-run
+after every edit finds what a check run once before publication cannot** — and re-reading the
+edit I had just written would not have found it, consistent with `15 REV-M-09`. The check is
+now the last step before every commit of this package, not a pre-publication gate. `REV-E-37`.
+
+Both runs are reproduced in `15 §REV-E-36/37`. The script parses definition rows from `§2`,
+collects `P07-F-<n>` across all 23 files, and diffs the sets. `P07-F-08` is expected in its
+output and excluded by the not-issued list below: an identifier never issued is not an orphan,
+but the check cannot know that, so the exclusion is **declared here rather than coded**.
 
 **Identifiers not issued:** `P07-F-08`, `-17`, `-22`…`-25`, `-28`, `-29`, `-31`, `-32`,
 `-33`. These numbers were consumed during drafting by observations that were merged into
