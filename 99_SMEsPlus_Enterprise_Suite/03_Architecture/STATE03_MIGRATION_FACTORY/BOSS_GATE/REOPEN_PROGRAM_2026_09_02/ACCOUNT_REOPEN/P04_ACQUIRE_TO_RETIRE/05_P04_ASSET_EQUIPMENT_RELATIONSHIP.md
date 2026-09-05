@@ -127,7 +127,7 @@ the asset. Its import chain was read in full this session.
 Prior packages identified one custom module creating equipment records on goods
 receipt. A second exists.
 
-*Stack note (`01` §6A.17, `P04-F-116`): six installed modules declare on the equipment model and **one — `equipment_fleet` — lies outside both declared source roots with no source anywhere on this host**. The two modules below were read; the stack they sit in has an unreadable member. By contrast, **no installed module declaring on `account.asset` lies outside the declared roots**, so the pure asset findings do not carry this qualification.*
+*Stack note (`01` §6A.17/§6A.19, `P04-F-116`/`P04-F-118` — **the findings in this file, `P04-F-35`/`-37`/`-38`/`-39`/`-40`, are five of the six in the whole package that carry this exposure**): six installed modules declare on the equipment model and **one — `equipment_fleet` — lies outside both declared source roots with no source anywhere on this host**. The two modules below were read; the stack they sit in has an unreadable member. By contrast, **no installed module declaring on `account.asset` lies outside the declared roots**, so the pure asset findings do not carry this qualification.*
 
 | Module | Trigger | Creates | Accounting link |
 |--------|---------|---------|-----------------|

@@ -745,6 +745,47 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.19 Which findings carry the exposure
+
+`P04-F-116` partitioned the **models**. P07 went one step further and partitioned
+its **findings**, which is what a reader actually needs — and reported the first
+finding it holds sitting on **opposite sides** of the copy-identity and
+stack-completeness questions. Done here for all 116.
+
+> **P04-F-118.** **Six substantive findings carry the unreadable-stack exposure;
+> the asset core does not.**
+>
+> | standing | findings | basis |
+> |---|---:|---|
+> | **Complete declared stack** | **27** | `account.asset` — no installed module outside the declared scope (`P04-F-116`) |
+> | Partly exposed — `account.move`/`.line` | 25 | 3 and 2 undeclared modules declare there |
+> | Partly exposed — `account.account` | 2 | `scgl_account_coa_control`, readable but unread |
+> | **Exposed — unreadable member** | **6** | `maintenance.equipment` carries `equipment_fleet`, **no source on this host** |
+> | Not model-bound | 56 | method, census and governance findings |
+>
+> The six exposed: **`P04-F-35`, `-37`, `-38`, `-39`, `-40`** — the
+> asset-to-equipment relationship findings in `05` — and **`P04-F-108`**, the
+> on-change forcing. **These are the findings a reader should treat as resting on
+> an incompletely readable stack, and they are the only ones.**
+>
+> **The classifier over-reported and was corrected before publication.** Its first
+> run returned **12**, because it assigns by the model vocabulary a finding's text
+> uses — and six of the twelve (`P04-F-94`, `-97`, `-102`, `-107`, `-114`, `-116`)
+> are **method** findings that merely *name* equipment while describing a census
+> or a check. **That is precisely the name-driven assignment this package
+> criticised at `P04-F-114`**, committed in the instrument built to apply
+> `P04-F-116`, and caught only by reading the six defining blocks.
+>
+> **Declared bound:** the partition is assigned from each finding's **defining
+> block**, by business-language vocabulary, with the twelve equipment hits read
+> individually. It is a **reader's guide, not a proof** — a finding classified
+> *complete* rests on `account.asset` having no undeclared module **declaring** on
+> it, which `P04-F-116` already states is a floor rather than a ceiling.
+>
+> Class: **FACT VERIFIED** as to the partition, **bounded** as stated. No
+> finding's content changes; what changes is that a reader can now tell **which
+> six** to discount and which twenty-seven not to.
+
 ### 6A.18 Two registers under one family name
 
 P07 ran *count the forms, not the identifiers* over its own families and found
