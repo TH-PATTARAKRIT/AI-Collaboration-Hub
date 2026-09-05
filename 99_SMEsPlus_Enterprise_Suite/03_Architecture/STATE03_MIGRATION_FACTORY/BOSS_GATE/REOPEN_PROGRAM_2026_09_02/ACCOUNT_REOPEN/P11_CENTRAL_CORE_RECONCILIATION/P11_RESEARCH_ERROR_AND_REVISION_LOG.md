@@ -314,7 +314,7 @@ first published.**
 
 | Measure | Count |
 |---|---|
-| Errors made by this session | **24** |
+| Errors made by this session | **27** |
 | Self-caught before the challenge | 3 |
 | Self-caught in parallel with the challenge | 4 |
 | Found only by independent adversarial challenge | 6, including both CRITICAL |
@@ -506,3 +506,53 @@ obtain. Corrected cost: **`UNKNOWN, plausibly cheap`**.
 **Class.** Same family as `P11-E-22` — an untested claim about what this session can reach — but turned
 on **the evidence base** rather than on a peer. Fourth version in this exchange, and **the first to
 reach a Boss-facing decision input** rather than a method register.
+
+## `P11-E-25` — a capability test that stopped at the first failing tool
+
+**Where.** `P11-F-09`: *"`iTEST02_2026-07-14` archive header — **NOT readable** — unsupported version
+(1.16) in file header."*
+
+**Error.** True of the **default** client (`pg_restore 16.15`) and **false of the host**.
+**`postgresql@18` is installed on the same machine** and reads the archive: **26,804 TOC entries.**
+Credit `P07`, which tested its own incapacity, found a 65 MB dump **inside its own declared path set**,
+and warned: *"stopping there yields a **`TESTED`** incapacity that is still false. A capability test
+that stops at the first failing tool is not a capability test."*
+
+**Why it is sharper than `P11-E-22`.** `E-22` was an incapacity **asserted and never tested**. This one
+**was** tested — and the test was incomplete, so it produced a false negative wearing the authority of
+an execution. **A `TESTED` label is not a boundary; the tool used is.**
+
+**Correction.** All dumps tested are readable with the right client. The finding's *"readability is not
+uniform"* is withdrawn: the true unit is **the (artefact, tool) pair**, and a negative result binds only
+the tool used.
+
+## `P11-E-26` — a correction register that claimed corrections not made
+
+**Where.** `P11_AAS03_FINAL_CHALLENGE.md`, the `ACCEPTED — CORRECTED` disposition column, across 86
+findings.
+
+**Error.** Audited against the actual register text, **ten** accepted findings — including the round's
+**only CRITICAL**, `X2-F06` — were **never edited into the registers at all**. Three of them P11 had
+explicitly described as *"corrected in place"*.
+
+**Trigger.** `P04` @ `6953856`, naming a defect neither session had: **"a revision log is not a
+correction; the edit is."**
+
+**Severity — the highest in the package, and it is about the package.** The challenge file is what a
+reader consults to conclude the work was repaired. A disposition column reading `ACCEPTED — CORRECTED`
+over an unrepaired register **is a false assurance about all 86 findings**, not an error in one.
+
+**Disposition.** Nine repaired at source this session. **`X2-F06` deliberately not repaired** — it needs
+ten subledger rows re-run against the stated rule, under which the register's *"3 unqualified"* becomes
+**0**. **Head of the CORR1 backlog.** *Bodging a critical logic error to clear an audit is how it got
+here.*
+
+## `P11-E-27` — the audit that found `E-26` failed first, in the same way
+
+P11's first pass used grep patterns whose escaping silently did not match, and reported **"corrected"**
+for four findings that were **all still present**. Only direct per-file checks got the real answer.
+
+**This is `P11-E-12`'s inert-pattern defect recurring for the third time — inside the audit written to
+catch exactly this class.** *A pattern returning a clean result is not evidence until it has been shown
+able to return a dirty one.* It is the same positive-control rule P11 published for
+`peer_intake.sh` and did not apply to its own audit thirty commits later.

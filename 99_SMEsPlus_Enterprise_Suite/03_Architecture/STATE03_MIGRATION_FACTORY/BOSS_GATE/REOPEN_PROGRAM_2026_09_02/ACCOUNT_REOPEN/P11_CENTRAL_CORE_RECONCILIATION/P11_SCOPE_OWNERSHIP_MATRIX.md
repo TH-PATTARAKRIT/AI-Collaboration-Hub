@@ -96,7 +96,7 @@ Per correction §4. `?` marks a determination the evidence does not support; tho
 | **Control / deletion evidence** | `TENANT` at minimum | `COMPANY` | `TENANT` | never | — | **yes** (assurance) | the acting company | **scope-mismatched today** |
 | **Migration / replay batch** | `TENANT` | `COMPANY` | `TENANT` | `TENANT` | `COMPANY` | **yes** | each affected company | `HOLD` — does not exist (`GAP-FS-08`) |
 
-**Four `HOLD — SCOPE EVIDENCE REQUIRED`:** tax configuration; equipment/machine ownership; budget;
+**Two `HOLD — SCOPE EVIDENCE REQUIRED`** *(corrected per `X4-F11`, then reduced by `X3-F09` and Delta 02)*: ~~tax configuration~~ resolved `COMPANY`; ~~equipment/machine ownership~~ resolved `TENANT` conditionally (`P11-F-05`); **budget**;
 and migration/replay batch (which does not exist at all). Each is recorded in
 `P11_FINAL_BLOCKER_REGISTER.md`.
 

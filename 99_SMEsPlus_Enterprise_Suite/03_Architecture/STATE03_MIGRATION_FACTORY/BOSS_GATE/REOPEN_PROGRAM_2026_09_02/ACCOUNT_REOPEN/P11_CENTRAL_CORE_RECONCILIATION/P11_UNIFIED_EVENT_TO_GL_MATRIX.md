@@ -68,7 +68,7 @@ requires: the reference model has no closing entry.
 ## 4. The cells that are NOT blocked on `P01`–`P10`
 
 An honest matrix distinguishes *"nobody has done the work"* from *"the work was done and the answer is
-that it cannot be decided"*. Six of the fifteen rows above are in the **second** state, and
+that it cannot be decided"*. **Seven** of the fifteen rows above are in the **second** state *(corrected per `X2-F17`/`X4-F09`; the table lists seven)*, and
 commissioning the producing process will not move them:
 
 | Row | Blocked on | Named missing input |
@@ -80,7 +80,7 @@ commissioning the producing process will not move them:
 | `UAE-16`/`UAE-17` | `BLK-07` `HOLD — DESIGN DECISION` | A Boss ruling on normal capacity vs actual hours |
 | `UAE-23` | Thai statutory | Authoritative statutory evidence |
 
-> **`P01`–`P10` publishing in full would leave six of these fifteen rows exactly as they are.** The
+> **`P01`–`P10` publishing in full would leave **seven** of these fifteen rows exactly as they are.** The
 > peer dependency is therefore **necessary but not sufficient** for this matrix. Both facts are
 > reported; reporting only the first would understate the blocker, and reporting only the second
 > would excuse it.

@@ -33,7 +33,9 @@ and a single pass/fail per event would hide that.
 > `GAP-B02`). Where the event and its representation are the same record, "one canonical event" is
 > not a property the system can have or lack — it is a property it cannot express.
 >
-> `C2` fails for **8 of 44**. `C3` fails for **11 of 44**. `C4` fails for **3 of 44**.
+> `C2` fails for **9 of 44**. `C3` fails for **9 of 44** business facts (11 table rows, 2 of which are
+> mechanisms, not members of the 44). `C4` fails for **1 of 44** business facts (3 table rows).
+> *Corrected in place `2026-09-05` per `X1-F06`, `X4-F04`, `X1-F05`; the earlier figures were 8 / 11 / 3.*
 >
 > **`C1`'s universal failure is the finding.** `C2`, `C3` and `C4` are, without exception,
 > consequences of it. Closing `UAE-29` is the only move that changes the shape of this table; every
@@ -43,7 +45,7 @@ and a single pass/fail per event would hide that.
 
 ## 3. Ownership register — `C2`, `C3`, `C4` by event
 
-Only the rows that fail at least one of `C2`, `C3`, `C4` are tabulated. The remaining 26 rows pass
+Only the rows that fail at least one of `C2`, `C3`, `C4` are tabulated. The remaining **31** rows satisfy
 `C2`–`C4` **and fail `C1` with all the others**; they are listed in §5.
 
 | Event | Owner asserted | `C2` | `C3` | `C4` | Why it fails |
@@ -118,7 +120,7 @@ cross-company artefact. It is also `T0-04` tenant isolation, which remains `UNRE
 
 ---
 
-## 5. Events passing `C2`, `C3` and `C4`
+## 5. Events SATISFYING `C2`, `C3` and `C4`
 
 `UBE-01`…`UBE-05`, `UBE-07`, `UBE-09`, `UBE-10`, `UBE-12`…`UBE-15`, `UBE-17`, `UBE-18`, `UBE-20`,
 `UBE-21`, `UBE-23`, `UBE-25`, `UBE-26`, `UBE-28`…`UBE-30`, `UBE-32`…`UBE-35`, `UBE-37`, `UBE-39`…`UBE-42`.

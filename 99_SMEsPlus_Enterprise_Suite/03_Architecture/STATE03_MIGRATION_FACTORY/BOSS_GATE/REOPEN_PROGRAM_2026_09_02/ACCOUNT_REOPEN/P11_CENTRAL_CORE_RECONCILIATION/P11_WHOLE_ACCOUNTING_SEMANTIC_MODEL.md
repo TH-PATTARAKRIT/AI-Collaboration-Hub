@@ -41,7 +41,7 @@ constitution.
 | `F5` | **Measurement fact** | this rate applied on this date | the rate table | **`PLATFORM` for the observation, `COMPANY` for the selection** (`SC-05`) | corrected only by a dated correction |
 | `F6` | **Finality declaration** | this period is no longer open | governance | `COMPANY` | soft may move; hard may only advance |
 | `F7` | **Provenance** | this fact came from there, by this route | the producer | `COMPANY`, with a `TENANT`-scoped batch identity | **never** |
-| **`F8`** | **Scope declaration** | this object belongs to this scope, and requires exactly this context | the platform | itself | **never** |
+| ~~**`F8`**~~ | ~~Scope declaration~~ **WITHDRAWN per `X2-F01`** — `F8` was this table's own **Scope column** promoted to a row, and its own scope cell read *"itself"*, which is not a member of `{PLATFORM, TENANT, COMPANY}`. **Scope is a mandatory non-null attribute of every fact (`SCP-01`), not an eighth fact.** The model carries **seven** facts | — | — | — |
 
 `F8` is **new at P11**, introduced by the constitution correction. It is a fact and not a control
 because `MISSING REQUIRED SCOPE = DENY` cannot be evaluated unless the scope is itself a stored,
@@ -49,7 +49,8 @@ non-null property.
 
 **Implementation status in the evidence base:** `F1`, `F2`+`F3` collapsed together, `F4` and `F5` exist
 as durable objects. `F6` exists as **a bare date with no object behind it**. `F7` **is not implemented
-at all**. `F8` does not exist. **Three of eight absent or degenerate.**
+at all**. `F8` does not exist. **Four of eight absent or degenerate** — `F2` is included, and it is the headline: the accounting
+event, whose absence (`UAE-29`) is this package's root blocker. *Corrected per `X4-F13`.*
 
 ---
 

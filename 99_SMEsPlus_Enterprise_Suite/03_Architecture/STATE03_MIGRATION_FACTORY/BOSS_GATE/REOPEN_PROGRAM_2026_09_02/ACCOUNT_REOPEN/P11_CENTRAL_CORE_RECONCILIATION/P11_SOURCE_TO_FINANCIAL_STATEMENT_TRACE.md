@@ -29,7 +29,10 @@ Read left to right. The first **✘** in a lane is where that lane stops being p
 | Analytic / management | ✔ | ✔ | derived | derived | n/a | **✘ not a subledger of record** | management reports only | **subledger status** |
 | Period result | derived | n/a | n/a | **✘ `UAE-27` no result transfer** | **✘ nothing posts** | n/a | retained earnings | **the close event** |
 
-**15 lanes. 2 reach a statement line without an unresolved break** — cash settlement and opening
+**15 lanes. By the table's own ✘ test, 3 carry no ✘** — cash settlement, opening position and
+cash-basis tax. **By the unresolved-break test, 0 are clear**, because each of those three terminates
+in an open tolerance-zero or contract failure. *Corrected per `X4-F12` / `P11-E-07`; the earlier
+sentence asserted both at once.* The two named below are — cash settlement and opening
 position — and each carries an open tolerance-zero or contract failure at the end of the lane.
 
 ## 2. The statement layer's own defect

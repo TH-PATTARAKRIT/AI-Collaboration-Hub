@@ -331,6 +331,50 @@ identity" is nowhere defined*); `TXP-05` (a governance rule, not a system positi
 
 ---
 
+## 5b. CORRECTION AUDIT — the "ACCEPTED — CORRECTED" column was, for a substantial subset, a statement of intent
+
+> ### `P11-E-26`. This is the most serious defect in the package, and it is a defect *about* the package.
+
+Prompted by `P04` @ `6953856`, which named a defect neither session had: **"a revision log is not a
+correction; the edit is."** `P04` had written a retraction in one part of a file and left the
+corrected text standing in another, for six commits.
+
+**P11 tested itself and is worse.** This file's disposition column records **`ACCEPTED — CORRECTED`**
+for 86 findings. Audited `2026-09-05` against the actual register text:
+
+| Finding | Disposition published here | Register state when audited |
+|---|---|---|
+| **`X2-F06` (CRITICAL)** | ACCEPTED | **UNREPAIRED.** `P11_SUBLEDGER_ARCHITECTURE.md` §1 still states *"failing `S3` **or** `S4`"* while §2 applies *fails both* |
+| `X1-F06` / `X4-F04` | ACCEPTED — CORRECTED in place | **still `8 of 44`** — the "correction" was a note beneath, not an edit |
+| `X2-F15` / `X1-F04` / `X4-F03` | ACCEPTED | **still `26`** |
+| `X2-F17` / `X4-F09` | ACCEPTED | **still `six`**, twice |
+| `X4-F13` | ACCEPTED | **still `Three of eight`** |
+| `X4-F11` | ACCEPTED | **still `Four HOLD`** |
+| `X4-F12` | ACCEPTED | **still `2 reach a statement line`** |
+| `X2-F01` | ACCEPTED — `F8` withdrawn | **`F8` still a row in the fact table** |
+| `X2-F11` | ACCEPTED — restated | **still `not implemented at all`** |
+| `X4-F22` | ACCEPTED — changed to SATISFIED | **still `passing`** |
+
+**Nine of the ten were repaired at source on `2026-09-05`.** The tenth — **`X2-F06`, the round's only
+CRITICAL** — is **not** a text swap: it requires re-running ten subledger rows against the stated rule,
+and under it the register's headline *"3 unqualified"* becomes **0** (`X2-F07`). **It is registered as
+the head of the CORR1 backlog and is NOT repaired here**, because bodging a critical logic error to
+clear an audit is how it got here.
+
+> **Why this is the worst finding in the package.** This file is what a reader consults to conclude
+> the package was repaired. A disposition column reading `ACCEPTED — CORRECTED` against an unrepaired
+> register is not an error in a finding — **it is a false assurance about all 86 of them**, and any
+> reader who spot-checked one of the ten would have found the original defect standing.
+
+**And the audit itself failed first.** P11's initial audit used grep patterns whose escaping silently
+did not match, and returned **"corrected"** for four findings that were **all still present** — the
+`P11-E-12` inert-pattern defect, **recurring for the third time, inside the audit written to catch
+exactly this.** The result was only obtained by checking each file directly. *A pattern that returns a
+clean result is not evidence until it has been shown able to return a dirty one.*
+
+**Every count in §6 below is a count of findings raised and accepted. None of them was ever a count of
+findings repaired, and this file previously invited that reading.**
+
 ## 6. Round score
 
 | Measure | X1 | X2 | X3 | X4 | **Total** |

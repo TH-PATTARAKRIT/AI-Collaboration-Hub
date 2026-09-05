@@ -28,7 +28,11 @@ Every blocker ends as **exactly one** of the ten permitted statuses. No vague st
 | `P11-B-15` | **Whether a company hierarchy may span a tenant boundary is unruled, and no enforced tenant-assignment invariant exists** (`P11-SR-02`) | **`HOLD — BOSS DECISION REQUIRED`** → `D-12` |
 | **`P11-B-16`** | **`T0-13` — an accounting fact may be SILENTLY MUTATED, at any scope.** Widened at Delta 04: the defect needs **no tenant boundary and no company hierarchy** — inside a single company an entry aimed at a locked period is already re-dated with no refusal and no trace (`P04-F-68`, `FACT VERIFIED`). **Reachable today, so it stands whatever the Boss rules on `D-12`.** Close condition **REFINED at Delta 08 §2**: `UAE-05` is a **second** re-dating path that **fires with no lock configured**, so there is nothing to refuse — **where a mutation path has no violation to detect, an attributable trace is MANDATORY, not alternative.** A design satisfying this boundary by implementing refusal alone would leave `UAE-05` live | **`HOLD — BOSS DECISION REQUIRED`** · **tolerance-zero** · **present defect** · **found narrow three times** |
 
-**16 blockers. 0 closed by this session.** `P11-B-13`…`P11-B-16` added by Deltas 01–03.
+**17 blockers. 0 closed by this session.**
+
+| id | Blocker | Final status |
+|---|---|---|
+| **`P11-B-17`** | **The CRITICAL challenge finding `X2-F06` is UNREPAIRED.** `P11_SUBLEDGER_ARCHITECTURE.md` §1 states *"failing `S3` **or** `S4` ⇒ derived view"*; §2 applies *fails both*. Re-running the ten rows against the **stated** rule takes the register's headline *"3 unqualified"* to **0** (`X2-F07`). **Head of the CORR1 correction backlog.** Deliberately not repaired in-session — *bodging a critical logic error to clear an audit is how it went unrepaired for 30 commits* (`P11-E-26`) | **`HOLD — DESIGN RESOLUTION REQUIRED`** | `P11-B-13`…`P11-B-16` added by Deltas 01–03.
 
 ## 2. Inherited blockers P11 carries forward without weakening
 
