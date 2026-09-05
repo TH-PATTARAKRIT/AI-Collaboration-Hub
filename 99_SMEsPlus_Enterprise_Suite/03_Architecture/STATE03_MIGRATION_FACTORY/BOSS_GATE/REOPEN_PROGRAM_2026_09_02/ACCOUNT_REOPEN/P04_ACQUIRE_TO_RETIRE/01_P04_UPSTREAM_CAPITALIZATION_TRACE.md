@@ -310,7 +310,16 @@ link to source journal items. Therefore:
 > **not observable** from `EV-RT`. "No upstream link observed" would be a false
 > negative produced by the capture's own field selection, not a finding.
 
-Classified **UNRESOLVED**. Registered as blocker **P04-B-03**.
+Classified **UNRESOLVED** *for `EV-RT`* — and **SUPERSEDED for a different
+population**: §6A.3 answers it against database `iSMEs`, where **647 of 669
+non-template assets (96.7 %) carry no source-document link at all**. What remains
+unresolved is `idemo18_uat` specifically. Registered as blocker **P04-B-03**,
+which now carries both states.
+
+*This paragraph said only "UNRESOLVED" for one commit after §6A was written. A
+reader arriving here would have read a superseded boundary — the same defect P07
+found in its own package on the same day, and the reason the rule is* **a
+revision log is not a correction; the edit is** *(`18` `P04-REV-25`).*
 
 ### 6.4 The one inference that is safe, and why it is only an inference
 
@@ -349,13 +358,19 @@ table data"*. That was a **false negative from the tool**, and the search that
 found the four was **bounded to one directory**. Executed properly there are
 **five**, and all five carry asset data.
 
-| Database | Dated | Generation signature | Asset rows | Of which **real** (non-template) |
-|----------|-------|----------------------|------------|----------------------------------|
-| `iSMEs` | 2026-07-11 | **older line** — carries an `asset_type` column the v18 source tree does not define | **685** | **669** |
-| `iEVING` | 2026-07-23 | **v18 line** — no `asset_type` | 36 | **0** |
-| `BK12MAY26` | 2026-08-03 | **v18 line** | 36 | **0** |
-| `iTEST02` | 2026-07-14 | **v18 line** | 12 | **0** |
-| `iTEST02` | 2026-06-14 | **v18 line** | 12 | **0** |
+| Database | Dated | Archive | Reads under host default client (16.15)? | Generation signature | Asset rows | Of which **real** |
+|----------|-------|---------|------------------------------------------|----------------------|------------|-------------------|
+| `iSMEs` | 2026-07-11 | v1.14 | **yes** | **older line** — carries an `asset_type` column the v18 source tree does not define | **685** | **669** |
+| `iEVING` | 2026-07-23 | v1.14 | **yes** | **v18 line** — no `asset_type` | 36 | **0** |
+| `BK12MAY26` | 2026-08-03 | v1.14 | **yes** | **v18 line** | 36 | **0** |
+| `iTEST02` | 2026-07-14 | **v1.16** | **NO** — needs `postgresql@18` | **v18 line** | 12 | **0** |
+| `iTEST02` | 2026-06-14 | **v1.16** | **NO** — needs `postgresql@18` | **v18 line** | 12 | **0** |
+
+**Readability is per artefact, not uniform** — adopted from P11, which found the
+same split from the other side. *"Database evidence is available"* and *"no
+database access"* are **both wrong**; the true statement is per file. A reader
+with only the host's default client reproduces **three of five**, and would see
+two v18-line databases rather than four.
 
 **Scope, stated before any finding.** None of these is `idemo18_uat`, the database
 the runtime capture in §6 came from. Nothing here closes a blocker that names that
@@ -388,6 +403,10 @@ bounded to the database named in it.
 > **96 templates and zero assets** between them. The only population of real
 > assets available anywhere is on the **older generation**.
 > Class: **FACT VERIFIED**, bounded to the five databases named.
+> **Reproduction caveat:** two of the four v18-line databases are v1.16 archives
+> and are **unreadable by the host's default client**. A reader reproducing this
+> with `pg_restore` 16.15 will see two v18-line databases, not four, and should
+> not read the smaller number as a contradiction.
 >
 > Consequence for migration readiness: the target generation has **never had an
 > asset created in it** in any environment captured here. Every behavioural

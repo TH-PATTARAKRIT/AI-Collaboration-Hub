@@ -39,6 +39,7 @@ research evidence only.
 | `EV-CUST` | Project custom addon set, v18 line | Primary source code | Custom / localisation extensions. |
 | `EV-LEG` | Legacy v14 source tree (standard + custom) | Primary source code | Predecessor system. |
 | `EV-RT` | Runtime ORM read-out captured 2026-08-26 against UAT db `idemo18_uat` | Runtime system evidence | `search_read` / `search_count` results. **Field set and domain are bounded — see §4.** |
+| `EV-DB` | **Five PostgreSQL dumps across two trees, all carrying asset data** | **Database evidence** | Added after this package's declared *"no database access was attempted"* was tested and found false (`18` `P04-REV-21`). **Readability is per artefact, not uniform** — three are archive format v1.14 and read under the host's default client; **two are v1.16 and require a newer client**. Every finding drawn from them is stamped with its archive version at `01` §6A.1 |
 | `EV-HND` | Asset Actual Mapping execution handoff, 2026-08-26 | Project record | Controlled model list, population counts, traceability rules. |
 | `EV-PRIOR` | Three completed Asset research packages (see `08_P04_PRIOR_EVIDENCE_RECONCILIATION.md`) | Prior audited evidence | Imported as PRIOR EVIDENCE / PRIOR HYPOTHESIS / BOSS CONTROLLED DECISION / AUDIT LINEAGE. |
 | `EV-LAW` | Thai statutory and standard-setter publications | Statutory | See `13_P04_SOURCE_LINK_REGISTER.md`. |
