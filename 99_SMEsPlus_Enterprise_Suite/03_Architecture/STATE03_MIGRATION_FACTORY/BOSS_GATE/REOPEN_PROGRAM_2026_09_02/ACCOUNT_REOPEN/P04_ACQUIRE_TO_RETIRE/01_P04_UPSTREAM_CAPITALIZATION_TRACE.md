@@ -755,6 +755,85 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.41 Derivation does not replace declaration — it bounds it
+
+P07 audited all seven of its units for declared denominators and found two: a
+family literal, and a Layer-1 scrub literal of 18 against **78 derivable tokens** —
+*"checking less than a quarter"*, with the handoff pack still clean against all 78.
+Run here, both come back, and **the second one corrects the fix rather than
+confirming it.**
+
+> **P04-F-142.** **The Layer-1 scrub was checking 13 tokens. 103 are derivable
+> from Layer 2 by shape.** Same defect, same reassuring outcome: **0 leaks against
+> all 113**, so nothing published was ever wrong — the guarantee simply covered an
+> eighth of what it read as covering. Fourth instance across both packages of a
+> narrow check whose result survives widening, and the argument stands: **none of
+> the four could be known to cost nothing until it was run.**
+>
+> **But the derived set is not a superset of the declared one, and that changes
+> the rule.** Of the 13 declared tokens, **10 cannot be produced by any shape
+> pattern** — bare vendor and product names, bare table prefixes, a bare host
+> name. Only **3 of 113 are in both sets.** The reason is general and not a defect
+> in the patterns: **a vendor name has no shape.** It is an ordinary lowercase
+> word, indistinguishable by form from English prose, and derivable only from
+> knowledge of what the vendor is called. Conversely no author enumerates 103
+> module paths by hand.
+>
+> **So replacing a literal with a derivation silently drops exactly the class of
+> token clean-room exists to catch.** The denominator is the **union**, and the
+> two differences are both reportable: *declared-but-underivable* is the identity
+> half, *derived-but-undeclared* is the structural half. Unit `[4]` now prints
+> `13 declared + 103 derived, 3 shared`, so the disjointness is visible instead of
+> assumed. **This is offered to P07 as a correction to its own repair**, not as a
+> confirmation: a scrub rebuilt as *78 derived* in place of *18 declared* may have
+> lost coverage it had, and only intersecting the two sets will say.
+>
+> Class: **FACT VERIFIED**. Both sets enumerated, intersection counted, leak count
+> run over the union.
+
+### 6A.42 The class boundary was drawn on appearance
+
+> **P04-F-143.** **Six families carry definition rows in this package and were not
+> in the swept set. Three of them are mine.** Derived ownership — *a family is
+> owned if any member of it is defined here* — returns **25**; the declared sweep
+> list held **19**.
+>
+> **What was misfiled, and why it is one mistake and not three.** The statutory
+> source `DBD-01` and the two re-dating cases in `20` were filed as **not
+> identifiers**, in a published table whose examples are `TAS-02`, `SHA-256`,
+> `Layer-1`. But `SHA-256` and `Layer-1` are *shapes* — a hash width, a layer
+> number, nothing defines them. `TAS-02` and `DBD-01` are **rows in the source
+> register at `13` §4.1**. They were grouped with the shapes because they *look*
+> alike — a word, a hyphen, a number — and not because they behave alike. **The
+> class was drawn on appearance rather than on whether the package defines the
+> thing**, which is the same error as classifying a family by its name instead of
+> its series (`P04-F-141`), one level up.
+>
+> **And it exposed one source under two labels.** `07` cites the TFAC explanatory
+> manual throughout as `TAS-16M`; `13` registers the same document as
+> `P04-LAW-A`. Both readings are correct and the source is correctly classified
+> under each — **the defect is that a citation audit keyed on either label sees
+> half the uses.** Registered `P04-B-50`, and **not actioned**: a cross-file
+> relabel does not belong in the commit that reports it. `TAS-16M` now has a
+> register row so it resolves.
+>
+> **Three of the six are correctly unswept, and that has to be declared rather
+> than left to the reader**: a legend abbreviation in `20`, and P07's and P11's
+> families, which carry attribution rows here precisely so their identifiers
+> resolve. **A foreign family with a local row is not an owned family** — sweeping
+> its numbering against this package's text would test nothing. Unit `[1b]` now
+> reports `0 unswept-undeclared` and names the three with reasons.
+>
+> **The re-dating cases also needed a sequence disposition** — they run from four,
+> with three numbers unused, no prior package owning them and nothing in the
+> package explaining the offset: **`UNDETERMINED`**, P07's disposition, second use.
+> And the standards family is declared **not a sequence at all**: its numbers are
+> the standards' own, so a gap check over them is meaningless — **a numeric suffix
+> is not always an issue order.**
+>
+> Class: **FACT VERIFIED**. Ownership derived per family from definition presence;
+> each of the six resolved against the register that holds it.
+
 ### 6A.40 The new unit was written with the defect the old unit had just been fixed for
 
 P07 ran this package's sequence check **across every owned family** instead of the
