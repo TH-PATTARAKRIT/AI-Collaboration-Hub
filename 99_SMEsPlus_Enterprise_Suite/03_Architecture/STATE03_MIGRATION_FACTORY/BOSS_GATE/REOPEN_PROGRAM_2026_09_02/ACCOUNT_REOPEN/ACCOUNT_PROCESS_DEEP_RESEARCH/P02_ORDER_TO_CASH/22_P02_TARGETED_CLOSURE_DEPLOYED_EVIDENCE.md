@@ -1,5 +1,25 @@
 # 22 — P02 TARGETED FORENSIC CLOSURE: DEPLOYED EVIDENCE AND MECHANISM RECONCILIATION
 
+> ## ⚠ CORRECTION BANNER — READ BEFORE ANY SECTION BELOW
+>
+> A fresh independent AAS-03 challenge refuted **seven `FACT VERIFIED` claims in this file**. Every
+> refutation was independently re-derived by the primary session and **accepted**. The corrections are in
+> `25_P02_CLOSURE_CHALLENGE_AND_CORRECTIONS.md`; the most important are:
+>
+> | Claim in this file | Status |
+> |---|---|
+> | TC-01 — "6 distinct archives. All 6 examined. 0 remaining." | **REFUTED.** 8 archive files / **5 distinct databases by database UUID**. Two archives were never opened — they are Odoo web-backup ZIPs, a file format this file's search pattern did not cover. |
+> | §1 / §3.1 — `iSMEs` is "v18-line" | **REFUTED.** It is **Odoo 16.0** on every core module. The generation was inferred from field presence. **No Odoo 16 source tree exists on this host**, so the mechanism that generated its entries cannot be read from source at all. |
+> | TC-03 — "false in all 93 company records" | **REFUTED.** False in **91**, **NULL in 2** — contradicted by TC-07 four lines below it. |
+> | TC-04 — "88" periodic | **REFUTED.** The figure is **89**; this file's own prose sums to 89. |
+> | TC-08 — "every v19 company has a NULL stock journal" | **REFUTED.** Both `iTEST02` real-time companies **do** carry one. |
+> | TC-15 — mismatch is "predominantly invoice-before-delivery" | **REFUTED.** Measured on the **posted valuation entry's accounting date** the direction **reverses**: mismatch 31.6%, cost-before-revenue 707 vs 516. |
+> | §12 — "no tax is actually treated on a cash basis" | **REFUTED.** **7,738 posted cash-basis entries** exist in `iSMEs`; per-tax exigibility **is** set, on the purchase side. |
+>
+> **TC-02 (zero COGS lines), TC-14 (the mismatch exists), TC-16 (accounts not reconcilable) and the §3.2
+> v19 mechanism changes all survived independent re-derivation unchanged.**
+
+
 `LAYER 2 — AUDIT QUARANTINE` · Session `SMEPLUS-26-09-04-ACC-P02-O2C-TARGETED-FORENSIC-CLOSURE-001`
 Continuation of `SMEPLUS-26-09-04-ACC-P02-O2C-REV2-001`. **No reset. No re-derivation of L1–L6.**
 
