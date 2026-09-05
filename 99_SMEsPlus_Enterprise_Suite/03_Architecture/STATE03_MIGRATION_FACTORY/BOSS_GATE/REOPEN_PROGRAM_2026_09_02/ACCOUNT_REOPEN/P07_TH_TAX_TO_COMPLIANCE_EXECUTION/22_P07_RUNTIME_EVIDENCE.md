@@ -3304,3 +3304,64 @@ undecidable question in both registers, which nothing else in either does.
 
 **Both packages are terminal. Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`,
 0 of 8 exit criteria claimed, no blocker closed, no merge, no freeze.**
+
+
+---
+
+## 42. The Firing Control on Unit `[0]`, and What It Exposed — `P07-F-99`
+
+`§41` added sweep unit `[0]` and verified only that it **passes** on the current tree. That is
+an **exclusion** control without a **firing** control — `REV-M-76`, which this package helped
+establish, applied to the unit it had just written. P04 built both for its equivalent. Built
+here.
+
+### 42.1 Both controls
+
+| control | result |
+|---|---|
+| unaltered copy | `on disk 23, at HEAD 23, MISSING none` — **does not fire** |
+| copy with `09_P07_STATUTORY_SOURCE_REGISTER.md` deleted | `on disk 22, at HEAD 23, MISSING ['09_…']` — **fires and names it** |
+
+**And the full sweep on that copy is the demonstration.** With the statutory source register
+gone, units `[2]`, `[3]`, `[4]` and `[5]` all report **clean** — *"21 rows, stale: NONE"*. Unit
+`[1]` caught **3** orphans (`P07-U-24`, `-25`, `-26`, the U-items defined in that file), which is
+one more than this package predicted; **the prediction was wrong and is recorded as wrong.**
+
+**But 35 `S-nn` citations dangled undetected** — the statutory sources backing every legal claim
+in the package — because **`S` was audited once at `§20` and never added to the recurring
+sweep.** `P07-F-99`: **an audit is not a control.** `§20` ran 26 owned families once and
+reported them clean; the standing sweep covered **8**. A one-time audit proves a state; only a
+standing unit proves it is maintained.
+
+### 42.2 Extending the sweep from 8 families to 33, and the two false positives it produced
+
+Extending unit `[1]` to every owned family immediately reported orphans, and **both were
+artefacts of the extension, not defects in the package** — read before being published, per the
+discipline this thread established:
+
+- **`W-K-07`, `W-K-08`** — defined as **list items** at `03 §5`, not table rows. `§20`'s audit
+  accepted four definition conventions; the sweep accepted one. **The audit and the standing
+  check were using different predicates**, so widening the family set without widening the
+  convention set manufactured two orphans.
+- **`REV-E-30`** — appeared as an orphan only after the convention fix, because the tightened
+  row pattern required the identifier immediately before the closing pipe, and that row reads
+  `` | `REV-E-30` (**restated by `REV-E-32`**) | ``. **A regression introduced by the fix
+  itself**, in the same edit — the recurring shape of this whole thread, and the fifth time a
+  correction here has produced the defect it was correcting.
+- **`EC-01`…`EC-08`** — **not this package's identifiers.** They are the criteria of
+  `SMEPLUS-DR-EXIT-8C-001`, inherited governance. `§22.1` classified `EC` as **owned** while
+  listing the constitution itself as **foreign by attribution** — *the constitution attributed
+  and its criteria not.* Reclassified. **`REV-M-42` landing on this package's own family list**,
+  exactly as P04's `HOLD` reclassification landed on its.
+
+**After all three: 33 owned families swept, 0 orphans**, with the sweep and the audit now using
+the **same predicate**.
+
+### 42.3 What this leaves
+
+The sweep is six units, and unit `[1]` now covers what `§20` audited once rather than a subset
+of it. **`P07-F-77`'s clean result stands; what changes is that it is now re-proved on every
+commit instead of having been proved once.**
+
+**No finding, count, class or verdict moves.** `RECOMMEND HOLD`, 0 of 8 exit criteria claimed,
+no blocker closed, no merge, no freeze — as in every round of this exchange.
