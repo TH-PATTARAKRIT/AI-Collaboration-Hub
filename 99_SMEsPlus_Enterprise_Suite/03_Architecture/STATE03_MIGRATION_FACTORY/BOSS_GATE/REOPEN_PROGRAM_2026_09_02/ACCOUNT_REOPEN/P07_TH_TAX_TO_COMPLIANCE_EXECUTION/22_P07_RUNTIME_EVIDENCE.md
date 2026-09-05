@@ -45,7 +45,7 @@ not a capability test.
 |---|---|
 | Database | `iTEST02`, archive created `2026-06-14 14:41:20 +07` |
 | Generation | `ir_module_module` carries `19.0.1.0` — **the same v19 generation as the declared source set** (`13 §2`) |
-| Tool | `postgresql@18` `pg_restore 18.6`, table-at-a-time extraction; **no server, no restore, read-only** |
+| Tool | `postgresql@18` `pg_restore 18.6`, table-at-a-time extraction; **no server, no restore, read-only**. Per-artefact readability is stamped at §3.1 — this is a **reproduction caveat, not a footnote**. |
 | Population | Small: 6 `account_move`, 23 `account_move_line`, 586 `account_account`, 19 `account_tax` |
 | Relationship to other evidence | **Not** the database named in any runtime capture referenced elsewhere in the programme |
 
@@ -54,6 +54,33 @@ not a capability test.
 well-supported: those tables are fully populated. Findings about *transaction volume* are
 not: six moves is a configuration snapshot, not an operational one. Every result below is
 labelled accordingly.
+
+### 3.1 Per-Artefact Readability — and a Correlation That Defeats Naive Reproduction
+
+Contributed by P04: *readability is per artefact; the unit is the (artefact, tool) pair, and
+a negative result binds only the tool used.* Applied here, it produces something sharper than
+a caveat.
+
+| Database | Archive | Stock client `pg_restore 16.15` | `postgresql@18` | Does `P07-F-01` fire? |
+|---|---|---|---|---|
+| `iTEST02` 2026-06-14 | **v1.16** | **FAILS** | reads | **YES** — registers empty |
+| `iTEST02` 2026-07-14 | **v1.16** | **FAILS** | reads | **YES** — registers empty |
+| `iSMEs` 2026-07-11 | v1.14 | READS | reads | no |
+| `BK12MAY26` 2026-08-03 | v1.14 | READS | reads | no |
+| `iEVING` 2026-07-23 | v1.14 | READS | not examined — different product line |
+
+**The correlation is exactly inverse to the convenient one.** Both databases in which the
+defect fires are `v1.16` and **cannot be opened by the host's default client**. Both in which
+it does not fire are `v1.14` and open with stock tooling.
+
+So a reader attempting to reproduce `P07-F-01` with default tooling **can only open the two
+databases in which the defect is absent**, would observe functioning registers, and would
+reasonably conclude the finding is wrong. Reproduction requires `postgresql@18`, and its
+absence produces a confident false negative rather than an error.
+
+That is not a caveat about completeness. It is a caveat about a **specific wrong conclusion**
+a competent reader would reach, and it is recorded first because it governs how everything
+below should be checked.
 
 ## 4. Results
 
@@ -206,6 +233,10 @@ like a quiet month. Severity `S1` is unchanged.
 
 Also visible: `iSMEs` names its withholding groups `TAX 1%`…`TAX 5%` rather than `WHT n%`,
 so the tag- and name-based classifications in `P07-F-15` face the same variability.
+
+**Read this table together with §3.1.** The two deployments where the defect fires are the two
+a stock client cannot open. Anyone testing this finding with default tooling sees only the
+two that work.
 
 ### 7.2 `P07-F-42` holds in EVERY database examined
 

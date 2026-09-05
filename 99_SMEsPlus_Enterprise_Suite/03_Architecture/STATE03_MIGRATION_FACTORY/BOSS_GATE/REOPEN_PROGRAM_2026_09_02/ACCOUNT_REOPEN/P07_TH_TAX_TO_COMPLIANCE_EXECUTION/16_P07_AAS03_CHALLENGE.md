@@ -122,3 +122,44 @@ halves that failed are the ones the register asserted and did not demonstrate.
 | Claim that the tax-unit mechanism is broken for Thailand because Thailand ships no fiscal positions | author's own inference, tested during challenge | Refuted by the code's docstring: the mechanism creates its own fiscal positions and they carry no taxes. Recorded as discarded at `20 §8`. |
 | Removal of `trl.refund_tax_id` from the migrated SQL treated as a grouping change | author's own draft | `refund_tax_id` is functionally dependent on a column already in the `GROUP BY`; not a defect. Never published. |
 | Divergence between tax-group settlement accounts and repartition accounts treated as an inconsistency | author's own draft | The account descriptions state a deliberate two-stage design. Recorded at `03 §8` as inspected-and-coherent so it is not re-raised. |
+
+## 9. Disposition Audit — Were the Claimed Corrections Actually Made?
+
+Run after P11 tested the same question against its own challenge record and found **ten of
+86 findings marked `ACCEPTED — CORRECTED` that were never edited into its registers**,
+including that round's only `CRITICAL`. P04 supplied the rule — *a revision log is not a
+correction; the edit is* — and both peers failed it. This file makes the same class of claim
+about 15 corrections, so it was audited rather than trusted.
+
+**Method, with controls, because P11's own audit failed first** on grep patterns whose
+escaping silently did not match and returned "corrected" for four findings still present. A
+positive control (a string known to be present) and a negative control (a string known to be
+absent) were run before the checks; both behaved correctly, so a `MISS` here means absence
+and not a broken pattern.
+
+| Claim | Target file | Result |
+|---|---|---|
+| `R1` tax-period reader | `04`, `11` | present |
+| `R2` `WHT 1%` resolution + §3A chain | `06` | present |
+| `R3` translated literal | `05` | present |
+| `R4` `GL-01` reasoning | `06` | present |
+| `R5` `GL-05` income family | `06` | present |
+| `R6` workflow computed | `08` | present |
+| `R7` population 15 → 25 | `13` | present |
+| `O1` subset rewritten | `07` | present |
+| `O2` `V-I-03` | `02` | present |
+| `O3` guard exists | `03` | present |
+| `O4` `W-M-04` | `03` | present |
+| `O5` ratio, **both** in the dependency register and the Layer-1 file | `12`, `19` | present |
+| `O6` Belgium | `08` | present |
+| `O7` 15-value | `05` | present |
+| `O8` cert-line rule | `20` | present |
+
+**Unrepaired claims: 0 of 18 checks across 15 corrections.**
+
+This is stated without triumph. This package failed the *same rule* twice on the same day —
+`REV-E-25` (runtime results written to a new file and a log while the two files that argue
+those findings still read "not executed") and `REV-E-27` (an uncounted dump total). The
+disposition column happens to be the one place it held, and it held because every correction
+in this exchange was made as an in-place edit at the moment it was accepted, not batched for
+later. That is the whole of the technique.
