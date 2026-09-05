@@ -3461,6 +3461,18 @@ not describing the defect — **a fourth instance rather than a fix.**
 
 **Final: 51 families present, 0 unclassified, 0 declared-but-absent.**
 
+### 47.5 And quoting the classification created it — seventh appearance
+
+Writing `§47.3` quoted P04's sentence naming the two tokens it had wrongly grouped its own
+families with. The next sweep reported both as **unclassified families**: nothing defines them,
+so they resolve to nothing, exactly as P04 says.
+
+**Declared, not corrected** — they are classified as **non-identifiers**, which is what P04 had
+them as and was right about; its error was grouping *its own registered families* with them, not
+the classification of these two. Seventh appearance of the recursion here, and the first where
+the resolution is **to adopt the peer's classification of the very tokens the quotation
+introduced.**
+
 **Both packages terminal. Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8
 exit criteria claimed, no blocker closed, no merge, no freeze.**
 
