@@ -159,7 +159,7 @@ each half on the right kind of evidence:
 | Half | Kind | Claim | Evidence | Status |
 |---|---|---|---|---|
 | `a` | **configuration** | The Thai chart template has **no `wt_account` column**, and nothing in the shipped set flags an account. Without a flagged account the withholding-account domain is empty, the certificate wizard's required field has an empty domain, and enabling withholding on any shipped tax raises. | source: `account.account-th.csv` header; `l10n_th_withholding_tax/models/account.py:78-81` | **holds, unchanged** |
-| `b` | **population** | Operators supply the flag. | runtime, **3 of 3 identities**: `iTEST02` 3 of 586, `iSMEs` 1 of 339, `BK12MAY26` 2 of 544 | **holds, and is new** |
+| `b` | **population** | Operators supply the flag. | runtime, 3 of 3 identities examined — **2 of 2 in-generation** (`iTEST02` 3 of 586, `BK12MAY26` 2 of 544) plus `iSMEs` 1 of 339 as **v16 corroboration** (§9) | **holds, and is new** |
 
 The published version rested half `b` on a **single** database — and on `iTEST02`, the
 *configuration* database, which is the wrong kind for a population claim (`§8.3`). Re-run
@@ -275,8 +275,8 @@ second database.
 
 | | Before §7 | After §7 |
 |---|---|---|
-| `P07-F-01` | verified, asserted universal | verified, **1 of 3 database identities** (2 of 4 snapshots, both the same identity — §7.4); universality claim withdrawn |
-| `P07-F-42` | verified in 1 snapshot | verified in **4 of 4 snapshots, 3 of 3 identities**, 6 company sets |
+| `P07-F-01` | verified, asserted universal | verified, **1 of 2 in-generation identities** (§9; 1 of 3 examined, 2 of 4 snapshots both the same identity — §7.4); universality claim withdrawn |
+| `P07-F-42` | verified in 1 snapshot | verified in **2 of 2 in-generation identities** (§9), 4 of 4 snapshots, 6 company sets, plus v16 corroboration |
 | `P07-F-15` | source-derived | supported: group naming varies between deployments (`TAX n%` vs `WHT n%`) |
 | §6 count | "three dumps" | five snapshots of four identities in nine files; four snapshots covering three identities examined |
 | `P07-U-27` | four unexamined | one unexamined (`iEVING`, different product line) |
@@ -314,6 +314,7 @@ dates**. Restated with the unit declared:
 |---|---|---|
 | Snapshots examined | 2 of 4 | 2 of 4 |
 | **Database identities examined** | **1 of 3** (`iTEST02`) | 2 of 3 (`iSMEs`, `BK12MAY26`) |
+| **In-generation identities only** (§9) | **1 of 2** (`iTEST02`) | 1 of 2 (`BK12MAY26`) — `iSMEs` is v16 and out of scope for a v19 predicate |
 
 So the defect is observed in **one deployment**, not two. The second observation is the same
 deployment a month later, which is worth something it was not credited for — it establishes
@@ -329,7 +330,7 @@ identity observed twice**, and that is now what the file says.
 | Unit | Result |
 |---|---|
 | Snapshots examined | **4 of 4** |
-| **Database identities examined** | **3 of 3** |
+| **Database identities examined** | **3 of 3** — of which **2 of 2 in-generation**, `iSMEs` being v16 corroboration (§9) |
 | Independent company tax-group sets | **6 of 6** |
 
 Every identity, every snapshot, every company set. The restatement costs `P07-F-42` nothing.
@@ -409,14 +410,15 @@ four examined snapshots:
 | Claim | `iTEST02` 06-14 | `iTEST02` 07-14 | `iSMEs` 07-11 | `BK12MAY26` 08-03 | Verdict |
 |---|---|---|---|---|---|
 | `withholding_tax_cert` rows | 0 | 0 | **5,201** | 1 | **`P07-F-60` REFUTED** |
-| `account_tax_unit` rows | 0 | 0 | 0 | 0 | **`P07-F-61` HOLDS** — 3 of 3 identities |
+| `account_tax_unit` rows | 0 | 0 | 0 | 0 | **`P07-F-61` HOLDS** — 2 of 2 in-generation, plus v16 (§9) |
 | lines carrying `tax_period_date` | 0 of 23 | 0 of 32 | **18,197 of 447,384** | 0 of 563 | **`P07-F-03` CONSTRAINED** |
 
 ### 8.1 `P07-F-60` is REFUTED — `REV-E-29`
 
 It read: *withholding is configured and **no statutory certificate has ever been issued**.*
-`iSMEs` holds **5,201** certificates and `BK12MAY26` holds one. Two of three identities issue
-them; one issues them at scale. **Withdrawn.**
+`iSMEs` — a **v16** deployment (§9) — holds **5,201** certificates, and `BK12MAY26`, which is
+in-generation, holds one. So the negative fails in-generation on a single certificate and
+fails decisively out of generation. **Withdrawn.**
 
 What replaces it is more useful than the negative was. A population of 5,201 certificates is
 passing through the model this package identified as holding *the most statutorily faithful
@@ -481,9 +483,71 @@ two kinds of claim in one file without saying so.
 | Finding | Before §8 | After |
 |---|---|---|
 | `P07-F-60` | new finding, 1 snapshot | **WITHDRAWN**; replaced by `P07-F-62`, which is stronger |
-| `P07-F-61` | 1 snapshot | **holds**, 3 of 3 identities |
+| `P07-F-61` | 1 snapshot | **holds**, 2 of 2 in-generation plus v16 (§9) |
 | `P07-F-03` | "populated nowhere" | source finding unchanged; population claim bounded, and the 4.1% supports the mechanism |
 | `P07-F-62` | — | **new**: 5,201 certificates carry a correct income-type taxonomy the statutory export ignores |
 
 Client version for every row above: `postgresql@18` `pg_restore 18.6`. Generations opened:
 four snapshots, three identities. Not opened: `iEVING` (`P07-U-27`).
+
+## 9. `iSMEs` Is v16 — a Generation Error That Was Wrong When Written — `REV-E-35`
+
+P04 reported finding a claim in its own **scope** paragraph that was *wrong at the time of
+writing*, not merely stale, and noted that a scope block is the one place a reader is entitled
+to trust without checking. Applying that test here found the same category, and it is the most
+substantive correction in this file.
+
+### 9.1 The check
+
+`§3` declared `iTEST02`'s generation from **one regex hit on one module row**. Re-run properly
+over `ir_module_module`, counting installed modules and their major versions:
+
+| Database | Installed modules | `base` version | Major-version spread |
+|---|---|---|---|
+| `iTEST02` 2026-06-14 | 486 | `19.0.1.3` | `{19: 485}` |
+| `BK12MAY26` 2026-08-03 | 251 | `19.0.1.3` | `{19: 251}` |
+| **`iSMEs`** 2026-07-11 | 190 | **`16.0.1.3`** | **`{16: 189}`** |
+
+**`iSMEs` is a v16 deployment.** It is not the declared generation, and nothing in `§7` or
+`§8` said so.
+
+### 9.2 What was wrong when written
+
+`§7.1` compared the stored `VAT 7%` group name across four snapshots and concluded the
+`P07-F-01` predicate is deployment-dependent. **Two of those snapshots are v19 and one is
+v16.** The predicate is a v19 code path; a v16 database's tax-group naming is not a valid test
+of it. The comparison was invalid at the moment it was made, not invalidated later.
+
+`§8.3` went further and recommended `iSMEs` as *"the reference population for any operational
+claim"* in this package, on the strength of its 447,384 accounting lines. **Withdrawn.** It is
+the largest dataset on the host and it is the wrong generation; recommending it was the
+ranking error in a new form — ranked by depth, never checked for eligibility.
+
+### 9.3 Corrected statements
+
+| Finding | Published | Corrected |
+|---|---|---|
+| `P07-F-01` | deployment-dependent, 1 identity of 3 | **1 of 2 in-generation identities** (`iTEST02` fires, `BK12MAY26` does not). Sample halves; the finding stands and its base is now honestly two. |
+| `P07-F-42` | 3 of 3 identities | **2 of 2 in-generation identities**, plus `iSMEs` as **cross-generation corroboration** — the same misassignment in v16. That is arguably *stronger* for a mechanism claim, since the fallback predates v19, but it is not the same population and is now labelled as corroboration rather than sample. |
+| `P07-F-62` (5,201 certificates) | "in one deployment" | **in a v16 deployment.** The statutory divergence it evidences is a v16 observation; whether the v19 line carries the same population is unknown — `BK12MAY26`, the other v19 identity, holds one certificate. |
+| `P07-F-51` half `b` | 3 of 3 identities | **2 of 2 in-generation**, plus v16 corroboration. Conclusion unchanged. |
+| `P07-F-61` (`account_tax_unit` empty) | 3 of 3 | **2 of 2 in-generation**, plus v16. Unchanged. |
+
+### 9.4 What this does not change
+
+No finding is withdrawn. `P07-F-01` and `P07-F-42` remain verified in the declared
+generation — the database inside the declared PATH SET is v19 and is where both were first
+observed. What changes is **sample size and the labelling of corroboration**, and one
+withdrawn recommendation.
+
+### 9.5 The class
+
+This is the **fifth** distinct unit failure in this file, and the first to be a *generation*
+rather than a count: files, snapshots, identities, ranking-unit — and now **eligibility**. A
+population can be correctly enumerated, correctly ranked, correctly unit-declared, and still
+contain members that do not belong to the question being asked.
+
+`§3`'s generation claim was made from one regex hit and was true of the database it described.
+It was never extended to the databases added at `§7`, and the scope block was not revisited
+when the population grew. **A scope declared before the first result does not survive the
+population changing under it.**
