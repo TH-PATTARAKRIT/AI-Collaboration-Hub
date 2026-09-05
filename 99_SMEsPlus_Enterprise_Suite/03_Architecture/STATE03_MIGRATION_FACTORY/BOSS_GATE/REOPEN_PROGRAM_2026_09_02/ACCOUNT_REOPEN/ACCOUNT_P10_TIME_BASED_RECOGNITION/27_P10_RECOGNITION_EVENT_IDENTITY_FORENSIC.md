@@ -56,7 +56,15 @@ Result: the candidate identity is **sound for the four schedule-shaped mechanism
 
 `P08` reports that no accounting-event object exists anywhere in the 22 declared roots. **P10 did not re-derive that claim, and P10's own intake rule (`23` `IN-14`, `RF-01`) says a peer class-`A` claim outside the three the peer re-ran must be read as class `C`. P10 stated that rule and then failed to apply it to the one claim that moves this design** (`34` `W-16`).
 
-**Partial repair, executed by P10 this round:** a search of the **declared reference root** for any accounting-event model returns **none**, against a positive control of 216 hits for the sibling pattern. That is class `A` **within one root** — sufficient to support *"do not author a competing identity here"*, and **not** sufficient to support the peer's universal claim over 22 roots, which remains class `C`. `P09` holds an AAS+ veto blocking implementation while the accounting-event identity is undefined. `P11` has already named it as Boss decision `D-5`.
+**Partial repair, executed by P10:** a search of the **declared reference root** for any accounting-event model returns **none**, against a positive control of 216 hits for the sibling pattern. Class `A` within one root.
+
+> **CORRECTED AGAIN — `34` `W-36`. P10's downgrade of the peer's claim was itself wrong.**
+>
+> P10 wrote that the peer's 22-root claim *"remains class `C`"*. The peer's own root-set declaration records `RS-A-01` — *no accounting-event model exists* — as **`A VERIFIED ABSENCE, scope = the declared 22-root set`**, and lists it as **one of the three claims legitimately promoted after re-running across all 22 roots**, two of the three independently reproduced by a reviewer.
+>
+> **P10 applied its own intake rule and got the membership wrong**, downgrading a peer's properly-earned class `A`. The peer's claim stands at class `A` over 22 roots. P10's root-scoped search corroborates it; it does not bound it.
+>
+> **This error occurred inside the decision-authority step added to prevent exactly this class of error, in that step's first application.** A protocol executed by its author is still self-review. `P09` holds an AAS+ veto blocking implementation while the accounting-event identity is undefined. `P11` has already named it as Boss decision `D-5`.
 
 Three processes and P10 are blocked on **one undefined object**.
 

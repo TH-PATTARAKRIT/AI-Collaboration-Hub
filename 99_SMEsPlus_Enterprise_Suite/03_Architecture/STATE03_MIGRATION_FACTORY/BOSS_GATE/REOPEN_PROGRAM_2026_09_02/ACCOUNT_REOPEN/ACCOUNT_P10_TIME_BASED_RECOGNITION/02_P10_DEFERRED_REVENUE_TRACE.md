@@ -118,3 +118,27 @@ Two report surfaces (`E-P10-043`), read-only, showing the *computed* spread of t
 | `P10-F-04`, `P10-F-05`, `P10-F-06`, `P10-F-07`, `P10-F-11`, `P10-F-12` | `VERIFIED FACT` within reference root `RR-1` |
 | §5.3 judgement that both shapes are individually defensible | `INFERENCE` |
 | §7 statement about credit notes | `INFERENCE` — derived from the absence of any propagation path in the searched scope; see `NC-06` |
+
+
+---
+
+## 12. The Two Journal Shapes — corrected and sharpened
+
+`66` Challenge C §6.
+
+**Non-migration is now VERIFIED, not asserted.** An executed search over both module trees finds **five non-view read sites** for the generation-method setting and **no hook, constraint or migration script on either field**. Class `A` bounded to the reference root, with a positive control.
+
+**The equivalence claim was both understated and overstated.**
+
+*Understated:* the income statement is also equal for any interval bounded by month ends, not only the balance sheet — because the grouped path's cumulative reclassification differences out to the amount earned in the month.
+
+*Overstated — four verified non-equivalences:*
+
+1. **Different allocation rule.** The grouped generation passes a boolean where a direction name is expected, so **the revenue computation method is always applied, on both reports**. Where the two direction settings differ, the two shapes produce **different monthly amounts for the same fact**.
+2. **Different residue destination** — the profit-and-loss account on one path, the control account on the other. A second, independent instance of the one-fact-two-shapes violation, not previously cited in support of it.
+3. **Different analytic effect.** One path nets to zero; the other writes two non-cancelling weighted distributions. **The same economic fact produces zero analytic movement under one company setting and non-zero under the other.**
+4. **Intra-month divergence is total.** The grouped path's deferred balance exists on the period-end date only and is reversed the next day. A balance sheet drawn on **any** date other than a month end shows the full unearned amount as earned under one path and correctly deferred under the other. The package stated the month-end equality and never its converse, which is the larger fact.
+
+**The switch is asymmetric, and one direction is destructive.** Switching from grouped to validation: the validation path fires only inside the posting of a document being posted, so pre-switch invoices are never revisited, their last grouped entry has already been reversed, and from the switch onward **there is no deferred balance at all** for them. The deferral is not stranded — it is **silently abandoned**. The other direction is largely safe because the grouped guard excludes the validation path's entries.
+
+**And the earlier phrasing was too strong:** the guard *does* arbitrate in the normal case. It arbitrates by a **date-and-state proxy** that fails in two named conditions, and one switch direction bypasses arbitration entirely because no code path revisits already-posted documents.

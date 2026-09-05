@@ -38,7 +38,7 @@ So P10's requirement is not a preference the ledger merely fails to honour — *
 |---|-----------|-----------|
 | `OB-01` | Define the accounting-event object and its identity. P10 will specialise, not duplicate | `IN-05`, Boss `D-5` |
 | `OB-02` | Provide a place to record **the period an amount belongs to**, distinct from the date the entry carries | §2 |
-| `OB-03` | When a posting constraint moves an entry's date, either refuse, or record an attributable trace of the original period — the `T0-13` close condition, which P10 adopts unchanged | `IN-03` |
+| `OB-03` | When a posting constraint moves an entry's date: **refuse, or record an attributable trace of the original period — and where the mutation path has no violation to detect, the trace is MANDATORY, not alternative.** **CORRECTED, `38` §6 and `58`:** the earlier wording gave the unrefined condition and said P10 *adopts* it. `T0-13` is an **open blocker**; P10 does not adopt it, and its refined form is the one that binds if the Boss adopts it | `PD-16` |
 | `OB-04` | ~~The nets-to-zero attribution is a posting-layer property~~ — **WITHDRAWN, `34` `W-19`.** The attribution shape is built by each mechanism, not by the posting layer. Only the **untracked post-lock editability** of allocations belongs to `P08`. The attribution shape returns to the recognition domain, where it is the strongest argument for a shared allocation layer | `OUT-03` |
 | `OB-05` | State the currency model for a programmatic entry that carries no currency of its own — P10's recognition lines carry none | `D-13` |
 

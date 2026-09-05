@@ -25,7 +25,7 @@ Two grids are calendar-anchored and one is fiscal-year-anchored. **No mechanism 
 | Actual days | Deferral (`day`), Depreciation (`daily_computation`) | true calendar, leap years honoured | Two separate implementations (`E-P10-006`, `E-P10-031`) |
 | 30/360 | Deferral (`month`), Depreciation (`constant_periods`) | last calendar day of a month normalised to day 30 | Two separate implementations with different normalisation code |
 | Full month | Deferral (`full_months`) only | both ends snapped to the first of the month | No depreciation equivalent |
-| Contractual | Loan only | amounts supplied, not derived | Uploaded or computed externally |
+| Contractual | Loan only | ~~amounts supplied, not derived~~ — **CONTRADICTED, class `E`, `66` Challenge C §5.1** | **The loan module ships its own day-count and compounding engine inside the reference root, offering EIGHT named market conventions** (`30A/360`, `30U/360`, `30E/360`, `30E/360 ISDA`, `A/360`, `A/365F`, `A/A ISDA`, `A/A AFB`), default `30E/360`. Amounts are derived, not supplied |
 | None | Accrual, Recurring | n/a | |
 
 The prior Asset round established that under the 30/360 convention **monthly amounts differ by up to 8% in February while annual totals agree within 0.05%**. That result transfers directly to the deferral mechanism, which uses the same convention: **an incorrect allocation setting is invisible to annual reconciliation and visible only in monthly reporting.** Cited as prior evidence, not re-derived.
@@ -81,3 +81,24 @@ Consolidating the independent challenge (`15_P10_AAS03_CHALLENGE.md`):
 3. Where rounding residue belongs. (Currently: the last period, unconditionally.)
 4. Whether a recognition period, once determined, may ever be changed by a posting constraint. (Currently: yes, silently.)
 5. Whether an allocation convention is a PLATFORM definition, a TENANT default or a COMPANY binding value — all three, in the shape given in `10b_P10_SCOPE_OWNERSHIP_MATRIX.md`.
+
+
+---
+
+## 8. Correction — there are THREE day-count engines, not two
+
+`66` Challenge C §5.1, re-verified from source.
+
+| Engine | Convention |
+|--------|-----------|
+| Deferral | `30E/360 ISDA` **with the February carve-out deleted** — both endpoints snapped to day 30 with no February exception |
+| Asset | Matches **none** of the eight named conventions — it scales mid-month days by actual month length |
+| **Loan** | A complete, standards-named convention library: **eight** conventions, correctly implementing the February exception the deferral engine omits |
+
+**The same codebase implements a named standard correctly in one module and, in another, the same standard with its one exception removed — and the exception applies to exactly the month where the prior Asset round measured the largest divergence.**
+
+Worked example, arithmetic on both bodies, `SUPPORTED INTERPRETATION`: for a 14–28 February window in a non-leap year the deferral engine yields 17/30 and the asset engine 16.07/30 — **5.5% apart** on the same fraction of the same month. The earlier phrasing *"same conventions, different code"* understates it: **they are not the same convention.**
+
+### Consequence for the kernel recommendation
+
+The allocation convention library was the last unqualified survivor of P10's kernel case. This finding cuts both ways and both belong in the decision: the divergence is **worse** than recorded (three engines, three conventions, one non-standard), **and** a complete standards-compliant convention library **already exists inside the reference root**. That changes kernel element `K-1` from **build** to **adopt-and-extend** — a materially different recommendation.

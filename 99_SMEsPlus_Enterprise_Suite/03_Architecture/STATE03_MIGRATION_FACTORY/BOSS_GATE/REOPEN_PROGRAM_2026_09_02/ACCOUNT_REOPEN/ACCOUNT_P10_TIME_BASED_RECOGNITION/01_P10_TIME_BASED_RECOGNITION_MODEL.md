@@ -21,7 +21,13 @@ This captures: deferred revenue, deferred expense, prepayment amortisation, accr
 
 ## 2. The Six Semantic Primitives
 
-Every time-based recognition in scope decomposes into exactly six primitives. This decomposition is the analytical spine of the whole P10 package.
+~~Every time-based recognition in scope decomposes into exactly six primitives.~~ **CORRECTED — `66` Challenge C §4.**
+
+> Six primitives for **schedule-shaped** mechanisms. Four defects in the model as first stated: **`TR-5` is not primitive** — it is derived from `TR-2 × TR-3` and `TR-1 × TR-4`, and its only irreducible content is a *stable identity*, which is not in the list; **`TR-4` is at least three independently-varying policies** (day-count, rounding, residue destination), settled in different places and differing between the two deferral paths; **two primitives are missing** — the *termination condition* (value-terminated versus count-terminated) and the distinction between *allocating* a known base and *generating* amounts that do not exist until the schedule is computed, which is what loan interest does; and the **accrual instantiates two of six**, so the universal quantifier is contradicted by a mechanism the model's own inclusion test admits.
+>
+> There is also an internal inconsistency: §3 locates the collapse at *"Accounting Event and Journal are the same act"*, and **`Accounting Event` is a stage with no primitive**.
+
+This decomposition is the analytical spine of the package for the schedule-shaped mechanisms, and is stated with those four repairs outstanding.
 
 | # | Primitive | Definition | Why it must be a first-class object |
 |---|-----------|------------|-------------------------------------|
@@ -31,6 +37,10 @@ Every time-based recognition in scope decomposes into exactly six primitives. Th
 | `TR-4` | **Allocation Rule** | How the base is distributed across the grid (day-count convention, rounding, residue absorption). | Two systems can agree on base, window and grid and still disagree on every monthly amount. |
 | `TR-5` | **Recognition Event** | One (period, amount) pair with a stable identity. | Without identity there is no way to say "this period has already been recognised", so duplicate and lost recognition cannot be detected. |
 | `TR-6` | **Posting Act** | The journal entry that realises one recognition event at a point in time. | Posting can be deferred, blocked, re-dated or reversed independently of the event. Event and posting are **not** the same thing. |
+
+> **SCOPED AND PARTLY REFUTED — `66` Challenge C §2.** The collapse holds for **two of the four mechanisms re-verified** — both deferral paths and the accrual — and **not** for the asset or the loan. The asset entry carries **two independent date fields**, a posting date and a period-beginning date. And of the four consequences claimed to follow from the collapse, **only one does**: catch-up exists on a path with no event object, the silent period shift is caused by the shared posting layer and is merely made *undetectable* by the collapse, and currency capability is orthogonal — the loan has the strongest identity of any mechanism and still cannot express a foreign currency.
+>
+> **The correction that matters for the design:** the asset carries its period **and is still silently re-dated**. So carrying a period is **necessary and not sufficient** — a design can hold the field and never read it, which is what the asset engine does for lock purposes today. Requirement `R-02` must be paired with the reportable-divergence obligation.
 
 **The single most important structural finding of this session is that the reference ERP collapses `TR-5` into `TR-6` for deferrals.** A deferral recognition event has no existence apart from the journal entry that carries it (`E-P10-001`, `E-P10-008`, `E-P10-042`). Everything that follows in this package — duplicate exposure, the absence of catch-up, the silent period shift, the unrepresentable foreign currency — is a consequence of that one collapse.
 

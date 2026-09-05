@@ -107,3 +107,20 @@ One axis is **superseded by the reconciliation**: axis 13, foreign currency. Bot
 | `PR-04-01` | Does P04 accept that depreciation is an instance of time-based recognition for kernel purposes, or does it hold depreciation as an asset-internal concern? | `PEER DEPENDENCY OPEN` — P04's package was read for facts, not for a kernel position |
 | `PR-04-02` | The reference product's asset object is named for **asset and revenue recognition together** and still carries deferred-revenue commentary. Does P04 read that as history or as a design signal? | `PEER DEPENDENCY OPEN` |
 | `PR-04-03` | `P04-B-25` — corporate income tax on disposal gain — **has no owner in the P01–P11 wave**. P10 confirms it is not a P10 item | Recorded; escalated by P04 already |
+
+
+---
+
+## 9. `P10-F-38` — the accounting significance, settled
+
+`66` Challenge C §3.2 argued both readings and settled it. P10 accepts the settlement.
+
+**The counter-reading** — that a pair netting to zero is the correct representation of a reclassification with no lifetime cost-object effect — **is defeated**, and by a short argument: correct the emission so only the profit-and-loss leg carries the attribution, re-run the arithmetic, and the total is unchanged and correctly phased. **The corrected treatment does not double-count.** So the both-legs shape buys nothing.
+
+**What it costs is the entire time dimension.** The analytic balance is summed over all lines for the account with no general-account or account-type restriction, optionally bounded by dates — and **both legs of a pair carry the same date**. So the netting **survives period bounding**: a period-scoped analytic report shows **zero movement** from the whole deferral machinery. Cumulatively the cost object is right; **by period it is exactly as wrong as it would be with no deferral at all.**
+
+> P10 is a **time-based recognition** process. A defect that preserves the total and destroys the phasing is the defect that matters most here. The earlier phrasing — *"contributes nothing at balance level"* — understates it: the failure is at **period** level, which is the level P10 owns.
+
+**New refinement, verified:** the analytic balance splits debit and credit by the **sign** of the amount before netting, so each pair adds its full amount to **both** sides. A twelve-month deferral inflates a cost object's gross analytic turnover by roughly twice the base plus the sum of the periods while leaving its balance unmoved. **Any control reconciling analytic turnover to ledger turnover breaks; any control reconciling balances passes.**
+
+**And the instance count is three, not two.** The accrual wizard is a **third** mechanism-level implementation of the same idea — it writes an attribution onto the balance-sheet leg — and it fails **differently**: its counterpart distribution is weighted over a denominator that includes lines with nothing to accrue and skips lines with no distribution, so it sums to **less than 100%** and neither matches nor cancels. Independent re-implementation of one wrong idea did not even fail the same way twice.

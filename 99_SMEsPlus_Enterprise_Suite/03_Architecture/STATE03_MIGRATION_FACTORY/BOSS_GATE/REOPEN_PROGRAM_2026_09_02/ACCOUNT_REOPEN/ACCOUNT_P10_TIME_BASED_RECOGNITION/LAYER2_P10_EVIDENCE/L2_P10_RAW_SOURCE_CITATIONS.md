@@ -150,3 +150,15 @@ All re-verified by P10 against primary source unless marked otherwise.
 | `E-P10-088` | Deployed archives A/B/C/D, company table, all five lock-date columns, with a positive control on populated sibling columns | **A: 0 of 44 · B: 0 of 44 · C: 0 of 1 · D: 4 of 5 set.** The re-date cannot fire in three of four deployed databases | **Author-executed** |
 | `E-P10-089` | Deployed archives, asset table row counts with artefact sizes | **36 + 36 + 685 + 12 = 769** asset schedules across the estate | **Author-executed** |
 | `E-P10-090` | Fourth deployed archive opened with a newer tool already present on the host; 26,804 table-of-contents entries | The "unreadable archive" claim is contradicted | **Author-executed** |
+
+
+## 6. Class Movements and One Correction — Decision-Integrity Round
+
+| ID | Movement | Basis |
+|----|----------|-------|
+| `E-P10-050` | reviewer class `B` → **VERIFIED FACT** | Re-derived end to end by a second independent party: the boolean is passed at the grouped generation call site, forwarded through the intermediate method, and tested against the direction name in the callee. The display path passes the correct value |
+| `E-P10-056` | reviewer class `B` → **VERIFIED FACT** | A second party read the balance-validation SQL: it sums company-currency amounts only |
+| `E-P10-057` .. `AD-2` (hash and lock-field halves) | peer-supplied class `B` → **VERIFIED FACT** | A second party read both method bodies and searched both module trees for overrides: five definitions, one override, none adding the attribution field |
+| `E-P10-061` | **CORRECTED — internally contradictory as written** | It stated two mutually exclusive outcomes as one. With exactly **one** foreign-currency order the currency test **passes** and the counterpart is stamped with the foreign currency and a zero foreign amount; with **two or more** it fails and the counterpart carries no currency at all. Both are defects; they are different defects |
+| `E-P10-091` | **NEW — VERIFIED FACT** | A **third** day-count engine exists in the reference root, in the loan module, offering eight named market conventions with a correct February exception that the deferral engine omits |
+| `E-P10-092` | **NEW — VERIFIED FACT** | The accrual counterpart's attribution is weighted over a denominator including lines with nothing to accrue, and sums to less than 100% |

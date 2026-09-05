@@ -67,9 +67,16 @@ The veto's subject ("any P10 recognition mechanism") is broad enough to cover co
 |------|-------|--------------|---------------------|
 | Peer management-accounting veto | `P09` | That peer's own model; implementation only; **explicitly does not block other processes** | **Does not bind P10.** Revision 2's claim that it binds first is withdrawn |
 | Peer costing veto | `P04` | Separate subject, not discharged | No interaction |
-| `AASP-VETO-01` rev 3 | `P10` | P10 recognition mechanisms | **The only veto binding P10's implementation** |
+| `AASP-VETO-01` rev 3 | `P10` | P10 recognition mechanisms | The only veto binding P10's **implementation** — see the correction below |
+| **`AAS+-VETO-03`** | **`P09`** | **"no SMEsPlus asset, accrual, deferred-recognition or cash-basis design may allocate a balance-sheet row into the management ledger" — design adoption only** | **BINDS P10'S DESIGN ADOPTION.** Never read by P10 until challenged. Its subject is precisely P10's own attribution finding |
 
-Revision 2's governance observation — "the fastest way to discharge three vetoes is to take one decision" — is **withdrawn**. The three vetoes are not co-extensive, and only one of them is P10's to hold.
+Revision 2's governance observation — *"the fastest way to discharge three vetoes is to take one decision"* — is **withdrawn**. The vetoes are not co-extensive.
+
+> **FURTHER CORRECTION, `34` `W-37`.** P10 asserted in three documents that `AASP-VETO-01` is *"the only veto binding P10"* and that *"no peer veto covers it"*. That is a negative over a population P10 enumerated at **two** peer vetoes. The peers' current registers carry **three** in the analytic process alone, a costing veto in the asset process, and **four further standing vetoes** in the cross-process register, none discharged.
+>
+> One of them — **`AAS+-VETO-03`** — names *deferred-recognition design* explicitly and binds **design adoption**. P10's statement that *"design work, option analysis and specification are not blocked"* is true of P10's **own** veto and **unsafe as written** beside a peer design veto naming P10's domain that P10 had never read.
+>
+> **Corrected: `AASP-VETO-01` is the only veto P10 holds over its own implementation. It is not the only veto binding P10.**
 
 ## 8. Standing Correction to Method
 

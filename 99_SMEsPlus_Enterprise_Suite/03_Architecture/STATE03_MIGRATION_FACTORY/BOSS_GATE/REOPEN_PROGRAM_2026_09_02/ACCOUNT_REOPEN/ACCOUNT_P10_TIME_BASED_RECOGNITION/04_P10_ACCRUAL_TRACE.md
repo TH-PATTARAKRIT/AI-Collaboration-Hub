@@ -45,7 +45,9 @@ Therefore: no order ever receives the note; no link from order to accrual entry 
 
 Class: `VERIFIED FACT`, boundary = the accrual wizard module in reference root `RR-1`, established by enumerating all four occurrences of the identifier in the file. This is the same defect class as the `equipment_sequence` dead code found by the prior Asset round: a declared control whose executor does not exist.
 
-### `P10-F-18` — the reversal is unconditional and pre-dated
+### `P10-F-18` — **RE-TITLED: the estimate has no link to the actual that settles it**
+
+> **CORRECTED — `66` Challenge C §7.** The finding was titled *"the reversal is unconditional and pre-dated"*. **A reversing accrual is ordinary convention and not a defect**, and this section's own body says so. The defect is the one the body states next: **no link exists from the accrual to the invoice that settles it**. A reader citing the headline table was citing a non-defect.
 
 The reversal is created and posted at the same instant as the accrual (`E-P10-028`), dated one day later by default. It is not conditional on the real invoice ever arriving, and it does not reference the invoice when it does.
 
@@ -79,3 +81,15 @@ Same mechanism, opposite direction. The one asymmetry worth noting: on the sales
 ## 7. What SMEsPlus Must Decide Here
 
 Accrual is the mechanism most exposed to Thai statutory treatment, because the accrual basis of taxable income and the accrual basis of accounting do not always coincide, and because a reversing accrual that crosses a tax period has a different consequence from one that does not. Every statutory statement on this point is marked `HOLD / EVIDENCE REQUIRED` and routed to the Accounting-Tax track — see `11_P10_CONTRADICTION_REGISTER.md` `P10-C-06`. No statutory claim is made in this document.
+
+
+---
+
+## 8. Corrections From the Decision-Integrity Round
+
+| # | Item | Correction |
+|---|------|-----------|
+| `AC-C1` | `P10-F-18` | Re-titled. The reversing convention is not the defect; the absent settlement link is |
+| `AC-C2` | Duplicate control | *"None"* is accurate and unhelpful. The correct statement: **no control, bounded exposure, and the bound is an operator-editable field.** A duplicate accrual carries its own duplicate reversal, so it nets outside the accrual-to-reversal interval — one day by default, and no month-end balance sheet spans it. It becomes material only when the operator edits the reversal date |
+| `AC-C3` | Counterpart currency | The Layer 2 record stated two mutually exclusive outcomes as one. **With exactly one foreign-currency order the currency test passes** and the counterpart is stamped with the foreign currency and a **zero** foreign amount against a non-zero company-currency balance. **With two or more it fails** and the counterpart carries no currency while the product lines do. Either way the foreign amounts do not sum to zero on a move whose currency is the foreign one — and **nothing catches it**, because balance validation sums company-currency amounts only |
+| `AC-C4` | **New — a third instance of the attribution defect** | The counterpart's attribution is weighted over a denominator that includes order lines with **nothing to accrue**, and skips lines carrying no distribution while leaving them in the denominator. It therefore sums to **less than 100%** and neither matches nor cancels the accrual lines'. This is the **third** mechanism-level implementation of writing an attribution onto a programmatic post's balance-sheet leg, and the only one that leaves a **residual distortion** rather than a clean netting |
