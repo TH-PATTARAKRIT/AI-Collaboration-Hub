@@ -167,6 +167,19 @@ P11's observation, adopted here because it completes `P04-F-71`:
 > its own deference — including deference to its reviewers.
 > Class: **SUPPORTED INTERPRETATION**, on two instances across two sessions.
 
+**P11 applied it to its own package and it bit harder there.** P11 reports four
+adversarial panels, 86 findings, and **zero disputed by P11** — a figure it had
+published as *"a warning, not a credential"* without being able to say why. Under
+`P04-F-79` the reason is available: a zero-dispute rate against adversarial
+panels is **uninformative about deference**, because the panels are instructed to
+attack and therefore cannot detect excessive agreement. P11 has re-recorded the
+figure as uninformative rather than reassuring.
+
+That is worth carrying into this package's own reading of its independent review:
+**24 of 25 findings adopted is not evidence of good judgement about which to
+adopt.** It is consistent with careful adjudication and equally consistent with
+deference, and this package's control set cannot distinguish the two.
+
 The symmetric confirmation, from P11, of this package's closing observation:
 
 > **Four refusals across three sessions, and not one contributed a finding —

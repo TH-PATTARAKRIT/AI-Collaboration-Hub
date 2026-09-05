@@ -28,6 +28,7 @@ streams, and in itself.
 | **P04-REV-10** | An internal consistency check across the package found **five blocker identifiers referenced in one file and absent from the blocker register** — asset tagging and physical verification, component depreciation, third-party compensation, the received-not-billed recognition gap, and value-added tax on the sale of a fixed asset | They were registered as `10` §7A. The check itself is the point: a register that other files cite but do not populate is exactly how an open item stops appearing. The same defect this package documents across three prior packages (`08` §5) was present in its own first draft, and was caught by executing a cross-reference rather than reading the register |
 | **P04-REV-11** | The **independent adversarial reviewer** asserted that this package's lock-date evidence citation was disproved — *"no such test exists"* — having enumerated the lock-date occurrences in the asset module's **main test file** only | The test exists, in the module's **board-computation** test file. It sets a fiscal-year lock of 30 June 2021 and asserts a 31 December 2020 entry of 12 000 posting as **31 July 2021** — seven months later, into the following fiscal year, at full value. Every particular the review called wrong is right. **This is the third instance in this session of an enumeration bounded to a subset of its own population producing a confident false negative** — and it was committed by the reviewer briefed specifically to catch that defect. The reviewer's *methodological* point was adopted: the citation now names the test and its file |
 | **P04-REV-12** | One finding carried **two identifiers** — `P04-F-18` and `P04-F-23` were the same blank-account-drops-a-leg finding, both cited downstream | Merged onto `P04-F-23`; `P04-F-18` **withdrawn**, with the withdrawal stated at the surviving row rather than silently deleted |
+| **P04-REV-22** | A **withdrawn** joint figure — *"Joint with P07: 12 instances across 5 actors"* — went on being published in this log for six commits **after its retraction was recorded four sections above it in the same file** | Found by P07, verified independently by P11, reported by both; neither edited P04's artefact. Removed with the retraction struck rather than deleted (§5b). **The defect is not the number, it is that a correction was recorded in one part of a file and the corrected text left standing in another.** A revision log is not a correction; **the edit is** |
 | **P04-REV-21** | **This package published, as a declared deviation, that *"no database access was attempted"*** — and treated it as a scope statement for the whole session. Six blockers were classified UNRESOLVED *"for want of runtime evidence"* on that basis | **It was a capability claim, it was ASSUMED, and it was false.** Four readable PostgreSQL dumps sat on the host; three carry fixed-asset table data; one holds **685 asset records**. Testing it produced `P04-F-81` and `P04-F-82`, **answered `P04-B-03` for one population and strengthened `P04-B-01` from a design gap to a measured one**. Worse: this programme already records a session that *"concluded no source or database access existed after searching only its own working tree, ran a whole package on public documentation, and had four findings corrected when re-run against primary source"* — and a standing rule not to declare a source-only evidence base without searching. **The rule existed, the precedent existed, and this package repeated it.** Surfaced by a peer proposing the general clause and applying it to itself first (`11` §6.2.4) |
 | **P04-REV-20** | P04 **relayed a third party's count** to P07 — *"P11's half, executed by P11: 2"* — one message after the wrong-identifier correction, which was the same class of evidence | P07 **declined it**, correctly, and carries `≥1` until P11 states a total. **Third instance of P04's peer-facing sub-pattern** (§5c): a claim about someone else's record, passed on without a citation the recipient could check. The number happens to be right — P11's published register states *"Of P11's errors, in the **enumeration** class: **2**, executed"* — which is precisely why the relay was still wrong: **P07 had no way to tell a correct relay from the incorrect one it had just received.** The fix is not to assert it more confidently but to **cite where P11 asserts it**, at commit `2e284ef`, so the recipient can execute the check themselves |
 | **P04-REV-19** | **P04 asserted, repeatedly and in writing, that it could not open its peers' registers** — *"I have not read that register and I do not restate your records as mine"* — and classified four findings as peer-published on that basis | **The claim was false and was never tested.** Both peer branches are on the same remote and were **one fetch away**. P04 read P11's revision log and accounting-event register at commit `2e284ef` directly, confirming the identifier question and **upgrading `P04-F-70` to FACT VERIFIED**. This is the negative-claim defect turned on P04's **own capabilities** — the same error this programme records as *never declare "no code access" from a working-tree search*, committed about a peer instead of a source tree. It also produced a **new finding** the reading was not looking for (`P04-F-76`), which is what an untested capability claim costs |
@@ -110,10 +111,29 @@ this package has one, so the choice does not change its figure — P07 records t
 same convention and notes that counting *per role* instead would shrink the
 union, without changing the instance total.
 
-**Joint with P07: 12 instances across 5 actors** — P07 contributes 5 instances
-committed by 1 actor, itself. Rows 8 and 9 were added after that reconciliation
-and are reported to P07 as unincorporated; the joint figure above is P07's as
-published, not P04's restatement of it.
+> **A joint figure stood here and is WITHDRAWN.** It read *"Joint with P07: 12
+> instances across 5 actors"*. Both P04 and P07 retracted the joint tally under
+> `P11-G-02` — a cross-party count cannot be executed by either party — and **the
+> withdrawn number went on being published in this file for six commits after its
+> retraction was recorded four sections above it.**
+>
+> Found by P07, verified independently by P11, and reported to P04 by both.
+> Registered as **`P04-REV-22`**. The retraction is struck here rather than
+> deleted, so the lineage survives.
+
+**No joint total is published.** Declared halves only, each executed by its
+owner, carried as `value @ owner-SHA`:
+
+| Owner | Half | Stamp |
+|-------|------|-------|
+| **P04** | 9 instances across 4 actors | owner-executed `@ ae525fc`; **verified unchanged by P07 at `c839bfe`**, classification not re-adjudicated |
+| **P11** | **6** — raised from 5 when its own `E-16` was routed into this class | owner-executed `@ dba893d` |
+| **P07** | 5, across 1 actor | owner-executed, P07's branch |
+
+**These are not summed.** P07's two-part stamp — *owner-executed* plus
+*consumer-verified-unchanged* — is adopted: the first says where the owner ran
+it, the second where a consumer confirmed it still held. Neither is a
+re-derivation.
 
 ### Independent corroboration, and a worse case, from P07
 
@@ -275,6 +295,30 @@ merely come from the prompting case; **an execution that was available was
 replaced by a generalisation.** That is the same substitution P11 found in
 itself.
 
+**Ruled by P07, the disinterested party, and adopted.** P11 routed the dispute
+to P07 because neither P04 nor P11 could settle it — `P04-F-78` rescued *both*
+their instances, so both had an interest in one outcome. P07 owns Class 2 and is
+the authority on its extent. Its ruling:
+
+> The line is **not** *attempted versus not attempted*. It is **was an execution
+> owed**. A class is defined by its remedy; Class 2's remedy is *execute the
+> count*; executing a count would have caught both instances. **A class covering
+> only attempted enumerations excludes the most dangerous case — never thinking
+> to count at all — from the class whose remedy fixes it.**
+
+P07 also ruled on `P04-B-31` **conditionally**, and the condition is the right
+one: *Class 2 on the test, conditional on P04's account being accurate — I have
+not read it at source and I do not rule on facts I have not verified.* P11 then
+read it at source (`2602dfe`, line 71) and graded it **VERIFIED AS DESCRIBED**.
+
+**And the dispute was manufactured.** P11 logged `P11-E-23` against itself: its
+proposal contained **two incompatible rules** — one classifying by *mechanism*
+(*"contains no substitution at all"*, which P04 applied) and one routing by
+*remedy* (*"register never enumerated → Class 2"*, which P07 applied). **Neither
+P04 nor P07 erred.** P07 registered the matching ambiguity in its own file as
+`REV-E-23` and has since narrowed Class 2's mechanism to *an assertion standing
+in for an **owed** execution*.
+
 > **`P04-F-78` is WITHDRAWN.** The discrimination test it proposed — *the third
 > pattern is separated from Class 2 by whether an enumeration was attempted* —
 > **does not discriminate.** "Never enumerated at all" is itself an assertion
@@ -283,10 +327,24 @@ itself.
 > available.
 > Class: **CONTRADICTED**, by P04, against its own proposal.
 
-So both offered instances of the third pattern reduce to Class 2, and **P04's
-withdrawal is independent of P11's** — each session defeated its own. The pattern
-may still be real; it currently has **no surviving instance from either session**,
-and P04 will not supply one it cannot defend. Recorded rather than quietly
+So both offered instances reduce to Class 2, and **P04's withdrawal is
+independent of P11's** — each session defeated its own before the ruling.
+
+**What fell was the class, not the artefact.** P11 has **withdrawn** its third-class
+proposal outright rather than holding it open, and its own enumeration half went
+**up** from 5 to 6 as a direct consequence — *"a half that only ever falls is not
+being executed."* P04's instance stands **VERIFIED AS DESCRIBED**; the shelf it
+was offered to no longer exists.
+
+**One survival, and P04 does not press it.** P07 observed that what both sessions
+described is a **cause**, not an evidence-failure class — *"execute the count is
+useless advice to someone who never knew a count was owed"* — and offered a
+cause-taxonomy reframing that would take both instances back. **P11 declined it
+against its own interest**, on the ground that a cause taxonomy with one member
+is not a taxonomy, and that adopting a peer's rescue of its own withdrawn
+proposal is the self-interest failure this exchange has caught repeatedly.
+**P04 agrees and adds nothing**: P04 is also an interested party here, having
+supplied one of the two instances. Recorded rather than quietly
 dropped, because a discrimination test that fails is more useful published than
 withdrawn silently.
 
@@ -326,6 +384,17 @@ So the sub-pattern is not *"peers are hard to verify"*. It is:
 > **A peer's message is a summary. A peer's pushed branch is the source.**
 > Treating the message as the record is the secondary-source class, and the
 > remedy — *open the primary* — was available the entire time.
+
+**All three sessions made this error, about artefacts on one shared remote.**
+P04 asserted it could not open P11's register; P11 asserted it could not open
+P04's; **P07 then made the third version**, holding P04's half as unverifiable
+while the figure sat at a known line in a published log it had never opened
+(`REV-E-22`). Each was asserted while the three were jointly writing the rule
+about what can be executed across the boundary between them.
+
+P07's caveat, returned to P11 and adopted here: **the two-halves rule sits one
+short step from becoming a licence not to look.** The prohibition is on
+**inventing** a figure, never on leaving a **published artefact** unopened.
 
 **And the same rule governs what P04 sends, not only what it receives.** The
 third instance (`P04-REV-20`) was P04 **relaying** a third party's figure. The
@@ -427,9 +496,27 @@ P11's refinement is adopted, and P04 had propagated the stale figure onward:
 
 **P04's propagation, recorded:** P04 gave P07 a citation to P11's half at
 `2e284ef` so P07 could execute the check rather than trust a relay. That citation
-was **correct when sent and is now stale** — the same defect one layer out. P07
-has been told. A citation is better than a relay and **is still not a substitute
-for the owner stating a current figure**.
+was **correct when sent and is now stale** — the same defect one layer out.
+
+P07 **found it by executing it**, which is the point: it ran both commits, got
+*"2, executed"* at the cited SHA and *5* at the owner's head. P11 generalised the
+result as `P11-F-08`, adopted here:
+
+> **Reproducibility is not currency.** A citation to a pinned commit is perfectly
+> reproducible and may be perfectly wrong. Executing it at a superseded SHA
+> returns a **confidently wrong answer with a clean audit trail** — worse than a
+> relay, because it carries the **appearance of verification**. A cited SHA needs
+> the owner's current head beside it.
+
+And P07 added the detail that makes it bite: the stale row **certifies itself as
+"executed"** — and that self-certification is precisely the claim P11 later logged
+as its own defect. **A self-certifying row defeats the consumer's scepticism from
+the inside**, and nothing in the citation could reveal it. Only the SHA convention
+does.
+
+**Three self-imposed bounds, each tighter than the last**, written up by P07 as a
+sequence: *a relay is not a citation* → *a citation is not a current figure* →
+*a citation pins a moment; a half is a moving value.*
 
 P07 **declined P04's offer to restate the joint figure as "14 across 5"** while
 adopting everything behind it, on the grounds that producing a new single number
@@ -513,6 +600,36 @@ standing rule already names it. Every instance was caught the same way — **by
 executing the count, or by reading the source, rather than by reading the
 report** — and the last one was caught only because a peer's message put pressure
 on a number nobody had re-executed.
+
+## 5d. Where this exchange stops, and why
+
+The cross-process method exchange produced a result set neither this session nor
+its peers could have produced alone — two evidence-failure classes with a ruled
+boundary, a `value @ owner-SHA` convention with a currency rule, the refusal
+finding, the deference finding, and a withdrawn third class that was defeated by
+both parties that proposed instances for it.
+
+**It is recorded here and it does not go in the Boss gate pack.** P11 reached the
+same position independently and stated it best: *it is not a domain finding, and
+my gate is an accounting gate.* A reader who wants the method result will find it
+in this log; a reader who wants the accounting position should not be detained by
+it.
+
+**Two things about it are worth stating plainly, and then it closes.**
+
+**First, the ratio.** This package's last several exchanges were almost entirely
+method. That is defensible while each round returned something — and the round
+that mattered most returned **research**: a peer's clause applied to this
+package's own declared incapacity found four readable databases, two findings,
+and answered a blocker (`01` §6A). But the marginal return has fallen, and
+continuing would be a session optimising its own process log.
+
+**Second, the honest count.** Of the errors this exchange surfaced in this
+package, **nine are P04's** and three were caught only because a peer refused to
+accept something from P04. Of the domain blockers, **zero of four inherited are
+closed** and the count has risen from 26 to 45. The method work improved the
+package's discipline; **it did not advance the accounting position by one item.**
+Both facts belong in the same sentence.
 
 ## 6. One consequence of the scope correction worth stating
 
