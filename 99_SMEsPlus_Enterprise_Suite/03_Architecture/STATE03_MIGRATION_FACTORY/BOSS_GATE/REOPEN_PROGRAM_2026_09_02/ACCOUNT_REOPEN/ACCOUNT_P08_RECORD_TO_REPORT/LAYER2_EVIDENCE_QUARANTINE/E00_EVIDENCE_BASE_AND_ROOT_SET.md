@@ -91,3 +91,50 @@ Script retained at `/tmp/rootscan.sh` for the session; reproduced from the patte
 | `RS-A-01` residual | Non-marketing matches across the set are `calendar.event`, `calendar.event.type`, `barcodes.barcode_events_mixin`, plus a print-report model in 9 roots. None accounting. |
 | `RS-P-01` | **Inverted in the draft.** `R-18` (`ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo_old`) — file **present and complete** (22 847 bytes, dated 2024-10-04), holding an **older two-tier resolver**: `COALESCE((SELECT r.rate … WHERE r.currency_id = c.id AND r.name <= %s AND (r.company_id IS NULL OR r.company_id = %s) ORDER BY r.company_id, r.name DESC LIMIT 1), 1.0)` at `addons/base/models/res_currency.py:121-135`. Therefore: **parity present 22/22**; **earliest-rate-ever tier present 21/22, absent in `R-18`**. |
 | `RS-A-03` | A reviewer widened the pattern to **all file types**, not only program files, across all 22 roots: still **0**. The `.sql` / trigger / migration-script surface remains `C NOT YET SEARCHED` — candidate files exist in 7 roots and were not opened. |
+
+## 6. Database evidence acquired in the targeted continuation
+
+**Boss / PMO / AI-Audit only.** Read-only acquisition; no server started, no write performed.
+
+| Ref | File | Reader result |
+|---|---|---|
+| `DB-BK` | `~/Downloads/BK12MAY26_2026-08-03_05-48-30.dump` (34 MB) | 881 table-data entries |
+| `DB-EV` | `~/Downloads/iEVING_2026-07-23_10-31-06.dump` (24 MB) | 875 table-data entries |
+| `DB-SM` | `~/Downloads/iSMEs_2026-07-11_05-03-27.dump` (148 MB) | 651 table-data entries |
+| — | `~/Downloads/iTEST02_2026-07-14_16-34-51.dump` (61 MB) | 0 — not readable by `pg_restore -l` |
+
+Extraction: `pg_restore -a -t <table> -f <out> <dump>` for `account_move_line`, `account_move`, `account_account`, `account_journal`, `account_partial_reconcile`, `ir_module_module`, `res_company`. Parsed from the `COPY` blocks (tab-separated, `\N` = null).
+
+| Measurement | `DB-BK` | `DB-EV` | `DB-SM` |
+|---|---|---|---|
+| journal items | 563 | 15 | **447,384** |
+| journal entries | 16 | 6 | **183,590** |
+| posted entries | 16 | 6 | **169,143** |
+| companies | 44 | 44 | 1 |
+| journals | 43 | — | 21 |
+| accounts | 544 | 544 | 339 |
+| modules installed | 251 of 1 508 | 232 of 1 504 | 190 of 1 009 |
+| `res_company.check_account_audit_trail` column | **absent** | **absent** | **absent** |
+| `res_company.hard_lock_date` column | present | present | **absent** |
+| companies with a fiscal-year lock set | **0 of 44** | **0 of 44** | **0 of 1** |
+| journals with `restrict_mode_hash_table` | **0 of 43** | — | **0 of 21** |
+| posted entries with `secure_sequence_number` | **0** | **0** | **0** |
+| posted entries with `inalterable_hash` | **0** | **0** | **0** |
+| unbalanced posted entries (company currency, tol 0.005) | 0 | 0 | **0** |
+| posted entries with non-zero Σ`amount_currency` per foreign currency | 0 | 0 | **1,851** (1,798 single-line; **53 multi-line**) |
+| duplicate (journal, name) among posted | 0 | 0 | **0** |
+| duplicate account `code` | n/a (no code column in extract) | n/a | **0 of 339** |
+
+Module states relevant to the custom-layer findings:
+
+| Module | `DB-BK` | `DB-EV` | `DB-SM` |
+|---|---|---|---|
+| `om_data_remove` | **installed** | **installed** | **installed** |
+| `scgl_special_access_rights` | uninstalled | uninstalled | not in registry |
+| `cr_effective_date_entries` | uninstalled | uninstalled | not in registry |
+| `import_bridge_axis` | uninstalled | uninstalled | uninstalled |
+| `scgl_tax_period_date` | — | — | **installed** |
+| `l10n_th_withholding_tax` / `_cert` / `_report` | — | — | **installed** |
+| `scgl_account_reports`, `scgl_purchase_advance_payment` | — | — | **installed** |
+
+`DB-BK` and `DB-EV` carry `wt_tax_id` and `tax_period_date` columns on the journal item, confirming the custom Thai and tax-period modules are deployed there at schema level.
