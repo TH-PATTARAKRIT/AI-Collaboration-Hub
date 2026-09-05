@@ -43,7 +43,7 @@ every one of 126 categories across all 4 companies of database `551ab874`. It cl
 | Series | 18, on **361 of 361** installed modules |
 | Companies | 4 configured, **2 transacting** |
 | Journal entries | 15,522 (13,773 posted) |
-| Valuation layers | 47,801 — of which **96.2% are migrated series-14 history** and **1,812 are native series-18 runtime output** |
+| Valuation layers | 47,801 — of which **96.2% are migrated series-14 history**. The defensible series-18 runtime set is **558** (over-determination-free core **541**; purchase-linked **61**), *not* the 1,812 first published — see `ERR-P01-27` |
 | Vendor bills | 1,904 |
 | Purchase orders | 13,887 |
 
@@ -100,11 +100,21 @@ Two deployments in this estate report **zero** valuation layers linked to journa
 
 ## 6. THE NUMBER P11 AND P08 BOTH NEED
 
-> **฿30,080,689.78** across **1,580 purchase order lines** is **received and not invoiced**, and
-> is **recognised nowhere in the ledger** — no receipt entry, no clearing balance, **no accrual**.
+> **฿29,029,467.66 tax-exclusive** across **1,580 purchase order lines** is **received and not
+> invoiced**, and is **recognised nowhere in the ledger** — no receipt entry, no clearing balance,
+> **no accrual**. Of that, **฿27,490,865.80 on 1,411 lines is backed by an actual goods receipt**;
+> the remaining **฿1,538,601.86 on 169 service lines** is an operator-typed quantity with no
+> receipt document and should not be read as *received*.
 
-Companies: 1 → ฿15,258,362.01; 2 → ฿14,822,327.77. Unit: one PO line, gross, pre-tax, THB,
-excluding orders in `cancel` or `draft`. Counterpart: 183 lines invoiced-not-received, ฿1,734,752.87.
+Companies: 1 → ฿14,692,566.42; 2 → ฿14,336,901.24. Unit: one PO line, **tax-exclusive**, THB
+(single currency, rate 1.0 on all 13,887 orders; discount zero on every line — both by
+enumeration), excluding orders in `cancel` or `draft`. Counterpart: 183 lines
+invoiced-not-received, **฿1,663,518.07**. A further 18 lines are **over-received**
+(`qty_received > product_qty`) carrying ฿1,669,526.29.
+
+*As first published this was ฿30,080,689.78, which summed two tax bases — 312 of the 1,580 lines
+carry VAT-inclusive unit prices. Overstated by ฿1,051,222.12, 3.49%. Corrected as `ERR-P01-28`
+after adversarial challenge; the superseded figure is preserved in the error log.*
 Accrual control: **0 of 15,522** journal entries carry `accru` in `ref` (positive control: 15,434
 have a non-empty `ref`).
 

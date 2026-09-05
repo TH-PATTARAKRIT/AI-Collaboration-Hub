@@ -76,10 +76,13 @@ are connected by **quantity** (`purchase_order_line.qty_received` / `qty_invoice
 Under a perpetual bridge, receipt and bill are held together by a reconcilable interim balance.
 Here the only link between them is the quantity fields on the purchase order line.
 
-| Position (orders not `cancel`/`draft`; gross, pre-tax, THB) | Lines | Value |
+| Position (orders not `cancel`/`draft`; **tax-exclusive**, THB) | Lines | Value |
 |---|---|---|
-| Received not invoiced | **1,580** | **฿30,080,689.78** |
-| Invoiced not received | 183 | ฿1,734,752.87 |
+| Received not invoiced — **tax-exclusive** | **1,580** | **฿29,029,467.66** |
+| — of which backed by a goods receipt | 1,411 | ฿27,490,865.80 |
+| — of which operator-typed service quantities, **no receipt document** | 169 | ฿1,538,601.86 |
+| Invoiced not received — tax-exclusive | 183 | ฿1,663,518.07 |
+| *(as first published, mixing two tax bases — `ERR-P01-28`)* | *1,580* | *฿30,080,689.78* |
 
 **No accrual is booked.** 0 of 15,522 journal entries carry `accru` in `ref`
 (*positive control:* 15,434 of 15,522 have a non-empty `ref`).
@@ -168,7 +171,7 @@ to **P07**. Any conclusion that would require statutory authority is recorded as
 | No bill line reaches a valuation or clearing account | **FACT VERIFIED** |
 | The clearing bridge is bypassed, not broken | **SUPPORTED INTERPRETATION** — rests on the policy proof |
 | Receipt and bill are linked by quantity, not by ledger value | **FACT VERIFIED** |
-| ฿30,080,689.78 received-not-invoiced, unaccrued | **FACT VERIFIED** |
+| ฿29,029,467.66 tax-exclusive received-not-invoiced, unaccrued | **FACT VERIFIED** on a declared basis; ฿30,080,689.78 as first published is **CORRECTED — `ERR-P01-28`** |
 | Month-end posting convention, not a cutoff violation | **FACT VERIFIED** — candidate finding withdrawn |
 | 72.3% of bill AP lines reconciled; ฿8.9M open | **FACT VERIFIED** |
 | 10 bills outside the payables subledger | **FACT VERIFIED**; intent **UNRESOLVED — EVIDENCE REQUIRED** |

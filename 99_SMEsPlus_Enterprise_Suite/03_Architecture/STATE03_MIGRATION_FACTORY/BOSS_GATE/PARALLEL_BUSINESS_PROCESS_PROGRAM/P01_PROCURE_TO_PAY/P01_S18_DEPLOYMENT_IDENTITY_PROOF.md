@@ -176,15 +176,34 @@ Decomposed by `description`:
 |---|---|---|
 | Migrated predecessor history (`v14 2026: …`, `Opening rebalance 2026-01-01`) | **45,978** | 96.2% |
 | `Migration correction: align layers to on-hand x cost (2026-08-26)` | 11 | 0.02% |
-| **Native series-18 runtime output** | **1,812** | 3.8% |
+| Other, including inventory adjustments and business documents | **1,812** | 3.8% |
 
-The native class is bounded independently by timestamp: all 1,812 were created between
-**2026-08-25 12:19:13** and **2026-08-29 10:23:34**, i.e. after `database.create_date`, and all
-1,812 carry a `stock_move_id`.
+> **CORRECTED — `ERR-P01-27`.** The first version of this section called that 1,812 "native
+> series-18 runtime output" and bounded it by `create_date` after `database.create_date`.
+> **`create_date` on this table is loader-supplied, not insertion time**: 44,947 rows carry a
+> `create_date` *earlier than the database itself was created*, while **`write_date` has a minimum
+> of 2026-08-25 12:19:13 and 47,218 of the 47,801 rows were written on that single day.** The
+> whole table was physically written in one five-day window. There is **no sub-population
+> separable by insertion time**, and 1,254 of the 1,812 are `Product Quantity Updated` inventory
+> adjustments authored by `__system__` inside that same window.
+
+**The defensible runtime set is 558**, reached by two independent classifiers that converge:
+a human `create_uid` gives 559, a non-inventory-adjustment underlying move gives 558, and they
+overlap on 558. The over-determination-free core — layers that additionally have a stock move, a
+non-zero value, a storable product and a fully-configured category — is **541**. Only **61** of
+the 558 are purchase-linked. Full derivation in
+`P01_S18_PERIODIC_PERPETUAL_POLICY_PROOF.md §8`.
 
 **Consequence for this package.** Where a claim concerns what the *series-18 runtime does*, the
-denominator is **1,812**, not 47,801. Where a claim concerns what is *in the ledger*, the
-denominator is 47,801. The two are stated separately everywhere in this run.
+denominator is **558** (or **541** for the strongest form, **61** for purchase-linked events) —
+**not 1,812 and not 47,801**. Where a claim concerns what is *in the ledger*, the denominator is
+47,801. The two are stated separately everywhere in this run.
+
+**And the layer table is not internally consistent with the product master**: 1,480 done
+purchase receipts on storable products with quantity > 0 carry **no** valuation layer, while 220
+receipts on non-storable products **do**, and 1,089 layers across the table sit on non-storable
+products. The loader did not build layers move-by-move on valuation semantics, which bounds every
+behavioural inference drawn across the full 47,801.
 
 ### 6.3 The predecessor was a different generation
 

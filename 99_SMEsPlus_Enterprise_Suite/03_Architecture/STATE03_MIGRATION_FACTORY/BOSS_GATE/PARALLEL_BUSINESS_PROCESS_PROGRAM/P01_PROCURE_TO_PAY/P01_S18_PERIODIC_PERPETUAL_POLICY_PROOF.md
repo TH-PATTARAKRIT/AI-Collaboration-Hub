@@ -171,59 +171,173 @@ empty; `moves` is an empty recordset; `am_vals` stays empty; **no `account.move`
 
 **The absence of a journal entry at receipt is the specified behaviour of this configuration.**
 
-### 7.1 Two further skip conditions, recorded so they are not conflated with the policy
+### 7.1 IT IS NOT THE ONLY WRITER — CORRECTED BY CHALLENGE
 
-- `if svl.currency_id.is_zero(svl.value): continue` — **1,205** of the 47,801 layers have
-  `value = 0.00` and would be skipped even under `real_time`.
-- A layer with no `stock_move_id` yields an empty `linked_move` and is skipped regardless —
-  **2,866** layers have no stock move.
+**The first published version of this section named one mechanism. There are six, and one of
+them is not valuation-gated.** Found by AAS-03 Expert A under the disproof assignment, verified
+here before adoption (`ERR-P01-26`).
 
-These are **independent sufficient causes** for individual rows. They do not explain the zero on
-their own (§8 shows the zero holds on a sub-population free of both), but a claim that attributes
-the *entire* zero to policy without excluding them would be over-stated.
+`R1:purchase_stock/models/account_move_line.py:298-313` — `_prepare_pdiff_svl_vals` writes
+**both** link columns:
+
+```
+common_svl_vals = {
+    'account_move_id': self.move_id.id,
+    'account_move_line_id': self.id,
+```
+
+Its gate chain is **`cost_method`, not `valuation`**:
+`R1:purchase_stock/models/account_invoice.py:126` filters
+`l.product_id.cost_method != 'standard'`; `_apply_price_difference`
+(`…/account_move_line.py:32-52`) gates on quantity and the existence of incoming layers;
+`_prepare_pdiff_vals` (`:246-267`) gates **the journal-item half** on
+`valuation == 'real_time'` (`:248`) but leaves **the valuation-layer half** gated only by
+`float_is_zero(unit_valuation_difference * qty_to_correct)`.
+
+**Under `manual_periodic`, this path can still create a valuation layer carrying both links.**
+
+**And its precondition is satisfied in this deployment.** `property_cost_method` sets `average`
+on **18 of 126** categories for company 1, so `cost_method != 'standard'` holds there.
+
+**The path was reached and was exercised.** 354 posted vendor-bill journal items in company 1 fall
+in those 18 categories; **18** carry a `purchase_line_id`; **16 of the 18 show a real price
+difference** (e.g. bill unit 21,400.00 against a layer unit cost of 20,000.00). It produced no
+valuation layer — because every one of those 16 layers has `remaining_qty = 0.00`, which drives
+`qty_to_correct` to zero. **`remaining_qty` is a condition periodic policy does not control.**
+
+**Consequence, stated plainly:**
+
+- **The zero on `account_move_line_id` is not explained by periodic policy at all.** The first
+  version of this document folded it in with the words *"Same for `account_move_line_id`"*. That
+  was wrong.
+- For the price-difference sub-population, **periodic policy is a sufficient explanation but not
+  an identified one.**
+
+*Residual, unresolved:* `remaining_qty` is mutated by later consumption, and the dump shows only
+its value at 2026-08-30. Whether those 16 layers had `remaining_qty = 0` **at the moment their
+bills were posted** cannot be settled from one snapshot.
+
+### 7.2 Three valuation-independent skip conditions
+
+`_account_entry_move` returns `[]` when `not product_id.is_storable`
+(`R1:stock_account/models/stock_move.py:706-708`); `_validate_accounting_entries` skips on
+`svl.currency_id.is_zero(svl.value)` (`:80`); and a layer with no stock move yields an empty
+`linked_move` (`:82-92`).
+
+Counterfactual, over all 47,801 layers — **rows that would be unlinked even under `real_time`**:
+
+| Cause | Rows |
+|---|---|
+| no stock move | 2,319 |
+| zero value | 1,096 |
+| not storable | 574 |
+| no stock move + not storable | 476 |
+| zero value + no stock move | 70 |
+| zero value + not storable | 38 |
+| all three | 1 |
+| **Total over-determined** | **4,574 of 47,801 (9.57%)** |
+
+**The verdict "EXPECTED UNDER PERIODIC POLICY — VERIFIED" is scoped to the remaining 43,227 rows**,
+where periodic is the only silent explanation available.
+
+### 7.3 The counterfactual is not silent — and this strengthens the identification
+
+Under `real_time`, `_get_accounting_data_for_valuation`
+(`R1:stock_account/models/stock_move.py:477-500`) **raises `UserError`** when the journal or any
+of the three accounts is missing. The location-level escape hatch
+(`_get_src_account` / `_get_dest_account`, `:531-538`, falling back to
+`location.valuation_in_account_id` / `valuation_out_account_id`) supplies nothing here:
+**0 of 86 stock locations carry either account** (positive controls in the same read: `company_id`
+non-null on 80 of 86; usages internal 60, inventory 8, view 7, transit 5, production 4,
+supplier 1, customer 1).
+
+**46,458 of 47,801 layers sit in categories that carry all three accounts.** For those, a
+`real_time` counterfactual would have **produced entries**; for the other 1,343 it would have
+**raised an error**. Either way the observed silent NULL is what periodic — and only periodic —
+predicts.
+
+**This is the argument that rules out "it would have been zero anyway" on the main path**, and it
+is stronger than anything in the first version of this document.
 
 ---
 
-## 8. THE DISCRIMINATING TEST
+## 8. THE DISCRIMINATING TEST — CORRECTED, AND STILL DECISIVE
 
-The 47,801 layers are 96.2% migrated predecessor history (see
-`P01_S18_DEPLOYMENT_IDENTITY_PROOF.md §6.2`). Migrated rows were inserted by a migration process,
-not created by the series-18 runtime, so **they would carry no journal link under any policy.**
-Attributing the zero to policy without separating them would be a self-confirming test.
+The 47,801 layers are dominated by migrated predecessor history, so attributing the zero to policy
+without separating migrated rows would be self-confirming.
 
-**Discriminating sub-population:** valuation layers created by the series-18 runtime —
-description free of migration markers, `create_date` after `database.create_date`, and carrying a
-stock move.
+### 8.1 The first version's classifier was unsound — `ERR-P01-27`
 
-| Measure | Value |
-|---|---|
-| Native runtime layers | **1,812** |
-| …carrying a `stock_move_id` | 1,812 (100%) |
-| …with non-zero value | 946 |
-| …created between | 2026-08-25 12:19:13 and 2026-08-29 10:23:34 |
-| …by company | company 1: 1,132; company 2: 680 |
-| **…carrying an `account_move_id`** | **0** |
-
-**The zero holds in the sub-population where migration and zero-value cannot explain it.**
-
-### 8.1 The narrowest and strongest form of the test
-
-Restricting further to receipts against purchase orders — the exact P2P event P01 exists to
-analyse:
+The first version separated a "native" set of **1,812** layers by `create_date` after
+`database.create_date`. **`create_date` on this table is loader-supplied, not insertion time:**
 
 | Measure | Value |
 |---|---|
-| `stock_move` rows | 51,081 |
-| …linked to a purchase order line | 3,158 |
-| …of those, in state `done` | 3,124 |
-| …of those, carrying valuation layers | **1,403** |
-| Total value of those layers | **฿22,953,527.29** |
-| **…of those layers, carrying an `account_move_id`** | **0** |
+| `create_date` **earlier than the database itself** | **44,947 of 47,801** |
+| `write_date` earlier than the database | **0** |
+| `write_date` range | **2026-08-25 12:19:13 → 2026-08-29 10:23:34** |
+| `write_date` by day | 2026-08-25: **47,218** · 08-29: 324 · 08-27: 153 · 08-28: 55 · 08-26: 51 |
 
-**1,403 completed goods receipts against purchase orders, ฿22.95 million of movement value, and
-not one journal entry — under a policy where that is correct.**
+**The entire table was physically written in a five-day window, seven days after the database was
+created, and 98.8% of it on a single day.** There is no sub-population separable by insertion time,
+and any classifier reading `create_date` as provenance is unsound on this table.
 
----
+Worse, the 1,812 set was not what it was called: **1,254 of them are `Product Quantity Updated`
+inventory adjustments written by `__system__`** inside that same load window. The denominator was
+overstated by a factor of ~3.2.
+
+### 8.2 The corrected set — two independent classifiers converging
+
+| Classifier | Unit | Result |
+|---|---|---|
+| 1 — `create_uid` is a human user (114, 102, 117) | one layer | **559** |
+| 2 — the underlying move is not an inventory adjustment | one layer | **558** |
+| **Overlap** | | **558** — they differ by one human-entered inventory adjustment |
+
+| Measure on the corrected 558 | Value |
+|---|---|
+| `create_date` range | 2026-08-26 06:58 → 2026-08-29 10:23 |
+| non-zero value | 543 |
+| in a category carrying all three accounts | 541 |
+| purchase-linked | **61** |
+| **carrying an `account_move_id`** | **0** |
+
+**Over-determination-free core: 541 layers** — each with a stock move, a non-zero value, a storable
+product, and a category carrying all three accounts, so none of the §7.2 causes can apply.
+
+> **0 of 541. That, not 1,812, is the honest discriminating denominator — and it is still decisive.**
+
+### 8.3 The purchase-linked sub-population is 61 rows, not 1,403
+
+**The receipt-to-GRNI claim rests on far less than the first version implied.**
+
+| Measure | Value |
+|---|---|
+| Valuation layers on purchase-linked moves | **2,146** |
+| — of which migrated (`v14 2026` family) | **2,085** |
+| — of which business-document layers in the corrected set | **61** |
+| carrying an `account_move_id` | **0** |
+
+The `1,403 done purchase-linked moves / ฿22,953,527.29` figure reproduces exactly, and **2,085 of
+its 2,146 layers are migration rows.** It is a statement about the migrated ledger, not about
+what the series-18 runtime does. **The runtime statement rests on 61 layers.**
+
+### 8.4 The valuation layers are not internally consistent with the product master
+
+| Measure | Value |
+|---|---|
+| Done purchase-linked moves | 3,124 |
+| — carrying at least one valuation layer | 1,403 |
+| — **storable, quantity > 0, and carrying NO layer** | **1,480** |
+| Purchase receipts on **non-storable** products that **do** carry a layer | **220** |
+| Layers on non-storable products across the whole table | **1,089** |
+
+**Both directions are wrong under normal series-18 behaviour.** The loader that wrote this table on
+2026-08-25 did not build layers move-by-move on valuation semantics.
+
+**This weakens every behavioural inference drawn across the full 47,801 — the periodic one
+included** — and it is a finding in its own right. It is the reason §8.2's corrected set is
+restricted to layers with a human author and a real business document.
 
 ## 9. IS THE JOURNAL CONFIGURATION DORMANT, FUTURE-FACING OR ACTIVE?
 
@@ -276,9 +390,14 @@ periodic valuation means. The exposure this leaves open between receipt and bill
 | Valuation policy in this deployment | **`manual_periodic` — FACT VERIFIED**, 126/126 categories × 4/4 companies, both storage locations read |
 | Mixed population | **None** — FACT VERIFIED |
 | Receipt accounting expected under this policy | **No** — FACT VERIFIED from source, same generation |
-| The 0-of-47,801 zero-link result | **EXPECTED UNDER PERIODIC POLICY — VERIFIED** |
-| The same zero on the 1,812-row native sub-population | **EXPECTED UNDER PERIODIC POLICY — VERIFIED** |
-| The same zero on the 1,403 purchase-receipt sub-population | **EXPECTED UNDER PERIODIC POLICY — VERIFIED** |
+| The 0-of-47,801 zero-link result on `account_move_id` | **EXPECTED UNDER PERIODIC POLICY — VERIFIED, scoped to 43,227 rows.** For 4,574 rows (9.57%) it is **over-determined** by three valuation-independent causes |
+| The 0-of-47,801 on `account_move_line_id` | **NOT EXPLAINED BY PERIODIC POLICY.** A non-valuation-gated writer exists (§7.1). **CORRECTED** |
+| The same zero on the corrected 558-row business-document set | **EXPECTED UNDER PERIODIC POLICY — VERIFIED** |
+| The same zero on the 541-row over-determination-free core | **EXPECTED UNDER PERIODIC POLICY — VERIFIED** — the strongest form available |
+| The former "1,812 native layers" set | **WITHDRAWN** — `create_date` is loader-supplied; 1,254 of the 1,812 were `__system__` inventory adjustments (`ERR-P01-27`) |
+| The 1,403 purchase-receipt / ฿22,953,527.29 figure | **arithmetically exact, but 2,085 of its 2,146 layers are migrated.** The runtime claim rests on **61** layers |
+| `_validate_accounting_entries` is the only writer | **FALSE — CORRECTED.** Six writers; five are periodic-gated, one is gated on `cost_method` (`ERR-P01-26`) |
+| A `real_time` counterfactual would have been silently zero anyway | **RULED OUT** — 0 of 86 locations carry a valuation account, and 46,458 of 47,801 layers sit in fully-configured categories |
 | Stock journal configuration | **CONFIGURED, NOT EXECUTED — POLICY-DEPENDENT** |
 | Whether periodic was *intended* here, given the predecessor posted to `STJ` | **UNRESOLVED — EVIDENCE REQUIRED.** Boss/owner decision, not a P01 decision |
 | Whether periodic valuation is *appropriate* for this business | **NOT A P01 DECISION.** Routed to the Boss package |
@@ -291,11 +410,30 @@ Stated so a challenger has a target rather than a summary:
 
 1. A product, category or company resolving to `real_time` — would require a jsonb value or an
    `ir_default` row that §3 and §4 say does not exist.
-2. A **second writer** of `stock_valuation_layer.account_move_id` in the series-18 tree or in any
-   of the 16 installed custom modules. If one exists, §7's mechanism is necessary but not sufficient.
-3. Evidence that the 1,812-row native classifier is wrong — e.g. migrated rows that carry no
-   migration marker and a post-creation timestamp.
+2. ~~A **second writer**~~ — **found, and this document is corrected.** See §7.1 and `ERR-P01-26`.
+3. ~~Evidence that the 1,812-row native classifier is wrong~~ — **found, and the set is
+   withdrawn and replaced.** See §8.1 and `ERR-P01-27`.
+4. **A Python method override in a custom module.** This is the residual gap and it is **open**.
+   `ir_model_data` bounds field-, model-, view- and data-level extension only — a pure method
+   override leaves **no database trace**. **10 of 16 installed custom modules have no
+   version-matching source on this host**, so for those ten an override of
+   `_validate_accounting_entries`, `_account_entry_move` or `AccountMove._post` is
+   **unverifiable by any means available in this session.**
+   `scgl_account_coa_control 18.0.1.0.1` is the sharpest instance: it owns four view xmlids and
+   zero fields, its name asserts chart-of-accounts control, and its only copy on this volume sits
+   in a root P01 declared CLASS C — while this deployment **is** that project's deployment.
 
-Disproof assignments 1 and 2 were issued to AAS-03 Expert A; the outcome is recorded in
-`P01_S18_AAS03_FRESH_CHALLENGE.md` and any correction is carried into
-`P01_RESEARCH_ERROR_AND_REVISION_LOG.md` rather than silently replacing this text.
+   **Every negative in §6 and §7 is therefore scoped as: *no field-level or data-level override;
+   method-level override unverified for 10 of 16 custom modules.***
+
+   What *can* be said, measured on the deployment: across **225,529** `ir_model_data` rows,
+   **no custom module owns a single xmlid on `stock.valuation.layer`** (positive control: the 16
+   custom modules own **1,160** xmlids in total, of which 718 are field definitions). The nine
+   `product.category` fields owned by `scgl_product_category_company` are all
+   `company_dependent = f` and none is a valuation or property field.
+
+Disproof assignments 1–3 were issued to AAS-03 Expert A. **Two of the three landed**, and this
+document has been corrected rather than defended. The outcome is recorded in
+`P01_S18_AAS03_FRESH_CHALLENGE.md`; the corrections are logged as `ERR-P01-26` and `ERR-P01-27`
+in `P01_RESEARCH_ERROR_AND_REVISION_LOG.md`. **The superseded text is preserved there, not
+silently replaced.**

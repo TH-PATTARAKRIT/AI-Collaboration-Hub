@@ -151,23 +151,86 @@ through migrated predecessor entries. Debits ฿215,249.69 against credits ฿11
 Because the bridge never posts, the period between receipt and bill carries **no ledger
 recognition of the obligation**.
 
-**POPULATION:** `purchase_order_line`, 21,102 rows, excluding lines on orders in state `cancel`
-or `draft`. **UNIT:** one purchase order line. **MEASURE:**
-`(qty_received − qty_invoiced) × price_unit`, i.e. gross, pre-tax, in the order currency
-(all orders are THB — every company's currency is 133).
+### 6.1 THE EXPOSURE, RESTATED ON A DECLARED TAX BASIS — `ERR-P01-28`
 
-| Position | Lines | Gross pre-tax value |
-|---|---|---|
-| **Received not invoiced** | **1,580** | **฿30,080,689.78** |
-| — company 1 | 885 | ฿15,258,362.01 |
-| — company 2 | 695 | ฿14,822,327.77 |
-| **Invoiced not received** | 183 | ฿1,734,752.87 |
+**The first published version of this section summed two different tax bases into one number.**
+Found by AAS-03 Expert A, verified here before adoption.
+
+**POPULATION:** `purchase_order_line`, 21,102 rows, excluding lines on orders in state `cancel` or
+`draft`. **UNIT:** one purchase order line. **CURRENCY:** THB throughout — `currency_id` is 133 on
+all 13,887 orders and `currency_rate` is 1.0 on all of them, so currency risk is nil by
+enumeration. **DISCOUNT:** zero on every line, likewise by enumeration.
+
+**The defect.** 312 of the 1,580 received-not-invoiced lines carry a purchase tax with
+`price_include_override = 'tax_included'` (`PV7% รวม VAT`). On those lines `price_unit` is
+**VAT-inclusive**. The ratio `(product_qty × price_unit) / price_subtotal` is **exactly 1.0700 on
+all 312** and **exactly 1.0000 on the other 1,267** — the diagnosis is identified, not inferred.
+Summing `price_unit` across both groups mixes tax bases.
+
+| Basis | Company 1 | Company 2 | Total |
+|---|---|---|---|
+| **Tax-exclusive** — the correct basis for a GRNI accrual | ฿14,692,566.42 | ฿14,336,901.24 | **฿29,029,467.66** |
+| ~~As first published~~ (mixed basis) | ฿15,258,362.01 | ฿14,822,327.77 | ~~฿30,080,689.78~~ |
+| Overstatement | | | **฿1,051,222.12 — 3.49%** |
+
+**VAT on a purchase is recoverable input tax and is not accrued to inventory**, so the
+tax-exclusive figure is the one a GRNI accrual would use. If instead the question were cash
+exposure to vendors, the tax-**inclusive** basis would be right — but then **all 1,580** lines
+must be grossed up, giving ฿30,962,543.77. **The first published number was neither**: 1,267 lines
+on one basis plus 312 on the other.
+
+The same defect applied to the counter-figure: invoiced-not-received **฿1,734,752.87 →
+฿1,663,518.07** tax-exclusive.
+
+### 6.2 AND THE AGGREGATE HID THREE DISTINCT POPULATIONS — `ERR-P01-29`
+
+| Sub-population | Lines | Tax-exclusive | (as first published, mixed basis) |
+|---|---|---|---|
+| **Received against a goods receipt** (`qty_received_method = stock_moves`) | **1,411** | **฿27,490,865.80** | ฿28,540,809.47 |
+| **Typed by an operator** (`qty_received_method = manual`) — **all 169 are service products** | **169** | **฿1,538,601.86** | ฿1,539,880.31 |
+| **Total** | **1,580** | **฿29,029,467.66** | ฿30,080,689.78 |
+
+By product type (mixed basis, as measured): storable 1,403 lines ฿28,455,002.22 · service 169
+lines ฿1,539,880.31 · non-storable consumable 8 lines ฿85,807.25.
+
+**The 169 manual lines have no receipt document at all.** No picking, no stock move, no valuation
+layer, and no possible GRNI entry: `qty_received` there is a number an operator typed. **A
+three-way match has only two legs on those lines**, and they are **5.30%** of the tax-exclusive
+figure. They do not belong in a *received*-not-invoiced aggregate and are broken out here rather
+than summed. The 8 non-storable consumable lines can likewise never produce a valuation layer.
+
+**Separately: 18 lines are over-received** — `qty_received > product_qty` — carrying
+**฿1,669,526.29** tax-exclusive (฿1,707,560.30 on the published basis), **5.75%** of the
+exposure. Not an arithmetic error, but a distinct control condition that a single aggregate
+conceals.
+
+> **A note on how this table was produced.** The split was first written by *subtracting* a
+> mixed-basis sub-total from the tax-exclusive total — which is the very error §6.1 corrects,
+> committed inside the correction. Recomputing each sub-population on its own basis gives
+> ฿27,490,865.80 and ฿1,538,601.86, not the ฿27,489,587.35 that subtraction produced. **Derive
+> each figure; never subtract across bases.** Logged as part of `ERR-P01-28`.
+
+### 6.3 THE CORRECTED HEADLINE
+
+> **฿29,029,467.66 tax-exclusive across 1,580 purchase order lines is received-and-not-invoiced
+> and recognised nowhere in the ledger.** Of that, **฿27,490,865.80 across 1,411 lines is backed
+> by an actual goods receipt**; the remaining **฿1,538,601.86 across 169 service lines** is an
+> operator-entered quantity with no receipt document.
 
 **No accrual is booked against any of it.** 0 of 15,522 journal entries carry `accru` in `ref`
-(*positive control:* 15,434 of 15,522 have a non-empty `ref`, and their content is legible —
-the migration markers in §9.1 of the policy proof were read from this same field).
+(*positive control:* 15,434 of 15,522 have a non-empty `ref`).
 
-### 6.1 How to read this, and how not to
+### 6.4 A SEPARATE MEASURE THAT MUST NOT BE ADDED TO IT
+
+`P01_S18_PERIODIC_PERPETUAL_POLICY_PROOF.md §8.3` reports ฿22,953,527.29 of valuation-layer value
+on 1,403 purchase-linked receipt moves. **That is a different measure**: layer value at receipt
+cost, against purchase-order price on the un-invoiced quantity. They are **not two views of one
+number and are not reconcilable**. Further, only 1,403 of 3,124 done purchase-linked moves carry
+any layer, so ฿22.95M is a **floor** on receipt value, not a measure of it — and 2,085 of its
+2,146 layers are migrated rows.
+
+### 6.5 How to read this, and how not to
+
 
 This is **not a defect of the software** and it is **not a posting error**. Under periodic
 valuation, no receipt-time entry is expected, and the ฿30.08 million is a **timing position, not a
@@ -209,7 +272,10 @@ clearing account to resolve, and the bill does not attempt to.
 | The stock journals carry zero journal items | **FACT VERIFIED**, with positive controls |
 | Cause of non-execution | **POLICY-DEPENDENT — VERIFIED** |
 | Reachability of the account under current configuration | **LATENT.** Would become live if valuation policy were changed to `real_time`; no other trigger was found |
-| ฿30,080,689.78 received-not-invoiced, unrecognised and unaccrued | **FACT VERIFIED**, denominator and unit declared in §6 |
+| **฿29,029,467.66** tax-exclusive received-not-invoiced, unrecognised and unaccrued | **FACT VERIFIED**, denominator, unit and tax basis declared in §6.1 |
+| — of which receipt-backed | **฿27,490,865.80** on 1,411 lines — **FACT VERIFIED** |
+| — of which operator-typed service quantities with no receipt document | **฿1,538,601.86** on 169 lines — **FACT VERIFIED**; **excluded** from any *received*-not-invoiced reading |
+| ~~฿30,080,689.78 as first published~~ | **CORRECTED — `ERR-P01-28`**: mixed two tax bases (312 of 1,580 lines carry VAT-inclusive unit prices). Overstated by ฿1,051,222.12 (3.49%) |
 | Whether that treatment is acceptable | **NOT A P01 DECISION** — Boss package; notified to P08 and P11 |
 
 ---

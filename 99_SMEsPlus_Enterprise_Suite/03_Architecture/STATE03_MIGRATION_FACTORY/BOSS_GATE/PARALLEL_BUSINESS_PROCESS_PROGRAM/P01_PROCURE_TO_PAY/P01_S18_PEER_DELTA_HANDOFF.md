@@ -132,7 +132,7 @@ replicating**.
 
 | To | Item | Why it is theirs |
 |---|---|---|
-| **P08** record-to-report | **฿30,080,689.78** received-not-invoiced across 1,580 PO lines, **unrecognised and unaccrued**, with **0 accrual entries** in 15,522 journal entries | A completeness question for liabilities and inventory at a reporting date. P01 measures it; P08 owns the reporting judgement |
+| **P08** record-to-report | **฿29,029,467.66 tax-exclusive** received-not-invoiced across 1,580 PO lines — ฿27,490,865.80 of it receipt-backed on 1,411 lines, the balance operator-typed service quantities — **unrecognised and unaccrued**, with **0 accrual entries** in 15,522 journal entries | A completeness question for liabilities and inventory at a reporting date. P01 measures it; P08 owns the reporting judgement |
 | **P08**, **P11** | **10 vendor bills whose balancing line sits outside the payables subledger** (9 on `218001`, 1 on `221002`; ฿12,969.27) | A subledger-to-ledger reconciliation difference |
 | **P11** core reconciliation | The **series-18 vs series-19 same-shape / different-cause** result, and the fact that five "not reachable" P01 findings collapse to **one** configuration setting | Prevents P11 double-counting five findings that are one decision |
 | **P11** | `stock_move.created_purchase_request_line_id` — requisition identity survives into the goods movement in this deployment | Lineage P11 needs; offered as an observation, **not** a design position |
