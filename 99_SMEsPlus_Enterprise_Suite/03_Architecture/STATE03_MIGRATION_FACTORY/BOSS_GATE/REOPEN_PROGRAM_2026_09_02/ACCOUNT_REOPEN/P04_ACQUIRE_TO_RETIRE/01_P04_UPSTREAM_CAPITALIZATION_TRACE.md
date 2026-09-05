@@ -755,6 +755,36 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.32 The census closed in the other direction
+
+`P04-F-130` tested what the census **admitted**. It did not test what the census
+could have **missed** — and the two are different questions. The census keyed on a
+member named `dump.sql`; a backup whose payload carried any other name, with a
+root `manifest.json` beside it, would never have been recorded and no shape test
+run afterwards could find it, because it was never a candidate.
+
+> **P04-F-131.** **Zero archives on this host have a root `manifest.json` without
+> a root `dump.sql`.** Every `.zip` ≥ 1 MB under the declared roots was listed and
+> tested for the inverse shape. **None.** Control published: a known Odoo backup
+> shows **root `manifest.json` = 1 and root `dump.sql` = 1**, so it is correctly
+> *excluded* from the candidate set — the test is capable of returning a name it
+> is looking for, and returns none.
+>
+> **So `P04-F-126`'s 39 is now bounded in both directions** under its declared
+> path set, size floor and signatures: nothing admitted that should not have been
+> (`P04-F-130`, two rejected), and **nothing missed that should have been**
+> (this finding, zero candidates).
+>
+> **The asymmetry is worth naming because it is the one every tightening in this
+> thread shared.** Tightening a predicate can only ever *shrink* what it admits —
+> so each of `P04-F-127`, `-129` and `-130` could confirm the census was not too
+> loose, and **not one of them could show it was not too narrow.** That needs the
+> inverse test, and it had not been run. **A discriminator validates the set it
+> accepted; only its complement validates the set it never saw.**
+>
+> Class: **FACT VERIFIED (negative)**, every zip ≥ 1 MB under the declared roots,
+> control published.
+
 ### 6A.31 The shape test, applied systematically to my own census
 
 P07 applied the shape discriminator to its 22 and reached **20** — **finding the
