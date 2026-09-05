@@ -54,8 +54,46 @@ Every blocker ends as **exactly one** of the ten permitted statuses. No vague st
 | **A Boss decision, no research closes it** | `P11-B-02` event identity, `GB-08`, `BLK-07`, `JT-03`, `P11-B-05` contract scope, `P11-B-06` absorption relief | — |
 | **Business-SME input — no AI may answer** | `SME-Q-02`, `SME-Q-03` → `JT-04`, `JT-05` | — |
 | **Thai statutory** | `TH-NEW-01`, `TH-NEW-02`, `TX-H01`…`TX-H07` | Authoritative evidence only |
-| **A running instance** | `MCU-01`, `MCU-19`, `MCU-20`, `T0-03`, `T0-07` runtime half, the live FIFO-return test | — |
+| **A running instance** | `MCU-01`, `MCU-20`, `T0-03`, `T0-07` runtime half, the live FIFO-return test | Executed runtime behaviour has no substitute |
+| **CORRECTED — `P11-F-09`** | ~~`MCU-19`~~ | **`MCU-19` is a DATABASE question, not a runtime one** — *"does any migrated/restored **database** hold a rate row whose company has a parent?"* **Readable PostgreSQL dumps exist on this host.** Cost restated: **`UNKNOWN, plausibly cheap`**, not *a running instance*. **Not answered here** — see the declared boundary below |
 | **Peer publication** | `P11-B-01`, `P11-B-10`, `P11-B-12`, and 15 of the 30 withheld cells | `P01`–`P10` |
+
+### `P11-F-09` — a capability claim in P11's own register, tested and found over-stated
+
+Prompted by `P04` @ `7d4ca03`, applying `P07`'s generalisation of `P04-REV-19`: **a statement that
+something is unavailable to this session is a capability claim, and a capability claim is evidence.**
+`P04` applied it to its own *"no database access was attempted"* and recovered two findings from
+evidence it had declared away.
+
+**P11 tested its own analogous classification. Executed this session:**
+
+| Check | Result |
+|---|---|
+| Readable PostgreSQL dumps on this host | **Yes — 4+**, in `~/Downloads` and subdirectories |
+| `pg_restore` / `psql` installed | **Yes** |
+| `BK12MAY26_2026-08-03` archive header | **readable** — Dump Version `1.14-0`, **19,957 TOC entries** |
+| `iTEST02_2026-07-14` archive header | **NOT readable** — *"unsupported version (1.16) in file header"* |
+| Table-data extraction | **NOT PERFORMED — refused by this session's permission boundary** |
+
+> **Boundary declared, so this is not read as more than it is.** P11 established that database
+> evidence **exists and is at least partly readable**. P11 did **not** establish that `MCU-19` is
+> answerable from it, because the extraction was refused. The honest cost is **`UNKNOWN, plausibly
+> cheap`** — and the previous *running instance* classification was a capability claim P11 never tested.
+
+**Two facts that outlive `MCU-19`:**
+
+1. **Readability is not uniform** — one dump is readable by the installed client and another is not, on
+   a version boundary. *"Database evidence is available"* and *"no database access"* are **both** wrong;
+   the true statement is **per artefact**.
+2. **This is the programme's recorded failure mode, not a new one.** The lineage already carries
+   *never declare no code access from a working-tree search*, and a prior process missed these same
+   dumps with four independent challenges missing it too. **P11 inherited it into a Boss-facing cost
+   column.**
+
+**Intake note for the Boss and for `P01`–`P10`.** If peer packages have collectively treated database
+evidence as unavailable, that is a **capability claim across the programme**, and it is testable per
+artefact. **P11 asserts nothing about what any other package did** — `P04` declined to, having twice
+asserted a third package's behaviour unverified, and P11 committed the same error at `P11-E-20`.
 
 > **The cheapest column is also the most leveraged.** Four queries and three declarations —
 > **hours of mechanical work, no new research** — would close or re-scope `Q-01`, `Q-02`, `Q-04`,

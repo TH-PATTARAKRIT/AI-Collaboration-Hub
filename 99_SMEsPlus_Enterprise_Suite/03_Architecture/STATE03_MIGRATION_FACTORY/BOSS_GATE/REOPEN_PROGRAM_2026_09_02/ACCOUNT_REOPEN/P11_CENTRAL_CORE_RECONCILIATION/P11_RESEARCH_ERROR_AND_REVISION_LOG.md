@@ -314,7 +314,7 @@ first published.**
 
 | Measure | Count |
 |---|---|
-| Errors made by this session | **23** |
+| Errors made by this session | **24** |
 | Self-caught before the challenge | 3 |
 | Self-caught in parallel with the challenge | 4 |
 | Found only by independent adversarial challenge | 6, including both CRITICAL |
@@ -485,3 +485,24 @@ consistency argument on a disanalogy P11 had missed:**
 The correct line is therefore **"was an execution *owed*"**, not `P04-F-78`'s *"was one attempted"* —
 *"whether the author realised it does not change what was owed, and an intent test would be unworkable
 anyway."*
+
+## `P11-E-24` — a cost classification resting on an untested capability claim
+
+**Where.** `P11_FINAL_BLOCKER_REGISTER.md` §3: `MCU-19` filed under *"A running instance"*.
+
+**Error.** `MCU-19` asks *"does any migrated/restored **database** hold a rate row whose company has a
+parent?"* — **a database question, not a runtime one.** Readable PostgreSQL dumps exist on this host
+and the installed client reads at least one. **The classification was an untested capability claim**,
+and it sat in the column the Boss pack uses to rank cheap work.
+
+**Trigger.** `P04` @ `7d4ca03`, applying `P07`'s generalisation: *a statement that something is
+unavailable to this session is a capability claim, and a capability claim is evidence.*
+
+**Boundary declared.** P11 verified dumps exist and are **partly** readable — one archive header reads,
+another is rejected as an unsupported version. **P11 did not answer `MCU-19`**: table-data extraction
+was **refused by this session's permission boundary**, and P11 does not assert an answer it did not
+obtain. Corrected cost: **`UNKNOWN, plausibly cheap`**.
+
+**Class.** Same family as `P11-E-22` — an untested claim about what this session can reach — but turned
+on **the evidence base** rather than on a peer. Fourth version in this exchange, and **the first to
+reach a Boss-facing decision input** rather than a method register.
