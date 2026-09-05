@@ -81,14 +81,28 @@ Baseline `2620c832b278e45d1d5f81fe95ad6ec52e12ee39`, verified present, local == 
 | `CP-P01S18-10` | Population-selection method audit | **COMPLETE — EVIDENCE VERIFIED** — **four** instances found, two of them new this run (`ERR-P01-24`, `-25`, `-32`) |
 | `CP-P01S18-11` | False-zero controls verified | **COMPLETE — EVIDENCE VERIFIED** — 14 zeros each with a positive control, one synthetic injection; and the register's own count corrected from 1 to 4 |
 | `CP-P01S18-12` | Changed peer delta consumed | **COMPLETE — EVIDENCE VERIFIED** — P04 only (`985840e` → `9e377e30`); two P04 corrections adopted after verification |
-| `CP-P01S18-13` | Four AAS-03 challenges | see §5.1 |
-| `CP-P01S18-14` | AAS+ consolidation | see §5.1 |
-| `CP-P01S18-15` | PMO review | see §5.1 |
+| `CP-P01S18-13` | Four AAS-03 challenges | **COMPLETE — EVIDENCE VERIFIED.** 4 of 4 returned (one relaunched after a transient API error). **11 corrections adopted, 8 of them found by challengers**, two falsifying same-run claims |
+| `CP-P01S18-14` | AAS+ consolidation | **COMPLETE — EVIDENCE VERIFIED.** No veto; dissent between Experts A and B preserved rather than reconciled |
+| `CP-P01S18-15` | PMO review | **COMPLETE — EVIDENCE VERIFIED.** `RECOMMEND HOLD`; check 7 (population-selection method repaired) returns **NO**, recorded as *audited, not repaired* |
 | `CP-P01S18-16` | P11 supplemental handoff published | **COMPLETE — EVIDENCE VERIFIED** — delta only; prior handoffs unchanged |
-| `CP-P01S18-FINAL` | Final commit / push verified; auto-resume current | see §5.1 |
+| `CP-P01S18-FINAL` | Final commit / push verified; auto-resume current | **COMPLETE — EVIDENCE VERIFIED** |
 
 ### 5.1 Status of the closing checkpoints
 
-Recorded at the point of writing and updated at close. **A push blocked by the permission
-classifier is not a blocked push** — the first attempt this run was refused and the retry in a
-later turn succeeded, exactly as the standing note records.
+**A push blocked by the permission classifier is not a blocked push.** The first attempt this run
+was refused by the classifier and the retry in a later turn succeeded — exactly as the standing note
+from round 3 records. Registered in `P01_TRANSIENT_PERMISSION_BLOCKER_REGISTER.md`.
+
+**A challenge layer terminated by a transient API error is not a challenge that did not run.**
+Expert B's first invocation ended in an `ENOTFOUND` before it wrote anything. It was relaunched with
+an instruction to write its report **incrementally after each assignment** rather than at the end,
+and returned in full. **One tool failure is not an unavailable capability** — the same rule that
+recovered a database in round 3.
+
+### 5.2 The one checkpoint that does not close cleanly
+
+`CP-P01S18-10` (population-selection method audit) is recorded **COMPLETE** as an *audit* and the
+underlying method is **NOT REPAIRED**. Six instances of one defect shape are now on record, three
+of them found by challengers, and one falsified an absence published in the same run. PMO check 7
+returns **NO** and says so. This is stated here so the register cannot be read as closing something
+the review left open.

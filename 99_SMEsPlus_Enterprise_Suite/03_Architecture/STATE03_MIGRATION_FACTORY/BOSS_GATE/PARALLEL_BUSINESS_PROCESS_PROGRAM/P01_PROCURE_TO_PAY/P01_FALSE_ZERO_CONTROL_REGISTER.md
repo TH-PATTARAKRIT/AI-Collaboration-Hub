@@ -65,7 +65,7 @@ the injection was applied to the parsed in-memory structure only.
 
 ---
 
-## 4. FALSE ZERO CAUGHT INSIDE THIS RUN
+## 4. FALSE ZERO CAUGHT INSIDE THIS RUN — `NEAR-MISS-P01-05`
 
 **What happened.** `scgl_product_category_company_rel` was queried with assumed column names
 `product_category_id` and `res_company_id`. The aggregate returned a clean, well-formed
@@ -216,7 +216,7 @@ provenance**. Reporting them identically would erase evidence about intent.
 
 ---
 
-## 7. A FALSE **POSITIVE**, RECORDED FOR SYMMETRY
+## 7. A FALSE **POSITIVE**, RECORDED FOR SYMMETRY — `NEAR-MISS-P01-06`
 
 The controls in this register defend against zeros. This run also produced a non-zero that was
 wrong in the other direction, and it is registered here because the class is the same.

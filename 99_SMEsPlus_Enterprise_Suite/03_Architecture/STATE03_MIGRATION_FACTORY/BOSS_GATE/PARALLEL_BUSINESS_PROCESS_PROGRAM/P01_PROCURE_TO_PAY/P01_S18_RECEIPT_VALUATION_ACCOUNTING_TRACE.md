@@ -115,7 +115,7 @@ class AccountMoveLine(models.Model):
 | No bill line posts to a clearing or valuation account | **correct** | **correct** |
 | Why | *the code does not exist in this generation* | **the code exists and is gated by two configuration values** |
 | Gate 1 — `anglo_saxon_accounting` | not considered | **already `true` in company 1** |
-| Gate 2 — `valuation == 'real_time'` | — | closed everywhere (126/126 × 4/4) |
+| Gate 2 — `valuation == 'real_time'` | — | closed on 126/126 categories; **measured** in the 2 transacting companies, **configured identically** in the 2 never-transacted ones (`ERR-P01-35`) |
 | `accounts['stock_input']` truthiness | — | **already 176 on 126 of 126 categories in company 1** |
 
 **Note the difference this makes.** The first version implied the deployment is *structurally

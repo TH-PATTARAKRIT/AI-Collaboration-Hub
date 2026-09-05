@@ -67,7 +67,7 @@ tree at `/Volumes/iMacSys/97_OCC_PROJECT_WHT_CONTROL/`. It **does not appear in
 `ir_module_module` at all** — not installed, not uninstalled, never on this deployment's addons
 path.
 
-**CLASSIFICATION: EXISTS — NOT DEPLOYED.** Recorded so that no future round reads its source and
+**CLASSIFICATION: EXISTS — NOT DEPLOYED.** *(Boundary: the deployment side is a complete read of `ir_module_module` — 1,369 rows, and the module is not among them in any state. The source side is bounded by the corrected path set of `ERR-P01-38`; "exists" is a positive claim and needs no wider boundary.)* Recorded so that no future round reads its source and
 attributes its behaviour to this deployment. That is exactly `ERR-P01-13`.
 
 ### 2.2 Whether P01's series-16 finding concerns this same family — NOT DECIDED
