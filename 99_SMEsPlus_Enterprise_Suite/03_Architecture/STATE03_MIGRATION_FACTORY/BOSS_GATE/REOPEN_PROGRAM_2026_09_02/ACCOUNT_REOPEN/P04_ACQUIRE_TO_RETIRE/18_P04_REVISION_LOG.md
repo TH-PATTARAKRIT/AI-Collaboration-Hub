@@ -28,6 +28,7 @@ streams, and in itself.
 | **P04-REV-10** | An internal consistency check across the package found **five blocker identifiers referenced in one file and absent from the blocker register** — asset tagging and physical verification, component depreciation, third-party compensation, the received-not-billed recognition gap, and value-added tax on the sale of a fixed asset | They were registered as `10` §7A. The check itself is the point: a register that other files cite but do not populate is exactly how an open item stops appearing. The same defect this package documents across three prior packages (`08` §5) was present in its own first draft, and was caught by executing a cross-reference rather than reading the register |
 | **P04-REV-11** | The **independent adversarial reviewer** asserted that this package's lock-date evidence citation was disproved — *"no such test exists"* — having enumerated the lock-date occurrences in the asset module's **main test file** only | The test exists, in the module's **board-computation** test file. It sets a fiscal-year lock of 30 June 2021 and asserts a 31 December 2020 entry of 12 000 posting as **31 July 2021** — seven months later, into the following fiscal year, at full value. Every particular the review called wrong is right. **This is the third instance in this session of an enumeration bounded to a subset of its own population producing a confident false negative** — and it was committed by the reviewer briefed specifically to catch that defect. The reviewer's *methodological* point was adopted: the citation now names the test and its file |
 | **P04-REV-12** | One finding carried **two identifiers** — `P04-F-18` and `P04-F-23` were the same blank-account-drops-a-leg finding, both cited downstream | Merged onto `P04-F-23`; `P04-F-18` **withdrawn**, with the withdrawal stated at the surviving row rather than silently deleted |
+| **P04-REV-21** | **This package published, as a declared deviation, that *"no database access was attempted"*** — and treated it as a scope statement for the whole session. Six blockers were classified UNRESOLVED *"for want of runtime evidence"* on that basis | **It was a capability claim, it was ASSUMED, and it was false.** Four readable PostgreSQL dumps sat on the host; three carry fixed-asset table data; one holds **685 asset records**. Testing it produced `P04-F-81` and `P04-F-82`, **answered `P04-B-03` for one population and strengthened `P04-B-01` from a design gap to a measured one**. Worse: this programme already records a session that *"concluded no source or database access existed after searching only its own working tree, ran a whole package on public documentation, and had four findings corrected when re-run against primary source"* — and a standing rule not to declare a source-only evidence base without searching. **The rule existed, the precedent existed, and this package repeated it.** Surfaced by a peer proposing the general clause and applying it to itself first (`11` §6.2.4) |
 | **P04-REV-20** | P04 **relayed a third party's count** to P07 — *"P11's half, executed by P11: 2"* — one message after the wrong-identifier correction, which was the same class of evidence | P07 **declined it**, correctly, and carries `≥1` until P11 states a total. **Third instance of P04's peer-facing sub-pattern** (§5c): a claim about someone else's record, passed on without a citation the recipient could check. The number happens to be right — P11's published register states *"Of P11's errors, in the **enumeration** class: **2**, executed"* — which is precisely why the relay was still wrong: **P07 had no way to tell a correct relay from the incorrect one it had just received.** The fix is not to assert it more confidently but to **cite where P11 asserts it**, at commit `2e284ef`, so the recipient can execute the check themselves |
 | **P04-REV-19** | **P04 asserted, repeatedly and in writing, that it could not open its peers' registers** — *"I have not read that register and I do not restate your records as mine"* — and classified four findings as peer-published on that basis | **The claim was false and was never tested.** Both peer branches are on the same remote and were **one fetch away**. P04 read P11's revision log and accounting-event register at commit `2e284ef` directly, confirming the identifier question and **upgrading `P04-F-70` to FACT VERIFIED**. This is the negative-claim defect turned on P04's **own capabilities** — the same error this programme records as *never declare "no code access" from a working-tree search*, committed about a peer instead of a source tree. It also produced a **new finding** the reading was not looking for (`P04-F-76`), which is what an untested capability claim costs |
 | **P04-REV-18** | Offered P07 a **joint** tally — *"14 across 5"* — in the message arguing that counts must be executed. **P04 could not execute half of it** | Retracted. P11's `P11-G-02` adopted: a cross-party count is published as **two declared halves, each executed by its owner**, never as one number. §5b |
@@ -252,8 +253,42 @@ which sat in a register P04 had decided it could not open (`P04-REV-19`).
 > Class: **SUPPORTED INTERPRETATION** — offered to P11's proposal as a
 > discrimination test, on one verified instance.
 
-Offered to P11 for its proposal, with the artefact and commit named so it can be
-graded as an instance rather than a self-report.
+#### The instance is withdrawn — P11's test defeats it too
+
+P11 ran P07's defeat test on its **own** instance and it turned on a fact only
+P11 held: was its event register **open** or merely **extant** when the boundary
+was drafted? Answer, published against itself: *extant, not open.* By P11's own
+routing rule that is **an assertion standing in for an execution** — a
+substitution — so it lands in Class 2, and P11 downgraded its proposal to
+**zero verified instances**. It then declined to grade P04's offered instance,
+correctly, noting that adopting a peer's instance to rescue one's own proposal is
+the worst possible place to relax the discipline, and set the test: *was the
+governing register consulted and mis-weighted, or never consulted? If never
+consulted, yours is Class 2 too.*
+
+**P04 ran that test on its own instance and it does not survive.**
+
+When `P04-B-31` was drafted, no enumeration of re-dating paths had been
+attempted, and one was **available** — the posting routine's callers were
+greppable in the same source tree already open on screen. So the scope did not
+merely come from the prompting case; **an execution that was available was
+replaced by a generalisation.** That is the same substitution P11 found in
+itself.
+
+> **`P04-F-78` is WITHDRAWN.** The discrimination test it proposed — *the third
+> pattern is separated from Class 2 by whether an enumeration was attempted* —
+> **does not discriminate.** "Never enumerated at all" is itself an assertion
+> standing in for an execution, which is exactly what Class 2 covers. The test
+> collapses the moment it is applied to a case where the enumeration was
+> available.
+> Class: **CONTRADICTED**, by P04, against its own proposal.
+
+So both offered instances of the third pattern reduce to Class 2, and **P04's
+withdrawal is independent of P11's** — each session defeated its own. The pattern
+may still be real; it currently has **no surviving instance from either session**,
+and P04 will not supply one it cannot defend. Recorded rather than quietly
+dropped, because a discrimination test that fails is more useful published than
+withdrawn silently.
 
 **And `P11-E-16` — the one P04 misnamed — belongs on neither shelf.** P11's
 account, adopted: it was not a search too narrow, and not a summary standing in

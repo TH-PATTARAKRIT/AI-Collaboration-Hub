@@ -329,6 +329,101 @@ not.
 
 ---
 
+## 6A. DATABASE EVIDENCE — obtained after this package declared it unavailable
+
+This section exists because a peer process proposed a clause — *a statement that
+something is unavailable to this session is a capability claim, and a capability
+claim is evidence: test it before relying on it* — and applying it to this
+package's own declared deviation found the deviation false. See `18`
+`P04-REV-21`. The evidence below was one directory listing away for the whole
+session.
+
+### 6A.1 What was found
+
+Four PostgreSQL custom-format dumps on the host, all readable with standard
+tooling. Three carry fixed-asset table data.
+
+| Database | Dated | Generation signature | Asset rows |
+|----------|-------|----------------------|------------|
+| `iSMEs` | 2026-07-11 | **older line** — carries an `asset_type` column that the v18 source tree does not define | **685** |
+| `iEVING` | 2026-07-23 | **v18 line** — no `asset_type` | 36 |
+| `BK12MAY26` | 2026-08-03 | **v18 line** — no `asset_type` | 36 |
+| `iTEST02` | 2026-07-14 | — | no asset table data |
+
+**Scope, stated before any finding.** None of these is `idemo18_uat`, the database
+the runtime capture in §6 came from. Nothing here closes a blocker that names that
+database. Two of the three are a **different product generation** from the v18
+source tree this package's behavioural findings rest on. Every statement below is
+bounded to the database named in it.
+
+### 6A.2 The day convention, across generations
+
+| Database | `constant_periods` | `daily_computation` |
+|----------|-------------------|---------------------|
+| `iSMEs` — 669 real assets + 16 templates | **2** | **683** |
+| `iEVING` — 36 rows, **all templates, zero real assets** | **36** | 0 |
+| `BK12MAY26` — 36 rows, **all templates, zero real assets** | **36** | 0 |
+
+> **P04-F-81.** The operational population runs on **daily computation** (683 of
+> 685 in the only database holding real assets), while **every asset template in
+> both v18-line databases is on `constant_periods`** — the product default, and
+> the convention the operational population does **not** use.
+> Templates govern the configuration of assets created from them. So the
+> databases that would seed new assets are seeded with the **opposite**
+> convention to the one in production use.
+> Class: **FACT VERIFIED**, bounded to the three databases named.
+
+This is the concrete form of a risk two prior packages stated in the abstract:
+the two conventions **agree annually within 0.05 %**, so an annual reconciliation
+**cannot detect** a wrong setting. Here is a population of templates carrying the
+setting that prior work identified as the wrong one for this business, in
+databases nobody had opened. It does **not** close inherited blocker `BLK-01`,
+which names `idemo18_uat`; it gives that blocker a second population and makes
+its consequence concrete rather than theoretical.
+
+### 6A.3 The source-document link — `P04-B-03` answered for one database
+
+`P04-B-03` recorded that whether any live asset carries a link to a source vendor
+bill was **not observable**, because the runtime capture's 12-field list omitted
+the relation. In `iSMEs` it is directly observable.
+
+| Measure | Count |
+|---------|-------|
+| Asset records, excluding templates | **669** |
+| Rows in the asset-to-journal-item relation | 33 |
+| **Distinct assets carrying any source-line link** | **22** |
+| **Assets with no link to any source document** | **647 — 96.7 %** |
+
+> **P04-F-82.** In this database, **fewer than 4 % of asset records carry any
+> link to a source journal item.** The upstream trace described at §4.4 is not
+> merely *unstored* — for the overwhelming majority of this population **the
+> first hop does not exist**, so no traversal can reach a purchase order however
+> it is written.
+> Class: **FACT VERIFIED**, bounded to `iSMEs` at 2026-07-11.
+
+This converts `P04-B-01` from a design observation into a measured one: the
+mandatory rule *always trace a financial fact to its initiating business event*
+is not merely unsatisfiable from stored asset data by construction — in the one
+asset population this session could measure, **it is unsatisfiable in fact for
+96.7 % of records**.
+
+`P04-B-03` is **answered for `iSMEs` and remains open for `idemo18_uat`**.
+
+### 6A.4 What this does and does not do to the blocker set
+
+| Blocker | Effect |
+|---------|--------|
+| `P04-B-03` | **Answered for one database**, open for the one it names |
+| `P04-B-01` | **Strengthened from design gap to measured gap** (`P04-F-82`) |
+| `BLK-01` (inherited) | **Materially advanced, not closed** — a second population, and the template-versus-population split made concrete (`P04-F-81`) |
+| `P04-B-02` (origin mechanism) | Not answered — requires the external-identifier table, not extracted this session |
+| `P04-B-16`, `B-18`, `B-19`, `B-28` | Unchanged. They concern v18 behaviour; the only database with real assets is an older generation |
+
+**The honest summary: one blocker answered for one population, one strengthened,
+one advanced, four unchanged — and the reason four are unchanged is a real
+generation mismatch, not an absence of evidence.** That is a different sentence
+from *"no database access was attempted"*, which is what this package published.
+
 ## 7. Thai acquisition forms the estate does not model
 
 Two acquisition forms that are ordinary in Thailand have **no host** in this

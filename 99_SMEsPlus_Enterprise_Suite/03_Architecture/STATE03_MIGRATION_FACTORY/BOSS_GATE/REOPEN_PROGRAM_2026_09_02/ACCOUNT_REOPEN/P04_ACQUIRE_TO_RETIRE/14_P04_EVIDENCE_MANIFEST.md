@@ -51,7 +51,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | File | SHA-256 |
 |------|---------|
 | `00_README_LAYER_AND_METHOD.md` | `949b9d843ec0d8a0e8d6b119585b27a93915e6b4b942fdac98fac6e70b26ec8b` |
-| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `89bfd8b2a8d06e89b2f140d4b9a03de4277e49b5f7673271a37a8ee7dc518aae` |
+| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `bf467b070b76fef111d81cc5741944b4be28bd666a9b368cba9687b7d23d6f31` |
 | `02_P04_ASSET_LIFECYCLE_MAP.md` | `561118e4b1e312b6ff3cfab4f350db256c1f8b6b8364d9975e4286eef4c742f0` |
 | `03_P04_ASSET_EVENT_REGISTER.md` | `ed31187344fa46246cf5c3f59c9444a212ad454b0ee62bb360dc2fcf81ad2a51` |
 | `04_P04_ASSET_TO_GL_MATRIX.md` | `f97d5e4239b9fd1eb4ed4bbce5a03173185f2df336ec5c9f234c30b944531dd6` |
@@ -60,14 +60,14 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `07_P04_DISPOSAL_DERECOGNITION_MATRIX.md` | `73498c37afaceb7557a1a4f304eeb7a53c943bf77364926f85e69038c756b413` |
 | `08_P04_PRIOR_EVIDENCE_RECONCILIATION.md` | `e5970d358e188c1e0f5b99c8138f5cb09610b09885bf6b80ea51be4fbef780fe` |
 | `09_P04_BOSS_DECISION_REGISTER.md` | `ed7c666609c4671dff808d313b7eab6f79303903dd99b3e8abab5c29007c8005` |
-| `10_P04_BLOCKER_REGISTER.md` | `bc06a44bcd35d8969fb323667fc0a0432d3df65bc8975f9bbd1a79175f84c8da` |
+| `10_P04_BLOCKER_REGISTER.md` | `1728482013660ef20be112ee96729365c5af02667cd275885861c9230aeb178f` |
 | `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `066fb43f0a10d57a3c2fcb9ba622631ec0ff66c95de90fbac4c71be8b317fd23` |
 | `12_P04_CONTRADICTION_REGISTER.md` | `4a54d8b13cfff34602ef2d1c9a2c10b8a43934ff943dfaf4cad6904874038e79` |
 | `13_P04_SOURCE_LINK_REGISTER.md` | `69084e95d38bd5840ba34f87fc25dba792143eaa6e199797220e390ef8c4e652` |
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
 | `16_P04_AAS_PLUS.md` | `bb390948cde39c310571ab732a2ed3046cb81329996926e672fa64a8492a4320` |
-| `17_P04_PMO.md` | `5396e1533e92025316d8a3cb63df538321486b97ec4664309a3eddf69731db9e` |
-| `18_P04_REVISION_LOG.md` | `67cd2a2d701fe98f3598f6d644e49a96940a77ce5b250a736f4efd8a4f3f411f` |
+| `17_P04_PMO.md` | `1bbc6d0a5c767410c865079dfe709f4aa9270d0f08d285d1fab9ec201a012d40` |
+| `18_P04_REVISION_LOG.md` | `f4bb128149a9a7fd1c9c83ca29bb7507e00fa3e8669956ec5d9f16747005fa63` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `1f635cba7e22be8e4001c877e9638c8ec918f695fba0ee68cb319132bc194eda` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `1a9a822ba1084ec34107787490ac248e3fdc127ac32a91af14a11e19c5d1145b` |
 
@@ -77,6 +77,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 |----|------|-----------------------------------|
 | `EV-CODE` | Reference ERP v18 Enterprise, build `20250608` | **790 installable modules** (791 directories, one carrying no manifest and no content). The figure `797` quoted by prior packages is an entry count |
 | `EV-CUST` | Project custom addon set, v18 line | **65 directories** (68 entries) |
+| `EV-DB` | **Four PostgreSQL dumps on the host, three carrying asset data** — `iSMEs` (685 assets, older generation), `iEVING` and `BK12MAY26` (36 templates each, v18 line), `iTEST02` (no asset data) | **Read this session, after the deviation claiming no database access was tested and found false** (`18` `P04-REV-21`). None is `idemo18_uat`; the only database with real assets is an older generation |
 | `EV-RT` | Runtime read-out, 2026-08-26, UAT database | Population query **unbounded** (280 returned). External-identifier query **restricted to 26 hand-picked names** — not a population statement. Field list **12 fields**, omitting the source-document link |
 | `EV-HND` | Asset Actual Mapping handoff, 2026-08-26 | Project record |
 | `EV-P1/P2/P3` | Three prior Asset packages | Commits `57cdb99`, `6c7512e`, `a852b6e`; heads `57cdb99`, `78067d2`, `54db9e1`. All branches intact and unmerged |
@@ -86,10 +87,10 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **79** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
+| Findings (`P04-F-nn`) defined | **81** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **45** — 3 re-registered from the handover residue, 42 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
-| Revisions | 20 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
+| Revisions | 21 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
 | Recurrences of the enumeration / unit defect | **9 instances across 4 actors — P04's declared half**, enumerated row by row with the unit declared. **Five are this package's own**, three of them inside the section documenting the defect. **No joint total is published**: a cross-party tally cannot be executed by either party (`18` §5b, adopted from P11). A peer's attribution error is **excluded** and assigned to the secondary-source class; the boundary is argued at `18` §5 |
 | Expert disagreements preserved | 4 new · 7 inherited and re-opened · 2 between this session and the independent reviewer |
 | Scope determinations | 14 objects and 10 operations classified; 2 on **HOLD — SCOPE EVIDENCE REQUIRED** |
