@@ -44,6 +44,54 @@ extended: **a surprising result in either direction is re-run in a second form.*
 Recorded at commit `9b1006b`. The table said P01/P02/P03 had no committed output; five peers pushed
 while the session ran. Accurate when written, wrong at publication. Corrected in `12 §3`.
 
+### `RE-10` — **the `TX-20` mechanism was inverted** *(published, then contradicted by review)*
+
+| | |
+|---|---|
+| **Published** | `25 §3`: *"4,081 of 5,201 certificates — 78.5% — carry a date that is not the payment date"*, attributed to the certificate `date` being set from a create-time default. Promoted to `FACT VERIFIED` and carried into `30 §3 H-P07-3`, `33`, and the commit message. |
+| **What is true** | `payment_date == create_date::date` in **5,201 of 5,201 rows — 100.00%**. Joined to the real payment date (`account_payment.move_id → account_move.date`, 3,794 certificates, 0 unjoinable): `cert.date` is **correct in 97.79%**; `cert.payment_date` is correct in **16.05%**. The deltas are **negative** — certificates are keyed *before* the payment is dated. |
+| **The error** | The author compared two columns and **assumed which one was the truth**, without ever joining to the payment. The column named `payment_date` was taken to mean the payment's date because of its name. |
+| **Caught by** | AAS-03 Expert 2. Not by the author. Every counter-measurement was then re-run by the author and reproduced exactly. |
+| **Disposition** | Original claim class **E — CONTRADICTED**. The corrected finding is retained and is arguably worse: a `NOT NULL` column named `payment_date` **carries no payment information in 100% of rows**. |
+
+### `RE-11` — **`TX-13` was overstated roughly thirtyfold**
+
+| | |
+|---|---|
+| **Published** | *"32 payments hold multiple live statutory certificates with no substitution link between them"*, one carrying nine. |
+| **What is true** | 21 of the 32 are **one certificate per distinct supplier** on bulk payment runs — a certificate is issued per payee, so N payees require N certificates. That is correct behaviour. Of the 11 same-supplier groups: 8 are different withholding **rates** (1% / 3%), 2 are `done`+`draft` pairs, and **1 is a genuine exact duplicate** (payment 659, certificates 124/126, identical number `JRCSH12023100176`, identical line). |
+| **The error** | Two compounding mistakes: the author filtered `state != 'cancel'`, which **admits `draft`**, and never grouped by supplier — so it counted a legitimate multi-payee structure as duplication. |
+| **Caught by** | Expert 2. Author-verified: every figure reproduces. |
+| **Disposition** | Original figure class **E**. `TX-13` survives as a **control defect with one production instance** — the schema half is confirmed (`DB-01`: no UNIQUE, no index) and one duplicate proves reachability. It is no longer a mass-duplication finding. |
+
+### `RE-12` — a negative contradicted by the package's own declared roots, for the second time
+
+`25 §4` stated *"`iTEST02` (v19) holds 0 certificates and `iEVING` holds 0, so no v19 population
+exists to measure."* The enumeration was **author-chosen** rather than driven by the registry set the
+package had already declared one file earlier: it omitted `BK12MAY26`, listed at `24 §2` as v19
+registry `R-d` with the certificate module installed. `BK12MAY26` holds 1 certificate. Class **E**.
+
+This is the **second** instance in this package of a negative claim contradicted by a root inside its
+own declared path set — the first was `21 NC-E-05`, where `NC-A` was bounded to `ENT18/addons` while
+`addons_archive` sat in the same declared path set. **The same defect, twice, in the same package,
+after it had been written up.** The denominator rule (`POPULATION + PATTERN + PATH SET + UNIT`, none
+author-chosen) does not fail because it is unknown here; it fails because the author re-chose the set
+at the moment of making the claim instead of iterating the declared one.
+
+### `RE-13` — a schema read that could only ever return a false negative
+
+The author read the certificate schema with `pg_restore -s -t withholding_tax_cert`. That returns
+**only** the `CREATE TABLE` statement: constraints, indexes and foreign keys are separately-named
+archive objects which the `-t` filter **excludes**. Verified — the filtered extract yields **0**
+matches for `CONSTRAINT|CREATE INDEX`; the unfiltered schema yields a primary key, ten foreign keys,
+and the fact that no index exists.
+
+**Any "no constraint exists" conclusion drawn from `-s -t` is unfalsifiable by construction** — the
+command cannot produce the evidence that would refute it. This is the *executed-not-quoted* defect
+class in a new disguise: the command ran, the output was real, and the output could not contain the
+answer. The rule is extended: **before accepting a negative from a filtered extract, prove the filter
+can express a positive.**
+
 ## 2. Revisions Forced by the New Evidence
 
 | ID | Revision | Effect |
@@ -65,9 +113,22 @@ and the full commit lineage.
 
 ## 4. Corrections Made to the Continuation's Own Artefacts
 
-Recorded after the four fresh AAS-03 challenges reported; see `36 §3`.
+`RE-10`..`RE-13` above are all corrections to artefacts **this continuation published**, all four
+raised by the single AAS-03 challenge that completed, and all four author-verified before adoption.
+`25 §3` and `§4` were rewritten in place with the original claims struck through rather than deleted.
 
-## 5. Standing Method Controls, updated
+**Downstream propagation of `RE-10`/`RE-11` was checked and corrected:** the contradicted figures had
+already been carried into `30 §3` (`H-P07-2`, `H-P07-3`), `33 §2`, `26 §3` and the commit message for
+`f0037b8`. Those are corrected in the same commit as this log. The commit message for `f0037b8`
+cannot be rewritten without rewriting published history, so it stands as-is and is **corrected by this
+entry** — a reader of that commit message must read `39 RE-10`/`RE-11` alongside it.
+
+## 5. Independent-Review Coverage Actually Achieved
+
+The continuation directive required all four AAS-03 experts to challenge the closure results.
+**Only one of four completed.** See `36 §1` — this is reported as a shortfall, not absorbed.
+
+## 6. Standing Method Controls, updated
 
 | Control | Origin | Status |
 |---|---|---|
@@ -75,4 +136,8 @@ Recorded after the four fresh AAS-03 challenges reported; see `36 §3`.
 | Declare POPULATION + PATTERN + PATH SET + UNIT for every enumeration | project standard | in force; the unit omission was itself caught by a reviewer (`16 §3` #14) |
 | Never upgrade a class B/C/D negative to class A | project standard | in force |
 | **Search for evidence at rest, not only for live access** | **`RE-07`, new** | **adopted.** Before any "no access" claim: enumerate dumps, exports, snapshots and archives, and state the search boundary. |
+| **Never assume which of two columns is the truth — join to the authority** | **`RE-10`, new** | **adopted.** A field's *name* is not evidence of its content. |
+| **Decompose a count before publishing it as a defect** | **`RE-11`, new** | **adopted.** Group by the dimension the business rule actually keys on before calling a multiplicity a duplicate. |
+| **Iterate the declared root set; never re-choose it at claim time** | **`RE-12`, second instance** | **adopted.** The claim's enumeration must be generated *from* the declared path set, not retyped. |
+| **Prove a filter can express a positive before accepting its negative** | **`RE-13`, new** | **adopted.** Extends *executed-not-quoted*: a command that cannot produce refuting evidence cannot support a negative. |
 | Independent review inside the phase, disjoint, adversarial, briefed to report errors in the brief | project standard | in force; produced 18 brief errors in round 1 |

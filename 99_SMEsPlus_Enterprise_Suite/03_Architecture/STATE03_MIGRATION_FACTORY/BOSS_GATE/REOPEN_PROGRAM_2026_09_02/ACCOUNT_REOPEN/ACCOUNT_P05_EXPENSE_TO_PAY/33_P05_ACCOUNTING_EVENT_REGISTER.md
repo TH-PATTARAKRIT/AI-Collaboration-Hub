@@ -18,7 +18,7 @@ Supersedes `03 §2` as the citable accounting-event register; `03` is retained a
 | `AE-11` | Draft entry destroyed on refusal | refuse action | — | — | n/a | LIVE |
 | `AE-12` | Entry force-cancelled from a non-accounting document | raw `state` write | `cancel` | — | **lock yes; hash lock NO** | LATENT (trigger) / **LIVE (core gap)** |
 | `AE-13` | **Vendor down payment recognised and posted** *(new)* | purchase advance wizard, under `sudo()` | **posted immediately** | wizard date | yes (core) | **LIVE (5 of 5)** |
-| `AE-14` | **WHT certificate issued** *(document, no GL effect)* | certificate wizard | n/a | **create-time default, not the payment date in 78.5% of a 5,201-row population** | n/a | **LIVE (5 of 5)** |
+| `AE-14` | **WHT certificate issued** *(document, no GL effect)* | certificate wizard | n/a | the printed `date` is **correct in 97.79%**; the column named `payment_date` is a **create-time artefact in 100%** of 5,201 rows (corrected — `39 RE-10`) | n/a | **LIVE (5 of 5)** |
 
 ## 1. Recognition Timing — the position, unchanged and reviewer-confirmed
 
@@ -35,7 +35,7 @@ Supersedes `03 §2` as the citable accounting-event register; `03` is retained a
 | `RI-06` | Advance bill dated by the **server's** date, not the user's context date — shifts period assignment across a UTC offset at month and year boundaries | LATENT |
 | `03 §3.1` | Claim accounting date derived from the **clock** in two of three branches; the third computes the first open period **after** the lock and books there | LIVE |
 | `03 §3.3` | On the company-paid branch `date_maturity` falls to **today** while the entry date is the expense date — ageing and entry date diverge by construction | LIVE |
-| `TX-20` | Certificate dated by a create-time default — **4,081 of 5,201** measured | **LIVE, empirically confirmed** |
+| `TX-20` | **Corrected (`39 RE-10`).** The certificate's printed date is sound; the `payment_date` column is a create-time artefact in 100% of 5,201 rows and carries no payment information | **LIVE, empirically confirmed in corrected form** |
 
 ## 3. Correction / Reversal Lifecycle Coverage
 

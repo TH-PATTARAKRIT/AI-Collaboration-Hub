@@ -63,6 +63,13 @@ rather than leaving implicit in a table:
   adjudicate — `TZ-11`'s down-payment leg and `TZ-12`, both in `scgl_purchase_advance_payment` — are
   **live in every one of the five real business databases**, and both are P01's to own.
 
+> **Correction affecting this section (`39 RE-10`, `RE-11`).** An earlier draft cited the withholding
+> certificate findings at figures that independent review contradicted. The corrected position: one
+> exact duplicate certificate exists in 5,201, not 32; and the certificate's printed date is sound —
+> the defect is on a differently-named column. Neither correction changes the reach classification
+> above, and neither adds or removes a tolerance-zero boundary. Recorded because the figures appear
+> in `30` and `33`.
+
 The most consequential P05 output for the programme is therefore a **peer handoff**, not a P05
 finding. Recorded in `30` and escalated in `37 §2`.
 
