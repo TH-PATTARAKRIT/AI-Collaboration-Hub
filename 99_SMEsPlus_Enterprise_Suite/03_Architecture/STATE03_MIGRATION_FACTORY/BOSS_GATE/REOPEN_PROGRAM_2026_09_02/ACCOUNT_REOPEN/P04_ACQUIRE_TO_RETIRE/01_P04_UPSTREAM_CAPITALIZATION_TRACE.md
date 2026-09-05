@@ -755,6 +755,78 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.34 The same file, and the clause that made it vanish
+
+P07 diagnosed the archive independently and **it is the same file** — byte figures
+reproducing exactly, same absent central directory, same collision with a keyed
+identity at a date neither of us holds. It was missed there **twice**: the
+undeclared `Library` prune removed it from the population, and when a later sweep
+did reach the subtree, an `except Exception: pass` in the zip branch **silently
+dropped it** rather than counting it unreadable.
+
+**My census has the identical defect by a different mechanism, and I have
+reproduced it.**
+
+> **P04-F-133.** **My census's zip branch discarded the exit status, so an
+> unreadable archive and a correctly-rejected one are the same event.**
+>
+> The branch is `unzip -l "$f" 2>/dev/null | grep -q 'dump\.sql'`. Run against
+> both cases:
+>
+> | archive | `unzip -l` exit | branch result |
+> |---|---|---|
+> | `odoo-19.0.zip` — readable, genuinely not a backup | **0** | NO MATCH |
+> | `BK12MAY26_2026-06-23` — **unreadable** | **9** | NO MATCH |
+>
+> **Both produce "NO MATCH". One is a correct rejection; the other is a file
+> never inspected.** The exit status distinguishes them and the pipeline throws it
+> away — `2>/dev/null` on a command whose *failure* is the finding.
+>
+> **So the archive was absent from `P04-F-126`'s 39 not because it failed the
+> shape test but because it was never tested**, and nothing in the census output
+> said so. Only the complement sweep found it, and only because that run **counted
+> its own failures instead of discarding them.**
+>
+> **This is the selective null in its quietest form.** `P04-F-124` described a
+> batch reporting absence for some rows — visible as a pattern. This is **one row
+> ceasing to exist**: no wrong value, no anomalous group, nothing to notice. P07's
+> formulation is the one to keep: **the first defect removed it from the
+> population; the second removed the evidence that anything had been removed.**
+>
+> Every sweep in this package now reports its own failure count. `P04-F-127`'s 141
+> was that rule applied to directories; this is the same rule owed to files, and
+> it was not paid until now.
+>
+> Class: **FACT VERIFIED**, both cases executed, exit statuses published.
+
+> **P04-F-134.** **`P04-B-48` and P07's `U-33` are the same artefact, so they are
+> one request rather than two.** Both packages independently found the same
+> damaged archive, gave it the same diagnosis, and reached the same undecidable
+> question — *third snapshot of a keyed identity, or an unkeyed one* — because
+> `BK12MAY26` is a keyed identity in **both** registers (`66d1b52a`), held in both
+> only at 2026-08-03, against this file's 2026-06-23.
+>
+> **Neither of us would have had it alone:** P07 had the file and no name for it —
+> its two defects had erased it from every count — and this package had the name
+> only because the complement sweep counted read failures. **The name identified
+> the file; the file confirmed the name.**
+>
+> **P07's fourth disposition class is adopted here**, because this package's three
+> do not fit it either: not *NOT YET READ* (it has been reached), not *NOT ON THIS
+> HOST* (it is materialised locally), not *EVIDENCE NEVER RECORDED* (it was
+> recorded — the recording is damaged).
+>
+> > **PRESENT AND UNREADABLE** — the evidence exists, is materialised on this
+> > host, and is not recoverable without **changing the estate**.
+>
+> **Consequence for the runtime request at `09` §5A**: it is now **four items in
+> two asks**. `U-20`, `U-29` and `P04-B-47` need **an execution**; `P04-B-48` /
+> `U-33` need **one archive recovered** — and recovering it **answers both
+> packages at once**, which no other item in either register does.
+>
+> Class: **FACT VERIFIED** — same path, same byte figures, same diagnosis,
+> independently obtained.
+
 ### 6A.33 The residue, named
 
 P07's complement sweep returned **zero of the inverse shape across 3,133 archives,

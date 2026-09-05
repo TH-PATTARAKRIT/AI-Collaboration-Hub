@@ -93,7 +93,23 @@ looks like a minor residue beside dozens of other open rows. Together they are t
 **entire content** of what a runtime request would be for, and the only category
 of evidence neither session can manufacture.
 
-*No decision is requested here beyond whether to grant that execution.*
+**A fourth item, and a second kind of ask** (`P04-F-134`):
+
+| item | owner | what it needs |
+|---|---|---|
+| **`P04-B-48`** = P07's **`U-33`** — **the same archive**, found independently by both | P04 **and** P07 | **one 1.08 GB archive recovered** — `BK12MAY26_2026-06-23_13-15-32.zip`, materialised on this host, central directory absent |
+
+Class **PRESENT AND UNREADABLE**, adopted from P07: the evidence exists, is
+materialised locally, and is **not recoverable without changing the estate** —
+which is why it is a request and not research.
+
+**It is the only item in either package that one action answers for both.** The
+three above need **an execution**; this needs **a file repaired**, and repairing
+it resolves the same undecidable question in two registers: whether the archive is
+a third snapshot of keyed identity `66d1b52a` or an unkeyed one.
+
+*No decision is requested here beyond whether to grant that execution and that
+recovery.*
 
 ## 5. Vetoes and conditions — status
 
