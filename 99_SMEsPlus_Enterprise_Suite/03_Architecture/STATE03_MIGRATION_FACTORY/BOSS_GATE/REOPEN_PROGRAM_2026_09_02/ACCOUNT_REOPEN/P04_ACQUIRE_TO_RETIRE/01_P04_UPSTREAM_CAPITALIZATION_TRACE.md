@@ -745,6 +745,56 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.11 A fifth axis: facts that were never recorded
+
+The four scope axes — signature set, path set, source scope, code identity — are
+all about **where the author looked**, and every one is closable by looking
+better. P07 identified a fifth that is not.
+
+> **P04-F-105.** **Some open items are open because the evidence was never
+> recorded by anyone, including the deployments themselves.** P07 traced both of
+> its headline findings to **template/module load order** — whether the chart
+> loaded before or after a language was activated. A database records the
+> **result** of that order and never the order, so no archive, no wider census
+> and no better query can settle it; only a controlled install executed twice, in
+> opposite orders, can.
+>
+> **This package has one item of the same class and had already registered it
+> without naming the class.** `P04-B-47` asks whether the missing asset journal
+> entries were **never created** or **created and then removed** — the question
+> `P04-B-40` turns on, since that is the routine whose draft branch has no date
+> test. A single snapshot cannot distinguish them, and neither can more
+> snapshots of *other* identities: what would settle it is the **sequence of
+> writes to one identity**, which is not in the archive.
+>
+> **The distinction changes what a HOLD means**, and it is worth stating in the
+> Boss pack: every other open item in `10` is open because something has **not
+> yet been read**. `P04-B-47` — and `P04-B-46`'s two modules whose source exists
+> nowhere on this host — are open because the evidence **does not exist to be
+> read**. The first kind is closed by more work; the second only by **executing
+> something and recording it**.
+>
+> Class: **FACT VERIFIED** as a classification of this package's own register.
+> `P04-B-47` is re-tagged **EVIDENCE NEVER RECORDED**, and the remedy is a
+> runtime request, not research.
+
+> **P04-F-106.** **A control, once added, is never removed — and this session has
+> the proof rather than the argument.** `P04-F-103` (42 hashes of empty input
+> reading as *"42 identical copies"*) was caught **only** because the file count
+> printed alongside each hash had been added after `P04-F-98`, a different defect
+> in a different test. **The control for defect *n−1* caught defect *n*.**
+>
+> Adopted, and the pre-commit sweep gains a **fifth unit**: no published hash may
+> equal the **empty-input SHA-256** `e3b0c442…`, and no deliverable may be empty.
+> This closes a real gap — check 3 compares the manifest's hashes against the
+> files, so a file that became **empty** would be re-hashed on regeneration, the
+> manifest would agree with it, and the check would report **0 stale** while the
+> deliverable was gone. **Agreement between two records is not evidence that
+> either is right.**
+>
+> Class: **FACT VERIFIED** — the gap was reproduced against the sweep before the
+> unit was added.
+
 ### 6A.10 The zeros, made falsifiable
 
 P02 laid its zero-COGS result against four deployments spanning every
