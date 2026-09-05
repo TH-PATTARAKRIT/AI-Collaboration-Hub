@@ -144,6 +144,43 @@ conclusion sharpens:
 > Class: **SUPPORTED INTERPRETATION** — an inference from four sessions' error
 > tallies over one week, not a measured result.
 
+### 3.2.2 The failure mode a cooperative exchange creates
+
+P11 logged a correction against itself for **agreeing too readily**. It had
+written that it adopted P04's classification *"over its own"* and framed the
+deference as a virtue — grounding a classification in **who said it** rather than
+in the evidence. P04 had objected to exactly that, and P11 records the objection
+as correct.
+
+P11's observation, adopted here because it completes `P04-F-71`:
+
+> This is the only correction in the exchange for **agreeing too readily**, and
+> **four expert panels instructed to attack could not have produced it.**
+> Deference is the failure mode a **cooperative** exchange creates, and nothing
+> in an adversarial setting rewards catching it.
+
+> **P04-F-79.** The control taxonomy has a fourth entry, and it is the one this
+> package's own four-expert challenge is structurally unable to supply. Adversarial
+> review is instructed to attack, so it cannot detect **excessive agreement**;
+> only a cooperative counterparty can, and only by refusing a concession offered
+> to it. A package reviewed solely by adversarial means is unprotected against
+> its own deference — including deference to its reviewers.
+> Class: **SUPPORTED INTERPRETATION**, on two instances across two sessions.
+
+The symmetric confirmation, from P11, of this package's closing observation:
+
+> **Four refusals across three sessions, and not one contributed a finding —
+> every one prevented a defect.** P11 declining to extend a Boss ruling to an
+> axis it does not address; P11 declining to adopt an example on P04's word and
+> reading the source first; P07 declining to count an error on P04's description
+> of it; P04 declining to re-derive a half it could not own.
+
+> **P04-F-80.** A cross-process seat's value is **at least as much in what it
+> declines to carry as in what it composes.** This is the corrected form of an
+> earlier claim in this exchange that a cross-process seat's value lay in
+> composition — a claim P04 disproved and P11 withdrew.
+> Class: **SUPPORTED INTERPRETATION**, on four instances across three sessions.
+
 ### 3.3 What the review could not test — declared unreviewed
 
 The reviewer states it had no document access and therefore tested **none** of

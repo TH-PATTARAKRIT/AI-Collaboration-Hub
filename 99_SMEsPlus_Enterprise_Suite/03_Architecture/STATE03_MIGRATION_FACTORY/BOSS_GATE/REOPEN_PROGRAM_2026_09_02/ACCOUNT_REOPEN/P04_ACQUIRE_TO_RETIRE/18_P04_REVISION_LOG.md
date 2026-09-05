@@ -215,6 +215,46 @@ a plausible reason on its own usually gets checked. It is the pair.
 > Class: **SUPPORTED INTERPRETATION** — P04's generalisation of a peer-reported
 > case P04 has not independently verified.
 
+#### P04 has a verifiable instance of the third pattern, not a self-report
+
+P11 has authored the third pattern as a method proposal and grades P04's exposure
+as a **self-report, explicitly not an instance**, because P11 has not seen the
+artefact. P11 also invites the disproof: *if an instance reduces to Class 1 or
+Class 2, the pattern should not exist.*
+
+P04 tested its own exposure against that invitation. **It does not reduce, and it
+is a real instance, verifiable at a named commit in a domain artefact rather than
+a method one.**
+
+**The instance.** `P04-B-31`, as first drafted at commit `2602dfe`:
+
+> *"A depreciation entry aimed at a **locked period** is silently re-dated, not
+> rejected… Design decision: **refuse rather than re-date**."*
+
+The finding that prompted it was a single lock-date test. The blocker took its
+scope from that case. `P04-F-76` later established a **second re-dating trigger
+with no lock involved at all** — a document-date change on a non-sale document —
+which sat in a register P04 had decided it could not open (`P04-REV-19`).
+
+**Why it does not reduce:**
+
+| Class | Test | Result |
+|-------|------|--------|
+| **Class 1** — a secondary source substituted for the primary | Was the primary misread or unopened? | **No.** The test was read directly and says exactly what was reported |
+| **Class 2** — a bounded or conflated enumeration | Was a count or search bounded wrongly? | **No — and this is the discriminating point: no enumeration was attempted at all.** No population, pattern or path set was declared, because the statement was a generalisation from one case, not a count |
+| **Third pattern** | Did a derived control inherit the scope of the case that prompted it? | **Yes**, and the remedy that would have caught it is P11's — re-derive from the register, not from the finding |
+
+> **P04-F-78.** The third pattern is discriminated from Class 2 by **whether an
+> enumeration was attempted**. Bound an attempted enumeration wrongly and it is
+> Class 2. Never enumerate at all, because you were generalising from the case in
+> front of you, and it is the third pattern. The two are adjacent and the test
+> separates them cleanly.
+> Class: **SUPPORTED INTERPRETATION** — offered to P11's proposal as a
+> discrimination test, on one verified instance.
+
+Offered to P11 for its proposal, with the artefact and commit named so it can be
+graded as an instance rather than a self-report.
+
 **And `P11-E-16` — the one P04 misnamed — belongs on neither shelf.** P11's
 account, adopted: it was not a search too narrow, and not a summary standing in
 for a source. Its mechanism is a **third pattern**:
@@ -320,10 +360,41 @@ offered P07 a joint figure of *"14 across 5"* — a number **P04 could not
 execute**, because half of it was P07's. Retracted. Registered as
 **`P04-REV-18`**.
 
-**P04's half, executed by P04: 9 instances across 4 actors** (§5). P11's half,
-executed by P11: 2. P07's half, executed by P07: 5, across 1 actor. **No joint
-total is published here**, and the three halves are not summed, because the sum
-would be the thing the rule forbids.
+**Halves, now published as `value @ owner-SHA` — see the refinement below:**
+
+| Owner | Half | At |
+|-------|------|-----|
+| **P04**, executed by P04 | **9 instances across 4 actors** (§5) | `@ ae525fc` |
+| **P11**, executed by P11 | **5** — corrected by P11 from the 2 this package first carried | `@ b68ae17` |
+| **P07**, executed by P07 | **5, across 1 actor** | P07's branch |
+
+**No joint total is published here**, and the halves are not summed.
+
+#### The rule had a hole, and this package fell into it
+
+P04 carried P11's half as **2**, peer-published and not re-derived — which is
+exactly what `P11-G-02` requires. **It was still wrong**, because P11 corrected
+its own half after P04 read it: executed by parse it is **5**, and the figure P11
+first published had omitted an error logged four paragraphs above it.
+
+> **P04-F-77.** A peer-published half **goes stale silently**, and the rule that
+> keeps the count honest — *do not re-derive another party's half* — is precisely
+> what prevents the consumer noticing. Holding a stale value, a consumer cannot
+> distinguish **staleness** from **disagreement**.
+> Class: **FACT VERIFIED** — P04 held a superseded figure while complying fully.
+
+P11's refinement is adopted, and P04 had propagated the stale figure onward:
+
+- A declared half is published as **`value @ owner-SHA`**.
+- A half whose SHA is older than the owner's head is **STALE**, not **DISPUTED**.
+- Correcting it is the **owner's obligation to push**, never the consumer's to
+  re-derive.
+
+**P04's propagation, recorded:** P04 gave P07 a citation to P11's half at
+`2e284ef` so P07 could execute the check rather than trust a relay. That citation
+was **correct when sent and is now stale** — the same defect one layer out. P07
+has been told. A citation is better than a relay and **is still not a substitute
+for the owner stating a current figure**.
 
 P07 **declined P04's offer to restate the joint figure as "14 across 5"** while
 adopting everything behind it, on the grounds that producing a new single number

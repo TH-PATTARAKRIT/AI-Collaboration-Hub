@@ -65,9 +65,9 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `12_P04_CONTRADICTION_REGISTER.md` | `4a54d8b13cfff34602ef2d1c9a2c10b8a43934ff943dfaf4cad6904874038e79` |
 | `13_P04_SOURCE_LINK_REGISTER.md` | `69084e95d38bd5840ba34f87fc25dba792143eaa6e199797220e390ef8c4e652` |
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
-| `16_P04_AAS_PLUS.md` | `3d801249e38183c8153bd5a6a47d7ea1139fcaa44efc70963af11aac4e7c8d90` |
+| `16_P04_AAS_PLUS.md` | `bb390948cde39c310571ab732a2ed3046cb81329996926e672fa64a8492a4320` |
 | `17_P04_PMO.md` | `5396e1533e92025316d8a3cb63df538321486b97ec4664309a3eddf69731db9e` |
-| `18_P04_REVISION_LOG.md` | `38d7fe236ffb2e2dc6cf17683e14b721cdb3741e073ac63e64bc3e268417c940` |
+| `18_P04_REVISION_LOG.md` | `67cd2a2d701fe98f3598f6d644e49a96940a77ce5b250a736f4efd8a4f3f411f` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `1f635cba7e22be8e4001c877e9638c8ec918f695fba0ee68cb319132bc194eda` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `1a9a822ba1084ec34107787490ac248e3fdc127ac32a91af14a11e19c5d1145b` |
 
@@ -86,7 +86,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **75** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
+| Findings (`P04-F-nn`) defined | **79** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **45** — 3 re-registered from the handover residue, 42 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
 | Revisions | 20 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
@@ -95,7 +95,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | Scope determinations | 14 objects and 10 operations classified; 2 on **HOLD — SCOPE EVIDENCE REQUIRED** |
 | Peer dependencies | 8; findings published to 5 owning sessions. **P11 and P07 replied**: P11 answered 2 (**still open**) and returned twice more; P07 dispositioned 3 and returned 2 to P04 — both routed to Boss, both holds confirmed rather than lifted (`11` §6.1) |
 | Statutory sources | **7 retrieved by this session · 1 taken in as peer-published** (`P04-LAW-H`, retrieved by P07; reliance stated) |
-| Peer packages read **at source** | **1** — P11 at commit `2e284ef`. P04 had wrongly asserted it could not (`18` `P04-REV-19`); the branches were on the same remote throughout |
+| Peer packages read **at source** | **1** — P11 at commit `2e284ef` (**now stale**; P11 head `b68ae17`). P04 had wrongly asserted it could not (`18` `P04-REV-19`); the branches were on the same remote throughout |
 
 Every count in this table was produced by executing a match over the package,
 not by carrying a figure forward. Two counts in earlier drafts were quoted
