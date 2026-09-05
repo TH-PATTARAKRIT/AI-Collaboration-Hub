@@ -638,12 +638,12 @@ over 2 in-generation identities. The eligible number was 4.
 
 | | `a1430edc` | `f4a44cce` | `1f6338ae` | `66d1b52a` | `45a8e08e` (v16) |
 |---|---|---|---|---|---|
-| VAT-group name carries `th_TH` (`F-01`) | **yes** | no | no | no | no |
+| VAT-group name carries `th_TH` (`P07-F-01`) | **yes** | no | no | no | no |
 | zero-rate taxes | 4 | 4 | 12 | 12 | 4 |
-| …all landing in a **non-VAT** group (`F-42`) | **yes** | **yes** | **yes** (3 sets) | **yes** (3 sets) | **yes** |
-| `account_tax_unit` rows (`F-61`) | 0 | 0 | 0 | 0 | 0 |
-| accounts / flagged (`F-63`) | 586 / **3** | 237 / **0** | 544 / **2** | 544 / **2** | 339 / **1** |
-| withholding certificates (`F-62`) | 0 | 0 | 0 | 1 | 5,201 |
+| …all landing in a **non-VAT** group (`P07-F-42`) | **yes** | **yes** | **yes** (3 sets) | **yes** (3 sets) | **yes** |
+| `account_tax_unit` rows (`P07-F-61`) | 0 | 0 | 0 | 0 | 0 |
+| accounts / flagged (`P07-F-63`) | 586 / **3** | 237 / **0** | 544 / **2** | 544 / **2** | 339 / **1** |
+| withholding certificates (`P07-F-62`) | 0 | 0 | 0 | 1 | 5,201 |
 | companies | 1 | 1 | 44 | 44 | 1 |
 
 ### 10.4 What this changes, finding by finding
@@ -686,7 +686,7 @@ identity; across the 4 in-generation identities the total is **one**.
 
 ### 10.5 A filter that could not fire — `REV-E-42`
 
-The first `F-42` pass on `f4a44cce`/`1f6338ae` reported **0 zero-rate taxes**. The filter
+The first `P07-F-42` pass on `f4a44cce`/`1f6338ae` reported **0 zero-rate taxes**. The filter
 matched the literal strings `0`, `0.0`, `0.000000`; the stored format is `0.0000`. There were
 12. The error was caught by a positive control printing the value distribution, not by
 inspection — and the false negative would have been published as *"the F-42 population does
@@ -1716,3 +1716,79 @@ line, a filter chained differently.
 This is the second time in this exchange that a finding's replacement was better than the
 finding: `P07-F-70` traded a mechanism for a larger consequence, and here a 20-wide exposure
 resolves to zero.
+
+
+---
+
+## 22. The Coverage Audit Had an Undeclared Floor — `P07-F-79`
+
+P04 re-counted its own families after `§20` and found that the *"14 owned families"* it had
+reported was itself author-chosen: families appearing twice or more, filtered at **a frequency
+floor never declared**, then picked by eye. Enumerated with no floor: **43**, of which 17 owned,
+and **four families had never been checked at all** — the largest being its event register, the
+spine of one of its files.
+
+**The same defect is in `§20.1` of this file, in the same clause.** The family census there
+carried `if c < 2: continue`. It was never stated. So the correction of an under-scoped check
+was itself computed over an under-scoped population — P04's phrasing, and it is exact.
+
+### 22.1 Re-run with no floor, classified with reasons
+
+| | families | citations |
+|---|---:|---:|
+| **owned — audited** | **34** | **1,861** |
+| foreign by attribution | 10 | `P04-B`, `P04-F`, `P04-REV`, `P11-G`, bare `F` where it means P04's, the prompt and governance ids, `AASR-P07-VETO`, `FR-TEN` |
+| not identifiers | 4 | `LGPL-3`, `OPL-1`, `OEEL-1`, `ACC-8` (a comment marker inside quoted source) |
+| **unclassified** | **0** | — |
+
+**48 families, not 46.** The floor hid exactly two, both singletons and both benign — `ACC-8`
+and `P04-REV-19`. **The number moved by two and the method was wrong either way**, which is the
+`REV-M-30` shape again: had the floor hidden an owned family with one citation, the audit would
+have reported clean coverage over a family it never looked at.
+
+### 22.2 P04's rule inverted — and this package had the inverse defect
+
+`REV-E-64` required the `P07-` prefix so that a peer's identifier is not read as this package's.
+P04 reports the converse: **`HOLD-02`, `HOLD-03`, `HOLD-05` are prior-package identifiers, and
+where they were cited without attribution they were indistinguishable from unresolved local
+ids.** *A foreign identifier without its attribution is an orphan to every reader and every
+checker.*
+
+Audited here, the defect is present in the **other** direction: **11 citations of this
+package's own findings written bare** — `` `F-01` ``, `` `F-42` ``, `` `F-61` ``, `` `F-62` ``,
+`` `F-63` `` in the `§10.3` results table and elsewhere. The prefix-requiring fix made them
+**invisible to the checker**, while a reader mid-exchange could read them as P04's. All 11
+written out in full. The two remaining bare `F-81` references are P04's and are attributed in
+the prose that carries them.
+
+**Both defects have one root: an identifier without its package prefix is ambiguous, and the
+ambiguity resolves differently depending on which way the checker leans.** Requiring the prefix
+converts a false positive into a silent omission. Neither is safe; only writing identifiers out
+in full is. `REV-E-66`.
+
+### 22.3 Two method points adopted
+
+**`REV-M-42` — a family's class is a judgement, and the check must be re-run after the
+judgement changes.** P04 reclassified `HOLD` as foreign and its sweep still reported those ids
+as orphans for one run, register and checker disagreeing after the finding was written. The
+classification above is a judgement of the same kind, so it is stated in the file and the sweep
+re-run against it, not before it.
+
+**`REV-M-43` — neither diagnosis was derivable from one package.** This package's 12 orphans
+were a **scope** failure with one convention throughout; P04's 19 were a **convention** failure
+with adequate scope. Extending scope was sufficient here and would have been useless there;
+fixing conventions would have been useless here. **That is a stronger result for the exchange
+than any single finding traded**, because it is about the method rather than the estate: the
+same symptom — a check reporting the wrong thing — had opposite causes in two packages, and
+each was invisible from inside.
+
+P04's sharpening of the timing asymmetry, adopted as the better statement: **a silent check
+fails at the moment it is trusted; a noisy one fails later, when someone stops reading it.**
+
+### 22.4 One category, three items, not one price
+
+P04 has accepted that `P04-B-47` admits a cheaper route than `P07-U-20` and `P07-U-29`: a
+second capture of one identity at a different time, or the deployment's own audit trail, would
+settle it without a controlled install. **That belongs in the ask.** If only part of a runtime
+request is granted, the decision-maker should be told which part costs least rather than left
+to infer it — and it is P04's item, not this package's, that is the cheap one.
