@@ -173,5 +173,6 @@ module list; authorise a read-only restore of an existing dump; and **route the 
 | Base commit | `88f52cd7ba6dc40b8951c4bfc4e0016af7cbb7ad` |
 | Package path | `.../ACCOUNT_REOPEN/ACCOUNT_P05_EXPENSE_TO_PAY/` (40 files) |
 | Merge status | **Not merged. Never to be merged without Boss decision.** |
+| Commit lineage | `64b10cd` → `1172f79` → `40166d0` → `9b1006b` → `f0037b8` → `61e158a` → `068c71c` → `d8d8f6f` → `a4e5ebd` |
 | Integrity | SHA-256 manifest at `14 §5` |
 | Jira | `NOT SUPPLIED` — see `38 §1 Q2` |
