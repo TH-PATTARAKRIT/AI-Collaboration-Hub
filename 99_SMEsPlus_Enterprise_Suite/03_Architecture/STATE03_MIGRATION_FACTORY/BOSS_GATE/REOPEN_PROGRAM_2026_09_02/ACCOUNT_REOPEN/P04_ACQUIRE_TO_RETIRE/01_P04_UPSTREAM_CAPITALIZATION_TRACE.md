@@ -755,6 +755,149 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.39 The count was false on the line that asserted it
+
+`P04-F-139` emptied the exception set. The next sweep run — the first in which
+nothing was skipped before being tested — returned **one undefined identifier:
+`P04-LAW-02`**.
+
+> **P04-F-140.** **Writing that `P04-LAW-02` occurs zero times made it occur.**
+> The finding reporting five inert exceptions had to name them; naming them is a
+> citation; the identifier the sentence declares absent is present in that
+> sentence. At `10faf0b` the count was **0**. On the commit that published the
+> count it was **2** — once in `01` §6A.38, once in `18` §2 — and the sweep, no
+> longer skipping it, correctly reported it **cited and undefined**.
+>
+> **Sixth appearance of the recursion, and the only one false immediately rather
+> than eventually.** `P04-F-138`'s *"quoted four times"* was true when measured and
+> went stale one commit later. This one **was never true at the moment of
+> publication**: there is no interval in which the sentence and the text agreed.
+>
+> **The range notation created one endpoint and not the other.** Written
+> `P04-LAW-02`–`06`, the first is an identifier and the rest are bare numbers,
+> and **the remaining four conclusions in that family stay at 0**. So the artefact
+> is not *naming a retired
+> thing* but **the notation used to name a set of them** — the same mechanism as
+> `[A-H]` at `P04-F-138`, arriving from the opposite direction. There a character
+> class **became** an identifier; here a range **suppressed four and created one**.
+>
+> **And it settles the membership rule of the register `P04-F-139` created.** The
+> obvious repair — tombstone all five for symmetry — is wrong, and wrong in the
+> way this sequence keeps being wrong: **the remaining four do not occur, so a
+> tombstone would be the only reason they existed.** A register whose entry
+> criterion is *"was ever retired"* manufactures its own subject matter. The
+> criterion is therefore **occurrence, not history** — `18` §7 holds a tombstone
+> for each retired identifier **that survives in the text** and for nothing else.
+>
+> **Amended before commit, by the same defect one place further down the range.**
+> The paragraphs above originally wrote the remaining four as a range beginning
+> `P04-LAW-03`. The sweep then reported **`P04-LAW-03` undefined** — the
+> explanation of the artefact had produced the next instance of it. **The defect
+> migrates one identifier down the range each time it is restated**, and it is
+> bounded only by the size of the family, which is not a control. Tombstoning
+> would have terminated in four more iterations with a register whose entries
+> exist **because the register discussed them**.
+>
+> **The terminating move is to stop writing them as identifiers.** They are now
+> *"the remaining four conclusions in that family"* — prose, uncitable, unmatched
+> by any pattern. This is the concrete form of the rule both packages reached
+> separately: **the exit from a self-describing check is declaration, not
+> correction**, and here declaration means **naming a set without using the
+> notation that makes its members identifiers.**
+>
+> **And the residue is where the criterion gets its boundary.** Two occurrences of
+> `P04-LAW-03` survive — the two sentences above, which report the incident. They
+> cannot be removed the way the range was: **a defect cannot be reported without
+> naming it.** So the register's rule needs a second clause, and it is a test, not
+> a preference: **an occurrence that would survive rewriting the sentence earns a
+> row; one that exists only because of how the sentence was written does not.**
+> The range fails that test and was deleted. The incident report passes it, and
+> `P04-LAW-03` is tombstoned at `18` §7 — **three rows now, one of which this
+> finding created and could not take back.**
+>
+> **The rule this finding must obey about itself:** a count of an identifier the
+> register quotes is a **measurement of the text taken from inside the text**, and
+> cannot be maintained, because publishing it changes it. Every such count here is
+> now written **as at a named commit** — including the ones in this paragraph,
+> taken at `10faf0b`, which are already wrong.
+>
+> Class: **FACT VERIFIED**, occurrence enumerated per identifier per file, basis
+> commit named. The control is the sweep itself, which fired **only because the
+> exception set had been emptied** — the defect was created by the correction and
+> caught by the same correction.
+
+### 6A.38 An exception list cannot report that it is wrong
+
+P07 applied the `RETIRED` class to its own sweep and found the same thing this
+package found — its oldest standing exception was **two states filed as one**. Its
+12 silently-subtracted identifiers split into **1 `NEVER ISSUED`** (`P07-F-81`,
+which no finding ever carried; it exists only inside the passages describing a
+false positive in the identifier check) and **11 `RETIRED`** (allocated, used in
+drafting, then merged or discarded). Its sweep now **reports** the states —
+`UNDEFINED: NONE | declared states: 11 RETIRED, 1 NEVER ISSUED` — on the ground
+that *a silently-subtracted exception is invisible; a reported one can be
+questioned*. Sixty commits of this package's "intentional orphan" line are the
+demonstration.
+
+**And it named a third disposition that is better than either of ours:** `P07-F-60`
+is a **withdrawal tombstone carrying a definition row**, so the identifier
+resolves and **no exception is needed at all**. An exception list is the fallback,
+not the standard.
+
+**Run here, the split and the standard both find something, and neither is what
+was expected.**
+
+> **P04-F-139.** **Five of this package's seven declared `RETIRED` exceptions are
+> not in the text at all, and the sweep cannot say so.** The exception set named
+> `P04-LAW-01`–`06` and `P04-F-18`. Occurrence counts across the 21 files,
+> **as at `10faf0b`**: `P04-LAW-01` **8**, `P04-LAW-02`–`06` **0, 0, 0, 0, 0**,
+> `P04-F-18` **12**. Every count in this section is stated *as at* a named commit
+> and is **not maintained** — `P04-F-140` is why it cannot be.
+> `P04-F-117` renamed the six conclusions to `P04-LC-01`–`06`; only the first
+> survives, in quotations of the rename record. **The other five were declared
+> exempt from a check they were never subject to** — and because the sweep
+> `continue`s past an exception before testing whether it is present, a
+> five-sixths-inert exception list and a correct one produce **identical output**.
+> Adopted from P07 as sweep unit `[6]`: *declared-but-absent*.
+>
+> **The tombstone standard removes the list rather than reporting it.** Both live
+> members now carry definition rows in a **Retired identifiers** register (`18`
+> §7) — `P04-F-18`, withdrawn at `P04-REV-12` as a duplicate of `P04-F-23`;
+> `P04-LAW-01`, renamed at `P04-REV-52`. Both resolve. **The exception set is now
+> empty**, and the sweep reports `2 RETIRED, resolved by tombstone` instead of
+> subtracting anything.
+>
+> **The `NEVER ISSUED` class is adopted and is empty here — and its control
+> fired.** Every issuing sequence is contiguous: `P04-F` 1–138, `P04-B` 1–48,
+> `P04-REV` 1–72, `P04-LC` 1–6, `P04-CTR` 1–7, `P04-PD` 1–8, `P04-SC` 1–4, **no
+> gaps**. The one gap the check reported — `P04-BD` running **05–09 with 01–04
+> missing** — is **not a gap**: `BD-01`–`BD-04` are the prior package's, cited
+> unprefixed in `09` §2, and this session **continued the numbering under its own
+> prefix** rather than restarting it. That is a fourth disposition, **`CONTINUED`**:
+> one logical series split across two family names. It is the exact mirror of
+> `P04-F-117`, where two families collided on one stem — and it is invisible to a
+> per-family gap check for the same reason: **the family name is not the series.**
+>
+> **Fifth appearance of the recursion, and the first to invalidate a number
+> rather than generate an identifier.** `P04-F-138` published *"quoted four
+> times"*. That was true when measured, at `08a693c`. It is **eight** now, because
+> writing the finding and its revision row quoted the identifier four more times.
+> The four before it produced a spurious identifier; this one **falsified a
+> published count by publishing it**. The fix is not a better count — any count of
+> a self-quoting identifier is stale on commit — it is to **state the basis with
+> the number**, which `P04-F-138` now does. P07 draws the boundary the other way
+> for its own case and is right to: an identifier cited **before its own finding is
+> registered** *is* correctable, because it was always going to exist and merely
+> preceded itself. **What cannot be corrected is a measurement of the text taken
+> from inside it.**
+>
+> Class: **FACT VERIFIED**. Counts enumerated per identifier, not asserted.
+> Sequence check run over 8 owned families with the `P04-BD` offset resolved
+> against `09` §2.
+>
+> **Sweep after: 7 units. 51 families derived, 0 unclassified, 19 owned swept,
+> `undefined NONE`, 0 declared-but-absent, 0 never-issued, exception set empty.**
+
 ### 6A.37 A fifth class: identifiers that were owned and are not
 
 P07's derived sweep surfaced a family its literals had missed — five quotations of
@@ -767,8 +910,10 @@ quotation. **The same class is here, and one member is checked by nothing.**
 > `P04-LC-01`…`06`, and the sweep's `P04-LAW` pattern was narrowed to `[A-H]` in
 > the same edit. **The retired numeric form was therefore removed from the check
 > by the correction that retired it** — it is neither owned-and-swept, nor
-> foreign, nor a non-identifier. It is quoted four times, in the finding that
-> renamed it and the revision row recording that.
+> foreign, nor a non-identifier. It is quoted **four times as at `08a693c`**, in
+> the finding that renamed it and the revision row recording that — a count whose
+> basis has to be stated, because publishing this finding raised it to eight
+> (`P04-F-139`).
 >
 > **This is the fifth disposition class and it completes the set**, alongside the
 > four already adopted:
