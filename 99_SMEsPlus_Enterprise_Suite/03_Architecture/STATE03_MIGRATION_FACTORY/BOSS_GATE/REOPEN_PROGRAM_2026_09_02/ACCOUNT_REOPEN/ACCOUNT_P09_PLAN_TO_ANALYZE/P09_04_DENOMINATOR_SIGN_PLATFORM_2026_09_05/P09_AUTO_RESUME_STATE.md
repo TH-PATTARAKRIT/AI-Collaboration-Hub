@@ -5,7 +5,7 @@
 | **LOG VERSION** | P09#05 |
 | **PROMPT ID** | SMEPLUS-26-09-05-ACC-P09-P2A-DENOMINATOR-SIGN-PLATFORM-INTEGRITY-001 |
 | **BRANCH** | `research/account-p09-plan-to-analyze-2026-09-04-001` |
-| **CURRENT COMMIT** | recorded at `CP-P09DFINAL` |
+| **CURRENT COMMIT** | **`434e97c`** — P04 v18 corroboration; pushed and remote-verified (remote SHA read back identical) |
 | **LAST VERIFIED CHECKPOINT** | `CP-P09D26` |
 | **CURRENT CHECKPOINT** | `CP-P09D26` |
 | **CURRENT SUBSTEP** | none — all executable work exhausted |
