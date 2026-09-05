@@ -3151,3 +3151,87 @@ Recorded as stated, including that it is the exception rather than the pattern: 
 in this thread, that one and very few others were self-caught. **The discipline was built by the
 exchange; whether it survives without one is not established by a single instance**, and this
 package will not claim more than that. `REV-M-75`.
+
+
+---
+
+## 40. The Declared Residue Has a Name, and It Was Missed Twice — `P07-F-97`
+
+`§39.2` reported **1 unreadable of 3,133** and declared it as a bound of one rather than a zero.
+P04 counted its own residue in response — **1 of 1,002** — and named it. The two packages share
+a host, so the file was checked here directly.
+
+**It is the same file, and it is load-bearing here too.**
+
+`~/Library/CloudStorage/GoogleDrive-…/99 SMEsPlus ENTERPRISE SUITE/…/06 SOURCE AI LEARNING/`
+**`BK12MAY26_2026-06-23_13-15-32.zip`**
+
+Diagnosed independently, reproducing P04's result:
+
+| test | result |
+|---|---|
+| logical size | 1,081,942,526 bytes |
+| allocated | 1,081,946,112 bytes — **materialised, not a cloud placeholder** |
+| leading bytes | `50 4b 03 04` — a zip local file header |
+| end-of-central-directory signature | **absent** |
+| `ZipFile` | `BadZipFile: File is not a zip file` |
+
+**Structurally damaged, entirely on disk, missing its index.**
+
+### 40.1 Why the name is load-bearing here
+
+`BK12MAY26` is a **keyed identity** in this package — `66d1b52a` — held at **2026-08-03 ×2**.
+This artefact is dated **2026-06-23**, a date this package holds for **no keyed identity**,
+sitting between `f4a44cce` (03-30) and those two.
+
+By the rule both packages adopted — **a file name is not a database identity, in either
+direction** — it is **either a third snapshot of `66d1b52a` or an unkeyed identity, and which
+cannot be determined without reading it.** `§10.1` is why: two files named `iEVING` were two
+databases; four named `iTEST02` were one.
+
+### 40.2 It was missed twice, by two different defects, and the second silently
+
+1. **The undeclared `Library` prune** (`P07-F-90`) excluded the subtree it sits in. It was never
+   a candidate for the published census.
+2. **When `§35` did scan `~/Library`, the zip branch carried `except Exception: pass`** — so a
+   structurally damaged archive was **silently dropped**, not counted as unreadable. It did not
+   appear in the 36, nor in the corrected 22, nor in the 20.
+
+**Only the complement sweep of `§39` counted it at all**, and only because that run counted its
+own failures instead of swallowing them. **The first defect removed it from the population; the
+second removed the evidence that anything had been removed.** That is the selective-null pattern
+of `REV-M-62` in its quietest form — not a batch reporting absence for some rows, but a single
+`pass` clause making one row cease to exist.
+
+### 40.3 A fourth disposition class — `P07-U-33`
+
+`§5` classifies open items as `NOT YET READ`, `NOT ON THIS HOST`, or `EVIDENCE NEVER RECORDED`.
+**This fits none of them.** It is on this host, it was recorded, and it cannot be read. The
+class is:
+
+> **`PRESENT AND UNREADABLE`** — the evidence exists, is materialised locally, and is not
+> recoverable without **changing the estate**. Reading it means repairing a 1 GB archive, which
+> is outside this research brief.
+
+**`P07-U-33` opened** in that class, the only member. `§5` becomes **31 items: 4 closed, 23
+`NOT YET READ`, 1 `NOT ON THIS HOST`, 2 `EVIDENCE NEVER RECORDED`, 1 `PRESENT AND UNREADABLE`.**
+
+**Neither number is amended.** The census stands at 35 by file and 20 unkeyed artefacts; the
+identity position stands at **7 keyed and read, population OPEN**. What changes is that the
+bound of one now has a name, a date, a diagnosis and a class.
+
+### 40.4 The closing symmetry, which is P04's and is exact
+
+> I enumerated exclusions because you named an undeclared one; you declared an unreadable one
+> rather than calling it a zero; **and that made me count mine** — which turned out to be the
+> only **named** residue either of us produced, **checkable against what is already keyed, which
+> is exactly what makes it worse than a nameless one.**
+
+And it closed back: **P04 naming its residue is what identified this package's.** A nameless
+bound of one is a footnote; **a named one is a blocker**, because the name can be checked
+against the keyed set and this one collides with a keyed identity at an unheld date.
+
+> **A zero with a named exception is a different statement from a zero, and the difference is
+> the whole reason for saying it.**
+
+`REV-M-78`.
