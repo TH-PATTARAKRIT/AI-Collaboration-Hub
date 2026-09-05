@@ -191,9 +191,9 @@ did not converge.
 | `CONTRA-P01-03` and `CONTRA-P01-07` (the two generations disagree; the deployed schema disagrees with the analysed source) | **RESTATED, and made more precise.** The disagreement is real but it is **not** that v19 lacks a mechanism — it has one, differently shaped, and the deployments have not configured it. Both remain `UNRESOLVED — BOSS DECISION REQUIRED` under `DEP-P01-01`, now with the mechanism identified. See `ERR-P01-07` |
 | `CONTRA-P01-04` (asset classification and clearing compete for one field) | **CORROBORATED INDEPENDENTLY.** P04 reached the same gap from the asset side and states plainly that *nobody* owns the capital-versus-expense decision. Still `UNRESOLVED — RUNTIME EVIDENCE REQUIRED` for the collision itself |
 | `CONTRA-P01-05` (mutation authority vs financial scope) | **SHARPENED for v19** — the counter-account now lives on the location, so the decisive scope question changes. See the scope matrix addendum |
-| `CONTRA-P01-09` (withholding compounds) | **UNDER INDEPENDENT DISPROOF CHALLENGE this round.** Additionally re-scoped: the module carrying the defect is **installed in all three deployments**; the second withholding module is installed in none |
+| `CONTRA-P01-09` (withholding compounds) | **CONTRADICTED — the disproof landed.** The offset term selects a balanced set and evaluates to 0.00 in 4,943 of 4,945 deployed payments; the mechanism cannot fire. Replaced by `CONTRA-P01-09R`: **repeated FULL withholding**, linear not geometric. And the deployed withholding code matches **no copy in the declared path set** (`ERR-P01-12`, `ERR-P01-13`) |
 | `CONTRA-P01-10` (two copies map to opposite statutory forms) | **DEEPENED.** P07 reports that vendor legal personality **must be a typed attribute, not a boolean company flag** — and both copies key their choice off exactly that boolean. So the two implementations disagree about a mapping whose *input* is the wrong instrument. Remains unresolved on both the deployment and statutory axes |
-| `CONTRA-P01-01` / `CONTRA-P01-06` (correction by deletion; outcome depends on a non-accounting record) | **UNDER INDEPENDENT DISPROOF CHALLENGE this round** |
+| `CONTRA-P01-01` / `CONTRA-P01-06` (correction by deletion; outcome depends on a non-accounting record) | **DISPROOF LANDED — strong form CONTRADICTED.** Deletion **does** write a durable audit record preserving the account and the amount; what is destroyed is what the line was *for*. The record is itself deletable, incompletely populated, and **absent entirely in the v16 deployment**. Restated as `MIXED` — see `P01_VENDOR_BILL_CORRECTION_INTEGRITY.md` |
 
 ## New contradictions
 
@@ -236,7 +236,7 @@ did not converge.
 | Disposition | Count |
 |---|---|
 | CONTRADICTED — rejected as transfer candidate | **6** (`-01`, `-06`, `-08`, `-11`, `-13`, and `-12` as a configuration contradiction) |
-| CONTRADICTED — implementation does not match stated intent | 1 (`-09`, pending challenge) |
+| CONTRADICTED — implementation does not match stated intent | 1 (`-09R`; the original `-09` is withdrawn) |
 | DESIGN DECISION REQUIRED AT FINAL GATE | 1 (`-02`, now jointly escalated with P10) |
 | UNRESOLVED — BOSS DECISION REQUIRED | 3 (`-03`, `-07`, `-14`) |
 | UNRESOLVED — RUNTIME EVIDENCE REQUIRED | 1 (`-04`, now peer-corroborated) |

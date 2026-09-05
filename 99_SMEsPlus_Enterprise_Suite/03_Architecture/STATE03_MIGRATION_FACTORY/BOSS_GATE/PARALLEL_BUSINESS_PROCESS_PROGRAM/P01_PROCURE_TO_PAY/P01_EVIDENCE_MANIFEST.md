@@ -40,7 +40,7 @@ db1f6bbd22ba4448349b350a0a87bd347f4d9d3aeb5a95c268a3680de719351e  P01_AAS03_TARG
 4856fc0dc97052d7b800a19ff533ecf94adc8cec947a7d4895d6f58a5438bb6a  P01_AAS_PLUS_TARGETED_CONSOLIDATION.md
 0f7e9c1c9151fd2bf311af6202b8d7339cae0aca4f4e6cea239b86db68a75dba  P01_ACCOUNTING_EVENT_REGISTER.md
 9c654f2f116e901955e52fbfdcc178d76b22f3e3f1dc863143260745a9c79a89  P01_BUSINESS_EVENT_REGISTER.md
-e878f1ab7cf6a308b0c0490781c22ad61de99958487e4776154674d92564188a  P01_CONTRADICTION_REGISTER.md
+873a67b34910ff99a0aabd5ab15109247bf4bfe162d7f3d3ef8621fec27c9b25  P01_CONTRADICTION_REGISTER.md
 905c40b20bded74ce78b1f526ee0f4a2ff4e2aab12677380f2700d8fc61444e3  P01_CORE_RECON_HANDOFF_PACK.md
 615eef2495db54d924e38357c660c8a58b00a9fb87fd4fb374a4ceeb0abd02de  P01_CROSS_PERIOD_EDGE_CASE_MATRIX.md
 4ef632c92b6b19abeee423fb3dc303f7aaf83809baedcd88889fb6121445e5da  P01_CROSS_PROCESS_OWNERSHIP.md
@@ -75,7 +75,7 @@ a893992b825d6963258474c47800a09be07ee036f82a8368f52d602efb467b27  P01_SOURCE_LIN
 7c07c2f8e67cd91c054974e50c8b39f6e49a8b18256764518e694870214ead68  P01_SUBCONTRACT_PURCHASE_HANDOFF.md
 7fb4ecfbd1cff12b67a7b40a6157296f510aa10047893c1d5a214fe7c9de578e  P01_THAI_WHT_PARTIAL_PAYMENT_ARITHMETIC.md
 11b5ef99208e31eaf9eee925b8d8ee05cfadc6bd33806c9faeb5d7540e5f83f5  P01_THREE_WAY_MATCH_MATRIX.md
-e5a19b336d3c442313b8cfdb39a01517aef0155a8c998fdba321b7f4078161e0  P01_TRANSITIVE_MODULE_POPULATION.md
+704d4842f8215361fd058e877fb8c3426c37d1d90473abeee7176c66b7a9ff3e  P01_TRANSITIVE_MODULE_POPULATION.md
 d5661e8b88ce80b2d453cd0647fb329b6f5824784195858097a957b169d6c660  P01_UNRESOLVED_EVIDENCE_REGISTER.md
 e737e1ceef1ebd7554698ec1f8c75e8637335b603cc63d3193adcd089e103080  P01_VENDOR_BILL_CORRECTION_INTEGRITY.md
 381d654519c9639773bbcbfebb1ea6bc6e361acc0c1766d0880b8b0e62a9d922  P01_VERSION_DEPLOYMENT_RECEIPT_BILL_MATRIX.md
@@ -111,3 +111,19 @@ this package but are not part of the committed Layer 1 deliverable set.
 | Citation resolution | Cross-checked; two expert citations corrected by this session |
 
 **Files hashed: 47** (the manifest excludes itself).
+
+---
+
+## ADDENDUM 2 — REGISTER-TEXT PROPAGATION AUDIT
+
+A standing programme lesson holds that **a revision log is not a correction**: accepted findings
+have previously been logged and never edited into the registers themselves.
+
+That audit was run over this package as a separate, named step. It found **eight residual stale
+claims** — four in the module-population change table, two disposition rows still marked *under
+challenge* after their challenges had landed, and two that were legitimate before/after quotes.
+
+All six genuine residuals were corrected. Final state: **zero** stale "installed nowhere"
+claims and **zero** unresolved challenge markers outside the revision log.
+
+**Every correction in the revision log is now reflected in the register text.**

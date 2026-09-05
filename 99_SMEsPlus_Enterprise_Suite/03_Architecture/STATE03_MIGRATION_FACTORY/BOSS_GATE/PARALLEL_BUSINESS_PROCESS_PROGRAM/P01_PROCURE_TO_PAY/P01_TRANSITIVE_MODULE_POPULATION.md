@@ -105,13 +105,12 @@ installed in any.**
 
 | Prior finding | Effect of installed-status evidence |
 |---|---|
-| Three-way matching is a report, not a control | **Strengthened and re-scoped: it is not installed in any readable deployment.** The whole three-way-match analysis is `SOURCE ONLY — NOT INSTALLED VERIFIED`. There is no three-way match running anywhere we can see |
-| A custom effective-date tool rewrites valuation timestamps by direct SQL | **Latent, not live** — not installed in any readable deployment |
-| A second withholding path exists | **The second path is latent** — the multi-payment withholding module is installed nowhere. The single installed path is the one carrying the arithmetic defect |
-| Cross-company auto-generation is a tolerance-zero risk | **LIVE, and only in v19.** Both intercompany bridges are installed in both v19 deployments and in neither v18 one. This moves the item from latent to live for the v19 line |
+| Three-way matching is a report, not a control | ~~Re-scoped as installed nowhere~~ — **that was FALSE; it is installed in `D4`** (`ERR-P01-15`). The *advisory, not a control* finding stands unchanged |
+| A custom effective-date tool rewrites valuation timestamps by direct SQL | **Latent** — not installed in any of the **four** databases (re-checked against `D4`) |
+| A second withholding path exists | The multi-payment withholding module is installed in none of the **four** databases. **But the arithmetic defect it was cited for was later CONTRADICTED** (`ERR-P01-12`), and the deployed withholding code matches **no copy in the declared path set** (`ERR-P01-13`) | Cross-company auto-generation is a tolerance-zero risk | **LIVE, and only in v19.** Both intercompany bridges are installed in both v19 deployments and in neither v18 one. This moves the item from latent to live for the v19 line |
 | Vendor advances are bill-first in the base | **The project's custom vendor-advance module is installed in all three deployments** — so the business is not using the base shape anywhere |
 | Landed cost was out of scope | **In scope and installed everywhere.** It was the largest single omission |
-| Subcontract purchase was out of scope | **In scope by dependency, but installed nowhere** — latent |
+| Subcontract purchase was out of scope | **In scope by dependency, and INSTALLED in `D4`** — nine of ten modules — with **zero transactions**: `INSTALLED BUT NOT EXERCISED` (`ERR-P01-15`) |
 | Three requisition mechanisms coexist | In the v16 deployment the **approvals** pair is installed and the base requisition module is not; the project's own purchase-request module is also installed there. So two requisition mechanisms are live in v18 and none in v19 |
 
 ---
