@@ -138,3 +138,13 @@ Module states relevant to the custom-layer findings:
 | `scgl_account_reports`, `scgl_purchase_advance_payment` | — | — | **installed** |
 
 `DB-BK` and `DB-EV` carry `wt_tax_id` and `tax_period_date` columns on the journal item, confirming the custom Thai and tax-period modules are deployed there at schema level.
+
+## 7. Scale measurements in `DB-SM`
+
+| Test | Method | Result |
+|---|---|---|
+| Residual drift | stored `account_move_line.amount_residual` vs `balance − Σ amount(debit_move_id) + Σ amount(credit_move_id)` over `account_partial_reconcile`; tolerance 0.005; posted moves only | 63,773 partials · **100,580 settled lines checked · 0 drift · absolute drift total 0.00** |
+| Retroactive settlement | `account_partial_reconcile.create_date − max_date` in days | n=63,773 · median 0 · mean 25 · max 594 · >0d 29,595 (46.4%) · >30d 14,502 (22.7%) · >90d 4,818 · >365d 710 · forward-dated 28,229 |
+| Settlements emitting an FX difference | `exchange_move_id IS NOT NULL` | **3,169** |
+| Entry backdating | `account_move.create_date − date` in days, posted only | n=169,143 · median 1 · max 6,701 · >30d 28,847 · >90d 14,017 · **>365d 6,418 (3.8%)** · future-dated 22,162 (13.1%) |
+| Transaction-currency imbalance | Σ`amount_currency` per (move, currency) where `currency_id != company_currency_id`, posted only, tol 0.005 | 1,851 entries, **all `move_type='entry'`**; 1,798 have a single foreign-currency line; **53 have ≥2 that do not offset** |
