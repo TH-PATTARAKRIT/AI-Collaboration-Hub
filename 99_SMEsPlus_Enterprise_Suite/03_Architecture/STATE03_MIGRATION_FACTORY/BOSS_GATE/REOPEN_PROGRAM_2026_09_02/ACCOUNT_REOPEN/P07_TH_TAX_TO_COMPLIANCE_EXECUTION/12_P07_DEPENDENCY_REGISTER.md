@@ -54,12 +54,12 @@ Carried from `09 §4`. None is used to support a conclusion in this package.
 
 | ID | Held question | Blocks |
 |---|---|---|
-| `U-03` | Instrument permitting a deferred input-tax claim | The legal grounding of the purchase-side tax period design (`TPR-05`) |
-| `U-04` | Royal Decree number for the current 7% rate | Precise dating of `P07-D-11` |
-| `U-07` | Prescribed format of the s.87 reports | Whether the reports are format-compliant, not merely arithmetically complete |
-| `U-08` | Substitute tax invoice requirements | Whether `D-05` is a gap or a non-requirement |
-| `U-09` | Statutory condition-of-withholding code set | Sizing of `W-K-02` |
-| `U-10` | Authoritative s.40 income category → PND form → rate mapping | Specification of the replacement for `W-K-01` |
+| `P07-U-03` | Instrument permitting a deferred input-tax claim | The legal grounding of the purchase-side tax period design (`TPR-05`) |
+| `P07-U-04` | Royal Decree number for the current 7% rate | Precise dating of `P07-D-11` |
+| `P07-U-07` | Prescribed format of the s.87 reports | Whether the reports are format-compliant, not merely arithmetically complete |
+| `P07-U-08` | Substitute tax invoice requirements | Whether `D-05` is a gap or a non-requirement |
+| `P07-U-09` | Statutory condition-of-withholding code set | Sizing of `W-K-02` |
+| `P07-U-10` | Authoritative s.40 income category → PND form → rate mapping | Specification of the replacement for `W-K-01` |
 
 ## 4. Peer Process Dependencies — `PEER DEPENDENCY OPEN`
 
@@ -73,8 +73,8 @@ Recorded under the Scope-Aware Correction §7. None stopped this session.
 | `P07-D-21` | P06 | Payment date as the withholding anchor, allocation, reversal linkage, FX policy | `W-C-01`, `W-C-02`, `W-M-02` cannot be closed by P07 alone |
 | `P07-D-22` | P08 | Tax settlement mechanism; acceptance that a tax fact and its accounting entry may fall in different periods; tax-period state | `O-03` ownership cannot be restored to P07 |
 | `P07-D-23` | P10 | Rule that deferral affects recognition timing only, never tax-period membership | Risk of a second, competing period attribute |
-| `P07-D-30` | P04 | Evidence closing whether the destruction regime extends to fixed assets, **and** whether an unevidenced destruction is a deemed sale carrying output tax under `S-36`(จ). P04 framed the question on deductibility alone; the VAT limb is P07's and is the half that would otherwise be missed. | `U-24` stays `HOLD — STATUTORY EVIDENCE REQUIRED` |
-| `P07-D-31` | P04 / whichever process owns corporate income tax | Retrieval of corporate income tax authority for gain on disposal. P07 declines to answer it: `09` holds no CIT authority and answering from VAT and withholding sources would be inference across statutes. | `U-25` open |
+| `P07-D-30` | P04 | Evidence closing whether the destruction regime extends to fixed assets, **and** whether an unevidenced destruction is a deemed sale carrying output tax under `S-36`(จ). P04 framed the question on deductibility alone; the VAT limb is P07's and is the half that would otherwise be missed. | `P07-U-24` stays `HOLD — STATUTORY EVIDENCE REQUIRED` |
+| `P07-D-31` | P04 / whichever process owns corporate income tax | Retrieval of corporate income tax authority for gain on disposal. P07 declines to answer it: `09` holds no CIT authority and answering from VAT and withholding sources would be inference across statutes. | `P07-U-25` open |
 | `P07-D-24` | P11 | What contains the unbounded `res.company` search inside the cross-company tax-unit mechanism, given that the mechanism carries no tenant constraint (`P07-F-39`) | `P07-U-14` stays `HOLD — SCOPE EVIDENCE REQUIRED`; the Thai VAT reports opt into this mechanism by configuration |
 
 ## 5. Provisioning Gaps Against a Measured Peer Baseline

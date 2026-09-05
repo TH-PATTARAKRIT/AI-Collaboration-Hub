@@ -52,7 +52,7 @@ first issue of this register:
 Generation evidence: the extra set declares `"version": "19.0.x"` throughout and the
 base set contains modules introduced in the 19 line. The declared source set is
 therefore the **v19 reference generation**. This is stated as an attribute of the
-declared set, not as a claim about what is deployed in production (see `U-01`).
+declared set, not as a claim about what is deployed in production (see `P07-U-01`).
 
 ### 2.0 A Caveat On This Register Itself — It Orders as Well as Bounds
 
@@ -108,7 +108,7 @@ register and is stated here.
 **Consequence for `P07-D-01`.** Two of the three roots above are the same generation as the
 declared set and do contain the dependency that `P07-D-01` reports as unsatisfiable. That
 finding is therefore an artefact of **set composition**, not of a missing artefact, and it
-cannot be closed until the Boss fixes which extra-addon set is canonical (`U-01`). Stated
+cannot be closed until the Boss fixes which extra-addon set is canonical (`P07-U-01`). Stated
 here rather than left implied.
 
 ## 3. POPULATION — What one member is
@@ -138,7 +138,7 @@ one bounded surface.
 **Declared limitation of patterns 2–4:** they are name-based. A Thai tax rule
 implemented with no Thai, tax, or withholding token in its identifiers would not be
 selected. No compensating control for that residue was available in this session; it is
-carried as `U-11`.
+carried as `P07-U-11`.
 
 ## 5. Tax-Relevant Module Population — Enumerated Result
 
@@ -175,7 +175,7 @@ were outside the population:
 |---|---|---|
 | `partner_company_type` | `addons_extra` | Defines `partner_company_type_id`, the field behind the statutory `Title` column of PND3 and PND53, and behind the partner's stored legal name. **It is cited as evidence in `20 §6` and registered as a broken dependency in `12 §1` while sitting outside the population** — evidence base and population were different sets. |
 | `partner_firstname` | `addons_extra` | Imported by `l10n_th_partner/models/res_partner.py:7`; supplies the name composition that produces the payee name on statutory output. |
-| `convert_amount_text_to_thai` | `addons_extra` | **Byte-identical duplicate of population member 13** (`l10n_th_amount_to_text`) except for one description asset; same version string, same override of the Thai amount-in-words used on the s.50 bis certificate. Matches none of the four declared patterns — this is the `U-11` residue **materialised**, and it was findable by a `*thai*` glob that was never run. `P07-F-48`. |
+| `convert_amount_text_to_thai` | `addons_extra` | **Byte-identical duplicate of population member 13** (`l10n_th_amount_to_text`) except for one description asset; same version string, same override of the Thai amount-in-words used on the s.50 bis certificate. Matches none of the four declared patterns — this is the `P07-U-11` residue **materialised**, and it was findable by a `*thai*` glob that was never run. `P07-F-48`. |
 | `account_update_tax_tags` | `01 ACCOUNT` | Manifest: *"Allow updating tax grids on existing entries."* A module in the declared set whose entire purpose is mutating tax tags on already-posted moves — i.e. mutating the inputs to the statutory registers after filing. Directly material to `08 §4` `A-15` and to `19` `POS-9`, and absent from the first issue of this package. `P07-F-49`. |
 | `report_xlsx`, `report_xlsx_helper`, `date_range`, `base_location`, `base_location_geonames_import` | `addons_extra` | Declared dependencies of the WHT report module; carry the date-range and export machinery of a statutory report. |
 | `account`, `account_reports`, `account_qr_code_emv` | `01 ACCOUNT` | The frameworks every finding in this package resolves into. |
@@ -236,8 +236,8 @@ it; it made no claim at all about peer branches and, when the question arose, fe
 
 | Not performed | Consequence |
 |---|---|
-| ~~Any query against a live or dump database~~ — **TESTED, AND THE CLAIM WAS FALSE.** A 65 MB PostgreSQL dump of the declared generation sits inside this register's own PATH SET, at `01 ACCOUNT/SOURCE CODE/iTEST02_2026-06-14_14-41-19.dump`, and was printed by a directory listing this session ran in its first minutes. | **Superseded by `22_P07_RUNTIME_EVIDENCE.md`.** Five findings are now runtime-verified and one refined. `U-02` no longer bounds them. Struck rather than deleted, per obligation 5c. `REV-E-24`. |
-| Any determination of which addon copy is deployed | Findings bind to the declared source set only. Recorded as `U-01`. |
+| ~~Any query against a live or dump database~~ — **TESTED, AND THE CLAIM WAS FALSE.** A 65 MB PostgreSQL dump of the declared generation sits inside this register's own PATH SET, at `01 ACCOUNT/SOURCE CODE/iTEST02_2026-06-14_14-41-19.dump`, and was printed by a directory listing this session ran in its first minutes. | **Superseded by `22_P07_RUNTIME_EVIDENCE.md`.** Five findings are now runtime-verified and one refined. `P07-U-02` no longer bounds them. Struck rather than deleted, per obligation 5c. `REV-E-24`. |
+| Any determination of which addon copy is deployed | Findings bind to the declared source set only. Recorded as `P07-U-01`. |
 | Any execution of the reference ERP | No behavioural confirmation of the ORM-decorator observations (`P07-F-27`). |
 | Any Jira transition or issue creation — `TESTED`. The connectors are present and unauthorised, and cannot be authorised from a non-interactive session. | Jira lineage is stated as required-and-not-yet-created in `18_P07_PMO.md` §6. |
 | Any merge, implementation, or design authorisation | Prohibited by the session directive and by `SMEPLUS-DR-EXIT-8C-001` §9. |

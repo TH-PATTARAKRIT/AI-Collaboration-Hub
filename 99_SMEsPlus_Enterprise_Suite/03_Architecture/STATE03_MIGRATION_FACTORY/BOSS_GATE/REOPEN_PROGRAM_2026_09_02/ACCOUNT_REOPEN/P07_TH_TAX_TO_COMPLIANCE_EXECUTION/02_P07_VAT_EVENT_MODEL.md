@@ -56,7 +56,7 @@ this package had no row for:
 | Conditional sale, ownership not yet passed | (ก) | none found |
 | Delivery to an agent for resale | (ข) | none found |
 | Export | (ค) | zero-rated tax exists, but see `P07-F-05` for whether it reaches a register |
-| Applying goods otherwise than to the direct conduct of the business | (ง), bounded by Director-General criteria — **held at `U-23`** | none found |
+| Applying goods otherwise than to the direct conduct of the business | (ง), bounded by Director-General criteria — **held at `P07-U-23`** | none found |
 | Goods short against the stock report | (จ) | none found |
 | Goods remaining on cessation of business | (ฉ) | none found |
 
@@ -125,7 +125,7 @@ The base application demonstrates the correct handling of exactly this hazard el
 `account/models/account_account_tag.py:84` deliberately forces `with_context(lang='en_US')`
 before comparing tag names.
 
-Boundary and class: **VERIFIED against a deployed database of the declared generation** — the stored value is `{"en_US": "VAT 7%", "th_TH": "ภาษีมูลค่าเพิ่ม 7%"}` and all five tax groups carry Thai translations (`22 §4.1`). This paragraph read "derived from source, not executed (`U-02`)" until `REV-E-25`. The trigger condition
+Boundary and class: **VERIFIED against a deployed database of the declared generation** — the stored value is `{"en_US": "VAT 7%", "th_TH": "ภาษีมูลค่าเพิ่ม 7%"}` and all five tax groups carry Thai translations (`22 §4.1`). This paragraph read "derived from source, not executed (`P07-U-02`)" until `REV-E-25`. The trigger condition
 is "Thai is an installed language on the deployment", which is the expected condition for a
 Thai tenant. Recorded as `P07-F-01`, and it is the highest-severity finding in this package.
 

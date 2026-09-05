@@ -22,7 +22,7 @@ entry carries its post-challenge state, not its draft state.
 
 | Evidence state | Meaning |
 |---|---|
-| `SRC` | Derived from source, complete chain, not executed (`U-02` applies to all of them) |
+| `SRC` | Derived from source, complete chain, not executed (`P07-U-02` applies to all of them) |
 | `SRC-CHAL` | Source-derived and independently re-verified by an adversarial reviewer reading the same code |
 | `INF` | Inference with a complete mechanism but one unverified link |
 | `MEAS` | Measured by enumeration over a declared population |
@@ -78,7 +78,7 @@ entry carries its post-challenge state, not its draft state.
 | `P07-F-54` | `S2` | The PND3/PND53 producer runs raw SQL against two tables supplied by modules it does not declare as dependencies, so an incomplete install fails with a database error at the moment of filing. | `SRC-CHAL` | `12 P07-D-26` |
 | `P07-F-55` | `S2` | Neither withholding test suite can execute: both import symbols that do not exist in this generation, and one asserts an error raised by commented-out code. There is no regression coverage for the withholding path in either direction. | `SRC-CHAL` | `12 P07-D-27` |
 | `P07-F-56` | `S3` | Licence inversion: an AGPL-3 module hard-depends on an Enterprise-licensed module, and two LGPL-3 SMEsPlus modules inherit from Enterprise-licensed code. Routed, not adjudicated. | `SRC` | `12 P07-D-07` |
-| `P07-F-58` | `S1` | A supply does not require consideration under Thai VAT, and a fixed asset is "goods". Donation, scrapping, application to a non-business purpose, stock shortfall and goods on cessation are supplies; the researched system has **no output-tax event and no tax document for any of them**, and the disposal path produces no tax invoice. Definitional limb verified; the extent of the non-business-use limb is held at `U-23`. | `SRC` + `VERIFIED` statute | `21 §3`, `02 §2A` |
+| `P07-F-58` | `S1` | A supply does not require consideration under Thai VAT, and a fixed asset is "goods". Donation, scrapping, application to a non-business purpose, stock shortfall and goods on cessation are supplies; the researched system has **no output-tax event and no tax document for any of them**, and the disposal path produces no tax invoice. Definitional limb verified; the extent of the non-business-use limb is held at `P07-U-23`. | `SRC` + `VERIFIED` statute | `21 §3`, `02 §2A` |
 | `P07-F-59` | `S1` | A hire purchase or instalment sale — the ordinary Thai route for machinery and vehicles — carries a tax point and a **tax invoice on every instalment due date**. The researched system has no instalment tax point, no tax-invoice object to issue, and no mapping to route the contract; the three gaps compound rather than overlap. | `SRC` + `VERIFIED` statute | `21 §4` |
 | `P07-F-60` | — | **WITHDRAWN 2026-09-05.** Claimed no statutory withholding certificate has ever been issued. Refuted: a v16 identity holds 5,201 and the second in-generation identity holds one. Kept as a row rather than deleted so the identifier resolves; replaced by `P07-F-62`. | withdrawn | `22 §8.1`, `15 REV-E-29` |
 | `P07-F-61` | `S3` | The cross-company tax-unit mechanism the Thai VAT registers opt into is **unused** — `account_tax_unit` **present and empty in 6 of 7 identities; ABSENT from the archive TOC in the seventh** (module not installed) — `22 §13.4`, `REV-E-52` (empty vs absent disambiguated against the archive TOC at `22 §10.4`; the earlier test could not tell the two apart). So `P07-F-39`'s unbounded-company-search exposure is **latent in every deployment examined**, not active. Scoping for `P07-U-14`, which stays open. | runtime | `22 §4.6`, `§8`, `§9` |
@@ -95,6 +95,8 @@ entry carries its post-challenge state, not its draft state.
 | `P07-F-72` | `S1` | **`P07-F-01`'s published trigger is REFUTED.** *"Installing Thai changes the stored value"* is false: `th_TH` is **active in 4 of 5 identities and only 1 carries the translation** (including the 3,480-partner v18 deployment). Measured instead: in the firing identity all five groups were created **in one transaction already carrying both languages and never edited**; where Thai was activated *after* the chart loaded, the names stayed `en_US`-only. The condition is **the chart template loading while Thai is already active** — an **install-order** property. `FACT` on the data pattern, `SUPPORTED INTERPRETATION` on the mechanism; `P07-U-29` opened to close it by execution. | runtime, 5 identities, create/write timestamps | `22 §17.1` |
 | `P07-F-73` | `S1` | **`P07-F-01`'s consequence was never measured, and the exposure is prospective — with a measured magnitude.** The only identity where the defect fires holds **2–3 VAT-7% tax lines**; the two deployments where an empty statutory register would matter hold **5,202** and **32,672** and do **not** fire. The defect **fires only where there is no data to reveal it**. `P07-F-01` stays `S1`, its basis changing from realised to **prospective**: any populated deployment that loads the Thai chart while Thai is active puts those 5,202 / 32,672 VAT-bearing lines outside the s.87 registers. Withdrawn: *"empties both registers"* as observed cause. | runtime, 6 snapshots | `22 §17.2`, `§17.3` |
 | `P07-F-74` | `S2` | **Code identity CLOSED for the tax-period module — not narrowed.** All **five** copies on this host (the declared `smesplus_` one and four `scgl_` ones) hash to **one distinct tree**, CR-normalised over `.py`/`.xml`/`.csv` excluding `__manifest__.py`, 4 real files each and not the empty-input sentinel; the only difference anywhere is the manifest `author`. So which copy is deployed cannot change any finding drawn from it, **structural or behavioural**: `P07-F-03`, `P07-N-02`, `04 §4` and the tax-point rows are **fully discharged** on code identity and leave `P07-U-28`. Stronger than `P07-F-71` only because these copies happen not to have diverged. | whole-tree hash, 5 copies | `22 §18.2` |
+| `P07-F-75` | `S2` | **The open-item register — the thing that carries the HOLD — had 12 orphans out of 27 cited, and two naming conventions.** The orphan check was written for `P07-F-nn` and never extended; run across every family it reports 0 orphans for `P07-N`, `-C`, `-D`, `REV-E`, `REV-M` and **12 for `P07-U`**. Items were split across three files under `P07-U-nn` (`20`, `22`) and bare `U-nn` (`09`), so no single reading could enumerate them. Consolidated at `§5` and classified by what would close each. | own extended check | `§5` |
+| `P07-F-76` | `S1` | **The code-identity question was a false dichotomy.** `P07-U-28` was framed as declared copy vs excluded copy. Host-wide enumeration, whole-tree hashed: `l10n_th_withholding_tax` **61 copies / 20 distinct trees**, `_cert` **49 / 15**, `l10n_th_reports_ext` **13 / 3**. The deployed body is one of **twenty** candidates, not one of two, and `P07-F-65` is confirmed but understated. Structural claims stay discharged (`P07-F-71`); the **behavioural** exposure widens from 2 candidates to 20. | host-wide hash enumeration | `22 §19` |
 | `P07-F-57` | `S3` | Latent index error in the withholding candidate filter: it indexes the first tag of the first repartition line while guarding only on the union of tags. Latent because the shipped chart tags base lines. | `SRC-CHAL` | `03 §4 W-K-03` |
 
 `P07-F-58` and `P07-F-59` were added after intake of peer evidence from P04 and independent
@@ -151,7 +153,10 @@ collects `P07-F-<n>` across all 23 files, and diffs the sets. `P07-F-08` is expe
 output and excluded by the not-issued list below: an identifier never issued is not an orphan,
 but the check cannot know that, so the exclusion is **declared here rather than coded**.
 
-**Identifiers not issued:** `P07-F-08`, `-17`, `-22`…`-25`, `-28`, `-29`, `-31`, `-32`,
+**Identifiers not issued:** `P07-F-81` — never issued; it appears in this package **only**
+inside `15 REV-E-64` and `22 §19.3`, which describe a false positive in the identifier check
+itself. Documenting a spurious identifier creates a genuine citation of it, so the check
+reports it forever unless it is declared here. `P07-F-08`, `-17`, `-22`…`-25`, `-28`, `-29`, `-31`, `-32`,
 `-33`. These numbers were consumed during drafting by observations that were merged into
 other findings or discarded as not defects (see `15 §4` `REV-E-05`, `REV-E-06`, `REV-E-08`).
 They are recorded as not issued so that a gap in the sequence is not mistaken for a lost
@@ -219,3 +224,66 @@ reached by two reviewers separately, and both change the character of the packag
 
 Neither was found by the author. Both were found by reviewers reading the same code the
 author had already read.
+
+
+---
+
+## 5. Open Items — Consolidated, and Classified by What Would Close Them
+
+**Why this section exists, and what was wrong before it.** The orphan check introduced at `§2`
+was written for `P07-F-nn` and never extended. Run across every identifier family it reports
+`P07-F` 0 orphans, `P07-N` 0, `P07-C` 0, `P07-D` 0, `REV-E` 0, `REV-M` 0 — and **`P07-U`: 12
+orphans out of 27 cited.** The open items are what carry the HOLD, and **44% of them had no
+definition row anywhere.** They were also split across three files under **two naming
+conventions** (`P07-U-nn` in `20` and `22`, bare `U-nn` in `09`), so no single reading of the
+package could enumerate them. `P07-F-75`, `REV-E-63`.
+
+**The classification is P04's and it changes the shape of the register rather than its size.**
+Every row below is open for one of three reasons, and only the first is closable by more
+research:
+
+- **`NOT YET READ`** — the evidence exists and has not been looked at.
+- **`NOT ON THIS HOST`** — the evidence exists somewhere, but not anywhere reachable from here.
+- **`EVIDENCE NEVER RECORDED`** — the fact is a past act that nothing preserved. No archive,
+  no wider census and no better query can settle it; only a controlled execution can.
+
+| ID | Statement | Closes by | Argued at |
+|---|---|---|---|
+| `P07-U-01` | Which extra-addon copy is deployed. Not closable by reading manifests (`P07-F-65`: one version over two code bodies). **Partly closed** — where copies hash identically the question is void (`P07-F-74`). | `NOT ON THIS HOST` | `22 §11.4`, `§18.2` |
+| `P07-U-02` | Whether the reproduction caveat holds for archives needing the newer client. | `NOT YET READ` | `22 §7` |
+| `P07-U-03` | The deferred input-tax claim instrument (`AASR-P07-VETO-01` rests on it). | `NOT YET READ` | `09` |
+| `P07-U-04` | Statutory retention/format of the s.87 books. | `NOT YET READ` | `09` |
+| `P07-U-07`…`P07-U-10` | Four statutory questions on tax point, credit/debit note and correction, unresolved against primary sources. | `NOT YET READ` | `09` |
+| `P07-U-11` | Residue of the four declared Thai-module patterns; **materialised** as `P07-F-48` — a fifth artefact findable by a `*thai*` glob that was never run. | `NOT YET READ` | `13 §5.1` |
+| `P07-U-12` | Carryover period source. **CLOSED** — lines 11 and 12 consume it, conditional on `R-V-24`. | *closed* | `01`, `08 §2` |
+| `P07-U-13` | Duplicate-copy tax invoice: number and date computed, the duplicate not modelled. | `NOT YET READ` | `05 §3` |
+| `P07-U-14` | Tenant boundary **specified and not built**. Closed as a finding (`P07-F-50`), retained as a decision. | *closed as finding* | `20 §5` |
+| `P07-U-15` | Egress of taxpayer identifiers to an external Revenue Department service, not scope-assessed. | `NOT YET READ` | `20 §5` |
+| `P07-U-16` | Whether cash-basis exigibility is configured in any deployment. | `NOT YET READ` | `02 §5`, `04 §2` |
+| `P07-U-17` | The base tax-closing path was not examined. | `NOT YET READ` | `03 §7`, `11 §4` |
+| `P07-U-18` | Whether the v14 tax-invoice capability was dropped, superseded or lost in migration (`P07-F-47` is a regression on it). | `NOT YET READ` | `05 §2`, `§4` |
+| `P07-U-19` | The base `account.return` framework's own attachment behaviour, not examined. | `NOT YET READ` | `08 §5` |
+| `P07-U-20` | The load-order link that keeps `P07-F-42` at class `INF`. **A database records the result of a load order, never the order.** | **`EVIDENCE NEVER RECORDED`** | `22 §18.3` |
+| `P07-U-21` | The premise `A-15`'s framing leans on, not searched. | `NOT YET READ` | `08 §5` |
+| `P07-U-22` | A comparison surface not version-compared in this session. | `NOT YET READ` | `13 §2.1` |
+| `P07-U-23`…`P07-U-26` | Four Thai statutory questions from the P04 intake, incl. `P07-U-26` — the prescribed contents of the s.87(3) report, which gates `P04-F-67` at SUPPORTED INTERPRETATION. Attempted, not located. | `NOT YET READ` | `09 §5`, `21` |
+| `P07-U-27` | Unexamined database identities. **CLOSED** — 15 snapshots / 7 identities all opened. | *closed* | `22 §13` |
+| `P07-U-28` | Source-side attribution for **behavioural** claims (`P07-F-11`, `-51`, `-52`, `-57`, `-63` source half). Structural claims discharged (`P07-F-71`); the tax-period module fully discharged (`P07-F-74`). Needs the deployment's addons directory. | `NOT ON THIS HOST` | `22 §16.3`, `§18.2` |
+| `P07-U-29` | Whether the chart template loading under an active Thai language is what writes the translated group name — `P07-F-01`'s real trigger. | **`EVIDENCE NEVER RECORDED`** | `22 §17.1`, `§18.3` |
+
+### 5.1 What the classification says that the count does not
+
+**27 items: 3 closed, 20 `NOT YET READ`, 2 `NOT ON THIS HOST`, 2 `EVIDENCE NEVER RECORDED`.**
+
+The last two are the only items in this package that **no amount of further research can close** —
+and they are the ones the two headline findings turn on. P04 holds one of the same class
+(`P04-B-47`: whether asset entries were never created or created and removed — a database
+records the result of a write sequence, never the sequence).
+
+**Those three items are one ask.** A controlled execution, run twice in opposite orders, with
+the result recorded. If a runtime request is ever granted they should travel together, because
+separately each looks like a small residue and together they are the only category of evidence
+neither package can manufacture.
+
+**And this is the more useful thing to give a decision-maker than the count of open rows** —
+which is all this package published until now.

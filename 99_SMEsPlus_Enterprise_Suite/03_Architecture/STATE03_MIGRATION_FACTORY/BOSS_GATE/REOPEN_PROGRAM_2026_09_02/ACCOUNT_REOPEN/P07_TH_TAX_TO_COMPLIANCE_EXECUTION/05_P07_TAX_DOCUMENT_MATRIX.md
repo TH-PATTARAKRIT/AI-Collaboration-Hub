@@ -16,9 +16,9 @@ class, whether such an object exists in the declared source set.
 | `D-02` | Abbreviated tax invoice (ใบกำกับภาษีอย่างย่อ) | `S-22` | **no** | no | no | no | no | Not selected by the declared patterns as a class. The vendor tax report anticipates the partnerless case with the caption `Selling goods or providing services` (`l10n_th_reports/models/tax_report_vat.py:153-154`); the SMEsPlus reports remove that path (`P07-F-04`) |
 | `D-03` | Debit note (ใบเพิ่มหนี้) | `S-23` `S-13` | **no** | no | no | no | no | Not selected by the declared patterns in the Thai modules |
 | `D-04` | Credit note (ใบลดหนี้) | `S-24` `S-14` | partial | no | no | no | accounting reversal only | Base-application reversal document; no Thai note class, no original-tax-invoice reference in any Thai report |
-| `D-05` | Substitute tax invoice (ใบแทนใบกำกับภาษี) | held at `U-08` | **no** | — | — | — | — | Not selected by the declared patterns |
+| `D-05` | Substitute tax invoice (ใบแทนใบกำกับภาษี) | held at `P07-U-08` | **no** | — | — | — | — | Not selected by the declared patterns |
 | `D-06` | Withholding tax certificate (หนังสือรับรองการหักภาษี ณ ที่จ่าย) | `S-31` | **yes** | computed `name` | user-initiated wizard | partial | draft / done / cancel, with a cancel-and-replace reference | `l10n_th_withholding_tax_cert`; print form in `l10n_th_withholding_tax_cert_form` |
-| `D-07` | Output tax report / Input tax report (รายงานภาษีขาย / ภาษีซื้อ) | `S-25` | as reports, not as records | n/a | n/a | column set not validated against `U-07` | none | Two parallel implementations — see `07_P07_TAX_REPORT_TRACEABILITY.md` |
+| `D-07` | Output tax report / Input tax report (รายงานภาษีขาย / ภาษีซื้อ) | `S-25` | as reports, not as records | n/a | n/a | column set not validated against `P07-U-07` | none | Two parallel implementations — see `07_P07_TAX_REPORT_TRACEABILITY.md` |
 | `D-08` | VAT return (ภ.พ.30) | `S-15` | partial | n/a | n/a | structure present as report lines 1–12 | one `account.return.type` | `l10n_th/data/account_tax_report_data.xml`; `l10n_th_reports/data/account_return_data.xml:4-8` |
 | `D-09` | PND 3 / PND 53 return | `S-33` | export only | n/a | n/a | 16 columns emitted, four defective (`W-K-01`, `W-K-02`, `W-K-05`, and the amount per `W-C-03`) | none | CSV export buttons on two report definitions |
 | `D-10` | PND 1 / PND 3a / PND 54 return | `S-33` | **no** | — | — | — | — | See the provisioning matrix at `03 §4.1`: PND 54 has a general-ledger account and nothing else |
@@ -54,7 +54,7 @@ What follows from this, each item checked against `S-19`/`S-20`:
 Because no such object was found within the boundary declared above, four downstream
 requirements are structurally unavailable rather than merely unimplemented:
 original-invoice reference on credit and debit notes (`S-23` `S-24`), the
-abbreviated-invoice class (`S-22`), the substitute invoice (`U-08`), and any per-document
+abbreviated-invoice class (`S-22`), the substitute invoice (`P07-U-08`), and any per-document
 retention or issuance audit trail (`S-26`).
 
 ### 2.1 The Substitution Covers One Title State of Thirteen
@@ -97,9 +97,9 @@ It is therefore assessed against `S-31` rather than dismissed.
 | Issuer / payee | `company_partner_id`, `supplier_partner_id`, with related tax identifiers (`:131-172`) | present |
 | Income type | **15**-value s.40 selection covering 40(1)–40(4)(b) sub-classes and 3 เตรส (`:16-64`), counted entry by entry | **the most statutorily faithful classification in the declared set** |
 | Form type | `income_tax_form` over `pnd1`/`pnd3`/`pnd3a`/`pnd53` (`:9-14`, `:173-180`) | narrower than the chart provisions (`03 §4.1`) |
-| Tax payer condition | `tax_payer` over `withholding` / `paid_one_time` (`:66`, `:188-195`) | two values; the statutory code set is held at `U-09`, and the PND export ignores this field entirely (`W-K-02`) |
+| Tax payer condition | `tax_payer` over `withholding` / `paid_one_time` (`:66`, `:188-195`) | two values; the statutory code set is held at `P07-U-09`, and the PND export ignores this field entirely (`W-K-02`) |
 | Lifecycle | `draft` / `done` / `cancel`, with `ref_wt_cert_id` linking a replacement to the cancelled certificate (`:90-102`) | present, and cancellation is by reference rather than by deletion — the correct pattern |
-| Duplicate copies | `S-31` requires issuance **in duplicate, each copy having the same contents** | **not modelled**; recorded as `U-13` |
+| Duplicate copies | `S-31` requires issuance **in duplicate, each copy having the same contents** | **not modelled**; recorded as `P07-U-13` |
 | Issuance timing | `S-31` requires issuance **immediately every time tax is withheld** | issuance is a user-initiated wizard, not an event consequence of the withholding |
 | Company scope | `company_id` required with a record rule; line company related from the header (`:148-155`, `:403-405`) | correct scope (see `20 §5` row 13) |
 | Deletion | full unlink granted to the billing group | **inconsistent with a 5-year retention obligation** (`S-26`, `P07-F-19`) |

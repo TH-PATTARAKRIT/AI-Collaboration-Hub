@@ -53,7 +53,7 @@ scrapping, application of goods to a non-business purpose, stock shortfall, good
 at cessation — is a supply for VAT, and the researched system has **no output-tax event and
 no tax document for any of them**, compounding `P07-F-26` (no tax-invoice object). The
 `(ง)` limb is bounded by Director-General criteria that were **not** retrieved, so the
-*extent* of the deeming is held at `U-23`; the *definitional* limb — that consideration is
+*extent* of the deeming is held at `P07-U-23`; the *definitional* limb — that consideration is
 not required — is verified and is not held.
 
 ## 4. `S-38` — A Special Tax Point This Package Recorded as Not Found
@@ -93,7 +93,7 @@ framed the question entirely around deductibility under มาตรา 65 ต�
 `S-36` an unevidenced destruction also risks being treated as a **deemed supply carrying
 output tax**, independently of whether the write-off is deductible. Deductibility and deemed
 supply are separate consequences of one act, and the evidence closing `P04-B-24` must cover
-both. Recorded as `U-24`.
+both. Recorded as `P07-U-24`.
 
 **Correction — P07 named the wrong limb, and P04 caught it.** The first issue of this
 section routed the deemed sale through s.77/1(8)**(จ)**, goods short against the stock
@@ -103,7 +103,7 @@ s.87(3) report, and `S-39` limits that report to registrants carrying on a busin
 the business is not an entry in that report and cannot be short from it. **The route is
 (ง).** The full disposition, including the classification carried over from P04 —
 FACT VERIFIED on the anchoring and the scope, SUPPORTED INTERPRETATION on the conclusion,
-because the prescribed *contents* of the report (`U-26`) were not retrieved — is at
+because the prescribed *contents* of the report (`P07-U-26`) were not retrieved — is at
 `09 §6`. The substance of P07's widening is unaffected; only the limb, and therefore the
 retrieval that closes it, changes.
 
@@ -120,7 +120,7 @@ P04's, because the missing artefact is a tax document and an output-tax event.
 
 What remains held is the **extent**, not the existence.
 
-**Progress on that hold in this exchange.** P04 pointed out that `U-23` and `U-24` limb B
+**Progress on that hold in this exchange.** P04 pointed out that `P07-U-23` and `P07-U-24` limb B
 converge on the same missing evidence, so one retrieval advances both. That retrieval was
 made: **ประกาศอธิบดีกรมสรรพากร เกี่ยวกับภาษีมูลค่าเพิ่ม (ฉบับที่ 2)**, 25 December 2534,
 effective 1 January 2535, is now in the register as `S-40` with its operative clause. It
@@ -128,7 +128,7 @@ provides a safe harbour for `นำบริการหรือนำสิน
 business administration, or for the benefit of assets held in the business — conditioned on
 `ต้องเป็นการใช้ในกิจการที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม`, use in a VAT-liable business.
 
-`U-23` is therefore **narrowed, not closed**, and the residual is specific: the announcement
+`P07-U-23` is therefore **narrowed, not closed**, and the residual is specific: the announcement
 is cited to s.77/1(10)(ก), the **services** limb, while its operative text names goods. Whether
 it is also the prescribed criteria under s.77/1(8)(ง) is not settled by its own text, and no
 separate announcement under (8)(ง) was located. Two consequences follow either way, and both
@@ -136,7 +136,7 @@ are usable now: the safe harbour does **not** reach use in an exempt business, a
 not reach a transfer out of the business at all — so donation and scrapping remain outside
 it on any reading.
 
-`U-26` — the prescribed contents of the s.87(3) report, which is what settles the (จ)
+`P07-U-26` — the prescribed contents of the s.87(3) report, which is what settles the (จ)
 question in either direction — was requested by P04, attempted in the same pass, and **not
 located**. It is carried open rather than reported as closed.
 
@@ -152,7 +152,7 @@ withholding sources this session retrieved would be inference across statutes, w
 defect this programme has been correcting all week.
 
 It is accepted as correctly routed **in the sense that it needs a tax owner**, and P07 is
-the tax process. It is therefore carried as `U-25`, open, requiring its own retrieval of
+the tax process. It is therefore carried as `P07-U-25`, open, requiring its own retrieval of
 corporate income tax authority. P07 flags that the question has now been raised in three
 successive asset packages and dropped from each without closure; carrying it open with an
 explicit evidence requirement is the way it stops being dropped.
@@ -191,7 +191,7 @@ instances with actors, which P04 caught and P07 corrected at `§3.1b`.
 
 | File | Change |
 |---|---|
-| `09` | `S-36`, `S-37`, `S-38` added as verified statutory sources; `P-11`, `P-12` added as derived positions; `U-23`, `U-24`, `U-25` added to the HOLD table |
+| `09` | `S-36`, `S-37`, `S-38` added as verified statutory sources; `P-11`, `P-12` added as derived positions; `P07-U-23`, `P07-U-24`, `P07-U-25` added to the HOLD table |
 | `01` | `R-V-25` (deemed supplies) and `R-V-26` (hire purchase) added |
 | `02` | `§2A` added — deemed supplies, absent from the first issue |
 | `04` | `TP-11` and `TP-12` added to the tax-point matrix |

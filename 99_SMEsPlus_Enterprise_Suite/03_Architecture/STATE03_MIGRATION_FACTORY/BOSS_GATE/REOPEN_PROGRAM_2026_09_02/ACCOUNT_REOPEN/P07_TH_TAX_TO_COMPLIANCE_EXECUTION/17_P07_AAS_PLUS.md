@@ -75,16 +75,16 @@ system. That is the shortest statement of the second cause.
 | 1 | Which of the two s.87 register implementations is canonical. | Both are installable, neither is declared; the choice has licensing consequences (`P07-D-07`, `P07-D-28`). Boss decision. |
 | 2 | Which withholding framework is canonical. | The vendor framework has better primitives (a real tax line, its own sequence) and no Thai statutory output; the third-party one has the statutory output and is inert on a fresh install (`P07-F-51`). Boss decision. |
 | 3 | Which extra-addon set is canonical. | Three same-generation roots exist outside the declared set, two of them supersets (`13 §2.1`). Until fixed, `P07-F-20` cannot be closed. Boss decision. |
-| 4 | Whether the deferred input-tax claim is lawful in the form the tax-period field implies. | `U-03`, `HOLD — STATUTORY EVIDENCE REQUIRED`. |
-| 5 | The statutory condition-of-withholding codes and the income-category-to-form mapping. | `U-09`, `U-10`, both held. |
+| 4 | Whether the deferred input-tax claim is lawful in the form the tax-period field implies. | `P07-U-03`, `HOLD — STATUTORY EVIDENCE REQUIRED`. |
+| 5 | The statutory condition-of-withholding codes and the income-category-to-form mapping. | `P07-U-09`, `P07-U-10`, both held. |
 
 ## 5. Veto
 
 `AASR-P07-VETO-01` — **No implementation may begin on the Thai tax-point design until
-`U-03` is closed with authoritative evidence.**
+`P07-U-03` is closed with authoritative evidence.**
 
 Reason: position 1 of §4.1 is forced, but the *purchase-side* form of it — a tax period
-that legitimately differs from the invoice date — is exactly what `U-03` governs. Building
+that legitimately differs from the invoice date — is exactly what `P07-U-03` governs. Building
 the mechanism before the legal rule is established risks encoding a deferral the statute
 does not permit, in the one place where the system already has a field for it. This veto is
 narrow: it blocks the purchase-side deferral mechanism only, and does not block work on

@@ -19,28 +19,28 @@ Date: `2026-09-04`
 
 | File | Bytes | SHA-256 |
 |---|---|---|
-| `00_P07_FINDINGS_REGISTER.md` | 33934 | `8060f6b60ecf9cb95d21f3220b732196c9306db044dbd13193d42dc0d8389a4d` |
-| `01_P07_THAI_TAX_REQUIREMENT_REGISTER.md` | 23430 | `20ba6bb949bf7395785800f5438933d730167223cde374240a95076cf460f47d` |
-| `02_P07_VAT_EVENT_MODEL.md` | 14309 | `de1599ad27ac936505cb5e56c7c1a6fab9457898be6b215c15bead21b5c30ae2` |
-| `03_P07_WHT_EVENT_MODEL.md` | 22751 | `8dfd44ce33db36c86d961a4df0c71603e5232b9bbe33114394747ab00ffeb3ef` |
-| `04_P07_TAX_POINT_MATRIX.md` | 8964 | `efac07084e0293866bc69409b08fe1c96137735b11369371c4ca15de0e3a5012` |
-| `05_P07_TAX_DOCUMENT_MATRIX.md` | 12460 | `263f3db5ebb536404c04cb441485d9924a9caf8d3d9352a9a7a574466a59422b` |
+| `00_P07_FINDINGS_REGISTER.md` | 40923 | `10e6dca9bac752f89557e1c42331696377f95e6ca5547a2bf0e80bb0fd211c56` |
+| `01_P07_THAI_TAX_REQUIREMENT_REGISTER.md` | 23438 | `949449c2340e52d7a18e194f5594c925df6d0adf1f1e5898c6ae43fb97f903e1` |
+| `02_P07_VAT_EVENT_MODEL.md` | 14317 | `575750dad92dc8ff94ac12c2d61f8c8be9b1e88db92c3d6d9b7110dc6bec6307` |
+| `03_P07_WHT_EVENT_MODEL.md` | 22759 | `1d4cb544a0ac9357d9ada3bdaa7b176914ab5d7345e7a9516c9a877bdb9056a8` |
+| `04_P07_TAX_POINT_MATRIX.md` | 8976 | `9a5097a6ea73ee039e22d0584b5de857f3ceb468c87b9d646c4fb3c518aeb4e4` |
+| `05_P07_TAX_DOCUMENT_MATRIX.md` | 12480 | `2394f9f96f33b9b941dec9fedee26264e36fb9f259d63535c458220224ec06e8` |
 | `06_P07_EVENT_TO_GL_MATRIX.md` | 16026 | `d51d84fe9cbe6c0d81fd70e2e0fe57c504735ecf9155e9d443b2e55a574abd7a` |
-| `07_P07_TAX_REPORT_TRACEABILITY.md` | 13893 | `2d12c0ecbc63af8dd69f0f68dd3c86005f3a738d236f30cfefcbfb78a1e5188e` |
-| `08_P07_CORRECTION_ADJUSTMENT_MATRIX.md` | 15231 | `c28b943d19677d978e6425fd1b7e14d428f378245e2e8b3f3946e3504f198d81` |
-| `09_P07_STATUTORY_SOURCE_REGISTER.md` | 25320 | `06409e6589bc1a457bec27c3b983e9d5aab7fd9e1a1eee6966e21440776bf72f` |
+| `07_P07_TAX_REPORT_TRACEABILITY.md` | 13901 | `c1dd1d0598e93d3fca6cc6106b39b0c7582aa5d291c886ceb896ee5ec27dc593` |
+| `08_P07_CORRECTION_ADJUSTMENT_MATRIX.md` | 15255 | `973323c2a6b4dec5f386c45b259c0cc129d90e41064bede73c0d18797f2b57d4` |
+| `09_P07_STATUTORY_SOURCE_REGISTER.md` | 25380 | `64c76cd19fbcceb24b28c8c2abcb82ad462d4318771d80c5f11bf0e9e21a9363` |
 | `10_P07_CROSS_PROCESS_OWNERSHIP.md` | 7122 | `8a378fbb7b9fc1161e6ddd7aef766f14e58c375b97fcffebaa7f19c252b6a5f4` |
-| `11_P07_CONTRADICTION_REGISTER.md` | 16194 | `02e3c560ea1f1f097167e643a18c221eb9c21f98bd1ddf5fcca323a4107edc72` |
-| `12_P07_DEPENDENCY_REGISTER.md` | 13060 | `4686c8e13b1c9e21274de0dad0e7bcbcdfc734694c2173d3f709dca8008c99c9` |
-| `13_P07_SOURCE_LINK_REGISTER.md` | 19017 | `dc34515b339629aa53f1a0bc7609773d3834358976666c9285128687da89d1a0` |
-| `15_P07_REVISION_LOG.md` | 64893 | `0518946c8bf867124d41c5bbf149e8c570aa238241dc910b1e61dc629c418851` |
+| `11_P07_CONTRADICTION_REGISTER.md` | 16198 | `588fbfbdc3155f51a2bb4087731f5708a1e1e71c54a5fd45087578acdeb5bc32` |
+| `12_P07_DEPENDENCY_REGISTER.md` | 13092 | `2d5dda3c480aca8b7c5d5ff9e10168920feb45c589f1561441024c7ae6fb4a82` |
+| `13_P07_SOURCE_LINK_REGISTER.md` | 19041 | `bc51790eab43ab5df3f0f64002efc3af491a5cfa35b8d3e70fb72da980aefdd4` |
+| `15_P07_REVISION_LOG.md` | 67137 | `2ec8934d1234c9dc9e427d8a6e14f6008b186d4915d40226a72e26e7a99106c7` |
 | `16_P07_AAS03_CHALLENGE.md` | 12188 | `75b7a24c34419f3f2c2f53da00f517af3d04d042aa2b8a3a07cb7be4565bed50` |
-| `17_P07_AAS_PLUS.md` | 7031 | `afdd8ec09a6c0e40f93c0c6eb15715e77da17e4d9d306f8aab37441cc92b15ae` |
-| `18_P07_PMO.md` | 9934 | `ecb08a9117fa9af7e33e81faf2dab9be6dd99fb8ef4925545573dc66c03ad1a1` |
+| `17_P07_AAS_PLUS.md` | 7051 | `1558a678cbce6922a63ef416329c1b2a0c909b2a721d8ef3259660ae0c47c0e6` |
+| `18_P07_PMO.md` | 9938 | `209a031addb24bc42c7be499e6a6a8bf1d9d6e3af65ff835230534b45d7a9324` |
 | `19_P07_CORE_RECON_HANDOFF_PACK.md` | 13235 | `482fc987e86a758b74936ae6f18175dcb5e49485da4244bd29eb1cac95efb56c` |
 | `20_P07_SCOPE_OWNERSHIP_MATRIX.md` | 16198 | `4de61445fb70925355ea783db81c35231821d89ccb0536e677aa3e46d20a619a` |
-| `21_P07_PEER_EVIDENCE_INTAKE_P04.md` | 14311 | `af5cc79985e4b3db176588156b6e2380e3df22e40d3f09947f5f1e3897ef7742` |
-| `22_P07_RUNTIME_EVIDENCE.md` | 88508 | `45dde77a06569021d44a06d5b6a3339ddc30008467d88b5a1a10ec05a4edc2fd` |
+| `21_P07_PEER_EVIDENCE_INTAKE_P04.md` | 14355 | `8992c34e2f8e6c474edb6b06de055d503b8383280060d3a92813677c81cdad61` |
+| `22_P07_RUNTIME_EVIDENCE.md` | 92026 | `bf72c217d876b9bd8bcd5b7dc17614006b116422d9af8d53e14a2bb6acfda7a5` |
 
 ## 3. Primary Evidence Sources Cited
 
@@ -49,10 +49,10 @@ Date: `2026-09-04`
 | Reference-ERP source, declared PATH SET | `/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/ACCOUNT/01 ACCOUNT/SOURCE CODE/{01 ACCOUNT, 02 OTHER, addons_extra}` | every Layer-2 citation in this package |
 | Comparison surfaces, excluded | the roots tabled at `13 §2.1` | `P07-N-03`, `P07-F-47`, `P07-D-01` |
 | Statutory text | `www.rd.go.th/english/*`, retrieved 2026-09-04 | `09 §2`, sources `S-01`…`S-34` |
-| Statutory instrument reporting | secondary, for the rate-reduction decree only | `S-35`, held at `U-04` |
+| Statutory instrument reporting | secondary, for the rate-reduction decree only | `S-35`, held at `P07-U-04` |
 | Project governance | `bootstrap/AI_BOOTSTRAP_PACKAGE.md`; `99_SMEsPlus_Enterprise_Suite/00_Project_Governance/SMEPLUS_VERY_DEEP_RESEARCH_8_CRITERIA_UNIVERSAL_EXIT_CONSTITUTION.md`; `FR_DETAIL_TENANT_MANAGEMENT.md` | `13 §1`, `18 §2`, `P07-F-50` |
 
-**Superseded.** A database of the declared generation **was** read, table-at-a-time and read-only, after this session's incapacity claim was tested and found false. See `22_P07_RUNTIME_EVIDENCE.md` §2 and §3. No code was executed. `U-02` no longer applies package-wide; it applies to every finding except those listed at `22 §5`.
+**Superseded.** A database of the declared generation **was** read, table-at-a-time and read-only, after this session's incapacity claim was tested and found false. See `22_P07_RUNTIME_EVIDENCE.md` §2 and §3. No code was executed. `P07-U-02` no longer applies package-wide; it applies to every finding except those listed at `22 §5`.
 
 ## 4. Clean-Room Scrub Result
 

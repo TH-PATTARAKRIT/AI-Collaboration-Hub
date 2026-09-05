@@ -11,7 +11,7 @@ Date: `2026-09-04`
 | Source business event | Payment of assessable income under s.40 | `S-30` |
 | Tax trigger | **The moment of payment.** "shall withhold income tax at every time of payment". For income brought into withholding by Director-General order, the same rule applies. | `S-30` `S-28` `S-29` |
 | Tax base | The assessable income paid | `S-30` |
-| Tax calculation | Rate by income category under s.40 and the applicable Ministerial Regulation / DG order | `S-28` `S-30`; rate-to-category mapping held at `U-10` |
+| Tax calculation | Rate by income category under s.40 and the applicable Ministerial Regulation / DG order | `S-28` `S-30`; rate-to-category mapping held at `P07-U-10` |
 | Tax document | **Certificate in duplicate, each copy with the same contents, issued immediately every time tax is withheld** (non-employment income) | `S-31` |
 | Tax accounting event | A liability to the Revenue Department arises at withholding | derived from `S-30` `S-32` |
 | Journal | Not prescribed by the Revenue Code | — |
@@ -84,7 +84,7 @@ nothing at all for Framework B withholdings.
 | # | Defect | Evidence | Why it is wrong |
 |---|---|---|---|
 | `W-K-01` | Income type is derived from the **rate**: `CASE tax.amount WHEN -1 THEN 'Transportation' WHEN -2 THEN 'Advertising' WHEN -3 THEN 'Service' WHEN -5 THEN 'Rental' ELSE ''`. | both handlers, `:39-45` / `:74-80` | Rate is not category. The 3% rate covers several s.40 categories that file differently; every rate outside the four listed produces an empty income type, silently. |
-| `W-K-02` | Condition of withholding is the literal `'1'`. | both handlers | The conditions in which the payer bears the tax cannot be expressed. Statutory code set held at `U-09`. |
+| `W-K-02` | Condition of withholding is the literal `'1'`. | both handlers | The conditions in which the payer bears the tax cannot be expressed. Statutory code set held at `P07-U-09`. |
 | `W-K-03` | PND3 vs PND53 is selected by `partner_id.is_company` plus a substring of a **translatable tag label**, read from the **first** element of two unordered collections. | `models/account_move.py:66-83` | `is_company` is a contact-structure flag, not a determination of legal personality; a contact child of a company has `is_company = False`. If the tag label is maintained in Thai, neither substring matches and the candidate list is empty. |
 | `W-K-04` | The certificate model carries the full 16-value s.40 income-type selection, but the PND export does not read it. | `withholding_tax_cert.py:16-64` | The correct classification exists in the system and is not used by the statutory export. |
 | `W-K-05` | The vendor handler passes a hard-coded title (`บริษัท`) for PND53; the override ignores that argument and derives the title from partner company-type master data. | `l10n_th_reports/models/tax_report_pnd.py:98` vs override `:24-26` | The override silently changes a statutory column's source; completeness now depends on master data that has no completeness control. |

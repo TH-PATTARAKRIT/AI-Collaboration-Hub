@@ -28,11 +28,11 @@ consequence of that inversion.
 | `TP-05` | Incorporeal goods, vending machines, credit-card sales, prescribed contracts | Per Ministerial Regulation | `S-04` | not modelled | **NOT FOUND IN SEARCHED SCOPE** |
 | `TP-06` | Debit note | The tax month in which the **note is issued** | `S-13` `S-23` | accounting date of the reversal/adjustment entry | **NO** |
 | `TP-07` | Credit note | The tax month in which the **note is issued** (issuer) / **received** (recipient) | `S-14` `S-24` | accounting date of the reversal entry; the recipient side has no receipt-date attribute | **NO** |
-| `TP-08` | Input tax on a purchase | The tax month of the tax invoice, subject to the deferred-claim rule held at `U-03` | `S-09` `S-11` | move accounting date of the bill | **PARTIAL** — the deferral the rule permits is precisely what `account.move.tax_period` was built to express, and that field does not drive selection |
+| `TP-08` | Input tax on a purchase | The tax month of the tax invoice, subject to the deferred-claim rule held at `P07-U-03` | `S-09` `S-11` | move accounting date of the bill | **PARTIAL** — the deferral the rule permits is precisely what `account.move.tax_period` was built to express, and that field does not drive selection |
 | `TP-09` | Withholding tax | **The moment of payment** | `S-30` | the **invoice's** accounting date, via the second UNION branch of the PND query | **NO** |
 | `TP-10` | Self-assessed VAT on foreign services | On remittance under s.83/6 | `S-17` | not modelled | **NOT FOUND IN SEARCHED SCOPE** |
 | `TP-11` | **Hire purchase / instalment sale** where ownership does not pass on delivery | **Each instalment due date**, with a tax invoice issued on each | `S-38` | not modelled; the acquisition path itself is absent from the reference estate per P04 | **NOT FOUND IN SEARCHED SCOPE** — `P07-F-59` |
-| `TP-12` | **Supply without consideration** — donation, scrapping, application to a non-business purpose, stock shortfall, goods on cessation | The act itself is a sale; no consideration is required | `S-36` `S-37` | not modelled; no output-tax event and no document | **NOT FOUND IN SEARCHED SCOPE** — `P07-F-58`; extent held at `U-23` |
+| `TP-12` | **Supply without consideration** — donation, scrapping, application to a non-business purpose, stock shortfall, goods on cessation | The act itself is a sale; no consideration is required | `S-36` `S-37` | not modelled; no output-tax event and no document | **NOT FOUND IN SEARCHED SCOPE** — `P07-F-58`; extent held at `P07-U-23` |
 
 ## 3. The Three Date Attributes Available, and What Reads Them
 
@@ -93,4 +93,4 @@ Stated as evidence requirements for the next round, not as a design.
 | `TPR-02` | The tax point must be derivable per transaction class (goods / services / import / note), not entered as one free date on the document header. | `TP-01`…`TP-07` |
 | `TPR-03` | The withholding tax point must be the payment, and the reported fact must be the posted withholding line. | `P07-F-11` |
 | `TPR-04` | Credit and debit notes must carry their own note date and the original tax invoice reference, and be placed by note date. | `P07-F-07` |
-| `TPR-05` | The legal basis for a deferred input-tax claim must be established before a purchase-side tax point that differs from the invoice date can be designed. | `U-03` — `HOLD — STATUTORY EVIDENCE REQUIRED` |
+| `TPR-05` | The legal basis for a deferred input-tax claim must be established before a purchase-side tax point that differs from the invoice date can be designed. | `P07-U-03` — `HOLD — STATUTORY EVIDENCE REQUIRED` |

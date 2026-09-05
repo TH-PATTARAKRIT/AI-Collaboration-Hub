@@ -6,7 +6,7 @@ Date: `2026-09-05`
 
 ## 1. Why This File Exists
 
-Every behavioural statement in files `00`–`21` is source-derived, bounded by `U-02`
+Every behavioural statement in files `00`–`21` is source-derived, bounded by `P07-U-02`
 (*no database was queried*) and by `13 §7`. At `r8` that entry was re-marked `ASSUMED`
 rather than `TESTED`, after a peer registered having asserted an incapacity it had never
 checked.
@@ -21,7 +21,7 @@ A PostgreSQL dump sits **inside this session's own declared PATH SET**:
 
 `13 §2` declares that directory as one of the three roots of the research universe. The
 session listed that directory **in its first minutes of execution**, and the dump appears in
-that listing. It was read past, and `U-02` was published over the top of it.
+that listing. It was read past, and `P07-U-02` was published over the top of it.
 
 This is worse than the peer instance that prompted the check, in two respects:
 
@@ -221,7 +221,7 @@ finding.** P04's formulation, and this is the second instance of it in two packa
 | `P07-F-03` | `SRC-CHAL` | **confirmed**, population declared |
 | `P07-F-51` | `SRC-CHAL` | **refined**; "inert as shipped" stands, "cannot work" withdrawn |
 | `P07-F-39` | `SRC` | scoped: latent in this deployment |
-| `U-02` | "no database was queried" | **superseded by this file** for the tables listed in §3 |
+| `P07-U-02` | "no database was queried" | **superseded by this file** for the tables listed in §3 |
 | `P07-U-20` | open | **CLOSED** |
 
 **No finding was withdrawn and none was weakened except `P07-F-51`, which is now more
@@ -1509,3 +1509,65 @@ most useful thing that could be asked of a deployment engineer on P07's behalf.
 **And it changes what a HOLD means here.** Every other open item in this package is open
 because something was not yet read. These two are open because the evidence was never
 recorded by anyone — including the deployments themselves.
+
+
+---
+
+## 19. The Code-Identity Question Was a False Dichotomy — `P07-F-76`
+
+`P07-F-65` and `P07-U-28` were framed as a **two-way** choice: the declared copy or the
+excluded root's copy. The host-wide enumeration promised at `§18.2` has finished, and the
+framing was wrong.
+
+Every copy of the three modules on `/Volumes/iMacSys` and `$HOME`, whole-tree hashed
+CR-normalised over `.py`/`.xml`/`.csv` excluding `__manifest__.py`, file count printed per
+hash, empty-input sentinel flagged:
+
+| module | copies | **distinct trees** | declared vs excluded |
+|---|---:|---:|---|
+| `l10n_th_withholding_tax` | 61 | **20** | different trees |
+| `l10n_th_withholding_tax_cert` | 49 | **15** | different trees |
+| `l10n_th_reports_ext` | 13 | **3** | different trees |
+
+**`P07-F-76` — the deployed code for `l10n_th_withholding_tax` is one of twenty candidate
+bodies on this host, not one of two.** `P07-U-28`'s exposure is 20-, 15- and 3-wide
+respectively. `P07-F-65` is confirmed and understated: it reported that *two* copies differ
+under one version string; there are twenty.
+
+### 19.1 What the enumeration also shows
+
+- **The declared copy is not unique in its own tree.** In all three modules an identical
+  second copy sits under `STEP040301_SOURCE_INDEX/01_EXTRACTED/` inside the same working
+  volume — same hash, so harmless, but it means the declared path set holds two paths to one
+  body and a naive count of "copies in scope" would say 2.
+- **Two single-file trees** (`1438dfe0…`, `74549d6f…`, one file each) — real content, not the
+  sentinel, so these are **partial or truncated module copies**, not failed walks. The
+  distinction is only visible because the file count is printed beside the hash, which is
+  P04's control adopted at `§18.1` doing exactly what it was added for.
+- **Prior generations are present**: v12, v14, v16 and v18 copies of these modules all exist
+  on the host and hash distinctly. Any comparison that does not filter by generation first is
+  comparing across product lines.
+
+### 19.2 What it does not change
+
+`P07-F-74` is untouched: the tax-period module's five copies are still one tree, so that
+closure holds. `P07-F-71` is untouched: whatever the deployed body is, the copies compared at
+`§16.2` agree on fields and views, so **structural claims stay discharged**. What widens is the
+**behavioural** exposure, and it widens from *two candidates* to *twenty*.
+
+`P07-U-28` restated: **which of 20 / 15 / 3 same-named code bodies each deployment runs is
+undecidable from this host**, and the modules' method bodies are where the divergence lives.
+`NOT ON THIS HOST` is the correct classification and the correct size is now stated.
+
+### 19.3 A false positive in the check that found this — `REV-E-64`
+
+Extending the orphan check to every identifier family (`§5`) made it match **bare** `F-nn` as
+well as `P07-F-nn`. It reported `P07-F-81` as an orphan. There is no `P07-F-81`: the match was
+`` `F-81` `` in `§7.4` of this file — **P04's identifier, cited in a passage about P04's own
+package.**
+
+**An identifier check that accepts bare identifiers collides with peer packages' identifiers**,
+and in a two-package exchange that is not a rare case. The check now requires the `P07-`
+prefix for this package's families and reports bare matches separately as *peer references*.
+Caught in the first run of the extended check, by reading what it matched rather than trusting
+the count — the same discipline that caught the false discriminator at `§16.1`.
