@@ -384,9 +384,28 @@ minimum-size filter cost nothing — **no archive on either tree is under 1 MB**
 
 **Readability is per artefact, not uniform** — adopted from P11, which found the
 same split from the other side. *"Database evidence is available"* and *"no
-database access"* are **both wrong**; the true statement is per file. A reader
-with only the host's default client reproduces **three of five**, and would see
-two v18-line databases rather than four.
+database access"* are **both wrong**; the true statement is per file.
+
+**And the caveat must say what a reader would wrongly conclude, not merely what
+they would miss.** Sharpened by P07, whose own case inverts: **both** databases
+in which its headline defect fires are the two a default client **cannot** open,
+so a reader reproducing it with stock tooling opens only the deployments where
+the defect is **absent** and would reasonably conclude P07 is **wrong**. A
+coverage footnote would not have warned them.
+
+Tested here, finding by finding:
+
+| Finding | Rests on | Stock-tooling reader sees | Conclusion |
+|---------|----------|---------------------------|------------|
+| `P04-F-81` convention split | 3 readable + 2 unreadable | 72 of 96 templates, all `constant_periods`; 683/685 real assets on daily | **holds** |
+| `P04-F-82` source-link 96.7 % | **one readable archive only** | everything | **fully reproducible** |
+| `P04-F-83` zero real assets | 2 readable + 2 unreadable | 2 of 4 v18 snapshots, 72 templates, **zero real assets in both** | **holds** |
+
+> **No finding in this package depends on an artefact a default client cannot
+> open.** A reader with stock tooling reaches **the same conclusion on all
+> three**, from less evidence. That is the opposite of P07's position and is
+> stated because the caveat is only useful if it is specific about which way it
+> cuts.
 
 **Scope, stated before any finding.** None of these is `idemo18_uat`, the database
 the runtime capture in §6 came from. Nothing here closes a blocker that names that

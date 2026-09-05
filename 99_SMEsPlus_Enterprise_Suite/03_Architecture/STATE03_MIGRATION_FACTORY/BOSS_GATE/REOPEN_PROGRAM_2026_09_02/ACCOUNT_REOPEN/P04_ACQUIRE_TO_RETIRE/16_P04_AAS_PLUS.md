@@ -137,6 +137,23 @@ which did not) before any claim was checked. Both behaved.
 | a | `17` carried **44 rows / 41 opened** against an executed **45 / 42**, in three places — one of them a cell reading *"**Executed, not quoted**"*, which was **false about itself** | a self-certifying stale count, the same shape P07 found in a peer's register |
 | b | Item 16's correction had been **erased by a later rewrite of the same row**. The disposition still read *Corrected*; the file showed **neither the error nor its repair** | **a later edit destroying an earlier correction's lineage** — not previously named by any of the three sessions |
 
+**Why this table had two defects and a peer's had none.** P07 ran the same audit
+on its own corrections, with the same controls, and returned **0 of 18
+unrepaired** — and named the cause rather than claiming care: *every correction
+was made as an **in-place edit at the moment it was accepted**, never batched.*
+
+Confirmed here from the negative side. **Both** P04 defects were exactly the
+operations that were **not** in-place:
+
+- **(a)** a count sync **deferred** to a later pass, which then went stale;
+- **(b)** a row **rewritten later** for an unrelated reason, erasing an earlier edit.
+
+Every correction made at the moment of acceptance survived. The two that were
+deferred or revisited did not. **The technique is the transferable result, not
+the audit score** — and P07's clean result is evidence for the technique
+precisely because that package failed the *same rule* twice on the same day
+elsewhere.
+
 Both corrected. **Defect (b) is the one worth carrying**: every rule this
 exchange produced concerns making a correction *visible*. None of them protects
 a correction already made from being **overwritten by a subsequent edit to the
