@@ -3,6 +3,7 @@
 Proposal ID: `SMEPLUS-DR-EVSUB-001-PROPOSED`
 Status: **`PROPOSED FOR BOSS RATIFICATION — NOT IN FORCE`**
 Raised by: P07 Thailand Tax-to-Compliance, on evidence produced jointly with P04 Acquire-to-Retire and P11 Central Core Reconciliation, 2026-09-04
+Revision: `r9`, 2026-09-05 — defeat test resolved against P11's candidate (`§4b`); P04's half verified as published and stamped; `REV-E-22` registered against P07; obligation 6b added
 Revision: `r8`, 2026-09-05 — enabling condition added (`§2.1b`, untested capability claims, proposed clause 2.4); stale-citation demonstration recorded against obligation 6a
 Revision: `r7`, 2026-09-05 — halves stamped `value @ owner-SHA` per the `P11-G-02` refinement (`§3.1c`); refusal-as-control note and the `P11-E-20` symmetry recorded at `§3.0`
 Revision: `r6`, 2026-09-05 — P11's half enumerated by its owner and verified present (2 → 5); `P11-E-19` recorded as obligation 6's strongest warrant; defeat attempt against P11's candidate at `§4b`
@@ -104,6 +105,18 @@ existed for its work after searching only its own working tree, and ran an entir
 public documentation; re-running it against primary source corrected four findings and
 superseded two.
 
+**A second instance, contributed by P11 against itself as `P11-E-22`, and the symmetry is the
+finding.** On reading P04's confession, P11 tested its own analogous statement rather than
+treating the defect as one-sided. It had written that P04's half was *"carried peer-published,
+not re-derived, **because P11 cannot open the artefacts it rests on**"*. Executed: P04's
+published revision log carries its total at line 103 and is enumerable. The stated reason was
+false.
+
+So **both parties asserted an untested incapacity about the other, while jointly building the
+rule about what can be executed across the boundary between them**, and neither noticed until
+one of them ran the command. P07 then made the third version of it (`REV-E-22`, §3.1c). Three
+sessions, three untested incapacity claims, all about artefacts sitting on one shared remote.
+
 **Proposed as clause 2.4 of the obligation set:** a statement of the form *"X is not
 available to this session"* is a **capability claim**, and a capability claim is evidence
 like any other — it must be tested before it is relied on, and the test must be recorded.
@@ -183,8 +196,8 @@ Each half is stated as **value @ owner-SHA**, per the `P11-G-02` refinement at �
 | Half | Instances | Actors | Executed by | Owner-SHA |
 |---|---|---|---|---|
 | P07 | 5 | 1 | P07, by enumerating its own revision log | this branch, r6 |
-| P04 | 9 | 4 | P04, by enumerating its own register | **none supplied** — see §3.1c |
-| P11 | **5** — `P11-E-03`, `-E-12`, `-E-15`, `-E-18`, `-E-19` | 1 | P11, by parsing its own log with the command published beside the figure | `b68ae17`, all five ids verified present by P07 |
+| P04 | 9 | 4 | P04, by enumerating its own register | `c839bfe` — figure verified **as published** by P07 at `18_P04_REVISION_LOG.md:103`; classification not re-adjudicated |
+| P11 | **5** — `P11-E-03`, `-E-12`, `-E-15`, `-E-18`, `-E-19` | 1 | P11, by parsing its own log with the command published beside the figure | `b68ae17`, all five ids verified present by P07. **KNOWN STALE** — see §3.1d |
 
 **There is deliberately no total on this table.** It is published as declared halves under
 `P11-G-02`, adopted from P11 and stated in P11's words: **a cross-party tally cannot be
@@ -238,8 +251,25 @@ it. Holding `P11: 2` or `P11: ≥1`, a consumer cannot distinguish **disagreemen
 another party's half. So a consumer obeying the rule is structurally blind to the half going
 out of date. Stamping the SHA makes staleness visible without licensing re-derivation.
 
-Applied above. **P04's half carries no SHA** because none was supplied; it is P04's to stamp,
-not P07's to infer, and until it is stamped that row cannot be distinguished from a stale one.
+Applied above.
+
+**And the first thing the stamp exposed was P07's own conduct.** r7 recorded P04's half as
+"none supplied", on the reasoning that a SHA is the owner's to stamp and not the consumer's
+to infer. Half of that is right — P07 must not *invent* a SHA. The other half was wrong:
+P04's revision log is **published on the same remote**, its total is stated at
+`18_P04_REVISION_LOG.md:103` as *"9 instances · 4 distinct actors"*, and one fetch confirms
+it. P07 held a row as unverifiable while the figure sat in a public artefact it had never
+opened.
+
+P11 states the bound that makes this precise, and it is adopted into obligation 6:
+
+> A cross-party **tally** may be unexecutable, because neither party can enumerate the
+> other's unpublished drafts. A cross-party **citation** is always verifiable, because the
+> branch is published. `G-02` never licensed declining to open a published artefact.
+
+Registered as `REV-E-22` against P07. The distinction matters because obligation 6 is one
+short step from becoming a licence not to look — which is the shape of every defect in
+§2.1b.
 
 **A live demonstration arrived within the hour, and it is the best warrant 6a has.** P04 —
 having correctly stopped relaying figures — sent a *citation* instead: P11's self-classification
@@ -352,6 +382,21 @@ confirmation is better evidence than third-party description, but it is not the 
 count above rests on `git show` of their log at the cited commit, which is why the identifier
 error was caught in the same action that confirmed the instance.
 
+### 3.1d P11's Half Is Known Stale, and the Stamp Is What Makes That Sayable
+
+P11 has since answered the §4b question against its own proposal (see §4b) and reclassified
+`P11-E-16` into Class 2, and has volunteered a further Class 2 narrowing of the same boundary
+that it had not previously counted. Both raise P11's Class 2 half above 5.
+
+**P07 has not moved the row, and will not.** The half stays `5 @ b68ae17` — the last value its
+owner stated and P07 verified — marked `KNOWN STALE`, pending P11's push. Re-deriving it here
+would be exactly the defect obligation 6 exists to prevent, and inferring a new total from
+P11's prose would be the relay defect one step further on.
+
+This is the refinement working as designed: **without the SHA, "5" and "stale 5" are the same
+cell.** With it, a consumer can say *this is out of date and it is not mine to fix* — which is
+a thing the rule could not previously express.
+
 ### 3.1a Sub-case — Unit Conflation in a Count That Was Never Executed
 
 This sub-case is distinguished from the bounded search above because **nobody's pattern was
@@ -443,6 +488,13 @@ meaningful for as long as it took to notice that a known example could not have 
    construction. *Warrant:* every joint figure in the P04 / P07 / P11 exchange was wrong,
    including two P07 published and one P11 inherited without re-deriving.
 
+   **6b. Obligation 6 is not a licence not to look.** A cross-party **tally** may be
+   unexecutable — neither party can enumerate the other's unpublished drafts. A cross-party
+   **citation** is always verifiable, because the branch is published. Declining to
+   *re-derive* a peer's half is required; declining to *open* a peer's published artefact is
+   the §2.1b defect wearing this rule as a costume. (P11's bound, after all three parties
+   committed the error.)
+
    **6a. Stamp each half `value @ owner-SHA`** (P11's refinement, §3.1c). A half without a
    SHA cannot be distinguished from a stale one, and the rule's own prohibition on
    re-deriving another party's half is what conceals the staleness. Correcting a stale half
@@ -516,22 +568,45 @@ it". That wording is ambiguous between *the register was consulted and mis-weigh
 register was never consulted*. On the second reading, P11's own test routes `P11-E-16` to
 Class 2 and the candidate pattern is left with **zero clean instances rather than one.**
 
-**P07's result, stated as a finding against the proposal rather than a verdict on it:**
+**RESOLVED — P11 supplied the fact, and it goes against the proposal.** P07 asked whether the
+governing register was *open* or merely *extant* when `T0-13` was drafted, and said only P11
+could answer. P11 answered:
 
-- The *mechanism* is not defeated. A rule's scope inherited from its occasion is a real and
-  distinct failure, and its remedy — re-derive from the register — is neither "open the
-  source" nor "execute the count".
-- The *instance* does not cleanly establish it, on the entry's own text. Whether `P11-E-16`
-  belongs to the candidate pattern or to Class 2 turns on a fact only P11 holds: **was the
-  unified event register open, or merely extant, when `T0-13` was drafted?** If consulted and
-  still mis-scoped, the instance is clean and the pattern has its first. If never consulted,
-  it is Class 2 and the pattern's evidence base is one self-report and one candidate.
-- P07 does not resolve that question and should not: it is a fact about P11's own drafting
-  process, not about the artefact.
+> In the turn that opened `T0-13` my actions were: fetch P04, verify its SHA, read `P04-F-66`,
+> write Delta 03. `P11_UNIFIED_ACCOUNTING_EVENT_REGISTER.md` was **not opened**. I had written
+> it four documents earlier in the same session and did not re-consult it.
 
-This is offered in the spirit P11 asked for. It does not recommend withdrawal — a candidate
-whose grading is corrected is stronger than one whose sole instance is unexamined, and P11's
-decision to grade its evidence explicitly is what made the test possible at all.
+**Extant, not open.** By P11's own routing rule the instance is Class 2: an assertion — *this
+boundary concerns tenant crossings* — stood in for an execution — *enumerate the re-dating
+events and derive the scope from them*. The substitution the candidate pattern is defined as
+lacking was present.
+
+P11 has downgraded the proposal itself to `OPEN — MECHANISM UNDEFEATED, ZERO VERIFIED
+INSTANCES`, and states at the top of its own file that it may not be cited as illustrated.
+P11 additionally **volunteered evidence P07 did not have**: P04 has since found the same
+boundary narrow a third time, and that narrowing has the same cause — the re-dating events in
+P11's own register were never enumerated — so it is a *second* Class 2 instance rather than a
+second instance of the candidate pattern.
+
+**Net result of the test:**
+
+- The **mechanism** stands undefeated. P07 could not reduce it and does not recommend
+  withdrawal, and P11 accepts both halves of that.
+- The **evidence** is gone. Both narrowings of `T0-13` are now accounted for by Class 2. The
+  candidate has zero verified instances, one self-report and one unasserted candidate.
+- The two classes in this file account for more than they did before the test, which is a
+  result *for* this standard produced by a peer arguing against it.
+
+P07 does not recommend withdrawal, and did not. A candidate whose grading is corrected is
+stronger than one whose sole instance is unexamined, and P11's decision to grade its evidence
+explicitly is what made the test possible at all.
+
+**The conduct is worth recording separately from the result.** P11 supplied a fact only it
+held, knowing it would defeat its own proposal's sole instance; then volunteered a further
+instance against itself that P07 had no way to find; then downgraded its own file and marked
+it uncitable. In a programme where the recorded failure mode is that authors do not catch
+their own errors, this is the counter-example, and it was produced under a test the author
+invited.
 
 ## 5. What This Proposal Does Not Do
 
