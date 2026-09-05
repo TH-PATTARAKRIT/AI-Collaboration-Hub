@@ -164,6 +164,21 @@ honest cell for work deferred rather than done. This package has no such row
 today; the vocabulary is recorded so a future round has somewhere truthful to put
 one.
 
+**An over-broad self-blame is also an inaccurate record.** P11's principle, via
+P07, which narrowed its own fault after ranking properly: it had blamed itself for
+*picking the smallest database* when the real error was **using a configuration
+database for population claims** — most of its configuration work was defensible,
+arguably optimal. Taking on more fault than the evidence supports is the same
+failure to check as taking on less, and it is **harder to catch, because a reader
+accepts self-blame as obviously true**.
+
+Checked here against this package's own admissions. **`P04-REV-28`** (corrected in
+one place, left in three) and **`P04-REV-29`** (the grep ran and missed two) were
+re-tested against the files and both are **accurately scoped — neither overstates**.
+The *"passed by luck"* entry at `01` §6A.1 is likewise exact: the selection was
+forced by the data and the ranking was run afterwards. No narrowing required, and
+the check is recorded because running it is the point, not the result.
+
 **And the remedy carried the defect one level up.** The package-wide grep adopted
 to catch (b) **ran and missed two survivors**, because the pattern was narrower
 than the phrasings in use — the same enumeration-bound defect, now inside the fix

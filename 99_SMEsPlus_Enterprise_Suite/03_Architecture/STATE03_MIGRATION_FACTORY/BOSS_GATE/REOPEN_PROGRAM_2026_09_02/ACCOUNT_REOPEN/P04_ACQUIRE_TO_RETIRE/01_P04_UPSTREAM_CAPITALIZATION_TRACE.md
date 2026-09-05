@@ -391,8 +391,15 @@ Tested here:
 | `BK12MAY26` | 36 | 0 |
 | `iTEST02` ×2 | 12 each | 0 |
 
-`P04-F-82` rests on `iSMEs` — the **largest** population and **the only one
-containing real assets at all**. So the selection was **forced by the data**, not
+**And "rank the population" needs its own declared unit.** P07 ranked with P11
+and the order **inverted**: one database is largest by bytes and rows, the other
+has **more than twice the populated tables** — one is the **broadest module
+install**, the other the **deepest data set**. So the rule invented to fix an
+undeclared unit silently requires one. **Rank by the unit the claim needs:
+population claims want depth, configuration claims want breadth.**
+
+`P04-F-82` is a **population** claim and rests on `iSMEs` — the **largest**
+population and **the only one containing real assets at all**. So the selection was **forced by the data**, not
 chosen for convenience. **Recorded as luck, not method:** this session did not
 rank before reading; it read the largest file first and the ranking only exists
 because it was executed afterwards, at a peer's prompting. The rule is adopted
@@ -453,8 +460,24 @@ bounded to the database named in it.
 > Templates govern the configuration of assets created from them. So the
 > databases that would seed new assets are seeded with the **opposite**
 > convention to the one in production use.
-> Class: **FACT VERIFIED**, bounded to the **five snapshots across four database
-> identities** named at §6A.1.
+> **This is a compound claim and its two halves rest on different kinds of
+> database.** Adopted from P07, which found it had used a *configuration* database
+> for *population* claims and had never distinguished the two kinds in one file:
+>
+> | Half | Kind of claim | Evidence required | Source used |
+> |------|---------------|-------------------|-------------|
+> | 683 of 685 real assets on daily | **population** | the **deepest data set** | `iSMEs` — the only snapshot with real assets |
+> | 96 of 96 templates on `constant_periods` | **configuration** | the **broadest install**, i.e. every snapshot carrying templates | all four v18-line snapshots |
+>
+> Each half rests on the right kind, **by construction rather than by design** —
+> the population half had only one candidate and the configuration half was
+> enumerated exhaustively. The split is stated because the finding did not
+> previously say which evidence supported which half, and a reader could not have
+> told.
+>
+> Class: **FACT VERIFIED**. Population half bounded to `iSMEs`; configuration half
+> bounded to the **four v18-line snapshots across three identities**. Enumeration
+> of candidates at §6A.1.
 
 > **P04-F-83.** **No v18-line database on this host contains a single real asset
 > record.** **Unit declared:** four v18-line **snapshots** across **three database
