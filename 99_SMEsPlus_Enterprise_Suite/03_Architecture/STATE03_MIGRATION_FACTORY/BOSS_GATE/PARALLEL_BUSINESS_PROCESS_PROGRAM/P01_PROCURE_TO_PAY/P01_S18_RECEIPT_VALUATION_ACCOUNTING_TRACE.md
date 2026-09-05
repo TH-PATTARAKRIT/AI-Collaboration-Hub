@@ -1,0 +1,202 @@
+# P01 — SERIES-18 RECEIPT → VALUATION → ACCOUNTING DIRECT TRACE
+
+Session: `SMEPLUS-26-09-05-ACC-P01-P2P-S18-SOURCE-DEPLOYMENT-DIRECT-VERIFY-001`
+Checkpoint: `CP-P01S18-03`
+
+**What is new here.** Every previous P01 trace crossed generations: a mechanism read in one
+series, a population measured in another. This one does not. Source, configuration, policy and
+records are all series 18, all from the same deployment.
+
+Each transition below is reported in four columns that must not be merged:
+**source-supported mechanism** (the code says it) · **configured mechanism** (this deployment sets
+it up) · **deployed records** (rows exist) · **runtime action not directly evidenced** (what we
+still cannot see without executing).
+
+
+> ### PEER DELTA APPLIED — BOUND TO ONE IDENTITY
+>
+> Peer **P04** (`9e377e30`, `P04-F-101`) records **three** series-18 database identities on this
+> host, not one: `551ab874` (361 modules — the one analysed here), `4b766580` (478 modules), and
+> `96548e18` (`T805efaplus`, 123 modules, never transacted). **Everything in this document is
+> bounded to `551ab874` @ 2026-08-30** and is not a claim about the series-18 generation as
+> deployed elsewhere. See `P01_S18_PEER_DELTA_HANDOFF.md §2.2`.
+
+---
+
+## 1. THE CHAIN, END TO END
+
+| # | Transition | Source mechanism | Configured | Deployed records | Not directly evidenced |
+|---|---|---|---|---|---|
+| 1 | Purchase Request → Purchase Order | `purchase_request` 18.0.1.10.0, `purchase_request_line.purchase_state`, `stock_move.created_purchase_request_line_id` | yes | 1,043 requests; 3,398 lines; **1,504 lines linked to a PO** | the approval UI actions themselves |
+| 2 | PO confirmation | `purchase.order.button_confirm`; custom guard `scgl_product_category_company` `_scgl_validate_product_company_scope` | yes | 13,887 POs, 13,735 in `purchase` | whether the guard has ever refused (§6) |
+| 3 | PO → Receipt | `purchase_stock`, `stock.picking` incoming | yes | 2,516 incoming pickings, **1,305 done**; 3,158 moves linked to a PO line, 3,124 done | — |
+| 4 | Receipt → Valuation layer | `stock_move._create_in_svl` → `stock.valuation.layer` | yes | **1,403** done PO-linked moves carry layers, **฿22,953,527.29** | — |
+| 5 | **Valuation layer → Journal entry** | `stock_valuation_layer._validate_accounting_entries` (`R1:…:74-95`), gated `valuation == 'real_time'` | **gate closed** — policy is `manual_periodic` on 126/126 categories × 4/4 companies | **0 of 47,801** layers carry `account_move_id`; **0 of the 1,403** | — the gate is decided by stored configuration, which is read, not inferred |
+| 6 | Journal entry → Stock journal | `stock_move.py:199-206` `journal_id = company.account_stock_journal_id` / category `property_stock_journal` | **yes**, all four companies (`STJ`) | **0 items** in journals 16/24/32/40 | — |
+| 7 | Journal entry → Clearing account | `_get_accounting_data_for_valuation` returns the input account for an in-move | **yes**, 171 of 504 (category, company) pairs | **0 items** on accounts 176/62/100/138 | — |
+| 8 | Receipt → Vendor Bill | `purchase_stock`, `purchase_order_line.qty_invoiced` | yes | 1,904 vendor bills; 2,606 of 3,375 bill product lines carry a `purchase_line_id` | which user created which bill |
+| 9 | **Bill line → account** | v19 overrides this to the valuation account; **v18 has no such override** (§4) | n/a | 3,375 product lines → **expense**; top accounts 186 (1,062) and 72 (966), both `510000 Cost of Revenue` | — |
+| 10 | Bill → AP | `account.move` payment-term line on the partner payable | yes | 1,904 payment-term lines; **1,894** on a payable account, **10 are not** (§7) | — |
+| 11 | AP → Payment | `account.payment` | yes | 3,508 payments, **1,183 supplier** | — |
+| 12 | Payment → Reconciliation | `account.partial.reconcile` / `account.full.reconcile` | yes | 5,071 partial, 2,343 full; **1,370 of 1,894** bill AP lines reconciled | — |
+
+---
+
+## 2. THE BREAK IS AT STEP 5, AND IT IS A DESIGNED BREAK
+
+Steps 1–4 execute. Steps 6 and 7 are configured and never fire. The chain does not break because
+something failed; it breaks because **step 5's gate is closed by configuration**, and steps 6 and 7
+are downstream of it.
+
+Proved in `P01_S18_PERIODIC_PERPETUAL_POLICY_PROOF.md`:
+`if not svl.…product_id.valuation == 'real_time': continue`, and the policy is `manual_periodic`
+for every product in every company, read from both storage locations, with no product-level
+override possible in this generation.
+
+**No accounting entry at receipt is the specified behaviour of this configuration.**
+
+---
+
+## 3. WHAT THE LEDGER ACTUALLY CONTAINS INSTEAD
+
+| Path | Items | Where |
+|---|---|---|
+| Valuation path (`STJ` journals) | **0** | — |
+| Clearing account `210300` | **0** | — |
+| Inventory `130000` (account 169) | 2,940 | **all** in journal 45 `MIG26 "COA Migration 2026"`, all `entry`, all posted, 2026-01-03 → 2026-08-25 |
+| Vendor bill expense | 2,814 items of type `expense_direct_cost`, 477 of type `expense` | journals `AP` |
+
+Inventory value in this ledger is **entirely migrated**. Nothing the series-18 runtime has done
+since 2026-08-18 has moved inventory value into the general ledger, and under periodic valuation
+nothing was supposed to.
+
+---
+
+## 4. STEP 9 IS A GENERATION DIFFERENCE, NOT A CONFIGURATION DIFFERENCE
+
+P01 previously recorded that the vendor bill line is redirected to the stock valuation account.
+That was read in the series-19 tree at `R3:stock_account/models/account_move_line.py:13-24`:
+
+```
+def _compute_account_id(self):
+    super()._compute_account_id()
+    for line in self:
+        if not line.move_id.is_purchase_document(): continue
+        if not line._eligible_for_stock_account(): continue
+        ...
+        if line.product_id.valuation == 'real_time' and accounts['stock_valuation']:
+            line.account_id = accounts['stock_valuation']
+```
+
+**In series 18 that file does not exist.** `R1:stock_account/models/` contains 15 files
+(`__init__`, `account_chart_template`, `account_move`, `analytic_account`, `product`,
+`res_company`, `res_config_settings`, `stock_location`, `stock_lot`, `stock_move`,
+`stock_move_line`, `stock_picking`, `stock_quant`, `stock_valuation_layer`,
+`template_generic_coa`) and **none is `account_move_line.py`**. The series-19 directory contains
+17 files including `account_move_line.py`, `account_account.py`, `product_value.py` and
+`stock_picking_type.py`.
+
+**CLASSIFICATION: the bill-line account override is `VERSION-DEPENDENT` — a series-19 mechanism,
+`NOT REACHABLE` in series 18.** It is doubly unreachable here, since the v19 override is itself
+gated on `real_time`.
+
+The deployed records agree: bill product lines post to expense, not to a valuation account.
+
+---
+
+## 5. ANGLO-SAXON ACCOUNTING IS ENABLED IN ONE COMPANY AND INERT
+
+| Company | `anglo_saxon_accounting` |
+|---|---|
+| 1 | **true** |
+| 2, 3, 4 | false |
+
+`R1:stock_account/models/account_move.py:278`:
+`return self.product_id.is_storable and self.product_id.valuation == 'real_time'`
+
+Company 1 has anglo-saxon accounting switched on and **no product that satisfies the second
+condition**. The setting is live and can never take effect under the current policy.
+
+**CLASSIFICATION: CONFIGURED, NOT EXECUTED — POLICY-DEPENDENT.** This is a second, independent
+instance of the same shape as the clearing account: the configuration anticipates perpetual
+valuation and the policy switch does not.
+
+---
+
+## 6. THE CUSTOM COMPANY-SCOPE GUARD AT STEP 2 — EXECUTES, CANNOT REFUSE
+
+`scgl_product_category_company` 18.0.1.5.0 is installed **and** has a version-matching source copy
+on this host — one of only 6 of 16 that do. It adds to `purchase.order`:
+
+```
+def button_confirm(self):
+    self._scgl_validate_product_company_scope()
+    return super().button_confirm()
+```
+
+plus an `@api.constrains` on `purchase.order.line`. Products must belong to a category permitted
+for the order's company.
+
+**Deployed configuration:**
+
+| Control | Value |
+|---|---|
+| `scgl_allow_purchase` | **true on 126 of 126 categories** |
+| Categories with an explicit company scope (`scgl_product_category_company_rel`) | **16 of 126** (32 rows) |
+| Categories with no scope — the module documents *"Empty Companies means All Companies"* | **110 of 126** |
+| Of the 15 GRNI-configured categories, how many are scoped | 3 |
+
+**The guard runs on every purchase order confirmation and permits everything for 110 of 126
+categories.** This is the same shape as P01's series-19 finding that the company-consistency guard
+"executes but is vacuous" — and here the cause is provable: **configuration, not code.** The code
+is capable of refusing; the data never asks it to.
+
+**CLASSIFICATION: INSTALLED, CONFIGURED, REACHABLE, EXERCISED — and non-restrictive for 87% of
+categories by configuration.** Not a code defect. A control that has been switched to permit.
+
+---
+
+## 7. TEN VENDOR BILLS WHOSE LIABILITY SITS OUTSIDE THE AP SUBLEDGER
+
+Of 1,904 payment-term (balancing) lines on vendor bills, **1,894 are on an account of type
+`liability_payable`. Ten are not.** All ten are posted, all in company 2:
+
+| Account | Code | Type | Bills | Total credit |
+|---|---|---|---|---|
+| 391 | `218001` เจ้าหนี้อื่น (other payables) | `liability_current` | 9 | ฿1,788.27 |
+| 393 | `221002` เจ้าหนี้เช่าซื้อ/ลีสซิ่ง - ระยะยาว (finance lease, long term) | `liability_non_current` | 1 | ฿11,181.00 |
+
+Moves: `AP2026/01/000105`, `AP2026/02/000026`, `AP2026/02/000104`, `AP2026/03/000092`,
+`AP2026/04/000054`, `AP2026/05/000087`, `AP2026/06/000005`, `AP2026/06/000006`,
+`AP2026/07/000030`, `AP2026/07/000083`.
+
+**The amount is small — ฿12,969.27 in total — and the mechanism is not.** These liabilities are
+outside the payables subledger: they do not appear in an ageing keyed on `liability_payable`, and
+standard payment matching against the partner's payable account will not reach them. Nine of the
+ten are a recurring small monthly amount in company 2, which is consistent with a deliberate
+mapping rather than an accident; the tenth is a finance-lease liability correctly typed as
+non-current but reached through a vendor bill.
+
+**CLASSIFICATION: FACT VERIFIED (10 of 1,904).** Whether this is intended is
+**UNRESOLVED — EVIDENCE REQUIRED**; it needs the configuration owner, not more querying. Handed to
+P08 and P11 because the consequence is a subledger-to-ledger reconciliation difference, which is
+their scope, not P01's.
+
+---
+
+## 8. WHAT REMAINS NOT DIRECTLY EVIDENCED
+
+Read-only evidence at rest cannot show:
+
+- that any specific runtime path **executed** — only that its records exist. Every "EXERCISED"
+  classification in this package is an inference from records to execution, and it is labelled as
+  such;
+- **who** performed an action, beyond `create_uid` / `write_uid`;
+- whether the custom company-scope guard has ever **refused** a confirmation. A refusal leaves no
+  row. Its non-restrictiveness (§6) is proved from configuration, not from an absence of refusals;
+- what would happen under a **changed** policy. Every "would become live if the policy changed"
+  statement in this package is a source-supported prediction, not an observation.
+
+Executing any of these requires a runtime, which the standing constraint forbids without explicit
+authorization. Recorded as `HOLD — RUNTIME WRITE AUTHORIZATION REQUIRED` for the seven priority
+edge cases in `P01_EDGE_CASE_TEST_MATRIX.md`, unchanged from previous rounds.

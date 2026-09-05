@@ -354,3 +354,52 @@ corrected finding, and the architecture impact.
 | **Architecture impact** | **Large, and in the useful direction.** The central claim of four rounds — that the analysed generation could not be checked against any running system — is false. It can be, from data already on this host. This displaces "obtain runtime access" as P01's highest-value next action. |
 | **Why this is the worst miss of the programme** | The database was **named in this session's own context from the first turn**: the project's standing notes record runtime evidence captured against that exact database. It was not hidden. **P01 read the name and never searched for the artefact.** |
 | **Rule this establishes** | **Scope an evidence population by pattern, never by directory** — and **search for every artefact your own project notes already name.** A known name that is never resolved to an artefact is a louder gap than an unknown one. |
+
+---
+
+# ROUND 5 — SERIES-18 SOURCE ↔ DEPLOYMENT DIRECT VERIFICATION
+
+## `ERR-P01-24` — correcting the finding did not correct the method: the census was still directory-scoped
+
+| Field | Content |
+|---|---|
+| **Original finding** | `ERR-P01-22`, and the round-4 census it produced: **five distinct database identities across ten artefacts**, re-keyed on `database.uuid` after peer P04's report. Published as the corrected census. |
+| **Original evidence** | A `database.uuid` read from each of ten artefacts. Every individual reading was correct. |
+| **Why wrong** | The corrected census was **still scoped by directory**. `~/OCC_BACKUP` was not swept. `idemo18_uat` carries `database.uuid = 551ab874-9acb-11f1-b150-6ec7a480be3d`, which is **not among the five**. |
+| **How found** | This run, while proving the identity of the very database `ERR-P01-23` had just added. Reading its uuid and checking it against the published list took one comparison. **It was available the moment `ERR-P01-23` was written and was not done.** |
+| **Corrected finding** | The estate is **at least eight identities** — six known to P01, plus `4b766580` and `96548e18` reported by peer P04 (`P04-F-101`) — across **at least 39 artefacts** (P04's completed host census, §6A.27). **No total is stated by either package.** |
+| **Architecture impact** | Bounded. No accounting finding depends on the count; every finding is bound to the database it was measured in. But **every universal quantifier in the P01 package** — "installed everywhere", "across the estate", "in every deployment" — is now suspect, and one has already been narrowed by counter-example (landed cost). |
+| **Why this one matters most** | `ERR-P01-23` diagnosed the defect **exactly**: population scoped by directory rather than pattern. The next census repeated it. **Diagnosing a method defect and repairing it are different acts, and writing the diagnosis feels like the repair.** |
+| **Rule this establishes** | **A method defect is closed by re-running the enumeration, not by describing it.** When a correction identifies a scoping error, immediately re-run *every* population that used the same scoping — not only the one that failed. |
+
+## `ERR-P01-25` — the source path set does not contain the code the deployment runs
+
+| Field | Content |
+|---|---|
+| **Original finding** | The declared source path set (`E00_P01_PRIMARY_EVIDENCE_BASE.md §1`) names `R4` — `.../Odoo18/EXTRA MODULE/smeplus-custom/addons` — as *"the project's own addon set"* for the v18 line, and excludes `97_OCC_PROJECT*` as **CLASS C — NOT YET SEARCHED**. |
+| **Why wrong** | The deployment under study **is** the OCC deployment (`web.base.url = https://occ.smeplus.cloud`; archive `…_pre_scgl_occ_website_….dump`). Intersecting the 16 installed custom modules with the volume by pattern and comparing manifest versions: **6 of 16 have a version-matching copy, and none of the six is inside `R4`.** Five are one directory level above it; one is elsewhere. `scgl_account_coa_control` exists in exactly one place on the volume — **inside the excluded `97_OCC_PROJECT` root**. |
+| **How found** | This run, by intersecting the **declared** set with the **deployed** set — a test the package had never run in either direction. |
+| **What survives** | Every core-module citation. `R1` (v18 core) and `R3` (v19 core) are unaffected; the deployed core modules are stock series-18 core at `18.0.x`. |
+| **What does not survive** | Any implicit assumption that P01's custom-module citations describe the code this deployment runs. **10 of 16 deployed custom modules have no version-matching source on this host at all**, 7 of them no copy by name whatsoever. |
+| **A correction to the correction** | Peer P04 (`P04-F-97`, relaying P07) records that **two code bodies can share one version string**. So "6 of 16 matched" is an **upper bound** on availability, not a statement of code identity. The one module whose behaviour this package reads was therefore corroborated at **schema level** — 7 of 7 stored fields and the named relation table present in the deployed database, both compute fields correctly absent. |
+| **Rule this establishes** | **Intersect the declared set with the deployed set, in both directions, before citing any source as the deployment's code.** And **a stated exclusion reason is a claim requiring authority, not authority** — `97_OCC_PROJECT` was excluded with a reason, and the reason ended the enquiry. |
+
+## `NEAR-MISS-P01-05` — a false zero from assumed column names, caught by a row count in the same line of output
+
+| Field | Content |
+|---|---|
+| **What happened** | `scgl_product_category_company_rel` was queried with assumed column names `product_category_id` / `res_company_id`. The aggregate returned a clean, well-formed **zero**. |
+| **The truth** | The real columns are `category_id` / `company_id`. The table holds **32 rows covering 16 categories across 4 companies**. |
+| **Would-be published claim** | *"No product category carries any company scope"* — instead of the true *"110 of 126 carry none"*. **Stronger, in the same direction, and wrong.** |
+| **How caught** | The row count (`rows: 32`) was printed **beside** the aggregate. Zero-by-company against 32-rows-total is a visible contradiction. |
+| **Rule this establishes** | **Never publish an aggregate without the row count of the set it aggregates over, in the same output.** A key-error zero and a real zero are indistinguishable in the aggregate alone. |
+
+## `NEAR-MISS-P01-06` — a false **positive**: an alarming statistic in the wrong unit
+
+| Field | Content |
+|---|---|
+| **The candidate finding** | **1,667 of 1,879** posted vendor bills have an accounting `date` different from their `invoice_date` — median **+13 days**, maximum **+30**, and **never negative**. Read as systematic late posting and a period-cutoff risk. |
+| **The discriminating test** | Re-express at the unit the *claim* is about. **0 of 1,879** cross a month boundary; **1,747 of 1,879** carry an accounting date equal to the **last day of the month**; 124 more fall on day 25. |
+| **The truth** | A month-end posting convention. Every bill is recognised in the month of its own invoice date. Orthodox, and not a finding. |
+| **Withdrawn** | **Before publication.** |
+| **Rule this establishes** | **A difference statistic must be computed in the unit its claim is about.** The claim was about accounting periods; the statistic was in days. Aggregate direction is not evidence of the thing the aggregate is used to argue. This is the false-**positive** counterpart of the false-zero class, and it deserves the same standing control. |
