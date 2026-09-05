@@ -137,3 +137,106 @@ results lie under that path** — verified rather than assumed.
 | P04's rule | **Adopted and applied** — §7. |
 | P04's withdrawal of its own confirmation | Noted as the mirror of P02's result and as the better outcome of the two: P04 ran the control, the control cost it a confirmation, and it withdrew. |
 | Returned to P04 | The source-scope check they suggested — run, and it refuted a published P02 absence (§4). |
+
+---
+
+## 9. Second Peer Exchange — Two v18 Databases Analysed, Not Merely Counted
+
+A further P04 message identified that two of the three databases P02 had only **counted** for cost-of-sales
+lines are materially different from each other and from the first. Both were analysed. **This produced the
+strongest replication in the package and a proper control for its headline.**
+
+### 9.1 `pankhamhom` — an independent replication of the deployed cost shape
+
+**`FACT VERIFIED` — SC-07.** Odoo **18.0**, 3 companies, 478 modules, 956 journal lines.
+
+| Measure | Result |
+|---|---|
+| `anglo_saxon_accounting` | **false** in all 3 companies |
+| Categories with **real-time** valuation | **6 of 13** |
+| Valuation layers | **201**, total value 2,294,006.95 |
+| **Layers carrying a journal entry** | **124** — the valuation-to-accounting path **is firing** |
+| Configured stock **output** accounts | **3**, ids 21 / 907 / 1084 |
+| **Type of all three** | **`expense_direct_cost`** |
+| **`reconcile` on all three** | **`false`** |
+| Valuation accounts | 2, both `asset_current` |
+| **COGS lines** | **0** of 956, counted with the positively-controlled instrument |
+
+**`FACT VERIFIED` — SC-08. This is `iSMEs`'s shape, reproduced independently on a different generation and
+a different business.** Split recognition off, real-time valuation on, outbound stock accounts typed as
+**expense**, and **not reconcilable** — so cost is recognised **at delivery**, straight to expense, with
+**no interim position and no matching possible even in principle**.
+
+**`TC-16` was a single-database fact. It is now replicated:** *every* configured outbound stock account in
+*every* deployment examined — eight in `iSMEs` (16.0), three in `pankhamhom` (18.0) — is an expense account
+flagged **not reconcilable**. Eleven accounts, two generations, two businesses, no exception.
+
+**Stated with restraint:** 77 of the 201 layers carry no journal entry. **This is not offered as a
+finding** — 7 of the 13 categories have no valuation mode set, and layers on those legitimately produce no
+entry. Separating them needs the category join performed in `22` §14.2 for the other database, and it was
+**not** run here.
+
+### 9.2 `T805efaplus` — the control the zero-COGS invariant needed
+
+**`FACT VERIFIED` — SC-09.** Odoo **18.0**, 1 company, 123 modules, **87 categories all with no valuation
+mode set, 0 valuation layers, 0 journal lines.** A never-transacted v18 install.
+
+**Its value is as a negative control**, and it closes a gap in P02's headline that no amount of extra
+databases could:
+
+| Identity | Generation | Inventory actually valued? | Valuation entries posted? | **COGS** |
+|---|---|---|---|---|
+| `T805efaplus` | 18.0 | **no — never transacted** | 0 | **0** |
+| `idemo18_uat` | 18.0 | 47,801 layers | **0** — valuation mode unset on all 126 categories | **0** |
+| `pankhamhom` | 18.0 | 201 layers | **124** | **0** |
+| `iSMEs` | 16.0 | 74,982 layers | **57,863** | **0** |
+
+**`FACT VERIFIED` — SC-10. The zero is not an artefact of inactivity.** Two deployments moved real valued
+inventory **and posted the valuation entries** — 57,863 and 124 of them — and still produced **no
+cost-of-sales line**. The control case shows what a genuinely empty database looks like, and it looks
+different. **The zero is a property of the mechanism, not of the data volume.**
+
+**And the three v18 identities happen to cover all three discriminating configurations:**
+never-transacted; gate **on** with valuation **off**; gate **off** with valuation **on**. P02 did not
+assemble that set — a peer did, by correcting the population twice.
+
+### 9.3 Source scope — a second and third data point
+
+| Database | Installed | In P02's declared v18 root | **Absent** |
+|---|---|---|---|
+| `idemo18_uat` | 361 | 295 | **66 (18%)** |
+| `pankhamhom` | 478 | 412 | **66 (14%)** |
+| `T805efaplus` | 123 | 114 | **9 (7%)** |
+
+**`FACT VERIFIED` — SC-11.** The gap is not peculiar to one deployment. `pankhamhom`'s absent set again
+includes **`account_payment_multi_deduction`**, directly on P02's settlement analysis.
+
+**`FACT VERIFIED` — SC-12, and this is P04's framing, adopted.** P04 measured **27** absent modules against
+the same database where P02 measured **66**. **The difference is entirely in the two declared source sets,
+not in the deployment.** Therefore:
+
+> **Neither declared source scope contains what runs, and the two numbers are not comparable to each
+> other.** The only sound joint statement is the qualitative one. P02 will not publish its 66 as though it
+> were a property of the deployment; it is a property of P02's declared root.
+
+### 9.4 A property of the withdrawn absence, worth recording as method
+
+P04 observed of P02's withdrawn `VERIFIED ABSENCE` (§4) that **a reader auditing it would have confirmed
+it** — the search was correctly specified, correctly executed, and correctly reported over the root it
+named. **It survives exactly the check designed to catch it.**
+
+**`SUPPORTED INTERPRETATION`.** That is the most dangerous shape a negative claim can take, and no amount
+of re-running the stated pattern would ever expose it. **Only comparing the declared scope against what the
+system actually runs does** — which is a different kind of check from the one this package performed on its
+negatives throughout. It is recorded here rather than in a lessons file because it bears directly on how
+the remaining source negatives in `01`–`11` should be read.
+
+### 9.5 What P02 adopted, and what it did not
+
+| Item | Disposition |
+|---|---|
+| The two databases' relevance | **Adopted** — and analysed, not accepted. Every figure above was derived by P02 from the archives. |
+| P04's "neither scope contains what runs" framing | **Adopted** — §9.3. |
+| P04's "survives its own audit" observation | **Adopted** — §9.4. |
+| P04's census, and P07's | **Not adopted.** Unchanged position. |
+| P04's analytic-cancellation finding | **Not adopted and not assessed** — it is P04's domain, and P02 has no basis to evaluate it. |
