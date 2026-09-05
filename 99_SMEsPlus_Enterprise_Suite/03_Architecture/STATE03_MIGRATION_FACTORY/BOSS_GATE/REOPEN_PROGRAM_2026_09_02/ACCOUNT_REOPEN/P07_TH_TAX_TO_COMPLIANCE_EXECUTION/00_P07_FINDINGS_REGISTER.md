@@ -84,11 +84,23 @@ entry carries its post-challenge state, not its draft state.
 | `P07-F-61` | `S3` | The cross-company tax-unit mechanism the Thai VAT registers opt into is **unused** — `account_tax_unit` **present and empty in all 7 snapshots / 5 identities** (empty vs absent disambiguated against the archive TOC at `22 §10.4`; the earlier test could not tell the two apart). So `P07-F-39`'s unbounded-company-search exposure is **latent in every deployment examined**, not active. Scoping for `P07-U-14`, which stays open. | runtime | `22 §4.6`, `§8`, `§9` |
 | `P07-F-62` | `S2` | **5,201 withholding certificates** in one **v16** deployment (§9 — out of the declared generation; the in-generation identity holds one) carry the 15-value s.40 income-type taxonomy — the most statutorily faithful classification in the declared set — while the PND export ignores that field and derives income type from the tax rate. The divergence has a real, sizeable population on the correct side of it. Replaces the withdrawn `P07-F-60`. | runtime, 3 identities | `22 §8.1` |
 | `P07-F-63` | `S2` | The withholding-account flag the localisation never provisions is a **de facto required provisioning step**: **PARTLY REFUTED at the corrected population (`22 §10.4`, `REV-E-39`)** — the universality claim is withdrawn: a fourth in-generation identity has 237 accounts and **zero** flagged. Corrected: a **fresh** v19 identity ships with zero flagged, confirming the localisation never provisions the field; every identity that went on to transact flagged some, and **no two agree** — 3 of 586, 2 of 544, 1 of 339. The step being undocumented, there is no guidance on which accounts qualify, so a field that gates the whole withholding path (`P07-F-51a`) is configured divergently in every deployment examined. Surfaced only by splitting the compound `P07-F-51`. | runtime, 3 identities | `22 §4.5`, `15 REV-M-18` |
+| `P07-F-64` | `S1` | **A path set excluded from the declared scope on a false stated reason supplies modules installed in every deployment.** `13 §2.1` excludes `efaplus-custom` (59 manifests) as *"Different products. Out of scope."*; that root holds 24–35 of the **installed** modules in each in-generation identity, including `l10n_th_withholding_tax`, `_cert`, `l10n_th_reports_ext` and `l10n_th_partner` — the modules this package's withholding findings are drawn from. All four database table sets are owned by role `efaplus`. | runtime, 3 of 3 in-generation | `22 §11.2`, `13 §2.1` |
+| `P07-F-65` | `S1` | **Two different code bodies ship under one version string, so no manifest can identify the deployed copy.** The declared copy and the excluded copy of `l10n_th_withholding_tax` and `l10n_th_reports_ext` both declare `19.0.1.4` while differing by 31–279 lines of Python. For `l10n_th_withholding_tax_cert` the version *does* discriminate, and against the declared set: declared `19.0.1.5`, excluded copy and **all three deployments** `19.0.1.4`. `P07-U-01` is not closable by reading manifests; source-side attribution opened as `P07-U-28`. | runtime + source diff | `22 §11.3`, `§11.4` |
 | `P07-F-57` | `S3` | Latent index error in the withholding candidate filter: it indexes the first tag of the first repartition line while guarding only on the union of tags. Latent because the shipped chart tags base lines. | `SRC-CHAL` | `03 §4 W-K-03` |
 
 `P07-F-58` and `P07-F-59` were added after intake of peer evidence from P04 and independent
 retrieval of the statute behind it. Both close gaps this package had — not defects it
 inherited. See `21_P07_PEER_EVIDENCE_INTAKE_P04.md`.
+
+**Open items opened and closed by this round.** `P07-U-27` (unexamined database identities)
+is **CLOSED** — all 7 snapshots / 5 identities opened (`22 §10`). `P07-U-01` (which extra-addon
+copy is deployed) is **NOT closable by manifest version** — see `P07-F-65`. **`P07-U-28` is
+OPENED:** for `P07-F-11`, `P07-F-51`, `P07-F-57`, `P07-F-62` and the source half of
+`P07-F-63`, the line cited is from the declared copy, and whether that copy is the deployed
+one is **decided against it** in one module and **undecidable by version** in two (`22 §11.4`).
+The findings are not withdrawn — their runtime halves are read from the databases, and no
+re-reading has yet shown the cited behaviour differs between copies. What is withdrawn is the
+assumption that the declared copy is the deployed one.
 
 **Population corrected — every runtime denominator in this register was written over 2
 in-generation identities; the eligible number is 4.** A peer's version table named an identity

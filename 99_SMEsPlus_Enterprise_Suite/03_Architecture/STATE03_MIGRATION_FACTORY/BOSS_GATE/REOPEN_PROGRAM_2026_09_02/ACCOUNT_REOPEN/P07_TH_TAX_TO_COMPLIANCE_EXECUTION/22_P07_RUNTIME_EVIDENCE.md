@@ -235,7 +235,9 @@ evidence.
 - ~~The other three dumps on this host were not examined.~~ **Miscounted, and since
   corrected — see §7 and §7.4.** There are **five snapshots of four database identities across
   nine files**; four snapshots covering three identities have now been examined. `P07-U-27` is narrowed to the one remaining (`iEVING`, a different
-  product line).
+  product line). **Both figures and the reason are superseded at `§10`: 7 snapshots, 5
+  identities, and `iEVING` is `19.0.1.3` — in-generation, not a different product line.
+  `P07-U-27` CLOSED, all opened.**
 - No transaction-scale evidence exists for any finding. Six moves cannot support a claim
   about operational behaviour, and none is made.
 - The database was read table-at-a-time with no restore, so no join was executed by a server;
@@ -309,7 +311,7 @@ second database.
 | `P07-F-42` | verified in 1 snapshot | verified in **2 of 2 in-generation identities** (§9), 4 of 4 snapshots, 6 company sets, plus v16 corroboration |
 | `P07-F-15` | source-derived | supported: group naming varies between deployments (`TAX n%` vs `WHT n%`) |
 | §6 count | "three dumps" | five snapshots of four identities in nine files; four snapshots covering three identities examined |
-| `P07-U-27` | four unexamined | one unexamined (`iEVING`, different product line) |
+| `P07-U-27` | four unexamined | one unexamined (`iEVING`, different product line) — **both the count and the reason superseded at `§10`; `iEVING` is in-generation and is two identities, all now opened. CLOSED.** |
 
 Neither correction was found by re-reading. Both came from a peer reporting a bounded
 enumeration of its own and P07 testing the same bound.
@@ -513,12 +515,16 @@ two kinds of claim in one file without saying so.
 | Finding | Before §8 | After |
 |---|---|---|
 | `P07-F-60` | new finding, 1 snapshot | **WITHDRAWN**; replaced by `P07-F-62`, which is stronger |
-| `P07-F-61` | 1 snapshot | **holds**, 2 of 2 in-generation plus v16 (§9) |
+| `P07-F-61` | 1 snapshot | **holds**; superseded by `§10.3` — present and empty in **7 of 7 snapshots / 5 of 5 identities** |
 | `P07-F-03` | "populated nowhere" | source finding unchanged; population claim bounded, and the 4.1% supports the mechanism |
 | `P07-F-62` | — | **new**: 5,201 certificates carry a correct income-type taxonomy the statutory export ignores |
 
 Client version for every row above: `postgresql@18` `pg_restore 18.6`. Generations opened:
-four snapshots, three identities. Not opened: `iEVING` (`P07-U-27`).
+four snapshots, three identities. Not opened at the time of writing: `iEVING` (`P07-U-27`).
+**Superseded — `P07-U-27` is CLOSED at `§10`:** `iEVING` proved to be *two* identities, both
+opened, and the population is 7 snapshots / 5 identities. This line is left standing with its
+correction attached rather than rewritten, so the record shows what the section claimed when
+it was published.
 
 ## 9. `iSMEs` Is v16 — a Generation Error That Was Wrong When Written — `REV-E-35`
 
@@ -772,3 +778,103 @@ this package carries **in its own text**: the archive-census rule and the totals
 were written down. Both were broken in the commit that corrected other people's denominators.
 **Having the rule, recalling the rule, and running the rule are three different things**, and
 only the third is a control.
+
+
+---
+
+## 11. An Excluded Root Supplies the Modules Every Deployment Runs — `P07-F-64`, `P07-F-65`
+
+P04 ran this package's `REV-E-44` rule against its own exclusions — *an exclusion furnished
+with a stated reason stops the audit that would have checked it* — found its own exclusion was
+**true**, and registered it as a finding anyway, on the ground that **the class is about
+authority, not outcome**. Run here against `13 §2.1`, the same audit does not come back true.
+
+### 11.1 The exclusion
+
+`13 §2.1` excludes `ODOO/ODOO-COMMUNITY/ODOO19/efaplus-custom/*` (59 manifests) with the stated
+reason **"Different products. Out of scope."** That reason was never tested against anything.
+
+### 11.2 What the runtime evidence says
+
+Every in-generation database in this package's population carries table owner role **`efaplus`**
+— the same token as the excluded root. Suggestive only, so the decisive test is module
+membership: intersect each database's **installed** module set with the excluded root's
+contents.
+
+| identity | installed modules | also present in the excluded root |
+|---|---:|---:|
+| `a1430edc` | 486 | **35** |
+| `1f6338ae` | 232 | **24** |
+| `66d1b52a` | 251 | **24** |
+
+The intersection is not incidental. It contains `l10n_th_withholding_tax`,
+`l10n_th_withholding_tax_cert`, `l10n_th_reports_ext`, `l10n_th_partner`,
+`bm_thai_rd_vat_company_search` and `convert_amount_text_to_thai` — **the modules this
+package's withholding and Thai-reporting findings are drawn from.**
+
+**`P07-F-64` — the stated exclusion reason is false.** The root excluded as *"different
+products, out of scope"* supplies modules installed in **3 of 3** in-generation identities
+tested. Class `MEAS`.
+
+### 11.3 The copies are not the same code
+
+Every one of those six modules exists in **both** the declared path set and the excluded root,
+and every one **differs**. Python-only, ignoring `__pycache__`/`.po`:
+
+| module / file | changed lines |
+|---|---:|
+| `l10n_th_reports_ext/models/tax_report_vat.py` | 279 |
+| `l10n_th_withholding_tax_cert/models/withholding_tax_cert.py` | 214 |
+| `l10n_th_withholding_tax_cert/wizard/create_withholding_tax_cert.py` | 125 |
+| `l10n_th_withholding_tax/models/account.py` | 105 |
+| `l10n_th_withholding_tax/models/account_move.py` | 101 |
+| `l10n_th_withholding_tax/models/account_tax.py` | 31 |
+| `l10n_th_withholding_tax/models/tax_report_pnd.py` | 16 |
+
+Those are the files carrying `P07-F-51`, `P07-F-57`, `P07-F-63` (`models/account.py`),
+`P07-F-11` (`tax_report_pnd.py`) and `P07-F-62` (the certificate module).
+
+### 11.4 Which copy is deployed — decided for one module, unresolved for the rest
+
+| module | declared set | excluded root | installed in all 3 | verdict |
+|---|---|---|---|---|
+| `l10n_th_withholding_tax_cert` | **19.0.1.5** | 19.0.1.4 | **19.0.1.4** | **the declared copy is a version AHEAD of every deployment** |
+| `l10n_th_withholding_tax` | 19.0.1.4 | 19.0.1.4 | 19.0.1.4 | **undecidable by version** |
+| `l10n_th_reports_ext` | 19.0.1.4 | 19.0.1.4 | 19.0.1.4 | **undecidable by version** |
+
+**`P07-F-65` — two different code bodies ship under one version string.** For two of the three
+modules, the declared copy and the excluded copy carry the *same* `version` while differing by
+31–279 lines of Python. A version string therefore **cannot identify which copy is deployed**,
+and `P07-U-01` is not closable by reading manifests. Class `MEAS`.
+
+The `_cert` row is decided and it is the uncomfortable direction: the declared path set holds
+`19.0.1.5` — including a migration folder and a cache-invalidation companion (`models/
+account_account.py`) that the other copy lacks entirely — while **every deployment examined
+runs `19.0.1.4`**. Source findings drawn from that copy describe code that is running nowhere
+in this package's population.
+
+### 11.5 Blast radius, stated precisely and not more widely
+
+- **Runtime results are unaffected.** `P07-F-42`, `P07-F-63`, `P07-F-01`'s prevalence,
+  `P07-F-61` and `P07-F-62`'s counts are read out of the databases, not out of either copy.
+- **`P07-F-01` is unaffected.** Its predicate lives in `smesplus_account_reports/models/
+  account_generic_tax_report.py`, a different module; neither copy of `tax_report_vat.py`
+  contains the literal it tests — checked, 0 occurrences in both.
+- **Source-side attribution is what is now open.** For `P07-F-11`, `P07-F-51`, `P07-F-57`,
+  `P07-F-62` and `P07-F-63`'s source half, the *line* cited is from the declared copy, and
+  whether that copy is the deployed one is decided against it in one module and undecidable in
+  two. **Opened as `P07-U-28`.** The findings are not withdrawn: their runtime halves stand,
+  and no re-reading has yet shown the cited behaviour differs between copies. What is withdrawn
+  is the assumption that the declared copy is the deployed one.
+
+### 11.6 The class, and why P04's framing is the right one
+
+P04 registered its own **true** exclusion as a finding because *a reader could not tell its
+case from a false one*. That is the entire value of the rule, and this section is what the
+other outcome looks like. Both exclusions were written the same way, with the same authority —
+none — and only running the check separated them.
+
+The declared path set was never wrong about what it contained. It was wrong about **what it
+left out and why**, and that reason sat in the register a reader would consult to audit the
+scope. Same shape as `REV-E-44`, one level up: there the population was defined by an
+assertion inside the evidence table; here the **source scope** is.

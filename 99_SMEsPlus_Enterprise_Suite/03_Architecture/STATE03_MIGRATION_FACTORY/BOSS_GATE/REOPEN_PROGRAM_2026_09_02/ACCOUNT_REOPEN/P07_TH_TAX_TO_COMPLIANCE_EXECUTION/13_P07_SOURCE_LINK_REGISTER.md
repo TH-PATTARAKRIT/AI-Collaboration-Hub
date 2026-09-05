@@ -84,7 +84,10 @@ practical consequence for anyone reading or extending this register:
 ### 2.1 Path sets deliberately EXCLUDED, and why
 
 Excluded sets exist on the same volume and were located, so their exclusion is a
-decision, not an omission:
+decision, not an omission. **Every reason in this table is a claim, and one of them was
+false** (`P07-F-64`): an exclusion furnished with a stated reason stops the audit that would
+have checked it, so the reason needs the same authority as any other negative. The reasons
+below are marked for whether they have been **tested** or merely asserted.
 
 All excluded roots below are absolute paths on the `/Volumes/iMacSys` volume, **not**
 relative to the execution folder in §1. The base was undeclared in the first issue of this
@@ -96,7 +99,8 @@ register and is stated here.
 | `ODOO/ODOO-COMMUNITY/Odoo18/EXTRA MODULE/smeplus-custom/{addons,WHT}` (65 + 5) | v18 project custom set. Comparison surface only. |
 | `ODOO/ODOO-COMMUNITY/Odoo14/addons` (127) | v14 legacy line. Used **only** to establish that four Thai tax modules exist there and not in the declared set (`P07-N-03`). |
 | `CLAUDE AI/MIGRATION/ODOO18/18.0.5_account/*` | Account-line build; near-duplicate of the declared extra set at a different version string. |
-| `95_BHPRO_PROJECT/*`, `ODOO/ODOO-COMMUNITY/ODOO19/efaplus-custom/*` | Different products. Out of scope. |
+| `95_BHPRO_PROJECT/*` | Different product. Out of scope. **Not re-tested** — see the row below for why that phrase is no longer sufficient on its own. |
+| `ODOO/ODOO-COMMUNITY/ODOO19/efaplus-custom/*` (59 manifests) | ~~Different products. Out of scope.~~ **THAT REASON IS FALSE — `P07-F-64`, `REV-E-48`.** This root supplies 24–35 of the **installed** modules in each in-generation database, including every Thai withholding and reporting module this package analyses, and all four in-generation databases are owned by role `efaplus`. The root stays outside the declared PATH SET so that the set remains stable and reproducible, but it is now a **declared comparison surface with a known overlap**, not an out-of-scope product. See `22 §11`. |
 | `ODOO/ODOO-COMMUNITY/ODOO19/SMEsPlus-SMEsPlus_Extra19` (83 manifests) | **Same generation as the declared set and a strict superset of it for the P07 modules** — it contains all nine Thai withholding modules *and* `account_payment_multi_deduction`. Added after independent challenge. |
 | `CLAUDE AI/MIGRATION/SMEsPlus19/01_extra_module/SMEsPlus_19.0.2` (75 manifests) | Same generation; also contains `account_payment_multi_deduction`. Added after independent challenge. |
 | `CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/.../01_extra/addons_extra` (69 manifests) | Same generation and the same module count as the declared set; does **not** contain `account_payment_multi_deduction`. Added after independent challenge. |
