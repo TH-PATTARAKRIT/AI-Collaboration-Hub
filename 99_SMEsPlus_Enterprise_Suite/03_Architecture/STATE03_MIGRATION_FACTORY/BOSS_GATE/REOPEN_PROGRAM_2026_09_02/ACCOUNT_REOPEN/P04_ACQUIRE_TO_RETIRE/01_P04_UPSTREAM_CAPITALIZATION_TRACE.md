@@ -755,6 +755,68 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.23 The absence-of-a-class claims — and a route P07 said did not exist
+
+P07 found two negatives its convergence could not reach: *"no tenant ORM model
+exists anywhere"* is **not a claim about a model, it is a claim about the absence
+of a class of model**, and an analysis starting from *which modules declare on
+which models* cannot bound it. **The same class is here and it is larger:** this
+package makes roughly a dozen **"no host"** claims — four unhosted lifecycle
+stages, the TAS 16 count, no assets-under-construction stage, no lease module, no
+useful-life review, no asset-register reconciliation — and `P04-F-116`,
+`P04-F-118` and `P04-F-121` reach **none** of them.
+
+> **P04-F-122.** **A class-absence claim can be bounded — not by the module
+> route, but against the deployment's authoritative model registry.**
+> *(Identifier written as its own bold span: the first draft put the id and the
+> headline inside one span, which this package's own checker cannot match —
+> third occurrence of that formatting defect, caught by the check in the same
+> run.)* `ir_model` in
+> `551ab874` holds **944 models**. Testing each asserted-absent class against all
+> 944:
+>
+> | asserted absent | models of any name in the deployment |
+> |---|---|
+> | lease | **none** |
+> | impairment | **none** |
+> | useful-life / residual review | **none** |
+> | assets under construction | **none** |
+> | asset transfer | `account.transfer.model` — **periodic account transfers, not assets** |
+> | scrap | `stock.scrap` — **inventory scrap, not assets** |
+> | revaluation | 3 models — **all FX and inventory valuation, none an asset revaluation** |
+>
+> The whole asset domain is **three models**: `account.asset`,
+> `account.asset.group`, `account.asset.report.handler`. **No impairment, no
+> revaluation, no transfer, no construction stage.**
+>
+> **So the no-host claims are, for the first time, tested against a deployment
+> rather than against a source tree** — and they hold. This is a **stronger basis
+> than the one they were published on**, and it reaches the claims that the
+> module route could not.
+>
+> **And the near-misses are the point.** `stock.scrap`, `account.transfer.model`
+> and `stock.valuation.layer.revaluation` all exist. **A whole-product phrasing —
+> *"no scrap concept exists"*, *"no revaluation anywhere"* — would have been
+> falsified by them.** The claims survive because they were bounded to the asset
+> module. That is `P04-F-121`'s inversion demonstrated on live counter-examples
+> rather than argued: **the narrow boundary was not modesty, it was what made the
+> claim true.**
+>
+> **The route generalises and I am handing it back to P07**, whose `N-25` is of
+> exactly this shape: *enumerate the deployment's authoritative model registry and
+> test the class against all of it.* It does not need the module→model map, so it
+> is not blocked by the reason P07 gave.
+>
+> **Limits, both real.** The registry is **one deployment's** — a model absent
+> here may exist in an install not on this host, so this bounds *this* estate, not
+> the product. And a *capability* can exist without a model: a field on an
+> existing model, or a method. **Absence of a model is not absence of a
+> behaviour** — it is decisive only for claims phrased, as these are, about a
+> missing **record type**.
+>
+> Class: **FACT VERIFIED**, 944 models enumerated, 7 classes tested, bounded to
+> `551ab874` @ 2026-08-30.
+
 ### 6A.22 Every negative, re-audited against the boundaries that moved
 
 P07 audited its seventeen negative rows by **declared boundary** and found the
