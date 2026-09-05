@@ -2555,3 +2555,87 @@ and it will preferentially look like a finding about whichever rows are unusual 
 these packages, means the never-transacted installs. **The two failure modes this exchange has
 been recording all session — a null that is self-consistent, and a control that cannot fail —
 have a third sibling: a null that is selective.** `REV-M-62`.
+
+
+---
+
+## 33. The Census Declared Its Roots and Not Its Exclusions — `P07-F-90`
+
+P04's host census landed at **39 artefacts** — 27 `PGDMP` plus 12 zip-borne — against this
+package's **15**. It also measured, rather than argued, the symlink point it owed: **zero
+artefacts reached via `/Volumes/iMac`**, confirming that `find`/`os.walk` do not traverse it and
+that the earlier 57-vs-15 inflation came from passing it as a *starting root*.
+
+The gap between 39 and 15 is not a difference of diligence. **It is two undeclared narrowings in
+this package's census script, and `§13.1` declared everything except them.**
+
+### 33.1 What `§13.1` declared, and what it did not
+
+`§13.1` published: roots (`$HOME` + every `/Volumes` entry), no extension filter, two signatures,
+a 1 MB size floor, identity keyed on `database.uuid`, generation from `ir_module_module`. What
+it did **not** publish:
+
+**1. Eight directory exclusions.** The walk carried
+`{'.git','node_modules','.venv','__pycache__','Library','.Trash','.cache','.npm','.cargo'}`.
+**`Library` is the material one** — `~/Library/CloudStorage/` holds the Google Drive trees that
+this package's own module enumeration (`§19`) reported dozens of module copies from. A census
+that declares its roots and silently prunes a subtree of one of them **has declared a boundary
+it did not use**.
+
+**2. A narrower zip signature.** This package accepted a zip only if it contained a member
+literally named `dump.sql`. P04's accepted any `.sql` member **or** a `manifest.json`, and found
+two exports carrying `dump.sql` with **no** manifest — a different export shape. Mine would
+catch those; mine would **miss** any export whose payload is named otherwise. **Two signatures
+were declared and the ZIP one was tighter than stated.**
+
+**`P07-F-90` — `§13`'s "15 snapshots · 7 identities · 3 generations" is a floor, not a census.**
+It was published as a finished number with a declared root set, and the root set was declared
+while the exclusions were not. This is `P07-F-79`'s defect — *the correction of an under-scoped
+check computed over an under-scoped population* — recurring at the next level out, and it is the
+**third** undeclared narrowing this package has had to record after publishing the thing it
+narrowed.
+
+### 33.2 What is being measured, and what is not claimed
+
+A re-run over the excluded `~/Library` subtree, same size floor, with the **widened** zip
+signature, **is executing and its result is not reported here.** No number in `§13` is amended
+until it returns.
+
+**No finding moves either way.** Every database-derived finding in this package is bounded to a
+**named identity**, and all seven named identities were keyed on `database.uuid` and read. What
+a wider census can add is identities, not corrections to the eight — P04 states the same for its
+own: *"the census settles the artefact question and leaves the identity question exactly where
+it was."*
+
+The candidate names P04 reports as newly visible and never keyed by either package —
+`iErpOCC`, `iSCErP`, `iSMeO2C`, `iSMEs182`, `iMSCG` ×2, `odoo_cff_golive`, two packaging
+exports, two archives inside a messaging app's media store — are **not counted here**. Turning a
+candidate list into a census is the error `§12.6` exists to record.
+
+### 33.3 P04's disproof, and the mechanism this package could not establish
+
+P04 ran `§32`'s three-instrument method on its own licensing absence and got the stronger
+result:
+
+| | this package (`a6664233`) | P04 (`96548e18`) |
+|---|---|---|
+| `ir_model` | model absent | model absent |
+| `ir_module_module` | **no row at all** | row present, state **`uninstalled`** |
+| archive | table absent | blocks absent |
+
+**A missing row leaves *why* undetermined; a row reading `uninstalled` establishes it.** P04's
+identity is not an incomplete capture but a **complete capture of an install that chose not to
+run the module** — the *not deployed versus not available* distinction from its `P04-F-97`,
+which is a stronger licence for a negative control than absence alone. This package's caveat at
+`§32.1` stands as written: not established, and not needed.
+
+### 33.4 Where the return went, stated as P04 put it
+
+> **The last estate fact either of us found was `idemo18_uat`, and everything since has been
+> about how we know things.**
+
+That is the accurate description. The checks did change what several findings were *about* —
+`P07-F-42` lost a mechanism and gained a larger consequence, `P07-F-01` lost its trigger and
+gained a measured prospective magnitude, `P07-F-16` lost the assumption that it was analysed on
+the deployed stack — but **no new defect in the estate has been found since that database**, and
+this section is one more instance of the pattern rather than an exception to it. `REV-M-63`.
