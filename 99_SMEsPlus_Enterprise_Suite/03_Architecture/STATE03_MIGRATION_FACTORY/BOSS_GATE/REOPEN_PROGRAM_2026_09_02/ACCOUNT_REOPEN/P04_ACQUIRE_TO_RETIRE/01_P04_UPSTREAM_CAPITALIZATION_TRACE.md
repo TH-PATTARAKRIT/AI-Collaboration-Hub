@@ -745,6 +745,58 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30.
 
+### 6A.8 The analytic consequence clause, measured
+
+P07 withdrew the second clause of its strongest finding after measuring it for
+the first time: the *"resolves into a withholding group"* half was measured
+everywhere, the *"and therefore settles against the withholding control
+accounts"* half **nowhere**. It is latent — a zero-amount tax generates no tax
+line, so the misassigned group has no vehicle to post through. This package has a
+finding of the same shape.
+
+> **P04-F-99.** **The analytic consequence clause is latent in the only v18
+> deployment, and the reason is more basic than the finding.** This package
+> publishes that **depreciation's analytic route nets to zero** — both entry
+> lines carry the distribution, there is no account-type filter, and the signed
+> amounts cancel, so *attribution exists at line level and the balance is zero*.
+> The first half is source-derived and unchanged. **The second half has never
+> been measured. Measured now, it cannot fire.**
+>
+> | | `551ab874` |
+> |---|---:|
+> | `analytic` module | **installed**, `18.0.1.1` |
+> | `account_analytic_plan` rows | **1** |
+> | **`account_analytic_account` rows** | **0** |
+> | `account_analytic_line` rows | **0** |
+> | move lines carrying `analytic_distribution` | **0 of 40,353** |
+> | — of which asset-move lines | 0 of 4,236 (3,440 depreciation) |
+>
+> **Positive controls on the same extraction, same table, same method:** `name`
+> non-null on **38,228** lines, `account_id` on **40,282**, `balance` on
+> **40,353**. The column is index 32 of 64 and its only observed value is `\N`.
+> So the zero is **absence of data, not a failed read** — the defect recorded at
+> `18` `P04-REV-23` and the standard P07 applied to its own controls.
+>
+> **What changes is the finding's live form.** *"Attribution exists at line level
+> but the balance is zero"* describes code that has never run here. There are
+> **no analytic accounts at all**, so no distribution is ever set, so **there is
+> no attribution at line level either.** The netting defect is real in source and
+> sits **downstream of a more basic absence**: the analytic dimension is
+> installed, has a plan, and has never been populated.
+>
+> The same reasoning withdraws the liveness of the companion claim that
+> **mandatory analytic plans never fire on programmatic posts** — with one plan
+> and zero accounts, nothing can be mandatory over an empty set.
+>
+> **This corroborates P09 directly** — that session's headline is that the
+> analytic dimension is *schema, not data*, one root cause behind eleven defects.
+> It was reasoning from source; this is the measurement, in a v18 deployment with
+> 40,353 posted lines.
+>
+> Class: **FACT VERIFIED** as to the counts. The source finding is **retained as
+> LATENT** — real in code, no vehicle to fire through in this deployment —
+> conditional on any analytic account ever being created.
+
 ### 6A.7 Are the custom modules this package read the ones that run?
 
 P07 found it had analysed a module installed in **0 of 4** identities, while a

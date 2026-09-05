@@ -56,6 +56,8 @@ recommendation, and this session does not decide it.**
 
 ### 4.2 `BD-02` — attribution
 
+*Measured after this section was written (`01` §6A.8, `P04-F-99`): in the only v18 deployment the analytic dimension holds **zero accounts** and **0 of 40,353** lines carry a distribution. `BD-02` is therefore breached today by **total absence of attribution**, not by the cancellation mechanism — which is real in code and latent in fact. The decision `BD-02` requires is unchanged and, if anything, more urgent.*
+
 Two new facts change what "100 % attributed" costs to implement:
 
 1. **Capitalized additions carry no analytic distribution.** Every subsequent

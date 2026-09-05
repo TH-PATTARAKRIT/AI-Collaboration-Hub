@@ -132,6 +132,19 @@ enter the conversion cost of inventory. In the reference behaviour:
 - Where an asset carries **no** attribution, the two sides can pick up
   **different** attributions and leave a meaningless residue.
 
+  **Measured, and presently dormant — read this before relying on the two points
+  above.** In the one operating system of this generation that could be examined,
+  the cost-attribution dimension is **switched on, has one scheme defined, and
+  holds no cost centres at all**; not one accounting line in it — of more than forty
+  thousand — carries an attribution. So the cancellation described above **has never carried a
+  value there**. The design defect is real and is stated from the rules the
+  software follows; its **effect is latent** until a first cost centre exists.
+  What is live today is simpler and worse: **there is no cost attribution at
+  all**, so the 100 %-attribution requirement is unmet not because the route
+  cancels but because the route is empty. Both readings lead to the same
+  conclusion below; a reader should not cite the cancellation as an observed
+  event.
+
 Separately, and independently of depreciation, the same machine hour is
 monetised by **as many as five different routines** — and they do not reconcile
 with one another. Under one supported costing configuration there is a **genuine
@@ -147,7 +160,9 @@ Two findings together:
   record **with no cost attribution at all** — so every subsequent charge on that
   addition is unattributed by construction.
 - The obvious control — making cost attribution mandatory — **does not apply to
-  any automatically generated entry**, including every depreciation entry.
+  any automatically generated entry**, including every depreciation entry. *And
+  it could not bind in any case where no cost centres exist: nothing can be made
+  mandatory over an empty set.*
 
 Meeting the 100 %-attribution requirement therefore needs behaviour SMEsPlus
 originates. It is not a setting.
