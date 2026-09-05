@@ -31,8 +31,8 @@
 | Population | Unit | Count |
 |---|---|---|
 | Errors | `^## \`P11-E-nn\`` | **29 ids / 28 errors** |
-| Method notes | `^## \`P11-M-nn\`` | **4** |
-| Blockers | `P11-B-nn` distinct | **20** (18 prior + `B-19`, `B-20`) |
+| Method notes | `^## \`P11-M-nn\`` | **5** |
+| Blockers | `P11-B-nn` distinct | **20** registered · 2 discharged · **2 CLOSED** (`B-17`, `B-18`) · **16 open** |
 | Tolerance-zero | `T0-nn` inherited | **13** (11 were carried by id — `P11-F-13`) |
 | Boss decisions | `^\| \`D-…\`` rows | **13** |
 | Findings | `P11-F-nn` | **13** |
@@ -41,19 +41,21 @@
 
 | Item | Blocked on | Unblocks when |
 |---|---|---|
-| `P11-B-17` (CRITICAL `X2-F06`) | ten subledger rows re-run against the **stated** rule | a CORR2 pass; **must not be bodged to clear an audit** |
-| `P11-B-18` | five unmarked repairs → marked form | mechanical; then re-run the erasure audit |
+| ~~`P11-B-17`~~ | — | **CLOSED this run.** Ten rows re-run; 3 unqualified → **0** |
+| ~~`P11-B-18`~~ | — | **CLOSED this run.** Four repairs marked; erasure audit re-run over the whole set, 0 erased |
+| `CP-P11C09`…`C12` | the commissioned AAS-03 challenge returning | **the only outstanding in-flight dependency** |
 | `P11-B-20` | which generation the event-to-GL matrix targets | **`D-1`** |
 | `D-3b` extraction | this session's permission boundary refused table-data extraction | Boss authorisation + a session permitted to extract |
 | `D-1`…`D-12` | Boss | Boss |
 
 ## 5. NEXT EXACT ACTION on resume
 
-> **Integrate the AAS-03 CORR1 challenge result (`CP-P11C09`), then `CP-P11C10` AAS+, `CP-P11C11` PMO,
-> `CP-P11C12` gate-pack correction, then commit/push and stop.**
+> **Integrate the AAS-03 CORR1 challenge result into `P11_AAS03_CORR1_CHALLENGE.md` (`CP-P11C09`),
+> then write `P11_AAS_PLUS_CORR1_CONSOLIDATION.md` (`CP-P11C10`) and `P11_PMO_CORR1_REVIEW.md`
+> (`CP-P11C11`), fold both into the Boss pack (`CP-P11C12`), commit, push and stop.**
 >
-> If the challenge has already been integrated at the resumed head, the next action is
-> **`P11-B-18`** — convert the five unmarked repairs to marked form and re-run the erasure audit —
-> which is the only fully-executable item not blocked on Boss, a peer, or a permission.
+> **Every other CORR1 task is complete.** `B-17` and `B-18` were the two fully-executable blockers and
+> both are closed. Everything else open is blocked on **Boss** (`D-1`…`D-12`), a **permission**
+> (`D-3b` extraction), or a **joint artefact P11 cannot author alone** (`B-10`, `B-20`).
 
-**EVENT-DRIVEN STATE:** `READY_TO_RESUME`
+**EVENT-DRIVEN STATE:** `STOPPED — READY_TO_RESUME ON AAS-03 CHALLENGE RETURN`
