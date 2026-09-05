@@ -36,7 +36,7 @@
 | `CP-P09DFINAL` | final commit and resume state | **SUPERSEDED — MATERIAL DELTA** | published `c029df3`; the challenge returned afterwards |
 | `CP-P09D25` | **challenge correction** *(added)* | **COMPLETE — EVIDENCE VERIFIED** | verdict withdrawn; denominator 17,465; gross movement 154,922,194.55 |
 | `CP-P09D26` | **peer v18 corroboration** *(added)* | **COMPLETE — EVIDENCE VERIFIED** | P04 delta `72286ce` consumed and re-derived; **`B7` partly withdrawn**, **`B5` raised to CRITICAL**; P04's "14" corrected to **13 measurable, all 13 at 0.00**; clean-room scan caught two version tokens in the draft — scrubbed before publication |
-| `CP-P09D27` | **evidence-base census / `B5` discharge** *(added)* | **COMPLETE — EVIDENCE VERIFIED** | double-keyed census: **19 distinct artefacts vs a declared 6**; 17 in scope, 2 excluded on generation grounds; 4 newly measured; 8 unread; `DEP-P09-23` discharged; **4 author errors caught before publication**; rules `NC-12`, `NC-13` |
+| `CP-P09D27` | **evidence-base census / `B5` discharge** *(added)* | **COMPLETE — EVIDENCE VERIFIED, PUBLISHED `0b61c92`** | double-keyed census: **19 distinct artefacts vs a declared 6**; 17 in scope, 2 excluded on generation grounds; 4 newly measured; 8 unread; `DEP-P09-23` discharged; **4 author errors caught before publication**; rules `NC-12`, `NC-13` |
 
 ## MATERIAL DELTA THIS ROUND
 
@@ -52,3 +52,14 @@
 | **headline verdict** | profitability distortion **DISPROVED** | challenge argued erasure ≡ overstatement | **WITHDRAWN → CONFIRMED** |
 | **entry denominator** | 17,405 / 99.99 % / 5 non-zero | population re-run on the stated wording | **17,465 / 99.6507 % / 61 non-zero** |
 | **measure** | scalar net +3,595,851.11 | gross computed for the first time | **154,922,194.55 — 43× the scalar** |
+
+## ROUND CLOSURE — PUBLICATION INTEGRITY, RE-RUN AFTER THE FINAL COMMIT
+
+| Check | Unit | Result |
+|---|---|---|
+| manifest integrity | file | **94 rows, 94 files, 0 checksum mismatches**, stated count consistent |
+| clean-room vendor tokens | token | **ZERO** in Layer 1 |
+| prohibited verdict vocabulary | token | **ZERO** |
+| orphan identifiers | identifier | **0 orphans** — every identifier cited this round is defined |
+| published percentages carry a stated unit | percentage | **2 of 2** |
+| remote HEAD | commit | **`0b61c92` read back from the remote, identical to local; working tree clean** |
