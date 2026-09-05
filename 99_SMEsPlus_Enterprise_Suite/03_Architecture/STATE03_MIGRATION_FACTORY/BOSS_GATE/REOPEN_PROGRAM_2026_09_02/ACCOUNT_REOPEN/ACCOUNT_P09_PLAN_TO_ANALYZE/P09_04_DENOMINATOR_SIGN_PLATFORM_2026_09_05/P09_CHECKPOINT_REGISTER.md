@@ -28,12 +28,13 @@
 | `CP-P09D16` | HOLD-AS-01 / DIS-09 refreshed | **COMPLETE — EVIDENCE VERIFIED** | preserved, unadjudicated; no peer SHA changed |
 | `CP-P09D17` | author-error lineage | **COMPLETE — EVIDENCE VERIFIED** | 23 lineage; 4 self-caught |
 | `CP-P09D18` | peer delta reconciliation | **COMPLETE — EVIDENCE VERIFIED** | no peer SHA changed — not reprocessed |
-| `CP-P09D19` | four AAS-03 challenge classes | **BLOCKED — TOOL / PERMISSION** | see §Material delta |
+| `CP-P09D19` | four AAS-03 challenge classes | **PARTIAL — RESUMABLE** | 1 of 4 ran and **overturned the round's verdict**; 3 unrun |
 | `CP-P09D20` | AAS+ consolidation | **COMPLETE — EVIDENCE VERIFIED** | folded into `D14`/`D15`/`D22` |
 | `CP-P09D21` | PMO supplemental review | **COMPLETE — EVIDENCE VERIFIED** | `D22` |
 | `CP-P09D22` | publication integrity check | **COMPLETE — EVIDENCE VERIFIED** | **4 of 7 failed first pass, then repaired** |
 | `CP-P09D23` | P11 supplemental handoff | **COMPLETE — EVIDENCE VERIFIED** | `D23` |
-| `CP-P09DFINAL` | final commit and resume state | **COMPLETE — EVIDENCE VERIFIED** | this commit |
+| `CP-P09DFINAL` | final commit and resume state | **SUPERSEDED — MATERIAL DELTA** | published `c029df3`; the challenge returned afterwards |
+| `CP-P09D25` | **challenge correction** *(added)* | **COMPLETE — EVIDENCE VERIFIED** | verdict withdrawn; denominator 17,465; gross movement 154,922,194.55 |
 
 ## MATERIAL DELTA THIS ROUND
 
@@ -45,4 +46,7 @@
 | profitability distortion | asserted | disproof attempted as directed | **DISPROVED** |
 | build population | 2 | enumerated | **4** |
 | template violations | 2 | complete classification | **3 in 27 data rows** |
-| `CP-P09D19` | 4 challenges planned | **model quota exhausted** | **author-run audits substituted; recorded as a control degradation** |
+| `CP-P09D19` | 4 challenges planned | 1 ran, 3 did not | **author-run audits substituted; recorded as a control degradation** |
+| **headline verdict** | profitability distortion **DISPROVED** | challenge argued erasure ≡ overstatement | **WITHDRAWN → CONFIRMED** |
+| **entry denominator** | 17,405 / 99.99 % / 5 non-zero | population re-run on the stated wording | **17,465 / 99.6507 % / 61 non-zero** |
+| **measure** | scalar net +3,595,851.11 | gross computed for the first time | **154,922,194.55 — 43× the scalar** |

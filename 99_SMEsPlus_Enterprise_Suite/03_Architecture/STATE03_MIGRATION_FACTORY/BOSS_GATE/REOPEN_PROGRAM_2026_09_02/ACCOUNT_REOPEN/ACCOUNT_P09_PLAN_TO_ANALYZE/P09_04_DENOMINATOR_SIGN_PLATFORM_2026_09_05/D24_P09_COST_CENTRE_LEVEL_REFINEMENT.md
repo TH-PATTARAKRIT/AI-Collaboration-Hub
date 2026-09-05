@@ -4,6 +4,10 @@
 
 ---
 
+> ## ⚠ CORRECTED AFTER PUBLICATION — see `D25`
+> The population here is **17,405 both-legged entries**, a silent sub-population of the **17,465** the claim's wording covers; the correct rate is **99.6507 %**, and **61** entries net non-zero, not 5. The `DISPROVED` verdict on the profitability distortion is **WITHDRAWN — it is CONFIRMED**. The scalar net is 43× smaller than the gross cross-cost-centre movement of **154,922,194.55**.
+
+
 ## 1. THE ATTACK I RAN AGAINST MY OWN CLAIM
 
 `D01` states: *"17,404 of 17,405 paired entries net exactly 0.00 — 99.99 %."* That is an **entry-level** statement.

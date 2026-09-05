@@ -5,6 +5,10 @@
 
 ---
 
+> ## ⚠ CORRECTED AFTER PUBLICATION — see `D25`
+> The population here is **17,405 both-legged entries**, a silent sub-population of the **17,465** the claim's wording covers; the correct rate is **99.6507 %**, and **61** entries net non-zero, not 5. The `DISPROVED` verdict on the profitability distortion is **WITHDRAWN — it is CONFIRMED**. The scalar net is 43× smaller than the gross cross-cost-centre movement of **154,922,194.55**.
+
+
 ## 1. WHAT +3,595,851.11 MEANS
 
 **It means nothing about depreciation.** Decomposed exactly in `D01` §3.3: the depreciation mechanism contributes **0.00**; the entire residue is one opening-balance adjustment, one carry-forward, and 56 small unpaired expense entries, all at or near a financial-year boundary.
