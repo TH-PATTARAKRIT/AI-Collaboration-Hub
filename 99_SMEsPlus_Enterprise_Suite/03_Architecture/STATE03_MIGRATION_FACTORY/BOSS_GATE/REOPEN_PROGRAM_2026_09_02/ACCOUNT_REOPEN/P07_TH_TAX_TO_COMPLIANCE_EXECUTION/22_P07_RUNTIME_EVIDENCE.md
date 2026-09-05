@@ -3615,3 +3615,78 @@ register manufacture its own subject matter**, which is the inert-exception fail
 
 **Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8 exit criteria claimed, no
 blocker closed, no merge, no freeze.**
+
+
+---
+
+## 46. Each Unit Carries Its Own Denominator — `P07-F-103`
+
+P04 reopened once more because it had published a unit over a **hard-coded list of 8 families
+when it owns 19** — one commit after fixing exactly that defect in the previous unit.
+
+> **Fixing a rule in one unit does not propagate it to the next unit written. Each unit carries
+> its own denominator, and each one has to be derived.**
+
+Audited here across all seven units. **Five derive their denominator; two did not.**
+
+| unit | denominator | before |
+|---|---|---|
+| `[0]` set integrity | `listdir` + `git ls-tree` | derived |
+| `[1a]` family derivation | regex over all text | derived |
+| `[2]` table structure | every table found | derived |
+| `[3]` manifest | regenerated from files | derived |
+| `[4]` substance | manifest rows | derived |
+| **`[1]` identifiers** | **`OWNED` literal, 33 families** | **declared** |
+| **`[5]` Layer-1 scrub** | **token literal, 18 tokens** | **declared** |
+
+**`[1a]` derived the family set and `[1]` read a literal — the fix did not propagate to the unit
+beside it.** P04's defect exactly, and in the pair of units where it is least visible, because
+`[1a]` prints a derived count immediately above `[1]`'s literal one.
+
+### 46.1 The two results differ in kind, and only one is comfortable
+
+**`[1]`: derived 33 against a literal 33.** The literal was complete. **The number did not move
+and the basis did** — P04's own formulation, and the point is that the literal was correct
+*today*, which is exactly what it warned is not durable.
+
+**`[5]`: derived 78 against a literal 18.** The Layer-1 scrub was checking **18 of the 78**
+vendor-, module- and identity-shaped tokens actually present in the Layer-2 files — **a
+denominator four times narrower than its subject.** The handoff pack is **still clean against
+all 78**, so nothing published was wrong; but the guarantee it rested on covered less than a
+quarter of what it claimed to cover.
+
+**`P07-F-103`.** That is the same shape as this package's `Library` exclusion and P04's gzip
+branch: **a narrow check whose result survives widening.** Three instances now, and in all three
+the widening cost nothing — **which is the argument for widening, not against it, because none
+of the three could be known to cost nothing until it was run.**
+
+### 46.2 What P04's own two gaps say that this package's did not
+
+Its widened gap check found **two collisions rather than two unused numbers**, and the
+asymmetry is the useful part:
+
+- **One stem holding two families** — its TAS 16 requirement items and P11's Boss decisions
+  share a letter, so the numbers between them are **a seam, not a hole.** That is its stem
+  collision **inverted**: there, two families on one stem made every check pass; here, one stem
+  holding two families makes a gap check report a hole that does not exist.
+- **A bare, unprefixed stem it does not own alone** — its set is numbered from ten upward and
+  the nine below are in live use by other registers in the repository. **A third instance of
+  *rename what is yours, attribute what is inherited*, missed because that audit was scoped to
+  the families the sweep already knew about.** Registered and **not actioned**, because renaming
+  an owned family is a package-wide edit that does not belong in the commit reporting it.
+
+> **The family name is not the series, and a per-family gap check silently assumes it is.**
+
+**This package's two gaps resolve to nothing recorded; P04's resolve to two collisions. Both are
+findings.** What a gap check must not do is resolve to a guess — which is why the two here stay
+`UNDETERMINED`. `REV-M-90`.
+
+### 46.3 The close
+
+P04's last line is the one to keep, and it is a claim about evidence rather than about method:
+
+> **The last four rounds each found something neither of us could have found alone, and that is
+> the only evidence either package has that the method works.**
+
+Both packages terminal. **Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8
+exit criteria claimed, no blocker closed, no merge, no freeze.**
