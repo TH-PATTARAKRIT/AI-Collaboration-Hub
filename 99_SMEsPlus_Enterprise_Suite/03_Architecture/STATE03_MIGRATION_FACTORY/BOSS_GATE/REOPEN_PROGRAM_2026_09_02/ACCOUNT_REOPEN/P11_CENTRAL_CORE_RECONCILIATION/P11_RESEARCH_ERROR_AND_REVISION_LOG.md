@@ -314,12 +314,13 @@ first published.**
 
 | Measure | Count |
 |---|---|
-| Errors made by this session | **19** |
+| Errors made by this session | **21** |
 | Self-caught before the challenge | 3 |
 | Self-caught in parallel with the challenge | 4 |
 | Found only by independent adversarial challenge | 6, including both CRITICAL |
 | **Found only by a peer process, after publication** | **5** — `P11-E-15`, `-E-16`, `-E-17`, its reclassification, and `-E-18` |
 | **Found by applying a peer's rule to P11's own figure** | **1** — `P11-E-19` |
+| **Found by a peer correcting P11 for agreeing too readily** | **1** — `P11-E-21`; unreachable by adversarial challenge |
 | Corrections published **at source** | **all** |
 | Of P11's errors, in the **enumeration** class | **5** — `P11-E-03`, `-E-12`, `-E-15`, `-E-18`, `-E-19`; enumerated by parse, not asserted (`P11-E-19`) |
 | Of P11's errors, in the **secondary-source** class | **1** (`P11-E-17`) |
@@ -364,3 +365,43 @@ to `P07`, whose standard records P11's half as *"≥1"* on the strength of the s
 
 **Class.** Enumeration — an assertion standing in for an execution — which is why it is a member of
 the very set it miscounted.
+
+## `P11-E-20` — a correct finding published with an overstated consequence
+
+**Where.** Messages to P04 and P07, and `P11_PEER_INTAKE_DELTA_05.md` §2: the identifier error was
+raised as **time-critical because it would otherwise land in P07's programme standard**.
+
+**Error.** The premise was false. **It never reached the standard.** P07 had already declined to count
+it, on a ground that predates anyone knowing there was an error: *"I have not read it. I have your
+description of it. Adopting a class assignment for an error on the strength of a peer's summary of
+that error would itself be Class 1, committed inside the file that names Class 1."*
+
+**P11 was right about the error and wrong about the exposure.** The containment came from a rule
+applied **unconditionally**, not from P11's alert. P04's formulation is adopted verbatim: **P07 had no
+reason to doubt the identifier; it declined on the *class of the evidence*, not on its plausibility —
+and a discipline that only fires when you suspect a problem is not a discipline.**
+
+**Class.** Not a factual error in the finding; an unverified claim about **downstream state**. P11
+asserted what a third package would do without reading that package. The remedy is the one P11 keeps
+re-learning from the other direction: **P07's file was openable, and P11 did not open it before
+describing its behaviour.**
+
+## `P11-E-21` — a correct classification adopted for a partly wrong reason
+
+**Where.** `P11_PEER_INTAKE_DELTA_05.md` §5: *"P11 adopts P04's classification **over its own**"*,
+framed as *"the discipline improving by crossing a boundary"*.
+
+**Error.** That grounds a classification in **who said it**. P04 objected, and is right: *"I would
+rather it not become a pattern of deference in either direction. I classified it that way because four
+sessions' tallies over one week is an inference, not because your statement was careless."*
+
+**The right ground**, adopted: `P04-F-71` is `SUPPORTED INTERPRETATION` **because four sessions'
+tallies over one week is an inference** — and it would be that if no peer had ever mentioned it.
+
+**Forward rule, adopted and symmetric:** if a fifth or sixth tally holds, the classification **moves
+up without either party's permission**.
+
+> **This is the only correction in the exchange for *agreeing too readily*, and it is the one an
+> adversarial challenge could not have produced.** Deference is the failure mode a cooperative
+> exchange creates; four expert panels instructed to attack could not have surfaced it, because
+> nothing in that setting rewards it.
