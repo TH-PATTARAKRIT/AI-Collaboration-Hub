@@ -745,6 +745,58 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30.
 
+### 6A.7 Are the custom modules this package read the ones that run?
+
+P07 found it had analysed a module installed in **0 of 4** identities, while a
+**different technical name** carrying the **same display name and version** held
+the **same code** and *was* installed. Run here against `551ab874`.
+
+> **P04-F-97.** **One of the three custom modules this package's evidence
+> register names is not installed in the only same-generation deployment
+> available.** `13` §1 `EV-CUST` names three: the equipment-sequence module, the
+> equipment-product-stock module, and the advance-expense-request module.
+>
+> | Declared module | In `551ab874` | Deployed version |
+> |---|---|---|
+> | `equipment_sequence` | **installed** | `18.0.1.6` — matches the declared copy's manifest |
+> | `product_stock_equipment` | **installed** | `18.0.1.0` — the declared copy's `'1.0'`, series-normalised |
+> | `scgl_advance_expense_request` | **NOT INSTALLED** | — |
+>
+> More broadly, **37 of the 65 declared custom directories are not installed
+> there** (`P04-F-93`); this names the one that a finding rests on.
+>
+> **And a matching version proves nothing.** P07 established that two code bodies
+> can share one version string (17–179 changed lines across seven files) and that
+> a display name and version can span two technical identities. **Neither name,
+> nor version, nor display name identifies deployed code — only the installed
+> module list does, and it identifies only the *name*.** The deployment's own
+> addons directory is not on this host, so **agreement of code cannot be checked
+> at all**; "installed, same version" is the strongest statement available and it
+> is weaker than it reads.
+>
+> Class: **FACT VERIFIED** as to installation state; the code-identity question
+> is **NOT DECIDABLE** from this host. Folded into `P04-B-46`.
+
+> **P04-F-98.** **P07's twin defect does not reproduce here — a negative,
+> published as one.** Comparing display names across the 361 installed modules
+> and all **65** declared custom modules: **zero display names are shared by two
+> different technical module names where either is a declared custom module.**
+> The only shared display names in the estate are the reference product's own
+> community/enterprise pairs (`account`/`account_accountant` both "Invoicing",
+> and eight similar), which are expected and are not the defect.
+>
+> **The first run of this test reported 11 twins and was wrong.** Ten of them
+> were a single bogus group produced by the test's own manifest parser failing on
+> 10 of the 65 manifests and recording them all as name `?`, which then collided
+> with each other. Re-run with a parser that reads **65 of 65**, the answer is
+> **0**. *A test with an unreported parse hole does not return a weaker result —
+> it returns a confident wrong one*, and the failures grouped themselves into
+> exactly the shape the test was looking for.
+>
+> Class: **FACT VERIFIED (negative)**, bounded to `551ab874` and the 65 declared
+> custom modules, parser coverage **65/65 declared** stated because the previous
+> run's coverage was 55/65 and unstated.
+
 ### 6A.6 The behavioural findings, tested against a same-generation deployment
 
 Every behavioural finding in this package was derived from v18 **source** and,

@@ -51,7 +51,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | File | SHA-256 |
 |------|---------|
 | `00_README_LAYER_AND_METHOD.md` | `e569eb7b671cae1196443123da111aef7a2746e9186a468e4d88d45602d504f1` |
-| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `da9e68a3c3927ddbf77f76149b6f18f5e68a14e45c604bfe57e3fd039fb3ba79` |
+| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `b5401af53f9f0cd3eedaa31b17e04f0e257d503aec360e9e2ee00f74bade6382` |
 | `02_P04_ASSET_LIFECYCLE_MAP.md` | `561118e4b1e312b6ff3cfab4f350db256c1f8b6b8364d9975e4286eef4c742f0` |
 | `03_P04_ASSET_EVENT_REGISTER.md` | `ed31187344fa46246cf5c3f59c9444a212ad454b0ee62bb360dc2fcf81ad2a51` |
 | `04_P04_ASSET_TO_GL_MATRIX.md` | `f97d5e4239b9fd1eb4ed4bbce5a03173185f2df336ec5c9f234c30b944531dd6` |
@@ -67,7 +67,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
 | `16_P04_AAS_PLUS.md` | `f80f330fdcb381bd9759e1ca0f4a2fe538be3e3784d3c4251157e21d9aef4479` |
 | `17_P04_PMO.md` | `271e71d9ffd9ceebf2f8c99ff2cee47e0a9fc278b95684cf3f495aa337fec269` |
-| `18_P04_REVISION_LOG.md` | `3c6ec900fe8b82f1040f58cd46a0b31093a21e1b5e4896ca1934a138cae28fce` |
+| `18_P04_REVISION_LOG.md` | `bce8972423a9a9f08eb69d1370bb9ea8f1b2932087489ac635f0800cb4babf9f` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `1f635cba7e22be8e4001c877e9638c8ec918f695fba0ee68cb319132bc194eda` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `1a9a822ba1084ec34107787490ac248e3fdc127ac32a91af14a11e19c5d1145b` |
 
@@ -87,7 +87,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **95** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`; `P04-F-86`/`P04-F-87` added at `18` `P04-REV-35`; `P04-F-88`/`P04-F-89` at `P04-REV-36`; `P04-F-90`–`P04-F-92` at `P04-REV-37`; `P04-F-93`/`P04-F-94` at `P04-REV-38`; `P04-F-95`/`P04-F-96` at `P04-REV-39`, where **`P04-F-88` is withdrawn one commit after publication**). *Executed in the same command that published this line — see `18` §5* |
+| Findings (`P04-F-nn`) defined | **97** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`; `P04-F-86`/`P04-F-87` added at `18` `P04-REV-35`; `P04-F-88`/`P04-F-89` at `P04-REV-36`; `P04-F-90`–`P04-F-92` at `P04-REV-37`; `P04-F-93`/`P04-F-94` at `P04-REV-38`; `P04-F-95`/`P04-F-96` at `P04-REV-39`; `P04-F-97`/`P04-F-98` at `P04-REV-40`, where **`P04-F-88` is withdrawn one commit after publication**). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **51** — enumerated row by row, 50 distinct identifiers, no duplicates. *The figure stood at 45 and was wrong before this session touched it: four section headings understated their own contents (§4, §6A, §6B, §7A), and the published total agreed with neither the headings nor the rows. Corrected at `18` `P04-REV-38` — this package states that totals are unverified claims and had one in its own governing register.* |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
 | Revisions | 34 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
