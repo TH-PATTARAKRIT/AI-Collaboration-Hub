@@ -1,4 +1,8 @@
-# 47 — P05 PURCHASE ADVANCE LIVE RISK FORENSIC
+# 47 — P05 PURCHASE ADVANCE DEPLOYMENT FORENSIC
+
+> **Title corrected (AAS-03 Challenge D, `V-4`).** Previously "LIVE RISK FORENSIC". "LIVE" is a
+> defined reachability term in `44`; "RISK" is not earned for the financial-effect claim, which this
+> document classes `C — NOT OBSERVED`. `RE-24`.
 
 `LAYER 2 — AUDIT QUARANTINE` · `CP-P05E07`
 

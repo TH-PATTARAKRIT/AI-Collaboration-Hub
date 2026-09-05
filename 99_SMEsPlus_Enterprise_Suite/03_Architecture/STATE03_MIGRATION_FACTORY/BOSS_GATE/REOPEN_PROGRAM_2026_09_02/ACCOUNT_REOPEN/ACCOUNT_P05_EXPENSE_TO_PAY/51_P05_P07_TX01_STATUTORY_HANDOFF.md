@@ -37,5 +37,5 @@ P05 declares no Thai compliance or non-compliance.**
 
 ## 3. Boundary
 
-Every item above is `HOLD — STATUTORY EVIDENCE REQUIRED`. P05 supplies mechanics and populations only.
+Every item above is `HOLD — STATUTORY EVIDENCE REQUIRED`, class **D — UNKNOWN** (no authoritative Thai source is in this session's evidence set). P05 supplies mechanics and populations only. *Class letters added per AAS-03 Challenge D.*
 `PEER DEPENDENCY — P07. OPEN.` Last consumed P07 SHA: **none — P07 has published no branch.**

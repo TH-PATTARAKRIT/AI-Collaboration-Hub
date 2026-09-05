@@ -1,4 +1,10 @@
-# 49 — P05 → P01 CRITICAL VENDOR ADVANCE HANDOFF
+# 49 — P05 → P01 VENDOR ADVANCE HANDOFF
+
+> **Title corrected (AAS-03 Challenge D, `V-3`).** This file was titled and filenamed
+> "**CRITICAL**". That is a decision-force severity word carried at the package's most durable and
+> most-quoted layer, while this document's own evidence classes the financial effect as
+> **`C — NOT YET SEARCHED`** and states plainly that no double-billing has been observed. The caveat
+> must survive everywhere the finding is stated, including the title — it did not. `RE-24`.
 
 `LAYER 2 — AUDIT QUARANTINE` · `CP-P05E08`
 **P05 discovered, verified and routes. P05 does not adjudicate P01 architecture.**
@@ -35,14 +41,17 @@ loss. **This continuation narrows it on three counts, and P01 should work from t
 | `iTEST02` | 19.0 | yes | 0 |
 | **`idemo18_uat`** | **18.0** | **no** | n/a |
 
-## 4. Required P01 Follow-up
+## 4. Questions Routed to P01
 
-1. Determine whether P01 owns vendor advances at all (`H-P01-5`).
-2. Extract the 21 `iSMEs` wizard rows against their purchase orders and final bills, and establish
-   whether any vendor was billed twice. **This is the open question that decides severity**, and it
-   sits inside P01's data scope.
-3. Decide the authorisation scope for advance billing (`H-P01-2`, `SC-02`).
-4. Decide fork-vs-core (`H-P01-4`).
+**P05 has no authority to require action of a peer process.** These are routed questions, not
+instructions — corrected from an earlier imperative list (Challenge D `V-1`, `RE-25`).
+
+1. Does P01 own vendor advances at all (`H-P01-5`)?
+2. Do the 21 `iSMEs` wizard rows, read against their purchase orders and final bills, show any vendor
+   billed twice? **This is the open question on which severity turns**, and the data sits inside P01's
+   scope, not P05's.
+3. What is the correct authorisation scope for advance billing (`H-P01-2`, `SC-02`)?
+4. Fork or core (`H-P01-4`)?
 
 ## 5. Boundary
 

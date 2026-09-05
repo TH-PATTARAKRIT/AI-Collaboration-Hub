@@ -66,7 +66,7 @@ Neither the custom module nor core's write-off construction
 | Database population, v16 | **DIVERGENCE VERIFIED — 5,426 of 5,863, 92.55%** |
 | Report behaviour (screen renders the tag-based total) | **VERIFIED from source**; not executed — no rendering was observed |
 | Export behaviour (CSV omits the rows) | **VERIFIED from source**; not executed |
-| **Thai statutory consequence** | **`HOLD — STATUTORY EVIDENCE REQUIRED`. P07 owns it. P05 asserts nothing.** |
+| **Thai statutory consequence** | **`HOLD — STATUTORY EVIDENCE REQUIRED`, class **D — UNKNOWN**. P07 owns it. P05 asserts nothing.** |
 
 **Overall: `DIVERGENCE VERIFIED` — and not configuration- or version-dependent.** It reproduces at
 v16 and v18, under one-account and four-account configurations, single-company and multi-company.
@@ -75,6 +75,9 @@ The only variation is magnitude: 92.55% → **100.00%**.
 ## 5. What Is Still Not Proven
 
 Neither the screen render nor the CSV file was produced — that needs a running instance
-(`HOLD — RUNTIME EVIDENCE REQUIRED`). The divergence is established from source, from the ORM field
-definition, and from the data on both platforms. **The rendered artefacts are inference, and are
-labelled as such.**
+(`HOLD — RUNTIME EVIDENCE REQUIRED`, class **C — NOT YET SEARCHED**, boundary: no instance was run).
+The divergence is established from source, from the ORM field definition, and from the data on both
+platforms. **The rendered artefacts are inference, and are labelled as such.**
+
+*Class letters added per AAS-03 Challenge D: the mandate requires every negative claim to carry an
+A–E letter, and this file previously used bare `HOLD` language without one.*

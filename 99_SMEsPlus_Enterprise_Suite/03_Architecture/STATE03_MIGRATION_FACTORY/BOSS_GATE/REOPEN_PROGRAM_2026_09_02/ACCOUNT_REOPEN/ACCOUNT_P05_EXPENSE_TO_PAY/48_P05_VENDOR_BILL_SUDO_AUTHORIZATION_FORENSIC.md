@@ -44,7 +44,7 @@ than Round 2 stated.**
 Installed in `iSMEs` v16, `iEVING`, `BK12MAY26`, `iTEST02` — **not** on the v18 target.
 Exercised: 21 times, in `iSMEs` only.
 
-## 5. What P01 Must Decide
+## 5. Questions Routed to P01
 
 Not P05's to answer: whether advance billing *should* be available to non-accounting users at all;
 whether the elevation is intentional delegation or an oversight; and what the correct authorisation
