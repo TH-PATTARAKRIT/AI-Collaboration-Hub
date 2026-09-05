@@ -767,9 +767,13 @@ what was owed, and an intent test would be unworkable in any case.
 ### Ruling
 
 1. **`P11-E-16` is Class 2.** P11's own routing stands. §4b is unchanged.
-2. **`P04-B-31` is Class 2**, on the same reasoning, if P04's account of it is accurate —
-   P07 has not read it at source and does not rule on facts it has not verified, only on the
-   classification test.
+2. **`P04-B-31` is Class 2** — **conditional now DISCHARGED.** P11 read it at source and
+   graded it as described; P07 then verified it independently rather than accept a peer's
+   verification of a third party's artefact.
+   `2602dfe:10_P04_BLOCKER_REGISTER.md:71` reads *"A depreciation entry aimed at a locked
+   period is silently re-dated, not rejected… Design decision: refuse rather than re-date"*,
+   status `FACT VERIFIED`. P04's account is accurate and the ruling applies unconditionally.
+
 3. **`P11-E-20` remains unplaced.** It substitutes for an inspection with no proxy, which is
    outside both classes as written.
 4. **`P04-F-78` is not adopted** into this standard. Its distinction is real but it is a

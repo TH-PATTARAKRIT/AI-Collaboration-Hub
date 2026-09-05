@@ -85,8 +85,7 @@ serious because it is not a reporting artefact:
    (`06 §1`).
 
 Class and boundary: **source-derived through a complete seven-step chain, not executed**
-(`U-02`). The one residual is that step 6 depends on record-creation order at template
-load; a runtime confirmation is `P07-U-20`. This is the strongest available class short of
+until `REV-E-25`. **Now VERIFIED against a deployed database**: all four zero-rated and exempt taxes carry `tax_group_id 1` = `WHT 1%`, settling to accounts 64/19 against VAT's 63/18 (`22 §4.2`). The residual — record-creation order at template load — is resolved and **`P07-U-20` is CLOSED**. This is the strongest available class short of
 execution, and it is materially stronger than the `D — UNKNOWN` at which this finding was
 first recorded.
 
