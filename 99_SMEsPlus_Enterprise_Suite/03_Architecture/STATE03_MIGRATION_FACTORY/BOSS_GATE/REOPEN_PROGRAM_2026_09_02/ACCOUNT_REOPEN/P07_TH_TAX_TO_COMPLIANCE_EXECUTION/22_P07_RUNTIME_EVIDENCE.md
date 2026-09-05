@@ -1068,7 +1068,9 @@ on its own package. Run here.
 
 ### 14.1 Declared PATH SET against installed modules
 
-Declared set: 1,502 module directories across the three roots of `13 §1`.
+Declared set: **1,507 manifests / 1,512 distinct module names** across the three roots of
+`13 §1`. (Published as *1,502 module directories* from a `-maxdepth 2` walk — corrected at
+`§16.4`, `REV-E-60`; the counts below are unchanged, re-run against the corrected set.)
 
 | identity | installed | in declared set | **in NO declared root** | declared, not installed |
 |---|---:|---:|---:|---:|
@@ -1242,3 +1244,96 @@ but this sweep passed the symlink as a **starting root**, which resolves. The do
 session a *stated reason* has failed while the number it explained held — after the `iEVING`
 exclusion (`REV-E-44`) and the `efaplus-custom` exclusion (`P07-F-64`). A number and the story
 told about it are two claims, and only one of them tends to get checked.
+
+
+---
+
+## 16. Code Identity Is Not Decidable From a Snapshot — and Why — `P07-F-71`
+
+P04 named four axes, each failing one level further out: **signature set → path set → source
+scope → code identity**, and observed that the fourth *"is the only one of the four that no
+amount of declaring fixes."* This section tried to close it for the two modules `P07-F-65`
+left undecidable, failed, and the failure is more useful than the attempt.
+
+### 16.1 The attempt, and the false discriminator — `REV-E-59`
+
+If the two copies of a module declare **different fields**, `ir_model_fields` in a deployed
+database says which is installed. A first pass appeared to find exactly that in
+`l10n_th_reports_ext`: `date_from_str` / `date_to_str` in the declared copy against
+`date_from` / `date_to` in the other. The deployed model carried `date_from` / `date_to` and
+no `_str` variants in **3 of 3** v19 identities — an apparently decisive result against the
+declared copy.
+
+**It was false.** The pattern was `^\s*name = fields.X`, and what it matched was
+
+```
+date_from_str = fields.Date.to_date(date_from).strftime('%d/%m/%Y')
+```
+
+a **local variable inside a method**, not an ORM field declaration. The `date_from` /
+`date_to` fields on that model come from elsewhere entirely. A regex that cannot distinguish a
+class-body assignment from a method-body assignment produced a confident, reproducible, wrong
+answer — and it pointed the way the author already suspected.
+
+Third instance this session of a pattern matching something other than what it claimed, after
+the literal `0` filter (`REV-E-42`) and the zsh loop that never ran (`REV-E-55`).
+
+### 16.2 Done properly, with coverage declared
+
+Re-run with an AST walk taking **class-body assignments only**:
+
+| module pair | files parsed (declared / other) | parse failures | class-level fields | difference |
+|---|---|---:|---:|---|
+| `l10n_th_reports_ext` | 4 / 4 | 0 | 0 / 0 | **none** |
+| `l10n_th_withholding_tax` | 14 / 14 | 0 | 19 / 19 | **none** |
+| `l10n_th_withholding_tax_cert` | 12 / 10 | 0 | 37 / 37 | **none** |
+
+View XML compared the same way: **no differing lines in any of the three pairs.**
+
+### 16.3 `P07-F-71` — and it narrows `P07-U-28` rather than closing it
+
+**The two copies differ only in Python method bodies.** Identical class-level field sets,
+identical view XML — **nothing that differs is persisted**. So code identity for these modules
+is not decidable from any database snapshot, not for want of a better query but because the
+divergence leaves no trace in the database by construction.
+
+That is a bounded and useful result, because it splits the exposure:
+
+- **Source findings that cite structure are discharged.** Both copies declare the same models,
+  fields and views, so which copy is deployed cannot change them.
+- **Source findings that cite method logic remain open**, and those are the ones at risk:
+  `P07-F-11` (the PND branch selection), `P07-F-51` / `P07-F-63` (the provisioning guard),
+  `P07-F-57` (the index error), `P07-F-52` (the wizard's field read). All live in method
+  bodies, which is exactly where the copies diverge by 17–179 lines.
+
+`P07-U-28` is **narrowed to behavioural claims** and remains open. Closing it needs the
+deployment's addons directory, which is not on this host — a runtime request, not research.
+
+### 16.4 Two corrections that came with it
+
+**`REV-E-60` — the declared set was understated.** `§14.1` gave it as **1,502 module
+directories**, from a `-maxdepth 2` walk. The full walk finds **1,507 manifests / 1,512
+distinct module names**: five modules are nested deeper. `P07-F-68`'s counts are **unchanged**
+— re-run against the corrected set, the per-identity figures are still 26 / 14 / 18 / 49 and
+the union is still 85, because the ten extra names are installed nowhere. The denominator was
+wrong; the finding was not. This is the `-maxdepth` class that `REV-E-05` caught in this
+package's first week, recurring in the section that measures scope completeness.
+
+**`REV-M-31` — coverage goes out with the result**, adopted from P04. Their twin test first
+reported **11 twins**, ten of which were a single bogus group: the manifest parser failed on
+10 of 65 manifests, recorded each as name `?`, and **the failures collided with each other**.
+At 65/65 the answer was 0. Run here with coverage declared: **1,507 of 1,507 manifests parsed,
+0 failures, 21 display-name twins — all of them the reference product's own
+community/enterprise pairs**, none of the `P07-F-69` kind.
+
+### 16.5 The sharper rule, which is P04's and needs both halves
+
+> A broken test produced **seven clean zeros** that would have withdrawn a live finding.
+> A broken parser produced **eleven confident hits** that would have manufactured one.
+
+**A null that behaves like a value is worse than a null that behaves like nothing, because it
+collides** — the ten `?` names grouped themselves into precisely the shape the test was looking
+for. And a null that behaves like nothing is not safe either: it reads as a clean negative.
+The two failure modes are opposite in appearance and identical in cause — **the test could not
+see its inputs, and said nothing about that** — so the control is the same for both: publish
+what the test could see, next to what it found.
