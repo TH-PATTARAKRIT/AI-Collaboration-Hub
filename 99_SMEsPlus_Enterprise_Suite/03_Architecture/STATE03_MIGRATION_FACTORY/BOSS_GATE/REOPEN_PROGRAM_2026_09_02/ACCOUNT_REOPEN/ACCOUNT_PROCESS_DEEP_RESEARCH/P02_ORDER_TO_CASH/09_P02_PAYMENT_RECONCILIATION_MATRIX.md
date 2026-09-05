@@ -1,5 +1,31 @@
 # 09 — P02 PAYMENT / SETTLEMENT / RECONCILIATION MATRIX
 
+> ## ⚠ GENERATION BANNER — `C-35`, RAISED BY AAS-03 EXPERT 3 AND CONFIRMED AGAINST SOURCE
+>
+> **Every Thai-localisation negative in this file was established against the v18 root only, and the
+> v19 Thai chart is a different artefact: 144 accounts, not 27** (verified: `l10n_th/data/template/
+> account.account-th.csv`, 27 data rows in v18 vs **144** in v19).
+>
+> Confirmed refutations in the v19 root — all inside P02's own declared PATH SET:
+>
+> | v19 evidence | Refutes |
+> |---|---|
+> | `account.account-th.csv:57` `212400 Advances from Customers` + `models/template_th.py:16` `downpayment_account_id` | "no chart template supplies the down-payment account" (`P02-F-33`) |
+> | `account.account-th.csv:58` `213100 Undue Output VAT`; `:9` `112190 Allowance for Doubtful Accounts` | 3 of the 4 "absent roles" (`P02-F-38`) |
+> | `models/template_th.py:15` `property_stock_valuation_account_id` = `113100`, `:40` `account_stock_valuation_id` | "the Thai chart supplies none of the three stock accounts" (`C-01`/`RE-03`) |
+> | `models/template_th.py:41` `tax_exigibility: 'True'` (absent entirely from v18) | "cash basis is not enabled by the Thai data" (`AE-10`) |
+>
+> **The general rule, which the package had not stated:** *P02's localisation negatives are
+> single-generation negatives about a generation that no deployment runs.* That is sharper than the
+> 189-module `SOURCE GAP`, because it needs no unreadable code to bite — the refutations sit in a root
+> P02 itself declared.
+>
+> **What survives both roots:** the *Outbound Stock (Goods Delivered)* role is absent from both;
+> `P02-F-50` (sale-side withholding reaches no report) — and Expert 3 strengthened it against the
+> readable custom estate; `P02-F-51` (accounting date printed under "Invoice Date"); and `P02-F-52`'s
+> first clause (4 of 6 VAT taxes carry an empty tax group).
+
+
 `LAYER 2 — AUDIT QUARANTINE` · Session `SMEPLUS-26-09-04-ACC-P02-O2C-REV2-001`
 Underlying evidence: `L2_AUDIT_QUARANTINE/T2_PAYMENT_RECONCILIATION_EVIDENCE.md`
 

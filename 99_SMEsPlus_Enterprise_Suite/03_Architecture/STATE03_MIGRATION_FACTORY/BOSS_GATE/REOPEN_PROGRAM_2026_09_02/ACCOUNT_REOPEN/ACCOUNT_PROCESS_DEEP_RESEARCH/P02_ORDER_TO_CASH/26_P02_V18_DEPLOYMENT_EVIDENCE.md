@@ -194,6 +194,9 @@ plain-SQL arm is bounded at 200 KB and must be re-run unbounded before any compl
 **`FACT VERIFIED` — TC-02 SURVIVES ITS FOURTH DENOMINATOR CORRECTION.** Seven distinct deployed databases,
 three generations, 488,347 journal lines — **zero cost-of-sales entries.**
 
+> **`L-06` CORRECTION (`30`, C1).** Superseded and **strengthened**: **four** generations,
+> **2,553,914** journal lines, zero `cogs` markers, every zero injection-controlled (`28`).
+
 **The population is still not declared closed**, for the reason in §9.2.
 
 ## 10. `C-04` Can Be Closed On This Host — And This Package Said It Could Not

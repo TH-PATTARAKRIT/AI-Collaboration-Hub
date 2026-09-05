@@ -1,5 +1,31 @@
 # 12 — P02 CONTRADICTION REGISTER
 
+> ## ⚠ GENERATION BANNER — `C-35`, RAISED BY AAS-03 EXPERT 3 AND CONFIRMED AGAINST SOURCE
+>
+> **Every Thai-localisation negative in this file was established against the v18 root only, and the
+> v19 Thai chart is a different artefact: 144 accounts, not 27** (verified: `l10n_th/data/template/
+> account.account-th.csv`, 27 data rows in v18 vs **144** in v19).
+>
+> Confirmed refutations in the v19 root — all inside P02's own declared PATH SET:
+>
+> | v19 evidence | Refutes |
+> |---|---|
+> | `account.account-th.csv:57` `212400 Advances from Customers` + `models/template_th.py:16` `downpayment_account_id` | "no chart template supplies the down-payment account" (`P02-F-33`) |
+> | `account.account-th.csv:58` `213100 Undue Output VAT`; `:9` `112190 Allowance for Doubtful Accounts` | 3 of the 4 "absent roles" (`P02-F-38`) |
+> | `models/template_th.py:15` `property_stock_valuation_account_id` = `113100`, `:40` `account_stock_valuation_id` | "the Thai chart supplies none of the three stock accounts" (`C-01`/`RE-03`) |
+> | `models/template_th.py:41` `tax_exigibility: 'True'` (absent entirely from v18) | "cash basis is not enabled by the Thai data" (`AE-10`) |
+>
+> **The general rule, which the package had not stated:** *P02's localisation negatives are
+> single-generation negatives about a generation that no deployment runs.* That is sharper than the
+> 189-module `SOURCE GAP`, because it needs no unreadable code to bite — the refutations sit in a root
+> P02 itself declared.
+>
+> **What survives both roots:** the *Outbound Stock (Goods Delivered)* role is absent from both;
+> `P02-F-50` (sale-side withholding reaches no report) — and Expert 3 strengthened it against the
+> readable custom estate; `P02-F-51` (accounting date printed under "Invoice Date"); and `P02-F-52`'s
+> first clause (4 of 6 VAT taxes carry an empty tax group).
+
+
 `LAYER 2 — AUDIT QUARANTINE` · Session `SMEPLUS-26-09-04-ACC-P02-O2C-REV2-001`
 
 Per the execution constitution: **prior conclusions are not deleted.** Where this session's own earlier
@@ -254,6 +280,54 @@ both things at once and published both.** Neither adversarial round compared the
 `RE-07` and `RE-10`: correctly-cited facts, wrongly aggregated.
 
 **Found by.** P02, while executing a peer lead that turned out **not** to apply to this path.
+
+### C-34 — `qty_invoiced` Counts Drafts (AAS-03 Expert 1, CH-4) — CONFIRMED
+
+**Claim (`34` §1):** delivered-not-invoiced measured as `qty_delivered > qty_invoiced`.
+**Contradicting evidence:** `sale/models/sale_order_line.py:916-924` — `_compute_qty_invoiced` counts every
+invoice line whose move `state != 'cancel'`, so **drafts count**. A dedicated `_compute_qty_invoiced_posted`
+exists whose docstring states *"for accounting purposes, we only want the quantities of the posted invoices"*;
+it is **not stored** and cannot be read from an archive.
+**Re-measured** (`iSMEs`, posted-only join): delivered>invoiced **1,145**, not 47; invoiced>delivered 792.
+**1,877 of 4,901 lines carry a draft invoice.**
+**Resolution:** `34` corrected by banner. **`P02-F-34b` WITHDRAWN for `iSMEs` — the direction reverses.**
+The other seven databases remain draft-basis and are now **floors, not measures**.
+**Found by:** independent challenge. **Not self-found.**
+
+### C-35 — The Localisation Negatives Are Single-Generation (AAS-03 Expert 3) — CONFIRMED
+
+**Claim:** several Thai findings tagged `VERIFIED ABSENCE` (`P02-F-33`, `P02-F-38`, `C-01`/`RE-03`, `AE-10`).
+**Contradicting evidence:** the v19 Thai chart carries **144 accounts, not 27**, and supplies
+`212400 Advances from Customers` (+ `downpayment_account_id`), `213100 Undue Output VAT`,
+`112190 Allowance for Doubtful Accounts`, `property_stock_valuation_account_id`/`account_stock_valuation_id`
+= `113100`, and `tax_exigibility: 'True'` — none of which exist in v18.
+**Resolution:** generation banner applied to `07`, `09`, `12`. **The refutations sit inside P02's own declared
+PATH SET**, so this bites without needing any unreadable module.
+**Survives both roots:** the Outbound Stock role's absence, `P02-F-50`, `P02-F-51`, `P02-F-52` first clause.
+**Found by:** independent challenge.
+
+### C-36 — A Withdrawn Negative Left Live In Its Owning Register (AAS-03 Expert 3, C-7) — CONFIRMED
+
+`27` §4 withdrew *"Withholding-tax accrual or certificate event on a customer receipt — `VERIFIED ABSENCE`"*.
+**`06` line 70 still carried it verbatim, tagged `VERIFIED ABSENCE`.** Corrected in place.
+**This is the "a revision log is not a correction" defect recurring**: the correction was recorded in the
+reviewing file and never applied to the owning one. **Found by:** independent challenge.
+
+### C-37 … C-42 — Raised By AAS-03 Expert 4 Against This Round's Own Work, All CONFIRMED Against Source
+
+| ID | Challenged | Confirmed counter-evidence | Resolution |
+|---|---|---|---|
+| **C-37** | `SC-17`: "the guard is **one-directional**" | `stock_account/models/product.py:972-976` — a **second raise outside the `real_time` branch**, evaluating unconditionally. On the cited `idemo18_uat` state it **can fire**. | Corrected in `27` §12. Only the account-completeness branch is one-directional. **The aggregation failure `SC-19` names, inside the section that names it.** |
+| **C-38** | `SC-18`: "**two-sided, whole-tree**" | Whole-tree the guard string is **44 → 2**, not 1 → 0; the published table reproduces only under an **undeclared `*.py` filter**. | Corrected. Verdict survives (the 2 v19 hits are obsolete `.po` msgids); **the description was not the executed measurement**. |
+| **C-39** | `P02-F-05c`: "v19 **removes the guard**" | `property_stock_account_input_categ_id`/`…output_categ_id` have **zero non-test `.py` occurrences** in v19 — the **fields** were removed, replaced by `res_company.inventory_valuation` + per-company `ir.default`. | Corrected. Attributing a **model redesign** to a deleted control overstates the finding. |
+| **C-40** | `SC-16`: combo-tax bypass "`REFUTED`" | `account/models/account_move_line.py:878-886` applies `product_id.taxes_id` on the **direct-invoice** route with **no combo test**. | Re-scoped: **refuted on the SO path, unrefuted on the direct-invoice path.** The P04 defect class survives there. |
+| **C-41** | `P02-F-33a`'s lab population | `docker ps` returns **three** containers; `bhpro92-db` holds **two more 19.0.1.3 databases**, one with `anglo_saxon_accounting = true`. | Verdict survives across **9** databases; **denominator corrected**. Runtime `PATH SET` now declared as *every running postgres container*. A **v19 target for `C-04` now exists**. |
+| **C-42** | `33` §5.9's test | The generator reads no existing COGS lines, so a manual re-invocation **must** double; and `03` §6 already named the real mechanism (future-dated + soft-mode + autopost). | Request **revised**: reproduce `03` §6's mechanism, target company `id=1`, `pg_dump` mandatory, v19 counterpart named. |
+
+**All six were found by independent challenge. None was self-found.** Four of them (`C-37`…`C-40`) are
+against work published **in this same round**, which is the round that added the *publish the command*
+and *positive control* disciplines. **The disciplines did not prevent the defects; the independent
+challenge caught them.**
 
 ## 2. Contradictions Between Evidence Tracks
 

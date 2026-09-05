@@ -238,6 +238,12 @@ customer invoice for a storable, real-time-valued product through a soft-post ca
 it again and counting the cost lines. This session had **no database access** and could not execute
 it. The claim is therefore **not** advanced to `FACT VERIFIED`.
 
+> **`L-01` CORRECTION (`30`, C1).** The sentence above is **stale and was untested when written**. This
+> session **has** offline database access — 39 artefacts, 17 databases, 4 generations (`28`). What it
+> lacks is **authority to mutate a runtime**, which is narrower. `C-04` remains open, but its blocker is
+> **mutation authority**, not evidence absence — see `33`. Original wording retained per the
+> no-rewrite rule.
+
 Regardless of that outcome:
 
 **`DESIGN CANDIDATE` DC-03-02 (mandatory).** In SMEsPlus, cost-of-sales generation must be

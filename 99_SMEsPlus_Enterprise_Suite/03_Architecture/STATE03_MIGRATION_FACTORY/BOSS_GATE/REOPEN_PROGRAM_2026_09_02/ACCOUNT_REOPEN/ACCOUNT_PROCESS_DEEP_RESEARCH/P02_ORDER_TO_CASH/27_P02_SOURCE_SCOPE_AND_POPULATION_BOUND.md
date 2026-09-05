@@ -317,6 +317,43 @@ result of P02's process, which did not produce it.
 
 ## 12. Third Peer Exchange — An Onchange Lead, Tested On P02's Own Disabling Setting
 
+> ## ⚠ CORRECTION BANNER — §12 CHALLENGED AND CORRECTED (`C-37`, `C-38`, `C-39`; AAS-03 Expert 4)
+>
+> **`SC-17` over-generalised — `C-37`.** "The guard is **one-directional**" is false of the *method*.
+> `stock_account/models/product.py:972-976` holds a **second raise, outside the `real_time` branch**,
+> which evaluates unconditionally: the valuation account may not equal the input or output account.
+> On the exact `idemo18_uat` state `SC-17` cites (accounts set, valuation NULL), **that branch does
+> evaluate and can fire.** Only the *account-completeness* branch is one-directional. §12 quoted the
+> first branch and attributed its property to the whole guard — **the aggregation failure `SC-19`
+> names, recurring inside the section that names it.**
+>
+> **`SC-18`'s table was not whole-tree — `C-38`.** It was described as "**Two-sided, whole-tree**" and
+> reproduces only under an **undeclared `--include='*.py'` filter**. Executed both ways:
+>
+> | measured | whole tree v18 | whole tree v19 | `*.py` v18 | `*.py` v19 |
+> |---|---|---|---|---|
+> | guard message string | **44** | **2** | 1 | 0 |
+> | `property_valuation` | 106 | 103 | 39 | 37 |
+>
+> The two v19 hits are obsolete `#~` msgids in `i18n/zh_TW.po` and `i18n/es_419.po`, so the **verdict
+> survives** — but the published description is not the executed measurement, against this package's
+> own *publish the command, not the pattern* standard.
+>
+> **`P02-F-05c` mis-attributes the change — `C-39`.** v19 did not merely remove a guard: it removed
+> **the fields the guard protected**. `property_stock_account_input_categ_id` and
+> `…output_categ_id` have **zero non-test `.py` occurrences** in the v19 root, and the v19
+> `product.category` declares only `property_stock_valuation_account_id` and
+> `property_price_difference_account_id`. Category-level interim in/out accounting was **replaced** by
+> `res_company.inventory_valuation` plus per-company `ir.default` writes. The published sentence
+> ("selecting perpetual valuation no longer requires the stock accounts to exist") is literally true;
+> the design conclusion must be restated **against the replacement mechanism, not against an absence**.
+>
+> **Also accepted, not yet executed (`C-40`):** `SC-16`'s `REFUTED` verdict on the combo-tax handler is
+> **scoped to the sale-order route only**. The direct customer-invoice route
+> (`account/models/account_move_line.py:878-886`) applies `product_id.taxes_id` with **no combo test**,
+> and `P02-F-07` establishes invoices exist independently of orders. The verdict should read *"refuted
+> on the SO path; unrefuted on the direct-invoice path"*. **The P04 defect class survives there.**
+
 P04 reported that the routine forcing an equipment-flagged product to non-storable with serial
 tracking is an `@api.onchange`, which "binds only in the form. Any import, script or programmatic
 write sets the equipment flag without it firing", and put the question to P02 directly: *given

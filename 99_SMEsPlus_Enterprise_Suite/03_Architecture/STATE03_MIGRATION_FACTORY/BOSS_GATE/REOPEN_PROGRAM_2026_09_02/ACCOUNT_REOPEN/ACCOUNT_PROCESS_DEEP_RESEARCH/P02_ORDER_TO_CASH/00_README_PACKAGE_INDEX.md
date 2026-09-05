@@ -88,6 +88,7 @@ as verdicts anywhere in this package.
 | 22 | `22_P02_TARGETED_CLOSURE_DEPLOYED_EVIDENCE.md` | **Targeted closure: all archives, generation split, period measurement, live tolerance-zero tests.** Carries a correction banner — seven of its claims were refuted | L2 |
 | 23 | `23_P02_CLOSURE_RECONCILIATION_REGISTER.md` | Boss-policy separation, tolerance-zero reconciliation, exit criteria, scope, peers | L2 |
 | 24 | `24_P02_EIGHT_BUSINESS_SCENARIOS.md` | The eight previously uncovered scenarios, across both readable generations | L2 |
+| — | ↳ **`L-07` CORRECTION (`30`, C1)** | Written when **two** generations were readable; **four** now are. `24`'s scenarios were analysed against two — a **coverage gap**, carried into `35` | L2 |
 | 25 | `25_P02_CLOSURE_CHALLENGE_AND_CORRECTIONS.md` | **Second independent challenge — 7 refutations, 2 new reference defects, corrected denominator** | L2 |
 | 26 | `26_P02_V18_DEPLOYMENT_EVIDENCE.md` | The first genuine v18 deployment (`idemo18_uat`) — the only company found anywhere with split recognition ON; `C-04` reclassified to `AUTHORISATION REQUIRED` | L2 |
 | 27 | `27_P02_SOURCE_SCOPE_AND_POPULATION_BOUND.md` | Source-scope bound (`RE-23`), instrument controls run against P02's own negatives, and the three peer exchanges — including `C-33`, where the package was found asserting a fact and its negation in two files | L2 |

@@ -201,7 +201,11 @@ References of the form `T1 §4a.3` in the Layer-2 deliverables resolve into thos
 ## 4. Reproduction Instructions
 
 Every `FACT VERIFIED` in this package is reproducible with read-only shell inspection of the root in §1.
-No tooling, no database, no execution. A reviewer disputing any finding should:
+No tooling, no database, no execution.
+
+> **`L-02` CORRECTION (`30`, C1).** True of **source** findings only. **Deployed** findings
+> (`EV-P02-102` onward, and `EV-P02-121` … `127`) require `pg_restore` 18.6 and the artefact path set;
+> their reproduction instructions are in `28` §3. A reviewer following §4 alone cannot reproduce them. A reviewer disputing any finding should:
 
 1. open the cited `path:line`;
 2. check the finding against the **branch**, not the method name;
