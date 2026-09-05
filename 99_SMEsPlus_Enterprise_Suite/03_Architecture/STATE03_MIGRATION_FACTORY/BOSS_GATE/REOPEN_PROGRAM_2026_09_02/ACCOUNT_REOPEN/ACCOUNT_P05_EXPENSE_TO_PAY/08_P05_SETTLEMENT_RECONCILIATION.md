@@ -51,7 +51,7 @@
 
 > **`SR-07a` BOUND ON `SR-07`, raised by AAS-03 Expert 4 — a survival path the package never checked.**
 > A full-package grep for `mail.message` / `chatter` / `tracking` / `ir.attachment` / `message_post` /
-> `_creation_message` returned **zero hits across all 39 files**: the package never evaluated whether
+> `_creation_message` returned **zero hits across all 39 files present when the sweep was run**: the package never evaluated whether
 > lineage survives outside the foreign key. It partly does.
 > **(a)** `hr_expense/models/account_move.py:51-54` overrides `_creation_message()` to post
 > *"Expense entry created from: &lt;sheet link&gt;"* as a permanent `mail.message` at move creation. None

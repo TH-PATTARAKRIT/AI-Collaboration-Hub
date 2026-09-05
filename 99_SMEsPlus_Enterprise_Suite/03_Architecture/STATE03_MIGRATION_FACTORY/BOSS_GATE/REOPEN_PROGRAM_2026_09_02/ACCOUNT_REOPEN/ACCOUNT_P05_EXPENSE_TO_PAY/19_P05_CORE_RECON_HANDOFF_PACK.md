@@ -84,62 +84,81 @@ on that basis and not on the assumption that P05 delivers a complete expense sub
 
 # LAYER 2 — AUDIT QUARANTINE
 
-## 7. The Six Findings Core Reconciliation Must Not Discover Later
+## 7. The Findings Core Reconciliation Must Not Discover Later
+
+**Revised by the targeted evidence closure.** Ranked by *operational reach in an evidenced
+deployment* — see `26 §5`'s warning that this is the wrong axis for a build decision.
+
+### Live in every evidenced deployment
+
+| # | Finding | Owner | Where |
+|---|---|---|---|
+| 1 | **Vendor down payments are never deducted from the final bill** — the deduction flag's only consumer is commented out. The vendor is billed the full order value *in addition to* the down-payment bill. | **P01** | `30 §1 H-P01-1` |
+| 2 | **Any internal user can create a vendor bill** through a `sudo()` wizard, bypassing accounting rights. | **P01** | `30 §1 H-P01-2` |
+| 3 | **Thai withholding is implemented twice, and 92.55% of it is invisible to the statutory CSV export.** Measured: 5,426 of 5,863 lines on the withholding account carry no `tax_line_id`, and the export inner-joins on it. Structurally guaranteed — `tax_line_id` is a stored related field never populated for a write-off line. | P05 records; **P07** owns statute; **P11** reconciles | `07 §1`, `25 §3` |
+| 4 | **Amount, currency and date remain writable on an expense line after its entry is posted**, with no propagation — claim total and ledger total diverge silently. | P05 / **P08** | `10 EF-06` |
+| 5 | **Approval is enforced in the action, not on the field** — an employee can write `approval_state='approve'` on their own sheet. | P05 / **P08** | `10 E1-01` |
+| 6 | **An expense report can reach `done`/"Paid" with no journal entry and no payment**, and stay deletable (2 of 6 registries). | P05 / **P08** | `10 E1-02` |
+| 7 | **The withholding certificate table has no UNIQUE constraint and no index** beyond its primary key; one exact duplicate certificate exists in 5,201, and **1,417 certificates carry no number at all**. | **P07** | `25 §4b` |
+
+### Confirmed in source, installed in no evidenced deployment — *and therefore the most avoidable*
 
 | # | Finding | Where |
 |---|---|---|
-| 1 | Petty-cash spending never touches the petty-cash account; the float's balance control is a one-way ratchet that sees top-ups and never drawdowns. | `05 §6`, `TZ-01` |
-| 2 | Employee advances are expensed at disbursement, by shipped default, with no receivable and **no integration at all** with the claim system — so the same cost can be recognised twice with nothing to detect it. | `05 §3`, `10 E3-01`, `E3-02` |
-| 3 | A hashed, inalterable journal entry can be forced to `cancel` from a non-accounting document, leaving reconciliation partials standing against it. | `10 EC-13a`, `TZ-08` |
-| 4 | Thai withholding is implemented **twice**; the custom stack's withholding reaches the statutory report's on-screen totals and **disappears from its CSV export**. | `07 §2`, `TX-01` |
-| 5 | Amount, currency and date remain writable on an expense line after its entry is posted, with no propagation — claim total and ledger total diverge silently. | `10 EF-06`, `TZ-03` |
-| 6 | An expense report can reach state `done` and payment status "Paid" with **no journal entry and no payment at all**, and remain deletable. | `10 E1-02`, `TZ-10` |
+| 8 | **Petty-cash spending never touches the petty-cash account.** Two independent dead paths; the module's tests cannot execute. The float's balance control is a one-way ratchet. | `05 §6` |
+| 9 | **Employee advances are expensed at disbursement by shipped default**, with no receivable and **no integration at all** with the claim system — so the same cost can be recognised twice with nothing to detect it. | `05 §3`, `10 E3-02` |
+| 10 | **A hashed, inalterable journal entry can be forced to `cancel`** by a raw `state` write. The P05 trigger is latent; **the underlying core gap is not, and belongs to P08.** | `10 EC-13a` |
+
+> These three are defects SMEsPlus can still decline to inherit. For a clean-room build decision they
+> rank **at least as high** as the live ones (`26 §2`, Expert 1's accepted challenge).
 
 ## 8. Open Boss Decisions
 
-| ID | Decision |
-|---|---|
-| `BD-01` | Is the accounting event owner approval, or posting? |
-| `BD-02` | Must an advance create an employee receivable rather than an expense? |
-| `BD-03` | May an entry's date ever derive from the clock? |
-| `BD-04` | Are prepaid and accrued in scope for P05? |
-| `BD-05` | Which withholding subsystem is authoritative? |
-| `BD-06` | Must withholding be recognised at bill posting rather than only at settlement? |
-| `BD-07` | Must withholding applicability follow the payee rather than the funding route? |
-| `BD-08` | Is a non-deductible / add-back mechanism in scope? |
-| `U-01` | Supply the deployed module list, or authorise a runtime enumeration. |
-| `U-02` | Authorise a P05 runtime trace. |
+| ID | Decision | Route before Boss |
+|---|---|---|
+| `BD-01` | Is the accounting event owner approval, or posting? | — |
+| `BD-02` | Must an advance create an employee receivable rather than an expense? | — |
+| `BD-03` | May an entry's date ever derive from the clock? | — |
+| `BD-04` | Are prepaid and accrued in scope for P05? | — |
+| `BD-05` | Which withholding subsystem is authoritative? | **P07 + P11 first** |
+| `BD-06` | Must withholding be recognised at bill posting? | **P07 first** |
+| `BD-07` | Must withholding applicability follow the payee? | **P07 first** |
+| `BD-08` | Is a non-deductible / add-back mechanism in scope? | **P07 first** |
+
+**AAS+ recommends three unblocking decisions ahead of all eight** (`37 §6`): release the v18 deployed
+module list; authorise a read-only restore of an existing dump; and **route the P01 findings now**.
 
 ## 9. Terminal State
 
-Against the eight criteria of `SMEPLUS-DR-EXIT-8C-001`:
-
 | Criterion | State |
 |---|---|
-| `EC-01` Scope Bounded | **NOT MET** — the deployed universe is `UNBOUNDED / NOT YET ENUMERABLE` (`U-01`) |
-| `EC-02` Enumeration Converged | **NOT MET** — no runtime evidence (`U-02`) |
-| `EC-03` Unknown Exhausted | **NOT MET** — five gating unknowns |
-| `EC-04` Tolerance-Zero Closed | **NOT MET** — thirteen boundaries open |
-| `EC-05` Contradiction Resolution | **MET** — zero remain as unresolved differences of opinion |
-| `EC-06` Negative Claim Controlled | **MET** — no `B`/`C`/`D` upgraded to `A` |
-| `EC-07` Two Consecutive Clean Passes | **NOT MET — the counter has not started** |
-| `EC-08` Final Knowledge Package | **STRUCTURALLY COMPLETE**, inheriting the gaps above |
+| `EC-01` Scope Bounded | NOT SATISFIED — EVIDENCE GAP |
+| `EC-02` Enumeration Converged | **NOT SATISFIED — CONTRADICTION** |
+| `EC-03` Unknown Exhausted | NOT SATISFIED — EVIDENCE GAP |
+| `EC-04` Tolerance-Zero Closed | NOT SATISFIED — 13 open, 0 closed |
+| `EC-05` Contradiction Resolution | **SATISFIED — EVIDENCE VERIFIED** |
+| `EC-06` Negative Claim Controlled | **SATISFIED — EVIDENCE VERIFIED** |
+| `EC-07` Two Clean Passes | NOT SATISFIED — counter 0 of 2 |
+| `EC-08` Package Complete | NOT SATISFIED — structurally complete, Jira `NOT SUPPLIED` |
 
 > ### TERMINAL VERDICT
 >
-> **`HOLD — EVIDENCE REQUIRED`.**
+> **P05 TARGETED EVIDENCE CLOSURE — MAXIMUM AVAILABLE EVIDENCE REACHED — HOLD FOR SPECIFIC EXTERNAL
+> BLOCKER.**
 >
-> The research is delivered in full: every deliverable the directive names exists, every mandatory
-> register is populated, four independent adversarial challenges were executed and consolidated, and
-> the scope-aware constitution correction was absorbed without a reset.
+> The named external blockers are exactly two, and both are cheap:
+> 1. **No Odoo 18 database carrying the P05 surface exists in available evidence** (`U-01` residue).
+> 2. **Runtime execution requires a write authorisation that was not given and was not assumed**
+>    (`U-02b`). The dumps that would satisfy it already exist and have already been read as files.
 >
-> **`READY FOR CORE ACCOUNTING RECONCILIATION` is NOT declared.** Six of ten handoff elements are
-> unsuppliable or partial (§6), thirteen tolerance-zero boundaries are open, and `EC-07`'s counter has
-> not started. Declaring readiness would require bypassing `EC-01`, `EC-02`, `EC-03`, `EC-04` and
-> `EC-07` — which `EC-04` expressly forbids for a tolerance-zero risk.
+> **`READY FOR CORE ACCOUNTING RECONCILIATION` is NOT declared.** Six of eight criteria are unmet,
+> thirteen tolerance-zero boundaries are open, six of ten handoff elements are partial or blocked, and
+> `EC-07`'s counter cannot reach 2 from here.
 >
-> AAS+ additionally **vetoes any implementation start** (`AASV-01`). The Layer 1 design input at
-> `17 §6` is nevertheless Boss-decidable **now** and does not wait on the items above.
+> AAS+ maintains `AASV-01` (no implementation start) and adds `AASV-02`: no *uncorrected* section of
+> this package may be cited as settled design input without a further independent pass. The corrected
+> sections may be relied on at their stated classes. The Layer 1 design input at `17 §6` remains
+> Boss-decidable now.
 >
 > Boss is the sole Final Approver. No `PASS`, no `FINAL FREEZE`, no `MERGED`, no
 > `IMPLEMENTATION AUTHORIZED` is claimed or implied.
@@ -149,11 +168,10 @@ Against the eight criteria of `SMEPLUS-DR-EXIT-8C-001`:
 | Item | Value |
 |---|---|
 | Repository | `TH-PATTARAKRIT/AI-Collaboration-Hub` |
-| Canonical branch | `SMEsPlus` (not modified) |
+| Canonical branch | `SMEsPlus` — **not modified** |
 | Working branch | `research/account-p05-expense-to-pay-2026-09-04-001` |
 | Base commit | `88f52cd7ba6dc40b8951c4bfc4e0016af7cbb7ad` |
-| Package path | `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/ACCOUNT_P05_EXPENSE_TO_PAY/` |
+| Package path | `.../ACCOUNT_REOPEN/ACCOUNT_P05_EXPENSE_TO_PAY/` (40 files) |
 | Merge status | **Not merged. Never to be merged without Boss decision.** |
-| Commit SHAs | `64b10cd`, `1172f79` — see `14 §1` |
-| Integrity | SHA-256 manifest at `14 §2` |
-| Jira | `NOT SUPPLIED` — see `18 §2` |
+| Integrity | SHA-256 manifest at `14 §5` |
+| Jira | `NOT SUPPLIED` — see `38 §1 Q2` |

@@ -146,7 +146,7 @@ move creation/posting, and `sudo()` does not bypass it), which also corrects `04
 ### `RE-19` — an entire lineage-survival channel never examined
 
 A full-package grep for `mail.message` / `chatter` / `tracking` / `ir.attachment` / `message_post` /
-`_creation_message` returns **zero hits across all 39 files**. The package concluded that severing the
+`_creation_message` returns **zero hits across all 39 files present when the sweep was run**. The package concluded that severing the
 foreign key destroys the claim-to-entry trail without ever asking whether the trail survives elsewhere.
 It partly does — a permanent chatter message and directly-addressed attachments survive three of the
 four mechanisms. Recorded as `08 SR-07a`; it **bounds** `SR-07` rather than overturning it.

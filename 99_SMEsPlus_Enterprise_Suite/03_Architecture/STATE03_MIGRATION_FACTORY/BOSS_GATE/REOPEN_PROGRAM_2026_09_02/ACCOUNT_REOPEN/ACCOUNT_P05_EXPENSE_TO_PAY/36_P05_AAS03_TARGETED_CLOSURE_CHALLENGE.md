@@ -173,7 +173,7 @@ Thai WHT `security.xml`.
 **Accounting lineage — CONFIRMED, with a material omission the package never checked.**
 Every severing citation matched verbatim. But a full-package grep for
 `mail.message|chatter|tracking|ir.attachment|message_post|_creation_message` returned **zero hits
-across all 39 files** — the package never asked whether lineage survives *outside* the foreign key.
+across all 39 files present at the time of the sweep** — the package never asked whether lineage survives *outside* the foreign key.
 It partly does: a permanent chatter message written at move creation, and receipt attachments
 addressed directly to the move, both survive three of the four severing mechanisms (not the
 draft-`unlink()` path, where `mail.thread.unlink()` removes the messages too). **Recorded as
