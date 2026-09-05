@@ -367,6 +367,15 @@ under-counts. `P02-F-28a` is WITHDRAWN.**
 **The two findings are one defect:** the artefact the blind instrument dropped is precisely the
 intervening snapshot that disproves the conclusion.
 
+### C-50 … C-53 — Round `…FINAL-UNCERTAINTY-CLOSURE-003`, All Self-Found In This Round's Own Method
+
+| ID | Claim | Counter-evidence | Resolution |
+|---|---|---|---|
+| **C-50** | The amended lineage key (birth metadata) identifies a lineage. | Put to a falsification test: **2 of 3 multi-uuid groups split** on founding-company identity — `iSMEs` (ข้าวสุวรรณภูมิ) vs `iMSCG` (เอสซีจี เลกาซี) share a birth timestamp **to the microsecond**; so do `pfp-main` (My Company) and `pfp-staging` (Premium Flexible Packaging). | Key **amended**: birth metadata **AND** founding-company identity must both agree. **A key adopted to fix an over-count produced a different over-merge.** |
+| **C-51** | `C-43`'s re-scope: *"493,277 marker-capable lines across **15 databases**"*. | That 15 is **15 uuids**. Under the lineage model the marker-capable count is **13 lineages** (15 lineages − 2 v14). **The two 15s are different numbers.** | Restated: **493,277 lines · 13 marker-capable lineages · generations 16/18/19**. The line total reproduces exactly. |
+| **C-52** | `BK12MAY26` is a distinct database. | Same birth metadata **and** same founding company (บริษัท วีอิ้ง อินเตอร์เทรด จำกัด) as `iEVING`. | **One lineage, three uuids** (`f4a44cce`, `1f6338ae`, `66d1b52a`). The uuid over-count is **larger** than `C-49` established. |
+| **C-53** | *"All 38 artefacts BLOCKED_IO"* (produced transiently in this round). | **`timeout` does not exist on this host.** Every wrapped call returned "command not found" → empty output → recorded as blocked. | **Withdrawn before publication.** Replaced by an in-process bounded read (`signal.alarm`), under which 36 read normally and **4** — in `~/Library/Group Containers` — are genuinely blocked this session. |
+
 ## 2. Contradictions Between Evidence Tracks
 
 **None found.** The four tracks were run independently against the same root with independently declared

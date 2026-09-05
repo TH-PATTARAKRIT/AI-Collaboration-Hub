@@ -27,3 +27,21 @@ Baseline `ff8be5128483c3ba49b3265f72f1851b6c6bcd64`.
 | **CP-G02P02-13** — PMO final targeted review | **COMPLETE — EVIDENCE VERIFIED** | `42` |
 | **CP-G02P02-14** — Layer-1 G02-P02 handoff | **COMPLETE — EVIDENCE VERIFIED** | `43`; vendor-token scan clean, injection control fires |
 | **CP-G02P02-FINAL** — commit / push / remote / checkpoint / resume | **COMPLETE — EVIDENCE VERIFIED** | see `P02_AUTO_RESUME_STATE.md` |
+
+---
+
+## Round `SMEPLUS-26-09-05-G02-P02-O2C-FINAL-UNCERTAINTY-CLOSURE-003` — baseline `aca211e`
+
+| Checkpoint | State | Evidence |
+|---|---|---|
+| **CP-01** — evidence identity model built and counterexample-tested | **COMPLETE — EVIDENCE VERIFIED** | `44`; six levels, permitted keys, forbidden shortcuts, counterexamples re-derived this round; **key amended after its own falsification test failed 2 of 3 groups** |
+| **CP-02** — format-complete population method built and controlled | **COMPLETE — EVIDENCE VERIFIED** | `45` §2–§3; 3 positive + 5 failure controls incl. a **plausible** negative; independent structure-led second method |
+| **CP-03** — population execution completed / dispositioned | **PARTIAL — RESUMABLE** | `45` §4/§7; 141,235 of 193,222 content-tested; **51,987 cloud files <1 MB not tested**; `~/Library/Group Containers` blocked |
+| **CP-04** — deployment code identity bounded | **COMPLETE — EVIDENCE VERIFIED** | `46`; five mandated statuses; **`MATCH VERIFIED` used for no archived deployment** |
+| **CP-05** — C-04 read-only closure or authorisation pack | **PARTIAL — C-04a CLOSED, C-04b BLOCKED — BOSS AUTHORISATION** | `47`; nothing executed |
+| **CP-06** — business-scenario delta reconciliation | **IN PROGRESS** | pending challenge input |
+| **CP-07** — four AAS-03 challenges | **IN PROGRESS** | four fresh experts relaunched after the prior session ended |
+| **CP-08** — AAS+ consolidation | **NOT STARTED** | depends on CP-07 |
+| **CP-09** — PMO exit assessment | **NOT STARTED** | depends on CP-08 |
+| **CP-10** — P11/G02 handoff + terminality audit | **NOT STARTED** | depends on CP-09 |
+

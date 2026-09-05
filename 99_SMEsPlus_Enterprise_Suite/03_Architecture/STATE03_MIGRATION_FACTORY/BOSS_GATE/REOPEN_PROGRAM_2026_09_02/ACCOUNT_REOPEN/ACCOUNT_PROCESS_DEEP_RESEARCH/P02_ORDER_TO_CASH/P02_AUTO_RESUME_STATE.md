@@ -68,3 +68,30 @@ Created **2026-09-05** under `[SMEPLUS-26-09-05-G02-P02-O2C-TARGETED-CLOSURE-002
   not just the traversal.**
 - **A later round may not silently narrow an earlier round's recorded correction** (`C-48`). Before
   republishing a population, diff it against every prior recorded count and reconcile explicitly.
+
+---
+
+## Round `…FINAL-UNCERTAINTY-CLOSURE-003` — resume state
+
+| Field | Value |
+|---|---|
+| Baseline | `aca211e` |
+| Last completed checkpoint | **CP-05** (partial) |
+| Current blocker | `C-04b` — **Boss authorisation**; and CP-07 challenges in flight |
+| Mutation authorisation required? | **YES for `C-04b` only.** None exists; **nothing was executed** |
+| Background tasks | 4 challenge agents in flight; **0 shell instruments running** |
+| Unfinished instrumentation, declared | 51,987 cloud files <1 MB not content-tested; `~/Library/Group Containers` traversal blocked |
+
+### Exact next actions
+1. Consume the four AAS-03 challenge reports; verify every finding against primary source **before** adoption.
+2. Write AAS+ consolidation (CP-08), PMO fresh exit assessment (CP-09), final uncertainty reconciliation + P11 handoff (CP-10).
+3. Re-scope every consumer of the zero-COGS headline to **493,277 lines / 13 marker-capable lineages** (`C-51`) — `18`, `19`, `22`, `26`, `27`, `28`, `37` still carry older forms.
+4. Content-test the 51,987 sub-1 MB cloud files, or record a bounded `VERIFIED ABSENCE` with the floor justified.
+5. Re-enumerate `~/Library/Group Containers` when TCC permits; 4 known artefacts sit there.
+6. Extend the format pattern set to 7z / rar / xz / zstd / split archives / sparse bundles / VM images.
+
+### Environment facts that must survive a resume
+- **`timeout` does not exist on this host.** Use python3 `signal.alarm` for bounded reads (`RE-40`).
+- Long shell jobs are killed when the session ends; **chunk with an incremental cursor**.
+- `~/Library/Application Support` and `~/Library/Containers` traversals hang (TCC).
+
