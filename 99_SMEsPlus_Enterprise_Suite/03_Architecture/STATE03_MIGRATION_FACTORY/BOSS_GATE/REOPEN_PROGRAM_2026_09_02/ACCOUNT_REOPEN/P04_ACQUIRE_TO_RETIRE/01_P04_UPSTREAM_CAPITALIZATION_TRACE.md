@@ -455,7 +455,18 @@ the relation. In `iSMEs` it is directly observable.
 | **Distinct assets carrying any source-line link** | **22** |
 | **Assets with no link to any source document** | **647 — 96.7 %** |
 
-> **P04-F-82.** In this database, **fewer than 4 % of asset records carry any
+> **P04-F-82.** **`n = 1` — this is a single-database finding and is stated as
+> one.** Unlike `P04-F-81` and `P04-F-83`, which were enumerated across **all**
+> snapshots before publication, this rests on the **one** database holding real
+> assets, so no claim about generality is available. A peer withdrew the
+> universality of its own headline on exactly this test — 2 of 4, not "the
+> shipped state" — while keeping its severity, on the reasoning that *a defect
+> firing in half of deployments and silent in the other half cannot be found by
+> testing a system that works.* The same caution applies here in the other
+> direction: **the proportion below may be characteristic of this database
+> alone.**
+>
+> In this database, **fewer than 4 % of asset records carry any
 > link to a source journal item.** The upstream trace described at §4.4 is not
 > merely *unstored* — for the overwhelming majority of this population **the
 > first hop does not exist**, so no traversal can reach a purchase order however
