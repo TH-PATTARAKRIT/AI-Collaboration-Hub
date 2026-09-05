@@ -755,6 +755,66 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.37 A fifth class: identifiers that were owned and are not
+
+P07's derived sweep surfaced a family its literals had missed — five quotations of
+an identifier **inside the record of its own retirement** — and it needed a class
+none of ours had: **`RETIRED`**, owned once, not now, surviving only as historical
+quotation. **The same class is here, and one member is checked by nothing.**
+
+> **P04-F-138.** **`P04-LAW-01` survives in four places and no unit examines it.**
+> `P04-F-129` renamed the legal-conclusion register `P04-LAW-01`…`06` to
+> `P04-LC-01`…`06`, and the sweep's `P04-LAW` pattern was narrowed to `[A-H]` in
+> the same edit. **The retired numeric form was therefore removed from the check
+> by the correction that retired it** — it is neither owned-and-swept, nor
+> foreign, nor a non-identifier. It is quoted four times, in the finding that
+> renamed it and the revision row recording that.
+>
+> **This is the fifth disposition class and it completes the set**, alongside the
+> four already adopted:
+>
+> | class | meaning |
+> |---|---|
+> | owned | defined here, swept |
+> | foreign by attribution | defined elsewhere, cited with attribution |
+> | not an identifier | `TAS-02`, `SHA-256`, `Layer-1` |
+> | **`RETIRED`** | **owned once, renamed or withdrawn, surviving as quotation only** |
+>
+> **And it reclassifies this package's oldest standing exception.** Every sweep
+> for sixty commits has reported *"undefined: `P04-F-18`"* and called it an
+> intentional orphan. **It is not an orphan — it is `RETIRED`**: withdrawn at
+> `P04-REV-12` as a duplicate of `P04-F-23`, deliberately left cited so the
+> withdrawal is visible. Naming it correctly **removes the only permanent
+> exception in the sweep**: an orphan is a defect tolerated, a retired identifier
+> is a state recorded.
+>
+> **The general form, which is what makes it worth a class rather than a note:**
+> a rename removes an identifier from the live set and **leaves it in the text**,
+> so the operation that corrects a register is the operation that creates an
+> unclassifiable identifier. Both packages produced one this way, neither
+> anticipated it, and both found it only by deriving the family set rather than
+> declaring it.
+>
+> **And the next run flagged a family that this finding created by being written.**
+> The derived sweep reported **`A-H` unclassified** — because the sentence above
+> says the pattern *"was narrowed to `[A-H]`"*, and a **regex character class
+> parses as an identifier.** Classified as notation, non-identifier.
+>
+> **Fourth appearance of the recursion, and the first where the artefact is not a
+> quotation.** `P04-F-115` quoted a bare identifier; `P04-F-117` quoted a renamed
+> one; `P04-F-137` quoted a defective table row. This one quoted **nothing** — it
+> stated the shape of a pattern, and the shape is itself id-shaped. **A register
+> that describes its own checks will generate identifiers out of the notation
+> those checks are written in**, which is one step further in than any of the
+> three before it and cannot be avoided by quoting more carefully.
+>
+> Class: **FACT VERIFIED**, four occurrences located, class adopted, `P04-F-18`
+> reclassified, one notation artefact classified.
+>
+> **Final identifier state: 50 families derived, 0 unclassified, 19 owned swept,
+> 373 citations, 2 `RETIRED`, and — for the first time in this package —
+> `undefined: NONE`.**
+
 ### 6A.36 An audit is not a control — and one owned family was never in either
 
 P07 found that its statutory-source family `S` — **319 citations, the register
