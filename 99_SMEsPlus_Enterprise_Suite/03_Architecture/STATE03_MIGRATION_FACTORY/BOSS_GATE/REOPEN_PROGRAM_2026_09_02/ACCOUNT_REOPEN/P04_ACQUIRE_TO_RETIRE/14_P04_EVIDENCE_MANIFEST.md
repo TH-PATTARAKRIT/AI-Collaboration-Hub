@@ -51,7 +51,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | File | SHA-256 |
 |------|---------|
 | `00_README_LAYER_AND_METHOD.md` | `e569eb7b671cae1196443123da111aef7a2746e9186a468e4d88d45602d504f1` |
-| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `7b11b2d9d5368a413190869de89067a1739c975af1a177109e91d228564404b1` |
+| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `c155784ef08654c61dd748e00a5b54dc06de822d65d910485ee072648b8779a1` |
 | `02_P04_ASSET_LIFECYCLE_MAP.md` | `561118e4b1e312b6ff3cfab4f350db256c1f8b6b8364d9975e4286eef4c742f0` |
 | `03_P04_ASSET_EVENT_REGISTER.md` | `ed31187344fa46246cf5c3f59c9444a212ad454b0ee62bb360dc2fcf81ad2a51` |
 | `04_P04_ASSET_TO_GL_MATRIX.md` | `f97d5e4239b9fd1eb4ed4bbce5a03173185f2df336ec5c9f234c30b944531dd6` |
@@ -60,14 +60,14 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `07_P04_DISPOSAL_DERECOGNITION_MATRIX.md` | `73498c37afaceb7557a1a4f304eeb7a53c943bf77364926f85e69038c756b413` |
 | `08_P04_PRIOR_EVIDENCE_RECONCILIATION.md` | `e5970d358e188c1e0f5b99c8138f5cb09610b09885bf6b80ea51be4fbef780fe` |
 | `09_P04_BOSS_DECISION_REGISTER.md` | `ce1a873fff38c8b45854238719efbce1386fd3f97f0c6058bc1991af98f00dfc` |
-| `10_P04_BLOCKER_REGISTER.md` | `0dc13d291c999792e70778e836130b85ae76a0f343f9251ccd96dfbd038788fe` |
+| `10_P04_BLOCKER_REGISTER.md` | `ee616adf3a6cb4b180ea94e41ecd6967c7fbb8575068d907dde5967ed8ec2a91` |
 | `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `96ce4558fb1e4e13fdaa65c8d78d7bda2c9cede7ab5098d9028795d5f6d80086` |
 | `12_P04_CONTRADICTION_REGISTER.md` | `4a54d8b13cfff34602ef2d1c9a2c10b8a43934ff943dfaf4cad6904874038e79` |
 | `13_P04_SOURCE_LINK_REGISTER.md` | `58182ff004ea65ffe27eaaf33b6d89593f4b255be73669249a56cff70fea7687` |
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
 | `16_P04_AAS_PLUS.md` | `2fae6db9ea4af1e4f31095a5b5875b00e9c15544c79bfbdccec058dfc58c7c20` |
 | `17_P04_PMO.md` | `271e71d9ffd9ceebf2f8c99ff2cee47e0a9fc278b95684cf3f495aa337fec269` |
-| `18_P04_REVISION_LOG.md` | `71db236267d96895a276072cd0c4790c7da3b8bbc20e6375217ed81b486a9d36` |
+| `18_P04_REVISION_LOG.md` | `b5858ef0ba598fc1815a1e60ac0f01dac62777a1cbb70a4cfe4c9ea7efaf05b7` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `046190f9a3c50ab213aea19653259ff76b92c2c0d7f3a1e75d45d68c264b9eb1` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `401b79203854b3b2b69da0e44c3371e9b372f68ba59837ba18fe796ff8711e78` |
 
@@ -87,7 +87,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **102** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`; `P04-F-86`/`P04-F-87` added at `18` `P04-REV-35`; `P04-F-88`/`P04-F-89` at `P04-REV-36`; `P04-F-90`–`P04-F-92` at `P04-REV-37`; `P04-F-93`/`P04-F-94` at `P04-REV-38`; `P04-F-95`/`P04-F-96` at `P04-REV-39`; `P04-F-97`/`P04-F-98` at `P04-REV-40`; `P04-F-99` at `P04-REV-41`; `P04-F-100`/`P04-F-101` at `P04-REV-42`; `P04-F-102`/`P04-F-103` at `P04-REV-43`, where **`P04-F-88` is withdrawn one commit after publication**). *Executed in the same command that published this line — see `18` §5* |
+| Findings (`P04-F-nn`) defined | **103** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`; `P04-F-86`/`P04-F-87` added at `18` `P04-REV-35`; `P04-F-88`/`P04-F-89` at `P04-REV-36`; `P04-F-90`–`P04-F-92` at `P04-REV-37`; `P04-F-93`/`P04-F-94` at `P04-REV-38`; `P04-F-95`/`P04-F-96` at `P04-REV-39`; `P04-F-97`/`P04-F-98` at `P04-REV-40`; `P04-F-99` at `P04-REV-41`; `P04-F-100`/`P04-F-101` at `P04-REV-42`; `P04-F-102`/`P04-F-103` at `P04-REV-43`; `P04-F-104` at `P04-REV-44`, where **`P04-F-88` is withdrawn one commit after publication**). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **51** — enumerated row by row, 50 distinct identifiers, no duplicates. *The figure stood at 45 and was wrong before this session touched it: four section headings understated their own contents (§4, §6A, §6B, §7A), and the published total agreed with neither the headings nor the rows. Corrected at `18` `P04-REV-38` — this package states that totals are unverified claims and had one in its own governing register.* |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
 | Revisions | 34 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |

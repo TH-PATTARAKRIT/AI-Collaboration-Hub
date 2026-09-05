@@ -743,7 +743,59 @@ table rather than by re-reading it.*
 > gap, to a measured gap, to a gap **measured at totality in the target
 > generation**.
 >
-> Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30.
+> Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
+
+### 6A.10 The zeros, made falsifiable
+
+P02 laid its zero-COGS result against four deployments spanning every
+discriminating configuration — never transacted, gate on with valuation off, gate
+off with valuation on — and could then say the zero is *a property of the
+mechanism, not of data volume*. **This package's zeros had never been laid out
+that way, and doing it narrows one of them.**
+
+| identity | gen | real assets | **source-linked** | analytic accounts | distributed asset moves | day convention |
+|---|---|---:|---:|---:|---|---|
+| `96548e18` | v18 | **no asset table** — module not installed | — | 0 | — | — |
+| `551ab874` | v18 | 388 | **0** | **0** | none possible | 375/388 **daily** |
+| `4b766580` | v18 | 7 | **6** | **9** | **14 of 14 net to zero** | 7/7 **constant** |
+| `45a8e08e` | v16 | 669 | 22 | 0 | none possible | 683/685 **daily** |
+
+> **P04-F-104.** **The source-link mechanism demonstrably works, so `P04-F-92`'s
+> zero is a property of that deployment and not of the design.** In `4b766580`,
+> `asset_move_line_rel` holds **6 rows covering 6 of its 7 real assets — 86 %**.
+> In `551ab874` the same table exists and holds **0 rows against 388 real
+> assets**. In `45a8e08e` (v16), **22 of 669 — 3.3 %**.
+>
+> **What this withdraws:** any reading of `P04-F-92` as *"the link is not
+> implemented"* or *"the subledger cannot reach its source"*. It can, and in one
+> deployment it does for almost every asset.
+>
+> **What this strengthens, and it is the more useful half:** the contrast is now
+> a **measured spread of 0 %, 3.3 % and 86 % across three deployments of the same
+> product**, which is a far sharper statement of `P04-B-01` than a single zero
+> was. The three-values-of-four driving every depreciation entry are
+> **UI-enforced only**, so any import or script bypasses them — and a population
+> created by import would carry **no** source line while one created from posted
+> vendor bills would carry one. The observed spread is **consistent with that**
+> and with nothing else this package has found.
+>
+> Class: **FACT VERIFIED** as to the three coverage figures. The creation-path
+> explanation is **SUPPORTED INTERPRETATION** — a single snapshot cannot show how
+> a record was created, and this package will not infer it from a correlation.
+> `P04-B-03` stays answered per identity, **not** generalised.
+>
+> **And the same table makes the other zeros falsifiable.** The netting mechanism
+> fires **14 of 14** where analytic accounts exist, so `P04-F-99`'s zero is
+> configuration, not absence of capability; `96548e18` — a v18 install where the
+> asset module is not installed at all — is the negative control that shows what
+> a genuinely empty estate looks like, and it looks nothing like `551ab874`.
+> **A deployment with 388 assets, no source links and no analytic accounts is not
+> an empty system; it is a populated one with two mechanisms switched off.**
+>
+> *The set was not assembled by design.* Two of the three v18 identities came
+> from P02 correcting this package's population, after this package had corrected
+> P02's. Neither of us chose the discriminating set; it is the residue of two
+> reciprocal corrections.
 
 ### 6A.9 Closing the code-identity axis, one module at a time
 
