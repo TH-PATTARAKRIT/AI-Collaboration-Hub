@@ -121,6 +121,7 @@ entry carries its post-challenge state, not its draft state.
 | `P07-F-99` | `S2` | **An audit is not a control, and the firing control on unit `[0]` proved it.** Deleting one deliverable from a copy: unit `[0]` **fires and names it**, while units `[2]`–`[5]` all report **clean** and **35 `S-nn` citations dangle undetected** — the statutory sources behind every legal claim — because **`S` was audited once at `§20` and never added to the standing sweep** (which covered 8 families of the 26 audited). Unit `[1]` caught 3 orphans, one more than predicted; **the prediction is recorded as wrong.** Extending the sweep to all owned families produced **three false positives, all read before publication**: `W-K-07`/`-08` defined as **list items** (audit used 4 conventions, sweep used 1 — *the audit and the standing check had different predicates*); `REV-E-30`, **a regression introduced by that very fix**, the tightened row pattern rejecting `` \| `REV-E-30` (**restated by…**) \| ``; and `EC-01`…`-08`, **not this package's identifiers** — criteria of `SMEPLUS-DR-EXIT-8C-001`, inherited, with `§22.1` having classified the constitution as foreign and its criteria as owned. After all three: **33 families swept, 0 orphans**, sweep and audit on the same predicate. | own firing control | `22 §42` |
 | `P07-F-100` | `S3` | **The family set is now derived, not read from a literal — and the row registering the previous finding contained the defect it described.** Unit `[1a]`: **50 families present** against the `§22.1` census's 48, all classified, **0 unclassified, 0 declared-but-absent**. Two families the literals missed were declared residues read before classifying: **`D`**, five quotations of a retired identifier inside the record of its own retirement (`P07-F-82`), now a fifth class **`RETIRED`**; and **`HOLD`**, P04's prior-package ids quoted with attribution, arriving through this correspondence. Separately, `P07-F-99`'s own register row quoted a table row inside a table cell and its **unescaped pipes split it — 9 against a header of 7** — the `REV-E-43` defect **committed inside the row whose subject is that defect**, sixth instance in this thread and the first where the finding's *content* produced it. **Caught by a standing unit on the next run, not by re-reading.** | own, after P04 derived its own family set and found 6 unclassified | `22 §43` |
 | `P07-F-101` | `S3` | **An orphan is a defect tolerated; a retired identifier is a state recorded — and this package's sweep filed 12 of them as one.** Split under P04's distinction: **1 `NEVER ISSUED`** (`P07-F-81`, an artefact of self-description — no finding ever carried it) and **11 `RETIRED`** (`P07-F-08`, `-17`, `-22`…`-25`, `-28`, `-29`, `-31`…`-33`, allocated and used in drafting, then merged or discarded — **withdrawn states, not gaps**). `P07-F-100`'s `RETIRED` class had been applied to **families and not identifiers**, the same partial application P04 made. The sweep now **reports** both states instead of subtracting them: *UNDEFINED: NONE \| 11 RETIRED, 1 NEVER ISSUED* — **a silently-subtracted exception is invisible; a reported one can be questioned**, which sixty commits of P04's *"intentional orphan"* line demonstrates. Third disposition noted as best where available: `P07-F-60`'s **withdrawal tombstone with a definition row** needs no exception at all. | P04, applying this package's `RETIRED` class to its own oldest standing exception | `22 §44` |
+| `P07-F-102` | `S3` | **The exception list was 11/12 inert or self-created, and two families' gaps had never been examined.** Under P04's **occurrence, not history** test — *an occurrence that would survive rewriting the sentence earns a row; one that exists only because of how the sentence was written does not* — ten declared exceptions occur **zero times**, and one occurs only inside its own declaration and the check's method note. **Eleven deleted, one retained** (`P07-F-81`, whose occurrences are incident reports: a defect cannot be reported without naming it). Because the sweep skipped exceptions **before** testing presence, an 11/12-inert list and a correct one produced **identical output**; unit `[6]` now reports liveness. **And running the `NEVER ISSUED` control on every owned family instead of one found unused numbers in two further families** — recorded as **UNDETERMINED**, not never-issued: they occur nowhere, no prior package owns either family so they are not *continued* series, and the drafting history is not held here. Declaring them **in identifier form created three false citations**, so they are stated in prose — P04's sixth-appearance mechanism, reproduced within minutes of its being reported. | P04's inert-exception unit and `NEVER ISSUED` control, run here | `22 §45` |
 | `P07-F-57` | `S3` | Latent index error in the withholding candidate filter: it indexes the first tag of the first repartition line while guarding only on the union of tags. Latent because the shipped chart tags base lines. | `SRC-CHAL` | `03 §4 W-K-03` |
 
 `P07-F-58` and `P07-F-59` were added after intake of peer evidence from P04 and independent
@@ -146,6 +147,71 @@ sharing the name `iEVING` were counted as one (4 → **5 identities**, keyed on
 `database.uuid`). Full re-derivation and the per-finding effect at `22 §10`; `REV-E-38`…`-42`.
 `P07-F-01` weakens (1 of 4, not 1 of 2), `P07-F-42` strengthens (4 of 4 plus v16),
 `P07-F-63` is partly refuted ninety minutes after publication.
+
+**Orphan check.** Every `P07-F-nn` cited anywhere in the package now resolves to a row here.
+Run mechanically — parse this register's definition rows, collect every citation across all
+files, diff the two sets — after P04 reported the same class of defect in its own package for
+the third time. It found two: `P07-F-61` was **created in `22 §4.6` and never added here**,
+and `P07-F-60` was **withdrawn without leaving a row**, so a reader looking either up found
+nothing. Both are exactly the defect this register was written to fix (`§0`), reappearing in
+the register itself. `REV-E-36`.
+
+**Re-running it immediately caught a third — mine, one edit old.** `P07-F-63` was created in
+`22 §4.5` in the *same* edit that added the two rows above, and went in with no row here. The
+defect recurred **inside its own correction**, and the same pass left `P07-F-60`'s row one
+column short. This is the yield fact, not a confession: the first run found two defects both
+older than a day; the second found one ninety seconds old. **A check cheap enough to re-run
+after every edit finds what a check run once before publication cannot** — and re-reading the
+edit I had just written would not have found it, consistent with `15 REV-M-09`. The check is
+now the last step before every commit of this package, not a pre-publication gate. `REV-E-37`.
+
+**The identifier check is not the only check, and it returned CLEAN on a broken package.**
+Run at the same moment, a **per-table structural check** (every row's unescaped-pipe count
+against its own table's header, strict renderer semantics) found **seven malformed rows** in
+four files — including all four rows of `03 §6.1`, the section added after independent
+challenge, where the entire `Evidence` column was absent. The identifier check cannot see
+those; it only sees identifiers. **The check that catches a defect is the one whose unit
+matches the defect** (`REV-M-20`). Both now run before every commit: 149 tables, 0 malformed.
+
+Both runs are reproduced in `15 §REV-E-36/37`. The script parses definition rows from `§2`,
+collects `P07-F-<n>` across all 23 files, and diffs the sets. `P07-F-08` is expected in its
+output and excluded by the not-issued list below: an identifier never issued is not an orphan,
+but the check cannot know that, so the exclusion is **declared here rather than coded**.
+
+**Identifier states — rebuilt under the occurrence test (`P07-F-102`).** P04's criterion:
+**occurrence, not history.** *An occurrence that would survive rewriting the sentence earns a
+row; one that exists only because of how the sentence was written does not.* Applied here, the
+twelve-entry exception list was **eleven-twelfths inert or self-created**:
+
+| identifier | occurrences | verdict |
+|---|---:|---|
+| `P07-F-17`, `-22`…`-25`, `-28`, `-29`, `-31`, `-32`, `-33` | **0 each** | **deleted** — declared exempt from a check they were never subject to |
+| `P07-F-08` | 4, **all inside the declaration and the check's own method note** | **deleted** — exists only because the register listed it |
+| **`P07-F-81`** | **7**, in `15 REV-E-64` and `22 §19.3` | **retained** — a defect cannot be reported without naming it, so the occurrences survive any rewriting |
+
+**The exception set is now one entry.** An identifier with **zero occurrences needs no exception
+and no row**: it is not in the text, so no check can flag it.
+
+**Sequence gaps are declared separately, because a gap is a different fact from an occurrence.**
+Numbers absent from a sequence are recorded here so a reader does not read a gap as a lost
+finding — and this is where the two families no exception list had ever covered appear:
+
+**Written as prose, deliberately, and matched by no pattern** — because naming an absent
+identifier is a citation of it, and the citation is false the moment it is written. P04
+established the mechanism and this register reproduced it inside the very table that declared
+the gaps; the terminating move is to stop writing them in identifier form.
+
+- In the **findings** family: the eighth, seventeenth, twenty-second through twenty-fifth,
+  twenty-eighth, twenty-ninth, and thirty-first through thirty-third numbers are unused —
+  consumed in drafting, merged into other findings or discarded (`15 §4`).
+- In the **open-item** family: the **fifth and sixth** numbers are unused.
+- In the **negative-claim** family: the **fourth** number is unused.
+
+The last two are **UNDETERMINED**, not assumed never-issued: they occur nowhere in the package,
+no prior package owns either family so they are not *continued* series, and the drafting history
+that would settle which they are is not held here. **They were found by running P04's control on
+every owned family instead of one** — the old exception list covered the findings family only,
+so two families' gaps had never been examined at all.
 
 **Orphan check.** Every `P07-F-nn` cited anywhere in the package now resolves to a row here.
 Run mechanically — parse this register's definition rows, collect every citation across all

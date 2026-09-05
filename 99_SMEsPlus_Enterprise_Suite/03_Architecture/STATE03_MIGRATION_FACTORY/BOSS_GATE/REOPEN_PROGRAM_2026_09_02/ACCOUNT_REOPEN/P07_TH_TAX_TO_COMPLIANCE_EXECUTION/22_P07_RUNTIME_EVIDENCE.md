@@ -3542,3 +3542,76 @@ what.**
 
 **Both packages terminal. Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8
 exit criteria claimed, no blocker closed, no merge, no freeze.**
+
+
+---
+
+## 45. Occurrence, Not History — and Two Families No Exception List Had Covered — `P07-F-102`
+
+P04 reopened because this package's tombstone preference broke its sweep twice, and asked for
+two tests to be run against the 51 families here. Both found something, and a third result came
+with them.
+
+### 45.1 Its inert-exception unit, run here: 11 of 12
+
+| identifier | occurrences | verdict |
+|---|---:|---|
+| the ten drafting-consumed findings numbers | **0 each** | **inert** — declared exempt from a check they were never subject to |
+| the eighth findings number | 4, **all inside the declaration and the check's own method note** | **self-created** — exists only because the register listed it |
+| `P07-F-81` | **7**, in `15 REV-E-64` and `22 §19.3` | **survives** |
+
+**Eleven of twelve.** P04's was five of seven. Its structural point holds exactly: the sweep
+`continue`s past an exception **before** testing presence, so **an eleven-twelfths inert list and
+a correct one produce identical output.**
+
+Applying its criterion — **occurrence, not history**; *an occurrence that would survive rewriting
+the sentence earns a row, one that exists only because of how the sentence was written does not*
+— **eleven entries were deleted and one retained.** `P07-F-81` earns its place because **a
+defect cannot be reported without naming it**; its occurrences sit in two incident reports and
+would survive any rewriting of them. **The exception set is one entry, and unit `[6]` now reports
+liveness on every run.**
+
+### 45.2 The result P04 did not ask for: two families no exception list had ever covered
+
+Running its `NEVER ISSUED` control **on every owned family instead of one** — the old list
+covered the findings family only — found unused numbers in **two further families**: the fifth
+and sixth open-item numbers, and the fourth negative-claim number.
+
+**Zero occurrences anywhere. Never declared. Not a continued series** — no prior package owns
+either family, so P04's `CONTINUED` disposition does not apply. Recorded as **UNDETERMINED**,
+not assumed never-issued, because **the drafting history that would settle which they are is not
+in the package.**
+
+**This is the same shape as P04's `BD` gap and the opposite answer.** Its gap resolved to
+`CONTINUED`; these resolve to nothing, and saying so is the finding. **`P07-F-102`.**
+
+### 45.3 And the declaration created the citations — P04's sixth appearance, reproduced
+
+Writing the gap table **in identifier form** made the sweep report three undefined identifiers
+that had not existed a minute earlier. **Naming an absent identifier is a citation of it**, and
+the citation is **false the moment it is written** — P04's distinction between *stale eventually*
+and *false immediately*, and this package walked into it **within minutes of recording the rule.**
+
+Its terminating move applied: **the gaps are now prose, matched by no pattern.** Not a
+correction — there is no identifier-form wording that states which numbers are unused without
+citing them. **The only exit is to stop using the notation the check reads.**
+
+Its migration observation is why: restating in identifier form moves the defect one place along
+the range each time, **bounded only by family size, which is not a control.**
+
+### 45.4 The membership criterion, adopted for this package's tombstone register
+
+> **Occurrence, not history.** A retired identifier earns a row when it **survives in the text**,
+> never because it was retired. The boundary is a **test, not a preference**.
+
+`P07-F-60`'s tombstone passes it — the identifier is cited in the runtime file and the revision
+log independently of its own withdrawal notice. **Without the test, *"was ever retired"* makes a
+register manufacture its own subject matter**, which is the inert-exception failure one layer up.
+`REV-M-88`.
+
+**Sweep, seven units, all clean:** set integrity 23 = 23; 51 families derived, 0 unclassified;
+33 owned swept, **UNDEFINED NONE**; exception set **1 entry, 0 inert**; 194 tables / 0 malformed;
+22 rows verified; 0 sentinel rows; Layer-1 clean.
+
+**Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8 exit criteria claimed, no
+blocker closed, no merge, no freeze.**
