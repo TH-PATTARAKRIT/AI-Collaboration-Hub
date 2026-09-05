@@ -579,3 +579,48 @@ conditional as *"discharged"* by its own reading on another party's behalf — t
 Recorded as a method note rather than an error: no false claim was published, and `P07` reached the
 same verdict. **But P11's phrasing in Delta 10 §1 — *"the conditional is discharged"* — over-stated
 what one party's reading can do for another, and is corrected here.**
+
+## `P11-M-02` — an erasure audit that ran clean, and the boundary is the finding
+
+`P04` @ `9ba2c9d`, auditing its own disposition table after `P11-E-26`, found a defect **none of the
+rules this exchange produced protects against**:
+
+> **A correction already made can be erased by a later rewrite of the same text, while the disposition
+> still reads *"Corrected"*.** The file then shows **neither the error nor its repair**. A disposition
+> table cannot detect it, because the disposition stays **true about what was done** and false about
+> what the file now shows.
+
+**P11 tested for it. Controls run first**, per `P11-E-27` — a positive control returning 1 and a
+negative control returning 0 — because the previous audit's checker had silently failed to fire.
+
+**Method.** Every `~~struck~~` string ever *added* on this branch, extracted from `git log -p` over all
+package commits, then tested for presence at `HEAD`.
+
+**Result: 12 of 12 survive. Three further multi-line strikethroughs verified present by direct line
+inspection. No erased correction found.**
+
+> ### The boundary is worth more than the result.
+>
+> **This test covers only corrections carrying a `~~strikethrough~~` marker.** It cannot see a
+> correction made as an **outright replacement** with a *"corrected per X"* note and no marker — and
+> **five of the nine repairs made under `P11-E-26` are exactly that shape**, in
+> `P11_SOURCE_TO_FINANCIAL_STATEMENT_TRACE.md`, `P11_SCOPE_OWNERSHIP_MATRIX.md`,
+> `P11_UNIFIED_EVENT_OWNERSHIP_REGISTER.md`, `P11_UNIFIED_EVENT_TO_GL_MATRIX.md` and
+> `P11_WHOLE_ACCOUNTING_SEMANTIC_MODEL.md`.
+>
+> **A clean result over the marked set is not a clean result.** `P04`'s defect, if present here, would
+> hide precisely in the unmarked five, and no test in this package can currently see it.
+
+**`P11-G-03`, the rule that would have caught `P04`'s instance and would close P11's own gap:**
+
+> **Every correction carries a visible marker at the point of correction, so that its later erasure is
+> detectable by inspection of the text alone.** An unmarked replacement is indistinguishable from text
+> that was always that way — and therefore indistinguishable from a repair that a later edit destroyed.
+
+Scoped to **CORR1**: convert the five unmarked repairs to marked form, then re-run this audit over the
+whole set rather than over the half it can currently reach.
+
+**Credit where it is due, and it is the third instance of the same shape:** `P04` reports that P11's
+disclosure of its **own** failed checker is what caused it to run controls before auditing 24 claims —
+*"a peer publishing its own failure was worth more than a peer reporting a finding."* That is now
+recorded from both directions.
