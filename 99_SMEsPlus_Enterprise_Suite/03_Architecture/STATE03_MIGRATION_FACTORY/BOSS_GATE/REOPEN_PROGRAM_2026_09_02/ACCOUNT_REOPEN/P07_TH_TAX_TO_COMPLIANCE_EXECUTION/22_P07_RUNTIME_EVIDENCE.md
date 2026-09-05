@@ -200,7 +200,7 @@ evidence.
   every cross-table statement above was assembled by reading two extracts. That is weaker
   than a query and is declared as such.
 
-## 7. Four Databases, Not One — One Finding Constrained, One Strengthened
+## 7. Four Snapshots, Three Identities — One Finding Constrained, One Strengthened
 
 Written after P04 reported that its own dump enumeration had been bounded to a single
 directory, which prompted P07 to test its own bound. Two defects surfaced, one of them in the
@@ -235,11 +235,12 @@ like a quiet month. Severity `S1` is unchanged.
 Also visible: `iSMEs` names its withholding groups `TAX 1%`…`TAX 5%` rather than `WHT n%`,
 so the tag- and name-based classifications in `P07-F-15` face the same variability.
 
-**Read this table together with §3.1.** The two deployments where the defect fires are the two
-a stock client cannot open. Anyone testing this finding with default tooling sees only the
-two that work.
+**Read this table together with §3.1.** The two *snapshots* where the defect fires — both of
+the **same deployment**, a month apart (§7.4) — are the two a stock client cannot open.
+Anyone testing this finding with default tooling sees only the deployments where it does not
+fire.
 
-### 7.2 `P07-F-42` holds in EVERY database examined
+### 7.2 `P07-F-42` holds in EVERY identity examined
 
 | Database | Zero-rated / exempt taxes | Group they land in |
 |---|---|---|
@@ -263,9 +264,9 @@ second database.
 | | Before §7 | After §7 |
 |---|---|---|
 | `P07-F-01` | verified, asserted universal | verified, **1 of 3 database identities** (2 of 4 snapshots, both the same identity — §7.4); universality claim withdrawn |
-| `P07-F-42` | verified in 1 database | verified in **4 of 4**, 6 company sets |
+| `P07-F-42` | verified in 1 snapshot | verified in **4 of 4 snapshots, 3 of 3 identities**, 6 company sets |
 | `P07-F-15` | source-derived | supported: group naming varies between deployments (`TAX n%` vs `WHT n%`) |
-| §6 count | "three dumps" | five databases in nine files; four examined |
+| §6 count | "three dumps" | five snapshots of four identities in nine files; four snapshots covering three identities examined |
 | `P07-U-27` | four unexamined | one unexamined (`iEVING`, different product line) |
 
 Neither correction was found by re-reading. Both came from a peer reporting a bounded
@@ -342,6 +343,30 @@ That is the fourth instance of this class here and the second of *corrected-in-o
 Naming a defect does not immunise a package against it, and re-reading does not catch it —
 only the grep does. Corrections in this package now end with a package-wide grep for the
 superseded phrase.
+
+### The propagation check was itself pattern-bounded — `REV-E-33`
+
+P04 re-ran its own sweep and found the remedy carrying the defect one level up: its grep
+searched an **enumerated list of phrases**, and two survivors used different wording — *"the
+three databases named"*, *"the five databases named"* — one of them the class line of the
+corrected finding's own sibling. **The fix for an enumeration defect was itself
+pattern-bounded.**
+
+The same was true here. `REV-E-31`'s sweep searched six literal strings. Re-run with a broad
+pattern — any numeral or number-word within forty characters of
+`database|deployment|snapshot|identit`, with a control on the sweep itself — it returned
+**five more**, including:
+
+- the **section heading** *"## 7. Four Databases, Not One"* — the most-read line in the
+  section it corrects;
+- a sentence that had become **factually wrong** after §7.4: *"the two deployments where the
+  defect fires"*, when §7.4 had established they are **one deployment observed twice**;
+- the §7.3 summary table, in two cells.
+
+So the corrected step is not *grep after correcting*. It is **grep with a broad pattern and a
+positive control on the sweep**, because an enumerated phrase list is bounded in exactly the
+way the count it is fixing was. Third round of this class here; the first two were found by a
+peer sending the method, and so was this.
 
 ### Method note
 

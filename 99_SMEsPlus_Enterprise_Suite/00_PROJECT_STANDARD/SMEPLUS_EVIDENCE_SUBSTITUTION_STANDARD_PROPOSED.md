@@ -499,6 +499,13 @@ meaningful for as long as it took to notice that a known example could not have 
    a package-wide grep for the superseded phrase.** Re-reading does not find these; three
    sessions tried.
 
+   **And the grep is itself subject to obligation 1.** Two sessions ran the sweep as an
+   *enumerated list of phrases* and both left survivors — including a section heading and a
+   sentence the correction had rendered factually wrong. An enumerated phrase list is bounded
+   in exactly the way the count it is fixing was. **Sweep with a broad pattern and a positive
+   control on the sweep itself**, then read the hits; do not enumerate the wordings you
+   expect to find.
+
 1. Before any enumeration is relied on, run it against **at least one known-positive case**
    and show that it matches. Publish that check next to the count.
 2. Publish the **command and its output**, not the pattern description. A pattern described
