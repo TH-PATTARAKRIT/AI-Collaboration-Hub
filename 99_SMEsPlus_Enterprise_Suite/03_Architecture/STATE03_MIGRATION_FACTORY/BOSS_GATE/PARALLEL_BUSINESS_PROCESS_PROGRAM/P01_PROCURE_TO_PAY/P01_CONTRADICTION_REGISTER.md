@@ -7,6 +7,21 @@ Per `EC-05`, every material contradiction records the competing claims, the evid
 the scope of each evidence source, the kind of contradiction, a disposition and the downstream
 impact. Nothing here is settled by averaging or by counting opinions.
 
+
+> ### ⚠ CORRECTED — `ERR-P01-19`
+>
+> This document previously stated that **no valuation account resolves** in the series-19 estate,
+> citing per-category counts of 0 of 37. **That was a false zero.** Company-dependent values also
+> resolve from a company-level defaults table, which holds **44 rows for the valuation account,
+> 43 carrying a real account** — the account **is** configured.
+>
+> **The conclusion stands; the cause is different.** The valuation entry takes its journal from
+> the **company's stock journal**, which is unset on **44 of 44** companies in that estate — so no
+> entry can be created. In the *other* series-19 deployment that journal **is** configured, and
+> the absence of entries there is a usage fact, not a configuration one.
+>
+> Read every "0 of 37" and "no account resolves" statement below as superseded by this note.
+
 ---
 
 ## `CONTRA-P01-01` — correction by deletion

@@ -43,7 +43,9 @@ Invariant: `ONE BUSINESS FACT → ONE CANONICAL EVENT OWNER → ONE ACCOUNTING E
 Previously assessed as a risk. **This round establishes it is live.**
 
 Both intercompany bridges are **installed in both deployed v19 databases** and in **neither**
-v18 one. So on the v19 line, approving a purchase order or posting a vendor bill whose vendor
+v16 one. **CORRECTED (`ERR-P01-21`): the bill path is triggered by a *customer invoice* — a P02
+object — not by a vendor bill.** So on the v19 line, approving a purchase order, or posting a
+customer invoice, whose counterparty
 resolves to another company **will** create a document in that other company — as the superuser
 by default, optionally auto-posted.
 

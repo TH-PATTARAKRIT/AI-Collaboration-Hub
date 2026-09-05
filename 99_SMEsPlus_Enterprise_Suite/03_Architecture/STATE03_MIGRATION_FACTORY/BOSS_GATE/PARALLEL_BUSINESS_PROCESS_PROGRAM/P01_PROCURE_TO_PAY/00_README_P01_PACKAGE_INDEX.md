@@ -163,3 +163,53 @@ Three claims published earlier in this package were **false** — three-way matc
 and the requisition family were reported as installed nowhere, when all three are installed in a
 database the package had wrongly recorded as unreadable. Two headline findings were
 **disproved** and replaced. All originals are preserved in the revision log.
+
+---
+
+# ROUND 4 — EVIDENCE / VERSION / DEPLOYMENT INTEGRITY REPAIR (2026-09-05)
+
+Prompt `SMEPLUS-26-09-05-ACC-P01-P2P-EVIDENCE-VERSION-DEPLOYMENT-INTEGRITY-001`.
+**Supplemental continuation — no reset.**
+
+## Terminal state
+
+> `P01 EVIDENCE / VERSION / DEPLOYMENT INTEGRITY REPAIR — MAXIMUM AVAILABLE EVIDENCE REACHED —
+> HOLD FOR SPECIFIC EXTERNAL / PEER / STATUTORY / BOSS DECISION.`
+
+PMO: **`RECOMMEND HOLD`** — 0 satisfied · 1 partial · 1 substantially satisfied · **6 not
+satisfied** (improved from 7).
+
+## Read first
+
+1. `P01_DATABASE_IDENTITY_REPAIR.md` — three deployments, not four
+2. `P01_VERSION_IDENTITY_MATRIX.md` — nine facets; series-16 core proven absent
+3. `P01_RECEIPT_TO_BILL_BRIDGE_FORENSIC.md` **§9** — the corrected authoritative finding
+4. `P01_RESEARCH_ERROR_AND_REVISION_LOG.md` — **21 error records**
+5. `P01_PMO_SUPPLEMENTAL_REVIEW.md`
+6. `P01_P11_EVIDENCE_VERSION_DEPLOYMENT_SUPPLEMENT.md`
+
+## The five things to take away
+
+1. **The estate cannot answer P01's central question.** Three deployments, each lopsided
+   differently; only one exercises the full chain, and its **core source does not exist on this
+   volume** — proven, not assumed.
+2. **The package's headline cause was wrong and its conclusion survived.** The valuation account
+   *is* configured; the missing setting is the **company stock journal**. Same conclusion,
+   **opposite remediation**.
+3. **Even the hard lock re-dates rather than refuses**, and a purchase document can never be
+   refused by any lock configuration.
+4. **Company ownership of a financial effect is measurably divergent** — 533 of 563 posted
+   journal items sit in a company that does not own the account they post to.
+5. **Withholding repeats the full base on every partial payment** — now verified in the code the
+   operating deployment actually runs, and the bill closes, so the vendor is permanently
+   under-paid.
+
+## Honest notes
+
+- **Nine corrections came from independent challenge; four the session caught itself** — three of
+  those four using controls an earlier round's reviewer had taught.
+- **One of four challenge layers did not return.** It carried the disproof of the version
+  identity, so **this round's own central repair is unchallenged** (`AASV-P01-04`).
+- **The first contradiction in P01's history was closed** — by repairing a boundary, not by
+  reinterpreting a finding.
+- **Nothing has been executed in any of the four rounds.**

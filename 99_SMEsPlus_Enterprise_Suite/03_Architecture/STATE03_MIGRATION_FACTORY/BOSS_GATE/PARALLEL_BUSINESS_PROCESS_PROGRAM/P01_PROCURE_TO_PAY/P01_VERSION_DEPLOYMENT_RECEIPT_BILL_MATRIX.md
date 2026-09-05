@@ -7,6 +7,21 @@ Every difference below is classified as `VERSION` · `MODULE` · `CONFIGURATION`
 `UNKNOWN`. The distinction is the point of this document: the previous round conflated a
 version difference with a configuration one.
 
+
+> ### ⚠ CORRECTED — `ERR-P01-19`
+>
+> This document previously stated that **no valuation account resolves** in the series-19 estate,
+> citing per-category counts of 0 of 37. **That was a false zero.** Company-dependent values also
+> resolve from a company-level defaults table, which holds **44 rows for the valuation account,
+> 43 carrying a real account** — the account **is** configured.
+>
+> **The conclusion stands; the cause is different.** The valuation entry takes its journal from
+> the **company's stock journal**, which is unset on **44 of 44** companies in that estate — so no
+> entry can be created. In the *other* series-19 deployment that journal **is** configured, and
+> the absence of entries there is a usage fact, not a configuration one.
+>
+> Read every "0 of 37" and "no account resolves" statement below as superseded by this note.
+
 ---
 
 ## 1. THE MATRIX
@@ -18,8 +33,8 @@ version difference with a configuration one.
 | Counter-account source | **item category**, with a per-location override | **location only** | category properties in the generic property store | location account **unset on 0 of 525** | **VERSION** |
 | Goods-received clearing concept | present (`input`/`output` category accounts) | **no runtime use anywhere in the root** | present | absent | **VERSION** |
 | Replacement concept | — | valuation account + **stock-variation** account | — | variation account **set on 0 of 544 accounts** | VERSION + CONFIGURATION |
-| Valuation account wired | required | required | configured (bridge operates) | **set on 0 of 37 categories** | **CONFIGURATION** |
-| Valuation journal wired | required | required | configured | **set on 0 of 37 categories** | **CONFIGURATION** |
+| Valuation account wired | required | required | configured (bridge operates) | **CORRECTED — configured**, 43 of 44 companies via the company-level defaults table (`ERR-P01-19`) | **CONFIGURATION** |
+| Valuation journal wired | required | required | configured | **unset — and the company stock journal, which is the binding one, is unset on 44 of 44** | **CONFIGURATION** |
 | Valuation **policy** declared | per category | per category | operating | **`real_time` on 27–28 of 37** | — |
 | Behaviour when accounts are missing | **raises a blocking error at receipt** | **silently creates nothing** | n/a | silent | **VERSION — a regression in failure behaviour** |
 | Bill-line account override to the clearing account | present | **absent from the corresponding file** | operating | n/a | **VERSION** |

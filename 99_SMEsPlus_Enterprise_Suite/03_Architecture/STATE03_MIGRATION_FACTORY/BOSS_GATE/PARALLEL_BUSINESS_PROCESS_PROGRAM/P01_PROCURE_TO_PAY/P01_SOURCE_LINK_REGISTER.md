@@ -76,3 +76,55 @@ silently replaced.
 
 `D4` was excluded for a full round on a single failed invocation, and it is the most relevant
 database in the estate.
+
+---
+
+# ADDENDUM 2 — EVIDENCE BASE AFTER THE INTEGRITY REPAIR (2026-09-05)
+
+## A.1 The estate, corrected
+
+| Tag | Archives | App series | Companies | Orders | Movements | Journal entries | Modules |
+|---|---|---|---|---|---|---|---|
+| `E-1` | two, one estate | 19.0 | 44 | 31 | 14,441 | 16 | 251 |
+| `E-2` | one | **16.0** | 1 | 5,881 | 103,949 | **183,590** | 190 |
+| `E-3` | one | 19.0 | 1 | **27,879** | 55 | 10 | **453** |
+
+**Only `E-2` exercises the full procure-to-pay chain.**
+
+## A.2 Source roots — corrected
+
+| Root | Series | In the original path set? | Status |
+|---|---|---|---|
+| v18 enterprise + archive | 18 | yes | **no deployment exists for this series** |
+| v19 enterprise | 19 | yes | matches `E-1` and `E-3` |
+| custom, v18 line | — | yes | |
+| custom, v19 line | — | yes | |
+| **custom, series-16 line** | 16 | **NO — added this round** | **is the source of `E-2`'s custom layer** — six of six versions match |
+| **core, series 16** | 16 | — | **`VERIFIED ABSENCE`** — 13 core trees on the volume, 0 at series 14–17 |
+
+## A.3 Tooling — required, and previously wrong
+
+| Archive | Restore binary |
+|---|---|
+| `E-1`, `E-2` | either installed binary |
+| **`E-3`** | **requires the newer binary** — it carries an archive format the older one predates |
+
+**Method:** restore one table **to a file** and parse the copy block. Piping yields zero bytes.
+**Read the version from the module registry — never infer it from feature presence.**
+**Company-dependent values resolve from two places** — the per-record value **and** a
+company-level defaults table. A per-record probe alone produces false zeros; that defect
+falsified this package's headline cause (`ERR-P01-19`).
+
+## A.4 Instruments that are NOT available on this platform
+
+`timeout` is **not installed**. Any negative claim produced through a command wrapped in it is
+**void**. Reported by an independent expert; recorded here so no future round repeats it.
+
+## A.5 Standing instruction earned this round
+
+> **Before recording an evidence source as unavailable, enumerate the instruments actually
+> present. Before recording a configuration value as unset, enumerate the places that value can
+> be stored in that version. Before publishing an absence, run the enumeration twice with
+> patterns of different width and reconcile.**
+
+Each clause corresponds to a specific defect this package published and then had to correct.

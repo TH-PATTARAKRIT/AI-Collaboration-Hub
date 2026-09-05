@@ -239,7 +239,7 @@ corrected finding, and the architecture impact.
 | Field | Content |
 |---|---|
 | **Original finding** | The fourth database dump was recorded — in round 2 and again throughout this round — as *"not readable by the available tooling"* and classified **C — not searched**. Every population and installed-status statement in this package was bounded to the other three. |
-| **Original evidence** | `pg_restore -l` failed on it. True, and correctly reported. |
+| **Original evidence** | `the database restore utility -l` failed on it. True, and correctly reported. |
 | **Why wrong** | The failure was a **version mismatch, not an unreadable file**: the dump is a newer archive format than the restore binary that was invoked. **A newer binary was already installed on the same machine**, in a sibling directory to the one used. The scope statement said "the available tooling" and I never checked what was available. |
 | **How found** | **By an independent expert**, which tried the newer binary. Verified immediately by this session: the database opens and is a generation-19 deployment with **453 installed modules**, nearly double any other in the estate. |
 | **New evidence** | Adding it moves the installed population from **18 of 65 to 37 of 65**. **Nineteen members are installed only there.** |
@@ -247,3 +247,79 @@ corrected finding, and the architecture impact.
 | **Architecture impact** | **Large.** Three-way match and subcontracting were both explicitly required by the session directive, and both were reported as installed nowhere. `D4` is also, per the same expert, the only database with any period lock set — so it is the single most relevant database to P01's central questions, and it was the one left out. |
 | **What makes this the worst of the round** | The other errors were wrong inferences from evidence I had. This one is an **entire evidence source I declared unavailable without testing what was available.** The scope statement was honest and the scope was wrong — which is exactly the failure mode the programme's negative-claim standard exists to prevent, appearing one level up: not a claim bounded too widely, but a **boundary drawn too narrowly and then trusted**. |
 | **Rule this establishes** | **"Unavailable" is a claim and needs evidence like any other.** Before recording a source as unreachable, enumerate the tools actually present, not the one that failed. The programme already had this rule for *searches* — *an empty result means unsearched, never absent*. It now has it for **instruments**. |
+
+---
+
+# SUPPLEMENTAL ROUND `…-EVIDENCE-VERSION-DEPLOYMENT-INTEGRITY-001` (2026-09-05)
+
+## `ERR-P01-16` — "the most relevant database" was half a claim
+
+| Field | Content |
+|---|---|
+| **Original finding** | On discovering the fourth archive was readable, this research called it *"the single most relevant database to P01"* and *"the most relevant database in the estate"*, on the grounds that it alone had three-way matching, subcontracting and the requisition family installed, and alone had a period lock set. |
+| **Why wrong** | *Relevance* was measured on one axis — **module coverage** — and reported as if unqualified. On the other axis that matters to an accounting process, **transaction evidence**, the same database holds **10 journal entries in total** and **one company**. It is the most fully-*installed* deployment and among the least *exercised*. |
+| **How found** | **By the author**, in this round, by counting journal entries per database before relying on the label — the activity denominator that the claim required and did not carry. |
+| **Corrected finding** | `D4` is decisive for questions of *what is installed* and near-useless for questions of *what actually happens*. Both halves are now stated wherever it is cited. |
+| **Architecture impact** | Prevents a reader expecting operational evidence from `D4` that it does not contain. It does **not** weaken the three falsifications it produced, which are install-scope facts. |
+| **Rule this reinforces** | The programme's *print the denominator next to every zero* rule has a mirror: **print the axis next to every superlative.** "Most relevant" is not a measurement until the dimension is named. |
+
+## `ERR-P01-17` — two archives were counted as two deployments
+
+| Field | Content |
+|---|---|
+| **Original finding** | The estate was described throughout as **four databases**, and in places as *"two v19 deployments"* whose agreement corroborated a finding. A prior expert aggregated *"across 90 company rows"*. |
+| **Why wrong** | Two of the archives are **the same deployment captured eleven days apart**. Their company sets are identical on both internal identifier and partner identifier — all 44 — with the same creation-date span. |
+| **How found** | **By the author**, in this round, after noticing both reported exactly 44 companies with identical earliest and latest creation dates, and then comparing the identifier sets directly rather than trusting the coincidence. |
+| **New evidence** | Identical 44-row `(id, partner_id)` sets. |
+| **Corrected finding** | **Three distinct deployments in four archives.** Distinct companies across the estate: **46**, not 90. |
+| **Architecture impact** | **Two-fold.** Any figure aggregated "across 90 company rows" double-counts 44 of them — including the deployed-control counts this package cites. And **agreement between those two archives is not independent corroboration**, which weakens every finding that leaned on "both v19 deployments show X". |
+| **Rule this establishes** | **Two archives are not two witnesses until their identity sets are compared.** Snapshot pairs of one estate are the normal case in a backup folder, not the exception. |
+
+## `ERR-P01-18` — a severity stated without its reachability
+
+| Field | Content |
+|---|---|
+| **Original finding** | This round found that the vendor-advance *"Deduct down payments"* control is inert — declared, rendered in the interface, defaulted on, and referenced in executable code zero times. The first formulation stated the consequence flatly: the same cost is recognised twice. |
+| **Why insufficient** | The inert deduction sits inside one branch of the wizard, selected by the bill-creation method. **In the series-19-line copy that method is commented out of the selection**, so the branch is not reachable through the interface there — while in the series-18-line copy it is the **default**. Stated without that, the finding over-claims on one copy and under-claims on the other. |
+| **How found** | **By the author**, by applying to its own new finding the reachability discipline that an expert had earlier applied to P01's findings — *a defect that cannot be reached is not the same risk as one on the default path*. |
+| **Corrected finding** | The control is inert in **both** copies (`FACT VERIFIED`). The double-recognition path is **interface-reachable and default in one copy, interface-unreachable in the other**, and which copy each deployment runs is still open. |
+| **Architecture impact** | None on the defect; substantial on its ranking. It moves from a flat severity to a **deployment-dependent** one. |
+| **Rule this reinforces** | **Every severity claim carries a reachability qualifier.** The programme learned this from external review two rounds ago; this is the first time it was applied by the author to the author's own finding at the moment of making it. |
+
+## `ERR-P01-19` — the right conclusion from the wrong cause: a false zero on company-dependent values
+
+| Field | Content |
+|---|---|
+| **Original finding** | Published in the prior round and repeated as the package's headline: *"no valuation account resolves anywhere in the series-19 estate — category valuation account **0 of 37**, category valuation journal **0 of 37**, location account 0 of 525, account-level variation 0 of 544 — therefore **no inventory value reaches the ledger by any route.**"* |
+| **Original evidence** | A structured probe over the **per-record jsonb columns** of the item-category table. The counts are correct **for that storage location**. |
+| **Why wrong** | In this framework a company-dependent value resolves in **two** places: the per-record value, **and a company-level default held in a separate defaults table**. The probe read only the first. The second holds **44 rows for the valuation account — one per company, 43 carrying a real account.** **The valuation account is configured.** The published zero was a false zero, and the cause I attributed the finding to does not exist. |
+| **How found** | **By an independent expert**, which warned in general terms that one extraction method cannot cover both series because company-dependent values live in different places per series. Applying that warning to my own headline immediately falsified it. |
+| **New evidence** | Valuation account: **44 default rows, 43 with a value**. Valuation **journal**: 44 default rows, **every value empty**. Company-level stock journal: **set on 0 of 44** in the 44-company estate, and **set on 1 of 1** in the other series-19 deployment. |
+| **Corrected finding** | **The conclusion survives; the cause is entirely different.** The entry-creation routine takes its journal from the **company's stock journal**. In the 44-company estate that journal is unset on **44 of 44**, so a valuation entry cannot be created. **It is a missing journal, not a missing account.** And in the other series-19 deployment the journal **is** configured — so there the mechanism is complete and the absence of entries is a usage fact, not a configuration one. |
+| **Architecture impact** | **Large, and it inverts the remediation.** A programme acting on the published finding would have configured category accounts — which are already configured — and the system would still post nothing. The single missing setting is the company stock journal. |
+| **What this demonstrates** | The zero was real, the probe was correct, the boundary was declared — and the finding was still wrong, because **the probe measured one of the two places the value can live.** This is the same defect family as the excluded archive and the mislabelled series: not a reasoning error, an **evidence-location** error. Three rounds, three instances, three different surfaces. |
+| **Rule this establishes** | **Before reading a configuration value, establish every place that value can be stored in that version.** A per-record probe on a company-dependent field is a partial read by construction, and its zero means *"not set here"*, never *"not set"*. |
+
+## `ERR-P01-20` — a path filter narrowed the very enumeration that proved an absence
+
+| Field | Content |
+|---|---|
+| **Original finding** | *"12 core trees on the volume — 4 at series 19, 8 at series 18, 0 at series 16."* Used to support the `VERIFIED ABSENCE` of any series-16 core source. |
+| **Why wrong** | The search required the release file to sit beneath a directory named for the application. **One series-18 tree does not, and was dropped.** The true population is **13 — 4 at series 19, 9 at series 18.** |
+| **How found** | An independent expert reported 13 where I had 12. **The discrepancy was chased rather than ignored**, and the expert was right. |
+| **Corrected finding** | 13 core trees. **The series-16 conclusion is unchanged** — re-run without the filter, there are still zero trees at series 14 through 17. |
+| **Architecture impact** | None. The conclusion survives. |
+| **Why it is logged anyway** | Because it is the **fourth** appearance in P01 of the same defect — *a pattern narrowed a population and the author did not notice* — and this time it occurred **inside the enumeration whose whole purpose was to prove a boundary properly.** The claim was right by luck of margin, not by method: had the missing tree been the series-16 one, the class-A absence would have been false. |
+| **Rule this reinforces** | **Run an absence enumeration twice, with a narrower and a wider pattern, and reconcile the difference before publishing.** A single pattern's count is not a population; two patterns agreeing is evidence, and two disagreeing is a finding. |
+
+## `ERR-P01-21` — the cross-company trigger was attributed to the wrong process
+
+| Field | Content |
+|---|---|
+| **Original finding** | Stated in round 2 and repeated in round 3: *"Approving a purchase order, **or posting a vendor bill**, whose counterparty resolves to another company creates a document in that other company."* The vendor-bill half was carried into the tolerance-zero finding and into the P11 handoff. |
+| **Why wrong** | The routine filters for **sale documents**, and its inverse map turns a customer invoice into a **vendor bill in the target company**. **The trigger is a customer invoice, not a vendor bill.** Verified directly by this session in both generations. |
+| **How found** | **By an independent expert**, which read the filter rather than the surrounding narrative. |
+| **Corrected finding** | Two distinct paths. **Path 1:** purchase-order approval creates a sales order in another company — trigger is a **P01** object; that attribution stands. **Path 2:** a **customer invoice** creates a **vendor bill** in another company — the trigger is a **P02** object and the output is a P01 object. |
+| **Architecture impact** | **Ownership moves.** P01 does not own the trigger of path 2 and should not have been carrying it as a P01 surface. The *output* remains P01's concern, and the tolerance-zero risk is unchanged in substance — but the process that must control the trigger is **P02**. |
+| **Routing** | Path 2 routed to **P02**; both paths remain in P11's reconciliation. |
+| **Rule this reinforces** | **Read the filter, not the function name.** The routine sits in a module whose name suggests both directions; only its predicate says which documents actually enter it. |

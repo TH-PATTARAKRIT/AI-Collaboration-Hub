@@ -10,6 +10,21 @@ Layer: **1.**
 > `P01_RESEARCH_ERROR_AND_REVISION_LOG.md` (`ERR-P01-07`, `-08`, `-09`, `-10`). What follows is
 > the third and current reading.
 
+
+> ### ⚠ CORRECTED — `ERR-P01-19`
+>
+> This document previously stated that **no valuation account resolves** in the series-19 estate,
+> citing per-category counts of 0 of 37. **That was a false zero.** Company-dependent values also
+> resolve from a company-level defaults table, which holds **44 rows for the valuation account,
+> 43 carrying a real account** — the account **is** configured.
+>
+> **The conclusion stands; the cause is different.** The valuation entry takes its journal from
+> the **company's stock journal**, which is unset on **44 of 44** companies in that estate — so no
+> entry can be created. In the *other* series-19 deployment that journal **is** configured, and
+> the absence of entries there is a usage fact, not a configuration one.
+>
+> Read every "0 of 37" and "no account resolves" statement below as superseded by this note.
+
 ---
 
 ## 1. THE EVIDENCE BASE, CORRECTLY LABELLED
@@ -78,8 +93,8 @@ Independently of the design change, in **both** v19 deployments:
 
 | Configuration | Value |
 |---|---|
-| Category **valuation account** | set on **0 of 37** |
-| Category valuation **journal** | set on **0 of 37** |
+| Category **valuation account** | **CORRECTED — configured**, 43 of 44 companies via the company-level defaults table. See §9 |
+| Category valuation **journal** | unset — **and the binding setting is the company stock journal, unset on 44 of 44.** See §9 |
 | Company-level stock journal | set on **0 of 44** *(the column is **nullable**, correcting an expert's "NOT NULL" characterisation)* |
 | Location valuation account | set on **0 of 525** |
 | Account-level stock-variation account | set on **0 of 544** |
@@ -165,3 +180,54 @@ Classification: **SUPPORTED INTERPRETATION**, not executed. Priority-one runtime
 - It does not carry a behavioural claim about vendor receipts in the v19 deployments; the
   population is two movements — **class B**.
 - It reports no executed behaviour anywhere.
+
+---
+
+# §9 — THE AUTHORITATIVE CONFIGURATION FINDING (supersedes §4)
+
+`ERR-P01-19`. §4 above measured one of the two places a company-dependent value can live. This
+section is the corrected, complete reading.
+
+## 9.1 What is actually configured
+
+| Setting | Where it resolves from | `E-1` (44 companies) | `E-3` (1 company) | `E-2` (series 16) |
+|---|---|---|---|---|
+| Item valuation **account** | per-category value, **else the company-level default** | **configured — 43 of 44** | not separately measured | probe inapplicable — **class D** |
+| Item valuation **journal** | per-category value, **else the company-level default**, **else the company's stock journal** | **empty in the defaults table for all 44** | — | class D |
+| **Company stock journal** | a plain column on the company | **set on 0 of 44** | **set on 1 of 1** | column does not exist in that series — **class D** |
+
+## 9.2 What the code requires
+
+The valuation entry is created with its journal taken **directly from the company's stock
+journal**. No fallback to a category journal appears in that creation path.
+
+## 9.3 The corrected conclusion
+
+> **In the 44-company series-19 estate, the valuation account is configured and the stock
+> journal is not — on every one of the 44 companies. A valuation entry therefore cannot be
+> created, for want of a journal, not for want of an account.**
+>
+> **In the other series-19 deployment the stock journal *is* configured.** There the mechanism is
+> complete, and the absence of valuation entries is a **usage** fact — that deployment carries a
+> large imported order population and almost no posted accounting.
+
+## 9.4 Why the distinction matters more than the conclusion
+
+The published finding and the corrected finding reach the same end state by opposite routes, and
+they imply **opposite remediations**:
+
+| | Published | Corrected |
+|---|---|---|
+| Diagnosis | no account resolves anywhere | the account resolves; **one journal setting is missing** |
+| Implied remediation | configure category accounts | configure the **company stock journal** |
+| Effect of acting on the published version | **none** — those accounts are already configured | — |
+
+## 9.5 Classification
+
+| Claim | Class |
+|---|---|
+| Valuation account configured in `E-1` | **FACT VERIFIED** — company-level defaults, 43 of 44 |
+| Company stock journal unset in `E-1` | **FACT VERIFIED** — plain column, 0 of 44 |
+| Company stock journal set in `E-3` | **FACT VERIFIED** — 1 of 1 |
+| No valuation entry can be created in `E-1` | **SUPPORTED INTERPRETATION** — follows from the creation path and the unset journal; **not executed** |
+| Anything about `E-2`'s valuation configuration | **class D — the probe does not apply to that series** |

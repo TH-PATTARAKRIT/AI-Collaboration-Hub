@@ -3,13 +3,29 @@
 Session: `SMEPLUS-26-09-05-…-TARGETED-CROSS-PROCESS-CLOSURE-001`
 Layer: **1.** Dissent preserved, not averaged.
 
+
+> ### ⚠ CORRECTED — `ERR-P01-19`
+>
+> This document previously stated that **no valuation account resolves** in the series-19 estate,
+> citing per-category counts of 0 of 37. **That was a false zero.** Company-dependent values also
+> resolve from a company-level defaults table, which holds **44 rows for the valuation account,
+> 43 carrying a real account** — the account **is** configured.
+>
+> **The conclusion stands; the cause is different.** The valuation entry takes its journal from
+> the **company's stock journal**, which is unset on **44 of 44** companies in that estate — so no
+> entry can be created. In the *other* series-19 deployment that journal **is** configured, and
+> the absence of entries there is a usage fact, not a configuration one.
+>
+> Read every "0 of 37" and "no account resolves" statement below as superseded by this note.
+
 ---
 
 ## 1. THE TWO STATEMENTS THAT MATTER MOST
 
 > **1. No inventory value reaches the general ledger by any route in the deployed v19 systems.**
 > Not at receipt — that route was **removed by design**, v19 recognising inventory *at
-> invoicing*. Not at invoicing — **no valuation account resolves anywhere**: category 0/37,
+> invoicing*. Not at invoicing — **CORRECTED (`ERR-P01-19`): the account IS configured**; the
+> binding gap is the **company stock journal, unset on 44 of 44**. Superseded detail:
 > company journal 0/44, location 0/525, account-level variation 0/544. Not periodically — the
 > inventory closing period is `manual` on 87 of 88 company rows.
 

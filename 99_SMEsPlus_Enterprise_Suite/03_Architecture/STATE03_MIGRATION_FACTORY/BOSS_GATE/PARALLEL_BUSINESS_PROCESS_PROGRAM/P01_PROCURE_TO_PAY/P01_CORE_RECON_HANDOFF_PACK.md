@@ -9,6 +9,21 @@ That phrase means only that P01's evidence is in a state the Core Accounting rec
 consume. It does **not** mean approved, pass, frozen, merged, or implementation-authorised, and
 PMO's recommendation on the exit gate is `RECOMMEND HOLD` (`P01_PMO_REVIEW.md`).
 
+
+> ### ⚠ CORRECTED — `ERR-P01-19`
+>
+> This document previously stated that **no valuation account resolves** in the series-19 estate,
+> citing per-category counts of 0 of 37. **That was a false zero.** Company-dependent values also
+> resolve from a company-level defaults table, which holds **44 rows for the valuation account,
+> 43 carrying a real account** — the account **is** configured.
+>
+> **The conclusion stands; the cause is different.** The valuation entry takes its journal from
+> the **company's stock journal**, which is unset on **44 of 44** companies in that estate — so no
+> entry can be created. In the *other* series-19 deployment that journal **is** configured, and
+> the absence of entries there is a usage fact, not a configuration one.
+>
+> Read every "0 of 37" and "no account resolves" statement below as superseded by this note.
+
 ---
 
 ## 1. WHAT CORE ACCOUNTING RECEIVES
@@ -123,8 +138,8 @@ work from.
 
 1. **No inventory value reaches the general ledger by any route in the deployed v19 systems.**
    Not at receipt — v19 **removed** that route by design and recognises inventory *at invoicing*.
-   Not at invoicing — no valuation account resolves anywhere (category 0/37, company journal
-   0/44, location 0/525, variation 0/544). Not periodically — closing is `manual` on 87 of 88
+   Not at invoicing — **CORRECTED (`ERR-P01-19`): the valuation account IS configured**, 43 of 44
+   companies. The binding gap is the **company stock journal, unset on 44 of 44**. Not periodically — closing is `manual` on 87 of 88
    company rows.
 2. **A cross-tenant financial-effect path is reachable today.** Three unrelated corporate groups
    share one schema; every company partner is selectable from every company; the declared guard
