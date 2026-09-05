@@ -20,6 +20,8 @@
 
 **7 open · CRITICAL 3 · HIGH 2 · MEDIUM 2 · 1 closed this supplement.**
 
+**Post-publication (`S23`): `B8`'s magnitude is 169,954 records and a 277 M swing, not a depreciation-pair effect; and `B5` is reinforced — three denominator errors were found in this round alone.**
+
 ## The two additions and the one closure
 
 - **B7 and B8 are new and both outrank every pre-existing blocker.** B7 is a defect in the evidence base itself; B8 is a live exposure on the shipping platform that the programme could not have seen while reading the wrong version.

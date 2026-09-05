@@ -5,6 +5,10 @@
 
 ---
 
+> ## ⚠ CORRECTED AFTER PUBLICATION — see `S23`
+> The headline figures in this document were re-measured and are wrong: the correct counts are **17,444 / 17,488**, annihilation **98.24 %**, and **the net is `+3,595,851.11` — a sign-inverted CREDIT, not zero.** `TH-F-02` is far larger than stated here (**169,954 records, a 277 M swing**). Read `S23` before quoting any number from this file.
+
+
 ## 1. READ THIS FIRST
 
 > **P09's mechanism claims are read from a platform version that no deployment runs.** One deployment runs version 16; three run version 19; the source is version 18. **Until this is resolved, no P09 mechanism claim may be treated as describing a running system.** The *measurements* are unaffected.

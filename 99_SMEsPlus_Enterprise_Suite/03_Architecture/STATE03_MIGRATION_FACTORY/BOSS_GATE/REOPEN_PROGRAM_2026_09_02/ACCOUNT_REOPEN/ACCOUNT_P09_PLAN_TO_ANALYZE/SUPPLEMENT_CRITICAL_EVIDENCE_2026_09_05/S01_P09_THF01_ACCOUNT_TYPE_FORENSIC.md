@@ -24,7 +24,7 @@ The shipped Thai account template is a 28-line file. Read in full, no truncation
 | Fact | Status |
 |---|---|
 | two rows are named as accumulated depreciation, on **asset-range codes**, typed as a **depreciation-expense** type | **FACT VERIFIED** |
-| every other row in the file conforms to its own code-block convention (1=asset, 2=liability, 3=equity, 4=income, 5=expense) | **FACT VERIFIED** |
+| every other row in the file conforms to its own code-block convention | **CONTRADICTED after publication** — a second violation sits in the same 28-line file (`S23` §3) |
 | the file contains **no fixed-asset-typed account at all** — exhaustive match on the type token returned 0 | **FACT VERIFIED**, class A, whole file |
 | the budget query's account-type gate splits the type on its first token, so a depreciation-expense type resolves to **expense** and is admitted | **FACT VERIFIED** |
 
@@ -68,7 +68,7 @@ Per the instruction not to infer role from name alone — every column below is 
 | depreciation expense | 71xxxxx / 72xxxxx | depreciation-expense | profit and loss | eligible | **admitted** |
 | *(template)* accumulated depreciation | 141x / 142x | **depreciation-expense** | **asserts profit and loss; named as balance sheet** | eligible | **would be admitted** |
 
-**The contradiction is internal to the template file and does not reach this deployment.**
+**CONTRADICTED after publication — see `S23` §3.** The deployed chart carries **nine** code-block/type contradictions of its own, including one account whose code block and name both assert expense and which is typed as a balance-sheet fixed asset. **The defect class reaches this deployment, in the opposite direction.**
 
 ## 6. WHY I GOT IT WRONG, STATED PLAINLY
 

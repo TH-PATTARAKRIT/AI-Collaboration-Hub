@@ -21,17 +21,17 @@
 | **execution** | **COMPANY** — each record is created by, and belongs to, its own posting company |
 | **financial** | **COMPANY** — each company's ledger is correct and undisturbed |
 | **management attribution** | **TENANT** — and this is where the failure lands. Two company-scoped records aggregate on one tenant-scoped object with no marker |
-| **cross-company behaviour** | cancellation is **partial**, not full — the two amounts differ by the inter-company margin |
+| **cross-company behaviour** | cancellation is **partial or one-sided**. **CORRECTED:** the stated cause — an inter-company margin — is contradicted; price and quantity are preserved exactly on the mirror. The real drivers are company-currency divergence, tax-inclusion policy, per-tax analytic flags, wholesale drop of composite keys, and the receiving company's own defaults |
 
 **The failure is a scope-boundary crossing at the *aggregation* step**, not at ownership, execution or financial scope. It is a distinct defect class from the intra-entry symmetric pair: **separate entries, separate companies, partial cancellation.**
 
 ## 3. FINAL STATUS
 
-> **`P11 RECONCILIATION REQUIRED`**
+> **`OPEN — SCOPE EVIDENCE REQUIRED`** *(corrected after publication — see `S23` §4; the prior `P11 RECONCILIATION REQUIRED` is withdrawn as premature)*
 
 Not `CLOSED` — the mechanism is verified but its incidence is unmeasured. Not merely `OPEN — SCOPE EVIDENCE REQUIRED` — the scope question is answered; what is unresolved is **who owns a tenant-level aggregate over company-scoped records**, and that is a cross-process determination P09 cannot make alone.
 
-Conditions for closure: inter-company rules enabled in a real deployment **and** at least one company-less axis value appearing in a mirrored allocation. **Neither has been measured.**
+**Now measured (`S23` §4): 0 of 5 deployments carry all three preconditions; 2 of 5 carry two of three** — both v19 installs with inter-company already enabled, one holding three company-less axis values. **One configuration act arms it.** The ownership sub-question goes to P11 only once the mechanism statement above is correct.
 
 ## 4. WHAT THIS CHANGES IN THE PACKAGE
 

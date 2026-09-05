@@ -4,6 +4,10 @@
 
 ---
 
+> ## ⚠ CORRECTED AFTER PUBLICATION — see `S23`
+> The headline figures in this document were re-measured and are wrong: the correct counts are **17,444 / 17,488**, annihilation **98.24 %**, and **the net is `+3,595,851.11` — a sign-inverted CREDIT, not zero.** `TH-F-02` is far larger than stated here (**169,954 records, a 277 M swing**). Read `S23` before quoting any number from this file.
+
+
 ## 1. THE DIRECTIVE'S VERIFICATION LIST
 
 | PMO check | Result |

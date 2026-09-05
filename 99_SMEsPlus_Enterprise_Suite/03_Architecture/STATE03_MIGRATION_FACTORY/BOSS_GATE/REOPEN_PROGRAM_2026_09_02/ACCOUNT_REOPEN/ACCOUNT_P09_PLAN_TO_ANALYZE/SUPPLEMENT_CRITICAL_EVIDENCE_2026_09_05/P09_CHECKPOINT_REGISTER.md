@@ -44,7 +44,8 @@ Statuses: `NOT STARTED` · `IN PROGRESS` · `COMPLETE — EVIDENCE VERIFIED` · 
 | `CP-P09S20` | AAS+ consolidation | **COMPLETE — EVIDENCE VERIFIED** | — | `S20` |
 | `CP-P09S21` | PMO supplemental review | **COMPLETE — EVIDENCE VERIFIED** | — | `S21` |
 | `CP-P09S22` | **version basis defect** *(added — material delta)* | **COMPLETE — EVIDENCE VERIFIED** | module registries of all 4 deployments; v19 gate text read directly | `S22` |
-| `CP-P09SFINAL` | package committed and published | **COMPLETE — EVIDENCE VERIFIED** | see final commit | manifest, registers |
+| `CP-P09SFINAL` | package committed and published | **SUPERSEDED — MATERIAL DELTA** | published at `39c3784`; corrected after the 4th challenge returned | manifest, registers |
+| `CP-P09S23` | **post-publication correction** *(added)* | **COMPLETE — EVIDENCE VERIFIED** | headline re-measured; sign inversion found; `TH-F-02` re-scaled; 2 statuses corrected | `S23` + 9 patched files |
 
 ## MATERIAL DELTA RECORDED THIS SUPPLEMENT
 
@@ -56,3 +57,7 @@ Statuses: `NOT STARTED` · `IN PROGRESS` · `COMPLETE — EVIDENCE VERIFIED` · 
 | **version basis** | source assumed to match deployments | module registries read | **CONTRADICTED — 1 deployment on v16, 3 on v19, none on v18** |
 | **TH-F-01** | template-only latent risk (first pass this round) | v19 template + v19 gate read | **SUPERSEDED — MATERIAL NEW EVIDENCE; replaced by `TH-F-02`** |
 | **budget gate safety** | correct typing protects consumption | v19 gate admits asset types | **CONTRADICTED on the shipping platform** |
+| **headline figures** | 17,716 / 18,483 records, 98.57 %, "nets to zero" | population re-measured over the whole chart | **CORRECTED — 17,444 / 17,488, 98.24 %, net `+3,595,851.11` SIGN-INVERTED** |
+| **`TH-F-02` magnitude** | framed at the depreciation pair, "2 candidate builds" | both gates applied to all 339,382 records; 4 builds enumerated | **169,954 records, 277 M swing; 1 of 4 builds** |
+| **`S12` status** | `P11 RECONCILIATION REQUIRED` | closure conditions measured | **`OPEN — SCOPE EVIDENCE REQUIRED`** |
+| **`S03` Thai routing** | "complete list … four, all routed" | 65-file sweep | **4 of 14; 5 unrouted** |

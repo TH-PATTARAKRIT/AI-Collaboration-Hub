@@ -43,7 +43,7 @@ TH-F-01 is **not a P09 finding**. P09 discovered it and owns exactly one part of
 
 The prior round produced a high-severity Thai finding and **routed it to no named process**. That was found by review, not by the author. This supplement adds a standing check: **every finding is tested for a localization or statutory implication before the package closes, and any such implication is routed and marked HOLD.**
 
-Applied now across the whole P09 package, the complete list of findings with a Thai or statutory implication is: TH-F-01 (this document); the withholding-tax module that differs between deployment copies; whether Thai practice requires cost-centre attribution of depreciation at all; and the cash-basis mechanism's firing condition, which depends on a tax-exigibility configuration P07 owns. **All four are routed. None is adjudicated by P09.**
+**CONTRADICTED after publication — see `S23` §4.** This paragraph claimed a *complete* list of four routed items. An independent sweep of all 65 package files found **14**, of which **5 remain unrouted** — including the Thai statutory constraint on **cross-company management reporting**, which couples directly to the re-opened scope row. **A completeness claim over an author-chosen set, made inside the document written to correct exactly that failure.** The 14-item list and its routing are in `S23` and must be worked from instead.
 
 ## CHECKPOINT
 
