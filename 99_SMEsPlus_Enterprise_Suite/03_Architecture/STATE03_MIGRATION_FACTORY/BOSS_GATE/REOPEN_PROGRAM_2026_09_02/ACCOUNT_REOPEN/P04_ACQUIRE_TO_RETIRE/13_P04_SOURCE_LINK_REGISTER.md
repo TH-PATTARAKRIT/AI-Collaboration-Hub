@@ -26,7 +26,7 @@ evidence and are cited by **module and behaviour**, not by transcribed code.
 | Entries in the custom addons root | **68** | directory listing |
 | **Directories** in the custom addons root | **65** | type-filtered find |
 | Reference modules referencing the asset model in Python | **3** | `grep -rlE "['\"]account\.asset" --include='*.py'` |
-| Custom modules referencing the asset model in code or manifest | **2** | `grep -rlI -E "account\.asset|account_asset" --exclude-dir=i18n` (three further hits are documentation files — false positives) |
+| Custom modules referencing the asset model in code or manifest | **2** | `grep -rlI -E "account\.asset\|account_asset" --exclude-dir=i18n` (three further hits are documentation files — false positives) |
 | Reference modules **instantiating** an asset record | **1** | creation-site sweep |
 
 ### 1.2 Declared negative patterns

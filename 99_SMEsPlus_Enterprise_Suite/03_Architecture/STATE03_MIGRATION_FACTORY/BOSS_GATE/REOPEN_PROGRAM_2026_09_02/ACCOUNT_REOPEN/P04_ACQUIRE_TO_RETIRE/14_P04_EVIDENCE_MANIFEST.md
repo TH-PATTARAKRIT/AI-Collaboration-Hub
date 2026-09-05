@@ -60,14 +60,14 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `07_P04_DISPOSAL_DERECOGNITION_MATRIX.md` | `73498c37afaceb7557a1a4f304eeb7a53c943bf77364926f85e69038c756b413` |
 | `08_P04_PRIOR_EVIDENCE_RECONCILIATION.md` | `e5970d358e188c1e0f5b99c8138f5cb09610b09885bf6b80ea51be4fbef780fe` |
 | `09_P04_BOSS_DECISION_REGISTER.md` | `ed7c666609c4671dff808d313b7eab6f79303903dd99b3e8abab5c29007c8005` |
-| `10_P04_BLOCKER_REGISTER.md` | `114bc44d1b472e0069ca2ca7a90dcaa4418005568d7f042ee8ffb7dc4c29ea81` |
+| `10_P04_BLOCKER_REGISTER.md` | `520ea92ea33ba853c58ca67467ab6fe11c33520941cf4823e322d5886fc1869e` |
 | `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `066fb43f0a10d57a3c2fcb9ba622631ec0ff66c95de90fbac4c71be8b317fd23` |
 | `12_P04_CONTRADICTION_REGISTER.md` | `4a54d8b13cfff34602ef2d1c9a2c10b8a43934ff943dfaf4cad6904874038e79` |
-| `13_P04_SOURCE_LINK_REGISTER.md` | `b86b45eff629ed3393a298bc4f3b1b06f8be7684654ef8144cc60013bfcd0ee1` |
+| `13_P04_SOURCE_LINK_REGISTER.md` | `f6752f7756866063bfa6dd880ad3b294a80b24b7a1278329a5c770eedac2d0e7` |
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
 | `16_P04_AAS_PLUS.md` | `f80f330fdcb381bd9759e1ca0f4a2fe538be3e3784d3c4251157e21d9aef4479` |
-| `17_P04_PMO.md` | `eb118c359acbc4198825e4a3446873ddc6c39cf92b4ccdec8bbf24e73a150f7a` |
-| `18_P04_REVISION_LOG.md` | `303a2d271f7e37efdd1223335944feba8015e6c9d60b290d694b2a54508dfe74` |
+| `17_P04_PMO.md` | `50cf4c8f306e482901f618997653189de32b76bfa507ecd408a15903a6ab0cab` |
+| `18_P04_REVISION_LOG.md` | `94ffc4a44f28a7e42f268ed0a3978a9a6a52a4b0f9b73679bb97571686a858ca` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `1f635cba7e22be8e4001c877e9638c8ec918f695fba0ee68cb319132bc194eda` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `1a9a822ba1084ec34107787490ac248e3fdc127ac32a91af14a11e19c5d1145b` |
 
@@ -90,7 +90,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | Findings (`P04-F-nn`) defined | **84** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **45** — 3 re-registered from the handover residue, 42 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
-| Revisions | 33 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
+| Revisions | 34 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
 | Recurrences of the enumeration / unit defect | **9 instances across 4 actors — P04's declared half**, `@ ae525fc`, verified unchanged by P07 at `c839bfe`. **No joint total is published**; halves are not summed (`18` §5b) |
 | Expert disagreements preserved | 4 new · 7 inherited and re-opened · 2 between this session and the independent reviewer |
 | Scope determinations | 14 objects and 10 operations classified; 2 on **HOLD — SCOPE EVIDENCE REQUIRED** |
