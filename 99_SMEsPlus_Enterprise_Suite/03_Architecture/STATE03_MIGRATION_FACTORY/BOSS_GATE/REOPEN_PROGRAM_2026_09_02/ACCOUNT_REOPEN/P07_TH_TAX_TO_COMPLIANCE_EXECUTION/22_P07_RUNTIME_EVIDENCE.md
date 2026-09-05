@@ -318,6 +318,17 @@ enumeration of its own and P07 testing the same bound.
 
 ## 7.4 The Unit of §7 Was Wrong — `REV-E-28`
 
+> **POPULATION BANNER — every count in this section is SUPERSEDED.** The figures below were
+> correct when written and are left standing as the record of what was published. The current
+> population is **15 snapshots · 7 identities · 3 generations** (`§13`), and the current
+> denominators are: `P07-F-01` **1 of 4** in-generation identities (not 1 of 2); `P07-F-42`
+> **7 of 7** identities and **17 of 17** company sets (not 2 of 2 / 6); `P07-F-61` **present
+> and empty in 6 of 7 identities, absent in the seventh** (not 2 of 2); `P07-F-63` **two
+> never-transacted installs at zero against five transacted identities that never agree** (not
+> 3 of 3). Wherever a figure here disagrees with `§13`, `§13` governs.
+
+
+
 P04 re-ran its own dump enumeration on this session's method, found its bound survived but its
 **unit** did not, and restated *"four v18-line databases"* as *"four v18-line snapshots across
 three identities"*. The same conflation is in §7 above, in the evidence base of this package's
@@ -428,6 +439,17 @@ package first and sending the method rather than the conclusion.
 
 ## 8. The Database-Derived Negatives, Tested Across Identities — One REFUTED
 
+> **POPULATION BANNER — every count in this section is SUPERSEDED.** The figures below were
+> correct when written and are left standing as the record of what was published. The current
+> population is **15 snapshots · 7 identities · 3 generations** (`§13`), and the current
+> denominators are: `P07-F-01` **1 of 4** in-generation identities (not 1 of 2); `P07-F-42`
+> **7 of 7** identities and **17 of 17** company sets (not 2 of 2 / 6); `P07-F-61` **present
+> and empty in 6 of 7 identities, absent in the seventh** (not 2 of 2); `P07-F-63` **two
+> never-transacted installs at zero against five transacted identities that never agree** (not
+> 3 of 3). Wherever a figure here disagrees with `§13`, `§13` governs.
+
+
+
 P11 generalised the tooling caveat into a rule that reaches back into this file:
 
 > Every negative claim resting on database evidence must state the **client version used** and
@@ -522,7 +544,8 @@ two kinds of claim in one file without saying so.
 Client version for every row above: `postgresql@18` `pg_restore 18.6`. Generations opened:
 four snapshots, three identities. Not opened at the time of writing: `iEVING` (`P07-U-27`).
 **Superseded — `P07-U-27` is CLOSED at `§10`:** `iEVING` proved to be *two* identities, both
-opened, and the population is 7 snapshots / 5 identities. This line is left standing with its
+opened, and the population at that point was 7 snapshots / 5 identities — itself superseded by
+**15 / 7** at `§13`. This line is left standing with its
 correction attached rather than rewritten, so the record shows what the section claimed when
 it was published.
 
@@ -755,7 +778,8 @@ testing content: `PGDMP` signature, ZIP central directory containing `dump.sql`,
 class inspected rather than assumed (tested for `dump.sql` / `*.dump` members: none; they are
 source distributions) —
 
-**11 artefacts · 7 snapshots · 5 identities.** Snapshot and identity counts unchanged, so
+**11 artefacts · 7 snapshots · 5 identities** — superseded by **15 · 7** at `§13`, which the
+next section's root set corrects. Snapshot and identity counts unchanged **at this root set**, so
 nothing downstream moves. The *method* statement was wrong, and P04's mirror failure shows why
 that matters independently of the number: their census **was** content-based, matching the
 `PGDMP` signature — and missed both `.zip`-borne dumps, because **an enumeration by magic bytes
@@ -2032,3 +2056,72 @@ decision-relevant than what it replaced.**
 
 That is the honest summary of what this was worth. It is not *"errors were found"* — most of
 what changed was **what the findings were about**.
+
+
+---
+
+## 26. Sweep Unit `1c`, and What It Actually Caught — `P07-F-84`
+
+P04 found `P04-LAW` was **two registers under one name** — statutory sources with letter
+suffixes, legal conclusions with digit suffixes — and the digits then colliding with a third,
+inherited family holding sources again. Three kinds of thing on one stem. It added sweep unit
+`1c` for stems carrying two families with overlapping numbers.
+
+### 26.1 The rule this package did not have, and would have got wrong
+
+P04's fix is the portable half and this package could not have derived it, because **both
+colliding families in `P07-F-82` were its own**, so renaming was free. Two of P04's are
+**inherited from a prior package**, and renaming them would sever the only link back:
+
+> **Rename what is yours; attribute what is inherited.** A rename that severs lineage is a
+> worse defect than the ambiguity it fixes.
+
+Checked here: `DOC-nn` and `P07-D-nn` are both this package's, so `P07-F-82`'s rename was the
+right instrument. The inherited families in this package — `EC-nn` from
+`SMEPLUS-DR-EXIT-8C-001`, `P04-*`, `P11-G`, `AASR-P07-VETO` — are **attributed and not
+renamed**, which was already the practice and is now the stated rule. `REV-M-50`.
+
+### 26.2 Unit `1c` run here: 4 stems flagged, **0 genuine collisions**
+
+| stem | definition-shaped rows in | overlapping suffixes | verdict |
+|---|---|---|---|
+| `P07-D` | `12`, `22` | `01` | same object — `22 §24.2` quotes the register |
+| `P07-F` | `00`, `03`, `07`, `12`, `22` | 12 | same objects — subset restatements |
+| `P07-N` | `02`, `03`, `05`, `06`, `08`, `11` | 10 | same objects — negatives stated in both their argument file and the register |
+| `P07-U` | `00`, `09`, `12`, `22` | 9 | same objects — consolidated register plus originals |
+
+**The unit is false-positive-prone in this package's shape**, exactly as P04 warned a noisy
+check would be: every flag was a family legitimately restated across registers, not two
+families sharing a stem. Reported with that verdict rather than as four findings.
+
+### 26.3 `P07-F-84` — but the restatements were stale, and that is the real catch
+
+Asking *why* one identifier has definition-shaped rows in five files led to the check that
+mattered: **do the restatements agree with the current figure?** Fifteen did not.
+
+`§7.4`, `§8` and `§8.4` carry before/after tables from earlier rounds whose **"after" column is
+itself now superseded** — `P07-F-01` at *"1 of 2 in-generation"*, `P07-F-42` at *"2 of 2"*,
+`P07-F-61` at *"2 of 2"*, `P07-F-51` half `b` at *"2 of 2"*, and three population statements at
+7 · 5. All were corrected at `§10.4` and `§13`, and **none of those corrections reached the
+tables that had stated them**.
+
+**This is the fourth occurrence of the propagation defect in this package** (`REV-E-31`,
+`REV-E-49`, `REV-E-58`, now this), and the first found by an **identifier-level** check rather
+than a phrase grep — which is why the earlier greps missed it: they searched for wordings, and
+these rows state the same figures in a different wording each time.
+
+**Corrected by banner, not by rewrite.** `§7.4` and `§8` now open with a population banner
+naming every superseded denominator and stating that `§13` governs. The historical tables stand,
+per the practice of leaving a record with its correction attached rather than tidying it away.
+
+### 26.4 The method claim, which is P04's and is the strongest sentence in the exchange
+
+> A stem collision satisfies **every unit** of a package's sweep by construction — both families
+> defined, every citation resolving, no malformed table, no stale hash, nothing in Layer 1 — and
+> it is plainly wrong to a reader.
+>
+> **A defect can be invisible to every control a package owns and still be obvious on the page.**
+
+That is stronger than *checks miss things*, and this section is a second instance of it: the
+stale restatements passed the orphan check, the structural check, the manifest check and the
+scrub, and any reader comparing `§8.4` with `§13` would see the disagreement immediately.
