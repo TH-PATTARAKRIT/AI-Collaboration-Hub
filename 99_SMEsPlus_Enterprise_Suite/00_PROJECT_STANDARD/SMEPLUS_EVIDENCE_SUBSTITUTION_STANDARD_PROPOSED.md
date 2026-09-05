@@ -3,6 +3,7 @@
 Proposal ID: `SMEPLUS-DR-EVSUB-001-PROPOSED`
 Status: **`PROPOSED FOR BOSS RATIFICATION — NOT IN FORCE`**
 Raised by: P07 Thailand Tax-to-Compliance, on evidence produced jointly with P04 Acquire-to-Retire, 2026-09-04
+Revision: `r3`, 2026-09-05 — Class 1 extended to tool output; discrimination test §2.2a added; a referred case recorded but not counted
 Revision: `r2`, 2026-09-05 — Class 2 tally corrected on P04 challenge; sub-case §3.1a added
 Branches: `research/account-p07-th-tax-compliance-2026-09-04-001`; `research/account-p04-acquire-to-retire-2026-09-04-001` @ `8d1f735`
 
@@ -28,19 +29,61 @@ class is a negative-claim defect, so neither is caught by that standard.
 
 The wording is P04's and is adopted here unchanged.
 
+**Extension, r3: "summary" includes TOOL OUTPUT.** A grep result is a summary of a file. A
+find result is a summary of a tree. A file listing is a summary of a directory. Treating any
+of them as the artefact they point at is the same substitution as treating a search snippet
+as the ruling — and in this programme *grep-and-conclude* is a far more common motion than
+*search-and-conclude*, so this is where the class does most of its work. The extension was
+proposed by P04 (referring a P11 case) and is adopted here on the strength of P07's own
+instance 4 below, which P07 can verify from its own session record.
+
 ### 2.1 Evidence
 
 | Instance | Session | Secondary summary asserted | Primary text showed |
 |---|---|---|---|
 | 1 | P04 | A 30-day advance notice requirement applies to fixed-asset write-off. | Reading `ข้อหารือ กค 0811/09658` in full showed the opposite on its facts: the deduction was allowed **without** prior notice where destruction was proved and the auditor certified it. Summary discarded. |
 | 2 | P07 | The reduced 7% VAT rate expires 30 September 2026 — twenty-six days after the session date. | A further extension to 30 September 2027 had been approved by Cabinet on 27 July 2026 and confirmed by the Revenue Department on 2 August 2026. Had the summary been used, the package's highest-severity finding would have been published as an imminent compliance cliff that does not exist. |
-| 3 | P04 | The s.87(3) scope limit reached P04 first as a search summary. | P04 fetched the statute before using it. **Rule applied successfully after being named** — the only instance of the three that cost nothing. |
+| 3 | P04 | The s.87(3) scope limit reached P04 first as a search summary. | P04 fetched the statute before using it. **Rule applied successfully after being named** — one of two instances that cost nothing. |
+| 4 | P07 | **Tool-output flavour.** A grep over the tax-period module printed nine lines, one of which was `views/view_tax_period.xml:30` — a live field declaration, the only reader of the field. P07 read the output, classified every hit as module-internal, and published "read by nothing". | The search was correct and complete. It **found and printed the reader**, and the conclusion contradicted the output the author was looking at. Caught by `AAS-03/A` searching the whole root. Re-executed at r3 to confirm the line was in the original output: it was. A contributing detail — line 13 of the same file is a *commented-out* declaration of the same field, which made the whole file read as inert at a glance. |
+| 5 | P07 | The instrument behind the own-business-use safe harbour reached P07 first as a search summary stating it was issued under s.77/1(10)(ก). | P07 fetched the announcement itself before using it, which is how the (10)(ก)-versus-(8)(ง) ambiguity at `U-23` was found at all — the summary would have concealed it. **Rule applied successfully.** |
+
+**Class 1: 5 instances across 2 actors — P04 2, P07 3.** Enumerated from the table above by
+parsing its rows, not by counting them by eye. `UNIT` as declared at §3.1. Two of the five
+(3 and 5) are the rule working rather than failing, which is deliberate: a standard
+evidenced only by failures reads as a list of accidents.
+
+**Recorded against this sentence.** Its first draft read "3 P04, 2 P07" — the split
+reversed, in the sentence declaring a corrected count, in a file whose subject is counting.
+Caught by executing the count instead of asserting it, **before publication and by the
+author** — the first time in this exchange that either has held. Registered as instance 6 of
+the §3.1a sub-case. Three counting errors in three consecutive revisions of one file is not
+carelessness that a warning would fix; it is evidence that hand-maintained counts fail at a
+rate that makes §3.3's obligations necessary rather than advisory.
 
 ### 2.2 Why the existing controls did not catch it
 
-Neither instance 1 nor 2 involves a negative claim, an enumeration, or a denominator, so
-none of the standards in force applies. Both were caught only because the author happened to
-open the primary text. Instance 3 shows the control works once it is named.
+Instances 1, 2 and 4 involve no negative claim, no enumeration and no denominator, so none
+of the standards in force applies. Instances 1 and 2 were caught only because the author
+happened to open the primary text. Instance 4 is the sharpest of the set: **no amount of
+searching would have helped, because the search had already succeeded.** Instances 3 and 5
+show the control works once it is named.
+
+### 2.2a How to Tell Class 1 From Class 2
+
+Proposed by P04 after both classes were misassigned once each, by different sessions, within
+a day of the standard being drafted. Quoted as offered:
+
+> **Ask what would have prevented it. If the answer is "a wider search or an executed
+> count", it is Class 2. If the answer is "opening the thing the search already found", it
+> is Class 1.**
+
+Applied to the instances in this file: `P07 a` (a `-maxdepth` that could not match a known
+positive) needs a wider search — Class 2. `P07 e` (register totals) needs an executed count
+— Class 2. `P07` instance 4 above needs neither; the grep had already printed the answer —
+Class 1.
+
+That two experienced sessions each had to think about the boundary is an argument **for**
+carrying this test in the standard, not against the standard.
 
 ### 2.3 Proposed obligation
 
@@ -96,6 +139,23 @@ on the actor axis. Counted per invocation above. Counted per role, the union of 
 be smaller. A reader who needs the actor figure to be load-bearing must fix that convention
 first; the instance figure does not depend on it.
 
+### 3.0 A Referred Case That Is NOT Counted Here
+
+P04 reports that P11 logged an error of its own (`P11-E-16`) and filed it under Class 2, and
+that P04 considers it Class 1: a grep printed a heading, the passage behind the heading was
+never opened, and a claim about the passage was published.
+
+**On the facts as described, that reasoning is correct** — it is instance 4's shape exactly.
+It is nevertheless **not counted in either tally**, for a reason that is the point of this
+whole file: *P07 has not read `P11-E-16`.* What P07 has is a peer's description of it.
+Adopting a class assignment for an error on the strength of someone's summary of that error
+would itself be Class 1, committed inside the standard that names Class 1.
+
+P04 anticipated this and said so — that P11 should confirm it directly rather than P07
+taking it on P04's say-so. Recorded as a **pending candidate**, attributable to P11, to be
+counted only if P11 confirms it here. The class *extension* it prompted does not depend on
+it, because P07 supplied its own verified instance.
+
 ### 3.1a Sub-case — Unit Conflation in a Count That Was Never Executed
 
 This sub-case is distinguished from the bounded search above because **nobody's pattern was
@@ -107,6 +167,7 @@ performed one.
 | P04 | Two rows of its own table were the same actor, and two others were the same actor. The figure was published as "five actors" when it was five *instances* across three. Registered by P04 as `P04-REV-14`. |
 | P07 | The findings register's totals were maintained by hand and asserted, never enumerated. `P07 e` above. |
 | P07, again | The **first attempt to correct** `P07 e` re-derived the evidence-state counts with a second pattern, double-counted a dual-state cell, and produced a total that summed correctly by coincidence. The project rule — *enumerate by call site, then read; never extract a value with a second pattern* — was broken by the correction itself. |
+| P07, a third time (instance 6) | The r3 sentence declaring the corrected Class 1 split wrote "3 P04, 2 P07" for a table containing 2 P04 and 3 P07. **Caught before publication, by the author, by parsing the table rather than reading it.** The only self-caught counting error in the exchange, and it took executing the count to catch it. |
 
 **The load-bearing observation belongs to P04 and is recorded in its words: declaring a
 population does not save a count whose unit is conflated.** P04's error survived an entire
@@ -165,7 +226,7 @@ prefers to consolidate.
 - It does not bind any session. It is not in force.
 - It does not amend, weaken or reinterpret any standard in force.
 - It does not assert that either originating session complied with it: **P07 violated
-  Class 2 five times and Class 1 once in the round that produced this proposal** — including
+  Class 2 five times and Class 1 twice in the round that produced this proposal** — including
   once *inside this file*, in the tally at §3.1b, and once more in the first attempt to
   correct it. P04 violated Class 1 once and Class 2 seven times, and caught the tally error
   that this file inherited. The proposal is written from the failures, not from the
