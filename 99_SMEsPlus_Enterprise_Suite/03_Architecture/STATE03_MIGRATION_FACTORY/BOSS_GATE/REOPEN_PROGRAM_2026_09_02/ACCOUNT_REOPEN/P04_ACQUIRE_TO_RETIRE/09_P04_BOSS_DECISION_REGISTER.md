@@ -69,6 +69,32 @@ Two new facts change what "100 % attributed" costs to implement:
 
 Neither changes the decision. Both change what complying with it requires.
 
+## 5A. The one runtime request — three items, two packages
+
+**`P04-F-112`.** Everything else open in `10` is open because something has **not
+yet been read**. Three items are open because **the evidence was never recorded
+by anyone, including the deployments themselves**:
+
+| item | owner | question |
+|---|---|---|
+| **`P04-B-47`** | P04 | were the missing asset journal entries **never created**, or **created and then removed** — the question `P04-B-40` turns on |
+| `U-20` | P07 | whether the tax-group assignment follows template **load order** |
+| `U-29` | P07 | whether the register-emptying condition is a **load-order** condition |
+
+A database records the **result** of a write or load sequence and never the
+sequence. No archive, no wider census and no better query closes these. What
+closes them is **a controlled installation executed twice in opposite orders,
+with the sequence recorded** — and, for `P04-B-47`, a second capture of one
+identity at a different time or the deployment's own audit trail.
+
+**Stated jointly because the shape is invisible from inside either package**:
+P07's two sit in a tax register, this package's in an asset register, and each
+looks like a minor residue beside dozens of other open rows. Together they are the
+**entire content** of what a runtime request would be for, and the only category
+of evidence neither session can manufacture.
+
+*No decision is requested here beyond whether to grant that execution.*
+
 ## 5. Vetoes and conditions — status
 
 | Control | Scope | Status |

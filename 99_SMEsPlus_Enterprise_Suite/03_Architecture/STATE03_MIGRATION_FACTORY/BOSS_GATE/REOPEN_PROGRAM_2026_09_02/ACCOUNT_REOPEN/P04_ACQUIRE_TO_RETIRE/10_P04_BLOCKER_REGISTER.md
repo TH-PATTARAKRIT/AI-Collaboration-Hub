@@ -18,11 +18,16 @@ New blockers are numbered `P04-B-nn`. Every row states **what closes it**.
 
 ## 2. Inherited — closed, carried for lineage (4)
 
-`BLK-03` absorption permitted → **closed, and exceeded**: TAS 2 ¶12 makes it
-required. `BLK-04` off-balance presentation → **closed**: no such line exists in
-the prescribed statutory forms. `BLK-05` unbounded internal usage → **closed by
-`BD-01`**. `BLK-06` where unabsorbed depreciation goes → **closed by `BD-02`**,
+**BLK-03** absorption permitted → **closed, and exceeded**: TAS 2 ¶12 makes it
+required. **BLK-04** off-balance presentation → **closed**: no such line exists in
+the prescribed statutory forms. **BLK-05** unbounded internal usage → **closed by
+`BD-01`**. **BLK-06** where unabsorbed depreciation goes → **closed by `BD-02`**,
 reinforced by TAS 2 ¶13.
+
+*These four are stated in prose rather than as register rows. They were invisible
+to every identifier check this package ran until the check was extended beyond one
+family (`P04-F-111`); they are emboldened here so a reader and a checker find them
+by the same route.*
 
 ## 3. Re-registered — items that fell out of prior registers (3)
 
@@ -128,7 +133,7 @@ correction, are recorded in `18_P04_REVISION_LOG.md` as `P04-REV-10`.
 | **2** | **P04-B-31** — silent re-dating into an unlocked period | It is not a design gap; it is **live behaviour that misstates a fiscal year**, asserted by the estate's own test. Any migration or parallel-run that posts a back-dated depreciation entry is exposed today. **Confirmed as a present defect, not a prospective one:** it needs no tenant boundary and no company hierarchy (`P04-F-68`), so the standing boundary against it (`T0-13`, widened to any scope) is **not contingent** on the Boss's tenant ruling |
 | **3** | **P04-B-17** — no sub-ledger reconciliation, six ways to break it, none detected | It is the control that would catch most of the others |
 | **4** | **P04-F-13 + P04-B-40** — the derecognition entry is never posted by the retirement, **and is silently deleted by ordinary later activity** | An asset reads "Closed" while its cost and accumulated depreciation stay in the ledger — and the only record that a retirement was computed can disappear without trace. Raised from its original rank on the independent review's evidence |
-| **5** | **P04-B-02 / B-03** — the live population's origin and upstream linkage are unknown | Two queries. They gate every migration statement |
+| **5** | **P04-B-02 / P04-B-03** — the live population's origin and upstream linkage are unknown | Two queries. They gate every migration statement |
 | **6** | **P04-B-35** — work-centre company-optionality | The narrowed, sharper form of the prior SaaS finding |
 
 Everything below rank 6 is real and none of it blocks the **research**; it

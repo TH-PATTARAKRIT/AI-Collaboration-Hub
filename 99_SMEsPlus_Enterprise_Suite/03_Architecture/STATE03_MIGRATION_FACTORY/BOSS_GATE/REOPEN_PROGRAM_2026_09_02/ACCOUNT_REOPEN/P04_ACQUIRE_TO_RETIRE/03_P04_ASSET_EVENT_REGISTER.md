@@ -66,7 +66,7 @@ none writes an accounting effect.
 | **P04-F-23** | A blank account link causes the corresponding leg to be **silently dropped**, producing an unbalanced entry. Because the disposal entry is left in draft (P04-F-13), nothing surfaces until a user posts it. *(Identifier corrected: this and the former `P04-F-18` were the same finding under two numbers; `P04-F-18` is withdrawn — see `18` `P04-REV-12`.)* | FACT VERIFIED | **High** |
 | **P04-F-19** | The disposal wizard's gain and loss account fields do not reach the entry. They reach it only by **rewriting the company-level default**, executed with elevated privilege. **A disposal in which the wizard's account field is written silently reconfigures the company for all future disposals** | FACT VERIFIED | **High for control** |
 
-**P04-F-13, F-23 and F-19 compound.** A disposal can leave the company
+**`P04-F-13`, `P04-F-23` and `P04-F-19` compound.** A disposal can leave the company
 misconfigured, produce an unbalanced draft entry because of that
 misconfiguration, and leave the asset reading "Closed" with nothing posted —
 with no error raised at any point in the sequence.

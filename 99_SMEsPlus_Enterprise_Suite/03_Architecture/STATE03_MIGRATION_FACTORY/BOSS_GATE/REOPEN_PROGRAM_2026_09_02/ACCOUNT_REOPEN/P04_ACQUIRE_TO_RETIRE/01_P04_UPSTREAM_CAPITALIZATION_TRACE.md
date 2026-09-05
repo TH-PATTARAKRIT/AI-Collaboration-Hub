@@ -745,6 +745,76 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.13 The identifier check covered 2 of 14 families
+
+P07 extended its orphan check beyond the one family it was written for and found
+**12 orphans out of 27 cited in the family that carries its HOLD**. Run here.
+
+> **P04-F-111.** **This package's identifier check covered 2 of its 14 owned
+> identifier families. Extended to all 14, the genuine orphan count is zero — and
+> the extension surfaced three defects in the *check*, not the package.**
+>
+> Families in use: `P04-F`, `P04-B`, `P04-REV`, `P04-CTR`, `P04-BD`, `P04-PD`,
+> `P04-LAW`, `P04-SC`, `BLK`, `D-P04`, `BD`, `CTR`, `CTR-C`, `LAW`. Only the
+> first and third were ever checked. **`P04-B` carries this package's HOLD**, and
+> it had never been enumerated against its citations.
+>
+> The first extended run reported **19 apparent orphans. None was genuine:**
+>
+> | apparent orphans | what they actually were |
+> |---|---|
+> | `P04-LAW-A`…`H` (8) | defined as **backticked table rows**, not bold |
+> | `D-P04-01`…`04` (4) | defined as **`**Disagreement recorded — `D-P04-01`.**`** |
+> | `BLK-03`…`06` (4) | defined in **prose**, in the closed-for-lineage section |
+> | `SCP-08`, `SCP-09` (2) | **P11's identifiers**, correctly cited and not ours to define |
+> | `CTR-C` (1) | a **regex artefact** — family `CTR` matching `CTR-C-01` |
+>
+> **The package uses at least four definition conventions and the check knew
+> one.** That is worse than a check that finds nothing: 19 false positives train a
+> reader to dismiss the output, so a genuine orphan appearing later would be lost
+> in noise the check itself manufactured.
+>
+> **Three fixes, each from a defect this exchange produced:**
+> - **Peer families are excluded by name.** P07 found its extended check reporting
+>   `P07-F-81` as an orphan when the match was a citation of *this package's*
+>   `F-81`. **In a two-package exchange, identifier collision is the normal case,
+>   not an edge case**, so the prefix is required and peer families are declared.
+> - **Own identifiers are no longer elided.** Lists such as *"`P04-B-16`, `B-18`,
+>   `B-19`, `B-28`"* were readable and unmatchable; nine such elisions across five
+>   files are now written in full. Bare forms that remain are **foreign by
+>   attribution** — `P2 REV-03`, `P2 CTR-05`, `P07's F-65` — and are correct.
+> - **`BLK-03`…`06` are emboldened**, so a reader and a checker find them by the
+>   same route.
+>
+> And the self-referential trap P07 hit arrived here too: **writing this finding
+> cited `P04-F-111` before it was defined**, and the check reported it until this
+> paragraph existed.
+>
+> Class: **FACT VERIFIED**. Final state: **2 undefined across 14 families** — the
+> intentional withdrawal notice `P04-F-18`, and this finding's own identifier
+> until now. Control: a deliberately absent id is reported.
+
+> **P04-F-112.** **Three items across two packages are one ask, and separately
+> each reads as a small residue.** `P04-B-47` — were the missing asset entries
+> never created, or created and removed — and P07's `U-20` and `U-29`, both of
+> which reduce to **template/module load order**, are the only items in either
+> package that **no reading, no wider census and no better query can close**
+> (`P04-F-105`).
+>
+> What they need is identical in kind: **a controlled installation executed twice,
+> in opposite orders, with the sequence recorded.** For `P04-B-47` the equivalent
+> is a second capture of one identity at a different point in time, or the
+> deployment's own audit trail.
+>
+> **Stated because the shape is invisible from inside either package.** P07's two
+> sit in a tax register and this package's in an asset register; each looks like a
+> minor unresolved item next to dozens of others. Together they are **the only
+> category of evidence neither session can manufacture**, and they are the entire
+> content of what a runtime request would be for.
+>
+> Class: **CROSS-PACKAGE DECISION ITEM**, routed to `09` §5. Not a research
+> finding and not closable by research.
+
 ### 6A.12 The second module: axis open, exposure characterised
 
 > **P04-F-107.** **For `product_stock_equipment` the code-identity axis is NOT
@@ -1413,7 +1483,7 @@ asset population this session could measure, **it is unsatisfiable in fact for
 | `P04-B-01` | **Strengthened from design gap to measured gap** (`P04-F-82`) |
 | `BLK-01` (inherited) | **Materially advanced, not closed** — a second population, and the template-versus-population split made concrete (`P04-F-81`) |
 | `P04-B-02` (origin mechanism) | Not answered — requires the external-identifier table, not extracted this session |
-| `P04-B-16`, `B-18`, `B-19`, `B-28` | Unchanged. They concern v18 behaviour; the only database with real assets is an older generation |
+| `P04-B-16`, `P04-B-18`, `P04-B-19`, `P04-B-28` | Unchanged. They concern v18 behaviour; the only database with real assets is an older generation |
 
 **The honest summary: one blocker answered for one population, one strengthened,
 one advanced, four unchanged — and the reason four are unchanged is a real
