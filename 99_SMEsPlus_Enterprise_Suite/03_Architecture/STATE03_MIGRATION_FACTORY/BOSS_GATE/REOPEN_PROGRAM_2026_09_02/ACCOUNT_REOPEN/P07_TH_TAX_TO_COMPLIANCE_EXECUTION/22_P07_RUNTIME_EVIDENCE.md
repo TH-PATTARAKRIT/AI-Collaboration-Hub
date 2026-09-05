@@ -1571,3 +1571,71 @@ and in a two-package exchange that is not a rare case. The check now requires th
 prefix for this package's families and reports bare matches separately as *peer references*.
 Caught in the first run of the extended check, by reading what it matched rather than trusting
 the count — the same discipline that caught the false discriminator at `§16.1`.
+
+
+---
+
+## 20. Family Coverage — the Check Saw 8 of 46 — `P07-F-77`
+
+`§5` extended the orphan check across identifier **families** and found 12 orphans in `P07-U`.
+P04 ran the same extension and reported the mirror result: its check covered **2 of 14** owned
+families, and produced **19 apparent orphans of which none were genuine**, because its package
+uses at least **four definition conventions** — backticked table rows, bold text, prose, and a
+peer's identifiers cited correctly — and the check knew one.
+
+**Two failure modes of the same check, and they are opposite.** This package's check
+under-reported: right convention, wrong scope. P04's over-reported: right scope, wrong
+convention coverage. P04's observation is the one to keep — **19 false positives are worse
+than a check that finds nothing, because they train a reader to dismiss the output**, so a
+genuine orphan appearing later is lost in noise the check itself manufactured.
+
+### 20.1 Coverage audit of this package's check
+
+Every identifier-shaped token in backticks, counted by family: **46 families cited, 8 covered
+by the sweep.** Of the 38 uncovered, seven are **foreign by attribution** and correctly not
+this package's to define — `P04-B`, `P04-F`, `P11-G`, and the licence and external-document
+tags `LGPL`, `OPL`, `OEEL`, `FR-TEN` — and five are governance/prompt identifiers. That leaves
+**26 owned families that had never been enumerated against their citations**, the largest being
+`S` with **319 citations**: the statutory source register, which backs every legal claim in the
+package.
+
+### 20.2 The result, with coverage stated
+
+Run over all 26, accepting four definition conventions (table row, bold, heading, list item):
+
+| | |
+|---|---:|
+| owned families audited | **26** |
+| definitions found | 253 |
+| citations resolved | 253 |
+| **orphans** | **0** |
+| conventions actually in use | **1** (table row; `W-K` also uses a list item) |
+
+**`P07-F-77` — no orphans in any owned family beyond the `P07-U` set already corrected**, and
+in particular **`S-01`…`S-40` all resolve**: no legal claim in this package cites a statutory
+source that has no register row. That is a clean negative and it is reported with its coverage,
+per `REV-M-31`.
+
+It also localises the earlier defect precisely: `§5`'s 12 orphans were a **scope** failure and
+not a convention failure. This package uses one definition convention throughout, which is why
+extending the scope was sufficient here and would not have been sufficient for P04.
+
+### 20.3 P04's refinement of `P07-F-71`, adopted
+
+`P07-F-71` said: where copies agree on fields and views, **structural claims are discharged and
+logic claims stay exposed**. P04 sharpened it against its own second module — 11 copies, 3
+trees, the divergence being a presentational `span`/`div` wrapper and a multi-record-safety
+change on a note write, **with the function actually cited byte-identical in both**:
+
+> Not *views identical ⇒ structural claims safe*, but **compare the difference against the
+> specific claim.** A presentational wrapper cannot carry a structural claim; a note write
+> cannot carry an accounting one.
+
+That is stronger than the version this package published, because it discharges claims
+**individually** rather than by category, and it can discharge a claim even where the trees
+differ. Applied here it becomes a per-finding test: for `P07-F-11`, `-F-51`, `-F-52`, `-F-57`
+and `P07-F-63`'s source half, the question is not *which of 20 trees is deployed* but **whether
+the cited function differs across the same-generation candidates at all.**
+
+That test is executing over the v19-generation candidates and **is not reported here.**
+`P07-U-28` stands as classified until it returns.
