@@ -755,6 +755,57 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.25 Six identities was also a chosen population
+
+P07 found that its registry run covered **5** identities while its own census says
+**7**, and that the two omitted were **the never-transacted installs** — by this
+exchange's repeated result, the most informative rows available. Checked here
+immediately: **`P04-F-123` ran six identities; this package's census holds eight.**
+
+> **P04-F-124.** **The two omitted identities were `a1430edc` and `f4a44cce`, and
+> `f4a44cce` is the never-transacted v19 install — the same class P07 omitted, for
+> the same reason.** Complete run, both controls, all eight:
+>
+> | identity | gen | models | (+) `res.company` | `account.asset` | (−) `account.asset.impairment` | four classes |
+> |---|---|---:|---|---|---|---|
+> | `551ab874` | v18 | 944 | yes | yes | absent | **none** |
+> | `4b766580` | v18 | 1,080 | yes | yes | absent | **none** |
+> | `96548e18` | v18 | 510 | yes | **no — correctly** | absent | **none** |
+> | `45a8e08e` | v16 | 601 | yes | yes | absent | **none** |
+> | `1f6338ae` | v19 | 749 | yes | yes | absent | **none** |
+> | `f4a44cce` | v19 | 633 | yes | yes | absent | **none** |
+> | `66d1b52a` | v19 | 756 | yes | yes | absent | **none** |
+> | `a1430edc` | v19 | 1,035 | yes | yes | absent | **none** |
+>
+> **8 identities · 3 generations · 6,308 model rows · zero models of any of the
+> four asserted-absent classes**, with a positive control firing in all eight, a
+> discriminating control correctly absent in exactly one, and an explicit negative
+> control (`account.asset.impairment`, a model that should exist nowhere) absent
+> in all eight. P07's refinement adopted: **an all-positive control set proves the
+> read worked and cannot distinguish an instrument that reads correctly from one
+> that answers *present* to anything.**
+>
+> **And the run produced two false absences that were not data.**
+> - **A wrong path read as an empty result.** A first attempt pointed at
+>   `f4a44cce` under a directory that does not exist; `unzip` produced nothing,
+>   the parser reported **"no `ir_model` block"**, and the message was
+>   indistinguishable from a genuine absence. The file was in a different
+>   directory and holds **633 models**.
+> - **A batch harness reported three identities absent that individual runs
+>   disprove.** In a loop, `4b766580`, `96548e18` and `f4a44cce` all returned
+>   *no block*; run one at a time, the same command on the same files returns
+>   **1,080**, **510** and **633**. The zips are readable and each contains
+>   exactly one `COPY public.ir_model` line — verified before re-running.
+>
+> **Neither was published, and the second is the more dangerous.** A uniform
+> failure across every row announces itself; a failure on **three of eight rows,
+> inside an otherwise-successful table**, reads as a finding about those three.
+> **Always disprove a batch absence with a single run before it becomes a row.**
+>
+> Class: **FACT VERIFIED**, 8 identities, 6,308 models, controls published per
+> row. Limits unchanged: this host's estate; absence of a model is not absence of
+> a behaviour.
+
 ### 6A.24 The no-host claims across the whole estate
 
 > **P04-F-123.** **Zero models of the four asserted-absent classes across 6
