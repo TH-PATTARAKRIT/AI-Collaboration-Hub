@@ -51,7 +51,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | File | SHA-256 |
 |------|---------|
 | `00_README_LAYER_AND_METHOD.md` | `949b9d843ec0d8a0e8d6b119585b27a93915e6b4b942fdac98fac6e70b26ec8b` |
-| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `bf467b070b76fef111d81cc5741944b4be28bd666a9b368cba9687b7d23d6f31` |
+| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `e0a375896b77b9edcdf087d937d590f74bf38f7f0e1077015da5709516a03df0` |
 | `02_P04_ASSET_LIFECYCLE_MAP.md` | `561118e4b1e312b6ff3cfab4f350db256c1f8b6b8364d9975e4286eef4c742f0` |
 | `03_P04_ASSET_EVENT_REGISTER.md` | `ed31187344fa46246cf5c3f59c9444a212ad454b0ee62bb360dc2fcf81ad2a51` |
 | `04_P04_ASSET_TO_GL_MATRIX.md` | `f97d5e4239b9fd1eb4ed4bbce5a03173185f2df336ec5c9f234c30b944531dd6` |
@@ -67,7 +67,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
 | `16_P04_AAS_PLUS.md` | `b1d63e5676b7bd06dbc48e8329c66bf50c9d0d5fb7b99522f5d5394d780c8905` |
 | `17_P04_PMO.md` | `1bbc6d0a5c767410c865079dfe709f4aa9270d0f08d285d1fab9ec201a012d40` |
-| `18_P04_REVISION_LOG.md` | `8e7a9b4766e48a60a754e7eb1d6665f35c212ca716ce34b536f42e04210a053f` |
+| `18_P04_REVISION_LOG.md` | `749f8607953e3d188e71d994142ce2b82489936c52787b31c39605cc4b8e9240` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `1f635cba7e22be8e4001c877e9638c8ec918f695fba0ee68cb319132bc194eda` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `1a9a822ba1084ec34107787490ac248e3fdc127ac32a91af14a11e19c5d1145b` |
 
@@ -77,7 +77,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 |----|------|-----------------------------------|
 | `EV-CODE` | Reference ERP v18 Enterprise, build `20250608` | **790 installable modules** (791 directories, one carrying no manifest and no content). The figure `797` quoted by prior packages is an entry count |
 | `EV-CUST` | Project custom addon set, v18 line | **65 directories** (68 entries) |
-| `EV-DB` | **Four PostgreSQL dumps on the host, three carrying asset data** — `iSMEs` (685 assets, older generation), `iEVING` and `BK12MAY26` (36 templates each, v18 line), `iTEST02` (no asset data) | **Read this session, after the deviation claiming no database access was tested and found false** (`18` `P04-REV-21`). None is `idemo18_uat`; the only database with real assets is an older generation |
+| `EV-DB` | **Five PostgreSQL dumps across two trees, all carrying asset data** — the first enumeration reported four, one wrongly as empty; both errors are recorded at `18` `P04-REV-23`/`-24` — `iSMEs` (685 rows, **669 real**, older generation); `iEVING`, `BK12MAY26` and `iTEST02` ×2 (**96 templates, zero real assets**, v18 line). **Reading the v1.16 archives requires a client newer than the host default** | **Read this session, after the deviation claiming no database access was tested and found false** (`18` `P04-REV-21`). None is `idemo18_uat`; the only database with real assets is an older generation |
 | `EV-RT` | Runtime read-out, 2026-08-26, UAT database | Population query **unbounded** (280 returned). External-identifier query **restricted to 26 hand-picked names** — not a population statement. Field list **12 fields**, omitting the source-document link |
 | `EV-HND` | Asset Actual Mapping handoff, 2026-08-26 | Project record |
 | `EV-P1/P2/P3` | Three prior Asset packages | Commits `57cdb99`, `6c7512e`, `a852b6e`; heads `57cdb99`, `78067d2`, `54db9e1`. All branches intact and unmerged |
@@ -87,10 +87,10 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **81** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
+| Findings (`P04-F-nn`) defined | **82** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **45** — 3 re-registered from the handover residue, 42 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
-| Revisions | 22 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
+| Revisions | 24 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
 | Recurrences of the enumeration / unit defect | **9 instances across 4 actors — P04's declared half**, `@ ae525fc`, verified unchanged by P07 at `c839bfe`. **No joint total is published**; halves are not summed (`18` §5b) |
 | Expert disagreements preserved | 4 new · 7 inherited and re-opened · 2 between this session and the independent reviewer |
 | Scope determinations | 14 objects and 10 operations classified; 2 on **HOLD — SCOPE EVIDENCE REQUIRED** |

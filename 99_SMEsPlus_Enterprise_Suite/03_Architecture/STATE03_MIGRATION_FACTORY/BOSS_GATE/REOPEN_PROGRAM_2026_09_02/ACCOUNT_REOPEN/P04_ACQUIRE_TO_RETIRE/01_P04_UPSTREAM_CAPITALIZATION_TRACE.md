@@ -343,12 +343,19 @@ session.
 Four PostgreSQL custom-format dumps on the host, all readable with standard
 tooling. Three carry fixed-asset table data.
 
-| Database | Dated | Generation signature | Asset rows |
-|----------|-------|----------------------|------------|
-| `iSMEs` | 2026-07-11 | **older line** — carries an `asset_type` column that the v18 source tree does not define | **685** |
-| `iEVING` | 2026-07-23 | **v18 line** — no `asset_type` | 36 |
-| `BK12MAY26` | 2026-08-03 | **v18 line** — no `asset_type` | 36 |
-| `iTEST02` | 2026-07-14 | — | no asset table data |
+**Corrected twice after a peer's warning — see `18` `P04-REV-23` and `P04-REV-24`.**
+The first version of this table reported four dumps, one of them with *"no asset
+table data"*. That was a **false negative from the tool**, and the search that
+found the four was **bounded to one directory**. Executed properly there are
+**five**, and all five carry asset data.
+
+| Database | Dated | Generation signature | Asset rows | Of which **real** (non-template) |
+|----------|-------|----------------------|------------|----------------------------------|
+| `iSMEs` | 2026-07-11 | **older line** — carries an `asset_type` column the v18 source tree does not define | **685** | **669** |
+| `iEVING` | 2026-07-23 | **v18 line** — no `asset_type` | 36 | **0** |
+| `BK12MAY26` | 2026-08-03 | **v18 line** | 36 | **0** |
+| `iTEST02` | 2026-07-14 | **v18 line** | 12 | **0** |
+| `iTEST02` | 2026-06-14 | **v18 line** | 12 | **0** |
 
 **Scope, stated before any finding.** None of these is `idemo18_uat`, the database
 the runtime capture in §6 came from. Nothing here closes a blocker that names that
@@ -358,20 +365,36 @@ bounded to the database named in it.
 
 ### 6A.2 The day convention, across generations
 
-| Database | `constant_periods` | `daily_computation` |
-|----------|-------------------|---------------------|
-| `iSMEs` — 669 real assets + 16 templates | **2** | **683** |
-| `iEVING` — 36 rows, **all templates, zero real assets** | **36** | 0 |
-| `BK12MAY26` — 36 rows, **all templates, zero real assets** | **36** | 0 |
+| Database | Generation | `constant_periods` | `daily_computation` |
+|----------|-----------|-------------------|---------------------|
+| `iSMEs` — 669 real assets + 16 templates | older | **2** | **683** |
+| `iEVING` — 36 rows, all templates | v18 | **36** | 0 |
+| `BK12MAY26` — 36 rows, all templates | v18 | **36** | 0 |
+| `iTEST02` @ 2026-07-14 — 12 rows, all templates | v18 | **12** | 0 |
+| `iTEST02` @ 2026-06-14 — 12 rows, all templates | v18 | **12** | 0 |
+| **v18 line, total** | | **96 — 100 %** | **0** |
 
 > **P04-F-81.** The operational population runs on **daily computation** (683 of
-> 685 in the only database holding real assets), while **every asset template in
-> both v18-line databases is on `constant_periods`** — the product default, and
-> the convention the operational population does **not** use.
+> 685 in the only database holding real assets), while **every one of the 96 asset
+> templates across all four v18-line databases is on `constant_periods`** — the
+> product default, and the convention the operational population does **not** use.
 > Templates govern the configuration of assets created from them. So the
 > databases that would seed new assets are seeded with the **opposite**
 > convention to the one in production use.
 > Class: **FACT VERIFIED**, bounded to the three databases named.
+
+> **P04-F-83.** **No v18-line database on this host contains a single real asset
+> record.** Four v18-line databases, spanning 2026-06-14 to 2026-08-03, hold
+> **96 templates and zero assets** between them. The only population of real
+> assets available anywhere is on the **older generation**.
+> Class: **FACT VERIFIED**, bounded to the five databases named.
+>
+> Consequence for migration readiness: the target generation has **never had an
+> asset created in it** in any environment captured here. Every behavioural
+> finding in this package about v18 asset behaviour is therefore a statement
+> about **code that has not yet been exercised on this project's data**, and the
+> template configuration that would govern the first asset created is on the
+> **wrong convention** (`P04-F-81`).
 
 This is the concrete form of a risk two prior packages stated in the abstract:
 the two conventions **agree annually within 0.05 %**, so an annual reconciliation
