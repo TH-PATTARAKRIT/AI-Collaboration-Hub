@@ -50,8 +50,8 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | File | SHA-256 |
 |------|---------|
-| `00_README_LAYER_AND_METHOD.md` | `545783d5660542d9b10fcdbc96302025332d76e82f28c6d1c06e6b8b91695d99` |
-| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `abfafa7e3eaaa010ae8116453ac70c846fa206b4772f952536aa63e10f369994` |
+| `00_README_LAYER_AND_METHOD.md` | `e651ebe55464660951161b8f1455498d704e62d71080f0afb23598793711e17e` |
+| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `27de2dd03f1ffb90c5a942282c43f4518d3ac6431bc666c87964098d9fcc5d9a` |
 | `02_P04_ASSET_LIFECYCLE_MAP.md` | `561118e4b1e312b6ff3cfab4f350db256c1f8b6b8364d9975e4286eef4c742f0` |
 | `03_P04_ASSET_EVENT_REGISTER.md` | `ed31187344fa46246cf5c3f59c9444a212ad454b0ee62bb360dc2fcf81ad2a51` |
 | `04_P04_ASSET_TO_GL_MATRIX.md` | `f97d5e4239b9fd1eb4ed4bbce5a03173185f2df336ec5c9f234c30b944531dd6` |
@@ -60,14 +60,14 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `07_P04_DISPOSAL_DERECOGNITION_MATRIX.md` | `73498c37afaceb7557a1a4f304eeb7a53c943bf77364926f85e69038c756b413` |
 | `08_P04_PRIOR_EVIDENCE_RECONCILIATION.md` | `e5970d358e188c1e0f5b99c8138f5cb09610b09885bf6b80ea51be4fbef780fe` |
 | `09_P04_BOSS_DECISION_REGISTER.md` | `ed7c666609c4671dff808d313b7eab6f79303903dd99b3e8abab5c29007c8005` |
-| `10_P04_BLOCKER_REGISTER.md` | `520ea92ea33ba853c58ca67467ab6fe11c33520941cf4823e322d5886fc1869e` |
+| `10_P04_BLOCKER_REGISTER.md` | `8b207570bf6669f44b21afe989fa538e8bbf35be30bee4f82d327397d6941b46` |
 | `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `066fb43f0a10d57a3c2fcb9ba622631ec0ff66c95de90fbac4c71be8b317fd23` |
 | `12_P04_CONTRADICTION_REGISTER.md` | `4a54d8b13cfff34602ef2d1c9a2c10b8a43934ff943dfaf4cad6904874038e79` |
-| `13_P04_SOURCE_LINK_REGISTER.md` | `f6752f7756866063bfa6dd880ad3b294a80b24b7a1278329a5c770eedac2d0e7` |
+| `13_P04_SOURCE_LINK_REGISTER.md` | `e60270c65be47d115e7fdad5f94fce69c4b8d424f3d05e1087300894a69c1dda` |
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
 | `16_P04_AAS_PLUS.md` | `f80f330fdcb381bd9759e1ca0f4a2fe538be3e3784d3c4251157e21d9aef4479` |
-| `17_P04_PMO.md` | `50cf4c8f306e482901f618997653189de32b76bfa507ecd408a15903a6ab0cab` |
-| `18_P04_REVISION_LOG.md` | `94ffc4a44f28a7e42f268ed0a3978a9a6a52a4b0f9b73679bb97571686a858ca` |
+| `17_P04_PMO.md` | `25cf04b2ba00464b00072059ec4ed9056faf828a7b44cf0f716f6016c23d413a` |
+| `18_P04_REVISION_LOG.md` | `dc1bf7c68b9cf9fb642c123ab35c20eedc95a0a9e326db2f1509c88132519169` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `1f635cba7e22be8e4001c877e9638c8ec918f695fba0ee68cb319132bc194eda` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `1a9a822ba1084ec34107787490ac248e3fdc127ac32a91af14a11e19c5d1145b` |
 
@@ -77,7 +77,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 |----|------|-----------------------------------|
 | `EV-CODE` | Reference ERP v18 Enterprise, build `20250608` | **790 installable modules** (791 directories, one carrying no manifest and no content). The figure `797` quoted by prior packages is an entry count |
 | `EV-CUST` | Project custom addon set, v18 line | **65 directories** (68 entries) |
-| `EV-DB` | **10 files · 7 snapshots · 5 database identities** across two trees, all carrying asset data — enumerated by **two archive signatures (`PGDMP` and zip-with-`dump.sql`), any extension, any depth, keyed on `database.uuid`**, after an extension-bounded first pass (`18` `P04-REV-27`) and a **single-signature, filename-keyed** second pass (`18` `P04-REV-35`) — the first enumeration reported four, one wrongly as empty; both errors are recorded at `18` `P04-REV-23`/`-24` — `iSMEs` (685 rows, **669 real**, **v16**); `iEVING`, `BK12MAY26` and `iTEST02` ×2 (**96 templates, zero real assets**, **v19**). **Reading the v1.16 archives requires a client newer than the host default** | **Read this session, after the deviation claiming no database access was tested and found false** (`18` `P04-REV-21`). None is `idemo18_uat`; the only database with real assets is an older generation |
+| `EV-DB` | **10 files · 7 snapshots · 5 database identities** across two trees, all carrying asset data — enumerated by **two archive signatures (`PGDMP` and zip-with-`dump.sql`), any extension, any depth, keyed on `database.uuid`**, after an extension-bounded first pass (`18` `P04-REV-27`) and a **single-signature, filename-keyed** second pass (`18` `P04-REV-35`) — the first enumeration reported four, one wrongly as empty; both errors are recorded at `18` `P04-REV-23`/`-24` — `iSMEs` (685 rows, **669 real**, **v16**); `iEVING`, `BK12MAY26` and `iTEST02` ×2 (**96 templates, zero real assets**, **v19**). **Reading the v1.16 archives requires a client newer than the host default** | **Read this session, after the deviation claiming no database access was tested and found false** (`18` `P04-REV-21`). None is `idemo18_uat` — **verified from each archive's internal database name, not its filename** (`P04-F-88`); the only database with real assets is an older generation |
 | `EV-RT` | Runtime read-out, 2026-08-26, UAT database | Population query **unbounded** (280 returned). External-identifier query **restricted to 26 hand-picked names** — not a population statement. Field list **12 fields**, omitting the source-document link |
 | `EV-HND` | Asset Actual Mapping handoff, 2026-08-26 | Project record |
 | `EV-P1/P2/P3` | Three prior Asset packages | Commits `57cdb99`, `6c7512e`, `a852b6e`; heads `57cdb99`, `78067d2`, `54db9e1`. All branches intact and unmerged |
@@ -87,7 +87,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **86** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`; `P04-F-86`/`P04-F-87` added at `18` `P04-REV-35`). *Executed in the same command that published this line — see `18` §5* |
+| Findings (`P04-F-nn`) defined | **88** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`; `P04-F-86`/`P04-F-87` added at `18` `P04-REV-35`; `P04-F-88`/`P04-F-89` at `P04-REV-36`). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **45** — 3 re-registered from the handover residue, 42 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
 | Revisions | 34 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |

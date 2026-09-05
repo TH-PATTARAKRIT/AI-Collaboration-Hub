@@ -349,14 +349,16 @@ session.
 
 ### 6A.1 What was found
 
-Four PostgreSQL custom-format dumps on the host, all readable with standard
-tooling. Three carry fixed-asset table data.
+**Ten archive files on the host — seven distinct snapshots of five distinct
+databases — and every one carries fixed-asset table data.**
 
-**Corrected twice after a peer's warning — see `18` `P04-REV-23` and `P04-REV-24`.**
-The first version of this table reported four dumps, one of them with *"no asset
-table data"*. That was a **false negative from the tool**, and the search that
-found the four was **bounded to one directory**. Executed properly there are
-**five**, and all five carry asset data.
+**Corrected three times, each time after a peer's warning — `18` `P04-REV-23`,
+`P04-REV-24`, `P04-REV-35`.** The first version of this table reported **four**
+dumps, one of them with *"no asset table data"* — a **false negative from the
+tool** — and the search that found the four was **bounded to one directory**.
+The second reported **five**, from a scan by magic bytes. The third, executed on
+two archive signatures and keyed on `database.uuid`, reports **seven snapshots /
+five identities**. *Each correction was found by a peer, none by this package.*
 
 | Database | Dated | Archive | Reads under host default client (16.15)? | Generation signature | Asset rows | Of which **real** |
 |----------|-------|---------|------------------------------------------|----------------------|------------|-------------------|
@@ -486,9 +488,16 @@ Tested here, finding by finding:
 
 | Finding | Rests on | Stock-tooling reader sees | Conclusion |
 |---------|----------|---------------------------|------------|
-| `P04-F-81` convention split | 3 readable + 2 unreadable | 72 of 96 templates, all `constant_periods`; 683/685 real assets on daily | **holds** |
+| `P04-F-81` convention split | 5 readable + 2 needing `postgresql@18` | 108 of 144 template rows, all `constant_periods`; 683/685 real assets on daily | **holds** |
 | `P04-F-82` source-link 96.7 % | **one readable archive only** | everything | **fully reproducible** |
-| `P04-F-83` zero real assets | 2 readable + 2 unreadable | 2 of 4 v19 snapshots, 72 templates, **zero real assets in both** | **holds** |
+| `P04-F-83` zero real assets | 4 readable + 2 needing `postgresql@18` | 4 of 6 v19 snapshots, 3 of 4 v19 identities, **zero real assets in every one** | **holds — and on more evidence than when written** |
+
+*Counts in this table were restated at `18` `P04-REV-35`: they were written
+against five snapshots and are now against seven. The **two `.zip` archives need
+no PostgreSQL client at all**, so the correction moves the stock-tooling reader's
+coverage from 3 of 5 snapshots to **5 of 7** — the caveat weakens in the reader's
+favour, which is the direction a coverage caveat is least likely to be re-checked
+in.*
 
 > **No finding in this package depends on an artefact a default client cannot
 > open.** A reader with stock tooling reaches **the same conclusion on all
@@ -633,6 +642,48 @@ table rather than by re-reading it.*
 > > re-derived per identity**.
 > >
 > > Class: **FACT VERIFIED**, bounded to the five identities enumerated at §6A.1.
+
+> **P04-F-88.** **The exclusion of `idemo18_uat` from the evidence base was
+> asserted from *file names* and never verified — and it is true.** `BLK-01` and
+> `P04-B-03` both stay open on the stated ground that the database the runtime
+> capture names *"was not among the accessible dumps"*. That was read off the
+> filenames. Tested properly — `pg_restore -l` header `dbname:` for the five
+> `PGDMP` archives, `manifest.json` → `db_name` for the two zips — the internal
+> names are `iSMEs`, `iEVING` ×2, `BK12MAY26` ×2, `iTEST02` ×2. **None is
+> `idemo18_uat`**, and no artefact under either tree carries `demo` or `uat` in a
+> database-archive name. The exclusion **holds**, and both blockers stay open for
+> the reason given.
+>
+> **Recorded although it survived**, on P07's rule (`REV-E-44`): a *negative
+> about the evidence base* needs the **same authority** as a negative about the
+> subject. P07 found the same class in its own population and its exclusion was
+> **false** — a database excluded as *"different product line"* that was the
+> declared generation all along. The dangerous property is shared regardless of
+> outcome: **an exclusion furnished with a stated reason stops the audit that
+> would have checked it.** Mine was right by luck of the naming convention, not
+> by verification, and a reader could not have told the difference.
+>
+> Class: **FACT VERIFIED (negative)** — *"no archive under `~/Downloads` or the
+> SMEsPlus tree has internal database name `idemo18_uat`"*, seven archives read.
+
+> **P04-F-89.** **This package published two integrity records and let them
+> disagree.** `SHA256SUMS.txt` and the manifest's own per-file hash table were in
+> agreement at `abf265c`, `b27040e` and `c57d846`, and **disagreed on 6 of 20
+> files at `985840e`** — the commit whose message reports three checks run and
+> clean. The sums file was regenerated; the manifest table was not.
+>
+> The three checks that ran were **identifiers, table structure and Layer-1
+> scrub**. None of them has the unit *"the integrity record agrees with the
+> files it describes"*, so all three passed. **The document asserting that the
+> package is intact was the document that was wrong**, and it was wrong for
+> exactly one commit — long enough to publish.
+>
+> Consequence adopted: the pre-commit sweep is **four checks with disjoint
+> units** — identifiers, per-table structure, **manifest-hash agreement**, and
+> the Layer-1 scrub — plus register counts executed rather than typed. Adopted
+> in the same form from P07, which reached four checks from the other direction.
+>
+> Class: **FACT VERIFIED**, reproduced against git history at four commits.
 >
 > Class: **FACT VERIFIED**, bounded to the four v19 identities named.
 > **Available only once the halves were separated**: while they shared a
