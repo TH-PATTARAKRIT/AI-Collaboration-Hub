@@ -205,7 +205,7 @@ it; it made no claim at all about peer branches and, when the question arose, fe
 
 | Not performed | Consequence |
 |---|---|
-| Any query against a live or dump database — `ASSUMED`, **not tested**. No attempt was made to locate a readable dump for the declared source set; the programme has a recorded instance of exactly this claim being false. | No finding in this package is a runtime observation. All are source-derived. Recorded as `U-02`, and the untested status of the incapacity is itself now part of that record. |
+| ~~Any query against a live or dump database~~ — **TESTED, AND THE CLAIM WAS FALSE.** A 65 MB PostgreSQL dump of the declared generation sits inside this register's own PATH SET, at `01 ACCOUNT/SOURCE CODE/iTEST02_2026-06-14_14-41-19.dump`, and was printed by a directory listing this session ran in its first minutes. | **Superseded by `22_P07_RUNTIME_EVIDENCE.md`.** Five findings are now runtime-verified and one refined. `U-02` no longer bounds them. Struck rather than deleted, per obligation 5c. `REV-E-24`. |
 | Any determination of which addon copy is deployed | Findings bind to the declared source set only. Recorded as `U-01`. |
 | Any execution of the reference ERP | No behavioural confirmation of the ORM-decorator observations (`P07-F-27`). |
 | Any Jira transition or issue creation — `TESTED`. The connectors are present and unauthorised, and cannot be authorised from a non-interactive session. | Jira lineage is stated as required-and-not-yet-created in `18_P07_PMO.md` §6. |

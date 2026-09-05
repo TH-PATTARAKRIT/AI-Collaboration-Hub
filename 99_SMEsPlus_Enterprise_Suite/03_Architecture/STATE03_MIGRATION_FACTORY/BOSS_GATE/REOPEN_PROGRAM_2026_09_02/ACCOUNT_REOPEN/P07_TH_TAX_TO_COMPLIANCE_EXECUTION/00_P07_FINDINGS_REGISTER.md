@@ -27,13 +27,13 @@ entry carries its post-challenge state, not its draft state.
 | `INF` | Inference with a complete mechanism but one unverified link |
 | `MEAS` | Measured by enumeration over a declared population |
 
-No finding in this package is runtime-observed. No database was queried (`13 §7`).
+**Superseded at r-final.** Findings `P07-F-01`, `-F-03`, `-F-37`, `-F-40`, `-F-42` are now **runtime-verified** against a deployed database of the declared generation; `P07-F-51` is refined by it. See `22_P07_RUNTIME_EVIDENCE.md`, which also records that this session's own "no database was queried" boundary was false and concealed a dump inside its own declared PATH SET. All other findings remain source-derived.
 
 ## 2. Findings
 
 | ID | Severity | Statement | Evidence state | Where argued |
 |---|---|---|---|---|
-| `P07-F-01` | `S1` | The two SMEsPlus statutory VAT registers admit a row only if the raw stored value of the tax group's name equals the dict `{'en_US': 'VAT 7%'}`. Because that name is a translatable field, installing Thai adds a second entry and the equality fails for **every** row, so both registers return no data at all, silently. | `SRC-CHAL` (two reviewers, independently) | `02 §5.1` |
+| `P07-F-01` | `S1` | The two SMEsPlus statutory VAT registers admit a row only if the raw stored value of the tax group's name equals the dict `{'en_US': 'VAT 7%'}`. Because that name is a translatable field, installing Thai adds a second entry and the equality fails for **every** row, so both registers return no data at all, silently. | **VERIFIED against a deployed database** — `22 §4.1` | `02 §5.1`, `22 §4.1` |
 | `P07-F-02` | `S1` | Tax-period membership is selected by the accounting date. A tax-point field exists and is displayed on the register; the predecessor implementation substituted it into the period predicate and that substitution was removed in the v19 migration. | `SRC-CHAL` (diffed independently) | `04 §4` |
 | `P07-F-03` | `S2` | The line-level tax-period field is written only in `create`, never on `write`, and no report, compute, domain or SQL reads it; its sole reader is a hidden list column. | `SRC-CHAL` | `04 §3` |
 | `P07-F-04` | `S1` | All three SQL sites of the SMEsPlus registers inner-join the partner, dropping partnerless supplies — which is the abbreviated tax invoice case the statute provides for and the vendor report explicitly handles. | `SRC-CHAL` | `01 R-V-14` |
@@ -63,7 +63,7 @@ No finding in this package is runtime-observed. No database was queried (`13 §7
 | `P07-F-39` | `S2` | The cross-company tax-unit mechanism the Thai registers opt into carries no tenant constraint of its own, and two of its operations walk an unbounded company search. | `SRC` | `20 §6` row 19 |
 | `P07-F-40` | `S1` | The statutory monthly VAT period is asserted nowhere by the Thai localisation; the effective period comes from a company-level setting with seven values whose platform default happens to be monthly, and that same setting governs the look-back of the excess-input-VAT carry-forward. | `SRC` | `01 R-V-24` |
 | `P07-F-41` | `S3` | The `Tax Name` column of the two main registers is structurally empty, because it is read from the tax line rather than the base line. | `SRC` | `07 §5A` |
-| `P07-F-42` | `S1` | Zero-rated and exempt VAT taxes resolve at template load into the tax group `WHT 1%` and therefore settle against the **withholding** control accounts. Seven-step chain traced; posting-path consequence, not only reporting. | `INF` (complete chain, one load-order link unexecuted) — reached independently by two reviewers | `06 §3A` |
+| `P07-F-42` | `S1` | Zero-rated and exempt VAT taxes resolve at template load into the tax group `WHT 1%` and therefore settle against the **withholding** control accounts. Seven-step chain traced; posting-path consequence, not only reporting. | **VERIFIED against a deployed database** — `22 §4.2`; `P07-U-20` CLOSED | `06 §3A`, `22 §4.2` |
 | `P07-F-43` | `S3` | In all four SMEsPlus handlers `return res` sits outside the column-group loop, so with more than one column group only the last group's rows survive. Pre-existing, not a migration regression. | `SRC` | `07 §5A` |
 | `P07-F-44` | `S3` | Dead and duplicated code in the migrated handler: an unused second query build, an unused tax-detail query, and parameters passed for placeholders that do not occur. | `SRC` | `07 §5A` |
 | `P07-F-45` | `S3` | Sign asymmetry between row and total in the sale-zero handler; inert only because the tax amount is pinned to zero by the row predicate. | `SRC` | `07 §5A` |

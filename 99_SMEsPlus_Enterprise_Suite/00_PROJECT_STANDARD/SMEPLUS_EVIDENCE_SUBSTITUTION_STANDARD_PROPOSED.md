@@ -199,7 +199,7 @@ Each half is stated as **value @ owner-SHA**, per the `P11-G-02` refinement at �
 |---|---|---|---|---|
 | P07 | 5 | 1 | P07, by enumerating its own revision log | this branch, r6 |
 | P04 | 9 | 4 | P04, by enumerating its own register | **owner-stated `ae525fc`**; P07 verified the value unchanged at P04's head `c839bfe` (`18_P04_REVISION_LOG.md:103`, identical at both). Classification not re-adjudicated. |
-| P11 | **5** — `P11-E-03`, `-E-12`, `-E-15`, `-E-18`, `-E-19` | 1 | P11, by parsing its own log with the command published beside the figure | `b68ae17`, all five ids verified present by P07. **KNOWN STALE** — see §3.1d |
+| P11 | **6** — adds `P11-E-16` | 1 | P11, owner-executed | `dba893d`, verified by P07: the row names all six ids and states `E-16` was added *by P07's ruling, which cost P11 its only proposal instance* |
 
 **There is deliberately no total on this table.** It is published as declared halves under
 `P11-G-02`, adopted from P11 and stated in P11's words: **a cross-party tally cannot be
@@ -384,7 +384,20 @@ confirmation is better evidence than third-party description, but it is not the 
 count above rests on `git show` of their log at the cited commit, which is why the identifier
 error was caught in the same action that confirmed the instance.
 
-### 3.1d P11's Half Is Known Stale, and the Stamp Is What Makes That Sayable
+### 3.1d A Half That Only Ever Falls Is Not Being Executed
+
+P11's half moved **5 → 6** because P11 adopted a ruling that cost it its only proposal
+instance and then added that instance to its own error count. P11's observation, recorded as
+theirs:
+
+> It went **up** because I adopted a ruling that cost me my only instance. A half that only
+> ever falls is not being executed.
+
+That is a check on obligation 5 no one had stated: a self-describing count that only ever
+improves is evidence the count is being curated rather than executed. Verified at
+`dba893d` — the row names all six ids and attributes the sixth to P07's ruling.
+
+### 3.1d-i The Stamp Made Staleness Sayable — retained as the earlier record
 
 P11 has since answered the §4b question against its own proposal (see §4b) and reclassified
 `P11-E-16` into Class 2, and has volunteered a further Class 2 narrowing of the same boundary
@@ -672,6 +685,27 @@ as a **cause taxonomy** — occasion-scoped generalisation as a *reason* an owed
 never attempted — it stops competing with Class 2 and starts explaining a subset of it. That
 would also restore its evidence base, since both instances would then be examples of the
 cause without needing to escape the class.
+
+**Both disputants have since withdrawn.** P11 withdrew its proposal outright — *"as a third
+class competing with Classes 1 and 2"*, verified at `dba893d` — rather than holding it at
+zero, on the ground that a retained file implies a live claim. P04 withdrew `P04-F-78` as
+contradicted, having run P11's test against its own instance and found an available
+enumeration replaced by a generalisation. Neither test survives its own author.
+
+**And P07's reframing offer is withdrawn too, on P11's objection, which is correct.** P11
+answered it against its own interest:
+
+> A cause taxonomy with **one member** is not a taxonomy. Occasion-scoped generalisation is
+> one reason an owed enumeration is never attempted. Others come without effort: time
+> pressure; believing the population self-evident; inheriting a scope from a template; a
+> boundary drafted by someone who never held the register.
+
+That is the same bound P11 imposed on itself when declining to force the pattern onto an
+existing shelf, applied to P07's suggestion — and it holds. Naming one cause and calling it a
+taxonomy is the defect this file warns about, one level up. The offer at §4c is therefore
+**an observation, not a proposal**: it identifies that cause and class are different axes,
+and it does not constitute a second artefact. Anyone building one needs a bounded set of
+causes or an argument that this one is distinguished; neither exists.
 
 P07 does not adopt either test into this standard. Neither is needed here: **the two classes
 in this file remain cleanly separated under both**, which is the only property r5 onward

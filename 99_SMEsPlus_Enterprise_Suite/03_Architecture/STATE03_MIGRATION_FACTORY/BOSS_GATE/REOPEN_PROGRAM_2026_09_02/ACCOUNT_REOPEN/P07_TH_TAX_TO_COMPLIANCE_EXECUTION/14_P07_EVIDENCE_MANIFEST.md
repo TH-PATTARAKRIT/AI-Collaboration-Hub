@@ -19,7 +19,7 @@ Date: `2026-09-04`
 
 | File | Bytes | SHA-256 |
 |---|---|---|
-| `00_P07_FINDINGS_REGISTER.md` | 18181 | `6a25ad9c38dd2398418bf870a3c9de93bb8f9521cf54ba5524486fbe143a66a7` |
+| `00_P07_FINDINGS_REGISTER.md` | 18528 | `7c3d09d2d02a1983892879093e1bdab27b1046a7f0bbfe3260639f36140bdc8a` |
 | `01_P07_THAI_TAX_REQUIREMENT_REGISTER.md` | 23430 | `20ba6bb949bf7395785800f5438933d730167223cde374240a95076cf460f47d` |
 | `02_P07_VAT_EVENT_MODEL.md` | 14037 | `1f0a3536ca3fbdea7869176efd91cdc4ce11f4d604ddbb0cd0905e644e580ab1` |
 | `03_P07_WHT_EVENT_MODEL.md` | 22527 | `3530ded1a145af56216a9c2183702af73d15beac7a71189db66dc761911f0dee` |
@@ -32,14 +32,15 @@ Date: `2026-09-04`
 | `10_P07_CROSS_PROCESS_OWNERSHIP.md` | 7122 | `8a378fbb7b9fc1161e6ddd7aef766f14e58c375b97fcffebaa7f19c252b6a5f4` |
 | `11_P07_CONTRADICTION_REGISTER.md` | 16194 | `02e3c560ea1f1f097167e643a18c221eb9c21f98bd1ddf5fcca323a4107edc72` |
 | `12_P07_DEPENDENCY_REGISTER.md` | 13060 | `4686c8e13b1c9e21274de0dad0e7bcbcdfc734694c2173d3f709dca8008c99c9` |
-| `13_P07_SOURCE_LINK_REGISTER.md` | 16188 | `c36e8b078d35538ddbf67789ba5b447724c204b746c941b60fa14240b7d4df97` |
-| `15_P07_REVISION_LOG.md` | 24916 | `4b2f035ff47d08014da76cdeee777ec03f3fb592b89a66d422e1bc04f5d56d6d` |
+| `13_P07_SOURCE_LINK_REGISTER.md` | 16306 | `86b4c49807c9e6918675a1ad8cb786bdb12b0e2e8a144eb580ceb0abe044de22` |
+| `15_P07_REVISION_LOG.md` | 26046 | `aecb4d33ff8bb4152b704bef3e9eed909117c6033657d22dc7896d5e85338cda` |
 | `16_P07_AAS03_CHALLENGE.md` | 9989 | `064b64a398d9e17b0c095573f6ed4ae5527e3991c178f6f74c5df753a2d9a4ed` |
 | `17_P07_AAS_PLUS.md` | 7031 | `afdd8ec09a6c0e40f93c0c6eb15715e77da17e4d9d306f8aab37441cc92b15ae` |
 | `18_P07_PMO.md` | 9934 | `ecb08a9117fa9af7e33e81faf2dab9be6dd99fb8ef4925545573dc66c03ad1a1` |
 | `19_P07_CORE_RECON_HANDOFF_PACK.md` | 10831 | `fdd3ce6859f02dd8b99a2c04b362733050a907523a00307fa7a56f4230d16edc` |
 | `20_P07_SCOPE_OWNERSHIP_MATRIX.md` | 16170 | `67b13f2d43023f8c67ea7dc8454514aad9d0a159cf4c293493afaa26eb8a15b5` |
 | `21_P07_PEER_EVIDENCE_INTAKE_P04.md` | 14311 | `af5cc79985e4b3db176588156b6e2380e3df22e40d3f09947f5f1e3897ef7742` |
+| `22_P07_RUNTIME_EVIDENCE.md` | 9195 | `57cbd39b99aadead128733528e65e4bb479c2934041d6c99db89df5ae1d59ab6` |
 
 ## 3. Primary Evidence Sources Cited
 
@@ -51,8 +52,7 @@ Date: `2026-09-04`
 | Statutory instrument reporting | secondary, for the rate-reduction decree only | `S-35`, held at `U-04` |
 | Project governance | `bootstrap/AI_BOOTSTRAP_PACKAGE.md`; `99_SMEsPlus_Enterprise_Suite/00_Project_Governance/SMEPLUS_VERY_DEEP_RESEARCH_8_CRITERIA_UNIVERSAL_EXIT_CONSTITUTION.md`; `FR_DETAIL_TENANT_MANAGEMENT.md` | `13 §1`, `18 §2`, `P07-F-50` |
 
-**No database was queried. No code was executed.** Every behavioural statement in this
-package is source-derived; `U-02` applies package-wide.
+**Superseded.** A database of the declared generation **was** read, table-at-a-time and read-only, after this session's incapacity claim was tested and found false. See `22_P07_RUNTIME_EVIDENCE.md` §2 and §3. No code was executed. `U-02` no longer applies package-wide; it applies to every finding except those listed at `22 §5`.
 
 ## 4. Clean-Room Scrub Result
 
