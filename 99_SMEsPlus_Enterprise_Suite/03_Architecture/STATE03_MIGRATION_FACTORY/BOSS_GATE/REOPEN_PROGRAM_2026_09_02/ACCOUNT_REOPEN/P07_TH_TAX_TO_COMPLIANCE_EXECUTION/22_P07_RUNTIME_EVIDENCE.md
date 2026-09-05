@@ -3463,3 +3463,82 @@ not describing the defect — **a fourth instance rather than a fix.**
 
 **Both packages terminal. Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8
 exit criteria claimed, no blocker closed, no merge, no freeze.**
+
+
+---
+
+## 44. An Orphan Is a Defect Tolerated; a Retired Identifier Is a State Recorded — `P07-F-101`
+
+P04 applied this package's `RETIRED` class to its own sweep and it removed the **oldest standing
+exception** there: `P04-F-18` had been reported as *"undefined — intentional orphan"* for
+**sixty commits**, and it is not an orphan at all. It was **withdrawn** at a revision and
+deliberately left cited so the withdrawal stays visible.
+
+> **An orphan is a defect tolerated; a retired identifier is a state recorded** — and they
+> should never share a line in a check's output.
+
+Naming it correctly gave P04 its **first fully clean identifier result**. Its observation about
+why it had not seen it is the one worth transferring: *the exception had been in every run so
+long it had stopped being a result.*
+
+### 44.1 The same exception here, and it was two things filed as one
+
+This package's sweep silently subtracted **12** identifiers as *"not issued"*. Split under
+P04's distinction, they are **not one class**:
+
+| | count | what it is |
+|---|---:|---|
+| **`NEVER ISSUED`** | **1** | `P07-F-81` — no finding ever carried it. It exists **only** inside the two passages describing a false positive in the identifier check; documenting a spurious identifier creates a genuine citation of it. **An artefact of self-description.** |
+| **`RETIRED`** | **11** | `P07-F-08`, `-17`, `-22`…`-25`, `-28`, `-29`, `-31`, `-32`, `-33` — **allocated and used** during drafting, then merged into other findings or discarded as not defects. **Withdrawn states, not gaps.** |
+
+**`P07-F-100`'s `RETIRED` class was applied to families and not to identifiers**, which is the
+same partial application P04 made of it. Both are fixed now.
+
+**And a third disposition is better than either**, which the split makes visible: `P07-F-60` is
+a **withdrawal tombstone with a definition row**, so the identifier resolves and **no exception
+is needed at all**. Prefer that wherever the withdrawal is worth a row; an exception list is the
+fallback, not the standard.
+
+**The sweep now reports the states rather than subtracting them:** `UNDEFINED: NONE | declared
+states: 11 RETIRED, 1 NEVER ISSUED`. **A silently-subtracted exception is invisible; a reported
+one can be questioned** — which is what sixty commits of P04's output demonstrates.
+
+### 44.2 `P07-F-101` — and writing this section cited it before it existed
+
+Registering the split cited `P07-F-101` in the register text; the next sweep reported it
+undefined. **Fifth appearance of the self-description recursion here**, and the same one P04
+recorded when writing a finding cited its own identifier ahead of the paragraph.
+
+Resolved by registering the finding, which is the one case where **correction is the right
+move** — the identifier was going to exist; the citation merely preceded it. That distinguishes
+it from the four that cannot be corrected, and is worth stating because they look identical in
+the output.
+
+### 44.3 P04's fourth appearance, which is a different thing and settles the rule
+
+P04 then found the recursion at a level neither package had seen: its sweep reported **`A-H`
+unclassified**, because a sentence stating that a pattern *"was narrowed to `[A-H]`"* contains a
+**regex character class that parses as an identifier**.
+
+> **A register that describes its own checks will generate identifiers out of the notation those
+> checks are written in.**
+
+**This one quoted nothing.** The three before it quoted a bare identifier, a renamed one, and a
+defective row; this stated the *shape of a pattern*, and the shape is identifier-shaped.
+
+**That settles why the terminating move must be declaration rather than correction, and the
+reason is stronger than the one either package gave.** It is not that correcting is expensive or
+that it adds an instance. It is that **there is no version of the text that describes the check
+and contains nothing check-shaped.** `REV-M-86`.
+
+This package's derivation regex requires a terminal `-\d+`, so `[A-H]` cannot match it — **not
+foresight, a different notation**, and the general point stands unaffected by that accident.
+
+### 44.4 The close
+
+P04 accepts the symmetry correction, and states it better than this package did: **each of us
+can see the other's blind spot and not our own — that is the finding, not an accident of who ran
+what.**
+
+**Both packages terminal. Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8
+exit criteria claimed, no blocker closed, no merge, no freeze.**

@@ -120,6 +120,7 @@ entry carries its post-challenge state, not its draft state.
 | `P07-F-98` | `S3` | **The claim that every sweep counts its failures was verified, not repeated — and the audit found a different silent path.** The pre-commit sweep has **no exception handling at all**, so a read failure raises rather than being swallowed; that property holds. But it builds its file list from `os.listdir()` and **regenerates the manifest from that list**, so a **deleted deliverable** would vanish from both and report *"21 rows, stale: NONE"* — the row count was printed and never **asserted**. `REV-M-38` (*agreement between two records is not evidence that either is right*) **surviving the check written to enforce it**, because that check compared the manifest to the files and neither to the committed set. Fixed: **sweep unit `[0]` set integrity**, diffing the on-disk set against `git ls-tree HEAD` — current run **on disk 23, at HEAD 23, missing none, added none**. Sweep is now six units with disjoint targets. | own audit of an assertion made at `§40.2` | `22 §41` |
 | `P07-F-99` | `S2` | **An audit is not a control, and the firing control on unit `[0]` proved it.** Deleting one deliverable from a copy: unit `[0]` **fires and names it**, while units `[2]`–`[5]` all report **clean** and **35 `S-nn` citations dangle undetected** — the statutory sources behind every legal claim — because **`S` was audited once at `§20` and never added to the standing sweep** (which covered 8 families of the 26 audited). Unit `[1]` caught 3 orphans, one more than predicted; **the prediction is recorded as wrong.** Extending the sweep to all owned families produced **three false positives, all read before publication**: `W-K-07`/`-08` defined as **list items** (audit used 4 conventions, sweep used 1 — *the audit and the standing check had different predicates*); `REV-E-30`, **a regression introduced by that very fix**, the tightened row pattern rejecting `` \| `REV-E-30` (**restated by…**) \| ``; and `EC-01`…`-08`, **not this package's identifiers** — criteria of `SMEPLUS-DR-EXIT-8C-001`, inherited, with `§22.1` having classified the constitution as foreign and its criteria as owned. After all three: **33 families swept, 0 orphans**, sweep and audit on the same predicate. | own firing control | `22 §42` |
 | `P07-F-100` | `S3` | **The family set is now derived, not read from a literal — and the row registering the previous finding contained the defect it described.** Unit `[1a]`: **50 families present** against the `§22.1` census's 48, all classified, **0 unclassified, 0 declared-but-absent**. Two families the literals missed were declared residues read before classifying: **`D`**, five quotations of a retired identifier inside the record of its own retirement (`P07-F-82`), now a fifth class **`RETIRED`**; and **`HOLD`**, P04's prior-package ids quoted with attribution, arriving through this correspondence. Separately, `P07-F-99`'s own register row quoted a table row inside a table cell and its **unescaped pipes split it — 9 against a header of 7** — the `REV-E-43` defect **committed inside the row whose subject is that defect**, sixth instance in this thread and the first where the finding's *content* produced it. **Caught by a standing unit on the next run, not by re-reading.** | own, after P04 derived its own family set and found 6 unclassified | `22 §43` |
+| `P07-F-101` | `S3` | **An orphan is a defect tolerated; a retired identifier is a state recorded — and this package's sweep filed 12 of them as one.** Split under P04's distinction: **1 `NEVER ISSUED`** (`P07-F-81`, an artefact of self-description — no finding ever carried it) and **11 `RETIRED`** (`P07-F-08`, `-17`, `-22`…`-25`, `-28`, `-29`, `-31`…`-33`, allocated and used in drafting, then merged or discarded — **withdrawn states, not gaps**). `P07-F-100`'s `RETIRED` class had been applied to **families and not identifiers**, the same partial application P04 made. The sweep now **reports** both states instead of subtracting them: *UNDEFINED: NONE \| 11 RETIRED, 1 NEVER ISSUED* — **a silently-subtracted exception is invisible; a reported one can be questioned**, which sixty commits of P04's *"intentional orphan"* line demonstrates. Third disposition noted as best where available: `P07-F-60`'s **withdrawal tombstone with a definition row** needs no exception at all. | P04, applying this package's `RETIRED` class to its own oldest standing exception | `22 §44` |
 | `P07-F-57` | `S3` | Latent index error in the withholding candidate filter: it indexes the first tag of the first repartition line while guarding only on the union of tags. Latent because the shipped chart tags base lines. | `SRC-CHAL` | `03 §4 W-K-03` |
 
 `P07-F-58` and `P07-F-59` were added after intake of peer evidence from P04 and independent
@@ -176,14 +177,24 @@ collects `P07-F-<n>` across all 23 files, and diffs the sets. `P07-F-08` is expe
 output and excluded by the not-issued list below: an identifier never issued is not an orphan,
 but the check cannot know that, so the exclusion is **declared here rather than coded**.
 
-**Identifiers not issued:** `P07-F-81` — never issued; it appears in this package **only**
+**Identifiers with a declared state — two kinds, and they were filed as one until `P07-F-101`.**
+P04's distinction: **an orphan is a defect tolerated; a retired identifier is a state recorded**,
+and they should never share a line in a check's output.
+
+**`NEVER ISSUED` — 1.** `P07-F-81`. No finding ever carried it. It exists in this package **only**
 inside `15 REV-E-64` and `22 §19.3`, which describe a false positive in the identifier check
-itself. Documenting a spurious identifier creates a genuine citation of it, so the check
-reports it forever unless it is declared here. `P07-F-08`, `-17`, `-22`…`-25`, `-28`, `-29`, `-31`, `-32`,
-`-33`. These numbers were consumed during drafting by observations that were merged into
-other findings or discarded as not defects (see `15 §4` `REV-E-05`, `REV-E-06`, `REV-E-08`).
-They are recorded as not issued so that a gap in the sequence is not mistaken for a lost
-finding.
+itself — documenting a spurious identifier creates a genuine citation of it. An artefact of
+self-description, not a withdrawn finding.
+
+**`RETIRED` — 11.** `P07-F-08`, `-17`, `-22`…`-25`, `-28`, `-29`, `-31`, `-32`, `-33`. These were
+**allocated and used** during drafting, then merged into other findings or discarded as not
+defects (`15 §4` `REV-E-05`, `REV-E-06`, `REV-E-08`). **They are withdrawn states, not gaps** —
+recorded so that a gap in the sequence is not mistaken for a lost finding, and now recorded
+under the class that says which of the two it is.
+
+**`P07-F-60` is neither**: it is a **withdrawal tombstone with a definition row**, so the
+identifier resolves and no exception is needed. That is the strongest of the three dispositions
+and the one to prefer where the finding is worth a row.
 
 ## 3. Distribution
 
