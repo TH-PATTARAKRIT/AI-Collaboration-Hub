@@ -84,8 +84,10 @@ Full lineage in `P01_RESEARCH_ERROR_AND_REVISION_LOG.md`, `ERR-P01-24` … `ERR-
 7. **Measure write access to `property_valuation` in company 1** — `ir_model_access`, `ir_rule`,
    `res_groups_users_rel`. Turns a capability into an exposure, or retires it.
 
-**Method, non-negotiable after this round:** run every enumeration at **two widths and two units**,
-and reconcile. Declare the path set **as a set**, never as a description. *"Full-volume"*,
+**Method, non-negotiable after this round:** run every enumeration at **two widths, two units and
+two probe forms**, and reconcile. A bounded probe returning empty is an **unfinished measurement**,
+not a negative — established three times over, including once inside this round's own verification
+of someone else's correction. Declare the path set **as a set**, never as a description. *"Full-volume"*,
 *"this host"* and *"everywhere"* are descriptions, and each one of them produced a published
 falsehood in this programme.
 
@@ -119,6 +121,7 @@ falsehood in this programme.
 | `S18-B-03` | The P01 source path set does not contain the deployment's custom code | **OPEN** — re-declaring it changes the evidence base of five published rounds; **raised, not done unilaterally** |
 | `S18-B-04` | Estate population open — ≥ 8 identities across ≥ 27 artefacts, no total | **OPEN** |
 | `S18-B-05` | Method-level override unverifiable across 56 non-core modules | **OPEN, and now closable** — see §4 items 1–2 |
+| `S18-B-07` | Series-16 **core** behaviour unread | **OPEN — and no longer an external dependency.** The core is on this host (`ERR-P01-41`); the blocker changes from *unobtainable* to *unread* |
 | `S18-B-06` | `om_data_remove` installed; raw-SQL deletion bounds every count | **OPEN** — flagged to **P06**, not re-derived here |
 | — | Runtime execution of the seven priority edge cases | **HOLD — RUNTIME WRITE AUTHORIZATION REQUIRED** |
 | — | Thai WHT / PND statutory basis | **HOLD — STATUTORY EVIDENCE REQUIRED** → P07 |
