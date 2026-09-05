@@ -159,3 +159,52 @@ Added by `[SMEPLUS-26-09-04-ACC-P06-B2R-TARGETED-EVIDENCE-CLOSURE-001]`. The bod
 | **C-01** | **evidence strengthened** — `25_` §3 states positively what `is_matched` means (a residual-exhaustion flag), rather than only that its label is wrong. |
 
 **No contradiction was withdrawn.**
+
+---
+
+# APPENDIX C — SUPPLEMENTAL CRITICAL-RISK ROUND (2026-09-05)
+
+## C.1 New Type I contradictions
+
+| ID | Contradiction | Evidence A | Evidence B | Severity |
+|---|---|---|---|---|
+| **C-35** | A module whose menu is restricted to system administrators exposes its destructive methods to **any authenticated user** over RPC | `views/view.xml:113-119` `groups="base.group_system"` | route `auth="user"`; `get_public_method` blocks only private methods; `call_kw` no access check | **HIGH** |
+| **C-36** | The strictest model ACL in the system sits on `res.config.settings` and **protects nothing on this path** | `base/security/ir.model.access.csv:129` `base.group_system`, `unlink=0` | `remove_data` performs no ORM operation on its own model | **HIGH** |
+| **C-37** | One method applies company scoping to its sequence reset and its auxiliary updates, and **none to its table deletes** | `model.py:180-188`, `:216-220` company-filtered | `model.py:24-27` `delete from <table>` unfiltered | **HIGH** |
+| **C-38** | The older copy of the module **raises** on a delete error; the newer copies **swallow** it | `$CUST14/…/model.py:33,44` `ValidationError` | `$CUST18/…/model.py:29` `_logger.warning` | MEDIUM |
+| **C-39** | Deleting reconciliation parts leaves reconciliation **heads** intact and orphaned | `account_partial_reconcile.py:20-22` SET NULL, partial→full | `account_full_reconcile.py:9-10` One2many, no DB column | **HIGH** |
+| **C-40** | The module resets sequences that **do not number journal entries in v18**, while the renumbering it causes comes from emptying the table the numbering reads | `model.py:186-193` v12/v13 prefixes | `sequence_mixin.py:267-300`; `ir.sequence` 4 hits in `$V18E/account`, none journal numbering | **HIGH** |
+| **C-41** | The audit trail of a rejection is a chatter entry, and the same tool deletes chatter | `account_payment.py:38-51` `tracking=True` | `remove_message` + `mail_tracking_value` cascade | **HIGH** |
+
+**Type I total: 34 → 41, of which 28 HIGH.**
+
+## C.2 New Type II — documentation versus behaviour
+
+| ID | Where | Says | Does |
+|---|---|---|---|
+| **D-10** | `om_data_remove/__manifest__.py` | *"Data Clean up … Reset Database"*, category **Tools** | deletes posted financial history and the audit trail with no authorisation |
+| **D-11** | three copies' `name` | **`SMEsPlus Remove Data`** | `author` remains `Odoo Mates, Sunpop.cn` — rebranded, not authored |
+
+**Type II total: 9 → 11.**
+
+## C.3 New Type III
+
+| ID | Contradiction | Resolution |
+|---|---|---|
+| **T-12** | `25_` said three `is_matched` branches; `35_` said four; P02 said four | **RESOLVED** — source re-execution: four top-level branches, five assignment sites. REV-E-11. Finding **strengthened** |
+| **T-13** | Round 3: the v18 tree is a *filtered* build | **RESOLVED** — it is **relocated**, not filtered; `addons_archive` holds 961 dirs excluded by the project's own config. REV-E-16 |
+| **T-14** | Round 3: bytecode shows three copies were imported locally | **RESOLVED — WITHDRAWN.** PEP-552 headers show 2022/2024 embedded mtimes: vendor residue. REV-E-15 |
+| **T-15** | Round 3: P05 supplied an *eighth* settlement door | **RESOLVED — WITHDRAWN.** P05 counts 7 and had already counted it. REV-E-12 |
+| **T-16** | `B-50` is CRITICAL, yet may not apply to the target | **NOT RESOLVED** — severity marked **conditional**; reachability held at R5. `DIS-14` |
+
+**Type III total: 12 → 17.**
+
+## C.4 Status changes
+
+| ID | Change |
+|---|---|
+| `C-29` | **strengthened** — P02 `SF-06` and P08 `PC-06` independently reach the same company-boundary consequence |
+| `C-01` | **strengthened** — five assignment sites, three of which assert a match with no statement |
+| — | **`P06-XC-01` reconciled** as `BOTH PARTIAL / CONFIGURATION-DEPENDENT`, routed to P11 as candidate `P11-C-08` |
+
+**No contradiction withdrawn. Four Type III items resolved by withdrawing P06's own prior claims.**

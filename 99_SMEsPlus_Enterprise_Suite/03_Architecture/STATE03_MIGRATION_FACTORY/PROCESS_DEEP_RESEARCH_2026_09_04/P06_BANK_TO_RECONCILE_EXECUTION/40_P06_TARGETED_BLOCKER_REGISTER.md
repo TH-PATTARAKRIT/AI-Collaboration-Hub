@@ -174,3 +174,42 @@ Assessed as directed. **Two candidates, and only one qualifies.**
 ---
 
 # End
+
+---
+
+# APPENDIX A — SUPPLEMENTAL ROUND (2026-09-05)
+
+## A.1 New blockers
+
+| ID | Blocker | Severity | Disposition |
+|---|---|---|---|
+| `P06-B-56` | `DELETE FROM account_account` exists in the **reference** merge wizard (`account/wizard/account_merge_wizard.py:194-201`). P08's finding, cited not re-derived | MEDIUM | **HOLD — SOURCE EVIDENCE REQUIRED** |
+| `P06-B-57` | **The settlement event has no date of its own.** P08 inbound `XP-05`; P07 `X-07` needs the same fact. Accepted by P06 | **HIGH** | **HOLD — DESIGN DECISION REQUIRED** |
+| `P06-B-58` | **The package's own correction rate is a reliance risk.** 16 author errors, 12 caught externally, 4 overturning published conclusions in one round | INFORMATIONAL | **HOLD — INDEPENDENT AUDIT REQUIRED** |
+
+## A.2 Status changes
+
+| ID | Change |
+|---|---|
+| `B-50` | reachability **SOURCE-REACHABLE → REACHABLE, DEPLOYMENT VERIFIED** on a v19 database not confirmed to be the target; severity **CRITICAL, marked conditional**; copy population **4 → 17** |
+| `B-44` | severity **HIGH → MEDIUM** — six findings re-tested cross-version; the research-invalidation risk is retired, the relevance question is not |
+| `B-55` | **substantially corrected** — the tree is **relocated**, not filtered; loadable 791, full v18 1752; archive searched |
+| `B-53` | **restated** — inherited from P05, which counted it; "eighth door" withdrawn; severity **LOW to P06** |
+| `B-22` | unchanged, **Class A retained** |
+| `B-12` | **worsened** — P08 `JPM-28`: on a default installation a forced deletion leaves no record at all |
+| `B-17`, `B-34`, `B-35` | **survive the enlarged 1752-module population**; `B-17`'s wording narrowed |
+| `F-06`, `F-17` | **RESOLVED — claimed by P08** |
+| `F-15` | **still open — P08 disclaims it back to P06; no process now owns it** |
+| `B-46` | **still open** — P08 supplies mechanism and remedy, closes nothing |
+| `B-41` | **CLOSED** — severity model delivered (`46_`, `47_`) |
+
+## A.3 Population at supplemental close
+
+| Unit | Baseline | Now |
+|---|---|---|
+| Blockers `P06-B-*` | 55 | **58** |
+| — CLOSED | 7 | **8** (`B-41` added) |
+| — open | 48 | **50** |
+| Severity | unranked | **6 CRITICAL · 17 HIGH · 20 MEDIUM · 3 LOW · 7 INFORMATIONAL · 2 UNRANKED** (baseline 55) |
+
+**Counts executed at close.** The three new blockers are severity-assigned above; the 55-blocker distribution in `46_` is the baseline population and is not retro-fitted.

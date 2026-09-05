@@ -51,16 +51,21 @@ The prompt requires these determined separately. They are listed with what the r
 
 The prompt requires: *test whether `is_matched=True` can exist without a statement; if yes, determine exactly what the flag means, not what its label implies.*
 
-**Test performed:** static trace of every assignment to `is_matched` in `$V18E/account/models/account_payment.py:436-455`. Three branches, quoted in full in PSM-F-04.
+**Test performed:** static trace of **every** assignment to `is_matched` in `$V18E/account/models/account_payment.py:433-455`, re-executed at the supplemental round with the source printed line-by-line.
 
-| Branch | Condition | `is_matched` | Statement required? |
-|---|---|---|---|
-| A | `not pay.outstanding_account_id` | `= pay.state == 'paid'` | **no — copied from S1** |
-| B | `pay.currency_id.is_zero(pay.amount)` | `= True` | **no — zero amount** |
-| C | `journal.default_account_id in liquidity_lines.account_id` | `= True` | **no — configuration** |
-| D | otherwise | `= currency.is_zero(sum(liquidity residual))` | **yes, indirectly** |
+**Structure: FOUR top-level branches (`:436`, `:439`, `:442`, `:445`), the fourth splitting into two — FIVE assignment sites in total.**
 
-**ANSWER: YES. `is_matched = True` can exist with no bank statement, by three independent routes.** Only branch D reflects an actual bank match, and even then it reflects *liquidity-line reconciliation*, which a manual journal entry can also produce.
+| Site | Line | Condition | `is_matched` | Statement required? |
+|---|---|---|---|---|
+| 1 | `:438` | `not pay.outstanding_account_id` | `= pay.state == 'paid'` | **no — circular, copied from S1** |
+| 2 | `:441` | `not currency_id or not id or not move_id` | `= False` | n/a |
+| 3 | `:444` | `currency_id.is_zero(pay.amount)` | `= True` **unconditionally** | **no — zero amount** |
+| 4 | `:450` | `journal.default_account_id in liquidity_lines.account_id` | `= True` **unconditionally** | **no — configuration** |
+| 5 | `:452` | otherwise | `= currency.is_zero(sum(liquidity residual))` | **yes, indirectly** |
+
+**ANSWER: YES.** Of five assignment sites, **two set `is_matched = True` unconditionally with no bank statement in existence** (sites 3 and 4), **one sets it circularly from the payment's own state** (site 1), one always sets False, and **only site 5 tests anything resembling a bank match** — and even that tests *liquidity-line reconciliation*, which a manual journal entry can also produce.
+
+> **CORRECTION (REV-E-11).** An earlier state of this table listed **three** branches and silently omitted `:439-441`. The correct structure is four branches / five assignment sites, and P02 independently published "four branches" over the wider range `:428-456`. The undercount was found when a peer's citation was compared against this package's own. **The finding is unchanged in direction and stronger in degree** — five sites, of which three can assert a match with no statement.
 
 **What the flag actually means, stated without reference to its label:**
 

@@ -172,3 +172,45 @@ A standard Odoo 18 ships localisation packs for roughly ninety jurisdictions. **
 | NC-10 | **A complete Odoo 18 distribution** | **NEW** — needed to test whether the filtered build omits a relevant capability; `P06-OQ-94` |
 | NC-11 | **The business's actual handling of bank charges and post-dated cheques** | **NEW** — needed to distinguish a platform gap from an off-system convention; `P06-OQ-95` |
 | NC-03/04 | Thai bank specifications; Thai statutory sources | **unchanged — HOLD** |
+
+---
+
+# APPENDIX C — SOURCES ADDED BY THE SUPPLEMENTAL ROUND (2026-09-05)
+
+## S-12 — Reference ERP **v19** Enterprise source tree
+`/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/SMEsPlus19/odoo-19.0+e.20260312`
+`version_info = (19, 0, 0, FINAL, 0, '')`, `version += '+e-20260312'`. **1422 addon directories, 514 `l10n_*`.**
+Used to test cross-version invariance of six core P06 findings — **all six invariant** (`51_`). Further v19 trees exist at `CLAUDE AI/SMEsPlus/SMEsPlus19/…odoo-19.0+e.20260417` and `…SMEsPlus_19.0.20260418`; **not analysed** (`OQ-105`).
+
+## S-13 — The v18 addons **archive** — the correction to S-01's boundary
+`/Volumes/iMacSys/CLAUDE AI/SMEsPlus18/odoo-18.0+e.20250608/odoo/addons_archive` — **961 directories, 904 `l10n_*`.**
+Excluded from the live `addons_path` by the project's own `odoo.conf:14`. **`l10n_th` and `l10n_th_reports` are NOT here** — deliberately promoted to the live path.
+**S-01's population is therefore the LOADABLE set (791). The full v18 distribution is 1752.** Searched this round for fee and returned-item concepts — one field hit (`commission_amount` in an archived marketplace connector), no bank-fee and no returned-item concept.
+
+## S-14 — Odoo database backup, `iEVING`
+`/Volumes/iMacSys/95_BHPRO_PROJECT/DOCUMENT/iEVING_2026-03-31_06-48-41/` — `dump.sql` (62,458,228 B), `manifest.json`, `filestore/`.
+`db_name: iEVING` · `version: 19.0+e` · 216 modules · **`modules["om_data_remove"] == "19.0.1.1"`**; `dump.sql:155063` records the module `installed`.
+**The only Odoo backup on the volume.** **It is a BHPRO-programme database, NOT the SMEsPlus target.**
+
+## S-15 — `om_data_remove_fix`
+`/Volumes/iMacSys/CLAUDE AI/SMEsPlus18/odoo-18.0+e.20250608/odoo/addons/om_data_remove_fix/` — **inside the V18E addons root.** Manifest states `om_data_remove` *"uses **raw SQL** (`DELETE FROM <table>`)"* and quotes a resulting error. Bytecode shows genuine local compilation, CPython 3.10, 2026-05-27.
+**First-party evidence that the destructive path was exercised — `SUPPORTED INTERPRETATION`, not a log.**
+
+## S-16 — Deployment configuration files
+Four exist on the volume; **none places any `om_data_remove` copy on an `addons_path`**. `CLAUDE AI/SMEsPlus18/odoo.conf` is an authored template with container paths; `MIGRATION/SMEsPlus19/96_combined/odoo.conf` is a v19 layout. **No `*.service` unit — NOT FOUND.**
+
+## S-17 — `om_data_remove` copy census
+`find /Volumes/iMacSys -type d -name "om_data_remove"` → **17 directories**, four Odoo generations, **7 at `19.0.1.x`**, **3 rebranded `SMEsPlus Remove Data`**.
+**Supersedes the four-root denominator (REV-E-13).**
+
+---
+
+## Sources still NOT consulted, updated
+
+| Ref | Source | Status |
+|---|---|---|
+| NC-01 | A live database connection | **unchanged** |
+| NC-09 | The **SMEsPlus target** module registry | **still the decisive missing artefact** |
+| NC-12 | **`iEVING` dump queried for damage** | **NEW — the highest-value unrun query** (`OQ-112`) |
+| NC-13 | v19 re-derivation of the FK, sequence and numbering analyses | **NEW** (`OQ-116`, `OQ-117`) |
+| NC-14 | `ir_logging` / `odoo.log` / journald | **NEW** — no execution proof located (`OQ-114`) |
