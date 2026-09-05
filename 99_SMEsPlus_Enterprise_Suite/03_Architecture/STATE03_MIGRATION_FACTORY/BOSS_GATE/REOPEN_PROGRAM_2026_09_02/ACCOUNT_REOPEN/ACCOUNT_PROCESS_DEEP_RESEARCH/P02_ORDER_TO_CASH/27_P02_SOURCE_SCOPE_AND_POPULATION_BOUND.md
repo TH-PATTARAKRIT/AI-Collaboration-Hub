@@ -240,3 +240,73 @@ the remaining source negatives in `01`–`11` should be read.
 | P04's "survives its own audit" observation | **Adopted** — §9.4. |
 | P04's census, and P07's | **Not adopted.** Unchanged position. |
 | P04's analytic-cancellation finding | **Not adopted and not assessed** — it is P04's domain, and P02 has no basis to evaluate it. |
+
+---
+
+## 10. Instrument Controls Run Against P02's Own Negatives
+
+A third peer exchange reported two **instrument** failures rather than reasoning failures — a tree-hash
+comparison that returned *"42 identical copies"* because shell **word-splitting on paths containing
+spaces** had sent it to directories that do not exist, and a clean-room scrub whose hits were the substring
+`ast` inside ordinary English words.
+
+**Both classes apply directly to P02**, whose evidence roots are
+`/Volumes/iMacSys/CLAUDE AI/…` and whose package sits under `…/SMEsPlus ENTERPRISE SUITE/…` — **paths full
+of spaces** — and whose Layer-1 clearance rests on a scrubber that has only ever reported **zero**. Both
+were tested.
+
+### 10.1 Word-splitting — does not apply here, and the reason matters for anyone re-running this
+
+**`FACT VERIFIED` — SC-13.** This host's shell is **zsh**, which does **not** word-split unquoted parameter
+expansions. Tested directly: a directory named with a space, expanded unquoted, yields **one** argument,
+not two, and an unquoted search over it returns the same result as a quoted one.
+
+**P02's negatives are therefore not void from this cause.**
+
+**But the portability caveat is real and is recorded for the next reader:** **bash *does* word-split.**
+Every command in this package that expands a spaced path unquoted is **safe as executed and unsafe if
+re-run under bash** — where it would search nothing and return a zero indistinguishable from a true
+absence. **Any re-derivation of a P02 negative must either quote every path or state the shell.**
+
+> P04's formulation is the one to keep: **an empty result and a unanimous result are the same shape.**
+> A search that reached nothing and a search that found nothing are indistinguishable in the output, and
+> only a positive control separates them.
+
+### 10.2 The Layer-1 clean-room scrubber — now positively controlled
+
+`14` §5 and every commit since have reported the Layer-1 handoff as carrying **zero** vendor tokens. That
+zero had never been shown to be capable of being non-zero.
+
+**`FACT VERIFIED` — SC-14.** Run on the real file, the scrubber returns **0**. Append **one** line
+containing three vendor tokens to a copy of the same file and the same scrubber returns **1**.
+
+**The scrubber fires when a token is present.** The Layer-1 clearance is now instrument-controlled rather
+than asserted.
+
+### 10.3 The v19 structural absence — now two-sided
+
+The package's most load-bearing source claim is that the valuation-layer model **does not exist in v19**.
+It carried one control. It now carries two, both re-run:
+
+| Query | Result |
+|---|---|
+| the model name, in **v19** | **0** |
+| the model name, in **v18** — same command, same quoting | **1** — *the pattern can match* |
+| a model that must exist, in **v19** — same root | **1** — *the root is searchable* |
+
+**Neither a dead pattern nor an unreachable root can produce this shape.** The absence stands.
+
+## 11. How The Discriminating Set Came To Exist
+
+Worth recording because it is not a property of either party's method.
+
+The four-identity set that finally controlled P02's headline — never-transacted; gate **on** with valuation
+**off**; gate **off** with valuation **on**; and a high-volume prior generation — **was assembled by
+neither session.** Two of its three v18 members reached P02 because a peer corrected P02's population,
+**after** P02 had corrected that peer's.
+
+**`SUPPORTED INTERPRETATION`.** It is the residue of **reciprocal correction**, not of either denominator
+discipline. Both sessions independently declared POPULATION, PATTERN and UNIT and both left PATH SET
+unvalidated; each found the other's gap and neither found its own. **That is an argument for the exchange
+being a control in its own right** — and it belongs in the method record rather than being claimed as a
+result of P02's process, which did not produce it.
