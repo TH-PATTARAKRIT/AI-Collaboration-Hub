@@ -85,6 +85,19 @@ All Thai names encountered anywhere are **candidate / UNVALIDATED**; none is tra
 
 P09 does not stop for any of these and does not adjudicate against another process's determination.
 
+## 6A. CONTINUATION ADDENDUM — ANALYTIC ECONOMIC INTEGRITY
+
+The `AI_ANALYTIC_ECONOMIC_INTEGRITY/` continuation adds four cross-process items to this register. Full detail in `AI10_P09_PEER_HANDOFF_MATRIX`.
+
+| ID | Handed to | Item |
+|---|---|---|
+| **CP-A1** | **P10 Time-Based Recognition** | the cut-off / change-period accrual wizard allocates **both** legs of a mirrored pair, so the attribution nets to zero. **Routing question raised and left open:** whether this is a P09 finding or a P10 finding — P09 records it and does not claim it |
+| **CP-A2** | **P07 TH Tax Compliance** | the cash-basis tax entry builds its counterpart on the **same account** with the same allocation, so the attribution is zero on **every** surface. Same routing question; P09 records and does not claim |
+| **CP-A3** | **P03 Manufacture-to-Cost** | the masking interaction — whether work-centre hourly rates recover depreciation, in which case a cost centre can show a plausible total while both contributing mechanisms are wrong. **`UNRESOLVED — EVIDENCE REQUIRED`**, a costing-policy fact, not a code fact |
+| **CP-A4** | **P04 Acquire-to-Retire** | the algebra, the unconditionality, the surface divergence, and the deferred-recognition variants sharing the same shape. P09 **confirms P04's original finding in full** and adds to it |
+
+**Nothing in this addendum settles `HOLD-AS-01` or `DIS-09`.** Strengthening a finding does not confer authority to adjudicate between two parallel evidence tracks.
+
 ## 7. TERMINAL STATE
 
-**CP-01 … CP-07 ISSUED AS PROPOSALS. THREE THAI ITEMS HELD. SEVEN PEER DEPENDENCIES OPEN. NO GATE MOVED.**
+**CP-01 … CP-07 ISSUED AS PROPOSALS. THREE THAI ITEMS HELD. SEVEN PEER DEPENDENCIES OPEN PLUS FOUR CONTINUATION HANDOFFS. NO GATE MOVED.**

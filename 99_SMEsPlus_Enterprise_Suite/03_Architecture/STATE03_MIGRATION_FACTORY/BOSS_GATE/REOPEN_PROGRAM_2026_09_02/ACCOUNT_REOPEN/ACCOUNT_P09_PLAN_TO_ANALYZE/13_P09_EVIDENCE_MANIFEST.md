@@ -94,6 +94,17 @@ Per the project rule that a prior session's "unauthorised" must not be inherited
 
 Every claim in this package traces to an evidence identifier resolvable in the Layer 2 quarantine. No claim rests on general knowledge of the reference product. No statutory claim, Thai or otherwise, is made anywhere. No finding was withdrawn for convenience. No class was upgraded. Nothing was executed.
 
+## 7A. CONTINUATION ADDENDUM — ANALYTIC ECONOMIC INTEGRITY
+
+| Item | Value |
+|---|---|
+| New Layer 1 artefacts | `AI01`–`AI14` under `AI_ANALYTIC_ECONOMIC_INTEGRITY/` |
+| New Layer 2 artefacts | `AI02_L2_ALGEBRA_CITATIONS`, plus the four AAS-03 challenge records |
+| Base documents updated in place | `08` (five events added, its own unsearched item closed), `09` (addendum), `11` (five contradictions, one unsearched item closed), `12`, `13`, `20` (four dependencies, one decision, one closed) |
+| **Evidence position improved** | the continuation used **two real deployed database dumps**, which the base package did not have |
+| **Control degraded, and recorded** | one evidence strand failed on a model rate limit and was **author-executed** instead — see `AI14` §R15 and the PMO review. This lands on the continuation's most important new result |
+| Author errors caught by reviewers | **1** in this continuation (`AI14` §R11); author-originated material corrections remain **0** |
+
 ## 8. TERMINAL STATE
 
 **MANIFEST ISSUED. ALL MANDATORY SCANS CLEAN. ONE EVIDENCE CHANNEL UNAVAILABLE AND RECORDED WITH ITS CAUSE. NO GATE MOVED.**

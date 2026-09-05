@@ -34,6 +34,12 @@ Three registers: contradictions **inside the reference pattern**; contradictions
 | **CN-20** | An allocation is copied to **both** legs of a balanced pair and the analytic amount is the negated signed balance — so the mechanism that exists to attribute a cost is arithmetically guaranteed to attribute **nothing**. The system faithfully records two management facts whose sum is zero. | Confirmed by P09 on an incoming peer finding. |
 | **CN-21** | When the source object carries **no** allocation the key is *deliberately omitted* so that each row may find its own — which for a balanced pair means the two legs can be attributed to **different** cost objects, producing a residue that corresponds to no economic event. The fallback designed to add information can subtract correctness. | Mechanism confirmed; outcome configuration-dependent. |
 
+| **CN-22** | The mechanism that exists to attribute cost has **no concept of which row carries the cost**. Eligibility is decided by whichever code built the row values, so the same faithful mechanism gives the right answer for a vendor bill and zero for a depreciation. | Confirmed by the continuation. |
+| **CN-23** | **Five** mechanisms allocate both legs of a balanced pair, three of them in core accounting — yet the product's own management consumers all filter to profit-and-loss accounts, which is only coherent if balance-sheet rows were never meant to be allocated. **The writers and the readers disagree about what the ledger is.** | Confirmed by the continuation. |
+| **CN-24** | For the cash-basis pair the two legs share **one account**, so the account-bucketing that rescues every other case cannot apply. **The one mechanism no surface can see is in core accounting, on a path used by every organisation on cash-basis tax.** | Confirmed by the continuation. |
+| **CN-25** | The accrued-orders counterpart is weighted by **tax-inclusive** totals and applied against **tax-exclusive** balances, so the cancellation is approximate and leaves a residue. **A clean zero is recognisable as wrong; a small residue looks like a real cost.** | Confirmed by the continuation. |
+| **CN-26** | A net of zero is the **correct** answer for a reclassification transfer and the **wrong** answer for a depreciation, and the system represents both identically. Correctness and defect are indistinguishable in the data. | Confirmed by the continuation. |
+
 ## B. CONTRADICTIONS BETWEEN SESSION PARTICIPANTS — PRESERVED, NOT RESOLVED
 
 Per the constitution, AAS+ preserves disagreement. These are live.
@@ -61,7 +67,8 @@ Per the constitution, AAS+ preserves disagreement. These are live.
 | HOLD-SC-02 | whether the deployed tenant custom set contains the department dimension at all | D | PD-06 → P11 |
 | HOLD-EQ-01 | how non-asset equipment cost should be tracked — **no reference precedent exists** | design decision | Boss determination; see `P09_COST_OBJECT_MODEL` CO-03 |
 | HOLD-BC-01 | whether SMEsPlus requires commitment accounting visible in the ledger | design decision | Boss determination; PD-03 → P01 |
-| HOLD-AS-01 | whether the prior Asset package's costing-veto premise survives the P04 finding | cross-track reconciliation | **Boss.** P09 does not adjudicate between parallel evidence tracks |
+| HOLD-AS-01 | whether the prior Asset package's costing-veto premise survives the P04 finding | cross-track reconciliation | **Boss.** P09 does not adjudicate between parallel evidence tracks. **Unchanged by the continuation, which strengthens the underlying finding without settling the track disagreement** |
+| HOLD-AI-01 | whether the analytic ledger is intended as a cost-attribution ledger or a balanced subledger | design intent, not evidenced in source either way | **DESIGN DECISION REQUIRED AT FINAL GATE.** The most load-bearing open item of the continuation |
 
 ## D. NOT SEARCHED — NEVER TO BE RESTATED AS ABSENCE
 
@@ -80,9 +87,12 @@ Carried forward verbatim from the evidence base and the matrices. Each is class 
 | NS-09 | statutory export formats outside the three export-family name patterns | C |
 | NS-10 | which of the three tenant custom copies is deployed | **D** |
 | NS-11 | whether an ordinary accountant role inherits write on the ledger row | C |
-| NS-12 | whether any other event type allocates both legs of a balanced pair symmetrically | C |
+| ~~NS-12~~ | ~~whether any other event type allocates both legs symmetrically~~ | **CLOSED** by the continuation sweep — five mechanisms found. Replaced by `SW-U-01`, `SW-U-02`, `SW-U-04` |
 | NS-13 | the full set of programmatic posting paths bypassing mandatory-axis validation | **B from P09's position** — enumerated by P04, not re-enumerated by P09 |
+| SW-U-01 | allocation write sites using record assignment rather than a values dictionary — the continuation sweep's own declared false-negative mode | **C** |
+| SW-U-02 | off-balance-sheet account rows | **C** |
+| SW-U-04 | tenant custom modules — the continuation sweep covered the reference root only | **C** |
 
 ## E. TERMINAL STATE
 
-**21 INTERNAL CONTRADICTIONS RECORDED · 9 PARTICIPANT DISAGREEMENTS PRESERVED UNRESOLVED · 8 ITEMS HELD · 13 UNSEARCHED ITEMS DECLARED. NO GATE MOVED.**
+**26 INTERNAL CONTRADICTIONS RECORDED · 9 PARTICIPANT DISAGREEMENTS PRESERVED UNRESOLVED · 9 ITEMS HELD · 15 UNSEARCHED ITEMS DECLARED (ONE CLOSED BY THE CONTINUATION). NO GATE MOVED.**

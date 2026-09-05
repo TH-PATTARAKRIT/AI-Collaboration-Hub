@@ -27,7 +27,17 @@ It records **where each Layer 1 claim's evidence lives**, so that any claim can 
 | **SRC-12** | governing instruction | the P09 process directive | 1 | all |
 | **SRC-13** | governing instruction | the scope-aware constitution correction | 1 | research team |
 
-**Not used, and declared:** no running database, no runtime dump, no user-interface session, no deployment environment. **Every operational consequence in this package is therefore stated as a code-path conclusion and explicitly hedged as unexecuted.** Where a claim would require execution, it is marked so and routed in `P09_DEPENDENCY_REGISTER` §C.
+**Continuation addendum (`AI_ANALYTIC_ECONOMIC_INTEGRITY/`).** Two further source classes were used that the base package did not have:
+
+| ID | Source class | Description | Layer |
+|---|---|---|---|
+| **SRC-14** | **deployed database dump, deployment A** | real PostgreSQL custom-format dump; asset, analytic-line and journal-row tables inspected read-only | 2 |
+| **SRC-15** | **deployed database dump, deployment B** | real plain-text PostgreSQL dump; same tables inspected read-only | 2 |
+| **SRC-16** | runtime asset trace, a third deployment | 280 asset-master records captured read-only by a prior session's script | 2 |
+
+**This corrects a limitation of the base package**, which used no deployed data at all. The continuation's finding from these sources is negative and is recorded as such: **no asset in any of them carries an allocation** (`AI05`).
+
+**Not used, and declared:** no running database connection, no report execution, no user-interface session, no write of any kind. **Every operational consequence in this package is therefore stated as a code-path conclusion and explicitly hedged as unexecuted.** Where a claim would require execution, it is marked so and routed in `P09_DEPENDENCY_REGISTER` §C.
 
 ## 3. LAYER 1 CLAIM → EVIDENCE MAP
 
@@ -56,7 +66,7 @@ It records **where each Layer 1 claim's evidence lives**, so that any claim can 
 | Base commit | `88f52cd` — *governance: approve canonical evidence acquisition flow* |
 | Package path | `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/ACCOUNT_P09_PLAN_TO_ANALYZE/` |
 | Merge status | **not merged, not requested.** Boss decides. |
-| Session commit | **`16f884f`** |
+| Session commit | **`16f884f`**; P04 amendment **`9a3bded`**; analytic-economic-integrity continuation — commit recorded in `AI17` |
 
 ## 5. JIRA EVIDENCE
 

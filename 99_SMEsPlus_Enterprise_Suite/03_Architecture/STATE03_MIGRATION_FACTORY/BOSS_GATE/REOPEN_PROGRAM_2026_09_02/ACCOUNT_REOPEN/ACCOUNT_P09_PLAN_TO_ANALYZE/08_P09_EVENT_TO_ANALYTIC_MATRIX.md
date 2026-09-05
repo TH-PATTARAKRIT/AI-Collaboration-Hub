@@ -39,6 +39,11 @@
 | E19 | an **asset depreciation** is posted, asset **carries** an allocation | yes — but the allocation is written onto **both** rows of the entry, and the analytic amount is the **negated signed balance** times the share, so the two records are mirror images and **net to zero** | yes | via E1 | at posting | A — **CORRECTED after publication; see `14` §R9** |
 | E20 | an **asset depreciation** is posted, asset carries **no** allocation | the key is deliberately omitted, so **each row computes its own** allocation keyed on its own account; two different accounts can select two different allocations, producing a non-zero **unbalanced residue** | yes | via E1 | at posting | mechanism **A**; whether two allocations differ is configuration-dependent — **D** for any given deployment |
 | E21 | **any programmatic post** (depreciation, disposal, valuation, labour relief, deferred recognition, automatic asset confirmation) | mandatory-axis validation **does not fire** — it is opt-in by execution context **and** restricted to product-type rows | yes | via E1 | at posting | product-type restriction verified **A**; the call-site enumeration is P04's, class **B** from P09's position |
+| E22 | an **asset depreciation** where neither the asset nor any rule supplies an allocation | **no management record at all** — depreciation is attributed nowhere: not correctly, not incorrectly, not to zero. **This is the state of every deployment for which real data was located** | yes | none | at posting | A within the searched deployments (`AI05`) |
+| E23 | a **cut-off / change-period accrual** is generated | **both** rows carry the same allocation, and the two rows are built as an explicit debit/credit **swap** of each other | yes | via E1 | at wizard confirm | **A — symmetric, nets to zero** |
+| E24 | a **change-account transfer** is generated | source rows keep their allocation; the counterpart receives a **proportionally recomputed** one with the opposite balance | yes | via E1 | at wizard confirm | A — nets to ≈zero, **and this may be correct**: a transfer carries no new economic effect |
+| E25 | an **accrued-orders** entry is generated | order rows keep their own; the globalised counterpart receives a **price-weighted blend** with the exact opposite balance | yes | via E1 | at wizard confirm | **A — nets to ≈zero with a tax-driven residue** |
+| E26 | a **cash-basis tax entry** is generated | base row **and its counterpart** on the **same account**, debit and credit swapped, **same** allocation; likewise the tax pair | yes | via E1 | at reconciliation | **A — the most severe: zero on *every* surface, because both legs share one account** |
 
 ## 3. WHAT THE MATRIX SHOWS
 
@@ -94,8 +99,8 @@ E13 applies the allocation to one of two generated rows. The asymmetry is in the
 | EA-U-02 | whether E9, E10, E11 are enabled in the SMEsPlus target configuration | **D — unknown.** They are tenant-optional modules; deployment set is unresolved (`P09_CROSS_PROCESS_OWNERSHIP`). |
 | EA-U-03 | whether E18's work-in-progress figures and E5's management records can be reconciled at all | class **B** — no reconciling path found within the module read; not searched system-wide |
 | EA-U-04 | the full set of programmatic posting paths that bypass mandatory-axis validation | **B from P09's position** — enumerated by P04, not re-enumerated by P09 |
-| EA-U-05 | whether any **other** event type also allocates both legs of a balanced pair symmetrically, and therefore also nets to zero | **C — not searched.** E19 was found by another process; P09 did not sweep for the pattern |
+| EA-U-05 | ~~whether any other event type also allocates both legs symmetrically~~ | **CLOSED by the continuation sweep** (`AI07`): **five** mechanisms do, three of them in core accounting. Replaced by `SW-U-01`, `SW-U-02`, `SW-U-04` |
 
 ## 6. TERMINAL STATE
 
-**MATRIX ISSUED AND CORRECTED AFTER PUBLICATION. 21 EVENTS. EA-01 … EA-07 ARE PROPOSALS. ONE ROW CORRECTED BY AN INCOMING PEER FINDING, VERIFIED BY P09 BEFORE ACCEPTANCE. NO GATE MOVED.**
+**MATRIX ISSUED, CORRECTED AFTER PUBLICATION, AND EXTENDED BY THE ANALYTIC-ECONOMIC-INTEGRITY CONTINUATION. 26 EVENTS. EA-01 … EA-07 ARE PROPOSALS. ONE ROW CORRECTED BY AN INCOMING PEER FINDING; FIVE ROWS ADDED BY THE CONTINUATION SWEEP THAT CLOSED THIS MATRIX'S OWN UNSEARCHED ITEM. NO GATE MOVED.**

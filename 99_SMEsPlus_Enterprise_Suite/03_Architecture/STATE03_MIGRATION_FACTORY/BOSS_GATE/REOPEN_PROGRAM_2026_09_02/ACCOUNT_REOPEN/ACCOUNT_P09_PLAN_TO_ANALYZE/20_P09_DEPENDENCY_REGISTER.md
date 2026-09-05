@@ -46,8 +46,12 @@ This is a stronger statement than P09's own MA-08 and MA-09: those require scope
 | **DEP-P09-08** | a compensating upgrade script in other modules' migration directories | X2 | C | enumeration of those directories |
 | **DEP-P09-09** | whether any deployed tenant view strips the node the runtime view-patch depends on | X4 | C | a sweep of the tenant custom view set |
 | **DEP-P09-10** | whether an ordinary accountant role inherits write on the ledger row — decides the least-privilege answer for allocation edits | X4 | C | trace the group implication chain |
-| **DEP-P09-12** | whether any **other** event type allocates both legs of a balanced pair symmetrically, and therefore also nets to zero | P09, on the P04 finding | C | a sweep for the pattern across every event producer |
+| ~~**DEP-P09-12**~~ | ~~whether any other event type allocates both legs symmetrically~~ | P09, on the P04 finding | **CLOSED** by the continuation sweep — **five** mechanisms found, three in core accounting | discharged; replaced by `SW-U-01`, `SW-U-02`, `SW-U-04` |
 | **DEP-P09-13** | the full set of programmatic posting paths that bypass mandatory-axis validation | P04, reported to P09 | **B from P09's position** | P09 re-running P04's call-site enumeration |
+| **DEP-P09-14** | incidence — does any real deployment hold an asset carrying an allocation? No deployment located does | P09 continuation | **HOLD — DATABASE EVIDENCE REQUIRED** | re-run the existing read-only asset trace with the allocation field added; near-zero cost, no write |
+| **DEP-P09-15** | surface divergence observed rather than derived from source | P09 continuation | **HOLD — RUNTIME EVIDENCE REQUIRED** | read-only report execution against a deployment with posted depreciation |
+| **DEP-P09-16** | reproduction of the defect in a sandbox | P09 continuation | **HOLD — RUNTIME WRITE AUTHORIZATION REQUIRED** | explicit Boss authority; none exists and none is assumed |
+| **DEP-P09-17** | whether work-centre hourly rates recover depreciation, which decides whether the masking interaction is real | P09 continuation, routed to P03 | **UNRESOLVED — EVIDENCE REQUIRED** | a costing-policy statement, not a code fact |
 
 ## D. DECISION DEPENDENCIES — BOSS DETERMINATION REQUIRED
 
@@ -58,6 +62,7 @@ This is a stronger statement than P09's own MA-08 and MA-09: those require scope
 | **DEC-P09-03** | how non-asset equipment cost is tracked (CO-03/CO-04/CO-05) | **there is no reference precedent** — the reference pattern offers no answer. This must be recorded as an original architectural decision |
 | **DEC-P09-04** | whether commitment accounting is ledger-visible (BC-U-03, PD-03) | interacts with BC-02 |
 | **DEC-P09-05** | whether a management aggregate may span companies within a tenant, and under what authorisation (B-09, MA-10) | a governance choice about who may see a group-level figure |
+| **DEC-P09-06** | **whether the analytic ledger is a cost-attribution ledger or a balanced analytic subledger** (`AI-R-01`) | the reference pattern is **both and neither** — its writers allocate every row, its readers filter to profit-and-loss. Nothing in source states an intent. SMEsPlus must choose; the choice determines whether a net of zero is a defect or a correct non-figure |
 
 ## E. HELD — SCOPE OR STATUTORY EVIDENCE REQUIRED
 
@@ -84,4 +89,4 @@ Stated explicitly, so the open list above is not read as "P09 delivered nothing"
 
 ## G. TERMINAL STATE
 
-**2 BLOCKING · 7 PEER OPEN + 1 PEER ACCEPTED (`P04-PD-04`, position MA-11 adopted) · 10 EVIDENCE OPEN · 5 BOSS DETERMINATIONS · 8 HELD. NO DEPENDENCY CLOSED BY ASSUMPTION. NO GATE MOVED.**
+**2 BLOCKING · 7 PEER OPEN + 1 PEER ACCEPTED · 13 EVIDENCE OPEN (1 CLOSED BY THE CONTINUATION) · 6 BOSS DETERMINATIONS · 9 HELD. NO DEPENDENCY CLOSED BY ASSUMPTION. NO GATE MOVED.**
