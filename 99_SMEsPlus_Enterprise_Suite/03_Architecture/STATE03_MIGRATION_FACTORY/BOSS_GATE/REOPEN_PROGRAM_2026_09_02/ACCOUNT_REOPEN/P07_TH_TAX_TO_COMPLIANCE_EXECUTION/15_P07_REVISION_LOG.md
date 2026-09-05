@@ -85,6 +85,8 @@ They are listed separately because the distinction is the whole point of the con
 
 | `REV-E-20` | r2 and r3 published a single joint cross-party tally ("12 instances across 5 actors"). A cross-party tally **cannot be executed by either party** — P07 cannot open P04's drafts, P04 has not read P11's register. Every joint figure produced in the exchange was wrong. | P11, raising `P11-G-02` | Replaced by declared halves, each executed by its owner, with no total. P04's offer to restate it as "14 across 5" was **declined** — the halves were adopted, the single number was not, because producing one repeats the defect. Obligation 6 added. | corrected after publication |
 
+| `REV-M-08` | Not an error — a control outcome worth recording. P07 declined to count a peer's referred instance **on the class of the evidence, without any suspicion about its content**. The identifier in that referral was in fact wrong, and the refusal is what left room for its owner to correct it. P04's generalisation, adopted: *a discipline that only fires when you suspect a problem is not a discipline.* A control conditioned on suspicion is unavailable in exactly the case that matters. | — | Recorded as the rationale for why the proposal's obligations are obligations rather than judgement calls. | — |
+
 Two of the reviewers' findings **escalated** the severity of the session's own headline
 findings rather than reducing them (`P07-F-01`, `P07-F-42`), and both were reached
 independently by two reviewers. The session's own severity assignment was too low in both

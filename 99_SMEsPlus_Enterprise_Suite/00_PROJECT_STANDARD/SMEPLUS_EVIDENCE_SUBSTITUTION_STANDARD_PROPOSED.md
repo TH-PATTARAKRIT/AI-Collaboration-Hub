@@ -3,6 +3,7 @@
 Proposal ID: `SMEPLUS-DR-EVSUB-001-PROPOSED`
 Status: **`PROPOSED FOR BOSS RATIFICATION — NOT IN FORCE`**
 Raised by: P07 Thailand Tax-to-Compliance, on evidence produced jointly with P04 Acquire-to-Retire and P11 Central Core Reconciliation, 2026-09-04
+Revision: `r5`, 2026-09-05 — mechanism sharpened (`§2.1a`); suspicion-independence rationale added (`§3.0`); P11's half held at the owner's own declaration against a peer's restatement
 Revision: `r4`, 2026-09-05 — `P11-E-17` verified at source and counted; identifier corrected from `P11-E-16`; joint tally replaced by declared halves (`P11-G-02`); obligations 5 and 6 added; P11's third pattern recorded and declined with reasons
 Revision: `r3`, 2026-09-05 — Class 1 extended to tool output; discrimination test §2.2a added; a referred case recorded but not counted
 Revision: `r2`, 2026-09-05 — Class 2 tally corrected on P04 challenge; sub-case §3.1a added
@@ -61,6 +62,22 @@ author** — the first time in this exchange that either has held. Registered as
 the §3.1a sub-case. Three counting errors in three consecutive revisions of one file is not
 carelessness that a warning would fix; it is evidence that hand-maintained counts fail at a
 rate that makes §3.3's obligations necessary rather than advisory.
+
+### 2.1a The Mechanism, Stated Precisely
+
+Sharpened by P04 from P07's instance 4, and recorded as theirs:
+
+> **The substitution needs tool output PLUS a plausible reason not to open the source.
+> Either half alone is usually survivable. It is the pair.**
+
+In instance 4 the pair was: a grep result that looked complete, and a *commented-out*
+declaration of the same field higher in the file, which made the whole file read as inert at
+a glance. In instance 2 it was a search summary that looked authoritative, and a date that
+was plausible on its face. In instance 6 (`P11-E-17`) it was a grep that printed the right
+heading, and a heading that appeared to say what the passage said.
+
+This is why "read more carefully" is not the remedy and **open the source** is. The author
+in each case did read carefully — of the wrong artefact.
 
 ### 2.2 Why the existing controls did not catch it
 
@@ -133,7 +150,7 @@ sum.
 |---|---|---|---|
 | P07 | 5 | 1 | P07, by enumerating its own revision log |
 | P04 | 9 | 4 | P04, by enumerating its own register |
-| P11 | ≥1 (`P11-E-18`) | 1 | P11, declared; P07 has not enumerated P11's Class 2 half |
+| P11 | ≥1 (`P11-E-18`) — **not restated as 2** | 1 | P11, declared directly to P07. See note. |
 
 **There is deliberately no total on this table.** It is published as declared halves under
 `P11-G-02`, adopted from P11 and stated in P11's words: **a cross-party tally cannot be
@@ -142,6 +159,21 @@ and says so; P07 has enumerated only its own. A single joint figure is unexecuta
 construction, and every joint figure produced in this exchange was wrong — including one
 P11 inherited from P04 without re-deriving it (`P11-E-18`), and the two P07 published at r1
 and r2.
+
+**Note on P11's half.** P04 subsequently reported P11's half as **2**. That figure is not
+adopted here, and the reason is the rule itself: it is P04 relaying a third party's number,
+which is the class of evidence that produced the wrong identifier in this same exchange, one
+message earlier. P11's half is P11's to state, and the only figure P11 stated directly to
+P07 was `P11-E-18` plus the observation that others exist. It is carried as `≥1` until P11
+states a total. **Declining a peer's report of a third party's count is the same discipline
+as declining a peer's description of a third party's defect** — and the second time it has
+been applied in this exchange.
+
+**Recorded against P04.** P04 has retracted its "adjust to 14 across 5" offer as
+`P04-REV-18`, on the ground that it supplied a number it could not execute *in the message
+arguing that counts must be executed*. Recorded here because the retraction is the strongest
+demonstration of obligation 6 in the file: the party who proposed the joint figure is the
+party who withdrew it, on the rule they had just adopted.
 
 **Recorded against P07.** r2 published "12 instances across 5 actors" and r3 left it
 standing. Both were single joint numbers of exactly the kind `P11-G-02` forbids. P04 has
@@ -183,6 +215,18 @@ to do with sources and whose remedy is unrelated — and it would have done so *
 file that names the class*. The refusal to count a peer's description is what left room for
 the owner to correct the identifier before it landed. The rule paid for itself in one
 exchange.
+
+**And it fired without suspicion, which is the load-bearing part.** P07 had no reason to
+doubt the identifier and formed no doubt about it; the referral was declined on the **class
+of the evidence**, not on any misgiving about its content. P04 draws the general rule from
+this against itself, and it is adopted here as the rationale for why §2.3 and §3.3 are
+obligations rather than judgement calls:
+
+> **A discipline that only fires when you suspect a problem is not a discipline.**
+
+A control conditioned on suspicion is unavailable in exactly the case that matters — the one
+where the author is not suspicious. Both classes in this file were survived, repeatedly, by
+authors who had no reason to doubt what they were looking at.
 
 **Note on what "confirmation" bought.** P11's message is itself a summary of P11's log. Owner
 confirmation is better evidence than third-party description, but it is not the document. The
