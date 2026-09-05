@@ -399,22 +399,45 @@ mechanism rather than against it — a create-only write populates the field pre
 lines already exist at create time, which is a minority of paths. The number supports the
 finding; the sentence that said "nowhere" did not survive.
 
-### 8.3 The scoping error underneath all three — `REV-E-30`
+### 8.3 The scoping error underneath — restated, because the first statement of it was too broad
 
-`iTEST02` has **23 move lines**. `iSMEs` has **447,384**. This session built its entire
-runtime section on the smallest database available and generalised from it, because it was the
-one inside the declared PATH SET and was therefore opened first. Convenience of location
-determined the evidence base.
+The first issue of this section said this session *"built its entire runtime section on the
+smallest database available"* and that *"convenience of location determined the evidence
+base"*. Ranked properly, that is **too broad**, and P11's own rule applies to it — *an
+over-broad self-blame is still an inaccurate record*.
 
-That is the same defect as `REV-E-26` (generalising `P07-F-01` from `n = 1`) and
-`REV-E-28` (snapshots counted as identities), now for the third time in one file — and this
-time it cost a published finding rather than a qualifier. The corrective is not "open more
-databases" but **rank them before choosing**: `iSMEs` is four orders of magnitude larger and
-should have been read first.
+**The ranking inverts depending on its unit**, which is the same defect this file has now
+recorded four times, one level up:
 
-`iSMEs` is now the reference population for any claim about operational behaviour in this
-package. Nothing in §4 or §7 was derived from it except the group-name comparison at §7.1,
-which is why those sections are configuration claims and are labelled as such.
+| Database | Bytes | Tables **with data** | `account_move_line` rows |
+|---|---|---|---|
+| `iSMEs` 2026-07-11 | **155,443,710** | 651 | **447,384** |
+| `iTEST02` 2026-06-14 | 65,444,053 | **1,395** | 23 |
+| `iTEST02` 2026-07-14 | 64,303,340 | 1,315 | 32 |
+| `BK12MAY26` 2026-08-03 | 35,679,594 | 881 | 563 |
+| `iEVING` 2026-07-23 | 24,911,161 | 875 | not examined |
+
+`iSMEs` is 2.4× the largest by bytes and by rows. `iTEST02` has **more than twice as many
+populated tables** — it is the **broadest module install**, and `iSMEs` is the **deepest data
+set**. Neither is simply "bigger", and a ranking that does not say which is being ranked
+repeats the unit defect it was introduced to fix.
+
+**So the corrected self-assessment is narrower and more accurate:**
+
+| Claim type | Right database | What this session used | Verdict |
+|---|---|---|---|
+| Configuration and schema — §4.1–4.5, §7: tax groups, tax templates, return types, the withholding-account flag | `iTEST02` — most populated tables, the broadest install | `iTEST02` | **defensible, arguably optimal** |
+| Population and operational negatives — §4.6, §8: certificates issued, lines carrying a field | `iSMEs` — 447,384 rows against 23 | `iTEST02` | **wrong, and it cost `P07-F-60`** |
+
+The error was **not** picking the smallest database. It was **using a configuration database
+to support population negatives** — and then not stating which of the two kinds each claim
+was. §4's configuration findings stand on the database they were taken from; §4.6's
+population negatives never should have been.
+
+`REV-E-30` is restated accordingly and `REV-E-32` records this correction of it. The
+corrective stands and gains a clause: **rank the population before choosing, and declare the
+unit you ranked by** — because the right database depends on the claim, and this session had
+two kinds of claim in one file without saying so.
 
 ### 8.4 Net
 
