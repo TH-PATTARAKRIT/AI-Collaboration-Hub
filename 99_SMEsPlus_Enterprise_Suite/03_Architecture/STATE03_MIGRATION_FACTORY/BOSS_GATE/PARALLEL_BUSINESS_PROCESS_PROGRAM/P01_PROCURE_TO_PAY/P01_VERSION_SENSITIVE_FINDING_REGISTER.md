@@ -26,6 +26,18 @@ to stop version leakage. The estate's real shape:
 > `P01_SERIES18_DEPLOYMENT_DISCOVERY.md`. **No accounting finding is withdrawn** — each remains
 > bound to the database it was measured in.
 
+
+> ### ⚠ SUPERSEDED — `ERR-P01-41`
+>
+> Statements below that the **series-16 core source does not exist** are **FALSE**. The enumeration
+> covered `/Volumes/iMacSys` and the claim attached to it said *"anywhere"*. Estate-wide there are
+> **31 core trees across five series**: 14.0 ×1, **16.0 ×3**, 17.0 ×2, 18.0 ×15, 19.0 ×10 — and
+> **every series-14, -16 and -17 tree is under `/Users/admin`**, none on the volume. Verified by
+> reading, not listing: `odoo-16.0+e.20230401` carries `version_info = (16, 0, 0, FINAL, 0, '')`,
+> **955 addons**, `account/models/account_move.py` 4,200 lines,
+> `stock_account/models/product.py` 873 lines, `purchase/models/purchase.py` 1,447 lines, with
+> `purchase_stock` and `l10n_th` present. **A search gap, not a source gap.**
+
 ---
 
 ## 1. THE REGISTER
@@ -98,7 +110,10 @@ the declared path set.
 > ~~**P01's source analysis and P01's deployment evidence do not overlap on any series.**~~
 >
 > **FALSE — `ERR-P01-23`. They overlap on series 18 and 19.** A deployed series-18 system exists
-> with 15,522 journal entries and the clearing account configured. The series-16 core gap stands.
+> with 15,522 journal entries and the clearing account configured. ~~The series-16 core gap
+> stands.~~ **It does not — `ERR-P01-41`.** The series-16 core is present and readable under
+> `/Users/admin`; the gap was a search boundary, not a missing artefact. **P01's source and
+> deployment evidence now overlap on series 16, 18 and 19.**
 
 Source: series 18 (primary), 19 (comparison). Deployment history: series 16.
 The only bridge between them is series 19, which has 26 journal entries across two deployments.

@@ -78,9 +78,33 @@ exist on this host (`l10n_th_withholding_tax` 16.0.1.0.1,
 `l10n_th_withholding_tax_cert` 14.0.1.0.0), so that finding may concern an **earlier version of
 this same family** rather than a bespoke wizard.
 
-**NOT DECIDABLE from this evidence base.** Settling it requires reading the earlier round's
-**register and status field**, not its summary. Recorded as an open action; **no transfer of the
-series-16 finding to this deployment is made or implied.**
+**Partly decided since, and in the direction that keeps the two apart — `ERR-P01-41` fallout.**
+
+The series-16 **core** is now readable (three trees under `/Users/admin`), and
+`odoo/modules/module.py:488-492` in that core reads:
+
+```
+def adapt_version(version):
+    serie = release.major_version
+    if version == serie or not version.startswith(serie + '.'):
+        version = '%s.%s' % (serie, version)
+    return version
+```
+
+**An unconditional prefix — no part-count guard, no validating regex.** So a manifest declaring
+`14.0.1.0.0` installed on a series-16 engine is stored as **`16.0.14.0.1.0.0`**, which is exactly
+what the series-16 deployment's registry holds for `l10n_th_withholding_tax_cert` — and neither the
+series-18 nor the series-19 `adapt_version` could emit that string.
+
+> **The withholding-certificate module in the only deployment with real accounting history is a
+> series-14 module body running on a series-16 engine.** Previously inferred from the 18/19 code;
+> now **FACT VERIFIED** against the series-16 core itself.
+
+**This strengthens the no-transfer position rather than weakening it.** The series-16 deployment
+runs a **different-generation body** of the certificate module from the series-18 OCA stack
+documented in §2. Whether the *arithmetic* finding transfers is still **NOT DECIDABLE** without the
+earlier round's **register and status field** — not its summary — and **no transfer is made or
+implied in either direction.**
 
 ---
 
@@ -193,7 +217,7 @@ P01 measures; **P07 decides**. Three questions, stated as questions:
 | Four OCA/Ecosoft modules supply it, with version-matched source in `R4` | **FACT VERIFIED** |
 | `l10n_th_withholding_tax_multi` uninstalled → one rate per payment | **FACT VERIFIED** |
 | `scgl_wht_control` | **EXISTS — NOT DEPLOYED** (absent from `ir_module_module` entirely) |
-| P01's series-16 withholding finding applies here | **NOT DECIDABLE** — may concern an earlier version of this same OCA family; **no transfer made** |
+| P01's series-16 withholding finding applies here | **NOT DECIDABLE — and now better bounded.** The series-16 deployment runs a **series-14 body on a series-16 engine** (`16.0.14.0.1.0.0`, FACT VERIFIED from the series-16 `adapt_version`). A different-generation body from the series-18 stack; **no transfer made** |
 | Certificate layer exercised | **FACT VERIFIED — 332 certificates, but bulk-loaded** (328 under `__system__` with migration xmlids in a five-day window) |
 | Payment-time tax application exercised | **NOT EXERCISED — 0 of 3,508 payments carry `wt_tax_id`** |
 | Bill-line withholding exercised | **4 of 40,353 lines**, all in the last week, none reaching a payment |

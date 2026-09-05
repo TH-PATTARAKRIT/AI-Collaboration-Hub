@@ -16,6 +16,18 @@ Layer: **1.** **Material delta only.** The prior handoff stands in full.
 > `P01_SERIES18_DEPLOYMENT_DISCOVERY.md`. **No accounting finding is withdrawn** — each remains
 > bound to the database it was measured in.
 
+
+> ### ⚠ SUPERSEDED — `ERR-P01-41`
+>
+> Statements below that the **series-16 core source does not exist** are **FALSE**. The enumeration
+> covered `/Volumes/iMacSys` and the claim attached to it said *"anywhere"*. Estate-wide there are
+> **31 core trees across five series**: 14.0 ×1, **16.0 ×3**, 17.0 ×2, 18.0 ×15, 19.0 ×10 — and
+> **every series-14, -16 and -17 tree is under `/Users/admin`**, none on the volume. Verified by
+> reading, not listing: `odoo-16.0+e.20230401` carries `version_info = (16, 0, 0, FINAL, 0, '')`,
+> **955 addons**, `account/models/account_move.py` 4,200 lines,
+> `stock_account/models/product.py` 873 lines, `purchase/models/purchase.py` 1,447 lines, with
+> `purchase_stock` and `l10n_th` present. **A search gap, not a source gap.**
+
 ---
 
 ## 1. DATABASE IDENTITY REPAIR
@@ -34,7 +46,7 @@ Layer: **1.** **Material delta only.** The prior handoff stands in full.
 | Application series | one deployment at **16.0**, two at **19.0** |
 | **Series 18** | **no deployment anywhere in the estate** — yet it is the series P01 analysed in source |
 | Series-16 **custom** source | **found** — outside the original path set; six of six module versions match the deployment |
-| Series-16 **core** source | **`VERIFIED ABSENCE`** — 13 core trees on the volume, 9 at series 18, 4 at series 19, **0 at series 14–17**; all nine unextracted archives are 18 or 19 |
+| Series-16 **core** source | ~~**`VERIFIED ABSENCE`**~~ **PRESENT — `ERR-P01-41`.** The volume count (13 trees, 0 at series 14–17) was right; the claim it carried said *anywhere*. **31 core trees estate-wide across five series; all 3 series-16 trees are under `/Users/admin`**, verified by reading — 955 addons, `purchase/models/purchase.py` 1,447 lines |
 | Classification | `SOURCE/DB VERSION MISMATCH` + `MODULE VERSION MISMATCH`; **root cause is an analyst-side labelling error, not an artifact defect** |
 | **Challenge status** | **UNCHALLENGED** — the disproof layer for version identity did not return (`AASV-P01-04`) |
 

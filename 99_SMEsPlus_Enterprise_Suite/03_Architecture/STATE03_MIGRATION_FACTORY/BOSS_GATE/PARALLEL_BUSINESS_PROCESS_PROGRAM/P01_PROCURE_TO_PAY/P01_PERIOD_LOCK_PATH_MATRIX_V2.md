@@ -4,6 +4,18 @@ Session: `SMEPLUS-26-09-05-…-EVIDENCE-VERSION-DEPLOYMENT-INTEGRITY-001`
 Layer: **1.** Produced under an explicit **disproof** assignment; the decisive mechanism was
 re-derived by this session.
 
+
+> ### ⚠ SUPERSEDED — `ERR-P01-41`
+>
+> Statements below that the **series-16 core source does not exist** are **FALSE**. The enumeration
+> covered `/Volumes/iMacSys` and the claim attached to it said *"anywhere"*. Estate-wide there are
+> **31 core trees across five series**: 14.0 ×1, **16.0 ×3**, 17.0 ×2, 18.0 ×15, 19.0 ×10 — and
+> **every series-14, -16 and -17 tree is under `/Users/admin`**, none on the volume. Verified by
+> reading, not listing: `odoo-16.0+e.20230401` carries `version_info = (16, 0, 0, FINAL, 0, '')`,
+> **955 addons**, `account/models/account_move.py` 4,200 lines,
+> `stock_account/models/product.py` 873 lines, `purchase/models/purchase.py` 1,447 lines, with
+> `purchase_stock` and `l10n_th` present. **A search gap, not a source gap.**
+
 ---
 
 ## 1. CLASSIFICATION
@@ -131,8 +143,10 @@ P01 asserts nothing statutory.
 
 The brief named a series-16 **source root**. That root holds **58 custom modules and zero core
 source**. The distinction is now made throughout: the series-16 **custom** layer is available and
-matches the deployment; the series-16 **core** does not exist on this volume. All series-16 core
-behaviour is therefore **UNRESOLVED**.
+matches the deployment; the series-16 **core** does not exist **on this volume — and that phrasing
+is the only part that survived.** It **does** exist under `/Users/admin` (`ERR-P01-41`): three
+trees, verified by reading. Series-16 core behaviour is **no longer UNRESOLVED for want of source**
+— it is **UNREAD**, and reading it is a concrete action rather than an external dependency.
 
 ---
 

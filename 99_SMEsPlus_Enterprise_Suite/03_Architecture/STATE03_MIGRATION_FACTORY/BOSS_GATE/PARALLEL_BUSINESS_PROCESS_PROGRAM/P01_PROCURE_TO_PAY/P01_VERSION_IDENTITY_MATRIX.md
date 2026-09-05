@@ -16,6 +16,18 @@ informal generation terminology without mapping it to evidence. This document do
 > `P01_SERIES18_DEPLOYMENT_DISCOVERY.md`. **No accounting finding is withdrawn** — each remains
 > bound to the database it was measured in.
 
+
+> ### ⚠ SUPERSEDED — `ERR-P01-41`
+>
+> Statements below that the **series-16 core source does not exist** are **FALSE**. The enumeration
+> covered `/Volumes/iMacSys` and the claim attached to it said *"anywhere"*. Estate-wide there are
+> **31 core trees across five series**: 14.0 ×1, **16.0 ×3**, 17.0 ×2, 18.0 ×15, 19.0 ×10 — and
+> **every series-14, -16 and -17 tree is under `/Users/admin`**, none on the volume. Verified by
+> reading, not listing: `odoo-16.0+e.20230401` carries `version_info = (16, 0, 0, FINAL, 0, '')`,
+> **955 addons**, `account/models/account_move.py` 4,200 lines,
+> `stock_account/models/product.py` 873 lines, `purchase/models/purchase.py` 1,447 lines, with
+> `purchase_stock` and `l10n_th` present. **A search gap, not a source gap.**
+
 ---
 
 ## 1. THE NINE FACETS, PER DEPLOYMENT
@@ -121,10 +133,12 @@ Classification: **FACT VERIFIED.**
 - **UNIT:** one tree, identified by its release-version declaration.
 - **PATTERN:** locate every release declaration under a core directory to depth 8, and read its
   declared series.
-- **PATH SET:** the whole volume, plus the download area's unextracted archives.
-- **RESULT (corrected):** **13 core trees — 4 at series 19, 9 at series 18, and 0 at series 14
-  through 17.** All nine unextracted source archives are series 18 or 19. The only series-16
-  artifact of any kind is the custom addon directory of §A.1.
+- **PATH SET:** ~~the whole volume, plus the download area's unextracted archives~~ — **and that is the defect (`ERR-P01-41`): the path set was the volume, the claim said *anywhere*.** Corrected path set: `/Volumes/iMacSys` **+ `/Users/admin`** including the cloud-document mounts.
+- **RESULT (corrected twice):** on the volume, **12–13 core trees, all at series 18 or 19** — that
+  count stands. **Estate-wide the figure is 31 core trees across five series: 14.0 ×1, 16.0 ×3,
+  17.0 ×2, 18.0 ×15, 19.0 ×10.** Every series-14, -16 and -17 tree is under `/Users/admin`.
+  The claim *"the only series-16 artifact of any kind is the custom addon directory"* is **FALSE**
+  (`ERR-P01-41`): a complete series-16 enterprise core with **955 addons** is present and readable.
 - **A correction to this very enumeration:** the first run used a path filter requiring the
   release file to sit under a directory named for the application, and **that filter dropped one
   series-18 tree** — 12 instead of 13, 8 instead of 9. An independent expert's count differed

@@ -291,6 +291,72 @@ are non-materialised cloud stubs.
 
 ---
 
+## 4D. INSTANCE 7 — THE SAME `/Volumes` vs `$HOME` DEFECT, IN THE SOURCE-TREE POPULATION (NEW)
+
+> **`ERR-P01-41`.** Reported by the late-returning version-identity challenge layer, **against its
+> own work as well as P01's**. Verified here independently before adoption.
+
+P01 published, across six documents: *"the series-16 **core** is a `VERIFIED ABSENCE` — 13 core
+trees on the volume, **0 at series 14–17**"*, and in `P01_VERSION_IDENTITY_MATRIX.md` the stronger
+form: *"the only series-16 artifact of any kind is the custom addon directory."*
+
+**Independent census, corrected path set** (`/Volumes/iMacSys` **+ `/Users/admin`**, `release.py` as
+the unit, `.Encrypted` mirrors and `posbox` bundles excluded):
+
+| Series | On the volume | Under `/Users/admin` | Total |
+|---|---|---|---|
+| 14.0 | 0 | **1** | 1 |
+| **16.0** | **0** | **3** | **3** |
+| 17.0 | 0 | **2** | 2 |
+| 18.0 | 8 | 7 | 15 |
+| 19.0 | 4 | 6 | 10 |
+| **Total** | **12** | **19** | **31** |
+
+**The volume enumeration was correct. The word attached to it — *anywhere* — was not.**
+**Every series-14, -16 and -17 core tree in this estate is under `/Users/admin`**, and 19 of the 31
+trees are outside the searched path set.
+
+**Verified by reading, not listing**, per the standard this package adopted:
+`odoo-16.0+e.20230401` → `version_info = (16, 0, 0, FINAL, 0, '')`, **955 addons**,
+`account/models/account_move.py` 4,200 lines, `stock_account/models/product.py` 873 lines,
+`purchase/models/purchase.py` 1,447 lines, `purchase_stock` and `l10n_th` both present.
+
+| Field | Value |
+|---|---|
+| Failure mode | **M1** — population scoped by storage device; identical to `ERR-P01-37` |
+| Affected | six published documents; the claim that P01's source and deployment evidence do not overlap on series 16 |
+| Materiality | **High.** *"The series-16 core remains unread"* was **literally true and materially misleading** — a **search** gap presented as a **source** gap, with "obtain a tree from outside" as its remediation |
+| Corrected | The series-16 core is **present and readable**. P01's source and deployment evidence overlap on **16, 18 and 19** |
+
+### 4D.1 Twice in one session, in two different populations
+
+`ERR-P01-37` was `/Volumes` standing in for the host in the **module** population. This is the same
+substitution in the **core-source** population, found hours later by a different party.
+
+> **In this estate, `/Users/admin` holds evidence `/Volumes/iMacSys` does not — and that is now
+> established twice, independently, against two different authors.**
+
+### 4D.2 And my own verification probe committed it a third time
+
+Checking this report, my first probe was
+`find /Users/admin -maxdepth 6 -type d -name "odoo-16.0*"` → **empty**. The trees sit **ten or more
+levels deep** inside Google Drive. **Had I stopped at one probe form I would have contradicted a
+correct finding and left a falsehood standing in six documents.** Three further forms — the
+completed manifest index, an unbounded-depth directory search, and a `release.py` file search — all
+returned it.
+
+**A bounded probe returning empty is not a negative result. It is an unfinished measurement.**
+
+### 4D.3 A near-miss the challenger caught in itself, worth more than the finding
+
+Its first probe for the series-16 purchase model asked for **`purchase_order.py`** and returned
+ABSENT. **In series 16 that file is `purchase.py`** — confirmed here: `purchase_order.py` does not
+exist in the series-16 tree, `purchase.py` is 1,447 lines. Stopping at the first form would have
+published a **Class-A absence built on one guessed filename** — the same shape as `ERR-P01-30`,
+where a guessed filename produced a published falsehood about a behaviour.
+
+---
+
 ## 5. WHAT THIS AUDIT DID *NOT* FIND
 
 Stated so the audit is not read as wider than it is.
@@ -306,7 +372,7 @@ Stated so the audit is not read as wider than it is.
 
 ## 6. THE DURABLE LESSON
 
-**Six** instances now, all the same shape:
+**Seven** instances now, all the same shape:
 
 > The reasoning over what was read was sound. **What was read was the wrong set.**
 

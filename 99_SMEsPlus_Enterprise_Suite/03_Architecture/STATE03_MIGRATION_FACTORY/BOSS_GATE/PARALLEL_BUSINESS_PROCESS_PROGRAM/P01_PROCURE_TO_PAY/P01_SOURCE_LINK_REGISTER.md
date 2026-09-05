@@ -37,6 +37,18 @@ false-negative modes**. Any of them can be re-run and disagreed with. Where a co
 during the session it is recorded in `P01_RESEARCH_ERROR_AND_REVISION_LOG.md` rather than
 silently replaced.
 
+
+> ### ⚠ SUPERSEDED — `ERR-P01-41`
+>
+> Statements below that the **series-16 core source does not exist** are **FALSE**. The enumeration
+> covered `/Volumes/iMacSys` and the claim attached to it said *"anywhere"*. Estate-wide there are
+> **31 core trees across five series**: 14.0 ×1, **16.0 ×3**, 17.0 ×2, 18.0 ×15, 19.0 ×10 — and
+> **every series-14, -16 and -17 tree is under `/Users/admin`**, none on the volume. Verified by
+> reading, not listing: `odoo-16.0+e.20230401` carries `version_info = (16, 0, 0, FINAL, 0, '')`,
+> **955 addons**, `account/models/account_move.py` 4,200 lines,
+> `stock_account/models/product.py` 873 lines, `purchase/models/purchase.py` 1,447 lines, with
+> `purchase_stock` and `l10n_th` present. **A search gap, not a source gap.**
+
 ---
 
 # ADDENDUM — EVIDENCE BASE CORRECTED (2026-09-05)
@@ -100,7 +112,7 @@ database in the estate.
 | custom, v18 line | — | yes | |
 | custom, v19 line | — | yes | |
 | **custom, series-16 line** | 16 | **NO — added this round** | **is the source of `E-2`'s custom layer** — six of six versions match |
-| **core, series 16** | 16 | — | **`VERIFIED ABSENCE`** — 13 core trees on the volume, 0 at series 14–17 |
+| **core, series 16** | 16 | `/Users/admin/…/16 ODOO 16 ENTERPRISE/odoo-16.0+e.20230401` (+2 more) | ~~**`VERIFIED ABSENCE`** — 13 core trees on the volume, 0 at series 14–17~~ **FALSE — `ERR-P01-41`. PRESENT AND READABLE.** 31 core trees estate-wide across five series; all three series-16 trees are under `/Users/admin`. The volume enumeration was correct; the word *anywhere* was not |
 
 ## A.3 Tooling — required, and previously wrong
 

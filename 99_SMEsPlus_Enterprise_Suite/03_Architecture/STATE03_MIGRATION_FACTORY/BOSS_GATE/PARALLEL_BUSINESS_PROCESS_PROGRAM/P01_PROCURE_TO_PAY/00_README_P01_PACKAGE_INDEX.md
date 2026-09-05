@@ -182,7 +182,7 @@ satisfied** (improved from 7).
 ## Read first
 
 1. `P01_DATABASE_IDENTITY_REPAIR.md` — three deployments, not four
-2. `P01_VERSION_IDENTITY_MATRIX.md` — nine facets; series-16 core proven absent
+2. `P01_VERSION_IDENTITY_MATRIX.md` — nine facets; ~~series-16 core proven absent~~ **corrected: the series-16 core is PRESENT and readable (`ERR-P01-41`)**
 3. `P01_RECEIPT_TO_BILL_BRIDGE_FORENSIC.md` **§9** — the corrected authoritative finding
 4. `P01_RESEARCH_ERROR_AND_REVISION_LOG.md` — **21 error records**
 5. `P01_PMO_SUPPLEMENTAL_REVIEW.md`
