@@ -154,6 +154,13 @@ the audit score** — and P07's clean result is evidence for the technique
 precisely because that package failed the *same rule* twice on the same day
 elsewhere.
 
+**And defect (b) recurred within one commit of being named** (`18` `P04-REV-28`):
+the snapshot-versus-identity unit was corrected in `P04-F-83` and left standing in
+its sibling finding, its own caveat, and the blocker register. Naming a defect
+does not immunise a package against it — the only thing that does is **grepping
+for the corrected phrase across the package**, which is now the step this
+package's corrections end with.
+
 Both corrected. **Defect (b) is the one worth carrying**: every rule this
 exchange produced concerns making a correction *visible*. None of them protects
 a correction already made from being **overwritten by a subsequent edit to the

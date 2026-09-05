@@ -426,7 +426,8 @@ bounded to the database named in it.
 
 > **P04-F-81.** The operational population runs on **daily computation** (683 of
 > 685 in the only database holding real assets), while **every one of the 96 asset
-> templates across all four v18-line databases is on `constant_periods`** — the
+> templates across all four v18-line **snapshots**, spanning **three database
+> identities**, is on `constant_periods`** — the
 > product default, and the convention the operational population does **not** use.
 > Templates govern the configuration of assets created from them. So the
 > databases that would seed new assets are seeded with the **opposite**
@@ -441,10 +442,13 @@ bounded to the database named in it.
 > with identities — the same unit defect this package records nine times over. The only population of real
 > assets available anywhere is on the **older generation**.
 > Class: **FACT VERIFIED**, bounded to the five databases named.
-> **Reproduction caveat:** two of the four v18-line databases are v1.16 archives
-> and are **unreadable by the host's default client**. A reader reproducing this
-> with `pg_restore` 16.15 will see two v18-line databases, not four, and should
-> not read the smaller number as a contradiction.
+> **Reproduction caveat, with the unit declared.** The two unreadable v1.16
+> archives are **both snapshots of one identity** (`iTEST02`, a month apart). So
+> a reader on the host's default client sees **2 of 3 identities** and **2 of 4
+> snapshots** — and, critically, **zero real assets in both of the identities
+> they can open.** The conclusion survives; only the sample shrinks. See the
+> finding-by-finding table at §6A.1 for why this caveat cuts the opposite way to
+> a peer's on the same evidence class.
 >
 > Consequence for migration readiness: the target generation has **never had an
 > asset created in it** in any environment captured here. Every behavioural

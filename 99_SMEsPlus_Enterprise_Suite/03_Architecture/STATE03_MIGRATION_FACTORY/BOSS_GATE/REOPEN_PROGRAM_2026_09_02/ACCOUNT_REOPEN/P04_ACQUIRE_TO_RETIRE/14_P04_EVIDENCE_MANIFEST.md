@@ -51,7 +51,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | File | SHA-256 |
 |------|---------|
 | `00_README_LAYER_AND_METHOD.md` | `6b1b60ae291688243d619bf02fde9b019b61e37271cdc605c60f271f6b7ac583` |
-| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `e2b4c9b71cf3db17be4c73f840f531b567236f2427280722f2c14ff4dc89e899` |
+| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `a74945ef01e883e94d90d4c75c7a60b7e8078554ae71a2d8e74f5c3aebd26abc` |
 | `02_P04_ASSET_LIFECYCLE_MAP.md` | `561118e4b1e312b6ff3cfab4f350db256c1f8b6b8364d9975e4286eef4c742f0` |
 | `03_P04_ASSET_EVENT_REGISTER.md` | `ed31187344fa46246cf5c3f59c9444a212ad454b0ee62bb360dc2fcf81ad2a51` |
 | `04_P04_ASSET_TO_GL_MATRIX.md` | `f97d5e4239b9fd1eb4ed4bbce5a03173185f2df336ec5c9f234c30b944531dd6` |
@@ -60,14 +60,14 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `07_P04_DISPOSAL_DERECOGNITION_MATRIX.md` | `73498c37afaceb7557a1a4f304eeb7a53c943bf77364926f85e69038c756b413` |
 | `08_P04_PRIOR_EVIDENCE_RECONCILIATION.md` | `e5970d358e188c1e0f5b99c8138f5cb09610b09885bf6b80ea51be4fbef780fe` |
 | `09_P04_BOSS_DECISION_REGISTER.md` | `ed7c666609c4671dff808d313b7eab6f79303903dd99b3e8abab5c29007c8005` |
-| `10_P04_BLOCKER_REGISTER.md` | `1728482013660ef20be112ee96729365c5af02667cd275885861c9230aeb178f` |
+| `10_P04_BLOCKER_REGISTER.md` | `ef0287b0c5ddc78790e5d6c0e464b6fad8739705ba2c263d301f52182ff483c6` |
 | `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `066fb43f0a10d57a3c2fcb9ba622631ec0ff66c95de90fbac4c71be8b317fd23` |
 | `12_P04_CONTRADICTION_REGISTER.md` | `4a54d8b13cfff34602ef2d1c9a2c10b8a43934ff943dfaf4cad6904874038e79` |
 | `13_P04_SOURCE_LINK_REGISTER.md` | `895d8fd30611e0b21b4e6980fcfca715156257acff50ecac234261a16580f5e1` |
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
-| `16_P04_AAS_PLUS.md` | `85e9f5f61e6e5397ab7fa48c15df6fe3b9bd338c60770b8dc6e7fe3331605fd6` |
+| `16_P04_AAS_PLUS.md` | `1e2ea06abe6adff72d6ffef2be9e13b17f2a4852fee1e6536a4c5f7baabcde70` |
 | `17_P04_PMO.md` | `353b40126b2b22025ebc9623607a4b415eac72bde9d1bf4cb740b4f785c7ca3c` |
-| `18_P04_REVISION_LOG.md` | `feed42e768dad9dbdb0eecd761527baacc324ae568bf52d0e0277d22b7ab14bd` |
+| `18_P04_REVISION_LOG.md` | `ce5c57c243cdf7190440052fa40d08ff72ab89604179ec2d9c1240e7314d6eff` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `1f635cba7e22be8e4001c877e9638c8ec918f695fba0ee68cb319132bc194eda` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `1a9a822ba1084ec34107787490ac248e3fdc127ac32a91af14a11e19c5d1145b` |
 
@@ -90,7 +90,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | Findings (`P04-F-nn`) defined | **82** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **45** — 3 re-registered from the handover residue, 42 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
-| Revisions | 27 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
+| Revisions | 28 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
 | Recurrences of the enumeration / unit defect | **9 instances across 4 actors — P04's declared half**, `@ ae525fc`, verified unchanged by P07 at `c839bfe`. **No joint total is published**; halves are not summed (`18` §5b) |
 | Expert disagreements preserved | 4 new · 7 inherited and re-opened · 2 between this session and the independent reviewer |
 | Scope determinations | 14 objects and 10 operations classified; 2 on **HOLD — SCOPE EVIDENCE REQUIRED** |
