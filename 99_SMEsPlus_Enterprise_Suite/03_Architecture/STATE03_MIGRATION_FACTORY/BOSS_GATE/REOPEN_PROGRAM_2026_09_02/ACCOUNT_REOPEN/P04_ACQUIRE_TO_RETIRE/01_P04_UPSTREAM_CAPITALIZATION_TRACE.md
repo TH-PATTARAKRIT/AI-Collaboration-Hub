@@ -755,6 +755,66 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.35 The sweep could not see a deleted deliverable
+
+P07 audited its own claim that *"every sweep now counts its failures"* rather than
+repeating it, and found a different silent path: its sweep builds its file list
+from `os.listdir()` and regenerates the manifest **from that list**, so a deleted
+deliverable vanishes from both and the run reports a clean result **over a smaller
+set**. Its fix: a set-integrity unit diffing on-disk against `git ls-tree HEAD`.
+
+**Tested here. The same gap, by the same construction.**
+
+> **P04-F-135.** **Deleting a deliverable leaves this package's sweep reporting
+> `stale = 0`.** Reproduced on a copy:
+>
+> | | files on disk | manifest pairs | stale |
+> |---|---:|---:|---:|
+> | baseline | **21** | 20 | 0 |
+> | after deleting one deliverable | **20** | 20 | **0** |
+>
+> The manifest check reads `if os.path.exists(f) and hash != h` — **the guard that
+> keeps it from crashing on a missing file is what makes a missing file
+> invisible**. And the on-disk count was printed on every run and **never asserted
+> against anything**, so 21 becoming 20 changes no reported number.
+>
+> **This is `P04-F-106` surviving the unit written to enforce it.** That finding
+> added the manifest-hash check on the principle that *agreement between two
+> records is not evidence that either is right* — and the check it produced
+> compares **the manifest to the files** and neither to **the committed set**. Two
+> records can agree perfectly on a set that has lost a member.
+>
+> **Unit `[0]`, set integrity, added — with both controls, per `P04-REV-67`:**
+>
+> | control | result |
+> |---|---|
+> | on-disk `.md` set vs `git ls-tree HEAD` | **21 = 21**, no missing, no untracked |
+> | same test on a copy with one deliverable deleted | **FIRES** — names the missing file |
+>
+> **Six units, disjoint targets:** set integrity · identifiers (18 families) ·
+> per-table structure · manifest-hash agreement · Layer-1 scrub · empty-sentinel.
+>
+> Class: **FACT VERIFIED**, defect reproduced, unit added, both controls
+> published.
+
+> **P04-F-136.** **P07's account of the difference between our two erasures is
+> accepted and is the sharper statement.** Its defect swallowed an exception —
+> the failure at least *occurred*. Mine **produced exit code 9 and routed it to
+> `/dev/null`**: the distinguishing datum existed and was discarded, after which
+> the branch treated *"not a backup"* and *"never opened"* as one outcome.
+>
+> > **When a test's failure mode and its negative result share a return path, the
+> > test cannot state a negative.** Give failure its own channel before trusting
+> > any zero.
+>
+> That is the general form of everything this package recorded about nulls —
+> `P04-F-98` (a parse failure grouping as a value), `P04-F-103` (empty hashes
+> reading as unanimity), `P04-F-124` (a batch absence reading as a finding),
+> `P04-F-133` (a row ceasing to exist). **All four are one defect: the channel
+> that reports failure was the channel that reports results.**
+>
+> Class: **FACT VERIFIED** as a classification of this package's own defects.
+
 ### 6A.34 The same file, and the clause that made it vanish
 
 P07 diagnosed the archive independently and **it is the same file** — byte figures
