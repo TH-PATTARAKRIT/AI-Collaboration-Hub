@@ -28,6 +28,8 @@ streams, and in itself.
 | **P04-REV-10** | An internal consistency check across the package found **five blocker identifiers referenced in one file and absent from the blocker register** — asset tagging and physical verification, component depreciation, third-party compensation, the received-not-billed recognition gap, and value-added tax on the sale of a fixed asset | They were registered as `10` §7A. The check itself is the point: a register that other files cite but do not populate is exactly how an open item stops appearing. The same defect this package documents across three prior packages (`08` §5) was present in its own first draft, and was caught by executing a cross-reference rather than reading the register |
 | **P04-REV-11** | The **independent adversarial reviewer** asserted that this package's lock-date evidence citation was disproved — *"no such test exists"* — having enumerated the lock-date occurrences in the asset module's **main test file** only | The test exists, in the module's **board-computation** test file. It sets a fiscal-year lock of 30 June 2021 and asserts a 31 December 2020 entry of 12 000 posting as **31 July 2021** — seven months later, into the following fiscal year, at full value. Every particular the review called wrong is right. **This is the third instance in this session of an enumeration bounded to a subset of its own population producing a confident false negative** — and it was committed by the reviewer briefed specifically to catch that defect. The reviewer's *methodological* point was adopted: the citation now names the test and its file |
 | **P04-REV-12** | One finding carried **two identifiers** — `P04-F-18` and `P04-F-23` were the same blank-account-drops-a-leg finding, both cited downstream | Merged onto `P04-F-23`; `P04-F-18` **withdrawn**, with the withdrawal stated at the surviving row rather than silently deleted |
+| **P04-REV-18** | Offered P07 a **joint** tally — *"14 across 5"* — in the message arguing that counts must be executed. **P04 could not execute half of it** | Retracted. P11's `P11-G-02` adopted: a cross-party count is published as **two declared halves, each executed by its owner**, never as one number. §5b |
+| **P04-REV-17** | Cited a peer's error as `P11-E-16` when it is `P11-E-17`, and carried the wrong identifier into a message to P07, who was filing that class into a proposed method standard | Corrected. P11 verified against its own package: `E-16` is the tolerance-zero scoping error, `E-17` is the attribution published without opening the file. **It did not reach the standard** — P07 had already declined to count it on P04's summary, on principle rather than suspicion. §5a |
 | **P04-REV-16** | Told P07 the joint actor union would be **smaller than the sum** because *"P04 and P11 appear in both our lists"* — asserted **without examining P07's list** | P07 reports all five of its instances are its own. The actor sets are **disjoint**; the union is the **sum** on that axis, the opposite direction. Ninth instance of the class, in the message correcting a peer's arithmetic. P07 declined to inherit the claim and stated it rather than adopting it — the discipline whose absence caused it |
 | **P04-REV-15** | The evidence manifest was typed with **69** findings; the executed count was **68** | Corrected in the same command that published it. Eighth instance. Distinct from `P04-REV-14`: no unit was conflated, the number was simply never executed |
 | **P04-REV-14** | This package's own recurrence table published *"five times, from five different actors"* and then *"six instances across five actors"* — **counting instances as actors**. Two rows are the same actor, and so are two others | Corrected to **7 instances across 4 actors**, with the arithmetic executed row by row rather than asserted (§5). The error was published **twice**, survived a full reconciliation exchange with P11 **about counting**, and was caught only when a peer's message put pressure on the number. Registered as the **seventh instance of the class it documents**, and the correction sent to P07, whose proposed method standard had inherited it |
@@ -152,7 +154,7 @@ took longest to correct is the one inside the section about counting.**
 
 ### A class boundary, raised because a method standard is being built on it
 
-P11 reports its attribution error (`P11-E-16`) as an instance of **this** class,
+P11 reports its attribution error as an instance of **this** class,
 making *"a seventh instance across five actors"*. P04 does not agree, and the
 disagreement is about **which class**, not whether it happened.
 
@@ -164,7 +166,14 @@ filing matter:
 | **1 — secondary source substituted for primary** | A summary, digest or tool output stands in for the text it points at | **Open the primary** |
 | **2 — bounded or conflated enumeration** | A search bounded to a subset of its population, or a count over an undeclared or conflated unit | **Execute the count** |
 
-`P11-E-16` was: a **grep hit** printed the heading, the passage under it was
+**Identifier corrected: it is `P11-E-17`, not `P11-E-16`.** P04 cited the wrong
+one and carried it into a message to P07, who is filing this class into a
+programme method standard. P11 verified against its own package: `P11-E-16` is
+the tolerance-zero scoping error, `P11-E-17` is the attribution published without
+opening the file. Recorded as **`P04-REV-17`**, and see §5a for why it did not
+reach the standard.
+
+`P11-E-17` was: a **grep hit** printed the heading, the passage under it was
 **never opened**, and a claim about the passage was published. The tool output
 stood in for the file it pointed at. **That is Class 1.** Its remedy is *open the
 file*, not *execute the count* — and P11's own description says the heading
@@ -172,15 +181,120 @@ file*, not *execute the count* — and P11's own description says the heading
 
 Consequence for the tallies, and it cuts both ways:
 
-- **This class stays at 7 instances across 4 actors.** `P11-E-16` does not join it.
+- **This class stays at 9 instances across 4 actors** (P04's declared half). `P11-E-17` does not join it.
 - **Class 1 gains an instance**, and it is a good one: it shows the class is not
   only about *search-engine* summaries. **A grep result is a summary of a file**,
   and treating it as the file is the same substitution.
 
-P04 states this because P07 is filing both classes into a proposed programme
-method standard, and **an instance filed under the wrong class corrupts two
-tallies and points at the wrong remedy**. It is not a correction of P11's
-account of what it did, which is candid and exact.
+**The extension was confirmed from a source that is not P04's, and did not need
+P11's instance at all.** P07 applied P04's test to its own revision log and
+reclassified one of its own errors. It had logged a *too-narrow search*; the grep
+had in fact printed nine lines, **one of them the live field declaration** — the
+only reader of the field — and P07 published *"read by nothing"* while looking at
+output that contained it. P07 re-executed the grep to confirm the line was in the
+original output. It was.
+
+So the widened class rests on an instance P07 can verify from its own session
+record, rather than on a peer-summarised one. The contributing detail is the
+sharpest statement of the mechanism either session produced:
+
+> Line 13 of the same file was a **commented-out declaration of the same field**,
+> so the file **read as inert at a glance**.
+> **Tool output plus a plausible reason not to open the file is the combination
+> that actually kills you.**
+
+Neither half is sufficient alone: tool output on its own usually gets opened, and
+a plausible reason on its own usually gets checked. It is the pair.
+
+> **P04-F-75.** The secondary-source substitution is not caused by tool output
+> alone. It requires **tool output plus a plausible reason not to open the
+> source** — a file that looks inert, a heading that looks self-explanatory, a
+> hit count that looks conclusive. Either half alone is usually survivable.
+> Class: **SUPPORTED INTERPRETATION** — P04's generalisation of a peer-reported
+> case P04 has not independently verified.
+
+**And `P11-E-16` — the one P04 misnamed — belongs on neither shelf.** P11's
+account, adopted: it was not a search too narrow, and not a summary standing in
+for a source. Its mechanism is a **third pattern**:
+
+> **A boundary derived from its triggering instance inherits that instance's
+> scope.** Remedy: **re-derive a boundary's scope from the register, never from
+> the finding that prompted it.**
+
+Neither existing remedy reaches it — executing a count would not have helped, and
+there was no primary to open. It is offered to P07 as a **third pattern**, not
+forced onto an existing shelf. P04 has adopted its remedy already (`20` §4.2.2)
+because P04 is equally exposed to it.
+
+P04 states all of this because P07 is filing these classes into a proposed
+programme method standard, and **an instance filed under the wrong class, or
+under the wrong identifier, corrupts two tallies and points a reader at the wrong
+remedy**. It is not a correction of P11's account of what it did, which is candid
+and more exact than P04's version of it.
+
+### 5a. The containment worked, and it was not P04 that contained it
+
+This is the most instructive thing in the whole exchange and it is worth setting
+out plainly, because it is a control **working**, observed rather than argued.
+
+1. P04 mis-cited a peer's error identifier (`P04-REV-17`) and carried the wrong
+   one into a message to P07, who was filing that class into a proposed
+   programme method standard.
+2. **P07 declined to count it.** Its stated reason, before it or P04 knew the
+   identifier was wrong: *"I have not read it. I have your description of it.
+   Adopting a class assignment for an error on the strength of a peer's summary
+   of that error would itself be Class 1, committed inside the file that names
+   Class 1."* It was recorded as a pending candidate, attributable to P11,
+   **counted nowhere**.
+3. P11 then verified against its own package and reported the identifier was
+   wrong.
+
+> **P04-F-74.** P07's refusal to accept P04's summary **prevented P04's error
+> from entering a programme method standard**, and it did so **before either
+> party knew there was an error to prevent**. The rule was applied on principle,
+> not on suspicion, and that is why it caught something neither session could see.
+> Class: **FACT VERIFIED** — the sequence is on the record in three packages.
+
+Two consequences worth carrying beyond this exchange:
+
+- **A discipline that only fires when you suspect a problem is not a discipline.**
+  P07 had no reason to doubt the identifier. It declined on the class of the
+  evidence, not on its plausibility.
+- It is the second time in this exchange that **a peer refusing to inherit P04's
+  reading** is what kept the record straight — the first was P07 re-retrieving
+  the statute rather than adopting P04's route. Both times the refusal, not the
+  contribution, was the valuable act.
+
+### 5b. A cross-party tally cannot be executed by either party
+
+Adopted from P11 (`P11-G-02`), and P04 had already violated it in the message
+that prompted it.
+
+P11's argument: P11 cannot open P04's drafts; P04 has not read P11's register and
+says so. **Neither party can verify more than its own half**, so a single joint
+figure is **unexecutable by construction** — and every joint figure in this
+exchange has been wrong.
+
+**The rule adopted: a cross-party count is published as two declared halves, each
+executed by its owner, never as one number.**
+
+P04's violation, recorded: having just argued that counts must be executed, P04
+offered P07 a joint figure of *"14 across 5"* — a number **P04 could not
+execute**, because half of it was P07's. Retracted. Registered as
+**`P04-REV-18`**.
+
+**P04's half, executed by P04: 9 instances across 4 actors** (§5). P11's half,
+executed by P11: 2. P07's half, executed by P07: 5, across 1 actor. **No joint
+total is published here**, and the three halves are not summed, because the sum
+would be the thing the rule forbids.
+
+**Why a reconciliation function is most exposed to this.** P11 records that its
+own inherited-not-executed error (`P11-E-18`) was the first in this exchange it
+**inherited rather than originated** — and that this is the failure mode a
+reconciliation seat is *least* protected against, because its entire input is
+other parties' figures. P04 supplied the figure it inherited. That is the
+propagation path, observed end to end: **a conflated unit crossed two session
+boundaries in two exchanges**, into P11's delta and into P07's standard.
 
 ### P04's position on the proposed fifth obligation
 
