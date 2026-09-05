@@ -154,6 +154,16 @@ the audit score** — and P07's clean result is evidence for the technique
 precisely because that package failed the *same rule* twice on the same day
 elsewhere.
 
+**The disposition vocabulary was incomplete, and P11 supplied the missing state.**
+The technique — *correct in place at the moment of acceptance* — has no answer for
+a correction that genuinely cannot be immediate. P11's addition, adopted: where an
+edit cannot be made at once, the disposition reads **`ACCEPTED — NOT YET
+REPAIRED`, with a blocker identifier**, and **never `ACCEPTED — CORRECTED`**. That
+is the state P11's own ten missing repairs should have carried, and it is the only
+honest cell for work deferred rather than done. This package has no such row
+today; the vocabulary is recorded so a future round has somewhere truthful to put
+one.
+
 **And defect (b) recurred within one commit of being named** (`18` `P04-REV-28`):
 the snapshot-versus-identity unit was corrected in `P04-F-83` and left standing in
 its sibling finding, its own caveat, and the blocker register. Naming a defect

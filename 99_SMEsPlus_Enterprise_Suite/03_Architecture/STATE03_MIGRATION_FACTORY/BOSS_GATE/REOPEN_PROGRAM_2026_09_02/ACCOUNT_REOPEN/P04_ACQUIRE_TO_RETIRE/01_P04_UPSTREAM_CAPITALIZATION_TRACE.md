@@ -377,6 +377,27 @@ on **file extension** at **bounded depth**; the re-run matched on the archive's
 | **Snapshots** | **5** | one database captured at one moment — the unit every finding below uses |
 | **Database identities** | **4** | `iSMEs`, `iEVING`, `BK12MAY26`, `iTEST02` — the last captured twice |
 
+**Population ranked before selection — checked retrospectively, and the result is
+luck rather than method.** P07 found it had built an entire runtime section on the
+**smallest** database available (23 accounting lines against another's 447,384)
+because that one sat inside its declared path set and so was opened first — and
+named the corrective as *rank the population before choosing*, not *open more*.
+Tested here:
+
+| Snapshot | Asset rows | Real (non-template) |
+|----------|-----------:|--------------------:|
+| **`iSMEs`** | **685** | **669** |
+| `iEVING` | 36 | 0 |
+| `BK12MAY26` | 36 | 0 |
+| `iTEST02` ×2 | 12 each | 0 |
+
+`P04-F-82` rests on `iSMEs` — the **largest** population and **the only one
+containing real assets at all**. So the selection was **forced by the data**, not
+chosen for convenience. **Recorded as luck, not method:** this session did not
+rank before reading; it read the largest file first and the ranking only exists
+because it was executed afterwards, at a peer's prompting. The rule is adopted
+prospectively.
+
 **No sixth database exists** under the stricter method, so `P04-F-83` is not
 resting on a missed artefact. Two bounds were tested rather than assumed: the
 extension filter **did** cost coverage in principle and **not** in fact, and a
