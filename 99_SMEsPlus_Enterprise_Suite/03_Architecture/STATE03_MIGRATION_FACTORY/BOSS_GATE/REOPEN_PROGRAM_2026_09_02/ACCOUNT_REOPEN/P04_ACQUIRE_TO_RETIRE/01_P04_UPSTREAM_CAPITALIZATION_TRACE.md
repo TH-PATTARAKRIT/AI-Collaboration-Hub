@@ -755,6 +755,67 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.22 Every negative, re-audited against the boundaries that moved
+
+P07 audited its seventeen negative rows by **declared boundary** and found the
+ones bounded to a **path set** and to a **volume** both invalidated by boundary
+changes this session made — including one underpinning its tenant finding. Its
+counter-case is the transferable half: **the four negatives written with an
+explicitly narrow boundary are the only ones that did not go stale.** Run here
+over all ten declared negatives.
+
+> **P04-F-121.** **Nine of ten negatives survive the boundary changes; one does
+> not, and it is the one already identified.**
+>
+> Four boundaries moved in this package: the archive **signature set**
+> (`P04-F-86`), the archive **path set** (`P04-F-88` withdrawn), the **source
+> scope** (`P04-F-93`, 27 installed modules in neither declared root), and the
+> **generation basis** (`P04-F-85`). Only the third can reach a negative here,
+> because all ten are bounded to **modules**, not to a volume or a tree.
+>
+> The test: for each negative, does any of the 27 undeclared-but-deployed modules
+> declare fields or views on the model that negative concerns?
+>
+> | negative | exposure |
+> |---|---|
+> | no scrap · no impairment · no transfer · no partial disposal · no scheduled action | **none** |
+> | no purchase- or receipt-driven asset creation | **none** |
+> | no manufacturing-to-asset route | **none** |
+> | no borrowing-cost capitalization | **none** |
+> | no asset-specific close or report-driven recomputation | **none** |
+> | **no operation-to-equipment reference** | **`equipment_fleet`** |
+>
+> **Nine are protected by `P04-F-116`** — no installed module outside the declared
+> scope declares on `account.asset`. The tenth concerns
+> `maintenance.equipment`, where `equipment_fleet` does, **and whose source is
+> nowhere on this host** — the same module, the same exposure, and the same six
+> findings already partitioned at `P04-F-118`. **The exposure is one boundary,
+> one model and one module wide, and it has now been reached from three
+> independent directions.**
+>
+> **P07's inversion is confirmed here and is worth more than the audit.** These
+> ten were written with **narrow, module-scoped** boundaries — *"the asset
+> module"*, *"the loans module"*, *"reporting modules"* — never *"the source
+> tree"* or *"the volume"*. **They survived a change that invalidated an entire
+> declared root.** P07's path-set-bounded and volume-bounded negatives did not.
+>
+> > **A negative that declares a narrow boundary survives a boundary change; one
+> > that declares the widest boundary available at the time does not.**
+>
+> Which inverts the instinct: **the negative that sounds strongest is the one
+> that rots.** *"Not found anywhere on the volume"* is a bigger claim than *"not
+> found in the asset module"*, and it is the bigger claim that a later discovery
+> destroys.
+>
+> **Limit, stated because it is the same one-directional bound as everywhere
+> else:** *protected* means **no undeclared module declares on that model** —
+> `ir_model_data` sees XML-id declarations only. A module could override a method
+> and declare nothing. **A floor, not a proof**, and the nine are safer than they
+> were, not safe.
+>
+> Class: **FACT VERIFIED**, ten negatives audited against four moved boundaries,
+> one exposed, nine protected to the stated floor.
+
 ### 6A.21 The qualifier check, made usable
 
 > **P04-F-120.** **The rule published at `P04-F-119` was noisy enough to be

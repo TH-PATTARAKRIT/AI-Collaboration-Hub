@@ -31,6 +31,14 @@ evidence and are cited by **module and behaviour**, not by transcribed code.
 
 ### 1.2 Declared negative patterns
 
+*Re-audited at `01` §6A.22 (`P04-F-121`) against the four boundaries this session
+moved — signature set, path set, source scope, generation basis. **Nine of the ten
+are protected**: no module outside the declared source scope declares on the model
+they concern. **One is exposed** — *no operation-to-equipment reference* — because
+`equipment_fleet` declares on `maintenance.equipment` from outside both declared
+roots, with no source on this host. Protection is a **floor**: `ir_model_data` sees
+XML-id declarations only, so a module could override a method and declare nothing.*
+
 Each returned **zero hits under the stated path set** and is reported as
 *"not found under &lt;path set&gt; using &lt;pattern&gt;"*, never as non-existence.
 
