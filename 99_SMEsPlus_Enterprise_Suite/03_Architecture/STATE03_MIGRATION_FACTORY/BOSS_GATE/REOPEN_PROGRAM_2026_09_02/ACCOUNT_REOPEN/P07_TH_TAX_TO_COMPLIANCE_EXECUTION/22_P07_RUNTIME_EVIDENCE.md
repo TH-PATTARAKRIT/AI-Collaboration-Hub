@@ -1956,3 +1956,79 @@ Adopted as stated, because the general version invites the wrong reply:
 That is not *two reviewers are better than one*. More of either package's own review would not
 have found it: this package's check was correct in its convention and blind in its scope, and
 more careful convention-checking would have returned clean every time.
+
+
+---
+
+## 25. Which Findings Carry the Stack Exposure, and Which Do Not — `P07-F-83`
+
+`§23` established that four installed modules outside the declared PATH SET declare on models
+this package's findings turn on, and opened `P07-U-30`. It did **not** say *which findings*.
+P04 made that move on its own package and got the first clean positive of the exchange — no
+installed module outside its declared roots declares on `account.asset`, so its pure asset
+findings are on a fully declared stack while its asset–equipment findings are not.
+
+Run here, per model, across three in-generation identities:
+
+| model | modules declaring | outside the declared PATH SET | findings |
+|---|---:|---|---|
+| **`account.tax.group`** | 2 | **none** | **`P07-F-01`, `P07-F-42`, `P07-F-67`** |
+| **`account.tax`** | 9 | **none** | `P07-F-42`, `P07-F-70` |
+| **`account.account`** | 13 | **none** | `P07-F-51`, `P07-F-63` |
+| **`withholding.tax.cert`** | 3 | **none** | `P07-F-62` |
+| **`withholding.tax.cert.line`** | 1 | **none** | `P07-F-62` |
+| **`withholding.tax.report`** | 1 | **none** | `P07-F-11` |
+| `account.move` | 52 | `account_discount_catalog`, `scgl_product_image`, `scgl_tax_period_date` | `P07-F-03`, `P07-F-57` |
+| `account.move.line` | 34 | `scgl_product_image`, `scgl_tax_period_date` | `P07-F-03`, `P07-F-70` |
+| `account.payment` | 14 | `account_payment_multi_deduction` | `P07-F-16` |
+| `account.payment.register` | 7 | `account_payment_multi_deduction` | `P07-F-52`, `P07-F-16` |
+
+### 25.1 `P07-F-83` — both headline findings are on a fully declared stack
+
+**No installed module outside the declared PATH SET declares on `account.tax.group`,
+`account.tax`, `account.account`, `withholding.tax.cert`, `withholding.tax.cert.line` or
+`withholding.tax.report`.** So `P07-F-01`, `P07-F-42`, `P07-F-67`, `P07-F-51`, `P07-F-63`,
+`P07-F-62` and `P07-F-11` — **including both headline findings** — rest on a stack every member
+of which is inside the declared scope and has been read.
+
+**This is the first result in this exchange that made findings safer rather than narrower**, and
+it exists only because P04 asked the question in that form. Every prior round widened, refuted
+or reclassified something.
+
+### 25.2 The exposed set, named rather than resolved
+
+- **`P07-F-16`, `P07-F-52`** — `account_payment_multi_deduction`. Already `P07-F-80` /
+  `P07-U-30`; `P07-F-52` separately discharged at `§21.2` because that module holds zero
+  references to its cited surface.
+- **`P07-F-03`, `P07-F-57`, `P07-F-70`** — three modules on `account.move`/`account.move.line`.
+  One of them, `scgl_tax_period_date`, is already discharged by `P07-F-74` (five copies, one
+  tree, and its whole body is a `create` hook writing `tax_period_date`). The other two,
+  `account_discount_catalog` and `scgl_product_image`, are **named and not assessed** —
+  `P07-U-30` widened to cover them.
+
+`P07-F-57` is the case worth flagging: it was discharged at `§21.2` on **copy identity** and it
+now carries a **stack** exposure. The two are different questions, exactly as `REV-M-44` states,
+and a finding can be clear on one and open on the other.
+
+### 25.3 The limit binds here as it does for P04
+
+`ir_model_data` records only declarations carrying an XML id. A module can override `create`,
+`write` or `_post` on any of these models and appear nowhere in that table. So **"none outside
+the declared roots" is a floor on the declared stack, not proof of a complete one.** The
+sharpest available statement, in P04's words: **no undeclared module is shown to act on these
+models, and none is shown not to.**
+
+`P07-U-30` therefore stays open, and `§25.1` is a **strengthening of confidence, not a
+discharge**. No blocker moves and no exit criterion is claimed.
+
+### 25.4 What the exchange produced, stated once
+
+Four times in this package a finding moved: `P07-F-51` split and revealed `P07-F-63`;
+`P07-F-42` lost a mechanism and gained a larger consequence; `P07-F-01` lost its trigger and
+gained a measured prospective magnitude; `P07-F-16` lost the assumption that it was analysed on
+the deployed stack. P04 reports four of its own. **In none was the original sloppy.** Each moved
+because a differently-biased instrument asked the next question, and **each replacement was more
+decision-relevant than what it replaced.**
+
+That is the honest summary of what this was worth. It is not *"errors were found"* — most of
+what changed was **what the findings were about**.
