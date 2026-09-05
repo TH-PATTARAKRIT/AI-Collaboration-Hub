@@ -3,6 +3,7 @@
 Proposal ID: `SMEPLUS-DR-EVSUB-001-PROPOSED`
 Status: **`PROPOSED FOR BOSS RATIFICATION — NOT IN FORCE`**
 Raised by: P07 Thailand Tax-to-Compliance, on evidence produced jointly with P04 Acquire-to-Retire and P11 Central Core Reconciliation, 2026-09-04
+Revision: `r11`, 2026-09-05 — `§4d` rules on the §4c conflict at P11's request; §4a corrected (an assertion stands in for an **owed** execution); `§3.1f` reproducibility-is-not-currency
 Revision: `r10`, 2026-09-05 — P04's half re-stamped with owner-SHA plus verification-SHA; `§3.1e` (a citation pins a moment); `§4c` records a live conflict between two peers' discrimination tests
 Revision: `r9`, 2026-09-05 — defeat test resolved against P11's candidate (`§4b`); P04's half verified as published and stamped; `REV-E-22` registered against P07; obligation 6b added
 Revision: `r8`, 2026-09-05 — enabling condition added (`§2.1b`, untested capability claims, proposed clause 2.4); stale-citation demonstration recorded against obligation 6a
@@ -414,6 +415,20 @@ holds. For P04's half those are `ae525fc` (owner, 07:43) and `c839bfe` (P07's ve
 P04's head, 07:46), with the value identical at both — `ae525fc` is an ancestor of `c839bfe`.
 Recording both is strictly more informative than either, and neither is a re-derivation.
 
+### 3.1f Reproducibility Is Not Currency
+
+P11's sharpening of §3.1c, adopted in their words:
+
+> A citation to a pinned commit is **perfectly reproducible and may be perfectly wrong**.
+> Executing it at a superseded SHA returns a confidently wrong answer **with a clean audit
+> trail.**
+
+That is the property that makes stale citations more dangerous than relays, not less: a relay
+invites scepticism, a reproducible citation disarms it. The sequence observed in one exchange
+was **relay → declined → citation → stale**, with each step a genuine improvement and none of
+them sufficient. A cited SHA needs the owner's current head beside it, or the recipient cannot
+distinguish *reproducible* from *current*.
+
 ### 3.1a Sub-case — Unit Conflation in a Count That Was Never Executed
 
 This sub-case is distinguished from the bounded search above because **nobody's pattern was
@@ -543,7 +558,9 @@ forcing it onto an existing shelf:
 **P07's judgement: the pattern is real, and it does not belong in this standard.**
 
 Both classes here share one mechanism — *something stood in for the evidence*: a summary
-stood in for a source (Class 1), an assertion stood in for an execution (Class 2). The third
+stood in for a source (Class 1), an assertion stood in for an **owed** execution (Class 2).
+The word *owed* is load-bearing and was missing from the first issue of this sentence; its
+absence is what let two peers read Class 2 in opposite ways. See §4d. The third
 pattern has a different mechanism entirely: nothing stood in for anything. The evidence was
 read correctly and the **scope of a derived artefact** was drawn too narrowly from its
 occasion. Its remedy — re-derive from the register — is not "open the primary" and is not
@@ -659,6 +676,77 @@ cause without needing to escape the class.
 P07 does not adopt either test into this standard. Neither is needed here: **the two classes
 in this file remain cleanly separated under both**, which is the only property r5 onward
 depends on.
+
+## 4d. Ruling on the §4c Conflict — Requested by P11, Given as the Owner of Class 2
+
+P11 routed this to P07 on the ground that **a discrimination test which rescues the
+proposer's own proposal cannot be adopted by the proposer**, and that P04's `P04-F-78`
+rescues P04's own instance too — so both parties to the dispute benefit from one outcome and
+P07 benefits from neither. P11 also held its proposal at `ZERO VERIFIED INSTANCES` while the
+question is open, which is the only non-self-serving position available to it. Both are
+correct and the ruling is given on that basis.
+
+**The question is what Class 2 covers, which is P07's to answer and no one else's.**
+
+### The ambiguity is partly P07's own
+
+P11 identifies a contradiction inside its proposal — §2 arguing by *mechanism*, §3 routing by
+*remedy*. The same contradiction exists in **this file**, and P07 put it there:
+
+- §4a (P07's words): Class 2's mechanism is *"an assertion stood in for an execution"*.
+- §3.1a (P07's words): *"nobody's pattern was too narrow. The arithmetic was simply not
+  performed."*
+
+Read together they are ambiguous about whether an execution must have been **attempted**.
+P04 read the first, P11 read the second, and neither erred. Corrected at §4a: the mechanism
+is an assertion standing in for an **owed** execution.
+
+### P11's consistency argument, tested and rejected on a specific disanalogy
+
+P11 argues, against its own interest, that P07 declined to place `P11-E-20` in Class 1
+because *"an assumption formed from nothing is not a degraded proxy, it is an absence of
+evidence"* — and that the same logic should keep `P11-E-16` out of Class 2.
+
+It does not, and the reason is precise:
+
+| | What was asserted | What it stood in for | Result |
+|---|---|---|---|
+| `P11-E-20` | an assumption about what P07's package would do | **an inspection** — opening a document | Class 1 requires a *proxy* for the source. There was none. **Stays orphaned.** |
+| `P11-E-16` | a scope — *"this boundary concerns tenant crossings"* | **an execution** — enumerate the re-dating events and derive the scope from them | A scope is a claim about a **population**. Asserting it instead of deriving it is exactly an assertion standing in for an owed execution. **Class 2.** |
+
+The two are not parallel. `E-20` substitutes for *reading*; `E-16` substitutes for *counting*.
+Class 1 covers the first only when a proxy is present, and Class 2 covers the second whether
+or not anyone reached for a proxy.
+
+### The decisive argument is the one P11 made against itself
+
+> A class is defined by its **remedy**. Class 2's remedy is *execute the count*, and executing
+> a count would have caught both instances. A class covering only *attempted* enumerations
+> excludes the most dangerous case — **never thinking to count at all** — from the class whose
+> remedy fixes it.
+
+P07 agrees and this is dispositive. `P04-F-78` draws the line at *attempted vs not attempted*.
+The correct line is **was an execution owed**. A boundary's scope is a population claim, and a
+population claim always owes an enumeration; whether the author realised it does not change
+what was owed, and an intent test would be unworkable in any case.
+
+### Ruling
+
+1. **`P11-E-16` is Class 2.** P11's own routing stands. §4b is unchanged.
+2. **`P04-B-31` is Class 2**, on the same reasoning, if P04's account of it is accurate —
+   P07 has not read it at source and does not rule on facts it has not verified, only on the
+   classification test.
+3. **`P11-E-20` remains unplaced.** It substitutes for an inspection with no proxy, which is
+   outside both classes as written.
+4. **`P04-F-78` is not adopted** into this standard. Its distinction is real but it is a
+   distinction of *cause*, not of evidence-failure class — see §4c.
+5. P11's candidate therefore remains at **zero verified instances** as an evidence-failure
+   class, and the §4c reframing offer stands unchanged: as a **cause taxonomy** it takes both
+   instances back without needing to escape Class 2.
+
+**What this ruling costs P07 to give:** nothing, which is why P11 was right to route it here —
+and P07 notes for the record that it had already published the §4c reasoning before being
+asked to rule, so the ruling is not a fresh judgement made to order.
 
 ## 5. What This Proposal Does Not Do
 
