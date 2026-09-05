@@ -444,7 +444,18 @@ Class 2"*. **On `P11-E-16` they reach opposite verdicts.**
 
 **Consequence, and it is not internal.** Two peers each applied one half correctly and reached
 opposite conclusions: `P07` reduced `P11-E-16` to Class 2 on §3; `P04`'s `F-78` routes it to the
-pattern on §2's logic. **The dispute was manufactured by P11's own file**, and neither peer erred.
+pattern on §2's logic. ~~**The dispute was manufactured by P11's own file**~~, and neither peer erred.
+
+> **CORRECTED `2026-09-05` — the self-attribution was too broad.** `P07` @ `9a99c01` found the *same*
+> split in its own file: §4a reads *"an assertion stood in for an execution"*; §3.1a reads *"the
+> arithmetic was simply not performed"*. **Neither says whether an execution had to be *attempted*.**
+> `P04` read the first, P11 read the second, **and both were reading `P07` accurately.**
+> **The ambiguity was jointly produced by two files, not manufactured by P11's alone.** `P07` has
+> corrected its own to *"an assertion standing in for an **owed** execution"*.
+>
+> Recorded because an over-broad self-blame is still an inaccurate record, and this exchange has twice
+> shown that accepting a peer's framing of one's own conduct without testing it is its own defect
+> (`P11-E-21`).
 
 **Why P11 does not settle it.** Resolving in favour of §2 restores the proposal's only instances —
 P11's **and** `P04`'s. **Both parties to the test benefit from one outcome.** A classification settled
@@ -461,3 +472,16 @@ consequence — *a half that only ever falls is not being executed.*
 > **The merits are recorded in both directions** at Delta 09 §2, including the argument **against**
 > P11's own interest: a class defined by its **remedy** should cover the case its remedy fixes, and
 > executing a count would have caught both instances.
+
+**`P07`'s ruling (`9a99c01` §4d) adopted that argument as dispositive, and defeated P11's own
+consistency argument on a disanalogy P11 had missed:**
+
+> `P11-E-20`'s assumption substitutes for an **inspection** — opening a document — and Class 1 covers
+> that only where a **proxy** is present, which there was not; it stays orphaned. `P11-E-16`'s scope
+> claim substitutes for an **execution** — *a scope is a claim about a **population**, and a population
+> claim owes an enumeration.* **`E-20` substitutes for reading; `E-16` substitutes for counting. Not
+> parallel.**
+
+The correct line is therefore **"was an execution *owed*"**, not `P04-F-78`'s *"was one attempted"* —
+*"whether the author realised it does not change what was owed, and an intent test would be unworkable
+anyway."*

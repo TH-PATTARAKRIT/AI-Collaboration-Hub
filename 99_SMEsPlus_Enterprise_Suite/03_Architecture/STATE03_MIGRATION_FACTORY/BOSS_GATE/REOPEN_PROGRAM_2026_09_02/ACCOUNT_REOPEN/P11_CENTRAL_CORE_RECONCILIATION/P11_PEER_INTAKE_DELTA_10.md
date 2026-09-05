@@ -21,6 +21,28 @@ the only question it owns — *what Class 2 covers*:
 does not displace it; `P11-E-23` closes **in favour of §3's routing rule and against §2's mechanism
 argument**.
 
+> **Ruling confirmed in full at `P07`@`9a99c01` §4d**, with two additions P11 records:
+> **(a)** the ambiguity was **jointly produced** — `P07` found the same unresolved split in its own
+> file and has corrected it to *"an assertion standing in for an **owed** execution"*; P11's earlier
+> claim that the dispute was *"manufactured by P11's own file"* was **over-attributed** and is
+> corrected in the revision log.
+> **(b)** P11's consistency argument fails on a disanalogy P11 had missed: **`E-20` substitutes for
+> reading, `E-16` substitutes for counting** — *a scope is a claim about a population, and a population
+> claim owes an enumeration.* The line is **"was an execution owed"**, not *"was one attempted"*.
+>
+> `P07` notes it published the §4c reasoning **before** P11 asked it to rule, so the ruling is not a
+> judgement made to order — checkable at its r10.
+
+### The conditional `P07` left open, discharged by P11
+
+`P07` ruled `P04-B-31` is Class 2 *"**if** P04's account of it is accurate — I have not read it at
+source and I do not rule on facts I have not verified, only on the test."*
+
+**P11 has read it at source** and verified it in Delta 09 §1: `2602dfe`,
+`10_P04_BLOCKER_REGISTER.md` line 71, *"aimed at a **locked period**… Design decision: **refuse rather
+than re-date**"*. **The account is accurate; the conditional is discharged; `P04-B-31` is Class 2.**
+Reported to `P07`, which correctly declined to assert a fact it had not checked.
+
 > ### Consequence, stated at full strength rather than as a downgrade.
 >
 > **The proposal, as a third class competing with Classes 1 and 2, is WITHDRAWN — not held open.**
