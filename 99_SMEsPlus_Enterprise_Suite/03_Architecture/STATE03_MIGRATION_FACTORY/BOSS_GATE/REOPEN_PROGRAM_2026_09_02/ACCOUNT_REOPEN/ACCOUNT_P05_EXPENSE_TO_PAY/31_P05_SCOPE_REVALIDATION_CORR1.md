@@ -59,7 +59,7 @@ must itself be scope-classified rather than used unclassified.
 > effect, yet its ACL grants full CRUD to `base.group_user` and its creation runs under `sudo()`
 > (`30 §1 H-P01-2`). Under `MISSING REQUIRED SCOPE = DENY`, an operation with a company-owned
 > financial effect must prove company-scoped authority; here it proves none and elevates instead.
-> **Live in all five real business databases.** Routed to **P01** — P05 does not decide P01's
+> **Live in all four distinct databases evidenced.** Routed to **P01** — P05 does not decide P01's
 > authorisation model.
 
 > **`SC-03` NEW SCOPE OBSERVATION.** Certificate evidence is single-company in the only population

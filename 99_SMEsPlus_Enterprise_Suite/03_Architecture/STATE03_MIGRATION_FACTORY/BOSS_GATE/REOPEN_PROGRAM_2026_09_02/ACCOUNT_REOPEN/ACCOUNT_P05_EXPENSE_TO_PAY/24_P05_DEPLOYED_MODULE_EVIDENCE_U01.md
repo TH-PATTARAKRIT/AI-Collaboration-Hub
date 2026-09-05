@@ -92,7 +92,7 @@ Therefore, with classes per the Negative Claim Control:
 |---|---|
 | "In these six registries, `hr_expense_petty_cash` is installed in none." | **A** — verified absence within the stated registries |
 | "`hr_expense_petty_cash` is not installed in the SMEsPlus v18 target." | **D — UNKNOWN.** No v18 P05 deployment was found. **This is not upgraded.** |
-| "The deployed estate installs the Thai WHT stack and the purchase-advance module." | **A** within the five real business databases |
+| "The Thai WHT stack and the purchase-advance module are installed in all four distinct databases evidenced." | **A** within those four; **B** for any wider population |
 | "Module install state is uniform across the estate." | **E — CONTRADICTED.** It varies materially: `hr_expense_extract`, `hr_payroll_expense` and `account_payment_multi_deduction` are installed in the two `iTEST02` registries and in none of the others; `multi_level_approval` is installed in two of five. |
 
 The `odoo.conf` at `/Volumes/iMacSys/CLAUDE AI/SMEsPlus18/odoo.conf` names `db_name = smesplus_th`
@@ -101,11 +101,58 @@ with `addons_path = /opt/odoo/custom/smesplus_th_base,/opt/odoo/addons,/opt/odoo
 `addons_archive` must not be on the `addons_path` — which independently corroborates `21 NC-02`'s
 treatment of the archive as non-deployed.
 
+> ## CORRECTION — POPULATION CLAIM WITHDRAWN (AAS-03 Expert 1)
+>
+> **This file repeatedly wrote "the deployed estate" with a definite article, which asserts a
+> population it never established.** The six registries are a **convenience sample** — the dump files
+> that happened to exist in one downloads folder and one lab directory on this host. No search was
+> run to enumerate SMEsPlus deployments; no statement exists of how many client installations there
+> are, or whether production databases exist that were simply never backed up to this machine.
+>
+> **The phrase is withdrawn.** Every claim in §3 is class **A** *for the six named files* and class
+> **B** for any statement about deployments generally. This is the same denominator defect the
+> programme has hit repeatedly, committed again here after the rule was written down.
+>
+> ### The "five real business databases" count was also wrong
+>
+> `iTEST02-Jun` and `iTEST02-Jul` are **two snapshots of one database taken a month apart** —
+> confirmed from the archive headers, both `dbname: iTEST02`. They are not two deployments.
+> Corrected identity set:
+>
+> | Database | Owner | Character |
+> |---|---|---|
+> | `iSMEs` | `scgl` | v16, production-scale data (183,590 entries, 5,201 certificates) |
+> | `iEVING` | `efaplus` | v19 |
+> | `BK12MAY26` | `efaplus` | v19 |
+> | `iTEST02` | `efaplus` | v19 — **name indicates a test/UAT environment**; class **C**, not confirmed |
+> | `occ_sim_baseline` | — | v18 sandbox, 41 modules, no P05 surface |
+>
+> **Four distinct databases, two distinct owners, one of them named as a test environment** — not
+> "five real business databases". Wherever this package said "5 of 5", read **"4 of 4 distinct
+> databases, of which one is likely non-production"**. This materially weakens the strength — though
+> not the existence — of the `TZ-11`/`TZ-12` reach claim and the P01 handoff built on it.
+>
+> ### State vocabulary
+>
+> Odoo's module `state` has **six** values (`ir_module.py:134-141`): `uninstallable`, `uninstalled`,
+> `installed`, `to upgrade`, `to remove`, `to install`. The `INST`/`uninst`/`—` legend in §3 collapses
+> `uninstalled` and `uninstallable`, which are semantically different. Expert 1 verified as a checked
+> negative that **none of the 27 matrix modules sits in `to install`, `to upgrade`, `to remove` or
+> `uninstallable` in any of the registries** — class **A** within them — so no conclusion changes.
+> The boundary is now stated rather than silently omitted.
+>
+> ### One further correction
+>
+> §4's framing that "**not one** of the P05 custom modules is even present" in the v18 sandbox is true
+> as written, but the sandbox does carry other SCGL custom code (`scgl_account_coa_control`). It is
+> not a vanilla install.
+
 ## 5. Disposition
 
 | Aspect | Disposition |
 |---|---|
-| Module state of the **deployed estate** | **RESOLVED — EVIDENCE VERIFIED** (six registries, class A within them) |
+| Module state of **the six registries named in §2** | **RESOLVED — EVIDENCE VERIFIED** (class A *within those six files*) |
+| Module state of "the deployed estate" | **NOT RESOLVED — class B.** See the correction immediately below. |
 | Module state of the **v18 target platform** | **HOLD — DATABASE EVIDENCE REQUIRED.** Specific ask: a dump or an `ir_module_module` export of `smesplus_th`, or of any Odoo 18 database carrying the P05 custom modules. |
 | `U-01` overall | **PARTIALLY RESOLVED.** No longer a blanket unknown; the residue is precisely named. |
 

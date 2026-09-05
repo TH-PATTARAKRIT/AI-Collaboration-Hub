@@ -23,13 +23,13 @@ Invariant tested per row: `ONE BUSINESS FACT → ONE CANONICAL EVENT OWNER → O
 | `BE-12` | Petty cash spent | expense line, mode `petty_cash` | claim approval | **credits the EMPLOYEE payable, not the float** | **`EX-04` / `TZ-01`** | LATENT |
 | `BE-13` | Advance liquidated against actual cost | reconcile wizard | manual | offsets advance vs vendor bill | OK | LATENT |
 | `BE-14` | Unused advance returned in cash | clearing wizard | manual | DR cash / CR the first advance line's account | **`EX-05` / `TZ-13`** | LATENT |
-| `BE-15` | WHT withheld at settlement | payment register | payment registration | write-off line to the WHT account | OK | **LIVE (5 of 5)** |
-| `BE-16` | WHT certificate issued | certificate | manual wizard | **none** (document only) | **duplicate-permitting — `TX-13`** | **LIVE (5 of 5)** |
+| `BE-15` | WHT withheld at settlement | payment register | payment registration | write-off line to the WHT account | OK | **LIVE (4 of 4 distinct DBs)** |
+| `BE-16` | WHT certificate issued | certificate | manual wizard | **none** (document only) | **duplicate-permitting — `TX-13`** | **LIVE (4 of 4 distinct DBs)** |
 | `BE-17` | Claim refused after approval | expense report | approver | **deletes the draft entry** | **`EX-06`** | LIVE |
 | `BE-18` | Claim reset to draft after posting | expense report | user with reset right | reverses, then **detaches** entries | **`EX-07`** | LIVE |
 | `BE-19` | Advance request reset / rejected after billing | advance request | requester / approver | **raw `state='cancel'` write on posted entries** | **`EX-08` / `TZ-05`** | LATENT |
 | `BE-20` | Expense line edited after posting | expense line | any editor | **no propagation to the posted entry** | **`EX-09` / `TZ-03`** | LIVE |
-| `BE-21` | **Vendor down payment billed** *(new — evidenced live)* | purchase advance wizard | wizard | **creates AND posts a vendor bill under `sudo()`; never deducted from the final bill** | **`TZ-11`, `TZ-12`, `SC-02`** | **LIVE (5 of 5)** |
+| `BE-21` | **Vendor down payment billed** *(new — evidenced live)* | purchase advance wizard | wizard | **creates AND posts a vendor bill under `sudo()`; never deducted from the final bill** | **`TZ-11`, `TZ-12`, `SC-02`** | **LIVE (4 of 4 distinct DBs)** |
 
 ## 1. Single-Owner Violations by Reach
 

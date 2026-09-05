@@ -13,12 +13,12 @@ Supersedes `03 §2` as the citable accounting-event register; `03` is retained a
 | `AE-06` | Advance liquidated vs vendor bill | reconcile wizard | posted immediately | the vendor bill's date | yes (core) | LATENT |
 | `AE-07` | Advance cash return | clearing wizard | posted immediately | wizard date | yes (core) | LATENT |
 | `AE-08` | Float top-up | manual bill | posted on user action | move date | yes (core) | LATENT |
-| `AE-09` | **WHT withheld** | payment register write-off line | with the payment | payment date | yes (core) | **LIVE (5 of 5)** |
+| `AE-09` | **WHT withheld** | payment register write-off line | with the payment | payment date | yes (core) | **LIVE (4 of 4 distinct DBs)** |
 | `AE-10` | Claim reversal | reverse-moves | reversal posted | context today | yes (core) | LIVE |
 | `AE-11` | Draft entry destroyed on refusal | refuse action | — | — | n/a | LIVE |
 | `AE-12` | Entry force-cancelled from a non-accounting document | raw `state` write | `cancel` | — | **lock yes; hash lock NO** | LATENT (trigger) / **LIVE (core gap)** |
-| `AE-13` | **Vendor down payment recognised and posted** *(new)* | purchase advance wizard, under `sudo()` | **posted immediately** | wizard date | yes (core) | **LIVE (5 of 5)** |
-| `AE-14` | **WHT certificate issued** *(document, no GL effect)* | certificate wizard | n/a | the printed `date` is **correct in 97.79%**; the column named `payment_date` is a **create-time artefact in 100%** of 5,201 rows (corrected — `39 RE-10`) | n/a | **LIVE (5 of 5)** |
+| `AE-13` | **Vendor down payment recognised and posted** *(new)* | purchase advance wizard, under `sudo()` | **posted immediately** | wizard date | yes (core) | **LIVE (4 of 4 distinct DBs)** |
+| `AE-14` | **WHT certificate issued** *(document, no GL effect)* | certificate wizard | n/a | the printed `date` is **correct in 97.79%**; the column named `payment_date` is a **create-time artefact in 100%** of 5,201 rows (corrected — `39 RE-10`) | n/a | **LIVE (4 of 4 distinct DBs)** |
 
 ## 1. Recognition Timing — the position, unchanged and reviewer-confirmed
 
@@ -52,4 +52,4 @@ Supersedes `03 §2` as the citable accounting-event register; `03` is retained a
 | `CLOSE` | no close routine in the P05 surface (`21 NC-11`, class B); a period can close with draft expense entries | LIVE |
 | `REOPEN` | not traced — class **C** | — |
 | `LOCKED PERIOD` | enforcement symmetric at post; **derivation** lock-aware on one branch only; hash lock defeatable (`AE-12`) | LIVE |
-| **WHT reversal** | **no hook exists in any WHT module** — class **A** (`21 NC-14`). A `done` certificate can outlive a cancelled WHT line. | **LIVE (5 of 5)** |
+| **WHT reversal** | **no hook exists in any WHT module** — class **A** (`21 NC-14`). A `done` certificate can outlive a cancelled WHT line. | **LIVE (4 of 4 distinct DBs)** |

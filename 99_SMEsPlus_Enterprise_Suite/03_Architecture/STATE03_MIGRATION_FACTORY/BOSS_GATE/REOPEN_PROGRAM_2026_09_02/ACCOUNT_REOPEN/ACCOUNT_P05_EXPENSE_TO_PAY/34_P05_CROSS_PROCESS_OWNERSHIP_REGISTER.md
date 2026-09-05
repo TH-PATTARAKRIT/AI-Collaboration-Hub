@@ -10,12 +10,12 @@ and the routing in `30`. `09` is retained as audit lineage.
 |---|---|---|---|---|---|
 | Employee reimbursement liability | **Yes** | P01, if the same cost is also entered as a vendor bill | LIVE | **HIGH** — both produce `in_invoice`; the only discriminator is a link field that four paths sever | P01, P08 |
 | Vendor service purchase | **No — P01 owns** | P05 reaches vendor AP through an unconstrained `vendor_id` on a company-paid line | LIVE | MEDIUM | P01 |
-| **Vendor advance / down payment** | **No — P01 owns** | `scgl_purchase_advance_payment` | **LIVE, 5 of 5** | **HIGH — never deducted from the final bill** | **P01, priority** |
+| **Vendor advance / down payment** | **No — P01 owns** | `scgl_purchase_advance_payment` | **LIVE, 4 of 4 distinct DBs** | **HIGH — never deducted from the final bill** | **P01, priority** |
 | Employee advance | **Yes** | — | LATENT | — | — |
 | Petty cash float | **Yes** | P08 cash management | LATENT | MEDIUM | P08 |
 | Payment execution | **No — treasury owns** | P05 nevertheless creates **and posts** payments at approval, one per expense line | LIVE | **HIGH** | P06, P08 |
-| WHT withholding | **Shared** | P01 and P02 use the same payment-register extension; a **second** subsystem exists in parallel | **LIVE, 5 of 5** | **HIGH — two systems of record** | **P07, P11** |
-| WHT certificate issue | **Shared** | P07 owns statutory form and lifecycle | **LIVE, 5 of 5** | **MEDIUM — one exact duplicate in 5,201, and no constraint or index prevents more** (corrected, `39 RE-11`) | **P07** |
+| WHT withholding | **Shared** | P01 and P02 use the same payment-register extension; a **second** subsystem exists in parallel | **LIVE, 4 of 4 distinct DBs** | **HIGH — two systems of record** | **P07, P11** |
+| WHT certificate issue | **Shared** | P07 owns statutory form and lifecycle | **LIVE, 4 of 4 distinct DBs** | **MEDIUM — one exact duplicate in 5,201, and no constraint or index prevents more** (corrected, `39 RE-11`) | **P07** |
 | Analytic allocation | **Consumes** | P09 owns | LIVE | — | P09 |
 | Fiscal lock / period control | **Consumes** | P08 owns | LIVE | — | P08 |
 | Journal immutability | **Consumes** | P08 owns | LIVE (core gap) | — | **P08** |
@@ -34,7 +34,7 @@ double tax, double WHT, double reconciliation, double settlement, double analyti
 | `DUP-04` | Same cost as an expense claim **and** a vendor bill | **NOT DETECTED.** Class **A** within the two module scopes. | **LIVE** |
 | `DUP-05` | Petty-cash claim **and** an employee reimbursement for the same cost | **NOT DETECTED**, and compounded: the float is never reduced by a claim at all. | LATENT |
 | `DUP-06` | One claim producing multiple payments (company branch) | **By design**, one per line — but it breaks the employee branch's own assumption that "only one move is created". | LIVE |
-| **`DUP-07`** | **Vendor down payment billed, then the full order billed again** | **NOT DETECTED — the deduction flag has no live consumer.** Class **A** over the custom tree. | **LIVE, 5 of 5** |
+| **`DUP-07`** | **Vendor down payment billed, then the full order billed again** | **NOT DETECTED — the deduction flag has no live consumer.** Class **A** over the custom tree. | **LIVE, 4 of 4 distinct DBs** |
 | **`DUP-08`** | **Two WHT subsystems reporting the same withholding** | **NOT RECONCILED.** One derives from `tax_line_id`, the other produces a write-off line with none. | **LIVE, 4 of 5** |
 | **`DUP-09`** | **Duplicate withholding certificate for one payment+payee** | **NOT PREVENTED** — the control is a client-side domain the wizard bypasses via context, and the table carries **no UNIQUE constraint and no index** at v16 or v19. **Empirically: one exact duplicate in 5,201** (corrected from an overstated 32 — `39 RE-11`). Multi-certificate payments are otherwise legitimate: one per payee. | **LIVE, measured** |
 
@@ -48,7 +48,7 @@ double tax, double WHT, double reconciliation, double settlement, double analyti
 >
 > **`OW-03`.** `DUP-09`'s magnitude was itself overstated and corrected by review (`39 RE-11`).
 > After correction, the ranking of live duplicate exposures is: **`DUP-07`** (vendor down payment
-> never deducted — a whole second bill, 5 of 5 databases) > **`DUP-08`** (two WHT systems of record,
+> never deducted — a whole second bill, 4 of 4 distinct databases) > **`DUP-08`** (two WHT systems of record,
 > 4 of 5) > **`DUP-04`** (claim vs vendor bill, undetected) > **`DUP-09`** (one instance in 5,201).
 > The single most consequential live duplicate exposure in this package is **P01's**.
 

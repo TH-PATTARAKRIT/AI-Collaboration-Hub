@@ -49,6 +49,25 @@
 | Can an advance be traced to its clearing? | Partly — `move_lines_cleared` (m2m) and `clear_move_id` on the request. | `advance_expense_request.py:119-120` |
 | Is the advance clearing amount idempotent? | **No — and the stored clearing state is permanently stale.** **CORRECTED by AAS-03 Expert 3:** the brief blamed a dependency cycle. Odoo 18 explicitly tolerates the cycle (`ENT18/odoo/modules/registry.py`, `transitive_triggers`: `if field in seen … return`), so the cycle is not the defect. The operative defect is a **missing** dependency: an enumeration of all seven `@api.depends` decorators in the module (pattern `grep -rn --include='*.py' "@api.depends"`, path set = the whole module, unit = decorator) shows **none** references any `account.move` field (`payment_state`, `state`, `amount_residual`) or `move_lines_cleared`. The stored `bill_state` and `is_clear` are therefore never marked for recompute when an advance bill is posted, paid or cleared. The author's workaround is the non-stored twins `bill_state_dump`/`is_clear_dump`, which the **form** uses for every button `invisible`, while the **list view and every search filter** read the stale stored fields. The filters "Bill Paid", "Not Clear" and "Cleared" — the natural management report on outstanding employee advances — read stale data by construction. | `advance_expense_request.py:131-149, 311-337`; `views/advance_expense_request_view.xml:11,18,25,47,79-81,189-193,230-249` |
 
+> **`SR-07a` BOUND ON `SR-07`, raised by AAS-03 Expert 4 — a survival path the package never checked.**
+> A full-package grep for `mail.message` / `chatter` / `tracking` / `ir.attachment` / `message_post` /
+> `_creation_message` returned **zero hits across all 39 files**: the package never evaluated whether
+> lineage survives outside the foreign key. It partly does.
+> **(a)** `hr_expense/models/account_move.py:51-54` overrides `_creation_message()` to post
+> *"Expense entry created from: &lt;sheet link&gt;"* as a permanent `mail.message` at move creation. None
+> of the severing paths edits or deletes that historical chatter — `write()` on `expense_sheet_id`
+> does not touch message history. **(b)** `hr_expense_sheet.py:838-841` copies the receipt attachments
+> onto the move addressed by `(res_model, res_id)`, not through the severed FK, so they too survive.
+> **Exception:** for draft moves that `_do_reverse_moves` **`unlink()`s**, `mail.thread.unlink()`
+> (`mail/models/mail_thread.py:348-361`) deletes the `mail.message` rows as well — no survival there.
+>
+> **This bounds `SR-07`'s severity without overturning it.** After severing there is **no relational
+> path** (confirmed verbatim by Expert 4 against every cited line), but a **forensic, non-relational
+> path** survives for three of the four mechanisms. Parsing chatter HTML or matching attachment
+> checksums is **not** a substitute for a stable identifier and cannot serve as an automated
+> reconciliation key — so the design requirement at `17 §6 DI-05` stands unchanged. Recorded in the
+> same style as `SC-03` bounds `SC-01`.
+
 > **`SR-07` — the reconciliation identity is not stable.** Three distinct code paths sever the only
 > link between an expense claim and its accounting effect, and a fourth (deletion) is defended by a
 > guard that reads the field the other three have already cleared. For SMEsPlus this means

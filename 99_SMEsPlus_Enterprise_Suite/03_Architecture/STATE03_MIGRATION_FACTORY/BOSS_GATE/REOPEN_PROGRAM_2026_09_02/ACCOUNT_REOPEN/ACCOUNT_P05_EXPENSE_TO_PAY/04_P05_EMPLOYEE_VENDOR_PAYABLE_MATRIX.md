@@ -77,7 +77,15 @@ It is nevertheless written to **four** places on the company-paid branch:
 > payment with **no partner**. Its outstanding line cannot be matched to a vendor, and the entry
 > carries no counterparty identity. There is no constraint requiring `vendor_id` on this branch.
 > **SETTLED by AAS-03 Expert 1:** the view **confirms rather than guards** — `hr_expense_views.xml:247`
-> renders `vendor_id` with no `required` and no `readonly`. There is therefore no gate at any layer.
+> renders `vendor_id` with no `required` and no `readonly`.
+>
+> **CORRECTED by AAS-03 Expert 4:** the phrase "no gate at any layer" is **wrong for the
+> cross-company case**. `account.move`/`account.move.line` set `_check_company_auto = True` and their
+> `partner_id` carries `check_company=True`, and `_check_company` runs inside `create()`/`write()` — so
+> `sudo()` does not bypass it. A cross-company vendor is caught, but **late**, at move creation or
+> posting rather than at capture. The **presence/identity** defect stands unchanged: `vendor_id` may be
+> left empty entirely, and nothing at any layer requires it while `partner_type` is hard-coded
+> `'supplier'`.
 
 Note also: `check_company` is absent, so `vendor_id` is not constrained to the sheet's company.
 

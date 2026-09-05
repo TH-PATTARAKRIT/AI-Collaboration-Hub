@@ -19,7 +19,31 @@ The new module evidence (`24`) shows that six of the thirteen boundaries rest on
 > `REACH` (is it reachable in an evidenced deployment?) — and **closes a boundary only on the first
 > axis**. No boundary below is closed because it is currently unreachable.
 
-This position was put to AAS-03 Expert 4 for adversarial challenge; see `36 §4`.
+This position was put to AAS-03 experts for adversarial challenge.
+
+> ### AAS-03 Expert 1 CHALLENGED THIS FRAMING — and the challenge is accepted
+>
+> Expert 1 agreed the position is *mechanically* honoured — 0 boundaries closed, every Gate Impact
+> reads `OPEN`, `EC-04` is not formally violated. But it raised a substantive objection that this
+> register accepts:
+>
+> > *"Deployment reach is close to the **wrong axis entirely** for a build-decision project. SMEsPlus
+> > hasn't built petty cash or employee-advance capability yet — the entire point of studying those
+> > reference modules is to inform whether and how to build them. A confirmed design defect in code
+> > nobody currently runs is not **less** relevant to that decision — arguably it is **more**
+> > relevant, because it is a documented mistake SMEsPlus can still avoid inheriting."*
+>
+> It further observed that §5's "severity inversion" language, and the phrase "reported almost in
+> passing", **function as a downgrade for any reader deciding where to spend effort**, regardless of
+> the `OPEN` label underneath — so the file was performing a substantive reprioritisation while
+> claiming only a formal one.
+>
+> **Accepted, and §5 is qualified accordingly.** `REACH` is retained because it is the right axis for
+> *one* question — what is at risk in a running system today, which is what the P01 and P07 handoffs
+> turn on. It is the **wrong** axis for the question this programme actually exists to answer: what
+> SMEsPlus should build. On that axis a `LATENT` finding carries **equal or greater** weight, because
+> it is a defect the clean-room design can still decline to inherit. Both readings are now stated
+> rather than one being implied. See `37 §3 NC+06`.
 
 ## 3. Register
 
@@ -39,8 +63,8 @@ class **D** in all rows, because no v18 P05 deployment was found (`24 §4`).
 | `TZ-08` | A hashed, inalterable journal entry can be forced to `cancel`; reconciliation partials survive against it — *immutable posted facts* | **CONFIRMED** — source; `'state'` is not in `_get_integrity_hash_fields()` | `ENT18/account/models/account_move.py:3208-3214, 3836, 5351-5352` | COMPANY | **LATENT** *via this trigger*; the underlying core gap is **LIVE** and belongs to P08 | **P08** | **OPEN** |
 | `TZ-09` | Approval enforced in the action, not on the field — an employee can write `approval_state='approve'` on their own sheet — *unauthorised posting* | **CONFIRMED** — source, class **A** over `ENT18/addons` | `hr_expense_sheet.py:79-86, 491-509`; `security/ir.model.access.csv:3`; `ir_rule.xml:49-54` | COMPANY | **LIVE** | P08 | **OPEN** |
 | `TZ-10` | An expense report reaches `done` / "Paid" with **no** journal entry and no payment, and stays deletable — *financial integrity* | **CONFIRMED** — source | `hr_expense_extract/models/hr_expense.py:23, 180-188, 200-223` | COMPANY | **LIVE in 2 of 6** (`hr_expense_extract` installed in both `iTEST02`) | P08 | **OPEN** |
-| `TZ-11` | Duplicate payment: self-documented payroll double-payment path; vendor down payment never deducted from the final bill | **CONFIRMED** — source, both legs | `hr_payroll_expense/models/account_move.py:62-66`; `scgl_purchase_advance_payment/wizard/purchase_advance.py:51, 178-179` | COMPANY | **LIVE** — payroll leg in 2 of 6; **down-payment leg in 5 of 5 real business databases** | **P01** (down payment), P08 (payroll) | **OPEN** |
-| `TZ-12` | Any internal user can create a vendor bill through a `sudo()` wizard — *unauthorised posting* | **CONFIRMED** — source | `scgl_purchase_advance_payment/security/ir.model.access.csv:2`; `wizard/purchase_advance.py:203` | COMPANY | **LIVE in 5 of 5** real business databases | **P01** | **OPEN** |
+| `TZ-11` | Duplicate payment: self-documented payroll double-payment path; vendor down payment never deducted from the final bill | **CONFIRMED** — source, both legs | `hr_payroll_expense/models/account_move.py:62-66`; `scgl_purchase_advance_payment/wizard/purchase_advance.py:51, 178-179` | COMPANY | **LIVE** — payroll leg in 2 of 6; **down-payment leg in 4 of 4 distinct databases evidenced** | **P01** (down payment), P08 (payroll) | **OPEN** |
+| `TZ-12` | Any internal user can create a vendor bill through a `sudo()` wizard — *unauthorised posting* | **CONFIRMED** — source | `scgl_purchase_advance_payment/security/ir.model.access.csv:2`; `wizard/purchase_advance.py:203` | COMPANY | **LIVE in 4 of 4** distinct databases evidenced | **P01** | **OPEN** |
 | `TZ-13` | The only universally available advance-clearing route books a bank receipt that never occurred | **CONFIRMED** — source | `wizard/advance_request_reconcile.py:62-92` | COMPANY | **LATENT** | P06 | **OPEN** |
 
 ## 4. Reach Summary
@@ -51,7 +75,13 @@ class **D** in all rows, because no v18 P05 deployment was found (`24 §4`).
 | **LATENT** (defect confirmed, module installed nowhere evidenced) | `TZ-01`, `TZ-02`, `TZ-05`, `TZ-07`, `TZ-13` — **5**, plus `TZ-08` via its P05 trigger |
 | **Closed** | **0** |
 
-## 5. The Severity Inversion
+## 5. The Reach Inversion — and what it does NOT mean
+
+> **Read `§2`'s accepted challenge first.** What follows re-ranks findings by *operational risk in a
+> running system*. It does **not** re-rank them by *relevance to what SMEsPlus should build* — on that
+> axis the `LATENT` findings rank at least as high, because they are defects the clean-room design can
+> still avoid inheriting. A reader using this section to decide **build scope** rather than
+> **remediation scope** is using the wrong axis.
 
 The module evidence inverts the package's own severity ranking, and that is worth stating plainly
 rather than leaving implicit in a table:

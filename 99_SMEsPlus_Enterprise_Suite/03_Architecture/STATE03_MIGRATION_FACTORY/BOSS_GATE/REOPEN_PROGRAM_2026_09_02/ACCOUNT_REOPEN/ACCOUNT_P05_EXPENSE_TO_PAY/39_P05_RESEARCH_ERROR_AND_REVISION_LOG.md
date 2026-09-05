@@ -92,6 +92,66 @@ class in a new disguise: the command ran, the output was real, and the output co
 answer. The rule is extended: **before accepting a negative from a filtered extract, prove the filter
 can express a positive.**
 
+### `RE-14` — an unearned population claim, after the caveat had already been written
+
+`24` disclosed at §4 that the six registries are a **convenience sample**, then wrote
+"**the** deployed estate" three times elsewhere in the same file, including in its §5 disposition
+table. The caveat and the violation shipped together. Class **E** for the population claim; withdrawn
+package-wide, and every §3 claim re-classed **A** for the six named files, **B** for anything wider.
+*Caught by AAS-03 Expert 1.*
+
+### `RE-15` — two snapshots of one database counted as two deployments
+
+The package's "**five real business databases**" — a phrase load-bearing for the `TZ-11`/`TZ-12` reach
+claim and the P01 handoff — counted `iTEST02-Jun` and `iTEST02-Jul` as separate systems. Author-verified
+from the archive headers: **both are `dbname: iTEST02`**, one month apart. The corrected identity set is
+**four distinct databases across two owners** (`scgl`, `efaplus`), one of them named as a test
+environment (class **C**). Corrected in seven files. *Caught by AAS-03 Expert 1.*
+
+> `RE-14` and `RE-15` are the same defect at two scales: **counting the artefacts found rather than
+> the things they represent.** A file is not a deployment, and a folder is not a population.
+
+### `RE-16` — a soft statutory leak in a package that claims to make none
+
+`07 TX-12` wrote *"a `done` — **potentially already-filed** — certificate…"*. Nothing in the source or
+the data tracks filing status; this was an unsourced real-world assumption used to motivate a HIGH
+severity, carrying no `HOLD` tag, in a file whose own opening rule is that a mechanical fact is never
+presented as a statutory conclusion. **Withdrawn.** *Caught by AAS-03 Expert 3, whose full audit
+otherwise found no hard statutory assertion anywhere in `07`.*
+
+### `RE-17` — P05 answered, in its own column, a question it was routing to P07
+
+`30` `H-P07-2` labelled the per-payee certificate group "**(legitimate)**" while the adjacent column
+posed *"Is a payment permitted multiple certificates?"* as still open for P07. **Withdrawn.**
+Related routing gap also fixed: `BD-06`, `BD-07` and `BD-08` were posed directly to Boss with no P07
+routing, though two of them are Thai-statute territory — Boss would have been deciding P07's substance
+without P07 in the loop. *Caught by AAS-03 Expert 3.*
+
+### `RE-18` — a `CORR1` scope withdrawal that was itself wrong
+
+`22 §3 R-01` **withdrew** a finding on the argument that `res.partner` is tenant-scoped so
+`REFERENCE SCOPE ≠ FINANCIAL SCOPE` made `check_company` unnecessary. Both halves are refuted from
+source: `res.partner` carries its own optional `company_id`, and **Odoo core applies `check_company=True`
+to partner references for exactly this case**. The argument was contradicted by the platform's own
+design pattern. **Reinstated, narrowed** — the true defect is *late failure* (enforcement exists at
+move creation/posting, and `sudo()` does not bypass it), which also corrects `04 §4`'s
+"no gate at any layer" in the opposite direction. *Caught by AAS-03 Expert 4.*
+
+> **`RE-18` is the most instructive error in this log.** It was produced by the *correction round* —
+> the scope-aware revalidation whose whole purpose was to stop the author asserting requirements
+> instead of deriving them. The author then asserted a *non*-requirement instead, from a
+> characterisation of `res.partner` it had not checked. **Applying a rule is not the same as verifying
+> the facts the rule operates on.**
+
+### `RE-19` — an entire lineage-survival channel never examined
+
+A full-package grep for `mail.message` / `chatter` / `tracking` / `ir.attachment` / `message_post` /
+`_creation_message` returns **zero hits across all 39 files**. The package concluded that severing the
+foreign key destroys the claim-to-entry trail without ever asking whether the trail survives elsewhere.
+It partly does — a permanent chatter message and directly-addressed attachments survive three of the
+four mechanisms. Recorded as `08 SR-07a`; it **bounds** `SR-07` rather than overturning it.
+*Caught by AAS-03 Expert 4.*
+
 ## 2. Revisions Forced by the New Evidence
 
 | ID | Revision | Effect |
@@ -140,4 +200,8 @@ The continuation directive required all four AAS-03 experts to challenge the clo
 | **Decompose a count before publishing it as a defect** | **`RE-11`, new** | **adopted.** Group by the dimension the business rule actually keys on before calling a multiplicity a duplicate. |
 | **Iterate the declared root set; never re-choose it at claim time** | **`RE-12`, second instance** | **adopted.** The claim's enumeration must be generated *from* the declared path set, not retyped. |
 | **Prove a filter can express a positive before accepting its negative** | **`RE-13`, new** | **adopted.** Extends *executed-not-quoted*: a command that cannot produce refuting evidence cannot support a negative. |
+| **Count the things, not the artefacts that represent them** | **`RE-14`/`RE-15`, new** | **adopted.** A dump file is not a deployment; a folder is not a population. Deduplicate by identity before counting. |
+| **A written caveat does not license the violation two paragraphs later** | **`RE-14`, new** | **adopted.** After disclosing a sampling bound, grep the same file for the definite-article form of the claim. |
+| **Verify the facts a rule operates on, not just the rule** | **`RE-18`, new** | **adopted.** The scope correction round produced its own scope error by characterising an object it had not read. |
+| **Before concluding a channel is destroyed, enumerate the other channels** | **`RE-19`, new** | **adopted.** Ask what *survives*, not only what is severed. |
 | Independent review inside the phase, disjoint, adversarial, briefed to report errors in the brief | project standard | in force; produced 18 brief errors in round 1 |

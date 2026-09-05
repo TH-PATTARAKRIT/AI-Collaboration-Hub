@@ -27,7 +27,7 @@ Context requirement follows the proven scope; it is **not** assumed.
 | `advance.expense.request.line` | COMPANY | COMPANY | COMPANY | COMPANY | COMPANY | Yes (via parent) | related `company_id` | COMPANY | Tenant + Company |
 | `account.withholding.tax` **(rate + form class)** | **PLATFORM candidate** | — | PLATFORM | PLATFORM | TENANT/COMPANY | No, by itself | n/a | statutory PLATFORM reference | Tenant **not** required for the rate |
 | `account.withholding.tax` **(GL account mapping)** | **COMPANY** | COMPANY | COMPANY | COMPANY | COMPANY | Yes, when applied | the payment's company | COMPANY | Tenant + Company |
-| `res.partner` (employee contact / vendor) | **TENANT** | — | TENANT | TENANT | TENANT | No | n/a | TENANT-owned master data | Tenant only |
+| `res.partner` (employee contact / vendor) | **TENANT by default, COMPANY-restrictable** — it carries its own optional `company_id` (`res_partner.py:294`) | — | TENANT | TENANT | TENANT, **and core constrains such references with `check_company`** | No | n/a | TENANT-owned master data, optionally company-restricted | Tenant; Company **where the reference is company-constrained** |
 | `res.partner.property_account_payable_id` | **COMPANY** (company-dependent property) | COMPANY | COMPANY | COMPANY | COMPANY | Yes, when applied | the reading company | COMPANY | Tenant + Company |
 | `hr.employee` | **TENANT** (HR master) — but one record per company in the reference | TENANT | TENANT | TENANT | TENANT/COMPANY | No | n/a | TENANT-owned | Tenant only |
 | `hr.employee.ae_approver` (advance approver) | **TENANT** policy, **COMPANY** effect | COMPANY | TENANT | TENANT | COMPANY | No directly | company of the request it gates | TENANT policy | Tenant; Company at execution |
@@ -53,10 +53,38 @@ unchanged.
 | **Scope assumption used** | Blanket: every reference must be company-constrained. |
 | **Why over-constrained** | `res.partner` is **TENANT-scoped** master data (§2). `REFERENCE SCOPE ≠ FINANCIAL SCOPE`. A company-owned entry legitimately *references* a tenant-owned partner. Requiring company context on the reference itself is over-constraint. |
 | **Correct scope analysis** | The financial effect is owned by the move's company; the partner reference is tenant-scoped. Absence of `check_company` on `vendor_id` is **not** a scope defect. |
-| **Updated classification** | **WITHDRAWN as a scope defect.** The *separate* finding at `04 §4` — that `vendor_id` is optional while `partner_type` is hard-coded `'supplier'`, producing a supplier payment with no partner — **stands unchanged**, as it is an identity-completeness defect, not a scope defect. |
+| **Updated classification** | ~~WITHDRAWN as a scope defect.~~ **REINSTATED, NARROWED — the withdrawal was wrong.** See the correction block below. |
 | **Architecture impact** | SMEsPlus must not add company constraints to tenant-scoped partner references; it must instead require **partner presence** where a payment asserts a partner type. |
 | **Cross-process impact** | Same rule applies to P01 (vendor references) and P02 (customer references). Recorded as `PEER DEPENDENCY OPEN`. |
 | **Evidence required** | None further. |
+
+> ### `R-01` WITHDRAWAL OVERTURNED BY AAS-03 EXPERT 4 — REINSTATED, NARROWED
+>
+> The withdrawal rested on *"`res.partner` is TENANT-scoped, so requiring `check_company` on a
+> reference to it is over-constraint."* **Both halves of that premise are refuted from source:**
+>
+> 1. **`res.partner` is not purely tenant-scoped.** It carries its own optional `company_id`
+>    (`ENT18/base/models/res_partner.py:294`, with `_onchange_company_id` at `:549`). Odoo's own model
+>    lets a partner be either shared (`company_id = False`) **or hard-restricted to one company**.
+>    §2's row classifying it "TENANT — Tenant only" is therefore **incomplete**, and that
+>    mischaracterisation is precisely what let the withdrawal through.
+> 2. **Odoo core applies `check_company=True` to partner references for exactly this reason** — e.g.
+>    `account.move.partner_id` (`account/models/account_move.py:372-380`). The
+>    *"reference scope ≠ financial scope"* argument the withdrawal invented is **contradicted by the
+>    platform's own design pattern**.
+>
+> **The narrowing Expert 4 also supplied, which corrects the original finding in the other direction:**
+> because `account.move` and `account.move.line` set `_check_company_auto = True` and their
+> `partner_id` carries `check_company=True`, a cross-company vendor **will** be caught when the move
+> is created or posted — and `_check_company` runs inside `create()`/`write()`, so **`sudo()` does not
+> bypass it**. The defect is therefore **late failure, not absence of any gate**: an invalid
+> cross-company vendor can be saved on a draft or submitted expense and only errors at posting.
+>
+> **Restated finding (`R-01'`)** — *missing early `check_company` validation on the expense line's
+> `vendor_id`; enforcement exists only downstream, at move creation/posting, via
+> `account.move.partner_id`.* Class: **FACT VERIFIED**, class **A** within the files read.
+> This also corrects `04 §4`'s phrasing "there is no gate at any layer" — there is one, it is just late.
+> Row 30 of §2 is corrected to **"TENANT by default, COMPANY-restrictable via optional `company_id`"**.
 
 ### `R-02` — `petty.cash` has no `company_id`
 
