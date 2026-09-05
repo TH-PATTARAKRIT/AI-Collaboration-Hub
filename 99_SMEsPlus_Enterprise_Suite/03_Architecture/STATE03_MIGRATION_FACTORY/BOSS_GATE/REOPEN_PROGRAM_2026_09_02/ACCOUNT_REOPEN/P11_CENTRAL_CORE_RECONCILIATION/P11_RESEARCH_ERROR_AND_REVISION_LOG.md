@@ -230,9 +230,24 @@ verbatim under an explicit heading before intake.
 `P04-F-66` printed lines 232–234 of that file. P11 saw the heading, did not open the passage, and
 published a claim about it.
 
-**Class.** Identical to `P11-E-15` — a claim published without its evidence opened — **committed in
-the same message that logged `P11-E-15`.** The peer's own framing is adopted: *"It confirms your rule
-rather than undermining it."* Seventh instance across five actors.
+**Class — RECLASSIFIED at `P11_PEER_INTAKE_DELTA_05.md` §1, on P04's argument, which is better than
+P11's original filing.**
+
+> ~~Identical to `P11-E-15` — a claim published without its evidence opened — committed in the same
+> message that logged `P11-E-15`. Seventh instance across five actors.~~
+
+**Governing classification: `Class 1 — secondary source substituted for primary.` Remedy: open the
+file.** It is **not** the enumeration class, whose remedy is *execute the count*. **Nobody's search
+was too narrow here** — the grep found the right file and printed the right line; the failure was
+**downstream of the search**. P11 filed it by surface resemblance to `P11-E-15`'s prose rather than by
+**remedy**, which is the only thing a class is for.
+
+**The extension P11 adopts from P04, and it widens the class:** *a grep result is a summary of a
+file.* Treating it as the file is the same substitution as treating a search snippet as a ruling — so
+Class 1 reaches **any tool output that stands in for its source**, not only search-engine summaries.
+
+*It remains true that this was committed in the same message that logged `P11-E-15`; that is a fact
+about timing, not about class.*
 
 **Correction.** `P11-F-06` reclassified `PEER-PUBLISHED`, owner P04. The false text is retained struck
 through at source, with lineage. The surviving P11 contribution is stated exactly and is smaller:
@@ -267,3 +282,50 @@ argument; the lock-date compound was not.
 > No single control was sufficient. The peer catch is the one that could not have been bought by
 > running the challenge harder, because it required a second party who had **written** the evidence
 > P11 was citing.
+
+## `P11-E-18` — an actor count inherited from a peer and never executed
+
+**Where.** `P11_PEER_INTAKE_DELTA_03.md` §5 and this log's `P11-E-17` entry: *"across **five**
+actors"*.
+
+**Error.** Re-derived from P04's own original enumeration — parallel research stream · P04's first
+draft · adversarial reviewer · **P04 again** on a field count · P11's script — the actors are
+**four**, not five. P04 repeats. The figure was **already wrong in the message P11 received it in**,
+and P11 published it without re-deriving it.
+
+**Class.** The executed-not-quoted rule, broken by P11, **in a tally about counting**, inside a delta
+whose §5 reconciles two counts. The first error in this exchange that P11 **inherited** rather than
+originated — the failure mode a reconciliation function is most exposed to and least protected
+against, because its whole input is other parties' figures.
+
+**Structural fix — `P11-G-02`.** A **cross-party tally cannot be executed by either party**: P11
+cannot open P04's drafts, and P04 has not read P11's register and says so. Neither can verify more
+than its own half, so a single joint figure is **unexecutable by construction** — and every joint
+figure in this exchange has been wrong. **A cross-party count is published as two declared halves,
+each executed by its owner, never as one number.**
+
+**P11's half, executed: 2** — `P11-E-12` (inert intake script) and `P11-E-15` (undeclared population).
+**P04's half:** carried `PEER-PUBLISHED` at `cc332d9`, not re-derived.
+
+---
+
+## Summary — all parts, corrected
+
+| Measure | Count |
+|---|---|
+| Errors made by this session | **18** |
+| Self-caught before the challenge | 3 |
+| Self-caught in parallel with the challenge | 4 |
+| Found only by independent adversarial challenge | 6, including both CRITICAL |
+| **Found only by a peer process, after publication** | **5** — `P11-E-15`, `-E-16`, `-E-17`, its reclassification, and `-E-18` |
+| Corrections published **at source** | **all** |
+| Of P11's errors, in the **enumeration** class | **2**, executed |
+| Of P11's errors, in the **secondary-source** class | **1** (`P11-E-17`) |
+| Belonging to **neither** named class | **1** (`P11-E-16`) — a third pattern, offered to the programme standard as such |
+
+> **`P04-F-71`, adopted with P04's classification (`SUPPORTED INTERPRETATION`) over P11's flat
+> assertion:** the controls are **not interchangeable**. Self-review caught overstatements;
+> adversarial challenge caught what the author could not see; **peer exchange caught what neither
+> could, because it needed a party who had *written* the evidence the other was citing.** Scaling any
+> one harder would not have produced what the others found. An inference from four sessions' tallies
+> over one week — not a measured result.

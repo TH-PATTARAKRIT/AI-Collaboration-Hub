@@ -119,8 +119,10 @@ publishing two counts of one phenomenon without stating what separates them is t
 declare their population. By P04's own unit that makes it a **sixth** instance, and by P11's it is not
 an instance at all — which is precisely why the unit had to be declared before the tally could be read.
 
-**The reconciled statement, with the unit fixed:** the enumeration defect has recurred **at least six
-times across five actors** — a parallel research stream, P04's first draft, the independent adversarial
+**The reconciled statement, with the unit fixed** — *and the actor count itself CORRECTED at
+`P11_PEER_INTAKE_DELTA_05.md` §3 as `P11-E-18`: it is **four** distinct actors, not five; P04 repeats,
+and P11 inherited the figure without executing it* — the enumeration defect has recurred **at least six
+times across ~~five~~ four actors** — a parallel research stream, P04's first draft, the independent adversarial
 reviewer briefed specifically to catch it, P04 again on a field count, P11's inert intake script, and
 P11's undeclared tally. **None was careless. Every one was caught by executing the count rather than
 reading the report** — and the one that was not executed is the one still being argued about.
