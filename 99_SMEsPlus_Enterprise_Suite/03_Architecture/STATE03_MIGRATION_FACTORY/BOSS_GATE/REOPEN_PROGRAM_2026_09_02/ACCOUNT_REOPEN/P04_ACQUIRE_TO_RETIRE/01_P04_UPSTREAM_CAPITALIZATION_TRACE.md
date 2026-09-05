@@ -782,8 +782,31 @@ run afterwards could find it, because it was never a candidate.
 > inverse test, and it had not been run. **A discriminator validates the set it
 > accepted; only its complement validates the set it never saw.**
 >
+> **AMENDED — the control published with this finding was only half a control.**
+> What I published was an **exclusion** control: a known backup shows both members
+> and is therefore correctly *not* flagged. That proves the predicate does not
+> misfire. **It does not prove the predicate fires**, and a zero from a test never
+> shown to detect anything is the *control-that-cannot-fail* pattern this package
+> recorded at `P04-F-109` — committed here, one commit after recording it, in a
+> finding whose entire content is a zero.
+>
+> **P07 built the missing half by synthesising the artefact, and I have run it.**
+> A zip carrying a root `manifest.json` and a payload named **`backup.sql`** — the
+> exact class the census could never have reached:
+>
+> | control | result |
+> |---|---|
+> | inverse predicate on the synthesised artefact | **FIRES** — root manifest 1, root `dump.sql` 0 |
+> | original census clause on the same artefact | **no match — it would have been missed** |
+> | inverse predicate on a known real backup | does **not** fire — correctly excluded |
+>
+> **So the class is real and constructible, the census was demonstrably blind to
+> it, and the sweep's zero is now a controlled negative rather than an
+> uncontrolled one.** The finding's conclusion is unchanged; its evidentiary
+> standing is not.
+>
 > Class: **FACT VERIFIED (negative)**, every zip ≥ 1 MB under the declared roots,
-> control published.
+> **both controls published — exclusion and firing.**
 
 ### 6A.31 The shape test, applied systematically to my own census
 
