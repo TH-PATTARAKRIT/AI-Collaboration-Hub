@@ -18,6 +18,21 @@
 >
 > **TC-02 (zero COGS lines), TC-14 (the mismatch exists), TC-16 (accounts not reconcilable) and the §3.2
 > v19 mechanism changes all survived independent re-derivation unchanged.**
+>
+> ### ⚠ SECOND CORRECTION — a peer process reopened the population again
+>
+> **P04 reported a deployed database this session's search never reached** (`~/OCC_BACKUP/`, outside the
+> declared path set). It is **Odoo 18.0**, 361 modules, 4 companies, 40,353 journal lines, snapshot dated
+> later than every archive here. Verified independently by this session. See
+> `26_P02_V18_DEPLOYMENT_EVIDENCE.md`.
+>
+> | Claim | Status |
+> |---|---|
+> | TC-35 — "the estate contains **no** deployment of the 18.0 generation" | **REFUTED.** One exists, with volume, and its source **is** readable here. |
+> | TC-03 as corrected — "false in 91, unset in 2" | **REFUTED again.** One company carries **TRUE**. Corrected: 91 false, 2 unset, **1 true** across 95 company records. |
+> | **TC-02 — zero COGS lines** | **SURVIVES, AND IS STRONGER.** The new database is the *most likely* one to have refuted it — right generation, split recognition **ON**, accounts configured, 47,801 valuation layers — and it contains **zero**. |
+>
+> **The population has now been reopened four times, three by outside parties. It is NOT declared closed.**
 
 
 `LAYER 2 — AUDIT QUARANTINE` · Session `SMEPLUS-26-09-04-ACC-P02-O2C-TARGETED-FORENSIC-CLOSURE-001`
