@@ -20,11 +20,15 @@ recognition off *and* its outbound stock accounts are typed as expense accounts.
 the same product recognises cost at invoice, or nowhere. **A deployment matching a policy is not a source
 fact about the policy**, and this package does not present it as one.
 
-**`SUPPORTED INTERPRETATION` — and the closure evidence makes BP-02 harder, not easier, to implement on
-the reference.** Under v19 — 92 of 93 deployed company records — **there is no delivery-time entry at all
-for an ordinary customer sale** (`22` §3.2). Achieving "COGS at delivery" on the v19 line requires either
-a location valuation account on every outbound path, or a mechanism the product does not provide. BP-02 is
-therefore a **design requirement with a known implementation gap**, not a setting to switch on.
+**`FACT VERIFIED` — and the closure evidence makes BP-02 harder than "an implementation gap".** In v19 the
+valuation selection is **relabelled by the product itself**: `'Periodic (at closing)'` and
+**`'Perpetual (at invoicing)'`**, defaulting to periodic (`EV-P02-113`). **On the v19 line, choosing
+"Perpetual" selects at-invoicing by definition.** BP-02 — *perpetual storable, COGS at delivery* — is
+therefore **not selectable**, not merely unconfigured: the current product generation contradicts it by
+construction. Achieving it requires a mechanism the product does not offer.
+
+This is the sharpest available statement of why BP-02 must be held as a **Boss policy** and never inferred
+from the reference: the reference's own vocabulary now disagrees with it.
 
 ## 2. Six Tolerance-Zero Candidates — Reconciled
 
@@ -64,7 +68,7 @@ moved from theoretical to demonstrated, which moves EC-04 **further from** satis
 
 | EC | Before closure | After closure | Movement |
 |---|---|---|---|
-| **EC-01** Scope bounded | PARTIAL | **PARTIAL** | Database denominator now closed (6 of 6, deduplicated, with a positive control). Source denominator now spans **two generations**, which the previous scope did not declare. Eight business scenarios still open. |
+| **EC-01** Scope bounded | PARTIAL | **PARTIAL** | Database denominator closed (6 of 6, deduplicated, positive control). Source denominator now spans **two generations**, declared. **All eight business scenarios now analysed** (`24`) — six routed, two retained. Still partial: the custom-addon roots remain wholly unexamined, and three of the eight rest on single-author negative claims. |
 | **EC-02** Enumeration converged | NOT | **NOT** | The closure produced a **generation split that falsifies the scoping of the whole cost analysis** (C-20). That is a material delta, so convergence is further away, not closer. |
 | **EC-03** Unknown exhausted | PARTIAL | **PARTIAL** | C-04 now has a precise, evidenced verdict — **not exhibitable in the available estate** — and a precisely specified requirement. Four measurable-but-unmeasured items are newly named. |
 | **EC-04** Tolerance-zero closed | NOT | **NOT** | 0 of 6 eliminated. **Two confirmed LIVE by measurement** (TZ-01, TZ-06), and **two new candidates raised** (TZ-07, TZ-08). The criterion moved decisively **away** from satisfaction. |
