@@ -131,6 +131,23 @@ Design document, or Team B artefact.** They exist so Boss, PMO and AI-Audit can 
 | 100 | `R/stock_account/data/stock_account_data.xml:5` | The valuation-mode default is set to manual/periodic by data |
 | 101 | `R/account_accountant/models/res_config_settings.py:12` and `R/account_accountant/views/res_config_settings_views.xml:37` | The split-recognition toggle is exposed in **exactly one place in the whole root**, and it is an Enterprise module |
 
+### 2b. Generation-comparison evidence (targeted closure)
+
+Second root, referenced below as `R19`:
+`/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/SMEsPlus19/odoo-19.0+e.20260312/odoo/addons`
+
+| EV | Citation | Subject |
+|---|---|---|
+| 102 | pattern `_name = 'stock.valuation.layer'` — **0 files in `R19`, 1 file in `R`** | The valuation-layer model **does not exist in v19**. Stated with its positive control. |
+| 103 | `R19/stock_account/models/product_value.py:14` | What replaces it: a `product.value` **manual-value-change history**, not a valuation ledger |
+| 104 | `R19/stock_account/models/account_move.py:68` and gate at `:111`; contrast `R/stock_account/models/account_move.py:111` | The generator is renamed to a *realtime* name, **the company split-recognition gate is removed**, and the remaining gate is the product's valuation mode |
+| 105 | `R19/stock_account/models/account_move.py:115` | v19 credits **`stock_valuation`** — the inventory account — not an interim account |
+| 106 | `R19/stock_account/models/stock_move.py:613-620` | v19 delivery entry additionally requires a **location** valuation account |
+| 107 | `R19/stock_account/models/stock_location.py:11` | …which customer and supplier locations do not carry |
+| 108 | `R19/stock_account/models/product.py:74-77` | v19 product valuation = category property **else the company's** `inventory_valuation` |
+| 109 | `R19/stock_account/models/res_company.py:29`, `:38` | v19 moves valuation mode and costing method **onto the company** |
+| 110 | `R19/stock_account/models/stock_move.py:183-199` | v19 delivery entry is posted into `company.account_stock_journal_id` |
+
 ## 3. Track Evidence
 
 Citations produced by the four parallel research tracks are held in their own extracts, each carrying its

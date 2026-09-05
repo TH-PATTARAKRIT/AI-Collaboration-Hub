@@ -152,6 +152,48 @@ to prevent, and it was found by an outside reader.
 | **Materiality** | **Maximum.** It bounded the exit assessment, and it moved `EC-06` from partially satisfied to **not satisfied** — because a negative-claim control that governs findings but not the evidence base is not a control. |
 | **What the evidence then produced** | An **empirical confirmation** of the package's central mechanism claim (447,384 journal lines, **zero** cost-of-sales lines, exactly as predicted from the deployed configuration), a **correction** to the "Thai default" claim, and **one live exposure the package had not identified** (`21` §4.3). |
 
+### C-18 — Cash-basis tax: the template says one thing, the deployments another
+
+**Original:** `T3` §4 — "the delivered Thai tax data does NOT enable cash basis", from the tax template.
+**Contradicted by:** `22` TC-05 — **every deployed company record that has a value carries the
+company-level cash-basis switch ON** (93 company records, 6 archives).
+**Correct:** both are true of different objects. The company **switch** is on estate-wide; the **per-tax
+exigibility** is not set, so no tax is actually treated on a cash basis. The package stated only the
+template half, which reads as though the capability were off.
+**Materiality:** moderate for P02, high for P07 which owns tax treatment. **Routed to P07.**
+
+### C-19 — `P02-F-43` was wrong, and a peer process caught it
+
+**Original:** `09` §1 — *"The reference process **does** keep these separate, and does it well"*, tagged
+`FACT VERIFIED`.
+**Contradicted by:** peer process P06, **and by P02's own evidence two sections below the claim**: a
+payment may post **no journal entry at all**; the outstanding account is force-assigned only when the
+full-accounting module is absent; a payment booked straight to bank is declared matched at creation, so
+the intermediate state does not exist.
+**Correct:** the separation exists **only in the outstanding-account configuration**. In the alternative
+configuration the three events collapse.
+**How it was found:** **not** by self-review, **not** by the twenty-finding independent challenge, **not**
+by the deployed-database pass — by a **peer process reading P02 for its own purposes**.
+**Materiality:** high as a finding and higher as method evidence: **the refuting evidence was already
+inside the same deliverable.** An internal inconsistency between a headline and its own supporting section
+survived every control this package ran.
+**Disposition:** `09` §1 corrected; agrees with P06's proposed reconciliation; routed to P11.
+
+### C-20 — The package's cost analysis was written against the wrong generation
+
+**Original:** the whole cost-recognition analysis (`01` S5, `02`, `03`, `06`, `07`, `11`) is built on the
+v18 mechanism — an interim account, a valuation-layer model, and a company-level split-recognition gate.
+**Contradicted by:** `22` §3 — **the deployed estate is 5 of 6 archives and 92 of 93 company records on
+the v19 line**, where the valuation-layer model **does not exist**, the split-recognition gate **has been
+removed**, the interim account **has been eliminated**, and the delivery posts **nothing** for an ordinary
+customer sale.
+**Correct:** the v18 analysis is sound **for v18** and is explicitly generation-scoped from now on. The
+v19 mechanism is documented in `22` §3.2 and its truth table in `22` §4.2.
+**Materiality:** **maximum.** It does not falsify the v18 findings; it bounds them to one generation and
+to one of six archives.
+**Disposition:** `22` carries the generation split. Every cost finding in `01`–`11` is to be read as
+**v18-scoped** unless it says otherwise.
+
 ## 2. Contradictions Between Evidence Tracks
 
 **None found.** The four tracks were run independently against the same root with independently declared

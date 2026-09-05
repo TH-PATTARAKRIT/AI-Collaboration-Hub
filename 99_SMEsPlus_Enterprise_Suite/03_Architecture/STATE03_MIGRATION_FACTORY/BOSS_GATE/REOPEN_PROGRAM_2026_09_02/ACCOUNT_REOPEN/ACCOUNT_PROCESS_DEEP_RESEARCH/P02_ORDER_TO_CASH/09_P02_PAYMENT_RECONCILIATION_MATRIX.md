@@ -16,11 +16,26 @@ Underlying evidence: `L2_AUDIT_QUARANTINE/T2_PAYMENT_RECONCILIATION_EVIDENCE.md`
 | 3 | **Bank confirmation** | the money is really in the bank | *Bank* debited, *Outstanding Receipts* credited |
 | 4 | **Settlement state** | a *derived* summary of 1–3 | a computed field |
 
-**`FACT VERIFIED` — P02-F-43.** The reference process **does** keep these separate, and does it well.
-Registering a payment executes three separable steps — create, post, then match — and the matching step
-is the one that changes the receivable's residual (T2 §1). **This separation must be preserved in
-SMEsPlus.** Collapsing "the customer paid" into "the bank balance changed" destroys bank reconciliation
-and is the most common SME-ERP failure.
+**`CONTRADICTED` — P02-F-43, CORRECTED.** The original wording was *"the reference process does keep
+these separate, and does it well"*, tagged `FACT VERIFIED`. **That was wrong, and a peer process caught
+it** — see `12_P02_CONTRADICTION_REGISTER.md` C-19 and `22` §11.
+
+**Corrected statement — `FACT VERIFIED`: the separation exists ONLY in the outstanding-account
+configuration.**
+
+- Where the payment method line carries an outstanding account, the three steps are genuinely separable —
+  create, post, then match — and matching is the step that changes the residual (T2 §1).
+- Where it does not, **the payment produces no journal entry at all** (T2 §1), a payment booked straight
+  to the bank account is **declared matched at creation** (T2 §5), and **the intermediate position does
+  not exist**. The three events collapse into one.
+
+The refuting evidence was **already in §2 of this same file**, two sections below the original claim.
+Neither self-review, nor the independent challenge, nor the deployed-database pass caught the
+inconsistency; a peer process reading P02 for its own purposes did.
+
+**The design requirement is unchanged and is now the *only* safe reading:** collapsing "the customer paid"
+into "the bank balance changed" destroys bank reconciliation, and SMEsPlus must make the intermediate
+position **structural and non-optional** — which is `DC-09-01`, already stated below.
 
 ## 2. The Configuration That Breaks It
 
