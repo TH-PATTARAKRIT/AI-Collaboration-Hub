@@ -27,8 +27,17 @@ Checkpoint: `CP-P01S16-04` · Deployment `45a8e08e` (`iSMEs`, SWR), 1 company
 | `account_move_line` total | **447,384** across 262 accounts |
 
 **Vendor bills outnumber purchase orders 6:1** (37,055 against 5,881). Most vendor bills in this deployment do
-not originate in a purchase order. That is a business-shape fact with direct consequences for three-way match,
-and it is the opposite of the series-18 OCC deployment's shape.
+not originate in a purchase order.
+
+**AAS-03 Expert 1 supplied the unit this statement was missing.** **27,089 of 37,055 bills (73.1%) carry no
+PO link** — but the PO-linked minority is **26.9% by count and 89.8% by value**. **I stated a ratio without
+saying whether it was of count or of value, and the two answers point in opposite directions.**
+
+The dominant non-PO stream is **export logistics** — Seafreight ฿225.5m, Shipping-Oversea 15,792 items, bill
+of lading documents, marine insurance. Also unnamed anywhere in this package: **multiple AP control accounts**
+(1,715 partner `ir_property` rows), 2,163 purchase requests, **123 vendor returns and a dedicated `Returns`
+operation type** (94 pickings), 137 down-payment lines at ฿0.00, 2,286 scraps, 3,010 inventory adjustments.
+Drop-ship, subcontracting, consignment and intercompany are **correctly absent, each ruled out with a control.**
 
 ---
 
@@ -79,10 +88,26 @@ mechanism P01 traced in source across four rounds and had never once observed op
 Compare series-18 OCC: 1,580 lines / ฿30,080,689.78 received-not-invoiced, **with no ledger recognition at all**.
 
 Two differences, and only one of them is favourable:
-- **Here the exposure is carried in the ledger** by the GRN account. There it was carried only by the order document.
+- **Here the exposure is carried in the ledger** by the GRN account — but see §3.2: the GRN account has
+  `reconcile = 'f'`, so **no item-level matching exists**, and the balance is swept manually.
 - **Here most bills are not PO-linked** (37,055 bills against 5,881 orders), so the PO-line quantity comparison
   measures a much smaller slice of purchasing. **The small number is partly a smaller denominator, not only a
   better-controlled process**, and it must not be read as evidence of superior matching.
+
+---
+
+### 3.2 The GRN account cannot be reconciled item-by-item
+
+AAS-03 Expert 1: **account 39 has `reconcile = 'f'`** — positive control, 29 of 339 accounts are `'t'`. So the
+"bridge closes" statement is true at the level of totals and **false at the level of items**: no receipt is
+ever matched to its bill in the ledger. **39 manual `MISC` journal items sweep ฿1.9bn out of the account,
+driving it to exactly ฿0.00 on five occasions.**
+
+And two legs can never match by construction: **non-PO bills debit it ฿269,689,658.68**, and **vendor returns
+debit it ฿129,086,326.14 against only ฿16.5m of refund credits**.
+
+**This substantially qualifies §3.** The clearing account operates as a **swept suspense account**, not as a
+reconcilable bridge.
 
 ---
 

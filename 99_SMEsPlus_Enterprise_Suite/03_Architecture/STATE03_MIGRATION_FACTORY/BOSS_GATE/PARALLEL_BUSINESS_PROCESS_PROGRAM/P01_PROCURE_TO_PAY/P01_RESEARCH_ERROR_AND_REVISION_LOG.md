@@ -724,3 +724,13 @@ corrected finding, and the architecture impact.
 **AAS-03 Expert 2:** 41 of the archive's **651** tables were extracted — **6.3%** — with **no stated selection
 rule and no re-extraction check**. Every negative in this round is bounded by that 6.3%, and the boundary was
 never declared. **A bounded, unfinished measurement — not a negative result.** Recorded as an open gap.
+
+## `METHOD-P01-03` — code identity by registry field set, adopted from AAS-03 Expert 3
+
+| Field | Content |
+|---|---|
+| **The problem** | P01 has used, in successive rounds: module **name** (insufficient, `ERR-P01-13`), name **+ version** (insufficient — peer P04 relaying P07: two bodies can share a version string), and **schema-level field correspondence** (better, used in round 5). All three are author-controlled or indirect. |
+| **What this deployment proved** | Version is insufficient **in fact, not just in principle**: **4 distinct `.py` variants of `l10n_th_withholding_tax_cert` share `16.0.14.0.1.0.0`** on this host, and **6 variants of `..._report` share `16.0.1.0.0`**. One on-disk copy is **uncommitted and 246 lines ahead of its last commit with the version string unchanged**. |
+| **The instrument adopted** | **Discriminate candidate source variants against the deployment's own `ir_model_fields` registry.** Only one `_cert` variant declares a `signature` field; the deployed registry has it. The registry is **built by the deployment at install time from the code that was actually installed** — it is not author-controlled, and it is inside the evidence artefact rather than beside it. |
+| **What it delivered here** | Identification by **content**: the deployed certificate module is the **2021 Odoo-14.0 body differing by exactly one line**, on a series-16 engine — confirming the `16.0.14.*` `adapt_version` reading of `ERR-P01-41` by an independent route. It also surfaced a **latent defect** the version route could never have found: a `move_id.type` comparison against a field the registry shows does not exist, which has never fired because `move_id` is NULL on all 5,201 certificates. |
+| **Rule adopted** | **Identify deployed custom code by the field set its model declares in the deployment's registry, wherever that set discriminates.** Fall back to schema correspondence, then to version, and say which rung was used. |

@@ -10,6 +10,110 @@ Checkpoint: `CP-P01S16-06` · Deployment `45a8e08e`
 > classified `UNRESOLVED — STATUTORY EVIDENCE REQUIRED` and routed to peer process **P07**, which owns it.
 > P01 does not interpret the Revenue Code, and nothing here may be cited as compliance.
 
+
+> ### MATERIALLY EXTENDED BY AAS-03 EXPERT 3 — VERIFIED BEFORE ADOPTION
+>
+> **The withholding amounts in this ledger are not produced by the withholding module's arithmetic.**
+> Re-derived independently here. The statutory boundary in the header is unchanged and still governs.
+
+---
+
+## 0. THE HEADLINE, AND IT IS NOT A ROUNDING QUESTION
+
+`account_withholding_tax` holds **7 rate records**. Six are sane. The seventh:
+
+| id | name | `amount` | `write_date` |
+|---|---|---|---|
+| 5 | WHT15% | 15 | 2023-10-04 |
+| 1 | WHT1% | 1 | 2023-10-04 |
+| 3 | WHT5% | 5 | 2023-10-04 |
+| 6 | WHT10% | 10 | 2023-10-04 |
+| 4 | WHT0.5% | 0.5 | 2023-10-20 |
+| 7 | WHT2% | 2 | 2023-11-08 |
+| **2** | **WHT3%** | **0** | **2023-12-29 02:59:30** |
+
+> **A rate record named `WHT3%` carries the value `0`.**
+
+**It is the most-used rate in the deployment**: **2,038 of the 4,945** payments carrying a `wt_tax_id` point
+at it — and **1,866 of those were created after it was zeroed**.
+
+The module's expression is `wt_tax_id.amount / 100 * price_subtotal`. At `amount = 0` **it evaluates to 0.00**.
+Yet withholding is posted:
+
+| Account `1137` = `2260000 Withholding Tax` (`liability_current`) | Value |
+|---|---|
+| Journal items | 5,863 — **posted 5,675**, cancelled 185, draft 3 |
+| **Posted** Dr / Cr | ฿26,007,030.14 / ฿26,139,905.55 |
+| **Posted items dated on/after the rate was zeroed** | **4,719, crediting ฿21,556,228.06** |
+
+*(state basis declared, per `ERR-P01-45`)*
+
+**A rate valued 0 cannot produce ฿21.5 million of withholding.** AAS-03 Expert 3 traced the amounts to the
+operator entering net cash into a `payment_difference_handling = "reconcile"` write-off — so the posted figure
+is **hand-entered**, and the rate record beside it is **decorative**. **89 of the 91 configured product
+defaults point at this same 0% record.**
+
+**CLASSIFICATION: `FACT VERIFIED`** — the rate record's value, its usage count, and the posted amounts are all
+measured. **That the write-off is the source of the amounts is `SUPPORTED INTERPRETATION`**, carried from
+Expert 3 with attribution.
+
+**Statutory implications are NOT drawn.** Whether hand-entered withholding satisfies Thai requirements is
+`UNRESOLVED — STATUTORY EVIDENCE REQUIRED` → **P07**.
+
+---
+
+## 0.1 VERSION MATCHING DOES NOT IDENTIFY THIS CODE — AND A BETTER INSTRUMENT EXISTS
+
+`l10n_th_withholding_tax_cert` has **4 distinct `.py` variants on this host all sharing `16.0.14.0.1.0.0`**;
+`..._report` has **6 sharing `16.0.1.0.0`** (its manifest literally declares `'version': '1.0.0'`).
+
+**Expert 3 discriminated using the deployment's own `ir_model_fields` registry** rather than the version
+string: only one variant declares a `signature` field, and the registry has it. **That is a materially better
+instrument than anything P01 has used for code identity**, and it is adopted.
+
+The identified variant differs from the **2021 Odoo-14.0 source by exactly one line** (`signature =
+fields.Binary()`) — otherwise byte-identical. This **confirms and sharpens** the `16.0.14.*` reading: a
+**series-14 body on a series-16 engine**, now established by content rather than by a version prefix.
+
+It also carries a latent defect: a `move_id.type == "entry"` comparison against a field the registry confirms
+**does not exist** (`account.move` has 183 fields, none named `type`). **It has never fired — `move_id` is
+NULL on all 5,201 certificates.**
+
+---
+
+## 0.2 WHAT ELSE EXPERT 3 ESTABLISHED
+
+| Finding | Measurement |
+|---|---|
+| **Certificates anchored to nothing** | **1,407 (27.05%), ฿9,537,106.08** — no payment, no journal entry; 1,470 of 1,499 lines carry no journal-item reference. Confirmed with two independent tools |
+| Certificate numbering | **1,417 have no number; 202 share 75 numbers** (up to 9 to a number) |
+| **The only arithmetic control is a tautology** | `base` is back-derived from `amount`, so 6,048/6,048 "consistent" proves nothing — **and it is skipped entirely at rate 0**: 111 lines, ฿5,698,486.81 of base, never checked |
+| Withholding items with no certificate | **2,029 posted items (36.70%, ฿12,065,773.78)**; and 1,543 of 5,232 WHT-bearing payments (29.49%) have no certificate |
+| **Withholding IS applied to goods** | **338 goods lines** (282 consumable + 56 storable), **195 raw-rice material lines**, **151 lines posting to the GRNI account `2900000`**, 64 to a fixed-asset account |
+| Configuration coverage | only **2.30%** of the catalogue is configured, and **54.01% of applied withholding could not have come from any product default** — hand-keyed or overridden |
+| PND selection | **no code path determines `income_tax_form`** — an operator field on a wizard, no default, no derivation. Yet **0 of 506 suppliers ever received two different forms** across 5,201 certificates: a perfect rule held **only in operator habit** |
+| Submission file | hardcodes income code **"2"**, differing from the certificate on **99.81%** of lines; exports the year **Gregorian in field 14 and Buddhist-era in field 16**; **cannot select the 13 `pnd1` certificates at all**; filters on the editable `cert.date`, which falls in a different month from the payment for **437 certs / ฿2,725,891.46** |
+
+*(The report module's on-disk copy is **uncommitted**, 246 lines ahead of a 2023 commit, with an unchanged
+version string — a further reason version strings do not identify this code.)*
+
+**`withholding_tax_report` extracting to 0 rows is NOT reported as a negative** — it is a `TransientModel` and
+the ORM vacuums it. Expert 3 flagged this explicitly, and it is exactly the "empty table is not an absence"
+discipline this package requires.
+
+---
+
+## 0.3 CORRECTION TO §2 BELOW
+
+§2 says withholding *"is not applied to every purchase"* and reads that as selective application consistent
+with the prompt's caution. **The 25.24% figure stands** (it is supplier payments carrying `wt_tax_id`;
+across all partner types the count is 4,945).
+
+**But the inference drawn from it was too comfortable.** Withholding **is** applied to goods, raw materials
+and even lines posting to the goods-received clearing account. The selectivity is real; **the assumption that
+it tracks a service/goods distinction is not supported**, and 54.01% of it cannot be traced to any configured
+default. **Whether the selection is correct is `UNRESOLVED — STATUTORY EVIDENCE REQUIRED` → P07.**
+
 ---
 
 ## 1. WHY THIS DEPLOYMENT MATTERS FOR WHT

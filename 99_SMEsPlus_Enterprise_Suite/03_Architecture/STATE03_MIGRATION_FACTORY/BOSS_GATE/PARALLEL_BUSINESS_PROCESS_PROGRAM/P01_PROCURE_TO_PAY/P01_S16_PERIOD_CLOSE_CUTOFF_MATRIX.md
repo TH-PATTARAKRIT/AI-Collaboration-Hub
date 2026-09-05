@@ -87,9 +87,12 @@ they will never fall inside a current-period selection, and they will never age.
 *Separately, 1,733 moves are dated 2005–2012 — opening and migration data, recorded so the early tail is not
 mistaken for the same defect.*
 
-**CLASSIFICATION: `FACT VERIFIED`.** Whether these were written by code or imported is
-**UNRESOLVED — EVIDENCE REQUIRED**; determining it was assigned to AAS-03 Expert 4, including whether the
-installed `scgl_tax_period_date` module is implicated.
+**CLASSIFICATION: `FACT VERIFIED`, and the origin is now known.**
+
+AAS-03 Expert 1: **all 30 BE-2567 entries are cash-basis VAT entries derived from posted vendor bills** —
+they originate in the **P2P chain**, not in manual GL data entry. `scgl_tax_period_date` was **ruled out with
+a control** (0 of 18,197). So this is **P01's own chain producing period-invisible entries**, which is a
+stronger statement than "some entries have odd dates".
 
 ---
 

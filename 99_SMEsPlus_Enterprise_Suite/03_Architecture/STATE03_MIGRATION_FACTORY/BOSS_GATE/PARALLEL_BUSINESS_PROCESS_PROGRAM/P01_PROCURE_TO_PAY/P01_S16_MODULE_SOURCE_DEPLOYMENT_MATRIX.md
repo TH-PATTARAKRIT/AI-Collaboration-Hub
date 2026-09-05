@@ -156,11 +156,31 @@ the *code*.
 
 ---
 
+## 4.2 A BETTER INSTRUMENT FOR CODE IDENTITY, ADOPTED FROM AAS-03 EXPERT 3
+
+Version matching is not merely insufficient in principle — **it is insufficient in fact for this deployment**.
+Expert 3 found **4 distinct `.py` variants of `l10n_th_withholding_tax_cert` sharing `16.0.14.0.1.0.0`**, and
+**6 variants of `..._report` sharing `16.0.1.0.0`**. One on-disk copy is **uncommitted and 246 lines ahead of
+a 2023 commit with an unchanged version string**.
+
+> **The instrument that worked: discriminate against the deployment's own `ir_model_fields` registry.**
+> Only one `_cert` variant declares a `signature` field; the deployed registry has it. **That identifies the
+> running code by the shape it declares, not by a string its author controls.**
+
+**Adopted as the P01 standard for custom-module identity**, superseding version matching wherever a model's
+field set can discriminate. It is strictly stronger than the schema-level corroboration used in the previous
+round, because it reads the **registry the deployment itself built at install time**.
+
+Applied to the deployed `_cert` variant, it establishes by **content** — not by a version prefix — that the
+module is the **2021 Odoo-14.0 body differing by exactly one line**, running on a series-16 engine.
+
+---
+
 ## 5. WHAT THIS MATRIX DOES NOT ESTABLISH
 
-- **A version match is not code identity.** Two bodies can share one version string (peer P04, relaying P07:
-  17–179 changed lines across seven files). Where this package reads a module's behaviour it says so and
-  corroborates structurally.
+- **A version match is not code identity — now demonstrated, not merely warned about.** Four `_cert` variants
+  share one version string here; six `_report` variants share another. Peer P04 (relaying P07) warned of this;
+  **this deployment proves it.** Use the `ir_model_fields` route in §4.2 wherever a field set discriminates.
 - **Installed is not exercised**, and the table above marks the difference in every row it could measure.
   `stock_landed_costs` is the clearest case: installed, and **zero** rows.
 - It does not establish that any code path **executed** — only that records consistent with it exist.

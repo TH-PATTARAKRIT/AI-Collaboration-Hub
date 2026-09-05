@@ -67,7 +67,11 @@ database**, with a coverage control (0 of 74,982 unresolved).
 | **P08** | Buddhist-era dates | **484 values, 14 columns, 11 tables**; + 11 at year 8202 |
 | **P08**, **P11** | GRN posted-only net **−฿7,048,692.08**, and the ฿83.1M of cancelled/draft items that produced the withdrawn ฿72,097,814.25 figure | account 39; 53 cancelled + 17 draft items, one cancelled entry alone ฿90,351,213.15 |
 | **P03**, **P08** | The 10¹⁵ subledger divergence, on `WH/MO/…` and `UB/…` documents with **negative unit costs** | 30 of 74,982 layers |
-| **P07** | **1,407 of 5,201 withholding certificates (27.05%) carry no payment link**; PND distribution pnd53 4,437 / pnd3 751 / pnd1 13 | statutory sufficiency is P07's |
+| **P07** | **A rate record named `WHT3%` carries the value `0`** — the most-used rate, 2,038 payments — yet ฿21,556,228.06 of withholding is posted after it was zeroed. **The posted amounts are hand-entered, not computed** | `account_withholding_tax` id 2; account `2260000`, 5,675 posted items |
+| **P07** | **1,407 certificates (27.05%), ฿9,537,106.08, anchored to nothing** — no payment, no journal entry | two independent tools |
+| **P07** | **2,029 posted withholding items (36.70%, ฿12,065,773.78) carry no certificate**; 1,417 certificates have no number, 202 share 75 numbers | — |
+| **P07** | The submission file hardcodes income code **"2"** (differs from the certificate on **99.81%** of lines), exports the year **Gregorian in one field and Buddhist-era in another**, and **cannot select the 13 `pnd1` certificates at all** | report module, uncommitted on-disk copy |
+| **P07** | PND form has **no code path** — operator-chosen — yet **0 of 506 suppliers ever received two different forms**. A perfect rule held only in habit | 5,201 certificates |
 | **P07** | Whether withholding at **25.24% of supplier payments** is correctly scoped | `UNRESOLVED — STATUTORY EVIDENCE REQUIRED` |
 | **P11** | Receipt→bill identity is carried by **document text**, not a foreign key | valuation-layer `description` strings |
 | **P11** | `stock_landed_costs` **installed, 0 rows** | latent capability |

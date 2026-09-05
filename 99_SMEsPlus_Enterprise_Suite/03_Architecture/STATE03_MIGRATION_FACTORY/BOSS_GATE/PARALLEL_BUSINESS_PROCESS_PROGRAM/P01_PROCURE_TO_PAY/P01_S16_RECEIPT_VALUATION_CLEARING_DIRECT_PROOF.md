@@ -147,10 +147,25 @@ They do not:
 **Both residuals track total volume across all four years, including two full years after the last policy
 write.** Policy change does not account for them.
 
-**CLASSIFICATION: `UNRESOLVED — EVIDENCE REQUIRED`.** `ir_property` cannot evidence its own history, so
-history is not *excluded* — but it is not supported either, and these are not dismissed as artefacts.
-Enumerating every writer of `stock_valuation_layer.account_move_id` in the deployed code was issued as a
-disproof assignment to AAS-03 Expert 4.
+**CLASSIFICATION — and my refutation was itself disproved.**
+
+AAS-03 Expert 1 broke the argument above: **I tested only the `ir_property` rows that survive, and a reverted
+property leaves no row at all.** The test could not see the thing it was testing for.
+
+Its counter-evidence: category 15's sibling `property_cost_method` row carries `write_date`
+**2025-01-21 06:52:06**, and **category 15's last linked layer is timestamped the same second**, with
+**0 linked layers across the following 18 months** and 84 unlinked ones. That is a policy change leaving a
+trace in a *sibling* field rather than in the field I queried.
+
+**Residual A is also largely explained**: **245 of the 296** are `product.type = 'consu'`, which returns early
+at `stock_account/models/stock_move.py:546-548` before any valuation. Consignment was ruled out with a control
+(`restrict_partner_id` set on 1 of 103,949 moves).
+
+> **Corrected: the genuine unexplained residual is roughly 40–45 layers — about 2.7% of the 1,505 I
+> reported as anomalous.** `S16-C-15` narrows accordingly rather than standing as published.
+
+**Rule this earns:** *a negative about a stored setting cannot be tested by querying only the rows that still
+exist.* Look for the change's trace in siblings, in write timestamps, and in the data it governed.
 
 ---
 
@@ -276,10 +291,46 @@ before publication. Those 25 entries carry **50 journal items that balance exact
 Any inventory valuation report, stock-ageing or cost analysis reading the subledger returns a figure
 unrelated to the ledger. Any reconciliation between them fails by construction.
 
-**CLASSIFICATION: `FACT VERIFIED` as to the divergence. Root cause `UNRESOLVED — EVIDENCE REQUIRED`** —
-the shape (negative unit costs on manufacturing and unbuild documents) is consistent with a cost computation
-over a near-zero or negative quantity, but that is `SUPPORTED INTERPRETATION`, not fact, and the manufacturing
-cost path belongs to peer process **P03**. Routed there and to **P08**; P01 does not adjudicate it.
+### 7.2 ROOT CAUSE FOUND — AND IT IS P01's OWN PATH, NOT MANUFACTURING
+
+**My routing of this to P03 was wrong.** AAS-03 Expert 1 traced it end to end on product 11556 / PO line 3453:
+a sane receipt at ฿30.67 → a first anomalous receipt at 712,186.25 → a bill price-difference layer
+(`AP2024081214`, −฿10.95bn) → 4.4e9 → 1.5e13 → 5.2e16, **after which the manufacturing and unbuild documents
+merely propagate an already-corrupt unit cost.**
+
+**The origin is `purchase_stock/models/stock_move.py::_get_price_unit`** — re-read here in the ranked E-ENT
+tree and verified line by line:
+
+```
+if float_compare(line.qty_invoiced, received_qty, precision_rounding=...) > 0:
+    ...
+    for invoice_line in line.invoice_lines:
+        invoiced_value += invoice_line.price_unit * invoice_line.quantity
+        invoiced_qty   += invoice_line.product_uom_id._compute_quantity(...)
+    remaining_value = invoiced_value - receipt_value
+    remaining_qty   = invoiced_qty - line.product_uom._compute_quantity(received_qty, ...)
+    price_unit = float_round(remaining_value / remaining_qty, precision_digits=price_unit_prec)
+```
+
+**Three defects, all confirmed in the source:**
+
+1. **No zero-guard on `remaining_qty`.** As it approaches zero the quotient explodes. This is the mechanism.
+2. **`invoice_lines` is summed unsigned** — the loop adds every line, so an `in_refund` line **increases**
+   `invoiced_value` and `invoiced_qty` instead of reducing them. Expert 1 found 7 bills + 7 refunds on the
+   traced line.
+3. **Cancelled bills are not excluded** — there is no state filter in the loop.
+
+All three **contradict `_compute_qty_invoiced` in the same module**, which does handle sign and state.
+
+**The entry condition is `qty_invoiced > qty_received`** — which is precisely the *"49 invoiced-not-received
+lines, ฿11,512,304.52"* population this package published in `§3.1` of the AP trace **without connecting the
+two**. The trigger was in my own table.
+
+> **CLASSIFICATION: root cause `FACT VERIFIED` in source, and the conditions are still live.**
+> **Ownership returns to P01** — this is the purchase-side valuation path, not the manufacturing cost path.
+> P03 is notified as a **propagation** route rather than an owner; **P08** retains the reporting question.
+
+*The subledger/ledger divergence itself (§7.1) is unchanged.*
 
 ---
 
