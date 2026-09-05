@@ -570,3 +570,121 @@ contain members that do not belong to the question being asked.
 It was never extended to the databases added at `§7`, and the scope block was not revisited
 when the population grew. **A scope declared before the first result does not survive the
 population changing under it.**
+
+---
+
+## 10. The Population Was Wrong — Two Snapshots and One Identity Missing — `REV-E-38`…`REV-E-42`
+
+P04 reported an **eligibility** failure in its own scope block: a population correctly
+enumerated, ranked and unit-declared can still contain — or omit — members that do not belong
+to the question, because eligibility is decided *before* the four disciplines run and none of
+them looks at membership. P04's version was three deployments labelled `v18-line` that are
+`v19`. Their table named `iEVING` as **v19**, an identity this file had recorded as
+**unexamined**. That is a member of the eligible population, so the check was run here.
+
+### 10.1 What the re-derivation found
+
+`iEVING` is v19 — `base` = `19.0.1.3`, read from `ir_module_module`, not inferred. P04's
+claim verified independently. Two further defects surfaced from re-deriving rather than
+patching:
+
+**Snapshots: 5 → 7.** The census was taken by *extension* (`*.dump`). Two database snapshots
+are `.zip` archives containing `dump.sql` and were invisible to it. Re-run by **format**
+(`file -b`), the population is **7 snapshots**. This is the archive-denominator rule that a
+peer process published after making the same error; it was available and not applied here.
+
+**Identities: 4 → 5.** The identity unit was the **filename**. Keyed on `database.uuid` from
+`ir_config_parameter`, two artefacts both named `iEVING` are **two different databases**:
+`f4a44cce-…` (created 2026-03-18) and `1f6338ae-…` (created 2026-03-30). They are not two
+snapshots of one system — they hold 237 and 544 accounts. **A database name is not a database
+identity.** Conversely `BK12MAY26`'s two artefacts share one uuid and are one identity.
+
+### 10.2 Corrected population
+
+| Identity (by `database.uuid`) | Snapshots | `base` | Generation |
+|---|---:|---|---|
+| `a1430edc-…` | 2 | `19.0.1.3` | in-generation |
+| `f4a44cce-…` | 1 | `19.0.1.3` | in-generation |
+| `1f6338ae-…` | 1 | `19.0.1.3` | in-generation |
+| `66d1b52a-…` | 2 | `19.0.1.3` | in-generation |
+| `45a8e08e-…` | 1 | `16.0.1.3` | **out of generation** |
+
+**7 snapshots, 5 identities, 4 of them in-generation.** Every denominator in §7–§9 was written
+over 2 in-generation identities. The eligible number was 4.
+
+### 10.3 Every runtime finding re-derived at the corrected population
+
+| | `a1430edc` | `f4a44cce` | `1f6338ae` | `66d1b52a` | `45a8e08e` (v16) |
+|---|---|---|---|---|---|
+| VAT-group name carries `th_TH` (`F-01`) | **yes** | no | no | no | no |
+| zero-rate taxes | 4 | 4 | 12 | 12 | 4 |
+| …all landing in a **non-VAT** group (`F-42`) | **yes** | **yes** | **yes** (3 sets) | **yes** (3 sets) | **yes** |
+| `account_tax_unit` rows (`F-61`) | 0 | 0 | 0 | 0 | 0 |
+| accounts / flagged (`F-63`) | 586 / **3** | 237 / **0** | 544 / **2** | 544 / **2** | 339 / **1** |
+| withholding certificates (`F-62`) | 0 | 0 | 0 | 1 | 5,201 |
+| companies | 1 | 1 | 44 | 44 | 1 |
+
+### 10.4 What this changes, finding by finding
+
+**`P07-F-01` is weakened again — `REV-E-40`.** Published as firing in **1 of 2** in-generation
+identities. At the corrected population it fires in **1 of 4**. The severity argument is
+untouched and is the reason the finding stands: a defect silent in three deployments out of
+four cannot be found by testing a system that works. But the prevalence figure was wrong, and
+wrong in the direction that flattered the headline.
+
+**`P07-F-42` is strengthened — `REV-E-41`.** Published as 2 of 2 in-generation identities. It
+now holds in **4 of 4 in-generation identities, 10 of 10 company sets**, plus the v16
+identity. It is the best-evidenced finding in the package by a wider margin than before, and
+it is still the one held longest at `INF`. Two successive population corrections have both
+widened the gap between it and the headline — which is not what a convenient error does.
+
+**`P07-F-63` is PARTLY REFUTED, ninety minutes after publication — `REV-E-39`.** It was
+published this session as *"3 of 3 identities independently performed it"*. The fourth
+in-generation identity, `f4a44cce`, has **237 accounts and zero flagged** — the step was not
+performed there at all. The claim of universality is withdrawn.
+
+What survives is stronger for being narrower. `f4a44cce` holds **0 move lines**: it is a fresh
+deployment. So the corrected statement is:
+
+> A freshly installed v19 identity has **zero** withholding accounts flagged — direct
+> confirmation that the localisation never provisions the field. Every identity that went on
+> to transact flagged some, **and no two that did so agree**: 3 of 586, 2 of 544, 1 of 339.
+
+The refutation and the confirmation come from the same row. The universality claim was
+unsupported; the *never-provisioned* claim now has a positive control it did not have before —
+an unconfigured deployment showing the zero state the localisation actually ships.
+
+**`P07-F-61` — the test could not previously tell empty from absent.** `0 rows` was being read
+off a filter that returns `0` for a table that does not exist. Re-run against the archive TOC,
+`account_tax_unit` is **present in all 7 snapshots and empty in all 7**. Same conclusion, but
+until now it rested on a control that could not detect its own failure.
+
+**`P07-F-62` — unchanged in substance, sharper in scope.** 5,201 certificates sit in the v16
+identity; across the 4 in-generation identities the total is **one**.
+
+### 10.5 A filter that could not fire — `REV-E-42`
+
+The first `F-42` pass on `f4a44cce`/`1f6338ae` reported **0 zero-rate taxes**. The filter
+matched the literal strings `0`, `0.0`, `0.000000`; the stored format is `0.0000`. There were
+12. The error was caught by a positive control printing the value distribution, not by
+inspection — and the false negative would have been published as *"the F-42 population does
+not exist in this deployment"*, i.e. as evidence **against** the best-evidenced finding in the
+package. A numeric comparison (`$a+0==0`) replaces it throughout.
+
+### 10.6 The class
+
+P04's statement, confirmed on a second package:
+
+> The four disciplines all operate on a set already assumed eligible. None of them looks at
+> membership.
+
+And the mechanism in both cases is the same one: **a scope declared before the first result
+does not survive the population changing under it.** This file's population was fixed when
+three dumps had been read. It was never re-derived at seven — and `iEVING` sat in the same
+directory as three of the dumps that were read, for the whole session.
+
+The asymmetry is worth recording: P04's eligibility error **included** ineligible members;
+this one **excluded** an eligible member. Inclusion errors are visible in the evidence — a
+wrong row is there to be checked. Exclusion errors are invisible by construction: nothing in
+the package pointed at `iEVING`, and no control here would have. It took a peer publishing a
+version table that named it. `REV-E-38`.

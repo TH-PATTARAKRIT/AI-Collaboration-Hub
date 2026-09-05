@@ -116,9 +116,14 @@ warning:
 
 1. **Presenting the system in Thai.** The label is a translatable text. Adding a Thai
    translation of it — the expected act for a Thai deployment — changes the stored value in
-   a way the comparison does not tolerate. On the evidence examined this is the immediate
-   and likely trigger, not a remote one, and it is the single most serious finding of this
-   research.
+   a way the comparison does not tolerate. This is the immediate trigger, not a remote one,
+   and it is the single most serious finding of this research. **Measured prevalence: the
+   failing stored value is present in 1 of the 4 same-generation deployed databases examined
+   (7 database snapshots, 5 distinct databases, 4 of the current generation).** The other
+   three function correctly. That distribution is the reason the finding is ranked where it
+   is rather than the reason to discount it: a fault that is silent in three systems out of
+   four cannot be found by exercising a system that works, and the three working systems are
+   the ones not yet presented in Thai.
 2. **Renaming the label**, which is an ordinary configuration action available to a normal
    accounting user.
 3. **A change in the rate of value added tax.** The reduced rate currently in force is a
