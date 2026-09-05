@@ -59,6 +59,14 @@ Session `SMEPLUS-26-09-04-ACC-P11-CORE-RECON-REV2-001` · CP-11 · Layer 1 clean
 
 Reported, not converted into gate approval, per constitution §7. One session; 21 published packages consumed at verified SHAs; 3 peer packages intaken mid-session; 4 expert panels; 27 deliverables. **No schedule pressure was applied to any determination, and no deadline was cited as a reason for any conclusion.**
 
+## 5b. Cross-process position at close
+
+Three processes, each independently reaching the same place: **`P11` 17 blockers / 0 closed; `P04`
+0 of 4 inherited closed; `P07` `RECOMMEND HOLD`, 0 of 8, no blocker closed.** Published as three
+declared positions per `P11-G-02`, with no joint total. **A materially stronger evidence base across
+all three, and not one gate item closed between them** — recorded because a round that improved its
+own honesty without advancing its position must say so in both halves.
+
 ## 6. PMO recommendation
 
 > ## `RECOMMEND HOLD`

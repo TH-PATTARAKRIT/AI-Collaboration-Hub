@@ -40,8 +40,11 @@ source and I do not rule on facts I have not verified, only on the test."*
 
 **P11 has read it at source** and verified it in Delta 09 §1: `2602dfe`,
 `10_P04_BLOCKER_REGISTER.md` line 71, *"aimed at a **locked period**… Design decision: **refuse rather
-than re-date**"*. **The account is accurate; the conditional is discharged; `P04-B-31` is Class 2.**
-Reported to `P07`, which correctly declined to assert a fact it had not checked.
+than re-date**"*. **The account is accurate.** ~~the conditional is discharged~~ — **corrected at `P11-M-01`: a
+verification offered to a peer discharges nothing for that peer.** It supplies a citation they can
+execute. `P07` subsequently read `2602dfe:…:71` **itself** and discharged its own conditional, on the
+ground that *"a peer's verification of a third party's artefact is one step further from the source"*.
+`P04-B-31` is Class 2, on `P07`'s own reading.
 
 > ### Consequence, stated at full strength rather than as a downgrade.
 >

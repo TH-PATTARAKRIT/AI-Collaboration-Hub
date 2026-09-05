@@ -38,6 +38,30 @@ session closed, **6 had published — and 2 were already at a later commit than 
 met, `13+2` tolerance-zero boundaries stand unresolved — and `T0-13` is **reachable today inside a single company**, independently of any Boss ruling, `4+3` vetoes are undischarged, and the round's
 own instruments failed under independent test.
 
+## 1b. The joint position across three processes — stated as three halves, never as one figure
+
+`P07` @ `1928410` put the cross-process ledger plainly and it belongs in front of the Boss as plainly
+as the improvements do. **P11 publishes it under its own `P11-G-02`: three declared positions, each
+executed or attributed by its owner, and no joint total** — because a cross-party tally cannot be
+executed by any party to it.
+
+| Process | Position | Evidence class |
+|---|---|---|
+| **`P11`** | **17 blockers, `0` closed. 13 tolerance-zero, `0` resolved. `0 of 8` exit criteria.** 27 own errors logged | **owner-executed** @ this commit |
+| **`P04`** | `READY FOR CORE ACCOUNTING RECONCILIATION`; **`0 of 4` inherited blockers closed**; blocker rows risen 26 → 45 | `PEER-PUBLISHED` @ `6953856`, **not re-derived** |
+| **`P07`** | **`RECOMMEND HOLD`, `0 of 8`**, tolerance-zero open, **no blocker closed** | `PEER-PUBLISHED` @ `1928410`, **not re-derived** |
+
+> ### Three sessions. Materially stronger evidence bases. **Not one gate item closed between them.**
+>
+> The exchange **did** convert inference into fact in three packages — a peer recovered 685 asset
+> records and two findings from evidence it had declared away; another closed a runtime unknown from a
+> dump inside its own declared path set; P11 corrected a Boss-facing cost column and found ten
+> accepted review findings that had never been applied.
+>
+> **None of that closed a gate item.** It made the packages more honest about how far they are from
+> closing one. **Both halves belong in the record, and the second half is the one that bears on this
+> decision.**
+
 ## 2. Whole business process map
 
 ```
