@@ -394,6 +394,60 @@ intervening snapshot that disproves the conclusion.
 different route and reproduced the 493,277 total to the digit — matching `C-51`, which P02 had found
 separately. **Two derivations, one answer.**
 
+### C-63 … C-73 — AAS-03 Experts 2 and 3 (Round 003). All CONFIRMED By P02 Before Adoption.
+
+**The lineage count, the snapshot count, the artefact count and the coverage assertion all move.**
+
+| ID | Challenged | Confirmed counter-evidence | Resolution |
+|---|---|---|---|
+| **C-63** | `45` §5: `pfp-main`/`pfp-staging` are a **false merge**, split into 2 | **They are ONE lineage**, by three disjoint instruments: **72/72** `res_partner` and **21/21** `res_users` ids shared with `create_date` identical to the microsecond, **including 66 business records created six months after provisioning**; `database.secret` identical; `57d32e15` is uuid **v4** where **35 of 36** are **v1**, so it cannot be a birth value from this codebase. Negative controls return **0**. | **LINEAGES = 14, not 15.** Clause (a) had it right; clause (b) overrode it. |
+| **C-64** | Founding-company identity is a lineage key | `res_partner` id 1 `name` has `write_date > create_date` in **36 of 36** artefacts — a current-state field on a birth-time record. `"My Company"` in **9 of 36** across 3 birth groups; two distinct lineages share name **and VAT** with **0 of 5,732** shared ancestry rows. | **Demoted to `OBSERVED ATTRIBUTE`.** Replaced by a **content-ancestry** key with a mandatory negative control. |
+| **C-65** | `SNAPSHOTS ≥ 24` | **Underived.** Max derivable = **17**. The only arithmetic reaching 24 is `15 lineages + 9 instances` — **a sum of two different units, which `44` §3 exists to forbid.** | **Withdrawn. SNAPSHOTS = 17** (≤21 if the blocked four prove distinct). |
+| **C-66** | `ARTEFACTS = 40` | **A path count.** `iTEST02…dump` occupies **9 paths at one identical size (65,444,053 B)** — verified. `44` §1.1 requires a content hash and **none was computed**. | **40 paths / 28 distinct contents** accessible, ≤32 total. |
+| **C-67** | *"141,235 content-tested; 165 enumeration errors, 186 read errors"* | `A_errors.txt`: **24,258** distinct UNREADABLE paths in the candidate list; the **186** are `find:` lines (enumeration), and 165 came from a different file. **807 of the 6,062 cloud files ≥1 MB — the slice claimed as tested — were UNREADABLE**, above the floor the justification covers. | **Content-tested 116,977; NOT tested 76,245 (39.5%).** Labels swapped and corrected. |
+| **C-68** | The replacement instrument fixed `RE-40`'s class | It did not. `classify` marks `UNREADABLE` only if the **first 512 bytes** fail; deeper failures fall to `except: pass` → **`NOTDB`**, an I/O failure indistinguishable from "not a database". | Must publish **enumerated / attempted / classified / failed** as four numbers. |
+| **C-69** | `CE-S1`: two artefacts of `551ab874` give 47,242 and 47,801 | **Only one such artefact exists**, yielding **47,801**; no predicate on it yields 47,242. | `CE-S1` **withdrawn**; the 47,242 figure's level of origin is `UNRESOLVED`. The valuation finding is unaffected and was re-derived: **47,801 layers, `account_move_id` NULL on all**. |
+| **C-70** | The declared-open format list was complete | **Gzipped tar is uncovered and undeclared** — the gzip branch tests only for `PGDMP` magic or the SQL header, so any `.tar.gz` carrying a dump is silently `NOTDB` (38 candidates). Also **93 corrupted lines** in the candidate file from interleaved writes. | Added to the open list; the corrupted lines bound the denominator. |
+| **C-71** | The identity model's six levels were sufficient | **COMPANY was not a level**, under a PLATFORM/TENANT/COMPANY constitution. First measurement: **44 companies = 4 roots + 40 branches = three commercially unrelated business groups in one database**; `TC-05` counts **40 copies of 4 root decisions** because `tax_exigibility` is root-delegated; and the package transfers figures across a **1 → 2 → 44** company change in its own configuration table. | **`COMPANY SCOPE` added as level 1.5b** with a continuity rule and a root-delegation rule. |
+| **C-72** | `RE-30`'s generation correction was applied | **The banner reached `07`, `09`, `12` and never `13`** — the register every file cites — which still carries `EV-P02-043`, `044`, `081` as v18-only refuted negatives; and `07`'s body still asserted *"complete enumeration of 27 accounts"* beneath its own banner. | Banner added to `13`; `07` body corrected. ***A revision log is not a correction*, for the third time in this programme.** |
+| **C-73** | `44` §2: *"instances ≥26"* | Contradicts `45` §4's *"≥9 live"* **in the same round**, and `44` §1.5 classifies archived instances `UNRESOLVED`, forbidding the ≥26 its own §2 asserts. | **Use ≥9 live; archived instances `UNRESOLVED`.** Not re-derivable now — the container runtime is down. |
+
+**One expert claim P02 does NOT adopt.** Expert 3's `C-4` called `46` §2's *"14.0 does not carry `cogs`
+in the field's selection"* an **unsourced cross-generation transfer**. **It is sourced — to the
+deployment's own metadata**, not to a code root: `ir_model_fields ⋈ ir_model_fields_selection` extracted
+from `iErpOCC`'s own archive returns exactly `line_section` and `line_note` for
+`account.move.line.display_type`, re-verified this round with a positive control on `move_type`
+(7 values). **A deployment's own schema is stronger evidence than a source root, not weaker.** The
+observation that no 14.0 code root exists on this host stands and is recorded separately.
+
+**Corroboration worth recording:** Experts 2 and 3 reached the `pfp` single-lineage conclusion by
+**entirely different instruments** — content ancestry versus uuid version/provenance — without contact.
+
+### C-74 … C-86 — AAS-03 Expert 4 (Round 003), and one MAJOR REVERSAL found while verifying it
+
+| ID | Item | Disposition |
+|---|---|---|
+| **C-74** | **The authorisation pack forbids companies 2–5 and names a script whose line 4 is `COMPANY_ID = 2`.** | **PACK WITHDRAWN.** A Boss approving it would have authorised a committed write to a real-entity company record. **The most serious defect of the round.** |
+| **C-75** | The pack names a soft-mode script that **does not exist** | Blast radius unbounded at approval; must be written out as code |
+| **C-76** | The named script's instruments filter `state='posted'` — **blind to the draft state under test** | Instrument must observe the draft move |
+| **C-77** | Restoration proof (`account_move_line = 0`) **cannot fail** — none of the enumerated writes are rows in that table, and the pre-state is already 0 | Replaced by per-table row-count vectors + dump digest |
+| **C-78** | Sandbox **not reachable**: no Docker daemon on this host as of 2026-09-06 | `46` §4 and `P02-F-47c` not re-verifiable now |
+| **C-79** | The consequence clause was never measured | A duplicate pair feeds `qty_invoiced`/`value_invoiced` into `_compute_average_price`, **corrupting the unit cost of every later invoice on the same order line** |
+| **C-80** | `C-04a` stated at **system** level, proved at **function** level | `_post` refuses a posted move; the double requires the move to be **still in draft** — which **is** the `C-04b` precondition. **The split is not clean.** |
+| **C-81** | The second "decisive" fact is **not load-bearing** | The generator iterates `invoice_line_ids` for source lines; excluding `cogs` is **protective**. Fact 1 alone carries it. |
+| **C-82** | §3 measured reachability by module name and reported "none" for six lineages | **False for all six.** `account/wizard/account_validate_account_move.py:65` is a UI-bound soft-mode poster (`force_post` defaults False), and `account` is installed **11 of 11**. Severity **understated**. |
+| **C-83** | `46`'s 16.0 rows print `PARTIAL MATCH` while its caveat says otherwise | Status field corrected — *audit your disposition table* |
+| **C-84** | `46` §1 "MATCH VERIFIED used for no deployment" vs §4 printing it | §1 scoped to archived; §4 downgraded |
+| **C-85** | The census has **no module-version dimension** — every row carries the database's `base` version | No row may grade above `SOURCE AVAILABLE BUT NOT PROVEN DEPLOYED` until per-module versions are extracted |
+| **C-86** | **REVERSAL.** Full 14/15/16/17/18/19 reference distributions exist under `~/Library/CloudStorage` (**v14 796**, **v16 950** module dirs), pruned by every sweep | **`C-55` WITHDRAWN.** Standard union 1,634 → **1,932**; non-standard rows **620 → 540**; **`iSMEs` 13 → 1**. The dominant evidence source runs **one** non-standard module and its standard source **is** readable. |
+
+**Expert 4 also supplied the package's first primary-evidence proof of 16.0 marker-capability** —
+`display_type` selection on `45a8e08e` returns 8 members including `cogs`, with a `move_type` control —
+where `C-43` had proved only the 14.0 negative and **inferred** the rest.
+
+**One expert claim refuted:** Expert 4's `CH-4` ("no 16.0 or 14.0 core distribution anywhere on this
+host") is **false** — its sweep pruned `Library`, the same blind spot as P02's own.
+
 ## 2. Contradictions Between Evidence Tracks
 
 **None found.** The four tracks were run independently against the same root with independently declared

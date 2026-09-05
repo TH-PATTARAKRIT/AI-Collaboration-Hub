@@ -29,7 +29,7 @@
 `LAYER 2 — AUDIT QUARANTINE` · Session `SMEPLUS-26-09-04-ACC-P02-O2C-REV2-001`
 
 Account names below are **role names**, not vendor account names. The mapping from role to a real
-account is given in §5 for the Thai chart, whose 27 accounts are a complete enumeration (`EV-P02-044`).
+account is given in §5 for the Thai chart, whose 27 accounts are a complete enumeration **of the v18 chart only** (`EV-P02-044`; **the v19 Thai chart has 144 — `C-72`**).
 
 ## 1. The Matrix
 
@@ -142,7 +142,7 @@ moment that exists.
 
 ## 5. Role → Thai Chart Account
 
-The Thai chart is a **complete enumeration of 27 accounts** (`EV-P02-044`).
+The **v18** Thai chart is a complete enumeration of 27 accounts (`EV-P02-044`). **The v19 Thai chart has 144 accounts and supplies four things this file records as absent — `C-35` / `C-72`.**
 
 | Role in this matrix | Thai chart account | Present? |
 |---|---|---|

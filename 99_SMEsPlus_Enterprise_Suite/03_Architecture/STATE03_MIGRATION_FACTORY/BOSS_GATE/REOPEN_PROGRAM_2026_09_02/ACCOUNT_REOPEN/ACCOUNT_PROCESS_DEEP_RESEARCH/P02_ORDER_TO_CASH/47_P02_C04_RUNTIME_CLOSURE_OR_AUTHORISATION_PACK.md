@@ -33,6 +33,20 @@ Two source facts, together decisive, both re-derived this round:
    **`cogs` is not in that domain.** So previously created COGS lines are invisible to the generator by
    construction, not by oversight.
 
+> **`C-80` — `C-04a` IS NOT INDEPENDENTLY CLOSED. It is proved at FUNCTION level and was stated at
+> SYSTEM level.** `account/models/account_move.py:4893-4894` refuses an already-posted move
+> (*"must be in draft"* → `UserError`), and the generator's only standard caller is `_post`, which creates
+> the pair **before** `super()._post()` — so on a posted move the pair is created and rolled back with the
+> transaction. Every standard caller self-guards (`_autopost_draft_entries` wraps in a savepoint;
+> subscription and POS both test state). **The true statement is narrower: the generator has no dedup,
+> so a second `_post` ON A MOVE STILL IN DRAFT creates a second pair — and "still in draft after a first
+> `_post`" IS the `C-04b` precondition. The split is not clean; `C-04a` is conditional on `C-04b`.**
+>
+> **`C-81` — the second "decisive" fact is not load-bearing.** The generator iterates `invoice_line_ids`
+> to find **source product lines**, never to look for its own output. Excluding `cogs` from that domain is
+> in fact **protective** — it stops COGS-of-COGS compounding on re-entry. Fact 1 alone carries the
+> conclusion; presenting two as "together decisive" inflated the evidential base.
+
 **`P02-F-47a` — `FACT VERIFIED` (source), WITH ITS LABEL CORRECTED (`C-58`).** A second invocation over
 the same move **must** create a second COGS pair, and the structure forecloses an in-generator guard.
 
@@ -80,7 +94,18 @@ declared root**.
 
 *Control: `account` is installed in 11 of 11, so the extraction fires.*
 
-**`P02-F-47b`** *(corrected `C-57`)*. The precondition is present in **three marker-capable LINEAGES** — the four uuids include `66d1b52a` and `1f6338ae`, which `45` §5 confirms are **one lineage**. The original "four" over-counted by 25%. It is therefore not theoretical. **But `display_type='cogs'` is zero in every one of
+> **`C-82` — §3 MEASURED REACHABILITY WITH THE WRONG INSTRUMENT, AND ITS ANSWER IS WRONG IN THE
+> DIRECTION THAT MATTERS.** Grading by whether `point_of_sale`/`sale_subscription` is installed missed a
+> soft-mode poster **inside `account` itself**: `account/wizard/account_validate_account_move.py:65` —
+> `self.move_ids._post(not self.force_post)` — where `force_post` is a Boolean with **no default (False)**
+> and help text *"Entries in the future are set to be auto-posted by default."* Its action is bound to
+> **every `account.move` list view** and surfaced as the dashboard's "Post All Entries". **`account` is
+> installed in 11 of 11 deployments — by §3's own control line.** `account_inter_company_rules` adds
+> another in 4 lineages, including one §3 placed in the "none" bucket.
+> **"None" is false for all six. On the correct instrument the precondition is present in 11 of 11.**
+> The severity was **understated**, not overstated.
+
+**`P02-F-47b`** *(corrected `C-57`, superseded by `C-82`)*. The precondition is present in **three marker-capable LINEAGES** — the four uuids include `66d1b52a` and `1f6338ae`, which `45` §5 confirms are **one lineage**. The original "four" over-counted by 25%. It is therefore not theoretical. **But `display_type='cogs'` is zero in every one of
 them** — the generator has never executed **once**, so no deployment can evidence it executing **twice**.
 
 **`P02-F-47c` — why read-only exhaustion is now proved rather than asserted.** All **nine** live
@@ -94,6 +119,46 @@ unanswerable from the estate **by construction, not by insufficient searching.**
 
 **Searched: this session's user instructions. No explicit Boss authorisation for bounded sandbox
 execution exists.** Per §9.2 of the governing prompt: **DO NOT EXECUTE.** Nothing was executed.
+
+## 4a. ⛔ THIS AUTHORISATION PACK IS WITHDRAWN AND MUST NOT BE APPROVED AS WRITTEN
+
+> **`C-74` — THE PACK FORBIDS A COMPANY RANGE AND NAMES A SCRIPT THAT WRITES TO IT.**
+> §5 states *"Exact company: **`id=1` (`My Company`)** — Companies 2–5 carry live OCC entity names and
+> **must not be used**"*, and the script it names on the next line begins:
+>
+> ```python
+> COMPANY_ID = 2                      # anglo_gross_profit_test.py, line 4
+> comp = env['res.company'].browse(COMPANY_ID)
+> ```
+>
+> It then sets `anglo_saxon_accounting = True` on that company and commits. **A Boss approving §5.5 as
+> written would authorise a committed write to exactly the company range the same section forbids.**
+> **The pack is withdrawn pending the fixes in §5.6. Nothing may be executed against it.**
+>
+> **`C-75` — the pack names a script for the half of the run that would actually close `C-04b`, and that
+> script does not exist.** §5 says *"plus the soft-mode variant in §5.1"*; §5.1 is four lines of prose.
+> **The blast radius of the request is therefore unbounded at the moment of approval.**
+>
+> **`C-76` — the named script's instruments are blind to the state under test.** `snap()` filters
+> `('parent_state','=','posted')` and the move dump filters `('state','=','posted')`. **The COGS pair the
+> run exists to detect lives on a *draft* move.** §5.2 asks for observations the instrument cannot make.
+>
+> **`C-77` — the restoration proof cannot fail.** §5 offers `SELECT count(*) FROM account_move_line = 0`.
+> The writes §5.4 enumerates — 1 account, 1 category, 1 warehouse, 1 product, 2 partners, 1 PO, 1 SO —
+> **are not rows in `account_move_line`**, and the pre-state is already 0, so a post-rollback 0 is equally
+> consistent with a correct restore, no restore, or the wrong dump. **The "control that cannot detect its
+> failure" class, for the third time in this package.**
+>
+> **`C-78` — the sandbox is not currently reachable.** As of 2026-09-06 there is **no Docker daemon on
+> this host**: no socket at `/var/run/docker.sock` or `~/.docker/run/docker.sock`, `colima` installed and
+> not running. `46` §4's `MATCH VERIFIED` and `P02-F-47c`'s "all nine live databases re-queried" **cannot
+> be re-verified now**, and the pre-state/rollback steps are unexecuted claims.
+
+### 5.6 Required before this pack may be re-submitted
+1. Supply a script with **`COMPANY_ID = 1`** and the §5.1 soft-mode steps **written out as code**, or delete the "exact script" line.
+2. Replace the restoration proof with **pre/post row-count vectors** over every table §5.4 names, plus a `pg_dump` digest comparison.
+3. Add the **amplification measurement** (`C-79`): a duplicate pair feeds `qty_invoiced`/`value_invoiced` into `product._compute_average_price` (`sale_stock/models/account_move.py:168-186`), so it **corrupts the anglo-saxon unit cost of every later invoice on the same order line** — not just its own move. Unmeasured and previously unstated.
+4. Restore the sandbox, or restate its availability.
 
 ## 5. `P02_C04_BOSS_AUTHORISATION_PACK`
 

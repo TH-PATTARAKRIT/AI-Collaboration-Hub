@@ -52,6 +52,38 @@ Every counterexample below was **re-derived in this round**, not quoted from an 
 
 **This is the level P02 had no key for, and it is the one that matters.**
 
+> ## ⚠ SECOND AMENDMENT — THE KEY IS DISPROVED IN BOTH DIRECTIONS (`C-63`, `C-64`)
+>
+> The first amendment (below) added **founding-company identity** as clause (b). **Clause (b) is itself
+> wrong and has been demoted.** `res_partner` id 1 `name` carries `write_date > create_date` in **36 of
+> 36** artefacts — it is a **current-state field on a birth-time record**, the same class of attribute
+> as `database.uuid`, which §1.3 already demotes. It collides in **both** directions in this estate:
+> `"My Company"` appears in 9 of 36 artefacts across 3 birth groups, and two genuinely distinct lineages
+> share a founding-company **name and VAT number** while sharing **0 of 5,732** ancestry rows. Applied
+> as a key it produced a **false split** on `pfp-main`/`pfp-staging`, which content ancestry, the
+> `database.secret` value and the uuid **version** all show to be **one lineage**.
+>
+> **`DATABASE LINEAGES = 14`, not 15.** Both amendments were made to fix an over-count and each
+> introduced a new error in the opposite direction.
+>
+> **CANONICAL KEY (third form) — CONTENT ANCESTRY.** Two artefacts belong to one lineage iff **≥N rows
+> share `(table, id, create_date)`** *and* the **latest** such shared `create_date` is **≥1 day after
+> database birth**, corroborated across **≥2 tables from different modules**, and validated against a
+> **declared negative-control pair that must return ≈0**. Birth metadata, founding-company name and
+> `database.uuid` are all **`OBSERVED ATTRIBUTE`** — useful as corroboration or as evidence of a rename
+> or restore **event**, never as identity.
+>
+> **Free discriminators that outperform clause (b) and were not used:** uuid **version** (v1 = written by
+> this codebase, v4 = platform replacement) and uuid1's **embedded node and timestamp**, which
+> independently confirmed both the `iEVING` rotations and the `pfp` copy.
+>
+> **Also corrected here:** §2's *"instances ≥26"* contradicts `45` §4's *"≥9 live"* — same round — and
+> §1.5 of this file classifies archived instances `UNRESOLVED`, which forbids the ≥26 figure its own §2
+> asserts. **Use `≥9 live`; archived instances remain `UNRESOLVED`.** §1.1's required **content hash was
+> never computed**, so `ARTEFACTS = 40` is a path count (**28 distinct contents** accessible).
+> **`CE-S1` is withdrawn** (`C-69`): only **one** `551ab874` artefact exists, yielding **47,801**; the
+> 47,242 figure's level of origin is unresolved.
+
 > ## ⚠ AMENDMENT — THE KEY BELOW WAS TESTED AND IS INSUFFICIENT (`P02-F-45a`)
 >
 > The composite proposed in this section was put to a falsification test in `45` §5 and **produced FALSE
@@ -108,6 +140,41 @@ scope · effective version.
 | **Counterexample (`CE-D1`)** | The seven `a6664233` databases are **seven deployment instances of one lineage**, differing in installed modules. An artefact-level or uuid-level count sees **one**. |
 | **Counterexample (`CE-D2`)** | `bhpro92_test` and `bhpro_tracking_test_20260901` are 19.0 deployment instances **inside a Docker volume** — invisible to any filesystem sweep, and absent from every deliverable before `C-41`. |
 | **Classification** | **`UNRESOLVED` for the archived estate** — an artefact records a lineage's *state*, not the instance that was running it. `DEPLOYED CODE IDENTITY UNRESOLVED` is the correct status wherever source is missing. |
+
+### 1.5b `COMPANY SCOPE` — THE LEVEL THIS MODEL OMITTED (`C-71`, AAS-03 Expert 3)
+
+**The model shipped with six levels and none of them was COMPANY**, under a constitution whose axes are
+PLATFORM / TENANT / COMPANY. Company count entered only as a *growth* signal for ordering snapshots.
+**There is no continuity rule, and the omission was not noticed by the model itself.**
+
+**Measured for the first time in the package** (read-only extraction from `BK12MAY26_2026-08-03`):
+
+| | |
+|---|---|
+| `res_company` rows | **44 = 4 roots + 40 branch children** (43 active, 1 archived) |
+| Roots | `1` วีอิ้ง อินเตอร์เทรด · `14` สรรพสินค้าเซ็นทรัล · `16` โรบินสัน · `28` ซีอาร์ (archived) |
+| Tenancy | **one database = one tenant** in this stack — scoping is `company_id`, there is no tenant column |
+
+**`P02-F-44b`. One tenant, four root companies, forty branches — and three commercially unrelated
+business groups in one database.** Consequences: (a) any P02 figure aggregated over "the deployment"
+spans **four unrelated sets of books**; (b) `SF-06`'s cross-company reconciliation guard is
+`company_id.root_id` equality, so exposure is **intra-root** — under a flat 44-company reading it would
+appear not to fire at all. **The topology is exactly what makes `SF-06` live, and it had never been
+measured.**
+
+**`P02-F-44c` — company-scope discontinuity is aggregated away in the package's own headline table.**
+The confirmed `iEVING` lineage runs **1 → 2 → 44** companies. `22` §2 builds `TC-03`…`TC-07` on *"93
+company records"*, of which **88 are the two 44-company snapshots of that one lineage** — and those two
+snapshots **disagree with each other** on valuation mode. **P02 does transfer figures across a
+company-scope change, in its own configuration table.**
+
+**`P02-F-44d` — the unit is wrong for root-delegated fields.** `tax_exigibility` is copied from root to
+branches and constrained equal, so `TC-05`'s *"true in every company record that has a value"* counts
+**40 copies of 4 root decisions**. `anglo_saxon_accounting` is **not** delegated, so `TC-03`'s
+per-company count is sound. **The two sit in one table under one unit with no distinction drawn.**
+
+**RULE ADDED:** no figure may cross a company-count change within a lineage without restatement, and
+every per-company count must declare whether its field is **root-delegated**.
 
 ### 1.6 `BUSINESS ENTITY` — kept strictly separate
 

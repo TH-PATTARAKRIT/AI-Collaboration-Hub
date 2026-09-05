@@ -1,5 +1,23 @@
 # 13 — P02 SOURCE LINK REGISTER
 
+> ## ⚠ GENERATION BANNER — `C-72`. THIS REGISTER IS v18-ONLY AND CARRIES REFUTED NEGATIVES.
+>
+> §1 fixes `R` = the **v18** root. `RE-30`/`C-35` established that the Thai localisation is
+> **generation-split** and the correction banner was applied to `07`, `09` and `12` — **and never to this
+> register, which every other file cites.** Rows affected, all refuted in the v19 root:
+>
+> | row | as written | v19 evidence |
+> |---|---|---|
+> | `EV-P02-043` | *"sets no split-recognition boolean and **no stock accounts**"* | `l10n_th/models/template_th.py:15` sets `property_stock_valuation_account_id`; `:40` sets `account_stock_valuation_id` |
+> | `EV-P02-044` | *"27 accounts, **complete denominator**"* | the v19 Thai chart has **144** accounts |
+> | `EV-P02-081` | *"occurs **once in the whole localisation**"* | `grep -r "Uninvoiced" v19/l10n_th/` returns **0** — the account does not exist in v19 at all (v18 control: 1) |
+>
+> **Every row below is a fact about the v18 root only, and must not be read as a fact about a deployment
+> or about any other generation.** This is *a revision log is not a correction* recurring for the third
+> time in this programme: the correction was recorded in the reviewing files and never applied to the
+> owning register.
+
+
 `LAYER 2 — AUDIT QUARANTINE` · Session `SMEPLUS-26-09-04-ACC-P02-O2C-REV2-001`
 
 ## 0. Handling Rule

@@ -35,6 +35,75 @@ the row says so; where one uuid covers several live instances the row says that 
 > one: **90.7% of the headline evidence comes from a generation whose standard source cannot be read at
 > all**, so no source-derived P02 negative transfers to it.
 
+> **`C-83` — THE "readable source" COLUMN DOES NOT REPRODUCE FOR THE TWO 16.0 LINEAGES, AND THE STATUS
+> FIELD STILL SAYS `PARTIAL MATCH`.** An independent sweep (population: directories containing
+> `__manifest__.py`/`__openerp__.py`; unit: basename; path set: `/Volumes/iMacSys` + `$HOME` + `/Volumes/iMac`)
+> returned **0 for all ten** module names underlying the 16 `SOURCE-ON-HOST` rows of `45a8e08e` and
+> `a1cdeab8`, while positive controls fired in the same run (`account` 74, `stock_account` 72,
+> `scgl_account_coa_control` 6) and a negative control returned 0. **23% of the 69-module "readable
+> source" total is unreproducible**, and there is **no 16.0 or 14.0 core distribution anywhere on this
+> host**. The caveat below already said these rows should read `SOURCE AVAILABLE BUT NOT PROVEN
+> DEPLOYED`; **the table kept printing `PARTIAL MATCH`. A correction in prose that never reaches the
+> status column is the "audit your disposition table" defect — peers cite the field, not the paragraph.**
+> **Both 16.0 rows are hereby `SOURCE AVAILABLE BUT NOT PROVEN DEPLOYED`.**
+>
+> **`C-84` — this file contradicts itself.** §1 states *"`MATCH VERIFIED` is used for no deployment"*;
+> §4 then prints **`MATCH VERIFIED`** for two containers. §4's basis is `ir_module_module` name+version
+> read from a running instance — the identification method this register elsewhere rules insufficient.
+> **§1 is scoped to archived lineages; §4's rows are downgraded to `SOURCE AVAILABLE BUT NOT PROVEN
+> DEPLOYED`, and are in any case not re-verifiable — the container runtime is down (`C-78`).**
+>
+> **`C-85` — there is no module-version dimension at all.** Every row of the census for one database
+> carries **one identical version string**, which is the database's **`base`** version, not the module's:
+> the 16.0 artefact shows `base 16.0.1.3` while `account` is `16.0.1.2` and `stock_account` is `16.0.1.1`.
+> **The census cannot compare even module versions, let alone code.** No row may be graded above
+> `SOURCE AVAILABLE BUT NOT PROVEN DEPLOYED` until `ir_module_module.latest_version` is extracted
+> per module — it is present in every artefact.
+
+
+> ## ✅ MAJOR REVERSAL — `C-86`. THE REFERENCE DISTRIBUTIONS EXIST. `C-55` IS WITHDRAWN.
+>
+> Every sweep in this programme pruned `~/Library` (adopted from the TCC prompt-storm lesson). **Full
+> Odoo reference distributions for 14, 15, 16, 17, 18 and 19 sit inside it**, at
+> `~/Library/CloudStorage/GoogleDrive-…/00 SW_SOURCE CODE/`:
+>
+> | distribution | module directories |
+> |---|---|
+> | **14 ODOO 14 ENTERPRISE** | **796** |
+> | **16 ODOO 16 ENTERPRISE** | **950** |
+> | 15 / 17 / 18 / 19 | present |
+>
+> Verified to contain `account`, `stock_account`, `sale_stock` — the exact modules P02 needs.
+>
+> **What this withdraws:**
+> - **`C-55` — WITHDRAWN.** *"90.7% of the headline evidence comes from a generation whose standard
+>   source cannot be read at all"* is **false**. A **950-module 16.0 Enterprise distribution** is on this
+>   host. The "59 module directories" figure came from `/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo16/addons`,
+>   a **custom** directory mistaken for the distribution.
+> - **`46` §2 / `C-43` side-note — "no 14.0 root exists on this host": false** (796 dirs).
+> - **`31` §1's "the standard union is a floor"** — the floor was drawn far too low.
+> - **Expert 4's `CH-4`** ("0 for all ten module names; no 16.0 or 14.0 core distribution anywhere") —
+>   **refuted**; its sweep pruned `Library` too.
+>
+> **Quantified effect — the custom-module counts across the package were OVERSTATED.** Standard union
+> rebuilt: **1,634 → 1,932 names**. Non-standard installed modules re-derived:
+>
+> | lineage | gen | published | **corrected** |
+> |---|---|---|---|
+> | `45a8e08e` **iSMEs** | 16.0 | 13 | **1** |
+> | `a1cdeab8` | 16.0 | 25 | **3** |
+> | `25e88cd4` iErpOCC | 14.0 | 36 | **23** |
+> | `5d5164c4` odoo_cff | 14.0 | 409 | **380** |
+> | **total rows** | | **620** | **540** |
+>
+> **The deployment carrying 90.7% of the marker-capable evidence runs ONE non-standard module, and its
+> standard source is readable.** That is a materially **stronger** position than the package claimed.
+>
+> **How it was missed.** A blanket prune, adopted for a good reason (a TCC prompt storm), was never
+> declared as an evidence-affecting exclusion and was inherited by **three P02 sweeps and two independent
+> experts**. *Shared blind-spot agreement*, recurring — and this time the shared blind spot was one the
+> package had itself written into its method.
+
 ## 1. Register
 
 | Lineage (founding company / label) | Gen | Installed | Non-standard | P02-relevant non-standard | with readable source | **STATUS** |

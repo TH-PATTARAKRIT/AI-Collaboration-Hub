@@ -6,7 +6,135 @@
 
 **Status: `FILE PATH SET REBUILT AND RECONCILED — POPULATION BOUNDED, NOT CLOSED`.**
 
+> ## ⚠ CORRECTION BANNER — `C-63` … `C-70`. TWO INDEPENDENT EXPERTS, BOTH CONFIRMED BY P02.
+> **The lineage count, the snapshot count, the artefact count AND the coverage assertion all move.**
+>
+> **`C-63` — the amended lineage key is DISPROVED, and clause (b) made it WORSE.** `45` §5 split
+> `pfp-main` / `pfp-staging` as a "false merge" on founding-company name. **They are one lineage.**
+> Two experts proved it by disjoint instruments:
+>
+> | instrument | evidence |
+> |---|---|
+> | **content ancestry** | **72 of 72** `res_partner` ids and **21 of 21** `res_users` shared with `create_date` identical **to the microsecond**, including **66 business records created 2025-05-27 → 2025-11-06 — six months after provisioning.** A template cannot share those. |
+> | `ir_config_parameter` | `database.secret` **identical**, row id 1, same `create_date`; staging carries `database.expiration_date` with `create_date = \N` and no `enterprise_code` — the Odoo staging-neutralisation signature. |
+> | **uuid version** | `57d32e15` is uuid **v4**; **35 of 36** artefacts carry uuid **v1**. Odoo writes `uuid.uuid1()`, so a v4 **cannot** be a birth value from this codebase — it is a platform-level replacement. |
+> | negative controls | `iErpOCC` vs `idemo18`: 5,732 common ids, **0** identical `create_date`. `iTEST02` vs `BK12MAY26`: 3,072 common, **0**. The instrument does not fire promiscuously. |
+>
+> **`DATABASE LINEAGES = 14`, not 15.** Clause (a) had this pair right and clause (b) overrode it.
+>
+> **`C-64` — clause (b) is a category error and is demoted.** `res_partner` id 1 `name` has
+> `write_date > create_date` in **36 of 36** artefacts: it is a **current-state field on a birth-time
+> record**. It collides both ways in-estate — `"My Company"` appears in **9 of 36 artefacts across 3
+> distinct birth groups**, and `iErpOCC` / `idemo18_uat` share founding-company name **and VAT** while
+> sharing **0 of 5,732** ancestry rows. **Founding-company identity is hereby demoted to
+> `OBSERVED ATTRIBUTE`, alongside `database.uuid` — evidence of a rename event, never identity.**
+> **Replacement key: content ancestry** — two artefacts are one lineage iff ≥N rows share
+> `(table, id, create_date)` **and** the latest shared `create_date` is ≥1 day after database birth,
+> corroborated in ≥2 tables from different modules, against a declared negative-control pair.
+>
+> **`C-65` — `SNAPSHOTS ≥ 24` was ASSERTED, NOT DERIVED. Withdrawn.** Nothing in the evidence supports
+> it. Derivable today: distinct `(icp create_date, icp write_date, company count)` tuples = **17**.
+> The only arithmetic reaching 24 is `15 lineages + 9 instances` — **a sum of two different units, which
+> §4 of this very file exists to forbid.** **`SNAPSHOTS = 17` (≤21 if the four blocked artefacts prove
+> distinct).**
+>
+> **`C-66` — `ARTEFACTS = 40` is a PATH count wearing a content key's label.**
+> `iTEST02_2026-06-14_14-41-19.dump` occupies **9 paths at one identical size (65,444,053 bytes)** —
+> **verified**. Distinct artefact *contents* among the 36 accessible = **28**; ≤32 including the four
+> blocked. `44` §1.1 makes content hash a **required** key member and **no hash was ever computed** —
+> the shortcut its own text forbids.
+>
+> **`C-67` — THE COVERAGE ASSERTION IS WRONG, AND THE ERROR LABELS ARE SWAPPED.** Measured from
+> `A_errors.txt`:
+>
+> | | published | **measured** |
+> |---|---|---|
+> | content-tested | 141,235 | **116,977** |
+> | NOT content-tested | 51,987 (26.9%) | **76,245 (39.5%)** |
+> | read failures | "186 read errors" | **24,258 distinct paths in the candidate list** |
+> | enumeration errors | "165" | **186 `find:` lines** (the 165 came from a different file) |
+>
+> **And 807 of the 6,062 cloud files ≥1 MB — the slice explicitly claimed as tested — returned
+> UNREADABLE.** They sit **above** the floor, so the *"<1 MB, 3.4× conservative"* justification **does
+> not cover them**. Among the unreadable: 185 `.zip` and 28 files larger than the smallest known artefact.
+>
+> **`C-68` — `RE-40`'s defect class is STILL LIVE in the replacement instrument.** `classify` returns
+> `UNREADABLE` only if the **first 512 bytes** fail. A file that opens and then fails deeper
+> (`ZipFile.namelist()`, `gzip.read`, `tarfile`, `pg_restore -l` timing out) falls to
+> `except Exception: pass` → **`NOTDB`** — an I/O failure indistinguishable from "not a database".
+> **No count exists for it.** Required: publish `enumerated / attempted / classified / failed` as four
+> numbers.
+>
+> **`C-69` — `CE-S1`, the sole evidence for the SNAPSHOT level, conflates Artifact with Instance.**
+> The population contains **exactly one** `551ab874` artefact and it yields **47,801**; no predicate on
+> it yields 47,242 (`company_id` splits 25,978/21,823; `stock_move_id` non-null 44,935;
+> `account_move_id` non-null **0**). **The 47,242 figure's level of origin is `UNRESOLVED`.** The
+> valuation finding itself is unaffected and was independently reproduced: **47,801 layers,
+> `account_move_id` NULL on all 47,801.**
+>
+> **`C-70` — two further method gaps.** (i) **Gzipped tar is not covered and was not in the declared-open
+> list**: the gzip branch tests only for `PGDMP` magic or the SQL header in the first 512 decompressed
+> bytes, so **every `.tar.gz`/`.tgz` carrying a dump is silently `NOTDB`** — 38 candidates, of which 3
+> unreadable and 2 scanned only to 4,000 members. Also undeclared: a zip whose SQL member is not named
+> `dump.sql`, and archive-in-archive. (ii) **93 lines of `A_candidates.txt` are corrupted** by
+> interleaved concurrent writes (`/Voln/Library/…`, `umes/iMacSys/…`), so the 193,222 denominator
+> contains unopenable fragments and an unquantified loss of real paths.
+>
+> **What survived attack.** The path-split arithmetic reproduces exactly (24,500 + 109,673 + 1,000 +
+> 6,062 = 141,235; 193,222 total). The `<1 MB` floor's minimum is exactly 3,374,773 bytes. The four
+> `Group Containers` artefacts are genuinely blocked (`os.stat` under `signal.alarm` times out — even
+> their size is unknown). **Raw PostgreSQL data directories were searched for and none exist.** And the
+> substantive zero-COGS / zero-linkage finding on `551ab874` was independently re-derived from the
+> artefact.
+>
+> **Corrected headline for this file: 40 artefact PATHS / 28 distinct contents accessible · 17 snapshots
+> · 14 lineages · ≥9 live instances (not re-derivable now — the container runtime is down).**
+
 ---
+
+
+> ## ✅ MAJOR REVERSAL — `C-86`. THE REFERENCE DISTRIBUTIONS EXIST. `C-55` IS WITHDRAWN.
+>
+> Every sweep in this programme pruned `~/Library` (adopted from the TCC prompt-storm lesson). **Full
+> Odoo reference distributions for 14, 15, 16, 17, 18 and 19 sit inside it**, at
+> `~/Library/CloudStorage/GoogleDrive-…/00 SW_SOURCE CODE/`:
+>
+> | distribution | module directories |
+> |---|---|
+> | **14 ODOO 14 ENTERPRISE** | **796** |
+> | **16 ODOO 16 ENTERPRISE** | **950** |
+> | 15 / 17 / 18 / 19 | present |
+>
+> Verified to contain `account`, `stock_account`, `sale_stock` — the exact modules P02 needs.
+>
+> **What this withdraws:**
+> - **`C-55` — WITHDRAWN.** *"90.7% of the headline evidence comes from a generation whose standard
+>   source cannot be read at all"* is **false**. A **950-module 16.0 Enterprise distribution** is on this
+>   host. The "59 module directories" figure came from `/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo16/addons`,
+>   a **custom** directory mistaken for the distribution.
+> - **`46` §2 / `C-43` side-note — "no 14.0 root exists on this host": false** (796 dirs).
+> - **`31` §1's "the standard union is a floor"** — the floor was drawn far too low.
+> - **Expert 4's `CH-4`** ("0 for all ten module names; no 16.0 or 14.0 core distribution anywhere") —
+>   **refuted**; its sweep pruned `Library` too.
+>
+> **Quantified effect — the custom-module counts across the package were OVERSTATED.** Standard union
+> rebuilt: **1,634 → 1,932 names**. Non-standard installed modules re-derived:
+>
+> | lineage | gen | published | **corrected** |
+> |---|---|---|---|
+> | `45a8e08e` **iSMEs** | 16.0 | 13 | **1** |
+> | `a1cdeab8` | 16.0 | 25 | **3** |
+> | `25e88cd4` iErpOCC | 14.0 | 36 | **23** |
+> | `5d5164c4` odoo_cff | 14.0 | 409 | **380** |
+> | **total rows** | | **620** | **540** |
+>
+> **The deployment carrying 90.7% of the marker-capable evidence runs ONE non-standard module, and its
+> standard source is readable.** That is a materially **stronger** position than the package claimed.
+>
+> **How it was missed.** A blanket prune, adopted for a good reason (a TCC prompt storm), was never
+> declared as an evidence-affecting exclusion and was inherited by **three P02 sweeps and two independent
+> experts**. *Shared blind-spot agreement*, recurring — and this time the shared blind spot was one the
+> package had itself written into its method.
 
 ## 1. Why A Rebuild Was Required
 
