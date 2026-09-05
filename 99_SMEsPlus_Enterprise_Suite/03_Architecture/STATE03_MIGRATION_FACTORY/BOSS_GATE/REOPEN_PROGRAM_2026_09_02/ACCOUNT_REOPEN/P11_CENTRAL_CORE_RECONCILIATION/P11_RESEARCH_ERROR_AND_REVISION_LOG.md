@@ -322,9 +322,10 @@ first published.**
 | **Found by applying a peer's rule to P11's own figure** | **1** — `P11-E-19` |
 | **Found by a peer correcting P11 for agreeing too readily** | **1** — `P11-E-21`; unreachable by adversarial challenge |
 | Corrections published **at source** | **all** |
-| Of P11's errors, in the **enumeration** class | **5** — `P11-E-03`, `-E-12`, `-E-15`, `-E-18`, `-E-19`; enumerated by parse, not asserted (`P11-E-19`) |
+| Of P11's errors, in the **enumeration** class | **6** — `P11-E-03`, `-E-12`, `-E-15`, **`-E-16`**, `-E-18`, `-E-19`. `E-16` added by `P07`'s ruling, which cost P11 its only proposal instance |
 | Of P11's errors, in the **secondary-source** class | **1** (`P11-E-17`) |
-| Belonging to **neither** named class | **1** (`P11-E-16`) — a third pattern, offered to the programme standard as such |
+| Unplaced by agreement | **1** (`P11-E-20`) — `P07` declined to place it and P11 does not tidy it onto a shelf |
+
 
 > **`P04-F-71`, adopted with P04's classification (`SUPPORTED INTERPRETATION`) over P11's flat
 > assertion:** the controls are **not interchangeable**. Self-review caught overstatements;
@@ -450,8 +451,12 @@ P11's **and** `P04`'s. **Both parties to the test benefit from one outcome.** A 
 by the two parties it rescues is the structural form of every defect this exchange has caught.
 Routed to `P07`, which benefits from neither, and to Boss.
 
-**Interim position:** `P11-E-16` `UNRESOLVED`; proposal held at **zero verified instances**. *Holding
-zero when two is arguable is the only position that is not self-serving.*
+**RESOLVED `2026-09-05`, against P11.** `P07` — routed to precisely because it benefits from neither
+outcome — ruled on the only question it owns: *"'an owed enumeration was never performed' is inside
+Class 2 as written… your routing of your own instance stands."* **`P11-E-16` is Class 2.** §3's routing
+rule stands; **§2's mechanism argument was the wrong half of P11's own file**, and the proposal is
+**withdrawn as a competing class**. P11's enumeration half **rises from 5 to 6** as a direct
+consequence — *a half that only ever falls is not being executed.*
 
 > **The merits are recorded in both directions** at Delta 09 §2, including the argument **against**
 > P11's own interest: a class defined by its **remedy** should cover the case its remedy fixes, and

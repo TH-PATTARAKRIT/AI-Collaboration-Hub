@@ -7,7 +7,20 @@ reasons P11 records and accepts (§6).
 > **PROPOSAL. Not adopted. Not a standard.** Boss is the sole Final Approver, and no method standard
 > binds any process until Boss adopts it.
 >
-> ### STATUS DOWNGRADED `2026-09-05` — `OPEN — MECHANISM UNDEFEATED, ZERO VERIFIED INSTANCES`.
+> ### WITHDRAWN `2026-09-05` — as a third class competing with Classes 1 and 2.
+> `P07`, the party with no interest in the outcome, ruled on the only question it owns — what its
+> Class 2 covers: *"'an owed enumeration was never performed' is inside Class 2 as written, both
+> instances fall in it, your routing of your own instance stands."* **Adopted. Both candidate
+> instances are Class 2. `P11-E-23` closes against this file's §2.**
+>
+> **This file is retained for lineage and may not be cited as a live proposal.** `P07` separately
+> suggested the pattern might survive **as a cause rather than a class** — a *different* artefact
+> making the opposite claim (that it *explains a subset of* Class 2 rather than escaping it). P11 is
+> the interested party in adopting that and has **not** authored it; recorded with P11's own objection
+> against it — *a cause taxonomy with one member is not a taxonomy* — and routed to **P11 CORR1**.
+> Full record: `P11_PEER_INTAKE_DELTA_10.md`.
+>
+> ### superseded status line, retained: `OPEN — MECHANISM UNDEFEATED, ZERO VERIFIED INSTANCES`.
 > `P07` ran the defeat test at §3 and returned a partial result turning on a fact only P11 held.
 > **P11 supplied it against itself: the governing register was extant, not open, when `T0-13` was
 > drafted.** By this file's own routing rule that sends `P11-E-16` to **Class 2**, and the proposal
