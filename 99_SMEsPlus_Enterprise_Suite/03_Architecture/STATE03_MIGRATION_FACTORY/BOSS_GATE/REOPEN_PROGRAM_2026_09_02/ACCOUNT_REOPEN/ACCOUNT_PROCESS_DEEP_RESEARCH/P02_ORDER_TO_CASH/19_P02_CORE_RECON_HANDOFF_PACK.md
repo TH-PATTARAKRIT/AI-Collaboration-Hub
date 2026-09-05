@@ -273,4 +273,47 @@ This package is **research output**. It is not a design, not a specification, an
 - Two consecutive clean independent passes have **not** occurred. This is the first Order-to-Cash package
   and the first independent challenge against it.
 
-**Terminal state: READY FOR CORE ACCOUNTING RECONCILIATION.**
+## 9. What The Targeted Closure Added — Stated In Clean-Room Terms
+
+Five deployed customer databases were examined offline. The findings below are **business facts about
+what those deployments do**, carrying no benchmark-system names.
+
+**1. No deployed database has ever recognised cost of sales through the order-to-cash process.**
+Across 5 distinct databases, 91 company records and **447,994 journal lines — zero cost-of-sales entries.**
+This survived three successive corrections to the denominator and two independent adversarial reviews. It
+is the most robust fact in the entire package.
+
+**2. The benchmark's cost-recognition design is not stable across its own product generations.** Three
+generations were encountered; each answers *when does cost arise* differently. The newest deletes the
+intermediate holding position entirely and relieves inventory **when the invoice is posted**, not when the
+goods leave. **Its own interface now defines "perpetual valuation" as "at invoicing".**
+
+> **Consequence for `B-01` and for the target policy that cost of sales arises at delivery: on the current
+> generation that policy is not selectable.** Choosing perpetual selects at-invoicing by definition.
+> This is the strongest available argument that **P02-R-23 — recognition policy must be an SMEsPlus
+> invariant — cannot be satisfied by configuring a benchmark product.** The benchmark cannot hold the
+> policy still across its own versions.
+
+**3. Cost and revenue land in different reporting periods for roughly a third of order lines, and nothing
+in the system can detect it.** Measured per document on the accounting date: **31.6% of 3,865 matched
+order lines.** The accounts involved are **not flagged as reconcilable**, so no matching is possible even
+in principle — and the same accounts also carry the manufacturing flow, so their balances cannot be read
+as cost of sales at all.
+
+**4. Three exposures previously argued from design are now demonstrated in live data:** customer deposits
+recognised as revenue because an account setting is unset; inventory value moved with no accounting entry
+(291 records, net ≈ −25.5 million); and a currency conversion performed at 1:1 because no rate existed for
+the date. The third caused no harm in the database observed — both affected records were cancelled — but
+it is no longer hypothetical.
+
+**5. Two ledgers disagree by an astronomical margin, undetected.** The inventory valuation records contain
+30 entries with values above 10¹²; the general ledger contains **none**. The two are not tied out, and the
+same absence that prevents the corruption reaching the financial statements also prevents anyone noticing
+the disagreement.
+
+**The limitation that bounds all five:** the generation carrying **99.9% of all deployed transactions has
+no source available on this host**, so how it produces its accounting cannot be established. And it has
+not been established that the source examined is the code these deployments actually run.
+
+**Terminal state: `MAXIMUM AVAILABLE EVIDENCE REACHED — HOLD FOR SPECIFIC EXTERNAL / PEER / BOSS
+DECISION`.**

@@ -85,6 +85,10 @@ as verdicts anywhere in this package.
 | 19 | `19_P02_CORE_RECON_HANDOFF_PACK.md` | Clean-room handoff to Core Accounting Reconciliation | **L1** |
 | 20 | `20_P02_SCOPE_OWNERSHIP_MATRIX.md` | PLATFORM / TENANT / COMPANY scope determination — added by correction `SMEPLUS-26-09-04-ACC-REV2-CORR1` | L2 |
 | 21 | `21_P02_DEPLOYED_DATABASE_EVIDENCE.md` | **Deployed-database evidence** — added after discovering the declared no-database-access statement was an untested negative claim | L2 |
+| 22 | `22_P02_TARGETED_CLOSURE_DEPLOYED_EVIDENCE.md` | **Targeted closure: all archives, generation split, period measurement, live tolerance-zero tests.** Carries a correction banner — seven of its claims were refuted | L2 |
+| 23 | `23_P02_CLOSURE_RECONCILIATION_REGISTER.md` | Boss-policy separation, tolerance-zero reconciliation, exit criteria, scope, peers | L2 |
+| 24 | `24_P02_EIGHT_BUSINESS_SCENARIOS.md` | The eight previously uncovered scenarios, across both readable generations | L2 |
+| 25 | `25_P02_CLOSURE_CHALLENGE_AND_CORRECTIONS.md` | **Second independent challenge — 7 refutations, 2 new reference defects, corrected denominator** | L2 |
 | — | `L2_AUDIT_QUARANTINE/` | Raw evidence extracts from parallel research tracks | L2 |
 
 ## 3a. Research Depth Map — L1 … L6 And The Very-Expert Layer
@@ -181,8 +185,12 @@ Everything else in this package is a consequence of, or an exception to, those t
 
 ## 6. Terminal Position And Reliance
 
-**Terminal state:** `READY FOR CORE ACCOUNTING RECONCILIATION` — which is this session's mandated endpoint
-and is a **handoff, not an exit**.
+**Terminal state:** **`P02 TARGETED FORENSIC CLOSURE — MAXIMUM AVAILABLE EVIDENCE REACHED — HOLD FOR
+SPECIFIC EXTERNAL / PEER / BOSS DECISION`**.
+
+The stronger terminal state — *closure completed* — is **not** claimed, for one reason: **the product
+generation carrying 99.9% of all deployed transactions has no source tree on this host**, so the package
+cannot say how the only database with volume produces its accounting.
 
 `18_P02_PMO.md` recommends **HOLD** against the eight-criteria exit gate: **0 of 8 satisfied, 5 partially,
 3 not**, with **six tolerance-zero candidates open**.
