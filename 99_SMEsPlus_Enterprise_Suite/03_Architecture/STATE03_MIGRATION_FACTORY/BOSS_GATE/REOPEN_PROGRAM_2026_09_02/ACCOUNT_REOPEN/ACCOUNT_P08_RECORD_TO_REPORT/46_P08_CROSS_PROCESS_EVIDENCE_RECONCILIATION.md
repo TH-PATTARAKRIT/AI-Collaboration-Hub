@@ -128,3 +128,72 @@ P08's source observations are product line **18.0**. The deployed databases are 
 P06's inputs (1)–(4), P07's tax-period state, P10's kernel authorship and P09's veto ground are **design and governance positions**. P08 supplies evidence and its own corrections; it does not adjudicate another process's finding, does not close another process's blocker, and does not author the target architecture. Those belong to **P11 and the Boss**.
 
 **Contradictions are preserved, not harmonised.** `P08-CONTRA-21` stands unresolved. No peer finding was rewritten to agree with P08, and where a peer's premise came from P08 and P08 was wrong, §3 says so plainly rather than leaving the peer to discover it.
+
+---
+
+## 6. `P08-U-13` DISCHARGED — the lock-free re-dating path is real, and P08 had missed it
+
+`XP-17` was recorded above as P08's highest-value remaining search. **It was run, and P04's finding is CONFIRMED at 18.0 source, with a deployed measurement P04 did not have.**
+
+### 6.1 The mechanism — 18.0 source, `FACT VERIFIED`
+
+The entry's accounting date is a **computed field that depends on the document date**. It fires on any change to that date. Its body does two things:
+
+1. **It exempts sale documents.** For a sale document the accounting date is simply the document date.
+2. **For every non-sale document it calls the accounting-date routine** — the same routine that performs lock relocation.
+
+**And that routine relocates even when no lock exists.** The lock branch is one guarded block inside it; **below that block, with the lock set empty, two branches still run for non-sale documents:**
+
+| Condition | Result |
+|---|---|
+| The document date is in a **month earlier** than today | the accounting date becomes the **last day of the document's month** |
+| The document date is in the **current month** | the accounting date becomes **the later of the document date and today** |
+
+**No lock is consulted for either. The accounting date of a purchase document is system-derived from the clock, and the deployed evidence that 0 of 89 companies configure a lock does not bound this at all.**
+
+### 6.2 The deployed measurement — `DB-SM`, product line 16.0
+
+**ENUMERATION.** POPULATION: 183,590 entries in `DB-SM`, restricted to posted entries carrying both a document date and an accounting date. PATTERN: direct comparison of the two date columns, partitioned by document class. PATH SET: the account-entry extract. UNIT: **one posted entry**. POSITIVE CONTROL: the same pattern returns 3 divergences in the sale class, so it can fire on both sides of the partition and a zero would have been meaningful.
+
+| Document class | Posted entries | Accounting date ≠ document date | Share |
+|---|---|---|---|
+| **Sale** | 2,605 | **3** | **0.12%** |
+| **Purchase** | 36,961 | **7,745** | **20.95%** |
+
+**The asymmetry is 175×, and it is exactly the asymmetry the mechanism predicts** — the sale class is exempted in the code, the purchase class is not.
+
+### 6.3 Where the author stops short of the causal claim
+
+Direction of the 7,745:
+
+| | Count | Share |
+|---|---|---|
+| Accounting date **later** than the document date | 2,123 | 27.41% |
+| Accounting date **earlier** than the document date | **5,622** | **72.59%** |
+
+**The 18.0 mechanism can only move a date forward or to a month-end. It cannot move one backward.** So the majority of the divergence is **not** explained by it.
+
+Testing the 2,123 forward-movers against the mechanism's two signatures:
+
+| Signature | Count | Share of forward-movers |
+|---|---|---|
+| Stays within the document's own month — the *later of document date and today* branch | 1,890 | **89.02%** |
+| Lands on a month-end — the *prior month* branch | 249 | 11.73% |
+| **Explained by one branch or the other** | | **~100%** (the two overlap slightly) |
+
+### 6.4 Classification
+
+| Claim | Class |
+|---|---|
+| A non-sale document's accounting date is system-derived from the document date **with no lock involved**, and sale documents are exempt | **`FACT VERIFIED`** — 18.0 source |
+| Accounting-date divergence is **175× more common** on purchase documents than sale documents | **`FACT VERIFIED`** — 16.0 data, measured independently of the source read |
+| The mechanism **caused** the 2,123 forward divergences | **`SUPPORTED INTERPRETATION`** — ~100% carry one of its two signatures, but 16.0 source was not read |
+| What produced the **5,622 backward** divergences | **`UNRESOLVED — EVIDENCE REQUIRED`.** Manual accounting-date entry is the obvious candidate and was not tested |
+
+### 6.5 Why this matters more than the lock finding it extends
+
+P08's period work rested on: *the lock relocates rather than refuses, and 0 of 89 companies set a lock, so the relocation path was never reached.* **The second half of that is now wrong as a bound.**
+
+> **Relocation is not a lock behaviour that a lock-free estate escapes. It is the default behaviour of the accounting date for every non-sale document, and it ran on 20.95% of purchase entries in a database with no lock configured anywhere.**
+
+`P08-CONTRA-31`. This corrects P08's own framing in `36` §3, credits P04 with the finding, and returns to P04, P06 and P10 a deployed measurement none of them held. `P08-M-13` — **a measurement that bounds an exposure by a control's absence is only as good as the assumption that the control is the sole cause.**

@@ -22,3 +22,19 @@ Session `SMEPLUS-26-09-04-ACC-P08-R2R-REV2-001`
 None of the eight is closable by further source reading alone. `P08-T0-01`, `-02`, `-03`, `-06` and `-07` are clean-room design decisions — the reference behaviour is to be rejected, not adapted. `P08-T0-04` and `-05` need a Boss scope decision. `P08-T0-08` needs a deployment fact: whether the custom modules concerned are installed.
 
 **Standing rule inherited and honoured:** `CONDITIONAL PASS` is unavailable by rule while tolerance-zero boundaries stand unresolved. A conditional pass whose conditions are the tolerance-zero set is a pass with a different label.
+
+---
+
+# CLOSURE DELTA — boundary status after the targeted closure
+
+**No boundary closed. Two moved in the wrong direction; one is newly evidenced as live.**
+
+| Boundary | Movement |
+|---|---|
+| **Immutable posted facts** | **WORSENED.** The balance invariant has exactly one line of defence, at the object layer, disabled by a caller-supplied value (`43`). The posting state is outside the integrity seal — verified by the author and, independently, by a peer process from a different entry point. A raw-statement path flips posting state with no parameter at all |
+| **Irrecoverable data loss** | **LIVE AND DEPLOYED.** The whole-table erase module with no company predicate is **installed in 3 of 3 databases** |
+| **Unauthorised / duplicate posting** | **UNCHANGED as a boundary; the supporting measurement is CORRECTED.** Scoped to the population the detector covers, the figure is 677 of 36,961 with a largest group of 14 — not the swamping the package claimed (`P08-CONTRA-35`) |
+| **Company isolation** | **WORSENED.** A statutory register query with no company predicate is installed on two 44-company databases (`P08-U-19`) |
+| **Period integrity** | **WORSENED.** Relocation is not gated on a lock at all (`P08-CONTRA-31`); 0 of 89 companies configure any lock; the retention control is present in the 19.0 estate and unset on 88 of 88 |
+
+`CONDITIONAL PASS` is unavailable for these by constitution. **Tolerance-zero closure: 0 closed.**

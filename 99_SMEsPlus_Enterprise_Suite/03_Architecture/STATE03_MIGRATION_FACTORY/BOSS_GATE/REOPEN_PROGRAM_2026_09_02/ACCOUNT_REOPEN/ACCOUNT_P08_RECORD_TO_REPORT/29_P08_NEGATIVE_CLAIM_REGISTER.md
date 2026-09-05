@@ -54,3 +54,37 @@ Mechanical scan for the prohibited unqualified forms and the strength words, ove
 - **Upgrade by attrition, found by a reviewer and accepted:** four downstream restatements carried the class letter and the path set but **dropped the pattern**. Corrected — the pattern now travels with the claim in the kernel model, the event register, the attack file and the handoff pack.
 - **Unqualified negatives with no class letter, found by a reviewer and accepted:** four (`SC-JE-07` provenance, `PC-17`'s "no field anywhere", `FR-24`'s "none sits at the report layer", and the handoff's restatement of the balance absence). Each now carries its class and boundary.
 - **Clean-room scan:** Layer 1 free of vendor model names, paths and file extensions. One false positive noted in the scrub pattern itself — the token used to catch inventory vocabulary also matches ordinary English words.
+
+---
+
+# CLOSURE DELTA — and a correction to this register's own compliance statement
+
+## The compliance statement above is FALSE and is withdrawn
+
+This register states: *"B, C or D restated as A anywhere in the package, including summaries and the gate report: **none found**, by the author and independently by a reviewer."*
+
+**An independent reviewer found otherwise, and the author verified it.** A claim **withdrawn as `CONTRADICTED`** is still carried at `A VERIFIED ABSENCE`:
+
+| Location | State |
+|---|---|
+| `01A` §3, the claim's own row | **correctly marked WITHDRAWN** — the reviewer's report that this row was unchanged is itself wrong, and is recorded as such |
+| `01A` §4, the promotion summary | **still lists the withdrawn claim among those "legitimately promoted"** |
+| `13`, opening paragraph | **carries it at class A as "the finding that governs this whole register"** |
+
+**`P08-CONTRA-33`. The prohibition this programme names as its own was breached, and this register certified the opposite.** Both locations require re-scoping; the certification is withdrawn until re-run.
+
+## Independence of the root-set denominator
+
+Every negative claim in this package expressed as *"0 in 21 of 21 roots"* rests on **at most 7 independent observations** — the core posting file resolves by content hash to **7 distinct contents** across the roots that carry it. The nesting was declared; its effect on independence was not. **`P08-CONTRA-34`. Every such claim's apparent strength is overstated by roughly threefold.** The claims are not withdrawn; their stated support is.
+
+## Controls that could not match what they denied
+
+`P08-M-07` was raised in this session. It **recurred three further times inside the same session**, twice found by reviewers and once by the author:
+
+| Instance | Nature |
+|---|---|
+| The configuration-data control | fired on something other than entry declarations; the entries it denied are built in code, not configuration |
+| The tenancy control | demonstrated that many files were read, not that the pattern could match a tenancy concept — the claim is unfalsifiable as framed |
+| The peer-intake pattern | a word-boundary form that **could not match at all**, returning zero across eight peer packages (`P08-M-10`) |
+
+**A positive control must match the thing being denied. Stated four times, breached four times. This is the programme's most persistent method defect and it is not yet under control.**

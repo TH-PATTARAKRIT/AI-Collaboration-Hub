@@ -27,3 +27,24 @@ Every unknown carries the mandated disposition vocabulary: `GATING` · `NON-GATI
 **17 unknowns. 8 GATING. 1 ROUTED. 8 NON-GATING. 0 out of scope with evidence.**
 
 No `GATING` unknown is routed forward to hide it: `P08-U-13`, `P08-U-14` and `P08-U-17` all belong to this session's own scope and are named as this session's residuals, not passed to a later one.
+
+---
+
+# CLOSURE DELTA — unknowns opened, discharged, or re-classified
+
+| ID | Item | Class | Movement |
+|---|---|---|---|
+| `P08-U-02` | Whether the custom access-override module is installed anywhere | — | **DISCHARGED.** Absent or uninstalled in 3 of 3 |
+| `P08-U-04` | Whether the residual-drift path manifests at runtime | — | **DISCHARGED.** 0 residual drift across 100,580 settled lines |
+| `P08-U-10` | The custom addon set was largely unreviewed | — | **PARTIALLY DISCHARGED** by the sweep; **re-opened wider** as `P08-U-18` |
+| `P08-U-13` | The lock-free re-dating path a peer reported | — | **DISCHARGED — CONFIRMED.** `46` §6 |
+| `P08-U-14` | Three core-accounting instances handed over by a peer | `C NOT YET SEARCHED` | **NEW** |
+| `P08-U-15` | Whether a tax-specific settlement mechanism exists under an unsearched name | `C NOT YET SEARCHED` | **NEW** |
+| `P08-U-16` | Whether the remaining peer published under different branch naming | `C NOT YET SEARCHED` | **NEW** |
+| `P08-U-17` | The hierarchy-wide lock traversal, peer-supplied and not re-derived | `B` for P08 | **NEW** |
+| `P08-U-18` | **32 modules installed in a deployed database exist in neither searched source tree** — among them two touching ledger numbering, one writing the rate master, and one able to carry arbitrary models and server-side automation | **GATING — re-classified from `C NOT YET SEARCHED`** | **NEW, and the most consequential open item in the package.** The constitution forbids carrying a current-scope blocker as an unsearched class. Two of these sit directly under class-A claims and one is the residual route the context attack left open |
+| `P08-U-19` | A statutory register query with **no company predicate**, in a module installed on two 44-company databases, recorded in the package's own quarantine and carried into no Layer-1 file | `FACT VERIFIED`, **unincorporated** | **NEW** |
+| `P08-U-20` | Whether the second, vendor-supplied statutory reporting stack behaves as the custom one does | `C NOT YET SEARCHED` | **NEW.** The sweep examined one of two stacks and generalised |
+| `P08-U-21` | What produced the 5,622 **backward** accounting-date divergences; the studied mechanism can only move a date forward | `UNRESOLVED — EVIDENCE REQUIRED` | **NEW** |
+| `P08-U-22` | A fourth deployed database declared unreadable by one tool and not retried with another | `C NOT YET SEARCHED` | **NEW.** A fourth database is a fourth version premise |
+| `P08-U-23` | Two further custom source trees on the host, outside the declared path set | `C NOT YET SEARCHED` | **NEW** |

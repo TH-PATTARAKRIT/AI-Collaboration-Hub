@@ -47,3 +47,29 @@ Every material contradiction records the competing claims, the evidence for each
 | ID | Statement |
 |---|---|
 | `P08-CONTRA-15` | The GB-08 ruling states Wave B must not start before Wave A receives its Boss Final Research Gate decision. P08 was commissioned by Boss prompt in the same period and overlaps Wave A's subject matter. **P08 does not adjudicate this.** It executes as research only, produces no implementation authority, does not close Wave A, and records the sequencing question as `BOSS CONTROLLED DECISION` `P08-BD-10`. |
+
+---
+
+# CLOSURE DELTA — `SMEPLUS-26-09-04-ACC-P08-R2R-TARGETED-FORENSIC-CLOSURE-001`
+
+Added because an independent reviewer established that **none** of the closure's identifiers had reached any register. That was an `EC-08` failure and it is corrected here rather than argued with.
+
+| ID | Contradiction | Disposition |
+|---|---|---|
+| `P08-CONTRA-19` | The configuration-data claim was true of production data and false of demonstration data, which declares entries in a majority of roots | **REFINED, not withdrawn.** And see `P08-CONTRA-32`: the published control for it did not test the thing denied |
+| `P08-CONTRA-20` | The custom-module denominator was the work-queue length, not the ledger-touching population | **CORRECTED** to the measured population. **Still contested** — a reviewer could not reproduce it either; see `P08-CONTRA-33` |
+| `P08-CONTRA-21` | Six peer packages record P08 as unpublished; the branch is present with an earlier tip | **UNRESOLVED.** Push time is not recoverable from the clone. Both readings leave the same actionable consequence — `46` §1A |
+| `P08-CONTRA-22` | **Files 38 and 41 contradicted each other on the same table in the same session.** The orphan headline omitted the two origin pointers populated at scale | **RESOLVED AGAINST FILE 38.** 9,754, not 83,820 — `47` §1. Found independently by **two** reviewers |
+| `P08-CONTRA-23` | "The 53 imbalances are the population the missing assertion would have caught" | **WITHDRAWN.** 49 carry the counter-leg already exculpated; the residual is 4 — `47` §2 |
+| `P08-CONTRA-24` | The backdating population read as human behaviour; 98.3% is one machine-generated catch-up | **RESTATED** as 112 plus a migration — `47` §3 |
+| `P08-CONTRA-25` | "The retention column does not exist in any of the 3 databases" | **FALSE for 2 of 3; WITHDRAWN and ESCALATED.** Present in both 19.0 databases, unset on 88 of 88 — `47` §4 |
+| `P08-CONTRA-26` | The seal denominator was 64 journals | **CORRECTED to 109** — `47` §5 |
+| `P08-CONTRA-27` | "0 of 447,384 items disagree with their entry" was true of the six mirrors tested; the seventh disagrees on 174,977 | **RESTATED** — `47` §6 |
+| `P08-CONTRA-28` | File 41 §2 (item mirrors add no information) contradicts file 41 §8 (carry provenance on the item) | **ACCEPTED as a real internal contradiction.** The resolution is a design position and belongs to P11 |
+| `P08-CONTRA-29` | "Any rate that is not 7% is silently outside the statutory register" reads as suppressed VAT; 4 of the 5 excluded groups are withholding groups | **MISCHARACTERISED, corrected.** All statutory readings remain `HOLD` |
+| `P08-CONTRA-30` | The gapless-counter finding fused a design fact in one product line with a configuration fact in another | **SEPARATED.** The measurement stands |
+| `P08-CONTRA-31` | Relocation was bounded by the absence of a period lock; it is **not** a lock behaviour | **CORRECTED.** Default behaviour for every non-sale document; measured at 20.95% of purchase entries in a lock-free database — `46` §6 |
+| `P08-CONTRA-32` | **A counterexample published as "read directly" does not hold.** The uniqueness constraint sits on the system's own generated reference, not on the external provider reference | **CONFIRMED AGAINST THE AUTHOR.** The retraction it supported still stands on independently verified evidence; the counterexample is struck — `48` |
+| `P08-CONTRA-33` | **A withdrawn class-A claim is still carried at class A in two places, one of them governing an entire register — while the negative-claim register certifies that no such restatement exists** | **CONFIRMED AGAINST THE AUTHOR.** The prohibition the programme names as its own was breached — `48` |
+| `P08-CONTRA-34` | **"N of 21 roots" is at most 7 independent observations.** The core posting file resolves to 7 distinct contents across the roots that carry it | **CONFIRMED AGAINST THE AUTHOR** by content hash — `48` |
+| `P08-CONTRA-35` | "In a real population the duplicate detector is swamped" is not supported by the author's own data when scoped to the population the detector covers | **CONFIRMED AGAINST THE AUTHOR.** 677 of 36,961, largest group 14 — `48` |

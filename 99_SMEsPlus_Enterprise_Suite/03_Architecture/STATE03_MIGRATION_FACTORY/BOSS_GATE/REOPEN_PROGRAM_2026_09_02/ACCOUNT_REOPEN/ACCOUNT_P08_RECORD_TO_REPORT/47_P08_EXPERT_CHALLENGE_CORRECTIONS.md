@@ -26,6 +26,7 @@ The link set used was `payment_id`, `statement_line_id`, `tax_cash_basis_origin_
 | — **carrying either** | **74,066 — 88.4%** |
 | **Residual with no pointer of any kind** | **9,754 — 5.8% of posted entries, not 49.6%** |
 | — of which no reference text either | **5,786** *(the published figure; it was correct and attached to the wrong parent)* |
+| **SUPERSEDED — see `48` §1.** A third reviewer removed a further 3,169 entries reachable as a settlement's exchange entry | **6,585 — 3.9%, of which 2,617 carry no reference** |
 | The auto-post pointer, included in the link set | populated on **0** entries — a **dead predicate** that made the negative look better supported |
 
 **`file 38` and `file 41` contradicted each other on the same database in the same session.** File 41 §4 classifies 113,231 items as inventory valuation and 60,079 as asset depreciation, both *"reliable — entry pointer"*. File 38 counted those same entries as having no origin.
