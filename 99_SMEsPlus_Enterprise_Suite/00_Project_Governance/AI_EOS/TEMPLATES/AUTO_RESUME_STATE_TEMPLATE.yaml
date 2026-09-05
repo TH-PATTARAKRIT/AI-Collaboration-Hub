@@ -1,0 +1,55 @@
+schema_version: 1
+project: SMEsPlus
+process: PXX
+logical_session_id: SMEPLUS-PXX-YYYY-MM-DD
+prompt_id: replace-me
+
+repository:
+  branch: replace-me
+  current_commit: replace-me
+  last_verified_commit: replace-me
+
+execution_state:
+  status: READY_TO_RESUME
+  last_verified_checkpoint: replace-me
+  current_checkpoint: replace-me
+  current_substep: replace-me
+  completed_substeps: []
+  open_substeps: []
+  next_exact_action: replace-me
+
+open_items:
+  dependencies: []
+  contradictions: []
+  blockers: []
+  boss_decisions: []
+
+peer_last_consumed_sha:
+  P01: null
+  P02: null
+  P03: null
+  P04: null
+  P05: null
+  P06: null
+  P07: null
+  P08: null
+  P09: null
+  P10: null
+  P11: null
+
+review_state:
+  aas03: NOT_STARTED
+  aas_plus: NOT_STARTED
+  pmo: NOT_STARTED
+
+runtime_policy:
+  interface: CLAUDE_DESKTOP_OR_WEB
+  api_use_authorized: false
+  no_idle_token: true
+  auto_continue: true
+  auto_resume: true
+
+stop_state:
+  waiting_for_external_event: false
+  required_event: null
+  expected_terminal_state: replace-me
