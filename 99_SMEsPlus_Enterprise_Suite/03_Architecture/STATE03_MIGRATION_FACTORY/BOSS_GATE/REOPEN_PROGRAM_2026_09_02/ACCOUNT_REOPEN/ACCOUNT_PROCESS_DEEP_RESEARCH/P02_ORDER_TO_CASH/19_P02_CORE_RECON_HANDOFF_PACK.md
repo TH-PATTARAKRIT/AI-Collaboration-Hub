@@ -279,9 +279,27 @@ Five deployed customer databases were examined offline. The findings below are *
 what those deployments do**, carrying no benchmark-system names.
 
 **1. No deployed database has ever recognised cost of sales through the order-to-cash process.**
-Across 5 distinct databases, 91 company records and **447,994 journal lines — zero cost-of-sales entries.**
-This survived three successive corrections to the denominator and two independent adversarial reviews. It
-is the most robust fact in the entire package.
+Across **at least ten distinct customer databases on three product generations — zero cost-of-sales
+entries.** This survived five successive corrections to the population, two independent adversarial
+reviews and two peer challenges. It is the most robust fact in the package, and the population is
+deliberately **not** declared closed.
+
+**It is now properly controlled, which it was not when first published.** Three things were added:
+
+- **The instrument was proved.** On a real 40,000-row extract the counter returns zero; inject one
+  synthetic cost line into the same data and it returns one. The counter can see a cost line.
+- **The zero is not inactivity.** Two of those databases moved real valued inventory **and posted the
+  inventory-valuation entries** — tens of thousands in one case — and still produced no cost line. A
+  genuinely untouched installation was examined alongside them and looks entirely different.
+- **It was tested where it was most likely to break.** The one deployment with the cost-recognition
+  switch **turned on**, its accounts configured and 47,801 inventory valuation records, still produced
+  zero — because a fourth setting on a fourth object was left at its default.
+
+**2. The deployed cost shape is consistent across businesses and generations.** Two unrelated customer
+deployments, on different product generations, independently show the same configuration: cost recognised
+**at delivery**, straight to an expense account, with **no intermediate position** — and in every case
+those accounts are **not flagged as reconcilable**, so the delivery and the billing cannot be matched
+against each other even in principle. Eleven such accounts examined; no exception.
 
 **2. The benchmark's cost-recognition design is not stable across its own product generations.** Three
 generations were encountered; each answers *when does cost arise* differently. The newest deletes the
