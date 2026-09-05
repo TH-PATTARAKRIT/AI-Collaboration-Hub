@@ -361,10 +361,10 @@ found the four was **bounded to one directory**. Executed properly there are
 | Database | Dated | Archive | Reads under host default client (16.15)? | Generation signature | Asset rows | Of which **real** |
 |----------|-------|---------|------------------------------------------|----------------------|------------|-------------------|
 | `iSMEs` | 2026-07-11 | v1.14 | **yes** | **older line** — carries an `asset_type` column the v18 source tree does not define | **685** | **669** |
-| `iEVING` | 2026-07-23 | v1.14 | **yes** | **v18 line** — no `asset_type` | 36 | **0** |
-| `BK12MAY26` | 2026-08-03 | v1.14 | **yes** | **v18 line** | 36 | **0** |
-| `iTEST02` | 2026-07-14 | **v1.16** | **NO** — needs `postgresql@18` | **v18 line** | 12 | **0** |
-| `iTEST02` | 2026-06-14 | **v1.16** | **NO** — needs `postgresql@18` | **v18 line** | 12 | **0** |
+| `iEVING` | 2026-07-23 | v1.14 | **yes** | **v19** — no `asset_type` | 36 | **0** |
+| `BK12MAY26` | 2026-08-03 | v1.14 | **yes** | **v19** | 36 | **0** |
+| `iTEST02` | 2026-07-14 | **v1.16** | **NO** — needs `postgresql@18` | **v19** | 12 | **0** |
+| `iTEST02` | 2026-06-14 | **v1.16** | **NO** — needs `postgresql@18` | **v19** | 12 | **0** |
 
 **The enumeration behind this table was re-run by a stricter method, after P07
 reported the same bound in its own** (`18` `P04-REV-27`). The first search matched
@@ -427,7 +427,7 @@ Tested here, finding by finding:
 |---------|----------|---------------------------|------------|
 | `P04-F-81` convention split | 3 readable + 2 unreadable | 72 of 96 templates, all `constant_periods`; 683/685 real assets on daily | **holds** |
 | `P04-F-82` source-link 96.7 % | **one readable archive only** | everything | **fully reproducible** |
-| `P04-F-83` zero real assets | 2 readable + 2 unreadable | 2 of 4 v18 snapshots, 72 templates, **zero real assets in both** | **holds** |
+| `P04-F-83` zero real assets | 2 readable + 2 unreadable | 2 of 4 v19 snapshots, 72 templates, **zero real assets in both** | **holds** |
 
 > **No finding in this package depends on an artefact a default client cannot
 > open.** A reader with stock tooling reaches **the same conclusion on all
@@ -435,12 +435,41 @@ Tested here, finding by finding:
 > stated because the caveat is only useful if it is specific about which way it
 > cuts.
 
-**Scope, stated before any finding.** None of these is `idemo18_uat`, the database
-the runtime capture in §6 came from, so nothing here closes a blocker that names
-it. Of the **four database identities**, **one** — `iSMEs` — is an **older product
-generation** than the v18 source tree these behavioural findings rest on, and it
-is **the only one holding real assets**; the other **three** are v18-line and hold
-**templates only**. Every statement below is bounded to the identity named in it.
+**Scope, stated before any finding — and CORRECTED, because the generation labels
+were wrong.** None of these is `idemo18_uat`, the database the runtime capture in
+§6 came from, so nothing here closes a blocker that names it.
+
+**The generations were declared from a single structural signal** — the presence
+of a column the v18 source tree does not define — and **never checked against the
+installed-module version record.** Executed against `ir_module_module`:
+
+| Identity | Installed modules | Generation |
+|----------|------------------:|------------|
+| `iSMEs` | 189 | **v16** |
+| `iEVING` | 232 | **v19** |
+| `BK12MAY26` | 251 | **v19** |
+| `iTEST02` | 461 | **v19** |
+
+> **P04-F-85.** **No database on this host is the same generation as the source
+> tree these behavioural findings rest on.** The source is **v18**; the databases
+> are **v16** (one identity, the only one holding real assets) and **v19** (three
+> identities, templates only). The package previously labelled the v19 databases
+> *"v18-line"* and `iSMEs` *"an older generation"* — the first is **wrong**, the
+> second understates a **two-generation** gap.
+> Class: **FACT VERIFIED** from the module version records.
+
+**What this changes and what it does not.** Every *count* below stands — the
+records were read correctly. What was wrong is the **generation each population
+belongs to**, and therefore **which source-code findings it can be set against**:
+
+- Statements about **v19 deployments** (templates, absence of real assets) are
+  statements about the **deployment target**, and remain directly relevant.
+- Statements drawn from **v18 source** cannot be corroborated by any database
+  here, because **no v18 database exists on this host**. The Runtime → Database
+  leg of the semantic trace is therefore **weaker than this package previously
+  declared** — see `17` deviation 1.
+
+Every statement below is bounded to the identity **and generation** named in it.
 
 *An earlier version of this paragraph read "two of the three are a different
 product generation". It was **wrong when written** — one of the three then read
@@ -457,11 +486,11 @@ section. Corrected under `18` `P04-REV-31`.*
 | `BK12MAY26` — 36 rows, all templates | v18 | **36** | 0 |
 | `iTEST02` @ 2026-07-14 — 12 rows, all templates | v18 | **12** | 0 |
 | `iTEST02` @ 2026-06-14 — 12 rows, all templates | v18 | **12** | 0 |
-| **v18 line, total** | | **96 — 100 %** | **0** |
+| **v19 total** | | **96 — 100 %** | **0** |
 
 > **P04-F-81.** The operational population runs on **daily computation** (683 of
 > 685 in the only database holding real assets), while **every one of the 96 asset
-> templates across all four v18-line **snapshots**, spanning **three database
+> templates across all four **v19** snapshots, spanning **three database
 > identities**, is on `constant_periods`** — the
 > product default, and the convention the operational population does **not** use.
 > Templates govern the configuration of assets created from them. So the
@@ -474,7 +503,7 @@ section. Corrected under `18` `P04-REV-31`.*
 > | Half | Kind of claim | Evidence required | Source used |
 > |------|---------------|-------------------|-------------|
 > | 683 of 685 real assets on daily | **population** | the **deepest data set** | `iSMEs` — the only snapshot with real assets |
-> | 96 of 96 templates on `constant_periods` | **configuration** | the **broadest install**, i.e. every snapshot carrying templates | all four v18-line snapshots |
+> | 96 of 96 templates on `constant_periods` | **configuration** | the **broadest install**, i.e. every snapshot carrying templates | all four v19 snapshots |
 >
 > Each half rests on the right kind, **by construction rather than by design** —
 > the population half had only one candidate and the configuration half was
@@ -483,7 +512,7 @@ section. Corrected under `18` `P04-REV-31`.*
 > told.
 >
 > Class: **FACT VERIFIED**. Population half bounded to `iSMEs`; configuration half
-> bounded to the **four v18-line snapshots across three identities**. Enumeration
+> bounded to the **four v19 snapshots across three identities**. Enumeration
 > of candidates at §6A.1.
 
 > **P04-F-84.** **A stronger statement the split makes available, and which the
@@ -493,33 +522,33 @@ section. Corrected under `18` `P04-REV-31`.*
 > between 2026-06-14 and 2026-08-03** — and **not one** carries the convention the
 > operational system actually runs on.
 >
-> So this is not an oversight in one deployment. **No v18-line deployment
+> So this is not an oversight in one deployment. **No v19 deployment
 > examined has ever changed the day convention from the shipped default, at any
 > point across roughly seven weeks, by any operator** — while the only population
 > of real assets in existence runs on the other convention. Combined with
-> `P04-F-83` (the v18 line has never had an asset created in it) the migration
+> `P04-F-83` (the v19 line has never had an asset created in it) the migration
 > exposure is stated at full strength: **the first asset ever created in the
 > target generation will inherit the wrong convention, and nothing in any
 > deployment's history suggests anyone would notice** — the two conventions agree
 > annually to within 0.05 %.
 >
-> Class: **FACT VERIFIED**, bounded to the three v18-line identities named.
+> Class: **FACT VERIFIED**, bounded to the three v19 identities named.
 > **Available only once the halves were separated**: while they shared a
 > sentence, the configuration half read as a property of the templates rather
 > than as a **consistent non-action across independent operators**, and the
 > population half was doing no work for it. The shape is adopted from P07, which
 > found the same concealment in its own compound finding.
 
-> **P04-F-83.** **No v18-line database on this host contains a single real asset
-> record.** **Unit declared:** four v18-line **snapshots** across **three database
+> **P04-F-83.** **No v19 database on this host contains a single real asset
+> record.** **Unit declared:** four **v19** snapshots across **three database
 > identities** (`iEVING`, `BK12MAY26`, and `iTEST02` captured twice), spanning
 > 2026-06-14 to 2026-08-03, holding **96 templates and zero assets** between them.
 > The only population of real assets available anywhere is on the **older
 > generation**.
 >
-> *An earlier wording said "four v18-line databases", conflating snapshots with
+> *An earlier wording said "four v19 databases", conflating snapshots with
 > identities — the same unit defect this package records nine times over.*
-> Class: **FACT VERIFIED**, bounded to the **four v18-line snapshots across three
+> Class: **FACT VERIFIED**, bounded to the **four v19 snapshots across three
 > identities** named at §6A.1, within an enumeration of all five snapshots.
 > **Reproduction caveat, with the unit declared.** The two unreadable v1.16
 > archives are **both snapshots of one identity** (`iTEST02`, a month apart). So
