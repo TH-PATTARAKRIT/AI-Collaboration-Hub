@@ -755,6 +755,63 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.27 The host census, completed — and what it does not say
+
+The full-host census declared at §6A.1 has finished. It ran for the greater part
+of this session and is reported here with its bounds, its defect, and — most
+importantly — **its unit.**
+
+> **P04-F-126.** **39 database artefacts on this host. The identity count is
+> NOT established, and this finding does not state one.**
+>
+> **Declared:** path set `/Volumes` + `$HOME`; size bound **≥ 1 MB**, justified —
+> the smallest Odoo dump observed anywhere here is 3.37 MB; two signatures —
+> `PGDMP` magic, and zip central directory containing `dump.sql`.
+>
+> | | |
+> |---|---:|
+> | `PGDMP` archives | **27** |
+> | zip archives containing `dump.sql` | **12** |
+> | **total database artefacts** | **39** |
+> | artefacts reached via the `/Volumes/iMac` symlink | **0** |
+>
+> **The symlink result closes a claim I made on reasoning rather than evidence.**
+> I told P07 that `find` without `-L` cannot traverse `/Volumes/iMac` — a symlink
+> to `/` — and that my sweep was therefore not inflated. That was correct, and it
+> was **an argument, not a measurement**, until this run: **zero of 39 artefacts
+> lie under that path.**
+>
+> **The census pattern was over-inclusive and two artefacts are withdrawn.** The
+> zip test accepted **any** `.sql` file or a `manifest.json`. Re-tested for the
+> Odoo backup shape, `CFF.zip` and `docker-compose-magento.zip` contain **neither
+> `dump.sql` nor `manifest.json`** and are not database artefacts. Two others —
+> `premiumflexiblepackaging-*-exact_fs.zip` — contain `dump.sql` **without** a
+> manifest, a different export shape; **counted, because excluding them would be
+> the narrow-pattern error this package has recorded twice.**
+>
+> **And the unit is the whole point.** **39 is a count of FILES.** Only **8**
+> identities have been keyed on `database.uuid` (§6A.25). The remaining ~31
+> artefacts are **un-keyed**, and the precedent forbids inferring: `iTEST02`
+> appears as **four copies of one snapshot** and the two `iEVING` files are **two
+> different databases**. **A file count converts to an identity count in neither
+> direction without reading `ir_config_parameter` in each.**
+>
+> So the census settles the **artefact** question and leaves the **identity**
+> question where it was: **8 identities keyed; the population remains OPEN.**
+> Newly visible and never keyed by any session in this exchange: `iErpOCC`,
+> `iSCErP`, `iSMeO2C`, `iSMEs182`, `iMSCG` ×2, `odoo_cff_golive`, two
+> `premiumflexiblepackaging` exports, two archives inside a messaging app's media
+> store, and the seven `OCC_Odoo18_Simulation_Lab` snapshots already known to
+> share one uuid.
+>
+> **No finding in this package moves.** Every database-derived finding is bounded
+> to a named identity, and all eight named identities were keyed and read. What
+> this changes is the **floor**: the estate is at least 39 artefacts wide, and
+> this package has read 8 identities out of an unknown total.
+>
+> Class: **FACT VERIFIED** as to 39 artefacts under the declared bounds;
+> **identity count NOT ESTABLISHED**, stated as such.
+
 ### 6A.26 The absence that licenses the instrument, disproved three ways
 
 P07 observed that its own negative-control rows are **absences inside an
