@@ -32,6 +32,20 @@ class AccountMoveLine(models.Model):
 Version: `purchase_mrp/__manifest__.py` `'version': '1.0'` → `16.0.1.0`; `installed.txt` line `purchase_mrp 16.0.1.0`. Matches.
 Custom tree carries no competing override: `grep -rn "_get_stock_valuation_layers\|_get_valued_in_moves\|bom_type='phantom'" /Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo16/addons` → 0 hits, against a
 positive control of 453 `.py` files / 184 containing `_inherit` in that same tree.
+**Complete method sweep (added after the targeted greps, to close the path-set bound):**
+`PATH SET` = the whole series-16 core addons root; `PATTERN` = `def _get_stock_valuation_layers`; `UNIT` = one def site.
+```
+find "$CORE" -name "*.py" -print0 | xargs -0 grep -ln "def _get_stock_valuation_layers"
+  purchase_mrp/models/account_move.py
+  stock_landed_costs/models/account_move.py
+  stock_account/models/account_move.py
+POS CONTROL: .py files swept = 9,197 ; pattern fired 3 times
+```
+**Exactly three participants, all read.** The full chain is `stock_account` (base, returns
+`purchase_line_id.move_ids.stock_valuation_layer_ids`) -> `stock_landed_costs:75` (drops landed-cost SVLs) ->
+`purchase_mrp:10` (drops SVLs whose product != bill-line product). Both supers are `.filtered()` narrowings, so
+MRO order does not change the result set. No fourth override exists in core, and none in the custom tree (above).
+
 **Limit:** version string and file content are not proof of deployed code identity. Not closed.
 
 ## F2 — Described behaviour: CHALLENGED. C-6 reports the docstring, not the code.

@@ -126,6 +126,29 @@ against a component layer already scaled by `_get_cost_share()`.
 
 **P03 needs "computed on the wrong basis", not "skipped".**
 
+### 2.4a THE FULL FILTER CHAIN — bound now closed, and it strengthens §2.1
+
+AAS-03 Expert 4 returned after publication having completed a sweep it had previously worked around with
+targeted greps, closing an undeclared path-set bound on its own negative. **Verified here.** Exactly **three**
+definitions of `_get_stock_valuation_layers` exist in the series-16 core, and **none** in the custom root:
+
+| # | Participant | Effect |
+|---|---|---|
+| 1 | `stock_account/models/account_move.py:322` — **the base** | returns `valued_moves.stock_valuation_layer_ids`, direction-filtered (`_is_in` / `_is_out` for refunds) |
+| 2 | `stock_landed_costs/models/account_move.py:75` | `layers.filtered(lambda svl: not svl.stock_landed_cost_id)` — **drops landed-cost layers** |
+| 3 | `purchase_mrp/models/account_move.py:10` | `layers.filtered(lambda svl: svl.product_id == self.product_id)` — **drops layers whose product ≠ the bill line's** |
+
+**Both overrides are `.filtered()` narrowings of their super's result.** Two consequences P03 can rely on:
+
+- **MRO order cannot change the final set** — narrowings commute.
+- **There is no fourth participant, and none of the three can reintroduce a dropped layer.** So the mechanism
+  in §2.1 is complete, and **the 13 live rows in §2.2 cannot be rescued by another module.**
+
+**A third participant P01 had not named: `stock_landed_costs`.** It is **installed** in this deployment and
+**`stock_landed_cost` holds 0 rows**, so it is inert here — **but it silently drops landed-cost layers from
+the price-difference correction wherever landed costs are used.** P03 should carry it for the same reason it
+carries §2.5.
+
 ### 2.5 THREE FURTHER OVERRIDES P01 FAILED TO DISCLOSE
 
 P01 named **one** of `purchase_mrp`'s four valuation-relevant overrides. The two that matter most:

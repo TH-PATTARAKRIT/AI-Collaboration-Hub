@@ -184,3 +184,27 @@ The receipt→valuation→GL execution, the mixed policy population, immutable r
 `_get_price_unit` root cause, the WHT rate-record finding and the `S16-B-05` deletion hypothesis all stand.
 
 **The freeze is challenged on completeness, not on correctness.**
+
+---
+
+## 6. POST-PUBLICATION ADDENDUM — A CHALLENGER CLOSED ITS OWN UNDECLARED BOUND
+
+After this package was committed, AAS-03 Expert 4 returned a second time. Its earlier negative — *"no
+competing override exists"* — had been reached with **targeted greps on four named modules** while a broad
+sweep was still running, which left **an undeclared path-set bound on its own negative claim.** It ran the
+sweep to completion and patched its report rather than leaving the bound unstated.
+
+**Result, verified here:** exactly **three** definitions of `_get_stock_valuation_layers` in the series-16
+core — `stock_account:322` (base), `stock_landed_costs:75`, `purchase_mrp:10` — and **none** in the custom
+root. Both overrides are `.filtered()` **narrowings**, so **MRO order cannot change the result set and no
+participant can reintroduce a dropped layer.**
+
+**No verdict moves.** It **strengthens** the mechanism in the P03 handoff §2.1 and confirms the 13 live rows
+of §2.2 cannot be rescued by another module. It also surfaces a **third participant P01 never named** —
+`stock_landed_costs`, installed here with 0 rows, inert in this deployment and live wherever landed costs are
+used. Folded into `P01_TO_P03_HANDOFF.md §2.4a`.
+
+**Worth recording as method, not just as content:** the challenger's own negative carried the same defect
+class this programme has recorded ~25 times — a bounded probe reported without its bound — **and the
+challenger found and closed it in its own work, unprompted.** That is the behaviour the authoring half has
+managed only after being told.
