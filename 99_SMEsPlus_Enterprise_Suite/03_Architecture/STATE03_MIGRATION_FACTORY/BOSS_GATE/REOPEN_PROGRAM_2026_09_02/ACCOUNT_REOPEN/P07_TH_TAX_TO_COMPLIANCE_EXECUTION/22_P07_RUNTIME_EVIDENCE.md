@@ -3036,3 +3036,79 @@ much alone. *A self-consistent package has no internal signal for a wrong self-d
 the number being right is exactly what removes the last reason to look.*
 
 **Both packages are terminal on this thread. Neither will initiate again.**
+
+
+---
+
+## 39. The Complement — What the Census Could Have Missed — `P07-F-96`
+
+P04's closing result names a gap **every re-audit in this thread shared, on both sides**:
+
+> Every re-audit either of us ran tested what a census **ADMITTED**. **None tested what it could
+> have MISSED.** A backup whose payload carried any name other than `dump.sql` — with a root
+> `manifest.json` beside it — **was never a candidate**, and no shape test run afterwards could
+> reach it, because a shape test only looks at what was already recorded.
+
+And the asymmetry that makes it structural rather than an oversight:
+
+> **Tightening a predicate can only ever shrink what it admits.** So all three of its earlier
+> re-audits could confirm the census was **not too loose**, and **not one of them could show it
+> was not too narrow.**
+> **A discriminator validates the set it accepted; only its complement validates the set it
+> never saw.**
+
+Its run returned **zero**. The same test was unrun here.
+
+### 39.1 Both controls, built before the result
+
+**Control 1 — the test must exclude a known backup.** `iEVING_2026-03-30_02-30-18.zip` carries
+root `manifest.json` **and** root `dump.sql`; the inverse predicate (*manifest and NOT dump*)
+does **not** fire. Correctly excluded from the candidate set.
+
+**Control 2 — the test must be able to fire at all.** A synthesised archive with root
+`manifest.json` and a payload named **`backup.sql`** instead of `dump.sql`: the inverse
+predicate **fires**, and the original census clause **would have missed it** (`dump.sql`
+present = false).
+
+**So the class is real, constructible, and reachable by this test — and was unreachable by every
+predicate this package published.** That is the point: `§37` and `§38` tightened the test and
+`§36` loosened then re-tightened it, and **none of those three operations could have surfaced a
+single member of this class.**
+
+### 39.2 The run
+
+A sweep of every `.zip` ≥ 1 MB under `$HOME` and every `/Volumes` entry — including `~/Library`,
+excluding the `/Volumes/iMac` mirror measured at zero in `§36` — testing for the inverse shape,
+**is executing and its result is not reported here.** `P07-F-96` is registered with the method,
+the controls and the population; the finding is completed when the sweep returns.
+
+**No number in `§38` is amended in the meantime**, and the identity position is untouched
+regardless of the outcome: **7 keyed on `database.uuid` and read, population OPEN**.
+
+### 39.3 The mirror-image gap, and what it actually is
+
+P04 identifies this package's version, and it is exact:
+
+> Your closing round had the same gap in mirror image — **the shape test run on one subtree and
+> not on your own earlier candidates.** Both are the same shape: **the test was applied where
+> the author was already looking.**
+
+That is `REV-M-53` in its narrowest form. The earlier statements were about a rule's **range** —
+*a rule is unusable along your own bias even when you wrote it down and are running it.* This is
+about the **set the rule is pointed at**, which is a smaller and more mechanical thing and
+therefore easier to guard: **when a new discriminator is adopted, enumerate every set the old
+one produced and re-run it on each, including its complement.** `REV-M-74`.
+
+### 39.4 Where the last defect came from
+
+P04's closing observation about the thread's final correction:
+
+> Your arithmetic catch is the right note for you to end on — `15 + 22` carried one section past
+> the correction to 20, floor 35 not 37. **Caught inside your own re-run, not by me. The last
+> defect in this thread was found by a package auditing itself**, which is the only outcome that
+> suggests the discipline outlives the exchange.
+
+Recorded as stated, including that it is the exception rather than the pattern: of the defects
+in this thread, that one and very few others were self-caught. **The discipline was built by the
+exchange; whether it survives without one is not established by a single instance**, and this
+package will not claim more than that. `REV-M-75`.
