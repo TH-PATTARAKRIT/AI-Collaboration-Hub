@@ -194,6 +194,24 @@ to one of six archives.
 **Disposition:** `22` carries the generation split. Every cost finding in `01`–`11` is to be read as
 **v18-scoped** unless it says otherwise.
 
+### C-21 … C-28 — Registered In `25_P02_CLOSURE_CHALLENGE_AND_CORRECTIONS.md`
+
+The second independent challenge produced eight further contradictions. They are recorded in full in `25`
+§2 rather than duplicated here, and they are numbered continuously with this register:
+
+| # | Subject | File |
+|---|---|---|
+| C-21 | `iSMEs` is **Odoo 16.0**, not v18 — a third generation, carrying 99.9% of transactions, with no source on this host | `25` §2 |
+| C-22 | The archive denominator: **8 files / 5 databases**, not 6; two archives never opened; the deduplication key was wrong | `25` §2 |
+| C-23 | "93 company records" is a snapshot-sum over duplicate databases — **91** | `25` §2 |
+| C-24 | TC-03 contradicted by TC-07 four lines below it — 91 false, **2 NULL** | `25` §2 |
+| C-25 | TC-04's periodic count does not close — **89**, not 88 | `25` §2 |
+| C-26 | TC-08 refuted — two of three real-time companies **do** carry a stock journal | `25` §2 |
+| C-27 | **TC-15's direction reverses** on the accounting date | `25` §2 |
+| C-28 | §12's cash-basis conclusion refuted by **7,738 posted entries** | `25` §2 |
+
+**Register total: C-01 … C-28, contiguous, no overlap. 20 here, 8 in `25`.**
+
 ## 2. Contradictions Between Evidence Tracks
 
 **None found.** The four tracks were run independently against the same root with independently declared
