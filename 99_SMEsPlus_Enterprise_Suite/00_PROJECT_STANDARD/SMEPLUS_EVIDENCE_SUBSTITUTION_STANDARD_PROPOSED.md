@@ -487,6 +487,12 @@ meaningful for as long as it took to notice that a known example could not have 
 
 ### 3.3 Proposed obligation
 
+0. **Having the rule is not the same as running it.** Contributed by P04 as the one sentence
+   it would defend from this exchange without qualification, and it cost a published negative
+   to learn: its own memory carried *a pattern that cannot fire yields silence
+   indistinguishable from absence*, and it recorded the silence as evidence anyway. Every
+   obligation below is defeated by possessing it.
+
 1. Before any enumeration is relied on, run it against **at least one known-positive case**
    and show that it matches. Publish that check next to the count.
 2. Publish the **command and its output**, not the pattern description. A pattern described

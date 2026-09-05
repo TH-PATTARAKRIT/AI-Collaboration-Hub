@@ -209,7 +209,7 @@ directory, which prompted P07 to test its own bound. Two defects surfaced, one o
 
 | # | Defect | Correction |
 |---|---|---|
-| `a` | §6 stated *"the other three dumps"* — a self-describing count that was **never executed**, the exact class this session has documented six times. | Enumerated by magic bytes (`PGDMP`) over both roots, any extension, any depth: **nine files holding five distinct databases** — `iTEST02` (five identical copies of the 2026-06-14 snapshot, one of them inside the declared PATH SET), `iTEST02` at 2026-07-14, `iSMEs` at 2026-07-11 (155 MB, the largest), `BK12MAY26` at 2026-08-03 (the most recent), `iEVING` at 2026-07-23. |
+| `a` | §6 stated *"the other three dumps"* — a self-describing count that was **never executed**, the exact class this session has documented six times. | Enumerated by magic bytes (`PGDMP`) over both roots, any extension, any depth: **nine files holding five snapshots of four database identities** — and see §7.4, where the *unit* of that count was itself wrong — `iTEST02` (five identical copies of the 2026-06-14 snapshot, one of them inside the declared PATH SET), `iTEST02` at 2026-07-14, `iSMEs` at 2026-07-11 (155 MB, the largest), `BK12MAY26` at 2026-08-03 (the most recent), `iEVING` at 2026-07-23. |
 | `b` | P07's original search was bounded: `-maxdepth 6`, `-size +1M`, four extensions. | Re-run unbounded returns 3,613 hits — but the excess is Odoo source `.sql` fixtures, so the size filter was **doing real work** and this bound, unlike the count, survives its own test. Recorded because a bound that survives should be published alongside one that does not. |
 
 ### 7.1 `P07-F-01` is DEPLOYMENT-DEPENDENT, not universal — a correction against this session
@@ -268,3 +268,72 @@ second database.
 
 Neither correction was found by re-reading. Both came from a peer reporting a bounded
 enumeration of its own and P07 testing the same bound.
+
+## 7.4 The Unit of §7 Was Wrong — `REV-E-28`
+
+P04 re-ran its own dump enumeration on this session's method, found its bound survived but its
+**unit** did not, and restated *"four v18-line databases"* as *"four v18-line snapshots across
+three identities"*. The same conflation is in §7 above, in the evidence base of this package's
+headline finding, and it was found by running P04's correction against this file.
+
+### Executed breakdown
+
+    FILES (magic byte, any extension, any depth) : 9
+    SNAPSHOTS (identity + date)                  : 5
+        iTEST02   2026-06-14   (5 identical copies)
+        iTEST02   2026-07-14
+        iSMEs     2026-07-11
+        BK12MAY26 2026-08-03
+        iEVING    2026-07-23   (unexamined)
+    DATABASE IDENTITIES                          : 4
+
+**§7.0 said "five distinct databases". There are five *snapshots* and four *identities*.**
+Examined: four snapshots across **three** identities.
+
+### What this does to `P07-F-01` — it weakens its base
+
+§7.1 reported **"two of four"**. Both of those two are `iTEST02` — **the same database at two
+dates**. Restated with the unit declared:
+
+| Unit | Fires | Does not fire |
+|---|---|---|
+| Snapshots examined | 2 of 4 | 2 of 4 |
+| **Database identities examined** | **1 of 3** (`iTEST02`) | 2 of 3 (`iSMEs`, `BK12MAY26`) |
+
+So the defect is observed in **one deployment**, not two. The second observation is the same
+deployment a month later, which is worth something it was not credited for — it establishes
+**persistence**: the condition was present on 14 June and still present on 14 July, so it is
+not a transient of one backup. But it is one identity, and "2 of 4" implied two.
+
+`P07-F-01` remains `S1`, for the reason at §7.1 that a defect firing in some deployments and
+silent in others cannot be found by testing one that works. Its **evidence base is one
+identity observed twice**, and that is now what the file says.
+
+### What this does to `P07-F-42` — it survives, and the inversion sharpens
+
+| Unit | Result |
+|---|---|
+| Snapshots examined | **4 of 4** |
+| **Database identities examined** | **3 of 3** |
+| Independent company tax-group sets | **6 of 6** |
+
+Every identity, every snapshot, every company set. The restatement costs `P07-F-42` nothing.
+
+**The inversion is therefore larger than §7.2 claimed.** The finding held longest at
+inference and upgraded most reluctantly rests on **three database identities and six company
+sets**; the headline rests on **one identity observed twice**. The gap between the two is
+wider under the corrected unit than under the wrong one — which is the opposite of what a
+convenient error would have produced.
+
+### Method note
+
+Both bounds of this session's own enumeration were tested, per the practice of publishing a
+surviving bound beside a failing one:
+
+- the **magic-byte selector** survives — it is what distinguishes 9 real archives from 3,613
+  extension matches;
+- the **unit** failed, twice: once as an uncounted total (`REV-E-27`), once as
+  snapshots-counted-as-identities (this entry).
+
+Neither was found by re-reading. Both came from a peer running a correction against its own
+package first and sending the method rather than the conclusion.
