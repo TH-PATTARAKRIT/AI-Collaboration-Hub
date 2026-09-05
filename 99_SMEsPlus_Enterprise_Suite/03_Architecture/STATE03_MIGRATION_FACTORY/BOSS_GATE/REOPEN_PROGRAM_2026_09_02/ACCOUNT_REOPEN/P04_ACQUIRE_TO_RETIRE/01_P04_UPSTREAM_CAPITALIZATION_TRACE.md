@@ -755,6 +755,53 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.33 The residue, named
+
+P07's complement sweep returned **zero of the inverse shape across 3,133 archives,
+with 1 unreadable** — and it declared that one as **a bound of one, not a zero**,
+because its script had not recorded which. Asked of my own sweep, which reported a
+bare zero: **I had not counted unreadable archives either.**
+
+> **P04-F-132.** **1 of 1,002 zip archives ≥ 1 MB under the declared roots cannot
+> be read, and it is named for a database.**
+>
+> `BK12MAY26_2026-06-23_13-15-32.zip`, 1.08 GB, under Google Drive. Diagnosed
+> rather than assumed:
+>
+> | test | result |
+> |---|---|
+> | materialised on disk? | **yes** — 1,081,946,112 bytes allocated against 1,081,942,526 logical. **Not a cloud placeholder.** |
+> | leading bytes | `50 4b 03 04` — **a zip** |
+> | first 1 MB readable? | **yes** |
+> | central directory | **end-of-central-directory signature not found** |
+>
+> So it is **structurally damaged, not absent and not unmaterialised** — the file
+> is entirely on disk and its index is missing.
+>
+> **This is the only named residue either package produced, and it is worse than a
+> nameless one.** `BK12MAY26` is the *name* of a keyed identity — `66d1b52a`, of
+> which I hold two snapshots, **both dated 2026-08-03**. This archive is dated
+> **2026-06-23**, which is a date I do not hold for it, and sits between
+> `f4a44cce` (03-30) and those two. So it is **either a third snapshot of a keyed
+> identity or an unkeyed one**, and by `P04-F-126`'s own rule — *a file name is
+> not a database identity, in either direction* — **I cannot say which without
+> reading it, and I cannot read it.**
+>
+> **Disposition: it joins the class that is not closable by research.** Like
+> `P04-B-46`'s two source-less modules, this is **evidence that exists on this
+> host and cannot be read from it**. Recovering it means repairing a 1 GB archive,
+> which is a change to the estate and outside this package's brief.
+>
+> **So `P04-F-126`'s 39 and `P04-F-131`'s zero both carry a declared bound of
+> one.** Neither is amended: 39 remains the count of artefacts the signatures
+> matched, the zero remains the complement result, and **this is the one archive
+> that could have been either and cannot be tested.** A zero with a named
+> exception is a different statement from a zero, and the difference is the whole
+> reason for saying it.
+>
+> Class: **FACT VERIFIED** as to the diagnosis; **NOT READABLE** as to content.
+> Registered `P04-B-48`.
+
 ### 6A.32 The census closed in the other direction
 
 `P04-F-130` tested what the census **admitted**. It did not test what the census
