@@ -366,6 +366,22 @@ found the four was **bounded to one directory**. Executed properly there are
 | `iTEST02` | 2026-07-14 | **v1.16** | **NO** — needs `postgresql@18` | **v18 line** | 12 | **0** |
 | `iTEST02` | 2026-06-14 | **v1.16** | **NO** — needs `postgresql@18` | **v18 line** | 12 | **0** |
 
+**The enumeration behind this table was re-run by a stricter method, after P07
+reported the same bound in its own** (`18` `P04-REV-27`). The first search matched
+on **file extension** at **bounded depth**; the re-run matched on the archive's
+**magic bytes**, any extension, any depth, over both trees.
+
+| Measure | Count | Unit |
+|---------|-------|------|
+| Files | **8** | one file on disk; `iTEST02` @ 2026-06-14 exists in **four** copies across trees |
+| **Snapshots** | **5** | one database captured at one moment — the unit every finding below uses |
+| **Database identities** | **4** | `iSMEs`, `iEVING`, `BK12MAY26`, `iTEST02` — the last captured twice |
+
+**No sixth database exists** under the stricter method, so `P04-F-83` is not
+resting on a missed artefact. Two bounds were tested rather than assumed: the
+extension filter **did** cost coverage in principle and **not** in fact, and a
+minimum-size filter cost nothing — **no archive on either tree is under 1 MB**.
+
 **Readability is per artefact, not uniform** — adopted from P11, which found the
 same split from the other side. *"Database evidence is available"* and *"no
 database access"* are **both wrong**; the true statement is per file. A reader
@@ -399,8 +415,11 @@ bounded to the database named in it.
 > Class: **FACT VERIFIED**, bounded to the three databases named.
 
 > **P04-F-83.** **No v18-line database on this host contains a single real asset
-> record.** Four v18-line databases, spanning 2026-06-14 to 2026-08-03, hold
-> **96 templates and zero assets** between them. The only population of real
+> record.** **Unit declared:** four v18-line **snapshots** across **three database
+> identities** (`iEVING`, `BK12MAY26`, and `iTEST02` captured twice), spanning
+> 2026-06-14 to 2026-08-03, holding **96 templates and zero assets** between them.
+> An earlier wording said *"four v18-line databases"*, which conflates snapshots
+> with identities — the same unit defect this package records nine times over. The only population of real
 > assets available anywhere is on the **older generation**.
 > Class: **FACT VERIFIED**, bounded to the five databases named.
 > **Reproduction caveat:** two of the four v18-line databases are v1.16 archives
