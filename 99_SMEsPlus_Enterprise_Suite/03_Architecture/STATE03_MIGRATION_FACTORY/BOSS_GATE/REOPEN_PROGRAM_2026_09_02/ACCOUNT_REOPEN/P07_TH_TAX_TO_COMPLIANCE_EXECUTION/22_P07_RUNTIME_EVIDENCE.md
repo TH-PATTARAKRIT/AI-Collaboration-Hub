@@ -1639,3 +1639,80 @@ the cited function differs across the same-generation candidates at all.**
 
 That test is executing over the v19-generation candidates and **is not reported here.**
 `P07-U-28` stands as classified until it returns.
+
+
+---
+
+## 21. `P07-U-28` CLOSES — the Claim-Level Test Discharges All Four — `P07-F-78`
+
+The per-finding test proposed at `§20.3` has returned. **P04's refinement did in one pass what
+three sections of category reasoning could not.**
+
+### 21.1 Two filters, applied in order
+
+**Generation first.** Of the 61 copies of `l10n_th_withholding_tax`, **13 declare version 19.x**.
+The other 48 are v12, v14, v16 and v18 bodies; comparing across them was comparing product
+lines, which is what made the exposure look 20-wide.
+
+**Then the claim.** Hashing only the **cited** files across those 13:
+
+| cited file | finding | distinct bodies |
+|---|---|---:|
+| `models/account.py` | `P07-F-51`, `P07-F-63` | **2** (9 copies : 4) |
+| `models/account_move.py` | `P07-F-57` | **2** (9 : 4) |
+| `models/tax_report_pnd.py` | `P07-F-11` | **2** (11 : 1, 1 absent) |
+| `wizard/account_payment_register.py` | `P07-F-52` | **1** |
+
+**Two candidate bodies per cited file, not twenty.** `P07-F-76` stands as a statement about
+*trees on the host*; it overstated the exposure to *these claims* by a factor of ten.
+
+### 21.2 The four claims, tested against the difference
+
+**`P07-F-11` — DISCHARGED.** The two bodies of `tax_report_pnd.py` differ **only in the
+`title` column**: the declared body computes it from a partner company-type lookup (two
+`LEFT JOIN`s and a `CASE`), the other binds `%(title)s`. **The PND branch selection and the
+reported-event logic are byte-identical.** The difference cannot carry the claim — a display
+title is not a branch predicate.
+
+**`P07-F-51` and `P07-F-63` — DISCHARGED.** Both bodies contain the guard:
+`if not account_id.wt_account: raise UserError("%s is not a Withholding account.")`. The
+difference is an import list, a nesting level and a trailing comma in a signature.
+
+**`P07-F-57` — DISCHARGED.** Both bodies index `invoice_repartition_line_ids[0].tag_ids[0]`
+while guarding only on the **union** `invoice_repartition_line_ids.tag_ids`. The declared body
+does it in one `.filtered()` with a chained `and`; the other splits it across two `.filtered()`
+calls. **Same guard, same index, same latent error** — the second `.filtered()` sees only
+records that passed the first, so the two are equivalent.
+
+**`P07-F-52` — DISCHARGED, and byte-identically.** `wizard/account_payment_register.py` is
+**0 changed lines** between the bodies, cited line 56 character-identical, and
+`depends = ['account', 'l10n_th_reports']` in both — so the missing dependency on the
+certificate module, which is the finding, holds in both.
+
+### 21.3 `P07-U-28` is CLOSED
+
+**Every behavioural claim under `P07-U-28` holds in both same-generation candidate bodies.**
+Which copy is deployed cannot change any of them. The item is closed **on evidence**, and it is
+the first open item this package has closed that way rather than by correcting itself.
+
+`P07-U-01` stays open and stays `NOT ON THIS HOST` — *which* copy runs is still undecidable,
+and `P07-F-76`'s 20 trees remain the correct answer to that question. What has changed is that
+the answer no longer matters for any published finding. **`§5`'s classification moves: 4 closed,
+20 `NOT YET READ`, 1 `NOT ON THIS HOST`, 2 `EVIDENCE NEVER RECORDED`.**
+
+### 21.4 Why the category test could not have done this
+
+`P07-F-71` discharged claims **by category** — structure safe, logic exposed — and by that
+rule all four of these stayed exposed, because all four are logic. P04's rule discharges them
+**individually, against the actual difference**, and three of the four are discharged by a
+difference that is real code and simply cannot carry the claim: a display title, an import
+line, a filter chained differently.
+
+> **A presentational wrapper cannot carry a structural claim; a note write cannot carry an
+> accounting one** — P04's formulation, and the generalisation is that *the size of a diff is
+> not the size of the exposure.* `§11.3` measured 17–179 changed lines and treated that as the
+> risk. The risk was four functions, and three of them were untouched.
+
+This is the second time in this exchange that a finding's replacement was better than the
+finding: `P07-F-70` traded a mechanism for a larger consequence, and here a 20-wide exposure
+resolves to zero.
