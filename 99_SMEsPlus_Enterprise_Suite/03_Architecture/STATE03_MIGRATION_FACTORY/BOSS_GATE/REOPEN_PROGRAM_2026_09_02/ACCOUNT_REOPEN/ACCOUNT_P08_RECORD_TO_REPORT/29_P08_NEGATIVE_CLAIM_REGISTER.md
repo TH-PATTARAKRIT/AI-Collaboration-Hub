@@ -8,7 +8,7 @@ Session `SMEPLUS-26-09-04-ACC-P08-R2R-REV2-001`
 
 | ID | Claim | Pattern boundary that travels with it |
 |---|---|---|
-| `RS-A-01` | No accounting-event model exists | anchored model-name census per root, event token, deduplicated, event-management and framework namespaces excluded. **Independently reproduced by a reviewer.** |
+| ~~`RS-A-01`~~ | ~~No accounting-event model exists~~ | **WITHDRAWN — `CONTRADICTED`.** Database-enforced event identity exists for externally-originated events. The census pattern could not match a carrier not named "event". See `39`. |
 | `RS-A-02` | No period object carrying state, closure or an entry link exists | anchored model-name census per root on two accounting-period name forms. **Re-worded after review** — the pattern never supported the broader sentence the draft published. |
 | `RS-A-03` | No database-level object enforces per-entry balance | amended union of three patterns — check-constraint bodies aggregating debit/credit/balance, trigger creation, deferred/exclusion constructs. **Reproduced and strengthened by a reviewer**, who widened it to all file types: still zero. |
 
@@ -43,6 +43,7 @@ An independent reviewer established that the root-set declaration does **not** c
 | "The journal item is the only durable accounting fact" (unqualified) | the P04 peer finding | true **within the ledger**; genuine separate subsidiary stores exist outside it |
 | "The parity fallback is not version-specific" (`RS-P-01`) | reviewer, reproduced by the author | **inverted**: parity is 22/22; the earliest-rate-ever tier is 21/22 and **is** version-dependent |
 | "No accounting-period entity exists" | this package's own close model | no period object **carrying state, closure or an entry link** |
+| **"No accounting-event model exists"** — published at class `A` across 22 roots | **a targeted forensic pass, verified by the author against source** | **Durable, database-enforced event identity exists for externally-originated events (bank file import, payment provider, e-invoicing dispatch) and is bound 1:1 to the entry. It is absent for every internally-originated path. And in the deployed database it is populated on 0 of 13,814 bank statement lines, so it is inoperative there.** |
 | "Twenty-two attacks, none stopped outright" | this package's own body | one is stopped on the ordinary path and open on another |
 
 ## 7. Compliance scan result

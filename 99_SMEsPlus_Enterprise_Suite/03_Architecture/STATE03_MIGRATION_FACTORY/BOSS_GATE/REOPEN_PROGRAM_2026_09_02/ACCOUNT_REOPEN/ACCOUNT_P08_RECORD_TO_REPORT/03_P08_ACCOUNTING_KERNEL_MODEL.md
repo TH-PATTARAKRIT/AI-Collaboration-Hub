@@ -21,7 +21,7 @@ Answering it requires separating three things that the benchmark fuses: what a l
 | Layer | Exists as a persisted object in the benchmark? | Evidence class |
 |---|---|---|
 | Source business document | **Yes**, in each producing process | FACT VERIFIED |
-| Accounting event | **No** | **A VERIFIED ABSENCE** — scope: all 1 533 distinct model names declared across the 790 modules of the target root; **39** contain the word *event*, of which **36 belong to the event-management domain and 3 do not** — a calendar appointment, its type, and a barcode-scanning mixin. **None of the 39 is an accounting construct.** *(Corrected after independent review: the draft said "all 39 belong to the event-management domain", which is false. The conclusion is unaffected; the evidence line was wrong, in the sentence underpinning the package's most load-bearing absence.)* |
+| Accounting event | **Partly — CORRECTED** | **A VERIFIED ABSENCE** — scope: all 1 533 distinct model names declared across the 790 modules of the target root; **39** contain the word *event*, of which **36 belong to the event-management domain and 3 do not** — a calendar appointment, its type, and a barcode-scanning mixin. **None of the 39 is an accounting construct.** *(Corrected after independent review: the draft said "all 39 belong to the event-management domain", which is false. The conclusion is unaffected; the evidence line was wrong, in the sentence underpinning the package's most load-bearing absence.)* |
 | Posting instruction | **No** — it is a transient structure built inside each producer's posting routine and discarded | **B NOT FOUND IN SEARCHED SCOPE** *(downgraded after independent review: the scope quoted was a model-name census on the token "event", which is orthogonal to a posting-instruction object. No pattern capable of falsifying this claim has been declared, so it may not carry class A.)* |
 | Journal entry | **Yes** | FACT VERIFIED |
 | Journal item | **Yes** | FACT VERIFIED |
@@ -87,7 +87,7 @@ The directive asks specifically whether the general ledger is original truth, de
 | # | Object | Scope | Mutable after commitment? | Present in benchmark? |
 |---|---|---|---|---|
 | `K1` | **Business fact** — what happened, owned by the producing process | `COMPANY` | by its own process, before recognition | yes |
-| `K2` | **Accounting event** — the assertion that `K1` has an accounting consequence, carrying event identity, recognition point, the rule version applied, and the actor | `COMPANY` | **never** | **no** |
+| `K2` | **Accounting event** — the assertion that `K1` has an accounting consequence, carrying event identity, recognition point, the rule version applied, and the actor | `COMPANY` | **never** | **partly — for externally-originated events only.** Database-enforced identity bound 1:1 to the entry exists for bank file import, payment-provider transactions and e-invoicing dispatch; nothing equivalent exists for any internally-originated path. See `39` |
 | `K3` | **Posting instruction** — the mapping `K2` → accounts and amounts, as evaluated, retained | `COMPANY` | **never** | **no** |
 | `K4` | **Journal entry** — the balanced set of financial facts realising `K3` | `COMPANY` | **never** once posted | yes |
 | `K5` | **Financial fact (journal item)** — one signed amount on one account, in one currency, with its measurement context | `COMPANY` | **never** once posted | yes |

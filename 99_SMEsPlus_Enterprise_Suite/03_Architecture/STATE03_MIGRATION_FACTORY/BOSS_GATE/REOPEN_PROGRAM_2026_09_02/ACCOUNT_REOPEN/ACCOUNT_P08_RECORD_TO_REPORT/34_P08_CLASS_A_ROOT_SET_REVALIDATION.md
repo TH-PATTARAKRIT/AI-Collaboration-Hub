@@ -64,8 +64,17 @@ Recorded as `P08-CONTRA-19`: the original claim was true but its scope wording (
 |---|---|
 | Class-A claims previously re-run across the root set | 3 |
 | Class-A claims re-run in this phase | **14** |
-| **Total now carrying the declared 22-root scope** | **17** |
+| **Total now carrying the declared 22-root scope** | **16** — one of the three inherited claims (`RS-A-01`) was **withdrawn as contradicted** during this continuation |
 | Remaining scoped to a narrower stated path set | **2** (`FX-16`, the merge-path negative) |
 | Claims whose scope wording was refined by the re-run | 1 (`CFG-JE`) |
 
 The prohibition that blocked this package is now satisfied for **17 of 19** previously-single-root claims. The remaining two are named, not absorbed, and their path sets are declared.
+
+
+## 6. A class-A claim withdrawn during this phase
+
+`RS-A-01` — *"no accounting-event model exists"* — was one of the three claims the prior session had already re-run across the root set. A targeted forensic pass commissioned to disprove it **succeeded**, and the author verified the counterexamples against primary source.
+
+**It is withdrawn, not amended.** The full analysis, the corrected finding and the method lesson are in `39_P08_ACCOUNTING_EVENT_IDENTITY_FORENSIC.md`.
+
+The lesson bears directly on this phase's own method: `RS-A-01` **passed** its positive control. The control proved the pattern could find models named "event"; it did not prove the pattern could find event *identity*. **A positive control must be able to match the thing being denied, not merely produce output.** Recorded as `P08-M-07`.
