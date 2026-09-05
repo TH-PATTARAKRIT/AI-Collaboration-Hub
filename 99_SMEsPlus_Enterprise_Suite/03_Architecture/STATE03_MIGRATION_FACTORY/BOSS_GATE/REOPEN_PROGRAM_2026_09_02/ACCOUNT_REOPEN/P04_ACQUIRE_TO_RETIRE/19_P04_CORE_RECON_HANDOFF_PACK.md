@@ -132,18 +132,24 @@ enter the conversion cost of inventory. In the reference behaviour:
 - Where an asset carries **no** attribution, the two sides can pick up
   **different** attributions and leave a meaningless residue.
 
-  **Measured, and presently dormant — read this before relying on the two points
-  above.** In the one operating system of this generation that could be examined,
-  the cost-attribution dimension is **switched on, has one scheme defined, and
-  holds no cost centres at all**; not one accounting line in it — of more than forty
-  thousand — carries an attribution. So the cancellation described above **has never carried a
-  value there**. The design defect is real and is stated from the rules the
-  software follows; its **effect is latent** until a first cost centre exists.
-  What is live today is simpler and worse: **there is no cost attribution at
-  all**, so the 100 %-attribution requirement is unmet not because the route
-  cancels but because the route is empty. Both readings lead to the same
-  conclusion below; a reader should not cite the cancellation as an observed
-  event.
+  **Now measured in two operating systems, and the two differ — read both.**
+  *(This paragraph replaces a shorter one published a few hours earlier which said
+  the cancellation was dormant. That was true of the first system examined and
+  wrong as a general statement; a second system was found the same day.)*
+
+  - In one, the cost-attribution dimension is **switched on, has a scheme, and
+    holds no cost centres at all** — so no accounting line carries an attribution
+    and the cancellation has **never occurred there**. What is wrong in that
+    business is simpler and worse: **there is no cost attribution at all**, so the
+    100 %-attribution requirement fails for want of any attribution to net.
+  - In the other, cost centres **do** exist. **Every accounting entry in that whole
+    business carrying an attribution is an asset entry — fourteen of them — and
+    every one of the fourteen nets to exactly nil.** No exceptions. The
+    cancellation described above is **observed behaviour**, not an inference.
+
+  Both readings hold, in different businesses, and both defeat attribution. Where
+  cost centres exist the charge reaches the centre and leaves it in the same entry;
+  where they do not, nothing reaches it at all.
 
 Separately, and independently of depreciation, the same machine hour is
 monetised by **as many as five different routines** — and they do not reconcile

@@ -793,9 +793,63 @@ finding of the same shape.
 > It was reasoning from source; this is the measurement, in a v18 deployment with
 > 40,353 posted lines.
 >
-> Class: **FACT VERIFIED** as to the counts. The source finding is **retained as
-> LATENT** — real in code, no vehicle to fire through in this deployment —
-> conditional on any analytic account ever being created.
+> Class: **FACT VERIFIED** as to the counts, **bounded to `551ab874` and
+> narrowed one commit later** — see `P04-F-100`. **The latency is a property of
+> that identity, not of the generation**: a second v18 identity has analytic
+> accounts, and there the mechanism fires.
+
+> **P04-F-100.** **The analytic cancellation is CONFIRMED — measured, in a
+> deployment where it can fire, without exception.** P02 reported further
+> databases outside every census either of us had run. One is **`4b766580`
+> (`pankhamhom`), `base 18.0.1.3`, 478 installed modules, 20 assets (13
+> templates, 7 real), 956 move lines** — and unlike `551ab874` it has **9
+> analytic accounts**.
+>
+> | | `4b766580` |
+> |---|---:|
+> | move lines carrying a distribution — **whole database** | **30 of 956** |
+> | of those, belonging to an **asset** move | **30 of 30** |
+> | distinct asset moves carrying distributed lines | **14** |
+> | of those, signed debit − credit sums to **zero** | **14** |
+> | non-zero | **0** |
+>
+> Thirteen of the fourteen carry **two** distributed lines and one carries four.
+> **Every one nets to exactly 0.00.** This is `P04-F-49` observed rather than
+> derived: both lines of the entry carry the asset's distribution and the signed
+> amounts cancel, so the cost centre receives the charge and loses it in the same
+> entry. **14 of 14, no exceptions**, and every distributed line in the entire
+> database belongs to an asset move.
+>
+> **So `P04-F-49` is upgraded from source-derived to measured, and `P04-F-99` is
+> narrowed to the identity it was measured in.** The correction published one
+> commit earlier — that the cancellation *"has never carried a value"* — was true
+> of `551ab874` and **false as a general statement**, including in the Layer-1
+> pack, where it has now been corrected a second time. *A latency finding is a
+> claim about a population, and mine had a population of one.*
+>
+> Also present in `4b766580` and absent from `551ab874`: **`asset_move_line_rel`
+> holds 6 rows** (source links exist here), and moves of type **`disposal`** and
+> **`sale`** exist — the disposal one in state `cancel`. And its **7 real assets
+> are all on `constant_periods`**, a **third** day-convention pattern against
+> `iSMEs` 683/685 daily and `551ab874` 375/388 daily.
+>
+> Class: **FACT VERIFIED**, bounded to `4b766580` @ 2026-01-21.
+
+> **P04-F-101.** **Three v18 identities are now known, not one.** `551ab874`
+> (361 modules, 388 real assets), `4b766580` (478 modules, 7 real assets), and
+> **`96548e18` (`T805efaplus`, `base 18.0.1.3`, 123 modules) which has no
+> `account_asset` table at all** — the asset module is not installed and it has
+> **0 move lines**: a never-transacted v18 install, the v18 counterpart of the
+> fresh-install control P07 used.
+>
+> `96548e18` was reachable by **neither** of this package's sweeps: it is a
+> **`.zip`**, so the `PGDMP` signature scan missed it, and it is dated
+> **2025**-12-27, so the reconciliation sweep's `*_2026-*` name pattern missed it
+> too. **A second, independent bound in the very sweep that was written to
+> reconcile the first.**
+>
+> Class: **FACT VERIFIED**. Every single-identity bound in §6A is hereby a
+> **floor**, and the census remains OPEN.
 
 ### 6A.7 Are the custom modules this package read the ones that run?
 
