@@ -468,8 +468,18 @@ rank before reading; it read the largest file first and the ranking only exists
 because it was executed afterwards, at a peer's prompting. The rule is adopted
 prospectively.
 
-**No sixth database exists** under the stricter method, so `P04-F-83` is not
-resting on a missed artefact. Two bounds were tested rather than assumed: the
+~~**No sixth database exists** under the stricter method, so `P04-F-83` is not
+resting on a missed artefact.~~ **FALSE, and left standing with its disproof
+rather than deleted.** A sixth and a seventh snapshot were found (`P04-F-86`), and
+then an eighth — **`idemo18_uat`, the database two blockers were held open on**
+(`P04-F-90`) — followed by two more v18 identities (`P04-F-101`). The sentence was
+a **settled negative asserted from a re-run**, which is the error `P04-F-105`
+classifies: a re-run is not a proof of completeness, and this one was bounded by a
+path set that was never declared.
+*This instance survived the correction that fixed the same sentence in `18`
+`P04-REV-27`, and was found only by the assertive-citation form of the
+identifier check (`P04-F-120`).*
+Two bounds **were** tested rather than assumed and that part stands: the
 extension filter **did** cost coverage in principle and **not** in fact, and a
 minimum-size filter cost nothing — **no archive on either tree is under 1 MB**.
 
@@ -744,6 +754,53 @@ table rather than by re-reading it.*
 > generation**.
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
+
+### 6A.21 The qualifier check, made usable
+
+> **P04-F-120.** **The rule published at `P04-F-119` was noisy enough to be
+> unusable, and applying P07's discriminator to it found one more stale
+> assertion — a settled negative that is now false.**
+>
+> `P04-F-119` said: *enumerate a narrowed finding's citations by identifier and
+> require the qualifier on each.* Run literally over nine narrowed findings here
+> it returns **74 citations**. P07 ran the same rule over its eight and got
+> **162**, and named the failure before either of us shipped it: **a check that
+> flags 162 where 3 are real is worse than no check** — the reader stops reading
+> the output, which is this package's own `P04-F-111` warning turned on its own
+> newest rule.
+>
+> **P07's discriminator: require the qualifier only where the citation *asserts*
+> the narrowed claim.** Applied here — excluding defining blocks, which state a
+> claim before their own qualification, and revision-log rows, which record
+> history:
+>
+> | | |
+> |---|---:|
+> | citations of narrowed findings | 74 |
+> | defining blocks | 9 |
+> | history rows | 32 |
+> | **assertive, live** | **18** |
+>
+> Seventeen of the eighteen carry their qualifier. **One does not**, and it is
+> not a wording slip: `01` §6A.1 still asserted **"No sixth database exists under
+> the stricter method"**. A sixth and seventh snapshot were found, then
+> `idemo18_uat` — **the database two blockers were held open on** — then two more
+> v18 identities. **The sentence had been false for eleven commits.**
+>
+> **It survived the correction that fixed the identical claim in `18`
+> `P04-REV-27`.** Same sentence, same session, two locations; the revision log was
+> corrected and the trace file was not — which is `P04-F-119` recurring **inside
+> the finding that established it**, one commit later, and found only because
+> P07's refinement made the check readable enough to act on.
+>
+> Corrected in place with the original struck through, not deleted: a **settled
+> negative asserted from a re-run** is the error `P04-F-105` classifies, and the
+> record should show it was made rather than show a clean page.
+>
+> Class: **FACT VERIFIED**. Rule as it now stands: **enumerate by identifier —
+> indifferent to phrasing — but require the qualifier only on citations that
+> assert the claim.** The first half is this package's, the second is P07's, and
+> the rule is unusable without both.
 
 ### 6A.20 A correction that reached two files and not the other five
 
