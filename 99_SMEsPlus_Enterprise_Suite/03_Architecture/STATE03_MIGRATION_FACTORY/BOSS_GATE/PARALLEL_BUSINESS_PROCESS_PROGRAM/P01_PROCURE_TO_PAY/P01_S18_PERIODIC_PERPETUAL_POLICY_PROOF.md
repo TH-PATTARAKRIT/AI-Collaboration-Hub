@@ -279,12 +279,44 @@ The first version separated a "native" set of **1,812** layers by `create_date` 
 | `write_date` by day | 2026-08-25: **47,218** · 08-29: 324 · 08-27: 153 · 08-28: 55 · 08-26: 51 |
 
 **The entire table was physically written in a five-day window, seven days after the database was
-created, and 98.8% of it on a single day.** There is no sub-population separable by insertion time,
-and any classifier reading `create_date` as provenance is unsound on this table.
+created, and 98.8% of it on a single day** — the 45,978 migrated rows in a **97-second** bulk load
+on 2026-08-25 at 22:25:52–22:27:29, every one of them under user `1` and every one of them with a
+`create_date` at exactly midnight. **Any classifier reading `create_date` as provenance is using an
+instrument that is demonstrably forged on 94% of this table.**
 
 Worse, the 1,812 set was not what it was called: **1,254 of them are `Product Quantity Updated`
 inventory adjustments written by `__system__`** inside that same load window. The denominator was
 overstated by a factor of ~3.2.
+
+### 8.1b TWO EXPERTS DISAGREED HERE, AND BOTH ARE RIGHT ABOUT DIFFERENT THINGS
+
+Expert A broke the 1,812 set. **Expert B, working the evidence base independently, supplied a
+defence of it** — and the two do not actually conflict, because they are about different properties.
+
+**Expert B's defence: the 1,812 really were created natively, by the ORM, in this database.**
+Three properties no date-carrying loader reproduces:
+
+| Property | The 45,978 migrated rows | The 1,812 residual |
+|---|---|---|
+| `create_date` at exactly `00:00:00` | **45,978 = 100%** | **0%** |
+| `create_date` earlier than the database itself | 44,947 = 97.8% | 0% |
+| `write_date` span | **97 seconds**, 2026-08-25 22:25:52 → 22:27:29 | four days, 08-25 12:19 → 08-29 10:23 |
+| `create_uid` | **`1` on all 45,978** | **four distinct users** — 1 (×1,253), 114 (×383), 102 (×172), 117 (×4) |
+| `create_date == write_date` at sub-second resolution | — | **1,640 of 1,812** — the signature of an ORM `create()` |
+
+**So the disagreement resolves cleanly:**
+
+- **Expert B is right that the 1,812 are natively created.** They were not bulk-loaded.
+- **Expert A is right that they are not all runtime *business* events.** 1,254 of them are
+  `Product Quantity Updated` inventory adjustments authored by `__system__`.
+- Both corrections stand. The set is native **and** it is dominated by machine stock-take, so it is
+  **not** the right denominator for a claim about the purchase-to-pay chain.
+
+**And Expert B named the methodological defect precisely:** the first version certified the set
+using `create_date` — *"an instrument whose failure mode has already fired at scale in the same
+column"*, forged on 94% of the very table being classified. That the answer came out right does not
+make the instrument sound. The corrected set in §8.2 is built from `create_uid` and event type,
+neither of which is settable by a data load in the way a date is.
 
 ### 8.2 The corrected set — two independent classifiers converging
 

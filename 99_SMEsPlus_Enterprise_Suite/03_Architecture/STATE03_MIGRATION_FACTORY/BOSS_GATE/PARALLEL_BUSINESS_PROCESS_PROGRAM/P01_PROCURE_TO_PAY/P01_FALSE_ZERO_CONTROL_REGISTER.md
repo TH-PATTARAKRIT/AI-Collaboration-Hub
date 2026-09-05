@@ -88,6 +88,101 @@ and only the second is evidence.
 
 ---
 
+## 4A. THE DEFECT CLASS IS WIDER THAN §4 STATED — AND THE RUN'S OWN COUNT OF IT WAS 1 OF 4
+
+§4 records **one** false zero, from wrong **column** names. AAS-03 Expert B, auditing the evidence
+base rather than the findings, found that the same run produced **four** zero-yielding extracts from
+wrong names, at **two** levels, and **detected none of them at the time**.
+
+### 4A.1 The discriminator that was available all along
+
+A `pg_restore -t <name>` whose pattern matches nothing writes a **718-byte shell** — header plus the
+`\restrict`/`\unrestrict` tokens, **no `COPY` block at all**. A table that exists and holds zero
+rows writes a **COPY block with its full column list and no data lines**. These are trivially
+distinguishable, and this run contains **seven** natural positive controls of the second kind:
+`account_accrued_orders_wizard` (12 columns, 0 rows), `account_automatic_entry_wizard` (12/0),
+`account_journal_account_reconcile_model_rel` (2/0), `account_transfer_model` (12/0),
+`account_transfer_model_line` (9/0), `create_withholding_tax_cert` (9/0),
+`withholding_tax_report` (10/0).
+
+> **718 bytes with no COPY block ⟺ the `-t` name matched nothing.**
+> **It never means "the table is empty."** Byte size alone reports both identically — which is the
+> fourth evidence-defect class: *a control that cannot detect its own failure*.
+
+### 4A.2 The four wrong names
+
+| Attempted name | Reality | Detected at the time? |
+|---|---|---|
+| `product_category_company_rel` | does not exist; the real table is **`scgl_product_category_company_rel`** (TOC 1818) | **no** — it was retried under the right name for an unrelated reason, then hit the **column**-name error of §4 |
+| `account_transfer_model_account_account_rel` | does not exist. The real relation tables are `account_analytic_account_account_transfer_model_line_rel` and `account_transfer_model_line_res_partner_rel` | **no** |
+| `account_transfer_model_line_account_analytic_account_rel` | does not exist — same two real names | **no** |
+| `stock_landed_cost` | does not exist — **and here the zero was the right answer** | the absence was separately confirmed against the TOC |
+
+The two transfer-model misses share a cause worth recording: **the ORM builds many-to-many relation
+table names by joining the two sides alphabetically**, and both guesses had the sides in the wrong
+order. A guessed relation-table name is a guess about an ordering rule, not a name.
+
+### 4A.3 What this changes
+
+**No published claim is falsified by any of it** — nothing in this package rests on the two
+transfer-model extracts, and `T_pcrel.sql`'s successor was read correctly. But:
+
+- the **same table** was missed twice, first by a wrong table name and then by wrong column names,
+  and the first miss was never recorded;
+- the defect class in §4 is **wrong-name-at-two-levels**, not wrong-column-names;
+- **the run's own count of its false zeros was 1 where the artefacts show 4.** A register that
+  undercounts its own defect class by four-fold is itself a finding.
+
+**Rule adopted.** After every extraction, assert the presence of a `COPY` block — not a non-zero
+byte count. An extract with no COPY block is a **failed name match** and must be re-attempted or
+recorded as such, never carried forward as a zero.
+
+## 4B. TWO LATENT DEFECTS IN THE PARSER THE WHOLE EVIDENCE BASE DEPENDS ON
+
+Both found by Expert B in `pgc.py`. **Both measured as not having fired in this run**; both are
+silent by construction, which is the point.
+
+1. **Silent field-count repair.** `if len(vals) != len(cols): vals = (vals + [None]*len(cols))[:len(cols)]`
+   pads a short row with `None` and truncates a long one, with no counter, no warning and nothing
+   the caller can inspect. **A padded row is indistinguishable from a row of genuine NULLs** — which
+   is exactly the shape of every negative in this package. *Measured: **0 rows across all 59 COPY
+   blocks** hit this branch, so no published count is affected.* The risk is structural: the
+   instrument cannot report its own failure.
+2. **Unescape order corrupts literal backslashes.** The chain
+   `.replace('\\t','\t').replace('\\n','\n').replace('\\r','\r').replace('\\\\','\\')`
+   decodes the doubled backslash **last**. A value holding a real backslash followed by `n` is
+   emitted by COPY as three characters, and the first replacement consumes the wrong pair. This
+   cannot change a field **count**, so no row count is affected — but it can change field
+   **content**, and this package reads jsonb text out of `product_category` and description strings
+   out of `stock_valuation_layer`. *Not measured as fired.*
+
+**Both are recorded rather than fixed**, because changing the parser mid-run would invalidate every
+count already taken against it. The fix belongs to the next round, together with a re-run.
+
+## 4C. A REPRODUCIBILITY CONTROL THE RUN DID NOT CLAIM
+
+Expert B extracted several tables a second time, independently. `T_account_move_line.sql` and its
+re-extraction are both **18,155,413 bytes**; the `ir_model_data` pair both **27,914,048**; the three
+`ir_model_fields` copies all **5,961,660**. Each pair parses to identical row and column counts. The
+**only** per-file difference is pg_restore 18's random `\restrict` session token, which differs on
+every invocation.
+
+**The same table extracted twice from the same archive yields the same data both times.** Modest,
+but it is a real control on the extraction step and it had not been claimed.
+
+## 4D. THE ARCHIVE DENOMINATOR RECONCILES TO THE ARCHIVE'S OWN HEADER
+
+`TOC.txt` declares `TOC Entries: 23232`. Enumerated by entry type: COMMENT 11,064 · FK CONSTRAINT
+4,227 · CONSTRAINT 1,272 · INDEX 1,263 · **TABLE DATA 1,122** · **TABLE 1,122** · SEQUENCE SET 825 ·
+SEQUENCE 825 · DEFAULT 736 · SEQUENCE OWNED BY 731 · VIEW 26 · RULE 11 · TEXT SEARCH DICTIONARY 1 ·
+TEXT SEARCH CONFIGURATION 1 · EXTENSION 1 · ACL 1 = **23,228 printed**. The 4-entry gap is
+pg_restore's non-printed internal entries (ENCODING, STDSTRINGS, SEARCHPATH, and the archive header),
+which `-l` counts but does not list.
+
+**`TABLE = TABLE DATA = 1,122` exactly**, and `tables.txt` holds 1,122 lines. `MATERIALIZED VIEW`
+count is **0**, so no data hides behind a matview. The denominator used for every bounded absence in
+this package reconciles to the archive's own header.
+
 ## 5. LIMITS OF THE VERSION INSTRUMENT
 
 `ir_module_module.latest_version` is the only stored version instrument in an Odoo-lineage
