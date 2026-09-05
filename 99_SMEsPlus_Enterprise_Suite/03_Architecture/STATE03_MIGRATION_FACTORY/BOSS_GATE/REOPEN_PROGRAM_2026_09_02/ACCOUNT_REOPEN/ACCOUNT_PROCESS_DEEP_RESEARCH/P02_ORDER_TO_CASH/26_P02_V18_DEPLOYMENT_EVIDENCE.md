@@ -147,3 +147,106 @@ then the honest statement is:
 **6 distinct deployed databases confirmed and tested. The population is NOT declared closed**, because it
 has now been reopened four times, three of them by an outside party. **P02 does not assert completeness of
 this population again without a published, reproducible discovery command and its output.**
+
+---
+
+## 9. The Sweep — And A Fifth Evidence-Base Failure, The Largest Yet
+
+The signature-based sweep P04 recommended was executed over `/Volumes` and `$HOME`: **10,317 files above
+1 MB content-tested** by magic bytes and archive membership, not by extension.
+
+### 9.1 Result
+
+**16 database-bearing artefacts** — 14 custom-format archives and 2 Odoo web-backup ZIPs.
+**Seven were previously uncounted**, all in `~/OCC_Odoo18_Simulation_Lab` and `~/OCC_BACKUP`.
+
+All seven simulation-lab snapshots share **one** `database.uuid` — **one database, seven snapshots.**
+Verified: Odoo **18.0**, 5 companies, and **0 journal lines, 0 valuation layers, 0 COGS lines**.
+
+**Positive control for that zero**, since a bare zero proves nothing: from the same archive and the same
+command, `res_company` returned 113,436 bytes / 5 rows and `ir_module_module` returned 412,167 bytes /
+712 rows, while `account_move_line` returned 1,591 bytes / 0 rows. **The extraction works; the table is
+genuinely empty.**
+
+### 9.2 The sweep found a defect in itself
+
+**`FACT VERIFIED` — the sweep's plain-SQL arm has a false negative.** It tested only the first 200 KB of
+each `.sql` file for a table-copy marker. In a 62 MB dump those markers sit far deeper, so **the one
+plain-SQL database P02 already knew about was not returned by its own sweep.**
+
+Recorded rather than quietly fixed: **a discovery pass written specifically to correct a denominator
+failure contained a denominator failure of the same family.** The magic-byte and ZIP arms are sound; the
+plain-SQL arm is bounded at 200 KB and must be re-run unbounded before any completeness claim.
+
+### 9.3 Corrected population
+
+| Distinct database (UUID) | Snapshots | Generation | Journal lines | **COGS** |
+|---|---|---|---|---|
+| iSMEs | 1 | **16.0** | 447,384 | **0** |
+| **idemo18_uat** | 1 | **18.0** | **40,353** | **0** |
+| **OCC simulation lab** | **7** | **18.0** | 0 | **0** |
+| iTEST02 | 2 | 19.0 | 32 | **0** |
+| iEVING *(1f63…)* | 2 | 19.0 | 15 | **0** |
+| iEVING *(f4a4…)* | 1 | 19.0 | 0 | **0** |
+| BK12MAY26 | 2 | 19.0 | 563 | **0** |
+| **TOTAL** | **16 artefacts** | **7 distinct databases** | **488,347** | **0** |
+
+**`FACT VERIFIED` — TC-02 SURVIVES ITS FOURTH DENOMINATOR CORRECTION.** Seven distinct deployed databases,
+three generations, 488,347 journal lines — **zero cost-of-sales entries.**
+
+**The population is still not declared closed**, for the reason in §9.2.
+
+## 10. `C-04` Can Be Closed On This Host — And This Package Said It Could Not
+
+**`FACT VERIFIED` — TC-39. A complete Odoo 18 runtime environment exists on this host.**
+`~/OCC_Odoo18_Simulation_Lab` — Docker, Odoo image `18.0`, runtime build `18.0-20260817`, PostgreSQL 16,
+lab database `occ_sim`, served locally. Its own status file records: **no connection to customer systems,
+no customer credentials, no customer data modified, resettable snapshot available.** It is a purpose-built,
+safe, disposable sandbox on the **exact generation** this package analysed.
+
+**`FACT VERIFIED` — TC-40. The test this package has been asking for is already written.**
+`scripts/anglo_gross_profit_test.py` executes the outcome-1 scenario end to end:
+
+- sets split cost recognition **ON**;
+- **creates the outbound interim account** the Thai chart lacks, reconcilable;
+- creates a category with **real-time valuation** and wires valuation, input, **output**, journal, income
+  and expense accounts;
+- creates a storable product at **cost 60, price 100** — the exact figures in `07` §2.1's worked example;
+- buys 10, receives, bills; sells 10, delivers, invoices;
+- snapshots the five relevant account balances at **five stages**, including
+  **`AFTER_DELIVERY_BEFORE_INVOICE`**;
+- prints gross profit, revenue, **COGS**, and the **interim-delivered balance**, then dumps every posted
+  journal line on those accounts.
+
+**No output artefact for it exists anywhere in the lab.** It appears never to have been run, or its output
+was not retained.
+
+**`CONTRADICTED` — C-31. The package's repeated statement that runtime evidence "does not exist for this
+session" is a FIFTH untested negative claim.** Runtime capability exists, on the right generation, in a
+safe sandbox, with the required scenario already scripted.
+
+### 10.1 What P02 did NOT do, and why
+
+**P02 did not run it.**
+
+Running it starts container workloads and **commits transactions to a database** — the script ends with an
+explicit commit. This session's constitution forbids database changes, and the closure directive asked for
+`C-04` verification **"using READ-ONLY evidence wherever possible"**. Executing a write transaction is
+outside both, and it is a state-changing action on the user's machine that P02 has no authorisation to take
+on its own initiative. **The sandbox being safe is an argument for asking, not a substitute for asking.**
+
+### 10.2 The corrected status of `C-04`
+
+| Before | Now |
+|---|---|
+| `UNRESOLVED — EVIDENCE REQUIRED`; *"cannot be closed from the available evidence"* | `UNRESOLVED — **AUTHORISATION REQUIRED, NOT EVIDENCE**` |
+
+**This is a materially better position and P02 should have found it four failures ago.** The blocker was
+never the absence of runtime; it was that nobody looked for one. The single action that closes `C-04`:
+
+> **Authorise one execution of `anglo_gross_profit_test.py` in the existing lab, and retain its output.**
+
+It would settle, in one run: whether cost-of-sales generation is idempotent (`C-04`); what the interim
+account actually holds between delivery and invoice; whether gross profit computes correctly under
+outcome 1; and whether the delivery-then-invoice sequence behaves as `03` describes — **the four things
+this package has held open throughout.**
