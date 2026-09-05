@@ -360,11 +360,18 @@ found the four was **bounded to one directory**. Executed properly there are
 
 | Database | Dated | Archive | Reads under host default client (16.15)? | Generation signature | Asset rows | Of which **real** |
 |----------|-------|---------|------------------------------------------|----------------------|------------|-------------------|
-| `iSMEs` | 2026-07-11 | v1.14 | **yes** | **older line** — carries an `asset_type` column the v18 source tree does not define | **685** | **669** |
-| `iEVING` | 2026-07-23 | v1.14 | **yes** | **v19** — no `asset_type` | 36 | **0** |
-| `BK12MAY26` | 2026-08-03 | v1.14 | **yes** | **v19** | 36 | **0** |
-| `iTEST02` | 2026-07-14 | **v1.16** | **NO** — needs `postgresql@18` | **v19** | 12 | **0** |
-| `iTEST02` | 2026-06-14 | **v1.16** | **NO** — needs `postgresql@18` | **v19** | 12 | **0** |
+| `iSMEs` `45a8e08e` | 2026-07-11 | v1.14 | **yes** | **v16** — carries an `asset_type` column the v18 source tree does not define | **685** | **669** |
+| `iEVING` `1f6338ae` | 2026-07-23 | v1.14 | **yes** | **v19** — no `asset_type` | 36 | **0** |
+| `iEVING` `f4a44cce` | 2026-03-30 | **zip** (`dump.sql` + `manifest.json`) | **yes**, no client needed | **v19** — `manifest.json` states `version_info [19,0,0,'final',0,'e']`, 179 modules | 12 | **0** |
+| `BK12MAY26` `66d1b52a` | 2026-08-03 05:48 | v1.14 | **yes** | **v19** | 36 | **0** |
+| `BK12MAY26` `66d1b52a` | 2026-08-03 11:28 | **zip** | **yes**, no client needed | **v19** — manifest, 251 modules | 36 | **0** |
+| `iTEST02` `a1430edc` | 2026-07-14 | **v1.16** | **NO** — needs `postgresql@18` | **v19** | 12 | **0** |
+| `iTEST02` `a1430edc` | 2026-06-14 | **v1.16** | **NO** — needs `postgresql@18` | **v19** | 12 | **0** |
+
+**Rows are keyed on `database.uuid`, read from `ir_config_parameter` in each
+archive — not on the file name.** The two artefacts named `iEVING` are **two
+different databases**; the two named `BK12MAY26` are **one**. Reported by P07 and
+re-derived here from the archives before adoption.
 
 **The enumeration behind this table was re-run by a stricter method, after P07
 reported the same bound in its own** (`18` `P04-REV-27`). The first search matched
@@ -373,9 +380,62 @@ on **file extension** at **bounded depth**; the re-run matched on the archive's
 
 | Measure | Count | Unit |
 |---------|-------|------|
-| Files | **8** | one file on disk; `iTEST02` @ 2026-06-14 exists in **four** copies across trees |
-| **Snapshots** | **5** | one database captured at one moment — the unit every finding below uses |
-| **Database identities** | **4** | `iSMEs`, `iEVING`, `BK12MAY26`, `iTEST02` — the last captured twice |
+| Files | **10** | one file on disk; `iTEST02` @ 2026-06-14 exists in **four** copies across trees |
+| **Snapshots** | **7** | one database captured at one moment |
+| **Database identities** | **5** | `45a8e08e` (v16), `1f6338ae`, `f4a44cce`, `66d1b52a`, `a1430edc` — the unit every independence claim below uses |
+
+**This census was wrong twice, and the correction came from P07 both times.**
+
+- **Format.** The re-run described below matched *"the archive's magic bytes"* —
+  but it matched **one signature**, `PGDMP`. Two of the seven snapshots are
+  **`.zip` containers holding `dump.sql` + `manifest.json`**, and a zip does not
+  begin `PGDMP`. So the fix for an extension-bounded search was itself
+  **pattern-bounded**, and excluded two databases. *An enumeration by magic bytes
+  is only as complete as the set of signatures it enumerates.*
+- **Identity.** The identity unit was the **file name**. Keyed on
+  `database.uuid`, the name is wrong **in both directions at once** — it splits
+  one database into two and merges two into one.
+
+**Exclusion errors are invisible by construction.** An over-inclusive count
+leaves the wrong row on the page to be checked; an under-inclusive one leaves
+nothing at all. No control in this package looks for members that are absent —
+neither the orphan check, nor the structural check, nor the independent review.
+What found it was a peer publishing a table with a name in it that this package
+had never opened.
+
+> **P04-F-86.** **This package's database evidence base was under-enumerated
+> twice, and both failures were in controls it had already adopted as remedies.**
+> Published census: *8 files · 5 snapshots · 4 database identities*. Executed
+> census: **10 · 7 · 5**.
+> - **Format.** The remedy for an extension-bounded search (`18` `P04-REV-27`)
+>   was a scan *"by magic bytes, any extension, any depth"* — matching **one
+>   signature**, `PGDMP`. Two snapshots are `.zip` containers holding `dump.sql`
+>   + `manifest.json`. **An enumeration by magic bytes is only as complete as the
+>   set of signatures it enumerates.**
+> - **Identity.** The identity unit was the **file name**. Keyed on
+>   `database.uuid` (read from `ir_config_parameter` in each archive) the name is
+>   wrong **in both directions at once**: two artefacts named `iEVING` are **two
+>   databases** (`f4a44cce`, `1f6338ae`); two named `BK12MAY26` are **one**
+>   (`66d1b52a`).
+>
+> **The headline total was right by arithmetic accident.** `96` was published as
+> `36+36+12+12` over *"three identities"*; the true composition is `36+12+36+12`
+> over **four** — a **double-count of `a1430edc`** and an **omission of
+> `f4a44cce`**, **12 each, in opposite directions**. *A total that survives a
+> correction to its own unit has not been confirmed by surviving; it has only
+> failed to move.*
+>
+> **Exclusion errors are invisible by construction**, which is the transferable
+> part: an over-inclusive count leaves the wrong row on the page to be checked;
+> an under-inclusive one leaves nothing. No control in this package looks for
+> **absent members** — not the orphan check, not the structural check, not the
+> independent adversarial review, all of which passed over this. What found it
+> was **P07 publishing a table naming a database this package had never opened.**
+>
+> Class: **FACT VERIFIED**. Reported by P07; **re-derived here before adoption** —
+> uuid extracted from all seven snapshots, asset counts re-run on all seven.
+> Effect on conclusions: **`P04-F-83` and `P04-F-84` both strengthen**; no
+> finding is withdrawn.
 
 **Population ranked before selection — checked retrospectively, and the result is
 luck rather than method.** P07 found it had built an entire runtime section on the
@@ -386,10 +446,11 @@ Tested here:
 
 | Snapshot | Asset rows | Real (non-template) |
 |----------|-----------:|--------------------:|
-| **`iSMEs`** | **685** | **669** |
-| `iEVING` | 36 | 0 |
-| `BK12MAY26` | 36 | 0 |
-| `iTEST02` ×2 | 12 each | 0 |
+| **`iSMEs`** `45a8e08e` | **685** | **669** |
+| `1f6338ae` | 36 | 0 |
+| `f4a44cce` | 12 | 0 |
+| `66d1b52a` ×2 | 36 each | 0 |
+| `a1430edc` ×2 | 12 each | 0 |
 
 **And "rank the population" needs its own declared unit.** P07 ranked with P11
 and the order **inverted**: one database is largest by bytes and rows, the other
@@ -473,7 +534,7 @@ Every statement below is bounded to the identity **and generation** named in it.
 
 *An earlier version of this paragraph read "two of the three are a different
 product generation". It was **wrong when written** — one of the three then read
-was the older generation, not two — and **stale thereafter**, once five snapshots
+was the older generation, not two — and **stale thereafter**, once seven snapshots
 had been read. Both errors sat in the scoping paragraph that governs the whole
 section. Corrected under `18` `P04-REV-31`.*
 
@@ -481,17 +542,26 @@ section. Corrected under `18` `P04-REV-31`.*
 
 | Database | Generation | `constant_periods` | `daily_computation` |
 |----------|-----------|-------------------|---------------------|
-| `iSMEs` — 669 real assets + 16 templates | older | **2** | **683** |
-| `iEVING` — 36 rows, all templates | v18 | **36** | 0 |
-| `BK12MAY26` — 36 rows, all templates | v18 | **36** | 0 |
-| `iTEST02` @ 2026-07-14 — 12 rows, all templates | v18 | **12** | 0 |
-| `iTEST02` @ 2026-06-14 — 12 rows, all templates | v18 | **12** | 0 |
-| **v19 total** | | **96 — 100 %** | **0** |
+| `45a8e08e` `iSMEs` — 669 real + 16 templates | **v16** | **2** | **683** |
+| — *of which its 16 **templates*** | v16 | **1** | **15** |
+| `1f6338ae` `iEVING` @ 2026-07-23 — 36, all templates | **v19** | **36** | 0 |
+| `f4a44cce` `iEVING` @ 2026-03-30 — 12, all templates | **v19** | **12** | 0 |
+| `66d1b52a` `BK12MAY26` @ 2026-08-03 05:48 — 36, all templates | **v19** | **36** | 0 |
+| `66d1b52a` `BK12MAY26` @ 2026-08-03 11:28 — 36, all templates | **v19** | **36** | 0 |
+| `a1430edc` `iTEST02` @ 2026-07-14 — 12, all templates | **v19** | **12** | 0 |
+| `a1430edc` `iTEST02` @ 2026-06-14 — 12, all templates | **v19** | **12** | 0 |
+| **v19 total, per snapshot** | | **144 — 100 %** | **0** |
+| **v19 total, per identity** (one snapshot each) | | **96 — 100 %** | **0** |
+
+*The row labels in this table read `v18` until this revision — a survivor of the
+generation correction (`18` `P04-REV-33`) sitting in a table whose own total row
+already said `v19`. Sixth survivor of that correction; found by re-deriving the
+table rather than by re-reading it.*
 
 > **P04-F-81.** The operational population runs on **daily computation** (683 of
-> 685 in the only database holding real assets), while **every one of the 96 asset
-> templates across all four **v19** snapshots, spanning **three database
-> identities**, is on `constant_periods`** — the
+> 685 in the only database holding real assets), while **every asset template in
+> the v19 line — 144 of 144 across six snapshots, 96 of 96 across all four v19
+> database identities — is on `constant_periods`** — the
 > product default, and the convention the operational population does **not** use.
 > Templates govern the configuration of assets created from them. So the
 > databases that would seed new assets are seeded with the **opposite**
@@ -503,7 +573,7 @@ section. Corrected under `18` `P04-REV-31`.*
 > | Half | Kind of claim | Evidence required | Source used |
 > |------|---------------|-------------------|-------------|
 > | 683 of 685 real assets on daily | **population** | the **deepest data set** | `iSMEs` — the only snapshot with real assets |
-> | 96 of 96 templates on `constant_periods` | **configuration** | the **broadest install**, i.e. every snapshot carrying templates | all four v19 snapshots |
+> | 96 of 96 templates on `constant_periods` | **configuration** | the **broadest install**, i.e. every snapshot carrying templates | all **six** v19 snapshots, **four** identities |
 >
 > Each half rests on the right kind, **by construction rather than by design** —
 > the population half had only one candidate and the configuration half was
@@ -512,15 +582,24 @@ section. Corrected under `18` `P04-REV-31`.*
 > told.
 >
 > Class: **FACT VERIFIED**. Population half bounded to `iSMEs`; configuration half
-> bounded to the **four v19 snapshots across three identities**. Enumeration
+> bounded to the **six v19 snapshots across four identities**. Enumeration
 > of candidates at §6A.1.
 
 > **P04-F-84.** **A stronger statement the split makes available, and which the
 > single sentence concealed.** The configuration half is not *"the templates are
 > on the product default"*. It is **96 of 96 templates on the product default
-> across three independent database identities, captured by different operators
-> between 2026-06-14 and 2026-08-03** — and **not one** carries the convention the
+> across four independent database identities, captured by different operators
+> between 2026-03-30 and 2026-08-03** — and **not one** carries the convention the
 > operational system actually runs on.
+>
+> **The total 96 was right by arithmetic accident, and the correction proves it.**
+> The published figure was `36 + 36 + 12 + 12` over what it called *"three
+> identities"*. Keyed on `database.uuid` the composition is **`36 + 12 + 36 + 12`
+> over four** — the old sum **double-counted `a1430edc`** (the same database
+> captured twice) and **omitted `f4a44cce`** entirely, and the two errors are
+> **12 each, in opposite directions**. Same total, wrong denominator, wrong
+> membership. *A total that survives a correction to its own unit has not been
+> confirmed by surviving; it has only failed to move.* Registered as `P04-F-86`.
 >
 > So this is not an oversight in one deployment. **No v19 deployment
 > examined has ever changed the day convention from the shipped default, at any
@@ -532,7 +611,30 @@ section. Corrected under `18` `P04-REV-31`.*
 > deployment's history suggests anyone would notice** — the two conventions agree
 > annually to within 0.05 %.
 >
-> Class: **FACT VERIFIED**, bounded to the three v19 identities named.
+> **And the contrast is not v19-versus-nothing — it is a live counter-example.**
+> The one identity that has real assets, `45a8e08e`, **also carries templates —
+> 16 of them — and 15 are on `daily_computation`.** So the install that went on to
+> transact **did** move its templates off the shipped default; the four that never
+> transacted never did. The claim is therefore not *"nobody changes this
+> setting"* but the sharper **"every install that used assets changed it, and no
+> install in the target generation has"** — which is what makes the first asset
+> created in the target generation the exposure.
+>
+> > **P04-F-87.** **The one database that has real assets also moved its
+> > templates off the shipped default; not one database in the target generation
+> > has.** `45a8e08e` holds **16 templates, 15 of them `daily_computation`** —
+> > alongside 683 of 685 real assets on the same convention. The four v19
+> > identities hold **96 templates, 96 on `constant_periods`**, zero real assets.
+> > So the day-convention exposure is not *"a setting nobody changes"*: it is a
+> > setting **every install that actually used assets did change**, and that **no
+> > install in the generation this project is migrating to has ever reached** —
+> > because none has ever created an asset (`P04-F-83`). The counter-example is
+> > what gives the claim its force, and it was **not visible until the census was
+> > re-derived per identity**.
+> >
+> > Class: **FACT VERIFIED**, bounded to the five identities enumerated at §6A.1.
+>
+> Class: **FACT VERIFIED**, bounded to the four v19 identities named.
 > **Available only once the halves were separated**: while they shared a
 > sentence, the configuration half read as a property of the templates rather
 > than as a **consistent non-action across independent operators**, and the
@@ -540,20 +642,24 @@ section. Corrected under `18` `P04-REV-31`.*
 > found the same concealment in its own compound finding.
 
 > **P04-F-83.** **No v19 database on this host contains a single real asset
-> record.** **Unit declared:** four **v19** snapshots across **three database
-> identities** (`iEVING`, `BK12MAY26`, and `iTEST02` captured twice), spanning
-> 2026-06-14 to 2026-08-03, holding **96 templates and zero assets** between them.
+> record.** **Unit declared:** **six** v19 snapshots across **four database
+> identities** (`1f6338ae`, `f4a44cce`, `66d1b52a` and `a1430edc`, the last two
+> captured twice each), spanning **2026-03-30 to 2026-08-03**, holding **96
+> templates per identity and zero real assets** between them.
 > The only population of real assets available anywhere is on the **older
 > generation**.
 >
 > *An earlier wording said "four v19 databases", conflating snapshots with
 > identities — the same unit defect this package records nine times over.*
-> Class: **FACT VERIFIED**, bounded to the **four v19 snapshots across three
-> identities** named at §6A.1, within an enumeration of all five snapshots.
+> Class: **FACT VERIFIED**, bounded to the **six v19 snapshots across four
+> identities** named at §6A.1, within an enumeration of all **seven** snapshots.
+> **Strengthened, not weakened, by the census correction**: the newly-found
+> identity `f4a44cce` is a fifth database and a fourth v19 one, and it too holds
+> **zero real assets** — the claim now spans four months rather than seven weeks.
 > **Reproduction caveat, with the unit declared.** The two unreadable v1.16
 > archives are **both snapshots of one identity** (`iTEST02`, a month apart). So
-> a reader on the host's default client sees **2 of 3 identities** and **2 of 4
-> snapshots** — and, critically, **zero real assets in both of the identities
+> a reader on the host's default client sees **3 of 4 v19 identities** and **4 of
+> 6 v19 snapshots** — and, critically, **zero real assets in every identity
 > they can open.** The conclusion survives; only the sample shrinks. See the
 > finding-by-finding table at §6A.1 for why this caveat cuts the opposite way to
 > a peer's on the same evidence class.

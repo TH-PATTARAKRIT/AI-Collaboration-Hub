@@ -77,7 +77,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 |----|------|-----------------------------------|
 | `EV-CODE` | Reference ERP v18 Enterprise, build `20250608` | **790 installable modules** (791 directories, one carrying no manifest and no content). The figure `797` quoted by prior packages is an entry count |
 | `EV-CUST` | Project custom addon set, v18 line | **65 directories** (68 entries) |
-| `EV-DB` | **8 files · 5 snapshots · 4 database identities** across two trees, all carrying asset data — enumerated by **archive magic bytes, any extension, any depth**, after an extension-and-depth-bounded first pass (`18` `P04-REV-27`) — the first enumeration reported four, one wrongly as empty; both errors are recorded at `18` `P04-REV-23`/`-24` — `iSMEs` (685 rows, **669 real**, **v16**); `iEVING`, `BK12MAY26` and `iTEST02` ×2 (**96 templates, zero real assets**, **v19**). **Reading the v1.16 archives requires a client newer than the host default** | **Read this session, after the deviation claiming no database access was tested and found false** (`18` `P04-REV-21`). None is `idemo18_uat`; the only database with real assets is an older generation |
+| `EV-DB` | **10 files · 7 snapshots · 5 database identities** across two trees, all carrying asset data — enumerated by **two archive signatures (`PGDMP` and zip-with-`dump.sql`), any extension, any depth, keyed on `database.uuid`**, after an extension-bounded first pass (`18` `P04-REV-27`) and a **single-signature, filename-keyed** second pass (`18` `P04-REV-35`) — the first enumeration reported four, one wrongly as empty; both errors are recorded at `18` `P04-REV-23`/`-24` — `iSMEs` (685 rows, **669 real**, **v16**); `iEVING`, `BK12MAY26` and `iTEST02` ×2 (**96 templates, zero real assets**, **v19**). **Reading the v1.16 archives requires a client newer than the host default** | **Read this session, after the deviation claiming no database access was tested and found false** (`18` `P04-REV-21`). None is `idemo18_uat`; the only database with real assets is an older generation |
 | `EV-RT` | Runtime read-out, 2026-08-26, UAT database | Population query **unbounded** (280 returned). External-identifier query **restricted to 26 hand-picked names** — not a population statement. Field list **12 fields**, omitting the source-document link |
 | `EV-HND` | Asset Actual Mapping handoff, 2026-08-26 | Project record |
 | `EV-P1/P2/P3` | Three prior Asset packages | Commits `57cdb99`, `6c7512e`, `a852b6e`; heads `57cdb99`, `78067d2`, `54db9e1`. All branches intact and unmerged |
@@ -87,7 +87,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **84** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
+| Findings (`P04-F-nn`) defined | **86** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`; `P04-F-86`/`P04-F-87` added at `18` `P04-REV-35`). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **45** — 3 re-registered from the handover residue, 42 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
 | Revisions | 34 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
