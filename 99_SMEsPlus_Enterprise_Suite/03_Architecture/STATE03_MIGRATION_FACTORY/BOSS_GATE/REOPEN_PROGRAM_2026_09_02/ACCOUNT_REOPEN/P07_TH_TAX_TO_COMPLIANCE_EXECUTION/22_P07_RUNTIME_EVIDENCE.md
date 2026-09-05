@@ -69,9 +69,12 @@ A two-key mapping. The equality is **false for every row**, so in this database 
 statutory VAT registers return **no data at all**, silently.
 
 This was reached independently by two adversarial reviewers as a source-derived escalation
-and carried at `SRC-CHAL`. It is now **verified against a deployed database of the declared
-generation**. All five tax groups carry Thai translations; the condition is not exceptional,
-it is the shipped state of a Thai deployment.
+and carried at `SRC-CHAL`. It is **verified** against this database.
+
+**CONSTRAINED at §7 — the first issue of this paragraph over-generalised from one database.**
+It said the condition "is not exceptional, it is the shipped state of a Thai deployment".
+That was an inference from `n = 1`. Across four databases the condition holds in **two**. See
+§7.1, which corrects it and is the more useful result.
 
 ### 4.2 `P07-F-42` — VERIFIED. `P07-U-20` is CLOSED.
 
@@ -91,6 +94,9 @@ Group 1 carries `tax_payable_account_id = 64`, `tax_receivable_account_id = 19`.
 carries `63` / `18`. **Zero-rated and exempt VAT therefore settle against the withholding
 control accounts, not the VAT ones**, in a deployed database. The inference was correct and
 the class moves from `INF` to verified.
+
+**STRENGTHENED at §7.2**: the same assignment holds in **every database examined** — four of
+four, across six independent company tax-group sets.
 
 ### 4.3 `P07-F-40` and `P07-F-37` — VERIFIED
 
@@ -156,10 +162,78 @@ evidence.
 
 ## 6. What Is Still Not Done
 
-- The other three dumps on this host were **not** examined. Whether any is a Thai tax
-  deployment of this generation is `P07-U-27`.
+- ~~The other three dumps on this host were not examined.~~ **Miscounted, and since
+  corrected — see §7.** There are **five distinct databases in nine files**, not four; four
+  have now been examined. `P07-U-27` is narrowed to the one remaining (`iEVING`, a different
+  product line).
 - No transaction-scale evidence exists for any finding. Six moves cannot support a claim
   about operational behaviour, and none is made.
 - The database was read table-at-a-time with no restore, so no join was executed by a server;
   every cross-table statement above was assembled by reading two extracts. That is weaker
   than a query and is declared as such.
+
+## 7. Four Databases, Not One — One Finding Constrained, One Strengthened
+
+Written after P04 reported that its own dump enumeration had been bounded to a single
+directory, which prompted P07 to test its own bound. Two defects surfaced, one of them in the
+§6 text above.
+
+### 7.0 The enumeration defects
+
+| # | Defect | Correction |
+|---|---|---|
+| `a` | §6 stated *"the other three dumps"* — a self-describing count that was **never executed**, the exact class this session has documented six times. | Enumerated by magic bytes (`PGDMP`) over both roots, any extension, any depth: **nine files holding five distinct databases** — `iTEST02` (five identical copies of the 2026-06-14 snapshot, one of them inside the declared PATH SET), `iTEST02` at 2026-07-14, `iSMEs` at 2026-07-11 (155 MB, the largest), `BK12MAY26` at 2026-08-03 (the most recent), `iEVING` at 2026-07-23. |
+| `b` | P07's original search was bounded: `-maxdepth 6`, `-size +1M`, four extensions. | Re-run unbounded returns 3,613 hits — but the excess is Odoo source `.sql` fixtures, so the size filter was **doing real work** and this bound, unlike the count, survives its own test. Recorded because a bound that survives should be published alongside one that does not. |
+
+### 7.1 `P07-F-01` is DEPLOYMENT-DEPENDENT, not universal — a correction against this session
+
+| Database | Stored `VAT 7%` group name | Predicate `== {'en_US': 'VAT 7%'}` | Statutory VAT registers |
+|---|---|---|---|
+| `iTEST02` 2026-06-14 | `{"en_US": "VAT 7%", "th_TH": "ภาษีมูลค่าเพิ่ม 7%"}` | **false** | **return no rows** |
+| `iTEST02` 2026-07-14 | `{"en_US": "VAT 7%", "th_TH": "ภาษีมูลค่าเพิ่ม 7%"}` | **false** | **return no rows** |
+| `iSMEs` 2026-07-11 | `{"en_US": "VAT 7%"}` | true | function |
+| `BK12MAY26` 2026-08-03 | `{"en_US": "VAT 7%"}` | true | function |
+
+**Two of four.** The claim that the failing condition is "the shipped state of a Thai
+deployment" is withdrawn: it is the state of *some* deployments and not others, and nothing
+distinguishes them to a user.
+
+This makes the finding **more** dangerous to rely on, not less, and the reason is worth
+stating plainly: a defect that fires in half of deployments and is silent in the other half
+is one that **cannot be found by testing a system that works**. Two of these databases would
+pass any smoke test of the statutory register; two would return an empty report that looks
+like a quiet month. Severity `S1` is unchanged.
+
+Also visible: `iSMEs` names its withholding groups `TAX 1%`…`TAX 5%` rather than `WHT n%`,
+so the tag- and name-based classifications in `P07-F-15` face the same variability.
+
+### 7.2 `P07-F-42` holds in EVERY database examined
+
+| Database | Zero-rated / exempt taxes | Group they land in |
+|---|---|---|
+| `iTEST02` 2026-06-14 | 4 | group 1 = `WHT 1%` |
+| `iTEST02` 2026-07-14 | 4 | group 1 = `WHT 1%` |
+| `iSMEs` 2026-07-11 | 4 | group 1 = `Taxes` / `ภาษี` — not a VAT group either |
+| `BK12MAY26` 2026-08-03 | 12, across **three companies** | groups 1, 6 and 11 — **each company's own `WHT 1%`** |
+
+**Four of four databases, six independent company tax-group sets, no exception.** The
+`BK12MAY26` case is the strongest: three separate companies were configured independently
+and the misassignment reproduced in each, which is what a deterministic
+lowest-id-wins fallback predicts and coincidence does not.
+
+`P07-F-42` is now the most robustly evidenced finding in this package — better evidenced
+than `P07-F-01`, which was the headline. That inversion was produced entirely by checking a
+second database.
+
+### 7.3 What this changes
+
+| | Before §7 | After §7 |
+|---|---|---|
+| `P07-F-01` | verified, asserted universal | verified, **2 of 4 deployments**; universality claim withdrawn |
+| `P07-F-42` | verified in 1 database | verified in **4 of 4**, 6 company sets |
+| `P07-F-15` | source-derived | supported: group naming varies between deployments (`TAX n%` vs `WHT n%`) |
+| §6 count | "three dumps" | five databases in nine files; four examined |
+| `P07-U-27` | four unexamined | one unexamined (`iEVING`, different product line) |
+
+Neither correction was found by re-reading. Both came from a peer reporting a bounded
+enumeration of its own and P07 testing the same bound.
