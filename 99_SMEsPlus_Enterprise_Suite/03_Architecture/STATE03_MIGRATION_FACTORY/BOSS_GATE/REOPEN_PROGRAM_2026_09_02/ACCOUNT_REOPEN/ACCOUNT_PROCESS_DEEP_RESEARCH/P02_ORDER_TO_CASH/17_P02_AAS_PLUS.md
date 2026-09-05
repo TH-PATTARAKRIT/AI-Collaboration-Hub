@@ -203,3 +203,78 @@ through AE-13 as though it were twice-verified. It is not.
 | **B** | It cannot, and pretending otherwise is the reference's own mistake repeated. For goods the ledger row is *evidence*; for a service it would be *an assertion recorded in a ledger-shaped table*, which adds ceremony without adding truth. The honest design names the assertion as an assertion. |
 | **Where they agree** | Whatever it is called, it must carry **who asserted, when, and on what basis** — which is `D-II`. |
 | **Status** | Unresolved. Raised by the challenge, not by the primary session, and preserved.
+
+---
+
+# PART II — AAS+ CONSOLIDATION AFTER TARGETED FORENSIC CLOSURE
+
+Session `SMEPLUS-26-09-04-ACC-P02-O2C-TARGETED-FORENSIC-CLOSURE-001`.
+
+## 7. What The Closure Changed At The Level Of Design Position
+
+The closure did not add findings to the existing synthesis. **It re-scoped it.**
+
+**`FACT VERIFIED` — the governing fact of the whole package is now this:**
+
+> **The estate contains no deployment of the generation this package analysed.** One database on 16.0
+> carries 99.9% of all transactions and its source **does not exist on this host**. Four databases on 19.0
+> carry 610 journal lines between them. **Zero on 18.0** — the generation every source finding was
+> written against.
+
+AAS+ records the consequence plainly: **the package's source analysis is sound and is unattached to any
+deployed instance.** That is not a reason to discard it — SMEsPlus is a clean-room design and the source
+work is benchmark learning, which is exactly what it was commissioned as. It **is** a reason to stop
+presenting deployed data as confirmation of it.
+
+## 8. The Five Structural Decisions — Restated Against Three Generations
+
+| Decision | Status after closure |
+|---|---|
+| **D-I Obligation ledger** | **Strengthened, and its urgency is now generation-independent.** v18 reconciles two legs in an interim account; v19 **deletes the interim account** and relieves inventory at invoice; 16.0's mechanism is unreadable. Three generations, three different answers to *when does cost arise*. **An obligation ledger is the only one of the five that is stable across all three.** |
+| **D-II Events, not fields** | **Strengthened.** v19 removes the valuation-layer model — an append-only artefact — and replaces it with a **mutable field on the movement** plus a manual-override log. The reference is moving **away** from event identity, not toward it. |
+| **D-III Two dates on every event** | **Vindicated, and by the package's own error.** The closure measured a period mismatch from the wrong date and reversed its own conclusion when corrected (`25` C-27). If a forensic session with the data in hand can pick the wrong date, a posting engine that carries only one date guarantees the ambiguity. |
+| **D-IV Scope is ownership, not ambient state** | **Unchanged**, and extended: v19 moves valuation configuration from the category to the company, so a single company setting now decides whether an entire legal entity recognises cost of sales. |
+| **D-V Close means closed** | **Strengthened to the point of embarrassment for the reference.** 89 of 91 company records have **no lock date at all**; the automated periodic close **cannot fire** because its cron domain is unsatisfiable (`25` D-01) and because the journal it needs is unset in 89 of 89. |
+| **D-VI Atomic completion** | Unchanged. |
+
+## 9. Preserved Disagreements — Updated
+
+`DIS-01` … `DIS-06` stand. **Two are now sharper:**
+
+**DIS-01 (where cost-of-sales timing belongs) — the evidence now favours position A, and says so.** The
+argument for *platform invariant* was that letting the choice float produces incomparable financials. The
+closure measured exactly that: **three generations with three different recognition points, a per-category
+override with a silent default that recognises no cost at all (`25` F-03), and a product whose own label
+now defines "Perpetual" as "at invoicing"**. AAS+ does not resolve DIS-01 — that is `BP-01`/`B-01`, Boss's
+— but it records that the evidence gathered since the disagreement was framed **has not been neutral**.
+
+**DIS-02 (who owns the obligation ledger) — unchanged and now urgent.** With the interim account deleted in
+v19, there is no shared artefact left for Inventory and P02 to disagree about. Whoever owns it will be
+building it, not adopting it.
+
+## 10. A New Preserved Disagreement
+
+**DIS-07 — is a package whose source generation has zero deployed instances still evidence?**
+
+| Position | Argument |
+|---|---|
+| **A — yes, fully** | SMEsPlus is clean-room. The reference is benchmark learning, never a target. Which generation a customer happens to run is irrelevant to what SMEsPlus should do; the v18 analysis taught the mechanism, and the mechanism is what transfers. |
+| **B — no, not as published** | Every deployed-data claim in `21`–`22` was used to *corroborate* the source analysis. If the source generation is deployed nowhere, that corroboration is void, and the package must be re-read with the corroboration removed rather than left implying support it does not have. |
+| **Where they agree** | The **requirements** in `19` survive either way — they are stated as design requirements, not as reference behaviour. |
+| **Status** | Unresolved. Routed to P11. |
+
+## 11. AAS+ Position On The Method Record
+
+`25` §7 records that **the rate of refutation rose in a round commissioned to close the package**: 2
+refutations in the first challenge, 1 from a peer, **7 plus a register entry** in the second.
+
+AAS+ declines the comfortable reading — *the reviews are getting better* — and records the uncomfortable
+one alongside it:
+
+> **Each round found defects of a class the previous round did not look for.** Round 1 attacked findings.
+> The peer attacked internal consistency. Round 2 attacked the evidence base itself — generation labels,
+> denominator keys, date-field choices — and found seven. **There is no basis for believing a third round
+> would find fewer**, and the package has never had two consecutive rounds of the same kind.
+
+**This is the central input to the exit assessment**, and it is why AAS+ supports the PMO's HOLD without
+qualification.
