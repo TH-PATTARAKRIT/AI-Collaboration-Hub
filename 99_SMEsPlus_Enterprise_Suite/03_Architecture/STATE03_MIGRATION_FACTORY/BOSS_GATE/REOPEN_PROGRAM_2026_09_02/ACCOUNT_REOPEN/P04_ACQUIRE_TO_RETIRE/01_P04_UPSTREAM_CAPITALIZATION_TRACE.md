@@ -745,6 +745,73 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.18 Two registers under one family name
+
+P07 ran *count the forms, not the identifiers* over its own families and found
+that two of its three dual-form entries **were not two forms of one family — they
+were two different families colliding on one stem**, one meaning a module
+dependency and the other the tax invoice. Every check it owns reported both
+clean, because both had definition rows: **the collision is semantic, not
+structural.** Run here, the same view finds two, and one is three-way.
+
+> **P04-F-117.** **`P04-LAW` was two registers under one name, and a third
+> register collided with it numerically.**
+>
+> | identifier | file | what it is |
+> |---|---|---|
+> | `P04-LAW-A`…`H` | `13` | **statutory sources** — the manual, ป.79/2541, ป.84/2542, the ruling, the VAT announcement |
+> | `P04-LAW-01`…`06` | `07` | **legal conclusions** — *"a VAT-registered person selling a fixed asset is making a sale of goods"* |
+> | `LAW-01`, `LAW-02` | `13` | **P3's inherited sources** — ม.65 ทวิ(2), พ.ร.ฎ. 145 |
+>
+> So one family name carried **a source register and a conclusions register**,
+> distinguished only by whether the suffix was a letter or a digit, and the
+> digits then collided with an inherited family holding sources again. **A reader
+> meeting `P04-LAW-01` had no way to know it was a conclusion rather than a
+> source, and `LAW-01` beside it is a source.** Every identifier resolved; two
+> resolved to different *kinds* of thing under one stem.
+>
+> **The conclusions are renamed `P04-LC-01`…`06`** — 9 occurrences, one file —
+> **with the source family counted before and after as the control: 22 and 22.**
+> Renaming was correct here because both families are this package's own.
+>
+> **`CTR` is the second, and it is fixed the other way.** P3's `CTR-01`…`06` and
+> this session's `P04-CTR-01`…`07` **occupy the same numbers with entirely
+> different content** — P3's `CTR-01` is the unimplemented depreciation method,
+> this session's is three enumerations of one population disagreeing. Here a
+> rename would **break lineage to P3**, so the inherited identifiers are left
+> untouched and **attributed instead**: written `P3 CTR-nn` outside their
+> register, with a note on the register section itself. Same for `LAW-01/02`.
+>
+> **Rename what is yours; attribute what is inherited.** The choice is not
+> stylistic — renaming an inherited identifier destroys the only link back to the
+> package that raised it.
+>
+> **And this is invisible to every check in the sweep, by construction.** The
+> identifier check, the structural check, the manifest check, the scrub and the
+> sentinel are all satisfied: both families are defined, every citation resolves.
+> **Counting forms per family is the only view in which a stem collision appears
+> at all**, and no amount of re-reading substitutes for it — the credit is P07's.
+>
+> **Sweep unit `1c` added — stems carrying two families with overlapping numbers
+> — and its first run reports five, all declared:**
+>
+> | stem | families | disposition |
+> |---|---|---|
+> | `LAW` | `P04-LAW`, `LAW` | **renamed** (`P04-LC`) + inherited **attributed**; the residual digits under `P04-LAW` are this finding **quoting the old identifiers** |
+> | `CTR` | `P04-CTR`, `CTR` | inherited **attributed** `P3 CTR-nn`; rename refused to preserve lineage |
+> | `B` | `P04-B`, `B` | declared quotations at §6A.13 / §6A.16 |
+> | `REV` | `P04-REV`, `REV` | `REV-03` attributed to **P2** |
+> | `E` | `P11-E`, `E` | attributed elisions of **P11's** identifiers |
+>
+> **The check flags any sixth.** And the fifth row is the recursion again — this
+> finding cannot say *"`P04-LAW-01`…`06` were legal conclusions"* without writing
+> those identifiers, which re-creates the overlap it documents. Declared as a
+> bound, per §6A.16, rather than chased to zero.
+>
+> Class: **FACT VERIFIED**, two collisions, one renamed with a control, one
+> attributed; **no finding's content changes** — what changes is that two
+> registers no longer share a name.
+
 ### 6A.17 Copy-identity is not stack-completeness
 
 P07 found its own closure narrower than the use its citations were being put to:

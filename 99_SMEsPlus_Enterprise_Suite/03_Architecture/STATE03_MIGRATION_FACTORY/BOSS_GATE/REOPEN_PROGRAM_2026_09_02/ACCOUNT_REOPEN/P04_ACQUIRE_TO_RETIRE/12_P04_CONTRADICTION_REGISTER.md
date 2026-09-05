@@ -7,6 +7,12 @@ Disagreement is **preserved**, not resolved by preference.
 
 ## 1. Inherited — carried unchanged (16 open at P3)
 
+*Identifier note (`01` §6A.18, `P04-F-117`): the rows below are **P3's** `CTR-nn`
+and `CTR-C-nn`, carried unchanged for lineage. They are **not** this session's
+`P04-CTR-nn`, which occupy the same numbers 01–06 with entirely different content.
+Cited outside this register they are written **`P3 CTR-nn`**; the inherited
+identifiers themselves are left untouched so the lineage to P3 survives.*
+
 Six inherited by P3 from P2 and ten raised in P3. All are carried at their prior
 severity and are **not re-derived**. Two are advanced by this session's evidence
 and are annotated below; the rest stand as recorded.

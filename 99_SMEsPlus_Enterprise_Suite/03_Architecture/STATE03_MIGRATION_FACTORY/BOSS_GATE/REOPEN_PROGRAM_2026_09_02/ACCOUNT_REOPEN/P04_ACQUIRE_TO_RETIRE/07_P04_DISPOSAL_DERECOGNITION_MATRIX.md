@@ -198,9 +198,9 @@ remaining book value was deductible. The operative answer:
 
 | ID | Position | Class |
 |----|----------|-------|
-| **P04-LAW-01** | Where the company can **prove the destruction actually occurred** and **its auditor certifies it**, the remaining book value is a loss arising directly from the business and is **not prohibited** by Revenue Code s.65 ter (13) | **FACT VERIFIED** from the ruling text |
-| **P04-LAW-02** | On the facts of that ruling, deduction was allowed **without prior notice** to the officer, with the ruling directing future destructions to the instruction at §5.1 | **FACT VERIFIED** from the ruling text |
-| **P04-LAW-03** | Whether the 30-day advance-notice regime of ป.84/2542 extends to **fixed assets** — given that its own scope names goods and scrap, while the ruling points a taxpayer towards it — is **not settled by these two sources**. A single ruling is persuasive, not general | **HOLD / EVIDENCE REQUIRED** — routed to the Accounting-Tax track. Registered **P04-B-24** |
+| **P04-LC-01** | Where the company can **prove the destruction actually occurred** and **its auditor certifies it**, the remaining book value is a loss arising directly from the business and is **not prohibited** by Revenue Code s.65 ter (13) | **FACT VERIFIED** from the ruling text |
+| **P04-LC-02** | On the facts of that ruling, deduction was allowed **without prior notice** to the officer, with the ruling directing future destructions to the instruction at §5.1 | **FACT VERIFIED** from the ruling text |
+| **P04-LC-03** | Whether the 30-day advance-notice regime of ป.84/2542 extends to **fixed assets** — given that its own scope names goods and scrap, while the ruling points a taxpayer towards it — is **not settled by these two sources**. A single ruling is persuasive, not general | **HOLD / EVIDENCE REQUIRED** — routed to the Accounting-Tax track. Registered **P04-B-24** |
 
 #### 5.2.1 The question was framed too narrowly — widened after P07 challenge
 
@@ -250,9 +250,9 @@ primary evidence permits, and states precisely what remains open.
 
 | Requirement | Source | Design consequence |
 |-------------|--------|--------------------|
-| Prove destruction actually occurred | P04-LAW-01 | The retire event must carry **evidence attachments**, not just a date and an amount |
-| Auditor certification | P04-LAW-01 | A **certification artefact** distinct from the accounting entry, retained with the asset |
-| Possible 30-day advance notice | P04-LAW-03 | If confirmed, a **notification date must precede the destruction date by 30 days**, and the system must be able to prove it did. This is a *dated control*, not a document field |
+| Prove destruction actually occurred | P04-LC-01 | The retire event must carry **evidence attachments**, not just a date and an amount |
+| Auditor certification | P04-LC-01 | A **certification artefact** distinct from the accounting entry, retained with the asset |
+| Possible 30-day advance notice | P04-LC-03 | If confirmed, a **notification date must precede the destruction date by 30 days**, and the system must be able to prove it did. This is a *dated control*, not a document field |
 | Scrap ≠ disposal ≠ sale, for evidence purposes | §5.1 vs §5.2 | The estate's single disposal action **cannot carry three different evidence regimes**. This is why P04-B-12 (scrap as a distinct event) is an evidence requirement and not a cosmetic one |
 
 ### 5.5 Value-added tax on the disposal of a fixed asset — researched and closed
@@ -269,9 +269,9 @@ addressed**, and researched immediately rather than left open.
 
 | ID | Position | Class |
 |----|----------|-------|
-| **P04-LAW-04** | A VAT-registered person **selling a fixed asset is making a sale of goods**. Output tax arises and a tax invoice must be issued | **FACT VERIFIED** from the Revenue Code definitions |
-| **P04-LAW-05** | Because consideration is **not** required by the definition, **a disposal by donation is also a sale** for VAT purposes | **FACT VERIFIED** as to the definition; **SUPPORTED INTERPRETATION** as to the tax base and any exemption, which were not researched |
-| **P04-LAW-06** | Applying an asset to a non-business purpose, an asset **missing from the record**, and assets **remaining on cessation** are each deemed a sale under a sub-paragraph, with (ง) governed by criteria issued by the Director-General that this session did not retrieve | **SUPPORTED INTERPRETATION** — the deeming provisions are verified; their scope for fixed assets is not |
+| **P04-LC-04** | A VAT-registered person **selling a fixed asset is making a sale of goods**. Output tax arises and a tax invoice must be issued | **FACT VERIFIED** from the Revenue Code definitions |
+| **P04-LC-05** | Because consideration is **not** required by the definition, **a disposal by donation is also a sale** for VAT purposes | **FACT VERIFIED** as to the definition; **SUPPORTED INTERPRETATION** as to the tax base and any exemption, which were not researched |
+| **P04-LC-06** | Applying an asset to a non-business purpose, an asset **missing from the record**, and assets **remaining on cessation** are each deemed a sale under a sub-paragraph, with (ง) governed by criteria issued by the Director-General that this session did not retrieve | **SUPPORTED INTERPRETATION** — the deeming provisions are verified; their scope for fixed assets is not |
 
 #### 5.5.1 The safe harbour, retrieved by P07 — and it does not shelter disposal
 

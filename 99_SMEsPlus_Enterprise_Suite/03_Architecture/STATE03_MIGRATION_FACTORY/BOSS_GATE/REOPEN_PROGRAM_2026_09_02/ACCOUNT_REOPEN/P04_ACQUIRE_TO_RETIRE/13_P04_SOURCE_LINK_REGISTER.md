@@ -69,8 +69,8 @@ Each returned **zero hits under the stated path set** and is reported as
 
 | ID | Source | Class |
 |----|--------|-------|
-| `LAW-01` | ประมวลรัษฎากร มาตรา 65 ทวิ (2) | primary statute |
-| `LAW-02` | พระราชกฤษฎีกา ฉบับที่ 145 (พ.ศ. 2527) มาตรา 4–5 | primary statute |
+| `LAW-01` | ประมวลรัษฎากร มาตรา 65 ทวิ (2) | primary statute — **inherited (P3); not this session's `P04-LAW-A`…`H`** |
+| `LAW-02` | พระราชกฤษฎีกา ฉบับที่ 145 (พ.ศ. 2527) มาตรา 4–5 | primary statute — **inherited (P3)** |
 | `TAS-02` | มาตรฐานการบัญชี ฉบับที่ 2 *สินค้าคงเหลือ*, ประกาศสภาวิชาชีพบัญชี ที่ 34/2562 — ¶12 and ¶13 | standard text, TFAC |
 | `DBD-01` | ประกาศกรมพัฒนาธุรกิจการค้า — รายการย่อที่ต้องมีในงบการเงิน, แบบ 2 | primary regulation |
 
