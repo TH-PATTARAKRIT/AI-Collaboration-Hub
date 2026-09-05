@@ -68,3 +68,21 @@ evidence rather than silence.
 - **A populated event-to-GL matrix.** 30 of 30 producer debit/credit cells are withheld, deliberately.
 - **A reconciliation of `P01`–`P10`.** None had published when the synthesis was written.
 - **Any `PASS`, freeze, merge, or implementation authorisation.**
+
+---
+
+## CORR1 REVIEW CHAIN — added `2026-09-05`
+
+**Read in this order. Each corrects the one before it.**
+
+| # | File | Verdict |
+|---|---|---|
+| 1 | `P11_AAS03_CORR1_CHALLENGE.md` | **`CONTRADICTED`** — 18 findings, 3 `CRITICAL`, 18 accepted, 0 disputed |
+| 2 | **`P11_S8_SUPERSESSION_RERUN_CORR1.md`** | **`6 of 10`** peers carried a later artefact P11 had not consumed |
+| 3 | `P11_AAS_PLUS_CORR1_CONSOLIDATION.md` | **`NOT CONVERGED — P11 CORR2 REQUIRED`** |
+| 4 | `P11_PMO_CORR1_REVIEW.md` | **`RECOMMEND HOLD`** — `0 of 8` exit criteria |
+| 5 | `ACCOUNTING_BOSS_FINAL_GATE_PACK.md` §1a, §1a-bis, FINAL COUNTS | the corrected position |
+
+> **Two P11 claims were published and withdrawn this round** — the `D-5` evidence upgrade
+> (`P11-E-31`) and *"nets to zero"* (`P11-B-22`). **Any reader holding an earlier copy of §1a or of
+> `P11_PEER_INTAKE_DELTA_01.md` is holding a withdrawn claim.**

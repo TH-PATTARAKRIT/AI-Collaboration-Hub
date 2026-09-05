@@ -46,21 +46,35 @@ nowhere.
 | `T0-12` | Balance assertion suppressible; `unbalanced-and-posted` reachable | `UNRESOLVED` | **Strengthened to its maximum available form** — see §3 |
 | `T0-13` | An accounting fact may not be silently mutated, at any scope | `UNRESOLVED` | **Strengthened by `P10`** — a locked-period *recognition* entry is silently re-dated, so the mechanism reaches `P10` as well as `P01`/`P03`/`P04` |
 
-> **13 boundaries. `0` resolved. `2` restored by id. `5` strengthened. `0` narrowed. `0` superseded.**
+> **13 boundaries. `0` resolved. `2` restored by id. `6` strengthened** *(corrected from ~~5~~ per `A-05`; the table marks six)* **— of which 2 carry an inheritance embargo. `1` headline WITHDRAWN. `0` narrowed.**
 
 ## 3. The three strengthened to their maximum available form, by `P08` @ `838134f`
 
 | Boundary | Prior P11 form | `P08`'s form |
 |---|---|---|
-| `T0-08` / `UAE-29` | *no accounting-event identity* — class `C`, root undeclared | **`A VERIFIED ABSENCE` across all 22 declared roots.** The root set is now declared and independently reproduced |
+| `T0-08` / `UAE-29` | *no accounting-event identity* — class `C`, root undeclared | ~~`A VERIFIED ABSENCE` across all 22 declared roots~~ **WITHDRAWN `2026-09-05` per `C-01`.** P11 quoted `P08`'s **superseded** pack. `P08` `52_…_V2` supersedes it: **event identity is *the business record, per channel* — absent as a *platform property*; `FACT VERIFIED`, base narrowed**, with identity on **one inbound channel, a nullable column, `0 of 13,814` rows populated**. The correctly-scoped successor is **`UNTESTED across the root set`** |
 | `T0-12` / `T0-01` | *the balance assertion is suppressible by context* | **"No database constraint enforces it in any of the 22 declared roots"** — and the assertion is *"application-level, suppressible by a caller-supplied parameter, and asserted in the reporting currency only"* |
 | `T0-03` | *immutability is configuration* | **"Nine header attributes are protected and the protection is waived by a caller-supplied parameter; a posted journal item's account, counterparty, label, reference and cost allocation are editable in place"** |
 
-> **This is the first time in the programme that a tolerance-zero boundary has been stated as class `A`
-> over a declared root set.** It does not resolve any of them — **it removes the last excuse for
-> treating them as bounded-scope uncertainties.**
+> ~~**This is the first time in the programme that a tolerance-zero boundary has been stated as class `A` over a declared root set.**~~ **WITHDRAWN per `C-01` / `A-02`.**
+>
+> **Corrected position.** `P08` phrases its class-`A` negatives as **21 of 21 roots**, not 22 — and `P08-CONTRA-34`, *confirmed against the author by content hash*, records only **7 distinct contents**, so *"apparent strength is overstated by roughly threefold"*. **No tolerance-zero boundary is stated as class `A` over a declared root set.** What is available instead is **measured deployment evidence**, which is different and in places stronger: `0 of 13,814` identity rows, `0 of 109` sealed journals, `0 of 89` companies with a period lock.
+>
+> **`T0-11`/`T0-12` additionally carry an inheritance embargo:** `KRN-INV-00` is `CONTESTED` per `P08-BD-18` and **must not be inherited downstream** until the per-currency-frame question is answered (`C-03`).
+
+## 3b. `T0-14` — added by the `S8` re-run, `2026-09-05`
+
+| id | Boundary | Evidence |
+|---|---|---|
+| **`T0-14`** | **Financial history and the audit trail are deletable with no server-side authorisation** | `P06` `70_`: `om_data_remove` **INSTALLED on a real Odoo 19 database in this estate** — unfiltered `DELETE FROM` across bank statements, payments, journal entries, journal items, reconciliations and the audit trail; **`NO SERVER-SIDE AUTHORIZATION VERIFIED`** on the whole RPC dispatch chain; **`REACHABLE — DEPLOYMENT VERIFIED`**. `P08` raised the same module as its own `P08-T0-08` and left reachability `D UNKNOWN`; **`P06` closed that question** |
+
+> **This is the only tolerance-zero boundary in the package that is `REACHABLE — DEPLOYMENT VERIFIED`
+> rather than source-established.** Every other boundary describes what the software permits; this one
+> describes what is installed and, on a first-party account, already run. **It is bounded by `D-1`** —
+> the v19 database is not confirmed to be the SMEsPlus target — and that bound is recorded, not used to
+> soften it.
 
 ## 4. Position
 
-`13` boundaries · `0` resolved · `0` closable by more source reading · `CONDITIONAL PASS` unavailable
-**by rule**. **CORR1 restored two, strengthened five, and resolved none.**
+`14` boundaries · `0` resolved · `0` closable by more source reading · `CONDITIONAL PASS` unavailable
+**by rule**. **CORR1 restored two, strengthened five, added one, and resolved none.**

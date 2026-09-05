@@ -47,16 +47,18 @@ own instruments failed under independent test.
 > that happened to publish first — recorded as `P11-F-12`, and it is the most consequential instance of
 > P11's own selection-order rule.
 
-**Two Boss decisions are materially better informed than at `P11#04`, and both improved via `P08` —
-the peer P11 had never read:**
+**One Boss decision is materially better informed than at `P11#04`. The second improvement was
+published, then withdrawn — it rested on a superseded artefact, and the withdrawal is the most
+important single fact in this section:**
 
 | Decision | Change |
 |---|---|
 | **`D-1`** declare the reference root | **The mechanical half is DONE.** `P08` declares the root set — **22**, with `POPULATION`/`PATTERN`/`PATH SET`/`UNIT` stated, **independently reproducing the earlier figure from a different session on the same pattern**. `P08` closes `MCU-21` for its own claims and **expressly refuses to close it for the programme**: *"declaring which root SMEsPlus targets is a programme declaration reserved to Boss."* **What remains is a sentence only Boss can write** |
-| **`D-5`** the accounting-event identity | **Evidence upgraded class `C` → class `A`.** `P08`: *"There is no accounting-event identity to be one of — **`A VERIFIED ABSENCE` across all 22 declared roots**."* `P09` adds that **two of eight constitutional trace steps have no carrier at all**. `P02` and `P10` both require the object structurally. **The decision is unchanged; the uncertainty behind it is gone** |
+| **`D-5`** the accounting-event identity | ~~**Evidence upgraded class `C` → class `A`.**~~ **WITHDRAWN — this was the round's headline and it was wrong.** The quoted `A VERIFIED ABSENCE` comes from `25_P08_CORE_RECON_HANDOFF_PACK.md`, which `52_P08_CORE_RECON_HANDOFF_PACK_V2.md` **supersedes**. In `52_` the same peer narrows its own base and states the event identity is *"the business record, per channel — absent as a **platform property**"*. **`P08` refused to take the strong reading; P11 quoted the refusal and then took it.** The evidence class remains **`C`**. `P09`'s two carrier-less trace steps and `P02`/`P10`'s structural requirement stand and are unaffected. **The decision is unchanged, and so is the uncertainty behind it.** (`X-C1-C-01`; `P11-E-31`) |
 
 **Three tolerance-zero boundaries reach their strongest available form**, all from `P08` over the
-declared root set: **no database constraint enforces the balance invariant in any of the 22 roots**;
+declared root set — **re-verified against `52_..._V2` and unaffected by the `D-5` withdrawal**
+(they are source-line findings, and `52_` narrows only the deployed-estate reading): **no database constraint enforces the balance invariant in any of the 22 roots**;
 the assertion is *application-level, waivable by a caller-supplied parameter, and in the reporting
 currency only*; and **nine header attributes are protected with the protection waived by a parameter**,
 while a posted item's account, counterparty, label, reference and allocation are **editable in place**.
@@ -70,11 +72,46 @@ declared.
 
 **Counts, all re-executed rather than carried:** decisions **13, not 12** (`D-3b` is a full row);
 tolerance-zero **13 inherited but only 11 ever carried by id** — two boundaries had silently dropped
-out of P11's package and are **restored here** (`P11-F-13`); blockers **18 → 20**, with **2 discharged
-by evidence arriving** (`B-01`, `B-12`) and **0 by argument**; errors **29 ids / 28 errors**.
+out of P11's package and are **restored here** (`P11-F-13`), **and `T0-14` is added by the `S8`
+re-run, taking the set to 14 with 0 resolved**; blockers **18 → 20**, with **1 discharged
+by evidence arriving** (`B-01`), **1 CLOSED by completed work** (`B-18`), **0 by argument**, and
+**18 open** — `B-12` was discharged on *publication* when its condition was *contract establishment*,
+and `B-17` was closed on a **source-line** fact presented as deployed-estate evidence; **both
+re-opened** (`X-C1-C-05`, `X-C1-C-02`); errors **29 ids / 28 errors**.
 
-> **Nothing is closed that was open. `D-10` (authorise CORR1) is discharged by this run. The gate has
-> not moved.**
+> **Net: one blocker closed, two re-opened, thirteen tolerance-zero boundaries unresolved. `D-10`
+> (authorise CORR1) is discharged by this run. The gate has not moved, and one attempt to move it was
+> withdrawn by P11's own commissioned review.**
+
+## 1a-bis. THE `S8` RE-RUN — read this immediately after §1a
+
+**After the AAS-03 challenge found P11 had read a superseded `P08` artefact, P11 ran the same check
+across all ten peers.** `P11_S8_SUPERSESSION_RERUN_CORR1.md`.
+
+> ### **`6 of 10` peers carried a later artefact P11 had not consumed.** Not two.
+
+| Peer | Missed artefact | Consequence for this pack |
+|---|---|---|
+| **`P06`** | `70_P06_P11_SUPPLEMENTAL_CRITICAL_RISK_HANDOFF.md` | **`om_data_remove` is INSTALLED on a real Odoo 19 database in this estate** — unfiltered `DELETE FROM` across bank statements, payments, journal entries, journal items, reconciliations **and the audit trail**; **no server-side authorisation anywhere on its RPC chain**; **17 copies**, three rebranded *SMEsPlus Remove Data*. A first-party remediation module states the path **has already been run**. **`P11-B-21` `CRITICAL`, `T0-14`** |
+| **`P09`** | `S18_` **and** `S23_` | *"Nets to zero"* — carried by P11 — is **withdrawn by its author**: the net is **`+3,595,851.11`, a sign-inverted CREDIT**. And **no `P09` mechanism claim describes a running system** (v16/v19 deployments, v18 source). **`P11-B-22`, `P11-B-23`** |
+| **`P03`** | `37_P03_SCOPE02_P11_HANDOFF.md` | **Three further decisions routed to P11 by name** — `D-13`, `D-14`, `D-15` |
+| **`P05`** | `57_P05_HANDOFF_COMPLETENESS_V2.md` | `HE-08` re-opened; `HE-09` becomes a **fifth** process requiring `D-5` |
+| **`P08`** | `52_…_V2` | The `D-5` `C`→`A` upgrade **withdrawn** (§1a) |
+| **`P10`** | `71_…` | `D-5` coupled to `T0-13` and `P10-D-02` |
+
+**One genuine convergence emerged** — **`P11-C-09`**: `P06`, `P07` and `P08`, independently and with
+separate evidence, each require **an identity, a date and a reversal link** of a settlement event.
+**`P06` instructs that P11 carry it as one requirement, not three.** It is the same object as `D-5`,
+approached from the settlement side, and it takes `D-5` from **five dependent processes to eight**.
+**It motivates the decision; it does not evidence the absence.**
+
+**Two peer vetoes now bind P11's method** — `P06 AASP-VETO-04` (no aggregating negatives across
+processes until each peer declares its addons-path population: P06 searched **791**, the full v18
+distribution is **1752**) and `P09 AAS+-VETO-04` (no P09 mechanism claim relied on until
+version-matched). **Both accepted. `P11-B-24`.**
+
+> **Every one of these was reachable at SHAs P11 had already consumed, behind a one-line command.
+> The re-run made this pack larger, later and worse, and it is the most valuable hour of the round.**
 
 ## 1b. The joint position across three processes — stated as three halves, never as one figure
 
@@ -255,20 +292,50 @@ The two critical ones are the ones that matter:
 
 # TERMINAL STATE
 
-> ## `HOLD — P11 CORR1 REQUIRED`
+> ## `HOLD — P11 CORR2 REQUIRED`
 >
 > **This is deliberately NOT `READY FOR BOSS ACCOUNTING FINAL GATE`.**
 >
-> That terminal state presupposes a reconciliation. **No reconciliation of `P01`–`P10` has occurred**,
-> because at synthesis time none of them had published, and six published during the session — two
-> already moving past the SHA this session read. Declaring readiness over that would be `PARTIAL`
-> wearing `PASS`'s label, which the constitution forbids in terms.
+> That terminal state presupposes a reconciliation. **A first-pass reconciliation of `P01`–`P10` HAS
+> now occurred** — CORR1 consumed all ten handoff packs, which `P11#04` could not, because at that
+> synthesis time none of them had published. **It is not yet a reliable one.** CORR1 read the
+> **earliest** handoff pack of `P08` and of `P10` where **later, superseding** ones existed, and built
+> its headline on a claim the superseding version withdraws. The same check has **not** been run
+> against the other eight peers (`S8`). Declaring readiness over that would be `PARTIAL` wearing
+> `PASS`'s label, which the constitution forbids in terms.
 >
-> **What IS ready for the Boss** is a decision pack: ten named decisions, four of which cost hours or
-> minutes and none of which is blocked on any peer process.
+> **What IS ready for the Boss** is a decision pack: **16 named decisions — a declared floor, not a
+> total** — four of which cost hours or minutes and none of which is blocked on any peer process.
+> `D-5` is now **coupled to `T0-13` and `P10-D-02`** and must be sequenced `T0-13` first (`P10` `71_`).
 
 **Not declared:** `PASS` · `APPROVED` · converged · frozen · merged · build authorised ·
 implementation authorised · any gate movement · any Team hand-off.
 
 **No SMEsPlus or reference source code was read for modification, and none was modified. Nothing was
 merged. Nothing was deployed.**
+
+
+---
+
+## FINAL COUNTS — executed at `CP-P11CFINAL`, `2026-09-05`
+
+| Population | Count | Movement this round |
+|---|---|---|
+| Peers consumed | **10 of 10** | 4 → 10 |
+| **Peer artefacts** consumed | **16** | 10 → 16 (`S8`) |
+| Blockers registered | **24** | 18 → 24 |
+| Blockers open | **22** | — |
+| `CRITICAL` blockers | **2** (`B-21`, `B-17`) | 1 → 2 |
+| Blockers closed by completed work | **1** (`B-18`) | — |
+| Blockers discharged by evidence | **1** (`B-01`) | — |
+| Tolerance-zero boundaries | **14** · **`0` resolved** | 13 → 14 |
+| Boss decisions | **16 — a declared FLOOR** (`D-1`…`D-15` + `D-3b`) | 12 → 13 → 16 |
+| Decisions decided by P11 | **`0`** | unchanged |
+| P11 errors registered | **34 ids** | 29 → 34 |
+| Cross-process convergences | **1** (`P11-C-09`) | 0 → 1 |
+| **P11 claims withdrawn this round** | **2** | 0 → 2 |
+| Exit criteria met | **`0` of 8** | unchanged |
+
+> **Two withdrawals and one convergence is the round's true result.** The withdrawals were found by
+> controls P11 commissioned against itself; the convergence was found by the re-run those controls
+> forced. **Nothing here moves the gate, and one attempt to move it was reversed.**

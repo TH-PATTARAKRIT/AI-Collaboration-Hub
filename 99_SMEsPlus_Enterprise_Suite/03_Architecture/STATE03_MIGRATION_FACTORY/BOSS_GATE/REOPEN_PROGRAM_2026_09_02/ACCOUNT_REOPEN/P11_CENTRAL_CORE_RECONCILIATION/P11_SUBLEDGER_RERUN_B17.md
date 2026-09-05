@@ -35,6 +35,11 @@ label, reference and cost allocation are **editable in place**."*
 
 > ### `S3` — *"detail is immutable once posted"* — **fails for every structure whose detail is journal items.** That is AR, AP, Bank, Tax and Settlement. It is not a per-row finding; it is a property of the substrate.
 
+> ### SCOPE DEFECT IN THIS INPUT — `C-02`, `2026-09-05`. **This file's `B-17` closure does not hold as written.**
+> The `S3` statement above is a `P08` **source-line (18.0)** finding, and P11 attributed it to *"`P08` over the **declared** 22-root set"*. `P08` `52_…_V2` forbids exactly that crossing: **"Every `P08` source statement is 18.0; every deployed count is 16.0 or 19.0. *No deployed database matches the source line.* Any peer combining the two as one fact must re-read it as two facts with two scopes."**
+>
+> **What survives:** the re-run's **logic** (the stated rule applied as stated) and its **direction** (3 unqualified → 0). **What does not:** the claim that `S3`'s failure is established over the deployed estate. `P11-B-17` is **RE-OPENED** pending the two-scope re-read.
+
 ## 3. The re-run, against the rule as stated
 
 | Structure | `S1` | `S2` | `S3` | `S4` | Verdict under the **stated** rule |

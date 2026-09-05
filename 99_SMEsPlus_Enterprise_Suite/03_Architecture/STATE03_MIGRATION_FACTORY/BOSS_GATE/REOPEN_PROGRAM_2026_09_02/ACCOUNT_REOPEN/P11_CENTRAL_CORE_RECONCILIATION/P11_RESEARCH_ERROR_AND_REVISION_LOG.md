@@ -740,3 +740,128 @@ positive control (`'Corrected'`) that returned **0** — the control itself was 
 unreliable and was discarded before any conclusion was drawn. **That is the control doing its job**,
 and it is the fourth time in this package that a pattern would have produced a confident wrong answer
 without one.
+
+
+---
+
+## `P11-E-30` — I edited the package while my own commissioned review was reading it
+
+**CORR1, `2026-09-05`.** `smeplus-independent-review-is-the-discovery-engine` states the rule in four
+words: **freeze the package before review opens.** Between commissioning the AAS-03 CORR1 challenge and
+receiving it, I committed `aca1eea`, `9afa651` and `12713d9` — including **closing the round's only
+`CRITICAL`**.
+
+**Consequence, not hypothetical.** The panel reviewed `11f473f`. Its findings about `B-17` and `B-12`
+therefore address a state I had already moved past, and its coverage of everything after `11f473f` —
+which includes the two closures that did **not** survive — is **incomplete by construction**. The two
+defects that most needed independent eyes were the two the reviewer could not see.
+
+**And it made the review look better than it was.** A reader comparing the challenge to the package
+would find `B-17` already closed and conclude the finding was stale. It was not stale; it was
+**unreviewed**.
+
+**Rule, restated so it binds me and not only my reviewers:** once a challenge is commissioned, the
+package is **frozen at a named SHA** until the challenge returns. Corrections are staged and applied
+**after**. If work genuinely cannot wait, the challenge is **re-commissioned at the new SHA** — it is
+not merely annotated.
+
+## `P11-E-31` — I quoted a peer's refusal to take a favourable reading, and then took it
+
+**CORR1, `2026-09-05`.** The round's headline was `D-5`'s evidence class moving `C` → `A`, which I
+called *"the highest-value change in this matrix."* It rested on `P08`'s *"`A VERIFIED ABSENCE` across
+all 22 declared roots"* — read from `25_P08_CORE_RECON_HANDOFF_PACK.md`.
+
+`52_P08_CORE_RECON_HANDOFF_PACK_V2.md` **supersedes `25_` and says so in its own first line.** In `52_`
+the same peer narrows its own base to *"the business record, per channel — absent as a **platform
+property** | FACT VERIFIED, base narrowed."* **P08 declined the strong reading. I quoted the sentence
+they wrote before declining, and published the reading they had refused.**
+
+**This is not a citation error.** The branch was right, the SHA was right, the quote was verbatim. The
+**file** was superseded. `P11-F-08` already recorded that *"a citation to a pinned commit is perfectly
+reproducible and may be perfectly wrong"* — and I then committed the same defect **in the direction
+that flattered my own result**, which is the one direction the rule exists to guard.
+
+**Withdrawn** from `ACCOUNTING_BOSS_FINAL_GATE_PACK.md` §1a. Evidence class returns to **`C`**.
+
+## `P11-E-32` — a corrected register that kept its uncorrected sentence
+
+**CORR1, `2026-09-05`.** `P11_BLOCKER_REGISTER_CORR1.md` carried *"the CRITICAL (`B-17`) is deliberately
+untouched"* for roughly an hour **after** `B-17` had been re-run and closed. Both statements were in
+the file at once.
+
+**Class: `P11-E-01`** — a headline outliving the table beneath it. **Fourth instance in this package**,
+and the first to occur inside the register that exists to prevent it. **The remedy is not vigilance:**
+when a row's status changes, every prose sentence naming that id is re-read in the same edit. Recorded
+as a standing check in `P11-G-03`.
+
+---
+
+## `CP-P11C09` – `CP-P11C11` — the review chain, recorded
+
+| Checkpoint | Artefact | Result |
+|---|---|---|
+| `CP-P11C09` | `P11_AAS03_CORR1_CHALLENGE.md` | **`CONTRADICTED`** · 18 findings, 3 `CRITICAL`, 18 accepted, 0 disputed |
+| `CP-P11C10` | `P11_AAS_PLUS_CORR1_CONSOLIDATION.md` | **`NOT CONVERGED — P11 CORR2 REQUIRED`** · `VETO-01` **upheld and widened**, `VETO-02` upheld |
+| `CP-P11C11` | `P11_PMO_CORR1_REVIEW.md` | **`RECOMMEND HOLD`** · `0 of 8` exit criteria · gate moved falsely for ~90 minutes and was caught |
+
+> **`0 disputed` is once again uninformative about deference, not reassuring** — and this round supplies
+> the evidence for reading it that way, since the finding I accepted fastest was the one that cost me
+> the round's best result.
+
+---
+
+## `P11-E-33` — an unscoped global replace silently destroyed the convention this package invented
+
+**CORR1, `2026-09-05`, `CP-P11C13`.** Renumbering three decisions, I ran a two-stage rename across
+**every `.md` in the package** using a temporary `@` marker, then stripped it with
+`t.replace("@\`","\`")`.
+
+**`@\`` is not a marker. It is the `value @ owner-SHA` two-stamp convention** — `P11-G-02`, written by
+this package to keep a peer's half of a cross-party figure attributable and staleness-detectable.
+The replace deleted the `@` from **five files that contained no decision id at all**:
+
+```
+- `SMEsPlus`@`88f52cd` and `design/inventory-mti-ruling-conformance-…`@`bd096ff`
++ `SMEsPlus``88f52cd` and `design/inventory-mti-ruling-conformance-…``bd096ff`
+```
+
+**Class: an unscoped edit — the write-side twin of `P11-E-28`'s unscoped read.** Every prior instance in
+this package is a *pattern that failed to fire*. This one is a **pattern that fired everywhere**, and
+it is more dangerous: an inert pattern returns a suspicious zero, while an over-broad one returns
+**silent success on files nobody was looking at**. The rename it was performing worked perfectly.
+
+**Caught by the tool report, not by intent.** The script printed nine filenames when four were
+expected. **Five names I could not explain is the only reason this was found** — and `git diff` was
+then the authority, not memory.
+
+**Repaired against `HEAD` rather than by re-running a pattern.** A blind repair of every `` `` `` was
+rejected: **double backticks legitimately exist at `HEAD`** (escaped code spans), so a global reverse
+would have corrupted correct text to fix corrupted text. Each occurrence was restored from its own
+30-character context in `HEAD`, and the control is exact: **`@\`` counts in the working tree now equal
+`HEAD` in all five files.**
+
+**How to apply.** Never run a package-wide replace on a token you have not first **counted**. The
+count is one command, it takes a second, and it converts "I assume this string is mine" into a
+denominator. **Scope the write to the files the read identified** — here, the four files `grep -rl`
+had already named.
+
+## `P11-E-34` — I published a decision id with a hole in it, and an executed count caught it
+
+**CORR1, `2026-09-05`.** `P03`'s three routed decisions were registered as **`D-14`, `D-15`, `D-16`**,
+taking the population from 13 to 16. **There is no `D-13`.** The thirteenth decision is **`D-3b`**,
+which carries a letter rather than a number, so the ids run `D-1`…`D-12` + `D-3b`, and the next free
+number is **`D-13`**.
+
+**Published in four files before the count was run.** A reader auditing the pack would have found 16
+claimed, 15 numeric ids present, and a gap at 13 — and would have had to decide whether a decision had
+been **lost** or merely misnumbered. That is precisely the ambiguity `P11-F-13` describes for the two
+tolerance-zero boundaries that silently left the package.
+
+**Caught by executing the count rather than asserting it** — `grep -o '\`D-[0-9]*\`' | sort -u` — the
+last check before commit. Renumbered to **`D-13`, `D-14`, `D-15`**; the population is 16 rows over
+contiguous ids plus `D-3b`.
+
+> **Both errors in this pair were caught in the final ten minutes, by two controls that cost one
+> command each.** Neither was caught by reasoning, and neither would have been caught by re-reading.
+> **`P11-E-34` is also the fourth count in this package that was wrong in the direction that made the
+> package look tidier**, and the first found before publication.

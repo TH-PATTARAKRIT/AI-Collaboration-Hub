@@ -69,9 +69,17 @@ directions at once**:
   overhead credited to production and the actual overhead debited back, with **no variance account and
   no report that shows it**."*
 - **And the route P11 and the Asset baseline both believed carried attribution does not.** `P04`:
-  the cost-centre attribution route **nets to zero** — *"both sides of a depreciation entry carry the
+  the cost-centre attribution route ~~**nets to zero**~~ — *"both sides of a depreciation entry carry the
   same attribution and the two amounts cancel."* Where an asset carries **no** attribution, the two
   sides can pick up **different** ones and leave *"a meaningless residue."*
+
+  > **CORRECTED `2026-09-05` by `P09` `S23_P09_POST_PUBLICATION_CORRECTION.md` (`S8` re-run).**
+  > ***"Nets to zero" is withdrawn by its own author, re-measured before acceptance.*** In deployed
+  > data the net is **`+3,595,851.11` — a sign-inverted CREDIT**, annihilation **98.24 %** over
+  > **17,444 / 17,488** records. *"Depreciation makes the cost centre look more profitable … materially
+  > worse than zero, and no document in the package said it."* `P09` names the cause as
+  > *"an asset-derived subset, not the population — **the programme's own denominator rule, missed
+  > again**."* **The near-cancellation is real; the zero is not.** `P11-B-22`.
 
 **Correction to P11:** `DC-09` stands as a risk of the corrective work, but P11's framing —
 *"the risk is created by the correct action"* — was incomplete. The measured present state is

@@ -19,11 +19,13 @@ Log anchor `P11#04` = `7f701cd` · this run produces `P11#05`
 | `CP-P11C06` | Tolerance-zero population reconciled | **COMPLETE — EVIDENCE VERIFIED** | **11 by id vs 13 inherited — `P11-F-13`**; 2 restored, 5 strengthened, 0 resolved |
 | `CP-P11C07` | 12 Boss decisions reconciled | **COMPLETE — EVIDENCE VERIFIED** | **13, not 12**; `D-10` discharged; `D-1`/`D-5` materially advanced |
 | `CP-P11C08` | Changed peer SHAs consumed delta-only | **COMPLETE — EVIDENCE VERIFIED** | **10 of 10 consumed; 6 first-time; 4 delta-only; 0 rereads** |
-| `CP-P11C09` | Four-layer AAS-03 challenge | **IN PROGRESS** | one independent panel commissioned against `43195fd` + CORR1 set |
-| `CP-P11C10` | AAS+ CORR1 consolidation | **IN PROGRESS** | depends on `CP-P11C09` |
-| `CP-P11C11` | PMO CORR1 review | **IN PROGRESS** | depends on `CP-P11C10` |
-| `CP-P11C12` | Boss Final Gate Pack corrected, lineage preserved | **PARTIAL — RESUMABLE** | §1a CORR1 delta landed; §26 blockers and the AR/AP/analytic rows landed. **Remaining: fold in the AAS-03/AAS+/PMO results once `CP-P11C09` returns** |
-| `CP-P11CFINAL` | Commit / push verified; auto-resume current | **IN PROGRESS** | — |
+| `CP-P11C05` | *(corrected)* | — | **`B-17` and `B-12` RE-OPENED by `CP-P11C09`.** Net: **1 closed (`B-18`) · 1 discharged (`B-01`)** |
+| `CP-P11C09` | Four-layer AAS-03 challenge | **COMPLETE — `CONTRADICTED`** | 18 findings · **3 `CRITICAL`** · 18 accepted · 0 disputed. Found the round's headline rested on a **superseded** `P08` artefact |
+| `CP-P11C10` | AAS+ CORR1 consolidation | **COMPLETE — `NOT CONVERGED · P11 CORR2 REQUIRED`** | `VETO-01` **upheld and widened**, `VETO-02` upheld; addendum after `CP-P11C13` |
+| `CP-P11C11` | PMO CORR1 review | **COMPLETE — `RECOMMEND HOLD`** | **`0 of 8`** exit criteria; *"the gate moved falsely for ~90 minutes and was caught"*; addendum after `CP-P11C13` |
+| `CP-P11C12` | Boss Final Gate Pack corrected, lineage preserved | **COMPLETE — EVIDENCE VERIFIED** | §1a `D-5` upgrade **withdrawn**; **new §1a-bis** carries the `S8` result; terminal state restated; final counts executed |
+| `CP-P11C13` | **`S8` supersession re-run across all ten peers** | **COMPLETE — EVIDENCE VERIFIED** | **`6 of 10`** peers carried a later artefact P11 had not consumed; one chain **two deep**; **+4 blockers, +1 tolerance-zero, +3 decisions, +1 convergence, 1 further P11 claim withdrawn**. Positive control caught an inert loop **before** publication |
+| `CP-P11CFINAL` | Commit / push verified; auto-resume current | **COMPLETE** | `P11#05` |
 
 ## 2. Prior session checkpoints — preserved, not restarted
 

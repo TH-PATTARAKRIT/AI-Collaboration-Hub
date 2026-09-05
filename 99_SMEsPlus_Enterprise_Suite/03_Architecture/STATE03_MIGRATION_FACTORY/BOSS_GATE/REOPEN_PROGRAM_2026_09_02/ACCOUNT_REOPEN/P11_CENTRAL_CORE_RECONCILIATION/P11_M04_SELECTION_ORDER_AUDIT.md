@@ -27,6 +27,7 @@ unit determine what P11 looked at first, or looked at at all?*
 | `S4` | **Directory / path-set order** | **NO, with a caveat** | P11's package path was self-chosen (`P11-F-01` records that the programme declared none), so no register ordered it. **But P11's own output path is one of seven divergent ones** — the absence of a register is why, not its ordering |
 | `S5` | **Size ordering** | **YES, latterly** | Ranking by bytes was adopted at `eef2757` **and was itself unit-blind** until `P07` supplied the unit clause. Corrected at `7f701cd` |
 | `S6` | **Module / installed-list order** | **NOT APPLICABLE** | P11 reads no reference source and enumerates no module list. Recorded so the negative is bounded rather than absent |
+| **`S8`** | **Intra-peer artefact version order** | **YES — `C-01`/`B-01`; the round's most consequential defect** | **The branch SHA was right; the artefact inside it was superseded.** `P08` publishes 2 handoff packs, `P10` publishes 3; **P11 read the earliest of each.** `P08` `52_…_V2` **withdraws the claim P11 built its headline on**; `P10` `71_` §1 is titled *"What Changed for P11"* |
 | `S7` | **Evidence-class order** (`PEER-PUBLISHED` before `PEER-WIP`) | **NO — and it is a positive** | The class rule excluded uncommitted peer work **on a declared principle** (no SHA ⇒ not citable), not on availability. A principled exclusion is not a silent ordering |
 
 ## 3. `P11-F-12` — peer handoff order silently selected P11's reconciliation depth
@@ -57,10 +58,13 @@ the choosing, exactly as `P11-M-04` describes, on the surface P11 did not think 
 
 **Corrective, and it is not "consume peers faster":**
 
-> **`P11-G-04`** — where peers publish asynchronously, **rank the peer population by relevance to the
-> consuming process's own open items before consuming any of them**, and record which peers are
-> *unavailable* rather than merely *unconsumed*. An unpublished peer is a **declared gap**; a peer
-> consumed only because it published first is an **undeclared selection**.
+> **`P11-G-04` v2 — corrected by `B-01`.** Rank the peer population by relevance before consuming any
+> of them, and record which peers are *unavailable* rather than merely *unconsumed*.
+>
+> **AND — the correction — the rule binds at ARTEFACT level, not peer level: record every consumed
+> artefact by PATH and SHA, and check every peer for superseding versions of the artefact consumed.**
+> v1 bound at peer level and **would not have prevented `C-01`** — ranking peers by relevance still
+> selects the wrong file inside the right peer.
 
 ## 4. Findings whose evidence base was ordering-selected
 
@@ -75,8 +79,8 @@ the choosing, exactly as `P11-M-04` describes, on the surface P11 did not think 
 
 | Measure | Result |
 |---|---|
-| Ordering surfaces audited | **7** |
-| Surfaces where silent selection occurred | **3** (`S1`, `S2`, `S5`) |
+| Ordering surfaces audited | **8** *(7 + `S8`, added by challenge)* |
+| Surfaces where silent selection occurred | **4** (`S1`, `S2`, `S5`, **`S8`**) |
 | New findings | **1** — `P11-F-12`, peer handoff order |
 | New governance positions | **1** — `P11-G-04` |
 | Findings withdrawn | **0** |
