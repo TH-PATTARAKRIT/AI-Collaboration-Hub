@@ -87,6 +87,8 @@ They are listed separately because the distinction is the whole point of the con
 
 | `REV-M-08` | Not an error — a control outcome worth recording. P07 declined to count a peer's referred instance **on the class of the evidence, without any suspicion about its content**. The identifier in that referral was in fact wrong, and the refusal is what left room for its owner to correct it. P04's generalisation, adopted: *a discipline that only fires when you suspect a problem is not a discipline.* A control conditioned on suspicion is unavailable in exactly the case that matters. | — | Recorded as the rationale for why the proposal's obligations are obligations rather than judgement calls. | — |
 
+| `REV-M-09` | Not a P07 error — a control outcome. P07 twice declined a figure for P11's half: once from P04 relaying it (2), once holding at P11's own direct statement (`≥1`). P11 then enumerated it and reported **5**, correcting its own published 2. Both the relay and the original were wrong in the same way, one step apart: **a figure inherited from a peer carries that peer's execution status, and neither party can see it.** P07 verified all five ids present at source before adopting. | — | Recorded as the operative warrant for obligation 6 of the method proposal. | — |
+
 Two of the reviewers' findings **escalated** the severity of the session's own headline
 findings rather than reducing them (`P07-F-01`, `P07-F-42`), and both were reached
 independently by two reviewers. The session's own severity assignment was too low in both

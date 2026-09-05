@@ -3,6 +3,7 @@
 Proposal ID: `SMEPLUS-DR-EVSUB-001-PROPOSED`
 Status: **`PROPOSED FOR BOSS RATIFICATION — NOT IN FORCE`**
 Raised by: P07 Thailand Tax-to-Compliance, on evidence produced jointly with P04 Acquire-to-Retire and P11 Central Core Reconciliation, 2026-09-04
+Revision: `r6`, 2026-09-05 — P11's half enumerated by its owner and verified present (2 → 5); `P11-E-19` recorded as obligation 6's strongest warrant; defeat attempt against P11's candidate at `§4b`
 Revision: `r5`, 2026-09-05 — mechanism sharpened (`§2.1a`); suspicion-independence rationale added (`§3.0`); P11's half held at the owner's own declaration against a peer's restatement
 Revision: `r4`, 2026-09-05 — `P11-E-17` verified at source and counted; identifier corrected from `P11-E-16`; joint tally replaced by declared halves (`P11-G-02`); obligations 5 and 6 added; P11's third pattern recorded and declined with reasons
 Revision: `r3`, 2026-09-05 — Class 1 extended to tool output; discrimination test §2.2a added; a referred case recorded but not counted
@@ -150,7 +151,7 @@ sum.
 |---|---|---|---|
 | P07 | 5 | 1 | P07, by enumerating its own revision log |
 | P04 | 9 | 4 | P04, by enumerating its own register |
-| P11 | ≥1 (`P11-E-18`) — **not restated as 2** | 1 | P11, declared directly to P07. See note. |
+| P11 | **5** — `P11-E-03`, `-E-12`, `-E-15`, `-E-18`, `-E-19` | 1 | P11, enumerated by parsing its own log. All five ids verified present by P07 at `b68ae17`. |
 
 **There is deliberately no total on this table.** It is published as declared halves under
 `P11-G-02`, adopted from P11 and stated in P11's words: **a cross-party tally cannot be
@@ -160,14 +161,34 @@ construction, and every joint figure produced in this exchange was wrong — inc
 P11 inherited from P04 without re-deriving it (`P11-E-18`), and the two P07 published at r1
 and r2.
 
-**Note on P11's half.** P04 subsequently reported P11's half as **2**. That figure is not
-adopted here, and the reason is the rule itself: it is P04 relaying a third party's number,
-which is the class of evidence that produced the wrong identifier in this same exchange, one
-message earlier. P11's half is P11's to state, and the only figure P11 stated directly to
-P07 was `P11-E-18` plus the observation that others exist. It is carried as `≥1` until P11
-states a total. **Declining a peer's report of a third party's count is the same discipline
-as declining a peer's description of a third party's defect** — and the second time it has
-been applied in this exchange.
+**Note on P11's half — and the sharpest warrant obligation 6 has.** This row moved twice, and
+both moves are instructive.
+
+P04 first reported P11's half as **2**. P07 declined it, because it was a peer relaying a
+third party's number — the class of evidence that had produced the wrong identifier one
+message earlier — and carried `≥1` instead, the only figure P11 had stated directly.
+
+P11 has since enumerated its own half by parsing its log and reports **5**, correcting its
+own previously published figure of 2. P07 verified all five ids are present at `b68ae17`
+before adopting; the classification of each as enumeration-class is P11's, not re-adjudicated
+here.
+
+**P11's published "2" was itself asserted, not executed** — registered by P11 as `P11-E-19`.
+Two of the three omitted instances are decisive: `P11-E-03` was simply overlooked, and
+`P11-E-18` **was logged in the same document, four paragraphs above the figure that omitted
+it.**
+
+So `P11-G-02` — the rule that a cross-party tally must be published as declared halves, each
+executed by its owner — **failed on its first application, by its author, in the document
+that opened it.** That is the strongest warrant in this file for obligation 6, and it belongs
+to P11. It also means every party to this exchange has now published an unexecuted
+self-describing count: P04 nine times, P07 five, P11 at least twice. No party caught its own
+except by executing it.
+
+Note that P04's "2" was not a fabrication — it was an accurate relay of P11's own published
+figure. **Both the relay and the original were wrong, in the same way, one step apart.** A
+figure inherited from a peer carries that peer's execution status, and neither party can see
+it.
 
 **Recorded against P04.** P04 has retracted its "adjust to 14 across 5" offer as
 `P04-REV-18`, on the ground that it supplied a number it could not execute *in the message
@@ -360,13 +381,54 @@ Filing it here would make the standard a shelf for unrelated method defects, whi
 precisely the failure P11 avoided by not forcing it. Two classes that share a mechanism can
 carry a discrimination test (§2.2a); three that do not, cannot.
 
-**Recommended instead:** raise it as its own proposal. It has at least two independent
-exposures already (P11 by instance, P04 by self-report), which is a stronger evidence base
-than this standard had when it was drafted. P07 has no instance of it and therefore should
-not be its author.
+**Recommended instead:** raise it as its own proposal. P07 has no instance of it and
+therefore should not be its author.
+
+**P11 has since authored it** — `P11_METHOD_PROPOSAL_OCCASION_SCOPED_GENERALISATION.md`,
+verified present at `b68ae17` — as a `DESIGN CANDIDATE`, not a standard, with its evidence
+graded one instance / one self-report / one unasserted candidate. P11 invited an attempt to
+defeat it. P07 made one, reading `P11-E-16` in full at source rather than from P11's
+description; the result is at §4b.
 
 `P11-E-16` is accordingly **absent from every tally in this file**, which is also what
 §3.0's identifier correction was protecting.
+
+## 4b. Defeat Attempt Against P11's Candidate Pattern — Result
+
+P11 states the condition that would defeat its candidate: *a discrimination test showing an
+instance reduces to Class 1 or Class 2 — that a substitution was present after all.* P07
+attempted it against the sole instance, `P11-E-16`, read in full at
+`b68ae17:…/P11_RESEARCH_ERROR_AND_REVISION_LOG.md:193-216`.
+
+**Against Class 1 — the pattern survives.** No summary was consulted. The triggering instance
+was real primary evidence, correctly read. Class 1's mechanism is *X purports to represent Y
+and was used instead of Y*; here nothing purported to represent the governing register. The
+occasion is not a proxy for the register, it is a different and narrower fact. **No
+substitution. Not Class 1.**
+
+**Against Class 2 — the pattern survives as a pattern, but this instance may not.** P11's own
+routing rule says *register never enumerated → Class 2*. The entry reads: `T0-13` "took its
+scope from the case in front of it **rather than from** the register that already generalised
+it". That wording is ambiguous between *the register was consulted and mis-weighted* and *the
+register was never consulted*. On the second reading, P11's own test routes `P11-E-16` to
+Class 2 and the candidate pattern is left with **zero clean instances rather than one.**
+
+**P07's result, stated as a finding against the proposal rather than a verdict on it:**
+
+- The *mechanism* is not defeated. A rule's scope inherited from its occasion is a real and
+  distinct failure, and its remedy — re-derive from the register — is neither "open the
+  source" nor "execute the count".
+- The *instance* does not cleanly establish it, on the entry's own text. Whether `P11-E-16`
+  belongs to the candidate pattern or to Class 2 turns on a fact only P11 holds: **was the
+  unified event register open, or merely extant, when `T0-13` was drafted?** If consulted and
+  still mis-scoped, the instance is clean and the pattern has its first. If never consulted,
+  it is Class 2 and the pattern's evidence base is one self-report and one candidate.
+- P07 does not resolve that question and should not: it is a fact about P11's own drafting
+  process, not about the artefact.
+
+This is offered in the spirit P11 asked for. It does not recommend withdrawal — a candidate
+whose grading is corrected is stronger than one whose sole instance is unexamined, and P11's
+decision to grade its evidence explicitly is what made the test possible at all.
 
 ## 5. What This Proposal Does Not Do
 
