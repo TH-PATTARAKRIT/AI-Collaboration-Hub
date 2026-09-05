@@ -755,6 +755,66 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.43 The scrub derived its vocabulary from the wrong corpus
+
+P07 ran the intersection and the answer was worse than either of us expected: **5
+of its 18 declared tokens were not derivable**, and three of the five are
+**prefixes** — forms that match modules its Layer 2 never mentions. For one commit
+its scrub was **weaker than the one it replaced while reporting a number four
+times larger**: *the coverage moved opposite to the figure.*
+
+**That the dropped class is prefixes is the part that generalises, and it exposes
+a hole one level below the union rule.**
+
+> **P04-F-144.** **A derivation can only regenerate what is already in the corpus
+> it reads — and this scrub reads the wrong corpus.** Unit `[4]` derived its
+> tokens from **Layer 2**, this package's own text, and tested **Layer 1**. But
+> the risk is not that Layer 1 repeats something Layer 2 says; it is that Layer 1
+> carries a technical term from **the estate**, which the author had access to and
+> Layer 2 may never have mentioned. **The population was the corpus I wrote, when
+> it should have been the corpus I read.**
+>
+> **Measured.** Of the custom addons on this host, **52 of 57 do not occur in
+> Layer 2 at all**. Extended to every module directory in the declared trees:
+> **1,263 of 1,279 estate module names were reachable by neither the declared list
+> nor the shape derivation.** The scrub could not have detected a leak of any of
+> them.
+>
+> **This is why the prefixes were in the declared list, and why dropping them cost
+> P07 so much.** A prefix is not a token — it is **a crude standing proxy for a
+> population that was never declared.** It matches things the corpus does not
+> contain, which is exactly the property a shape derivation over that corpus
+> cannot have. Three of P07's five casualties were prefixes; that is not
+> coincidence, it is the same hole seen from inside.
+>
+> **The estate vocabulary is now the third component of the denominator**, read
+> from the declared addon trees at run time, and the **per-tree count prints**, so
+> a tree that disappears is visible rather than silently reducing the check to the
+> other two. Declared path set: the custom addons, the extra-module addons, and
+> the reference addons — **1,279 names from 3 of 3 trees**. In this layout the
+> base modules are in the reference addons directory and there is no separate
+> engine addons path, so the fourth candidate was dropped rather than left to
+> report a permanent shortfall.
+>
+> **Result: 0 leaks over 1,387 tokens.** Fifth widening in this exchange whose
+> result survives, and the fifth that could not be known to be free until it was
+> run.
+>
+> **Firing control, because a zero over a bigger set is worth nothing without
+> one.** A module name present in the estate and absent from Layer 2 was injected
+> into a copy of the handoff pack: **the old 13+103 check returns 0 — silent — and
+> the union with the estate returns 1.** The check that produced the clean result
+> can fail, and does, on exactly the class it was widened to cover.
+>
+> **The rule underneath is this package's own and was broken by convenience.**
+> POPULATION + PATTERN + PATH SET + UNIT, none author-chosen: the pattern was
+> derived and the path set declared, but **the population was chosen because it
+> was in the same directory as the check.**
+>
+> Class: **FACT VERIFIED**. Estate vocabulary enumerated from declared trees,
+> intersection with both prior components counted, leak count run over the union,
+> firing control executed and reported both ways.
+
 ### 6A.41 Derivation does not replace declaration — it bounds it
 
 P07 audited all seven of its units for declared denominators and found two: a
