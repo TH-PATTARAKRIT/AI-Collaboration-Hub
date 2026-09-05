@@ -163,10 +163,18 @@ its evidence. Executed this session:
   the same defect as one that returns silence.**
 - Both unranked files are copies of `iTEST02_2026-06-14`, an **earlier** snapshot than the one tested.
 
-**`D-3b` is amended a third time.** The authorisation must now require: **(1)** the client version be
-stated; **(2)** every generation be opened; **(3)** **the population be ranked before selection**.
-Condition (3) is the one that binds — a reader could satisfy (1) and (2) and still build a runtime
-section on a 23-line database, which is exactly what happened to a peer.
+**`D-3b` is amended a third time, and condition (3) gains a clause.** The authorisation must require:
+**(1)** the client version be stated; **(2)** every generation be opened; **(3)** **the population be
+ranked before selection — and the unit ranked by be declared.**
+
+> **The unit clause is `P07`'s (`29a659f`) and it repairs a hole in P11's own rule.** `iSMEs` is largest
+> by **bytes and rows** (155 MB, 447,384 move lines); `iTEST02` is largest by **populated tables**
+> (1,315 against 651) — *the broadest install versus the deepest data set*. **Ranking silently needs a
+> declared unit, which is the defect the ranking rule was invented to fix, one level up.** Without it a
+> reader satisfies all three conditions and still picks the wrong database for a schema question.
+Condition (3) binds hardest — a reader could satisfy (1) and (2) and still build a runtime section on a
+**23-line** database, which is exactly what happened to a peer and cost it a published finding.
+**And (3) without its unit clause binds on the wrong axis.**
 
 **Intake note for the Boss and for `P01`–`P10`.** If peer packages have collectively treated database
 evidence as unavailable, that is a **capability claim across the programme**, and it is testable per

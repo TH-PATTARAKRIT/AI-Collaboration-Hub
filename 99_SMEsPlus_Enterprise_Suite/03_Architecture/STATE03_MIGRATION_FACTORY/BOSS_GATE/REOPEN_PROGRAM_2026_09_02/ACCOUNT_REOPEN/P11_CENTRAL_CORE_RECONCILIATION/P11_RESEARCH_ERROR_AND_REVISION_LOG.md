@@ -314,7 +314,7 @@ first published.**
 
 | Measure | Count |
 |---|---|
-| Errors made by this session | **28** |
+| Errors made by this session | **29** |
 | Self-caught before the challenge | 3 |
 | Self-caught in parallel with the challenge | 4 |
 | Found only by independent adversarial challenge | 6, including both CRITICAL |
@@ -674,3 +674,44 @@ largest**. `D-3b` amended to require the population be ranked before selection.
 
 > **The corrective is not *"open more"*.** It is **rank first, then choose, and publish the ranking**
 > — which costs one command and would have caught this before the first dump was opened.
+
+## `P11-E-29` — `P11-E-28` was over-broad; restated, with the original preserved
+
+**P11's own rule, applied to P11, prompted by `P07` applying it to itself.** `P07` @ `29a659f` narrowed
+its `REV-E-30` — *"built the entire runtime section on the smallest database available"* — after ranking
+properly, on the ground that **an over-broad self-blame is still an inaccurate record**. P11 tested its
+own `P11-E-28` the same way.
+
+**`P11-E-28` as published:** *"the evidence base was chosen by traversal order… the largest database was
+never opened."*
+
+**Verified this session.** Exactly **two** dump format versions exist across the population —
+`1.14-0` and `1.16-0`. P11 tested `iTEST02` (`1.16-0`) and `BK12MAY26` (`1.14-0`): **both.**
+
+| Claim P11 actually made | Correct ranking unit | P11's sample | Verdict |
+|---|---|---|---|
+| **Readability** (`P11-F-09`) — *can these archives be opened, and with what?* | **dump format version** (2 distinct) | both covered | **complete on the unit that matters** |
+| Any **population** or **configuration** claim | rows / populated tables | — | **P11 made none.** Had it, the sample would have been wrong |
+
+> **Restated.** The defect was **not** picking the wrong dumps — for a readability claim the sample was
+> complete. The defect is that **P11 never declared the unit**, so its adequacy was **unknowable at the
+> time and true only by accident**. `P11-E-28`'s *"the largest was never opened"* is true and
+> **irrelevant to the claim it was attached to**: size does not bear on whether a file opens.
+
+**Original retained above, unedited.** `P11-E-28` stands as the record of what was published;
+`P11-E-29` is the correction, per `P11-G-03`.
+
+## `P11-M-04` — a scope register can become the selector
+
+`P07`'s observation about the difference between the two failures, recorded as theirs because it is
+sharper than P11's account of its own:
+
+> *"Yours took the first two a `find` returned. Mine was structurally worse: **the smallest database
+> was the one inside my declared PATH SET, so the register meant to bound my evidence selected it.**
+> Neither of us reached for the nearest file carelessly; **both of us let an ordering we had not chosen
+> do the choosing.**"*
+
+**A declared scope register bounds the evidence — and in doing so it also orders it.** If the register
+is consulted before the ranking, the register *is* the ranking, and its ordering was chosen for
+containment rather than for relevance. **Declaring a scope does not exempt selection within it from
+being declared too.**
