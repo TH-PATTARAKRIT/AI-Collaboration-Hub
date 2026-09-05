@@ -150,17 +150,29 @@ line-level field is populated **nowhere**, including on the one move whose heade
 value. That is exactly the mechanism the finding describes — written only in `create()`, with
 no `write()` override — now observed. Bounded to this database's 23 lines.
 
-### 4.5 `P07-F-51` — REFINED, and partly refuted
+### 4.5 `P07-F-51` — SPLIT into its two claims, and both are stronger for it
 
-The finding said the third-party withholding path is *inert on a fresh install of the
-declared set*, because no account carries the withholding flag and the Thai chart template
-has no column for it. In this database **3 of 586 accounts carry `wt_account = true`**, and
-`account_withholding_tax` holds **10 rows**.
+The finding as published asserted **two different kinds of claim in one sentence** and never
+said which evidence supported which — the shape P04 identified in its own `F-81`. Split, with
+each half on the right kind of evidence:
 
-So the path is **not** inert here. The finding is corrected to: *the shipped localisation
-provisions nothing, and the path requires a manual configuration step the localisation does
-not perform.* This deployment shows an operator performed it. The "inert as shipped" half
-stands; the "cannot work" implication does not, and was never stated but could be read in.
+| Half | Kind | Claim | Evidence | Status |
+|---|---|---|---|---|
+| `a` | **configuration** | The Thai chart template has **no `wt_account` column**, and nothing in the shipped set flags an account. Without a flagged account the withholding-account domain is empty, the certificate wizard's required field has an empty domain, and enabling withholding on any shipped tax raises. | source: `account.account-th.csv` header; `l10n_th_withholding_tax/models/account.py:78-81` | **holds, unchanged** |
+| `b` | **population** | Operators supply the flag. | runtime, **3 of 3 identities**: `iTEST02` 3 of 586, `iSMEs` 1 of 339, `BK12MAY26` 2 of 544 | **holds, and is new** |
+
+The published version rested half `b` on a **single** database — and on `iTEST02`, the
+*configuration* database, which is the wrong kind for a population claim (`§8.3`). Re-run
+across identities it does not merely survive; it **strengthens half `a`**:
+
+> Every deployment examined performed a provisioning step the localisation does not perform.
+> Three independent deployments, three independent operators, the same manual repair.
+
+That is a materially better statement than *"this deployment provisioned it"*, and it was
+unavailable while the two halves shared one sentence. `REV-E-34`.
+
+The correction from the first issue stands: **"inert as shipped" is correct; "cannot work" is
+withdrawn** and was never stated, only readable.
 
 ### 4.6 Two New Findings from the Data
 
