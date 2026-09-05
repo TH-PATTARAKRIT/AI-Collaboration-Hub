@@ -2417,3 +2417,69 @@ member. `P07-U-31` opened to re-run it over the corrected root set.
 general — it was unreachable *by the routes this package had*. P04's contribution was not a
 better answer to the question but **a route that does not need what made the question hard**,
 which is the fourth time in this exchange that the tool has mattered more than the estate.
+
+
+---
+
+## 31. `P07-F-88` Was Run Over Five Identities of Seven — `REV-E-74`
+
+P04 ran the registry route across **six** identities and reported that **the row where its
+control fails is the strongest one**: in a never-transacted v18 install the asset module is not
+installed, so `account.asset` is genuinely absent and the control correctly reports absent.
+
+> **Five identities where the control fires and one where it correctly does not is a better
+> validation than six where it fires** — it shows the instrument distinguishes a real absence
+> from a failed read.
+
+Checking that against `§30`'s run exposed two defects in it.
+
+### 31.1 The denominator, in the section about denominators
+
+**`§30` was run over 5 identities. The census (`§13`) says 7.** `f4a44cce` and `a6664233` were
+omitted — the two never-transacted installs, which by this exchange's own repeated result are
+the most informative rows available. The figure *4,165 model rows across 5 identities* was
+correct as executed and **drawn from a population this package had itself corrected to 7 four
+sections earlier.**
+
+### 31.2 The controls were all positive
+
+`§30` used `account.tax` and `res.company`, and **both fire in every row**. A control that fires
+everywhere proves the read worked; it **cannot distinguish an instrument that reads correctly
+from one that reports `present` for anything asked of it.** P04's run had that discrimination
+and this one did not.
+
+### 31.3 Re-run: 7 of 7, with negative controls
+
+| identity | gen | models | `res.company` (+) | `account.tax.unit` (−) | `withholding.tax.cert` (−) | tenant-shaped |
+|---|---|---:|---|---|---|---|
+| `a1430edc` | v19 | 1,115 | yes | yes | yes | **none** |
+| `f4a44cce` | v19 | 633 | yes | yes | yes | **none** |
+| `1f6338ae` | v19 | 749 | yes | yes | yes | **none** |
+| `66d1b52a` | v19 | 756 | yes | yes | yes | **none** |
+| `551ab874` | v18 | 944 | yes | yes | yes | **none** |
+| **`a6664233`** | v18 | 335 | yes | **ABSENT** | **ABSENT** | **none** |
+| `45a8e08e` | v16 | 601 | yes | yes | yes | **none** |
+
+**7 of 7 identities · 5,133 model rows · 3 generations · zero tenant-shaped models.**
+
+**And the negative controls fire correctly in exactly one row.** `a6664233` is the
+never-transacted v18 lab; neither the tax-unit nor the withholding-certificate module is
+installed there, and the instrument **reports both absent while still finding `res.company`.**
+That is the discrimination `§30` lacked: this instrument distinguishes a real absence from a
+failed read, demonstrated rather than assumed.
+
+**`P07-N-25` and `P07-F-50` are unaffected in direction and strengthened in basis** — the
+re-scoped statement now reads over **seven** registries, not five.
+
+### 31.4 The never-transacted install, for the third time
+
+`f4a44cce` turned a refutation of `P07-F-63` into a positive control. `a6664233` confirmed
+`P07-F-42`'s mechanism where the id ordering differs. Now `a6664233` supplies the negative
+control that validates the registry instrument. P04 reports the same pattern on its own side.
+
+> **A never-transacted deployment is the most informative row in the table, and it is the row
+> most likely to be dropped** — because it looks empty, and because every question one starts
+> with is about what a system does rather than what it ships. Both omissions here were of
+> exactly those two identities.
+
+`REV-M-60`.
