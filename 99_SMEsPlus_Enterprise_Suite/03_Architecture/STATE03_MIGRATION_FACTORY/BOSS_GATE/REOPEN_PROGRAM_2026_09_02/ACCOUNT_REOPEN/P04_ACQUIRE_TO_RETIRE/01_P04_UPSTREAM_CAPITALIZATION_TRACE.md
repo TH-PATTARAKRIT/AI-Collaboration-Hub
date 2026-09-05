@@ -745,6 +745,65 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.15 "27 modules wide" was the size of the gap, not the size of the exposure
+
+P07 closed its widest open item by applying two filters in order — **generation
+first, then the specific claim** — and turned a 20-tree exposure into 2 candidate
+bodies per cited file, all four claims discharged. Its generalisation: **the size
+of a diff is not the size of the exposure.** `P04-B-46` was published as *"27
+modules wide"*, which is the same kind of number.
+
+> **P04-F-114.** **Of the 27 deployed-but-undeclared modules, 9 declare anything
+> on a model this package's findings turn on — and two of the five this package
+> named by name declare nothing at all.**
+>
+> Measured from the deployment rather than from module names: `ir_model_data`
+> rows for each module, resolved through `ir_model_fields.model` and
+> `ir_ui_view.model` into the **business** models each module actually declares
+> fields or views on.
+>
+> **The first instrument was wrong and a control caught it.** Reading
+> `ir_model_data.model` directly gives the model of the *referenced record* —
+> `ir.ui.view`, `ir.model.fields` — not the business model, and it reported that
+> **one** module in the whole database touches `account.move`. After resolution:
+> **28**, and `account_asset` resolves to exactly `account.asset`,
+> `account.asset.group`, `account.account`, `account.move`, `account.move.line`.
+> Both controls are published because the first number was plausible and wrong.
+>
+> | | |
+> |---|---:|
+> | modules deployed and in neither declared root | **27** |
+> | of those, declaring on a model this package's findings turn on | **9** |
+>
+> The nine: `accessories` and `account_invoice_fixed_discount`
+> (`account.move`/`account.move.line`), `sale_fixed_discount` and `scgl_signature`
+> (`account.move`), **`scgl_account_coa_control` (`account.account`)**,
+> `equipment_fleet` (`maintenance.equipment`), `scgl_delivery_cost` and
+> `scgl_stock_fleet` (`stock.picking`), `scgl_product_category_company`
+> (`product.template`/`product.product`).
+>
+> **`scgl_account_coa_control` is the one that matters** and it survives the
+> narrowing: the capitalization designation lives on the **chart-of-accounts
+> account** (`01` §3), and this module declares on `account.account`.
+>
+> **Two of the five modules this package named by name declare nothing on any
+> business model**: `scgl_date_range_auto_period`, which was flagged against the
+> silent re-dating finding, and `journal_entries_report`. **Those flags were
+> name-driven speculation.** They were published as *pointers, not an
+> assessment* — which was the right label — but two of five being wrong is the
+> measure of what a name is worth, and it is now measured rather than hedged.
+>
+> **The bound is one-directional and that must not be lost.** `ir_model_data`
+> covers records carrying an XML id. A module can override a method — `write`,
+> `create`, `_post` — in Python with **no new field and no view**, and declare
+> nothing. So **9 is a floor on what demonstrably touches these models, not a
+> ceiling on what could affect them**; the other 18 are *undemonstrated*, not
+> cleared. `P04-B-46` stays **UNRESOLVED** and its two source-less modules stay
+> **NOT ON THIS HOST**.
+>
+> Class: **FACT VERIFIED** as to the nine, **bounded** as stated. What changes is
+> that the blocker now names **which** modules and **why**, instead of a count.
+
 ### 6A.14 The family list was itself an author-chosen population
 
 > **P04-F-113.** **The 14 families audited at `P04-F-111` were hand-picked from a
