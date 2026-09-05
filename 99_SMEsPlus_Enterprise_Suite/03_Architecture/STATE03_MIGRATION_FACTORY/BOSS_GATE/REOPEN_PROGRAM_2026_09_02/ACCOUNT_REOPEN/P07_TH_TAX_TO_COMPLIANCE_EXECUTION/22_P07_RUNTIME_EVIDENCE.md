@@ -2483,3 +2483,75 @@ control that validates the registry instrument. P04 reports the same pattern on 
 > exactly those two identities.
 
 `REV-M-60`.
+
+
+---
+
+## 32. Disproving a Batch Absence — `P07-F-89`
+
+P04 reproduced `REV-M-60` in its own hands within the hour: it ran six identities against a
+census of eight, and **one of the two it dropped was the never-transacted install.** Two
+packages, same omission, same victim class, independently — which makes it a property of the
+question rather than of either author's sampling.
+
+Its more important report is a failure mode neither package had recorded:
+
+> A **batch harness reported three identities absent that individual runs disprove.** In a loop,
+> three returned *no `ir_model` block*; run singly, the same command on the same files returns
+> 1,080, 510 and 633 models.
+>
+> **A run that fails on every row announces itself as a tooling error. A run that fails on three
+> of eight rows inside an otherwise-successful table reads as a finding about those three** —
+> and here it would have said the two never-transacted installs *have no model registry*, which
+> is exactly the shape of an interesting result.
+
+### 32.1 Where that lands here: the absences that validate the instrument
+
+`§31`'s negative controls are **absences inside an otherwise-successful table** — precisely the
+shape P04 describes. And they are the highest-stakes absences in this package, because they are
+what licenses the claim that the registry instrument distinguishes a real absence from a failed
+read. **They had not been disproved by a second route.**
+
+Re-tested, `a6664233`, **single runs, three independent instruments, each with its own control**:
+
+| instrument | result | its control |
+|---|---|---|
+| `ir_model` | no `account.tax.unit`, no `withholding.tax.cert` | `res.company` **present** |
+| `ir_module_module` | **no row at all** for `l10n_th_withholding_tax_cert` | `base` **installed** `18.0.1.3`; 41 modules installed; `account` **installed** |
+| archive TOC | `account_tax_unit` **0**, `withholding_tax_cert` **0** | `account_move_line` **1** |
+
+**Three instruments, three positive controls firing, three absences agreeing.** The negative
+controls are genuine, and `§31`'s discrimination claim stands. `P07-F-89`.
+
+**One caveat found while doing it, stated rather than smoothed:** `account.tax.unit` is absent
+from that registry although the `account` module **is** installed there, whereas the other v18
+identity has both. Why the model is absent under an installed parent module is **not
+established**, and it is **not needed** — the control's purpose is to show the instrument can
+report absent, which three instruments agree it correctly does. Recorded so no reader infers an
+explanation this package has not given.
+
+### 32.2 A batch absence from `§25`, likewise disproved singly
+
+`§25` reported *"none — fully declared stack"* for six models, computed in a batch across
+identities. One spot-checked by single run on `66d1b52a`, with harness controls printed:
+
+- `ir_model_data` **62,445 rows**, `ir_model_fields` **16,009**, `ir_ui_view` **3,516** — all
+  three blocks read, so no silent harness failure.
+- Modules declaring on `account.tax.group`: **`account`, `point_of_sale`** — both inside the
+  declared PATH SET, **none outside**.
+- Positive control, same query for `account.move`: **75 modules**.
+
+The `§25` absence is genuine on that row.
+
+### 32.3 The rule, adopted
+
+> **Always disprove a batch absence with a single run before it becomes a row** — and print the
+> harness's own read counts beside the result, so a missing block is visible as a missing block
+> rather than as an empty one.
+
+**And the asymmetry P04 identified is the part that makes it urgent:** a *uniform* failure
+announces itself as tooling; a *partial* failure inside a working table **reads as a finding**,
+and it will preferentially look like a finding about whichever rows are unusual — which, in both
+these packages, means the never-transacted installs. **The two failure modes this exchange has
+been recording all session — a null that is self-consistent, and a control that cannot fail —
+have a third sibling: a null that is selective.** `REV-M-62`.
