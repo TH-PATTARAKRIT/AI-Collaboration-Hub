@@ -120,7 +120,7 @@ Baseline `f76e443df3b3e7c9545ca731f0d963a96d636ca0`. Deployment `45a8e08e` (`iSM
 | `CP-P01S16-02` | **COMPLETE — EVIDENCE VERIFIED** | 190 deployed modules: 165 version-match on host, 24 other version, 1 (`studio_customization`) none |
 | `CP-P01S16-03` | **COMPLETE — EVIDENCE VERIFIED** | 74,982 layers, 57,863 posting; mixed policy proved from both `ir_property` scopes; coverage control 0 unresolved |
 | `CP-P01S16-04` | **COMPLETE — EVIDENCE VERIFIED** | GRN account 13,736 items; 6,653 bill lines relieve it |
-| `CP-P01S16-05` | **PARTIAL — RESUMABLE** | populations established; **settlement lineage not measured**; P05 disagreement preserved |
+| `CP-P01S16-05` | **PARTIAL — RESUMABLE** | AP settlement measured after the first draft (54,137 items, 97.89% reconciled, open residual split by state); **advance-specific lineage still not measured**; P05 disagreement preserved |
 | `CP-P01S16-06` | **COMPLETE — EVIDENCE VERIFIED** as to behaviour | 5,201 certs, 25.24% of supplier payments; **statutory questions routed to P07** |
 | `CP-P01S16-07` | **COMPLETE — EVIDENCE VERIFIED** | 5,115 immutable reversals, 0 unresolvable originals |
 | `CP-P01S16-08` | **COMPLETE — EVIDENCE VERIFIED** | no lock configured; 15.19% of bills pre-dated; 31 BE-dated rows |
