@@ -38,6 +38,44 @@ session closed, **6 had published — and 2 were already at a later commit than 
 met, `13+2` tolerance-zero boundaries stand unresolved — and `T0-13` is **reachable today inside a single company**, independently of any Boss ruling, `4+3` vetoes are undischarged, and the round's
 own instruments failed under independent test.
 
+## 1a. CORR1 DELTA — what changed since `P11#04`, and it is the largest change in this package's life
+
+`[SMEPLUS-26-09-05-ACC-P11-CORE-RECON-CORR1-001]`. **Read this before §1b, which predates it.**
+
+> ### `PEER DEPENDENCY OPEN × 10` → **`0`. All ten processes have published.**
+> Six had **never** been consumed. P11's nine prior deltas were written against the three-to-four peers
+> that happened to publish first — recorded as `P11-F-12`, and it is the most consequential instance of
+> P11's own selection-order rule.
+
+**Two Boss decisions are materially better informed than at `P11#04`, and both improved via `P08` —
+the peer P11 had never read:**
+
+| Decision | Change |
+|---|---|
+| **`D-1`** declare the reference root | **The mechanical half is DONE.** `P08` declares the root set — **22**, with `POPULATION`/`PATTERN`/`PATH SET`/`UNIT` stated, **independently reproducing the earlier figure from a different session on the same pattern**. `P08` closes `MCU-21` for its own claims and **expressly refuses to close it for the programme**: *"declaring which root SMEsPlus targets is a programme declaration reserved to Boss."* **What remains is a sentence only Boss can write** |
+| **`D-5`** the accounting-event identity | **Evidence upgraded class `C` → class `A`.** `P08`: *"There is no accounting-event identity to be one of — **`A VERIFIED ABSENCE` across all 22 declared roots**."* `P09` adds that **two of eight constitutional trace steps have no carrier at all**. `P02` and `P10` both require the object structurally. **The decision is unchanged; the uncertainty behind it is gone** |
+
+**Three tolerance-zero boundaries reach their strongest available form**, all from `P08` over the
+declared root set: **no database constraint enforces the balance invariant in any of the 22 roots**;
+the assertion is *application-level, waivable by a caller-supplied parameter, and in the reporting
+currency only*; and **nine header attributes are protected with the protection waived by a parameter**,
+while a posted item's account, counterparty, label, reference and allocation are **editable in place**.
+
+**One peer contradicts P11's own matrix, and P11 does not resolve it.** `P01`: **the deployed v19
+databases have no goods-received clearing account and no valuation-layer table** — the bridge is a v18
+mechanism and *"two of three readable live databases cannot run it."* `P01` states that Core Accounting
+*"should not reconcile against a mechanism until the target generation is established."* **Registered
+`P11-B-20`, routed to `D-1`.** P11's event-to-GL matrix is written against a generation nobody has
+declared.
+
+**Counts, all re-executed rather than carried:** decisions **13, not 12** (`D-3b` is a full row);
+tolerance-zero **13 inherited but only 11 ever carried by id** — two boundaries had silently dropped
+out of P11's package and are **restored here** (`P11-F-13`); blockers **18 → 20**, with **2 discharged
+by evidence arriving** (`B-01`, `B-12`) and **0 by argument**; errors **29 ids / 28 errors**.
+
+> **Nothing is closed that was open. `D-10` (authorise CORR1) is discharged by this run. The gate has
+> not moved.**
+
 ## 1b. The joint position across three processes — stated as three halves, never as one figure
 
 `P07` @ `1928410` put the cross-process ledger plainly and it belongs in front of the Boss as plainly
