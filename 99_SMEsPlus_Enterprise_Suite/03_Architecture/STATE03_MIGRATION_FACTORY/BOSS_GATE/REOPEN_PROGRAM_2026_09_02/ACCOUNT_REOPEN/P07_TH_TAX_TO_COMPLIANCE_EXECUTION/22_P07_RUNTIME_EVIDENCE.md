@@ -337,3 +337,75 @@ surviving bound beside a failing one:
 
 Neither was found by re-reading. Both came from a peer running a correction against its own
 package first and sending the method rather than the conclusion.
+
+## 8. The Database-Derived Negatives, Tested Across Identities — One REFUTED
+
+P11 generalised the tooling caveat into a rule that reaches back into this file:
+
+> Every negative claim resting on database evidence must state the **client version used** and
+> the **generations actually opened**. A class `A` verified absence from default tooling over
+> one generation is bounded to that generation — and the boundary is **invisible**, because
+> the tool failed silently on the others.
+
+§4.6 published two negatives and §4.4 a third, all from **one snapshot** — `iTEST02`
+2026-06-14, a 6-move configuration database — and none stated its bounds. Tested across all
+four examined snapshots:
+
+| Claim | `iTEST02` 06-14 | `iTEST02` 07-14 | `iSMEs` 07-11 | `BK12MAY26` 08-03 | Verdict |
+|---|---|---|---|---|---|
+| `withholding_tax_cert` rows | 0 | 0 | **5,201** | 1 | **`P07-F-60` REFUTED** |
+| `account_tax_unit` rows | 0 | 0 | 0 | 0 | **`P07-F-61` HOLDS** — 3 of 3 identities |
+| lines carrying `tax_period_date` | 0 of 23 | 0 of 32 | **18,197 of 447,384** | 0 of 563 | **`P07-F-03` CONSTRAINED** |
+
+### 8.1 `P07-F-60` is REFUTED — `REV-E-29`
+
+It read: *withholding is configured and **no statutory certificate has ever been issued**.*
+`iSMEs` holds **5,201** certificates and `BK12MAY26` holds one. Two of three identities issue
+them; one issues them at scale. **Withdrawn.**
+
+What replaces it is more useful than the negative was. A population of 5,201 certificates is
+passing through the model this package identified as holding *the most statutorily faithful
+classification in the declared set* — a 15-value s.40 income-type taxonomy — while the PND
+export ignores that field and derives income type from the tax rate instead (`W-K-01`,
+`W-K-04`). The divergence is not theoretical: there is a real, sizeable population on the
+correct side of it. **`P07-F-62`**, and it strengthens `W-K-04` rather than weakening it.
+
+### 8.2 `P07-F-03` is CONSTRAINED, and the constraint supports its mechanism
+
+The empirical gloss *"populated nowhere"* was `iTEST02` only. `iSMEs` populates the
+line-level field on **18,197 of 447,384** lines — 4.1%.
+
+The **source finding is unchanged**: written only in `create()`, no `write()` override, and no
+report, compute, domain or SQL reads it. And the observed 4.1% is *consistent with* that
+mechanism rather than against it — a create-only write populates the field precisely when tax
+lines already exist at create time, which is a minority of paths. The number supports the
+finding; the sentence that said "nowhere" did not survive.
+
+### 8.3 The scoping error underneath all three — `REV-E-30`
+
+`iTEST02` has **23 move lines**. `iSMEs` has **447,384**. This session built its entire
+runtime section on the smallest database available and generalised from it, because it was the
+one inside the declared PATH SET and was therefore opened first. Convenience of location
+determined the evidence base.
+
+That is the same defect as `REV-E-26` (generalising `P07-F-01` from `n = 1`) and
+`REV-E-28` (snapshots counted as identities), now for the third time in one file — and this
+time it cost a published finding rather than a qualifier. The corrective is not "open more
+databases" but **rank them before choosing**: `iSMEs` is four orders of magnitude larger and
+should have been read first.
+
+`iSMEs` is now the reference population for any claim about operational behaviour in this
+package. Nothing in §4 or §7 was derived from it except the group-name comparison at §7.1,
+which is why those sections are configuration claims and are labelled as such.
+
+### 8.4 Net
+
+| Finding | Before §8 | After |
+|---|---|---|
+| `P07-F-60` | new finding, 1 snapshot | **WITHDRAWN**; replaced by `P07-F-62`, which is stronger |
+| `P07-F-61` | 1 snapshot | **holds**, 3 of 3 identities |
+| `P07-F-03` | "populated nowhere" | source finding unchanged; population claim bounded, and the 4.1% supports the mechanism |
+| `P07-F-62` | — | **new**: 5,201 certificates carry a correct income-type taxonomy the statutory export ignores |
+
+Client version for every row above: `postgresql@18` `pg_restore 18.6`. Generations opened:
+four snapshots, three identities. Not opened: `iEVING` (`P07-U-27`).
