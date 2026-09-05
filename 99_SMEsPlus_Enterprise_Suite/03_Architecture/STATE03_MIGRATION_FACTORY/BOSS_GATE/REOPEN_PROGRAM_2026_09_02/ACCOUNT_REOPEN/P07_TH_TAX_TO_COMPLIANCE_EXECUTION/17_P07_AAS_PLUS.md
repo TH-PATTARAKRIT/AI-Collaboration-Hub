@@ -96,7 +96,7 @@ Recorded so the disagreement is visible rather than smoothed over.
 
 | # | Author position | AAS+ position |
 |---|---|---|
-| 1 | `P07-F-01` is the highest-severity finding. | **Agreed, but for the reason the reviewers gave, not the author's.** The author's rate-lapse framing (`19 §8`) is a real but slow risk. The immediate risk is that installing the Thai language empties both registers. The Layer-1 file still leads with the slower risk and should be re-read with `P07-F-01` in front of it. |
+| 1 | `P07-F-01` is the highest-severity finding. (**Still `S1`; basis corrected realised → prospective, `P07-F-72`/`P07-F-73`.**) | **Agreed, but for the reason the reviewers gave, not the author's.** The author's rate-lapse framing (`19 §8`) is a real but slow risk. The immediate risk is that installing the Thai language empties both registers. The Layer-1 file still leads with the slower risk and should be re-read with `P07-F-01` in front of it. |
 | 2 | `P07-F-42` is `INF`. | **Agreed and retained as `INF`.** Two reviewers reached it independently and the chain is complete, but step 6 depends on record-creation order at load. It should not be reported as verified until `P07-U-20` is executed. Resisting the upgrade is the point. |
 | 3 | The package is bounded by `EC-01`. | **Partly.** `PATH SET` is proven; `PATTERN` and `UNIT` were asserted and not executed (`16 §7`). `EC-01` should not be claimed. |
 

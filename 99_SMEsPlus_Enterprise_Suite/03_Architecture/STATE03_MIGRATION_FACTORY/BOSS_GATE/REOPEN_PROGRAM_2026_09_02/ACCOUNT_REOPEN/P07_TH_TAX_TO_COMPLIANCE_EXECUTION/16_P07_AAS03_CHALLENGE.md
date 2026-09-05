@@ -68,7 +68,7 @@ Thirty-one new findings were raised. Those adopted into the register:
 
 | From | Adopted as |
 |---|---|
-| A, C | `P07-F-01` **escalated** from a brittle-label dependency to a translation-mapping equality that empties both statutory registers on a Thai-language install |
+| A, C | `P07-F-01` **escalated** from a brittle-label dependency to a translation-mapping equality that empties both statutory registers on a Thai-language install — **the escalation stands; its stated trigger does not. `P07-F-72` refutes *"on a Thai-language install"* (Thai active in 4 of 5 identities, 1 carries the translation); the condition is install order. Record left as the challenge stated it.** |
 | C, A | `P07-F-42` zero-rated and exempt VAT settling against withholding control accounts |
 | A | `P07-F-41`, `P07-F-43`, `P07-F-44`, `P07-F-45` |
 | B | `P07-F-51`, `P07-F-52`, `P07-F-53`, `P07-F-55`, `P07-F-56`, `P07-F-57`; `03 §7.1`, `§7.2`, `§7.3` |

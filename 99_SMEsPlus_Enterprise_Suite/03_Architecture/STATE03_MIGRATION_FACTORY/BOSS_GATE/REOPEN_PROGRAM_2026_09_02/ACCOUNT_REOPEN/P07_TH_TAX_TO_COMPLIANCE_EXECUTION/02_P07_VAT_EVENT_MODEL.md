@@ -129,6 +129,15 @@ Boundary and class: **VERIFIED against a deployed database of the declared gener
 is "Thai is an installed language on the deployment", which is the expected condition for a
 Thai tenant. Recorded as `P07-F-01`, and it is the highest-severity finding in this package.
 
+**Qualified — `P07-F-72`, `P07-F-73`, `22 §17`.** Severity stays `S1`, but the **basis has
+changed from realised to prospective with a measured magnitude**. The published trigger
+(*installing Thai*) is **refuted**: Thai is active in 4 of 5 deployed identities and only 1
+carries the translation. The real condition is the chart template loading **while Thai is
+already active** — install order. And the defect fires only in an identity holding **2–3**
+VAT-bearing tax lines, while the two deployments holding **5,202** and **32,672** do not fire.
+The exposure is what one install ordering would put outside the s.87 registers, not what has
+been lost.
+
 ## 6. The Two Parallel Report Implementations
 
 | Attribute | Vendor generator (+ SMEsPlus override) | SMEsPlus dynamic reports |

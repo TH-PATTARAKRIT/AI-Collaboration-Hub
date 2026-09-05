@@ -2125,3 +2125,74 @@ per the practice of leaving a record with its correction attached rather than ti
 That is stronger than *checks miss things*, and this section is a second instance of it: the
 stale restatements passed the orphan check, the structural check, the manifest check and the
 scrub, and any reader comparing `§8.4` with `§13` would see the disagreement immediately.
+
+
+---
+
+## 27. The Qualifier Check — `P07-F-85`
+
+P04 found the counterpart of `§26`'s fifteen: `P04-F-100` narrowed `P04-F-99` in two files and
+left it standing in five, each phrased differently — *"the only v18 deployment"*, *"the only
+same-generation deployment"*, *"one plan, zero accounts"*, *"latent"*. **Four wordings of one
+superseded figure**, which is why four phrase greps missed them. Its rule:
+
+> **When a finding is narrowed, enumerate its citations by identifier and require the qualifier
+> on each — never grep for the old wording, because the wording is what varies.**
+
+### 27.1 Run here, and a refinement the first run forced
+
+Eight findings were narrowed in this package: `P07-F-01`, `-F-42`, `-F-16`, `-F-51`, `-F-61`,
+`-F-62`, `-F-65`, `-F-20`. Applied literally, the rule reports **162 unqualified citations** of
+them.
+
+**That number is not a defect count and publishing it would have been the noisy-check failure.**
+Most citations only *name* the identifier — section headings, method notes, cross-references,
+`see also` rows. Requiring a qualifier on those is absurd, and a reader shown 162 stops reading
+the output.
+
+**The discriminator is whether the citation asserts the narrowed claim.** Re-run over citations
+that make a standing-or-figure assertion, outside the register, revision log and this file —
+which is where the corrections already live:
+
+**3 assertive unqualified citations, all of `P07-F-01`.**
+
+| location | what it asserted | why it is stale |
+|---|---|---|
+| `02 §7` | *"it is the highest-severity finding in this package"* | still `S1`, but the **basis** moved realised → prospective |
+| `16 §4` | *"empties both statutory registers on a Thai-language install"* | **the refuted trigger** — `P07-F-72` |
+| `17 §5` | *"`P07-F-01` is the highest-severity finding"* | same basis change |
+
+**`P07-F-85`.** Fifth occurrence of the propagation defect. `02` is a live model file and is
+**corrected in place**; `16` and `17` are records of what a challenge round and the AAS+ review
+said at the time, so the correction is **attached and the record left standing**, per the
+practice this package has followed throughout.
+
+### 27.2 The rule as adopted, with the refinement stated
+
+> When a finding is narrowed, **enumerate its citations by identifier** — never by wording —
+> and require the qualifier on **every citation that asserts the narrowed claim**. Citations
+> that merely name the identifier are out of scope, and treating them as in scope produces a
+> check nobody reads.
+
+The first half is P04's and is the part that works: it is indifferent to phrasing, which is
+precisely the property four phrase greps lacked. The second half is what this package's run
+added, and it is the same lesson as `§26.2` — **a check that flags 162 where 3 are real is
+worse than no check**, because it trains the reader to skip it.
+
+### 27.3 P04's sharpening of the bias claim, which completes it
+
+`REV-M-47` said a method defect is invisible along your own bias. P04 adds the harder half:
+
+> **A rule is also unusable along your own bias, even when you wrote it down and are running
+> it.**
+
+The evidence is symmetric and neither of us could have supplied both halves. P04 wrote *count
+the forms* and used it only on the bare/prefixed question it came from; run here it found a
+**stem collision** — two registers under one name. This package wrote *compare the difference
+against the claim* and used it on **copy** identity; run there it found what a copy-closure does
+not cover — the **stack**. **Both times the rule was one party's and the productive use was the
+other's.** `REV-M-52`.
+
+That is a stronger claim than *review helps*: it says a rule's author is systematically the
+person least able to see its full range, so **a written-down method is not a controlled method
+until someone with a different bias runs it.**
