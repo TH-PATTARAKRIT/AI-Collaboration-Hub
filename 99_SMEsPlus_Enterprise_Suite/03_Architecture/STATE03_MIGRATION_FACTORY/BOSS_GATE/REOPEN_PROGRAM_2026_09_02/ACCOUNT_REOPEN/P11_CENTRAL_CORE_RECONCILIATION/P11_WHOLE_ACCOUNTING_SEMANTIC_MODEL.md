@@ -50,7 +50,7 @@ non-null property.
 **Implementation status in the evidence base:** `F1`, `F2`+`F3` collapsed together, `F4` and `F5` exist
 as durable objects. `F6` exists as **a bare date with no object behind it**. `F7` **is not implemented
 at all**. `F8` does not exist. **Four of eight absent or degenerate** — `F2` is included, and it is the headline: the accounting
-event, whose absence (`UAE-29`) is this package's root blocker. *Corrected per `X4-F13`.*
+event, whose absence (`UAE-29`) is this package's root blocker. *(~~Three of eight~~ → **Four of eight** per `X4-F13`; superseded value retained so erasure is detectable.)*
 
 ---
 

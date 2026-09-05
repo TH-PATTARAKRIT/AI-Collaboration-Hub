@@ -715,3 +715,28 @@ sharper than P11's account of its own:
 is consulted before the ranking, the register *is* the ranking, and its ordering was chosen for
 containment rather than for relevance. **Declaring a scope does not exempt selection within it from
 being declared too.**
+
+## `P11-M-05` — `P11-B-18` closed by completing the work, and the audit that verifies it now covers the whole set
+
+**CORR1, `2026-09-05`.** `P11-G-03` required every correction to carry a visible marker so its later
+erasure is detectable. Five repairs from the `P11-E-26` batch were **unmarked replacements** — the
+erasure audit at `ab50a5e` therefore ran clean **over half the set** and said so.
+
+**Work completed this run.** Four of the five now carry their **superseded value** inline
+(`~~15 lanes. 2 reach a statement line…~~`, `~~Four~~ → three → two`, `~~Six~~ → Seven`,
+`~~Three of eight~~ → Four of eight`). The fifth already stated its prior figures
+(*"the earlier figures were 8 / 11 / 3"*) and needed no change.
+
+**Audit re-run over the whole set, controls first** — positive 19, negative 0 — **20 strikethroughs,
+`0` erased.**
+
+> **`P11-B-18` is `CLOSED`, and it is the only blocker this CORR1 closes.** It closed because the work
+> was done and verified, not because its wording improved — which is the distinction the blocker
+> register exists to preserve, and the one this session has spent two days failing in the other
+> direction.
+
+**A control failure is recorded rather than hidden:** the first attempt to locate the five used a
+positive control (`'Corrected'`) that returned **0** — the control itself was wrong, so the grep was
+unreliable and was discarded before any conclusion was drawn. **That is the control doing its job**,
+and it is the fourth time in this package that a pattern would have produced a confident wrong answer
+without one.

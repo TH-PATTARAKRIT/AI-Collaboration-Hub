@@ -68,7 +68,7 @@ requires: the reference model has no closing entry.
 ## 4. The cells that are NOT blocked on `P01`–`P10`
 
 An honest matrix distinguishes *"nobody has done the work"* from *"the work was done and the answer is
-that it cannot be decided"*. **Seven** of the fifteen rows above are in the **second** state *(corrected per `X2-F17`/`X4-F09`; the table lists seven)*, and
+that it cannot be decided"*. **Seven** of the fifteen rows above are in the **second** state *(~~Six~~ → **Seven** per `X2-F17`/`X4-F09`; the table lists seven. Superseded value retained so erasure is detectable)*, and
 commissioning the producing process will not move them:
 
 | Row | Blocked on | Named missing input |

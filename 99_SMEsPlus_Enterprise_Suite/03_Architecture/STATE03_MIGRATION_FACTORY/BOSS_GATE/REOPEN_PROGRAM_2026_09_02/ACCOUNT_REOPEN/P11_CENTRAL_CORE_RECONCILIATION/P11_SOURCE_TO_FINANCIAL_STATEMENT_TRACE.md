@@ -31,7 +31,7 @@ Read left to right. The first **✘** in a lane is where that lane stops being p
 
 **15 lanes. By the table's own ✘ test, 3 carry no ✘** — cash settlement, opening position and
 cash-basis tax. **By the unresolved-break test, 0 are clear**, because each of those three terminates
-in an open tolerance-zero or contract failure. *Corrected per `X4-F12` / `P11-E-07`; the earlier
+in an open tolerance-zero or contract failure. *Corrected per `X4-F12` / `P11-E-07`. **Superseded text, retained so its erasure is detectable:** ~~15 lanes. 2 reach a statement line without an unresolved break~~. The earlier
 sentence asserted both at once.* The two named below are — cash settlement and opening
 position — and each carries an open tolerance-zero or contract failure at the end of the lane.
 
