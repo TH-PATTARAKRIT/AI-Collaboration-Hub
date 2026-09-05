@@ -755,6 +755,40 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.26 The absence that licenses the instrument, disproved three ways
+
+P07 observed that its own negative-control rows are **absences inside an
+otherwise-successful table** — the shape `P04-F-124` identifies as the most
+dangerous — and that they are the **highest-stakes absences in its package**,
+because they are what permits the claim that the instrument distinguishes a real
+absence from a failed read. It re-tested them by three independent instruments.
+**The same is true here and I had not done it either.**
+
+> **P04-F-125.** **`96548e18`'s missing `account.asset` — the single row that
+> licenses the whole registry instrument — confirmed by three independent
+> instruments, each with its own positive control.**
+>
+> | instrument | result | its control |
+> |---|---|---|
+> | `ir_model` | 510 models, **no `account.asset`** | `res.company` **present**, `account.move` **present** |
+> | `ir_module_module` | 1,334 module rows, 123 installed; `account_asset` **`uninstalled`** | `account` **installed** `18.0.1.3`, `base` **installed** `18.0.1.3` |
+> | archive table listing | **0** `COPY public.account_asset` blocks | `account_move_line` **1**, `res_company` **1** |
+>
+> **Three instruments, three positive controls firing, three absences agreeing.**
+> The discriminating control in `P04-F-124` is licensed, and with it the claim
+> that the registry route can tell a real absence from a failed read.
+>
+> **And this package's version establishes the mechanism, where P07's could
+> not.** Its cert module had **no row at all**, so *why* it was absent was
+> undetermined — correctly recorded as *not established and not needed*. Here the
+> module row **exists with state `uninstalled`**: the asset module is **present in
+> the deployment's addons path and deliberately not installed**. That is the same
+> distinction `P04-F-97` drew for `scgl_advance_expense_request` — **not deployed
+> versus not available** — and it means `96548e18` is not an incomplete capture
+> but a **complete capture of an install that chose not to run the asset module**.
+>
+> Class: **FACT VERIFIED**, three instruments, six controls, one archive.
+
 ### 6A.25 Six identities was also a chosen population
 
 P07 found that its registry run covered **5** identities while its own census says
