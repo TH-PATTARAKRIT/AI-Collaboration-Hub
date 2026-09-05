@@ -298,9 +298,29 @@ documents.
 > two packages, from two independent evidence bases** — P04's from the reference
 > product's own test, P11's from its accounting-event register — and **neither
 > session connected it to the boundary being drafted about it**.
-> Class: **FACT VERIFIED** for P04's half; **PEER-PUBLISHED, not independently
-> verified by P04**, for P11's half. P04 has not read that register and does not
-> restate P11's records as its own.
+> Class: **FACT VERIFIED**, both halves. **Upgraded from peer-published after
+> P04 read P11's register directly** at commit `2e284ef` — see `18` `P04-REV-19`
+> for why it was not read sooner, which is a defect of P04's, not a limitation.
+
+**And reading it produced something neither session had.** P11's register records
+**two** re-dating events, not one variant of the same:
+
+| | Trigger | Lock involved? |
+|---|---------|----------------|
+| `UAE-04` | Entry re-dated **on posting** | **yes** — a lock is violated |
+| `UAE-05` | Entry re-dated **on a document-date change**, on any non-sale document | **no** — *"fires with no lock configured"* |
+
+> **P04-F-76.** `P04-B-31` describes re-dating as a **lock-interaction** defect —
+> an entry aimed at a locked period is moved rather than refused. P11's register
+> records a **second, independent** re-dating path that **needs no lock at all**:
+> an ordinary document-date edit silently re-attributes the accounting period,
+> which P11 notes can be a clerical edit upstream *"with no accounting
+> justification"*.
+> **Silent period mutation is therefore not only a lock defect.** A control
+> written against the lock path alone would leave the second one live, which is
+> the same mistake — one scope narrower than the evidence — that `T0-13` was
+> widened to fix.
+> Class: **FACT VERIFIED** (read at `2e284ef`). Registered `P04-B-45`.
 
 **The method note P11 derived from it is adopted by P04 as well**, because P04 is
 equally exposed to it:

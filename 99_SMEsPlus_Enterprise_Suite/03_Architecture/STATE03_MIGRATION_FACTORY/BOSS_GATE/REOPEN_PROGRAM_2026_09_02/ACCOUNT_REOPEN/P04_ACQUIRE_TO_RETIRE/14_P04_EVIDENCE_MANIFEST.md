@@ -60,16 +60,16 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `07_P04_DISPOSAL_DERECOGNITION_MATRIX.md` | `73498c37afaceb7557a1a4f304eeb7a53c943bf77364926f85e69038c756b413` |
 | `08_P04_PRIOR_EVIDENCE_RECONCILIATION.md` | `e5970d358e188c1e0f5b99c8138f5cb09610b09885bf6b80ea51be4fbef780fe` |
 | `09_P04_BOSS_DECISION_REGISTER.md` | `ed7c666609c4671dff808d313b7eab6f79303903dd99b3e8abab5c29007c8005` |
-| `10_P04_BLOCKER_REGISTER.md` | `ddb32ee4c33f8c7475df6848a6e692ddb60108a4d5af803fc1e794f01b9a18af` |
-| `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `f72710dd783d1f69f0cc91f344a1a43edb540f4757507254ccff24dcf092859e` |
+| `10_P04_BLOCKER_REGISTER.md` | `bc06a44bcd35d8969fb323667fc0a0432d3df65bc8975f9bbd1a79175f84c8da` |
+| `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `8c5f25d38f0568e7ab58708da5a74bcc693da4fc3a98f70a82a04b8ccdd94e9d` |
 | `12_P04_CONTRADICTION_REGISTER.md` | `4a54d8b13cfff34602ef2d1c9a2c10b8a43934ff943dfaf4cad6904874038e79` |
 | `13_P04_SOURCE_LINK_REGISTER.md` | `69084e95d38bd5840ba34f87fc25dba792143eaa6e199797220e390ef8c4e652` |
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
 | `16_P04_AAS_PLUS.md` | `3d801249e38183c8153bd5a6a47d7ea1139fcaa44efc70963af11aac4e7c8d90` |
 | `17_P04_PMO.md` | `5396e1533e92025316d8a3cb63df538321486b97ec4664309a3eddf69731db9e` |
-| `18_P04_REVISION_LOG.md` | `42d4e9f3287e8ebbdf9beeeb092c0cf8f5c6591d172bd039a99fd7fe4742e40f` |
+| `18_P04_REVISION_LOG.md` | `1cb28927b8c3e0f3ad497bf9735fcc3997deb6e2261fd86b0a5fb7220fe25c6b` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `b7ecee10f8bf9da61cab652452af17dcecd59835234dd510eed66617479e2b34` |
-| `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `aee8eed3e3d700eea1ee75a678f4eb1345185747051f6acc3587bbd5b6936cbd` |
+| `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `1a9a822ba1084ec34107787490ac248e3fdc127ac32a91af14a11e19c5d1145b` |
 
 ## 3. Evidence roots and their bounds
 
@@ -86,15 +86,16 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **74** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
-| Blockers (`P04-B-nn`) — register rows | **44** — 3 re-registered from the handover residue, 41 opened by this session |
+| Findings (`P04-F-nn`) defined | **75** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
+| Blockers (`P04-B-nn`) — register rows | **45** — 3 re-registered from the handover residue, 42 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
-| Revisions | 18 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
+| Revisions | 19 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
 | Recurrences of the enumeration / unit defect | **9 instances across 4 actors — P04's declared half**, enumerated row by row with the unit declared. **Five are this package's own**, three of them inside the section documenting the defect. **No joint total is published**: a cross-party tally cannot be executed by either party (`18` §5b, adopted from P11). A peer's attribution error is **excluded** and assigned to the secondary-source class; the boundary is argued at `18` §5 |
 | Expert disagreements preserved | 4 new · 7 inherited and re-opened · 2 between this session and the independent reviewer |
 | Scope determinations | 14 objects and 10 operations classified; 2 on **HOLD — SCOPE EVIDENCE REQUIRED** |
 | Peer dependencies | 8; findings published to 5 owning sessions. **P11 and P07 replied**: P11 answered 2 (**still open**) and returned twice more; P07 dispositioned 3 and returned 2 to P04 — both routed to Boss, both holds confirmed rather than lifted (`11` §6.1) |
 | Statutory sources | **7 retrieved by this session · 1 taken in as peer-published** (`P04-LAW-H`, retrieved by P07; reliance stated) |
+| Peer packages read **at source** | **1** — P11 at commit `2e284ef`. P04 had wrongly asserted it could not (`18` `P04-REV-19`); the branches were on the same remote throughout |
 
 Every count in this table was produced by executing a match over the package,
 not by carrying a figure forward. Two counts in earlier drafts were quoted

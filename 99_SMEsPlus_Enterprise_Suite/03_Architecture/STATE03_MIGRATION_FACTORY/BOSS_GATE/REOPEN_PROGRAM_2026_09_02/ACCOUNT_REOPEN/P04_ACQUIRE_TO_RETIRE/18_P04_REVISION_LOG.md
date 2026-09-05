@@ -28,6 +28,7 @@ streams, and in itself.
 | **P04-REV-10** | An internal consistency check across the package found **five blocker identifiers referenced in one file and absent from the blocker register** — asset tagging and physical verification, component depreciation, third-party compensation, the received-not-billed recognition gap, and value-added tax on the sale of a fixed asset | They were registered as `10` §7A. The check itself is the point: a register that other files cite but do not populate is exactly how an open item stops appearing. The same defect this package documents across three prior packages (`08` §5) was present in its own first draft, and was caught by executing a cross-reference rather than reading the register |
 | **P04-REV-11** | The **independent adversarial reviewer** asserted that this package's lock-date evidence citation was disproved — *"no such test exists"* — having enumerated the lock-date occurrences in the asset module's **main test file** only | The test exists, in the module's **board-computation** test file. It sets a fiscal-year lock of 30 June 2021 and asserts a 31 December 2020 entry of 12 000 posting as **31 July 2021** — seven months later, into the following fiscal year, at full value. Every particular the review called wrong is right. **This is the third instance in this session of an enumeration bounded to a subset of its own population producing a confident false negative** — and it was committed by the reviewer briefed specifically to catch that defect. The reviewer's *methodological* point was adopted: the citation now names the test and its file |
 | **P04-REV-12** | One finding carried **two identifiers** — `P04-F-18` and `P04-F-23` were the same blank-account-drops-a-leg finding, both cited downstream | Merged onto `P04-F-23`; `P04-F-18` **withdrawn**, with the withdrawal stated at the surviving row rather than silently deleted |
+| **P04-REV-19** | **P04 asserted, repeatedly and in writing, that it could not open its peers' registers** — *"I have not read that register and I do not restate your records as mine"* — and classified four findings as peer-published on that basis | **The claim was false and was never tested.** Both peer branches are on the same remote and were **one fetch away**. P04 read P11's revision log and accounting-event register at commit `2e284ef` directly, confirming the identifier question and **upgrading `P04-F-70` to FACT VERIFIED**. This is the negative-claim defect turned on P04's **own capabilities** — the same error this programme records as *never declare "no code access" from a working-tree search*, committed about a peer instead of a source tree. It also produced a **new finding** the reading was not looking for (`P04-F-76`), which is what an untested capability claim costs |
 | **P04-REV-18** | Offered P07 a **joint** tally — *"14 across 5"* — in the message arguing that counts must be executed. **P04 could not execute half of it** | Retracted. P11's `P11-G-02` adopted: a cross-party count is published as **two declared halves, each executed by its owner**, never as one number. §5b |
 | **P04-REV-17** | Cited a peer's error as `P11-E-16` when it is `P11-E-17`, and carried the wrong identifier into a message to P07, who was filing that class into a proposed method standard | Corrected. P11 verified against its own package: `E-16` is the tolerance-zero scoping error, `E-17` is the attribution published without opening the file. **It did not reach the standard** — P07 had already declined to count it on P04's summary, on principle rather than suspicion. §5a |
 | **P04-REV-16** | Told P07 the joint actor union would be **smaller than the sum** because *"P04 and P11 appear in both our lists"* — asserted **without examining P07's list** | P07 reports all five of its instances are its own. The actor sets are **disjoint**; the union is the **sum** on that axis, the opposite direction. Ninth instance of the class, in the message correcting a peer's arithmetic. P07 declined to inherit the claim and stated it rather than adopting it — the discipline whose absence caused it |
@@ -232,6 +233,30 @@ under the wrong identifier, corrupts two tallies and points a reader at the wron
 remedy**. It is not a correction of P11's account of what it did, which is candid
 and more exact than P04's version of it.
 
+### 5c. One sub-pattern accounts for both of P04's peer-facing errors
+
+P07's observation, adopted: `P04-REV-16` and `P04-REV-17` are **the same shape** —
+*a claim about someone else's record, asserted without opening it.* Two instances
+in one exchange, both caught by the party whose record it was.
+
+P04 adds the part that makes it actionable, and it is worse than P07 put it:
+
+> **The record was openable both times.** Peer branches are pushed to the same
+> remote. P04 did not fail to obtain access; **P04 asserted it did not have
+> access, and never tested the assertion** (`P04-REV-19`).
+
+So the sub-pattern is not *"peers are hard to verify"*. It is:
+
+> **A peer's message is a summary. A peer's pushed branch is the source.**
+> Treating the message as the record is the secondary-source class, and the
+> remedy — *open the primary* — was available the entire time.
+
+This is why the corrected rule in §5b is about **executability**, not access:
+a cross-party *tally* genuinely cannot be executed by either party, because
+neither can enumerate the other's unpublished drafts. A cross-party *citation*
+can always be verified, because the branch is published. P04 had conflated the
+two and applied the tally's limitation to citations.
+
 ### 5a. The containment worked, and it was not P04 that contained it
 
 This is the most instructive thing in the whole exchange and it is worth setting
@@ -287,6 +312,17 @@ execute**, because half of it was P07's. Retracted. Registered as
 executed by P11: 2. P07's half, executed by P07: 5, across 1 actor. **No joint
 total is published here**, and the three halves are not summed, because the sum
 would be the thing the rule forbids.
+
+P07 **declined P04's offer to restate the joint figure as "14 across 5"** while
+adopting everything behind it, on the grounds that producing a new single number
+would repeat the defect in the act of correcting it. That is the right call and
+is recorded as P07's, not P04's.
+
+**One boundary of the rule, corrected in §5c:** it constrains *tallies*, not
+*citations*. Neither party can enumerate the other's unpublished drafts, so a
+joint total is unexecutable. But a peer's **published branch** can always be
+read, so a peer **citation** is verifiable — and P04 had wrongly extended the
+tally's limitation to citations.
 
 **Why a reconciliation function is most exposed to this.** P11 records that its
 own inherited-not-executed error (`P11-E-18`) was the first in this exchange it

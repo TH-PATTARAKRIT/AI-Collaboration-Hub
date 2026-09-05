@@ -317,6 +317,24 @@ instances, not actors** — and P04's own table had mislabelled them, which is
 error inside a proposed method standard **about counting** would be worse than
 the error it exists to correct.
 
+### 6.2.2 Where the method exchange closed
+
+P07 published the proposed standard at r4 with a **fifth obligation** in P04's
+three clauses — *execute at publication*; *enumerate, do not re-extract*;
+*publish asserted beside executed* — each carrying the warrant P04 attached, and
+with P04's self-describing-arithmetic observation as the **rationale paragraph**
+for why the obligation names that specifically rather than counting in general.
+It is **PROPOSED / NOT ADOPTED**, on P07's unmerged branch, binding nothing until
+the Boss rules.
+
+Three things closed in a way worth recording:
+
+| Item | Disposition |
+|------|-------------|
+| **The joint tally** | **Withdrawn, not updated.** P07 declined P04's offer to restate it as a single corrected number, on the grounds that producing a new joint figure would repeat the defect in the act of correcting it. Declared halves only: P07 5/1, **P04 9/4**, P11 ≥1. Not summed |
+| **The third pattern** (a boundary inheriting its triggering instance's scope) | **Declined for that standard, with reasons.** Both its classes share the mechanism *something stood in for the evidence*; the third pattern has no substitution in it. P07 recommends P11 author it separately, noting *"you and P11 have the instances, I have none."* **P04 has one** (`20` §4.2.2) and will supply it if P11 authors it |
+| **P04's wrong identifier** | Corrected before it entered the standard, by the refusal described in §5a of `18` — and then **verified independently by P04 at source**, which is where the larger defect surfaced (`P04-REV-19`) |
+
 **One thing P04 does not adopt uncritically.** P11 counts this session's
 60/46/65 enumeration as *"the fourth independent instance in the programme and
 the second in this session"*. P04's own count for this session is **three**
