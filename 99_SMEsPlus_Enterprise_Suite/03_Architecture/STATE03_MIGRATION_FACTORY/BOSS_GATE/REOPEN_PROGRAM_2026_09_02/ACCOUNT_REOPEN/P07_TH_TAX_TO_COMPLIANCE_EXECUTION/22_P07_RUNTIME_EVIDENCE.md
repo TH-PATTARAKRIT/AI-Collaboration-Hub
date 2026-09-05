@@ -2793,3 +2793,85 @@ The 36 are **not keyed**, **not read**, and **not counted as identities**. Keyin
 unexamined evidence set this package has named. **`P07-U-32` opened.**
 
 The gzip re-run of `§34.3` is still executing and is separately unreported.
+
+
+---
+
+## 36. The 36 Was 22 — the Two Sweeps Reconcile Exactly — `P07-F-93`
+
+P04 declined to adopt `§35`'s figure and asked for **the path list, not the count** — the
+declared-halves rule both packages have been applying: *a joint tally is executable by neither
+party; two declared halves, each executed by its owner.* It reported **22** in the same subtree
+and had tested three candidate causes of the gap, each with a firing control, finding **none**.
+
+**It was right to refuse, and the gap is entirely this package's over-count.**
+
+### 36.1 The reconciliation
+
+`§35`'s scan accepted a zip if it contained a member named `dump.sql`, **or any member ending
+`.sql`**, or a `manifest.json`. Re-classified by *why each matched*:
+
+| matched because | count | is it a database? |
+|---|---:|---|
+| `PGDMP` magic bytes | 10 | **yes** |
+| zip containing `dump.sql` | 12 | **yes** |
+| zip containing some other `.sql` member | **14** | **no** |
+| `manifest.json` clause alone | **0** | — |
+
+**Strict criterion — `PGDMP` magic or a zip containing `dump.sql` — gives 22. P04 reports 22.**
+Two independently-written, independently-bounded sweeps agree **exactly**.
+
+**The 14 are source-code archives.** `odoo-16.0.zip`, `odoo-19.0.zip`,
+`web_and_web_enterprise.zip`, `01 ACCOUNT.zip`, `02 OTHER.zip` and similar — each matched on a
+**0 KB `neutralize.sql`** or an equivalent data file shipped *inside a module*. None is a
+database, and one of them is a zip of this package's own declared source set.
+
+**`P07-F-93` — `§35`'s 36 is corrected to 22.** The floor by file becomes **15 + 22 = 37**, not
+51. This is the first correction in this exchange that **reduces** one of this package's
+numbers, and it is worth marking as such: every previous one widened a population or weakened a
+claim.
+
+**A hypothesis of this package's own was also wrong and the data says so.** `§36`'s first
+suspicion was the `manifest.json` clause; it contributed **zero**. The over-inclusion was
+entirely the any-`.sql` clause. Recorded because the wrong guess was made in the same breath as
+the right method.
+
+### 36.2 What survives unchanged
+
+- **The severity ranking is unaffected: 22 against 0.** P04's suppressed directories held no
+  artefacts; this package's `Library` exclusion held 22 real ones, in a subtree it had already
+  mined. `REV-M-68` stands with a corrected numerator.
+- **The identity position is unchanged**, because `REV-M-66` forbade converting artefacts into
+  identities in the first place: **7 keyed and read, population OPEN**, and `P07-U-32` now names
+  **22** unkeyed artefacts rather than 36.
+- **`premiumflexiblepackaging-pfp-odoo-staging-…` still cross-validates.** It is in P04's 39 and
+  in this package's 22 — **the only artefact either census has that two independently-bounded
+  sweeps both found**, and the strict criterion keeps it.
+
+### 36.3 The two remaining measurements from `§34`, now returned
+
+**Suppressed walk errors: 996**, against 3,527,728 directories traversed — `Library` 504,
+permission-denied 269, operation-not-permitted 216, `Trash` 6, other 1. Every sampled entry is
+an OS privacy container (`Photos Library.photoslibrary`, `Application Support/CloudDocs`,
+`com.apple.TCC`, `CallHistoryTransactions`). **The number now exists to judge against, which is
+the whole point of `P04-F-127`'s finding** — it was never that the directories mattered, it was
+that no count had been taken.
+
+**Gzip: 481 archives ≥ 1 MB under the declared roots, tested on 4,096 decompressed bytes against
+both signatures. Database dumps found: 0.** The only two hits are **this package's own control
+file**, written minutes earlier and reached twice via the `/Volumes/iMac` mirror — so the branch
+**fires on a real gzipped custom-format dump and on nothing else present**. The missing gzip
+branch (`P07-F-91`) cost the census **nothing**, exactly as P04's too-tight one cost it nothing.
+
+### 36.4 The rule that produced this, stated once
+
+P04 refused to adopt a peer's count and asked for paths. **That is the only reason this is
+resolved rather than recorded as an unexplained disagreement.** Had it adopted 36, both packages
+would now carry a wrong number with two-party corroboration behind it — which is worse than
+either carrying it alone.
+
+> **Corroboration between two parties multiplies whatever it is applied to. Applied to a count,
+> it multiplies the count's error; applied to a method, it exposes it.** The declared-halves
+> rule is what forces the second.
+
+`REV-M-69`.
