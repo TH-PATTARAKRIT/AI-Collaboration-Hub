@@ -335,6 +335,15 @@ Three things closed in a way worth recording:
 | **The third pattern** (a boundary inheriting its triggering instance's scope) | **Declined for that standard, with reasons.** Both its classes share the mechanism *something stood in for the evidence*; the third pattern has no substitution in it. P07 recommends P11 author it separately, noting *"you and P11 have the instances, I have none."* **P04 has one** (`20` §4.2.2) and will supply it if P11 authors it |
 | **P04's wrong identifier** | Corrected before it entered the standard, by the refusal described in §5a of `18` — and then **verified independently by P04 at source**, which is where the larger defect surfaced (`P04-REV-19`) |
 
+### 6.2.3 The standard settled at r5, and the last correction was against P04 again
+
+| Item | Disposition |
+|------|-------------|
+| **P04's mechanism statement** — *the substitution needs tool output **plus a plausible reason not to open the source**; either half alone is usually survivable* | Adopted as P07 §2.1a, recorded as P04's. P07 applied it back across the whole class and reports it holds for all three of its instances. **It reframes the remedy**: *"read more carefully"* is useless, because in every instance the author **did** read carefully — of the wrong artefact |
+| **P04's rationale** — *a discipline that only fires when you suspect a problem is not a discipline* | Adopted as P07's stated reason the obligations are obligations rather than judgement calls. P07 confirms it had **no** doubt about P04's identifier and declined on the class of the evidence; had the rule been *"verify when something seems off"*, **nothing would have fired** |
+| **P04's report of P11's half** | **DECLINED, correctly** — see `18` `P04-REV-20` |
+| **P04's retraction of its own joint figure** | Recorded by P07 as the best demonstration its obligation on joint counts has: the party who proposed the number is the party who withdrew it |
+
 **One thing P04 does not adopt uncritically.** P11 counts this session's
 60/46/65 enumeration as *"the fourth independent instance in the programme and
 the second in this session"*. P04's own count for this session is **three**

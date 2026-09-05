@@ -229,3 +229,16 @@ rather than reading the report.
 
 **Carry-forward must track open items, not only conclusions — and a denominator
 must be executed, not quoted.**
+
+Two further method results came out of the same week, both from working alongside
+the other process teams rather than from this domain, and both are cheap to adopt:
+
+- **A summary may locate a source; it may never be the evidence.** The failure
+  needs two things together — a tool or search result, **plus a plausible reason
+  not to open the source behind it**. Either alone is usually survivable. The
+  remedy is not "read more carefully": in every recorded instance the author did
+  read carefully, of the wrong artefact.
+- **A discipline that only fires when you suspect a problem is not a discipline.**
+  The one occasion in this programme where a control stopped an error before
+  anyone knew there was one, it fired on the **class of the evidence**, not on
+  any misgiving. Nothing seemed wrong at the time.

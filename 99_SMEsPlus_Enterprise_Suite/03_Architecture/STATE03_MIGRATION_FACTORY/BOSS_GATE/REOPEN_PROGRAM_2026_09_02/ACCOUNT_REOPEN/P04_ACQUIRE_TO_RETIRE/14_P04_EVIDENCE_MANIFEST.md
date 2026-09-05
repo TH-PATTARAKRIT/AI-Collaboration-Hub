@@ -61,14 +61,14 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `08_P04_PRIOR_EVIDENCE_RECONCILIATION.md` | `e5970d358e188c1e0f5b99c8138f5cb09610b09885bf6b80ea51be4fbef780fe` |
 | `09_P04_BOSS_DECISION_REGISTER.md` | `ed7c666609c4671dff808d313b7eab6f79303903dd99b3e8abab5c29007c8005` |
 | `10_P04_BLOCKER_REGISTER.md` | `bc06a44bcd35d8969fb323667fc0a0432d3df65bc8975f9bbd1a79175f84c8da` |
-| `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `8c5f25d38f0568e7ab58708da5a74bcc693da4fc3a98f70a82a04b8ccdd94e9d` |
+| `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `066fb43f0a10d57a3c2fcb9ba622631ec0ff66c95de90fbac4c71be8b317fd23` |
 | `12_P04_CONTRADICTION_REGISTER.md` | `4a54d8b13cfff34602ef2d1c9a2c10b8a43934ff943dfaf4cad6904874038e79` |
 | `13_P04_SOURCE_LINK_REGISTER.md` | `69084e95d38bd5840ba34f87fc25dba792143eaa6e199797220e390ef8c4e652` |
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
 | `16_P04_AAS_PLUS.md` | `3d801249e38183c8153bd5a6a47d7ea1139fcaa44efc70963af11aac4e7c8d90` |
 | `17_P04_PMO.md` | `5396e1533e92025316d8a3cb63df538321486b97ec4664309a3eddf69731db9e` |
-| `18_P04_REVISION_LOG.md` | `1cb28927b8c3e0f3ad497bf9735fcc3997deb6e2261fd86b0a5fb7220fe25c6b` |
-| `19_P04_CORE_RECON_HANDOFF_PACK.md` | `b7ecee10f8bf9da61cab652452af17dcecd59835234dd510eed66617479e2b34` |
+| `18_P04_REVISION_LOG.md` | `38d7fe236ffb2e2dc6cf17683e14b721cdb3741e073ac63e64bc3e268417c940` |
+| `19_P04_CORE_RECON_HANDOFF_PACK.md` | `1f635cba7e22be8e4001c877e9638c8ec918f695fba0ee68cb319132bc194eda` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `1a9a822ba1084ec34107787490ac248e3fdc127ac32a91af14a11e19c5d1145b` |
 
 ## 3. Evidence roots and their bounds
@@ -89,7 +89,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | Findings (`P04-F-nn`) defined | **75** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **45** — 3 re-registered from the handover residue, 42 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
-| Revisions | 19 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
+| Revisions | 20 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
 | Recurrences of the enumeration / unit defect | **9 instances across 4 actors — P04's declared half**, enumerated row by row with the unit declared. **Five are this package's own**, three of them inside the section documenting the defect. **No joint total is published**: a cross-party tally cannot be executed by either party (`18` §5b, adopted from P11). A peer's attribution error is **excluded** and assigned to the secondary-source class; the boundary is argued at `18` §5 |
 | Expert disagreements preserved | 4 new · 7 inherited and re-opened · 2 between this session and the independent reviewer |
 | Scope determinations | 14 objects and 10 operations classified; 2 on **HOLD — SCOPE EVIDENCE REQUIRED** |
