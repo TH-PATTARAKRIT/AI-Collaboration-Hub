@@ -112,3 +112,15 @@ Two independent measurements point the same way: **provenance sits on the entry 
 | **Artifact count** | 20 new (`33`–`52`), plus closure deltas on four registers and the quarantine index. **Merges named where mandated artifacts converged; the shortfall against 27 is recorded, not forced** |
 | **Corrections this round** | **19, of which 0 were self-caught** |
 | **Prohibited actions** | **None taken.** No production code, source, database, module, migration, configuration, deployment, release or merge. All runtime investigation read-only |
+
+## 9. Work-item tracking
+
+**`JIRA — AUTHORITATIVE ISSUE NOT VERIFIED`.**
+
+**ENUMERATION.** POPULATION: issues on the connected instance. PATTERN: free-text search on the process name, the process code, and the terms *record*, *ledger*, *close* and the round-trip abbreviation, scoped to the programme project. UNIT: **one issue**. POSITIVE CONTROL: the same search returns the parent programme issue and 49 others, so the query fires.
+
+**No issue corresponds to P08 Record-to-Report.** The nearest is the **parent programme** issue — the accounting-core full reopen and revalidation — which is the umbrella for all eleven reopen processes and is **not** a P08 work item.
+
+P08 **did not create an issue and did not comment on one.** Creating or annotating a tracked work item is an outward-facing act that no instruction in this session authorised. The gap is recorded here for the Boss and PMO to close as they choose.
+
+**Consequence:** this package's terminal status, its veto and its eighteen Boss decisions are **not currently tracked anywhere outside the repository.**
