@@ -663,8 +663,87 @@ table rather than by re-reading it.*
 > would have checked it.** Mine was right by luck of the naming convention, not
 > by verification, and a reader could not have told the difference.
 >
-> Class: **FACT VERIFIED (negative)** — *"no archive under `~/Downloads` or the
-> SMEsPlus tree has internal database name `idemo18_uat`"*, seven archives read.
+> Class: **WITHDRAWN — the claim it supported is false.** See `P04-F-90`.
+>
+> **The negative as literally worded survives and is worthless.** *"No archive
+> under `~/Downloads` or the SMEsPlus tree has internal database name
+> `idemo18_uat`"* is still true. **`idemo18_uat` is on this host** — at
+> `~/OCC_BACKUP/`, one directory away from a path set **I chose and never
+> declared**. The exclusion that kept two blockers open was therefore **false in
+> use** while **true as written**, which is the worst combination available: a
+> reader auditing it would have confirmed it.
+>
+> This finding was registered **as an application of P07's exclusion-authority
+> rule**, and it verified the wrong thing. I checked the *authority* of the
+> exclusion — internal `dbname` rather than filename — and never checked its
+> **path set**. *Raising the authority of a statement about a population does
+> nothing for a population that was drawn wrongly.* And the rule that governs
+> this exact defect is one this package has stated eleven times: **POPULATION +
+> PATTERN + PATH SET + UNIT, none author-chosen.** The path set was author-chosen
+> and undeclared, in a finding written to demonstrate rigour about exclusions.
+
+### 6A.4 The database the blockers name — found, read, and it is v18
+
+> **P04-F-90.** **`idemo18_uat` is on this host, it is a v18 deployment, and it
+> holds 388 real assets.** Archive
+> `~/OCC_BACKUP/idemo18_uat_pre_scgl_occ_website_20260830_085432.dump`,
+> `PGDMP`, 45.6 MB, dated **2026-08-30** — later than every archive previously
+> enumerated. Internal `dbname: idemo18_uat`; `database.uuid`
+> `551ab874-9acb-11f1-b150-6ec7a480be3d`; **`base` `18.0.1.3`**, `account`
+> `18.0.1.3`, **`account_asset` `18.0.1.0` installed**, 361 installed modules.
+> Requires `postgresql@18`; the host default client cannot open it.
+>
+> **This falsifies the headline of `P04-F-85`.** That finding said *"no database
+> on this host is the same generation as the source tree at all"* and, on it,
+> `17` §5 deviation 1 declared the **Runtime → Database leg weaker than
+> previously stated**. There **is** a v18 database on this host, it is the one
+> the runtime capture names, and it carries a **real, transacted asset
+> population**. The leg is **materially stronger**, not weaker — and the
+> behavioural findings in this package now have a same-generation deployment to
+> be set against. `P04-F-85`'s **method** point stands unchanged: the generation
+> labels were declared from one structural signal and were wrong. Its **scope**
+> claim is withdrawn.
+>
+> Class: **FACT VERIFIED.** Found by running the census with a **declared** path
+> set after P07 reported an eleventh artefact outside mine — see `P04-F-88`,
+> withdrawn, and `18` `P04-REV-37`.
+
+> **P04-F-91.** **`BLK-01` is answered in the database it names, and the answer
+> is the mismatch this package predicted.** Of **388 real assets** in
+> `idemo18_uat`: **375 on `daily_computation`, 13 on `constant_periods`**
+> (96.6 % daily). Of its **16 templates: 16 on `constant_periods`, none on
+> daily.**
+>
+> So the template-versus-population split of `P04-F-81` is no longer an inference
+> across generations — it is **measured inside a single v18 database**, the one
+> the blocker names: **every asset it actually runs is on one convention and
+> every template it would create the next asset from is on the other.** Third
+> population measured, third time the same shape: `iSMEs` v16 683/685 daily,
+> `idemo18_uat` v18 375/388 daily, and every template set in every database on
+> `constant_periods` except v16's.
+>
+> **Discrepancy recorded, not smoothed:** `BLK-01`'s close condition names *"the
+> 280 records"*. This archive holds **404** asset rows (388 real + 16 templates).
+> The runtime capture's figure and the archive's do not agree, and this package
+> cannot say which moment either describes. The count is published against the
+> archive, dated, and the blocker is **ANSWERED — NOT CLOSED** for that reason.
+>
+> Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30.
+
+> **P04-F-92.** **`P04-B-03` answered for the v18 database, and the answer is
+> total.** `asset_move_line_rel` **exists in the archive and holds no rows** — so
+> **0 of 388 real assets in `idemo18_uat` carry a link to the journal item that
+> created them.** Positive control run in the same command: `account_asset`
+> extracts **404** rows from the same archive by the same method, so the empty
+> result is **absence of data, not a failed extraction** (the defect recorded at
+> `18` `P04-REV-23`).
+>
+> Against `iSMEs` (v16): **22 of 669 linked, 647 unlinked (96.7 %)**. In the v18
+> deployment the figure is **0 of 388 — 100 %**. `P04-B-01` moves from a design
+> gap, to a measured gap, to a gap **measured at totality in the target
+> generation**.
+>
+> Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30.
 
 > **P04-F-89.** **This package published two integrity records and let them
 > disagree.** `SHA256SUMS.txt` and the manifest's own per-file hash table were in
