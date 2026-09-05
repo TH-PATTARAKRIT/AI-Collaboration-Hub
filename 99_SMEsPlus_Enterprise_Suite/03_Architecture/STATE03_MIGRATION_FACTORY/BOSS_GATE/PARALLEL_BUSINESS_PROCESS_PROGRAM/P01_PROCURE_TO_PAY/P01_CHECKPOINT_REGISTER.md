@@ -106,3 +106,48 @@ underlying method is **NOT REPAIRED**. Six instances of one defect shape are now
 of them found by challengers, and one falsified an absence published in the same run. PMO check 7
 returns **NO** and says so. This is stated here so the register cannot be read as closing something
 the review left open.
+
+---
+
+# ROUND 6 — `SMEPLUS-26-09-05-ACC-P01-P2P-S16-SOURCE-DEPLOYMENT-DIRECT-VERIFY-001`
+
+Baseline `f76e443df3b3e7c9545ca731f0d963a96d636ca0`. Deployment `45a8e08e` (`iSMEs`, SWR).
+
+| Checkpoint | Status | Evidence |
+|---|---|---|
+| `CP-P01S16-00` | **COMPLETE — EVIDENCE VERIFIED** | baseline matched local HEAD; `ERR-P01-23` / `ERR-P01-41` / `S18-B-07` lineage intact |
+| `CP-P01S16-01` | **COMPLETE — EVIDENCE VERIFIED** | 3 series-16 cores ranked against the deployment; E-ENT wins 144/144 |
+| `CP-P01S16-02` | **COMPLETE — EVIDENCE VERIFIED** | 190 deployed modules: 165 version-match on host, 24 other version, 1 (`studio_customization`) none |
+| `CP-P01S16-03` | **COMPLETE — EVIDENCE VERIFIED** | 74,982 layers, 57,863 posting; mixed policy proved from both `ir_property` scopes; coverage control 0 unresolved |
+| `CP-P01S16-04` | **COMPLETE — EVIDENCE VERIFIED** | GRN account 13,736 items; 6,653 bill lines relieve it |
+| `CP-P01S16-05` | **PARTIAL — RESUMABLE** | populations established; **settlement lineage not measured**; P05 disagreement preserved |
+| `CP-P01S16-06` | **COMPLETE — EVIDENCE VERIFIED** as to behaviour | 5,201 certs, 25.24% of supplier payments; **statutory questions routed to P07** |
+| `CP-P01S16-07` | **COMPLETE — EVIDENCE VERIFIED** | 5,115 immutable reversals, 0 unresolvable originals |
+| `CP-P01S16-08` | **COMPLETE — EVIDENCE VERIFIED** | no lock configured; 15.19% of bills pre-dated; 31 BE-dated rows |
+| `CP-P01S16-09` | **COMPLETE — EVIDENCE VERIFIED** | 18 entries; 8 active-and-exercised, 3 contradictions open |
+| `CP-P01S16-10` | **COMPLETE — EVIDENCE VERIFIED** | 13-step chain, each step with its evidence status |
+| `CP-P01S16-11` | *see §R6.1* | four challenges dispatched |
+| `CP-P01S16-12` | *see §R6.1* | — |
+| `CP-P01S16-13` | *see §R6.1* | — |
+| `CP-P01S16-14` | **COMPLETE — EVIDENCE VERIFIED** | delta-only: P04 and P07 changed and were read; eight peers unchanged and **not re-read** |
+| `CP-P01S16-FINAL` | *see §R6.1* | — |
+
+## §R6.1 Checkpoints that do not close in this round
+
+`CP-P01S16-05` is **PARTIAL — RESUMABLE** and says so. The prompt asked for advance → partial payment →
+WHT → reconciliation → final deduction → residual lineage. This round reached the **populations** and not the
+**lineage**. The reconciliation join — 22,468 payments against 447,384 journal items and two reconcile tables —
+was **not attempted**, rather than attempted and estimated. It is the largest remaining executable piece in
+this package and is recorded as the NEXT EXACT ACTION.
+
+## §R6.2 Four method defects were committed inside this round and corrected before publication
+
+`ERR-P01-42` (a join on `stock_valuation_layer.categ_id`, **a column that does not exist in series 16** —
+the round's central result would have been exactly inverted), `ERR-P01-43` (a correction to `ERR-P01-41` nearly
+published from the wrong addons directory), `ERR-P01-44` (a version predicate ignoring Odoo's own `'1.0'`
+manifest default), plus `NEAR-MISS-P01-07` (a normaliser that assumed the series it was testing for) and
+`NEAR-MISS-P01-08` (**"quadrillions posted to the GL"** — the linked entries balance at ฿31,622,699.37).
+
+**Four of the five were caught by a control this package has adopted since round 3; none was caught by a
+challenger, because all five were corrected before the package was frozen.** That is the intended order and
+it is recorded so the low challenger-catch count is not read as an easy round.

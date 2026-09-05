@@ -612,3 +612,59 @@ corrected finding, and the architecture impact.
 | **And a third instance, committed inside the verification** | My own first check was `find /Users/admin -maxdepth 6 -type d -name "odoo-16.0*"` → **empty**. The trees sit **ten or more levels deep** in Google Drive. **Had I stopped at one probe form I would have contradicted a correct report and left a falsehood standing in six documents.** Three further forms all returned it. **A bounded probe returning empty is not a negative result; it is an unfinished measurement.** |
 | **A near-miss the challenger caught in itself** | Its first probe for the series-16 purchase model asked for **`purchase_order.py`** and returned ABSENT. In series 16 the file is **`purchase.py`** — confirmed here (1,447 lines; `purchase_order.py` genuinely does not exist there). Stopping at the first form would have published a **Class-A absence built on one guessed filename** — the shape of `ERR-P01-30`. |
 | **Rule this establishes** | **Run a negative at two probe *forms* as well as two widths**, and treat the first empty return as unfinished. A filename, a depth bound and a storage device are each a guess about where a thing lives; none of them is a population. |
+
+---
+
+# ROUND 6 — SERIES-16 SAME-GENERATION DIRECT VERIFICATION
+
+## `ERR-P01-42` — a discriminating test joined on a column that does not exist in the generation under study
+
+| Field | Content |
+|---|---|
+| **Original finding** | The first run of this round's central test returned: *"`manual_periodic` UNLINKED 17,119 · `manual_periodic` linked 57,863 · **unlinked DESPITE real_time: 0**"* — i.e. every one of the 74,982 valuation layers classified as periodic, and the 15 `real_time` categories appeared to hold no layers at all. |
+| **Original evidence** | A join from `stock_valuation_layer.categ_id` to the `ir_property` policy rows. The query executed, returned rows, and its totals reconciled to the table. |
+| **Why wrong** | **`stock_valuation_layer` has no `categ_id` column in series 16.** The table has 19 columns and that is not one of them; it belongs to a later generation. The COPY parser pads absent columns with `None`, so `r.get('categ_id')` was `None` for all 74,982 rows and every row fell to the `else` branch — periodic. |
+| **Why the control did not catch it** | A **57,863-row positive control sat directly beside the result** and was satisfied: rows were parsed, the join ran, the totals added up. The failure was not in whether rows were read but in **whether the predicate could see its input**. A well-formed, plausible, internally consistent answer. |
+| **How found** | The result was *too* clean — zero layers in fifteen categories that between them hold the deployment's real-time inventory. Checking the actual COPY header took one command. |
+| **Corrected finding** | Joined `product_id` → `product_product.product_tmpl_id` → `product_template.categ_id`, **with an explicit coverage control: 0 of 74,982 unresolvable.** Result: real_time 56,654 linked / 1,044 not; manual_periodic 1,209 linked / 16,075 not. |
+| **Architecture impact** | None on any published finding — the defect was caught inside the round. But the corrected result is the round's central claim, and it would have been **exactly inverted**: "the policy has no effect" instead of "the policy explains 98.2% and 93.0%". |
+| **Rule this establishes** | **Schema shape is generation-specific, and a parser that pads missing columns will let you join on a column that is not there.** Before any cross-generation query: read the COPY header of the table in *this* generation and assert every join key exists. Carrying a column set forward from the generation you last worked in is the same class as carrying a storage location forward (`ERR-P01-19`). |
+
+## `ERR-P01-43` — a correction to `ERR-P01-41` that was itself made from the wrong directory
+
+| Field | Content |
+|---|---|
+| **Original finding** | Ranking the three series-16 core trees, I counted `odoo/addons` and got **955 / 31 / 32**, and was about to record that only one was a complete core and that `ERR-P01-41`'s count of three overstated the estate. |
+| **Why wrong** | Two of the three use the **standard split layout**: `odoo/addons/` holds only `base` and the `test_*` modules, and the business modules live in **`<root>/addons/`** — **461** and **464** of them, including `purchase`, `stock_account` and `l10n_th`. |
+| **How found** | Checked the second addons location before publishing, specifically because this is the defect class the package has been repeatedly caught by. |
+| **Corrected finding** | **All three are complete series-16 cores. `ERR-P01-41`'s count of 3 stands.** |
+| **Why it matters** | `ERR-P01-41` was itself a correction *about reading the wrong location*, and its follow-up was nearly published from reading the wrong location. **A correction is not immune to the defect it corrects.** |
+| **Rule this establishes** | When a project's layout admits two conventional locations for the same content, **enumerate both before counting** — and treat a count that would revise a recent correction as requiring more evidence, not less. |
+
+## `ERR-P01-44` — a version predicate that ignored the framework's own default
+
+| Field | Content |
+|---|---|
+| **Original finding** | The first source-tree ranking reported 23 version "mismatches" in the best tree, e.g. `account_asset` deployed at `16.0.1.0` against a source manifest with no version at all. |
+| **Why wrong** | Odoo core manifests routinely omit `version`. `odoo/modules/module.py:56` sets `'version': '1.0'` in the manifest defaults and `:393` applies `adapt_version`, so an omitted version resolves to **`16.0.1.0`** — a match, not a mismatch. My predicate treated absent as unmatched. |
+| **How found** | The "mismatches" were implausibly concentrated in core modules. The rule was then **read from the source** rather than assumed. |
+| **Corrected finding** | **144 of 144 present modules version-match in the ranked tree; zero mismatches in any of the three trees.** |
+| **Rule this establishes** | **Read the framework's own defaulting rule before comparing against a stored value.** A comparison against a field the framework fills in for you is a comparison against your assumption about it. |
+
+## `NEAR-MISS-P01-07` — a normaliser that assumed the answer it was testing for
+
+| Field | Content |
+|---|---|
+| **What happened** | To resolve deployed modules against the whole-host index, version strings were normalised by prefixing `16.0.` when absent. Pointed at the host-wide index this prefixes **every** tree's versions, so a **series-18** tree's `stock_landed_costs 1.1` normalised to `16.0.1.1` and **false-matched the series-16 deployment**. The instrument reported "48 exact-version copies" whose top hits were odoo-18 and odoo-19 trees. |
+| **How caught** | The reported paths were read rather than counted. `~/Downloads/odoo-18.0.post…` is not a series-16 source. |
+| **Consequence avoided** | A source-availability claim built on cross-generation false matches. |
+| **Rule adopted** | **Exact-version matching across a multi-generation index is valid only where the containing tree's series is separately confirmed.** Normalise using the tree's own series, never the series you are looking for. Core citations in this round therefore come only from the tree whose `release.py` was read. |
+
+## `NEAR-MISS-P01-08` — "quadrillions posted to the general ledger", checked before publishing
+
+| Field | Content |
+|---|---|
+| **The candidate** | 30 valuation layers carry values to **±1.5 × 10²¹ THB** with per-unit costs of **744,082,316,162.43** for milled rice, and **25 of them carry POSTED journal entries**. The obvious headline wrote itself. |
+| **The check** | Read the 50 journal items on those 25 entries. **They balance exactly: debits = credits = ฿31,622,699.37**, with net effects by account in the millions. |
+| **The truth** | The **general ledger is intact**. The divergence is between the **inventory subledger and the ledger** — ~15 orders of magnitude on 30 rows — which is a serious reconciliation break and a different claim from the one nearly published. |
+| **Rule this reinforces** | **A finding and its consequence clause are two claims.** "Absurd values exist in the subledger" was evidenced; "absurd values were posted to the GL" was assumed from the presence of a link, and was false. Measure the consequence, never inherit it from the finding. |

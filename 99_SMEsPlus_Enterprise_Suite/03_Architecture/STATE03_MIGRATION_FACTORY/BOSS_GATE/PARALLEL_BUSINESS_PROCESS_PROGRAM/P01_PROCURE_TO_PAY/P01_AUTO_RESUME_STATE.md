@@ -137,3 +137,66 @@ six population-selection defects are now recorded where round 4 recorded one.
 > not its exit position — and the two must not be reported as the same thing.
 
 PMO: **`RECOMMEND HOLD`**. AAS+: no veto, dissent preserved.
+
+---
+
+# ROUND 6 UPDATE — SERIES-16 SAME-GENERATION DIRECT VERIFICATION
+
+Prompt: `SMEPLUS-26-09-05-ACC-P01-P2P-S16-SOURCE-DEPLOYMENT-DIRECT-VERIFY-001`
+Baseline: `f76e443df3b3e7c9545ca731f0d963a96d636ca0` · Expert reports: `_expert_out5/`
+
+## R6.1 WHAT THIS ROUND ESTABLISHED
+
+**The mechanism P01 described from source for five rounds has now been observed operating.**
+
+Deployment `45a8e08e` (`iSMEs`, `swr.smeplus.asia`, one company — a rice miller, 183,590 journal entries):
+**57,863 of 74,982 valuation layers carry a journal entry.** The series-19 estate showed 0 of 14,441; the
+series-18 OCC deployment 0 of 47,801. **This is the positive control the valuation line of enquiry never had.**
+
+It is also the first **mixed** policy population in the programme: global `manual_periodic` with **15 of 30
+categories** overriding to `real_time`, so the policy claim is testable inside one database — real_time 98.2%
+posts, periodic 93.0% does not, coverage control 0 of 74,982 unresolved.
+
+The **GRNI bridge closes**: account `2900000 Goods Receipt Note`, 13,736 items, net **฿72,097,814.25**, with
+**6,653 vendor-bill lines** debiting it for ฿4,516,394,611.47.
+
+## R6.2 WHAT IS OPEN
+
+| ID | Item | Status |
+|---|---|---|
+| `S16-C-14` | Inventory subledger vs GL disagree by ~10¹⁵ on 30 layers (GL itself is intact and balanced) | **OPEN** → P03, P08 |
+| `S16-C-15` | 296 real_time non-zero layers unposted; 1,209 periodic layers posted; policy-change **refuted** | **OPEN** |
+| `S16-C-18` | 30 posted moves dated year 2567 (BE) + 1 `invoice_date` 2568 | **OPEN** → P08 |
+| `S16-B-01` | Purchase price variance account configured, **0 items in 447,384**, with the valuation gate **open** | **OPEN** |
+| `S16-B-02` | Vendor-advance settlement lineage; P05 disagreement **preserved unresolved** | **OPEN** |
+| `S16-B-03` | Whether `om_data_remove` (installed, 16.0.1.0.1) has ever run here | **OPEN — under challenge** |
+| `S16-B-04` | No period lock of any kind, on 169,143 posted entries | **OPEN** → P08 |
+| — | Thai WHT statutory correctness | **HOLD — STATUTORY EVIDENCE REQUIRED → P07** |
+| — | Runtime execution of the seven priority edge cases | **HOLD — RUNTIME WRITE AUTHORIZATION REQUIRED** |
+
+## R6.3 NEXT EXACT ACTION
+
+> **Measure the vendor-advance / partial-payment / settlement lineage in `45a8e08e`** — the one deliverable
+> this round left `PARTIAL — RESUMABLE`. Join **22,468 `account_payment` rows** against **447,384
+> `account_move_line` rows** through `account_partial_reconcile` (8.49 MB) and `account_full_reconcile`
+> (3.00 MB), all already extracted at
+> `…/scratchpad/s16/T_*.sql`, and establish: whether advances are deducted from final bills, the
+> partial-payment withholding arithmetic on the **4,941** supplier payments carrying `wt_tax_id`, and the
+> residual payable after settlement.
+>
+> It was **not attempted** this round rather than attempted and estimated. It is the largest remaining
+> executable piece in this package and it needs no new evidence — every table is already on disk.
+
+**Second action, if the first is blocked:** enumerate every writer of `stock_valuation_layer.account_move_id`
+in the series-16 core **and** in the 45 deployed custom modules, to close or explain `S16-C-15`.
+
+## R6.4 METHOD — HARDENED AGAIN
+
+Two widths, two units, **two probe forms** — and now also:
+
+> **Assert every join key exists in the generation under study before joining on it.** A COPY parser that pads
+> absent columns will happily let you join on a column that does not exist, return a plausible answer, and
+> satisfy a positive control sitting right beside it (`ERR-P01-42`). Schema shape is generation-specific in
+> exactly the way storage location is (`ERR-P01-19`).
+
+> **A correction is not immune to the defect it corrects** (`ERR-P01-43`).
