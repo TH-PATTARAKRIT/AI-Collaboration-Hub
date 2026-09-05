@@ -3365,3 +3365,101 @@ commit instead of having been proved once.**
 
 **No finding, count, class or verdict moves.** `RECOMMEND HOLD`, 0 of 8 exit criteria claimed,
 no blocker closed, no merge, no freeze — as in every round of this exchange.
+
+
+---
+
+## 43. Deriving the Family Set — and the Defect Inside the Row That Described It — `P07-F-100`
+
+P04 made its unit `[1]` **derive** its family set instead of reading a literal, and found **six
+families classified under nothing** — five arrived through this correspondence, one
+misclassified from the start: **`D-1`…`D-7`, the seven TAS 16 derecognition requirements**
+carrying the basis of its retire-end standard analysis, **filed as non-identifiers and therefore
+outside every standing check**. Its `S`, in a different domain.
+
+**Its second-order point is the sharper one:** a family classed as a *non-identifier* is never
+examined for a **stem collision** either — so its collision check never saw that `D-1`…`D-7` are
+its own while `D-11`, `D-12` are P11's. **A misclassification hides a family from every check
+that filters by class, not just from the one that flagged it.**
+
+### 43.1 Derived here
+
+Unit `[1a]` added: the family set is derived from the text on every run and diffed against the
+declared classifications.
+
+| | |
+|---|---:|
+| families **present** | **50** (the `§22.1` census enumerated 48) |
+| owned | 33 |
+| foreign by attribution | 12 |
+| non-identifiers | 4 |
+| retired | 1 |
+| **unclassified** | **none** |
+| **declared but absent** | **none** |
+
+The two families the literal lists did not cover were **both declared residues, read before
+being classified**:
+
+- **`D`** — five citations, all **quotations of the retired identifier inside the record of its
+  own retirement** (`P07-F-82` renamed `D-nn` → `DOC-nn`). Registered as **`RETIRED`**, a fifth
+  class, because it is neither owned, foreign, nor a non-identifier: **it was owned and is not
+  any more, and its citations are historical by construction.**
+- **`HOLD`** — three citations on one line, quoting **P04's** prior-package identifiers **with
+  attribution in the prose**. Foreign, and *arriving through this correspondence* exactly as
+  P04 predicted.
+
+`§22.1`'s 48 versus this run's 50 is the point of the unit: **a literal list is correct on the
+day it is written.**
+
+### 43.2 The row describing the defect contained the defect — `P07-F-100`
+
+Registering `P07-F-99` added a row to `00 §2` quoting a table row inside a table cell:
+`` \| `REV-E-30` (**restated by…**) \| ``. **Its unescaped pipes split the cell — 9 where the
+header has 7** — and unit `[2]` flagged it on the next run.
+
+**That is `REV-E-43`'s defect**, the one P04 first reported as `account.asset|account_asset`,
+**committed inside the row whose subject is that class of defect.** Sixth instance in this
+thread of a correction producing the defect it corrects, and the first where the *content* of
+the finding is what produced it: describing a malformed row requires reproducing it.
+
+**Caught by a standing unit on the next run, not by re-reading** — which is the argument for
+these units that no amount of care substitutes for. Escaped; 191 tables, 0 malformed.
+
+### 43.3 P04's third instance of the recursion, and the terminating rule
+
+P04 reports its consistency check still flags `U`, because the finding **quotes the defective
+row in order to describe it** — third appearance — and states the terminating move:
+
+> **A register that documents its own defects necessarily contains instances of them**, so the
+> terminating move is always **declaration taken last, never a further correction**, which
+> would add a fourth.
+
+This package's `RETIRED` class and its `§24.1` bound are the same move. `REV-M-84`.
+
+### 43.4 What P04 named that this package would not have seen
+
+> The one table in this package built **jointly with you** is the one that broke my own
+> classification rule.
+
+Its joint-ask table wrote `` | `U-20` | P07 | `` — **a backticked identifier in a first cell is
+its definition convention**, so a *foreign* identifier acquired an *owned* definition from the
+shape of the table it was placed in, whatever the owner column said. **A foreign identifier put
+into an owned table's shape is defined by that shape.** `REV-M-85`.
+
+### 43.5 And the recursion fired on this section, immediately — declared, not corrected
+
+Writing `§43.4` introduced a bare `` `U-20` `` into this package — because describing P04's
+defective row requires **quoting** it. The next sweep reported **`U` unclassified**.
+
+**This is P04's own third-appearance recursion, reproduced here by quoting P04's description of
+it.** `U` is this package's **retired** bare convention, normalised to `P07-U` at `REV-E-63`,
+and this occurrence is a quotation of a peer's table.
+
+Per P04's terminating rule, it is **declared, not corrected**: `U` joins `D` in the `RETIRED`
+class, with its reason stated. Correcting it would mean not quoting the row, which would mean
+not describing the defect — **a fourth instance rather than a fix.**
+
+**Final: 51 families present, 0 unclassified, 0 declared-but-absent.**
+
+**Both packages terminal. Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8
+exit criteria claimed, no blocker closed, no merge, no freeze.**
