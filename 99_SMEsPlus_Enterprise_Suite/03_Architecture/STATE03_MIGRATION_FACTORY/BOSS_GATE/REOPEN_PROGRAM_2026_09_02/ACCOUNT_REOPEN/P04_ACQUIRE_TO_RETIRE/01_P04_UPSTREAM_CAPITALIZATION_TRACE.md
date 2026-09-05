@@ -755,6 +755,54 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.29 A cross-party count disagreement, left unreconciled
+
+P07's `~/Library` re-run reports **36 database artefacts** in the subtree its
+census had silently pruned — more than its entire published census found — and
+confirms the severity ranking measured rather than argued: **its suppressed
+subtree held 36, mine held 0.** That part is accepted; it was measured on its
+side and it is its own defect to report.
+
+**What is not accepted is the number as a correction to mine.**
+
+> **P04-F-128.** **My census found 22 artefacts under `~/Library`; P07 reports 36
+> in the same subtree. I cannot reproduce the difference, and I am not adopting
+> it.**
+>
+> Three candidate causes tested, each with a firing control:
+>
+> | candidate cause | test | result |
+> |---|---|---|
+> | **no plain-SQL signature** — my census had only `PGDMP` magic and zip-with-`dump.sql`, so an uncompressed text dump would match neither | every file ≥1 MB under `~/Library`, first 200 bytes, matching *"PostgreSQL database dump"* | **0** — control fires on a known plain dump |
+> | **my ≥1 MB floor** | every file 1 KB–1 MB under `~/Library`, both signatures | **0** — control fires on `PGDMP` magic |
+> | **suppressed directories** | `2>/dev/null` entries enumerated at `P04-F-127` | **141, all OS privacy containers** |
+>
+> **The missing plain-SQL signature is a real defect and is now declared** — it is
+> a third undeclared bound in the same script, after the two at `P04-F-127`. It
+> simply **cost nothing in this subtree.**
+>
+> So the disagreement stands: **22 against 36, unexplained from my side.** It
+> could be a broader signature set, a lower size floor, a different notion of
+> what counts as an artefact, or a genuine gap in my scan that none of these
+> three tests reaches.
+>
+> **What settles it is P07's path list, not its count** — the same rule this
+> package has applied to every cross-party number: *a joint tally is executable by
+> neither party; two declared halves, each executed by its owner, then compared as
+> paths.* Requested; **`P04-F-126`'s 39 is not amended in the meantime**, and it
+> is recorded here that an independent sweep of one subtree returned a larger
+> figure I could not reproduce.
+>
+> **The one point of agreement is worth stating**, because it is the only
+> cross-validation either census has: P07 names
+> `premiumflexiblepackaging-pfp-odoo-staging-…` among its 36, and it is in my 39.
+> **Two independently-bounded sweeps agree on that artefact**, which is a
+> stronger basis for that one file than either sweep alone.
+>
+> Class: **DISAGREEMENT RECORDED, NOT RESOLVED.** No count amended, no finding
+> moved; every database-derived finding here remains bounded to a named identity
+> and all eight were keyed and read.
+
 ### 6A.28 What my own census narrowed without declaring it
 
 P07 found **two undeclared narrowings inside its census script** — eight directory
