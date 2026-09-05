@@ -112,6 +112,34 @@ indistinguishable from a finished small one. I re-ran every derived count on the
 | W6 | `stock_landed_costs/models/stock_landed_cost.py:171` | `button_validate` | landed-cost validation |
 | **W7** | **`stock_account/models/account_move.py:375`** | **`_prepare_in_invoice_svl_vals`** — `'account_move_id': self.move_id.id` | **no valuation gate whatsoever** |
 
+**Cross-check against a wider, differently-run corpus.** A second grep over the *whole* core tree
+(all 955 module directories, pattern additionally including `svl`, `_account_entry_move`,
+`_get_accounting_data_for_valuation`, `_prepare_account_move_vals`) completed later and returned 935 lines
+touching 11 modules — 7 installed (`stock_account`, `stock_account_enterprise`, `stock_landed_costs`,
+`purchase_stock`, `purchase_mrp`, `mrp_account`, `mrp_account_enterprise`, plus `hr_expense`) and 4 not
+(`account_fleet`, `l10n_mx_edi_landing`, `mrp_subcontracting_dropshipping`, `point_of_sale`).
+**Pattern-width caveat, stated rather than assumed: that corpus is NOT a superset for my unit** — its
+pattern misses `move_vals['stock_valuation_layer_ids'] = …` entirely (0 hits) and catches only 2 of the
+`'stock_valuation_layer_ids': [(6` sites. It is a superset for *modules that mention the model*, which is
+what I used it for. Three installed modules it surfaced were absent from my 144-module result:
+`mrp_account_enterprise`, `purchase_mrp`, `stock_account_enterprise`. Re-probing each on **my** unit:
+`mrp_account_enterprise` and `stock_account_enterprise` match only a read-only report SQL alias `svl`,
+`purchase_mrp` only a lambda variable of that name; on my unit all three hit nothing outside `tests/`.
+**W1-W7 survives the cross-check.**
+
+**But `purchase_mrp 16.0.1.0` (INSTALLED) does change W7's input**, which my first pass missed:
+```python
+# purchase_mrp/models/account_move.py:10-14
+def _get_stock_valuation_layers(self, move):
+    """ Do not handle the invoice correction for kit. It has to be done manually """
+    layers = super()._get_stock_valuation_layers(move)
+    return layers.filtered(lambda svl: svl.product_id == self.product_id)
+```
+A kit (phantom BoM) receipt produces layers for the *components*, so this filter returns an empty
+recordset and `_create_in_invoice_svl` hits `if not layers: continue` — the price-difference correction is
+silently skipped for kits. **LATENT in this deployment, measured:** `mrp_bom` 983 rows, `type` distribution
+`{'normal': 983}` — **zero phantom BoMs**, and 0 of 10,490 purchase order lines reference a kit product.
+
 **In POPULATION C (45 installed custom modules, 359 `.py` files) there are ZERO writers.**
 Positive control on the same corpus: `move_id` → 58 hits; `account_move_id` → **1** hit, and it is
 `om_data_remove/models/model.py:157`, a string in a delete list, not an assignment. So the negative is a
@@ -231,6 +259,51 @@ Five independent conditions, only one of which is the policy:
    `property_stock_journal` is a single global row `account.journal,8`, and **all 15 `real_time`
    categories carry a non-null valuation / input / output account triple** (full table derived and checked
    category by category). No missing-account blocker exists in this configuration.
+
+### 2.7 CHALLENGE to S16-05 — account 1173 is unreachable, not "wired and never fired"
+
+The brief states: "**`1173 4310005 Purchase price variance`: CONFIGURED, 0 items.** The price-difference
+engine is wired and has never fired in 183,590 journal entries." That conflates two different engines.
+
+`property_account_creditor_price_difference_categ` is read in exactly one place across the 144 installed
+core modules (declared search; the only other hits are a 9.0 migration script and two test files):
+`purchase_price_diff/models/account_move_line.py:11-12` — a module that **is** installed (16.0.1.1,
+`auto_install: True`). Its override:
+```python
+def _get_price_diff_account(self):
+    if self.product_id.cost_method == 'standard':
+        debit_pdiff_account = self.product_id.property_account_creditor_price_difference \
+                              or self.product_id.categ_id.property_account_creditor_price_difference_categ
+        ...
+        return debit_pdiff_account
+    return super()._get_price_diff_account()      # → purchase_stock: accounts['expense']
+```
+Its only caller is `purchase_stock/models/account_invoice.py:45`, inside
+`_stock_account_prepare_anglo_saxon_in_lines_vals`, which opens:
+```python
+if move.move_type not in ('in_invoice','in_refund','in_receipt') or not move.company_id.anglo_saxon_accounting:
+    continue
+```
+Account 1173 therefore requires **three** conditions, and **two of them fail independently**:
+
+| Condition | Here |
+|---|---|
+| `company.anglo_saxon_accounting` | **FALSE** (`res_company.anglo_saxon_accounting = f`) |
+| `product.valuation == 'real_time'` | true for the configured category |
+| `cost_method == 'standard'` (else `purchase_price_diff` falls through to `accounts['expense']`) | **fifo** |
+
+The single configured row is `product.category,10` = *All / Expenses / Material / Rice*, whose
+`property_cost_method` is **`fifo`**. Even with anglo-saxon accounting switched on, that category would
+route to `accounts['expense']` and never to 1173. (The brief also reports one configured row; there are
+**6 further `property_account_creditor_price_difference` rows at `product.template` level** that it does
+not mention.)
+
+**Corrected statement.** Price differences are not absent and the engine is not idle. The *valuation-layer*
+engine (W7) fired **1,267 times**. What is switched off is the *journal-line* engine, at the company flag,
+and account 1173 is additionally unreachable for the one category it is configured on. "0 items on 1173"
+is the expected output of a disabled path and is **evidence of nothing** about price-difference activity —
+which means the real exposure is the opposite of the brief's reading: inventory valuation is being
+corrected for price differences 1,267 times while **no purchase-price-variance line ever reaches the P&L**.
 
 ---
 
@@ -618,6 +691,8 @@ adjustment channel into inventory valuation and the GL.
 | W2 `_change_standard_price` | **LIVE** | 114 layers, 106 linked |
 | W5 revaluation wizard | **LIVE** | 2,372 layers, 1,248 linked |
 | W3/W4 category policy change | **LIVE, twice** | 22 layers, 2023-10-11 and 2025-01-21 |
+| `purchase_mrp._get_stock_valuation_layers` kit filter | **LATENT** | `mrp_bom` 983 rows, all `type='normal'`; 0 of 10,490 PO lines on a kit product |
+| Price-difference **journal line** → account 1173 | **UNREACHABLE** | `anglo_saxon_accounting = f`; and the one configured category is `fifo`, not `standard` |
 | W6 `stock_landed_costs` | **LATENT** | module installed, `stock_landed_cost` 0 rows, `stock_landed_cost_id` 0 of 74,982 |
 | Anglo-Saxon COGS lines (`_stock_account_prepare_anglo_saxon_out_lines_vals`) | **LATENT** | `res_company.anglo_saxon_accounting = f` |
 | Storno reversal (`is_storno`) | **LATENT** | `res_company.account_storno = f` |
@@ -650,10 +725,12 @@ adjustment channel into inventory valuation and the GL.
 - S16-04 arithmetic: 30 rows > 1e12, 25 linked and posted, 50 items, D = C = ฿31,622,699.37,
   ฿400,338,755.98 excluding the 30.
 - S16-06: `stock_landed_cost` 0 rows with the module installed; `stock_landed_cost_id` 0 of 74,982;
-  `withholding_tax_cert` 5,201 (done 5,191 / cancel 5 / draft 5); account 1173 configured with 0 items.
+  `withholding_tax_cert` 5,201 (done 5,191 / cancel 5 / draft 5). Account 1173 is configured and carries
+  0 items — the *count* is confirmed; the brief's reading of it is challenged in §2.7.
 - S16-07: exactly 30 `account_move.date` cells in Buddhist years.
 
 ### CHALLENGED
+
 1. **"The valuation policy gate determines whether a valuation layer carries a journal entry."**
    A second writer exists (`_prepare_in_invoice_svl_vals`) with no policy predicate; it produced 1,175 of
    the 57,863 links and **1,173 of the 1,209 rows in the brief's own Residual B**.
@@ -672,6 +749,12 @@ adjustment channel into inventory valuation and the GL.
    and request dates.
 7. **The E-ENT core's `<root>/addons` does not exist.** The brief's method note treats the split layout as
    general; for E-ENT the PATH SET is `odoo/addons` alone.
+8. **"The price-difference engine is wired and has never fired."** The journal-line path is disabled at
+   the company flag (`anglo_saxon_accounting = f`) and account 1173 is additionally unreachable for its
+   own category (`fifo`, while `purchase_price_diff` routes only `standard`). Meanwhile the
+   valuation-layer price-difference engine fired 1,267 times. §2.7.
+9. **The configured price-difference surface is larger than one row** — 6 further
+   `property_account_creditor_price_difference` rows exist at `product.template` level.
 
 ### MISSING FROM THE BRIEF (new, evidenced)
 - The custom addons tree is identifiable as one directory, 45/46 present, 43/45 exact version match (§1).
@@ -687,6 +770,7 @@ adjustment channel into inventory valuation and the GL.
 - `stock_valuation_layer.account_move_id` is `ON DELETE SET NULL`, so a raw `DELETE FROM account_move`
   reproduces the "0 of N linked" signature invisibly (§4.3).
 - 10 of `om_data_remove`'s 20 destructive buttons carry no confirmation (§4.2).
+- `purchase_mrp` silently skips price-difference correction for kits (latent here: no phantom BoMs) (§2.1).
 
 ### RISKY (real, but I have not measured the consequence — do not publish as established)
 - `l10n_th_withholding_tax._compute_amount` writing non-dependency fields from inside a compute.
@@ -732,6 +816,12 @@ adjustment channel into inventory valuation and the GL.
 4. **My first custom-tree grep used `--include=*.py` unquoted under zsh**, which failed with
    `no matches found` rather than returning zero results — a command that errors and a search that finds
    nothing are not the same outcome, and the shell made them look alike.
+6. **My first writer enumeration was scoped to the 144 installed core modules and I treated it as
+   complete.** A wider grep finishing later surfaced three installed modules my result had not listed.
+   Re-probing each on my own unit showed none contains an assignment site — but it also surfaced
+   `purchase_mrp`'s override of W7's *input*, which is a real behaviour change I had missed. Two
+   corpora with different pattern widths caught what one did not, and neither was a superset of the
+   other.
 5. **I initially trusted `s16/pgc.py`'s row padding.** It silently reshapes any ragged row. I re-scanned
    with an explicit ragged-row counter before relying on any cell-level count.
 
@@ -741,4 +831,6 @@ adjustment channel into inventory valuation and the GL.
 The brief's measurements reproduce; its causal model does not. The valuation-policy gate is one of five
 conditions and not the decisive one for 1,173 of the rows the brief could not explain; the policy *did*
 change and the subledger says so in plain text; and the ledger did receive a posted ฿19.78 billion entry
-that the brief's chosen population could not see.
+that the brief's chosen population could not see. The one account the brief reads as "wired and never
+fired" is unreachable by construction, while the engine it belongs to has fired 1,267 times somewhere
+the brief did not look.

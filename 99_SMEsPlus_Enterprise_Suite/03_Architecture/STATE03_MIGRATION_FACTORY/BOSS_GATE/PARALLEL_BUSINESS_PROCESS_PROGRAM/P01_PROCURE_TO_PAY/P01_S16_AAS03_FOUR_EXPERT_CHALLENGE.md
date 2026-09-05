@@ -75,8 +75,34 @@ what I had already found rather than by the subject of the claim.
 |---|---|
 | **Six product-level overrides** route the price difference to six other accounts, one named `9999991 Dummy Service`, the most recent configured 4 days before the archive | **Correct-by-construction behind two independent gates**: `purchase_stock/models/account_invoice.py:35` returns early because `anglo_saxon_accounting = FALSE`, and `purchase_price_diff` routes to 1173 only for `cost_method == 'standard'` while the one configured category is `fifo` |
 
-Both agree the ฿2.25bn is real and my published conclusion was wrong. **Neither mechanism is adopted.**
-Expert 1's cites two gates and is the stronger on its face; **neither was re-derived here.**
+**RESOLVED after Expert 4's addendum, and re-derived here.** A third expert reached Expert 1's conclusion
+independently, and I verified every element:
+
+- `purchase_price_diff 16.0.1.1` **is installed** (confirmed in `installed.txt`).
+- Its gate is `purchase_price_diff/models/account_move_line.py:10` — **`if self.product_id.cost_method == 'standard':`**
+- **Category 10 — the only `product.category` configuring account 1173 — has `property_cost_method = 'fifo'`.**
+  The gate can never pass for it.
+- Independently, the caller returns early on `not move.company_id.anglo_saxon_accounting`, and that flag is
+  **FALSE** on the only company.
+
+> **Two sufficient gates, either alone fatal. Account 1173 being empty is the expected output of a disabled
+> path and is evidence of nothing.** Expert 1's reading is adopted; Expert 2's six overrides **do exist**
+> (Expert 4 confirms 6 further rows at `product.template` level, which my query — scoped to
+> `product.category` — did not see) but they are **not** why 1173 is empty.
+
+### 4.1.1 And the corrected exposure inverts my original framing
+
+I published this as *"a mechanism configured and never used."* The truth is the reverse:
+
+> **Inventory valuation is being corrected for purchase price differences on the order of 1,100–1,300
+> occasions, and no purchase-price-variance line ever reaches the profit and loss account.**
+
+The difference is **capitalised into inventory** instead of being expensed as variance. That is a materially
+different — and more consequential — statement than the one I published.
+
+*Count discrepancy preserved: I measured **1,123** layers with a non-zero `price_diff_value` and verified it;
+Expert 4 reports the engine firing **1,267** times. Different units (layers versus invocations) or different
+predicates. **Both are recorded; neither is averaged.***
 
 ### 4.2 The extent of Buddhist-era leakage
 
@@ -151,6 +177,7 @@ series-19 deployments before either zero is relied on again.**
 | **Account 39 has `reconcile = 'f'`** — no item-level matching; 39 manual `MISC` items sweep ฿1.9bn out of it | Expert 1 |
 | ฿14,429,800.46 of vendor advances with a **dead** `deduct_down_payments`; 2,486 manual valuation interventions (1,354 posting to the GL); 9 layers linked to cancelled entries; 33.31% of inventory entries not dated on their stock move | Expert 4 |
 | **32 PO lines have done receipts with `qty_received = 0`** — a code-level candidate root cause for the price-unit explosion | Expert 4 |
+| **`purchase_mrp 16.0.1.0` silently skips the price-difference correction for kit purchases** — it overrides `_get_stock_valuation_layers` to filter to the bill line's own product, commented *"Do not handle the invoice correction for kit. It has to be done manually"*. **Latent here**: 983 BoMs all `type='normal'`, zero phantom BoMs, **0 of 10,490 PO lines reference a kit** | Expert 4 |
 
 ---
 
@@ -166,7 +193,12 @@ series-19 deployments before either zero is relied on again.**
 
 ## 8. THE EXPERTS' OWN DISCIPLINE, RECORDED
 
-Expert 4 logged **five defects it caught in its own work**, including nearly publishing a false correction
+Expert 4 logged **six defects it caught in its own work** — the sixth after its report was filed, when two
+background greps it had launched finally returned: it had scoped the writer enumeration to installed **core**
+modules and treated that as complete. The scoping was correct (uninstalled code cannot write) but it then
+read the result as covering everything an installed module *does* — and `purchase_mrp` **modifies a writer's
+input without being a writer**. It also recorded that the wider cross-check corpus was **not a superset** of
+its own: neither pattern contained the other. Its earlier self-catches included, including nearly publishing a false correction
 after keying `ir_property` on `name` instead of `fields_id`, and reading a background grep at 102 of an
 eventual 530 lines. Expert 3 declined to publish *"full-base withholding on partial payments"* as observed
 behaviour because the two clean cases show **prorated halves the code cannot produce**, and preserved both

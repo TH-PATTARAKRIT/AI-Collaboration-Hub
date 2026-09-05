@@ -108,6 +108,8 @@ database**, with a coverage control (0 of 74,982 unresolved).
 | **P07** | Whether withholding at **25.24% of supplier payments** is correctly scoped | `UNRESOLVED — STATUTORY EVIDENCE REQUIRED` |
 | **P11** | Receipt→bill identity is carried by **document text**, not a foreign key | valuation-layer `description` strings |
 | **P11** | `stock_landed_costs` **installed, 0 rows** | latent capability |
+| **P08**, **P11** | **Purchase price differences are capitalised into inventory, never expensed as variance** — 1,123 layers carry ฿2,246,313,274.64 of `price_diff_value` (Expert 4: 1,267 firings) and **no purchase-price-variance line ever reaches the P&L**. Account 1173 is empty because `purchase_price_diff` is gated on `cost_method == 'standard'` and the one configured category is `fifo` — correct-by-construction, not a defect | `purchase_price_diff/models/account_move_line.py:10`; `ir_property` |
+| **P03** | **`purchase_mrp` silently skips the price-difference correction for kit purchases** (*"has to be done manually"*). **Latent here** — 983 BoMs all `type='normal'`, 0 of 10,490 PO lines reference a kit — but live wherever kits are used | Expert 4 |
 
 ---
 

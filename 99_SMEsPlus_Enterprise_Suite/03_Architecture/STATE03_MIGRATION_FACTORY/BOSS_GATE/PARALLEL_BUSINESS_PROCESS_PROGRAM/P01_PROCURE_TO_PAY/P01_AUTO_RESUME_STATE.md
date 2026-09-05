@@ -250,3 +250,21 @@ stated selection rule (`GAP-P01-07`).
 
 > **Identify deployed custom code by the field set its model declares in the deployment's `ir_model_fields`
 > registry** (`METHOD-P01-03`), not by version — 4 variants share one version string here.
+
+## R6.9 ONE DISAGREEMENT CLOSED AFTER THE ROUND REPORT
+
+Expert 4's two background greps returned after it filed, and its addendum **closed the account-1173
+disagreement in Expert 1's favour** — verified here: `purchase_price_diff 16.0.1.1` is installed, its gate is
+`cost_method == 'standard'` (`models/account_move_line.py:10`), and the only configured category is **`fifo`**;
+independently the caller returns early because `anglo_saxon_accounting` is FALSE. **Two sufficient gates —
+the empty account is evidence of nothing.**
+
+**And the exposure inverts:** purchase price differences are **capitalised into inventory** on the order of
+1,100–1,300 occasions and **no purchase-price-variance line ever reaches the P&L**. Routed to P08 and P11.
+
+**Also latent-but-real:** `purchase_mrp` skips the price-difference correction for **kit** purchases with the
+comment *"has to be done manually"* — 0 of 10,490 PO lines reference a kit here, so it cannot fire in this
+deployment. Routed to P03.
+
+**One count deliberately left unmerged:** 1,123 layers with non-zero `price_diff_value` (my measurement,
+verified) against 1,267 firings (Expert 4). Different units or predicates; both recorded.
