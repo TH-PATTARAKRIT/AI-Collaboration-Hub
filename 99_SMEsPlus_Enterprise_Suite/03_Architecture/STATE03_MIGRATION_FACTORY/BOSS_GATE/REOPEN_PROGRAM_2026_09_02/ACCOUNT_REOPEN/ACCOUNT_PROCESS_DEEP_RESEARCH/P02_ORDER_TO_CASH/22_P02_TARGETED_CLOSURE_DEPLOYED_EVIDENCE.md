@@ -458,3 +458,111 @@ rather than by source reading alone.
 **What this does NOT establish:** that the fallback has ever affected a live, posted, financially material
 line. It has not, in this database. **TZ-05 is therefore `CONFIRMED REACHABLE AND DEMONSTRATED`, not
 `CONFIRMED HARMFUL`**, and the distinction is kept.
+
+---
+
+## 15. Scenario Research — Corrections To This File
+
+The eight-scenario research track returned findings that **correct §3 and §4 of this file**. Each was
+independently re-verified by the primary session before adoption.
+
+### 15.1 The mechanism inventory in §3.3 was incomplete — a sixth mechanism exists
+
+**`FACT VERIFIED` — TC-27.** v19 carries an **automated aggregate periodic close**:
+`res.company._action_close_stock_valuation` with a cron `_cron_post_stock_valuation`
+(`EV-P02-111`, `EV-P02-112`). §3.3 listed manual periodic cost as "outside the process in both". **That was
+wrong for v19** — the product provides the mechanism.
+
+**M6 — Aggregate periodic close (v19 only).** Posts a period-level true-up between the stock valuation
+account and a stock variation account, rather than a per-transaction cost entry.
+
+**`FACT VERIFIED` — TC-28. It is configured to run for ZERO companies in the available estate.** The cron
+domain is `inventory_period = 'daily'` — widened to include `'monthly'` only at month-end — **and**
+`inventory_valuation != 'real_time'`.
+
+| Archive | Companies | `inventory_period` | Matching the cron domain |
+|---|---|---|---|
+| `BK12MAY26` | 44 | **all `manual`** | **0** |
+| `iEVING_0723` | 44 | 43 `manual`, 1 `monthly` — **and that one is the `real_time` company, which the domain excludes** | **0** |
+| `iTEST02` ×2 | 1 each | `daily` — **but `real_time`, which the domain excludes** | **0** |
+
+**And independently: `account_stock_journal_id` is NULL in 44 of 44 companies in both large archives**, so
+even if the close were eligible there is no journal to post into.
+
+**This strengthens TC-02 rather than weakening it.** The estate recognises no cost of sales through this
+process by **any** mechanism — not transaction-level, and not aggregate.
+
+### 15.2 §3.2 understated the change: v19 *redefines* what "perpetual" means
+
+**`FACT VERIFIED` — TC-29.** The v19 valuation selection is not merely re-gated, it is **relabelled by the
+product itself** (`EV-P02-113`):
+
+```
+('periodic',  'Periodic (at closing)')
+('real_time', 'Perpetual (at invoicing)')        default = 'periodic'
+```
+
+against v18's `('manual_periodic','Manual')` / `('real_time','Automated')` on the product **category**.
+
+**This is the single clearest statement of TC-09 available, and it comes from the product's own interface
+label: in v19, "Perpetual" means "at invoicing".**
+
+**`FACT VERIFIED` — TC-30 (AND IT BEARS DIRECTLY ON THE BOSS TARGET POLICY).** `23` §1 records **BP-02** —
+*for a normal perpetual storable target, COGS is recognised at delivery*. On the v19 line **that policy is
+not selectable**: choosing "Perpetual" selects *at invoicing*, by definition. BP-02 on v19 therefore
+requires a mechanism the product does not offer, not a setting. This raises BP-02 from "a design
+requirement with a known implementation gap" (`23` §1) to **a design requirement that the current product
+generation contradicts by construction**.
+
+### 15.3 Drop-shipping — v19 produces no cost entry anywhere in Order-to-Cash
+
+**`FACT VERIFIED` — TC-31.** In v19 a dropshipped sale is excluded on **three** independent paths, verified:
+
+1. **No stock-side entry** — the delivery gate requires `is_valued`, defined as `is_in or is_out`, and a
+   dropship move is neither.
+2. **No invoice cost line** — `_eligible_for_stock_account` ends `return all(not m._is_dropshipped() ...)`
+   (`EV-P02-114`), so the line is skipped by the cost generator.
+3. **No vendor-bill account redirect** — the same predicate gates the purchase-side substitution, so the
+   bill keeps its ordinary expense account.
+
+v18 had a **purpose-built** dropship entry for exactly this case. **The v19 O2C leg posts revenue and
+receivable and nothing else**; cost recognition displaces entirely to the vendor bill, at the bill's date,
+with nothing linking it to the sale. **Routed to P01**, which now owns cost recognition for dropshipped
+sales on the v19 line.
+
+### 15.4 A premise in this session's own research brief was wrong
+
+**`CONTRADICTED` — TC-32.** The brief for the scenario track implied the period-end **unrealised FX
+revaluation** fields might be v19-only. They are **present in v18 at identical definitions**
+(`EV-P02-115`). The mechanism is **Enterprise-licensed in both generations**, so a Community-equivalent
+deployment has never had it — which is the finding that matters, and it is not a generation change.
+
+**Recorded as a research error of this session** (`RE-14`): a brief asserted a generation difference from
+a field list rather than from a check, and the track corrected it. **The instruction in that brief to
+report any wrong path as a finding is what surfaced it.**
+
+### 15.5 A v19-only cost divergence for lot-valuated products
+
+**`FACT VERIFIED` — TC-33.** In v19 the stock side values a move at the **lot's** standard price for every
+cost method, while the invoice cost line uses the lot-derived value **only** for `fifo` or
+`lot_valuated + average`. For **`lot_valuated + standard`** the invoice uses the **product's** standard
+price. Where the two differ — which is the entire purpose of lot valuation — **the posted cost does not
+equal the move's own recorded value**. v18's layer-backed design could not produce this, because both
+sides read the same lot-tagged layers.
+
+**Magnitude in the estate: `UNRESOLVED — EVIDENCE REQUIRED`** — it needs the count of products with
+`lot_valuated` **and** `cost_method = 'standard'` **and** `valuation = 'real_time'`, which was not run.
+
+### 15.6 Corrected mechanism inventory
+
+| # | Mechanism | v18 | v19 | Deployed instances |
+|---|---|---|---|---|
+| M1 | Delivery-based (outflow posts cost) | present | **absent for ordinary sales** | **1** (`iSMEs`) |
+| M2 | Invoice-based | gated on the company boolean | gated on **product valuation = real-time** | **0** |
+| M3 | Valuation-layer-derived | present | **model does not exist** | 1 (v18 only) |
+| M4 | Location-based | absent | present | **0** |
+| M5 | Manual periodic (human posts an entry) | outside the process | outside the process | unmeasured |
+| **M6** | **Automated aggregate periodic close** | **absent** | **present** — `EV-P02-111`, `EV-P02-112` | **0 — no company matches the cron domain** |
+
+**`FACT VERIFIED` — TC-34.** Six mechanisms. **One has deployed instances, in one database.** Four have
+zero. One is unmeasured and lies outside the process in both generations.

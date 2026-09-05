@@ -147,6 +147,12 @@ Second root, referenced below as `R19`:
 | 108 | `R19/stock_account/models/product.py:74-77` | v19 product valuation = category property **else the company's** `inventory_valuation` |
 | 109 | `R19/stock_account/models/res_company.py:29`, `:38` | v19 moves valuation mode and costing method **onto the company** |
 | 110 | `R19/stock_account/models/stock_move.py:183-199` | v19 delivery entry is posted into `company.account_stock_journal_id` |
+| 111 | `R19/stock_account/models/res_company.py:117-133` | **v19 automated aggregate periodic close** — a sixth cost mechanism the package originally missed |
+| 112 | `R19/stock_account/models/res_company.py:136-142` | …and its cron domain: `inventory_period='daily'` (widened to `'monthly'` at month-end) **and** `inventory_valuation != 'real_time'` |
+| 113 | `R19/stock_account/models/res_company.py:29-36` | **v19 relabels the selection: `'Periodic (at closing)'` / `'Perpetual (at invoicing)'`, default `periodic`** — the product's own label states that perpetual means at-invoicing |
+| 114 | `R19/stock_account/models/account_move_line.py:30-35` | v19 excludes **dropshipped** moves from cost eligibility, which also suppresses the vendor-bill account redirect at `:16-19` |
+| 115 | `R/account_reports/models/res_company.py:29-31` and `R19/account_reports/models/res_company.py:35-37` | Unrealised-FX revaluation fields are present in **both** generations — the session brief's premise of a v19-only feature was wrong |
+| 116 | `R19/stock_account/models/stock_move.py:303-311` vs `:245-255` | v19 lot divergence: the stock side uses the **lot's** standard price for all methods; the invoice uses the **product's** for `lot_valuated + standard` |
 
 ## 3. Track Evidence
 
