@@ -1056,3 +1056,106 @@ finding here is denominated over customers, sites or installations — only over
 on one machine. `P07-U-01` remains open, and `P07-U-28` is untouched by any of this: which
 **copy of the source** these databases run is a separate question from how many databases there
 are, and it is still decided against the declared path set in one module and undecidable in two.
+
+
+---
+
+## 14. The Declared Source Set Is Not the Deployed Set — `P07-F-68`, `P07-F-69`
+
+`§11` asked whether an **excluded** root overlapped the deployed modules. P04 asked the
+stronger question — **how many installed modules are in NO declared root at all** — and got 27
+on its own package. Run here.
+
+### 14.1 Declared PATH SET against installed modules
+
+Declared set: 1,502 module directories across the three roots of `13 §1`.
+
+| identity | installed | in declared set | **in NO declared root** | declared, not installed |
+|---|---:|---:|---:|---:|
+| `a1430edc` v19 | 486 | 460 | **26** | 1,042 |
+| `1f6338ae` v19 | 232 | 218 | **14** | 1,284 |
+| `66d1b52a` v19 | 251 | 233 | **18** | 1,269 |
+| `551ab874` v18 | 361 | 312 | **49** | 1,190 |
+
+**`P07-F-68` — the declared set is not the deployed set in either direction.** Union of
+installed-but-undeclared across the four: **85 modules**. Of those, fourteen are accounting- or
+tax-adjacent by name, including `account_payment_multi_deduction`, `scgl_account_coa_control`,
+`scgl_date_range_auto_period`, `journal_entries_report` and **`scgl_tax_period_date`**.
+
+`account_payment_multi_deduction` is **installed** in two identities. `P07-F-20` reports it as
+*not installable from the declared set* and classes that as a set-composition artefact; the
+runtime now says the module is deployed, which confirms the classification and removes any
+reading of `P07-F-20` as a capability gap.
+
+### 14.2 `P07-F-69` — the tax-period module this package analysed is installed nowhere
+
+Tax-period membership is one of the two structural causes this package rests on. The module
+analysed throughout is `smesplus_tax_period_date`, in the declared set.
+
+| module | in declared set | installed in `a1430edc` | `1f6338ae` | `66d1b52a` | `551ab874` |
+|---|---|---|---|---|---|
+| `smesplus_tax_period_date` | yes | **no** | no | **no** | no |
+| `scgl_tax_period_date` | **no — in no declared root** | **yes** | no | **yes** | no |
+
+**`smesplus_tax_period_date` is installed in 0 of 4 identities.** The module that is installed
+carries a different **technical** name, the **same display name** *Tax Period Date*, and the
+**same version** `19.0.0.1`.
+
+### 14.3 And the deployed one is the same code — which is why the finding survives
+
+Diffed after normalising line endings: `models/tax_period.py`, `__init__.py` and the view are
+**identical**; `__manifest__.py` differs in one field, `author`. The raw diff reported **72
+changed lines**, and **every one of them was a CR**.
+
+So `P07-F-03`, `P07-N-02`, `04 §4` and the tax-point matrix rows **transfer intact** — the
+deployed code is the analysed code. What is wrong is every statement that identifies the
+mechanism by its **technical module name**: those name a module no examined deployment has
+installed. Corrected in place rather than restated, since the behaviour is unchanged.
+
+This is `P07-F-65` at a second level. There, two code bodies shared one version string. Here,
+**two technical identities share one display name and one version, and the code is the same** —
+the failure mode inverted. Neither name, nor version, nor display name identifies deployed
+code. Only the installed-module list does.
+
+### 14.4 `§11.3`'s diff counts were inflated — `REV-E-54`
+
+Having found a 72-line diff that was 100% line endings, the published `§11.3` counts had to be
+re-run the same way. They are **real differences**, but smaller than published:
+
+| file | published | normalised |
+|---|---:|---:|
+| `l10n_th_reports_ext/models/tax_report_vat.py` | 279 | **174** |
+| `l10n_th_withholding_tax_cert/models/withholding_tax_cert.py` | 214 | **179** |
+| `l10n_th_withholding_tax_cert/wizard/create_withholding_tax_cert.py` | 125 | **106** |
+| `l10n_th_withholding_tax/models/account.py` | 105 | **94** |
+| `l10n_th_withholding_tax/models/account_move.py` | 101 | **102** |
+| `l10n_th_withholding_tax/models/account_tax.py` | 31 | **30** |
+| `l10n_th_withholding_tax/models/tax_report_pnd.py` | 16 | **17** |
+
+`P07-F-65` stands — the copies genuinely differ, by 17 to 179 lines. The magnitudes were
+overstated by up to 38%. **A raw diff line count is not a measure of code difference until
+line endings are normalised**, and the same command that produced the `§11.3` table produced a
+count that was entirely artefact one section later. `REV-M-28`.
+
+### 14.5 A false zero that would have reversed a live finding — `REV-E-55`
+
+The first re-run of the table above returned **0 for all seven files**. Not because there were
+no differences: the shell loop used `set -- $spec` to split a two-word string, and **zsh does
+not word-split unquoted parameters**, so `diff` ran on paths that did not exist and reported
+nothing. Seven clean zeros, perfectly reproducible.
+
+Published, that would have read *"the `§11.3` differences were line-ending artefacts"* — a
+**withdrawal of `P07-F-65` caused entirely by a broken command.** What caught it was an
+existence control printing whether both paths resolved; the zeros themselves were
+indistinguishable from a real result. Same class as `REV-E-42`, opposite direction: there a
+filter that could not fire produced evidence *against* the strongest finding; here a loop that
+could not run produced evidence *against* a fresh one.
+
+### 14.6 The pattern P04 named, with this package's instance of it
+
+Three undeclared bounds, each one level further out: archive **signature set** (`§10.7`),
+archive **path set** (`§12.2`), and now the completeness of the **source set** against
+deployment. P04's formulation, adopted: **a scope is a claim, and a claim written as prose has
+no denominator.** This package declared its source scope as three paths with manifest counts —
+better than a description — and it was still never tested against what is installed. **Naming
+the root is not the same as testing the root.**
