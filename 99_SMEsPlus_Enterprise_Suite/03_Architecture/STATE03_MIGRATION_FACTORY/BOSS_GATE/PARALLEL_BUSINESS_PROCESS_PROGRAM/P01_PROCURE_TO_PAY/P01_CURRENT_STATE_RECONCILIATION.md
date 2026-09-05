@@ -84,8 +84,13 @@ Preserved unchanged, as audit lineage:
 
 ## 6. PUBLICATION STATE
 
-**`PUBLICATION BLOCKED`.** All P01 commits are local. The push was refused by the environment's
-permission classifier in the previous round and has not been retried successfully.
+**PUBLISHED.** The push was refused by the environment's permission classifier in the previous
+round; it **succeeded in this round**. All four P01 commits are on the remote research branch
+`research/account-p01-procure-to-pay-2026-09-04-001`, head `366a6ea`, 48 package files.
 
-This is P01's contribution to P11's `DEP-23` (*P01–P10 publication — peer dependency open × 10*)
-and it is **a permission issue, not a research one**. Exact details in the final report.
+This discharges P01's part of P11's `DEP-23` (*P01–P10 publication — peer dependency open × 10*).
+
+Peer **P06** recorded that its P01-facing ownership assignments were made against the Boss
+prompt rather than a published P01 package, and that any conflict discovered on publication
+supersedes its file. **That caveat is now actionable**: P06 should re-read its P01 assignments
+against this package.
