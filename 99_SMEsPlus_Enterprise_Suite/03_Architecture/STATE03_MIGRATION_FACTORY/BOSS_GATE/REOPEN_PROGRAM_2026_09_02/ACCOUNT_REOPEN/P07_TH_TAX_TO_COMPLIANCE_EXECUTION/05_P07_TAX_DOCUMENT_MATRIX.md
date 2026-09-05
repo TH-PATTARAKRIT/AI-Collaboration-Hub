@@ -12,20 +12,20 @@ class, whether such an object exists in the declared source set.
 
 | # | Statutory document | Source | Object exists | Own number | Issuance event | Required particulars enforced | Lifecycle controlled | Realisation |
 |---|---|---|---|---|---|---|---|---|
-| `D-01` | Tax invoice (ใบกำกับภาษี) | `S-19` `S-20` | **no** | no | no | no | no | Print-time substitution of the invoice title with the literal `Tax Invoice`, selected when the company's fiscal country is TH (`l10n_th/views/report_invoice.xml:14-16`; `l10n_th/models/account_move.py:7-11`) |
-| `D-02` | Abbreviated tax invoice (ใบกำกับภาษีอย่างย่อ) | `S-22` | **no** | no | no | no | no | Not selected by the declared patterns as a class. The vendor tax report anticipates the partnerless case with the caption `Selling goods or providing services` (`l10n_th_reports/models/tax_report_vat.py:153-154`); the SMEsPlus reports remove that path (`P07-F-04`) |
-| `D-03` | Debit note (ใบเพิ่มหนี้) | `S-23` `S-13` | **no** | no | no | no | no | Not selected by the declared patterns in the Thai modules |
-| `D-04` | Credit note (ใบลดหนี้) | `S-24` `S-14` | partial | no | no | no | accounting reversal only | Base-application reversal document; no Thai note class, no original-tax-invoice reference in any Thai report |
-| `D-05` | Substitute tax invoice (ใบแทนใบกำกับภาษี) | held at `P07-U-08` | **no** | — | — | — | — | Not selected by the declared patterns |
-| `D-06` | Withholding tax certificate (หนังสือรับรองการหักภาษี ณ ที่จ่าย) | `S-31` | **yes** | computed `name` | user-initiated wizard | partial | draft / done / cancel, with a cancel-and-replace reference | `l10n_th_withholding_tax_cert`; print form in `l10n_th_withholding_tax_cert_form` |
-| `D-07` | Output tax report / Input tax report (รายงานภาษีขาย / ภาษีซื้อ) | `S-25` | as reports, not as records | n/a | n/a | column set not validated against `P07-U-07` | none | Two parallel implementations — see `07_P07_TAX_REPORT_TRACEABILITY.md` |
-| `D-08` | VAT return (ภ.พ.30) | `S-15` | partial | n/a | n/a | structure present as report lines 1–12 | one `account.return.type` | `l10n_th/data/account_tax_report_data.xml`; `l10n_th_reports/data/account_return_data.xml:4-8` |
-| `D-09` | PND 3 / PND 53 return | `S-33` | export only | n/a | n/a | 16 columns emitted, four defective (`W-K-01`, `W-K-02`, `W-K-05`, and the amount per `W-C-03`) | none | CSV export buttons on two report definitions |
-| `D-10` | PND 1 / PND 3a / PND 54 return | `S-33` | **no** | — | — | — | — | See the provisioning matrix at `03 §4.1`: PND 54 has a general-ledger account and nothing else |
+| `DOC-01` | Tax invoice (ใบกำกับภาษี) | `S-19` `S-20` | **no** | no | no | no | no | Print-time substitution of the invoice title with the literal `Tax Invoice`, selected when the company's fiscal country is TH (`l10n_th/views/report_invoice.xml:14-16`; `l10n_th/models/account_move.py:7-11`) |
+| `DOC-02` | Abbreviated tax invoice (ใบกำกับภาษีอย่างย่อ) | `S-22` | **no** | no | no | no | no | Not selected by the declared patterns as a class. The vendor tax report anticipates the partnerless case with the caption `Selling goods or providing services` (`l10n_th_reports/models/tax_report_vat.py:153-154`); the SMEsPlus reports remove that path (`P07-F-04`) |
+| `DOC-03` | Debit note (ใบเพิ่มหนี้) | `S-23` `S-13` | **no** | no | no | no | no | Not selected by the declared patterns in the Thai modules |
+| `DOC-04` | Credit note (ใบลดหนี้) | `S-24` `S-14` | partial | no | no | no | accounting reversal only | Base-application reversal document; no Thai note class, no original-tax-invoice reference in any Thai report |
+| `DOC-05` | Substitute tax invoice (ใบแทนใบกำกับภาษี) | held at `P07-U-08` | **no** | — | — | — | — | Not selected by the declared patterns |
+| `DOC-06` | Withholding tax certificate (หนังสือรับรองการหักภาษี ณ ที่จ่าย) | `S-31` | **yes** | computed `name` | user-initiated wizard | partial | draft / done / cancel, with a cancel-and-replace reference | `l10n_th_withholding_tax_cert`; print form in `l10n_th_withholding_tax_cert_form` |
+| `DOC-07` | Output tax report / Input tax report (รายงานภาษีขาย / ภาษีซื้อ) | `S-25` | as reports, not as records | n/a | n/a | column set not validated against `P07-U-07` | none | Two parallel implementations — see `07_P07_TAX_REPORT_TRACEABILITY.md` |
+| `DOC-08` | VAT return (ภ.พ.30) | `S-15` | partial | n/a | n/a | structure present as report lines 1–12 | one `account.return.type` | `l10n_th/data/account_tax_report_data.xml`; `l10n_th_reports/data/account_return_data.xml:4-8` |
+| `DOC-09` | PND 3 / PND 53 return | `S-33` | export only | n/a | n/a | 16 columns emitted, four defective (`W-K-01`, `W-K-02`, `W-K-05`, and the amount per `W-C-03`) | none | CSV export buttons on two report definitions |
+| `DOC-10` | PND 1 / PND 3a / PND 54 return | `S-33` | **no** | — | — | — | — | See the provisioning matrix at `03 §4.1`: PND 54 has a general-ledger account and nothing else |
 
 ## 2. The Tax Invoice Is Not an Object
 
-`D-01` is the most consequential row, so its evidence is set out in full.
+`DOC-01` is the most consequential row, so its evidence is set out in full.
 
 The whole of the Thai tax-invoice implementation in the declared source set is:
 
@@ -71,7 +71,7 @@ replaces six. `P07-F-46`.
 ### 2.2 This Is a Regression, Not a Greenfield Gap
 
 `P07-N-03` records that four Thai tax-document modules exist in the v14 tree and not in the
-declared set. Connecting that to `D-01` changes what the finding means. In the excluded v14
+declared set. Connecting that to `DOC-01` changes what the finding means. In the excluded v14
 tree, `l10n_th_tax_invoice/models/account_move.py:14` declares a first-class model
 `account.move.tax.invoice` carrying `tax_invoice_number` (`:18`), `tax_invoice_date`
 (`:19`), `period_date` (`:17`), `report_late_mo` (`:20`) and `reversing_id` / `reversed_id`
@@ -80,14 +80,14 @@ tree, `l10n_th_tax_invoice/models/account_move.py:14` declares a first-class mod
 
 **Every capability this matrix finds structurally absent — document object, own number, own
 sequence, own document date, own tax period, cancel-by-reference — existed as a first-class
-model in the prior generation of this product line.** `D-01`, `A-04` and `A-13` are
+model in the prior generation of this product line.** `DOC-01`, `A-04` and `A-13` are
 therefore a **regression**, and their remediation is a restoration rather than a design
 from nothing. `P07-F-47`. Boundary: the v14 tree enumerated at `13 §2.1`; whether the
 capability was deliberately dropped, superseded, or lost in migration is `P07-U-18`.
 
 ## 3. The Withholding Certificate Is an Object — Assessed on Its Merits
 
-`D-06` is the only statutory document in the declared set that is modelled as a record.
+`DOC-06` is the only statutory document in the declared set that is modelled as a record.
 It is therefore assessed against `S-31` rather than dismissed.
 
 | Property | Evidence | Assessment |

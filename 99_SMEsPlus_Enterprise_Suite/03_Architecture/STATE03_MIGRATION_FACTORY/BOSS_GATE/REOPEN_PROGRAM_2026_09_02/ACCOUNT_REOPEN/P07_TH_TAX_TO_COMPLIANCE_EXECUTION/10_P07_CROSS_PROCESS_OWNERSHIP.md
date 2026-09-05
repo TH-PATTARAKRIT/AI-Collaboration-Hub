@@ -25,7 +25,7 @@ representation; it owns almost none of the inputs.
 |---|---|---|---|---|---|
 | `X-01` | Vendor bill and its line detail | P01 | Input VAT base, purchase-side WHT base and default | The line must carry the tax point, not only the accounting date (`TPR-01`) | `PEER DEPENDENCY OPEN` |
 | `X-02` | Vendor identity: taxpayer id, legal personality, branch | P01 / master data | PND3 vs PND53 determination, branch column | Legal personality must be a **typed attribute**, not `is_company` (`W-K-03`); branch must be one field with one meaning (`P07-F-06`) | **BLOCKING for P07** |
-| `X-03` | Customer invoice and its line detail | P02 | Output VAT base, sales-side WHT | Tax point per `S-01`/`S-02`; the tax-invoice document identity that P07 cannot supply (`D-01`) | `PEER DEPENDENCY OPEN` |
+| `X-03` | Customer invoice and its line detail | P02 | Output VAT base, sales-side WHT | Tax point per `S-01`/`S-02`; the tax-invoice document identity that P07 cannot supply (`DOC-01`) | `PEER DEPENDENCY OPEN` |
 | `X-04` | Delivery / transfer of ownership event | P02 (and Inventory) | The **goods tax point** under `S-01` | P07 cannot determine a goods tax point without a delivery fact carried onto the tax fact | **BLOCKING for P07** |
 | `X-05` | Service performance / utilisation event | P02 / P05 | The **services tax point** under `S-02` where the service is used before payment | Same | **BLOCKING for P07** |
 | `X-06` | Expense claim and employee-borne expenditure | P05 | Input VAT on expenses; the non-deductible categories of `S-11` | A deductibility classification must exist at the expense line | `PEER DEPENDENCY OPEN` |

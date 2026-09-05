@@ -1885,3 +1885,74 @@ closure stands as written; what it covers is now stated, and what it does not co
 **The general form:** *a claim discharged against the right module is not discharged against
 the deployed stack.* Copy-identity and stack-completeness are two questions, and closing the
 first reads like closing the second.
+
+
+---
+
+## 24. Count the Forms, Not the Identifiers — and a Stem Collision — `P07-F-82`
+
+P04's operative rule, which is narrower than either of our statements and generalises better:
+
+> **A family is safe when it has exactly one canonical form and the check audits that form.**
+> The failure mode is a family existing in **two** forms. Count the forms, not the identifiers.
+
+Applied to this package's 34 owned families:
+
+| | families |
+|---|---:|
+| **single-form — safe by construction** | **31** |
+| dual-form | 3 (`P07-F`, `P07-D`, `D`) |
+
+That explains the disparity P04 noticed — this package's 11 bare citations against its 1 —
+without either of us being more careless: **most of P04's families never had a second form to
+be silent about, and neither did 31 of these.**
+
+### 24.1 The residue in `P07-F` is self-describing, and bounded rather than listed
+
+Fifteen bare `` `F-nn` `` remain. Two are P04's `F-81`, attributed in the prose that carries
+them. **The other thirteen are quotations inside the sentences that document the defect** —
+`REV-E-66` and `§22.2` cannot state *"eleven citations were written bare"* and name them
+without writing them bare.
+
+P04 hit the same recursion and reports the terminating move, adopted here verbatim:
+
+> **A self-describing register changes what it describes, so the only stable declaration is one
+> taken last and expressed as a bound rather than a list.**
+
+**Declared bound:** every bare `` `F-nn` `` in this package is either an attributed citation of
+P04's identifier or a quotation inside text describing this defect. There are no others. Chasing
+the residue to zero would require the finding to stop describing what it found.
+
+### 24.2 `P07-F-82` — two owned families share a stem, and both were reported safe
+
+The other two dual-form entries are not two forms of one family. **They are two different
+families colliding on one stem:**
+
+| identifier | family | meaning |
+|---|---|---|
+| `P07-D-01` | dependency register (`12`), 31 members | `l10n_th_withholding_tax_multi` → `account_payment_multi_deduction`, **BROKEN** |
+| `D-01` | document matrix (`05`), 10 members | **Tax invoice (ใบกำกับภาษี)** — the most consequential statutory document in the package |
+
+A reader meeting `` `D-01` `` in `10 §2` or `12 §3` could not tell which was meant, and **the
+identifier check reported both families clean** — because both had definition rows, and the
+collision is *semantic*, not structural. This is the one defect in this exchange that neither
+the orphan check, the structural check, the manifest check nor the scrub could ever have found:
+**every identifier resolved; two of them resolved to different things under the same name.**
+
+**Corrected:** the document family is renamed `DOC-01`…`DOC-10`. 16 occurrences across three
+files; the dependency family verified unchanged at 47 citations before and after, as the
+control on the rename. **All 34 owned families now have exactly one canonical form and no
+shared stem.**
+
+### 24.3 P04's qualification of `REV-M-43`, which matters for how it is read
+
+Adopted as stated, because the general version invites the wrong reply:
+
+> *Neither diagnosis was derivable from one package* is true, but the reason is specific — **the
+> same symptom had opposite causes, and each of us had the cause the other lacked a way to see.
+> A method defect is invisible in the direction of its own bias, and only a differently-biased
+> instrument reads it.**
+
+That is not *two reviewers are better than one*. More of either package's own review would not
+have found it: this package's check was correct in its convention and blind in its scope, and
+more careful convention-checking would have returned clean every time.

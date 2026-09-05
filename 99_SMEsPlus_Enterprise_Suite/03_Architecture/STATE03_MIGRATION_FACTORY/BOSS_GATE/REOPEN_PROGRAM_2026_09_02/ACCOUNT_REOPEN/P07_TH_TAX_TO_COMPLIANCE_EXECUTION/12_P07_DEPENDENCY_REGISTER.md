@@ -57,7 +57,7 @@ Carried from `09 §4`. None is used to support a conclusion in this package.
 | `P07-U-03` | Instrument permitting a deferred input-tax claim | The legal grounding of the purchase-side tax period design (`TPR-05`) |
 | `P07-U-04` | Royal Decree number for the current 7% rate | Precise dating of `P07-D-11` |
 | `P07-U-07` | Prescribed format of the s.87 reports | Whether the reports are format-compliant, not merely arithmetically complete |
-| `P07-U-08` | Substitute tax invoice requirements | Whether `D-05` is a gap or a non-requirement |
+| `P07-U-08` | Substitute tax invoice requirements | Whether `DOC-05` is a gap or a non-requirement |
 | `P07-U-09` | Statutory condition-of-withholding code set | Sizing of `W-K-02` |
 | `P07-U-10` | Authoritative s.40 income category → PND form → rate mapping | Specification of the replacement for `W-K-01` |
 
