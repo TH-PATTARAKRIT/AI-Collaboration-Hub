@@ -140,3 +140,38 @@ falsified this package's headline cause (`ERR-P01-19`).
 > patterns of different width and reconcile.**
 
 Each clause corresponds to a specific defect this package published and then had to correct.
+
+---
+
+# ADDENDUM — G01 CLOSURE (2026-09-05)
+
+## The evidence base as it stands at research-scope freeze
+
+| Class | Locator | Status |
+|---|---|---|
+| **Series-16 deployment** | `~/Downloads/iSMEs_2026-07-11_05-03-27.dump` · `database.uuid 45a8e08e-5dcd-11ee-90f5-5242ea102159` · `swr.smeplus.asia` · 1 company · 183,590 moves | **The only deployment in the estate with substantial accounting history** |
+| **Series-16 core source** | `…/16 ODOO 16 ENTERPRISE/odoo-16.0+e.20230401/odoo/addons` | **Ranked winner, 144/190 present, 144/144 version-match**; `release.py` read: `version_info = (16, 0, 0, FINAL, 0, '')` |
+| Other series-16 cores | `…/94 ODOO MODULE/ODOO 16/odoo-16.0` (91/91) · `…/02 KITTIPHUT/odoov16` (92/92) | Complete cores, **split layout** — business modules under `<root>/addons` |
+| **Custom source root** | `/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo16/addons` | **45 of 46 deployed non-core modules**, 43 exact-version, 2 one patch ahead. **P01's declared path set never named it** |
+| Series-18 deployment | `~/OCC_BACKUP/idemo18_uat_…dump` · `551ab874` · `occ.smeplus.cloud` · 4 companies | Read in round 5 |
+| Whole-host manifest index | `…/scratchpad/src_versions.json`, `src_paths.json` | **58,263 of 58,263 manifests parsed**, 3,174 module names |
+| Extracts | `…/scratchpad/s16/T_*.sql` + `schema_full.sql` | **41 of 651 tables — 6.3%** (`GAP-P01-07`) |
+
+## Code-identity rungs, in order of strength — `METHOD-P01-03`
+
+1. **The deployment's own `ir_model_fields` registry** — the field set a model declares at install time.
+   *Not author-controlled.* This identified the deployed WHT certificate module as the 2021 Odoo-14 body
+   differing by **one line**, where four variants shared a single version string.
+2. **Schema correspondence** — stored fields and relation tables present in the deployed database.
+3. **Manifest version** — **demonstrated insufficient here**: 4 `_cert` variants share `16.0.14.0.1.0.0`,
+   6 `_report` variants share `16.0.1.0.0`, and one on-disk copy is uncommitted 246 lines ahead.
+4. **Module name** — insufficient (`ERR-P01-13`).
+
+**State which rung was used.** P01 used rung 3 for core modules (144/144 inside a tree whose series was read
+from `release.py`) and rung 1 or 2 wherever a custom module's *behaviour* was read.
+
+## `pg_restore` operating notes, preserved
+
+- **A shell redirect yields 0 bytes. Always `-f <file>`** — this recurred in this run on `-s` (schema).
+- Archive format 1.16 requires the 18-series binary; 1.14 is readable by 16 or 18. Both are installed.
+- pg_dump 17/18 quote reserved column names (`"json_value"`); the parser strips quotes from every column name.

@@ -212,3 +212,28 @@ improvement over the prior round**; the PMO claim that the round improved in sub
 **withdrawn**. **No accounting finding is withdrawn.**
 
 **Files hashed: 78.**
+
+---
+
+# ADDENDUM — G01 CLOSURE (2026-09-05)
+
+## Evidence added since the last manifest entry
+
+| Artefact | Content | Bound |
+|---|---|---|
+| `…/scratchpad/s16/T_*.sql` | **41 tables** from the series-16 deployment | **of 651 in the archive — 6.3%. No declared selection rule (`GAP-P01-07`)** |
+| `…/scratchpad/s16/schema_full.sql` | Full schema, 3,096,437 bytes | Extracted with `-f`; a redirect returns 0 bytes |
+| `…/scratchpad/s16/installed.txt` | The 190 installed modules and versions | — |
+| `…/scratchpad/src_versions.json`, `src_paths.json` | Whole-host manifest index | **58,263 of 58,263 parsed** — coverage asserted, not assumed |
+| `_expert_out5/` | Four round-6 challenge reports + frozen brief | — |
+
+## Coverage and integrity statements
+
+- **Extraction completeness:** all 41 files audited by AAS-03 Expert 2 — one COPY block each, properly
+  terminated, **single-valued field-count histograms, zero misaligned rows**.
+- **Parser caveat, corrected:** the round-6 log claimed a padding branch caused the `categ_id` failure. It did
+  not — the padding branch never fires. The real mechanism is a **silent `dict.get()` on an absent key**,
+  which applies to **every join in the package** (`REV-P01-06`).
+- **Freeze integrity:** the round-5/6 "frozen" brief directory **received 15 files during review**
+  (`NEAR-MISS-P01-09`). The G01 closure brief was frozen before its four challenges were dispatched.
+- **Nothing has been executed at runtime in six rounds.** No database was written; no source modified.

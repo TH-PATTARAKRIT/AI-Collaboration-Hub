@@ -734,3 +734,27 @@ never declared. **A bounded, unfinished measurement — not a negative result.**
 | **The instrument adopted** | **Discriminate candidate source variants against the deployment's own `ir_model_fields` registry.** Only one `_cert` variant declares a `signature` field; the deployed registry has it. The registry is **built by the deployment at install time from the code that was actually installed** — it is not author-controlled, and it is inside the evidence artefact rather than beside it. |
 | **What it delivered here** | Identification by **content**: the deployed certificate module is the **2021 Odoo-14.0 body differing by exactly one line**, on a series-16 engine — confirming the `16.0.14.*` `adapt_version` reading of `ERR-P01-41` by an independent route. It also surfaced a **latent defect** the version route could never have found: a `move_id.type` comparison against a field the registry shows does not exist, which has never fired because `move_id` is NULL on all 5,201 certificates. |
 | **Rule adopted** | **Identify deployed custom code by the field set its model declares in the deployment's registry, wherever that set discriminates.** Fall back to schema correspondence, then to version, and say which rung was used. |
+
+---
+
+# G01 CLOSURE — `SMEPLUS-26-09-05-G01-P01-P2P-CONTROLLED-SCOPE-FREEZE-HANDOFF-001`
+
+## `RES-P01-01` — the 1,123 / 1,267 disagreement, resolved without forcing
+
+| Field | Content |
+|---|---|
+| **The disagreement** | P01 measured **1,123** valuation layers carrying a price difference. AAS-03 Expert 4 reported the engine firing **1,267** times. Both were verified by their authors. The round-6 package **preserved both and refused to average them.** |
+| **Resolved this run**, from already-open evidence | **1,267** = layers where `price_diff_value` **IS NOT NULL** — *the engine ran and wrote a value*. **1,123** = layers where that value is **non-zero** — *the correction was material*. **1,267 − 1,123 = 144** layers where the engine ran and produced **exactly ฿0.00**. Exact, no remainder. |
+| **Both measurements were correct.** | They differ in **predicate**, not in accuracy. Expert 4's *"fired"* is precisely "wrote a value"; mine was "wrote a value that mattered". |
+| **Why this is worth logging as a resolution rather than a correction** | Neither party was wrong, and **the answer was cheap** — one query over a table already parsed a dozen times. The round-6 instinct to preserve rather than reconcile was right; the failure would have been averaging, or picking the author's number. |
+| **Rule this reinforces** | **When two competent measurements disagree, the first question is not "which is right" but "what is each one's UNIT and PREDICATE".** Most such disagreements in this programme have dissolved on that question alone. |
+
+## `REV-P01-07` — a routing withdrawn: the cost explosion was never P03's
+
+| Field | Content |
+|---|---|
+| **What was published** | Round 6 routed the valuation cost-explosion to **P03 (Manufacture-to-Cost) as owner**, because the documents carrying the extreme values were `WH/MO/…` manufacturing and `UB/…` unbuild. |
+| **Why it was wrong** | The manufacturing documents **propagate** an already-corrupt unit cost. The origin is `purchase_stock/models/stock_move.py::_get_price_unit` — **P01's own path** — traced end to end by AAS-03 Expert 1 and re-read here line by line. |
+| **The reasoning defect** | **I attributed ownership by where the symptom was visible rather than by where the value was produced.** The document type at the point of observation is not evidence of origin. |
+| **Corrected** | Ownership returns to **P01**. P03 is notified as a **propagation route**, and the handoff to P03 now leads with the withdrawal so P03 does not inherit a defect that is not its own. |
+| **Rule this establishes** | **Route a defect by where the value originates, not by where it becomes visible.** A cross-process handoff made on symptom location transfers work incorrectly and delays the fix. |

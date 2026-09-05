@@ -88,3 +88,27 @@ Layer: **1.** The v1 register is preserved unchanged as lineage. This is the **r
 conclusion and both corrected its cause** — first from "structural absence" to "unconfigured",
 now from "no account" to "no journal". The conclusion has been stable; the explanation has been
 wrong twice.
+
+---
+
+# G01 CLOSURE ADDENDUM — `SMEPLUS-26-09-05-G01-P01-P2P-CONTROLLED-SCOPE-FREEZE-HANDOFF-001`
+
+## Contradictions closed at freeze
+
+| ID | Contradiction | Resolution | Closed by |
+|---|---|---|---|
+| **1,123 vs 1,267** | Two counts of the same price-difference engine | **CLOSED — not forced.** 1,267 = `price_diff_value IS NOT NULL` (the engine fired); 1,123 = non-zero. **Difference = 144** layers where it ran and produced exactly ฿0.00. Both correct, different predicates | this run, from already-open evidence |
+| **Account 1173 mechanism** | Expert 2 (product-level overrides) vs Expert 1 (correct-by-construction) | **CLOSED on evidence** in Expert 1's favour, verified: `purchase_price_diff` gate is `cost_method == 'standard'`, the only configured category is `fifo`, and `anglo_saxon_accounting` is FALSE. Two sufficient gates. Expert 2's 6 `product.template` rows exist but are not the cause | round 6 + Expert 4 addendum |
+
+## Contradictions carried OPEN into the freeze
+
+| ID | Contradiction | Why not closed |
+|---|---|---|
+| `S16-C-14` | Subledger/ledger divergence; and the ledger is not clean either | Root cause identified (`purchase_stock/_get_price_unit`); **remediation is not P01's to make** |
+| `S16-C-15` | ~40–45 layers unexplained after 245 `consu` + 1,209 price-difference resolved | Residual rows not yet characterised |
+| `S16-C-18` | **Buddhist-era extent disputed between two experts** — 484 values / 14 columns / 11 tables vs 12 pairs / 7 tables | Two methods, two answers; **neither adopted, not averaged.** Common floor recorded |
+| **Certificate/payment denominators** | 1,407 vs 1,405 certs; 1,543 vs 1,488 payments | **Different denominators** (`done` vs all; payments vs items). Both recorded |
+| `S16-B-05` | Deletion reproduces the zero-link signature published for series 18 and 19 | **Untested in those deployments.** Highest-ranked open item |
+
+**Standing rule reaffirmed at freeze: a preserved disagreement is a result, not a failure.** Three of the five
+open items above are disagreements between competent parties that P01 declines to resolve by preference.
