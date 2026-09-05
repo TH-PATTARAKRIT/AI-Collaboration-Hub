@@ -17,6 +17,16 @@ database version identification. That disproof was **not performed by an indepen
 This session performed the version work itself, so the version identity in this package is
 **author-derived and unchallenged**. Recorded as a gap in `EC-07`, not as a completed challenge.
 
+
+> ### ⚠ SUPERSEDED IN PART — `ERR-P01-23`
+>
+> This document states that **no deployed series-18 database exists** and that P01's source and
+> deployment evidence **do not overlap on any series**. **Both are false.** A series-18
+> deployment exists on this host with **4 companies, 15,522 journal entries, 47,801 valuation
+> layers, and the goods-received clearing account configured**. See
+> `P01_SERIES18_DEPLOYMENT_DISCOVERY.md`. **No accounting finding is withdrawn** — each remains
+> bound to the database it was measured in.
+
 ---
 
 ## 1. THE EIGHT MANDATED DISPROOF TARGETS

@@ -4,6 +4,16 @@ Session: `SMEPLUS-26-09-05-…-EVIDENCE-VERSION-DEPLOYMENT-INTEGRITY-001`
 Layer: **1.** Criteria retrieved from the Very Deep Research 8-Criteria Universal Exit
 Constitution, not inferred. **No criterion is bypassed.**
 
+
+> ### ⚠ SUPERSEDED IN PART — `ERR-P01-23`
+>
+> This document states that **no deployed series-18 database exists** and that P01's source and
+> deployment evidence **do not overlap on any series**. **Both are false.** A series-18
+> deployment exists on this host with **4 companies, 15,522 journal entries, 47,801 valuation
+> layers, and the goods-received clearing account configured**. See
+> `P01_SERIES18_DEPLOYMENT_DISCOVERY.md`. **No accounting finding is withdrawn** — each remains
+> bound to the database it was measured in.
+
 ---
 
 ## 1. RECALCULATED
@@ -20,6 +30,11 @@ Constitution, not inferred. **No criterion is bypassed.**
 | `EC-08` | Final Knowledge Package Complete | **SUBSTANTIALLY SATISFIED** | All required artifacts present; runtime and statutory evidence declared absent, not concealed |
 
 **Satisfied: 0 · Partial: 1 · Substantially satisfied: 1 · Not satisfied: 6.**
+
+> **REVISED AFTER `ERR-P01-23`.** `EC-01` **falls back to NOT SATISFIED** — the evidence
+> population was scoped by directory, and the round's governing conclusion was false. `EC-02`
+> is further from convergence, not closer. **Net: 7 of 8 not satisfied — the same as the prior
+> round, not the improvement this document originally recorded.**
 
 Prior round: 7 of 8 not satisfied. **Now 6 of 8** — `EC-01` moved from *not satisfied* to
 *partial*, on the strength of the evidence-base repair.

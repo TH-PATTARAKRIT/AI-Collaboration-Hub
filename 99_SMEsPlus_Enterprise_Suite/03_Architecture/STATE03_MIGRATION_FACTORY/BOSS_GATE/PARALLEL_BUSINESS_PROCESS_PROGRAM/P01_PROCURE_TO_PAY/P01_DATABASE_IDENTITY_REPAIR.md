@@ -4,6 +4,16 @@ Session: `SMEPLUS-26-09-05-ACC-P01-P2P-EVIDENCE-VERSION-DEPLOYMENT-INTEGRITY-001
 Supplemental continuation. **No reset. Nothing discarded.**
 Layer: **1.**
 
+
+> ### ⚠ SUPERSEDED IN PART — `ERR-P01-23`
+>
+> This document states that **no deployed series-18 database exists** and that P01's source and
+> deployment evidence **do not overlap on any series**. **Both are false.** A series-18
+> deployment exists on this host with **4 companies, 15,522 journal entries, 47,801 valuation
+> layers, and the goods-received clearing account configured**. See
+> `P01_SERIES18_DEPLOYMENT_DISCOVERY.md`. **No accounting finding is withdrawn** — each remains
+> bound to the database it was measured in.
+
 ---
 
 ## 1. THE DATABASE THAT WAS DECLARED UNREADABLE

@@ -3,6 +3,16 @@
 Session: `SMEPLUS-26-09-05-…-EVIDENCE-VERSION-DEPLOYMENT-INTEGRITY-001`
 Layer: **1.** PMO issues a recommendation only. **Boss is Sole Final Approver.**
 
+
+> ### ⚠ SUPERSEDED IN PART — `ERR-P01-23`
+>
+> This document states that **no deployed series-18 database exists** and that P01's source and
+> deployment evidence **do not overlap on any series**. **Both are false.** A series-18
+> deployment exists on this host with **4 companies, 15,522 journal entries, 47,801 valuation
+> layers, and the goods-received clearing account configured**. See
+> `P01_SERIES18_DEPLOYMENT_DISCOVERY.md`. **No accounting finding is withdrawn** — each remains
+> bound to the database it was measured in.
+
 ---
 
 ## 1. THE DIRECTIVE'S VERIFICATION LIST
@@ -35,8 +45,10 @@ Layer: **1.** PMO issues a recommendation only. **Boss is Sole Final Approver.**
 
 **0 satisfied · 1 partial (`EC-01`) · 1 substantially satisfied (`EC-08`) · 6 not satisfied.**
 
-Prior round: 7 of 8 not satisfied. **Now 6 of 8.** `EC-01` improved on the strength of the
-evidence-base repair. `EC-06` improved without passing.
+~~Prior round: 7 of 8 not satisfied. Now 6 of 8.~~ **WITHDRAWN — `ERR-P01-23`.** The evidence-base
+repair was itself incomplete: the population was scoped by directory and the round's governing
+conclusion was false. **7 of 8 not satisfied — no improvement.** `EC-06` improved in
+understanding without passing.
 
 ---
 
@@ -44,8 +56,9 @@ evidence-base repair. `EC-06` improved without passing.
 
 > ### `RECOMMEND HOLD`
 
-Unchanged in value for the fourth consecutive round, and **for the first time improving in
-substance**.
+Unchanged in value for the fourth consecutive round. **The claim that it improved in substance is
+withdrawn** (`ERR-P01-23`): the round found a real defect in its own evidence base and then
+repeated the same defect one level up.
 
 `RECOMMEND CONDITIONAL PASS` remains unavailable: `EC-04` forbids passing over a tolerance-zero
 risk, and that risk now carries deployed evidence of divergent company attribution.

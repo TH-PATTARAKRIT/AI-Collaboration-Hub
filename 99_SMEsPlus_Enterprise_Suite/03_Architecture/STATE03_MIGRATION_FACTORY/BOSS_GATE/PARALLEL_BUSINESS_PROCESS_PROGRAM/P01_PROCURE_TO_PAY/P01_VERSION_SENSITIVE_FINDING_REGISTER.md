@@ -16,6 +16,16 @@ to stop version leakage. The estate's real shape:
 > **The two are disjoint: the series P01 has source for has no deployment, and the deployment
 > with history has no source.** That asymmetry governs this whole register.
 
+
+> ### ⚠ SUPERSEDED IN PART — `ERR-P01-23`
+>
+> This document states that **no deployed series-18 database exists** and that P01's source and
+> deployment evidence **do not overlap on any series**. **Both are false.** A series-18
+> deployment exists on this host with **4 companies, 15,522 journal entries, 47,801 valuation
+> layers, and the goods-received clearing account configured**. See
+> `P01_SERIES18_DEPLOYMENT_DISCOVERY.md`. **No accounting finding is withdrawn** — each remains
+> bound to the database it was measured in.
+
 ---
 
 ## 1. THE REGISTER
@@ -85,7 +95,10 @@ the declared path set.
 
 ## 4. THE STRUCTURAL CONCLUSION
 
-> **P01's source analysis and P01's deployment evidence do not overlap on any series.**
+> ~~**P01's source analysis and P01's deployment evidence do not overlap on any series.**~~
+>
+> **FALSE — `ERR-P01-23`. They overlap on series 18 and 19.** A deployed series-18 system exists
+> with 15,522 journal entries and the clearing account configured. The series-16 core gap stands.
 
 Source: series 18 (primary), 19 (comparison). Deployment history: series 16.
 The only bridge between them is series 19, which has 26 journal entries across two deployments.

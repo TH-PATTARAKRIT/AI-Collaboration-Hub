@@ -6,6 +6,16 @@ Session: `SMEPLUS-26-09-05-…-EVIDENCE-VERSION-DEPLOYMENT-INTEGRITY-001`
 Branch: `research/account-p01-procure-to-pay-2026-09-04-001`
 Layer: **1.** **Material delta only.** The prior handoff stands in full.
 
+
+> ### ⚠ SUPERSEDED IN PART — `ERR-P01-23`
+>
+> This document states that **no deployed series-18 database exists** and that P01's source and
+> deployment evidence **do not overlap on any series**. **Both are false.** A series-18
+> deployment exists on this host with **4 companies, 15,522 journal entries, 47,801 valuation
+> layers, and the goods-received clearing account configured**. See
+> `P01_SERIES18_DEPLOYMENT_DISCOVERY.md`. **No accounting finding is withdrawn** — each remains
+> bound to the database it was measured in.
+
 ---
 
 ## 1. DATABASE IDENTITY REPAIR
@@ -135,3 +145,25 @@ closed by repairing a boundary, not by reinterpreting a finding.
    highest-leverage action available to the programme and has never been performed.
 4. **Correct the P02 attribution** in any cross-process matrix that inherited P01's error.
 5. Note `AASV-P01-04`: **this round's own central repair is unchallenged.**
+
+---
+
+# §17 — LATE MATERIAL DELTA: A SERIES-18 DEPLOYMENT EXISTS (`ERR-P01-23`)
+
+Received after this supplement was first published, from the challenge layer that had not
+returned. **Verified independently before acceptance.**
+
+| Item | Delta |
+|---|---|
+| Series-18 deployment | **EXISTS.** 361/361 modules at series 18 · **4 companies** · **15,522 journal entries** · **47,801 valuation layers** · custom purchase-request module installed |
+| **The clearing bridge** | **CONFIGURED** — goods-received clearing account on 15 item categories, valuation account likewise, **valuation journal on all four companies** |
+| Valuation policy there | **`manual_periodic`** — which is why 0 of 47,801 layers carry a journal link. **A policy operating correctly, not the series-19 configuration gap** |
+| Artefact population | **19 archives, ≥9 distinct database names** — P01 had enumerated one directory |
+| Governing claim of §1–§16 | *"source and deployment do not overlap on any series"* is **FALSE** |
+| Exit criteria | **`EC-01` falls back to NOT SATISFIED; 7 of 8 not satisfied — no improvement over the prior round** |
+
+**What P11 should do:** treat P01's series-18 source findings as **testable against real deployed
+data on this host**, and not as unvalidatable. That is a better position than this supplement
+originally described — and it is **untested work**, not a result.
+
+**No accounting finding is withdrawn.** Each remains bound to the database it was measured in.
