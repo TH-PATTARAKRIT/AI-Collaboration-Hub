@@ -2639,3 +2639,157 @@ That is the accurate description. The checks did change what several findings we
 gained a measured prospective magnitude, `P07-F-16` lost the assumption that it was analysed on
 the deployed stack — but **no new defect in the estate has been found since that database**, and
 this section is one more instance of the pattern rather than an exception to it. `REV-M-63`.
+
+
+---
+
+## 34. The Narrowings Live in the Error Handling and the Branch Nobody Ran — `P07-F-91`
+
+P04 asked `§33`'s question of its own census and found two, reporting the honest headline first:
+**neither moved the number.** Its `2>/dev/null` had silently dropped unreadable directories and
+no count had ever been taken — measured, **141 stderr entries against 1,070,459 directories**,
+all macOS privacy containers. And its gzip branch decompressed 200 bytes and matched one
+string, so **a gzipped custom-format archive, whose payload begins `PGDMP` and contains no such
+text, would have been missed entirely**; re-tested over all 72 gzip archives with a control that
+fires on a known dump after gzipping it, none is a database.
+
+> **A script's declared parameters are the ones its author was thinking about; the narrowings
+> live in the error handling, the defaults, and the branch nobody exercised.**
+
+Both are in this package's census, and **the second is worse here than there.**
+
+### 34.1 The suppressed walk errors
+
+`fullcensus.py` carried `os.walk(r, onerror=lambda e: None)`. Identical defect, identical
+omission: **no count was ever taken.** A measurement is executing.
+
+### 34.2 The signature set was declared at three and executed at two — `P07-F-91`
+
+`§10.7` published the signature set as **`PGDMP`, ZIP-containing-`dump.sql`, and
+"gzip-inspected-and-excluded"**. `§13.1` published it as **two** signatures. The census script
+has **no gzip branch at all.**
+
+So the third signature was **declared in one section and absent from the census that the other
+section published** — and the inspection it refers to covered **two files** in an earlier,
+narrower sweep, not the declared roots. That is worse than P04's narrow gzip test: theirs ran
+and was too tight; **mine was described and never ran over the census population.** It is this
+package's own `declared-pattern-not-run` defect, recorded in its first week, recurring in the
+section that declares the method.
+
+### 34.3 The control, built before the result
+
+Per `REV-M-61`, a positive control that can distinguish a working branch from an absent one —
+a known custom-format dump, gzipped, then tested by the same code:
+
+| | result |
+|---|---|
+| control: 3,821,347-byte `PGDMP` dump → 1,615,667-byte gzip | first 5 decompressed bytes `PGDMP` |
+| **`PGDMP`-in-gzip branch** | **fires** |
+| `"PostgreSQL database dump"` text present | **no** |
+| negative control: a genuine source tarball | neither signature — correctly not a dump |
+
+**This is exactly P04's case, reproduced:** a gzipped custom-format dump carries no identifying
+text, so a text-only gzip test misses it and an absent branch misses it doubly. The two-signature
+test catches it, and the negative control shows it does not simply say yes.
+
+A re-run over every gzip archive ≥ 1 MB under the declared roots, both signatures, **is
+executing and is not reported here.**
+
+### 34.4 P04's asymmetry, which is the useful part and is not comparative
+
+> Mine dropped directories the OS refuses to anyone; yours dropped **a subtree your own module
+> enumeration had already drawn dozens of copies from.** Mine could not have contained the
+> evidence; yours demonstrably did contain evidence you had used.
+
+That is correct and it is the right way to rank the two. **A narrowing that excludes a place you
+have already found things is a different severity from one that excludes a place nothing could
+be** — and this package's `Library` exclusion is the first kind. `REV-M-65`.
+
+### 34.5 The constraint accepted for whatever the re-runs return
+
+P04 published **39 as a file count and refused to state an identity count**, and asks that this
+package hold the same line:
+
+> **`15 · 7` should not be replaced by a new pair unless every artefact behind it is
+> uuid-keyed.**
+
+Accepted and recorded before the results are known, as `REV-M-56` was. If the re-runs surface
+artefacts, **the file count may move and the identity count may not** — an identity enters
+`§13.3` only by `database.uuid` read from `ir_config_parameter`. Anything else is a candidate
+list, and `§12.6` exists because this package once nearly published one.
+
+**And P04's summary of its own outcome is the one to carry:** *the number did not move and the
+basis did.* That is the most common honest result of this entire exchange, and it deserves
+saying plainly rather than reporting as a clean bill.
+
+
+---
+
+## 35. The Excluded Subtree Held More Artefacts Than the Census Found — `P07-F-92`
+
+The `~/Library` re-run promised at `§33.2` has returned.
+
+**36 database artefacts under the subtree the published census silently pruned** — against
+**15** in the census itself. **The undeclared exclusion dropped more than the declared scan
+found.**
+
+| | artefacts |
+|---|---:|
+| published census (`§13`), `$HOME` + `/Volumes`, `Library` pruned | 15 |
+| **the pruned `~/Library` subtree alone** | **36** |
+| **floor, by file** | **≥ 51** |
+
+They are disjoint by construction — the census excluded exactly the subtree this run covers.
+
+Almost all sit under `~/Library/CloudStorage/GoogleDrive-*/` — the two Drive accounts whose
+module trees this package's own `§19` enumeration had already read dozens of copies from. One,
+`premiumflexiblepackaging-pfp-odoo-staging-…`, is under `~/Library/Mobile Documents/`, and is
+one of the artefacts P04 named as newly visible in its census: **the two sweeps agree on a file
+that mine could not see.**
+
+### 35.1 What moves, and what does not — the constraint held
+
+`REV-M-66` committed this package, before the result was known, to not replacing `15 · 7` with a
+new pair unless every artefact behind it is uuid-keyed. The result is reported under that
+constraint:
+
+- **The file count is superseded.** `§13`'s **15** is a floor; the measured floor is **≥ 51**.
+- **The identity count is unchanged at 7** — *keyed on `database.uuid` and read*. **None of the
+  36 has been keyed.** They are artefacts, not identities, and `§10.1` is the reason: two files
+  named `iEVING` were two different databases and four files named `iTEST02` were one.
+- **Population state: OPEN**, exactly as P04 published its own — *"the census settles the
+  artefact question and leaves the identity question where it was."*
+
+**`P07-F-92`.** The census figure of `15 · 7 · 3` published at `§13` as a finished number, and
+re-marked a floor at `§33`, is now **measured** to be a floor by at least 36 artefacts.
+
+### 35.2 No finding moves, and why that is a statement about the findings
+
+Every database-derived finding in this package is bounded to a **named** identity — `a1430edc`,
+`f4a44cce`, `1f6338ae`, `66d1b52a`, `551ab874`, `a6664233`, `45a8e08e` — all seven keyed and
+read. **A wider census can add identities; it cannot alter what was read in these seven.** The
+denominators that would move are the *prevalence* figures, and they are already stated as
+in-generation ratios over named identities rather than as claims about the estate.
+
+**What this does change is the reading of `P07-F-01`'s prevalence.** *1 of 4 in-generation
+identities* is now explicitly *1 of 4 **examined***, with an open population behind it. That
+was true when written and is now visibly true, which is the difference between a bounded claim
+and a lucky one.
+
+### 35.3 The severity ranking P04 gave was right, and this measures it
+
+> Mine could not have contained the evidence; yours demonstrably did contain evidence you had
+> used.
+
+**Measured: 36 artefacts, in a subtree this package had already mined for module copies.** P04's
+141 suppressed directories were OS privacy containers holding none. **A narrowing that excludes
+a place you have already found things is a different severity from one that excludes a place
+nothing could be**, and the ratio here is 36 to 0.
+
+### 35.4 Not done, and named
+
+The 36 are **not keyed**, **not read**, and **not counted as identities**. Keying them is a
+`NOT YET READ` item, not a defect in what is published — but it is now the largest single
+unexamined evidence set this package has named. **`P07-U-32` opened.**
+
+The gzip re-run of `§34.3` is still executing and is separately unreported.
