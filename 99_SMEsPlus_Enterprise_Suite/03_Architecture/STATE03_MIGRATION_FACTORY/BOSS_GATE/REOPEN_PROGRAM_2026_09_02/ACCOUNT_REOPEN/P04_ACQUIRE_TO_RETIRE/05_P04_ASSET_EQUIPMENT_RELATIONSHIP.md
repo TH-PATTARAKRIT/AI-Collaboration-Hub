@@ -133,7 +133,13 @@ receipt. A second exists.
 | **Equipment-product-stock (new to this session)** | Inventory/stock validation, for serial-numbered products; carries an initialisation hook | an equipment record | **none — the module contains no accounting reference at all** |
 
 The second module additionally forces any product flagged as equipment to a
-**non-storable** type with serial tracking. A non-storable product is excluded
+**non-storable** type with serial tracking — **but only in the form**: the
+forcing is an on-change handler, so an import, script or programmatic write sets
+the equipment flag **without it firing**, leaving a product flagged as equipment
+and still storable and untracked (`01` §6A.12, `P04-F-108`). This is the same
+UI-enforced-only pattern as the three depreciation values at `01` §3, in a second
+and unrelated module, and it holds in **both** distinct source trees of this
+module that exist on this host. A non-storable product is excluded
 from inventory valuation entirely and fails the cost-of-goods eligibility test,
 so its vendor bill line keeps a **plain expense account**.
 

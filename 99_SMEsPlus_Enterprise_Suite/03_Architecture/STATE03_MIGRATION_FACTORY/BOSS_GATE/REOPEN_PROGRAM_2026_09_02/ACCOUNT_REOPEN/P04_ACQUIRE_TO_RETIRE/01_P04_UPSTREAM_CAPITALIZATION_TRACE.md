@@ -745,6 +745,108 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.12 The second module: axis open, exposure characterised
+
+> **P04-F-107.** **For `product_stock_equipment` the code-identity axis is NOT
+> closed — and characterising the divergence discharges the claim anyway.**
+> Eleven copies enumerated over the declared path set; whole-tree hash,
+> CR-normalised, bytecode excluded, **empty-sentinel control printed and not
+> matched** (19 real files behind every hash):
+>
+> | tree | copies | where |
+> |---|---:|---|
+> | `3befb71c` | **7** | includes the **declared** root |
+> | `658b5625` | **2** | both under `MIGRATION/ODOO18/` (18.0.4, 18.0.5) |
+> | `effc9e3d` | 2 | both **v16** paths — different generation |
+>
+> **Two distinct v18-line trees**, and every copy declares `'1.0'`, so **version
+> cannot discriminate them.** Unlike `equipment_sequence` (`P04-F-102`) the axis
+> stays open.
+>
+> **Divergence, measured rather than assumed** — 7 of 7 python files AST-parsed,
+> 0 failures:
+>
+> | | |
+> |---|---|
+> | class-level field differences | **0** |
+> | XML files differing | **1 of 5** — 4 lines |
+> | python changed lines | **3**, all in `models/product_template.py` |
+>
+> The XML difference is **presentational only** — an inline-block `span` wrapper
+> against a `div`; no field, attribute, domain or readonly/required changes. The
+> python difference is a **multi-record safety** one: the declared copy iterates
+> its recordset before writing a descriptive note onto equipment matched by
+> **name**, the other addresses the recordset as a singleton. So a bulk write
+> raises in one copy and not the other.
+>
+> **The claim this package draws from the module is unaffected, and that is
+> checked rather than asserted.** `05` §3 cites the module for creating an
+> equipment record on stock validation and for **forcing any equipment-flagged
+> product to non-storable with serial tracking**. That forcing lives in
+> `onchange_equipment`, which is **byte-identical in both trees** and is not in
+> the diff. The diverging function writes a **note** — descriptive text — and
+> touches no accounting value.
+>
+> Class: **FACT VERIFIED**. Axis **OPEN** for the module, **exposure characterised
+> and the cited claim discharged**. This is P07's split applied to a case where
+> views *do* differ: the rule is not *"views identical ⇒ structural claims safe"*
+> but **compare the difference against the specific claim** — a presentational
+> wrapper cannot carry a structural claim, and a note write cannot carry an
+> accounting one.
+
+> **P04-F-108.** **The forcing is an `@api.onchange`, so it binds only in the
+> form.** `onchange_equipment` sets a product to non-storable with serial
+> tracking **when a user ticks the box in the UI**. An import, a script or any
+> programmatic `create`/`write` sets `equipment_ok` without it firing, so a
+> product can be flagged as equipment while remaining storable and untracked.
+>
+> This is **independent corroboration of this package's central pattern from a
+> different module**: three of the four values driving every depreciation entry
+> are UI-enforced only (`01` §3), and here the equipment/stock designation is too.
+> Found while comparing copies for a different purpose, and it holds whichever
+> copy is deployed.
+>
+> Class: **FACT VERIFIED**, both trees.
+
+> **P04-F-109.** **All five sweep units are now demonstrated capable of reporting
+> a defect — by injection, not by having fired accidentally.** P02 found its
+> clean-room scrubber had only ever returned zero and had never been shown able
+> to return one. This package's units *had* fired, but by accident rather than by
+> design, which is not a control.
+>
+> A copy of the package was taken and one defect injected per unit: a citation of
+> an undefined finding id, an extra table cell, an edit invalidating a published
+> hash, four vendor tokens appended to the Layer-1 pack, and an empty deliverable.
+>
+> | unit | baseline | injected |
+> |---|---:|---:|
+> | identifiers | 0 | **1** |
+> | per-table structure | 0 | **1** |
+> | manifest-hash agreement | 0 | **4** |
+> | Layer-1 scrub | 0 | **4** |
+> | empty-sentinel | 0 | **1** |
+>
+> **All five fire.** Class: **FACT VERIFIED**, reproduced in the session
+> scratchpad against a copy, never against the package itself.
+
+> **P04-F-110.** **This package's evidence commands are shell-dependent, and the
+> dependence is one-directional.** Every evidence root here contains spaces.
+> Tested on this host: **`zsh` does not word-split an unquoted expansion** — one
+> argument, and quoted and unquoted searches return identical results — while
+> **`bash` splits it into two**, and an unquoted `grep -rl` over a spaced path
+> returns **0 matches on a file that exists**.
+>
+> All evidence in this package was executed in **`zsh`**, so **the negatives
+> stand as executed**. But a reader re-deriving any of them **under `bash`
+> without quoting would get zeros indistinguishable from true absence** — the
+> `P04-F-103` shape, in a reader's hands rather than the author's.
+>
+> Recorded as a **re-derivation warning, not a defect**: anyone re-running a
+> declared negative from `13` must quote every path or state the shell. Reported
+> by P02, verified here rather than adopted.
+>
+> Class: **FACT VERIFIED**, executed in both shells on this host.
+
 ### 6A.11 A fifth axis: facts that were never recorded
 
 The four scope axes — signature set, path set, source scope, code identity — are
