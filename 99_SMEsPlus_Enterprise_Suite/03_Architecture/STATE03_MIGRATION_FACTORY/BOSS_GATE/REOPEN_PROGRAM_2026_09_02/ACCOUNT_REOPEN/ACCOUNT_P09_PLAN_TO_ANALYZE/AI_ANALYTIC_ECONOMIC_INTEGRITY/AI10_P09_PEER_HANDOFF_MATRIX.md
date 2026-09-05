@@ -42,7 +42,27 @@ Explicit evidence handoffs. **P09 hands over findings; it does not adjudicate an
 | # | Handed over | Class | What P10 needs to decide |
 |---|---|---|---|
 | H10-1 | deferred expense and deferred revenue are produced by the **same** two-row mechanism as depreciation, so the zeroing corollary applies to them by the same arithmetic | shape FACT VERIFIED; per-variant confirmation in `AI07` | whether recognition schedules are expected to attribute to cost centres |
-| H10-2 | the cut-off and accrual wizard propagates an allocation to generated rows, in one branch through a recomputed proportional map | FACT VERIFIED (base package) | whether that propagation is symmetric — **P09 flags this as the highest-priority item P10 should re-test with the algebra in hand** |
+| H10-2 | **CORRECTED — this handoff was stale and conflated two mechanisms.** It asked P10 to determine whether the propagation is symmetric; **this continuation already answered it** (symmetric, exact zero). It also merged the change-**period** wizard with the change-**account** wizard, which are different paths with different arithmetic. The change-account half is **re-routed to P08** as H08-6 | corrected | P10 receives the change-**period** finding only, already answered, plus the period-misattribution framing |
+
+## 4A. → P07 — TH TAX COMPLIANCE *(added after challenge; this handoff was MISSING)*
+
+A reviewer identified that the package's own most-severe-ranked item was routed to **no named process**, and that P07 did not appear in this matrix at all.
+
+| # | Handed over | Class |
+|---|---|---|
+| H07-1 | the cash-basis pair's **firing condition** is a tax determination: the pair is built only for taxes whose exigibility is on payment. **P09 owns the mechanism; P07 owns whether it fires** | mechanism A; firing a P07 determination |
+| H07-2 | **TH-F-01 — the Thai chart types both accumulated-depreciation accounts as an expense type on asset-range codes, and the chart contains no fixed-asset account at all.** The budget query splits the type on its first token, so the balance-sheet leg is **admitted** and budget consumption **nets to zero** on a Thai-chart install | **A**, verified directly against the shipped chart |
+| H07-3 | every statutory reading of H07-2 | **HOLD — STATUTORY EVIDENCE REQUIRED.** P09 evidences only the internal contradiction between the chart's code block and its account typing, in one 28-line file. **No statutory claim is made** |
+
+## 4B. → P08 — the three core-accounting instances *(routing corrected)*
+
+A reviewer noted that P08 received structural statements but **no instances**, though it owns journal-entry semantics and three of the mechanisms sit in core accounting.
+
+| # | Handed over |
+|---|---|
+| H08-5 | the cut-off / change-period accrual pair — **and the sharper finding that the analytic cut-off does not happen**: the cost stays attributed to the period the wizard was invoked to move it out of |
+| H08-6 | the change-account transfer — **re-routed here from P10, where it was mis-filed as a timing matter.** It changes the general account, not the period |
+| H08-7 | the accrued-orders residue |
 
 ## 5. → P11 — CORE ACCOUNTING RECONCILIATION
 

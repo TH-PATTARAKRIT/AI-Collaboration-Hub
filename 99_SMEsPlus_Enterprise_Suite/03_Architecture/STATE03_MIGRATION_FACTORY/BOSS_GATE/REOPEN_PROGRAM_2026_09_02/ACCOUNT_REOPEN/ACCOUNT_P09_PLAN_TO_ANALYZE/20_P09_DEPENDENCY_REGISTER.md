@@ -52,6 +52,11 @@ This is a stronger statement than P09's own MA-08 and MA-09: those require scope
 | **DEP-P09-15** | surface divergence observed rather than derived from source | P09 continuation | **HOLD — RUNTIME EVIDENCE REQUIRED** | read-only report execution against a deployment with posted depreciation |
 | **DEP-P09-16** | reproduction of the defect in a sandbox | P09 continuation | **HOLD — RUNTIME WRITE AUTHORIZATION REQUIRED** | explicit Boss authority; none exists and none is assumed |
 | **DEP-P09-17** | whether work-centre hourly rates recover depreciation, which decides whether the masking interaction is real | P09 continuation, routed to P03 | **UNRESOLVED — EVIDENCE REQUIRED** | a costing-policy statement, not a code fact |
+| **DEP-P09-18** | **the single cheapest decisive test in the continuation**: group the management records by (entry, plan column) over two-row entries and look for non-zero sums — the direct observable the zeroing hypothesis predicts is always zero | AAS-03 disproval challenge | **HOLD — DATABASE EVIDENCE REQUIRED** | one read-only query against any deployment holding such rows |
+| **DEP-P09-19** | does any allocation-rule row carry an account prefix matching the depreciation-expense account but not the accumulated-depreciation account? | AAS-03 disproval challenge | **HOLD — DATABASE EVIDENCE REQUIRED** | if none, the per-row-derivation failure mode is unreachable in that install |
+| **DEP-P09-20** | is any analytic plan marked mandatory in any deployment? | AAS-03 disproval challenge | **HOLD — DATABASE EVIDENCE REQUIRED** | if none, the obligation check never fires anywhere, in any path |
+| **DEP-P09-21** | does any stored allocation have values summing to ≠ 100 at two decimals? | AAS-03 disproval challenge | **HOLD — DATABASE EVIDENCE REQUIRED** | direct evidence of the residue failure mode |
+| **DEP-P09-22** | **`SW-U-01` is now known to be POPULATED**, not merely undeclared: the record-preparation method is overridden in the sales module. The remainder of that blind spot is still unsearched | AAS-03 disproval challenge | **C, known non-empty** | a sweep for overrides of the preparation and creation methods, not only for writes of the key |
 
 ## D. DECISION DEPENDENCIES — BOSS DETERMINATION REQUIRED
 
@@ -89,4 +94,4 @@ Stated explicitly, so the open list above is not read as "P09 delivered nothing"
 
 ## G. TERMINAL STATE
 
-**2 BLOCKING · 7 PEER OPEN + 1 PEER ACCEPTED · 13 EVIDENCE OPEN (1 CLOSED BY THE CONTINUATION) · 6 BOSS DETERMINATIONS · 9 HELD. NO DEPENDENCY CLOSED BY ASSUMPTION. NO GATE MOVED.**
+**2 BLOCKING · 7 PEER OPEN + 1 PEER ACCEPTED · 18 EVIDENCE OPEN (1 CLOSED BY THE CONTINUATION; 5 ADDED BY THE DISPROVAL CHALLENGE, 4 OF THEM READ-ONLY DATABASE QUESTIONS) · 6 BOSS DETERMINATIONS · 9 HELD. NO DEPENDENCY CLOSED BY ASSUMPTION. NO GATE MOVED.**

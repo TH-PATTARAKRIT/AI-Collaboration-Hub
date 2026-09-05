@@ -62,9 +62,9 @@ This matters because it shows that **net-zero is not automatically a defect** �
 
 > Directive question 19.
 
-**For the observed deployments: the question does not arise, and that is itself the answer.** No asset in any located deployment carries an allocation (`AI05` §3), so no symmetric depreciation pair exists to be incorrect. Class **A within the searched scope**.
+**Corrected after challenge: the question very much arises.** A deployed database carries allocations on **670 of 685** assets and holds **17,716** balance-sheet-leg management records annihilating **18,483** expense-leg records — **98.57 % of the depreciation attribution destroyed**, measured (`AI05` §3). Class **A against deployed data**.
 
-**For any deployment that does allocate:** every historical symmetric pair is economically incorrect on net-balance surfaces from the moment it was posted, and no remediation path exists in the reference pattern — the records are correct individually, so nothing can identify them except by re-deriving the pairing from the entry.
+**Every historical symmetric pair is economically incorrect on net-balance surfaces from the moment it was posted**, and no remediation path exists in the reference pattern — the records are correct individually, so nothing identifies them except re-deriving the pairing from the entry. **The population is now known and countable**, which converts `AI-M-02` from a design requirement into a remediation obligation.
 
 **AI-M-02.** SMEsPlus shall be able to identify, retrospectively, every management record whose net contribution to its dimension was annihilated by a counterpart in the same event. The reference pattern cannot, because the records carry no reference to the event, only to their row.
 

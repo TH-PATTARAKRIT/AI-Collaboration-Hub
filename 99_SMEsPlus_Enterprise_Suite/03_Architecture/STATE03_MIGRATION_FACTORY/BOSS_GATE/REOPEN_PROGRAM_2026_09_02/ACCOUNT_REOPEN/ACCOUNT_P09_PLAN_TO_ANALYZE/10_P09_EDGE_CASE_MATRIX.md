@@ -92,6 +92,21 @@ Each row states a condition, what the reference pattern does, the evidence class
 | EC-58 | mandatory-axis validation on a **programmatic** post | does not fire — opt-in by execution context **and** restricted to product-type rows, of which such entries have none | product-type restriction A; call-site enumeration B from P09's position | obligation shall be a property of the data, enforced at the storage layer for every path (DM-06) |
 | EC-59 | a management record exists but attributes nothing | there is no state, marker or report distinguishing "allocated to zero net effect" from "meaningfully allocated" | A | a management record whose net contribution is nil shall be identifiable as such |
 
+## I. ALLOCATION INTEGRITY *(added by the analytic-economic-integrity continuation and its disproval challenge)*
+
+| ID | Condition | Behaviour | Class | SMEsPlus requirement |
+|---|---|---|---|---|
+| EC-60 | one allocation is applied to **every row** of a balanced set | the records mirror and the **net is zero** | A — conditional core confirmed under a disproval attempt | allocate only the rows carrying the economic effect (`EA-06`) |
+| EC-61 | a counterpart's allocation is **re-derived** from money amounts rather than copied | it does **not** cancel and does **not** attribute correctly — it leaves a **residue** | A — **found by challenge; the author had mis-classified this as symmetric** | a derived allocation shall be checked to total the source's total |
+| EC-62 | source rows carrying **no** allocation are present when a counterpart is re-derived | they enter the counterpart's **denominator** but not its numerator, so its shares sum **below 100** | A | unallocated rows shall be excluded from the basis or represented as a residual |
+| EC-63 | a re-derived split rounds to 99.99 at two digits | it never reaches the exact-100 remainder branch, so that side is short by 0.01 % of balance | A | allocate by exact rational shares (`SM-11`) |
+| EC-64 | the source object carries **no** allocation and rules select by **account prefix** | each row derives its own; a rule written for expense prefixes matches the profit-and-loss row and **not** the balance-sheet row, giving a **one-sided** attribution | A — **found by challenge; corrects the claim that zeroing is unconditional** | eligibility shall be an event property, not a per-row prefix match |
+| EC-65 | the allocation is written on **one row** of a posted pair | that row's records are destroyed and re-created; **the other row keeps its originals**, leaving a one-sided attribution | A — **found by challenge** | correction shall be an event-level operation |
+| EC-66 | the stored allocation is recomputed by a dependency change | the field is written **without** maintaining the records already created, and posting writes one of those dependencies **after** creation | A — **found by challenge** | the stored allocation and the records shall be reconcilable at all times |
+| EC-67 | a small allocation in a foreign currency | the amount is derived in **company** currency but the zero-suppression test uses the **row's** currency | A — **found by challenge** | thresholds shall be applied in the unit of the value being tested |
+| EC-68 | future-dated entries under soft posting | they are removed from the row set before records are created — a move-level filter | A — **found by challenge; corrects a stated fact** | — |
+| EC-69 | two axis values in different sub-plans of one root | they share a 100 %-completion accumulator but are written to different columns, and the balance groups by the specific plan | A — **found by challenge** | the completion basis and the storage basis shall be the same object |
+
 ## G. OPEN — NOT SEARCHED, NEVER TO BE RESTATED AS ABSENCE
 
 | ID | Item | Class |
@@ -101,9 +116,10 @@ Each row states a condition, what the reference pattern does, the evidence class
 | EC-U-03 | producers reached through a variable-held model name | C |
 | EC-U-04 | a compensating migration for non-management-record plan-column carriers, in other modules' migration directories | C |
 | EC-U-05 | which of the three tenant custom copies is deployed, and therefore whether the department dimension exists at all | D |
-| EC-U-06 | whether any other event type allocates both legs of a balanced pair symmetrically | C |
+| ~~EC-U-06~~ | ~~whether any other event type allocates both legs symmetrically~~ | **CLOSED** by the continuation sweep and its challenge |
+| EC-U-08 | **`SW-U-01` was declared as a blind spot and found POPULATED** — the record-preparation method is overridden in the sales module, a site the sweep's pattern could not select. The rest of that blind spot remains unsearched | **C, and now known non-empty** |
 | EC-U-07 | the full set of programmatic posting paths bypassing mandatory-axis validation | B from P09's position |
 
 ## TERMINAL STATE
 
-**MATRIX ISSUED AND EXTENDED AFTER PUBLICATION. 6 ROWS CONFIRMED BY INDEPENDENT CHALLENGE · 1 DISPROVED AS AN EXPOSURE CLAIM · 1 ADDED BY THE CHALLENGE THAT DISPROVED IT · 4 ADDED BY A VERIFIED INCOMING PEER FINDING · 7 ITEMS OPEN. NO GATE MOVED.**
+**MATRIX ISSUED, EXTENDED AND CORRECTED. 6 ROWS CONFIRMED BY INDEPENDENT CHALLENGE · 1 DISPROVED AS AN EXPOSURE CLAIM · 1 ADDED BY THAT DISPROOF · 4 ADDED BY A VERIFIED INCOMING PEER FINDING · 10 ADDED BY THE ANALYTIC-ECONOMIC-INTEGRITY CONTINUATION, OF WHICH 6 WERE FOUND BY THE CHALLENGE TASKED TO DISPROVE THE AUTHOR · 8 ITEMS OPEN, ONE OF THEM A DECLARED BLIND SPOT NOW KNOWN TO BE POPULATED. NO GATE MOVED.**

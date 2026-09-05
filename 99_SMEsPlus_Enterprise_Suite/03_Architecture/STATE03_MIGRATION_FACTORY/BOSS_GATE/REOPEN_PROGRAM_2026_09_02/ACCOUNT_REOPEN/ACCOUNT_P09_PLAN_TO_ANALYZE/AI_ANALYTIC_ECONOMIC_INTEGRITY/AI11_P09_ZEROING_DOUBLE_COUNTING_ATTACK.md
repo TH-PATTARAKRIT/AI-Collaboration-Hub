@@ -29,30 +29,41 @@ Carried forward from the base package and re-stated here as one register:
 | **D-03** | the project-to-asset bridge **counts** assets whose allocation mentions a project's axis value, so an asset split across two projects is counted under both — a count, not a partition | reported by P04, **not re-verified by P09** — class **B from P09's position** |
 | **D-04** | gross analytic movement is double the economic cost for every symmetric pair — a *presentational* double count on any surface that reports gross | **FACT VERIFIED** (`AI02` Corollary 2) |
 
-## 3. THE INTERACTION — THE FINDING THIS DOCUMENT EXISTS TO PRODUCE
+## 3. THE INTERACTION — **OVER-CLAIMED IN THE FIRST DRAFT, RE-BASED HERE**
 
-The directive asks specifically about asset depreciation across four mechanisms: financial depreciation, analytic allocation, equipment allocation, and manufacturing/WIP cost injection.
+> **An independent reviewer challenged this section and was right to.** The first draft's licensing premise was: *"A machine-hour rate is, in ordinary cost-accounting practice, built to recover the machine's ownership cost — depreciation included."* That is a **general cost-accounting proposition asserted without citation**, imported from outside the evidence base, doing load-bearing work for the package's most quotable paragraph. It is the secondary-source defect class, and it is stated plainly here rather than defended.
 
-**Financial depreciation** posts the cost to the ledger — correct, and undisturbed by anything here.
+**What the source actually shows**, verified by the reviewer with declared positive controls:
 
-**Analytic allocation** attributes it to the cost centre — and nets to **zero** (Z-01).
+- the hourly rate is a **bare scalar** with a one-line description and **no components, no build-up, and no link to any asset or equipment record**;
+- across the manufacturing modules — 222 non-test files — the terms for depreciation, amortisation, residual and ownership return **two hits, both meaning by-products**, and the asset model returns **zero**. Positive controls on the same patterns fired in the asset module (431 and 18);
+- the reference itself names the cost derived from that rate **three incompatible ways** in three different modules: "machine cost", "Labour", and "Overhead".
 
-**Manufacturing cost injection** attributes machine time to the cost centre through the **work centre's hourly cost rate**, as a management record with no journal entry at all.
+**The depreciation-specific form of the masking interaction is therefore NOT SOURCE-SUPPORTED, and is withdrawn.**
 
-A machine-hour rate is, in ordinary cost-accounting practice, built to recover the machine's ownership cost — depreciation included. Where that is how the rate was set, the cost centre receives:
+### 3.1 The re-based finding — stronger, and source-supported
 
-```
-  from depreciation :   +X  and  −X   →   0
-  from machine hours:   the rate × hours, which already contains the depreciation
-  ─────────────────────────────────────────────────────────────────────────────
-  net on the cost centre:  approximately one depreciation charge
-```
+What the source **does** establish needs no costing-policy premise:
 
-**The two defects partially cancel.** A cost centre can show approximately the right total while both contributing mechanisms are wrong: the one designed to attribute depreciation contributes nothing, and the one designed to attribute machine time silently carries the depreciation instead.
+> **The hourly rate is an undifferentiated scalar with no declared composition and no provenance.** Whatever a user folded into it — depreciation, insurance, rent, utilities, maintenance — is attributed to the cost centre with **no traceability back to its origin**. Change tracking records value *changes*, not composition.
 
-**Classification: `SUPPORTED INTERPRETATION`.** The two mechanisms are FACT VERIFIED individually. Whether a given deployment's hourly rate includes depreciation is a **configuration and costing-policy fact**, not a source fact, and it is not decidable from code. Recorded as **`UNRESOLVED — EVIDENCE REQUIRED`** for any specific deployment, and handed to P03.
+Depreciation is one instance of a general untraceability. **Classification: `FACT VERIFIED`** — an improvement on the withdrawn version's `SUPPORTED INTERPRETATION`.
 
-**Why it matters more than either defect alone.** A plausible-looking total is the strongest possible barrier to discovering either fault. An organisation reconciling its cost centres would find nothing wrong. This is the single most important reason the zeroing defect must not be reported to Boss as "a number is missing" — **the number may well be present, sourced from the wrong mechanism, with no traceability from the cost centre back to the asset.**
+### 3.2 The routing class was also wrong
+
+The first draft routed the firing condition to P03 as `UNRESOLVED — EVIDENCE REQUIRED`, implying deployment data could settle it. **It cannot.** No query can answer *"does this number include depreciation?"* about a scalar with no components and no derivation trail. As routed, P03 was set up to return a zero result that would be misread as a negative finding.
+
+**Corrected class: `NOT DECIDABLE FROM SYSTEM EVIDENCE — COSTING-POLICY DETERMINATION REQUIRED`.** The evidence needed is a policy document or an interview, not data.
+
+### 3.3 The double-count pair was also mis-named
+
+The reviewer contradicted `D-01` as characterised: the machine rate and the labour rate are **complementary in the product's own model and are added**, so their two records are not two attributions of one cost. **The genuine same-rate duplication is elsewhere**: one bridge module creates a second management record with the **same value and same hours** as the work-centre record, against a different allocation. Where the two allocations name the same axis value, the machine cost is attributed **twice**, and one profitability section sums both.
+
+**`D-01` as written: CONTRADICTED. The mechanism it claims: CONFIRMED at a different location.** Firing remains configuration-dependent.
+
+### 3.4 Why this section still matters
+
+A plausible-looking cost-centre total remains the strongest barrier to discovering any of these faults. That observation survives the correction. What does **not** survive is the specific claim that depreciation is the thing hiding inside the rate.
 
 ## 4. THE ATTACK MATRIX REQUIRED BY THE DIRECTIVE
 
@@ -64,8 +75,8 @@ A machine-hour rate is, in ordinary cost-accounting practice, built to recover t
 | **symmetric debit/credit cancellation** | **CONFIRMED** — this is the same finding, stated at entry level | FACT VERIFIED |
 | **wrong account-type attribution** | **CONFIRMED** — a balance-sheet row produces a cost attribution; there is no account-type test on the creation path | FACT VERIFIED |
 | **wrong line eligibility** | **CONFIRMED** — eligibility is by assignment only; see `AI03` | FACT VERIFIED |
-| **wrong company attribution** | **NOT REACHED BY THIS DEFECT** — a symmetric pair is always within one company (`AI09` §4). The separate company findings in the base package stand unchanged and are independent | not applicable here |
-| **duplicate cost object attribution** | **CONFIRMED as mechanism** in three places (D-01, D-02, D-03); firing is configuration-dependent | mechanism verified, firing unresolved |
+| **wrong company attribution** | **ROW RE-OPENED BY CHALLENGE.** The first draft closed it on the strength of a bare universal. A reviewer found an untested path: when an entry is mirrored into a second company, the mirror **keeps exactly the company-less (shared, tenant-level) axis values** and drops the company-scoped ones — so one economic event produces, on **one shared axis value**, two records in **two different companies with opposite signs**, which partially cancel on any tenant-level view. Mechanism **CONFIRMED**; firing requires intercompany rules plus a shared axis value; magnitude **UNRESOLVED** | **re-opened** |
+| **duplicate cost object attribution** | **CONFIRMED as mechanism**, but **D-01 was mis-named** — see §3.3. The genuine same-rate duplication is in a bridge module, not in the machine/labour pair | mechanism verified at a corrected location |
 
 ## 5. WHAT WOULD DISPROVE THE ZEROING CONCLUSION
 
@@ -77,7 +88,9 @@ Stated in advance, so the challenge phase has a target it can actually hit:
 4. a consumer that treats the analytic ledger as balanced by design and never reports its net as a cost — would make the zero correct rather than defective;
 5. real deployed data showing non-zero net cost-centre balances traceable to depreciation.
 
-Points 1–3 are settled negatively in `AI02` and `AI03`. Point 4 is **partly true and is why the intent question is routed as a design decision** (`AI04` §4). Point 5 is the subject of `AI05`.
+Points 1–3 are settled negatively in `AI02` and `AI03`. **Point 4 is now settled: the product's declared intent is a margin ledger, not a balanced subledger** (`AI04` §4, corrected) — so the zero is a departure from stated intent, not a design feature. **Point 5 is settled positively and against the first draft: deployed data shows the defect firing at 98.57 % annihilation** (`AI05` §3).
+
+**A sixth route, supplied by challenge:** the record's `category` field could in principle separate the mechanisms. It does not — the field is consumed only as a search grouping and a profitability section split, and **no cost-centre balance surface filters on it**. Recorded so the route is closed rather than unexamined.
 
 ## 6. CHECKPOINT
 

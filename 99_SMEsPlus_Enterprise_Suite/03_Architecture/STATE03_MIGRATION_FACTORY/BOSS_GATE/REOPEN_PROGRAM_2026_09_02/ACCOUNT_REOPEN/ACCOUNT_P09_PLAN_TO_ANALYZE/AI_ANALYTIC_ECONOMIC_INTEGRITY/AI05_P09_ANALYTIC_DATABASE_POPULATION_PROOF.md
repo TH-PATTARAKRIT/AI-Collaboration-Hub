@@ -3,80 +3,94 @@
 **Session:** SMEPLUS-26-09-04-ACC-P09-P2A-REV2-001 · continuation `…ANALYTIC-ECONOMIC-INTEGRITY-001`
 **Layer:** 1 — clean-room.
 
-**No denominator is invented in this document.** Where the data cannot answer a question, the answer is `NOT DECIDABLE FROM AVAILABLE DATA` with the reason.
+> ## ⚠ THIS DOCUMENT WAS REWRITTEN AFTER ITS FIRST VERSION WAS CONTRADICTED
+>
+> The first version concluded: *"In every deployment for which real data was located, no asset carries an analytic allocation at all"*, and framed the defect as **latent and armed**.
+>
+> **That was wrong, and the error was in the evidence base, not the reasoning.** An independently tasked reviewer found a deployed database dump the evidence strand had missed. The research team then re-ran the extraction directly.
+>
+> **The defect is observed, historical, and at scale.** The corrected measurement is in §3.
 
 ---
 
-## 1. WHAT WAS SEARCHED
+## 1. THE EVIDENCE-BASE FAILURE, STATED FIRST
 
-A full-volume sweep for database dumps, exports and runtime traces, plus the five candidate artefacts named by prior sessions. Nine artefacts were located and inspected read-only. **Two are real PostgreSQL dumps** — a materially better evidence position than the base package had, which used no deployed data at all.
+The first version declared nine artefacts and **two** usable database dumps. **There are four dumps in one directory alone**, and the largest of them — 155 MB, the only one containing a populated accounting deployment — was not among them.
 
-| # | Artefact | What it is | Usable for this question? |
-|---|---|---|---|
-| 1 | asset runtime trace, one deployment | live capture of **280** asset-master records | partly — see §2 |
-| 2 | the capture script for artefact 1 | proves which fields were requested | decisive, negatively — see §2 |
-| 3 | asset import/export workbook | **asset category templates**, 16 rows, no monetary values | no |
-| 4 | asset mapping handoff document | a procedural plan, not a data export | no |
-| 5 | a management report for an unrelated deployment | prose | no |
-| 6 | **PostgreSQL custom-format dump, deployment A** | real database | **yes** |
-| 7 | **plain-text PostgreSQL dump, deployment B** | real database | **yes** |
-| 8 | an unrelated schema script from a different technology stack | — | no |
-| 9 | this continuation's own trace document | source-code proof, symbolic example | no — and correctly asserts no denominator |
+**Root cause, identified exactly:** the evidence strand's own listing command ended in `| head -100`. The directory holds **2,553 files**. The truncation silently removed the artefact that mattered. **The command ran, returned a result, and the result was a false negative produced by the command's own tail.**
 
-## 2. THE COUNTS THAT ARE GENUINELY DERIVABLE
+This is the programme's `evidence-base-is-itself-a-claim` failure mode, recurring — and this time the defeat was not a wrong path or a wrong pattern but a **display limit**. A negative result must be produced by a search that could have returned the positive.
 
-| Question | Answer | Reason |
-|---|---|---|
-| assets carrying an allocation, deployments A and B | **0 of 12, and 0 of 12** | the allocation column exists and is null on every row in both dumps |
-| asset rows in those dumps | 12 and 12, **all of them category templates** with zero monetary values | not posted assets |
-| depreciation journal rows in deployment A | **0** on the depreciation journal the asset rows themselves reference; 23 journal rows exist in total, none on that journal | — |
-| journal rows of any kind in deployment B | **0** | the table is empty |
-| management records in deployment A | **2**, neither carrying a general account, neither depreciation-linked | — |
-| management records in deployment B | **0** | table empty |
-| assets in the traced deployment | **280** (217 open, 35 draft, 27 closed, 1 paused) | asset-master count only |
-| whether those 280 carry an allocation | **NOT DECIDABLE FROM AVAILABLE DATA** | the capture script never requested the field — verified by reading the script |
-| symmetric pairs anywhere | **NOT DECIDABLE FROM AVAILABLE DATA** | requires paired journal rows carrying an allocation; no such rows exist in any artefact |
-| net-zero analytic effects anywhere | **NOT DECIDABLE FROM AVAILABLE DATA** | same reason |
+**No conclusion drawn from the first version's population statement survives.**
 
-## 3. THE FINDING THIS PRODUCES — AND IT IS NOT THE ONE EXPECTED
+## 2. THE CORRECTED ARTEFACT INVENTORY
 
-**In every deployment for which real data was located, no asset carries an analytic allocation at all.**
+| # | Artefact | Assets | Carrying an allocation | Usable? |
+|---|---|---|---|---|
+| 1 | **deployment `S`** — 155 MB custom-format dump | **685** | **670** | **YES — decisive** |
+| 2 | deployment `B` — 35 MB | 36 | 0 | template-only |
+| 3 | deployment `E` — 24 MB | 36 | 0 | template-only |
+| 4 | deployment `T` — 64 MB | — | — | **NOT DECIDABLE** — the local restore client rejects its header version |
+| 5–9 | traces, workbooks, handoff documents, an unrelated schema script | — | — | as previously recorded |
 
-That is class **A within the stated scope** — the column was searched by exact name across both dumps, and is null on all 24 asset rows.
+**Correction of record:** the first version stated *"asset rows in those dumps: 12 and 12"*. The correct figure for artefacts 2 and 3 is **36 and 36**. The substance for those two — all category templates, no allocations — holds; the count did not.
 
-The consequence is precise and it changes which branch of the mechanism matters:
+## 3. THE MEASUREMENT — RE-RUN BY THE RESEARCH TEAM, NOT ACCEPTED ON REPORT
 
-- The zeroing branch (`E19`) requires the asset to **carry** an allocation. **It has not been observed to fire anywhere in the searched scope.**
-- The branch that actually applies to the observed data is the **no-allocation** branch (`E20`): the key is omitted and each row derives its own from the rule set.
-- Where **no rule matches either account** — the ordinary state of a deployment with no allocation rules configured — **neither row produces a management record at all**. Depreciation is then attributed **nowhere**: not correctly, not incorrectly, not to zero. It is simply absent from management accounting.
+Extraction performed directly by the author against deployment `S`, read-only, after the reviewer's claim:
 
-**This is a third state, and the base package did not carry it.** It is added as `E22`.
-
-## 4. WHAT THIS DOES AND DOES NOT DO TO THE CENTRAL HYPOTHESIS
-
-| It does **not** | It does |
+| Quantity | Value |
 |---|---|
-| weaken the algebra — a proof does not need a witness | bound the *observed* incidence to zero in the searched scope |
-| make the defect hypothetical — it is unconditional whenever the precondition holds | show that the precondition (an asset with an allocation) is **not present** in any deployment for which data was found |
-| justify downgrading the finding | justify stating, honestly, that **no instance has been observed** |
+| asset records | **685** |
+| **carrying an allocation** | **670** — 664 open, 2 closed, 2 draft, 1 template, 1 cancelled |
+| journal rows | 447,384 |
+| **management records** | **339,382** |
+| allocation rules configured | 1,327 |
+| distinct accumulated-depreciation accounts in use | 10 |
+| distinct depreciation-expense accounts in use | 19 |
 
-**The correct reading:** the mechanism is proven and will fire the moment any deployment starts allocating assets to cost centres — which is exactly what an organisation does when it begins cost-centre reporting. The defect is **latent in the observed deployments and armed**.
+**The decisive test** — the direct observable the zeroing theorem predicts, grouping management records by the general account of each leg:
 
-## 5. CLASSIFICATION
+| Leg | Records | Sum |
+|---|---|---|
+| accumulated depreciation (**balance sheet**) | **17,716** | **+101,778,591.13** |
+| depreciation expense (**profit and loss**) | **18,483** | **−104,739,812.94** |
+| **NET** | | **−2,961,221.81** |
+| **GROSS** | | **206,518,404.07** |
 
-**PARTIAL DATABASE EVIDENCE.** What is missing, named precisely: populated depreciation journal rows carrying an allocation, and the management records they would produce. Neither exists in any artefact located.
+> ### **98.57 % of the depreciation attribution in this deployment is annihilated.**
 
-For the population question specifically: **`HOLD — DATABASE EVIDENCE REQUIRED`**. To close it, one of:
-1. a dump from a deployment where assets carry allocations; or
-2. a re-run of the asset trace with the allocation field included — a **read-only** capture, well within what the existing script does, and the cheapest way to close it; or
-3. read-only query access to a deployment with posted depreciation.
+The sign pattern matches the symbolic trace exactly: the balance-sheet leg positive, the expense leg negative. The reviewer additionally identified three analytic accounts netting to **exactly 0.00** with matched record counts (221/221, 564/564, 99/99) — clean symmetric-pair witnesses.
 
-Routed as `DEP-P09-14`.
+**Classification: `FACT VERIFIED` against deployed data.** Not a code-path conclusion, not a projection, not latent.
 
-## 6. PROCESS NOTE
+## 4. WHAT THIS CHANGES
 
-One trace artefact begins with a bare marker line not explained by its own capture script. It carries **no directive text of any kind** — the file is three lines and was read in full. It was not acted on. Recorded here only so that the register is complete; no escalation was required and none is implied.
+| First version said | Corrected |
+|---|---|
+| the precondition is **not present** in any deployment | it is present on **670 of 685** assets in a real deployment |
+| the defect is **latent and armed** | the defect is **firing, historically, at scale** |
+| *"the question does not arise"* for historical correctness | **17,716 historical management records are annihilating 18,483 others**, and the population is identifiable |
+| `HOLD — DATABASE EVIDENCE REQUIRED` | **CLOSED BY EVIDENCE.** `DEP-P09-14` is discharged |
+| the no-allocation branch is *"the ordinary state"* | contradicted — this deployment carries **1,327** allocation rules |
+
+**The retrospective-identification requirement changes character.** It was a design requirement for a future system. It is now a **remediation obligation over an existing, measurable population**, and P09 can state its size.
+
+## 5. WHAT IS STILL OPEN
+
+| ID | Item | Class |
+|---|---|---|
+| `DEP-P09-23` | deployment `T` — restore client rejects the header version | **NOT DECIDABLE** with the local client |
+| `DEP-P09-24` | per-period attribution: join the management record dates to fiscal periods and quantify the period-level understatement | **DATA AVAILABLE, NOT YET RUN** |
+| `DEP-P09-25` | explain two large one-sided analytic balances and a small offset observed by the reviewer — distribution edits, a plan migration, or a further mechanism | **UNRESOLVED** |
+| `DEP-P09-26` | the same measurement for the other four symmetric mechanisms in this deployment | **DATA AVAILABLE, NOT YET RUN** |
+
+**These are now data questions with the data in hand, not evidence-acquisition questions.** That is a materially better position than the first version described, arrived at by being wrong in public.
+
+## 6. THE STANDING RULE THIS SESSION ADDS
+
+**A negative result is only as good as the command that produced it — including its output limits.** Path set, pattern and unit were all declared correctly here. The defeat was a `head` on the listing. **Any enumeration that bounds a claim shall be run without an output limit, or shall report the count separately from the listing.**
 
 ## 7. CHECKPOINT
 
-**CP-AI05 — DATABASE POPULATION QUANTIFIED, TO THE EXTENT THE DATA PERMITS.** Observed incidence of the precondition: **zero**. Mechanism unaffected. Auto-continue.
+**CP-AI05 — DATABASE POPULATION QUANTIFIED, AFTER CORRECTION.** Observed incidence: **670 of 685 assets**; observed annihilation: **98.57 %**. Auto-continue.

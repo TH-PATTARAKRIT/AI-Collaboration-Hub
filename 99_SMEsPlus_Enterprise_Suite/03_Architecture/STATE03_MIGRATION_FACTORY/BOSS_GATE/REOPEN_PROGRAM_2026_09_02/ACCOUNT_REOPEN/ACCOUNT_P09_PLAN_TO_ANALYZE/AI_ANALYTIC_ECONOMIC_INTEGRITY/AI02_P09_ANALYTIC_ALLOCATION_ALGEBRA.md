@@ -92,7 +92,26 @@ G(A,E)  =  Σ_i | a(i, keys containing A) |
 
 ### 3.1 Classification of Corollary 1
 
-**FACT VERIFIED.** It is arithmetic over a source-stated formula plus the double-entry invariant. It requires no runtime and no data to hold. It is **not** configuration-dependent: configuration decides *whether* a given event puts the same share on both legs, and once it does, the zero is guaranteed.
+**FACT VERIFIED — as a conditional.** It is arithmetic over a source-stated formula plus the double-entry invariant, and needs no runtime and no data.
+
+> **CORRECTION, ISSUED AFTER AN ADVERSARIAL CHALLENGE CONTRADICTED THE FIRST DRAFT.**
+> The first draft attached the word *unconditionally* to the **theorem** and then applied the theorem to a **list of five mechanisms**. The theorem is fine. **The application was wrong for two of the five.** An independent reviewer, tasked to disprove, established that two mechanisms **do not satisfy the antecedent at all** — their counterpart's allocation is *re-derived*, not copied — and that a third satisfies it only when a precondition holds.
+>
+> The corollary is unconditional **given its antecedent**. It says nothing about a mechanism until that mechanism is shown to satisfy it. Restating a conditional as a property of a mechanism list is exactly the error the project's own denominator discipline exists to prevent, committed here in the algebra rather than in a count.
+
+### 3.2 WHICH MECHANISMS SATISFY THE ANTECEDENT
+
+| Mechanism | Same allocation on every row of a balanced set? | Net |
+|---|---|---|
+| asset depreciation **when the asset carries an allocation** | **yes** — copied verbatim to both rows | **zero** |
+| deferred expense / deferred revenue recognition | **yes** — same builder | **zero** |
+| cut-off / change-period accrual | **yes** — the two rows are an explicit debit/credit swap carrying the same allocation | **zero** |
+| cash-basis base pair | **yes** — and on the **same account** | **zero** |
+| cash-basis tax pair | **yes** | **zero** |
+| **change-account transfer** | **NO — the counterpart's allocation is re-derived from money amounts** | **not zero** — see §5.1 |
+| **accrued orders** | **NO — the counterpart carries a re-derived weighted aggregate, and it is not a two-row pair at all** | **not zero** — see §5.1 |
+
+**Five mechanisms satisfy the antecedent, not seven.** The two that do not fail in a different and separately serious way.
 
 ## 4. APPLIED TO ASSET DEPRECIATION
 
@@ -114,18 +133,42 @@ G(cost centre, depreciation entry) = 2 · (s/100)·X
 
 The same two-row shape holds for the deferred-expense and deferred-revenue variants the asset mechanism also produces: in each, one leg is a balance-sheet account and one is a profit-and-loss account, and both receive the allocation.
 
-## 5. WHY THE OPPOSITE FAILURE ALSO FOLLOWS FROM THE SAME ALGEBRA
+## 5. THE OTHER FAILURE MODES THE SAME ALGEBRA PRODUCES
 
-When the asset carries **no** allocation the key is deliberately omitted so that each row may derive its own from the rule set, keyed on **its own account**. The two rows have different accounts, so the rule set may return different allocations — `s_{1,A} ≠ s_{2,A}`.
+### 5.1 Re-derived counterpart — allocates neither correctly nor to zero
+
+Where a counterpart's allocation is **re-derived** rather than copied, the shares on the two sides differ, so the terms do not cancel:
 
 ```
-N(A,E) = − (1/100) · ( b_1·s_{1,A} + b_2·s_{2,A} )
-       = − (X/100) · ( s_{2,A} − s_{1,A} )
+N(A,E) = − (1/100) · [ Σ_source b_i·s_{i,A}  +  b_counterpart·s'_A ]
 ```
 
-which is **non-zero whenever the two rows resolve to different shares for `A`** — an amount that corresponds to no economic event. Where the rule set returns the same allocation for both accounts, the result collapses back to Corollary 1 and nets to zero again.
+Two independent reasons the re-derived share `s'_A` is short, **both established by adversarial challenge**:
 
-**Both branches of the same design are wrong in opposite directions**: allocate both legs identically and you attribute nothing; allocate them independently and you attribute a difference that means nothing.
+1. **Source rows carrying no allocation still enter the denominator.** The re-derivation divides each accumulated analytic amount by the counterpart's **total balance**, but only rows that *have* an allocation contribute to the numerator. Every unallocated source row therefore dilutes the counterpart's percentages, which then sum to **less than 100** while the source side sums to 100.
+2. **Percentage rounding.** Every share is rounded to the configured precision (default two digits) on write. A three-way split re-derived as `33.33 × 3 = 99.99` never reaches the exact-100 branch, so the completing row takes its own rounded share rather than the remainder, and that side is short by 0.01 % of the balance.
+
+**The residue is not noise — it is a number with no economic meaning that survives on the cost centre.** A clean zero at least announces itself; a residue looks like a real cost.
+
+### 5.2 Independent per-row derivation — a one-sided attribution
+
+Where the source object carries **no** allocation at all, the key is deliberately omitted so that each row derives its own from the rule set, keyed on **its own account**. The two rows have different accounts, and the shipped rule mechanism selects by **account prefix** — so a rule written for expense accounts matches the profit-and-loss row and not the balance-sheet row.
+
+```
+N(A,E) = − (X/100) · ( s_{expense row} − s_{balance-sheet row} )
+```
+
+which is **non-zero and one-sided**. This is not a bug in the arithmetic; it is the arithmetic working correctly on an eligibility decision made per row.
+
+### 5.3 The three modes together
+
+| Mode | Precondition | Net effect | Detectability |
+|---|---|---|---|
+| **symmetric cancellation** | one allocation copied to every row of a balanced set | **exactly zero** | invisible on net-balance surfaces; visible on account-bucketed ones, except the cash-basis case |
+| **re-derived counterpart** | counterpart's shares computed from amounts | **small residue** | looks like a real cost |
+| **independent per-row derivation** | no allocation on the source object | **one-sided, non-zero** | looks correct, and may be correct |
+
+**All three come from the same root cause** — the allocation is carried per row and the attribution's subject is the event.
 
 ## 6. WHAT THE ALGEBRA DOES **NOT** SETTLE
 
@@ -138,4 +181,4 @@ which is **non-zero whenever the two rows resolve to different shares for `A`** 
 
 ## 7. CHECKPOINT
 
-**CP-AI02 — SOURCE ALGEBRA PROVED.** The zeroing theorem is **FACT VERIFIED** for the both-legs case, unconditionally. Auto-continue.
+**CP-AI02 — SOURCE ALGEBRA PROVED, AND ITS SCOPE CORRECTED BY ADVERSARIAL CHALLENGE.** The theorem is FACT VERIFIED as a conditional; **five** mechanisms satisfy its antecedent, not seven; the two that do not fail in a separately serious way. Auto-continue.

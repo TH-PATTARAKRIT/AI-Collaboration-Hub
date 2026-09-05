@@ -23,7 +23,7 @@ Recorded first, so the open list is not read as "nothing was settled".
 
 | ID | Item | Class | What would close it |
 |---|---|---|---|
-| `DEP-P09-14` | incidence: does any real deployment have an asset carrying an allocation? | **HOLD — DATABASE EVIDENCE REQUIRED** | re-run the existing read-only asset trace with the allocation field added to its field list — near-zero cost, no write |
+| ~~`DEP-P09-14`~~ | ~~incidence~~ | **CLOSED BY EVIDENCE** — 670 of 685 assets allocated; 98.57 % annihilated. See `AI05` §3 | discharged |
 | `DEP-P09-15` | surface divergence observed rather than derived | **HOLD — RUNTIME EVIDENCE REQUIRED** | read-only report execution against a deployment with posted depreciation |
 | `SW-U-03` | magnitude of the accrued-orders tax-driven residue | **UNRESOLVED — DATA REQUIRED** | real order data with mixed tax rates |
 | `AI11` §3 | whether work-centre hourly rates recover depreciation, making the masking interaction real | **UNRESOLVED — EVIDENCE REQUIRED**, routed to P03 | a costing-policy statement, not a code fact |

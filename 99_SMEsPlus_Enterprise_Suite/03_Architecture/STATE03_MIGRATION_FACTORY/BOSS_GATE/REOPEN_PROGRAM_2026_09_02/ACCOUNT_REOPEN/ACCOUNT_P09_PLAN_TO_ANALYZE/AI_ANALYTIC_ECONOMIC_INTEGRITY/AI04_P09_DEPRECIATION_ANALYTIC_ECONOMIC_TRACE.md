@@ -51,7 +51,7 @@ The decisive mechanism is **bucketing**. Each management record carries **its ow
 | Surface | Does it group or filter by the general account? | What it shows for the 1,000 depreciation | Class |
 |---|---|---|---|
 | **the analytic account's own `balance`** | **no** — it splits purely on the sign of the amount | **balance 0** | FACT VERIFIED |
-| **the same account's `debit` and `credit`** | no | **debit 1,000, credit 1,000** — the gross footprint survives | FACT VERIFIED |
+| **the same account's `debit` and `credit`** | no | the values are 1,000 and 1,000, **but both columns are hard-hidden in the shipped view** — not merely optional, so no user action reveals them. The gross footprint survives in the data, **not on screen** | **CORRECTED by challenge** |
 | **analytic item list, pivot, graph, grid** | no | nets to **0** in any cell that contains both records; shows **+1,000 and −1,000 individually** when the rows are not aggregated together | FACT VERIFIED |
 | **budget consumption ("achieved")** | **yes** — the query admits only income and expense general accounts | **1,000 consumed** — the correct figure. The balance-sheet record is dropped before summation, so there is nothing to cancel against | FACT VERIFIED |
 | **financial-report analytic column** | **yes, indirectly but decisively** — the shadow view keys its account column to each record's own general account, and each report line then filters to its own accounts | a profit-and-loss analytic column shows the **full 1,000**; a balance-sheet analytic column shows the counterpart. **They never meet, so they never cancel** | FACT VERIFIED |
@@ -72,7 +72,35 @@ This is narrower than the first reading and **more dangerous**, for three reason
 
 The hypothesis "analytic records exist but economic cost zeroes out" is **verified** — with its scope now precisely bounded: it zeroes out **in the net analytic balance of the cost centre**, which is the figure a cost-centre report is most likely to present, and it does **not** zero out in account-bucketed consumption figures.
 
-## 4. THE INTENT QUESTION
+## 4. THE INTENT QUESTION — **ANSWERED, CONTRARY TO THE FIRST DRAFT**
+
+> **This section previously concluded that the source carries no statement of intent. An independent reviewer CONTRADICTED that, and the correction strengthens P09's position rather than weakening it.**
+
+**The intent is stated, in the product's own user-facing labels:**
+
+- the analytic account form's single statistic button is labelled **"Gross Margin"**, and the value it displays is the **net balance**;
+- the action that opens an account's management records is likewise named **"Gross Margin"**;
+- that action's help text describes tracking **costs and revenues** to analyse margins, naming supplier invoices, expenses and timesheets as cost sources and customer invoices as revenue sources. **No balance-sheet counterpart is named anywhere in it.**
+
+**The declared intent is a cost-and-revenue attribution ledger whose balance is a margin.** The balanced-subledger reading is **not present in the product**.
+
+### 4.1 The arithmetic agrees with the label, and the first draft's inference was backwards
+
+The first draft argued that exposing debit, credit and balance was "consistent with a balanced subledger". It is not. Because the management amount is the **negated** journal balance, a cost lands in the *debit* aggregate and a revenue in the *credit* aggregate, so `balance = credit − debit` is **revenue minus cost — a margin**, not a trial-balance residual. The management record has no debit and no credit field at all; it has **one signed amount**.
+
+**The first draft's §3 already said this correctly and its §4 then drew the opposite inference from the same mechanism.** §4 was the wrong one.
+
+### 4.2 What this changes
+
+| First draft | Corrected |
+|---|---|
+| intent undeclared; the product is "both and neither" | **intent is declared: a margin ledger** |
+| `DESIGN DECISION REQUIRED AT FINAL GATE` on *what the ledger is for* | **the reference answer is known.** SMEsPlus still chooses its own model, but it is no longer choosing in the dark |
+| P09 cannot call the cancellation a departure from intent | **P09 can.** Allocating a balance-sheet leg into a margin ledger departs from the product's own stated purpose |
+
+**The hedge is withdrawn. `AI-R-01` survives as a SMEsPlus requirement; the uncertainty around it does not.**
+
+## 5. THE ORIGINAL INTENT DISCUSSION (superseded, retained for lineage)
 
 The directive asks (Q6, Q7, Q11) what the analytic ledger is *for*, and whether the cancellation is intended.
 
@@ -83,7 +111,7 @@ The directive asks (Q6, Q7, Q11) what the analytic ledger is *for*, and whether 
 
 **The two readings are both present in the product and are not reconciled by it.** P09 therefore does **not** assert that the cancellation is a bug in the reference product — that is a statement about another party's design intent and the evidence does not support it. P09 asserts the operational fact and the requirement it generates for SMEsPlus.
 
-**Classification: `DESIGN DECISION REQUIRED AT FINAL GATE`** for the question "what is the analytic ledger for". SMEsPlus must choose one reading; the reference pattern demonstrates the cost of choosing neither.
+*(Superseded by §4 above. Retained so the correction is legible rather than erased.)*
 
 ## 5. THE SMEsPlus REQUIREMENT THIS TRACE GENERATES
 

@@ -85,12 +85,29 @@ The reference pattern merges T2 and T3 into one record type with one amount and 
 | preserved disagreements | 7 | `11` §B |
 | declared unsearched | 11 | `11` §D |
 
+## 8A. ANALYTIC ECONOMIC INTEGRITY — CONTINUATION ADDENDUM
+
+Full package under `AI_ANALYTIC_ECONOMIC_INTEGRITY/`. The four items Core Accounting must carry forward:
+
+**1. The measurement, which outranks every argument in this package.**
+> In a deployed database, **670 of 685 assets carry a management allocation**, and **17,716 balance-sheet-leg records annihilate 18,483 expense-leg records — 98.57 % of the depreciation attribution destroyed** (gross 206,518,404.07; net −2,961,221.81). Verified by the research team's own re-extraction, not accepted on report.
+
+**2. The rule that produces it.** An allocation is carried **per row**, while the attribution's subject is the **event**. Where one allocation reaches every row of a balanced set, the records mirror and the net is zero — a theorem, not an observation. Where a counterpart's allocation is instead **re-derived**, it fails differently, leaving a residue that looks like a real cost. Both come from the same root cause.
+
+**3. The one control that would have caught all of it.** An **event-level completeness check**: the accounting event declares its intended attribution, and the system verifies that the records it produced sum to it. Cheap, checkable at creation, and impossible without the accounting-event identity — which is why `AAS+-VETO-01` stands.
+
+**4. The localization finding, which is actionable now.** The Thai chart types both accumulated-depreciation accounts as an **expense** type on asset-range codes and ships **no fixed-asset account**. The budget query splits the type on its first token, so the balance-sheet leg is admitted and **budget consumption nets to zero on a Thai-chart install** — defeating the one surface this package had called correct. **If an asset's depreciation account points at either Thai accumulated-depreciation account, that asset's depreciation consumes no budget.** Statutory readings are held; the internal contradiction is verified.
+
+**What Core Accounting must NOT infer:** the sweep's counts are a **lower bound** (45/11 declared, 82/23 measured); `AI-E-02` is derived from a misread witness and must be re-derived or dropped; the cash-basis pair's cancellation is arguably **required**, not defective; and no class B, C or D anywhere in this package may be restated as A.
+
+**New veto:** `AAS+-VETO-03` — no SMEsPlus asset, accrual, deferred-recognition or cash-basis design may allocate a balance-sheet row into the management ledger. Design adoption only.
+
 ## 9. TERMINAL STATE
 
 **READY FOR CORE ACCOUNTING RECONCILIATION.**
 
 Qualified as follows, and the qualification travels with the declaration:
-- P09's own gate recommendation is **HOLD** on four named blockers;
-- two vetoes stand, both limited in scope;
+- P09's own gate recommendation is **HOLD** on **six** named blockers — the original four, plus the sweep-denominator re-derivation and the Thai chart-typing decision;
+- **three** vetoes stand, all limited in scope;
 - no approval is issued, nothing is merged, no implementation is authorised, and no gate has moved;
 - **Boss is sole Final Approver.**
