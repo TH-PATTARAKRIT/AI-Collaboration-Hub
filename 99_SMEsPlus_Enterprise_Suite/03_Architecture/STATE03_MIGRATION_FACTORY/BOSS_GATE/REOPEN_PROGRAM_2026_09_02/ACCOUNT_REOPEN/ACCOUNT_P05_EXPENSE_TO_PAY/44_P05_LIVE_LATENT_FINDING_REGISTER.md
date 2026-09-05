@@ -11,8 +11,8 @@ DEPLOYMENT` · `VERSION-DEPENDENT` · `CONTRADICTED` · `UNKNOWN`.
 | ID | Finding | Source defect | Module installed (v18)? | Reachable? | Data observed? | Effect observed? | **Exposure class** |
 |---|---|---|---|---|---|---|---|
 | `TX-01` | Two WHT subsystems; custom line has no `tax_line_id`, CSV inner-joins on it | verified | **yes** | yes | **358 lines** | **100.00% divergence** | **LIVE — OBSERVED** |
-| `PC-01` | **238 of 625 petty-cash sheets have no linked entry; 206 are `done`** | — | **yes** | yes | **yes** | **yes** | **LIVE — OBSERVED** |
-| `TZ-01` | *"Petty cash never credits the petty cash account"* | source-copy verified | **yes** | yes | **386/387 credits DO land on the petty cash account** | **contrary** | **CONTRADICTED** |
+| `PC-01` | **238 of 625 petty-cash sheets have no linked entry; 206 are `done`** | — | **yes** | yes | **yes (counts class A)** | migration-coverage vs severing **not distinguishable** | **counts OBSERVED; cause `C` — NOT DECIDABLE** |
+| `TZ-01` | *"Petty cash never credits the petty cash account"* | source-copy verified, **unrebutted** | **yes** | yes | 386/387 credits land on the float account — **but all 712 sheet-linked entries are migration output** (`create_uid=1`, one day, journal "COA Migration 2026") | **no live posting exists to observe** | **`C` — NOT DECIDABLE FROM THIS EVIDENCE** |
 | `TZ-02` | `petty.cash` has no company scoping | verified | yes | yes | 4 companies present | **no cross-company posting observed** | **LATENT — REQUIRED DATA ABSENT** |
 | `TZ-03` | Expense amount/currency/date writable after posting | verified | yes | yes | 993 expenses | not tested | **LIVE — CONFIGURED/REACHABLE** |
 | `TZ-04` | Payment immutability guard omits `journal_id`/`ref` | verified (AST) | yes | yes | — | not tested | **LIVE — CONFIGURED/REACHABLE** |
@@ -44,7 +44,7 @@ DEPLOYMENT` · `VERSION-DEPENDENT` · `CONTRADICTED` · `UNKNOWN`.
 | **LIVE — CONFIGURED/REACHABLE** | 9 |
 | **LATENT — MODULE NOT INSTALLED** | 5 |
 | **LATENT — REQUIRED DATA ABSENT** | 3 |
-| **CONTRADICTED** | **1 — `TZ-01`** |
+| **`C` — NOT DECIDABLE FROM THIS EVIDENCE** | **2 — `TZ-01`, `PC-01` cause** |
 | Re-opened as version/config-dependent | 1 — `TX-24` |
 
 ## 3. What Changed Against Round 2
@@ -52,8 +52,10 @@ DEPLOYMENT` · `VERSION-DEPENDENT` · `CONTRADICTED` · `UNKNOWN`.
 Round 2's reach classification rested on a population that **excluded the target platform**. With
 `idemo18_uat` included:
 
-- `TZ-01` moves from `LATENT` to **`CONTRADICTED`** — the opposite of both prior positions.
-- `PC-01` is **new** and is the strongest petty-cash finding yet.
+- `TZ-01` moved from `LATENT` to `CONTRADICTED` and then, under challenge, to **`C — NOT DECIDABLE`**.
+  Its **third** position in three rounds. The source defect is unrebutted; no live posting exists in
+  any evidenced database to test it against.
+- `PC-01` is **new**; its counts are class `A` and its cause is class `C`.
 - `TZ-10`, `TX-06`, `TX-24` move from `LATENT` toward **live or re-opened**, because
   `hr_expense_extract`, `account_payment_multi_deduction` and `account_disallowed_expenses` are all
   **installed on v18** and Round 2 had them as uninstalled or absent.

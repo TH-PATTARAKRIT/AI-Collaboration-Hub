@@ -11,11 +11,11 @@ Status enum: `NOT STARTED` · `IN PROGRESS` · `COMPLETE — EVIDENCE VERIFIED` 
 | ID | Name | Status | Evidence / Artifacts | Commit | Material delta | Resume point |
 |---|---|---|---|---|---|---|
 | `CP-P05E00` | Auto-resume bootstrap / baseline reconciled | **COMPLETE — EVIDENCE VERIFIED** | full SHA verified against local + remote | `9674810` | none | — |
-| `CP-P05E01` | Evidence base reconstructed | **COMPLETE — EVIDENCE VERIFIED** | `41` — 34 files → 25 candidates → **9 identities**, 7 readable | `120e1bd` | **`RE-20`: `idemo18_uat` (v18) found; Round 2's v18 negative contradicted** | — |
-| `CP-P05E02` | Database population verified | **PARTIAL — RESUMABLE** | `42`, `41 §3` | `120e1bd` | `pankhamhom` **unread** (class C) | read `pankhamhom` registry |
+| `CP-P05E01` | Evidence base reconstructed | **PARTIAL — RESUMABLE** | `41` + Challenge A correction | `120e1bd` | **`RE-20`** then **`RE-29`** — the reconstruction's own completeness claim contradicted three ways | read `iSMEs182`/`iErpOCC`/`iSCErP`; authorise Docker reads |
+| `CP-P05E02` | Database population verified | **PARTIAL — RESUMABLE** | `42`, `41 §3` | `120e1bd` | `pankhamhom` **read by Challenge A** — v18, petty cash installed; 3 archives + 12 container DBs remain | read the 3 archives |
 | `CP-P05E03` | Deployed-module population verified | **COMPLETE — EVIDENCE VERIFIED** | `43` — 7 registries, incl. v18 target | `120e1bd` | **`RE-21`, `RE-22`** | — |
 | `CP-P05E04` | Live/latent register | **COMPLETE — EVIDENCE VERIFIED** | `44` | `120e1bd` | 5 LIVE-OBSERVED, 1 CONTRADICTED | — |
-| `CP-P05E05` | Petty cash reclassified | **COMPLETE — EVIDENCE VERIFIED** | `45` | `120e1bd` | **`TZ-01` CONTRADICTED by production data; `PC-01` new** | — |
+| `CP-P05E05` | Petty cash reclassified | **COMPLETE — EVIDENCE VERIFIED** | `45` | `120e1bd` | `TZ-01` contradicted, **then the contradiction withdrawn** → `C — NOT DECIDABLE` (`RE-27`); `PC-01` new, cause `C` | — |
 | `CP-P05E06` | Employee advance reclassified | **COMPLETE — EVIDENCE VERIFIED** | `46` | `120e1bd` | upheld, strengthened | — |
 | `CP-P05E07` | Purchase advance live risk | **COMPLETE — EVIDENCE VERIFIED** | `47` | `120e1bd` | narrowed — not installed on v18; 21 uses; effect not observed | — |
 | `CP-P05E08` | P01 critical handoff | **COMPLETE — EVIDENCE VERIFIED** | `49` | `120e1bd` | — | — |
@@ -29,9 +29,9 @@ Status enum: `NOT STARTED` · `IN PROGRESS` · `COMPLETE — EVIDENCE VERIFIED` 
 | `CP-P05E16` | Method failure analysis | **COMPLETE — EVIDENCE VERIFIED** | `55` | — | — | — |
 | `CP-P05E17` | Exit criteria recalculated | **COMPLETE — EVIDENCE VERIFIED** | `56` | — | `EC-01`/`EC-03` improved; `EC-02` still contradicted | — |
 | `CP-P05E18` | Handoff elements recalculated | **COMPLETE — EVIDENCE VERIFIED** | `57` | — | — | — |
-| `CP-P05E19` | Tolerance-zero reconciled | **COMPLETE — EVIDENCE VERIFIED** | `58` | — | **`TZ-01` closed as CONTRADICTED — first closure in the programme** | — |
+| `CP-P05E19` | Tolerance-zero reconciled | **COMPLETE — EVIDENCE VERIFIED** | `58` | — | an interim `TZ-01` closure was **withdrawn inside the round**; **13 of 13 open, 0 closed** | — |
 | `CP-P05E20` | EC-07 clean-pass control | **COMPLETE — EVIDENCE VERIFIED** | `59` | — | counter reset again | — |
-| `CP-P05E21` | v18 registry obtained | **COMPLETE — EVIDENCE VERIFIED** | `43`, `41` | `120e1bd` | **HOLD CLOSED** | — |
+| `CP-P05E21` | v18 registry obtained | **COMPLETE — EVIDENCE VERIFIED** | `43`, `41` | `120e1bd` | **HOLD CLOSED — two v18 registries obtained** (`idemo18_uat`, `pankhamhom`) | — |
 | `CP-P05E22` | Dump read-only alternatives exhausted | **COMPLETE — EVIDENCE VERIFIED** | `60` | — | **no restore performed or needed** | — |
 | `CP-P05E23` | Peer delta refresh | **COMPLETE — EVIDENCE VERIFIED** | `61` | — | no peer delta consumed | — |
 | `CP-P05E24` | Four AAS-03 challenge classes | **COMPLETE — EVIDENCE VERIFIED** | `62` | — | see `62` | — |
@@ -42,6 +42,7 @@ Status enum: `NOT STARTED` · `IN PROGRESS` · `COMPLETE — EVIDENCE VERIFIED` 
 
 ## Open Dependencies
 
-`U-01` residue **CLOSED** · `U-02b` runtime execution **HOLD** · `U-15` `scgl_signature_hr_expense`
-unanalysed (class C) · `U-16` deployed code ≠ analysed source copy · `U-17` cause of `PC-01`
-(class C) · `U-18` `pankhamhom` unread (class C) · `U-09` statutory (P07).
+`U-01` residue **CLOSED** (two v18 registries) · `U-02b` runtime **HOLD** · `U-15`
+`scgl_signature_hr_expense` (C) · `U-16` source-vs-deployed · `U-17` `PC-01` cause (C) ·
+`U-18` three unread readable archives (C) · `U-19` v18 certificates (C) ·
+**`U-20` 12 Docker DBs incl. 2 live — `HOLD — CONNECTION AUTHORIZATION REQUIRED`** · `U-09` statutory (P07).

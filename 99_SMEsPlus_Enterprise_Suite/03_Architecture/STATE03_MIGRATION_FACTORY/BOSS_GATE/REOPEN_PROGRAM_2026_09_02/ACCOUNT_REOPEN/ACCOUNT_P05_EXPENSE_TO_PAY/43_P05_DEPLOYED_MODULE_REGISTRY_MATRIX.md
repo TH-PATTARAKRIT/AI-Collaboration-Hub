@@ -15,10 +15,23 @@ Seven distinct database identities, all `ir_module_module` read offline.
 | `R-4` | `iEVING` | 19.0 | 1504 | 232 | — |
 | `R-5` | `BK12MAY26` | 19.0 | 1508 | 251 | — |
 | `R-6` | `iTEST02` | 19.0 | 1559 | 453 | — |
-| `R-7` | `pankhamhom` | *not yet read* | — | — | — |
+| `R-7` | **`pankhamhom`** | **18.0** | **1,338** | **478** | — |
 
-`R-7` is `NOT YET SEARCHED — class C`; it is a 28 MB readable archive located by the exhaustive
-search and not consumed within this continuation's budget. Declared, not concealed.
+**`R-7` was read by AAS-03 Challenge A** (the author had declared it class `C`). It is a **second
+Odoo 18 database**, and it changes two conclusions:
+
+| Module | `pankhamhom` v18 |
+|---|---|
+| **`hr_expense_petty_cash`** | **INSTALLED 18.0.1.2** — same version as `idemo18_uat` |
+| **`scgl_purchase_advance_payment`** | **INSTALLED 18.0.1.0.0** |
+| `hr_payroll_expense` | **installed** |
+| `hr_expense_extract`, `sale_expense`, `account_disallowed_expenses`, `l10n_th` suite | installed |
+| `scgl_advance_expense_request`, `hr_expense_sequence`, `multi_level_approval` | uninstalled |
+| `scgl_signature_hr_expense`, `scgl_multi_approve_core` | **absent from the registry entirely** |
+
+**Further registries remain unread**: `iSMEs182` (Odoo 18, found as a `.zip`), `iErpOCC`, `iSCErP`
+(both wrongly recorded as empty — see `41` correction), and 12 Docker-backed databases including two
+live. Class **C**, declared.
 
 ## 2. P05 Module Matrix
 
@@ -55,8 +68,8 @@ search and not consumed within this continuation's budget. Declared, not conceal
 | "No Odoo 18 database carrying the P05 surface exists in the available evidence" | **`E` — CONTRADICTED.** `idemo18_uat` is v18 and carries the whole P05 surface. `RE-20`. |
 | "`hr_expense_petty_cash` is installed in none of the six registries" | **`E` — CONTRADICTED.** Installed at `18.0.1.2` on the v18 target. `RE-21`. |
 | "`scgl_advance_expense_request` is installed in none" | **UPHELD** — `uninst` or absent in all seven registries, now including v18. Strengthened, not weakened. |
-| "`scgl_purchase_advance_payment` is live in all four distinct databases" | **NARROWED.** It is `uninst` on the v18 target. Live in `iSMEs` v16, `iEVING`, `BK12`, `iTEST02` — **four of six read registries, but not the v18 one.** `RE-22`. |
-| "Six registries" as the population | **`E`** — the population is nine identities, seven readable, one unread (`R-7`). |
+| "`scgl_purchase_advance_payment` is live in all four distinct databases" | **NARROWED, then re-corrected.** `uninstalled` on `idemo18_uat` but **INSTALLED on `pankhamhom`, also v18**. So the correct scoping is **per database, not per version** — the author's phrase "not on the v18 target" was imprecise. Installed in **5 of 8** read registries. `RE-22`, `RE-30`. |
+| "Six registries" as the population | **`E`** — and the author's own replacement ("nine identities, seven readable") is **also `E`**: at least **ten** file-based identities, at least nine readable, plus 12 Docker-backed databases. See `41` correction and `RE-29`. |
 
 ## 4. New Module Surface Never Analysed
 

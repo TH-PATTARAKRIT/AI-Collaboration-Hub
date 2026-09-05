@@ -17,13 +17,18 @@
 
 ## 2. The Failure Sequence
 
-1. **Round 1** ranked risk from **source alone**, with no deployment evidence. It produced a headline
-   finding (`TZ-01`) that was *source-true*.
+1. **Round 1** ranked risk from **source alone**. It produced a headline finding (`TZ-01`) that was
+   *source-true*.
 2. **Round 2** discovered deployment evidence, ranked by **reach**, and reclassified `TZ-01` to
    `LATENT` — on a population that **contained no petty cash and no expense claims at all**
-   (`iSMEs`: 2 expenses, 0 sheets). The reclassification was arithmetically correct over the wrong set.
-3. **Round 3** found the target-platform database and `TZ-01` came out **contradicted** — the opposite
-   of both prior positions.
+   (`iSMEs`: 2 expenses, 0 sheets). Arithmetically correct over the wrong set.
+3. **Round 3** found the target-platform database, measured 386-of-387 credits landing correctly, and
+   declared `TZ-01` **CONTRADICTED**.
+4. **Round 3's own challenge** then showed **all 712 of those entries were migration output** — a
+   population that never exercised the application's posting code. `TZ-01` → **`C — NOT DECIDABLE`**.
+
+**Four positions on one finding, three of them published.** Each was sound given its evidence base and
+wrong given the next.
 
 > **The finding did not change. The population did — three times.** Each round's conclusion was sound
 > given its evidence base and wrong given the next one's. **The defect was never in the reasoning
@@ -53,7 +58,9 @@ the author suspected a gap.
 |---|---|
 | An evidence-population claim is only as good as its **root**. Make the root the filesystem, not a folder where something was already found. State root + pattern + unit. | `RE-20` |
 | Verify **installed modules before ranking risk**, and verify that the population includes the **target platform**. | `RE-21` |
-| A population that lacks the phenomenon cannot reclassify it. Before reclassifying finding X, confirm the population **contains** X's data. | `RE-21`, and the sharpest lesson of this round |
+| A population that lacks the phenomenon cannot reclassify it. Before reclassifying finding X, confirm the population **contains** X's data. | `RE-21` |
+| **Before measuring, establish PROVENANCE: who created these rows, when, and by what process.** `create_uid`, `create_date` and the journal's *name* are one query and would have caught `RE-27` before publication. A measurement over migration data cannot answer a question about live behaviour. | **`RE-27` — the sharpest lesson of this round** |
+| A filter that cannot express a positive cannot support a negative — **including `-t schema.table`**, which returns zero rows silently. | `RE-13`, extended by Challenge B |
 | Prove a tool can express a **positive** before accepting its negative. | `RE-13` |
 | Never assume which of two fields is authoritative — **join to the authority**. | `RE-10` |
 | **Decompose a count** before publishing it as a defect. | `RE-11` |

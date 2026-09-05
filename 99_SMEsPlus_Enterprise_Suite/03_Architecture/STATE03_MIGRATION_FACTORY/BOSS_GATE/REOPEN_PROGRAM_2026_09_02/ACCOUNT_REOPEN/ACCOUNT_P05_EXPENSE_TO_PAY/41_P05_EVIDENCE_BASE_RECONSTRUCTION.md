@@ -56,6 +56,38 @@ Drive placeholders; `pg_restore -l` returns a header but there is no content —
 > looked in") published with class-A force, which is the exact defect `RE-07` was logged for one round
 > earlier. Recorded as **`RE-20`**.
 
+> ## CORRECTION — THIS RECONSTRUCTION IS ITSELF INCOMPLETE, AND TWO ROWS ABOVE ARE WRONG
+>
+> AAS-03 Challenge A was dispatched to disprove *"the archive population is now complete."*
+> **It succeeded, on three counts, all author-verified.**
+>
+> **(a) Two rows in §3 are factually wrong.** `iErpOCC` and `iSCErP` were recorded as
+> **"0 B — unreadable — cloud placeholder"**. They are **271,259,809 bytes** and **52,672,227 bytes**,
+> both fully readable, with valid headers (`dbname: iErpOCC`, 16,730 TOC entries, PG 11.16;
+> `dbname: iSCErP`, 24,933 TOC entries, PG 15.2). The zero-byte reading came from a `du` over
+> cloud-synced paths and was never re-checked. **Class `E` — CONTRADICTED.**
+>
+> **(b) A tenth database identity was missed by the PATTERN, inside the declared PATH SET.**
+> `iSMEs182_2025-01-18_14-07-44.zip` (26.5 MB) is an **Odoo-native backup** — `dump.sql` (68.6 MB),
+> `manifest.json`, `filestore/` — for `iSMEs182`, **Odoo 18.0+e**. It is invisible to this file's
+> six-extension pattern because it is a `.zip`. **The path set was right; the pattern was too narrow.**
+>
+> **(c) An entire evidence class is structurally invisible to any filename search.**
+> `docker ps -a` shows **38 containers**, of which **two Postgres instances are running right now** —
+> `occ-odoo18-db` (postgres:16, up 5 days) backing **`occ-odoo18-webtest` (odoo:18.0, up 5 days)** —
+> plus `bhpro92-db` (up 3 days), ten further stopped DB containers, named volumes
+> `occ_odoo18_pgdata`/`occ_odoo18_filestore`, and two local Homebrew Postgres clusters. **A live
+> Odoo 18 instance is running on this machine.** None of it is a file matching any dump extension.
+>
+> **`§5`'s claim "No further Odoo 18 database exists anywhere" is class `E` — CONTRADICTED, twice.**
+> Recorded as **`RE-29`**. This is the **third consecutive round** in which a population claim failed,
+> and the second in which it failed *after* the round adopted a control against exactly that failure.
+>
+> **Posture on the live containers:** their existence is host metadata (`docker ps`). **No connection
+> was made and none is authorised.** Their content is class **D — UNKNOWN**, recorded as `U-20`
+> (`HOLD — RUNTIME / CONNECTION AUTHORIZATION REQUIRED`). They are, however, the **most direct
+> available route** to the live-posting evidence that `TZ-01` needs (`45`, `59`).
+
 ## 4. Reading Method — read-only, unchanged
 
 `pg_restore --data-only --table=<t> -f <out> <dump>` — file-to-file. **No `-d` was ever passed. No

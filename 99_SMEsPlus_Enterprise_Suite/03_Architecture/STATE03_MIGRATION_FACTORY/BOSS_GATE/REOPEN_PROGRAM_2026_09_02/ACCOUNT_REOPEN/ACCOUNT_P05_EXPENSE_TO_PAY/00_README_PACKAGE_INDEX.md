@@ -73,6 +73,43 @@ Continuation of the same session. **No reset**; files 00–22 are preserved as a
 | 38 | `38_P05_PMO_EXIT_REVIEW.md` | PMO independent exit review | 2 |
 | 39 | `39_P05_RESEARCH_ERROR_AND_REVISION_LOG.md` | `RE-07`..`RE-13` — **governs over any headline table** | 2 |
 
+### Evidence-Base / Live-Risk Repair — `SMEPLUS-26-09-05-...-REPAIR-001`
+
+Same session, third continuation. **No reset**; 00–39 preserved as audit lineage.
+
+| # | File | Purpose |
+|---|---|---|
+| 40 | `40_P05_CHECKPOINT_REGISTER.md` | 29 checkpoints |
+| 41 | `41_P05_EVIDENCE_BASE_RECONSTRUCTION.md` | **exhaustive search; 9 DB identities; `RE-20`** |
+| 42 | `42_P05_MULTI_DATABASE_POPULATION_PROOF.md` | per-DB P05 row counts |
+| 43 | `43_P05_DEPLOYED_MODULE_REGISTRY_MATRIX.md` | **7 registries incl. the v18 target** |
+| 44 | `44_P05_LIVE_LATENT_FINDING_REGISTER.md` | five-axis exposure classification |
+| 45 | `45_P05_PETTY_CASH_DEPLOYMENT_RECLASSIFICATION.md` | **corrected twice — read its header first** |
+| 46 | `46_P05_EMPLOYEE_ADVANCE_DEPLOYMENT_RECLASSIFICATION.md` | latent, confirmed |
+| 47 | `47_P05_PURCHASE_ADVANCE_DEPLOYMENT_FORENSIC.md` | narrowed |
+| 48 | `48_P05_VENDOR_BILL_SUDO_AUTHORIZATION_FORENSIC.md` | `PARTIAL AUTHORIZATION` |
+| 49 | `49_P05_P01_VENDOR_ADVANCE_HANDOFF.md` | P01 routing |
+| 50 | `50_P05_TX01_SCREEN_CSV_DIVERGENCE.md` | **100.00% on v18** |
+| 51 | `51_P05_P07_TX01_STATUTORY_HANDOFF.md` | 9 statutory questions |
+| 52 | `52_P05_CERTIFICATE_FINDING_REVISION.md` | v16-bounded |
+| 53 | `53_P05_R01_CORR1_REINSTATEMENT_FORENSIC.md` | lineage |
+| 54 | `54_P05_RESEARCH_ERROR_RE07_RE23_RECONCILIATION.md` | **`RE-07`..`RE-28` — GOVERNS** |
+| 55 | `55_P05_RESEARCH_METHOD_FAILURE_ANALYSIS.md` | **four positions on one finding** |
+| 56 | `56_P05_EXIT_CRITERIA_V2.md` | 2 / 3 / 3 |
+| 57 | `57_P05_HANDOFF_COMPLETENESS_V2.md` | 2 / 4 / 4 |
+| 58 | `58_P05_TOLERANCE_ZERO_V2.md` | **13 of 13 open** |
+| 59 | `59_P05_EC07_CLEAN_PASS_REGISTER.md` | 0 of 2 |
+| 60 | `60_P05_DUMP_READONLY_EVIDENCE_BOUNDARY.md` | **no restore performed or needed** |
+| 61 | `61_P05_PEER_RECONCILIATION_REFRESH.md` | P01/P06/P07/P08/P09/P11 |
+| 62 | `62_P05_AAS03_EVIDENCE_BASE_CHALLENGE.md` | **GOVERNS** |
+| 63 | `63_P05_AAS_PLUS_SUPPLEMENTAL_VETO_RECHECK.md` | `AASV-01`/`02'`/`03` |
+| 64 | `64_P05_PMO_SUPPLEMENTAL_REVIEW.md` | HOLD |
+| 65 | `65_P05_P11_EVIDENCE_BASE_AND_LIVE_RISK_SUPPLEMENT.md` | **supplement, not replacement** |
+| 66 | `66_P05_AUTO_RESUME_STATE.md` | resume state |
+
+> **Read `54`, `62 §Challenge C`, and `45`'s header before citing any petty-cash or reach
+> classification.** A headline result was published and withdrawn inside this round.
+
 ## Reading Order Rule (`ER-AASR-1`)
 
 Design input is taken from a document's **adversarial / correction section**, never from its summary.

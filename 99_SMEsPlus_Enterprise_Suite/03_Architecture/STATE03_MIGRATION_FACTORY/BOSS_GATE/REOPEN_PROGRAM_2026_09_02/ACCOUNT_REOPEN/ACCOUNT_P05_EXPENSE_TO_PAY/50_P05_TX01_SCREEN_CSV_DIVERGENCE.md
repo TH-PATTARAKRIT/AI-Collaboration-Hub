@@ -20,7 +20,13 @@ the platform the source analysis was actually conducted against:**
 | `display_type` of those lines | `product` | **`product` (all 358)** |
 
 **On the v18 target the divergence is total.** Every line posted to a withholding account is a
-`product`-type line with a null `tax_line_id`.
+`product`-type line with a null `tax_line_id`. Independently reproduced by AAS-03 Challenge C.
+
+> **Scope boundary added by Challenge C:** the 358 lines are concentrated in **companies 1 and 2**
+> (accounts 179 and 65, 206 and 152 lines). Companies 3 and 4 have WHT codes configured (accounts 103,
+> 141) but **zero posted lines** in this dump. The 100.00% is therefore 100% of an activity set
+> spanning **2 of 4 companies** — it does not change the numerator or denominator, and it is stated
+> rather than left implicit.
 
 Query definition, declared: numerator = `account_move_line` rows whose `account_id` ∈
 `{account_withholding_tax.account_id}` and whose `tax_line_id` is NULL; denominator = the same set

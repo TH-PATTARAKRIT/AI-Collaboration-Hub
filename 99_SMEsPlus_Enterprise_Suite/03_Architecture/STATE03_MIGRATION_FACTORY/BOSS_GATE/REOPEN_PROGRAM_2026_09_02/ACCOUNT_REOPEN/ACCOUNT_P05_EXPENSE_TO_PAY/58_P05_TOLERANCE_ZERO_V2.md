@@ -12,7 +12,7 @@ or dropped by this round; **one is closed and several are re-classed.**
 
 | ID | Boundary | Live/Latent (v18 target) | Module installed | DB evidence | Runtime | Peer owner | **Status** |
 |---|---|---|---|---|---|---|---|
-| **`TZ-01`** | Petty-cash spending never credits the float account | **CONTRADICTED** | **yes** | **386/387 credits DO land on the float account** | n/a | — | **CLOSED — INVALID ASSUMPTION** |
+| **`TZ-01`** | Petty-cash spending never credits the float account | **`C` — NOT DECIDABLE** | **yes** | 386/387 land on the float account, **but 100% of linked entries are migration output** | **none exists** | P08 | **HOLD — RUNTIME** (a live posting must be observed) |
 | `TZ-02` | `petty.cash` has no company scoping | latent-consequence | yes | 4 companies; **no cross-company posting observed** | — | P08 | **HOLD — DATABASE** (source defect stands; effect not observed) |
 | `TZ-03` | Expense fields writable after posting | **LIVE — reachable** | yes | 993 expenses | not tested | P08 | **HOLD — RUNTIME** |
 | `TZ-04` | Payment guard omits `journal_id`/`ref` | **LIVE — reachable** | yes | — | not tested | P06/P08 | **HOLD — RUNTIME** |
@@ -38,14 +38,18 @@ its cause is class **C** (`U-17`). **Recorded as `TZ-CANDIDATE-01`, routed to P0
 
 | Status | Count |
 |---|---|
-| **CLOSED — INVALID ASSUMPTION** | **1** (`TZ-01`) |
-| HOLD — RUNTIME | 3 |
+| **CLOSED** | **0** |
+| HOLD — RUNTIME | **4** (incl. `TZ-01`) |
 | HOLD — DEPLOYMENT | 4 |
 | HOLD — DATABASE | 2 |
 | HOLD — PEER | 3 |
-| **Open** | **12 of 13** |
+| **Open** | **13 of 13** |
 
-> **`TZ-01` is the first tolerance-zero boundary closed anywhere in this programme** — and it closed
-> because it was **disproved by evidence**, not because it was remediated. `EC-04` is satisfied for
-> that one item in the only way it can be: the risk was shown not to exist on the target platform.
-> Twelve remain open, and **no `CONDITIONAL PASS` may bypass any of them.**
+> **An interim draft of this file closed `TZ-01` as `CLOSED — INVALID ASSUMPTION` and called it the
+> programme's first tolerance-zero closure. That was withdrawn within the same round**, after
+> AAS-03 Challenge C showed the contradicting evidence was entirely migration output. **No
+> tolerance-zero boundary is closed. The count remains 13 of 13 open**, and `no CONDITIONAL PASS may
+> bypass any of them`.
+>
+> The episode is itself the lesson: a boundary closed on a population that never exercised the
+> behaviour is not closed.

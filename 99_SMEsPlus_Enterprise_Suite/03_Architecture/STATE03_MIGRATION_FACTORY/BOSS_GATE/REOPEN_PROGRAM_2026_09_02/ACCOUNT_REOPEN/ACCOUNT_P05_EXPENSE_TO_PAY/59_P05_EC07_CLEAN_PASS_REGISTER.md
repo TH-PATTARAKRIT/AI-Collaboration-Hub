@@ -19,7 +19,7 @@ qualify **if** they meet one of the six criteria — they are not separate reset
 |---|---|---|---|
 | 1 | `P05#02` — four AAS-03 experts | new population (`l10n_th_reports`); 60 new findings; 7 new TZ boundaries; 12 author findings corrected | **NO** |
 | 2 | `P05#03` — four experts, targeted closure | new population (6 registries, 5,201 certificates); new finding class; `RE-07` evidence-integrity failure; **2 published findings contradicted** | **NO** |
-| **3** | **This round — four challenge classes** | **new material population (`idemo18_uat`, the target platform); new gating unknowns `U-15`..`U-18`; `RE-20` evidence-integrity failure; `TZ-01` contradicted — a Gate-changing contradiction** | **NO** |
+| **3** | **This round — four challenge classes** | **new material population (`idemo18_uat`, `pankhamhom`, `iSMEs182`, `iErpOCC`, `iSCErP`, 12 Docker DBs incl. a live Odoo 18 instance); new gating unknowns `U-15`..`U-20`; evidence-integrity failures `RE-20`, `RE-29`; two Gate-changing contradictions the round raised **against itself** (`TZ-01`, then the `TZ-01` contradiction)** | **NO** |
 
 ## 3. Status
 
@@ -27,9 +27,15 @@ qualify **if** they meet one of the six criteria — they are not separate reset
 
 Blocker classification: **INTERNAL — METHOD**. Not waiting on an external party.
 
-**The counter cannot advance while the evidence base is still moving.** Each of the three passes
-discovered a population the previous one did not have. The earliest a clean pass is possible is after
-`U-18` (`pankhamhom`), `U-15` (`scgl_signature_hr_expense`) and `U-16` (source-vs-deployed) are closed
-— because each is a known, named source of a further material population.
+**The counter cannot advance while the evidence base is still moving**, and this round proved it is
+still moving badly: the round that set out to repair the evidence base **had its own population claim
+contradicted three ways** (`RE-29`), including by a **live Odoo 18 instance running on the machine**.
+
+Named sources of further material population, each of which would reset the counter again:
+`U-20` (12 Docker databases, 2 live) · `U-18` (`iSMEs182`, `iErpOCC`, `iSCErP` — all readable, none
+read) · `U-15` (`scgl_signature_hr_expense`) · `U-16` (source-vs-deployed) · `U-19` (v18 certificates).
+
+**A clean pass is not reachable until those are closed**, because each is a known-in-advance source of
+new material population — and `EC-07` counts exactly that as a disqualifier.
 
 **No self-certification is offered.** This session does not declare any pass clean, including its own.
