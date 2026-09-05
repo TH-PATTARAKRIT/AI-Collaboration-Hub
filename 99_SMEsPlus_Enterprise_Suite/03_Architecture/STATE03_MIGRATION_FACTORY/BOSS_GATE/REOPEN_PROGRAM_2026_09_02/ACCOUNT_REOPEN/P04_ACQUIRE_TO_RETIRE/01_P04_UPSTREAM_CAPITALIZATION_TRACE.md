@@ -745,6 +745,66 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30.
 
+### 6A.9 Closing the code-identity axis, one module at a time
+
+P07 could not close the fourth axis for its modules and found something better:
+its two copies differ **only in Python method bodies** — identical field sets,
+identical views — so *nothing that differs is persisted*, and the axis threatens
+**behavioural** claims only. Structural claims are discharged. Run here against
+the two custom modules `EV-CUST` names and that are actually installed
+(`P04-F-97`).
+
+> **P04-F-102.** **For `equipment_sequence` the code-identity axis is CLOSED, not
+> narrowed.** The deployed version in `551ab874` is **`18.0.1.6`**. Enumerated
+> over the declared path set `/Volumes/iMacSys` + `$HOME`, **exactly two copies
+> on this host carry that version** — the declared root and one other. Compared:
+>
+> | Test | Result |
+> |---|---|
+> | Common files | **42**, none present in one copy and absent from the other except compiled bytecode |
+> | Python files parsed (AST, **class bodies only**) | **13 of 13**, 0 parse failures |
+> | **Class-level field differences** | **0** |
+> | View/XML files differing | **0 of 10** |
+> | Python changed lines, CR-normalised | **0** |
+> | Whole-tree source hash (bytecode excluded) | **identical — 1 distinct tree from 2 copies** |
+>
+> The copies are **byte-identical in source**. So which one is deployed cannot
+> change any finding drawn from that module — **structural or behavioural**. This
+> is stronger than P07's result, where method bodies diverged by 17–179 lines and
+> only the structural half could be discharged.
+>
+> **P07's split is adopted as the general rule** and is the more useful outcome:
+> where copies agree on fields and views but differ in method bodies, **findings
+> citing models, fields or views are discharged and findings citing logic stay
+> exposed** — because what differs is not persisted. The axis only ever threatens
+> behavioural claims.
+>
+> Class: **FACT VERIFIED**, bounded to the declared path set, with the version
+> filter stated: only copies carrying the **deployed** version are candidates.
+> `product_stock_equipment` is **NOT YET REPORTED** — 11 eligible copies were
+> enumerated and the comparison is still executing; a partial answer is not
+> published here.
+
+> **P04-F-103.** **The first run of the test above returned 44 copies in 3 groups
+> and was meaningless.** Forty-two of the 44 hashed to
+> `e3b0c44298fc…` — the SHA-256 of **empty input** — because paths containing
+> spaces were **word-split by the shell**, so the walk visited directories that
+> do not exist and hashed nothing. The output was confident, reproducible, and
+> would have read as *"42 identical copies"*.
+>
+> **This is the defect P07 reported one message earlier**, arriving here inside
+> the test written to apply P07's lesson. It is also the **null-that-behaves-like-
+> a-value** pattern from `P04-F-98`: 42 empty walks did not spread out as noise,
+> they **collapsed into a single group** and looked like the strongest possible
+> agreement.
+>
+> Caught by a control that was in the output only because the previous defect had
+> taught it: the group carried a **file count of 0**. Every subsequent run prints
+> the empty-input hash explicitly and flags any group equal to it.
+>
+> Class: **FACT VERIFIED** — recorded as a method defect of this package, not a
+> finding about the estate.
+
 ### 6A.8 The analytic consequence clause, measured
 
 P07 withdrew the second clause of its strongest finding after measuring it for
