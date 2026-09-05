@@ -3085,6 +3085,35 @@ the controls and the population; the finding is completed when the sweep returns
 **No number in `§38` is amended in the meantime**, and the identity position is untouched
 regardless of the outcome: **7 keyed on `database.uuid` and read, population OPEN**.
 
+### 39.2a Two controls, not one — and P04's own complement test had half — `REV-M-76`
+
+P04 reports that what it shipped with its complement result was an **exclusion** control only:
+a known backup shows both members and is correctly *not* flagged. **That proves the predicate
+does not misfire. It says nothing about whether it fires at all** — which is the
+control-that-cannot-fail pattern, a defect P04 had itself recorded **one commit earlier**.
+
+Re-run with the construction from `§39.1`, its zero is now controlled in both directions: the
+inverse predicate **fires** on a synthesised archive, its own original clause **misses** the
+same artefact, and a real backup is **correctly excluded**. Conclusion unchanged; evidentiary
+standing changed.
+
+**The generalisation, which P04 attributes to this package's construction and this package
+attributes to P04 having found the gap in its own published result:**
+
+> An **exclusion** control and a **firing** control are different instruments, and a negative
+> needs both. Proving a predicate does not misfire is worthless without proving it **can** fire
+> — and the second is usually only obtainable by **constructing an instance that does not exist
+> in the population**, which is precisely why it gets skipped.
+
+`REV-M-61` said *pair every positive control with a negative one*. This is the sharper form:
+when the result **is** a zero, the firing control is not an optional companion — **it is the
+only thing standing between the zero and a broken test**, and it generally has to be built
+rather than found.
+
+**Fifth instance in this thread of a rule recorded and not applied in the adjacent case**, and
+it is P04's own: it had the control-that-cannot-fail written down and shipped a finding whose
+entire content is a zero, guarded on one side.
+
 ### 39.3 The mirror-image gap, and what it actually is
 
 P04 identifies this package's version, and it is exact:
