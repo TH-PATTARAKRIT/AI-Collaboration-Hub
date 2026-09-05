@@ -2196,3 +2196,74 @@ other's.** `REV-M-52`.
 That is a stronger claim than *review helps*: it says a rule's author is systematically the
 person least able to see its full range, so **a written-down method is not a controlled method
 until someone with a different bias runs it.**
+
+
+---
+
+## 28. Settled Negatives Whose Boundary Has Moved — `P07-F-86`
+
+P04's qualifier check, run with the discriminator this package added, found something neither
+of us was looking for: a **settled negative** — *"No sixth database exists under the stricter
+method"* — that had been **false for eleven commits**, and that had survived the correction of
+the *identical sentence* in its own revision log. Same claim, same session, two locations, one
+corrected and one not.
+
+That is a class this package is exposed to more than P04 is, because **this session moved two
+boundaries**: the archive population (5 · 4 → 7 · 5 → **15 · 7**) and the source scope (the
+declared PATH SET proven not to be the deployed set, `P07-F-68`). **Every negative bounded by
+either is a candidate.**
+
+### 28.1 The audit
+
+Seventeen negative-claim rows in `11 §5`. Classified by declared boundary:
+
+| boundary | negatives | status |
+|---|---:|---|
+| the **declared PATH SET** (`13 §2`) | `P07-N-01`, `-N-02`, `-N-06` | boundary **proven incomplete** by `P07-F-68` — 85 installed modules lie outside it |
+| the **storage volume** `/Volumes/iMacSys` | `P07-N-03`, `P07-N-25` | boundary **proven incomplete** by `§13` — `$HOME` holds addon trees and 8 of the 15 database snapshots |
+| the Thai module population only | `-N-05`, `-N-08`, `-N-09`, `-N-14` | explicitly narrow and **correctly stated as such** — `P07-N-09` even carries *"this must not be read as SMEsPlus has no tenant"* |
+| stated locally in their own section | `-N-10`…`-N-13`, `-N-16`…`-N-24` | unaffected |
+| withdrawn | `P07-N-15` | already replaced by `P07-F-37` |
+
+**`P07-F-86` — five of seventeen negatives were bounded by a scope this session subsequently
+proved incomplete, and none of them was re-run when the boundary moved.**
+
+The four narrowly-scoped ones are the interesting counter-case: they were written with their
+limitation stated in the row itself, and **they are the ones that did not go stale.** A negative
+that declares a narrow boundary survives a boundary change; a negative that declares the widest
+boundary available at the time does not.
+
+### 28.2 The one that matters, and the one being re-run
+
+- **`P07-N-02`** — *no functional consumer of `tax_period_date`*, bounded to "all three roots".
+  The deployed module (`scgl_tax_period_date`) is **outside** those roots (`P07-F-69`).
+  **Conclusion survives** because `P07-F-74` proved all five copies one tree — but it survived
+  by luck of the code being identical, not because the boundary held.
+- **`P07-N-03`** — bounded "declared set and whole volume". The v14 comparison it rests on is
+  unaffected by `$HOME`, since it is a claim about the *declared set*.
+- **`P07-N-25`** — *"No tenant ORM model exists anywhere on the storage volume"*, bounded to
+  **all `.py` files under `/Volumes/iMacSys`**. This is the negative underpinning `P07-F-50`,
+  the tenant-boundary finding — *specified at status NEW with zero tenant ORM models anywhere*.
+  **`$HOME` was never searched**, and this session has since found addon trees there
+  (`bhpro92-addons`, `Desktop/SMEsPlus/…`, `OCC_Odoo18_Simulation_Lab/addons`, `SMEsPlus/…`)
+  and eight of the fifteen database snapshots.
+
+A re-run of `P07-N-25` over the corrected root set — `/Volumes/iMacSys` **and** `$HOME`, all
+`.py`, with a positive control — **is executing and is not reported here.** `P07-F-50` stands
+as published until it returns; if a tenant model exists under `$HOME`, that finding is refuted
+and this section will say so.
+
+### 28.3 P04's sharpening of `REV-M-53`, accepted
+
+> In every one of the four instances **the author was actively running the rule at the time**,
+> not neglecting it. Neither of us failed to apply our own rule; we applied it to the case that
+> generated it and could not see the adjacent case. **That is a claim about scope of
+> imagination, not diligence** — which is why more review by the same party does not fix it.
+
+That is the correct word, and it changes what the line recommends: not *try harder with your own
+rule*, but **put the rule in different hands**. `REV-M-54`.
+
+P04 also notes the counter-example that keeps this honest: this package's unit `1c` run returned
+**4 flags, 0 genuine collisions**, reported as false-positive-prone rather than as four findings.
+**A rule can over-reach in someone else's hands too**, and an exchange that only ever confirmed
+the other party's rules would be mutual amplification rather than review.
