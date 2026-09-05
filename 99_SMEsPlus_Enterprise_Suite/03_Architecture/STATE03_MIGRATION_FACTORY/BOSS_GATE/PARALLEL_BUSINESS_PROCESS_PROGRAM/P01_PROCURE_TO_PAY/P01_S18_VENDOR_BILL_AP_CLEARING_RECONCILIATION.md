@@ -108,8 +108,23 @@ this looks like systematic late posting and a cutoff risk.
 | Next most common day | day 25 — 124 bills |
 | Remaining | 8 bills across days 27–30 |
 
+*Positive control on the delta measurement:* the spread is continuous — 0 days → 212 bills,
+1 → 68, 2 → 37 … 28 → 43, 29 → 34, 30 → 20; min 0, max 30, no missing or NULL dates. The zero at
+"negative deltas" sits inside a populated distribution rather than an empty one.
+
+> **A wording defect corrected before publication — `ERR-P01-34`.** The first version of this table
+> stated the test as **"all 1,879 are in the same month"**. That sentence is **false**: the 1,879
+> bills span **eight** accounting months (2026-01 → 2026-08, between 132 and 377 bills each). The
+> test that discriminates — and the one this withdrawal rests on — is whether **each bill's
+> accounting date sits in the same month as its own invoice date**, which is **1,879 of 1,879**.
+> Found by AAS-03 Expert B; both readings verified here directly.
+>
+> **Every number in the section was exact; the sentence describing what they tested was not.** A
+> reader auditing this withdrawal against the data would have found its stated basis contradicted
+> and would have been entitled to reinstate the finding.
+
 **This is a month-end posting convention, not a cutoff violation.** Every bill is recognised in
-the month of its own invoice date; the accounting date is set to the period end (or to a day-25
+the month of its own invoice date; the accounting date is set to that month's end (or to a day-25
 cut-off) while the invoice date preserves the vendor's document date. That is orthodox.
 
 **The candidate finding is withdrawn before publication**, and is recorded here rather than deleted

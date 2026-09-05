@@ -138,6 +138,30 @@ The series-19 tree relabels `real_time` to **`Perpetual (at invoicing)`**. The s
 deployment is `manual_periodic`, whose series-18 label is **Manual**. Any cross-generation reading
 of this field must use the **stored value**, never the label.
 
+### 6.2 "4 OF 4" COUNTS TWO COMPANIES THAT HAVE NEVER TRANSACTED — `ERR-P01-35`
+
+| | co 1 | co 2 | co 3 | co 4 |
+|---|---|---|---|---|
+| `account_move` | 9,733 | 5,789 | **0** | **0** |
+| `stock_valuation_layer` | 25,978 | 21,823 | **0** | **0** |
+| `stock_move` | 26,868 | 24,213 | **0** | **0** |
+| `purchase_order` | 8,969 | 4,918 | **0** | **0** |
+| users whose default company it is | 29 | 13 | 5 | **0** |
+| product templates owned | 161 | 83 | 1 | **0** |
+
+**Companies 3 and 4 are empty shells, and company 4 has no users at all.** A `4/4` denominator
+invites a reader to read four companies as four confirmations. They are not.
+
+**The precise statement is:** *126 of 126 categories; **measured** in the two transacting companies,
+**configured identically** in two that have never transacted.* Every company-scoped figure in this
+package carries that qualifier from here on. The numbers are right; two of the four carry no
+evidential weight.
+
+**Read the other way, companies 3 and 4 are a negative control this evidence base already contained
+and was not using.** A policy that yields zero GL linkage in two live companies **and** zero rows in
+two dormant ones is exactly the spread that belongs beside the zero — the never-transacted row is
+the informative one. Corrected on Expert B's challenge.
+
 ---
 
 ## 7. IS RECEIPT ACCOUNTING EXPECTED UNDER THIS POLICY? — NO
@@ -419,7 +443,7 @@ periodic valuation means. The exposure this leaves open between receipt and bill
 
 | Question | Classification |
 |---|---|
-| Valuation policy in this deployment | **`manual_periodic` — FACT VERIFIED**, 126/126 categories × 4/4 companies, both storage locations read |
+| Valuation policy in this deployment | **`manual_periodic` — FACT VERIFIED**, 126/126 categories, both storage locations read; **measured** in the 2 transacting companies, **configured identically** in the 2 never-transacted ones (§6.2) |
 | Mixed population | **None** — FACT VERIFIED |
 | Receipt accounting expected under this policy | **No** — FACT VERIFIED from source, same generation |
 | The 0-of-47,801 zero-link result on `account_move_id` | **EXPECTED UNDER PERIODIC POLICY — VERIFIED, scoped to 43,227 rows.** For 4,574 rows (9.57%) it is **over-determined** by three valuation-independent causes |

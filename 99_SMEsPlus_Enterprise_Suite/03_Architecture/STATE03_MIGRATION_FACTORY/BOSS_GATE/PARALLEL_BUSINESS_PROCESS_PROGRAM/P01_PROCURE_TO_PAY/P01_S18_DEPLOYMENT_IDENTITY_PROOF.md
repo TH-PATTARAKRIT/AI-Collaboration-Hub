@@ -142,29 +142,48 @@ Schema extracted in full: `pg_restore --schema-only` → 5,219,881 bytes, rc 0, 
 **POPULATION** for every claim below: those 1,122 tables and their columns. **UNIT:** one column or
 one table.
 
-**Series-18 shape present.** Each is a *rename* or an *addition*, so a leftover column cannot
-explain it — and in every case the old name is **absent**, which is what distinguishes a clean
-migration from an accretion:
+**A correction inside the correction.** Expert B's first version of this table offered
+`account_move.origin_payment_id` and `product_template.lot_valuated` as *series-18* discriminators.
+**Both exist in series 19 as well** — verified here directly against the v19 tree
+(`R3:account/models/account_move.py:206`). The expert sent its own attributions for source
+verification rather than asserting them, and withdrew both. **This package had already adopted the
+withdrawn version and is corrected here.** They remain sound as discriminators against series ≤ 17;
+they are not discriminators against 19.
+
+**Shape that rules out series ≤ 17.** Each is a rename or an addition, and in every case the old
+name is **absent** — which is what separates a clean migration from an accretion:
 
 | Observation | Implication |
 |---|---|
 | `account_move.origin_payment_id` present; **`account_move.payment_id` absent** | the 18.0 rename was applied and left no orphan |
 | `product_template.is_storable` present; **`detailed_type` absent from all 1,122 tables** | 18.0 replaced one with the other |
-| `product_template.lot_valuated` and `stock_valuation_layer.lot_id` present | per-lot valuation, an 18.0 `stock_account` addition |
-| `product_category.property_stock_account_production_cost_id` present | 18.0 `mrp_account` addition |
+| `product_template.lot_valuated`, `stock_valuation_layer.lot_id` present | per-lot valuation, an 18.0 `stock_account` addition |
 | `mail_canned_response` present; **`mail_shortcode` absent** | 18.0 rename |
 | `account_move_send_wizard` **and** `account_move_send_batch_wizard` both present | the 18.0 send-flow split |
-| five `base_cache_signaling_{assets,default,groups,routing,templates}` sequences, not one | 18.0 split the sequence per cache |
+| `ir_property` **absent from all 1,122 tables**; every company-dependent property is a **jsonb column on the record**; `stock_lot` present and `stock_production_lot` absent; `account_account.code_store` present | the series-17 storage model — rules out 14 / 15 / 16 |
 
-**Series ≥ 17 shape present, ruling out 14/15/16:** `ir_property` **absent from all 1,122 tables**;
-`stock_lot` present and `stock_production_lot` absent; `account_account.code_store` present; and
-**every company-dependent property is a jsonb column on the record** — which is the series-17
-storage model and is exactly what the valuation-policy proof relies on.
+**The discriminator that rules out series 19, and it is decisive.**
 
-**Series-19 shape absent, ruling out the version above:** `res_groups_privilege` — the model
-introduced in 19 alongside `res.groups.privilege_id` — is **not among the 1,122 tables**.
-*Positive control that this probe can return PRESENT:* the same loop in the same execution returned
-PRESENT for `stock_lot`, `mail_canned_response`, `account_move_send_wizard`,
+`ir_model_fields_selection` for `product.category.property_valuation` holds exactly two values:
+
+| stored key | label |
+|---|---|
+| `manual_periodic` | `{"en_US":"Manual","th_TH":"ด้วยตัวเอง"}` |
+| `real_time` | `{"en_US":"Automated","th_TH":"อัตโนมัติ"}` |
+
+Verified character-exact against both trees:
+
+- `R1:stock_account/models/product.py:915-917` — `('manual_periodic', 'Manual'), ('real_time', 'Automated')`
+- `R3:stock_account/models/product.py:666-670` — **`('periodic', 'Periodic (at closing)'), ('real_time', 'Perpetual (at invoicing)')`**
+
+**Series 19 renamed the key from `manual_periodic` to `periodic`. A series-19 database cannot
+physically contain the string `manual_periodic`.** This deployment does, on the very field the
+valuation-policy proof turns on.
+
+Corroborating: **`res_groups_privilege`** — the model series 19 introduces alongside
+`res.groups.privilege_id` — is **absent from all 1,122 tables**.
+*Positive control that this table-existence probe can return PRESENT:* the same loop in the same
+execution returned PRESENT for `stock_lot`, `mail_canned_response`, `account_move_send_wizard`,
 `account_move_send_batch_wizard`, `product_packaging`, `uom_uom`, `uom_category`,
 `account_bank_statement_line`, `account_asset` and `res_users_settings`.
 
@@ -188,11 +207,14 @@ what §6.3's `v14 2026:` markers mean: see §6.3.
 **CLASSIFICATION: FACT VERIFIED — the deployed application series is 18, established from the
 schema, corroborated by `latest_version` rather than resting on it.**
 
-*Caveat declared rather than hidden:* mapping each column to an Odoo release is an attribution.
-The **internal consistency** argument needs no such mapping — a schema with no
-`payment_id`/`origin_payment_id` pair and no `detailed_type`/`is_storable` pair has been migrated
-cleanly rather than accreted, whatever the labels. The **absolute series label** does depend on the
-attribution, and corroborating it column-by-column against the reference trees is an open action.
+*What is attribution and what is not.* The **series-19 exclusion is not an attribution** — it is a
+direct string comparison against both source trees, and it is the strongest single item here. The
+series-≤17 exclusions rest on column-to-release mappings that were verified against source after an
+expert withdrew two of its own; **the episode is the reason this document now names which claims
+were checked against a tree and which were not.** The **internal consistency** argument needs no
+mapping at all: a schema carrying no `payment_id`/`origin_payment_id` pair and no
+`detailed_type`/`is_storable` pair has been migrated cleanly rather than accreted, whatever the
+labels.
 
 ---
 

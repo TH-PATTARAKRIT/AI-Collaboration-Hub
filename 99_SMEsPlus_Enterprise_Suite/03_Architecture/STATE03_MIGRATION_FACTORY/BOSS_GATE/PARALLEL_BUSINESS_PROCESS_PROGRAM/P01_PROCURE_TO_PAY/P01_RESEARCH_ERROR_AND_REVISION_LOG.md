@@ -514,3 +514,37 @@ corrected finding, and the architecture impact.
 | **And they are readable** | **All four have version-matching source inside the declared path set `R4`.** P01 could not see them because its custom-module population was the name pattern of `ERR-P01-32`. The mechanism is not opaque; it was never looked for. |
 | **What this changes for P07** | P01 handed P07 an opaque-localisation framing. The truth is a **known OCA stack with readable, version-matched source** — a materially easier statutory question. The corrected handoff is `P01_S18_WHT_DEPLOYMENT_REALITY.md`. |
 | **Rule this establishes** | **Resolve model ownership from the deployment's own metadata, never from module names.** `ir_model_data` on `ir.model` says which module owns a model; a module's name says only what someone called it. |
+
+## `ERR-P01-34` — the sentence describing the test was the negation of the test that was run
+
+| Field | Content |
+|---|---|
+| **Original finding** | The discriminating test that **withdrew** a candidate cutoff finding, stated as: *"**all 1,879 are in the same month**"*, alongside *"1,747 of 1,879 carry an accounting date equal to the LAST DAY of the month"*. |
+| **Original evidence** | **Every number was exact.** 1,879 posted bills · 1,667 with `date != invoice_date` · median +13 · max +30 · never negative · 1,747 on month-end · 124 on day 25 — all reproduce to the digit. |
+| **Why wrong** | The **sentence** is false. The 1,879 bills span **eight** accounting months (2026-01 through 2026-08, between 132 and 377 bills each). Nothing in the data says they are "all in the same month". |
+| **What the test should have said** | Whether **each bill's accounting date sits in the same month as its own `invoice_date`** — which is **1,879 of 1,879**, with **0** crossing a period boundary. |
+| **How found** | AAS-03 Expert B, re-deriving every zero by field position. Both readings verified here directly. |
+| **Why this one is dangerous out of proportion to its size** | It is the **load-bearing half of the only test justifying a withdrawal**. A reader auditing the withdrawal against the data would have found its stated basis contradicted and would have been **entitled to reinstate a finding this package had correctly dropped**. A wrong sentence around right numbers is harder to catch than a wrong number, because the numbers all check out. |
+| **Corrected finding** | The withdrawal **stands**, on the same-month-as-its-own-invoice-date test: 1,879 of 1,879, plus 1,747 of 1,879 on month-end. Month-end posting convention, not a cutoff violation. |
+| **Rule this establishes** | **Audit the prose against the query, not only the numbers against the data.** Where a sentence states what a test measured, re-read it beside the code that produced the figure. A package whose arithmetic is exact can still publish a claim that says the opposite of what it ran. |
+
+## `ERR-P01-35` — "4 of 4 companies" counted two that have never transacted
+
+| Field | Content |
+|---|---|
+| **Original finding** | *"Every product in all four companies resolves to `manual_periodic`. **126/126, 4/4**."* — and the same `4/4` framing on the clearing-account and anglo-saxon readings. |
+| **Why wrong** | The figures are right; the **denominator invites a false reading**. Companies 3 and 4 hold **zero** journal entries, **zero** valuation layers, **zero** stock moves and **zero** purchase orders; company 3 has 5 users and **company 4 has none at all**; company 3 owns one product template and company 4 owns none. They are configured shells. Counting them as two of four confirmations doubles the apparent weight of the evidence. |
+| **How found** | AAS-03 Expert B. Verified here. |
+| **Corrected finding** | *126 of 126 categories; **measured** in the two transacting companies, **configured identically** in two that have never transacted.* |
+| **And the correction is worth more than the fix** | Companies 3 and 4 are the **never-transacted negative control this evidence base already contained and was not using.** A policy that yields zero GL linkage in two live companies **and** zero rows in two dormant ones is exactly the spread that belongs beside the zero. |
+| **Rule this establishes** | **State which members of a population were measured and which were merely configured.** A never-transacted member is not a confirmation — it is a control, and it is more useful as one. |
+
+## `ERR-P01-36` — this package adopted an expert claim that the expert then withdrew
+
+| Field | Content |
+|---|---|
+| **What happened** | `P01_S18_DEPLOYMENT_IDENTITY_PROOF.md §4.2` was rewritten mid-run to rest on the **schema** rather than on `latest_version`, adopting AAS-03 Expert B's discriminator table — which offered `account_move.origin_payment_id` and `product_template.lot_valuated` as **series-18** markers. |
+| **Why wrong** | **Both exist in series 19 as well.** Verified here directly: `R3:account/models/account_move.py:206` carries `origin_payment_id`. They discriminate against series ≤ 17; they do **not** discriminate against 19. |
+| **How found** | **By the expert itself.** It sent its own version attributions for verification against the source trees rather than asserting them from memory, and withdrew two on the result. This package had already adopted the pre-withdrawal version. |
+| **Corrected finding** | The decisive series-19 exclusion is a **direct string comparison**, not an attribution: `ir_model_fields_selection` for `product.category.property_valuation` holds **`manual_periodic`**, and `R3:stock_account/models/product.py:666-670` shows series 19 renamed that key to **`periodic`**. **A series-19 database cannot physically contain the string `manual_periodic`** — and this deployment contains it on the very field the valuation-policy proof turns on. Corroborated by the absence of `res_groups_privilege` from all 1,122 tables, with a ten-table positive control. |
+| **Rule this establishes** | **Verify a reviewer's disproofs against source before adopting them.** Independent review is the discovery engine of this programme and it commits its own bounded errors; adopting a correction unverified imports them. Here the expert caught itself first — the correction is recorded anyway, because the package had already published the withdrawn version and would not otherwise show it. |

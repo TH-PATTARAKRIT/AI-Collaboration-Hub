@@ -141,10 +141,33 @@ deployment. **UNIT:** one journal item. **PATTERN:** exact match on `account_id`
 |---|---|
 | 40 / 16 / 24 / 32 (`STJ` Inventory Valuation, all four companies) | **0** |
 
-**POSITIVE CONTROLS.** The same counter, over the same parse, returns non-zero freely:
-144 distinct accounts appear in the population; the largest are 186 (4,049 items), 211 (3,522),
-169 (2,940), 343 (2,408). The largest journals are 45 (8,226), 33 (7,707), 9 (4,504), 34 (4,202).
-A zero from this counter is a measurement, not a silence.
+**POSITIVE CONTROLS.** The same counter, over the same parse, returns non-zero freely: the largest
+accounts are 186 (4,049 items), 211 (3,522), 169 (2,940), 343 (2,408); the largest journals are
+45 (8,226), 33 (7,707), 9 (4,504), 34 (4,202). A zero from this counter is a measurement, not a
+silence.
+
+*One count corrected on Expert B's challenge:* the first version said **144 distinct accounts**.
+It is **143 accounts plus a NULL bucket** — **71 journal items carry no `account_id` at all**. The
+distinct-account figure is **143**, and the 71 account-less rows are named rather than absorbed
+into it.
+
+### 5.1 THE TEST WAS THREE TIMES NARROWER THAN THE CONFIGURATION — WIDENED
+
+The first version tested only the **input** account. The same 15 categories also configure the
+**output** and **valuation** accounts for all four companies, and those had not been tested.
+
+| Account role | Accounts | Journal items |
+|---|---|---|
+| Input / clearing | 176, 62, 100, 138 | **0 each** |
+| Output | 701, 702, 703, 704 | **0 each** |
+| Valuation | 169 (co 1) and the company-2/3/4 equivalents | **0 — except account 169, which carries 2,940** |
+
+**And all 2,940 items on account 169 sit in journal 45 `MIG26 "COA Migration 2026"`** — migrated
+entries, never the runtime valuation path.
+
+So across the **whole three-account stock-valuation configuration, in four companies, the series-18
+runtime has posted nothing at all.** This does not change the conclusion; it changes what the
+conclusion is about — not one unused account, but an entire unused stock-accounting configuration.
 
 **The 2,940 items on account 169 do not come from the valuation path.** Every one of them is in
 journal **45 `MIG26 "COA Migration 2026"`**, `move_type = entry`, all posted, dated 2026-01-03 to
