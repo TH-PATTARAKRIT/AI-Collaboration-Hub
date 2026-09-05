@@ -179,6 +179,30 @@ line, the quant and the valuation layer — **the entire physical-and-valuation 
 **Scope consequence.** `DESIGN CANDIDATE`: scope consistency must be enforced on **every** create and
 write, not at selected workflow events, and must not be a per-model opt-in.
 
+### SF-09 — v19 resolves one value from two company sources in a single expression
+
+**`FACT VERIFIED`** — `R19/stock_account/models/product.py:73-77` (`EV-P02-119`) computes a product's
+valuation mode as:
+
+```python
+product_template.valuation = product_template.categ_id.with_company(
+    product_template.company_id).property_valuation or self.env.company.inventory_valuation
+```
+
+The category is read through the **record's** company; the fallback is read from the **acting**
+company. For a product with no `company_id` — the ordinary shape for a product shared across
+companies — the category is read with `with_company(False)` while the fallback still resolves against
+whoever is acting.
+
+**This is `SF-03`'s lesson recurring in the generation SMEsPlus targets**, and in a sharper form: not a
+value resolved from the wrong scope, but **one value resolved from two scopes at once**, so which one
+governs depends on which half of the expression is reached.
+
+**Status — `OBSERVATION`, not a defect.** No deployed v19 instance was tested against it, and the
+bound of `RE-23` applies: this is a fact about the declared root. **`DESIGN CANDIDATE`:** a fallback
+chain must resolve every link through **one** declared scope, and a missing scope must deny rather
+than silently switch to the acting context.
+
 ## 4. `HOLD — SCOPE EVIDENCE REQUIRED`: The Currency Rate
 
 **The question.** Is an exchange rate PLATFORM reference data, TENANT-owned data, or COMPANY-specific

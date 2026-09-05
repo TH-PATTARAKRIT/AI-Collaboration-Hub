@@ -310,3 +310,130 @@ discipline. Both sessions independently declared POPULATION, PATTERN and UNIT an
 unvalidated; each found the other's gap and neither found its own. **That is an argument for the exchange
 being a control in its own right** — and it belongs in the method record rather than being claimed as a
 result of P02's process, which did not produce it.
+
+---
+
+## 12. Third Peer Exchange — An Onchange Lead, Tested On P02's Own Disabling Setting
+
+P04 reported that the routine forcing an equipment-flagged product to non-storable with serial
+tracking is an `@api.onchange`, which "binds only in the form. Any import, script or programmatic
+write sets the equipment flag without it firing", and put the question to P02 directly: *given
+`property_valuation` unset on 126 categories was your disabling setting, an on-change that never
+fires on the import path is worth a look on your side too.*
+
+That is the same defect class as P02's own `RE-04` / `EV-P02-070` (delivered quantity read-only in
+the UI, writable at the data layer). It was tested. **The lead does not apply to
+`property_valuation` — and testing it refuted a P02 statement in the opposite direction.**
+
+**`SC-15` — the instrument, and its control.** An AST pass over each module's Python, selecting
+functions carrying an `@api.onchange` decorator whose body **assigns** to a `self.<field>` matching
+the accounting-relevant set (valuation, cost method, standard price, invoice policy, anglo, stock
+input/output/valuation accounts, storability, tracking, fiscal position, taxes, journal, account).
+A decorator that only *warns* is not an assignment and is not counted.
+
+`PATH SET` — the two declared source roots. `PATTERN` — the AST predicate above, not a text grep.
+`UNIT` — one handler. **Control:** a synthetic module containing one `@api.onchange('kind')` whose
+body is `self.property_valuation = 'real_time'` was placed outside both roots and passed to the same
+instrument. It **reported 1**. The instrument fires on the exact shape being looked for.
+
+**`SC-16` — result on the O2C path.** Across `sale`, `sale_stock`, `stock`, `stock_account`,
+`account`, `product` in v18: **three** `@api.onchange` handlers in `stock_account/models/product.py`
+touch cost settings (`standard_price` ×2, `property_cost_method` ×1) and **all three are
+warning-only** — they return a `warning` dict and assign nothing. **Seven** handlers in the path
+assign an accounting-relevant value, of which exactly one is reachable in O2C:
+`account/models/product.py:135 _onchange_type`, which clears `taxes_id` and `supplier_taxes_id` when
+a product's type is `combo`.
+
+**That one is `REFUTED` as an exposure.** `sale/models/sale_order_line.py:512-514` sets
+`line.tax_id = False` for `product_type == 'combo'` in the line's own compute, independently of the
+product's stored taxes. A combo product imported with taxes still carries them on the product record,
+but they cannot reach a sale line. The form-only handler is real; its bypass has no accounting effect
+on this path.
+
+**A whole-tree pass found exactly one handler anywhere that assigns `is_storable` or `tracking`** —
+`stock/models/stock_quant.py:952`, the inventory-adjustment form. **P04's handler is not in either
+declared source root, and the tokens naming it appear nowhere in the roots searched.** Consistent
+with `RE-23`: the modules that would carry it are among those absent from this host. **It is
+therefore neither confirmed nor disputed here, and is not adopted.**
+
+**`SC-17` — the correction this produced. A P02 statement is too strong.** Looking for an onchange on
+`property_valuation` found instead an `@api.constrains`:
+
+`stock_account/models/product.py:964-976`, `_check_valuation_accounts`, decorated
+`@api.constrains(lambda self: tuple(self._get_mandatory_stock_account_property_field_names() + ['property_valuation']))`:
+
+```python
+if category.property_valuation == 'real_time':
+    if any(not category[account] for account in fnames):
+        raise ValidationError(_('The stock accounts should be set in order to use the automatic valuation.'))
+```
+
+A constraint, not an onchange — **it fires on create and write, including imports and scripts**. So a
+cross-validation between two of the settings that determine cost recognition **does exist in v18**,
+and `22_P02_TARGETED_CLOSURE_DEPLOYED_EVIDENCE.md` §13, which said *"no cross-validation exists
+between the settings that jointly determine the outcome — in either generation"*, is **refuted for
+v18**. Corrected in place; logged as `RE-24` / `C-33`.
+
+**Four other statements of the same family survive, and the distinction is the point.**
+`01_P02_PROCESS_MAP.md:169`, `21_P02_DEPLOYED_DATABASE_EVIDENCE.md:54` and `:91`, and
+`17_P02_AAS_PLUS.md:130` each name the pair as **a boolean on the company and an account on the
+product category**. The guard found here is **internal to the category** and does not reference
+`res_company.anglo_saxon_accounting` at all. Those statements are correct as written.
+
+**What survives, sharpened rather than weakened.** The guard is **one-directional**: it fires only
+when `property_valuation == 'real_time'`. Accounts configured with valuation left unset raise
+nothing. **That is precisely the state of `idemo18_uat`** — accounts set, `property_valuation` NULL
+on all 126 categories, 47,801 valuation layers, zero cost of sales. And the unset state is **the shipped
+default asserting itself**: the field carries no Python `default=` (`EV-P02-046`), but
+`stock_account/data/stock_account_data.xml:5` installs an `ir.default` of **`manual_periodic`**
+(`EV-P02-100`). A category with no override therefore resolves to **manual**, not to nothing — so the
+126 NULL categories are what the product ships as, not an implementer's error (`EV-P02-117`). The designers paired these two settings and guarded
+one direction of the pair; the deployed defect sits in the direction they left open. **A guard that
+exists and is asymmetric is stronger evidence than no guard at all.**
+
+**`SC-18` — v19 removes the guard, on the target generation.** Two-sided, whole-tree:
+
+| Measured | v18 | v19 |
+|---|---|---|
+| Files containing `_check_valuation_accounts` | **1** | **0** |
+| Files containing the guard's message string | **1** | **0** |
+| Files containing `property_valuation` | 39 | 37 |
+
+The zero is the **guard**, not the field — the field is still there in comparable breadth, which is
+what the third row controls for. In v19 the mode is resolved by a two-level fallback,
+`stock_account/models/product.py:73-77`:
+
+```python
+product_template.valuation = product_template.categ_id.with_company(
+    product_template.company_id).property_valuation or self.env.company.inventory_valuation
+```
+
+**`FACT VERIFIED` — P02-F-05c.** On v19, selecting perpetual valuation **no longer requires the stock
+accounts to exist**, and the setting can be satisfied by a company-level default the category never
+names. The one cross-validation that existed over the cost-recognition configuration is **absent from
+the generation SMEsPlus targets**.
+
+**Scope note, `CORR1`.** That single expression reads the category `with_company(product_template.company_id)`
+but takes the fallback from `self.env.company` — **two different company sources in one resolution**.
+For a product with no `company_id` the category is read with `with_company(False)` while the fallback
+still resolves against the acting company. Registered against the COMPANY scope in
+`20_P02_SCOPE_OWNERSHIP_MATRIX.md` as an observation, **not** as a defect: no deployed instance was
+tested against it.
+
+**`SC-19` — and the first draft of this section was itself wrong.** It closed by saying the guard had
+been sitting unread. **It had not been.** `EV-P02-045` cites `product.py:964-970` directly, and
+`00_README_PACKAGE_INDEX.md` §3b states the rule in plain words — *real-time valuation cannot even be
+switched on until three stock accounts exist*. The package **had** the fact, registered and prominent.
+
+**So the defect is not a missed reading. It is an internal inconsistency that survived publication:**
+`00` §3b asserts the guard, and `22` §13 asserts *no cross-validation exists … in either generation*.
+**Both statements were in the same package, and neither round of adversarial challenge put them in the
+same room.** That is the package's own characteristic failure recurring — `RE-07` (a total that did not
+reproduce from its table), `RE-10` (one defect counted three times): **not citation, but aggregation.**
+Two correctly-cited facts, generalised into a summary claim that contradicts one of them.
+
+**Method note.** The correction came from P04's lead **not applying**. Their specific handler could not
+be verified here at all. What produced the finding was executing a check whose answer was expected to
+be *no* — and reading what was next to the answer. **A lead worth running is not the same as a lead
+that is right**, and two of the five identifiers this section first issued were **duplicates of P02's
+own existing evidence**, withdrawn above.

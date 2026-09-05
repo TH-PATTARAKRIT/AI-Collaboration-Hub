@@ -154,6 +154,20 @@ Second root, referenced below as `R19`:
 | 115 | `R/account_reports/models/res_company.py:29-31` and `R19/account_reports/models/res_company.py:35-37` | Unrealised-FX revaluation fields are present in **both** generations — the session brief's premise of a v19-only feature was wrong |
 | 116 | `R19/stock_account/models/stock_move.py:303-311` vs `:245-255` | v19 lot divergence: the stock side uses the **lot's** standard price for all methods; the invoice uses the **product's** for `lot_valuated + standard` |
 
+### 2c. Configuration cross-validation evidence (third peer exchange, `SC-15` … `SC-18`)
+
+`R18` = the declared v18 root; `R19` as above. Every row below was read from primary source, not from a
+summary. **The bound of `RE-23` applies to all of them**: these are facts about the declared roots, and
+`iSMEs` — the deployment carrying 99.9% of transactions — runs neither.
+
+| EV | Citation | Subject |
+|---|---|---|
+| `EV-P02-116` | **WITHDRAWN — duplicate of `EV-P02-045`** (`R/stock_account/models/product.py:964-970`) | Issued in error. The constraint was **already registered** at `EV-P02-045` and already stated in `00` §3b. What is new is only its *decorator semantics* — `@api.constrains` fires on create and write, therefore on the import and script paths, so it is **not** form-only. That sentence is added to `EV-P02-045`'s reading rather than given an identifier of its own. **Retained as a withdrawn row so the sequence stays contiguous.** |
+| `EV-P02-117` | Reconciliation of `EV-P02-046` (`R18/.../product.py:915-921`) with `EV-P02-100` (`R18/stock_account/data/stock_account_data.xml:5`) | **No new citation — a reconciliation of two already-registered rows, recorded because they can be misread as conflicting.** The field carries **no Python `default=`**; the shipped default is instead supplied as an `ir.default` record of **`manual_periodic`**. So a category with no override does **not** resolve to nothing — it resolves to **manual**. The 126 `NULL` categories in `idemo18_uat` are therefore **the shipped default asserting itself**, not an omission by the implementer. |
+| `EV-P02-118` | `R19/stock_account/models/product.py` (absence) vs `R18` (presence) | Whole-tree two-sided count: `_check_valuation_accounts` and its message string appear in **1** v18 file and **0** v19 files, while `property_valuation` appears in **39** v18 and **37** v19 files. The control row establishes the zero is the **guard**, not the field. Basis of `P02-F-05c`. |
+| `EV-P02-119` | `R19/stock_account/models/product.py:73-77` | `_compute_valuation` — `categ_id.with_company(product_template.company_id).property_valuation or self.env.company.inventory_valuation`. Two-level fallback with no account requirement; **two different company sources in one resolution** (`CORR1` scope observation). |
+| `EV-P02-120` | `R18/sale/models/sale_order_line.py:508-514` | `_compute_tax_id` sets `tax_id = False` for `product_type == 'combo'` in the line's own compute — the basis for **refuting** the combo-tax onchange bypass as an O2C exposure (`SC-16`). |
+
 ## 3. Track Evidence
 
 Citations produced by the four parallel research tracks are held in their own extracts, each carrying its

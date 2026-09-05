@@ -168,6 +168,14 @@ The third row is the dangerous one. It is not an error state, it produces no war
 its ingredients are ordinary configuration values held on different objects (a boolean on the
 company, an account on the product category) with no cross-validation between them.
 
+**Scope of that statement, tightened (`SC-17`).** It concerns the **company boolean × category
+account** pair, and it stands. A *different* pair **is** guarded: `stock_account/models/product.py:964`
+`_check_valuation_accounts` is an `@api.constrains` requiring the three stock accounts whenever the
+category's own `property_valuation` is `real_time`. That guard is **internal to the category**, is
+**one-directional** (silent when valuation is unset), and **never reads the company boolean** — so it
+does not reach the pair named above. **It is absent entirely in v19.** See
+`27_..._SOURCE_SCOPE_AND_POPULATION_BOUND.md` §12.
+
 **`FACT VERIFIED` — P02-F-05b (THAILAND-SPECIFIC, HEADLINE).** Against the Thai chart-of-accounts
 template the third row is the **default** starting position, for two independent reasons:
 

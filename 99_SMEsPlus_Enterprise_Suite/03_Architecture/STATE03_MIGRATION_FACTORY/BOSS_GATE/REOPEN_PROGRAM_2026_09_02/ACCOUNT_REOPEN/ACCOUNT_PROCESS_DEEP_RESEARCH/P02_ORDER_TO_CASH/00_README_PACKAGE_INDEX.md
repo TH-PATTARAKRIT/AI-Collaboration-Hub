@@ -143,6 +143,13 @@ that chart does not supply (`EV-P02-044`, `EV-P02-045`). The recognition toggle 
 **exactly one place in the whole reference root**, and that place is an Enterprise module
 (`EV-P02-101`) — so for a Community-equivalent deployment there is no settings-page route to it at all.
 
+**Consistency note (`C-33` / `RE-24`).** The third clause above — *real-time valuation cannot be
+switched on until three stock accounts exist* (`EV-P02-045`) — is a **cross-validation**, and it
+contradicted a statement published in `22` §13 that *no cross-validation exists … in either
+generation*. `22` §13 has been corrected; **this section was right.** The guard is one-directional
+(silent when valuation is unset) and never reads the company boolean, and **it does not exist in
+v19** — see `27_..._SOURCE_SCOPE_AND_POPULATION_BOUND.md` §12 and `P02-F-05c`.
+
 **Read every cost finding in this package as conditional on that premise.** Where the premise does not
 hold, the finding is replaced by the more serious one in `01` S5: cost of sales is recognised **nowhere**.
 

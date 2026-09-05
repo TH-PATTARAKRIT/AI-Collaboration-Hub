@@ -228,6 +228,33 @@ Raised after a peer process (P04) corrected P02's population.
 
 **Register total: C-01 … C-32, contiguous, no overlap. 20 here, 8 in `25`, 3 in `26`, 1 in `27`.**
 
+### C-33 — A P02 Statement Refuted By P02, In `27_..._SOURCE_SCOPE_AND_POPULATION_BOUND.md` §12
+
+**Claim (published, `22_P02_TARGETED_CLOSURE_DEPLOYED_EVIDENCE.md` §13).** *"No cross-validation
+exists between the settings that jointly determine the outcome — in either generation."*
+
+**Contradicting evidence.** `stock_account/models/product.py:964-976` (v18), `_check_valuation_accounts`,
+`@api.constrains` over the three mandatory stock-account property fields **plus** `property_valuation`,
+raising `ValidationError` when valuation is `real_time` and any account is unset. A constraint fires on
+create and write — **including the import and script paths** — so this is not a form-only check.
+
+**Resolution.** Claim **corrected in place**, not withdrawn. Refuted **for v18**; **confirmed for v19**,
+where the guard is absent (whole-tree: 1 file → 0, against `property_valuation` persisting in 39 → 37
+files as the control against a false zero). Four sibling statements in `01`, `21` (×2) and `17` **stand**:
+each names the **company boolean × category account** pair, and the guard is internal to the category and
+never reads the company boolean.
+
+**Effect on the headline.** **None adverse.** `P02-F-05` is strengthened: the guard's one-directional
+shape means accounts-set-with-valuation-unset raises nothing, and that is precisely the deployed
+`idemo18_uat` configuration behind the zero-COGS invariant.
+
+**This is an internal inconsistency, not a missed reading.** `00_README_PACKAGE_INDEX.md` §3b already
+states the guard in plain words and `EV-P02-045` already cites the same lines. **The package asserted
+both things at once and published both.** Neither adversarial round compared them. Same family as
+`RE-07` and `RE-10`: correctly-cited facts, wrongly aggregated.
+
+**Found by.** P02, while executing a peer lead that turned out **not** to apply to this path.
+
 ## 2. Contradictions Between Evidence Tracks
 
 **None found.** The four tracks were run independently against the same root with independently declared
