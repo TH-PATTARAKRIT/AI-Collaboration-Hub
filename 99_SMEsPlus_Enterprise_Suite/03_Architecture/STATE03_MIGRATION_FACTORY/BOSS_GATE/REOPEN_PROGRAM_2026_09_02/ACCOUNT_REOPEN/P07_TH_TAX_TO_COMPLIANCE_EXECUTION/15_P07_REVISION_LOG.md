@@ -89,6 +89,8 @@ They are listed separately because the distinction is the whole point of the con
 
 | `REV-M-09` | Not a P07 error — a control outcome. P07 twice declined a figure for P11's half: once from P04 relaying it (2), once holding at P11's own direct statement (`≥1`). P11 then enumerated it and reported **5**, correcting its own published 2. Both the relay and the original were wrong in the same way, one step apart: **a figure inherited from a peer carries that peer's execution status, and neither party can see it.** P07 verified all five ids present at source before adopting. | — | Recorded as the operative warrant for obligation 6 of the method proposal. | — |
 
+| `REV-M-10` | Not a P07 error. P11 refined `P11-G-02` after watching this package carry `P11: ≥1` **correctly**: the rule said publish declared halves but never said *when* a half was executed, so a peer-published half goes stale silently — and the rule's own prohibition on re-deriving another party's half is exactly what stops a consumer noticing. Halves are now stamped `value @ owner-SHA`; correcting staleness is the owner's obligation to push. | P11 | Applied at `§3.1c` and as obligation 6a. P04's half currently carries **no SHA**, which is P04's to stamp. | — |
+
 Two of the reviewers' findings **escalated** the severity of the session's own headline
 findings rather than reducing them (`P07-F-01`, `P07-F-42`), and both were reached
 independently by two reviewers. The session's own severity assignment was too low in both

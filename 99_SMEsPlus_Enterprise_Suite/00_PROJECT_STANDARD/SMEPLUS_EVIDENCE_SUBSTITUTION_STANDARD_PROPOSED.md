@@ -3,6 +3,7 @@
 Proposal ID: `SMEPLUS-DR-EVSUB-001-PROPOSED`
 Status: **`PROPOSED FOR BOSS RATIFICATION — NOT IN FORCE`**
 Raised by: P07 Thailand Tax-to-Compliance, on evidence produced jointly with P04 Acquire-to-Retire and P11 Central Core Reconciliation, 2026-09-04
+Revision: `r7`, 2026-09-05 — halves stamped `value @ owner-SHA` per the `P11-G-02` refinement (`§3.1c`); refusal-as-control note and the `P11-E-20` symmetry recorded at `§3.0`
 Revision: `r6`, 2026-09-05 — P11's half enumerated by its owner and verified present (2 → 5); `P11-E-19` recorded as obligation 6's strongest warrant; defeat attempt against P11's candidate at `§4b`
 Revision: `r5`, 2026-09-05 — mechanism sharpened (`§2.1a`); suspicion-independence rationale added (`§3.0`); P11's half held at the owner's own declaration against a peer's restatement
 Revision: `r4`, 2026-09-05 — `P11-E-17` verified at source and counted; identifier corrected from `P11-E-16`; joint tally replaced by declared halves (`P11-G-02`); obligations 5 and 6 added; P11's third pattern recorded and declined with reasons
@@ -147,11 +148,13 @@ writing its correction (a manifest total typed as 69 against 68 executed, correc
 push); whether that sits inside the seven is not resolved here and is **not** added to the
 sum.
 
-| Half | Instances | Actors | Executed by |
-|---|---|---|---|
-| P07 | 5 | 1 | P07, by enumerating its own revision log |
-| P04 | 9 | 4 | P04, by enumerating its own register |
-| P11 | **5** — `P11-E-03`, `-E-12`, `-E-15`, `-E-18`, `-E-19` | 1 | P11, enumerated by parsing its own log. All five ids verified present by P07 at `b68ae17`. |
+Each half is stated as **value @ owner-SHA**, per the `P11-G-02` refinement at §3.1c.
+
+| Half | Instances | Actors | Executed by | Owner-SHA |
+|---|---|---|---|---|
+| P07 | 5 | 1 | P07, by enumerating its own revision log | this branch, r6 |
+| P04 | 9 | 4 | P04, by enumerating its own register | **none supplied** — see §3.1c |
+| P11 | **5** — `P11-E-03`, `-E-12`, `-E-15`, `-E-18`, `-E-19` | 1 | P11, by parsing its own log with the command published beside the figure | `b68ae17`, all five ids verified present by P07 |
 
 **There is deliberately no total on this table.** It is published as declared halves under
 `P11-G-02`, adopted from P11 and stated in P11's words: **a cross-party tally cannot be
@@ -189,6 +192,24 @@ Note that P04's "2" was not a fabrication — it was an accurate relay of P11's 
 figure. **Both the relay and the original were wrong, in the same way, one step apart.** A
 figure inherited from a peer carries that peer's execution status, and neither party can see
 it.
+
+### 3.1c Refinement — a Declared Half Goes Stale Silently
+
+`P11-G-02` as first stated said *publish two declared halves, each executed by its owner*. It
+did not say **when** a half was executed. P11 refined it after observing this file carry
+`P11: ≥1` correctly:
+
+> A declared half is published as **value @ owner-SHA**, and correcting staleness is the
+> **owner's obligation to push**, not the consumer's to re-derive.
+
+The gap is subtle and worth stating, because the rule's *correct* behaviour is what conceals
+it. Holding `P11: 2` or `P11: ≥1`, a consumer cannot distinguish **disagreement** from
+**staleness** — and the rule forbids the one action that would resolve it, re-deriving
+another party's half. So a consumer obeying the rule is structurally blind to the half going
+out of date. Stamping the SHA makes staleness visible without licensing re-derivation.
+
+Applied above. **P04's half carries no SHA** because none was supplied; it is P04's to stamp,
+not P07's to infer, and until it is stamped that row cannot be distinguished from a stale one.
 
 **Recorded against P04.** P04 has retracted its "adjust to 14 across 5" offer as
 `P04-REV-18`, on the ground that it supplied a number it could not execute *in the message
@@ -248,6 +269,28 @@ obligations rather than judgement calls:
 A control conditioned on suspicion is unavailable in exactly the case that matters — the one
 where the author is not suspicious. Both classes in this file were survived, repeatedly, by
 authors who had no reason to doubt what they were looking at.
+
+**A symmetry worth recording, because it runs the other way.** P11 told P07 and P04 that the
+identifier correction was time-critical because the wrong id would otherwise land in this
+standard. It never could have: the referral had already been declined, on a ground that
+predates anyone knowing there was an error at all. P11 logged that against itself as
+`P11-E-20` — *a correct finding published with an overstated consequence* — verified present
+by P07 at `cdde634:…/P11_RESEARCH_ERROR_AND_REVISION_LOG.md:369`. Their own summary of it:
+they asserted what P07's package would do **without opening P07's package**, which is the
+same defect from the other direction.
+
+P07 does not classify `P11-E-20` here. It is P11's error and P11's to place, and the question
+is genuinely open — no summary was substituted, only an assumption, which may put it outside
+both classes in this file.
+
+**And a positive control, offered by P11 as `SUPPORTED INTERPRETATION` and recorded as
+theirs.** Four refusals across three sessions: P11 declining to extend a Boss ruling to an
+axis it does not address; P11 declining to adopt a P07 example on P04's word and reading the
+P07 package first; P07 declining to count a P11 error on P04's description; P04 declining to
+re-derive P11's half. **None contributed a finding. Every one prevented a defect.** A
+cross-process seat's value is at least as much in what it declines to carry as in what it
+composes — which is not measurable by any count in this file, and is worth stating for that
+reason.
 
 **Note on what "confirmation" bought.** P11's message is itself a summary of P11's log. Owner
 confirmation is better evidence than third-party description, but it is not the document. The
@@ -344,6 +387,11 @@ meaningful for as long as it took to notice that a known example could not have 
    Neither party can execute the other's half, so a single joint figure is unverifiable by
    construction. *Warrant:* every joint figure in the P04 / P07 / P11 exchange was wrong,
    including two P07 published and one P11 inherited without re-deriving.
+
+   **6a. Stamp each half `value @ owner-SHA`** (P11's refinement, §3.1c). A half without a
+   SHA cannot be distinguished from a stale one, and the rule's own prohibition on
+   re-deriving another party's half is what conceals the staleness. Correcting a stale half
+   is the **owner's** obligation to push, never the consumer's to re-derive.
 
 ## 4. Relationship to Standards in Force
 
