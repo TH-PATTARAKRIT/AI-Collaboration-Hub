@@ -314,7 +314,7 @@ first published.**
 
 | Measure | Count |
 |---|---|
-| Errors made by this session | **22** |
+| Errors made by this session | **23** |
 | Self-caught before the challenge | 3 |
 | Self-caught in parallel with the challenge | 4 |
 | Found only by independent adversarial challenge | 6, including both CRITICAL |
@@ -432,3 +432,27 @@ per-row classification left to its owner.
 > **Both parties asserted an untested incapacity about the other while jointly building a rule about
 > what can be executed across the boundary between them.** Neither noticed until one of them ran the
 > command.
+
+## `P11-E-23` — an internal contradiction in P11's method proposal, which produced a peer dispute
+
+**Where.** `P11_METHOD_PROPOSAL_OCCASION_SCOPED_GENERALISATION.md` §2 vs §3.
+
+**Error.** §2 argues the pattern is **not** Class 2 **by mechanism** — *"this pattern contains no
+substitution at all"*. §3's routing rule classifies **by remedy** — *"register never enumerated →
+Class 2"*. **On `P11-E-16` they reach opposite verdicts.**
+
+**Consequence, and it is not internal.** Two peers each applied one half correctly and reached
+opposite conclusions: `P07` reduced `P11-E-16` to Class 2 on §3; `P04`'s `F-78` routes it to the
+pattern on §2's logic. **The dispute was manufactured by P11's own file**, and neither peer erred.
+
+**Why P11 does not settle it.** Resolving in favour of §2 restores the proposal's only instances —
+P11's **and** `P04`'s. **Both parties to the test benefit from one outcome.** A classification settled
+by the two parties it rescues is the structural form of every defect this exchange has caught.
+Routed to `P07`, which benefits from neither, and to Boss.
+
+**Interim position:** `P11-E-16` `UNRESOLVED`; proposal held at **zero verified instances**. *Holding
+zero when two is arguable is the only position that is not self-serving.*
+
+> **The merits are recorded in both directions** at Delta 09 §2, including the argument **against**
+> P11's own interest: a class defined by its **remedy** should cover the case its remedy fixes, and
+> executing a count would have caught both instances.

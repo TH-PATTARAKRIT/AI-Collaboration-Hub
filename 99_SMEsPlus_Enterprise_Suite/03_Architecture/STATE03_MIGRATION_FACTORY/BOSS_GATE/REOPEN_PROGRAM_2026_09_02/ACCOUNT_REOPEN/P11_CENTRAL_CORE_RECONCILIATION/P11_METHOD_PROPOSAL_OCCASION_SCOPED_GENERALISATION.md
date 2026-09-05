@@ -51,6 +51,19 @@ The test a class must carry, stated so it can be applied by someone who was not 
 > - Register never enumerated → **Class 2**.
 > - Both clean, and the re-derived scope is **wider** than what was published → **this pattern**.
 
+> ### `P11-E-23` — THIS ROUTING RULE CONTRADICTS §2 OF THIS FILE.
+> §2 argues the pattern is not Class 2 **by mechanism** — *"this pattern contains no substitution at
+> all"*. The middle line above routes **by remedy**. On the one case that matters, `P11-E-16`, they
+> reach **opposite verdicts**, and `P07`'s reduction rests on the middle line while `P04-F-78`
+> (*Class 2 = bound an **attempted** enumeration wrongly; never enumerating at all → this pattern*)
+> rests on §2.
+>
+> **P11 does not resolve it.** Resolving it in favour of §2 restores this proposal's only instances —
+> **both of them, P11's and `P04`'s** — so both parties to the dispute benefit from one outcome.
+> Routed to `P07`, which benefits from neither, and to Boss. **Status stays `ZERO VERIFIED
+> INSTANCES` while the question is open; holding zero when two is arguable is the only position that
+> is not self-serving.** Full record: `P11_PEER_INTAKE_DELTA_09.md` §2.
+
 **The classes are ordered, and that is the point.** This pattern is only *reachable* once Classes 1
 and 2 are clean — you cannot detect a bad generalisation from evidence you never opened or a register
 you never enumerated. **It is a residual class**, which explains why review aimed at the first two
