@@ -36,13 +36,21 @@ Each is re-stated with what the closure evidence added, and given a disposition.
 | **TZ-02** | Posting into a locked period is silently redirected; the redirect is capped at today and may land back inside the locked window | **91 of 93 deployed company records have NO lock date at all** (`22` TC-06). The control is not switched on in the estate. | **HOLD — and downgraded in practice, upgraded in principle.** Cannot fire where no lock exists; but it means the estate has *no* period control, which is worse. **Confirmed independently by P08.** |
 | **TZ-03** | Matching and unmatching are not period-controlled | Same as TZ-02: no lock dates deployed, so nothing to bypass today. | **HOLD.** Structural finding stands. |
 | **TZ-04** | A context sentinel disables the lock check entirely, including the irreversible lock | Unchanged. Not measurable from data. | **HOLD.** |
-| **TZ-05** | A missing exchange rate silently substitutes an unrelated rate, or 1.0 | Not measured — no multi-currency volume examined. | **HOLD — measurable and not measured.** Named as a next step. |
+| **TZ-05** | A missing exchange rate silently substitutes an unrelated rate, or 1.0 | **MEASURED — `22` §14.5.** 34,733 foreign-currency lines; **2 posted with no rate on or before their date, both at an implied rate of exactly 1.000000**. Both are cancelled and net to zero. | **CONFIRMED REACHABLE AND DEMONSTRATED — nil material effect here.** The mechanism is no longer hypothetical. |
 | **TZ-06** | A customer deposit is recognised as revenue when an account property is unset | **MEASURED — `22` §14.1.** The property is set **0** times in the deployed database, against sibling controls of 27 and 26 on the same mechanism. | **CONFIRMED LIVE DEFECT.** Deposits in this deployment are recognised as immediate revenue. **The only candidate the closure closed — and it closed against the system.** |
 
-**`FACT VERIFIED` — of 6 tolerance-zero candidates: 1 closed as a CONFIRMED LIVE DEFECT (TZ-06), 1
-confirmed live with magnitude measured but cause unresolved (TZ-01), 2 shown not to be currently firing
-because the control they subvert is not deployed at all (TZ-02, TZ-03), 1 unmeasured but measurable
-(TZ-05), 1 unmeasurable from data (TZ-04).**
+**`FACT VERIFIED` — of 6 tolerance-zero candidates, 5 are now measured against deployed data:**
+
+| Candidate | Outcome of measurement |
+|---|---|
+| **TZ-06** | **CONFIRMED LIVE DEFECT** — deposits recognised as revenue |
+| **TZ-01** | **CONFIRMED LIVE** — 291 layers, net −25.5M, no accounting entry; per-case cause unresolved |
+| **TZ-05** | **CONFIRMED REACHABLE AND DEMONSTRATED** — fallback fired at exactly 1.0; nil material effect here |
+| **TZ-02, TZ-03** | **NOT CURRENTLY FIRING** — because the control they subvert is not deployed at all (91 of 93 company records have no lock date). Not closure; a larger finding. |
+| **TZ-04** | **UNMEASURABLE from data** — a code-path bypass, not a data state |
+
+**None is closed in the sense EC-04 requires — closed means the risk is eliminated, and none is.** Three
+moved from theoretical to demonstrated, which moves EC-04 **further from** satisfaction, not closer.
 
 **None is closed in the sense EC-04 requires — closed means the risk is eliminated, and none is.** TZ-06 is
 "closed" only in the sense that the question is answered: the answer is that the defect is live.
@@ -135,7 +143,7 @@ Named precisely, because "maximum available evidence" is a claim that must be fa
 
 1. ~~Valuation layers on real-time categories with no journal entry~~ — **MEASURED**, `22` §14.2.
 2. ~~The down-payment account property~~ — **MEASURED**, `22` §14.1.
-3. **Multi-currency receivables and applied rates** — the live test for TZ-05. **Still not measured.**
+3. ~~Multi-currency receivables and applied rates~~ — **MEASURED**, `22` §14.5.
 4. **Delivered-not-invoiced ageing** in `iSMEs` — quantifies the residual class directly.
 5. **The four unexamined custom-addon roots** for O2C overrides — P06 and P08 both found their
    highest-severity items in custom modules, and P02 has examined **none**.

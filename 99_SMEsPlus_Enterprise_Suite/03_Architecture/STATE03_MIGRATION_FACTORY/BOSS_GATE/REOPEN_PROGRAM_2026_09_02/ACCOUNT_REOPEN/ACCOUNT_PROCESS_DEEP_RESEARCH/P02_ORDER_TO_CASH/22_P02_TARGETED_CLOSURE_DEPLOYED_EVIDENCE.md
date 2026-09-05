@@ -423,3 +423,38 @@ prevents anyone noticing that the two disagree.
 | 3. Multi-currency receivables and applied rates | **still not measured** |
 | 4. Delivered-not-invoiced ageing | **still not measured** |
 | 5. The four unexamined custom-addon roots | **still not examined — the largest remaining surface** |
+
+### 14.5 TZ-05 — The currency fallback: **DEMONSTRATED LIVE, with nil effect in this database**
+
+`09` §4 named the two-arm silent currency fallback a tolerance-zero candidate on source reading alone.
+It is now measured.
+
+**Exposure.** The deployed database is genuinely multi-currency: **34,733 of 447,384 journal lines
+(7.8%)** carry a currency different from the company currency, across two foreign currencies, against a
+rate table of **2,039 rows** spanning `2023-08-24` → `2026-07-10`.
+
+**The precise test.** For every foreign-currency line, is there a rate **on or before** its date? If not,
+the undated earliest-rate arm — or failing that, 1.0 — must have supplied the rate.
+
+| Currency | FX lines | Earliest transaction | Earliest rate | Lines with **no rate on or before** |
+|---|---|---|---|---|
+| 2 | 34,665 | **2022-12-06** | **2023-09-11** | **2** |
+| 1 | 68 | 2024-05-10 | 2023-08-24 | 0 |
+
+**`FACT VERIFIED` — TC-25. The fallback fired, and it resolved to exactly 1.0.** Both affected lines are
+dated `2022-12-06`, more than nine months before the earliest available rate for that currency, and both
+carry `amount_currency` **equal to** `balance` — an **implied rate of exactly 1.000000** on a
+foreign-currency line.
+
+**`FACT VERIFIED` — TC-26. The material effect in this database is nil.** Both lines are in state
+`cancel`, and they are equal and opposite (+28,175 / −28,175).
+
+**Why this still matters, stated without inflation.** The value of this measurement is not its magnitude —
+it is that **the mechanism is no longer hypothetical**. A production database contains a foreign-currency
+journal line converted at 1.0 because no rate existed for its date. The design requirement in
+`19` P02-R-18 — *a missing rate must be a hard stop* — is now supported by a demonstrated occurrence
+rather than by source reading alone.
+
+**What this does NOT establish:** that the fallback has ever affected a live, posted, financially material
+line. It has not, in this database. **TZ-05 is therefore `CONFIRMED REACHABLE AND DEMONSTRATED`, not
+`CONFIRMED HARMFUL`**, and the distinction is kept.
