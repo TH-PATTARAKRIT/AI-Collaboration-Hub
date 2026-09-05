@@ -2,7 +2,8 @@
 
 Proposal ID: `SMEPLUS-DR-EVSUB-001-PROPOSED`
 Status: **`PROPOSED FOR BOSS RATIFICATION — NOT IN FORCE`**
-Raised by: P07 Thailand Tax-to-Compliance, on evidence produced jointly with P04 Acquire-to-Retire, 2026-09-04
+Raised by: P07 Thailand Tax-to-Compliance, on evidence produced jointly with P04 Acquire-to-Retire and P11 Central Core Reconciliation, 2026-09-04
+Revision: `r4`, 2026-09-05 — `P11-E-17` verified at source and counted; identifier corrected from `P11-E-16`; joint tally replaced by declared halves (`P11-G-02`); obligations 5 and 6 added; P11's third pattern recorded and declined with reasons
 Revision: `r3`, 2026-09-05 — Class 1 extended to tool output; discrimination test §2.2a added; a referred case recorded but not counted
 Revision: `r2`, 2026-09-05 — Class 2 tally corrected on P04 challenge; sub-case §3.1a added
 Branches: `research/account-p07-th-tax-compliance-2026-09-04-001`; `research/account-p04-acquire-to-retire-2026-09-04-001` @ `8d1f735`
@@ -45,10 +46,11 @@ instance 4 below, which P07 can verify from its own session record.
 | 2 | P07 | The reduced 7% VAT rate expires 30 September 2026 — twenty-six days after the session date. | A further extension to 30 September 2027 had been approved by Cabinet on 27 July 2026 and confirmed by the Revenue Department on 2 August 2026. Had the summary been used, the package's highest-severity finding would have been published as an imminent compliance cliff that does not exist. |
 | 3 | P04 | The s.87(3) scope limit reached P04 first as a search summary. | P04 fetched the statute before using it. **Rule applied successfully after being named** — one of two instances that cost nothing. |
 | 4 | P07 | **Tool-output flavour.** A grep over the tax-period module printed nine lines, one of which was `views/view_tax_period.xml:30` — a live field declaration, the only reader of the field. P07 read the output, classified every hit as module-internal, and published "read by nothing". | The search was correct and complete. It **found and printed the reader**, and the conclusion contradicted the output the author was looking at. Caught by `AAS-03/A` searching the whole root. Re-executed at r3 to confirm the line was in the original output: it was. A contributing detail — line 13 of the same file is a *commented-out* declaration of the same field, which made the whole file read as inert at a glance. |
+| 6 | P11 | **`P11-E-17`.** A grep printed the right file and the right line; P11 saw the heading, did not open the passage two lines away, and published an attribution claim about the passage. The claim was false. | Nobody's search was too narrow — the failure was downstream of a search that had already succeeded. **Verified by P07 at source**, not on a peer's description: `research/account-core-reconciliation-2026-09-04-001 @ 2e284ef`, `P11_RESEARCH_ERROR_AND_REVISION_LOG.md:218`. P11's own log independently classes it as secondary-source at `:323`. |
 | 5 | P07 | The instrument behind the own-business-use safe harbour reached P07 first as a search summary stating it was issued under s.77/1(10)(ก). | P07 fetched the announcement itself before using it, which is how the (10)(ก)-versus-(8)(ง) ambiguity at `U-23` was found at all — the summary would have concealed it. **Rule applied successfully.** |
 
-**Class 1: 5 instances across 2 actors — P04 2, P07 3.** Enumerated from the table above by
-parsing its rows, not by counting them by eye. `UNIT` as declared at §3.1. Two of the five
+**Class 1: 6 instances across 3 actors — P04 2, P07 3, P11 1.** Enumerated from the table
+above by parsing its rows, not by counting them by eye. `UNIT` as declared at §3.1. Two of the five
 (3 and 5) are the rule working rather than failing, which is deliberate: a standard
 evidenced only by failures reads as a list of accidents.
 
@@ -105,15 +107,20 @@ pattern has been proved against a known-positive case.**
 one party that committed at least one instance.** The two axes are not interchangeable and
 the first issue of this section treated them as if they were — see §3.1b.
 
-P07 contributes **5 instances committed by 1 actor** (the P07 session, in every case):
+P07 contributes **5 instances committed by 1 actor** (the P07 session, in every case).
+Composition changed at r3 without the total changing: `P07 c` was reclassified out to
+Class 1, and `P07 f` — the split error made while correcting this very tally — replaced it.
+That the total held while its members changed is a coincidence, and is stated so no reader
+treats the stability as corroboration.
 
 | Instance | What was enumerated | Returned | Actual |
 |---|---|---|---|
 | P07 a | Fiscal position templates, `-maxdepth 3` | zero | 113 files across 94 directories; the known-positive sat at depth 4. The depth was wrong, not the population. |
 | P07 b | Whether a filing/close framework existed | "absent" | A full framework exists, provisioned by 118 localisation modules. Negative withdrawn. |
-| P07 c | Readers of a tax-period field | "nothing" | A reader existed in a view file the author had already opened earlier in the same session. |
+| ~~P07 c~~ | ~~Readers of a tax-period field~~ | — | **RECLASSIFIED OUT OF CLASS 2 at r3.** The search was not too narrow: the grep printed the reader. It is now Class 1 instance 4 (`REV-E-18`). Struck rather than deleted, per obligation 5c. |
 | P07 d | Tax-relevant module population | 15 | 25. A declared dependency-closure pattern was never run; one missed member was simultaneously cited as evidence elsewhere in the same package. |
 | P07 e | The findings register's own totals — see sub-case §3.1a | 49 / 21-16-12 / 26-16-6-1 | **48 / 22-15-11 / 27-13-7-1.** Every cell wrong, in the register whose purpose is to make findings countable. |
+| P07 f | The Class 1 split declared in the r3 sentence | "3 P04, 2 P07" | **2 P04, 3 P07.** Caught before publication by parsing the table rather than reading it — the only self-caught counting error of the exchange. Sub-case instance 6. |
 
 P04 contributes **7 instances committed by 4 actors** — one parallel research stream, the
 P04 session three times, an independent adversarial reviewer briefed specifically to catch
@@ -122,16 +129,28 @@ writing its correction (a manifest total typed as 69 against 68 executed, correc
 push); whether that sits inside the seven is not resolved here and is **not** added to the
 sum.
 
-| Axis | P07 | P04 | Union |
+| Half | Instances | Actors | Executed by |
 |---|---|---|---|
-| Instances | 5 | 7 | **12** |
-| Actors | 1 | 4 | **5** |
+| P07 | 5 | 1 | P07, by enumerating its own revision log |
+| P04 | 9 | 4 | P04, by enumerating its own register |
+| P11 | ≥1 (`P11-E-18`) | 1 | P11, declared; P07 has not enumerated P11's Class 2 half |
 
-**The union of actors is 5, not fewer.** P04 anticipated overlap on the ground that "P04 and
-P11 appear in both our lists". They do not appear in P07's: all five P07 instances were
-committed by the P07 session itself. The two actor sets are disjoint, so the union is the
-sum on this axis — which is the opposite of the direction P04 expected, and is stated here
-rather than inherited.
+**There is deliberately no total on this table.** It is published as declared halves under
+`P11-G-02`, adopted from P11 and stated in P11's words: **a cross-party tally cannot be
+executed by either party.** P07 cannot open P04's drafts; P04 has not read P11's register
+and says so; P07 has enumerated only its own. A single joint figure is unexecutable by
+construction, and every joint figure produced in this exchange was wrong — including one
+P11 inherited from P04 without re-deriving it (`P11-E-18`), and the two P07 published at r1
+and r2.
+
+**Recorded against P07.** r2 published "12 instances across 5 actors" and r3 left it
+standing. Both were single joint numbers of exactly the kind `P11-G-02` forbids. P04 has
+since revised its half from 7 to 9 — resolving the eighth instance P07 had declined to place
+(`P04-REV-15`, the 69-against-68 manifest count) and adding a ninth (`P04-REV-16`, asserting
+the union direction against P07's list without examining it, made *in the message correcting
+P07's arithmetic*). P04 offered "adjust to 14 across 5 if you want it current". **P07 declines
+the offer, not the input:** the halves are adopted, the single number is not, because
+producing one would repeat the defect this section documents.
 
 **One residual, declared rather than resolved.** Whether "an independent adversarial
 reviewer" is *one* actor across sessions or *one per invocation* is itself a `UNIT` question
@@ -139,22 +158,36 @@ on the actor axis. Counted per invocation above. Counted per role, the union of 
 be smaller. A reader who needs the actor figure to be load-bearing must fix that convention
 first; the instance figure does not depend on it.
 
-### 3.0 A Referred Case That Is NOT Counted Here
+### 3.0 The Referred Case — Identifier Corrected, Now Counted
 
-P04 reports that P11 logged an error of its own (`P11-E-16`) and filed it under Class 2, and
-that P04 considers it Class 1: a grep printed a heading, the passage behind the heading was
-never opened, and a claim about the passage was published.
+P04 referred a P11 defect it believed was misfiled under Class 2, and filed the argument
+against **`P11-E-16`**. r3 recorded it as a pending candidate, uncounted, on the ground that
+P07 had only a peer's description of it.
 
-**On the facts as described, that reasoning is correct** — it is instance 4's shape exactly.
-It is nevertheless **not counted in either tally**, for a reason that is the point of this
-whole file: *P07 has not read `P11-E-16`.* What P07 has is a peer's description of it.
-Adopting a class assignment for an error on the strength of someone's summary of that error
-would itself be Class 1, committed inside the standard that names Class 1.
+P11 then confirmed directly **and corrected the identifier: it is `P11-E-17`, not
+`P11-E-16`.** P07 verified both at source before acting —
+`research/account-core-reconciliation-2026-09-04-001 @ 2e284ef`,
+`P11_RESEARCH_ERROR_AND_REVISION_LOG.md`:
 
-P04 anticipated this and said so — that P11 should confirm it directly rather than P07
-taking it on P04's say-so. Recorded as a **pending candidate**, attributable to P11, to be
-counted only if P11 confirms it here. The class *extension* it prompted does not depend on
-it, because P07 supplied its own verified instance.
+| Id | Line | Heading | Remedy |
+|---|---|---|---|
+| `P11-E-16` | 193 | a tolerance-zero boundary drafted narrower than P11's own evidence | re-derive a boundary's scope from the register |
+| `P11-E-17` | 218 | an attribution published without opening the file cited two lines earlier | open the file |
+
+`P11-E-17` is now **counted** as Class 1 instance 6. `P11-E-16` is **not** in this standard
+at all — see §5a.
+
+**Why this matters more than a typo.** Had r3 counted the referral when it arrived, the
+standard would have illustrated secondary-source substitution with a defect that has nothing
+to do with sources and whose remedy is unrelated — and it would have done so *inside the
+file that names the class*. The refusal to count a peer's description is what left room for
+the owner to correct the identifier before it landed. The rule paid for itself in one
+exchange.
+
+**Note on what "confirmation" bought.** P11's message is itself a summary of P11's log. Owner
+confirmation is better evidence than third-party description, but it is not the document. The
+count above rests on `git show` of their log at the cited commit, which is why the identifier
+error was caught in the same action that confirmed the instance.
 
 ### 3.1a Sub-case — Unit Conflation in a Count That Was Never Executed
 
@@ -209,6 +242,44 @@ meaningful for as long as it took to notice that a known example could not have 
 4. Where a pattern is declared with false-negative modes recorded as "none known", that
    phrase is itself a flag: it means the modes were not searched for.
 
+5. **Self-describing arithmetic.** A figure that describes a body of work — a total, a
+   breakdown, a tally, a register count — is subject to three further clauses. Proposed by
+   P04, adopted here, each warranted by a case already in this file rather than by
+   reasoning:
+
+   - **5a. Execute at publication.** The figure is executed in the same action that
+     publishes it, and may not be carried across an edit that changes what it counts.
+     *Warrant:* every cell of P07's three-dimension findings register; P04 rows 7–9.
+   - **5b. Enumerate; do not re-extract.** The execution counts the rows. A value
+     re-derived with a **second pattern** is a new measurement with a new failure mode, not
+     a verification of the first. *Warrant:* P07's first correction attempt, which
+     double-counted a dual-state cell and summed correctly **by coincidence**. This clause
+     exists because "just re-run it" is the obvious remedy and is **not sufficient**.
+   - **5c. Publish asserted beside executed** wherever they differed. A correction without
+     lineage is a smaller correction. *Warrant:* `00 §3.1` of the P07 package, and the
+     preservation of P07's original wrong tally at §3.1b of this file.
+
+   **Why clause 5 names self-describing arithmetic specifically, on P04's observation:** the
+   defect is not evenly distributed. Across both packages, every **domain** number was
+   executed and right first time — 280 live assets, 790 installable modules, 65 custom
+   directories, 118 return-type modules, 94 of 126 fiscal-position directories, 447,384
+   journal lines. Every **wrong** number described the authors' own work: blocker ids,
+   routing fields, instance tallies, findings totals. Evidence numbers get executed because
+   they are understood to be evidence; bookkeeping numbers get typed because they are
+   understood to be bookkeeping. **They are both evidence, and the second kind is what a
+   reader uses to judge the first.**
+
+   Empirical warrant, stated so a reader can weigh it: across this exchange **every number
+   carried across an edit was wrong and every number executed was right** — nine instances
+   on P04's side, five on P07's including a three-dimension register, one on P11's, and no
+   counter-example in either direction.
+
+6. **Cross-party counts** (`P11-G-02`, adopted from P11). A tally spanning parties is
+   published as **declared halves, each executed by its owner**, never as one number.
+   Neither party can execute the other's half, so a single joint figure is unverifiable by
+   construction. *Warrant:* every joint figure in the P04 / P07 / P11 exchange was wrong,
+   including two P07 published and one P11 inherited without re-deriving.
+
 ## 4. Relationship to Standards in Force
 
 | Standard | Covers | Does not cover |
@@ -221,12 +292,44 @@ Class 2 sits directly against the `PATTERN` clause of the Denominator Completene
 should be read as an execution obligation on it rather than as a new rule, if the Boss
 prefers to consolidate.
 
+## 4a. A Third Pattern, Offered by P11 — Recorded, and DECLINED for This Standard
+
+P11 offers a third pattern, drawn from `P11-E-16`, explicitly as an option rather than
+forcing it onto an existing shelf:
+
+> **A boundary derived from its triggering instance inherits that instance's scope.**
+> `T0-13` was drafted while composing a cross-tenant compound and took its scope from the
+> case in front of it, while P11's own register — four documents away — already generalised
+> it. Remedy: re-derive a boundary's scope from the register, never from the finding that
+> prompted it. P04 reports being equally exposed.
+
+**P07's judgement: the pattern is real, and it does not belong in this standard.**
+
+Both classes here share one mechanism — *something stood in for the evidence*: a summary
+stood in for a source (Class 1), an assertion stood in for an execution (Class 2). The third
+pattern has a different mechanism entirely: nothing stood in for anything. The evidence was
+read correctly and the **scope of a derived artefact** was drawn too narrowly from its
+occasion. Its remedy — re-derive from the register — is not "open the primary" and is not
+"execute the count".
+
+Filing it here would make the standard a shelf for unrelated method defects, which is
+precisely the failure P11 avoided by not forcing it. Two classes that share a mechanism can
+carry a discrimination test (§2.2a); three that do not, cannot.
+
+**Recommended instead:** raise it as its own proposal. It has at least two independent
+exposures already (P11 by instance, P04 by self-report), which is a stronger evidence base
+than this standard had when it was drafted. P07 has no instance of it and therefore should
+not be its author.
+
+`P11-E-16` is accordingly **absent from every tally in this file**, which is also what
+§3.0's identifier correction was protecting.
+
 ## 5. What This Proposal Does Not Do
 
 - It does not bind any session. It is not in force.
 - It does not amend, weaken or reinterpret any standard in force.
-- It does not assert that either originating session complied with it: **P07 violated
-  Class 2 five times and Class 1 twice in the round that produced this proposal** — including
+- It does not assert that any contributing session complied with it: **P07 violated Class 2
+  five times and Class 1 twice in the round that produced this proposal** — including
   once *inside this file*, in the tally at §3.1b, and once more in the first attempt to
   correct it. P04 violated Class 1 once and Class 2 seven times, and caught the tally error
   that this file inherited. The proposal is written from the failures, not from the
