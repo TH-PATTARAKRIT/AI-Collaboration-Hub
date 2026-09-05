@@ -70,6 +70,19 @@ Control required by `smeplus-clean-room-rules`.
 | Peer branches read, not peer messages | **Complied** — P09 `70f8d20` read from the branch |
 | Unchanged peers not reprocessed | **Complied** — P02/P04/P08 |
 
+## 4d. Closure control 5 — G01 bounded-deep closure discipline
+
+| Control | Result |
+|---|---|
+| Every material search logged **before** execution | **Complied** — 9 searches, `P03_BOUNDED_DEEPENING_LOG.md` §1 |
+| Closure deepened, never broadened | **Complied** — §2 lists 8 sweeps not performed; 4 candidate deltas rejected as non-material |
+| P01 consumed, never executed or reopened | **Complied** — `b820b29`, both P03-directed handoffs, supersession checked |
+| **No mutation of any kind** | **Complied** — no write, repair, post, restore or environment change. `P03R-F-01` safety veto observed |
+| Every CQ terminally dispositioned | **Complied** — 10 of 10, no `OPEN`/`TBD` |
+| Peer claims separated into verified vs inherited | **Complied** — `CC-01` |
+| Background tasks | **0 launched, 0 running** |
+| Zero results re-tested with a positive control | **Complied** — the series-19 zero was re-tested and produced `CC-02` |
+
 ## 5. Package integrity — SHA-256
 
 ```
@@ -87,15 +100,15 @@ f4cb6847d768f7be838c767d807d5c7070dcbd25b53f50da3e940a83329823ef  09_P03_MO_COST
 664b8278eaa6f2dd90aa2b1373f2efde92c0a6436e49bef564c01899b8aba767  11_P03_SCRAP_REWORK_MATRIX.md
 167c5d06eb8c6c780aa9daaea07e55907a8111deb8ad3f87217a4461d5e60753  12_P03_CROSS_PROCESS_OWNERSHIP.md
 a5a32850c3b9dc519b3fd556ad327b77e35d0b07fe4cf1786e5aceebaeb8dcfb  13_P03_PERIOD_CLOSE_AND_TOLERANCE.md
-463386bc61ba1daa3ae811db02b6b89ee8ba3890309e4a33b7ca1bb56548023a  14_P03_DEPENDENCY_REGISTER.md
+77f9e6f3eab8c9b6a7db8efdb063fc59cb51735253e8d0edb7a687cd780a74e7  14_P03_DEPENDENCY_REGISTER.md
 14f63a1f62c45f2024c16fb3a5f4a38d80148fc3cfd35173ac7363e47a8e5d46  15_P03_CROSS_INVENTORY_RECONCILIATION.md
-d212ed289913f36a17f11f7564a0f298b0516fca0f738ab2bb2e4890ef671ce6  16_P03_CONTRADICTION_REGISTER.md
-a37b0181338d675018f53d39cbdec4798671bc69243e0b78c26e968859397cb7  17_P03_SOURCE_LINK_REGISTER.md
+7589a69c5f510dafe6bb09214892a56c241a02e1db5d208175cd3f85dbddfdd4  16_P03_CONTRADICTION_REGISTER.md
+36eee9535104b2bf403cbc542d8e080c02f6b92ba9eecfac35468d7912ba4d02  17_P03_SOURCE_LINK_REGISTER.md
 dea75b0aac19231d36323d52cad84ad8a7a481ae862e3b55f195f2b5f88b6394  18_P03_SCOPE_OWNERSHIP_MATRIX.md
 e523502d610f255c4348768c0f7e9393329c861702a543dc3cff00d24f895119  19_P03_AAS03_CHALLENGE.md
 2b59d02fd584610a5a552bd39685fb1ff92015c4bc674162885e651ffbd30576  20_P03_AAS_PLUS.md
 02f66efb9dcb34ef0ae343d5b3ab7f4ba8122f029e206e7828e8365fed87e938  21_P03_PMO.md
-14794d4c13d91aeb45e48edeee6e207de4262ff62555707ff99714d0d71b3e95  22_P03_REVISION_LOG.md
+0b8a6ade9c7885d62dd45b1c2893baf9835e1338e21cfafbfe825d269f759c49  22_P03_REVISION_LOG.md
 6ee5fc4581975d07ed9cec6ac196797238026649e3e001f9df7ed5c633bb3595  24_P03_CORE_RECON_HANDOFF_PACK.md
 0e8f7c7fabb7f878acb5a8bfee87ce8296964ba6e9d201648b8cba0639f2fe45  25_P03_PEER_EVIDENCE_INTEGRATION_P04.md
 b7f9315eb7acdc22fad6152610760cd1d7a9a5578cc388ac6c1835ef5f67cb8a  26_P03_CURRENT_STATE_RECONCILIATION.md
@@ -120,7 +133,7 @@ fb66816ed68af109bc91cf961ee142444a5fb5766150eb16e3363dc07d2a659c  44_P03_AAS03_T
 955afe353ce4336ce6dd443c4d1c964d3a05ed7d1783f419230a39882ef6451b  46_P03_PMO_TARGETED_EXIT_REVIEW.md
 ff9db6aa46cb2d67a38f5e4cfe2b9cf436ffa67150b4a953a5f0716cf13418c8  47_P03_UNRESOLVED_EVIDENCE_REGISTER.md
 6b1a07ed1290a2524d037aede084992ea1d8d81e424e54cffd27ce9cb2c54f8a  48_P03_CHECKPOINT_REGISTER.md
-670601ee6251b119a06de268a1be772c19ca22219343d68d2d3bcd85a14e1ddb  49_P03_AUTO_RESUME_STATE.md
+095b9bdd979e2c07a456113706a680da9b36167d1877909e064cfb68571fd382  49_P03_AUTO_RESUME_STATE.md
 7f42601a07c9ef5f4ae6f10c9cf335a24d3a3a806fc649a1dbcd8590e7069b0d  50_P03_CURRENT_STATE_RUNTIME_INVERSION.md
 c944a4149d65359633d1e5975e0edf10bbf383b115bf0ae087dc7272affb542d  51_P03_DEPLOYED_MANUFACTURING_POPULATION_PROOF.md
 aa653e21c1081d91d253d4ab51f9d7a85b9fc5a614757fa41bfae4cc8909e88f  52_P03_CONVERSION_COST_ACTIVATION_MATRIX.md
@@ -145,6 +158,24 @@ d940b724a04e04047d90efec7eace38e7e4edf84920940ddeb32e7d9527678a6  66_P03_P04_REC
 9411b036cdfba52313deaa5a9b0509921f888a6c5426015a627bc55e4b98446b  71_P03_AAS_PLUS_RUNTIME_INVERSION_CONSOLIDATION.md
 74b41f8f321a2bd754dbfdcde100daac34e9cfee21b3b83acc569ae06b5152ee  72_P03_PMO_RUNTIME_INVERSION_REVIEW.md
 1f3c235545866688da7a51f519ea28bba64c66d80bfc83cc638995082348faa8  73_P03_P11_RUNTIME_INVERSION_SUPPLEMENT.md
+66464b5a6b45af5d3cf69789d449e5f005ee35ccd1a6dba0e01dda14d3f8f94f  CLOSURE_G01/P03_AAS_PLUS_PMO_CLOSURE_GATE.md
+890122ae2f805505bf3a108d8cf6ff85753a9945b03255d66c3615608b1479f1  CLOSURE_G01/P03_BOUNDED_DEEPENING_LOG.md
+bd7c6a6c7b303d7127abed8c4a4c4036dbfb6ea7d4396a54e12711f4aa804559  CLOSURE_G01/P03_CHALLENGE_CONVERGENCE_REGISTER.md
+f794c6deeadd4bad2de070ddabd70e5e18414029a84beb5f4489e65f2a3e34ad  CLOSURE_G01/P03_CHECKPOINT_REGISTER_G01.md
+8cad26db05832893a6381712c581a1fe04dc8eea9e6eb9391ce8abcdea5765db  CLOSURE_G01/P03_CLOSURE_QUESTION_REGISTER.md
+e11f92a1f1aa911ad46c649a75feb1aca054526b2f500546fed271e472fa38a4  CLOSURE_G01/P03_DEPLOYED_CODE_IDENTITY_DELTA.md
+282fbe544345065c73f119dbd7792e6e2eb166d0699e4fa3138a2ad037acc85d  CLOSURE_G01/P03_EQUIPMENT_OPERATION_COST_CAUSALITY.md
+720fd3cc071032566b4c9e10ee925dbf8bab35601dbf23a056312be853762ef9  CLOSURE_G01/P03_FIXED_OVERHEAD_INJECTION_MATRIX.md
+5a038dfe0cd56dabad1a992926f5bb8fca4c9670e7a4922dce3b66e8575236bf  CLOSURE_G01/P03_MATERIAL_DELTA_REGISTER.md
+05a43aede8ef91264a7b323df8fec54b0e6ac5367d88e37cb11f0aa8e87bb1ed  CLOSURE_G01/P03_P01_FINAL_HANDOFF_INTAKE.md
+6cda9bfbebd35aa342903905b41db7ba26e926cf36dd6fe2034e6093026ea9f7  CLOSURE_G01/P03_PRICE_DIFFERENCE_TO_MFG_TRACE.md
+9cb4703d0daab906100bc6baa03048c1f2ab6f298f32ca749728c5ec66105bc9  CLOSURE_G01/P03_RM_WIP_FG_COGS_CAUSAL_TRACE.md
+12b6523734706c0bf70f6a07cd8b880335ac26407a9762ef6f8d911eddea1891  CLOSURE_G01/P03_SCOPE_OWNERSHIP_MATRIX.md
+99a544d66856b3b0144000562a5d690918d373dd91855147402956cb46f9c484  CLOSURE_G01/P03_STOCK_VALUATION_LAYER_FILTER_CHAIN.md
+eb83f60996d0800fafd98dff201ca494be8c7ae77d300123c984273c0c18f913  CLOSURE_G01/P03_TO_P08_HANDOFF.md
+d42c25907a3ffc047855d0e92960ba81135c6a4f9e370da081ab0d93b1a67e99  CLOSURE_G01/P03_TO_P11_HANDOFF.md
+0dc0472d137bce9fa8b6775c04bc676eac0badd6ae0f6384db42b8f603c6c9fa  CLOSURE_G01/P03_VALUATION_GL_DIVERGENCE_CLOSURE.md
+f3f2ad8fa3d6a3f5d0ff539c8d4f49b58943a12839e2700e727785e12d3f9599  CLOSURE_G01/P03_WORKCENTER_VALUATION_REACHABILITY.md
 047d093ff6f261ecac304856effaef005f3ccab84ceccd953575a5286aac2a18  evidence/P03R_EXECUTED_OUTPUT.txt
 c8dd5a7cdb45d0e27b16ea45ac5855edf076c8b1e122b003d7be0218cd328176  evidence/P03T_EXECUTED_OUTPUT.txt
 0059624345433173cb348c466a7c82d1a7e95e730bcdef86d07e5a480e453e35  evidence/P03T_db_rowcounts.py
@@ -154,30 +185,25 @@ ed14e2e453427d034c23713586aa4922f0cd426c80bb78e255f2209fd5be64e1  evidence/val.p
 
 `23_P03_EVIDENCE_MANIFEST.md` is excluded from its own manifest.
 
-## 6. Finding inventory — **enumerated by `grep -oE … | sort -u | wc -l`, not asserted**
+## 6. Finding inventory — **enumerated, not asserted**
 
 | Category | Count | Where |
 |---|---|---|
 | Cost-integrity defects `DC-01` … `DC-15` | **15** | `05`, `25` |
-| **of which LIVE** | **1** — `DC-13` | `53` §2 |
-| **of which LATENT** | **11** | `53` §2 |
-| **of which UNREACHABLE** | **3** — `DC-02`, `DC-04`, `DC-11` | `53` §2 |
-| Runtime findings, round 3 `P03T-F-*` | **7** | `26`–`40` |
-| Runtime findings, round 4 `P03R-F-*` | **9** | `50`–`58` |
-| Contradictions `CTR-P03-01` … `-08` | **8** | `16` §1 |
-| Gaps `P03-GAP-01` … `-08` | **8** | `16` §2 |
-| Dependencies `DEP-01` … `DEP-20` | **20** | `14` |
-| Tolerance-zero boundaries `TZ-01` … `TZ-09` | **9** | `13` §5, `55` §5 |
-| Design candidates `R-01` … `R-20` | **20** | `21` §3, `71` §4 |
-| Self-challenge corrections `C-01` … `C-10` | 10 | `19` §6 |
-| Targeted-challenge corrections `TC-01` … `TC-07` | 7 | `44` §6 |
-| Runtime-challenge corrections `RC-01` … `RC-07` | **7** | `69` §7 |
-| **Research errors `RE-P03-11` … `RE-P03-19`** | **9** | `22` §6–§7 |
-| Mandated disproofs run | 4 + 4 + 1 count hunt | `44`, `69` |
-| Hypotheses tested and **discarded** | 3 | `05` §9, `44`, `69` |
-| **Prior blockers closed by this session** | **0** | `72` §5 |
-| Peer claims adopted **without** verification | **0** | `25` §1, `41` §7, `65` |
-| Package files | **73** `.md` + `evidence/` | this directory |
+| **of which LIVE / LATENT / UNREACHABLE** | **1 / 11 / 3** | `53` §2 |
+| Runtime findings `P03T-F-*` (r3) · `P03R-F-*` (r4) | **7 · 9** | `26`–`58` |
+| **G01 closure — Material Deltas `MD-01` … `MD-06`** | **6** | `CLOSURE_G01/P03_MATERIAL_DELTA_REGISTER.md` |
+| **G01 closure — Challenge corrections `CC-01` … `CC-04`** | **4** | `CLOSURE_G01/P03_CHALLENGE_CONVERGENCE_REGISTER.md` §5 |
+| **Closure Questions `CQ-P03-01` … `-10`** | **10, all terminally dispositioned** | `CLOSURE_G01/P03_CLOSURE_QUESTION_REGISTER.md` |
+| Contradictions `CTR-P03-01` … `-08` | 8 | `16` §1 |
+| Dependencies `DEP-01` … `DEP-21` | **21** | `14` |
+| **Research errors `RE-P03-11` … `RE-P03-24`** | **14** | `22` §6–§8 |
+| Design candidates `R-01` … `R-22` | **22** | `21` §3, `71` §4, `CLOSURE_G01` |
+| Mandated disproofs run (r3 + r4 + G01) | 4 + 4 + 3 | `44`, `69`, `CLOSURE_G01` |
+| **Prior blockers closed by this session** | **0** | `CLOSURE_G01/P03_AAS_PLUS_PMO_CLOSURE_GATE.md` |
+| Peer claims adopted **without** verification | **0 asserted as verified**; 2 explicitly marked **inherited** | `CC-01` |
+| Package files | **91** `.md` (73 + **18** closure) + `evidence/` | this directory |
+| *(count re-run after the PMO gate file was added; the first figure said 90 and was stale — `60`'s control, fifth catch)* | | |
 
 ## 7. What this manifest attests
 

@@ -60,6 +60,19 @@ stronger claim than a defect and is used sparingly.
 | `CTR-P03-08` | The most dangerous configuration is the **default** — 60 of 60 work centres have no absorption account | **CONTRADICTED** |
 | `TZ-09` | The 30 corrupt rows **nearly cancel**; any partial correction releases ~10²¹ | **Tolerance = 0** |
 
+### G01 bounded-deep closure (2026-09-06) — contradictions found
+
+| ID | Finding | Class |
+|---|---|---|
+| **`MD-01`** | **P03 read series-18 source for four rounds and reported it as the behaviour of a series-16 deployment.** `base 16.0.1.3`, `mrp 16.0.2.0`. **No series-16 source exists in a fully enumerated path set** | **CONTRADICTED — the round's headline** |
+| `MD-04` | `/Volumes/iMac` — a second mounted volume with its own `/Users/admin` — was **never declared** in the path set for four rounds. Material effect on `MD-01`: **nil** | **CONTRADICTED** |
+| `MD-05` | `'version': '1.0'` on every located manifest — the manifest **cannot** discriminate a series | **CONTRADICTED** (instrument) |
+| `P03C-F-01` | The purchase price-difference effect reaches manufacturing **only as a changed unit cost, with no lineage marker of any kind** — a corrected cost is indistinguishable from an original one | `FACT VERIFIED` |
+| `CC-01` | P03 presented the `P03R-F-01` **origin mechanism** as settled; it is **inherited from P01 and not verified by P03** | **CORRECTED** |
+| `CC-02` | *"The chain was removed in series 19"* — it was **restructured**; the price-difference account survives | **CORRECTED** |
+| `CC-03` | The 16-vs-18 chain corroboration is **pattern-bounded** — two trees, **one probe** — not instrument-independent | **CORRECTED** |
+| `CC-04` | The fixed-overhead conclusion was one claim; it is **two**, with different evidence bases | **CORRECTED** |
+
 ## 3. Unresolved
 
 | ID | Item | Class |

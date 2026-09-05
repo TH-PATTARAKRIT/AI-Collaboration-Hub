@@ -38,6 +38,16 @@ rest of the session.
 | `DEP-16` **new** | — | `iTEST02` unreadable; local `pg_restore` predates dump format 1.16. **Cheapest open item in the package** — `UNR-P03-07` |
 | `DEP-17` **new** | — | Whether any readable database is the migration target — `UNR-P03-10`. **Boss / programme** |
 
+### G01 bounded-deep closure (2026-09-06)
+
+| ID | Status |
+|---|---|
+| **`DEP-21`** new | **A series-16 addons tree.** Closes `MD-01` and nothing else does. Owner: **environment / P01** (`MD-06` — P01's cited root does not resolve in P03's path set) |
+| `DEP-06` subcontract bill difference | **UNRESOLVED — SPECIFIC EVIDENCE UNAVAILABLE.** P01 confirms no deployment exercises it; series-19 largely dissolves the question, series-18 keeps it |
+| `DEP-17` / `UNR-P03-10` migration target | **BOSS DECISION REQUIRED — DECISION PACKAGE READY** |
+| `DEP-18`/`19`/`20` (`P11-D-4/5/6`) | **PEER DEPENDENCY OPEN — P11**, handoff published |
+| `DEP-13` / `P04-B-35` | unchanged — executed **0 of 60**; mechanism stands, severity Medium |
+
 ### Round 4 — status changes
 
 | ID | Was | Now |

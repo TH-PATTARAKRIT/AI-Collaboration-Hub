@@ -157,3 +157,37 @@ positive controls), `evidence/pop.py`, `evidence/val.py`, `evidence/P03T_db_rowc
 **Bound.** Every runtime claim is about **these four dump files**. `UNR-P03-10` records that
 none is established as the migration target, and `UNR-P03-11` that two of them are different
 schema generations.
+
+
+## 9. G01 bounded-deep closure (2026-09-06) — corrected source basis
+
+> **`MD-01`. The source root used in rounds 1–4 is a LATER GENERATION than the deployment it
+> was used to describe.** Every §2/§3 citation is re-labelled accordingly.
+
+| Root | Series | Role after correction |
+|---|---|---|
+| `/Volumes/iMacSys/CLAUDE AI/SMEsPlus18/odoo-18.0+e.20250608/odoo/addons` | **18** | P03's rounds 1–4 basis. **Does not match the deployment** |
+| `/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/SMEsPlus19/odoo-19.0+e.20260312/odoo/addons` | **19** | version-sensitivity control, 1,427 modules |
+| `/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo16/addons` | 16 **custom** | 59 modules, **no core manufacturing/purchase module** |
+| **A series-16 core tree** | **16** | **DOES NOT EXIST in the declared path set** |
+
+**Declared path set, enumerated:** `/Volumes/iMacSys`, **`/Volumes/iMac`** *(undeclared in
+rounds 1–4)*, `/Volumes/ChatGPT Installer`, and `$HOME` excluding `~/Library`.
+**Positive control:** the `purchase_mrp` probe fires **28 times**, all series 18 or 19.
+
+**Deployed series, from `ir_module_module` in the `iSMEs` dump:** `base 16.0.1.3`,
+`mrp 16.0.2.0`, `mrp_account 16.0.1.0`, `stock_account 16.0.1.1`, `purchase_stock 16.0.1.2`,
+`purchase_mrp 16.0.1.0`.
+
+**Instrument that failed:** manifest `'version'` reads `'1.0'` on **every** located copy and
+cannot discriminate a series (`MD-05`).
+
+### P01 evidence consumed
+`b820b29b13f351ec21c724c05ea9aa8da2a15e14` — verified as the **tip** of the P01 branch.
+`…/P01_PROCURE_TO_PAY/P01_TO_P03_HANDOFF.md` (last modified `fab37e0`, **2026-09-06**) and
+`…/P01_P03_CORRECTION_HANDOFF.md` (`a6879cb`, 2026-09-05). **The base handoff is newer than
+the correction delta** — both are binding.
+
+### Closure Constitution
+`48ee264fd74dcb0dee378789e56d028ad8bb6110`. Prior P03 closure prompt superseded:
+`c088f2f40cc1ee0e5881720192027991cd94eb80`.

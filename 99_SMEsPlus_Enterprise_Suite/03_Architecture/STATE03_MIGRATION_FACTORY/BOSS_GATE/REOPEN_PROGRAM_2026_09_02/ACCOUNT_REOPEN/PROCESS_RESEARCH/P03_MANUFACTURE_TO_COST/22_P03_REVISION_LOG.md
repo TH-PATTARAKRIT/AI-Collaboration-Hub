@@ -16,6 +16,7 @@ Serves as both the revision log and the research-error register required by
 | `R2` | **`SMEPLUS-26-09-04-ACC-REV2-CORR1` received mid-session** | Scope revalidation; `18_P03_SCOPE_OWNERSHIP_MATRIX.md` created; `06` §5, `14`, `16` revised |
 | `R3` | AAS+ audit, `20_P03_AAS_PLUS.md` | `AASP-01` and `AASP-03` applied in place; `AASP-02`, `AASP-04`, `AASP-05` recorded as unrepaired and disclosed |
 | `R4` | Closure | Clean-room scan, manifest, push at `812cc5c` |
+| `R8` | **G01 bounded-deep closure `…BOUNDED-DEEP-CLOSURE-002`** | P01 authoritative handoff consumed at `b820b29`; **`MD-01` — the source/deployment generation mismatch — found and dispositioned**; 10 CQs terminally dispositioned; **4 corrections, all P03's own overstatements**, three produced by mandated disproofs. Files in `CLOSURE_G01/` |
 | `R7` | **Supplemental continuation `…RUNTIME-INVERSION-RISK-RECLASSIFICATION-001`** | Fourth database opened; `DEP-04` and `UNR-P03-07` closed; `DEP-13` executed substantively; the valuation explosion found; **5 of P03's own errors corrected, one of them this round's own draft**. Files `48`–`73` |
 | `R6` | **Continuation `SMEPLUS-26-09-05-…-CROSS-PROCESS-EVIDENCE-CLOSURE-001`** | Peer branches read; runtime/database evidence executed for the first time; `DC-14`/`DC-15`/`DEP-13` dispositioned; 2 unresolved items closed; **4 of P03's own errors corrected**. Files `26`–`47` |
 | `R5` | **Inbound peer evidence from P04 — Acquire-to-Retire**, after push | Every claim independently re-verified from source. Two new findings `DC-14`/`DC-15`; two sharpened; `CC-07` strengthened; **the `01` §3 denominator corrected**; **one scope downgrade `REV-S-05`**; AAS+ veto second limb widened. Record: `25` |
@@ -139,6 +140,24 @@ consistent across all three rounds and is stated plainly rather than distributed
 package's recurring failure is not its searches — it is the totals and citations that
 describe them.** `smeplus-totals-are-unverified-claims` names it exactly; the standing
 correction is `42` §7.
+
+## 8. Research errors found in the G01 bounded-deep closure
+
+| ID | Error | Correction |
+|---|---|---|
+| **`RE-P03-20`** | **P03 read series-18 source for four rounds against a series-16 deployment, and never checked the deployed version.** The rule that would have caught it — `smeplus-version-basis-defect-rule` — was on file from P09's identical failure | Version established from `ir_module_module`; every source claim re-labelled with the series it was read in; the four runtime claims marked unaffected. `MD-01` |
+| `RE-P03-21` | `/Volumes/iMac` — a **second mounted volume** — was never in the declared path set across four rounds | Path set enumerated by `ls /Volumes/` and probed per mount. Material effect **nil**, recorded anyway |
+| `RE-P03-22` | The `P03R-F-01` origin **mechanism** was written as settled when it is **inherited from a peer's read of a tree P03 cannot open** | Attribution corrected throughout; the two halves separated. `CC-01` |
+| `RE-P03-23` | *"The chain was removed in series 19"* overstated — it was **restructured** | Corrected in place. `CC-02` |
+| `RE-P03-24` | *"Independent corroboration"* of the chain claimed more than **two trees, one probe** supports | Bound stated. `CC-03` |
+
+**Five errors. Two are evidence-basis failures** (`RE-P03-20`, `-21`) — the class that
+silently invalidates other work — **and three are overstatements caught by the mandated
+disproofs rather than by P03's own reading.**
+
+**Cumulative across five rounds: 14 research errors.** The pattern is unchanged and now
+fully legible: **P03's searches and measurements have held up; its summaries, totals,
+attributions and evidence-basis declarations have not.**
 
 ## 7. Research errors found in round 4
 
