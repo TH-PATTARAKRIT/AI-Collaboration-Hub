@@ -195,10 +195,18 @@ scrub result for the Layer-1 file is recorded in `14_P07_EVIDENCE_MANIFEST.md` �
 
 Declared so that no reader mistakes silence for coverage.
 
+**Each entry is marked `TESTED` or `ASSUMED`**, per the proposed clause 2.4 of
+`SMEPLUS-DR-EVSUB-001-PROPOSED` §2.1b: *a statement that something is unavailable to a
+session is a capability claim, and a capability claim is evidence — it must be tested before
+it is relied on.* The distinction was added after a peer registered having asserted four
+times in writing that it could not open its peers' registers, having never tested it, when
+they were one fetch away. This session made the same class of claim about Jira and did test
+it; it made no claim at all about peer branches and, when the question arose, fetched them.
+
 | Not performed | Consequence |
 |---|---|
-| Any query against a live or dump database | No finding in this package is a runtime observation. All are source-derived. Recorded as `U-02`. |
+| Any query against a live or dump database — `ASSUMED`, **not tested**. No attempt was made to locate a readable dump for the declared source set; the programme has a recorded instance of exactly this claim being false. | No finding in this package is a runtime observation. All are source-derived. Recorded as `U-02`, and the untested status of the incapacity is itself now part of that record. |
 | Any determination of which addon copy is deployed | Findings bind to the declared source set only. Recorded as `U-01`. |
 | Any execution of the reference ERP | No behavioural confirmation of the ORM-decorator observations (`P07-F-27`). |
-| Any Jira transition or issue creation | Jira lineage is stated as required-and-not-yet-created in `18_P07_PMO.md` §6. |
+| Any Jira transition or issue creation — `TESTED`. The connectors are present and unauthorised, and cannot be authorised from a non-interactive session. | Jira lineage is stated as required-and-not-yet-created in `18_P07_PMO.md` §6. |
 | Any merge, implementation, or design authorisation | Prohibited by the session directive and by `SMEPLUS-DR-EXIT-8C-001` §9. |

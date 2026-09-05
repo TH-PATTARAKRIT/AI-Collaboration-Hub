@@ -3,6 +3,7 @@
 Proposal ID: `SMEPLUS-DR-EVSUB-001-PROPOSED`
 Status: **`PROPOSED FOR BOSS RATIFICATION — NOT IN FORCE`**
 Raised by: P07 Thailand Tax-to-Compliance, on evidence produced jointly with P04 Acquire-to-Retire and P11 Central Core Reconciliation, 2026-09-04
+Revision: `r8`, 2026-09-05 — enabling condition added (`§2.1b`, untested capability claims, proposed clause 2.4); stale-citation demonstration recorded against obligation 6a
 Revision: `r7`, 2026-09-05 — halves stamped `value @ owner-SHA` per the `P11-G-02` refinement (`§3.1c`); refusal-as-control note and the `P11-E-20` symmetry recorded at `§3.0`
 Revision: `r6`, 2026-09-05 — P11's half enumerated by its owner and verified present (2 → 5); `P11-E-19` recorded as obligation 6's strongest warrant; defeat attempt against P11's candidate at `§4b`
 Revision: `r5`, 2026-09-05 — mechanism sharpened (`§2.1a`); suspicion-independence rationale added (`§3.0`); P11's half held at the owner's own declaration against a peer's restatement
@@ -80,6 +81,35 @@ heading, and a heading that appeared to say what the passage said.
 
 This is why "read more carefully" is not the remedy and **open the source** is. The author
 in each case did read carefully — of the wrong artefact.
+
+### 2.1b The Enabling Condition — a Declared Incapacity That Was Never Tested
+
+Contributed by P04 against itself as `P04-REV-19`, and it explains a whole run of instances
+rather than one.
+
+P04 asserted **four times in writing** that it could not open its peers' registers, and
+classified peer-published findings on that basis. The claim was never tested and was false:
+both branches sit on the same remote and were one `git fetch` away throughout. When P04
+finally read P11's register it found a defect neither session had connected — a second
+re-dating path that fires with no lock configured at all.
+
+The substitution itself is ordinary Class 1 — the message was the summary, the branch was the
+source. What is worth naming separately is the **enabling condition**: an author does not
+substitute a summary for a source it believes it can open. The substitution needs a *licence*,
+and a declared incapacity is the most durable licence available, because it converts a
+one-time shortcut into a standing policy that never gets re-examined.
+
+This is not new to the programme. A prior session concluded that no source or database access
+existed for its work after searching only its own working tree, and ran an entire package on
+public documentation; re-running it against primary source corrected four findings and
+superseded two.
+
+**Proposed as clause 2.4 of the obligation set:** a statement of the form *"X is not
+available to this session"* is a **capability claim**, and a capability claim is evidence
+like any other — it must be tested before it is relied on, and the test must be recorded.
+`13 §7` of the P07 package ("Not Performed in This Session") is the right shape for this and
+was written before the rule existed; it should carry, for each entry, whether the incapacity
+was *tested* or *assumed*.
 
 ### 2.2 Why the existing controls did not catch it
 
@@ -210,6 +240,31 @@ out of date. Stamping the SHA makes staleness visible without licensing re-deriv
 
 Applied above. **P04's half carries no SHA** because none was supplied; it is P04's to stamp,
 not P07's to infer, and until it is stamped that row cannot be distinguished from a stale one.
+
+**A live demonstration arrived within the hour, and it is the best warrant 6a has.** P04 —
+having correctly stopped relaying figures — sent a *citation* instead: P11's self-classification
+table at commit `2e284ef`, with the instruction "do not take the figures from me, take the
+commit and read it. If it disagrees with what I have quoted, the commit wins."
+
+The citation is **accurate**. Executed at that commit, the table reads exactly as quoted:
+
+    | Of P11's errors, in the enumeration class | **2**, executed |
+
+It is also **stale**. At `b68ae17` the same row reads:
+
+    | Of P11's errors, in the enumeration class | **5** — P11-E-03, -E-12, -E-15, -E-18,
+    |                                             -E-19; enumerated by parse |
+
+And the stale row is worse than merely out of date: **it certifies itself as "executed"**, and
+that self-certification is precisely what P11 later logged as `P11-E-19` — *a declared half
+published without enumerating it*. So the instruction "the commit wins" would have installed
+the superseded figure, on the strength of an execution claim that was false when written.
+
+The correction is not to distrust citations — a citation is strictly better than a relayed
+number, and P04 was right to switch. It is that **a citation without an owner-SHA freshness
+check is indistinguishable from a current one**, and a self-certifying row defeats the
+consumer's own scepticism. `value @ owner-SHA` is what makes the staleness visible; nothing
+in the citation itself could.
 
 **Recorded against P04.** P04 has retracted its "adjust to 14 across 5" offer as
 `P04-REV-18`, on the ground that it supplied a number it could not execute *in the message

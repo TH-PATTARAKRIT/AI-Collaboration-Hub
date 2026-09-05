@@ -91,6 +91,8 @@ They are listed separately because the distinction is the whole point of the con
 
 | `REV-M-10` | Not a P07 error. P11 refined `P11-G-02` after watching this package carry `P11: ≥1` **correctly**: the rule said publish declared halves but never said *when* a half was executed, so a peer-published half goes stale silently — and the rule's own prohibition on re-deriving another party's half is exactly what stops a consumer noticing. Halves are now stamped `value @ owner-SHA`; correcting staleness is the owner's obligation to push. | P11 | Applied at `§3.1c` and as obligation 6a. P04's half currently carries **no SHA**, which is P04's to stamp. | — |
 
+| `REV-E-21` | `13 §7` declared that no database was queried, and treated that as a scope statement. It is a **capability claim**, and it was `ASSUMED`, not `TESTED` — no attempt was made to locate a readable dump for the declared source set, and the programme has a recorded instance of exactly this claim being false. | P04, by registering the same defect against itself (`P04-REV-19`) after asserting four times that it could not open peer registers that were one fetch away | `13 §7` entries now carry `TESTED` / `ASSUMED`. The database entry is marked `ASSUMED`; `U-02` now records the untested status of its own incapacity. No finding changes, but the boundary around them is now honest about its own basis. | corrected after publication |
+
 Two of the reviewers' findings **escalated** the severity of the session's own headline
 findings rather than reducing them (`P07-F-01`, `P07-F-42`), and both were reached
 independently by two reviewers. The session's own severity assignment was too low in both
