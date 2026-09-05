@@ -135,8 +135,17 @@ warning:
 The design consequence is the same for all three: **statutory inclusion must be decided by
 what a transaction is, never by what a label says.** A related defect follows the same
 pattern — the zero-rated and exempt tax definitions carry no group of their own, so they
-adopt the first one available, which is a withholding group, and settle against withholding
-control accounts rather than tax ones.
+adopt the first one available, which is a withholding group rather than a value-added-tax one.
+
+   **Corrected against the deployed databases.** The consequence is **not** a wrong posting.
+   A tax whose rate is zero produces no tax line, and a group's control account is reached
+   only through one, so nothing has ever posted to the withholding accounts by this route:
+   **zero such lines in both deployments carrying real transaction volume**, measured against
+   controls of 5,202 and 33,114 genuine tax lines. The live consequence is in **reporting**:
+   in the larger of those deployments **15,973 posted lines carry one of these taxes**, and
+   because the group is not a value-added-tax group, any statutory register that selects by
+   group cannot see them as taxable supplies. The misposting risk remains **conditional** on
+   any of these rates ceasing to be zero.
 
 ## 9. Terminal State
 

@@ -73,9 +73,22 @@ one that was traced end to end.
 | 7 | `account.tax.group-th.csv` — `tax_group_1` carries `tax_payable_account_id = 213500 WHT Payable`, `tax_receivable_account_id = 114401 WHT Receivable` | the settlement accounts are the **withholding** control accounts |
 
 **`P07-F-42` — Thailand's zero-rated and exempt VAT taxes are classified into the
-withholding tax group `WHT 1%`, and therefore settle against the withholding control
-accounts rather than the VAT ones.** Two consequences follow, and the second is the more
-serious because it is not a reporting artefact:
+withholding tax group `WHT 1%`.** The clause that once continued *"and therefore settle
+against the withholding control accounts"* is **WITHDRAWN AS LATENT — `P07-F-70`, `22 §15`**:
+a zero-amount tax generates no tax line, so the group's control account is never reached, and
+**0 such tax lines exist in either transacted deployment** (controls: 5,202 and 33,114 real
+tax lines). The live consequence is reporting, not posting — 15,973 posted base lines
+invisible to any tax-group-selected VAT register — and the posting risk is retained only as
+**conditional**. The remainder of this section is the derivation of the group assignment,
+which is unaffected and holds in 7 of 7 identities.
+
+**Original wording, retained struck through so the record shows what was published:**
+~~and therefore settle against the withholding control accounts rather than the VAT ones.~~
+
+Two consequences follow. **The ordering below is also corrected**: the first was published as
+the lesser one and is now the live one; the second was published as *"the more serious because
+it is not a reporting artefact"* and is the one withdrawn as latent. The reporting consequence
+is the serious one, and it is five figures wide.
 
 1. In the invoice tax-totals block, a 0% or exempt VAT line is grouped and labelled
    `WHT 1%`.

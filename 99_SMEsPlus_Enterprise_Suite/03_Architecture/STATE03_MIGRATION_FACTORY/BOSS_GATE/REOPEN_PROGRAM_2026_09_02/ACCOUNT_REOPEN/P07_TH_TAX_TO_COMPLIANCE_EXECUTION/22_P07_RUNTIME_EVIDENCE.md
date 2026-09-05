@@ -1159,3 +1159,86 @@ deployment. P04's formulation, adopted: **a scope is a claim, and a claim writte
 no denominator.** This package declared its source scope as three paths with manifest counts —
 better than a description — and it was still never tested against what is installed. **Naming
 the root is not the same as testing the root.**
+
+
+---
+
+## 15. The Control on the Result I Liked — `P07-F-42` Is Latent, Not Live — `P07-F-70`
+
+P04's rule, and the reason this section exists: **a test run only when it confirms is not a
+test. The control belongs on the results you like, not only the ones you doubt.** `P07-F-42`
+is the best-evidenced finding in this package — 7 of 7 identities, 3 of 3 generations — and
+it had never been asked the discriminating question.
+
+### 15.1 The question never asked
+
+`P07-F-42` states that zero-rated and exempt VAT taxes resolve into a withholding tax group and
+**therefore settle against the withholding control accounts**. Everything published tested the
+*first* clause — which group the tax resolves to. Nothing tested the second: **has that ever
+posted?**
+
+### 15.2 The control, with its own positive control
+
+Run on the two identities with real transaction volume:
+
+| | `551ab874` v18 | `45a8e08e` v16 |
+|---|---:|---:|
+| move lines | 40,353 | 447,384 |
+| **control** — lines that are a tax line at all | 5,202 | 33,114 |
+| **control** — tax lines for a **non-zero** tax | 5,202 | 33,114 |
+| **result** — tax lines for a **zero-rate** tax | **0** | **0** |
+| base lines carrying a zero-rate tax | 0 | **15,973** |
+
+The controls fire: thousands of real tax lines exist, posting to 9 and 6 distinct accounts. The
+query works. **And zero-rate taxes have produced no tax line in either deployment** — in the
+v16 identity, across **15,973 base lines that do carry one.**
+
+The reason is structural, not accidental: a tax whose amount is zero generates no tax line, and
+the tax group's control account is only reached **through** a tax line. So the misassigned group
+has no vehicle to post through.
+
+### 15.3 What is withdrawn and what survives
+
+**`P07-F-70` — `P07-F-42`'s accounting consequence is LATENT, not live.** The posting-path
+claim — *"settle against the withholding control accounts"* — has **never occurred** in either
+transacted deployment, and cannot while the rate is zero. `P07-F-42` is reclassified from a
+posting-path finding to a **configuration and reporting** finding.
+
+What survives is not small, and one part of it is arguably worse than what it replaces:
+
+1. **The configuration defect is live and universal** — 7 of 7 identities, **17 of 17 company
+   sets that hold zero-rate taxes** (enumerated: 1+1+3+3+4+4+1), every one resolving to a
+   withholding or generic group and never a VAT group. Untouched.
+2. **The reporting consequence is live and measurable.** In `45a8e08e`, **15,973 posted base
+   lines carry a zero-rate tax whose group is not a VAT group.** Any report that selects by tax
+   group — including the two s.87 registers at the centre of `P07-F-01` — cannot see those
+   lines as VAT supplies. That is a live statutory-reporting effect on a five-figure line
+   population, and it was sitting underneath a claim about control accounts.
+3. **The posting consequence remains conditional, not disproved.** It would fire for any tax in
+   these groups whose rate ceases to be zero, and the group assignment is what would carry it.
+   Recorded as conditional; not counted as evidence.
+
+### 15.4 Why this is the same instrument three times
+
+`f4a44cce` turned a refutation of `P07-F-63` into a positive control for its surviving half.
+P04's `P04-F-95` turned 1,720 draft entries — large, and in the expected direction — into a
+negative, because every one was future-dated. This turns a 7-of-7 confirmation into a latency
+finding. **In all three the confirming number arrived first and the discriminating question
+second**, and in all three the second question was the one that decided what the number meant.
+
+`P07-F-42` keeps its `S1` severity: a misconfiguration that silently removes a five-figure line
+population from the statutory VAT registers is not less serious than one that posts to a wrong
+account. It keeps class `INF` on the load-order link. What it loses is a mechanism it never had.
+
+### 15.5 `§13.2`'s stated reason was wrong — `REV-E-57`
+
+`§13.2` explained the 57-vs-15 inflation by saying `/Volumes/iMac` is *"a mount of this same
+machine"*. P04 checked rather than accepted it: it is a **symlink to `/`** (`lrwxr-xr-x iMac ->
+/`). The mechanism is therefore different — `os.walk` does not follow symlinks it *encounters*,
+but this sweep passed the symlink as a **starting root**, which resolves. The doubling under
+`System/Volumes/Data` is macOS firmlink structure, not a second mount.
+
+**The count of 15 artefacts is unaffected; the reason given for it was wrong.** Third time this
+session a *stated reason* has failed while the number it explained held — after the `iEVING`
+exclusion (`REV-E-44`) and the `efaplus-custom` exclusion (`P07-F-64`). A number and the story
+told about it are two claims, and only one of them tends to get checked.
