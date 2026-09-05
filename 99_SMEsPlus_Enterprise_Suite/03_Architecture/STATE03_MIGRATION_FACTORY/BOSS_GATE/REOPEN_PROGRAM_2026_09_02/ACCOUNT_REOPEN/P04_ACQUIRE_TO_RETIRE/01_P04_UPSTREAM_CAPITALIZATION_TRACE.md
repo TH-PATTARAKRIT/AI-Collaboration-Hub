@@ -745,6 +745,73 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30.
 
+### 6A.6 The behavioural findings, tested against a same-generation deployment
+
+Every behavioural finding in this package was derived from v18 **source** and,
+until `P04-F-90`, had **no v18 deployment** to be set against. Two are now
+measured. **One does not manifest, and the other cannot be separated from a
+larger effect** — both results are published because a test run only when it
+confirms is not a test.
+
+> **P04-F-95.** **The unposted-entry concern does NOT manifest for scheduled
+> depreciation in the one deployment where it can be tested.** `idemo18_uat`
+> holds **1,720 depreciation entries in `draft`** — and **every one is dated in
+> the future**: 2026-08-31 to 2038-11-30, against a snapshot taken 2026-08-30.
+> **Zero past-dated drafts.** The **398** asset-linked entries whose dates have
+> already fallen due — 2026-01-31 to 2026-07-31 — are all **`posted`**.
+>
+> So draft-and-future is the *designed* state of a depreciation board, and the
+> posting machinery in this deployment **demonstrably posts**. Had this package
+> reported *"1,720 depreciation entries sitting unposted"* it would have been a
+> serious false positive, and the shape of it — a large number, in the expected
+> direction, from a query that never asked the discriminating question — is the
+> shape of most of the defects recorded in `18`.
+>
+> **This is also the positive control the derecognition test needs**: posting is
+> not globally broken here, so an absence elsewhere cannot be explained by it.
+>
+> Class: **FACT VERIFIED (negative)**, bounded to `551ab874` @ 2026-08-30.
+
+> **P04-F-96.** **In this deployment 323 of 388 real assets carry no journal
+> entry of any kind — and that is why the disposal-specific claim cannot be
+> confirmed here.**
+>
+> | Asset group | Assets | With ≥1 journal entry |
+> |---|---:|---:|
+> | `open` | 303 | **65** |
+> | `paused` | 17 | **0** |
+> | **disposed** (`disposal_date` set, all `close`) | **30** | **0** |
+> | `draft` (not validated — none expected) | 38 | 0 |
+> | templates | 16 | 0 |
+> | **Real assets total** | **388** | **65** |
+>
+> **All 30 disposed assets have no derecognition entry — and no entry at all, in
+> any state.** Taken alone that reads as confirmation of this package's headline
+> TAS 16 finding. **It is not, and the control is what shows it:** **238 of 303
+> `open` assets** and **17 of 17 `paused`** also have none. The absence is
+> **general, not disposal-specific**, so this deployment **cannot separate**
+> *"no disposal path posts the derecognition entry"* from *"the asset subledger
+> largely never reached the ledger at all"*.
+>
+> **The source finding is unchanged and remains source-derived.** What is
+> withdrawn is the temptation to cite this database as its confirmation.
+>
+> **What the measurement does establish**, and it is larger than the finding it
+> failed to confirm: of the **350** assets in states that should have generated
+> entries (`open`, `paused`, disposed), **285 have none**. With `P04-F-92`
+> (**0 of 388** carry a source-line link), the asset subledger in the one v18
+> deployment available is **almost entirely disconnected from the general ledger
+> in both directions** — nothing points back to the document that created the
+> asset, and 83 % of assets have produced no accounting effect.
+>
+> A single snapshot **cannot distinguish** entries never created from entries
+> created and removed. That distinction is exactly what `P04-B-40` (the draft
+> branch with no date test) turns on, and it is **not decidable from this
+> evidence**. Recorded as such rather than resolved.
+>
+> Class: **FACT VERIFIED** as to the counts; **NOT DECIDABLE** as to cause.
+> Bounded to `551ab874` @ 2026-08-30. Blocker `P04-B-47`.
+
 ### 6A.5 Is the source this package read the source that is deployed?
 
 Untestable until `P04-F-90` produced a same-generation deployment. Now testable,
