@@ -1792,3 +1792,96 @@ second capture of one identity at a different time, or the deployment's own audi
 settle it without a controlled install. **That belongs in the ask.** If only part of a runtime
 request is granted, the decision-maker should be told which part costs least rather than left
 to infer it — and it is P04's item, not this package's, that is the cheap one.
+
+
+---
+
+## 23. What `P07-U-28`'s Closure Does Not Cover — `P07-F-80`
+
+P04 applied `REV-M-41` to its widest number and narrowed `P04-B-46` from 27 to 9, then stated
+the limit precisely: `ir_model_data` covers only records carrying an XML id, so **a module can
+override `write`, `create` or `_post` in Python with no new field and no view and declare
+nothing.** Nine is *a floor on what demonstrably touches, not a ceiling on what could affect.*
+
+**That limitation lands on `P07-U-28`'s closure, and testing it found something.** `§21` closed
+`P07-U-28` by comparing the **cited files of the cited module** across candidates. It answers
+*which copy of `l10n_th_withholding_tax` is deployed*. It does not answer **what else is
+installed on the same models.**
+
+### 23.1 The instrument, and the control that fired first
+
+Resolving `ir_model_data` through `ir_model_fields.model` and `ir_ui_view.model` into the
+**business** model each module declares on. The naive reading — `ir_model_data.model` directly
+— reports **0 modules touching `account.move`** in both identities tested. A clean, plausible,
+completely wrong negative; P04's equivalent naive run said 1. Published, per `REV-M-32`,
+because plausible-and-wrong is the kind that survives.
+
+Resolved: **59** and **43** installed modules declare on a model this package's findings turn
+on. Of those, the ones **installed but outside the declared PATH SET**:
+
+| module | declares on | identity |
+|---|---|---|
+| `account_payment_multi_deduction` | `account.payment`, **`account.payment.register`** | `a1430edc` |
+| `scgl_tax_period_date` | `account.move`, `account.move.line` | both |
+| `account_discount_catalog` | `account.move` | both |
+| `scgl_product_image` | `account.move`, `account.move.line` | `a1430edc` |
+
+`scgl_tax_period_date` is already discharged — `P07-F-74` proved all five copies one tree.
+
+### 23.2 `P07-F-80` — one of them wraps the method `P07-F-16` reports
+
+`account_payment_multi_deduction` (v19.0.1.0.2, installed, **not in the declared PATH SET**)
+declares `_inherit = ["account.payment.register", "analytic.mixin"]`.
+
+**It does not touch `P07-F-52`'s surface** — zero references to `move_line_ids` or `wt_tax_id`
+anywhere in it — so `P07-F-52`'s discharge at `§21.2` stands.
+
+**But it overrides `_prepare_move_line_default_vals`**, which is the method carrying
+`P07-F-16`'s base guard:
+
+```
+line_vals_list = super()._prepare_move_line_default_vals(write_off_line_vals, force_balance)
+if not self.is_multi_deduction and write_off_line_vals:
+    ...
+    self._update_vals_writeoff(write_off_line_vals, line_vals_list, check_keys, update_keys)
+return line_vals_list
+```
+
+The base, at the line `P07-F-16` cites, has **already discarded** the write-off contribution
+when withholding lines are present (`if withholding_lines and write_off_lines: write_off_lines
+= []`). The override calls `super()` **first** and then post-processes — so its write-off
+handling runs over a list the guard has already stripped.
+
+**Whether that changes the posted figures is not established here**, and it is not asserted.
+What is established: **`P07-F-16` was analysed on a stack that is not the deployed stack.** An
+installed module the declared PATH SET never contained wraps the exact method the finding turns
+on. Classification `SUPPORTED INTERPRETATION` on the interaction; `FACT` on the override's
+existence, its `_inherit`, and its call order. **`P07-U-30` opened.**
+
+### 23.2a The copy question, asked before relying on the module
+
+`P07-F-65` exists because this package once read a module without asking which copy it was
+reading. So: **21 copies of `account_payment_multi_deduction` on this host, 5 distinct
+(tree, version) groups — and every v19 copy is ONE tree** (`21497f9adaaa…`, 10 copies). The
+override above is therefore **not copy-dependent**: whichever v19 copy is deployed, it is that
+code.
+
+One detail worth recording as the **inverse** of `P07-F-65`: two of those copies declare
+`19.0.1.0.2` and `19.0.1.0.3` and hash to the **same tree** — *two versions, one body*, where
+`P07-F-65` found *one version, two bodies*. A version string is unreliable in both directions.
+
+### 23.3 The asymmetry between the two narrowings, stated in P04's terms
+
+P04's narrowing **cannot close** `P04-B-46`: it has the deployment's declarations and can ask
+what a module *declares* — a weaker question with a one-directional answer, so its other 18 are
+*undemonstrated rather than cleared*.
+
+This package's `§21` narrowing **did** close `P07-U-28`, because it had the cited code and could
+ask whether the difference carries the claim. **But `§21` answered a narrower question than
+`P07-U-28`'s citations were being used for**, and this section is that gap measured. The
+closure stands as written; what it covers is now stated, and what it does not cover is
+`P07-U-30`.
+
+**The general form:** *a claim discharged against the right module is not discharged against
+the deployed stack.* Copy-identity and stack-completeness are two questions, and closing the
+first reads like closing the second.
