@@ -40,7 +40,7 @@ modules of `13 §5`.
 | `RPT-07`/`RPT-09` | `strict_range` on the line date | cash-basis guard, sale/purchase tax use, **and `move.amount_tax = 0`** | inner join on `res_partner` | base from `account_move_line.balance`; **tax from the move header `amount_tax`** |
 | `RPT-10`/`RPT-11` (vendor) | `strict_range` on the move date | tag membership in income + remittance + surcharge | left join, may be null | `ABS(rate) × ABS(tax_base_amount) / 100`, recomputed |
 | `RPT-10`/`RPT-11` (override) | `strict_range` on the move date | branch 1: `tax_line_id` not null; branch 2: `wt_tax_id` not null **and** `payment_id is null` **and** `payment_state != 'not_paid'` | left join | branch 1 recomputed from `tax_base_amount`; branch 2 recomputed from `price_subtotal` |
-| `RPT-12` | `date.range` selected in the wizard, against the certificate | certificates with the selected `income_tax_form`, in the selected company | certificate line amounts |
+| `RPT-12` | `date.range` selected in the wizard, against the certificate | certificates with the selected `income_tax_form`, in the selected company | certificate line amounts |  **column omitted when this row was written; not re-derived — open** |
 
 ## 3. Column Consistency — Inspected and Found Consistent
 

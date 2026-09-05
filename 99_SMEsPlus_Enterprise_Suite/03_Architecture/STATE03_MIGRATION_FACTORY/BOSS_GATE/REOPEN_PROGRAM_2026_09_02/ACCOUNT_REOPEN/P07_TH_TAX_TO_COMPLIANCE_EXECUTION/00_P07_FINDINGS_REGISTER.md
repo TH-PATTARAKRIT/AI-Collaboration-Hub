@@ -117,6 +117,14 @@ after every edit finds what a check run once before publication cannot** — and
 edit I had just written would not have found it, consistent with `15 REV-M-09`. The check is
 now the last step before every commit of this package, not a pre-publication gate. `REV-E-37`.
 
+**The identifier check is not the only check, and it returned CLEAN on a broken package.**
+Run at the same moment, a **per-table structural check** (every row's unescaped-pipe count
+against its own table's header, strict renderer semantics) found **seven malformed rows** in
+four files — including all four rows of `03 §6.1`, the section added after independent
+challenge, where the entire `Evidence` column was absent. The identifier check cannot see
+those; it only sees identifiers. **The check that catches a defect is the one whose unit
+matches the defect** (`REV-M-20`). Both now run before every commit: 149 tables, 0 malformed.
+
 Both runs are reproduced in `15 §REV-E-36/37`. The script parses definition rows from `§2`,
 collects `P07-F-<n>` across all 23 files, and diffs the sets. `P07-F-08` is expected in its
 output and excluded by the not-issued list below: an identifier never issued is not an orphan,

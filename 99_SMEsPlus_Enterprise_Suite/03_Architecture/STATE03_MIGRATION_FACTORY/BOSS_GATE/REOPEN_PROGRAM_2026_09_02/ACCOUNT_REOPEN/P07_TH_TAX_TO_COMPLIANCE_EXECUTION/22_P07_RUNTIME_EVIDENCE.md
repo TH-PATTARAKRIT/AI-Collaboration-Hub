@@ -67,7 +67,18 @@ a caveat.
 | `iTEST02` 2026-07-14 | **v1.16** | **FAILS** | reads | **YES** — registers empty |
 | `iSMEs` 2026-07-11 | v1.14 | READS | reads | no |
 | `BK12MAY26` 2026-08-03 | v1.14 | READS | reads | no |
-| `iEVING` 2026-07-23 | v1.14 | READS | not examined — different product line |
+| `iEVING` 2026-07-23 | v1.14 | READS | reads | **no** — examined at `§10`, see below |
+| `iEVING` 2026-03-30 | zip/`dump.sql` | n/a | n/a | **no** — examined at `§10` |
+| `BK12MAY26` 2026-08-03 (2nd) | zip/`dump.sql` | n/a | n/a | **no** — examined at `§10` |
+
+> **This row was wrong twice, and the second way is worse — `REV-E-43`.** As published it
+> was one column short, and its excluded-reason read *"not examined — **different product
+> line**"*. That reason was never verified against `ir_module_module`; it is false —
+> `iEVING` is `19.0.1.3`, the declared generation. So `§10` was not an oversight being
+> corrected. **The identity was excluded from the population by an unverified assertion
+> written into the evidence table**, which is a stronger defect than forgetting it: a reader
+> auditing the population would have found a stated reason and stopped. A negative about
+> the evidence base needs the same authority as a negative about the subject.
 
 **The correlation is exactly inverse to the convenient one.** Both databases in which the
 defect fires are `v1.16` and **cannot be opened by the host's default client**. Both in which
