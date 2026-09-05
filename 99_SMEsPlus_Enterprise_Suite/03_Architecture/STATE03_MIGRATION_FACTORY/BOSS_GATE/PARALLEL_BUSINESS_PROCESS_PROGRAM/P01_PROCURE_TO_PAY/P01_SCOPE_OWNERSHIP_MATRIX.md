@@ -168,3 +168,71 @@ Each is `HOLD — SCOPE EVIDENCE REQUIRED`. None blocks unaffected work.
 | Models lacking a company field | would have been reported as defects | now each is first assigned its correct scope; only mismatches are defects, and three are recorded as `HOLD — SCOPE EVIDENCE REQUIRED` rather than asserted |
 
 No evidence was discarded. No checkpoint was re-run. No completed enumeration was repeated.
+
+---
+
+# ADDENDUM — CONTINUATION ROUND (2026-09-05)
+
+## A.1 A generation change that moves a company-scoped account onto a differently-scoped object
+
+The body of this matrix recorded, for the v18 generation, that **every general-ledger account
+P01 posts to is a company-dependent value hung on a TENANT-scoped object** (the item category,
+the item, the vendor) — a legitimate expression of `OWNERSHIP SCOPE ≠ FINANCIAL SCOPE`, with a
+real **mutation-authority** defect underneath it (`CONTRA-P01-05`).
+
+**The v19 generation moves the receipt's counter-account off the item category and onto the
+storage location.** That changes the scope question materially:
+
+| | v18 | v19 |
+|---|---|---|
+| Object carrying the receipt counter-account | item category | **storage location** |
+| That object's own company scoping | **none** — the category has no company field | the location's company field is **optional** |
+| Value scoping | company-dependent | company-dependent |
+| Scope question | `SC-06` — is the category TENANT or PLATFORM? | **`SC-03` becomes decisive** — is a location TENANT- or COMPANY-scoped? |
+
+**Consequence.** In v19 an under-scoped location does not merely *override* a company's
+posting destination, as in v18 — it **is** the posting destination. `SC-03` therefore moves
+from a secondary scope question to a primary one for the v19 line.
+
+Classification: **FACT VERIFIED** for the mechanism change (symmetric source comparison and
+deployed-schema confirmation: the v16 deployment carries the two directional override columns
+on the location, the v19 deployments carry the single primary one).
+`SC-03` remains **HOLD — SCOPE EVIDENCE REQUIRED**.
+
+## A.2 The tolerance-zero item is now live, and the scope analysis is unchanged
+
+The cross-company trigger described in §4 of this matrix is **installed in both deployed v19
+databases and in neither v18 one**. The scope analysis stands exactly as written: a
+COMPANY-scoped financial effect raised in a company whose ownership is inferred from a
+TENANT-scoped contacts hierarchy, with elevated privilege, first match winning.
+
+What changes is only its status: **latent → live**. `REQUIRED OWNERSHIP CANNOT BE PROVEN =
+DENY` now applies to a running configuration, not a hypothetical one.
+
+## A.3 A scope observation the deployed evidence adds
+
+The v19 valuation **policy** (`real_time`) is stored as a **company-dependent** value — keyed by
+company — while every account it would post to is unset. So the deployments have exercised the
+company-scoped *policy* dimension and left the company-scoped *account* dimension empty.
+
+This is evidence that the scope model itself is understood by whoever configured these systems,
+and that the configuration is **incomplete rather than differently intended** — which is why
+§2 of `P01_VERSION_DEPLOYMENT_RECEIPT_BILL_MATRIX.md` calls it internally contradictory rather
+than a periodic-inventory choice.
+
+Classification: **SUPPORTED INTERPRETATION.** It reads intent from a configuration pattern, and
+intent is not a fact. `U-02` remains `HOLD — RUNTIME EVIDENCE REQUIRED`.
+
+## A.4 Scope questions — status after this round
+
+| ID | Status |
+|---|---|
+| `SC-01` purchase agreement scope | unchanged — **HOLD** |
+| `SC-02` vendor price list scope | unchanged — **HOLD** |
+| `SC-03` storage location scope | **ESCALATED** — decisive for the v19 line |
+| `SC-04` currency-rate scope | inherited from the Account track |
+| `SC-05` tax definition scope | routed to **P07** |
+| `SC-06` item category scope | **DE-ESCALATED for v19** — the category no longer carries the receipt counter-account there |
+| `SC-07` reconciliation grouping scope | under independent challenge this round |
+
+No scope question was closed by this round. Two moved, one was routed.

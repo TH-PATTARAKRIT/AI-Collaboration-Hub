@@ -41,7 +41,7 @@ as `ERR-P01-06`.
 |---|---|---|---|
 | `D1` | **v19 line** | 150,677 | yes |
 | `D2` | **v19 line** | 148,090 | yes |
-| `D3` | **v18 line** | 106,836 | yes |
+| `D3` | **v16 line** | 106,836 | yes |
 | `D4` | unknown | — | **no** — not readable by the available tooling |
 
 Generation was determined structurally, not from the file name: the two v19 databases carry a
@@ -55,7 +55,7 @@ and the v18 one carries valuation-layer tables that the v19 ones do not.
 > **The deployed v19 databases have no goods-received clearing account and no inventory
 > valuation-layer table.**
 
-| Structure | `D1` (v19) | `D2` (v19) | `D3` (v18) |
+| Structure | `D1` (v19) | `D2` (v19) | `D3` (v16) |
 |---|---|---|---|
 | Goods-received clearing account on the item category | **absent** | **absent** | see §4 |
 | Goods-received *output* account on the item category | **absent** | **absent** | see §4 |

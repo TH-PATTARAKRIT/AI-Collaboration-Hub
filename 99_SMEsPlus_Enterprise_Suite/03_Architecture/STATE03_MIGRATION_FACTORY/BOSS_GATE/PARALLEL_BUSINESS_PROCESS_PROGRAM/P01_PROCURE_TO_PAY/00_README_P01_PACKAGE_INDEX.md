@@ -92,3 +92,74 @@ transcribed into any downstream or Team B package. Scan commands and results are
 
 **No statutory claim is made anywhere in this package.** Every Thai tax and withholding
 statement is a statement about source behaviour, and every statutory question is held.
+
+---
+
+# ROUND 3 — TARGETED CROSS-PROCESS CLOSURE (2026-09-05)
+
+Prompt `SMEPLUS-26-09-05-ACC-P01-P2P-TARGETED-CROSS-PROCESS-CLOSURE-001`.
+**Targeted continuation — no reset, no evidence discarded.**
+
+## Terminal state
+
+> `P01 TARGETED CROSS-PROCESS CLOSURE — MAXIMUM AVAILABLE EVIDENCE REACHED — HOLD FOR SPECIFIC
+> EXTERNAL / PEER / STATUTORY / BOSS DECISION.`
+
+PMO: **`RECOMMEND HOLD`** — seven of eight exit criteria not satisfied, one worse than round 2.
+
+## Read these first
+
+1. `P01_CURRENT_STATE_RECONCILIATION.md` — what changed and what was superseded
+2. `P01_RECEIPT_TO_BILL_BRIDGE_FORENSIC.md` — the central mission, rewritten twice
+3. `P01_FINANCIAL_OWNERSHIP_PROOF_MATRIX.md` — the tolerance-zero item, now live
+4. `P01_RESEARCH_ERROR_AND_REVISION_LOG.md` — **fifteen** error records
+5. `P01_PMO_TARGETED_EXIT_REVIEW.md`
+6. `P01_CORE_RECON_HANDOFF_PACK.md` §A
+
+## New in this round
+
+| File | Content |
+|---|---|
+| `P01_CURRENT_STATE_RECONCILIATION.md` | Round-to-round reconciliation |
+| `P01_TRANSITIVE_MODULE_POPULATION.md` | Corrected denominator + installed status across four databases |
+| `P01_RECEIPT_TO_BILL_BRIDGE_FORENSIC.md` | The bridge, classified |
+| `P01_VERSION_DEPLOYMENT_RECEIPT_BILL_MATRIX.md` | Version vs module vs configuration vs deployment |
+| `P01_RECEIPT_LIABILITY_CUTOFF_MODEL.md` | The three-day test |
+| `P01_LANDED_COST_ACCOUNTING_TRACE.md` | Installed in all four, exercised in none |
+| `P01_SUBCONTRACT_PURCHASE_HANDOFF.md` | Ten modules; a correction owed to P03 |
+| `P01_PERIOD_LOCK_CUTOFF_FORENSIC.md` | `MIXED — PATH-DEPENDENT` |
+| `P01_VENDOR_BILL_CORRECTION_INTEGRITY.md` | `MIXED`; strong form contradicted |
+| `P01_FINANCIAL_OWNERSHIP_PROOF_MATRIX.md` | `UNPROVEN — INFERRED ONLY`, live |
+| `P01_THAI_WHT_PARTIAL_PAYMENT_ARITHMETIC.md` | Compounding **contradicted**; repeated full withholding found |
+| `P01_PND_MAPPING_CONTRADICTION.md` | Conflict confirmed; neither mapping governs |
+| `P01_P05_VENDOR_ADVANCE_RECONCILIATION.md` | P01 accepts ownership |
+| `P01_P05_WHT_CROSS_PROCESS_CONTRADICTION.md` | `BOTH PARTIAL` |
+| `P01_DEP_P01_06_EXPERT_CORR1_RECHECK.md` | `PARTIALLY RESOLVED` |
+| `P01_PEER_EVIDENCE_RECONCILIATION.md` | Ten peer packages consumed |
+| `P01_PURCHASE_ACCOUNTING_TRUTH_MODEL.md` | Original vs derived vs aggregation |
+| `P01_CROSS_PERIOD_EDGE_CASE_MATRIX.md` | Twelve combinations, none executed |
+| `P01_CROSS_PROCESS_OWNERSHIP_REGISTER.md` | Ownership after peer intake |
+| `P01_UNRESOLVED_EVIDENCE_REGISTER.md` | 32 classified unresolved items |
+| `P01_AAS03_TARGETED_CHALLENGE.md` | Three disproof assignments, three landed |
+| `P01_AAS_PLUS_TARGETED_CONSOLIDATION.md` | Consolidated risk, dissent preserved |
+| `P01_PMO_TARGETED_EXIT_REVIEW.md` | The exit test |
+
+## The five things to take away
+
+1. **No inventory value reaches the ledger by any route** in the deployed generation-19 systems
+   — the receipt route was **removed by design**, the invoicing route has no account configured,
+   and periodic closing is disabled.
+2. **A cross-tenant financial-effect path is reachable today**, and its one guard is **proven
+   unable to execute**.
+3. **Period locks re-date rather than refuse**, and dates are rewritten in draft with no lock at
+   all — cut-off testing on document dates is self-confirming.
+4. **The generation the source analysis targets has no deployed representative in this estate.**
+5. **Eight of this round's corrections came from independent experts, and every one was about
+   the evidence base rather than the reasoning.**
+
+## Honest note on this round
+
+Three claims published earlier in this package were **false** — three-way match, subcontracting
+and the requisition family were reported as installed nowhere, when all three are installed in a
+database the package had wrongly recorded as unreadable. Two headline findings were
+**disproved** and replaced. All originals are preserved in the revision log.

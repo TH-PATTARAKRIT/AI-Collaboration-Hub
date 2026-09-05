@@ -111,3 +111,72 @@ start. Three things are worth carrying into every peer session:
 
 P11 additionally receives `P01_SCOPE_OWNERSHIP_MATRIX.md` as the first input to cross-process
 scope reconciliation. It contains **seven unresolved scope questions, not seven assertions**.
+
+---
+
+# ADDENDUM — TARGETED CROSS-PROCESS CLOSURE (2026-09-05)
+
+The body above stands as lineage. This addendum is what P11 and Core Accounting should actually
+work from.
+
+## A.1 THE FIVE STATEMENTS P11 NEEDS
+
+1. **No inventory value reaches the general ledger by any route in the deployed v19 systems.**
+   Not at receipt — v19 **removed** that route by design and recognises inventory *at invoicing*.
+   Not at invoicing — no valuation account resolves anywhere (category 0/37, company journal
+   0/44, location 0/525, variation 0/544). Not periodically — closing is `manual` on 87 of 88
+   company rows.
+2. **A cross-tenant financial-effect path is reachable today.** Three unrelated corporate groups
+   share one schema; every company partner is selectable from every company; the declared guard
+   **cannot execute** because the deployed "create as" user is the superuser on 44 of 44
+   companies. **Tolerance-zero.**
+3. **Period locks re-date rather than refuse** anything that creates an accounting fact, and
+   purchase-document dates are rewritten in draft with no lock involved on 19.6% of documents.
+   **Cut-off testing on document dates is self-confirming.**
+4. **Correction of a posted bill hard-deletes derived journal items**, preserving account and
+   amount in an audit record that is itself deletable, incompletely populated, and **absent
+   entirely in the v16 deployment**.
+5. **The generation the source analysis targets — v18 — has no deployed representative in this
+   estate.** The deployed comparison spans **v16 → v19**.
+
+## A.2 WHAT P11 MUST NOT TAKE FROM P01
+
+- **No runtime verification.** Nothing was executed.
+- **No statutory conclusion.** All routed to P07.
+- **No target-architecture decision**, and no Boss-level decision.
+- **No claim about `D4`'s transactions** — only its module registry was read.
+
+## A.3 ANSWERS TO PEERS
+
+| Peer | Answer |
+|---|---|
+| **P05** | **P01 owns the vendor-advance event.** The module is installed in all four databases; its two copies behave differently; the advance defaults to an **expense** account |
+| **P05** | WHT contradiction resolved **`BOTH PARTIAL`** — P05's rating stands, its justification was retired by P05 itself, and two of P01's supporting statements were wrong |
+| **P04** | **Confirmed independently**: no capital-versus-expense classification exists on the purchase documents |
+| **P02** | **Confirmed independently** from the purchase side: the valuation chart is unwired |
+| **P03** | **A correction is owed**: P03's subcontract ownership premise cites the v18 construct, which **is gone in v19** |
+| **P07** | WHT arithmetic (corrected), the PND conflict (deployed owner identified, neither mapping governing), and four decision surfaces for the form. **Statutory determination is P07's** |
+| **P08** | Period-lock re-dating, draft date rewriting, correction by deletion, and that **no receipt reaches the ledger** — which changes what a period comparative means |
+| **P09** | Bill-line analytic overwrite accepted as P01 territory |
+| **P10** | The vendor-bill-line **service-period field does not exist**; and P01's half of the accrual boundary, which P10 reached independently |
+| **P06** | No payment entry without an outstanding account; the four-entry-point problem corroborated |
+
+## A.4 THE HIGHEST-VALUE REMAINING WORK, RANKED
+
+| # | Work | Why |
+|---|---|---|
+| 1 | **Analyse `D4`'s transaction data** | It is the only database with three-way match, subcontracting and requisition installed, and the only one with a period lock set. Known-reachable, unread |
+| 2 | **Boss ruling on the target generation** (`DEP-P01-01`) | Two candidate generations use **fundamentally different accounting models**, and one has no deployed representative |
+| 3 | **Runtime execution of the seven priority cases** | Nothing is runtime-verified |
+| 4 | **Close the tenant residue of `DEP-P01-06`** | Tenancy appears once, as a heading, in 384,836 bytes of prior expert output |
+| 5 | **Locate the withholding code that deployments actually run** | It matches no copy in the declared path set |
+
+## A.5 TERMINAL STATE
+
+> **`P01 TARGETED CROSS-PROCESS CLOSURE — MAXIMUM AVAILABLE EVIDENCE REACHED — HOLD FOR
+> SPECIFIC EXTERNAL / PEER / STATUTORY / BOSS DECISION.`**
+
+Not `READY FOR CORE ACCOUNTING RECONCILIATION — COMPLETED`, because a tolerance-zero isolation
+item is open and demonstrated live, and because a newly-reachable evidence source is unread.
+
+This is **not** PASS, APPROVED, FROZEN, MERGED, or IMPLEMENTATION AUTHORIZED.

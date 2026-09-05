@@ -47,3 +47,32 @@ architecturally load-bearing.
 
 **No class B, C or D entry in this table may be restated elsewhere as a class A verified
 absence.**
+
+---
+
+# ADDENDUM — INSTALLED-STATUS QUALIFICATION (continuation round, 2026-09-05)
+
+Every event above was established from source. This addendum states which are **reachable in a
+readable deployment**, using the installed-module registry of three databases.
+
+| Event | v16 deployment | v19 deployments |
+|---|---|---|
+| `AE-P01-01` Inventory recognised on receipt | **live** — 57,863 linked entries | **cannot fire** — no valuation account is wired anywhere |
+| `AE-P01-02` Clearing obligation raised | **live** | **cannot fire**, and the concept does not exist in this generation |
+| `AE-P01-03/04` Order-stage accrual and reversal | reachable | reachable |
+| `AE-P01-05` Payable recognised | **live** — 36,867 posted vendor bills | live — but only **one** vendor bill exists in the active v19 database |
+| `AE-P01-06` Clearing discharged | **live** | **cannot fire** |
+| `AE-P01-07` Expense recognised directly | live | **live — and it is the only purchase-side event that reaches the ledger** |
+| `AE-P01-08` Clearing matched | live, conditional on the reconcilable flag | **cannot fire** |
+| `AE-P01-09/10` Price difference | live — 1,267 layers carry a bill-line link | **cannot fire** — the engine is absent from this generation |
+| `AE-P01-11` Asset recognised | reachable | reachable |
+| `AE-P01-12` Cash outflow | reachable | reachable |
+| `AE-P01-15` Inventory value restated | reachable | the revaluation object does not exist in this generation |
+| `AE-P01-17` Purchase tax | reachable | reachable |
+| `AE-P01-18` Withholding | **reachable — the installed path is the one carrying the arithmetic defect** | same |
+| `AE-P01-19` Landed cost absorbed | **installed** | **installed** |
+| Three-way match verdict | **not installed** | **not installed** |
+| Subcontract receipt split | **not installed** | **not installed** |
+
+**Six of the twenty accounting events cannot fire at all in the v19 deployments**, and they are
+precisely the six that constitute the receipt-to-bill bridge.

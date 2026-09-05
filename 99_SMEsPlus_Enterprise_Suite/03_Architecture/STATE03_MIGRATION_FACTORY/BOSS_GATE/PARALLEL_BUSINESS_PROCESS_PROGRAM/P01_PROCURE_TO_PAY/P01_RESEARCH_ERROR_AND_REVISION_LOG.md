@@ -129,3 +129,121 @@ corrected finding, and the architecture impact.
 | **Architecture impact** | None — nothing was published from the faulty run. |
 | **Rule this reinforces** | **Never let a probe report absence without also reporting the size of what it searched.** An empty haystack and a haystack with no needle are indistinguishable to a search, and only the search's author can tell them apart. The programme's existing rule — *an empty taxonomy cell means UNSEARCHED, never ABSENT* — has a mechanical corollary: **print the denominator next to every zero.** |
 | **Related** | The Functional Design expert independently hit the same class of defect twice (a path-splitting error yielding "no model files", and a zero line count on a file lacking a trailing newline yielding "this module is dead code"). Three instances in one session, from two independent parties, of a **tooling artefact presenting as a verified absence.** |
+
+---
+
+# CONTINUATION `SMEPLUS-26-09-05-…-TARGETED-CROSS-PROCESS-CLOSURE-001`
+
+## `ERR-P01-07` — a structural absence that was really an unconfigured mechanism
+
+| Field | Content |
+|---|---|
+| **Original finding** | Round 2 concluded: *"The receipt-to-bill bridge has no physical structure to run on in two of the three readable deployed databases"* — the goods-received clearing account and the valuation-layer table are absent from both v19 databases. Presented as the headline finding and as a **structural** absence. |
+| **Original evidence** | Deployed-schema probes: the clearing-account column is absent from the item-category table in both v19 databases, and the valuation-layer table does not exist there. Both facts are **correct and stand.** |
+| **Why insufficient** | The probe asked *"is the v18 structure present?"* and correctly answered no. It never asked *"then what does v19 use instead?"* — so it read the absence of one generation's mechanism as the absence of **any** mechanism. v19 in fact has a complete receipt-valuation mechanism: the counter-account moved from the item category to the **stock location**, and the valuation record moved from a separate layer object onto the **movement itself**. Nothing structural is missing; a **configuration** is missing. |
+| **How found** | **By the author**, in this continuation, by asking the question the directive demanded — *prove the actual mechanics, do not force terminology* — instead of re-running the earlier probe. |
+| **New evidence** | v19 requires a valuation account on the source or destination location. In both deployed v19 databases that account is set on **0 of 525** locations, so the gate cannot pass for any movement. The v18 deployment, by contrast, shows the bridge operating: 57,863 valuation layers carry a journal-entry link. |
+| **Corrected finding** | `RECEIPT → BILL BRIDGE = DEPLOYMENT / CONFIGURATION-DEPENDENT`. v18 deployment: verified present and operating. v19 deployments: verified **not operable as configured**. |
+| **Architecture impact** | **Materially different, and the correction matters in both directions.** The earlier reading would have told the programme that v19 cannot support a receipt-to-bill bridge — which is false and would have misdirected the target design. The corrected reading says the capability exists and the deployments do not use it, which is a *configuration and migration* problem rather than a *capability* one. |
+| **Rule this reinforces** | **An absence probe must be paired with a replacement probe.** "The structure I know is not here" and "no structure is here" are different claims, and only the first is what a targeted search can support. |
+
+## `ERR-P01-08` — an empirical zero presented without its denominator of activity
+
+| Field | Content |
+|---|---|
+| **Original finding** | Stated during this continuation: *"14,441 stock movements, 3,680 carrying a computed value, and zero linked to a journal entry"* — offered as empirical confirmation that the receipt-side accounting effect never occurs. |
+| **Why insufficient** | The same database has **16 journal entries in total**, one of which is a vendor bill. It is a database with a busy warehouse and an **essentially unused ledger**. In such a database a near-zero count of receipt entries is expected on *any* configuration, so the zero does not by itself discriminate between "the bridge is unconfigured" and "the ledger is not yet in use". Presented alone, it implies a busy accounting system silently failing. That implication is not supported. |
+| **How found** | **By the author**, immediately, by counting journal entries by type before drawing the conclusion — the activity denominator that the zero required. |
+| **New evidence** | `D1`: 16 journal entries (15 miscellaneous, 1 vendor bill) against 14,441 movements and 31 purchase orders. `D3` (v18) by contrast: 183,590 journal entries including 36,867 posted vendor bills. |
+| **Corrected finding** | The **configuration** evidence carries the finding, because it is a cause and holds regardless of activity. The empirical zero is **corroborating but not independently decisive**, and is now published with that qualification attached. |
+| **Rule this reinforces** | The programme's standing rule — *print the denominator next to every zero* — has a second clause: **a zero needs the denominator of relevant activity, not only the denominator of the search.** A search that found nothing and a system that did nothing are as indistinguishable as an empty haystack and a haystack with no needle. |
+
+---
+
+## `ERR-P01-09` — an entire deployed database was mislabelled by generation
+
+| Field | Content |
+|---|---|
+| **Original finding** | Three readable databases were labelled two **v19** and one **v18**, and the v18 one was used throughout this session as the operating counter-example: *"the v18 bridge demonstrably operates — 57,863 valuation records carry a journal-entry link."* |
+| **Original evidence** | Generation was inferred from **structural markers relative to v19**: the database has the valuation-layer table and the category input-account concept, and lacks the v19 stock-variation account. Every one of those observations is true. |
+| **Why wrong** | Those markers distinguish *"not v19"* from *"v19"*. They do **not** distinguish v16 from v17 from v18. The inference silently assumed the estate contained only the two generations already under study, and read every non-v19 signal as v18. **The version was never actually asked for**, although the database records it explicitly. |
+| **How found** | **By an independent expert**, which read the deployed module registry's version column. Verified immediately by this session: all four core module versions in that database read `16.0.x`. |
+| **New evidence** | `D3` is **generation 16.0**. `D1` and `D2` are 19.0. **There is no readable deployed v18 database in this estate.** |
+| **Corrected finding** | Every "deployed v18" statement in this session is a statement about a **v16** deployment. The v16 bridge operates on 6,530 of 13,214 receipts (49.4%). |
+| **Architecture impact** | **Material.** The generation the v18 source analysis targets has **no deployed representative here**, so those source findings cannot be validated against any running system in this estate. That is a significant weakening of the evidence base and it was invisible while the label was wrong. It also means the "v18 → v19" comparison this package has drawn is really a **v16 → v19** comparison at the deployed layer, spanning three major versions, not one. |
+| **Rule this establishes** | **Never infer a version; read it.** A version marker inferred from the presence or absence of features is a hypothesis about which versions exist, not a measurement. The registry states the version explicitly, and it cost one query. |
+
+## `ERR-P01-10` — an absence read as misconfiguration when it was a deliberate design change
+
+| Field | Content |
+|---|---|
+| **Original finding** | Stated earlier today, and already once corrected: v19 has a receipt-side valuation mechanism whose counter-account moved to the location, and the deployments simply have not configured it — described as *"internally contradictory: perpetual valuation declared, no posting destination"* and recorded as `CONTRA-P01-12`. |
+| **Why wrong** | v19's perpetual option is labelled, in the product's own configuration, **"Perpetual (at invoicing)"** — verified in three places. And on a purchase document a storable perpetual product has its **bill line account set to the stock valuation account**. **v19 deliberately moved inventory recognition from the receipt to the bill.** No receipt entry is *expected*. The "contradiction" was between the reference product's design and my assumption about where valuation belongs — not inside the deployed configuration. |
+| **How found** | **By an independent expert**, tasked to disprove the claim, which located the design intent in the selection label and the bill-line rule. Both verified directly by this session. |
+| **New evidence** | Verified: the configuration label, and the bill-line account rule in the v19 stock-accounting module (path and line in the Layer 2 evidence base). |
+| **Corrected finding** | `RECEIPT → BILL BRIDGE = VERSION-DEPENDENT`. The clearing bridge was **removed by design**; recognition moved to the bill. **Separately**, the v19 deployments configure no valuation account anywhere, so the invoice-time route does not fire either — meaning **no inventory value reaches the ledger by any route**. That larger finding is the expert's, not this session's. |
+| **`CONTRA-P01-12` disposition** | **WITHDRAWN as stated and RESTATED.** The configuration is not self-contradictory; it is incomplete against a design this session had mis-modelled. |
+| **Architecture impact** | Large, and in the more useful direction. The earlier reading would have told the programme that a v19 deployment had mis-set some fields. The corrected reading says the vendor's own model **abandoned goods-received clearing entirely** in favour of invoice-time recognition — which is a first-order input to the target design, and the opposite of a configuration note. |
+| **Rule this reinforces** | The rule from `ERR-P01-07` — *an absence probe must be paired with a replacement probe* — was applied, and was still not enough. The replacement probe found the new **mechanism** and stopped there; it did not ask what the product says the mechanism is **for**. **Read the vendor's own labels and defaults: they state design intent that code structure alone does not.** |
+
+## `ERR-P01-11` — a deployment-scoped claim carried by a population of two
+
+| Field | Content |
+|---|---|
+| **Original finding** | The zero journal-entry link across 14,441 movements was offered as deployment-scoped evidence that receipts produce no accounting effect. |
+| **Why wrong** | An independent expert established that `D1` has **zero** done movements from a supplier-usage location: all 1,201 order-linked receipts arrive from an **inter-company transit** location, and the third-party vendor-receipt population across both v19 databases is **2 movements**. A claim about vendor receipts cannot rest on a population of two. |
+| **Corrected finding** | The configuration finding stands on its own terms and is class **A within the stated configuration scope**. The **behavioural** claim about vendor receipts in the v19 deployments is **class B**, and is labelled so. |
+| **Architecture impact** | None on the configuration conclusion; it removes an unsupported behavioural inference. |
+| **Rule this reinforces** | This is the third distinct instance in P01 of the same defect family — `ERR-P01-06` (an empty extraction), `ERR-P01-08` (a zero without its activity denominator), and now a zero whose **relevant sub-population** was two. **A denominator must be the denominator of the claim, not of the table.** |
+
+---
+
+## `ERR-P01-12` — a defect claim whose mechanism could not fire
+
+| Field | Content |
+|---|---|
+| **Original finding** | `CONTRA-P01-09`: *"Thai withholding **compounds** across partial vendor payments"* — the offset term subtracts `debit − credit` over prior withholding lines, which on a vendor payment is negative, so the subtraction increases the amount withheld. Worked example published: 3,000 then 6,000 = 9,000 against a 3,000 liability. Recorded as FACT VERIFIED across two rounds, and re-derived by this session in round 2. |
+| **Original evidence** | The offset line itself, read directly, plus the sign of a vendor-payment withholding line. **Both are correct.** |
+| **Why wrong** | The **selection** was never checked. The payment-line link is `related` to the payment's journal entry, so **every** line of that entry carries it; the withholding-tax compute stamps the tax on every such line; the filter therefore returns the **whole balanced entry**, whose `debit − credit` is **0.00**. The offset is **inert** — it neither nets nor compounds. Confirmed in deployed data: exactly zero in **4,943 of 4,945** payments. |
+| **How found** | **By an independent expert explicitly tasked to disprove the claim.** Verified immediately by this session against the core field definition and the custom compute. |
+| **Corrected finding** | The real defect is **repeated full withholding**: the amount is the whole bill's withholding and is never prorated, so each partial payment withholds the full amount again. Two halves of a 100,000 bill at 3% yield **6,000**, not 9,000. The error is **linear**, not geometric. The single-full-payment control case is correct. |
+| **Architecture impact** | The defect is real and serious in both readings, but the **mechanism, the magnitude and the fix are all different**. A remediation aimed at the sign would have changed an inert line and left the actual over-withholding untouched. |
+| **What this demonstrates** | I re-derived this finding in an earlier round and called it verified — and re-derivation confirmed only the half I had already looked at. **Re-deriving a claim from the same evidence is not independent verification; it repeats the original reading's blind spot.** Only a party told to *break* it looked at the filter. |
+| **Rule this establishes** | **For any claim of the form "this term has the wrong sign/value", first prove the term is non-zero.** A control that is inert is indistinguishable from a control that is wrong, unless you evaluate what it selects. |
+
+## `ERR-P01-13` — a finding derived from code that runs nowhere observable
+
+| Field | Content |
+|---|---|
+| **Original finding** | The withholding defect was presented against the custom v18-line copy in the declared path set, and its severity was amplified in this round by the observation that the module is *"installed in all three deployments"*. |
+| **Why wrong** | Installed **by name** is not installed **as that code**. The v16 deployment runs withholding version `16.0.1.0.1`, which matches **no copy in the declared path set**, and that deployed wizard — read in full — **contains no offset loop at all**. The v19-line copy has **never executed**: 0 of 7 payments in the two v19 databases carry a withholding tax. |
+| **How found** | **By an independent expert**, which compared the deployed module *version* against the path set rather than the module *name*. |
+| **Corrected finding** | The arithmetic is a statement about source in the declared path set. **No readable deployment is demonstrably running it.** Any deployment claim is class **B**. |
+| **Architecture impact** | Substantially reduces the *live* severity of the withholding findings while leaving the source defect intact as a design lesson. |
+| **Rule this establishes** | **Matching a module by name across a source tree and a deployment is not evidence that the deployment runs that source.** Compare the version, and where it matches nothing in the path set, say so — the code that is actually running has not been found. |
+
+## `ERR-P01-14` — the PND mapping conflict is real but neither mapping governs
+
+| Field | Content |
+|---|---|
+| **Original finding** | `CONTRA-P01-10`: two shipped copies map a corporate counterparty to **opposite** certificate forms, so at least one deployment misclassifies every certificate. |
+| **Refined by** | An independent expert: the conflict is confirmed and the **deployed owner is identifiable**, but **both mappings are contradicted by live data**. The v16 deployment shows corporate counterparties on **both** forms — 4,437 on one and 749 on the other — because the dominant creation route is a **wizard in which the operator picks the form**, bypassing the automatic mapping entirely. Neither mapping has demonstrably executed anywhere. |
+| **Corrected finding** | The code-level contradiction stands. Its **practical** consequence does not follow, because the field is set by hand on the dominant path. The classification question is therefore **an operator-behaviour question, not only a code question** — and that makes it materially harder, not easier. |
+| **Architecture impact** | A target design cannot fix this by choosing the correct mapping. It must decide **who** determines the form and prevent a free-text or free-choice override of a statutory classification. |
+| **Statutory position** | Unchanged: **`HOLD — STATUTORY EVIDENCE REQUIRED`, routed to P07.** P01 does not decide which form is correct. |
+
+---
+
+## `ERR-P01-15` — the most relevant database was excluded by a tooling assumption
+
+| Field | Content |
+|---|---|
+| **Original finding** | The fourth database dump was recorded — in round 2 and again throughout this round — as *"not readable by the available tooling"* and classified **C — not searched**. Every population and installed-status statement in this package was bounded to the other three. |
+| **Original evidence** | `pg_restore -l` failed on it. True, and correctly reported. |
+| **Why wrong** | The failure was a **version mismatch, not an unreadable file**: the dump is a newer archive format than the restore binary that was invoked. **A newer binary was already installed on the same machine**, in a sibling directory to the one used. The scope statement said "the available tooling" and I never checked what was available. |
+| **How found** | **By an independent expert**, which tried the newer binary. Verified immediately by this session: the database opens and is a generation-19 deployment with **453 installed modules**, nearly double any other in the estate. |
+| **New evidence** | Adding it moves the installed population from **18 of 65 to 37 of 65**. **Nineteen members are installed only there.** |
+| **Corrected findings** | Three published claims are **false**: three-way matching, the subcontracting family and the base requisition family are each *installed* — in the database that was excluded. The "47 source-only members" count becomes 28. |
+| **Architecture impact** | **Large.** Three-way match and subcontracting were both explicitly required by the session directive, and both were reported as installed nowhere. `D4` is also, per the same expert, the only database with any period lock set — so it is the single most relevant database to P01's central questions, and it was the one left out. |
+| **What makes this the worst of the round** | The other errors were wrong inferences from evidence I had. This one is an **entire evidence source I declared unavailable without testing what was available.** The scope statement was honest and the scope was wrong — which is exactly the failure mode the programme's negative-claim standard exists to prevent, appearing one level up: not a claim bounded too widely, but a **boundary drawn too narrowly and then trusted**. |
+| **Rule this establishes** | **"Unavailable" is a claim and needs evidence like any other.** Before recording a source as unreachable, enumerate the tools actually present, not the one that failed. The programme already had this rule for *searches* — *an empty result means unsearched, never absent*. It now has it for **instruments**. |

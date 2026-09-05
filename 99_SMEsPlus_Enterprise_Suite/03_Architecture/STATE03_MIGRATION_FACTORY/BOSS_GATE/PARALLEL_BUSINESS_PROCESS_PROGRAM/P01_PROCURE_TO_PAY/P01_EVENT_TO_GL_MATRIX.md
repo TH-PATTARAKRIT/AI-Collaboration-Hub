@@ -105,3 +105,51 @@ down payments (`BE-P01-14`), subcontract purchase, and intercompany purchase. Ea
 **class C — not yet searched by this document**; several were assigned to experts and are
 reported in `P01_AAS03_EXPERT_CHALLENGE.md`. An empty cell in this matrix means unsearched,
 never absent.
+
+---
+
+# ADDENDUM — DEPLOYED REALITY (continuation round, 2026-09-05)
+
+The five patterns above are **source-derived and v18-shaped**. This addendum states what the
+deployed systems actually do. Nothing above is withdrawn; it is bounded.
+
+## A.1 The deployed v19 pattern — the one the matrix did not have
+
+| # | Event | Debit | Credit | Source |
+|---|---|---|---|---|
+| 1 | Order approved | — | — | SRC |
+| 2 | **Goods received** | **— nothing —** | **— nothing —** | **DB: the entry gate requires a valuation account on the source or destination location; that account is set on 0 of 525 locations** |
+| 3 | Vendor bill posted | Expense or inventory account | Accounts Payable | SRC |
+| 4 | Clearing matched | **does not arise — nothing was raised at receipt** | | |
+| 5 | Price difference | **does not arise** | | the v18 replay engine is absent from the corresponding v19 file |
+| 6 | Payment | Accounts Payable | Outstanding Payments | SRC, conditional as before |
+
+**A sixth pattern therefore exists and it is the one in production on the v19 line: the receipt
+has no ledger effect at all, and the entire economic effect of a purchase appears at the bill.**
+
+## A.2 Why, stated as cause rather than symptom
+
+| Configuration | Deployed v19 value |
+|---|---|
+| Category valuation account | **set on 0 of 37** |
+| Category valuation journal | **set on 0 of 37** |
+| Location valuation account | **set on 0 of 525** |
+| Account-level stock-variation account | **set on 0 of 544** |
+| Category valuation **policy** | **`real_time` on 27 of 37** (28 of 37 in the second database) |
+
+Perpetual valuation is declared and no posting destination exists. Classification:
+**FACT VERIFIED**, class **A** within those two databases.
+
+## A.3 And the failure is silent
+
+v18 **raises a blocking error** at the receipt when these accounts are missing. v19 **creates
+nothing and says nothing**. That change of failure behaviour is the reason the misconfiguration
+survived into production data: 14,441 movements, 3,680 of them valued, none accounted for.
+
+## A.4 Scope of this addendum
+
+Applies to the two readable v19 deployments only. The **v16** deployment continues to run a
+receipt-time pattern — 57,863 valuation records carry a journal-entry link there, firing on
+6,530 of 13,214 receipts (49.4%). **There is no readable deployed v18 database in this estate**
+(`ERR-P01-09`), so the v18 source pattern in the body of this matrix has no deployed
+counterpart anywhere. Any other deployment is **class C — not searched**.

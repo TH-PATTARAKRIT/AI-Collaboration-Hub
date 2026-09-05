@@ -179,3 +179,123 @@ impact. Nothing here is settled by averaging or by counting opinions.
 
 **Eleven contradictions. Zero closed by this session.** The count rose during the session; it
 did not converge.
+
+---
+
+# ADDENDUM — CONTINUATION ROUND (2026-09-05)
+
+## Status changes to existing contradictions
+
+| ID | Change |
+|---|---|
+| `CONTRA-P01-03` and `CONTRA-P01-07` (the two generations disagree; the deployed schema disagrees with the analysed source) | **RESTATED, and made more precise.** The disagreement is real but it is **not** that v19 lacks a mechanism — it has one, differently shaped, and the deployments have not configured it. Both remain `UNRESOLVED — BOSS DECISION REQUIRED` under `DEP-P01-01`, now with the mechanism identified. See `ERR-P01-07` |
+| `CONTRA-P01-04` (asset classification and clearing compete for one field) | **CORROBORATED INDEPENDENTLY.** P04 reached the same gap from the asset side and states plainly that *nobody* owns the capital-versus-expense decision. Still `UNRESOLVED — RUNTIME EVIDENCE REQUIRED` for the collision itself |
+| `CONTRA-P01-05` (mutation authority vs financial scope) | **SHARPENED for v19** — the counter-account now lives on the location, so the decisive scope question changes. See the scope matrix addendum |
+| `CONTRA-P01-09` (withholding compounds) | **UNDER INDEPENDENT DISPROOF CHALLENGE this round.** Additionally re-scoped: the module carrying the defect is **installed in all three deployments**; the second withholding module is installed in none |
+| `CONTRA-P01-10` (two copies map to opposite statutory forms) | **DEEPENED.** P07 reports that vendor legal personality **must be a typed attribute, not a boolean company flag** — and both copies key their choice off exactly that boolean. So the two implementations disagree about a mapping whose *input* is the wrong instrument. Remains unresolved on both the deployment and statutory axes |
+| `CONTRA-P01-01` / `CONTRA-P01-06` (correction by deletion; outcome depends on a non-accounting record) | **UNDER INDEPENDENT DISPROOF CHALLENGE this round** |
+
+## New contradictions
+
+### `CONTRA-P01-12` — a configuration that contradicts itself
+
+| | |
+|---|---|
+| **Claim A** | The deployed v19 systems run **perpetual** inventory valuation — declared on 27 of 37 item categories in one database and 28 of 37 in the other |
+| **Claim B** | Those same systems have **no account anywhere to post inventory value to** — category valuation account 0/37, category valuation journal 0/37, location valuation account 0/525, account-level variation account 0/544 |
+| **Evidence** | Deployed configuration, both databases, read directly |
+| **Kind** | **Configuration, and internally contradictory** — not a version difference and not a business choice, because a periodic policy would have been expressed as the periodic mode |
+| **Disposition** | **CONTRADICTED — the deployed configuration cannot do what it declares.** Whether it is incomplete or deliberately inert is `U-02`, `HOLD — RUNTIME EVIDENCE REQUIRED` |
+| **Downstream impact** | Everything received is invisible to the ledger until billed. Period comparatives reflect billing latency rather than activity. Routed to **P08** |
+
+### `CONTRA-P01-13` — a refusal that became a silence
+
+| | |
+|---|---|
+| **Claim A** | Missing valuation accounts are a configuration error the system refuses to proceed on — v18 raises a blocking error naming the missing account at the moment of receipt |
+| **Claim B** | The same misconfiguration in v19 **creates nothing and reports nothing** — the entry gate simply evaluates false |
+| **Evidence** | Symmetric source comparison of the two generations' receipt paths |
+| **Kind** | **Version — a regression in failure behaviour** |
+| **Disposition** | **CONTRADICTED — rejected as a transfer candidate.** A missing posting destination must never be a silent no-op |
+| **Downstream impact** | This is the mechanism by which `CONTRA-P01-12` survived into production data. It is the clearest single "do not inherit" in the package |
+
+### `CONTRA-P01-14` — one capability, two installed copies, different behaviour
+
+| | |
+|---|---|
+| **Claim A / B** | The vendor-advance capability offers a "regular bill" creation mode and defaults to it — **versus** — that mode is commented out and the default is the percentage mode |
+| **Evidence** | The two shipped copies, symmetric file comparison; the module is **installed in all three deployments** |
+| **Kind** | **Deployment-specific** |
+| **Disposition** | **UNRESOLVED — `DEP-P01-01`.** Which copy each deployment runs is unknown |
+| **Downstream impact** | The same business capability behaves differently depending on which deployment a user is in — a second instance of the pattern already recorded for the withholding-certificate module |
+
+---
+
+## Revised count
+
+| Disposition | Count |
+|---|---|
+| CONTRADICTED — rejected as transfer candidate | **6** (`-01`, `-06`, `-08`, `-11`, `-13`, and `-12` as a configuration contradiction) |
+| CONTRADICTED — implementation does not match stated intent | 1 (`-09`, pending challenge) |
+| DESIGN DECISION REQUIRED AT FINAL GATE | 1 (`-02`, now jointly escalated with P10) |
+| UNRESOLVED — BOSS DECISION REQUIRED | 3 (`-03`, `-07`, `-14`) |
+| UNRESOLVED — RUNTIME EVIDENCE REQUIRED | 1 (`-04`, now peer-corroborated) |
+| UNRESOLVED — statutory and deployment axes | 1 (`-10`, deepened by P07) |
+| SUPPORTED INTERPRETATION, authority open | 1 (`-05`, sharpened) |
+
+**Fourteen contradictions. Zero closed by this round.** Three were added, six were materially
+sharpened, and two are under active disproof challenge. **The count has risen in every round of
+P01** — that is the honest convergence signal, and it is reported rather than smoothed.
+
+---
+
+# ADDENDUM 2 — WITHDRAWALS AND RESTATEMENTS AFTER THE EXPERT DISPROOF ROUND
+
+## `CONTRA-P01-12` — **WITHDRAWN AS STATED, RESTATED**
+
+**As stated:** *"The deployed v19 systems declare perpetual valuation and wire no accounts to
+receive it — internally contradictory."*
+
+**Why withdrawn:** v19's perpetual option is labelled, in the product's own configuration,
+**"Perpetual (at invoicing)"**, and on a purchase document a storable perpetual product has its
+bill-line account set to the stock valuation account. **v19 recognises inventory at the bill by
+design.** No receipt-time entry is expected, so the declaration and the absent receipt-side
+posting are not in contradiction. The contradiction I recorded was between the vendor's design
+and my model of it. Found by an independent expert tasked to disprove the claim; verified
+directly. `ERR-P01-10`.
+
+**Restated as `CONTRA-P01-12R`:**
+
+| | |
+|---|---|
+| **Claim A** | The v19 deployments declare perpetual (at-invoicing) inventory valuation on 27–28 of 37 categories |
+| **Claim B** | No valuation account is resolvable anywhere in those deployments — category 0/37, company stock journal 0/44, location 0/525, account-level variation 0/544 — and the inventory closing period is `manual` on 87 of 88 company rows |
+| **Consequence** | **Inventory value reaches the general ledger by no route at all**: not at receipt (removed by design), not at invoicing (no account resolves), not periodically (closing disabled) |
+| **Kind** | **Configuration** — incomplete against the design, not contradictory within itself |
+| **Disposition** | **CONTRADICTED — the deployed configuration cannot execute the policy it declares.** Whether that is incomplete setup or deliberate inertness is `U-02`, `HOLD — RUNTIME EVIDENCE REQUIRED` |
+| **Credit** | The larger framing — *no route at all* — is the independent expert's, not this session's |
+
+## `CONTRA-P01-13` — **RETAINED, and its scope corrected**
+
+The regression in failure behaviour stands: v16/v18 raise a blocking error when valuation
+accounts are missing; v19 creates nothing and reports nothing. What changes is the reading of
+*why it matters*: it is not what caused a misconfiguration to survive — it is what allows a
+**deliberate design change plus an incomplete configuration** to combine into total silence.
+
+## `CONTRA-P01-15` — **NEW: the analysed generation has no deployed representative**
+
+| | |
+|---|---|
+| **Claim A** | P01's source analysis targets v18, and the estate contains a deployed v18 database against which to check it |
+| **Claim B** | **It does not.** The database labelled v18 throughout this programme is **generation 16.0** — its core module versions all read `16.0.x`. `D1` and `D2` are 19.0 |
+| **Evidence** | The module registry of each database, read directly. Found by an independent expert; verified by this session |
+| **Kind** | **Evidence-base defect**, not a system defect |
+| **Disposition** | **CONTRADICTED — Claim A is false** |
+| **Downstream impact** | **Severe and structural.** Every v18 source finding in this package is unvalidated against any running system in this estate, and the deployed comparison this package draws spans **v16 → v19**, three major versions, not one. It also means `DEP-P01-01` — which generation is the target — cannot be answered by pointing at a deployment, because the candidate generation has none here |
+
+---
+
+## Count after this addendum
+
+**Sixteen contradictions. One withdrawn and restated. Zero closed.** Two new. The count has
+risen in every P01 round.
