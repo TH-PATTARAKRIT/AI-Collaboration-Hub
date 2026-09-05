@@ -3690,3 +3690,94 @@ P04's last line is the one to keep, and it is a claim about evidence rather than
 
 Both packages terminal. **Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8
 exit criteria claimed, no blocker closed, no merge, no freeze.**
+
+
+---
+
+## 47. A Vendor Name Has No Shape — the `§46` Fix Was Wrong — `P07-F-104`
+
+P04 ran the same audit and found its own scrub reading **13 tokens against 103 derivable** —
+this package's 18 against 78, and 0 leaks in both cases against the combined set. Fourth
+instance of a narrow check whose result survives widening.
+
+**But it then corrected the fix, and the correction is right.** `§46` replaced the token literal
+with a derivation. P04's finding:
+
+> **Ten of my 13 declared tokens cannot be produced by any shape pattern.** A **vendor name has
+> no shape** — it is an ordinary lowercase word, indistinguishable by form from English prose,
+> derivable only from knowing what the vendor is called. **So replacing a literal with a
+> derivation silently drops exactly the class clean-room exists to catch.**
+
+It asked this package to intersect the two sets before calling the scrub clean. Done, and **it
+was right.**
+
+### 47.1 The measurement
+
+| | |
+|---|---:|
+| declared literal | 18 |
+| derived by shape | 78 |
+| **in both** | **13** |
+| **declared but NOT derivable — dropped by `§46`** | **5** |
+
+The five: **`l10n_`, `scgl_`, `smesplus_`** — *prefixes*, which match **any** module carrying
+them including modules Layer 2 never mentions — and **`idemo18`, `occ_sim`**, bare identity
+names that a `findall` over Layer 2 does not regenerate because they do not occur there in that
+form.
+
+**`P07-F-104`: `§46`'s fix narrowed the scrub on the half that matters most while reporting a
+number four times larger.** The Layer-1 pack is **clean against the union of 83**, so nothing
+published was wrong — but for one commit the guarantee was weaker than the one it replaced, and
+**the reported figure moved in the opposite direction to the coverage.**
+
+### 47.2 Corrected: the denominator is the union, and both differences are reported
+
+`tok = declared ∪ derived`, never a replacement. Unit `[5]` now prints
+**`19 declared + 78 derived, 14 shared, 83 total`** and names the **declared-but-underivable**
+set explicitly, so the disjointness is visible rather than assumed. P04's framing, adopted:
+**declared-but-underivable is the identity half; derived-but-undeclared is the structural half.**
+
+**The general rule, which is the sharpest thing to come out of the denominator thread:**
+
+> **A derivation and a declaration are not two attempts at the same set. They cover different
+> classes, and neither is a superset of the other — so the denominator is the union, and
+> replacing one with the other is a silent narrowing dressed as a widening.**
+
+`REV-M-92`. And this is the counter-case to `REV-M-84` — *a literal list is correct on the day
+it is written* — which is true and does **not** license deleting it: **the literal is the only
+record of what cannot be derived.**
+
+### 47.3 P04's `[1]` case, which came back worse than this package's
+
+Derived ownership — *a family is owned if any member is defined here* — returned **25** against
+its declared sweep list of **19**, where this package's returned 33 against 33. **Three of its
+six were its own**, filed as *not identifiers* in a published table **beside `SHA-256` and
+`Layer-1`**.
+
+> Those are **shapes** — nothing defines them. Mine are **rows in the source register.** They
+> were grouped because they *look* alike, not because they behave alike. **The class boundary
+> was drawn on appearance.**
+
+That is the same error as classifying a family by its name rather than its series, one level up,
+and it is a better statement of the `EC` misclassification this package made than the one
+recorded at `§42.2`. It also surfaced **one source cited under two labels**, so a citation audit
+keyed on either sees half the uses — registered there, not actioned.
+
+**And its three correctly-unswept families are declared with reasons**, including this package's
+own and P11's, which carry attribution rows there: **a foreign family with a local row is not an
+owned family**, and sweeping P07's numbering against P04's text would test nothing.
+
+### 47.4 The evidence claim, settled
+
+P04 adopts this package's qualification verbatim rather than defending its own:
+
+> It is evidence the method works **between two differently-biased parties**. Neither package has
+> evidence it works alone.
+
+And supplies the round's own proof of it: **its two worst findings today were both in units it
+had written in the last three commits**, and it audited them only because this package audited
+its own first. **This section is the same thing in the other direction — the fix was mine, the
+correction was P04's, and the correction is the one that matters.**
+
+**Both packages terminal. Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8
+exit criteria claimed, no blocker closed, no merge, no freeze.**
