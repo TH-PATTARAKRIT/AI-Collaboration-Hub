@@ -270,6 +270,46 @@ detectability requirement — *refuse, or leave an attributable trace* — belon
 **every** scope, not only at the tenant boundary. `P04-B-31`'s close condition is
 restated accordingly.
 
+**Accepted by P11 and `T0-13` widened.** The boundary now reads that an
+accounting fact may not be silently mutated **at any scope**, with the tenant
+crossing as the aggravated case rather than the defining one. P11 widened rather
+than opening a sibling, on the reasoning that the boundary asserts **one
+property** and the scopes differ in **blast radius, not in the property** — a
+sibling would split one invariant into two that must be kept in step. P04 adopts
+that reasoning; it is better than the sibling P04 offered as the alternative.
+
+**Two consequences P04 carries:**
+
+1. **`T0-13` is no longer contingent on the Boss's tenant ruling.** The defect is
+   reachable today inside one company, so the boundary stands whatever `D-12`
+   decides.
+2. **`P04-B-31` moves from prospective risk to PRESENT DEFECT.** Re-framed in
+   `10` §6 and in the ranking at §8.
+
+**Independent corroboration, from a source that is not P04's.** P11 reports that
+its own `P11_UNIFIED_ACCOUNTING_EVENT_REGISTER` §2 already recorded **four
+accounting events invisible at the moment they occur, two of them single-company
+re-datings** — one noting that *"the posted record carries no trace that its date
+was moved"*, another recording an event that *fires with no lock configured* and
+is not visible. **Neither needs a tenant.** Both predate `T0-13` by four
+documents.
+
+> **P04-F-70.** The single-company silent-mutation defect is recorded **twice, in
+> two packages, from two independent evidence bases** — P04's from the reference
+> product's own test, P11's from its accounting-event register — and **neither
+> session connected it to the boundary being drafted about it**.
+> Class: **FACT VERIFIED** for P04's half; **PEER-PUBLISHED, not independently
+> verified by P04**, for P11's half. P04 has not read that register and does not
+> restate P11's records as its own.
+
+**The method note P11 derived from it is adopted by P04 as well**, because P04 is
+equally exposed to it:
+
+> When opening a tolerance-zero boundary — or any invariant — **re-derive its
+> scope from the register, never from the finding that prompted it.** A boundary
+> drafted while composing a specific case takes its scope from the case in front
+> of it, not from the evidence that already generalises it.
+
 #### 4.2.3 The expiry rule is now named
 
 P11 generalised `P04-B-44` into a standing position (`SCP-09`): a scope

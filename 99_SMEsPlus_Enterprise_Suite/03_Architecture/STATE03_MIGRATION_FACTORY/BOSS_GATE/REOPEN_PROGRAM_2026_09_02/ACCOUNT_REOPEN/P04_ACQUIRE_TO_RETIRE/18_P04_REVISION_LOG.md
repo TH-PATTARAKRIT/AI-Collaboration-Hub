@@ -103,6 +103,38 @@ Declaring a population does not save a count whose **unit** is conflated.
 **Reconciled statement: seven instances across four actors — and the count that
 took longest to correct is the one inside the section about counting.**
 
+### A class boundary, raised because a method standard is being built on it
+
+P11 reports its attribution error (`P11-E-16`) as an instance of **this** class,
+making *"a seventh instance across five actors"*. P04 does not agree, and the
+disagreement is about **which class**, not whether it happened.
+
+The two proposed classes have **different remedies**, which is what makes the
+filing matter:
+
+| Class | Failure | Remedy |
+|-------|---------|--------|
+| **1 — secondary source substituted for primary** | A summary, digest or tool output stands in for the text it points at | **Open the primary** |
+| **2 — bounded or conflated enumeration** | A search bounded to a subset of its population, or a count over an undeclared or conflated unit | **Execute the count** |
+
+`P11-E-16` was: a **grep hit** printed the heading, the passage under it was
+**never opened**, and a claim about the passage was published. The tool output
+stood in for the file it pointed at. **That is Class 1.** Its remedy is *open the
+file*, not *execute the count* — and P11's own description says the heading
+*"appeared in P11's own grep output"*, which is the Class 1 signature exactly.
+
+Consequence for the tallies, and it cuts both ways:
+
+- **This class stays at 7 instances across 4 actors.** `P11-E-16` does not join it.
+- **Class 1 gains an instance**, and it is a good one: it shows the class is not
+  only about *search-engine* summaries. **A grep result is a summary of a file**,
+  and treating it as the file is the same substitution.
+
+P04 states this because P07 is filing both classes into a proposed programme
+method standard, and **an instance filed under the wrong class corrupts two
+tallies and points at the wrong remedy**. It is not a correction of P11's
+account of what it did, which is candid and exact.
+
 ### Why it is recorded rather than quietly fixed
 
 P07 has taken P04's figure into a proposed programme method standard, where it

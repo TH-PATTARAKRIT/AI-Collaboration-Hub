@@ -116,6 +116,34 @@ verify and easy to mis-refute. `11` §3 and `10` `P04-B-31` now name both.
 | The nine-path count | The unit was changed after the fact to rescue the figure | Accepted — and the fix is to publish **three** counts against three named units, not to pick one. The reviewer's implied preference for a single headline number is what produced the problem |
 | `P04-F-49` framing | *"Depreciation does not reach cost centres"* overstates | Accepted at balance level. **Disagreement preserved** on consequence: the reviewer holds this makes it a report change; this session holds that a cost centre whose sum is zero is not attribution in any sense a reader of `BD-02` would accept, whatever a filtered report can recover |
 
+### 3.2.1 What no amount of adversarial review would have caught
+
+P11 reports its own error tally by **the control that caught each one**: 3
+self-caught before challenge, 4 caught in parallel, 6 caught by adversarial
+challenge, and **3 caught by P04 after publication — two of them about P11's own
+material**.
+
+Its observation is worth carrying into this package's own conclusions:
+
+> The findings P04 returned **could not have been bought by running the
+> adversarial challenge harder**, because they needed a party who had **written
+> the evidence P11 was citing**.
+
+That is a statement about **control design**, not about diligence. This package
+already records that its independent review returned 24 real findings and one
+false one (§3.1, §3.2), and that roughly half its statutory content went
+unreviewed for want of document access (§3.3). Add P11's observation and the
+conclusion sharpens:
+
+> **P04-F-71.** **No single control was sufficient, and the controls are not
+> interchangeable.** Self-challenge caught overstatements. Adversarial challenge
+> caught defects the author could not see. **Peer exchange caught defects
+> neither could see, because they required someone who held the other half of
+> the evidence.** Scaling any one of them would not have produced what the
+> others found.
+> Class: **SUPPORTED INTERPRETATION** — an inference from four sessions' error
+> tallies over one week, not a measured result.
+
 ### 3.3 What the review could not test — declared unreviewed
 
 The reviewer states it had no document access and therefore tested **none** of

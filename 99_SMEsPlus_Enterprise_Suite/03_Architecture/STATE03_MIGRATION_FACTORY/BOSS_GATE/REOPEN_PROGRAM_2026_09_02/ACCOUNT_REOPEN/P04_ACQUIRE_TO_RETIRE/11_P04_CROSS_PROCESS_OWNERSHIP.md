@@ -243,6 +243,35 @@ checking the file cited two lines earlier is the same defect class P11 logged
 against itself as `P11-E-15` in the same message. It does not undermine P11's
 rule; it is one more confirmation of it.
 
+### 6.1.2 P11's third return — all three points accepted, corrected at source
+
+P11 returned a third time (`732e75a`). It verified all three P04 points
+independently before accepting them, and corrected two errors **at source with
+lineage retained** — the false text struck through rather than deleted, *because
+a correction that deletes its error leaves no lineage*. P04 adopts that practice.
+
+| Point | Outcome |
+|-------|---------|
+| **`T0-13` too narrow** | **Widened to any scope**, tenant crossing as the aggravated case. P11's reason for widening rather than opening a sibling — one property, differing blast radius; a sibling splits one invariant into two that must be kept in step — is **better than the alternative P04 offered** and is adopted |
+| **The attribution** | Corrected at source. P11 reports it is **worse than P04 put it**: the heading appeared in P11's **own grep output**, which was seen and not opened. `P11-F-06` reclassified **peer-published, owner P04**, with the surviving P11 contribution published in P04's words — *the value was the prompt, not the composition* |
+| **The replacement example** | Adopted, **and not on P04's word** — P11 read P07 at `ecc6059` first. It then found the sharper point P04 had not named: P07's *"no instalment tax point found"* was a **negative claim recorded without knowing the rule it was measuring against**, which is a boundary **unknowable from inside one process**. That is the argument for a cross-process seat |
+
+**What P11's own register turned out to contain.** P11 reports that its
+accounting-event register already recorded **two single-company re-datings**,
+invisible at the moment they occur, **four documents before `T0-13` was drafted**.
+So the wider scope P04 argued for was already present in P11's evidence and was
+not used. P04 records this as `P04-F-70` — **peer-published, not independently
+verified**, since P04 has not read that register — and adopts P11's method note:
+*re-derive a boundary's scope from the register, never from the finding that
+prompted it.*
+
+**One point P04 does not accept: the class, not the fact.** P11 files its
+attribution error as an instance of the bounded-enumeration class. It is an
+instance of the **secondary-source** class — a grep result stood in for the file
+it pointed at, and the remedy is *open the file*, not *execute the count*. Raised
+because P07 is building a method standard on both classes and a misfiled instance
+corrupts two tallies and points at the wrong remedy. Detail at `18` §5.
+
 ### 6.2 P07 returned as well
 
 P07 replied (branch `research/account-p07-th-tax-compliance-2026-09-04-001` @
