@@ -152,10 +152,11 @@ not define P11's architecture.
 
 - **No runtime execution.** Nothing has been executed in any of the five rounds. The seven priority
   edge cases remain `HOLD — RUNTIME WRITE AUTHORIZATION REQUIRED`.
-- **No statutory conclusion.** This deployment's withholding mechanism (`l10n_th 18.0.2.0`,
-  `account_withholding_tax`, `withholding_tax_cert*`, `account_payment.wt_tax_id`) is **different**
-  from the series-16 custom wizard P01 analysed. The series-16 withholding finding **does not
-  transfer**. Statutory correctness is **P07's**: `HOLD — STATUTORY EVIDENCE REQUIRED`.
+- **No statutory conclusion.** The deployed withholding mechanism is **four OCA/Ecosoft modules**,
+  not `l10n_th` — a P01 attribution corrected this run (`ERR-P01-33`). Whether P01's series-16
+  withholding finding concerns this same family at an earlier version is **NOT DECIDABLE** here,
+  and **no transfer is made**. Statutory correctness is **P07's**:
+  `HOLD — STATUTORY EVIDENCE REQUIRED`. See `P01_S18_WHT_DEPLOYMENT_REALITY.md`.
 - **No decision.** Whether periodic valuation is right for this business, and whether the unaccrued
   received-not-invoiced position is acceptable, are **Boss decisions**. They appear below as
   options, without a recommendation.

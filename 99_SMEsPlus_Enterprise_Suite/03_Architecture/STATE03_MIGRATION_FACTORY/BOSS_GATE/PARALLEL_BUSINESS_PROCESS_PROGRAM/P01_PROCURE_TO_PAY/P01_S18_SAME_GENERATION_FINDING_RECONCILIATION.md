@@ -36,7 +36,7 @@ document carries only the reclassification and its justification.
 | Goods-received clearing bridge exists | V18 source; **"no deployed representative anywhere"** | **CONFIGURED · NOT EXECUTED · POLICY-DEPENDENT** | it now has a deployed representative: `210300 Uninvoiced Receipts`, reconcilable, 171 of 504 (category, company) pairs — carrying **0** journal items |
 | Clearing account reconciled only if flagged | V18 source | **LATENT — CONFIG PRESENT, NOT REACHED** | `reconcile = true` on all four accounts; nothing posts, so nothing reconciles |
 | Price-difference replay engine | V18 source; **"no v18 deployment exists to check it against"** | **NOT REACHABLE — CONFIGURATION ABSENT AND POLICY CLOSED** | `property_account_creditor_price_difference_categ` is NULL on 126/126; `price_diff_value` is non-zero on 0 of 47,801 |
-| **Bill-line account redirected to the valuation account** | V19 source | **CONTRADICTED FOR SERIES 18 — VERSION-DEPENDENT** | the file carrying the override **does not exist** in the series-18 tree; deployed bill lines post to expense |
+| **Bill-line account redirected to a stock account** | V19 source | **CONFIGURATION-DEPENDENT — REACHABLE IN PRINCIPLE, NOT EXERCISED** | ~~*the file carrying the override does not exist in the series-18 tree*~~ — **that was my own error (`ERR-P01-30`): the mechanism is present in v18 at `account_move.py:264-279`.** It is inert because `valuation != 'real_time'`, not because it is absent — and `anglo_saxon_accounting` is **already true in company 1**. Deployed bill lines post to expense |
 | Period lock re-dates rather than refuses | V18/V19 source; V16 deployment | **NOT REACHABLE — NO LOCK CONFIGURED** | all five lock fields are NULL on all four companies; `po_lock = 'edit'` |
 | Correction deletes derived journal items | V18 source | **NOT REACHABLE — POLICY-DEPENDENT** | no `cogs` lines exist to delete under periodic valuation |
 | Cross-company auto-generation; guard cannot execute | V19 source + V19 deployment | **NOT INSTALLED — NOT REACHABLE** | `account_inter_company_rules` is not among the 361 installed modules |
@@ -48,21 +48,29 @@ document carries only the reclassification and its justification.
 
 ---
 
-## 2. THE ONE CONTRADICTION, STATED PLAINLY
+## 2. THERE IS NO CONTRADICTION — THE CONTRADICTION WAS MY OWN ERROR
 
-**"The vendor bill line posts straight to the valuation account."**
+The first version of this document reported one finding as **contradicted for series 18**:
+*"the vendor bill line posts straight to the valuation account"*, on the evidence that
+`stock_account/models/account_move_line.py` does not exist in the series-18 tree.
 
-That was read in the series-19 tree and, in the register, sat under a heading about how the
-generations differ. It is **false of series 18**, and the reason is structural rather than
-configurational: `stock_account/models/account_move_line.py` — the file that carries
-`_compute_account_id` — **does not exist in the series-18 tree at all.** The series-18
-`stock_account/models/` directory holds 15 files and none is that one.
+**The file does not exist. The behaviour does.** It is in `account_move.py`
+(`R1:stock_account/models/account_move.py:264-279`), and AAS-03 Expert C found it by searching for
+the behaviour rather than the file name. Verified here before adoption; logged as `ERR-P01-30`.
 
-The deployed records agree: 3,375 vendor bill product lines, largest accounts `510000 Cost of
-Revenue` in each company, **none** to a valuation or clearing account.
+**So no prior P01 finding is contradicted by this deployment.** What the deployment shows is a
+generation difference of a different kind — v18 redirects the bill line to the **input/clearing**
+account via `_eligible_for_cogs()`, v19 to the **valuation** account via an explicit
+`valuation == 'real_time'` test — and, in this deployment, a mechanism that is **inert by
+configuration rather than absent by design**. In company 1, `anglo_saxon_accounting` is already
+`true` and `accounts['stock_input']` already resolves to account 176 on **126 of 126** categories;
+only the valuation policy stands between the code and the clearing account.
 
-**The finding is not withdrawn. It is bound to series 19, where it was measured, and it may not be
-asserted of series 18.**
+**The count of contradicted findings in this run is therefore zero**, and the entry that produced
+it was an error in the search unit, not a difference in the software. That correction is more
+useful than the finding it replaces: it says the deployment is **one configuration value** from
+routing bill lines to the clearing account, where the first version implied it was structurally
+immune.
 
 ---
 
@@ -89,7 +97,7 @@ corrected estate.** That sweep is not complete and is recorded as an open action
 | Classification | Count |
 |---|---|
 | CONFIRMED SAME-GENERATION | 5 (2 of them STRENGTHENED) |
-| CONTRADICTED (for series 18) | 1 |
+| CONTRADICTED (for series 18) | **0** — the one entry was my own error, `ERR-P01-30` |
 | CONFIGURATION-DEPENDENT / POLICY-DEPENDENT | 3 |
 | NOT REACHABLE (policy, configuration or lock absent) | 3 |
 | NOT INSTALLED | 3 |

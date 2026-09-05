@@ -458,3 +458,59 @@ corrected finding, and the architecture impact.
 | **How found** | AAS-03 Expert A. **Verified independently**; the split reproduces exactly. |
 | **Corrected finding** | Reported as three populations, not one: receipt-backed **1,411 lines / ฿27,490,865.80**; operator-typed service quantities **169 lines / ฿1,538,601.86**; and over-received **18 lines / ฿1,669,526.29** flagged separately. |
 | **Rule this establishes** | **Before summing a quantity, test whether every row was produced by the same event.** `qty_received` is one column with two provenances — a goods receipt and a keystroke — and only one of them is a receipt. |
+
+## `ERR-P01-30` — a file name was searched where a behaviour was claimed, and a published finding was false
+
+| Field | Content |
+|---|---|
+| **Original finding** | *"**In series 18 that file does not exist.** `R1:stock_account/models/` contains 15 files … and **none is `account_move_line.py`**. **CLASSIFICATION: the bill-line account override is `VERSION-DEPENDENT` — a series-19 mechanism, `NOT REACHABLE` in series 18.**"* Published in four documents and counted as this run's one **contradicted** finding. |
+| **Original evidence** | A directory listing. It was accurate: no file of that name exists in the series-18 `stock_account/models/`. |
+| **Why wrong** | **The search unit was a file name; the claim unit was a behaviour.** The class is in `account_move.py`. `R1:stock_account/models/account_move.py:264-279` carries `AccountMoveLine._compute_account_id`, which redirects a purchase-document line to `accounts['stock_input']` when `_eligible_for_cogs()` and `company_id.anglo_saxon_accounting` hold, with `_eligible_for_cogs` returning `is_storable and valuation == 'real_time'`. |
+| **How found** | **AAS-03 Expert C**, searching for the behaviour rather than the file. Verified here before adoption by reading the source. |
+| **Corrected finding** | The mechanism **exists in series 18**. It is inert in this deployment because `valuation != 'real_time'`, **not** because it is absent. **CLASSIFICATION: CONFIGURATION-DEPENDENT — REACHABLE IN PRINCIPLE, NOT EXERCISED.** |
+| **What survives** | The observation: no vendor bill line posts to a valuation or clearing account. 3,375 product lines, largest accounts `510000 Cost of Revenue` in each company. |
+| **What does not survive** | *"v19 only"*, *"NOT REACHABLE"*, *"file absent in v18"*, and this run's count of **one contradicted finding** — which becomes **zero**. |
+| **And the corrected reading is sharper than the wrong one** | The first version implied the deployment is structurally immune to bill-line redirection. **It is not.** In company 1 `anglo_saxon_accounting` is **already true**, and `accounts['stock_input']` **already resolves to account 176 on 126 of 126 categories**. Two of three conditions are met; the third is one field value. |
+| **The real generation difference, which the wrong claim obscured** | v18 redirects to the **input/clearing** account via `_eligible_for_cogs()`; v19 splits the class into its own file and redirects to the **valuation** account via an explicit `valuation == 'real_time'` test. **The target account differs.** That is material, and it is not what was published. |
+| **Rule this establishes** | **Make the unit of the search the unit of the claim.** A directory is not a population (`ERR-P01-23`); a file name is not a behaviour (this one); a day is not a period (`ERR-P01-28`); a name pattern is not a membership (`ERR-P01-32`). |
+
+## `ERR-P01-31` — "no other trigger was found" was a stopped search published as a property of the world
+
+| Field | Content |
+|---|---|
+| **Original finding** | *"Reachability of the account under current configuration: **LATENT.** Would become live if valuation policy were changed to `real_time`; **no other trigger was found**."* |
+| **Original evidence** | An execution test over 40,353 journal items — correct, controlled, and answering a different question. **Zero observed rows is not zero possible writers.** |
+| **Why wrong** | Reachability is a property of **writers**, not of rows. Enumerating writers instead returns **four routes**, none needing a code change. |
+| **How found** | AAS-03 Expert C, under the assignment *"disprove that the clearing account is materially configured and reachable"*. Verified here before adoption. |
+| **Route 1 — the policy switch has no guard in company 1** | `_check_valuation_accounts` (`R1:stock_account/models/product.py:963-971`) refuses `real_time` unless input, output and valuation accounts all resolve. In company 1 all three resolve on **126 of 126** categories, so **the guard cannot refuse**. And `ProductCategory.write()` → `_svl_replenish_stock_am` (`:809-830`) posts **credit `stock_input`** in the stock journal. **One field write on one company-1 category credits account 176 in journal 40** for that category's on-hand value; company 1 holds ฿29,835,023.51 of `remaining_value`. *Unmeasured clause, stated: whether any user holds write access to that field in company 1 has not been measured. Until it is, this is a capability, not a live exposure.* |
+| **Route 2 — the accrual wizard** | `account/wizard/accrued_orders.py:44-52` domains the account to `liability_current`, which **contains 176**. Deployed: `ir_act_window` 433, bound to `purchase.order` (binding resolves through `ir_model_data`), **22 users** in `account.group_account_user`, **no default** for the account, and a non-empty input set (the 1,580 received-not-invoiced lines). |
+| **Route 3 — the MRP WIP wizard defaults to it** | `mrp_account/wizard/mrp_wip_accounting.py:70-78` falls through company overhead account (NULL on all four) and `property_stock_account_production_cost_id` (false/absent) to **`property_stock_account_input_categ_id`** → **176**, with the journal defaulted to **40**. `mrp` and `mrp_account` installed; **5,549 production orders**. **This route never consults `property_valuation`.** Needs one manual field for the debit side. |
+| **Route 4 — an armed cron** | `account_auto_transfer` installed, `ir_cron` 24 **active**, `account_transfer_model` **exists with zero rows**. One configuration record from being a live unattended writer against any account. |
+| **Routes 5–6** | `account.automatic.entry.wizard` "Change Account" (`ir.actions.server` 251) retargets journal items to **any** account; and xmlid-keyed import — `base_import` and `account_base_import` installed, with **181,540** `occ_mig` external IDs already present, **10,190 of them `account.move`**. |
+| **Corrected finding** | **The account is not unreachable.** It is unused, on four live paths. |
+| **What survives** | The execution test itself: 0 items on 176/62/100/138 and 0 in journals 16/24/32/40, now confirmed by three independent methods plus a synthetic injection control. |
+| **Rule this establishes** | **A reachability claim must enumerate writers, not observed rows.** And *"no other trigger was found"* is a statement about a search; publishing it as a statement about the system is the negative-claim error in its purest form. |
+
+## `ERR-P01-32` — the custom-module population was a name pattern, and the core path set was incomplete
+
+| Field | Content |
+|---|---|
+| **Original finding** | *"**16 installed custom modules.**"* Used as the denominator for every custom-module claim in this run, including the scoping of the policy proof's negatives. |
+| **Why wrong — two defects** | **(1) The population was selected by NAME** (`scgl_*` plus `purchase_request`), not by membership. Intersecting the 361 installed modules against the declared source roots: **66 are absent from `R1`, and 55 are absent from `R1 ∪ R2`.** **39 installed non-core modules were never enumerated.** **(2) `R1` is not the deployed core.** Eleven installed modules — `fleet`, `account_fleet`, `hr_fleet`, `documents_fleet`, `snailmail`, `construction`, `journal_entries_report` among them — live in `R2` (`addons_archive`, 962 directories). `R2` is in the declared path set but five rounds of P01 core citations were made against `R1` alone. |
+| **How found** | AAS-03 Expert C, under *"find another population-selection defect"*. Verified here before adoption: 798 / 962 directory counts, 66 / 55 / 16 module counts all reproduce. |
+| **What the 39 include** | **the entire Thai withholding-tax stack** (four OCA/Ecosoft modules — see `ERR-P01-33`); **`om_data_remove` 18.0.1.0.0, installed**, which peer **P06** records as deleting ledger data without authorisation — **live in this deployment too**, flagged to P06 and P11 rather than re-derived here; plus `account_payment_multi_deduction`, `hr_expense_petty_cash`, `full_summarize_bills`, `bi_print_journal_entries`, `journal_entries_report`, `print_voucher_request` and others that touch accounting objects. |
+| **Architecture impact** | **High.** Every negative source claim in this package is scoped by the unread set, and the correct size of that set is **55**, not 16. `ERR-P01-30` is a direct consequence of the second defect: an absence proved against `R1` alone. |
+| **A fifth surface no module census can reach** | `web_studio` 18.0.1.0 is installed with 341 xmlids, and `res_company` carries Studio fields `x_scgl_wip_control_enabled` (true on companies 3 and 4) and `x_scgl_project_wip_account_id` (accounts 705 / 706). **Studio customisations are data, not modules.** Inert today — companies 3 and 4 hold zero entries — and **not swept by this package at any pattern width.** |
+| **Rule this establishes** | **Enumerate a deployed population by membership, never by a name pattern.** A name pattern encodes a guess about how things are called; membership is a measurement. And **declare which roots constitute the deployed core, then prove it** — a root can be in the path set and still never be searched. |
+
+## `ERR-P01-33` — the withholding mechanism was attributed to the wrong module
+
+| Field | Content |
+|---|---|
+| **Original finding** | *"This deployment uses `l10n_th 18.0.2.0` with `account_withholding_tax`, `withholding_tax_cert*`, `account_payment.wt_tax_id`"* — handed to **P07** in that form. |
+| **Why wrong** | **`l10n_th` contains no withholding-tax code at all.** Across the 798 modules of `R1`, `withholding.tax.cert` and `account.withholding.tax` return **zero** hits. `l10n_th` is 17 files — chart of accounts, EMV QR, report layouts, bank and partner extensions. The inference ran from *"a Thai localisation module is installed and WHT tables exist"* to *"the localisation module supplies WHT"*. **Co-presence is not attribution.** |
+| **How found** | AAS-03 Expert C, resolving model ownership from `ir_model_data` rather than from module names. Verified here before adoption. |
+| **Corrected finding** | The mechanism belongs to **four OCA/Ecosoft modules**: `l10n_th_withholding_tax` 18.0.1.4, `l10n_th_withholding_tax_cert` 18.0.1.3, `l10n_th_withholding_tax_cert_form` 18.0.1.0.2, `l10n_th_withholding_tax_report` 18.0.1.0.1. `l10n_th_withholding_tax_multi` is **uninstalled**, so **one withholding rate per payment**. |
+| **And they are readable** | **All four have version-matching source inside the declared path set `R4`.** P01 could not see them because its custom-module population was the name pattern of `ERR-P01-32`. The mechanism is not opaque; it was never looked for. |
+| **What this changes for P07** | P01 handed P07 an opaque-localisation framing. The truth is a **known OCA stack with readable, version-matched source** — a materially easier statutory question. The corrected handoff is `P01_S18_WHT_DEPLOYMENT_REALITY.md`. |
+| **Rule this establishes** | **Resolve model ownership from the deployment's own metadata, never from module names.** `ir_model_data` on `ir.model` says which module owns a model; a module's name says only what someone called it. |

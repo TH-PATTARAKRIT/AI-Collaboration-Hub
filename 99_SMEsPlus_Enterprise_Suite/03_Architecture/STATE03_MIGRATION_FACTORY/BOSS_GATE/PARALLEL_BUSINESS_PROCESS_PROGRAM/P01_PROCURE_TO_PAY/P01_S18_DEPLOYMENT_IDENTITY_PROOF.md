@@ -220,7 +220,13 @@ static state.
 
 ## 7. LOCALIZATION AND CUSTOM MODULE POPULATION
 
-`l10n_th 18.0.2.0` installed. Sixteen custom modules installed:
+`l10n_th 18.0.2.0` installed — **which supplies no withholding-tax code**; see `ERR-P01-33`.
+
+**The non-core installed population is 55, not 16.** Sixteen modules match the name pattern
+`scgl_*` + `purchase_request`; **66 of the 361 installed modules are absent from `R1` and 55 are
+absent from `R1 ∪ R2`**. The 39 not listed below include the four OCA/Ecosoft withholding modules
+and `om_data_remove` 18.0.1.0.0. See `P01_POPULATION_SELECTION_METHOD_AUDIT.md §4A`
+(`ERR-P01-32`). The sixteen name-matched modules are:
 
 `purchase_request 18.0.1.10.0`, `scgl_account_coa_control 18.0.1.0.1`,
 `scgl_chatter_compact 18.0.1.1.0`, `scgl_custom_title_and_favicon 18.0.0.0.2`,

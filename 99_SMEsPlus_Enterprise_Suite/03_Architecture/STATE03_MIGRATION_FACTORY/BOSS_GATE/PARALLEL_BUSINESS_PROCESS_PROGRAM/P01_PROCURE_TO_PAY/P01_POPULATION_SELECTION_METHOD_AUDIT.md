@@ -122,6 +122,92 @@ subject.**
 
 ---
 
+## 4A. INSTANCE 4 — THE CUSTOM-MODULE POPULATION WAS NAME-SCOPED, AND THE CORE PATH SET IS INCOMPLETE (NEW)
+
+> **`ERR-P01-32`.** Found by AAS-03 Expert C under the assignment *"find another
+> population-selection defect"*. Verified here before adoption.
+
+**Two defects, one enumeration.**
+
+### 4A.1 The custom-module population was selected by NAME, not by membership
+
+§4 above enumerates **16** installed custom modules. That 16 is the output of a **name pattern** —
+`scgl_*` plus `purchase_request`. It is not the set of installed modules that are not core.
+
+The membership test — intersect the 361 installed modules against the declared source roots —
+gives a different answer:
+
+| Test | Result |
+|---|---|
+| Installed modules | **361** |
+| Not present in `R1` (`.../odoo/addons`, 798 directories) | **66** |
+| Not present in `R1 ∪ R2` (`… ∪ .../odoo/addons_archive`, 962 directories) | **55** |
+| The population §4 actually enumerated | **16** |
+
+**39 installed non-core modules were never enumerated.** Among them:
+
+- **the entire Thai withholding-tax stack** — `l10n_th_withholding_tax` 18.0.1.4,
+  `l10n_th_withholding_tax_cert` 18.0.1.3, `l10n_th_withholding_tax_cert_form` 18.0.1.0.2,
+  `l10n_th_withholding_tax_report` 18.0.1.0.1 (all Ecosoft / OCA). See §4A.3 — this changes a
+  published P01 attribution.
+- **`om_data_remove` 18.0.1.0.0 — installed.** Peer process **P06** recorded this module as
+  deleting ledger data without authorisation. **It is live in this deployment too.** Not analysed
+  here; P06 owns it, and it is flagged to P06 and P11 rather than re-derived.
+- `account_payment_multi_deduction`, `hr_expense_petty_cash` (both Ecosoft/OCA),
+  `account_invoice_fixed_discount`, `bi_print_journal_entries`, `journal_entries_report`,
+  `full_summarize_bills`, `print_voucher_request`, `date_range`, `report_xlsx`,
+  `stock_card_report`, `construction`, `equipment_sequence`, `product_stock_equipment`,
+  `inherit_inventory`, `inherit_sales`, `delivery_cement_truck`, `hr_payroll_other_input`,
+  `invoice_promptpay`, `l10n_th_partner`, `l10n_th_amount_to_text`, `base_location` and others.
+
+**Every negative source claim in this package inherits that gap.** `P01_S18_PERIODIC_PERPETUAL_POLICY_PROOF.md §12`
+already scopes its negatives to *"method-level override unverified"*; the correct denominator for
+that scope is **55 modules, not 16**.
+
+### 4A.2 `R1` is not the deployed core — a second root was never declared
+
+**66 installed modules are absent from `R1`; only 55 are absent from `R1 ∪ R2`.** The eleven in the
+gap — including `fleet`, `account_fleet`, `hr_fleet`, `documents_fleet`, `snailmail`,
+`construction`, `journal_entries_report` — live in `.../odoo/addons_archive` (**962 directories**).
+
+`R2` **is** in P01's declared path set, described as *"modules present in the build but outside the
+active addons root"*. But every core citation in five rounds of P01 has been made against `R1`
+alone, on the working assumption that `R1` is the core. **For this deployment it is not.** The
+deployed core is `R1 ∪ R2`, and any absence proved against `R1` alone is a narrower claim than it
+appears.
+
+*This is how `ERR-P01-30` happened.* The bill-line override was declared absent from series 18 on
+the strength of a **file name** missing from one directory listing. Two scoping errors of the same
+family — one about which root, one about which unit — produced a published falsehood.
+
+### 4A.3 A published attribution that this correction overturns
+
+P01 has recorded the deployment's withholding mechanism as belonging to `l10n_th 18.0.2.0`.
+**`l10n_th` contains no withholding-tax code at all.** Across the 798 modules of `R1`, a search for
+`withholding.tax.cert` and `account.withholding.tax` returns **zero** hits; `l10n_th` is a
+chart-of-accounts, EMV QR and report-layout module (17 files, author *Almacom*). The mechanism
+belongs to the **four OCA/Ecosoft modules named in §4A.1**, resolved from `ir_model_data`
+ownership of `ir.model` records — and all four have **version-matching source inside `R4`**, which
+§4 could not see because §4's population was the 16-module name pattern.
+
+| Field | Value |
+|---|---|
+| Failure mode | **M6** (declared set never intersected with the deployed set), plus a name-scoped population — the same family as `ERR-P01-23` and `ERR-P01-25` |
+| Affected | every P01 statement about the deployment's custom-module surface, and the withholding-mechanism attribution |
+| Materiality | **High.** The unenumerated 39 include the WHT stack and a module a peer records as deleting ledger data |
+| Status | **CORRECTED as to the denominator (55) and the WHT attribution.** The 39 are **not** analysed in this run; recorded as an open action |
+
+### 4A.4 And a customization surface no module list can show
+
+`web_studio` 18.0.1.0 is **installed**, with 341 `web_studio` xmlids, and `res_company` carries
+Studio fields `x_scgl_wip_control_enabled` (true on companies 3 and 4) and
+`x_scgl_project_wip_account_id` (accounts 705 / 706). **Studio customisations are data, not
+modules**, so no module census — at any pattern width — can enumerate them. They are inert today
+because companies 3 and 4 hold zero journal entries. **This is a fifth surface, and this package
+has not swept it.**
+
+---
+
 ## 5. WHAT THIS AUDIT DID *NOT* FIND
 
 Stated so the audit is not read as wider than it is.
@@ -131,13 +217,13 @@ Stated so the audit is not read as wider than it is.
 | **M4** — version accepted from a label | Not found in this run. Every version here is read from `ir_module_module.latest_version` or from a `__manifest__.py`, never from a directory or file name. The archive name `idemo18_uat` is explicitly excluded as evidence |
 | **M5** — identity on an unstable key | Not found in this run. Database identity is keyed on `database.uuid`; module identity on name **and** version |
 | **M3** — first-found selection | Not found in this run; but see §3 — an incomplete census cannot rule out a better artefact existing elsewhere |
-| **M7** — single pattern width | **Partially open.** The 16-module sweep was run at one width. AAS-03 Expert D was assigned to re-run key enumerations at a second width and reconcile |
+| **M7** — single pattern width | **FOUND — §4A.** The 16-module sweep was run at one width and one *kind* of predicate (a name pattern). Re-run as a **membership** test against the declared roots it returns **55**, not 16 |
 
 ---
 
 ## 6. THE DURABLE LESSON
 
-Three instances now, all the same shape:
+**Five** instances now, all the same shape:
 
 > The reasoning over what was read was sound. **What was read was the wrong set.**
 
@@ -151,9 +237,15 @@ Operationally, before any population-dependent claim:
 
 1. Scope by **pattern**, never by directory.
 2. Run the enumeration at **two widths** and reconcile — agreement is evidence, disagreement is a finding.
-3. **Intersect the declared set with the deployed set**, in both directions.
+3. **Intersect the declared set with the deployed set**, in both directions — and intersect by
+   **membership**, not by a name pattern. A name pattern is a guess about how things are called;
+   membership is a measurement.
 4. Resolve every artefact the session's own notes already name.
 5. Treat a stated exclusion reason as a **claim requiring authority**, not as authority.
+6. **Make the unit of the search the unit of the claim.** A directory is not a population
+   (`ERR-P01-23`); a file name is not a behaviour (`ERR-P01-30`); a day is not a period
+   (`ERR-P01-28`); a name pattern is not a membership (`ERR-P01-32`). **Four of this programme's
+   errors are one error.**
 
 Carried to memory as the standing method rule; cross-referenced to the programme's
 denominator-completeness and evidence-location standards.

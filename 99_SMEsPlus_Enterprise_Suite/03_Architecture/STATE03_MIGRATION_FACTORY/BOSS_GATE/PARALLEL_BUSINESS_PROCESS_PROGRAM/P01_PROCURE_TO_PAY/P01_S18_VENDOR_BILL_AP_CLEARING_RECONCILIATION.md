@@ -151,11 +151,14 @@ routine scoped to the payable account type will not see them.
 
 ## 8. INPUT VAT
 
-1,635 tax lines on vendor bills, all on `asset_current` accounts. `l10n_th 18.0.2.0` is installed.
-Withholding-tax structures exist in the schema (`account_withholding_tax`, `withholding_tax_cert`,
-`withholding_tax_cert_line`, `withholding_tax_report`, and `account_payment.wt_tax_id` /
-`wt_cert_cancel`). Their deployed exercise is examined by AAS-03 Expert C and reported in
-`P01_S18_AAS03_FRESH_CHALLENGE.md`.
+1,635 tax lines on vendor bills, all on `asset_current` accounts.
+
+Withholding tax is reported separately and in full in **`P01_S18_WHT_DEPLOYMENT_REALITY.md`**. In
+short: the mechanism is **four OCA/Ecosoft modules**, not `l10n_th` (a P01 attribution corrected
+this run, `ERR-P01-33`); the certificate register holds 332 bulk-loaded rows; **0 of 3,508 payments
+carry `wt_tax_id`**, so the payment-time application layer has never run; and withholding reaches
+the ledger by a different route — 358 items on generic `232000` accounts, while the PND-keyed
+liability accounts hold **zero** items in all four companies.
 
 **No statutory conclusion is drawn here.** Thai VAT and withholding-tax statutory questions belong
 to **P07**. Any conclusion that would require statutory authority is recorded as

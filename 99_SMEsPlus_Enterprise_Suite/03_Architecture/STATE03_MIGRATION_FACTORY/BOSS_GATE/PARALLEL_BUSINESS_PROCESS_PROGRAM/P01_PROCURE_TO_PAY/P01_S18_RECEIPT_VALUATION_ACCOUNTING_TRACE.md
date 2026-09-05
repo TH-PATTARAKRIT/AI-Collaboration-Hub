@@ -72,35 +72,70 @@ nothing was supposed to.
 
 ---
 
-## 4. STEP 9 IS A GENERATION DIFFERENCE, NOT A CONFIGURATION DIFFERENCE
+## 4. STEP 9 IS A CONFIGURATION DIFFERENCE, NOT A GENERATION DIFFERENCE — `ERR-P01-30`
 
-P01 previously recorded that the vendor bill line is redirected to the stock valuation account.
-That was read in the series-19 tree at `R3:stock_account/models/account_move_line.py:13-24`:
+> **The first published version of this section was wrong, and wrong in a way that mattered.**
+> It said the bill-line override to the stock account is *"a series-19 mechanism, NOT REACHABLE in
+> series 18"*. **The mechanism exists in series 18.** Found by AAS-03 Expert C; verified here
+> before adoption.
+
+**How the error was made.** The search unit was a **file name**. The series-19 tree carries the
+behaviour in `stock_account/models/account_move_line.py`; the series-18 `stock_account/models/`
+directory has no file of that name, and that was read as the behaviour being absent. **The class
+is in `account_move.py`.**
+
+`R1:stock_account/models/account_move.py:264-279`, verbatim:
 
 ```
-def _compute_account_id(self):
-    super()._compute_account_id()
-    for line in self:
-        if not line.move_id.is_purchase_document(): continue
-        if not line._eligible_for_stock_account(): continue
-        ...
-        if line.product_id.valuation == 'real_time' and accounts['stock_valuation']:
-            line.account_id = accounts['stock_valuation']
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
+    ...
+    def _compute_account_id(self):
+        super()._compute_account_id()
+        input_lines = self.filtered(lambda line: (
+            line._eligible_for_cogs()
+            and line.move_id.company_id.anglo_saxon_accounting
+            and line.move_id.is_purchase_document()
+        ))
+        for line in input_lines:
+            fiscal_position = line.move_id.fiscal_position_id
+            accounts = line.with_company(line.company_id).product_id.product_tmpl_id.get_product_accounts(fiscal_pos=fiscal_position)
+            if accounts['stock_input']:
+                line.account_id = accounts['stock_input']
+
+    def _eligible_for_cogs(self):
+        self.ensure_one()
+        return self.product_id.is_storable and self.product_id.valuation == 'real_time'
 ```
 
-**In series 18 that file does not exist.** `R1:stock_account/models/` contains 15 files
-(`__init__`, `account_chart_template`, `account_move`, `analytic_account`, `product`,
-`res_company`, `res_config_settings`, `stock_location`, `stock_lot`, `stock_move`,
-`stock_move_line`, `stock_picking`, `stock_quant`, `stock_valuation_layer`,
-`template_generic_coa`) and **none is `account_move_line.py`**. The series-19 directory contains
-17 files including `account_move_line.py`, `account_account.py`, `product_value.py` and
-`stock_picking_type.py`.
+**The conclusion survives; the cause is replaced.**
 
-**CLASSIFICATION: the bill-line account override is `VERSION-DEPENDENT` — a series-19 mechanism,
-`NOT REACHABLE` in series 18.** It is doubly unreachable here, since the v19 override is itself
-gated on `real_time`.
+| | First published | Corrected |
+|---|---|---|
+| No bill line posts to a clearing or valuation account | **correct** | **correct** |
+| Why | *the code does not exist in this generation* | **the code exists and is gated by two configuration values** |
+| Gate 1 — `anglo_saxon_accounting` | not considered | **already `true` in company 1** |
+| Gate 2 — `valuation == 'real_time'` | — | closed everywhere (126/126 × 4/4) |
+| `accounts['stock_input']` truthiness | — | **already 176 on 126 of 126 categories in company 1** |
 
-The deployed records agree: bill product lines post to expense, not to a valuation account.
+**Note the difference this makes.** The first version implied the deployment is *structurally
+immune* to bill-line redirection. It is not. In company 1, **two of the three conditions are
+already satisfied**, and the third is a single company-dependent field value.
+
+There is a genuine generation difference alongside it — the v19 tree splits this class into its
+own `account_move_line.py` and gates on `valuation == 'real_time'` with `accounts['stock_valuation']`
+where v18 uses `_eligible_for_cogs()` with `accounts['stock_input']`, so the **target account
+differs**: v18 redirects to the **input/clearing** account, v19 to the **valuation** account. That
+is a real and material difference, and it is not the difference the first version claimed.
+
+**CLASSIFICATION: CONFIGURATION-DEPENDENT — REACHABLE IN PRINCIPLE, NOT EXERCISED.**
+Deployed records agree that it is not exercised: 3,375 vendor-bill product lines, largest accounts
+`510000 Cost of Revenue` in each company, none to a valuation or clearing account.
+
+**Method note, recorded because the class recurs.** The search unit (a file name) did not match the
+claim unit (a behaviour). This is the same failure shape as `ERR-P01-23` (a directory standing in
+for a population) and `ERR-P01-28` (days standing in for periods): **the unit of the search must be
+the unit of the claim.**
 
 ---
 

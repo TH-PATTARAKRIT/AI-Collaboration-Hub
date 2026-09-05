@@ -80,10 +80,19 @@ under-reported it by reading the other.
 
 ### 2.4 An explicit `false` is not a missing row
 
-Companies 2 and 3 carry `ir_default` rows whose value is `false`. That is a **deliberate
-un-setting**, not an omission. Company 4 has **no row at all** — an omission. The two are
-distinguished here because they are distinguishable in the data and because conflating them is the
-`NULL vs empty vs false vs absent` failure mode. Their *effect* is the same; their *provenance* is not.
+Companies 2 and 3 carry `ir_default` rows whose value is `false`; company 4 has **no row at all**.
+
+**Behaviourally these are identical, and the first version of this section implied otherwise.**
+Traced through the ORM: `false` → `convert_to_cache(False)` → empty recordset →
+`convert_to_column` → `None` → the `if fallback not in (None, 0)` guard in
+`R1:odoo/models.py:2995-3025` fails → no `COALESCE` → SQL NULL. A missing row →
+`_get_model_defaults(...).get(name)` → `None` → **the identical path**. Same resolved value, same
+reads, same writes. (Corrected on Expert C's challenge, `C-02`.)
+
+The distinction is retained here for exactly one reason, and it is not a behavioural one: an
+explicit `false` is a **record that someone acted**, and a missing row is not. That is evidence
+about *intent*, which §9 needs and which nothing else in this database supplies. It carries **no
+consequence for how any value resolves.**
 
 ---
 
@@ -217,8 +226,15 @@ conceals.
 > by an actual goods receipt**; the remaining **฿1,538,601.86 across 169 service lines** is an
 > operator-entered quantity with no receipt document.
 
-**No accrual is booked against any of it.** 0 of 15,522 journal entries carry `accru` in `ref`
-(*positive control:* 15,434 of 15,522 have a non-empty `ref`).
+**No accrual is booked against any of it.** Case-insensitive over `ref` on all 15,522 journal
+entries: `accru` **0**, `uninvoiced` **0**, `grni` **0**.
+
+*Control, strengthened on Expert C's challenge (`C-06`).* The first version's control — "15,434 of
+15,522 have a non-empty `ref`" — proves the field is **populated**, not that an English phrase can
+**match** in it. The accrual wizard writes `ref = _('Accrued %(entry_type)s entry as of %(date)s')`
+with a capital A, so a case-sensitive search would have missed every one. The discriminating
+control is a different English phrase in the same field: `reversal` matches **119**. The negative
+now rests on a control that fires.
 
 ### 6.4 A SEPARATE MEASURE THAT MUST NOT BE ADDED TO IT
 
@@ -271,7 +287,7 @@ clearing account to resolve, and the bill does not attempt to.
 | The account carries zero journal items | **FACT VERIFIED**, with positive controls |
 | The stock journals carry zero journal items | **FACT VERIFIED**, with positive controls |
 | Cause of non-execution | **POLICY-DEPENDENT — VERIFIED** |
-| Reachability of the account under current configuration | **LATENT.** Would become live if valuation policy were changed to `real_time`; no other trigger was found |
+| Reachability of the account under current configuration | **NOT LATENT — REACHABLE BY FOUR SEPARATE ROUTES, none of which requires a code change.** ~~*"no other trigger was found"*~~ **CORRECTED — `ERR-P01-31`**, §10 |
 | **฿29,029,467.66** tax-exclusive received-not-invoiced, unrecognised and unaccrued | **FACT VERIFIED**, denominator, unit and tax basis declared in §6.1 |
 | — of which receipt-backed | **฿27,490,865.80** on 1,411 lines — **FACT VERIFIED** |
 | — of which operator-typed service quantities with no receipt document | **฿1,538,601.86** on 169 lines — **FACT VERIFIED**; **excluded** from any *received*-not-invoiced reading |
@@ -295,3 +311,124 @@ and the policy switch was either not carried across the migration or was deliber
 from "setting lost in migration" needs evidence this package does not hold — a migration
 specification, a configuration decision record, or the predecessor's own settings. It is recorded
 as `UNRESOLVED — EVIDENCE REQUIRED` and is the highest-value single question this run raises.
+
+---
+
+## 10. THE ACCOUNT IS NOT UNREACHABLE — `ERR-P01-31`
+
+The first published version of §8 classified the clearing account as **LATENT**, adding *"no other
+trigger was found"*. **That was a search that stopped too early, stated as a finding.** AAS-03
+Expert C was assigned to disprove "configured and reachable" and instead enumerated **writers**
+rather than observed rows. Four routes, all verified here before adoption. **None requires a code
+change.**
+
+### 10.1 Route 1 — switching the valuation policy has no guard in company 1
+
+`R1:stock_account/models/product.py:963-971`:
+
+```
+@api.constrains(… + ['property_valuation'])
+def _check_valuation_accounts(self):
+    for category in self:
+        if category.property_valuation == 'real_time':
+            if any(not category[account] for account in fnames):
+                raise ValidationError(_('The stock accounts should be set in order to use the automatic valuation.'))
+```
+
+with `fnames` = input, output, valuation. Against the effective resolution in §2.3:
+
+| Company | Categories where all three accounts resolve | The guard |
+|---|---|---|
+| **1** | **126 of 126** | **cannot refuse** |
+| 2, 3, 4 | 15 of 126 | refuses 111, permits 15 |
+
+And `ProductCategory.write()` (`R1:…/product.py:1032-1090`) calls `_svl_replenish_stock_am`
+(`:809-830`), which for positive quantity posts **debit valuation / credit `stock_input`** in
+`product_accounts['stock_journal']`.
+
+> **A single write of `property_valuation` on one company-1 category credits account 176 in
+> journal 40** — the two objects §5 reports as carrying zero items — for the on-hand value of that
+> category's products. Scale available in the same archive:
+> `SUM(remaining_value)` = **฿29,835,023.51** in company 1 (25,978 layers) and ฿60,059,575.87 in
+> company 2 (21,823 layers).
+
+**The unmeasured clause, stated rather than glossed.** Whether any user currently holds write
+access to `product.category.property_valuation` in company 1 has **not been measured** — it needs
+`ir_model_access`, `ir_rule` and `res_groups_users_rel` resolved against the stock and account
+manager groups. **Until it is, this is a capability, not a live exposure**, and it is recorded that
+way because the well-evidenced half of a finding is what makes the unmeasured half feel safe.
+
+### 10.2 Route 2 — the accrual wizard is deployed, bound and permissioned
+
+`R1:account/wizard/accrued_orders.py:44-52` — `account_id` carries the domain
+`[('account_type','=','liability_current')]` when the active model is `purchase.order`.
+Account 176 **is** `liability_current`. Deployed, read from the archive:
+
+| Evidence | Value |
+|---|---|
+| `ir_model_data ('purchase','action_accrued_expense_entry')` | → `ir.actions.act_window` **433** |
+| `ir_act_window` 433 | `binding_model_id` 588, `res_model = account.accrued.orders.wizard`, name *"Accrued Expense Entry / รายการค่าใช้จ่ายคงค้าง"* |
+| `ir_model_data ('purchase','model_purchase_order')` | → 588 — **the binding resolves** |
+| `account.group_account_user` | **22 users**; `account.group_account_manager` 9 |
+| Wizard default for `account_id` | **none** — the user picks |
+| Input population | non-empty: the 1,580 received-not-invoiced lines of §6 |
+
+**A live, permissioned, unattended-by-default path whose account picker includes 176, with a
+non-empty input set and no default.** The account is unused; it is not unreachable.
+
+### 10.3 Route 3 — the manufacturing WIP wizard *defaults* its credit to account 176
+
+`R1:mrp_account/wizard/mrp_wip_accounting.py:70-78` resolves the overhead account in three steps:
+company `account_production_wip_overhead_account_id`, then
+`property_stock_account_production_cost_id`, then **`property_stock_account_input_categ_id`**.
+
+Deployed: `account_production_wip_overhead_account_id` is **NULL on all four companies**;
+`property_stock_account_production_cost_id` is `false` for companies 1–3 and absent for company 4.
+**Both earlier branches are falsy, so the third is taken — account 176 for company 1**, with
+`journal_id` defaulted from `property_stock_journal` → **journal 40**.
+
+`mrp` 18.0.2.0 and `mrp_account` 18.0.1.0 are **installed**; the action is bound to
+`mrp.production` for `account.group_account_user`; **`mrp_production` holds 5,549 rows**.
+
+**This route does not consult `property_valuation` at all.** Caveat stated rather than glossed: the
+debit line takes `company.account_production_wip_account_id`, which is NULL here, so an untouched
+wizard would not post — but `account_id` is editable in the line list, so a user completes the
+debit and the 176 credit stands. **Reachable with one manual field.**
+
+### 10.4 Route 4 — an armed scheduled writer, one configuration record from firing
+
+`account_auto_transfer` 18.0.1.0 is **installed**; `ir_cron` id 24
+(*"Account automatic transfers: Perform transfers"*) is **active** — 58 of the 66 crons are.
+`account_transfer_model` and `account_transfer_model_line` **exist and hold zero rows**.
+
+The module moves balances between arbitrary origin and destination accounts on a schedule. Today it
+cannot fire. **Distance to firing: one configuration record.**
+
+### 10.5 And two further writers with no account-type restriction at all
+
+- `account.automatic.entry.wizard` — `ir_model_data ('account','action_automatic_entry_change_account')`
+  → `ir.actions.server` 251. "Change Account" retargets selected journal items to **any** account.
+- **Import.** `base_import` 18.0.2.0 and `account_base_import` 18.0.1.0 are installed, and the
+  channel has already been used at scale: `ir_model_data` holds **181,540** external IDs under the
+  `occ_mig` namespace, of which **10,190 are `account.move`**. `occ_mig` is not a module — it is a
+  migration's xmlid namespace. An xmlid-keyed import can create or update moves on any account.
+
+### 10.6 Corrected classification
+
+| Item | Classification |
+|---|---|
+| The clearing account is **configured** | **FACT VERIFIED** (§2) |
+| The clearing account is **not exercised** | **FACT VERIFIED**, three methods and an injection control (§5) |
+| The clearing account is **unreachable** | **FALSE — CORRECTED.** Four routes, none requiring a code change |
+| Route 1 (policy switch, unguarded in company 1) | **REACHABLE — capability proven; user write access NOT MEASURED** |
+| Route 2 (accrual wizard) | **REACHABLE — deployed, bound, 22 permissioned users, non-empty input** |
+| Route 3 (MRP WIP wizard) | **REACHABLE — defaults to 176; needs one manual field; 5,549 production orders** |
+| Route 4 (scheduled transfers) | **ARMED, NOT CONFIGURED** — one record from firing |
+| Routes 5–6 (change-account wizard, xmlid import) | **REACHABLE, no account-type restriction** |
+
+**Why this correction matters more than its subject.** *"No other trigger was found"* is a claim
+about the world made from a search of observed rows. **Reachability is a property of writers, not
+of rows** — and the difference between them is the difference between "this account is dormant" and
+"this account is one field-write away from carrying ฿29.8 million". Registered against the standing
+rule that a **negative about the evidence base needs the same authority as a negative about the
+subject**.
