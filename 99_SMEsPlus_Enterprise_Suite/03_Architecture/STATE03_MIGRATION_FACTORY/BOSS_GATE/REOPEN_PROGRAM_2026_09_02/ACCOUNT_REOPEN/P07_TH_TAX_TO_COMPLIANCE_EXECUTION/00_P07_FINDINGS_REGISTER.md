@@ -94,19 +94,50 @@ finding.
 
 ## 3. Distribution
 
+**Counts below are EXECUTED, not asserted.** `UNIT` = one table row in §2, enumerated by
+call site. The first issue of this section asserted totals that were wrong in every cell —
+see §3.1.
+
 | Severity | Count |
 |---|---|
-| `S1` — statutory output wrong, absent or silently empty | 21 |
-| `S2` — not reproducible, or an unenforced boundary | 16 |
-| `S3` — correctness or maintainability | 12 |
-| **Total issued** | **49** |
+| `S1` — statutory output wrong, absent or silently empty | 22 |
+| `S2` — not reproducible, or an unenforced boundary | 15 |
+| `S3` — correctness or maintainability | 11 |
+| **Total issued** | **48** |
 
 | Evidence state | Count |
 |---|---|
-| `SRC-CHAL` — independently re-verified by an adversarial reviewer | 26 |
-| `SRC` | 16 |
-| `MEAS` | 6 |
+| `SRC-CHAL` — independently re-verified by an adversarial reviewer | 27 |
+| `SRC` (includes 2 cells reading `SRC` + `VERIFIED` statute) | 13 |
+| `MEAS` (includes 1 dual-state cell `MEAS` + `SRC-CHAL`, counted once here) | 7 |
 | `INF` | 1 |
+| **Total** | **48** |
+
+### 3.1 Correction — These Totals Were Asserted Before They Were Executed
+
+| Cell | Asserted | Executed |
+|---|---|---|
+| Total issued | 49 | **48** |
+| `S1` / `S2` / `S3` | 21 / 16 / 12 | **22 / 15 / 11** |
+| `SRC-CHAL` / `SRC` / `MEAS` / `INF` | 26 / 16 / 6 / 1 | **27 / 13 / 7 / 1** |
+
+Every cell was wrong. The register that exists to make this package's findings countable
+carried an uncounted total.
+
+Two method points, both of which cost something:
+
+1. **The count was never executed.** It was maintained by hand as findings were added, and
+   drifted immediately. Enumerating the rows takes one command; asserting them takes none,
+   and the two are indistinguishable to a reader.
+2. **The first attempt to correct it repeated the underlying defect.** Re-deriving the
+   evidence-state counts with a second pattern double-counted a dual-state cell and produced
+   a total that summed correctly by coincidence. The figures above come from enumerating the
+   rows and reading the column — the project rule is *enumerate by call site, then read;
+   never extract a value with a second pattern*, and the first correction attempt broke it.
+
+Found by applying to P07 a correction P04 raised against its own register in the same
+exchange. Registered as `REV-E-16`, and as a Class 2 instance in
+`SMEPLUS_EVIDENCE_SUBSTITUTION_STANDARD_PROPOSED`.
 
 ## 4. The Two Findings That Should Be Read First
 

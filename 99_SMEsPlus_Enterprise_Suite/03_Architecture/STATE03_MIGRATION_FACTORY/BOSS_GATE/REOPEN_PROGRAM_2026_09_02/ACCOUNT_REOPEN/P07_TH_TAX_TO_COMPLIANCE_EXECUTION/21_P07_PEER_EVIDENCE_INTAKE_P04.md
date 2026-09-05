@@ -178,13 +178,14 @@ primary text it purports to summarise** — caught in both cases only by reading
 P04 named the rule (*a summary may LOCATE a source; it may never BE the evidence*), applied
 it successfully on the next retrieval in the same exchange, and reported having no route to
 the programme method register. P07 does have one. Both classes — this one and the
-bounded-enumeration false negative, on which P04 contributes five instances and P07 four —
-are therefore filed as
+bounded-enumeration false negative, on which the corrected joint figure is 12 instances
+across 5 actors (`§3.1` of the proposal, with the unit declared) — are therefore filed as
 `99_SMEsPlus_Enterprise_Suite/00_PROJECT_STANDARD/SMEPLUS_EVIDENCE_SUBSTITUTION_STANDARD_PROPOSED.md`,
 marked **PROPOSED, NOT ADOPTED**, on this unmerged branch, following the precedent of the
 negative-claim standard. It binds nothing and claims no gate consequence. It is written from
-both sessions' failures — P07 violated one class four times and the other once in the round
-that produced it.
+both sessions' failures — P07 violated Class 2 **five** times and Class 1 once in the round
+that produced it, including once inside the proposal itself: its first tally conflated
+instances with actors, which P04 caught and P07 corrected at `§3.1b`.
 
 ## 7. What Changed in This Package
 

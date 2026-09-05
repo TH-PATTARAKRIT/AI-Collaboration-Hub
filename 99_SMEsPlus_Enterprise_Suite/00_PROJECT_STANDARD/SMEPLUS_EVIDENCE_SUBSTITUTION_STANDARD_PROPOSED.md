@@ -3,6 +3,7 @@
 Proposal ID: `SMEPLUS-DR-EVSUB-001-PROPOSED`
 Status: **`PROPOSED FOR BOSS RATIFICATION — NOT IN FORCE`**
 Raised by: P07 Thailand Tax-to-Compliance, on evidence produced jointly with P04 Acquire-to-Retire, 2026-09-04
+Revision: `r2`, 2026-09-05 — Class 2 tally corrected on P04 challenge; sub-case §3.1a added
 Branches: `research/account-p07-th-tax-compliance-2026-09-04-001`; `research/account-p04-acquire-to-retire-2026-09-04-001` @ `8d1f735`
 
 ## 0. Standing of This File
@@ -55,19 +56,80 @@ open the primary text. Instance 3 shows the control works once it is named.
 **Proposed rule: an enumeration that returns nothing is a defective enumeration until its
 pattern has been proved against a known-positive case.**
 
-### 3.1 Evidence
+### 3.1 Evidence — Counted, With the Unit Declared
 
-P04 reports five instances across five different actors, **including an adversarial reviewer
-briefed specifically to catch this class**. P07 contributes four more from its own round:
+**`UNIT` declared: an INSTANCE is one enumeration that returned a wrong result. An ACTOR is
+one party that committed at least one instance.** The two axes are not interchangeable and
+the first issue of this section treated them as if they were — see §3.1b.
 
-| Instance | What was searched | Returned | Actual |
+P07 contributes **5 instances committed by 1 actor** (the P07 session, in every case):
+
+| Instance | What was enumerated | Returned | Actual |
 |---|---|---|---|
 | P07 a | Fiscal position templates, `-maxdepth 3` | zero | 113 files across 94 directories; the known-positive sat at depth 4. The depth was wrong, not the population. |
 | P07 b | Whether a filing/close framework existed | "absent" | A full framework exists, provisioned by 118 localisation modules. Negative withdrawn. |
 | P07 c | Readers of a tax-period field | "nothing" | A reader existed in a view file the author had already opened earlier in the same session. |
 | P07 d | Tax-relevant module population | 15 | 25. A declared dependency-closure pattern was never run; one missed member was simultaneously cited as evidence elsewhere in the same package. |
+| P07 e | The findings register's own totals — see sub-case §3.1a | 49 / 21-16-12 / 26-16-6-1 | **48 / 22-15-11 / 27-13-7-1.** Every cell wrong, in the register whose purpose is to make findings countable. |
 
-Nine instances, nine actors, two domains, one day.
+P04 contributes **7 instances committed by 4 actors** — one parallel research stream, the
+P04 session three times, an independent adversarial reviewer briefed specifically to catch
+this class once, and P11 twice. P04 additionally reports an eighth instance found while
+writing its correction (a manifest total typed as 69 against 68 executed, corrected before
+push); whether that sits inside the seven is not resolved here and is **not** added to the
+sum.
+
+| Axis | P07 | P04 | Union |
+|---|---|---|---|
+| Instances | 5 | 7 | **12** |
+| Actors | 1 | 4 | **5** |
+
+**The union of actors is 5, not fewer.** P04 anticipated overlap on the ground that "P04 and
+P11 appear in both our lists". They do not appear in P07's: all five P07 instances were
+committed by the P07 session itself. The two actor sets are disjoint, so the union is the
+sum on this axis — which is the opposite of the direction P04 expected, and is stated here
+rather than inherited.
+
+**One residual, declared rather than resolved.** Whether "an independent adversarial
+reviewer" is *one* actor across sessions or *one per invocation* is itself a `UNIT` question
+on the actor axis. Counted per invocation above. Counted per role, the union of actors would
+be smaller. A reader who needs the actor figure to be load-bearing must fix that convention
+first; the instance figure does not depend on it.
+
+### 3.1a Sub-case — Unit Conflation in a Count That Was Never Executed
+
+This sub-case is distinguished from the bounded search above because **nobody's pattern was
+too narrow**. The arithmetic was simply not performed, and the result looks identical to a
+performed one.
+
+| | |
+|---|---|
+| P04 | Two rows of its own table were the same actor, and two others were the same actor. The figure was published as "five actors" when it was five *instances* across three. Registered by P04 as `P04-REV-14`. |
+| P07 | The findings register's totals were maintained by hand and asserted, never enumerated. `P07 e` above. |
+| P07, again | The **first attempt to correct** `P07 e` re-derived the evidence-state counts with a second pattern, double-counted a dual-state cell, and produced a total that summed correctly by coincidence. The project rule — *enumerate by call site, then read; never extract a value with a second pattern* — was broken by the correction itself. |
+
+**The load-bearing observation belongs to P04 and is recorded in its words: declaring a
+population does not save a count whose unit is conflated.** P04's error survived an entire
+reconciliation exchange with P11 that was *specifically about counting discipline* — both
+parties declared their populations and argued the denominator, and neither noticed the unit
+was wrong inside the table they were reconciling.
+
+It then propagated: P07 read P04's published figure, added it to its own, and labelled the
+sum on the wrong axis. **A conflated unit is portable.** It crossed a session boundary in one
+exchange and was corrected only because P04 re-executed its own table row by row after
+publishing it twice.
+
+### 3.1b What the First Issue of This Section Said
+
+Recorded verbatim because a standard about counting that quietly fixes its own count is
+worth nothing:
+
+> "P04 reports five instances across five different actors … P07 contributes four more …
+> **Nine instances, nine actors, two domains, one day.**"
+
+Three defects in one sentence: P04's figure was inherited uncorrected; four P07 instances
+were counted as four actors when they were one; and the same number was labelled as both
+instances and actors. Corrected above on P04's challenge.
 
 ### 3.2 The distinguishing feature
 
@@ -103,8 +165,11 @@ prefers to consolidate.
 - It does not bind any session. It is not in force.
 - It does not amend, weaken or reinterpret any standard in force.
 - It does not assert that either originating session complied with it: **P07 violated
-  Class 2 four times and Class 1 once in the round that produced this proposal**, and P04
-  violated Class 1 once. The proposal is written from the failures, not from the successes.
+  Class 2 five times and Class 1 once in the round that produced this proposal** — including
+  once *inside this file*, in the tally at §3.1b, and once more in the first attempt to
+  correct it. P04 violated Class 1 once and Class 2 seven times, and caught the tally error
+  that this file inherited. The proposal is written from the failures, not from the
+  successes.
 - It carries no gate consequence and no exit-criteria claim.
 
 ## 6. Requested Boss Decision

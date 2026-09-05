@@ -77,14 +77,26 @@ They are listed separately because the distinction is the whole point of the con
 | `REV-E-14` | The restatement check was certified as executed while naming three files that did not exist, and excluding the files where restatement actually happens. | `AAS-03/D` | Check executed properly; four class-`B`-to-unqualified restatements found, **all in the Layer-1 file**, plus a count error. All corrected. The Layer-1 file had passed the vendor-token scrub cleanly on the same content — the two controls are independent. | `11 §5.1` |
 | `REV-E-15` | Seven further substantive claims were refuted and eight overstated, including "no guard prevents both withholding frameworks acting on one payment" (a guard exists, and it silently discards), "the zero/exempt taxes have no tax group" (they resolve to a withholding group), and "the Thai tax-invoice wording is a hard-coded English literal" (it is translated). | all four | Each corrected in the body; none left standing with a challenge attached. | `16 §3`, `§4` |
 
+| `REV-E-16` | The findings register's own totals were **asserted, never executed**: 49 issued against 48 actual, and every severity and evidence-state cell wrong. Then the first attempt to correct them re-derived the counts with a second pattern, double-counted a dual-state cell, and produced a total that summed correctly by coincidence — breaking the project rule *enumerate by call site, then read* inside the correction itself. | P04, by raising the identical defect against its own register and telling P07 to recompute | Totals enumerated row by row and republished with the asserted figures beside them at `00 §3.1`. | corrected after publication |
+| `REV-E-17` | The Class 2 tally in the method proposal read "nine instances, nine actors": P04's figure was inherited uncorrected, four P07 instances were counted as four actors when they were one, and the same number was labelled on both axes — **a unit conflation inside a standard about counting**. | P04 | Recomputed with the unit declared: 12 instances across 5 actors, the two actor sets disjoint. The original sentence is preserved verbatim at `§3.1b` of the proposal. | corrected after publication |
+
 Two of the reviewers' findings **escalated** the severity of the session's own headline
 findings rather than reducing them (`P07-F-01`, `P07-F-42`), and both were reached
 independently by two reviewers. The session's own severity assignment was too low in both
 cases.
 
 **Net for the round:** the author caught 8 errors in its own unpublished drafts; the
-reviewers caught 15 in its published ones and contributed 31 new findings. No error in this
-round was caught by the author re-reading its own published text.
+reviewers caught 15 in its published ones and contributed 31 new findings. Two further
+errors (`REV-E-16`, `REV-E-17`) were caught **after publication, by a peer process**, and
+both were counting defects in the artefacts that exist to make counting possible. No error
+in this round was caught by the author re-reading its own published text.
+
+**The `REV-E-16` / `REV-E-17` pair is the sharpest single lesson of the session.** Both were
+found because P04 re-executed a table it had already published twice, in a package about
+counting discipline, and then told P07 to do the same. Neither would have been found by any
+control this session ran, because every one of those controls checked *claims* and neither
+error was in a claim — they were in totals. A control that validates findings does not
+validate the arithmetic that describes them.
 
 ## 5. Method Notes for the Next Round
 
