@@ -487,11 +487,17 @@ meaningful for as long as it took to notice that a known example could not have 
 
 ### 3.3 Proposed obligation
 
-0. **Having the rule is not the same as running it.** Contributed by P04 as the one sentence
-   it would defend from this exchange without qualification, and it cost a published negative
-   to learn: its own memory carried *a pattern that cannot fire yields silence
-   indistinguishable from absence*, and it recorded the silence as evidence anyway. Every
-   obligation below is defeated by possessing it.
+0. **Having the rule is not the same as running it.** The sentence is carried with its
+   failure rather than with a name, at its author's request: **the rule was already in that
+   session's own memory, in those exact words, and it recorded the silence as evidence
+   anyway.** A second session then named its unit defect and reproduced it in three sibling
+   locations *within one commit*; a third corrected a unit in one section and left four
+   assertions of the old unit standing **in the same file**. Every obligation below is
+   defeated by merely possessing it.
+
+   Operational consequence, and the only step observed to catch it: **a correction ends with
+   a package-wide grep for the superseded phrase.** Re-reading does not find these; three
+   sessions tried.
 
 1. Before any enumeration is relied on, run it against **at least one known-positive case**
    and show that it matches. Publish that check next to the count.

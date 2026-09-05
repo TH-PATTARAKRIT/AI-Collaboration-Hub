@@ -100,8 +100,9 @@ and carried at `SRC-CHAL`. It is **verified** against this database.
 
 **CONSTRAINED at §7 — the first issue of this paragraph over-generalised from one database.**
 It said the condition "is not exceptional, it is the shipped state of a Thai deployment".
-That was an inference from `n = 1`. Across four databases the condition holds in **two**. See
-§7.1, which corrects it and is the more useful result.
+That was an inference from `n = 1`. Across four snapshots the condition holds in two — and per
+§7.4 those two are **one database identity observed a month apart**, so the base is **1 of 3
+identities examined**, not 2 of 4. See §7.1 and §7.4.
 
 ### 4.2 `P07-F-42` — VERIFIED. `P07-U-20` is CLOSED.
 
@@ -190,8 +191,8 @@ evidence.
 ## 6. What Is Still Not Done
 
 - ~~The other three dumps on this host were not examined.~~ **Miscounted, and since
-  corrected — see §7.** There are **five distinct databases in nine files**, not four; four
-  have now been examined. `P07-U-27` is narrowed to the one remaining (`iEVING`, a different
+  corrected — see §7 and §7.4.** There are **five snapshots of four database identities across
+  nine files**; four snapshots covering three identities have now been examined. `P07-U-27` is narrowed to the one remaining (`iEVING`, a different
   product line).
 - No transaction-scale evidence exists for any finding. Six moves cannot support a claim
   about operational behaviour, and none is made.
@@ -247,7 +248,8 @@ two that work.
 | `iSMEs` 2026-07-11 | 4 | group 1 = `Taxes` / `ภาษี` — not a VAT group either |
 | `BK12MAY26` 2026-08-03 | 12, across **three companies** | groups 1, 6 and 11 — **each company's own `WHT 1%`** |
 
-**Four of four databases, six independent company tax-group sets, no exception.** The
+**Four of four snapshots, three of three database identities, six independent company
+tax-group sets, no exception** (unit per §7.4). The
 `BK12MAY26` case is the strongest: three separate companies were configured independently
 and the misassignment reproduced in each, which is what a deterministic
 lowest-id-wins fallback predicts and coincidence does not.
@@ -260,7 +262,7 @@ second database.
 
 | | Before §7 | After §7 |
 |---|---|---|
-| `P07-F-01` | verified, asserted universal | verified, **2 of 4 deployments**; universality claim withdrawn |
+| `P07-F-01` | verified, asserted universal | verified, **1 of 3 database identities** (2 of 4 snapshots, both the same identity — §7.4); universality claim withdrawn |
 | `P07-F-42` | verified in 1 database | verified in **4 of 4**, 6 company sets |
 | `P07-F-15` | source-derived | supported: group naming varies between deployments (`TAX n%` vs `WHT n%`) |
 | §6 count | "three dumps" | five databases in nine files; four examined |
@@ -324,6 +326,22 @@ inference and upgraded most reluctantly rests on **three database identities and
 sets**; the headline rests on **one identity observed twice**. The gap between the two is
 wider under the corrected unit than under the wrong one — which is the opposite of what a
 convenient error would have produced.
+
+### The correction did not propagate — `REV-E-31`
+
+P04 reported its own unit restatement recurring in three sibling locations **within one commit
+of naming it**, and gave the operational rule: *the only step that catches it is a grep for the
+corrected phrase across the package, not a re-read.*
+
+Run here, with a positive control. **Four survivors, all in this file** — §4.1, §6, §7.2 and
+§7.3 were still asserting "four databases" and "2 of 4 deployments" while §7.4, in the same
+document, corrected them. Worse than P04's in one respect: their stragglers were in sibling
+files; mine were in the **same file as the correction**.
+
+That is the fourth instance of this class here and the second of *corrected-in-one-place-only*.
+Naming a defect does not immunise a package against it, and re-reading does not catch it —
+only the grep does. Corrections in this package now end with a package-wide grep for the
+superseded phrase.
 
 ### Method note
 
