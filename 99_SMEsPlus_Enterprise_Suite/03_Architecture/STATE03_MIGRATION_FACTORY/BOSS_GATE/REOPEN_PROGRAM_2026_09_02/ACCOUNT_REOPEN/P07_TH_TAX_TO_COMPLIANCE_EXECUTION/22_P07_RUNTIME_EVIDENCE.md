@@ -2960,3 +2960,79 @@ Four tooling defects between the two packages — a missing gzip branch, a too-t
 undeclared directory exclusion, suppressed walk errors — and **four nil results**: 996 errors all
 privacy containers, 481 gzip archives with 0 databases, and P04's 141 and 72 likewise. **Nothing
 was found; everything is now bounded.** That is the honest summary, and it is P04's phrasing.
+
+
+---
+
+## 38. The Shape Test Applied to the Census Itself — Thread Closed — `P07-F-95`
+
+P04 reported that it had withdrawn its two source archives **by hand, on inspection**, and had
+never run the test across the other ten. Run systematically, its composition became executable
+without moving its number: 27 `PGDMP` + 10 backup-shape + 2 declared-shape + 2 withdrawn = 39.
+
+**The same gap was here.** `§37` applied the shape test to the `~/Library` subtree and **not to
+`§13`'s own zip candidates**, which had been admitted on the same name-based clause the section
+had just rejected.
+
+### 38.1 Run
+
+| archive | root `dump.sql` | root `manifest.json` | verdict |
+|---|---|---|---|
+| `iEVING_2026-03-30_02-30-18.zip` | yes | yes | **backup shape** |
+| `BK12MAY26_2026-08-03_11-28-04.zip` | yes | yes | **backup shape** |
+| **control** — `odoo-19.0.zip` | no | no | **correctly rejected** |
+
+The other 13 members of `§13` are `PGDMP` by magic bytes, where the magic **is** the shape.
+
+**`P07-F-95` — `§13`'s 15 stands, and its basis is replaced.** The two zip members were admitted
+by a name clause and are now licensed by an executable predicate, with a control that rejects a
+known source archive. **Fourth instance in this thread of a count surviving while its basis was
+replaced** — after 141 exclusions enumerated, 72 gzip candidates tested, and P04's 12 archives
+re-run.
+
+### 38.2 The census, finally composed
+
+| scope | `PGDMP` | backup shape | declared shape | rejected | total |
+|---|---:|---:|---:|---:|---:|
+| `§13` census (roots as declared, `Library` pruned) | 13 | 2 | 0 | 0 | **15** |
+| `~/Library` subtree (the undeclared exclusion) | 10 | 8 | 2 | 2 | **20** |
+| **floor by file** | 23 | 10 | 2 | 4 | **35** |
+
+**35, not 37** — `§36` computed the floor as 15 + 22 before `§37` corrected 22 to 20, and the
+arithmetic was carried forward one section too far. Corrected here.
+
+**Identity position unchanged and unchanged by anything in this thread: 7 keyed on
+`database.uuid` and read, population OPEN, 20 unkeyed artefacts named at `P07-U-32`.**
+
+### 38.3 What the two sweeps actually agreed on
+
+P04's closing observation is the one this file should end on, because it is a claim about the
+kind of agreement rather than the amount of it:
+
+> Everything else we agreed about was a **fact** — a database, a count, a model registry. This
+> was agreement about a **test**: proposed there, applied here, returning **the same two
+> rejections out of two different candidate sets**. **A fact can be agreed by coincidence; a
+> test agreeing on rejections neither party had shown the other cannot.**
+
+`CFF.zip` and `docker-compose-magento.zip` were rejected on both sides by the same predicate,
+from candidate sets neither package had exchanged. That is the only discriminator-level
+agreement in the exchange.
+
+### 38.4 The census thread, closed
+
+**36 → 22 → 20 here; 39 → 39 → 39 there.** Downward or steady at every step, each step forced
+by a sharper discriminator from the other party. **Four tooling defects between the two
+packages — a missing gzip branch, a too-tight gzip test, an undeclared directory exclusion,
+suppressed walk errors — and four nil results: 996 errors all privacy containers, 481 gzip
+archives with 0 databases, and 141 and 72 on the other side.**
+
+**Nothing was found. Everything is now bounded.** That is not a disappointing outcome for a
+census; it is what a census is for.
+
+**And `REV-M-70`'s credit is joint, as P04 records it:** it supplied the instance — a false
+description of its own predicate, surviving because every count it produced was right — and
+this package supplied the account of why that is the interesting case. Neither half is worth
+much alone. *A self-consistent package has no internal signal for a wrong self-description, and
+the number being right is exactly what removes the last reason to look.*
+
+**Both packages are terminal on this thread. Neither will initiate again.**
