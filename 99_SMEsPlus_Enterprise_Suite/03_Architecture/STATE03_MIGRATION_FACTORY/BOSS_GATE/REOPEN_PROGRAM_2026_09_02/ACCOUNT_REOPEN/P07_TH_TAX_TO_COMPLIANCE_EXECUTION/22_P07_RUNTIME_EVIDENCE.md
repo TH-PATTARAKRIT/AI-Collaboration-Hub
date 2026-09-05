@@ -2267,3 +2267,73 @@ P04 also notes the counter-example that keeps this honest: this package's unit `
 **4 flags, 0 genuine collisions**, reported as false-positive-prone rather than as four findings.
 **A rule can over-reach in someone else's hands too**, and an exchange that only ever confirmed
 the other party's rules would be mutual amplification rather than review.
+
+
+---
+
+## 29. Three Routes to the Residue — and the Two Claims No Route Reaches — `P07-F-87`
+
+P04 ran the boundary audit on its ten negatives: **nine survive, one does not**, and all three of
+its exposure analyses — which models have a complete stack, which findings carry exposure, which
+negatives carry it — **converge on one module, one model, six findings, one negative.** Three
+questions, one answer, which bounds the residue rather than restating it.
+
+Run here, the convergence holds **and then fails in a way that is the more useful half.**
+
+### 29.1 The three routes
+
+| route | clean | exposed |
+|---|---|---|
+| **models** (`P07-F-83`) | `account.tax.group`, `account.tax`, `account.account`, `withholding.tax.cert(.line)`, `withholding.tax.report` | `account.move`, `account.move.line`, `account.payment(.register)` |
+| **findings** (`P07-F-83`) | `P07-F-01`, `-F-42`, `-F-67`, `-F-51`, `-F-63`, `-F-62`, `-F-11` | `P07-F-03`, `-F-57`, `-F-70`, `-F-16`, `-F-52` |
+| **negatives** (`P07-F-86`) | the four narrowly-scoped ones | `P07-N-01`, `-N-02`, `-N-06`, `-N-03`, `-N-25` |
+
+**Three of the five superseded negatives — `P07-N-01`, `P07-N-02`, `P07-N-06` — sit on
+`account.move` and `account.move.line`: exactly the models the finding route already flagged.**
+So for model-scoped claims the routes converge here as they did for P04, and the residue is one
+coherent surface rather than three separate ones.
+
+### 29.2 `P07-F-87` — but two negatives are not reachable by any of the three routes
+
+`P07-N-03` and `P07-N-25` **concern no model at all.** *"No tenant ORM model exists anywhere on
+the storage volume"* is not a claim about a model; it is a claim about **the absence of a class
+of model**, and no analysis that starts from *which modules declare on which models* can bound
+it. The same is true of `P07-N-03`, a claim about module presence in a tree.
+
+**This is where the two packages differ, and it is a property of the claims, not of the rigour.**
+All ten of P04's negatives are bounded to **modules**, so its model route reached every one. Two
+of this package's seventeen are **whole-product** claims, and they are precisely the two the
+convergence cannot cover. `P07-F-87`.
+
+**So the residue has two classes:**
+
+1. **Model-scoped residue** — bounded, and the three routes agree on it: `account.move` /
+   `account.move.line` / `account.payment(.register)`, three modules, five findings, three
+   negatives. Nothing outside it is at risk from the source-scope boundary change.
+2. **Whole-product residue** — `P07-N-03` and `P07-N-25`, unbounded by construction, each
+   requiring its own re-run. `P07-N-25`'s is still executing.
+
+### 29.3 P04's rule for what to do when a re-run succeeds, adopted
+
+> If it survives, **the surviving statement should be re-declared narrowly** — *"no tenant model
+> in modules X, Y, Z"* — or it will rot again at the next boundary change. **Re-running restores
+> its truth; re-scoping is what stops it recurring.**
+
+That is the operational form of `REV-M-55` and this package had only the diagnosis. Adopted:
+whichever way `P07-N-25` returns, **it will not be re-published in whole-product form.** If it
+survives it is re-declared over a named module set; if it is refuted, `P07-F-50` is refuted with
+it. `REV-M-56`.
+
+### 29.4 The recommendation, in P04's actionable form
+
+`REV-M-53` said *put the rule in different hands.* P04 sharpens it to the form that can be acted
+on:
+
+> **Give your rule to someone whose evidence base differs from yours, and let them run it on
+> their own material.** A reviewer reading my package with my rule would have found nothing,
+> because they would have applied it where I did.
+
+All four instances in this exchange worked exactly that way. And the counter-example belongs in
+the same paragraph, not in a footnote: this package's unit `1c` run returned **four flags, zero
+genuine hits**, reported as false-positive-prone. **A rule that only ever confirms is not being
+run, it is being cited.** `REV-M-57`.
