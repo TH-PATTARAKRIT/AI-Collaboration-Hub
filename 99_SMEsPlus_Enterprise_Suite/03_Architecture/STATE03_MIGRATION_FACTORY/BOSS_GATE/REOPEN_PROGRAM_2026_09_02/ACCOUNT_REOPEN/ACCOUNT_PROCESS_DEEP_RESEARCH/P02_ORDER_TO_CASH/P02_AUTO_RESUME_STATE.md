@@ -17,6 +17,15 @@ Created **2026-09-05** under `[SMEPLUS-26-09-05-G02-P02-O2C-TARGETED-CLOSURE-002
 
 ## Next Exact Actions, In Priority Order
 
+0. **Re-run the artefact sweep with the pattern widened to `-Fp` / `-Ft` / gzip, and reconcile `28`
+   against `22`** (`C-48`). The count is **≥40, not 39**; the missing artefact is
+   `/Volumes/iMacSys/95_BHPRO_PROJECT/DOCUMENT/iEVING_2026-03-31_06-48-41/dump.sql`, which `22` had
+   already added by correction. **Publish the processed-file count beside the result.**
+0b. **Re-derive the database count without `database.uuid` as the sole key** (`C-44`, `C-49`). It
+   over-counts (one `iEVING` lineage split in two by a rotation five minutes after a backup) and
+   under-counts (seven live databases sharing one uuid). Use a composite: uuid + `ir_config_parameter`
+   row `create_date` + installed-module fingerprint + `res_company` id-1 `create_date`. **`P02-F-28a` is
+   withdrawn and must not be cited.**
 1. **Re-scope every consumer of the headline to the corrected denominator** (`C-43`): 493,277
    marker-capable lines, 15 databases, generations 16/18/19. Files to edit: `18`, `19`, `22`, `26`, `27`,
    `37`. **The corrected figure is in `28`'s banner; the consumers still carry the old one.**
@@ -54,3 +63,8 @@ Created **2026-09-05** under `[SMEPLUS-26-09-05-G02-P02-O2C-TARGETED-CLOSURE-002
   injection control (`C-43`).
 - **The runtime PATH SET is every running postgres container**, enumerated by command (`C-41`).
 - **An unfinished sweep is reported as unfinished, never as a zero** (adopted from Expert 2).
+- **Agreement between instruments that share a pattern is not corroboration** (`C-48`). Two instruments
+  agreed on 39 and a third agreed later; all three were blind to plain-SQL dumps. **Vary the pattern,
+  not just the traversal.**
+- **A later round may not silently narrow an earlier round's recorded correction** (`C-48`). Before
+  republishing a population, diff it against every prior recorded count and reconcile explicitly.

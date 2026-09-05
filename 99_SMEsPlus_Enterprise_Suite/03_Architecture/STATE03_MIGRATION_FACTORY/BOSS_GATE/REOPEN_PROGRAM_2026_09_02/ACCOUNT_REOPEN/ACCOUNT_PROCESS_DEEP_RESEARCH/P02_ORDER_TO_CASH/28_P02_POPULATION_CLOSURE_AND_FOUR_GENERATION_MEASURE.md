@@ -62,7 +62,47 @@ no merge, no freeze.**
 > only — `pg_dump -Fp`, `-Ft` and gzip-wrapped dumps match neither at any size, and that test is
 > **unfinished, so no zero is claimed for it.**
 >
-> **What survives all five.** The **39-artefact file population reproduces exactly under a third,
+> **`C-48` — THE CLOSURE ROUND DROPPED AN ARTEFACT ITS OWN PREDECESSOR HAD ADDED BY CORRECTION.**
+> `/Volumes/iMacSys/95_BHPRO_PROJECT/DOCUMENT/iEVING_2026-03-31_06-48-41/dump.sql` — **62,458,228 bytes**,
+> header `-- PostgreSQL database dump`, siblings `manifest.json` + `filestore/` — is an unpacked Odoo
+> backup. **It is not among the 39.** The sweep's signature test recognises `PGDMP` and `ODOOZIP` only;
+> a `pg_dump -Fp` plain-SQL dump matches **neither, at any size**.
+>
+> **`22` §1 line 48 already recorded finding this exact artefact, as an explicit correction:** *"It
+> missed a plain-SQL dump on the volume → **6 distinct archives**, not 5"*, listing it at line 61 as row
+> 6. **The population-closure round then rebuilt the population with an instrument structurally blind to
+> plain-SQL dumps and silently dropped it.** `28` contradicts `22` and never reconciled.
+>
+> **The artefact count is at least 40, not 39.**
+>
+> **And the two-instrument agreement was worth nothing here.** §1 cited *"two instruments, same 39"* as
+> corroboration; a third instrument later agreed too. **All three carried the same pattern.** *Agreement
+> between instruments that share a blind spot is not coverage* — it is the same measurement repeated.
+>
+> **`C-49` — `P02-F-28a` IS REFUTED ON ITS OWN EXAMPLE, AND `database.uuid` FAILS IN BOTH DIRECTIONS.**
+> `P02-F-28a` published `iEVING` as the worked argument *for* uuid-keying: *"one business name, two
+> distinct databases, four months apart… a name-keyed sweep would have reported one database here and
+> silently discarded a distinct one."* Measured across all three artefacts, including the dropped one:
+>
+> | artefact | uuid | `ir_config_parameter` row | `create_date` | `write_date` | companies |
+> |---|---|---|---|---|---|
+> | `iEVING_2026-03-30_02-30-18.zip` | `f4a44cce` | **2** | `2026-03-18 04:58:50.421471` | `2026-03-18 12:06:54` | 1 |
+> | `iEVING_2026-03-31…/dump.sql` **(the dropped one)** | `1f6338ae` | **2** | `2026-03-18 04:58:50.421471` | `2026-03-30 02:35:31` | 2 |
+> | `iEVING_2026-07-23_10-31-06.dump` | `1f6338ae` | **2** | `2026-03-18 04:58:50.421471` | `2026-03-30 02:35:31` | 44 |
+>
+> **Same row id. `create_date` identical to the microsecond. The uuid VALUE was updated** — at
+> `2026-03-30 02:35:31`, **five minutes after the 02:30:18 backup**: the restore-with-a-new-uuid
+> signature. This is **one database lineage growing 1 → 2 → 44 companies**, not two distinct databases.
+>
+> **The name-keyed sweep would have been right here. The uuid key split one lineage in two.** Combined
+> with `C-44` (seven distinct databases collapsed into one uuid), `database.uuid` **over-counts and
+> under-counts**, and the single example P02 published to justify it demonstrates the over-count.
+> **`P02-F-28a` is WITHDRAWN.** At least one of the 17 is a duplicate lineage.
+>
+> **The evidence that refutes `P02-F-28a` is the artefact `C-48` dropped.** The blind spot and the wrong
+> conclusion are the same defect.
+>
+> **What survives all seven.** The **39-artefact file population reproduces exactly under a third,
 > independently written instrument** — zero difference in both directions. The arithmetic reproduces to
 > the digit. `RE-25` is confirmed correctly diagnosed. And `P02-F-28d`'s zero is **not** a module-absence
 > artefact: `stock`, `stock_account`, `sale_management` and `account` are all `installed` in that

@@ -73,6 +73,22 @@ correctly diagnosed. Cloud-placeholder and unmounted-volume false-negative chann
 - **`C-45`** / **`C-46`** / **`C-47`** — artefact column missing; "measured, not inferred" withdrawn;
   file path set closed but **population not closed**.
 
+**Expert 2's final report added two more, both confirmed, and they are the most serious in the package:**
+
+- **`C-48`** — the closure sweep is **blind to plain-SQL dumps**, and the one it missed had **already
+  been added to the population by `22` as an explicit correction**. A later round silently reversed an
+  earlier round's correction. **Count ≥ 40.** And *"two instruments, same 39"* was not corroboration:
+  **all three instruments shared the blind spot.**
+- **`C-49`** — **`P02-F-28a` is refuted on its own example.** All three `iEVING` artefacts share one
+  `ir_config_parameter` row with `create_date` identical to the microsecond; the uuid was rotated five
+  minutes after a backup. **One lineage, not two databases — the name key would have been right.**
+  `P02-F-28a` **WITHDRAWN**.
+
+**Expert 2 is the reason this package can be relied on at all.** It attacked the population from four
+angles, **corroborated what held under an independent instrument**, reported its own unfinished sweep as
+unfinished rather than as a zero — and then, when that sweep completed, **returned to correct its own
+earlier report**. That is the behaviour the round asked for and did not itself always achieve.
+
 **Method note P02 adopts.** Expert 2 reported its format-width sweep as **unfinished rather than as a
 zero**, and published the predicate's positive control. That is the standard this package asks for and
 had not always met.

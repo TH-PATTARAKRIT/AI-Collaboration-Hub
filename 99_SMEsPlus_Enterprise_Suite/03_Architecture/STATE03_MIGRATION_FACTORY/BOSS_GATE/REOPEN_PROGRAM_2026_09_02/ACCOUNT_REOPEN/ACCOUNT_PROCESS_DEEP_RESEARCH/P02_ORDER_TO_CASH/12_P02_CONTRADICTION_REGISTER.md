@@ -346,6 +346,27 @@ headline** — the first re-scopes its denominator by 80.7%, the second refutes 
 under a third, independently written instrument, with zero difference in both directions; the arithmetic
 reproduces to the digit; and `P02-F-28d`'s zero is not a module-absence artefact.
 
+### C-48 / C-49 — AAS-03 Expert 2, Final Report. Both CONFIRMED. The Most Serious Pair In The Package.
+
+**`C-48` — a recorded correction was silently reversed by a later round.** `22` §1 recorded finding a
+plain-SQL dump ("**6 distinct archives**, not 5") and listed it as row 6. `28`'s closure sweep tests only
+the `PGDMP` and `ODOOZIP` signatures, which a `pg_dump -Fp` file matches at no size, and **published 39
+without it**. The artefact is real: 62,458,228 bytes, `-- PostgreSQL database dump`, with `manifest.json`
+and `filestore/`. **Count ≥ 40.** `28` contradicts `22` and never reconciled.
+**Method consequence:** `28` §1 cited *"two instruments, same 39"*, and a third later agreed. **All three
+shared the pattern. Agreement among instruments with a common blind spot is not corroboration.**
+
+**`C-49` — `P02-F-28a` is refuted on the example it was built from.** All three `iEVING` artefacts carry
+`ir_config_parameter` **row id 2** with `create_date` **identical to the microsecond**
+(`2026-03-18 04:58:50.421471`); the uuid **value** was updated at `2026-03-30 02:35:31`, **five minutes
+after the 02:30:18 backup** — the restore-with-new-uuid signature. **One lineage, 1 → 2 → 44 companies.**
+The name-keyed sweep would have been correct; **the uuid key split one lineage into two.**
+With `C-44` (seven databases collapsed into one uuid), **`database.uuid` both over-counts and
+under-counts. `P02-F-28a` is WITHDRAWN.**
+
+**The two findings are one defect:** the artefact the blind instrument dropped is precisely the
+intervening snapshot that disproves the conclusion.
+
 ## 2. Contradictions Between Evidence Tracks
 
 **None found.** The four tracks were run independently against the same root with independently declared
