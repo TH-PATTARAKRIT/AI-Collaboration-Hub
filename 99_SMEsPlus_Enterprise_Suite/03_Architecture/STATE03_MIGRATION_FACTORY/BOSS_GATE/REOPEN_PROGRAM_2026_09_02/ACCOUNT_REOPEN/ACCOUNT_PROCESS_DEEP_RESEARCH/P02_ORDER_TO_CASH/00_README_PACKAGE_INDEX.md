@@ -93,6 +93,23 @@ as verdicts anywhere in this package.
 | 26 | `26_P02_V18_DEPLOYMENT_EVIDENCE.md` | The first genuine v18 deployment (`idemo18_uat`) — the only company found anywhere with split recognition ON; `C-04` reclassified to `AUTHORISATION REQUIRED` | L2 |
 | 27 | `27_P02_SOURCE_SCOPE_AND_POPULATION_BOUND.md` | Source-scope bound (`RE-23`), instrument controls run against P02's own negatives, and the three peer exchanges — including `C-33`, where the package was found asserting a fact and its negation in two files | L2 |
 | 28 | `28_P02_POPULATION_CLOSURE_AND_FOUR_GENERATION_MEASURE.md` | **Population closed as a path-set question.** 16,624 files signature-tested → 39 artefacts → **17 databases, 4 generations, 2,553,914 journal lines, zero `cogs` markers, every zero injection-controlled.** v19's deleted valuation layer confirmed in deployment; outcome 3 measured directly at 47,242 layers → 0 entries | L2 |
+| 29 | `29_G02_P02_TARGETED_CLOSURE_NEXT_PROMPT_2026_09_05.md` | The governing prompt for this round | L2 |
+| 30 | `30_G02_P02_FINAL_LINEAGE_RECONCILIATION.md` | **C1.** 7 live-stale statements corrected in place; `P02-F-30a` — a uuid identifies a database, not a measurement | L2 |
+| 31 | `31_G02_P02_DEPLOYED_CODE_IDENTITY_REGISTER.md` | **C2.** 11 deployments; **258 P02-relevant non-standard modules, 189 with no readable source** | L2 |
+| 32 | `32_G02_P02_CUSTOM_ADDON_DELTA.md` | **C3.** `CA-01`…`CA-05`; a period-close cron with no accounting effect; an installed override that is entirely commented out | L2 |
+| 33 | `33_G02_P02_C04_RUNTIME_AUTHORITY_PACK.md` | **C4.** Read-only exhaustion evidenced; 3 configuration facts closed at runtime; bounded authorisation request | L2 |
+| 34 | `34_G02_P02_DELIVERED_NOT_INVOICED_CUTOFF_MEASURE.md` | **C5.** Measured across 8 databases / 4 generations. **Carries a correction banner — the counter was wrong (`C-34`)** | L2 |
+| 35 | `35_G02_P02_EIGHT_SCENARIOS_FINAL_ASSURANCE.md` | **C6.** Both open items closed by measurement; `RE-27` false zero caught by a positive control | L2 |
+| 36 | `36_G02_P02_END_TO_END_ACCOUNTING_TRUTH_MATRIX.md` | **C7.** 14 stages × 15 columns; the four evidence classes kept apart | L2 |
+| 37 | `37_G02_P02_RISK_AND_BLOCKER_RECONCILIATION.md` | **C8.** Populations re-derived; TZ-07 re-derived to 127 company records | L2 |
+| 38 | `38_G02_P02_POLICY_FACT_SEPARATION.md` | **C9.** `BP-01`…`BP-03` preserved; source facts never overwrite policy | L2 |
+| 39 | `39_G02_P02_PEER_DELTA_AND_HANDOFF_REGISTER.md` | **C10.** 5 peers' Material Delta; 7 routing targets with exact questions | L2 |
+| 40 | `40_G02_P02_AAS03_FINAL_CHALLENGE.md` | Four disjoint AAS-03 challenges — **12 confirmed contradictions, 10 against work published in this round or the headline** | L2 |
+| 41 | `41_G02_P02_AAS_PLUS_FINAL_CONSOLIDATION.md` | AAS+ — agreements, **4 dissents carried unresolved**, consolidated gaps | L2 |
+| 42 | `42_G02_P02_PMO_FINAL_TARGETED_REVIEW.md` | PMO — **0 of 8 satisfied, 4 partial, 4 not.** `RECOMMEND HOLD` | L2 |
+| 43 | `43_G02_P02_FINAL_CLEANROOM_HANDOFF.md` | **LAYER 1** — G02-P02 handoff. Vendor-token scan clean with injection control | **L1** |
+| — | `P02_CHECKPOINT_REGISTER.md` | CP-G02P02-00 … FINAL | L2 |
+| — | `P02_AUTO_RESUME_STATE.md` | Resume mode AUTO; 10 next exact actions; standing rules adopted | L2 |
 | — | `L2_AUDIT_QUARANTINE/` | Raw evidence extracts from parallel research tracks | L2 |
 
 ## 3a. Research Depth Map — L1 … L6 And The Very-Expert Layer
@@ -220,3 +237,13 @@ Three things bound reliance on this package and are stated here rather than buri
 
 No gate is declared satisfied. No implementation is authorised. No merge is proposed. Boss is the sole
 final approver.
+
+---
+
+## TERMINAL STATE (round `SMEPLUS-26-09-05-G02-P02-O2C-TARGETED-CLOSURE-002`)
+
+**`G02-P02 TARGETED CLOSURE — HOLD FOR SPECIFIC BOSS AUTHORISATION / EXTERNAL EVIDENCE`**
+
+Not `PASS`. Not approved. Not frozen. Not merged. No implementation authorised.
+The single P02-owned item requiring a decision is `C-04` (`33`). See `P02_CHECKPOINT_REGISTER.md` and
+`P02_AUTO_RESUME_STATE.md`.

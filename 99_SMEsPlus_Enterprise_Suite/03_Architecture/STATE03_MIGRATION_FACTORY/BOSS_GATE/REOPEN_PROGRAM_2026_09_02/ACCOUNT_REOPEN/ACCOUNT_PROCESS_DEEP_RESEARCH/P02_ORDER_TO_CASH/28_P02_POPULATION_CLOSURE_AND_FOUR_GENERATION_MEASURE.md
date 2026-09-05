@@ -2,8 +2,71 @@
 
 `LAYER 2 — AUDIT QUARANTINE.` Reference-system observations. Not clean-room input.
 
-**Status: `POPULATION CLOSED AS A PATH-SET QUESTION`. Terminal state UNCHANGED — no blocker closed,
+**Status: `FILE PATH SET CLOSED. POPULATION NOT CLOSED.` Terminal state UNCHANGED — no blocker closed,
 no merge, no freeze.**
+
+> ## ⚠ CORRECTION BANNER — `C-43` … `C-47`, AAS-03 EXPERT 2. THE HEADLINE IS RE-SCOPED.
+>
+> **`C-43` — 80.7% of the published denominator is a generation in which the marker cannot exist.**
+> Resolved from each deployment's own `ir_model_fields ⋈ ir_model_fields_selection`: in **14.0**,
+> `account.move.line.display_type` has exactly **two** selection values — `line_section` and
+> `line_note`. **`cogs` is not a member of the selection**, so v14 code *cannot* write it.
+> **Positive control on the same join in the same archive:** `account.move.move_type` returns all seven
+> values, so the extraction and the join demonstrably fire.
+>
+> | | published | corrected |
+> |---|---|---|
+> | journal lines | 2,553,914 | **493,277 marker-capable** |
+> | databases | 17 | **15** |
+> | generations | 14.0, 16.0, 18.0, 19.0 | **16.0, 18.0, 19.0** |
+>
+> `iErpOCC` 352,350 + `odoo_cff` 1,708,287 = **2,060,637 lines (80.69%)** are re-classified as
+> **schema-level non-applicability, not behavioural zeros**. Of what remains, **447,384 (90.7%) is the
+> single database `iSMEs`** — so the invariant rests far more heavily on one deployment than the
+> published figure implied.
+>
+> **Why the injection control did not catch this — a new control class.** Appending a synthetic row
+> proves the **extractor can read** the value. It says nothing about whether the **application could
+> ever write** it. **A predicate over an enumerated field now requires a selection-membership
+> precondition: prove the value exists in that generation's selection before counting its absence.**
+> This is the sixth member of the package's *control-that-cannot-detect-its-failure* family.
+>
+> **`C-44` — `database.uuid` is a restore-lineage key, not an identity key.** Measured on the live
+> server: **seven separately named, concurrently existing, differently configured databases return the
+> identical uuid `a6664233`** — `occ_anglo_test` and `occ_perp_sim` have `stock_account` **installed**;
+> `occ_sim`, `occ_sim_fresh`, `occ_website_sim`, `occ_wht_sim`, `occ_wht_multi_sim` do **not**. `28` §2
+> counts them as **one**. **The key chosen precisely because it defeats name-collapse commits the
+> identical error inverted, inside this population.** Two further live uuids (`4d3bbd8e`,
+> `2720fb7f`, both 19.0) lie outside the 17 entirely. **As a host statement, "17 distinct databases" is
+> false: ≥19 uuids and ≥26 database instances.** Artefacts, uuids and instances are **three different
+> numbers** and must be reported as three.
+>
+> **`C-45` — §4's table is per-artefact and does not name the artefact.** uuid `551ab874` yields
+> **47,242** layers from one artefact and **47,801** from the other, both with **0** carrying an
+> accounting entry. The direction survives and is strengthened; the figure is artefact-specific.
+> `30`/`P02-F-30a` mandates naming the artefact and `31` §6 complies — **§4 does not.**
+>
+> **`C-46` — "measured, not inferred" is withdrawn from `P02-F-28d`.** `property_valuation` is NULL on
+> **all 126** categories in `551ab874`, and NULL falls back to the global `manual_periodic` default that
+> `P02-F-33c` verified. Under `manual_periodic` no accounting entry is created for a stock move, so
+> `account_move_id` NULL on every layer is the **designed** behaviour. The 100/88/77/65 vs 0/0 spread
+> discriminates `real_time` from `manual_periodic` — a configuration fact already published as
+> `P02-F-05`. **It is corroboration, not independence.** The figure stands; the framing does not.
+> **And the sharper finding in the same data was not published: 15 of 126 categories have stock
+> input/output/valuation accounts fully configured while `property_valuation` was never set.**
+>
+> **`C-47` — the *file path set* is closed; the *population* is not.** Nine live databases sit inside
+> Docker volumes, which a file-signature sweep cannot see by construction; two of them are 19.0 and are
+> in no deliverable. A further nine stopped `postgres:16*` containers retain their volumes and were
+> never enumerated. **Format width is also undeclared:** the sweep recognises `PGDMP` and `ODOOZIP`
+> only — `pg_dump -Fp`, `-Ft` and gzip-wrapped dumps match neither at any size, and that test is
+> **unfinished, so no zero is claimed for it.**
+>
+> **What survives all five.** The **39-artefact file population reproduces exactly under a third,
+> independently written instrument** — zero difference in both directions. The arithmetic reproduces to
+> the digit. `RE-25` is confirmed correctly diagnosed. And `P02-F-28d`'s zero is **not** a module-absence
+> artefact: `stock`, `stock_account`, `sale_management` and `account` are all `installed` in that
+> archive.
 
 ---
 

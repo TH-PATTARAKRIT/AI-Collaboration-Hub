@@ -329,6 +329,23 @@ against work published **in this same round**, which is the round that added the
 and *positive control* disciplines. **The disciplines did not prevent the defects; the independent
 challenge caught them.**
 
+### C-43 … C-47 — Raised By AAS-03 Expert 2 Against The Package Headline, All CONFIRMED
+
+| ID | Challenged | Confirmed counter-evidence | Resolution |
+|---|---|---|---|
+| **C-43** | `P02-F-28b`: zero `cogs` over **2,553,914 lines / 17 databases / 4 generations** | In 14.0 the `display_type` selection is **`line_section`, `line_note` only** — **`cogs` is not a member**, so v14 cannot write it. Positive control on `move_type` in the same archive returns all 7 values. | **Re-scoped to 493,277 marker-capable lines / 15 databases / generations 16-18-19.** The 2,060,637 v14 lines (**80.69%**) become **schema-level non-applicability**. **New control class: selection-membership precondition.** |
+| **C-44** | `P02-F-28a` / `28` §2: 39 artefacts → **17 distinct databases**, keyed on `database.uuid` | **Seven concurrently-existing, differently-configured live databases share uuid `a6664233`** (two with `stock_account` installed, five without). Two further live 19.0 uuids lie outside the 17. | uuid is a **restore-lineage key, not an identity key**. **≥19 uuids, ≥26 instances.** Artefacts / uuids / instances are three numbers. **The key chosen to defeat name-collapse commits the inverse error.** |
+| **C-45** | `P02-F-28d`: "**47,242** layers" | The other artefact of the same uuid gives **47,801**, also **0** with an entry. | Direction **strengthened**; figure is artefact-specific. `28` §4 must carry an artefact column per `P02-F-30a`. |
+| **C-46** | `P02-F-28d`: "outcome 3 **measured, not inferred from configuration**" | `property_valuation` NULL on all 126 categories → global `manual_periodic` → **no entry is created by design**. The spread discriminates `real_time` from `manual_periodic`, which `P02-F-05` already published. | Framing **withdrawn**; figure stands as **corroboration, not independence**. **Unpublished sharper finding promoted: 15 of 126 categories have all three stock accounts configured with `property_valuation` never set.** |
+| **C-47** | `28` §1: "**Closed:** the path set" | Nine live databases sit in Docker volumes a file sweep cannot see; two are 19.0 and appear in no deliverable; nine stopped containers retain volumes. Format width (`-Fp`, `-Ft`, gzip) untested — **and unfinished, so no zero claimed**. | **File path set closed; population NOT closed.** Status line corrected. |
+
+**All five confirmed against primary evidence before adoption. `C-43` and `C-44` change the package's
+headline** — the first re-scopes its denominator by 80.7%, the second refutes its identity key.
+
+**What Expert 2 could not break, and tried to:** the 39-artefact file population reproduced **exactly**
+under a third, independently written instrument, with zero difference in both directions; the arithmetic
+reproduces to the digit; and `P02-F-28d`'s zero is not a module-absence artefact.
+
 ## 2. Contradictions Between Evidence Tracks
 
 **None found.** The four tracks were run independently against the same root with independently declared
