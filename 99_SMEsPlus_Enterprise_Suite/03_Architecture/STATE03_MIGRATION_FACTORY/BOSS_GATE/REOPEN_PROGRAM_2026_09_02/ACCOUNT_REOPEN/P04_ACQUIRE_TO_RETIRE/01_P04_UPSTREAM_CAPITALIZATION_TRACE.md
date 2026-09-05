@@ -755,6 +755,22 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.24 The no-host claims across the whole estate
+
+> **P04-F-123.** **Zero models of the four asserted-absent classes across 6
+> identities, 3 generations and 4,640 model rows.** See the table at §6A.23. The
+> claims that lease accounting, impairment, useful-life review and an
+> assets-under-construction stage have **no host** are no longer a reading of one
+> source tree, nor of one deployment: they are tested against **every model
+> registry on this host**, each maintained by its own deployment.
+>
+> **What this does not remove:** the estate is this host's. A model absent from
+> all six may exist in an install not captured here, and **absence of a model is
+> still not absence of a behaviour**. Both limits are unchanged from `P04-F-122`
+> and neither is removable from this host.
+>
+> Class: **FACT VERIFIED**, controls published per identity.
+
 ### 6A.23 The absence-of-a-class claims — and a route P07 said did not exist
 
 P07 found two negatives its convergence could not reach: *"no tenant ORM model
@@ -814,8 +830,32 @@ useful-life review, no asset-register reconciliation — and `P04-F-116`,
 > behaviour** — it is decisive only for claims phrased, as these are, about a
 > missing **record type**.
 >
-> Class: **FACT VERIFIED**, 944 models enumerated, 7 classes tested, bounded to
-> `551ab874` @ 2026-08-30.
+> **Extended to every readable identity, after P07 ran the same route across five
+> of its own** (`P04-F-123`):
+>
+> | identity | gen | models | control — `account.asset` present | lease · impair · useful-life · AUC |
+> |---|---|---:|---|---|
+> | `551ab874` | v18 | 944 | yes | **none** |
+> | `4b766580` | v18 | 1,080 | yes | **none** |
+> | `96548e18` | v18 | 510 | **no — correctly** | **none** |
+> | `45a8e08e` | v16 | 601 | yes | **none** |
+> | `1f6338ae` | v19 | 749 | yes | **none** |
+> | `66d1b52a` | v19 | 756 | yes | **none** |
+>
+> **6 identities · 3 generations · 4,640 model rows · zero models of any of the
+> four classes anywhere.**
+>
+> **The control's failure in `96548e18` is the strongest row in the table.** That
+> is the never-transacted v18 install where the asset module is **not installed**
+> — so `account.asset` is genuinely absent from its registry, the control
+> correctly reports absent, and the instrument is shown to **distinguish a real
+> absence from a failed read**. Five identities where the control fires and one
+> where it correctly does not is a better validation than six where it fires.
+>
+> Class: **FACT VERIFIED**, **4,640 models across 6 identities and 3 generations**,
+> 7 classes tested, controls published per identity. The claim is no longer
+> bounded to one deployment; it is bounded to **this host's estate**, which is the
+> limit that remains and cannot be removed from here.
 
 ### 6A.22 Every negative, re-audited against the boundaries that moved
 
