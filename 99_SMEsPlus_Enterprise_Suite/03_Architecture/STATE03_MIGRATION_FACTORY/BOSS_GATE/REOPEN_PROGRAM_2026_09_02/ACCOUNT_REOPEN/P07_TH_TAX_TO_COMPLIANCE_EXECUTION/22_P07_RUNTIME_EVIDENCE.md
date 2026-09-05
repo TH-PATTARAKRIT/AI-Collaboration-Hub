@@ -2337,3 +2337,83 @@ All four instances in this exchange worked exactly that way. And the counter-exa
 the same paragraph, not in a footnote: this package's unit `1c` run returned **four flags, zero
 genuine hits**, reported as false-positive-prone. **A rule that only ever confirms is not being
 run, it is being cited.** `REV-M-57`.
+
+
+---
+
+## 30. `P07-N-25` Settled — by the Route That Needs Neither Map Nor Path Set — `P07-F-88`
+
+`§29` called `P07-N-03` and `P07-N-25` **unreachable**, on the ground that a claim about *the
+absence of a class of model* cannot be bounded by an analysis starting from which modules
+declare on which models. P04 accepted the reasoning and supplied the route it rules out:
+
+> **Enumerate `ir_model` — the deployment's own authoritative model registry — and test for a
+> model of that shape across all of it. That needs no module map and no path set**, which is
+> exactly what made the leftovers unreachable.
+
+### 30.1 The result
+
+| identity | generation | models in registry | controls (`account.tax` / `res.company`) | **tenant-shaped models** |
+|---|---|---:|---|---|
+| `a1430edc` | v19 | 1,115 | 1 / 1 | **none** |
+| `1f6338ae` | v19 | 749 | 1 / 1 | **none** |
+| `66d1b52a` | v19 | 756 | 1 / 1 | **none** |
+| `551ab874` | v18 | 944 | 1 / 1 | **none** |
+| `45a8e08e` | v16 | 601 | 1 / 1 | **none** |
+
+**4,165 model rows across 5 identities and 3 generations. Zero tenant-shaped models. Controls
+fire in every row.**
+
+**`P07-N-25` SURVIVES — and on a stronger basis than the one it was published on.** It was a
+source-tree claim bounded to one volume, with `$HOME` never searched. It is now a **deployment**
+claim tested against the registry every deployed identity maintains for itself. `P07-F-50` —
+the tenant boundary specified at status `NEW` and not built — **stands, strengthened.**
+
+### 30.2 Re-scoped, per the commitment made before the result was known
+
+`REV-M-56` committed this package to not re-publishing `P07-N-25` in whole-product form
+whichever way it returned. The re-scoped statement, with P04's two limits carried:
+
+> **`P07-N-25` (re-scoped).** No model whose name denotes a tenant exists in the model registry
+> of any of the **five deployed identities examined** — `a1430edc`, `1f6338ae`, `66d1b52a`
+> (v19), `551ab874` (v18), `45a8e08e` (v16) — comprising 4,165 model rows.
+> **Bounds the estate on this host, not the product**: a model absent here may exist in an
+> install not on this host. **Absence of a model is not absence of a behaviour**: a capability
+> can live in a field or a method, so this is decisive only for a claim phrased about a missing
+> **record type** — which is how `P07-N-25` is phrased, and why the route fits it.
+
+The filesystem walk over both roots is no longer the load-bearing evidence and is superseded as
+the primary route; the registry answers the question the walk was asked.
+
+### 30.3 The near-miss check — the inversion on live counter-examples
+
+P04 reports that `stock.scrap`, `account.transfer.model` and a revaluation model **all exist**
+in its deployment, so a whole-product phrasing — *"no scrap concept exists"* — **would have been
+falsified by them**, and its claims survive only because they were bounded to the asset module.
+*The narrow boundary was not modesty; it was what made the claim true.*
+
+Run here against 944 models, asking what a looser phrasing of `P07-N-25` would have hit:
+
+| looser phrasing | would have hit |
+|---|---|
+| *no tenant construct* | none |
+| *no multi-company / isolation construct* | none |
+| **no organisational-boundary construct** | **`scgl.multi.approve.organization`** |
+| *no subscriber / customer-account construct* | none |
+
+**One near-miss, and it is enough to make the point on this package's own material.**
+`scgl.multi.approve.organization` is an approval-workflow grouping, not a security boundary — so
+`P07-N-25` as phrased survives, **and a broader phrasing of the same finding would not have.**
+`REV-M-58`.
+
+### 30.4 What is still unreachable
+
+`P07-N-03` — *four Thai tax-document modules absent from the declared set* — is a claim about
+**module presence in a tree**, not about a record type, so the registry route does not settle
+it. It remains in the whole-product residue with its boundary superseded, and it is now the only
+member. `P07-U-31` opened to re-run it over the corrected root set.
+
+**So `§29`'s two-class residue narrows to one open item**, and the class is not unreachable in
+general — it was unreachable *by the routes this package had*. P04's contribution was not a
+better answer to the question but **a route that does not need what made the question hard**,
+which is the fourth time in this exchange that the tool has mattered more than the estate.
