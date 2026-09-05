@@ -71,7 +71,7 @@ that mattered.
 | 13 | **`P04-F-34`'s summary contradicted its own table.** One of the "four with no host" has a host and is a control gap — and `15` `D-P04-03` records that scoring as an **open disagreement**, which the summary asserted as settled and `19` carried into the clean-room pack | Corrected in `07` and in `19`. The disagreement is now visible in the Layer-1 pack |
 | 14 | **`17` §4 certified deliverables that did not exist** — files `14` and `16` | Corrected; see §3.3 |
 | 15 | **The blocker count was quoted, not executed** — `17` said 26 new against a register that had grown | Re-executed: **39 register rows = 3 re-registered + 36 new.** `17` corrected. *The package quoted a count in the very file that certifies its denominator discipline* |
-| 16 | `17` §5 deviation 1 **listed six identifiers and called them five** | Corrected |
+| 16 | `17` §5 deviation 1 **listed six identifiers and called them five** | Corrected — **and the correction was later erased** when that row was rewritten, leaving this disposition claiming a repair the file did not show. Lineage restored at `17` deviation `1a`; see `18` `P04-REV-26` |
 | 17 | **One finding carried two identifiers** — `P04-F-18` and `P04-F-23` are the same blank-account finding, both cited downstream | Merged onto `P04-F-23`; `P04-F-18` **withdrawn** |
 | 18 | **Two broken finding cross-references** in `01` §5 and `04` §5 | Both corrected |
 | 19 | **`P04-REV-01`'s own count was wrong** — 21 files, executed gives **22** (10 + 12) | Corrected. An executed-count error inside the file that exists to punish quoted counts |
@@ -115,6 +115,33 @@ verify and easy to mis-refute. `11` §3 and `10` `P04-B-31` now name both.
 |---------|----------|--------------|
 | The nine-path count | The unit was changed after the fact to rescue the figure | Accepted — and the fix is to publish **three** counts against three named units, not to pick one. The reviewer's implied preference for a single headline number is what produced the problem |
 | `P04-F-49` framing | *"Depreciation does not reach cost centres"* overstates | Accepted at balance level. **Disagreement preserved** on consequence: the reviewer holds this makes it a report change; this session holds that a cost centre whose sum is zero is not attribution in any sense a reader of `BD-02` would accept, whatever a filtered report can recover |
+
+### 3.1.1 This table was audited, and it was not clean
+
+Written after P11 audited its own equivalent and found **ten of 86 dispositions
+marked *ACCEPTED — CORRECTED* over registers that were never edited**, including
+that round's only CRITICAL — a false assurance not about ten findings but about
+all 86. P04 ran the same audit against the 24 dispositions above.
+
+**Method, stated because P11's first audit pass failed silently** — its grep
+escaping did not match and returned *"corrected"* for four findings that were all
+still present, the inert-pattern defect recurring inside the audit written to
+catch it. This audit therefore ran a **positive control** (a string known to be
+present, which matched) and a **negative control** (a string known to be absent,
+which did not) before any claim was checked. Both behaved.
+
+**Result: 22 of 24 verified present in the files they name. Two defects.**
+
+| # | Defect | Class |
+|---|--------|-------|
+| a | `17` carried **44 rows / 41 opened** against an executed **45 / 42**, in three places — one of them a cell reading *"**Executed, not quoted**"*, which was **false about itself** | a self-certifying stale count, the same shape P07 found in a peer's register |
+| b | Item 16's correction had been **erased by a later rewrite of the same row**. The disposition still read *Corrected*; the file showed **neither the error nor its repair** | **a later edit destroying an earlier correction's lineage** — not previously named by any of the three sessions |
+
+Both corrected. **Defect (b) is the one worth carrying**: every rule this
+exchange produced concerns making a correction *visible*. None of them protects
+a correction already made from being **overwritten by a subsequent edit to the
+same text**. A disposition table cannot detect it, because the disposition
+remains true about what was done and false about what the file now shows.
 
 ### 3.2.1 What no amount of adversarial review would have caught
 

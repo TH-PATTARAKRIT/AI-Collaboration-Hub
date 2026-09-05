@@ -65,9 +65,9 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `12_P04_CONTRADICTION_REGISTER.md` | `4a54d8b13cfff34602ef2d1c9a2c10b8a43934ff943dfaf4cad6904874038e79` |
 | `13_P04_SOURCE_LINK_REGISTER.md` | `895d8fd30611e0b21b4e6980fcfca715156257acff50ecac234261a16580f5e1` |
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
-| `16_P04_AAS_PLUS.md` | `b1d63e5676b7bd06dbc48e8329c66bf50c9d0d5fb7b99522f5d5394d780c8905` |
-| `17_P04_PMO.md` | `1bbc6d0a5c767410c865079dfe709f4aa9270d0f08d285d1fab9ec201a012d40` |
-| `18_P04_REVISION_LOG.md` | `e581d69729ad22b483958149d433ae5b457f3bd5f490fabe2b9ff2a6a42d74fd` |
+| `16_P04_AAS_PLUS.md` | `2776f61caef4327979f4460afa7ef40796707296295004705fa16038ea691f9f` |
+| `17_P04_PMO.md` | `353b40126b2b22025ebc9623607a4b415eac72bde9d1bf4cb740b4f785c7ca3c` |
+| `18_P04_REVISION_LOG.md` | `bf5aa70e6dadb03a82908b3d98ca86e80476af93fcb73003cb20e35c8c77fe8f` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `1f635cba7e22be8e4001c877e9638c8ec918f695fba0ee68cb319132bc194eda` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `1a9a822ba1084ec34107787490ac248e3fdc127ac32a91af14a11e19c5d1145b` |
 
@@ -90,7 +90,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | Findings (`P04-F-nn`) defined | **82** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **45** — 3 re-registered from the handover residue, 42 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
-| Revisions | 25 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
+| Revisions | 26 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
 | Recurrences of the enumeration / unit defect | **9 instances across 4 actors — P04's declared half**, `@ ae525fc`, verified unchanged by P07 at `c839bfe`. **No joint total is published**; halves are not summed (`18` §5b) |
 | Expert disagreements preserved | 4 new · 7 inherited and re-opened · 2 between this session and the independent reviewer |
 | Scope determinations | 14 objects and 10 operations classified; 2 on **HOLD — SCOPE EVIDENCE REQUIRED** |
@@ -110,6 +110,7 @@ rather than executed and were wrong; both are recorded in `18`.
 | Clean-room scan **extended** with UI-label forms after independent challenge | **0 hits on every form**; one residue found and replaced |
 | Prohibited-wording scan across the package — `PASS`, `FINAL FREEZE`, `MERGED`, `IMPLEMENTATION AUTHORIZED`/`AUTHORISED`, `APPROVED`, `Team B`, `Team C` | **0 hits** other than explicit negations and quotations of prior recorded positions |
 | Finding identifiers referenced but never defined | **0** |
+| **Independent-review dispositions audited against the files they name** | **24 checked, 22 verified, 2 defects found and fixed** — run with a positive and negative control after a peer's equivalent audit failed silently (`16` §3.1.1) |
 | Blocker identifiers referenced but absent from the register | **0** (five were found missing mid-session and registered — `18` `P04-REV-10`) |
 
 ## 6. Terminal status
