@@ -14,6 +14,10 @@ Budget consumption admits a management record only when its general account's ty
 
 **FACT VERIFIED.** The gate is a first-token match, so the template's mistyped accumulated-depreciation accounts **would** be admitted.
 
+> ## ⚠ TWO CORRECTIONS FROM `S22`
+> **(1)** The version-18 budget tables named here **do not exist** in the deployment — my parser reported "0 rows" for **absent tables**. The deployment runs version 16 and holds the **legacy** budget model, separately empty. The conclusion (no budgets) is unchanged; the reason was wrong.
+> **(2)** The gate quoted here is the **version-18** text. The **version-19** gate — the shipping platform — **explicitly admits fixed, current and non-current asset types**, so §4's "the gate does exactly what it should" is **void on the target platform**.
+
 ## 3. THE DEPLOYED TEST — AND ITS DECISIVE LIMITATION
 
 | Measurement | Result |
@@ -39,10 +43,10 @@ And for the depreciation accounts specifically, from `S01`:
 
 | Leg | Deployed type | Gate outcome |
 |---|---|---|
-| accumulated depreciation | `asset_fixed` | **EXCLUDED** |
+| accumulated depreciation | fixed-asset type | **EXCLUDED** |
 | depreciation expense | depreciation-expense | **ADMITTED** |
 
-> **In this deployment the gate does exactly what it should: it excludes the balance-sheet leg. The depreciation cost would be consumed once, at its full amount. TH-F-01's zeroing does NOT occur here.**
+> **On the version-18 gate, the balance-sheet leg is excluded. On the version-19 gate that the project actually ships, it is EXPLICITLY ADMITTED — see `S22`. The protection asserted here does not exist on the target platform.**
 
 ## 5. CLASSIFICATION
 

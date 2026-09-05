@@ -6,6 +6,9 @@
 
 ---
 
+> ## ⚠ SUPERSEDED IN PART BY `S22` — READ THAT FIRST
+> This document's account-type measurements stand. **Its safety conclusion does not.** `S22` establishes that (a) no deployment runs the platform version this analysis reads, and (b) **the version-19 budget gate explicitly admits balance-sheet account types**, so correct typing is **not** the protection asserted in §7 below. TH-F-01 is **SUPERSEDED — MATERIAL NEW EVIDENCE**, replaced by `TH-F-02`.
+
 ## 1. THE HEADLINE — MY OWN PRIOR CLAIM IS CONTRADICTED
 
 The previous round's final report stated:
@@ -36,11 +39,11 @@ Measured directly against the deployed database, exhaustively:
 | account records in the deployed chart | **339** |
 | accounts on the Thai template's code range (141x / 142x) | **ZERO** |
 | accounts named as accumulated depreciation | **10** — all coded 1232xxx |
-| their account type | **`asset_fixed` — all ten. Correctly balance-sheet.** |
+| their account type | ****a fixed-asset type — all ten. Correctly balance-sheet.**** |
 | accounts typed as depreciation-expense | **13** — all coded 71xxxxx / 72xxxxx, all named as depreciation expense. Correctly profit-and-loss |
-| accumulated-depreciation accounts actually referenced by assets | `asset_fixed` on **671** assets, `asset_current` on **13** |
+| accumulated-depreciation accounts actually referenced by assets | a **fixed-asset** type on **671** assets, a **current-asset** type on **13** |
 | depreciation-expense accounts actually referenced by assets | depreciation-expense type on **671**, plain expense on **13** |
-| fixed-asset accounts referenced by assets | `asset_fixed` on **672**, `asset_current` on **13** |
+| fixed-asset accounts referenced by assets | a **fixed-asset** type on **672**, a **current-asset** type on **13** |
 
 **The deployment does not use the shipped Thai template.** It uses a custom chart in which the accumulated-depreciation accounts are correctly typed as balance-sheet assets.
 
@@ -60,8 +63,8 @@ Per the instruction not to infer role from name alone — every column below is 
 
 | Role | Deployed code range | Deployed type | Financial-statement role | Analytic eligibility | Budget eligibility |
 |---|---|---|---|---|---|
-| fixed asset | 1232xxx and others | `asset_fixed` | balance sheet | eligible (no type test on creation) | **excluded** by the type gate |
-| accumulated depreciation | 1232xxx | `asset_fixed` | balance sheet (contra) | eligible | **excluded** by the type gate |
+| fixed asset | 1232xxx and others | fixed-asset type | balance sheet | eligible (no type test on creation) | **excluded** by the type gate |
+| accumulated depreciation | 1232xxx | fixed-asset type | balance sheet (contra) | eligible | **excluded** by the type gate |
 | depreciation expense | 71xxxxx / 72xxxxx | depreciation-expense | profit and loss | eligible | **admitted** |
 | *(template)* accumulated depreciation | 141x / 142x | **depreciation-expense** | **asserts profit and loss; named as balance sheet** | eligible | **would be admitted** |
 
@@ -83,7 +86,7 @@ TH-F-01 remains a real finding, correctly scoped:
 - the template contains **no** correctly-typed fixed-asset account, so a configurer following it has **no correct option** for the balance-sheet leg;
 - this is a **configuration trap**, not a code defect, and it is exactly the kind that survives testing because the arithmetic is correct at every step.
 
-**Severity is reduced from CRITICAL-DEPLOYED to HIGH-LATENT. It is not withdrawn.**
+**Severity as a *Thai* finding is reduced to LOW — the version-19 template types these accounts correctly, so the trap is closed on the shipping platform. But see `S22`: the exposure it described has reappeared, version-general, as `TH-F-02`.**
 
 ## 8. OWNERSHIP — P09 DOES NOT OWN THIS
 

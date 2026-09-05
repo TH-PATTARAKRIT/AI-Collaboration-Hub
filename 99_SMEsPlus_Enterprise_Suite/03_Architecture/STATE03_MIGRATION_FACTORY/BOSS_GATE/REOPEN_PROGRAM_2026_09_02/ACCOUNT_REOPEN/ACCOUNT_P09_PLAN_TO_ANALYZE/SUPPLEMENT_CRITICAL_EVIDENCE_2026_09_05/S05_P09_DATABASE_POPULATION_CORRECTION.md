@@ -71,6 +71,12 @@ One round reported "12 and 12"; a reviewer reported "36 and 36". **Both were rig
 
 **Class A within the stated scope**, and the scope is now the whole searched volume rather than a curated list.
 
+## 5A. THE POPULATION HAS A VERSION AXIS, AND IT WAS NEVER MEASURED
+
+Establishing *how many* databases existed did not establish *what they are*. Read from their own module registries this round: **one runs platform version 16, three run version 19, none runs version 18** — the version every P09 round has read.
+
+**A population is not bounded until its version is known.** See `S22` and rule `NC-10`.
+
 ## 6. WHAT THIS DOES TO THE HEADLINE
 
 The previous round's measurement stands and is now properly bounded:
