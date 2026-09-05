@@ -627,7 +627,11 @@ identity.** Conversely `BK12MAY26`'s two artefacts share one uuid and are one id
 | `66d1b52a-…` | 2 | `19.0.1.3` | in-generation |
 | `45a8e08e-…` | 1 | `16.0.1.3` | **out of generation** |
 
-**7 snapshots, 5 identities, 4 of them in-generation.** Every denominator in §7–§9 was written
+**7 snapshots, 5 identities, 4 of them in-generation.** — **SUPERSEDED AND A LOWER BOUND at
+`§12`: ≥ 8 snapshots / 6 identities.** This census was drawn over two directories that were
+chosen and never declared as a path set; a sixth identity, in a third generation, sits outside
+them. Left standing with its correction attached rather than rewritten, because a census that
+has not finished is not a number. Every denominator in §7–§9 was written
 over 2 in-generation identities. The eligible number was 4.
 
 ### 10.3 Every runtime finding re-derived at the corrected population
@@ -878,3 +882,92 @@ The declared path set was never wrong about what it contained. It was wrong abou
 left out and why**, and that reason sat in the register a reader would consult to audit the
 scope. Same shape as `REV-E-44`, one level up: there the population was defined by an
 assertion inside the evidence table; here the **source scope** is.
+
+
+---
+
+## 12. A v18 Identity, Newer Than Every Artefact Enumerated, Outside Both Roots — `P07-F-66`
+
+P04 re-ran its census over a **declared** path set instead of the two directories it had been
+using, and found a database neither package had enumerated. Verified here independently before
+any of it was used.
+
+### 12.1 The identity
+
+`~/OCC_BACKUP/idemo18_uat_pre_scgl_occ_website_20260830_085432.dump` — `dbname: idemo18_uat`,
+`database.uuid 551ab874-…`, created 2026-08-18, **`base 18.0.1.3`**, **40,353 move lines**,
+4 companies. Dated 2026-08-30: **newer than every artefact in `§10`'s census.** It needs the
+newer client, so a default client reports it *unreadable*, not *absent*.
+
+**`P07-F-66` — a sixth identity, in a third generation, with a real transacted population.**
+`§10.2` published **7 snapshots · 5 identities** as a corrected census. It is **8 · 6** at
+minimum, and `§10`'s figure is now marked **SUPERSEDED AND A LOWER BOUND** rather than replaced,
+because a full content sweep across `$HOME` and every mounted volume is still executing and this
+package will not publish a second census it has not finished.
+
+### 12.2 Why `§10` missed it, which is not the reason `§10` gave
+
+`§10` corrected an *eligibility* error and, in doing so, declared its own census method. That
+method was two directories — `~/Downloads` and `/Volumes/iMacSys` — **chosen and never
+written down as a path set.** The artefact sits in `~/OCC_BACKUP`, a sibling of one of them.
+
+So `POPULATION`, `PATTERN` and `UNIT` were declared and executed at `§10.7`, correctly, and
+`PATH SET` — the one clause this programme fixed first, and the one `13` exists to declare —
+was silently author-chosen for the runtime evidence while being rigorously declared for the
+source evidence in the same package.
+
+**P04's formulation, adopted: raising the authority of a statement about a population does
+nothing for a population that was drawn wrongly.** And the fourth rung on the ladder from
+`REV-M-22`: **having the rule, recalling it, running it, and running it on the right set.**
+`REV-M-25`.
+
+**No check in the four-check sweep could have caught this**, and that is a property of the
+sweep, not an oversight in it: identifiers, table structure, manifest hashes and the Layer-1
+scrub all have the *package* as their unit. **No check whose unit is the package can find
+evidence that is not in it.**
+
+### 12.3 The battery, re-run on the v18 identity
+
+| | result | effect |
+|---|---|---|
+| `P07-F-01` — VAT group name | `{"en_US": "VAT 7%"}`, no `th_TH` | **does not fire.** Prevalence unchanged at 1 of 4 *in-generation*; this identity is v18 and out of generation |
+| `P07-F-42` — zero-rate taxes | 16 of 80, **all** in groups `2, 7, 12, 17` | **fires** |
+| `P07-F-42` — target group names | all four `{"en_US": "TAX 1%"}` | **fires, in a naming variant** |
+| `P07-F-61` — `account_tax_unit` | present in TOC, **0 rows** | holds; now **6 of 6 identities** |
+| `P07-F-63` — flagged accounts | **2 of 658** | a fourth distinct configuration |
+| `P07-F-62` — certificates | **332**, `income_tax_form` 205 `pnd53` / 125 `pnd3` / 2 null | second real certificate population |
+
+### 12.4 `P07-F-42` is now cross-generation in three generations, and its mechanism is confirmed
+
+The four target groups are **exactly the lowest-id tax group belonging to each of the four
+companies** — company 2 → id 2, company 3 → id 7, company 4 → id 12, company 1 → id 17. That
+is the mechanism `P07-F-42` states, observed in a generation where the id ordering differs from
+every previously examined identity, so it is not an artefact of ids starting at 1.
+
+And the group is named **`TAX 1%`**, not `WHT 1%` — an independent confirmation of `P07-F-15`
+(group naming varies between deployments). The finding does not depend on the name: in **v16 it
+was `Taxes`, in v18 `TAX 1%`, in v19 `WHT 1%`**, and in all three it is a **withholding or
+generic group and never a VAT group**. `P07-F-42` now holds in **v16, v18 and v19**.
+
+### 12.5 `P07-F-62` strengthened, and one figure in it made precise
+
+A second real certificate population, in a different generation, carries a populated s.40
+income-type taxonomy:
+
+| identity | cert lines | income types observed |
+|---|---:|---|
+| `45a8e08e` (v16) | 6,159 | `5` ×4,381, `6` ×1,766, `2` ×12 |
+| `551ab874` (v18) | 348 | `5` ×332, `6` ×16 |
+
+**Precision correction to the register:** `P07-F-62` describes the field as *"the 15-value s.40
+taxonomy"*. Fifteen is the **domain**; the **observed** distribution is three values across two
+generations and 6,507 lines. The finding — that a correct per-line income type is stored and
+the export derives income type from the tax rate instead — is unaffected and now rests on two
+generations rather than one. `REV-E-50`.
+
+### 12.6 What is NOT claimed
+
+The other artefacts P04 lists by name — further `iEVING`, `BK12MAY26`, `iMSCG`, `pankhamhom`,
+`iErpOCC`, `iSCErP` copies and a simulation-lab set — are **name-matched candidates, not
+counted here**. Turning a candidate list into a census is the error this section exists to
+record. They are counted when the content sweep finishes and each is keyed on `database.uuid`.
