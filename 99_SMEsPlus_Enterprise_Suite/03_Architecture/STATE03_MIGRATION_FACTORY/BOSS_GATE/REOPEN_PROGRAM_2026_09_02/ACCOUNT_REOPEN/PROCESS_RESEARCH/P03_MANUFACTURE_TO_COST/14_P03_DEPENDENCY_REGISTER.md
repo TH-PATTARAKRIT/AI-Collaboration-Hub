@@ -38,6 +38,17 @@ rest of the session.
 | `DEP-16` **new** | — | `iTEST02` unreadable; local `pg_restore` predates dump format 1.16. **Cheapest open item in the package** — `UNR-P03-07` |
 | `DEP-17` **new** | — | Whether any readable database is the migration target — `UNR-P03-10`. **Boss / programme** |
 
+### Round 4 — status changes
+
+| ID | Was | Now |
+|---|---|---|
+| **`DEP-04`** | PARTIALLY CLOSED (2 of 4) | **CLOSED** — 3 module lists; the 4th database holds no manufacturing data. **Its closure overturned 3 round-3 claims** — `61` §4 |
+| **`DEP-13` / `P04-B-35`** | EXECUTED — VACUOUS (0 of 0) | **EXECUTED — SUBSTANTIVE: 0 of 60.** Blocker **not closed**; severity **High → Medium** on measured incidence |
+| **`DEP-16`** (`UNR-P03-07`) | HOLD — TOOLING | **CLOSED** — opened with an already-running runtime and already-cached image; **no environment change** — `62` |
+| `DEP-18` **new** | — | **`P11-D-4`** which ledger is authoritative on subsidiary/GL divergence — **P11** |
+| `DEP-19` **new** | — | **`P11-D-5`** remediation sequencing for a self-cancelling corrupt position — **P11 / Boss** |
+| `DEP-20` **new** | — | **`P11-D-6`** whether a defect with zero measured incidence but a permitted mechanism can be closed — **P11** |
+
 ## 2. Dependencies P03 deliberately did **not** attempt to close
 
 `smeplus-session-execution-pattern` forbids a session adjudicating between two parallel

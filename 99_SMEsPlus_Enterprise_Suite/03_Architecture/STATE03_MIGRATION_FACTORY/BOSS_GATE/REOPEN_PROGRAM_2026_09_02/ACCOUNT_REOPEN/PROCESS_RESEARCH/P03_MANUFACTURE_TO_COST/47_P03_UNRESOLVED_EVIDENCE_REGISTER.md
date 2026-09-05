@@ -29,6 +29,20 @@
 | `DEP-04` | Installed-module list unknown; capped every negative claim | **PARTIALLY CLOSED** — obtained for 2 of 4 databases — `26` §6 |
 | `DEP-13` | `HOLD — UAT REQUIRED`, one query | **EXECUTED — VACUOUS**, 0 of 0 — `31` |
 
+### Round 4 — changes
+
+| ID | Status |
+|---|---|
+| **`UNR-P03-07`** iTEST02 unreadable | **CLOSED** — `62` |
+| **`UNR-P03-14`** `DC-04` cost method unknown | **CLOSED** — measured: `iSMEs` 18 FIFO + 8 average, 0 standard; `iTEST02` standard but periodic. `DC-04` **UNREACHABLE** |
+| `UNR-P03-01` multi-operator work orders | **PARTLY CLOSED** — 7 of 13 work orders carry >1 log; 1 genuinely overlaps; that log has **zero duration**, so the effect is zero |
+| `UNR-P03-05` `DC-14` incidence | **MEASURED — zero.** Modules installed in `iTEST02`; **0 of 60** work centres carry a distribution |
+| `UNR-P03-11` **new** | `iSMEs` and `iTEST02` are **different schema generations** — company-dependent properties as rows vs `jsonb` columns; `iTEST02` has no valuation-layer table. No finding crosses them without saying so |
+| `UNR-P03-15` **new** | Whether the 49 unvalued finished moves are a manufacturing or an inventory-valuation defect — routed to Inventory |
+| `UNR-P03-16` **new** | Whether the material-only carrying value and the never-posted COGS compound — joint P02/P03/Inventory, routed to P11 |
+| `UNR-P03-17` **new** | The production-account balance in `iTEST02` was **not** decomposed — the one measurement that would test `DC-03`/`DC-04` directly |
+| `UNR-P03-18` **new** | The company-dependent valuation **fallback** was inferred from an absent valuation table and a 32-line ledger, **not read from `ir_default`** — `E4`'s preserved dissent |
+
 ## 3. Explicitly *not* P03's to resolve
 
 | Item | Owner | Status quoted unchanged |

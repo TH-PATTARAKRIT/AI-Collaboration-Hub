@@ -44,6 +44,22 @@ stronger claim than a defect and is used sparingly.
 | `P03T-F-07` | The system has too many mechanisms **and** none in use — the veto's limb is unanswerable as written | `SUPPORTED INTERPRETATION` |
 | `P03-GAP-08` | Indirect labour and the overhead pool are owned by **no** process | `FACT VERIFIED` |
 
+### Round 4 — runtime inversion findings
+
+| ID | Finding | Class |
+|---|---|---|
+| **`P03R-F-01`** | **The inventory valuation subsidiary ledger and the general ledger have diverged** — 25 of 25 outlier rows name entries carrying different, sane amounts; GL balanced at 0.00 | **FACT VERIFIED — Critical** |
+| `P03R-F-02` | "Material cost present" is true in aggregate, false in detail — 49 completed finished moves unvalued, 280 valued zero, 1,386 consumptions unvalued | `FACT VERIFIED` |
+| **`P03R-F-03`** | `_cal_price` propagates a corrupt input into FG value with no bound or validation; unbuild propagates it again. 18 of 30 corrupt rows are manufacturing-origin | **FACT VERIFIED** |
+| `P03R-F-04` | The apparatus fails at a different gate in each database — modules/work centres in one, rates and **valuation mode** in the other | `FACT VERIFIED` |
+| `P03R-F-05` | Conversion cost is not lost from a ledger — **it is never created** | `FACT VERIFIED` |
+| `P03R-F-06` | Across 7 duplication defects, **no mutual exclusion, validation or collision check exists** | `FACT VERIFIED` |
+| `P03R-F-07` | Every conversion-cost element fails TEST B; a **third** failure mode exists — "once, and absurd" | `FACT VERIFIED` |
+| `P03R-F-08` | Fixed overhead has no path in any of 4 databases, with every plausibly relevant module installed in one | `FACT VERIFIED` |
+| **`P03R-F-09`** | **Work centres with rates and real-time valuation have never co-existed in any examined deployment** | **FACT VERIFIED** |
+| `CTR-P03-08` | The most dangerous configuration is the **default** — 60 of 60 work centres have no absorption account | **CONTRADICTED** |
+| `TZ-09` | The 30 corrupt rows **nearly cancel**; any partial correction releases ~10²¹ | **Tolerance = 0** |
+
 ## 3. Unresolved
 
 | ID | Item | Class |

@@ -1,0 +1,153 @@
+P03 SUPPLEMENTAL — RUNTIME-INVERSION EXECUTED EVIDENCE
+Session SMEPLUS-26-09-05-ACC-P03-M2C-RUNTIME-INVERSION-RISK-RECLASSIFICATION-001
+Executed 2026-09-05. ALL READ-ONLY. No server started, no restore, no write,
+no environment or tooling change.
+
+=== CP-P03R01  MO POPULATION (iSMEs) ===
+total MO rows          10764
+states                 done 9807 | cancel 873 | confirmed 54 | draft 22 | progress 2 | to_close 6
+companies on MOs       {'1': 10764}          <-- single company
+DONE MOs               9807
+DONE MOs with a BOM    9488
+date_start             ALL NULL on every row  <-- see NOTE 1
+valuation ledger dates 2023-10-03 -> 2026-07-11
+
+NOTE 1: mrp_production.date_start is null on all 10,764 rows. The MO date range
+        therefore CANNOT be stated from that column. The valuation-ledger range
+        above is used instead and is a different measure. Recorded rather than
+        substituted silently.
+
+=== CP-P03R01b  DOES MATERIAL COST REACH THE ORDERS? ===
+stock_move                     103949
+stock_valuation_layer           74982
+finished moves (production_id)  20230   of which done 13284
+raw moves (raw_material_...)    41029   of which done 30067
+done FINISHED moves WITH an SVL 13235 / 13284
+done RAW      moves WITH an SVL 28681 / 30067
+done finished moves with NON-ZERO SVL value               13004
+
+=== CP-P03R01c  VALUATION LEDGER INTEGRITY ===
+row width distribution         {19: 74982}    <-- every row well-formed; parsing is NOT the issue
+unparseable value cells        0
+sum of value, ALL 74,982 rows            205,490,835.88
+sum of value, excluding 30 outliers      400,338,755.98
+rows with |value| > 1e12                 30
+net contribution of those 30 rows       -194,847,920.10   (-48.7% of the clean base)
+min value       -1,037,501,181,874,222,661,632.00
+max value        1,533,508,025,629,365,764,096.00
+corruption window   2024-08-28 -> 2024-09-03  (5 distinct days)
+
+ATTRIBUTION OF THE 30 CORRUPT ROWS
+  origin                              rows          net value
+  REVALUATION (no move)                  4   -940,247,640,679,603,456.00
+  RECEIPT/other (P01 or Inventory)       8    736,631,055,036,973,056.00
+  RAW consumption (P03)                  2    197,850,793,351,276,800.00
+  FINISHED (P03)                         4    197,850,793,351,274,400.00
+  UNBUILD (P03)                         12   -192,085,001,254,677,504.00
+  TOTAL                                 30           -194,756,704.00
+  (gross exposure ~1e21; the residual is small only because the rows nearly cancel)
+
+=== CP-P03R01d  SUBSIDIARY LEDGER vs GENERAL LEDGER ===
+outlier SVL rows carrying an account_move_id      25 of 30
+all SVL rows carrying an account_move_id       57863 of 74982
+GL lines with |balance| > 1e12                     0
+sum of ALL 447,384 GL line balances             0.00      <-- GL is balanced and sane
+account_move rows                            183590
+
+RECONCILIATION OF THE 25 OUTLIERS AGAINST THEIR CLAIMED GL MOVE
+  account_move MISSING from the ledger :  0
+  present but AMOUNT MISMATCHED        : 25
+  present and amount matched           :  0
+  examples: svl 27394 value 1.53e21 -> move 105228 GL debit total 874,350.00
+            svl 27943 value -1.04e21 -> move 106149 GL debit total 871,350.00
+
+=== CP-P03R01e  CAUSAL CHRONOLOGY — product 11556 (jasmine-rice raw material) ===
+2023-10-23 .. 2024-08-27  vendor receipts, unit cost 27.50 - 31.66      NORMAL
+2024-08-27 09:46:21  WH/IN/03634  qty 27905  unit    712,186.25   <== FIRST BREAK (23,000x)
+2024-08-28 08:26:19  revaluation, no move, value -10,954,387,437.50
+                     description "AP2024081214 (...) - raw material jasmine rice"
+2024-08-28 09:25:34  WH/IN/03689  qty 31673  unit  4,456,673,707.51
+2024-08-29 09:26:16  WH/IN/03707  qty 46955  unit 15,685,015,415,021.04
+2024-08-30 09:17:04  WH/IN/03709  qty 29145  unit 52,616,504,567,828,624.00
+2024-08-30 09:19:22  revaluation "AP2024081365"  value -437,690,355,155,325,440.00
+2024-08-30 09:27:20  revaluation "AP2024081372"  value -496,791,493,239,011,648.00
+   ... interleaved with NORMAL receipts at unit 30.00-30.84 on the same days ...
+2024-08-31 09:17:29  RAW consumption into MO 4410, unit -1,608,091,395,637.72
+2024-08-31 09:17:29  FINISHED of MO 4410 -> products 11630 / 11632 / 11633 at absurd unit costs
+2024-09-03 09:32-09:33  UNBUILD 440..444 release product 11632 at unit -352,468,555,154.38
+
+Products affected: 11556 (9 rows), 11632 (13), 11630 (5), 11633 (3)
+Product 11632 SVL history: 349 rows, normal (unit 13.83 - 279.91) until
+2024-08-31 when MO 4410 writes unit 2,266,696,491,129.46.
+
+=== CP-P03R12  iTEST02 — SAFE METHODS EXHAUSTED, THEN OPENED. NO ENVIRONMENT CHANGE ===
+pg_restore --version            pg_restore (PostgreSQL) 16.15 (Homebrew)
+direct read                     pg_restore: error: unsupported version (1.16) in file header
+file(1)                         PostgreSQL custom database dump - v1.16-0
+header bytes                    50 47 44 4d 50 01 10 00   "PGDMP" + version 1.16
+other pg_restore binaries       none found under /opt/homebrew or /usr/local
+psql / sqlite3                  present, neither reads a PG custom-format archive
+
+CONTAINER RUNTIME — ALREADY RUNNING, NOT STARTED BY THIS SESSION
+  docker info -> server 29.5.2 (daemon already up)
+  colima status -> "colima is running using macOS Virtualization.Framework"
+  docker images -> postgres:17 and postgres:18 ALREADY CACHED LOCALLY
+
+METHOD USED (permitted by the directive's "containerized read-only tooling if already
+available"; no daemon started, no image pulled, no host change, no network):
+  docker run --rm --network none \
+      -v "$HOME/Downloads/iTEST02_...dump:/d.dump:ro" postgres:17 \
+      pg_restore -f - --data-only -t <table> /d.dump
+  -> Archive created 2026-07-14, dbname iTEST02, 26,804 TOC entries, format CUSTOM v1.16-0
+
+=== iTEST02 — THE FOURTH DATA POINT (EXECUTED) ===
+mrp_workcenter                    60      <-- the FIRST deployment found with work centres
+mrp_production                   163      states: done 8, cancel 102, confirmed 41,
+                                                  draft 7, to_close 4, progress 1
+mrp_workorder                    204      states: cancel 129, ready 41, blocked 19,
+                                                  done 14, progress 1
+mrp_routing_workcenter           154
+mrp_workcenter_productivity       27      (time logs)
+mrp_bom                           87
+account_asset                     12
+res_company                        1
+stock_valuation_layer         NO TABLE
+
+INSTALLED MODULES: 453 total. ALL of the following INSTALLED:
+  mrp, mrp_account, mrp_account_enterprise, mrp_workorder, mrp_workorder_hr_account,
+  project_mrp_account, project_mrp_workorder_account, mrp_accountant,
+  mrp_subcontracting, mrp_landed_costs, stock_account, account_asset,
+  hr_hourly_cost, maintenance, mrp_maintenance
+
+=== DEP-13 / P04-B-35 — EXECUTED WITH A NON-EMPTY POPULATION AT LAST ===
+POPULATION: 60 work-centre rows in iTEST02.  UNIT: one work-centre row.
+  work centres with NO company (company_id IS NULL) :  0
+  work centres WITH a company                       : 60   (all company_id = 1)
+
+=== WORK-CENTRE CONFIGURATION EXPOSURE (iTEST02, 60 rows) ===
+  costs_hour non-zero                          :  1 of 60   (id 123 "AS : PACKING", 100/hr)
+  employee_costs_hour non-zero                 :  0 of 60
+  expense_account_id IS NULL                   : 60 of 60   <== DC-07 exposure is TOTAL
+  analytic_distribution populated              :  0 of 60   <== M4 never fires here
+
+=== DC-07 MEASURED EXPOSURE ===
+  work orders on the rate-bearing work centre    : 11 of 204
+  of those, state = done                         :  4
+  of those, duration > 0                         :  3   totalling 1,200.11 minutes
+  => 20.0 hours x 100/hr = ~2,000 of labour relief that would credit the FINISHED
+     PRODUCT'S EXPENSE (COGS) ACCOUNT, because that work centre has no expense account.
+
+=== DC-01 DECISIVE OVERLAP TEST (iTEST02) ===
+UNIT: one work order. POPULATION: work orders holding >=1 time log.
+  work orders with >=1 log                     : 13
+  work orders with >1 log                      :  7   (5 with 2 logs, 1 with 3, 1 with 5)
+  work orders with GENUINELY OVERLAPPING logs  :  1   (WO 549)
+    WO 549 log A 2026-03-17 07:09:36 -> 09:09:36  employee 302  (120 min)
+    WO 549 log B 2026-03-17 08:58:59 -> 08:58:59  employee 302  (ZERO duration)
+  => the overlap is a zero-length artefact log by the SAME employee. Raw sum (120 min)
+     EQUALS the overlap-merged duration. DC-01's precondition is present; its financial
+     effect in this deployment is ZERO.
+
+=== DC-02 / DC-03 (iTEST02) ===
+  time logs with non-zero employee_cost        :  0 of 27
+  mrp_production.extra_cost non-zero           :  0 of 163

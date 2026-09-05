@@ -16,6 +16,7 @@ Serves as both the revision log and the research-error register required by
 | `R2` | **`SMEPLUS-26-09-04-ACC-REV2-CORR1` received mid-session** | Scope revalidation; `18_P03_SCOPE_OWNERSHIP_MATRIX.md` created; `06` §5, `14`, `16` revised |
 | `R3` | AAS+ audit, `20_P03_AAS_PLUS.md` | `AASP-01` and `AASP-03` applied in place; `AASP-02`, `AASP-04`, `AASP-05` recorded as unrepaired and disclosed |
 | `R4` | Closure | Clean-room scan, manifest, push at `812cc5c` |
+| `R7` | **Supplemental continuation `…RUNTIME-INVERSION-RISK-RECLASSIFICATION-001`** | Fourth database opened; `DEP-04` and `UNR-P03-07` closed; `DEP-13` executed substantively; the valuation explosion found; **5 of P03's own errors corrected, one of them this round's own draft**. Files `48`–`73` |
 | `R6` | **Continuation `SMEPLUS-26-09-05-…-CROSS-PROCESS-EVIDENCE-CLOSURE-001`** | Peer branches read; runtime/database evidence executed for the first time; `DC-14`/`DC-15`/`DEP-13` dispositioned; 2 unresolved items closed; **4 of P03's own errors corrected**. Files `26`–`47` |
 | `R5` | **Inbound peer evidence from P04 — Acquire-to-Retire**, after push | Every claim independently re-verified from source. Two new findings `DC-14`/`DC-15`; two sharpened; `CC-07` strengthened; **the `01` §3 denominator corrected**; **one scope downgrade `REV-S-05`**; AAS+ veto second limb widened. Record: `25` |
 
@@ -138,6 +139,23 @@ consistent across all three rounds and is stated plainly rather than distributed
 package's recurring failure is not its searches — it is the totals and citations that
 describe them.** `smeplus-totals-are-unverified-claims` names it exactly; the standing
 correction is `42` §7.
+
+## 7. Research errors found in round 4
+
+| ID | Error | Correction |
+|---|---|---|
+| `RE-P03-16` | **"Material cost present" was an inference published as a measurement.** Round 3 counted valuation rows and inferred value reached the orders | Measured: **49** completed finished moves unvalued, **280** valued zero, **1,386** consumptions unvalued — `51` §4 |
+| `RE-P03-17` | `53` §2 counted `DC-14` in two exposure classes and asserted a total that does not equal 15 | **Caught pre-publication by the `60` control** — the first instance of this class caught mechanically |
+| **`RE-P03-18`** | **Round 3 reported containerised tooling as unavailable. It never checked.** Docker and Colima were already running and `postgres:17` was already cached | Checked and used read-only; `UNR-P03-07` closed. **This single unchecked assumption cost the package an entire database for a full round** — `62` §6 |
+| **`RE-P03-19`** | **This round's own draft classified 5 defects as live**, having measured work-centre configuration and skipped the two posting gates | Measured the gates; live count is **1**. Round 3's figure was right after all — `53` §0 |
+
+**Four errors. Three are the same failure**: a claim asserted where measurement was
+available and cheap. `RE-P03-18` is the most costly the package has produced, and it is the
+negative-claim standard applied to the session's **own capabilities** — the same error as
+the 2026-09-03 Asset session declaring "no code access" from a working-tree search.
+
+**Cumulative across four rounds: 9 research errors, 5 of them arithmetic or citation.** The
+package's searches have been consistently sound; its summaries and totals have not.
 
 ## 4. Peer and prior-evidence position — unchanged by any revision
 

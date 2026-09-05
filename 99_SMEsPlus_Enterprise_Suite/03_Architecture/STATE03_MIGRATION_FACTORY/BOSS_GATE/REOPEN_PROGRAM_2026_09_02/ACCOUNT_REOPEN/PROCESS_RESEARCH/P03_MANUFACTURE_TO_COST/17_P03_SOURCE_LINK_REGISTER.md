@@ -126,3 +126,34 @@ including the positive controls.
 **Bound.** Every runtime claim is about **these three dump files**. None is a claim about a
 running system, and `UNR-P03-10` records that no readable database is established as the
 migration target.
+
+
+## 8. Runtime / database evidence — round 4
+
+**All read-only.** No server started, no restore, no write, no install, no upgrade.
+
+| Database | Readable | Method | Role |
+|---|---|---|---|
+| `iSMEs` | yes | local `pg_restore` 16.15 | **production-scale**: 447,384 GL lines, 74,982 valuation rows, 10,764 MOs |
+| `BK12MAY26` | yes | local | 44 companies, manufacturing installed and unused |
+| `iEVING` | yes | local | manufacturing unused |
+| **`iTEST02`** | **yes — opened this round** | **already-running Docker + already-cached `postgres:17`, read-only mount, `--network none`, `--rm`** | **test system**: 60 work centres, 204 work orders, **32 GL lines**, no valuation table |
+
+**Reproduction:** `evidence/P03R_EXECUTED_OUTPUT.txt` (every command and its output, with
+positive controls), `evidence/pop.py`, `evidence/val.py`, `evidence/P03T_db_rowcounts.py`.
+
+| Claim | Executed evidence |
+|---|---|
+| Valuation explosion | 30 rows \|value\| > 1e12; total 205,490,835.88 vs 400,338,755.98 excluding them |
+| Subsidiary ↔ GL divergence | 25 of 25 mismatched; GL sums to 0.00 over 447,384 lines |
+| Causal chain | product 11556: unit 27.50–31.66 for 10 months, then 712,186.25, then 4.4e9 → 1.5e13 → 5.2e16 |
+| `DEP-13` | 60 work-centre rows, **0** with a null company |
+| `DC-07` configuration | **60 of 60** work centres with no expense account |
+| `DC-01` overlap | 7 of 13 work orders with >1 log; **1** genuine overlap, zero-duration |
+| `DC-04` | `iSMEs` 18 FIFO + 8 average + **0 standard**; `iTEST02` standard + **periodic** |
+| Posting gates | `mrp_account/models/mrp_production.py:74` (real-time) and `:61-64` (fifo/average) |
+| Positive controls | `account_asset` 36/685/12; `res_company` 44/1/1; `stock_move` 103,949; `mrp_production` 10,764 |
+
+**Bound.** Every runtime claim is about **these four dump files**. `UNR-P03-10` records that
+none is established as the migration target, and `UNR-P03-11` that two of them are different
+schema generations.
