@@ -210,7 +210,17 @@ The second independent challenge produced eight further contradictions. They are
 | C-27 | **TC-15's direction reverses** on the accounting date | `25` §2 |
 | C-28 | §12's cash-basis conclusion refuted by **7,738 posted entries** | `25` §2 |
 
-**Register total: C-01 … C-28, contiguous, no overlap. 20 here, 8 in `25`.**
+### C-29 … C-31 — Registered In `26_P02_V18_DEPLOYMENT_EVIDENCE.md`
+
+Raised after a peer process (P04) corrected P02's population.
+
+| # | Subject | File |
+|---|---|---|
+| C-29 | **TC-35 refuted** — a v18 deployment **does** exist (`idemo18_uat`, 40,353 journal lines), and its source is readable here | `26` §3 |
+| C-30 | **TC-03 refuted a second time** — one company carries `anglo_saxon_accounting = TRUE` | `26` §3 |
+| C-31 | **Runtime evidence was declared absent without looking.** A complete, safe, resettable Odoo 18 lab exists on this host with the required test already scripted | `26` §10 |
+
+**Register total: C-01 … C-31, contiguous, no overlap. 20 here, 8 in `25`, 3 in `26`.**
 
 ## 2. Contradictions Between Evidence Tracks
 
