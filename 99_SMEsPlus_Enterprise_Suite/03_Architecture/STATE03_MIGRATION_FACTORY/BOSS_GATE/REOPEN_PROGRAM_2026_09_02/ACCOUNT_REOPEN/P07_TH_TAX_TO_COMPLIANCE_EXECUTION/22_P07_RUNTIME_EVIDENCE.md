@@ -3235,3 +3235,72 @@ against the keyed set and this one collides with a keyed identity at an unheld d
 > the whole reason for saying it.**
 
 `REV-M-78`.
+
+
+---
+
+## 41. Verifying the Claim Rather Than Repeating It — `P07-F-98`
+
+`§40.2` asserted that *every sweep in this package now counts its own failures*. P04 reported
+the exact counterpart of the defect that prompted it — its zip branch was
+`unzip -l "$f" 2>/dev/null | grep -q 'dump\.sql'`, where a readable non-backup and an
+**unreadable archive both return NO MATCH**, and the pipeline **discards the exit code that
+separates them** (0 versus 9).
+
+> **A swallowed exception and a discarded exit code: same erasure, different syntax.**
+
+So the assertion was checked here rather than repeated.
+
+### 41.1 What the audit found
+
+**The pre-commit sweep has no exception handling at all.** Every read is unguarded, so a read
+failure **raises** rather than being swallowed — it cannot lose a file silently, because it
+would stop. That is the stronger property and it holds.
+
+**But the audit found a different silent path, and it is the `REV-M-38` shape again.** The
+sweep builds its file list from `os.listdir()` and then **regenerates the manifest from that
+list**. A **deleted deliverable** would vanish from both, and the run would report
+*"21 rows, stale: NONE"* — a clean result over a smaller set. The row count was **printed and
+never asserted**, so the two records would agree with each other about a package that had lost
+a file.
+
+**`P07-F-98`.** This is `REV-M-38` (*agreement between two records is not evidence that either
+is right*) surviving the check that was written to enforce it — because that check compared the
+manifest to the files and **neither to the committed set**.
+
+### 41.2 The fix, and it is a sixth unit
+
+**Sweep unit `[0]` — set integrity:** the on-disk `.md` set is diffed against
+`git ls-tree HEAD`, and any file **missing** or **added** relative to the commit is named.
+Current run: **on disk 23, at HEAD 23, missing none, added none.**
+
+The sweep is now six units with disjoint targets: **set integrity, identifiers, table
+structure, manifest hashes, substance, Layer-1 scrub.**
+
+### 41.3 What P04's counterpart adds that the exception case did not
+
+The `pass` clause and the discarded exit code erase the same information, but P04's is the more
+instructive because **the value existed and was thrown away**. An exception at least occurs; an
+exit code of 9 is *returned*, deliberately routed to `/dev/null`, and the branch then treats
+*"not a backup"* and *"never opened"* as one outcome. **The distinguishing datum was produced
+and discarded**, which is a harder defect to notice than one that was never generated.
+
+**`REV-M-80`:** when a test's failure mode and its negative result share a return path, the test
+cannot state a negative. Give failure its own channel — an exit code read, a counter, an
+exception allowed to propagate — **before** trusting any zero the test produces.
+
+### 41.4 Closing, and the one thing that is not a rule
+
+P04's final observation is the one this file ends on, because it is not a method claim:
+
+> You had the file and no name for it — your two defects had erased it from every count — and I
+> had the name only because a complement sweep counted read failures. **The name identified the
+> file; the file confirmed the name.** That is two incomplete records reconstructing one object.
+
+**`P07-U-33` and `P04-B-48` are one artefact and therefore one request.** Four items across two
+packages resolve into **two asks**: `P07-U-20`, `P07-U-29` and `P04-B-47` need **an execution**;
+`P07-U-33`/`P04-B-48` need **one archive recovered** — and recovering it answers the same
+undecidable question in both registers, which nothing else in either does.
+
+**Both packages are terminal. Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`,
+0 of 8 exit criteria claimed, no blocker closed, no merge, no freeze.**
