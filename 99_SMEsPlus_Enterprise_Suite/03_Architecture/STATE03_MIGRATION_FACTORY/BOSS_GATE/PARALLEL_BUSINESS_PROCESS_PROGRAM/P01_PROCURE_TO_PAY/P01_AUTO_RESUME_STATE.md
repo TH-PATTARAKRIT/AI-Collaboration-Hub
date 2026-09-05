@@ -48,7 +48,7 @@ runtime access · statutory sources · P11 reconciliation of ownership boundarie
 
 | Population | Value |
 |---|---|
-| **DATABASE POPULATION** | 4 archives = **3 distinct deployments** (two archives are one estate) |
+| **DATABASE POPULATION** | **CORRECTED (`ERR-P01-22`): 10 artefacts = 5 distinct database identities**, keyed on the database's own identifier. Earliest artefact **2026-03-30** |
 | **VERSION POPULATION** | series **16.0** (1 deployment, the only one with accounting history) · series **19.0** (2 deployments) · series **18.0** — **source only, no deployment** |
 | **LIVE FINDING POPULATION** | cross-company ownership (installed, series-19 estate) · repeated full-base withholding (deployed series-16 source) · referential `SET NULL` (both series) · period-lock re-dating |
 | **LATENT FINDING POPULATION** | subcontract credit split · the backdating tool · the compounding-withholding mechanism (**not present in deployed source**) · landed-cost defects (installed, unexercised) |

@@ -23,7 +23,7 @@ Layer: **1.**
 |---|---|---|
 | 1 | **The excluded archive's root cause proven** | It was dumped by a newer database engine (PostgreSQL 18.4, archive format 1.16) than the restore binary invoked (16.15). A capable binary (18.6) was already installed at a sibling path. **A tool-version mismatch, not an unreadable artifact** |
 | 2 | **Version identity established from evidence, not inference** | Nine facets separated per deployment. Application series read from the deployed module registry, never inferred from feature presence |
-| 3 | **Two archives found to be one deployment** | Identical 44-company identifier sets, same creation-date span. **Three distinct deployments in four archives.** Distinct companies: **46**, not 90 |
+| 3 | **Two archives compared** | Identical 44-company identifier sets — **but `ERR-P01-22` later showed they are different databases by uuid.** Corrected: **five distinct identities**, not three deployments; the 46-company arithmetic is **withdrawn** |
 | 4 | **"Most relevant database" corrected** | Highest module coverage (453), **10 journal entries in total**. Decisive for *what is installed*, near-useless for *what happens* |
 | 5 | **The missing source root found and searched** | A series-16 custom root exists on the volume, was never in the declared path set, and **is the source of the series-16 deployment's custom layer** — six of six module versions match |
 | 6 | **The withholding code that actually ran located and read in full** | Closes the prior round's *"no deployment runs this code"* gap |
@@ -57,7 +57,7 @@ remains unread.
 | *"The deployed withholding code matches no copy in the path set"* | **RESOLVED** — the path set was incomplete; the code is now located and read |
 | Withholding compounds | **remains withdrawn**; and the deployed series-16 code **has no such term at all** — a stronger disproof |
 | Withholding repeats the full base, linearly | **STRENGTHENED — now verified in the deployed source**, not just in a copy nobody runs |
-| *"D1 and D2 both show X"* | **not two witnesses** — one estate observed twice |
+| *"D1 and D2 both show X"* | **not two witnesses** — different databases sharing a **clone lineage**, so agreement is inherited (`ERR-P01-22`) |
 | Vendor advance ownership accepted | **traced, and a defect found**: the deduction control is inert |
 
 **No verified fact was withdrawn this round. Two were strengthened, three were re-scoped, and two

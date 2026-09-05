@@ -17,7 +17,7 @@ falsifications proper.
 | **Original evidence base** | The installed-module registries of three databases — `D1`, `D2`, `D3` |
 | **Why the evidence base was incomplete** | The fourth archive was classified unreadable after a single failed invocation of one restore binary, while a newer binary capable of reading it was installed on the same machine. The bound *"any readable deployment"* was stated honestly and was **itself the error** |
 | **New database evidence** | The three-way-match module is **installed** in `D4` |
-| **Corrected finding** | **Installed in one of the three distinct deployments (`E-3`).** The separate finding that it is *advisory rather than a control* is **unaffected** and stands |
+| **Corrected finding** | **Installed in one of the five distinct database identities (`E-3`; see `ERR-P01-22`).** The separate finding that it is *advisory rather than a control* is **unaffected** and stands |
 | **Affected severity** | Raised from *not present anywhere* to *present but, on the evidence, unexercised* — `E-3` holds 10 journal entries in total |
 | **Affected process** | P01 |
 | **Affected handoff** | The three-way-match position in the P11 handoff |

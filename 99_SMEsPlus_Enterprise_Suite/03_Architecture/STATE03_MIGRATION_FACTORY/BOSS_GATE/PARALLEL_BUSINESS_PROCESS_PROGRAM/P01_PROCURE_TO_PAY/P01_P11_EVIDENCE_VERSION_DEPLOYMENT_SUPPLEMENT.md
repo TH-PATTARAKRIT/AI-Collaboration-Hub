@@ -12,8 +12,8 @@ Layer: **1.** **Material delta only.** The prior handoff stands in full.
 
 | Item | Delta |
 |---|---|
-| Archives → deployments | **4 archives = 3 distinct deployments.** Two are the same estate 11 days apart (identical 44-company identifier sets) |
-| Distinct companies | **46**, not 90. Any figure aggregated "across 90 company rows" double-counts 44 |
+| Archives → identities | **CORRECTED (`ERR-P01-22`): 10 artefacts = 5 distinct database identities**, keyed on uuid. The two 44-company archives are **different databases** sharing a clone lineage — agreement inherited, not independent. Earliest artefact **2026-03-30** |
+| Distinct companies | **WITHDRAWN** — computed from the wrong identity model. Any aggregated company figure must state the identity it counts |
 | The excluded archive | **Readable.** Root cause: it was dumped by a newer database engine and carries an archive format the invoked restore binary predates. A capable binary was already installed |
 | Independent corroboration | **Two archives of one estate are not two witnesses** |
 
@@ -33,7 +33,7 @@ Layer: **1.** **Material delta only.** The prior handoff stands in full.
 Three claims **false**, one count wrong, plus two self-characterisations corrected:
 three-way match, subcontracting and requisition were each reported *"installed nowhere"* and are
 **installed** in the excluded deployment · *"47 of 65 source-only"* → **28 of 65** ·
-*"most relevant database"* → three axes, not one · *"two v19 deployments"* → one estate twice.
+*"most relevant database"* → three axes, not one · *"two v19 deployments"* → **two different databases in a clone lineage** (`ERR-P01-22`).
 
 ## 4. THE HEADLINE CAUSE WAS WRONG — CONCLUSION SURVIVES
 

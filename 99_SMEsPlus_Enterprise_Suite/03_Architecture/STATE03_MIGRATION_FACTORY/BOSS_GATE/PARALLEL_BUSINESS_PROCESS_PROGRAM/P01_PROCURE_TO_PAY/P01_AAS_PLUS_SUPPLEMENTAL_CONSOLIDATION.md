@@ -7,7 +7,7 @@ Layer: **1.** Dissent preserved, not averaged.
 
 ## 1. THE THREE STATEMENTS THAT MATTER MOST
 
-> **1. The estate cannot answer P01's central question.** Three distinct deployments, each
+> **1. The estate cannot answer P01's central question.** Five distinct database identities (`ERR-P01-22`), each
 > lopsided differently: one has movements without accounting, one has orders without movements,
 > and only one exercises the full chain — and that one is an application series for which **no
 > core source exists anywhere on this volume.**

@@ -62,6 +62,9 @@ that `D4` does not contain.
 ## 4. A SECOND IDENTITY DEFECT FOUND WHILE REPAIRING THE FIRST
 
 > **`D1` and `D2` are the same deployment, not two.**
+>
+> ⚠ **SUPERSEDED by §8 (`ERR-P01-22`): they are DIFFERENT databases by uuid, sharing a clone
+> lineage. The independence conclusion survives; the identity claim does not.**
 
 Their company sets are **identical** — all 44 companies match on both internal identifier and
 partner identifier — and both carry the same creation-date span (2026-03-18 to 2026-04-29). They
@@ -71,8 +74,8 @@ are two snapshots of one estate, taken eleven days apart.
 
 | Previously stated | Corrected |
 |---|---|
-| Four databases | **Three distinct deployments**, captured in four archives |
-| *"across 90 company rows"* | **46 distinct companies** — 44 + 1 + 1. The 90 figure double-counts the 44 |
+| Four databases | ~~Three distinct deployments~~ — **SUPERSEDED by §8: five distinct database identities across ten artefacts** |
+| *"across 90 company rows"* | ~~46 distinct companies~~ — **WITHDRAWN in §8.** The arithmetic was computed from the wrong identity model; any aggregated company figure must state the identity it counts |
 | Two independent v19 deployments corroborating each other | **One v19 estate observed twice.** Agreement between `D1` and `D2` is **not** independent corroboration |
 
 Recorded as `ERR-P01-17`. This weakens every finding that treated `D1` and `D2` as two
@@ -151,3 +154,60 @@ it then leaned on "10 journal entries" to imply `E-3` is unexercised, which is f
 
 Amended: `E-3` is **decisive for what is installed, decisive for the order surface, and silent on
 movement and accounting.** Three axes, not two.
+
+---
+
+# §8 — THE CENSUS RE-KEYED ON DATABASE IDENTITY (supersedes §4 and §7)
+
+Prompted by peer process **P04**, which reported the same two defects in its own census and
+suggested P01 test for them. **Verified independently by this session before acceptance.**
+
+## 8.1 The two defects in P01's census
+
+| # | Defect |
+|---|---|
+| 1 | **The enumeration matched one file extension.** Database backups also ship as **zip containers** holding a dump and a manifest. Those were invisible to it |
+| 2 | **The identity unit was the file name plus a data resemblance**, not the database's own identifier |
+
+## 8.2 The estate, keyed on the database's own identifier
+
+| Identity | Artefacts | Series | Companies | Installed modules | Note |
+|---|---|---|---|---|---|
+| `66d1b52a` | **two**, same day | 19.0+e | 44 | 251 | the pair I had treated as two different databases |
+| `1f6338ae` | one | 19.0 | 44 | 232 | |
+| **`f4a44cce`** | one, **2026-03-30** | 19.0+e | **1** | **179** | **shares a name with `1f6338ae` and is a different database** |
+| `45a8e08e` | one | **16.0** | 1 | 190 | the only one with real accounting history |
+| `a1430edc` | one, **several copies across the volume** | 19.0 | 1 | 453 | fullest module set |
+
+> **Five distinct database identities.** Not three deployments, and not four archives.
+
+## 8.3 What this corrects, and what it does not
+
+| Statement | Status |
+|---|---|
+| *"Three distinct deployments in four archives"* | **WRONG** — five identities |
+| *"Two archives are the same deployment observed eleven days apart"* | **WRONG** — they are **different databases** with identical company sets |
+| *"46 distinct companies, not 90"* | **WITHDRAWN** — computed from the wrong identity model |
+| *"Their agreement is not independent corroboration"* | **SURVIVES, and is better supported.** Identical company identifier sets with **different** database identifiers indicate a **clone lineage** — agreement is inherited. Which is ancestor is **not established** |
+| Every accounting finding | **UNCHANGED** — each is bound to the database it was measured in, and those bindings do not move |
+
+## 8.4 The date range moves
+
+The earliest artefact is dated **2026-03-30**, four months before the earliest this package had
+recorded. Any P01 statement bounded by a date range over these archives **starts earlier than
+the package states**. No such statement has been identified as load-bearing, but the range is
+corrected here rather than left wrong.
+
+## 8.5 A cheaper version signal, adopted
+
+The zip containers' manifest **states the version directly** — `[19, 0, 0, 'final', 0, 'e']` —
+rather than requiring it to be derived from a module-registry histogram. Where a container
+exists, **read the manifest**: it is both cheaper and stronger, and it settles the version
+without inference.
+
+## 8.6 Attribution
+
+Found by **P04**, which reported the defects in its own census, said explicitly that it had not
+examined P01's, and offered the method. **P01 verified every claim before adopting it.**
+P04's own published census, corrected: **10 files · 7 snapshots · 5 identities**, reference
+`985840e` / `P04-F-86`.
