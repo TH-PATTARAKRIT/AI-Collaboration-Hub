@@ -54,6 +54,33 @@ base set contains modules introduced in the 19 line. The declared source set is
 therefore the **v19 reference generation**. This is stated as an attribute of the
 declared set, not as a claim about what is deployed in production (see `U-01`).
 
+### 2.0 A Caveat On This Register Itself — It Orders as Well as Bounds
+
+Added after this register was shown to have **selected** a piece of evidence, not merely
+bounded it. Sharpened by P11 from P07's own account of the failure, and recorded as a
+standing caveat on §2:
+
+> A declared scope register bounds the evidence and, in doing so, also **orders** it. If the
+> register is consulted before the ranking, **the register is the ranking** — and its ordering
+> was chosen for *containment*, not for *relevance*.
+
+The concrete instance is `22 §8.3`. A database sits inside the PATH SET declared above, so it
+was the one opened first, and an entire runtime section was built on it. It is the **broadest
+module install** available and therefore a defensible choice for configuration claims — but it
+holds 23 accounting lines against another database's 447,384, and it was used to support
+**population negatives** as well. That cost a published finding (`P07-F-60`, withdrawn).
+
+**Declaring a scope does not exempt selection within it from also being declared.** The
+practical consequence for anyone reading or extending this register:
+
+1. This §2 answers *what may be used as evidence*. It does **not** answer *which item to
+   reach for first*, and it must not be read as answering it.
+2. Any claim resting on one member of the PATH SET must state **why that member** — and, if
+   the members differ in scale or shape, **rank them with the unit declared** (`22 §8.3`).
+3. The right member depends on the **kind of claim**: configuration and schema questions want
+   the broadest artefact; population and operational questions want the deepest. Both kinds
+   appeared in this package and were not distinguished until after publication.
+
 ### 2.1 Path sets deliberately EXCLUDED, and why
 
 Excluded sets exist on the same volume and were located, so their exclusion is a
