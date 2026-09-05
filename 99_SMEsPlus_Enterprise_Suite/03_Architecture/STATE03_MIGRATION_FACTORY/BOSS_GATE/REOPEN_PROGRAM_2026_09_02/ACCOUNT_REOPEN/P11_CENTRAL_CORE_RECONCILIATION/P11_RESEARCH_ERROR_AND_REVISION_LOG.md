@@ -314,7 +314,7 @@ first published.**
 
 | Measure | Count |
 |---|---|
-| Errors made by this session | **27** |
+| Errors made by this session | **28** |
 | Self-caught before the challenge | 3 |
 | Self-caught in parallel with the challenge | 4 |
 | Found only by independent adversarial challenge | 6, including both CRITICAL |
@@ -650,3 +650,27 @@ and the window is where all ten lived — for thirty commits.
 written into a new file and a log while the two files that actually argue those findings still read
 *"not executed"*. **The disposition column held; the argued text did not.** Recorded because it shows
 the technique is narrow: it protects the column, not the whole package.
+
+## `P11-E-28` — the evidence base was chosen by traversal order
+
+**Where.** `P11-F-09`: P11 tested `iTEST02` and `BK12MAY26` for readability.
+
+**Error.** Those were **the first two a `find` returned**. Ranked this session by size and `TABLE DATA`
+count, **`iSMEs` is 155 MB — 2.4× the next largest — and P11 never opened it.** The sizes were in the
+first directory listing P11 ran.
+
+**Trigger.** `P07` @ `55a67bb`, which applied P11's own `P11-F-10` to its three database-derived
+negatives, **withdrew one of its own findings** (`P07-F-60` — 5,201 withholding certificates in a
+database it had never opened), and named the cause: *"convenience of location determined my evidence
+base… rank the population before choosing."*
+
+**Class.** Not a tooling failure and not an untested incapacity — **a selection defect**. The evidence
+was reachable, the tool worked, and the sample was chosen by the order the filesystem happened to
+return. It is the fourth distinct way this session has arrived at a bounded evidence base without
+declaring the bound.
+
+**Consequence.** `P11-F-09`'s conclusions are bounded to two of four dumps, **neither of them the
+largest**. `D-3b` amended to require the population be ranked before selection.
+
+> **The corrective is not *"open more"*.** It is **rank first, then choose, and publish the ranking**
+> — which costs one command and would have caught this before the first dump was opened.

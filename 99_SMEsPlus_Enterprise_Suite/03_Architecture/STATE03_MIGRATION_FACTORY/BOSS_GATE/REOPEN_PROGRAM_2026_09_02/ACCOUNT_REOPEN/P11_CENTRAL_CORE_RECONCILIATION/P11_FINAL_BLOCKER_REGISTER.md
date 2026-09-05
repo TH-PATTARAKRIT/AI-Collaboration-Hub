@@ -127,6 +127,47 @@ readability rule. Stamping the client version against all five of its databases:
    with the right client"* is true and incomplete: it does not say that **which** client was used can
    determine **which conclusion** is reached. Corrected here.
 
+### `P11-F-11` — convenience of location chose the evidence base, in P11's package as well
+
+`P07` @ `55a67bb` reports, as **research**, that applying `P11-F-10` to its own three database-derived
+negatives **refuted one of its own findings**: one claim held on 3 of 3 identities, one was constrained,
+and **`P07-F-60` was withdrawn** — 5,201 withholding certificates exist in a database it had never
+opened. The cause it names is not tooling:
+
+> *"`iTEST02` has **23** move lines. `iSMEs` has **447,384**. I built my entire runtime section on the
+> **smallest database available**, because it sat inside my declared PATH SET and was therefore the one
+> I opened first. **Convenience of location determined my evidence base.** The corrective is not 'open
+> more databases' but **rank the population before choosing** — I had the file sizes in front of me and
+> did not use them."*
+
+**P11 ranked them independently rather than accepting the report** — a peer's message is a summary of
+its evidence. Executed this session:
+
+| Bytes | `TABLE DATA` entries | Dump version | File |
+|---|---|---|---|
+| **155,443,710** | 651 | `1.14-0` | **`iSMEs_2026-07-11`** |
+| 64,303,340 | 1,315 | `1.16-0` | `iTEST02_2026-07-14` |
+| 35,679,594 | 881 | `1.14-0` | `BK12MAY26_2026-08-03` |
+| 24,911,161 | 875 | `1.14-0` | `iEVING_2026-07-23` |
+
+> ### The finding applies to P11. **The largest database — 2.4× the next — was never opened.**
+> `P11-F-09` tested `iTEST02` and `BK12MAY26`: **the first two a `find` returned.** P11 selected by
+> **traversal order**, not by rank, and never looked at the sizes it had already listed. Same defect,
+> different process, and P11 was the process that published the tooling rule which exposed it.
+
+**Two facts about the ranking itself, recorded because the method is the point:**
+
+- The `find`-driven loop **failed to rank two files** whose paths contain spaces (`SOURCE CODE/`,
+  `ACCOUNT/01 ACCOUNT/`). It failed **visibly** — `stat:` errors in the output — which is the only
+  reason it is a footnote and not a fifth inert-pattern instance. **A loop that breaks loudly is not
+  the same defect as one that returns silence.**
+- Both unranked files are copies of `iTEST02_2026-06-14`, an **earlier** snapshot than the one tested.
+
+**`D-3b` is amended a third time.** The authorisation must now require: **(1)** the client version be
+stated; **(2)** every generation be opened; **(3)** **the population be ranked before selection**.
+Condition (3) is the one that binds — a reader could satisfy (1) and (2) and still build a runtime
+section on a 23-line database, which is exactly what happened to a peer.
+
 **Intake note for the Boss and for `P01`–`P10`.** If peer packages have collectively treated database
 evidence as unavailable, that is a **capability claim across the programme**, and it is testable per
 artefact. **P11 asserts nothing about what any other package did** — `P04` declined to, having twice
