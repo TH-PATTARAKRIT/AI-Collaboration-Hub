@@ -601,7 +601,8 @@ patching:
 
 **Snapshots: 5 → 7.** The census was taken by *extension* (`*.dump`). Two database snapshots
 are `.zip` archives containing `dump.sql` and were invisible to it. Re-run by **format**
-(`file -b`), the population is **7 snapshots**. This is the archive-denominator rule that a
+(`file -b`), the population is **7 snapshots** — but the *method* claim in that sentence was
+false even though the number was right; see `§10.7`. This is the archive-denominator rule that a
 peer process published after making the same error; it was available and not applied here.
 
 **Identities: 4 → 5.** The identity unit was the **filename**. Keyed on `database.uuid` from
@@ -644,8 +645,8 @@ four cannot be found by testing a system that works. But the prevalence figure w
 wrong in the direction that flattered the headline.
 
 **`P07-F-42` is strengthened — `REV-E-41`.** Published as 2 of 2 in-generation identities. It
-now holds in **4 of 4 in-generation identities, 10 of 10 company sets**, plus the v16
-identity. It is the best-evidenced finding in the package by a wider margin than before, and
+now holds in **4 of 4 in-generation identities, 8 of 8 in-generation company sets**
+(enumerated at `§10.7`; 9 including the v16 identity). It is the best-evidenced finding in the package by a wider margin than before, and
 it is still the one held longest at `INF`. Two successive population corrections have both
 widened the gap between it and the headline — which is not what a convenient error does.
 
@@ -699,3 +700,75 @@ this one **excluded** an eligible member. Inclusion errors are visible in the ev
 wrong row is there to be checked. Exclusion errors are invisible by construction: nothing in
 the package pointed at `iEVING`, and no control here would have. It took a peer publishing a
 version table that named it. `REV-E-38`.
+
+
+---
+
+## 10.7 Two of `§10`'s Own Claims Were Wrong — `REV-E-46`, `REV-E-47`
+
+P04's rule, adopted: **a total that survives a correction to its own unit has not been
+confirmed by surviving; it has only failed to move. Check composition, never the sum.**
+Applied to `§10`'s own output it found one total that did not survive and one method claim
+that was false.
+
+### `10 of 10 company sets` was never counted — `REV-E-46`
+
+`P07-F-42`'s company-set figure was carried from `6 of 6` to `10 of 10` by a **regex
+substitution across the register**, in the same commit that corrected four other denominators.
+It was never enumerated. Enumerated now, per identity, as distinct `company_id` holding at
+least one zero-rate tax:
+
+| identity | company sets |
+|---|---:|
+| `a1430edc` | 1 |
+| `f4a44cce` | 1 |
+| `1f6338ae` | 3 |
+| `66d1b52a` | 3 |
+| **in-generation total** | **8** |
+| `45a8e08e` (v16) | 1 |
+| grand total | 9 |
+
+**The correct figure is 8 of 8 in-generation, not 10 of 10.** The finding is unaffected —
+every set in which the population exists still resolves to a non-VAT group — but the number
+supporting it was asserted. This is the defect the package has a written rule against,
+committed **while correcting other people's denominators**.
+
+### The census claim was false even though the count was right — `REV-E-47`
+
+`§10.1` published the snapshot census as re-run **"by format (`file -b`)"**. It was not. The
+input list was an **extension glob** (`*.dump`, `*.zip`); `file` was then run on the files that
+glob had already selected, and its output reported. **Selecting by extension and reporting the
+format is not censusing by format.**
+
+Re-run properly — walking `~/Downloads` and `/Volumes/iMacSys` with no extension filter,
+testing content: `PGDMP` signature, ZIP central directory containing `dump.sql`, and the gzip
+class inspected rather than assumed (tested for `dump.sql` / `*.dump` members: none; they are
+source distributions) —
+
+**11 artefacts · 7 snapshots · 5 identities.** Snapshot and identity counts unchanged, so
+nothing downstream moves. The *method* statement was wrong, and P04's mirror failure shows why
+that matters independently of the number: their census **was** content-based, matching the
+`PGDMP` signature — and missed both `.zip`-borne dumps, because **an enumeration by magic bytes
+is only as complete as the set of signatures it enumerates.** "By format, not extension" is not
+one check; it is *one check per format*. Signature set declared: `PGDMP`, ZIP-containing-
+`dump.sql`, gzip-inspected-and-excluded.
+
+The artefact count differs from P04's 10: this sweep finds an eleventh copy of the `a1430edc`
+06-14 snapshot at a path outside the accounting tree. Copies, not snapshots — the identity map
+is unchanged, and it is reported so their file census can be reconciled.
+
+### Adopted: `manifest.json` carries the generation directly
+
+Verified in both `.zip` artefacts: `version_info [19, 0, 0, 'final', 0, 'e']`, `version
+19.0+e`, `db_name` stated. A **direct** generation signal, better than the `ir_module_module`
+reading used at `§10.1` because it requires no inference from a module row. Both agree here.
+Preferred wherever a `manifest.json` exists.
+
+### The uncomfortable half, which P04 stated first
+
+P04 records that a memory of its own already named both of its failure points and was not
+consulted before publishing. The same is true here, and worse, because these are two rules
+this package carries **in its own text**: the archive-census rule and the totals rule. Both
+were written down. Both were broken in the commit that corrected other people's denominators.
+**Having the rule, recalling the rule, and running the rule are three different things**, and
+only the third is a control.
