@@ -33,8 +33,27 @@ Two source facts, together decisive, both re-derived this round:
    **`cogs` is not in that domain.** So previously created COGS lines are invisible to the generator by
    construction, not by oversight.
 
-**`P02-F-47a` — `FACT VERIFIED` (source).** A second invocation over the same move **must** create a
-second COGS pair. There is no guard, and the structure forecloses one. **This half of `C-04` needed no
+**`P02-F-47a` — `FACT VERIFIED` (source), WITH ITS LABEL CORRECTED (`C-58`).** A second invocation over
+the same move **must** create a second COGS pair, and the structure forecloses an in-generator guard.
+
+> **But this is a design fragility, not a control failure — and calling it a closed defect overstates it.**
+> Idempotency is delegated to the **state machine**, and the compensating controls are real, in the same
+> file: `button_draft` (`:59-60`) and `button_cancel` (`:70`) both **unlink every `display_type='cogs'`
+> line**, and `copy_data` (`:27-35`) strips them on duplication. The generator has **one** caller and that
+> caller is the transition. Delegating idempotency to a state transition is a legitimate posting-engine
+> pattern.
+>
+> **The thing that can produce a wrong number is entirely `C-04b`:** the soft-post path leaves the move in
+> `draft` **with** the COGS lines already created, so the transition fires twice against one state and the
+> cleanup never runs.
+>
+> **And under `BP-02` this is not a risk P02 carries against the SMEsPlus target at all.** `BP-02`
+> recognises COGS on **physical delivery**; `C-04a` is a defect in the **invoice-side** generator, a
+> mechanism the target does not adopt. Its correct disposition is a **design requirement input**: *the
+> delivery-triggered cost generator must carry an explicit idempotency key.* The benchmark already ships
+> the field — `cogs_origin_id` exists in v18 (`stock_account/models/account_move.py:257`) and v19, and is
+> **written but never read as a guard**. `C-04a` remains a live risk **to the deployed estate**, which is a
+> different question with a different owner. **This half of `C-04` needed no
 runtime and should not have been carried as runtime-blocked.**
 
 **Prior status corrected:** `03` §6 labelled exploitability `UNRESOLVED`; `33` §5.9 proposed a run to
@@ -61,8 +80,7 @@ declared root**.
 
 *Control: `account` is installed in 11 of 11, so the extraction fires.*
 
-**`P02-F-47b`.** The precondition for the reachable path is **present in four marker-capable
-deployments**. It is therefore not theoretical. **But `display_type='cogs'` is zero in every one of
+**`P02-F-47b`** *(corrected `C-57`)*. The precondition is present in **three marker-capable LINEAGES** — the four uuids include `66d1b52a` and `1f6338ae`, which `45` §5 confirms are **one lineage**. The original "four" over-counted by 25%. It is therefore not theoretical. **But `display_type='cogs'` is zero in every one of
 them** — the generator has never executed **once**, so no deployment can evidence it executing **twice**.
 
 **`P02-F-47c` — why read-only exhaustion is now proved rather than asserted.** All **nine** live
@@ -115,9 +133,16 @@ count and `account_move_id` linkage; full session log; pre- and post-rollback li
 ### 5.3 What the run will close
 **`C-04b` only** — whether the non-idempotency proved in §2 is reachable through the autopost path.
 Secondarily it would be the **first observation anywhere in this package of the split cost path
-executing at all**, which 17 lineages of deployed history do not contain.
+executing at all**, which **no** deployed history in the estate contains. *(Corrected `C-56`: this sentence originally read "17 lineages", reinstating the withdrawn uuid count under the withdrawn label — precisely the conflation `44` §1.3 forbids.)*
 
 ### 5.4 What it will NOT close
+
+**`BP-02` DISCLAIMER (`C-59`, mandatory).** The pack's expected writes set
+`res_company(1).anglo_saxon_accounting = True`, which configures the sandbox to the **invoice-triggered**
+cost model — **the model `BP-02` declines**. **This run exercises the invoice-triggered path only. It
+supplies no evidence about `BP-02`'s delivery trigger and must not be cited toward it.** Reporting a
+completed run as *"the split cost path executes correctly"* would present evidence about the rejected
+trigger as P02 assurance — the `P02-F-38b` error `38` exists to prevent.
 Nothing about the deployed estate: it runs standard v18 with **none** of the 189 unreadable custom
 modules. It says nothing about 19.0, whose mechanism differs and whose guard is absent (`P02-F-05c` as
 corrected by `C-39`). A v19 counterpart target now exists (`bhpro_tracking_test_20260901`, 19.0,

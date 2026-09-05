@@ -66,6 +66,22 @@ the source-versus-deployed conflation this round exists to prevent.
 | `551ab874`, `1d1f5d3e`, `66d1b52a`, `1f6338ae` | 18.0/19.0 | 5,194 | 0 |
 | `45a8e08e`, `25e88cd4`, `5d5164c4` | 16.0 / 14.0 | — | column absent |
 
+> **⚠ CORRECTION `C-60` (AAS-03 Expert 1, CONFIRMED).** The population is **non-empty as master data and
+> empty as transactions.** The three carriers hold **984 journal lines between them — 0.199% of the
+> 493,277 marker-capable denominator** (`57d32e15` 5, `4b766580` 956, `a1430edc` 23). `a1430edc`, the sole
+> 19.0 carrier, holds **83,753 product templates against 23 journal lines** — a catalogue with no trading.
+> **`P02 RETAINS` stands, but "the exposure is bounded" must be quantified as *bounded to configuration in
+> transaction-free deployments*, not left as general reassurance.**
+>
+> **⚠ CORRECTION `C-61` (§4, freight).** *"So **in that deployment** freight reaches neither COGS, revenue
+> nor tax"* promotes a **module**-level reading to a **deployment**-level one. `CA-03` read **one** module;
+> `46` records `551ab874` as **`SOURCE MISSING` (5 of 9)**. The supported claim is *"through this module"*.
+>
+> **⚠ CORRECTION `C-62` (§6, scenario scope wording).** Scenarios 5, 6 and 7 must read *"not representable
+> **in standard v18/v19**"*, *"not found **in standard v18/v19**"* and *"through **this module**"*, with the
+> unreadable-module counts beside each (**178** in `5d5164c4`; **10 of 11** in `57d32e15`; **5 of 9** in
+> `551ab874`). `46` has made the deployed half of that bound measurable and it had not been applied.
+
 **`P02-F-35b`. Nine lot-valuated product templates exist across three deployments, and one is on 19.0 —
 the generation where `24` found the `lot_valuated + standard` divergence was introduced.** The scenario-8
 defect therefore has a **non-empty deployed population**. It stays **`P02 RETAINS`** and is **not**

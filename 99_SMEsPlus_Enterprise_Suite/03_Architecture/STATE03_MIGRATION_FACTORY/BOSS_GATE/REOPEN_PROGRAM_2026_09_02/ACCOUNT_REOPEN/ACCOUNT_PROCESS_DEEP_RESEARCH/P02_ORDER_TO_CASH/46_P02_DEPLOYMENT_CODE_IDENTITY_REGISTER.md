@@ -12,6 +12,29 @@ the row says so; where one uuid covers several live instances the row says that 
 
 ---
 
+> ## ⚠ CORRECTION BANNER — `C-54`, `C-55` (AAS-03 Expert 1, CONFIRMED)
+>
+> **`C-54` — this register declares lineage keying and delivers uuid keying.** The header says *"Keyed on
+> LINEAGE, not uuid"*, and the table below then lists **`1f6338ae` iEVING and `66d1b52a` BK12MAY26 as two
+> separate rows** — the exact pair `45` §5 confirmed as **one lineage** by the founding-company test.
+> The 11 rows are 11 of the 17 **uuids**. **The identity model published in this round is not applied by
+> the register published in this round** — the defect class this round exists to close, reproduced inside
+> it. **Read the table as uuid-keyed until rebuilt** (next action 2 in the resume state).
+> Consequence: the merged lineage is **one** row, so the register's transactional denominator is
+> **10 lineages with data, not 11 uuids**.
+>
+> **`C-55` — the v16 caveat is not applied to the deployment that carries the headline.** `45a8e08e`
+> (`iSMEs`) is **16.0** and supplies **447,384 of 493,277 marker-capable journal lines = 90.7%** of the
+> zero-COGS evidence. This host holds **59 module directories for 16.0 against 797 for 18.0**, so its
+> **standard** source is effectively unreadable. Its status below reads `PARTIAL MATCH`; the caveat
+> immediately above says 16.0 rows should read `SOURCE AVAILABLE BUT NOT PROVEN DEPLOYED`. **Corrected
+> status for `45a8e08e`: `STANDARD SOURCE UNREADABLE`.**
+>
+> **This is the largest unstated gap in the round.** The custom-module gap in `§2` concerns `odoo_cff`,
+> which `C-43` had **already excluded** from the marker-capable denominator. The gap that bites is this
+> one: **90.7% of the headline evidence comes from a generation whose standard source cannot be read at
+> all**, so no source-derived P02 negative transfers to it.
+
 ## 1. Register
 
 | Lineage (founding company / label) | Gen | Installed | Non-standard | P02-relevant non-standard | with readable source | **STATUS** |
@@ -54,8 +77,7 @@ zero-`cogs` measurement is a **schema fact**, since 14.0 does not carry `cogs` i
 
 ## 3. `P02-F-46b` — Two Deployments Have No P02-Relevant Custom Code At All
 
-`iSMEs182` (18.0) and, at the P02 surface, `pankhamhom` (18.0, 1 module) are the only rows where the
-standard-source reading transfers with little qualification. **Both are small** — 22 and 25 confirmed
+**CORRECTED (`C-55`).** The original sentence — *"`iSMEs182` and `pankhamhom` are the only rows where the standard-source reading transfers"* — is **false on this register's own table**: `45a8e08e` and `a1cdeab8` are also `PARTIAL MATCH`, and `45a8e08e` carries 447,384 lines. The accurate statement is narrower and worse: **`iSMEs` has data *and* a nominally-readable custom set, but is 16.0, for which no standard distribution exists on this host.** **Both are small** — 22 and 25 confirmed
 sale lines. **The deployments P02 can reason about are the ones with almost no data; the deployments
 with data are the ones it cannot read.**
 

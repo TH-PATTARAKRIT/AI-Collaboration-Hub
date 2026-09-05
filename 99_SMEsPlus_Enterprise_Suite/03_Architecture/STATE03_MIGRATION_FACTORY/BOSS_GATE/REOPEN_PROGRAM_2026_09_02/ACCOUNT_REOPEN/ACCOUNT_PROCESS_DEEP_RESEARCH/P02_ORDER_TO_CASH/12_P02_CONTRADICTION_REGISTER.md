@@ -376,6 +376,24 @@ intervening snapshot that disproves the conclusion.
 | **C-52** | `BK12MAY26` is a distinct database. | Same birth metadata **and** same founding company (บริษัท วีอิ้ง อินเตอร์เทรด จำกัด) as `iEVING`. | **One lineage, three uuids** (`f4a44cce`, `1f6338ae`, `66d1b52a`). The uuid over-count is **larger** than `C-49` established. |
 | **C-53** | *"All 38 artefacts BLOCKED_IO"* (produced transiently in this round). | **`timeout` does not exist on this host.** Every wrapped call returned "command not found" → empty output → recorded as blocked. | **Withdrawn before publication.** Replaced by an in-process bounded read (`signal.alarm`), under which 36 read normally and **4** — in `~/Library/Group Containers` — are genuinely blocked this session. |
 
+### C-54 … C-62 — AAS-03 Expert 1 (Round 003). All CONFIRMED Against Primary Source Before Adoption.
+
+| ID | Challenged | Confirmed counter-evidence | Resolution |
+|---|---|---|---|
+| **C-54** | `46` header: *"Keyed on LINEAGE, not uuid"* | Its own table lists `1f6338ae` iEVING and `66d1b52a` BK12MAY26 as **separate rows** — the pair `45` §5 confirmed as one lineage. The 11 rows are 11 **uuids**. | **The identity model published in this round is not applied by the register published in this round.** Banner added; rebuild is a named next action. Transactional denominator is **10 lineages**, not 11 uuids. |
+| **C-55** | `46`: `45a8e08e` = `PARTIAL MATCH` | `iSMEs` is **16.0** and supplies **447,384 of 493,277 = 90.7%** of marker-capable evidence; this host holds **59 v16 module directories against 797 for v18**. | Status corrected to **`STANDARD SOURCE UNREADABLE`**. **The largest unstated gap in the round: 90.7% of the headline evidence comes from a generation whose standard source cannot be read.** |
+| **C-56** | `47` §5.3: *"17 lineages of deployed history"* | 17 is the **uuid** count, withdrawn as a database count by `C-44`/`C-49`. | Corrected. Reinstating a withdrawn number under the withdrawn label is exactly what `44` §1.3 forbids. |
+| **C-57** | `47` §3: *"four marker-capable deployments"* | Two of the four uuids are **one lineage**. | Corrected to **three lineages**; the original over-counted by 25%. |
+| **C-58** | `C-04a` labelled `CLOSED — VERIFIED` defect | **Compensating controls exist and are real:** `button_draft` (`:59-60`) and `button_cancel` (`:70`) **unlink every `cogs` line**; `copy_data` (`:27-35`) strips them. Idempotency is delegated to the **state machine**, which is a legitimate posting-engine pattern. | Re-labelled: **design fragility, not control failure**. The defect that can produce a wrong number is **entirely `C-04b`**. Under `BP-02` (delivery trigger) `C-04a` is a **design requirement input** — `cogs_origin_id` is written and never read as a guard — not a risk P02 carries against the target. |
+| **C-59** | `47` §5 authorisation pack | Its writes set `anglo_saxon_accounting = True`, configuring the **invoice-triggered** model **`BP-02` declines**, with no disclaimer. | **Mandatory disclaimer added:** the run supplies no evidence about `BP-02`'s delivery trigger and must not be cited toward it. |
+| **C-60** | `35` §3: scenario 8 has a *"non-empty deployed population"* | The three carriers hold **984 journal lines between them — 0.199%** of the marker-capable denominator; the sole 19.0 carrier has **83,753 templates against 23 journal lines**. | **Non-empty as master data, empty as transactions.** `P02 RETAINS` stands; the boundedness is now quantified. |
+| **C-61** | `35` §4: *"in that deployment freight reaches neither COGS, revenue nor tax"* | `CA-03` read **one** module; `46` records that deployment as `SOURCE MISSING` (5 of 9). | Narrowed to **"through this module"**. |
+| **C-62** | Scenarios 5/6/7 stated without scope | 178 unreadable P02-relevant modules in `5d5164c4`, 10 of 11 in `57d32e15`, 5 of 9 in `551ab874`. | Restated as **"in standard v18/v19"** with the unreadable counts attached. |
+
+**Also independently corroborated:** Expert 1 re-derived the marker-capable lineage count as **13** by a
+different route and reproduced the 493,277 total to the digit — matching `C-51`, which P02 had found
+separately. **Two derivations, one answer.**
+
 ## 2. Contradictions Between Evidence Tracks
 
 **None found.** The four tracks were run independently against the same root with independently declared
