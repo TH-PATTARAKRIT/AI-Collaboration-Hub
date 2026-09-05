@@ -110,3 +110,52 @@ Every entry above cites at least two independent locations, or one location plus
 ---
 
 # End
+
+---
+
+# APPENDIX B — TARGETED CONTINUATION (2026-09-05)
+
+Added by `[SMEPLUS-26-09-04-ACC-P06-B2R-TARGETED-EVIDENCE-CLOSURE-001]`. The body above is unchanged.
+
+## B.1 New Type I contradictions
+
+| ID | Contradiction | Evidence A | Evidence B | Severity |
+|---|---|---|---|---|
+| **C-29** | A guard whose error message says **"Entries don't belong to the same company"** tests `root_id`, a **fiscal hierarchy** that leaves legal identity free | `$V18E/account/models/account_move_line.py:2336-2340` | `$V18E/base/models/res_company.py:95-103` + `$V18E/account/models/company.py:281-287` — the delegated set excludes `vat`, `company_registry` | **HIGH** |
+| **C-30** | An ISO 20022 field declares **who bears** bank charges on an outbound instruction, while the system has **no object for the charge itself** | `$V18E/account_iso20022/models/account_batch_payment.py:18-21` | 13-token fee search over 6 modules → 0 definitions | **HIGH** |
+| **C-31** | A globally-unique end-to-end tracker is **generated for money leaving** and **discarded when the bank reports back** | `$V18E/account_iso20022/models/account_payment.py:12-14,60` | `$V18E/account_bank_statement_import_camt/models/account_journal.py:127,130` — inbound `EndToEndId` written to `notes` | **HIGH** |
+| **C-32** | Outbound API calls have **idempotency keys**; inbound bank events have **no identity at all** on 4 of 7 doors | `$V18E/payment/utils.py:217-220` | `26_` §2 door matrix | **HIGH** |
+| **C-33** | An approval framework's own execution path sets the context flag that makes its gate **return `True` unconditionally** | `$CUST18/multi_level_approval_configuration/models/multi_approval_type.py:616` | same file `:692` | MEDIUM — **PLAUSIBLE**, no executed path traced (`OQ-96`) |
+| **C-34** | A module gated by a menu `groups=` attribute and a client-side confirm string executes **unconditional `DELETE FROM`** on the ledger via `res.config.settings` object handlers | `$CUST18/om_data_remove/views/view.xml:20,113-119` | `$CUST18/om_data_remove/models/model.py:18-27` | **HIGH** |
+
+**Type I total: 28 → 34, of which 22 HIGH.**
+
+## B.2 New Type II — implementation versus its own documentation
+
+| ID | Where | Says | Does |
+|---|---|---|---|
+| **D-08** | `$V18E/account/models/account_move_line.py:2336-2340` | *"Entries don't belong to the same company"* | tests the fiscal hierarchy, not the company |
+| **D-09** | `$V18E/base/models/res_company.py:38` | labels the relation **"Branches"** | constrains only currency, fiscal year, storno and tax exigibility — not legal identity |
+
+**Type II total: 7 → 9.**
+
+## B.3 New Type III — cross-package and internal
+
+| ID | Contradiction | Resolution |
+|---|---|---|
+| **`P06-XC-01`** | **P02 `P02-F-43` (`FACT VERIFIED`): the four states *are* kept separate "and does it well". P06 headline (i): they are not independent.** | **NOT RESOLVED — routed to P11 as candidate `P11-C-08`.** P06's proposed reconciliation: the separation exists **only in the outstanding-account configuration** and collapses at creation in the direct-to-bank configuration; it is therefore a **configuration-dependent property, not a system property**. P02's own `P02-F-44` supplies the counter-evidence. **P06 does not adjudicate.** |
+| **T-09** | P11 assigns FX-at-settlement (`UBE-36`) and cash-basis tax (`UBE-38`) to "the ledger — emitted, not requested"; P02 assigns settlement and matching to "Core Accounting"; P06 had framed itself as terminal | **RESOLVED** — P06 accepts the producer characterisation and does not contest the ownership assignment. Recorded in `34_` CPO2-F-01. |
+| **T-10** | P10 routes its close and FX dependencies to **P04**; P11 and P02 route the same questions to **P08** | **NOT RESOLVED — not P06's to adjudicate.** Flagged to P11 as a routing defect; no P08 branch exists to answer. `OQ-93`. |
+| **T-11** | This package's blocker arithmetic disagreed with its own executed count (51 vs 54) | **RESOLVED** — corrected in `40_` §3; recorded as REV-E-06. |
+
+**Type III total: 8 → 12.**
+
+## B.4 Contradictions whose status changed
+
+| ID | Change |
+|---|---|
+| **C-13** | severity **HOLD → HIGH restored**. The two boundaries in one code flow disagree regardless of scope reading; `B-27`'s closure removes the conditionality. |
+| **C-11** | severity **HIGH → MEDIUM**. Provider binding blocks cross-company charging; the real exposure is visibility and selection. |
+| **C-01** | **evidence strengthened** — `25_` §3 states positively what `is_matched` means (a residual-exhaustion flag), rather than only that its label is wrong. |
+
+**No contradiction was withdrawn.**

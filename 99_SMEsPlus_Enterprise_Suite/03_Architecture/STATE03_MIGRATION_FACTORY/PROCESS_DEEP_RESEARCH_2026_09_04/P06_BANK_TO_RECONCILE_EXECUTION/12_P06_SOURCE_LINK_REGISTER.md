@@ -122,3 +122,53 @@ Any P06 finding citing a path not listed in §3 is **inadmissible** and must be 
 ---
 
 # End
+
+---
+
+# APPENDIX B — SOURCES ADDED BY THE TARGETED CONTINUATION (2026-09-05)
+
+## S-08 — Peer process packages, read via git
+
+- **Access:** `git show <branch>:<path>` against the fetched clone. No branch was checked out.
+- **Branches read (7):** `research/account-p02-order-to-cash-…` · `…p03-manufacture-to-cost…` · `…p04-acquire-to-retire…` · `…p05-expense-to-pay…` · `…p07-th-tax-compliance…` · `…p09-plan-to-analyze…` · `…p10-time-based-recognition…` · plus `research/account-core-reconciliation-…` (P11).
+- **DENOMINATOR:** POPULATION: remote heads under `refs/heads/research/`. PATTERN: that refspec. UNIT: ref. **RESULT: 19 refs, of which 9 are `account-p0N`/`account-core` process branches.**
+- **NOT FOUND: `research/account-p01-*` and `research/account-p08-*`.** Class A at fetch instant. **PEER DEPENDENCY OPEN.**
+- **Note on SHA drift:** peers cite one another at earlier SHAs than are currently on origin. Every peer citation in this package is **time-indexed** and may be superseded.
+
+## S-09 — Module registry exports (`ir.module.module`)
+
+| Ref | File | Rows | Installed | Version line | Attribution |
+|---|---|---|---|---|---|
+| DM-A | `~/Downloads/Module (ir.module.module).xlsx` | 1442 | 503 | `19.0.*` | **SCG Legacy–built, BHPRO client** — 11 project-identifying installed rows |
+| DM-B | `~/Downloads/Module (ir.module.module) (1).xlsx` | 1434 | 253 | `saas~19.1.*` | unattributable; 251 of 253 authored by Odoo S.A. |
+
+- **Neither is the SMEsPlus target.** Both are **Odoo 19**; P06's research target is the **v18** line. See `24_` and blocker `P06-B-44`.
+- **Used only** to establish that no target registry exists and to record what a comparable vendor-built database contains. Every inference is `SUPPORTED INTERPRETATION`.
+
+## S-10 — Reference-ERP evidence-base boundary (NEW, and it qualifies S-01)
+
+**`$V18E` is a filtered distribution, not a complete Odoo 18.**
+- `ls -d "$V18E"/*/ | wc -l` → **791 addon directories**
+- `ls -d "$V18E"/l10n_*` → **2**, both Thai: `l10n_th`, `l10n_th_reports`
+
+A standard Odoo 18 ships localisation packs for roughly ninety jurisdictions. **This tree has been filtered to the Thai deployment.**
+
+**Consequence for every tree-scope negative in this package:** the boundary is *this build*, not *Odoo 18*. Recorded as **`P06-B-55`**, carried by **AASP-VETO-03**, and applied explicitly to: `is_internal_transfer`, `destination_journal_id`, `paired_internal_transfer`, `provider_reference` uniqueness, and `chargeback|dispute`.
+**No negative is withdrawn** — each was declared with its path set, and this build is the correct target. What changes is what "tree scope" is understood to mean.
+
+## S-11 — Localisation surface, searched
+
+- **PATH SET:** `$V18E/l10n_*` (2 packs). **PATTERN 1:** `bank_fee|bank_charge|transaction_fee|merchant_fee|processing_fee|commission`. **PATTERN 2:** `payment_return|bounce|dishonou?r|post_dated|postdated|\bpdc\b`. Both `--include="*.py"`, case-insensitive. **UNIT:** matching file.
+- **RESULT: 0 files, both patterns.** Closes `P06-OQ-90`.
+
+---
+
+## Sources still NOT consulted, updated
+
+| Ref | Source | Status |
+|---|---|---|
+| NC-01 | Any live or UAT database | **unchanged** — no connection attempted or available |
+| NC-09 | **The SMEsPlus target module registry** | **NEW** — the decisive missing artefact; `P06-B-44` |
+| NC-10 | **A complete Odoo 18 distribution** | **NEW** — needed to test whether the filtered build omits a relevant capability; `P06-OQ-94` |
+| NC-11 | **The business's actual handling of bank charges and post-dated cheques** | **NEW** — needed to distinguish a platform gap from an off-system convention; `P06-OQ-95` |
+| NC-03/04 | Thai bank specifications; Thai statutory sources | **unchanged — HOLD** |

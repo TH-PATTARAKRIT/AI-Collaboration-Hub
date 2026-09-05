@@ -203,3 +203,109 @@ The MIGR18 manifest reads `18.0.1.0.2` (`__manifest__.py:6`) while `models/hr_ex
 ---
 
 # End
+
+---
+
+# APPENDIX A — TARGETED CONTINUATION FINDINGS (2026-09-04)
+
+Added by `[SMEPLUS-26-09-04-ACC-P06-B2R-TARGETED-EVIDENCE-CLOSURE-001]`, closing `P06-OQ-71` and `P06-OQ-81`. The body above is unchanged.
+
+## A.1 — `om_data_remove`: unconditional ledger deletion with no server-side authorisation
+
+`P06-OQ-71` asked what this module does with its direct bank-statement access. The answer is more serious than the question anticipated.
+
+**CMD-F-16 — The module performs unfiltered, ORM-bypassing, auto-committing `DELETE FROM` on the core accounting tables.**
+`$CUST18/om_data_remove/models/model.py:18-27`:
+```
+sql = "delete from %s" % t_name
+...
+    self._cr.execute(sql)
+    self._cr.commit()
+```
+**No `WHERE` clause.** Therefore no company filter, no date filter, no state filter and no lock-date check. Exceptions are swallowed at `:28-29` (`except Exception as e: _logger.warning(...)`).
+
+**Tables reached, by method:**
+- `remove_account()` — `account.bank.statement.line` (`:168`), `account.payment` (`:169`), `account.partial.reconcile` (`:172`), `account.move.line` (`:173`), `account.move` (`:175`), `payment.transaction` (`:167`)
+- `remove_account_chart()` — `account.bank.statement` (`:207`), `account.payment` (`:205`)
+- `remove_message()` — `mail.message`, `mail.followers`, `mail.activity` (`:326-330`)
+- `remove_all()` (`:334-348`) chains all three: **one button destroys the ledger and the chatter that would evidence it.**
+
+**CMD-F-17 — And it rewinds the document-number sequences.**
+`:189-194` resets `ir.sequence.number_next = 1` for `BNK1/%`, `CSH1/%`, `INV/%`, `EXCH/%`, `MISC/%`. **Previously-used document numbers become re-issuable.** Combined with CMD-F-16 this is the complete removal of the audit trail *and* of the evidence that numbers were ever used.
+
+**CMD-F-18 — Server-side authorisation: NOT FOUND.**
+PATH SET `$CUST18/om_data_remove`, 4 source files, `models/model.py` (368 lines) read in full. **No `security/` directory and no `ir.model.access.csv`** (`find` returns neither). No `has_group` or `_is_admin` call anywhere in the module. The manifest declares no security file (`__manifest__.py:12-14`).
+The only two controls are presentational: a `groups="base.group_system"` attribute on the **menu item** (`views/view.xml:113-119`) and a client-side `confirm=` string on each button (`views/view.xml:20`).
+**The methods are plain `type="object"` handlers on `res.config.settings`, a `TransientModel` with a broad default ACL.** A menu `groups=` attribute controls menu visibility, not method invocation.
+**Classification: CONFIRMED DEFECT.** Raised as **`P06-B-50`**.
+
+**CMD-F-19 — It is present in all four custom roots** (`$CUST18`, `$CUST14`, `$T8MASTER`, `$MIGR18`), verified by `ls -d`. This is not an isolated copy.
+
+**Assessment for P06.** This single module defeats attack A7's premise. The prior round analysed statement-line deletion through the ORM `unlink()` path and its `force_delete` bypass. **This module does not use that path at all** — it deletes the rows directly and commits. Every control discussed in A7 and A8 — audit-trail retention, `_check_reconciliation`, lock dates, the inalterability hash — is inapplicable, because none of them is in the code path.
+
+## A.2 — The custom approval estate does not cover settlement
+
+`P06-OQ-81` asked whether the custom approval modules supply the write-off control that `P06-B-22` says is missing. **They do not.**
+
+**CMD-F-20 — Zero coverage of settlement objects.**
+**DENOMINATOR:** POPULATION: 3 modules (`multi_level_approval`, `multi_level_approval_configuration`, `multi_level_approval_hr`), 46 tracked `.py`/`.xml`/`.csv` files. PATTERN: `account\.payment|account\.move|writeoff|write_off|reconcile`. UNIT: matching line. **RESULT = 0.**
+The 11 `limit` hits are all ORM `search(..., limit=N)` keyword arguments.
+
+**CMD-F-21 — The only enforcement hook is a `write`-time state-field gate, and it exempts administrators.**
+`$CUST18/multi_level_approval_configuration/models/base_model.py:12-16`:
+```
+_inherit = 'base'
+def write(self, vals):
+    self.env['multi.approval.type'].check_rule(self, vals)
+```
+`check_rule` — `models/multi_approval_type.py:692-712`:
+```
+if self.env.user._is_admin() or self._context.get('run_python_code'):
+    return True
+...
+    if approval_type.state_field and approval_type.state_field in vals:
+        raise UserError(self._make_err_msg())
+```
+It blocks **writes that touch a configured state field** on models an administrator has manually configured. It does not cover `create` or `unlink`, and reconciliation does not proceed through a state-field `write` at all.
+
+**CMD-F-22 — There is no amount, threshold or limit concept.**
+`amount_opt` (`multi_level_approval/models/multi_approval_type.py:60-64`) is a Selection controlling **whether an Amount box is required on the request form**. `amount` (`models/multi_approval.py:93`) is a `fields.Float` on the request document. **No numeric comparison, no `threshold`, no `limit` field.** The only routing input is a free-text `domain` evaluated by `safe_eval` (`multi_approval_type.py:42,164`) — i.e. an amount rule is runtime data a user types, not shipped behaviour.
+
+**CMD-F-23 — And the approval gate can disable itself.**
+The approve/refuse hooks execute **stored Python source** (`approve_python_code` / `refuse_python_code`) through `safe_eval(..., mode="exec")` with `env` and `record` in scope (`multi_approval_type.py:657-667`), and set `run_python_code: 1` in the context (`:616`) — **which is precisely the flag that makes `check_rule` return `True` unconditionally (`:692`)**.
+`action_configure` (`:525-552`) likewise generates a computed field's Python body as a string (`get_compute_val`, `:274-278`) and execs it.
+**Classification: CONFIRMED DEFECT.** An approval framework whose own execution path carries the flag that bypasses it is not a control. Raised as **`P06-B-51`**.
+
+**CMD-F-24 — Meanwhile the custom estate's actual write-off producer has a blanket ACL.**
+`$CUST18/account_payment_multi_deduction/security/ir.model.access.csv:2`:
+```
+access_account_payment_deduction,account.payment.deduction,model_account_payment_deduction,account.group_account_invoice,1,1,1,1
+```
+**Any Invoicing user, full create/read/write/unlink.** Its only validation is an arithmetic identity, not a ceiling — `wizard/account_payment_register.py:78-80`: `raise UserError(_("The total deduction should be %s") % rec.payment_difference)`. The `groups=` attributes in its views cover analytic-distribution columns, not the deduction amount.
+Raised as **`P06-B-52`**.
+
+**Effect on `P06-B-22`:** the blocker was downgraded to Class B at the prior round's challenge precisely because this estate had not been searched. **It has now been searched, and the negative is restored to Class A within the enlarged declared scope** (`$V18E/account` + `$V18E/account_accountant` + the three custom approval modules). **There is no approval or amount control over settlement write-offs anywhere in the searched estate.**
+
+## A.3 — `BYPASS_LOCK_CHECK` in the custom trees: NOT FOUND
+
+`P06-OQ-21`. **DENOMINATOR:** PATH SET all four custom roots; POPULATION **19,982 files** (`find -type f`: 5,087 + 8,795 + 3,599 + 2,501); PATTERN `BYPASS_LOCK_CHECK|bypass_lock_check`, `grep -rIn -E`, all file types. **RESULT = 0 lines.**
+Widened confirmation: `bypass[_ ]?lock` case-insensitive → **0 lines**. A broader `bypass` scan returns 20 files, none lock-related.
+**Class A within that declared scope.** Combined with the prior round's `$V18E` search (2 callers, both in `account/models/partner.py`, partner merge), the sentinel originates and is used only in the reference core.
+**`P06-OQ-21` — CLOSED — SOURCE EVIDENCE VERIFIED.**
+*Residual scope note: the Odoo core `odoo/` package outside `addons/` was not searched. That is a framework path, not an addon path, and no custom code lives there — but the boundary is declared rather than assumed.*
+
+## A.4 — Blockers and open items arising from this appendix
+
+| ID | Item |
+|---|---|
+| `P06-B-50` | `om_data_remove` deletes bank statements, payments, moves, partials and chatter by unconditional SQL, then rewinds sequences, with no server-side authorisation. Present in all four custom roots. |
+| `P06-B-51` | The custom approval framework's execution path sets the very context flag that disables its own gate. |
+| `P06-B-52` | The custom write-off producer is granted full CRUD to any Invoicing user with no amount ceiling. |
+| `P06-OQ-21` | **CLOSED** |
+| `P06-OQ-71` | **CLOSED** — and it produced `P06-B-50` |
+| `P06-OQ-81` | **CLOSED** — and it restored `P06-B-22` to Class A |
+| `P06-OQ-91` | **NEW** — whether any `multi.approval.type` record is configured against a settlement model is a **database** question (`model_id` is runtime-populated; no data record ships in any manifest). **HOLD — DATABASE EVIDENCE REQUIRED.** |
+
+---
+
+# End of Appendix A

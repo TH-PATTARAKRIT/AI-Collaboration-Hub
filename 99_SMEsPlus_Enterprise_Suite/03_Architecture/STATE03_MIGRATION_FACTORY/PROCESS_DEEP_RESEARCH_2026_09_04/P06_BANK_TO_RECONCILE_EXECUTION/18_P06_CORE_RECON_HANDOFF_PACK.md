@@ -138,8 +138,77 @@ Then AASP-VETO-01 can be lifted. AASP-VETO-02 additionally requires a Boss decis
 
 **READY FOR CORE ACCOUNTING RECONCILIATION.**
 
-Handed over as evidence for a decision, under AASP-VETO-01, with 42 blockers and 42 open items enumerated and owned. **This is not a PASS, not a freeze, not a merge, and not an implementation authorisation.** No such declaration is made or implied anywhere in this package.
+Handed over as evidence for a decision, under AASP-VETO-01, with 42 blockers and 42 open items enumerated and owned. *(SUPERSEDED BY APPENDIX B: the open-item figure of 42 was a unit-conflation error — see `39_` REV-E-05. Final executed figures are in B.8.)* **This is not a PASS, not a freeze, not a merge, and not an implementation authorisation.** No such declaration is made or implied anywhere in this package.
 
 ---
 
 # End
+
+---
+
+# APPENDIX B — TARGETED CONTINUATION UPDATE (2026-09-05)
+
+Produced by `[SMEPLUS-26-09-04-ACC-P06-B2R-TARGETED-EVIDENCE-CLOSURE-001]`. The body above stands; this appendix records what changed.
+
+## B.1 The headline has changed
+
+The body of this pack leads with *"seven confirmed defects"*. **After this continuation the honest headline is different, and it should lead:**
+
+> **The bank half of P06 runs on unmodified reference behaviour — and a custom module present in all four source copies can delete the bank statements, payments, journal entries, reconciliations and chatter with unconditional SQL, no server-side authorisation, and then rewind the document sequences to 1.**
+
+`P06-B-50`. It bypasses the ORM entirely, so **every control that attacks A7 and A8 analysed is inapplicable on that path.** No settlement or reconciliation design holds while that module is installable. Whether it is installed on the target is unknown — see B.4.
+
+## B.2 What closed
+
+| Item | Disposition |
+|---|---|
+| **`P06-B-27`** — does `root_id` denote one legal entity? | **CLOSED — SOURCE EVIDENCE VERIFIED.** Neither reading was right: `root_id` is a **fiscal and currency hierarchy**. The delegated set is five fields and **excludes `vat` and `company_registry`**, so branches may be legally distinct. **P11 may strike this from its decision `D-3`; no UAT query is needed.** |
+| Attack **A4a** | HOLD → **CONFIRMED DEFECT.** The guard names the company boundary and tests a fiscal one; it cannot enforce what it claims, for any deployment. Independently corroborated by P02 `SF-06`. |
+| **`P06-B-28`** token scope | **CLOSED**, severity **downgraded HIGH → MEDIUM** on adversarial test |
+| **`P06-B-40`** unverified negatives | **CLOSED** — both principal Class-A negatives survived independently-worded re-searches |
+| **`P06-B-03`** peers unread | **CLOSED** — 7 of 9 read; P01 and P08 re-raised as `B-54` |
+| `OQ-21`, `OQ-71`, `OQ-81`, `OQ-90` | **CLOSED** |
+
+## B.3 What Core Reconciliation must now also know
+
+| # | Finding |
+|---|---|
+| B-1 | **P06 is a producer, not a terminal consumer.** It emits three accounting events by the act of matching — exchange difference, its reversal, cash-basis tax — and owns none of them. Adopted from P11. |
+| B-2 | **Lock dates inherit up the hierarchy, strictest ancestor wins**, with elevated privilege and including archived companies (P04 `P04-B-43`). Since branches may be legally distinct, **one company's close can lock another's books.** |
+| B-3 | **RELOCATE is core behaviour, not a reconciliation quirk.** P04 establishes it lives in the generic posting routine, so it reaches any P06 event that posts. |
+| B-4 | **A globally-unique outbound tracker (`iso20022_uetr`) has no inbound counterpart**, and CAMT parses the inbound end-to-end id into a free-text note. The round trip is broken at both ends. |
+| B-5 | **There is no import-batch object.** A re-import cannot be identified, audited or reversed as a unit. |
+| B-6 | **An eighth settlement door** moves cash through a bank journal with no payment object, invisible to matching (inherited from P05 `SR-04`). |
+| B-7 | **The custom approval estate does not cover settlement at all** — 3 modules, 46 files, 0 hits on any settlement object. `P06-B-22` restored to Class A. |
+| B-8 | **The evidence base is a filtered distribution** — 791 addons, 2 localisation packs, both Thai. Every tree-scope negative inherits that boundary (`P06-B-55`, `AASP-VETO-03`). |
+| B-9 | **The only deployment evidence available is Odoo 19**, while P06 researched v18 (`P06-B-44`). |
+
+## B.4 Two things that must be resolved before anything is built
+
+1. **Confirm the target generation.** One `ir.module.module` export. If the target has moved to 19, a material fraction of this package is scoped to a superseded line.
+2. **Determine whether `om_data_remove` is installed on the target.** Same export answers it. If it is, no control in this package's requirement list is enforceable.
+
+## B.5 One contradiction for P11 to adjudicate
+
+**`P06-XC-01`.** P02 publishes `P02-F-43` as `FACT VERIFIED` — *"the reference process **does** keep these separate, and does it well"* — which is the opposite of P06 headline (i). **It is registered in no contradiction register anywhere**, because P11 ingested P02 and P06 in separate deltas and did not cross-read them.
+**P06's proposed reconciliation, offered not imposed:** the separation exists **only in the outstanding-account configuration** and collapses at creation in the direct-to-bank configuration. It is a **configuration-dependent property, not a system property**, and a design may not rely on it without mandating the configuration. P02's own `P02-F-44` supplies the counter-evidence.
+
+## B.6 Peer questions answered
+
+- **P10 `X-08`** — bank-side prepayments and interest accruals: **answered and closable.** Resolves by absence; no bank-interest object exists for either process. P06 recommends the boundary at accrual (P10) versus receipt (P06).
+- **P09's class-B claim** about P06's widget: **shape confirmed** (the widget clears and rebuilds every line), analytic specifics not traced. **Class B is correct and should stay.**
+- **P07's three BLOCKING dependencies** — payment date, allocation, reversal linkage: **all three accepted, and all three reported defective in the reference.**
+
+## B.7 Veto status
+
+| Veto | Status |
+|---|---|
+| **AASP-VETO-01** reliance | **PARTIALLY RESOLVED.** The company-boundary position is released for reliance. Five single-pass tree-scope negatives and all P01-dependent items remain vetoed. |
+| **AASP-VETO-02** implementation | **REMAINS, on new grounds** — the original ground is discharged; the generation gap, `B-50`, and 26 undecided design items now carry it. |
+| **AASP-VETO-03** | **NEW** — P11 must record the filtered-evidence-base boundary alongside each P06 negative, or confirm peers used the same build. |
+
+## B.8 Terminal
+
+**READY FOR CORE ACCOUNTING RECONCILIATION — TARGETED BLOCKER CLOSURE COMPLETED.**
+
+Handed over as **evidence for a decision**, under three vetoes, with **55 blockers** (7 closed, 48 open) and **44 open items** (4 closed, 40 open) — enumerated, unit-declared, and counted by a command executed after the final file was written. **Not a PASS, not a freeze, not a merge, not an implementation authorisation.**
