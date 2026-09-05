@@ -141,13 +141,13 @@ recorded symptoms across four domain programmes reduce to that one absence
 | # | Area | Position |
 |---|---|---|
 | 8 | Inventory / cost / COGS | **10 of 10 dependency areas `LOCKED`**; 12 Joint decisions open; `JT-01`/`JT-04`/`JT-05` **`NOT DECIDABLE`**; the Joint Closure branch is a **governance container only — 4 files, no closure deliverable** |
-| 9 | AR | Subledger of record; recognition verified; **posting pattern withheld** |
-| 10 | AP | As AR; `P05` producer contract **not established** |
+| 9 | AR | ~~Subledger of record~~ → **DERIVED VIEW** under P11's own stated rule (`B-17` re-run): residual is stored and drifts, and posted detail is editable in place. Recognition verified; **posting pattern withheld** |
+| 10 | AP | As AR — **DERIVED VIEW**. `P05` producer contract **now established** (`P05` published: advance = asset, authorising ≠ recording, 15 positions) |
 | 11 | Asset | **The asset subledger is not reconciled to the ledger; six break mechanisms; none detected.** *"A reconciliation must be **originated** by SMEsPlus. There is nothing to adapt"* |
 | 12 | Manufacturing cost | Conversion cost **excludes all fixed production overhead by construction** — inventory understated; **and machine time is charged twice where two people work one machine** — inventory overstated. **Five unreconciled monetisations of one machine hour** |
 | 13 | Banking / settlement | **7 confirmed defects from 8 attacks.** *"The identity system fails open at every layer, in the same direction."* Duplicate bank transactions reachable by *"import a file twice — the lowest bar in the set"* |
 | 14 | Tax / Thailand | 3 closed positions — **two accounting-standard, one regulatory; no `THAI STATUTORY REQUIREMENT` is closed by P11.** 7 statutory items held |
-| 15 | Analytic / management | **Analytic is not a subledger of record.** No `P09` figure reconciles across any correction |
+| 15 | Analytic / management | **Not a subledger of record** — and `P09` widens it: **two of eight constitutional trace steps have no carrier at all**, and a management allocation on a posted, lock-dated, hash-chained entry **is changeable by an ordinary billing role with no audit trace** |
 | 16 | Deferred recognition | **Producer contract not established at all** |
 | 17 | GL / core ledger | Wave A `HOLD`; 12 tolerance-zero unresolved; `unbalanced-and-posted` **reachable** |
 
@@ -186,7 +186,19 @@ negative finding in two research packages"*. Business-SME and Thai statutory inp
 
 ## 26. Remaining blockers
 
-**16 P11 blockers, `0` closed.** (`P11-B-14`/`P11-B-15` from Delta 02; `P11-B-16` carries the new tolerance-zero boundary `T0-13` from Delta 03.) (`P11-B-14`/`P11-B-15` added by `P11_PEER_INTAKE_DELTA_02.md`.) Inherited: `GB-01`…`GB-08`; `MCU-21` and 17 gating unknowns;
+**20 P11 blockers registered · 2 discharged by evidence · 2 CLOSED by completed work · 16 open.**
+
+> **The two closures are `B-17` and `B-18`, and both closed because the work was done and verified.**
+> `B-17` was the round's only `CRITICAL` — the subledger test whose stated rule (*fails `S3` **or**
+> `S4`*) was not the rule applied (*fails both*). Re-running all ten rows against the stated rule, with
+> the three challenge corrections applied to the row data, gives **0 unqualified (was 3) · 2 qualified
+> · 7 derived views · 1 unknown**. **Closing it made this pack's position worse, not better** —
+> *no reconciliation may be claimed against seven of ten candidate subledgers.*
+>
+> Five of the seven fail for **one substrate reason**: their detail *is* journal items, and `P08`
+> establishes over the declared 22-root set that a posted item's account, counterparty, label,
+> reference and allocation are **editable in place**, with header protection waived by a
+> caller-supplied parameter. **One property, five consequences, and the same root as `D-5`.** (`P11-B-14`/`P11-B-15` from Delta 02; `P11-B-16` carries the new tolerance-zero boundary `T0-13` from Delta 03.) (`P11-B-14`/`P11-B-15` added by `P11_PEER_INTAKE_DELTA_02.md`.) Inherited: `GB-01`…`GB-08`; `MCU-21` and 17 gating unknowns;
 `T0-01`…`T0-12`; `JT-01`…`JT-12`; `BLK-01`, `BLK-02`, `BLK-07`, `BLK-08`; `P06`'s 42.
 **Correction backlog: 86 accepted findings, corrected in this session at source for the Boss-control
 and evidence-integrity classes; the register-level count and membership corrections are scoped to
