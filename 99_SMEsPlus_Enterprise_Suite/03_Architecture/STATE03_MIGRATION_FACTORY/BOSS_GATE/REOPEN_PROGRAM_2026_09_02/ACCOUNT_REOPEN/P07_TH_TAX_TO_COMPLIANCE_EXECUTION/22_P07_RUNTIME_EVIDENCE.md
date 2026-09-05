@@ -1431,3 +1431,81 @@ consequence unmeasured). In each the measured clause was tested across every ide
 and the unmeasured clause travelled with it untouched. P04's diagnosis is exactly right:
 **the exhaustive testing of the first clause is what made the second one feel safe.** A
 7-of-7 result on one clause is not evidence about the other, and it reads like it is.
+
+
+---
+
+## 18. The Axis Closed for One Module, and a Fifth Axis That Cannot Be — `P07-F-74`
+
+P04 closed the code-identity axis for one of its modules by whole-tree hashing rather than
+per-file diffing, and reported that its own first run of that test returned **44 copies in 3
+groups, 42 of which hashed to `e3b0c44298fc…` — the SHA-256 of empty input** — because paths
+containing spaces were word-split by the shell and the walk visited directories that do not
+exist. That is this package's `REV-E-55` defect, reproduced in P04's shell **one message after
+it was reported**, inside the test written to apply the lesson.
+
+Their observation about *how* it failed is the one worth keeping, and it corrects `REV-M-32`:
+
+> An empty result and a unanimous result are the same shape, because **emptiness is perfectly
+> self-consistent**.
+
+Forty-two failed walks did not scatter — they **collapsed into one group** and read as *"42
+identical copies"*, the strongest possible agreement, in the direction the author wanted.
+
+### 18.1 Adopted: the empty-input sentinel
+
+Every hash comparison in this package now prints `e3b0c44298fc…` explicitly, prints the **file
+count** behind each hash, and flags any group equal to the sentinel or holding zero files.
+Applied below.
+
+### 18.2 `P07-F-74` — code identity CLOSED for the tax-period module
+
+`P07-F-69` established that `smesplus_tax_period_date` (declared, installed **nowhere**) and
+`scgl_tax_period_date` (undeclared, installed in 2 of 4) share a display name and version. Five
+copies exist on this host. Whole-tree hash, CR-normalised, over `.py`/`.xml`/`.csv`, excluding
+`__manifest__.py`:
+
+| copy | files hashed | tree hash |
+|---|---:|---|
+| declared `smesplus_tax_period_date` | 4 | `9353002540a70c0b…` |
+| `scgl_tax_period_date` (Extra19) | 4 | `9353002540a70c0b…` |
+| `scgl_tax_period_date` (worktree) | 4 | `9353002540a70c0b…` |
+| `scgl_tax_period_date` (extra-module set) | 4 | `9353002540a70c0b…` |
+| `scgl_tax_period_date` (home addons) | 4 | `9353002540a70c0b…` |
+
+**One distinct tree from five copies.** Not the empty sentinel; four real files each. The only
+difference anywhere is the manifest `author` field.
+
+**So for the tax-period module the axis is CLOSED, not narrowed.** Which copy is deployed
+cannot change any finding drawn from it — structural **or** behavioural. `P07-F-03`,
+`P07-N-02`, `04 §4` and the tax-point matrix rows are **fully discharged** on code identity,
+and `P07-U-28` no longer covers them.
+
+As P04 said of its own closure: this is stronger than the `§16` result **only because these
+copies happen not to have diverged**, not because the method improved. The three `l10n_th`
+modules diverge by 17–179 real lines and stay under `P07-U-28`. A host-wide enumeration and
+hash of every copy of those three is executing; **it is not reported here, because a partial
+enumeration is not a result.**
+
+### 18.3 The fifth axis — a fact that no longer exists to be looked at
+
+P04's reading of `REV-M-33`, adopted, and it is a category the other four do not contain:
+
+> Signature set, path set, source scope, code identity — each is about **where you looked**.
+> Load order is about **a fact that no longer exists to be looked at.**
+
+`P07-F-42` sits at class `INF` on an unexecuted load-order link; `P07-F-72` measures
+`P07-F-01`'s real trigger as a load-order condition. Both headline findings of this package
+turn on **the order in which language and chart were installed** — and a database records the
+*result* of that order, never the order. The five translated rows created in one transaction
+(`§17.1`) are the closest thing to a trace, and they are consistent with the mechanism without
+establishing it.
+
+**No archive either package holds can settle it**, which is why `P07-U-20` and `P07-U-29` are
+not closable by more reading, more snapshots, or a wider census. They need a controlled
+install, executed twice in opposite orders. That is a runtime request, and it is the single
+most useful thing that could be asked of a deployment engineer on P07's behalf.
+
+**And it changes what a HOLD means here.** Every other open item in this package is open
+because something was not yet read. These two are open because the evidence was never
+recorded by anyone — including the deployments themselves.
