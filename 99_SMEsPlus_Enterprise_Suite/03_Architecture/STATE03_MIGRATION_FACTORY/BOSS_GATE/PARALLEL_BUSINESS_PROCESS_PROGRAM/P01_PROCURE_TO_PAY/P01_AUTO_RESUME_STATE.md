@@ -200,3 +200,53 @@ Two widths, two units, **two probe forms** — and now also:
 > exactly the way storage location is (`ERR-P01-19`).
 
 > **A correction is not immune to the defect it corrects** (`ERR-P01-43`).
+
+## R6.5 AFTER THE FOUR CHALLENGES — SEVEN MORE CORRECTIONS
+
+| Withdrawn / corrected | Now |
+|---|---|
+| GRN net ฿72,097,814.25 | **all-states**; posted-only **−฿7,048,692.08**, opposite sign |
+| "price-difference engine never fired" | **฿2,246,313,274.64** across 1,123 layers |
+| Residual B = 1,209 policy violations | bill-created price-difference layers |
+| "policy change refuted" | the change **happened**; the test could not see reverted rows |
+| "the GL is intact and sane" | **8 posted items above ฿1bn**; ฿39.2m misallocated |
+| cost explosion owned by P03 | **owned by P01** — `purchase_stock/_get_price_unit`, still live |
+| BE leakage = 30 rows | materially wider; extent disputed between experts |
+
+## R6.6 THE BLOCKER THAT OUTRANKS EVERYTHING ELSE
+
+**`S16-B-05`.** `stock_valuation_layer.account_move_id` is **`ON DELETE SET NULL`** (schema-verified, with
+controls), and `om_data_remove` — installed here — deletes raw with no log. **A journal-entry deletion
+reproduces the "0 of N linked" signature P01 published for series 18 and series 19.** Neither finding is
+overturned; **the alternative was never excluded.** Routed to **P06** and **P11**.
+
+## R6.7 NEXT EXACT ACTION — REPLACES R6.3
+
+> **Test `S16-B-05` in the series-18 and series-19 deployments.** Three questions, in order:
+> **(1)** Is `om_data_remove` installed there? Read `ir_module_module` in `551ab874` (series-18 OCC, extracts
+> already at `…/scratchpad/s18/`) and in the series-19 estate.
+> **(2)** Is `stock_valuation_layer.account_move_id` `ON DELETE SET NULL` in those schemas too?
+> `pg_restore -s -f <out> <dump>` — **note `-f`, a redirect yields 0 bytes.**
+> **(3)** Do those databases show deletion traces — id gaps in `account_move`, orphaned
+> `account_move_line`, low minimum ids?
+>
+> Until (1)–(3) are answered, **neither zero-link finding may be relied on**, and P11 has been told so.
+
+**Second action:** re-derive **every monetary total in the P01 package on a declared state basis**
+(`ERR-P01-45`). At least seven totals in this round alone were published all-states, one of which inverted.
+
+**Third:** declare the extraction denominator. **41 of 651 tables (6.3%)** were opened this round with no
+stated selection rule (`GAP-P01-07`).
+
+## R6.8 METHOD — TWO MORE RUNGS
+
+> **Every aggregate over journal items declares its state basis in the same line as the number.**
+> Posted-only is the default; anything else is stated. This round published a headline that **inverted in
+> sign** without it — while a sibling document in the same package applied the control correctly.
+
+> **Choose a claim's population from the claim's own subject, never from the side you already searched.**
+> "The GL is intact" was tested on the 25 entries reachable from 30 subledger rows. Queried from the ledger,
+> it is false.
+
+> **Identify deployed custom code by the field set its model declares in the deployment's `ir_model_fields`
+> registry** (`METHOD-P01-03`), not by version — 4 variants share one version string here.

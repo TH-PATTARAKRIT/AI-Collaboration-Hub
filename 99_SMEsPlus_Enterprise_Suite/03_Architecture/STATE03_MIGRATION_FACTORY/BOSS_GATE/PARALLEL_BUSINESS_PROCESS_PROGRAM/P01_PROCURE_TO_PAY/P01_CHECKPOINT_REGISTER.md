@@ -126,11 +126,11 @@ Baseline `f76e443df3b3e7c9545ca731f0d963a96d636ca0`. Deployment `45a8e08e` (`iSM
 | `CP-P01S16-08` | **COMPLETE — EVIDENCE VERIFIED** | no lock configured; 15.19% of bills pre-dated; 31 BE-dated rows |
 | `CP-P01S16-09` | **COMPLETE — EVIDENCE VERIFIED** | 18 entries; 8 active-and-exercised, 3 contradictions open |
 | `CP-P01S16-10` | **COMPLETE — EVIDENCE VERIFIED** | 13-step chain, each step with its evidence status |
-| `CP-P01S16-11` | *see §R6.1* | four challenges dispatched |
-| `CP-P01S16-12` | *see §R6.1* | — |
-| `CP-P01S16-13` | *see §R6.1* | — |
+| `CP-P01S16-11` | **COMPLETE — EVIDENCE VERIFIED** | four challenges returned; 7 published statements corrected, 2 expert disagreements preserved |
+| `CP-P01S16-12` | **COMPLETE — EVIDENCE VERIFIED** | AAS+ **RECOMMEND HOLD**, no veto |
+| `CP-P01S16-13` | **COMPLETE — EVIDENCE VERIFIED** | PMO: 12 YES, 1 PARTIAL (denominator), 1 **NO** (freeze not enforced) |
 | `CP-P01S16-14` | **COMPLETE — EVIDENCE VERIFIED** | delta-only: P04 and P07 changed and were read; eight peers unchanged and **not re-read** |
-| `CP-P01S16-FINAL` | *see §R6.1* | — |
+| `CP-P01S16-FINAL` | **COMPLETE — EVIDENCE VERIFIED** | commit pushed, remote verified |
 
 ## §R6.1 Checkpoints that do not close in this round
 
@@ -149,5 +149,14 @@ manifest default), plus `NEAR-MISS-P01-07` (a normaliser that assumed the series
 `NEAR-MISS-P01-08` (**"quadrillions posted to the GL"** — the linked entries balance at ฿31,622,699.37).
 
 **Four of the five were caught by a control this package has adopted since round 3; none was caught by a
-challenger, because all five were corrected before the package was frozen.** That is the intended order and
-it is recorded so the low challenger-catch count is not read as an easy round.
+challenger, because all five were corrected before the package was frozen.** That is the intended order.
+
+## §R6.3 And then the challenges corrected seven more
+
+`ERR-P01-45` (GRNI state basis — **sign inverted**), `ERR-P01-46` (price-difference engine), `ERR-P01-47`
+(residual B), `REV-P01-06` (my account of `ERR-P01-42` was itself wrong), plus the withdrawal of *"the GL is
+intact"*, the disproof of my policy-change refutation, and the re-routing of the cost explosion from P03 to
+P01. **Six of the seven came from challengers. None was found by the author after publication.**
+
+**The low self-catch count is the finding.** Five defects caught before freezing and seven after is not a
+good ratio, and `P01_S16_AAS_PLUS_CONSOLIDATION.md §4` records that every one was a **boundary** defect.

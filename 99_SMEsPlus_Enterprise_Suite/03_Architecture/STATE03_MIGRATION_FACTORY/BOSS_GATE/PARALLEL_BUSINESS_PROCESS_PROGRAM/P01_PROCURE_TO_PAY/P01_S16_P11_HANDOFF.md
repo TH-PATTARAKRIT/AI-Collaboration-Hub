@@ -17,6 +17,39 @@ Checkpoint: `CP-P01S16-14`
 
 ---
 
+## 0. THE ITEM P11 MUST TAKE FIRST — IT REACHES TWO EARLIER ROUNDS
+
+> ### `S16-B-05` — a deletion reproduces the zero P01 has twice explained another way
+
+Verified directly from the series-16 schema, with controls (584 `ON DELETE CASCADE` / 1,741
+`ON DELETE SET NULL` present, so the query discriminates):
+
+```
+stock_valuation_layer_account_move_id_fkey FOREIGN KEY (account_move_id)
+    REFERENCES public.account_move(id) ON DELETE SET NULL;
+```
+
+`om_data_remove` — **installed in this deployment** at 16.0.1.0.1, and reported by peer **P06** to delete
+ledger data without authorisation — performs raw `DELETE FROM <table>` followed by `commit()`: **no ORM, no
+lock-date check, no company filter, no log**, with 10 of 20 destructive buttons carrying no confirmation.
+
+**Therefore deleting journal entries silently NULLs `account_move_id` on every valuation layer that
+referenced them — producing exactly the *"0 of N valuation layers linked"* signature P01 published for the
+series-18 OCC deployment (0 of 47,801) and the series-19 estate (0 of 14,441).**
+
+**Those findings are not overturned.** The series-18 periodic policy was proved positively and independently
+— 126 of 126 categories, both storage locations, source gate closed. **What is new is that a competing
+explanation exists and was never excluded**, and the programme has been reading those zeros as *"never
+posted"* when *"posted and later deleted"* is observationally identical.
+
+AAS-03 Expert 4 found **no evidence the module ran here** — every target table populated, low minimum ids —
+**and stated the limit**: two target tables are empty and the module leaves no trace by design.
+
+**P11 must not rely on either zero-link finding until this is tested in those deployments.** Routed jointly
+to **P06** (module owner) and **P11**.
+
+---
+
 ## 1. THE ONE THING THAT CHANGES P11's PICTURE
 
 P11 has been reconciling against two deployments in which **no inventory value reached the general ledger from
@@ -52,7 +85,7 @@ database**, with a coverage control (0 of 74,982 unresolved).
 
 | ID | Contradiction | Status |
 |---|---|---|
-| `S16-C-14` | **The inventory subledger and the GL disagree by ~10¹⁵ on 30 valuation layers** — values to ±1.5e21 against balanced GL entries of ฿31,622,699.37 | **OPEN.** GL is intact; the subledger is not. Root cause → **P03** (manufacturing/unbuild cost path) and **P08** |
+| `S16-C-14` | Subledger/GL divergence on 30 layers — **and the GL is NOT intact**: 8 posted items exceed ฿1bn, incl. `STJ2023110741` at ฿19,784,867,370.00, leaving ฿39.2m misallocated between WIP and Semi Product | **OPEN.** Root cause is **`purchase_stock/_get_price_unit`** — **P01's own path**, not P03. P03 is a propagation route. Reporting → **P08** |
 | `S16-C-15` | **296** real_time non-zero layers unposted; **1,209** periodic layers posted, across 9 categories. Policy-change tested and **refuted** by time distribution | **OPEN** |
 | `S16-C-18` | **484 BE values across 14 columns in 11 tables** + 11 at year 8202, bidirectional — invisible to every period-bounded query, and the trial balance still balances | **OPEN, 16× wider than published** → **P08** |
 
