@@ -3,6 +3,7 @@
 Proposal ID: `SMEPLUS-DR-EVSUB-001-PROPOSED`
 Status: **`PROPOSED FOR BOSS RATIFICATION — NOT IN FORCE`**
 Raised by: P07 Thailand Tax-to-Compliance, on evidence produced jointly with P04 Acquire-to-Retire and P11 Central Core Reconciliation, 2026-09-04
+Revision: `r10`, 2026-09-05 — P04's half re-stamped with owner-SHA plus verification-SHA; `§3.1e` (a citation pins a moment); `§4c` records a live conflict between two peers' discrimination tests
 Revision: `r9`, 2026-09-05 — defeat test resolved against P11's candidate (`§4b`); P04's half verified as published and stamped; `REV-E-22` registered against P07; obligation 6b added
 Revision: `r8`, 2026-09-05 — enabling condition added (`§2.1b`, untested capability claims, proposed clause 2.4); stale-citation demonstration recorded against obligation 6a
 Revision: `r7`, 2026-09-05 — halves stamped `value @ owner-SHA` per the `P11-G-02` refinement (`§3.1c`); refusal-as-control note and the `P11-E-20` symmetry recorded at `§3.0`
@@ -196,7 +197,7 @@ Each half is stated as **value @ owner-SHA**, per the `P11-G-02` refinement at �
 | Half | Instances | Actors | Executed by | Owner-SHA |
 |---|---|---|---|---|
 | P07 | 5 | 1 | P07, by enumerating its own revision log | this branch, r6 |
-| P04 | 9 | 4 | P04, by enumerating its own register | `c839bfe` — figure verified **as published** by P07 at `18_P04_REVISION_LOG.md:103`; classification not re-adjudicated |
+| P04 | 9 | 4 | P04, by enumerating its own register | **owner-stated `ae525fc`**; P07 verified the value unchanged at P04's head `c839bfe` (`18_P04_REVISION_LOG.md:103`, identical at both). Classification not re-adjudicated. |
 | P11 | **5** — `P11-E-03`, `-E-12`, `-E-15`, `-E-18`, `-E-19` | 1 | P11, by parsing its own log with the command published beside the figure | `b68ae17`, all five ids verified present by P07. **KNOWN STALE** — see §3.1d |
 
 **There is deliberately no total on this table.** It is published as declared halves under
@@ -396,6 +397,22 @@ P11's prose would be the relay defect one step further on.
 This is the refinement working as designed: **without the SHA, "5" and "stale 5" are the same
 cell.** With it, a consumer can say *this is out of date and it is not mine to fix* — which is
 a thing the rule could not previously express.
+
+### 3.1e A Citation Pins a Moment; a Half Is a Moving Value
+
+P04's second bound on its own advice this exchange, and it completes the sequence:
+
+1. r-earlier — *a relay is not a citation.* P04 stopped sending figures and sent a commit.
+2. r8 — *a citation is not a current figure.* The commit it sent was accurate and superseded,
+   and its row certified itself as "executed" when it had not been (§3.1c).
+3. now — *a citation pins a moment; a half is a moving value.* Even a correct, fresh citation
+   answers "what did the owner say **then**", not "what does the owner say **now**".
+
+Hence the two-part stamp actually in use above: the **owner-stated SHA** records where the
+owner executed it; a consumer may additionally record where it verified the value still
+holds. For P04's half those are `ae525fc` (owner, 07:43) and `c839bfe` (P07's verification at
+P04's head, 07:46), with the value identical at both — `ae525fc` is an ancestor of `c839bfe`.
+Recording both is strictly more informative than either, and neither is a re-derivation.
 
 ### 3.1a Sub-case — Unit Conflation in a Count That Was Never Executed
 
@@ -607,6 +624,41 @@ instance against itself that P07 had no way to find; then downgraded its own fil
 it uncitable. In a programme where the recorded failure mode is that authors do not catch
 their own errors, this is the counter-example, and it was produced under a test the author
 invited.
+
+## 4c. Two Peers' Discrimination Tests Disagree on One Instance
+
+An open conflict, recorded rather than resolved by preference, because it bears directly on
+§4b's conclusion.
+
+| | Test | Verdict on `P11-E-16` |
+|---|---|---|
+| P11 | *register never enumerated → Class 2* | **Class 2.** Applied by P11 to its own instance; §4b rests on it. |
+| P04 | *bound an attempted enumeration wrongly → Class 2; **never enumerate at all**, because you were generalising from the case in front of you → something else* | **Not Class 2.** P04 applied it to its own analogous instance (`P04-B-31` at `2602dfe`): the primary was read correctly, so not Class 1, and no population, pattern or path set was ever declared, so not Class 2 either. |
+
+**P07's reading, offered as the owner of Class 2 and only on that question.** Class 2's
+obligations are all about a **measurement**: an enumeration bounded too narrowly (§3.1
+instances), or a count owed and not performed (§3.1a). The second sub-case already says in
+terms that *the arithmetic was simply not performed*. So "an owed enumeration was never
+performed" is inside Class 2 as written, and on that reading both `P11-E-16` and `P04-B-31`
+fall in it. P11's routing of its own instance stands, and §4b is unchanged.
+
+**But P04 has identified something real, and it is not a classification.** In both instances
+the distinctive fact is *why* no enumeration was attempted: the author was generalising from
+the occasion and never posed the question "what population does this rule cover?". That is a
+**cause**, and Class 2 is a class of **evidence failure**. Two defects can share an
+evidence-failure class and differ entirely in cause, and the remedy tracks the cause:
+"execute the count" is useless to someone who never knew a count was owed.
+
+**Consequence for P11's candidate, offered and not pressed.** The collisions may be an
+artefact of framing it as a third evidence-failure class alongside two others. Framed instead
+as a **cause taxonomy** — occasion-scoped generalisation as a *reason* an owed enumeration is
+never attempted — it stops competing with Class 2 and starts explaining a subset of it. That
+would also restore its evidence base, since both instances would then be examples of the
+cause without needing to escape the class.
+
+P07 does not adopt either test into this standard. Neither is needed here: **the two classes
+in this file remain cleanly separated under both**, which is the only property r5 onward
+depends on.
 
 ## 5. What This Proposal Does Not Do
 
