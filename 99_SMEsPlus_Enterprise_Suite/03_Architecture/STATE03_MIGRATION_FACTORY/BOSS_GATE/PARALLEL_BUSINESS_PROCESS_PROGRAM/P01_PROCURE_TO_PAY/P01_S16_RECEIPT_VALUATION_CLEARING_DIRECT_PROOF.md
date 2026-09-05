@@ -4,6 +4,16 @@ Session: `SMEPLUS-26-09-05-ACC-P01-P2P-S16-SOURCE-DEPLOYMENT-DIRECT-VERIFY-001`
 Checkpoint: `CP-P01S16-03`
 Deployment: `45a8e08e` (`iSMEs`, SWR), 1 company, archive 2026-07-11.
 
+
+> ### CORRECTED BY AAS-03 EXPERT 2 — VERIFIED INDEPENDENTLY BEFORE ADOPTION
+>
+> Three headline figures in this document were wrong and are struck below:
+> **(1)** the GRNI balance was an **all-states** figure; posted-only it is **−฿7,048,692.08**, the
+> **opposite sign**; **(2)** *"the price-difference engine has never fired"* is **CONTRADICTED** —
+> **1,123 layers carry ฿2,246,313,274.64** of `price_diff_value`; **(3)** the periodic-layers-that-posted
+> residual is the **vendor-bill price-difference population**, not a policy leak.
+> Every correction was re-derived here before acceptance. See `P01_S16_AAS03_FOUR_EXPERT_CHALLENGE.md`.
+
 ---
 
 ## 1. WHY THIS DOCUMENT MATTERS MORE THAN THE TWO BEFORE IT
@@ -99,10 +109,24 @@ table. It is recorded as `ERR-P01-42` and it is the reason §4 states its join p
 A further **748** real_time layers carry `value = 0.00` and are correctly skipped by the
 `currency_id.is_zero(value)` guard, so they are excluded rather than counted.
 
-### 5.2 Residual B — 1,209 layers that posted under a policy that should not post
+### 5.2 ~~Residual B — layers that posted under a policy that should not post~~ — **EXPLAINED, NOT ANOMALOUS**
 
-`manual_periodic` **with** a journal entry: **1,209**, spread across **9 distinct product categories**
-(1, 15, 24, 25, 26, 27, 29, 30, 33). Not one rogue category.
+`manual_periodic` **with** a journal entry: **1,209**, across 9 product categories.
+
+**These are not receipts and the policy gate never applied to them.** Re-derived:
+
+| Property | Count | Share |
+|---|---|---|
+| **No `stock_move_id` at all** | **1,194** | **98.8%** |
+| Carry a non-zero `price_diff_value` | 1,047 | 86.6% |
+| Their journal entry is an `in_invoice` | 1,172 | 97.0% |
+
+**Residual B is the vendor-bill price-difference population.** A price-difference layer is created *by the
+bill*, carries no stock move, and is linked to the bill's own entry — so the valuation gate at
+`_validate_accounting_entries`, which acts on layers *from stock moves*, is simply not on its path.
+
+**Causation was reversed for 98.8% of the population.** I read "periodic category + has a journal entry"
+as a policy violation without asking what the layers *were*.
 
 ### 5.3 Policy change was tested as the explanation and is NOT supported
 
@@ -136,13 +160,32 @@ For the first time in this programme, the goods-received clearing account is not
 
 **Account 39 = `2900000 Goods Receipt Note(GRN)`, `liability_current`.**
 
-| Measure | Value |
-|---|---|
-| Journal items | **13,736** |
-| Debits | **฿6,558,441,923.88** |
-| Credits | **฿6,486,344,109.63** |
-| **Net outstanding** | **฿72,097,814.25** |
-| Vendor-bill lines relieving it | **6,653**, Dr ฿4,516,394,611.47, Cr ฿0.00 |
+| Measure | All states *(as first published)* | **POSTED ONLY — the correct basis** |
+|---|---|---|
+| Journal items | 13,736 | **13,666** |
+| Debits | ฿6,558,441,923.88 | ฿6,383,424,831.18 |
+| Credits | ฿6,486,344,109.63 | ฿6,390,473,523.26 |
+| **Net** | ~~฿72,097,814.25~~ | **−฿7,048,692.08** |
+
+**The published ฿72,097,814.25 was an all-states figure and it is withdrawn.** On a posted-only basis
+the GRN account nets to **−฿7,048,692.08** — the **opposite sign** and an order of magnitude smaller.
+
+**70 journal items carry the entire difference**: 53 on cancelled moves (net +฿76,422,354.13) and
+17 on draft moves (net +฿2,724,152.20). **One cancelled entry alone carries ฿90,351,213.15** in credit.
+
+| State | Items | Net |
+|---|---|---|
+| `posted` | 13,666 | **−฿7,048,692.08** |
+| `cancel` | 53 | +฿76,422,354.13 |
+| `draft` | 17 | +฿2,724,152.20 |
+
+**The same missing `parent_state` filter runs through every total in this section**, including the
+6,653-line / ฿4,516,394,611.47 bill relief — of which **฿175,017,092.70 sits on cancelled or draft bills**.
+Those totals are **all-states figures** and must be read as such until re-derived.
+
+**Why this is worse than a missing control**: the AP analysis in
+`P01_S16_VENDOR_ADVANCE_PAYMENT_SETTLEMENT.md §4.1` **does** split by move state, in the same package,
+in the same run. **The control existed and was applied inconsistently.**
 
 **The bridge closes**: receipts credit the GRN liability, vendor bills debit it. The residual ฿72.1M is the
 uncleared position at the archive date — goods received whose bills have not yet relieved the liability.
@@ -170,8 +213,18 @@ P08 and P11 — see `P01_S16_P11_HANDOFF.md`. P01 measures it; P01 does not adju
 
 ### 6.2 The price-difference engine is configured and has never fired
 
-**Account 1173 = `4310005 Purchase price variance`, `expense_direct_cost`: CONFIGURED on one category,
-and it carries 0 journal items in 447,384.**
+**Account 1173 = `4310005 Purchase price variance` carries 0 journal items in 447,384 — that count stands.**
+
+> ### ~~The price-difference engine is configured and has never fired~~ — **CONTRADICTED**
+>
+> **1,123 valuation layers carry a non-zero `price_diff_value`, totalling ฿2,246,313,274.64.**
+> The engine fires constantly. Account 1173 is empty because **six product-level overrides** route the
+> price difference to six *other* accounts — one of them named **`9999991 Dummy Service`** — and the most
+> recent of those was configured **four days before this archive was taken**.
+>
+> **The defect was mine and it is the unmeasured-consequence class**: I measured *one account's item count*
+> and published a conclusion about *the engine*. `price_diff_value` sits on the very table I had already
+> parsed 74,982 rows of, and I did not look at it.
 
 This is a stronger result than the series-18 equivalent. There, the price-difference engine could not fire
 because the valuation gate was closed for every product. **Here the gate is open for 15 categories, 56,654
@@ -187,9 +240,16 @@ computed is `UNRESOLVED — EVIDENCE REQUIRED`; disproof was assigned to AAS-03 
 
 **30 valuation layers carry `|value| > 1e12`**, reaching **±1.5 × 10²¹ THB**, with per-unit costs such as
 **744,082,316,162.43** and **−352,468,555,154.38** — for milled rice. Negative unit costs are themselves invalid.
+**Those two are illustrative, not extreme: the true maximum is `|unit_cost|` = ฿52,616,504,567,828,624**
+(layer 27394) — the figures first published understated the peak by a factor of ~70,713.
 They arise on `WH/MO/…` manufacturing and `UB/…` unbuild documents.
 
-Excluding those 30 rows, the whole table sums to a sane **฿400,338,755.98**.
+Excluding those 30 rows, the whole table sums to **฿400,338,755.98**.
+
+**And the corruption is invisible in aggregate.** `SUM(value)` over all 74,982 rows — *including* the 30 —
+is **฿205,490,835.88**: the extreme positives and negatives very nearly cancel. **No total, and no
+balance-sheet inventory figure, will reveal this.** Only a row-level magnitude test finds it, which is why
+it survived to be found in round six.
 
 **25 of the 30 carry a journal entry and all 25 are POSTED**, dated 2024-08-17 … 2024-08-31.
 

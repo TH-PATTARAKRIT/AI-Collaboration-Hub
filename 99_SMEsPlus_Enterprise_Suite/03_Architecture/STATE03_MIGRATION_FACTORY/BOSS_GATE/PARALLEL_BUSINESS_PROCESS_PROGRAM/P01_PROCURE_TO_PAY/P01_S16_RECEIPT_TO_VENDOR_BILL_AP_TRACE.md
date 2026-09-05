@@ -3,6 +3,13 @@
 Session: `SMEPLUS-26-09-05-ACC-P01-P2P-S16-SOURCE-DEPLOYMENT-DIRECT-VERIFY-001`
 Checkpoint: `CP-P01S16-04` · Deployment `45a8e08e` (`iSMEs`, SWR), 1 company
 
+> ### CORRECTED — the GRNI totals below are ALL-STATES figures
+>
+> Verified after publication: the GRN net of **฿72,097,814.25** includes **70 cancelled and draft items**.
+> **Posted-only the account nets to −฿7,048,692.08 — the opposite sign.** The 6,653-line bill relief
+> likewise includes **฿175,017,092.70** on cancelled or draft bills. See
+> `P01_S16_RECEIPT_VALUATION_CLEARING_DIRECT_PROOF.md §6`.
+
 ---
 
 ## 1. POPULATION
@@ -54,7 +61,7 @@ not yet explained.
 |---|---|
 | Receipt credits the GRN liability | account 39 `2900000 Goods Receipt Note(GRN)`, `liability_current`, **13,736 items**, Cr ฿6,486,344,109.63 |
 | **Vendor bill debits it** | **6,653 bill lines**, Dr **฿4,516,394,611.47**, Cr ฿0.00 |
-| Residual | **net ฿72,097,814.25** outstanding at the archive date |
+| Residual | ~~net ฿72,097,814.25~~ **all-states figure — posted-only net is −฿7,048,692.08** |
 
 Receipt and bill are joined **by value in the ledger**, not merely by quantity on the order. This is the
 mechanism P01 traced in source across four rounds and had never once observed operating.

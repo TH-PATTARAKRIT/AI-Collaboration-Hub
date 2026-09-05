@@ -55,7 +55,7 @@ or an uncontrolled default is `UNRESOLVED — EVIDENCE REQUIRED`**, and the judg
 
 ## 3. BUDDHIST-ERA DATE LEAKAGE
 
-**Full sweep of every date column on `account_move`:**
+**Sweep of every date column on `account_move` — a bounded sweep, see the correction below:**
 
 | Column | Rows with year > 2100 | Years |
 |---|---|---|
@@ -70,7 +70,19 @@ BE 2567 = CE 2024.
 future**. Any fiscal-year close, ageing bucket, period report or date-bounded query treats them as year 2567:
 they will never fall inside a current-period selection, and they will never age.
 
-**Bounded**: 31 rows across two columns out of 183,590 moves. Small, and not zero.
+> ### CORRECTED — the leakage is 16× wider than this
+>
+> AAS-03 Expert 2 swept **every date column in every extracted table**, which this section did not:
+> **484 Buddhist-era values across 14 columns in 11 tables**, plus **11 values at year 8202** — a second,
+> undiagnosed class. And it is **bidirectional**: 30 moves carry a BE `date` with a sound `tax_period`,
+> while **7 carry a sound `date` with a BE `tax_period`**.
+>
+> **No date column in this database is reliably Gregorian**, and a sweep bounded to `account_move`
+> could not have discovered that. The "full sweep" in the table above was full only of *one table*.
+>
+> The BE items are **balanced**, so the trial balance still balances and nothing draws attention to them.
+> They touch Input VAT ฿7,396.98, Undue VAT ฿7,396.98 and Dummy Service ฿211,342.14, and they are
+> **period-invisible with all three lock dates NULL**.
 
 *Separately, 1,733 moves are dated 2005–2012 — opening and migration data, recorded so the early tail is not
 mistaken for the same defect.*

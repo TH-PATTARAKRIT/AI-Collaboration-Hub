@@ -668,3 +668,59 @@ corrected finding, and the architecture impact.
 | **The check** | Read the 50 journal items on those 25 entries. **They balance exactly: debits = credits = ฿31,622,699.37**, with net effects by account in the millions. |
 | **The truth** | The **general ledger is intact**. The divergence is between the **inventory subledger and the ledger** — ~15 orders of magnitude on 30 rows — which is a serious reconciliation break and a different claim from the one nearly published. |
 | **Rule this reinforces** | **A finding and its consequence clause are two claims.** "Absurd values exist in the subledger" was evidenced; "absurd values were posted to the GL" was assumed from the presence of a link, and was false. Measure the consequence, never inherit it from the finding. |
+
+## `ERR-P01-45` — a state filter applied to one account population and not to the next, in the same run
+
+| Field | Content |
+|---|---|
+| **Original finding** | *"The GRNI bridge closes… account 39 `2900000 Goods Receipt Note(GRN)`, **13,736 items**, Dr ฿6,558,441,923.88 / Cr ฿6,486,344,109.63, **net ฿72,097,814.25 outstanding**"* — published as the round's second headline and handed to P11 and P08. |
+| **Why wrong** | **No `parent_state` filter.** The total summed posted, cancelled and draft journal items together. On a **posted-only** basis the account nets to **−฿7,048,692.08** — the **opposite sign** and an order of magnitude smaller. **70 items carry the entire published balance**: 53 cancelled (net +฿76,422,354.13) and 17 draft (+฿2,724,152.20). One cancelled entry alone carries ฿90,351,213.15. |
+| **Scope of the defect** | The same missing filter runs through **every total in that section**, including the 6,653-line / ฿4,516,394,611.47 bill relief, of which **฿175,017,092.70 is on cancelled or draft bills**. |
+| **How found** | **AAS-03 Expert 2**, on a disproof assignment scoped at the population rather than the conclusions. Re-derived here before adoption; confirmed exactly. |
+| **Why this is the worst of the round** | **The control existed and was applied inconsistently.** In `P01_S16_VENDOR_ADVANCE_PAYMENT_SETTLEMENT.md §4.1`, **in the same package and the same run**, the AP residual is deliberately split by move state — and the finding there is precisely that cancelled and draft documents distort the total. I discovered that hazard, wrote it up, and then did not carry it one document across. **A control you apply where you happen to think of it is not a control.** |
+| **Rule this establishes** | **Every aggregate over journal items declares its state basis, always, in the same line as the number.** Posted-only is the default; any other basis is stated explicitly. Retro-apply to every monetary total in the P01 package. |
+
+## `ERR-P01-46` — "the price-difference engine has never fired", from counting one account
+
+| Field | Content |
+|---|---|
+| **Original finding** | *"Account 1173 `4310005 Purchase price variance`: **CONFIGURED, 0 items** in 447,384 — the price-difference engine is wired and has never fired in 183,590 journal entries."* Published as a stronger result than the series-18 equivalent. |
+| **Why wrong** | **1,123 valuation layers carry a non-zero `price_diff_value`, totalling ฿2,246,313,274.64.** The engine fires constantly. Account 1173 is empty because **six product-level overrides** route the difference to six other accounts — one named **`9999991 Dummy Service`** — the most recent configured **four days before the archive**. |
+| **Why the evidence was already in hand** | `price_diff_value` is a column on `stock_valuation_layer`, **the table this round parsed 74,982 rows of, repeatedly**. In the series-18 round I had checked exactly that column and found 0 of 47,801. **Here I did not look.** |
+| **The class** | The **unmeasured consequence clause**. *"Account 1173 has 0 items"* was measured and is true. *"The engine has never fired"* is a different claim about a different population, and it travelled untested because the first half was well evidenced. |
+| **Corrected classification** | S16-C-07 moves from `CONFIGURED BUT UNEXERCISED` to **`ACTIVE AND EXERCISED, posting to an unenumerated account set`**. The deployment's "configured but unexercised" count is now **zero**. |
+| **Rule this reinforces** | **Enumerate the accounts a mechanism can post to before concluding it does not post.** An empty account is evidence about that account, never about the mechanism. |
+
+## `ERR-P01-47` — a residual declared anomalous without asking what its rows were
+
+| Field | Content |
+|---|---|
+| **Original finding** | *"Residual B — **1,209** layers that posted under a policy that should not post, spread across 9 distinct product categories. Not one rogue category."* Registered as contradiction `S16-C-15` and handed to P11 as open. |
+| **Why wrong** | **1,194 of the 1,209 (98.8%) have no `stock_move_id` at all**; 1,047 (86.6%) carry a non-zero `price_diff_value`; 1,172 (97.0%) are linked to an `in_invoice`. **They are vendor-bill price-difference layers.** A price-difference layer is created by the *bill*, has no stock move, and is linked to the bill's own entry — so the valuation gate, which acts on layers *from stock moves*, was never on its path. |
+| **The class** | **Causation reversed.** I read "periodic category + has a journal entry" as a policy violation without establishing **what the layers were**. The classifier was correct and the interpretation inverted. |
+| **What survives** | Residual A — **296** real_time non-zero layers with no journal entry — is **untouched and still open**. `S16-C-15` is **narrowed, not closed**. |
+| **Rule this establishes** | **Before classifying a residual as an anomaly, characterise its rows.** A population defined only by what it *fails* is not yet a finding; it is a set awaiting description. |
+
+## `REV-P01-06` — my own account of `ERR-P01-42` was wrong
+
+| Field | Content |
+|---|---|
+| **What I published** | That the failed `categ_id` join was caused by *"the parser padding absent columns with `None`"*, and that **`categ_id` does not exist in series 16**. |
+| **What is actually true** | AAS-03 Expert 2 audited all 41 extracted files: **every one has a single-valued field-count histogram, so the parser's pad/truncate branch never fires.** The real mechanism is a **silent `dict.get()` on an absent key** — which is a **wider** defect, because it applies to **every join in the package** and is not fixed by anything I did. And `categ_id` is not absent from the model: `ir_model_fields` records it as a **non-stored related field** (`store=f, related=product_id.categ_id`), so it exists in the ORM and simply has no column in the table. |
+| **Consequence** | My corrected join was right **for a reason I never established**. The lesson I drew — "assert every join key exists" — was directionally correct but rested on a wrong mechanism, and the true remedy is narrower and harder: **a `.get()` that returns `None` for a key that was never in the row is indistinguishable from a real null**. |
+| **Rule this establishes** | **An error log entry is a claim and needs the same evidence as a finding.** I diagnosed my own defect from the first plausible mechanism and did not test it. Diagnose the instrument, not the symptom — and prefer an accessor that **raises on an unknown key** over one that returns a default. |
+
+## `NEAR-MISS-P01-09` — the "frozen" package was not frozen
+
+| Field | Content |
+|---|---|
+| **What happened** | The findings brief was frozen at 19:28 before the four challenges were dispatched. **AAS-03 Expert 2 observed 15 new files appearing in that directory during its review** (19:29). |
+| **Why it did not corrupt this review** | Expert 2 verified that **all of its source tables predate the freeze**, so its measurements are against the frozen state. |
+| **Why it still matters** | *"Freeze the package before review opens"* is a standing rule in this programme precisely so that a challenger and an author are arguing about the same artefact. **The freeze was declared and not enforced.** |
+| **Rule adopted** | **Content-hash the frozen set and hand the digest to the challengers**, so a challenger can detect drift rather than having to notice it. |
+
+## `GAP-P01-07` — the extraction denominator was never declared
+
+**AAS-03 Expert 2:** 41 of the archive's **651** tables were extracted — **6.3%** — with **no stated selection
+rule and no re-extraction check**. Every negative in this round is bounded by that 6.3%, and the boundary was
+never declared. **A bounded, unfinished measurement — not a negative result.** Recorded as an open gap.

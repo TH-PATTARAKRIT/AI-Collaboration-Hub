@@ -7,6 +7,14 @@ Checkpoint: `CP-P01S16-14`
 > `P01_P11_EVIDENCE_VERSION_DEPLOYMENT_SUPPLEMENT.md` or
 > `P01_P11_S18_DIRECT_VERIFICATION_SUPPLEMENT.md`. All remain in force in full.**
 
+> ### CORRECTED AFTER AAS-03 EXPERT 2 — READ THIS BEFORE THE FIGURES
+>
+> **The GRNI residual handed to P11 below as ฿72,097,814.25 was an all-states figure.** Posted-only the
+> account nets to **−฿7,048,692.08** — the opposite sign. **P11 must not carry the original number.**
+> Two further items changed: the price-difference engine **does** fire (฿2,246,313,274.64 across 1,123
+> layers, routed to six unenumerated accounts), and the Buddhist-era leakage is **484 values across 14
+> columns in 11 tables**, not 30 in one.
+
 ---
 
 ## 1. THE ONE THING THAT CHANGES P11's PICTURE
@@ -46,7 +54,7 @@ database**, with a coverage control (0 of 74,982 unresolved).
 |---|---|---|
 | `S16-C-14` | **The inventory subledger and the GL disagree by ~10¹⁵ on 30 valuation layers** — values to ±1.5e21 against balanced GL entries of ฿31,622,699.37 | **OPEN.** GL is intact; the subledger is not. Root cause → **P03** (manufacturing/unbuild cost path) and **P08** |
 | `S16-C-15` | **296** real_time non-zero layers unposted; **1,209** periodic layers posted, across 9 categories. Policy-change tested and **refuted** by time distribution | **OPEN** |
-| `S16-C-18` | **30 posted moves dated year 2567** (BE) + 1 `invoice_date` 2568 — invisible to every period-bounded query | **OPEN** → **P08** |
+| `S16-C-18` | **484 BE values across 14 columns in 11 tables** + 11 at year 8202, bidirectional — invisible to every period-bounded query, and the trial balance still balances | **OPEN, 16× wider than published** → **P08** |
 
 ---
 
@@ -56,8 +64,8 @@ database**, with a coverage control (0 of 74,982 unresolved).
 |---|---|---|
 | **P08** | No period lock of any kind, on 169,143 posted entries | all three series-16 lock dates NULL |
 | **P08** | **5,601 of 36,865 posted vendor bills (15.19%) dated EARLIER than their own invoice date**; 2,037 (5.53%) in a different month | clean-dated population; 2 BE rows excluded and declared |
-| **P08** | Buddhist-era dates | 30 `date` + 1 `invoice_date` |
-| **P08**, **P11** | GRN residual **฿72,097,814.25** — is it timing, uncleared items, or accumulation? | account 39, 13,736 items |
+| **P08** | Buddhist-era dates | **484 values, 14 columns, 11 tables**; + 11 at year 8202 |
+| **P08**, **P11** | GRN posted-only net **−฿7,048,692.08**, and the ฿83.1M of cancelled/draft items that produced the withdrawn ฿72,097,814.25 figure | account 39; 53 cancelled + 17 draft items, one cancelled entry alone ฿90,351,213.15 |
 | **P03**, **P08** | The 10¹⁵ subledger divergence, on `WH/MO/…` and `UB/…` documents with **negative unit costs** | 30 of 74,982 layers |
 | **P07** | **1,407 of 5,201 withholding certificates (27.05%) carry no payment link**; PND distribution pnd53 4,437 / pnd3 751 / pnd1 13 | statutory sufficiency is P07's |
 | **P07** | Whether withholding at **25.24% of supplier payments** is correctly scoped | `UNRESOLVED — STATUTORY EVIDENCE REQUIRED` |

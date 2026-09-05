@@ -19,7 +19,7 @@ tenant or platform scope question arises here and none is asserted.
 | 3 | Goods arrive | `stock_picking` — **20,098**, **18,218 done** | valuation layer created | none yet | **FACT VERIFIED** |
 | 4 | Inventory is valued | `stock_valuation_layer` — **74,982** | **posts for `real_time` categories only** | Dr inventory / Cr GRN | **FACT VERIFIED** — 56,654 of 57,698 real_time layers post |
 | 5 | …and does not, for periodic categories | 17,284 periodic layers | **suppressed by design** | none | **FACT VERIFIED** — 16,075 unposted |
-| 6 | The obligation is carried between receipt and bill | account **39 `2900000 Goods Receipt Note(GRN)`**, `liability_current` | **13,736 items** | Cr ฿6,486,344,109.63 / Dr ฿6,558,441,923.88 → **net ฿72,097,814.25** | **FACT VERIFIED** |
+| 6 | The obligation is carried between receipt and bill | account **39 `2900000 Goods Receipt Note(GRN)`**, `liability_current` | **13,666 posted items** | posted-only **net −฿7,048,692.08** (~~฿72,097,814.25~~ was all-states; 70 cancelled/draft items carry the difference) | **FACT VERIFIED as corrected** |
 | 7 | The vendor bills | `account_move` `in_invoice` — **37,055** (36,867 posted) | expense/asset + payable, **and relief of the GRN liability** | **6,653 bill lines Dr ฿4,516,394,611.47** to account 39 | **FACT VERIFIED** |
 | 8 | The liability is recognised | payable items — **37,054** | — | AP | **FACT VERIFIED**; one bill carries no payable line |
 | 9 | Payment is made | `account_payment` — **19,575 supplier** | — | cash / bank | **FACT VERIFIED** |
@@ -41,12 +41,12 @@ are confirmed working** (`P01_S16_SOURCE_DB_CONTRADICTION_REGISTER.md`).
 
 | Break | Magnitude | Owner |
 |---|---|---|
-| **Subledger and ledger disagree by ~10¹⁵** on 30 valuation layers (up to ±1.5e21 against balanced GL entries of ฿31,622,699.37) | 30 of 74,982 rows; distorts any inventory valuation report | **P03** (manufacturing cost path) and **P08** |
-| **296** real_time non-zero layers never posted; **1,209** periodic layers posted anyway | policy-change explanation **refuted** by time distribution | P01 — open |
-| **Purchase price variance account configured, 0 items in 447,384** — and here the valuation gate is *open* | cause unknown | P01 — open |
+| **Subledger and ledger disagree by ฿6,462,975,089,678,637.13** on 30 layers; corruption is entirely in `unit_cost` (max ฿52,616,504,567,828,624) | **invisible in aggregate** — `SUM(value)` = ฿205,490,835.88; only a row-level magnitude test finds it | **P03** and **P08** |
+| **296** real_time non-zero layers never posted | the 1,209 periodic-posted layers are **explained** — 98.8% have no stock move and are bill-created price-difference layers | P01 — **half closed, 296 open** |
+| ~~Purchase price variance never fires~~ **CONTRADICTED — 1,123 layers carry ฿2,246,313,274.64, routed by product-level overrides to six other accounts, one named `9999991 Dummy Service`** | ฿2.25bn off the account it was thought to use | P01 — **reclassified** |
 | **No period lock of any kind**, with 169,143 posted entries | no control | **P08** |
 | **5,601 of 36,865 posted bills (15.19%)** dated **earlier** than their own invoice date; 2,037 (5.53%) in a different month | cut-off | **P08** |
-| **30 posted moves dated year 2567** (BE), 1 `invoice_date` 2568 | invisible to every period query | **P08** |
+| **484 Buddhist-era values across 14 columns in 11 tables**, + 11 at year 8202; **bidirectional** | invisible to every period query; trial balance still balances | **P08** |
 | **1,407 of 5,201 withholding certificates** carry no payment link | 27.05% | **P07**, **P11** |
 | Landed costs **installed and never used** — 0 rows | latent | P01 — noted |
 | Receipt→bill identity is **document text, not a foreign key** | structural | **P11** |
