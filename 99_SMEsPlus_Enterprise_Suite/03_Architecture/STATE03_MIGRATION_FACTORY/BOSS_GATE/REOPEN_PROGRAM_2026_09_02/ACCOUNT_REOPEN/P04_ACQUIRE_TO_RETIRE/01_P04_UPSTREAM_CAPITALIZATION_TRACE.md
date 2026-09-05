@@ -745,6 +745,55 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.17 Copy-identity is not stack-completeness
+
+P07 found its own closure narrower than the use its citations were being put to:
+a module **outside its declared path set** overrides the very method one of its
+findings turns on, calling `super()` first and post-processing the result. Its
+rule — **a claim discharged against the right module is not discharged against
+the deployed stack.** `P04-F-102` closed the *copy-identity* question for
+`equipment_sequence`. It never asked what else is installed on the same models.
+
+> **P04-F-116.** **The model this entire package turns on has a complete declared
+> stack; the model beside it does not.** Every installed module declaring fields
+> or views on each model, checked against both declared roots:
+>
+> | model | modules declaring | outside both declared roots |
+> |---|---:|---|
+> | **`account.asset`** | 6 | **none** |
+> | `maintenance.equipment` | 6 | **`equipment_fleet`** |
+> | `account.account` | 10 | `scgl_account_coa_control`, `accessories` |
+> | `account.move` | 28 | `account_invoice_fixed_discount`, `sale_fixed_discount`, `scgl_signature` |
+> | `account.move.line` | 13 | `accessories`, `account_invoice_fixed_discount` |
+>
+> **The positive result first, because it is the one that matters most and this
+> package has not been able to say anything like it before.** On **`account.asset`
+> itself — the model every capitalization, depreciation, revaluation and
+> derecognition finding here turns on — no installed module lies outside the
+> declared source scope.** The six are the reference asset module, its fleet
+> bridge, the loans module, two framework mixins, and this package's own
+> `equipment_sequence`. Whatever `P04-F-93` established about the *estate's* 27
+> undeclared modules, **none of them declares on the asset model.**
+>
+> **`P04-F-102` is qualified, not withdrawn.** It closed *which copy of
+> `equipment_sequence` is deployed*. It did not close *what else acts on
+> `maintenance.equipment`* — and **`equipment_fleet` does, from outside both
+> declared roots, with no source anywhere under `/Volumes` or `$HOME`**
+> (`P04-F-94`). So the asset–equipment findings in `05` rest on a stack with one
+> unreadable member, while the pure asset findings do not. **That distinction did
+> not exist in this package until the question was asked in P07's form.**
+>
+> **The one-directional limit still binds and is the reason this closes nothing.**
+> `ir_model_data` sees declarations carrying an XML id. A module can override
+> `create`, `write` or `_post` on `account.asset` with no field and no view and
+> appear nowhere in the table above. **"None outside the declared roots" is a
+> floor on the declared stack, not proof of a complete one** — and the sharpest
+> statement available is: *no undeclared module is shown to act on
+> `account.asset`, and none is shown not to.*
+>
+> Class: **FACT VERIFIED** as to the declarations, **bounded** as stated.
+> `P04-B-46` unchanged and still UNRESOLVED.
+
 ### 6A.16 The prefix rule created the defect it was written to prevent
 
 > **P04-F-115.** **Requiring the package prefix converted a false positive into a
@@ -1225,6 +1274,12 @@ the two custom modules `EV-CUST` names and that are actually installed
 > citing models, fields or views are discharged and findings citing logic stay
 > exposed** — because what differs is not persisted. The axis only ever threatens
 > behavioural claims.
+>
+> **Qualified at `P04-F-116`**: this closes *which copy of this module is
+> deployed*, **not** what else is installed on the model it operates on —
+> `equipment_fleet` declares on `maintenance.equipment` from outside both declared
+> roots and cannot be read from this host. Copy-identity and stack-completeness
+> are two questions, and closing the first reads like closing the second.
 >
 > Class: **FACT VERIFIED**, bounded to the declared path set, with the version
 > filter stated: only copies carrying the **deployed** version are candidates.

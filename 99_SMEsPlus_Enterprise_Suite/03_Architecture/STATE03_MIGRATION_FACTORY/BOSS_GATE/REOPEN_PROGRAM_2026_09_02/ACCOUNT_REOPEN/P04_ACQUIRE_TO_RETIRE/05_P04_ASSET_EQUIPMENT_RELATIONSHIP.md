@@ -127,6 +127,8 @@ the asset. Its import chain was read in full this session.
 Prior packages identified one custom module creating equipment records on goods
 receipt. A second exists.
 
+*Stack note (`01` §6A.17, `P04-F-116`): six installed modules declare on the equipment model and **one — `equipment_fleet` — lies outside both declared source roots with no source anywhere on this host**. The two modules below were read; the stack they sit in has an unreadable member. By contrast, **no installed module declaring on `account.asset` lies outside the declared roots**, so the pure asset findings do not carry this qualification.*
+
 | Module | Trigger | Creates | Accounting link |
 |--------|---------|---------|-----------------|
 | Equipment-sequence (already known) | Receipt validation, for serial-tracked products flagged as equipment | an equipment record | **none** |
