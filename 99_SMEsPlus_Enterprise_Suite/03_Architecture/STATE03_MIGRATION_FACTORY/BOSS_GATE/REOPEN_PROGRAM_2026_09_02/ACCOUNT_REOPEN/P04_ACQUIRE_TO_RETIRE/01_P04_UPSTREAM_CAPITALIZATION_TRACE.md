@@ -755,6 +755,50 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.28 What my own census narrowed without declaring it
+
+P07 found **two undeclared narrowings inside its census script** — eight directory
+exclusions including **`Library`**, the subtree its own module enumeration had
+drawn from, and a narrower zip signature — in a section whose entire purpose was
+declaring the root set. Its conclusion: *a census that declares its roots and
+silently prunes one of them has declared a boundary it did not use.* **The same
+question, asked of `P04-F-126`, finds two.**
+
+> **P04-F-127.** **Two undeclared narrowings in this package's census. Both
+> measured; neither changes the count.**
+>
+> **1 — `2>/dev/null` silently dropped every unreadable directory, and the number
+> was never taken.** Measured now: **141 stderr entries against 1,070,459
+> directories traversed.** All 141 are macOS privacy containers — `~/.Trash`,
+> `~/Library/Accounts`, `Application Support/CloudDocs`, `com.apple.TCC` and
+> similar. They are implausible database stores, **but that is a judgement, and
+> the defect was that no number existed to judge.** Now it does.
+>
+> **2 — the gzip branch was far narrower than the other two signatures.** It
+> decompressed **200 bytes** and matched one string, *"PostgreSQL database
+> dump"* — so a gzipped **custom-format** archive, whose payload begins `PGDMP`
+> and carries no such text, would have been missed entirely. Re-tested over
+> **all 72** gzip archives ≥ 1 MB under the declared roots, reading **4,096
+> bytes** and matching **either** `PGDMP` magic **or** the SQL header:
+> **none is a database.** Positive control published: the same test **fires on a
+> known `PGDMP` dump after gzipping it**, so the zero is absence and not a dead
+> predicate.
+>
+> **So `P04-F-126`'s 39 stands** — and it stands for a different reason than
+> before. It was published on a scan with an unmeasured exclusion and an
+> untested signature branch; it now rests on **141 exclusions enumerated** and
+> **72 candidates individually tested with a firing control.** *The number did
+> not move and the basis did.*
+>
+> **This is the third undeclared bound found inside a correction of an undeclared
+> bound**, after `P04-F-113` (the family list) and `P04-F-124` (six identities of
+> eight). The pattern is stable enough to state as a rule: **a script's declared
+> parameters are the ones its author was thinking about; the narrowings live in
+> the error handling, the defaults, and the branch nobody exercised.**
+>
+> Class: **FACT VERIFIED**, 1,070,459 directories, 141 exclusions enumerated,
+> 72 gzip candidates tested with a positive control.
+
 ### 6A.27 The host census, completed — and what it does not say
 
 The full-host census declared at §6A.1 has finished. It ran for the greater part
