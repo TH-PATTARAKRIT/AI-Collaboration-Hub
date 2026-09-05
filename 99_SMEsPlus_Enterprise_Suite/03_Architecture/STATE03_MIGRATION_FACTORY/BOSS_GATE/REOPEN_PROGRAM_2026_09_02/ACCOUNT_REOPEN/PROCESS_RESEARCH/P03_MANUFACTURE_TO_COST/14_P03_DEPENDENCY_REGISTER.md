@@ -28,6 +28,16 @@ rest of the session.
 | `DEP-14` | Incidence of `DC-14` — do the work-centre and project analytic distributions resolve to a common account in the target configuration? | Magnitude of the analytic double distribution, not its existence | UAT / configuration | **UNRESOLVED** — `UNR-P03-05` |
 | `DEP-15` | Reachability of a second labour relief post — `DC-15` | Whether the missing idempotence marker is exploitable | Runtime tracing | **UNRESOLVED** — `UNR-P03-06` |
 
+### Round 3 — status changes
+
+| ID | Was | Now |
+|---|---|---|
+| `DEP-04` installed-module list | **HOLD — UAT REQUIRED**; capped every negative claim | **PARTIALLY CLOSED** — obtained for 2 of 4 databases; reported to Asset `Q-04`, which P03 does **not** close — `26` §6 |
+| `DEP-13` work-centre company count | **HOLD — UAT REQUIRED**, one query | **EXECUTED — VACUOUS.** 0 of 0 across three databases. `P04-B-35` **not closed** — `31`, `32` |
+| `DEP-11` P11 scope reconciliation | PEER DEPENDENCY OPEN | **PEER DEPENDENCY OPEN** — now with three named decisions `P11-D-1/2/3` — `37` §4 |
+| `DEP-16` **new** | — | `iTEST02` unreadable; local `pg_restore` predates dump format 1.16. **Cheapest open item in the package** — `UNR-P03-07` |
+| `DEP-17` **new** | — | Whether any readable database is the migration target — `UNR-P03-10`. **Boss / programme** |
+
 ## 2. Dependencies P03 deliberately did **not** attempt to close
 
 `smeplus-session-execution-pattern` forbids a session adjudicating between two parallel

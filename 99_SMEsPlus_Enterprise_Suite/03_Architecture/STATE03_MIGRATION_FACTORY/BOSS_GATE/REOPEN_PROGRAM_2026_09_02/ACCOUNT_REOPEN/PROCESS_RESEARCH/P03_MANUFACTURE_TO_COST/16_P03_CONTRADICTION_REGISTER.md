@@ -31,6 +31,19 @@ stronger claim than a defect and is used sparingly.
 | `P03-GAP-06` | **No tenant boundary exists anywhere in the reference manufacturing source** — `18` §1 | `FACT VERIFIED`, scope declared |
 | `P03-GAP-07` | Master data may be owned by **no** scope via an empty company — `SCOPE-01`, `18` §2 | `FACT VERIFIED` |
 
+### Round 3 — runtime findings
+
+| ID | Finding | Class |
+|---|---|---|
+| `P03T-F-01` | Conversion cost is **zero** across 9,807 completed manufacturing orders; FG carries material cost only | `FACT VERIFIED` |
+| `P03T-F-02` | No project custom addon overrides any manufacturing cost model — positive control fired on all three roots | `FACT VERIFIED` |
+| `P03T-F-03` | Zero work centres, routing operations, work orders and time logs in all three readable deployments | `FACT VERIFIED` |
+| `P03T-F-04` | 4 of 15 cost-injection mechanisms are live; none is a conversion-cost mechanism | `FACT VERIFIED` |
+| `P03T-F-05` | **Every** conversion-cost element exhibits zeroing; **none** exhibits double counting in live data | `FACT VERIFIED` |
+| `P03T-F-06` | Fixed overhead has no path, and the assumed analytic route is structurally incapable | `FACT VERIFIED` |
+| `P03T-F-07` | The system has too many mechanisms **and** none in use — the veto's limb is unanswerable as written | `SUPPORTED INTERPRETATION` |
+| `P03-GAP-08` | Indirect labour and the overhead pool are owned by **no** process | `FACT VERIFIED` |
+
 ## 3. Unresolved
 
 | ID | Item | Class |

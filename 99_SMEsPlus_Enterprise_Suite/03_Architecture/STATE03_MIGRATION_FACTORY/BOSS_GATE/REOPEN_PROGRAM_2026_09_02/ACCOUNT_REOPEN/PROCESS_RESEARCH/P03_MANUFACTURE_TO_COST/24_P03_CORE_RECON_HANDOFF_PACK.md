@@ -8,6 +8,29 @@ Session `SMEPLUS-26-09-04-ACC-P03-M2C-REV2-001` · Process P03 — Manufacture-t
 
 ---
 
+## 0. The finding that governs everything below — added after runtime evidence
+
+Three deployed databases were read, read-only. In the **only** one where manufacturing has
+ever been run:
+
+> **9,807 completed manufacturing orders carry the cost of their materials and nothing
+> else. Conversion cost is zero.**
+>
+> Not merely missing its fixed-overhead component — missing labour and machine cost
+> entirely, because **no work centre, no routing operation, no work order and no time
+> record exists at all.** Enumerated over the full population, not sampled: 983 bills of
+> material, 2,789 component lines, 103,949 stock movements, 74,982 valuation records —
+> against **zero** of every object on which conversion cost depends.
+
+Everything in §3 below describes behaviour that is **real in the software and currently
+unreachable in the data.** Both halves matter: the behaviours are what will happen the day a
+work centre is configured, and none of them is happening now.
+
+**Practical consequence for Core Accounting.** Reconciliation effort spent chasing the
+conversion-cost defects in §3 will find nothing, because those mechanisms have never run.
+The reconciliation that will find something is §0: inventory is understated by the whole of
+conversion cost, and it has been for the entire life of this data.
+
 ## 1. What Core Accounting Reconciliation is receiving
 
 A statement of **how a manufacturing conversion cost behaves**, what it does to the ledger,
@@ -84,8 +107,14 @@ estimated or assumed anywhere in this package.**
 | `RQ-05` | Entries whose company differs from the originating order's company | Behaviour 9 |
 | `RQ-06` | Analytic entries carrying the same conversion value under two allocations that resolve to one account | Behaviour 10 |
 
-`RQ-01` is the priority: it is the only query that separates two defects which otherwise
-conceal each other.
+`RQ-01` is the priority **among the latent defects**. The priority **overall** is `RQ-07`:
+
+| ID | Query | Detects |
+|---|---|---|
+| `RQ-07` | For every completed manufacturing order, the difference between finished-goods value and the sum of components consumed | **§0** — whether any conversion cost was ever capitalised. On the data read, this difference is zero everywhere |
+
+`RQ-01` separates two defects that otherwise conceal each other. `RQ-07` establishes
+whether either can arise at all.
 
 ## 5. What is **not** reconcilable, and why
 

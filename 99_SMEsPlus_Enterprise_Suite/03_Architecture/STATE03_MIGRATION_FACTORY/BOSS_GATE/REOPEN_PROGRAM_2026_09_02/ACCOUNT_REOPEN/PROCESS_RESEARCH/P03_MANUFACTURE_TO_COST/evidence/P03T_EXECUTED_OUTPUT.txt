@@ -1,0 +1,61 @@
+P03 CONTINUATION — EXECUTED RUNTIME EVIDENCE
+Session SMEPLUS-26-09-05-ACC-P03-M2C-CROSS-PROCESS-EVIDENCE-CLOSURE-001
+Executed 2026-09-05. All commands READ-ONLY. No database server was started;
+pg_restore was used to stream table data from custom-format dumps to stdout.
+
+=== DUMP POPULATION (find /Volumes/iMacSys ~/Downloads -name "*.dump" -size +1M) ===
+  BK12MAY26_2026-08-03_05-48-30.dump   readable
+  iSMEs_2026-07-11_05-03-27.dump       readable
+  iEVING_2026-07-23_10-31-06.dump      readable
+  iTEST02_2026-07-14_16-34-51.dump     NOT READABLE — pg_restore: unsupported version (1.16) in file header
+  (older iTEST02_2026-06-14 copies exist in 4 locations; same lineage, not opened)
+
+=== ROW COUNTS (python3 P03T_db_rowcounts.py) ===
+table                              BK12MAY26       iTEST02         iSMEs        iEVING
+mrp_workcenter                             0           ERR             0             0
+mrp_production                             0           ERR         10764             0
+mrp_workorder                              0           ERR             0             0
+mrp_bom                                    0           ERR           983             1
+mrp_workcenter_productivity                0           ERR             0             0
+account_analytic_account                   0           ERR            27             0
+account_asset                             36           ERR           685            36
+res_company                               44           ERR             1            44
+
+POSITIVE CONTROL: the same parser returns 36 / 44 / 685 / 27 on non-empty tables in the
+same dumps, so the zeros are real and not an extraction artefact. The zero for
+mrp_workcenter was additionally confirmed in a second form by direct inspection of the
+COPY block, which is immediately followed by the terminator:
+    line 25: COPY public.mrp_workcenter (id, resource_id, company_id, ...) FROM stdin;
+    line 26: \.
+
+=== iSMEs — THE ONLY DEPLOYMENT IN WHICH MANUFACTURING HAS EXECUTED ===
+mrp_production                 10764   states: done 9807, cancel 873, confirmed 54,
+                                               draft 22, progress 2, to_close 6
+mrp_bom                          983
+mrp_bom_line                    2789
+mrp_routing_workcenter             0     <-- no routing operations at all
+mrp_workcenter                     0
+mrp_workorder                      0
+mrp_workcenter_productivity        0
+stock_move                    103949
+stock_valuation_layer          74982
+account_move_line             447384
+account_analytic_account          27
+
+mrp_production.extra_cost over the FULL population of 10,764 rows:
+    NULL      10344
+    = 0         420
+    NON-ZERO      0     <-- enumerated, not sampled
+
+=== INSTALLED MODULES (ir_module_module WHERE state='installed') ===
+BK12MAY26 : 251 installed
+   relevant: account_asset, hr_hourly_cost, maintenance, mrp, mrp_account,
+             mrp_account_enterprise, mrp_accountant, mrp_landed_costs, mrp_maintenance,
+             mrp_product_expiry, mrp_workorder, mrp_workorder_expiry,
+             mrp_workorder_hr_account, quality, stock_account, stock_accountant
+
+iSMEs     : 190 installed
+   relevant: account_asset, maintenance, mrp, mrp_account, mrp_account_enterprise,
+             mrp_landed_costs, stock_account, stock_account_enterprise, stock_accountant
+   NOT INSTALLED: mrp_workorder, mrp_workorder_hr_account, project_mrp_account,
+                  project_mrp_workorder_account, mrp_accountant, mrp_subcontracting

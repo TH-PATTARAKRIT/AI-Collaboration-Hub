@@ -16,6 +16,7 @@ Serves as both the revision log and the research-error register required by
 | `R2` | **`SMEPLUS-26-09-04-ACC-REV2-CORR1` received mid-session** | Scope revalidation; `18_P03_SCOPE_OWNERSHIP_MATRIX.md` created; `06` §5, `14`, `16` revised |
 | `R3` | AAS+ audit, `20_P03_AAS_PLUS.md` | `AASP-01` and `AASP-03` applied in place; `AASP-02`, `AASP-04`, `AASP-05` recorded as unrepaired and disclosed |
 | `R4` | Closure | Clean-room scan, manifest, push at `812cc5c` |
+| `R6` | **Continuation `SMEPLUS-26-09-05-…-CROSS-PROCESS-EVIDENCE-CLOSURE-001`** | Peer branches read; runtime/database evidence executed for the first time; `DC-14`/`DC-15`/`DEP-13` dispositioned; 2 unresolved items closed; **4 of P03's own errors corrected**. Files `26`–`47` |
 | `R5` | **Inbound peer evidence from P04 — Acquire-to-Retire**, after push | Every claim independently re-verified from source. Two new findings `DC-14`/`DC-15`; two sharpened; `CC-07` strengthened; **the `01` §3 denominator corrected**; **one scope downgrade `REV-S-05`**; AAS+ veto second limb widened. Record: `25` |
 
 **No reset occurred. No evidence was discarded. No completed work was repeated.**
@@ -121,6 +122,22 @@ worse is not being applied honestly.
 `DC-01` … `DC-10`, `DC-12`, `DC-13`, all of `02`, `03`, `04`, `05` §2–§3 and §5–§9, `07`,
 `08`, `09`, `10`, `11`, `13`, `15`, and the Asset/COGS/Inventory boundary discipline.
 **None used the tenant+company-everywhere assumption**, so none was re-run — CORR1 §6.
+
+## 6. Research errors found in round 3
+
+| ID | Error | Correction |
+|---|---|---|
+| `RE-P03-11` | **P03 recorded P04's count as nine.** P04's *message* said nine; P04's *pushed branch* said **seven**, and had said so before P03 wrote `25`. P03 cited the summary, not the source | `27` §2, `42` §3. The governing rule — *a peer's message is a summary; a peer's pushed branch is the source* — was already on file and was not applied |
+| `RE-P03-12` | *"P03 rates this higher than P04 does"* on `DC-14` conflated a **denominator** question with a **ledger** question. On the denominator P04 was right | Framing **withdrawn** — `29` §6 |
+| `RE-P03-13` | An `awk` row-counter returned a uniform `9` for every table, including empty ones. **Near-miss** — detected pre-publication because the figure was implausibly identical | Replaced with a parser validated against a positive control — `31` §4 |
+| `RE-P03-14` | **`28` §3's headline said "One is live" while its own table marked three further mechanisms reachable.** Measured: four are live | Corrected by measurement — `28` §3. Third instance of a headline not reconciling with its own table in this package |
+| `RE-P03-15` | `UNR-P03-09` was written as *"P03, next round"* when it was executable in one command | Executed the same session — `47` §2 |
+
+**Five errors, four of them P03's own arithmetic or citation discipline.** The pattern is
+consistent across all three rounds and is stated plainly rather than distributed: **this
+package's recurring failure is not its searches — it is the totals and citations that
+describe them.** `smeplus-totals-are-unverified-claims` names it exactly; the standing
+correction is `42` §7.
 
 ## 4. Peer and prior-evidence position — unchanged by any revision
 

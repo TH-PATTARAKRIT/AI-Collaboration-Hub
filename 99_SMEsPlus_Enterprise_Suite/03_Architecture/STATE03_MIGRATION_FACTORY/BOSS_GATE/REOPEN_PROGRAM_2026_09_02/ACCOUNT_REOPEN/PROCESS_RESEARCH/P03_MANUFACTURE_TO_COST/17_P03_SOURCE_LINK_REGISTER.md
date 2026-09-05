@@ -96,3 +96,33 @@ b31b1141f49d55f469c962c626b1dcf78fb07fabf3aaeb7117755438fb21cc55  stock_account/
 | Running UAT database | No access in this session. `DEP-04` |
 | P01 and P02 peer outputs | Peers running concurrently; duplication and answer-key contamination both forbidden |
 | Public vendor documentation | Primary source was available. Documentation was not used as a substitute for code, per the correction recorded in `smeplus-primary-source-evidence-locations` |
+
+
+## 7. Runtime / database evidence — added round 3
+
+**All read-only.** No database server was started. `pg_restore` streamed table data to
+stdout; no restore into a live database was performed, and nothing was written anywhere.
+
+| Database | File | Readable | Role |
+|---|---|---|---|
+| `iSMEs` | `~/Downloads/iSMEs_2026-07-11_05-03-27.dump` | Yes | **The only deployment where manufacturing has executed** |
+| `BK12MAY26` | `~/Downloads/BK12MAY26_2026-08-03_05-48-30.dump` | Yes | 44 companies; manufacturing installed, unused |
+| `iEVING` | `~/Downloads/iEVING_2026-07-23_10-31-06.dump` | Yes | manufacturing unused |
+| `iTEST02` | `~/Downloads/iTEST02_2026-07-14_16-34-51.dump` | **No** — `pg_restore: unsupported version (1.16) in file header` | `UNR-P03-07` |
+
+**Reproduction.** `evidence/P03T_db_rowcounts.py` regenerates the row-count table;
+`evidence/P03T_EXECUTED_OUTPUT.txt` records every executed command and its output,
+including the positive controls.
+
+| Claim | Executed evidence |
+|---|---|
+| Installed-module lists | `ir_module_module` where `state='installed'` — 251 (`BK12MAY26`), 190 (`iSMEs`) |
+| Conversion cost is zero | `mrp_workcenter`/`mrp_workorder`/`mrp_routing_workcenter`/`mrp_workcenter_productivity` = **0** in all three |
+| `extra_cost` unused | 10,344 null + 420 zero + **0 non-zero** = 10,764 |
+| Live mechanisms | `stock_move.cost_share` non-zero **8,176**; `stock_scrap` **2,286**; `mrp_unbuild` **987**; `stock_landed_cost` **0** |
+| Positive controls | `account_asset` 36/685; `res_company` 44/1; `stock_move` 103,949; `account_move_line` 447,384 |
+| Custom addons carry no cost override | 3 roots, 1,325 `.py` files, **378** matching the control pattern, **0** matching any cost identifier |
+
+**Bound.** Every runtime claim is about **these three dump files**. None is a claim about a
+running system, and `UNR-P03-10` records that no readable database is established as the
+migration target.
