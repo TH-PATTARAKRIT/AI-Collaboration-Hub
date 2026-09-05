@@ -315,3 +315,111 @@ Stated so nothing above is over-relied on.
    volume, so 44.5% is a fact about `iSMEs`, not about the estate.
 4. **The v19 double-relief collision (TC-12) has no deployed instance** and is reachability-reasoned.
 5. **Company 28's null configuration was not traced** to a cause.
+
+---
+
+## 14. Live Tests Executed After §13 Was Written
+
+§13 listed items as "measurable and not measured". Three were then measured. **§13 stands as written**, and
+this section supersedes it for those three.
+
+### 14.1 TZ-06 — Customer deposits: **CONFIRMED LIVE DEFECT**
+
+**Method.** Count the down-payment account property in the deployed property table, **with a positive
+control from the same table and mechanism.**
+
+| Property | Rows in the deployed database |
+|---|---|
+| `property_account_downpayment_categ_id` | **0** |
+| *control:* `property_account_expense_categ_id` | 27 |
+| *control:* `property_account_income_categ_id` | 26 |
+
+**`FACT VERIFIED` — TC-20.** The down-payment account property is **not set for any category** in the
+deployed database, while the sibling properties on the same mechanism are set 27 and 26 times. The
+generator therefore falls through to the income account (`T2` §4). **Customer deposits in this deployment
+are recognised as immediate revenue.**
+
+**TZ-06 moves from `HOLD` to `CONFIRMED LIVE DEFECT`.** It is the only tolerance-zero candidate the closure
+was able to close, and it closed **against** the system.
+
+### 14.2 TZ-01 — Valuation layers with no accounting effect: **CONFIRMED, and the earlier restraint was correct**
+
+`21` §5 reported 17,119 layers with no journal entry and **explicitly refused to call it a finding**
+without joining to the category's valuation mode. The join was performed.
+
+| Category valuation mode | Layers | No journal entry | Share |
+|---|---|---|---|
+| manual / periodic | 17,284 | 16,075 | **93.0% — benign by design** |
+| **real-time** | 57,698 | **1,044** | **1.8% — not benign** |
+
+**`FACT VERIFIED` — TC-21.** Of the 17,119, **16,075 are the benign explanation** and **1,044 are on
+real-time-valued products**, where a layer should always produce an entry.
+
+Decomposing the 1,044 further:
+
+| Sub-population | Count | Assessment |
+|---|---|---|
+| value rounds to zero | **748** | **benign for accounting** — the validator skips zero-value layers. **But all 748 moved a non-zero quantity**, i.e. stock moved at zero cost. That is an inventory-valuation issue, not an accounting one. **Routed to Inventory.** |
+| **non-zero value, no entry** | **296** | **not explained by any benign cause tested** |
+
+**`FACT VERIFIED` — TC-22.** Excluding 5 extreme rows (§14.3), the remaining **291** layers carry a **net
+−25,489,905.40** (gross +8,282,613 / −33,772,518). **Approximately −25.5 million in inventory value moved
+on real-time-valued products with no accounting entry at all.**
+
+Two sub-causes are visible in the layer descriptions and **neither has been traced to a mechanism**:
+product-category changes (10, several carrying **no stock movement at all**) and inventory quantity
+updates (6). The remainder carry ordinary receipt references.
+
+**`UNRESOLVED — EVIDENCE REQUIRED`.** Whether each of the 291 is a defect or a legitimately unaccounted
+event requires per-case tracing, which was not done. **The count and the net are facts; the
+interpretation is not.**
+
+**The method point is worth recording.** Had `21` §5 reported its raw 17,119, the number would have been
+**16 times too large and pointed at the wrong population**. The refusal to report it was correct, and the
+join is what turned a confound into a finding.
+
+### 14.3 A severe data finding the closure did not go looking for
+
+While quantifying §14.2 the aggregate returned an implausible net of −6.46×10¹⁵. **That was investigated
+before being reported**, and it is not an artefact.
+
+**`FACT VERIFIED` — TC-23.** **30 valuation layers carry `|value| > 10¹²`.** Observed examples include a
+unit cost of **744,082,316,162.43** and a **negative unit cost of −352,468,555,154.38**, on layers whose
+descriptions identify them as **milling by-product operations** (sorted rice and broken-rice by-product).
+Individual layer values reach **−8.99×10¹⁶**.
+
+**`FACT VERIFIED` — TC-24 (THE CONSEQUENCE, AND IT IS A P02 FINDING).**
+
+- **25 of the 30** extreme layers **are linked to a journal entry.**
+- **The general ledger contains ZERO lines with `|balance| > 10¹²`, across all 447,384 lines.**
+
+Therefore the journal entries linked to those layers **carry a different amount from the layers
+themselves**. **The inventory valuation ledger and the general ledger disagree, on those documents, by up
+to 9×10¹⁶ — and nothing in the system detects or reports it.**
+
+This is a **live, measured instance of the divergence class the package predicted structurally**
+(`11` case 33, `T4` §8): the valuation ledger is keyed on its own creation timestamp and the general
+ledger on the accounting date, with no tie-out between them. The prediction was that they *could* diverge.
+The measurement is that they *do*, by an astronomical margin, in a production database.
+
+**Ownership split, kept strictly:**
+
+| Aspect | Owner |
+|---|---|
+| **Why a by-product acquired a unit cost of 7.4×10¹¹ and a negative unit cost** | **P03 Manufacture-to-Cost** and Inventory — *not P02*. P02 makes no claim about the cost-allocation mechanism. |
+| **That the valuation ledger and the general ledger disagree, undetected** | **P02 and P08** — this is the reconciliation control P02 has said throughout does not exist. |
+
+**`SUPPORTED INTERPRETATION`.** The extreme values did **not** propagate into the financial statements —
+which is why the monthly figures in §6 are plausible. That is not a control working; it is the **absence**
+of a link between the two ledgers. The same absence that prevents the corruption reaching the ledger also
+prevents anyone noticing that the two disagree.
+
+### 14.4 Effect on §13
+
+| §13 item | Status now |
+|---|---|
+| 1. Real-time layers with no journal entry | **MEASURED** — §14.2 |
+| 2. Down-payment account property | **MEASURED** — §14.1, confirmed defect |
+| 3. Multi-currency receivables and applied rates | **still not measured** |
+| 4. Delivered-not-invoiced ageing | **still not measured** |
+| 5. The four unexamined custom-addon roots | **still not examined — the largest remaining surface** |
