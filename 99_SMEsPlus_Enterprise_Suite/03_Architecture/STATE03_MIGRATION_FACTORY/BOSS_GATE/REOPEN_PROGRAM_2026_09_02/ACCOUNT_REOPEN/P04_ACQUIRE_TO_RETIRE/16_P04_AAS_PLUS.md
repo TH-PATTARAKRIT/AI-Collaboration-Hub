@@ -164,6 +164,14 @@ honest cell for work deferred rather than done. This package has no such row
 today; the vocabulary is recorded so a future round has somewhere truthful to put
 one.
 
+**Four sweeps were needed, each broader than the last, and each found survivors
+the previous one had missed.** Narrow phrase-match → broad phrase-match →
+regex with a control → P07's numeral-proximity pattern. The fourth found a
+scoping sentence that was **wrong when written** as well as stale. **No sweep
+converged until the pattern stopped being a list of the wordings its author
+happened to remember** — which is the same defect, four levels deep, in the
+remedy for itself.
+
 **An over-broad self-blame is also an inaccurate record.** P11's principle, via
 P07, which narrowed its own fault after ranking properly: it had blamed itself for
 *picking the smallest database* when the real error was **using a configuration

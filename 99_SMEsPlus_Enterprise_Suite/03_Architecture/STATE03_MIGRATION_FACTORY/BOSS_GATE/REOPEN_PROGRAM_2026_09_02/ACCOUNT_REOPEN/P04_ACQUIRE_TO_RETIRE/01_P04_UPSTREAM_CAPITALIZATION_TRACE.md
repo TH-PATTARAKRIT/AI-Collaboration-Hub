@@ -436,10 +436,17 @@ Tested here, finding by finding:
 > cuts.
 
 **Scope, stated before any finding.** None of these is `idemo18_uat`, the database
-the runtime capture in §6 came from. Nothing here closes a blocker that names that
-database. Two of the three are a **different product generation** from the v18
-source tree this package's behavioural findings rest on. Every statement below is
-bounded to the database named in it.
+the runtime capture in §6 came from, so nothing here closes a blocker that names
+it. Of the **four database identities**, **one** — `iSMEs` — is an **older product
+generation** than the v18 source tree these behavioural findings rest on, and it
+is **the only one holding real assets**; the other **three** are v18-line and hold
+**templates only**. Every statement below is bounded to the identity named in it.
+
+*An earlier version of this paragraph read "two of the three are a different
+product generation". It was **wrong when written** — one of the three then read
+was the older generation, not two — and **stale thereafter**, once five snapshots
+had been read. Both errors sat in the scoping paragraph that governs the whole
+section. Corrected under `18` `P04-REV-31`.*
 
 ### 6A.2 The day convention, across generations
 
