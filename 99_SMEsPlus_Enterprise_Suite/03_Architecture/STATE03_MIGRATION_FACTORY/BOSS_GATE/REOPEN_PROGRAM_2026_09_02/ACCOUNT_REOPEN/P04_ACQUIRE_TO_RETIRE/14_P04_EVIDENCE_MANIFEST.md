@@ -51,7 +51,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | File | SHA-256 |
 |------|---------|
 | `00_README_LAYER_AND_METHOD.md` | `545783d5660542d9b10fcdbc96302025332d76e82f28c6d1c06e6b8b91695d99` |
-| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `412af6095a1bd4b7cc130b017878abf787407c32cec6db906b0360fcb5a6b972` |
+| `01_P04_UPSTREAM_CAPITALIZATION_TRACE.md` | `e91b1208e74fb46801e83860c7a11ba0e11cdf307c93ec95d1257839e3424343` |
 | `02_P04_ASSET_LIFECYCLE_MAP.md` | `561118e4b1e312b6ff3cfab4f350db256c1f8b6b8364d9975e4286eef4c742f0` |
 | `03_P04_ASSET_EVENT_REGISTER.md` | `ed31187344fa46246cf5c3f59c9444a212ad454b0ee62bb360dc2fcf81ad2a51` |
 | `04_P04_ASSET_TO_GL_MATRIX.md` | `f97d5e4239b9fd1eb4ed4bbce5a03173185f2df336ec5c9f234c30b944531dd6` |
@@ -67,7 +67,7 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `15_P04_AAS03_CHALLENGE.md` | `62e4462fe9244e4d866197c63e5a15af8e6be73ed5efaf9be8efbc9c195567b5` |
 | `16_P04_AAS_PLUS.md` | `f80f330fdcb381bd9759e1ca0f4a2fe538be3e3784d3c4251157e21d9aef4479` |
 | `17_P04_PMO.md` | `353b40126b2b22025ebc9623607a4b415eac72bde9d1bf4cb740b4f785c7ca3c` |
-| `18_P04_REVISION_LOG.md` | `9af4e54be87df6a7a76bc2ecb3d94cc87162c7b9783b9ebbddc5ca44b2118205` |
+| `18_P04_REVISION_LOG.md` | `bf2e524b3de996fcda5d63b052ad46d8563eda96ff7ea0d947919a4b0fb976f2` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `1f635cba7e22be8e4001c877e9638c8ec918f695fba0ee68cb319132bc194eda` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `1a9a822ba1084ec34107787490ac248e3fdc127ac32a91af14a11e19c5d1145b` |
 
@@ -87,10 +87,10 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **82** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
+| Findings (`P04-F-nn`) defined | **83** (`P04-F-18` withdrawn as a duplicate of `P04-F-23`). *Executed in the same command that published this line — see `18` §5* |
 | Blockers (`P04-B-nn`) — register rows | **45** — 3 re-registered from the handover residue, 42 opened by this session |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
-| Revisions | 31 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
+| Revisions | 32 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
 | Recurrences of the enumeration / unit defect | **9 instances across 4 actors — P04's declared half**, `@ ae525fc`, verified unchanged by P07 at `c839bfe`. **No joint total is published**; halves are not summed (`18` §5b) |
 | Expert disagreements preserved | 4 new · 7 inherited and re-opened · 2 between this session and the independent reviewer |
 | Scope determinations | 14 objects and 10 operations classified; 2 on **HOLD — SCOPE EVIDENCE REQUIRED** |

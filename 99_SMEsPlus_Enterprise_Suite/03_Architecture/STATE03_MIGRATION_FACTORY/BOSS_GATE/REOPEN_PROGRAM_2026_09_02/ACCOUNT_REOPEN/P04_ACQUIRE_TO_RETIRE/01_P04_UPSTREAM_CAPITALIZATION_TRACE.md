@@ -486,6 +486,30 @@ section. Corrected under `18` `P04-REV-31`.*
 > bounded to the **four v18-line snapshots across three identities**. Enumeration
 > of candidates at §6A.1.
 
+> **P04-F-84.** **A stronger statement the split makes available, and which the
+> single sentence concealed.** The configuration half is not *"the templates are
+> on the product default"*. It is **96 of 96 templates on the product default
+> across three independent database identities, captured by different operators
+> between 2026-06-14 and 2026-08-03** — and **not one** carries the convention the
+> operational system actually runs on.
+>
+> So this is not an oversight in one deployment. **No v18-line deployment
+> examined has ever changed the day convention from the shipped default, at any
+> point across roughly seven weeks, by any operator** — while the only population
+> of real assets in existence runs on the other convention. Combined with
+> `P04-F-83` (the v18 line has never had an asset created in it) the migration
+> exposure is stated at full strength: **the first asset ever created in the
+> target generation will inherit the wrong convention, and nothing in any
+> deployment's history suggests anyone would notice** — the two conventions agree
+> annually to within 0.05 %.
+>
+> Class: **FACT VERIFIED**, bounded to the three v18-line identities named.
+> **Available only once the halves were separated**: while they shared a
+> sentence, the configuration half read as a property of the templates rather
+> than as a **consistent non-action across independent operators**, and the
+> population half was doing no work for it. The shape is adopted from P07, which
+> found the same concealment in its own compound finding.
+
 > **P04-F-83.** **No v18-line database on this host contains a single real asset
 > record.** **Unit declared:** four v18-line **snapshots** across **three database
 > identities** (`iEVING`, `BK12MAY26`, and `iTEST02` captured twice), spanning
