@@ -220,7 +220,13 @@ Raised after a peer process (P04) corrected P02's population.
 | C-30 | **TC-03 refuted a second time** — one company carries `anglo_saxon_accounting = TRUE` | `26` §3 |
 | C-31 | **Runtime evidence was declared absent without looking.** A complete, safe, resettable Odoo 18 lab exists on this host with the required test already scripted | `26` §10 |
 
-**Register total: C-01 … C-31, contiguous, no overlap. 20 here, 8 in `25`, 3 in `26`.**
+### C-32 — Registered In `27_P02_SOURCE_SCOPE_AND_POPULATION_BOUND.md`
+
+| # | Subject | File |
+|---|---|---|
+| C-32 | **A published `VERIFIED ABSENCE` refuted.** `T3` declared no Thai withholding-certificate module exists in the searched root. The deployment has **four** installed, and **all four exist on this host in three copies each**, outside the declared root. True within its boundary, false in use. | `27` §4 |
+
+**Register total: C-01 … C-32, contiguous, no overlap. 20 here, 8 in `25`, 3 in `26`, 1 in `27`.**
 
 ## 2. Contradictions Between Evidence Tracks
 
