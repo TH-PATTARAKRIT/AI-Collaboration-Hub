@@ -29,7 +29,7 @@ still cannot see without executing).
 |---|---|---|---|---|---|
 | 1 | Purchase Request → Purchase Order | `purchase_request` 18.0.1.10.0, `purchase_request_line.purchase_state`, `stock_move.created_purchase_request_line_id` | yes | 1,043 requests; 3,398 lines; **1,504 lines linked to a PO** | the approval UI actions themselves |
 | 2 | PO confirmation | `purchase.order.button_confirm`; custom guard `scgl_product_category_company` `_scgl_validate_product_company_scope` | yes | 13,887 POs, 13,735 in `purchase` | whether the guard has ever refused (§6) |
-| 3 | PO → Receipt | `purchase_stock`, `stock.picking` incoming | yes | 2,516 incoming pickings, **1,305 done**; 3,158 moves linked to a PO line, 3,124 done | — |
+| 3 | PO → Receipt | `purchase_stock`, `stock.picking` incoming | yes | 2,516 incoming pickings, **1,305 done**; 3,158 moves linked to a PO line, 3,124 done | **the move population is not a clean one-to-one receipt set** — `purchase_request` overrides `_prepare_merge_moves_distinct_fields`, `_merge_moves_fields`, `_prepare_merge_move_sort_method` and `stock.picking._action_done`; the counts are what the data says, their reading as distinct receipts is not established (§9.1) |
 | 4 | Receipt → Valuation layer | `stock_move._create_in_svl` → `stock.valuation.layer` | yes | **1,403** of 3,124 done PO-linked moves carry layers (2,146 layers, **฿22,953,527.29**) — **2,085 of those layers are migrated**, 61 are runtime output. 1,480 done storable receipts carry **no** layer | the loader did not build layers move-by-move (`P01_S18_PERIODIC_PERPETUAL_POLICY_PROOF.md §8.4`) |
 | 5 | **Valuation layer → Journal entry** | `stock_valuation_layer._validate_accounting_entries` (`R1:…:74-95`), gated `valuation == 'real_time'` | **gate closed** — policy is `manual_periodic` on 126/126 categories × 4/4 companies | **0 of 47,801** layers carry `account_move_id`; **0 of the corrected 558**; **0 of the 541 core**; **0 of the 61 purchase-linked** | `account_move_line_id` has a **second writer that is not valuation-gated** (`ERR-P01-26`); and a Python method override in a custom module would leave no database trace (10 of 16 unverifiable) |
 | 6 | Journal entry → Stock journal | `stock_move.py:199-206` `journal_id = company.account_stock_journal_id` / category `property_stock_journal` | **yes**, all four companies (`STJ`) | **0 items** in journals 16/24/32/40 | — |
@@ -122,11 +122,31 @@ class AccountMoveLine(models.Model):
 immune* to bill-line redirection. It is not. In company 1, **two of the three conditions are
 already satisfied**, and the third is a single company-dependent field value.
 
-There is a genuine generation difference alongside it — the v19 tree splits this class into its
-own `account_move_line.py` and gates on `valuation == 'real_time'` with `accounts['stock_valuation']`
-where v18 uses `_eligible_for_cogs()` with `accounts['stock_input']`, so the **target account
-differs**: v18 redirects to the **input/clearing** account, v19 to the **valuation** account. That
-is a real and material difference, and it is not the difference the first version claimed.
+There is a genuine generation difference alongside it, and it has **three** parts, not one:
+
+| | v18 (`account_move.py:264`) | v19 (`account_move_line.py:13`) |
+|---|---|---|
+| **Target account** | `accounts['stock_input']` — the **GRNI/clearing** account | `accounts['stock_valuation']` |
+| **`anglo_saxon_accounting` gate** | **required** | **removed** |
+| Valuation gate | `real_time`, inside `_eligible_for_cogs` | `real_time`, inline |
+| Dropship exclusion | none | `_eligible_for_stock_account()` excludes dropshipped |
+
+**The second row is a migration exposure this package did not carry.** In v18 the override cannot
+fire in companies 2, 3 and 4 because `anglo_saxon_accounting` is **FALSE** in all three. **v19 drops
+that gate.** On a migration to series 19, the only remaining condition in those three companies
+would be the valuation policy — and the bill-line redirection would become live for them in a way
+it structurally cannot be today.
+
+**This is stated as an exposure to be tested, not as a prediction.** It is handed to P11 and
+recorded as `EVIDENCE REQUIRED NEXT`.
+
+**The generation split is clean in both directions and does not rest on one tree:** across every
+`stock_account` tree on this host, **15 of 15 series-18 trees lack
+`stock_account/models/account_move_line.py`, and 8 of 8 series-19 trees carry it**, with no
+counterexample. And the governing v18 predicate is **build-invariant**: 14 of the 15 series-18 trees
+carry a byte-identical `_eligible_for_cogs` body, and the fifteenth has no `account_move.py` at all.
+That matters because **6 distinct contents of that file exist among those 15 trees**
+(`ERR-P01-39`).
 
 **CLASSIFICATION: CONFIGURATION-DEPENDENT — REACHABLE IN PRINCIPLE, NOT EXERCISED.**
 Deployed records agree that it is not exercised: 3,375 vendor-bill product lines, largest accounts
@@ -186,8 +206,33 @@ categories.** This is the same shape as P01's series-19 finding that the company
 "executes but is vacuous" — and here the cause is provable: **configuration, not code.** The code
 is capable of refusing; the data never asks it to.
 
+### 6.1 The hook surface is wider than first reported
+
+An AST enumeration of the version-matching source gives the module's full surface, and the first
+version of this section named two of its ten hooks:
+
+```
+product.category     15 methods incl. _search, 2 @api.constrains
+product.template     11 methods incl. name_search, 2 @api.constrains
+product.product      _scgl_assert_company_allowed, name_search
+sale.order           _scgl_validate_product_company_scope, action_confirm
+sale.order.line      @api.constrains('product_id','order_id')
+purchase.order       _scgl_validate_product_company_scope, button_confirm
+purchase.order.line  @api.constrains('product_id','order_id')
+stock.move           @api.constrains('product_id','company_id')
+stock.picking        _scgl_validate_product_company_scope, action_confirm, button_validate
+account.move         _scgl_validate_product_company_scope, action_post      <-- not first reported
+account.move.line    @api.constrains('product_id','move_id')                <-- not first reported
+```
+
+**The guard also wraps `account.move.action_post` and constrains `account.move.line`.** The vacuity
+finding is unchanged in direction — 110 of 126 categories still permit everything — but its **scope
+was understated**: the same non-restrictive guard sits on **every journal posting, every picking
+validation and every sale confirmation**, not only on purchase-order confirmation.
+
 **CLASSIFICATION: INSTALLED, CONFIGURED, REACHABLE, EXERCISED — and non-restrictive for 87% of
-categories by configuration.** Not a code defect. A control that has been switched to permit.
+categories by configuration, across ten hooks rather than two.** Not a code defect. A control that
+has been switched to permit, on a wider surface than first reported.
 
 ---
 
@@ -231,6 +276,26 @@ Read-only evidence at rest cannot show:
   row. Its non-restrictiveness (§6) is proved from configuration, not from an absence of refusals;
 - what would happen under a **changed** policy. Every "would become live if the policy changed"
   statement in this package is a source-supported prediction, not an observation.
+
+### 9.1 Two installed modules bound what the counts in this document can mean
+
+**`purchase_request` 18.0.1.10.0** overrides the stock-move **merge fields, merge sort key** and
+`stock.picking._action_done`. Every move count here — 3,158 purchase-linked, 3,124 done, 1,403
+carrying valuation layers — is counted over a table whose merge semantics an installed module
+changes. **The figures are what the data says; their interpretation as a one-to-one receipt
+population is not established.**
+
+**`om_data_remove` 18.0.1.0.0 is installed.** The only source copy located is version **19.0.1.1**,
+so its content is **not evidence about the deployed module** — but that copy deletes by raw SQL
+(`sql = "delete from %s" % t_name`), names **`stock.valuation.layer`** in its target list, and
+separately deletes rows from **`ir_default`** — the exact table the valuation-policy proof reads.
+Peer **P06** records this module as deleting ledger data without authorisation in another
+deployment.
+
+**This disproves nothing**: a raw `DELETE` leaves no trace, so the absence of evidence of a purge is
+expected either way. **It bounds the claims.** The 47,801 valuation layers and the single global
+`ir_default` row for `property_valuation` are the **post-hoc state of tables a resident, installed
+module can silently empty.** Every count in this package is a count of what remains.
 
 Executing any of these requires a runtime, which the standing constraint forbids without explicit
 authorization. Recorded as `HOLD — RUNTIME WRITE AUTHORIZATION REQUIRED` for the seven priority

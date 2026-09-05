@@ -34,35 +34,76 @@ Tables present in the archive: `purchase_request`, `purchase_request_line`,
 
 ---
 
-## 2. INSTALLED ≠ AVAILABLE IN SOURCE — AND HERE IT IS NOT
+## 2. THE SOURCE EXISTS — MY OWN ABSENCE CLAIM WAS FALSE — `ERR-P01-37`
 
-**POPULATION:** every directory named `purchase_request` on `/Volumes/iMacSys`, at full depth.
-**PATTERN:** `find /Volumes/iMacSys -type d -name "purchase_request"`.
-**UNIT:** one module directory. **MEASURE:** the `version` string in its `__manifest__.py`.
+> **The first published version of this section stated:**
+> *"**16 copies** found … **No copy at `18.0.1.10.0`.** The deployed purchase-request module has
+> **no matching source on this host**. **CLASSIFICATION: VERIFIED ABSENCE (class A).**"*
+>
+> **It is at `/Users/admin/Downloads/OCC_PR_MULTI_APPROVE_UAT_PASS_36/purchase_request`,
+> `"version": "18.0.1.10.0"`** — plus the same tree inside the sibling `.zip`.
+> Found by AAS-03 Expert D; **verified here directly** by reading the manifest.
 
-**16 copies** found. Versions:
+### 2.1 How the claim was made, and why it failed
 
-| Version | Copies |
-|---|---|
-| 19.0.2.4 | 4 |
-| 19.0.1.0 | 3 |
-| **18.0.1.8** | **4** |
-| 14.0.1.3.8 | 2 |
-| 19.0.1.1 | 1 |
-| 19.0.1.0.0 | 1 |
-| 1.0 | 1 |
+| Rung | Declared | Actually executed |
+|---|---|---|
+| **PATTERN** | `find -type d -name "purchase_request"` | correct — but blind to a module shipped **inside an archive** |
+| **PATH SET** | *"full-volume"* | **`/Volumes/iMacSys` only.** The file is in **`$HOME/Downloads`** |
+| **UNIT** | one module directory | a module can also be a **ZIP member**; at that unit there are 87 more hits |
 
-**No copy at `18.0.1.10.0`.** The deployed purchase-request module has **no matching source on
-this host**.
+**"Full-volume" named a storage device, not a boundary over the artefacts.** It reads as
+exhaustive and is a *scope stated as a description* — the same failure that produced `ERR-P01-23`
+(a directory standing in for a population) and `ERR-P01-25` (a declared root that excluded the
+deployment's own code). **This is the third instance in one package, and the second found by
+someone else.**
 
-**CLASSIFICATION: VERIFIED ABSENCE (class A) within the stated population** — the population being
-this volume, this pattern, this unit. It is not a claim about any other host or about the module's
-behaviour. `NO SOURCE COPY FOUND` is not `THE MODULE DOES NOT WORK`.
+### 2.2 The corrected enumeration
 
-The nearest copies are four at `18.0.1.8`, including one inside the declared source path set `R4`.
-**A near version is not the version.** `ERR-P01-13` was caused precisely by reasoning from source
-that no deployment runs; the same mistake is available here and is refused. Nothing in this package
-attributes behaviour to `purchase_request` from reading `18.0.1.8`.
+**POPULATION:** the 16 name-matched installed custom modules. **UNIT:** a directory *or a ZIP member
+path* containing `__manifest__.py`. **PATH SET:** `$HOME` (less `~/.Trash`) **+ both volumes +
+`~/Library/Mobile Documents` (iCloud Drive) + `~/Library/CloudStorage` (Google Drive)**.
+
+| | As first published | Corrected |
+|---|---|---|
+| Version-matching source exists | 6 of 16 | **11 of 16** |
+| No copy by name **anywhere** | 7 | **3** |
+| Copies only at other versions | 3 | 2 |
+| `purchase_request` copies | 16 | **53** |
+| **`purchase_request` at `18.0.1.10.0`** | **0 — "no copy"** | **2** |
+
+**Four modules the first version placed in the "zero copies anywhere" bucket do have
+version-matching source**, among them `scgl_account_coa_control 18.0.1.0.1` and
+`scgl_multi_approve_purchase_request 18.0.1.0.0`.
+
+The residual absence, with its negative control, is **three** modules — `scgl_delivery_cost`,
+`scgl_signature`, `scgl_signature_hr_expense`. (`scgl_signature` returns 6 name matches, all of
+which are `scgl_jasper_api/models/scgl_signature_image.py`, a different module.)
+*Positive control, same finder:* `scgl_uom_archive` → 1.
+
+### 2.3 Why `~/Library` was not a defensible exclusion
+
+This session's standing note prunes `~/Library` from home-directory sweeps for a real reason: it
+triggers a macOS permission-prompt storm across roughly 855 application-data directories.
+
+**That reason has authority over application data. It has none over
+`~/Library/Mobile Documents` (iCloud Drive) or `~/Library/CloudStorage` (Google Drive)** — those are
+*user document stores* that Apple and Google happen to mount under `Library`. Both were swept by
+Expert D with no prompt storm. **A stated exclusion reason stopped the audit at a boundary the
+reason did not cover** — the same shape as `97_OCC_PROJECT` being excluded as CLASS C in
+`ERR-P01-25`.
+
+### 2.4 What survives
+
+`purchase_request 18.0.1.10.0` is installed, is exercised (§3), and **its source is now readable**.
+Prior P01 purchase-request findings were read from `18.0.1.8` copies and remain bound to that
+version — but the gap between analysed and deployed code **is now closable**, and closing it is a
+concrete action rather than an external dependency.
+
+**And a caution that survives with it.** A matching version string is **necessary, not sufficient**:
+peer P04 (relaying P07) records two code bodies sharing one version string across 17–179 changed
+lines. The located tree should be **content-verified** against the deployment before any behaviour
+is attributed to it.
 
 ---
 
@@ -133,9 +174,9 @@ which are at `18.0.1.8`. The deployment runs `18.0.1.10.0`.
 bound to the population in which they were measured — but they may not be asserted of this
 deployment, and this package asserts none of them.
 
-The gap is closable only by obtaining `purchase_request 18.0.1.10.0` itself, from the deployment
-owner or the build that produced it. That is recorded as the concrete evidence request in
-`P01_AUTO_RESUME_STATE.md`.
+**That gap is no longer an external dependency.** `purchase_request 18.0.1.10.0` is on this host
+(§2). Reading it — and content-verifying it against the deployment rather than trusting the version
+string — is a concrete next action, recorded in `P01_AUTO_RESUME_STATE.md`.
 
 ---
 
@@ -148,6 +189,6 @@ owner or the build that produced it. That is recorded as the concrete evidence r
 | Module is exercised (1,043 requests, 866 approved, 1,504 lines to PO) | **FACT VERIFIED** |
 | Requisition identity carried to the stock move | **FACT VERIFIED** |
 | No direct financial effect | **FACT VERIFIED** within the stated population |
-| Source copy at the deployed version exists on this host | **VERIFIED ABSENCE** — 16 copies, none at `18.0.1.10.0` |
-| Prior P01 purchase-request source findings, against this deployment | **VERSION-DEPENDENT — REACHABILITY UNKNOWN** |
+| Source copy at the deployed version exists on this host | **PRESENT — my own absence claim was FALSE (`ERR-P01-37`).** `~/Downloads/OCC_PR_MULTI_APPROVE_UAT_PASS_36/purchase_request` at `18.0.1.10.0`; 53 copies exist, 2 at the deployed version |
+| Prior P01 purchase-request source findings, against this deployment | **VERSION-DEPENDENT — REACHABILITY UNKNOWN**, and **now closable**: the deployed version's source is readable |
 | Migrated vs natively-created request rows | **UNRESOLVED — not separated**; bounded gap, did not affect the conclusion |

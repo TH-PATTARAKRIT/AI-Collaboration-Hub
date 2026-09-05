@@ -208,22 +208,105 @@ has not swept it.**
 
 ---
 
+## 4B. INSTANCE 5 — THE ARTEFACT CENSUS IS BOUND BY *FORMAT* AND BY *PATH SET*, AND 10 ARTEFACTS ARE INVISIBLE TO IT (NEW)
+
+> **`ERR-P01-38`.** Found by AAS-03 Expert D. Verified here.
+
+**POPULATION:** every artefact on this host that is, or contains, a PostgreSQL dump of an Odoo
+database. **UNIT:** one artefact file. **PATTERN — executed at two widths:** filename `*.dump`, and
+**content classification of the first 4096 bytes** (`PGDMP`; `PK` + a root `dump.sql` member;
+literal `PostgreSQL database dump`; `ustar`; gzip, decompressed and re-sniffed).
+**PATH SET — executed at three widths**, the widest adding `~/Library/Mobile Documents` (iCloud
+Drive) and `~/Library/CloudStorage` (Google Drive).
+
+| Enumeration | Result |
+|---|---|
+| extension × the path set previously used | **17** |
+| content × the same path set | **17** — *extension false positives 0, false negatives 0* |
+| content (PGDMP only) × corrected path set | **18** |
+| **content (all formats) × corrected path set** | **27** |
+
+**The extension test agreed with the content test at both widths, and the census was still wrong.**
+That agreement is the instructive part: **width agreement on one rung is not evidence about another
+rung.** A reviewer re-running only the extension test would have concluded the census was sound.
+
+**Ten artefacts are invisible**, including:
+
+- **the largest database artefact on this host** — a **283 MB `dump.sql`** inside
+  `BK12MAY26_2026-08-03_11-28-04.zip`, an Odoo **19.0+e** database with a 251-module manifest.
+  The `.dump` of the *same* database taken 5h40m earlier the same day **was** seen;
+- **an entire database, `pankhamhom`** — two artefacts, series **18**, a **478-module** manifest —
+  sitting in iCloud Drive;
+- `T805efaplus` (series 18, 123 modules) and two `iMSCG` snapshots (series 16).
+
+**8 distinct `database.uuid` values are directly readable from the PGDMP artefacts alone**, and at
+least **10 distinct database names** exist across the 27. §3 above published **six** as a floor and
+then adopted peer P04's **eight**; the corrected floor is **at least eight identities across at
+least 27 artefacts**, and no total is stated by anyone.
+
+**And the `~/Library` exclusion has the same shape as `97_OCC_PROJECT`.** The standing reason for
+pruning it — a macOS permission-prompt storm across ~855 application-data directories — is real, and
+it has authority over **application data**. It has **none** over iCloud Drive and Google Drive,
+which are *user document stores* Apple and Google happen to mount under `Library`. Both were swept
+with no prompt storm. **A stated exclusion reason stopped the audit at a boundary the reason did not
+cover.**
+
+### 4B.1 One thing the census newly *supports*
+
+`web.base.url = https://occ.smeplus.cloud` is the basis on which this package identifies the
+deployment as the OCC system. Odoo rewrites that parameter on login unless it is frozen.
+**`web.base.url.freeze = True`** (write_date 2026-08-25 17:17:00). The identification holds — but
+the first version asserted it from a **mutable** key without checking the freeze.
+
+## 4C. INSTANCE 6 — A LABELLED SOURCE TREE ACCEPTED WITHOUT CONTENT PROOF (NEW)
+
+> **`ERR-P01-39`.** Failure mode **M4**, which §5 of the first version recorded as *"not found in
+> this run"*. It was there.
+
+`R1` is cited throughout this package as *"the v18 core"*. **Manifest versions cannot discriminate
+between the candidate trees**: v18 core ships `'version': '1.3'` for `account` and the series is
+prefixed at install time, so `R1`'s `1.3` and the deployment's `18.0.1.3` agree — as do **at least
+eleven other trees on this host**.
+
+**Content does discriminate. There are 6 distinct contents of `stock_account/models/account_move.py`
+across the 15 series-18 `stock_account` trees on this host.** Two concrete hazards found while
+testing it:
+
+- `/Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/enterprise/addons/stock_account` — **the path says
+  ODOO18 and the content is v19**: it carries `account_move_line.py`, `product_value.py`, and a
+  `product.py` matching `Perpetual`.
+- Two different trees both named `odoo-18.0.post20260605` carry `account/__manifest__.py` at
+  **1.4** and **1.3**. **A build string does not identify code.**
+
+**What survives, and it is the reason the package's core citations still stand.** The predicate the
+valuation proof turns on is **build-invariant**: of the 15 series-18 trees, **14 carry the
+byte-identical `_eligible_for_cogs` body** (`is_storable and valuation == 'real_time'`) and the
+fifteenth has no `account_move.py` at all. The generation split is clean in both directions —
+**15 of 15 series-18 trees lack `stock_account/models/account_move_line.py`; 8 of 8 series-19 trees
+have it** — with no counterexample.
+
+*Coverage, stated as coverage rather than as a result:* 44 of the 72 `stock_account` directories on
+this host could not be series-resolved; almost all are `.Encrypted` Google-Drive mirrors whose files
+are non-materialised cloud stubs.
+
+---
+
 ## 5. WHAT THIS AUDIT DID *NOT* FIND
 
 Stated so the audit is not read as wider than it is.
 
 | Checked | Result |
 |---|---|
-| **M4** — version accepted from a label | Not found in this run. Every version here is read from `ir_module_module.latest_version` or from a `__manifest__.py`, never from a directory or file name. The archive name `idemo18_uat` is explicitly excluded as evidence |
+| **M4** — version accepted from a label | **FOUND — §4C (`ERR-P01-39`).** The first version of this table said "not found in this run"; that was itself the defect. `R1` was cited as "the v18 core" on a manifest version that 11+ other trees share, and one tree on this host is **labelled ODOO18 with v19 content**. |
 | **M5** — identity on an unstable key | Not found in this run. Database identity is keyed on `database.uuid`; module identity on name **and** version |
-| **M3** — first-found selection | Not found in this run; but see §3 — an incomplete census cannot rule out a better artefact existing elsewhere |
+| **M3** — first-found selection | Not found directly, but **§4B shows the census that would rule it out was itself incomplete** — 27 artefacts exist where 17 were enumerated, including the largest on the host |
 | **M7** — single pattern width | **FOUND — §4A.** The 16-module sweep was run at one width and one *kind* of predicate (a name pattern). Re-run as a **membership** test against the declared roots it returns **55**, not 16 |
 
 ---
 
 ## 6. THE DURABLE LESSON
 
-**Five** instances now, all the same shape:
+**Six** instances now, all the same shape:
 
 > The reasoning over what was read was sound. **What was read was the wrong set.**
 
