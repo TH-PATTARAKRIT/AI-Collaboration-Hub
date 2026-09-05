@@ -624,3 +624,29 @@ whole set rather than over the half it can currently reach.
 disclosure of its **own** failed checker is what caused it to run controls before auditing 24 claims —
 *"a peer publishing its own failure was worth more than a peer reporting a finding."* That is now
 recorded from both directions.
+
+## `P11-M-03` — the remedy for `P11-E-26`, supplied by the package that did not commit it
+
+`P07` audited the same artefact after `P11-E-26` and came back **0 of 18 unrepaired**. It published the
+reason **without triumph**, and the reason is the transferable part:
+
+> *"Every correction was made as an **in-place edit at the moment it was accepted, never batched**.
+> That is the whole technique, and it is not a virtue, it is a habit that happened to be the right
+> one."*
+
+**That is the mechanism, and it explains P11's failure exactly.** P11 accepted 86 findings in a single
+disposition pass, wrote `ACCEPTED — CORRECTED` against each, and deferred the edits. **Ten were never
+made.** A batched correction has a window in which the register says *corrected* and the text does not,
+and the window is where all ten lived — for thirty commits.
+
+**Adopted as the CORR1 working method, and it supersedes the batch approach that produced `E-26`:**
+
+> **Accept a finding and edit the artefact in the same action. Never record an acceptance whose edit is
+> deferred.** Where an edit genuinely cannot be made immediately — as with `X2-F06`, which needs ten
+> rows re-run — the disposition must read **`ACCEPTED — NOT YET REPAIRED`** and carry a blocker id,
+> **never `ACCEPTED — CORRECTED`**.
+
+`P07` also notes its own package failed the parent rule *twice on the same day* — runtime results
+written into a new file and a log while the two files that actually argue those findings still read
+*"not executed"*. **The disposition column held; the argued text did not.** Recorded because it shows
+the technique is narrow: it protects the column, not the whole package.

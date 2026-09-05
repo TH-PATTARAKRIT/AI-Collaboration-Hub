@@ -95,6 +95,38 @@ evidence it had declared away.
    dumps with four independent challenges missing it too. **P11 inherited it into a Boss-facing cost
    column.**
 
+### `P11-F-10` — instrument-selected evidence bias: a default toolchain can choose the subset where the defect is absent
+
+Reported by `P07` @ `1c8b879` as a **research** item, derived from `P11-E-25` and `P04`'s per-artefact
+readability rule. Stamping the client version against all five of its databases:
+
+> **Both deployments in which `P07-F-01` fires are `v1.16` and cannot be opened by the host's default
+> client. Both in which it does not fire are `v1.14` and open with stock tooling.**
+>
+> *"A reader reproducing my finding with default tooling can open **only** the deployments where the
+> defect is absent, and would reasonably conclude I am wrong."*
+
+**Generalised, and this is the part that reaches every process:**
+
+> **Tool capability can correlate with the evidence's own generation.** Where it does, a default
+> toolchain does not merely see *less* evidence — it sees a **biased subset**, and if the defect
+> distribution also correlates with generation, the bias runs **against** the finding.
+>
+> **This is not a completeness gap. It is a named wrong conclusion**, reachable by a competent reader
+> following correct procedure with stock tools.
+
+**Consequences P11 records:**
+
+1. **`D-3b` is amended.** Authorisation to read the host's dumps must **specify the client version and
+   require every generation to be opened**, or the reading reproduces the bias it was meant to remove.
+2. **Every negative claim in this programme resting on database evidence must state the client version
+   used and the generations actually opened.** Under `DR-NC-01`, a class `A` *verified absence* derived
+   from default tooling over one generation is bounded to that generation, **and the boundary is
+   invisible because the tool failed silently on the others.**
+3. **P11's own `P11-F-09` correction is now insufficient as written.** *"All dumps tested are readable
+   with the right client"* is true and incomplete: it does not say that **which** client was used can
+   determine **which conclusion** is reached. Corrected here.
+
 **Intake note for the Boss and for `P01`–`P10`.** If peer packages have collectively treated database
 evidence as unavailable, that is a **capability claim across the programme**, and it is testable per
 artefact. **P11 asserts nothing about what any other package did** — `P04` declined to, having twice
