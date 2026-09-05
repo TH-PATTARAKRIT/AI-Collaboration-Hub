@@ -31,7 +31,11 @@ if float_compare(line.qty_invoiced, received_qty, precision_rounding=...) > 0:
 
 Three defects, all read in source: **no zero-guard on `remaining_qty`**; `invoice_lines` summed **unsigned**
 so refund lines *increase* the base; **no cancelled-bill filter**. All three contradict `_compute_qty_invoiced`
-in the same module. Entry condition is `qty_invoiced > qty_received`.
+in the same module. Entry condition is `qty_invoiced > qty_received`. **The live firing set has since been narrowed from 49 lines
+to a named 18**: of the 49 invoiced-not-received lines, **18 carry `qty_received = 0.000000`** — the exact
+zero-denominator subset for the missing guard, at unit prices to ฿3,271,028.04. *(Returns were tested as an
+alternative trigger and ruled out: 76 PO lines carry a done `to_refund` return, 49 satisfy the entry
+condition, **intersection 0**.)*
 
 **What this means for P03:** manufacturing and unbuild documents **propagate** an already-corrupt unit cost;
 they do not originate it. **P03 is a propagation route, not the owner.** P01 owns the defect.
@@ -40,46 +44,117 @@ they do not originate it. **P03 is a propagation route, not the owner.** P01 own
 
 ---
 
-## 2. THE ITEM P01 IS ACTUALLY HANDING OVER — THE KIT CORRECTION GAP
+## 2. THE ITEM P01 IS HANDING OVER — CORRECTED AFTER CHALLENGE
 
-**Module:** `purchase_mrp 16.0.1.0` — **INSTALLED** in the series-16 deployment (`ir_module_module`).
-**Locator:** `purchase_mrp` overrides **`_get_stock_valuation_layers`**, filtering the layer set to the bill
-line's own product. The source carries the explicit comment:
+> ### THIS SECTION WAS WRONG WHEN FIRST WRITTEN. P01 REPORTED A DOCSTRING AS BEHAVIOUR.
 
-> *"Do not handle the invoice correction for kit. It has to be done manually."*
+**Module:** `purchase_mrp` — manifest `'version': '1.0'` → `16.0.1.0`, **INSTALLED**, and
+**`'auto_install': True`** — it installs itself wherever `mrp` and `purchase_stock` coexist. **P03 cannot
+treat it as opt-in.**
 
-**Consequence in principle:** a **kit** purchase does not receive the automatic invoice price-difference
-correction that a non-kit purchase receives. The correction is left to a manual step.
+**Locator:** `purchase_mrp/models/account_move.py:10-14`, series-16 core `odoo-16.0+e.20230401`.
+**The whole method:**
 
-### 2.1 In THIS deployment it is LATENT — with the measurement
+```python
+def _get_stock_valuation_layers(self, move):
+    """ Do not handle the invoice correction for kit. It has to be done
+    manually """
+    layers = super()._get_stock_valuation_layers(move)
+    return layers.filtered(lambda svl: svl.product_id == self.product_id)
+```
+
+### 2.1 What P01 said, and what the code does
+
+**P01 said:** *"kit purchases skip the invoice price-difference correction."*
+
+**The code contains no kit predicate.** Verified: no `bom_type`, no `_bom_find`, no `bom_line_id`, no
+`phantom` anywhere in the file. **The word "kit" exists only in the docstring.** The filter is
+**unconditional** and applies to **every vendor-bill line in every deployment where the module is installed**.
+
+**And the author knew the difference:** the module's other three overrides **do** gate on kits —
+`purchase.py:57`, `purchase.py:82` and `stock_move.py:28` all call
+`_bom_find(..., bom_type='phantom')`. **This one was not gated.**
+
+**The mechanism:** the layer population comes from `purchase_stock/models/account_move_line.py:10-13`
+(`_get_valued_in_moves` → `self.purchase_line_id.move_ids`), keyed to the **PO line's** product. The filter
+compares against **the bill line's** product. **When those differ, `layers` empties**, and
+`stock_account/models/account_move.py:290-292` takes `if not layers: continue` — **the correction is silently
+skipped, with no kit involved.**
+
+### 2.2 "LATENT here" is withdrawn — the filter is LIVE in this deployment
+
+| Measure | Value |
+|---|---|
+| `account_move_line` with a `purchase_line_id` *(positive control)* | **14,335** |
+| …bill product **==** PO-line product *(control)* | 14,312 |
+| …bill product **≠** PO-line product | **23** |
+| …of those, valid product lines on posted `in_invoice` | 18 |
+| **…where the base method returns ≥ 1 layer — the filter actively drops them** | **13** |
+
+*Synthetic injection control: re-labelling a matched row to product `-999` flips it 0 → 1 and its 3 layers are
+all dropped.* **Reachability established. Materiality NOT established** — P01 has not shown these 13 would
+have produced a non-zero correction, and did not evaluate the `cost_method != 'standard'` gate.
+
+**The word "LATENT" is removed from this handoff.** It was both wrong and, as AAS-03 Expert 4 noted, **a
+severity pre-classification** — it would have ranked the item in P03's register before P03 measured anything,
+which cannot stand in the same document as *"no conclusion is implied for deployments not measured."*
+
+### 2.3 The kit census was the right answer from a test that could not see a reverted row
+
+P01 published *"983 BoMs all `type='normal'`, 0 phantom, 0 of 10,490 PO lines reference a kit."* Reproduced —
+**and insufficient**: **BoM `type` is mutable** (`max(mrp_bom.write_date) = 2026-07-11`), so a current-state
+census cannot answer *"could a BoM have become `normal` after the fact"*. **That is the identical defect P01
+already withdrew for `ir_property` in round 6** — and it was repeated here.
+
+**The receipt-time fingerprint does answer it**, and the conclusion survives on that evidence instead:
 
 | Test | Result |
 |---|---|
-| `mrp_bom` rows | **983** |
-| …of `type = 'normal'` | **983** |
-| …**phantom** BoMs (a kit) | **0** |
-| `purchase_order_line` rows referencing a kit | **0 of 10,490** |
+| Moves with `bom_line_id` NOT NULL *(positive control)* | **34,492** |
+| Moves with `bom_line_id` **AND** `purchase_line_id` NOT NULL | **0** |
+| Done purchase moves whose product ≠ PO-line product | **0 of 13,297** |
 
-**The gap cannot fire here.** *(Reported by AAS-03 Expert 4; the boundary is under targeted challenge in
-`P01_G01_CLOSURE_AAS03_CHALLENGE.md`.)*
+**No kit has ever been purchased in this deployment** — established by a control that *can* see history.
 
-### 2.2 What P03 must answer, and what P01 must not
+### 2.4 "Skip" understates it — partial overlap MIS-SCALES
 
-**P01 does not know, and does not assert:**
-- whether any other deployment in the estate uses kits;
-- whether the manual correction the comment refers to is performed anywhere;
-- what the correct RM / WIP / FG cost treatment is when a kit purchase price differs from its bill.
+The filter **truncates**; it empties only when overlap is nil. On **partial** overlap the correction is
+computed on a wrong basis: `out_qty = po_line.qty_received - sum(layers.remaining_qty)`
+(`stock_account/models/account_move.py:344`) uses the full quantity against a truncated layer set, and
+`unit_valuation_difference = price_unit - layers_price_unit[layer]` (`:360`) sets a whole-product price
+against a component layer already scaled by `_get_cost_share()`.
 
-**Questions for P03:**
-1. In deployments where phantom BoMs exist, does the kit purchase price difference reach RM/WIP/FG cost at all?
-2. Is the "manual" correction a defined procedure, or an assumption in a vendor comment?
-3. Does the P03 cost model depend on the purchase price difference having been applied before manufacturing consumes the component?
-4. Given §1, does P03's cost chain have its own guard against a corrupt incoming unit cost, or does it inherit whatever `_get_price_unit` produced?
+**P03 needs "computed on the wrong basis", not "skipped".**
 
-**Explicitly out of scope for this handoff:** no conclusion is implied for any deployment P01 did not measure.
-The only deployment measured for kit activity is `45a8e08e`.
+### 2.5 THREE FURTHER OVERRIDES P01 FAILED TO DISCLOSE
 
----
+P01 named **one** of `purchase_mrp`'s four valuation-relevant overrides. The two that matter most:
+
+| Override | Why it matters |
+|---|---|
+| `stock_move.py:19 _get_price_unit` | **wraps the exact method P01 names as the cost-explosion root cause** |
+| `purchase.py:50 _compute_qty_received` | **rewrites `qty_received`** — that root cause's *entry condition* |
+
+Both are inert in this deployment. **Both were undisclosed, and either would change how P03 reads the
+handoff.**
+
+### 2.6 What P03 must answer — and the boundary, restated
+
+**A boundary correction P01 accepts:** the writer here is
+`account.move.line._create_in_invoice_svl`, driven by a **vendor bill** — the same family P01 elsewhere calls
+its own. **Routing "kits" to P03 is right; routing this method's *non-kit* failure mode away from P01 is not**,
+because §2.1 shows **no predicate separates them**. **The split is by behaviour, not by module name:**
+
+- **P01 retains** the unconditional product-mismatch filter and its 13 live rows.
+- **P03 receives** the kit-specific question: where phantom BoMs exist, does the kit purchase price difference
+  reach RM/WIP/FG cost at all, and is the "manual" correction a defined procedure or an assumption in a comment?
+
+**Also unexplained and unowned:** how **18 bill lines came to name a different product than their PO line** at
+all. A separate defect, unmentioned before this challenge.
+
+**Explicitly out of scope:** no conclusion is implied for any deployment P01 did not measure. Before P03
+inherits any "kits are used elsewhere" premise, **both controls — the BoM census and the
+`bom_line_id ∧ purchase_line_id` fingerprint — must be re-run on the series-18 and series-19 deployments.**
 
 ## 3. EVIDENCE LOCATORS
 

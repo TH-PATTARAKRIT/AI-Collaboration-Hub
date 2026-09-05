@@ -758,3 +758,29 @@ never declared. **A bounded, unfinished measurement — not a negative result.**
 | **The reasoning defect** | **I attributed ownership by where the symptom was visible rather than by where the value was produced.** The document type at the point of observation is not evidence of origin. |
 | **Corrected** | Ownership returns to **P01**. P03 is notified as a **propagation route**, and the handoff to P03 now leads with the withdrawal so P03 does not inherit a defect that is not its own. |
 | **Rule this establishes** | **Route a defect by where the value originates, not by where it becomes visible.** A cross-process handoff made on symptom location transfers work incorrectly and delays the fix. |
+
+## `ERR-P01-48` — a docstring reported as behaviour, and a "latent" that was live
+
+| Field | Content |
+|---|---|
+| **Original finding** | The P01→P03 handoff, published this run: *"`purchase_mrp` overrides `_get_stock_valuation_layers` so that **kit** purchases skip the invoice price-difference correction… **LATENT here** — 0 of 10,490 PO lines reference a kit."* |
+| **Why wrong — first defect** | **The method contains no kit predicate.** Verified: no `bom_type`, no `_bom_find`, no `bom_line_id`, no `phantom` in the file. It filters **unconditionally** on `svl.product_id == self.product_id`. **The word "kit" exists only in the docstring, and I reported the docstring as the behaviour.** The author demonstrably knew the difference — the module's other three overrides all gate on `bom_type='phantom'`. |
+| **Why wrong — second defect** | **"LATENT here" is contradicted by this deployment's own data.** 23 bill lines name a different product than their PO line; 18 are valid posted product lines; **13 return ≥1 layer, so the filter actively drops them — with no kit involved.** Positive control 14,335 lines with a `purchase_line_id`; synthetic injection flips a matched row 0→1. |
+| **Third defect — a repeat** | The kit census (983 BoMs, all `normal`) is a **current-state** test, and BoM `type` is mutable. **It cannot see a reverted row — the identical defect withdrawn for `ir_property` one round earlier.** The conclusion survives only on a control I did not run: `bom_line_id ∧ purchase_line_id` = **0 of 34,492**. |
+| **Fourth defect** | I named **1 of 4** valuation-relevant overrides. One of the undisclosed three **wraps `_get_price_unit`** — the cost-explosion root cause — and another **rewrites `qty_received`**, its entry condition. `'auto_install': True` was also undisclosed. |
+| **How found** | AAS-03 Expert 4, targeted closure challenge. Re-derived here from source before adoption. |
+| **Architecture impact** | The handoff to P03 was **materially wrong in its central sentence** and would have sent P03 looking for a kit-specific defect that is not kit-specific. Corrected before any downstream reliance. |
+| **Rule this establishes** | **A docstring, a comment, a field label and a module name are claims about behaviour, not behaviour.** Read the body. And **never publish a severity word like "latent" in the same document that says "no conclusion is implied for deployments not measured"** — a severity pre-classification ranks another process's item before that process has measured anything. |
+
+## `ERR-P01-49` — a cross-process sentence that was false in both halves and directionally wrong
+
+| Field | Content |
+|---|---|
+| **What was drafted for P08 and P11** | *"Purchase price differences are **capitalised into inventory** and **no purchase-price-variance line reaches the P&L** in the observed path."* |
+| **Half one — false for 92.7%** | Of the 1,267 price-difference layers, **1,175 still point at the vendor bill** — `AP` journal — meaning **no GL valuation entry was ever made**. Only **92** point at an `STJ` valuation entry. Nothing is capitalised for the 1,175: their products are `manual_periodic`, so the stock subsystem posts nothing at all. |
+| **Half one — and backwards for the 92** | The 92 that did post net **−฿7,267,712.95 against `1141001 Raw material`** — a **reduction** in carried inventory — against +฿7,270,276.79 on the GRN suspense account. **"Capitalised" asserts the opposite direction.** P08 and P11 would have planned a reconciliation the wrong way round. |
+| **Half two — falsified** | `stock_move.py:380 _get_src_account` falls back to the category `stock_input`, which is **not constrained to be a balance-sheet account**: **4 of 22 configured categories point it at a P&L expense account**, and it fired twice in-path for **−฿2,563.84** on `4010002`. *Positive control: the same detector returns 9,148 P&L lines across the `STJ` journal.* Separately, **1,082 of the 1,175 bill-only layers sit on a bill line posted to a P&L account** — for 92.7% of the population the whole purchase price, difference included, is expensed on the bill. |
+| **"In the observed path"** | A **description, not a declared set**. It silently contained three bounds: the engine cannot fire on `standard`-cost products (**4 of 30 categories inherit it**); **`anglo_saxon_accounting` is FALSE**, which is the *actual* reason no named variance line exists; and one company was observed while the sentence was written as a system property. |
+| **How found** | AAS-03 Expert 3, targeted closure challenge, which also supplied the replacement statement. Re-derived here before adoption. |
+| **Architecture impact** | **Contained.** The handoffs were rewritten **before commit**; neither P08 nor P11 received the wrong version. Had `CP-06` been closed on the earlier "dispositioned OPEN" posture, both would have. |
+| **Rule this establishes** | **A sentence written for another process is a deliverable, not a summary — challenge it like one.** Both cross-process handoff sentences broken this run were written *by the closure round itself*, not inherited from research. **The riskiest text in a handoff package is the text drafted last, under the impression that the work is finished.** |

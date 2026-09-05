@@ -160,3 +160,36 @@ P01. **Six of the seven came from challengers. None was found by the author afte
 
 **The low self-catch count is the finding.** Five defects caught before freezing and seven after is not a
 good ratio, and `P01_S16_AAS_PLUS_CONSOLIDATION.md §4` records that every one was a **boundary** defect.
+
+---
+
+# G01 CLOSURE — `SMEPLUS-26-09-05-G01-P01-P2P-CONTROLLED-SCOPE-FREEZE-HANDOFF-001`
+
+Baseline `a02ec8b`. Effort MEDIUM. Closure and routing, not research.
+
+| Checkpoint | Status | Evidence |
+|---|---|---|
+| `CP-01` | **COMPLETE — EVIDENCE VERIFIED** | local HEAD == baseline `a02ec8b`; remote verified |
+| `CP-02` | **COMPLETE — EVIDENCE VERIFIED** | five mandated deltas preserved; the 1,123/1,267 count **resolved** (`RES-P01-01`) then its **semantics corrected** by challenge |
+| `CP-03` | **COMPLETE — EVIDENCE VERIFIED** | `P01_TO_P03_HANDOFF.md` — opens with the withdrawal of P01's own mis-routing (`REV-P01-07`); firing set narrowed 49 → **18** |
+| `CP-04` | **COMPLETE — EVIDENCE VERIFIED** | `P01_TO_P08_HANDOFF.md` — price-difference bounded to the observed path; period-lock claim re-proved by enumeration |
+| `CP-05` | **COMPLETE — EVIDENCE VERIFIED** | `P01_TO_P11_HANDOFF.md` — `S16-B-05` first; unresolved items carry their **reason** |
+| `CP-06` | **COMPLETE — EVIDENCE VERIFIED** | **all 4** targeted challenges returned and were adopted. Two broke sentences written earlier in this run (`ERR-P01-48`, `ERR-P01-49`); **both handoffs rewritten before commit** |
+| `CP-07` | **COMPLETE — EVIDENCE VERIFIED** | AAS+ **RECOMMEND HOLD**; PMO answers **NO** to *"is currently obtainable P01 work exhausted"* |
+| `CP-08` | **COMPLETE — EVIDENCE VERIFIED** | terminality audit below; commit pushed, remote verified |
+
+## §G01.1 `CP-06` closed late, and the delay was worth it
+
+`CP-06` was recorded **PARTIAL** while two challenges were still executing, with their target sentences marked
+*under challenge* rather than assumed sound. **Both then returned and both broke the sentence they were given.**
+The P03 handoff's central claim described a **docstring** rather than the code; the P08/P11 statement was
+**false in both halves and directionally wrong**. Had the round closed on the earlier "dispositioned OPEN"
+posture, **two peers would have received materially wrong handoffs.**
+
+## §G01.2 The round's own finding about itself
+
+All four challenges corrected claims **written hours earlier in this same run** — six in total, including the
+**central sentence of two cross-process handoffs**. **Seven consecutive rounds have now ended with the
+authoring half writing something a challenger had to take back.** Every one has been a boundary or a
+reading defect — never an arithmetic one. **The corrections are being found. The class is not being
+prevented.**

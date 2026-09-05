@@ -268,3 +268,58 @@ deployment. Routed to P03.
 
 **One count deliberately left unmerged:** 1,123 layers with non-zero `price_diff_value` (my measurement,
 verified) against 1,267 firings (Expert 4). Different units or predicates; both recorded.
+
+---
+
+# G01 CLOSURE UPDATE — `SMEPLUS-26-09-05-G01-P01-P2P-CONTROLLED-SCOPE-FREEZE-HANDOFF-001`
+
+## G.1 TERMINAL STATE
+
+`G01-P01 READY FOR CONTROLLED HANDOFF — RESEARCH SCOPE FROZEN FOR CURRENT EVIDENCE / OPEN DEPENDENCIES ROUTED`
+
+**Broad** research is frozen — both examining experts agree no estate sweep is justified.
+**Currently obtainable P01 work is NOT exhausted**, and PMO records that explicitly.
+
+## G.2 WHAT THE FOUR CLOSURE CHALLENGES DID
+
+**Six claims written in this closure run were corrected**, including **the central sentence of two
+cross-process handoffs** — both rewritten **before commit**, so no peer received a wrong version:
+
+| Broken | Corrected to |
+|---|---|
+| P03: *"kit purchases skip the correction; LATENT here"* | **No kit predicate exists** — the filter is unconditional and **live on 13 rows**. `ERR-P01-48` |
+| P08/P11: *"capitalised into inventory / no P&L variance"* | **1,175 of 1,267 layers never reach the GL**; the 92 that do net **−฿7,267,712.95** (a *reduction*) and put **−฿2,563.84 on a P&L account**. `ERR-P01-49` |
+| *"144 layers where the engine produced ฿0.00"* | The engine **cannot** emit a zero row; the 144 are where **the bill matched the PO but the layer was valued differently** — the diagnostic subset |
+| *"No period lock of any kind"* | Re-proved by enumerating **all three** locking surfaces; the claim survives |
+| *"0 of 10,490 PO lines reference a kit"* | Right answer, **insufficient test** — BoM type is mutable; the surviving control is `bom_line_id ∧ purchase_line_id = 0 of 34,492` |
+| C-9 bounds only negatives | It bounds **affirmative** claims too |
+
+## G.3 THE NEW MATERIAL DELTA — INSIDE EVIDENCE ALREADY ON DISK
+
+> **Six rounds established what the GRNI account IS. Not one established what is IN it.**
+
+Only **~45%** of its gross movement is PO-driven, and **51 items across 28 manual entries carry
+−฿1,742,591,244.82** of chart-of-accounts reclassification — the largest single component of P01's own
+headline account, **never mentioned in six rounds**. Their operator-written reason text is the
+account-mapping history `ir_property` provably cannot show.
+
+## G.4 NEXT EXACT ACTION
+
+> **Execute `S16-B-06` — the GRNI origin decomposition — starting with the 28 reclassification entries.**
+> **No new extraction is required.** Then `S16-B-07`: open `mail_tracking_value` (571,522 rows), the one
+> artefact that can test *immutable reversal*, *no lock date*, and *WHT posted after the rate was zeroed* —
+> three surviving conclusions that are claims about what happened to records **over time**.
+
+**Do NOT start P03, P08 or P11.** They hold the routed items with their own owners.
+
+## G.5 METHOD RULES ADDED THIS RUN
+
+> **A docstring, a comment, a field label and a module name are claims about behaviour, not behaviour.**
+> Read the body. (`ERR-P01-48`)
+
+> **Never put a severity word — "latent", "minor", "critical" — in a handoff that also says
+> "no conclusion is implied for deployments not measured."** It pre-ranks another process's item before that
+> process has measured anything.
+
+> **The riskiest text in a handoff package is the text drafted last, under the impression that the work is
+> finished.** Both handoff sentences broken this run were written by the closure round itself. (`ERR-P01-49`)

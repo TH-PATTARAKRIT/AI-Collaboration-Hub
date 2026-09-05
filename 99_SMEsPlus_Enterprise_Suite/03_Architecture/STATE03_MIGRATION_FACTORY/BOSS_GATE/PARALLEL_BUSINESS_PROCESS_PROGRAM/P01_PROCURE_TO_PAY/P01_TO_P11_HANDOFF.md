@@ -48,10 +48,10 @@ No evidence the module ran in the series-16 deployment (every target table popul
 | Valuation policy is a genuine **mixed population** (15 of 30 categories `real_time`); policy explains the linkage split | both `ir_property` scopes read; coverage control 0 of 74,982 |
 | GRNI account: **13,666 posted items, posted-only net −฿7,048,692.08**; `reconcile='f'` | a swept suspense account, not an item-matched bridge |
 | Correction is **immutable reversal** — 5,115 pairs, 0 unresolvable originals | healthiest correction profile measured in the estate |
-| **No period lock of any kind** on 169,143 posted entries | — |
+| **No lock date set on any of the archive's three locking surfaces**, on 169,143 posted entries | `res_company` (3 fields NULL) + `account_change_lock_date` (**0 rows**) + `account_fiscal_year` (4 rows — boundaries, not locks). Enumerated after challenge; the earlier phrasing *"no period lock of any kind"* was tested against **one** surface |
 | AP **97.89% reconciled**; open residual splits by state (§4 of the P08 handoff) | positive control: 0 of 52,996 reconciled items carry a residual |
 | Cost-explosion root cause is **`purchase_stock/_get_price_unit`** — P01's own path, conditions live | source read line by line |
-| Price differences **capitalised into inventory**, no P&L variance line observed | 1,267 fired / 1,123 material |
+| Price differences: **1,175 of 1,267 layers never reach the GL**; the 92 that do net **−฿7,267,712.95 against Raw material** (a *reduction*) and put **−฿2,563.84 on a P&L account**; **1,082 of the 1,175 sit on a bill line posted to P&L** | **The earlier wording *"capitalised into inventory / no P&L variance"* was FALSE IN BOTH HALVES and is replaced — `ERR-P01-49`.** See `P01_TO_P08_HANDOFF.md §1.1` |
 | WHT: a rate record **named `WHT3%` valued `0`**, 2,038 payments, ฿21,556,228.06 posted after zeroing — **amounts hand-entered** | verified |
 | Receipt→bill identity is **document text, not a foreign key** | structural |
 
@@ -81,11 +81,31 @@ No evidence the module ran in the series-16 deployment (every target table popul
 | **~40–45 valuation layers** genuinely unexplained | after 245 of 296 resolved as `consu` and 1,209 as price-difference layers |
 | **`S16-B-05`** | §1 — untested in the series-18 and series-19 deployments |
 | **Advance→bill deduction lineage** | populations measured, lineage not; **P05 disagreement preserved unresolved** |
-| Thai WHT statutory correctness | **six items routed to P07**; P01 states no position on Thai law |
+| Thai WHT statutory correctness | **six items routed to P07** — and, per AAS-03 Expert 3, they were **counted but never enumerated** in a closure-only document, so a recipient could not verify or route them. They are `E3-F-12`, `E3-F-16`, `E3-F-17`, `E3-F-18/-19`, `E3-F-20`, `E3-F-23/-24`, anchored at `_expert_out5/EXPERT_3.md:785-796`. P01 states no position on Thai law |
 
-**A count P01 DID resolve this run, cheaply, from open evidence:** 1,267 = `price_diff_value IS NOT NULL`
-(the engine fired); 1,123 = non-zero. **1,267 − 1,123 = 144** layers where it ran and produced exactly ฿0.00.
-Both correct, different predicates. **Not forced.**
+**A count P01 resolved this run — and then had its interpretation corrected.**
+1,267 = `price_diff_value IS NOT NULL`; 1,123 = non-zero; difference **144**. **The arithmetic stands. The
+reading of the 144 was wrong.**
+
+They are **not** "the engine producing ฿0.00". The engine cannot produce a zero row — `stock_account/models/
+account_move.py:360-362` guards with `if float_is_zero(unit_valuation_difference * qty_to_correct, …): continue`
+**before** the row is assigned. Verified: **of all 1,267 price-difference layers, `value == 0.00` on 0**
+(positive control: 3,865 layers with `value == 0.00` exist elsewhere in the 74,982).
+
+The two columns measure **different deltas**:
+
+| Column | Delta |
+|---|---|
+| `value` | bill price vs **the receipt layer's own recorded unit cost** |
+| `price_diff_value` | **PO price vs bill gross price** |
+
+So `price_diff_value = 0` means **the bill agreed with the purchase order** — while the receipt layer was
+still valued at a different unit cost. **The 144 carry real money: `value` sums to −฿5,957,842.04**
+(abs ฿12,764,989.32; min −฿4,703,359.50; max ฿923,692.00).
+
+> **The 144 are the population where billing was correct and valuation was wrong — the exact signature of the
+> cost-explosion root cause in `_get_price_unit`. P01 filed them as benign residue. They are the diagnostic
+> subset.** Routed to **P08** and retained by **P01** for `S16-C-14`.
 
 ---
 

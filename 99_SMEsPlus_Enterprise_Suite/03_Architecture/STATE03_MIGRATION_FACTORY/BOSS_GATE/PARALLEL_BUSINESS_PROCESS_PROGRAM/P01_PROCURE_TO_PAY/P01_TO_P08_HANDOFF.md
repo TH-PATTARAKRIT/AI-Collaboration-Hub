@@ -31,17 +31,64 @@ Checkpoint `CP-04` · Baseline `a02ec8b` · Deployment `45a8e08e` (`iSMEs`, SWR,
 
 *(6 further price-difference account rows are configured at `product.template` level.)*
 
-### 1.1 The statement P01 hands over, bounded exactly
+### 1.1 THE SENTENCE P01 FIRST WROTE HERE WAS FALSE IN BOTH HALVES — REPLACED
 
-> **In the observed path, purchase price differences are carried on the stock valuation layer
-> (`price_diff_value`) and no purchase-price-variance line reaches the profit and loss account.**
+P01 drafted: *"purchase price differences are capitalised into inventory and no purchase-price-variance line
+reaches the P&L in the observed path."* **AAS-03 Expert 3 falsified both clauses; re-derived here.**
 
-**What P01 does NOT claim:** that no P&L account anywhere receives a purchase price effect by another route;
-that the amounts are correctly capitalised; or that this is a defect. *(This sentence is under targeted
-challenge for semantic overstatement — see `P01_G01_CLOSURE_AAS03_CHALLENGE.md`.)*
+| Where the 1,267 price-difference layers actually point | Layers |
+|---|---|
+| Still at the **vendor bill** (`AP` journal) — **no GL valuation entry was ever made** | **1,175 (92.7%)** |
+| At an **`STJ` Inventory Valuation** entry — a GL entry exists | **92 (7.3%)** |
 
-**For P08:** whether capitalising rather than expensing purchase price variance is the intended policy, and
-what it does to inventory carrying value and margin, is **P08's judgement and ultimately a Boss decision.**
+*Mechanism: `_prepare_in_invoice_svl_vals` is born pointing at the bill; only when
+`_validate_accounting_entries` does **not** skip the product (i.e. it is `real_time`) does the valuation entry
+overwrite `svl.account_move_id`. **The field is therefore a decisive discriminator** — and it is not
+confusable with the `S16-B-05` deletion hypothesis, which would leave it **NULL**, not pointing at a live
+posted bill.*
+
+**The 92 that did post move inventory DOWN, not up:**
+
+| Account | Type | Net |
+|---|---|---|
+| `1141001 Raw material` | asset_current | **−฿7,267,712.95** |
+| `2900000 Goods Receipt Note(GRN)` | liability_current | +฿7,270,276.79 |
+| **`4010002 Consumption of raw materials`** | **expense_direct_cost** | **−฿2,563.84** |
+
+**"Capitalised" asserts an increase in carried inventory. The observed net is a ฿7.27m reduction** — P08 and
+P11 would have planned a reconciliation in the wrong direction.
+
+**And a P&L line does exist.** `stock_move.py:380` `_get_src_account` falls back to the category's
+`stock_input`, which is **not constrained to be a balance-sheet account** — **4 of 22 configured categories
+point it at a P&L expense account**, and it fired twice in-path for −฿2,563.84.
+*Positive control: the same detector returns 9,148 P&L lines across the whole `STJ` journal, so "2" is a
+measurement, not a dead query.*
+
+**For the 1,175 with no GL entry, the price sits in the P&L by construction** — a `manual_periodic` product
+produces no receipt entry and no GRNI leg, so the vendor bill debits its own line account at the billed
+price. Resolving those lines: **1,016 expense + 66 income + 90 asset + 3 liability — 1,082 of 1,175 (92.1%)
+on a P&L account.**
+
+> ### THE REPLACEMENT STATEMENT P08 AND P11 SHOULD CARRY
+>
+> In this deployment the price-difference engine fired on **1,267** valuation layers. **92** — products in the
+> 15 `real_time` categories — produced an `STJ` journal entry, netting **−฿7,267,712.95 against
+> `1141001 Raw material`** and **+฿7,270,276.79 against `2900000 GRN`**, with **2 lines landing on the P&L
+> account `4010002`**; **5 of those 92 carry an `svl.value` their own entry does not carry.** The remaining
+> **1,175 produced no journal entry of any kind** — their products are `manual_periodic` — and **1,082 of
+> them sit on a vendor-bill line posted to a P&L account.** A separately-identified purchase-price-variance
+> line does not exist **because `anglo_saxon_accounting` is FALSE** — that is **not** evidence that purchase
+> price differences are kept out of the P&L. Products in the **4 categories inheriting
+> `cost_method='standard'`** are outside this statement entirely.
+
+**Recorded as `ERR-P01-49`.**
+
+### 1.2 "In the observed path" was a description, not a declared set
+
+The phrase bounded nothing. Three bounds it silently contained: the engine **cannot fire on `standard`-cost
+products at all** (`account_move.py:59`), and **4 of 30 categories inherit `standard`**; **anglo-saxon is off
+company-wide**, which is the actual reason no named variance line exists; and **one company** was observed
+while the sentence was written as a system property.
 
 ---
 
@@ -71,7 +118,7 @@ what it does to inventory carrying value and margin, is **P08's judgement and ul
 
 | Item | Measurement |
 |---|---|
-| **Period locks** | `period_lock_date`, `fiscalyear_lock_date`, `tax_lock_date` — **all NULL**, on **169,143 posted entries**. No control exists |
+| **Period locks — now enumerated across every surface in the archive, not one** | Three surfaces exist and all were checked: `res_company.period_lock_date` / `fiscalyear_lock_date` / `tax_lock_date` — **all NULL**; the lock-date wizard table `account_change_lock_date` — **0 rows**; `account_fiscal_year` — **4 rows** (Y2023-2024, Y2024-2025, งบเพิ่มเติม 25, Y2026). **A fiscal year defines period boundaries, not a lock.** Corrected phrasing: **no lock date is set anywhere, on 169,143 posted entries** — and that is now proven by enumeration rather than asserted from one table |
 | Bills posted **earlier** than their own invoice date | **5,601 of 36,865 (15.19%)**, p10 = −6 days, min −105 |
 | Bills in a **different month** from their invoice date | **2,037 (5.53%)** |
 | Bills posted > 31 days after | 25 |

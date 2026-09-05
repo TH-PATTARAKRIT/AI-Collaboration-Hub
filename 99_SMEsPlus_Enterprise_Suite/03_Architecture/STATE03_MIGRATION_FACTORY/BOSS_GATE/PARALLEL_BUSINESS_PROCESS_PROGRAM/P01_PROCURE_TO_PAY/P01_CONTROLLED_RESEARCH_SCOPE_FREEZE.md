@@ -32,10 +32,26 @@ design approval · authorisation to implement anything.
 | Are remaining questions answerable by more P01 sweeping? | **Mostly no.** They need runtime authorisation, statutory authority, another process's model, or a targeted test in a *named* deployment |
 | Would another broad sweep be cheap? | **No** — and the last one, correctly classified `OVERBROAD_SCAN`, ran 9h18m at a 0.048% duty cycle |
 
-**The strongest argument against freezing is stated, not hidden:** `GAP-P01-07` — **41 of 651 tables (6.3%)
-were extracted with no declared selection rule.** That is a real bound on every negative in round 6, and it is
-carried as an open dependency rather than resolved by assertion. **A targeted challenge was assigned to
-attack this freeze directly**; its result is in `P01_G01_CLOSURE_AAS03_CHALLENGE.md`.
+**The targeted challenge assigned to attack this freeze SUCCEEDED, and the freeze is narrowed accordingly.**
+
+> **Six rounds established what the GRNI account IS. Not one established what is IN it.**
+
+Decomposed by originating transaction — coverage control exact against the published 13,666 items /
+−฿7,048,692.08 — **only ~45% of the account's gross movement is purchase-order driven**, and **51 items across
+28 manual entries carry −฿1,742,591,244.82** of chart-of-accounts reclassification that six rounds never
+mentioned. Their operator-written reason text is the account-mapping history that `ir_property` provably
+cannot show. **It was in an already-extracted table the whole time.**
+
+Separately, **`mail_tracking_value` — 571,522 rows — has never been opened**, and three surviving conclusions
+(*immutable reversal*, *no lock date*, *WHT posted after the rate was zeroed*) are claims about what happened
+to records **over time**.
+
+**Therefore this freeze covers BROAD research only.** Both examining experts agree no estate sweep is
+justified. **Currently obtainable P01 work is NOT exhausted**, and the narrow continuation is registered as
+**`S16-B-06`** and **`S16-B-07`**, owned by P01, with exact next actions requiring **no new extraction**.
+
+`GAP-P01-07` is also corrected: **41 of 651 tables (6.3%) bounds affirmative claims, not only negatives.**
+That was the wording used when this document was first written, and it was too generous to itself.
 
 ---
 
@@ -74,9 +90,13 @@ not improving. It is the single most useful thing P01 hands downstream.
 
 ## 5. FREEZE CONDITIONS
 
-**In force from this commit.** P01 will not open a new broad sweep. P01 will still:
+**In force from this commit.** P01 will not open a new **broad** sweep. **This is not a statement that P01
+work is finished — PMO records that it is not.** P01 will still:
 - answer targeted questions from P03, P05, P06, P07, P08 or P11 against **already-extracted** evidence;
-- execute `S16-B-02` (advance lineage), which needs **no new evidence**;
+- execute **`S16-B-06`** (GRNI origin decomposition and the 28 reclassification entries) and **`S16-B-07`**
+  (`mail_tracking_value`), both of which need **no new extraction**;
+- execute `S16-B-02` (advance lineage) if materiality warrants — Expert 1 measures the exposure as
+  **immaterial here**: 9 payments, −฿1,534,955.07, against 14,258 reconciled;
 - act immediately on any Material-Delta trigger in `P01_FINAL_OPEN_DEPENDENCY_REGISTER.md`.
 
 **P01 has not started, and will not start, P03, P08 or P11 work. No merge to `SMEsPlus` has occurred.**
