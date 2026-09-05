@@ -24,7 +24,7 @@ Fifteen material unknowns, every one dispositioned, none unclassified. Seven are
 
 ### `EC-04` Tolerance-Zero Closed — **NOT SATISFIED**
 
-**Deployed evidence added after `P10-R-08` bounds the realised exposure without closing the criterion.** In the two deployed databases that carry the function, zero recognition entries have ever been generated, all 44 companies hold one identical configuration (so the allocation-policy defect cannot currently diverge), and the chart of accounts is almost unshared (so the cross-company defect would most likely fail loudly today). None of that reproduces or refutes the code behaviour: reading stored data is a layer above reading source and a layer below running the system.
+**Deployed evidence added after `P10-R-08` bounds the realised exposure without closing the criterion.** In the two deployed databases first examined, zero **deferral** entries have ever been generated — **corrected from "recognition entries", `34` `W-14`: P10 counted 769 asset schedules across the four archives, so the broad statement was false and only the narrow one is true** — all 44 companies hold one identical configuration (so the allocation-policy defect cannot currently diverge), and the chart of accounts is almost unshared (so the cross-company defect would most likely fail loudly today). None of that reproduces or refutes the code behaviour: reading stored data is a layer above reading source and a layer below running the system.
 
 Two company-boundary defects are source-verified and **not reproduced by execution**:
 - a company-scoped allocation policy resolved from the executing scope rather than the owning scope, reachable through the automatic posting routine even in a single-company-per-user tenant;

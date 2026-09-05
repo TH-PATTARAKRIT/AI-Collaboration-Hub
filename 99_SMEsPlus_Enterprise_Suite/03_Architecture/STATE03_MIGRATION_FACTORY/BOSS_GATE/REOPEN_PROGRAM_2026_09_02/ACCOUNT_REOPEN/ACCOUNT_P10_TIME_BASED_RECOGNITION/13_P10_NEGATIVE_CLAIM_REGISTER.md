@@ -60,3 +60,19 @@ Three claims were rewritten as a result of this scan: `NC-02` (broad → narrow)
 | `NC-26` | "No company in the estate uses the grouped generation path." | As written, bounded to the 44 companies of each of the two databases. | **A** within that scope | Two databases of an estate whose full size is unknown. |
 | `NC-27` | "The fourth deployed archive contains no P10 structures." | **Must not be written.** | **C — NOT SEARCHED** | The host's tooling cannot open its archive format. |
 | `NC-28` | "The chart of accounts is not shared in the deployed databases." | "1 account of 544 in one database and 0 of 544 in the other belong to more than one company; the schema permits sharing and carries no scalar company column." | **A** in that quantified form | The unquantified form would be false — one shared account exists. |
+
+
+## Corrections From the Fresh Challenge Round
+
+| # | Claim | Was | Now | Basis |
+|---|-------|-----|-----|-------|
+| `NC-15` | "No multi-company or foreign-currency deferral test exists upstream" | `A` within the reviewer's scope | **`B`** | Reviewer-supplied; the author never re-ran the pattern. Class `A` means *verified* absence, and nobody in P10 verified it. `34` §2 |
+| `NC-19` | "A recurring entry never carries a recognition window forward" | `A` | **`B`** | Declares a population ("every module override across the root") with **no pattern stated**, in a package whose own enumeration pattern was disproved. A pattern claim wearing a population's clothes |
+| `NC-25` | "No deferral entry has ever been generated in databases A and B" | `A`, correctly scoped | **`A`, unchanged — but its restatement was wrong** | The claim is fine. It was restated in the gate report and handoff as *"zero **recognition** entries"*, P10's own superordinate term. **769 asset schedules exist across the four archives.** Corrected in both documents. `34` `W-14` |
+| `NC-27` | "The fourth deployed archive cannot be opened" | `C — NOT SEARCHED`, on the ground that the host's tooling cannot read it | **`E — CONTRADICTED`** | A newer tool was **already installed on the host**. P10 ran one binary and inferred a boundary. The archive opens; its contents are now class `A` within that archive. `34` `W-10` |
+| `NC-29` | *new* — "No deployed company has any lock date set" | — | **`E — CONTRADICTED`** as a whole-estate claim | True of three archives (44 + 44 + 1). **False of the fourth**, which carries four lock dates. An independent challenger asserted the whole-estate form with a positive control and was wrong, because it inherited P10's exclusion of that archive |
+| `NC-30` | *new* — "No further evidence bears on the veto" | — | **`E — CONTRADICTED`** | Asserted with no search in `32` revision 2. Falsified four times in the same round. `34` `W-26` |
+| `NC-31` | *new* — "This session has no runtime access" | — | **`C — NOT ATTEMPTED`** | Database tooling and initialised data directories are present on the host. The premise underlying three routed unknowns was never tested |
+| `NC-32` | *new* — "The declared population of deployed archives was enumerated" | — | **`E — CONTRADICTED`** | The shipped script globs one directory. At least three further deployed-database artefacts exist elsewhere on the volume, two of them earlier snapshots of databases already examined |
+
+**Class movements this round: 2 downgraded `A`→`B`, 1 withdrawn `A`→`E`, 4 new `E`, 1 new `C`. Every movement originated in independent challenge. None originated with the author.**

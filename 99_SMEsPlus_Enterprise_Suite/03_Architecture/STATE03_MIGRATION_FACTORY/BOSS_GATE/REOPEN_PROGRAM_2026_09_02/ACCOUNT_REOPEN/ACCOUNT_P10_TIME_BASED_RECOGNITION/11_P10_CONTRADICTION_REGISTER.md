@@ -135,3 +135,43 @@ Every material contradiction records: the competing claims, the evidence for eac
 | HOLD / EVIDENCE REQUIRED, routed to Accounting-Tax | 2 |
 | Declared, not resolved | 1 |
 | **Unresolved as a difference of opinion** | **0** |
+
+## `P10-C-11` — P10's process taxonomy against the published peer set
+
+| | |
+|---|---|
+| **Claim A** | The parent package: `P04` is the ledger owner; `P08` and `P09` are not P10 counterparties. |
+| **Claim B** | The published peer branch set: `P04` is Acquire-to-Retire (assets), `P08` is Record-to-Report (the ledger), `P09` is Plan-to-Analyze (analytic). |
+| **Type** | Evidence-integrity — a material population inferred rather than enumerated |
+| **Disposition** | **RESOLVED IN FAVOUR OF B.** Claim A withdrawn; see `P10-R-09`. |
+| **Aggravating context** | `P11-F-04` establishes the taxonomy is not written down anywhere in the canonical repository, so no correct source existed to check against. The defect is the *inference*, not the ignorance. |
+
+## `P10-C-12` — Is the locked-period re-date a defect or a convention?
+
+| | |
+|---|---|
+| **Claim A** | P10: it is a silent misstatement — an amount is reported in a period it does not belong to, with no record. |
+| **Claim B** | The product's own executed test asserts it as correct behaviour, which is at least consistent with a deliberate convention: catch up in the first open period. |
+| **Type** | Semantic — the same behaviour, two readings |
+| **Disposition** | **BOTH READINGS CARRIED.** The behaviour is not in dispute; its status is. `28` classifies four options without choosing, precisely because this contradiction is a decision and not a fact. |
+| **What settles it** | Nothing in the source. It is settled by the Boss choosing what period accuracy is worth relative to close integrity |
+
+## `P10-C-13` — P10's own gate independence
+
+| | |
+|---|---|
+| **Claim A** | P10 holds `EC-04` open because its tolerance-zero exposures are unreproduced. |
+| **Claim B** | Those exposures resolve into the shared posting layer, which `P08` owns and holds at 0 of 8 with 8 tolerance-zero boundaries open. On that reading P10's `EC-04` is not P10's to close at all. |
+| **Type** | Control-specific — a question about which process owns a boundary |
+| **Disposition** | **RESOLVED AS B, WITH A GUARD.** `31` records `EC-04` as structurally dependent on `P08`. The guard: the constitution forbids routing a current-scope blocker to a later wave, so P10 states the boundary is `P08`'s **scope**, not a later **wave**, and holds rather than advancing |
+| **Challenged** | This disposition was put to an independent challenger as a prosecution case in the fresh round — see `34` |
+
+### Summary, revised
+
+| Disposition | Count |
+|-------------|-------|
+| Resolved on evidence | 8 |
+| Both claims stand; inference forbidden | 2 |
+| HOLD / EVIDENCE REQUIRED, routed to Accounting-Tax | 2 |
+| Declared, not resolved | 1 |
+| **Unresolved as a difference of opinion** | **0** |

@@ -129,3 +129,24 @@ Databases: A (`BK12MAY26_2026-08-03`), B (`iEVING_2026-07-23`), C (`iSMEs_2026-0
 ### 4.1 Control applied
 
 Every zero above is reported together with the byte size of the artefact it was counted from. This control was adopted from a peer session's recorded lesson, in which an empty extraction produced six fabricated class-`A` absences caught only by a line count.
+
+## 5. Evidence Added by the Cross-Process Round and the Fresh Challenges
+
+All re-verified by P10 against primary source unless marked otherwise.
+
+| ID | Citation | Establishes | Class |
+|----|----------|-------------|-------|
+| `E-P10-077` | `addons/account_accountant/models/account_move.py:296-299` and `:323-330`, with `:604-613` | Both legs of every validation-path recognition pair receive the **same** `analytic_distribution` with opposite-signed balances | VERIFIED FACT |
+| `E-P10-078` | `addons/account_reports/models/account_deferred_reports.py:572-588` | The **grouped** path builds two *different* distributions on different grouping keys — the mirror shape does **not** hold there | VERIFIED FACT (reviewer-located, author-accepted) |
+| `E-P10-079` | `addons/account_reports/tests/test_deferred_reports.py:1513` and `:1537` | Two dedicated attribution tests exist. **`P10-F-41` is contradicted** | VERIFIED FACT |
+| `E-P10-080` | `addons/analytic/models/analytic_mixin.py:163` | The mandatory-attribution gate requires a context key supplied only by user-interface buttons — **not** a product-type-row restriction | VERIFIED FACT (reviewer) |
+| `E-P10-081` | `addons/account_asset/models/account_move.py:21`, written at `:174` and `:307`, read at eight sites in `account_asset.py` | The depreciation entry carries a populated, consumed **period-beginning date** — the asset anchors to object **and** period | **Author re-verified** |
+| `E-P10-082` | `addons/account_accountant/models/account_move.py:39-46` and `:287` | A live **move-level** anchor is set on every generated deferral entry | **Author re-verified** |
+| `E-P10-083` | `addons/account_reports/models/account_deferred_reports.py:594`, `:509`, `:526-536` | The grouped path accumulates the anchor set, stores it, and writes the full cross-product. **"Aggregation destroys identity" is contradicted** | **Author re-verified** |
+| `E-P10-084` | `addons/account/models/account_lock_exception.py:13-30` | A first-class lock-exception object exists — company, user, reason, validity window, original lock date. Option E | **Author re-verified** |
+| `E-P10-085` | `addons/account/models/account_move.py:5682-5690` | The re-date landing period branches on the sequence numbering format: month-reset → month end; **year-reset → 31 December** | **Author re-verified** |
+| `E-P10-086` | `addons/account/models/account_move.py:4921-4927` vs `:4932-4936` | The routine posts a chatter message six lines above the silent re-date. **The silence is a choice** | **Author re-verified** |
+| `E-P10-087` | Executed search of the declared reference root for any accounting-event model: **zero**, against a positive control of 216 hits for the sibling pattern | No accounting-event object **within reference root `RR-1`** | **Author-executed.** Class `A` within one root — **not** the peer's 22-root claim, which stays class `C` |
+| `E-P10-088` | Deployed archives A/B/C/D, company table, all five lock-date columns, with a positive control on populated sibling columns | **A: 0 of 44 · B: 0 of 44 · C: 0 of 1 · D: 4 of 5 set.** The re-date cannot fire in three of four deployed databases | **Author-executed** |
+| `E-P10-089` | Deployed archives, asset table row counts with artefact sizes | **36 + 36 + 685 + 12 = 769** asset schedules across the estate | **Author-executed** |
+| `E-P10-090` | Fourth deployed archive opened with a newer tool already present on the host; 26,804 table-of-contents entries | The "unreadable archive" claim is contradicted | **Author-executed** |

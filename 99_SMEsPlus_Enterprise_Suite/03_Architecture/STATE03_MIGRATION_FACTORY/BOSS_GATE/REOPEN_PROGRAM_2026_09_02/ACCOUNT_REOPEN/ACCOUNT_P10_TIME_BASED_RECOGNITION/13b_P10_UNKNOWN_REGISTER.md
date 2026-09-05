@@ -46,3 +46,28 @@ Permitted dispositions: `CLOSED` · `NON-GATING` · `ROUTED TO LATER WAVE/STATE`
 | `P10-U-18` | Will any company diverge from the single estate-wide configuration, and under whose authority? | `BOSS DECISION REQUIRED` | NON-GATING today, gating the moment it happens | The allocation-policy scope defect is dormant only because all 44 companies are identically configured. |
 
 Revised summary: **18 material unknowns, all dispositioned, none unclassified. Gating: 8.**
+
+## Unknowns Added by the Cross-Process Reconciliation
+
+| # | Unknown | Disposition | Gating? | Justification |
+|---|---------|-------------|---------|---------------|
+| `P10-U-19` | What is the authoritative `P01`–`P11` process taxonomy? | `BOSS DECISION REQUIRED` — `P11` `D-2` already names it | **NON-GATING for P10's findings, GATING for any cross-process routing** | `P11-F-04`: the taxonomy does not exist in the canonical repository. P10 mis-routed its entire dependency register because of this (`P10-R-09`) |
+| `P10-U-20` | Does any entry in the deployed archives carry a date inconsistent with its own schedule? | `ROUTED` — a query over the readable archives, not yet run | **NON-GATING** but it is the cheapest remaining evidence that would show whether the re-dating has actually occurred in the estate | Obtainable today with tooling already used this session |
+| `P10-U-21` | Do P10's scope determinations agree with `P04`'s and `P08`'s? | `ROUTED TO P11`, which owns cross-process scope reconciliation | NON-GATING for P10 | **Class `C` — NOT COMPARED.** The peer scope matrices were not read line by line; the extraction agents commissioned for it did not complete |
+| `P10-U-22` | Does the accounting-event object, once authored under `D-5`, accommodate the anchor taxonomy in `27` §2? | `ROUTED` — cannot be tested before the object exists | **GATING for `P10-D-01`** | `P10-D-01` is now sequenced behind `D-5` |
+
+Revised summary: **22 material unknowns, all dispositioned, none unclassified. Gating: 9.**
+
+
+## Corrections and Additions From the Fresh Challenge Round
+
+| # | Unknown | Disposition | Change |
+|---|---------|-------------|--------|
+| `P10-U-16` | What does the fourth deployed archive contain? | **CLOSED** | It opens with a tool already installed. Contents read: deferral structures present, transfer model absent, **four lock dates set**, one company, 12 asset schedules, zero deferral entries |
+| `P10-U-20` | Has any deployed entry been re-dated? | **PARTIALLY CLOSED, and the routing was wrong** | The decisive column had already been extracted by P10's own script and never read (`34` `W-34`). Three archives carry no lock, so the lock path cannot have fired there. The fourth carries locks and its entry dates have **not** been queried — that part remains open |
+| `P10-U-01`, `P10-U-02` | Executing reproduction of the two company-boundary defects | **RE-CLASSED** | The premise "this session has no runtime access" was **never tested**; tooling and initialised data directories are present. `C — NOT ATTEMPTED` |
+| `P10-U-23` | *new* — the second, **lock-free** re-dating path a peer records, triggered by a document-date change | `PEER DEPENDENCY OPEN`, routed to `P08` and the raising peer | **GATING for the completeness of `P10-D-02`.** Every option in `28` is framed around the lock; a ruling scoped to the lock path would leave this path untouched |
+| `P10-U-24` | *new* — is the lock-exception route available on the older estate line? | `ROUTED` | The object is absent from that line's schema, so Option E may be unavailable on part of the estate |
+| `P10-U-25` | *new* — what does the deployed estate's own installed-module manifest bound? | `ROUTED` | An artefact on the host carries the authoritative installed-module list, which would reduce a surface currently routed as `C — NOT SEARCHED` to a named, countable set |
+
+Revised summary: **28 material unknowns. 1 closed, 1 partially closed, 3 re-classed, 5 added. Gating: 10.**

@@ -111,3 +111,48 @@ Silent overwrite of contradicted or corrected findings is prohibited. Every corr
 | Of which found by the author's own review | **0** |
 | Of which found by independent challenge | 7 |
 | Of which found by reading a peer session's recorded lesson | 1 |
+
+---
+
+# CONTINUATION ROUND — `SMEPLUS-26-09-04-ACC-P10-TBR-CROSS-PROCESS-RECON-001`
+
+## `P10-R-09` — The process taxonomy was mis-assigned
+
+| | |
+|---|---|
+| **Originally written** | `10_P10_CROSS_PROCESS_OWNERSHIP.md` names **`P04` as "A2R (the ledger)"** and routes the ledger, period close, lock dates, the fiscal calendar and FX policy to it. |
+| **Why wrong** | `P04` is **Acquire-to-Retire** — the fixed-asset lifecycle, which runs a competing recognition engine. The ledger is **`P08` Record-to-Report**. The analytic dimension is **`P09` Plan-to-Analyze**. Neither `P08` nor `P09` was addressed at all, and every ledger obligation was addressed to the wrong process. |
+| **How the error was possible** | The parent package inferred the taxonomy from execution-folder names rather than from a written source. `P11-F-04` establishes that **the `P01`–`P11` process taxonomy does not exist in the canonical repository** — so there was no denominator to check against, and the inference silently substituted for one. This is the programme's standing population defect in a new place: not an enumeration of code, but an enumeration of *processes*. |
+| **Found by** | This continuation, on enumerating the published peer branch set. **Not** by the parent round's four challenges — none was scoped at the process taxonomy. |
+| **Replaced with** | `23_P10_PEER_INTAKE_REGISTER.md` §0 and the restated dependency register in `37`. Peers who ingested the parent's cross-process document are notified as `OUT-06`. |
+
+## `P10-R-10` — `P10-F-05` was under-classified
+
+| | |
+|---|---|
+| **Originally written** | The silent re-dating of a locked-period recognition entry was carried as `VERIFIED FACT` from source, with its consequence as `INFERENCE`, and the gate report used the absence of an executed reproduction to hold `EC-04` open. |
+| **What was missed** | The product ships an **executed test that asserts the behaviour**: a charge scheduled for the last day of 2020 posts as the last day of July 2021 under a mid-2021 fiscal-year lock. The parent round read the posting layer and the deferral tests but never looked for a positive control in a *sibling mechanism's* test suite. |
+| **Found by** | Peer process `P04`, which cited it; re-read line by line by P10 before adoption. |
+| **Replaced with** | `P10-F-39`. The finding is now `VERIFIED FACT with an executed positive control`, and its status changes from "defect" to **"specified behaviour"** — which is worse, not better, and changes what a remedy must be. |
+| **Standing lesson reinforced** | An evidence claim needs a **positive control** — a case where the mechanism demonstrably fires. The parent round asserted the mechanism from reading it, not from watching it fire. The control existed in the repository the whole time. |
+
+## `P10-R-11` — The parent scope matrix recorded no expiry triggers
+
+| | |
+|---|---|
+| **Originally written** | `10b_P10_SCOPE_OWNERSHIP_MATRIX.md` presents thirteen scope determinations as standing facts. |
+| **Why wrong** | Three of them are taken against behaviour the programme is **obliged to change**. Under `SCP-09` such a determination is time-indexed and must record its expiry trigger, or it will be read later as a permanent fact after it has ceased to be true. |
+| **Found by** | Adopted from `P11`/`P04`; applied by P10 to its own matrix. |
+| **Replaced with** | `33_P10_SCOPE_REVALIDATION_CORR1.md` §2, which carries expiry triggers on the recognition event schema, the tenant allocation standard, and recognition attribution. |
+
+## Correction arithmetic — cumulative
+
+| | Count |
+|---|-------|
+| Material corrections to the primary author's work | **11** |
+| Found by the author's own review | **0** |
+| Found by independent challenge | 7 |
+| Found by reading a peer session's recorded lesson | 1 |
+| Found by reconciling against a published peer package | **3** (`R-09`, `R-10`, `R-11`) |
+
+Eleven corrections, none self-caught. The three added this round came from a source the parent round did not have: **peers who had written the evidence P10 was reasoning about.** That is a distinct control from adversarial challenge, and it caught a class — a wrong process taxonomy, a missing positive control, a missing expiry trigger — that four adversarial challenges did not.
