@@ -28,10 +28,31 @@ The custom write-off line **does** carry the matching `tax_tag_ids` (planted at
 `CUSTOM/l10n_th_withholding_tax/wizard/account_payment_register.py:21-25`, sourced from
 `models/account.py:53`). That is why it reaches the tag-based grid and not the join-based export.
 
-> **`TX-01` FACT VERIFIED (mechanical), severity HIGH.** The divergence is verified from source by
-> AAS-03 Expert 4. **Its statutory consequence is `HOLD / EVIDENCE REQUIRED`** — this package does not
-> assert what the Revenue Department requires, only that two implementations of the same return
-> disagree on their data source and on their branch field.
+> **`TX-01` FACT VERIFIED — from source AND now measured in a production database.**
+>
+> **Empirical confirmation (author, `iSMEs` v16, 447,384 journal lines).** All seven configured
+> withholding codes point at a single account (`1137`). Of the **5,863** journal lines posted to that
+> account:
+>
+> | | Lines | `display_type` | Captured by a `tax_line_id` join? |
+> |---|---|---|---|
+> | **No `tax_line_id`** | **5,426 (92.55%)** | `product` | **NO** |
+> | Has `tax_line_id` | 437 (7.45%) | `tax` | yes |
+>
+> The enterprise PND CSV export inner-joins `account_tax ON tax.id = account_move_line.tax_line_id`
+> (`tax_report_pnd.py:29-64`). On this population it would therefore capture **437 lines and drop
+> 5,426** — **92.55% of the withholding posted to the withholding account is invisible to that export**,
+> while remaining visible to the tag-based on-screen report. The source-derived prediction and the
+> production data agree exactly.
+>
+> **Its statutory consequence remains `HOLD — STATUTORY EVIDENCE REQUIRED` and is P07's** — this
+> package does not assert what the Revenue Department requires, only that two implementations of the
+> same return disagree on their data source and on their branch field, and by how much.
+>
+> **`TX-01a` NEW CONFIGURATION FINDING.** All seven codes share **one** GL account, so the account
+> cannot discriminate rate or income type; and the code named **`WHT3%` is configured with a rate of
+> `0`** (`account_withholding_tax` rows, `iSMEs`). Whether that is deliberate is class **D**; the
+> configuration fact is class **A** in that database. Routed to P07 as `H-P07-12`.
 
 ## 3. WHT Lifecycle Chain — Subsystem B
 

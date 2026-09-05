@@ -103,6 +103,17 @@ a column named `payment_date`, declared `NOT NULL`, **carries no payment informa
 — it is a record of when the certificate was keyed. Any downstream consumer that reads `payment_date`
 as the payment's date is wrong 84% of the time. Class: **FACT VERIFIED** (`iSMEs` v16).
 
+### `TX-01` — the two-subsystem divergence — **CONFIRMED AND QUANTIFIED**
+
+Of **5,863** journal lines posted to the single configured withholding account, **5,426 (92.55%)**
+carry no `tax_line_id` (`display_type = 'product'` — the custom write-off lines) and **437 (7.45%)**
+do (`display_type = 'tax'`). The enterprise PND CSV export's inner join on `tax_line_id` would
+capture the 437 and drop the 5,426. Population: 447,384 `account_move_line` rows, `iSMEs` v16.
+Class: **FACT VERIFIED** for this database. Full statement at `07 §1`.
+
+**This is the strongest single piece of evidence in the package** — a source-derived prediction
+tested against production data and matching.
+
 ### `TX-15` — unreportable certificate forms — **CONFIRMED**
 
 `pnd53` 4,437 · `pnd3` 751 · **`pnd1` 13**, all `done`, 12 with a `payment_id`, one unlinked and
