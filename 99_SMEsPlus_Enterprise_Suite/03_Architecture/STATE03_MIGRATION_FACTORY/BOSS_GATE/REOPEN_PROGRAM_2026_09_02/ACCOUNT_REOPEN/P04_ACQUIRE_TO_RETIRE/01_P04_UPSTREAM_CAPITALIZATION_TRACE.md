@@ -755,6 +755,60 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.40 The new unit was written with the defect the old unit had just been fixed for
+
+P07 ran this package's sequence check **across every owned family** instead of the
+one its old exception list covered, and found unused numbers in **two families it
+had never looked at**. Recorded **UNDETERMINED** rather than guessed at, because
+the drafting history that would settle them is not in the package. It also
+reproduced `P04-F-140` within minutes of adopting it — writing its gap table **in
+identifier form** made three identifiers exist that had not a minute earlier.
+
+**Run the same widening here.**
+
+> **P04-F-141.** **Unit `[7]` was published one commit ago over a hard-coded list
+> of 8 families. This package owns 19.** Eleven owned numeric families were never
+> in the check — the inherited-and-attributed registers, the evidence pointers,
+> the query set, the use cases, the requirement items. **This is the defect
+> `P04-F-137` had already found and fixed for the family classification, written
+> fresh into the next unit three days of findings later.** Fixing a rule in one
+> unit does not propagate it to the next unit written: **each unit carries its own
+> denominator, and each one has to be derived.** Widened to derive from the owned
+> set: **19 families, gaps none, three dispositions declared.**
+>
+> **The widening found two, and neither is an unused number.**
+>
+> **One is two families under one stem.** The requirement items `D-1`…`D-7` are
+> this package's; `D-11` and `D-12` are **P11's Boss decisions**, attributed at
+> `P04-F-116`. The three numbers between them are not unused — they are the seam
+> between two registers that share a letter. **This is `P04-F-117` inverted**:
+> there, two families collided on one stem and every check passed; here, one stem
+> holding two families makes a gap check report a hole that does not exist. In
+> both directions **the family name is not the series** — and a per-family gap
+> check silently assumes it is.
+>
+> **The other is a bare stem this package does not own alone.** The specified-query
+> set is numbered from ten upward; **nine numbers below it are unused here and are
+> in live use by other registers in this repository**, including one that also uses
+> the number this package's set starts at. Whether the offset was chosen to dodge
+> that collision or arrived some other way is **not in the package**, so it is
+> recorded **UNDETERMINED** — P07's disposition, adopted for the same reason it
+> reached it. **What is not undetermined is the collision**: `P04-F-117` ruled
+> *rename what is yours, attribute what is inherited*, found two instances, and
+> **missed this one because the audit was scoped to the families the sweep already
+> knew about.** A third instance, registered `P04-B-49`, and it is a naming defect
+> on an owned family, not an inherited one.
+>
+> **The unused numbers in both families are written here as prose and not as
+> identifiers**, per `P04-F-140`. There is no identifier-form wording that states
+> which numbers are unused without citing them, so none is attempted. P07 walked
+> into that within minutes of recording the rule; the rule held here only because
+> it had already cost this package two commits.
+>
+> Class: **FACT VERIFIED**. Family list derived from the owned set; per-family
+> ranges enumerated; both gaps resolved against the registers that hold the other
+> half. Sweep unit `[7]` now reports **19 families** and names its dispositions.
+
 ### 6A.39 The count was false on the line that asserted it
 
 `P04-F-139` emptied the exception set. The next sweep run — the first in which
