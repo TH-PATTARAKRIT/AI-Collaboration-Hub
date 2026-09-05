@@ -164,6 +164,12 @@ honest cell for work deferred rather than done. This package has no such row
 today; the vocabulary is recorded so a future round has somewhere truthful to put
 one.
 
+**And the remedy carried the defect one level up.** The package-wide grep adopted
+to catch (b) **ran and missed two survivors**, because the pattern was narrower
+than the phrasings in use — the same enumeration-bound defect, now inside the fix
+for it. Three sessions have hit this class; the corrected step is **grep with a
+broad pattern *and* a positive control on the sweep**, never grep alone.
+
 **And defect (b) recurred within one commit of being named** (`18` `P04-REV-28`):
 the snapshot-versus-identity unit was corrected in `P04-F-83` and left standing in
 its sibling finding, its own caveat, and the blocker register. Naming a defect

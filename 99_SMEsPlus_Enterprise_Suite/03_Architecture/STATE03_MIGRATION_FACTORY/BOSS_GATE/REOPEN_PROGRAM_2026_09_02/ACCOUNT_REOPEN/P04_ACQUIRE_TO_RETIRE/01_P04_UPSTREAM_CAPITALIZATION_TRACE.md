@@ -453,16 +453,20 @@ bounded to the database named in it.
 > Templates govern the configuration of assets created from them. So the
 > databases that would seed new assets are seeded with the **opposite**
 > convention to the one in production use.
-> Class: **FACT VERIFIED**, bounded to the three databases named.
+> Class: **FACT VERIFIED**, bounded to the **five snapshots across four database
+> identities** named at §6A.1.
 
 > **P04-F-83.** **No v18-line database on this host contains a single real asset
 > record.** **Unit declared:** four v18-line **snapshots** across **three database
 > identities** (`iEVING`, `BK12MAY26`, and `iTEST02` captured twice), spanning
 > 2026-06-14 to 2026-08-03, holding **96 templates and zero assets** between them.
-> An earlier wording said *"four v18-line databases"*, which conflates snapshots
-> with identities — the same unit defect this package records nine times over. The only population of real
-> assets available anywhere is on the **older generation**.
-> Class: **FACT VERIFIED**, bounded to the five databases named.
+> The only population of real assets available anywhere is on the **older
+> generation**.
+>
+> *An earlier wording said "four v18-line databases", conflating snapshots with
+> identities — the same unit defect this package records nine times over.*
+> Class: **FACT VERIFIED**, bounded to the **four v18-line snapshots across three
+> identities** named at §6A.1, within an enumeration of all five snapshots.
 > **Reproduction caveat, with the unit declared.** The two unreadable v1.16
 > archives are **both snapshots of one identity** (`iTEST02`, a month apart). So
 > a reader on the host's default client sees **2 of 3 identities** and **2 of 4
