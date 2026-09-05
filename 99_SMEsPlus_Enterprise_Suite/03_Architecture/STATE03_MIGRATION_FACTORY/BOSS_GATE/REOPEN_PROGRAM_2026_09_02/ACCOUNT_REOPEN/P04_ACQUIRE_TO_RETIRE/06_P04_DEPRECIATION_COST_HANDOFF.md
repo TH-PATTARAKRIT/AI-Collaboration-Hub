@@ -131,7 +131,7 @@ accumulated-depreciation line is a credit; the expense line is a debit. The
 analytic amounts are computed from the signed balance and are therefore mirror
 images.
 
-> **`P04-F-49` is LATENT in the only same-generation deployment** — see `01` §6A.8 / `P04-F-99`: the analytic dimension is installed with one plan and **zero analytic accounts**, and **0 of 40,353** move lines carry a distribution, so the cancellation has never occurred there. The source finding below is unchanged; its effect is conditional on a first analytic account existing. What is live is that **no attribution exists at all**.
+> **`P04-F-49` is LATENT in `551ab874` and CONFIRMED in `4b766580`** — see `01` §6A.8 / `P04-F-99`: the analytic dimension is installed with one plan and **zero analytic accounts**, and **0 of 40,353** move lines carry a distribution, so the cancellation has never occurred **there**. **Narrowed at `P04-F-100`**: a second v18 identity (`4b766580`) holds **9 analytic accounts**, and there the netting **fires — 14 of 14 asset moves net to exactly 0.00**. The latency is a property of `551ab874`, **not of the generation**. The source finding below is unchanged and is now **measured, not derived**.
 >
 > **P04-F-49.** **They cancel — in net balance, not in existence.** Stated
 > precisely, after independent challenge sharpened it:
@@ -192,7 +192,7 @@ It does not lift it. It **changes its shape**, and makes it harder:
 
 ## 5. Mandatory analytic plans do not apply to any asset path
 
-*Latency, added at `P04-F-99`: with one plan and **zero** analytic accounts in the only v18 deployment, a mandatory plan could not bind there in any case. The source finding stands; the consequence is dormant.*
+*Latency, added at `P04-F-99` and **narrowed at `P04-F-100`**: in `551ab874` there are zero analytic accounts, so a mandatory plan could not bind there in any case. In `4b766580` accounts exist and the netting fires 14 of 14. The source finding stands; the consequence is **dormant in one deployment and observed in the other**.*
 
 Analytic-plan applicability — optional, mandatory, unavailable — is enforced
 **only when a validation flag is present in the execution context**. That flag

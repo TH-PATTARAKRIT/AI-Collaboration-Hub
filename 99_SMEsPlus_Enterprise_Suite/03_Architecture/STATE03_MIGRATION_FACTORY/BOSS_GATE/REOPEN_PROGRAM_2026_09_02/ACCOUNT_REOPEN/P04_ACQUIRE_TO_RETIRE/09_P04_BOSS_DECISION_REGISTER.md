@@ -56,7 +56,7 @@ recommendation, and this session does not decide it.**
 
 ### 4.2 `BD-02` — attribution
 
-*Measured after this section was written (`01` §6A.8, `P04-F-99`): in the only v18 deployment the analytic dimension holds **zero accounts** and **0 of 40,353** lines carry a distribution. `BD-02` is therefore breached today by **total absence of attribution**, not by the cancellation mechanism — which is real in code and latent in fact. The decision `BD-02` requires is unchanged and, if anything, more urgent.*
+*Measured after this section was written (`01` §6A.8/§6A.20, `P04-F-99`/`P04-F-100`): in `551ab874` the analytic dimension holds **zero accounts** and **0 of 40,353** lines carry a distribution. `BD-02` is therefore breached in that identity by **total absence of attribution**. **Narrowed at `P04-F-100`**: a second v18 identity (`4b766580`) holds **9 analytic accounts**, and there the netting **fires — 14 of 14 asset moves net to exactly 0.00**. The latency is a property of `551ab874`, **not of the generation**. **So `BD-02` is breached in both deployments, by two different mechanisms** — absence where the dimension is empty, cancellation where it is populated — and a design that fixes one does not fix the other. The decision `BD-02` requires is unchanged and, if anything, more urgent.*
 
 Two new facts change what "100 % attributed" costs to implement:
 

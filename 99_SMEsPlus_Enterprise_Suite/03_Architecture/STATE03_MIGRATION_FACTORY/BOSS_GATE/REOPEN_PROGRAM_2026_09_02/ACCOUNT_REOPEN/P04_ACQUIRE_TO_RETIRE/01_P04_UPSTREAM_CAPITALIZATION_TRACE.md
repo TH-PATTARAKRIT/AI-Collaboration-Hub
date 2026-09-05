@@ -745,6 +745,50 @@ table rather than by re-reading it.*
 >
 > Class: **FACT VERIFIED**, bounded to `551ab874` @ 2026-08-30. **Narrowed at `P04-F-104`**: the link mechanism works — **6 of 7** real assets are linked in a second v18 identity — so this zero is a property of *this* deployment, not of the design.
 
+### 6A.20 A correction that reached two files and not the other five
+
+P07 asked *why* one identifier carried definition-shaped rows in five files, and
+the question — not the check — found **fifteen stale restatements**: before/after
+tables whose *"after"* column had itself been superseded, in a package whose
+phrase-greps had passed, **because each row states the same figure in different
+words**. Run here as an identifier-level check over every finding this package has
+narrowed.
+
+> **P04-F-119.** **`P04-F-100` narrowed `P04-F-99` in two files and left it
+> standing in five.** When a second v18 identity was found with **9 analytic
+> accounts**, where the netting fires **14 of 14**, the latency claim was
+> corrected in `19` — the Layer-1 pack, twice — and in `10`. It was **not**
+> corrected in `06` (twice), `09`, `11`, `16` or `20`, each of which still read
+> that the dimension is empty *"in the only v18 deployment"*.
+>
+> By then there were **three** v18 identities and the phrase *"the only v18
+> deployment"* had been false for six commits.
+>
+> **Five corrections applied**, and the replacement is stronger than a date fix:
+> `BD-02` is now stated as **breached in both deployments by two different
+> mechanisms** — *absence* where the dimension is empty, *cancellation* where it
+> is populated — with the consequence that **a design that fixes one does not fix
+> the other**. That distinction was implicit in `P04-F-100` and stated nowhere a
+> reader of `09` would find it.
+>
+> **Why every earlier sweep missed it.** This package has run phrase-greps for
+> propagation four times (`18` `P04-REV-29`/`-31`), and they search **wordings**.
+> These five rows say *"the only v18 deployment"*, *"in the only same-generation
+> deployment"*, *"one plan, zero accounts"* and *"latent"* — **four wordings of
+> one superseded figure.** The identifier-level check finds them because it asks
+> *which citations of `P04-F-99` lack the qualifier `P04-F-100` added*, and that
+> question is indifferent to phrasing.
+>
+> **Fifth occurrence of the propagation class here, and the first found by
+> identifier rather than by phrase.** The rule this replaces the phrase-grep with:
+> **when a finding is narrowed, enumerate its citations by identifier and require
+> the qualifier on each — never grep for the old wording, because the wording is
+> what varies.**
+>
+> Class: **FACT VERIFIED**, 25 citations of 8 narrowed findings audited, 5
+> genuinely stale, corrected; the remainder are defining blocks stating a claim
+> before their own qualification, or revision-log rows recording history.
+
 ### 6A.19 Which findings carry the exposure
 
 `P04-F-116` partitioned the **models**. P07 went one step further and partitioned
@@ -1528,15 +1572,24 @@ P07 found it had analysed a module installed in **0 of 4** identities, while a
 the **same code** and *was* installed. Run here against `551ab874`.
 
 > **P04-F-97.** **One of the three custom modules this package's evidence
-> register names is not installed in the only same-generation deployment
-> available.** `13` §1 `EV-CUST` names three: the equipment-sequence module, the
+> register names is not installed in either v18 deployment that holds assets —
+> and in the one where it exists, it is explicitly uninstalled.**
+> *(Restated at `P04-F-119`: written when only one v18 identity was known, and
+> re-measured against the second. The finding **strengthens**.)* `13` §1 `EV-CUST` names three: the equipment-sequence module, the
 > equipment-product-stock module, and the advance-expense-request module.
 >
 > | Declared module | In `551ab874` | Deployed version |
 > |---|---|---|
 > | `equipment_sequence` | **installed** | `18.0.1.6` — matches the declared copy's manifest |
 > | `product_stock_equipment` | **installed** | `18.0.1.0` — the declared copy's `'1.0'`, series-normalised |
-> | `scgl_advance_expense_request` | **NOT INSTALLED** | — |
+> | `scgl_advance_expense_request` | **NOT INSTALLED** in `551ab874`; **present but `uninstalled`** in `4b766580` | — |
+
+> Re-measured across both v18 identities holding assets: `equipment_sequence`
+> is `18.0.1.6` and `product_stock_equipment` `18.0.1.0` **in both**, identical
+> versions; `scgl_advance_expense_request` runs in **neither**. In `551ab874` it
+> is absent from the module table entirely; in `4b766580` it is **present in the
+> addons path and never installed** — which is the stronger form, because it
+> distinguishes *not deployed* from *not available*.
 >
 > More broadly, **37 of the 65 declared custom directories are not installed
 > there** (`P04-F-93`); this names the one that a finding rests on.

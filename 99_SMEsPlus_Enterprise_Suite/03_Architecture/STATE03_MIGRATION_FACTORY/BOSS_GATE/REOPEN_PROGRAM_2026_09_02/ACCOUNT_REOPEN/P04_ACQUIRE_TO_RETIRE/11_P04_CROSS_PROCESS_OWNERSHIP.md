@@ -124,7 +124,7 @@ domain merely makes visible. **Owner: P08.**
 
 | Direction | What crosses |
 |-----------|--------------|
-| **P04 → P09** | The asset's distribution onto **both** lines of every depreciation entry, or onto neither; onto disposal entry lines; and thence into analytic lines that **net to zero** — **latent**: zero analytic accounts exist in the only v18 deployment, `P04-F-99` |
+| **P04 → P09** | The asset's distribution onto **both** lines of every depreciation entry, or onto neither; onto disposal entry lines; and thence into analytic lines that **net to zero** — **latent in `551ab874`** (zero analytic accounts, `P04-F-99`) and **confirmed in `4b766580`** (9 accounts; 14 of 14 asset moves net to 0.00, `P04-F-100`) |
 | **P09 → P04** | Only the bill line's distribution at creation, and the asset model's distribution. **No plan applicability, no mandatory check, and no account-prefix distribution rule reaches the asset** |
 
 | Business fact | Owner | Ruling |

@@ -360,7 +360,7 @@ it is a one-query check on the running system.
 
 ### 4.3 Analytic distribution
 
-*`P04-F-99`: the scope reasoning below is unaffected, but the dimension it scopes is **empty** in the only v18 deployment — one plan, zero accounts, 0 of 40,353 lines carrying a distribution.*
+*`P04-F-99`/`P04-F-100`: the scope reasoning below is unaffected. The dimension it scopes is **empty in `551ab874`** — one plan, zero accounts, 0 of 40,353 lines — and **populated in `4b766580`**, where 9 accounts exist and every distributed asset move nets to zero.*
 
 **Original position.** Analytic distribution was treated as a company-context
 matter throughout.
