@@ -1508,8 +1508,11 @@ and `P07-U-28` no longer covers them.
 As P04 said of its own closure: this is stronger than the `§16` result **only because these
 copies happen not to have diverged**, not because the method improved. The three `l10n_th`
 modules diverge by 17–179 real lines and stay under `P07-U-28`. A host-wide enumeration and
-hash of every copy of those three is executing; **it is not reported here, because a partial
-enumeration is not a result.**
+hash of every copy of those three ~~is executing; **it is not reported here, because a partial
+enumeration is not a result.**~~ **It completed for all three and is reported at `§19` —
+`l10n_th_withholding_tax` 61 copies / 20 distinct trees, `_cert` 49 / 15, `l10n_th_reports_ext`
+13 / 3 (`P07-F-76`). This sentence was stale text left standing behind its own successor
+section (`§48.2`).**
 
 ### 18.3 The fifth axis — a fact that no longer exists to be looked at
 
@@ -1661,8 +1664,11 @@ differ. Applied here it becomes a per-finding test: for `P07-F-11`, `-F-51`, `-F
 and `P07-F-63`'s source half, the question is not *which of 20 trees is deployed* but **whether
 the cited function differs across the same-generation candidates at all.**
 
-That test is executing over the v19-generation candidates and **is not reported here.**
-`P07-U-28` stands as classified until it returns.
+That test ~~is executing over the v19-generation candidates and **is not reported here.**
+`P07-U-28` stands as classified until it returns.~~ **It returned and is reported at `§21`:
+filtering the 61 copies to the 13 declaring v19 and hashing only the cited files gives **2
+candidate bodies per file, not 20**, and all four behavioural claims are discharged —
+`P07-U-28` **CLOSED on evidence** (`P07-F-78`). Stale text, dispositioned at `§48.2`.**
 
 
 ---
@@ -2249,9 +2255,12 @@ boundary available at the time does not.
   and eight of the fifteen database snapshots.
 
 A re-run of `P07-N-25` over the corrected root set — `/Volumes/iMacSys` **and** `$HOME`, all
-`.py`, with a positive control — **is executing and is not reported here.** `P07-F-50` stands
-as published until it returns; if a tenant model exists under `$HOME`, that finding is refuted
-and this section will say so.
+`.py`, with a positive control — was launched. ~~**is executing and is not reported here.**
+`P07-F-50` stands as published until it returns~~ — **superseded twice over.** The question was
+settled instead by the `ir_model` registry route (`§30`, `§31`), and the walk itself was
+**`TERMINATED — REDUNDANT CORROBORATIVE ROUTE / BLOCKED_ON_IO`** having produced **zero bytes**;
+see `§48.1` for the diagnostic evidence and the exact reason. `P07-F-50` stands **strengthened**
+on the registry route, not pending on this one.
 
 ### 28.3 P04's sharpening of `REV-M-53`, accepted
 
@@ -2311,7 +2320,9 @@ convergence cannot cover. `P07-F-87`.
    `account.move.line` / `account.payment(.register)`, three modules, five findings, three
    negatives. Nothing outside it is at risk from the source-scope boundary change.
 2. **Whole-product residue** — `P07-N-03` and `P07-N-25`, unbounded by construction, each
-   requiring its own re-run. `P07-N-25`'s is still executing.
+   requiring its own re-run. ~~`P07-N-25`'s is still executing.~~ **`P07-N-25` was re-scoped and
+   settled at `§30`/`§31` by the registry route; its filesystem re-run was terminated unfinished
+   (`§48.1`). `P07-N-03` has had no re-run and closes the round unresolved.**
 
 ### 29.3 P04's rule for what to do when a re-run succeeds, adopted
 
@@ -2383,7 +2394,9 @@ whichever way it returned. The re-scoped statement, with P04's two limits carrie
 > **record type** — which is how `P07-N-25` is phrased, and why the route fits it.
 
 The filesystem walk over both roots is no longer the load-bearing evidence and is superseded as
-the primary route; the registry answers the question the walk was asked.
+the primary route; the registry answers the question the walk was asked. **The walk was
+subsequently terminated unfinished — `TERMINATED — REDUNDANT CORROBORATIVE ROUTE /
+BLOCKED_ON_IO`, `§48.1` — and is not rerun.**
 
 ### 30.3 The near-miss check — the inversion on live counter-examples
 
@@ -2598,8 +2611,10 @@ narrowed.
 ### 33.2 What is being measured, and what is not claimed
 
 A re-run over the excluded `~/Library` subtree, same size floor, with the **widened** zip
-signature, **is executing and its result is not reported here.** No number in `§13` is amended
-until it returns.
+signature, ~~**is executing and its result is not reported here**~~ — **it returned, and it is
+the run reported at `§35` (36 artefacts), reconciled to 22 at `§36` and to 20 at `§37`.** This
+sentence was stale text left standing behind its own successor sections (`§48.2`). No number in
+`§13` is amended: `§13` remains a **floor**.
 
 **No finding moves either way.** Every database-derived finding in this package is bounded to a
 **named identity**, and all seven named identities were keyed on `database.uuid` and read. What
@@ -2661,7 +2676,10 @@ Both are in this package's census, and **the second is worse here than there.**
 ### 34.1 The suppressed walk errors
 
 `fullcensus.py` carried `os.walk(r, onerror=lambda e: None)`. Identical defect, identical
-omission: **no count was ever taken.** A measurement is executing.
+omission: **no count was ever taken.** ~~A measurement is executing.~~ **It returned:
+`3,527,728` directories traversed, `996` errors suppressed — `Library` 504, `Permission` 269,
+`Operation not permitted` 216, `Trash` 6, other 1 (`§48.2`). It confirms `P07-F-90`/`P07-F-91`
+and extends neither.**
 
 ### 34.2 The signature set was declared at three and executed at two — `P07-F-91`
 
@@ -2792,7 +2810,9 @@ The 36 are **not keyed**, **not read**, and **not counted as identities**. Keyin
 `NOT YET READ` item, not a defect in what is published — but it is now the largest single
 unexamined evidence set this package has named. **`P07-U-32` opened.**
 
-The gzip re-run of `§34.3` is still executing and is separately unreported.
+~~The gzip re-run of `§34.3` is still executing and is separately unreported.~~ **It returned:
+481 gzip archives ≥1 MB, 2 dumps found, both inside this session's own scratchpad — zero new
+estate artefacts (`§48.2`). `P07-U-32` remains open and unchanged.**
 
 
 ---
@@ -3793,3 +3813,114 @@ correction was P04's, and the correction is the one that matters.**
 
 **Both packages terminal. Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8
 exit criteria claimed, no blocker closed, no merge, no freeze.**
+
+
+---
+
+## 48. Terminal Disposition of the In-Flight Routes at Round Close
+
+This section exists because the package asserted two things at once: that the round was
+**terminal**, and that six named routes were **still executing**. Both cannot be true of a
+closed round. This is the reconciliation. **It records dispositions, not findings.** No finding
+is opened, moved, withdrawn or strengthened here, and no published count is amended.
+
+### 48.1 `P07-N-25` filesystem sweep — `TERMINATED — REDUNDANT CORROBORATIVE ROUTE / BLOCKED_ON_IO`
+
+The `.py` walk over `/Volumes/iMacSys` **and** `$HOME`, declared at `§28.2`, was **terminated by
+operator instruction** before it produced output.
+
+**Diagnostic evidence preserved, exactly as sampled before the decision:**
+
+| Observation | Value |
+|---|---|
+| Process tree | `81893` (zsh wrapper, STAT `Ss`) → `81895` (Python child, STAT `S`), cwd `…/ACCOUNT_P07_TAX_TH_2026_09_04_EXECUTION` |
+| Elapsed at sample | `02:32:08` |
+| CPU consumed | `0:49.90` total, **delta over a 10-second window: zero** |
+| CPU split | `STIME 0:37.99` / `UTIME 0:11.91` — ~3:1 system-to-user, the profile of an I/O-bound walk |
+| Scheduler state | `S` — interruptible sleep, **not** `R` |
+| Output file | `0 bytes`, mtime `13:26:29`, **unchanged across samples** |
+| Open descriptor | `3r` on `/Users/admin/Library/CloudStorage/GoogleDrive-jabsung.s@gmail.com/My Drive/00 SCG LEGACY(THA…` |
+| Classification | **`BLOCKED_ON_IO`** |
+
+The classification was reached by elimination against the declared alternatives: **not
+`LOOPING`** (a loop burns CPU; the delta was zero), **not `STALLED`** (a live read descriptor
+was held, so the process was waiting on the kernel rather than dead), **not `ACTIVE_PROGRESS`
+and not `ACTIVE_BUT_SLOW`** (zero CPU delta *and* zero output growth — slow progress is still
+progress, and there was none).
+
+**Exact reason for termination, as given:** zero CPU progress during the diagnostic sample; zero
+output growth; blocked on Google Drive CloudStorage I/O; **the `P07-N-25` question had already
+been resolved independently by the primary `ir_model` route with positive and negative
+controls**; this filesystem sweep was **corroborative, not load-bearing**.
+
+**Termination was scoped and verified.** Ownership was established before any signal was sent:
+`81893`/`81895` were confirmed as this session's task `btrz49256`; `91189`/`91192` were confirmed
+as belonging to session `dc7e2277-8e32-4e10-9e4d-ad17ee3b070d` and **left untouched**. `SIGTERM`
+was sent to `81895` then `81893`; the task reported **exit code `144`** (`128 + 16` = SIGTERM),
+and a post-kill check confirmed both target PIDs gone and both foreign PIDs alive.
+
+**What this does and does not change:**
+
+- **`P07-N-25` is not reopened.** It was settled at `§30`/`§31` by the `ir_model` registry route
+  over **7 of 7 identities, 5,133 model rows, 3 generations, zero tenant-shaped models**, with
+  `res.company` firing as a positive control everywhere and `account.tax.unit` /
+  `withholding.tax.cert` correctly ABSENT in the never-transacted lab as negative controls.
+- **`P07-F-50` stands, strengthened**, on that route.
+- **The sweep is not rerun.** A corroborative route that cannot complete against cloud-backed
+  storage adds nothing the registry route has not already supplied at a higher standard of
+  bounding — the registry route needs neither a module map nor a path set, which is precisely
+  what `P07-F-87` said made the walk unreachable.
+- **The honest residue:** the walk would have covered *files on disk*, the registry covers
+  *models in deployed databases*. A tenant model that exists in source but is installed nowhere
+  on this host would be invisible to the route that was kept. That is the same limit already
+  published at `§30.2` — *bounds the estate on this host, not the product* — and it is not
+  enlarged by the termination, because a walk that produced zero bytes would not have narrowed
+  it either.
+
+### 48.2 The other five in-flight statements, dispositioned
+
+Two of the five were **not live at all**: they had been answered by their own successor sections
+and the sentence announcing them was never struck. That is its own small lesson — **a stale
+*"is executing"* is indistinguishable, to a reader, from a running process.**
+
+None of these is a finding. Each is the disposition of a command this package declared and left
+unclosed. **No published count is amended by any of them**, because amending counts is a
+research act and this round is closed.
+
+| Declared at | Route | Disposition at round close |
+|---|---|---|
+| `§18.2` | Host-wide enumeration and hash of all copies of the three `l10n_th` modules | **RETURNED and already consumed** — it is the enumeration reported at `§19`: 61 / 49 / 13 copies, 20 / 15 / 3 distinct trees (`P07-F-76`). Stale sentence, not a live process. |
+| `§20.3` | Per-finding difference test over same-generation candidates for `P07-F-11`, `-51`, `-52`, `-57`, `-63` | **RETURNED and already consumed** — it is the claim-level test at `§21` over the 13 v19-declaring copies: **2 candidate bodies per cited file, not 20**, all four behavioural claims discharged, **`P07-U-28` CLOSED** (`P07-F-78`). Stale sentence, not a live process. A late re-run of the same route, held in this session's task output, reproduces it exactly: `l10n_th_withholding_tax` 61 copies / 13 declaring `19.x`; `models/account.py` and `models/account_move.py` **2 distinct bodies** each (excluded root ×9, DECLARED ×4); `models/tax_report_pnd.py` 2 bodies, absent in 1. **Reproduction, not a new result.** |
+| `§33.2` | Re-run over the excluded `~/Library` subtree, widened zip signature | **RETURNED and already consumed** — this is the run that produced `§35`'s 36 artefacts, reconciled to 22 at `§36` and to 20 at `§37`. `§33.2`'s *"is executing"* was stale text left behind by its own successor sections. |
+| `§34.1` | Count of the walk errors `fullcensus.py` suppressed | **RETURNED.** `3,527,728` directories traversed; **996 errors suppressed** — `Library` 504, `Permission` 269, `Operation not permitted` 216, `Trash` 6, other 1. This **confirms** the already-published `P07-F-90`/`P07-F-91`; it does not extend them. |
+| `§35.4` | Gzip re-run of `§34.3` | **RETURNED.** `481` gzip archives ≥1 MB under the declared roots; **2 database dumps found, both `PGDMP`-in-gzip inside this session's own scratchpad** (`/private/tmp/claude-501/…`) — i.e. **self-created, zero new estate artefacts**. A separate inverse-shape check over `3,133` zip archives ≥1 MB (1 unreadable) returned **0** archives with a root `manifest.json` and no root `dump.sql`. Both are **clean negatives consistent with `§38`/`§39`**; neither moves the `§13` floor. |
+
+`P07-U-32` — the 36 excluded-subtree artefacts being **not keyed, not read, not counted as
+identities** — **remains open and unchanged.** It was named as the largest unexamined evidence
+set this package holds, and it closes the round in exactly that state.
+
+### 48.3 One further item, declared unregistered
+
+The estate-vocabulary measurement of `§46`/`§47` — 1,435 of 1,505 declared-tree module names
+absent from Layer 2, 915 unreachable after prefix coverage, the third scrub component with its
+compound-name filter, both controls passing — exists **only in the scratchpad sweep script**. It
+was never written into a register and is **not registered now**, because registering it is a
+research act. It is declared here so that the gap is a **recorded state rather than a silent
+one**: the running scrub is `declared ∪ derived` per `§47.2`, which is what the Layer-1
+guarantee rests on, and that part *is* published.
+
+### 48.4 The reconciliation itself
+
+Every *"is executing"* sentence in this file has been amended in place to point here rather than
+deleted, on the standing rule that **a corrected claim is left standing with its correction
+attached.** `REV-E-91`.
+
+The defect this fixes is small and worth naming precisely: **a package can be terminal in its
+verdict and non-terminal in its instrumentation, and nothing inside it detects the
+contradiction**, because each *"is executing"* was true when written and no check ever asked
+whether it was still true at close. The sweep verifies file sets, identifiers, hashes and
+substance — **it has no unit for the package's own outstanding work.** That is the honest
+statement of it, and it is left as a statement, not converted into a finding.
+
+**Round terminal. Verdict unchanged and unchanged throughout: `RECOMMEND HOLD`, 0 of 8 exit
+criteria claimed, no blocker closed, no merge, no freeze, `AASR-P07-VETO-01` not discharged.**
