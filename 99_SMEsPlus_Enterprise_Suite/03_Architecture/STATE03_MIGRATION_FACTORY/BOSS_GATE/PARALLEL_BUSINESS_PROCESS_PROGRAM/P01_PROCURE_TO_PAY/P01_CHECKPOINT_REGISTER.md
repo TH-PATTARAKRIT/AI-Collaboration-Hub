@@ -193,3 +193,22 @@ All four challenges corrected claims **written hours earlier in this same run** 
 authoring half writing something a challenger had to take back.** Every one has been a boundary or a
 reading defect — never an arithmetic one. **The corrections are being found. The class is not being
 prevented.**
+
+## §G01.3 Background-task disposition, recorded after the terminal report
+
+The terminal report stated **0 background tasks running**. That was true of the four AAS-03 agents and
+**became untrue moments later**: a verification grep launched to re-derive Expert 4's post-publication
+addendum went to background on the Google Drive path set — the same cloud-stub I/O profile diagnosed as
+`OVERBROAD_SCAN` in an earlier round.
+
+**Dispositioned, not left running.** Its question — *are there other definitions of
+`_get_stock_valuation_layers`?* — was **already settled by an independent stronger route**: all three files
+were read directly and the chain confirmed (`stock_account:322` → `stock_landed_costs:75` →
+`purchase_mrp:10`, both overrides `.filtered()` narrowings). Under the prompt's §17 rule a secondary
+corroborative route in that state is dispositioned rather than waited on.
+
+Diagnostics preserved before termination (PID 40402, ~3 min elapsed, read-only, no side effects), then
+terminated and confirmed gone.
+
+**Recorded because the terminal report's count would otherwise have been wrong**, and a background-task count
+that drifts after publication is exactly the kind of quiet inaccuracy this register exists to catch.
