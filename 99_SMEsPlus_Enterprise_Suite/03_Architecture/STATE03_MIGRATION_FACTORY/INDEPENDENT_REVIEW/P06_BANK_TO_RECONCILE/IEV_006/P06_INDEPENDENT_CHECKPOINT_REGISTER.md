@@ -21,7 +21,8 @@
 | `CP-IEV-09` | §6 — protected items preserved | **COMPLETE.** `P06-B-08` `BOSS DECISION REQUIRED` · `P06-B-09` statutory · `P06-OQ-98` `HOLD` · `X-08` peer-owned · `AASP-VETO-07` nowhere discharged. Every apparent exception inspected individually |
 | `CP-IEV-10` | §7 — route repairs to P06, do not self-repair | **COMPLETE. Zero source-package edits.** 18 defects routed as bounded correction items |
 | `CP-IEV-11` | §9 — `AASP-VETO-07` decision | **PRESERVED.** Unavailable on the prompt's own terms *and* unsupported by the evidence |
-| `CP-IEV-12` | Publication | see `P06_INDEPENDENT_AUTO_RESUME_STATE.md` |
+| `CP-IEV-12` | Publication | **COMPLETE.** `dac6ac3` pushed to the audit branch; authoritative remote SHA verified via `git ls-remote origin refs/heads/…`, equal to local. **Research branch re-verified unchanged at `1b018c1` after the push** |
+| `CP-IEV-13` | Post-publication record | **COMPLETE** |
 
 ## 2. Claims re-tested against the frozen tree
 

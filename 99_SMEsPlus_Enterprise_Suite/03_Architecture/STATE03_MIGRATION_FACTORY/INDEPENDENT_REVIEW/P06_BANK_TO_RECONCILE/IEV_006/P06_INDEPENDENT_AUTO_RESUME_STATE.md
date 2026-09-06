@@ -9,7 +9,7 @@
 | **AUDIT BRANCH** | `audit/p06-independent-verifier-2026-09-06-001` |
 | **SOURCE BRANCH (READ-ONLY)** | `research/account-p06-bank-to-reconcile-2026-09-04-001` — **not written to; 0 files modified** |
 | **FROZEN SURFACE AUDITED** | `1b018c104001eb4683166518a6161a8cd8ab5cee` · tree `04f90a80…` · 87 files · digest `09c54632…` |
-| **PUBLISHED COMMIT** | *(written by the post-publication record below)* |
+| **PUBLISHED COMMIT** | **`dac6ac374a9445c46aa7c392c8c70ff264713f71`** — pushed to `origin` on the audit branch; authoritative remote SHA verified with `git ls-remote origin refs/heads/…` and equal to local. **The research branch head is unchanged at `1b018c1`, the frozen baseline — verified by `ls-remote` after the push.** |
 | **TERMINAL STATE** | **`P06 INDEPENDENT VERIFICATION FOUND MATERIAL DEFECT — TARGETED REPAIR REQUIRED`** |
 | **`AASP-VETO-07`** | **PRESERVED** — on two independent grounds |
 
