@@ -93,8 +93,8 @@ Its integrity is established by the commit SHA recorded in §6 and by the remote
 |---|---|
 | **Branch** | `audit/account-xrecon-2026-09-06-001` |
 | **Base** | `origin/SMEsPlus` @ `41f3b32398b1a1613fd7302873d0b29527c782f8` |
-| **Commit SHA** | `COMMIT_SHA` |
-| **Remote read-back** | `REMOTE_READBACK` |
+| **Commit SHA** | **`32912109d37117aae1e91cb612c36c67c9be70a4`** |
+| **Remote read-back** | **VERIFIED IDENTICAL** — `git ls-remote origin refs/heads/audit/account-xrecon-2026-09-06-001` returns the same SHA as local `HEAD`. All 11 files re-hashed from the published commit object: **11 of 11 byte-identical** to the working tree. Peer branches re-read after the push: **P06 `b423eff` · P08 `bd95d1d` · P09 `ec4d3d2` · P11 `dc4cc4a` — all UNCHANGED.** `origin/SMEsPlus` unchanged at `41f3b32` — **no merge** |
 | **Files published** | **11** |
 | **Peer artefacts modified** | **0** |
 | **Peer branches pushed to** | **0** |
