@@ -48,14 +48,32 @@
 ### `AR-03` — deployed module list for the target platform *(satisfied)*
 Closed by `43`: two Odoo 18 registries obtained. **No further request.**
 
+### `AR-04` — scope authorization to enumerate the unread installed code *(new, opened by `MD-03`)*
+
+| | |
+|---|---|
+| **What is requested** | Authorization to read the **167 installed modules** that `81 §2` shows lie outside this package's declared path set and were **not** examined. |
+| **Why it is not already done** | It is a **widening**, and this phase forbids widening. `MD-03` went as deep as the rule allows: it read the `_inherit` declarations of the **three** modules that inherit the P05 core models and stopped. The remaining 167 are `C — NOT SEARCHED`. |
+| **Why it matters** | Every negative claim this package makes of the form *"no X exists in the reference"* is bounded to a path set now measured at **52.9% of the installed deployment**. Those negatives are not withdrawn — they are **correctly scoped and narrower than they read**. |
+| **Exactly what would be done** | Intersect the installed list with the newly named third addons root; read only modules whose `_inherit` touches a P05 model; re-audit every existing P05 negative against the result. |
+| **Constraint** | **Read-only.** No restore, no install, no mutation. |
+| **Owner** | Boss |
+| **Affected CQ** | `CQ-P05-13` **RE-OPENED**, and the boundary of every negative in `21` / `55`. |
+
+> **`AR-04` is not a request to redo P05.** The positive findings — the counts, the version basis,
+> `TX-01`, the state model, the funding partition — rest on code and data that **were** read and do
+> not move. What moves is the **reach of the negatives**, and only those.
+
 ## 4. Disposition
 
 | | |
 |---|---|
-| CQs blocked by an authorization item | **1** — `CQ-P05-11` only |
-| CQs closed on currently obtainable evidence | **12 of 13** |
+| CQs blocked by an authorization item | **2** — `CQ-P05-11`, and `CQ-P05-13` via `AR-04` |
+| CQs closed on currently obtainable evidence | **11 of 13** |
 | Estate enumeration performed | **NONE** |
 | Mutation performed | **NONE** |
 | Live database accessed | **NONE** |
+| Authorization items open | **3** (`AR-01`, `AR-02`, `AR-04`) · **1 satisfied** (`AR-03`) |
 
-**No CQ was left waiting idle.** Every unaffected question was closed.
+**No CQ was left waiting idle.** Every question that could be closed without authorization was closed,
+and the one that could not be **honestly** left closed was re-opened.

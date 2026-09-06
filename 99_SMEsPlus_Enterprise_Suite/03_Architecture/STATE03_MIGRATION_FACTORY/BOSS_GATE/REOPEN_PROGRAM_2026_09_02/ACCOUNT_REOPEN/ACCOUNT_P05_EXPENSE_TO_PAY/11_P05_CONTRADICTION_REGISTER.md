@@ -65,3 +65,17 @@ unguarded), `RE-04` (duplicate constraint registration), `RE-05` (dead clearing 
 > tolerance-zero boundaries. This is consistent with the standing project finding that independent
 > review, not self-review, is the control that works — and `EC-07` therefore cannot be considered
 > started: this pass produced new material findings from **every** reviewer that has reported.
+
+---
+
+## G01 ADDENDUM — contradictions found in this round
+
+| ID | Contradiction | Resolution |
+|---|---|---|
+| `CN-G01-01` | `69 §B` stated *"these three collapse into one transition"* while the table **immediately above it** stated settlement readiness is *"a separate posting act"*. **Two adjacent lines of one file asserting opposite things.** | Resolved in source: approval creates the entry in draft; posting is a distinct method on a different state gate behind a different permission group. **Two of three collapse.** `RE-45`. |
+| `CN-G01-02` | `69 §B` asserted a blanket *expense, never capitalise* posting rule while `67 §4` simultaneously claimed P05 has made **no** capitalisation determination. | Carve-out added: the rule describes observed behaviour and is out of P05's authority where an asset relation is asserted. `RE-33`. |
+| `CN-G01-03` | `CI-02` (357) and `CI-03` (634) described as a clean partition, while **26 rows** carry a float-holder link and a business-funded type simultaneously. | Both counts correct on the typed field; the **record-level** partition is not clean. Those 26 are `C — NOT DECIDABLE`. `RE-39`. |
+| `CN-G01-04` | `13` declared a PATH SET that `44`'s own installed-module list contradicts on **170 of 361 rows** — two files in this package disagreeing since round 3. | `MD-03`; `CQ-P05-13` re-opened; `AR-04` raised. `RE-48`. |
+| `CN-G01-05` | *"Payable lineage is severed"* vs the claim-level key that survives on **712 of 712** entries. | Both true at different grains. Narrowed to: severed at the line, recoverable at the claim on this deployment's one-line-per-claim shape. `RE-42`. |
+
+**Five contradictions, all internal to this package, none found by the author.**

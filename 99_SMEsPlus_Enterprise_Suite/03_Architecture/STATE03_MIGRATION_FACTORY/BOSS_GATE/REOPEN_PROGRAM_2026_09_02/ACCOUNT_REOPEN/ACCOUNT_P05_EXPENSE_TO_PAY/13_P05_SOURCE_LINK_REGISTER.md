@@ -116,3 +116,32 @@ Total `__manifest__.py` under the `ENT18` parent: **1753**.
 All enumeration commands used in this package are stated inline with their **path set and pattern**,
 per the denominator rule. The AST evaluation behind `C-01` is reproduced verbatim in `14 §3` so a
 reader can re-run it without re-deriving it.
+
+---
+
+## G01 ADDENDUM — the declared PATH SET was never proven
+
+> **`RE-48`.** The PATH SET above was **declared** in this file and treated as settled from that point
+> in every subsequent round. It was never intersected with the deployed module list. `MD-03` ran that
+> intersection — using only operands this package had already published — and it fails:
+
+```
+installed modules on idemo18_uat                        : 361
+present in the declared PATH SET (ENT18 + CUSTOM)       : 191
+ABSENT from the declared PATH SET                       : 170   (47.1%)
+```
+
+### Third root, named by `MD-03` and read only for three modules
+
+| Root | Path | Read? |
+|---|---|---|
+| `T8` | `.../Odoo18/t8master/addons` | **only** `hr_expense_extract`, `hr_expense_predict_product`, `documents_hr_expense` — the three installed modules that inherit the P05 core models. **Nothing else in this root was read.** |
+
+**The remaining 167 installed modules are `C — NOT SEARCHED`** and are routed to `AR-04`. They were
+not read by decision, not by oversight.
+
+### Consequence for this register's users
+
+Positive claims sourced from `ENT18` and `CUSTOM` are unaffected — that code was read and cited by
+`file:line`. **Negative claims bounded to "the declared source roots" are bounded to 52.9% of the
+installed deployment** and must be read that way until `AR-04` is dispositioned. See `81`, `79 §3`.

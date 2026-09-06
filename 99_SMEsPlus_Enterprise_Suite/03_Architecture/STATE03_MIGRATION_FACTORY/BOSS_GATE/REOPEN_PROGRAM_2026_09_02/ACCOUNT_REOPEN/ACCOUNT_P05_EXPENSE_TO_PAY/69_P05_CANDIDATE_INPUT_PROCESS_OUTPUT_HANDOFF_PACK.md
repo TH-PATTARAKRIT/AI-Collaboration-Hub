@@ -9,6 +9,19 @@ Labels used: `FACT VERIFIED — P05` · `SUPPORTED INTERPRETATION — P05` · `C
 `CANDIDATE OUTPUT` · `CANDIDATE HANDOFF` · `UNRESOLVED — SPECIFIC EVIDENCE REQUIRED` ·
 `EXTERNAL DOMAIN BOUNDARY — DO NOT RESEARCH HERE`.
 
+> **Mapping to the A–E negative-claim classes (added after AAS-03 Expert 2 — `RE-44`).** This file ran
+> two vocabularies without stating how they relate, so a negative claim could sit in the first
+> vocabulary and silently escape the second. They are **not** interchangeable:
+>
+> | Label above | What it asserts | Carries an A–E class letter? |
+> |---|---|---|
+> | `FACT VERIFIED — P05` | a **positive** claim, reproduced from source or data | no — A–E classes negatives only |
+> | `SUPPORTED INTERPRETATION — P05` | a reading the evidence supports but does not compel | no |
+> | `UNRESOLVED — SPECIFIC EVIDENCE REQUIRED` | evidence was sought and not obtained | **yes — required** |
+> | any statement of the form *"no X exists / is published / was observed"* | a **negative** claim | **yes — required, with POPULATION + PATTERN + PATH SET + UNIT** |
+>
+> Under this mapping four rows below were non-conformant. They are corrected in place.
+
 ---
 
 ## A. CANDIDATE INPUTS
@@ -23,6 +36,29 @@ Labels used: `FACT VERIFIED — P05` · `SUPPORTED INTERPRETATION — P05` · `C
 > authorisation: a request to be allowed to incur a cost, with **no accounting effect**, deployed
 > nowhere. The `authorised` state in §B is *claim* authorisation, which **does** emit the accounting
 > fact. **They are unrelated in the evidence** and must not be conflated. Flagged by Expert 1.
+>
+> **The partition is clean on the typed field and NOT clean across the record (added after AAS-03
+> Expert 2 — `RE-39`).** The three classes above partition the population **by the typed funding
+> field**, which is what the counts measure. They do **not** partition it by the float-holder link:
+>
+> ```
+> payment_mode = 'company_account', float-holder link SET     :  26
+> payment_mode = 'company_account', float-holder link unset   : 331
+> payment_mode = 'petty_cash',      float-holder link SET     : 634
+> payment_mode = 'own_account',     float-holder link unset   :   2
+> ```
+>
+> **26 rows are typed as business-funded while carrying a float-holder link.** The two fields that
+> define `CI-02` and `CI-03` disagree on those rows. This is **not** a counting error — `CI-02` = 357
+> and `CI-03` = 634 are both correct on their stated basis — but it means the funding route of those
+> 26 records is **`C — NOT DECIDABLE` from the data alone**: a stale link left by a route change and a
+> genuine second funding path are equally consistent with what is stored. Reported by Expert 2,
+> reproduced by the author, and **not previously recorded by any file in this package.**
+>
+> **The reimbursement route has no observed claim (`RE-40`).** Both `own_account` rows are
+> **unattached to any claim** (`sheet_id` null on 2 of 2). Every statement this package makes about
+> reimbursement-route *claim* behaviour therefore rests on **source reading with zero observed
+> instances** — it is not contradicted by the data, it is **untouched** by it.
 >
 > **Counts vs classes.** The **7 Candidate Inputs** here are *input events*. `68 CQ-P05-02`'s **3
 > classes** are *classification outcomes* P05 can decide. Different axes: `CI-01` and `CI-03` are two
@@ -140,8 +176,19 @@ branches. The document state is **derived from** the accounting artefacts rather
 | **Accounting recognition** | the obligation enters the books | occurs **at approval**, in draft |
 | **Settlement readiness** | the obligation may be paid | a separate posting act |
 
-> **`PSC-01` FACT VERIFIED — P05.** In the reference these three collapse into one transition, executed
-> by a user explicitly not required to hold accounting rights. **SMEsPlus must separate them.**
+> **`PSC-01` FACT VERIFIED — P05 — CORRECTED.** **Two of these three collapse into one transition**,
+> executed by a user explicitly not required to hold accounting rights: operational approval also
+> creates the accounting entry, in draft. **Settlement readiness does not collapse with them** — it is
+> a separate method, on a different state gate, behind a different permission group, exactly as the
+> table above already said. **SMEsPlus must separate the two that are collapsed.**
+>
+> *An earlier draft read "these three collapse into one transition", contradicting the table
+> immediately above it. Caught by AAS-03 Expert 4 and re-verified by the author against the two
+> methods in source. `RE-45`.*
+>
+> **The correction does not soften the finding — it relocates it.** The collapsed pair is the
+> dangerous one: the ledger fact is emitted by the approval act itself, by an actor with no
+> accounting right. The separate posting step is the part the reference gets right.
 
 **Classification decisions.** Funding route (typed) · expense account (derived through a four-step
 fallback, one step unreachable on the business-funded route) · counterparty character · tax attributes.
@@ -170,11 +217,20 @@ settlement** as a deduction, and is reachable only on the reimbursement route.
 **Payable effect.** One obligation per claim on the reimbursement route; **one per line** on the
 business-funded route.
 
+> **This asymmetry is a source-level reading that the deployment cannot test (added after AAS-03
+> Expert 2 — `RE-41`).** Every claim on the target carries **exactly one line** — the
+> lines-per-claim distribution is `{1: 979}` with no exceptions. Where claim and line are always 1:1,
+> *"one per claim"* and *"one per line"* make **identical predictions**, so no observation on this
+> deployment can distinguish them. The asymmetry is retained as a **`SUPPORTED INTERPRETATION`** from
+> source, **downgraded from the `FACT VERIFIED` treatment it was receiving by association** with the
+> verified counts around it. A deployment with multi-line claims would be required to test it.
+
 **Correction / reversal semantics.** Three distinct cancels — **itemised at `74 §2`** (refuse a claim · cancel the accounting artefact · force-cancel from a non-accounting document) · reversal severs the claim↔entry link ·
 post-recording mutation of amount/currency/date is possible without propagation · **no correction
 event is published**.
 
-**Terminal P05 states.** `settled` · `refused` · `reset-to-draft` (lineage severed) ·
+**Terminal P05 states.** `settled` · `refused` · `reset-to-draft` (line-level lineage severed —
+**narrowed, see below**) ·
 `recorded-but-unsettled`.
 
 ---
@@ -201,8 +257,8 @@ event is published**.
 >
 > **Whether P05 can freeze (a)–(c) at settlement time, or must declare that it cannot, is a question
 > for P07 — not resolvable by P05 research.**
-| `CO-05` | **Float movement** | A named float was drawn down or replenished | holder · float account · amount · company · direction | a credit/debit to a company cash position | treasury / P06 | **SUPPORTED INTERPRETATION** — no live-posted instance observed |
-| `CO-06` | **Correction event** | A previously published P05 truth has changed | original reference · what changed · new values · reason · timestamp · actor | reversal or amendment | all consumers | **UNRESOLVED — SPECIFIC EVIDENCE REQUIRED**: **no such event is published by the reference.** Candidate output derived from the defect, not from observed behaviour. |
+| `CO-05` | **Float movement** | A named float was drawn down or replenished | holder · float account · amount · company · direction | a credit/debit to a company cash position | treasury / P06 | **SUPPORTED INTERPRETATION** — no live-posted instance observed. *Negative re-stated with its boundary after Expert 2 (`RE-43`):* class **B — searched, not observed**; POPULATION = accounting entries on `idemo18_uat`; PATTERN = an entry whose counterpart is a named float account; UNIT = one accounting entry. **Not** a claim that the reference cannot produce one. |
+| `CO-06` | **Correction event** | A previously published P05 truth has changed | original reference · what changed · new values · reason · timestamp · actor | reversal or amendment | all consumers | **UNRESOLVED — SPECIFIC EVIDENCE REQUIRED**: **no such event is published by the reference.** Candidate output derived from the defect, not from observed behaviour. *Boundary and class added after Expert 2 (`RE-43`) — this was a domain-wide negative carrying neither:* class **A within the P05 modules read** (POPULATION = the P05 modules named in `13` and `81 §3`; PATTERN = any published event carrying a correction reference; UNIT = one event definition). **Outside those modules it is class `C — NOT SEARCHED`**, and `81 §2` shows that region is 47.1% of the deployment. |
 
 ---
 
@@ -230,11 +286,40 @@ event is published**.
 |---|---|---|
 | `ORPH-01` | **`CO-06` correction event — output with no producer** | P05 *should* publish a correction event; the reference publishes none. Every consumer therefore has a correction blind spot. **Highest-value orphan.** |
 | `ORPH-01a` | **Withholding correction — no mechanism at all, not merely no event** | Added after Expert 3, who established that `ORPH-01`'s framing **understates** the withholding case. For a completed withholding certificate there is **no correction or cancellation mechanism of any kind** across the six withholding modules — only deletion, itself blocked by a restrict constraint. This is not "the event is not published"; it is **"the correction cannot be performed."** Class **A** within those six modules. |
-| `ORPH-02` | **`CI-05` pre-spend authorisation — input with no deployed producer** | The class exists in design and in source; installed in **none** of eight registries. Either an unused capability or a real gap. |
-| `ORPH-03` | **`CI-06` advance — input whose correct output has no home** | If an advance creates a receivable, the receivable's owner is undetermined: P05 creates it, but who monitors and clears it? |
+| `ORPH-02` | **`CI-05` pre-spend authorisation — input with no deployed producer** | The class exists in design and in source; installed in **none** of eight registries. Either an unused capability or a real gap. *Class letter added after Expert 2 (`RE-43`):* class **A** — POPULATION = the eight `ir_module_module` registries enumerated in `44`; PATTERN = the module `name`; UNIT = one registry row. This is a strong negative because the registry is the authority on installation, not a proxy for it. |
+| `ORPH-03` | **`CI-06` advance — input whose correct output has no home** | If an advance creates a receivable, the receivable's owner is undetermined: P05 creates it, but who monitors and clears it? *Class letter added after Expert 2 (`RE-43`):* the ownership gap is class **E — NOT AN EVIDENCE QUESTION**. No search settles it; it is a design decision reserved to PHASE B. Recording it as an unmet evidence need would have been wrong. |
 | `ORPH-04` | **`CH-05` / `CH-03` — two settlement consumers, no arbiter** | An employee obligation can be settled by payment **or** by payroll. Nothing in P05 prevents both. Duplicate-settlement risk with **ambiguous ownership**. |
 
-## F. Counts
+### Added after AAS-03 Expert 2
+
+> **`RE-42` — the severed-lineage claim is narrowed, not withdrawn.** This package framed the break at
+> the **line** grain: the line-level link from accounting line back to the cost record is null
+> **table-wide** (0 non-null rows anywhere), which is correct and reproduced twice. But the
+> **claim-level** key on the accounting entry **survives**:
+>
+> ```
+> accounting entries carrying a claim reference : 712 of 712
+> claims carrying an accounting entry           : 712 of 979
+> amount reconciles claim -> entry              : 711 of 712  (99.86%)
+> ```
+>
+> Because every claim has exactly one line, that surviving key **fully reconstructs** the
+> cost→obligation link for the 712 claims that have an entry at all. **The corrected statement:**
+> line-level lineage is severed unconditionally; claim-level lineage survives and is recoverable
+> **on this deployment's one-line-per-claim shape**, and would not be on a multi-line claim.
+> For the remaining **267 claims with no accounting entry**, no key recovers anything, because there
+> is nothing to recover to — that is `PC-01`, and it is untouched by this narrowing.
+>
+> **`DUP-07` — duplicate-candidate rows, `C — NOT DECIDABLE`.** Expert 2 found, and the author
+> reproduced, **11 groups covering 23 rows** identical on (description, employee, amount, date).
+> The descriptions are routine recurring narratives (fuel, tolls, parts transport) that would
+> legitimately repeat. **Calling them duplicates and calling them legitimate repeats are both
+> overclaims** on the fields available. Disposition **`C — NOT DECIDABLE FROM THIS EVIDENCE`**;
+> distinguishing evidence would be a receipt or document number, a quantity, or a product line.
+> This is **not** covered by `DUP-03`..`DUP-06`, which are all *"no cross-document detection control
+> exists"* findings — a different claim from *"identical rows are present."*
+
+## F. COUNTS
 
 | | |
 |---|---|

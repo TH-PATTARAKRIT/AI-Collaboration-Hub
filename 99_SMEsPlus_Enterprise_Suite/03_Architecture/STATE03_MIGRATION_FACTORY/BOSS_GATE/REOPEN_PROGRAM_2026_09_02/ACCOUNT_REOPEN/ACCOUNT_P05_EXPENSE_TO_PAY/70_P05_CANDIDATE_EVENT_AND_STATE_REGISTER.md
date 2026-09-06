@@ -29,11 +29,23 @@ as P05 events.
 |---|---|---|---|
 | **Authorised** | *May this cost be incurred / claimed?* | operational management | conflated |
 | **Recognised** | *Does this obligation exist in the books, at what date, for which company?* | accounting | **emitted by the authorisation transition, elevated** |
-| **Settlement-ready** | *May this be paid?* | accounting/treasury control | a separate posting act, but downstream of the same transition |
+| **Settlement-ready** | *May this be paid?* | accounting/treasury control | **a genuinely separate act** — a distinct method, on a different state gate, behind a different permission group |
+
+> **Correction after AAS-03 Expert 4 (`RE-45`).** The heading calls this a three-state separation, and
+> the requirement below is unchanged — but **only two of the three are conflated in the reference.**
+> Authorisation emits the accounting entry, in draft; **posting is separate**, and the reference gets
+> that part right. `69 §B` carried the stronger, wrong wording *"these three collapse into one"* while
+> its own table said otherwise; that wording is corrected there. This table was already accurate and is
+> sharpened here only to remove *"downstream of the same transition"*, which understated the separation.
+>
+> **The correction narrows the defect without weakening it.** The conflated pair is the one that
+> matters: an operational approver emits a ledger fact.
 
 > **`SR-01` CANDIDATE REQUIREMENT.** SMEsPlus must make these three **separately observable and
 > separately authorised**. An operational approver must not be able to emit a ledger fact as a
-> side-effect of approving.
+> side-effect of approving. **The binding half of this requirement is the authorisation/recognition
+> pair**; the recognition/settlement-readiness boundary already exists in the reference and needs to be
+> preserved rather than created.
 
 ## 3. State Model
 

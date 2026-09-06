@@ -121,3 +121,32 @@ package differs from those sections, **those sections govern**.
 **Two findings published by the continuation were contradicted and corrected** — see `39 RE-10`
 and `RE-11`. Any reader who encountered the figures "32 payments" or "78.5%" in commit `f0037b8`'s
 message or in an earlier draft must read those entries.
+
+---
+
+## G01 PHASE S — DOMAIN-PURE BOUNDED CLOSURE (`SMEPLUS-26-09-06-G01-P05-E2P-DOMAIN-PURE-BOUNDED-CLOSURE-002`)
+
+| File | Contents |
+|---|---|
+| `67` | Domain purity and boundary register — `DP-01`..`DP-12`, `DPC-01`..`DPC-03` |
+| `68` | Closure question register V3 — `CQ-P05-01`..`13`; material deltas `MD-01`..`MD-03` |
+| `69` | **Candidate Input / Process / Output / Handoff pack** *(mandatory key artefact)* |
+| `70` | Candidate event and state register — `EV-01`..`EV-13`, `PSC-01` |
+| `71` | Employee vs vendor obligation boundary V3 |
+| `72` | Candidate settlement-ready output |
+| `73` | Candidate accounting-event output |
+| `74` | Correction / reversal boundary V3 |
+| `75` | Scope ownership matrix V3 |
+| `76` | Open evidence and authorization register V3 — `AR-01`, `AR-02`, `AR-04` open |
+| `77` | Evidence integrity and terminality audit |
+| `78` | AAS-03 domain-pure closure challenge — four bounded experts, 18 findings |
+| `79` | AAS+ consolidation — `AAS+-VETO-01` upheld and extended |
+| `80` | PMO PHASE S closure review |
+| `81` | **Declared path set vs deployed code coverage** — `PS-01`..`PS-04` |
+| `82` | Checkpoint register G01 — 14 checkpoints |
+| `83` | Research error and revision log G01 — `RE-31`..`RE-49` |
+| `84` | Auto-resume state G01 |
+
+**Read `83` and `81` before relying on any headline in `67`–`77`.** Eighteen findings were corrected
+into those files after they were first written, and `81` changes how every negative claim in this
+package must be scoped.

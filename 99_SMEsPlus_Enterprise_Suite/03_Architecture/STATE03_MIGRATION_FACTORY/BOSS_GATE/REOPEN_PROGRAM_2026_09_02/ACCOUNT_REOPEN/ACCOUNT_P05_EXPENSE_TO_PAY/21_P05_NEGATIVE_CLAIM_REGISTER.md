@@ -96,3 +96,39 @@ routed to the Accounting-Tax track (`12 D-05`). Held items: the statutory conseq
 - Six claims are recorded as **contradicted** (`§3`); four of the six were the primary research's own,
   and two of those were caught only by independent review.
 - A mechanical scan for over-scoped negatives was run across the package: see `18 §5`.
+
+---
+
+## G01 ADDENDUM — boundary re-audit after `RE-48`
+
+Per the standing rule that **narrow negatives survive and the widest-scoped ones rot first**, every
+negative in this register was re-read against `81`'s finding that the declared path set covers 52.9%
+of the installed deployment.
+
+| Negative scope | Effect of `RE-48` |
+|---|---|
+| Bounded to a **named module** (e.g. *"this module does not define X"*) | **Unaffected.** The module was read. |
+| Bounded to a **named table or population** in an extracted database | **Unaffected.** The extraction is the authority, not the source tree. |
+| Bounded to *"the P05 modules"* or *"the declared source roots"* | **Narrowed** — still true within the roots read, now measurably narrower than it reads. |
+| Bounded to *"the reference"* with no root qualifier | **Re-scoped.** These are the ones that rot. Each now carries its root set explicitly. |
+
+### Class letters added this round (`RE-43`)
+
+| Claim | Was | Now |
+|---|---|---|
+| `CO-05` — no live-posted float movement observed | no class letter | **B** — searched, not observed; POPULATION = accounting entries on `idemo18_uat` |
+| `CO-06` — no correction event is published | no class letter, **domain-wide** | **A** within the P05 modules read; **`C — NOT SEARCHED`** outside them |
+| `ORPH-02` — pre-spend authorisation installed nowhere | no class letter | **A** — POPULATION = the eight `ir_module_module` registries in `44`; the registry is the authority on installation |
+| `ORPH-03` — the advance receivable has no owner | no class letter | **E — NOT AN EVIDENCE QUESTION.** No search settles it; it is a PHASE B design decision |
+
+### New negatives established this round
+
+| ID | Claim | Class |
+|---|---|---|
+| `PS-04` | **No sample-flagged expense exists** on `idemo18_uat`, so the entry-less lifecycle route in `hr_expense_extract` has not fired here | **A** — POPULATION 993 rows · PATTERN `sample = 't'` · UNIT one expense row · 0 matches |
+| `RE-40` | **No claim exists on the reimbursement route** — both `own_account` rows are unattached | **A** — POPULATION 2 rows · PATTERN `sheet_id` non-null · 0 matches |
+
+### Not asserted
+
+That the 167 unread installed modules contain nothing relevant. **They were not examined.**
+Asserting their irrelevance would be precisely the defect this addendum exists to correct.
