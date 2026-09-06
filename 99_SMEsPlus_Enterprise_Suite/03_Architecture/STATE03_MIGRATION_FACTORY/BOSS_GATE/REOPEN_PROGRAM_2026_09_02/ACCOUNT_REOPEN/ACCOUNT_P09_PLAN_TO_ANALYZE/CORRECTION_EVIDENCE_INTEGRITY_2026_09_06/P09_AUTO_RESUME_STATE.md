@@ -7,7 +7,7 @@
 | **PROMPT COMMIT** | `5441f8d` |
 | **BRANCH** | `research/account-p09-plan-to-analyze-2026-09-04-001` |
 | **BASELINE** | `58def04` · prior Phase-S publication `99b0d52` |
-| **CURRENT COMMIT** | recorded at `CP-P09CFINAL` |
+| **CURRENT COMMIT** | **`cfe9e10`** — targeted correction; **pushed and remote-verified** (remote SHA read back identical, working tree clean) |
 | **TERMINAL STATE** | **TERMINAL C — EVIDENCE INTEGRITY FAILURE PERSISTS — FURTHER CORRECTION REQUIRED** |
 | **PHASE** | **S**. **AI EOS = OFF.** PHASE SA / B / C not performed, not retrofitted. No Functional Design |
 | **WHAT THE ROUND ACHIEVED** | **ownership corrected and it held under attack** — ownership is a property of the **file**, not the module, proven in both directions; **10 owning files / 3 modules**, independently reproduced; the **second planning family** enumerated in full |

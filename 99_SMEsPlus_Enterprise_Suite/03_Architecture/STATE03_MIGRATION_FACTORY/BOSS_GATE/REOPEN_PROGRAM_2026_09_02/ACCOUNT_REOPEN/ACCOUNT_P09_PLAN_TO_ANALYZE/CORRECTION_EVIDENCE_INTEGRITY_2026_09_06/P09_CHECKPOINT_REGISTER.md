@@ -23,7 +23,7 @@
 | `CP-P09C12` | four bounded AAS-03 challenges on changed surfaces only | **COMPLETE — EVIDENCE VERIFIED** | 31 findings, disjoint briefs, convergent root cause |
 | `CP-P09C13` | re-verify every finding against source before adoption | **COMPLETE — EVIDENCE VERIFIED** | **31 of 31 re-verified**; 27 adopted, 3 narrowed, 1 adopted in P09's favour |
 | `CP-P09C14` | apply corrections; retain superseded wording | **COMPLETE — EVIDENCE VERIFIED** | inline in every corrected file |
-| `CP-P09CFINAL` | commit, push, verify remote, update state | **COMPLETE — EVIDENCE VERIFIED** | see `AUTO_RESUME_STATE` |
+| `CP-P09CFINAL` | commit, push, verify remote, update state | **COMPLETE — EVIDENCE VERIFIED, PUBLISHED `cfe9e10`** | remote SHA read back identical; tree clean; both mandatory scans ZERO over 121 files |
 
 ---
 
