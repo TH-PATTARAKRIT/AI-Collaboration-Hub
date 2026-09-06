@@ -93,9 +93,9 @@ Per peer-intake discipline: verify before adopting, and correct their record whe
 |---|---|
 | **P11** | `P06-B-27` is on P11's `D-3` minutes-to-close list as a UAT query. **It is closed on source evidence and needs no query.** P11 may strike it. |
 | **P11** | `P06-XC-01` (the P02 verdict conflict) is registered nowhere. `P11_CONTRADICTION_REGISTER.md` runs `P11-C-01`…`P11-C-07` with no row for it, because P11 ingested P02 and P06 in separate deltas and did not cross-read them. Raised as candidate `P11-C-08`. |
-| **P10** | `X-08` is answered and may be closed. |
+| **P10** | `X-08` is answered by P06. **Closure is P10's, and P10 still carries it `OPEN — PEER EVIDENCE` at `1fea562`. Superseded wording: *"and may be closed"* **[REV-E-18, 2026-09-06]**** |
 | **P09** | Its class-B claim about P06's widget is **correct in shape and should stay class B** — P06 confirms the overwrite mechanism and did not trace the analytic specifics. |
-| **P11** | P10 routes its close and FX dependencies to P04, while P11 and P02 route the same questions to P08. Since no P08 exists, P10's dependencies are addressed to a process that cannot answer. Flagged, not adjudicated (`OQ-93`). |
+| **P11** | P10 routes its close and FX dependencies to P04, while P11 and P02 route the same questions to P08. ~~Since no P08 exists, P10's dependencies are addressed to a process that cannot answer.~~ **CORRECTED **[REV-E-20, 2026-09-06]**: **P08 IS PUBLISHED** — `research/account-p08-record-to-report-2026-09-04-001`, 39 files, read and quoted by line in `53_`. The dependencies are addressed to a process that exists and was not asked.** Flagged, not adjudicated (`OQ-93`). |
 
 ---
 

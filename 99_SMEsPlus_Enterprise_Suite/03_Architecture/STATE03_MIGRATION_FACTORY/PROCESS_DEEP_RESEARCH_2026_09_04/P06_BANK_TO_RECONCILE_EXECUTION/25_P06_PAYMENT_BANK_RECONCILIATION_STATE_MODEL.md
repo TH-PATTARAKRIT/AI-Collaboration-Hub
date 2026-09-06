@@ -37,7 +37,8 @@ The prompt requires these determined separately. They are listed with what the r
 
    S5 is_matched ──> feeds S6's in_payment-vs-paid decision
         ▲
-        └── set True by CONFIGURATION in 2 of 3 branches
+        └── set True by CONFIGURATION in 2 of 4 top-level branches   [REV-E-21, 2026-09-06 - was "2 of 3"]
+            (4 top-level branches, 5 assignment sites; a 3rd branch is circular)
 
    S3 bank transaction state  ── DOES NOT EXIST ──
    S4 statement presence      ── implicit, never asserted ──

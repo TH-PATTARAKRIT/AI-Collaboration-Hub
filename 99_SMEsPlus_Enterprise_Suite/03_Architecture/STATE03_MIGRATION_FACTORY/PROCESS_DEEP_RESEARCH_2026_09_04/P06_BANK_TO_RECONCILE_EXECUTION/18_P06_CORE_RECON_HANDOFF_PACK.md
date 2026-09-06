@@ -13,7 +13,7 @@
 ## 1. The four things Core Reconciliation must know
 
 **H-01 — The four states P06 was asked to determine independently are not independent, and one of them does not exist.**
-Payment state and reconciliation state are mutually computed; accounting posting state is driven by the payment record rather than the reverse; and **there is no field whose meaning is "the bank confirmed this."** The nearest proxy is asserted `True` by configuration alone in two of its three branches.
+Payment state and reconciliation state are mutually computed; accounting posting state is driven by the payment record rather than the reverse; and **there is no field whose meaning is "the bank confirmed this."** The nearest proxy is asserted `True` by configuration alone in **two of its four top-level branches** (five assignment sites; a third branch is circular) **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]**. *Superseded wording: "two of its three branches".*
 → Core Reconciliation cannot read a bank-confirmation fact from this model. It must be authored.
 
 **H-02 — No custom module in this estate has ever touched the bank side.**
@@ -178,10 +178,10 @@ The body of this pack leads with *"seven confirmed defects"*. **After this conti
 | B-3 | **RELOCATE is core behaviour, not a reconciliation quirk.** P04 establishes it lives in the generic posting routine, so it reaches any P06 event that posts. |
 | B-4 | **A globally-unique outbound tracker (`iso20022_uetr`) has no inbound counterpart**, and CAMT parses the inbound end-to-end id into a free-text note. The round trip is broken at both ends. |
 | B-5 | **There is no import-batch object.** A re-import cannot be identified, audited or reversed as a unit. |
-| B-6 | **An eighth settlement door** moves cash through a bank journal with no payment object, invisible to matching (inherited from P05 `SR-04`). |
+| B-6 | ~~**An eighth settlement door**~~ → **A settlement path that moves cash through a bank journal with no payment object, invisible to matching.** **INHERITED FROM P05 `SR-04`, which had already counted it as path 5 of its own 7.** *"Eighth door" withdrawn: P06 summed two different units over two different populations* **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]** (`REV-E-12`, `55_` SDD-F-01/02). |
 | B-7 | **The custom approval estate does not cover settlement at all** — 3 modules, 46 files, 0 hits on any settlement object. `P06-B-22` restored to Class A. |
-| B-8 | **The evidence base is a filtered distribution** — 791 addons, 2 localisation packs, both Thai. Every tree-scope negative inherits that boundary (`P06-B-55`, `AASP-VETO-03`). |
-| B-9 | **The only deployment evidence available is Odoo 19**, while P06 researched v18 (`P06-B-44`). |
+| B-8 | **The evidence base is a RELOCATED distribution, not a filtered one** **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]** — 791 loadable addons of a full v18 population of **1752**; the other **961 directories (904 l10n) sit in `addons_archive`, excluded by the project's own `odoo.conf`** and since searched (`13_`:126, `56_`, `REV-E-16`). Every tree-scope negative inherits the **loadable-set** boundary (`P06-B-55`, `AASP-VETO-03`). *Superseded wording: "a filtered distribution".* |
+| B-9 | **The only deployment evidence available is Odoo 19**, while P06 researched v18 (`P06-B-44`). **NARROWED **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]**: v19 Enterprise source is available and six core findings were re-tested against it and are cross-version INVARIANT** (`51_`, `REV-E-10`). |
 
 ## B.4 Two things that must be resolved before anything is built
 
@@ -195,7 +195,7 @@ The body of this pack leads with *"seven confirmed defects"*. **After this conti
 
 ## B.6 Peer questions answered
 
-- **P10 `X-08`** — bank-side prepayments and interest accruals: **answered and closable.** Resolves by absence; no bank-interest object exists for either process. P06 recommends the boundary at accrual (P10) versus receipt (P06).
+- **P10 `X-08`** — bank-side prepayments and interest accruals: **ANSWERED BY P06 — CLOSURE IS P10'S **[REV-E-18, 2026-09-06]**.** Resolves by absence; no bank-interest object exists for either process. P06 recommends the boundary at accrual (P10) versus receipt (P06). **Superseded wording: *"answered and closable"*. Verified still `OPEN — PEER EVIDENCE` in P10's three registers at `1fea562`.**
 - **P09's class-B claim** about P06's widget: **shape confirmed** (the widget clears and rebuilds every line), analytic specifics not traced. **Class B is correct and should stay.**
 - **P07's three BLOCKING dependencies** — payment date, allocation, reversal linkage: **all three accepted, and all three reported defective in the reference.**
 

@@ -22,7 +22,7 @@
 | **(c)** P01, P02, P05 read | **PARTIALLY MET** | **P02 and P05 read** — plus P03, P04, P07, P09, P10 and P11. **P01 is unpublished and cannot be read.** |
 
 **And a condition that did not exist when the veto was written now applies:**
-`P06-B-55` — the evidence tree is a **filtered distribution** (791 addon directories, 2 localisation packs). Every tree-scope negative inherits that boundary. **This materially affects condition (b)**: a second search over a filtered tree is a second search over the same filter.
+`P06-B-55` — the evidence tree's **loadable set** is 791 addon directories of a full v18 population of 1752; the remainder is **relocated to `addons_archive`, not absent** **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]** (`REV-E-16`, `56_`). Every tree-scope negative inherits the loadable-set boundary. *Superseded wording: "a filtered distribution".* **This materially affects condition (b)**: a second search over a filtered tree is a second search over the same filter.
 
 **RECHECK VERDICT: AASP-VETO-01 — VETO PARTIALLY RESOLVED.**
 

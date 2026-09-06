@@ -213,3 +213,41 @@ Assessed as directed. **Two candidates, and only one qualifies.**
 | Severity | unranked | **6 CRITICAL · 17 HIGH · 20 MEDIUM · 3 LOW · 7 INFORMATIONAL · 2 UNRANKED** (baseline 55) |
 
 **Counts executed at close.** The three new blockers are severity-assigned above; the 55-blocker distribution in `46_` is the baseline population and is not retro-fitted.
+
+
+---
+
+# Appendix B — G02 P10-DELTA DOMAIN-PURE BOUNDED CLOSURE (2026-09-06)
+
+*Added in place rather than published only in a new file, because `REV-E-21` established that this package's corrections and additions have been landing in new files and not in its registers.*
+
+## B.1 New blockers
+
+| ID | Blocker | Severity | Disposition |
+|---|---|---|---|
+| `P06-B-59` | **Neither reconciliation engine can distinguish a structural reversal pair from a corrective one.** `reversed_entry_id` is the only link, carries no type, and is read by **zero of two** engines — `account_auto_reconcile_wizard.py` (grep 0) and `bank_rec_widget.py` (1,780 lines, grep 0). **Seven producers write it; two leave the pair unreconciled and in the matching population, and two of the seven are P06's own unreconcile primitives** | **HIGH** | **HOLD — DESIGN DECISION REQUIRED.** `FACT VERIFIED` (source, 3 builds) · `REACHABLE — CONFIGURATION VERIFIED` on `iEVING` |
+| `P06-B-60` | Deferral moves are partner-attributed against a company-level account that may be reconcilable | — | **SUPERSEDED BY `P06-B-61`** |
+| `P06-B-61` | **On the deployed `iEVING` database, both companies configure `deferred_expense_account_id` = account 3 = the BANK SUSPENSE ACCOUNT, `reconcile = TRUE`, with `generate_deferred_expense_entries_method = on_validation`.** Every deferral entry would post into the same reconcilable account as every unmatched bank event | **CRITICAL** — `C5`, `C6` | **HOLD — DESIGN DECISION REQUIRED.** Configuration `FACT VERIFIED`; consequence `SUPPORTED INTERPRETATION`; **latent — `account_move_deferred_rel` = 0 rows** |
+| `P06-B-62` | The bank-rec widget's candidate domain scopes eligible **accounts** by `company_id.root_id` (the fiscal hierarchy) and eligible **lines** by `company_id`. **Third instance of the A4a root-scoping shape** after `B-43` and `B-27` | **HIGH** | **HOLD — DESIGN DECISION REQUIRED.** `FACT VERIFIED` |
+| `P06-B-63` | **P06 has run five rounds without a checkpoint register or an AUTO_RESUME_STATE.** Every peer that carries one (P10 from round 3) could state which of its checkpoints completed; P06 could not. **Six prior checkpoint claims were re-tested this round and five were false or materially incomplete** (`CPR-F-01`) | INFORMATIONAL | **CLOSED by `G02_CLOSURE_2026_09_06/P06_CHECKPOINT_REGISTER.md` and `…/P06_AUTO_RESUME_STATE.md`** |
+
+## B.2 Status changes
+
+| ID | Change |
+|---|---|
+| `B-50` | **Evidential basis transformed, severity unchanged (already CRITICAL).** Was: installed, with a manifest docstring as the only evidence of execution. **Now: the `iEVING` database is in the post-execution state** — entire transactional ledger empty, master data intact, one ORM-impossible `account_full_reconcile` row, 44 orphaned chatter rows across five emptied models, matching the module's own delete lists line for line. `SUPPORTED INTERPRETATION`, on four independent observations with three competing hypotheses contradicted. See `G02_CLOSURE_2026_09_06/P06_IEVING_LEDGER_STATE_FORENSIC.md` |
+| `B-55` | **RESTATED with a number.** Was *"a filtered distribution"*, corrected once to *"a relocation"*. **Now: the evidence base is 2 of 16 enumerated Odoo distribution roots on this workstation** (`SL-G-21`, two independent patterns). The boundary is no longer an adjective |
+| `B-58` | **worsened.** 16 author errors → **21**; and `REV-E-21` establishes that **6 of 15** auditable prior corrections were never edited into the registers carrying them |
+| `B-27`, `B-43` | **joined by a third instance** — `B-62` |
+| `B-06` | unchanged, and re-confirmed by `BR-01`: no settlement produces a recognition event either |
+
+## B.3 Population at G02 close
+
+| Unit | Prior | **Now** |
+|---|---|---|
+| Blockers `P06-B-*` | 58 | **63** |
+| — of which superseded | 0 | **1** (`B-60` → `B-61`) |
+| — CLOSED | 8 | **9** (`B-63` closed on creation) |
+| Open questions `P06-OQ-*` | see `13_` | **`OQ-112` CLOSED; `OQ-120` … `OQ-127` raised** |
+
+**Counts executed at close, not asserted** — commands and results in `G02_CLOSURE_2026_09_06/P06_SOURCE_LINK_AND_EVIDENCE_SUPPLEMENT.md` §6.

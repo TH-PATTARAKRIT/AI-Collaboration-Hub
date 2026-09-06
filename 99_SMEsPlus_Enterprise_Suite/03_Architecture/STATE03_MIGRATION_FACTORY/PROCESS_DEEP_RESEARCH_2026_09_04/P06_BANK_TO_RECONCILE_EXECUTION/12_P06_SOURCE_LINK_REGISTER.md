@@ -147,7 +147,7 @@ Any P06 finding citing a path not listed in §3 is **inadmissible** and must be 
 
 ## S-10 — Reference-ERP evidence-base boundary (NEW, and it qualifies S-01)
 
-**`$V18E` is a filtered distribution, not a complete Odoo 18.**
+**`$V18E`'s loadable set is 791 of a full v18 population of 1752 — a RELOCATED distribution, not a filtered one **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]**.** The other 961 directories (904 l10n) sit in `addons_archive`, excluded by the project's own `odoo.conf`, and have since been searched (`56_`, `13_`:126). *Superseded wording: "a filtered distribution, not a complete Odoo 18" — `REV-E-16`.*
 - `ls -d "$V18E"/*/ | wc -l` → **791 addon directories**
 - `ls -d "$V18E"/l10n_*` → **2**, both Thai: `l10n_th`, `l10n_th_reports`
 

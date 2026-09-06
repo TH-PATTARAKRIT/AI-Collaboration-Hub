@@ -68,7 +68,7 @@
 
 **P08 — 8 of 9 peers now read.** `F-06` and `F-17` resolved to P08; `F-15` disclaimed back to P06 and now **genuinely unowned by any process**; `B-46` still open with P08 supplying both mechanism and remedy. **New inbound accepted: `XP-05` → `P06-B-57`, the settlement event has no date of its own.**
 
-**P10 `X-08` — answered and closable.**
+**P10 `X-08` — ANSWERED BY P06; CLOSURE IS P10'S, and it is still `OPEN — PEER EVIDENCE` at `1fea562`. Superseded wording: *"answered and closable"* **[REV-E-18, 2026-09-06]**.**
 
 **P05 settlement door — denominator CORRECTED.** P05 counts **7 settlement paths** and had already counted `SR-04` as path 5. **"Eighth door" withdrawn.** `B-53` marked inherited, LOW to P06, flagged for deduplication.
 

@@ -37,7 +37,7 @@ Legend — **Disposition:** `SETTLED` (peer agrees or P06 defers) · `CONTESTED`
 | F-09 | Invoice payment status | CONTESTED, two writers | P02 supplies the full 7-value enumeration and notes **two values are never assigned by the computation**; P07 shows a statutory consequence (`W-C-02`) | **SETTLED as CONTESTED** — two writers confirmed by two peers |
 | F-10 | FX rate applied at settlement | CONTESTED | P11 `DEP-14`: **BOSS DECISION REQUIRED, packaged not decided**; P02 adds a second silent fallback arm | **HOLD — BOSS DECISION**, evidence enlarged |
 | F-11 | Realised FX gain/loss amount and account | P-CORE owns, P06 triggers | **P11 `UBE-36`: "the ledger owns this — it is emitted, not requested"** | **SETTLED — P06 does not contest** |
-| F-12 | Bank charges and interest | **UNOWNED** | **P10 `X-08` asks P06 directly**; no peer claims it | **UNOWNED — and P06 now answers P10** (see `35_` §6) |
+| F-12 | Bank charges and interest | **UNOWNED** | **P10 `X-08` asks P06 directly**; no peer claims it | **UNOWNED — and P06 now answers P10** (see `35_` §6). **The answer is delivered; the dependency is NOT closed — P10 carries it `OPEN — PEER EVIDENCE` at `1fea562` **[REV-E-18, 2026-09-06]**** |
 | F-13 | Withholding tax deducted at payment | HOLD, statutory | **P07 names P06 owner of the payment fact and marks it BLOCKING** (`X-07`, `X-08`, `X-09`); P11 `UBE-39` assigns the *tax* fact to P07 | **SETTLED: P06 owns the payment fact, P07 owns the tax fact.** Statutory HOLD mirrored, not resolved |
 | F-14 | Early-payment discount | P02 authors terms, P06 applies | P02 silent on the split | **SETTLED by default**, unopposed |
 | F-15 | Cash/bank GL balance | P-CORE | P08 unpublished | **OPEN** |
@@ -96,7 +96,7 @@ P02 `SF-06`: *"**Reconciliation crosses legal entities on a shared root** … Jo
 
 Three facts, after seven peer packages:
 
-1. **Bank charges, interest and provider commission** (F-12). No process claims them; P10 asked P06 and P06 answers that the object does not exist for either.
+1. **Bank charges, interest and provider commission** (F-12). No process claims them; P10 asked P06 and P06 answers that the object does not exist for either. **The answer is delivered, not accepted — still `OPEN — PEER EVIDENCE` in P10's register at `1fea562` **[REV-E-18, 2026-09-06]**.**
 2. **Intercompany money in transit** (F-19). Requires a TENANT-scoped carrier that owns neither company's effect.
 3. **Which physical bank account a GL balance belongs to** (F-16) — accepted into P11's matrix but with no owning process yet.
 

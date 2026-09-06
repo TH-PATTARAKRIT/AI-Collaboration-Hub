@@ -28,7 +28,7 @@ Stated in full:
 - **NOT** `DEPLOYED ABSENCE VERIFIED` — no target registry exists (`P06-B-44`).
 - **NOT** universal absence — the v18 tree is filtered (791 of an unknown full population), and the v19 sweep covered three modules, not 1422.
 - **NOT** `VERSION-DEPENDENT` — the finding holds in both generations.
-- **NOT** `PEER-OWNED` — no peer claims it; P10 asked P06 and P06 answered by absence (`X-08`).
+- **NOT** `PEER-OWNED` — no peer claims it; P10 asked P06 and P06 answered by absence (`X-08`). **The answer is delivered, not accepted: P10 carries `X-08`/`D-08`/`PD-08` `OPEN — PEER EVIDENCE` at `1fea562` **[REV-E-18, 2026-09-06]**.**
 
 ---
 

@@ -44,7 +44,7 @@ A blocker is **CRITICAL** if it satisfies **at least one**:
 | ID | Title | Criteria | Reachability | Confidence |
 |---|---|---|---|---|
 | **B-50** | `om_data_remove` deletes bank statements, payments, moves, partial reconciles and chatter by unfiltered SQL, commits per table, swallows errors, rewinds sequences; **no server-side authorisation on the dispatch chain**; present in 4 of 4 custom roots and locally customised in one | **C1, C2, C4, C6** | SOURCE-REACHABLE / RUNTIME UNVERIFIED; requires the module installed | FACT VERIFIED (source) |
-| **B-06** | No field in the system means "the bank confirmed this"; the nearest proxy is true by configuration in 2 of 3 branches | **C6** — the fundamental control of a treasury process does not exist | always present | FACT VERIFIED |
+| **B-06** | No field in the system means "the bank confirmed this"; the nearest proxy is true by configuration in **2 of 4 top-level branches** (5 assignment sites) — *was "2 of 3"* **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]** | **C6** — the fundamental control of a treasury process does not exist | always present | FACT VERIFIED |
 | **A6 / B-46 group** | Reconciling and un-reconciling are outside the entire period-close regime; the one indirect block fires on the wrong move | **C6, C4** | any user with unreconcile rights + a closed period | FACT VERIFIED |
 | **B-10** | 4 of 7 bank-event ingestion doors attach no identity; the identity system fails open at all three enforcement points | **C5** — re-importing a CSV or QIF duplicates every line and its posted entries, silently | *"import a file twice"* — the lowest precondition in the package | FACT VERIFIED |
 | **B-26** | Bank accounts may exist with no owning company and are admitted into every company by three independent guards | **C3** | a partner with no company | FACT VERIFIED |
@@ -71,7 +71,7 @@ A blocker is **CRITICAL** if it satisfies **at least one**:
 | B-30 | Accounting created outside the webhook transaction; the cron ships disabled | window bounded by 4 days | FACT VERIFIED |
 | B-37 | `cr_effective_date_entries` unposts, resequences and re-dates posted entries; raw SQL on valuation rows | needs a hidden group | FACT VERIFIED |
 | B-38 | Two auto-posting modules post invoices on non-accounting triggers with no idempotency guard | upstream of P06 | FACT VERIFIED |
-| B-44 | **Generation gap** — only deployment evidence is Odoo 19; research target is v18 | evidence risk, not a system defect | FACT VERIFIED |
+| B-44 | **Generation gap — NARROWED** **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]**. Only *deployment* evidence is Odoo 19 and the research target is v18, **but v19 Enterprise source trees DO exist on this workstation and six core findings were re-tested against them and are INVARIANT** (`51_`, `REV-E-10`). *Superseded wording implied no v19 source was available.* | evidence risk, not a system defect | FACT VERIFIED |
 | B-45 | Lock dates inherit up the hierarchy, strictest wins, elevated privilege, including archived companies; members may be legally distinct | needs a hierarchy | FACT VERIFIED (P04 + P06) |
 | B-52 | Custom write-off producer grants full CRUD to any Invoicing user, no ceiling | bounded by amount | FACT VERIFIED |
 | B-55 | Evidence base is a filtered distribution; every tree-scope negative inherits that boundary | evidence risk | FACT VERIFIED |
@@ -92,7 +92,7 @@ A blocker is **CRITICAL** if it satisfies **at least one**:
 
 ## 7. INFORMATIONAL — 7
 
-`B-01` no receiving process specification in the canonical repo · `B-02` no Jira work item · `B-03` *(CLOSED)* peers unread · `B-40` *(CLOSED)* Class-A negatives unverified · `B-41` no severity model **— closed by this file** · `B-42` deliverable-list gap · `B-54` P01 unpublished *(P08 now published — see `52_`)*
+`B-01` no receiving process specification in the canonical repo · `B-02` no Jira work item · `B-03` *(CLOSED)* peers unread · `B-40` *(CLOSED)* Class-A negatives unverified · `B-41` no severity model **— closed by this file** · `B-42` deliverable-list gap · `B-54` ~~P01 unpublished~~ → **P01 IS PUBLISHED** at `b820b29`, verified by `git ls-remote --heads origin`; **not consumed by P06** — `P06-OQ-124` **[REV-E-20, 2026-09-06]** *(P08 also published — see `52_`, `53_`)*
 
 ---
 
@@ -120,6 +120,8 @@ A blocker is **CRITICAL** if it satisfies **at least one**:
 Arithmetic checked: 6 + 17 + 20 + 3 + 7 + 2 = **55**. Matches the executed denominator.
 
 > **SUPPLEMENTAL NOTE.** Three blockers were raised after this register was built — `B-56` (MEDIUM), `B-57` (**HIGH**), `B-58` (INFORMATIONAL) — and are severity-assigned in `40_` Appendix A. **The distribution above is the 55-blocker baseline population and is deliberately not retro-fitted**, so the arithmetic remains checkable against the denominator it declares.
+
+> **SUPPLEMENTAL NOTE 2 — G02 round, 2026-09-06.** Four further blockers were raised and are severity-assigned in `40_` **Appendix B**: `B-59` (**HIGH**), `B-60` (**superseded by `B-61`**), **`B-61` (CRITICAL — `C5`, `C6`)** and `B-62` (**HIGH**). **`B-61` is the seventh CRITICAL and the first to be established from deployed configuration rather than from source.** The 55-blocker distribution above remains the baseline and is still not retro-fitted; the executed population at G02 close is **62**.
 
 **Of the 55, 7 are CLOSED** (`B-03`, `B-27`, `B-28`, `B-40`, `B-50`, `B-51`, `B-52`) and are retained in the population with their severity, because closure of a *finding* does not remove the *risk* it documents. `B-41` becomes the eighth closure on publication of this file.
 

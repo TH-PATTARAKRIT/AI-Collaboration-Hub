@@ -26,11 +26,11 @@
 | ID | Owed to | What P06 supplies | Status |
 |---|---|---|---|
 | `D-10` | **P07** | Payment date as the withholding anchor; allocation per document; reversal linkage; one FX policy — P07 marks all **BLOCKING** | **SUPPLIED, WITH DEFECTS DECLARED.** All three exist and all three are defective: the payment date is user-settable and changing it silently drops the withholding (P05 `TX-03`); allocation is mutated by two mutually-unaware subsystems; reversal linkage does not exist |
-| `D-11` | **P10** | Answer to `X-08` — are bank-side prepayments and interest accruals P10 or P06 events | **ANSWERED — P10 may close it.** Resolves by absence: no bank-interest object exists for either process |
+| `D-11` | **P10** | Answer to `X-08` — are bank-side prepayments and interest accruals P10 or P06 events | **ANSWERED BY P06 — CLOSURE IS P10'S. Still `OPEN — PEER EVIDENCE` at `1fea562` **[REV-E-18, 2026-09-06]**.** Resolves by absence: no bank-interest object exists for either process |
 | `D-12` | **P11** | `P06-B-27` closure; `P06-XC-01`; net-new scope rows (bank account, provider, token); the 31 event→GL rows | **SUPPLIED** — `P06-B-27` may be struck from P11's `D-3` UAT list |
 | `D-13` | **P09** | Confirmation or refutation of P09's class-B claim about P06's widget overwriting analytic values | **PARTIALLY ANSWERED** — the overwrite shape is confirmed (RM-F-01 clears and rebuilds every line); the analytic specifics are not traced. **P09's class B is correct and should stay class B** |
 | `D-14` | **P05** | Confirmation that P06 owns the reimbursement payment door P05 operates | **SUPPLIED** — P11 `UBE-33` settles it to P06 |
-| `D-15` | **P08** | The full period-close input set: reconciliation must be inside the close regime; RELOCATE is not an acceptable default; lock inheritance across possibly-distinct legal entities; the pre-close control is one-time only; no accounting field may be written by raw SQL | **SUPPLIED, UNCLAIMED** — no P08 exists to receive it |
+| `D-15` | **P08** | The full period-close input set: reconciliation must be inside the close regime; RELOCATE is not an acceptable default; lock inheritance across possibly-distinct legal entities; the pre-close control is one-time only; no accounting field may be written by raw SQL | **SUPPLIED, UNCLAIMED.** ~~no P08 exists to receive it~~ → ****P08 IS PUBLISHED** — `research/account-p08-record-to-report-2026-09-04-001`, 39 files, read and quoted by line in `53_`; the input set was supplied and has not been claimed **[REV-E-20, 2026-09-06]**** |
 
 ---
 
@@ -58,7 +58,7 @@ P06 analysed date relocation on three reconciliation paths and framed it as a re
 The eighth settlement path (`SR-04`, cash moving with no payment object) was found by the expense process. **A denominator P06 published as complete was incomplete, and the correction came from outside.** This is the second time in this package that an independent pass corrected a P06 denominator — the first was the ingestion-door count (REV-E-01).
 
 **DEP-F-03 — P10 addresses its close and FX dependencies to P04, not P08.**
-P10 routes lock dates, fiscal calendar and currency policy to *"`P04` A2R"*, calling it "the ledger", while P11 and P02 route the same questions to P08 / Core Accounting. **Since no P08 branch exists, P10's dependencies are addressed to a process that does not own them and cannot answer.**
+P10 routes lock dates, fiscal calendar and currency policy to *"`P04` A2R"*, calling it "the ledger", while P11 and P02 route the same questions to P08 / Core Accounting. **CORRECTED **[REV-E-20, 2026-09-06]**:** the superseded wording read *"Since no P08 branch exists, P10's dependencies are addressed to a process that does not own them and cannot answer."* **P08 IS PUBLISHED** — `research/account-p08-record-to-report-2026-09-04-001`, 39 files, read and quoted by line in `53_`. **The routing finding survives and its consequence is worse: P10's dependencies are addressed to a process that exists, is published, and was not asked.**
 **P06 does not adjudicate this** — it is a peer's routing decision. It is flagged to P11 as a routing defect that will surface at reconciliation. Recorded as `P06-OQ-93`.
 
 ---

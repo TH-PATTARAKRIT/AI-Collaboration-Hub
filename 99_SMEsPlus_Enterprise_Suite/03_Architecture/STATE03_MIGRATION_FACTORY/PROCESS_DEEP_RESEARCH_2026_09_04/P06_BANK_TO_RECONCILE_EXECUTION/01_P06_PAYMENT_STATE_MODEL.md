@@ -119,7 +119,7 @@ Branch E (`:452`): the only site that tests liquidity-line reconciliation.
 
 > **COUNT CORRECTED at the supplemental round (REV-E-11): four top-level branches, five assignment sites.** An earlier state of this finding named three. See `25_` §3.
 
-**The field's own label is "Is Matched With a Bank Statement" (`:54`). In two of its three branches it is true when no bank statement exists.** This is the evidence for cross-process blocker `P06-B-06`: **the system has no field whose meaning is "the bank confirmed this."**
+**The field's own label is "Is Matched With a Bank Statement" (`:54`). In two of its FOUR top-level branches it is set `True` unconditionally when no bank statement exists **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]**** — the compute has **four top-level branches and five `is_matched` assignment sites** (`account_payment.py:436-455`), and a third branch is circular (`is_matched = state == 'paid'`, `:437`). *Superseded wording: "two of its three branches".* This is the evidence for cross-process blocker `P06-B-06`: **the system has no field whose meaning is "the bank confirmed this."**
 
 **PSM-F-04a — And `is_matched` is load-bearing.** `account.move._compute_payment_state` reads it through SQL (`$V18E/account/models/account_move.py:1159-1160`):
 ```

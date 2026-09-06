@@ -231,12 +231,16 @@ sql = "delete from %s" % t_name
 - `remove_all()` (`:334-348`) chains all three: **one button destroys the ledger and the chatter that would evidence it.**
 
 **CMD-F-17 — And it rewinds the document-number sequences.**
-`:189-194` resets `ir.sequence.number_next = 1` for `BNK1/%`, `CSH1/%`, `INV/%`, `EXCH/%`, `MISC/%`. **Previously-used document numbers become re-issuable.** Combined with CMD-F-16 this is the complete removal of the audit trail *and* of the evidence that numbers were ever used.
+`:189-194` resets `ir.sequence.number_next = 1` for `BNK1/%`, `CSH1/%`, `INV/%`, `EXCH/%`, `MISC/%`. Combined with CMD-F-16 this is the complete removal of the audit trail *and* of the evidence that numbers were ever used.
+
+> **CORRECTED **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]**.** The superseded wording — *"Previously-used document numbers become re-issuable"* — attributed the renumbering to this `ALTER SEQUENCE`. **v18 `account.move` does not number journal entries from `ir.sequence` at all**; `sequence.mixin` reads the maximum existing name (`61_` SRF-F-03). **The `ALTER SEQUENCE` is largely inert against v18 journal numbering, AND the renumbering happens anyway, by a different mechanism — emptying the table the numbering reads.** The correction moves the *cause*, not the *effect*, and **makes the finding worse**: protecting `ir.sequence` would not prevent it (`REV-E-14`, `61_` SRF-F-06).
 
 **CMD-F-18 — Server-side authorisation: NOT FOUND.**
 PATH SET `$CUST18/om_data_remove`, 4 source files, `models/model.py` (368 lines) read in full. **No `security/` directory and no `ir.model.access.csv`** (`find` returns neither). No `has_group` or `_is_admin` call anywhere in the module. The manifest declares no security file (`__manifest__.py:12-14`).
 The only two controls are presentational: a `groups="base.group_system"` attribute on the **menu item** (`views/view.xml:113-119`) and a client-side `confirm=` string on each button (`views/view.xml:20`).
-**The methods are plain `type="object"` handlers on `res.config.settings`, a `TransientModel` with a broad default ACL.** A menu `groups=` attribute controls menu visibility, not method invocation.
+**The methods are plain `type="object"` handlers on `res.config.settings`.** A menu `groups=` attribute controls menu visibility, not method invocation.
+
+> **CORRECTED **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]**.** The superseded wording read *"a `TransientModel` with a **broad default ACL**"*. **That premise is FALSE** — `$V18E/base/security/ir.model.access.csv:129` grants `res.config.settings` to **`base.group_system` only**, and not even `unlink`. It was asserted without reading the file (`REV-E-09`, `45_` §4). **The conclusion survives on a stronger basis:** the method body performs no ORM operation on its own model, so the ACL is **never invoked** — see `45_`.
 **Classification: CONFIRMED DEFECT.** Raised as **`P06-B-50`**.
 
 **CMD-F-19 — It is present in all four custom roots** (`$CUST18`, `$CUST14`, `$T8MASTER`, `$MIGR18`), verified by `ls -d`. This is not an isolated copy.

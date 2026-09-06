@@ -19,7 +19,7 @@
 | P05 Expense-to-Pay | `…p05-expense-to-pay…` | **read** |
 | P06 Bank-to-Reconcile | `…p06-bank-to-reconcile…` | this session |
 | P07 Thai Tax-to-Compliance | `…p07-th-tax-compliance…` | **read** |
-| P08 GL / Record-to-Report | **NOT PUBLISHED** | **PEER DEPENDENCY OPEN** |
+| P08 GL / Record-to-Report | ~~**NOT PUBLISHED**~~ → **PUBLISHED, 39 files — read **[REV-E-20, 2026-09-06]**** (`53_`) | **PEER DEPENDENCY OPEN** |
 | P09 Plan-to-Analyze | `…p09-plan-to-analyze…` | **read** |
 | P10 Time-Based Recognition | `…p10-time-based-recognition…` | **read** |
 | P11 Central Core Reconciliation | `research/account-core-reconciliation-2026-09-04-001` | **read** |
@@ -118,7 +118,9 @@ And P11 assigns `UBE-33` *"Employee reimbursed"* to **P06**.
 There is **no bank interest concept in the searched scope** — re-verified this continuation under 13 alternative tokens across six modules, zero field or model definitions (`29_`, BAE-F-00). There is therefore **no bank-side interest accrual object for either process to own.**
 - If interest is to be **accrued over time**, it is a P10 recognition event and P06 supplies only the cash event when it lands.
 - If interest is **recognised when the bank credits it**, it is a P06 bank event — and P06 has no object for it either.
-**Either way P10 may close `X-08` as answered: the object does not exist in the reference and must be designed, and P06 recommends the boundary be drawn at accrual (P10) versus receipt (P06).** That recommendation is P06's position, not a determination.
+**Either way the substantive answer is: the object does not exist in the reference and must be designed, and P06 recommends the boundary be drawn at accrual (P10) versus receipt (P06).** That recommendation is P06's position, not a determination.
+
+> **CORRECTED **[REV-E-18, 2026-09-06]**.** The superseded wording read *"P10 **may close** `X-08` as answered"* and was recorded elsewhere in this package as *"closed by P06"*. **A dependency owned by a peer is not closed by the answering party.** Verified at P10 commit `1fea562`: `53_P10_PEER_DEPENDENCY_REGISTER_V2.md:30` carries `PD-08` as **`OPEN — PEER EVIDENCE`**; `19_P10_DEPENDENCY_REGISTER.md:19,59` says **`PEER DEPENDENCY OPEN — unchanged`**; `10_P10_CROSS_PROCESS_OWNERSHIP.md:36` the same. **Current status: ANSWERED BY P06 — CLOSURE IS P10'S — STILL OPEN.**
 
 **PH-F-09 — P07's three BLOCKING dependencies on P06.**
 `10_P07_CROSS_PROCESS_OWNERSHIP.md` marks `X-07` (payment event, date, currency, amount), `X-08` (partial payment / allocation) and `X-09` (payment reversal / cancellation) as **BLOCKING for P07**, with P06 named owner.
@@ -134,15 +136,15 @@ There is **no bank interest concept in the searched scope** — re-verified this
 
 | To | P06 supplies | P06 requires | Status |
 |---|---|---|---|
-| **P01** | vendor-payment settlement mechanics, the batch-rejection gap, cheque and PDC absence | payable ownership, payment-intent authorship | **PEER DEPENDENCY OPEN — not published** |
+| **P01** | vendor-payment settlement mechanics, the batch-rejection gap, cheque and PDC absence | payable ownership, payment-intent authorship | **PEER DEPENDENCY OPEN.** ~~not published~~ → **PUBLISHED at `b820b29` (`research/account-p01-procure-to-pay-2026-09-04-001`), verified by `git ls-remote --heads origin`. NOT CONSUMED by P06 — consuming it is a new intake and is outside this round's bound. `P06-OQ-124` **[REV-E-20, 2026-09-06]**** |
 | **P02** | the `is_matched` four-branch mechanism; the configuration-dependence reconciliation (§3) | resolution of `P06-XC-01` | **CONFLICT ROUTED to P11** |
 | **P03** | — | — | corroborates `CPO-F-01` only |
 | **P04** | — | its lock-cascade findings, absorbed | **absorbed** |
 | **P05** | the payment-door inventory; confirmation that P06 owns the reimbursement door | closure of `EX-03` (payments emitted outside the owner) | **routed** |
 | **P07** | payment date, allocation, reversal linkage, FX policy — **all three accepted and all three reported defective** | nothing; P07's statutory HOLD mirrors P06's | **accepted, defects declared** |
-| **P08** | the full period-close input set (`28_` §5), incl. lock inheritance across possibly-distinct legal entities | the close architecture | **PEER DEPENDENCY OPEN — not published** |
+| **P08** | the full period-close input set (`28_` §5), incl. lock inheritance across possibly-distinct legal entities | the close architecture | **PEER DEPENDENCY OPEN.** ~~not published~~ → **PUBLISHED, 39 files, read **[REV-E-20, 2026-09-06]**** (`53_`) |
 | **P09** | confirmation of the overwrite shape; class B retained | — | **answered** |
-| **P10** | **`X-08` answered** (§6) | — | **closed by P06** |
+| **P10** | **`X-08` answered** (§6) | — | **ANSWERED BY P06 — CLOSURE IS P10'S. Still `OPEN — PEER EVIDENCE` at `1fea562` **[REV-E-18, 2026-09-06]**** |
 | **P11** | `P06-B-27` **closed** (strike from `D-3`); `P06-XC-01` raised; 31 event→GL rows still to reconcile; net-new scope rows for bank account, provider and token | reconciliation of all of it | **delivered** |
 
 ---
