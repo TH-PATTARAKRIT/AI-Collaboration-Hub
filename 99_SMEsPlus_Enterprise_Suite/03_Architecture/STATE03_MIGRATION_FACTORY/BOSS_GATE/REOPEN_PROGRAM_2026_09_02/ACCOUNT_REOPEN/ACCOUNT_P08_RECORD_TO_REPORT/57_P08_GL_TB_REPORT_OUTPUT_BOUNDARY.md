@@ -33,9 +33,9 @@ Where P08's responsibility for a reported figure ends. Consolidates `11`, `41` �
 | The entry's own number | **41.89% of posted items** cannot name their entry |
 | Origin | **17.00%** carry no provenance mark of any kind |
 | Authorship / mode | **no field exists** |
-| **Tax period** | **0 of 61,157** entries carrying one propagate it to their whole item set |
+| **Tax period** | **CORRECTED — `P08-CONTRA-58`.** 54.3% of the 61,157 have no tax line to stamp; **16.1% are the real defect**; 29.6% worked. And the deployed consumer reads the **entry** carrier through a join |
 
-**The statements aggregate the object that carries the least meaning. That is the single sharpest statement in this package, and the tax-period measurement is its most consequential instance, because that dimension is statutory.**
+**The statements aggregate the object that carries the least meaning.** That remains the package's sharpest structural statement. **The tax-period measurement is WITHDRAWN as its illustration** — the deployed consumer joins to the entry, so the item's silence does not bite there. The illustration that survives is the entry number: **41.89% of posted items cannot name their entry, and no join is offered to the reports that read them.**
 
 ## 3. Integrity of the reported figure
 

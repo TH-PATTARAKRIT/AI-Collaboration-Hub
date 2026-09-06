@@ -22,7 +22,9 @@ Twelve bounded questions. **No question is answered by re-running closed work.**
 | Purchase-side credit | 94 | 93.6% | as above |
 | Sale-side credit | 6 | 100.0% | as above |
 
-**The interface fact P08 owns:** the ledger accepts an entry **without requiring provenance**, and provenance density varies by class from **26.8% to 100%**. The purchase-side class — the largest documentary class — arrives with the **weakest** provenance of all.
+**CORRECTED AFTER CHALLENGE — `P08-CONTRA-48`.** The percentages above count **stored pointer fields only**, and that predicate was never declared. Under a predicate that also counts a **document reference**, the purchase-side class moves from **26.8% to 99.4%** — from the weakest class to the strongest. Of the 26,984 purchase documents with no internal origin pointer, **26,778 carry a vendor document reference** and **36,867 of 36,867 carry a party**.
+
+**The defensible interface fact:** the ledger accepts an entry **without requiring provenance of any kind**. Purchase-side documents carry an **internal producer link on 26.8%** and an **external document reference on a further 72.6%**. **The published claim that this class has "the weakest provenance of any class" is WITHDRAWN — it was an artefact of an undeclared predicate.**
 
 **P08 does not investigate why any producer emits an entry that way.** `EXTERNAL DOMAIN BOUNDARY — DO NOT RESEARCH HERE.`
 
@@ -75,10 +77,12 @@ Two independent measurements point the same way: provenance sits on the entry fo
 
 | Fact | Class |
 |---|---|
-| The accounting date of a **non-sale** document is **system-derived from the document date with no lock involved**; sale documents are exempt | `FACT VERIFIED` — 18.0 source |
+| The accounting date of a **non-sale** document is **system-derived with no lock involved** | `FACT VERIFIED` — 18.0 source |
+| **CORRECTED — the sale exemption is path-specific, not absolute (`P08-CONTRA-49`).** The derivation is skipped for sale documents **on the document-date-change path**; on the **posting path** it is called for *all* document types and the sale branch relocates **when a lock exists** | `FACT VERIFIED` — 18.0 source, 10 call sites |
+| **CORRECTED — the derivation reaches only invoice-type documents (`P08-CONTRA-50`).** Its caller returns early unless the move is an invoice; **129,577 of 129,577 posted plain entries carry no document date and never enter it.** The 20.95%/0.12% asymmetry is therefore defined only over the 39,566 invoice-type documents, not over the ledger | `FACT VERIFIED` — 18.0 source + 16.0 data |
 | Divergence between accounting date and document date: **20.95%** of purchase entries against **0.12%** of sale entries — a 175× asymmetry matching the exemption | `FACT VERIFIED` — 16.0 data |
 | That the mechanism **caused** the 2,123 forward divergences | `SUPPORTED INTERPRETATION — P08` — ~100% carry one of its two signatures; 16.0 source not read |
-| What produced the **5,622 backward** divergences | `UNRESOLVED — SPECIFIC P08 EVIDENCE UNAVAILABLE` |
+| What produced the **5,622 backward** divergences | **NARROWED — the named mechanism is EXCLUDED.** Every return path of the derivation yields a date **≥** the document date for a non-sale document, so it **cannot** move one backward. The 72.5% of divergence that runs backward is attributable to a **direct write of the accounting date on a draft entry**, not to the derivation. `A VERIFIED ABSENCE` for the exclusion on 18.0; `B` for the positive attribution, 16.0 source unread |
 | **There is no accounting-period object.** A period is a date range on a company record | `FACT VERIFIED` — 22 of 22 roots, with the independence caveat of CQ-12 |
 | A posting aimed at a locked period is **relocated, not refused** — including under the irrevocable lock, asserted by the product's own test | `FACT VERIFIED` — 18.0 source |
 | **No period lock is configured on any company that has ever posted** | `FACT VERIFIED` — **0 of 6 transacting companies** |
@@ -135,8 +139,9 @@ Two independent measurements point the same way: provenance sits on the entry fo
 |---|---|---|
 | **Double entry, reporting currency** | **one line of defence**, at the object layer, **switched off by a caller-supplied value** | `FACT VERIFIED` |
 | **Double entry, transaction currency** | **no defence at any layer** | `FACT VERIFIED` |
-| — its measured consequence | **4 posted entries**, all from a **1:1 rate fallback**; the other 49 previously counted carry a legitimate company-currency counter-leg | `CONTRADICTED — CORRECTED AND CLOSED` |
-| Account code uniqueness | enforced in 16.0; **the 19.0 schema has neither a company column nor a code column** — the claim is **not formulable** there | `FACT VERIFIED` (16.0) / `UNRESOLVED` (19.0) |
+| — its measured consequence | **4 posted entries.** **CORRECTED — `P08-CONTRA-52`: "all from a 1:1 rate fallback" is FALSE.** Three carry a leg with a zero transaction amount against a non-zero reporting amount; the fourth has **no 1:1 leg at all** — all five of its legs sit at an implied rate of 35.39 and its residual is **0.04**, a rounding artefact | `CONTRADICTED — CORRECTED AND CLOSED` |
+| **The population over which the invariant is not even formulable** | **1,992 posted entries carry more than one currency across their lines**, and **10,385 (6.1%) carry an item whose currency differs from the entry's own.** The measured consequence was taken over the smallest sub-population; the undefined population is far larger | **`FACT VERIFIED` — NEW** |
+| Account code uniqueness | **CORRECTED — `P08-CONTRA-51`. The claim IS formulable in 19.0 and it returns a violation.** The 19.0 schema replaces the two columns with a per-company code map; formulated over it, **8 active accounts in company 1 share the code `111106`** in **both** 19.0 databases. A trial balance grouped by code collapses eight accounts into one line | **`FACT VERIFIED` — a deployed integrity violation, previously published as `UNRESOLVED`** |
 | Entry number uniqueness | index-enforced for posted entries only; draft and cancelled unconstrained | `FACT VERIFIED` |
 | Duplicate detection | scoped to the population it covers: **677 of 36,961**, largest group 14 — **not the swamping previously claimed** | `CONTRADICTED — CORRECTED AND CLOSED` |
 | Referential integrity of settlements | both sides required, no delete rule declared — the database refuses to remove a settled item | `FACT VERIFIED` |
@@ -238,7 +243,7 @@ Enumerated in `54`. **Nothing is labelled a final contract.** Every cross-domain
 
 **Three integrity limits P08 publishes against itself:**
 
-1. **`N of 21 roots` is at most 7 independent observations** — the core posting file resolves to 7 distinct contents by hash. Every root-set negative overstates its support roughly threefold.
+1. **Root-set independence.** The **declared** root set is **22** (`01A`). Class-`A` negatives were expressed over the subset carrying each pattern — **21** for most, **20** for the core posting file — and the surface published `N of 21` without saying which subset. **Corrected (`P08-CONTRA-53`): every `N of N` claim must name the subset that carries its pattern.** Independence is the binding limit: the core posting file resolves to **7 distinct contents by hash**, so those negatives overstate their support roughly threefold.
 2. **Predicate risk is unretired.** Three of eleven published predicates were wrong and **all three passed a positive control**. `AAS+-VETO-01` C-1 requires every measurement re-issued with its predicate in executable form; **that is not discharged.**
 3. **`P08-U-18` is open at 15 modules**, reduced from 32. Two sit under class-A claims; one is a customization container able to carry arbitrary models and server-side automation.
 

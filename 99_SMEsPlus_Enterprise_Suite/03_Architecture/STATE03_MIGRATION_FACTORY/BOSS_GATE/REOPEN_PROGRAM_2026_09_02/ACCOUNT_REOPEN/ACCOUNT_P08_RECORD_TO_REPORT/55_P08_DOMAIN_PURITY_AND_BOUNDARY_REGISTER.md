@@ -72,3 +72,42 @@ For each adjacent domain: the interface fact P08 keeps, and the path P08 does no
 | Adjacent domains with a declared boundary | **11** |
 
 **Disposition: `OUT OF P08 SCOPE — DOMAIN PURITY PRESERVED` for the routed halves; `FACT VERIFIED — CLOSED` for the retained interface facts.**
+
+
+---
+
+## 5. Corrections applied after the bounded AAS-03 challenge
+
+### 5.1 `P08-CONTRA-61` — the contamination control did not audit the round it controls
+
+§1 declared its POPULATION as *"all 22 P08 artefacts written in the two prior rounds (`33`–`54`)"* and §4 reported **"Artefacts audited: 22"** as the round's coverage. **`33`–`54` is 22 files, and this round produced six (`53`–`58`).** The audit therefore covered **neither itself, nor `56`, nor `57`, nor `58`** — and two of the contaminations found by challenge sit inside that blind spot, one of them matching this register's own literal term *"asset register"*.
+
+**A control whose population excludes the work it is controlling is not a control.** `P08-M-20`.
+
+### 5.2 Contamination the eleven-term pattern missed
+
+Found by challengers using **predicate-shaped** detection — a sentence whose grammatical subject is a non-ledger actor and whose verb asserts a decision, derivation, timing choice or internal structure — rather than lexical matching.
+
+| ID | Location | Text | Why it crosses | Retained interface fact |
+|---|---|---|---|---|
+| `K-1` | `54` `IN-06` | *"commonly bulk-generated; 6,306 arrived in a **single catch-up**"* | "A catch-up" is a **P04 lifecycle act** | N entries share a create timestamp |
+| `K-2` | `54` `IN-07` | timing *"**at valuation event**"* | asserts **when the inventory process decides to emit** | a valuation pointer is present on 56,589 entries |
+| `K-3` | `58` §2 / `53` CQ-09 | *"the asset register and the inventory valuation record **are** separate stores"* | a claim about the **internal record structure of P04 and P03** — and it is the premise of `P08-RQ-KRN-01` | the ledger imposes no tie-out obligation on anything it does not itself store |
+| `K-4` | `54` `IN-05`, `55` P06 row, `58` §2 | the settlement as-of date *"supplied by the producer"* | **inverted contamination** — attributes to P06 a field the accounting kernel computes | `P08-CONTRA-57`: P08 computes it |
+| `K-5` | `P08-RQ-KRN-03` | *"a period attribution **must** be complete over the fact set it claims to cover"* | whether a tax-period attribution *ought* to cover non-tax lines is a **tax-domain determination** | the mechanism facts only; the normative clause is **P07** + `HOLD — STATUTORY EVIDENCE REQUIRED` |
+
+### 5.3 Over-routing — pushed away what the ledger owns
+
+| ID | Routed away | Why it is P08's |
+|---|---|---|
+| `O-1` | *"P08 does not decide whether an analytic attribution is a fact or an attribution"* | The attribution is **a column on the journal item**, populated on **338,400 of 417,700 posted items (81.02%)**, and the item set is what `CQ-P08-02` declares the unit of accounting truth. Whether the ledger **validates it, carries it through reversal, scopes it by company and exposes it to the GL derivation** are four P08-owned questions — **none measured, none listed as unresolved.** `P08-U-27` |
+| `O-2` | the settlement as-of date | kernel-computed — `K-4` |
+| `O-3` | a statutory selection carrying **no company predicate**, described as P07's remedy | **A selection over journal items with no company predicate is a P08 scope defect in P08's own selection layer.** The remedy is P08's; only the question of which taxes belong is P07's |
+| `O-4` | *"correction spanning a close — received from a peer, not re-derived"* | Splitting a correction across two periods **is** the date-derivation behaviour P08 owns. P08 deferred on a finding whose mechanism is its own |
+| `O-5` | — | **No point-of-sale boundary row exists**, and that domain supplies **100% of the measured 19.0 transacting ledger.** Added below as a twelfth adjacent domain |
+
+### 5.4 Boundary register — twelfth domain
+
+| Domain | Interface fact P08 retains | Path P08 STOPS |
+|---|---|---|
+| **Point of sale** | A session-close ledger effect arrives; in the 19.0 databases it is **the entire measured posted ledger** | session lifecycle, tendering, device and order internals |
