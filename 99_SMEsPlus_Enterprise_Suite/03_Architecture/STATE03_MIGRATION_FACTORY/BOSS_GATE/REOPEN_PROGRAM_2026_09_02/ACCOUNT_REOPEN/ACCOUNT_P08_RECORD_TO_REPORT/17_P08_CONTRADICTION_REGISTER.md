@@ -73,3 +73,12 @@ Added because an independent reviewer established that **none** of the closure's
 | `P08-CONTRA-33` | **A withdrawn class-A claim is still carried at class A in two places, one of them governing an entire register — while the negative-claim register certifies that no such restatement exists** | **CONFIRMED AGAINST THE AUTHOR.** The prohibition the programme names as its own was breached — `48` |
 | `P08-CONTRA-34` | **"N of 21 roots" is at most 7 independent observations.** The core posting file resolves to 7 distinct contents across the roots that carry it | **CONFIRMED AGAINST THE AUTHOR** by content hash — `48` |
 | `P08-CONTRA-35` | "In a real population the duplicate detector is swamped" is not supported by the author's own data when scoped to the population the detector covers | **CONFIRMED AGAINST THE AUTHOR.** 677 of 36,961, largest group 14 — `48` |
+
+---
+
+# PHASE-S DELTA — `[SMEPLUS-26-09-06-P08-R2R-DOMAIN-PURE-BOUNDED-CLOSURE-002]`
+
+| ID | Contradiction | Disposition |
+|---|---|---|
+| `P08-CONTRA-43` | **The deployment denominators were measured over a population that is 93% empty shells.** "0 of 89 companies" and "0 of 109 journals" counted units that have never posted an accounting entry. Only **6 of 89** companies and **29 of 109** journals have ever posted | **CORRECTED AND CLOSED.** Restated on transacting scope: **0 of 6** and **0 of 29** — a smaller denominator and a materially stronger claim, because every unit in it is one where the control would have mattered. `53` CQ-10. This is the **eligibility** defect the programme has recorded before: the four denominator clauses all assume the set is eligible, and eligibility was never tested |
+| `P08-CONTRA-44` | **Two published items asserted peer-domain facts** — how a withholding figure is computed, and which tax groups belong in a statutory register | **RE-SCOPED, NOT WITHDRAWN.** The ledger-boundary half of each is sound and load-bearing and is retained; the peer half is routed to its owner. `55` §1.1 |

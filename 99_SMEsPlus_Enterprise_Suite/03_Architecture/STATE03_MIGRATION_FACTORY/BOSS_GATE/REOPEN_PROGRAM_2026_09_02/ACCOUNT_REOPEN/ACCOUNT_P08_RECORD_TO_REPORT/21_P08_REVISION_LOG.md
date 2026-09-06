@@ -79,3 +79,17 @@ Full handling in `09A_P08_PEER_INBOUND_P04_LOCK_REDATE.md`. Every peer claim was
 **Two reviewer claims were rejected on verification** and are recorded as rejected in `48` §5. Reviewer findings are not automatically true.
 
 **The correction of a correction:** the author's own re-run of the orphan population reached 9,754; a third reviewer showed the correct figure is **6,585**. A correction is not exempt from the discipline it applies.
+
+---
+
+# PHASE-S DELTA — `[SMEPLUS-26-09-06-P08-R2R-DOMAIN-PURE-BOUNDED-CLOSURE-002]`
+
+**This round produced no new forensic search.** It re-framed closed evidence into the Phase-S closure surface and, in doing so, found **two defects in P08's own published work**.
+
+| # | Revision | Kind |
+|---|---|---|
+| 1 | **Deployment denominators restated to transacting scope** — 6 companies, 29 journals, not 89 and 109 | **self-caught**, while writing `CQ-P08-10`. The first self-caught material correction in three rounds |
+| 2 | **Two artefacts re-scoped for domain contamination** — the ledger half retained, the peer half routed | **self-caught**, by an audit this round's mandate required |
+| 3 | The Candidate INPUT inventory revealed a fact not previously stated: **the purchase-side class is the largest documentary input and carries the weakest provenance of any class** — 26.8% against 84.1% for sale-side | **new, from re-framing rather than re-searching** |
+
+**Method note.** Both self-caught defects were found by **changing the question, not by searching harder**. `CQ-P08-10` asked *which units could the control have applied to* rather than *how many units are there*; the purity audit asked *whose fact is this* rather than *is this fact true*. Recorded as `P08-M-17`: **a re-framing pass is a distinct control from a re-search pass, and it catches a class the others do not.**

@@ -48,3 +48,15 @@ No `GATING` unknown is routed forward to hide it: `P08-U-13`, `P08-U-14` and `P0
 | `P08-U-21` | What produced the 5,622 **backward** accounting-date divergences; the studied mechanism can only move a date forward | `UNRESOLVED — EVIDENCE REQUIRED` | **NEW** |
 | `P08-U-22` | A fourth deployed database declared unreadable by one tool and not retried with another | `C NOT YET SEARCHED` | **NEW.** A fourth database is a fourth version premise |
 | `P08-U-23` | Two further custom source trees on the host, outside the declared path set | `C NOT YET SEARCHED` | **NEW** |
+
+---
+
+# PHASE-S DELTA — unknown movement
+
+| ID | Item | Movement |
+|---|---|---|
+| `P08-U-24` | Whether "has ever posted" is the correct **eligibility predicate** for a period-lock claim and for a seal claim — they may not share one | **NEW.** Raised by the author against the author's own correction, and put to independent challenge |
+| `P08-U-25` | Whether the deployed numbering derivation preserves collision-freedom | **NEW.** `53` CQ-03. The source-line argument does not describe the deployed scheme |
+| `P08-U-26` | Whether the rate-source module installed in the deployed database changes the FX picture | **NEW.** `B NOT FOUND IN SEARCHED SCOPE` — the author's pattern found no direct write; the inherited update path was not traced |
+| `P08-U-18` | 15 installed modules unlocated on this host | **UNCHANGED — GATING.** Not touched this round; Phase S added no search authority |
+| `P08-U-19` | A statutory register query with no company predicate, installed on two 44-company databases | **CARRIED INTO LAYER 1** this round as a scope fact — `53` CQ-10, `55` §1.1. The statutory half remains `HOLD` |

@@ -55,3 +55,18 @@ Root set: 22, declared and proved in `01A_P08_ROOT_SET_DECLARATION.md`. Target r
 | Existing approved SMEsPlus evidence | **yes** — §3 above |
 
 Where layers disagree, a contradiction was opened rather than a preferred layer selected. See `17_P08_CONTRADICTION_REGISTER.md`.
+
+---
+
+# PHASE-S DELTA — evidence bases and their standing
+
+| Base | Line | Standing this round |
+|---|---|---|
+| Reference source tree | **18.0** | unchanged; **matches no deployed database** |
+| Custom tree A | 18.0 | unchanged; **matches no deployed database** |
+| **Custom tree B** | **16.0** | **matches `DB-SM`.** Found in the prior round; **not further swept this round** — Phase S added no search authority |
+| `DB-SM` extract | 16.0 | unchanged — the only database with a material ledger (169,143 posted entries) |
+| `DB-BK`, `DB-EV` extracts | 19.0 | **22 posted entries between them.** They supply 88 of 89 companies and 88 of 109 journals but almost no ledger — the basis of `P08-CONTRA-43` |
+| Fourth deployed dump | unknown | **still unread** — `P08-U-22` |
+
+**Standing limit carried forward unchanged:** `AAS+-VETO-01` C-1 — every measurement must be re-issued with its predicate in executable form. **Not discharged.** Three of eleven predicates were wrong in a prior round and all three passed a positive control.
