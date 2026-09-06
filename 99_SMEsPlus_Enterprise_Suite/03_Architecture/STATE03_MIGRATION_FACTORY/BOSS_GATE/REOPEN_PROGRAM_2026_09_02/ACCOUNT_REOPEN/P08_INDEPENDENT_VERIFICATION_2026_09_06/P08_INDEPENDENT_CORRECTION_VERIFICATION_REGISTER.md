@@ -242,3 +242,24 @@ The audited round re-scoped *"there is no accounting-period object"* to *"…in 
 | **CANDIDATE HANDOFF** | **8** | 10 ✗ |
 
 **The certification fails for two of four tables, including the outbound one — and the item counts it certifies (11/10/9/14) are themselves the counts `IVR-F-04` shows to be stale.**
+
+---
+
+## 10. Findings adopted from the four challenges, each re-derived by the verifier
+
+| ID | Finding | Verifier's own check |
+|---|---|---|
+| `IVR-F-15` | **The capability denominator reads the wrong column, and its predicate is falsified.** `7 / 75` rests on a per-company code-override map; account-to-company scoping lives in a separate relation table **neither party extracted** | **Extracted it from the original dump.** One 19.0 database alone shows **11 companies holding accounts, not 3**. And a **posted entry's company appears in no charted set under either instrument** — so the capability set does not contain the history set. **The one-line control `history ⊆ capability` was never run** |
+| `IVR-F-16` | **A figure with no referent shipped to P11.** `58` §1 publishes *"at 1e-7 the answer is 3"* | **Re-derived in exact Decimal: 0 unbalanced at 0.005, 1e-4, 1e-7 and exact equality**, on both computed and stored balance. The package names its own float instrument as the cause in the same sentence and ships the number anyway |
+| `IVR-F-17` | **A token count published as an existence status.** `56` §2 states the retention control has *"ZERO occurrences in the declared 18.0 source tree"* and is **UNREACHABLE** | **Verified: it exists in that tree under a different name, in 52 files** — and the package's **own Layer-2 quarantine cites it at two line numbers**, while an **earlier round already recorded it as present**. The newer name was searched against the older tree |
+| — | The withdrawn *"every non-sale document"* wording | **Enumerated: live in six further locations**, including the outbound handoff to three peers and the previously published handoff pack |
+| — | **Extract integrity** | **Discharged.** A challenger re-extracted all 21 tables from the original dumps: **byte-identical, 21 of 21**, once a restore-tool nonce line is excluded. The provisional caveat in §2 of the instrument register is lifted for those tables |
+| — | The fourth, unread database | **Explained, not excluded.** Its archive format is newer than the restore tool on this host — **a cheap, liftable blocker**, not an unbounded search |
+
+**And one method result that changes how the denominator round should be read:** across **six** defensible eligibility predicates the numerator is **0 in every one**. **Two rounds of denominator correction could not have changed any conclusion** — while the denominator itself is unstable, swinging from 75 to 34 journals on one added posting precondition, with no sensitivity note published.
+
+## 11. Verifier's overall disposition
+
+**TERMINAL STATE `B` — `P08 INDEPENDENT VERIFICATION FOUND MATERIAL DEFECT — TARGETED REPAIR REQUIRED`.** Full reasoning, the 17 material defects, the veto table and the 10 bounded repair requirements are in `P08_INDEPENDENT_VERIFICATION_TERMINAL_REPORT.md`.
+
+**No veto is discharged. No repair was performed on the source package. The source branch was not modified.**
