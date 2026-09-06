@@ -60,3 +60,7 @@ No `GATING` unknown is routed forward to hide it: `P08-U-13`, `P08-U-14` and `P0
 | `P08-U-26` | Whether the rate-source module installed in the deployed database changes the FX picture | **NEW.** `B NOT FOUND IN SEARCHED SCOPE` — the author's pattern found no direct write; the inherited update path was not traced |
 | `P08-U-18` | 15 installed modules unlocated on this host | **UNCHANGED — GATING.** Not touched this round; Phase S added no search authority |
 | `P08-U-19` | A statutory register query with no company predicate, installed on two 44-company databases | **CARRIED INTO LAYER 1** this round as a scope fact — `53` CQ-10, `55` §1.1. The statutory half remains `HOLD` |
+| `P08-U-27` | Whether the ledger validates, carries through reversal, company-scopes and exposes the analytic attribution carried on **81.02%** of posted items | `C NOT YET SEARCHED` — **over-routed to a peer when four halves of it are P08's** |
+| `P08-U-28` | **The 19.0 source line** — 1,428 modules, on this host, never searched, and the line two of three deployed databases run | **GATING.** It has already contradicted one published absolute |
+| `P08-U-25` | Deployed numbering collision-freedom | **CLOSED ADVERSELY** — `P08-CONTRA-62` |
+| `P08-U-26` | Whether the rate-source module writes the rate master | **DISCHARGED for `DB-SM`** — an external endpoint on a daily scheduled job |

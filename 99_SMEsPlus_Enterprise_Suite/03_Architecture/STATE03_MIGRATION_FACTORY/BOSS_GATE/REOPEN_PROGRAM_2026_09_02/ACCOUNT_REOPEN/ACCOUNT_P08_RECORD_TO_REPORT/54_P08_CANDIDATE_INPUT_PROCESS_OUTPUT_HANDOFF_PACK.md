@@ -79,6 +79,8 @@ Prompt `[SMEPLUS-26-09-06-P08-R2R-DOMAIN-PURE-BOUNDED-CLOSURE-002]` · **PHASE S
 | `HO-10` | CANDIDATE HANDOFF | **CORRECTED `P08-CONTRA-53`.** The **declared** root set is **22**. Class-`A` negatives were expressed over the subset carrying each pattern (21, or 20 for the core posting file) and the surface published `N of 21` without saying so. **Independence is the binding limit: the core posting file resolves to 7 distinct contents by hash** | `FACT VERIFIED — P08` | **P09, P10, P11** | `PLAT` | **YES** | `48` §3 |
 | `HO-11` | CANDIDATE HANDOFF | **19 Boss decisions**, none answered, including one **CONTESTED** invariant | `BOSS DECISION REQUIRED` | **Boss** | `PLAT` | no — Boss-direct | `52` §4 |
 | `HO-12` | CANDIDATE HANDOFF | `AAS+-VETO-01` — two conditions gating reliance on any P08 finding | `BOSS DECISION REQUIRED` | **Boss, PMO** | `PLAT` | no — Boss-direct | `50` §4 |
+| `HO-13` | CANDIDATE HANDOFF | **A boundary actor that destroys ledger facts** — a module installed on all three deployed databases deleting settlements, items and entries in unqualified raw SQL and resetting the number sequence to 1 | `FACT VERIFIED — P08` | **P11, P06** | `PLAT` | **YES** | `58` §5 |
+| `HO-14` | CANDIDATE HANDOFF | The statutory register family selects on **two different period bases** — two handlers on the tax period, two on the accounting date — so the 5,228 entries where the two differ can appear in one and not the other | `FACT VERIFIED — P08` | **P07** | `CO` | **YES** | `58` §6, `57` §5 |
 
 ---
 
@@ -89,8 +91,8 @@ Prompt `[SMEPLUS-26-09-06-P08-R2R-DOMAIN-PURE-BOUNDED-CLOSURE-002]` · **PHASE S
 | **CANDIDATE INPUT** | **11** |
 | **PROCESS** | **10** |
 | **CANDIDATE OUTPUT** | **9** |
-| **CANDIDATE HANDOFF** | **12** |
-| Items naming a candidate producer/consumer **without researching it** | **17** |
+| **CANDIDATE HANDOFF** | **14** |
+| Items naming a candidate producer/consumer **without researching it** | **19** |
 | Items carrying an open dependency | **20** |
 | Items labelled a final contract | **0** |
 
