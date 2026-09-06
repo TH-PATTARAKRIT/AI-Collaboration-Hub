@@ -95,3 +95,29 @@ Created **2026-09-05** under `[SMEPLUS-26-09-05-G02-P02-O2C-TARGETED-CLOSURE-002
 - Long shell jobs are killed when the session ends; **chunk with an incremental cursor**.
 - `~/Library/Application Support` and `~/Library/Containers` traversals hang (TCC).
 
+### Round 003 — FINAL resume state
+
+| Field | Value |
+|---|---|
+| Last completed checkpoint | **CP-10** |
+| Current blocker | `C-04b` — **Boss authorisation**, pack **WITHDRAWN** pending the four fixes in `47` §5.6 |
+| Mutation authorisation required? | **YES for `C-04b` only.** None exists; **nothing was executed** |
+| Background tasks | **0** |
+| Sandbox | **UNREACHABLE** — no Docker daemon on this host as of 2026-09-06 |
+
+**Exact next actions, in order**
+1. **Re-submit the `C-04` pack only after `47` §5.6** — `COMPANY_ID = 1`, the soft-mode steps written out as code, per-table row-count restoration proof, sandbox restored.
+2. **Re-derive the P02-relevant custom subset against the corrected 1,932-name union** — only the 620→540 total was re-derived; the P02-relevant split still uses the old union.
+3. Content-hash all 40 artefact paths; publish distinct-content beside path count.
+4. Extract `ir_module_module.latest_version` **per module**; no row may grade above `SOURCE AVAILABLE BUT NOT PROVEN DEPLOYED` until then.
+5. Run the content-ancestry key on the **13 groups it was not derived from**.
+6. Separate I/O failure from `NOTDB` in the classifier; re-test the 24,258 unreadable and the 807 above-floor files; publish `enumerated / attempted / classified / failed`.
+7. Route the three unrouted items into `39` — **P07** (Thai branch identity), **P08/P09/P11** (`odoo_cff` has neither source basis nor marker), **P06/P11** (9 stopped container volumes).
+8. Decide **in writing** whether containerised databases are in the P02 population.
+
+**Environment facts that must survive a resume**
+- **`timeout` does not exist on this host** — use `signal.alarm` (`RE-40`).
+- **Never blanket-prune `~/Library`**: the v14–v19 reference distributions live there (`C-86`). A prune adopted for TCC reasons cost this programme three sweeps and two experts.
+- Long shell jobs die with the session — chunk with an incremental cursor.
+- `~/Library/Application Support`, `~/Library/Containers`, `~/Library/Group Containers` traversals hang (TCC).
+

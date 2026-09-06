@@ -39,9 +39,9 @@ Baseline `ff8be5128483c3ba49b3265f72f1851b6c6bcd64`.
 | **CP-03** — population execution completed / dispositioned | **PARTIAL — RESUMABLE** | `45` §4/§7; 141,235 of 193,222 content-tested; **51,987 cloud files <1 MB not tested**; `~/Library/Group Containers` blocked |
 | **CP-04** — deployment code identity bounded | **COMPLETE — EVIDENCE VERIFIED** | `46`; five mandated statuses; **`MATCH VERIFIED` used for no archived deployment** |
 | **CP-05** — C-04 read-only closure or authorisation pack | **PARTIAL — C-04a CLOSED, C-04b BLOCKED — BOSS AUTHORISATION** | `47`; nothing executed |
-| **CP-06** — business-scenario delta reconciliation | **IN PROGRESS** | pending challenge input |
-| **CP-07** — four AAS-03 challenges | **IN PROGRESS** | four fresh experts relaunched after the prior session ended |
-| **CP-08** — AAS+ consolidation | **NOT STARTED** | depends on CP-07 |
-| **CP-09** — PMO exit assessment | **NOT STARTED** | depends on CP-08 |
-| **CP-10** — P11/G02 handoff + terminality audit | **NOT STARTED** | depends on CP-09 |
+| **CP-06** — business-scenario delta reconciliation | **COMPLETE — EVIDENCE VERIFIED** | `48` §4; 6 of 8 scenarios restated, `C-60`/`C-61`/`C-62` |
+| **CP-07** — four AAS-03 challenges | **COMPLETE — EVIDENCE VERIFIED** | `49`; all four §12 mandates discharged; **24 confirmed contradictions**, 2 expert claims refuted |
+| **CP-08** — AAS+ consolidation | **COMPLETE — EVIDENCE VERIFIED** | `50`; 5 agreements, **5 dissents carried unresolved** |
+| **CP-09** — PMO exit assessment | **COMPLETE — EVIDENCE VERIFIED** | `51`; **0 of 8 satisfied, 5 partial, 3 not**; EC-01 up, one named regression |
+| **CP-10** — P11/G02 handoff + terminality audit | **COMPLETE — EVIDENCE VERIFIED** | `48` §6/§7; 10 named uncertainties, all owned |
 
