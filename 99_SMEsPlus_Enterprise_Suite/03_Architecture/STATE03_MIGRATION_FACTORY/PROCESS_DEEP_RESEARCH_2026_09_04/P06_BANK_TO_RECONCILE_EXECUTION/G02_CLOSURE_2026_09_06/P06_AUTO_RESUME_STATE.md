@@ -73,7 +73,7 @@ For each: is the superseded wording quoted verbatim, is the correction accurate,
 |---|---|
 | **PROMPT** | `[SMEPLUS-26-09-06-G02-P06-B2R-CORRECTION-INTEGRITY-VERIFICATION-004]` · prompt commit `774aa0b` |
 | **BASELINE VERIFIED** | `da987861a5f5586a01396a701d5108215f894d80` (research commit under audit: `6442925`) |
-| **PUBLISHED COMMIT** | *(written by the post-publication record — see below)* |
+| **PUBLISHED COMMIT** | **`249b7c2c605b7652948d65f81b897d90e52984e6`** — pushed to `origin`; authoritative remote SHA verified with `git ls-remote origin refs/heads/…` (the remote ref, not the tracking ref) and equal to local; working tree clean; 0 unpushed commits; **84 files** on the remote tree |
 | **PACKAGE** | **84 files** — 70 base + 12 `G02_CLOSURE_2026_09_06/` + 2 `G02_VERIFICATION_2026_09_06/` |
 | **EXECUTED COUNTS** | `P06-B-*` **65** (contiguous `B-01`…`B-65`) · `P06-OQ-*` **75** distinct over an id space reaching `OQ-128`, **not contiguous** · `REV-E-*` **22** |
 | **TERMINAL STATE** | **`G02-P06 CORRECTION DEFECT FOUND — AFFECTED SURFACE CORRECTED / RECHALLENGE REQUIRED`** |

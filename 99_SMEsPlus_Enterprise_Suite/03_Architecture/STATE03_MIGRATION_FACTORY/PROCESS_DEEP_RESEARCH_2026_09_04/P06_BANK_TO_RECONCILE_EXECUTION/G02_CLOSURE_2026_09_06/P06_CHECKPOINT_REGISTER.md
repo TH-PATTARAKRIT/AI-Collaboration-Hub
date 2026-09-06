@@ -19,7 +19,7 @@
 | — | prompt intake only | `18035d9` | 70 | — |
 | **5** | **`…G02-P06-B2R-P10-DELTA-DOMAIN-PURE-CLOSURE-003`** | **`6442925`** / `da98786` | **82** | **`G02-P06 EVIDENCE INTEGRITY FAILURE — CORRECTION REQUIRED`** |
 | — | prompt intake only | `774aa0b` | 82 | — |
-| **6** | **`…G02-P06-B2R-CORRECTION-INTEGRITY-VERIFICATION-004`** | **this commit** | **84** | **`G02-P06 CORRECTION DEFECT FOUND — AFFECTED SURFACE CORRECTED / RECHALLENGE REQUIRED`** |
+| **6** | **`…G02-P06-B2R-CORRECTION-INTEGRITY-VERIFICATION-004`** | **`249b7c2`** | **84** | **`G02-P06 CORRECTION DEFECT FOUND — AFFECTED SURFACE CORRECTED / RECHALLENGE REQUIRED`** |
 
 ## 2. Checkpoints, this round
 
@@ -70,7 +70,8 @@
 | `CP-P06V04` | Bounded repair of the affected surface only | **COMPLETE — NOT DISCHARGED.** 40 repairs across 20 files, marker `[REV-E-22, 2026-09-06]`. **Applied by the same party again** | 20 register files |
 | `CP-P06V05` | Preservation of named holds (§6) | **COMPLETE.** `P06-B-08` `BOSS DECISION REQUIRED`, `P06-OQ-98` `HOLD`, `AASP-VETO-06`, `REV-E-18`, `HO-03`/`HO-04` all unchanged with existing owners | verified by grep |
 | `CP-P06V06` | Manifest / source-link / contradiction mutual consistency | **COMPLETE.** Manifest §2 hashes regenerated; both under-enumerated populations corrected inside the supplement | `P06_EVIDENCE_MANIFEST_G02.md`, `…CONTRADICTION_AND_REVISION_SUPPLEMENT.md` |
-| `CP-P06V07` | Publication and post-publication record | see `P06_AUTO_RESUME_STATE.md` | — |
+| `CP-P06V07` | Publication | **COMPLETE.** `249b7c2` pushed; **authoritative remote SHA verified via `git ls-remote origin refs/heads/…`**, not the tracking ref; working tree clean; 0 unpushed; 84 files on the remote tree; **0 background tasks** | — |
+| `CP-P06V08` | Post-publication record — published SHA written back | **COMPLETE** | `P06_AUTO_RESUME_STATE.md`, this file |
 
 ## Prior checkpoint claims re-tested this round
 

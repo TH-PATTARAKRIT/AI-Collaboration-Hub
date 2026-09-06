@@ -15,9 +15,9 @@
 |---|---|---|---|
 | `P06_AAS03_BOUNDED_CHALLENGE.md` | 114 | 14293 | `b3a94ab1e0b028ffe2ba0c219983609b14801c0aa77bce6c251abf4fdaf28d29` |
 | `P06_AAS_PLUS_CONSOLIDATION.md` | 90 | 11809 | `d35366c58af57f5e3fcb2e5cfea1b9820c2242c99205304fb677764b9c16bb01` |
-| `P06_AUTO_RESUME_STATE.md` | 132 | 8997 | `46f9641e9c6fcecbc75be8da2e9560d9dbe2b31ab7e38eb0b7136d12104ceb81` |
+| `P06_AUTO_RESUME_STATE.md` | 132 | 9219 | `4fbe414c4d101d8d799df89bfa390a7690abebd2f2b7c1ba4ccefda192927a3c` |
 | `P06_CANDIDATE_INPUT_PROCESS_OUTPUT_HANDOFF_PACK.md` | 209 | 22287 | `6d3c27e8ba418e9beedfaa8b3c53f17fa394486f5ca9a570524d209a019ba4e4` |
-| `P06_CHECKPOINT_REGISTER.md` | 86 | 8475 | `5a1b4765dddd375f0d75d7a78e7ac27f0d247e2a205660623d85fba424d5481f` |
+| `P06_CHECKPOINT_REGISTER.md` | 87 | 8761 | `01391d9f60d28635016392d5ea408843913f17422fa8ca0b53957a0683b54859` |
 | `P06_CONTRADICTION_AND_REVISION_SUPPLEMENT.md` | 203 | 19963 | `6d2d8af979c84e6fc2502b4692a5cdf4b2db00d3adbbc2fd64fe816e9b8e303f` |
 | `P06_DOMAIN_PURITY_AND_BOUNDARY_REGISTER.md` | 64 | 7341 | `f1cc988db8a3ddb286799475bc43ca41d61166cae8a711041289fc1116ce6dc1` |
 | `P06_IEVING_LEDGER_STATE_FORENSIC.md` | 153 | 11432 | `b18d51b2172136151da13a2c43e31576fc3556373c2da108a01e23f845d94104` |
@@ -101,6 +101,8 @@ grep -ohE "REV-E-22, 2026-09-06" *.md G02_CLOSURE_2026_09_06/*.md | wc -l -> 40 
 ---
 
 ## 7. Round-6 verification artefacts — SHA-256
+
+**Published at `249b7c2`.** The `P06_AUTO_RESUME_STATE.md` and `P06_CHECKPOINT_REGISTER.md` rows in §1 are **post-publication** hashes: both files record the published SHA and therefore change after the commit that publishes them. Their pre-publication hashes are in `249b7c2`. *A resume record cannot contain the hash of a state that includes itself.*
 
 Added by `[SMEPLUS-26-09-06-G02-P06-B2R-CORRECTION-INTEGRITY-VERIFICATION-004]`.
 
