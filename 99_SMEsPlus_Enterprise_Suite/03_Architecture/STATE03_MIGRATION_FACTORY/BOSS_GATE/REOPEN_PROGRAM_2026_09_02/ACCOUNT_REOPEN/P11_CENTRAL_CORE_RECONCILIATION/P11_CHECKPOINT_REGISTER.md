@@ -49,8 +49,9 @@ Peer-intake deltas 01–10 — **all preserved; superseded in coverage only by `
 | `CP-P11C2-08` | Accounting Truth Convergence Matrix | **COMPLETE — EVIDENCE VERIFIED** | 6 converged, 17 single-owner, 5 withheld classes |
 | `CP-P11C2-09` | Candidate I/P/O/Handoff Pack | **COMPLETE — EVIDENCE VERIFIED** | 12 inputs, 11 core elements, 10 handoffs, 5 candidate controls. Forbidden labels: 0 |
 | `CP-P11C2-10` | Domain Purity register | **COMPLETE — EVIDENCE VERIFIED** | **6 contamination events, 6 stopped, 0 pursued** |
-| `CP-P11C2-11` | AAS-03 fresh bounded challenge | **IN PROGRESS** | commissioned against the frozen SHA — **package frozen first** (`P11-M-06`) |
-| `CP-P11C2-12` | challenge deltas reconciled / re-challenged | **NOT STARTED** | depends on `CP-P11C2-11` |
-| `CP-P11C2-13` | AAS+ consolidation | **NOT STARTED** | — |
-| `CP-P11C2-14` | PMO Phase-S review | **NOT STARTED** | — |
-| `CP-P11C2-FINAL` | commit / push / remote verify / checkpoint / auto-resume | **IN PROGRESS** | — |
+| `CP-P11C2-11` | AAS-03 fresh bounded challenge | **COMPLETE — `CONTRADICTED`** | 4 experts vs `14de462`; **47 findings, 12 `CRITICAL`, 44 accepted, 3 disputed in part**. Five defects found by **multiple experts who could not see each other**. **Freeze held throughout** |
+| `CP-P11C2-12` | challenge deltas reconciled | **PARTIAL — RESUMABLE** | Applied at source: `B-17` **re-opened**, `B-23` **withdrawn**, `B-26` **bounded by mechanism**, `P11-C-09` **convergence label withdrawn**, `P11-C-12` **re-scoped/downgraded**, `OC-06` **closed on P02 `C-86`**, six counts corrected, `D-10` restored, P06 qualifiers restored, `P08 AAS+-VETO-01` recorded. **NOT re-challenged** |
+| `CP-P11C2-13` | AAS+ consolidation | **COMPLETE** | `NOT CONVERGED — EVIDENCE BASE INVALID — P11 CORR3 REQUIRED`; `VETO-01` widened, `VETO-03` new |
+| `CP-P11C2-14` | PMO Phase-S review | **COMPLETE** | `RECOMMEND HOLD — CORR3 REQUIRED`; **`0 of 8`**; Domain Purity **PRESERVED**; Phase B not entered; AI EOS not activated |
+| `CP-P11C2-FINAL` | commit / push / remote verify / checkpoint / auto-resume | **COMPLETE** | `P11#06` |
+| `CP-P11C2-01` `-02` `-05` `-07` | *(re-graded by the challenge)* | **SUPERSEDED — MATERIAL DELTA** | population invalid (`P11-B-27`); `B-17` closure withdrawn; `S8` controls could not fire; 4 CQ dispositions changed |

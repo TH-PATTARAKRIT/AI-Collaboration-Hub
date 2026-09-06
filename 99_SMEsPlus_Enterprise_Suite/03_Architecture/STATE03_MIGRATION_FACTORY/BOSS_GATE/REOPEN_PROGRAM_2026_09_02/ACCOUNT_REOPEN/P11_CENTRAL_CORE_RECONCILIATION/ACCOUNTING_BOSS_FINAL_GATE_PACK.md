@@ -1,3 +1,26 @@
+> # ⚠ SUPERSEDED IN PART BY CORR2 — `2026-09-06`
+>
+> **Every count below this banner is from CORR1 and six of them are stale.** Read
+> `P11_AAS03_CORR2_CHALLENGE.md`, `P11_AAS_PLUS_CORR2_CONSOLIDATION.md` and
+> `P11_PMO_CORR2_PHASE_S_REVIEW.md` first.
+>
+> | Figure in this pack | CORR2 |
+> |---|---|
+> | peer artefacts consumed **16** | **18 addressed / 12 consumed / ≥15 read — and the enumeration is invalid (`P11-B-27`)** |
+> | blockers **24** | **29 registered · 26 open** |
+> | `CRITICAL` **2** | **3** |
+> | tolerance-zero **14** | **15 · 0 resolved** |
+> | decisions **16** | **19 · 0 decided by P11** |
+> | errors **34** | **40** |
+>
+> **Two claims in this pack are WITHDRAWN by the CORR2 challenge:** `P11-C-09` is **not** a convergence
+> (one responder, two requesters), and `B-17` is **not** closed (second closure withdrawn).
+>
+> **TERMINAL STATE for CORR2 is `TERMINAL C — EVIDENCE-INTEGRITY FAILURE — CORRECTION REQUIRED`.**
+> Nothing in this pack may be quoted to the Boss without an `E6` record (`AASP-P11-C2-VETO-03`).
+
+---
+
 # ACCOUNTING — BOSS FINAL GATE PACK
 
 Process `P11 — Central Core Accounting Reconciliation`

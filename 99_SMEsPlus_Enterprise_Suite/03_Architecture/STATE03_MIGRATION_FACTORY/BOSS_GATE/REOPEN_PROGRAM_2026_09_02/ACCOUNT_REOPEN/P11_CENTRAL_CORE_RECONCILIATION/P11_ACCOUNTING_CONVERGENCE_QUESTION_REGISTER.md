@@ -10,8 +10,11 @@
 
 ## `CQ-P11-01` — Peer accounting input population
 
-**Population:** the **12** P11-addressed artefacts in `P11_CORR2_PEER_CLAIM_SNAPSHOT.md` §3, at the ten
-frozen SHAs. **13 are new since CORR1, from 7 peers.**
+**Population — CORRECTED (`X2-C1`, `X2-C2`, `X2-C3`):** the snapshot **enumerated 53** paths and
+**18** P11-addressed artefacts; P11 **consumed 12** and **actually read ≥15** (P09 `D23`/`D25`, P08
+`52_V2` are quoted and are not among the 12). **`9` are new files from `6` peers**, 11 from 7 if
+modification counts. **The published figures 47 / 12 / 13-from-7 are all wrong, and *"13 new out of a
+population of 12"* was arithmetically impossible on its face.** `P11-E-38`.
 
 | Producer | Artefact @ SHA | Material accounting input | Class |
 |---|---|---|---|
@@ -47,8 +50,17 @@ reconstruction** of any balance exists — `amount_residual` is current state on
 > **`CANDIDATE ACCOUNTING TRUTH`:** the identity object required for accounting reconciliation is
 > **not present as a platform property in any generation examined by any peer**. Evidence class **`C`**
 > — the CORR1 upgrade to `A` is **withdrawn and stays withdrawn** (`P11-E-31`).
+> **This row carries `P08 AAS+-VETO-01`** (`P11-B-29`): *"No item here may be relied upon for design
+> until its two conditions are met"*, and condition C-1 is **undischarged** — the owner records that
+> *"three of eleven predicates were wrong in a prior round and **all three passed a positive control**."*
 
-**Dependent processes: eight** — `P02`, `P05` (`HE-09`), `P06`, `P07`, `P08`, `P09`, `P10`, `P11`.
+**Dependent processes: ~~eight~~ — NOT REPRODUCIBLE, and withdrawn pending derivation (`X3-X2`).**
+Three incompatible derivations exist inside the package: CORR1 attributes the 5→8 movement to
+`P11-C-09` adding P06/P07/P08; the CORR2 matrix attributes it to `P05` `HE-09`; and this register's own
+enumeration **counts P11 itself as one of the decision's dependents**. `P11-C-09`'s convergence label is
+now withdrawn (`X3-X1`), so its contribution cannot stand either. **`P05` `HE-09` is a claim-to-entry
+route, not a settlement route.** A per-process derivation table is required before any count is
+published to the Boss. `P11-B-30`.
 **Disposition: `BOSS DECISION REQUIRED — DECISION PACKAGE READY` (`D-5`).**
 **P11 designs no event schema.**
 
@@ -77,9 +89,14 @@ Received facts: settlement chronology is **not trustworthy** — **46.4 %** of s
 *after* their as-of date, **44.3 % before**, maximum **594 days** late (`P08`). Recognition collapsed
 into the posting act is `P10`'s root cause. There is **no accounting-period object** (`P08`).
 
-> **`CANDIDATE ACCOUNTING TRUTH`:** occurrence, recognition, posting and settlement are **four
-> distinct times**, and the estate reliably carries **one** of them. A reconciliation that
-> assumes any two coincide is unsupported.
+> **`CANDIDATE ACCOUNTING TRUTH` — RESTATED (`X1-7`).** ~~the estate reliably carries **one** of them~~
+> is **contradicted by the evidence offered for it**: P08's *"46.4 % after / 44.3 % before their as-of
+> date"* is **computable only if two distinct times are carried per settlement**, and P08 separately
+> reports posting state and date *"present on every entry"*. **P11 conflated *not trustworthy* with
+> *not carried*.** What survives: **occurrence, recognition, posting and settlement are four distinct
+> times; the estate carries several of them and reconciles none of them to each other.** The best
+> support for a genuinely absent time is the item P11 did not intake — `฿29,029,467.66` received with
+> **no recognition of any kind** (`P11-B-28`).
 
 **Disposition: `UNRESOLVED — SPECIFIC P11 EVIDENCE UNAVAILABLE`**, gated on `D-5` and `P10-D-02`.
 
@@ -118,16 +135,33 @@ would have been wrong — `P01` `ERR-P01-49`:
 Independently, P11's own re-run reaches **0 subledgers of record, unqualified** out of seven
 (`P11_B17_SCOPE_REPAIR_CORR2.md`). **Two routes, one conclusion.**
 
-> ### `P11-C-12` — a genuine convergence, and the most consequential in the package
-> **AR/AP "reconciliation" against the GL is not a control.** It compares a set of rows with itself.
-> The two places where genuinely separate records exist — **asset register** and **inventory
-> valuation** — are exactly the two the kernel **never requires to be tied out**.
+> ### `P11-C-12` — **RE-SCOPED BY THE CORR2 CHALLENGE (`X1-C1`)**
 >
-> **`CANDIDATE ACCOUNTING TRUTH`:** the estate has reconciliation **where it is vacuous** and
-> **no reconciliation where it would be meaningful.**
+> The published generalisation — *"the estate has reconciliation where it is vacuous and no
+> reconciliation where it would be meaningful"* — **equivocates on two different mechanisms.** The
+> *"exists"* half is **open-item matching** (P01: AP 97.89 % reconciled, positive control 0 of 52,996);
+> the *"vacuous"* half is **control-account tie-out** (P08). Not the same object.
+>
+> **The identity is falsified inside P11's own frozen population:** P01 measures **10 of 1,904** vendor
+> bills whose balancing line is not of payable type — *"a payables ageing or a payment-matching routine
+> scoped to the payable account type **will not see these liabilities**. That is a subledger-to-ledger
+> reconciliation difference — **P11's and P08's scope**."* Agreement is *"true by construction"* only if
+> the filter predicate is right, and it is **measurably not**.
+>
+> **P11's claimed second route is not independent:** P11's own subledger rule tests `S3`/`S4` and
+> **expressly excludes `S2`, the tie-out criterion** — a count produced by a rule that does not test
+> tie-out cannot independently establish a conclusion about tie-out. And the figure is
+> **0 of 7 *unqualified*** (Inventory and Asset were of-record, qualified), not 0.
+>
+> **What survives, within P08's own stated scope:** where the subledger *is* the ledger filtered by
+> account, **agreement is not evidence**; and the two genuinely separate stores — asset register,
+> inventory valuation — carry **no kernel tie-out**. That is a real and useful finding, and it is
+> narrower than what P11 published.
 
-**Disposition: `FACT VERIFIED — CLOSED FOR CURRENT P11 EVIDENCE`**, with the five questions `P08`
-routes to P11 carried into `CQ-P11-15` as candidate outputs, **unanswered**.
+
+**Disposition: `SUPPORTED INTERPRETATION — P11` (downgraded from `FACT VERIFIED`), carrying
+`P08 AAS+-VETO-01`**, with the five questions `P08` routes to P11 carried into `CQ-P11-15` as candidate
+outputs, **unanswered**.
 
 ---
 
@@ -223,7 +257,18 @@ at v3; `P07` a correction/reversal lineage matrix.
 `0 of 13,814` identity rows, `0 of 109` sealed journals, `0 of 89` companies with a period lock,
 `P02`'s **zero COGS lines across 447,384**, and P11's own **0 subledgers of record**.
 **`P11-B-26`: every P11 zero-shaped negative is downgraded pending exclusion of the deletion
-explanation.** Not withdrawn — **downgraded**, because no evidence says the module fired.
+explanation.** ~~Not withdrawn — downgraded, because no evidence says the module fired.~~
+**CORRECTED (`X1-C5`, `X2-C11`).** Two corrections, both against P11:
+**(a)** *"No evidence says the module fired"* is **false**. `P06` `70_`: *"a remediation module written
+inside this programme states the destructive path **has already been run and produced user-visible
+breakage**"* — **a sentence P11 carried itself at CORR1** and dropped at CORR2. P11 generalised P01's
+**series-16-specific** negative into a programme-wide one. And **"user-visible breakage" is a TRACE**,
+which undercuts both *"leaves no trace by design"* and *"observationally identical"*.
+**(b)** The universal is **withdrawn**. `ON DELETE SET NULL` NULLs **foreign keys**: coherent for the
+**two** valuation-layer zeros, unestablished for identity rows, and **incoherent** for a journal seal
+flag, a company lock date, and a marker-absence in a fully-populated table — an *unfiltered* table
+delete leaves **0 lines, not 447,384 lines with zero COGS**.
+**Downgraded: the two valuation-layer zeros only.**
 
 Also received: cross-cost-centre displacement of **2,019,008.49 in each direction** inside entries that
 net exactly zero — **double movement invisible to every aggregate**.
@@ -276,10 +321,13 @@ Full pack: `P11_CANDIDATE_ACCOUNTING_INPUT_PROCESS_OUTPUT_HANDOFF_PACK.md`.
 
 | Disposition | CQs |
 |---|---|
-| `FACT VERIFIED — CLOSED FOR CURRENT P11 EVIDENCE` | `01`, `03`, `06`, `07`, `08`, `12` — **6** |
-| `UNRESOLVED — SPECIFIC P11 EVIDENCE UNAVAILABLE` | `04`, `05`, `10`, `11` — **4** |
+| `FACT VERIFIED — CLOSED FOR CURRENT P11 EVIDENCE` | `03`, `07`, `12` — **3** *(`01` re-derived; `06` downgraded to `SUPPORTED INTERPRETATION`; `08` re-opened — `P01` withdrew *"the general ledger is intact and sane"* for **8 posted items > ฿1bn and ฿39.2m misallocated**)* |
+| `SUPPORTED INTERPRETATION — P11` | `06` — **1** |
+| `UNRESOLVED — SPECIFIC P11 EVIDENCE UNAVAILABLE` | `01`, `04`, `05`, `08`, `10`, `11` — **6** |
 | `BOSS DECISION REQUIRED` | `02`, `13` — **2** |
 | `EXTERNAL DOMAIN BOUNDARY — CANDIDATE HANDOFF RECORDED` | `09` — **1** |
 | Carried to their own registers | `14`, `15` — **2** |
 
-**`CP-P11C2-07` — COMPLETE — EVIDENCE VERIFIED. 15 of 15 dispositioned. 0 ambiguous.**
+**`CP-P11C2-07` — `SUPERSEDED — MATERIAL DELTA`.** 15 of 15 dispositioned, **but 4 dispositions were
+changed by the challenge and the population feeding all 15 is defective (`P11-B-27`). Re-derivation and
+re-challenge required before any disposition here is relied upon.**

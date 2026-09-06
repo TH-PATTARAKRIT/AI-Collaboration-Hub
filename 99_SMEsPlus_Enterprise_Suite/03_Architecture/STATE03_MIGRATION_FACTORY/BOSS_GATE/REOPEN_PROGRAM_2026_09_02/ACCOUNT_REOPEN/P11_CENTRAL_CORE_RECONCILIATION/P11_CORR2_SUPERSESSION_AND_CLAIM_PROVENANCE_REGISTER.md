@@ -8,14 +8,31 @@
 
 ---
 
-## 1. `SPR-01` — the P09 chain runs **four deep**, and P11 consumed generation two
+## 1. `SPR-01` — the P09 chain runs ~~**four deep**~~ **SIX deep**, and P11 consumed generation two, then stopped at four
+
+> ### ⚠ CORRECTED `2026-09-06` by `X4-C1`. **This section was wrong about the very thing it exists to police.**
+> `D24`, `D26` and `D27` all exist at P09's frozen head `5441f8d`. **`D26` (`434e97c`, 10:42) and `D27`
+> (`0b61c92`, 14:18) both post-date `D25` (`4eb853a`, 09:01).** P11 declared the chain four deep and took
+> generation 4 — **inside the document stating "a claim is current only at its last statement by its
+> owner".** The rule was written and violated in the same file. `P11-E-39`.
+>
+> **Generation 5 (`D26`):** *"`B7` is **PARTIALLY WITHDRAWN** … **Every mechanism claim in this
+> programme is version-matched to at least two real deployments**"* — two version-18 deployments exist.
+> **This directly falsifies P11's `B-23`.**
+> **Generation 6 (`D27`) — terminal:** the `99.6507 % / 17,465` headline is *"**unchanged in value,
+> narrowed in scope**: one artefact out of **17** in scope, not one out of five"*; `B5` is **NARROWED,
+> NOT CLOSED** with **8 in-scope artefacts unread**; and it publishes two rules P11 needed —
+> **`NC-12` coverage assertion** (*"count what it **processed** and compare against what its search
+> **returned**, and publish both"*) and **`NC-13` per-artefact positive control**.
+>
+> **`NC-12` is the rule P11's own `S8` scan broke, published in an artefact P11's pattern excluded.**
 
 | Gen | Artefact | Claim about the analytic depreciation net |
 |---|---|---|
 | 1 | `S18_P09_P11_SUPPLEMENTAL_CRITICAL_EVIDENCE_HANDOFF.md` | 17,716 / 18,483 records · net **−2,961,221.81** · 98.57 % |
 | 2 | `S23_P09_POST_PUBLICATION_CORRECTION.md` | 17,444 / 17,488 · net **+3,595,851.11** · 98.24 % · *"a sign-inverted CREDIT … depreciation makes the cost centre look more profitable"* |
 | 3 | `D23_P09_P11_DENOMINATOR_SIGN_PLATFORM_SUPPLEMENT.md` | **17,404 of 17,405 entries net exactly 0.00.** Both earlier figures *"counted **accounts**; the claim is about **entries**"*. `+3,595,851.11` re-identified as a **migration artifact**, reconciled exactly. Profitability distortion **`DISPROVED`** |
-| **4 — CURRENT** | **`D25_P09_CHALLENGE_CORRECTION.md`** | **`DISPROVED` is WITHDRAWN → `CONFIRMED`.** Population was **17,465**, not 17,405 — silently pre-filtered to both-legged entries; **61** non-zero, not 5; rate **99.6507 %**. *"A cost centre that should bear depreciation and bears net zero has an **overstated margin, by exactly the amount erased**."* |
+| 4 | `D25_P09_CHALLENGE_CORRECTION.md` | **`DISPROVED` is WITHDRAWN → `CONFIRMED`.** Population was **17,465**, not 17,405 — silently pre-filtered to both-legged entries; **61** non-zero, not 5; rate **99.6507 %**. *"A cost centre that should bear depreciation and bears net zero has an **overstated margin, by exactly the amount erased**."* |
 
 ### 1.1 What P11 did with it — and it was wrong twice
 
@@ -27,7 +44,10 @@ correction: *"the net is `+3,595,851.11`, a sign-inverted CREDIT."*
 > **migration residue** P11 published as a depreciation effect. **P11 corrected a peer figure to a
 > value the peer withdrew one generation later, and did so while writing the rule about supersession.**
 
-**Corrected P11 position, taken from generation 4 and from nothing earlier:**
+| 5 | `D26_P09_V18_DEPLOYMENT_CORROBORATION.md` | **`B7` PARTIALLY WITHDRAWN** — two v18 deployments exist; every mechanism claim is version-matched to **at least two** real deployments |
+| **6 — CURRENT** | **`D27_P09_EVIDENCE_BASE_CENSUS_B5_DISCHARGE.md`** | the headline is **narrowed in scope — 1 of 17 artefacts, not 1 of 5**; `B5` **narrowed, not closed**, 8 unread; issues `NC-12` and `NC-13` |
+
+**Corrected P11 position, taken from generation 6 and from nothing earlier:**
 
 | Statement | Status |
 |---|---|

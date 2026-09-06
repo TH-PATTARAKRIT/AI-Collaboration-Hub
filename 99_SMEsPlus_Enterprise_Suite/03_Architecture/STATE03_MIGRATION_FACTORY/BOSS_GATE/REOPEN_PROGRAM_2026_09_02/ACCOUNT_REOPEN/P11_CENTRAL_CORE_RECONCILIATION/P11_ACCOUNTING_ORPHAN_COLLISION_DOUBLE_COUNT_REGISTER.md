@@ -21,7 +21,7 @@
 | id | Collision | Resolution |
 |---|---|---|
 | `OC-05` | **Valuation cost explosion.** `P01` routed ownership to `P03`; `P03` routed it back and had **independently reached the same attribution from its own data** | **Resolved by the peers, not by P11.** Owner: **`P01`**. *"Two processes, opposite directions, one answer."* P11 records the convergence and takes **reliance only** |
-| `OC-06` | **Series-16 source existence.** `P04-B-51`: *"no series-16 source exists on this host"*, and every P04 source claim is bounded on that ground. `P01` `ERR-P01-41`: **31 core trees across five series, 16.0 ×3**, all under `/Users/admin`, verified by reading | **`EXTERNAL / PEER OWNER — HANDOFF PUBLISHED`.** The two statements cannot both be true. **P04's and P03's named hold may already be discharged by a peer neither has read.** P11 does not adjudicate and opens no tree |
+| `OC-06` | **Series-16 source existence.** `P04-B-51`: *"no series-16 source exists on this host"*. `P01` `ERR-P01-41`: **31 core trees across five series, 16.0 ×3** | **`CONTRADICTED — CORRECTED AND CLOSED` (`X4-C7`).** P11 declared this not adjudicable **while the answer sat inside P11's own frozen population**: `P02` `45_` `C-86` — ***"MAJOR REVERSAL. THE REFERENCE DISTRIBUTIONS EXIST. `C-55` IS WITHDRAWN"*** — a **950-module 16.0 Enterprise** distribution under `~/Library/CloudStorage/`, and *"Expert 4's `CH-4` … refuted; its sweep pruned `Library` too."* **Three peers, one answer: the source exists. `P04-B-51` and `P03`'s named hold are discharged by evidence, not by argument** — routed to both owners |
 | `OC-07` | **Identifier-namespace collision on P11's own decision ids.** `P03` routes decisions to P11 as **`P11-D-4`, `P11-D-5`, `P11-D-6`**, continuing its own `P11-D-1..3` sequence. P11's matrix already contains **`D-4`, `D-5`, `D-6`** — *different decisions*, and `D-5` is the event-identity decision eight processes depend on | **`CONTRADICTED — CORRECTED AND CLOSED`.** P11 registers P03's three as **`D-16`, `D-17`, `D-18`** and publishes the crosswalk (§2.1). **A reader resolving `P11-D-5` against P11's matrix would have landed on the programme's most-depended-upon decision by mistake** |
 
 ### 2.1 Decision-id crosswalk — `P03` namespace → P11 register
@@ -59,7 +59,18 @@
 
 ---
 
-**Totals: `10` items · `0` closed by P11 · `4` Boss · `2` unresolved · `1` peer-owned · `1` corrected ·
-`2` fact-verified.**
+**Totals — re-executed after challenge (`X2-C1`, `X1-9`): `10` items.**
+
+| Disposition | Count | Items |
+|---|---|---|
+| `BOSS DECISION REQUIRED` | **4** | `OC-01`, `OC-02`, `OC-03`, `OC-09` |
+| `UNRESOLVED — SPECIFIC P11 EVIDENCE UNAVAILABLE` | **1** | `OC-04` |
+| `CONTRADICTED — CORRECTED AND CLOSED` | **2** | `OC-06`, `OC-07` |
+| `EXTERNAL / PEER OWNER` — resolved by the peers | **1** | `OC-05` |
+| `FACT VERIFIED — P11 ACCOUNTING BOUNDARY` | **1** | `OC-08` |
+| `AUTHORIZATION REQUIRED` | **1** | `OC-10` |
+
+**The earlier breakdown (`4 Boss · 2 unresolved · 1 peer-owned · 1 corrected · 2 fact-verified`) did not
+match its own rows and is corrected. `CQ-P11-14`'s "9 items" is corrected to 10.** `P11-E-40`.
 
 **`CQ-P11-14` — COMPLETE — EVIDENCE VERIFIED.**

@@ -945,3 +945,78 @@ so the panel's coverage of the two closures that did not survive was *incomplete
 **CORR2 froze at a named commit before commissioning the challenge and made no edit to the reviewed
 surface until the challenge returned.** Corrections arising from it are applied **after**, in a
 separate commit, and are marked as such. **The control is only meaningful if the package holds still.**
+
+## `P11-E-38` — the instrument that selected CORR2's evidence contradicted the rule CORR2 wrote
+
+**CORR2, `2026-09-06`, found by four independent experts.**
+
+`P11-G-04` v3 says a claim is current only at its **last statement by its owner**, and that neither
+branch, SHA, **nor filename** makes it current. **The instrument P11 built to enforce that rule
+selects on the filename**, and it lost `D26`, `D27`, `S06`, `S22`, `D24` of P09 and
+`43_G02_P02_FINAL_CLEANROOM_HANDOFF.md` — a file carrying a section headed **"What P11 Receives"**,
+from the peer P11 recorded as *"none addressed to P11"*.
+
+**Four separate defects in one instrument:**
+
+| # | Defect |
+|---|---|
+| 1 | The pattern is `peer-id AND token`. Its blind spot is `¬A ∨ ¬B`; **P11 declared the intersection.** **804 files** carry a peer id and no token — an entire undeclared leg |
+| 2 | The **positive control could not test it.** All five named control artefacts carry a token, so the control exercised only the working half of the conjunction |
+| 3 | The **negative control was vacuous.** Its subject — P11's own directory — is not in the scanned population, so it could not fail |
+| 4 | The published population was the **consumed** set (12/47) under the label *population*, while the arithmetic in the same paragraph was the **enumerated** set (18/53). *"13 new out of a population of 12"* was impossible on its face |
+
+**Class: the fourth consecutive instrument failure of the same family** (`P11-E-12`, `P11-E-27`,
+`P11-E-35`, and now this) — **and the first that no control caught.** The three before it were caught
+because a control named a specific artefact in advance. Here the controls were **structurally
+incapable** of firing on the defect.
+
+**The rule I take from it is not "declare the blind spot".** I did declare one. It is:
+**state the blind spot as the logical complement of the pattern, and prove the control can fire inside
+it.** A control that exercises only the satisfied half of a conjunction is a control for nothing.
+P09 published the general form as **`NC-12`** — *"count what it **processed** and compare against what
+its search **returned**, and publish both numbers"* — **in an artefact this pattern excluded.**
+
+## `P11-E-39` — I stopped at generation four of a six-generation chain, in the file that states the rule
+
+**CORR2, `2026-09-06`.** `P11-E-36`, written this round, says *a correction is not current either;
+recency is not authority; only the owner's last statement is.* In the same document I declared P09's
+chain **four deep** and took `D25` as terminal.
+
+`D26` (`434e97c`, 10:42) and `D27` (`0b61c92`, 14:18) both post-date `D25` (`4eb853a`, 09:01) at the
+frozen head I myself resolved.
+
+**Consequences, both material:**
+- `D26`: ***"`B7` is PARTIALLY WITHDRAWN … every mechanism claim in this programme is version-matched
+  to at least two real deployments."*** My `P11-B-23` asserted the opposite and is **withdrawn**.
+- `D27`: the `99.6507 %` headline I adopted is *"**unchanged in value, narrowed in scope** — one
+  artefact out of **17**, not one out of five"*, and `B5` is **narrowed, not closed**, with **8
+  artefacts unread**. I carried the value without the owner's narrowing.
+
+**Writing a rule and executing it are different acts, and I have now recorded that gap five times.**
+The difference here is that the gap was **inside the artefact that states the rule** — the strongest
+available demonstration that a rule in prose is not a control.
+
+## `P11-E-40` — count defects the challenge found that no P11 control was aimed at
+
+**CORR2, `2026-09-06`.** Six published counts were wrong, all found by execution, none by reading:
+
+| Published | Correct | Direction |
+|---|---|---|
+| 47 candidates | **53** | understated |
+| 12 addressed | **18** addressed / 12 consumed / ≥15 read | understated |
+| 13 new from 7 peers | **9 new files from 6** (11 from 7 with modifications) | overstated |
+| 18 Boss decisions | **19** — `D-3b` dropped from a total while carried as a row | understated |
+| *"the `CRITICAL` count went up"* (2 → 3) | **3 → 3, unchanged** | flattered the round |
+| orphan register "9 items" vs "10 items" in three files | **10**, and the disposition breakdown matched no rows | inconsistent |
+
+**And two corrections restored words P11 had itself struck:** `D-10` was re-declared *"discharged"*
+after CORR1 struck exactly that word with its reason on the page (*"an authorisation cannot be
+discharged by the party performing the act"*); and P06's qualifier *"not confirmed to be the SMEsPlus
+target"* — which CORR1 recorded as **"not elided"** — was elided in the artefact whose entire purpose is
+scope repair.
+
+> **`E6` was specified in this round and executed on nothing in it.** `D-3b` v5 made independent
+> denominator challenge *"mandatory before publication"*, and the same commit published four counts
+> containing the exact defect `E6` describes. **Specifying a control is not running it** — the third
+> time this package has recorded that sentence, and the first time the control was written and skipped
+> **in the same commit**.

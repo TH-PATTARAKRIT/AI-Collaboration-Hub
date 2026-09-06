@@ -28,7 +28,7 @@
 | `D-4` | *(as inherited)* | Boss | unchanged. **Note the namespace hazard at `OC-07`** |
 | **`D-5`** | **Accounting-event identity** | Boss | **Coupled second.** Dependent processes **five → eight** (`P05` `HE-09` joins via the settlement route) |
 | `D-6` … `D-9` | *(as inherited)* | Boss | unchanged |
-| `D-10` | Authorise CORR1 | Boss | **discharged** at CORR1 |
+| `D-10` | Authorise CORR1 | Boss | ~~**discharged** at CORR1~~ → **`EXECUTED UNDER PROMPT — RATIFICATION OUTSTANDING`** (`X2-C9`). **CORR2 restored a word CORR1 had struck, with the reason for striking it still on the page:** *"an authorisation cannot be discharged by the party performing the act"* (`D-05`). `P11-E-32` inverted |
 | `D-11` | Exception to *unrelated independent companies = separate tenants* | Boss | unchanged |
 | `D-12` | May a company hierarchy span a tenant boundary? | Boss | unchanged. P11 recommends **NO** |
 | `D-13` | May a scope narrowing for one object read across to a related object? | Boss | **`P03` dissent preserved** — the two objects are *"unlinked in both directions"* |
@@ -53,7 +53,12 @@ of accounts permitted** — *"decides whether a scope defect fails loudly or sil
 
 ## 4. Position
 
-**`18` decisions · `1` discharged (`D-10`) · `3` new · `4` materially better informed · `0` decided by
+> **CORRECTED (`X2-C8`): the population is `19`, not 18.** Enumerated ids: `D-1`, `D-2`, `D-3`,
+> **`D-3b`**, `D-4` … `D-18`. P11's own unit ruling is explicit — *"`D-3b` was added after the original
+> twelve and is **a full decision row, not a sub-clause of `D-3`**"* — and CORR2 dropped it from the
+> total while carrying it as a row. **The same unit defect P11 has now recorded five times.**
+
+**`19` decisions · `0` discharged · `3` new · `4` materially better informed · `0` decided by
 P11 · a declared FLOOR.**
 
 > **`D-1` remains the single highest-leverage act available to anyone**: one sentence, Boss-only,

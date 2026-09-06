@@ -86,3 +86,29 @@ evidence rather than silence.
 > **Two P11 claims were published and withdrawn this round** — the `D-5` evidence upgrade
 > (`P11-E-31`) and *"nets to zero"* (`P11-B-22`). **Any reader holding an earlier copy of §1a or of
 > `P11_PEER_INTAKE_DELTA_01.md` is holding a withdrawn claim.**
+
+---
+
+## CORR2 — PHASE-S ACCOUNTING HOUSE CONVERGENCE · `2026-09-06`
+
+**Read in this order.**
+
+| # | File | Result |
+|---|---|---|
+| 1 | `P11_CORR2_PEER_CLAIM_SNAPSHOT.md` | Frozen snapshot — **enumeration invalid, `P11-B-27`** |
+| 2 | `P11_CORR2_SUPERSESSION_AND_CLAIM_PROVENANCE_REGISTER.md` | The P09 chain is **six** deep |
+| 3 | `P11_B17_SCOPE_REPAIR_CORR2.md` | Method correct; **closure withdrawn** |
+| 4 | `P11_D3B_EVIDENCE_SELECTION_CONTROL_V5.md` | `E0` + `E6` specified — **`E6` executed on nothing** |
+| 5 | `P11_ACCOUNTING_CONVERGENCE_QUESTION_REGISTER.md` | `CQ-01…15`, 4 dispositions changed |
+| 6 | `P11_ACCOUNTING_TRUTH_CONVERGENCE_MATRIX.md` | incl. **§2b — facts P11 held and did not carry** |
+| 7 | `P11_CANDIDATE_ACCOUNTING_INPUT_PROCESS_OUTPUT_HANDOFF_PACK.md` | all **CANDIDATE** |
+| 8 | `P11_ACCOUNTING_ORPHAN_COLLISION_DOUBLE_COUNT_REGISTER.md` | 10 items |
+| 9 | `P11_DOMAIN_PURITY_AND_CROSS_PROCESS_BOUNDARY_REGISTER.md` | **6 stopped, 0 pursued** |
+| 10 | `P11_{ERROR,BLOCKER,TOLERANCE_ZERO,BOSS_DECISION_MATRIX}_*CORR2.md` | 40 / 30 / 15 / 19 |
+| 11 | **`P11_AAS03_CORR2_CHALLENGE.md`** | **`CONTRADICTED` — 47 findings, 12 `CRITICAL`** |
+| 12 | `P11_AAS_PLUS_CORR2_CONSOLIDATION.md` | `NOT CONVERGED — EVIDENCE BASE INVALID` |
+| 13 | `P11_PMO_CORR2_PHASE_S_REVIEW.md` | `RECOMMEND HOLD — CORR3 REQUIRED` · **0 of 8** |
+
+> **Three claims published in CORR2 are WITHDRAWN by its own challenge:** `B-17`'s closure,
+> `B-23` as worded, and `P11-C-09`'s convergence label. **`ACCOUNTING_BOSS_FINAL_GATE_PACK.md`
+> carries a supersession banner and six stale counts below it.**

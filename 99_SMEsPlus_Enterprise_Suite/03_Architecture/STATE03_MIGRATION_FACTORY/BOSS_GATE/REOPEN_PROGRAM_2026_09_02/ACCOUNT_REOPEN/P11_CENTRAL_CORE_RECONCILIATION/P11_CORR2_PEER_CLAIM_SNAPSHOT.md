@@ -37,7 +37,9 @@ cannot be audited, because the thing it was current against no longer exists.
 | **UNIT** | **one path = one artefact** |
 | **POSITIVE CONTROL** | five artefacts known to exist must all return: `52_P08…_V2`, `71_P10…`, `70_P06_P11…`, `37_P03_SCOPE02_P11…`, `S23_P09_POST_PUBLICATION_CORRECTION`. **Result: 5 of 5.** |
 | **NEGATIVE CONTROL** | P11's own directory must not appear. **Result: 0.** |
-| **DECLARED BLIND SPOT** | a peer correction whose basename carries **neither** the peer id nor any of the six tokens is **not** in this population. No such artefact is known; none is excluded by claim |
+| **DECLARED BLIND SPOT** | ~~a peer correction whose basename carries **neither** the peer id nor any of the six tokens~~ — **WRONG SHAPE (`X4-C2`).** The pattern is `peer-id AND token`; its blind spot is `¬A ∨ ¬B`, **not** the intersection declared. **804 `.md` files across the ten trees carry a peer id and none of the six tokens** — the entire `¬B` leg, undeclared. *"No such artefact is known"* is **false**: `43_G02_P02_FINAL_CLEANROOM_HANDOFF.md` carries `## 5. What P11 Receives`, and P09's `D24`/`D26`/`D27`/`S06`/`S22` were all dropped silently |
+| **POSITIVE CONTROL — RE-ASSESSED** | all five named artefacts **carry a token**, so the control exercised only the working half of the conjunction. **A control that cannot fail on the blind spot is not a control for it** |
+| **NEGATIVE CONTROL — RE-ASSESSED** | *"P11's own directory must not appear"* — its subject is **not in the scanned population**, so it could not fail. **Vacuous** (`X2-R1`) |
 
 ### 2.1 The instrument failed three times and each failure was caught by a control
 
@@ -51,7 +53,15 @@ cannot be audited, because the thing it was current against no longer exists.
 > caught by reading the output; each was caught by a control that named a specific artefact in advance.
 > **`P11-E-35`.**
 
-## 3. Frozen artefact population — `47` candidates, `12` addressed to P11
+## 3. Frozen artefact population — ~~`47` candidates, `12` addressed~~ → **`53` enumerated, `18` addressed, `12` consumed**
+
+> **CORRECTED `2026-09-06` by `X2-C1`.** Re-executing P11's own declared pattern returns **53** paths,
+> not 47, and §3's table below enumerates **18** P11-addressed artefacts, not 12. **`53 − 18 = 35` is
+> exactly the *"remaining 35"* published below — the arithmetic in this paragraph always contradicted
+> the headline above it.** Both figures were low by exactly **6**: the six addressed artefacts that were
+> **enumerated but not consumed** (`P01_S16_P11_HANDOFF`, `37_P03_SCOPE02_P11_HANDOFF`, `D23_P09`,
+> `S18_P09`, `S23_P09`, `71_P10`). **P11 published the *consumed* pair under the label *population*.**
+> `P11-E-38`.
 
 **Only the P11-addressed set is consumed in CORR2.** The remaining 35 are the peers' internal
 correction records; reading them would be `adjacent Pxx full-package rediscovery`, which §14 of the
@@ -60,7 +70,7 @@ controlling prompt forbids by default.
 | Peer | P11-addressed artefacts at the frozen SHA | New since CORR1 |
 |---|---|---|
 | `P01` | `P01_TO_P11_HANDOFF.md` · `P01_P11_EVIDENCE_VERSION_DEPLOYMENT_SUPPLEMENT.md` · `P01_P11_S18_DIRECT_VERIFICATION_SUPPLEMENT.md` · `P01_S16_P11_HANDOFF.md` | **4 of 4** |
-| `P02` | *(none addressed to P11; `19_` core-recon pack only)* | — |
+| `P02` | ~~*(none addressed to P11; `19_` core-recon pack only)*~~ — **FALSE IN BOTH HALVES (`X2-C4`).** The pattern returns **two** P02 hits, and **`43_G02_P02_FINAL_CLEANROOM_HANDOFF.md` carries `## 5. What P11 Receives`** — three scope holds, six design candidates, and *"one business fact → one canonical event owner → one accounting effect path is **not** satisfied by the reference at the correction/reversal stage"*. **Unconsumed.** `P11-B-27` | **unread** |
 | `P03` | `P03_TO_P11_HANDOFF.md` · `73_P03_P11_RUNTIME_INVERSION_SUPPLEMENT.md` · `37_P03_SCOPE02_P11_HANDOFF.md` | **2 of 3** |
 | `P04` | `P04_TO_P11_HANDOFF.md` | **1 of 1** |
 | `P05` | `65_P05_P11_EVIDENCE_BASE_AND_LIVE_RISK_SUPPLEMENT.md` | **1 of 1** |
@@ -70,7 +80,11 @@ controlling prompt forbids by default.
 | `P09` | `D23_P09_P11_DENOMINATOR_SIGN_PLATFORM_SUPPLEMENT.md` · `S18_…` · `S23_…` · `D25_P09_CHALLENGE_CORRECTION.md` | **2 of 4** |
 | `P10` | `P10_TO_P11_HANDOFF.md` · `41_P10_P11_DECISION_INTEGRITY_CORRECTION.md` · `71_…` | **2 of 3** |
 
-> **13 P11-addressed artefacts new since CORR1, from 7 peers.** CORR1 closed 20 hours before this
+> ~~**13 P11-addressed artefacts new since CORR1, from 7 peers.**~~ **CORRECTED (`X2-C3`): `9` new
+> files from `6` peers — `11` from `7` if modification counts. And `70_P06_…` is marked *"consumed
+> CORR1"* while it **changed** between `9e5d729` and `249b7c2`, carrying a supersession correction
+> (`REV-E-18`). **A basename-level "consumed" determination cannot detect a revised artefact**, and it
+> gated re-reading the source of P11's `REACHABLE — DEPLOYMENT VERIFIED` claim.** CORR1 closed 20 hours before this
 > snapshot was taken. **The peer surface P11 reconciles is not stable at the timescale P11 works at**,
 > which is the whole justification for `POST-SNAPSHOT MATERIAL DELTA CANDIDATE` as a disposition.
 
