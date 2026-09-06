@@ -263,3 +263,55 @@ The audited round re-scoped *"there is no accounting-period object"* to *"…in 
 **TERMINAL STATE `B` — `P08 INDEPENDENT VERIFICATION FOUND MATERIAL DEFECT — TARGETED REPAIR REQUIRED`.** Full reasoning, the 17 material defects, the veto table and the 10 bounded repair requirements are in `P08_INDEPENDENT_VERIFICATION_TERMINAL_REPORT.md`.
 
 **No veto is discharged. No repair was performed on the source package. The source branch was not modified.**
+
+---
+
+## 12. Late inbound after freeze — handled, verified, and **not** allowed to change the audit
+
+### `IVR-INB-01` — provenance and handling
+
+A challenger from **the audited round** (not from this verification) delivered a late addendum **after** the surface was frozen at `00ccd66` and after this verification closed. It reports two second-form re-executions and one new cross-link.
+
+**Handling, stated before the content, because the discipline matters more than the finding:**
+
+| | |
+|---|---|
+| Does it change the frozen surface? | **No.** The audit is of `00ccd66`; the surface is unchanged and unmodifiable by this track |
+| Does it change the terminal state? | **No.** State `B` rests on 17 material defects, none of which this touches |
+| Does it change any veto or lifting condition? | **No** |
+| Is it recorded and routed? | **Yes** — as an input to the bounded repair requirements |
+
+**A finding that arrives after a freeze is evidence for the next round, not a silent amendment to the closed one.** It is recorded here in full rather than folded into the audit body.
+
+### `IVR-INB-02` · MATERIAL as a repair input · The FX consequence and the numbering defect describe the same four entries, and the package connects them nowhere
+
+**Re-derived by the verifier.** The four posted entries that constitute **the entire measured consequence of the transaction-currency invariant gap** are:
+
+| Entry | Journal | Journal code | Date | Number prefix matches its own journal? |
+|---|---|---|---|---|
+| `DEPRE2024010033` | 3 | `MISC` | 2024-01-19 | **no** |
+| `DEPRE2025030145` | 3 | `MISC` | 2025-03-26 | **no** |
+| `DEPRE2025040116` | 3 | `MISC` | 2025-04-21 | **no** |
+| `DEPRE2025040117` | 3 | `MISC` | 2025-04-25 | **no** |
+
+**All four are members of the 4,995-entry mis-prefixed population** that the numbering finding measures — verified by set membership.
+
+**The package routes these to two unrelated places.** The FX row sends the consequence to the platform rate master; the numbering row is a separate process entry whose collision question the round left open. **Neither cites the other**, and the same four rows are the whole evidential basis of one of them.
+
+### `IVR-INB-03` — the verifier's refinement: shared **population**, not a demonstrated shared **mechanism**
+
+The addendum states that whether the overlap is coincidence or common cause is undetermined. **The verifier tested it, and can narrow it one step without over-claiming.**
+
+| | |
+|---|---|
+| Posted entries | 169,143 |
+| Depreciation-numbered posted entries | 21,291 — **12.59%** |
+| — of which sit in the general journal (the mis-prefixed ones) | **4,154 — 2.46% of posted** |
+| — of which sit in their own journal | 17,137 |
+| Depreciation share of the whole mis-prefixed set | **83.2%** |
+
+**Under a random draw, four entries all falling in a 2.46% subpopulation has probability ≈ 4 × 10⁻⁷. The overlap is not chance.**
+
+**But it is explained by a shared population, and that is as far as the evidence goes.** Both defects concentrate in one machine-generated class — depreciation entries routed into the general journal. That is consistent with a single bulk generation run that both mis-numbered its entries and mishandled their foreign-currency legs, **and the verifier does not assert it.** `SUPPORTED INTERPRETATION`; a shared mechanism is **UNRESOLVED — SPECIFIC EVIDENCE REQUIRED**.
+
+**Routed as an addition to bounded repair requirements 2 and 4:** when the FX row and the numbering row are re-issued, each must cite the other and state the shared population, so a consumer is not told that four entries evidence one defect while the same four evidence another.
