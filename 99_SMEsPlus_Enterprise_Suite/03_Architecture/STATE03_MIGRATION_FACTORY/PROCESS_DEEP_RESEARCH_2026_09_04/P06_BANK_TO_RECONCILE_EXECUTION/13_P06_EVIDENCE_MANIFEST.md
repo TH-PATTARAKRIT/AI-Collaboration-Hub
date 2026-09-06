@@ -91,7 +91,7 @@
 
 | Measure | Command | Result |
 |---|---|---|
-| Blocker population | `grep -oh 'P06-B-[0-9]\+' *.md \| sort -u \| wc -l` | **58** |
+| Blocker population | `grep -oh 'P06-B-[0-9]\+' *.md \| sort -u \| wc -l` | ~~**58**~~ → **65** [REV-E-23, 2026-09-06 — stale current claim; found by independent frozen-surface verification, invisible to the pattern declared for its class] *(58 was correct when executed at the supplemental close; `B-59`…`B-65` were added by the G02 and verification rounds. The command as printed returns 65 on the current tree.)* |
 | Open-item population | same, `P06-OQ-` | **66** |
 | Cross-package contradictions | `P06-XC-` | **1** |
 | v18 loadable addons | `ls -d $V18E/*/ \| wc -l` | **791** |
@@ -100,7 +100,7 @@
 | v19 addons | same on the v19 tree | **1422** (514 `l10n_*`) |
 | `om_data_remove` copies | `find /Volumes/iMacSys -type d -name om_data_remove` | **17** |
 | `remove_data` model slots | source read | **89**, 13 not in V18E |
-| Peer branches read | `git ls-remote` | **8 of 9** — P01 absent |
+| Peer branches read | `git ls-remote` | ~~**8 of 9** — P01 absent~~ → **P01 IS PRESENT.** `git ls-remote --heads origin` lists all ten peer heads `research/account-p01…p10`; P01 is at `b820b29`. **8 of 9 READ stands — P01 is published and UNCONSUMED** (`P06-OQ-124`) [REV-E-23, 2026-09-06 — stale current claim; found by independent frozen-surface verification, invisible to the pattern declared for its class] |
 
 ---
 

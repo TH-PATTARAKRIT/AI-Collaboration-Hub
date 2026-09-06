@@ -52,7 +52,7 @@ P02 states the separation works **and** that a configuration removes it. P06 sta
 `25_` said three; `35_` said four; P02 said four. Source re-execution at this round gives **four top-level branches (`:436`, `:439`, `:442`, `:445`) and five assignment sites**. `25_` had silently omitted `:439-441`.
 **Corrected in both files. Recorded as REV-E-11.** The comparison that exposed it was a peer's citation against this package's own — **P06 did not catch this by re-reading itself.**
 
-**The correction strengthens P06's finding.** Of five assignment sites: two set `is_matched = True` **unconditionally with no statement** (`:444` zero-amount, `:450` journal-default configuration), one sets it **circularly** from the payment's own state (`:438`), one always False, and **only `:452` tests anything resembling a bank match.**
+**The correction strengthens P06's finding.** Of five assignment sites — *UNIT: **assignment site**, not branch* [REV-E-23, 2026-09-06] — two set `is_matched = True` **unconditionally with no statement** (`:444` zero-amount, `:450` journal-default configuration), one sets it **circularly** from the payment's own state (`:438`), one always False, and **only `:452` tests anything resembling a bank match.**
 
 ---
 

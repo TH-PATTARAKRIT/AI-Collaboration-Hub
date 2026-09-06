@@ -39,7 +39,7 @@ Cause: the HOLD bucket counted **HOLD-classified blockers** (a `P06-B-*` populat
 
 This is the **same defect class as REV-E-01** (the ingestion-door denominator): a count assembled from two populations that were not the same unit. It is recorded here as **REV-E-05** in the revision log rather than silently corrected, because the programme's standing rule is that a count whose unit is not declared is not a count.
 
-**Verified figures used from this point forward: 42 blockers, 36 open items.**
+**Verified figures used from this point forward: 42 blockers, 36 open items.** *(ROUND-LOCAL [REV-E-23, 2026-09-06] — correct at this round's close; the standing counts are in `G02_CLOSURE_2026_09_06/P06_AUTO_RESUME_STATE.md`.)*
 
 ---
 

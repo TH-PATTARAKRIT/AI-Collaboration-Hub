@@ -32,7 +32,7 @@
 
 **Original:** `25_` said *"Three branches"*; `35_` said *"the same four-branch mechanism"*; **the same package said both.**
 **Command that exposed it:** a peer's citation. P02 published *"four branches"* over `:428-456`. Re-printing `$V18E/account/models/account_payment.py:427-457` line by line gives **four top-level branches (`:436`, `:439`, `:442`, `:445`) and five assignment sites.** `25_` had silently omitted `:439-441`.
-**Corrected result:** finding **strengthened** — of five sites, **two assert `is_matched = True` unconditionally with no statement**, one asserts it circularly, one is always False, and **only one tests anything resembling a bank match**.
+**Corrected result:** finding **strengthened** — of five sites — *UNIT: **assignment site**, not branch; at branch granularity `:450` is configuration-gated* [REV-E-23, 2026-09-06] — **two assert `is_matched = True` unconditionally with no statement**, one asserts it circularly, one is always False, and **only one tests anything resembling a bank match**.
 **P06 did not catch this by re-reading itself.** A peer's number did.
 
 ---

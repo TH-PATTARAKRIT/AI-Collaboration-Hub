@@ -2,6 +2,9 @@
 
 **Session:** P06 Bank-to-Reconcile — TARGETED CONTINUATION (CP-C12)
 **Classification:** LAYER 2 — AUDIT QUARANTINE
+
+> **SUPERSESSION POINTER [REV-E-23, 2026-09-06].** This file is a **record of the round-3 challenge as it stood**, and its wording is preserved. Two of its terms were later corrected and are NOT current: **(a)** *"the evidence tree is a filtered distribution"* / *"filtered-build boundary"* (`:33`, `:35`, `:101`, `:113`) — the tree is a **RELOCATION**, loadable 791 of 1752, the remainder in `addons_archive` and since searched (`REV-E-16`, `56_`); **(b)** *"the eighth door"* (`:23`) — **withdrawn**, it is P05's path 5 of its own 7 (`REV-E-12`, `55_`). **Nothing in this file is edited; the pointer exists so a reader cannot mistake a record for a current claim.**
+
 **Scope:** a **fresh** challenge on the closures and modifications made by this continuation. The prior round's 18 challenges stand and are not re-run.
 
 Each expert must identify: **false-positive closure risk · absence-from-incomplete-population risk · cross-process ownership risk · financial integrity risk.** Consensus is not forced.

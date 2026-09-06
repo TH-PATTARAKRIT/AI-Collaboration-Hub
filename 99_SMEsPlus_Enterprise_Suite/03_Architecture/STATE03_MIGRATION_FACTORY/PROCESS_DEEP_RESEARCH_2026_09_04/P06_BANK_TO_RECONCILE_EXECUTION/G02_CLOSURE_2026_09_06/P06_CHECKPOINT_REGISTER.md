@@ -19,7 +19,9 @@
 | — | prompt intake only | `18035d9` | 70 | — |
 | **5** | **`…G02-P06-B2R-P10-DELTA-DOMAIN-PURE-CLOSURE-003`** | **`6442925`** / `da98786` | **82** | **`G02-P06 EVIDENCE INTEGRITY FAILURE — CORRECTION REQUIRED`** |
 | — | prompt intake only | `774aa0b` | 82 | — |
-| **6** | **`…G02-P06-B2R-CORRECTION-INTEGRITY-VERIFICATION-004`** | **`249b7c2`** | **84** | **`G02-P06 CORRECTION DEFECT FOUND — AFFECTED SURFACE CORRECTED / RECHALLENGE REQUIRED`** |
+| **6** | **`…G02-P06-B2R-CORRECTION-INTEGRITY-VERIFICATION-004`** | **`249b7c2`** / `9c8e111` | **84** |
+| — | prompt intake only | `5212756` | 84 | — |
+| **7** | **`…G02-P06-B2R-INDEPENDENT-FROZEN-SURFACE-RECOVERY-005`** | **this commit** | **87** | **`G02-P06 CORRECTION DEFECT FOUND — AFFECTED SURFACE CORRECTED / RECHALLENGE REQUIRED`** |
 
 ## 2. Checkpoints, this round
 
@@ -85,3 +87,38 @@
 | Round 5 `01_` repair: *"set `True` unconditionally"* | re-executed `account_payment.py:436-452` | **FALSE.** One branch unconditional, one configuration-gated |
 
 **`CPR-F-02` — Six prior claims re-tested; four false, one partly false, one true.** In round 5 the same exercise gave five false of six. **Two consecutive rounds have found that most of what the previous round asserted about its own completeness was wrong** — and in both rounds the finding came from executing a population, never from re-reading a table.
+
+
+---
+
+# Round 7 — Independent Frozen-Surface Correction Recovery (2026-09-06)
+
+**Prompt:** `[SMEPLUS-26-09-06-G02-P06-B2R-INDEPENDENT-FROZEN-SURFACE-RECOVERY-005]` · prompt commit `5212756`
+**Frozen SHA:** `52127569863455acc06b82a845ef64e106115900`
+**Terminal state:** **`G02-P06 INDEPENDENT VERIFICATION NOT PROVABLE — EVIDENCE INTEGRITY HOLD`**
+
+## Checkpoints
+
+| CP | Subject | Status | Deliverable |
+|---|---|---|---|
+| `CP-P06R01` | Freeze; classify any HEAD/remote mismatch **before** proceeding | **COMPLETE.** Mismatch found and classified: the remote had advanced by one commit adding this prompt and touching **zero** package files; surface byte-identical to the stated baseline | `P06_FROZEN_SURFACE_INVENTORY.md` |
+| `CP-P06R02` | Validate the verification tools themselves (§13) | **COMPLETE — 5 defects found in them**, one of which accused the package | `P06_VERIFICATION_TOOL_DEFECT_REGISTER.md` |
+| `CP-P06R03` | Stage 1 — independent reproduction, **no edits** | **COMPLETE.** Two passes; `git status` showed 0 modified files throughout | `P06_INDEPENDENT_CLAIM_CLASS_VERIFICATION_REGISTER.md` |
+| `CP-P06R04` | Re-check every challenger claim before adoption (§9) | **COMPLETE. 14 of 16 reproduced; 2 REFUTED**, one of them a fabricated `F-16` contradiction from wrong line numbers | register §4 |
+| `CP-P06R05` | Stage 2 — targeted repair of confirmed defects only | **COMPLETE.** 21 repairs / 14 files under `[REV-E-23]`; rounds 5 and 6 markers untouched (30/15 and 40/20) | 14 register files |
+| `CP-P06R06` | Stage 3 — re-verify under **widened** patterns; challenge changed surfaces | **COMPLETE.** All nine classes clean; two further defects self-caught (`VER-E-05`, `REC-E-01`) and repaired | register §6, matrix Part II |
+| `CP-P06R07` | Stage 4 — manifests, checkpoint, AUTO_RESUME | **COMPLETE** | this file |
+| `CP-P06R08` | `AASP-VETO-07` decision under §13 | **NOT DISCHARGED — two conditions fail outright** | register §7 |
+
+## Prior claims re-tested
+
+| Claim | Re-test | Verdict |
+|---|---|---|
+| Round 6: *"40 repairs across 20 files"* | classified all 47 marker occurrences by unit | **TRUE.** 7 are narrative references, **three of them the counting command's own printed text** |
+| Round 6: *"9 P11-facing false statements"* | counted `REV-E-22` repairs in `34_`/`35_`/`36_` | **REFUTED — 11**, and the matrix listed five locations under a count of four |
+| Round 6: *"15 material stale claims"* | decomposed | **REFUTED as a unit** — it sums statements + defects + a row + an arithmetic error. Publication repairs alone were **24** |
+| Round 6: nine classes **COMPLETE** | widened patterns | **REFUTED in five of nine.** 14 survivors, every one invisible to the declared pattern |
+| Round 6: `18_` and `70_` carry **0** stale statements | measured | **REFUTED — 2 and 1** |
+| Round 6 `VER-F-07`: the `****` repair | measured | **CONFIRMED — 0 unrepaired.** The one self-reported repair claim that fully reproduces |
+
+**`CPR-F-03` — Three consecutive rounds have now re-tested their predecessor's completeness claim and found it false; each then published its own, and the next round falsified that.** Rounds 5, 6 and 7 each diagnosed phrase-scoping and each committed it. **The method, not the effort, is what has failed every time.**

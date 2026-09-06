@@ -65,9 +65,9 @@ What the evidence supports: the v18 tree retains **the Thai localisation only**,
 | `destination_journal_id` NOT FOUND | whole v18 tree | **filtered 791-addon tree** | not re-tested |
 | `paired_internal_transfer` never written | whole v18 tree | **filtered 791-addon tree** | not re-tested |
 | `provider_reference` uniqueness NOT FOUND | whole v18 tree | **filtered 791-addon tree** | not re-tested |
-| `chargeback|dispute` NOT FOUND | 3 modules | **filtered tree, 3 declared modules** | not re-tested |
+| `chargeback|dispute` NOT FOUND | 3 modules | **loadable set (791 addons), 3 declared modules** [REV-E-23, 2026-09-06] | not re-tested |
 
-**FTB-F-03 — Five tree-scope negatives remain single-pass AND filtered-tree-bounded.** They are the residue keeping `AASP-VETO-01` partly in force, and the v19 tree now makes a second pass cheap: the same patterns can be run against a complete distribution.
+**FTB-F-03 — Five tree-scope negatives remain single-pass AND bounded to the LOADABLE SET.** ~~*"filtered-tree-bounded"*~~ [REV-E-23, 2026-09-06] — the tree is **RELOCATED** (loadable 791 of a full v18 population of 1752; 961 dirs / 904 l10n in `addons_archive`, excluded by the project's own `odoo.conf` and since searched), not filtered (`REV-E-16`). They are the residue keeping `AASP-VETO-01` partly in force, and the v19 tree now makes a second pass cheap: the same patterns can be run against a complete distribution.
 
 ---
 
@@ -75,7 +75,7 @@ What the evidence supports: the v18 tree retains **the Thai localisation only**,
 
 **FTB-F-04 — No positive finding is affected.** Every CONFIRMED DEFECT rests on quoted code that is present in the tree. A filtered tree can make a negative unsafe; it cannot make a quotation false.
 
-**FTB-F-05 — And six core findings were re-tested against the complete v19 tree and survived** (`51_` §2). **The filtered-build risk is therefore measured for the findings that carry the severity, and it is small.** What remains exposed is the five single-pass negatives in §4.
+**FTB-F-05 — And six core findings were re-tested against the complete v19 tree and survived** (`51_` §2). **The loadable-set boundary risk** ~~*"filtered-build risk"*~~ [REV-E-23, 2026-09-06] **is therefore measured for the findings that carry the severity, and it is small.** What remains exposed is the five single-pass negatives in §4.
 
 ---
 

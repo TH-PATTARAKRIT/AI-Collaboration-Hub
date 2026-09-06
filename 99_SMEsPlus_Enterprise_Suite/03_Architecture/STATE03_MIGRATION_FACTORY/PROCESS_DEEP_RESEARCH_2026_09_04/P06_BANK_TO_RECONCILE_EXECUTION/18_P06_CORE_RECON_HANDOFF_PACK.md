@@ -166,7 +166,7 @@ The body of this pack leads with *"seven confirmed defects"*. **After this conti
 | Attack **A4a** | HOLD → **CONFIRMED DEFECT.** The guard names the company boundary and tests a fiscal one; it cannot enforce what it claims, for any deployment. Independently corroborated by P02 `SF-06`. |
 | **`P06-B-28`** token scope | **CLOSED**, severity **downgraded HIGH → MEDIUM** on adversarial test |
 | **`P06-B-40`** unverified negatives | **CLOSED** — both principal Class-A negatives survived independently-worded re-searches |
-| **`P06-B-03`** peers unread | **CLOSED** — 7 of 9 read; P01 and P08 re-raised as `B-54` |
+| **`P06-B-03`** peers unread | **CLOSED** — ~~7 of 9 read; P01 and P08 re-raised~~ → **8 of 9 read**: P08 was published and read in round 3 (`53_`, `48_`:96). **Only P01 is unread, and it is published at `b820b29` — unconsumed, not unavailable** (`P06-OQ-124`). `B-54` retained [REV-E-23, 2026-09-06 — stale current claim; found by independent frozen-surface verification, invisible to the pattern declared for its class] |
 | `OQ-21`, `OQ-71`, `OQ-81`, `OQ-90` | **CLOSED** |
 
 ## B.3 What Core Reconciliation must now also know
@@ -211,4 +211,4 @@ The body of this pack leads with *"seven confirmed defects"*. **After this conti
 
 **READY FOR CORE ACCOUNTING RECONCILIATION — TARGETED BLOCKER CLOSURE COMPLETED.**
 
-Handed over as **evidence for a decision**, under three vetoes, with **55 blockers** (7 closed, 48 open) and **44 open items** (4 closed, 40 open) — enumerated, unit-declared, and counted by a command executed after the final file was written. **Not a PASS, not a freeze, not a merge, not an implementation authorisation.**
+Handed over as **evidence for a decision**, under three vetoes, with ~~**55 blockers** (7 closed, 48 open) and **44 open items** (4 closed, 40 open)~~ → **65 blockers and 75 open items at the current frozen surface** [REV-E-23, 2026-09-06 — stale current claim; found by independent frozen-surface verification, invisible to the pattern declared for its class] *(55/44 were correct when this pack was handed over; the figures are time-bounded and were not marked as such)* — enumerated, unit-declared, and counted by a command executed after the final file was written. **Not a PASS, not a freeze, not a merge, not an implementation authorisation.**

@@ -112,7 +112,7 @@ if pay.journal_id.default_account_id and pay.journal_id.default_account_id in li
     pay.is_matched = True
 ```
 Branch A (`:438`): with no outstanding account, `is_matched` is simply a copy of `state == 'paid'` — **circular**, since `state` was itself derived from matching.
-Branch B (`:450`): when the payment posts directly to the bank account rather than to an outstanding account, `is_matched = True` **unconditionally, with no bank statement in existence**. The in-code comment states the intent: to let a user manage payments without statement lines.
+Branch B (`:450`): when the payment posts directly to the bank account rather than to an outstanding account, `is_matched = True` **by CONFIGURATION — only when `journal_id.default_account_id` is among the liquidity-line accounts** (`:447-449`) [REV-E-23, 2026-09-06] — ~~*"unconditionally"*~~, which contradicted the corrected summary seven lines below. **At *site* granularity the assignment carries no condition; at *branch* granularity it is gated. The unit is the difference** — see `25_`:67. With no bank statement in existence**. The in-code comment states the intent: to let a user manage payments without statement lines.
 Branch C (`:444`): a zero-amount payment is declared both `is_reconciled` and `is_matched` true.
 Branch D (`:441`): with no currency, id or move, `is_matched = False`.
 Branch E (`:452`): the only site that tests liquidity-line reconciliation.

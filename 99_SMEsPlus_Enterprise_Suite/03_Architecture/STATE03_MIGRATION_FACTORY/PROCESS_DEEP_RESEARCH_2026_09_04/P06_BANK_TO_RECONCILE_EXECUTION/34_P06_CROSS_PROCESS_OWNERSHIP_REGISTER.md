@@ -48,13 +48,13 @@ Legend — **Disposition:** `SETTLED` (peer agrees or P06 defers) · `CONTESTED`
 | F-20 | Advance / deposit before an obligation exists | CONTESTED | **P02 `P02-F-33`**: an unset down-payment property recognises the deposit as **immediate revenue**, and *"no chart template in the reference tree supplies it"*. **P05**: *"no advance asset account exists on this path"* | **SETTLED as CONTESTED — and materially worse**, two peers independently found the default is wrong |
 
 **Reconciled: 20 of 20.** Prior: 8 CONTESTED, 4 UNOWNED, 1 HOLD, 7 assigned — **all as proposals**.
-Now: **10 SETTLED · 4 CONTESTED · 3 UNOWNED · 3 OPEN · 1 HOLD.** *The 3 OPEN rows were attributed to "P01/P08 unpublished"; **both are published** — P08 read (`53_`), P01 unconsumed (`P06-OQ-124`). The rows stay OPEN because no ruling exists, not because no package exists.* **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]**
+Now, **measured from the Disposition column of the 20 `F-` rows** — *not summed from the narrative* [REV-E-23, 2026-09-06]: **10 SETTLED · 4 CONTESTED** *(2 of them recorded as "SETTLED as CONTESTED")* **· 2 UNOWNED · 3 OPEN · 1 HOLD = 20.** ~~*"3 UNOWNED"*~~ was taken from the three facts listed at §-below, but **`F-16`'s Disposition cell reads SETTLED — accepted into P11's matrix**; it is *unowned by any process* and *not undisposed*, and the earlier tally summed two different columns into one figure. *The 3 OPEN rows were attributed to "P01/P08 unpublished"; **both are published** — P08 read (`53_`), P01 unconsumed (`P06-OQ-124`). The rows stay OPEN because no ruling exists, not because no package exists.* **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]**
 
 ---
 
 ## 3. Facts P06 gained that it did not have
 
-**CPO2-F-02 — A fifth settlement door, with no payment object.**
+**CPO2-F-02 — A settlement path with no payment object.** ~~*"A fifth settlement door"*~~ [REV-E-23, 2026-09-06] — **this file gave the same finding two different ordinals** (*"fifth"* here, *"an 8th path"* at `:81`), and both are withdrawn: it is **P05's path 5 of its own 7**, on a different axis from P06's seven ingestion doors (`55_` SDD-F-01/02, `REV-E-12`).
 P05 `SR-04`: the advance cash-return path *"creates a journal entry against the payment journal's default account **without an `account.payment`** … The cash movement **will not appear in payment listings, payment-based reports, or the bank-reconciliation matching model that keys on payments.**"*
 **P06's seven-door ingestion denominator counted ways a bank event enters. This is a way cash moves that produces no payment and is invisible to matching.** It is a different axis, and P06 did not have it. `P06-B-53`.
 
@@ -78,7 +78,7 @@ P02 `SF-06`: *"**Reconciliation crosses legal entities on a shared root** … Jo
 | Fact | One owner? | One effect? | Change since prior round |
 |---|---|---|---|
 | Money arrived at the bank | no — 7 doors | yes per line | unchanged |
-| Cash moved through a bank journal | **no — an 8th path emits none** | — | **worse** (CPO2-F-02) |
+| Cash moved through a bank journal | **no — the `SR-04` path emits none** ~~*"an 8th path"*~~ [REV-E-23, 2026-09-06] | — | **worse** (CPO2-F-02) |
 | Obligation settled | no | no | unchanged |
 | Difference on settlement | no — 6 write-off entry points | yes | unchanged |
 | FX difference | **yes — the ledger** | yes | **improved** — P11 settles it |

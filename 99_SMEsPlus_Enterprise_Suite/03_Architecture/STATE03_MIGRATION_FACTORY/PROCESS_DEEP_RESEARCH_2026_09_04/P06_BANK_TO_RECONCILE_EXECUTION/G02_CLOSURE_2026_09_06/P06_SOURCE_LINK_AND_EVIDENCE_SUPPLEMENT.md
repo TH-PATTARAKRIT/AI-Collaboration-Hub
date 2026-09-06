@@ -148,6 +148,8 @@ ls *.md G02_CLOSURE_2026_09_06/*.md | wc -l
 
 **Executed 2026-09-06, after the last content file of this round was written.**
 
+> **THIS IS A PUBLICATION SNAPSHOT, NOT A STANDING COUNT [REV-E-23, 2026-09-06].** The figures below were correct at the G02 close (`6442925`). Two later rounds have added `B-64`, `B-65`, `OQ-128`, `REV-E-22`, `REV-E-23` and six files. **The standing authority is `G02_CLOSURE_2026_09_06/P06_AUTO_RESUME_STATE.md` EXECUTED COUNTS, re-executed at each publication.** *Every per-round count in this package is round-local; only the resume record is current.*
+
 | Unit | POPULATION | **RESULT** | Contiguity |
 |---|---|---|---|
 | Blockers | distinct `P06-B-*` across all 82 package files | **63** | ids `B-01` … `B-63`, **contiguous** |

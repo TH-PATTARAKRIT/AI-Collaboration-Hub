@@ -94,9 +94,9 @@ Each of these is a peer finding that **independently supports** a P06 finding, r
 
 ## 5. New evidence P06 must absorb from peers
 
-**PH-F-05 — P05 supplies an eighth ingestion/settlement door P06 did not count.**
+**PH-F-05 — P05 supplies a settlement path P06 did not itself enumerate.** ~~*"an eighth ingestion/settlement door P06 did not count"*~~ — **WITHDRAWN** [REV-E-23, 2026-09-06 — stale current claim; found by independent frozen-surface verification, invisible to the pattern declared for its class]. **P05 had already counted it as path 5 of its own 7** (`55_` SDD-F-01). P06 summed two different units over two different populations (`REV-E-12`). **`62_`:42 named this very line as the corrected original; it was never edited until now.**
 `08_P05_SETTLEMENT_RECONCILIATION.md` `SR-04`: the advance cash-return path *"creates a journal entry against the payment journal's default account **without an `account.payment`**. The cash movement **will not appear in payment listings, payment-based reports, or the bank-reconciliation matching model that keys on payments.**"*
-**Consequence for P06:** cash can move through a bank journal with **no payment object at all**, invisible to the matching model. This is a settlement door outside all seven P06 enumerated. **`P06-B-53`**, and the door denominator must be reopened at P11.
+**Consequence for P06:** cash can move through a bank journal with **no payment object at all**, invisible to the matching model. This is a settlement path outside P06's own seven **bank-event ingestion doors** — a different unit from P05's seven settlement paths, not an eighth of either [REV-E-23, 2026-09-06]. Outside all seven P06 enumerated. **`P06-B-53`**, and the door denominator must be reopened at P11.
 
 **PH-F-06 — P05 concedes it creates and posts payments it does not own.**
 `09_P05_CROSS_PROCESS_OWNERSHIP.md`: *"| **Payment execution** | **No — settlement/treasury owns it** | P05 nevertheless **creates and posts** payments on the company-paid branch, at approval | … | **HIGH** — `EX-03` |"*

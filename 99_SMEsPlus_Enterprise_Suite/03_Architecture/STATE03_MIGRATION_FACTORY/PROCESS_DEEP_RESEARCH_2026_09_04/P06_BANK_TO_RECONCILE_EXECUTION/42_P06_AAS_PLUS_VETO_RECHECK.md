@@ -50,7 +50,7 @@
 
 Three grounds, none of which existed in the original wording:
 
-1. **`P06-B-44` — the generation gap.** The only deployment evidence available is from **Odoo 19** databases while the entire P06 research target is the **v18** line. **Implementing against a researched generation that may not be the target generation is the largest avoidable error available here**, and it is cheap to rule out with one registry export.
+1. **`P06-B-44` — the generation gap, NARROWED** [REV-E-23, 2026-09-06 — stale current claim; found by independent frozen-surface verification, invisible to the pattern declared for its class]**.** The only deployment evidence available is from **Odoo 19** databases while the entire P06 research target is the **v18** line — **but v19 Enterprise source exists and six core findings are cross-version invariant** (`51_`, `REV-E-10`), so the research-invalidation risk is retired and the deployment-identity risk is not. **Implementing against a researched generation that may not be the target generation is the largest avoidable error available here**, and it is cheap to rule out with one registry export.
 
 2. **`P06-B-50` — the ledger is deletable by unauthorised SQL.** A module present in all four custom roots deletes bank statements, payments, moves, partial reconciles and chatter with no server-side authorisation, then rewinds the document sequences. **No settlement or reconciliation design can hold while that module is installable**, because it defeats every control the design would add.
 

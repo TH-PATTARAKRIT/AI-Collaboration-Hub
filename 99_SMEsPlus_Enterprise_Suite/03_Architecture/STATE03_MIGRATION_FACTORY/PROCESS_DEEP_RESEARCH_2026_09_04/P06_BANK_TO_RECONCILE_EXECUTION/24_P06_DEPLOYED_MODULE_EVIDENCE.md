@@ -39,7 +39,7 @@ It **also** carries `Purchase Extrension Module for BHPRO`, `19_bhpro_menu_gener
 
 **DME-F-03 — Both exports are from the Odoo 19 line. P06's entire research target is the v18 line (`18.0+e.20250608`).**
 DM-A installed versions all carry the prefix `19`; DM-B all carry `saas~19`.
-**This is the single most consequential fact in this file.** There is a **generation gap** between the only available deployment evidence and the researched target. Raised as **`P06-B-44` — HOLD — DATABASE EVIDENCE REQUIRED**: the SMEsPlus target database has not been observed by any P06 session.
+**This is the single most consequential fact in this file.** There is a **generation gap** between the only available deployment evidence and the researched target. **NARROWED** [REV-E-23, 2026-09-06 — stale current claim; found by independent frozen-surface verification, invisible to the pattern declared for its class]: **v19 Enterprise source exists and six core findings were re-tested against it and are cross-version INVARIANT** (`51_`, `REV-E-10`). The gap is now about *which deployment*, not about *which source*. Raised as **`P06-B-44` — HOLD — DATABASE EVIDENCE REQUIRED**: the SMEsPlus target database has not been observed by any P06 session.
 
 ---
 

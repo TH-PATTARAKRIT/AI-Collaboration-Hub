@@ -112,3 +112,44 @@ Added by `[SMEPLUS-26-09-06-G02-P06-B2R-CORRECTION-INTEGRITY-VERIFICATION-004]`.
 | `P06_CORRECTION_PROPAGATION_MATRIX.md` | 72 | 7658 | `ffa1acc615f97778d8ce7259c443b92dbbaa4c80f73da1992c89de2a33880bf3` |
 
 > **§2 above now carries the CURRENT hashes** — every file repaired in round 6 changed, so the round-5 hashes recorded at `da98786` no longer match. That is expected and is stated rather than papered over: the round-5 hashes are recoverable from commit `6442925`, and §2 records **R5 corrections and R6 repairs per file side by side** so the two rounds do not blur together.
+
+---
+
+## 8. Round-7 recovery artefacts and repaired files — SHA-256
+
+**Frozen SHA audited:** `52127569863455acc06b82a845ef64e106115900`. Executed after the last content file.
+
+| File | R7 repairs | Lines | Bytes | SHA-256 |
+|---|---|---|---|---|
+| `G02_RECOVERY_2026_09_06/P06_FROZEN_SURFACE_INVENTORY.md` | new | 202 | 18062 | `cc345a01dd6eb2b88db524d1dc95ca234d85a0daf4d4b783eecf48bb9d11b82d` |
+| `G02_RECOVERY_2026_09_06/P06_INDEPENDENT_CLAIM_CLASS_VERIFICATION_REGISTER.md` | new | 144 | 17441 | `496fd62f685d81cbdec28c6805bb540b3160652686e1e808021f2260b59a7b54` |
+| `G02_RECOVERY_2026_09_06/P06_VERIFICATION_TOOL_DEFECT_REGISTER.md` | new | 56 | 6549 | `a68f339ec0d08abc74b8bc344ffaa322a52b61bf05cf226cba2582a3e67037db` |
+| `01_P06_PAYMENT_STATE_MODEL.md` | **1** | 280 | 25977 | `3c7c0bcb7f034f04fc850e543549f3c25e44a1f81d3348331c42528d9b0020ac` |
+| `13_P06_EVIDENCE_MANIFEST.md` | **2** | 154 | 12941 | `2f5a6430db9b5d18a0dba3e689363b6e2bbfe17f6e2cc4d202dd6dc1260323e9` |
+| `18_P06_CORE_RECON_HANDOFF_PACK.md` | **2** | 214 | 18215 | `d2e1b73b4217fb219c4583e18e59791ae5034d54bf81cc1511d16536b3952827` |
+| `21_P06_CURRENT_STATE_RECONCILIATION.md` | **1** | 109 | 6647 | `37c5c7b76a88f0804d929936ea97b84bf871bf23a46ffd9562620825ceeb25b6` |
+| `24_P06_DEPLOYED_MODULE_EVIDENCE.md` | **1** | 109 | 8313 | `5f6706ad16042d847e616bf693f5e347ec60a4f363ca16352eb64ba69919d515` |
+| `34_P06_CROSS_PROCESS_OWNERSHIP_REGISTER.md` | **3** | 103 | 12328 | `2f5526e0ecb1b2845140695e2e9a1f573eec029e2afa534b3689be10e9aa3dea` |
+| `35_P06_PEER_HANDOFF_MATRIX.md` | **2** | 163 | 17509 | `b077e36c605f5ec6f562f3a019f470692dac59c0f010b680ab3edde57084f126` |
+| `36_P06_DEPENDENCY_REGISTER.md` | **1** | 68 | 8068 | `514f819346d079dcdab5088bda80c080babadc5e2d48508121c65ce6540a1817` |
+| `40_P06_TARGETED_BLOCKER_REGISTER.md` | **1** | 291 | 28977 | `b2f5bf69dbb0c2b6f159ab762fc3cb850a96a567ee609bf8ef6dd0422c296bba` |
+| `41_P06_AAS03_TARGETED_CLOSURE_CHALLENGE.md` | **1** | 136 | 14269 | `6ec2ed244098a0c431e1f8c9bc4e3958683a31504bde9a04d71e2aedbe12355b` |
+| `42_P06_AAS_PLUS_VETO_RECHECK.md` | **1** | 99 | 9674 | `4ad1de53d5f9b7e1c0fdb9fcb61656d98c4d0be4a0b2ee2b786aafbf7337bfa2` |
+| `46_P06_55_BLOCKER_SEVERITY_REGISTER.md` | **1** | 139 | 13874 | `c551dd4058fb120f7df246e9e8aff25fc7a0681f386dea067a2dec4bbe7727ec` |
+| `52_P06_XC01_P02_RECONCILIATION.md` | **1** | 103 | 7025 | `a45e356cfa8e792b48f1e11c55f787b20200fadd33acc3453f4c2c0f3fadc9c7` |
+| `56_P06_FILTERED_TREE_EVIDENCE_BOUNDARY.md` | **3** | 107 | 7972 | `5db4f2c81d125b12390970fd2503aaa19d73ba84aea2eac9a6d2e04c3a4a89d2` |
+| `62_P06_TARGETED_CLOSURE_AUTHOR_ERROR_REVISION.md` | **1** | 134 | 11726 | `38177906548ab2ddc1b19090a3d1f974eb74b0a82622b07f39dbb04f8c6e54a2` |
+| `70_P06_P11_SUPPLEMENTAL_CRITICAL_RISK_HANDOFF.md` | **1** | 110 | 7656 | `bac75c70efa36733b3f8b75ff51ab7c1dba1e1b16be3de67b7b756bc4b75e3cc` |
+| `G02_CLOSURE_2026_09_06/P06_AUTO_RESUME_STATE.md` | **1** | 208 | 14890 | `5cc8b332fa6a8e0bfa1cc3f92ad94a7ca2a2934a34acf8fcfb7df07359b74671` |
+| `G02_CLOSURE_2026_09_06/P06_SOURCE_LINK_AND_EVIDENCE_SUPPLEMENT.md` | **1** | 175 | 17942 | `8ef0bcc59b060656bb20c8c2174cc3e238dd878df7cfbdc946d6fb75dcd28528` |
+
+**Executed counts at round-7 close — the standing authority:**
+```
+P06-B distinct -> 67 (contiguous B-01…B-67) | P06-OQ distinct -> 75 (max id 128, NOT contiguous)
+REV-E distinct -> 23 | files -> 87
+REV-E-(18|20|21) markers -> 30 in 15 files   [round 5, unchanged]
+REV-E-22 repairs        -> 40 in 20 files   [round 6, unchanged]
+REV-E-23 repairs        -> 21 in 14 files   [round 7]
+```
+
+> **`AASP-VETO-07` NOT DISCHARGED.** These hashes fix what the files *are*. They say nothing about whether the 21 round-7 repairs are *correct*, and the party that computed them is the party that made them. **Independence is not provable — §5.**

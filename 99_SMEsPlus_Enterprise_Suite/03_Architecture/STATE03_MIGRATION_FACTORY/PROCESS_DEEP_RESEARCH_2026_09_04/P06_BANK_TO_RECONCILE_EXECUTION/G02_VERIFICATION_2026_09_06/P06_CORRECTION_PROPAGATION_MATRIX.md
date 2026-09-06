@@ -70,3 +70,61 @@
 - **`AASP-VETO-06`, `REV-E-18`, `HO-03`/`HO-04`** retain their owners and their `WRITTEN, NOT DELIVERED` status.
 - **No peer package was consumed.** P01 published and unconsumed → `P06-OQ-124`. The other eight published-and-unconsumed peers → **`P06-OQ-128`**.
 - **No new blocker was raised from business evidence.** The two raised are about the package: `P06-B-64` (correction populations scoped by phrase) and `P06-B-65` (a veto condition carried a false premise for two rounds).
+
+---
+
+# PART II — INDEPENDENT FROZEN-SURFACE RECOVERY (2026-09-06, frozen SHA `5212756`)
+
+**Prompt:** `[SMEPLUS-26-09-06-G02-P06-B2R-INDEPENDENT-FROZEN-SURFACE-RECOVERY-005]`
+
+> **Part I above is preserved as issued and is materially wrong about its own completeness.** Its nine rows are each marked **COMPLETE**; an independent pass over the frozen surface found residual stale CURRENT statements in **five** of the nine. Part I is not deleted — it is the record of what was believed, and Part II is what measurement says.
+
+## II.1 Re-measured propagation, by claim class
+
+| Claim class | Part I said | **Measured at freeze** | Survivors found | Now |
+|---|---|---|---|---|
+| `X-08` answered ⇒ closed | COMPLETE | **11 CURRENT, all consistent, none claiming closure** | **0** | **CONFIRMED COMPLETE** |
+| Peer publication status | COMPLETE | 20 CURRENT | **1** — `13_`:103 *"8 of 9 — P01 absent"*, in a file rounds 5 and 6 never opened | **REPAIRED** |
+| Evidence base filtered/relocated | COMPLETE | 15 CURRENT | **3** — `56_`:68/:70/:78, *in the file that produced the correction* | **REPAIRED** |
+| `is_matched` branches/sites | COMPLETE | 21 CURRENT | **1 defective + 2 unit-undeclared** — `01_`:115 contradicted `01_`:122 **seven lines apart in one file** | **REPAIRED** |
+| *"eighth settlement door"* | COMPLETE | 6 CURRENT | **4** — `35_`:97/:99, `36_`:58, `34_`:57 vs `:81` | **REPAIRED** |
+| `res.config.settings` ACL | COMPLETE | 1 CURRENT | **0** | **CONFIRMED COMPLETE** |
+| `ir.sequence` re-issuable | COMPLETE | 1 CURRENT | **0** | **CONFIRMED COMPLETE** |
+| Generation gap | COMPLETE | 3 CURRENT | **3** — `40_`:69 *(the PRIMARY `B-44` row)*, `42_`:53, `24_`:42 | **REPAIRED** |
+| `P06-B-*` population totals | COMPLETE | — | **4** — `13_`:94, `18_`:214, `70_`:108, and `46_`:124 *on a line round 6 edited* | **REPAIRED** |
+
+**Executed: 21 repairs across 14 files** under `[REV-E-23, 2026-09-06]`, plus 3 supersession/snapshot markers. **Round 5's 30 and round 6's 40 markers are untouched.**
+
+## II.2 Why every survivor was invisible
+
+**`PROP-F-06` — Not one survivor is a reasoning failure. Every one is a pattern that could not match its own class.**
+
+| Class | The declared pattern | What it structurally cannot see |
+|---|---|---|
+| evidence base | `filtered distribution\|filtered build\|filtered tree` | **the hyphen** — `filtered-build`, `filtered-tree` (9 lines) |
+| eighth door | `eighth settlement door\|eighth door` | **the ordinal and the noun** — *"eighth ingestion/settlement door"*, *"eighth settlement path"*, *"a fifth settlement door"*, *"an 8th path"* |
+| publication | `unpublished\|not published` | **the paraphrase** — *"P01 absent"* |
+| generation gap | `only deployment evidence` | **the synonym** — *"the only available deployment evidence"* |
+| population | `population at G02 close` | **the header** — *"Blocker population"*, *"with 55 blockers"* |
+
+**`PROP-F-07` — Part I named this defect (`PROP-F-02`) and then committed it nine more times. That is the third consecutive round to commit the defect it had just diagnosed.**
+
+## II.3 Outbound propagation — re-measured
+
+| Outbound artefact | Consumer | Part I said | **Measured** | Now |
+|---|---|---|---|---|
+| `18_` Core Recon Handoff Pack | **P11** | **0 stale** | **2 stale** — `:169` peers-read, `:214` blocker total | **0** |
+| `70_` P11 Supplemental Handoff | **P11** | **0 stale** | **1 stale** — `:108` blocker total | **0** |
+| `34_` Cross-Process Ownership | **P11** | **0 stale** | **3** — `:51` tally, `:57`/`:81` ordinal | **0** |
+| `35_` Peer Handoff Matrix | all peers | **0 stale** | **2** — `:97`, `:99` | **0** |
+| `36_` Dependency Register | all peers | **0 stale** | **1** — `:58` | **0** |
+| `13_` Evidence Manifest | integrity record | not in scope | **2** — `:94`, `:103` | **0** |
+
+**`PROP-F-08` — `VER-F-08` and `PROP-F-04` both certified `18_` as carrying zero stale current statements. It carried two, and one of them — *"7 of 9 read; P01 and P08"* — is contradicted by `48_`:96 in the same package.** The certification was scoped to the five statements the round already knew about.
+
+## II.4 What did NOT change
+
+- **No dependency closed.** `D-01`, `D-02`, `D-15`, `F-02`, `F-06`, `F-15`, `F-17`, `B-46`, `B-54` remain OPEN/HOLD with existing owners.
+- **`P06-B-08` BOSS DECISION REQUIRED · `P06-B-09` statutory · `P06-OQ-98` HOLD · `AASP-VETO-06` · `HO-03`/`HO-04` WRITTEN NOT DELIVERED · `X-08`/`D-08`/`PD-08` peer-owned** — all untouched, verified by grep.
+- **No peer package consumed.** No new business question opened.
+- **`AASP-VETO-07` NOT DISCHARGED.**

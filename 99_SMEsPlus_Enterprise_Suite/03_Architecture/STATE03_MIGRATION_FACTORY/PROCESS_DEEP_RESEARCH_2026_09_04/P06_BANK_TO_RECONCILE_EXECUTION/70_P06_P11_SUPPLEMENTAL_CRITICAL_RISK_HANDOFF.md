@@ -105,6 +105,6 @@
 
 > **P06 SUPPLEMENTAL CRITICAL-RISK CLOSURE — MAXIMUM AVAILABLE EVIDENCE REACHED — HOLD FOR SPECIFIC VERSION / DEPLOYMENT / PEER / BOSS DECISION**
 
-Handed to P11 as **material delta supplementing the prior handoff**, under **four active vetoes**, with **58 blockers** (7 closed, severity-ranked), **16 recorded author errors**, and **16 preserved dissents**.
+Handed to P11 as **material delta supplementing the prior handoff**, under **four active vetoes**, with ~~**58 blockers** (7 closed, severity-ranked)~~ → **65 blockers at the current frozen surface** [REV-E-23, 2026-09-06 — stale current claim; found by independent frozen-surface verification, invisible to the pattern declared for its class] *(58 was correct at this handoff; time-bounded and not marked as such)*, **16 recorded author errors**, and **16 preserved dissents**.
 
 **Not a PASS. Not approved. Not frozen. Not merged. No implementation authorisation.**

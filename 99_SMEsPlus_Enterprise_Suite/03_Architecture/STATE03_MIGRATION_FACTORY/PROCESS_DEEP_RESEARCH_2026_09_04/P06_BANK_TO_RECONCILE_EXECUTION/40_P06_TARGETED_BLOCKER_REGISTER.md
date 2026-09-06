@@ -66,7 +66,7 @@
 | ID | Blocker | Disposition |
 |---|---|---|
 | `P06-B-43` | The payment-register wizard is root-scoped in the same defective shape as A4a, in a second location | **HOLD — DESIGN DECISION REQUIRED** |
-| `P06-B-44` | **GENERATION GAP (severity raised by AAS-03 E2-C-03).** The only deployment evidence available is from **Odoo 19** databases, while the entire P06 research target is the **v18** line. If the programme's target generation has moved, a material fraction of this package is scoped to a superseded line. The missing target registry is the *second* half of this blocker, not the first. | **HOLD — DATABASE EVIDENCE REQUIRED** |
+| `P06-B-44` | **GENERATION GAP (severity raised by AAS-03 E2-C-03).** The only deployment evidence available is from **Odoo 19** databases, while the entire P06 research target is the **v18** line. If the programme's target generation has moved, a material fraction of this package is scoped to a superseded line. The missing target registry is the *second* half of this blocker, not the first. **NARROWED** [REV-E-23, 2026-09-06 — stale current claim; found by independent frozen-surface verification, invisible to the pattern declared for its class]: **v19 Enterprise source trees DO exist on this workstation and six core findings were re-tested against them and are cross-version INVARIANT** (`51_`, `REV-E-10`). The *deployment* half stands; the *research-invalidation* half is retired. | **HOLD — DATABASE EVIDENCE REQUIRED** |
 | `P06-B-45` | Lock dates inherit up the hierarchy, strictest ancestor wins, **including archived companies and with elevated privilege** (P04 `P04-B-43`); the hierarchy may span legally distinct companies | **HOLD — DESIGN DECISION REQUIRED** |
 | `P06-B-46` | RELOCATE splits a correction across two periods with nothing linking them; P04 shows this lives in the **generic** posting routine | **HOLD — PEER PROCESS REQUIRED (P08)** |
 | `P06-B-47` | **Derived ownership** is the common root of A4b and A4c — an owner reached through two hops cannot be independently verified | **HOLD — DESIGN DECISION REQUIRED** |
@@ -254,3 +254,38 @@ Assessed as directed. **Two candidates, and only one qualifies.**
 | Open questions `P06-OQ-*` | see `13_` | **`OQ-112` CLOSED; `OQ-120` … `OQ-127` raised** |
 
 **Counts executed at close, not asserted** — commands and results in `G02_CLOSURE_2026_09_06/P06_SOURCE_LINK_AND_EVIDENCE_SUPPLEMENT.md` §6.
+
+
+---
+
+# Appendix C — INDEPENDENT FROZEN-SURFACE CORRECTION RECOVERY (2026-09-06)
+
+Frozen SHA `5212756`. Added in place, in the register, **because the defect this round exists to correct is additions that live only in new files.**
+
+## C.1 New blockers
+
+| ID | Blocker | Severity | Disposition |
+|---|---|---|---|
+| `P06-B-66` | **A counting command must be stated with its population and validated by a second command of a different shape.** Four verification-tool defects were found in two rounds (`VER-E-01`…`04`): a `^-[^-]` pattern markdown bullets defeat; globs held in shell variables, which zsh never expands; **a marker grep that matches its own printed documentation**; and a context regex that returned nothing rather than failing. **None announced its failure; three returned a plausible number.** A positive control proves a pattern *can* fire — never that it fires *only* on the population | INFORMATIONAL | **CLOSED on creation** by `G02_RECOVERY_2026_09_06/P06_VERIFICATION_TOOL_DEFECT_REGISTER.md` |
+| `P06-B-67` | **A correction population is a floor, not a population, and no pass has yet produced one a later pass did not enlarge.** Round 5 declared 9 classes complete; round 6 found 22 misses and declared them complete; the independent frozen-surface pass found **14 more**, every one invisible to the pattern declared for its class — a hyphen (`filtered-build`), an ordinal (*"eighth settlement path"*, *"a fifth settlement door"*, *"an 8th path"*), a paraphrase (*"P01 absent"*), a synonym (*"the only available deployment evidence"*), a header (*"Blocker population"*) | **HIGH** | **HOLD — INDEPENDENT AUDIT REQUIRED.** `AASP-VETO-07` cannot be discharged while the population is unbounded |
+
+## C.2 Status changes
+
+| ID | Change |
+|---|---|
+| `B-44` | **NARROWED in place at `:69`** — the primary row stated the generation gap unqualified while `18_`:184 and `46_`:74 carried the narrowing. v19 source exists; six core findings cross-version invariant (`51_`, `REV-E-10`) |
+| `B-53` | *"eighth"* withdrawn at **three further sites** the prior rounds' patterns could not see — `35_`:97/:99 (`PH-F-05`, which `62_`:42 had named **by name** as corrected), `36_`:58, `34_`:57/:81 |
+| `B-55` | terminology reconciled at `56_`:68/:70/:78 — the file that *produced* the relocation finding still labelled its own scope column *"filtered tree"* |
+| `B-03` | `18_`:169 corrected — *"7 of 9 read; P01 and P08"* → **8 of 9**; P08 read in round 3, P01 published and unconsumed |
+| `B-54` | unchanged in substance; the publication half is now correct everywhere |
+
+## C.3 Population at recovery close
+
+| Unit | Prior | **Now** |
+|---|---|---|
+| Blockers `P06-B-*` | 65 | **67** |
+| Open questions `P06-OQ-*` | 75 | **75** |
+| Author errors `REV-E-*` | 22 | **23** |
+| Package files | 84 | **87** |
+
+**Counts executed after the last content file, not asserted.** The standing authority is `G02_CLOSURE_2026_09_06/P06_AUTO_RESUME_STATE.md`; every per-round figure in this package is round-local.
