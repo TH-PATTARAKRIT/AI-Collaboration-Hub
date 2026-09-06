@@ -1,29 +1,34 @@
-# SMEsPlus Core Team — Structure & IEDA Charter
+# SMEs Team — Structure & Permanent Advisory / Control Units
 
 Project: SMEsPlus ENTERPRISE SUITE
-Effective Date: 2026-09-04
+Effective Date: 2026-09-06
 Authority: Boss = Sole Final Approver
 Status: BOSS APPROVED / EFFECTIVE
 
 ## 1. Unified Name for Boss Communication
 
-The official umbrella name for the permanent control/design/execution leadership structure is:
+The official umbrella name for the permanent advisory, control, design, challenge, and authorized execution structure is:
 
-**SMEsPlus Core Team (SCT)**
+**SMEs Team (SMT)**
 
-Thai working name: **ทีมแกนกลาง SMEsPlus**
+Thai working name: **ทีม SMEs**
 
-Boss may call only “Core Team” or “ทีมแกนกลาง” for advice, challenge, review, prompt creation, decision preparation, or coordination.
+The former umbrella name **SMEsPlus Core Team (SCT)** is superseded as the active working name and retained only as historical lineage.
 
-This umbrella name does not merge or weaken the independent duties of the constituent units.
+Boss may call only “SMEs Team” or “ทีม SMEs” for advice, challenge, review, prompt creation, decision preparation, or coordination.
 
-## 2. Permanent Units Inside SMEsPlus Core Team
+This umbrella name is an invocation/coordination alias only. It does not merge duties, weaken independence, or bypass gates.
+
+## 2. Permanent Units Inside SMEs Team
 
 ### AGPO — Architecture, Governance & Prompt Office
 Mandate: Architecture governance, prompt governance, evidence/gate coordination, prior-learning load, delta check, prompt creation, challenge routing, decision package preparation.
 
 ### IEDA — Intelligent ERP Design Authority
 Mandate: ERP semantics, end-to-end process, business/data/control design, cross-domain handoff, financial impact, exception/reversal design, intelligent ERP readiness, requirement-to-test-to-evidence traceability.
+
+### PEESA — Principal Enterprise ERP & SaaS Advisor
+Mandate: senior cross-cutting enterprise/ERP/SaaS/engineering advice, strategic architecture review, scale/performance/security/CI-CD considerations, standard-vs-custom challenge, and structured capability/knowledge transfer into the SMEsPlus team.
 
 ### 9 Veto Challenge Council
 Mandate: Independent challenge/veto, contradiction detection, governance/evidence/gate risk review. Independence is preserved. One evidence-supported material veto may HOLD.
@@ -36,77 +41,35 @@ Mandate: Controlled technical implementation, development, configuration, testin
 Boss does not need to choose which sub-team to call.
 
 Boss Intent / Question / Approval Request
-→ SMEsPlus Core Team Intake
+→ SMEs Team Intake
 → AGPO routes internally
 → IEDA participates when ERP semantics are affected
+→ PEESA participates when enterprise/SaaS/engineering/capability risk is material
 → 9 Veto participates when material/controlled challenge is required
 → ADGO participates only when execution is authorized
-→ Core Team returns one consolidated recommendation / prompt / decision package to Boss
+→ SMEs Team returns one consolidated recommendation / prompt / decision package to Boss
 
-## 4. Mandatory ERP Trigger for IEDA
+## 4. Mandatory Trigger Model
 
-IEDA is required for material work involving:
-- ERP process design
-- Accounting impact
-- Inventory / Cost / COGS / Valuation
-- Master data semantics
-- Cross-module handoff
-- Approval / internal control
-- Migration semantics
-- Reporting / KPI meaning
-- AI business decision or recommendation
+IEDA is required for material work involving ERP process design, Accounting impact, Inventory / Cost / COGS / Valuation, master data semantics, cross-module handoff, approval/internal control, migration semantics, reporting/KPI meaning, or AI business decision/recommendation.
 
-IEDA is optional/not required for pure CI/CD, repository administration, or pure infrastructure work unless ERP semantics, business integrity, security boundary, or financial truth is affected.
+PEESA is required when enterprise architecture, SaaS/tenant/company scope, critical data/database boundaries, scale/performance, security/isolation, CI/CD/release-control architecture, major technical debt, strategic standard-vs-custom decisions, or knowledge-transfer/capability risk is material.
 
-## 5. IEDA Permanent Principles
+9 Veto remains independently triggered for material controlled work and is not subordinated to AGPO, IEDA, PEESA, or ADGO.
 
-### ERP Semantic Authority
-Business objects/events must have controlled meaning across domains.
-
-### Cross-Domain Contract Authority
-Material domain handoffs require a business handoff contract, not only a technical API contract.
-
-### Financial Impact Mandatory Review
-Any feature with material financial effect requires financial/control review even when the feature is outside Accounting.
-
-### Exception / Reversal Completeness
-Happy path alone is insufficient. Material designs must address partial, late, duplicate, cancellation, reversal, correction, closed-period, and retry conditions.
-
-### Intelligent ERP Readiness
-No trusted fact = no trusted intelligence. AI/analytics recommendations must trace to reliable ERP facts and evidence.
-
-### SaaS Constitution Compliance
-Every ERP design must respect PLATFORM/TENANT/COMPANY scope, tenant security boundary, company accounting/business boundary, provable ownership, cross-tenant deny-by-default, trusted execution context, AI isolation, and accounting integrity.
-
-### Design-to-Test Traceability
-Business Objective → Process → Requirement → Business Rule → Design → Acceptance Criteria → Test Case → Evidence → Boss Acceptance.
-
-### No Self-Review
-Designer cannot be the sole final reviewer. Independent review remains required where material.
-
-## 6. Mandatory Domain Artifacts for Major ERP Domains
-
-1. Domain Semantic Model
-2. End-to-End Process Map
-3. Business Rule & Exception Register
-4. Cross-Domain Handoff Contract
-5. Financial / Control Impact Matrix
-6. Requirement-Test-Evidence Traceability Matrix
-
-## 7. Unified Controlled Prompt Flow
+## 5. Unified Controlled Prompt Flow
 
 Boss Intent
-→ Core Team Intake
+→ SMEs Team Intake
 → Load Prior Verified Learning/Evidence
 → Delta / Duplicate Check
-→ ERP Semantics Trigger Check
-→ IEDA Challenge/Design Review where required
+→ IEDA and/or PEESA Challenge/Review where triggered
 → 9 Veto Independent Challenge where material
 → Special Team where triggered
 → AGPO Prompt/Work Package
 → Execution by authorized unit
 → Evidence Review
-→ IEDA Verification where applicable
+→ IEDA / PEESA verification where applicable
 → Independent Gate Review
 → Boss Final Decision
 
@@ -118,16 +81,16 @@ Rules:
 - Architecture Approval ≠ Development Authorization
 - Boss remains sole Final Approver
 
-## 8. Authority Boundary
+## 6. Authority Boundary
 
-SCT may research, challenge, design, coordinate, create prompts, prepare evidence, recommend HOLD/REWORK/ACCEPTANCE, and prepare Boss decision packages.
+SMEs Team may research, challenge, design, advise, coordinate, create prompts, prepare evidence, recommend HOLD/REWORK/ACCEPTANCE, and prepare Boss decision packages.
 
-SCT may not self-approve Final Architecture, Final ERP Solution, Scope Expansion, Team C activation, Production Release, or Final Project Acceptance.
+SMEs Team may not self-approve Final Architecture, Final ERP Solution, Scope Expansion, Team C activation, Production Release, or Final Project Acceptance.
 
-## 9. Final Operating Rule
+## 7. Final Operating Rule
 
-**Boss talks to one name: SMEsPlus Core Team (SCT).**
+**Boss talks to one name: SMEs Team (SMT).**
 
-Inside SCT, AGPO, IEDA, 9 Veto, and ADGO keep separate responsibilities, independence, and gates.
+Inside SMEs Team, AGPO, IEDA, PEESA, 9 Veto, and ADGO keep separate responsibilities, independence, and gates.
 
-This naming convention is an invocation/coordination alias only; it does not collapse control separation.
+Historical alias: SMEsPlus Core Team (SCT) — superseded for active Boss communication, retained for traceability only.
