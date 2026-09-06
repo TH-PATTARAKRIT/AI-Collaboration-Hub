@@ -22,7 +22,7 @@
 | `CP-P09S11` | AAS+ consolidation, dissent preserved | **COMPLETE — EVIDENCE VERIFIED** | 5 dissents recorded, none forced; `AAS+-VETO-04` raised |
 | `CP-P09S12` | PMO Phase S review | **COMPLETE — EVIDENCE VERIFIED** | recommends **TERMINAL C** with 7 named bounded corrections |
 | `CP-P09S13` | freeze package before challenge opened | **FAILED — RECORDED** | the package was edited during the challenge window; one expert's findings are stated against intermediate text |
-| `CP-P09SFINAL` | commit, push, verify remote, update state | **COMPLETE — EVIDENCE VERIFIED** | see `AUTO_RESUME_STATE` |
+| `CP-P09SFINAL` | commit, push, verify remote, update state | **COMPLETE — EVIDENCE VERIFIED, PUBLISHED `99b0d52`** | remote SHA read back identical; working tree clean; both mandatory scans ZERO over 111 files |
 
 ---
 

@@ -7,7 +7,7 @@
 | **PROMPT COMMIT** | `8c759fc` |
 | **BRANCH** | `research/account-p09-plan-to-analyze-2026-09-04-001` |
 | **BASELINE BEFORE THIS ROUND** | `d7deb65` · prior published closure `0b61c92` |
-| **CURRENT COMMIT** | recorded at `CP-P09SFINAL` |
+| **CURRENT COMMIT** | **`99b0d52`** — Phase S domain-pure bounded closure; **pushed and remote-verified** (remote SHA read back identical, working tree clean) |
 | **TERMINAL STATE** | **TERMINAL C — EVIDENCE INTEGRITY / DOMAIN-PURITY FAILURE — CORRECTION REQUIRED** *(scoped to this round's new evidence base; no prior finding withdrawn)* |
 | **LAST VERIFIED CHECKPOINT** | `CP-P09SFINAL` |
 | **PHASE** | **S** — domain purity first. **PHASE SA NOT PERFORMED. PHASE B NOT PERFORMED. AI EOS NOT ACTIVE** |
