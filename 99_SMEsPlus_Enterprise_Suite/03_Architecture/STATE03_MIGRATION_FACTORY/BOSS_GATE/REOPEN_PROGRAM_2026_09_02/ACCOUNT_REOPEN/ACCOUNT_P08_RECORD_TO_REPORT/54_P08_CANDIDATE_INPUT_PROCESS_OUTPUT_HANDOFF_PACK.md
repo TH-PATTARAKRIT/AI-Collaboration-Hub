@@ -51,7 +51,7 @@ Prompt `[SMEPLUS-26-09-06-P08-R2R-DOMAIN-PURE-BOUNDED-CLOSURE-002]` · **PHASE S
 
 | ID | Type | Business Meaning | Evidence Class | Consumer Candidate | Scope | State/Timing | Correction/Reversal | Evidence Ref | Open Dependency |
 |---|---|---|---|---|---|---|---|---|---|
-| `OU-01` | CANDIDATE OUTPUT | A posted, numbered journal entry | `FACT VERIFIED — P08` | all | `CO` | at post | reversible | `53` CQ-03 | **not immutable** — seal off, state unsealed |
+| `OU-01` | CANDIDATE OUTPUT | A posted, numbered journal entry | `FACT VERIFIED — P08` | all | `CO` | at post | reversible | `53` CQ-03 | **The number is NOT an entry identifier** — 4,722 numbers are each held by two posted entries (`P08-CONTRA-62`). Unique within a journal only. And the entry is **not immutable** beyond the nine default-guarded fields |
 | `OU-02` | CANDIDATE OUTPUT | The journal item set — the monetary decomposition | `FACT VERIFIED — P08` | all, and every report | `CO` | at post | — | `41` | **41.89% cannot name their entry** |
 | `OU-03` | CANDIDATE OUTPUT | General ledger | `FACT VERIFIED — P08` — **derived at read time, no stored ledger** | P11, reporting | `CO` | on demand | reflects current state only | `53` CQ-08 | **no as-of reconstruction** |
 | `OU-04` | CANDIDATE OUTPUT | Trial balance | `FACT VERIFIED — P08` — **derived, no stored TB** | P11, reporting | `CO` | on demand | as above | `53` CQ-08 | balances **only** in the enforced frame |
@@ -75,7 +75,7 @@ Prompt `[SMEPLUS-26-09-06-P08-R2R-DOMAIN-PURE-BOUNDED-CLOSURE-002]` · **PHASE S
 | `HO-06` | CANDIDATE HANDOFF | The posting state sits **outside** the integrity seal's field set | `FACT VERIFIED — P08` | **P05** | `PLAT` | **YES** | `48` §3 |
 | `HO-07` | CANDIDATE HANDOFF | A raw-statement write of an accounting field bypassing the guard layer **exists in the accounting core** | `FACT VERIFIED — P08` | **P06** | `PLAT` | **YES** | `43` |
 | `HO-08` | CANDIDATE HANDOFF | **Version boundary:** every P08 source statement is 18.0; every deployed count is 16.0 or 19.0; **no deployed database matches the source line** | `FACT VERIFIED — P08` | **all peers, P11** | `PLAT` | **YES** | `40` |
-| `HO-09` | CANDIDATE HANDOFF | **Denominator correction:** deployment claims must be read on **transacting** scope — 6 of 89 companies, 29 of 109 journals | `CONTRADICTED — CORRECTED` | **all peers, P11** | `PLAT` | **YES** | `53` CQ-10 |
+| `HO-09` | CANDIDATE HANDOFF | **Denominator correction, itself corrected (`P08-CONTRA-65`):** a **preventive** control's denominator is **capability**, not history — **7 of 89 companies, 75 of 109 journals**. Platform (89/109) and history (6/29) retained and labelled | `CONTRADICTED — CORRECTED` | **all peers, P11** | `PLAT` | **YES** | `53` CQ-10 |
 | `HO-10` | CANDIDATE HANDOFF | **CORRECTED `P08-CONTRA-53`.** The **declared** root set is **22**. Class-`A` negatives were expressed over the subset carrying each pattern (21, or 20 for the core posting file) and the surface published `N of 21` without saying so. **Independence is the binding limit: the core posting file resolves to 7 distinct contents by hash** | `FACT VERIFIED — P08` | **P09, P10, P11** | `PLAT` | **YES** | `48` §3 |
 | `HO-11` | CANDIDATE HANDOFF | **19 Boss decisions**, none answered, including one **CONTESTED** invariant | `BOSS DECISION REQUIRED` | **Boss** | `PLAT` | no — Boss-direct | `52` §4 |
 | `HO-12` | CANDIDATE HANDOFF | `AAS+-VETO-01` — two conditions gating reliance on any P08 finding | `BOSS DECISION REQUIRED` | **Boss, PMO** | `PLAT` | no — Boss-direct | `50` §4 |
@@ -136,3 +136,31 @@ The five-way partition of `53` CQ-01 is **documentary**, so 76.6% of the posted 
 ### 6.3 A boundary actor with no category in this pack
 
 **`P08-CONTRA-55`.** A module **installed in all three deployed databases** deletes the settlement, item and entry tables in unqualified raw SQL and resets the entry-number sequence to 1. It is **neither an input nor an output** — it is a **boundary actor that destroys ledger facts**, and this pack has no category for it. Recorded here pending one, and handed to **P11** and **P06**.
+
+### 6.4 `P08-F-51` — the two tax-period carriers contradict each other on 24.2% of the items where both are set
+
+**Found independently by two challengers and re-run by the author. All three agree to the row.**
+
+| Posted items where both the entry stamp and the item stamp are set | Items |
+|---|---|
+| The two **agree** | 13,764 |
+| **The two DISAGREE** | **4,393 — 24.2%** |
+| — disagreeing by **month** | **747** |
+| An item carries a stamp its entry does not | 4 |
+
+The deployed mechanism writes the entry's value onto the tax lines **at create**, so the two copies **agree at birth**. A 24.2% divergence is therefore evidence of one copy being changed without the other — and the field carries no change tracking and sits outside the integrity seal's set.
+
+**This is a sharper instance of the package's own central thesis than the one it published.** A *partially and inconsistently* stamped entry is worse for any period-based selection than an unstamped one, because an item-level selection returns one subset and an entry-level selection returns a different one. **747 of these fall in different months.**
+
+**The author does not attribute the divergence to post-create mutation as a verified fact.** A challenger tested a mutation discriminator and reported it **failed to discriminate** (100.0% vs 98.8%), and reported the failure. Identifying the writer needs an audit source outside the current path set. `SUPPORTED INTERPRETATION — P08` for the mechanism; **`FACT VERIFIED — P08` for the divergence itself.**
+
+### 6.5 `P08-F-52` — the entry-number mirror is stale-empty, not corrupt
+
+`PR-10` publishes **174,977** disagreeing mirrors. A challenger decomposed it and the author re-ran the decomposition:
+
+| | Items |
+|---|---|
+| Mirror **unpopulated** (null or the draft placeholder) while the entry carries a real number | **174,959** |
+| Mirror **genuinely pointing at a different, wrong number** | **18** |
+
+**And those 18 are exactly the deleted-entry residue already recorded in `CQ-P08-06`.** So the mirror fails by being **empty**, never by being **wrong**, except at the 18 items that already have their own finding. `PR-10`'s bare "174,977 disagree" invites the stronger and incorrect reading, and is corrected here.

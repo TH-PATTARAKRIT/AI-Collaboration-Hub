@@ -28,7 +28,7 @@ Twelve bounded questions. **No question is answered by re-running closed work.**
 
 **P08 does not investigate why any producer emits an entry that way.** `EXTERNAL DOMAIN BOUNDARY — DO NOT RESEARCH HERE.`
 
-**Minimum identity guaranteed at the boundary:** company, journal, accounting date, posting state, and — **only once posted** — an assigned number. **Nothing else is guaranteed.** No durable event key, no producer identity, no mode marker.
+**Minimum identity guaranteed at the boundary:** company, journal, accounting date, posting state, and — **only once posted** — an assigned number **that is unique within its journal but NOT unique across the ledger** (`P08-CONTRA-62`: 5.58% of posted entries share their number with another). **Nothing else is guaranteed.** No durable event key, no producer identity, no mode marker.
 
 **Disposition: `FACT VERIFIED — CLOSED FOR CURRENT P08 EVIDENCE`.**
 
@@ -65,7 +65,7 @@ Two independent measurements point the same way: provenance sits on the entry fo
 | The tamper seal is **optional** and unengaged | **0 of 29 transacting journals** (restated — see CQ-10) | `FACT VERIFIED` |
 | The gapless counter is unwritten | 0 of 169,143 posted entries, `DB-SM` | `FACT VERIFIED` |
 | **The deployed numbering is not the source numbering.** A custom module derives the number from the accounting date's year and month | 16.0 custom source, matching 16.0 data | `FACT VERIFIED` |
-| Whether the deployed derivation preserves collision-freedom | not assessed | `UNRESOLVED — SPECIFIC P08 EVIDENCE UNAVAILABLE` |
+| Whether the deployed derivation preserves collision-freedom | **CLOSED ADVERSELY — `P08-CONTRA-62`. It does not.** **4,722 entry numbers are each held by two posted entries — 9,444 posted entries, 5.58% of the posted population.** All collisions are **across** journals; **0** occur within a journal, so the database index is intact and the number is simply not unique to an entry. Both families are custom-derived. The evidence sat in the extract this register cites throughout | **`FACT VERIFIED` — a measured defect, previously carried as unassessed** |
 
 **The finality claim P08 can defend:** posting assigns a number and changes a state. **It does not make the entry immutable, and nothing in the measured surface makes it so** — the seal is off everywhere it could have been on, and the state it would protect is outside what it covers.
 
@@ -105,7 +105,7 @@ Two independent measurements point the same way: provenance sits on the entry fo
 | Origin classes the data **cannot** yield at all: *manual*, *revaluation*, *closing*, *adjustment* | `FACT VERIFIED` |
 | **17.00%** of items carry no provenance mark of any kind | `FACT VERIFIED` |
 | **18.49%** of items satisfy two or more origin predicates at once — no field partitions the population | `FACT VERIFIED` |
-| **6,585** posted entries (3.9%) carry no origin pointer of any kind; 2,617 of those carry no reference text either | `FACT VERIFIED` — corrected from 83,820, `48` §1 |
+| Posted entries carrying no origin pointer | **CORRECTED — `P08-CONTRA-63`. The phrase "origin pointer" carried three different field sets across this package, none declared.** Both readings are now published with their sets named: **counting stored producer pointers only — 37,158 posted entries, 21.97%**; additionally counting the counterparty — 9,754, and 6,585 after removing entries reachable as a settlement's exchange entry. **A counterparty is not a producer, so the defensible headline is 21.97%, not 3.9%** | `FACT VERIFIED`, predicate now declared |
 | Two items identical in every stored accounting attribute but different in origin: **6,494 groups covering 23,419 items** | `FACT VERIFIED` |
 
 **Classification of the gap, without researching any producer:** the ledger cannot distinguish an entry a person wrote from one a process emitted, and **cannot recover which process** for 3.9% of posted entries. **Whether that matters is a design question.**
@@ -139,7 +139,7 @@ Two independent measurements point the same way: provenance sits on the entry fo
 |---|---|---|
 | **Double entry, reporting currency** | **one line of defence**, at the object layer, **switched off by a caller-supplied value** | `FACT VERIFIED` |
 | **Double entry, transaction currency** | **no defence at any layer** | `FACT VERIFIED` |
-| — its measured consequence | **4 posted entries.** **CORRECTED — `P08-CONTRA-52`: "all from a 1:1 rate fallback" is FALSE.** Three carry a leg with a zero transaction amount against a non-zero reporting amount; the fourth has **no 1:1 leg at all** — all five of its legs sit at an implied rate of 35.39 and its residual is **0.04**, a rounding artefact | `CONTRADICTED — CORRECTED AND CLOSED` |
+| — its measured consequence | **4 posted entries carry a non-netting foreign bucket with NO company-currency leg.** **CORRECTED — `P08-CONTRA-64`: the excluded remainder is 1,847, not 49** — 1,851 posted entries carry a non-netting foreign bucket in total. **CORRECTED — `P08-CONTRA-52`: "all from a 1:1 rate fallback" is FALSE.** Three carry a leg with a zero transaction amount against a non-zero reporting amount; the fourth has **no 1:1 leg at all** — all five of its legs sit at an implied rate of 35.39 and its residual is **0.04**, a rounding artefact | `CONTRADICTED — CORRECTED AND CLOSED` |
 | **The population over which the invariant is not even formulable** | **1,992 posted entries carry more than one currency across their lines**, and **10,385 (6.1%) carry an item whose currency differs from the entry's own.** The measured consequence was taken over the smallest sub-population; the undefined population is far larger | **`FACT VERIFIED` — NEW** |
 | Account code uniqueness | **CORRECTED — `P08-CONTRA-51`. The claim IS formulable in 19.0 and it returns a violation.** The 19.0 schema replaces the two columns with a per-company code map; formulated over it, **8 active accounts in company 1 share the code `111106`** in **both** 19.0 databases. A trial balance grouped by code collapses eight accounts into one line | **`FACT VERIFIED` — a deployed integrity violation, previously published as `UNRESOLVED`** |
 | Entry number uniqueness | index-enforced for posted entries only; draft and cancelled unconstrained | `FACT VERIFIED` |
@@ -197,12 +197,17 @@ Two independent measurements point the same way: provenance sits on the entry fo
 
 **ENUMERATION.** POPULATION: all companies and journals in the three extracts. PATTERN: a unit is *transacting* if at least one **posted** entry cites it. PATH SET: the three entry, company and journal extracts. UNIT: **one company**, then **one journal**. POSITIVE CONTROL: the test returns 6 and 29 rather than 0 or the full population, so it discriminates.
 
-| | Published | **Transacting only** |
-|---|---|---|
-| Companies | 89 | **6 — 6.7%** |
-| Journals | 109 | **29 — 26.6%** |
-| Period lock set | 0 of 89 | **0 of 6** |
-| Tamper seal set | 0 of 109 | **0 of 29** |
+| Scope | Companies | Journals | Lock set | Seal set |
+|---|---|---|---|---|
+| **Platform** — every row | 89 | 109 | 0 | 0 |
+| **History** — has ever posted | 6 | 29 | 0 | 0 |
+| **CAPABILITY — able to post** (a chart of accounts and a journal; an active journal on a charted company) | **7** | **75** | **0** | **0** |
+
+**`P08-CONTRA-65` — the correction above over-corrected, and a challenger caught it.** The seal and the period lock are **preventive** controls: their whole function is to be armed **before** the first posting. Conditioning the denominator on *having already posted* is **selection on the outcome the control exists to govern** — it can never contain a unit where the control was set early enough to matter, and it discards every unit whose unset control is a live, still-correctable exposure.
+
+**The rationale sentence published one round earlier — *"a control unconfigured on a company that has never posted is evidence of nothing"* — is FALSE for a preventive control.** It is true only for a detective one.
+
+**The defensible denominator is capability, not history: `0 of 7` companies and `0 of 75` journals.** The history figure is retained and labelled as history; the platform figure is retained as platform scope. **46 active journals sit on charted companies and have never posted — three of them on the estate's largest transacting company** — and the history predicate silently dropped all of them.
 
 > **`P08-CONTRA-43`. "0 of 89 companies" and "0 of 109 journals" were measured over a population that is 93% empty shells. A control unconfigured on a company that has never posted is evidence of nothing.**
 
@@ -216,7 +221,7 @@ This is the eligibility defect the programme has recorded before: the four denom
 | A posted entry in another company's journal | `FACT VERIFIED` — deployed |
 | Ledger accounts posted to by more than one company | `FACT VERIFIED` — 3 accounts in `DB-BK` |
 | A statutory register query with **no company predicate**, installed on two 44-company databases | `FACT VERIFIED`, **and not yet carried into the scope matrix** |
-| Cross-company settlement | **0 of 63,779** — but the multi-company databases hold 22 posted entries between them, so the test is **near-uninformative** | `FACT VERIFIED` within the evidence set, **`B` for the estate** |
+| Cross-company settlement | **0 of 63,782** — but the multi-company databases hold 22 posted entries between them, so the test is **near-uninformative** | `FACT VERIFIED` within the evidence set, **`B` for the estate** |
 
 **Disposition: `CONTRADICTED — CORRECTED AND CLOSED` for the denominators; `FACT VERIFIED — CLOSED` for the rest.**
 

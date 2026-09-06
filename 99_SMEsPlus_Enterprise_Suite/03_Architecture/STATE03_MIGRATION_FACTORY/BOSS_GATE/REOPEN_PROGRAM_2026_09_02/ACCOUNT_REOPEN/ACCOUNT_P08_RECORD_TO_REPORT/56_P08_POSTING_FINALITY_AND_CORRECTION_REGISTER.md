@@ -38,7 +38,7 @@ Consolidates `05`, `07`, `36`, `43`, `44`, `47`, `48` under the Phase-S disposit
 | Gapless counter | **exists, never written** — and in the deployed line it is the live mechanism, in the source line it is retired |
 | Posting-state protection | **absent from the seal's field set**, and a raw-statement path writes it directly |
 | Period lock | **exists, unset on every transacting company** |
-| Audit retention | **exists in the 19.0 estate, unset on 88 of 88 companies** |
+| Audit retention | exists in the 19.0 estate, unset on **88 of 88** companies — **and `P08-CONTRA-66`: this row retained the very denominator `CQ-P08-10` had just condemned, inside the register whose §4 certified the restatement complete.** Under capability scope: **0 of 6** charted 19.0 companies |
 
 **CORRECTED — `P08-CONTRA-56`. The "seven of nine" double-counts one control as three.** The seal, the entry hash and the gapless counter are **not independent observations**: the hash and counter are written only when the seal is enabled, so their zeros are **entailed** by the seal's zero. After collapsing that entailment and adding the default-on carriers of row 6, the honest statement is:
 

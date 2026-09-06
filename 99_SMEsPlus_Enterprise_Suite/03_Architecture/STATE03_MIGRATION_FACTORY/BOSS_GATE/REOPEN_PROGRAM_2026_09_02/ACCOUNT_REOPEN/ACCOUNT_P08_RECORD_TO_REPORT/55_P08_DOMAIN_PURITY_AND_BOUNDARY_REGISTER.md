@@ -78,9 +78,13 @@ For each adjacent domain: the interface fact P08 keeps, and the path P08 does no
 
 ## 5. Corrections applied after the bounded AAS-03 challenge
 
-### 5.1 `P08-CONTRA-61` — the contamination control did not audit the round it controls
+### 5.1 `P08-CONTRA-61` — the contamination control audited 22 of 64 artefacts, and excluded the round it controls
 
 §1 declared its POPULATION as *"all 22 P08 artefacts written in the two prior rounds (`33`–`54`)"* and §4 reported **"Artefacts audited: 22"** as the round's coverage. **`33`–`54` is 22 files, and this round produced six (`53`–`58`).** The audit therefore covered **neither itself, nor `56`, nor `57`, nor `58`** — and two of the contaminations found by challenge sit inside that blind spot, one of them matching this register's own literal term *"asset register"*.
+
+**And the exclusion is far larger than the round.** The package root holds **64 Layer-1 artefacts**; the audit declared its population as `33`–`54` — **22 files, 34% of the package**. Re-running the same eleven terms over `00`–`32` returns **12 further matching artefacts, none of them audited**, including the scope-ownership matrix, the kernel model, the financial-report trace, the business-event register and the cross-process ownership file.
+
+**The narrowing from *"the package directory"* to `33`–`54` was never declared as an exclusion, and §4 then reported `DOMAIN PURITY PRESERVED` — a conclusion about the package drawn from a third of it.** A boundary was **described** instead of **declared as a set**, which is the defect this programme has recorded before.
 
 **A control whose population excludes the work it is controlling is not a control.** `P08-M-20`.
 
