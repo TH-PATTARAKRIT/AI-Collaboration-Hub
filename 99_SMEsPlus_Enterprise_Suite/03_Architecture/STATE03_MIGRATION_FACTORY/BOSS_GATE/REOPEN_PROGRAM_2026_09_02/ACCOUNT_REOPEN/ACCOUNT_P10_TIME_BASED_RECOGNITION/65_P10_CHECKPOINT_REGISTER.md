@@ -38,3 +38,28 @@ Branch `research/account-p10-time-based-recognition-2026-09-04-001` · baseline 
 |----|---------|
 | `CP-P10D11` | `BLOCKED — TOOL / PERMISSION` for `TZ-4`/`TZ-5`/`TZ-6`: an executing reproduction needs a database service started on the host, a state change outside a read-only research session |
 | `CP-P10D16` | `BLOCKED — EXTERNAL DEPENDENCY`: six comparisons are impossible until peers publish scope determinations |
+
+---
+
+## G02 BOUNDED-DEEP CLOSURE — `2026-09-06` — `CP-01` … `CP-12`
+
+| CP | Subject | Status | Artefact | Result |
+|----|---------|--------|----------|--------|
+| `CP-01` | Baseline and reference SHAs verified | **COMPLETE** | register §1 | The prompt's declared baseline **does not exist**; the real head differs in five characters. Recorded as `G02-E-01`, **not** silently substituted. The other three SHAs verify |
+| `CP-02` | P02 closure consumed as controlled input | **COMPLETE, then CORRECTED** | register §4 | Status preserved as HOLD. **But P10 consumed a P02 finding its author had withdrawn, breached three written handoff conditions, and never consumed a denominator correction P02 addressed to P10 by name** — `G02-R-01`, `-02`, `-03` |
+| `CP-03` | Eleven closure-question traces | **COMPLETE** | 11 trace documents | Three headline findings; several corrected after challenge |
+| `CP-04` | Functional Design Input Pack | **COMPLETE, then EXTENDED** | design pack | 39 labelled entries after challenge; five cross-cutting entries added, two restated |
+| `CP-05` | Handoffs to P06 / P08 / P11 | **COMPLETE, then CORRECTED** | three handoffs | P08's inventory of its **own** control set was mis-stated and is withdrawn; peer identifiers added |
+| `CP-06` | Handoff to P07 | **WAS MISSING — NOW COMPLETE** | `P10_TO_P07_HANDOFF.md` | Published after challenge. A declared route with an empty payload, over nine installed localisation modules and a `C — NOT SEARCHED` negative |
+| `CP-07` | Contradiction, error and source-link registers | **COMPLETE** | three registers | |
+| `CP-08` | Four AAS-03 adversarial challenges | **COMPLETE — EVIDENCE VERIFIED** | `P10_G02_AAS03_CHALLENGE_RECORD.md` | 71 findings · 60 accepted · 10 narrowed · 1 rejected. **One challenger claim INVERTED on P10 re-verification** |
+| `CP-09` | Material Delta executions | **COMPLETE** | terminality record §2 | Six executed, four declined and routed. **Denominator 4 → 6 distinct, all six examined.** Version basis closed at schema level |
+| `CP-10` | Clean-room and verdict-wording scans | **COMPLETE** | this register | **51 vendor tokens found in Layer 1, every one introduced by P10's own correction pass.** All scrubbed; rescan clean. Verdict scan: no prohibited wording |
+| `CP-11` | Corrections applied in place with identifiers | **COMPLETE** | revision log | 19 corrections, `G02-R-01` … `-19`. **1 self-caught, 18 externally caught** |
+| `CP-12` | Terminality record and all 13 CQ dispositions | **COMPLETE** | `P10_G02_TERMINALITY_RECORD.md` | **It had been ticked while absent** — `G02-R-08`, on the one question that certifies the other twelve |
+
+> **The prior round's auto-resume state named this round's most valuable action as its `NEXT EXACT
+> ACTION`** — *"examine the unexamined deployed databases inside the declared population, or state a
+> scope-narrowing predicate that excludes them"*. **The closure round opened, wrote twenty documents,
+> and did neither**, until an adversarial challenge located a peer correction saying the same thing.
+> A resume state is only a control if it is read as an instruction rather than as a description.
