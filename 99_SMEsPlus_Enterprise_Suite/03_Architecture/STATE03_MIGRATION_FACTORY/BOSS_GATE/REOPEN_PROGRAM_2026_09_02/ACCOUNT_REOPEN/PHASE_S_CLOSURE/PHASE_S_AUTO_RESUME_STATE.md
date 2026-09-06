@@ -64,3 +64,32 @@ No reset · no L1 restart · no replacement session · no broad Deep Research re
 no Phase A/B/C · no schema or API design · no code · no merge or release · no peer-owner mutation ·
 no self-discharged veto · no old challenge reused for a changed surface · no deleted lineage ·
 no invented count, id, SHA, branch, path or terminal state · **no Boss decision inferred from silence**.
+
+## Post-publication record
+
+**BOOKKEEPING ONLY. No finding, count, disposition, criterion score or terminal state changed.**
+
+| Check | Result |
+|---|---|
+| Published commit | `b3a72f3f356f289151298733448e625f4619ee25` |
+| Remote SHA read back | **identical to local** |
+| Files re-hashed from the published commit object | **11 of 11 byte-identical** to the working tree |
+| Peer branches re-read after the push | **ALL UNCHANGED** — P06 `1b018c1`, P06 IEV `b423eff`, P08 `00ccd66`, P08 IEV `bd95d1d`, P09 `ec4d3d2`, P11 `dc4cc4a`, P07 `ee2be30`, XRECON `2af14d4` |
+| Merge performed | **none** |
+
+### Canonical branch moved during this session — classified
+
+`origin/SMEsPlus` advanced **`8f4921e` → `b2b5777`** while this session ran.
+
+`git log --oneline 8f4921e..b2b5777` → **1 commit**; `git diff --stat` → **1 file, 80 insertions, 0 deletions**:
+`b2b5777` *"prepare First Image Round 2B private icon validation evidence"* — the **`[SMEPLUS-26-09-06-SAAS-CELL-001]`
+workstream**, unrelated to the accounting programme. **No owner package touched.**
+
+**The stop condition was re-verified against the moved branch at session close, not assumed to still hold.**
+
+| Check | Result |
+|---|---|
+| `git grep -c "Q-BOSS-01" b2b5777` | **1 file — the governing prompt itself**, unchanged |
+| **Positive control** | `git grep -c "Boss" b2b5777` → **714 files** — the instrument fires |
+
+**`PHASE-S/Q-BOSS-01` remains ABSENT at session close. Terminal state unchanged.**
