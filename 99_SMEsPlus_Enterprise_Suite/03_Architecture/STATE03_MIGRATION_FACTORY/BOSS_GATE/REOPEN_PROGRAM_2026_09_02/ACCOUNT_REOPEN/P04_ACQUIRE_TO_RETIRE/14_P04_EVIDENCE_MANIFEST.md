@@ -60,14 +60,14 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 | `07_P04_DISPOSAL_DERECOGNITION_MATRIX.md` | `11fe43914019bd9caf13d6727aa02d0ac9807f9deb151b7529ae0f03fec7d74a` |
 | `08_P04_PRIOR_EVIDENCE_RECONCILIATION.md` | `e5970d358e188c1e0f5b99c8138f5cb09610b09885bf6b80ea51be4fbef780fe` |
 | `09_P04_BOSS_DECISION_REGISTER.md` | `853a73acd74204bfa9291d9ff0c16404d4b224165d2d81e08f37367d6bf42143` |
-| `10_P04_BLOCKER_REGISTER.md` | `49de4bb758d1e1f87adf89ebc68acd6c14a84c6c3adf24db28a77e8408cd71e3` |
+| `10_P04_BLOCKER_REGISTER.md` | `e909c9f951699d2d41bc6d420dd784eafafbd930eb1b9a204a38555f622cf462` |
 | `11_P04_CROSS_PROCESS_OWNERSHIP.md` | `5f3d161243489883aa853ab8062febbffd05d1496b0ddcde697b7d0477f04ad1` |
-| `12_P04_CONTRADICTION_REGISTER.md` | `ae3f9352751a6705ff095a7f68b4a36f18abdb615d523941dabe6adce32515a1` |
-| `13_P04_SOURCE_LINK_REGISTER.md` | `969a5775f5b9aa2e7655397f356e1c259c48407cc5a5b0b2c1684e9c042ad869` |
+| `12_P04_CONTRADICTION_REGISTER.md` | `9a3c7b87ef9e96283169ee740ab31b732e9f6d5bc073ce5028d339e47e5d2d0b` |
+| `13_P04_SOURCE_LINK_REGISTER.md` | `62454009bef627c52090ea0ba9e9fa19f6eb498152509123749ed7baba282c0d` |
 | `15_P04_AAS03_CHALLENGE.md` | `3f020dd66f1a711bccbdc5e4bf97cbaf135646f96fc7f2cf7d3a6d2ac9c59a9f` |
 | `16_P04_AAS_PLUS.md` | `330e3be84c1ebbe2efae043c0e5a47cc84bb84c0f8d3a92040da3b2c4db2d441` |
 | `17_P04_PMO.md` | `641082e6343c662e9ea1d3350fce3fee4bf0885329a896b3161916858560cc0e` |
-| `18_P04_REVISION_LOG.md` | `abbf194410388c439e46e9538dc0880b8cc66596862e27df1c250207a62624b9` |
+| `18_P04_REVISION_LOG.md` | `173055172badead6e14a108c212925876ac4531b4da2bcbd9114e4cd55e7fd36` |
 | `19_P04_CORE_RECON_HANDOFF_PACK.md` | `046190f9a3c50ab213aea19653259ff76b92c2c0d7f3a1e75d45d68c264b9eb1` |
 | `20_P04_SCOPE_OWNERSHIP_MATRIX.md` | `a7e3009f91c86a0e3507f66b609cc86b9f372236454c0e3c074c8be4144e6268` |
 
@@ -87,8 +87,8 @@ own hash, and `SHA256SUMS.txt` carries all **21**.
 
 | Register | Total |
 |----------|-------|
-| Findings (`P04-F-nn`) defined | **143** (`P04-F-18` **RETIRED** — withdrawn at `P04-REV-12` as a duplicate of `P04-F-23` and deliberately left cited; reclassified from *intentional orphan* to `RETIRED` at `P04-F-138`, which removes the sweep's only permanent exception; `P04-F-86`/`P04-F-87` added at `18` `P04-REV-35`; `P04-F-88`/`P04-F-89` at `P04-REV-36`; `P04-F-90`–`P04-F-92` at `P04-REV-37`; `P04-F-93`/`P04-F-94` at `P04-REV-38`; `P04-F-95`/`P04-F-96` at `P04-REV-39`; `P04-F-97`/`P04-F-98` at `P04-REV-40`; `P04-F-99` at `P04-REV-41`; `P04-F-100`/`P04-F-101` at `P04-REV-42`; `P04-F-102`/`P04-F-103` at `P04-REV-43`; `P04-F-104` at `P04-REV-44`; `P04-F-105`/`P04-F-106` at `P04-REV-45`; `P04-F-107`–`P04-F-110` at `P04-REV-46`; `P04-F-111`/`P04-F-112` at `P04-REV-47`; `P04-F-113` at `P04-REV-48`; `P04-F-114` at `P04-REV-49`; `P04-F-115` at `P04-REV-50`; `P04-F-116` at `P04-REV-51`; `P04-F-117` at `P04-REV-52`; `P04-F-118` at `P04-REV-53`; `P04-F-119` at `P04-REV-54`; `P04-F-120` at `P04-REV-55`; `P04-F-121` at `P04-REV-56`; `P04-F-122` at `P04-REV-57`; `P04-F-123` at `P04-REV-58`; `P04-F-124` at `P04-REV-59`; `P04-F-125` at `P04-REV-60`; `P04-F-126` at `P04-REV-61`; `P04-F-127` at `P04-REV-62`; `P04-F-128` at `P04-REV-63`; `P04-F-129` at `P04-REV-64`; `P04-F-130` at `P04-REV-65`; `P04-F-131` at `P04-REV-66`, **amended at `P04-REV-67` with a firing control**; `P04-F-132` at `P04-REV-68`; `P04-F-133`/`P04-F-134` at `P04-REV-69`; `P04-F-135`/`P04-F-136` at `P04-REV-70`; `P04-F-137` at `P04-REV-71`; `P04-F-138` at `P04-REV-72`, where **`P04-F-88` is withdrawn one commit after publication**; `P04-F-139` at `P04-REV-73`; `P04-F-140` at `P04-REV-74`; `P04-F-141` at `P04-REV-75`; `P04-F-142` at `P04-REV-76`; `P04-F-143` at `P04-REV-77`; `P04-F-144` at `P04-REV-78`. **`P04-F-18` and `P04-LAW-01`/`02` now carry tombstone definition rows at `18` §7, so the sweep's exception set is empty**). *Executed in the same command that published this line — see `18` §5* |
-| Blockers (`P04-B-nn`) — register rows | **54** — enumerated row by row, 54 distinct identifiers, no duplicates (`P04-B-49` added at `18` `P04-REV-75`, `P04-B-50` at `P04-REV-77`). *The figure stood at 45 and was wrong before this session touched it: four section headings understated their own contents (§4, §6A, §6B, §7A), and the published total agreed with neither the headings nor the rows. Corrected at `18` `P04-REV-38` — this package states that totals are unverified claims and had one in its own governing register.* |
+| Findings (`P04-F-nn`) defined | **155** (`P04-F-18` **RETIRED** — withdrawn at `P04-REV-12` as a duplicate of `P04-F-23` and deliberately left cited; reclassified from *intentional orphan* to `RETIRED` at `P04-F-138`, which removes the sweep's only permanent exception; `P04-F-86`/`P04-F-87` added at `18` `P04-REV-35`; `P04-F-88`/`P04-F-89` at `P04-REV-36`; `P04-F-90`–`P04-F-92` at `P04-REV-37`; `P04-F-93`/`P04-F-94` at `P04-REV-38`; `P04-F-95`/`P04-F-96` at `P04-REV-39`; `P04-F-97`/`P04-F-98` at `P04-REV-40`; `P04-F-99` at `P04-REV-41`; `P04-F-100`/`P04-F-101` at `P04-REV-42`; `P04-F-102`/`P04-F-103` at `P04-REV-43`; `P04-F-104` at `P04-REV-44`; `P04-F-105`/`P04-F-106` at `P04-REV-45`; `P04-F-107`–`P04-F-110` at `P04-REV-46`; `P04-F-111`/`P04-F-112` at `P04-REV-47`; `P04-F-113` at `P04-REV-48`; `P04-F-114` at `P04-REV-49`; `P04-F-115` at `P04-REV-50`; `P04-F-116` at `P04-REV-51`; `P04-F-117` at `P04-REV-52`; `P04-F-118` at `P04-REV-53`; `P04-F-119` at `P04-REV-54`; `P04-F-120` at `P04-REV-55`; `P04-F-121` at `P04-REV-56`; `P04-F-122` at `P04-REV-57`; `P04-F-123` at `P04-REV-58`; `P04-F-124` at `P04-REV-59`; `P04-F-125` at `P04-REV-60`; `P04-F-126` at `P04-REV-61`; `P04-F-127` at `P04-REV-62`; `P04-F-128` at `P04-REV-63`; `P04-F-129` at `P04-REV-64`; `P04-F-130` at `P04-REV-65`; `P04-F-131` at `P04-REV-66`, **amended at `P04-REV-67` with a firing control**; `P04-F-132` at `P04-REV-68`; `P04-F-133`/`P04-F-134` at `P04-REV-69`; `P04-F-135`/`P04-F-136` at `P04-REV-70`; `P04-F-137` at `P04-REV-71`; `P04-F-138` at `P04-REV-72`, where **`P04-F-88` is withdrawn one commit after publication**; `P04-F-139` at `P04-REV-73`; `P04-F-140` at `P04-REV-74`; `P04-F-141` at `P04-REV-75`; `P04-F-142` at `P04-REV-76`; `P04-F-143` at `P04-REV-77`; `P04-F-144` at `P04-REV-78`; **`P04-F-145`–`P04-F-156` in the G01 bounded-deep closure** at `P04-REV-79`–`P04-REV-85`, of which `P04-F-145` was **withdrawn in its first form and reissued narrower** after its own disproof pass. **`P04-F-18` and `P04-LAW-01`/`02` now carry tombstone definition rows at `18` §7, so the sweep's exception set is empty**). *Executed in the same command that published this line — see `18` §5* |
+| Blockers (`P04-B-nn`) — register rows | **59** — enumerated row by row, 59 distinct identifiers, no duplicates (`P04-B-49` at `P04-REV-75`, `P04-B-50` at `P04-REV-77`, **`P04-B-51`–`P04-B-55` in the G01 closure**). *The figure stood at 45 and was wrong before this session touched it: four section headings understated their own contents (§4, §6A, §6B, §7A), and the published total agreed with neither the headings nor the rows. Corrected at `18` `P04-REV-38` — this package states that totals are unverified claims and had one in its own governing register.* |
 | Contradictions | 16 inherited · 7 new · 7 re-opened from the residue |
 | Revisions | 34 — 6 against prior packages, 3 against this session's own work, 4 from independent challenge |
 | Recurrences of the enumeration / unit defect | **9 instances across 4 actors — P04's declared half**, `@ ae525fc`, verified unchanged by P07 at `c839bfe`. **No joint total is published**; halves are not summed (`18` §5b) |
@@ -120,3 +120,36 @@ rather than executed and were wrong; both are recorded in `18`.
 No asset final freeze. No approval. No merge. No implementation authorisation.
 The independent-challenge veto on starting costing implementation and the prior
 gate's governance conditions are **not discharged**.
+
+## 6A. G01 bounded-deep closure deliverables (`CLOSURE_G01/`)
+
+Added 2026-09-06 under prompt `[SMEPLUS-26-09-06-G01-P04-A2R-BOUNDED-DEEP-CLOSURE-DESIGN-INPUT-001]`.
+**24 files.** Per-file SHA-256 in `SHA256SUMS.txt`, which now covers **both** directories.
+
+| File | Serves |
+|---|---|
+| `P04_CLOSURE_QUESTION_REGISTER.md` | `CQ-P04-01`…`-12` terminal dispositions |
+| `P04_P03_HANDOFF_INTAKE.md` | CP-01; the two unresolvable SHAs |
+| `P04_DEPLOYED_CODE_IDENTITY_DELTA.md` | `MD-P04-01`, version basis |
+| `P04_ASSET_MODEL_INHERITANCE_TRACE.md` | `CQ-P04-01` |
+| `P04_DEPRECIATION_DAY_CONVENTION_CLOSURE.md` | `CQ-P04-02` |
+| `P04_ASSET_EQUIPMENT_RELATIONSHIP_TRACE.md` | `CQ-P04-03` |
+| `P04_NON_ASSET_EQUIPMENT_BOUNDARY.md` | `CQ-P04-04` |
+| `P04_ACTIVE_DEPRECIATION_ATTRIBUTION_MATRIX.md` | `CQ-P04-05` |
+| `P04_POST_DEPRECIATION_INTERNAL_USAGE_MODEL.md` | `CQ-P04-06` |
+| `P04_OPERATION_EQUIPMENT_CAUSALITY_INTERFACE.md` | `CQ-P04-07` |
+| `P04_MAINTENANCE_NONPRODUCTIVE_CAUSE_MATRIX.md` | `CQ-P04-08` |
+| `P04_ANALYTIC_BRIDGE_TRACE.md` | `CQ-P04-09` |
+| `P04_DISPOSAL_DERECOGNITION_TRACE.md` | `CQ-P04-10` |
+| `P04_SCOPE_OWNERSHIP_MATRIX.md` | `CQ-P04-11` |
+| `P04_SMESPLUS_FUNCTIONAL_DESIGN_INPUT_PACK.md` | §11 — 13 functions, every entry labelled |
+| `P04_AAS03_CHALLENGE_G01.md` | §9 — four challenges |
+| `P04_AAS_PLUS_PMO_CLOSURE_GATE.md` | §10 |
+| `P04_MATERIAL_DELTA_REGISTER.md` | Constitution §5 |
+| `P04_BOUNDED_DEEPENING_LOG.md` | Constitution §6 — 17 declared searches, 5 declined |
+| `P04_TO_P05_HANDOFF.md`, `P04_TO_P08_HANDOFF.md`, `P04_TO_P11_HANDOFF.md` | §12 |
+| `P04_CHECKPOINT_REGISTER_G01.md`, `P04_AUTO_RESUME_STATE.md` | §14 |
+| `P04_G01_TERMINAL_REPORT.md` | §17 |
+
+**Mutation status: none.** Every source tree, database archive and peer branch was read-only.
+**Background tasks: 0.**

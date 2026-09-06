@@ -96,6 +96,23 @@ Each returned **zero hits under the stated path set** and is reported as
 | `TAS-16M` | **The same document as `P04-LAW-A`**, cited under a second label in `07` §§5.1–5.3 — *Source `TAS-16M`: คู่มืออธิบายมาตรฐานการบัญชี ฉบับที่ 16*. **One source, two names, one register row until now** | this session | **Duplicate label, not a duplicate source.** Same class as `P04-LAW-A`: TFAC explanatory manual, **not** part of the standards; every finding drawn from it stays ACCOUNTING STANDARD INTERPRETATION | Registered here so the label resolves. Found at `P04-F-143` by deriving which families carry definitions instead of reading the declared list. Consolidation onto one label is `P04-B-50` |
 | `P04-LAW-E` | **คำสั่งกรมสรรพากร ที่ ป. 36/2536** (15 พฤศจิกายน 2536) — การขายสินค้าตามสัญญาให้เช่าซื้อหรือสัญญาซื้อขายผ่อนชำระ | this session | Revenue Department instruction — primary | **Hire-purchase / instalment acquisition**: a tax invoice on **each instalment due date**; VAT per instalment, not on the whole contract at inception |
 
+### 4.4 Source surfaces read in the G01 closure (series 18 / custom 18.0.x)
+
+| ID | Surface | Read for | Class |
+|----|---------|----------|-------|
+| `EV-SRC-01` | `addons/account_asset/models/account_asset.py` — reference tree, module installed at `18.0.1.0` | `CQ-P04-01`, `-02`, `-09`, `-10` | **Primary source, series 18** |
+| `EV-SRC-02` | `addons/account_asset/models/account_move.py` — `_auto_create_asset` | `CQ-P04-01` disproof | **Primary source, series 18** |
+| `EV-SRC-03` | `addons/maintenance/models/*.py` — every file | `CQ-P04-04`, `-08` (negative with denominator) | **Primary source, series 18** |
+| `EV-SRC-04` | `custom/addons/equipment_sequence/` — 8 model files + `__init__.py`, **both** declared custom trees | `CQ-P04-03` | **Primary source, custom `18.0.1.6`** |
+| `EV-SRC-05` | `custom/addons/product_stock_equipment/models/*` | `CQ-P04-04` | **Primary source, custom `18.0.1.0`** |
+| `EV-SRC-06` | `smeplus-server/odoo/models.py`, `fields.py` — v18 core | `CQ-P04-03` liveness of v17-era constructs | **Primary source, series 18 core** |
+| `EV-P03` | `bc767a8` — P03 bounded-deep closure, `CLOSURE_G01/` | `CQ-P04-07`, `MD-P04-01` | **Peer-published.** Consumed, not executed; **reliance on P03's series-16 enumeration is declared** |
+
+**Bound stated once and applied everywhere:** every surface above is **series 18** or custom
+`18.0.x`. **No series-16 source exists on this host** (`P04-B-51`, P03's enumeration with a
+28×-firing positive control). No claim drawn from these surfaces is asserted as behaviour of
+the v16 `iSMEs` deployment.
+
 ### 4.3 Statutory classification discipline applied
 
 - `P04-LAW-A` is an **explanatory manual**, not the standard. Every finding drawn
