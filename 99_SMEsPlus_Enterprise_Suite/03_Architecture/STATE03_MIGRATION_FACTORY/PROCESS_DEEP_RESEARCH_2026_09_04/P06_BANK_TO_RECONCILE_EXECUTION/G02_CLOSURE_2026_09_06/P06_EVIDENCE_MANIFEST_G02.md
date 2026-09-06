@@ -15,9 +15,9 @@
 |---|---|---|---|
 | `P06_AAS03_BOUNDED_CHALLENGE.md` | 114 | 14293 | `b3a94ab1e0b028ffe2ba0c219983609b14801c0aa77bce6c251abf4fdaf28d29` |
 | `P06_AAS_PLUS_CONSOLIDATION.md` | 90 | 11809 | `d35366c58af57f5e3fcb2e5cfea1b9820c2242c99205304fb677764b9c16bb01` |
-| `P06_AUTO_RESUME_STATE.md` | 62 | 3947 | `59de5be0dda365ff1eaad0f0e760a566d0206372d3f9058cb20b05cd4b48cb27` |
+| `P06_AUTO_RESUME_STATE.md` | 63 | 4153 | `76e33d6b6904894496fd330bfbc1caa9d54bf92f467415d2b8a6d07379c3ae61` |
 | `P06_CANDIDATE_INPUT_PROCESS_OUTPUT_HANDOFF_PACK.md` | 209 | 22287 | `6d3c27e8ba418e9beedfaa8b3c53f17fa394486f5ca9a570524d209a019ba4e4` |
-| `P06_CHECKPOINT_REGISTER.md` | 50 | 4575 | `7668cc742c407b033130e2db3ed7bc402dae8ff854b5f0c17f3499fce8f2eaa3` |
+| `P06_CHECKPOINT_REGISTER.md` | 51 | 4856 | `68243cd22d6032659c20b37f330aced3a4a7dbbd204033d10fe3c90cd1a350d2` |
 | `P06_CONTRADICTION_AND_REVISION_SUPPLEMENT.md` | 203 | 19044 | `b1b46cdedea4671ae4997071f2fbc54c340cd05a0663f54a49736cde5b1a868b` |
 | `P06_DOMAIN_PURITY_AND_BOUNDARY_REGISTER.md` | 64 | 7341 | `f1cc988db8a3ddb286799475bc43ca41d61166cae8a711041289fc1116ce6dc1` |
 | `P06_IEVING_LEDGER_STATE_FORENSIC.md` | 153 | 11432 | `b18d51b2172136151da13a2c43e31576fc3556373c2da108a01e23f845d94104` |
@@ -73,6 +73,12 @@ grep -lE  "REV-E-(18|19|20|21), 2026-09-06" *.md | wc -l                       -
 
 > **Scan 5 exists because of `REV-E-21`.** The defect that round found was new findings and corrections landing in new files and never reaching the registers. **Checking that this round's own output did not repeat it is the minimum honest response**, and it is a check no prior round ran on itself.
 
-## 5. What this manifest cannot certify
+## 5. Post-publication
+
+**Published commit `64429258b624239a8d1a9da6c751c2ea535dd238`.** Remote SHA verified equal to local; working tree clean; 0 unpushed commits; 82 files on the remote tree; 0 background tasks.
+
+> **The two hash rows for `P06_AUTO_RESUME_STATE.md` and `P06_CHECKPOINT_REGISTER.md` in §1 are the POST-publication hashes** — those two files record the published SHA and therefore change after the commit that publishes them. **This is unavoidable and is stated rather than hidden:** a resume record cannot contain the hash of a state that includes itself. Their pre-publication hashes are in commit `6442925`.
+
+## 6. What this manifest cannot certify
 
 **`AASP-VETO-07`.** These hashes prove the files are what they are. **They do not prove the 30 corrections are correct**, and the party that computed them is the party that made both the errors and the repairs. **Independent verification is the named next action.**

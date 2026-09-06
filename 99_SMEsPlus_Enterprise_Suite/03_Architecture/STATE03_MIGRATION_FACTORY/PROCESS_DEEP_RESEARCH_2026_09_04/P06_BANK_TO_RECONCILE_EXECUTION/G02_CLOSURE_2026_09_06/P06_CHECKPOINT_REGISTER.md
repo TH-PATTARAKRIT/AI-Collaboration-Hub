@@ -17,7 +17,7 @@
 | 3 | `…TARGETED-EVIDENCE-CLOSURE-001` | *(within `ebf24a0`/`9e5d729`)* | — | targeted closure |
 | 4 | `…CRITICAL-RISK-SUPPLEMENT-001` | **`9e5d729`** | **70** | MAXIMUM AVAILABLE EVIDENCE REACHED — HOLD |
 | — | prompt intake only | `18035d9` | 70 | — |
-| **5** | **`…G02-P06-B2R-P10-DELTA-DOMAIN-PURE-CLOSURE-003`** | **this commit** | **82** | **`G02-P06 EVIDENCE INTEGRITY FAILURE — CORRECTION REQUIRED`** |
+| **5** | **`…G02-P06-B2R-P10-DELTA-DOMAIN-PURE-CLOSURE-003`** | **`6442925`** | **82** | **`G02-P06 EVIDENCE INTEGRITY FAILURE — CORRECTION REQUIRED`** |
 
 ## 2. Checkpoints, this round
 
@@ -34,7 +34,8 @@
 | `CP-P06G09` | PMO terminal review and state selection | **COMPLETE.** State **C** selected | `P06_PMO_TERMINAL_REVIEW.md` |
 | `CP-P06G10` | **In-place corrections to prior registers** | **PERFORMED — NOT DISCHARGED.** 30 edits, 15 files. **`AASP-VETO-07`: the party that made the errors also made the repairs and cannot certify them** | 15 register files |
 | `CP-P06G11` | Checkpoint and AUTO_RESUME_STATE | **COMPLETE** | this file, `P06_AUTO_RESUME_STATE.md` |
-| `CP-P06G12` | Publication — commit, push, verify remote | **see `P06_AUTO_RESUME_STATE.md`** | — |
+| `CP-P06G12` | Publication — commit, push, verify remote | **COMPLETE.** `6442925` pushed; **remote SHA verified equal to local**; working tree clean; 0 unpushed commits; 82 files on the remote tree; **0 background tasks** | — |
+| `CP-P06G13` | Post-publication record — the published SHA written back into the resume state | **COMPLETE** | this file, `P06_AUTO_RESUME_STATE.md` |
 
 ## 3. Checkpoints from prior rounds, re-tested
 

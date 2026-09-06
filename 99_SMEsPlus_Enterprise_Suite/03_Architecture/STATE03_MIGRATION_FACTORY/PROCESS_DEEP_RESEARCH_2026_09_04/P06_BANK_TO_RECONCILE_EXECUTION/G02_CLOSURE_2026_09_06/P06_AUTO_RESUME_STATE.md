@@ -16,6 +16,7 @@
 | **BASELINE CONSUMED** | `9e5d729` (70 files) · working head at start `18035d9` |
 | **P10 CONTROLLED INPUT** | `1fea562cb32e23bd44a1c6e6b4a2cf1081d25287` — **consumed, 12 of 109 files read, 97 deliberately unopened** |
 | **CONSTITUTION** | `48ee264fd74dcb0dee378789e56d028ad8bb6110` |
+| **PUBLISHED COMMIT** | **`64429258b624239a8d1a9da6c751c2ea535dd238`** — pushed to `origin`, remote SHA verified equal to local, working tree clean, 0 unpushed commits, **82 files** on the remote tree |
 | **TERMINAL STATE** | **`G02-P06 EVIDENCE INTEGRITY FAILURE — CORRECTION REQUIRED`** |
 | **ACTIVE VETOES** | `AASP-VETO-01` … `05` upheld · **`AASP-VETO-06` (a handoff is not delivered by being written)** · **`AASP-VETO-07` (no self-certification of self-applied corrections)** |
 
