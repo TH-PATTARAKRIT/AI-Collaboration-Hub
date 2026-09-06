@@ -1,0 +1,655 @@
+{
+ "sql_outside": {
+  "sale_timesheet_enterprise/models/res_company.py": [
+   "account_analytic_line"
+  ],
+  "hr_timesheet_attendance/report/hr_timesheet_attendance_report.py": [
+   "account_analytic_line"
+  ],
+  "account_reports/models/account_analytic_report.py": [
+   "account_analytic_line"
+  ],
+  "account_reports/models/account_report.py": [
+   "account_report_budget",
+   "account_report_budget_item"
+  ],
+  "hr_timesheet/models/hr_employee.py": [
+   "account_analytic_line"
+  ],
+  "hr_timesheet/report/timesheets_analysis_report.py": [
+   "account_analytic_line"
+  ],
+  "account_reports_cash_basis/models/account_report.py": [
+   "account_analytic_line"
+  ],
+  "sale_timesheet_enterprise_holidays/models/res_company.py": [
+   "account_analytic_line"
+  ],
+  "project_timesheet_forecast/report/timesheet_forecast_report.py": [
+   "account_analytic_line"
+  ],
+  "timesheet_grid_holidays/models/hr_employee.py": [
+   "account_analytic_line"
+  ],
+  "analytic/tests/test_plan_operations.py": [
+   "account_analytic_line"
+  ],
+  "timesheet_grid/models/hr_employee.py": [
+   "account_analytic_line"
+  ]
+ },
+ "ref_outside": {
+  "helpdesk_timesheet/tests/test_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "helpdesk_timesheet/tests/common.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "helpdesk_timesheet/wizard/helpdesk_ticket_create_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "helpdesk_timesheet/models/helpdesk_ticket.py": [
+   "account.analytic.account",
+   "account.analytic.line"
+  ],
+  "helpdesk_timesheet/models/helpdesk_team.py": [
+   "account.analytic.line"
+  ],
+  "industry_fsm/tests/test_fsm_flow.py": [
+   "account.analytic.line"
+  ],
+  "industry_fsm/models/project_task.py": [
+   "account.analytic.line"
+  ],
+  "sale/tests/test_accrued_sale_orders.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "sale/tests/test_sale_order_down_payment.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "sale/tests/test_sale_flow.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "sale/tests/test_sale_order.py": [
+   "account.analytic.account",
+   "account.analytic.distribution.model",
+   "account.analytic.plan"
+  ],
+  "sale/tests/test_sale_to_invoice.py": [
+   "account.analytic.account",
+   "account.analytic.distribution.model",
+   "account.analytic.plan"
+  ],
+  "sale/models/sale_order.py": [
+   "account.analytic.plan"
+  ],
+  "sale_expense/tests/test_sale_expense.py": [
+   "account.analytic.account"
+  ],
+  "sale_expense/models/hr_expense_sheet.py": [
+   "account.analytic.account"
+  ],
+  "sale_timesheet_enterprise/tests/test_sale_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet_enterprise/tests/test_sale_validated_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet_enterprise/tests/test_project_sharing.py": [
+   "account.analytic.account",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "sale_timesheet_enterprise/tests/test_ranking.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet_enterprise/tests/test_invoice_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet_enterprise/wizard/sale_make_invoice_advance.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet_enterprise/models/project_task.py": [
+   "account.analytic.line"
+  ],
+  "industry_fsm_stock/tests/test_fsm_sale_flow_with_stock.py": [
+   "account.analytic.line"
+  ],
+  "industry_fsm_stock/tests/test_fsm_stock.py": [
+   "account.analytic.line"
+  ],
+  "account_avatax/tests/test_avatax.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "mrp_workorder_hr_account/models/mrp_workorder.py": [
+   "account.analytic.line"
+  ],
+  "industry_fsm_sale_report/tests/test_action_buttons_display.py": [
+   "account.analytic.line"
+  ],
+  "hr_timesheet_attendance/tests/test_timesheet_attendance.py": [
+   "account.analytic.line"
+  ],
+  "account_winbooks_import/wizard/account_import_summary.py": [
+   "account.analytic.account",
+   "account.analytic.line"
+  ],
+  "account_winbooks_import/wizard/import_wizard.py": [
+   "account.analytic.account",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "project_timesheet_forecast_sale/tests/test_project_task.py": [
+   "account.analytic.line"
+  ],
+  "project_timesheet_forecast_sale/models/sale_order.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet_margin/tests/test_sale_timesheet_margin.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet_margin/models/sale_order_line.py": [
+   "account.analytic.line"
+  ],
+  "helpdesk_sale_timesheet/tests/test_sale_timesheet_in_ticket.py": [
+   "account.analytic.line"
+  ],
+  "helpdesk_sale_timesheet/models/helpdesk_ticket.py": [
+   "account.analytic.line"
+  ],
+  "helpdesk_sale_timesheet/controllers/portal.py": [
+   "account.analytic.line"
+  ],
+  "hr_payroll_account/models/hr_salary_rule.py": [
+   "account.analytic.account"
+  ],
+  "hr_payroll_account/models/hr_contract.py": [
+   "account.analytic.account"
+  ],
+  "hr_payroll_account/report/hr_contract_history.py": [
+   "account.analytic.account"
+  ],
+  "account_reports/tests/test_tour_analytic_filters.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "account_reports/tests/test_analytic_reports.py": [
+   "account.analytic.account",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "account_reports/tests/test_deferred_reports.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "account_reports/tests/test_budget.py": [
+   "account.analytic.account",
+   "account.analytic.plan",
+   "account.report.budget"
+  ],
+  "account_reports/models/account_analytic_report.py": [
+   "account.analytic.account",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "account_reports/models/account_report.py": [
+   "account.analytic.account",
+   "account.report.budget"
+  ],
+  "account_reports/models/account_deferred_reports.py": [
+   "account.analytic.account.id"
+  ],
+  "account_reports/models/account.py": [
+   "account.report.budget.item"
+  ],
+  "project_mrp_account/tests/test_analytic_account.py": [
+   "account.analytic.account",
+   "account.analytic.applicability",
+   "account.analytic.plan"
+  ],
+  "project_mrp_account/tests/test_project_profitability.py": [
+   "account.analytic.line"
+  ],
+  "project_mrp_account/models/mrp_production.py": [
+   "account.analytic.account"
+  ],
+  "project_mrp_account/models/project_project.py": [
+   "account.analytic.line"
+  ],
+  "project_mrp_account/models/mrp_workorder.py": [
+   "account.analytic.account",
+   "account.analytic.line"
+  ],
+  "mrp_account/tests/test_analytic_account.py": [
+   "account.analytic.applicability",
+   "account.analytic.plan"
+  ],
+  "mrp_account/models/mrp_workorder.py": [
+   "account.analytic.account",
+   "account.analytic.line"
+  ],
+  "project_sale_subscription/tests/test_project_profitability.py": [
+   "account.analytic.line"
+  ],
+  "project_sale_subscription/models/project.py": [
+   "account.analytic.line"
+  ],
+  "hr_timesheet/__init__.py": [
+   "account.analytic.line"
+  ],
+  "hr_timesheet/tests/test_timesheet.py": [
+   "account.analytic.account",
+   "account.analytic.applicability",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "hr_timesheet/tests/test_project_project.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "hr_timesheet/tests/test_portal_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "hr_timesheet/wizard/hr_employee_delete_wizard.py": [
+   "account.analytic.line"
+  ],
+  "hr_timesheet/models/project_task.py": [
+   "account.analytic.line"
+  ],
+  "hr_timesheet/models/project_project.py": [
+   "account.analytic.account",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "hr_timesheet/report/timesheets_analysis_report.py": [
+   "account.analytic.line"
+  ],
+  "hr_timesheet/controllers/portal.py": [
+   "account.analytic.line"
+  ],
+  "hr_timesheet/controllers/project.py": [
+   "account.analytic.line"
+  ],
+  "project_purchase/tests/test_project_profitability.py": [
+   "account.analytic.account",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "project_account/tests/test_project_profitability.py": [
+   "account.analytic.line"
+  ],
+  "project_account/models/project_project.py": [
+   "account.analytic.line"
+  ],
+  "project_mrp_workorder_account/tests/test_analytic_accounting.py": [
+   "account.analytic.account"
+  ],
+  "project_mrp_workorder_account/models/mrp_workcenter_productivity.py": [
+   "account.analytic.account",
+   "account.analytic.line"
+  ],
+  "web_studio/models/studio_export_model.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "project/__init__.py": [
+   "account.analytic.plan"
+  ],
+  "project/tests/test_project_profitability.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "project/tests/test_multicompany.py": [
+   "account.analytic.line"
+  ],
+  "project_timesheet_holidays/tests/test_timesheet_global_time_off.py": [
+   "account.analytic.line"
+  ],
+  "project_timesheet_holidays/tests/test_timesheet_holidays.py": [
+   "account.analytic.line"
+  ],
+  "project_timesheet_holidays/tests/test_employee.py": [
+   "account.analytic.line"
+  ],
+  "project_timesheet_holidays/models/resource_calendar_leaves.py": [
+   "account.analytic.line"
+  ],
+  "project_timesheet_holidays/models/hr_employee.py": [
+   "account.analytic.line"
+  ],
+  "project_timesheet_holidays/models/hr_holidays.py": [
+   "account.analytic.line"
+  ],
+  "account_inter_company_rules/tests/test_inter_company_invoice.py": [
+   "account.analytic.account",
+   "account.analytic.distribution.model",
+   "account.analytic.plan"
+  ],
+  "account_inter_company_rules/models/account_move.py": [
+   "account.analytic.distribution.model"
+  ],
+  "industry_fsm_report/tests/test_action_buttons_display.py": [
+   "account.analytic.line"
+  ],
+  "hr_expense/tests/test_expenses.py": [
+   "account.analytic.applicability"
+  ],
+  "hr_expense/tests/common.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "sale_subscription/tests/test_sale_subscription.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "sale_subscription/tests/common_sale_subscription.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "sale_project/tests/test_analytic_distribution.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "sale_project/tests/test_reinvoice.py": [
+   "account.analytic.account",
+   "account.analytic.distribution.model",
+   "account.analytic.plan"
+  ],
+  "sale_project/tests/test_project_profitability.py": [
+   "account.analytic.account",
+   "account.analytic.line"
+  ],
+  "sale_project/tests/common.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "sale_project/tests/test_sale_project.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "sale_project/models/sale_order.py": [
+   "account.analytic.account"
+  ],
+  "sale_project/models/account_move_line.py": [
+   "account.analytic.account"
+  ],
+  "sale_project/models/sale_order_line.py": [
+   "account.analytic.account"
+  ],
+  "account_reports_cash_basis/tests/test_account_reports_cash_basis.py": [
+   "account.analytic.account",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "account_reports_cash_basis/models/account_report.py": [
+   "account.analytic.plan"
+  ],
+  "sale_timesheet_enterprise_holidays/tests/test_ranking.py": [
+   "account.analytic.line"
+  ],
+  "project_stock_account/tests/test_analytics.py": [
+   "account.analytic.account",
+   "account.analytic.applicability",
+   "account.analytic.plan"
+  ],
+  "project_stock_account/models/project_project.py": [
+   "account.analytic.line"
+  ],
+  "purchase_stock/tests/test_stockvaluation.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "industry_fsm_sale/tests/test_industry_fsm_task.py": [
+   "account.analytic.line"
+  ],
+  "industry_fsm_sale/tests/test_action_buttons_display.py": [
+   "account.analytic.line"
+  ],
+  "industry_fsm_sale/tests/test_industry_fsm_at_install.py": [
+   "account.analytic.line"
+  ],
+  "industry_fsm_sale/tests/test_so_line_determined_in_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "industry_fsm_sale/tests/test_multicompany.py": [
+   "account.analytic.line"
+  ],
+  "industry_fsm_sale/models/project_task.py": [
+   "account.analytic.line"
+  ],
+  "project_hr_expense/tests/test_analytics.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "sale_timesheet/tests/test_sale_timesheet.py": [
+   "account.analytic.account",
+   "account.analytic.applicability",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "sale_timesheet/tests/test_sale_service.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/tests/test_sale_timesheet_report.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/tests/test_reinvoice.py": [
+   "account.analytic.account",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "sale_timesheet/tests/test_edit_so_line_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/tests/test_sale_timesheet_accrued_entries.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/tests/test_project_profitability.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/tests/test_so_line_determined_in_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/tests/common.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "sale_timesheet/tests/test_project_billing.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/tests/test_upsell_warning.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/models/account_move.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/models/sale_order.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/models/account_move_line.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/models/sale_order_line.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/models/project_project.py": [
+   "account.analytic.line"
+  ],
+  "sale_timesheet/controllers/portal.py": [
+   "account.analytic.line"
+  ],
+  "purchase/tests/test_purchase_invoice.py": [
+   "account.analytic.account",
+   "account.analytic.distribution.model",
+   "account.analytic.plan"
+  ],
+  "purchase/tests/test_accrued_purchase_orders.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "project_timesheet_forecast/tests/test_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "project_timesheet_forecast/models/project_forecast.py": [
+   "account.analytic.line"
+  ],
+  "timesheet_grid_holidays/tests/test_timesheet_holidays.py": [
+   "account.analytic.line"
+  ],
+  "account/tests/test_early_payment_discount.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "account/tests/test_account_move_reconcile.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "account/tests/test_account_move_line_tax_details.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "account/tests/test_account_analytic.py": [
+   "account.analytic.account",
+   "account.analytic.applicability",
+   "account.analytic.distribution.model",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "account/tests/test_account_move_out_invoice.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "account/tests/test_transfer_wizard.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "account/models/partner.py": [
+   "account.analytic.account"
+  ],
+  "account_auto_transfer/tests/account_auto_transfer_test_classes.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "account_auto_transfer/tests/test_transfer_model.py": [
+   "account.analytic.account"
+  ],
+  "account_auto_transfer/models/transfer_model.py": [
+   "account.analytic.account"
+  ],
+  "sale_purchase/tests/test_sale_purchase.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "account_accountant/tests/test_bank_rec_widget.py": [
+   "account.analytic.account",
+   "account.analytic.distribution.model",
+   "account.analytic.plan"
+  ],
+  "account_asset/tests/test_account_asset.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "analytic/tests/test_analytic_account.py": [
+   "account.analytic.account",
+   "account.analytic.applicability",
+   "account.analytic.distribution.model",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "analytic/tests/test_analytic_mixin.py": [
+   "account.analytic.account",
+   "account.analytic.distribution.model",
+   "account.analytic.plan"
+  ],
+  "analytic/tests/common.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "analytic/tests/test_plan_operations.py": [
+   "account.analytic.account",
+   "account.analytic.applicability",
+   "account.analytic.distribution.model",
+   "account.analytic.line",
+   "account.analytic.plan"
+  ],
+  "account_budget/__init__.py": [
+   "account.analytic.plan"
+  ],
+  "account_budget/tests/test_commited_achieved_amount.py": [
+   "account.analytic.line",
+   "budget.line"
+  ],
+  "account_budget/tests/test_theoreticalamount.py": [
+   "budget.analytic",
+   "budget.line"
+  ],
+  "account_budget/tests/common.py": [
+   "account.analytic.account",
+   "account.analytic.plan",
+   "budget.analytic"
+  ],
+  "account_budget/tests/test_account_budget.py": [
+   "budget.analytic",
+   "budget.line",
+   "budget.split.wizard"
+  ],
+  "account_budget/models/purchase_order_line.py": [
+   "account.analytic.account",
+   "budget.line"
+  ],
+  "sale_subscription_timesheet/tests/test_sale_subscription_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "project_account_budget/tests/test_project.py": [
+   "account.analytic.account",
+   "account.analytic.plan",
+   "budget.analytic"
+  ],
+  "project_account_budget/models/project.py": [
+   "budget.line"
+  ],
+  "stock_account/tests/test_account_move.py": [
+   "account.analytic.account",
+   "account.analytic.plan"
+  ],
+  "stock_account/models/stock_move.py": [
+   "account.analytic.account",
+   "account.analytic.line"
+  ],
+  "timesheet_grid/__init__.py": [
+   "account.analytic.line"
+  ],
+  "timesheet_grid/tests/test_access_rights.py": [
+   "account.analytic.line"
+  ],
+  "timesheet_grid/tests/test_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "timesheet_grid/tests/test_merge_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "timesheet_grid/tests/test_analytic_line.py": [
+   "account.analytic.line"
+  ],
+  "timesheet_grid/wizard/timesheet_merge_wizard.py": [
+   "account.analytic.line"
+  ],
+  "timesheet_grid/wizard/project_task_create_timesheet.py": [
+   "account.analytic.line"
+  ],
+  "timesheet_grid/models/task.py": [
+   "account.analytic.line"
+  ],
+  "timesheet_grid/models/res_company.py": [
+   "account.analytic.line"
+  ],
+  "timesheet_grid/report/timesheets_analysis_report.py": [
+   "account.analytic.line"
+  ]
+ }
+}

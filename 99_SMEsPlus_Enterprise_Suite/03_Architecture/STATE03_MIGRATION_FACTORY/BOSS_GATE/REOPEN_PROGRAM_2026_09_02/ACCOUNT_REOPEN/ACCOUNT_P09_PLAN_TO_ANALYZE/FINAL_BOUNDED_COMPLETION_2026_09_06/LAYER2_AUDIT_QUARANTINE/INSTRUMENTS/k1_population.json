@@ -1,0 +1,388 @@
+{
+ "files": {
+  "helpdesk_timesheet/models/analytic.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "sale/models/sale_order_line.py": [
+   [],
+   [
+    "analytic.mixin"
+   ]
+  ],
+  "sale/models/analytic.py": [
+   [],
+   [
+    "account.analytic.applicability",
+    "account.analytic.line"
+   ]
+  ],
+  "sale_timesheet_enterprise/models/analytic.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "analytic_enterprise/models/models.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "mrp_workorder_hr_account/models/analytic_account.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "project_timesheet_forecast_sale/models/analytic_account_line.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "helpdesk_sale_timesheet/models/account_analytic_line.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "account_reports/models/budget.py": [
+   [
+    "account.report.budget",
+    "account.report.budget.item"
+   ],
+   []
+  ],
+  "mrp_account/models/analytic_account.py": [
+   [],
+   [
+    "account.analytic.account",
+    "account.analytic.applicability",
+    "account.analytic.line"
+   ]
+  ],
+  "mrp_account/models/mrp_workcenter.py": [
+   [],
+   [
+    "analytic.mixin"
+   ]
+  ],
+  "project_sale_subscription/models/account_analytic_account.py": [
+   [],
+   [
+    "account.analytic.account"
+   ]
+  ],
+  "hr_timesheet/models/hr_timesheet.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "hr_timesheet/models/analytic_applicability.py": [
+   [],
+   [
+    "account.analytic.applicability"
+   ]
+  ],
+  "project/models/account_analytic_account.py": [
+   [],
+   [
+    "account.analytic.account"
+   ]
+  ],
+  "project/models/project_project.py": [
+   [],
+   [
+    "analytic.plan.fields.mixin"
+   ]
+  ],
+  "project_timesheet_holidays/models/account_analytic.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "hr_expense/wizard/hr_expense_split.py": [
+   [],
+   [
+    "analytic.mixin"
+   ]
+  ],
+  "hr_expense/models/hr_expense.py": [
+   [],
+   [
+    "analytic.mixin"
+   ]
+  ],
+  "hr_expense/models/analytic.py": [
+   [],
+   [
+    "account.analytic.account",
+    "account.analytic.applicability"
+   ]
+  ],
+  "project_stock_account/models/analytic_applicability.py": [
+   [],
+   [
+    "account.analytic.applicability"
+   ]
+  ],
+  "project_stock_account/models/account_analytic_line.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "industry_fsm_sale/models/account_analytic_line.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "sale_timesheet/models/hr_timesheet.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "purchase/models/purchase_order_line.py": [
+   [],
+   [
+    "analytic.mixin"
+   ]
+  ],
+  "purchase/models/analytic_applicability.py": [
+   [],
+   [
+    "account.analytic.applicability"
+   ]
+  ],
+  "purchase/models/analytic_account.py": [
+   [],
+   [
+    "account.analytic.account"
+   ]
+  ],
+  "purchase_requisition/models/purchase_requisition.py": [
+   [],
+   [
+    "analytic.mixin"
+   ]
+  ],
+  "project_timesheet_forecast/models/analytic.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "timesheet_grid_holidays/models/analytic.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "account/models/account_reconcile_model.py": [
+   [],
+   [
+    "analytic.mixin"
+   ]
+  ],
+  "account/models/account_analytic_account.py": [
+   [],
+   [
+    "account.analytic.account"
+   ]
+  ],
+  "account/models/account_move_line.py": [
+   [],
+   [
+    "analytic.mixin"
+   ]
+  ],
+  "account/models/account_analytic_plan.py": [
+   [],
+   [
+    "account.analytic.applicability"
+   ]
+  ],
+  "account/models/account_analytic_line.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ],
+  "account/models/account_analytic_distribution_model.py": [
+   [],
+   [
+    "account.analytic.distribution.model"
+   ]
+  ],
+  "account_accountant/models/bank_rec_widget_line.py": [
+   [],
+   [
+    "analytic.mixin"
+   ]
+  ],
+  "account_asset/models/account_asset.py": [
+   [],
+   [
+    "analytic.mixin"
+   ]
+  ],
+  "analytic/models/analytic_distribution_model.py": [
+   [
+    "account.analytic.distribution.model"
+   ],
+   [
+    "analytic.mixin"
+   ]
+  ],
+  "analytic/models/analytic_plan.py": [
+   [
+    "account.analytic.applicability",
+    "account.analytic.plan"
+   ],
+   []
+  ],
+  "analytic/models/analytic_account.py": [
+   [
+    "account.analytic.account"
+   ],
+   []
+  ],
+  "analytic/models/analytic_mixin.py": [
+   [
+    "analytic.mixin"
+   ],
+   []
+  ],
+  "analytic/models/analytic_line.py": [
+   [
+    "account.analytic.line",
+    "analytic.plan.fields.mixin"
+   ],
+   [
+    "analytic.plan.fields.mixin"
+   ]
+  ],
+  "account_budget/models/budget_line.py": [
+   [
+    "budget.line"
+   ],
+   [
+    "analytic.plan.fields.mixin"
+   ]
+  ],
+  "account_budget/models/account_analytic_account.py": [
+   [],
+   [
+    "account.analytic.account"
+   ]
+  ],
+  "account_budget/models/budget_analytic.py": [
+   [
+    "budget.analytic"
+   ],
+   []
+  ],
+  "account_budget/wizards/budget_split_wizard.py": [
+   [
+    "budget.split.wizard"
+   ],
+   []
+  ],
+  "account_budget/reports/budget_report.py": [
+   [
+    "budget.report"
+   ],
+   [
+    "analytic.plan.fields.mixin"
+   ]
+  ],
+  "project_account_budget/models/budget_line.py": [
+   [],
+   [
+    "budget.line"
+   ]
+  ],
+  "project_account_budget/models/budget_analytic.py": [
+   [],
+   [
+    "budget.analytic"
+   ]
+  ],
+  "stock_account/models/analytic_account.py": [
+   [],
+   [
+    "account.analytic.account",
+    "account.analytic.plan"
+   ]
+  ],
+  "timesheet_grid/models/analytic.py": [
+   [],
+   [
+    "account.analytic.line"
+   ]
+  ]
+ },
+ "owning": [
+  "account_reports/models/budget.py",
+  "analytic/models/analytic_distribution_model.py",
+  "analytic/models/analytic_plan.py",
+  "analytic/models/analytic_account.py",
+  "analytic/models/analytic_mixin.py",
+  "analytic/models/analytic_line.py",
+  "account_budget/models/budget_line.py",
+  "account_budget/models/budget_analytic.py",
+  "account_budget/wizards/budget_split_wizard.py",
+  "account_budget/reports/budget_report.py"
+ ],
+ "extending": [
+  "helpdesk_timesheet/models/analytic.py",
+  "sale/models/sale_order_line.py",
+  "sale/models/analytic.py",
+  "sale_timesheet_enterprise/models/analytic.py",
+  "analytic_enterprise/models/models.py",
+  "mrp_workorder_hr_account/models/analytic_account.py",
+  "project_timesheet_forecast_sale/models/analytic_account_line.py",
+  "helpdesk_sale_timesheet/models/account_analytic_line.py",
+  "mrp_account/models/analytic_account.py",
+  "mrp_account/models/mrp_workcenter.py",
+  "project_sale_subscription/models/account_analytic_account.py",
+  "hr_timesheet/models/hr_timesheet.py",
+  "hr_timesheet/models/analytic_applicability.py",
+  "project/models/account_analytic_account.py",
+  "project/models/project_project.py",
+  "project_timesheet_holidays/models/account_analytic.py",
+  "hr_expense/wizard/hr_expense_split.py",
+  "hr_expense/models/hr_expense.py",
+  "hr_expense/models/analytic.py",
+  "project_stock_account/models/analytic_applicability.py",
+  "project_stock_account/models/account_analytic_line.py",
+  "industry_fsm_sale/models/account_analytic_line.py",
+  "sale_timesheet/models/hr_timesheet.py",
+  "purchase/models/purchase_order_line.py",
+  "purchase/models/analytic_applicability.py",
+  "purchase/models/analytic_account.py",
+  "purchase_requisition/models/purchase_requisition.py",
+  "project_timesheet_forecast/models/analytic.py",
+  "timesheet_grid_holidays/models/analytic.py",
+  "account/models/account_reconcile_model.py",
+  "account/models/account_analytic_account.py",
+  "account/models/account_move_line.py",
+  "account/models/account_analytic_plan.py",
+  "account/models/account_analytic_line.py",
+  "account/models/account_analytic_distribution_model.py",
+  "account_accountant/models/bank_rec_widget_line.py",
+  "account_asset/models/account_asset.py",
+  "account_budget/models/account_analytic_account.py",
+  "project_account_budget/models/budget_line.py",
+  "project_account_budget/models/budget_analytic.py",
+  "stock_account/models/analytic_account.py",
+  "timesheet_grid/models/analytic.py"
+ ]
+}
