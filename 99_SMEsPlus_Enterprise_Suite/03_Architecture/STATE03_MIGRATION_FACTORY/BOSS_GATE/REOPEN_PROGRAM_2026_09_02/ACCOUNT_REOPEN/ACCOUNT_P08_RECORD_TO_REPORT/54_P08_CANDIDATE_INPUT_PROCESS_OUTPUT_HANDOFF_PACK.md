@@ -77,7 +77,7 @@ Prompt `[SMEPLUS-26-09-06-P08-R2R-DOMAIN-PURE-BOUNDED-CLOSURE-002]` · **PHASE S
 | `HO-08` | CANDIDATE HANDOFF | **Version boundary:** every P08 source statement is 18.0; every deployed count is 16.0 or 19.0; **no deployed database matches the source line** | `FACT VERIFIED — P08` | **all peers, P11** | `PLAT` | **YES** | `40` |
 | `HO-09` | CANDIDATE HANDOFF | **Denominator correction:** deployment claims must be read on **transacting** scope — 6 of 89 companies, 29 of 109 journals | `CONTRADICTED — CORRECTED` | **all peers, P11** | `PLAT` | **YES** | `53` CQ-10 |
 | `HO-10` | CANDIDATE HANDOFF | The root-set independence limit: `N of 21` is at most **7** independent observations | `FACT VERIFIED — P08` | **P09, P10, P11** | `PLAT` | **YES** | `48` §3 |
-| `HO-11` | CANDIDATE HANDOFF | **18 Boss decisions**, none answered, including one **CONTESTED** invariant | `BOSS DECISION REQUIRED` | **Boss** | `PLAT` | no — Boss-direct | `52` §4 |
+| `HO-11` | CANDIDATE HANDOFF | **19 Boss decisions**, none answered, including one **CONTESTED** invariant | `BOSS DECISION REQUIRED` | **Boss** | `PLAT` | no — Boss-direct | `52` §4 |
 | `HO-12` | CANDIDATE HANDOFF | `AAS+-VETO-01` — two conditions gating reliance on any P08 finding | `BOSS DECISION REQUIRED` | **Boss, PMO** | `PLAT` | no — Boss-direct | `50` §4 |
 
 ---

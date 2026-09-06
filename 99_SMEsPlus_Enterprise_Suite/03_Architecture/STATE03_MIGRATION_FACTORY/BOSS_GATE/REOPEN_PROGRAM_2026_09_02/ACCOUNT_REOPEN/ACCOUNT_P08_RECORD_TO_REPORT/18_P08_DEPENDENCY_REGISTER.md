@@ -69,3 +69,17 @@ At P08's close, no peer process had committed output. P08 recorded the interface
 | `P08-BD-11` | How many measurement bases must SMEsPlus carry over one set of accounting events, and in what form — parallel books, parallel valuations on one fact, or a derived adjustment layer? Raised by P04's re-opening of the tax-book gap. |
 
 Each of these is normative, not factual. Further research cannot resolve any of them, which is why they are recorded here rather than left open as unknowns.
+
+---
+
+# PHASE-S DELTA — Boss decision register completed
+
+**`P08-CONTRA-45`. The Boss-decision total was published as 18 in three files. It is 19.**
+
+`P08-BD-19` was defined in `37_P08_SCOPE_AWARE_ACCOUNTING_MATRIX.md` and **never entered §4 of this register** — an orphan identifier, of exactly the class this programme has a standing check for, and the check was not run against this family.
+
+| ID | Decision | Raised in |
+|---|---|---|
+| `P08-BD-19` | **Must a posted fact record the version of the tenant-scope rule that produced it?** P08 says yes on the evidence; the cost of carrying it is a design question and therefore Boss-reserved | `37` `P08-SC-U-07` |
+
+**Total: 19 Boss decisions, none answered by P08.** The total is now **enumerated from the identifiers present in the package**, not asserted.

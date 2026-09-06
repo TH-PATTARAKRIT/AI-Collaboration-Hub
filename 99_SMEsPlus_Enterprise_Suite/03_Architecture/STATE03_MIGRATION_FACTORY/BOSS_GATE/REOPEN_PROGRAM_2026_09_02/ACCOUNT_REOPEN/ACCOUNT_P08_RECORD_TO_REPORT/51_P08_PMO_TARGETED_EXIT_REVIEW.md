@@ -83,4 +83,4 @@ The decisive criterion is **`EC-07` — two consecutive clean independent passes
 
 ### What P08 does **not** owe, and must not supply
 
-The design answers. **Eighteen Boss decisions are recorded and none is answered**, including the two this round raised where a reviewer supplied a persuasive answer: whether the balance invariant binds per currency frame, and whether finality and numbering attach to the entry-equivalent or the item-equivalent. **P08 states the evidence and stops.**
+The design answers. **Nineteen Boss decisions are recorded and none is answered**, including the two this round raised where a reviewer supplied a persuasive answer: whether the balance invariant binds per currency frame, and whether finality and numbering attach to the entry-equivalent or the item-equivalent. **P08 states the evidence and stops.**

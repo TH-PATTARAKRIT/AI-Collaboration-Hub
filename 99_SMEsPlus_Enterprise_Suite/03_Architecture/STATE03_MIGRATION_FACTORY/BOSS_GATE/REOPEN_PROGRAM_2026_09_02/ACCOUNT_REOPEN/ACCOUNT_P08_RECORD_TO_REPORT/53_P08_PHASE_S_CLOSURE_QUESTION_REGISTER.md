@@ -230,8 +230,9 @@ Enumerated in `54`. **Nothing is labelled a final contract.** Every cross-domain
 | | Count |
 |---|---|
 | Material P08 claims surviving | every one dispositioned in this register or in `54` |
-| **Named `UNRESOLVED` with a specific evidence requirement** | **7** — no unbounded search remains |
-| `BOSS DECISION REQUIRED` | **18**, none answered |
+| **Named `UNRESOLVED` items, each with a specific evidence requirement** | **4** — deployed numbering collision-freedom; the 5,622 backward date divergences; account uniqueness not formulable in the 19.0 schema; the deployed reporting module |
+| **Standing integrity limits** (a different unit — do not add these to the row above) | **3**, listed below |
+| `BOSS DECISION REQUIRED` | **19**, none answered — **enumerated, not asserted**; the published total of 18 was wrong (`P08-CONTRA-45`) |
 | `EXTERNAL DOMAIN BOUNDARY` routed to a named owner | **12** |
 | Terminal items with no owner and no next action | **0** |
 

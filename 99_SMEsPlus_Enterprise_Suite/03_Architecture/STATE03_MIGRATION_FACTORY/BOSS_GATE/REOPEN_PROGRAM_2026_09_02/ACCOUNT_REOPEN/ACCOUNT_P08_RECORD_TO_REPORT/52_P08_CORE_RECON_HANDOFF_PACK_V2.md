@@ -53,9 +53,12 @@ Two independent measurements point the same way: **provenance sits on the entry 
 
 **A control nobody configures is equivalent to a control that does not exist.** Recorded as `P08-BD-17`.
 
-## 4. Eighteen Boss decisions — none answered by P08
+## 4. Nineteen Boss decisions — none answered by P08
 
-`P08-BD-01` … `P08-BD-18`, carried unchanged from `18` §4 with two added this round:
+`P08-BD-01` … `P08-BD-19`, enumerated from the package rather than asserted. **Corrected: the total was published as 18 in three files. `P08-BD-19` was defined in `37` and never rolled into the register in `18` §4 — an orphan identifier. `P08-CONTRA-45`.**
+
+- **`P08-BD-19`** — must a posted fact record the **version of the tenant-scope rule** that produced it? P08 says yes on evidence; the cost is a design question.
+
 
 - **`P08-BD-18`** — does the kernel's balance invariant bind **per currency frame**, or only in the functional currency with a separate rate-consistency rule over monetary items? **`KRN-INV-00` is marked `CONTESTED` and must not be inherited downstream until this is answered.**
 - **`P08-BD-16` sharpened** — a period lock that refuses would have **blocked a legitimate go-live migration** of 6,306 entries. The refuse-or-relocate question is not only about correction behaviour; it is about what a close control does to a lawful bulk load.
@@ -123,4 +126,4 @@ Two independent measurements point the same way: **provenance sits on the entry 
 
 P08 **did not create an issue and did not comment on one.** Creating or annotating a tracked work item is an outward-facing act that no instruction in this session authorised. The gap is recorded here for the Boss and PMO to close as they choose.
 
-**Consequence:** this package's terminal status, its veto and its eighteen Boss decisions are **not currently tracked anywhere outside the repository.**
+**Consequence:** this package's terminal status, its veto and its nineteen Boss decisions are **not currently tracked anywhere outside the repository.**
