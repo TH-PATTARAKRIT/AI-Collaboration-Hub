@@ -39,6 +39,28 @@ representation; it owns almost none of the inputs.
 | `X-14` | Deferred revenue and deferred expense recognition | P10 | VAT tax point is **not** the accounting recognition point; deferral must not move the tax fact | An explicit rule that deferral affects P&L timing only, never tax-period membership | **BLOCKING for P10, not for P07** |
 | `X-15` | Scope semantics across processes | P11 | The tenant containment of the cross-company tax-unit grouping (`P07-U-14`) | P11 must reconcile scope across P01–P10 | `PEER DEPENDENCY OPEN` |
 
+### 3.1 Status change at round `S02` (2026-09-06) — P06's committed half
+
+P06's published baseline `9e5d729` (`54_P06_P07_BLOCKING_DEPENDENCY_MATRIX.md`) commits four
+requirements, in P06's own numbering, which close the **P06 half** of three rows above.
+
+| row | P06 commits | P07's remaining half | new status |
+|---|---|---|---|
+| `X-07` | `P07-R-01` — a settlement event carries **its own immutable date** | **the reporting key**: the PND query selects on the *invoice's* accounting date (`P07-F-11`) | **`BLOCKING for P07` — counterparty half committed** |
+| `X-08` | `P07-R-02` — allocation is a **first-class per-document immutable fact** | **the `payment_state != 'not_paid'` predicate** (`W-C-02`) | **`BLOCKING for P07` — counterparty half committed; third location is two custom WHT subsystems, neither party's** |
+| `X-09` | `P07-R-03`, `P07-R-04` — a reversal is a **new linked event**; a reported fact is **immutable in its period** | the **statutory** half: whether a filed period may change at all | **`BLOCKING for P07` — mechanism half committed, statutory half `BOSS DECISION REQUIRED`** |
+
+**Not one of the three is closed.** In every one the remaining half is P07's own reporting
+predicate or an unheld statutory question. `P07-R-01`…`P07-R-04` are **P06 commitments in P06's
+numbering**, not P07 findings, and are not renumbered here.
+
+**Convergence, verified against this register and accepted:** `P07-R-01` and `P07-R-03` are the
+same two requirements P08 asked for, and `H-03` asks for the same three elements. **Three
+processes independently specified one interface.** P07 adds nothing to it.
+
+`DUP-03` is **corroborated by P06's own evidence** (`P06-B-13`). It does not move.
+`DUP-01` stays unreconcilable by anyone while P01 is unpublished.
+
 ## 4. Facts P07 Owns
 
 | # | Fact | P07 owns because |
