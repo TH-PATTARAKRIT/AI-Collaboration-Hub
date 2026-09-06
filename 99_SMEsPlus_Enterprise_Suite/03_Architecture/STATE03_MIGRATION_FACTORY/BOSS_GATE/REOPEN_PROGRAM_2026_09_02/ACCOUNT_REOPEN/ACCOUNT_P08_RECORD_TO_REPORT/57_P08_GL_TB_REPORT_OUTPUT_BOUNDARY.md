@@ -59,3 +59,16 @@ Where P08's responsibility for a reported figure ends. Consolidates `11`, `41` �
 | That no as-of reconstruction exists | The reconciliation architecture built on that fact — **P11** |
 
 **Disposition: `FACT VERIFIED — CLOSED FOR CURRENT P08 EVIDENCE`, with one named `UNRESOLVED` (the deployed reporting module) and the remainder routed.**
+
+
+## 5. Two output-boundary facts found by challenge, not previously held
+
+**`P08-F-53` — a derived statutory output substitutes its date basis by patching a generated SQL string.** The report takes the query the engine built and **textually replaces the item's accounting date with the entry's tax-period stamp**, falling back to the accounting date. Three consequences P08 owns:
+
+1. It is the **same class** as the derived output already recorded here — *an output that does not agree with the ledger by construction* — and it is **stronger**, because the disagreement is in the **period selection**, not in a recomputed figure.
+2. It is the **live consumer** of the tax-period carrier. The package measured that carrier's incompleteness and never asked what reads it. **The answer is: this does, at the entry level, which is why the item-level silence does not bite.**
+3. The replacement is **string-fragile**. If the engine ever emits the column reference in a different form, the substitution silently becomes a no-op and the register falls back to the accounting date **with no error and no signal**.
+
+**`P08-F-54` — the admission test is an equality against a whole translation object, and this database already contains the mechanism that breaks it.** The register admits a row only when a stored group name equals a single-language object exactly. One tax group in the same database **already carries a second language key**. So the break is not hypothetical: **one translation edit on the admitting group empties the register, with no error path.** `LATENT — one edit from firing.`
+
+A third, tested and reported as **not** firing: an inner join to the counterparty table would silently drop any tax line without one. **Measured: 0 of 32,953 posted tax lines have a null counterparty.** `LATENT — 0 occurrences`, recorded so it is not re-discovered as live.

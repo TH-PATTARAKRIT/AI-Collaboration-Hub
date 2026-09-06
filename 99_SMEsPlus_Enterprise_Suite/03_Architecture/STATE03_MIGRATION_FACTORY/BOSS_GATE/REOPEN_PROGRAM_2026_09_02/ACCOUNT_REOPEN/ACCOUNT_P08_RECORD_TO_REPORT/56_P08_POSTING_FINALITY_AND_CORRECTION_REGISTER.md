@@ -40,11 +40,27 @@ Consolidates `05`, `07`, `36`, `43`, `44`, `47`, `48` under the Phase-S disposit
 | Period lock | **exists, unset on every transacting company** |
 | Audit retention | exists in the 19.0 estate, unset on **88 of 88** companies — **and `P08-CONTRA-66`: this row retained the very denominator `CQ-P08-10` had just condemned, inside the register whose §4 certified the restatement complete.** Under capability scope: **0 of 6** charted 19.0 companies |
 
-**CORRECTED — `P08-CONTRA-56`. The "seven of nine" double-counts one control as three.** The seal, the entry hash and the gapless counter are **not independent observations**: the hash and counter are written only when the seal is enabled, so their zeros are **entailed** by the seal's zero. After collapsing that entailment and adding the default-on carriers of row 6, the honest statement is:
+**WITHDRAWN — `P08-CONTRA-56` and `P08-CONTRA-70`. The "seven of nine" headline does not follow from the table beneath it, for two independent reasons.**
+
+**(a) It double-counts one control as three.** The seal, the entry hash and the gapless counter are **not independent observations**: the hash and counter are written only when the seal is enabled, so their zeros are **entailed** by the seal's zero. After collapsing that entailment and adding the default-on carriers of row 6, the honest statement is:
 
 > **Of the independent controls in this stack, the ones that require configuration are unengaged everywhere they could apply; the ones that are on by default hold at the object layer and are bypassed by paths that do not go through it.**
 
 That is a weaker headline than "seven of nine" and a more accurate one.
+
+**(b) It fuses *unengaged* with *unreachable* — and three rows are not "present and unengaged" at all.**
+
+| Row | Correct state |
+|---|---|
+| Balance assertion, **transaction currency** | **ABSENT** in every line — not present-and-unengaged |
+| **Posting-state protection** | **ABSENT** from the seal's field set — not present-and-unengaged |
+| **Audit retention** | **ZERO occurrences in the declared 18.0 source tree** (the 18.0 name is different), and **the column does not exist on the 16.0 database at all**. It is **UNREACHABLE on the database holding 99.987% of the estate's posted entries** |
+| **Irrevocable period lock** | **UNREACHABLE on the 16.0 database** — that schema carries three lock fields, not five |
+| **Gapless counter** | present-and-never-written **on the 16.0 database only**; the column is **absent from the 19.0 journal table** |
+
+**`P08-CONTRA-71`.** Row 9 of the original table cited a control **with no basis in the declared source line**, sitting in a table whose other rows are cited to it.
+
+**Every control in this stack now requires a three-way reachability status — exists in 16.0 / 18.0 / 19.0 — and a verdict of ENGAGED, UNENGAGED-BY-CONFIGURATION, or UNREACHABLE-IN-THIS-LINE.** Publishing one number across three lines was the error.
 
 ## 3. Correction, reversal, cancellation, re-dating, supersession
 

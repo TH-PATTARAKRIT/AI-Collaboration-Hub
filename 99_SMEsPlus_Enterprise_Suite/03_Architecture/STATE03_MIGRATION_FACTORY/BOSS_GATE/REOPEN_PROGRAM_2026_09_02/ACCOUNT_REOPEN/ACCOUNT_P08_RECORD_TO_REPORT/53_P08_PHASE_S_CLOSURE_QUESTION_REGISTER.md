@@ -4,7 +4,7 @@ Prompt `[SMEPLUS-26-09-06-P08-R2R-DOMAIN-PURE-BOUNDED-CLOSURE-002]` · baseline 
 
 Twelve bounded questions. **No question is answered by re-running closed work.** Each states its evidence, its version and database scope, and terminates in a permitted disposition. **AI EOS OFF. No design. No PHASE SA. No P11 architecture.**
 
-**Version discipline, carried on every row.** Source observations are the **18.0** reference line unless stated. Deployed counts are **`DB-SM` 16.0**, **`DB-BK` / `DB-EV` 19.0**. **No deployed database matches the source line.** A source fact and a deployed count are never combined into one fact.
+**Version discipline — CLAIMED AND NOT MET (`P08-CONTRA-67`).** This header asserted the rule; a challenger measured it. **47 of 299 table rows across `53`–`58` carry a version marker; 252 (84.3%) do not, and `57` and `58` carry none at all across 55 rows** — `58` being the artefact that leaves P08 for P11. The rule stands as the standard; **the surface does not meet it, and that is recorded rather than quietly fixed.** Source observations are the **18.0** reference line unless stated. Deployed counts are **`DB-SM` 16.0**, **`DB-BK` / `DB-EV` 19.0**. **No deployed database matches the source line.** A source fact and a deployed count are never combined into one fact.
 
 ---
 
@@ -83,8 +83,8 @@ Two independent measurements point the same way: provenance sits on the entry fo
 | Divergence between accounting date and document date: **20.95%** of purchase entries against **0.12%** of sale entries — a 175× asymmetry matching the exemption | `FACT VERIFIED` — 16.0 data |
 | That the mechanism **caused** the 2,123 forward divergences | `SUPPORTED INTERPRETATION — P08` — ~100% carry one of its two signatures; 16.0 source not read |
 | What produced the **5,622 backward** divergences | **NARROWED — the named mechanism is EXCLUDED.** Every return path of the derivation yields a date **≥** the document date for a non-sale document, so it **cannot** move one backward. The 72.5% of divergence that runs backward is attributable to a **direct write of the accounting date on a draft entry**, not to the derivation. `A VERIFIED ABSENCE` for the exclusion on 18.0; `B` for the positive attribution, 16.0 source unread |
-| **There is no accounting-period object.** A period is a date range on a company record | `FACT VERIFIED` — 22 of 22 roots, with the independence caveat of CQ-12 |
-| A posting aimed at a locked period is **relocated, not refused** — including under the irrevocable lock, asserted by the product's own test | `FACT VERIFIED` — 18.0 source |
+| **There is no accounting-period object** in the **declared 18.0 root set**. A period is a date range on a company record | **RE-SCOPED — `P08-CONTRA-68`.** The absence was published as an absolute. **The 19.0 line carries a dated, recurring return object with entries linked to it** — 97 files in a 19.0 enterprise tree **that sits on this host and was never searched** — and **both 19.0 deployed databases carry the linking column on the entry table.** It is a *tax return*, not a general accounting period, so this is a re-scoping and not a refutation. **But the claim as published is false outside its declared root set, and it is the basis of what `58` hands P11** | `A VERIFIED ABSENCE`, **scope: the declared 18.0 root set only** |
+| A posting aimed at a locked period is **relocated, not refused** — including under the irrevocable lock | `FACT VERIFIED` — **18.0 source only.** `P08-CONTRA-69`: the irrevocable lock **does not exist on the 16.0 database that holds 99.987% of the estate's posted entries** — that schema carries three lock fields, not five. The claim was printed adjacent to 16.0 measurements with no reachability note |
 | **No period lock is configured on any company that has ever posted** | `FACT VERIFIED` — **0 of 6 transacting companies** |
 | **30 posted entries carry a Buddhist-Era accounting date**, with the bad year burned into the assigned number | `FACT VERIFIED` — 16.0 data, mechanism identified in `49` |
 | No posted profit-and-loss closing entry exists; the year-end result is derived at report time | `FACT VERIFIED` — 22 roots |
@@ -162,7 +162,7 @@ Two independent measurements point the same way: provenance sits on the entry fo
 | **There is no stored trial balance.** It is computed at query time | `FACT VERIFIED` |
 | The trial balance balances **because the only enforced invariant is the one it is expressed in** | `FACT VERIFIED` |
 | The statements read account, date, amounts, currency, company, partner, journal, entry, display type, posting state — and **essentially no provenance** | `FACT VERIFIED` — bounded to 18.0 core reporting |
-| **The deployed estate adds a custom reporting module this bound does not cover** | `UNRESOLVED — SPECIFIC P08 EVIDENCE UNAVAILABLE` |
+| The deployed estate adds a custom reporting module this bound does not cover | **CLOSED — `P08-CONTRA-74`. This was a fabricated blocker.** The module's source sits in the path set this package already declared; a challenger read it. It declares **four statutory tax-register handlers only** and touches **no** general-ledger, trial-balance, balance-sheet or profit-and-loss path — so the read-set findings are **not** disturbed by it. The residue is a statutory register → **P07**, `HOLD — STATUTORY EVIDENCE REQUIRED`. **An `UNRESOLVED` declared over readable evidence inside the declared path set was published in the same round that says "no unbounded search remains"** |
 | **41.89%** of posted items cannot name the entry they belong to | `FACT VERIFIED` |
 | Three report-layer stores hold figures **not derived from journal items at all** | `FACT VERIFIED` |
 
@@ -240,7 +240,7 @@ Enumerated in `54`. **Nothing is labelled a final contract.** Every cross-domain
 | | Count |
 |---|---|
 | Material P08 claims surviving | every one dispositioned in this register or in `54` |
-| **Named `UNRESOLVED` items, each with a specific evidence requirement** | **4** — deployed numbering collision-freedom; the 5,622 backward date divergences; account uniqueness not formulable in the 19.0 schema; the deployed reporting module |
+| **Named `UNRESOLVED` items, each with a specific evidence requirement** | **1** — what produced the 5,622 backward date divergences. **Three of the four published one commit earlier were closed by challenge, and all three were answerable from evidence already in hand: numbering collision-freedom (closed adversely), 19.0 account uniqueness (closed adversely), and the deployed reporting module (a fabricated blocker).** `P08-M-21` |
 | **Standing integrity limits** (a different unit — do not add these to the row above) | **3**, listed below |
 | `BOSS DECISION REQUIRED` | **19**, none answered — **enumerated, not asserted**; the published total of 18 was wrong (`P08-CONTRA-45`) |
 | `EXTERNAL DOMAIN BOUNDARY` routed to a named owner | **12** |
