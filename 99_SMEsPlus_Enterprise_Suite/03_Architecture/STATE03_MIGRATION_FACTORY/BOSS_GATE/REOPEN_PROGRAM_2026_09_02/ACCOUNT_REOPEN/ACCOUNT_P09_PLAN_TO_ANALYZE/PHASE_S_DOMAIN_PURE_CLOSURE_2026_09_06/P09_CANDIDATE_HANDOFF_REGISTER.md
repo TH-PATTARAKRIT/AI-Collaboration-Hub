@@ -54,5 +54,5 @@ What survives is narrower and still worth stating: **everything P09 emits is eit
 
 - No counterparty has agreed to any row here. **These are P09's requirements, not negotiated interfaces.**
 - No peer's HOLD was reinterpreted as satisfaction of any row.
-- **P11 has published no branch**, so `CH-06` has no confirmed consumer.
+- ~~**P11 has published no branch**, so `CH-06` has no confirmed consumer.~~ **CORRECTED 2026-09-06: P11 HAS published a branch** (`research/account-core-reconciliation-2026-09-04-001`, at CORR3), and its package **already consumes P09 artefacts by name**, pinning P09 at `5441f8d` and recording four P09 handoff artefacts as *2 of 4* consumed. The prior "no branch" statement was a **peer-state assertion never executed** and is **withdrawn**. What survives on measurement: **P11 cites zero `CH-0x`/`CO-0x` identifiers**, so no peer closed on the withdrawn terminality.
 - No row may be promoted to a contract before PHASE SA and a Boss decision.

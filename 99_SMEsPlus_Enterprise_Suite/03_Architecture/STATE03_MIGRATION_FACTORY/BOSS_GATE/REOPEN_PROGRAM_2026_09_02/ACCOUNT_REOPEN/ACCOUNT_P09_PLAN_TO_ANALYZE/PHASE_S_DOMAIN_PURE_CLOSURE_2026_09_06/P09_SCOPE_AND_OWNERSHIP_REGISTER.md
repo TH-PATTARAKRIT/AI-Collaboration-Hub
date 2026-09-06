@@ -62,7 +62,7 @@ The authoritative tenant/company semantics for the Account domain are being sett
 
 - P09's determinations here are **P09's own scope analysis**.
 - Marked `PEER DEPENDENCY OPEN — P11 SCOPE RECONCILIATION`.
-- **P09 does not wait, does not adjudicate against another process, and has not consumed any peer's unpublished position.** P11 has published no branch.
+- **P09 does not wait, does not adjudicate against another process, and has not consumed any peer's unpublished position.** ~~P11 has published no branch.~~ **CORRECTED 2026-09-06: P11 HAS published a branch** (`research/account-core-reconciliation-2026-09-04-001`, at CORR3), and its package **already consumes P09 artefacts by name**, pinning P09 at `5441f8d` and recording four P09 handoff artefacts as *2 of 4* consumed. The prior "no branch" statement was a **peer-state assertion never executed** and is **withdrawn**. What survives on measurement: **P11 cites zero `CH-0x`/`CO-0x` identifiers**, so no peer closed on the withdrawn terminality.
 
 ---
 

@@ -72,9 +72,12 @@ The three entirely-absent modules are a cash-basis reporting module, a timesheet
 
 ### 2.1 Materiality — the decisive result
 
-> **Of the 12 files outside the population, ZERO touch a planning model.** Every one reaches only the **analytic fact table**, whose estate-wide reach is already published (17 extenders).
+> ~~**Of the 12 files outside the population, ZERO touch a planning model.** Every one reaches only the analytic fact table.~~
+>
+> ### **WITHDRAWN AND SUPERSEDED — the corrected value is 1 of 12.**
+> The predicate that produced this zero compared **dotted model prefixes** with **underscored table names** and could not fire on any input. One of the twelve — the report-engine file — reaches **both** second-family planning tables by raw SQL. Corrected under `L-1`; see `L1_L8_BOUNDED_CORRECTION_2026_09_06`.
 
-**K-2 therefore closes without disturbing any planning completeness or absence claim.** The raw-SQL blind spot is real, populated, now measured — **and immaterial to the claims it was raised against.**
+~~**K-2 therefore closes without disturbing any planning completeness or absence claim.**~~ **WITHDRAWN with the zero above.** The raw-SQL blind spot is real, populated, and measured at **1 of 12**.
 
 ---
 

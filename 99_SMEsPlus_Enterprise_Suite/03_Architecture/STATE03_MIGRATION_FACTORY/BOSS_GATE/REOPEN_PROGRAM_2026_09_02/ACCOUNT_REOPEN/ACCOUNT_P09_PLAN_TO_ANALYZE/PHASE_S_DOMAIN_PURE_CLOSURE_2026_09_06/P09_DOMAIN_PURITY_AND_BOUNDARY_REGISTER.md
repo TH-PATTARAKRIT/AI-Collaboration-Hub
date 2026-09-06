@@ -48,7 +48,7 @@ The zeroing finding is this programme's most quoted P09 result, and the obvious 
 | Peer | What was consumed | What was **not** done |
 |---|---|---|
 | P04 | that two version-18 deployments exist, and that one carries a populated dimension whose entries all net to zero | P04's asset lifecycle was **not** researched; P04's HOLD was **not** reinterpreted |
-| P11 | that a reconciliation architecture will need P09's sign convention and scope | P11's reconciliation internals were **not** entered; **P11 has published no branch** and none was waited for |
+| P11 | that a reconciliation architecture will need P09's sign convention and scope | P11's reconciliation internals were **not** entered and none was waited for. **CORRECTED 2026-09-06: P11 HAS published a branch** (`research/account-core-reconciliation-2026-09-04-001`, at CORR3), and its package **already consumes P09 artefacts by name**, pinning P09 at `5441f8d` and recording four P09 handoff artefacts as *2 of 4* consumed. The prior "no branch" statement was a **peer-state assertion never executed** and is **withdrawn**. What survives on measurement: **P11 cites zero `CH-0x`/`CO-0x` identifiers**, so no peer closed on the withdrawn terminality. |
 | P06 / P07 | **nothing consumed this round** | explicitly **not waited for**, per the prompt |
 
 **No peer recommendation was converted into a fact.** No peer HOLD was read as anything other than a HOLD.

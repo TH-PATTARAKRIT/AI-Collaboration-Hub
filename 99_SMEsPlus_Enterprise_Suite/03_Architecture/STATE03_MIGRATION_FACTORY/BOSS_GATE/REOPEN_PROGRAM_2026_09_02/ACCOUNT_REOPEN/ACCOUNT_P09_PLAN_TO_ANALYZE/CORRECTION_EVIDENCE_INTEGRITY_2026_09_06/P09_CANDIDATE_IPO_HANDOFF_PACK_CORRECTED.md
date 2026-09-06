@@ -58,7 +58,7 @@ The previous pack called three outputs terminal; that was corrected to one. Rest
 |---|---|---|---|
 | **CO-01** | management attribution by dimension value | **YES** — carried to reconciliation with a required sign convention, and its value varies with the reading user's company and the reading day's rate | `CANDIDATE HANDOFF` |
 | **CO-02a** | dimensional plan consumption | **YES** — same reasons | `CANDIDATE HANDOFF` |
-| **CO-02b** | **account-keyed plan comparison** | **YES** — consumed by a financial report as a comparison column via a temporary table | `CANDIDATE HANDOFF` — **new, and it is the second instance of the report-substitution mechanism P09 has already recorded against** |
+| **CO-02b** | **account-keyed plan comparison** | **YES** — **present in the source of the declared root** as a comparison column built on a temporary table *(the earlier "consumed by" wording asserted deployment and is withdrawn)* | **SUPERSEDED — the authoritative row is in `L1_L8_BOUNDED_CORRECTION_2026_09_06` §7: `CANDIDATE HANDOFF — CONTESTED BY ITS OWN AUTHOR`** — **new, and it is the second instance of the report-substitution mechanism P09 has already recorded against** |
 | **CO-03** | the over-plan signal | **partly** — plan-scoped instance is terminal; the two commitment-carrier instances surface on an adjacent domain's document | **terminal only for the plan-line instance** |
 
 **No output is now claimed as unconditionally terminal.**
@@ -80,7 +80,7 @@ The previous pack called three outputs terminal; that was corrected to one. Rest
 | **CH-05** | outbound | postings generated from a management allocation rule | `CANDIDATE HANDOFF — P09 RECOMMENDS AGAINST` |
 | **CH-06** | outbound | any management figure into reconciliation, **with sign convention, scope, and — added — rate source and rate date** | `CANDIDATE HANDOFF` |
 
-**`CH-09` is deleted, not renumbered.** It asserted terminality that has been withdrawn; retaining it as a handoff row would preserve the error that produced three conflicting populations.
+~~**`CH-09` is deleted, not renumbered.**~~ **SUPERSEDED.** `CH-09` is **tombstoned, not deleted** — see `L1_L8_BOUNDED_CORRECTION_2026_09_06` §8, which carries its reconstructed text, its reason for withdrawal, its successor identifiers (`CO-01`, `CO-02a`, `CO-03`) and its citation enumeration. The two dispositions were live simultaneously; the tombstone is authoritative.
 
 ---
 
