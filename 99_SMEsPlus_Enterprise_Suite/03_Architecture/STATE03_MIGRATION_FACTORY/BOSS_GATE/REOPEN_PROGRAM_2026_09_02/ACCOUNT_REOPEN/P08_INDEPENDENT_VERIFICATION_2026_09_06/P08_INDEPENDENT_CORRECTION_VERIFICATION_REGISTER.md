@@ -315,3 +315,25 @@ The addendum states that whether the overlap is coincidence or common cause is u
 **But it is explained by a shared population, and that is as far as the evidence goes.** Both defects concentrate in one machine-generated class — depreciation entries routed into the general journal. That is consistent with a single bulk generation run that both mis-numbered its entries and mishandled their foreign-currency legs, **and the verifier does not assert it.** `SUPPORTED INTERPRETATION`; a shared mechanism is **UNRESOLVED — SPECIFIC EVIDENCE REQUIRED**.
 
 **Routed as an addition to bounded repair requirements 2 and 4:** when the FX row and the numbering row are re-issued, each must cite the other and state the shared population, so a consumer is not told that four entries evidence one defect while the same four evidence another.
+
+### `IVR-INB-04` — a second late inbound, and it **narrows** a repair requirement
+
+Same provenance and same handling as `IVR-INB-01`: **after the freeze, changes nothing in the audit, changes no veto, changes not the terminal state.** Recorded because **a verifier must record a narrowing as carefully as a widening** — a requirement that shrinks on evidence is as much a finding as one that grows.
+
+**The transaction-currency count of 4 is now confirmed under five independent predicate forms**, three from the challenger and **two written by this verifier**:
+
+| Form | Selects on | Result |
+|---|---|---|
+| challenger, procedural | per-entry accumulation with a company-currency flag, synthetic-injection control | 4 |
+| challenger, set-based A | currency cardinality = 1 and that currency is foreign | 4 |
+| challenger, set-based B | no company-currency line exists **and** some currency group does not net | 4 |
+| **verifier, form C** | **currency cardinality = 1 and foreign, bucket non-zero** | **4** |
+| **verifier, form D** | **no company-currency leg **and** some bucket off** | **4** |
+
+**All five select the same four entries.** Forms C and D are *different conditions* — one keys on how many currencies an entry uses, the other on whether a company-currency counter-leg exists — so their agreement establishes that the four entries are **single-currency *and* counter-leg-free**, not merely one or the other.
+
+**DISCRIMINATING CONTROL, run by the verifier:** entries that **do** carry a company-currency counter-leg alongside a non-netting foreign bucket number **1,847**, and **neither form selects any of them**. The instrument separates the defect population from the exculpated one rather than merely returning a small number.
+
+**Consequence — the repair requirement shrinks.** The published correction's *count* (4) and its *mechanism* (the other 1,847 carry a legitimate company-currency counter-leg) are both **sound**. **The only defect in that row is the cause clause** — *"all from a 1:1 rate fallback"* — which is false for the entry whose five legs sit at an implied rate of ≈35.4 with a 0.04 residue, and imprecise for the other three, whose defect is a foreign-flagged line carrying **no transaction amount** — a missing-amount defect, not a rate fallback.
+
+**Bounded repair requirement 2 is therefore narrowed:** withdraw and replace the **cause clause only**. The count and the exculpation need no rework. The separate defect — the figure with no referent in the outbound handoff — is unaffected and stands.
