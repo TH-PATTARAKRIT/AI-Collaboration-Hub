@@ -23,7 +23,7 @@
 | `CP-P09F12` | re-verify every finding before adoption | **COMPLETE — 32 of 32 re-verified** |
 | `CP-P09F13` | apply corrections; retain superseded wording | **COMPLETE** |
 | `CP-P09F14` | **store instruments durably in Layer 2** | **COMPLETE** — closes the ephemeral-locator defect rather than only recording it |
-| `CP-P09FFINAL` | commit, push, verify remote, update state | **COMPLETE** — see `AUTO_RESUME_STATE` |
+| `CP-P09FFINAL` | commit, push, verify remote, update state | **COMPLETE — PUBLISHED `acf58d2`**; remote SHA read back identical; tree clean; both mandatory scans ZERO |
 
 ---
 

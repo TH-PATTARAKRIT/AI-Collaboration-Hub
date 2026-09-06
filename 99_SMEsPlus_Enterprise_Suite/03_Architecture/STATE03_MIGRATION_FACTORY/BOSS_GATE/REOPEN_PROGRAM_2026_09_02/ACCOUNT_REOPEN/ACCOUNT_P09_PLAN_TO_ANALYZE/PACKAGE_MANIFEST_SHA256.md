@@ -11,7 +11,8 @@
 | `8c759fc` / `99b0d52` / `58def04` | Phase S prompt; Phase S closure; SHA record |
 | `5441f8d` / `cfe9e10` / `b7bf546` | targeted-correction prompt; correction; SHA record |
 | `a10c5ad` | final bounded completion prompt |
-| *this commit* | **final bounded completion — K-1..K-8 executed; K-7 closed in P09's favour; K-2 defective; TERMINAL B** |
+| `acf58d2` | **final bounded completion — K-1..K-8 executed; K-7 closed in P09's favour; K-2 defective; TERMINAL B** |
+| *this commit* | SHA record and publication-integrity result |
 
 **Coverage note.** This manifest checksums every package document except itself — a manifest cannot carry its own hash. The executable instruments are checksummed separately in the Layer 2 quarantine's own manifest, so that Layer 1 carries no source-file identifiers.
 
@@ -68,8 +69,8 @@ b84da8e9f3c76ce198fe6a938919ceece52fe1c28815e514897f3b7d5083118d  ./CORRECTION_E
 d1987ede4345734829b1d6edc2fa84be7768427ea05bba2d7def62a7bc17f9bb  ./FINAL_BOUNDED_COMPLETION_2026_09_06/LAYER2_AUDIT_QUARANTINE/E04_FINAL_COMPLETION_EVIDENCE.md
 82801b3a72e643149fc432e19dca02f7dbe8ee82cb85b7fa4048e47844cc2fa9  ./FINAL_BOUNDED_COMPLETION_2026_09_06/LAYER2_AUDIT_QUARANTINE/INSTRUMENTS_MANIFEST_SHA256.md
 7e1a76668d364c7b60d54f21812911b42739b78cc96f2311336471c0cd930ee9  ./FINAL_BOUNDED_COMPLETION_2026_09_06/P09_AAS03_FINAL_CHALLENGE_RECORD.md
-eb8e22e8a6633bff8fcd7139c8bc0e2f4ab7da62d9852e60cb62b71ef06cef87  ./FINAL_BOUNDED_COMPLETION_2026_09_06/P09_AUTO_RESUME_STATE.md
-e42009efc48fd23d403d65fd577646519601cd1e9ea68f4eb748df30baf09d2c  ./FINAL_BOUNDED_COMPLETION_2026_09_06/P09_CHECKPOINT_REGISTER.md
+0a72598b4c85eeeb35fb94e60b836946a2f2d56b86c49edb28891b2fbda201ee  ./FINAL_BOUNDED_COMPLETION_2026_09_06/P09_AUTO_RESUME_STATE.md
+020672463d1671a9fa707c377d946874e642ba96a804260417bb06c1f7c62326  ./FINAL_BOUNDED_COMPLETION_2026_09_06/P09_CHECKPOINT_REGISTER.md
 90329fe3f4a8d4e5d99d456adaf0ddd7ad5834b3c4e593cc06d0e1b3ede8b29c  ./FINAL_BOUNDED_COMPLETION_2026_09_06/P09_FINAL_BOUNDED_COMPLETION_REGISTER.md
 0953d792e80253d64bb7df1f0e346d9d55eda94de13d32267da462427290a423  ./LAYER2_AUDIT_QUARANTINE/E00_PRIMARY_EVIDENCE_BASE.md
 000064d227b9bd3722f55eae1ad02f87c352aa516360234afbf029665b13e539  ./LAYER2_AUDIT_QUARANTINE/E01_EVIDENCE_CORRECTIONS_AND_EXTENSIONS.md

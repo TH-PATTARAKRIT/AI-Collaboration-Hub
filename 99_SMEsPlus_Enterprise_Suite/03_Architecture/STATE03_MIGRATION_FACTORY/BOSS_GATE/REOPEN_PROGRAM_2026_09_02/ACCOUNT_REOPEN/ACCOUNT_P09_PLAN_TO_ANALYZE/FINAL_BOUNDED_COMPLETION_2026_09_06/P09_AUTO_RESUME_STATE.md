@@ -6,7 +6,7 @@
 | **PROMPT ID** | `SMEPLUS-26-09-06-P09-P2A-FINAL-BOUNDED-COMPLETION-004` |
 | **BASELINE** | `b7bf546` → **frozen at `a10c5ad`** · prior correction `cfe9e10` |
 | **BRANCH** | `research/account-p09-plan-to-analyze-2026-09-04-001` |
-| **CURRENT COMMIT** | recorded at `CP-P09FFINAL` |
+| **CURRENT COMMIT** | **`acf58d2`** — final bounded completion; **pushed and remote-verified** (remote SHA read back identical; working tree clean) |
 | **TERMINAL STATE** | **TERMINAL B — MATERIAL EVIDENCE-INTEGRITY DEFECT REMAINS — TARGETED CORRECTION REQUIRED** |
 | **PHASE** | **S**. **AI EOS = OFF.** PHASE SA / B / C not started, not retrofitted. No Functional Design |
 | **K-1** | **CLOSED** — instrument **ACCEPTED** on 9 controls (AST; 13,515 files, 0 unparseable). Population **52 files / 29 modules**; **owning 10 / 3**; extending **42 / 27**. **Reproduced exactly by two challengers, one from a scratch-built instrument**; the seed set tested against all 2,050 model strings with **no gap** |
