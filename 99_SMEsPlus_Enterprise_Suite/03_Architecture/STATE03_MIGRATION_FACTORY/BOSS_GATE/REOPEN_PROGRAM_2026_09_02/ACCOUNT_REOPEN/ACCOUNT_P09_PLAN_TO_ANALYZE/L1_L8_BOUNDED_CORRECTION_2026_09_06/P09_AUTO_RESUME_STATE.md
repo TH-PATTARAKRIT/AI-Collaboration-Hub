@@ -6,7 +6,7 @@
 | **PROMPT ID** | `SMEPLUS-26-09-06-P09-P2A-L1-L8-FINAL-BOUNDED-CORRECTION-005` |
 | **BASELINE** | `54cf8b9` → **frozen at `92de8a1`** · prior research commit `acf58d2` |
 | **BRANCH** | `research/account-p09-plan-to-analyze-2026-09-04-001` |
-| **CURRENT COMMIT** | recorded at `CP-P09LFINAL` |
+| **CURRENT COMMIT** | **`4778792`** — L1–L8 bounded correction; **pushed and remote-verified** (remote SHA read back identical; tree clean) |
 | **TERMINAL STATE** | **TERMINAL B — MATERIAL CORRECTION DEFECT REMAINS — EXACT BOUNDED ITEM NAMED** |
 | **PHASE** | **S**. **AI EOS = OFF.** PHASE SA / B / C not started. No Functional Design |
 | **§4 COMPLIANCE** | `L-1`…`L-8` taken **verbatim from the package**, both copies compared and identical. **Nothing invented, renamed or broadened.** The prompt's example items (a `BD-01` wording fix, a generation-basis fix) are **not** in the authoritative list and were **not executed** |

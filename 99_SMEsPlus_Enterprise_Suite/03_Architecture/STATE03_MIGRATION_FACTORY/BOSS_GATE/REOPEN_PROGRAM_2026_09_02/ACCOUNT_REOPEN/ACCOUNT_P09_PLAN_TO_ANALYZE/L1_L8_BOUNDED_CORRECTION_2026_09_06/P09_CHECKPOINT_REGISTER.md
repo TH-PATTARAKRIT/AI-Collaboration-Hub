@@ -24,7 +24,7 @@
 | `CP-P09L13` | re-verify every material finding before adoption | **COMPLETE — 35 of 35** |
 | `CP-P09L14` | apply corrections **at the artefacts that carry them** | **COMPLETE** — 6 prior-round files edited in place, superseded wording retained |
 | `CP-P09L15` | package the instruments, make paths package-relative, checksum them | **COMPLETE** — the ephemeral-locator defect is **fixed, not asserted** |
-| `CP-P09LFINAL` | commit, push, verify remote, update state | **COMPLETE** — see `AUTO_RESUME_STATE` |
+| `CP-P09LFINAL` | commit, push, verify remote, update state | **COMPLETE — PUBLISHED `4778792`**; remote SHA read back identical; tree clean; both mandatory scans ZERO over 133 documents |
 
 ---
 
