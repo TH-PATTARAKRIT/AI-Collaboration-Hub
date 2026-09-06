@@ -112,3 +112,22 @@ evidence rather than silence.
 > **Three claims published in CORR2 are WITHDRAWN by its own challenge:** `B-17`'s closure,
 > `B-23` as worded, and `P11-C-09`'s convergence label. **`ACCOUNTING_BOSS_FINAL_GATE_PACK.md`
 > carries a supersession banner and six stale counts below it.**
+
+---
+
+## CORR3 — ACCOUNTING INTAKE INTEGRITY · `2026-09-06`
+
+| # | File | Result |
+|---|---|---|
+| 1 | `P11_CORR3_INTAKE_INTEGRITY_AND_DENOMINATOR.md` | **`INTAKE INTEGRITY: NOT ESTABLISHED`** · certification **withdrawn** |
+| 2 | `LAYER2_P11_EVIDENCE/corr3_instrument/` | **the instrument, published as runnable code + `union_212.txt`** |
+| 3 | `P11_CORR3_INTAKE_CASE_DISPOSITIONS.md` | 5 mandatory cases · **6 P11 claims corrected by intake** |
+| 4 | `P11_CORR3_RECONVERGENCE_AND_FALSIFICATION.md` | 10 tested · **9 counterexamples** · `F-08` withdrawn |
+| 5 | `P11_CORR3_POPULATION_REGISTERS.md` | **39 blockers / 35 open / 5 CRITICAL** · 16 T0 · 19 decisions |
+| 6 | **`P11_AAS03_CORR3_CHALLENGE.md`** | **`CONTRADICTED` — 52 findings** |
+| 7 | `P11_AAS_PLUS_CORR3_CONSOLIDATION.md` | `NOT CONVERGED — CORR4 REQUIRED` |
+| 8 | `P11_PMO_CORR3_REVIEW.md` | `RECOMMEND HOLD` · **0 of 8** |
+
+> **`P11-C-15`'s convergence label is WITHDRAWN** — `P10` consumed `P02` by SHA and credits the
+> location to it. **`P11-C-09` repeated in the round that corrected it.**
+> **The instrument reproduces exactly and fails its own full control set (`S06`).**

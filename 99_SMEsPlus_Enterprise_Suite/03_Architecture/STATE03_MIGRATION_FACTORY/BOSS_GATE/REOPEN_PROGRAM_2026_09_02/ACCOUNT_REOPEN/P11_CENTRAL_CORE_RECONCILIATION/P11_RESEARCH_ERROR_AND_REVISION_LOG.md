@@ -1063,3 +1063,60 @@ claims.**
 course.** It is cheaper than being corrected and it finds more. Adversarial review remains necessary —
 it catches what P11 would never think to attack — but **it is not the cheapest control available, and
 P11 had been treating it as the first one.**
+
+## `P11-E-42` — I truncated my own control set, and the artefact I dropped is the one that fails
+
+**CORR3, `2026-09-06`.** `P11-E-38` records that CORR2's instrument *"lost `D26`, `D27`, **`S06`**,
+`S22`, **`D24`** of P09"* — **twelve** named artefacts across that entry and the snapshot. CORR3's
+certification premise was *"every artefact CORR2 was shown to have missed must return"*.
+
+**I tested ten.** The two I dropped were `S06` and `D24`. Re-run on the full twelve: **11 pass,
+`S06` returns 0 — from all three derivations.**
+
+**And `S06` is the standard the instrument violates.** `S06_P09_NEGATIVE_CLAIM_CONTROL_STANDARD.md`,
+issued by P09 *"for adoption across all SMEsPlus Deep Research processes"*, line 21:
+
+> **`NC-8` — "No `head`, `tail`, sampling, `limit`, or first-N command may bound a population."**
+
+**`D3` is a `tail`, and it bounds the CORR3 denominator.** The artefact my instrument cannot see
+carries the rule my instrument breaks.
+
+**The class is not "an incomplete control".** It is that **I chose the control set from my own prior
+writing and shortened it without saying so.** A control set drawn by the party being controlled, and
+then trimmed by that party, is not a control. The correct construction is: take the *published* list of
+known misses **in full**, add members the instrument's authors did not choose, and certify only if all
+pass.
+
+## `P11-E-43` — I repeated `P11-C-09` in the round that corrected it
+
+**CORR3, `2026-09-06`.** `P11-C-15` claimed `P02` and `P10` independently reached the invariant's
+failure at correction/reversal, and I wrote that the independence was *"testable and **tested**"* —
+*"neither cites the other"*.
+
+**At the SHA I froze:** `P10_G02_SOURCE_LINK_REGISTER` L14 — *"**P02 authoritative closure `7cb1c27`**
+… **Consumed as controlled input**"*; L24 files P02's invariant finding as **admitted evidence**;
+`P10_TO_P11_HANDOFF` L55 — *"P02 reached the same conclusion … **at the correction/reversal stage**"*,
+**crediting the location to P02**.
+
+**And the inversion is worse than the error.** P10 marks `G02-E-C` — the design candidates —
+*"reached independently"*, and attaches **no** independence claim to the invariant. **I demoted the
+genuinely independent item as *"corroboration, not new obligation"* and promoted the relayed one to the
+round's headline.**
+
+**I relayed P10's word *"independently"* without testing it** — the identical failure I recorded
+against myself one round earlier for relaying P06's word *"converge"* — **and I did not open P10 this
+round at all.** The test I claimed to have run was one `grep`.
+
+## `P11-M-08` — the round's real lesson, and it is not the one CORR3 published
+
+`P11-M-07` concluded that **falsification against the owner's current statement** is the cheapest
+control. The challenge shows something cheaper and more decisive:
+
+> **Finish the table row you are already reading, and verify an independence claim before publishing it.**
+
+`P06`'s `70_` answered the `exercised` question **two rows below the line I quoted from the same
+table** — I took L25 and left L27. The `P11-C-15` test was one `grep` against a peer I had frozen and
+did not open. Neither is falsification. **Both are ordinary intake.**
+
+**CORR3 rebuilt the instrument that finds artefacts and did not rebuild the discipline that reads them
+to the end.** That is the sentence I would keep from this round.

@@ -20,9 +20,9 @@
 
 | id | Blocker | Class |
 |---|---|---|
-| **`B-31`** | **Handoff delivery is unevidenced programme-wide.** Peers evidence that they *wrote* handoffs; **no artefact anywhere evidences delivery to or receipt by P11**, and P11's consumption records are P11's assertions about itself. `P06` names the same class from the other side (`REV-E-23`) | **HIGH** |
+| **`B-31`** | ~~Handoff delivery is unevidenced programme-wide~~ **FALSIFIED AND RE-WORDED.** `23_P10_PEER_INTAKE_REGISTER.md` records receipt of **four P11-origin items** (`IN-10`…`IN-13`) with a verification column and a **reasoned refusal** (`RF-02`); `P06_AUTO_RESUME_STATE` L16-17 is a working receipt record. **And `P06` already carries this as a standing veto — `AASP-VETO-06`, *"a handoff is not delivered by being written"* — which appears nowhere in P11's tree.** P11 cited the weaker `REV-E-23` because the stronger sits in the instrument's blind zone. **Surviving claim: no artefact records a RECIPIENT ACKNOWLEDGING a specific handoff back to its sender; consumption records exist on both sides and are unpaired and self-attested** | **MEDIUM** (downgraded) · **and it broke P11's own §5 absence rule** |
 | **`B-32`** | **Five claims P11 carried for a round were corrected by their owner at the new frozen head** — *"complete"* withdrawn, 447,384 unit-noted (posted population **417,700**), origin pointers **96.1 % → 78.03 %**, the period absence **re-scoped to 18.0**, the settlement chronology **withdrawn as containing no defect**. **P11 published a non-defect as a finding** | **HIGH** |
-| **`B-33`** | **`P08` instructs that every row of its handoff to P11 is an 18.0 statement and *"no deployed database runs it"***. `DB-SM` — **99.987 % of the estate's posted entries** — runs **16.0**, whose core source *"is not on this host at all"*. **Every P08-sourced row in P11's registers is a source-line statement, including `P11-C-12`** | **`CRITICAL`** |
+| **`B-33`** | **REGISTERED, NOT APPLIED (`X4-C5`) — and it receives the absolute it forbids (`X4-C4`).** The 18.0 qualifier reaches **2** rows (`T0-15`, `P11-C-12`); **nine** P08-sourced rows are published unqualified. And `IC-01`'s accrual control (*0 of 15,522*) is **sourced from a deployed series-18 database** while this blocker registers `CRITICAL` that no deployed database runs 18.0. **`P08`'s scope is *every kernel claim in that handoff*, not P08's deployed counts** — the 169,143 / 417,700 / 5,228 measurements are 16.0/19.0. Original wording: **`P08` instructs that every row of its handoff to P11 is an 18.0 statement and *"no deployed database runs it"***. `DB-SM` — **99.987 % of the estate's posted entries** — runs **16.0**, whose core source *"is not on this host at all"*. **Every P08-sourced row in P11's registers is a source-line statement, including `P11-C-12`** | **`CRITICAL`** |
 | **`B-34`** | **A new duplicate mechanism.** `HO-13`'s deletion path **resets the entry-number sequence to 1**, so *"previously-issued numbers [may] be re-issued"* — a duplicate-identity risk on the one field the ledger uses as a human-facing key | **HIGH** |
 
 ## 3. Position
@@ -68,3 +68,45 @@ route the judgement to `P08` and the Boss. **The same defect class as quoting a 
 evidence was open on the page and the reader stopped early.**
 
 **`CP-P11C3-07` — COMPLETE — EVIDENCE VERIFIED.**
+
+
+---
+
+## 7. CORR3 CHALLENGE ADDENDUM — `2026-09-06` · after `CP-P11C3-09`
+
+### 7.1 New blockers
+
+| id | Blocker | Class |
+|---|---|---|
+| **`B-35`** | **The intake instrument is not certifiable, and CORR3 certified it.** Six confirmed defects: lexical tail; generation-discarding key; substring membership; tautological blind-spot table; fitted `TAIL`; vacuous failure control. **And the control set was truncated** — P11's own log names 12 lost artefacts, P11 tested 10, and `S06` (one of the two dropped) **fails**. `S06` carries **`NC-8`**: *"No `head`, `tail`, sampling, `limit`, or first-N command may bound a population"* — **`D3` is a tail bounding this denominator** | **`CRITICAL`** |
+| **`B-36`** | **`19_P07_CORE_RECON_HANDOFF_PACK.md` — inside the union, inside `ADDRESSED`, never opened.** Titled *"CORE ACCOUNTING RECONCILIATION HANDOFF PACK"*, terminal state *"READY FOR CORE ACCOUNTING RECONCILIATION"*, carrying a company-spanning tax-grouping scope ruling **routed to P11**. **P11 has not opened P07 at any SHA across three rounds** | **HIGH** |
+| **`B-37`** | **`P11_AUTO_RESUME_STATE.md` instructs the successor to use superseded heads.** At the frozen SHA it reads *"Frozen Peer Snapshot — **DO NOT RE-RESOLVE**"* over `P06 249b7c2 · P08 194efcb · P09 5441f8d` — the **CORR2** heads — and reports 40 errors against 41. **P11's own control artefact would rebuild CORR3's denominator on the wrong snapshot** | **HIGH** |
+| **`B-38`** | **`P09` declares its own package internally contradictory at the head P11 dispositioned as `CONSUMED`.** `P09_..._L1_L8_FINAL_BOUNDED_CORRECTION_NEXT_PROMPT` (inside `D1`, unopened): *"P09 carried a fact and its negation in the same package"*; `AAS+-VETO-04` **NOT DISCHARGED**; an unexecuted L1–L8 correction set. §5's own reversal trigger fires here and was not applied | **HIGH** |
+| **`B-39`** | **`HO-14` vs `P07-F-02`/`F-03` is an unregistered cross-process contradiction**, and the two statements may be true of **different generations** — `P07` says the tax-point substitution *"was removed in the v19 migration"*; `HO-14`'s 5,228 is a **`DB-SM` 16.0** count | **MEDIUM** |
+
+### 7.2 `B-28` — re-instated, at the right figure
+
+**`X1-5` accepted in substance.** `P01` routes the **judgement** to `P08` and the **decision** to Boss; it
+does **not** remove the position from P11's carriage — it hands it to P11 by name. CORR2 over-claimed;
+**CORR3 over-conceded, and both errors read the owner's framing instead of the owner's evidence.**
+
+**`B-28` re-instated as a carried candidate**, stated at the figure the evidence supports:
+**`฿27,490,865.80` across 1,411 receipted PO lines**, against clearing account `210300`
+*"Uninvoiced Receipts"* — **configured, reconcilable, effective on 171 of 504 (category, company) pairs,
+carrying `0` journal items** with a 144-account / 6-journal positive control. **`฿1,538,601.86` on 169
+service lines is carved out** as operator-typed with no receipt document. **Carrying is not promoting
+and is not deciding.**
+
+### 7.3 Position
+
+| | before challenge | **after** |
+|---|---|---|
+| Registered | 34 | **39** |
+| Open | 30 | **35** |
+| `CRITICAL` open | 4 | **5** (`B-21`, `B-26`, `B-27`, `B-33`, `B-35`) |
+| `B-31` | HIGH | **MEDIUM, re-worded** |
+| Errors | 41 | **43** |
+
+> **`B-27` is NOT discharged.** The instrument is published — necessary, not sufficient — and it is
+> defective in six named ways. **CORR3 did not repair intake integrity. It measured how far from
+> repaired it is, which is a smaller and more honest result.**

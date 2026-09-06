@@ -43,7 +43,12 @@ using filename as semantic truth and because **no single derivation is complete*
 | **`D2`** | **file CONTENT carries a markdown heading naming P11** (`^#{1,4} .*P11`) | *"this artefact addresses P11"* — semantic, not lexical | **48** |
 | **`D3`** | the **last 5 members of every (directory, series) group** whose basenames carry the peer id | *"this is the owner's current statement"* — currentness, independent of whether P11 is named | **155** |
 
-> ### **`UNION = 212`. That is the CORR3 intake denominator.**
+> ### **`UNION = 212`. That is the CORR3 intake denominator — and the instrument that produced it is NOT CERTIFIED.**
+>
+> **CORRECTED `2026-09-06` by the CORR3 challenge.** The figures reproduce exactly from the now-published
+> code (`LAYER2_P11_EVIDENCE/corr3_instrument/intake_derivations.py`, with `union_212.txt`), but the
+> instrument carries **six confirmed defects** recorded inline in that file and in §3.5. **The numbers
+> were right and the certification was not.**
 
 ### 2.1 The finding that justifies three derivations
 
@@ -93,7 +98,31 @@ overlap on barely a third.
 > chain's intermediate member can carry a withdrawal that the terminal statement does not repeat, so
 > **currentness must be read over the series tail, not the series end.** `P11-G-07`.
 
-### 3.4 Certification
+### 3.4 Certification — **WITHDRAWN**
+
+> ### `INSTRUMENT NOT CERTIFIED.`
+>
+> **The control set was truncated.** P11's own error log names **twelve** artefacts CORR2's instrument
+> lost — `D26`, `D27`, **`S06`**, `S22`, **`D24`** of P09, plus the others. **P11 listed twelve and
+> tested ten.** Re-run on the full twelve: **11 pass, `S06` fails — union hit 0.**
+>
+> **And `S06` carries the standard this instrument violates.** `S06_P09_NEGATIVE_CLAIM_CONTROL_STANDARD.md`,
+> issued *"for adoption across all SMEsPlus Deep Research processes"*, line 21:
+> **`NC-8` — "No `head`, `tail`, sampling, `limit`, or first-N command may bound a population."**
+> **`D3` is a `tail` and it bounds this denominator.** `P11-E-42`.
+
+### 3.5 The six confirmed instrument defects
+
+| # | Defect | Consequence |
+|---|---|---|
+| 1 | **`D3`'s "last 5" is LEXICAL** — `git ls-tree` has no timestamps | `CURRENT-CRITICAL` is unestablished for every un-numbered group. P01's `P`-series returns `S,V,V,V,W,W` — **the alphabet**. *The defect that got attempt 1 rejected survives into attempt 4: the partition changed, the order never did* |
+| 2 | **`PEER\|basename` discards generations** | `P09_CHECKPOINT_REGISTER.md` at **5** paths and `P09_AUTO_RESUME_STATE.md` at **5** collapse to **2 keys**; the directory is the only discriminator between the `09-05` and `09-06` generations |
+| 3 | **Raw substring membership** | `P04` ⊂ `STEP0401`; **26** State-02 migration artefacts entered under P04 alone |
+| 4 | **§3.2's blind-spot table is `UNION − \|Di\|`** | a tautology. **It cannot fail.** Titled *"executed, not declared"* |
+| 5 | **`TAIL = 5` is fitted** | `D26` sits at **−2**; `TAIL=2` would pass. The control returns **10/10 at TAIL 2,3,4,5** while `D3` moves **117 → 207** |
+| 6 | **The failure control is vacuous** | its subject is not in the scanned population — **the identical defect CORR2 condemned as `X2-R1`** |
+
+### 3.4-old Certification *(superseded, preserved)*
 
 **POSITIVE CONTROL — every artefact CORR2 was shown to have missed must return:**
 
@@ -117,12 +146,13 @@ programme template → **0**.
 | Status | Count | Definition |
 |---|---|---|
 | **ENUMERATED** | **212** | in the union denominator |
-| **ADDRESSED** | **77** (`D1 ∪ D2`) | names P11 in a filename token or a section heading |
+| **ADDRESSED** | ~~77~~ **84** (`D1 ∪ D2`) | **CORRECTED (`X2-C3`)** — §3.1's own cells give `55 + 48 − 19 = 84`. P11 published a figure contradicted three lines earlier in the same file |
 | **OPENED / READ by P11** | **21** | listed in `P11_CORR3_INTAKE_CASE_DISPOSITIONS.md` |
 | **CURRENT-CRITICAL** | **155** (`D3`) | owner's recent statements; **opened only where they bear on a claim P11 holds** |
 | **HANDOFF WRITTEN** | **≥ 14** | a peer states it hands something to P11 |
-| **HANDOFF DELIVERED / RECEIVED** | **0 evidenced** | **no peer artefact evidences receipt by P11, and P11 evidences none** |
-| **EXCLUDED, with reason** | **191** | enumerated, not opened — reason per §5 |
+| **HANDOFF DELIVERED / RECEIVED** | ~~0 evidenced~~ **FALSIFIED** | **`X1-3`/`X3-C1`/`X4-C6`.** `23_P10_PEER_INTAKE_REGISTER.md` records receipt of **four P11-origin items** with a verification column and a reasoned refusal (`RF-02`); `P06_AUTO_RESUME_STATE` L16-17 is a working receipt record. **And the artefact that falsifies this is in none of D1/D2/D3** |
+| **EXCLUDED, not opened** | **191** | `212 − 21`. **This is a partition by READ STATUS and may not be added to `ADDRESSED`** (`X2-C4`, self-flagged) |
+| **NOT ADDRESSED** | **128** | `212 − 84`. A **different** partition, by addressing. **§5's single exclusion reason is false for the 63 artefacts that are addressed AND unopened** |
 
 ### 4.1 `WRITTEN ≠ DELIVERED` — a standing gap, now measured
 
@@ -154,12 +184,17 @@ pattern declared for its class"* (`REV-E-23`).
 
 ## 6. Intake integrity verdict
 
-> ### `INTAKE INTEGRITY: REPAIRED FOR ENUMERATION AND CURRENTNESS · NOT ESTABLISHED FOR DELIVERY`
+> ### `INTAKE INTEGRITY: NOT ESTABLISHED.`
 >
-> **Repaired:** the denominator is reproducible from three declared derivations with a control set that
-> has demonstrably failed and been fixed; the CORR2 blind spot is **measured at 29 artefacts across all
-> ten peers**; every artefact CORR2 was shown to have missed is now inside the denominator.
+> **What holds:** the peer snapshot (10/10 file counts exact, verified by three experts); `D1`=55,
+> `D2`=48 and the union/intersection test **19/36/29**, reproduced independently by three experts; the
+> `D26` diagnosis and `P11-G-07`; and **the instrument is now published and re-executes exactly**.
 >
-> **Not established:** delivery/receipt (`P11-B-31`), and absence of anything (§5).
+> **What does not:** the certification (§3.4), `CURRENT-CRITICAL` for un-numbered groups, the
+> generation-discarding key, the `ADDRESSED` count, the exclusion authority, and the claim that *every
+> artefact CORR2 missed is now inside the denominator* — **`S06` is not**.
+>
+> **`B-27` is NOT discharged.** Publishing the instrument was necessary and is not sufficient; the
+> instrument it publishes is defective in six named ways.
 
 **`CP-P11C3-01`/`-02`/`-03` — COMPLETE — EVIDENCE VERIFIED.**

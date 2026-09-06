@@ -72,3 +72,13 @@ Peer-intake deltas 01–10 — **all preserved; superseded in coverage only by `
 | `CP-P11C3-09` | AAS-03 four challenges | **IN PROGRESS** | package frozen first |
 | `CP-P11C3-10` | AAS+ / PMO | **NOT STARTED** | — |
 | `CP-P11C3-FINAL` | commit / push / verify / checkpoint / auto-resume | **IN PROGRESS** | — |
+
+### CORR3 challenge outcome — `2026-09-06`
+
+| Checkpoint | Status | Evidence |
+|---|---|---|
+| `CP-P11C3-09` | **COMPLETE — `CONTRADICTED`** | 4 experts vs `9356557`; **52 findings, 48 accepted, 4 disputed in part**; freeze held |
+| `CP-P11C3-10` | **COMPLETE** | AAS+ `NOT CONVERGED — CORR4 REQUIRED`; PMO `RECOMMEND HOLD`, **0 of 8** |
+| `CP-P11C3-02`/`-03` | **SUPERSEDED — MATERIAL DELTA** | **certification WITHDRAWN**; instrument published and re-executes exactly, **but fails its own full 12-member control (`S06`)** and carries six named defects |
+| `CP-P11C3-05` | **SUPERSEDED — MATERIAL DELTA** | `F-08` withdrawn, `F-01` and `F-09` corrected; tally re-derived 7/1/1/1 |
+| `CP-P11C3-FINAL` | **COMPLETE** | `P11#07` |
