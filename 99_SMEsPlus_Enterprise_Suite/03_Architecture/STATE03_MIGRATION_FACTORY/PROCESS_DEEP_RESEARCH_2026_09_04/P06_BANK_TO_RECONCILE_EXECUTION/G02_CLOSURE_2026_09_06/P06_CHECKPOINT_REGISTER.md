@@ -21,7 +21,7 @@
 | — | prompt intake only | `774aa0b` | 82 | — |
 | **6** | **`…G02-P06-B2R-CORRECTION-INTEGRITY-VERIFICATION-004`** | **`249b7c2`** / `9c8e111` | **84** |
 | — | prompt intake only | `5212756` | 84 | — |
-| **7** | **`…G02-P06-B2R-INDEPENDENT-FROZEN-SURFACE-RECOVERY-005`** | **this commit** | **87** | **`G02-P06 CORRECTION DEFECT FOUND — AFFECTED SURFACE CORRECTED / RECHALLENGE REQUIRED`** |
+| **7** | **`…G02-P06-B2R-INDEPENDENT-FROZEN-SURFACE-RECOVERY-005`** | **`d1e66f5`** | **87** | **`G02-P06 CORRECTION DEFECT FOUND — AFFECTED SURFACE CORRECTED / RECHALLENGE REQUIRED`** |
 
 ## 2. Checkpoints, this round
 
@@ -108,6 +108,8 @@
 | `CP-P06R05` | Stage 2 — targeted repair of confirmed defects only | **COMPLETE.** 21 repairs / 14 files under `[REV-E-23]`; rounds 5 and 6 markers untouched (30/15 and 40/20) | 14 register files |
 | `CP-P06R06` | Stage 3 — re-verify under **widened** patterns; challenge changed surfaces | **COMPLETE.** All nine classes clean; two further defects self-caught (`VER-E-05`, `REC-E-01`) and repaired | register §6, matrix Part II |
 | `CP-P06R07` | Stage 4 — manifests, checkpoint, AUTO_RESUME | **COMPLETE** | this file |
+| `CP-P06R09` | Publication | **COMPLETE.** `d1e66f5` pushed; **authoritative remote SHA verified via `git ls-remote origin refs/heads/…`**, not the tracking ref; tree clean; 0 unpushed; 87 files on the remote; **0 background tasks** | — |
+| `CP-P06R10` | Post-publication record | **COMPLETE** | `P06_AUTO_RESUME_STATE.md`, this file |
 | `CP-P06R08` | `AASP-VETO-07` decision under §13 | **NOT DISCHARGED — two conditions fail outright** | register §7 |
 
 ## Prior claims re-tested

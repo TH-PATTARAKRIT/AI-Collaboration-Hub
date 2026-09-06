@@ -117,6 +117,8 @@ Added by `[SMEPLUS-26-09-06-G02-P06-B2R-CORRECTION-INTEGRITY-VERIFICATION-004]`.
 
 ## 8. Round-7 recovery artefacts and repaired files — SHA-256
 
+**Published at `d1e66f5`.** The `P06_AUTO_RESUME_STATE.md` and `P06_CHECKPOINT_REGISTER.md` rows below are **post-publication** hashes — both record the published SHA and therefore change after the commit that publishes them. Their pre-publication hashes are in `d1e66f5`. *A resume record cannot contain the hash of a state that includes itself.*
+
 **Frozen SHA audited:** `52127569863455acc06b82a845ef64e106115900`. Executed after the last content file.
 
 | File | R7 repairs | Lines | Bytes | SHA-256 |

@@ -142,7 +142,7 @@ grep -rnE "REV-E-22, 2026-09-06" *.md G02_CLOSURE_2026_09_06/*.md
 |---|---|
 | **PROMPT** | `[SMEPLUS-26-09-06-G02-P06-B2R-INDEPENDENT-FROZEN-SURFACE-RECOVERY-005]` · prompt commit `5212756` |
 | **FROZEN SHA AUDITED** | `52127569863455acc06b82a845ef64e106115900` |
-| **PUBLISHED COMMIT** | *(written by the post-publication record below)* |
+| **PUBLISHED COMMIT** | **`d1e66f5d98193299bdee6dabb338c325dae6c3f4`** — pushed to `origin`; authoritative remote SHA verified with `git ls-remote origin refs/heads/…` (the remote ref, not the tracking ref) and equal to local; working tree clean; 0 unpushed; **87 files** on the remote tree |
 | **PACKAGE** | **87 files** — 70 base · 12 `G02_CLOSURE_2026_09_06/` · 2 `G02_VERIFICATION_2026_09_06/` · 3 `G02_RECOVERY_2026_09_06/` |
 | **EXECUTED COUNTS — the standing authority** | `P06-B-*` **67** (contiguous `B-01`…`B-67`) · `P06-OQ-*` **75** distinct over an id space reaching `OQ-128`, **not contiguous** · `REV-E-*` **23** |
 | **TERMINAL STATE** | **`G02-P06 INDEPENDENT VERIFICATION NOT PROVABLE — EVIDENCE INTEGRITY HOLD`** |
