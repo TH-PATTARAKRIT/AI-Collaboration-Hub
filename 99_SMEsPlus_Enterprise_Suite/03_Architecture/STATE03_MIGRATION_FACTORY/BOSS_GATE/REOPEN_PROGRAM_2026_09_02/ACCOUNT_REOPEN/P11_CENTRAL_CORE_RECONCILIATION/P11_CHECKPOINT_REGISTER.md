@@ -55,3 +55,20 @@ Peer-intake deltas 01–10 — **all preserved; superseded in coverage only by `
 | `CP-P11C2-14` | PMO Phase-S review | **COMPLETE** | `RECOMMEND HOLD — CORR3 REQUIRED`; **`0 of 8`**; Domain Purity **PRESERVED**; Phase B not entered; AI EOS not activated |
 | `CP-P11C2-FINAL` | commit / push / remote verify / checkpoint / auto-resume | **COMPLETE** | `P11#06` |
 | `CP-P11C2-01` `-02` `-05` `-07` | *(re-graded by the challenge)* | **SUPERSEDED — MATERIAL DELTA** | population invalid (`P11-B-27`); `B-17` closure withdrawn; `S8` controls could not fire; 4 CQ dispositions changed |
+
+## 4. CORR3 — `[SMEPLUS-26-09-06-ACC-P11-CORR3-ACCOUNTING-INTAKE-INTEGRITY-001]` · PHASE S
+
+| Checkpoint | Scope | Status | Evidence |
+|---|---|---|---|
+| `CP-P11C3-00` | bootstrap; prompt read at `355a10d`; no superseding prompt | **COMPLETE — EVIDENCE VERIFIED** | baseline `6f7c0e4` |
+| `CP-P11C3-01` | CORR3 peer snapshot frozen | **COMPLETE — EVIDENCE VERIFIED** | **3 of 10 moved** — `P06` `1b018c1`, `P08` `00ccd66`, `P09` `92de8a1` |
+| `CP-P11C3-02` | intake instrument rebuilt — 3 derivations | **COMPLETE — EVIDENCE VERIFIED** | `D1` 55 · `D2` 48 · `D3` 155 · **union 212** |
+| `CP-P11C3-03` | instrument validation | **COMPLETE — EVIDENCE VERIFIED** | union/intersection test; blind spot **29 across all ten peers**; **4 instrument failures, all caught**; **10/10 positive, 0/2 failure controls** |
+| `CP-P11C3-04` | five mandatory intake cases | **COMPLETE — EVIDENCE VERIFIED** | 21 artefacts opened; **6 P11 claims corrected by intake**; 1 new `CRITICAL` received |
+| `CP-P11C3-05` | falsification pass | **COMPLETE — EVIDENCE VERIFIED** | **10 claims tested, 8 counterexamples, 5 withdrawn/re-scoped, 1 strengthened** |
+| `CP-P11C3-06` | re-convergence, 16 axes | **COMPLETE — EVIDENCE VERIFIED** | 3 candidate double-counts tested, 3 collapsed |
+| `CP-P11C3-07` | populations re-derived | **COMPLETE — EVIDENCE VERIFIED** | errors **41** · method **7** · blockers **34 / 30 open / 4 CRITICAL** · T0 **16 / 0 resolved / 1 re-scoped** · decisions **19 / 0 by P11** |
+| `CP-P11C3-08` | candidate I/P/O/H re-derived | **COMPLETE — EVIDENCE VERIFIED** | delivery status on every handoff row |
+| `CP-P11C3-09` | AAS-03 four challenges | **IN PROGRESS** | package frozen first |
+| `CP-P11C3-10` | AAS+ / PMO | **NOT STARTED** | — |
+| `CP-P11C3-FINAL` | commit / push / verify / checkpoint / auto-resume | **IN PROGRESS** | — |

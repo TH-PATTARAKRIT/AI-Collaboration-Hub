@@ -1020,3 +1020,46 @@ scope repair.
 > containing the exact defect `E6` describes. **Specifying a control is not running it** — the third
 > time this package has recorded that sentence, and the first time the control was written and skipped
 > **in the same commit**.
+
+---
+
+# CORR3 — `[SMEPLUS-26-09-06-ACC-P11-CORR3-ACCOUNTING-INTAKE-INTEGRITY-001]` · PHASE S
+
+## `P11-E-41` — I read a heading and a figure and stopped above the two paragraphs that classified them
+
+**CORR3, `2026-09-06`.** CORR2 registered `B-28` as *"the largest unrecognised accounting position in
+the frozen evidence"*, from `P01`'s section heading *"THE NUMBER P11 AND P08 BOTH NEED"* and the figure
+`฿29,029,467.66`.
+
+**Two paragraphs below the figure, the owner classifies it:**
+
+> *"**This is a timing position, not a missing transaction**, and under periodic valuation no
+> receipt-time entry is expected. It is a **completeness question at a reporting date**, and it is
+> **P08's judgement and the Boss's decision**, not P01's."*
+
+And decomposes it: **`฿1,538,601.86` on 169 service lines is an operator-typed quantity with no receipt
+document** and *"should not be read as received"* — so the headline figure was carried without the
+qualification that ~5 % of it is not a receipt at all. The owner also records the figure was itself
+corrected down from `฿30,080,689.78` (`ERR-P01-28`, two tax bases summed).
+
+**Class: the same shape as `P11-E-31` and `P11-E-39` — the evidence was open on the page and the reader
+stopped early.** Not a superseded artefact this time, and not a broken instrument: **a heading was read
+as a conclusion.** A heading is the author's signpost, not the author's finding.
+
+**The correction cost P11 its most dramatic CORR2 item, and it is the right correction.**
+
+## `P11-M-07` — attempting disproof first found more than the four-expert challenge did
+
+**CORR3's falsification pass (§11) tested 10 load-bearing claims and found 8 counterexamples,
+withdrawing or re-scoping 5.** Every one of `F-01` … `F-06` was disproved **by the owner's own current
+statement**, already inside the frozen snapshot, requiring **no new research** — only opening the
+artefact at a head P11 had already resolved.
+
+**For comparison:** the CORR2 four-expert challenge cost four independent panels and produced 47
+findings. **The CORR3 falsification pass cost one reading pass and disproved more of P11's own carried
+claims.**
+
+**The rule: attempt disproof before publication, against the owner's current statement, as a matter of
+course.** It is cheaper than being corrected and it finds more. Adversarial review remains necessary —
+it catches what P11 would never think to attack — but **it is not the cheapest control available, and
+P11 had been treating it as the first one.**

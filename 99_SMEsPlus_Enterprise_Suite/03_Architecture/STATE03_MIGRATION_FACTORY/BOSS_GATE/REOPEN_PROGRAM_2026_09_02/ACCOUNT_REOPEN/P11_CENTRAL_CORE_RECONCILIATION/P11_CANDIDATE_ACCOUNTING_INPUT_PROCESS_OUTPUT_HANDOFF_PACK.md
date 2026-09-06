@@ -109,3 +109,48 @@ See `P11_ACCOUNTING_ORPHAN_COLLISION_DOUBLE_COUNT_REGISTER.md`.
 `DESIGN FROZEN`.
 
 **`CP-P11C2-09` — COMPLETE — EVIDENCE VERIFIED.**
+
+---
+
+# CORR3 RE-DERIVATION — `2026-09-06` · `CP-P11C3-08`
+
+> Re-derived **after** validated intake and falsification. **Statuses remain `CANDIDATE`.**
+> **No Phase-B Producer↔Consumer contract validation is performed.**
+
+## F.1 Candidate inputs — corrected
+
+| # | Change |
+|---|---|
+| `CI-01` | *"complete and arithmetically sound"* → **arithmetically sound at tolerance ≥ 0.005; at 1e-7 the count is 3.** *"Complete"* **withdrawn by the owner** |
+| `CI-02` | settlement graph → **no longer offered as reconcilable.** `HO-13`: deletable outside the object layer |
+| `CI-03` | 447,384 → **all-states population; the posted population is 417,700** |
+| `CI-04` | origin pointers **96.1 % → 78.03 %** structured |
+| `CI-12` | deletion path → **installed in all three deployed databases**, two generations |
+| **`CI-13`** *(new)* | **`HO-13`** — the raw-SQL deletion order and the **entry-number sequence reset to 1** |
+| **`CI-14`** *(new)* | **`HO-14`** — the statutory register family selects on **two different period bases**, so **5,228** entries can appear in one register and not the other |
+| **`CI-15`** *(new)* | **`P02` `43_` §5** — three scope holds, six design candidates, and the invariant failing **at correction/reversal** |
+
+## F.2 Process semantic core — corrected
+
+| Element | Change |
+|---|---|
+| **Accounting timing** | **weakened** — the settlement-chronology finding is **withdrawn as containing no defect**. What survives: recognition collapsed into posting, and `฿29.0m` received with no recognition |
+| **Subledger → GL** | **downgraded** to `SUPPORTED INTERPRETATION — 18.0 SOURCE LINE`, under `AAS+-VETO-01` |
+| **Period / cut-off** | **re-scoped to the 18.0 root set.** A dated recurring return object exists on the 19.0 line |
+| **Correction / reversal** | **the invariant's named failure point** (`P11-C-15`), and `HO-13` bypasses correction entirely |
+| **Duplicate risk** | **new** — a sequence reset permits re-issue of previously-issued entry numbers |
+
+## F.3 Candidate handoffs — with delivery status, which is the point
+
+| To | Item | Exact ask | **Written** | **Delivered/received** |
+|---|---|---|---|---|
+| `P08` | `IC-01` `฿29,029,467.66` | judge the completeness question at a reporting date; `P01` routes it to you | ✔ | **unevidenced** |
+| `P06` + `P08` | `HO-13` | whether the deletion path has **executed** on any deployment — the `exercised` rung | ✔ | **unevidenced** |
+| `P07` | `HO-14` | the two period bases and the 5,228 divergent entries | ✔ (by `P08`) | **unevidenced** |
+| `P01`/`P03`/`P04` | `OC-06` | closed by `P02` `C-86`; confirm discharge | ✔ | **unevidenced** |
+| `P09` | `OC-08` | gross-not-net adopted by P11 | ✔ | **unevidenced** |
+| Boss | 19 decisions, `D-1` first | packaged, not written | ✔ | n/a |
+| Phase B | idempotency; `P08` q5 | routed, not designed | ✔ | n/a |
+
+> **Every row's delivery status is `unevidenced`. That is `P11-B-31`, and it is the honest state of the
+> programme's handoff layer — not a P11 omission and not any single peer's.**
