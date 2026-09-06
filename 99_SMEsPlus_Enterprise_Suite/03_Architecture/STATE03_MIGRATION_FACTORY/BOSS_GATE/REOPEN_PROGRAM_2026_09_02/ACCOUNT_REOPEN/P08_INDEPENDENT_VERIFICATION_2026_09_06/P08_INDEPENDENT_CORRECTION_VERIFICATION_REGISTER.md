@@ -190,3 +190,55 @@ The frozen package states, in **two** artefacts:
 | **`IVR-F-08` above** | a numeric claim, **still live and wrong**, in two artefacts |
 
 **The headline is CONTRADICTED**, and it is load-bearing: it is the sentence the package uses to argue that only its interpretation layer failed. **Its measurement layer failed too — less often, and at least once in a way that is still published.**
+
+---
+
+## 8. The period-absence repair — verified false inside the set it retreated to
+
+### `IVR-F-09` · **MATERIAL — this defeats `P08-CONTRA-68`**
+
+The audited round re-scoped *"there is no accounting-period object"* to *"…in the declared 18.0 root set"*. **Independently verified: the re-scoped form is false inside that set, and it is refuted twice.**
+
+| Evidence, read directly in the declared 18.0 tree | |
+|---|---|
+| A **persisted fiscal-year model** — `name`, `date_from`, `date_to`, `company_id`, **all `required=True`**, plus an `@api.constrains` forbidding overlapping years | present in the accountant module of the declared root set |
+| A **period resolver** returning `{date_from, date_to}` for any date | present in **core accounting** — i.e. **not** an enterprise-only object — and overridden in the accountant module to search the fiscal-year records first |
+| Company-level fiscal-year boundary fields, **`required=True`**, defaulted to 31 / 12 | present in core accounting |
+
+**And it is refuted on the deployment.** Re-derived across all three databases: **89 of 89 companies carry a populated fiscal-year boundary, every one of them `('31','12')`.** A period definition is supplied on every deployed company with no configuration act.
+
+**`58` §2 row 4 hands P11 *"a period to reconcile within — absent"*. That is wrong on the merits for the consumer, not merely out of scope.**
+
+### `IVR-F-10` · **MATERIAL — a previously-applied correction was regressed**
+
+**This is the most serious finding of the audit.** The package **already contained the correct wording, installed by an earlier independent review**, and the Phase-S round re-published the sentence that review had removed.
+
+| Artefact | Text at the frozen SHA |
+|---|---|
+| `01A` `RS-A-02` | *"**No period object carrying state, closure, or a link to an entry exists.** (Re-worded after independent review. **The draft published the unqualified sentence 'no accounting-period entity exists', which its own close model contradicts**: a named, dated, owned fiscal-year entity **does** exist…)"* |
+| `09` `PC-04` | *"**No period object carrying state, closure, or a link to an entry exists.** A named, dated, owned fiscal-year entity **does** exist in 13 of the 22 roots **including the target root** — it simply carries none of those things."* |
+| `29` | *"Re-worded after review — **the pattern never supported the broader sentence the draft published.**"* |
+| Layer-2 `E00` | the instrument was a **model-name census** on two period name forms — which cannot speak to a fiscal-year object under a different name |
+
+**The qualifier that made the claim true — *carrying state, closure, or a link to an entry* — was dropped.** Phase S then "corrected" the resulting falsehood by **narrowing the root set** instead of **restoring the qualifier**, which is why the narrowed form is still false.
+
+> **`IVR-M-04`. A correction can be regressed by a later round that never reads the register recording it.** The package now carries **both** forms of one claim: the qualified, true form in `01A`, `09` and `29`, and the unqualified, false form in `33`, `45`, `46`, `52`, `53`, `57` and `58`. **The false form is the one on the outbound artefacts.**
+
+## 9. Structural defects in the outbound pack
+
+### `IVR-F-11` · MATERIAL · A malformed outbound row to P11
+
+**Re-derived by cell count.** `54` §4's header declares **8** cells. Thirteen of fourteen rows carry 8. **`HO-02` — *"What P11 must reconcile, and what the ledger cannot supply for it"* — carries 7.** The Scope column is lost and every value after it shifts by one. It is an outbound row to P11.
+
+### `IVR-F-12` · MATERIAL · The PMO compliance statement is false for two of four tables
+
+`63` §1 certifies `54` as *"11 / 10 / 9 / 14 **with all ten mandated columns**"*. **Re-derived header cell counts:**
+
+| Table | Header cells | Mandated |
+|---|---|---|
+| CANDIDATE INPUT | **10** | 10 ✓ |
+| PROCESS | **9** | 10 ✗ |
+| CANDIDATE OUTPUT | **10** | 10 ✓ |
+| **CANDIDATE HANDOFF** | **8** | 10 ✗ |
+
+**The certification fails for two of four tables, including the outbound one — and the item counts it certifies (11/10/9/14) are themselves the counts `IVR-F-04` shows to be stale.**
