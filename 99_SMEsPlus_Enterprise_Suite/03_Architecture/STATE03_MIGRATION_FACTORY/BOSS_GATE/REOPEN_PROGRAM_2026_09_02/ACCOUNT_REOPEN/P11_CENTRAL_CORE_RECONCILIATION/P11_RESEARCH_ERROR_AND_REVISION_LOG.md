@@ -865,3 +865,83 @@ contiguous ids plus `D-3b`.
 > command each.** Neither was caught by reasoning, and neither would have been caught by re-reading.
 > **`P11-E-34` is also the fourth count in this package that was wrong in the direction that made the
 > package look tidier**, and the first found before publication.
+
+---
+
+# CORR2 — `[SMEPLUS-26-09-06-…-CORR2-PHASES-001]` · PHASE S
+
+## `P11-E-35` — three false zeros in one sweep, none caught by reading the output
+
+**CORR2, `2026-09-06`, `CP-P11C2-01`.** The `S8` peer-artefact scan failed **three** times before it
+worked, and every failure produced a **zero-shaped** result:
+
+| # | Assumption | Result | Caught by |
+|---|---|---|---|
+| 1 | pattern over the whole tree | far too wide — returned adjacent-package artefacts §14 forbids rediscovering | inspection |
+| 2 | `PATH SET = ACCOUNT_REOPEN/*<PEER>*/` | **P01, P02, P03, P06 empty** — their package directories are neither under `ACCOUNT_REOPEN` nor named for the peer | prior knowledge that ≥4 of those empties were false |
+| 3 | directory bound `/<DIR>` | **P09 `S23` missing** — its directory is `ACCOUNT_P09_…`, so the leading `/` never matched | the 5-item positive control |
+
+**Every one of the three failed in the direction of *less work to do*.** Not one was caught by reading
+the output — each was caught by a control naming a specific artefact **in advance**.
+
+**The lesson is not "use controls".** That rule was already published and was already being run. The
+lesson is that **a bound you assume is a bound you have not declared.** All three failures were wrong
+`PATH SET` guesses about directory *shape*, made without looking. The fix was one command:
+`git ls-tree | grep <known artefact>` to read the actual path before writing the pattern.
+
+## `P11-E-36` — P11 corrected a peer figure to a value the peer withdrew one generation later
+
+**CORR2, `2026-09-06`.** CORR1 recorded `P11-B-22`: P11 had carried *"nets to zero"*, and withdrew it
+in favour of *"the net is `+3,595,851.11`, a sign-inverted CREDIT"* from `P09` `S23`.
+
+**The chain is four deep: `S18` → `S23` → `D23` → `D25`.** P11 took generation **2**.
+
+| Generation | Says |
+|---|---|
+| 3 (`D23`) | both earlier figures **counted accounts; the claim is about entries**. `+3,595,851.11` is a **migration artifact**. 17,404 of 17,405 entries net **exactly 0.00** |
+| **4 (`D25`) — current** | that population was **silently pre-filtered to both-legged entries**: **17,465**, not 17,405; **61** non-zero, not 5. And the `DISPROVED` verdict is **WITHDRAWN → `CONFIRMED`** |
+
+> **Both P11 positions were wrong, and in opposite directions.** The original *"nets to zero"* was
+> substantially right and P11 **withdrew it**; the replacement was a **migration residue** P11
+> published as a depreciation effect.
+
+**The class is new and it is the one CORR1's rule did not cover.** CORR1 learned *a superseded artefact
+is not current*. **CORR2 learned that a correction is not current either.** Recency is not authority —
+**only the owner's last statement is**. A correction feels safe precisely because it is a correction,
+and that feeling is the defect. **`P11-G-04` v3 binds at claim level and must be executed to the end of
+the chain, not to the first correction found.**
+
+**And the substantive lesson outranks the procedural one (`P11-F-15`):** every headline this programme
+published on the question — P11's included — was a **scalar net** whose **gross distribution is ≈ 43×
+larger** (154,922,194.55 against +3,595,851.11), with **2,019,008.49 of cross-cost-centre displacement
+in each direction hidden inside entries that net exactly zero.** *A net of zero is not evidence that
+nothing happened.*
+
+## `P11-E-37` — I nearly published a peer's claim about **my own register** without checking it
+
+**CORR2, `2026-09-06`.** `P01` wrote: *"Five P11 findings that P11 has been carrying as separate items
+are not five items… P11 should carry this as one decision, not five blockers."* I drafted `P11-C-13`
+as *"P11 was carrying five blockers … P11 collapses them to one"* — **the only item in CORR2 that made
+the package smaller.**
+
+**Executed before publishing:** the blocker register carries **none** of the five; the event-to-GL
+matrix carries **one** related row (`UAE-12`); *"derived journal item"* returns **0** occurrences
+package-wide. **The collapse is `0 → 1`, not `5 → 1`.**
+
+**Two lessons, and the second is the uncomfortable one.**
+1. A peer's description of **P11's** register is a claim about P11, and P11 is the only party that can
+   execute it. This is `P10` `G02-R-15` from the other side — there, a peer described P11's objects
+   without resolving them to rows; here, a peer counted them.
+2. **The claim was attractive.** It was the single item that would have let CORR2 report a *smaller*
+   package after a round that otherwise only added. **The findings that most need executing are the
+   ones that flatter the executor** — the same shape as `P11-E-31`, where the superseded quote was the
+   one that produced the round's best headline.
+
+## `P11-M-06` — CORR2 honoured freeze-before-review, which CORR1 broke
+
+`P11-E-30` recorded that CORR1 edited its package while its own commissioned challenge was reading it,
+so the panel's coverage of the two closures that did not survive was *incomplete by construction*.
+
+**CORR2 froze at a named commit before commissioning the challenge and made no edit to the reviewed
+surface until the challenge returned.** Corrections arising from it are applied **after**, in a
+separate commit, and are marked as such. **The control is only meaningful if the package holds still.**

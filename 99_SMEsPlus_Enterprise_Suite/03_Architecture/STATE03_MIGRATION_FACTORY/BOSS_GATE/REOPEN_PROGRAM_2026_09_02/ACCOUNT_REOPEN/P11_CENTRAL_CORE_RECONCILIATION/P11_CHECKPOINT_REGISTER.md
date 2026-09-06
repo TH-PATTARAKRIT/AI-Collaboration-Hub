@@ -33,3 +33,24 @@ Log anchor `P11#04` = `7f701cd` · this run produces `P11#05`
 `CP-09` four-expert challenge (86 findings) · `CP-10` AAS+ · `CP-11` PMO · `CP-12` blocker
 reconciliation · `CP-FINAL` gate pack — **all COMPLETE at `7f701cd`, none re-run.**
 Peer-intake deltas 01–10 — **all preserved; superseded in coverage only by `CP-P11C08`.**
+
+## 3. CORR2 — `[SMEPLUS-26-09-06-…-CORR2-PHASES-001]` · PHASE S
+
+| Checkpoint | Scope | Status | Evidence |
+|---|---|---|---|
+| `CP-P11C2-00` | branch / head / session bootstrap | **COMPLETE — EVIDENCE VERIFIED** | baseline `78e5f58`; fast-forwarded to `86b3a13`; both controlling prompts read at their named commits; **no superseding prompt exists** |
+| `CP-P11C2-01` | peer heads resolved · Frozen Peer Snapshot | **COMPLETE — EVIDENCE VERIFIED** | **10 of 10 peers moved.** 47 candidates, 12 P11-addressed, 13 new. Positive control 5/5, negative 0 |
+| `CP-P11C2-02` | `B-17` scope repair | **COMPLETE — EVIDENCE VERIFIED** | `S3` split; cross-scope inference deleted; `S3-DEP` re-established on deployed evidence from two peers |
+| `CP-P11C2-03` | `D-3b` v5 with `E0`/`E6` | **COMPLETE — EVIDENCE VERIFIED** | seven elements; authorisation narrowed, not widened |
+| `CP-P11C2-04` | `P11-G-04` v3 claim-level supersession | **COMPLETE — EVIDENCE VERIFIED** | 5 supersession records; the P09 chain is **four deep**; 6 claims now prohibited from quotation |
+| `CP-P11C2-05` | `S8` bounded scan + positive control | **COMPLETE — EVIDENCE VERIFIED** | 3 instrument failures, all caught by controls (`P11-E-35`) |
+| `CP-P11C2-06` | populations re-derived | **COMPLETE — EVIDENCE VERIFIED** | errors **37**, method **6**, blockers **26/22 open/3 CRITICAL**, tolerance-zero **15/0**, decisions **18 floor/0 by P11** |
+| `CP-P11C2-07` | `CQ-P11-01…15` dispositioned | **COMPLETE — EVIDENCE VERIFIED** | 15 of 15, 0 ambiguous |
+| `CP-P11C2-08` | Accounting Truth Convergence Matrix | **COMPLETE — EVIDENCE VERIFIED** | 6 converged, 17 single-owner, 5 withheld classes |
+| `CP-P11C2-09` | Candidate I/P/O/Handoff Pack | **COMPLETE — EVIDENCE VERIFIED** | 12 inputs, 11 core elements, 10 handoffs, 5 candidate controls. Forbidden labels: 0 |
+| `CP-P11C2-10` | Domain Purity register | **COMPLETE — EVIDENCE VERIFIED** | **6 contamination events, 6 stopped, 0 pursued** |
+| `CP-P11C2-11` | AAS-03 fresh bounded challenge | **IN PROGRESS** | commissioned against the frozen SHA — **package frozen first** (`P11-M-06`) |
+| `CP-P11C2-12` | challenge deltas reconciled / re-challenged | **NOT STARTED** | depends on `CP-P11C2-11` |
+| `CP-P11C2-13` | AAS+ consolidation | **NOT STARTED** | — |
+| `CP-P11C2-14` | PMO Phase-S review | **NOT STARTED** | — |
+| `CP-P11C2-FINAL` | commit / push / remote verify / checkpoint / auto-resume | **IN PROGRESS** | — |
