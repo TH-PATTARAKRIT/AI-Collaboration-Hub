@@ -17,7 +17,7 @@
 | **P10 CONTROLLED INPUT** | `1fea562cb32e23bd44a1c6e6b4a2cf1081d25287` — **consumed, 12 of 109 files read, 97 deliberately unopened** |
 | **CONSTITUTION** | `48ee264fd74dcb0dee378789e56d028ad8bb6110` |
 | **PUBLISHED COMMIT** | **`64429258b624239a8d1a9da6c751c2ea535dd238`** — pushed to `origin`, remote SHA verified equal to local, working tree clean, 0 unpushed commits, **82 files** on the remote tree |
-| **TERMINAL STATE** | **`G02-P06 EVIDENCE INTEGRITY FAILURE — CORRECTION REQUIRED`** |
+| **TERMINAL STATE (round 5)** | `G02-P06 EVIDENCE INTEGRITY FAILURE — CORRECTION REQUIRED` |
 | **ACTIVE VETOES** | `AASP-VETO-01` … `05` upheld · **`AASP-VETO-06` (a handoff is not delivered by being written)** · **`AASP-VETO-07` (no self-certification of self-applied corrections)** |
 
 ## NEXT EXACT ACTION
@@ -57,6 +57,75 @@ For each: is the superseded wording quoted verbatim, is the correction accurate,
 | `P06-B-08` — FX rate source and missing-rate policy | **BOSS DECISION REQUIRED** |
 | `P06-B-09` — 12 physical bank accounts on 2 GL accounts | statutory evidence |
 | Independent verification of the 30 corrections | **not P06** |
+
+## BACKGROUND TASKS
+
+**0.** No background task, subagent, workflow or scheduled job was started by this round. Every command was foreground and synchronous.
+
+
+---
+
+# SUPERSEDED BY ROUND 6 — see below
+
+**Everything above describes round 5 and is preserved as issued. The current state is this section.**
+
+| Field | Value |
+|---|---|
+| **PROMPT** | `[SMEPLUS-26-09-06-G02-P06-B2R-CORRECTION-INTEGRITY-VERIFICATION-004]` · prompt commit `774aa0b` |
+| **BASELINE VERIFIED** | `da987861a5f5586a01396a701d5108215f894d80` (research commit under audit: `6442925`) |
+| **PUBLISHED COMMIT** | *(written by the post-publication record — see below)* |
+| **PACKAGE** | **84 files** — 70 base + 12 `G02_CLOSURE_2026_09_06/` + 2 `G02_VERIFICATION_2026_09_06/` |
+| **EXECUTED COUNTS** | `P06-B-*` **65** (contiguous `B-01`…`B-65`) · `P06-OQ-*` **75** distinct over an id space reaching `OQ-128`, **not contiguous** · `REV-E-*` **22** |
+| **TERMINAL STATE** | **`G02-P06 CORRECTION DEFECT FOUND — AFFECTED SURFACE CORRECTED / RECHALLENGE REQUIRED`** |
+| **ACTIVE VETOES** | `AASP-VETO-01` … `06` unchanged · **`AASP-VETO-07` NOT DISCHARGED**, now attached to a smaller, enumerated surface |
+
+## WHAT ROUND 6 ESTABLISHED
+
+1. **The 30-correction claim is TRUE and reproducible** — 30 deletions, 30 markers, 15 files, agreeing per file, from the committed tree.
+2. **The completeness claim was FALSE.** Of **53** current statements in the nine corrected claim classes, round 5 corrected **31** and reported all. **22 were missed.**
+3. **One miss was a veto condition** — `66_`:16 read *"P01 read — NOT MET, still unpublished"*; P01 has been published since 2026-09-04.
+4. **Two corrections were themselves defective** — `C-01` (a false qualifier in the payment-state model) and `C-25` (a corrected sentence whose own trailing clause kept the superseded term).
+5. **40 repairs across 20 files** applied under `[REV-E-22, 2026-09-06]`. Round 5's 30 markers in 15 files are **untouched**.
+
+## NEXT EXACT ACTION
+
+**An independent pass over the 40 `REV-E-22` repairs.** Greppable by one command:
+```
+grep -rnE "REV-E-22, 2026-09-06" *.md G02_CLOSURE_2026_09_06/*.md
+```
+**This must NOT be done by P06.** Two consecutive P06 passes scoped a correction population by the remembered phrase instead of the claim class, and **the second repeated the first's error before catching it**. A third pass by the same party is likely to repeat it a third time.
+
+**The check that would have caught everything, and which is now the standing rule:** after writing any correction, grep the package for the **claim class** — not the peer name, not the phrase — and audit every hit as *current statement* or *record of a past statement*.
+
+## DO NOT, WITHOUT A NEW BOSS PROMPT
+
+- **Do not consume any peer package.** All ten peer branches exist; **P01 has never been consumed** (`P06-OQ-124`), and no peer has been re-read since its own latest commit (`P06-OQ-128`). Publication status was corrected; **intake was not performed and is not authorised.**
+- **Do not reopen broad P06 research.** No business question was opened this round; two were found and routed.
+- **Do not decide `P06-B-08`.** `BOSS DECISION REQUIRED`, untouched.
+- **Do not treat `P06-OQ-98` as advanced.** `HOLD — DEPLOYMENT REGISTRY EVIDENCE REQUIRED`, untouched.
+- **Do not start PHASE SA / PHASE B / PHASE C, invoke AI EOS, design anything, or merge.**
+- **Do not restore, load, connect to or mutate any database, module, container or runtime.**
+
+## WHAT A SUCCESSOR MUST NOT ASSUME
+
+1. **That a correction register's completeness claim is true.** Two rounds running, it was not. **Reproduce the population; do not read the tally.**
+2. **That `AASP-VETO-07` is discharged.** It is not, and no expert recommended discharge.
+3. **That `HO-03`/`HO-04` reached P10.** `AASP-VETO-06` stands — **WRITTEN, NOT DELIVERED**.
+4. **That a peer being published means its dependency is closed.** Nine dependencies stayed OPEN through this round on purpose; **publication is not a ruling.**
+5. **That `iEVING` is the SMEsPlus target.** It is not. `P06-OQ-98`.
+6. **That "the tree" means anything without a number.** 2 of 16 enumerated distribution roots.
+
+## OPEN ITEMS OWNED ELSEWHERE — unchanged
+
+| Item | Owner |
+|---|---|
+| `X-08` / `D-08` / `PD-08` closure | **P10** |
+| Delivery with evidence of receipt for `HO-03`, `HO-04` | **Boss / P11** |
+| `P06-B-08` — FX rate source and missing-rate policy | **BOSS DECISION REQUIRED** |
+| `P06-B-09` — 12 physical bank accounts on 2 GL accounts | statutory evidence |
+| `P06-OQ-98` — is `om_data_remove` installed on the SMEsPlus target? | deployment registry |
+| Independent verification of the 40 `REV-E-22` repairs | **not P06** |
+| `D-01`, `D-02`, `D-15`, `F-02`, `F-06`, `F-15`, `F-17`, `B-46`, `B-54` | **P01 / P08 rulings** |
 
 ## BACKGROUND TASKS
 

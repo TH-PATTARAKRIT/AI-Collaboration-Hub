@@ -83,7 +83,7 @@ A signed-off bank reconciliation is **not a durable fact**. After close, and wit
 
 ## 5. Handoff to P08
 
-P08 is **not published** — `research/account-p08-*` is absent from origin. **PEER DEPENDENCY OPEN.**
+~~P08 is **not published** — `research/account-p08-*` is absent from origin.~~ → **P08 IS PUBLISHED** (`research/account-p08-record-to-report-2026-09-04-001`, 39 files, read in `53_`). **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** **PEER DEPENDENCY REMAINS OPEN** — publication is not closure.
 
 P06 supplies these as inputs and claims no authority over the close architecture:
 

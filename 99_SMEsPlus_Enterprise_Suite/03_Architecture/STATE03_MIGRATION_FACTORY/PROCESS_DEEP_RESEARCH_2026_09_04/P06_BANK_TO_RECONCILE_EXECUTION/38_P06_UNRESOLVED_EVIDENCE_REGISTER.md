@@ -83,11 +83,13 @@ Two consequences, and the second is uncomfortable:
 
 | ID | Needs | From |
 |---|---|---|
-| `F-02`, part of `B-04` | vendor payable ownership | **P01 — unpublished** |
-| `B-46`, `F-06`, `F-15`, `F-17` | the close architecture | **P08 — unpublished** |
+| `F-02`, part of `B-04` | vendor payable ownership | ~~**P01 — unpublished**~~ → **P01 PUBLISHED at `b820b29`, NOT CONSUMED** — `P06-OQ-124` **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** |
+| `B-46`, `F-06`, `F-15`, `F-17` | the close architecture | ~~**P08 — unpublished**~~ → **P08 PUBLISHED and read** (`53_`) **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** |
 | `P06-XC-01` | adjudication of the P02 verdict conflict | **P11** |
 | `B-53` | closure of the payment-object-less cash door | **P05** |
 | `OQ-93` | P10 routes close/FX dependencies to P04, which does not own them | **P11**, as a routing defect |
+| `OQ-124` | **P01 is published at `b820b29` and has never been consumed by P06.** Consuming it is a new peer intake, outside every bound this session has been given | P06, on Boss authorisation |
+| `OQ-128` | **All ten peer branches `research/account-p01…p10` exist on `origin`.** P06 has consumed P02, P03, P04, P05, P07, P08, P09, P10 — **P01 has never been consumed**, and none has been re-read since its own latest commit. **Publication status was corrected this round; intake was not performed and is not authorised** | P06, on Boss authorisation |
 
 ---
 

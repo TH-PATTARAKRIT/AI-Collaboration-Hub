@@ -13,7 +13,7 @@
 | Condition | Status now |
 |---|---|
 | (b′) five single-pass negatives re-searched | **NOT MET** — `is_internal_transfer`, `destination_journal_id`, `paired_internal_transfer`, `provider_reference` uniqueness, `chargeback\|dispute` still have one pass each |
-| (c′) P01 read | **NOT MET** — still unpublished |
+| (c′) P01 read | **NOT MET.** ~~still unpublished~~ → **P01 IS PUBLISHED at `b820b29` and CAN be read; it is UNCONSUMED** — `P06-OQ-124`. **The condition is unmet by scope, not by availability, and that is a materially different reason** **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** |
 | (d′) filtered-build boundary | **RESOLVED, and the premise was wrong** — the tree was not filtered, it was **relocated**; 904 archived packs have now been searched (REV-E-16) |
 
 **RECHECK: `VETO REMAINS`, materially narrowed.**

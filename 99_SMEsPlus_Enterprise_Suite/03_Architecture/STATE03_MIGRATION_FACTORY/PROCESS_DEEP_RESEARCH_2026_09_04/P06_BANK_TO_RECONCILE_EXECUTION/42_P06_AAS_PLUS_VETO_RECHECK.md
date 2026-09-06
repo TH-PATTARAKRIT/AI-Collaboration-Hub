@@ -19,10 +19,10 @@
 |---|---|---|
 | **(a)** `P06-B-27` | **MET** | Closed on source evidence. The delegated set is five fields; `vat` and `company_registry` are not among them; no constraint forces branch VAT equality. `22_`, `23_`. |
 | **(b)** second search over **every** Class-A negative | **PARTIALLY MET** | Run on the **two principal** negatives (identity, fees) with deliberately disjoint vocabularies; both survived. Also run on the localisation surface (`OQ-90`), which survived. **But not on every Class-A negative** — `is_internal_transfer`, `destination_journal_id`, `paired_internal_transfer`, `chargeback\|dispute` and the `provider_reference` uniqueness search have had **one** pass each. |
-| **(c)** P01, P02, P05 read | **PARTIALLY MET** | **P02 and P05 read** — plus P03, P04, P07, P09, P10 and P11. **P01 is unpublished and cannot be read.** |
+| **(c)** P01, P02, P05 read | **PARTIALLY MET** | **P02 and P05 read** — plus P03, P04, P07, P09, P10 and P11. ~~**P01 is unpublished and cannot be read.**~~ → **P01 IS PUBLISHED at `b820b29` and CAN be read; it has NOT been consumed** — `P06-OQ-124`. **Condition (c) is therefore no longer blocked by availability; it is unmet by choice of scope.** **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** |
 
 **And a condition that did not exist when the veto was written now applies:**
-`P06-B-55` — the evidence tree's **loadable set** is 791 addon directories of a full v18 population of 1752; the remainder is **relocated to `addons_archive`, not absent** **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]** (`REV-E-16`, `56_`). Every tree-scope negative inherits the loadable-set boundary. *Superseded wording: "a filtered distribution".* **This materially affects condition (b)**: a second search over a filtered tree is a second search over the same filter.
+`P06-B-55` — the evidence tree's **loadable set** is 791 addon directories of a full v18 population of 1752; the remainder is **relocated to `addons_archive`, not absent** **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]** (`REV-E-16`, `56_`). Every tree-scope negative inherits the loadable-set boundary. *Superseded wording: "a filtered distribution".* **This materially affects condition (b)**: a second search over the same **loadable set** is a second search over the same boundary. **[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]**
 
 **RECHECK VERDICT: AASP-VETO-01 — VETO PARTIALLY RESOLVED.**
 
@@ -64,11 +64,11 @@ Three grounds, none of which existed in the original wording:
 
 **AASP-VETO-03 — VETO on any P11 reconciliation that treats P06's tree-scope negatives as Odoo 18 negatives.**
 
-`P06-B-55` establishes that the evidence tree is a filtered distribution. P11's unified registers will consume P06's negatives alongside peers'. If a peer researched against a **complete** distribution and P06 against a **filtered** one, a unified "not found in v18" row would be built from two incompatible denominators.
+`P06-B-55` establishes that the evidence base is a **RELOCATED** distribution (791 loadable of a full v18 population of 1752; 961 dirs / 904 l10n in `addons_archive`, excluded by the project's own `odoo.conf` and since searched). **[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]** P11's unified registers will consume P06's negatives alongside peers'. If a peer researched against a **complete** distribution and P06 against the **loadable set only**, a unified "not found in v18" row would be built from two incompatible denominators.
 
 **This is the `count unit vs population` defect at programme scale**, and P06 raises it against its own contribution rather than waiting for it to surface at reconciliation.
 
-**Condition to lift:** P11 records the evidence-base boundary alongside each P06 negative, or the peers confirm they used the same filtered build.
+**Condition to lift:** P11 records the evidence-base boundary alongside each P06 negative, or the peers confirm they used the same **loadable set**. **[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]**
 
 ---
 

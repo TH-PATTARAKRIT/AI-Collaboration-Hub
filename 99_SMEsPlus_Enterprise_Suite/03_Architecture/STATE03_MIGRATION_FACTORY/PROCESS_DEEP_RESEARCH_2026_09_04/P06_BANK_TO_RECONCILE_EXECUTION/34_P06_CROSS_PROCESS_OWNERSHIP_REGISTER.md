@@ -22,33 +22,33 @@ At prior close, every one of P06's twenty cross-boundary assignments was a **pro
 
 ## 2. The register — twenty facts, reconciled
 
-Legend — **Disposition:** `SETTLED` (peer agrees or P06 defers) · `CONTESTED` (two claims stand) · `UNOWNED` (no process claims it) · `OPEN` (counterparty unpublished) · `HOLD`.
+Legend — **Disposition:** `SETTLED` (peer agrees or P06 defers) · `CONTESTED` (two claims stand) · `UNOWNED` (no process claims it) · `OPEN` (~~counterparty unpublished~~ → **no counterparty ruling exists**; every peer branch P01–P10 is published **[REV-E-22, 2026-09-06]**) · `HOLD`.
 
 | # | Fact | P06's prior proposal | Peer position | Disposition |
 |---|---|---|---|---|
 | F-01 | Customer receivable open item + residual | P02 authors | P02 confirms; adds that a line carries **two** residuals that can diverge under multi-currency | **SETTLED**, with P02's mechanism absorbed |
-| F-02 | Vendor payable open item + residual | P01 authors | **P01 unpublished** | **OPEN** — `P06-B-54` |
+| F-02 | Vendor payable open item + residual | P01 authors | ~~**P01 unpublished**~~ → **P01 IS PUBLISHED** at `b820b29` (`research/account-p01-procure-to-pay-2026-09-04-001`), verified by `git ls-remote --heads origin`; **NOT CONSUMED by P06** — `P06-OQ-124` **[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]** | **OPEN** — `P06-B-54` |
 | F-03 | Employee reimbursement obligation | CONTESTED | **P11 `UBE-33` assigns "Employee reimbursed" to P06**; P05 concedes it *"creates and posts payments"* it does not own (`EX-03`, HIGH) | **SETTLED to P06** — and P06 inherits a door P05 operates |
 | F-04 | **Payment intent** | CONTESTED, four entry points, no author | P05 confirms a fifth path with **no payment object at all** (`SR-04`) | **CONTESTED — and worse than stated**; see `P06-B-53` |
 | F-05 | Payment state | P06 authors (with defect) | P05 `SR-01` independently: *"Settlement status on this branch is an **assumption, not an observation**"* | **SETTLED to P06**, defect corroborated |
-| F-06 | Accounting posting state | CONTESTED | P08 unpublished | **OPEN** |
+| F-06 | Accounting posting state | CONTESTED | ~~P08 unpublished~~ → **P08 PUBLISHED and read** (`53_`); the *decision* is still open **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** | **OPEN** |
 | F-07 | **Bank confirmation state** | UNOWNED — no field exists | P11 Delta 01 adopts verbatim: *"bank confirmation state, which has **no field in the system at all**"*; **P02 `P02-F-43` asserts the opposite** | **CONTESTED — `P06-XC-01`**, routed to P11 |
 | F-08 | Reconciliation state | P06 authors | P11 and P02 both scope the matching record **COMPANY**, mutate **never** | **SETTLED to P06** |
 | F-09 | Invoice payment status | CONTESTED, two writers | P02 supplies the full 7-value enumeration and notes **two values are never assigned by the computation**; P07 shows a statutory consequence (`W-C-02`) | **SETTLED as CONTESTED** — two writers confirmed by two peers |
 | F-10 | FX rate applied at settlement | CONTESTED | P11 `DEP-14`: **BOSS DECISION REQUIRED, packaged not decided**; P02 adds a second silent fallback arm | **HOLD — BOSS DECISION**, evidence enlarged |
 | F-11 | Realised FX gain/loss amount and account | P-CORE owns, P06 triggers | **P11 `UBE-36`: "the ledger owns this — it is emitted, not requested"** | **SETTLED — P06 does not contest** |
-| F-12 | Bank charges and interest | **UNOWNED** | **P10 `X-08` asks P06 directly**; no peer claims it | **UNOWNED — and P06 now answers P10** (see `35_` §6). **The answer is delivered; the dependency is NOT closed — P10 carries it `OPEN — PEER EVIDENCE` at `1fea562` **[REV-E-18, 2026-09-06]**** |
+| F-12 | Bank charges and interest | **UNOWNED** | **P10 `X-08` asks P06 directly**; no peer claims it | **UNOWNED — and P06 now answers P10** (see `35_` §6). **The answer is delivered; the dependency is NOT closed — P10 carries it `OPEN — PEER EVIDENCE` at `1fea562` [REV-E-18, 2026-09-06]** |
 | F-13 | Withholding tax deducted at payment | HOLD, statutory | **P07 names P06 owner of the payment fact and marks it BLOCKING** (`X-07`, `X-08`, `X-09`); P11 `UBE-39` assigns the *tax* fact to P07 | **SETTLED: P06 owns the payment fact, P07 owns the tax fact.** Statutory HOLD mirrored, not resolved |
 | F-14 | Early-payment discount | P02 authors terms, P06 applies | P02 silent on the split | **SETTLED by default**, unopposed |
-| F-15 | Cash/bank GL balance | P-CORE | P08 unpublished | **OPEN** |
+| F-15 | Cash/bank GL balance | P-CORE | ~~P08 unpublished~~ → **P08 PUBLISHED and read** (`53_`); P08 disclaims it back to P06 **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** | **OPEN** |
 | F-16 | Which physical bank account a GL balance belongs to | **UNOWNED** | **P11 intakes it as a new scope-mismatch row**: *"Reconciliation must be journal-scoped, not account-scoped"* | **SETTLED — accepted into P11's matrix** |
-| F-17 | Period lock / close status | CONTESTED | **P04 `P04-B-43`** supplies the mechanism: hard lock is the **maximum over the whole parent chain**, elevated privilege, **including archived companies**, irreversible. P11 `PC-03`/`PC-04` add that soft locks move backward freely | **SETTLED to P08 — evidence enlarged by P04**, `P08` unpublished so the *decision* is OPEN |
+| F-17 | Period lock / close status | CONTESTED | **P04 `P04-B-43`** supplies the mechanism: hard lock is the **maximum over the whole parent chain**, elevated privilege, **including archived companies**, irreversible. P11 `PC-03`/`PC-04` add that soft locks move backward freely | **SETTLED to P08 — evidence enlarged by P04**; ~~`P08` unpublished~~ → **P08 PUBLISHED and read**, so the *decision* is open for want of a ruling, not for want of a package **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** |
 | F-18 | Bank statement line identity | CONTESTED | **P11 adopts P06's mechanism as the one it lacked**; escalates to `P11-B-02`, *"the root"* | **SETTLED to P06 — and escalated above P06** |
 | F-19 | Intercompany settlement | UNOWNED for payments | No peer claims it | **UNOWNED** — confirmed by silence across seven packages |
 | F-20 | Advance / deposit before an obligation exists | CONTESTED | **P02 `P02-F-33`**: an unset down-payment property recognises the deposit as **immediate revenue**, and *"no chart template in the reference tree supplies it"*. **P05**: *"no advance asset account exists on this path"* | **SETTLED as CONTESTED — and materially worse**, two peers independently found the default is wrong |
 
 **Reconciled: 20 of 20.** Prior: 8 CONTESTED, 4 UNOWNED, 1 HOLD, 7 assigned — **all as proposals**.
-Now: **10 SETTLED · 4 CONTESTED · 3 UNOWNED · 3 OPEN (P01/P08 unpublished) · 1 HOLD.**
+Now: **10 SETTLED · 4 CONTESTED · 3 UNOWNED · 3 OPEN · 1 HOLD.** *The 3 OPEN rows were attributed to "P01/P08 unpublished"; **both are published** — P08 read (`53_`), P01 unconsumed (`P06-OQ-124`). The rows stay OPEN because no ruling exists, not because no package exists.* **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]**
 
 ---
 

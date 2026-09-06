@@ -74,7 +74,7 @@ A blocker is **CRITICAL** if it satisfies **at least one**:
 | B-44 | **Generation gap — NARROWED** **[REV-E-21, 2026-09-06 — correction recorded in `62_` but never edited into this register]**. Only *deployment* evidence is Odoo 19 and the research target is v18, **but v19 Enterprise source trees DO exist on this workstation and six core findings were re-tested against them and are INVARIANT** (`51_`, `REV-E-10`). *Superseded wording implied no v19 source was available.* | evidence risk, not a system defect | FACT VERIFIED |
 | B-45 | Lock dates inherit up the hierarchy, strictest wins, elevated privilege, including archived companies; members may be legally distinct | needs a hierarchy | FACT VERIFIED (P04 + P06) |
 | B-52 | Custom write-off producer grants full CRUD to any Invoicing user, no ceiling | bounded by amount | FACT VERIFIED |
-| B-55 | Evidence base is a filtered distribution; every tree-scope negative inherits that boundary | evidence risk | FACT VERIFIED |
+| B-55 | ~~Evidence base is a filtered distribution~~ → the evidence base is a **RELOCATED** distribution (791 loadable of a full v18 population of 1752; 961 dirs / 904 l10n in `addons_archive`, excluded by the project's own `odoo.conf` and since searched); every tree-scope negative inherits the **loadable-set** boundary. **[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]** *Further restated at G02 close: the evidence base is **2 of 16** enumerated distribution roots (`40_` Appendix B).* | evidence risk | FACT VERIFIED |
 
 ---
 
@@ -86,7 +86,7 @@ A blocker is **CRITICAL** if it satisfies **at least one**:
 
 ## 6. LOW — 3
 
-`B-39` module version-stamped v18 with an unchanged v14 body · `B-51` approval framework's execution path sets the flag that disables its own gate *(PLAUSIBLE, no executed path traced)* · `B-53` eighth settlement door *(inherited from P05; LOW **to P06** because the owning process is P05 — its severity in P05's register is P05's to set)*
+`B-39` module version-stamped v18 with an unchanged v14 body · `B-51` approval framework's execution path sets the flag that disables its own gate *(PLAUSIBLE, no executed path traced)* · `B-53` ~~eighth settlement door~~ → settlement path already counted by P05 as its path 5 *("eighth door" withdrawn, `REV-E-12`**[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]**; inherited from P05; LOW **to P06** because the owning process is P05 — its severity in P05's register is P05's to set)*
 
 ---
 
@@ -121,7 +121,7 @@ Arithmetic checked: 6 + 17 + 20 + 3 + 7 + 2 = **55**. Matches the executed denom
 
 > **SUPPLEMENTAL NOTE.** Three blockers were raised after this register was built — `B-56` (MEDIUM), `B-57` (**HIGH**), `B-58` (INFORMATIONAL) — and are severity-assigned in `40_` Appendix A. **The distribution above is the 55-blocker baseline population and is deliberately not retro-fitted**, so the arithmetic remains checkable against the denominator it declares.
 
-> **SUPPLEMENTAL NOTE 2 — G02 round, 2026-09-06.** Four further blockers were raised and are severity-assigned in `40_` **Appendix B**: `B-59` (**HIGH**), `B-60` (**superseded by `B-61`**), **`B-61` (CRITICAL — `C5`, `C6`)** and `B-62` (**HIGH**). **`B-61` is the seventh CRITICAL and the first to be established from deployed configuration rather than from source.** The 55-blocker distribution above remains the baseline and is still not retro-fitted; the executed population at G02 close is **62**.
+> **SUPPLEMENTAL NOTE 2 — G02 round, 2026-09-06.** **Five** further blockers were raised and are severity-assigned in `40_` **Appendix B**: `B-59` (**HIGH**), `B-60` (**superseded by `B-61`**), **`B-61` (CRITICAL — `C5`, `C6`)**, `B-62` (**HIGH**) and `B-63` (INFORMATIONAL, **CLOSED on creation**). *[REV-E-22, 2026-09-06] The round-5 wording said "Four" and omitted `B-63`.* **`B-61` is the seventh CRITICAL and the first to be established from deployed configuration rather than from source.** The 55-blocker distribution above remains the baseline and is still not retro-fitted; the executed population at G02 close is **63**, and **65** after the independent correction-integrity verification round added `B-64` and `B-65` (both **HIGH**, both about the package rather than the system) — *was stated as 62 by the round-5 repair, which omitted `B-63`; re-executed `grep -oh 'P06-B-[0-9]\+' *.md G02_CLOSURE_2026_09_06/*.md | sort -u | wc -l` → **63**, ids `B-01` … `B-63`, contiguous.* **[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]**
 
 **Of the 55, 7 are CLOSED** (`B-03`, `B-27`, `B-28`, `B-40`, `B-50`, `B-51`, `B-52`) and are retained in the population with their severity, because closure of a *finding* does not remove the *risk* it documents. `B-41` becomes the eighth closure on publication of this file.
 

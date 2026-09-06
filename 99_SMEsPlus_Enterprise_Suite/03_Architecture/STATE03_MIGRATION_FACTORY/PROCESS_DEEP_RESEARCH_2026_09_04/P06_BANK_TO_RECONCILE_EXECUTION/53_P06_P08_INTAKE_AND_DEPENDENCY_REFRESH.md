@@ -13,7 +13,7 @@
 | Process | Round 3 | **Now** |
 |---|---|---|
 | **P08 Record-to-Report** | **NOT PUBLISHED** | **`research/account-p08-record-to-report-2026-09-04-001` — PUBLISHED, 39 files** |
-| P01 Procure-to-Pay | NOT PUBLISHED | **still NOT PUBLISHED** |
+| P01 Procure-to-Pay | NOT PUBLISHED | ~~**still NOT PUBLISHED**~~ → **P01 IS PUBLISHED** at `b820b29` (`research/account-p01-procure-to-pay-2026-09-04-001`), verified by `git ls-remote --heads origin`; **NOT CONSUMED by P06** — `P06-OQ-124` **[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]** |
 | P02, P03, P04, P05, P07, P09, P10, P11 | published | published |
 
 **8 of 9 peers now read. Only P01 remains.**
@@ -108,7 +108,7 @@ P08's supporting finding, `REC-05`: *"**A match carries no event date.** Its as-
 
 | ID | Depends on | Status |
 |---|---|---|
-| `D-01` | **P01** | **PEER DEPENDENCY OPEN** — still unpublished |
+| `D-01` | **P01** | **PEER DEPENDENCY OPEN.** ~~still unpublished~~ → **PUBLISHED at `b820b29`, NOT CONSUMED** — `P06-OQ-124` **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** |
 | `D-02` | **P08** | **CLOSED for `F-06` and `F-17`; OPEN for `F-15` and `B-46`** |
 | `D-03` | P02 | **RECONCILED** — `52_`, routed to P11 as `P11-C-08` |
 | `D-05` | P11 | open — 31 event→GL rows still unreconciled at P11 |

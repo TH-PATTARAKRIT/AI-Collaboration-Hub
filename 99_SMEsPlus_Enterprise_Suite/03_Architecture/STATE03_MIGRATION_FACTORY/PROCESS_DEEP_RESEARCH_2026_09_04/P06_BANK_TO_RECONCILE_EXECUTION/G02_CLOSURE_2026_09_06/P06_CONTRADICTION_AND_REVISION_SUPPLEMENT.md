@@ -74,7 +74,7 @@ FILES NAMING P06: 0 of 109
 **How:** a `find /Volumes/iMacSys -maxdepth 5 -type d -name "odoo-19.0+e*"` run to re-establish source paths after the session resumed. **Not a new sweep, and not an intentional search for it.**
 
 **Why it matters, and why it matters less than it looks:**
-- `P06-B-55` states the evidence base is a filtered distribution and every tree-scope negative inherits that boundary. **That blocker was correct and this is a third confirmation of it.**
+- `P06-B-55` states that every tree-scope negative inherits the evidence-base boundary. **That blocker was correct and this is a third confirmation of it.** *(This line originally restated the blocker as "a filtered distribution" — the very wording the same round was correcting to **relocation**. Corrected **[REV-E-22, 2026-09-06]**.)*
 - **`REV-E-10` was the first occurrence** of this exact defect: round 3 declared a v19 search unnecessary and a complete v19 tree existed. **This is the second occurrence, after the lesson was written down.**
 - **All six expressions at issue this round were re-executed against it and are identical** (`P06_P10_MATERIAL_DELTA_REGISTER.md` §4). No finding changes.
 
@@ -132,7 +132,7 @@ FILES NAMING P06: 0 of 109
 | `REV-E-13` — copy count 4 → 17 | none — *"present in all four custom roots"* remains **true as written**; the correction was an enlargement to a different population, recorded in `58_`:87 | **NOT A FAILURE** |
 | `REV-E-14` — sequence rewind attributed to `ir.sequence` | `20_`:234 `CMD-F-17` | **NOT APPLIED** |
 | `REV-E-15` — bytecode misread | none found; `11_` `T-14` and `70_`:100 both carry the withdrawal | **APPLIED** |
-| `REV-E-16` — *"filtered distribution"* is a relocation | `12_`:150, `18_`:183, `38_`:63, `42_`:25 — **four statements** | **NOT APPLIED** |
+| `REV-E-16` — *"filtered distribution"* is a relocation | `12_`:150, `18_`:183, `38_`:63, `42_`:25 — **four statements** *(**`REV-E-22`: the true population is **eleven**. Also `12_`:172, `42_`:67, `42_`:71 and `42_`:25's own trailing clause, `43_`:107, `46_`:77, `47_`:29, `47_`:69 — including `46_`:77, the **severity register's own `B-55` row**, still marked `FACT VERIFIED` on the superseded wording)* | **NOT APPLIED** |
 
 **Six of eight. Thirteen individual statements.** And `62_`'s consolidated table reports all eight as dispositioned.
 
@@ -159,7 +159,7 @@ FILES NAMING P06: 0 of 109
 
 **And `18_P06_CORE_RECON_HANDOFF_PACK.md` is the most consequential:** it is the artefact **built to be consumed by P11**, and it carried **five** superseded statements (`B-6`, `B-8`, `B-9`, and the `is_matched` and `X-08` claims). A downstream consumer reading the handoff pack would have taken all five as current.
 
-**A third status class was found while applying these:** `35_`:139 and `46_`:95 assert **P01 is unpublished**. Executed — `git ls-remote --heads origin` — **`research/account-p01-procure-to-pay-2026-09-04-001` exists at `b820b29`. P01 is published, and P06 has not consumed it.** Corrected in place. **Consuming P01 is a new peer intake and is outside this round's bound — recorded as `P06-OQ-124`, routed, not executed.**
+**A third status class was found while applying these:** `35_`:139 and `46_`:95 assert **P01 is unpublished**. *(**`REV-E-22`, 2026-09-06: that was 2 of a true population of 13.** The independent verification round searched the claim class — `"not published|NOT PUBLISHED|unpublished"` — rather than the peer name, and found **19 current statements across 16 files** asserting P01 and/or P08 unpublished. Eight had been corrected; **eleven had not**, including a **veto condition** at `66_`:16. All are corrected at `REV-E-22`. See `P06_CORRECTION_INTEGRITY_VERIFICATION_REGISTER.md`.)* Executed — `git ls-remote --heads origin` — **`research/account-p01-procure-to-pay-2026-09-04-001` exists at `b820b29`. P01 is published, and P06 has not consumed it.** Corrected in place. **Consuming P01 is a new peer intake and is outside this round's bound — recorded as `P06-OQ-124`, routed, not executed.**
 
 **Root cause, stated once.** Every round of this package published its corrections as a **new numbered file** and left the falsified registers untouched. The disposition tables in `39_` and `62_` then recorded those corrections as complete — which is true of the *correction record* and false of the *package*. **The control that would have caught this is trivial and was never run: grep the package for the superseded wording after writing the correction.** It was run this round only because `REV-E-20` surfaced by accident.
 

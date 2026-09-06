@@ -9,8 +9,8 @@
 
 | ID | Depends on | What P06 needs | Status | Blocks |
 |---|---|---|---|---|
-| `D-01` | **P01** | Vendor payable ownership; payment-intent authorship on the buy side | **PEER DEPENDENCY OPEN — branch not published** | `F-02`, part of `B-04` |
-| `D-02` | **P08** | The period-close architecture; whether a posting constraint may alter a recognition period | **PEER DEPENDENCY OPEN — branch not published** | `B-46`, `F-06`, `F-15`, `F-17` |
+| `D-01` | **P01** | Vendor payable ownership; payment-intent authorship on the buy side | **PEER DEPENDENCY OPEN.** ~~branch not published~~ → **P01 IS PUBLISHED** at `b820b29` (`research/account-p01-procure-to-pay-2026-09-04-001`), verified by `git ls-remote --heads origin`; **NOT CONSUMED by P06** — `P06-OQ-124` **[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]** | `F-02`, part of `B-04` |
+| `D-02` | **P08** | The period-close architecture; whether a posting constraint may alter a recognition period | **PEER DEPENDENCY OPEN.** ~~branch not published~~ → **P08 PUBLISHED and read** (`53_`) **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** | `B-46`, `F-06`, `F-15`, `F-17` |
 | `D-03` | **P02** | Resolution of the state-independence verdict | **CONTESTED — `P06-XC-01` routed to P11** | headline (i) |
 | `D-04` | **P07** | Nothing. P07 mirrors P06's statutory HOLD rather than resolving it | **SETTLED — symmetric HOLD** | — |
 | `D-05` | **P11** | Reconciliation of P06's 31 event→GL rows into the unified matrix; adjudication of `P06-XC-01` | **OPEN at P11** — `P11-B-13` states it *"has not been done, and no cell has been filled from them"* | handoff completeness |
@@ -30,7 +30,7 @@
 | `D-12` | **P11** | `P06-B-27` closure; `P06-XC-01`; net-new scope rows (bank account, provider, token); the 31 event→GL rows | **SUPPLIED** — `P06-B-27` may be struck from P11's `D-3` UAT list |
 | `D-13` | **P09** | Confirmation or refutation of P09's class-B claim about P06's widget overwriting analytic values | **PARTIALLY ANSWERED** — the overwrite shape is confirmed (RM-F-01 clears and rebuilds every line); the analytic specifics are not traced. **P09's class B is correct and should stay class B** |
 | `D-14` | **P05** | Confirmation that P06 owns the reimbursement payment door P05 operates | **SUPPLIED** — P11 `UBE-33` settles it to P06 |
-| `D-15` | **P08** | The full period-close input set: reconciliation must be inside the close regime; RELOCATE is not an acceptable default; lock inheritance across possibly-distinct legal entities; the pre-close control is one-time only; no accounting field may be written by raw SQL | **SUPPLIED, UNCLAIMED.** ~~no P08 exists to receive it~~ → ****P08 IS PUBLISHED** — `research/account-p08-record-to-report-2026-09-04-001`, 39 files, read and quoted by line in `53_`; the input set was supplied and has not been claimed **[REV-E-20, 2026-09-06]**** |
+| `D-15` | **P08** | The full period-close input set: reconciliation must be inside the close regime; RELOCATE is not an acceptable default; lock inheritance across possibly-distinct legal entities; the pre-close control is one-time only; no accounting field may be written by raw SQL | **SUPPLIED, UNCLAIMED.** ~~no P08 exists to receive it~~ → **P08 IS PUBLISHED** — `research/account-p08-record-to-report-2026-09-04-001`, 39 files, read and quoted by line in `53_`; the input set was supplied and has not been claimed [REV-E-20, 2026-09-06]** |
 
 ---
 
@@ -65,4 +65,4 @@ P10 routes lock dates, fiscal calendar and currency policy to *"`P04` A2R"*, cal
 
 ## 5. Standing limitation
 
-Two of nine inbound dependencies are unpublished counterparties. **P06 cannot close `F-02`, `F-06`, `F-15`, `F-17` or `B-46` by any amount of further research.** They are recorded as `PEER DEPENDENCY OPEN` and, per the constitution, they block those conclusions and nothing else.
+~~Two of nine inbound dependencies are unpublished counterparties.~~ → **Both counterparties are published** — P08 read (`53_`), P01 unconsumed (`P06-OQ-124`). **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** **P06 still cannot close `F-02`, `F-06`, `F-15`, `F-17` or `B-46` by any amount of further research** — they need a peer ruling, which publication does not supply. They are recorded as `PEER DEPENDENCY OPEN` and, per the constitution, they block those conclusions and nothing else.

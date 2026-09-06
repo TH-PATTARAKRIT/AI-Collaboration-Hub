@@ -96,4 +96,4 @@ The round-3 challenge (E3-C-04) recorded that accepting a dependency and declari
 - `DUP-02` — the sales-side withholding fact *"is created in **P06** … and is **claimed by no reporting process at all**"*
 - `DUP-03` — *"Two withholding frameworks can both act on one **P06** payment event."*
 
-**P06 confirms `DUP-03` from its own evidence** (`P06-B-13`: two mutually-unaware custom WHT subsystems mutate the settled amount). **`DUP-01` and `DUP-02` are P07/P01 matters and P06 takes no position**, noting only that P01 is still unpublished, so `DUP-01` cannot be reconciled by anyone yet.
+**P06 confirms `DUP-03` from its own evidence** (`P06-B-13`: two mutually-unaware custom WHT subsystems mutate the settled amount). **`DUP-01` and `DUP-02` are P07/P01 matters and P06 takes no position**, noting only that ~~P01 is still unpublished~~ → **P01 IS PUBLISHED at `b820b29` and unconsumed by P06** **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]**, so `DUP-01` remains unreconciled for want of an intake, not for want of a package.

@@ -92,7 +92,7 @@ Stated plainly because the objective is evidence-based reduction, not a lower nu
 
 ## 5. What the next process needs from this
 
-- **P08 (GL / Period Close)** — currently unpublished. The lock-date inheritance finding (B27-F-05: the strictest ancestor wins, and lock dates are *not* delegated) is a direct input to close architecture. Recorded as **PEER DEPENDENCY OPEN**.
+- **P08 (GL / Period Close)** — ~~currently unpublished~~ → **PUBLISHED and read** (`53_`). **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]** The lock-date inheritance finding (B27-F-05: the strictest ancestor wins, and lock dates are *not* delegated) is a direct input to close architecture. Recorded as **PEER DEPENDENCY OPEN**.
 - **P11 (Whole Accounting Reconciliation)** — must reconcile P06's company-boundary position against every peer's. P06's position is now unambiguous: **the financial boundary is COMPANY; the hierarchy is a TENANT-scoped grouping; no financial guard may be written at the grouping level.**
 
 ---

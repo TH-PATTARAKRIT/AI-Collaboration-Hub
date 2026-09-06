@@ -169,7 +169,7 @@ A standard Odoo 18 ships localisation packs for roughly ninety jurisdictions. **
 |---|---|---|
 | NC-01 | Any live or UAT database | **unchanged** — no connection attempted or available |
 | NC-09 | **The SMEsPlus target module registry** | **NEW** — the decisive missing artefact; `P06-B-44` |
-| NC-10 | **A complete Odoo 18 distribution** | **NEW** — needed to test whether the filtered build omits a relevant capability; `P06-OQ-94` |
+| NC-10 | **A complete Odoo 18 distribution** | **NEW** — needed to test whether the **loadable set** omits a relevant capability *(the remainder is relocated to `addons_archive`, not absent, and has since been searched)* **[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]**; `P06-OQ-94` |
 | NC-11 | **The business's actual handling of bank charges and post-dated cheques** | **NEW** — needed to distinguish a platform gap from an off-system convention; `P06-OQ-95` |
 | NC-03/04 | Thai bank specifications; Thai statutory sources | **unchanged — HOLD** |
 

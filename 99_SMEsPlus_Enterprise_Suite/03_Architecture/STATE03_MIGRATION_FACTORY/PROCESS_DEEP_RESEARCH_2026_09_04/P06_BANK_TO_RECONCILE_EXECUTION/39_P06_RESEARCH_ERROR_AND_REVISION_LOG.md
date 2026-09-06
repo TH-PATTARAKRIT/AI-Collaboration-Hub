@@ -24,7 +24,7 @@ First draft: *"Blockers | 42 | **51** (42 − 4 closed + 13 new)"*. Three defect
 
 **REV-E-07 — A gap was declared "the first action for a successor round" when it was executable in-session.**
 `38_` §2 first stated that the localisation-pack search (`OQ-90`) was *"the single largest self-inflicted gap"* and deferred it.
-**Resolution:** it was then run. Result: 0 files across both patterns; both Class-A negatives survive; and the search **produced a new finding** (`P06-B-55`) about the evidence base being a filtered distribution.
+**Resolution:** it was then run. Result: 0 files across both patterns; both Class-A negatives survive; and the search **produced a new finding** (`P06-B-55`) about the evidence base. *As stated at the time it read "a filtered distribution"; that wording was corrected to a **relocation** at `REV-E-16` and restated as **2 of 16 enumerated distribution roots** at G02 close.* **[REV-E-22, 2026-09-06]**
 **Significance:** deferring a two-minute grep to a future session, and *documenting* the deferral, is a way of converting work into paperwork. Recorded because the first draft is what would have shipped.
 
 **REV-E-08 — Two published counts went stale between execution and package close.**
@@ -93,7 +93,7 @@ Per peer-intake discipline: verify before adopting, and correct their record whe
 |---|---|
 | **P11** | `P06-B-27` is on P11's `D-3` minutes-to-close list as a UAT query. **It is closed on source evidence and needs no query.** P11 may strike it. |
 | **P11** | `P06-XC-01` (the P02 verdict conflict) is registered nowhere. `P11_CONTRADICTION_REGISTER.md` runs `P11-C-01`…`P11-C-07` with no row for it, because P11 ingested P02 and P06 in separate deltas and did not cross-read them. Raised as candidate `P11-C-08`. |
-| **P10** | `X-08` is answered by P06. **Closure is P10's, and P10 still carries it `OPEN — PEER EVIDENCE` at `1fea562`. Superseded wording: *"and may be closed"* **[REV-E-18, 2026-09-06]**** |
+| **P10** | `X-08` is answered by P06. **Closure is P10's, and P10 still carries it `OPEN — PEER EVIDENCE` at `1fea562`. Superseded wording: *"and may be closed"* [REV-E-18, 2026-09-06]** |
 | **P09** | Its class-B claim about P06's widget is **correct in shape and should stay class B** — P06 confirms the overwrite mechanism and did not trace the analytic specifics. |
 | **P11** | P10 routes its close and FX dependencies to P04, while P11 and P02 route the same questions to P08. ~~Since no P08 exists, P10's dependencies are addressed to a process that cannot answer.~~ **CORRECTED **[REV-E-20, 2026-09-06]**: **P08 IS PUBLISHED** — `research/account-p08-record-to-report-2026-09-04-001`, 39 files, read and quoted by line in `53_`. The dependencies are addressed to a process that exists and was not asked.** Flagged, not adjudicated (`OQ-93`). |
 

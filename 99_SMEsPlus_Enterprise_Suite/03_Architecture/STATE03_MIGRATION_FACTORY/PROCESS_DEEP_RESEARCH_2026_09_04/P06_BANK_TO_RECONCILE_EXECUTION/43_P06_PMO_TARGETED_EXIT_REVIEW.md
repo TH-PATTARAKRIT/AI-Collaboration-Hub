@@ -104,7 +104,7 @@ It caught REV-E-05 immediately (42 reported open items versus 36 actual, two uni
 7 blockers and 3 open items closed on evidence. 12 blockers and 6 open items raised. **The prompt's success criterion was "maximum evidence-based blocker reduction", not a lower number, and §14 explicitly permits P06 to remain READY with explicit HOLDs.** PMO assesses the criterion as **met**, and notes that a round which had produced only closures would have warranted more scrutiny, not less.
 
 **PMO-TF-04 — Three findings emerged that no amount of working the existing list would have produced.**
-`P06-B-50` (the ledger is deletable by unauthorised SQL), `P06-B-44` (the researched generation may not be the target generation), `P06-B-55` (the evidence base is a filtered distribution). **All three came from following an open item into territory the blocker list did not describe.**
+`P06-B-50` (the ledger is deletable by unauthorised SQL), `P06-B-44` (the researched generation may not be the target generation), `P06-B-55` (~~the evidence base is a filtered distribution~~ → the evidence base is a **RELOCATED** distribution (791 loadable of a full v18 population of 1752; 961 dirs / 904 l10n in `addons_archive`, excluded by the project's own `odoo.conf` and since searched)). **[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]** **All three came from following an open item into territory the blocker list did not describe.**
 
 **PMO-TF-05 — The severity model is still missing after two rounds, and it is now the binding constraint on Boss action.**
 54 blockers, no ranking. AAS+ recommended ranking by precondition reachability one round ago. **PMO endorses that recommendation and elevates it: this is the highest-value work available, it needs no new evidence, and without it the Boss is asked to act on an unordered list.**
@@ -127,7 +127,7 @@ Connectivity was verified live in round 1. The population is 146 ERPPLUS issues;
 
 **What has not improved:**
 - no runtime or database evidence still;
-- P01 and P08 remain unpublished;
+- ~~P01 and P08 remain unpublished~~ → **both are published**; P08 read (`53_`), **P01 unconsumed** (`P06-OQ-124`) **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]**;
 - 26 items await design decisions;
 - **no severity model** (PMO-TF-05).
 

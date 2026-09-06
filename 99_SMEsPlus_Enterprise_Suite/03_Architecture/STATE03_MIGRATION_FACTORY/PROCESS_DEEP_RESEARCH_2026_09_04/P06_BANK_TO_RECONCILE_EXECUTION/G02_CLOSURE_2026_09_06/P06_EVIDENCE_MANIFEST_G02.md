@@ -15,10 +15,10 @@
 |---|---|---|---|
 | `P06_AAS03_BOUNDED_CHALLENGE.md` | 114 | 14293 | `b3a94ab1e0b028ffe2ba0c219983609b14801c0aa77bce6c251abf4fdaf28d29` |
 | `P06_AAS_PLUS_CONSOLIDATION.md` | 90 | 11809 | `d35366c58af57f5e3fcb2e5cfea1b9820c2242c99205304fb677764b9c16bb01` |
-| `P06_AUTO_RESUME_STATE.md` | 63 | 4153 | `76e33d6b6904894496fd330bfbc1caa9d54bf92f467415d2b8a6d07379c3ae61` |
+| `P06_AUTO_RESUME_STATE.md` | 132 | 8997 | `46f9641e9c6fcecbc75be8da2e9560d9dbe2b31ab7e38eb0b7136d12104ceb81` |
 | `P06_CANDIDATE_INPUT_PROCESS_OUTPUT_HANDOFF_PACK.md` | 209 | 22287 | `6d3c27e8ba418e9beedfaa8b3c53f17fa394486f5ca9a570524d209a019ba4e4` |
-| `P06_CHECKPOINT_REGISTER.md` | 51 | 4856 | `68243cd22d6032659c20b37f330aced3a4a7dbbd204033d10fe3c90cd1a350d2` |
-| `P06_CONTRADICTION_AND_REVISION_SUPPLEMENT.md` | 203 | 19044 | `b1b46cdedea4671ae4997071f2fbc54c340cd05a0663f54a49736cde5b1a868b` |
+| `P06_CHECKPOINT_REGISTER.md` | 86 | 8475 | `5a1b4765dddd375f0d75d7a78e7ac27f0d247e2a205660623d85fba424d5481f` |
+| `P06_CONTRADICTION_AND_REVISION_SUPPLEMENT.md` | 203 | 19963 | `6d2d8af979c84e6fc2502b4692a5cdf4b2db00d3adbbc2fd64fe816e9b8e303f` |
 | `P06_DOMAIN_PURITY_AND_BOUNDARY_REGISTER.md` | 64 | 7341 | `f1cc988db8a3ddb286799475bc43ca41d61166cae8a711041289fc1116ce6dc1` |
 | `P06_IEVING_LEDGER_STATE_FORENSIC.md` | 153 | 11432 | `b18d51b2172136151da13a2c43e31576fc3556373c2da108a01e23f845d94104` |
 | `P06_P10_MATERIAL_DELTA_REGISTER.md` | 289 | 29618 | `e1fa3cf89ecfb8cc3f8b342bcfeface4d91d748eeaddc7a4fbb7a7a602054566` |
@@ -29,37 +29,52 @@
 
 ## 2. Prior files EDITED in place this round — new SHA-256
 
-| File | Corrections | Lines | Bytes | SHA-256 (new) |
-|---|---|---|---|---|
-| `01_P06_PAYMENT_STATE_MODEL.md` | **1** | 280 | 25155 | `f3fe9bfb51ea1cb8a8495b0ad8638c13bd985d8a8052ab8cb8ef002e85052e5b` |
-| `11_P06_CONTRADICTION_REGISTER.md` | **1** | 210 | 24045 | `432405bdcc2d77796755cb9bfe08216c31657dfa72305c99eafc65dbf2f59905` |
-| `12_P06_SOURCE_LINK_REGISTER.md` | **1** | 216 | 19305 | `3e5421fbceaa7fdad88e0e834a55abed06f2e8839eb9280c4bd6d4ca7dd879b1` |
-| `18_P06_CORE_RECON_HANDOFF_PACK.md` | **5** | 214 | 17546 | `b5910a2f6a4810d7accced1a65ec455ececfda69da954747d5149f3f6c2d07ca` |
-| `20_P06_CUSTOM_MODULE_DELTA.md` | **2** | 315 | 31411 | `6083f83255d5fb4593492a0c4326887e2cde05279044af333b7447721430c83d` |
-| `25_P06_PAYMENT_BANK_RECONCILIATION_STATE_MODEL.md` | **1** | 141 | 9422 | `2874064c14d937345d0341d56b064dd1a57b78d18107013617e93206df1b7151` |
-| `34_P06_CROSS_PROCESS_OWNERSHIP_REGISTER.md` | **2** | 103 | 9962 | `d744eb4455fe3492cc099a2d996c3b182145a837a99f80e66884c8dad5400dfe` |
-| `35_P06_PEER_HANDOFF_MATRIX.md` | **5** | 163 | 16291 | `b7d6680f5bc69718450174b15fbc67fb7a0f2c2979f4b2bfd4d6f2f5186baefc` |
-| `36_P06_DEPENDENCY_REGISTER.md` | **3** | 68 | 6928 | `35bef875af078e8d5cf6767566cb2e042eb36e86369d2a5e0dfe418459bf65e8` |
-| `38_P06_UNRESOLVED_EVIDENCE_REGISTER.md` | **1** | 132 | 9969 | `eb7343fed489d3d34d40e449f917984e3350dc4c06ed9d324a2236fd3dd67d61` |
-| `39_P06_RESEARCH_ERROR_AND_REVISION_LOG.md` | **2** | 123 | 11898 | `298b070f03c0df59003b9c7d684da9ed84cac749953c3f79d76d8f472e03ed98` |
-| `42_P06_AAS_PLUS_VETO_RECHECK.md` | **1** | 99 | 8492 | `3bf368a9b49407f54e61224407899c52d9c6fecb01c5641d22128cc1f65c4903` |
-| `46_P06_55_BLOCKER_SEVERITY_REGISTER.md` | **3** | 139 | 12446 | `8495c99a64b705c9ddb49bd67e5a18d0c441a1a3057dc731432bac10fa46f0ca` |
-| `57_P06_BANK_ADJUSTMENT_NEGATIVE_CLAIM_RECHECK.md` | **1** | 59 | 4025 | `4cfa6f28449cb33c2ba0c3bd3561cf00024b8340b8987580309d883e7b4d0703` |
-| `70_P06_P11_SUPPLEMENTAL_CRITICAL_RISK_HANDOFF.md` | **1** | 110 | 7384 | `1c465adb2544aed85ccb0cf4404bf4ca89ee65485e64204e16338cb807c6ca66` |
-| `40_P06_TARGETED_BLOCKER_REGISTER.md` | Appendix B added (5 new blockers, 5 status changes) | 253 | 23588 | `5c67974ca95ce7e612556e984c57cfeead46d8279213f8853040560a1f312d5b` |
+| File | R5 corrections | R6 repairs | Lines | Bytes | SHA-256 (current) |
+|---|---|---|---|---|---|
+| `01_P06_PAYMENT_STATE_MODEL.md` | 1 | 1 | 280 | 25622 | `d6172f569fc7d3457dbce43e739329c37cee113c963f95fe51d8bda3367f5ffd` |
+| `11_P06_CONTRADICTION_REGISTER.md` | 1 | — | 210 | 24045 | `432405bdcc2d77796755cb9bfe08216c31657dfa72305c99eafc65dbf2f59905` |
+| `12_P06_SOURCE_LINK_REGISTER.md` | 1 | 1 | 216 | 19484 | `61af605ec3f1c9a8303982cd562ace4d10300d64cc4c1d3eb98622b2aae2ca25` |
+| `18_P06_CORE_RECON_HANDOFF_PACK.md` | 5 | — | 214 | 17546 | `b5910a2f6a4810d7accced1a65ec455ececfda69da954747d5149f3f6c2d07ca` |
+| `19_P06_SCOPE_OWNERSHIP_MATRIX.md` | — | 1 | 214 | 25930 | `67fd7d2023c7bbd93f2538c761a633618ccb89f92a8145bc95fad3e8ecc068e0` |
+| `20_P06_CUSTOM_MODULE_DELTA.md` | 2 | — | 315 | 31411 | `6083f83255d5fb4593492a0c4326887e2cde05279044af333b7447721430c83d` |
+| `23_P06_B27_DEPENDENCY_CLOSURE_GRAPH.md` | — | 1 | 100 | 8580 | `a31ecf5237f46b161c395d4260ec780fa14e3def80f5508fb85f410bb4c13853` |
+| `25_P06_PAYMENT_BANK_RECONCILIATION_STATE_MODEL.md` | 1 | 1 | 141 | 9770 | `0915b86818f3ce14b6472f0fb6366842cf5aafa4368e3799a8e2c59ef5acfdfd` |
+| `28_P06_PERIOD_CLOSE_RECONCILIATION_MATRIX.md` | — | 1 | 111 | 8970 | `3df5a5001f2d6f4b071a545cce2006f1f643ed8655ee3eb0bd8d1c966a2435d7` |
+| `34_P06_CROSS_PROCESS_OWNERSHIP_REGISTER.md` | 2 | 6 | 103 | 11529 | `112796f040d3303428c2dfaf384fb98e26b3cf6efcf5b2dfb8eda7008c0e914d` |
+| `35_P06_PEER_HANDOFF_MATRIX.md` | 5 | 2 | 163 | 16890 | `a66169b9a6f76fb9644f825fe497eca387774f1ab4c31d1681267a7f5ff40e66` |
+| `36_P06_DEPENDENCY_REGISTER.md` | 3 | 3 | 68 | 7781 | `95b7eea1c18290aff1aa80d9a10620267b1bc89041890dc3446c6797ab8a091c` |
+| `38_P06_UNRESOLVED_EVIDENCE_REGISTER.md` | 1 | 2 | 134 | 11027 | `da8ab75d796f8aa6b38f8749b1c058f91dbadb042f701e5f949f9e3695163919` |
+| `39_P06_RESEARCH_ERROR_AND_REVISION_LOG.md` | 2 | 1 | 123 | 12083 | `9f535f5e1ed379320ad41694dd4b04bc9ec5ec4397b70c0a5a29fb38d61d28b4` |
+| `40_P06_TARGETED_BLOCKER_REGISTER.md` | — | 4 | 256 | 25551 | `a86a3a572d2a29b028f0607ed19b575215e60cd7b244a9081d87d0827f85d165` |
+| `42_P06_AAS_PLUS_VETO_RECHECK.md` | 1 | 4 | 99 | 9317 | `c260c698f94e47baf8ce4f5c3d39f01983b38ff1f9e0371377b17cdf3ca120af` |
+| `43_P06_PMO_TARGETED_EXIT_REVIEW.md` | — | 2 | 140 | 9813 | `cb1e91ac86ad4fa19a7fffa1fcb808ddf2caf31d499d891cd876148d094d29a0` |
+| `46_P06_55_BLOCKER_SEVERITY_REGISTER.md` | 3 | 4 | 139 | 13634 | `d86f56fcbcb21551bb2aeaa6b67ee4e0541b1f1517b959158429b43ef7003f9d` |
+| `47_P06_BLOCKER_RISK_HEATMAP.md` | — | 1 | 88 | 6417 | `a05b066da1ed0ca058f5d48a66bfd50ba7704911c0f5f69d3aa66196497ec3d3` |
+| `53_P06_P08_INTAKE_AND_DEPENDENCY_REFRESH.md` | — | 2 | 126 | 10614 | `f1dd5ac4d866a9a743fcc480fb90b9267b29c39f1e7b8f8e70b4147e3300f0ba` |
+| `54_P06_P07_BLOCKING_DEPENDENCY_MATRIX.md` | — | 1 | 99 | 9417 | `f26b499680bb0488580e617afaa550930017262a193e926702074021748f1f6c` |
+| `57_P06_BANK_ADJUSTMENT_NEGATIVE_CLAIM_RECHECK.md` | 1 | — | 59 | 4025 | `4cfa6f28449cb33c2ba0c3bd3561cf00024b8340b8987580309d883e7b4d0703` |
+| `66_P06_AAS_PLUS_VETO_SUPPLEMENTAL_RECHECK.md` | — | 1 | 85 | 6179 | `261e6e0385f2c0b016a93383f402113214d41dc8b6b80f50aaccaf8c10caa8ee` |
+| `70_P06_P11_SUPPLEMENTAL_CRITICAL_RISK_HANDOFF.md` | 1 | — | 110 | 7384 | `1c465adb2544aed85ccb0cf4404bf4ca89ee65485e64204e16338cb807c6ca66` |
 
 ## 3. Counts — executed after the last file was written
 
+**At G02 close (`6442925`/`da98786`):**
 ```
-grep -oh 'P06-B-[0-9]\+'  *.md G02_CLOSURE_2026_09_06/*.md | sort -u | wc -l   -> 63
-grep -oh 'P06-OQ-[0-9]\+' *.md G02_CLOSURE_2026_09_06/*.md | sort -u | wc -l   -> 74
-grep -oh 'REV-E-[0-9]\+'  *.md G02_CLOSURE_2026_09_06/*.md | sort -u | wc -l   -> 21
-ls *.md G02_CLOSURE_2026_09_06/*.md | wc -l                                    -> 82
-grep -ohE "REV-E-(18|19|20|21), 2026-09-06" *.md | wc -l                       -> 30
-grep -lE  "REV-E-(18|19|20|21), 2026-09-06" *.md | wc -l                       -> 15
+P06-B distinct -> 63 | P06-OQ distinct -> 74 | REV-E distinct -> 21 | files -> 82
+REV-E-(18|19|20|21) markers -> 30 in 15 files
 ```
+**After the independent correction-integrity verification round (`774aa0b` prompt):**
+```
+grep -oh 'P06-B-[0-9]\+'  *.md G02_CLOSURE_2026_09_06/*.md G02_VERIFICATION_2026_09_06/*.md | sort -u | wc -l   -> 65
+grep -oh 'P06-OQ-[0-9]\+' *.md G02_CLOSURE_2026_09_06/*.md G02_VERIFICATION_2026_09_06/*.md | sort -u | wc -l   -> 75
+grep -oh 'REV-E-[0-9]\+'  *.md G02_CLOSURE_2026_09_06/*.md G02_VERIFICATION_2026_09_06/*.md | sort -u | wc -l   -> 22
+ls *.md G02_CLOSURE_2026_09_06/*.md G02_VERIFICATION_2026_09_06/*.md | wc -l                                    -> 84
+grep -ohE "REV-E-(18|19|20|21), 2026-09-06" *.md | wc -l   -> 30  (unchanged — no R5 correction overwritten)
+grep -ohE "REV-E-22, 2026-09-06" *.md G02_CLOSURE_2026_09_06/*.md | wc -l -> 40 in 20 files
+```
+> **The first attempt at this recount used shell variables holding globs; zsh does not expand globs held in variables, so it silently counted only the top directory and returned 65/68/20/70.** Caught because the file count disagreed with `ls`. Re-executed with literal globs. **`VER-E-02`, and the second instrument failure inside this verification.**
 
-**`P06-B-*` is contiguous `B-01` … `B-63`. `P06-OQ-*` is NOT contiguous** — 74 distinct identifiers over an id space reaching `OQ-127`. *A maximum id is not a count; this package has confused the two before (`REV-E-06`).*
+**`P06-B-*` is contiguous `B-01` … `B-65`. `P06-OQ-*` is NOT contiguous** — 75 distinct identifiers over an id space reaching `OQ-128`. *A maximum id is not a count; this package has confused the two before (`REV-E-06`).*
 
 ## 4. Control scans
 
@@ -82,3 +97,16 @@ grep -lE  "REV-E-(18|19|20|21), 2026-09-06" *.md | wc -l                       -
 ## 6. What this manifest cannot certify
 
 **`AASP-VETO-07`.** These hashes prove the files are what they are. **They do not prove the 30 corrections are correct**, and the party that computed them is the party that made both the errors and the repairs. **Independent verification is the named next action.**
+
+---
+
+## 7. Round-6 verification artefacts — SHA-256
+
+Added by `[SMEPLUS-26-09-06-G02-P06-B2R-CORRECTION-INTEGRITY-VERIFICATION-004]`.
+
+| File | Lines | Bytes | SHA-256 |
+|---|---|---|---|
+| `P06_CORRECTION_INTEGRITY_VERIFICATION_REGISTER.md` | 173 | 20204 | `15b3730f2a607e2c8223557361b16d4531c9d9285a0f83aa8fd20237c49abe27` |
+| `P06_CORRECTION_PROPAGATION_MATRIX.md` | 72 | 7658 | `ffa1acc615f97778d8ce7259c443b92dbbaa4c80f73da1992c89de2a33880bf3` |
+
+> **§2 above now carries the CURRENT hashes** — every file repaired in round 6 changed, so the round-5 hashes recorded at `da98786` no longer match. That is expected and is stated rather than papered over: the round-5 hashes are recoverable from commit `6442925`, and §2 records **R5 corrections and R6 repairs per file side by side** so the two rounds do not blur together.

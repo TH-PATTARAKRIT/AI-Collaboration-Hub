@@ -26,7 +26,7 @@ Rows are impact. Columns are reachability. **Read top-left first.**
 |---|---|---|---|---|---|
 | **CRITICAL** | **B-10** duplicate ingestion | **A6/B-46** un-reconcile past close · **B-13** identity mutable | — | **B-26** unowned bank account | **B-50** unauthorised ledger deletion |
 | **CRITICAL (always-on)** | **B-06** no bank-confirmation fact — present in every operation, not "reached" at all | | | | |
-| **HIGH** | **B-11** completeness self-satisfies · **B-14** silent drops | **B-04** four payment doors · **B-07** two writers · **B-22** write-off uncontrolled · **B-29** identity scope | **B-12** deletability toggle · **B-37** re-dating module · **B-52** write-off ACL | **B-25** net settlement · **B-30** webhook window · **B-38** auto-posting · **B-45** lock inheritance | **B-17** no fee owner · **B-44** generation gap · **B-55** filtered build |
+| **HIGH** | **B-11** completeness self-satisfies · **B-14** silent drops | **B-04** four payment doors · **B-07** two writers · **B-22** write-off uncontrolled · **B-29** identity scope | **B-12** deletability toggle · **B-37** re-dating module · **B-52** write-off ACL | **B-25** net settlement · **B-30** webhook window · **B-38** auto-posting · **B-45** lock inheritance | **B-17** no fee owner · **B-44** generation gap · **B-55** evidence-base boundary *(relocated, not filtered — `REV-E-16`/`REV-E-22`)* |
 | **MEDIUM** | **B-18** no ageing · **B-23** silent `False` · **B-32** inverted tolerance | **B-05** · **B-15** · **B-16** · **B-19** · **B-24** · **B-49** | **B-36** · **B-43** · **B-47** · **B-48** | **B-20** · **B-33** · **B-34** · **B-35** · **B-28** | **B-21** · **B-31** |
 | **LOW** | — | — | **B-51** | **B-39** · **B-53** | — |
 | **INFORMATIONAL** | — | — | — | — | B-01 · B-02 · B-03 · B-40 · B-41 · B-42 · B-54 |
@@ -66,7 +66,7 @@ Every reconciliation, every settlement assertion and every payment state in the 
 
 **HM-F-03 — Ten of the twenty-three CRITICAL/HIGH blockers are reachable at R1 or R2 — that is, by an ordinary accounting user doing ordinary work.** The risk in P06 is not concentrated in exotic paths. It is concentrated in the daily ones: importing a statement, matching a line, un-matching a line, registering a payment.
 
-**HM-F-04 — Four of the twenty-three sit at R5, and three of those four are evidence-boundary items** (`B-44` generation gap, `B-55` filtered build, `B-17` bounded negative). **A quarter of the high-severity population is uncertain because of what this programme does not know about its own target, not because of what the system does.** One module-registry export moves most of that column.
+**HM-F-04 — Four of the twenty-three sit at R5, and three of those four are evidence-boundary items** (`B-44` generation gap, `B-55` evidence-base boundary — *relocated, not filtered* **[REV-E-22, 2026-09-06 — stale current claim missed by the round-5 repair pass]**, `B-17` bounded negative). **A quarter of the high-severity population is uncertain because of what this programme does not know about its own target, not because of what the system does.** One module-registry export moves most of that column.
 
 ---
 

@@ -207,7 +207,7 @@ Per CORR1 §6, each affected finding is recorded with its original form, the sco
 | SCOPE-F-06 | Payment provider: TENANT contract vs COMPANY settlement | **HOLD — SCOPE EVIDENCE REQUIRED** |
 | SCOPE-F-08 | Bank aggregator credential scope | **HOLD — SCOPE EVIDENCE REQUIRED** |
 | S-27 | Thai WHT rule set: PLATFORM reference vs COMPANY application | **HOLD** — statutory, routed to Accounting-Tax |
-| PEER DEPENDENCY OPEN | P01–P05 and P07–P11 scope determinations are unpublished (CPO-F-03). P06's scope assignments for shared objects (currency rate, payment method, bank account) must be reconciled by P11. This session does **not** stop for it. | **PEER DEPENDENCY OPEN** |
+| PEER DEPENDENCY OPEN | ~~P01–P05 and P07–P11 scope determinations are unpublished (CPO-F-03).~~ → **All ten peer branches P01–P10 exist on origin** **[REV-E-22, 2026-09-06 — stale publication status; all ten peer branches P01–P10 exist on origin, verified by `git ls-remote --heads origin`. NOT CONSUMED — `P06-OQ-124`/`P06-OQ-128`]**; P11 has no `research/account-p11-*` head and no claim is made about it. Scope determinations remain unreconciled. P06's scope assignments for shared objects (currency rate, payment method, bank account) must be reconciled by P11. This session does **not** stop for it. | **PEER DEPENDENCY OPEN** |
 
 ---
 
