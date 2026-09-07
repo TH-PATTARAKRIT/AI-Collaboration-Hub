@@ -1174,3 +1174,23 @@ right is exactly the failure this package has spent four rounds naming in others
 **What P11 could not have done:** re-derive P08's balances. That is `Q-P08-01`'s work and is forbidden
 here. **The control that caught this was structural independence at the producer**, and no amount of
 diligence inside P11 substitutes for it.
+
+## `P11-E-47` — the claim-class sweep enumerated `*.md` and missed the executable
+
+**`2026-09-07`, caught in this session's own final verification.** `Q-P11-01`'s sweep re-pinned **17
+occurrences across 8 files** and declared **0 stale heads outside lineage**. The verification pass then
+returned **3** surviving `92de8a1` — of which three are deliberate lineage (they name the SHA *as* the
+prompt commit) and **one was a real miss**: `LAYER2_P11_EVIDENCE/corr3_instrument/intake_derivations.py`
+still pinned `P09` at the prompt commit.
+
+**The population was `*.md`.** The instrument P11 published one commit earlier — the artefact whose
+whole purpose is that a reader can **re-execute** it — is a `.py`, and a reader re-running it would
+have rebuilt the denominator on a prompt commit.
+
+**This is `P11-E-45` recurring inside its own repair, one file-type to the left.** I re-scoped `B-37`
+from a file to a claim class, then **bounded the claim class by file extension**. Corrected; the
+instrument re-runs at `4778792` and reproduces `D1 55 · D2 48 · D3 155 · union 212` unchanged (the
+P09 delta between the two commits does not alter the derivations).
+
+> **`P11-G-11`: a claim class is bounded by the claim, never by a file type.** Executable evidence
+> carries claims exactly as prose does, and it is the carrier a reader is most likely to act on.

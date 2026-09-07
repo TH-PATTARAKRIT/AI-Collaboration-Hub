@@ -35,7 +35,7 @@
 | Blockers | **39** registered · **35 open** · **5 `CRITICAL`** (`B-21`, `B-26`, `B-27`, `B-33`, `B-35`) |
 | Tolerance-zero | **16 · 0 resolved** |
 | Boss decisions | **19 · 0 decided by P11** |
-| Intake denominator | `D1` 55 · `D2` 48 · `D3` 155 · **union 212** — reproducible, **NOT certified** |
+| Intake denominator | **`D1` 57 · `D2` 49 · `D3` 157 · union 214** at the corrected `P09` head `4778792` *(CORR3 published 55/48/155/212 against a **prompt commit**)* — reproducible, **NOT certified**: `S06` fails the 12-member control |
 | Challenge | **52 findings · 48 accepted · 4 disputed in part** |
 
 ## 4. NEXT EXACT ACTION — `P11 CORR4`

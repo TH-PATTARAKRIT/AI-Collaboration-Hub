@@ -25,7 +25,7 @@ PEERS = [("P01","b820b29","research/account-p01-procure-to-pay-2026-09-04-001"),
          ("P06","1b018c1","research/account-p06-bank-to-reconcile-2026-09-04-001"),
          ("P07","ee2be30","research/account-p07-th-tax-compliance-2026-09-04-001"),
          ("P08","00ccd66","research/account-p08-record-to-report-2026-09-04-001"),
-         ("P09","92de8a1","research/account-p09-plan-to-analyze-2026-09-04-001"),
+         ("P09","4778792","research/account-p09-plan-to-analyze-2026-09-04-001"),  # re-pinned 2026-09-07 (Q-P11-01): 92de8a1 was a PROMPT commit
          ("P10","1fea562","research/account-p10-time-based-recognition-2026-09-04-001")]
 
 TOKENS = ("CORE_RECON","P11","POST_PUBLICATION","CORRECTION","SUPERSED","WITHDRAW")

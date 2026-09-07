@@ -128,6 +128,28 @@ been identified — `PHASE-S/Q-BOSS-02` is raised and unanswered.**
 > **P11 asserts no verification of its own repairs and declares no PASS.** The four items are
 > **executed and unverified**, and that is the correct terminal position for them.
 
+## A MATERIAL DELTA PRODUCED BY THE REPAIR ITSELF — the denominator moved
+
+**Re-pinning `P09` from the prompt commit `92de8a1` to the substantive head `4778792` changes the
+CORR3 intake denominator**, because the substantive commit carries artefacts the prompt commit did not.
+Re-executed from the published instrument:
+
+| Derivation | at `92de8a1` (CORR3, published) | **at `4778792` (correct head)** |
+|---|---|---|
+| `D1` | 55 | **57** |
+| `D2` | 48 | **49** |
+| `D3` | 155 | **157** |
+| **UNION** | **212** | **214** |
+| `D1∩D2` / `D1\D2` / `D2\D1` | 19 / 36 / 29 | **20 / 37 / 29** |
+
+> **CORR3's entire denominator was computed against a prompt commit.** Every count derived from `212`
+> — including the `ADDRESSED`/`EXCLUDED` partitions already corrected by the CORR3 challenge — is
+> **superseded by two artefacts**. `union_212.txt` is regenerated at the corrected head and retains its
+> filename for lineage; **its content is now the 214-member union.**
+
+**The 12-member control set was re-run at the corrected head: `S06` still fails. The instrument
+remains NOT CERTIFIED** — `B-35` is unaffected by this repair and stands.
+
 ## Population delta
 
 | | before | **after** |
