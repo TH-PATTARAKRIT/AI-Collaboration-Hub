@@ -91,8 +91,8 @@
 
 | Measure | Command | Result |
 |---|---|---|
-| Blocker population | `grep -oh 'P06-B-[0-9]\+' *.md \| sort -u \| wc -l` | ~~**58**~~ → **65** [REV-E-23, 2026-09-06 — stale current claim; found by independent frozen-surface verification, invisible to the pattern declared for its class] *(58 was correct when executed at the supplemental close; `B-59`…`B-65` were added by the G02 and verification rounds. The command as printed returns 65 on the current tree.)* |
-| Open-item population | same, `P06-OQ-` | **66** |
+| Blocker population | `grep -oh 'P06-B-[0-9]\+' *.md \| sort -u \| wc -l` | ~~**58**~~ ~~**65**~~ → **67** **[Q-P06-03 / XRD-003, 2026-09-07 — re-executed at publication; command and output published in the execution record]** [REV-E-23, 2026-09-06 — stale current claim; found by independent frozen-surface verification, invisible to the pattern declared for its class] *(58 was correct when executed at the supplemental close; `B-59`…`B-65` were added by the G02 and verification rounds. The command as printed returns 65 on the current tree.)* |
+| Open-item population | same, `P06-OQ-` | ~~**66**~~ → **68** **[Q-P06-03 / XRD-003, 2026-09-07 — re-executed at publication; command and output published in the execution record]** *(this row was never in any prior correction population — `IEV-D-19`)* |
 | Cross-package contradictions | `P06-XC-` | **1** |
 | v18 loadable addons | `ls -d $V18E/*/ \| wc -l` | **791** |
 | v18 archived addons | `ls -d $V18E/../addons_archive/*/ \| wc -l` | **961** (904 `l10n_*`) |

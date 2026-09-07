@@ -185,7 +185,7 @@ Assessed as directed. **Two candidates, and only one qualifies.**
 |---|---|---|---|
 | `P06-B-56` | `DELETE FROM account_account` exists in the **reference** merge wizard (`account/wizard/account_merge_wizard.py:194-201`). P08's finding, cited not re-derived | MEDIUM | **HOLD — SOURCE EVIDENCE REQUIRED** |
 | `P06-B-57` | **The settlement event has no date of its own.** P08 inbound `XP-05`; P07 `X-07` needs the same fact. Accepted by P06 | **HIGH** | **HOLD — DESIGN DECISION REQUIRED** |
-| `P06-B-58` | **The package's own correction rate is a reliance risk.** 16 author errors, 12 caught externally, 4 overturning published conclusions in one round | INFORMATIONAL | **HOLD — INDEPENDENT AUDIT REQUIRED** |
+| `P06-B-58` | **The package's own correction rate is a reliance risk.** ~~16 author errors~~ → **21 author errors** (**RE-SCALED** **[Q-P06-03 / XRD-003, 2026-09-07 — re-executed at publication; command and output published in the execution record]**; 23 identifiers of which 2 are repair-marker families, not errors), 12 caught externally, 4 overturning published conclusions in one round | INFORMATIONAL | **HOLD — INDEPENDENT AUDIT REQUIRED** |
 
 ## A.2 Status changes
 
@@ -285,7 +285,7 @@ Frozen SHA `5212756`. Added in place, in the register, **because the defect this
 |---|---|---|
 | Blockers `P06-B-*` | 65 | **67** |
 | Open questions `P06-OQ-*` | 75 | **75** |
-| Author errors `REV-E-*` | 22 | **23** |
+| Author errors `REV-E-*` | 22 | ~~**23**~~ → **21** **[Q-P06-03 / XRD-003, 2026-09-07 — re-executed at publication; command and output published in the execution record]** *(23 distinct `REV-E-*` **identifiers**; **`REV-E-22` and `REV-E-23` carry no definition line in any file** — they are repair-marker families applied BY the verification and recovery rounds, not author errors. **UNIT: author error, not identifier** — `IEV-D-21`)* |
 | Package files | 84 | **87** |
 
 **Counts executed after the last content file, not asserted.** The standing authority is `G02_CLOSURE_2026_09_06/P06_AUTO_RESUME_STATE.md`; every per-round figure in this package is round-local.

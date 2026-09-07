@@ -96,12 +96,30 @@ What the evidence supports: the v18 tree retains **the Thai localisation only**,
 | Pattern | Result |
 |---|---|
 | `bank_fee\|bank_charge\|transaction_fee\|merchant_fee\|processing_fee\|commission_amount` | **5 files.** Two are chart-of-account *rows* (`l10n_fr`, `l10n_lu` templates). One is `sale_amazon`, carrying **`commission_amount = fields.Monetary()`** ×2 |
-| `payment_return\|bounce\|dishonou?r\|post_dated\|postdated` | hits are **email-bounce and SMS tracking** plus one NZ EFT test. **No bank-return concept** |
+| ~~`payment_return\|bounce\|dishonou?r\|post_dated\|postdated`~~ **— WITHDRAWN, THE PATTERN COULD NOT FIRE** **[Q-P06-04 / XRD-004, 2026-09-07]** | ~~*"hits are email-bounce and SMS tracking plus one NZ EFT test. **No bank-return concept**"*~~ → **the search was published with no command, no `-E`/`-F` flag and no path expression.** Under **ERE** the whole alternation matches **0 of 5** (`\|` is a literal pipe); under **BRE** the `dishonou?r` branch matches only the literal string `dishonou?r`, because `?` is not a metacharacter there. **RE-RUN — `/usr/bin/grep -rlE 'payment_return\|bounce\|dishonou?r\|post_dated\|postdated'` over the same 961 directories → 76 files.** Positive control **inside the population**: `bounce` → 66 files. Negative control: impossible token → 0. Per branch: `payment_return` 0 · `bounce` 66 · **`dishonou?r` 10** · `post_dated` 0 · `postdated` 0. Widened spellings, same population: **`post-dated` (hyphenated) → 2 files** — a spelling the original pattern could not match either |
 
 **FTB-F-06 — One real field hit, and it narrows the wording rather than overturning the finding.**
 `commission_amount` exists as a `fields.Monetary()` in an **archived marketplace connector** (`sale_amazon`), which is **not on the live addons path**. A marketplace commission is not a bank fee, a bank interest or a payment-provider settlement commission.
 **`B-17` survives.** Its permitted wording is now: *"no bank fee, bank interest or provider-commission concept exists in the loadable v18 population (791 addons) or in the 961-module archive"* — **not** *"no commission field exists in Odoo 18"*.
 
-**FTB-F-07 — `B-34` / `B-35` survive the enlarged population intact.** No returned-item, bounced-cheque or post-dated-cheque concept was found across 1752 v18 directories.
+**FTB-F-07 — WITHDRAWN AS PUBLISHED. THE NEGATIVE WAS UNEVIDENCED, AND ON RE-EXECUTION IT IS FALSE.** **[Q-P06-04 / XRD-004, 2026-09-07]**
+
+~~*"`B-34` / `B-35` survive the enlarged population intact. No returned-item, bounced-cheque or post-dated-cheque concept was found across 1752 v18 directories."*~~
+
+**Re-run with a pattern proved to fire, over the same declared 961-directory archive, finds the concept — twice for returns and once for post-dating:**
+
+| Concept | Archived artefact | What it is |
+|---|---|---|
+| **Dishonoured payment** | `l10n_nz_eft/models/account_batch_payment.py` — `l10n_nz_dishonour_account_id = fields.Many2one(...)`, help *"Used by ANZ as a fallback account in case of dishonored payment"* | **a real ORM field on `account.batch.payment`**, with a form view (`views/account_batch_payment_views.xml`) and a test |
+| **Dishonoured instrument** | `l10n_kr/data/template/account.account-kr.csv` — account `121504` *"dishonored bills and checks"*, `asset_non_current` | **a chart-of-accounts row** |
+| **Post-dated cheque** | `l10n_latam_check/__manifest__.py` — *"add an optional 'Check Cash-In Date' for **post-dated checks** (deferred payments)"* | **a module feature** |
+
+**Restated, with the boundary the evidence actually supports:**
+
+> **A returned-item / dishonoured-payment concept and a post-dated-cheque concept BOTH EXIST in the v18 distribution — in `addons_archive` only.** Neither is on the live `addons_path`: `odoo.conf:67` excludes `addons_archive`, and `l10n_nz_eft` is absent from the 791 loadable addons. **The concept is not missing from Odoo 18; it is missing from this deployment's loadable set.**
+
+**Consequence for `P06-B-34` and `P06-B-35`, flagged and NOT disposed here:** their surviving basis is now *"absent from the loadable set"*, **not** *"absent from the v18 distribution"*. **That is a materially weaker claim and a different remedy** — a module exists that could be loaded, rather than a capability that must be built. **Their disposition is the owner's, and is routed, not decided by this correction** (`Q-P06-04` authorises re-stating `FTB-F-07`, not re-adjudicating the blockers it feeds).
+
+*Same shape as `FTB-F-06`: an archived module carries the capability, and the archive is excluded by the project's own config.*
 
 **FTB-F-08 — And the round-3 gap was real but smaller than feared.** Searching 904 additional localisation packs changed **one word** in one finding. That is the correct outcome of a boundary check: it is run to find out, not to confirm.
