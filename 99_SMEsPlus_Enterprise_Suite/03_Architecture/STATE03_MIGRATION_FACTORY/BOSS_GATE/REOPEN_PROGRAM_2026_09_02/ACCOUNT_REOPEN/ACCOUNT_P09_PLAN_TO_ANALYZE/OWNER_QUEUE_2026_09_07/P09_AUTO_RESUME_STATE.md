@@ -9,7 +9,7 @@
 | **QUEUE SOURCE** | `07_OWNER_BOUNDED_CORRECTION_QUEUE.md` @ `3291210`, rows read **verbatim**, adopted unchanged |
 | **OWNER SURFACE** | `4778792` — **not** HEAD `ec4d3d2`, which is bookkeeping. Re-verified before starting |
 | **BRANCH** | `research/account-p09-plan-to-analyze-2026-09-04-001` |
-| **CURRENT COMMIT** | recorded at `CP-P09Q-FINAL` |
+| **CURRENT COMMIT** | **`2079a25`** — owner queue; **pushed and remote-verified** (remote SHA read back identical; tree clean) |
 | **`Q-P09-01`** | **COMPLETE — `M-1` RESOLVED via route (b).** *"Exclusion"* **withdrawn**; the 159 are assessed **inside** the published denominator. Ground restated as **disjointness of relation** — ownership on declaration, extension on inheritance, population on their union, reference a fourth relation disjoint from all three **by construction**. Route (a) **rejected on the record**: it would require deleting genuine measurements to make an exclusion true |
 | **DENOMINATOR — PUBLISHED** | **192 files / 52 modules** *(the published 193 is **corrected**: the eligibility fix had not been carried to the denominator)*. Partitioned **23 inside** the K-1 population + **169 outside**; **sum-checked** |
 | **RESIDUE — PUBLISHED** | partition B = 169, split **10 planning** (3 modules; 6 tests, 4 non-test) + **159 non-planning** (51 modules); **sum-checked**. B2 model population 100 / 72 / 57 / 11 / 9; module population published, dominated by timesheet and sales-service modules |
