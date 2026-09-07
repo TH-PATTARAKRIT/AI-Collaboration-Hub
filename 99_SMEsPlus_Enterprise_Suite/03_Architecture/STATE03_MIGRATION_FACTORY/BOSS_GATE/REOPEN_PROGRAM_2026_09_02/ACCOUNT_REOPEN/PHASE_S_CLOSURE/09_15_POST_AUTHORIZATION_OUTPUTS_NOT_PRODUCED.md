@@ -2,8 +2,16 @@
 
 **Session** `[SMEPLUS-26-09-06-ACC-P06-P08-P09-P11-PHASE-S-CLOSURE-001]` · branch `audit/account-phase-s-closure-2026-09-06-001`
 
-> §10 lists seven post-`Q-BOSS-01` execution outputs. **`PHASE-S/Q-BOSS-01` is ABSENT** (`00_` §5).
-> Under §4 this session **stopped at the gate**. These seven are therefore **not produced**.
+> **AMENDED 2026-09-07.** §10 lists seven post-`Q-BOSS-01` execution outputs. When this file was
+> written, **`PHASE-S/Q-BOSS-01` was ABSENT** (`00_` §5) and under §4 this session **stopped at the
+> gate**. **That ground is now discharged — the gate is APPROVED** (`BOSS_DECISION_PHASE_S_Q_BOSS_01_2026_09_07.md`).
+>
+> **The seven remain NOT PRODUCED, on a different and narrower ground: still 0 of 13 items executed.**
+> Authorization released the work; it did not perform it. The prompts were dispatched on 2026-09-07
+> (`PHASE_S_OWNER_DISPATCH_RECORD_2026_09_07.md`) and no owner return has been received.
+>
+> **`10_FRESH_CHALLENGE_RESULT_REGISTER` is now blocked on a second, independent ground:** under
+> `XRD-009` no eligible challenger exists, so it is unproducible regardless of how the corrections go.
 
 ## Why they are not emitted as empty shells
 

@@ -24,8 +24,13 @@ The evidence base is intact and every reference verified unmoved.
 
 ## NEXT EXACT ACTION
 
-**Dispatch the four owner correction prompts** from `08_OWNER_CORRECTION_PROMPT_PACK.md`
-(`audit/account-xrecon-2026-09-06-001` @ `3291210`) to the P06, P08, P09 and P11 owner sessions.
+**DONE 2026-09-07** — the four owner correction prompts were dispatched from
+`08_OWNER_CORRECTION_PROMPT_PACK.md` (`audit/account-xrecon-2026-09-06-001` @ `3291210`) to the
+P06, P08, P09 and P11 owner sessions. **4 of 4 owners, 13 of 13 items released.**
+See `PHASE_S_OWNER_DISPATCH_RECORD_2026_09_07.md`. **Dispatch is not execution: 0 of 13 executed.**
+
+**Next: answer `PHASE-S/Q-BOSS-02`, and receive the owner returns.** These are independent — the
+returns will arrive whether or not the question is answered, and 11 of them will arrive gated.
 **Each owner corrects only its own branch. No peer-owner mutation.**
 
 **Two items — `Q-P06-02` and `Q-P08-03` — can reach their completion condition on execution alone.**
