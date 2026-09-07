@@ -22,7 +22,7 @@
 | `CP-P09L11` | **L-8** AST declaration-stripping | **COMPLETE — both columns now executed**; counts corrected by the eligibility fix |
 | `CP-P09L12` | freeze corrected surface; four bounded challenges on changed surfaces only | **COMPLETE — no edit while challenges ran** |
 | `CP-P09L13` | re-verify every material finding before adoption | **COMPLETE — 35 of 35** |
-| `CP-P09L14` | apply corrections **at the artefacts that carry them** | **COMPLETE** — 6 prior-round files edited in place, superseded wording retained |
+| `CP-P09L14` | apply corrections **at the artefacts that carry them** | **COMPLETE** — **5** prior-round research artefacts, **6** corrections, edited in place with superseded wording retained *(count corrected under `Q-P09-02`)* |
 | `CP-P09L15` | package the instruments, make paths package-relative, checksum them | **COMPLETE** — the ephemeral-locator defect is **fixed, not asserted** |
 | `CP-P09LFINAL` | commit, push, verify remote, update state | **COMPLETE — PUBLISHED `4778792`**; remote SHA read back identical; tree clean; both mandatory scans ZERO over 133 documents |
 
@@ -64,7 +64,7 @@
 
 ## 4. WHAT THIS ROUND CHANGED IN OTHER ROUNDS' FILES
 
-Six prior-round artefacts were edited **in place**, each retaining its superseded wording:
+~~Six prior-round artefacts~~ → **FIVE prior-round research artefacts carrying SIX distinct corrections** were edited **in place**, each retaining its superseded wording. *(Corrected under `Q-P09-02`: the figure six is the count of **corrections**, not of artefacts; the commit also touches the package manifest, which is bookkeeping.)*
 
 | File | Correction |
 |---|---|
