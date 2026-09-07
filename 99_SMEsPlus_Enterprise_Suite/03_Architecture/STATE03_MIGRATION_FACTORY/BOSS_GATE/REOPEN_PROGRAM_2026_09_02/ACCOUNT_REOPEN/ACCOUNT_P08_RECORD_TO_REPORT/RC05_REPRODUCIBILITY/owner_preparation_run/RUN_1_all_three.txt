@@ -1,0 +1,93 @@
+pg_restore: pg_restore (PostgreSQL) 16.15 (Homebrew)
+python:     3.14.0
+decimal prec 60 · NO float is constructed at any step
+
+FROZEN INPUTS
+  DB-SM  /Users/admin/Downloads/iSMEs_2026-07-11_05-03-27.dump
+         size 155443710 bytes
+         sha256 ca77818b6daa1184199018add4e695cb75112e25608b0a664bfbf3ada5118ae2
+  DB-BK  /Users/admin/Downloads/BK12MAY26_2026-08-03_05-48-30.dump
+         size 35679594 bytes
+         sha256 1a67347491a056d1e86675568a68473aa239c96396988d21493b805970e151a3
+  DB-EV  /Users/admin/Downloads/iEVING_2026-07-23_10-31-06.dump
+         size 24911161 bytes
+         sha256 eade5512bbab1bd06f4f3a521c9468eadc08facaeb7e551631ae51be3a85cb0f
+
+==============================================================================
+DATABASE DB-SM   iSMEs_2026-07-11_05-03-27.dump
+==============================================================================
+POPULATION
+  account_move rows                  183590
+  posted moves                       169143
+  POSTED_MOVES_WITH_LINES (unit)     169143   <-- DENOMINATOR
+  account_move_line rows             447384
+  posted lines                       417700
+  PARENT_STATE_DISAGREE (lines)      0
+CONTROL / POSITIVE
+  sum |debit|+|credit| over posted   278703722656.58
+  extraction reached real data       YES
+UNBALANCED POSTED ENTRIES  (unit = one account_move)
+  tolerance                    COMPUTED     STORED
+  exact                               0          0
+  1e-7                                0          0
+  1e-4                                0          0
+  0.005                               0          0
+DISCRIMINATING SET — the same predicate over NON-posted entries
+  draft/other moves with lines       14427
+  unbalanced @ exact                 0
+  unbalanced @ 1e-7                  0
+  unbalanced @ 1e-4                  0
+  unbalanced @ 0.005                 0
+
+==============================================================================
+DATABASE DB-BK   BK12MAY26_2026-08-03_05-48-30.dump
+==============================================================================
+POPULATION
+  account_move rows                  16
+  posted moves                       16
+  POSTED_MOVES_WITH_LINES (unit)     16   <-- DENOMINATOR
+  account_move_line rows             563
+  posted lines                       563
+  PARENT_STATE_DISAGREE (lines)      0
+CONTROL / POSITIVE
+  sum |debit|+|credit| over posted   29420.00
+  extraction reached real data       YES
+UNBALANCED POSTED ENTRIES  (unit = one account_move)
+  tolerance                    COMPUTED     STORED
+  exact                               0          0
+  1e-7                                0          0
+  1e-4                                0          0
+  0.005                               0          0
+DISCRIMINATING SET — the same predicate over NON-posted entries
+  draft/other moves with lines       0
+  unbalanced @ exact                 0
+  unbalanced @ 1e-7                  0
+  unbalanced @ 1e-4                  0
+  unbalanced @ 0.005                 0
+
+==============================================================================
+DATABASE DB-EV   iEVING_2026-07-23_10-31-06.dump
+==============================================================================
+POPULATION
+  account_move rows                  6
+  posted moves                       6
+  POSTED_MOVES_WITH_LINES (unit)     6   <-- DENOMINATOR
+  account_move_line rows             15
+  posted lines                       15
+  PARENT_STATE_DISAGREE (lines)      0
+CONTROL / POSITIVE
+  sum |debit|+|credit| over posted   1600.00
+  extraction reached real data       YES
+UNBALANCED POSTED ENTRIES  (unit = one account_move)
+  tolerance                    COMPUTED     STORED
+  exact                               0          0
+  1e-7                                0          0
+  1e-4                                0          0
+  0.005                               0          0
+DISCRIMINATING SET — the same predicate over NON-posted entries
+  draft/other moves with lines       0
+  unbalanced @ exact                 0
+  unbalanced @ 1e-7                  0
+  unbalanced @ 1e-4                  0
+  unbalanced @ 0.005                 0
+

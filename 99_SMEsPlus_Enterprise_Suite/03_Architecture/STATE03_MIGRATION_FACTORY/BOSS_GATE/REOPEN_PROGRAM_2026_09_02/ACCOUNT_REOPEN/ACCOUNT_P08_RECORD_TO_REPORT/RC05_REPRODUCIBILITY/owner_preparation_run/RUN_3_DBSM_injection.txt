@@ -1,0 +1,36 @@
+pg_restore: pg_restore (PostgreSQL) 16.15 (Homebrew)
+python:     3.14.0
+decimal prec 60 · NO float is constructed at any step
+
+FROZEN INPUTS
+  DB-SM  /Users/admin/Downloads/iSMEs_2026-07-11_05-03-27.dump
+         size 155443710 bytes
+
+==============================================================================
+DATABASE DB-SM   iSMEs_2026-07-11_05-03-27.dump
+==============================================================================
+POPULATION
+  account_move rows                  183590
+  posted moves                       169143
+  POSTED_MOVES_WITH_LINES (unit)     169143   <-- DENOMINATOR
+  account_move_line rows             447384
+  posted lines                       417700
+  PARENT_STATE_DISAGREE (lines)      0
+CONTROL / POSITIVE
+  sum |debit|+|credit| over posted   278703722656.58
+  extraction reached real data       YES
+UNBALANCED POSTED ENTRIES  (unit = one account_move)
+  tolerance                    COMPUTED     STORED
+  exact                               1          1
+  1e-7                                1          1
+  1e-4                                1          1
+  0.005                               1          1
+DISCRIMINATING SET — the same predicate over NON-posted entries
+  draft/other moves with lines       14427
+  unbalanced @ exact                 0
+  unbalanced @ 1e-7                  0
+  unbalanced @ 1e-4                  0
+  unbalanced @ 0.005                 0
+CONTROL / INJECTION  one synthetic entry off by 0.01
+  every tolerance below that amount MUST show exactly +1 vs the un-injected run
+
