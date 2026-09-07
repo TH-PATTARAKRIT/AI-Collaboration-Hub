@@ -88,3 +88,17 @@ Added because an independent reviewer established that **none** of the closure's
 | `P08-CONTRA-42` | *"No carrier distinguishes a tax period from the accounting date"* | **WITHDRAWN for the deployed system**, holds for the reference kernel — `49` §3.4 |
 | `P08-CONTRA-47` | **A sweep instrument returned a clean result it was structurally incapable of failing**, and four identifier families had accumulated across three rounds with no roll-up | **CORRECTED AND CLOSED.** Instrument rebuilt with two positive controls; `59` created; the "orphan" label corrected to "unregistered" after spot-checking showed all 20 are defined in prose |
 | `P08-CONTRA-48` … `-74` | **27 further contradictions**, raised by four bounded AAS-03 challenges and each re-verified by the author before adoption | **APPLIED IN PLACE** across `53`–`58`, with the superseded wording quoted rather than replaced. Full table in `61` §2. **None is independently certified** — `AAS+-PS-VETO-01` C-6 |
+
+---
+
+# `Q-P08-01` / `Q-P08-02` EXECUTION DELTA — 2026-09-07
+
+Executed under Boss authorization `PHASE-S/Q-BOSS-01` = APPROVED (`1bf9b40`), queue `3291210`. **Neither item closes** — `RC-05` is required and unsatisfied.
+
+| ID | Contradiction | Disposition |
+|---|---|---|
+| `P08-CONTRA-75` | **A published figure had no referent.** `58_` §1 item 1 stated *"at 1e-7 the answer is 3, all float artefacts on eight-figure sums."* Re-run in exact decimal arithmetic: **0 unbalanced at exact equality, 1e-7, 1e-4 and 0.005**, on **both** the computed and the stored balance column, across **all three** deployed databases | **DELETED, not re-scoped.** `58_` §1 item 1 re-issued as **tolerance-independent**; the full re-run published at `58_` §8. **P11 notified in writing** — `64_`. `RC-05` outstanding |
+| `P08-CONTRA-76` | **The settlement claim's tolerance dependence was never stated**, and the balance claim carried a tolerance it does not need | **SEPARATED.** `58_` §1 row 2 re-issued with its tolerance: drift **0 at ≥ 1e-6**, **2,354 lines at exact equality**, worst residual 2.1 × 10⁻⁹. Row 1 re-issued as needing none |
+| `P08-CONTRA-77` | **`HO-nn` did not identify a row without naming its producer.** `25_` and `54_` published different sets under the same ids, both live, and P06 independently defines its own `HO-01`…`HO-06` | **RESOLVED by producer-qualification.** `54_`'s family re-numbered to **`P08-HO-01` … `P08-HO-14`**; `25_`'s family **RETIRED** under a header banner; **P06's family untouched**. Re-test with two controls: **0 unqualified live citations** |
+| `P08-CONTRA-78` | **The outbound table carried 8 columns against a 10-column mandate, and one row carried 7 cells** — losing its Scope value and shifting every later column | **REPAIRED.** Two mandated columns added (**Version basis**, **Reachability**), bringing the table to ten; the malformed row rebuilt |
+| `P08-CONTRA-79` | **Two outbound rows carried wording the package had already withdrawn** — the tax-period unit and *"every non-sale document"* | **RE-ISSUED** to the corrected forms as part of the mandated re-issue of all 14 rows |

@@ -10,8 +10,8 @@ Prompt `[SMEPLUS-26-09-06-P08-R2R-DOMAIN-PURE-BOUNDED-CLOSURE-002]` · **PHASE S
 
 | # | Supplied | Quality | Class |
 |---|---|---|---|
-| 1 | Every posted monetary fact, at item granularity | arithmetically sound — 0 unbalanced posted entries in the reporting currency across 169,143 **at a tolerance of 0.005 or wider; at 1e-7 the answer is 3, all float artefacts on eight-figure sums**. **The word "complete" is WITHDRAWN (`P08-CONTRA-73`)**: a module installed on all three databases deletes the ledger in raw SQL (§5) | `CANDIDATE OUTPUT`, qualified |
-| 2 | The settlement graph | **63,773 records, 100,580 lines, residual drift 0** at tolerance ≥ 1e-6 | `CANDIDATE OUTPUT` |
+| 1 | Every posted monetary fact, at item granularity | **arithmetically sound, and the claim is TOLERANCE-INDEPENDENT.** Re-run in exact decimal arithmetic (`Q-P08-01`, 2026-09-07): **0 unbalanced posted entries in the reporting currency at exact equality, at 1e-7, at 1e-4 and at 0.005** — on **both** the computed debit-minus-credit and the **stored** balance column, and across **all three** deployed databases (169,143 + 16 + 6 posted entries). **The previously published *"at 1e-7 the answer is 3, all float artefacts"* is DELETED — the figure had no referent** (`P08-CONTRA-75`). **The word "complete" remains WITHDRAWN (`P08-CONTRA-73`)**: a module installed on all three databases deletes the ledger in raw SQL (§5) | `CANDIDATE OUTPUT`, qualified |
+| 2 | The settlement graph | **63,773 records, 100,580 lines.** Residual drift **0 at tolerance ≥ 1e-6**; re-run at **exact equality it is 2,354 lines, worst residual 2.1 × 10⁻⁹** — a stored-float artefact of the settlement amount column. **Unlike row 1, this claim IS tolerance-dependent, and the tolerance must travel with it** | `CANDIDATE OUTPUT` |
 | 3 | Company and journal attribution on every item | mirrors agree **447,384 of 447,384** — *unit note: this is the all-states item population; the posted population is 417,700* | `CANDIDATE OUTPUT` |
 | 4 | Posting state and date | present on every entry | `CANDIDATE OUTPUT` |
 | 5 | Origin pointers where they exist | **CORRECTED — `P08-CONTRA-63`.** **78.03%** of posted entries carry a *structured* origin pointer. The 96.1% previously published counted **free-text reference** as an origin pointer, while another file in the same package treats reference as a separate thing. For a reconciliation consumer the difference is ~30,750 entries whose only provenance is unparsed text | `CANDIDATE OUTPUT`, predicate now declared |
@@ -68,14 +68,14 @@ A module **installed in all three deployed databases** deletes, in unqualified r
 | `56` §2 ranked settlement referential integrity as the one control that **holds** | it does not |
 | `PR-04` entry numbering | a sequence reset permits previously-issued numbers to be re-issued |
 
-**Handed to P11 and to P06 as `HO-13`.** P08 records the mechanism and the install state. **Whether it has ever been executed on any deployment is not verified by P08** — a peer has published an observation to that effect and it is recorded as **received and attributed, not re-derived**.
+**Handed to P11 and to P06 as **`P08-HO-13`** (re-numbered under `Q-P08-02`).** P08 records the mechanism and the install state. **Whether it has ever been executed on any deployment is not verified by P08** — a peer has published an observation to that effect and it is recorded as **received and attributed, not re-derived**.
 
 ## 6. Handoffs added after challenge
 
 | ID | To | Content |
 |---|---|---|
-| `HO-13` | **P11, P06** | the deletion path above |
-| `HO-14` | **P07** | the statutory register family selects on **two different period bases** — two handlers on the tax period, two on the accounting date — so the 5,228 entries where the two differ can appear in one and not the other |
+| `P08-HO-13` | **P11, P06** | the deletion path above |
+| `P08-HO-14` | **P07** | the statutory register family selects on **two different period bases** — two handlers on the tax period, two on the accounting date — so the 5,228 entries where the two differ can appear in one and not the other |
 
 
 ## 7. Version standing of this handoff — stated plainly because it was measured against it
@@ -85,3 +85,51 @@ A module **installed in all three deployed databases** deletes, in unqualified r
 **Every kernel claim in this handoff rests on the 18.0 line. No deployed database runs it.** `DB-SM` (99.987% of the estate's posted entries) runs 16.0, whose core source **is not on this host at all**; `DB-BK` and `DB-EV` run 19.0, whose source **is on this host, was never searched, and already contradicts one absolute in this file** (§2 row 4).
 
 **P11 must read every row of this handoff as an 18.0 statement until it is re-derived on the line the consumer actually runs.** `P08-U-28`.
+
+
+---
+
+## 8. `Q-P08-01` — re-issue of §1 item 1, and the full exact-arithmetic re-run
+
+Executed 2026-09-07 under Boss authorization `PHASE-S/Q-BOSS-01` (branch `audit/account-phase-s-closure-2026-09-06-001` @ `1bf9b40`), against queue item `Q-P08-01` (branch `audit/account-xrecon-2026-09-06-001` @ `3291210`). Source baseline `00ccd66`.
+
+### 8.1 What was wrong
+
+§1 item 1 published: *"at 1e-7 the answer is 3, all float artefacts on eight-figure sums."*
+
+**The figure had no referent.** It is **deleted**, not re-scoped. `P08-CONTRA-75`.
+
+### 8.2 The mandated re-run — every balance measurement, exact decimal arithmetic, no floats
+
+**INSTRUMENT:** `decimal.Decimal`, precision 50, parsed from the deployed COPY extracts. **UNIT:** one posted entry. **POPULATION:** every posted entry in all three deployed databases. **CONTROL:** the same instrument returns non-zero on the transaction-currency frame and on the settlement reconstruction, so it is capable of reporting a defect.
+
+| Measurement | exact | 1e-7 | 1e-4 | 0.005 |
+|---|---|---|---|---|
+| Unbalanced posted entries, reporting currency — **`DB-SM`** (169,143), debit−credit | **0** | **0** | **0** | **0** |
+| — same, on the **stored balance** column | **0** | **0** | **0** | **0** |
+| — **`DB-BK`** (16) and **`DB-EV`** (6), both columns | **0** | **0** | **0** | **0** |
+
+> **There is no tolerance at which the count is non-zero, on either column, in any deployed database.** The claim is **tolerance-independent**, and stating a tolerance beside it was itself the error.
+
+**Other balance measurements re-run in the same pass, reported for completeness:**
+
+| Measurement | Exact-arithmetic result |
+|---|---|
+| Transaction-currency: non-netting posted entries | **1,851** (`DB-SM`); 0 in the two 19.0 databases |
+| — carrying a company-currency counter-leg (exculpated) | **1,847** |
+| — **genuine** | **4** — unchanged, and **not re-opened**; sound under five predicate forms and a 1,847-row discriminating control |
+| Settlement reconstruction, 63,773 settlements over 100,580 lines | drift **0 at ≥ 1e-6**; **2,354 lines at exact equality**, worst residual **2.1 × 10⁻⁹** |
+| Posted entries with every line zero — reporting frame | **38** (`DB-SM`), **5** (`DB-BK`), 0 (`DB-EV`) |
+| — same, **both frames** | **36** (`DB-SM`), **5** (`DB-BK`), 0 (`DB-EV`) |
+
+### 8.3 An observation the re-run supports, stated as an interpretation and not as a fact
+
+**The balance measurement has no float artefact at any tolerance. The settlement measurement does** — 2,354 lines at 2.1 × 10⁻⁹, because the settlement amount is stored as a floating-point column.
+
+**A float artefact belonging to the settlement measurement appears to have been attached to the balance measurement.** `SUPPORTED INTERPRETATION` — the mechanism was not traced, and the round that published the figure is closed. What is `FACT VERIFIED` is only that the balance figure has no referent and the settlement figure does.
+
+### 8.4 Bounds and what this does not do
+
+- The all-zero row above is **reported, not repaired.** The claim *"38 … in both frames"* stands elsewhere in the package as a **registered defect** (`IVR-F-08`) belonging to no authorized queue item. **Correcting it here would be re-scoping and is not done.**
+- **`RC-05` is REQUIRED for this item and is NOT satisfied.** No structurally independent challenger exists (`PHASE-S/Q-BOSS-02`, raised and unanswered). **This repair is executed; the item does not close.**
+- **P11 notification is a separate completion condition** — issued as `P08_NOTIFICATION_TO_P11_Q_P08_01.md`.
