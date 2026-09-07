@@ -314,7 +314,7 @@ The addendum states that whether the overlap is coincidence or common cause is u
 
 **But it is explained by a shared population, and that is as far as the evidence goes.** Both defects concentrate in one machine-generated class — depreciation entries routed into the general journal. That is consistent with a single bulk generation run that both mis-numbered its entries and mishandled their foreign-currency legs, **and the verifier does not assert it.** `SUPPORTED INTERPRETATION`; a shared mechanism is **UNRESOLVED — SPECIFIC EVIDENCE REQUIRED**.
 
-**Routed as an addition to bounded repair requirements 2 and 4:** when the FX row and the numbering row are re-issued, each must cite the other and state the shared population, so a consumer is not told that four entries evidence one defect while the same four evidence another.
+**Routed as bounded repair requirement 11** — *see the correction note below; requirements 1–10 are unchanged*: when the FX row and the numbering row are re-issued, each must cite the other and state the shared population, so a consumer is not told that four entries evidence one defect while the same four evidence another.
 
 ### `IVR-INB-04` — a second late inbound, and it **narrows** a repair requirement
 
@@ -336,4 +336,31 @@ Same provenance and same handling as `IVR-INB-01`: **after the freeze, changes n
 
 **Consequence — the repair requirement shrinks.** The published correction's *count* (4) and its *mechanism* (the other 1,847 carry a legitimate company-currency counter-leg) are both **sound**. **The only defect in that row is the cause clause** — *"all from a 1:1 rate fallback"* — which is false for the entry whose five legs sit at an implied rate of ≈35.4 with a 0.04 residue, and imprecise for the other three, whose defect is a foreign-flagged line carrying **no transaction amount** — a missing-amount defect, not a rate fallback.
 
-**Bounded repair requirement 2 is therefore narrowed:** withdraw and replace the **cause clause only**. The count and the exculpation need no rework. The separate defect — the figure with no referent in the outbound handoff — is unaffected and stands.
+**Bounded repair requirement 11 is therefore narrowed:** withdraw and replace the **cause clause only**. The count and the exculpation need no rework. **Requirement 2 — the figure with no referent in the outbound handoff — is a different defect, is unaffected, and stands.**
+
+
+---
+
+## 13. `Q-P08-03` — correction to this register's own cross-reference
+
+Executed 2026-09-07 under Boss authorization `PHASE-S/Q-BOSS-01` (`1bf9b40`), queue item `Q-P08-03` (`3291210`). Pointer-only, `RC-07`: **no fresh challenge required.**
+
+### 13.1 What was wrong
+
+Two lines of this register routed the FX cause-clause repair to *"bounded repair requirements **2 and 4**"* and to *"**requirement 2**"*.
+
+**Neither requirement carries the FX row.** Terminal-report requirement **2** is *"delete the '3 at 1e-7' from the P11 handoff and re-run every balance measurement in exact arithmetic"* — which the same paragraph then says *"is unaffected and stands"*, so it cannot also be the requirement being narrowed. Requirement **4** is the capability denominator. **The FX cause-clause repair was not among the ten numbered requirements at all.**
+
+### 13.2 The correction
+
+**A new requirement 11 is added. Requirements 1–10 are NOT renumbered** — they are cited elsewhere, and the queue row prohibits it.
+
+| # | Bounded repair requirement | Owner |
+|---|---|---|
+| **11** | **Withdraw the FX cause clause *"all from a 1:1 rate fallback"* and replace it with the per-entry cause:** one entry is a rounding residue of 0.04 across five legs at an implied rate of ≈35.4; the other three carry a foreign-flagged line with **no transaction amount**, which is a missing-amount defect and not a rate fallback. **The count of 4 and its 1,847-row exculpation are sound under five predicate forms and are NOT re-opened.** When re-issued, this row and the entry-numbering row **must cite each other** and state the shared population — all four entries are depreciation-numbered entries in the general journal, and all four are members of the mis-prefixed population | **P08 — source** |
+
+### 13.3 Scope discipline observed
+
+- **The existing ten requirements are unchanged**, in number and in text.
+- **The narrowing itself is not re-opened** — it is sound, and the queue row prohibits re-opening it.
+- This item required **no fresh challenge** (`RC-07`) and **is complete on execution**.
