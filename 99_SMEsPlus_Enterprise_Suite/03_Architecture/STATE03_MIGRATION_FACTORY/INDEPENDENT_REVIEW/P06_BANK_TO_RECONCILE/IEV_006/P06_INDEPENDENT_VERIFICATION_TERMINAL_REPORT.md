@@ -11,7 +11,7 @@
 
 > ### `P06 INDEPENDENT VERIFICATION FOUND MATERIAL DEFECT — TARGETED REPAIR REQUIRED`
 
-**Not A** — 18 material defects survive on the frozen surface.
+**Not A** — ~~18~~ → **26 material defects** survive on the frozen surface **[Q-P06-01 / XRD-001, 2026-09-07 — propagated from the addendum; superseded figure retained as lineage]**. *The addendum revised 18 → 25; the enumeration mandated by `Q-P06-01`'s Re-test gives **26**, contiguous `IEV-D-01`…`IEV-D-26` — see §Enumeration.*
 **Not C** — the evidence was fully available and was obtained; nothing was blocked.
 
 ## `AASP-VETO-07` (§9)
@@ -21,13 +21,15 @@
 **On two independent grounds, either sufficient:**
 
 1. **The prompt's own precondition is not met.** §1: *"THIS PROMPT MUST NOT BE EXECUTED BY THE SAME P06 CORRECTION ACTOR."* **It was.** The executing context authored the `REV-E-23` repairs. §9 reserves the discharge recommendation to *"an independent verifier that completes this prompt"* — that is not this verifier, whatever the findings.
-2. **The evidence would preserve it anyway.** 18 material defects, 7 of 9 claim classes carrying survivors, and both P11-bound handoffs publishing wrong figures written by the repair round itself.
+2. **The evidence would preserve it anyway.** ~~18~~ → **26** material defects **[Q-P06-01 / XRD-001, 2026-09-07 — propagated from the addendum; superseded figure retained as lineage]**, 7 of 9 claim classes carrying survivors, and both P11-bound handoffs publishing wrong figures written by the repair round itself.
 
 ## What the audit confirms
 
 **The research is sound; the bookkeeping about the research is not.** Every claim re-executed against the ERP source held: the `is_matched` structure (4 branches, 5 sites), every sampled v18 and v19 line number, the `account_move` SQL quotation, all eight enumerative version counts, and two of three cross-version invariance rows byte-identical. The `X-08` family is clean across eleven statements and seven files, and no peer-owned item is converted to closed anywhere. The repair arithmetic reconciles: 21 + 3 = 24, and 24 is measured.
 
-## The 18 material defects — grouped by what they say about the method
+## The material defects — grouped by what they say about the method
+
+> **POPULATION: 26**, ~~18~~ ~~25~~ retained as lineage **[Q-P06-01 / XRD-001, 2026-09-07 — propagated from the addendum; superseded figure retained as lineage]**. The eight added by the addendum are `IEV-D-19`…`IEV-D-26`; the grouping below covers the original 18 and is not re-opened, per the queue's PROHIBITED row.
 
 **Wrong figures published by the repair round itself (4):** the blocker count is **67, not the 65** written into `13_`:94, `46_`:124, `18_`:214 and `70_`:108 — at every declared scope, including both printed commands' own globs, with `B-66`/`B-67` created by that same round; *"three vetoes"* and *"four active vetoes"* against **seven**; *"16 recorded author errors"* against **23**. `46_`:124 states the rule *"a printed command and a printed result date differently"* and breaks it in the same clause.
 

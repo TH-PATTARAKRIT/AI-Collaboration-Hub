@@ -28,9 +28,19 @@
 
 ## 2. Expert 2 — Leadership Database Design (denominator, population, identity)
 
-**REPORT NOT RECEIVED AT PUBLICATION.** The challenger was launched with the same frozen path and a denominator/identity remit and had not returned when this package was published. **Its remit is materially covered by Experts 1 and 4, whose count findings the main verifier re-executed independently** — the blocker count at three declared scopes, the marker population by four methods, `P06-OQ-*` = 75 and `REV-E-*` = 23.
+**RETURNED AFTER PUBLICATION, AND ADJUDICATED.** **[Q-P06-01 / XRD-001, 2026-09-07]**
 
-**This is recorded as a gap, not as a clean result.** A fourth challenger's report is outstanding, and no finding in this package depends on it.
+> **SUPERSEDED, retained as lineage.** This section previously read: *"**REPORT NOT RECEIVED AT PUBLICATION** … its remit is materially covered by Experts 1 and 4 … **This is recorded as a gap, not as a clean result.** A fourth challenger's report is outstanding, and **no finding in this package depends on it**."*
+
+**Expert 2 returned twelve material defects, seven absent from the published eighteen** — `IEV-D-19` … `IEV-D-25` plus `IEV-D-26`. Its findings are set out in `P06_INDEPENDENT_VERIFICATION_ADDENDUM_E2.md` and each was re-executed by the main verifier before adoption.
+
+**SUPPORTED.** Every reproducible count in the package reproduces, several per file — the round-5 census (30/15) is path-set-insensitive; round 6 reconciles 47 − 7 = 40; round 7 reconciles to exactly 21 across 14 files under its declared unit; `46_`'s 6/17/20/3/7/2 = 55 covers `B-01`…`B-55` with zero duplicates and zero omissions; no identifier is cited-but-undefined.
+
+**CONTRADICTED — 12 material.** Chief: `13_`:95 (*"Open-item population … 66"*, measured **68**) — an untouched row one line below the repaired `:94`, same command, same claim class, **in no round's population and not in this audit's**. And `56_`:99's published archive pattern **cannot fire**: BRE matches 0 of 2 real spellings, ERE matches 0 of 5.
+
+**MATERIAL: YES ×12.**
+
+**And the gap itself was a finding.** The disposition that closed it — *"no finding in this package depends on it"* — was **falsified by its own author**. `IEV-I-05`.
 
 ## 3. Expert 3 — Lead Integration & Localization (outbound boundary truth)
 

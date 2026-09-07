@@ -27,7 +27,7 @@
 | ID | Defect | Verification |
 |---|---|---|
 | **`IEV-D-19`** | **`13_`:95 — *"Open-item population \| same, `P06-OQ-` \| **66**"*. Measured: **68**.** An **untouched row one line below the repaired `:94`**, using the same command, in the same claim class, never in any round's population — **nor in this audit's** | ran its own printed command over root `*.md` → **68** |
-| **`IEV-D-20`** | **This verifier's own `P06_VERIFICATION_INSTRUMENT_CONTROL_REGISTER.md`:45 publishes a validation table row — *"65 `P06-B-*` … max id = 65 and contiguous \| **YES**"* — while `:54` of the same file raises `P06-B-66` and `P06-B-67` nine lines later.** A validation table marked **YES** over a figure the same document supersedes | read both lines; measured 67 |
+| **`IEV-D-20`** | ~~*"This verifier's own `P06_VERIFICATION_INSTRUMENT_CONTROL_REGISTER.md`:45"*~~ → **`G02_RECOVERY_2026_09_06/P06_VERIFICATION_TOOL_DEFECT_REGISTER.md`:45, on the SOURCE branch** **[XQ-R-03, 2026-09-07 — wrong file named; the IEV file carries no such row]**. It publishes a validation table row — *"65 `P06-B-*` … max id = 65 and contiguous \| **YES**"* — while `:54` of the same file raises `P06-B-66` and `P06-B-67` nine lines later.** A validation table marked **YES** over a figure the same document supersedes | read both lines; measured 67 |
 | **`IEV-D-21`** | **`REV-E-22` and `REV-E-23` are counted as author errors and are not.** All of `REV-E-01`…`21` carry a definition line in `14_`, `39_`, `62_` or the contradiction supplement; **`REV-E-22` and `REV-E-23` carry none, in any file.** They are repair-marker families. `40_`:288 and the supplement's declared `UNIT: author error` publish **23**; the true author-error population is **21**. **`P06-B-58`, the reliance-risk blocker, is scaled on this number** | 21 of 21 have definitions; 0 of 2 do |
 | **`IEV-D-22`** | **`VER-F-04` states *"Eleven false current statements survived"* and enumerates **17** line references.** *"Including"* licenses more than the count, not fewer. Described in its own file as *"the round's governing finding"* | counted the enumeration |
 | **`IEV-D-23`** | **The propagation matrix's own denominator row does not sum.** `:20` — 30 total, 8 records *"(incl. 3 time-bounded)"*, 19 current: **8 + 19 = 27 ≠ 30**. Every other row of the nine reconciles exactly. In the file whose thesis is *"the method that matters is the denominator"* | arithmetic |
@@ -65,8 +65,8 @@ Expert 2 tested it against a controlled fixture containing real spellings plus a
 
 | | Published at `dac6ac3` | **Now** |
 |---|---|---|
-| Material defects | 18 | **25** |
-| Of which authored by this verifier | 1 (`41_`:6) | **2** (`+ IEV-D-20`) |
+| Material defects | 18 | ~~25~~ → **26** — *enumerated `IEV-D-01`…`IEV-D-26`, contiguous. The 25 was summed over §3's table; `IEV-D-26` is defined in §4, in prose, outside it* **[XQ-R-02, 2026-09-07]** |
+| Of which authored by this verifier | 1 (`41_`:6) | **2** (`+ IEV-D-20`) — *both by this **actor**, in the round-7 source track; **neither sits inside an `IEV_006/` file**. The figure is true of the actor and false of the audit artefact* **[XQ-R-03, 2026-09-07]** |
 | Challenger reports adjudicated | 3 of 4 | **4 of 4** |
 | Claim classes with survivors | 7 of 9 | **7 of 9** *(class 3 population grows by `57_`:29; class 9 by `13_`:95)* |
 | Repair requirements routed to P06 | 15 | **19** |

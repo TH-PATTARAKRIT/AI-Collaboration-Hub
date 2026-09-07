@@ -80,7 +80,7 @@ Prompt §5 Stages A–E. Instruments, controls and blind spots: `P06_VERIFICATIO
 | **`IEV-D-17`** | **`52_`:86 claims *"An independent sweep of all nine peer branches"*** while `38_`:92 (`OQ-128`) records that **P01 has never been consumed** and `OQ-124` that consuming it is out of bounds. No command, denominator or path set is published for the sweep | `52_`:86 | **YES** |
 | **`IEV-D-18`** | **`09_`:13 and `:98` still state *"P06 is a terminal process"* / *"P06 owns nothing else"***, the framing P06 formally withdrew on P11's evidence (`34_`:15-19, `35_`:34-42). `34_`:5 scopes its supersession to the *status column* only, by design — so the narrative of the ownership file of record is untouched, and `09_` is indexed in the outbound pack at `18_`:123 | `09_`:13, `:98` | **YES** |
 
-**18 material defects, every one re-executed by this verifier against the frozen tree.**
+**~~18~~ → 26 material defects, every one re-executed by this verifier against the frozen tree.** **[Q-P06-01 / XRD-001, 2026-09-07 — propagated from the addendum; superseded figure retained as lineage]** *`IEV-D-01`…`IEV-D-18` are enumerated in the table above; `IEV-D-19`…`IEV-D-26` in `P06_INDEPENDENT_VERIFICATION_ADDENDUM_E2.md`. **Enumeration, not total:** the ids are contiguous `01`…`26`, verified by two instrument forms with a positive, a negative and an injection control.*
 
 ## 4. Challenger claims REFUTED (§5 — re-checked before adoption)
 

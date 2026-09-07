@@ -19,7 +19,7 @@ Prompt §1 forbids execution by the actor that authored the repairs. **That acto
 
 ## RESULT IN ONE LINE
 
-**The research is sound; the bookkeeping about the research is not.** Every source-level claim re-executed against the ERP held. **18 material defects were found in the package's statements about itself**, four of them wrong figures the repair round wrote, two of them defects that round manufactured, and one of them — `41_`:6 — authored by this verifier in its prior role.
+**The research is sound; the bookkeeping about the research is not.** Every source-level claim re-executed against the ERP held. **~~18~~ → 26 material defects were found in the package's statements about itself** **[Q-P06-01 / XRD-001, 2026-09-07 — propagated from the addendum; superseded figure retained as lineage]**, four of them wrong figures the repair round wrote, two of them defects that round manufactured, and one of them — `41_`:6 — authored by this verifier in its prior role.
 
 ## NEXT EXACT ACTION
 
@@ -30,7 +30,7 @@ Prompt §1 forbids execution by the actor that authored the repairs. **That acto
 ## DO NOT
 
 - **Do not treat this audit as a discharge of `AASP-VETO-07`.** It is not one and cannot be one.
-- **Do not repair the source package from this branch.** §7 is mandatory: 15 repair requirements are **routed to P06/Boss**, not performed.
+- **Do not repair the source package from this branch.** §7 is mandatory: ~~15~~ → **19** repair requirements are **routed to P06/Boss**, not performed **[Q-P06-01 / XRD-001, 2026-09-07 — propagated from the addendum; superseded figure retained as lineage]** — 15 numbered in the terminal report plus 4 in the addendum.
 - **Do not read "the research is sound" as clearance.** It means the ERP findings re-execute; it says nothing about whether the package is safe to rely on, which is what the 18 defects bear on.
 - **Do not consume peer packages, open new research, start PHASE SA/B/C, invoke AI EOS, design, or merge.**
 
@@ -40,4 +40,10 @@ Prompt §1 forbids execution by the actor that authored the repairs. **That acto
 
 ## BACKGROUND TASKS
 
-**Four AAS-03 challengers were launched; three returned and are adjudicated. One (Expert 2 — denominator/identity) did not return before publication and is TERMINALLY DISPOSITIONED as follows: its remit is materially covered by Experts 1 and 4, whose count findings this verifier re-executed independently at three declared scopes; no finding in this package depends on it; and the gap is recorded in `P06_INDEPENDENT_AAS03_CHALLENGE.md` §2 as a gap, not as a clean result.** No task is relied upon and none is pending adjudication.
+**Four AAS-03 challengers were launched. ALL FOUR RETURNED and are adjudicated.** **[Q-P06-01 / XRD-001, 2026-09-07]**
+
+> **SUPERSEDED, retained as lineage.** This record previously read: *"three returned … One (Expert 2 — denominator/identity) did not return before publication and is **TERMINALLY DISPOSITIONED** … its remit is materially covered by Experts 1 and 4 … **no finding in this package depends on it**."*
+>
+> **That disposition is FALSIFIED by its own author.** Expert 2 returned after publication with **twelve material defects, seven of them absent from the published eighteen** — a quarter of the total, including `IEV-D-19` (`13_`:95, an untouched row one line below a repaired one) and `IEV-D-26` (a published search pattern that cannot fire under either grep mode). **The remit was not covered.** Recorded as `IEV-I-05`: *reasoning about what a missing input would probably have said is a guess dressed as a judgement.*
+
+No task is running. No finding rests on an unadjudicated input.
