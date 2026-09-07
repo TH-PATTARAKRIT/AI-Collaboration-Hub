@@ -25,9 +25,9 @@ population of 12"* was arithmetically impossible on its face.** `P11-E-38`.
 | `P03` | `73_P03_P11_RUNTIME_INVERSION_SUPPLEMENT.md` | *"the two things conversion cost needs have never existed together in any examined deployment"* | `CANDIDATE INPUT` |
 | `P04` | `P04_TO_P11_HANDOFF.md` @ `65b8841` | 6 Boss decisions; asset engine **cannot post off-balance**; `P04-B-51` | `BOSS DECISION REQUIRED` |
 | `P05` | `65_P05_P11_EVIDENCE_BASE_AND_LIVE_RISK_SUPPLEMENT.md` @ `205e0ac` | evidence base **excluded the target platform**; `RE-20`; petty cash **634 of 993** | `CANDIDATE INPUT` |
-| `P06` | `70_P06_P11_SUPPLEMENTAL_CRITICAL_RISK_HANDOFF.md` @ `249b7c2` | `om_data_remove` **installed**, no server-side authorisation, **`REACHABLE — DEPLOYMENT VERIFIED`** | `CANDIDATE INPUT` |
-| `P08` | `58_P08_P11_RECONCILIATION_BOUNDARY_HANDOFF.md` @ `194efcb` | what the ledger **can and cannot** supply — 5 supplied, **8 not supplied** | `CANDIDATE INPUT` |
-| `P09` | `D25_P09_CHALLENGE_CORRECTION.md` @ `5441f8d` | depreciation nets ~0 per cost centre; **margin overstated**; gross **43×** the net | `CANDIDATE INPUT` |
+| `P06` | `70_P06_P11_SUPPLEMENTAL_CRITICAL_RISK_HANDOFF.md` @ `1b018c1` | `om_data_remove` **installed**, no server-side authorisation, **`REACHABLE — DEPLOYMENT VERIFIED`** | `CANDIDATE INPUT` |
+| `P08` | `58_P08_P11_RECONCILIATION_BOUNDARY_HANDOFF.md` @ `00ccd66` | what the ledger **can and cannot** supply — 5 supplied, **8 not supplied** | `CANDIDATE INPUT` |
+| `P09` | `D25_P09_CHALLENGE_CORRECTION.md` @ `4778792` | depreciation nets ~0 per cost centre; **margin overstated**; gross **43×** the net | `CANDIDATE INPUT` |
 | `P10` | `P10_TO_P11_HANDOFF.md` @ `1fea562` | three coupled Boss decisions; kernel candidate; population bounded to 4 of ≥10 | `CANDIDATE INPUT` |
 | `P10` | `41_P10_P11_DECISION_INTEGRITY_CORRECTION.md` | `T0-13` over-adoption withdrawn; **`OPT-A` restored; option set is six** | `CONTRADICTED — CORRECTED` |
 

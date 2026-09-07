@@ -15,7 +15,7 @@ Published accounting-facing facts from `P01`–`P10`, at the frozen SHAs in
 
 | # | Candidate input | Producer @ SHA |
 |---|---|---|
-| `CI-01` | Posted monetary fact at item granularity — **0 unbalanced / 169,143**, reporting currency only | `P08` @ `194efcb` |
+| `CI-01` | Posted monetary fact at item granularity — **0 unbalanced / 169,143**, reporting currency only | `P08` @ `00ccd66` |
 | `CI-02` | Settlement graph — **63,773 records / 100,580 lines**, residual drift **0** | `P08` |
 | `CI-03` | Company + journal attribution — **447,384 of 447,384** | `P08` |
 | `CI-04` | Posting state and date on every entry; origin pointer on **96.1 %** | `P08` |
@@ -25,8 +25,8 @@ Published accounting-facing facts from `P01`–`P10`, at the frozen SHAs in
 | `CI-08` | Valuation gate — one setting, **126 of 126 categories**, five consequences | `P01` |
 | `CI-09` | Manufacturing cost position — conversion cost **0**; **30 records ±1.5 × 10²¹**, **−48.7 %** | `P03` @ `bc767a8` |
 | `CI-10` | Expense position — petty cash **634 of 993**; WHT **332 certificates**, 40 codes | `P05` @ `205e0ac` |
-| `CI-11` | Analytic position — **12 of 23** centres net exactly 0.00; gross **43×** net | `P09` @ `5441f8d` |
-| `CI-12` | Destructive-path position — `om_data_remove` **installed**, unauthorised, reachable; FK **`ON DELETE SET NULL`** | `P06` @ `249b7c2` · `P01` |
+| `CI-11` | Analytic position — **12 of 23** centres net exactly 0.00; gross **43×** net | `P09` @ `4778792` |
+| `CI-12` | Destructive-path position — `om_data_remove` **installed**, unauthorised, reachable; FK **`ON DELETE SET NULL`** | `P06` @ `1b018c1` · `P01` |
 
 ---
 
@@ -121,13 +121,13 @@ See `P11_ACCOUNTING_ORPHAN_COLLISION_DOUBLE_COUNT_REGISTER.md`.
 
 | # | Change |
 |---|---|
-| `CI-01` | *"complete and arithmetically sound"* → **arithmetically sound at tolerance ≥ 0.005; at 1e-7 the count is 3.** *"Complete"* **withdrawn by the owner** |
-| `CI-02` | settlement graph → **no longer offered as reconcilable.** `HO-13`: deletable outside the object layer |
+| `CI-01` | **RE-STATED `2026-09-07` (`Q-P11-04`).** ~~at 1e-7 the count is 3~~ — **the figure has no referent.** P08's independent verifier re-derived it in exact `Decimal`: **0 unbalanced at `0.005`, `1e-4`, `1e-7` and at exact equality**, on computed and stored balance. Current: **arithmetically sound — 0 unbalanced posted entries in the reporting currency across 169,143, at every tolerance tested.** *"Complete"* remains **withdrawn by the owner** on separate and unaffected grounds (`P08-CONTRA-73` — the deletion path) |
+| `CI-02` | settlement graph → **no longer offered as reconcilable.** `P08-HO-13`: deletable outside the object layer |
 | `CI-03` | 447,384 → **all-states population; the posted population is 417,700** |
 | `CI-04` | origin pointers **96.1 % → 78.03 %** structured |
 | `CI-12` | deletion path → **installed in all three deployed databases**, two generations |
-| **`CI-13`** *(new)* | **`HO-13`** — the raw-SQL deletion order and the **entry-number sequence reset to 1** |
-| **`CI-14`** *(new)* | **`HO-14`** — the statutory register family selects on **two different period bases**, so **5,228** entries can appear in one register and not the other |
+| **`CI-13`** *(new)* | **`P08-HO-13`** — the raw-SQL deletion order and the **entry-number sequence reset to 1** |
+| **`CI-14`** *(new)* | **`P08-HO-14`** — the statutory register family selects on **two different period bases**, so **5,228** entries can appear in one register and not the other |
 | **`CI-15`** *(new)* | **`P02` `43_` §5** — three scope holds, six design candidates, and the invariant failing **at correction/reversal** |
 
 ## F.2 Process semantic core — corrected
@@ -137,7 +137,7 @@ See `P11_ACCOUNTING_ORPHAN_COLLISION_DOUBLE_COUNT_REGISTER.md`.
 | **Accounting timing** | **weakened** — the settlement-chronology finding is **withdrawn as containing no defect**. What survives: recognition collapsed into posting, and `฿29.0m` received with no recognition |
 | **Subledger → GL** | **downgraded** to `SUPPORTED INTERPRETATION — 18.0 SOURCE LINE`, under `AAS+-VETO-01` |
 | **Period / cut-off** | **re-scoped to the 18.0 root set.** A dated recurring return object exists on the 19.0 line |
-| **Correction / reversal** | **the invariant's named failure point** (`P11-C-15`), and `HO-13` bypasses correction entirely |
+| **Correction / reversal** | **the invariant's named failure point** (`P11-C-15`), and `P08-HO-13` bypasses correction entirely |
 | **Duplicate risk** | **new** — a sequence reset permits re-issue of previously-issued entry numbers |
 
 ## F.3 Candidate handoffs — with delivery status, which is the point
@@ -145,8 +145,8 @@ See `P11_ACCOUNTING_ORPHAN_COLLISION_DOUBLE_COUNT_REGISTER.md`.
 | To | Item | Exact ask | **Written** | **Delivered/received** |
 |---|---|---|---|---|
 | `P08` | `IC-01` `฿29,029,467.66` | judge the completeness question at a reporting date; `P01` routes it to you | ✔ | **unevidenced** |
-| `P06` + `P08` | `HO-13` | whether the deletion path has **executed** on any deployment — the `exercised` rung | ✔ | **unevidenced** |
-| `P07` | `HO-14` | the two period bases and the 5,228 divergent entries | ✔ (by `P08`) | **unevidenced** |
+| **`P06`** *(recipient; id is `P08`'s)* | `P08-HO-13` | whether the deletion path has **executed** on any deployment — the `exercised` rung | ✔ | **unevidenced** |
+| `P07` | `P08-HO-14` | the two period bases and the 5,228 divergent entries | ✔ (by `P08`) | **unevidenced** |
 | `P01`/`P03`/`P04` | `OC-06` | closed by `P02` `C-86`; confirm discharge | ✔ | **unevidenced** |
 | `P09` | `OC-08` | gross-not-net adopted by P11 | ✔ | **unevidenced** |
 | Boss | 19 decisions, `D-1` first | packaged, not written | ✔ | n/a |

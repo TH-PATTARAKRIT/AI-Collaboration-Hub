@@ -57,7 +57,7 @@ already carries — **corroboration, not new obligation.**
 ## `IC-03` — `P09` `D26` / `D27` chain
 
 **Opened:** `D26_P09_V18_DEPLOYMENT_CORROBORATION.md`, `D27_P09_EVIDENCE_BASE_CENSUS_B5_DISCHARGE.md`
-@ `92de8a1`. Found by `D3` only, and `D26` only after the third instrument revision.
+@ `4778792`. Found by `D3` only, and `D26` only after the third instrument revision.
 
 | Generation | Current statement |
 |---|---|
@@ -102,6 +102,7 @@ independent vetoes, *"**does not lift** `AAS+-VETO-01`"*. **P11 does not dischar
 ### Five claims P11 carried that P08 has corrected at the new head
 
 | P11 carried | `P08` current |
+| *(row 1 below is itself superseded — see `Q-P11-04`: the `1e-7 = 3` figure has **no referent**; P08's independent verifier found **0 at exact equality**)* | |
 |---|---|
 | *"complete and arithmetically sound — 0 unbalanced posted entries across 169,143"* | **the word "complete" is WITHDRAWN** (`P08-CONTRA-73`); 0 holds **at tolerance ≥ 0.005** — *"at 1e-7 the answer is 3, all float artefacts on eight-figure sums"* |
 | *"attribution 447,384 of 447,384"* | **unit note added**: that is the **all-states** item population; **the posted population is 417,700** |
@@ -109,7 +110,7 @@ independent vetoes, *"**does not lift** `AAS+-VETO-01`"*. **P11 does not dischar
 | *"no accounting-period object"* (`T0-15`) | **RE-SCOPED** (`P08-CONTRA-68`) — absent **in the declared 18.0 root set only**. *"The 19.0 line carries a dated, recurring return object, and both 19.0 deployed databases carry its linking column."* — ***"P11 must not receive the absolute"*** |
 | *"settlement chronology untrustworthy — 46.4 % after / 44.3 % before"* | **WITHDRAWN** (`P08-CONTRA-57`) — the as-of date is *"computed by the accounting kernel as the later of the two items' accounting dates"*; the split compared a **write timestamp** against a **derived date** and *"**contains no defect**"* |
 
-### And one new `CRITICAL` handoff — `HO-13`
+### And one new `CRITICAL` handoff — `P08-HO-13`
 
 > **`P08-CONTRA-55`** — *"the single most consequential omission from this handoff."* A module
 > **installed in all three deployed databases** deletes, in unqualified raw SQL and in this order:
@@ -144,7 +145,7 @@ independent vetoes, *"**does not lift** `AAS+-VETO-01`"*. **P11 does not dischar
 | Mandatory cases | **5 of 5 dispositioned** |
 | Artefacts opened this round | **21** |
 | P11 claims corrected by intake | **6** (five from `P08`, one from `P01`) |
-| New `CRITICAL` received | **1** (`HO-13`) |
+| New `CRITICAL` received | **1** (`P08-HO-13`) |
 | New convergence, independence tested | **1** (`P11-C-15`) |
 | Peer internals opened | **0** |
 

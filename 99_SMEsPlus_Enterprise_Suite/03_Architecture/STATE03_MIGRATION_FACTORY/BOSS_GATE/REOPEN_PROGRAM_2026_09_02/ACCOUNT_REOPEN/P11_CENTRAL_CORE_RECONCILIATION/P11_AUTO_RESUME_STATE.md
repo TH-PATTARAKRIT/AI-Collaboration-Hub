@@ -22,7 +22,7 @@
 ## 2. CORR3 FROZEN PEER SNAPSHOT — **these are CORR3's heads**
 
 `P01 b820b29` · `P02 7cb1c27` · `P03 bc767a8` · `P04 65b8841` · `P05 205e0ac` ·
-**`P06 1b018c1`** · `P07 ee2be30` · **`P08 00ccd66`** · **`P09 92de8a1`** · `P10 1fea562`
+**`P06 1b018c1`** · `P07 ee2be30` · **`P08 00ccd66`** · **`P09 4778792`** · `P10 1fea562`
 
 **3 of 10 moved since CORR2.** Re-resolve at CORR4 bootstrap; do not inherit these blindly.
 
@@ -30,7 +30,7 @@
 
 | Population | Count |
 |---|---|
-| Errors `^## \`P11-E-nn\`` | **43** |
+| Errors `^## \`P11-E-nn\`` | **46** |
 | Method notes | **8** |
 | Blockers | **39** registered · **35 open** · **5 `CRITICAL`** (`B-21`, `B-26`, `B-27`, `B-33`, `B-35`) |
 | Tolerance-zero | **16 · 0 resolved** |
@@ -68,7 +68,7 @@
 | `B-26` | the orphan-signature query, scoped by P06 to `iEVING` only | `D-3b` v5 authorisation |
 | `B-29` | `P08 AAS+-VETO-01` C-1 | **P08** |
 | `B-38` | `P09` declares its own package under open correction | **P09** |
-| `B-39` | `HO-14` vs `P07-F-02` may be two generations | **P07** / **P08** |
+| `B-39` | `P08-HO-14` vs `P07-F-02` may be two generations | **P07** / **P08** |
 | `D-1` … `D-18` | **Boss** | **Boss** |
 
 ## 6. Standing constraints into CORR4
@@ -79,4 +79,25 @@ delivered by being written"* · `P08 AAS+-VETO-01` **undischarged** · `P06 AASP
 `P09 AAS+-VETO-04` **undischarged at P09's own head** · `P10 AASP-VETO-01` r3.
 **`NC-8`, `NC-9`, `NC-12`, `NC-13`** adopted. **The 30 producer debit/credit cells stay withheld.**
 
-**EVENT-DRIVEN STATE:** `STOPPED — TERMINAL B — CORR4 REQUIRED — NOT WAITING`
+## 7. OWNER-BOUNDED CORRECTION — `2026-09-07`
+
+**`PHASE-S/Q-BOSS-01` APPROVED. All four P11 queue items EXECUTED and UNVERIFIED.**
+`P11_OWNER_BOUNDED_CORRECTION_2026_09_07.md`.
+
+- `Q-P11-01` `B-37` **re-scoped to a claim class and swept** — 17 occurrences / 8 files re-pinned,
+  3 CORR2 artefacts untouched as lineage, **0 stale heads outside lineage**.
+- `Q-P11-02` **23 `HO-` citations producer-qualified**; `:148` attribution corrected.
+- `Q-P11-03` `B-38` re-stated at `4778792`; L1–L8 limb struck as superseded, **`AAS+-VETO-04` limb
+  kept, veto NOT discharged, `B-38` NOT closed**; unlock re-pointed to `M-1`/`M-2`.
+- `Q-P11-04` **`F-02` falsification WITHDRAWN**, `CI-01` re-stated, **method rule WITHDRAWN not
+  re-grounded**.
+
+**GATED, and P11 does not touch them:** `RC-02` (`Q-P11-01/02/03`) and `RC-06` (`Q-P11-04`).
+Boss ruled `XRD-009` `NOT SATISFIED` — same-model verification is not structural independence.
+**No eligible challenger identified; `PHASE-S/Q-BOSS-02` raised and unanswered.**
+**P11 asserts no verification of its own repairs and declares no PASS.**
+
+**`POST-SNAPSHOT MATERIAL DELTA CANDIDATE`:** `P09` `ec4d3d2`. Recorded, not consumed.
+**OUTSTANDING INBOUND:** `P08` owes P11 the `Q-P08-01` notification in writing. Not received.
+
+**EVENT-DRIVEN STATE:** `STOPPED — TERMINAL B — 4 ITEMS EXECUTED, AWAITING INDEPENDENT RC-02 / RC-06 — NOT WAITING IDLE`

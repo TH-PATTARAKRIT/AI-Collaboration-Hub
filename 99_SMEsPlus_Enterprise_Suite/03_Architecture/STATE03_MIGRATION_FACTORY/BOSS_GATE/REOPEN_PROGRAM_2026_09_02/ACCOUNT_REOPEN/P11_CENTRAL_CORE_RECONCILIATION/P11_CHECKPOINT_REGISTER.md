@@ -61,7 +61,7 @@ Peer-intake deltas 01–10 — **all preserved; superseded in coverage only by `
 | Checkpoint | Scope | Status | Evidence |
 |---|---|---|---|
 | `CP-P11C3-00` | bootstrap; prompt read at `355a10d`; no superseding prompt | **COMPLETE — EVIDENCE VERIFIED** | baseline `6f7c0e4` |
-| `CP-P11C3-01` | CORR3 peer snapshot frozen | **COMPLETE — EVIDENCE VERIFIED** | **3 of 10 moved** — `P06` `1b018c1`, `P08` `00ccd66`, `P09` `92de8a1` |
+| `CP-P11C3-01` | CORR3 peer snapshot frozen | **COMPLETE — EVIDENCE VERIFIED** | **3 of 10 moved** — `P06` `1b018c1`, `P08` `00ccd66`, `P09` `4778792` |
 | `CP-P11C3-02` | intake instrument rebuilt — 3 derivations | **COMPLETE — EVIDENCE VERIFIED** | `D1` 55 · `D2` 48 · `D3` 155 · **union 212** |
 | `CP-P11C3-03` | instrument validation | **COMPLETE — EVIDENCE VERIFIED** | union/intersection test; blind spot **29 across all ten peers**; **4 instrument failures, all caught**; **10/10 positive, 0/2 failure controls** |
 | `CP-P11C3-04` | five mandatory intake cases | **COMPLETE — EVIDENCE VERIFIED** | 21 artefacts opened; **6 P11 claims corrected by intake**; 1 new `CRITICAL` received |
@@ -82,3 +82,13 @@ Peer-intake deltas 01–10 — **all preserved; superseded in coverage only by `
 | `CP-P11C3-02`/`-03` | **SUPERSEDED — MATERIAL DELTA** | **certification WITHDRAWN**; instrument published and re-executes exactly, **but fails its own full 12-member control (`S06`)** and carries six named defects |
 | `CP-P11C3-05` | **SUPERSEDED — MATERIAL DELTA** | `F-08` withdrawn, `F-01` and `F-09` corrected; tally re-derived 7/1/1/1 |
 | `CP-P11C3-FINAL` | **COMPLETE** | `P11#07` |
+
+### Owner-bounded correction — `2026-09-07` · `PHASE-S/Q-BOSS-01` APPROVED
+
+| Checkpoint | Status | Evidence |
+|---|---|---|
+| `CP-P11Q-01` | **COMPLETE — EVIDENCE VERIFIED** | `B-37` re-scoped to a claim class; **17 occurrences / 8 files**; 0 stale outside lineage; every SHA resolves to a substantive commit |
+| `CP-P11Q-02` | **COMPLETE — EVIDENCE VERIFIED** | 23 citations producer-qualified; P06's family measured at max `HO-06`; `:148` corrected |
+| `CP-P11Q-03` | **COMPLETE — EVIDENCE VERIFIED** | `B-38` re-stated at `4778792`; veto limb kept; **not closed, not discharged** |
+| `CP-P11Q-04` | **COMPLETE — EVIDENCE VERIFIED** | `F-02` withdrawn; `CI-01` re-stated; method rule **withdrawn, not re-grounded** |
+| `RC-02` / `RC-06` | **GATED — NOT RUN BY P11** | `XRD-009` `NOT SATISFIED`; no eligible challenger; `PHASE-S/Q-BOSS-02` unanswered |

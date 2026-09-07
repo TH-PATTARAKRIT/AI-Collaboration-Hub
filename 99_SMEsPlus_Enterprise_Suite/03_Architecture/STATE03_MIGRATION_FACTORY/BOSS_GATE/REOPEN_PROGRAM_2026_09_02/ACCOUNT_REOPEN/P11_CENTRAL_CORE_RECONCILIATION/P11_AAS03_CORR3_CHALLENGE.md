@@ -63,9 +63,9 @@
 | `X2-C4` | **`191` carries two mutually exclusive definitions**; §5's single exclusion reason (*"not P11-addressed"*) is **false for 63 artefacts by P11's own instrument** | ✔ |
 | `X2-C5` | **`OPENED = 21` is cited to a file naming 9** | ✔ |
 | `X3-C4` | **`19_P07_CORE_RECON_HANDOFF_PACK.md` is inside the union and inside `ADDRESSED`, never opened.** Title: *"CORE ACCOUNTING RECONCILIATION HANDOFF PACK"*. **P11 has never opened P07 at any SHA across three rounds** | ✔ |
-| `X4-C8` | **`P11_AUTO_RESUME_STATE.md` at the frozen SHA still says *"DO NOT RE-RESOLVE"* over the CORR2 heads** (`P06 249b7c2 · P08 194efcb · P09 5441f8d`) and reports 40 errors against 41. **A successor obeying P11's own control artefact rebuilds on superseded heads** | ✔ |
+| `X4-C8` | **`P11_AUTO_RESUME_STATE.md` at the frozen SHA still says *"DO NOT RE-RESOLVE"* over the CORR2 heads** (`P06 1b018c1 · P08 00ccd66 · P09 4778792`) and reports 40 errors against 41. **A successor obeying P11's own control artefact rebuilds on superseded heads** | ✔ |
 | `X4-M-8` | **`P09_..._L1_L8_FINAL_BOUNDED_CORRECTION_NEXT_PROMPT` is inside `D1`, unopened** — and at that head **P09 declares its own package internally contradictory and under open correction** (*"P09 carried a fact and its negation in the same package"*), with `AAS+-VETO-04` **NOT DISCHARGED**. P11 dispositioned P09 as `CONSUMED` without it | accepted |
-| `X3-C5` | **`HO-14` and `P07-F-02`/`F-03` are mutually contradictory** at two SHAs P11 declared, with **no contradiction registered** — and they may be true of **different generations** | accepted |
+| `X3-C5` | **`P08-HO-14` and `P07-F-02`/`F-03` are mutually contradictory** at two SHAs P11 declared, with **no contradiction registered** — and they may be true of **different generations** | accepted |
 | `X1-4`/`X2-C10` | **The falsification pass was published; the registers it falsifies were not touched.** `9356557` = 7 files, **0 deletions**. The matrix still asserts the withdrawn chronology, the un-noted `447,384`, and *"the largest unrecognised position"* — as `FACT VERIFIED` | ✔ |
 | `X2-C11`/`X4-C9` | **The falsification tally covers 7 of 10** (`5+1+1`), and **undercounts P11's own self-correction by 2** | ✔ |
 

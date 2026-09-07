@@ -1120,3 +1120,57 @@ did not open. Neither is falsification. **Both are ordinary intake.**
 
 **CORR3 rebuilt the instrument that finds artefacts and did not rebuild the discipline that reads them
 to the end.** That is the sentence I would keep from this round.
+
+---
+
+# OWNER-BOUNDED CORRECTION — `PHASE-S/Q-BOSS-01` APPROVED `2026-09-07`
+
+## `P11-E-44` — I froze a peer on a prompt commit and reported its work as unexecuted
+
+**`Q-P11-03` / `XRD-008`.** CORR3's snapshot pinned `P09` at **`92de8a1`**. That commit's subject is
+***"prompt(P09): add L1-L8 final bounded correction continuation"*** — **a prompt, not research
+output.** The substantive head was `4778792`, one commit later.
+
+On that basis `B-38` reported *"an unexecuted L1–L8 correction set"*. **At `4778792` the L-series is
+executed** — `E05_L1_L8_EVIDENCE.md` carries `L-1`, `L-2`, `L-4`, `L-5`, `L-7`, `L-8` with instrument
+outputs and `L-4` split.
+
+**Class: a resolution-time defect, not a reading defect.** `git rev-parse origin/<branch>` returns
+whatever is at the tip at that instant, and a tip can be a prompt. **`P11-G-10`: a frozen peer SHA must
+be a substantive research commit; resolve the head, then walk back to the last non-prompt commit and
+pin that.** Every previous supersession rule in this package governs *which artefact* to read. This one
+governs *which commit is eligible to be an artefact's source at all*.
+
+## `P11-E-45` — `B-37` was scoped to the file it was found in
+
+**`Q-P11-01` / `XRD-005`.** CORR3 registered `B-37` — *"`AUTO_RESUME_STATE` instructs the successor to
+use superseded heads"* — **corrected that one file, and swept nothing else.** Two **live outbound**
+files still pinned the CORR2 heads: `…HANDOFF_PACK.md` (`:18`, `:28`, `:29`) and
+`…QUESTION_REGISTER.md` (`:28`, `:29`, `:30`).
+
+**Re-scoped from a file to a CLAIM CLASS and swept.** Enumeration, published as its count: **17
+occurrences across 8 files** re-pinned; **3 CORR2-labelled artefacts deliberately untouched as
+lineage**; **0 stale heads survive outside lineage**.
+
+> **The rule: when a defect is found in a file, the unit of repair is the CLAIM CLASS, never the
+> file.** A register that carries a fact carries it everywhere; correcting one carrier and closing the
+> blocker is how a corrected package keeps publishing the error.
+
+## `P11-E-46` — I answered my own falsification `YES` on a peer figure I never re-derived, then made a rule of it
+
+**`Q-P11-04` / `XRD-011`.** `P08` published *"at 1e-7 the answer is 3, all float artefacts on
+eight-figure sums."* **The figure has no referent** — P08's independent verifier re-derived it in exact
+`Decimal` and found **0 at `0.005`, `1e-4`, `1e-7` and at exact equality**, on both computed and stored
+balance.
+
+P11 consumed it in **three** artefacts, **answered `F-02`'s own counterexample question `YES` on it**,
+and derived a standing method rule — *"a soundness claim without a tolerance is not a claim"* — that
+governed every future soundness claim in the package. **The correct answer to `F-02` is `NO`.**
+
+**The rule is WITHDRAWN, not re-grounded.** It may be sound on other grounds; P11 has not established
+them and will not assert them. **Plausibility is not evidence** — and a rule kept because it sounds
+right is exactly the failure this package has spent four rounds naming in others.
+
+**What P11 could not have done:** re-derive P08's balances. That is `Q-P08-01`'s work and is forbidden
+here. **The control that caught this was structural independence at the producer**, and no amount of
+diligence inside P11 substitutes for it.
