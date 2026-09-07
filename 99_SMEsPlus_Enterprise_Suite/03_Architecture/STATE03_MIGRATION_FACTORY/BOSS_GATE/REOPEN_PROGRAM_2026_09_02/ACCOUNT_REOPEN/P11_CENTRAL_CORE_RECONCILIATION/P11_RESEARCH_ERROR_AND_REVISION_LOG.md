@@ -1188,9 +1188,86 @@ whole purpose is that a reader can **re-execute** it — is a `.py`, and a reade
 have rebuilt the denominator on a prompt commit.
 
 **This is `P11-E-45` recurring inside its own repair, one file-type to the left.** I re-scoped `B-37`
-from a file to a claim class, then **bounded the claim class by file extension**. Corrected; the
+from a file to a claim class, then **bounded the claim class by file extension**. Corrected; ~~the
 instrument re-runs at `4778792` and reproduces `D1 55 · D2 48 · D3 155 · union 212` unchanged (the
-P09 delta between the two commits does not alter the derivations).
+P09 delta between the two commits does not alter the derivations)~~.
 
 > **`P11-G-11`: a claim class is bounded by the claim, never by a file type.** Executable evidence
 > carries claims exactly as prose does, and it is the carrier a reader is most likely to act on.
+
+> **THE VERIFICATION SENTENCE IS WITHDRAWN AS FALSE — `2026-09-07`, `CO-F-01`. Struck above, not
+> deleted.** Both halves fail:
+> 1. **The instrument cannot "re-run at `4778792`."** It resolves `origin/<branch>` for both
+>    derivations and **never reads the `sha` column at all**. The sentence describes an execution the
+>    published code is incapable of performing.
+> 2. **A genuinely pin-honoured run at `4778792` returns `D1 56 · D2 48 · D3 157 · UNION 214`** — not
+>    `55/48/155/212`. **The `P09` delta does alter the derivations**, by `+1` on `D1` and `+2` on `D3`.
+>
+> **What `P11-E-47` reported is REAL and STANDS** — the sweep was bounded by file extension and missed
+> the `.py`, and **`P11-G-11` stands**. What falls is only its check: **the re-pin was written into the
+> file and then never read by it**, so *"reproduces unchanged"* confirmed nothing. The edit was
+> **behaviourally inert**, which is precisely why the figures looked stable.
+
+## `P11-E-48` — the re-pin was recorded as executed without testing that anything consumed it
+
+**`2026-09-07`, found by the Phase S closeout controller (`CO-F-01`) and reproduced here.**
+`Q-P11-01` re-pinned `P09` in `intake_derivations.py` and `P11-E-47` recorded the repair as verified
+by re-running it. **Neither step asked whether the program reads the value that was changed.** It does
+not. Changing the pin to a different SHA leaves stdout **and** the union file **byte-identical**.
+
+**The published post-repair denominator was therefore never a pin-honoured measurement.** `D1 57` and
+`D2 49` are **floating-head artefacts**; the pin-honoured figures are **`D1 56 · D2 48`**. The union is
+`214` either way — **and the two 214-member sets differ by one member in each direction**, so the count
+concealed the substitution entirely.
+
+**Compounding it:** the member the floating run silently added is
+`64_P08_NOTIFICATION_TO_P11_Q_P08_01.md` — **the very P08 notification P11's prose simultaneously
+records as "Not received" (`CO-F-02`).** P11's own published population contained the document its
+text called absent. **One event, two defects, and each hid the other.**
+
+> **`P11-G-13`: an edit to a value a program never reads is not a repair. Before recording a re-pin as
+> executed, change the pin to a wrong value and prove the output moves.** A repair verified only by
+> re-running the thing it did not affect will always look successful.
+
+> **`P11-G-12`: a population is identified by its members, never by its cardinality.** Two sets of the
+> same size are not the same set, and a total is the one comparison that cannot detect a substitution.
+> **Compare unions member-by-member, or do not claim they are the same population.**
+
+## `P11-E-49` — the evidence manifest's coverage assertion was carried forward, and was false
+
+**`2026-09-07`, found while regenerating the manifest for the `CO-F-01`/`CO-F-02` remediation.**
+
+At `002748d` `P11_EVIDENCE_MANIFEST.md` listed **86** files and asserted, as its `NC-12` control:
+*"`find` returned 86 and this manifest processed 86. **They agree.**"*
+
+**The package held 87.** The absent file was **`P11_OWNER_BOUNDED_CORRECTION_2026_09_07.md` — the
+primary correction artefact of the `Q-BOSS-01` round**, and the carrier in which `CO-F-01`'s figures
+and `CO-F-02`'s first stale negative were both later found.
+
+**Cause.** The manifest was regenerated on `2026-09-06` at `CP-P11C3-FINAL`. The `2026-09-07`
+corrections added a file and **the manifest was not regenerated in the commit that changed the
+package**. The `86 = 86` line was carried forward verbatim.
+
+**Why no control caught it.** The assertion compares two numbers **from the run that produced it**.
+Copied into a later publication it compares two numbers **neither of which was measured there** — and
+it still reads as a passing control. The three integrity checks that ran at `002748d` all operated on
+identifiers, wording and figures; **none compared the manifest's population against the tree**, so the
+package shipped an integrity record that was silently one file short of its own subject.
+
+**This is the fourth evidence-defect class recurring at package level:** a control that cannot detect
+its own failure. **Repaired** — manifest regenerated at **91 files**, both sides of the assertion
+**re-measured**.
+
+> **The roll-up value is deliberately NOT quoted here.** This file is itself inside the manifested
+> population, so quoting the roll-up in it would invalidate the roll-up on every edit to this file —
+> the same self-referential trap in a smaller form. **`P11_EVIDENCE_MANIFEST.md` is the single
+> authority for it.**
+
+> **`P11-G-15`: regenerate the manifest in the same commit that changes the package, and re-measure
+> both sides of the coverage assertion. A carried-forward control is not a control** — it is a
+> statement about a run that is no longer the one being published.
+
+**Standing:** `REPAIRED — UNVERIFIED`. **This defect is outside `CO-F-01`/`CO-F-02` and was not in the
+remitted scope.** It is registered, repaired at the packaging level only, and **reported to the Boss
+and to the independent verifier** rather than absorbed silently. **No research was widened to find it
+and none was widened because of it.**

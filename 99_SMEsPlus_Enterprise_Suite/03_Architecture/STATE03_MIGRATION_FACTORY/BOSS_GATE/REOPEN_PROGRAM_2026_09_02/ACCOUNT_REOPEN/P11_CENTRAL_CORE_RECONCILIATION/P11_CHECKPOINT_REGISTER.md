@@ -87,8 +87,21 @@ Peer-intake deltas 01–10 — **all preserved; superseded in coverage only by `
 
 | Checkpoint | Status | Evidence |
 |---|---|---|
-| `CP-P11Q-01` | **COMPLETE — EVIDENCE VERIFIED** | `B-37` re-scoped to a claim class; **17 occurrences / 8 files**; 0 stale outside lineage; every SHA resolves to a substantive commit |
+| `CP-P11Q-01` | ~~**COMPLETE — EVIDENCE VERIFIED**~~ → **SUPERSEDED — THE REPAIR WAS BEHAVIOURALLY INERT** | `B-37` re-scoped to a claim class; **17 occurrences / 8 files**; 0 stale outside lineage; every SHA resolves to a substantive commit. **`CO-F-01`: the instrument never reads the pins it declares, so the re-pin changed no derivation.** Repaired at `CP-P11R-01` |
 | `CP-P11Q-02` | **COMPLETE — EVIDENCE VERIFIED** | 23 citations producer-qualified; P06's family measured at max `HO-06`; `:148` corrected |
 | `CP-P11Q-03` | **COMPLETE — EVIDENCE VERIFIED** | `B-38` re-stated at `4778792`; veto limb kept; **not closed, not discharged** |
 | `CP-P11Q-04` | **COMPLETE — EVIDENCE VERIFIED** | `F-02` withdrawn; `CI-01` re-stated; method rule **withdrawn, not re-grounded** |
 | `RC-02` / `RC-06` | **GATED — NOT RUN BY P11** | `XRD-009` `NOT SATISFIED`; no eligible challenger; `PHASE-S/Q-BOSS-02` unanswered |
+
+### `CO-F-01` / `CO-F-02` bounded remediation — `2026-09-07` · `Q-BOSS-03` §3.A
+
+| Checkpoint | Status | Evidence |
+|---|---|---|
+| `CP-P11R-01` | **COMPLETE — DEFECT REPRODUCED** | pin changed → **byte-identical output**; the declared `sha` is never read. `RUN A`/`RUN B` |
+| `CP-P11R-02` | **COMPLETE — REPAIRED, UNVERIFIED** | pin-honouring instrument; **6 fail-closed classes**, each firing for its own reason; determinism proven over two clean runs; behaviour-preservation control reproduces the published *before* **exactly** |
+| `CP-P11R-03` | **COMPLETE — CLAIMS RE-STATED** | `D1` 57→**56**, `D2` 49→**48**, `D1∩D2` 20→**19**; union **214 in both, different set** (one out, one in); `P11-E-47`'s verification sentence **withdrawn as false**; `P11-E-48`, `P11-G-12`, `P11-G-13` raised |
+| `CP-P11R-04` | **COMPLETE — RECEIPT CORRECTED** | both stale inbound negatives **withdrawn as false**; notification read at `c7cfd8a`, delivered **2 min 01 s before** P11's first correction commit; 5-pattern sweep found **no further occurrence**; `P11-G-14` raised |
+| `CP-P11R-05` | **COMPLETE — OUT-OF-SCOPE DEFECT REGISTERED** | **`P11-E-49`**: the manifest's `86 = 86` coverage assertion was **carried forward and false** — the package held **87**, and the missing file was the round's primary correction artefact. Manifest regenerated at **91**, both sides re-measured; `P11-G-15` raised |
+| **`RC-02` / `RC-06`** | **GATED — NOT RUN BY P11** | **Nothing above is verified.** All of it is owner repair by a model `XRD-009` disqualifies from challenging it |
+
+**Terminal unchanged: `TERMINAL B — MATERIAL EVIDENCE-INTEGRITY DEFECT REMAINS`.**

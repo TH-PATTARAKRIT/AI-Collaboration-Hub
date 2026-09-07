@@ -120,7 +120,7 @@ evidence rather than silence.
 | # | File | Result |
 |---|---|---|
 | 1 | `P11_CORR3_INTAKE_INTEGRITY_AND_DENOMINATOR.md` | **`INTAKE INTEGRITY: NOT ESTABLISHED`** · certification **withdrawn** |
-| 2 | `LAYER2_P11_EVIDENCE/corr3_instrument/` | **the instrument, published as runnable code + `union_212.txt`** |
+| 2 | `LAYER2_P11_EVIDENCE/corr3_instrument/` | **the instrument, published as runnable code + `union_212.txt`** — `intake_derivations.py` and `union_212.txt` are **SUPERSEDED, preserved as lineage**; the current pair is **`intake_derivations_pinned.py` + `union_214_pinned.txt`** (`CO-F-01`) |
 | 3 | `P11_CORR3_INTAKE_CASE_DISPOSITIONS.md` | 5 mandatory cases · **6 P11 claims corrected by intake** |
 | 4 | `P11_CORR3_RECONVERGENCE_AND_FALSIFICATION.md` | 10 tested · **9 counterexamples** · `F-08` withdrawn |
 | 5 | `P11_CORR3_POPULATION_REGISTERS.md` | **39 blockers / 35 open / 5 CRITICAL** · 16 T0 · 19 decisions |
@@ -131,3 +131,17 @@ evidence rather than silence.
 > **`P11-C-15`'s convergence label is WITHDRAWN** — `P10` consumed `P02` by SHA and credits the
 > location to it. **`P11-C-09` repeated in the round that corrected it.**
 > **The instrument reproduces exactly and fails its own full control set (`S06`).**
+
+---
+
+## `CO-F-01` / `CO-F-02` BOUNDED REMEDIATION · `2026-09-07`
+
+| # | File | Result |
+|---|---|---|
+| 1 | `P11_CO_F_01_PIN_INSTRUMENT_REPAIR.md` | **the declared pins were never read** — pin-honouring instrument, 6 fail-closed controls, figures re-stated `D1` **56** · `D2` **48** · union **214, a different set** |
+| 2 | `P11_CO_F_02_STALE_INBOUND_REPAIR.md` | **both inbound negatives withdrawn as false** — the P08 notification arrived **2 min 01 s before** P11's first correction commit |
+| 3 | `LAYER2_P11_EVIDENCE/corr3_instrument/intake_derivations_pinned.py` | current instrument · `sha256 b9fe0b8e…21242508` |
+| 4 | `LAYER2_P11_EVIDENCE/corr3_instrument/union_214_pinned.txt` | current output · `sha256 80d18bd1…523e0efc` |
+
+**Everything in this section is `REPAIRED — UNVERIFIED`. Verification is `RC-02`, by the independent
+verifier. Terminal state unchanged: `TERMINAL B`.**

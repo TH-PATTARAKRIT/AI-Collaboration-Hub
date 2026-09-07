@@ -35,7 +35,7 @@
 | Blockers | **39** registered · **35 open** · **5 `CRITICAL`** (`B-21`, `B-26`, `B-27`, `B-33`, `B-35`) |
 | Tolerance-zero | **16 · 0 resolved** |
 | Boss decisions | **19 · 0 decided by P11** |
-| Intake denominator | **`D1` 57 · `D2` 49 · `D3` 157 · union 214** at the corrected `P09` head `4778792` *(CORR3 published 55/48/155/212 against a **prompt commit**)* — reproducible, **NOT certified**: `S06` fails the 12-member control |
+| Intake denominator | **`D1` 56 · `D2` 48 · `D3` 157 · union 214** — **pin-honoured** at the corrected `P09` head `4778792`, deterministic over two clean runs (`union_214_pinned.txt`, `sha256 80d18bd1…523e0efc`). ~~`D1` 57 · `D2` 49~~ **SUPERSEDED `CO-F-01`**: those figures came from **floating branch heads**, not the declared pins. *(CORR3 published 55/48/155/212 against a **prompt commit**; that pair reproduces exactly and is unaffected.)* **The floating and pin-honoured unions are both 214 and are NOT the same set** — one member out, one in. Still **NOT certified**: `S06` fails the 12-member control, itself run on the floating-head instrument and not re-executed |
 | Challenge | **52 findings · 48 accepted · 4 disputed in part** |
 
 ## 4. NEXT EXACT ACTION — `P11 CORR4`
@@ -98,6 +98,13 @@ Boss ruled `XRD-009` `NOT SATISFIED` — same-model verification is not structur
 **P11 asserts no verification of its own repairs and declares no PASS.**
 
 **`POST-SNAPSHOT MATERIAL DELTA CANDIDATE`:** `P09` `ec4d3d2`. Recorded, not consumed.
-**OUTSTANDING INBOUND:** `P08` owes P11 the `Q-P08-01` notification in writing. Not received.
+~~**OUTSTANDING INBOUND:** `P08` owes P11 the `Q-P08-01` notification in writing. Not received.~~
+**WITHDRAWN AS FALSE — `CO-F-02`.** **RECEIVED** at `c7cfd8a`, `2026-09-07 09:05:24 +0700`,
+**2 min 01 s before** P11's first correction commit — `64_P08_NOTIFICATION_TO_P11_Q_P08_01.md`.
+Consumed in `P11_OWNER_BOUNDED_CORRECTION_2026_09_07.md` and `P11_CO_F_02_STALE_INBOUND_REPAIR.md`.
+**`Q-P11-04`'s disposition is unchanged; only the receipt record was wrong.**
+**GENUINELY UNCONSUMED INBOUND:** `P06_TO_P11_COUNT_CORRECTION_NOTICE.md` @ `b5f5a21`,
+`2026-09-07 09:11:29` — **postdates `002748d` (`09:09:56`), so no P11 negative about it is stale.**
+**Not consumed here** (it lands on the `RC-04` surface); routed to `RC-02`/`RC-04` as a dependency.
 
 **EVENT-DRIVEN STATE:** `STOPPED — TERMINAL B — 4 ITEMS EXECUTED, AWAITING INDEPENDENT RC-02 / RC-06 — NOT WAITING IDLE`
