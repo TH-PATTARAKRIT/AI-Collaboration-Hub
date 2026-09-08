@@ -105,13 +105,39 @@ The queue offers two routes. **Route (b) is taken: assess the 159 as part of the
 
 | P09 claim class | Measured over | Does B2 bear on it? |
 |---|---|---|
-| **ownership** — 10 owning files / 3 modules | **declaration** | **No — disjoint relation.** A reference cannot make a file an owner |
-| **extension counts** — 17 / 11 / 8 / 7 / 4 | **inheritance** | **No — disjoint relation** |
-| **the K-1 population** — 52 / 29 | **declaration ∪ inheritance** | **No — disjoint by the population's own definition** |
+| **ownership** — 10 owning files / 3 modules | **declaration** | **No — by the definition of ownership.** A reference is not a declaration, so it cannot by itself make a file an owner. **[`P09-C1`, 2026-09-08 — this is a statement about what the ownership *test* reads, NOT a claim that the two file sets are disjoint. They are not: 23 files are in both. See `QR-01`.]** |
+| **extension counts** — 17 / 11 / 8 / 7 / 4 | **inheritance** | **No — by the definition of inheritance.** A reference is not an inherit declaration. **[`P09-C1`, 2026-09-08 — same qualification as the row above: this is about what the test reads, not about set disjointness.]** |
+| **the K-1 population** — 52 / 29 | **declaration ∪ inheritance** | ~~**No — disjoint by the population's own definition**~~ **WITHDRAWN — `P09-C1`, 2026-09-08.** **No, but not by disjointness.** **B2 is outside K-1 because partition B is *defined* as the outside-K-1 half of the denominator.** The reference relation is **not** disjoint from `declaration ∪ inheritance`: the same executed denominator puts **23 files inside K-1** and also inside the reference relation. See `QR-01` as restated. |
 | **absence claims** — forecast, scenario, target, baseline, simulation, variance | the K-1 population | **No.** Each is a *planning* subject; B2 touches **no planning model**, by measurement |
 | **the reference-relation measurement itself** — 192 / 169 / 52 | **reference** | **YES — B2 IS 159 of that 169.** It is not excluded from it; it constitutes most of it |
 
-**`QR-01` — the ground is DISJOINTNESS OF RELATION, and that is a structural fact, not a universal negative.** Ownership is measured on declaration, extension on inheritance, the population on their union; reference is a fourth relation, disjoint from all three **by construction**. That ground is checkable from the definitions alone and cannot be falsified by finding another claim in the package — which is exactly what went wrong with the withdrawn wording.
+~~**`QR-01` — the ground is DISJOINTNESS OF RELATION, and that is a structural fact, not a universal negative.** Ownership is measured on declaration, extension on inheritance, the population on their union; reference is a fourth relation, disjoint from all three **by construction**. That ground is checkable from the definitions alone and cannot be falsified by finding another claim in the package — which is exactly what went wrong with the withdrawn wording.~~
+
+> **`QR-01` IS WITHDRAWN AS WRITTEN — `P09-C1`, 2026-09-08.** Struck above, preserved as lineage.
+>
+> **It was falsified by the measurement printed four sections above it, in this same file.** The denominator table at §3 reports **partition A = 23 files inside the K-1 population** *and* inside the reference relation. **A relation with 23 members in common with `declaration ∪ inheritance` is not disjoint from it, by construction or otherwise.** The universal claim was not merely unsupported; **the evidence refuting it was already published on the page that made it.**
+
+**`QR-01` — RESTATED at the boundary that is actually proven.**
+
+**B2 is outside the K-1 population because it is outside it by partition, not because reference and declaration cannot overlap.**
+
+```
+DENOMINATOR   files referencing a P09 model                 192   (52 modules)
+  partition A   ∩ K-1 population                             23   (14 modules)
+  partition B   ∖ K-1 population                            169   (52 modules)
+                                              A + B  =      192   ✓
+  partition B1    touching a planning model                  10   (3 modules)
+  partition B2    touching only the analytic dimension      159   (51 modules)
+                                            B1 + B2  =      169   ✓
+```
+
+**`B` is *defined* as the complement of K-1 inside the denominator, and `B2 ⊂ B`. That is the entire warrant, and it is a definitional one that the arithmetic sum-checks.** It supports exactly one conclusion — *these 159 files are not in the K-1 population* — and it supports it completely.
+
+**What the withdrawn wording tried to buy, and could not.** Disjointness-of-relation would have been a *stronger* claim: it would have said a reference can **never** put a file inside an ownership or extension population, so the K-1 measurements could never be disturbed by any reference finding. **Partition membership buys nothing beyond this denominator.** Partition A is the standing proof that the stronger claim is false: **23 files are reached by reference *and* are inside K-1.** Whether those 23 disturb any K-1 figure is a separate question this document does not answer and does not need to.
+
+> **`QR-01a` — the defect class, named so it is searchable.** The withdrawn sentence is a **universal negative about a relation**, asserted from definitions, in a document whose own executed table contains the counterexample. It is the same shape as the `L-4` exclusion authority this document was written to withdraw — *"the 159 are excluded because no current P09 claim is stated over the reference relation"* — which was likewise **a universal negative about the package's own contents, refuted by the package's own contents**.
+>
+> **The document replaced one universal negative with another and called the second one structural.** The repair is not a better universal; it is the **narrow, checkable, arithmetic boundary** stated above.
 
 **`QR-02` — B2 is the measured extent of a known blind spot, not a set set aside.** P09 publishes it *because* the K-1 population cannot see it. **A blind spot measured and published is stronger evidence than one declared and excluded**, and the earlier framing understated the package's own position.
 
@@ -122,7 +148,7 @@ The queue offers two routes. **Route (b) is taken: assess the 159 as part of the
 | Item | Disposition |
 |---|---|
 | `L-4` assessment limb | **CLOSED** — unchanged |
-| **`L-4` authority limb / `M-1`** | **RESOLVED via route (b).** "Exclusion" withdrawn; the 159 are assessed **inside** the denominator; the ground is restated as **disjointness of relation** |
+| **`L-4` authority limb / `M-1`** | **RESOLVED via route (b).** "Exclusion" withdrawn; the 159 are assessed **inside** the denominator; ~~the ground is restated as **disjointness of relation**~~ → **`P09-C1`, 2026-09-08: the ground is `B2 ⊂ B`, and `B` is the complement of K-1 inside the 192-file denominator.** The disjointness-of-relation ground is **WITHDRAWN, not re-grounded** — see `QR-01` |
 | denominator | **DECLARED AND PUBLISHED** — 192 / 52, partitioned 23 + 169, sum-checked |
 | residue | **DECLARED AND PUBLISHED** — 169 partitioned 10 + 159, sum-checked, with model and module populations |
 | the published `193` | **CORRECTED to 192** — the eligibility fix had not been carried to the denominator |

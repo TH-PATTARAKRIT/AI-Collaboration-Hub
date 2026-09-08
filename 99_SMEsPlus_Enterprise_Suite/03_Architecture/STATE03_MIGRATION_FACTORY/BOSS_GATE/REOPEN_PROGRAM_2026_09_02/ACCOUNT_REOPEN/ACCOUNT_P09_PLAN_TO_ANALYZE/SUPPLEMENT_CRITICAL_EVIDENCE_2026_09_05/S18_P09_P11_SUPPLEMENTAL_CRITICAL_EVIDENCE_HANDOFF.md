@@ -1,7 +1,7 @@
 # S18 — P09_P11_SUPPLEMENTAL_CRITICAL_EVIDENCE_HANDOFF
 
 **Checkpoint:** `CP-P09S18` · **Layer:** 1 — clean-room.
-**Material delta only. Prior P09 handoffs are NOT replaced.** P11 has no published branch at time of writing — **`HOLD — PEER PROCESS RECONCILIATION REQUIRED`**.
+**Material delta only. Prior P09 handoffs are NOT replaced.** ~~P11 has no published branch at time of writing~~ **[`P09-C4`, 2026-09-08 — WITHDRAWN AS FALSE. P11 HAS published: `research/account-core-reconciliation-2026-09-04-001` (head `002748d`), plus `corr/p11-phase-s-remediation-2026-09-07-001` and `corr/p11-phase-s-final-2026-09-07-001`. Verified by `git branch -r` / `git log` at this commit, not inherited from a peer's statement. P11's package consumes P09 artefacts by name and pins P09 at `5441f8d`.]** — the `HOLD — PEER PROCESS RECONCILIATION REQUIRED` disposition is retained, **but its publication premise is withdrawn**.
 
 ---
 

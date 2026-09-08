@@ -1,7 +1,7 @@
 # D23 — P09_P11_DENOMINATOR_SIGN_PLATFORM_SUPPLEMENT
 
 **SUPPLEMENT TO THE PRIOR P09 HANDOFF — NOT A REPLACEMENT.**
-**Checkpoint:** `CP-P09D23` · **Layer:** 1 — clean-room. P11 has no published branch — **`HOLD — PEER PROCESS RECONCILIATION REQUIRED`**.
+**Checkpoint:** `CP-P09D23` · **Layer:** 1 — clean-room. ~~P11 has no published branch~~ **[`P09-C4`, 2026-09-08 — WITHDRAWN AS FALSE. P11 HAS published: `research/account-core-reconciliation-2026-09-04-001` (head `002748d`), plus `corr/p11-phase-s-remediation-2026-09-07-001` and `corr/p11-phase-s-final-2026-09-07-001`. Verified by `git branch -r` / `git log` at this commit, not inherited from a peer's statement. P11's package consumes P09 artefacts by name and pins P09 at `5441f8d`.]** — the `HOLD — PEER PROCESS RECONCILIATION REQUIRED` disposition is retained on its own merits, **but it no longer rests on a publication negative**.
 
 ---
 

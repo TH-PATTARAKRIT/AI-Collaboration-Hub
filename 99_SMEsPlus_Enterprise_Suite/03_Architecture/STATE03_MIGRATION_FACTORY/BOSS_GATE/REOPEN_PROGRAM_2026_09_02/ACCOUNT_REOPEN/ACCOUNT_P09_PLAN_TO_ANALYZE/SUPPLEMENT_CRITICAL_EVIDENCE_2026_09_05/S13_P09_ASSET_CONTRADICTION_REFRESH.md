@@ -21,7 +21,7 @@
 | P08 — Record-to-Report | `4bdf8a2` | first consumption | consumed |
 | P10 — Time-Based Recognition | `f9b40b3` | first consumption | consumed |
 | P02 — Order-to-Cash | `89928aa` | not materially relevant | recorded only |
-| P11 — Core Reconciliation | **no branch published** | — | **`HOLD — PEER PROCESS RECONCILIATION REQUIRED`** |
+| P11 — Core Reconciliation | ~~**no branch published**~~ **[`P09-C4`, 2026-09-08 — WITHDRAWN AS FALSE. P11 HAS published: `research/account-core-reconciliation-2026-09-04-001` (head `002748d`), plus `corr/p11-phase-s-remediation-2026-09-07-001` and `corr/p11-phase-s-final-2026-09-07-001`. Verified by `git branch -r` / `git log` at this commit, not inherited from a peer's statement. P11's package consumes P09 artefacts by name and pins P09 at `5441f8d`.]** | — | **`HOLD — PEER PROCESS RECONCILIATION REQUIRED`** |
 
 **No peer commit changed materially since P09 last consumed it.** Under the idempotent-resume rule, the reconciliation checkpoint is **not reopened**.
 

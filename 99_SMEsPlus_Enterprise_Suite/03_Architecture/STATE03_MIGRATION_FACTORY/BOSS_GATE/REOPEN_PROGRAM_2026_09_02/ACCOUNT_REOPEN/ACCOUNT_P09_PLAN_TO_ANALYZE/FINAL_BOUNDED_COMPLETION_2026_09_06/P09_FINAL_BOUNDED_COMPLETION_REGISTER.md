@@ -129,17 +129,34 @@ Of the four: **three are already published findings** — the elevated inward re
 
 *(Corrected: `CO-02b` was already published in the previous round. This round changed its **status field** to contested while presenting it as a creation, and did not edit the earlier row — leaving **two rows with two statuses in two files**, the very defect this package had already recorded against itself.)*
 
-| Field | Value |
+> ## ⚠ THIS ROW IS SUPERSEDED — `P09-C2`, 2026-09-08
+>
+> **The authoritative `CO-02b` row is the one published at `L1_L8_BOUNDED_CORRECTION_2026_09_06/P09_L1_L8_CORRECTION_REGISTER.md` §7.** The row below is **revision lineage. It is not current and must not be cited as current.**
+>
+> **Why this marking exists.** The L-6 correction asserted that *"the earlier ones remain readable in their files as revision lineage and are marked superseded by this register."* **They were not marked.** `RC-01` (`RC01-F2`) found this row still live, still present-tense, at the frozen surface. **A register that says a row elsewhere is superseded has not superseded it — only an edit at the carrying file does that.**
+>
+> **The deployment wording below is WITHDRAWN.** *"already shipped"* is a **deployment-status claim** and P09 has no deployment evidence for it. The supportable statement is: **present in the source of the declared root, at source generation 18.0 Enterprise.** Source presence is not deployment.
+
+| Field | Value *(SUPERSEDED — lineage only)* |
 |---|---|
 | what leaves P09 | the **account-keyed plan comparison** |
 | consumer candidate | the financial-reporting surface |
-| mechanism | consumed as a percent-comparison column via a **temporary table substituted for the ledger row table** |
-| P09's position | **P09 RECOMMENDS AGAINST** — this is a **second instance** of the mechanism `AAS+-VETO-02` already stands against, and it is **already shipped**, not proposed |
-| status | `CANDIDATE HANDOFF — CONTESTED BY ITS OWN AUTHOR` |
+| mechanism | ~~consumed as~~ **present in the source of the declared root as** a percent-comparison column via a **temporary table substituted for the ledger row table** **[`P09-C2` — present-tense consumption withdrawn]** |
+| P09's position | **P09 RECOMMENDS AGAINST** — this is a **second instance** of the mechanism `AAS+-VETO-02` already stands against, and it is ~~**already shipped**, not proposed~~ **[`P09-C2`, 2026-09-08 — WITHDRAWN. Deployment status is not evidenced; read as "present in the source of the declared root, source generation 18.0 Enterprise".]** |
+| status | ~~`CANDIDATE HANDOFF — CONTESTED BY ITS OWN AUTHOR`~~ **SUPERSEDED BY THE `L1_L8` §7 AUTHORITATIVE ROW** — which carries the same status text, so the *status* did not change; **what changed is which row is current** |
 
 **`CH-09` — TOMBSTONE. Withdrawn, not deleted.**
 
-> **Withdrawn text, preserved verbatim:** *"the three terminal management outputs — attribution, plan consumption, over-plan signal | no one — they terminate with management | correctly terminal; they cross no boundary and need no contract."*
+> ### ⚠ THIS TOMBSTONE IS SUPERSEDED — `P09-C5`, 2026-09-08
+>
+> **The current authority is `L1_L8_BOUNDED_CORRECTION_2026_09_06/P09_L1_L8_CORRECTION_REGISTER.md` §8**, which carries the locator, the successors and the citation enumeration. The tombstone below is retained as lineage, with two of its own statements corrected in place:
+>
+> 1. **"preserved verbatim" is FALSE and is corrected to "RECONSTRUCTED".** `LC-02` searched for the original and found none: the `CH-09` row was **overwritten in place before it was ever committed**, so no committed original exists to have preserved. **A tombstone whose text cannot be checked against an original is a reconstruction, and calling it verbatim is a stronger claim than the record supports.**
+> 2. **the `MISSING EVIDENCE` disposition on the citation enumeration is DISCHARGED** — §8.3 delivers it: **21 occurrences across 11 files**, over a declared path set that includes the shared program root, **four of them outside the P09 package**, with a disambiguation rule separating the bare token from the prefixed `ACC-R-` / `INV-R-` / `JNT-R-` families.
+>
+> **Why this marking exists at all.** Both corrections were published in a later register and **neither was applied here**. `RC-01` found the same pattern at `CO-02b` and `CH-09`; it is the package's recurring shape — **a correction recorded in a revision log is not a correction to the text that carries the claim.**
+
+> **Withdrawn text, ~~preserved verbatim~~ → RECONSTRUCTED (`P09-C5`, 2026-09-08 — no committed original exists; see `LC-02`):** *"the three terminal management outputs — attribution, plan consumption, over-plan signal | no one — they terminate with management | correctly terminal; they cross no boundary and need no contract."*
 >
 > **Reason for withdrawal:** the row conflated *who consumes a figure* with *what boundary the figure crosses*. Two of the three outputs are carried to a peer with a required sign convention, and their value varies with the reading user's company and the reading day's rate. **Terminality survives only for the plan-line over-plan signal.**
 >
@@ -150,7 +167,7 @@ Of the four: **three are already published findings** — the elevated inward re
 > 2. *"preserved verbatim"* carries **no locator** — a reader cannot check the text against its original;
 > 3. it withdraws terminality from two outputs and assigns them **no successor identifier**, so two boundary crossings are left with no owning row. **`CO-01` and `CO-02a` are those crossings** and are hereby named as their own rows pending a successor identifier.
 >
-> **And the withdrawal creates outbound obligations where a consumer was told none existed, with no enumeration of who cited `CH-09`.** `MISSING EVIDENCE` — a citation enumeration is required.
+> **And the withdrawal creates outbound obligations where a consumer was told none existed, with no enumeration of who cited `CH-09`.** ~~`MISSING EVIDENCE` — a citation enumeration is required.~~ → **DISCHARGED (`P09-C5`, 2026-09-08): the enumeration is published at `L1_L8` §8.3 — 21 occurrences / 11 files / 4 outside the package.**
 
 ---
 

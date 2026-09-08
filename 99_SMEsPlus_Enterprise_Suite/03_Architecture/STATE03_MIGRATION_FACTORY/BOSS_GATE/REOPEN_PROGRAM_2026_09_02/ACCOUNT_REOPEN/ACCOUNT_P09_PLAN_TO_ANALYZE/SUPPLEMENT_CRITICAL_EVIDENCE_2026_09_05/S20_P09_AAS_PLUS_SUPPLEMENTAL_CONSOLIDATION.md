@@ -25,7 +25,7 @@
 | **double-counting risk** | confirmed source-only, unexercised in every deployment, read from a version no deployment runs |
 | **scope risk** | one row **re-opened**; the cross-company aggregation path is a genuine boundary crossing |
 | **evidence-denominator risk** | **the dominant risk of this round.** Three distinct failures: a truncated listing, a template promoted to a deployment, and a version mismatch |
-| **cross-process risk** | five handoffs issued with consumed SHAs; a prior routing failure corrected; P11 has no published branch |
+| **cross-process risk** | five handoffs issued with consumed SHAs; a prior routing failure corrected; ~~P11 has no published branch~~ **[`P09-C4`, 2026-09-08 — WITHDRAWN AS FALSE. P11 HAS published: `research/account-core-reconciliation-2026-09-04-001` (head `002748d`), plus `corr/p11-phase-s-remediation-2026-09-07-001` and `corr/p11-phase-s-final-2026-09-07-001`. Verified by `git branch -r` / `git log` at this commit, not inherited from a peer's statement. P11's package consumes P09 artefacts by name and pins P09 at `5441f8d`.]** |
 
 ## 3. DISSENT PRESERVED
 
