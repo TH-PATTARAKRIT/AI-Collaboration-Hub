@@ -1,0 +1,9 @@
+REPO TOPLEVEL (all path-limited git commands run from here): /private/tmp/smeplus-p11-final
+
+==============================================================================
+RUN-LOCATION CONTROL — the derivation must not depend on where it is invoked
+==============================================================================
+  EXPECTED  byte-identical stdout from the repo root and from a deep subdirectory
+  cwd=toplevel  exit 0   UNION  825
+  cwd=deep      exit 0   UNION  825
+  OBSERVED  identical: True

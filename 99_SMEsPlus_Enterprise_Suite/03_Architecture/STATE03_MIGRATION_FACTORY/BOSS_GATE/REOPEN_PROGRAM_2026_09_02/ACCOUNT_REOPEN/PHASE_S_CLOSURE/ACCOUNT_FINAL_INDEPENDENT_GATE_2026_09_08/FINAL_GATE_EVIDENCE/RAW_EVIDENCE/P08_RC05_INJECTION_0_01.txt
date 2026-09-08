@@ -1,0 +1,37 @@
+pg_restore: pg_restore (PostgreSQL) 18.6 (Homebrew)
+python:     3.14.0
+decimal prec 60 · NO float is constructed at any step
+
+FROZEN INPUTS
+  DB-T2  /Users/admin/Downloads/iTEST02_2026-07-14_16-34-51.dump
+         size 64303340 bytes
+         sha256 84a75479e432be21bc23e4986821f0307e4035e97d6398985ee5de52adb837a4
+
+==============================================================================
+DATABASE DB-T2   iTEST02_2026-07-14_16-34-51.dump
+==============================================================================
+POPULATION
+  account_move rows                  10
+  posted moves                       5
+  POSTED_MOVES_WITH_LINES (unit)     5   <-- DENOMINATOR
+  account_move_line rows             32
+  posted lines                       14
+  PARENT_STATE_DISAGREE (lines)      0
+CONTROL / POSITIVE
+  sum |debit|+|credit| over posted   1832.08
+  extraction reached real data       YES
+UNBALANCED POSTED ENTRIES  (unit = one account_move)
+  tolerance                    COMPUTED     STORED
+  exact                               1          1
+  1e-7                                1          1
+  1e-4                                1          1
+  0.005                               1          1
+DISCRIMINATING SET — the same predicate over NON-posted entries
+  draft/other moves with lines       5
+  unbalanced @ exact                 0
+  unbalanced @ 1e-7                  0
+  unbalanced @ 1e-4                  0
+  unbalanced @ 0.005                 0
+CONTROL / INJECTION  one synthetic entry off by 0.01
+  every tolerance below that amount MUST show exactly +1 vs the un-injected run
+

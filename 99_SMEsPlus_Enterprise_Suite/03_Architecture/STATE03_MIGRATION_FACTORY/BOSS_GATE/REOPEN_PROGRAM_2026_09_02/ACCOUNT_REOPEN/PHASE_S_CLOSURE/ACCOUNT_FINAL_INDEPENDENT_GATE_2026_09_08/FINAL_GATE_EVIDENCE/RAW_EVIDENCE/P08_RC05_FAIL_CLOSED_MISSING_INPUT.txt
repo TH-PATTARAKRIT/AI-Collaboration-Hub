@@ -1,0 +1,5 @@
+FAIL-CLOSED: input not found: /tmp/definitely_missing.dump
+pg_restore: pg_restore (PostgreSQL) 18.6 (Homebrew)
+python:     3.14.0
+decimal prec 60 · NO float is constructed at any step
+

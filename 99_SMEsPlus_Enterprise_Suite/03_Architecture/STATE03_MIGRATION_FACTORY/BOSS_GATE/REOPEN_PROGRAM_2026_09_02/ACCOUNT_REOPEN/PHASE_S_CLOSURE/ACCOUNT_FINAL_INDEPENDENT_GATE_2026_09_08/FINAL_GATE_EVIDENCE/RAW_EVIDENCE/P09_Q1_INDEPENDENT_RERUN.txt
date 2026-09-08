@@ -1,0 +1,33 @@
+=== THE DENOMINATOR — the reference relation, published in full ===
+  files referencing a P09 model, declaration/inheritance stripped : 192  / 52 modules
+    partition A — INSIDE the K-1 population                       :  23  / 14 modules
+    partition B — OUTSIDE the K-1 population                      : 169  / 52 modules
+  A + B = 192  (checks against the denominator: True)
+
+=== THE RESIDUE — partition B, split by subject ===
+    B1 — touching a PLANNING model                                :  10  / 3 modules
+         of which test files                                      :   6
+         of which non-test                                        :   4
+    B2 — touching only the ANALYTIC DIMENSION  (the 159)          : 159  / 51 modules
+  B1 + B2 = 169  (checks against partition B: True)
+
+=== B2 POPULATION — which models the 159 reference (unit = file) ===
+    account.analytic.line                    100
+    account.analytic.account                  72
+    account.analytic.plan                     57
+    account.analytic.distribution.model       11
+    account.analytic.applicability             9
+
+=== B2 MODULE POPULATION (top 12 of 51) ===
+    sale_timesheet                            17
+    hr_timesheet                              10
+    timesheet_grid                            10
+    sale_project                               8
+    sale_timesheet_enterprise                  7
+    account                                    7
+    sale                                       6
+    project_timesheet_holidays                 6
+    industry_fsm_sale                          6
+    helpdesk_timesheet                         5
+    project_mrp_account                        5
+    account_reports                            4

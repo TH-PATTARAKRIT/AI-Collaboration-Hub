@@ -1,0 +1,38 @@
+== PIN TABLE HONOURED BY THIS RUN (corr3) ==
+   P01  b820b29b13f351ec21c724c05ea9aa8da2a15e14  research(G01-P01): background-task disposition - the terminal count dr
+   P02  7cb1c2783f3f5b9c11bf107d4d7202affe455d7d  research(P02): CP-06..CP-10 — challenge record, AAS+, PMO, final recon
+   P03  bc767a81417f6d115f42ec71f477d761b75895e6  research(G01-P03): bounded-deep closure — the source basis did not mat
+   P04  65b8841116d3ad696454c61a48eb08da5612d895  research(G01-P04): bounded-deep closure — the relation exists, in one 
+   P05  205e0ac30ae19df7ed2816eaec85a0d1d3cef147  research(account-p05): G01 PHASE S closure - AAS-03 x4, AAS+, PMO, pat
+   P06  1b018c104001eb4683166518a6161a8cd8ab5cee  research(account-p06): post-publication record — published SHA d1e66f5
+   P07  ee2be30ebf155e241510b3c7133c69419eb060a0  research(account): P07 — S02 shared-process domain-pure bounded closur
+   P08  00ccd663d55d72830c8e0db46e4cc1aa345d0af1  P08 Phase-S: challenge record, AAS+ consolidation, PMO review, resume 
+   P09  4778792196371c460d3e6ca87bf8d9adee760f47  research(account): P09 L1-L8 bounded correction — TERMINAL B, M-1/M-2 
+   P10  1fea562cb32e23bd44a1c6e6b4a2cf1081d25287  research(P10): G02 bounded-deep closure, design input pack, AAS-03 cha
+== all 10 pins resolved, substantive, ancestors of their declared branch ==
+
+corr3 817 9644
+== PIN TABLE HONOURED BY THIS RUN (final) ==
+   P01  b820b29b13f351ec21c724c05ea9aa8da2a15e14  research(G01-P01): background-task disposition - the terminal count dr
+   P02  7cb1c2783f3f5b9c11bf107d4d7202affe455d7d  research(P02): CP-06..CP-10 — challenge record, AAS+, PMO, final recon
+   P03  bc767a81417f6d115f42ec71f477d761b75895e6  research(G01-P03): bounded-deep closure — the source basis did not mat
+   P04  65b8841116d3ad696454c61a48eb08da5612d895  research(G01-P04): bounded-deep closure — the relation exists, in one 
+   P05  205e0ac30ae19df7ed2816eaec85a0d1d3cef147  research(account-p05): G01 PHASE S closure - AAS-03 x4, AAS+, PMO, pat
+   P06  a533fe92d6f6855e0b362179403476520cc9aafa  P06 RC-04 owner closure: 65-row superseded, 67 published with enumerat
+   P07  ee2be30ebf155e241510b3c7133c69419eb060a0  research(account): P07 — S02 shared-process domain-pure bounded closur
+   P08  ca577be42e6ba9535e1911dc0bad1dfab74a8aa8  P08 C4d/C4e: third P08-CONTRA-55 carrier corrected, three-extract boun
+   P09  ab8c0131c46e8154ad7efae18de2a54af2f17362  P09 RC-01 owner closure: M-1 rationale re-grounded, CO-02b/CH-09 super
+   P10  1fea562cb32e23bd44a1c6e6b4a2cf1081d25287  research(P10): G02 bounded-deep closure, design input pack, AAS-03 cha
+== all 10 pins resolved, substantive, ancestors of their declared branch ==
+
+final 825 9650
+added 8
+removed 0
+ADD ('P06', '99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/PROCESS_DEEP_RESEARCH_2026_09_04/P06_BANK_TO_RECONCILE_EXECUTION/G02_OWNER_CORRECTION_2026_09_07/P06_Q_P06_03_04_EXECUTION_RECORD.md')
+ADD ('P06', '99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/PROCESS_DEEP_RESEARCH_2026_09_04/P06_BANK_TO_RECONCILE_EXECUTION/G02_OWNER_CORRECTION_2026_09_07/P06_TO_P11_COUNT_CORRECTION_NOTICE.md')
+ADD ('P06', '99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/PROCESS_DEEP_RESEARCH_2026_09_04/P06_BANK_TO_RECONCILE_EXECUTION/G03_ONE_PROMPT_FINAL_2026_09_08/P06_ONE_PROMPT_OWNER_CLOSURE_RECORD.md')
+ADD ('P08', '99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/ACCOUNT_P08_RECORD_TO_REPORT/64_P08_NOTIFICATION_TO_P11_Q_P08_01.md')
+ADD ('P09', '99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/ACCOUNT_P09_PLAN_TO_ANALYZE/OWNER_CLOSURE_2026_09_08/P09_ONE_PROMPT_OWNER_CLOSURE_RECORD.md')
+ADD ('P09', '99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/ACCOUNT_P09_PLAN_TO_ANALYZE/OWNER_QUEUE_2026_09_07/P09_AUTO_RESUME_STATE.md')
+ADD ('P09', '99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/ACCOUNT_P09_PLAN_TO_ANALYZE/OWNER_QUEUE_2026_09_07/Q_P09_01_L4_AUTHORITY_RESOLUTION.md')
+ADD ('P09', '99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/BOSS_GATE/REOPEN_PROGRAM_2026_09_02/ACCOUNT_REOPEN/ACCOUNT_P09_PLAN_TO_ANALYZE/OWNER_QUEUE_2026_09_07/Q_P09_02_CHALLENGE_SCOPE_PREPARED_NOT_RUN.md')

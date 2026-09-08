@@ -1,0 +1,1 @@
+FAIL-CLOSED: pg_restore not on PATH — required to read the custom-format dumps
