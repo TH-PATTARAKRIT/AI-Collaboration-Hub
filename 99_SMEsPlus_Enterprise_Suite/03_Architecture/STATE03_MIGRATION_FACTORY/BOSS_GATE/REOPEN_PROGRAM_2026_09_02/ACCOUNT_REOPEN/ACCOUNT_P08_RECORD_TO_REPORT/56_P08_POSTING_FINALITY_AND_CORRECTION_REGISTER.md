@@ -31,7 +31,7 @@ Consolidates `05`, `07`, `36`, `43`, `44`, `47`, `48` under the Phase-S disposit
 | Layer | Holds? |
 |---|---|
 | Database uniqueness on (number, journal) for posted entries | **holds** — 0 duplicates measured |
-| Database referential integrity on settlements | **DEFEATED — `P08-CONTRA-55`.** A module **installed in all three deployed databases** deletes the settlement table and the item table in **raw SQL**, in that order — precisely the order that defeats the constraint — with **no company predicate, no state predicate, and a commit per table**. It also resets the entry-number sequence to 1. The one control this package ranked as unconditionally holding does not hold |
+| Database referential integrity on settlements | **DEFEATED — `P08-CONTRA-55`.** A module ~~**installed in all three deployed databases**~~ → **installed in ALL FOUR FROZEN RC-05 EXTRACTS** **[`P08-C4d`, 2026-09-08 — THIRD carrier of the same claim, found by the cross-package reconciliation after `58_` and `54_` were corrected]** deletes the settlement table and the item table in **raw SQL**, in that order — precisely the order that defeats the constraint — with **no company predicate, no state predicate, and a commit per table**. It also resets the entry-number sequence to 1. The one control this package ranked as unconditionally holding does not hold |
 | Object-layer balance assertion, reporting currency | **holds unless a caller says otherwise** |
 | Object-layer balance assertion, transaction currency | **does not exist** |
 | Tamper seal | **exists, unengaged everywhere it could apply** |
@@ -98,7 +98,7 @@ That is a weaker headline than "seven of nine" and a more accurate one.
 |---|---|---|
 | `P08-CONTRA-50` | The date derivation reaches only invoice-type documents; 129,577 posted plain entries never enter it | E1 |
 | `P08-CONTRA-54` | A default-on guard makes nine named fields unwritable on a posted entry. The central finality claim is withdrawn and re-issued | E1 |
-| `P08-CONTRA-55` | Settlement referential integrity does **not** hold — a module installed in all three databases defeats it in raw SQL | E3 |
+| `P08-CONTRA-55` | Settlement referential integrity does **not** hold — a module ~~installed in all three databases~~ → **installed in all four frozen RC-05 extracts** **[`P08-C4d`, 2026-09-08]** defeats it in raw SQL | E3 |
 | `P08-CONTRA-56` | "Seven of nine" double-counts one control as three | E1 |
 
 **Author's note on `P08-CONTRA-54`.** The nine-field guard and its bypass key were already established in this package's own earlier work. They were not carried into the finality stack. This is not a search failure; it is a failure to bring known evidence to a claim that turned on it.

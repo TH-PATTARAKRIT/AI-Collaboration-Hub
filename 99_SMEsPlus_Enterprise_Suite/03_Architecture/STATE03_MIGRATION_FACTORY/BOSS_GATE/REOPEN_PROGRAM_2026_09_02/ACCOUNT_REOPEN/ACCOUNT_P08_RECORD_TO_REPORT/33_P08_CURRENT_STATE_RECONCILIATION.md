@@ -48,3 +48,36 @@ The prior session had **no runtime or database evidence of any kind** and said s
 That changes the evidential character of the package: findings that were `SUPPORTED INTERPRETATION` on source reading alone can now be **confirmed, quantified, or retracted** against real deployed data. Both outcomes occurred. See `35_P08_SUPPORTED_INTERPRETATION_CLOSURE.md`.
 
 **Nothing was executed against a live system.** The dumps were read with an offline archive reader; no database server was started, no write was performed, no module installed.
+
+
+---
+
+## `P08-C4e` — THE THREE-EXTRACT BOUNDARY, DECLARED RATHER THAN CARRIED SILENTLY
+
+**2026-09-08, one-prompt final closure, cross-package reconciliation.**
+
+`RC-05` added a **fourth** frozen extract, `DB-T2`. Four P08 claims were **re-measured** across all four and are now stated over the four-extract population:
+
+| Claim | Where | Re-measured on four? |
+|---|---|---|
+| ledger balance, both columns, four tolerances | `58_` §1 item 1, §8.2 | **yes** — `P08-C1` |
+| the deletion module's install state | `58_` §5, `54_`, `56_` | **yes** — `P08-C4`, `C4b`, `C4d` |
+| the external balance-check control's install state | `43_` §3 | **yes** — `P08-C4c` |
+| six custom modules' install state | `LAYER2…/E00` | **yes** — `P08-C4c` |
+
+**Every other P08 row whose population reads *"all three databases"* was measured on THREE extracts and has NOT been re-measured on `DB-T2`.**
+
+**Named, not summarised** — these are the current `FACT VERIFIED` rows carrying that population:
+
+| Row | File |
+|---|---|
+| *"States are draft, posted, cancelled"* | `53_P08_PHASE_S_CLOSURE_QUESTION_REGISTER.md`:61 |
+| *"Moves the state to posted"* | `56_P08_POSTING_FINALITY_AND_CORRECTION_REGISTER.md`:14 |
+
+> **THE POPULATION OF THESE ROWS IS THE THREE EXTRACTS EXAMINED AT THAT ROUND.** They are **not** claims about four extracts and **not** claims about the deployed estate.
+>
+> **They are not re-measured here, and the reason is scope, not convenience:** the one-prompt closure authorises the bounded four-input propagation that `RC05-F4` names, which is the population premise where the truth *could change*. **A state enumeration is not made false by a fourth extract; it is only made narrower than it looks.** Re-measuring it would be new research on an unchanged claim.
+>
+> **The blind spot is therefore the complement, and it is stated as a set rather than described:** `DB-T2` × {the two rows above}. **An undeclared boundary and a false claim are indistinguishable to a reader**, which is why this section exists instead of a silent carry-forward.
+
+**Statements about how many dumps a prior round *located and read* — `28_`, `33_` §C, `35_` — are historical records of that round and are correct as written.** They are not current population claims and are not restated.
