@@ -10,7 +10,7 @@ Prompt `[SMEPLUS-26-09-06-P08-R2R-DOMAIN-PURE-BOUNDED-CLOSURE-002]` · **PHASE S
 
 | # | Supplied | Quality | Class |
 |---|---|---|---|
-| 1 | Every posted monetary fact, at item granularity | **arithmetically sound, and the claim is TOLERANCE-INDEPENDENT.** Re-run in exact decimal arithmetic (`Q-P08-01`, 2026-09-07): **0 unbalanced posted entries in the reporting currency at exact equality, at 1e-7, at 1e-4 and at 0.005** — on **both** the computed debit-minus-credit and the **stored** balance column, and across **all three** deployed databases (169,143 + 16 + 6 posted entries). **The previously published *"at 1e-7 the answer is 3, all float artefacts"* is DELETED — the figure had no referent** (`P08-CONTRA-75`). **The word "complete" remains WITHDRAWN (`P08-CONTRA-73`)**: a module installed on all three databases deletes the ledger in raw SQL (§5) | `CANDIDATE OUTPUT`, qualified |
+| 1 | Every posted monetary fact, at item granularity | **arithmetically sound, and the claim is TOLERANCE-INDEPENDENT.** Re-run in exact decimal arithmetic (`Q-P08-01`, 2026-09-07): **0 unbalanced posted entries in the reporting currency at exact equality, at 1e-7, at 1e-4 and at 0.005** — on **both** the computed debit-minus-credit and the **stored** balance column, and across ~~**all three** deployed databases (169,143 + 16 + 6 posted entries)~~ → **`P08-C1`, 2026-09-08: the FOUR FROZEN RC-05 DATABASE EXTRACTS** (`DB-SM` 169,143 · `DB-BK` 16 · `DB-EV` 6 · **`DB-T2` 5** posted entries with lines; **417,700 + 563 + 15 + 14 posted lines**). **"four frozen RC-05 database extracts" is the correct wording and "the complete deployed estate" is NOT claimed** — deployment completeness is unproven and is not tested by this measurement. The three-DB figure is preserved above as lineage; it was never wrong, it was **incomplete against the frozen population**. **The previously published *"at 1e-7 the answer is 3, all float artefacts"* is DELETED — the figure had no referent** (`P08-CONTRA-75`). **The word "complete" remains WITHDRAWN (`P08-CONTRA-73`)**: a module installed on ~~all three databases~~ → **all FOUR frozen RC-05 extracts (`P08-C4`, 2026-09-08 — executed, see below)** deletes the ledger in raw SQL (§5) | `CANDIDATE OUTPUT`, qualified |
 | 2 | The settlement graph | **63,773 records, 100,580 lines.** Residual drift **0 at tolerance ≥ 1e-6**; re-run at **exact equality it is 2,354 lines, worst residual 2.1 × 10⁻⁹** — a stored-float artefact of the settlement amount column. **Unlike row 1, this claim IS tolerance-dependent, and the tolerance must travel with it** | `CANDIDATE OUTPUT` |
 | 3 | Company and journal attribution on every item | mirrors agree **447,384 of 447,384** — *unit note: this is the all-states item population; the posted population is 417,700* | `CANDIDATE OUTPUT` |
 | 4 | Posting state and date | present on every entry | `CANDIDATE OUTPUT` |
@@ -59,7 +59,7 @@ Prompt `[SMEPLUS-26-09-06-P08-R2R-DOMAIN-PURE-BOUNDED-CLOSURE-002]` · **PHASE S
 
 **`P08-CONTRA-55`. The single most consequential omission from this handoff.**
 
-A module **installed in all three deployed databases** deletes, in unqualified raw SQL and in this order: the **settlement table**, then the **journal item table**, then the **journal entry table** — with **no company predicate, no state predicate, a commit after each table**, and a reset of the entry-number sequence to **1**.
+A module ~~**installed in all three deployed databases**~~ → **installed in ALL FOUR FROZEN RC-05 EXTRACTS** **[`P08-C4`, 2026-09-08 — `om_data_remove` returns `state=installed` in `DB-SM`, `DB-BK`, `DB-EV` and `DB-T2`, read from each extract's own `ir_module_module`. This is a statement about the FOUR FROZEN EXTRACTS, not about the deployed estate, whose size is unproven. Install state is **capability**; whether the path was ever executed is still NOT evidenced.]** deletes, in unqualified raw SQL and in this order: the **settlement table**, then the **journal item table**, then the **journal entry table** — with **no company predicate, no state predicate, a commit after each table**, and a reset of the entry-number sequence to **1**.
 
 | Consequence for P11 | |
 |---|---|
@@ -101,13 +101,16 @@ Executed 2026-09-07 under Boss authorization `PHASE-S/Q-BOSS-01` (branch `audit/
 
 ### 8.2 The mandated re-run — every balance measurement, exact decimal arithmetic, no floats
 
-**INSTRUMENT:** `decimal.Decimal`, precision 50, parsed from the deployed COPY extracts. **UNIT:** one posted entry. **POPULATION:** every posted entry in all three deployed databases. **CONTROL:** the same instrument returns non-zero on the transaction-currency frame and on the settlement reconstruction, so it is capable of reporting a defect.
+**INSTRUMENT:** `decimal.Decimal`, precision 50, parsed from the deployed COPY extracts. **UNIT:** one posted entry. **POPULATION:** ~~every posted entry in all three deployed databases~~ → **`P08-C1`, 2026-09-08: every posted entry with lines in the FOUR FROZEN RC-05 DATABASE EXTRACTS.** **Four frozen extracts, NOT an established deployment census.** **CONTROL:** the same instrument returns non-zero on the transaction-currency frame and on the settlement reconstruction, so it is capable of reporting a defect.
 
 | Measurement | exact | 1e-7 | 1e-4 | 0.005 |
 |---|---|---|---|---|
 | Unbalanced posted entries, reporting currency — **`DB-SM`** (169,143), debit−credit | **0** | **0** | **0** | **0** |
 | — same, on the **stored balance** column | **0** | **0** | **0** | **0** |
 | — **`DB-BK`** (16) and **`DB-EV`** (6), both columns | **0** | **0** | **0** | **0** |
+| — **`DB-T2`** (**5** posted entries with lines, **14** posted lines), both columns **[`P08-C1`, 2026-09-08 — fourth frozen RC-05 extract, added to this table]** | **0** | **0** | **0** | **0** |
+
+> **`P08-C1a` — a tool-version precondition travels with the four-input figure.** `DB-T2` is written in archive format **1.16** and `pg_restore` **16.15** refuses it: `unsupported version (1.16) in file header`. The other three extracts are readable by both **16.15** and **18.6**; **`DB-T2` is readable only by 18.6.** A verifier on `pg_restore` 16 therefore gets **fail-closed exit 3 on `DB-T2`**, not a fourth zero — **the instrument refuses rather than reporting an unreadable extract as an empty ledger**, which is the behaviour its `C4` control exists to guarantee. **Reproducing the four-input result requires `pg_restore` ≥ 18.** Executed evidence: `RC05_CONFIRMATION_2026_09_08/run/C7_archive_version_boundary.txt`.
 
 > **There is no tolerance at which the count is non-zero, on either column, in any deployed database.** The claim is **tolerance-independent**, and stating a tolerance beside it was itself the error.
 

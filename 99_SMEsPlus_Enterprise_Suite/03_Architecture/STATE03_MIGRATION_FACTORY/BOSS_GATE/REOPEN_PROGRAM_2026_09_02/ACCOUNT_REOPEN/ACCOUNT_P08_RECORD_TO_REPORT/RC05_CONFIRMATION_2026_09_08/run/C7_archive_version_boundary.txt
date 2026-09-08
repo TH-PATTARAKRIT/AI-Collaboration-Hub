@@ -1,0 +1,7 @@
+pg_restore: error: unsupported version (1.16) in file header
+pg16 -l DB-T2 exit=1
+pg18 -l DB-T2 exit=0
+iSMEs_2026-07-11_05-03-27          pg16: READABLE   pg18: READABLE
+BK12MAY26_2026-08-03_05-48-30      pg16: READABLE   pg18: READABLE
+iEVING_2026-07-23_10-31-06         pg16: READABLE   pg18: READABLE
+iTEST02_2026-07-14_16-34-51        pg16: UNREADABLE   pg18: READABLE

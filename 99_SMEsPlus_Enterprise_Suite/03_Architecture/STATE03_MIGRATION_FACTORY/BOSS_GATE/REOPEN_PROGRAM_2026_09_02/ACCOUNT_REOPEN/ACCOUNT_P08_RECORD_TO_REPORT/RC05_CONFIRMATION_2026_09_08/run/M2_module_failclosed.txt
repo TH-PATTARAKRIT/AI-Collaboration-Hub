@@ -1,0 +1,5 @@
+FAIL-CLOSED: no COPY block for table ir_module_module in /tmp/not_an_archive.dump (table absent or extract unreadable)
+pg_restore: pg_restore (PostgreSQL) 18.6 (Homebrew)
+python:     3.14.0
+
+exit=3

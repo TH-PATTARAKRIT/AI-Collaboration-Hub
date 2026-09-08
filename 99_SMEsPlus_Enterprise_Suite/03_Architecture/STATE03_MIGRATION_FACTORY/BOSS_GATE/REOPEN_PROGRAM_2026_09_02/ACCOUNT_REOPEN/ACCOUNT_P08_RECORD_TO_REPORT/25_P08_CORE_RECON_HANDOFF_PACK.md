@@ -2,6 +2,26 @@
 
 Session `SMEPLUS-26-09-04-ACC-P08-R2R-REV2-001`
 
+---
+
+## 0. RETIRED / SUPERSEDED — read this before citing anything below
+
+**`P08-C2`, 2026-09-08.** Raised by `RC05-F2`.
+
+| | |
+|---|---|
+| **This artefact** | **SUPERSEDED BY `52_P08_CORE_RECON_HANDOFF_PACK_V2.md`** and, for the handoff namespace, by `54_P08_CANDIDATE_INPUT_PROCESS_OUTPUT_HANDOFF_PACK.md` |
+| **The `HO-01`…`HO-06` family in §4 below** | **RETIRED / SUPERSEDED BY PRODUCER-QUALIFIED `P08-HO-*` IDs.** Withdrawn from citation. **Not re-used, not renumbered.** |
+| **The live P08 family** | **`P08-HO-01`…`P08-HO-14`**, defined in `54_` and nowhere else |
+| **P06's own `HO-01`…`HO-06`** | **UNTOUCHED.** A different package's family, not P08's to renumber, and no longer colliding once P08's ids are producer-qualified |
+| **Historical rows** | **preserved below as lineage.** Nothing is deleted |
+
+> **Why this banner is here and not only in `54_`.** `54_` announced the retirement on 2026-09-07 and **did not edit this file** — it even pointed a reader to *"`25_` §0"*, **a section that did not exist**. `RC05-F2` found the consequence: **two live-looking P08 handoff namespaces at the same commit**, one of them bare `HO-nn`, which is also the shape P06 uses for a different set of six questions.
+>
+> **A retirement announced at the successor is not a retirement at the artefact a reader will actually open.** The identical shape was found in P09 at `CO-02b` and `CH-09` in the same closure round: **a correction recorded in a register is not a correction to the text carrying the claim.**
+
+---
+
 This pack is what Core Accounting Reconciliation needs from P08 and nothing more. It is not an approval, not a design authority, and not a gate.
 
 ## 1. What P08 hands over
@@ -44,16 +64,18 @@ This pack is what Core Accounting Reconciliation needs from P08 and nothing more
 5. **A tenant-scope mutation may never rewrite a company-scope posted fact, and may never silently change a company-scope issued statement.**
 6. Every object with a financial effect has exactly one owning company; where ownership cannot be proven, the operation is denied. *(Now `KRN-INV-08` in the kernel model — the draft carried it here and not there.)*
 
-## 4. The six things that must be reconciled with peers
+## 4. ~~The six things that must be reconciled with peers~~ — **RETIRED FAMILY, LINEAGE ONLY (`P08-C2`, 2026-09-08)**
+
+> **Every identifier in the table below is RETIRED.** Cite `P08-HO-01`…`P08-HO-14` in `54_` instead. The subjects did not go away — they were re-issued producer-qualified, with a Version-basis and a Reachability column that these rows never carried.
 
 | ID | With | Question |
 |---|---|---|
-| `HO-01` | P01–P07, P09 | the recognition point of every business event — P08 supplies the ledger contract, the producers supply the point |
-| `HO-02` | P03 | where the valuation boundary sits between an inventory fact and a ledger fact |
-| `HO-03` | P06 | the settlement event's own date, which P08 requires and the benchmark has none of |
-| `HO-04` | P07 | the tax point as a carrier distinct from the accounting date; and the ownership of statutory statement layouts |
-| `HO-05` | P09 | whether an analytic dimension is a fact or an attribution — this decides the membership of the immutable core |
-| `HO-06` | P11 | the `PLATFORM` / `TENANT` / `COMPANY` assignments, especially the three splits the benchmark does not make |
+| ~~`HO-01`~~ **RETIRED** | P01–P07, P09 | the recognition point of every business event — P08 supplies the ledger contract, the producers supply the point |
+| ~~`HO-02`~~ **RETIRED** | P03 | where the valuation boundary sits between an inventory fact and a ledger fact |
+| ~~`HO-03`~~ **RETIRED** | P06 | the settlement event's own date, which P08 requires and the benchmark has none of |
+| ~~`HO-04`~~ **RETIRED** | P07 | the tax point as a carrier distinct from the accounting date; and the ownership of statutory statement layouts |
+| ~~`HO-05`~~ **RETIRED** | P09 | whether an analytic dimension is a fact or an attribution — this decides the membership of the immutable core |
+| ~~`HO-06`~~ **RETIRED** | P11 | the `PLATFORM` / `TENANT` / `COMPANY` assignments, especially the three splits the benchmark does not make |
 
 ## 5. What P08 could not close, and what would close it
 

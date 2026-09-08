@@ -1,6 +1,10 @@
 # RC-05 REPRODUCIBILITY PACKAGE — MANIFEST
 
-**POPULATION:** every file under `RC05_REPRODUCIBILITY/` · **PATTERN:** `find . -type f` · **UNIT:** one file.
+**POPULATION:** every file under `RC05_REPRODUCIBILITY/` **EXCEPT `MANIFEST.md` itself** · **PATTERN:** `find . -type f` · **UNIT:** one file.
+
+> **`P08-C5`, 2026-09-08 — the self-exclusion is now explicit.** **`MANIFEST.md` is excluded from the substantive file population by definition**, because a manifest cannot contain its own digest: writing the hash changes the bytes that produced it. **7 is the count of substantive files; the manifest is the 8th file on disk and the 0th member of the population it describes.**
+>
+> **No missing substantive hash was found, and none is invented here.** `RC05-F5` asked only that the exclusion be *stated* rather than left for a reader to infer from a count that does not add up to the directory listing. **An unstated exclusion and an omission are indistinguishable to anyone recounting the directory** — which is the whole reason the clause exists.
 
 | Files | Roll-up SHA-256 |
 |---|---|

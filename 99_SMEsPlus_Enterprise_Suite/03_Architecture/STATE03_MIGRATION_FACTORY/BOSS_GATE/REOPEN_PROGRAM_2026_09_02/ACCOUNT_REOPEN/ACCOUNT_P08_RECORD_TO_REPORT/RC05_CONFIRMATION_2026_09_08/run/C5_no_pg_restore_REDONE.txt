@@ -1,0 +1,6 @@
+# C5 REDONE: PATH contains python3 but NOT pg_restore
+# PATH=/tmp/pyonly  (python3 symlink only)
+env: command: No such file or directory
+$ command -v pg_restore  ->  not found
+FAIL-CLOSED: pg_restore not on PATH — required to read the custom-format dumps
+exit=2
