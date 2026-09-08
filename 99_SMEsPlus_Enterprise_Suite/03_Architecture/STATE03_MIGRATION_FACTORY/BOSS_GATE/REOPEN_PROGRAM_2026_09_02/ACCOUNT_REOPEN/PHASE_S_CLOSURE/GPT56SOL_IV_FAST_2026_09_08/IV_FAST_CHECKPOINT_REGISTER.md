@@ -12,8 +12,8 @@
 | IV-CP-08 post-RC cross-package | COMPLETE | `08_POST_RC_CROSS_PACKAGE_VERIFICATION.md` |
 | IV-CP-09 Veto recommendation | COMPLETE | `09_VETO_DISPOSITION_RECOMMENDATION.md` |
 | IV-CP-10 closure criteria test | COMPLETE — FAIL | `10_PHASE_S_CLOSURE_CRITERIA_INDEPENDENT_TEST.md` |
-| IV-CP-11 owner correction prompts | GENERATED | `CORRECTION_PROMPTS/` |
-| IV-CP-12 final evidence manifest | PENDING PUBLICATION AFTER ARTIFACT HASHING | `IV_FAST_EVIDENCE_MANIFEST_SHA256.md` |
+| IV-CP-11 owner correction prompts | GENERATED — 5 bounded prompts | `CORRECTION_PROMPTS/` |
+| IV-CP-12 final evidence manifest | ARTIFACT SET FROZEN FOR HASHING — publish `IV_FAST_EVIDENCE_MANIFEST_SHA256.md` next | manifest excludes itself by definition |
 
 Current terminal:
 `IV-CLOSEOUT-B — BOUNDED MATERIAL BLOCKER REMAINS — EXACT ITEMS NAMED`
