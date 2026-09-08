@@ -155,7 +155,7 @@ The five-way partition of `53` CQ-01 is **documentary**, so 76.6% of the posted 
 
 ### 6.3 A boundary actor with no category in this pack
 
-**`P08-CONTRA-55`.** A module **installed in all three deployed databases** deletes the settlement, item and entry tables in unqualified raw SQL and resets the entry-number sequence to 1. It is **neither an input nor an output** — it is a **boundary actor that destroys ledger facts**, and this pack has no category for it. Recorded here pending one, and handed to **P11** and **P06**.
+**`P08-CONTRA-55`.** A module ~~**installed in all three deployed databases**~~ → **installed in ALL FOUR FROZEN RC-05 EXTRACTS** **[`P08-C4b`, 2026-09-08 — cross-package reconciliation. The same claim was corrected at `58_` §5 and left uncorrected here; this is the identical shape as `P08-C2` (`25_`) and is repaired in the same round. `DB-SM`, `DB-BK`, `DB-EV` and `DB-T2` all record an installed state, read from each extract's own module registry. **Four frozen extracts are NOT an established deployment census.** Install state is capability; execution remains NOT evidenced.]** deletes the settlement, item and entry tables in unqualified raw SQL and resets the entry-number sequence to 1. It is **neither an input nor an output** — it is a **boundary actor that destroys ledger facts**, and this pack has no category for it. Recorded here pending one, and handed to **P11** and **P06**.
 
 ### 6.4 `P08-F-51` — the two tax-period carriers contradict each other on 24.2% of the items where both are set
 

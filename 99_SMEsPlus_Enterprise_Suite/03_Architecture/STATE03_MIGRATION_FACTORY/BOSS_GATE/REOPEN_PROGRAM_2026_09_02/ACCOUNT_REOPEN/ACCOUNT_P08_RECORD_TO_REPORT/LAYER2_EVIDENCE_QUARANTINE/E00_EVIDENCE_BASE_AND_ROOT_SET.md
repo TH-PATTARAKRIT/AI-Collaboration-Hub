@@ -127,6 +127,8 @@ Extraction: `pg_restore -a -t <table> -f <out> <dump>` for `account_move_line`, 
 
 Module states relevant to the custom-layer findings:
 
+> **SUPERSEDED BY THE FOUR-INPUT REFRESH BELOW — `P08-C4c`, 2026-09-08.** The three-column table is retained as lineage. It has **no column for `DB-T2`**, and the `—` cells were *unmeasured*, not *absent*.
+
 | Module | `DB-BK` | `DB-EV` | `DB-SM` |
 |---|---|---|---|
 | `om_data_remove` | **installed** | **installed** | **installed** |
@@ -138,6 +140,46 @@ Module states relevant to the custom-layer findings:
 | `scgl_account_reports`, `scgl_purchase_advance_payment` | — | — | **installed** |
 
 `DB-BK` and `DB-EV` carry `wt_tax_id` and `tax_period_date` columns on the journal item, confirming the custom Thai and tax-period modules are deployed there at schema level.
+
+---
+
+### FOUR-INPUT INSTALL-STATE REFRESH — `P08-C4c`, 2026-09-08
+
+**Instrument:** `RC05_CONFIRMATION_2026_09_08/instrument/module_state.py`, frozen in the pre-run prediction commit `78f5378` before it was executed once. **Raw output:** `RC05_CONFIRMATION_2026_09_08/run/M3_module_state_four_input_refresh.txt`.
+**Unit:** one module row in the extract's own `ir_module_module`. **Population:** the four frozen RC-05 extracts. **Not a deployment census.**
+
+**Three outcomes are reported distinctly** — `installed`, another state, and **NOT PRESENT** (no row at all). The old `—` cells conflated *unmeasured* with *absent*; they are now measured.
+
+| Module | `DB-SM` | `DB-BK` | `DB-EV` | **`DB-T2`** |
+|---|---|---|---|---|
+| `om_data_remove` | **installed** | **installed** | **installed** | **installed** |
+| `account_test` | uninstalled | uninstalled | uninstalled | **uninstalled** |
+| `scgl_special_access_rights` | **NOT PRESENT** | uninstalled | uninstalled | ***installed*** |
+| `cr_effective_date_entries` | **NOT PRESENT** | uninstalled | uninstalled | uninstalled |
+| `import_bridge_axis` | uninstalled | uninstalled | uninstalled | uninstalled |
+| `scgl_tax_period_date` | **installed** | **installed** | uninstalled | **installed** |
+| `smesplus_nonexistent_control_module` *(negative control)* | **NOT PRESENT** | **NOT PRESENT** | **NOT PRESENT** | **NOT PRESENT** |
+
+**Positive control** — modules at `state='installed'` per extract: `DB-SM` **190** · `DB-BK` **251** · `DB-EV` **232** · `DB-T2` **453**. A zero here would mean the registry was not read.
+**Negative control** — an impossible module name returns **NOT PRESENT** in all four, so the reader is not echoing its argument.
+
+#### `P08-F-NEW-01` — the fourth extract carries a custom access-rights module the other three do not
+
+> **`scgl_special_access_rights` is `state='installed'` in `DB-T2` alone.** In `DB-BK` and `DB-EV` it exists and is **uninstalled**; in `DB-SM` there is **no row at all**.
+
+**Three different answers across four extracts, and the earlier three-column table recorded only two of them.** This is exactly the distinction the reader was built to preserve: *"never known to this database"* is not *"present and switched off"*.
+
+**Materiality, stated without overreach.** A module whose name and purpose concern **access rights** is directly adjacent to the tenant- and company-isolation controls the Boss non-degradation ruling protects. **P08 has not read this module's source and makes no claim about what it does.** What is established is only its **install state in one frozen extract**, and that **the estate is not homogeneous in its custom access-rights layer**.
+
+**Routed, not answered:** whether `DB-T2` is a deployment, a test restore, or a clone is **not determined by this evidence** and is not asserted. Carried into the cross-package reconciliation as an open item, not closed here.
+
+#### Two corrections this refresh makes to the older table
+
+| Old cell | Was read as | Actually |
+|---|---|---|
+| `scgl_special_access_rights` / `DB-SM` = *"not in registry"* | absent | **confirmed NOT PRESENT** — the old wording was right and is now measured by an instrument that distinguishes it from `uninstalled` |
+| `scgl_tax_period_date` / `DB-BK`, `DB-EV` = `—` | *"not applicable"* | **`DB-BK` installed · `DB-EV` uninstalled.** The dash meant **unmeasured**, and one of the two is installed |
+
 
 ## 7. Scale measurements in `DB-SM`
 

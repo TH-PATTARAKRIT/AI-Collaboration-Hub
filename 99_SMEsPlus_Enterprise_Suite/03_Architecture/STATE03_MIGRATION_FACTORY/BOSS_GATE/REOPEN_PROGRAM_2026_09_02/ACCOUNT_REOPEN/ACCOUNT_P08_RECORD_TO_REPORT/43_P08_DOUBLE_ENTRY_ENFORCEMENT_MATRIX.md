@@ -34,9 +34,9 @@ The only balance check outside application code is a separate consistency-test m
 - It is **not installed by default**, has **no scheduled run**, and produces a report on demand.
 - Its first test sums debits and credits **across the whole table with no company and no currency filter** — in any database with more than one company currency it returns non-zero by construction and is uninterpretable.
 - Several of its eight seeded tests reference schema removed long before the version under study and would raise on execution.
-- **It is `uninstalled` in all three deployed databases.**
+- **It is `uninstalled` in ~~all three deployed databases~~ → ALL FOUR FROZEN RC-05 EXTRACTS.** **[`P08-C4c`, 2026-09-08 — re-measured, not carried forward.** The cross-package reconciliation found this claim resting on the three-database premise that `P08-C1`/`P08-C4` had moved. It was **re-executed against all four extracts** rather than re-scoped: `DB-SM`, `DB-BK`, `DB-EV` and `DB-T2` each record this module as **uninstalled** — a distinct state from *"no row at all"*, which the reader used here reports separately and did not return for this module in any extract. **The finding is unchanged and its population is now larger**, which is the only honest way a three-DB claim may become a four-DB one.]**
 
-`FACT VERIFIED`. **The only control that could detect an unbalanced entry after the fact is absent from every deployment examined, and would be scope-blind if present.**
+`FACT VERIFIED`. **The only control that could detect an unbalanced entry after the fact is absent from every deployment examined, and would be scope-blind if present.** **[`P08-C4c` — "every deployment examined" now means the four frozen RC-05 extracts. It is NOT a claim about the deployed estate, whose size is unproven.]**
 
 ## 4. A posting-control bypass that needs no context key
 

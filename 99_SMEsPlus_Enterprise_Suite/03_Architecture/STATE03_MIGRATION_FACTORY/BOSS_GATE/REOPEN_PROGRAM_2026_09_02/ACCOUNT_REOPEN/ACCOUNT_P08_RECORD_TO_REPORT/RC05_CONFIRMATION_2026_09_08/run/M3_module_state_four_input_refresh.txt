@@ -1,0 +1,56 @@
+pg_restore: pg_restore (PostgreSQL) 18.6 (Homebrew)
+python:     3.14.0
+
+==============================================================================
+DATABASE DB-SM   iSMEs_2026-07-11_05-03-27.dump
+==============================================================================
+  ir_module_module rows              1009
+  of which state='installed'         190   <-- POSITIVE CONTROL
+  account_test                       state=uninstalled
+  om_data_remove                     state=installed
+  scgl_special_access_rights         NOT PRESENT  (no row — never known to this database)
+  cr_effective_date_entries          NOT PRESENT  (no row — never known to this database)
+  import_bridge_axis                 state=uninstalled
+  scgl_tax_period_date               state=installed
+  smesplus_nonexistent_control_module NOT PRESENT  (no row — never known to this database)
+
+==============================================================================
+DATABASE DB-BK   BK12MAY26_2026-08-03_05-48-30.dump
+==============================================================================
+  ir_module_module rows              1508
+  of which state='installed'         251   <-- POSITIVE CONTROL
+  account_test                       state=uninstalled
+  om_data_remove                     state=installed
+  scgl_special_access_rights         state=uninstalled
+  cr_effective_date_entries          state=uninstalled
+  import_bridge_axis                 state=uninstalled
+  scgl_tax_period_date               state=installed
+  smesplus_nonexistent_control_module NOT PRESENT  (no row — never known to this database)
+
+==============================================================================
+DATABASE DB-EV   iEVING_2026-07-23_10-31-06.dump
+==============================================================================
+  ir_module_module rows              1504
+  of which state='installed'         232   <-- POSITIVE CONTROL
+  account_test                       state=uninstalled
+  om_data_remove                     state=installed
+  scgl_special_access_rights         state=uninstalled
+  cr_effective_date_entries          state=uninstalled
+  import_bridge_axis                 state=uninstalled
+  scgl_tax_period_date               state=uninstalled
+  smesplus_nonexistent_control_module NOT PRESENT  (no row — never known to this database)
+
+==============================================================================
+DATABASE DB-T2   iTEST02_2026-07-14_16-34-51.dump
+==============================================================================
+  ir_module_module rows              1559
+  of which state='installed'         453   <-- POSITIVE CONTROL
+  account_test                       state=uninstalled
+  om_data_remove                     state=installed
+  scgl_special_access_rights         state=installed
+  cr_effective_date_entries          state=uninstalled
+  import_bridge_axis                 state=uninstalled
+  scgl_tax_period_date               state=installed
+  smesplus_nonexistent_control_module NOT PRESENT  (no row — never known to this database)
+
+exit=0
