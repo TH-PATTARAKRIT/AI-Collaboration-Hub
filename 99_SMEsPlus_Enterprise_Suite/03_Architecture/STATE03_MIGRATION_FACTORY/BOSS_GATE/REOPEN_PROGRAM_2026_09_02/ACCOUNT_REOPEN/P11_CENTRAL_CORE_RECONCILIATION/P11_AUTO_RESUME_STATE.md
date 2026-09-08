@@ -19,12 +19,47 @@
 | **Frozen review surface** | **`9356557`** — the four AAS-03 experts read this and only this |
 | Terminal | **`TERMINAL B — MATERIAL EVIDENCE-INTEGRITY DEFECT REMAINS`** |
 
-## 2. CORR3 FROZEN PEER SNAPSHOT — **these are CORR3's heads**
+## 2. PEER SNAPSHOT
 
-`P01 b820b29` · `P02 7cb1c27` · `P03 bc767a8` · `P04 65b8841` · `P05 205e0ac` ·
-**`P06 1b018c1`** · `P07 ee2be30` · **`P08 00ccd66`** · **`P09 4778792`** · `P10 1fea562`
+### 2.1 CURRENT — the 2026-09-08 one-prompt final closure heads · **`P11-C6-05`**
 
-**3 of 10 moved since CORR2.** Re-resolve at CORR4 bootstrap; do not inherit these blindly.
+> **A successor MUST use this table, not §2.2.** `B-37` recorded that this file
+> *"instructs the successor to use superseded heads"*. That is repaired here.
+
+| Peer | Pin | Branch | Moved since CORR3? |
+|---|---|---|---|
+| `P01` | `b820b29` | `research/account-p01-procure-to-pay-2026-09-04-001` | no |
+| `P02` | `7cb1c27` | `research/account-p02-order-to-cash-2026-09-04-001` | no |
+| `P03` | `bc767a8` | `research/account-p03-manufacture-to-cost-2026-09-04-001` | no |
+| `P04` | `65b8841` | `research/account-p04-acquire-to-retire-2026-09-04-001` | no |
+| `P05` | `205e0ac` | `research/account-p05-expense-to-pay-2026-09-04-001` | no |
+| **`P06`** | **`a533fe92d6f6855e0b362179403476520cc9aafa`** | `corr/p06-one-prompt-final-2026-09-08-001` | **YES** |
+| `P07` | `ee2be30` | `research/account-p07-th-tax-compliance-2026-09-04-001` | no — **READ-ONLY, not mutated** |
+| **`P08`** | **`82df5f3df8faec484a27146eb1f1d8b652424293`** | `corr/p08-one-prompt-final-2026-09-08-001` | **YES** |
+| **`P09`** | **`ab8c0131c46e8154ad7efae18de2a54af2f17362`** | `corr/p09-one-prompt-final-2026-09-08-001` | **YES** |
+| `P10` | `1fea562` | `research/account-p10-time-based-recognition-2026-09-04-001` | no |
+
+**Measured effect of the re-pin on the intake denominator:** UNION **817 → 825**, **+8 members, 0 removed**, all eight the owner-closure artefacts published by P06, P08 and P09 in this same prompt. **The re-pin was published as a delta, not applied silently.**
+
+**What changed in the claims P11 consumes from the three moved peers:**
+
+| Consumed claim | Moved? |
+|---|---|
+| `CI-01` balance | **YES** — three databases → **four frozen RC-05 extracts**, zero at exact equality and every tolerance. Re-pointed at `F-02` and `CI-01`. |
+| `CI-12` deletion-path install state | **YES** — three databases → **four frozen RC-05 extracts** |
+| `CI-11` analytic, 12 of 23 centres net 0.00, gross 43× net | **no** — P09's final SHA did not touch it; the pin moves, the substance does not |
+| `B-38` / `AAS+-VETO-04` | **partly** — `M-1` resolved, `M-2` not; **veto NOT discharged, `B-38` NOT closed** |
+| P06 counts | **YES** — 7 vetoes / 67 blockers / 21 author errors. **No P06 finding changed**; `AASP-VETO-06` still binds |
+
+**`B-37` disposition:** the defect it names — **this control artefact pointing a successor at superseded heads** — is **REPAIRED**. `B-37` is **not closed by P11 in this round**, because closure of a registered blocker on the owner's own say-so is the practice this programme has ruled against. It is carried to the final independent gate with the repair evidenced above.
+
+### 2.2 CORR3 FROZEN PEER SNAPSHOT — **LINEAGE ONLY, SUPERSEDED BY §2.1**
+
+~~`P01 b820b29` · `P02 7cb1c27` · `P03 bc767a8` · `P04 65b8841` · `P05 205e0ac` ·
+**`P06 1b018c1`** · `P07 ee2be30` · **`P08 00ccd66`** · **`P09 4778792`** · `P10 1fea562`~~
+
+~~**3 of 10 moved since CORR2.** Re-resolve at CORR4 bootstrap; do not inherit these blindly.~~
+**These were CORR3's heads and are retained so CORR3's measurements stay reconstructible. DO NOT RESOLVE AGAINST THEM.**
 
 ## 3. Populations — re-executed after the challenge
 

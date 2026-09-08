@@ -173,3 +173,37 @@ P11 OWNER PHASE S CLOSURE COMPLETE — INTERNAL DELTA QA PASS
 | Terminal state | **`TERMINAL B` unchanged — intake integrity is NOT established** |
 
 **Not a PASS, not a freeze, not a merge, not an implementation authorisation. No Veto self-discharged. No peer package mutated. P07 untouched.**
+
+---
+
+## 11. Second pass — items the cross-package reconciliation returned to P11
+
+Published after the first P11 owner commit, on the same branch, from the **single** Account cross-package delta reconciliation over the four final owner SHAs. **These are corrections to P11's own package, not a new round.**
+
+### `P11-C6-04` — the install-state premise moved with the balance premise, and the first pass moved only one of them
+
+`P08-C1` and `P08-C4` are **one correction with two limbs**: the frozen population went from three databases to four, which changes **both** the balance claim **and** the deletion-path install-state claim. **The first P11 pass re-pointed the balance limb and left the install-state limb on the three-database premise in three live carriers.**
+
+| Carrier | Was | Now |
+|---|---|---|
+| `P11_CORR3_POPULATION_REGISTERS.md` `B-21`/`T0-14` | *"installed in ALL THREE deployed databases"* | **all FOUR frozen RC-05 extracts** |
+| `P11_CANDIDATE_ACCOUNTING_INPUT_PROCESS_OUTPUT_HANDOFF_PACK.md` `CI-12` | *"installed in all three deployed databases"* | **all FOUR frozen RC-05 extracts** |
+| `P11_CORR3_INTAKE_CASE_DISPOSITIONS.md` | *"installed in all three deployed databases"* | **all FOUR frozen RC-05 extracts** |
+
+**`exercised` remains NOT ESTABLISHED.** Install state is capability, not act. **Four frozen extracts are not a deployment census.**
+
+> **The lesson is the shape, not the miss.** A peer correction that moves a *population* moves **every** claim resting on that population, not the one the challenge happened to name. `RC-06` named the balance premise; **the install-state premise had the same premise and no challenge pointed at it.**
+
+### `P11-C6-05` — the peer snapshot, refreshed at the artefact a successor actually reads
+
+`B-37`'s defect is that `P11_AUTO_RESUME_STATE.md` — P11's own control artefact — **points a successor at superseded heads.** §2 now carries a **current** table with the three moved pins, the CORR3 snapshot struck and retained as lineage, the measured intake effect (**UNION 817 → 825, +8, 0 removed**), and a per-claim statement of **which consumed claims moved and which did not**.
+
+**`B-37` is not closed.** The defect is repaired and evidenced; **closing a registered blocker on the owner's own say-so is the practice this programme has ruled against**, so it goes to the final independent gate with the repair attached.
+
+### `P08-F-NEW-01` — received, not re-derived
+
+P08's four-input refresh reports **`scgl_special_access_rights` installed in `DB-T2` alone** — uninstalled in two extracts, **no row at all** in a third. **P11 records receipt and does not re-derive it.**
+
+**P11's position, bounded:** this is an **access-rights** module, and P11's scope register carries tenant- and company-isolation as tolerance-zero. **P11 makes no claim about the module's behaviour** — nobody has read its source — and **no claim about whether `DB-T2` is a deployment, a test restore or a clone.** What is established is that **the extracts are not homogeneous in their custom access-rights layer**, and that is carried to the Boss Decision Matrix as an open item rather than resolved here.
+
+**It does not change any P11 finding**, and it is **not** used to strengthen one.
