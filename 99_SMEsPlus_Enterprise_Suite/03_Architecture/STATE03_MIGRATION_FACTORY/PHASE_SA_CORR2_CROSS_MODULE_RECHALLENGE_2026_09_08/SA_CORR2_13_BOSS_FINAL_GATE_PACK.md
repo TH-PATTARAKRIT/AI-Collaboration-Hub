@@ -322,6 +322,9 @@ Package    : 99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACT
 Parent     : .../PHASE_SA_CROSS_MODULE_ASSURANCE_2026_09_08/
 Master prompt commit : cd26c2da028cea6186f4004d4b13ca53bb97f336
 Parent package read at: f0548a20        Frozen for challenge at: e280611a
+Publication commit     : 5a1fcec6a7de0823923d10e85811a1d4df8c01d0
+Manifests              : CORR2 15/15 OK · parent 23/23 OK (regenerated under K2-24)
+Clean-room sweep       : 0 vendor tokens across both packages
 ```
 
 **Direct links**
