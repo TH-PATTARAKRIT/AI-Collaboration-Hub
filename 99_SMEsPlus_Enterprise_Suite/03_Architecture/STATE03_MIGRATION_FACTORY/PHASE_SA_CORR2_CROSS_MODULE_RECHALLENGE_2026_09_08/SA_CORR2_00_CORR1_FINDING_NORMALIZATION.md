@@ -32,10 +32,10 @@ identifier elsewhere.
 | Clause | Declaration |
 |---|---|
 | **POPULATION** | Every branch on remote `origin` at fetch time 2026-09-08. **n = 183.** Cross-validated by three command shapes: `git for-each-ref refs/remotes/origin` = 184 minus one symbolic alias; `git ls-remote --heads origin` = 183; `packed-refs` entries under `refs/remotes/origin/` = 183. |
-| **PATH SET** | For each branch *b*, every path carrying a blob at *b* that differs from `merge-base(origin/SMEsPlus, b)`. Whole repository, no directory pre-filter. **6,756 branch-path-blob triples.** |
-| **UNIT** | **U1** = unique text blob (**2,748**). **U2** = unique path (**2,606**). Never conflated; every count below says which it uses. |
-| **EXTRACTION COVERAGE** | requested 2,748 / written 2,748 / **missing 0** / **zero-byte 0** / bytes 28,570,138. |
-| **CONTENT POSITIVE CONTROLS** | `BD-ACC-01` → **34** blobs (fires). `clean.room` → **932** blobs (fires). |
+| **PATH SET** *(v2 — see `C2-I-02`)* | The **union** of **(a)** for each branch *b*, every path carrying a blob at *b* differing from `merge-base(origin/SMEsPlus, b)` — 6,756 triples, contributed by **159 of 183** branches; and **(b)** **every path in the `origin/SMEsPlus` tree itself** — 1,131 paths. Whole repository, no directory pre-filter. **7,887 branch-path-blob triples.** |
+| **UNIT** | **U1** = unique text blob (**3,789**). **U2** = unique **text** path (**3,561**). Never conflated; every count below says which it uses. |
+| **EXTRACTION COVERAGE** | requested 3,789 / written 3,789 / **missing 0** / **zero-byte 0**. |
+| **CONTENT POSITIVE CONTROLS** | `BD-ACC-01` → **34** blobs (fires). `clean.room` → **1,219** blobs (fires). |
 | **NEGATIVE CONTROL** | `zzqq_unmatchable_token` → **0**. The instrument is not matching indiscriminately. |
 | **JOIN CONTROL** | 34 hit blobs join to 34 paths. The blob→path join is validated before any attribution result is read. |
 
@@ -58,6 +58,46 @@ All three agree at **183**.
 Published because a population figure that three command shapes agree on is worth more than one
 that a single command shape produced, and because this is the *fourth* recorded instance in this
 programme of a filter that could not fire.
+
+### 2.2 A second instrument defect, found by challenge, in this round's own frame — and it is inherited
+
+**`C2-I-02` — the mainline was structurally invisible, in this round's v1 frame and in the parent
+package's frame, for the same reason.**
+
+The PATH SET was declared as *"for each branch b, every path differing between merge-base and b"*.
+**For `b = origin/SMEsPlus` that diff is empty by construction.** So the canonical branch — the one
+carrying the Boss decisions the whole programme cites as authority — contributed **exactly zero
+paths**:
+
+```
+awk -F'\t' '$1=="origin/SMEsPlus"' bpb.tsv | wc -l   ->  0
+git ls-tree -r origin/SMEsPlus | grep -c '\.(md|txt|csv)$'  ->  1069
+```
+
+**1,069 text files — 27% of the true corpus — were outside the declared population**, and the
+declaration was worded so that nobody would notice: *"every branch"* is true, *"whole repo, no
+directory pre-filter"* is true, and the mainline is still absent.
+
+**This is inherited, not introduced.** `SA00` §2 declares the identical PATH SET and reports
+2,722 text blobs. Its §10 then admits *"seven Boss decisions on `origin/SMEsPlus`"* to the baseline
+as **authority** — from a corpus that structurally could not contain one line of them. `SA00` §9.1
+even lists the seven commits. **The register named the complement of its own population and did not
+notice it was the complement.**
+
+**Correction, executed.** The mainline tree is added to the PATH SET. Corpus grows
+**2,748 → 3,789 text blobs (+38%)**, controls re-run and still fire (`BD-ACC-01` 34,
+`clean.room` 932 → 1,219, negative control 0). **The five Boss decisions anchoring `SA-D17`…`SA-D21`
+are now readable and are read at §4 `N-13` and in `SA_CORR2_03` §2.**
+
+**And a unit defect in this round's own first declaration, corrected:** v1 wrote *"U2 = unique path
+(2,606)"*. 2,606 was the **all-extension** path count; the **text** path count was 2,529. A search
+over text blobs reported against an all-extension denominator is a conflated unit. Found by internal
+challenge, not by the author.
+
+> The rule this yields, and it is the one the programme keeps paying for:
+> **a population is only declared when its complement is stated.** *"Every branch"* does not state
+> what is outside; *"every branch, plus the mainline tree itself, which no branch diff can reach"*
+> does.
 
 ---
 
@@ -95,9 +135,19 @@ Status vocabulary: `TRUE POSITIVE` · `PARTIALLY TRUE` · `FALSE POSITIVE` · `O
 | `N-10` | `SA20` §2.1: *"`cancel` in the Order-to-Cash package (one token wider) — **24 files**"* | Same pattern, four units | **FALSE — not reproducible under any unit** | Unique paths under `P02_ORDER_TO_CASH` = **23**. Unique blobs = **23**. Branch-path pairs = **23**. Paths anywhere named `P02` = **23**. The published figure carries **no unit** — which is the exact defect the same section criticises three paragraphs earlier when it writes that the superseded denominator *"carried no unit and is not reproducible"* | CORR2 | Corrected to 23 with the unit stated | §5 below |
 | `N-11` | `SA20` §6: *"Every negative in this package was re-tested against that rule during CORR1"* | `N-08` | **FALSE — universal not supported** | At least one negative (BN-05) was **not** re-tested in the other party's path set. The universal *"every"* is the same over-wide-universal class as `SA01-C-01`, which CORR1 itself corrected at §2.3 | CORR2 | Narrowed by population | §5 below |
 | `N-12` | Package integrity and evidence-pointer resolution | 39 SHAs, 29 branches, 23 file hashes | **TRUE POSITIVE** | No action | — | — | §3 above |
+| `N-13` | `SA00` §6: *"MENTION = blob contains any **declared** term"*, producing the per-domain figures that `SA01` classifies on | `grep -inE 'pattern\|regex\|token\|declared'` over the whole of `SA01`; and `SA00` §6/§7 read in full | **FALSE — the terms are never declared.** This is the largest methodological defect in the inherited package | `SA00` §6 says *"declared term"* and **declares none**. §7 gives prose labels (*"Stock reservation / allocation"*), which are **descriptions, not patterns**. `SA01` mentions the word *pattern* exactly once, inside a correction row about a different claim. **The figures 856 / 297 / … / 81 / 16 / 4 / 20 / 13 / 34 / 154 / 1,216 are therefore not reproducible**, and CORR2 could not reproduce any of them. Re-measured in `SA_CORR2_03` §2 with the pattern published | CORR2 | **`SA01` coverage classes, `SA05` seven `HOLD` natures, `SA16` six research triggers, `SA19` §3 and §18 all rest on these figures** | `SA_CORR2_03` §2 |
+| `N-14` | `SA09`'s four *"exceptions the world raises against the system"* rows, and `SA09-F-03`'s shape claim | Each class re-searched in both parties' path sets; and the blob versions of the source register enumerated | **FALSE for three of the four** | The rows were read from **one** register, at **one** of its **three** blob versions. Verified: the cited path carries blobs `25a98a50` (8,994 bytes, **no §13A**), `34e698ab` (16,287) and `4deacf0f` (15,128), the latter two carrying the section that closes the failure-recovery gap. `SA09` read the short one. Full adjudication in `SA_CORR2_09` | CORR2 | `SA09` §2.1 count 13/5; `SA09-F-03`; `SA17` priority 13; `SA19` §8–11 | `SA_CORR2_09` |
+| `N-15` | `SA01` §4, `SA05` §3, `SA15` §3, `SA19` §3: the five module boundaries are described as *"standing Boss decisions"* / *"Boss has ruled"* | The five decision bodies, now reachable after `C2-I-02`, read at `fa57d10f`, `e47f0f2f`, `a11c9e7b`, `36c62ab3`, `4c469f8e` | **PARTIALLY TRUE — the qualifier was dropped** | **Every one of the five carries the status `APPROVED DIRECTION / DETAIL DESIGN PENDING`**, and three state explicitly that they authorize no implementation. *"Boss has ruled the boundary"* is right in direction and overstates finality. `SA15-F-02`'s *"a ruled boundary with no assured flow"* is a smaller risk than stated: the decisions themselves say the detail is pending | CORR2 | `SA15-F-02`; `SA19` §3 | `SA_CORR2_08` §4 |
+| `N-16` | `SA05` BN-18: *"Route is stated verbatim in Boss decision `a11c9e7b` §3"* | The decision body read directly at `a11c9e7b` | **TRUE POSITIVE — verified verbatim** | `§3 CROSS-DOMAIN RELATIONSHIP` reads: *"Manufacturing Work Order → Equipment Breakdown → Maintenance Request → Maintenance Order → Repair / Maintenance Completion → Equipment Available → Manufacturing Work Order Continues."* `SA05`'s transcription is accurate. Recorded because an internal challenge in this round could not reach the source and correctly flagged the citation as unverifiable from its population — **it is verifiable, and it holds** | — | — | §4 `N-16` |
 
-**Summary: 6 CORR1 claims re-verified true; 4 false positives found inside the correction round
-itself; 2 partially true; 1 unresolved denominator.**
+**Summary of the disposition table, counted by row: 16 findings — 7 `TRUE POSITIVE` (`N-06`, `N-12`, `N-16` and the six re-verified CORR1 claims of §3, of which three are separately rowed), 5 `FALSE` (`N-03`, `N-08`, `N-09`, `N-10`, `N-11`, `N-13`, `N-14` — see note), 3 `PARTIALLY TRUE` (`N-01`, `N-02`, `N-04`, `N-07`, `N-15` — see note), 1 `UNRESOLVED` (`N-05`).**
+
+*Note on the count.* The status classes above overlap because several findings carry a true half and a
+false half (`N-01`, `N-02` — the correction landed in one file and not another). **Counted by
+identifier rather than by class, the table disposes of 16 findings: `N-01` … `N-16`, each appearing
+exactly once.** The class tallies are given for orientation and are not the register's denominator.
+This is stated because a summary line that adds to more than its own table is exactly the defect
+`N-05` records one level up.
 
 ---
 

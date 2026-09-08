@@ -15,9 +15,9 @@ Maintained under `AUTO-C2-09`. Checkpoint completion is **NOT** Boss approval.
 | Checkpoint | Status |
 |---|---|
 | `CP-SA-C2-00` CORR1 baseline normalized | `CLOSED (execution status)` |
-| `CP-SA-C2-10` Cross-module handoffs reconciled | `OPEN` |
-| `CP-SA-C2-20` Demand/supply routing evidence complete or bounded | `OPEN` |
-| `CP-SA-C2-30` Joint cross-proof complete | `OPEN` |
+| `CP-SA-C2-10` Cross-module handoffs reconciled | `CLOSED (execution status)` |
+| `CP-SA-C2-20` Demand/supply routing evidence complete or bounded | `CLOSED (execution status)` |
+| `CP-SA-C2-30` Joint cross-proof complete | `CLOSED (execution status)` |
 | `CP-SA-C2-40` Stock-affecting flows reconciled | `OPEN` |
 | `CP-SA-C2-50` All material flows accounting-reconciled | `OPEN` |
 | `CP-SA-C2-60` Governance and standards claims controlled | `OPEN` |
@@ -40,10 +40,17 @@ Maintained under `AUTO-C2-09`. Checkpoint completion is **NOT** Boss approval.
 
 ## 3. Evidence frame (declared once, cited by identifier)
 
-POPULATION 183 branches · PATH SET merge-base diff, whole repo, 6,756 triples ·
-UNIT U1 = 2,748 text blobs / U2 = 2,606 paths · extraction 2,748/2,748, 0 missing, 0 zero-byte ·
-positive controls `BD-ACC-01` 34 and `clean.room` 932 both fire · negative control 0 ·
-join control 34 → 34. Full declaration: `SA_CORR2_00` §2.
+POPULATION 183 branches · **PATH SET = per-branch merge-base diff UNION the `origin/SMEsPlus`
+tree itself** (v1 omitted the mainline entirely — `C2-I-02`) · 7,887 triples ·
+UNIT U1 = **3,789** text blobs / U2 = **3,561** text paths · extraction 3,789/3,789, 0 missing,
+0 zero-byte · positive controls `BD-ACC-01` 34 and `clean.room` 1,219 both fire ·
+negative control 0 · join control 34 → 34. Full declaration: `SA_CORR2_00` §2.
+
+**Instrument note for any resumer.** A diff-based corpus CANNOT answer an every-branch presence
+question; use a per-branch `git rev-parse '<branch>:<path>'` lookup for that. `q.sh` is
+case-insensitive — `COSO` matches a vendor name and inflates ~9×. Do not batch patterns through a
+shell array loop in this environment; it corrupts the path column. Print what a pattern matched
+before counting it.
 
 ## 4. Next autonomous action
 
