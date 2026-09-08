@@ -84,7 +84,7 @@ FINAL_PINS = [("P01","b820b29","research/account-p01-procure-to-pay-2026-09-04-0
               ("P05","205e0ac","research/account-p05-expense-to-pay-2026-09-04-001"),
               ("P06","a533fe92d6f6855e0b362179403476520cc9aafa","corr/p06-one-prompt-final-2026-09-08-001"),
               ("P07","ee2be30","research/account-p07-th-tax-compliance-2026-09-04-001"),
-              ("P08","f0cf287ac9f4ad37b0c19145df4a0e396af84c13","corr/p08-one-prompt-final-2026-09-08-001"),
+              ("P08","ca577be42e6ba9535e1911dc0bad1dfab74a8aa8","corr/p08-one-prompt-final-2026-09-08-001"),
               ("P09","ab8c0131c46e8154ad7efae18de2a54af2f17362","corr/p09-one-prompt-final-2026-09-08-001"),
               ("P10","1fea562","research/account-p10-time-based-recognition-2026-09-04-001")]
 

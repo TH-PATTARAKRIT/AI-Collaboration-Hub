@@ -8,7 +8,7 @@ REPO TOPLEVEL (all path-limited git commands run from here): /Volumes/iMacSys/SM
    P05  205e0ac30ae19df7ed2816eaec85a0d1d3cef147  research(account-p05): G01 PHASE S closure - AAS-03 x4, AAS+, PMO, pat
    P06  a533fe92d6f6855e0b362179403476520cc9aafa  P06 RC-04 owner closure: 65-row superseded, 67 published with enumerat
    P07  ee2be30ebf155e241510b3c7133c69419eb060a0  research(account): P07 — S02 shared-process domain-pure bounded closur
-   P08  f0cf287ac9f4ad37b0c19145df4a0e396af84c13  P08 RC-05 owner closure: four-input propagation, HO retirement at its 
+   P08  ca577be42e6ba9535e1911dc0bad1dfab74a8aa8  P08 C4d/C4e: third P08-CONTRA-55 carrier corrected, three-extract boun
    P09  ab8c0131c46e8154ad7efae18de2a54af2f17362  P09 RC-01 owner closure: M-1 rationale re-grounded, CO-02b/CH-09 super
    P10  1fea562cb32e23bd44a1c6e6b4a2cf1081d25287  research(P10): G02 bounded-deep closure, design input pack, AAS-03 cha
 == all 10 pins resolved, substantive, ancestors of their declared branch ==
@@ -67,7 +67,7 @@ DEFECT-3 MEASUREMENT — selected by RAW SUBSTRING but not by the bounded token
   total 70
 
 DEFECT-4 REPAIR — MEASURED complement, not a defined blind spot
-  *.md paths at the pinned trees            10474
+  *.md paths at the pinned trees            10475
   selected by some derivation               825
-  NOT selected by any derivation            9649   <-- the blind spot, counted
+  NOT selected by any derivation            9650   <-- the blind spot, counted
 exit=0

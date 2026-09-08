@@ -4,7 +4,7 @@
 **Control branch:** `control/account-one-prompt-final-closure-2026-09-08-001` · prompt commit `a06f5d9c69e020bf8e7749108b892b73c6b31e62`
 **Owner:** P11 Central Core Reconciliation · **Baseline:** `9d4ecdc744fbbb0e502a0b907f59c301bdf7812c`
 **Parent verifier results:** `RC-06 = FAIL` · `RC-02 = PASS` (not reopened)
-**Consumed owner SHAs:** P06 `a533fe92d6f6855e0b362179403476520cc9aafa` · P08 `f0cf287ac9f4ad37b0c19145df4a0e396af84c13` · P09 `ab8c0131c46e8154ad7efae18de2a54af2f17362` · P07 `ee2be30ebf155e241510b3c7133c69419eb060a0` **READ-ONLY**
+**Consumed owner SHAs:** P06 `a533fe92d6f6855e0b362179403476520cc9aafa` · P08 **`ca577be42e6ba9535e1911dc0bad1dfab74a8aa8`** *(moved twice inside this prompt: `f0cf287` → `82df5f3` → `ca577be`; neither move touches a claim P11 consumes)* · P09 `ab8c0131c46e8154ad7efae18de2a54af2f17362` · P07 `ee2be30ebf155e241510b3c7133c69419eb060a0` **READ-ONLY**
 **Classification:** LAYER 2 — AUDIT QUARANTINE
 
 ---
@@ -95,7 +95,7 @@ Each `NEG` re-invokes the instrument as a subprocess with one pin overridden, so
 | CORR3 pins | **817** | 55 | 48 | 815 |
 | 2026-09-08 final owner pins | **825** | 57 | 51 | 823 |
 
-**+8 members, 0 removed**, and all eight are the owner-closure artefacts published in this same prompt by P06, P08 and P09. **Re-pinning was published as a delta, not applied silently.**
+**+8 members, 0 removed**, and all eight are the owner-closure artefacts published in this same prompt by P06, P08 and P09. **Re-run at P08's final `ca577be`: UNION unchanged at 825**, with the measured complement moving `9,649 → 9,650` as P08's package gained one file. **All four controls re-run and behaved as expected at the final pins.** **Re-pinning was published as a delta, not applied silently.**
 
 ### 4.4 A bound of the selector, disclosed rather than left for a challenger
 
@@ -184,11 +184,11 @@ Published after the first P11 owner commit, on the same branch, from the **singl
 
 `P08-C1` and `P08-C4` are **one correction with two limbs**: the frozen population went from three databases to four, which changes **both** the balance claim **and** the deletion-path install-state claim. **The first P11 pass re-pointed the balance limb and left the install-state limb on the three-database premise in three live carriers.**
 
-| Carrier | Was | Now |
+| Carrier | Was *(all WITHDRAWN — quoted for identification only)* | Now |
 |---|---|---|
-| `P11_CORR3_POPULATION_REGISTERS.md` `B-21`/`T0-14` | *"installed in ALL THREE deployed databases"* | **all FOUR frozen RC-05 extracts** |
-| `P11_CANDIDATE_ACCOUNTING_INPUT_PROCESS_OUTPUT_HANDOFF_PACK.md` `CI-12` | *"installed in all three deployed databases"* | **all FOUR frozen RC-05 extracts** |
-| `P11_CORR3_INTAKE_CASE_DISPOSITIONS.md` | *"installed in all three deployed databases"* | **all FOUR frozen RC-05 extracts** |
+| `P11_CORR3_POPULATION_REGISTERS.md` `B-21`/`T0-14` | *"installed in ALL THREE deployed databases"* — **WITHDRAWN** | **all FOUR frozen RC-05 extracts** |
+| `P11_CANDIDATE_ACCOUNTING_INPUT_PROCESS_OUTPUT_HANDOFF_PACK.md` `CI-12` | *"installed in all three deployed databases"* — **WITHDRAWN** | **all FOUR frozen RC-05 extracts** |
+| `P11_CORR3_INTAKE_CASE_DISPOSITIONS.md` | *"installed in all three deployed databases"* — **WITHDRAWN** | **all FOUR frozen RC-05 extracts** |
 
 **`exercised` remains NOT ESTABLISHED.** Install state is capability, not act. **Four frozen extracts are not a deployment census.**
 

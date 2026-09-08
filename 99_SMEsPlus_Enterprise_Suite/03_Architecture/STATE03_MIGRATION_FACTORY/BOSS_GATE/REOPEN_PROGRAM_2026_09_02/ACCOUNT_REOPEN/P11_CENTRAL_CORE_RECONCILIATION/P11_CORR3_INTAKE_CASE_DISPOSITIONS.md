@@ -113,7 +113,7 @@ independent vetoes, *"**does not lift** `AAS+-VETO-01`"*. **P11 does not dischar
 ### And one new `CRITICAL` handoff — `P08-HO-13`
 
 > **`P08-CONTRA-55`** — *"the single most consequential omission from this handoff."* A module
-> ~~**installed in all three deployed databases**~~ → **installed in all FOUR frozen RC-05 extracts** **[`P11-C6-04`, 2026-09-08 — population premise re-pointed to P08 `82df5f3df8faec484a27146eb1f1d8b652424293`.** The deletion module records an **installed** state in **all FOUR frozen RC-05 extracts**, read from each extract's own module registry. **Four frozen extracts are NOT an established deployment census** and P11 does not upgrade them into one. **`exercised` remains NOT ESTABLISHED** — install state is capability, not act.]** deletes, in unqualified raw SQL and in this order:
+> ~~**installed in all three deployed databases**~~ → **installed in all FOUR frozen RC-05 extracts** **[`P11-C6-04`, 2026-09-08 — population premise re-pointed to P08 `ca577be42e6ba9535e1911dc0bad1dfab74a8aa8`.** The deletion module records an **installed** state in **all FOUR frozen RC-05 extracts**, read from each extract's own module registry. **Four frozen extracts are NOT an established deployment census** and P11 does not upgrade them into one. **`exercised` remains NOT ESTABLISHED** — install state is capability, not act.]** deletes, in unqualified raw SQL and in this order:
 > the **settlement table**, then the **journal item table**, then the **journal entry table** — *"no
 > company predicate, no state predicate, a commit after each table"* — and **resets the entry-number
 > sequence to 1**.

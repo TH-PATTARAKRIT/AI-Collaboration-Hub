@@ -35,9 +35,11 @@
 | `P05` | `205e0ac` | `research/account-p05-expense-to-pay-2026-09-04-001` | no |
 | **`P06`** | **`a533fe92d6f6855e0b362179403476520cc9aafa`** | `corr/p06-one-prompt-final-2026-09-08-001` | **YES** |
 | `P07` | `ee2be30` | `research/account-p07-th-tax-compliance-2026-09-04-001` | no — **READ-ONLY, not mutated** |
-| **`P08`** | **`82df5f3df8faec484a27146eb1f1d8b652424293`** | `corr/p08-one-prompt-final-2026-09-08-001` | **YES** |
+| **`P08`** | **`ca577be42e6ba9535e1911dc0bad1dfab74a8aa8`** | `corr/p08-one-prompt-final-2026-09-08-001` | **YES** |
 | **`P09`** | **`ab8c0131c46e8154ad7efae18de2a54af2f17362`** | `corr/p09-one-prompt-final-2026-09-08-001` | **YES** |
 | `P10` | `1fea562` | `research/account-p10-time-based-recognition-2026-09-04-001` | no |
+
+**P08 moved once more inside this same prompt** — `f0cf287` → `82df5f3` → **`ca577be42e6ba9535e1911dc0bad1dfab74a8aa8`** — as the cross-package reconciliation returned two further carriers of an **already-consumed** claim (`P08-CONTRA-55` at a third file) plus a **declared three-extract boundary**. **Neither commit moves a claim P11 consumes:** the deletion-path population was already re-pointed to four frozen extracts at `P11-C6-04`, and the boundary declaration names rows P11 does not carry. **The pin is refreshed anyway, because a pin that is right for the wrong reason is not a control.**
 
 **Measured effect of the re-pin on the intake denominator:** UNION **817 → 825**, **+8 members, 0 removed**, all eight the owner-closure artefacts published by P06, P08 and P09 in this same prompt. **The re-pin was published as a delta, not applied silently.**
 
