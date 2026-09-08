@@ -37,7 +37,7 @@ No domain is classified from a single instrument. Each row cites the measured fi
 | SA-D00 | Master Data / Identity / Organization / Tenant / Company | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `design/inventory-multitenant-invariant-set` @ `dcb92278`; Account Wave A @ `78840777` | 856 |
 | SA-D01 | Sales + AR | `EVIDENCED — ACCOUNTING LENS ONLY` | AR: `research/account-p02-order-to-cash`; Sales operations: Group A @ `8b0993d8` | 297 |
 | SA-D02 | Purchase + AP | `EVIDENCED — ACCOUNTING LENS ONLY` | AP: `research/account-p01-procure-to-pay` @ `b820b29b`; Purchase operations: Group A @ `8b0993d8` | 448 |
-| SA-D03 | Inventory / Warehouse / Location / Reservation / Delivery / Return | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `prompt/inventory-deep-research-r4-l12`; `design/inventory-multitenant-invariant-set` @ `dcb92278`; Group A @ `8b0993d8` | 1,367 |
+| SA-D03 | Inventory / Warehouse / Location / Reservation / Delivery / Return | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `audit/inventory-deep-research-r4-l12-2026-09-04-001` @ `fc0b1688`; `design/inventory-multitenant-invariant-set` @ `dcb92278`; Group A @ `8b0993d8` | 1,367 |
 | SA-D04 | Manufacturing / BOM / Work Center / WIP / FG / Scrap | `EVIDENCED — ACCOUNTING LENS ONLY` | `research/account-p03-manufacture-to-cost` @ `bc767a81` | 512 |
 | SA-D05 | Supply Routing — Buy / MTO / Manufacture / Dropship / Kit / Service | **`THIN`** | scattered; no subject-scoped package | **81** |
 | SA-D06 | Accounting Event / GL / Journal / Posting | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `corr/p08-one-prompt-final` @ `ea78e160`; BD-ACC-01 @ `79d70278` | 612 |
@@ -134,3 +134,18 @@ evidence. This is not a statement that the domains are assured. Six are thin and
 targeted Very Deep Research.
 
 Boss remains the sole Final Approver.
+
+---
+
+## 7. Corrections applied to this register
+
+A correction is applied to the register text itself, by population. Recording it in a log
+while leaving the claim standing would be a false assurance.
+
+| # | Correction | How found | Verification |
+|---|---|---|---|
+| SA01-C-01 | The Inventory R4 L1–L12 execution package was cited to `prompt/inventory-deep-research-r4-l12-2026-09-04-001`. It is not there. The package is on **`audit/inventory-deep-research-r4-l12-2026-09-04-001` @ `fc0b1688`**, 26 files. | SMEs Core inventory-domain extraction | Re-verified independently before adopting: the `prompt/` branch carries 1,109 files and **0** matching `R4_L12` by any pattern; the `audit/` branch carries **26** under `DEEP_RESEARCH_R4_L12_EXECUTION/`. The listing command is the same on both, so the zero is a measured absence |
+| SA01-C-02 | The multi-tenant invariant set was referred to by a single figure. There are **two live totals**: **50** at R1 (`dcb92278`) and **58** at R2 conformed (`bd096ffa`, 50 carried + 8 added, 14 re-specified). | SMEs Core inventory-domain extraction | Both status lines quoted in `SA10` |
+
+**Population scope of SA01-C-01:** the whole package was searched for the wrong branch string,
+not only the row where it was noticed. Occurrences before: 1. After: 0.
