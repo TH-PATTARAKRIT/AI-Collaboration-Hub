@@ -4,8 +4,16 @@ Status: **CORR1 applied. `SA18`'s `HOLD — NOT READY FOR BOSS FINAL GATE` stand
 reasons than `SA18` gave.**
 
 An adversarial challenge was run against the complete package at `55cdfdf5`. It returned
-**9 MATERIAL, 14 SUBSTANTIVE, 7 MINOR** findings and **falsified three of the package's negative
-claims, including the one its headline rested on.**
+**9 MATERIAL, 14 SUBSTANTIVE, 7 MINOR** findings and **falsified three claims: two of the package's
+headline negatives (§2.1, §2.2) and one over-wide universal inside a correction (§2.3).**
+*(CORR2 `K2-04`: the unit is now stated. `SA19` §16 says "two" and this line said "three"; both were
+defensible and neither declared what it was counting.)*
+
+> **CORR2 supersession notice.** Four claims in this document did not survive re-verification:
+> §2.1's *"the answers largely exist"* (overstated — one of three questions is answered),
+> §2.2's restatement of BN-05 (the ground it retreated to **is** answered, in the Account
+> programme), §2.1's *"24 files"* and §2.2's *"12 occurrences"* (both unreproducible / unit-conflated).
+> See `SA_CORR2_00` §4 `N-07` … `N-11` and `SA_CORR2_01` §§3–4.
 
 Every correction below is applied **to the register text, by population** — not recorded here and
 left standing there. A revision log is not a correction.
@@ -39,7 +47,7 @@ Verified independently before adopting the correction:
 | Instrument | Result |
 |---|---|
 | `cancellation.gate` in `ACCOUNT_REOPEN` (the original) | 0 |
-| `cancel` in the Order-to-Cash package (one token wider) | **24 files** |
+| `cancel` in the Order-to-Cash package (one token wider) | ~~24 files~~ **23 unique paths (U2)** — *CORR2 `K2-05`: the published figure carried no unit and is not reproducible under any of four (paths 23, blobs 23, branch-path pairs 23, paths anywhere named P02 23). Corrected with the unit stated.* |
 
 The Order-to-Cash edge-case matrix carries a `CANCEL` row across order, delivery, invoice,
 payment and matching, plus a cancellation-and-reversal section; its business event register
@@ -63,8 +71,11 @@ incompatible positions and no internal control compared them.
 **no pattern, no unit and no count**, in a register whose own rule is *"Patterns are published
 with their results, not described."*
 
-Verified: **66 unique paths** across the remote; **12 occurrences** in the Group A purchase
-capability model — inside the very programme this package admitted to its own baseline at
+Verified: **66 unique paths** across the remote *(CORR2 re-measure, corpus grown by one branch:
+**76** unique paths, U2)*; **12 unique paths (U2) across the whole Group A programme** — **not**, as
+this sentence originally read, *12 occurrences in the Group A purchase capability model*; that file
+carries **2** occurrences *(CORR2 `K2-06` — unit conflation: the claim names a file and counts a
+programme)*. The capability model — inside the very programme this package admitted to its own baseline at
 `SA00-F-02` — recording dropship as a capability at status `VERIFIED FACT`, with its mechanism,
 its received-quantity netting rule, and a database-confirmed purchase-line-to-sales-line link
 explicitly flagged *for a future cross-module phase to open*. This phase is that phase.
@@ -148,7 +159,11 @@ rigorously to its countable claims, and did not apply it to its consequential on
 > A negative claim about another party's work must be searched in **that party's vocabulary**,
 > never in the vocabulary of the party making the claim.
 
-Every negative in this package was re-tested against that rule during CORR1. Those that survive
+~~Every negative in this package was re-tested against that rule during CORR1.~~ **CORR2 `K2-07`:
+the universal is withdrawn.** The negatives listed in §2 were re-tested; **BN-05 was not** — §2.2
+re-tested it inside the *same* party's directory whose vocabulary produced the original error,
+while sixteen `FACT VERIFIED` dropship findings sat unread in the Account programme's
+Order-to-Cash package (`SA_CORR2_00` `N-08`, `SA_CORR2_01` §4). Those that survive
 are listed in `SA18` §2 as corrected; those that did not are in §2 above.
 
 **On independence.** `SA13` §1 declared that this session's challenge is same-model and does not

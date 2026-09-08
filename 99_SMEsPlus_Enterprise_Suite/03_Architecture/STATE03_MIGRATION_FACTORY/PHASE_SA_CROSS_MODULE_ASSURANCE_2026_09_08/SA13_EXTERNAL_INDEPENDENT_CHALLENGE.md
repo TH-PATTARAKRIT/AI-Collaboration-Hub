@@ -177,7 +177,7 @@ was **formally constituted and then never held.**
 | Arithmetic and counting | 2 author defects found (`CH-05`, `CH-07`), corrected |
 | Citation integrity | 1 author defect found (`CH-01`), corrected by population |
 | Unsupported negatives | Author negatives re-tested with declared patterns and firing controls; one narrowed (`CH-03`) |
-| Status-field fidelity | Statuses re-quoted verbatim from source; no promotion of another party's open item found in this package |
+| Status-field fidelity | Statuses re-quoted verbatim from source. ~~no promotion of another party's open item found in this package~~ **FALSIFIED.** `SA09`'s approval-rejection row had promoted another party's `EVIDENCE MISSING / BOSS DECISION REQUIRED` item to `ESTABLISHED — via correction`, inside a counted total. Corrected at `SA20` `C-13`. *(CORR2 `K2-03`: `SA20` §4 recorded this claim as "withdrawn" and never edited it out of this file; the sentence stood for one round after being falsified.)* |
 | Evidence-base completeness | 1 **material** author defect (`CH-08`) — an artefact on the author's own branch was not consumed |
 | Governance / verdict wording | `SA13-F-01` — prohibited verdict wording in the authorizing gate |
 | Cross-programme reconciliation | `SA13-F-02` — constituted, never convened |

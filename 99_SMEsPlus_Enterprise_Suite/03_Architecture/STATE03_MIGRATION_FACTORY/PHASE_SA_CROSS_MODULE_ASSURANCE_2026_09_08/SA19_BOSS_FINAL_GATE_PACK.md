@@ -141,7 +141,8 @@ consumed and reconciled.
 
 **17 of 23 challenge classes returned a finding.**
 
-**An adversarial challenge then falsified two of this pack's own headline negatives and forced a
+**An adversarial challenge then falsified two of this pack's own headline negatives — three
+falsifications in total, the third being an over-wide universal inside a correction — and forced a
 correction round.** Its findings and every correction are recorded in
 `SA20_CORR1_ADVERSARIAL_CHALLENGE_AND_CORRECTIONS.md`. The two falsified claims are restated at
 §17 and §20 below; the Boss decision requested at §20 Decision 1 has been **reframed** because

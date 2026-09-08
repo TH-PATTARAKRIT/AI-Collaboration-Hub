@@ -1,6 +1,10 @@
 # SA15 — END-TO-END SCENARIO REGISTER
 
-Status: **HOLD** — 15 mandated scenarios plus 3 added; 6 traversable end-to-end on current evidence.
+Status: **HOLD** — 15 mandated scenarios plus 3 added; **4** traversable end-to-end with no named break
+(E2E-02, E2E-11, E2E-12, E2E-15), 7 with a named break, 7 not traversable.
+*(CORR2 `K2-02`: this line previously read "6 traversable". CORR1's `CH-05` corrected the §4 table and
+not the header that summarises it — the same revision-log defect the package documents elsewhere.
+The identifiers are now carried in the header so the two cannot drift apart again.)*
 Governing law: master prompt §12.
 
 ---
