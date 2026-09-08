@@ -20,7 +20,7 @@
 | `ACP-06` | P11 `RC-06` propagated | **COMPLETE** | axis 9 and the intake dispositions superseded; `F-02`/`CI-01` re-pointed |
 | `ACP-07` | P11 `B-35` rebuilt / internal adversarial QA | **COMPLETE — `B-35` REMAINS OPEN** | seven repairs + an eighth defect found by the rebuild; four controls; **not independently certified** |
 | `ACP-08` | `B-36` / P07 consumed + `B-39` version split | **COMPLETE** | P07 read-only at `ee2be30`, SHA-256 `482fc987…`, **unmutated** |
-| `ACP-09` | P11 final owner SHA pushed | **COMPLETE** | `79e1369156ca052ad77c8f589842f5e99b25f800` |
+| `ACP-09` | P11 final owner SHA pushed | **COMPLETE** | `490ccdd81a4fed79d36b7b9d3bbc25deedd597b4` |
 | `ACP-10` | **one** cross-package delta reconciliation | **COMPLETE** | seven checks executed; **6 findings, 5 fixed in-prompt, 1 routed to Boss** |
 | `ACP-11` | Phase SA I/O readiness pack | **COMPLETE** | 11 interfaces · 21 elements · 12 gaps, each with an owner and a smallest next action |
 | `ACP-12` | Veto recommendations | **COMPLETE** | 13 vetoes · **0 discharged** · 12 preserve · 1 not material |

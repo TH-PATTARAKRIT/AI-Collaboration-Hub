@@ -15,7 +15,7 @@
 | **P06** Bank-to-Reconcile | `corr/p06-one-prompt-final-2026-09-08-001` | **`a533fe92d6f6855e0b362179403476520cc9aafa`** | `b5f5a211763568a4212d08954c835412f7728a0a` | 1 |
 | **P08** Record-to-Report | `corr/p08-one-prompt-final-2026-09-08-001` | **`ca577be42e6ba9535e1911dc0bad1dfab74a8aa8`** | `e368d11da6f7e4973469ff5608d676ec2d13811c` | 4 |
 | **P09** Plan-to-Analyze | `corr/p09-one-prompt-final-2026-09-08-001` | **`ab8c0131c46e8154ad7efae18de2a54af2f17362`** | `2079a2594a6a76eb91bdb528f22eaf928d42c0d6` | 1 |
-| **P11** Core Reconciliation | `corr/p11-one-prompt-final-2026-09-08-001` | **`79e1369156ca052ad77c8f589842f5e99b25f800`** | `9d4ecdc744fbbb0e502a0b907f59c301bdf7812c` | 3 |
+| **P11** Core Reconciliation | `corr/p11-one-prompt-final-2026-09-08-001` | **`490ccdd81a4fed79d36b7b9d3bbc25deedd597b4`** | `9d4ecdc744fbbb0e502a0b907f59c301bdf7812c` | 4 |
 | **P07** Thailand Tax | `research/account-p07-th-tax-compliance-2026-09-04-001` | `ee2be30ebf155e241510b3c7133c69419eb060a0` | — | **0 — READ-ONLY, NOT MUTATED** |
 
 **Every branch is created from the exact baseline the prompt declares. No branch was merged. Boss decides.**
@@ -51,6 +51,17 @@ git log --format='%H %cI' 78f5378..ca577be               # results strictly late
 | P08 `ca577be` | **825 (unchanged)** | **none** — a third carrier of an already-consumed claim, plus a declared boundary |
 
 **The re-pin at `ca577be` moved no claim, and was applied anyway.** A pin that happens to be right is not a control.
+
+## 3.1 The closing sweep moved two SHAs after the deliverables were first drafted
+
+**A mechanical vendor-token count delta against each baseline — run as the last act, not the first — found a clean-room leak in P08 and another in P11**, each made by this prompt's own corrections, each a Layer 2 measurement transcribed into a Layer 1 handoff surface. **P11's sweep also found a compiled `.pyc` that the instrument's own execution had committed into the evidence package.**
+
+| Package | Before the sweep | **After** |
+|---|---|---|
+| P08 | `f0cf287` → `82df5f3` | **`ca577be`** |
+| P11 | `ed7ec37` → `3cee38f` → `79e1369` | **`490ccdd`** |
+
+**Both leaks were found by counting, and by nothing else.** No challenge had run, and neither would have been visible to a reader: the leaked text is *correct* — it names the right tool and the right version — **on the wrong surface.**
 
 ## 4. Superseded heads — retained as lineage, must NOT be resolved against
 

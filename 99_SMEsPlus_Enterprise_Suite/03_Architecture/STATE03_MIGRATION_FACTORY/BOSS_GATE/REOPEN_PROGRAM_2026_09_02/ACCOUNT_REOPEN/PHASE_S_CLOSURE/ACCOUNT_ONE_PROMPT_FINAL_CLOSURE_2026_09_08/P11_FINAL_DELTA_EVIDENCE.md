@@ -1,7 +1,7 @@
 # P11_FINAL_DELTA_EVIDENCE.md
 
 **Prompt:** `[SMEPLUS-26-09-08-ACC-ONE-PROMPT-FINAL-CLOSURE-001]` Part D · deliverable **6 of 12**
-**Owner SHA:** **`79e1369156ca052ad77c8f589842f5e99b25f800`** · baseline `9d4ecdc744fbbb0e502a0b907f59c301bdf7812c`
+**Owner SHA:** **`490ccdd81a4fed79d36b7b9d3bbc25deedd597b4`** · baseline `9d4ecdc744fbbb0e502a0b907f59c301bdf7812c`
 **Parent verifier results:** `RC-06 = FAIL` · `RC-02 = PASS` (not reopened)
 **Consumed:** P06 `a533fe9` · P08 `ca577be` · P09 `ab8c013` · **P07 `ee2be30` READ-ONLY**
 **Classification:** LAYER 2 — AUDIT QUARANTINE

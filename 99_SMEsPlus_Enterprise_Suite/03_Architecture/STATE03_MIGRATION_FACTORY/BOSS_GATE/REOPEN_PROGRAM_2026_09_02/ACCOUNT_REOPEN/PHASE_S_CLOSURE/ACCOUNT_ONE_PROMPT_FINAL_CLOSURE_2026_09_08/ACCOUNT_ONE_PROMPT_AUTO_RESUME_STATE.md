@@ -23,7 +23,7 @@ EVENT-DRIVEN. NOT WAITING IDLE. NOT STOPPED FOR A ROUTINE QUESTION.
 | P06 | `corr/p06-one-prompt-final-2026-09-08-001` | `a533fe92d6f6855e0b362179403476520cc9aafa` |
 | P08 | `corr/p08-one-prompt-final-2026-09-08-001` | `ca577be42e6ba9535e1911dc0bad1dfab74a8aa8` |
 | P09 | `corr/p09-one-prompt-final-2026-09-08-001` | `ab8c0131c46e8154ad7efae18de2a54af2f17362` |
-| P11 | `corr/p11-one-prompt-final-2026-09-08-001` | `79e1369156ca052ad77c8f589842f5e99b25f800` |
+| P11 | `corr/p11-one-prompt-final-2026-09-08-001` | `490ccdd81a4fed79d36b7b9d3bbc25deedd597b4` |
 | P07 | `research/account-p07-th-tax-compliance-2026-09-04-001` | `ee2be30ebf155e241510b3c7133c69419eb060a0` **READ-ONLY** |
 | Account deliverables | `audit/account-one-prompt-final-closure-2026-09-08-001` | this branch |
 
