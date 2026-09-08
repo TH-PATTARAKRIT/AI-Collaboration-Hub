@@ -13,9 +13,13 @@
 | IV-CP-09 Veto recommendation | COMPLETE | `09_VETO_DISPOSITION_RECOMMENDATION.md` |
 | IV-CP-10 closure criteria test | COMPLETE — FAIL | `10_PHASE_S_CLOSURE_CRITERIA_INDEPENDENT_TEST.md` |
 | IV-CP-11 owner correction prompts | GENERATED — 5 bounded prompts | `CORRECTION_PROMPTS/` |
-| IV-CP-12 final evidence manifest | ARTIFACT SET FROZEN FOR HASHING — publish `IV_FAST_EVIDENCE_MANIFEST_SHA256.md` next | manifest excludes itself by definition |
+| IV-CP-12 Boss bounded-correction release | COMPLETE — RELEASED | `BOSS_RELEASE_PHASE_S_BOUNDED_CORRECTIONS_2026_09_08.md` |
+| IV-CP-13 Wave 1 isolated owner worktrees | COMPLETE | P06/P09/P08 baselines recorded in `OWNER_EXECUTION_ENV_HOLD_CLAUDE_CREDIT_2026_09_08.md` |
+| IV-CP-14 Wave 1 owner execution | HOLD — PROVIDER CREDIT | Claude Code `2.1.247` returned `Credit balance is too low` before repair on all three lanes |
+| IV-CP-15 independent verifier eligibility | PRESERVED | GPT-5.6 Sol authored no owner repair |
+| IV-CP-16 evidence manifest | REGENERATION REQUIRED | artifact set changed after prior manifest; regenerate after this checkpoint state |
 
 Current terminal:
 `IV-CLOSEOUT-B — BOUNDED MATERIAL BLOCKER REMAINS — EXACT ITEMS NAMED`
 
-No owner branch mutated. No next phase started.
+No owner correction commit was produced by the failed Claude execution attempts. No next phase started.
