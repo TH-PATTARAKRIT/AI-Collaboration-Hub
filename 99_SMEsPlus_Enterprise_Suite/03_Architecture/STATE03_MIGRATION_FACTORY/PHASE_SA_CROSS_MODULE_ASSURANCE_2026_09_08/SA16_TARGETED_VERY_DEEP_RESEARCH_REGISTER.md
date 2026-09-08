@@ -25,7 +25,7 @@ current evidence and that the affected work is frozen until it is.
 |---|---|
 | Function frozen | Supply Nature resolution and the routes depending on it |
 | Trigger reason (§23) | insufficiently evidenced; missing downstream semantics; missing Inventory impact |
-| Evidence position | 81 blobs, 3.0% of corpus — lowest of 22 domains (`SA00` §6) |
+| Evidence position | 81 blobs, 3.0% of corpus — lowest of the seventeen mandated domains (`SA00` §6) |
 | Blocks | BN-04, BN-05, BN-06, BN-07 in `SA05`; E2E-04, E2E-05, E2E-06, E2E-07 in `SA15` |
 | Question that closes it | Which inputs resolve a line's Supply Nature, in what precedence, at what moment, and is the resolution immutable once made? For dropship specifically: does title passage without own-warehouse movement require a recorded inventory event? |
 | Status | `TARGETED VERY DEEP RESEARCH REQUIRED — SUPPLY ROUTING` |

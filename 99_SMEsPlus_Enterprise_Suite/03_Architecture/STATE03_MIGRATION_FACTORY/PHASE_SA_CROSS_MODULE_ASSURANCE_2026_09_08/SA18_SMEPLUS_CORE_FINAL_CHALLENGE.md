@@ -14,7 +14,7 @@ Purpose: attempt to **falsify** the complete Phase SA baseline before Boss sees 
 | 3 | Wrong downstream consumer | Not found. Every evidenced route's consumer is named and its compatibility tested |
 | 4 | Missing conditional route | **FOUND** — `SA04` §4 created the multi-consumer routes; 6 routes remain `HOLD` |
 | 5 | Inventory inconsistency | **FOUND** — `SA06`: 4 of 17 stock-affecting flows unreconciled; `SA06-F-05` neutrality protected only by configuration |
-| 6 | Accounting inconsistency | **FOUND** — `SA07`: 7 `UNKNOWN`, 11 `PARTIAL`; `SA11-F-01` a requirement with no mechanism |
+| 6 | Accounting inconsistency | **FOUND** — `SA07`: 7 `UNKNOWN`, 9 `PARTIAL`; `SA11-F-01` a requirement with no mechanism |
 | 7 | Timing mismatch | Addressed — ordering-independence is established and is the baseline's strongest principle (`SA09`) |
 | 8 | Ownership ambiguity | **FOUND** — joint/co-product costing recorded as owned by no track; `XD-06` ruling without a contract |
 | 9 | Exception gap | **FOUND** — 4 of 18 classes not established (`SA09-F-03`), all of them exceptions the world raises against the system |
@@ -33,12 +33,18 @@ Purpose: attempt to **falsify** the complete Phase SA baseline before Boss sees 
 | 22 | Unnecessary complexity | Not found. The 22-domain split derives from business natures and Boss boundary decisions, not from module structure |
 | 23 | Missing SMEsPlus advantage | **Addressed** — 8 Nature DNA determinations with independent rationale (`SA17` §4) |
 
-**19 of 23 challenge classes returned a finding.** A final challenge that returned few would not
+**17 of 23 challenge classes returned a finding.** A final challenge that returned few would not
 have been a challenge.
 
 ---
 
-## 2. The four falsification attempts that failed — and what that means
+## 2. The four falsification attempts — TWO OF WHICH LATER SUCCEEDED
+
+> **Superseded in part by `SA20` (CORR1).** Attempts 1 and 2 below were recorded as *not
+> falsified* by this session's own challenge. An adversarial challenge subsequently **falsified
+> both**, by widening a pattern by one token in each case. The table is left standing as written
+> and the outcome column is corrected in `SA20` §2, because a falsification attempt that was
+> wrong is evidence about the challenger, and deleting it would hide that.
 
 A challenge is only informative if it could have gone the other way. Four attempts to falsify
 this package's central claims did **not** succeed:
@@ -46,7 +52,7 @@ this package's central claims did **not** succeed:
 | Attempt | Method | Outcome |
 |---|---|---|
 | *"The Account programme did address the Group A cancellation gate somewhere"* | Content search over all 2,722 blobs, joined to owning programme, with a positive control firing 17/17 | **Not falsified.** `ACCOUNT_REOPEN` = 0. Independently reproduced by a second searcher with different patterns, which additionally found the joint session was constituted and never convened |
-| *"Supply routing is evidenced somewhere outside the declared path set"* | Whole-repo corpus, no directory pre-filter, 183 branches | **Not falsified.** 81 blobs, lowest of 22 domains |
+| *"Supply routing is evidenced somewhere outside the declared path set"* | Whole-repo corpus, no directory pre-filter, 183 branches | **Not falsified.** 81 blobs, lowest of the seventeen mandated domains |
 | *"Kit / bill-of-material handling exists in the inventory packages"* | Declared pattern over four package populations with a firing positive control | **Not falsified** within those populations. Claim restricted to *not found in these populations* |
 | *"The five thin domains are thin because the instrument is narrow"* | Same instrument, same unit, run against known-deep domains | **Not falsified.** Contrast is 4–34 blobs against 154–1,216 |
 

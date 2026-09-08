@@ -36,14 +36,14 @@ and the Account P-series reversal findings.
 | **Missing or late documents** | — | **`NOT ESTABLISHED`** |
 | **Broader transaction-failure recovery** | One narrow case established; the general case not | **`NOT ESTABLISHED`** |
 | **Over / under receipt** | Established **as a negative** — genuinely unguarded, blocked nowhere | `ESTABLISHED AS A NEGATIVE` |
-| **Approval rejection** | Native path established; a second mechanism's disposition resolved by the corrective cycle | `ESTABLISHED — via correction` |
+| **Approval rejection** | Native path established. The second mechanism's **internal logic** is *not* established: the corrective cycle records it under "Explicitly Not Done" and the terminal independent re-verification carries it as **A2**, `EVIDENCE MISSING / BOSS DECISION REQUIRED`, blocking the Pre-Development Gate | **`NOT ESTABLISHED`** *(CORR1: this row previously read `ESTABLISHED — via correction`, which promoted another party's open item inside a counted total)* |
 
 ### 2.1 Count
 
 | Status | Count |
 |---|---|
-| `ESTABLISHED` (incl. via correction, incl. as a negative) | 14 |
-| `NOT ESTABLISHED` | 4 |
+| `ESTABLISHED` (incl. via correction, incl. as a negative) | 13 |
+| `NOT ESTABLISHED` | 5 |
 
 ---
 
@@ -102,7 +102,8 @@ Routed to `SA16` as a scoping input to TVDR-01 and to `SA17` as a Pre-Test prior
 
 ---
 
-`CP-SA-60 — HOLD`. Fourteen of eighteen exception classes are established; four are not, and
-they share one shape.
+`CP-SA-60 — HOLD`. **Thirteen** of eighteen exception classes are established; five are not.
+Four of the five share one shape (exceptions the world raises against the system); the fifth is
+approval rejection, which is Boss-owned.
 
 Boss remains the sole Final Approver.

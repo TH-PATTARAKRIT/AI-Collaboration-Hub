@@ -55,8 +55,8 @@ arises · `UNKNOWN` = the recognition question cannot be answered on current evi
 
 | Status | Count |
 |---|---|
-| `RECONCILED` (incl. four `NO POSTING BY DESIGN`) | 11 |
-| `PARTIAL` | 11 |
+| `RECONCILED` (incl. four `NO POSTING BY DESIGN`) | 13 |
+| `PARTIAL` | 9 |
 | `NOT RECONCILED` (`UNKNOWN`) | 7 |
 | **Total material business flows** | **29** |
 
@@ -68,13 +68,13 @@ Four flows are determined `NO POSTING BY DESIGN` (AR-07 to AR-10). Recording the
 of §7.2: a blank in an accounting matrix is indistinguishable from an unexamined flow, whereas
 a deliberate "no posting arises here, and this is why" is an assurance statement.
 
-## 3. SA07-F-02 — eleven `PARTIAL` rows, and every one traces to an already-recorded Phase S terminal state
+## 3. SA07-F-02 — nine `PARTIAL` rows, and every one traces to an already-recorded Phase S terminal state
 
 AR-10, AR-11, AR-12, AR-17, AR-18, AR-19, AR-20, AR-21, AR-22 each carry an open item that its
 own Phase S package already recorded and published as a terminal HOLD or defect. **Phase SA is
 not discovering these; it is confirming they survived into the cross-module view.**
 
-That distinction matters for the Boss pack: these eleven do not need re-research. They need the
+That distinction matters for the Boss pack: these nine do not need re-research. They need the
 dispositions their own packages already requested. Re-opening them would be a reset, which is
 prohibited.
 
@@ -97,7 +97,7 @@ cross-domain contract before Functional Design — carried to `SA17`.
 
 ---
 
-`CP-SA-50 — HOLD`. Eleven of twenty-nine material flows are reconciled to accounting semantics,
-eleven are partial against already-recorded Phase S positions, and seven are unknown.
+`CP-SA-50 — HOLD`. Thirteen of twenty-nine material flows are reconciled to accounting semantics,
+nine are partial against already-recorded Phase S positions, and seven are unknown.
 
 Boss remains the sole Final Approver.

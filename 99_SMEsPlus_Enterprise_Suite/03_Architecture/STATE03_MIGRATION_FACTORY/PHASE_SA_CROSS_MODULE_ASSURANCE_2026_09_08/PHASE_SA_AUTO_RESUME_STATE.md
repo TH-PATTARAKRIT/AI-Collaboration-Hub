@@ -21,10 +21,10 @@ no approval exists.
 | CP-SA-00 Evidence baseline locked | `CLOSED (execution status)` |
 | CP-SA-10 Domain coverage locked | `CLOSED (execution status)` — 22 domains |
 | CP-SA-20 Input completeness | `HOLD` — 1 contradiction, 1 gap, 6 domains cannot state inputs |
-| CP-SA-30 Output & routing completeness | `HOLD` — 19 of 28 routes evidenced |
+| CP-SA-30 Output & routing completeness | `HOLD` — 20 of 28 routes evidenced |
 | CP-SA-40 Inventory reconciliation | `HOLD` — 11 of 17 flows reconcile |
-| CP-SA-50 Accounting reconciliation | `HOLD` — 11 of 29 reconciled, 11 partial, 7 unknown |
-| CP-SA-60 Exception integrity | `HOLD` — 14 of 18 classes established |
+| CP-SA-50 Accounting reconciliation | `HOLD` — 13 of 29 reconciled, 9 partial, 7 unknown |
+| CP-SA-60 Exception integrity | `HOLD` — 13 of 18 classes established |
 | CP-SA-70 SaaS / control / audit / standard | `HOLD` — specification strong, proofs zero |
 | CP-SA-80 Cross-domain contradiction gate | `HOLD` — 6 contradictions, 0 resolved |
 | CP-SA-90 Pre-Test readiness | `PREPARED` — baseline handed over, matrix not executed |
@@ -48,7 +48,7 @@ approval and **not** a quality verdict. No `PASS` is declared anywhere in this p
 
 | Finding | Substance |
 |---|---|
-| `SA00-F-01` | The evidence base is asymmetric: deep on the ledger consequence of every flow, thin on the demand-and-supply front end. Supply routing is the least-evidenced of 22 domains at 3.0% |
+| `SA00-F-01` | The evidence base is asymmetric: deep on the ledger consequence of every flow, thin on the demand-and-supply front end. Supply routing is the least-evidenced of the seventeen mandated domains at 3.0% |
 | `SA00-F-02` | The Group A Sales+Inventory+Purchase cross-module programme was absent from the Phase SA entry baseline; admitted, terminal state `HOLD` |
 | `SA00-F-03` | The Account programme contains **no** treatment of the Group A item escalated to Accounting/AR-AP authority on 2026-08-31; measured with a firing positive control |
 | `SA01-F-01` | Five modules carry standing Boss boundary decisions and no Phase S package; created as SA-D17…SA-D21 |

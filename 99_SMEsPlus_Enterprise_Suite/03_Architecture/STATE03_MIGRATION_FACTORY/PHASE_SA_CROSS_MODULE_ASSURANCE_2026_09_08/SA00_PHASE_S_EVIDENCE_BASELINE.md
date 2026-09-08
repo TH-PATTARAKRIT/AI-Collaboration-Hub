@@ -23,7 +23,7 @@ reporting any number, and publishes the commands' results rather than the intent
 
 | Clause | Declaration |
 |---|---|
-| **POPULATION** | Every branch on remote `origin` of `TH-PATTARAKRIT/AI-Collaboration-Hub` at fetch time 2026-09-08, excluding `origin/HEAD`. **n = 183.** Not author-chosen: enumerated by `git for-each-ref refs/remotes/origin`. |
+| **POPULATION** | Every branch on remote `origin` of `TH-PATTARAKRIT/AI-Collaboration-Hub` at fetch time 2026-09-08, excluding `origin/HEAD` (a symbolic alias for `origin/SMEsPlus`). **n = 182.** Not author-chosen: enumerated by `git for-each-ref refs/remotes/origin`. |
 | **PATH SET** | For each branch *b*, every path differing between `merge-base(origin/SMEsPlus, b)` and *b*. Whole-repo; no directory pre-filter. |
 | **UNIT** | Two units are used and never conflated: **(U1) unique blob** = distinct content object; **(U2) unique path** = distinct repository path. Counts state which unit they use. |
 | **PATTERN** | Declared per measurement in the tables below, and executed. Patterns are published with their results, not described. |
@@ -33,7 +33,7 @@ reporting any number, and publishes the commands' results rather than the intent
 
 | Quantity | Value |
 |---|---|
-| Branches measured | 183 / 183 |
+| Branches measured | 182 / 182 (183 refs enumerated, 1 symbolic alias excluded) |
 | Branch-path pairs | 6,609 |
 | Unique paths (U2) | 2,580 |
 | Unique (blob, path) pairs | 2,803 |
@@ -151,7 +151,7 @@ UNIT = unique text blob (U1).
 | Scrap / by-product / production variance | 265 | | Inventory valuation | 268 |
 | Work order execution / WIP | 257 | | AR / AP ageing | 116 |
 | Pick / pack / ship | 188 | | Depreciation schedule | 60 |
-| Storage location / bin / putaway | 74 | | Revenue recognition | 28 |
+| Storage location / bin assignment | 74 | | Revenue recognition | 28 |
 | **Quotation / sales quote lifecycle** | **80** | | | |
 | **BOM / routing step / work center** | **48** | | | |
 | **Price list / pricing rule** | **18** | | | |
@@ -255,10 +255,32 @@ tokens, so the columns are not disjoint. The `ACCOUNT_REOPEN` figure is unaffect
 The positive control fires at 17/17 on the same instrument, so a zero for `ACCOUNT_REOPEN` on
 the A1 subject is a measured absence and not an instrument failure.
 
-**SA00-F-03.** The Account Phase S programme — 1,273 files under `ACCOUNT_REOPEN` — contains
-**no** treatment of the Sales-side cancellation gate, the one item another verified programme
-had formally escalated to Accounting/AR-AP authority and been blocked on for eight days.
-Phase S then closed conditionally without disposing of it.
+**SA00-F-03 — RESTATED BY CORR1. The original wording was falsified; see `SA20` §2.1.**
+
+> ~~The Account Phase S programme contains **no** treatment of the Sales-side cancellation gate.~~
+
+**What was wrong.** The pattern `cancellation.gate` is *Group A's own coinage*. The Account
+programme was never going to write another programme's phrase, so the pattern could not fire on
+it — the exact `SA00-I-02` defect this register documents, committed in its own headline. The
+denominator *1,273 files* also carried **no unit** and is not reproducible: the same declared
+method yields 1,368 unique paths, 1,304 text paths, or 1,449 (blob, path) pairs.
+
+**The corrected finding.** Widening the pattern by one token (`cancel`) returns **24 files** in
+the Order-to-Cash package alone. Its edge-case matrix carries a `CANCEL` row across order,
+delivery, invoice, payment and matching, and a section on cancellation and reversal; its business
+event register enumerates invoice draft / posted / reset-to-draft / cancelled / return / credit
+note, each `FACT VERIFIED`. **The Account programme did establish the semantics Group A asked
+for.**
+
+**What survives, and it is still material.** Nobody answered Group A **in Group A's register**.
+The item has stood at `HOLD — WAITING FOR ACCOUNTING/AR-AP AUTHORITY` since 2026-08-31 while the
+answer existed in a sibling programme. **This is a routing and notification failure between two
+programmes, not an absence of the input** — and the remedy differs: the input does not need
+researching, it needs delivering, and the residual question (which state carries blocking weight)
+needs a decision.
+
+This correction *strengthens* `SA13-F-02`: the cross-programme reconciliation was constituted and
+never convened, and this is precisely the cost of not convening it.
 
 **Class.** This is a cross-programme handoff failure, not an error inside either programme.
 Each programme is internally coherent; neither owned the boundary between them. It is exactly
@@ -284,6 +306,7 @@ to `SA19_BOSS_FINAL_GATE_PACK.md` — A1 requires an authority decision that onl
 | **Group A Sales+Inventory+Purchase backbone** | **`77e93d44` terminal (RV-011)** — admitted by SA00-F-02 |
 | Boss architecture rulings (SaaS Cell) | `origin/SMEsPlus` `fa57d10f`, files 00–18 |
 | Boss accounting rulings BD-ACC-01/02/03A/03B + product-account override boundary | `79d70278` |
+| **GB-08 — FX rate ownership and missing-rate policy**, `BOSS APPROVED — CANONICAL BUSINESS SEMANTIC` (admitted by CORR1; it was on this branch and unconsumed) | `.../ACCOUNT_FULL_DEEP_RESEARCH/GB08_BOSS_RULING_FX_RATE_OWNERSHIP_AND_MISSING_RATE_POLICY_2026_09_04.md` |
 | Clean-room Nature DNA constitution | `c0880b10` |
 | Very Deep Research re-entry protocol | `54dd32f2` |
 | SMT/SMEs Core first-line detection rule | `5ce7747b`, `79d70278` |

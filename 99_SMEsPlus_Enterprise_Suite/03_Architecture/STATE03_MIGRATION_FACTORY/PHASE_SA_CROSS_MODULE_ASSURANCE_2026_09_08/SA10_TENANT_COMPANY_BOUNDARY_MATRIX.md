@@ -45,6 +45,7 @@ scoped to.
 | `MTI-D-02` Authorization granularity | `Company + Warehouse + Operation-Type` | A user authorised for one warehouse is not authorised for every warehouse in the company; the same for operation type. Background jobs must carry explicit context on all four axes |
 | `MTI-D-03` Tenant-changeable boundary | `Platform-owned Core + Tenant Config Overlay` | No customer-specific change may fork core source, schema, posting behaviour, authorization behaviour, immutable event logic or isolation rules. A `Private Company` operating model exists for extreme cases and *"is not a bypass for evidence, authorization, audit, tenant isolation, or Boss approval"* |
 | `BD-ACC-02` | Company-scoped statutory tax | No cross-company statutory posting, offsetting or filing |
+| **`GB-08`** *(admitted by CORR1)* | `FX accounting rate is governed within Tenant context and resolved at Company accounting scope` | Cross-tenant FX rate access/resolution **prohibited**; implicit cross-company FX rate substitution **prohibited**; silent `1.0` fallback **prohibited**; silent future-rate substitution **prohibited**. This is a tenant/company-scoping ruling and belongs in this matrix by subject |
 
 Conformance to these three rulings required **32 deltas across 5 matrix rows, 14 invariants,
 3 register entries, 2 handoff-field additions, 1 new enforcement-point class and 8 new

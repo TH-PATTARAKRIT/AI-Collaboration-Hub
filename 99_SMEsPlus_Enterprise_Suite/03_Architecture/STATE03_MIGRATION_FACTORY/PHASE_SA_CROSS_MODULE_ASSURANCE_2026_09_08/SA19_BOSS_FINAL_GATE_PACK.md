@@ -78,7 +78,7 @@ E2E-17's route is written out step by step inside the Boss decision itself.
 |---|---|
 | Inputs | 1 `INPUT-CONTRADICTION`, 1 `INPUT-GAP`, 6 domains unable to state inputs |
 | Outputs | 3 outputs with no consumer; 1 required input with no producer |
-| Routing | **19 of 28** cross-module routes evidenced; 9 open |
+| Routing | **20 of 28** cross-module routes evidenced; 8 open |
 
 The unevidenced routes are, without exception, routes where **operations talk to operations**
 rather than to the ledger. Two independent instruments, different units, agree on this.
@@ -88,9 +88,9 @@ rather than to the ledger. Two independent instruments, different units, agree o
 | Area | Result |
 |---|---|
 | Inventory reconciliation | **11 of 17** stock-affecting flows reconcile. The 4 that do not are the flows where *whether stock is affected at all* is the open question |
-| Accounting reconciliation | **11 of 29** reconciled (4 of them `NO POSTING BY DESIGN`), 11 `PARTIAL` against already-recorded Phase S terminal states, 7 `UNKNOWN` |
+| Accounting reconciliation | **13 of 29** reconciled (4 of them `NO POSTING BY DESIGN`), 9 `PARTIAL` against already-recorded Phase S terminal states, 7 `UNKNOWN` |
 | Tax / payment / control | Tax determination is a single point of dependence whose rule base is unavailable and whose statutory currency is unverified. **No statutory claim is made.** The settlement event's own date is required and unsourced |
-| Exception / reversal | **14 of 18** classes established. The 4 missing all describe exceptions *the world raises against the system* — wrong item, late supply, missing documents, general failure recovery. For an SME ERP these are the daily case |
+| Exception / reversal | **13 of 18** classes established. The 4 of 5 missing that share a shape all describe exceptions *the world raises against the system* — wrong item, late supply, missing documents, general failure recovery. For an SME ERP these are the daily case |
 
 ## 12. Tenant and company assurance
 
@@ -139,12 +139,13 @@ consumed and reconciled.
 
 ## 16. SMEs Core final challenge result
 
-**19 of 23 challenge classes returned a finding.** Four attempts to falsify the pack's central
-claims failed, and the methods are published so the attempts can be repeated.
+**17 of 23 challenge classes returned a finding.**
 
-One correction the challenge forced on the pack itself: a convergence claimed across three
-instruments is **one classification expressed three times**, not three independent
-confirmations, and is now recorded that way.
+**An adversarial challenge then falsified two of this pack's own headline negatives and forced a
+correction round.** Its findings and every correction are recorded in
+`SA20_CORR1_ADVERSARIAL_CHALLENGE_AND_CORRECTIONS.md`. The two falsified claims are restated at
+§17 and §20 below; the Boss decision requested at §20 Decision 1 has been **reframed** because
+its original premise did not survive.
 
 **Disposition: `HOLD — NOT READY FOR BOSS FINAL GATE` on substance**, with eight material
 unresolved defects. This pack is presented because two of them are decisions only Boss can make.

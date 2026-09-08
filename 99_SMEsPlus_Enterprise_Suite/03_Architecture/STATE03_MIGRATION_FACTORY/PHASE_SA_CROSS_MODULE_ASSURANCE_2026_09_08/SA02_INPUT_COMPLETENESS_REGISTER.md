@@ -19,7 +19,7 @@ not as a gap.
 ## 2. SA-D01 Sales — input register
 
 Evidence: `claude/group-a-sales-inventory-purchase-dr002` @ `8b0993d8`, Sales capability model
-and business-fact ownership matrix; `research/account-p02-order-to-cash` for the AR side.
+and business-fact ownership matrix; `research/account-p02-order-to-cash-2026-09-04-001` for the AR side.
 
 | Input | Owner (authoritative) | Mandatory | Status | Note |
 |---|---|---|---|---|

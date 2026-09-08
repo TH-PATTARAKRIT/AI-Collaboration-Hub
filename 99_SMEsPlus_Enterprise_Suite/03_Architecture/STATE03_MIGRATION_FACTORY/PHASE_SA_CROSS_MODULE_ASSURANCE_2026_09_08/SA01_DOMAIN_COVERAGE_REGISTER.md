@@ -34,23 +34,23 @@ No domain is classified from a single instrument. Each row cites the measured fi
 
 | ID | Domain | Coverage class | Primary evidence (branch @ SHA) | Blobs |
 |---|---|---|---|---|
-| SA-D00 | Master Data / Identity / Organization / Tenant / Company | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `design/inventory-multitenant-invariant-set` @ `dcb92278`; Account Wave A @ `78840777` | 856 |
-| SA-D01 | Sales + AR | `EVIDENCED — ACCOUNTING LENS ONLY` | AR: `research/account-p02-order-to-cash`; Sales operations: Group A @ `8b0993d8` | 297 |
-| SA-D02 | Purchase + AP | `EVIDENCED — ACCOUNTING LENS ONLY` | AP: `research/account-p01-procure-to-pay` @ `b820b29b`; Purchase operations: Group A @ `8b0993d8` | 448 |
-| SA-D03 | Inventory / Warehouse / Location / Reservation / Delivery / Return | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `audit/inventory-deep-research-r4-l12-2026-09-04-001` @ `fc0b1688`; `design/inventory-multitenant-invariant-set` @ `dcb92278`; Group A @ `8b0993d8` | 1,367 |
-| SA-D04 | Manufacturing / BOM / Work Center / WIP / FG / Scrap | `EVIDENCED — ACCOUNTING LENS ONLY` | `research/account-p03-manufacture-to-cost` @ `bc767a81` | 512 |
+| SA-D00 | Master Data / Identity / Organization / Tenant / Company | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `design/inventory-multitenant-invariant-set-2026-09-04-001` @ `dcb92278`; `research/account-wave-a-mcc-2026-09-04-001` @ `78840777` | 856 |
+| SA-D01 | Sales + AR | `EVIDENCED — ACCOUNTING LENS ONLY` | AR: `research/account-p02-order-to-cash-2026-09-04-001`; Sales operations: Group A @ `8b0993d8` | 297 |
+| SA-D02 | Purchase + AP | `EVIDENCED — ACCOUNTING LENS ONLY` | AP: `research/account-p01-procure-to-pay-2026-09-04-001` @ `b820b29b`; Purchase operations: Group A @ `8b0993d8` | 448 |
+| SA-D03 | Inventory / Warehouse / Location / Reservation / Delivery / Return | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `audit/inventory-deep-research-r4-l12-2026-09-04-001` @ `fc0b1688`; `design/inventory-multitenant-invariant-set-2026-09-04-001` @ `dcb92278`; Group A @ `8b0993d8` | 1,367 |
+| SA-D04 | Manufacturing / BOM / Work Center / WIP / FG / Scrap | `EVIDENCED — ACCOUNTING LENS ONLY` | `research/account-p03-manufacture-to-cost-2026-09-04-001` @ `bc767a81` | 512 |
 | SA-D05 | Supply Routing — Buy / MTO / Manufacture / Dropship / Kit / Service | **`THIN`** | scattered; no subject-scoped package | **81** |
-| SA-D06 | Accounting Event / GL / Journal / Posting | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `corr/p08-one-prompt-final` @ `ea78e160`; BD-ACC-01 @ `79d70278` | 612 |
-| SA-D07 | Tax / VAT / WHT / Statutory | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `research/account-p07-th-tax-compliance`; BD-ACC-02 @ `79d70278` | 1,217 |
-| SA-D08 | Payment / Bank / Cash / Reconciliation | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `corr/p06-one-prompt-final` @ `a533fe92` | 1,493 |
-| SA-D09 | Asset / Depreciation / Disposal | `EVIDENCED — OPERATIONAL + ACCOUNTING` | asset deep L1–L6 + DR continuation; `research/account-p04-acquire-to-retire` | 416 |
-| SA-D10 | Expense / Employee Expense / Cost Recognition | `EVIDENCED — ACCOUNTING LENS ONLY` | `research/account-p05-expense-to-pay` @ `205e0ac3` | 55 (91 subject files) |
-| SA-D11 | Analytic / Dimension / Cost Control | `EVIDENCED — ACCOUNTING LENS ONLY` | `corr/p09-one-prompt-final` @ `1d54c7e4`; Boss decision `fa57d10f` | 790 |
-| SA-D12 | Period Close / Year Close / Adjustment / Reversal | `EVIDENCED — ACCOUNTING LENS ONLY` | `corr/p08-one-prompt-final` @ `ea78e160` | 248 |
+| SA-D06 | Accounting Event / GL / Journal / Posting | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `corr/p08-one-prompt-final-2026-09-08-001` @ `ea78e160`; BD-ACC-01 @ `79d70278` | 612 |
+| SA-D07 | Tax / VAT / WHT / Statutory | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `research/account-p07-th-tax-compliance-2026-09-04-001`; BD-ACC-02 @ `79d70278` | 1,217 |
+| SA-D08 | Payment / Bank / Cash / Reconciliation | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `corr/p06-one-prompt-final-2026-09-08-001` @ `a533fe92` | 1,493 |
+| SA-D09 | Asset / Depreciation / Disposal | `EVIDENCED — OPERATIONAL + ACCOUNTING` | asset deep L1–L6 + DR continuation; `research/account-p04-acquire-to-retire-2026-09-04-001` | 416 |
+| SA-D10 | Expense / Employee Expense / Cost Recognition | `EVIDENCED — ACCOUNTING LENS ONLY` | `research/account-p05-expense-to-pay-2026-09-04-001` @ `205e0ac3` | 55 (91 subject files) |
+| SA-D11 | Analytic / Dimension / Cost Control | `EVIDENCED — ACCOUNTING LENS ONLY` | `corr/p09-one-prompt-final-2026-09-08-001` @ `1d54c7e4`; Boss decision `fa57d10f` | 790 |
+| SA-D12 | Period Close / Year Close / Adjustment / Reversal | `EVIDENCED — ACCOUNTING LENS ONLY` | `corr/p08-one-prompt-final-2026-09-08-001` @ `ea78e160` | 248 |
 | SA-D13 | Approval / Workflow / Segregation of Duties | `EVIDENCED — OPERATIONAL LENS ONLY` | Group A @ `77e93d44` (multi-approve boundary); item **A2 evidence missing** | 1,048 |
-| SA-D14 | Cross-Company / Multi-Company / Tenant Boundary | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `dcb92278`; Account Wave A @ `78840777`; BD-ACC-02 | 507 |
+| SA-D14 | Cross-Company / Multi-Company / Tenant Boundary | `EVIDENCED — OPERATIONAL + ACCOUNTING` | `dcb92278`; `research/account-wave-a-mcc-2026-09-04-001` @ `78840777`; BD-ACC-02 | 507 |
 | SA-D15 | Audit / Traceability / Evidence / Standards | `EVIDENCED — OPERATIONAL LENS ONLY` | pervasive; **no consolidated standards map** — see `SA11` | 2,559 (saturated term) |
-| SA-D16 | Cross-Domain End-to-End Reconciliation | `EVIDENCED — ACCOUNTING LENS ONLY` | `corr/p11-one-prompt-final` @ `490ccdd8`; Group A @ `8b0993d8` file 06 | 338 |
+| SA-D16 | Cross-Domain End-to-End Reconciliation | `EVIDENCED — ACCOUNTING LENS ONLY` | `corr/p11-one-prompt-final-2026-09-08-001` @ `490ccdd8`; Group A @ `8b0993d8` file 06 | 338 |
 
 ---
 

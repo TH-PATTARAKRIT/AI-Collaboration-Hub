@@ -53,13 +53,13 @@ Coupling classes used below, taken from the evidence rather than imposed:
 
 | Class | Rows |
 |---|---|
-| Evidenced and compatible | 19 |
+| Evidenced and compatible | 20 |
 | No consumer identified | 1 (R-17) |
 | Gap | 1 (R-22) |
 | `HOLD` — thin domain or undetermined | 6 (R-24…R-28, plus R-20 contradiction) |
 | **Total routes** | **28** |
 
-**19 of 28 cross-module routes are evidenced.** Nine are not, and eight of those nine trace to
+**20 of 28 cross-module routes are evidenced.** Eight are not, and seven of those eight trace to
 the five thin domains and the one contradiction already registered.
 
 ---
@@ -102,7 +102,7 @@ the primary one only:
 
 ---
 
-`CP-SA-30 — HOLD`. Outputs, consumers and conditional routes are mapped; 19 of 28 routes are
-evidenced, and the nine that are not are individually named and routed.
+`CP-SA-30 — HOLD`. Outputs, consumers and conditional routes are mapped; 20 of 28 routes are
+evidenced, and the eight that are not are individually named and routed.
 
 Boss remains the sole Final Approver.

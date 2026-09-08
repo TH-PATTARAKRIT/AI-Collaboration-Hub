@@ -127,7 +127,16 @@ on it** · `G-02` accounting date system-derived in at least one estate generati
 carries one of four distinct times · `G-05` currency measurement frame ·
 `G-06` valuation/cost basis (external — one configuration decision, five consequences) ·
 `G-07` tenant scope · `G-08` analytic attribution must be consumed **gross per cost object,
-never net** · `G-09` the settlement event's own date, required and unsourced.
+never net** · `G-09` the settlement event's own date, required and unsourced ·
+**`G-10` reversal/correction lineage — immutable reversal measures clean, but *a deletion path
+bypasses it and leaves no trace by design*** · **`G-11` period / cut-off membership — *no
+accounting-period object*, no company observed closing** · **`G-12` statutory grouping scope,
+Boss-owned external**.
+
+*(CORR1: G-10, G-11 and G-12 were dropped from the first version of this section, which was headed
+"carried". A register that says "carried" and carries 9 of 12 is a false assurance about the other
+three. G-10 bears directly on `SA09`'s reversal row; G-11 on `SA07` AR-20, `SA15` E2E-14 and
+`SA17` priority 8.)*
 
 `G-01` is the same root object this package records at `XD-06`, and the same one the Boss has
 since ruled as `BD-ACC-01`. **The design position is closed; the eleven packages still carry it
