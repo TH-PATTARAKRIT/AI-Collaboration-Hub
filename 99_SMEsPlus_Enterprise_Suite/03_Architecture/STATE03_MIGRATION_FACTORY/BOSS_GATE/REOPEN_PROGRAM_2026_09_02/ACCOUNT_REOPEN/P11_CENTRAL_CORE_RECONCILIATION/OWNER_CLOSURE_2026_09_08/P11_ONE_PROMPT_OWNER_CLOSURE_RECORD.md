@@ -207,3 +207,14 @@ P08's four-input refresh reports **`scgl_special_access_rights` installed in `DB
 **P11's position, bounded:** this is an **access-rights** module, and P11's scope register carries tenant- and company-isolation as tolerance-zero. **P11 makes no claim about the module's behaviour** — nobody has read its source — and **no claim about whether `DB-T2` is a deployment, a test restore or a clone.** What is established is that **the extracts are not homogeneous in their custom access-rights layer**, and that is carried to the Boss Decision Matrix as an open item rather than resolved here.
 
 **It does not change any P11 finding**, and it is **not** used to strengthen one.
+
+### `P11-C6-06` — two defects found by the closing sweep, in this session's own output
+
+**A mechanical vendor-token count delta against the baseline, run as the last act before the final report**, found both. Neither was found by reading.
+
+| Defect | Detail |
+|---|---|
+| **clean-room leak** | `P11_CANDIDATE_ACCOUNTING_INPUT_PROCESS_OUTPUT_HANDOFF_PACK.md` moved from **1 token at baseline to 3**. The two new ones are a **restore-tool name with version numbers**, written by this session's own `P11-C6-02` edit **into a candidate handoff pack**. **Identical class to the leak P08 made and caught in the same prompt** — and made in the same way: a Layer 2 measurement transcribed straight into a Layer 1 surface because it was the precise thing to say. **Scrubbed; the versions are held in P08's Layer 2 quarantine.** |
+| **compiled artefact committed** | `__pycache__/intake_derivations_v3.cpython-314.pyc` entered the package because the rebuilt instrument was executed from inside the worktree. **A `.pyc` in an evidence package is a file no manifest population intends, that changes with the interpreter and not with the evidence.** Removed; `.gitignore` added at the instrument directory |
+
+> **Two packages, one prompt, the same leak.** Both were made by an author trying to be *more* precise, not less — naming the exact tool and the exact version. **The clean-room boundary is not violated by carelessness; it is violated by specificity pointed at the wrong surface.** Both were caught by the same instrument — **counting tokens against a baseline** — and by nothing else.
