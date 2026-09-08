@@ -1,5 +1,7 @@
 # P09_AUTO_RESUME_STATE — L1–L8 BOUNDED CORRECTION
 
+> **SUPERSEDED FOR CURRENT RESUME AUTHORITY — 2026-09-08.** Use `OWNER_QUEUE_2026_09_07/P09_AUTO_RESUME_STATE.md` and the final owner surface. This file is retained as L1-L8 execution lineage only. Any older M-1/M-2 status below is historical unless explicitly corrected.
+
 | Field | Value |
 |---|---|
 | **LOG VERSION** | P09#09 — L1–L8 bounded correction |
@@ -13,7 +15,7 @@
 | **L-1** | **CLOSED — 1 of 12** (was 0 from a predicate that could not fire). Reproduced by three challengers; robust to a corrected table set and a widened SQL regex. **Applied in place** at the evidence that carried the zero |
 | **L-2** | **CLOSED ON THE THIRD SPECIFICATION.** v1 tested a property the instrument never claims; v2 drew its witness from the set defined by that property and **could not fail**; v3 selects the witness independently. All controls now run **inside the residue-producing instrument** |
 | **L-3** | **CLOSED** — set-difference restatement verified against the instrument by two challengers |
-| **L-4** | **SPLIT — AUTHORITY LIMB NOW RESOLVED (`Q-P09-01`, 2026-09-07).** Assessment CLOSED; the withdrawn authority is **replaced by disjointness of relation**, and the 159 are assessed **inside** the published denominator rather than excluded from it. Originally recorded as: Residue corrected **160 → 159** (a dotted field path was admitted as a model). The exclusion authority is **falsified by the package's own register**, which publishes 193 and 169/52 over the reference relation |
+| **L-4** | **SPLIT — AUTHORITY LIMB RESOLVED AND CORRECTED (`Q-P09-01`, 2026-09-08).** Assessment CLOSED; the former *disjointness-of-relation* rationale is **WITHDRAWN**. Proven ground is `B2 ⊂ B`, where `B` is the complement of K-1 inside the 192-file reference denominator. The same measurement proves a **23-file overlap** between reference membership and K-1. The 159 are assessed **inside** the published denominator rather than excluded from it. Originally recorded: residue corrected **160 → 159** (a dotted field path was admitted as a model) |
 | **L-5** | **CLOSED** — the six tests stated before exclusion; counts reproduced exactly; exclusion **qualified**, not asserted |
 | **L-6** | **CLOSED — IN PLACE.** The first publication asserted the reconciliation without editing the carrying file; three rows in three files became one authoritative row plus two marked superseded |
 | **L-7** | **CLOSED** — locator returned a finding (**no committed original exists**); successors named; enumeration corrected **17/8 → 21/11** with a **declared path set**; four citations lie **outside** the package |
