@@ -81,9 +81,13 @@ end-to-end that it can sell something.
 E2E-16, E2E-17 and E2E-18 exist because Boss has already ruled on their boundaries. E2E-17's
 route is written out step by step inside the Boss decision itself.
 
-A ruled boundary with no assured flow is a specific and avoidable risk: the decision is
-correct, and there is nothing yet that can be tested against it. Raised here so that Boss is
-not the first detector.
+A ruled boundary with no assured flow is a specific and avoidable risk. **Two CORR2 qualifications
+(`K2-14`):** *(i)* all five governing decisions carry the status **`APPROVED DIRECTION / DETAIL
+DESIGN PENDING`**, so the finality this sentence implies is not claimed by the decisions themselves;
+*(ii)* **the premise that there is nothing to test against is false** — `SA_CORR2_03` §3 shows all
+three routes are evidenced, and `E2E-18` in particular has been **traversed and found to duplicate
+financial truth three ways**, which is a better Pre-Test input than an untraversed route. Raised
+here so that Boss is not the first detector.
 
 ## 7. Handoff to Pre-Test Matrix
 

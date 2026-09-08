@@ -86,7 +86,11 @@ state SMEsPlus's own position on each item. Six invariants, six explicit decisio
 
 ## 4. What SMEsPlus does better or differently — determinations made in this session
 
-Four, each with independent rationale, none inherited:
+**Eight** at the time of writing (`ND-01`…`ND-08`, listed at `SA17` §4), **eleven after CORR2**
+(`ND-09` cross-module cost identity, `ND-10` `Perpetual` defined explicitly, `ND-11` service
+assertion). *(CORR2 `K2-11`: this line read "Four", so `ND-05`…`ND-08` never went through the
+source-copying test of §6. They are tested at `SA_CORR2_10` §5.)* The four determined in this
+register, each with independent rationale, none inherited:
 
 | # | Determination | Why it is SMEsPlus's own |
 |---|---|---|

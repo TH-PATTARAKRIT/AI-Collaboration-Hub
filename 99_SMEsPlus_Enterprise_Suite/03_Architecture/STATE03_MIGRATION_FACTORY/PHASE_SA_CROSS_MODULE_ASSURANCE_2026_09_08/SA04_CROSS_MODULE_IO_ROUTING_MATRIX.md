@@ -66,17 +66,23 @@ the five thin domains and the one contradiction already registered.
 
 ## 2. SA04-F-01 — the routing graph has a hole exactly where the ledger is not involved
 
-Every route with an Accounting endpoint is evidenced (R-05, R-06, R-10, R-11, R-19, R-23),
-with two exceptions that are themselves the register's headline items (R-20, R-22).
+~~Every route with an Accounting endpoint is evidenced~~ **(CORR2 `K2-09`)** — the universal is
+withdrawn: it is broken by R-27 Service→Accounting **in the same paragraph** as it is asserted, and
+by R-20 and R-22, which this sentence itself excepts. The supportable statement is that **routes
+with an Accounting endpoint are evidenced more often than routes between two operational modules**
+(R-05, R-06, R-10, R-11, R-19, R-23 evidenced; R-20, R-22, R-27 not).
 
 Every route between two **operational** modules that is not on the accounting path is `HOLD`:
 Equipment→Manufacturing (R-24), Quality→Inventory (R-25), Project→Analytic (R-26),
 Service→Accounting (R-27).
 
-This is `SA00-F-01` seen a second way, through a different instrument and a different unit
-(routes rather than blobs). Two independent measurements agreeing is worth more than one
-measurement repeated, and they agree: **SMEsPlus's evidence follows the money, and its
-cross-module assurance gap is where operations talk to operations.**
+~~This is `SA00-F-01` seen a second way … Two independent measurements agreeing is worth more than
+one measurement repeated~~ — **WITHDRAWN by CORR2 `K2-09`.** The two measurements are **not
+independent**: this matrix inherits `SA01`'s domain classification and `SA05`'s nature list, and
+`SA_CORR2_03` §1 establishes that both rest on **an undeclared pattern**. They are one unpublished
+search read twice. The observation itself — that the evidence follows the money — survives on the
+strength of `SA00` §7's published operational-versus-accounting term contrast, which is a genuinely
+separate instrument; the *convergence* claim does not.
 
 ## 3. SA04-F-02 — five of nineteen evidenced routes were closed by a correction, not by the original research
 

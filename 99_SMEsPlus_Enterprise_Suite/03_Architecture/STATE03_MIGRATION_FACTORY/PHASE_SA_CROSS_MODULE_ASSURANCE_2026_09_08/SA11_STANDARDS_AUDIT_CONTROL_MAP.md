@@ -96,13 +96,20 @@ screen-only constraint is the exact complement of that rule and would defeat it.
 
 ---
 
-## 5. SA11-F-03 — the audit function has no consolidated standards map to inherit
+## 5. SA11-F-03 — the audit function has no consolidated standards **mapping artefact** to inherit
+
+> **CORR2 `K2-12`.** This section's original heading and first sentence read *"no consolidated
+> standards map exists"*. That is **narrowed by §7.5 and superseded by `SA11-F-04`**: an
+> applicability register and a traceability specification **do** exist at Boss-decision level; the
+> five mapping artefacts they mandate do not. The corrected claim is below; the original wording is
+> not restored anywhere in this file.
 
 Searched across the corpus for a consolidated mapping of SMEsPlus to control or accounting
 standards. What exists is **standards cited inside individual findings** — TAS 2 in the asset
 lineage, statutory tax in P07, control expectations distributed across the invariant sets.
 
-**This map is the first consolidation.** It is therefore incomplete by construction: it can only
+**This map is the first consolidation *of a mapping artefact* — the applicability register itself
+already exists at Boss-decision level (§7.1).** It is therefore incomplete by construction: it can only
 consolidate standards the baseline happened to name. Standards that no package has yet
 encountered are absent from it, and this map must not be read as an applicability assessment.
 

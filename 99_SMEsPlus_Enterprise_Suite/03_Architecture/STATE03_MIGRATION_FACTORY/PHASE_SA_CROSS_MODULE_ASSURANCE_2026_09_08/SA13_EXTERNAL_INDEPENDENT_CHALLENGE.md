@@ -87,8 +87,18 @@ self-test of the form *"… DELTA SELF-TEST PASS"*, each immediately qualified *
 only. Not independent certification"*, and each sits beneath a parent verifier result recorded as
 `RC-04 = FAIL`, `RC-01 = FAIL` and `RC-06 = FAIL` respectively.
 
+**RE-FRAMED BY CORR2 (`K2-13`, `SA_CORR2_08` §1).** The gate did not choose this vocabulary. The
+Boss ruling that commissioned it says: *"The technical team shall execute and summarize the final
+`PASS / HOLD` **recommendation** for Boss"*, and the execution prompt issued under it requires
+*"Verdict: `PASS / FAIL / HOLD` with exact evidence"*. **The gate used the word Boss instructed it
+to use, in the role Boss assigned it.** What exists is therefore a **contradiction between two
+Boss-level instruments** — the standing session constitution prohibiting `PASS` in verdicts, and
+this Boss approval requiring a `PASS / HOLD` recommendation — and only Boss can say which governs.
+The affirmative `PASS` occurrences are **not** evidence of a session exceeding its authority.
+
 **Disposition.** Recorded, not corrected — this session has no authority to edit another gate's
-verdict. Carried to `SA19` as a governance item for Boss. **SMEs Core is the first detector.**
+verdict. Carried to `SA19` and `SA_CORR2_13` as a governance item for Boss. **SMEs Core is the
+first detector.**
 
 ---
 
@@ -139,8 +149,10 @@ three. G-10 bears directly on `SA09`'s reversal row; G-11 on `SA07` AR-20, `SA15
 `SA17` priority 8.)*
 
 `G-01` is the same root object this package records at `XD-06`, and the same one the Boss has
-since ruled as `BD-ACC-01`. **The design position is closed; the eleven packages still carry it
-as their gating dependency.** That gap between a settled ruling and unsettled packages is itself
+since ruled as `BD-ACC-01`. **The *ruling* is closed; the *contract* is not — `XD-06` remains `OPEN` in `SA14`, and
+`SA_CORR2_06` §6 states the three obligations that contract must carry. The eleven packages still
+carry it as their gating dependency.** *(CORR2 `K2-10`: this sentence read "the design position is
+closed" while `SA14` registered `XD-06` OPEN — two registers, one subject, opposite states.)** That gap between a settled ruling and unsettled packages is itself
 a finding, and it belongs to Boss.
 
 ---
