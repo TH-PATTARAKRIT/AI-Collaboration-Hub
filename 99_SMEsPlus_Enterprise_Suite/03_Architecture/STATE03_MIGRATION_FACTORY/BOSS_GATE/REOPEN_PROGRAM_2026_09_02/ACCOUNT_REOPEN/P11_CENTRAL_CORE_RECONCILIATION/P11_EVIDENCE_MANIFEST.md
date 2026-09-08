@@ -3,7 +3,11 @@
 `[SMEPLUS-26-09-07-ACC-PHASE-S-REMEDIATION-002]` · regenerated `2026-09-07` at `CP-P11R-04`
 supersedes the `2026-09-06` `CP-P11C3-FINAL` manifest
 
-**POPULATION:** every file in the P11 package directory · **PATTERN:** `find . -type f` · **UNIT:** one file.
+**POPULATION:** every file in the P11 package directory **EXCEPT `P11_EVIDENCE_MANIFEST.md` itself** · **PATTERN:** `find . -type f` · **UNIT:** one file.
+
+> **`P11-CORR4-C6`, 2026-09-08 — the self-exclusion is now explicit.** **A manifest cannot carry its own digest**: writing the hash changes the bytes that produced it. The manifest is therefore **excluded from the substantive population by definition**, not by omission.
+>
+> **`P11-E-49` is NOT re-opened.** The current substantive hashes were independently complete when regenerated at `CP-P11R-04`, and **no new mismatch has been measured**. **An unstated exclusion and a missing file look identical to anyone recounting the directory** — which is why the clause is written down rather than left to be inferred, and why writing it is not an admission that anything is missing.
 
 | Files | Roll-up SHA-256 |
 |---|---|

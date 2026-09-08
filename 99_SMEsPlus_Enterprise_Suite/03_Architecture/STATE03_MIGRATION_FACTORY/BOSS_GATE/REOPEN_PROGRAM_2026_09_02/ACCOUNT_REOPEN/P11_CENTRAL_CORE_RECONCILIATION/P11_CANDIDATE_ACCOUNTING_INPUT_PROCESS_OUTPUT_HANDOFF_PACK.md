@@ -15,7 +15,7 @@ Published accounting-facing facts from `P01`–`P10`, at the frozen SHAs in
 
 | # | Candidate input | Producer @ SHA |
 |---|---|---|
-| `CI-01` | Posted monetary fact at item granularity — **0 unbalanced / 169,143**, reporting currency only | `P08` @ `00ccd66` |
+| `CI-01` | Posted monetary fact at item granularity — ~~**0 unbalanced / 169,143**~~ → **0 unbalanced across the FOUR FROZEN RC-05 EXTRACTS (169,143 + 16 + 6 + 5 posted entries with lines)**, reporting currency only **[`P11-C6-02`, 2026-09-08 — balance premise RE-POINTED]** | ~~`P08` @ `00ccd66`~~ → **`P08` @ `f0cf287ac9f4ad37b0c19145df4a0e396af84c13`** |
 | `CI-02` | Settlement graph — **63,773 records / 100,580 lines**, residual drift **0** | `P08` |
 | `CI-03` | Company + journal attribution — **447,384 of 447,384** | `P08` |
 | `CI-04` | Posting state and date on every entry; origin pointer on **96.1 %** | `P08` |
@@ -121,7 +121,7 @@ See `P11_ACCOUNTING_ORPHAN_COLLISION_DOUBLE_COUNT_REGISTER.md`.
 
 | # | Change |
 |---|---|
-| `CI-01` | **RE-STATED `2026-09-07` (`Q-P11-04`).** ~~at 1e-7 the count is 3~~ — **the figure has no referent.** P08's independent verifier re-derived it in exact `Decimal`: **0 unbalanced at `0.005`, `1e-4`, `1e-7` and at exact equality**, on computed and stored balance. Current: **arithmetically sound — 0 unbalanced posted entries in the reporting currency across 169,143, at every tolerance tested.** *"Complete"* remains **withdrawn by the owner** on separate and unaffected grounds (`P08-CONTRA-73` — the deletion path) |
+| `CI-01` | **RE-STATED `2026-09-07` (`Q-P11-04`).** ~~at 1e-7 the count is 3~~ — **the figure has no referent.** P08's independent verifier re-derived it in exact `Decimal`: **0 unbalanced at `0.005`, `1e-4`, `1e-7` and at exact equality**, on computed and stored balance. ~~Current: **arithmetically sound — 0 unbalanced posted entries in the reporting currency across 169,143, at every tolerance tested.**~~ **RE-POINTED `2026-09-08` (`P11-C6-02`, `RC06-F2`) to P08 `f0cf287ac9f4ad37b0c19145df4a0e396af84c13`: **0 unbalanced posted entries at EXACT EQUALITY and at `1e-7`, `1e-4`, `0.005`, on both the computed and the stored column, across the FOUR FROZEN RC-05 DATABASE EXTRACTS** (`DB-SM` 169,143 · `DB-BK` 16 · `DB-EV` 6 · **`DB-T2` 5** posted entries with lines). The three-database premise (`DB-SM`, `DB-BK`, `DB-EV`) is preserved above as lineage — **it was never wrong, it was incomplete against the frozen population.** **Reproducing the four-input figure requires `pg_restore` ≥ 18**: `DB-T2` is archive format 1.16 and `pg_restore` 16.15 refuses it, whereupon P08's instrument fails closed at exit 3 rather than reporting a fourth zero (P08 `P08-C1a`). **P11 does not re-derive any of this and has not re-executed P08's instrument.** **Four frozen extracts are NOT an established deployment census; P11 carries that uncertainty forward unchanged rather than upgrading four inputs into an exhaustive deployment claim.** *"Complete"* remains **withdrawn by the owner** on separate and unaffected grounds (`P08-CONTRA-73` — the deletion path) |
 | `CI-02` | settlement graph → **no longer offered as reconcilable.** `P08-HO-13`: deletable outside the object layer |
 | `CI-03` | 447,384 → **all-states population; the posted population is 417,700** |
 | `CI-04` | origin pointers **96.1 % → 78.03 %** structured |

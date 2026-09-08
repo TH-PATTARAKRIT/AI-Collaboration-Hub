@@ -1,0 +1,37 @@
+REPO TOPLEVEL (all path-limited git commands run from here): /Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/ACCOUNT_ONE_PROMPT_FINAL_CLOSURE_2026_09_08_EXECUTION/wt-p11
+
+== PIN TABLE HONOURED BY THIS RUN (final) ==
+   P01  b820b29b13f351ec21c724c05ea9aa8da2a15e14  research(G01-P01): background-task disposition - the terminal count dr
+   P02  7cb1c2783f3f5b9c11bf107d4d7202affe455d7d  research(P02): CP-06..CP-10 — challenge record, AAS+, PMO, final recon
+   P03  bc767a81417f6d115f42ec71f477d761b75895e6  research(G01-P03): bounded-deep closure — the source basis did not mat
+   P04  65b8841116d3ad696454c61a48eb08da5612d895  research(G01-P04): bounded-deep closure — the relation exists, in one 
+   P05  205e0ac30ae19df7ed2816eaec85a0d1d3cef147  research(account-p05): G01 PHASE S closure - AAS-03 x4, AAS+, PMO, pat
+   P06  a533fe92d6f6855e0b362179403476520cc9aafa  P06 RC-04 owner closure: 65-row superseded, 67 published with enumerat
+   P07  ee2be30ebf155e241510b3c7133c69419eb060a0  research(account): P07 — S02 shared-process domain-pure bounded closur
+   P08  f0cf287ac9f4ad37b0c19145df4a0e396af84c13  P08 RC-05 owner closure: four-input propagation, HO retirement at its 
+   P09  ab8c0131c46e8154ad7efae18de2a54af2f17362  P09 RC-01 owner closure: M-1 rationale re-grounded, CO-02b/CH-09 super
+   P10  1fea562cb32e23bd44a1c6e6b4a2cf1081d25287  research(P10): G02 bounded-deep closure, design input pack, AAS-03 cha
+== all 10 pins resolved, substantive, ancestors of their declared branch ==
+
+==============================================================================
+CONTROLS — EXPECTED is printed before OBSERVED
+==============================================================================
+
+NEG   an unresolvable pin must FAIL-CLOSED
+  EXPECTED  exit 3, message contains 'pin UNRESOLVED'
+  OBSERVED  exit 3   PIN VALIDATION FAILED  peer=P01  pin UNRESOLVED or not a commit: 0000000
+
+NEG2  a PROMPT commit must FAIL-CLOSED under P11-G-10
+  EXPECTED  exit 3, message contains 'NON-SUBSTANTIVE'
+  OBSERVED  exit 3   PIN VALIDATION FAILED  peer=P09  pin NON-SUBSTANTIVE under P11-G-10 (prompt commit): 92de8a1 'pr
+
+NEG3  a pin that is NOT an ancestor of its declared branch must FAIL-CLOSED
+  EXPECTED  exit 3, message contains 'NOT AN ANCESTOR'
+  OBSERVED  exit 3   PIN VALIDATION FAILED  peer=P01  pin NOT AN ANCESTOR of declared branch research/account-p01-pro
+
+POS   an injected synthetic path must ENTER the union
+  EXPECTED  union grows by exactly 1, and the new member IS the injected path
+  OBSERVED  union 825 -> 826   delta = [('P06', 'SYNTHETIC_CONTROL/P06_CORE_RECON_CORRECTION_CONTROL.md')]
+
+CONTROLS — ALL FOUR BEHAVED AS EXPECTED
+exit=0

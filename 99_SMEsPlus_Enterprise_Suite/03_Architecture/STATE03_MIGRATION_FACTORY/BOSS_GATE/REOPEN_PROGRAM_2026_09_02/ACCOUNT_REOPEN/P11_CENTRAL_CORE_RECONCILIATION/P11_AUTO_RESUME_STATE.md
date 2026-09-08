@@ -103,8 +103,20 @@ Boss ruled `XRD-009` `NOT SATISFIED` — same-model verification is not structur
 **2 min 01 s before** P11's first correction commit — `64_P08_NOTIFICATION_TO_P11_Q_P08_01.md`.
 Consumed in `P11_OWNER_BOUNDED_CORRECTION_2026_09_07.md` and `P11_CO_F_02_STALE_INBOUND_REPAIR.md`.
 **`Q-P11-04`'s disposition is unchanged; only the receipt record was wrong.**
-**GENUINELY UNCONSUMED INBOUND:** `P06_TO_P11_COUNT_CORRECTION_NOTICE.md` @ `b5f5a21`,
-`2026-09-07 09:11:29` — **postdates `002748d` (`09:09:56`), so no P11 negative about it is stale.**
-**Not consumed here** (it lands on the `RC-04` surface); routed to `RC-02`/`RC-04` as a dependency.
+~~**GENUINELY UNCONSUMED INBOUND:** `P06_TO_P11_COUNT_CORRECTION_NOTICE.md` @ `b5f5a21`,
+`2026-09-07 09:11:29`~~ — **postdates `002748d` (`09:09:56`), so no P11 negative about it is stale.**
+~~**Not consumed here** (it lands on the `RC-04` surface); routed to `RC-02`/`RC-04` as a dependency.~~
+
+**ACKNOWLEDGED `2026-09-08` (`P11-CORR4-C5`) at P06's final owner SHA `a533fe92d6f6855e0b362179403476520cc9aafa`.**
+What P06 corrected, **received as P06 states it and NOT re-derived by P11**:
+**seven vetoes** (`AASP-VETO-01`…`07`, **0 discharged**) · **67 blockers** (`P06-B-01`…`P06-B-67`, contiguous) ·
+**21 recorded author errors** (unit: author error, not identifier — 23 distinct `REV-E-*` ids of which 21 carry a definition) ·
+open items **68 over the package root / 75 over the three frozen roots** — **two figures, one concept, distinguished only by path set**,
+which P06 registers as `VER-E-06` and now declares at both carriers.
+
+**P11 records receipt. P11 does NOT re-derive any P06 count and does not adjudicate P06's path-set question.**
+**Nothing P11 consumes from P06 changes:** no P06 finding was withdrawn or added, `AASP-VETO-06` still binds
+(`HO-03`/`HO-04` **WRITTEN, NOT DELIVERED**), and `P06-B-34`/`P06-B-35` remain **flagged, not disposed**.
+**`AASP-VETO-07` remains PRESERVED.**
 
 **EVENT-DRIVEN STATE:** `STOPPED — TERMINAL B — 4 ITEMS EXECUTED, AWAITING INDEPENDENT RC-02 / RC-06 — NOT WAITING IDLE`
