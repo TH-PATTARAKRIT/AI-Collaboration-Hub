@@ -76,16 +76,20 @@ This is the most consequential finding in this register, and it changes what the
 **`RISK-U03`, as written**: element 10 cannot be supplied because *"the Inventory-side multi-tenant
 invariant set **does not exist**."*
 
-**Measured now.** It exists. Two packages, **52 files**, including a dedicated problem statement for
-`RISK-U03` itself, an invariant set, a conformed revision, an isolation proof matrix, an enforcement
-point matrix, a negative access test specification and a Boss decision package:
+**Measured now.** It exists. Two packages, **35 unique text paths (U2)**, including a dedicated
+problem statement for `RISK-U03` itself, an invariant set, a conformed revision, an isolation proof
+matrix, an enforcement point matrix, a negative access test specification and a Boss decision
+package:
 
 ```
 02_RISK_U03_GAP_FS10_PROBLEM_STATEMENT.md      03_INVENTORY_MULTI_TENANT_INVARIANT_SET.md
 03_MTI_INVARIANT_SET_R2_CONFORMED.md           07_L9_ISOLATION_PROOF_MATRIX.md
 05_FUNCTION_ENFORCEMENT_POINT_MATRIX.md        09_NEGATIVE_ACCESS_TEST_SPECIFICATION.md
-06_CROSS_MODULE_HANDOFF_CONTRACT_FIELDS.md     14_BOSS_DECISION_PACKAGE.md          … 52 in total
+06_CROSS_MODULE_HANDOFF_CONTRACT_FIELDS.md     14_BOSS_DECISION_PACKAGE.md          … 35 in total
 ```
+
+*(First published as "52 files", which counted **path-blob rows**, not unique paths — a unit
+conflation, in the register that turns on one. Corrected after adversarial challenge.)*
 
 Its own status line, verbatim: `50 CARRIED + 8 ADDED = 58 INVARIANTS SPECIFIED — 0 PROVEN —
 14 RE-SPECIFIED — DESIGN / SPECIFICATION ONLY — NOT DEVELOPMENT FINAL GATE`.
@@ -202,7 +206,11 @@ is not a new Boss question** — the ruling exists.
 | 10 | Year-end retained earnings | `PENDING — ACCOUNT HALF NOT YET JOINT-READY` |
 | 11 | Product category dual ownership | **ADVANCED, AND ESCALATED** — this is `C2-D-03`: a kit and its components may sit in different Product Categories, and `BD-ACC-03A/03B` set policy at category level |
 
-**Five of eleven advanced. None closed.** Six require either element 10 or a Boss decision.
+**Four of eleven advanced — topics 2, 6, 7 and 11. None closed. Seven remain `PENDING`.** All eleven
+require either element 10 or a Boss decision.
+
+*(**Corrected after adversarial challenge.** First published "Five … Six require". Counted by reading
+the disposition column: `ADVANCED` = 4, `PENDING` = 7. 4 + 7 = 11.)*
 
 ### 5.1 The clean-room veto checkpoint was honoured
 
@@ -236,7 +244,7 @@ authorized.
    exact.** It is element 10, unconditionally, on every scenario.
 2. **The remedy has changed and nobody had noticed.** `RISK-U03`'s specification half is **done**.
    What remains is build-and-prove, which belongs to Pre-Test and Development, not to research or
-   design. Commissioning further specification work here would duplicate 58 invariants.
+   design. Commissioning further specification work here would duplicate 58 invariants across 35 artefacts.
 3. **The COGS gap is not the binding constraint**, confirmed from both sides.
 4. **One object — the deterministic accounting-event identity — blocks the most and is owned by
    nobody**, despite a ruling that assigns it. That is a contract to publish, not a decision to take.

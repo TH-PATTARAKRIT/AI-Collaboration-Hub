@@ -19,7 +19,7 @@ reported so that the zero is a measured absence rather than a broken instrument.
 | 4 | Counts are reproducible | Every load-bearing count re-run under a second unit or a second command shape | **Met, with two published failures — §3** |
 | 5 | Branch and commit citations are correct | `git rev-parse --verify` per citation | **All resolve** |
 | 6 | Stale false positives removed or clearly superseded | `K2-01`…`K2-15` applied by population to the parent registers | **15 applied; §4 verifies each landed** |
-| 7 | No unsupported `PASS` remains | Verdict-shaped sweep over this package | **0 affirmative `PASS` verdicts in any CORR2 file.** Positive control: the pattern returns 269 paths corpus-wide, so it fires |
+| 7 | No unsupported `PASS` remains | Verdict-shaped sweep over this package | **0 affirmative `PASS` verdicts issued by any CORR2 file.** The sweep returns **4 lines**, every one of them a **quotation of another document's wording inside the register whose job is to report it** (`SA_CORR2_08` §2.1, §2.2, §6). Positive control: the same pattern returns 269 paths corpus-wide, so it fires |
 | 8 | No unsupported compliance claim remains | Standards sweep over this package | **0.** The one corpus-wide claim is *reported*, never asserted (`SA_CORR2_07` §3) |
 | 9 | Every open `HOLD` has an exact owner and reason | `SA_CORR2_13` §5 | **Met** |
 | 10 | Every Boss decision request is genuinely Boss-authority only | Tested item by item against the ruling that reserves it | **Met — and two candidate items were *removed* from the Boss list on this test; §5** |
@@ -148,8 +148,9 @@ Master prompt §15 requires that every Boss decision request be genuinely Boss-a
 | Vendor/reference technical tokens, declared ∪ derived | occurrence per file | **0 across all 12 CORR2 files** — after `K2-15` removed 3 |
 | Baseline comparison, per file, against the parent package | occurrence delta | parent **0**, CORR2 **0**; **no file rose above its baseline** |
 | Prohibited verdict wording | line | **0 affirmative `PASS`**; the pattern fires elsewhere (269 paths) |
-| Identifier consistency | identifier | every cited `C2-F`, `C2-I`, `C2-D`, `K2`, `N`, `JCP`, `ND` identifier has a definition in this package or a cited external register. **0 orphans** |
+| Identifier consistency | identifier | `C2-F-01…31`, `C2-I-01…02`, `C2-D-01…04`, `K2-01…24`, `N-01…16`, `JCP-01…04`, `A-01…11` — **gap-free, no orphans, no strays**. `ND-01`…`ND-08` are parent-defined and cited by pointer; CORR2 adds `ND-09`…`ND-12` |
 | `ND` numbering collision with the parent's `ND-01`…`ND-08` | identifier | **none** — CORR2 adds `ND-09`…`ND-12` |
+| Duplicate section anchors | heading | **0** — one duplicate `### 4.4` in `SA_CORR2_01` was found by adversarial challenge and renumbered |
 
 **Three leaks were found and removed** (`K2-15`), all in text that was **correct**: a third-party
 module's technical name quoted for precision, and two reference object names inside a *published
@@ -157,6 +158,27 @@ search pattern*. The second is the harder case — reproducibility argues for pu
 and the clean-room rule forbids the tokens in it. **Resolved by publishing the clean pattern and the
 measured effect of removing them** (−20 on the subject, −70 on the control), so nothing is hidden and
 nothing leaks.
+
+---
+
+## 6.1 `C2-F-32` — this section was written before the challenge, and the challenge falsified four of its rows
+
+**Published, because a final-integrity register that quietly absorbs its own corrections is the
+defect it exists to prevent.** The first version of this file asserted checks 2, 4, 6 and 7 as met.
+An adversarial pass then found:
+
+| Row, as first written | What the challenge established |
+|---|---|
+| §4 — *"Every correction was verified in the target file text"* for `K2-01`…`K2-15` | **`K2-08` was false.** Three of its seven named targets received **zero bytes of edit**, and the falsified sentences still stood verbatim. Corrected at `K2-16`…`K2-19`, and a **consolidated correction register** now exists (`SA_CORR2_00` §8) precisely because its absence is how this survived |
+| §1 check 6 — *"stale false positives removed or clearly superseded"* | **Every status upgrade in `SA_CORR2_01`, `_03` and `_05` was absent from the register it upgraded.** `K2-16`…`K2-23` |
+| §1 check 3 / §3.1 — package integrity *"23 of 23 OK"* | **True of the state CORR2 read, false of the state CORR2 shipped.** CORR2's own edits broke 8 of 23 hashes. `K2-24` |
+| §3.3 — two check-claims found false by the author's own sweep | **Six more were found by the challenge**, in status-summary tables the author's identifier sweep structurally could not see |
+
+> **The author's mechanical sweeps caught token counts, identifier gaps and arithmetic
+> enumerations. They caught not one instance of a correction that was claimed and never applied,
+> and not one mis-assigned class in a tally that summed correctly.** Both are invisible to a check
+> whose unit is the identifier. That is `ND-12` and the check-unit rule, demonstrated on this
+> package rather than argued.
 
 ---
 

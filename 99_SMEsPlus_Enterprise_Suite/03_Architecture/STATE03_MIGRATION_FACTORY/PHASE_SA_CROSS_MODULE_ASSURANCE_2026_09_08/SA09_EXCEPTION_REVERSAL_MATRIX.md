@@ -40,10 +40,18 @@ and the Account P-series reversal findings.
 
 ### 2.1 Count
 
-| Status | Count |
-|---|---|
-| `ESTABLISHED` (incl. via correction, incl. as a negative) | 13 |
-| `NOT ESTABLISHED` | 5 |
+| Status | Count | **CORR2** |
+|---|---|---|
+| `ESTABLISHED` (incl. via correction, incl. as a negative) | 13 | **16** |
+| `NOT ESTABLISHED` | 5 | **4** |
+| **Total** | 18 | **20** |
+
+> ### SUPERSEDED BY CORR2 — `SA_CORR2_09` §3
+> **Missing documents, general failure recovery and the *quantity* half of wrong-item/wrong-quantity
+> are falsified**; the *item* half and supplier-SLA lateness survive as bounded absences; and
+> **idempotency moves the other way** — graded `ESTABLISHED` here, recorded absent in four Accounting
+> packages. Two classes were added by decomposition. **This table was built from one register, at
+> one of its three blob versions — the only one lacking the section that closes the gap it reports.**
 
 ---
 
@@ -103,7 +111,9 @@ Routed to `SA16` as a scoping input to TVDR-01 and to `SA17` as a Pre-Test prior
 ---
 
 `CP-SA-60 — HOLD`. **Thirteen** of eighteen exception classes are established; five are not.
-Four of the five share one shape (exceptions the world raises against the system); the fifth is
-approval rejection, which is Boss-owned.
+~~Four of the five share one shape (exceptions the world raises against the system)~~ — **FALSIFIED
+BY CORR2 (`SA_CORR2_09` §3).** Three of the four are established in path sets this register did not
+search. The shape observation was real; the evidence for it was not. Approval rejection remains
+Boss-owned.
 
 Boss remains the sole Final Approver.

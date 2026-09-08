@@ -22,10 +22,10 @@ Maintained under `AUTO-C2-09`. Checkpoint completion is **NOT** Boss approval.
 | `CP-SA-C2-50` All material flows accounting-reconciled | `CLOSED (execution status)` |
 | `CP-SA-C2-60` Governance and standards claims controlled | `CLOSED (execution status)` |
 | `CP-SA-C2-70` Exception integrity challenged | `CLOSED (execution status)` |
-| `CP-SA-C2-80` SMEs Core re-challenge complete | `IN PROGRESS` — package frozen at `e280611a`, adversarial challenge open |
+| `CP-SA-C2-80` SMEs Core re-challenge complete | `CLOSED (execution status)` — 17 of 20 dimensions; 11 adversarial findings, 10 upheld in full |
 | `CP-SA-C2-90` Independence status verified | `CLOSED (execution status)` |
 | `CP-SA-C2-95` Final evidence pointer integrity verified | `CLOSED (execution status)` |
-| `CP-SA-C2-FINAL` Boss Final Gate Pack published | `OPEN` |
+| `CP-SA-C2-FINAL` Boss Final Gate Pack published | **`PUBLISHED — PENDING BOSS`** |
 
 ## 2. Frozen carry-forward — do not reset
 
@@ -37,6 +37,13 @@ Maintained under `AUTO-C2-09`. Checkpoint completion is **NOT** Boss approval.
   constitution, the `smeplus_*` namespace, the Very Deep Research re-entry right, and the SaaS
   Cell architecture decisions.
 - No peer package is mutated. No veto is discharged. No other party's disposition is overwritten.
+
+## 2.1 Corrections applied to the parent package — 24, each verified per target
+
+`K2-01`…`K2-24`, consolidated and individually verified at `SA_CORR2_00` §8. **14 of the parent's
+23 files were edited by population**, and the parent's SHA-256 manifest was regenerated under
+`K2-24` because CORR2's own edits had invalidated 8 of its hashes while a CORR2 register published
+it as verified. That was found by adversarial challenge, not by the author.
 
 ## 3. Evidence frame (declared once, cited by identifier)
 
@@ -52,11 +59,31 @@ case-insensitive — `COSO` matches a vendor name and inflates ~9×. Do not batc
 shell array loop in this environment; it corrupts the path column. Print what a pattern matched
 before counting it.
 
-## 4. Next autonomous action
+## 4. Terminal state
 
-Continue the ladder at the first `OPEN` checkpoint above. Do **not** ask Boss anything at an
-intermediate checkpoint (`AUTO-C2-11`). Stop only at `CP-SA-C2-FINAL`, or on a genuine
-constitutional/authority blocker.
+# `BOSS FINAL GATE PACK READY`
+
+`SA_CORR2_13_BOSS_FINAL_GATE_PACK.md` is published. **STOP** (`AUTO-C2-12`). Do not start the
+Pre-Test Matrix. The next act belongs to Boss.
+
+**Recommendation carried to Boss:** `CONDITIONAL APPROVAL TO PHASE PRE-TEST MATRIX`, with three
+conditions precedent (publish the `BD-ACC-01` contract; close `TVDR-06`; execute the compliance
+retraction). `HOLD PHASE SA` is also fully supported by the same pack and the pack says so.
+
+**Four Boss decisions requested:** `XD-01` with its durability precondition · `C2-D-03` kit vs
+component Product Category · two governance items · `BLK-07` normal capacity, now gating two absent
+mechanisms.
+
+## 4.1 If a new prompt arrives, the highest-value next work is, in order
+
+1. **Publish the `BD-ACC-01` cross-domain contract** (`XD-06`). It is a design act, needs no Boss
+   decision, and closes `H-01`, `H-02`, `H-03`, handoff element 15, `JCP-03` and `AR-26`.
+2. **Execute `TVDR-06`** — price and credit determination, the input side of every sale.
+3. **Commission a structurally independent challenger.** `PHASE-S/Q-BOSS-02` is open, and `ND-12`
+   records what internal challenge structurally cannot find.
+
+**Do NOT** re-run the six-trigger research programme in `SA16`/`SA19` Decision 4. Its premise is
+falsified; four of its six triggers close on existing evidence (`SA_CORR2_03` §5).
 
 ## 5. Authority boundary
 

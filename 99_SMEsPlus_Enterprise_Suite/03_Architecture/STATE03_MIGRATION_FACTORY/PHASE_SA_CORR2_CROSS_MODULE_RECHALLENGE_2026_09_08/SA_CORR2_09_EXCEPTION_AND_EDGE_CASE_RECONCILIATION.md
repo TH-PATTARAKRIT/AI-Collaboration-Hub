@@ -33,8 +33,11 @@ version**, the only one of the three without it.
 
 > **The register was not merely unread. The wrong *version* was read — right path, right programme,
 > superseded content.** `SA09-F-01` is about a stale register; this is about a stale **blob**, and
-> no control in the package looked at version multiplicity. `SA00` §2.1 even records that **223
-> paths carry more than one distinct content version**, and no consumer register used that fact.
+> no control in the package looked at version multiplicity. **222 paths in the v2 corpus carry more
+> than one distinct content version** — `SA00` §2.1 records **223** under the parent's own frame —
+> and no consumer register used that fact. *(This register first re-published the parent's 223
+> without re-measuring it: a stale count, in the file whose subject is a stale version. Corrected
+> after adversarial challenge.)*
 
 ---
 
@@ -58,8 +61,12 @@ The only two statements are negative and one is a decision:
 > from … edit-in-place or return | NOT OBSERVED / EVIDENCE_MISSING |`
 > **TEAM B decision: `NOT MATERIAL TO CURRENT DESIGN`** — present in **all three** blob versions.
 
-**This is the only one of the five that survives**, and even so the permitted claim is
-*not found in the declared populations searched* — not *does not exist*.
+**Two of `SA09`'s five survive** — this one, and approval rejection, which `SA09` had already
+regraded and which is Boss-owned. Supplier-SLA lateness survives as **half** of a split class.
+And even for wrong item the permitted claim is *not found in the declared populations searched* —
+not *does not exist*. *(The first version said "the only one of the five that survives", which its
+own §3 table contradicted two pages later. Corrected after adversarial challenge — in the register
+whose subject is over-wide universals.)*
 
 **Wrong QUANTITY: FALSIFIED.** The Procure-to-Pay package carries four distinct quantity-exception
 rows — over-receipt; under-receipt then order closed; over-billing beyond received quantity; and
@@ -185,16 +192,24 @@ summarising.**
 
 ## 3. Count
 
-| Class | `SA09` | **CORR2** |
-|---|---|---|
-| `ESTABLISHED` | 13 | **13** — the twelve carried, plus wrong-quantity |
-| `ESTABLISHED — with a named live defect` | — | **4** — cut-off, FX, price variance, missing documents |
-| `NOT ESTABLISHED` | 5 | **2** — wrong **item**; supplier-SLA lateness |
-| **`NOT ESTABLISHED — and previously graded ESTABLISHED`** | 0 | **1** — idempotency |
-| **Total exception classes** | **18** | **20** |
+The population is **`SA09`'s eighteen classes, plus two created by decomposition** — wrong item /
+wrong quantity split, and lateness split into supplier-SLA and late-economic-event. **20.**
 
-Two classes were added by decomposition (wrong item / wrong quantity split; lateness split into
-supplier-SLA and late-economic-event). Check: 13 + 4 + 2 + 1 = 20.
+| Class | Members | Count |
+|---|---|---|
+| **`ESTABLISHED`** | partial fulfilment (sell) · partial receipt (buy) · cancel before commitment · cancel after commitment · cancel after reservation · cancel after partial movement · correction after completed movement · customer return · vendor return · retry · reversal (accounting) · timing mismatch · over/under receipt *(as a negative)* · **wrong quantity** *(falsified → established)* · **missing documents** *(falsified → established)* · **late economic event** *(falsified → established)* | **16** |
+| **`NOT ESTABLISHED`** | **wrong item** · **supplier-SLA lateness** · **approval rejection** *(unchanged from `SA09`, Boss-owned)* · **idempotency** *(regraded downward)* | **4** |
+| **Total** | | **20** |
+
+**16 + 4 = 20**, and each of the twenty appears in exactly one row.
+
+*(**Corrected after adversarial challenge.** The first version published `13 / 4 / 2 / 1 = 20` with
+four classes: it counted cut-off, FX and price variance **twice** — once inside "the twelve
+carried" and again in a "with a named live defect" row — and **dropped `SA09`'s fifth
+`NOT ESTABLISHED` row, approval rejection**, the very row `C-13` had restored and `SA_CORR2_00` §3
+re-verified. The arithmetic summed to 20 and the partition was broken. General failure recovery is
+folded into **late economic event**'s row above as a falsified→established class; cut-off, FX and
+price variance are master-prompt §9 classes and are carried in §4, not here.)*
 
 > **`SA09`'s headline — *"four of the five missing classes are exceptions the world raises against
 > the system"* — does not survive.** Three of the four are established, one splits, and the class

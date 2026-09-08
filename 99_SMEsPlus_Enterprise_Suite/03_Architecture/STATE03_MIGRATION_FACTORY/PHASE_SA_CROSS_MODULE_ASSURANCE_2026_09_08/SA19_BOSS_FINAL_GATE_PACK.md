@@ -229,8 +229,14 @@ gate's verdict or to retract published material.
 
 ### Decision 4 — authorize the consolidated targeted Very Deep Research programme
 
-One bounded programme over the demand-and-supply front end (SA-D05, D17, D18, D19, D20, D21).
-It is the single action that moves the most: 7 business natures and 7 end-to-end scenarios.
+~~One bounded programme over the demand-and-supply front end (SA-D05, D17, D18, D19, D20, D21).
+It is the single action that moves the most: 7 business natures and 7 end-to-end scenarios.~~
+
+**RE-SCOPED BY CORR2 — `SA_CORR2_03` §5, `SA_CORR2_13` §14.** The premise did not survive: `SA05-F-01`'s
+single-root-cause claim is falsified, the seven natures are already discharged on existing evidence,
+and **four of the six triggers close without research**. What remains is **`TVDR-04` the Quality
+object**, **`TVDR-06` price and credit determination**, and **`TVDR-05` re-owned as a Boss decision**
+under TAS 2 ¶12. Boss should read `SA_CORR2_13` §14 for the request that replaces this one.
 
 **Explicitly not requested:** approval to Phase Pre-Test Matrix. On this evidence Phase SA does
 not recommend it, and the reason is §1 — the forward sale is not yet traversable.

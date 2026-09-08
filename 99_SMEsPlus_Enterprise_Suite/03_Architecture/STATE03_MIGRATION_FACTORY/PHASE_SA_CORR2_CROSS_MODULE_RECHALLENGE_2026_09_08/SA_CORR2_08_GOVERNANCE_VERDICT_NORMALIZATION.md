@@ -34,10 +34,20 @@ and the execution prompt issued under it:
 > standing session constitution, which prohibits `PASS` in verdicts, and this Boss approval, which
 > requires a `PASS / HOLD` recommendation.
 
-**Only Boss can resolve which instrument governs.** Until then, **the 269-and-more affirmative `PASS`
-occurrences are not evidence of misconduct**, and this register does not present them as such. That
-matters: an accusation of constitutional breach against a gate that was following a Boss instruction
-would be a serious and avoidable error in a pack Boss reads.
+**Only Boss can resolve which instrument governs.**
+
+**The scope of that exculpation, stated exactly.** The Boss approval commissions **one gate**, and
+§2.2 measures that gate's directory at **18 paths of the 269**. So the instruction clears **18**,
+not 269. *(The first version of this sentence wrote "the 269-and-more affirmative `PASS`
+occurrences are not evidence of misconduct" — using an instruction covering 6.7% of the population
+to clear 100% of it, in the direction that removes an accusation. Corrected after adversarial
+challenge; the challenge was right and the direction of the error is the reason it is recorded here
+rather than quietly fixed.)*
+
+What holds for the remaining ~251 is weaker and is all this register claims: **they are not
+evidence of a session usurping Boss's approval authority**, because none is addressed to Boss as an
+approval — they are gate and check results. Whether the *word* is permitted at all is the
+vocabulary question, and that is Boss's to settle. **For the 18, the question does not even arise.**
 
 `SA13-F-01`'s underlying observation stands and is worth keeping: **the entry authorization is
 expressed in a word that reads as approval**, and that reading has now propagated. What changes is
@@ -59,20 +69,32 @@ the owner of the defect and therefore the remedy.
 
 ### 2.1 `C2-F-23` — this count cannot be published as a single number, and here is the proof
 
-Two runs of this measurement in this session, over the identical population, differed:
+Three runs of this measurement over the identical population:
 
-| Run | Exclusion list | Blobs | Paths |
-|---|---|---|---|
-| Internal challenge | 12 terms | 294 | **289** |
-| This register | the same 12 **plus** `0 .?RC-PASS` and `is not PASS` | 273 | **269** |
+| Run | Exclusion list | Implementation | Blobs | Paths |
+|---|---|---|---|---|
+| Internal challenge | 12 terms | its own | 294 | **289** |
+| This register | the same 12 | the author's | 275 | **271** |
+| This register | those 12 **plus** `0 .?RC-PASS` and `is not PASS` | the author's | **273** | **269** |
 
-**Twenty paths, purely from two extra negation forms.** Both runs are correct given their lists;
-neither is reproducible without it.
+**The exclusion list costs 2 paths. The *implementation* costs 18.**
 
-> **A count of prohibited wording is a count of *what a filter failed to exclude*. Publishing the
-> number without the exclusion list publishes an artefact of the filter.** The programme's
-> denominator rule needs a fifth clause for negation-shaped searches: **POPULATION + PATTERN +
-> PATH SET + UNIT + EXCLUSION LIST.**
+*(**Corrected after adversarial challenge.** The first version of this section published *"Twenty
+paths, purely from two extra negation forms"* — derived by subtracting **the author's 14-term run**
+from **a different party's 12-term run**, two variables at once. Run inside one implementation the
+delta is **2**. The challenge measured this and was right; the demonstration offered for a proposed
+programme rule was an order of magnitude wrong, in the register whose subject is unreproducible
+counts.)*
+
+**The corrected demonstration is stronger than the one it replaces**, because it shows the larger
+variable is the one nobody declares:
+
+> **A count of prohibited wording is a count of *what a filter failed to exclude*.** Two parties
+> running the **same declared 12-term list** over the same population got **271** and **289** — a
+> gap nine times larger than the one the list itself explains. So the fifth clause is necessary and
+> not sufficient: **POPULATION + PATTERN + PATH SET + UNIT + EXCLUSION LIST**, *and the negation
+> filter must be executed as published code rather than described*, because "exclude lines matching
+> X" admits several implementations that disagree by 7%.
 
 Worked example from inside this very measurement: the **three paths with the widest branch
 multiplicity (12 branches each)** all match Pattern B — and on inspection all three are
@@ -94,7 +116,10 @@ why: it was instructed to use the word.
 ## 3. The seven CORR1 findings accepted-and-uncorrected — now dispositioned
 
 `SA20` §4 listed eight findings *"accepted and carried as open, not yet corrected"*. One (`SA13` §6)
-was corrected at `K2-03`. The remaining seven are closed here.
+was corrected at `K2-03`. **The remaining eight rows are closed here** — the table below carries
+eight, not seven, because `SA20`'s convergence row states two separable claims (the shared
+classification, and the self-citation in status columns) and each needed its own disposition.
+*(**Corrected after adversarial challenge**, which counted the rows.)*
 
 | `SA20` §4 finding | CORR2 disposition |
 |---|---|
@@ -162,6 +187,18 @@ certification to a qualified independent body —
 — and `B-35` is an **internal instrument control set**. Under `GRAO-03`/`GRAO-05` the correct word
 for what was done is **verified**, not **certified**.
 
+**And the same two-instrument contradiction applies here, which §1's logic requires this register to
+say.** The Boss approval quoted at §1 also states, at line 21:
+
+> `- GATE-05 B-35 full twelve-control independent certification including S06.`
+
+**So Boss commissioned the word "certification" for `B-35` by name.** *(The first version of §6
+condemned the `CERTIFIED` wording under `GRAO-03` while quoting that same document on page one —
+applying the two-instrument reasoning where it cleared the programme and withholding it where it
+would clear another gate. Corrected after adversarial challenge.)* The finding that survives is
+narrower and is unaffected: **`B-35` is recorded as both `CERTIFIED` and `NOT CERTIFIED` in the same
+corpus, and no register reconciles them.** That contradiction is real whichever word is permitted.
+
 **Normalization recommended, not applied.** These files belong to another gate and this session has
 no authority to edit another gate's verdict. Carried to `SA_CORR2_13` as the **same** Boss governance
 item as §1 — one vocabulary ruling settles both.
@@ -194,8 +231,9 @@ Published because each cost this session real time or would have corrupted a pub
    outright, which reads like a zero if the exit status is not checked.
 2. **Do not batch patterns through a shell array loop** here; it corrupts the path column
    (one run reported 320 paths against 1 matching blob). Single-pattern invocations only.
-3. A **case-insensitive** search is the default in the corpus helper and is wrong for acronyms
-   (`COSO` / `Ecosoft`).
+3. A **case-insensitive** search is the default in the corpus helper and is wrong for acronyms —
+   `COSO` matches as a substring inside a vendor name that recurs throughout the corpus, inflating
+   it ninefold.
 4. One file with a `.md` extension is a **Word document**; extension is not format.
 5. **A diff-based corpus cannot answer an every-branch presence question.** Use a per-branch
    `git rev-parse '<branch>:<path>'` lookup.

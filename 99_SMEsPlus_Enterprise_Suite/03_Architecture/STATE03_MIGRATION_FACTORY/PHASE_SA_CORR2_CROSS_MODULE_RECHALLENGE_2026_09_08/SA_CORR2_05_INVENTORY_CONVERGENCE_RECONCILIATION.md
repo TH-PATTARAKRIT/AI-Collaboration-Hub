@@ -61,12 +61,18 @@ Status vocabulary unchanged from `SA06`. Rows whose status changes are marked **
 
 | Status | `SA06` | **CORR2** |
 |---|---|---|
-| `RECONCILED` (incl. as a measured negative) | 11 | **13** |
-| `PARTIAL` | 2 | **4** |
-| `NOT RECONCILED` | 4 | **1** |
+| `RECONCILED` (incl. as a measured negative) | 11 | **14** — IR-01…IR-14 |
+| `PARTIAL` | 2 | **3** — IR-15, IR-16, IR-17 |
+| `NOT RECONCILED` | 4 | **1** — IR-18 |
 | **Total stock-affecting flows** | **17** | **18** |
 
-Check: 13 + 4 + 1 = 18, and every identifier `IR-01`…`IR-18` appears exactly once in §2.
+Check, executed by reading the status column of §2 rather than asserted: **14 + 3 + 1 = 18**, and
+every identifier `IR-01`…`IR-18` appears exactly once in §2.
+
+*(**Corrected after adversarial challenge.** This table first published `13 / 4 / 1`. The total was
+right and the classes were wrong — `IR-14` was counted as `PARTIAL` when §2 grades it `RECONCILED`.
+**An identifier check cannot see a mis-assigned class**, which is why the enumeration check above
+passed while the tally was wrong. The check unit must match the defect.)*
 
 ---
 

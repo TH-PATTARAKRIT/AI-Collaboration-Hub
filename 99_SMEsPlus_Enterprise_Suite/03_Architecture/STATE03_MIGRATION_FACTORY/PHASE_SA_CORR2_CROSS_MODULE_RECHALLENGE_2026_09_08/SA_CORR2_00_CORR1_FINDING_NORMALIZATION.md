@@ -110,7 +110,7 @@ challenge, not by the author.
 | `C-05` challenge classes 17 of 23 | Independent recount of `SA18` §1: rows returning `FOUND` = 1, 2, 4, 5, 6, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21 | **TRUE.** 17 |
 | `C-08` eleven unresolvable branch citations repaired | Every backticked SHA-like token in the package (**39**, 7–40 hex) resolved with `git cat-file -t`; every backticked branch-like token (**29** real, after removing 5 non-branch identifiers) resolved with `git rev-parse --verify` | **TRUE. 0 unresolved, 0 non-commits.** |
 | `C-13` `SA09` approval-rejection row returned to its owner's status | `SA09` §2 last row now reads `NOT ESTABLISHED` with the promotion recorded; §2.1 counts 13 / 5 | **TRUE** |
-| Package integrity | `PACKAGE_MANIFEST_SHA256.txt` verified with `shasum -a 256 -c` | **23 of 23 OK**, and the manifest's declared population (*every `.md` in the directory*) is complete — 23 files present, 23 entries, no file outside the manifest |
+| Package integrity **as inherited** | `PACKAGE_MANIFEST_SHA256.txt` verified with `shasum -a 256 -c` **at `f0548a20`, before any CORR2 edit** | **23 of 23 OK**, population complete — 23 files, 23 entries, none outside. **This result is true only of the state CORR2 read.** CORR2 then edited 14 of those files, breaking 8 hashes, while this row stood unqualified. Found by adversarial challenge (`A-03`), not by the author. Manifest regenerated at `K2-24`; the integrity claim is now bounded to the commit it was measured at |
 
 **Six of CORR1's claims are re-verified as true.** They are not re-opened.
 
@@ -127,7 +127,7 @@ Status vocabulary: `TRUE POSITIVE` · `PARTIALLY TRUE` · `FALSE POSITIVE` · `O
 | `N-02` | `CH-05`: *"A miscount in the author's own `SA15` traversability table … Corrected"* — recorded ✔ | `sed -n '1,6p' SA15` vs `SA15` §4 | **PARTIALLY TRUE** | The §4 **table** was corrected and enumerates 4 + 7 + 7 = 18. The **status line at the head of the same file still reads "6 traversable end-to-end on current evidence."** `SA15-F-01`, `SA19` §4 and the resume state all say four. The header is the one line a reader sees first. Corrected in this round | CORR2 | A gate pack whose scenario register's headline contradicts its own body | `SA_CORR2_12` §2 |
 | `N-03` | `SA20` §4 row 1: *"the claim in `SA13` §6 is withdrawn"*, and *"Corrected at C-13 below"* | `grep -n "promotion of another party" SA13` | **FALSE — the withdrawal never happened** | `SA13` §6 line 180 still reads *"no promotion of another party's open item found in this package"* verbatim. It is falsified by `C-13` in the same document. Additionally the cross-reference is wrong twice: `C-13` is **above** §4, not below, and `C-13`'s subject is the `SA09` row, not the `SA13` §6 sentence. Corrected in this round | CORR2 | A challenge register publishing a self-assessment its own correction round falsified | `SA_CORR2_12` §2 |
 | `N-04` | `SA19` §16 *"falsified **two** of this pack's own headline negatives"* vs `SA20` §Status *"falsified **three** of the package's negative claims"* | Both files, same subject | **PARTIALLY TRUE — both, under different unstated units** | `SA20` §2 enumerates three: §2.1 `SA00-F-03`, §2.2 `SA05` BN-05, §2.3 `SA01-C-01`. The third is an over-wide universal *inside a correction*, not one of the package's headline negatives — so **2** and **3** are both defensible and **neither states its unit**. Normalized in this round to: **2 headline negatives falsified; 3 falsifications in total** | CORR2 | Two numbers on one subject in one package | `SA_CORR2_12` §2 |
-| `N-05` | `SA20` header: *"It returned **9 MATERIAL, 14 SUBSTANTIVE, 7 MINOR** findings"* | Count of disposition rows in `SA20` | **UNRESOLVED — denominator not closed** | Declared population **30**. Dispositioned: 13 `C-` rows + 8 §4 rows = **21**. **Nine findings carry no disposition row and no finding-to-disposition mapping exists**, so the table cannot be audited against its own declared population. CORR2 cannot recover the nine — the adversarial pass's own output is not in the repository. Recorded as an open evidence-lineage item, not silently closed | **PMO** | A correction round whose completeness is unmeasurable | §6 below |
+| `N-05` | `SA20` header: *"It returned **9 MATERIAL, 14 SUBSTANTIVE, 7 MINOR** findings"* | Count of disposition rows in `SA20` | **UNRESOLVED — denominator not closed** | Declared population **30**. Dispositioned: 13 `C-` rows + 8 §4 rows = **21**. **Nine findings carry no disposition row and no finding-to-disposition mapping exists**, so the table cannot be audited against its own declared population. **Searched, not assumed:** the phrase `9 MATERIAL, 14 SUBSTANTIVE` returns **1 unique path — `SA20` itself**; `14 SUBSTANTIVE` returns 1; `CORR1.{0,30}(challenge\|adversarial).{0,30}(output\|register\|log)` returns **0**; positive control `MATERIAL` on the same command shape returns **1,484 paths**, so the instrument reaches. **The adversarial pass's own output is not in the repository**, and the nine are unrecoverable from evidence. Recorded as an open evidence-lineage item, not silently closed | **PMO** | A correction round whose completeness is unmeasurable | §6 below |
 | `N-06` | `SA20` §4: eight findings *"accepted and carried as open, not yet corrected"* | All eight located in the register text | **TRUE POSITIVE — and honestly declared by CORR1** | All eight still stand uncorrected in the register text. CORR1 said so plainly. **CORR2 closes seven of the eight**; the eighth (`SA13` §6) is `N-03` | CORR2 | — | `SA_CORR2_08` §3 |
 | `N-07` | `SA20` §2.1: *"The Account programme **did** establish the semantics Group A asked for"*; and §5: *"The answers largely **exist**"* | Group A's three questions tested one at a time against `P02_ORDER_TO_CASH` | **PARTIALLY TRUE — and the overstatement is material to a Boss decision** | **One of the three questions is answered by existing evidence; two are not, and cannot be, because they ask what SMEsPlus *should* require.** Full working at `SA_CORR2_01` §3. `SA20` §5 reframed Boss Decision 1 on the strength of "largely exist" — that reframing is itself re-framed here | CORR2 → **Boss** | Boss Decision 1 | `SA_CORR2_01` §3 |
 | `N-08` | `SA20` §2.2: BN-05 dropship `HOLD` retained on the narrower ground *"whether title passage without own-warehouse movement requires a recorded inventory event is undetermined"* | `drop.?ship` over the whole corpus, attributed by path | **FALSE POSITIVE on the stated ground — the question is answered, in the Account programme** | CORR1 searched the remote, reported **66 paths**, and then read only the Group A hit. **20 of the matching paths are in `ACCOUNT_REOPEN`**, sixteen of them in `P02_ORDER_TO_CASH`, carrying `FACT VERIFIED` findings that answer it. **CORR1 committed the identical vocabulary defect it had just diagnosed** — it corrected a claim made in the wrong party's vocabulary by searching in the wrong party's *directory*. Full working at `SA_CORR2_01` §4 | CORR2 | BN-05, IR-13, AR-24, E2E-05 all move | `SA_CORR2_01` §4 |
@@ -211,6 +211,55 @@ Verification counts are `before → after`.
 | `K2-06` | `SA20` §2.2 corrected — `12` re-labelled as unique paths across the Group A programme, and the BN-05 restatement superseded by `SA_CORR2_01` §4 | `SA20` §2.2 | — |
 | `K2-07` | `SA20` §6's universal *"every negative … was re-tested"* narrowed to the negatives actually re-tested, with `N-08` named as the exception | `SA20` §6 | universal removed |
 | `K2-08` | `SA20` §4's seven remaining accepted-open findings dispositioned | `SA07` §4, `SA04-F-01`, `SA13` §4.2, `SA12` §4, `SA11-F-03`, `SA05-F-01`, `SA09` | `SA_CORR2_08` §3 |
+
+---
+
+## 8. Consolidated correction register `K2-01`…`K2-24` — the single auditable list
+
+**This section exists because its absence is how a false correction claim survived.** In the first
+version of this package the fourteen corrections lived in two tables in two files and nothing listed
+them together, so no reader — including the author — could audit application by population. An
+adversarial challenge then found that **`K2-08` claimed corrections to three registers that received
+zero bytes of edit**, and that every status upgrade in `SA_CORR2_01`, `_03` and `_05` was absent from
+the register it upgraded.
+
+> **`C2-F-30`. This package's headline finding is that a disposition table is not evidence a
+> correction was made. It committed that defect at larger scale than the package it corrects, and it
+> was caught by an adversarial pass rather than by the author.** The corrections below are now
+> applied and each is verified in the target file text.
+
+| # | Correction | Target file(s) | Applied? | Verification executed |
+|---|---|---|---|---|
+| `K2-01` | Falsified `SA00-F-03` wording removed | `PHASE_SA_AUTO_RESUME_STATE` | ✔ | occurrences outside a struck/quoted context 1 → 0 |
+| `K2-02` | `SA15` header 6 → 4, identifiers carried | `SA15` | ✔ | header now matches §4 |
+| `K2-03` | `SA13` §6 falsified self-assessment struck | `SA13` | ✔ | 1 → 0 standing |
+| `K2-04` | *"falsified two/three"* given units | `SA19`, `SA20` | ✔ | both state their unit |
+| `K2-05` | `24 files` → `23 unique paths (U2)` | `SA20` | ✔ | reproducible under four units |
+| `K2-06` | `12 occurrences` → `12 unique paths across a programme` | `SA20` | ✔ | source file carries 2 |
+| `K2-07` | *"every negative was re-tested"* withdrawn | `SA20` | ✔ | universal removed |
+| `K2-08` | `SA20` §4's eight accepted-open findings dispositioned | `SA04`, `SA05`, `SA07`, `SA09`, `SA11`, `SA12`, `SA13` | ✔ **(was FALSE — see `K2-16`…`K2-20`)** | all seven target files now edited |
+| `K2-09` | `SA04-F-01`'s two universals withdrawn | `SA04` | ✔ | both struck in place |
+| `K2-10` | `SA13` §4.2 ruling-vs-contract reconciled with `SA14` | `SA13` | ✔ | consistent with `XD-06 OPEN` |
+| `K2-11` | `SA12` §4 *"Four"* → eight, extended to eleven | `SA12` | ✔ | matches the enumerated list |
+| `K2-12` | `SA11` §5 heading and sentence corrected | `SA11` | ✔ | §5 and §7.5 agree |
+| `K2-13` | `SA13-F-01` re-framed per `C2-F-22` | `SA13` | ✔ | Boss ruling quoted in place |
+| `K2-14` | `SA15-F-02` qualified per `N-15` | `SA15` | ✔ | matches the decision bodies |
+| `K2-15` | Clean-room scrub, effect measured | `SA_CORR2_03`, `_07` | ✔ | 3 → 0; deltas published |
+| **`K2-16`** | **`SA05` §3.1 status counts superseded; `SA05-F-01` single-root-cause claim struck as falsified** | `SA05` | ✔ | `SUPERSEDED BY CORR2` block present; the struck sentence is struck |
+| **`K2-17`** | **`SA06` `IR-12`/`IR-13`/`IR-14` rows and §2.1 count superseded** | `SA06` | ✔ | rows carry their new status; count block present |
+| **`K2-18`** | **`SA07` §1.1 count and §4's withdrawn convergence** | `SA07` | ✔ | both blocks present |
+| **`K2-19`** | **`SA09` §2.1 count and `SA09-F-03`'s shape claim struck** | `SA09` | ✔ | both present |
+| **`K2-20`** | **`SA15` §4 traversability table: 7 not-traversable → 2** | `SA15` | ✔ | table and header agree |
+| **`K2-21`** | **`SA01`-F-01 superseded — the domain figures were produced by an undeclared instrument** | `SA01` | ✔ | re-measurement table present |
+| **`K2-22`** | **`SA16` re-scoped: 4 of 6 triggers close, 1 narrows, 1 is re-owned as a Boss decision** | `SA16` | ✔ | disposition table present |
+| **`K2-23`** | **`SA19` Decision 4 re-scoped; Boss redirected to `SA_CORR2_13` §14** | `SA19` | ✔ | struck and redirected |
+| **`K2-24`** | **`PACKAGE_MANIFEST_SHA256.txt` regenerated** — CORR2's own edits had broken 8 of 23 hashes while `SA_CORR2_00` §3 published the manifest as verified | `PACKAGE_MANIFEST_SHA256` | ✔ | `shasum -c` → all OK; supersession note added |
+
+**Audit rule for any consumer of this table: a `✔` in the column above is a claim, and the column
+next to it names the command that tested it.** `K2-08` carried a `✔` for one commit while three of
+its seven targets were untouched. The lesson is not that the table was dishonest; it is that
+**a correction register without an executed per-target verification is exactly as weak as the
+disposition table it replaces.**
 
 ---
 

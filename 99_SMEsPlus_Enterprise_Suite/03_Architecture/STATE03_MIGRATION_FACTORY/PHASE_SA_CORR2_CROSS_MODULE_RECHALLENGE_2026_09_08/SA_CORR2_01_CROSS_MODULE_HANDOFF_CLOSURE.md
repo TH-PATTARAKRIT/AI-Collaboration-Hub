@@ -3,7 +3,10 @@
 
 Session: `[SMEPLUS-26-09-08-PHASE-SA-CORR2-XMOD-001]`
 Branch: `architecture/account-phase-sa-corr2-cross-module-rechallenge-2026-09-08-001`
-Evidence frame: `SA_CORR2_00` §2 (183 branches · U1 2,748 blobs · U2 2,606 paths · controls fire)
+Evidence frame: `SA_CORR2_00` §2 **as corrected by `C2-I-02`** — 183 branches · **U1 3,789 text
+blobs · U2 3,561 text paths** · mainline included · controls fire.
+*(The first version of this line cited the superseded v1 frame, including the figure `U2 2,606`
+that `SA_CORR2_00` §2.2 exists to retire. Corrected after adversarial challenge.)*
 
 ---
 
@@ -151,22 +154,39 @@ requires a recorded inventory event is undetermined, and that is accounting-mate
 **Instrument.** PATTERN `drop.?ship` (case-insensitive), POPULATION the 183-branch corpus, UNIT
 unique path (U2), no directory pre-filter, attributed to programme afterwards.
 
+**Disjoint attribution (a path is counted once):**
+
 | Path attribution | Paths (U2) |
 |---|---|
-| `STATE03_MIGRATION_FACTORY` (Group A design/verification tree and Phase SA) | 30 |
+| under `STATE03_MIGRATION_FACTORY` | **78** |
+| everywhere else | **13** |
+| **Total** | **91** |
+
+**Non-disjoint attribution, by owning programme** — these are *children of* `STATE03_MIGRATION_FACTORY`, not siblings of it, and they overlap each other, so **they do not sum to a total**:
+
+| Programme | Paths (U2) |
+|---|---|
 | **`ACCOUNT_REOPEN`** | **20** — of which **16 in `P02_ORDER_TO_CASH`** |
 | `GROUP_A_SALES_INVENTORY_PURCHASE` | 12 |
 | `INVENTORY_REOPEN` | 11 |
-| other | 3 |
-| **Total** | **76** |
+| `PHASE_SA_CROSS_MODULE_ASSURANCE` | 10 |
+| `TEAM_B_DESIGN` | 7 |
+| `EXPERT_IBPV` | 4 |
+
+*(**Corrected after adversarial challenge.** The first version published a total of **76** and set
+`STATE03_MIGRATION_FACTORY` at **30** against three of its own children as if the four were
+disjoint. They are nested: every `ACCOUNT_REOPEN`, `GROUP_A…` and `INVENTORY_REOPEN` path lives
+under `STATE03_MIGRATION_FACTORY`. The "total" was a sum of overlapping rows and counted nothing.
+**The load-bearing sub-claim is unaffected and reproduces exactly: `ACCOUNT_REOPEN` = 20, of which
+16 in the Order-to-Cash package.**)*
 
 CORR1 reported the corpus-wide figure and then read **only the Group A hit**. The twenty
 Account-programme paths were never opened.
 
 ### 4.2 What the Account programme establishes — `FACT VERIFIED`
 
-> **`FACT VERIFIED` — TC-31.** In v19 a dropshipped sale is excluded on **three** independent paths,
-> verified:
+> **`FACT VERIFIED` — TC-31.** In [the current generation] a dropshipped sale is excluded on **three**
+> independent paths, verified:
 > 1. **No stock-side entry** — the delivery gate requires the movement to be an inflow or an
 >    outflow, **and a dropship movement is neither**.
 > 2. **No invoice cost line** — the cost generator's own predicate skips any line whose movements
@@ -209,7 +229,7 @@ three independent paths**, with the consequence that:
 | `SA05` BN-05 | `HOLD` — title-passage question undetermined | **`PARTIAL`** — the inventory-event question is **answered**; what remains is the SMEsPlus determination of where dropship cost is recognised and what links it to the sale | §4.2 |
 | `SA06` IR-13 | `NOT RECONCILED` | **`RECONCILED — AS A MEASURED NEGATIVE`**: a dropship movement is recorded and is deliberately outside valuation. SMEsPlus must decide whether it adopts that | §4.2 |
 | `SA07` AR-24 | `NOT RECONCILED` / `UNKNOWN` | **`PARTIAL`** — recognition point is established for the reference (revenue at invoice, cost at vendor bill, unlinked). The SMEsPlus determination is open | §4.2 |
-| `SA15` E2E-05 | `NOT TRAVERSABLE` | **`TRAVERSABLE WITH A NAMED BREAK`** — every hop now has an evidenced producer and consumer; the break is the missing cost-to-revenue identity and the control-floor bypass `SA03-F-02` | §4.2 + `SA03-F-02` |
+| `SA15` E2E-05 | `NOT TRAVERSABLE` | **`TRAVERSABLE WITH A NAMED BREAK`** — every hop has an **evidenced** producer and consumer, which is what the classification requires. **The break is that one hop is evidenced as incompatible**: `H-02` in §6 grades the dropship-movement→valuation-gate hop `SEMANTICALLY INCOMPATIBLE — MEASURED`, and `H-03` grades the cost→revenue link `NO IDENTITY`. *(Corrected after adversarial challenge, which read "every hop now has an evidenced producer and consumer" as claiming the hops are sound. They are evidenced, and two of them are evidenced as broken — which is the point of a **named** break, and the naming is now explicit.)* | §4.2, §6 |
 
 ### 4.4 `C2-F-02b` — the third-order form of the same defect: CORR1 retreated to its **own coinage**
 
@@ -244,7 +264,7 @@ in the answering party's vocabulary before the negative is published** — and t
 that is to run the instrument against the other party's path set with a positive control proving it
 reaches there.
 
-### 4.4 Nature DNA determination `ND-09` — arising from this closure
+### 4.5 Nature DNA determination `ND-09` — arising from this closure
 
 > **A cross-module fulfilment that produces revenue must produce a cost recognition bound to the
 > same identity, or an explicit, recorded determination that it does not.**
@@ -264,7 +284,7 @@ Found while testing §4. Two Account-programme packages hold incompatible positi
 | Source | Position | Status it carries |
 |---|---|---|
 | `.../04_MENU_B_PRODUCT_CATEGORY_ACCOUNTING_FIELD_REGISTER.md` | *"the Perpetual method 'impacts the stock valuation account at the invoice level' rather than at each stock movement, described as a 'significant shift'… This directly contradicts the interim-account mechanism observed and well-corroborated"* | **`CONFLICTING` — "must not be silently resolved — it is material to `JT-04`"**, and `PROVISIONAL` because it was *"observed via a single documentation-derived summary rather than a directly quoted field label"* |
-| `.../P02_ORDER_TO_CASH/22_P02_TARGETED_CLOSURE_DEPLOYED_EVIDENCE.md` §15.2 | The current generation's own interface labels read **`Periodic (at closing)`** and **`Perpetual (at invoicing)`**, default `periodic` | **`FACT VERIFIED` — TC-29**, read from the product's own field label |
+| `.../P02_ORDER_TO_CASH/22_P02_TARGETED_CLOSURE_DEPLOYED_EVIDENCE.md` §15.2 | The current generation's own interface labels read **"Periodic (at closing)"** and **"Perpetual (at invoicing)"**, with the periodic option as the default | **`FACT VERIFIED` — TC-29**, read from the product's own field label |
 
 **Resolution.** The programme's own standing rule is that **a summary may locate a source but may
 never be the evidence**, and that a secondary source is never silently upgraded to primary. One of

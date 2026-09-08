@@ -88,6 +88,16 @@ Status values: `DETERMINED` / `PARTIAL` / `HOLD`.
 | `PARTIAL` | 11 | BN-01, 02, 03, 06, 09, 11, 12, 13, 14, 15, 16 |
 | `HOLD` | 7 | BN-04, 05, 07, 08, 10, 17, 18 |
 
+> ### SUPERSEDED BY CORR2 — `SA_CORR2_03` §4
+>
+> **All seven `HOLD` natures are discharged to `PARTIAL`, and `BN-06` moves to
+> `EVIDENCED — DESIGN; NOT LIVE`.** The current count is **1 / 17 / 0 of 18**, not 0 / 11 / 7.
+> **None was closed by research.** All seven were closed by reading evidence that already existed in
+> a path set this register's instrument could not reach — see `SA_CORR2_03` §2, which republishes the
+> domain measurement with its pattern declared. The rows in §3 above are left standing as written,
+> because a falsification attempt that was wrong is evidence about the instrument and deleting it
+> would hide that; **their status column is superseded and must not be quoted.**
+
 **No Business Nature is fully determined.** Eleven have an evidenced spine with a named
 open element; seven cannot be routed on current evidence.
 
@@ -111,9 +121,14 @@ Every one of the seven `HOLD` natures depends on a domain classified `THIN` in `
 | BN-17 Quality hold | SA-D19 |
 | BN-18 Equipment breakdown | SA-D20 |
 
-This is a single root cause with seven symptoms, not seven independent gaps. Closing SA-D05,
-D17, D18, D19 and D20 closes all seven. This is recorded as one targeted research programme in
-`SA16`, not seven.
+~~This is a single root cause with seven symptoms, not seven independent gaps. Closing SA-D05,
+D17, D18, D19 and D20 closes all seven.~~ **FALSIFIED BY CORR2 (`C2-F-06`, `SA_CORR2_02` §5).**
+Tested nature by nature: the four `SA-D05`-dependent natures have **four different causes, of four
+different kinds** — a target-design decision (BN-04), a SMEsPlus determination plus an undischarged
+peer handover (BN-05), **nothing at all** (BN-06 was already evidenced), and an ambiguity inside a
+Boss ruling (BN-07). **Only one of the four is closable by research.** The single-root-cause claim
+was asserted and untested; `SA20` §4 recorded that, and CORR2 tested it. `SA16`'s consolidation
+rests on this sentence and is re-scoped at `SA_CORR2_03` §5.
 
 ---
 

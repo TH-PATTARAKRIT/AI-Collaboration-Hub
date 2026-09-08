@@ -53,12 +53,18 @@ arises · `UNKNOWN` = the recognition question cannot be answered on current evi
 
 ### 1.1 Count
 
-| Status | Count |
-|---|---|
-| `RECONCILED` (incl. four `NO POSTING BY DESIGN`) | 13 |
-| `PARTIAL` | 9 |
-| `NOT RECONCILED` (`UNKNOWN`) | 7 |
-| **Total material business flows** | **29** |
+| Status | Count | **CORR2** |
+|---|---|---|
+| `RECONCILED` (incl. `NO POSTING BY DESIGN`) | 13 | **15** |
+| `PARTIAL` | 9 | **14** |
+| `NOT RECONCILED` (`UNKNOWN`) | 7 | **0** |
+| **Total material business flows** | **29** | **29** |
+
+> ### SUPERSEDED BY CORR2 — `SA_CORR2_06` §2.1
+> **All seven `UNKNOWN` rows (`AR-23`…`AR-29`) are re-adjudicated. None remains unanswered.**
+> Master prompt §7 is satisfied in the sense it requires — every material flow has an explicitly
+> determined accounting semantic — which is a weaker claim than *reconciled*, and fourteen carry a
+> named open element.
 
 ---
 
@@ -80,13 +86,14 @@ prohibited.
 
 ## 4. SA07-F-03 — the seven `UNKNOWN` rows are the same seven business natures
 
-AR-23 to AR-29 map one-to-one onto the seven `HOLD` business natures in `SA05` §3.1. Three
-instruments — a routing matrix, an inventory matrix and an accounting matrix — built from
-different evidence and different units now agree on the same seven-item set.
+~~AR-23 to AR-29 map one-to-one onto the seven `HOLD` business natures … Three instruments … now
+agree on the same seven-item set.~~ **WITHDRAWN IN FULL BY CORR2 (`C2-F-16`, `SA_CORR2_06` §1).**
 
-Convergence of three instruments is meaningful only if they are genuinely independent.
-`SA18` tests exactly that, because three instruments that share one blind spot will agree
-just as loudly as three that are correct.
+`SA18-F-01` found the three instruments were not independent — all three inherit `SA01`'s
+classification and `SA05`'s nature list. **CORR2 found it is worse: they shared an *undeclared
+pattern*.** `SA00` §6 states the rule *"MENTION = blob contains any **declared** term"* and the
+package declares no term anywhere. **Three registers agreed because they were three views of one
+unpublished search.** The seven-item set no longer exists (§1.1 above).
 
 ## 5. Accounting event identity — contract status
 

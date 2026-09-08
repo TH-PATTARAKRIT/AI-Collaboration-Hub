@@ -84,10 +84,37 @@ be well evidenced, returns figures an order of magnitude larger:
 | Equipment (operational) | 13 |
 | Project (operational) | **4** |
 
-**SA01-F-01.** Five modules carrying standing Boss boundary decisions are evidenced between
-4 and 34 blobs, against 154–1,216 for domains of comparable architectural weight. Boss has
-ruled on boundaries that no Phase S package has studied. These five are created as domains
-`SA-D17`–`SA-D21` and are all classified `THIN`.
+**SA01-F-01.** ~~Five modules … are evidenced between 4 and 34 blobs, against 154–1,216 for domains
+of comparable architectural weight.~~
+
+> ### SUPERSEDED BY CORR2 — `SA_CORR2_03` §2 (`C2-F-07`, `C2-F-08`)
+>
+> **The figures in §3, §4 and §4.1 of this register were produced by an undeclared instrument.**
+> `SA00` §6 states the rule — *"MENTION = blob contains any **declared** term"* — and **no term is
+> declared anywhere in the package**; §7 gives prose labels, which are descriptions of a search, not
+> a search. The counts are therefore **not reproducible**, and CORR2 could not reproduce any of them.
+>
+> Re-measured over a corpus 1.39× larger, **with the pattern published and executed**, and with two
+> known-deep control domains run through the identical instrument:
+>
+> | Domain | here | CORR2 | controls |
+> |---|---|---|---|
+> | SA-D05 supply routing | 81 | **343** | Tax **777** |
+> | SA-D17 service | 16 | **273** | Inventory **730** |
+> | SA-D18 project / analytic | 4 | **331** | |
+> | SA-D19 quality | 20 | **69** | |
+> | SA-D20 equipment / maintenance | 13 / 34 | **349** | |
+> | SA-D21 commercial policy | 18 / 16 | **195** | |
+>
+> The contrast this finding rests on — *an order of magnitude* — becomes **2.1× to 11.3×**. Four of
+> the six sit within 2.2×–4.1× of a domain this register calls deep. **Only `SA-D19` Quality survives
+> as genuinely thin**, and even there the figure is 69, not 20.
+>
+> **`SA00` §6 stated the correct caveat** — *"MENTION is a **floor**, not a coverage measure"* — and
+> this register used the floor as a coverage measure. **The caveat travelled one file and died.**
+>
+> The creation of `SA-D17`…`SA-D21` as domains **stands**: Boss boundary decisions with no domain
+> package is a real coverage gap. Only their `THIN` classification is superseded.
 
 ---
 

@@ -40,21 +40,27 @@ completion and *"actually moved"* after. SMEsPlus will name these separately.
 | IR-09 | Internal transfer | Yes | Inventory programme | `RECONCILED` |
 | IR-10 | Inventory adjustment | Yes | Inventory programme | `RECONCILED` |
 | IR-11 | Partial fulfilment / remaining supply | Yes — self-referential remaining-supply record | Group A | `RECONCILED — no commercial consumer (`SA03-F-01`)` |
-| IR-12 | Kit / bundle component movement | **Undetermined** — component resolution point unknown | — | **`NOT RECONCILED`** — `SA05` BN-07 |
-| IR-13 | Dropship — title passes without own-warehouse movement | **Undetermined** — whether a non-physical inventory event is required | — | **`NOT RECONCILED`** — `SA05` BN-05 |
-| IR-14 | Quality hold / rejected receipt | **Undetermined** — is a rejection an inventory event, a return, or neither | — | **`NOT RECONCILED`** — `SA05` BN-17 |
+| IR-12 | Kit / bundle component movement | ~~Undetermined~~ **DETERMINED (CORR2)** — a kit is a structure-level flag; fulfilment redirects to **component** movements at rule dispatch and the parent never moves | `SA_CORR2_05` §4 | **`RECONCILED`** |
+| IR-13 | Dropship — title passes without own-warehouse movement | ~~Undetermined~~ **DETERMINED (CORR2)** — the movement **is** recorded and is neither an inflow nor an outflow, so the valuation gate excludes it on three independent paths | `SA_CORR2_01` §4 | **`RECONCILED — AS A MEASURED NEGATIVE`** |
+| IR-14 | Quality hold / rejected receipt | ~~Undetermined~~ **DETERMINED (CORR2)** — a hold is a **location state**: internal→internal, so it changes availability and emits **no** valuation fact. Only the disposition posts | `SA_CORR2_05` §3 | **`RECONCILED — RULE DETERMINED`** |
 | IR-15 | Asset capitalization from stock | Conditional — Boss `36c62ab3` separates Equipment from Fixed Asset | P04, asset programme | `PARTIAL` |
 | IR-16 | Cross-company transfer | Yes physically; company-scoped tax interaction under BD-ACC-02 open | Inventory programme | `PARTIAL` |
 | IR-17 | Consumption by a service or project | **Undetermined** | — | **`NOT RECONCILED`** — SA-D17, SA-D18 |
 
 ### 2.1 Count
 
-| Status | Count |
-|---|---|
-| `RECONCILED` | 11 |
-| `PARTIAL` | 2 |
-| `NOT RECONCILED` | 4 |
-| **Total stock-affecting flows** | **17** |
+| Status | Count | **CORR2** |
+|---|---|---|
+| `RECONCILED` | 11 | **14** |
+| `PARTIAL` | 2 | **3** |
+| `NOT RECONCILED` | 4 | **1** |
+| **Total stock-affecting flows** | **17** | **18** — `IR-18` maintenance part issue added |
+
+> ### SUPERSEDED BY CORR2 — `SA_CORR2_05` §2.1
+> `IR-12`, `IR-13`, `IR-14` are reconciled; `IR-17` moves to `PARTIAL`; `IR-18` is added and is the
+> **only** remaining `NOT RECONCILED` flow. **`SA06-F-03` is not withdrawn** — its bounded measured
+> absence was correct within its four declared populations; the defect was this table promoting a
+> bounded absence to a status without searching outside the bound.
 
 ---
 

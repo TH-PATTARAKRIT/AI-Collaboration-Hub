@@ -3,6 +3,10 @@
 
 Session: `[SMEPLUS-26-09-08-PHASE-SA-CORR2-XMOD-001]`
 Supersedes at claim level: `SA05` §3.1 status counts and the `SA05-F-01` root-cause statement.
+**Scope of this register: the four `SA-D05`-dependent natures — BN-04, BN-05, BN-06, BN-07.** The
+other four `HOLD` natures (BN-08, BN-10, BN-17, BN-18) are adjudicated in `SA_CORR2_03` §3 and
+their statuses are set there, not here. *(Earlier drafts of §1, §4 and §5 variously said "six" and
+"four"; corrected after adversarial challenge.)*
 Does **not** supersede: `SA05` §2 (the routing principle) or `SA05` §2.2 (the alternatives),
 which are re-verified and carried unchanged.
 Evidence frame: `SA_CORR2_00` §2.
@@ -31,7 +35,7 @@ a **domain**. Those are different things, and the difference is four business na
 
 Master prompt §4 requires the Business Natures to be enumerated from existing Phase SA evidence
 rather than invented. `SA05` §3 defines eighteen (`BN-01`…`BN-18`). That enumeration is **adopted
-unchanged**; no nature is added or removed by this round. Only the status of six changes.
+unchanged**; no nature is added or removed by this round. Only the status of the four named above changes here; four more change in `SA_CORR2_03` §3.
 
 ---
 
@@ -105,8 +109,12 @@ above, and their statuses are set there.
 | Status | `SA05` (before) | CORR2 (after, for the six re-adjudicated) |
 |---|---|---|
 | `DETERMINED` / `EVIDENCED — DESIGN` | 0 | **1** — BN-06 |
-| `PARTIAL` | 11 | **14** — the eleven, plus BN-04, BN-05, BN-07 |
-| `HOLD` | 7 | **3** — BN-08, BN-10, BN-17, BN-18 pending `SA_CORR2_03`; see §3.6 |
+| `PARTIAL` | 11 | **13** — the eleven **less BN-06**, which moves up, plus BN-04, BN-05, BN-07 |
+| `HOLD` | 7 | **4** — BN-08, BN-10, BN-17, BN-18, pending `SA_CORR2_03` §3; see §3.6 |
+
+1 + 13 + 4 = 18. *(**Corrected after adversarial challenge.** First published `1 / 14 / 3`: the
+`HOLD` row **listed four identifiers and said three**, and `BN-06` was double-counted — left in
+`PARTIAL` while also being promoted. Neither error changed the total, which is why both survived.)*
 
 The final count is set in `SA_CORR2_03` §4 once the functional-domain extraction is adjudicated.
 **It is not asserted here**, because asserting a total before its constituents are decided is how a

@@ -1,6 +1,21 @@
 # SA16 — TARGETED VERY DEEP RESEARCH REGISTER
 
-Status: **6 triggers raised, 0 executed in this session.**
+Status: ~~**6 triggers raised, 0 executed in this session.**~~
+**RE-SCOPED BY CORR2 — `SA_CORR2_03` §5. Four of the six close on existing evidence; one narrows to
+a single object; one survives.**
+
+| Trigger | CORR2 disposition |
+|---|---|
+| `TVDR-01` Supply routing | **CLOSE — evidence exists.** Then decide `C2-D-01`, `C2-D-02`, `C2-D-03` |
+| `TVDR-02` Service | **CLOSE — evidence exists.** Decide what a service obligation record contains |
+| `TVDR-03` Project / Analytic | **CLOSE — evidence exists.** Decide how a derived view avoids the evidenced triple-write |
+| `TVDR-04` Quality | **PARTIALLY OPEN** — routing answered and Boss-ruled; **the Quality *object* is genuinely absent** (0 blobs, two command shapes) |
+| `TVDR-05` Equipment / Maintenance | **RE-OWNED, NOT CLOSED.** The reference behaviour is `FACT VERIFIED` with a declared denominator — *maintenance cost never becomes an accounting fact at all*. That answers *what the reference does*, **not** *where SMEsPlus puts it*, and TAS 2 ¶12 requires the opposite. It becomes a Boss decision joined to `BLK-07`, not a research task |
+| `TVDR-06` Commercial policy | **NARROWED — scoped research still warranted** |
+
+**The consolidated programme is smaller than this register scoped it**, because §3's consolidation
+rests on `SA05-F-01`, which CORR2 tested and falsified. It is **not** one-sixth: one trigger is
+re-owned rather than closed, and two remain open.
 Protocol: Very Deep Research Re-entry Protocol `54dd32f2`; master prompt §23.
 
 ---

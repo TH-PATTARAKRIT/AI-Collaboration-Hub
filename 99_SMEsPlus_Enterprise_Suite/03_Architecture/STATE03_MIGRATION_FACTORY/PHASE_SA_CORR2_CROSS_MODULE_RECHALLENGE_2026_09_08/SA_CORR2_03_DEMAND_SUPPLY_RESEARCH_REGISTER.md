@@ -75,20 +75,26 @@ CTRL-INV  stock (move|movement|valuation|reservation)|warehouse|transfer documen
 
 | Domain | `SA01` figure *(pattern undeclared)* | CORR2 blobs (U1) | CORR2 paths (U2) | Ratio, **discounted** for corpus growth |
 |---|---|---|---|---|
-| SA-D05 Supply routing | 81 | **343** | 322 | **3.0×** |
+| SA-D05 Supply routing | 81 | **343** | 323 | **3.1×** |
 | SA-D17 Service delivery | 16 | **273** | 252 | **12.3×** |
 | SA-D18 Project ↔ Analytic | 4 | **331** | 310 | **59.5×** |
 | SA-D19 Quality / inspection | 20 | **69** | 70 | **2.5×** |
 | SA-D20 Equipment / Maintenance | 13 / 34 | **349** | 348 | **7.4×** on the larger prior figure |
 | SA-D21 Commercial policy | 18 / 16 | **195** | 187 | **7.8×** on the larger prior figure |
 | **CTRL-TAX** *(known deep)* | 1,216 | **777** | 767 | — |
-| **CTRL-INV** *(known deep)* | — | **730** | 690 | — |
+| **CTRL-INV** *(known deep)* | — | **730** | 681 | — |
 | **NEG control** | — | **0** | **0** | — |
 
-**The discount is stated because it must be.** The v2 corpus is 3,789 blobs against `SA00`'s 2,722 —
-**1.39× larger**, chiefly because the mainline tree is now included. Every ratio above is the raw
-ratio divided by 1.39. A comparison between two corpora of different sizes that does not say so is
-not a comparison.
+**The discount is stated because it must be.** The v2 corpus is **3,789** blobs against this round's
+own v1 figure of **2,748** — **1.379× larger**, chiefly because the mainline tree is now included.
+Every ratio above is the raw ratio divided by **1.379**. A comparison between two corpora of
+different sizes that does not say so is not a comparison.
+
+*(An earlier version divided by 1.39, using `SA00`'s reported **2,722** as the baseline. That is the
+parent's count under the parent's method; the correct denominator for a like-for-like discount is
+this round's own v1 measurement, 2,748. The difference is immaterial to every conclusion and is
+corrected because two baselines for one correction factor is exactly the defect this register
+reports elsewhere.)*
 
 ### 2.2.1 `K2-15` — two vendor object names were removed from the published pattern, with the effect measured
 
@@ -99,8 +105,8 @@ were removed and the effect measured rather than asserted:
 
 | Pattern | With the vendor tokens | Clean | Δ |
 |---|---|---|---|
-| `SA-D05` supply routing | 363 blobs | **343** | −20 |
-| `CTRL-INV` control | 800 blobs | **730** | −70 |
+| `SA-D05` supply routing | 363 blobs / 343 paths | **343 blobs / 323 paths** | −20 blobs |
+| `CTRL-INV` control | 800 blobs / 751 paths | **730 blobs / 681 paths** | −70 blobs |
 
 **The table in §2.2 reports the clean figures.** The deltas are published because a scrub that
 silently changes a load-bearing count is indistinguishable from a correction, and because the

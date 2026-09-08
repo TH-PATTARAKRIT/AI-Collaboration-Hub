@@ -57,7 +57,7 @@ has never cited — the `SA00-I-01` class.
 |---|---|---|---|
 | `NIST` | 8 blobs | **1** | Matches inside `ADMINISTRATIVE`, `ADMINISTERED` — and, **not previously recorded, inside `DETERMINISTIC` / `NON-DETERMINISTIC`**, which this programme writes constantly |
 | `SOX` | 1 | **1** | `SA11` §9.2 reported *"175 hits inside one binary document"*. **Not reproducible here — and not thereby refuted:** the corpus extracts only `.md/.txt/.csv`, and the path set contains 19 `.pdf`, 6 `.zip`, 4 `.docx` and 1 `.jpg` never extracted. `SA11`'s figure came from a byte search this corpus does not perform |
-| **`COSO`** | **18 blobs** | **2** | **New. Case-insensitive `COSO` matches `Ecosoft`**, a Thai localization vendor name. Any COSO count run case-insensitively is ~9× inflated. Case-sensitive **2** corroborates `SA11` §9.2's *"COSO is cited exactly once"* once the mainline is added |
+| **`COSO`** | **18 blobs** | **2** | **New. Case-insensitive `COSO` matches, as a substring, the name of a Thai localization vendor that appears throughout the corpus.** Any COSO count run case-insensitively is ~9× inflated. Case-sensitive **2** corroborates `SA11` §9.2's *"COSO is cited exactly once"* once the mainline is added |
 
 **A fourth collision, on an identifier rather than a standard:** word-bounded `AUD-10` returns 23
 blobs, of which about 22 are **`M-AUD-10`**, an unrelated accounting finding. `AUD-10` is a Boss
@@ -123,16 +123,21 @@ repository's governance model"*, logged as `GAP-KC-01`.
 quarantine — a governance act. This session has no authority to retract published material and does
 not attempt it.** Carried to `SA_CORR2_13` as a Boss governance item.
 
-### 3.2 It is the only one — established three ways
+### 3.2 No second instance was found — established three ways, and stated as a bounded negative
 
 | Instrument | Result |
 |---|---|
 | Every named-standard token above, line-level, joined to paths | 1 unqualified claim |
-| Compliance-assertion verbs — `compliant with\|complies with\|conforms to\|conformant\|adheres to\|certified (to\|against\|under)\|is certified\|ISO-certified\|GDPR-compliant\|PDPA-compliant\|fully compliant` | **36 hits, all read.** None is an unqualified named-standard claim about SMEsPlus |
+| Compliance-assertion verbs — `compliant with\|complies with\|conforms to\|conformant\|adheres to\|certified (to\|against\|under)\|is certified\|ISO-certified\|GDPR-compliant\|PDPA-compliant\|fully compliant` | **48 occurrences across 45 blobs / 45 paths, all read.** None is an unqualified named-standard claim about SMEsPlus. *(First published as "36 hits" with no unit; not reproducible under any unit. Corrected after adversarial challenge.)* |
 | The heading form `standards? compliance` | 7 blobs — 6 are code-review checklist items, 1 is `SA11` quoting the claim |
 
 All six files in `16_Learning_Analysis/` were swept individually. **Only `01_SYSTEM_OVERVIEW.md`
 carries a named-standard compliance claim.**
+
+**The permitted form of this claim is *no second instance was found by these three instruments over
+this population* — not *it is the only one*.** The first version wrote the universal. The corpus
+extracts only `.md`/`.txt`/`.csv`, so 19 `.pdf`, 6 `.zip`, 4 `.docx` and 1 `.jpg` in the path set
+were never searched, and a compliance claim inside a slide deck would not have been seen.
 
 **`CERTIFICATION/ATTESTATION VERIFIED` — 0 instances.** No certificate, service-auditor report or
 attestation of any kind exists in the corpus.

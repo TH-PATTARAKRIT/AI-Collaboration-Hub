@@ -1,7 +1,9 @@
 # SA15 — END-TO-END SCENARIO REGISTER
 
 Status: **HOLD** — 15 mandated scenarios plus 3 added; **4** traversable end-to-end with no named break
-(E2E-02, E2E-11, E2E-12, E2E-15), 7 with a named break, 7 not traversable.
+(E2E-02, E2E-11, E2E-12, E2E-15), **12** with a named break, **2** not traversable (E2E-04, E2E-07).
+*(Distribution superseded by CORR2 — `SA_CORR2_01` §4.3 and `SA_CORR2_03` §3. `SA15-F-01` is
+unchanged: none of the four is a forward sale.)*
 *(CORR2 `K2-02`: this line previously read "6 traversable". CORR1's `CH-05` corrected the §4 table and
 not the header that summarises it — the same revision-log defect the package documents elsewhere.
 The identifiers are now carried in the header so the two cannot drift apart again.)*
@@ -58,8 +60,18 @@ Counted by enumerating the identifiers in each class, not by asserting a total.
 |---|---|---|
 | `TRAVERSABLE` | E2E-02, E2E-11, E2E-12, E2E-15 | 4 |
 | `TRAVERSABLE WITH NAMED BREAK` | E2E-01, E2E-03, E2E-06, E2E-09, E2E-10, E2E-13, E2E-14 | 7 |
-| `NOT TRAVERSABLE` | E2E-04, E2E-05, E2E-07, E2E-08, E2E-16, E2E-17, E2E-18 | 7 |
+| `NOT TRAVERSABLE` | E2E-04, E2E-07 | **2** |
 | **Total** | 15 mandated + 3 added | **18** |
+
+> ### SUPERSEDED BY CORR2 — `SA_CORR2_01` §4.3, `SA_CORR2_03` §3
+> **Five of the seven move to `TRAVERSABLE WITH A NAMED BREAK`:** `E2E-05` dropship, `E2E-08`
+> service, `E2E-16` quality hold, `E2E-17` equipment breakdown, and `E2E-18` project — the last
+> **traversed and found to duplicate financial truth three ways**, which is a better Pre-Test input
+> than an untraversed route. Current distribution: **4 traversable · 12 with a named break ·
+> 2 not traversable**. `E2E-04` and `E2E-07` remain, on decision grounds (`C2-D-01`, `C2-D-03`).
+>
+> **`SA15-F-01` survives unchanged and is still the most important sentence in this register:** none
+> of the four fully traversable scenarios is a forward sale, and `E2E-01` still carries two breaks.
 
 Check: 4 + 7 + 7 = 18, and every identifier E2E-01…E2E-18 appears exactly once above.
 

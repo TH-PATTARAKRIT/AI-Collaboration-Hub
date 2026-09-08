@@ -70,13 +70,17 @@ Rows whose status changes are marked **▲**. Unchanged rows are carried by poin
 
 | Status | `SA07` | **CORR2** |
 |---|---|---|
-| `RECONCILED` (incl. 5 `NO POSTING BY DESIGN`) | 13 | **16** |
-| `PARTIAL` | 9 | **13** |
+| `RECONCILED` (incl. 5 `NO POSTING BY DESIGN`) | 13 | **15** — AR-01…AR-10, AR-13…AR-16, AR-28 |
+| `PARTIAL` | 9 | **14** — AR-11, AR-12, AR-17…AR-27, AR-29 |
 | `UNKNOWN` / `NOT RECONCILED` | 7 | **0** |
 | **Total material business flows** | **29** | **29** |
 
+*(**Corrected after adversarial challenge.** First published `16 / 13 / 0`. Total right, classes
+wrong. Same defect as `SA_CORR2_05` §2.1 and found the same way — by reading the status column
+rather than trusting the identifier check that had already passed.)*
+
 Check, executed mechanically rather than asserted: the §2 table's first column yields **29 distinct
-identifiers**, `AR-01`…`AR-29`, **each exactly once**, and 16 + 13 + 0 = 29.
+identifiers**, `AR-01`…`AR-29`, **each exactly once**, and **15 + 14 + 0 = 29**.
 *(The first draft of this line was **false as written**: §2 compressed six rows into `AR-01…AR-06`
 and three into `AR-07…AR-09`, so a mechanical enumeration returned 24, not 29. The claim read true
 to a human and failed its own check. Rows are now written out. Found by this session's own
