@@ -50,7 +50,7 @@ stated in the register that measures is not inherited by the register that class
 
 ```text
 SA-D05  drop.?ship|make.?to.?order|\bMTO\b|buy.?to.?order|procurement rule|stock rule|
-        replenish|reorder(ing)? rule|orderpoint|phantom|bill of material|\bBOM\b|kit\b|kits\b|
+        replenish|reorder(ing)? rule|reorder point|phantom|bill of material|\bBOM\b|kit\b|kits\b|
         kitting|component.{0,25}(resolution|explosion|explode)|route.{0,20}(rule|dispatch)|
         supply (method|route|nature)
 SA-D17  \bservice (order|type|product|item|revenue|delivery|line)\b|non.?stock|
@@ -68,27 +68,48 @@ SA-D20  equipment|maintenance (order|request|team|plan|cost|schedule)|preventive
 SA-D21  price ?list|pricing (rule|policy|method)|discount|credit (limit|control|hold|block)|
         customer (hold|blocked)|payment term|price determination|margin (policy|rule)
 CTRL-TAX  \bVAT\b|withholding|\bWHT\b|tax (register|invoice|point|determination|code)|fiscal position
-CTRL-INV  stock (move|movement|quant|valuation|reservation)|warehouse|picking|on.?hand|reserved quantity
+CTRL-INV  stock (move|movement|valuation|reservation)|warehouse|transfer document|on.?hand|reserved quantity
 ```
 
 ### 2.2 Result
 
 | Domain | `SA01` figure *(pattern undeclared)* | CORR2 blobs (U1) | CORR2 paths (U2) | Ratio, **discounted** for corpus growth |
 |---|---|---|---|---|
-| SA-D05 Supply routing | 81 | **363** | 343 | **3.2×** |
+| SA-D05 Supply routing | 81 | **343** | 322 | **3.0×** |
 | SA-D17 Service delivery | 16 | **273** | 252 | **12.3×** |
 | SA-D18 Project ↔ Analytic | 4 | **331** | 310 | **59.5×** |
 | SA-D19 Quality / inspection | 20 | **69** | 70 | **2.5×** |
 | SA-D20 Equipment / Maintenance | 13 / 34 | **349** | 348 | **7.4×** on the larger prior figure |
 | SA-D21 Commercial policy | 18 / 16 | **195** | 187 | **7.8×** on the larger prior figure |
 | **CTRL-TAX** *(known deep)* | 1,216 | **777** | 767 | — |
-| **CTRL-INV** *(known deep)* | — | **800** | 751 | — |
+| **CTRL-INV** *(known deep)* | — | **730** | 690 | — |
 | **NEG control** | — | **0** | **0** | — |
 
 **The discount is stated because it must be.** The v2 corpus is 3,789 blobs against `SA00`'s 2,722 —
 **1.39× larger**, chiefly because the mainline tree is now included. Every ratio above is the raw
 ratio divided by 1.39. A comparison between two corpora of different sizes that does not say so is
 not a comparison.
+
+### 2.2.1 `K2-15` — two vendor object names were removed from the published pattern, with the effect measured
+
+The first version of the pattern above carried **two reference-system object names** (a
+replenishment-rule object and a transfer-document object). Publishing a pattern is required for
+reproducibility; publishing a *vendor object name* on a Layer 1 surface is a clean-room leak. Both
+were removed and the effect measured rather than asserted:
+
+| Pattern | With the vendor tokens | Clean | Δ |
+|---|---|---|---|
+| `SA-D05` supply routing | 363 blobs | **343** | −20 |
+| `CTRL-INV` control | 800 blobs | **730** | −70 |
+
+**The table in §2.2 reports the clean figures.** The deltas are published because a scrub that
+silently changes a load-bearing count is indistinguishable from a correction, and because the
+control moved further than the subject did — which *narrows* the gap in §2.3 and therefore works
+**against** this register's own conclusion. It is reported for that reason.
+
+Found by a mechanical per-file token count against the parent package's baseline of **0**, run as
+the closing sweep. **No review caught it, and the leaked text was correct** — which is exactly how
+this defect class presents.
 
 ### 2.3 `C2-F-08` — the classification does not survive its own contrast test
 
@@ -99,8 +120,8 @@ Re-run through one declared instrument, the same contrast is:
 
 | | Range |
 |---|---|
-| The five `THIN` domains + SA-D05 | **69 – 363** blobs |
-| The two known-deep controls | **777 – 800** blobs |
+| The five `THIN` domains + SA-D05 | **69 – 349** blobs |
+| The two known-deep controls | **730 – 777** blobs |
 | **Gap** | **2.1× to 11.3×** — not an order of magnitude, except for Quality |
 
 **Four of the six are within 2.2×–4.1× of a domain the register itself calls deep.** The `THIN`
@@ -108,7 +129,7 @@ classification does not survive the contrast that was offered as its justificati
 
 ### 2.4 The one that survives — and it is a real result
 
-**`SA-D19` Quality is genuinely the thinnest, at 69 blobs against controls of 777–800 — an 11.3×
+**`SA-D19` Quality is genuinely the thinnest, at 69 blobs against controls of 730–777 — an 11.3×
 gap.** It is the only one of the six for which `SA01`'s order-of-magnitude claim holds.
 
 That figure is itself a correction of this round's own first attempt, published under the
@@ -260,11 +281,15 @@ three packages to four. The two findings were in adjacent registers and no contr
 | Status | Count | Natures |
 |---|---|---|
 | `EVIDENCED — DESIGN; NOT LIVE` | **1** | BN-06 |
-| `PARTIAL` | **17** | BN-01, 02, 03, 04, 05, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17, 18 |
+| `PARTIAL` | **17** | BN-01, BN-02, BN-03, BN-04, BN-05, BN-07, BN-08, BN-09, BN-10, BN-11, BN-12, BN-13, BN-14, BN-15, BN-16, BN-17, BN-18 |
 | `HOLD` | **0** | — |
 | **Total** | **18** | |
 
-Check: 1 + 17 + 0 = 18, and every identifier `BN-01`…`BN-18` appears exactly once above.
+Check, executed mechanically: the table above yields **18 distinct identifiers**, `BN-01`…`BN-18`,
+**each exactly once**, and 1 + 17 + 0 = 18.
+*(The first draft wrote the seventeen as `BN-01, 02, 03, …`, which a mechanical enumeration reads as
+one identifier and sixteen bare numbers. The claim was true to a reader and unverifiable by a
+checker. Corrected; found by this session's own pre-commit sweep.)*
 
 > **`SA05`'s seven `HOLD` natures are all discharged to `PARTIAL`. None was closed by research.
 > All seven were closed by reading evidence that already existed, in a path set the instrument did

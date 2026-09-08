@@ -163,7 +163,11 @@ attestation of any kind exists in the corpus.
 
 `03_STEP040206_69_ITEM_REVALIDATION_REPORT.md`:
 
-> `6. ✓ DELTA-006 (PS04-EXT-0022): l10n_th_reports_ext — TAS compliance (Thailand Accounting Standards)`
+> `6. ✓ DELTA-00n (PS04-EXT-nnnn): <a third-party Thai statutory-reporting extension> — TAS compliance (Thailand Accounting Standards)`
+>
+> *(CORR2 `K2-15`: the extension's technical module name is redacted here. It is a Layer 2 identifier
+> and this is a Layer 1 register. The path and line are cited so the reader can resolve it under
+> Layer 2 access; the finding does not depend on the name.)*
 
 under a section headed **`Revalidation Confidence: HIGH`**.
 

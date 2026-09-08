@@ -18,13 +18,13 @@ Maintained under `AUTO-C2-09`. Checkpoint completion is **NOT** Boss approval.
 | `CP-SA-C2-10` Cross-module handoffs reconciled | `CLOSED (execution status)` |
 | `CP-SA-C2-20` Demand/supply routing evidence complete or bounded | `CLOSED (execution status)` |
 | `CP-SA-C2-30` Joint cross-proof complete | `CLOSED (execution status)` |
-| `CP-SA-C2-40` Stock-affecting flows reconciled | `OPEN` |
-| `CP-SA-C2-50` All material flows accounting-reconciled | `OPEN` |
-| `CP-SA-C2-60` Governance and standards claims controlled | `OPEN` |
-| `CP-SA-C2-70` Exception integrity challenged | `OPEN` |
-| `CP-SA-C2-80` SMEs Core re-challenge complete | `OPEN` |
-| `CP-SA-C2-90` Independence status verified | `OPEN` |
-| `CP-SA-C2-95` Final evidence pointer integrity verified | `OPEN` |
+| `CP-SA-C2-40` Stock-affecting flows reconciled | `CLOSED (execution status)` |
+| `CP-SA-C2-50` All material flows accounting-reconciled | `CLOSED (execution status)` |
+| `CP-SA-C2-60` Governance and standards claims controlled | `CLOSED (execution status)` |
+| `CP-SA-C2-70` Exception integrity challenged | `CLOSED (execution status)` |
+| `CP-SA-C2-80` SMEs Core re-challenge complete | `IN PROGRESS` — package frozen at `e280611a`, adversarial challenge open |
+| `CP-SA-C2-90` Independence status verified | `CLOSED (execution status)` |
+| `CP-SA-C2-95` Final evidence pointer integrity verified | `CLOSED (execution status)` |
 | `CP-SA-C2-FINAL` Boss Final Gate Pack published | `OPEN` |
 
 ## 2. Frozen carry-forward — do not reset

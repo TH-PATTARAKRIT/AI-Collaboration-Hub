@@ -37,13 +37,21 @@ Rows whose status changes are marked **▲**. Unchanged rows are carried by poin
 
 | # | Business flow | `SA07` | **CORR2** | Recognition point, as now established |
 |---|---|---|---|---|
-| AR-01…AR-06 | delivery, billing, receipt, receipt, vendor billing, payment | `RECONCILED` | `RECONCILED` | unchanged |
-| AR-07…AR-09 | commitment, terms freeze, reservation | `NO POSTING BY DESIGN` | unchanged | |
+| AR-01 | Sales delivery of stocked goods | `RECONCILED` | `RECONCILED` | unchanged |
+| AR-02 | Customer billing | `RECONCILED` | `RECONCILED` | unchanged |
+| AR-03 | Customer receipt | `RECONCILED` | `RECONCILED` | unchanged |
+| AR-04 | Purchase receipt | `RECONCILED` | `RECONCILED` | unchanged |
+| AR-05 | Vendor billing | `RECONCILED` | `RECONCILED` | unchanged |
+| AR-06 | Supplier payment | `RECONCILED` | `RECONCILED` | unchanged |
+| AR-07 | Commercial commitment | `NO POSTING BY DESIGN` | unchanged | |
+| AR-08 | Commercial-terms freeze | `NO POSTING BY DESIGN` | unchanged | |
+| AR-09 | Stock reservation | `NO POSTING BY DESIGN` | unchanged | |
 | AR-10 | Internal transfer (same company) | `PARTIAL` | **▲ `RECONCILED — NO POSTING BY DESIGN`** | The internal / non-internal boundary rule (`SA_CORR2_05` §3) determines it: internal→internal emits no valuation fact. **Neutrality is configuration-protected, and that is now a named control obligation, not an open recognition question** |
 | AR-11 | Manufacturing consumption + FG receipt | `PARTIAL` | `PARTIAL` | unchanged — fixed-overhead injection absent |
 | AR-12 | Scrap / variance | `PARTIAL` | `PARTIAL` | unchanged — one variance of nine; no cost causality |
-| AR-13, AR-14 | Sales / purchase return | `RECONCILED — as a ruling` | **▲ `RECONCILED — AND EVIDENCED`** | A credit note posts and reverses **revenue, receivable, tax and cost**, `FACT VERIFIED`. No longer ruling-only |
-| AR-15, AR-16 | Capitalization, depreciation | `RECONCILED` | unchanged | |
+| AR-13 · AR-14 | Sales return · purchase return | `RECONCILED — as a ruling` | **▲ `RECONCILED — AND EVIDENCED`** | A credit note posts and reverses **revenue, receivable, tax and cost**, `FACT VERIFIED`. No longer ruling-only |
+| AR-15 | Asset capitalization | `RECONCILED` | unchanged | |
+| AR-16 | Depreciation | `RECONCILED` | unchanged | |
 | AR-17 | Asset derecognition | `PARTIAL` | `PARTIAL` | unchanged |
 | AR-18 | Employee expense | `PARTIAL` | `PARTIAL` | unchanged |
 | AR-19 | Time-based recognition | `PARTIAL` | `PARTIAL` | unchanged |
@@ -67,7 +75,12 @@ Rows whose status changes are marked **▲**. Unchanged rows are carried by poin
 | `UNKNOWN` / `NOT RECONCILED` | 7 | **0** |
 | **Total material business flows** | **29** | **29** |
 
-Check: 16 + 13 + 0 = 29, and every identifier `AR-01`…`AR-29` appears exactly once in §2.
+Check, executed mechanically rather than asserted: the §2 table's first column yields **29 distinct
+identifiers**, `AR-01`…`AR-29`, **each exactly once**, and 16 + 13 + 0 = 29.
+*(The first draft of this line was **false as written**: §2 compressed six rows into `AR-01…AR-06`
+and three into `AR-07…AR-09`, so a mechanical enumeration returned 24, not 29. The claim read true
+to a human and failed its own check. Rows are now written out. Found by this session's own
+pre-commit arithmetic sweep — `SA_CORR2_12` §3 — not by review.)*
 
 > **Master prompt §7 is now satisfied in the sense it actually requires: every material business
 > flow has an explicitly determined accounting semantic.** Thirteen of them have a named open
