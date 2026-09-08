@@ -90,3 +90,82 @@ Carried to `SA12` (clean-room / Nature DNA) and `SA19`.
 reconciled until the supply-routing and quality triggers are determined.
 
 Boss remains the sole Final Approver.
+
+---
+
+## 5. Addendum — SMEs Core inventory-domain evidence intake
+
+### SA06-F-03 — the kit / bill-of-material absence is a measured absence, with the pattern published
+
+`IR-12` was classified `NOT RECONCILED` above on the strength of an undetermined resolution
+point. The inventory-domain extraction supplies a stronger and properly bounded statement:
+
+| Clause | Declaration |
+|---|---|
+| POPULATION | all files of the R4 L1–L12 execution package (`fc0b1688`, 26 files) **and** the three multi-tenant invariant package folders (`dcb92278` 17, `bd096ffa` 18, `a57bd555` 17) |
+| PATTERN | case-insensitive `\bkits?\b\|phantom\|bill of material` |
+| UNIT | one file with ≥ 1 match |
+| RESULT | **0 files across all four populations** |
+| POSITIVE CONTROL | the identical pattern returns 1 and 9 hits on two manufacturing-lineage files — **the pattern fires** |
+
+The permitted form of this claim is therefore *"no kit or bill-of-material handling was found
+within these four populations"* — **not** *"no kit handling exists"*. The extraction records
+that whether this is a scope decision or an omission is not determinable from these packages.
+Carried to `SA16` TVDR-01 as a bounded question, not asserted as a defect.
+
+### SA06-F-04 — a reservation is not a first-class fact, and an adjustment can silently break a customer promise
+
+Recorded in the R4 lineage (`fc0b1688`): reservation is held as a *quantity on the balance
+record* rather than as an independent, addressable reservation record. The consequence, quoted:
+
+> An adjustment can therefore reduce a reservation without any actor intending to break a
+> customer promise.
+
+Status in its own register: *"Semantic drift confirmed as structurally possible … a reservation
+must be a first-class, addressable fact if the promise it represents is to survive an
+adjustment. Carried, not closed."* The associated concurrency conflict is recorded as an
+unarbitrated conflict *"reconciled to a hold, not settled"*, and the reservation-policy default
+(reserve at order confirmation vs at warehouse pick time) is an open gap requiring user validation.
+
+**Phase SA determination (Nature DNA, ND-05).** SMEsPlus makes **a reservation a first-class,
+addressable business fact with its own identity and lifecycle.** Independent rationale: a
+reservation is a *promise to a customer*, and `SA03` already shows the commercial side reads
+availability only advisorily. If the promise is a derived quantity, no control can detect that
+it was silently consumed, and no audit can show who consumed it. This is SMEsPlus choosing
+differently from the evidenced reference shape, and the reason is stated.
+
+Consequence to carry: on-hand, reserved and incoming are recorded in that lineage as *"not
+three separate risks; they are one missing capability expressed three times"* — a deterministic
+identity that makes a retry safe. That is handoff element 15, and it is one of the three
+elements recorded as unsuppliable.
+
+### SA06-F-05 — internal-transfer financial neutrality is protected only by configuration
+
+R4 records that internal-to-internal movement must not produce a value event, and that this
+neutrality *"is protected only by configuration; no independent check exists"*.
+
+This bears directly on `IR-09`/`AR-10`. A neutrality that depends on configuration is a
+neutrality that a configuration change silently revokes. **SMEsPlus position:** context-internal
+transfer neutrality is an invariant the core asserts and a control verifies, not a
+configuration outcome. Carried to `SA17`.
+
+### SA06-F-06 — the three unsuppliable handoff elements are not downstream of the accounting dependency
+
+Quoted from the Inventory Boss review package:
+
+> **None of these three is caused by the Accounting COGS Gap. All three are Lane A.**
+
+and
+
+> no material Inventory-to-Accounting handoff can be declared verified, and 0 of the 22
+> Boss-approved cross-proof scenarios can be proven — even if every one of `JT-01` through
+> `JT-12` were resolved tomorrow.
+
+`0 of 10` material Inventory-to-Accounting handoffs are contract-compliant, and elements 10, 14
+and 15 fail on **every one** of them.
+
+**Why Phase SA records this prominently.** It is the clearest available counter-example to the
+natural assumption that the accounting dependency is the programme's single blocker. It is not.
+Resolving every accounting question would leave the inventory-to-accounting handoff contract
+still uncompliant, because the missing pieces are identity, provenance and context guarantees
+that Inventory itself must originate.

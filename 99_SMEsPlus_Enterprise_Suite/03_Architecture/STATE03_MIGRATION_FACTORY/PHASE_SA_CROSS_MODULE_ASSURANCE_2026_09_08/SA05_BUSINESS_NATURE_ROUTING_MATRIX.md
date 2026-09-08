@@ -157,3 +157,25 @@ determine, consistent with master prompt §7.2.
 routed on current evidence, from one root cause, routed to targeted Very Deep Research.
 
 Boss remains the sole Final Approver.
+
+---
+
+## 7. Addendum — evidence strengthening two `HOLD` natures
+
+**BN-07 Kit / bundle.** The `HOLD` is now supported by a bounded measured absence rather than
+by an undetermined design point: a declared pattern over four inventory-package populations
+returns zero files, with a positive control confirming the pattern fires (`SA06-F-03`). The
+permitted claim is *not found within those populations* — the routing determination remains
+outstanding either way.
+
+**BN-15 Scrap / by-product / variance** (recorded `PARTIAL` above) — the manufacturing lineage
+records that all scrap is abnormal in effect, that there is no normal/abnormal distinction and
+no re-absorption mechanism, and that the operation link is informational so **scrap has no cost
+causality**. Co-products are not modelled as a distinct concept. One variance of nine is
+recognised, and the information needed for an efficiency variance *"is computed and then
+discarded"*.
+
+This does not change BN-15's `PARTIAL` classification — the route exists and stock reconciles —
+but it moves the open element from *valuation detail* to *cost causality*, which is a design
+question for SMEsPlus rather than a configuration one. Carried to `SA16` as scope for the
+manufacturing side of the consolidated programme.
