@@ -1,0 +1,48 @@
+PACKAGE_MANIFEST_SHA256_STEP030204.txt
+========================================
+STEP030204 Architecture Domain Source-Document Baseline Production
+Integrity Verification Manifest
+
+Control Level: /L99.99 (Executive)
+Date: 2026-07-17
+Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
+Branch: claude/step030204-architecture-baseline-xc1l6d
+Base Commit: afea03db1b6b12d4f8f25203ce4f6ca7a7860844
+
+MANIFEST RULES:
+- This file does NOT hash itself
+- All controlled files SHA256-hashed below
+- Zero tolerance for mismatch
+- Verification: sha256sum -c PACKAGE_MANIFEST_SHA256_STEP030204.txt
+
+STEP030204 DELIVERABLES (8 FILES):
+========================================
+
+768a05cbbe3d81b69fb8011f20b40688e7fffe760229017d8137fde0fd65282f  14_STEP030204_SCOPE_CONFIRMATION.md
+21c7a16ecd50704721092b359d2ac5117a0c4fa705a20271d28b4f2219fce1f7  15_STEP030204_DOMAIN_SOURCE_DOCUMENT_INVENTORY.md
+0a23df5bc96adc42c90056e1154c7c1757d860ba28ae43b75a0e804dd977459b  16_STEP030204_SOURCE_TO_DOMAIN_TRACEABILITY_MATRIX.md
+90aecf825ea5e6492d57890a1efd7ec1ae858b713e22f600fec329f2e653bb63  17_STEP030204_ARCHITECTURE_BASELINE_GAP_REGISTER.md
+56a63d7ce70b40846715d7c4c34eddaf8dcbc3a44e824e7bb5060ad8ff7bab06  18_STEP030204_CONFLICT_AND_ASSUMPTION_REGISTER.md
+abe061f435e1f322739127d0f7f91f10dde89ed507d1622f683711f3721262dc  19_STEP030204_OWNER_REVIEWER_AND_DECISION_REGISTER.md
+f2c750e2bc753ecf888f89ac43d835b1871cbf6a3cb2e63a22362f1d52f00364  20_STEP030204_ARCHITECTURE_BASELINE_HANDOFF.md
+90d8e5af447c13d7d935b32024470290117edb9473caad5fe58012dcfe8416b2  21_STEP030204_EXECUTION_LOG.md
+
+VERIFICATION RESULTS:
+========================================
+Expected Files: 8
+Files Present: 8
+Files Missing: 0
+Duplicates: 0
+Unexpected Files: 0
+Hash Mismatches: 0
+
+SUMMARY:
+========================================
+STEP030204 Package: COMPLETE AND VERIFIED
+All 8 deliverable files hashed and verified.
+No integrity issues detected.
+Manifest Status: VALID
+
+Authority: PMO / Architecture Lead (Accountable Owner)
+Recorded By: Execution Agent (Claude Code)
+Date: 2026-07-17
