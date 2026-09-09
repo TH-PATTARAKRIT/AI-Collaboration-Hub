@@ -5,6 +5,7 @@ Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`
 Branch: `architecture/phase-sa-corr4-pregate-closure-2026-09-09-001`
 Master prompt commit: `5931d7ef` · Parent CORR3 publication: `604398c3`
 Package: `.../STATE03_MIGRATION_FACTORY/PHASE_SA_CORR4_PREGATE_CLOSURE_2026_09_09/`
+Publication commit: `9bb74499f86b8475306731332e8b0fe108f9031c`
 Maintained under master prompt §13. **Checkpoint completion is NOT Boss approval.**
 
 ---
@@ -18,12 +19,12 @@ Maintained under master prompt §13. **Checkpoint completion is NOT Boss approva
 | `CP-SA-C4-20` `XMC-C-D1` contract closed | **`CLOSED (execution status)`** | `SA_CORR4_02` | `5904713d` |
 | `CP-SA-C4-30` `CF-I-03` specified and linked | **`CLOSED (execution status)`** | `SA_CORR4_03` | `4e31db4f` |
 | `CP-SA-C4-40` Compliance retraction propagated | **`CLOSED (execution status)` — disposition `PROPAGATION HOLD`** | `SA_CORR4_04` | `f364f57c` |
-| `CP-SA-C4-50` Four conditions closed or exact hold | **`CLOSED (execution status)`** | `SA_CORR4_05` | pending |
+| `CP-SA-C4-50` Four conditions closed or exact hold | **`CLOSED (execution status)`** | `SA_CORR4_05` | `9bb74499` |
 | `CP-SA-C4-60` Affected invariants reclassified | **`CLOSED (execution status)`** | `SA_CORR4_06` | `f364f57c` |
 | `CP-SA-C4-70` 22-scenario Pre-Test handoff qualified | **`CLOSED (execution status)`** | `SA_CORR4_07` | `f364f57c` |
-| `CP-SA-C4-80` SMEs Core final re-challenge | **`CLOSED (execution status)`** | `SA_CORR4_08` | pending |
-| `CP-SA-C4-90` Final evidence integrity | **`CLOSED (execution status)`** | `SA_CORR4_09` | pending |
-| `CP-SA-C4-FINAL` Boss Final Gate Pack | **`PUBLISHED — PENDING BOSS`** | `SA_CORR4_10` | pending |
+| `CP-SA-C4-80` SMEs Core final re-challenge | **`CLOSED (execution status)`** | `SA_CORR4_08` | `9bb74499` |
+| `CP-SA-C4-90` Final evidence integrity | **`CLOSED (execution status)`** | `SA_CORR4_09` | `9bb74499` |
+| `CP-SA-C4-FINAL` Boss Final Gate Pack | **`PUBLISHED — PENDING BOSS`** | `SA_CORR4_10` | `9bb74499` |
 
 ## 2. Frozen carry-forward — do not reset
 
