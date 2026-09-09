@@ -75,7 +75,7 @@ These belong to later gates and must not be inferred from G2.
 
 ## 5. Gate Disposition
 
-`G2 PASS CANDIDATE — READY FOR G3 LOGICAL CAPACITY / RESOURCE TAXONOMY GATE`
+`G2 PASS CANDIDATE — READY FOR G3 STORAGE / DATABASE GATE`
 
 This is an internal autonomous gate disposition, not Final Architecture Approval.
 
