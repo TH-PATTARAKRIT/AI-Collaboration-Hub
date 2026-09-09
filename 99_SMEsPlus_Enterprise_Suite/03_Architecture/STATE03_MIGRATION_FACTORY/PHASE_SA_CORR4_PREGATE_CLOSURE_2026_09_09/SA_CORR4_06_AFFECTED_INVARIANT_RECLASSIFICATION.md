@@ -22,9 +22,20 @@ invariants, and **CORR4 does not move a single invariant to `PROVEN`.** What COR
 this file does — is state, for each affected invariant, **which of the two categories its gap is now
 in**, because `C4-01` and `C4-03` moved several across that line.
 
-> **The reclassification, in one line: `4` invariants move from *the Phase SA specification is
+> **The reclassification, in one line: `6` invariants move from *the Phase SA specification is
 > incomplete* to *the specification is complete and the proof is runtime*. `2` move the other way.
 > `0` become proven.**
+
+> **`C4-06-F-01`, found by independent challenge, not by me.** This line first read *"`4` … `2` move
+> the other way"* while §8's checkpoint read *"`5` movements forward, `2` backward"* — **two different
+> counts for one quantity in one file**, and the register carried **`7` `Δ` marks** — `MTI-02`, `-05`,
+> `-17`, `-18`, `-38`, `-43`, `CF-I-03` — **while `MTI-46`'s value half, narrated in §4.6 as a second
+> backward mover, carried no `Δ` mark at all.** Re-derived from the rows: **`MTI-05` is the one
+> backward mover among the seven, so `6` moved forward**; adding `MTI-46`'s missing mark gives
+> **`8` `Δ` marks = `6` forward + `2` backward**, which is what the register now carries. Neither published
+> figure was right, and §4's prose discussed only four of the six. **The same defect class as
+> `C4-02-F-06` — a total that sums while its distribution is wrong — in the file `SA_CORR4_02` claimed
+> to have swept for exactly it. That claim was false and is withdrawn.**
 
 ---
 
@@ -85,7 +96,7 @@ Verified programmatically: the 25 are **distinct**, and are a **subset** of the 
 | 17 | `MTI-43` | `HOLD` — *"first negative test cannot be constructed"* | **`SA-SPEC-COMPLETE`** | **Δ** | **The three negative forms are now constructible** — `CF3-B-03`, `-B-04`, `-B-05`. Executing them needs a build |
 | 18 | `MTI-44` | `HOLD — CONDITIONAL` | **`SA-SPEC-GAP`** | | No handoff fact spans contexts; the paired-fact mechanism depends on `MTI-22`, which is `SA-SPEC-GAP` |
 | 19 | `MTI-45` | `HOLD` | **`SA-SPEC-COMPLETE`** | | Eight consumers receive `CTX` and `AUTH` as mandatory, non-inferable. **The Payment half additionally needs a ruling** — recorded, not reclassified |
-| 20 | `MTI-46` | `HOLD — VALUE HELD` | **`SA-SPEC-COMPLETE`** (count half) · **`SA-SPEC-GAP`** (value half) | | Count conservation is runtime. **Value half `HOLD — ACCOUNTING COGS GAP`, undischarged by anything in this lane** |
+| 20 | `MTI-46` | `HOLD — VALUE HELD` | **`SA-SPEC-COMPLETE`** (count half) · **`SA-SPEC-GAP`** (value half) | **Δ** | Count conservation is runtime. **Value half `HOLD — ACCOUNTING COGS GAP`, undischarged by anything in this lane** |
 | 21 | `MTI-50` | `HOLD` | **`SA-SPEC-COMPLETE`** | | Retention and inspectability. **`CF-I-03` §3.4 makes it a hard upstream dependency** — §4.4 |
 | 22 | `CF-I-01` | `HOLD` | **`SA-SPEC-COMPLETE`** | | Four-axis `AUTH`, no axis substitutes for a wider one |
 | 23 | `CF-I-02` | `HOLD` | **`SA-SPEC-COMPLETE`** | | Deferred execution resolves and re-resolves operation-type context. **But see `C4-01` `G5`** — §4.5 |
@@ -208,9 +219,14 @@ undetermined accounting semantic. Re-graded to `SA-SPEC-GAP` on that half.
 ## 7. Residual
 
 1. **The subset boundary is mine.** 25 of 58 is a judgement about materiality. A challenger who thinks
-   `MTI-06`, `-15`, `-41` or `-42` are affected by the enumeration has a case — they are the five
+   `MTI-06`, `-15`, `-41` or `-42` are affected by the enumeration has a case — they are **four of the
+   five**
    blocked behind an undesigned capability — and I excluded them because **their blocker is `P-CAP`,
    which the enumeration does not touch.** Stated so the exclusion is auditable.
+   **Corrected by independent challenge:** this sentence first named four identifiers and called them
+   *"the five."* CORR3's set is **`MTI-06`, `-15`, `-31`, `-41`, `-42`** — and **`MTI-31` is inside my
+   affected subset** (row 13), so the excluded set is **four, not five**. **The one place this file
+   defended its subset boundary contained an arithmetic error, which is the worst place for one.**
 2. **`SA-SPEC-COMPLETE` is a claim about a specification's *sufficiency for testing*, not its
    *correctness*.** An invariant can be completely specified and wrong. **Nothing in this file tests
    correctness**, and 18 rows should not be read as 18 endorsements.
@@ -223,6 +239,7 @@ undetermined accounting semantic. Re-graded to `SA-SPEC-GAP` on that half.
 > ## `CP-SA-C4-60 — AFFECTED INVARIANTS RECLASSIFIED`
 > **25 of 58 re-run · `18 SA-SPEC-COMPLETE` · `5 SA-SPEC-GAP` · `1 CONTRADICTED` ·
 > `1 EVIDENCE-ACT-COMPLETE` · `0 N/A` · `0 PROVEN`.**
-> **5 movements forward, 2 backward. 33 dispositions untouched.**
+> **6 movements forward, 2 backward — `Δ`-marked: `MTI-02`, `-05`, `-17`, `-18`, `-38`, `-43`,
+> `CF-I-03`, plus `MTI-46`'s value half. 33 dispositions untouched.**
 
 No Evidence = No Progress. Never Skip Gate. Boss remains the sole Final Approver.

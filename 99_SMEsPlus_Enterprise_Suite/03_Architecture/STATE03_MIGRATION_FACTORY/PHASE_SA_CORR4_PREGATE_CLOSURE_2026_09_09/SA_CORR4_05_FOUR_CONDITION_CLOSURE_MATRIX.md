@@ -25,7 +25,7 @@ evidence; where it is not, the exact residue is named and the condition is not c
 | Condition | Evidence | SMEs Core result | Residual gap | **Gate effect** |
 |---|---|---|---|---|
 | **`C4-01`** Privileged-bypass path enumeration | `SA_CORR4_01` — **13 path classes** over 185 branches / 3,604 paths; positive + negative controls; coverage 21/21 tokens; **2 false zeros found and corrected** | **`ENUMERATION COMPLETE — EXACT BOUNDED GAPS LISTED`** | **5 named gaps `G1`–`G5`.** `G1`/`G3`/`G5` are SMEs Core design acts; `G2` is a contradiction inside a Boss-owned baseline (`C4-D-02`); `G4` has a named future owner | **CLOSED** — and it makes downstream security testing **writable**, which is the criterion |
-| **`C4-02`** `XMC-C-D1` tenant + company emitting contract | `SA_CORR4_02` — **13 of 13** elements; **9 of 9** rules; **10 flows** proved | **`5 CONTRACT-SUFFICIENT · 5 CONTRACT-GAP`** | **5 flows have no producing-side design at all** — Sales→Manufacturing, AR/AP→Payment→Accounting, Asset→Accounting, Expense→Accounting, and dropship's control-floor breach | **CLOSED** — the criterion is that the semantics are explicit and challenged across representative domains. **They are, and the 5 gaps are the absence of a counterparty, not of the contract** |
+| **`C4-02`** `XMC-C-D1` tenant + company emitting contract | `SA_CORR4_02` — **13 of 13** elements; **9 of 9** rules; **10 flows** proved | **`2 CONTRACT-SUFFICIENT · 8 CONTRACT-GAP`** | **8 flows have no artefact authored by the emitting party** — corrected from 5 by independent challenge (`C4-02-F-09`): Sales→Inventory, Sales→Manufacturing, Purchase→Inventory, Manufacturing→Inventory, AR/AP→Payment→Accounting, Asset→Accounting, Expense→Accounting, plus dropship's control-floor breach | **CLOSED** — the criterion is that the semantics are explicit and challenged across representative domains. **They are, and the 8 gaps are the absence of a counterparty, not of the contract** |
 | **`C4-03`** `CF-I-03` authorization conformance control | `SA_CORR4_03` — 5 triggers · 6 inputs · 3 results · **8 deny conditions** · 1 exception path · **25 test classes** | **`MTI-43 CONTROL REFERENCE CLOSED`** | `P1`–`P6` test preconditions absent — **all runtime**. `MTI-50` is a hard upstream dependency; `CF-D-02` is Boss-gated | **CLOSED** — the criterion is a concrete testable specification with a real `MTI-43` dependency. **Both are met** |
 | **`C4-04`** Compliance retraction propagation | `SA_CORR4_04` — denominator re-measured `185 / 2 / 183 / 0`; claim class established as **1 file on four instruments**; correction audited **4 of 4** and passes | **`PROPAGATION HOLD`** | **`origin/SMEsPlus` carries the uncorrected blob, and the repository is public — the claim is fetchable unauthenticated, `HTTP 200`** | **NOT CLOSED** — §3 |
 
@@ -95,8 +95,11 @@ established; exhaustiveness is not claimed.**
 
 ### `C4-02` — *"Tenant + Company semantics are explicit in the cross-module emitting handoff contract and challenged across representative domains."*
 
-**Met, and the challenge produced the finding.** 13 elements stated; 9 rules stated with their basis
-class published (`6 RULED` / `3 SPECIFIED` / **`0` newly determined**); 10 representative flows tested.
+**Met, and the challenge produced the finding — and then corrected it.** 13 elements stated; 9 rules
+stated with their basis class published (`6 RULED` / `3 SPECIFIED` / **`0` newly determined**); 10
+representative flows tested. **Independent challenge moved the flow result from `5/5` to `2/8`**
+(`C4-02-F-09`) and over-extended citations were withdrawn (`C4-02-F-08`); **the condition still meets
+its criterion, and the corrected result is worse and better-founded.**
 
 > **The distribution is the result.** All nine rules were **already settled** — six by standing Boss
 > rulings, three by published invariants, **none requiring a new determination.** What was missing was

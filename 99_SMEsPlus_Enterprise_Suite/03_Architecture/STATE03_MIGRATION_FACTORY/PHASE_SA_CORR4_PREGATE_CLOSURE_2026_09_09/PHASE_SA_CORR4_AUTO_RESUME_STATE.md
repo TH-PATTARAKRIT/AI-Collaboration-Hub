@@ -21,7 +21,7 @@ Maintained under master prompt §13. **Checkpoint completion is NOT Boss approva
 | `CP-SA-C4-50` Four conditions closed or exact hold | **`CLOSED (execution status)`** | `SA_CORR4_05` | pending |
 | `CP-SA-C4-60` Affected invariants reclassified | **`CLOSED (execution status)`** | `SA_CORR4_06` | `f364f57c` |
 | `CP-SA-C4-70` 22-scenario Pre-Test handoff qualified | **`CLOSED (execution status)`** | `SA_CORR4_07` | `f364f57c` |
-| `CP-SA-C4-80` SMEs Core final re-challenge | **`IN PROGRESS`** | `SA_CORR4_08` | — |
+| `CP-SA-C4-80` SMEs Core final re-challenge | **`CLOSED (execution status)`** | `SA_CORR4_08` | pending |
 | `CP-SA-C4-90` Final evidence integrity | **`NOT STARTED`** | `SA_CORR4_09` | — |
 | `CP-SA-C4-FINAL` Boss Final Gate Pack | **`NOT STARTED`** | `SA_CORR4_10` | — |
 
@@ -78,7 +78,7 @@ reference-ERP source trees and runtime dumps outside this clone.
 |---|---|
 | CORR3 conclusions overturned | **0** |
 | CORR3 **denominators** corrected | **4** — `C4-B-01` … `C4-B-04` |
-| `C4-01` privileged-path enumeration | **IN PROGRESS** |
+| `C4-01` privileged-path enumeration | **CLOSED** — `ENUMERATION COMPLETE — EXACT BOUNDED GAPS LISTED`; 13 path classes, 5 gaps `G1`–`G5`. **This row read `IN PROGRESS` while the checkpoint ladder above read `CLOSED`; the contradiction was found by independent challenge and is corrected here** |
 | `C4-02` `XMC-C-D1` | **CLOSED** — 13 elements, 9 rules (`6 RULED` + `3 SPECIFIED` + **0 newly determined**), 10 flows: `5 SUFFICIENT` / `5 GAP`. **All five gaps are the absence of a producing-side design, not a context gap** |
 | `C4-03` `CF-I-03` | **CLOSED** — **`CF-I-03` is a published `SPECIFIED` invariant and CORR3 counted it**; *"the control does not exist"* is a bounded negative republished without its bound. Full control specification published. `MTI-43 CONTROL REFERENCE CLOSED` at specification level |
 | `C4-04` propagation | **`PROPAGATION HOLD` — NOT CLOSED.** Denominator re-measured **185 / 2 / 183 / 0**; claim class established as **1 file on four instruments**; correction audited **4 of 4** and passes; **mainline carries the uncorrected blob**; **the repository is public and the claim is fetchable unauthenticated, HTTP 200**. Propagation is **technically possible and not authorized to this session**. The act reduces from 183 branches to **one** |

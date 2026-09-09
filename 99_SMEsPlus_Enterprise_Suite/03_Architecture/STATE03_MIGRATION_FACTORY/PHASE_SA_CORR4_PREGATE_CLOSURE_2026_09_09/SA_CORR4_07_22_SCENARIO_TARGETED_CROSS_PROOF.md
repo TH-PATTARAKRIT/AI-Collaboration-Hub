@@ -69,6 +69,14 @@ element 10.** They are one missing object with two contractual names.
 > **Therefore: `22 of 22` scenarios carry an `SA MATERIAL GAP`, and on every one of the 22 the gap
 > includes element 15.** No amount of context work closes it.
 
+**And the design act is smaller than recorded — `SA_CORR4_02` `C4-02-F-07`.** A stranded
+`ARC-WP-010 INTEGRATION_EVENT_ARCHITECTURE` states an architectural position on idempotency — a named
+key source, at-least-once delivery, an idempotent-consumer obligation and a `PROPOSED` ADR — written
+2026-07-14, cited by **no** `MTI-*` register, **no** element-15 register and **no** Phase SA artefact.
+**It does not define a deterministic identity basis and does not move element 15's status.** It makes
+the remedy an **adjudication** rather than an **origination**, which is a different instruction to give
+Boss.
+
 ---
 
 ## 4. The register

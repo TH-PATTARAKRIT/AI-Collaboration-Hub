@@ -127,9 +127,23 @@ Context columns: `M` mandatory · `—` not stated · `n/a` not applicable.
 | **11** | API / internal service-to-service | **`SPEC` (external) + `NONE` (internal)** | `FDS_INTEGRATION`; `MTI-17` | **`NONE`** | **`NONE`** | yes | — |
 | **12** | **Usage-metering / capacity pipeline** | **`SPEC`** | `SAAS_CELL/22`, `/23` — Boss-approved **2026-09-09** | **M** (per-tenant evidence) | **`NONE`** | required — *"reproducible and auditable per Tenant"* | — |
 | **13** | **Wallet / prepaid financial background process** | **`SPEC` (business) + `NONE` (context)** | `SAAS_CELL/24`, `/25`, `/26`, `/27` — Boss-approved **2026-09-09** | **`NONE`** | **`NONE`** | — | — |
+| **14** | **Approval execution path** — added by independent challenge | **`SPEC` (act) + `NONE` (context)** | `FDS_APPROVAL` `FR-APR-001`…`007` — **185/185** | **`NONE`** | **`NONE`** | not specified | — |
 
-**13 path classes. 11 from the master prompt's list, 2 found in evidence (`12`, `13`).**
-**`5 SPEC` · `4 PROP` · `1 NAME` · `3 mixed`.** Each class appears once.
+**14 path classes. 11 from the master prompt's list, 2 found in evidence (`12`, `13`), 1 added by
+independent challenge (`14`).** **`5 SPEC` · `4 PROP` · `1 NAME` · `4 mixed`.** Each class appears once.
+
+> **`C4-01-F-10`, found by independent challenge.** `FDS_APPROVAL` specifies seven functional
+> requirements including `FR-APR-002 Approve Request`, and an exclusivity rule `BR-APR-003`
+> *"Only Assigned Approver Can Approve"* — **with no delegation, proxy or substitute-approver
+> mechanism specified anywhere.** Its only two context words in the whole file are an **actor label**
+> (*"Company Admin"*) and a **bare two-word security bullet** (*"Tenant Isolation"*); **no `FR` and no
+> `BR` states a tenant or company obligation.** *(The challenger reported "zero occurrences of tenant
+> or company"; there are **two**, both capitalised, and neither carries a context obligation — the
+> substance holds, the count did not, and it is corrected here.)*
+>
+> **This matters beyond the enumeration:** `06_CROSS_MODULE_HANDOFF_CONTRACT_FIELDS.md` §6.1 makes
+> Approval the consumer *"most likely to be got wrong"* and rules that **the context boundary wins**
+> over segregation of duties. **The domain that must implement that rule states neither axis.**
 
 ### 4.1 Per-class detail, for the classes where the finding is in the detail
 
@@ -141,6 +155,14 @@ Context columns: `M` mandatory · `—` not stated · `n/a` not applicable.
 | Enable / disable a module | `FDS_MODULE` §8 | `module.enabled/disabled (actor, module_code)` | **No** |
 | View / adjust a subscription *"for support cases"* | `FDS_SUBSCRIPTION` §8 | `subscription.plan_changed (actor, old_plan, new_plan)` | **No — so the stated justification is not itself auditable** |
 | **Cross-tenant** health dashboard | `FDS_REPORTING` REP-004, status `GAP — NEW` | none stated | n/a |
+| **Assign a subscription plan to a tenant** — *"System shall allow **Platform Admin** to assign subscription plan to tenant"*, permission `subscription.assign` | `FDS_SUBSCRIPTION_MODULE` `FR-SM-005` | listed as an audited event | **No** |
+
+> **`C4-01-F-08`, found by independent challenge, in a file §8.3 declared out of scope.**
+> `FR-SM-005` is a **fifth** Platform-Admin-exclusive cross-tenant act, and an **entitlement-granting**
+> one rather than a status or configuration change — the most consequential of the five. It was missed
+> because `FDS_SUBSCRIPTION_MODULE` was one of the five `FDS` domain files this enumeration declared
+> and did not open. **A declared residual is not a closed one, and a five-minute sweep of mine found a
+> path class member.** §9's verdict is qualified accordingly.
 
 **Class 6 — the service credential carries no context, and it is not a template artefact**
 
@@ -162,6 +184,15 @@ before_value · after_value · request_id · ip_address · user_agent · created
 
 `MTI-D-02` §4 requires the audit trail to answer *who performed what action under which **tenant,
 company, warehouse and operation type***. **The canonical audit record carries 1 of the 4 axes.**
+
+**And it is not the only one — `C4-01-F-09`, found by independent challenge.**
+`FDS_SUBSCRIPTION_MODULE` §12 publishes a **second, independent audit-field list**:
+`tenant_id · actor_id · action · resource_type · resource_id · before_value · after_value ·
+request_id · ip_address · created_at` — **ten fields, `company_id` absent**, verified on both
+instruments with the escape-tolerant pattern (`tenant_id` fires 3 times in the same file as a positive
+control). **Two independently authored audit schemas, in two files, both carrying tenant and neither
+carrying company.** `G3` is therefore not a defect of one document; **it is the corpus's consistent
+audit shape**, which is a materially stronger finding than the one I first published.
 
 Two further defects in the same file: §14 *Risks* names **"Unauthorized Audit Access"** and lists **no
 mitigation for it or for either other risk** — the section is three bare lines. And `FDS_REPORTING`
@@ -240,12 +271,12 @@ reference deployment's accident."*
 | Verdict | Classes |
 |---|---|
 | **Invariant stated and honoured in the specification** | **4, 5, 9** — `MTI-29`/`MTI-30`/`CF-I-02` carry `CTX` **and** the authority, and revalidate at release; `MTI-22` is a closed enumerated door |
-| **Invariant not addressed — the path has no stated execution context** | **1, 6, 11, 13** |
+| **Invariant not addressed — the path has no stated execution context** | **1, 6, 11, 13, 14** |
 | **Invariant addressed on the tenant axis only** | **10, 12** |
 | **Invariant stated as a property with no mechanism** | **2, 7, 8** |
 | **Invariant not reachable — the path is a name** | **3** |
 
-**`3 honoured · 4 unaddressed · 2 partial · 3 property-only · 1 name` = 13.** ✓
+**`3 honoured · 5 unaddressed · 2 partial · 3 property-only · 1 name` = 14.** ✓
 
 ### 5.2 `C4-01-F-07` — the document that would resolve `G2` is written, complete, and on one unmerged branch
 
@@ -405,23 +436,39 @@ The four that bear directly on this enumeration, verbatim:
 
 > # `ENUMERATION COMPLETE — EXACT BOUNDED GAPS LISTED`
 
-**Complete** in the sense the classification permits: **13 path classes enumerated over a declared
+**Complete** in the sense the classification permits: **14 path classes enumerated over a declared
 185-branch, 3,604-path population, with a positive control, a negative control, a coverage assertion,
 and two false zeros found and corrected.** Every class carries its state, its best source with branch
 coverage, its context columns and its exact gap.
+
+> **And the word `COMPLETE` is qualified here rather than left to be read at face value.** The first
+> published version of this file listed **13** classes and declared five `FDS` domain files an
+> **unopened residual**. An independent challenger opened them and found **a fifth Platform-Admin
+> cross-tenant act** (`C4-01-F-08`), **a second audit schema with the same missing axis**
+> (`C4-01-F-09`) and **a fourteenth path class** (`C4-01-F-10`). **A declared residual produced three
+> findings, one of which is a whole class.**
+>
+> **The transferable statement, and it is the honest one: this enumeration's boundary is not where its
+> reasoning stopped — it is where its reading stopped, and reading further paid every time it was
+> tried.** The verdict below is `COMPLETE — EXACT BOUNDED GAPS LISTED` because the gaps are named and
+> bounded, **not because the population is exhausted.** §8.1 already said the enumeration is *a floor
+> on the path set, never a ceiling*; **the challenge demonstrated it rather than leaving it as a
+> caveat.**
 
 **The bounded gaps are named and are these five:**
 
 | # | Gap | Class |
 |---:|---|---|
-| **G1** | **Four path classes have no stated execution context at all** — platform operator, service account, internal service-to-service, wallet/prepaid | 1, 6, 11, 13 |
+| **G1** | **Five path classes have no stated execution context at all** — platform operator, service account, internal service-to-service, wallet/prepaid, **approval execution** | 1, 6, 11, 13, 14 |
 | **G2** | **The canonical baseline contradicts itself** on whether a cross-tenant actor may exist, and provides no authentication path for the one it specifies. **`C4-01-F-07`: a candidate resolution is written and unmerged, and does not itself close the contradiction** | 1 |
-| **G3** | **The canonical audit record carries 1 of `MTI-D-02`'s 4 axes** — no `company_id` | 10 |
+| **G3** | **The corpus's audit shape carries 1 of `MTI-D-02`'s 4 axes** — no `company_id`, in **two** independently authored schemas | 10, 12 |
 | **G4** | **Break-glass is a name with no design**, assigned as a future responsibility of an unstaffed role | 3 |
 | **G5** | **A Boss-approved cross-tenant metering pipeline and four financial background processes are unintegrated** with the execution-boundary invariant family | 12, 13 |
 
 **No `TARGETED VERY DEEP RESEARCH` is required.** Every gap above is a **specification** gap over
-evidence that is present and has been read — not an evidence-acquisition problem. **`G1`, `G3` and `G5`
+evidence that is **present in the repository** — not an evidence-acquisition problem. **What is
+required is more *reading*, not more research**, and §8's residual names exactly what remains
+unread: `ARC-WP-008` and the fifteen other stranded deliverables. **`G1`, `G3` and `G5`
 are closable by SMEs Core design acts. **`G2` is escalated as `C4-D-02`, and `C4-01-F-07` re-scopes it
 from a design act to a governance act plus an independent review.** `G4` has a named future owner and
 is a PMO staffing item.**
@@ -429,8 +476,9 @@ is a PMO staffing item.**
 ## 10. Checkpoint
 
 > ## `CP-SA-C4-10 — PRIVILEGED BYPASS ENUMERATED`
-> **13 path classes · 5 bounded gaps · 7 findings (`C4-01-F-01` … `-F-07`) · 2 instrument findings
-> (`C4-I-01`, `C4-I-05`) · 1 escalation (`C4-D-02`).**
+> **14 path classes · 5 bounded gaps · 10 findings (`C4-01-F-01` … `-F-10`, incl. `-F-07a`) ·
+> 2 instrument findings (`C4-I-01`, `C4-I-05`) · 1 escalation (`C4-D-02`).**
+> **3 of the 10 came from independent challenge, in a residual this file had declared and not closed.**
 > **`MTI-18`'s enumeration dependency is discharged. `MTI-18` is not proven and cannot be at Phase SA.**
 > **0 vetoes discharged. 0 invariants proven.**
 

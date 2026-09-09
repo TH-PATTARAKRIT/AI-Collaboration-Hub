@@ -25,7 +25,10 @@ gap twice, in the absolute:
 > ### `C4-03-F-01` — `CF-I-03` is a published invariant, it states the control, and CORR3 counted it
 >
 > `.../REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/MTI_RULING_CONFORMANCE_EXECUTION/`
-> `03_MTI_INVARIANT_SET_R2_CONFORMED.md` §14, the `CF-I-*` table, row 3, **verbatim**:
+> `03_MTI_INVARIANT_SET_R2_CONFORMED.md` **§13** *"The Eight Invariants The Rulings Require To Be
+Added"*, the `CF-I-*` table, **row 3**, verbatim *(this file first cited §14; §14 is "Internal
+Consistency Of The Conformed Set" — corrected by independent challenge, the quotation itself was
+accurate)*:
 >
 > > **`CF-I-03`** — *"A continuous authorization conformance control asserts, for every recorded act,
 > > that the `AUTH` it records was within a grant in force at the time of the act; that no act is
@@ -106,7 +109,8 @@ It is the **authorization** analogue of `MTI-19`, and the two are disjoint by co
 | Enforcement point | `EP-R` Resolve | **`EP-P` Permission evaluation** |
 | Failure mode | act **fails**, recorded as a failure | act is **refused**, recorded as a refusal |
 
-`03_MTI_INVARIANT_SET_R2_CONFORMED.md` §14 states the non-overlap as a determination: *"Neither. They
+`03_MTI_INVARIANT_SET_R2_CONFORMED.md` §14 — *Internal Consistency* — states the non-overlap as a
+determination: *"Neither. They
 assert disjoint properties over the same acts … Context conformance and authorization conformance are a
 third and fourth independent property, and none implies another."* **`CF-I-03` therefore cannot be
 satisfied by any `MTI-19` result, and `MTI-19`'s scope note forbids reading one as the other.**

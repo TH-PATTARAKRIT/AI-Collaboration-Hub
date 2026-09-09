@@ -72,9 +72,25 @@ own work, and is what §3–§5 do.
 | `HX-` branch-wide, unit `U2` | **18 text paths** (case-sensitive). A case-insensitive run returns **20**; the two extra are `.zip` archives, **outside `U2` by the frame's own extension rule** | negative control **0** |
 | `HO-` or `HF-CTX` cited in `10_…CROSS_MODULE_HANDOFF_V1.md` | **0** | `HX-` fires **35** in the same file |
 
-**Two SMEsPlus-owned registers describe the same Inventory→Accounting boundary in two disjoint
-identifier families — `HX-01`…`HX-31` and `HO-xx` / `HF-CTX-01`…`11` — and neither cites the other.**
-Exactly one file in the corpus cites both, and it is the R2 obligation matrix.
+**Two SMEsPlus-owned registers describe the same Inventory→Accounting boundary and neither cites the
+other.** Exactly one file in the corpus cites both, and it is the R2 obligation matrix.
+
+> **`C4-02-F-02` is CORRECTED by independent challenge, and the corrected form is worse.** This
+> finding first called `HX-` and `HO-` *"two disjoint identifier families."* **They are not disjoint —
+> they are the same row numbers under two prefixes.** File 06 §6 cites `HO-01`, `-02`, `-04`, `-05`,
+> `-06`, `-07`, `-09`…`-27`, and each aliases its `HX-` twin **content-for-content**: `HO-22` is
+> *"Inter-company transfer"* and so is `HX-22`; `HO-04`/`-05`/`-06` are the expected-receipt,
+> over-receipt and replenishment rows and so are `HX-04`/`-05`/`-06`; `HO-18`/`-19`/`-20` are the
+> Manufacturing rows and so are `HX-18`/`-19`/`-20`.
+>
+> **My own count missed it**: `grep 'HO-[0-9]{2}'` returns **6**, because the file writes the rest in
+> the elided form `` `HO-01`, `-02` `` — **the same elision defect, in the opposite direction, that the
+> challenger's own recount exhibited.** Two parties, one pattern, two wrong counts.
+>
+> **The corrected finding: two registers use one row numbering under two prefixes, and neither states
+> that they are the same rows.** An undeclared alias is a worse defect than two disjoint families,
+> because a reader of either register has no way to learn that the other one exists — and it makes
+> §5's join **an alias, not an inference**. §7 residual 5 is corrected accordingly.
 
 **Consequence, and it is the operative one for the Pre-Test Matrix:** a Pre-Test case written against
 `HX-07` has **no stated field list**, and a case written against `HF-CTX-*` has **no stated trigger or
@@ -191,8 +207,8 @@ own determination, with independent rationale.
 
 | # | Rule | Basis | Class |
 |---:|---|---|---|
-| **R1** | **Tenant is mandatory for every cross-module business handoff.** Not conditional on the fact's scope class: a `PLATFORM`-scoped fact names the platform context explicitly | `SI-01`; element 10 *"mandatory company **and** tenant context"*, no qualifier; `MTI-01`, `MTI-02` | **RULED** |
-| **R2** | **Company is mandatory where the business fact is company-scoped**, and `N/A` **with a stated reason** otherwise. Blank is never permitted | `SI-02`; `SCOPE-AWARE EVERYWHERE`; Boss contract §3 *"If a field is not applicable, record `N/A` plus reason"* | **RULED** |
+| **R1** | **Tenant is mandatory for every cross-module business handoff.** Not conditional on the fact's scope class: a `PLATFORM`-scoped fact names the platform context explicitly | element 10 *"mandatory company **and** tenant context"*, no qualifier; `MTI-01`, `MTI-02`. **`SI-01` cited *by analogy only* — see below** | **RULED** |
+| **R2** | **Company is mandatory where the business fact is company-scoped**, and `N/A` **with a stated reason** otherwise. Blank is never permitted | `SCOPE-AWARE EVERYWHERE`; `MTI-04`; Boss contract §3 *"If a field is not applicable, record `N/A` plus reason"*. **`SI-02` by analogy only** | **RULED** |
 | **R3** | **A receiver must not infer tenant from any payload content.** Not from a document number, a code, a name, a warehouse, a product, a partner, or a range | `MTI-20` *"never inferred from a name or code"*; `MTI-45` *"mandatory, non-inferable"*; Boss `00`/`01` | **RULED** |
 | **R4** | **A receiver must not infer company from user or session defaults where the handoff carries authoritative context.** Where the handoff does **not** carry it, the receiver **rejects the fact** — it does not fall back | `MTI-20` *"never inherited from a session fallback"*; `MTI-45`; `SA10-F-03`, the evidenced defect of resolving accounts in the **user's** company rather than the transaction's | **RULED** |
 | **R5** | **A tenant or company mismatch is rejectable and auditable.** The receiver rejects; the rejection is an event with the fact reference, the two contexts and the deny condition. **A mismatch never degrades to a filter, an empty result or a silent no-op** | `EP-P`; `CF-I-03` `D2`/`D3`; `N-01`, `N-03` | **SPECIFIED** |
@@ -202,6 +218,19 @@ own determination, with independent rationale.
 | **R9** | **Source ownership and downstream execution ownership remain distinct.** The source owns the fact; the Accounting Core owns the event identity; the Posting Engine owns the posting. **A source module may present a fact repeatedly; it may not present an identity** | `BD-ACC-01`; `XMC-C-A2` | **RULED** |
 
 **6 `RULED` · 3 `SPECIFIED` · 0 `DETERMINED HERE`.**
+
+> **`C4-02-F-08`, found by independent challenge.** `R1` and `R2` first cited `SI-01` and `SI-02` as
+> though those rulings governed cross-module handoffs. **They do not.** The ruling's own decision line
+> reads **`APPROVED — CROSS-GATE SAAS INVARIANTS SHALL APPLY TO EVERY COA CLOSURE GATE`**, and §2
+> scopes them *"mandatory across **COA-G01, G02, G03, G04, G04S, G05, G06, G07 and G08**"* — the
+> Thailand Chart-of-Accounts closure gates, **not the Sales, Purchase or Manufacturing boundaries
+> `R1` and `R2` are addressed to.**
+>
+> **`R1` and `R2` survive as `RULED`** on element 10's own unqualified text, `MTI-01`/`-02`/`-04` and
+> the `SCOPE-AWARE EVERYWHERE` correction — **all of which do govern this subject.** `SI-01`/`SI-02`
+> are retained **as analogy, labelled as such**. **The classification is unchanged and the citation
+> was over-extended, which is the programme's *exclusion-needs-authority* defect inverted: an
+> authority claimed wider than its own grant.**
 
 > **That distribution is the finding, and it is the strongest single result in this file.** All nine
 > rules the master prompt asks Phase SA to *"prove or specify"* were **already settled** — six by
@@ -236,37 +265,68 @@ handoffs are contract-compliant and that figure is unchanged by this file.
 
 | # | Flow | Emitting artefact | El. 1 · 2 | R1–R9 | Class |
 |---:|---|---|---|---|---|
-| 1 | **Sales → Inventory** | `HX-01`, `HX-03` | **Absent** from the register; **supplied** by `HF-CTX-01`/`-02` under §3 | hold | **`CONTRACT-SUFFICIENT`** |
+| 1 | **Sales → Inventory** | **none authored by the emitter.** `HX-01`/`-03` are *Inventory's* register of facts it **receives** | Absent / supplied | hold | **`CONTRACT-GAP`** — §5.0 |
 | 2 | **Sales → Manufacturing** | **none** — no `HX-` row; `HX-18` is Manufacturing→Inventory | — | — | **`CONTRACT-GAP`** — **no emitting artefact exists for this boundary at all** |
 | 3 | **Sales → Purchase / dropship** | **none.** `XMC-H-03` records the boundary as *"a control breach, not a data gap"* — the write **bypasses the demand-approval gate every human-raised purchase must pass** | — | **R9 holds; `XMC-C-D3` binds** — a route inherits its destination's entry conditions | **`CONTRACT-GAP`** — and the gap is a **control-floor** gap, not a context gap |
-| 4 | **Purchase → Inventory** | `HX-04` | Absent / supplied | hold | **`CONTRACT-SUFFICIENT`** |
+| 4 | **Purchase → Inventory** | **none authored by the emitter.** `HX-04` is *Inventory's* receiving-side row | Absent / supplied | hold | **`CONTRACT-GAP`** — §5.0 |
 | 5 | **Inventory → Accounting** | `HX-07`, `-09`, `-10`, `-11`, `-12`, `-14`, `-17`, `-20` + `HF-CTX-01`…`-11` | **Specified `Always`** | hold | **`CONTRACT-SUFFICIENT`** — the only flow with both halves published. **Elements 4, 7, 14, 15 remain absent for non-context reasons** |
-| 6 | **Manufacturing → Inventory → Accounting** | `HX-18`, `-19`, `-20` | Absent / supplied | hold | **`CONTRACT-SUFFICIENT`** for context. **`R-22` `GAP`; fixed-overhead elements have no injection path** — outside this contract |
+| 6 | **Manufacturing → Inventory → Accounting** | **first leg: none authored by the emitter** (`HX-18` is Inventory's receiving-side row). **Second leg Inventory→Accounting is covered** | Absent / supplied | hold | **`CONTRACT-GAP` on the first leg** — §5.0. `R-22` `GAP`; fixed-overhead elements have no injection path |
 | 7 | **AR/AP → Payment/Bank → Accounting** | **none** | — | **R8 binds**; `H-07` records matching as `NOT DURABLE` and *"freely destructible across a closed period"* | **`CONTRACT-GAP`** — **no emitting artefact; and the receiving side's own durability is `NOT DURABLE`, so a context guarantee would attach to a destructible record** |
 | 8 | **Asset → Accounting** | **none.** Routing found **one missing consumer — Asset → Equipment** | — | — | **`CONTRACT-GAP`** |
 | 9 | **Expense → Accounting** | **none** | — | — | **`CONTRACT-GAP`** |
 | 10 | **Tax-related handoffs** | `HX-27`, `-28`, `-31` — all `TAX-HOLD` | Absent / supplied | **R2 and R8 bind hardest**: `BD-ACC-02` makes statutory tax company-scoped, so a fact spanning companies **has no statutory owner and cannot be filed** | **`CONTRACT-SUFFICIENT` for context · `HOLD / EVIDENCE REQUIRED` on every statutory element.** **No statutory Thai claim is made here** |
 
-**Tally: `5 CONTRACT-SUFFICIENT` · `5 CONTRACT-GAP` · `0 NOT APPLICABLE` · `0 RESEARCH REQUIRED`.**
-Ten rows, each classified once. ✓
+**Tally: `2 CONTRACT-SUFFICIENT` · `8 CONTRACT-GAP` · `0 NOT APPLICABLE` · `0 RESEARCH REQUIRED`.**
+Ten rows, each classified once. ✓ `SUFFICIENT` = flows **5** and **10**, the two where **Inventory is
+the emitting party.**
 
-### 5.1 `C4-02-F-04` — the gap is one shape, in five places
+### 5.0 `C4-02-F-09` — the classification was wrong on three flows, and the error was mine
 
-**Every one of the five `CONTRACT-GAP` rows fails for the same reason, and it is not tenant or
-company.** Flows 2, 7, 8 and 9 have **no emitting artefact of any kind** — no register, no payload
-definition, no field list. Flow 3 has a boundary described only as a control breach.
+> **Found by independent challenge, and it is the single largest correction in this package.**
 
-> **The five gaps are not element-10 gaps. They are the absence of a producing-side design on four
+This table first classified flows **1, 4 and 6** `CONTRACT-SUFFICIENT` on the strength of `HX-01`,
+`HX-04` and `HX-18`. **Those rows are in `10_INVENTORY_CROSS_MODULE_HANDOFF_V1.md`, whose own header
+reads `SMEsPlus-OWNED HANDOFF DESIGN` — and its owner is Inventory.** On flows 1, 4 and 6 the emitting
+parties are **Sales, Purchase and Manufacturing**, and `HX-01`/`-04`/`-18` are **Inventory's record of
+what it expects to receive from them** — not a commitment by any of the three to attach `HF-CTX-01`
+and `HF-CTX-02`.
+
+**And `SA_CORR4_00` §5 reproduces the fact that settles it:** `FINAL_SOLUTION` holds **30 paths, `0`
+outside `INVENTORY`**. **Sales, Purchase and Manufacturing have no producing-side design package** —
+**which is the exact condition this file used to fail flows 2, 7, 8 and 9.**
+
+> **The test I stated was *"a producer has published."* The test I actually applied to flows 1, 4 and 6
+> was *"Inventory has documented this boundary from its own side."* Those are different tests, and
+> applying the weaker one to three rows while failing four other rows on the stronger one is not a
+> classification — it is an inconsistency that flattered the result.**
+
+**Corrected: `5 / 5` becomes `2 / 8`.** Only flows **5** (Inventory → Accounting) and **10**
+(Inventory → Audit/Tax) have an artefact authored by the party that emits.
+
+**§5.1's core finding is not weakened by this — it is enlarged.** The gap was already *"the absence of
+a producing-side design"*; **it is now eight flows rather than five, and the one-to-one correspondence
+with the missing `FINAL_SOLUTION` packages is exact rather than approximate.** The correction makes the
+result worse and the reasoning sounder, which is the right direction for a correction to run.
+
+### 5.1 `C4-02-F-04` — the gap is one shape, in eight places
+
+**Every one of the eight `CONTRACT-GAP` rows fails for the same reason, and it is not tenant or
+company.** Flows **1, 2, 4, 6, 7, 8 and 9** have **no artefact authored by the emitting party** — no
+register, no payload definition, no field list. Flow **3** has a boundary described only as a control
+breach.
+
+> **The eight gaps are not element-10 gaps. They are the absence of a producing-side design on seven
 > domain boundaries, plus one control-floor breach.** Applying `XMC-C-D2` — *"a rule addressed to a
 > receiver with no element capable of satisfying it is not a rule"* — **R1 and R2 are presently rules
-> addressed to nobody on flows 2, 7, 8 and 9.** They bind the moment a producer publishes, and until
+> addressed to nobody on flows 1, 2, 4, 6, 7, 8 and 9.** They bind the moment a producer publishes, and until
 > then they are unenforceable **not because they are weak but because the addressee does not exist.**
 
 **Structural corroboration, reproduced:** `FINAL_SOLUTION` holds **30 paths, `0` of them outside
 `INVENTORY`** — there is no `FINAL_SOLUTION/ACCOUNT`, `/SALES`, `/PURCHASE`, `/ASSET` or `/EXPENSE`.
-**Five of the ten flows above are exactly the five with no producing-side design package.** The
-correspondence is one-to-one and is not a coincidence: **the contract is sufficient wherever a producer
-has published and gapped wherever one has not.**
+**Every flow whose emitting party has no `FINAL_SOLUTION` package is a `CONTRACT-GAP`, and the two
+`CONTRACT-SUFFICIENT` flows are exactly the two Inventory emits.** The correspondence is one-to-one
+and is not a coincidence: **the contract is sufficient wherever the emitting party has published and
+gapped wherever it has not.**
 
 ### 5.2 `C4-02-F-05` — element 10 and element 15 remain one object with two names
 
@@ -278,6 +338,50 @@ satisfy element 15 is by its own scoping incapable of satisfying element 10.**
 **responsibility statement** — it says who must recognise a repeat presentation. **It does not supply
 the key, and `RISK-C02` is unchanged.** A reader taking §3.1 row 11 as element 15 supplied would be
 making precisely the error `CF-V-01` exists to prevent, one element along.
+
+### 5.3 `C4-02-F-07` — a stranded event architecture states positions on elements 10 **and** 15, and no register cites it
+
+**`ARC-WP-010 INTEGRATION_EVENT_ARCHITECTURE`**, on the same unmerged branch as the 19 deliverables of
+`SA_CORR4_01` `C4-01-F-07`, states verbatim:
+
+| § | Text | Bears on |
+|---|---|---|
+| 12.4 | *"Domain events … are append-only, versioned, **tenant-scoped** and never mutated/deleted. Each event has an **owning source**."* | element 10; `R9` |
+| 12.3 | *"validation, entitlement and **tenant resolution at the gateway**"* | `R3`, `R4` |
+| **12.7** | *"**Every consumer uses an idempotency key (event ID / business key) to prevent duplicate side effects** (critical for Posting Engine)."* | **element 15** |
+| 12.5 | *"**At-least-once** delivery with **idempotent consumers**; ordering preserved per aggregate where required."* | element 15; `XMC-C-A12` |
+| 16 | *"**Every event carries tenant context; consumers reject events outside their tenant scope**; external webhooks are tenant-scoped."* | element 10; `R5` |
+| 12.8 | *"external tokens are least-privilege and **scoped per tenant**"* | `SA_CORR4_01` class 6 |
+| 13 | `ADR-ARC-002` immutable event store · `ADR-ARC-017` at-least-once + idempotent consumers · `ADR-ARC-018` gateway-only external integration — **all `PROPOSED`** | — |
+
+**Citation measurement.** `ARC-WP-010` returns **14 paths**; `INTEGRATION_EVENT_ARCHITECTURE` returns
+**15**; **`ADR-ARC-017` returns 4, every one of them inside the stranded package itself.**
+**Outside that package the only citers are a STEP0301 document inventory and this CORR4 file.**
+**No `MTI-*` register, no element-15 register, no Phase SA artefact cites any of them.**
+
+> **`C4-02-F-07`. The programme's standing statement about element 15 is that the object *"does not
+> exist"* and *"none has been designed."* That is **true of the corpus every consumer reads and false
+> of the repository.** An architectural position on idempotency — a named key source, a delivery
+> guarantee, a consumer obligation and a proposed ADR — was written on 2026-07-14 and has been
+> invisible ever since.
+
+**What this does NOT do, stated firmly because the temptation is real.** §12.7 places an obligation on
+*consumers* and names a **key source** (*"event ID / business key"*). **It does not define a
+deterministic identity basis**, which is what element 15 requires and what `XMC-C-A3` specifies six
+parts of. **It is `Version 0.1 · DRAFT · NOT VERIFIED · Gate Status: HOLD`, its ADRs are `PROPOSED`,
+and its named review never occurred.**
+
+> **Element 15's status does not move. `RISK-C02` stands. `0 of 10` handoffs compliant stands.
+> `JCP3-F-05b` stands** — the only *implemented* carrier in the estate remains table-global and
+> therefore incapable of satisfying element 10.
+>
+> **What changes is the act.** CORR3 classified element 15's remedy as *"a design act — origination."*
+> **On this evidence it is an adjudication act**: read a draft that exists, reconcile it with
+> `XMC-C-A3`'s identity basis and with `MTI-31`'s run-scoping, and have it independently reviewed.
+> **Cheaper, and more honest, than commissioning the origination of something already written.**
+
+**Folded into `C4-D-01`**, which already carries the joint-artifact appointment, rather than raised as
+a third escalation for one governance cause.
 
 ---
 
@@ -310,10 +414,11 @@ making precisely the error `CF-V-01` exists to prevent, one element along.
    `PLATFORM`- and `TENANT`-scoped facts. **If the scope class of a fact is itself wrong, R2 licenses
    the omission and `CF-I-03` `D5` is the only thing that catches it.** The scope-class assignment is
    therefore a single point of failure this contract does not itself protect. **Recorded; not solved.**
-5. **The `HX-`/`HF-CTX-` join in §5 is mine.** No prior artefact makes it. If the two registers were
-   never intended to describe the same boundary, §5's `CONTRACT-SUFFICIENT` rows overstate. **My ground
-   is that both name the Inventory→Accounting boundary and enumerate the same facts** — but that is an
-   inference from subject matter, and a challenger should test it directly.
+5. **The `HX-`/`HF-CTX-` join in §5 was tested by independent challenge and is stronger than I
+   claimed.** I recorded it as *"an inference from subject matter."* It is not — `HO-nn` and `HX-nn`
+   are **the same rows**, content-for-content (`C4-02-F-02` as corrected). **The residual that remains
+   is the opposite one: neither register declares the alias**, so a future reader of either can still
+   miss the other, and nothing in the corpus fixes that.
 
 ---
 
@@ -321,8 +426,9 @@ making precisely the error `CF-V-01` exists to prevent, one element along.
 
 > ## `CP-SA-C4-20 — XMC-C-D1 CONTRACT CLOSED`
 > **13 of 13 elements addressed · 9 of 9 rules stated, `6 RULED` + `3 SPECIFIED` + `0` newly
-> determined · 10 flows proved: `5 CONTRACT-SUFFICIENT` / `5 CONTRACT-GAP`.**
-> **5 findings** — `C4-02-F-01` … `C4-02-F-05`. **1 escalation** — `C4-D-01`, an appointment.
+> determined · 10 flows proved: `2 CONTRACT-SUFFICIENT` / `8 CONTRACT-GAP`** — corrected from `5 / 5`
+> by independent challenge (`C4-02-F-09`).
+> **9 findings** — `C4-02-F-01` … `C4-02-F-09`. **1 escalation** — `C4-D-01`, an appointment.
 > **Element 10 does not move. `0 of 10` handoffs compliant. 0 vetoes discharged.**
 
 **Next autonomous action:** `CP-SA-C4-10`, on the returning privileged-path evidence.

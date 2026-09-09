@@ -170,6 +170,14 @@ Three independent instruments forbid it, and **any one of them is sufficient**:
    records it as the reason CORR3 did not propagate: *"Method available to this session: **none**.
    Publishing to another party's branch is prohibited by the containment rule; merging is prohibited by
    master prompt §21."*
+   > **`C4-04-F-06`, found by independent challenge, and it weakens this instrument.** Measured over
+   > all 185 branch heads: the phrase **"containment rule" occurs in exactly ONE blob predating this
+   > package — `SA_CORR3_05` §3.6, the sentence quoted above.** It is **asserted there and defined
+   > nowhere**; no Boss ruling, governance document or constitution in `U2` states it. Positive
+   > control: `containment` alone returns **121** paths, so the instrument reads the corpus.
+   > **A rule with one citation, and that citation its own prior assertion, is not three independent
+   > instruments' worth of authority — it is one, and it is weak.** Instruments 2 and 3 below are
+   > master-prompt clauses and are unaffected; **the disposition rests on those two.**
 2. **Master prompt §0**, this round: `DO NOT … merge/release/deploy`.
 3. **Master prompt §12** authority boundary: this session writes to its own branch and no other.
 
@@ -205,16 +213,38 @@ The 183 uncorrected branches, classified by namespace:
 | **`SMEsPlus` (mainline, default branch)** | **1** | **The whole of it.** Every future branch is cut from it; the public URL resolves to it |
 | `claude/*` | 56 | historical execution branches |
 | `audit/*` · `research/*` · `corr/*` · `prompt/*` | 86 | historical, unmerged by design |
-| `control/*` · `design/*` · `ruling/*` · `governance/*` · `architecture/*` · `review/*` · `boss/*` | 22 | historical |
-| `ibpv/*` · `chatgpt/*` · `agent/*` · `state0*` · `feature/*` | 9 | historical |
+| `control/*` · `design/*` · `ruling/*` · `governance/*` · `architecture/*` · `review/*` · `boss/*` | **21** | historical |
+| `ibpv/*` · `chatgpt/*` · `agent/*` · `state0*` · `feature/*` *(less `state03-governance-v2`, counted below)* | **10** | historical |
 | `ignore`, `ignore2`…`ignore7`, `noop`, `state03-governance-v2` | 9 | **disposable by their own names** |
 | **Total** | **183** | |
+
+> **`C4-04-F-05`, found by independent challenge.** This census first read `22` and `9` for the two
+> middle rows. Re-derived per branch: they are **`21` and `10`**. **The grand total of `183` survived
+> only because the two errors cancelled** — which is exactly why a total-only check misses them, and
+> the third instance in this package of *a total that sums while its distribution is wrong*
+> (`C4-02-F-06`, `C4-06-F-01`). **The corrected census is above; the argument it supports is
+> unaffected, and the fact that it was wrong is not.**
 
 > **`C4-04-F-04`. Correcting `origin/SMEsPlus` alone carries the entire forward exposure and the whole
 > of the public exposure.** The other 182 are **historical execution branches that are unmerged by
 > design** — the programme's own model is that they are never merged and Boss decides. **Correcting
-> them would rewrite the evidence record of rounds that have already been published**, which the
-> supersession rule forbids: prior evidence must remain readable as it was.
+> them would rewrite the evidence record of rounds that have already been published.**
+
+> **`C4-04-F-07`, found by independent challenge, and it removes this paragraph's cited authority.**
+> The clause above first read *"…which the supersession rule forbids: prior evidence must remain
+> readable as it was."* Measured: **"supersession rule" occurs in six blobs, and every one of them
+> governs *which version of a document is currently authoritative to read*** — *"Every previous
+> supersession rule in this package governs **which artefact** to read"*, *"change-control and
+> supersession rules"*, *"Version 2 is the controlled baseline per supersession rule"*.
+> **None concerns whether a published claim on a historical branch should ever be corrected.**
+>
+> **The extension was mine and it is withdrawn.** The reading that 182 branches should be left
+> uncorrected **has no rule behind it in this corpus.** It rests on the programme's never-merge model
+> and on my own judgement — **and it is the reading that minimises this session's remaining work**,
+> which is precisely the direction an executor is biased toward. **It is therefore restated as what it
+> is: a PMO recommendation with a stated rationale and no cited authority**, and §6.4's caveat — that
+> a reader who holds a prohibited claim should survive nowhere would reach the opposite conclusion —
+> **governs it.**
 >
 > **The propagation therefore has two parts with opposite dispositions:** one mainline act that closes
 > the exposure, and 182 branches on which the uncorrected text is **audit lineage that should be
@@ -272,8 +302,8 @@ the remaining 182 are reclassified from *outstanding* to **audit lineage to be p
    English-token based, and the corpus is bilingual.
 3. **`GAP-KC-01` is open and this file does not close it.** The folder-level disposition — archive,
    correct or relabel — remains PMO's and is not re-escalated.
-4. **§4.3's recommendation that 182 branches be left uncorrected is mine.** Its ground is the
-   supersession rule and the programme's own never-merge model. **A reader who holds that a prohibited
+4. **§4.3's recommendation that 182 branches be left uncorrected is mine, and it has no cited
+   authority — `C4-04-F-07`.** Its only ground is the programme's never-merge model and my judgement. **A reader who holds that a prohibited
    claim should not survive anywhere would reach the opposite conclusion**, and that reading is
    coherent. **It is a PMO judgement and I have stated my reasoning rather than assumed it.**
 
