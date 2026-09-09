@@ -184,7 +184,7 @@ and `HF-CTX-02` Company identity are both marked mandatory `Always`**, extended 
 | **18** cross-module handoffs, `0 PROVEN / 2 N/A / 16 HOLD` | 18 | **Reproduced** |
 | **30** `FINAL_SOLUTION` paths, `0` outside `INVENTORY`, `V1_0`=18 / `V2_0`=12 | 30 / 0 / 18 / 12 | **Reproduced** |
 | `tenant`=1, `company`=4 lines in `07_…V1.md` | identical on two instruments | **Reproduced** |
-| **31**-row `HX-` handoff register, `HX-` cited **0** times by Phase SA | `HX-` returns **31** rows in its own file and **18** paths branch-wide. Of the 18, **2 are `SA_CORR3_08` and `SA_CORR3_11` — CORR3's own files, reporting the zero** — and **0 of the 35 `SA00`–`SA20` / `SA_CORR2_*` artefacts** cite it | **Reproduced, with the unit made exact** |
+| **31**-row `HX-` handoff register, `HX-` cited **0** times by Phase SA | `HX-` returns **31** rows in its own file and **18** text paths branch-wide (case-sensitive; a case-insensitive run adds 2 `.zip` archives outside `U2`). Of the 18, **2 are `SA_CORR3_08` and `SA_CORR3_11` — CORR3's own files, reporting the zero** — and **0 of the 35 `SA00`–`SA20` / `SA_CORR2_*` artefacts** cite it | **Reproduced, with the unit made exact** |
 | Compliance path present on every branch, byte-identical among the uncorrected | 183 branches share one blob SHA | **Reproduced** |
 | Manifest — every hash | **21 lines / 17 files, all match** — §7 | **Reproduced** |
 

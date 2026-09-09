@@ -14,14 +14,14 @@ Maintained under master prompt §13. **Checkpoint completion is NOT Boss approva
 | Checkpoint | Status | Files | Commit |
 |---|---|---|---|
 | `CP-SA-C4-00` CORR3 baseline reproduced | **`CLOSED (execution status)`** | `SA_CORR4_00` | `4e31db4f` |
-| `CP-SA-C4-10` Privileged bypass enumerated | **`IN PROGRESS`** | `SA_CORR4_01` | — |
-| `CP-SA-C4-20` `XMC-C-D1` contract closed | **`CLOSED (execution status)`** | `SA_CORR4_02` | pending |
+| `CP-SA-C4-10` Privileged bypass enumerated | **`CLOSED (execution status)`** | `SA_CORR4_01` | `5904713d` |
+| `CP-SA-C4-20` `XMC-C-D1` contract closed | **`CLOSED (execution status)`** | `SA_CORR4_02` | `5904713d` |
 | `CP-SA-C4-30` `CF-I-03` specified and linked | **`CLOSED (execution status)`** | `SA_CORR4_03` | `4e31db4f` |
-| `CP-SA-C4-40` Compliance retraction propagated | **`IN PROGRESS`** | `SA_CORR4_04` | — |
-| `CP-SA-C4-50` Four conditions closed or exact hold | **`NOT STARTED`** | `SA_CORR4_05` | — |
-| `CP-SA-C4-60` Affected invariants reclassified | **`NOT STARTED`** | `SA_CORR4_06` | — |
-| `CP-SA-C4-70` 22-scenario Pre-Test handoff qualified | **`NOT STARTED`** | `SA_CORR4_07` | — |
-| `CP-SA-C4-80` SMEs Core final re-challenge | **`NOT STARTED`** | `SA_CORR4_08` | — |
+| `CP-SA-C4-40` Compliance retraction propagated | **`CLOSED (execution status)` — disposition `PROPAGATION HOLD`** | `SA_CORR4_04` | `f364f57c` |
+| `CP-SA-C4-50` Four conditions closed or exact hold | **`CLOSED (execution status)`** | `SA_CORR4_05` | pending |
+| `CP-SA-C4-60` Affected invariants reclassified | **`CLOSED (execution status)`** | `SA_CORR4_06` | `f364f57c` |
+| `CP-SA-C4-70` 22-scenario Pre-Test handoff qualified | **`CLOSED (execution status)`** | `SA_CORR4_07` | `f364f57c` |
+| `CP-SA-C4-80` SMEs Core final re-challenge | **`IN PROGRESS`** | `SA_CORR4_08` | — |
 | `CP-SA-C4-90` Final evidence integrity | **`NOT STARTED`** | `SA_CORR4_09` | — |
 | `CP-SA-C4-FINAL` Boss Final Gate Pack | **`NOT STARTED`** | `SA_CORR4_10` | — |
 
@@ -61,6 +61,15 @@ reference-ERP source trees and runtime dumps outside this clone.
   Use `-q --verify`, or a version-ranking loop reports every file present on every branch.
 - `grep` here is **ugrep 7.8.4**, case-insensitive unless forced; `ripgrep 14.1.1` is available as a
   second instrument. Every count in this package is case-sensitive unless stated.
+- **`C4-I-05`** markdown **escapes underscores**: `tenant\_id`. A naive `grep 'tenant_id'` returns a
+  **false zero** on any file using the escaped form. Use `tenant\\?_id` and publish the naive figure
+  beside it wherever they differ.
+- **`C4-I-06`** a peer executor reported that `git grep` **silently truncates over ~185 revisions**
+  (`96` vs `633` paths). **Tested with identical flags and NOT reproduced**: single-command and
+  19-way-chunked agree on 15 fixed strings, on a simple `-E`, and on the broad `-E` alternation at
+  **1,061 = 1,061**. The apparent discrepancy was a **`-i` flag mismatch**, then a **pattern**
+  difference — never the revision count. **Do not chunk on this account; do check the flags on both
+  sides of any instrument comparison.**
 - A published negative-control token is **single-use** (`C3-I-02`). CORR4's token is fresh.
 
 ## 4. Results so far
@@ -72,13 +81,16 @@ reference-ERP source trees and runtime dumps outside this clone.
 | `C4-01` privileged-path enumeration | **IN PROGRESS** |
 | `C4-02` `XMC-C-D1` | **CLOSED** — 13 elements, 9 rules (`6 RULED` + `3 SPECIFIED` + **0 newly determined**), 10 flows: `5 SUFFICIENT` / `5 GAP`. **All five gaps are the absence of a producing-side design, not a context gap** |
 | `C4-03` `CF-I-03` | **CLOSED** — **`CF-I-03` is a published `SPECIFIED` invariant and CORR3 counted it**; *"the control does not exist"* is a bounded negative republished without its bound. Full control specification published. `MTI-43 CONTROL REFERENCE CLOSED` at specification level |
-| `C4-04` propagation | **IN PROGRESS** — denominator re-measured: **185 / 2 corrected / 183 uncorrected / 0 absent**; **mainline carries the uncorrected blob**; **the repository is public and the claim is fetchable unauthenticated (HTTP 200)** |
+| `C4-04` propagation | **`PROPAGATION HOLD` — NOT CLOSED.** Denominator re-measured **185 / 2 / 183 / 0**; claim class established as **1 file on four instruments**; correction audited **4 of 4** and passes; **mainline carries the uncorrected blob**; **the repository is public and the claim is fetchable unauthenticated, HTTP 200**. Propagation is **technically possible and not authorized to this session**. The act reduces from 183 branches to **one** |
+| **Four-condition gate** | **`3 CLOSED · 1 NOT CLOSED`** — `C4-04`'s exception is authority-bounded and **not** non-material, and its criterion requires both |
+| Affected invariants | **25 of 58 re-run** — `18 SA-SPEC-COMPLETE · 5 SA-SPEC-GAP · 1 CONTRADICTED · 1 EVIDENCE-ACT-COMPLETE · 0 PROVEN` |
+| 22 scenarios | **`22 of 22 SA MATERIAL GAP`** — element 15 blocks all 22 and was not one of the four conditions. **The context/authorization dimension alone reaches `SA CONTRACT COMPLETE` on 22 of 22.** Joint cross-proof unchanged at `0 of 22` |
 | Invariants proven | **0** |
 | Vetoes discharged | **0** — 6 in force |
 | Element 10 status | **`specified, not built, not verified`** — unchanged, `AAS-V-01` wording mandatory |
 | Handoffs contract-compliant | **`0 of 10`** — unchanged |
-| New findings | `C4-B-01`…`04`, `C4-I-01`…`04`, `C4-02-F-01`…`05`, `C4-03-F-01`…`02` |
-| New escalations | `C4-D-01` — the Boss-mandated joint interface artifact, an **appointment** |
+| New findings | `C4-B-01`…`04` · `C4-I-01`…`06` · `C4-01-F-01`…`06` · `C4-02-F-01`…`05` · `C4-03-F-01`…`02` · `C4-04-F-01`…`04` · `C4-05-F-01` · `C4-07-F-01`…`02` |
+| New escalations | `C4-D-01` the Boss-mandated joint interface artifact (**appointment**) · `C4-D-02` the cross-tenant-actor contradiction in the canonical baseline |
 
 ## 5. Terminal state
 

@@ -69,6 +69,7 @@ own work, and is what §3–§5 do.
 | Test | Result | Control |
 |---|---:|---|
 | `HX-` cited in `06_CROSS_MODULE_HANDOFF_CONTRACT_FIELDS.md` | **0** | `HO-` fires **6** in the same file |
+| `HX-` branch-wide, unit `U2` | **18 text paths** (case-sensitive). A case-insensitive run returns **20**; the two extra are `.zip` archives, **outside `U2` by the frame's own extension rule** | negative control **0** |
 | `HO-` or `HF-CTX` cited in `10_…CROSS_MODULE_HANDOFF_V1.md` | **0** | `HX-` fires **35** in the same file |
 
 **Two SMEsPlus-owned registers describe the same Inventory→Accounting boundary in two disjoint

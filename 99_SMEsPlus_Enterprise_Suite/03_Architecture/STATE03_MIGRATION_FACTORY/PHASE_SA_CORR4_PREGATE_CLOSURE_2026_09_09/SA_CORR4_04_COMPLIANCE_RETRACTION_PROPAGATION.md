@@ -43,13 +43,16 @@ across 185 branch heads:
 
 | Instrument | Shape | Distinct statements | Distinct paths |
 |---|---|---:|---:|
-| **A** broad seed sweep | `ISO 27001 / IEC · SOC 2 · GDPR · PDPA · HIPAA · PCI-DSS · certifi · compliance · compliant · attestation · accredit · conformance` | path-level | **633** |
+| **A** broad seed sweep | `ISO 27001 / IEC · SOC 2 · GDPR · PDPA · HIPAA · PCI-DSS · certifi · compliance · compliant · attestation · accredit · conformance` | path-level | **1,061** |
 | **B** assertion-verb | `compliant with · complies with · conforms to · conformant · adheres to · certified to/against/under · is certified · fully compliant` | **54** | **49** |
-| **C** heading form | `standards? compliance` | **17** | **12** |
+| **C** heading form | `standards? compliance` | **17** | **13** |
 | **D** named-standard token | `ISO 27001 · ISO 9001 · SOC 2 · GDPR` | **40** | **16** |
 
-**126 distinct files were read in full context** — every hit of B, C and D, the whole first broad pass,
-and a stratified 1-in-18 sample of the newly-found broad population.
+**Instruments C and D were re-run independently by the orchestrator**, chunked, case-insensitive, and
+**reproduce at 13 and 16 paths.** Instrument **A's population is `1,061`, not the `633` first
+reported** — the two runs used different word-boundary anchoring, and the wider figure is the one
+carried. **126 distinct files were read in full context** — every hit of B, C and D, and a stratified
+sample of the broad population, which is **~12% of `1,061`, not ~20% of `633`.**
 
 ### 2.1 Classification
 
@@ -92,6 +95,31 @@ on the identical pattern.** The instrument fires; the five zeros are real.
 
 **Not re-escalated.** `GAP-KC-01` is open, PMO-owned, and correcting the prohibited claim does not
 require answering it. **Recorded so that no reader treats §3 below as having disposed of the folder.**
+
+### 2.4 `C4-I-06` — a reported instrument defect, tested and **not reproduced**
+
+The first executor of this sweep reported that **`git grep` silently truncates when given ~185
+revisions at once**, citing `96` paths single-command against `633` chunked, with a spot check showing
+`74` matches on one branch of which only `10` were captured. **That claim was material enough to
+invalidate every branch-wide count in this package, so it was tested before being adopted.**
+
+**It does not reproduce.** Single-command and 19-way-chunked runs were compared with **identical
+flags**:
+
+| Pattern shape | Single-command | Chunked | |
+|---|---:|---:|---|
+| 15 fixed strings — `BD-ACC-01` · `MTI-18` · `privileged` · `break-glass` · `superuser` · four `FDS_*` · `HX-` · `CF-I-` · `MODULE_SPEC_AUTHORIZATION` · `ACCOUNTING_INVENTORY_INTERFACE_CONTRACT` · `compliance` (**557**) · `ISO 27001` | — | — | **agree, all 15** |
+| Simple `-E` alternation | **29** | **29** | agree |
+| **Broad `-E` alternation — the shape the defect was reported on** | **1,061** | **1,061** | **agree** |
+
+> **`C4-I-06`. The reported truncation is not a property of the revision count.** A first comparison
+> appeared to show a discrepancy and was itself an artefact — the two runs differed in the `-i` flag,
+> not in chunking. **The real difference between `96` and `633` was the pattern, not the method.**
+>
+> **Recorded, and the peer's record corrected, because the claim as stated would have caused a later
+> reader to distrust every branch-wide count in this package and in CORR3's.** The programme's rule is
+> to verify a peer's instrument claim before adopting it; **this is the first time in the chain that
+> the verification returned *not reproduced*, and the finding is worth as much as a confirmation.**
 
 ---
 
@@ -233,10 +261,11 @@ the remaining 182 are reclassified from *outstanding* to **audit lineage to be p
 
 ## 6. Residual
 
-1. **§2's `633`-path broad population was sampled, not exhaustively read** — 126 of 633 files read in
-   full context, roughly 20%, stratified. **The `1 file` result rests on instruments B, C and D being
-   exhaustively read and converging, not on the broad sweep being fully classified.** A challenger
-   should read the unread 507 rather than re-run the same three instruments.
+1. **§2's `1,061`-path broad population was sampled, not exhaustively read** — **126 of 1,061, ~12%**,
+   stratified. **The `1 file` result rests on instruments B, C and D being exhaustively read and
+   converging — two of which the orchestrator re-ran independently — not on the broad sweep being
+   fully classified.** A challenger should read the unread **935** rather than re-run the same three
+   instruments.
 2. **I did not verify that a fourth claim shape does not exist.** Instruments B, C and D are
    assertion-verb, heading and named-token. **A claim made in a table cell, an image caption, a Thai
    sentence, or a filename would escape all three.** Thai in particular: every instrument here is
