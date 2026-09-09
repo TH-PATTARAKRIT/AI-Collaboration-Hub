@@ -124,7 +124,7 @@ is for.
 
 | Class | Items | Why re-entry is the wrong instrument |
 |---|---|---|
-| **Boss policy election** | all 25 surviving decisions | Research cannot produce an election. Master prompt §6: *"Do not use Very Deep Research as a substitute for making an architecture decision when evidence is already sufficient"* |
+| **Boss policy election** | all 23 surviving decisions | Research cannot produce an election. Master prompt §6: *"Do not use Very Deep Research as a substitute for making an architecture decision when evidence is already sufficient"* |
 | **Business-SME input** | `SME-Q-03` (invoice/delivery sequencing), `SME-Q-02` | Asks how SMEsPlus's **own customers** operate. **No reading of the reference corpus can produce it**, and `08_JT04` §8 rejected `DECIDABLE WITH CONTROL` for exactly this reason |
 | **Thai statutory input** | `TH-NEW-01`, `TH-NEW-02`, `POH-D-02`'s tax consequences, the over-absorption cap strength | Under standing rule these are `HOLD / EVIDENCE REQUIRED` and route to the **Accounting-Tax track**. VDR over the reference estate cannot establish what a Thai standard requires |
 | **Runtime / build proof** | element 10, element 15, `CF-I-03`, the 58 invariants, the 22 scenarios | Needs an implementation and an executed test. Unreachable at Phase SA **by construction** |

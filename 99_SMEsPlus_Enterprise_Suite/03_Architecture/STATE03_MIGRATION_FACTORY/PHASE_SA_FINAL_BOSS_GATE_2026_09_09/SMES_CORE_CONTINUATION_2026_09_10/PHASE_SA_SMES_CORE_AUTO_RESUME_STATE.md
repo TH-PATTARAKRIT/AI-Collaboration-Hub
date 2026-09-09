@@ -28,18 +28,28 @@ Parent Final Boss Gate commit: `9d5bc2db4a6b62c4cd01a04388b5bad23e6f5306`
 | `CP-SA-SC-50` | Veto / authority handoff — **6 in force, 0 discharged, 0 held by SMEs Core** | `SC-04` |
 | `CP-SA-SC-60` | Pre-Test entry re-qualified — **Category 3 = 0**, 3 Boss entry decisions | `SC-05` |
 | `CP-SA-SC-70` | Updated Boss Final Gate Delta Pack published | `SC-06` |
+| *(post-publication)* | **Two-track reconciliation and count correction** — `26`→`24`→**23**; one `8C-001` Reading A ground withdrawn; **`BOSS-ROUTE-01` OPEN** | `SC-07` |
 
 ## What Boss now holds
 
-- **25 Boss decisions** in 8 questions, each with an SMEs Core recommendation and an SMT disposition.
+- **23 Boss decisions** in 8 questions, each with an SMEs Core recommendation and an SMT disposition.
 - **5 Boss acts** (not decisions), unchanged.
 - **1 scope clarification** — whether `SMEPLUS-DR-EXIT-8C-001` binds this exit. **Both readings presented;
-  no preference offered.**
+  no preference offered.** Reading A now rests on **three contested clauses and no Phase SA precedent**
+  (`SC-V-01` this session; `AR-F-02` peer, re-verified here).
+- **1 open route question — `BOSS-ROUTE-01`.**
 
 ## Immediate next action — and it is Boss's, not a session's
 
+**`BOSS-ROUTE-01` is OPEN and is the first thing Boss sees** (`SC-07` §5): two Boss-authored instructions
+govern the same `F1`–`F8` population — this **SC** track and the **AR** track
+(`afe664c6` / `b1f07939`, branch `architecture/phase-sa-authority-resolution-and-independent-gate-2026-09-09-001`).
+**The two are complementary on the merits and no finding of either contradicts the other**; the one
+inconsistency was the decision count and it is resolved in the peer's favour. **SMEs Core does not pick the
+route.**
+
 **If Boss answers the `SC-06` §4 scope question as Reading A, the correct first response is the `B-7`
-appointment, before any ruling on the 25 decisions** — `EC-07` would then be unsatisfied and **no amount of
+appointment, before any ruling on the 23 decisions** — `EC-07` would then be unsatisfied and **no amount of
 further SMEs Core work can satisfy it.**
 
 **SMEs Core recommends appointing `B-7` regardless of the scope answer**: gate-blocking under Reading A,

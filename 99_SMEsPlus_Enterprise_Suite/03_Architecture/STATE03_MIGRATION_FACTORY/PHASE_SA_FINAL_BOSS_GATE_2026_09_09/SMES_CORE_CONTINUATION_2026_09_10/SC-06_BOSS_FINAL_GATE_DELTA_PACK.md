@@ -16,7 +16,7 @@ Boss: **SOLE FINAL APPROVER**
 |---|---|---|
 | **Terminal state** | `HOLD — PMO MAINLINE CLOSURE REQUIRED` | **`READY FOR BOSS PHASE SA FINAL DECISION`** — with the qualifier at §7 |
 | **Category 3 material gaps** | **1** — the live public compliance claim | **0** — PR #63 merged; verified by blob identity, not inference |
-| Boss decisions | **26** | **25** — one closed (`C2-D-02`), nine narrowed |
+| Boss decisions | **26** as published — **24** corrected (`SC-07` / `AR-F-01`, re-verified here at primary source) | **23** — one closed (`C2-D-02`), nine narrowed |
 | Families with no SMEs Core recommendation | **1** (`F3`) | **0** |
 | `F3` standing dissent | **live and unresolved** for three rounds | **resolved — upheld** |
 | Boss **acts** | 5 | **5**, unchanged |
@@ -26,7 +26,7 @@ Boss: **SOLE FINAL APPROVER**
 
 ---
 
-## 2. The 25 Boss decisions, as 8 questions
+## 2. The 23 Boss decisions, as 8 questions
 
 Each row: the question · the SMEs Core recommendation · the SMT disposition · the consequence of each
 alternative. Full cards at `SA_FINAL_03` (parent) as amended by `SC-01` and `SC-02`.
@@ -88,7 +88,7 @@ alternative. Full cards at `SA_FINAL_03` (parent) as amended by `SC-01` and `SC-
 | **Consequence — leave at one boundary** | Eleven mandated handoffs stay uncontracted; `XMC-C-D2` makes a rule with no carrier **not a rule** |
 | **Consequence — extend** | Pre-Test builds a 12-boundary matrix from the start rather than discovering it later, which is an increment rather than a re-scope |
 
-### `F5` — Manufacturing overhead governance · **8 decisions**
+### `F5` — Manufacturing overhead governance · **6 decisions**
 
 | | |
 |---|---|
@@ -154,8 +154,11 @@ alternative. Full cards at `SA_FINAL_03` (parent) as amended by `SC-01` and `SC-
 
 **Reading A — it binds.** §2.4 applies it to *"Cross-Module and Whole-System State Integration Review"*;
 §4 covers *"next controlled phase"*; every Phase SA prompt carries the `/L99999.99999` depth label §6 defines;
-and **`SA_CORR3_07` has already applied this constitution to grade a Phase SA package.**
 **Consequence: `EC-07` fails on zero independent passes, and `B-7` becomes gate-blocking.**
+
+**One ground previously offered for Reading A is WITHDRAWN** (`SC-07` / `AR-F-02`, re-verified at primary
+source): `SA_CORR3_07`'s citation of this constitution applies **§9, the AAS+ / Design Handoff Rule**, not
+§4 and not `EC-07`. **There is no Phase SA precedent for Reading A.**
 
 **Reading B — it does not.** Its subject is Very Deep Research, and the Boss closure separates the two:
 Phase SA is *"synthesis; architecture; conceptual/domain design … and controlled return to Very Deep
@@ -164,7 +167,7 @@ architecture gate. **Consequence: the gate stands on `SC-05`'s categories and `B
 
 **Narrowed this round (`SC-V-01`).** Two of the five clauses previously in play are **not engaged**:
 §2.3 and §5 operate at **State** level, and Phase SA sits **inside** `STATE03` — its exit is to Pre-Test,
-not to `STATE04`. **Reading A now rests on three clauses, not five.**
+not to `STATE04`. **With §2.3 and §5 not engaged, Reading A rests on three clauses and no precedent.**
 
 **And a consequence that cuts both ways.** The Phase S conditional-closure ruling and the Boss-approved
 architecture rulings were searched for `EC-01`…`EC-08`, `8C-001`, *8-Criteria* and *eight criteria*:
@@ -228,7 +231,7 @@ role** — productive (6 of 11 changed an SMEs Core conclusion) and **not indepe
 | SMEs Core authority exhausted | **Yes** — all 8 families tested against the six authority tests; the one prescribed re-read executed; every closable item closed and each closure grounded in an existing ruling or an adopted clause |
 | SMT challenge complete | **Yes** — 8 of 8 families dispositioned by 6 SMTs; 11 challenges; **0 returns still open** |
 | Team-owned material gaps closed or bounded | **Yes** — `CATEGORY 3 = 0`; owned by SMEs Core `0`, document owner `0`, PMO `0` |
-| The pack contains only genuinely Boss-owned decisions and acts | **Yes** — 25 decisions, 5 acts, 1 scope clarification. **0 new decisions originated; 0 items removed on authority grounds, as at the parent round** |
+| The pack contains only genuinely Boss-owned decisions and acts | **Yes** — 23 decisions, 5 acts, 1 scope clarification. **0 new decisions originated; 0 items removed on authority grounds, as at the parent round** |
 
 ### 7.1 The qualifier — what Terminal A does and does not assert
 
@@ -239,7 +242,7 @@ structural independence · a Pre-Test authorisation · a gate declared passed ·
 invariant or contract.
 
 **And the ordering matters.** **If Boss answers §4 as Reading A, the correct response to this pack is an
-appointment (`B-7`) before any ruling on the 25 decisions** — because `EC-07` would then be unsatisfied and
+appointment (`B-7`) before any ruling on the 23 decisions** — because `EC-07` would then be unsatisfied and
 **no amount of further SMEs Core work can satisfy it.** Terminal A is chosen **because declaring Terminal C
 would itself decide the scope question in Reading A's direction**, and declaring the gate simply open would
 decide it in Reading B's. **Neither is SMEs Core's to decide, so the pack presents the question and stops.**
@@ -258,7 +261,7 @@ ORM, workflow, menu or UI treated as SMEsPlus design authority.
 ## 8. Checkpoint
 
 > ## `CP-SA-SC-70 — UPDATED BOSS FINAL GATE DELTA PACK PUBLISHED`
-> **`CATEGORY 3: 1 → 0` · 25 Boss decisions in 8 questions, each with a recommendation and an SMT
+> **`CATEGORY 3: 1 → 0` · **23** Boss decisions in 8 questions (corrected from 25; `SC-07`), each with a recommendation and an SMT
 > disposition · 5 acts · 1 scope clarification with both readings and **no preference offered** ·
 > `F3` dissent resolved · 6 vetoes in force, 0 discharged, 0 held by SMEs Core · independence `PENDING`
 > and unclaimed · targeted research re-entry **none required** · **`TERMINAL A — READY FOR BOSS PHASE SA

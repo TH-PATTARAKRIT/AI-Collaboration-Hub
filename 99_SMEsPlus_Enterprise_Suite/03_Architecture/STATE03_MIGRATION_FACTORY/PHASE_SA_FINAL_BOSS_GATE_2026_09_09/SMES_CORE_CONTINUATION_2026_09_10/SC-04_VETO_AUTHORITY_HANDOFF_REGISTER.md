@@ -154,7 +154,7 @@ rather than widening them.**
 
 | | **Reading A — it binds this exit** | **Reading B — it does not** |
 |---|---|---|
-| **Ground** | §2.4 names what Phase SA structurally is; §4 covers *"next controlled phase"*; every Phase SA prompt carries the `/L99999.99999` depth label §6 defines; and **`SA_CORR3_07` has already applied this constitution to grade a Phase SA package `PROVISIONAL / NON-CANONICAL`** | Its subject is **Very Deep Research**, and the Boss closure separates the two: Phase S was the research, Phase SA is *"synthesis; architecture; conceptual/domain design … **and controlled return to Very Deep Research where required**"* — language treating Phase SA as **not itself** Very Deep Research. `EC-07`'s trigger is *"Before **Final Research Gate**"*; Phase SA's gate is an architecture gate |
+| **Ground** | §2.4 names what Phase SA structurally is; §4 covers *"next controlled phase"*; every Phase SA prompt carries the `/L99999.99999` depth label §6 defines. ~~And `SA_CORR3_07` has already applied this constitution to a Phase SA package.~~ **THAT GROUND IS WITHDRAWN — `SC-07` / `AR-F-02`.** Re-read at primary source: the clause `SA_CORR3_07` applies is **§9, the AAS+ / Design Handoff Rule** (*"AAS+ may explore designs in parallel only as `PROVISIONAL / NON-CANONICAL`"*), **not §4 and not `EC-07`**. A §9 grading says nothing about whether the Module Exit Rule binds this gate | Its subject is **Very Deep Research**, and the Boss closure separates the two: Phase S was the research, Phase SA is *"synthesis; architecture; conceptual/domain design … **and controlled return to Very Deep Research where required**"* — language treating Phase SA as **not itself** Very Deep Research. `EC-07`'s trigger is *"Before **Final Research Gate**"*; Phase SA's gate is an architecture gate |
 | **Consequence** | **`EC-07` FAILS** — Phase SA has had **zero** independent passes, not two consecutive clean ones. **`B-7` becomes gate-blocking**, not merely valuable. And per §6.2, the obligation may attach at Phase S's already-granted closure | The gate stands on `SC-05`'s categories. **`B-7` remains a valuable act that does not block Pre-Test entry** |
 | **Who can satisfy it** | **Not SMEs Core, by any amount of further work.** Only Boss appointing an independent challenger, and two consecutive clean passes completing | — |
 
@@ -203,7 +203,8 @@ this round.
 > and only on one of its branches · 1 awaits a ratification act whose condition is satisfied · 5 Boss acts
 > outstanding, unchanged · independence **PENDING**, and the internal/independent distinction preserved ·
 > `8C-001` scope card prepared with both readings, **Reading A's engaged clauses narrowed from five to
-> three** (`SC-V-01`), and **no preference offered between the readings** — with the one act that has no
+> three** (`SC-V-01`) **and its Phase SA precedent withdrawn** (`SC-07` / `AR-F-02`), and **no preference
+> offered between the readings** — with the one act that has no
 > downside on either reading recommended.**
 
 No Evidence = No Progress. Never Skip Gate. SMEs Core does not discharge another body's veto.

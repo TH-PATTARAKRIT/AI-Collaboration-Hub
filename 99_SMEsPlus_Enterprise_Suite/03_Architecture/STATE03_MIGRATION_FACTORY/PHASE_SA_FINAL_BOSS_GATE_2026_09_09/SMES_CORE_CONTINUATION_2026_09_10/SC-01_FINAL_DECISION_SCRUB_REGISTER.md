@@ -14,16 +14,28 @@ Boss: **SOLE FINAL APPROVER**
 
 ### 1.0 The count unit, declared before any number
 
-**UNIT: one atomic Boss decision as `SA_FINAL_02` §2/§3 counts them** — the 32-candidate decomposition less
-1 relocated and 5 acts, giving **26**. On that unit `F5` is **8** (three restatement subjects plus
-`POH-D-01`…`POH-D-05`), **not** the *"six decisions"* its own family card states. **The two readings are both
-in the parent and they differ**; this register uses the one the 26 is built from, so the delta is comparable.
-Mixing them is the programme's recorded count-unit-vs-population defect and is the reason the unit is
-declared before the total rather than after it.
+**UNIT: one atomic Boss decision, resolved at PRIMARY SOURCE — not at the parent's headline.**
+
+**CORRECTED AFTER PUBLICATION — see `SC-07`.** A first published version of this register used the
+parent's `26`, resolving `F5` to **8** identifiers because the parent's total is built that way. **The
+parent's `26` is itself defective**, and a peer track (`AR-F-01`) proved it. **Independently re-verified
+here at primary source** (`SA_CORR3_03`):
+
+- **`POH-D-06`'s own cell names TWO subjects, not three** — *"`BLK-07` and `BLK-08`: confirm, or restate"*.
+  *"Same for veto limb 2"* is an appended sentence, not a third subject of the decision.
+- ***"veto limb 2"* is `POH-G-03`, a `POH-G-*` SMEs Core design/build gap — it was never a Boss decision.**
+  §11 lists the Boss returns as *"`POH-D-01`, `POH-D-02`, `POH-D-06`"*, and `POH-G-03` beside them as work
+  to be **built**, not ruled.
+- **`POH-F-16` states it outright: *"The Boss residue is six items."***
+
+**Therefore `F5` = 6, and the corrected population is `24`, not `26`.** This register's own first instinct
+was `F5` = 6; it was overridden to match the parent's headline, which is **the same defect in the opposite
+direction** — resolving an internal inconsistency toward the summary instead of toward the source.
+**`SC-F-06`.**
 
 | Measure | Parent (`9d5bc2db`) | **After this scrub** |
 |---|---:|---:|
-| Boss decisions on the Phase SA list | **26** | **25** |
+| Boss decisions on the Phase SA list | **26** as published, **24** corrected (`SC-07`) | **23** |
 | — of which **conditional** (arise only on a non-recommended branch) | 0 | **1** (`XMC-D-01`) |
 | Decisions **closed** | — | **1** (`C2-D-02`) |
 | Decisions **materially narrowed but not removed** | 2 | **9** (§1.1) |
@@ -64,17 +76,18 @@ Columns are master prompt §4's required set.
 | **`F2`** Commercial control-default policy | `XD1-P1`, `TV6-BOSS-01`, over-receipt tolerance default | **PARTIAL — the mechanism, YES** (§5). The **default value**, no | **YES** — Internal Control / Audit | **NO** — `SA_CORR2_05` returns **0** for tolerance/over-receipt in the corpus; there is nothing to find, only something to elect | **NO** — `ND-03` and `XMC-C-D3` bind the control **floor**, not the default | **3** — the default posture on each member. **One principle answers all three**, but on the unit declared at §1.0 they remain three decisions | **`block`** on all three, ruled once; **and the mechanism invariants at §5 hold on every branch** | `SA_CORR3_01` §§5–12 · `SA_CORR3_12` `B-1` · `SA_CORR2_05` | **BOSS — 3, mechanism specified so the election carries no unspecified consequence** |
 | **`F3`** Direct shipment (dropship) | `XMC-D-01`, `C2-D-02` | **`C2-D-02` YES — CLOSED** by `XMC-C-C6` + `BD-ACC-01`. `XMC-D-01` narrowed | **YES** — Inventory, Accounting, Cross-Module | **NO — and the prescribed re-read was performed instead** (`SC-02`) | **YES** — `BD-ACC-01`, `BD-ACC-03A`, and `BD-ACC-03A`'s covering ruling that generation identity is *"Evidence Provenance, not a SMEsPlus target-platform decision"* | **1, conditional** — a **scope statement on `BD-ACC-03A`**, required **only** on the non-recommended branch | **(a)** the movement chain emits valuation facts under the product category's ruled policy; no route-specific exception | `SC-02` · `XMC-F-03` · `XMC-C-C6` · `P01_TRANSITIVE_MODULE_POPULATION` §3 · `P01_S16` §1 · `P02` `TC-31`/`S-01` | **NARROWED — 1 conditional** (was 2 unconditional, no recommendation) |
 | **`F4`** Cross-module contract scope & supply binding | `XMC-D-02`, `C2-D-01` | **The shortage-exit half YES** (§6.2). Contract scope **NO** — it amends a Boss-approved control | **YES** — Cross-Module Integration, Inventory | **NO** — `XMC-D-02` is *"nothing to research; something to decide"*; the binding position is already stated and `FACT VERIFIED` | **YES** — the handoff-contract approval §1, whose scope at primary text is *"every material handoff **from Inventory Core to Accounting Core**"* — **one boundary, one direction, unambiguous** | **2** — extend the contract's scope (an amendment); confirm **soft** binding | **`XMC-D-02` → extend, as one general contract with declared per-boundary applicability — not twelve bespoke contracts** (§6.1). **`C2-D-01` → confirm soft binding** | handoff-contract approval §1/§3/§4 · `SA_CORR2_02` §6 · `SA_CORR2_03` §3.1 · `XMC-C-D2`, `XMC-C-D4` | **BOSS — 2, one narrowed** |
-| **`F5`** Manufacturing overhead governance | `POH-D-06` (covering `BLK-07`, `BLK-08`, veto limb 2), `POH-D-01`…`POH-D-05` | **NO** — *"A Boss-owned blocker can only be retired, restated or confirmed by Boss"* | **YES** — Manufacturing/Costing, Thai Accounting-Tax | **NO for the corpus.** `POH-D-02`'s **tax consequences are unresearched and are a Thai statutory item** under standing `HOLD / EVIDENCE REQUIRED` — routed, not researched here | **YES** — `BD-02` already closes the **destination of unabsorbed overhead**; `BD-04` is the decision `POH-D-01` proposes to depart from | **8** on the unit declared at §1.0 — three restatement subjects plus five elections (`POH-D-06` is the restatement *act*, not a ninth) | **Restate.** The live choice set is reduced to the **three live options** at §7.1; the invalidated branch is removed from the paper rather than re-offered | `SA_CORR3_03` `POH-D-06` · `POH-F-12` · `SA_CORR5_10A` · `BD-02`, `BD-04` | **BOSS — 8** (unchanged count, **restated so no dead branch is offered**) |
+| **`F5`** Manufacturing overhead governance | `POH-D-06` (covering `BLK-07`, `BLK-08`, veto limb 2), `POH-D-01`…`POH-D-05` | **NO** — *"A Boss-owned blocker can only be retired, restated or confirmed by Boss"* | **YES** — Manufacturing/Costing, Thai Accounting-Tax | **NO for the corpus.** `POH-D-02`'s **tax consequences are unresearched and are a Thai statutory item** under standing `HOLD / EVIDENCE REQUIRED` — routed, not researched here | **YES** — `BD-02` already closes the **destination of unabsorbed overhead**; `BD-04` is the decision `POH-D-01` proposes to depart from | **6** at primary source — the restatement act (`POH-D-06`, **two** subjects) plus five elections. *(Published as 8; corrected per `SC-07` / `AR-F-01`.)* | **Restate.** The live choice set is reduced to the **three live options** at §7.1; the invalidated branch is removed from the paper rather than re-offered | `SA_CORR3_03` `POH-D-06` · `POH-F-12` · `SA_CORR5_10A` · `BD-02`, `BD-04` | **BOSS — 6** (**corrected from 8**, `SC-07`; restated so no dead branch is offered) |
 | **`F6`** Cross-company visibility & commercial scope | `MTI-D-04`, `RC-D-03`, `RC-D-04`, `TV6-BOSS-02` | **NO** — *"Only Boss may authorise a door"* | **YES** — SaaS/Multi-Company, Internal Control | **NO** | **YES — and it is decisive on the statutory half.** `BD-ACC-02` already closes cross-company **statutory** posting/offset/settlement/aggregation/filing. §8 confirms **this family re-asks none of it** | **4** — all on the **management-information** side of `BD-ACC-02`'s boundary, none on the statutory side | `MTI-D-04` → **no cross-company grant in v1**; `TV6-BOSS-02` → **company-scoped** | `BD-ACC-02` primary text · R1 `11` · `XCR-02`, `CF-XCR-GAP-01` · `MTI-22` | **BOSS — 4, statutory scope confirmed NOT re-asked** |
 | **`F7`** Authorization axis & configurable-record scope | `RC-D-01`, `RC-D-02`, `CF-D-01`, `CF-D-02` | **NO** — `CF-D-01`'s ground: *"only Boss may state what a Boss ruling covers"* | **YES** — Internal Control / Audit, SaaS/Multi-Company | **NO** | **YES** — `MTI-D-02` ruled `AUTH` = **Company + Warehouse + Operation-Type**; `MTI-D-03` names the tenant-changeable boundary | **4** | As the registers state; **no new position originated.** The **Pre-Test denominator is stated explicitly at §7.2** | `CF-I-01`, `CF-I-05`, `CF-I-07` · `MTI-D-02`/`-D-03` rulings | **BOSS — 4, denominator now explicit** |
 | **`F8`** Idempotency severity | `C-02` | **NO** — five independent instruments name the owner *"Boss directly"*; CORR5 tried to close it and its own challenge reversed that | **YES** — Internal Control / Audit | **NO** | **YES — and it settles the object.** `BD-ACC-01`: *"Same-event retry must not create duplicate accounting events"* + Accounting Core owns the identity. **`UAE-29` is thereby ruled** | **1 — severity only.** Whether idempotency is **required** is **not** open and is not re-asked | **(b) design input, not phase-holding** — the handoff contract §4 already forbids `PASS / VERIFIED` where duplicate effects cannot be prevented *"when idempotency is required"*, so the protection option (a) would buy exists one level down | `BD-ACC-01` · handoff-contract §4 primary text · `E15-A1`, `XMC-C-A14` | **BOSS — 1, object confirmed ruled** |
 
-**Totals, summed from the rows above on the unit declared at §1.0:**
-`F1` 2 · `F2` 3 · `F3` **1** (conditional) · `F4` 2 · `F5` 8 · `F6` 4 · `F7` 4 · `F8` 1 = **25**.
-Parent **26**; the single reduction is `C2-D-02`, closed at `SC-02` §5.
+**Totals, summed from the rows above on the primary-source unit:**
+`F1` 2 · `F2` 3 · `F3` **1** (conditional) · `F4` 2 · `F5` **6** · `F6` 4 · `F7` 4 · `F8` 1 = **23**.
+Corrected parent population **24**; the single reduction is `C2-D-02`, closed at `SC-02` §5.
 
-*(Verified by addition, not by restating a headline: `2+3+1+2+8+4+4+1 = 25`. The check was run because the
-first draft's headline and its own rows disagreed — see §1.2.)*
+*(Verified by addition, not by restating a headline: `2+3+1+2+6+4+4+1 = 23`. **Two corrections were needed
+to get here** — the first against this file's own draft (`SC-F-02`), the second against the parent's
+headline after a peer disproved it and this session re-verified it at source (`SC-F-06`, `SC-07`).)*
 
 ---
 
@@ -87,7 +100,7 @@ first draft's headline and its own rows disagreed — see §1.2.)*
 | **C** SMT specialist challenge | 0 | **8 families routed** | `SC-03` |
 | **D** targeted Very Deep Research | **0** | 0 | §4.1 — a **determination with a stated basis**, not a default |
 | **E** clean-room test | 0 | **1 premise corrected** | §4.3 |
-| **F** genuinely Boss-only | **25 survive** | — | §2 |
+| **F** genuinely Boss-only | **23 survive** | — | §2 |
 
 ---
 
@@ -328,13 +341,15 @@ management/informational views.
 ## 10. Checkpoint
 
 > ## `CP-SA-SC-10 — F1–F8 AUTHORITY SCRUB COMPLETE`
-> **Count unit declared before the total (§1.0) · `26 → 25` Boss decisions · **1** closed (`C2-D-02`) ·
+> Count unit resolved at **primary source** (§1.0) · **`24 → 23`** Boss decisions on the corrected
+> population (published as `26 → 25`; corrected per `SC-07`) · **1** closed (`C2-D-02`) ·
 > **9** materially narrowed but not removed, enumerated at §1.1 · 1 survivor conditional (`XMC-D-01`) ·
 > 0 families now lack a recommendation (was 1) · 0 new Boss decisions originated · **0 wrongly escalated
 > on authority, as at the parent round** · targeted research required: **0**, with basis (§4.1) ·
 > `F1` premise corrected (`SC-F-03`) · Pre-Test entry-gating members **3, unchanged** — the reading that
 > reduced them was withdrawn (§7.2) · `F6` re-asks `0 of 4` closed statutory items · 4 findings, one of
-> them against this file's own first draft (`SC-F-02`) · all 8 families routed to SMT at `SC-03`.**
+> them against this file's own first draft (`SC-F-02`) and one against its published version
+> (`SC-F-06`) · all 8 families routed to SMT at `SC-03`.**
 
 No Evidence = No Progress. Never Skip Gate. Exhaust Team Authority Before Boss Escalation.
 Boss remains the sole Final Approver.
