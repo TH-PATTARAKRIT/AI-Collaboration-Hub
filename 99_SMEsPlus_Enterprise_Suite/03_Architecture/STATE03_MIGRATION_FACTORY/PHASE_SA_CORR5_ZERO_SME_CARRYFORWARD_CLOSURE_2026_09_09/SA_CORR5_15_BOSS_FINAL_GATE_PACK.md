@@ -191,8 +191,7 @@ challenger, `C4-D-01`, `C4-D-02`, `AAS-V-02` discharge, the Thai panel) · prepa
   `architecture/phase-sa-corr5-zero-sme-carryforward-closure-2026-09-09-001`
 - Package path `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/PHASE_SA_CORR5_ZERO_SME_CARRYFORWARD_CLOSURE_2026_09_09/`
 - Commits: prompt `d33d83d1` · first freeze `7d0918ca` · second freeze (corrections) `78d1b3c6` ·
-  publication: recorded in `PHASE_SA_CORR5_AUTO_RESUME_STATE.md` §7 and the manifest header after this
-  file is frozen
+  **publication `bb0cadcf`** (content freeze; a following commit records it in the resume state and manifest header only)
 - Compliance patch: branch `governance/compliance-retraction-mainline-2026-09-09-001` @ `dafc0ff0` ·
   **PR #63** `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/pull/63`
 - Package on GitHub: `https://github.com/TH-PATTARAKRIT/AI-Collaboration-Hub/tree/architecture/phase-sa-corr5-zero-sme-carryforward-closure-2026-09-09-001/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/PHASE_SA_CORR5_ZERO_SME_CARRYFORWARD_CLOSURE_2026_09_09`

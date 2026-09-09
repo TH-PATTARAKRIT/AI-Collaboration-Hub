@@ -5,7 +5,7 @@ Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`
 Branch: `architecture/phase-sa-corr5-zero-sme-carryforward-closure-2026-09-09-001`
 Master prompt commit: `d33d83d1` · Parent CORR4 publication: `60752e2d`
 Package: `.../STATE03_MIGRATION_FACTORY/PHASE_SA_CORR5_ZERO_SME_CARRYFORWARD_CLOSURE_2026_09_09/`
-Maintained under master prompt `AUTO-C5-08`. **Checkpoint completion is NOT Boss approval.**
+Publication commit: `bb0cadcf17a89400299256b87e8f510a323c231f` · Maintained under master prompt `AUTO-C5-08`. **Checkpoint completion is NOT Boss approval.**
 
 ---
 
@@ -76,7 +76,7 @@ model at SMEs Core — this round did, and had to undo it; **do NOT** attempt a 
 
 ## 7. Publication
 
-Publication commit: recorded below after the manifest freeze.
+Publication commit: **`bb0cadcf17a89400299256b87e8f510a323c231f`** (content freeze; manifest 21 of 21 verified with `shasum -a 256 -c <(grep -v '^#' PACKAGE_MANIFEST_SHA256.txt | grep .)`). This resume file and the manifest header were then refreshed to record that commit in one further commit, which changes no other content hash.
 
 ## 8. Authority boundary
 
