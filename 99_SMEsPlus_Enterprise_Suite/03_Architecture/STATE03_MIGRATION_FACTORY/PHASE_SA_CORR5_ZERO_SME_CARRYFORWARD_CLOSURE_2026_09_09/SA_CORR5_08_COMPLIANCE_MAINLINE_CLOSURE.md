@@ -1,6 +1,6 @@
 # SA_CORR5_08 — COMPLIANCE RETRACTION — MAINLINE CLOSURE
 
-## CP-SA-C5-80 — COMPLIANCE CLAIM AUTHORITATIVELY CLOSED
+## CP-SA-C5-80 — COMPLIANCE CLAIM: EXACT PATCH READY, NOT YET CORRECTED ON THE DEFAULT BRANCH
 
 Session: `[SMEPLUS-26-09-09-PHASE-SA-CORR5-ZERO-SME-CARRYFORWARD-001]`
 Branch: `architecture/phase-sa-corr5-zero-sme-carryforward-closure-2026-09-09-001`
@@ -32,15 +32,21 @@ assertion-verb pattern) was run over each of the sixteen: **23 line matches in 6
 the rest are quotations of the retraction or of the pattern itself (`SA_CORR4_02`/`04`/`08`/`10`, the
 CORR5 prompt) — every one `UNRELATED` or `QUOTATION / RETRACTION` under CORR4 §2.1's classes, **0
 `PROHIBITED CLAIM`**. Positive control: the same pattern over the uncorrected blob `111bfc41` returns
-**1**. No new member of the class exists. *(A first version of this sentence claimed "0 over the
-sixteen" from a mis-scoped set operation; it was re-run per file before freeze and corrected here.)*
+**0** — instrument B **cannot see the known member**, whose claim is a *heading* (`CHB-02`). So
+instruments **C** (heading form `standards? compliance`) and **D** (named-standard tokens) were also run
+over the sixteen: **C = 0 in all sixteen; D = 5, all in `SA_CORR4_04` where the tokens are the
+instrument's own definition and the quoted retraction**; positive control over the uncorrected blob:
+C = **1** (the heading), D = **4**. No new member of the class exists. *(A first version of this
+sentence claimed "B returns 1 on the uncorrected blob" and "0 over the sixteen" from a mis-scoped
+operation; both were re-run per file and corrected here.)*
 
 Namespace census of the 183 uncorrected, re-derived per branch (CORR4's census read `21` and `10`
 after correction; this frame differs only by the CORR5 branch, which is corrected): `claude` 56 ·
 `audit` 40 · `research` 21 · `prompt` 13 · `corr` 12 · `control` 6 · `design` 4 · `ruling` 3 ·
-`ibpv` 3 · `governance` 3 · `architecture` 3 · `chatgpt` 2 · `agent` 2 · singletons 14 (incl.
-`SMEsPlus`, `state01`, `state02`, `state03-governance-v2`, `review`, `noop`, `ignore`…`ignore7`,
-`feature`, `boss`) = **183** ✓.
+`ibpv` 3 · `governance` 3 · `architecture` 3 · `chatgpt` 2 · `agent` 2 · singletons **15**
+(`SMEsPlus`, `state01`, `state02`, `state03-governance-v2`, `review`, `noop`, `ignore`, `ignore2`…`ignore7`,
+`feature`, `boss`) → 168 + 15 = **183** ✓ *(first draft wrote "14" and the ✓ was false as written —
+`CHB-04`, the fourth instance in two rounds of a total that sums while its distribution is wrong)*.
 
 ---
 
@@ -132,7 +138,7 @@ re-escalated (`SA_CORR4_04` §2.3).
 ## 7. Checkpoint
 
 > ## `CP-SA-C5-80 — COMPLIANCE CLAIM: EXACT PATCH READY, AUTHORITATIVE CLAIM NOT YET CORRECTED`
-> **Denominator re-measured `186 / 3 / 183 / 0` on two shapes · claim class unchanged at 1 file ·
+> **Denominator re-measured `186 / 3 / 183 / 0` on two shapes before action, `187 / 4 / 183 / 0` after the governance branch was pushed (`CHB-17`) · claim class unchanged at 1 file ·
 > patch commit `dafc0ff0` on `origin/governance/compliance-retraction-mainline-2026-09-09-001` ·
 > PR #63 open · direct push denied by operator tool policy, not retried · 1 finding (`C5-08-F-01`).**
 > **Status: `PMO AUTHORITY ACTION REQUIRED — EXACT PATCH READY`. One act. Not a Boss decision.**

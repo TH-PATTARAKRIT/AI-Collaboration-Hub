@@ -32,9 +32,15 @@ positions surveyed below.
 
 ## 2. Existing-work discovery first — every candidate position located (`AUTO-C5-02`)
 
-**Measured over `CORR5-FRAME` (186 heads, `U2` = 3,620 paths), pattern `idempoten` (case-insensitive),
-plus the stranded architecture branch head `098798f7` and the reference-estate findings carried by the
-joint cross-proof.** Twelve positions exist. **None was originated here.**
+**Measured over `CORR5-FRAME` (186 heads, `U2` = 3,620 paths), pattern `idempoten` (case-insensitive):
+327 unique paths** (`git grep -l -i idempoten <186 refs> -- '*.md' '*.txt' '*.csv'`; a challenger's
+run over 186 refs excluding this branch returned 318). **Reduction rule (`CHA-02` — the first freeze
+published none):** a path is a *position* if it (a) is SMEsPlus-owned (not Layer-2 observation, not a
+prompt, not a governance boilerplate list), (b) states a rule, obligation, identity basis or mechanism
+for idempotency rather than citing one, and (c) is not superseded by a later version of the same
+artefact. Applying (a)–(c) by reading, plus the stranded architecture branch head `098798f7` and the
+reference-estate findings carried by the joint cross-proof, yields **fifteen positions** — the twelve
+below and three the first freeze missed (`P13`–`P15`). **None was originated here.**
 
 | # | Position | Where | Status of the source | Bears on |
 |---:|---|---|---|---|
@@ -50,11 +56,15 @@ joint cross-proof.** Twelve positions exist. **None was originated here.**
 | **P10** | **`SA09`/`SA_CORR2_09` §3** — idempotency *"graded `ESTABLISHED` … recorded absent in four Accounting packages"*; **`UAE-29`** *"no accounting-event identity"* is P11's root blocker `B-02`, *"Boss design decision. No research closes it"* | `SA_CORR2_09`; P11 `P11_BLOCKER_REGISTER_CORR1.md` | `UAE-29` **ruled** as `BD-ACC-01` on 2026-09-08 (`C5-B-03`) | Account side has no carrier; Boss has ruled the owner |
 | **P11** | **`CROSS_MODULE_DATA_TRANSFER_PERFORMANCE_POLICY`** lists *"Integration & Idempotency"* as a mandatory assurance category | `00_Project_Governance/POLICIES/` | governance | test obligation exists |
 | **P12** | **`SA17` §3** control row *"Same-event retry is idempotent; a reversal creates a new event referencing the original — `BD-ACC-01`"* | `SA17` | Pre-Test control list | the test the Pre-Test Matrix already expects |
+| **P13** | **`FV006-INT-001` — the general Confirm / Movement-Execution idempotency contract** of the Group A Team B design: *"every action that transitions a Commitment … or triggers a `Movement Executed` event carries a business identity… must expose the original action's already-recorded outcome"*, protected effect *"Financial Handoff write"*; **independently re-verified `Covered` by IBPV `RV_009`** | `TEAM_B_DESIGN/GROUP_A_SALES_INVENTORY_PURCHASE/12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md` §11 (`CORR-008` closure), branch `claude/team-b-group-a-sip-corr-008` | Team B design, IBPV-verified at design level | **an act-level attempt-identity contract — the prior source of `A14`** (`CHA-02`) |
+| **P14** | **Inventory Final Solution V1** `03` line 132: *"**Idempotent.** A demand identity — source document line, template, and attempt — must be unique, so a retry cannot create a second movement chain. Carried finding `C-02`: whether this is gate-blocking is Boss's"*; line 178 similar for movement chains | `FINAL_SOLUTION/INVENTORY/V1_0/03_INVENTORY_FUNCTIONAL_DESIGN_V1.md` | adopted design (V1) | the *attempt* component named as part of identity — agrees with `L8-09`; and **restates `C-02` as Boss's** |
+| **P15** | **Accounting Core Team B `B11` row 9**: *"Every proposed Entry from an originating domain must carry that domain's own idempotency reference as part of its origin data"* | `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/B11_EXCEPTION_FAILURE_MODEL.md` | Team B design | **apparent conflict with `XMC-C-A2`** (*the source module never assigns identity*) — reconciled at §3: the *"domain's own idempotency reference"* is the occurrence + attempt identity the emitter owns (`E15-A1` payload parts), not an accounting-event identity |
 
 > **`C5-01-F-01`. The object the programme has recorded as *"does not exist"* and *"none has been
 > designed"* exists as a specified identity basis (`P2`), a Boss-ruled ownership model (`P1`), a
-> consumer obligation (`P3`, `P4`) and a scoping half (`P5`) — in five documents that do not cite each
-> other.** What has never existed is **one adjudicated statement** of which position governs which
+> consumer obligation (`P3`, `P4`), a scoping half (`P5`), **an act-level attempt-identity contract
+> already IBPV-verified at design level (`P13`) and an adopted V1 design naming the attempt component
+> (`P14`)** — in seven documents that do not cite each other.** What has never existed is **one adjudicated statement** of which position governs which
 > question, and a reconciliation of the one genuine conflict among them (`P6`, §6). **That is an
 > adjudication, exactly as `C4-02-F-07` predicted, and this file is it.**
 
@@ -82,7 +92,9 @@ joint cross-proof.** Twelve positions exist. **None was originated here.**
 Two consequences the programme has been missing by treating element 15 as *one* object:
 
 1. **A Pre-Test case for element 15 is writable today** — *present the same basis twice; expect one
-   event* — against a specification that exists (`P2`). It is not executable (§9).
+   event* — against a specification that exists (`P2`). It is not executable (§9). **This changes the
+   reading of `SA_CORR4_07` §5's *"must not be written"*: written yes, executed or read as passing no**
+   (`CHA-14`; logged at `SA_CORR5_06` row 16).
 2. **The source-side attempt identity (`P6`) is a different object.** It prevents *one physical act
    being recorded as two facts*; element 15 prevents *one fact being recognised as two events*. §6.
 
@@ -128,14 +140,14 @@ named.
 |---|---|---|
 | **Retry** (same occurrence presented again by the same emitter) | Same basis → **same identity → no second event.** The emitter need not know it is retrying | `A6` |
 | **Duplicate submission** (same occurrence presented twice by two paths, e.g. interactive and integration) | Same basis → same event. **The path is not in the basis** (`A5` excludes processing actor and arrival order) | `A3`, `A5` |
-| **Second genuine occurrence** (two real movements of the same product) | **Different occurrence identity by the owner's own numbering** — `MTI-09`: sequences per `(company, operation type)`, *continuous and never reused across contexts*; `MTI-15`: one fact resolves to exactly one company → **two events, correctly** | `MTI-09`, `MTI-15` |
+| **Second genuine occurrence** (two real movements of the same product) | **Different occurrence identity** — the fact's **canonical identity as `L8-09`/`P14` define it: document line + attempt identity**, each a distinct owner-assigned immutable identity; **never the human-readable document *number* or any sequence** (`XMC-C-A5` excludes those as inputs — `CHA-06`; the first freeze cited `MTI-09` numbering here and is corrected). `MTI-15`: one fact resolves to exactly one company → **two events, correctly** | `L8-09`, `P14`, `A5`, `MTI-15` |
 | **One fact, two roles** (a validated outbound movement bears stock-issue **and** cost-of-sales roles) | **Two events over one fact**, because the role is in the basis | `A4` |
 | **Reversal** | A **new** event whose basis includes the reversed identity in the reversal role; each discoverable from the other; never mutation, never deletion | `A8` |
 | **Correction after effect** | Reversal + new event only. Re-dating is alteration, not correction | `A9` |
 | **Replay / migration** | Identity preserved; replay-batch provenance (element 14) travels **beside** the basis, never inside it — inside, replay would become duplication | `A7` |
 | **Cross-module join** | The event identity is sufficient to join every downstream artefact of one commercial act, cost half and revenue half included | `A11`(ii) |
 | **Out-of-order arrival** | Consumers reconcile; they never infer from order. An identity implies neither a posting nor a final amount | `A12` |
-| **Policy change** | Identity unchanged; the policy version *inside* the basis is the one in force **at recognition** — a re-recognition under a new policy is a new event | `A3` part 6, `A11`(iv) |
+| **Policy change** | Identity unchanged. **Clarification of `A3` part 6 (`CHA-07`):** the policy version in the basis is the version **in force at the fact's physical event date** (element 3) — a value derivable from the fact, never from processing time (`A5`); a retry that crosses a policy-version boundary therefore yields the **same** identity (`A6` holds), and a deliberate re-recognition under a later policy is a **correction event** (`A9`), not a second identity. **Category policy versioning (effective-dated, `MTI-36` pattern) is a specification obligation this clarification creates — `BD-ACC-03A/B` rule values and owner, not versions** — specified here at semantic level: every category policy value carries effective-from; a change never re-computes a recognised event | `A3` part 6, `A5`, `A6`, `A9`, `A11`(iv) |
 
 ---
 
@@ -180,7 +192,7 @@ namespaces.
 | **`P8` — the reference-estate constraint** | Table-global (violates `A10` / `BD-ACC-01` clause 8 by construction); optional module; **admits unlimited empty values** — a uniqueness check over it passes on every row (`C4-07-F-03`). Non-deterministic *and* not duplicate-preventing |
 | **`P3` §12.7 "event ID" read as a delivery-time identifier** | A delivery/publish identifier is minted at processing time → excluded by `A5`. **Accepted only under the reading that the event ID *is* the Accounting Event Identity derived from the basis** — in which case `P3` and `P2` agree. Recorded as a **correction owed to `ARC-WP-010`** when it is reviewed (`C4-D-01` fold): *"event ID / business key"* must read *"the deterministic event identity of `XMC-C-A3`"* |
 | **Any wall-clock, actor, arrival-order, resettable counter, document / journal / matching number** | `A5`, with the live entry-number-reset hazard on the record |
-| **`P9` — an unkeyed retry** | `FR-INT-004` *"Retry Supported"* with no key on a path that carries no tenant or company. Handled at `SA_CORR5_02` class 6/11: an integration presentation is bound by `A14` and `E15-A1` like any other emitter |
+| **`P9` — an unkeyed retry** | `FR-INT-004` is the **outbound** webhook (`CHA-05`); its rule is that the payload carries the event identity so the external receiver can deduplicate. The **inbound** client paths (`FR-INT-001`/`-003`) carry no tenant, company or key: handled at `SA_CORR5_02` class 6 — an inbound presentation is bound by `A14` and `E15-A1` like any other emitter |
 | **An identity that is the attempt identity** (`A14` inside the basis) | Would make a retried write a new event — §6 |
 
 ---
@@ -245,12 +257,12 @@ contract-compliant is unchanged.**
 
 ---
 
-## 11. Boss decisions on element 15 — none remain, and why
+## 11. Boss decisions on element 15 — one remains (`C-02`), and why
 
 | Question carried | Disposition |
 |---|---|
 | *"Is idempotency gate-blocking?"* — `UAE-29`, carried by CORR4 as Boss's | **`UAE-29` is the Account root blocker *"no accounting-event identity"* (P11 `B-02`), and Boss ruled it as `BD-ACC-01` on 2026-09-08.** The closure act lists `BD-ACC-01` among rulings that *"must not be re-asked without material delta."* **Not a Boss decision; a Boss decision already taken** (`C5-B-03`) |
-| Inventory `C-02` — *"idempotency and replay: gate-blocking, or design input"* — owner Boss (R4 `07_L6`) | **Dissolved by two standing Boss instruments, at two levels.** *Scenario level:* the Boss-approved contract §4 already forbids `PASS / VERIFIED` where duplicate effects cannot be prevented *"when idempotency is required"* — the gate-blocking question at the scenario level is **ruled: it blocks**. *Phase level:* the CORR5 master prompt §0/§13 rules that runtime-only proof obligations *"may remain"* and that the zero-carry-forward target *"does not require runtime proof"* — so a specified-not-proven element 15 does **not** hold Phase SA. **No third level exists for the question to live at.** Recorded as `B — DISSOLVED BY STANDING RULINGS`; Boss may restate it, and this file does not pre-empt a restatement |
+| Inventory `C-02` — *"idempotency and replay: gate-blocking, or design input"* — owner **"Boss directly"** (R4 `07_L6` line 210; restated at line 222 *"an unresolved Boss decision across multiple rounds… R4 does not decide it"*; R1 `03` §7.2; R2 `04` §7.2; `P14`; `GAP-FS-06`) | **Remains an open Boss severity election** (`CHA-01`, `CHB-06`). The first freeze of this file declared it *dissolved* on two instruments — the contract's §4 gate and the CORR5 master prompt's own law — and that was SMEs Core deciding a Boss-reserved item: four registers say it is Boss's, R4 itself advanced the same contract-§4 argument and still declined, and a commissioning prompt is not a ruling by identifier. **SMEs Core position, offered and not adopted:** at scenario level the contract §4 already makes duplicate prevention a `PASS / VERIFIED` precondition; at phase level the specification is complete and the proof is runtime, so `C-02` is *design input, not phase-holding*. **Boss decides; the election is cell-neutral in `SA_CORR5_10`** |
 
 ---
 
@@ -272,9 +284,11 @@ non-material once this file is the controlled reading — `SA_CORR5_14` §3).
 
 ## 13. Residual, and what a challenger should attack first
 
-1. **`A14` is the one originated clause with no prior source.** Attack it first: is an act-level attempt
-   identity a *boundary* obligation (within authority) or a *storage design* (outside it)? The defence is
-   that it states a property of the emitting side's acts, not a representation.
+1. **`A14` consolidates `P13` (`FV006-INT-001`, IBPV-verified at design level) and `P14`/`L8-09` into
+   the cross-module contract; it is not without prior source** (`CHA-02` — the first freeze said it
+   was). Attack it on authority: is an act-level attempt identity a *boundary* obligation (within
+   authority) or a *storage design* (outside it)? The defence is that it states a property of the
+   emitting side's acts, not a representation, and that a Team B design already states it.
 2. **`E15-A1` assigns the recognition role to Accounting.** A reader could argue the emitter knows the
    role (a delivery *is* a cost-of-sales trigger). The defence is `BD-ACC-03A`: recognition timing is a
    Product-Category **policy**, owned on the Accounting side, so the role cannot be the emitter's to
@@ -287,9 +301,11 @@ non-material once this file is the controlled reading — `SA_CORR5_14` §3).
 ## 14. Checkpoint
 
 > ## `CP-SA-C5-10 — ELEMENT 15 ADJUDICATED`
-> **12 candidate positions located · 5 adopted · 2 clauses originated (`E15-A1`, `XMC-C-A14`) ·
-> 5 carriers rejected · 8 of 8 `BD-ACC-01` clauses reconciled · 9 runtime obligations separated ·
-> 0 Boss decisions remaining (2 dissolved by standing rulings) · 1 finding (`C5-01-F-01`).**
+> **15 candidate positions located (327-path population, reduction rule published) · 7 adopted ·
+> 2 clauses stated in the contract namespace (`E15-A1`, `XMC-C-A14` — the latter consolidating `P13`/`P14`)
+> · 5 carriers rejected · 8 of 8 `BD-ACC-01` clauses reconciled · 1 clarification to `A3` part 6 ·
+> 9 runtime obligations separated · 1 Boss election remaining (`C-02`, carried; `UAE-29` ruled by
+> `BD-ACC-01`) · 1 finding (`C5-01-F-01`) · corrected by `CHA-01`, `-02`, `-05`, `-06`, `-07`, `-14`.**
 > **Element 15: `specified, not built, not verified`. `0 of 10` handoffs compliant. 0 vetoes discharged.**
 
 **Next autonomous action:** `CP-SA-C5-20`, `G1` execution-context closure (`SA_CORR5_02`).

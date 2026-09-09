@@ -6,8 +6,11 @@
 > Supersession rule: **this version governs** where the two differ. Corrections are marked `[CORR5]`
 > with their basis. Authority: `SA_CORR5_06`, master prompt §9.
 
-Status: **HOLD** — 15 mandated scenarios plus 3 added; **3** traversable end-to-end with no named break
-(E2E-02, E2E-11, E2E-12), **13** with a named break, **2** not traversable (E2E-04, E2E-07).
+Status: **HOLD** — 15 mandated scenarios plus 3 added; **1** traversable end-to-end with no named break
+(E2E-02), **15** with a named break, **2** not traversable (E2E-04, E2E-07).
+`[CORR5]` *E2E-11 and E2E-12 regraded to `TRAVERSABLE WITH NAMED BREAK` — basis `CHB-03`: the class table
+admits no route/value split; their reversal value is Boss election `JT-05`, and `SA_CORR5_10` grades the
+same flows `SA MATERIAL GAP`.*
 `[CORR5]` *E2E-15 regraded from `TRAVERSABLE` to `TRAVERSABLE WITH NAMED BREAK` — basis `SA_CORR5_06`
 §2: its cited ground (`SA09` "idempotency established") was superseded by `SA_CORR2_09` §3, which grades
 idempotency `NOT ESTABLISHED`; element 15 is `specified, not built, not verified` (`SA_CORR5_01`).*
@@ -43,8 +46,8 @@ this register is verified; `0 of 22` joint cross-proof scenarios are `VERIFIED`.
 | E2E-08 | Service → Delivery/completion evidence → AR → Payment → Accounting | `TRAVERSABLE WITH NAMED BREAK` `[CORR5]` | *was `NOT TRAVERSABLE`* — `SA_CORR2_03` §3.1: the trigger is an assertion with no independent event record; `XMC-C-C1`…`C6` specify the assertion event; the break is the absence of an independent operational event |
 | E2E-09 | Purchase → Asset capitalization → Depreciation → Accounting | `TRAVERSABLE WITH NAMED BREAK` | derecognition defect (AR-17); Equipment side thin |
 | E2E-10 | Expense → Approval → Payable/Payment → Accounting | `TRAVERSABLE WITH NAMED BREAK` | P05 terminal HOLD (AR-18) |
-| E2E-11 | Sales return → Inventory return → Credit/reversal → Accounting | `TRAVERSABLE` | return is the most fully evidenced area in the corpus; `[CORR5]` cost basis of the reversal is Boss election `JT-05` — a break on the **accounting value**, not on the route |
-| E2E-12 | Purchase return → Inventory return → Debit/reversal → Accounting | `TRAVERSABLE` | structurally identical; `[CORR5]` return basis conflict `PENDING — INVENTORY INTERNAL RESOLUTION FIRST` |
+| E2E-11 | Sales return → Inventory return → Credit/reversal → Accounting | `TRAVERSABLE WITH NAMED BREAK` `[CORR5]` | return route is the most fully evidenced in the corpus; **named break: the reversal's cost basis is Boss election `JT-05`** (`CHB-03`) |
+| E2E-12 | Purchase return → Inventory return → Debit/reversal → Accounting | `TRAVERSABLE WITH NAMED BREAK` `[CORR5]` | structurally identical; **named break: return basis (`JT-05`), `PENDING — INVENTORY INTERNAL RESOLUTION FIRST`** |
 | E2E-13 | Manufacturing scrap / by-product / variance → Inventory → Accounting | `TRAVERSABLE WITH NAMED BREAK` | by-product valuation open (IR-08, AR-12); `[CORR5]` normal/abnormal scrap classes specified at `SA_CORR5_07` §3.3 |
 | E2E-14 | Month close → Inventory valuation → AR/AP → Bank → Tax → GL → Financial reporting | `TRAVERSABLE WITH NAMED BREAK` | AR-20 close, AR-21 analytic, AR-22 tax all `PARTIAL` against recorded Phase S terminal states |
 | **E2E-15** | **Correction / reversal / retry / duplicate event** | **`TRAVERSABLE WITH NAMED BREAK`** `[CORR5]` | *was `TRAVERSABLE` — "strongest area: idempotency and ordering-independence established (`SA09`)"*. **Corrected:** `SA09` was superseded by `SA_CORR2_09` §3 (idempotency `NOT ESTABLISHED`, *"recorded absent in four Accounting packages"*); the joint cross-proof grades scenario 22 `HOLD`; the estate's only carrier is table-global and populated on 0 of 13,814 rows. **The named break is element 15 — `specified` (`SA_CORR5_01`), `not built, not verified`.** Reversal semantics are established (`XMC-C-A8`/`A9`); **retry and duplicate detection are specified only** |
@@ -61,23 +64,23 @@ this register is verified; `0 of 22` joint cross-proof scenarios are `VERIFIED`.
 
 | Class | Scenarios (enumerated) | Count |
 |---|---|---|
-| `TRAVERSABLE` | E2E-02, E2E-11, E2E-12 | **3** |
-| `TRAVERSABLE WITH NAMED BREAK` | E2E-01, E2E-03, E2E-05, E2E-06, E2E-08, E2E-09, E2E-10, E2E-13, E2E-14, E2E-15, E2E-16, E2E-17, E2E-18 | **13** |
+| `TRAVERSABLE` | E2E-02 | **1** |
+| `TRAVERSABLE WITH NAMED BREAK` | E2E-01, E2E-03, E2E-05, E2E-06, E2E-08, E2E-09, E2E-10, E2E-11, E2E-12, E2E-13, E2E-14, E2E-15, E2E-16, E2E-17, E2E-18 | **15** |
 | `NOT TRAVERSABLE` | E2E-04, E2E-07 | **2** |
 | **Total** | 15 mandated + 3 added | **18** |
 
-Check: **3 + 13 + 2 = 18**, and every identifier E2E-01…E2E-18 appears exactly once above.
+Check: **1 + 15 + 2 = 18**, and every identifier E2E-01…E2E-18 appears exactly once above.
 `[CORR5]` *The historical file's check line read "4 + 7 + 7 = 18" over a table enumerating 13
 identifiers with printed counts 4 / 7 / 2 (`JCP3-F-11`). This table enumerates all 18.*
 
 ## 5. SA15-F-01 — corrected
 
-`[CORR5]` **The three fully traversable scenarios are all receipts or returns.** E2E-02 purchase-to-pay,
-E2E-11 sales return and E2E-12 purchase return are the only end-to-end flows that traverse without a
-named break. Not one is a *forward sale to a customer*; E2E-01 still carries named breaks, now reduced
-to Boss elections. **The historical sentence counted E2E-15 among them; it no longer does, and the
-finding is stronger for it: SMEsPlus can currently prove end-to-end that it can receive and return
-goods. It cannot yet prove that it can sell something, and it cannot yet prove that it can safely retry.**
+`[CORR5]` **One scenario traverses without a named break — E2E-02, purchase-to-pay — and it is a
+receipt.** The two return flows traverse as routes but carry an undecided accounting value (`JT-05`),
+and E2E-15 carries element 15 specified-not-built. Not one forward sale traverses; E2E-01's breaks are
+now Boss elections. **The historical sentence counted four; the honest count is one, and the finding
+is stronger for it: SMEsPlus can currently show end-to-end that it can receive goods. It cannot yet
+show that it can sell, return at a decided value, or safely retry.**
 
 ## 6. SA15-F-02 — unchanged, with CORR2's qualifications carried
 
@@ -94,7 +97,7 @@ element 15 is built (`SA_CORR4_07` §5.1 prohibitions 2 and 3).
 
 ---
 
-`SA15 — HOLD`. Three of eighteen end-to-end scenarios traverse without a named break; two cannot be
+`SA15 — HOLD`. One of eighteen end-to-end scenarios traverses without a named break; two cannot be
 traversed. **Zero are verified.**
 
 Boss remains the sole Final Approver.

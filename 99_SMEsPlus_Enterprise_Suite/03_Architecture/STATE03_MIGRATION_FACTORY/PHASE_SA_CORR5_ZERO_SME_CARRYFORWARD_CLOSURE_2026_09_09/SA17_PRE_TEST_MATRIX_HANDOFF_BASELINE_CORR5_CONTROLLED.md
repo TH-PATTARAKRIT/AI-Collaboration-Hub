@@ -53,8 +53,8 @@ it performs rarely and can.** `[CORR5]` Traversability column reconciled to the 
 | 13 | **E2E-10** Expense → approval → payable → payment | `WITH NAMED BREAK` | — | approval record **including that approval occurred** | `XD-03` |
 | 14 | **E2E-13** Scrap / by-product / variance | `WITH NAMED BREAK` | `[CORR5]` normal vs abnormal scrap **classes specified** (`SA_CORR5_07` §3.3); cost causality = COGS residual; Thai labels unvalidated | inventory adjustment with reason class; cost effect | Salvage undefined |
 | 15 | **E2E-02** Purchase demand → Purchase → Receipt → AP → Payment | `TRAVERSABLE` | — | full chain | Approval internal logic open (A2) |
-| 16 | **E2E-11** Sales return | `TRAVERSABLE` | `[CORR5]` reversal cost basis — Boss election `JT-05` | return movement; reversal event referencing the original (`XMC-C-A8`) | Value of the reversal is undecided |
-| 17 | **E2E-12** Purchase return | `TRAVERSABLE` | `[CORR5]` return basis conflict `PENDING — INVENTORY INTERNAL RESOLUTION FIRST` | as above | — |
+| 16 | **E2E-11** Sales return | `WITH NAMED BREAK` `[CORR5]` | reversal cost basis — Boss election `JT-05` (`CHB-03`) | return movement; reversal event referencing the original (`XMC-C-A8`) | Value of the reversal is undecided |
+| 17 | **E2E-12** Purchase return | `WITH NAMED BREAK` `[CORR5]` | return basis (`JT-05`), `PENDING — INVENTORY INTERNAL RESOLUTION FIRST` | as above | — |
 | **18 → gate** | **E2E-15** Correction / reversal / retry / duplicate | **`WITH NAMED BREAK`** `[CORR5]` | **element 15** — identity basis specified (`SA_CORR5_01` `E15-A1`, `XMC-C-A14`), **not built, not verified**; `MTI-50` → `CF-I-03` order | reversal event referencing the original (**specified, established**); **idempotent retry and duplicate detection — MAY NOT be expected as evidence until built**; ordering-independent reconciliation (`XMC-C-A12`) | `[CORR5]` *was "Strongest established area".* **Corrected: weakest proven area — the one dimension that cannot be tested today, and whose test returns clean when it means nothing.** Raised from lowest priority to a **dependency gate on every other scenario's retry/duplicate/join dimension** |
 
 ### 2a. `[CORR5]` Dependency order — what must be tested first (from `SA_CORR4_07` §5.2, carried verbatim)
@@ -76,9 +76,17 @@ it performs rarely and can.** `[CORR5]` Traversability column reconciled to the 
 
 ### 2c. `[CORR5]` Runtime-only obligation registers that travel with this baseline
 
-`RT-E15-01`…`-09` (`SA_CORR5_01` §9) · `RT-AUD-01`…`-09` (`SA_CORR5_03`) · `RT-G5-01`…`-07`
-(`SA_CORR5_04`) · `RFC-P/N/B/C-*` (`SA_CORR5_05` §8) · `RT-M05-01`, `RT-M33-01`…`-03` (`SA_CORR5_07`)
-· `CF3-*` (`SA_CORR4_03` §3.13) · the rejection matrix and `S-01`…`S-08`.
+Enumerated by family (`CHB-16`): (1) `RT-E15-01`…`-09` (`SA_CORR5_01` §9) · (2) `RT-AUD-01`…`-09`
+(`SA_CORR5_03`) · (3) `RT-G5-01`…`-07` (`SA_CORR5_04`) · (4) `RFC-P-01`…`-03`, `RFC-N-01`…`-03`,
+`RFC-B-01`…`-02`, `RFC-C-01`…`-02` (`SA_CORR5_05` §8) · (5) `RT-M05-01`, `RT-M33-01`…`-03`
+(`SA_CORR5_07`) · (6) `RT-POH-01`…`-05` (`SA_CORR5_10A`) · (7) `CF3-P/N/B/C-*` (`SA_CORR4_03` §3.13) ·
+(8) the 52-cell rejection matrix and `S-01`…`S-08` (`09_NEGATIVE_ACCESS_TEST_SPECIFICATION`) — **eight
+families**.
+
+`[CORR5]` **Reading of `SA_CORR4_07` §5 row "Element 15 — May NOT be tested … must not be written"**
+(`CHA-14`): that prohibition was written while the object was unspecified. After `SA_CORR5_01` the
+object is specified; a case **may be written** and **may not be executed or read as passing** until
+built. Prohibition 2 in §2b carries the executable half unchanged.
 
 ---
 
@@ -105,8 +113,10 @@ it performs rarely and can.** `[CORR5]` Traversability column reconciled to the 
 | ND-01…ND-08 | as the historical file | as the historical file |
 | ND-09 | A cross-module fulfilment that produces revenue must produce a cost recognition bound to the same identity, or an explicit, recorded determination that it does not | `SA_CORR2_01` §4.5 |
 | ND-11 | A service recognition event carries its asserter, the time of assertion and the basis asserted, and is itself an Accounting Event | `SA_CORR2_03` §3.1 |
-| `[CORR5]` ND-12 | A platform principal is not a tenant user; multi-tenant membership is never a multi-tenant execution context; a platform act names its target tenant as object | `SA_CORR5_02` class 1 |
-| `[CORR5]` ND-13 | A reason classification on non-sale reductions binds to a platform-owned class, never to a tenant label | `SA_CORR5_07` §3.3 |
+| ND-10 | SMEsPlus defines `Perpetual` explicitly as recognition at the physical movement, and `Periodic` as recognition at period close, and states both definitions wherever the terms appear — **a SMEs Core position, carried as the recommendation on Boss election `JT-04`, not Boss-approved** | `SA_CORR2_01` §5.1 |
+| ND-12 | An assurance activity declares its population and its complement (governance determination) | `SA_CORR2_11` §5 |
+| `[CORR5]` ND-13 | A platform principal's acts name the target tenant as object and never read tenant business data; multi-tenant membership is never a multi-tenant execution context | `SA_CORR5_02` class 1 *(first draft numbered this `ND-12`, colliding with CORR2's — `CHB-01`)* |
+| `[CORR5]` ND-14 | A reason classification on non-sale reductions binds to a platform-owned class, never to a tenant label | `SA_CORR5_07` §3.3 |
 
 ## 5. Mandatory Functional Design record element — unchanged (`SA12-F-01`)
 

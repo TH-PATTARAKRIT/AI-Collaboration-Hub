@@ -23,7 +23,7 @@ certified `CONFORMANT` permanently, with no compensating control."*
 **1** — `SA_CORR4_03` §6.5, the sentence that *names* the absence · `rescind`, `fraudulent grant`,
 `compromised credential` **1 each — all in `SA_CORR4_08` §6.1, the challenger's own search terms** ·
 `void ab initio` **0**. **Outside the two CORR4 files that record the gap, every term returns 0.**
-Positive control `revoke` → **42 paths** (`MTI-30`, `FDS_IAM` `FR-IAM-002`/`-010`, `FDS_INTEGRATION`
+Positive control `git grep -l -i 'revoke' <186 refs> -- '*.md'`, unique paths → **53** (`\brevoked?\b` → 47; a first draft printed 42 from an unpublished shape — `CHA-12`) (`MTI-30`, `FDS_IAM` `FR-IAM-002`/`-010`, `FDS_INTEGRATION`
 `FR-INT-002`/`-006`, `ARC-WP-009` §12.7/§12.8/`R-009-02` among them). **The corpus knows revocation as
 a *leaver/rotation* event; it has no concept of a grant that was never valid.** The finding reproduces.
 
@@ -55,7 +55,7 @@ a *leaver/rotation* event; it has no concept of a grant that was never valid.** 
 |---|---|
 | **Control ID** | **`CF-I-03R`** — *Revocation-for-Cause*, the companion of `CF-I-03`. Named as a companion rather than a new `CF-I-09` because it amends no invariant and adds no axis; it adds a **grant-validity state** and a **finding class** the existing control consumes |
 | Class | Governance-triggered detective control with one preventive effect (§6.1) |
-| Owner | **SaaS Foundation** (grant store, validity state, sweep) **+ the granting authority's owner** (the revocation decision) |
+| Owner | **Boss + SaaS Foundation** (grant store, validity state, sweep — the same owners as `MTI-18`, whose fields §3.1 generalises) **+ the granting authority's owner** (the revocation decision) (`CHA-15`) |
 | Layer | `CONTROL` + `GOVERNANCE` |
 | Topology | `SHARED SaaS POOL` only (`CF-I-08`) |
 | Scope rule | `SCOPE-AWARE EVERYWHERE`: a `PLATFORM` grant is revoked in platform context; a `TENANT`/`COMPANY` grant in its own; **a revocation never crosses a tenant boundary** |
@@ -169,7 +169,7 @@ owner and is not created here.**
 
 | ID | Clause |
 |---|---|
-| `RFC-01` | No grant may be `VALID` whose grantor did not hold, at issuance, a valid grant whose scope contains the issued scope (`CF-I-01`: no broadening). Issuance outside the grantor's scope is `VOID AB INITIO` |
+| `RFC-01` | No grant may be `VALID` whose grantor did not hold, at issuance, a valid grant whose scope contains the issued scope (`CF-I-01`: no broadening). Issuance outside the grantor's scope is `VOID AB INITIO`. **Status: an invariant-level rule stated here for the first time — `SPECIFIED`, candidate for the `CF-I-*` family at the Inventory owner's next conformance pass** (`CHA-15`) |
 | `RFC-02` | Revocation is a state transition on the grant, evented, reasoned, timed, authorised by a principal other than the grantee |
 | `RFC-03` | `FOR CAUSE` and `VOID AB INITIO` produce a `SUSPECT` finding for **every** act under the grant from `T_cause`, on **every** context the grant covered — a sweep that returns a population size and a `NOT ASSESSABLE` count beside its finding count (`CF-I-03` §3.11's rule), never a bare count |
 | `RFC-04` | A `SUSPECT` act is dispositioned by ratification or reversal; the act, its conformance record and its handoff facts are never edited or deleted |
@@ -185,9 +185,11 @@ Every revocation event, every `SUSPECT` finding and every disposition is a `MTI-
 the four-axis `AUTH` of the revoking principal, actor, two dates, evidence reference. Retained under
 `MTI-50`. **Scope:** a tenant-context grant is revoked and swept inside that tenant; a company grant
 inside that company; a `PLATFORM` grant (a platform operator's) is revoked in platform context and its
-sweep spans the tenants it acted on **as a list of single-context sweeps, each with its own result**
-(`MTI-29`'s rule applied to a control run) — a platform-context finding never becomes a tenant-context
-write.
+sweep is executed as **N tenant-context control runs, one inside each tenant it acted on, each with its
+own result, whose results are lifted to platform context** (`MTI-29`'s rule; the `G5` `T(i)`/`P`
+shape) — **it is not a platform-context read of N tenant audit streams**, which would be an
+unregistered cross-tenant read path (`CHA-09`); and a platform-context finding never becomes a
+tenant-context write.
 
 ---
 

@@ -23,64 +23,68 @@ stated **two readings** of `company + X` — (i) *company, derived via X* (honou
 (ii) *two anchors declared* (contradicts it) — and closed *"Not resolved here. Re-scoring another body's
 matrix is that body's act."* **CORR4 then recorded the unresolved reading as a contradiction.**
 
-### 1.2 What R2 did and did not change
+### 1.2 What R2 did and did not change — and the lean of the record, stated rather than passed over
 
 `CD-04` (Product, row 5) and `CD-12` (Product category, row 7) re-anchored both `X / Y` rows to
-**`company`** — the R2 register's own note: *"Row 5 was the only row in the matrix declaring two anchors
-for one object, which sat awkwardly against `MTI-05`."* **The two slash rows are gone. The five
-`company + X` rows are untouched by R2, and they are the whole of the residual:**
+**`company`**. `CD-13` (row 16, Barcode nomenclature) and **`CD-14` (row 17, Unit group and unit,
+*conditional on `CF-D-01`* — a Boss scope clarification, unruled)** moved two `tenant` anchors to
+`company`. **The five `company + X` rows (8, 13, 14, 22, 23) are untouched by R2, and they are the whole
+of the residual.**
 
-| Row | Object | R1 anchor cell | Where its company actually comes from (primary text) |
+`SA_CORR3_07` §6.1 does not only state two readings: it **leans to reading (ii)** — *"`MTI-05` requires
+a *declared* anchor, so the notation is the declaration, which favours reading (ii)"* — and then declines
+to resolve. The adjudication below argues **against** that lean, on the matrix's own text (`CHB-08`):
+
+| Evidence | What it shows |
+|---|---|
+| Matrix §1 legend: *"**Anchor** — the single authoritative ancestor from which `company` derives (`MTI-05`)"* | the column's own definition is a **single ancestor** |
+| Matrix §4.1: *"The moment any of those attach, the anchor moves to **`company`** (entries 5, 7, 8)"* | **the matrix's author reads row 8's `company + product` as *company-anchored*** — the notation was never intended as two ancestors |
+| Rows 4 (Location → `warehouse`), 10 (Operation type → `warehouse`), 18 (Movement document → `operation type`) | the convention elsewhere is one ancestor, and the `company + X` form appears only on rows whose canonical **identity tuple** carries `company` explicitly (`L8-10` lot `(tenant, company, product, value)`; `L8-13`/`-14` *"company plus number"*) |
+| `09` §2 rows `L8-10`, `-11`, `-13`, `-14`: company *"Creation"* / *"Application"* / *"Completion"* | company is **assigned directly** on these records; the `+ X` names the scoping ancestor of the identity, not a second derivation |
+
+> ### Adjudication `M05-A1` (restated after `CHC-03`)
+> **Reading (i) governs, on the matrix's own legend and its own §4.1.** `company + X` records identity
+> composition; the derivation ancestor is single. **`MTI-05` is not contradicted.** The notation is
+> ambiguous in the one column where it could least afford to be, and the controlled patch below is
+> the declared reading, offered to the Inventory owner as the mechanical correction.
+
+### 1.3 The declared anchor column — published as a controlled patch, closing the document-owner item
+
+The full patch is `04_CONTEXT_MATRIX_ANCHOR_COLUMN_CORR5_CONTROLLED.md` in this package (the programme's
+parallel-copy form for another party's artefact; the Inventory file is not modified). Summary:
+
+| Row | Object | R1 cell | **Declared single anchor** |
 |---:|---|---|---|
-| 8 | Lot / Serial (`CN-17`/`-18`) | `company + product` | **Identity** is `(tenant, company, product, value)` (`MTI-12`; `09` §2 `L8-10`/`-11` *"company … Creation"*). Under `MTI-D-01` Option B the product is **company-anchored** (`CD-04`), so a lot's company is its product's company. **One ancestor: the product** |
-| 13 | Reordering rule (`CN-20`) | `company + location` | a rule is defined at a location; **location → warehouse → company** (`MTI-08`: location company *derived from the warehouse*, structural) |
-| 14 | Put-away rule | `company + location` | same chain |
-| 22 | Adjustment / count session (`CN-28`/`-27`) | `company + location` | `09` §2 `L8-13`: *"company plus number"*; the act executes at a location — **location → warehouse → company** |
-| 23 | Scrap (`CN-29`) | `company + location` | `L8-14` *"company plus number"*; same chain |
+| 1 | Tenant | — | root — legitimately anchorless |
+| 5 | Product | `tenant / company` | `company` (`CD-04`) |
+| 7 | Product category | `tenant / company` | `company` (`CD-12`); costing facet value `HOLD` |
+| 8 | Lot / Serial | `company + product` | **`company`** — assigned at creation; R1 §4.1 itself says so (*first draft of this file declared `product` and is corrected*) |
+| 13 | Reordering rule | `company + location` | `location` |
+| 14 | Put-away rule | `company + location` | `location` |
+| 16 | Barcode nomenclature | `tenant` | `company` (`CD-13`) |
+| 17 | Unit group and unit | `tenant` | `company` — **CONDITIONAL on Boss `CF-D-01`** |
+| **21** | Inter-company transfer *(first draft wrote row 26, which is Replenishment run — corrected)* | — | not an object — an `MTI-22` relationship (`XCR-01`) |
+| 22 | Count session (`CN-27`) · Adjustment (`CN-28`) | `company + location` | **two objects, one ancestor each**: session → `warehouse`; adjustment → `location` (*first draft named two ancestor types for one object — corrected*) |
+| 23 | Scrap | `company + location` | `source location` |
 
-And the matrix's own legend, §1: *"**Anchor** — the single authoritative ancestor from which `company`
-derives (`MTI-05`)."* Row 4 (Location) reads anchor **`warehouse`** — single — and row 10 (Operation
-type) reads **`warehouse`**. **The convention of the matrix is a single ancestor; the `company + X` form
-appears on exactly the rows whose canonical *identity tuple* carries `company` explicitly** (lot,
-adjustment number, scrap number). The notation records **identity composition**, not dual derivation.
+**35 rows: 34 carry exactly one declared anchor or a stated reason for none; row 17 is conditional on
+Boss ruling `CF-D-01`.** *(First draft claimed 35 of 35 and "26 rows unchanged"; rows 16 and 17 had
+moved under `CD-13`/`-14` and `CF-D-01` was not consulted — `CHC-03`.)*
 
-> ### Adjudication `M05-A1`
-> **Reading (i) governs.** `company + X` in the R1 matrix means *"company, stored on the record and
-> derived via the single ancestor X"* — which is exactly what `MTI-05` requires: **one declared
-> ancestor, the derived value stored, a control asserting stored = derived.** The five rows honour the
-> invariant. **`MTI-05` is not contradicted; the matrix's notation was ambiguous in the one column where
-> it could least afford to be, and this file is the declared reading.**
-
-### 1.3 The declared anchor table — the Phase SA controlled reading for the nine affected rows
-
-| Row | Object | **Declared single anchor** | Company stored on record | Note |
-|---:|---|---|:---:|---|
-| 5 | Product | **company** (`CD-04`) | ✔ | R2 |
-| 7 | Product category | **company** (`CD-12`) | ✔ | R2; costing facet `HOLD — see §3 of `SA_CORR5_10`` |
-| 8 | Lot / Serial | **product** | ✔ | identity tuple carries company |
-| 13 | Reordering rule | **location** | ✔ | |
-| 14 | Put-away rule | **location** | ✔ | |
-| 22 | Adjustment / count session | **location** (the counted/adjusted location) | ✔ | a count spanning several locations of one warehouse anchors to the warehouse; **never two companies** (`MTI-33`) |
-| 23 | Scrap | **source location** | ✔ | |
-| 1 | Tenant | **root — legitimately anchorless** | n/a | `INV-PR-07` agrees |
-| 26 | Inter-company transfer | **not an object — an `MTI-22` relationship** between two single-context facts, each anchored to its own movement document (`XCR-01`) | n/a each | `INV-PR-07` listed it as *no anchor*; it has none because it is not a record |
-
-The other 26 rows are single-anchored and unchanged. **35 of 35 rows now carry exactly one declared
-anchor or a stated reason for none.**
-
-### 1.4 Status, downstream impact, and the document-owner correction
+### 1.4 Status, downstream impact
 
 | Item | Before | After |
 |---|---|---|
-| `MTI-05` | `CONTRADICTED` (CORR4) | **`SA-SPEC-COMPLETE / RUNTIME PROOF REQUIRED`** — the declaration half is closed by §1.3; the store-and-control half was always runtime (`CORR3` `M-2`) |
-| `CF-I-07` (inherits `MTI-05`) | inherited the contradiction | inherits the closure; stays `SPECIFIED — CONDITIONAL (RC-D-02)` on its own ground |
-| `HF-CTX-05` anchor path | — | for the five rows the anchor path is *record → X → … → company*, one chain each |
-| R1 matrix `04_CONTEXT_OWNERSHIP_AND_VISIBILITY_MATRIX.md` | notation ambiguous | **document-owner correction (Inventory), stated as a patch:** replace `company + product` / `company + location` in the `Anchor` column of rows 8, 13, 14, 22, 23 with `product` / `location` and add a legend line *"company is stored on every record; the Anchor column names the ancestor it derives from."* **Non-material once this file is the controlled reading** (`SA_CORR5_14` §3) |
+| `MTI-05` | `CONTRADICTED` (CORR4) | **`SA-SPEC-COMPLETE / RUNTIME PROOF REQUIRED — CONDITIONAL (`CF-D-01`, row 17 only)`** — declaration closed by the controlled patch; store-and-control half runtime (`CORR3` `M-2`) |
+| `CF-I-07` | inherited the contradiction | inherits the closure; stays `SPECIFIED — CONDITIONAL (RC-D-02)` on its own ground |
+| `HF-CTX-05` anchor path | — | one chain per row |
+| Document-owner item on the Inventory matrix | open | **closed at Phase SA level by the controlled patch**; the Inventory owner's adoption is a conformance edit, non-material |
+| `CF-D-01` | not consulted | **genuine Boss scope clarification, carried (pre-existing, 2026-09-05)** |
 
-**Evidence basis:** R1 matrix §1 legend and rows 4, 8, 10, 13, 14, 22, 23; `MTI-08`, `MTI-12`;
-`09` §2 rows `L8-10`…`L8-14`; R2 `CD-04`, `CD-12`; `SA_CORR3_07` §6.1 (both readings, unresolved).
-**Runtime proof:** `RT-M05-01` stored ≠ derived on any of the five object types → `MTI-19` breach fires
-(synthetic injection `0 → 1`).
+**Evidence basis:** matrix §1 legend, §4.1, rows 4, 8, 10, 13, 14, 16, 17, 18, 21, 22, 23; `MTI-08`,
+`MTI-12`; `09` §2 `L8-10`…`-14`; R2 `CD-04`, `-12`, `-13`, `-14`; `SA_CORR3_07` §6.1 (both readings and
+its lean). **Runtime proof:** `RT-M05-01` stored ≠ derived on any of the five object types → `MTI-19`
+breach fires (synthetic injection `0 → 1`).
 
 ---
 
@@ -133,6 +137,31 @@ gap**:
 > which settles `XCR-02`, `CF-XCR-GAP-01`, `AAS-V-03`'s subject and `CF-I-03`'s exception-path test
 > data in one ruling, and can be widened later by a new ruling without unbuilding anything.
 
+### 2.3 `GAP-FS-07` — the inter-company path, traced at data level (bounded evidence-at-rest pass)
+
+`XCR-01` is `INCOMPLETE` partly because *"the path is never traced end to end"*. Instrument as §3.2 (same
+tool, same identity key). Over the three databases holding more than one company:
+
+| Database | Companies | Transit-type locations (company-less) | Completed legs **into** the company-less transit location | Companies sending | Completed legs **out of** it | Companies receiving | Sending company also receives | Inter-company configuration present |
+|---|---:|---:|---:|---:|---:|---:|:---:|---|
+| `BK12MAY26` (gen 19) | 44 | 1 of 45 | **1,201** | **1** | **1,201** | **7** | yes (1) | 4 of 44 companies configured |
+| `iEVING` 2026-07-23 (gen 19) | 44 | 1 of 45 | 0 (2 not completed) | 1 | 0 (2 not completed) | 1 | no | 4 of 44 |
+| `iSMEs` (gen 16) | 1 | 0 | 0 | — | 0 | — | — | none (0 columns) |
+
+Movements whose source and destination locations belong to **two different companies directly**:
+**0** in all three (positive control: the join reaches 4,846 transit-involved movements in
+`BK12MAY26`).
+
+> **`C5-07-F-02`. In the one multi-company deployment that transfers between companies, the path is
+> realised as two single-company movements — 1,201 completed legs from one company into a company-less
+> transit place, paired with 1,201 completed legs from that place into seven companies — and never as
+> one movement spanning two companies.** That is precisely the `XCR-01` shape (`MTI-44`: two
+> single-context facts; `MTI-15`: never one fact spanning two companies), now **evidenced at data level**
+> rather than asserted. **What remains untraced is the value leg** — what each company records as the
+> cost of the goods it sends and receives — which is `JT-10`, a COGS/joint decision inside the COGS
+> unknown population (`SA_CORR5_10` §3.1). `GAP-FS-07` moves from *never traced* to *structure traced,
+> value untraced*; `XCR-01` stays `INCOMPLETE` on `JT-10` alone.
+
 **Downstream:** `MTI-44` (paired facts, depends on `MTI-22`) reclassifies identically; `CF-I-03` `P5`
 (*register content closed*) is a Boss-gated precondition, not a Phase SA gap; `CF3-P-04`'s test data
 exists for `XCR-01`/`XCR-04` and is Boss-gated for `XCR-02`.
@@ -175,14 +204,14 @@ register; `L7-08` mechanism *"mandatory reason taxonomy; approver distinct from 
 
 **Evidence at rest (Layer 2, audit quarantine — neutral aggregates only, no customer data transcribed).**
 Instrument declared: PATH SET `~/Downloads/*.dump` + `/Volumes/iMacSys/**/*.dump` + one plain-SQL
-export; SIGNATURE `PGDMP` header or `PostgreSQL database dump` preamble; TOOL
+export — **declared exclusion:** the rest of `$HOME` (incl. `~/Library`) and the mirror volume were not swept in this pass; the five databases are the ones the programme's own census names (`C5-I-02`); SIGNATURE `PGDMP` header or `PostgreSQL database dump` preamble; TOOL
 `/opt/homebrew/opt/postgresql@18/bin/pg_restore 18.6 --data-only --table=<t>` (the host's default
 `pg_restore 16.15` refuses archive format 1.16 — `C5-I-02`); IDENTITY keyed on `dbname` from the archive
 TOC, **not** on file name (the archive-denominator rule): **five distinct databases, six artefacts**
 (`iTEST02` appears twice, a month apart). UNIT = one row of the scrap-reason configuration table, one
 scrap record, one adjustment movement.
 
-| Database (`dbname`) | Generation (installed `base`) | Companies | **Configured scrap reasons** | Scrap records | Adjustment movements (`is_inventory`) | All movements |
+| Database (`dbname`) | Generation (installed platform core module version) | Companies | **Configured scrap reasons** | Scrap records | Adjustment movements (the movement record's adjustment marker) | All movements |
 |---|---|---:|---:|---:|---:|---:|
 | `BK12MAY26` (2026-08-03) | 19.0 | 44 | **0** | 0 | 1,262 | 14,443 |
 | `iEVING` (2026-07-23) | 19.0 | 44 | **0** | 0 | 6 | 15 |
@@ -193,12 +222,12 @@ scrap record, one adjustment movement.
 Positive control: the scrap-reason configuration table **exists and is empty** in all five (an absent
 table would fail `--table`; an empty one returns zero data rows after the archive's own preamble lines —
 **the two were distinguished by reading the extracted files, not by byte size**, the programme's
-*control-that-cannot-detect-its-failure* rule). Coverage: 5 requested / 5 opened / 0 unreadable.
+*control-that-cannot-detect-its-failure* rule). Coverage **by artefact**: 6 requested / 6 opened / 0 unreadable; by database (identity key `dbname`): 5 of 5. The second `iTEST02` artefact (2026-06-14) returned the same zeros as the first. **The executed commands and their raw outputs are published in Appendix A** with the vendor table names replaced by neutral descriptors (the literal names are Layer 2 and are held in the session scratch evidence only).
 
 > **`C5-07-F-01` — the existing Thailand evidence answers `R4-Q-01` in the negative, and that is an
 > answer.** In the one deployed Thai database that scraps at production scale — **2,286 scrap records
 > over 103,949 movements, 3,010 adjustments** — **zero reasons are configured and therefore zero are
-> used**; the scrap `origin` field, the only free-text carrier, is populated on 2,075 rows with **892
+> used**; the scrap record's free-text source field, the only free-text carrier, is populated on 2,075 rows with **892
 > distinct values** — a free-text field, not a classification, and no vocabulary analysis of it was
 > performed here. The adjustment-movement record of that generation carries **no reason column at all**
 > (0 of its column names contain *reason*). **Thai SMEs on the reference estate do not classify non-sale reductions, because
@@ -215,7 +244,7 @@ The pattern is the one the corpus already mandates twice (`MTI-33`'s own context
 |---|---|
 | **Structure** | A **platform-owned reason *class*** enumeration (context-independent, immutable once used — `CF-I-05` pattern) **plus tenant-configurable reason *labels*** each declaring exactly one class. Controls, accounting consequence and statutory evidence bind to the **class**, never to the label |
 | **Mandatory** | A reason (label → class) is **mandatory on every non-sale stock reduction and every count variance application**; absent → the act is refused (`L7-08`; `MTI-20`). *Reference behaviour — reason optional — is expressly not inherited* (`SA12-F-01` clause) |
-| **The classes — candidate, derived from the distinctions the corpus requires** | `COUNT_VARIANCE_UNEXPLAINED` (count/adjustment; `L7-08`) · `COUNT_VARIANCE_EXPLAINED` (with sub-reason label) · `DAMAGE` · `EXPIRY` · `THEFT_OR_LOSS` · `QUALITY_REJECT` (link to the quality hold route, `SA_CORR2_03` §3.3) · `PRODUCTION_SCRAP_NORMAL` · `PRODUCTION_SCRAP_ABNORMAL` (scenario 17; the normal/abnormal split is what determines whether the loss stays in inventory cost or is expensed) · `SAMPLE_OR_INTERNAL_CONSUMPTION` · `DESTRUCTION_FOR_TAX` (requires `TH-HOLD-02` destruction evidence — the class exists; the statutory rule attached to it is `HOLD / EVIDENCE REQUIRED`) · `RETURN_TO_VENDOR` (distinguishes a return from a loss; scenario 8) · `TRANSFER_INTERNAL` (no reduction — carried so transfers are never mislabelled as losses; scenario 14) · `OTHER_STATED` (free text mandatory, **reported as an exception class** so it cannot become the default) |
+| **The classes — candidate, derived from the distinctions the corpus requires** | `COUNT_VARIANCE_UNEXPLAINED` (count/adjustment; `L7-08`) · `COUNT_VARIANCE_EXPLAINED` (with sub-reason label) · `DAMAGE` · `EXPIRY` · `THEFT_OR_LOSS` · `QUALITY_REJECT` (link to the quality hold route, `SA_CORR2_03` §3.3) · `PRODUCTION_SCRAP_NORMAL` · `PRODUCTION_SCRAP_ABNORMAL` (scenario 17; the normal/abnormal split is what determines whether the loss stays in inventory cost or is expensed) · `SAMPLE_OR_INTERNAL_CONSUMPTION` · `DESTRUCTION_FOR_TAX` (requires `TH-HOLD-02` destruction evidence — the class exists; the statutory rule attached to it is `HOLD / EVIDENCE REQUIRED`) · `RETURN_TO_VENDOR` (scenario 8) · **`RETURN_FROM_CUSTOMER`** (with sub-labels *restock at value* / *write-off*; scenario 9 — the reason decides re-entry vs loss; `CHC-10`) · `TRANSFER_INTERNAL` (no reduction — carried so transfers are never mislabelled as losses; scenario 14) · **`LANDED_COST_ALLOCATION`** (the allocation basis class on a landed-cost act — row 25 of the matrix, `JT-08`; the sixth of `MTI-33`'s six acts; `CHC-10`) · `OTHER_STATED` (free text mandatory, **reported as an exception class** so it cannot become the default) |
 | **Accounting consequence binding** | Each class declares its **cost-consequence class** (stays in inventory cost · expensed as loss · reversed to supplier · no consequence) — the binding Accounting needs for periodic cost-of-sales to exclude non-sale reductions (`05_L4` identity 4). **Which account, and at what value, is `BD-ACC-03A/B` policy plus the COGS residual of `SA_CORR5_10` §3 — not decided here** |
 | **Handoff** | The class travels on the emitted fact (element 1 *what happened* qualified; element 16 evidence pack for scrap) |
 | **Thai labels** | **All candidate / UNVALIDATED.** The R4 candidates are carried as labels of `DAMAGE`/`DESTRUCTION_FOR_TAX`, unvalidated |
@@ -225,7 +254,7 @@ The pattern is the one the corpus already mandates twice (`MTI-33`'s own context
 
 | Item | Class | Owner |
 |---|---|---|
-| Thai label set and completeness of the class set against Thai SME practice | **external user validation** — `GAP-FS-11`, `18_THAI_USER_VALIDATION_CHECKLIST` §6 row `R4-Q-01` | Thai user panel (PMO convenes); **not** Boss, **not** SMEs Core, **not** research |
+| Thai label set and completeness of the class set against Thai SME practice | **external user validation** — `GAP-FS-11`, `18_THAI_USER_VALIDATION_CHECKLIST` §6 row `R4-Q-01` | **the panel is Boss's to commission** (`18_THAI_USER_VALIDATION_CHECKLIST` line 11: *"Boss to commission"*) — a Boss act, carried and pre-existing; the validation itself is external, **not** SMEs Core, **not** research (`CHC-04`) |
 | `DESTRUCTION_FOR_TAX` statutory evidence rule | `HOLD / EVIDENCE REQUIRED` | Thai Accounting-Tax track |
 | Value of a loss (which account, which cost) | COGS residual | `SA_CORR5_10` §3 |
 
@@ -241,13 +270,14 @@ reason class → refused; `RT-M33-02` the same label in two companies resolves t
 
 | Invariant | CORR4 | **CORR5** | Owner of what remains |
 |---|---|---|---|
-| `MTI-05` | `CONTRADICTED` | **`SA-SPEC-COMPLETE / RUNTIME PROOF REQUIRED`** | runtime (store + control) |
+| `MTI-05` | `CONTRADICTED` | **`SA-SPEC-COMPLETE / RUNTIME PROOF REQUIRED — CONDITIONAL (`CF-D-01`, row 17)`** | runtime (store + control); Boss `CF-D-01` for one row |
 | `MTI-22` | `SA-SPEC-GAP` (SMEs Core) | **`SA-SPEC-COMPLETE AT REGISTER LEVEL`** — content conditional on `MTI-D-04`, `RC-D-02` (Boss), `JT-10` (joint) | **Boss** (carried, not new) |
-| `MTI-33` | `SA-SPEC-GAP` (SMEs Core) | **`SA-SPEC-COMPLETE / VALUE HELD / THAI LABEL VALIDATION PENDING`** | Thai user panel (external validation); COGS residual for value |
+| `MTI-33` | `SA-SPEC-GAP` (SMEs Core) | **`SA-SPEC-COMPLETE / VALUE HELD / THAI LABEL VALIDATION PENDING`** | Boss commissions the Thai panel (`GAP-FS-11`); external validation; COGS residual for value |
 | `MTI-44` | `SA-SPEC-GAP` | follows `MTI-22` | Boss |
 
-**Targeted Very Deep Research opened: 0.** One bounded evidence-at-rest pass was executed inside
-Workstream G for `MTI-33` only, and it closed the question by showing the answer is not in Thai practice.
+**Targeted Very Deep Research opened: 0.** Two bounded evidence-at-rest passes were executed inside
+Workstream G — for `MTI-33` (§3.2) and for `GAP-FS-07` (§2.3) — each declared with instrument, identity
+key, coverage by artefact and neutral outputs (Appendix A).
 
 ## 5. Residual
 
@@ -264,8 +294,43 @@ Workstream G for `MTI-33` only, and it closed the question by showing the answer
 
 > ## `CP-SA-C5-70 — MTI RESIDUAL SPEC GAPS CLOSED OR EXACTLY BOUNDED`
 > **`MTI-05` adjudicated not contradicted (9-row anchor declaration) · `MTI-22` closed at register level,
-> content bounded to 2 carried Boss rulings + 1 joint decision · `MTI-33` structure specified (13 classes),
-> labels bounded to Thai user validation, evidence-at-rest pass over 5 databases (`C5-07-F-01`) ·
+> content bounded to 2 carried Boss rulings + 1 joint decision · `MTI-33` structure specified (15 classes, covering all six `MTI-33` acts),
+> labels bounded to Thai user validation (a Boss commissioning act per `GAP-FS-11`), evidence-at-rest pass over 5 databases / 6 artefacts (`C5-07-F-01`) and the inter-company path traced at data level (`C5-07-F-02`) ·
 > 0 TVDR opened · 2 document-owner patches stated · 1 SMEs Core recommendation to Boss on `MTI-D-04`.**
+
+## Appendix A — executed commands and outputs (evidence-at-rest pass), neutral vocabulary
+
+```
+# tool
+/opt/homebrew/opt/postgresql@18/bin/pg_restore --version      -> pg_restore (PostgreSQL) 18.6 (Homebrew)
+pg_restore (16.15) -l <iTEST02 archive>                        -> error: unsupported version (1.16) in file header
+# identity (per artefact)
+pg_restore -l <archive> | grep 'dbname:'                       -> BK12MAY26 ; iEVING ; iSMEs ; iTEST02 ; iTEST02
+# extraction (per artefact, per table)
+pg_restore --data-only --table=<scrap-reason-configuration-table>          -f out.sql <archive>
+pg_restore --data-only --table=<scrap-record-to-reason link table>         -f out.sql <archive>
+pg_restore --data-only --table=<scrap-record table>                        -f out.sql <archive>
+pg_restore --data-only --table=<company table>                             -f out.sql <archive>
+pg_restore --data-only --table=<movement table>                            -f out.sql <archive>
+pg_restore --data-only --table=<location table>                            -f out.sql <archive>
+# row count rule (excludes the pg18 \restrict/\unrestrict preamble and COPY framing)
+grep -v -E '^(--|SET|SELECT|COPY|\\)' out.sql | grep -v '^$' | wc -l
+# adjustment marker: the movement table's boolean adjustment column, counted where = 't'
+# cross-company legs: join each movement's two location ids to the location table's company and usage
+```
+
+| Artefact | reason rows | link rows | scrap rows | company rows | movement rows | adjustment-marked | transit legs in / out (completed) |
+|---|---:|---:|---:|---:|---:|---:|---|
+| `BK12MAY26_2026-08-03` | 0 | 0 | 0 | 44 | 14,443 | 1,262 | 2,008 / 2,838 (1,201 / 1,201) |
+| `iEVING_2026-07-23` | 0 | 0 | 0 | 44 | 15 | 6 | 2 / 2 (0 / 0) |
+| `iEVING_2026-03-31` (plain SQL) | 0 | 0 | 0 | 2 | — | — | — |
+| `iSMEs_2026-07-11` | 0 | 0 | 2,286 (2,277 completed) | 1 | 103,949 | 3,010 | 0 / 0 |
+| `iTEST02_2026-07-14` | 0 | 0 | 0 | 1 | 57 | 0 | — |
+| `iTEST02_2026-06-14` | 0 | 0 | 0 | 1 | — | — | — |
+
+Positive controls: every named table opened in every artefact (an absent table fails `--table`);
+`iSMEs` scrap rows fire; the location join reaches 4,846 transit-involved movements in `BK12MAY26`.
+Discriminating negative: `iTEST02` (1 company, 57 movements) returns structurally different results
+(no transit locations at all) from `BK12MAY26`'s zero cross-company movements.
 
 No Evidence = No Progress. Never Skip Gate. Boss remains the sole Final Approver.

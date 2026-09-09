@@ -17,6 +17,10 @@ specification is complete; instead record the exact next-phase proof condition."
 **Discharge is the issuing body's act, ratified by Boss** (R2 `12` §5.2, `15`). This file classifies;
 it discharges nothing. **Vetoes discharged by this file: 0.** The population is the six identified by
 identifier across CORR2/3/4 text and located at their issuing text (`SA_CORR5_00` §3 row 12).
+**Pattern and exclusions, stated (`CHB-11`):** `[A-Z]{2,6}-V-[0-9]{2}` over HEAD returns the six plus
+`MNT-V-01` — a CORR3 *verdict* identifier in `SA_CORR3_04`, not a veto (excluded by reading); over all
+heads it also returns `DB-V-01`/`-02` as substrings of `AAS03-E2DB-V-01`…, P08 identifiers (excluded
+as substrings). Six is the veto population.
 
 ---
 
@@ -49,11 +53,12 @@ Every CORR5 file was swept for the two prohibited wording classes before freeze:
 
 | Sweep | Pattern | Result |
 |---|---|---|
-| Element 10 / `HF-CTX-11` availability | `(element 10\|HF-CTX-11).{0,80}(supplied\|available\|satisfied\|suppliable)` without a negation within the sentence | **0** — every occurrence is `specified, not built, not verified`, a quotation of the veto, or a negation |
-| `CF-I-06`/`CF-I-08` as reducing | `CF-I-0[68].{0,120}reduc` | **0** |
+| Element 10 / `HF-CTX-11` availability | `(element 10\|HF-CTX-11).{0,80}(supplied\|available\|satisfied\|suppliable)` | **raw 3, all quotations of the veto or negations → 0 affirmative** |
+| `CF-I-06`/`CF-I-08` as reducing | `CF-I-0[68].{0,120}reduc` | **raw 2 — the veto quotation in this file and this sweep row itself → 0 affirmative** (`CHB-12`) |
 
-(Executed at `SA_CORR5_13` §6 with the published command and output; the counts above are the freeze
-values and are re-run after any correction.)
+(Raw counts published beside the classified zero, as the programme's rule requires; the pattern
+matches its own documentation. Re-executed with command and output at `SA_CORR5_13` §6, which was
+written after this file — a forward reference, `CHB-05`.)
 
 ## 4. What this file does not do
 

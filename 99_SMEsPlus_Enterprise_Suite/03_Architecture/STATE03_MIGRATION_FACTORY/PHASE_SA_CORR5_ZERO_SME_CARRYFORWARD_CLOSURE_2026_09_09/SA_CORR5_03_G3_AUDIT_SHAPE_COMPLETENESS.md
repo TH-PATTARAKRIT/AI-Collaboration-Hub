@@ -17,7 +17,7 @@ as *"`MTI-D-02` §4"*. Reconstructed exactly:
 
 | Source | Verbatim | What it supplies |
 |---|---|---|
-| **Boss ruling `MTI-D-02`** (`26_BOSS_RULING_…D02…`, `13b3e63f`, 2026-09-04) §2–§3 | *"Company + Warehouse + Operation-Type … Inventory permission and execution context must be controlled by all applicable dimensions: 1. Tenant / Company context 2. Warehouse context 3. Operation-Type context"* | the **axes**: tenant, company, warehouse, operation type |
+| **Boss ruling `MTI-D-02`** (`REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/26_BOSS_RULING_SMEPLUS-26-09-04-INV-MTI-D02-AUTHORIZATION-GRANULARITY-001.md`, branch `ruling/inventory-mti-d02-authorization-granularity-2026-09-04-001` @ `13b3e63f`, 2026-09-04) §2–§3 | *"Company + Warehouse + Operation-Type … Inventory permission and execution context must be controlled by all applicable dimensions: 1. Tenant / Company context 2. Warehouse context 3. Operation-Type context"* | the **axes**: tenant, company, warehouse, operation type |
 | same, §4 rule 7 | *"…adjustments, transfers, scrap, landed cost flows, scheduler actions, and **stock movement history** must preserve the same authorization context"* | history must carry the axes |
 | same, §4 rule 8 | *"Background jobs and system automation must carry explicit tenant/company/warehouse/operation-type context when executing inventory actions"* | non-interactive acts included |
 | **`CD-26`** (R2 delta register) | *"`MTI-D-02` §4 and advice `27` §5 both require the audit trail to answer **who performed what action under which tenant, company, warehouse and operation type**. An authority reference identifies the grant; it does not by itself state the four axes the act was performed under"* | the **audit-trail** form of the requirement — a resolved tuple, not a reference |
@@ -63,7 +63,14 @@ need most and CORR4 did not name: **they have no place for an act that is *about
 
 ## 3. The audit contract — `AUD-C`
 
-### 3.1 The four context axes (`AUD-C-A1`…`A4`)
+### 3.1 The context axes (`AUD-C-A1`…`A5`)
+
+**`AUD-C-A5` — Location (situational).** `CTX` is `(tenant, company, warehouse?, location?)` (R1 `03`
+§2.1; R2 `04` §2), so *"the full `CTX`"* (`MTI-38`) includes the location where the object is
+location-anchored (rows 4, 13, 14, 22, 23 of the context matrix). `A5` carries the location identity
+or `N/A + reason`; producer `EP-R`; scope as company; immutable at the act. **Whether location is also
+an *authorization* axis is `RC-D-01`, unruled (Boss)** — `A5` is a context axis only (`CHA-08`). The
+first freeze omitted it.
 
 | Attribute | **Tenant** `A1` | **Company** `A2` | **Warehouse** `A3` | **Operation type** `A4` |
 |---|---|---|---|---|
@@ -100,7 +107,7 @@ need most and CORR4 did not name: **they have no place for an act that is *about
 | Semantic purpose | the inspectable thing that proves the act — the control run, the document, the count sheet; **never a boolean** | the record is append-only; correction is a new linked record | who may read the record |
 | Producer | the emitting module; the control (`MTI-19`, `CF-I-03`) | the store | `EP-Q` (reads scoped by `AUTH`, `MTI-21`) |
 | Identifiers | evidence identity + type | record identity; predecessor link where a correction | the reader's `AUTH` |
-| Scope | as the act | — | **context-scoped**: a company auditor sees that company; a tenant owner sees the tenant; **cross-company read only under `XCR-02`** (`MTI-D-04` unruled → conditional); **platform-stream records are readable by platform principals only, and by the target tenant for the acts on it** (`✎`) |
+| Scope | as the act | — | **context-scoped**: a company auditor sees that company; a tenant owner sees the tenant; **cross-company read only under `XCR-02`** (`MTI-D-04` unruled → conditional); **platform-stream records are readable by platform principals only, and by the target tenant for the acts on it** (`✎`). **A control that must assess acts in several tenants (a `CF-I-03R` sweep of a platform grant) runs as N tenant-context runs, each inside its tenant, whose *results* are lifted to platform context — never as one platform-context read of N tenant streams** (`CHA-09`; the `G5` `T(i)`/`P` rule) |
 | Time semantics | — | forever from creation | — |
 | Before/after · lineage | — | edit attempts are audited refusals | — |
 | Retention | `MTI-50` | `BR-AUD-001/002` | — |
@@ -154,9 +161,10 @@ conditional) · decide retention periods · set a platform-stream reader role be
 ## 8. Checkpoint
 
 > ## `CP-SA-C5-30 — G3 AUDIT SHAPE SA-SPEC COMPLETE`
-> **Four-axis requirement reconstructed from 6 primary sources · 11 contract axes × 10 attributes ·
-> 3 gaps named (axes, authority, time) where CORR4 named 1 · 3 schemas reconciled with stated patches ·
-> 9 runtime obligations · 0 vendor structure copied.**
+> **Four-axis requirement reconstructed from 6 primary sources · 12 contract axes (incl. situational
+> location, `CHA-08`) × 10 attributes · 3 gaps named (axes, authority, time) where CORR4 named 1 ·
+> 3 schemas reconciled with stated patches · 9 runtime obligations · 0 vendor structure copied ·
+> corrected by `CHA-08`, `-09`, `-11`.**
 
 **Next autonomous action:** `CP-SA-C5-40` (`SA_CORR5_04`).
 

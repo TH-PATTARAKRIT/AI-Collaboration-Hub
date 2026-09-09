@@ -13,7 +13,9 @@ Boss: **SOLE FINAL APPROVER**
 
 ## 1. The invariant that governs every row, and the rule it forbids
 
-Boss decision `00`/`01` (carried at `SA10` §8.2), `MTI-D-02` §4 rules 1, 6 and 8, `CF-I-01`:
+Boss decision `00`/`01` (carried at `SA10` §8.2) supplies the first three sentences; Boss ruling `MTI-D-02`
+(`26_BOSS_RULING_SMEPLUS-26-09-04-INV-MTI-D02-AUTHORIZATION-GRANULARITY-001.md` @ `13b3e63f`, §4 rules
+1, 6 and 8) the fourth; `CF-I-01` the fifth (`CHA-11`):
 
 > **Tenant is the security/customer boundary; Company the legal/accounting boundary inside it.
 > Multi-tenant membership is not a multi-tenant execution context. A lower-level relationship can never
@@ -51,27 +53,29 @@ Legend: `✔` carried from a cited source · `✎` specified first here · `M` m
 
 | Attribute | Specification | Basis |
 |---|---|---|
-| Actor identity | A **platform principal** — a human identity in the **platform identity domain**, distinct from any tenant user record. **It is not a tenant user and has no tenant membership.** `BR-TEN-001`/`BR-IAM-003` (*a user belongs to exactly one tenant*) are statements about **tenant users** and are honoured: a platform principal is not a user of any tenant | `✎` — this is the reconciliation `G2`/`C4-D-02` lacked: the contradiction dissolves once the actor is placed outside the tenant user model rather than inside it with an exception |
+| Actor identity | A **platform principal**. **Two coherent models exist in the corpus and this file does not choose between them** (`CHA-03`): **(R1)** a human identity in a **separate platform identity domain**, not a tenant user (SMEs Core's recommendation, `✎`); **(R2)** *Platform Operator* as one of six **standard roles assigned per organizational scope** (`ARC-WP-009` §12.4/12.5, stranded, `DRAFT · HOLD`) — the model `FDS_IAM` §3 also implies by listing *Platform Admin* as an IAM actor whose only login is `FR-IAM-001` (precondition *Tenant Status = Active*). **Every attribute below holds under either model**; what differs is where the principal authenticates and where its grants are stored | `C4-D-02` (governance act + independent review) decides; `SA_CORR5_02` supplies the attribute set both must satisfy |
 | Execution context | **`PLATFORM` scope**. Data context: the **tenant being acted on, named explicitly as the object of the act**, never resolved from the operator's own session | `SCOPE-AWARE EVERYWHERE`; `MTI-20` |
 | Tenant context | `n/a` as *own* context — a platform principal has none; **the target tenant is a parameter of the act and is mandatory** for every act that touches a tenant (suspend/terminate, module enable, subscription assign/adjust) | `FDS_TENANT` §8; `FR-SM-005` |
 | Company context | `n/a` — the five evidenced platform acts are tenant-level; **a platform principal may not act on a company-scoped business fact at all** | `FDS_*` §8 census (`SA_CORR4_01` §4.1); `MTI-D-02` rule 1 |
 | Authority source | A **platform grant**, `MTI-18`-class: grantor (platform governance), grantee, reason, **scope = an enumerated act class** (suspend/terminate · module enable/disable · plan assign/adjust · health-dashboard read), **expiry mandatory**, permanent record. **MFA mandatory** | `MTI-18`; `ARC-WP-009` §12.6 |
-| Allowed boundary crossing | **None into tenant business data.** The health dashboard is *"scoped to operational data only"* and *"must never surface tenant business data content"* — carried as a hard rule | `REP-004`, `BR-REP-001` |
+| Allowed boundary crossing | **None into tenant business data.** The health dashboard is *"scoped to operational data only"* and *"must never surface tenant business data content"* — carried as a hard rule. **The act set is larger than CORR4's five** (`CHA-04`): `FDS_AUDIT` §3/`US-AUD-002` (*Platform Admin exports audit log*), `FDS_INTEGRATION` §3 (*Platform Admin manages integration*), `FDS_ROLE_PERMISSION` (*Platform Admin manages platform-level permissions*), `FDS_SUBSCRIPTION_MODULE` `FR-SM-001`…`-004` (plan and module catalogue) — **at least nine acts.** Of these, **audit export of a tenant's records is a cross-tenant read** that this row forbids; the patch in §4 **removes it from the platform principal** (tenant audit export becomes a Tenant Owner act; the platform principal exports the *platform stream* only). Integration and permission management are platform-catalogue acts, in scope | `REP-004`, `BR-REP-001`; `FDS_AUDIT` §3, §6 |
 | Prohibited crossing | Reading, selecting, searching, reporting, inferring or writing any tenant business record; acting on more than one tenant in one act; holding a tenant role | `MTI-D-02` §4 rule 1; `MTI-29` |
 | Audit | Every act a `MTI-38` event in **platform** context with **target tenant as object**, actor, grant, **reason captured on every act** (today only `tenant.status_changed` captures reason — `C4-01` §4.1; extended to all five) | `FDS_TENANT` §10, widened `✎` |
 | Break-glass / privileged | **Every platform act is privileged by definition** and evaluated by `CF-I-03` as a grant like any other (`D4` six fields). No suppression of any deny condition. Break-glass beyond this remains `G4` — a name, PMO staffing | `CF-I-03` §3.8, §3.14 |
 | Revocation | `CF-I-03R` full lifecycle; leaver → immediate; platform grants are the first population for `FOR CAUSE` sweeps because their reach is every tenant | `SA_CORR5_05` |
 | Downstream data contract | A platform act emits **no cross-module business handoff**. It emits a platform event consumed by tenant lifecycle, entitlement and audit only; `HF-CTX-*` do not apply (no business fact); a `PLATFORM` handoff to the platform's *own* accounting is `SA_CORR5_04` §5 | `SCOPE-AWARE EVERYWHERE` |
 
-> **`C5-02-F-01` — `G2` re-scoped from *contradiction* to *model omission*.** The four canonical
-> statements (`C4-01-F-05` A–D) do not contradict once the platform principal is a **separate identity
-> domain**: `BR-TEN-001`/`BR-IAM-003` constrain tenant users; `FDS_TENANT` §8 names an actor that is
-> **not** a tenant user; `FDS_ROLE`'s tenant-scoped `Role` entity carries tenant roles and **does not
-> carry platform grants**. What the corpus lacks is the platform identity domain's own model — an
-> authentication path, a session model, an MFA obligation, a grant store — which `ARC-WP-009` §12.2/12.6
-> drafts and which no `FDS_*` file states. **That is an omission in `FDS_IAM`, a document-owner
-> correction with a mechanically stated patch (§4), not a Boss contradiction.** `C4-D-02` is carried as
-> the *review* of `ARC-WP-009` (PMO appointment), no longer as an unresolved design question.
+> **`C5-02-F-01` (restated after `CHA-03`) — `G2` is a contradiction with exactly two coherent
+> resolutions, and the *execution context* is the same under both.** The first freeze of this file
+> declared the separate-identity-domain model (R1) as the reconciliation; the corpus's only written
+> architecture (`ARC-WP-009` §12.4/12.5) and `FDS_IAM` §3 place the platform actor **inside** the
+> tenant-scoped role model (R2), which the `BR-TEN-001`/`BR-IAM-003` texts then contradict — the
+> contradiction CORR4 named. **What this file closes is `G1` for class 1 — the eleven attributes —
+> which do not depend on the choice.** What it does not close is `G2`: **R1 vs R2 is decided by the
+> `C4-D-02` review** (a Boss-appointed independent review, `B-7`), with SMEs Core's recommendation for
+> R1 recorded: a scoped role inside a tenant-organisation model needs a *platform organisation* that
+> is itself a tenant with cross-tenant reach, which is the object Boss `00`/`01` forbids. `FDS_IAM`'s
+> *Platform Admin* row is **redefined** under either model, not added.
 
 ### Class 6 — Integration / service account (external non-human principal)
 
@@ -87,7 +91,7 @@ Legend: `✔` carried from a cited source · `✎` specified first here · `M` m
 | Audit | `MTI-38` event per act with the credential identity **and version** as actor; `integration_logs` (`FR-INT-005`) is a **secondary** log and never the audit trail of record | `BR-INT-004`; `SA_CORR5_03` |
 | Break-glass | **Never.** A service principal cannot hold an `MTI-18` elevation | `✎` |
 | Revocation | `CF-I-03R`; **`CREDENTIAL_COMPROMISED` is the canonical for-cause class for this actor**; secret rotation is not revocation | `SA_CORR5_05` §3.3 |
-| Downstream data contract | A fact presented by a service principal is an ordinary emitting handoff: `HF-CTX-01`…`-11` mandatory; **`FR-INT-004` "Retry Supported" is bound by `XMC-C-A14`** — every presentation carries an attempt identity, and `E15-A1` deduplicates at the Accounting Core | `SA_CORR5_01` §7 |
+| Downstream data contract | A fact presented by a service principal is an ordinary emitting handoff: `HF-CTX-01`…`-11` mandatory; **every *inbound* presentation by an API client (`FR-INT-001`/`-003` clients) carries an attempt identity (`XMC-C-A14`)** and `E15-A1` deduplicates at the Accounting Core. **`FR-INT-004` *Send Webhook — Retry Supported* is *outbound*** (`CHA-05`): its rule is that the payload carries the Accounting Event Identity / business identity so the external receiver can deduplicate (`ARC-WP-010` §12.7 under the `SA_CORR5_01` §7 reading) — the first freeze mis-applied `A14` to it | `SA_CORR5_01` §7 |
 
 ### Class 11 — Internal service-to-service
 
@@ -110,16 +114,16 @@ Legend: `✔` carried from a cited source · `✎` specified first here · `M` m
 | Attribute | Specification | Basis |
 |---|---|---|
 | Actor identity | **The platform's billing service principal** — a class-11 internal service running **on the platform's own behalf**, identity and version recorded | `SAAS_CELL/24` §*Commercial wording*; `/27` |
-| Execution context | **Two contexts, never one.** (a) **`PLATFORM` scope** for the platform's own financial fact (the wallet is a **liability of SMEsPlus to the customer**; its deduction is the platform's revenue recognition, not the tenant's accounting). (b) **`TENANT` scope, one tenant per execution**, for the usage evidence, forecast and notice delivered to that tenant | `✎` on the split; `TRG-01` *"Tenant execution context is mandatory for metered operations"*; `MTI-29` |
+| Execution context | **Two contexts, never one.** (a) **`PLATFORM` scope** for the platform's own financial fact — the wallet is the customer's prepaid credit **held by SMEsPlus**; **its balance-sheet character (liability, deferred revenue, other) is the open item of `SAAS_CELL/27` — `HOLD / EVIDENCE REQUIRED`, Boss Final Approval** (`CHA-10`); a deduction is the platform's own recognition event, never the tenant's accounting. (b) **`TENANT` scope, one tenant per execution**, for the usage evidence, forecast and notice delivered to that tenant | `✎` on the split; `TRG-01` *"Tenant execution context is mandatory for metered operations"*; `MTI-29` |
 | Tenant context | **`M` — exactly one per execution**, selected by **enumeration from the subscription register**, never by scanning data | `MTI-29`; `TRG-02` |
 | Company context | `n/a` with reason: a wallet is held by a **tenant** (the customer), not a company inside it; **no company-scoped business fact of the tenant is read or written**. If a tenant later asks for per-company statements, that is a read of *platform* evidence, not a company execution | `SAAS_CELL/27` deduction order (all platform charges) |
 | Authority source | A **platform grant to the billing service** with scope = the four charge classes (base rental · measured usage · add-on · optional services) and **no authority over tenant business data** | `MTI-18`-class; `TRG-05` |
-| Allowed crossing | **Read of per-tenant metered evidence** (`SAAS_CELL/22` `UCE-07`, `/29` `TRG-07`); **write of the tenant's own wallet ledger and notice**; nothing else | `TRG-01`, `-02` |
+| Allowed crossing | **Read of per-tenant metered evidence** (`SAAS_CELL/22` `UCE-03`, `/29` `TRG-07`); **write of the tenant's own wallet ledger and notice**; nothing else | `TRG-01`, `-02` |
 | Prohibited crossing | Any read of tenant business content; **any cross-tenant aggregation inside the per-tenant run** — platform-level totals are computed **from the per-tenant results afterwards**, in platform context (`SA_CORR5_04` §4) | `TRG-02`; `MTI-25`/`R8` analogue |
 | Audit | Every deduction, forecast, notice and pre-authorisation decision is an **immutable event** (`SAAS_CELL/24` principle 2 *"historical usage and billing evidence remain immutable/auditable"*, `TRG-07`) in **platform** context with the tenant as object, **and** a tenant-visible copy (customer drill-down, `/23`) | `MTI-38` shape |
 | Break-glass | Never. A manual wallet adjustment is a **platform operator act** (class 1) with reason, not a background-process capability | `✎` |
 | Revocation | The billing service's grant under `CF-I-03R`; a defective release → `SUSPECT` deductions → disposition by **credit/re-deduction as new events** (`XMC-C-A8`), never edits | `SA_CORR5_05` §4.3 |
-| Downstream data contract | Handoff **to the platform's own Accounting** (SMEsPlus as a company): an ordinary `BD-ACC-01` emitting handoff with tenant = the platform's tenant, company = SMEsPlus's operating company, owning domain = Billing, occurrence = the deduction event; **tax/accounting treatment of prepaid balances is an open item of `/27` and is `HOLD / EVIDENCE REQUIRED`** — not decided here. **No handoff to the customer tenant's Accounting**: the customer's own books record the prepayment from the statement they receive, outside SMEsPlus's control | `SA_CORR5_04` §5 |
+| Downstream data contract | Handoff **to the platform's own Accounting**: an ordinary `BD-ACC-01` emitting handoff whose tenant axis is the **`PLATFORM` context identifier** (not a tenant record — the platform is not a tenant of itself, consistent with class 1's rejection of a platform tenant, `CHA-10`), company = the operator's legal entity, owning domain = Billing, occurrence = the deduction event; **tax/accounting treatment of prepaid balances is an open item of `/27` and is `HOLD / EVIDENCE REQUIRED`** — not decided here. **No handoff to the customer tenant's Accounting**: the customer's own books record the prepayment from the statement they receive, outside SMEsPlus's control | `SA_CORR5_04` §5 |
 
 ### Class 14 — Approval execution
 
@@ -161,10 +165,11 @@ Legend: `✔` carried from a cited source · `✎` specified first here · `M` m
 
 | Artefact | Owner | Patch |
 |---|---|---|
-| `FDS_IAM.md` | SMEsPlus Product Team | Add §2 *In Scope* item **"Platform Principal identity domain (separate from tenant users)"**; add actor row **Platform Principal — ไม่ใช่ผู้ใช้ของ Tenant ใด (candidate wording, UNVALIDATED)**; add `FR-IAM-011 Platform Principal Login` with acceptance criteria *MFA required · grant required · session platform-scoped · audit recorded*; add `BR-IAM-007` *"Platform Principal มีสิทธิ์เฉพาะตาม platform grant และเข้าถึงข้อมูลธุรกิจของ Tenant ไม่ได้"* (candidate) |
+| `FDS_IAM.md` | SMEsPlus Product Team | **Redefine** the existing actor row *Platform Admin* (§3) under whichever `G2` resolution the `C4-D-02` review adopts; under R1 add §2 *In Scope* item **"Platform Principal identity domain (separate from tenant users)"**, `FR-IAM-011 Platform Principal Login` (*MFA required · grant required · session platform-scoped · audit recorded*) and `BR-IAM-007` *"Platform Principal มีสิทธิ์เฉพาะตาม platform grant และเข้าถึงข้อมูลธุรกิจของ Tenant ไม่ได้"* (candidate, UNVALIDATED); under R2 add the platform-organisation scope and the `BR-TEN-001` exception clause the model then needs |
 | `FDS_INTEGRATION.md` | same | §9 tables gain conceptual attributes *tenant, company scope, version, effective-from/-to* on `api_clients`/`api_keys` (conceptual, no types); `FR-INT-004` gains *"Attempt identity required on every retried presentation"* |
 | `FDS_APPROVAL.md` | same | `BR-APR-005` *"Approver must hold authority in the request's company; the context boundary wins over segregation of duties"*; `FR-APR-002` acceptance gains *"Approval occurrence event recorded"* |
 | `FDS_SUBSCRIPTION.md`, `FDS_MODULE.md`, `FDS_SUBSCRIPTION_MODULE.md` | same | Audit events gain `reason` on every platform act |
+| `FDS_AUDIT.md` | same | `US-AUD-002` (*Platform Admin exports audit log*) → Tenant Owner for tenant records; the platform principal's `FR-AUD-004` is scoped to the **platform stream**; `BR-AUD-003` per `SA_CORR5_03` §4 (`CHA-04`) |
 
 **Materiality:** with this file as the controlled Phase SA reading, the patches are **conformance
 edits to Layer-1 foundation documents**, non-material to any Phase SA conclusion; they are carried at
@@ -178,11 +183,10 @@ user input) · staff `G4` · decide the tax/accounting treatment of prepaid bala
 
 ## 6. Residual
 
-1. **Class 1's "separate identity domain" is the load-bearing position and it is originated here.**
-   The alternative — a platform principal *is* a tenant user of a "platform tenant" — is coherent and
-   would make `BR-TEN-001` literally true of it. It was rejected because a platform tenant would be a
-   tenant with cross-tenant reach, which is the exact thing the invariant forbids. A challenger should
-   test that rejection.
+1. **Class 1's two models (R1/R2) are both left standing, with SMEs Core's recommendation for R1
+   recorded and the decision routed to the `C4-D-02` review.** The first freeze of this file chose R1
+   unilaterally; `CHA-03` showed the corpus's only written architecture is R2. The execution-context
+   attributes are model-independent, which is why `G1` closes while `G2` does not.
 2. **Class 13's platform-vs-tenant split** has no prior statement in the wallet decisions and is the
    first time the wallet is named as the platform's liability. If `SAAS_CELL/27`'s open item
    *"tax/accounting treatment of prepaid balances"* is later ruled otherwise, the handoff row changes.
@@ -192,9 +196,11 @@ user input) · staff `G4` · decide the tax/accounting treatment of prepaid bala
 ## 7. Checkpoint
 
 > ## `CP-SA-C5-20 — G1 EXECUTION CONTEXT CLOSED`
-> **5 of 5 path classes: 11 of 11 attributes each, `5 unaddressed → 0` · `G2` re-scoped from
-> contradiction to model omission (`C5-02-F-01`) · 0 cross-tenant paths created · 4 document-owner
-> patches stated · 1 finding.**
+> **5 of 5 path classes: 11 of 11 attributes each, `5 unaddressed → 0` · class-1 act set enumerated
+> at nine (`CHA-04`), one cross-tenant read removed by patch · `G2` left as a two-resolution
+> contradiction for the `C4-D-02` review with SMEs Core's recommendation (`C5-02-F-01`) · 0 cross-tenant
+> paths created · 5 document-owner patches stated · 1 finding · corrected by `CHA-03`, `-04`, `-05`,
+> `-10`, `-11`, `-13`.**
 
 **Next autonomous action:** `CP-SA-C5-30` (`SA_CORR5_03`).
 
