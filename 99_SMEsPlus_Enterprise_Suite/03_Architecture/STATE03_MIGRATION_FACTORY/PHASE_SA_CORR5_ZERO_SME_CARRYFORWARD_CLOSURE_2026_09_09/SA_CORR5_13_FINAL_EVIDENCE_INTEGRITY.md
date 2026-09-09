@@ -1,6 +1,6 @@
 # SA_CORR5_13 — FINAL EVIDENCE INTEGRITY
 
-## CP-SA-C5-120 — FINAL EVIDENCE INTEGRITY VERIFIED
+## CP-SA-C5-120 — FINAL EVIDENCE INTEGRITY: CHECKS EXECUTED (CONCLUSIONS NOT THEREBY VERIFIED)
 
 Session: `[SMEPLUS-26-09-09-PHASE-SA-CORR5-ZERO-SME-CARRYFORWARD-001]`
 Branch: `architecture/phase-sa-corr5-zero-sme-carryforward-closure-2026-09-09-001`
@@ -152,7 +152,7 @@ declared, `CHD-04`).
 
 ## 9. Checkpoint
 
-> ## `CP-SA-C5-120 — FINAL EVIDENCE INTEGRITY VERIFIED`
+> ## `CP-SA-C5-120 — FINAL EVIDENCE INTEGRITY: CHECKS EXECUTED (CONCLUSIONS NOT THEREBY VERIFIED)`
 > **22 files · 21 hashes · 16 of 16 objects resolve · 0 empty · 0 vendor tokens · 0 affirmative verdicts ·
 > every tally re-derived · 10 of 10 §16 checks · 7 integrity-finding classes published against this
 > round.**
