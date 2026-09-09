@@ -1,77 +1,93 @@
 # PHASE SA SMEs CORE — AUTO RESUME STATE
 
-Session / Continuation ID: `[SMEPLUS-26-09-10-ACC-PHASE-SA-SMECORE-CONT-001]`
-Scope: **ACCOUNT PHASE SA ONLY**
-Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`
-Branch: `architecture/phase-sa-smes-core-final-scrub-2026-09-10-001`
+Session / Continuation ID: `[SMEPLUS-26-09-10-ACC-PHASE-SA-SMECORE-CONT-001]`  
+Scope: **ACCOUNT PHASE SA ONLY**  
+Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`  
+Branch: `architecture/phase-sa-smes-core-final-scrub-2026-09-10-001`  
 Parent Final Boss Gate commit: `9d5bc2db4a6b62c4cd01a04388b5bad23e6f5306`
 
-> **SUPERSESSION.** This file previously pointed at `CP-SA-SC-00` as the immediate next executable
-> checkpoint. **`CP-SA-SC-00` through `CP-SA-SC-70` are now executed and published.** The prior content is
-> preserved in the branch history at `33537d36`; it is superseded, not deleted.
+## Current authoritative state
 
-## Current state
+`CP-SA-SC-00` through `CP-SA-SC-70` are executed and published.  
+Post-publication `SC-07` reconciliation is published at `c4949ec6bcb608ccc6a9b4dcb1a6fb5a400786ac`.
 
-`CP-SA-SC-FINAL` reached as **`TERMINAL A — READY FOR BOSS PHASE SA FINAL DECISION`** (`SC-06` §7).
+`SC-07` established, after primary-source verification:
 
-**This is not Boss approval, not Phase SA closure, and not a Pre-Test authorisation.**
+- `AR-F-01` CONFIRMED,
+- `AR-F-02` CONFIRMED,
+- decision population corrected `26 -> 24 -> 23`,
+- `F5 = 6`,
+- `F3` bounded verification complete,
+- `C2-D-02` closed,
+- 8/8 SMT family dispositions complete,
+- Reading A for `SMEPLUS-DR-EXIT-8C-001` narrowed to three contested clauses and no Phase SA precedent.
 
-## Checkpoints executed
+## Boss routing ruling — CLOSED
 
-| Checkpoint | Result | File |
-|---|---|---|
-| `CP-SA-SC-00` | Mainline delta re-measured — **Category 3 `1 → 0`** | `SC-00` |
-| `CP-SA-SC-10` | `F1`–`F8` authority scrub — **26 → 25** Boss decisions, 9 narrowed | `SC-01` |
-| `CP-SA-SC-20` | `F3` bounded verification — **dissent resolved, upheld**; `C2-D-02` closed | `SC-02` |
-| `CP-SA-SC-30` | **No targeted Very Deep Research re-entry required**, basis per class | `SC-03` §5 |
-| `CP-SA-SC-40` | SMT first-line challenge — 8/8 families, 11 challenges, **0 open returns**, **0 escapes** | `SC-03` |
-| `CP-SA-SC-50` | Veto / authority handoff — **6 in force, 0 discharged, 0 held by SMEs Core** | `SC-04` |
-| `CP-SA-SC-60` | Pre-Test entry re-qualified — **Category 3 = 0**, 3 Boss entry decisions | `SC-05` |
-| `CP-SA-SC-70` | Updated Boss Final Gate Delta Pack published | `SC-06` |
-| *(post-publication)* | **Two-track reconciliation and count correction** — `26`→`24`→**23**; one `8C-001` Reading A ground withdrawn; **`BOSS-ROUTE-01` OPEN** | `SC-07` |
+`BOSS-ROUTE-01 = CLOSED`
 
-## What Boss now holds
+Boss ruled:
 
-- **23 Boss decisions** in 8 questions, each with an SMEs Core recommendation and an SMT disposition.
-- **5 Boss acts** (not decisions), unchanged.
-- **1 scope clarification** — whether `SMEPLUS-DR-EXIT-8C-001` binds this exit. **Both readings presented;
-  no preference offered.** Reading A now rests on **three contested clauses and no Phase SA precedent**
-  (`SC-V-01` this session; `AR-F-02` peer, re-verified here).
-- **1 open route question — `BOSS-ROUTE-01`.**
+> **ROUTE = SC**
 
-## Immediate next action — and it is Boss's, not a session's
+AR remains mandatory intake/evidence lineage:
 
-**`BOSS-ROUTE-01` is OPEN and is the first thing Boss sees** (`SC-07` §5): two Boss-authored instructions
-govern the same `F1`–`F8` population — this **SC** track and the **AR** track
-(`afe664c6` / `b1f07939`, branch `architecture/phase-sa-authority-resolution-and-independent-gate-2026-09-09-001`).
-**The two are complementary on the merits and no finding of either contradicts the other**; the one
-inconsistency was the decision count and it is resolved in the peer's favour. **SMEs Core does not pick the
-route.**
+- `afe664c6`
+- `b1f07939`
+- `AR-F-01`
+- `AR-F-02`
 
-**If Boss answers the `SC-06` §4 scope question as Reading A, the correct first response is the `B-7`
-appointment, before any ruling on the 23 decisions** — `EC-07` would then be unsatisfied and **no amount of
-further SMEs Core work can satisfy it.**
+AR is not the canonical final pack. The SC continuation is canonical for this Phase SA closure line.
+Do not ask the routing question again absent material delta.
 
-**SMEs Core recommends appointing `B-7` regardless of the scope answer**: gate-blocking under Reading A,
-valuable and blocking nothing under Reading B. It is the one act with no downside on either reading.
+## Immediate next executable checkpoint
 
-## Frozen principles — unchanged
+Start at:
 
-- Phase S remains **conditionally closed**. No Phase S or Account research reset occurred.
-- Clean Room 100%; **0 vendor tokens** in this package on a boundary-corrected instrument with a live
-  positive control.
-- `SOURCE IS EVIDENCE, NOT DESIGN.` · `LEARN BEHAVIOR, NOT STRUCTURE.` · `TRANSFER BUSINESS MEANING, NOT
-  APPLICATION ARCHITECTURE.`
-- `smeplus_*` namespace for SMEsPlus-owned persistent business tables.
-- `BD-ACC-01`, `BD-ACC-02`, `BD-ACC-03A`, `BD-ACC-03B` are **not re-askable** absent material delta —
-  and this round re-asked **none** of them.
-- Boss must not be the first detector. SMT detects and challenges first.
+`CP-SA-SC-80 — BOSS ROUTE RULING PROPAGATED AND FINAL AUTHORITY DELTA VERIFIED`
+
+Authoritative Next Prompt:
+
+`02_SMEPLUS_PHASE_SA_SMES_CORE_FINAL_AUTHORITY_DELTA_PROMPT.md`
+
+Execution is DELTA ONLY:
+
+1. publish `SC-08_BOSS_ROUTE_RESOLUTION_AND_AR_INTAKE.md`,
+2. perform targeted corrected `FG-F-06` scope re-check + SMT disposition,
+3. publish `SC-09_FG_F06_FINAL_SCOPE_RECHECK.md`,
+4. publish `SC-10_BOSS_FINAL_GATE_DELTA_PACK_V2.md`,
+5. refresh manifest/readback and this auto-resume state,
+6. stop at `CP-SA-SC-FINAL2` if team authority is exhausted.
+
+Do not rerun SC-00 through SC-07 wholesale.
+
+## Current gate posture
+
+Phase SA remains **NOT CLOSED BY BOSS**.  
+Pre-Test Matrix is **NOT AUTHORIZED TO START**.  
+Functional Design is **NOT AUTHORIZED TO START**.  
+No implementation / merge / release / deployment / Production authorization exists.
+
+The remaining `FG-F-06` issue is a scope clarification of a Boss-approved constitution if, after the corrected SMT/authority re-check, no team-owned material evidence gap remains.
+
+## Frozen principles
+
+- Phase S remains **conditionally closed**.
+- Clean Room 100%.
+- `SOURCE IS EVIDENCE, NOT DESIGN.`
+- `LEARN BEHAVIOR, NOT STRUCTURE.`
+- `TRANSFER BUSINESS MEANING, NOT APPLICATION ARCHITECTURE.`
+- SMEsPlus-owned persistent business tables use `smeplus_*`.
+- `BD-ACC-01`, `BD-ACC-02`, `BD-ACC-03A`, `BD-ACC-03B` are not re-askable absent material delta.
+- Boss must not be the first detector.
+- SMEs Core executes; SMT challenges first-line; Boss receives only genuinely Boss-owned decisions.
 - Boss is the sole Final Approver.
 
-## Stop boundary — observed
+## Stop boundary
 
-Pre-Test Matrix **not started** · Functional Design **not begun** · no physical database/API/UI design ·
-no application code · **no merge, release or deployment** · no Production authorisation ·
-**no veto self-discharged** · **no independent assurance claimed** · **Phase SA not self-closed**.
+Do not start Pre-Test Matrix execution, Functional Design, physical DB/API/UI implementation design, application code, merge, release, deployment or Production.
+Do not self-discharge vetoes. Do not claim structural independent assurance. Do not self-close Phase SA.
 
-Master prompt: `01_SMEPLUS_PHASE_SA_SMES_CORE_CONTINUATION_MASTER_PROMPT.md`
+No Evidence = No Progress.  
+Never Skip Gate.  
+Exhaust Team Authority Before Boss Escalation.
