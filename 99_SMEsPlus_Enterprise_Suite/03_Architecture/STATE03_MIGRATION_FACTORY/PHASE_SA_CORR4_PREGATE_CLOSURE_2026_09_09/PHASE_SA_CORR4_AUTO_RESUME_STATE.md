@@ -22,8 +22,8 @@ Maintained under master prompt §13. **Checkpoint completion is NOT Boss approva
 | `CP-SA-C4-60` Affected invariants reclassified | **`CLOSED (execution status)`** | `SA_CORR4_06` | `f364f57c` |
 | `CP-SA-C4-70` 22-scenario Pre-Test handoff qualified | **`CLOSED (execution status)`** | `SA_CORR4_07` | `f364f57c` |
 | `CP-SA-C4-80` SMEs Core final re-challenge | **`CLOSED (execution status)`** | `SA_CORR4_08` | pending |
-| `CP-SA-C4-90` Final evidence integrity | **`NOT STARTED`** | `SA_CORR4_09` | — |
-| `CP-SA-C4-FINAL` Boss Final Gate Pack | **`NOT STARTED`** | `SA_CORR4_10` | — |
+| `CP-SA-C4-90` Final evidence integrity | **`CLOSED (execution status)`** | `SA_CORR4_09` | pending |
+| `CP-SA-C4-FINAL` Boss Final Gate Pack | **`PUBLISHED — PENDING BOSS`** | `SA_CORR4_10` | pending |
 
 ## 2. Frozen carry-forward — do not reset
 
@@ -94,22 +94,41 @@ reference-ERP source trees and runtime dumps outside this clone.
 
 ## 5. Terminal state
 
-**NOT YET REACHED.** Neither `READY` nor `MATERIAL HOLD` may be declared until `CP-SA-C4-50` through
-`CP-SA-C4-FINAL` are complete.
+# `BOSS FINAL GATE PACK READY`
 
-### 5.1 Next autonomous action
+`SA_CORR4_10_BOSS_FINAL_GATE_PACK.md` is published. **STOP.** Do not start the Pre-Test Matrix. The
+next act belongs to Boss.
 
-1. Consume the returning privileged-path and compliance-claim-class evidence; publish `SA_CORR4_01`
-   and `SA_CORR4_04`.
-2. `SA_CORR4_05` four-condition closure matrix.
-3. `SA_CORR4_06` affected-invariant reclassification — **the affected subset is the 11-invariant
-   element-10 gating set** (`MTI-01`, `-04`, `-05`, `-17`, `-18`, `-19`, `-43`, `-45`, `-46`, `-50`,
-   `CF-I-03`) **plus Family E and `CF-I-02`** on the `C4-01` dependency.
-4. `SA_CORR4_07` targeted 22-scenario re-run.
-5. `SA_CORR4_08` SMEs Core final re-challenge — **must be able to falsify, and must be told the four
-   closures' weakest points**, which each closure file states in its own §7 residual.
-6. `SA_CORR4_09` integrity, **manifest regenerated only after content freeze**.
-7. `SA_CORR4_10` Boss Final Gate Pack. **STOP.**
+**Recommendation carried to Boss:** `RECOMMEND APPROVE TO PHASE PRE-TEST MATRIX`, on the express basis
+of three conditions on the **input** — `SA17` corrected before it is inherited, the three prohibitions
+carried verbatim, and `MTI-50` sequenced before `CF-I-03`. **`HOLD PHASE SA` is coherent, and
+`SA_CORR3_07` recommends it; the pack says so rather than burying it.**
+
+**Boss decisions requested: none new.** Five remain and four were Boss's before this round began.
+
+### 5.1 If a new prompt arrives, the highest-value next work is, in order
+
+1. **Adjudicate element 15.** It blocks all 22 scenarios, it is **SMEs Core work**, and `C4-02-F-07`
+   establishes an architectural position is **already written and unreviewed** — an adjudication, not
+   an origination.
+2. **Correct `SA15`/`SA17`.** `C4-07-F-03`: the Pre-Test handoff baseline grades its idempotency
+   scenario *"strongest established area"* on a superseded citation. **The first thing Pre-Test must
+   not inherit.**
+3. **Dispose of the 20 stranded architecture deliverables** — `C4-01-F-07`. Merge-or-archive, then
+   independent review. This re-scopes `G2`.
+4. **Close `G1`, `G3`, `G5`** and **design the revocation-for-cause mechanism** (`C4-08-F-02`) — the
+   first thing to design *after* `CF-I-03`.
+5. **Propagate the compliance retraction to `origin/SMEsPlus`** — one act, PMO, publicly exposed.
+
+**Do NOT** re-run the four conditions; **do NOT** re-open `TVDR-04`/`TVDR-06`; **do NOT** re-ask the
+compliance-retraction decision, `C2-D-03` or the verdict-vocabulary question. **Do NOT** read
+`MTI-43 CONTROL REFERENCE CLOSED` as anything but closure at specification level.
+
+### 5.2 The process defect this round records against itself
+
+**The package was not frozen while independent challenge ran** (`C4-08-F-01`). A challenger watched a
+defect corrected underneath its own audit, and a **false claim reached the package** — that
+`SA_CORR4_06` had been swept for a defect class it had not. **Freeze before review opens.**
 
 ## 6. Authority boundary
 
