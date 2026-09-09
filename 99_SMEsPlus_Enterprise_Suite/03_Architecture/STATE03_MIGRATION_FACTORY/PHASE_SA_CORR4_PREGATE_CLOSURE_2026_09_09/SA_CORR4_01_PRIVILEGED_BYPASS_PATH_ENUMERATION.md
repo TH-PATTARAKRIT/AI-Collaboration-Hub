@@ -300,6 +300,37 @@ MFA-enforced and fully audited"*, §12.5 states *"no permission grants cross-ten
 > and it is a materially cheaper and more honest instruction than the one this file would otherwise
 > have carried.
 
+#### `C4-01-F-07a` — the two most relevant stranded documents, read, and what they settle
+
+**My first draft of this finding declared the other 17 stranded deliverables an unread residual.
+That residual is closed here for the two that bear on it, because leaving it open would have left the
+`G2` conclusion resting on the one document I happened to open.**
+
+**`ARC-WP-004 ENTERPRISE_CONTROL_LAYER`** specifies, verbatim:
+
+> *"**Enterprise Control Layer**: enforces policy; enforces segregation of duties; **enforces
+> tenant/company/branch scope**; blocks restricted actions; **controls exceptions and escalation**.
+> **Cannot bypass** the Approval Engine or Posting Engine, and does not itself approve or post."*
+
+> **This is a mechanism for classes 2 and 9**, which §4 grades `PROP` — *specified only as a required
+> property, no mechanism.* **The grading is correct for the corpus every consumer can see, and there
+> is a specified mechanism on the branch nobody reads.** The same shape as `C4-01-F-02` and
+> `C4-01-F-07`, now at its third occurrence in this file.
+
+**`ARC-WP-002 TENANT_COMPANY_BRANCH_MODEL`** settles the other half — **against** the convenient
+reading:
+
+> *"`A-004`: **Users belong to exactly one Tenant** but may be scoped to one or many
+> Companies/Branches."* · *"User-to-Tenant: **mandatory, exactly one**."* ·
+> *"**Platform services** (identity, notification, audit, entitlement) are shared infrastructure but
+> **always resolve and enforce tenant context before returning data**."*
+
+> **`ARC-WP-002` reaffirms `BR-TEN-001` and creates no Platform Operator exception.** It treats
+> platform capability as **shared infrastructure that enforces tenant context**, not as a cross-tenant
+> principal. **It therefore does not reconcile the actor who suspends a tenant and reads a cross-tenant
+> dashboard, and `G2` survives** — now tested against the two stranded documents most likely to
+> dissolve it, rather than asserted from the absence of a reconciliation.
+
 **Not escalated as new.** `C4-D-02` already carries `G2`; this finding **re-scopes it** and is folded
 into it rather than raising a second escalation for one subject.
 
@@ -358,10 +389,12 @@ The four that bear directly on this enumeration, verbatim:
    `FDS_ROLE_PERMISSION`, `FDS_SUBSCRIPTION_MODULE` — **are a declared, bounded residual and the first
    thing a challenger should sweep.**
 4. **`ARC-WP-009` and its 19 sibling deliverables are stranded — `C4-01-F-07`.** I read `ARC-WP-009`,
-   `TENANT_COMPANY_BRANCH_MODEL` and `INTEGRATION_EVENT_ARCHITECTURE` in full. **I did not read the
-   other 17**, and one of them — `ENTERPRISE_CONTROL_LAYER` (`ARC-WP-004`), which `ARC-WP-009` names as
-   the owner of SoD — is the most likely to bear on classes 1, 2 and 9. **A declared, bounded residual,
-   and the second thing a challenger should sweep after §8.3's five `FDS` files.**
+   `ARC-WP-002`, `ARC-WP-004` and `ARC-WP-010` in full — the four that bear on this enumeration — and
+   **`ARC-WP-004` changed a grading and `ARC-WP-002` failed to dissolve `G2`**, which is why the
+   residual was closed rather than declared. **The other 16 remain unread**: `ARC-WP-001`, `-003`,
+   `-005`, `-006`, `-007`, `-008`, `-011`, `-012`, `-013` and the package's registers. **`ARC-WP-008`
+   (Multi-Tenant Data Isolation Options) is the most likely of them to bear on classes 4–8, and is the
+   second thing a challenger should sweep after §8.3's five `FDS` files.**
 5. **My unit is the path class, and a class is a judgement.** Splitting class 4 from class 5, or
    merging 6 with 11, would change the counts without changing the evidence. **The counts are
    therefore not the result; the per-class context columns are.**
