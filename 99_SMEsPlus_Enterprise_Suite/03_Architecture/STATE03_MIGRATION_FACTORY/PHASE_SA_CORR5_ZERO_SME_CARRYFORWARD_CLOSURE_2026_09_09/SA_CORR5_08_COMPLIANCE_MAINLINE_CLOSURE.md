@@ -137,7 +137,7 @@ re-escalated (`SA_CORR4_04` §2.3).
 
 ## 7. Checkpoint
 
-> ## `CP-SA-C5-80 — COMPLIANCE CLAIM: EXACT PATCH READY, AUTHORITATIVE CLAIM NOT YET CORRECTED`
+> ## `CP-SA-C5-80 — COMPLIANCE CLAIM: EXACT PATCH READY, NOT YET CORRECTED ON THE DEFAULT BRANCH`
 > **Denominator re-measured `186 / 3 / 183 / 0` on two shapes before action, `187 / 4 / 183 / 0` after the governance branch was pushed (`CHB-17`) · claim class unchanged at 1 file ·
 > patch commit `dafc0ff0` on `origin/governance/compliance-retraction-mainline-2026-09-09-001` ·
 > PR #63 open · direct push denied by operator tool policy, not retried · 1 finding (`C5-08-F-01`).**

@@ -7,7 +7,8 @@ Branch: `architecture/phase-sa-corr5-zero-sme-carryforward-closure-2026-09-09-00
 Raised by internal self-challenge `CHC-07` (`SA_CORR5_11`): `SA_CORR3_03` §11 names three gaps
 *"closable by SMEs Core design work requiring no Boss decision and no statutory resolution"* —
 `POH-G-01`, `POH-G-02`, `POH-G-04` (variance) — and neither CORR4 nor the first freeze of CORR5 executed
-them. **This file executes them at Phase SA specification level.** Authority: the closure act's
+them. **This file executes them at Phase SA specification level, and additionally specifies the
+`POH-G-03` mutual-exclusion rule (build remains runtime) — four items, not three (`CHD-07`).** Authority: the closure act's
 *conceptual/domain design* and *interface/boundary definition*; business-semantic only.
 Boss: **SOLE FINAL APPROVER**
 
@@ -84,7 +85,7 @@ act (`POH-D-06`); this file specifies the mechanism the discharge would test.**
 | **The fact** | `OVERHEAD ABSORPTION VARIANCE` per pool scope per costing period = period pool amount − absorbed amount; sign carries under- (positive) / over- (negative) |
 | **Owner** | **Manufacturing (costing)** owns the fact; **Accounting Core** owns the event identity (`BD-ACC-01`); identity basis = (tenant, company, Manufacturing, occurrence = (pool scope, costing period), role = *absorption variance*, policy version) — deterministic, replay-safe (`XMC-C-A3`) |
 | **Under-absorption destination** | **`BD-02` — CLOSED by Boss**: period expense; **not** capitalised into inventory (TAS 2 ¶13 direction, statutory confirmation `HOLD / EVIDENCE REQUIRED` as to presentation) |
-| **Over-absorption** | the corpus's one candidate — cap absorption at the period's pool amount — is **adopted as the default rule for every pool, single- or multi-element**: absorption may not exceed the period pool amount; when the cap binds, the shortfall in driver-based absorption is **reported** (`POH-F-14`'s untested multi-element case becomes a stated rule with a test, `RT-POH-04`). An over-absorption **credit** therefore cannot arise; **if Boss later elects uncapped absorption, the credit's destination is a new Boss item** — recorded, not created |
+| **Over-absorption** | the corpus's one candidate — cap absorption at the period's pool amount — is **adopted as the default rule for every pool, single- or multi-element** (SMEs Core position): absorption may not exceed the period pool amount; when the cap binds, the shortfall is **reported**. **The cap's *strength* is a declared statutory dependency (`SA_CORR3_03` §10 item 4) — `HOLD / EVIDENCE REQUIRED`**; and the multi-element worked case `SA_CORR3_03` §13.1 says is owed **is not written here** — `RT-POH-04` states the test, not the analysis (`CHD-07`). An over-absorption **credit** therefore cannot arise under the cap; **if Boss later elects uncapped absorption, the credit's destination is a new Boss item** — recorded, not created |
 | **Idle / no-demand split** | carried as two reason classes on the non-productive component (`POH-D-04` keeps both unless Boss merges them) |
 | **Timing** | costing close, after operational close, before accounting close (`L7` order); the variance event carries the costing period's date and is refused if that period is locked (`XMC-C-A15`) |
 | **Statutory presentation** | `HOLD / EVIDENCE REQUIRED` — Thai Accounting-Tax track; the fact and its destination do not depend on it (`SA_CORR3_03` §10) |
@@ -106,8 +107,12 @@ level; the remaining `B` on both rows is exactly `POH-D-01`/`-02`/`-06` (Boss re
 
 ## 7. Residual
 
-Everything in §2–§5 is originated here from `SA_CORR3_03`'s candidates and reviewed by nobody outside
-this session. The load-bearing choices to attack: one pool per driver scope (§2); the tag-not-infer
-capture rule (§2.1); adopting the cap as the universal over-absorption rule (§5).
+Everything in §2–§5 is originated here from `SA_CORR3_03`'s candidates and reviewed only by the
+diff-scoped self-challenge. The load-bearing choices to attack: one pool per driver scope (§2) — which
+**generalises `L3`/`L7`'s per-machine register and gate to a work-centre / machine-group scope without
+the source saying so** (`CHD-17`); the tag-not-infer capture rule (§2.1); adopting the cap as the
+universal over-absorption rule (§5). `OH-CAP`'s attribute list (§2) inherits `L3`/`POH-D-05`'s candidate
+wording and is the closest thing here to a record specification; it is stated as the semantic minimum,
+not a schema.
 
 No Evidence = No Progress. Never Skip Gate. Boss remains the sole Final Approver.

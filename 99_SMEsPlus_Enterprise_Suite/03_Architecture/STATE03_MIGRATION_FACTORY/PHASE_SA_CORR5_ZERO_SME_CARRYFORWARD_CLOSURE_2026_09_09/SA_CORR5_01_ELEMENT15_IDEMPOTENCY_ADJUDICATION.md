@@ -56,14 +56,14 @@ below and three the first freeze missed (`P13`–`P15`). **None was originated h
 | **P10** | **`SA09`/`SA_CORR2_09` §3** — idempotency *"graded `ESTABLISHED` … recorded absent in four Accounting packages"*; **`UAE-29`** *"no accounting-event identity"* is P11's root blocker `B-02`, *"Boss design decision. No research closes it"* | `SA_CORR2_09`; P11 `P11_BLOCKER_REGISTER_CORR1.md` | `UAE-29` **ruled** as `BD-ACC-01` on 2026-09-08 (`C5-B-03`) | Account side has no carrier; Boss has ruled the owner |
 | **P11** | **`CROSS_MODULE_DATA_TRANSFER_PERFORMANCE_POLICY`** lists *"Integration & Idempotency"* as a mandatory assurance category | `00_Project_Governance/POLICIES/` | governance | test obligation exists |
 | **P12** | **`SA17` §3** control row *"Same-event retry is idempotent; a reversal creates a new event referencing the original — `BD-ACC-01`"* | `SA17` | Pre-Test control list | the test the Pre-Test Matrix already expects |
-| **P13** | **`FV006-INT-001` — the general Confirm / Movement-Execution idempotency contract** of the Group A Team B design: *"every action that transitions a Commitment … or triggers a `Movement Executed` event carries a business identity… must expose the original action's already-recorded outcome"*, protected effect *"Financial Handoff write"*; **independently re-verified `Covered` by IBPV `RV_009`** | `TEAM_B_DESIGN/GROUP_A_SALES_INVENTORY_PURCHASE/12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md` §11 (`CORR-008` closure), branch `claude/team-b-group-a-sip-corr-008` | Team B design, IBPV-verified at design level | **an act-level attempt-identity contract — the prior source of `A14`** (`CHA-02`) |
+| **P13** | **`FV006-INT-001` — the general Confirm / Movement-Execution idempotency contract** of the Group A Team B design: *"every action that transitions a Commitment … or triggers a `Movement Executed` event carries a business identity… must expose the original action's already-recorded outcome"*, protected effect *"Financial Handoff write"*; **listed for re-verification in the IBPV `RV-009` prompt; the `RV_009` report's result for it was not located** (`CHD-14` — a challenger's *"verified Covered"* was not reproduced at source) | `TEAM_B_DESIGN/GROUP_A_SALES_INVENTORY_PURCHASE/12_EXCEPTION_PARTIAL_CANCEL_RETURN_CORRECTION_MODEL.md` §11 (`CORR-008` closure), branch `claude/team-b-group-a-sip-corr-008` | Team B design (`CORR-008` closure), IBPV re-verification result not located | **an act-level attempt-identity contract — the prior source of `A14`** (`CHA-02`) |
 | **P14** | **Inventory Final Solution V1** `03` line 132: *"**Idempotent.** A demand identity — source document line, template, and attempt — must be unique, so a retry cannot create a second movement chain. Carried finding `C-02`: whether this is gate-blocking is Boss's"*; line 178 similar for movement chains | `FINAL_SOLUTION/INVENTORY/V1_0/03_INVENTORY_FUNCTIONAL_DESIGN_V1.md` | adopted design (V1) | the *attempt* component named as part of identity — agrees with `L8-09`; and **restates `C-02` as Boss's** |
 | **P15** | **Accounting Core Team B `B11` row 9**: *"Every proposed Entry from an originating domain must carry that domain's own idempotency reference as part of its origin data"* | `TEAM_B_DESIGN/DOMAIN_01_ACCOUNTING_CORE/B11_EXCEPTION_FAILURE_MODEL.md` | Team B design | **apparent conflict with `XMC-C-A2`** (*the source module never assigns identity*) — reconciled at §3: the *"domain's own idempotency reference"* is the occurrence + attempt identity the emitter owns (`E15-A1` payload parts), not an accounting-event identity |
 
 > **`C5-01-F-01`. The object the programme has recorded as *"does not exist"* and *"none has been
 > designed"* exists as a specified identity basis (`P2`), a Boss-ruled ownership model (`P1`), a
 > consumer obligation (`P3`, `P4`), a scoping half (`P5`), **an act-level attempt-identity contract
-> already IBPV-verified at design level (`P13`) and an adopted V1 design naming the attempt component
+> in a Team B design (`P13`) and an adopted V1 design naming the attempt component
 > (`P14`)** — in seven documents that do not cite each other.** What has never existed is **one adjudicated statement** of which position governs which
 > question, and a reconciliation of the one genuine conflict among them (`P6`, §6). **That is an
 > adjudication, exactly as `C4-02-F-07` predicted, and this file is it.**
@@ -147,7 +147,7 @@ named.
 | **Replay / migration** | Identity preserved; replay-batch provenance (element 14) travels **beside** the basis, never inside it — inside, replay would become duplication | `A7` |
 | **Cross-module join** | The event identity is sufficient to join every downstream artefact of one commercial act, cost half and revenue half included | `A11`(ii) |
 | **Out-of-order arrival** | Consumers reconcile; they never infer from order. An identity implies neither a posting nor a final amount | `A12` |
-| **Policy change** | Identity unchanged. **Clarification of `A3` part 6 (`CHA-07`):** the policy version in the basis is the version **in force at the fact's physical event date** (element 3) — a value derivable from the fact, never from processing time (`A5`); a retry that crosses a policy-version boundary therefore yields the **same** identity (`A6` holds), and a deliberate re-recognition under a later policy is a **correction event** (`A9`), not a second identity. **Category policy versioning (effective-dated, `MTI-36` pattern) is a specification obligation this clarification creates — `BD-ACC-03A/B` rule values and owner, not versions** — specified here at semantic level: every category policy value carries effective-from; a change never re-computes a recognised event | `A3` part 6, `A5`, `A6`, `A9`, `A11`(iv) |
+| **Policy change** | Identity unchanged. **Clarification of `A3` part 6 (`CHA-07`):** the policy version in the basis is the version **in force at the fact's physical event date** (element 3) — a value derivable from the fact, never from processing time (`A5`); a retry that crosses a policy-version boundary therefore yields the **same** identity (`A6` holds), and a deliberate re-recognition under a later policy is a **correction event** (`A9`), not a second identity. **Category policy versioning (effective-dated, `MTI-36` pattern) is a specification obligation this clarification creates — `BD-ACC-03A/B` rule values and owner, not versions.** Stated here as the SMEs Core position: every category policy value carries effective-from, and a recognised event is not re-computed by a later change. **The behaviour on a policy or category change mid-period is the open COGS research item `CGS-U07`/`U08` (`SA_CORR5_10` §3.1); this clause does not pre-empt it** (`CHD-08`) | `A3` part 6, `A5`, `A6`, `A9`, `A11`(iv) |
 
 ---
 
@@ -284,7 +284,7 @@ non-material once this file is the controlled reading — `SA_CORR5_14` §3).
 
 ## 13. Residual, and what a challenger should attack first
 
-1. **`A14` consolidates `P13` (`FV006-INT-001`, IBPV-verified at design level) and `P14`/`L8-09` into
+1. **`A14` consolidates `P13` (`FV006-INT-001`, Team B design) and `P14`/`L8-09` into
    the cross-module contract; it is not without prior source** (`CHA-02` — the first freeze said it
    was). Attack it on authority: is an act-level attempt identity a *boundary* obligation (within
    authority) or a *storage design* (outside it)? The defence is that it states a property of the
@@ -301,7 +301,7 @@ non-material once this file is the controlled reading — `SA_CORR5_14` §3).
 ## 14. Checkpoint
 
 > ## `CP-SA-C5-10 — ELEMENT 15 ADJUDICATED`
-> **15 candidate positions located (327-path population, reduction rule published) · 7 adopted ·
+> **15 candidate positions located (327-path population, reduction rule published) · 7 adopted (`P1`, `P2`, `P3`, `P4`, `P5`, `P13`, `P14`; `P7` consumed as the boundary; `P15` reconciled; `P6`, `P8`–`P12` characterised) ·
 > 2 clauses stated in the contract namespace (`E15-A1`, `XMC-C-A14` — the latter consolidating `P13`/`P14`)
 > · 5 carriers rejected · 8 of 8 `BD-ACC-01` clauses reconciled · 1 clarification to `A3` part 6 ·
 > 9 runtime obligations separated · 1 Boss election remaining (`C-02`, carried; `UAE-29` ruled by

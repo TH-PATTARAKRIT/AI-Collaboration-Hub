@@ -38,7 +38,7 @@ to resolve. The adjudication below argues **against** that lean, on the matrix's
 | Evidence | What it shows |
 |---|---|
 | Matrix §1 legend: *"**Anchor** — the single authoritative ancestor from which `company` derives (`MTI-05`)"* | the column's own definition is a **single ancestor** |
-| Matrix §4.1: *"The moment any of those attach, the anchor moves to **`company`** (entries 5, 7, 8)"* | **the matrix's author reads row 8's `company + product` as *company-anchored*** — the notation was never intended as two ancestors |
+| Matrix §4.1 (R1): *"The moment any of those attach, the anchor moves to **`company`** (entries 5, 7, 8)"* — **a section R2 `CD-15` voids in full**, so it is cited only as evidence of the *author's own reading* of the notation, never as authority (`CHD-06`) | the R1 author read row 8's `company + product` as *company-anchored* — the notation was never intended as two ancestors; the **authority** for row 8 is `CD-04` (product → company) and `L8-10` (company at creation) |
 | Rows 4 (Location → `warehouse`), 10 (Operation type → `warehouse`), 18 (Movement document → `operation type`) | the convention elsewhere is one ancestor, and the `company + X` form appears only on rows whose canonical **identity tuple** carries `company` explicitly (`L8-10` lot `(tenant, company, product, value)`; `L8-13`/`-14` *"company plus number"*) |
 | `09` §2 rows `L8-10`, `-11`, `-13`, `-14`: company *"Creation"* / *"Application"* / *"Completion"* | company is **assigned directly** on these records; the `+ X` names the scoping ancestor of the identity, not a second derivation |
 
@@ -58,14 +58,14 @@ parallel-copy form for another party's artefact; the Inventory file is not modif
 | 1 | Tenant | — | root — legitimately anchorless |
 | 5 | Product | `tenant / company` | `company` (`CD-04`) |
 | 7 | Product category | `tenant / company` | `company` (`CD-12`); costing facet value `HOLD` |
-| 8 | Lot / Serial | `company + product` | **`company`** — assigned at creation; R1 §4.1 itself says so (*first draft of this file declared `product` and is corrected*) |
+| 8 | Lot / Serial | `company + product` | **`company`** — assigned at creation (`L8-10`; `CD-04`) (*first draft of this file declared `product` and is corrected*) |
 | 13 | Reordering rule | `company + location` | `location` |
 | 14 | Put-away rule | `company + location` | `location` |
 | 16 | Barcode nomenclature | `tenant` | `company` (`CD-13`) |
 | 17 | Unit group and unit | `tenant` | `company` — **CONDITIONAL on Boss `CF-D-01`** |
 | **21** | Inter-company transfer *(first draft wrote row 26, which is Replenishment run — corrected)* | — | not an object — an `MTI-22` relationship (`XCR-01`) |
-| 22 | Count session (`CN-27`) · Adjustment (`CN-28`) | `company + location` | **two objects, one ancestor each**: session → `warehouse`; adjustment → `location` (*first draft named two ancestor types for one object — corrected*) |
-| 23 | Scrap | `company + location` | `source location` |
+| 22 | Count session (`CN-27`) · Adjustment (`CN-28`) | `company + location` | **two objects, one ancestor each**: session → `warehouse` `✎`; adjustment → `location` (*first draft named two ancestor types for one object — corrected; the session's ancestor is originated here, `CHD-05`*) |
+| 23 | Scrap | `company + location` | `source location` `✎` (originated; `L8-14` supplies only *company plus number*) |
 
 **35 rows: 34 carry exactly one declared anchor or a stated reason for none; row 17 is conditional on
 Boss ruling `CF-D-01`.** *(First draft claimed 35 of 35 and "26 rows unchanged"; rows 16 and 17 had
@@ -140,7 +140,7 @@ gap**:
 ### 2.3 `GAP-FS-07` — the inter-company path, traced at data level (bounded evidence-at-rest pass)
 
 `XCR-01` is `INCOMPLETE` partly because *"the path is never traced end to end"*. Instrument as §3.2 (same
-tool, same identity key). Over the three databases holding more than one company:
+tool, same identity key). Over the two 44-company databases, with the single-company production-scale database as the discriminating negative (`CHD-03`; the 2-company plain-SQL export was not opened for movements):
 
 | Database | Companies | Transit-type locations (company-less) | Completed legs **into** the company-less transit location | Companies sending | Completed legs **out of** it | Companies receiving | Sending company also receives | Inter-company configuration present |
 |---|---:|---:|---:|---:|---:|---:|:---:|---|
@@ -207,8 +207,8 @@ Instrument declared: PATH SET `~/Downloads/*.dump` + `/Volumes/iMacSys/**/*.dump
 export — **declared exclusion:** the rest of `$HOME` (incl. `~/Library`) and the mirror volume were not swept in this pass; the five databases are the ones the programme's own census names (`C5-I-02`); SIGNATURE `PGDMP` header or `PostgreSQL database dump` preamble; TOOL
 `/opt/homebrew/opt/postgresql@18/bin/pg_restore 18.6 --data-only --table=<t>` (the host's default
 `pg_restore 16.15` refuses archive format 1.16 — `C5-I-02`); IDENTITY keyed on `dbname` from the archive
-TOC, **not** on file name (the archive-denominator rule): **five distinct databases, six artefacts**
-(`iTEST02` appears twice, a month apart). UNIT = one row of the scrap-reason configuration table, one
+TOC, **not** on file name (the archive-denominator rule): **four distinct databases, six artefacts**
+(`iTEST02` and `iEVING` each appear twice; `CHD-03` — a first draft counted five). UNIT = one row of the scrap-reason configuration table, one
 scrap record, one adjustment movement.
 
 | Database (`dbname`) | Generation (installed platform core module version) | Companies | **Configured scrap reasons** | Scrap records | Adjustment movements (the movement record's adjustment marker) | All movements |
@@ -219,10 +219,10 @@ scrap record, one adjustment movement.
 | **`iSMEs`** (2026-07-11) | **16.0** | 1 | **0** | **2,286** (2,277 done) | **3,010** | **103,949** |
 | `iTEST02` (2026-06-14 and 2026-07-14) | 19.0 | 1 | **0** | 0 | 0 | 57 |
 
-Positive control: the scrap-reason configuration table **exists and is empty** in all five (an absent
+Positive control: the scrap-reason configuration table **exists and is empty** in all six artefacts (an absent
 table would fail `--table`; an empty one returns zero data rows after the archive's own preamble lines —
 **the two were distinguished by reading the extracted files, not by byte size**, the programme's
-*control-that-cannot-detect-its-failure* rule). Coverage **by artefact**: 6 requested / 6 opened / 0 unreadable; by database (identity key `dbname`): 5 of 5. The second `iTEST02` artefact (2026-06-14) returned the same zeros as the first. **The executed commands and their raw outputs are published in Appendix A** with the vendor table names replaced by neutral descriptors (the literal names are Layer 2 and are held in the session scratch evidence only).
+*control-that-cannot-detect-its-failure* rule). Coverage **by artefact**: 6 requested / 6 opened / 0 unreadable; by database (identity key `dbname`): 4 of 4. The second `iTEST02` artefact (2026-06-14) returned the same zeros as the first. **The executed commands and their raw outputs are published in Appendix A** with the vendor table names replaced by neutral descriptors (the literal names are Layer 2 and are held in the session scratch evidence only).
 
 > **`C5-07-F-01` — the existing Thailand evidence answers `R4-Q-01` in the negative, and that is an
 > answer.** In the one deployed Thai database that scraps at production scale — **2,286 scrap records
@@ -293,9 +293,9 @@ key, coverage by artefact and neutral outputs (Appendix A).
 ## 6. Checkpoint
 
 > ## `CP-SA-C5-70 — MTI RESIDUAL SPEC GAPS CLOSED OR EXACTLY BOUNDED`
-> **`MTI-05` adjudicated not contradicted (9-row anchor declaration) · `MTI-22` closed at register level,
+> **`MTI-05` adjudicated not contradicted (11-row anchor declaration) · `MTI-22` closed at register level,
 > content bounded to 2 carried Boss rulings + 1 joint decision · `MTI-33` structure specified (15 classes, covering all six `MTI-33` acts),
-> labels bounded to Thai user validation (a Boss commissioning act per `GAP-FS-11`), evidence-at-rest pass over 5 databases / 6 artefacts (`C5-07-F-01`) and the inter-company path traced at data level (`C5-07-F-02`) ·
+> labels bounded to Thai user validation (a Boss commissioning act per `GAP-FS-11`), evidence-at-rest pass over 4 databases / 6 artefacts (`C5-07-F-01`) and the inter-company path traced at data level (`C5-07-F-02`) ·
 > 0 TVDR opened · 2 document-owner patches stated · 1 SMEs Core recommendation to Boss on `MTI-D-04`.**
 
 ## Appendix A — executed commands and outputs (evidence-at-rest pass), neutral vocabulary

@@ -71,7 +71,7 @@ Three contexts appear, and every step below names which it is in:
 
 ## 4. The four financial background processes, eleven attributes each
 
-Existing work consumed: `MTI-29`/`-30` R2, `CF-I-02`, `MTI-31`, `MTI-32` (input snapshot), `MTI-38`, Boss ruling `MTI-D-02` (`26_BOSS_RULING_SMEPLUS-26-09-04-INV-MTI-D02-AUTHORIZATION-GRANULARITY-001.md` @ `13b3e63f`, §4 rule 8),
+Existing work consumed: `MTI-29`/`-30` R2, `CF-I-02`, `MTI-31`, `MTI-32` (input snapshot), `MTI-38`, Boss ruling `MTI-D-02` (`BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/26_BOSS_RULING_SMEPLUS-26-09-04-INV-MTI-D02-AUTHORIZATION-GRANULARITY-001.md` @ `13b3e63f`, §4 rule 8),
 `MTI-50`, `XMC-C-A6`/`A7`/`A8`/`A14`, `CF-I-03` `T4`, `CF-I-03R`, `SAAS_CELL/24`–`/27`, `/29`.
 
 | Attribute | **BP-1 Wallet deduction** (base rental · measured usage · add-on · optional; `27` deduction order) | **BP-2 Forecast, threshold and 30-day notice** (`24`, `25`) | **BP-3 Pre-execution entitlement / capacity check** (`26` control flow; `29` WP-04) | **BP-4 Period counter reset with evidence preservation** (`24` principle 2; `TRG-08`, `-09`) |

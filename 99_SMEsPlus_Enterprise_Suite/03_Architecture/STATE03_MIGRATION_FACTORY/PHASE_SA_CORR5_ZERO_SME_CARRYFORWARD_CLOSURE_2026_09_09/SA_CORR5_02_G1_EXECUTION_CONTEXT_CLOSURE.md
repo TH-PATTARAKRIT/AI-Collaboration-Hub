@@ -14,8 +14,7 @@ Boss: **SOLE FINAL APPROVER**
 ## 1. The invariant that governs every row, and the rule it forbids
 
 Boss decision `00`/`01` (carried at `SA10` §8.2) supplies the first three sentences; Boss ruling `MTI-D-02`
-(`26_BOSS_RULING_SMEPLUS-26-09-04-INV-MTI-D02-AUTHORIZATION-GRANULARITY-001.md` @ `13b3e63f`, §4 rules
-1, 6 and 8) the fourth; `CF-I-01` the fifth (`CHA-11`):
+(`BOSS_GATE/REOPEN_PROGRAM_2026_09_02/INVENTORY_REOPEN/26_BOSS_RULING_SMEPLUS-26-09-04-INV-MTI-D02-AUTHORIZATION-GRANULARITY-001.md` @ `13b3e63f`, §4 rule 8 — rules 1 and 6 state the tenant/company boundary, not the background-job clause, `CHD-16`) the fourth; `CF-I-01` the fifth (`CHA-11`):
 
 > **Tenant is the security/customer boundary; Company the legal/accounting boundary inside it.
 > Multi-tenant membership is not a multi-tenant execution context. A lower-level relationship can never
@@ -56,11 +55,11 @@ Legend: `✔` carried from a cited source · `✎` specified first here · `M` m
 | Actor identity | A **platform principal**. **Two coherent models exist in the corpus and this file does not choose between them** (`CHA-03`): **(R1)** a human identity in a **separate platform identity domain**, not a tenant user (SMEs Core's recommendation, `✎`); **(R2)** *Platform Operator* as one of six **standard roles assigned per organizational scope** (`ARC-WP-009` §12.4/12.5, stranded, `DRAFT · HOLD`) — the model `FDS_IAM` §3 also implies by listing *Platform Admin* as an IAM actor whose only login is `FR-IAM-001` (precondition *Tenant Status = Active*). **Every attribute below holds under either model**; what differs is where the principal authenticates and where its grants are stored | `C4-D-02` (governance act + independent review) decides; `SA_CORR5_02` supplies the attribute set both must satisfy |
 | Execution context | **`PLATFORM` scope**. Data context: the **tenant being acted on, named explicitly as the object of the act**, never resolved from the operator's own session | `SCOPE-AWARE EVERYWHERE`; `MTI-20` |
 | Tenant context | `n/a` as *own* context — a platform principal has none; **the target tenant is a parameter of the act and is mandatory** for every act that touches a tenant (suspend/terminate, module enable, subscription assign/adjust) | `FDS_TENANT` §8; `FR-SM-005` |
-| Company context | `n/a` — the five evidenced platform acts are tenant-level; **a platform principal may not act on a company-scoped business fact at all** | `FDS_*` §8 census (`SA_CORR4_01` §4.1); `MTI-D-02` rule 1 |
+| Company context | `n/a` — the nine evidenced platform acts are tenant- or platform-level; **a platform principal may not act on a company-scoped business fact at all** | `FDS_*` §8 census (`SA_CORR4_01` §4.1); `MTI-D-02` rule 1 |
 | Authority source | A **platform grant**, `MTI-18`-class: grantor (platform governance), grantee, reason, **scope = an enumerated act class** (suspend/terminate · module enable/disable · plan assign/adjust · health-dashboard read), **expiry mandatory**, permanent record. **MFA mandatory** | `MTI-18`; `ARC-WP-009` §12.6 |
 | Allowed boundary crossing | **None into tenant business data.** The health dashboard is *"scoped to operational data only"* and *"must never surface tenant business data content"* — carried as a hard rule. **The act set is larger than CORR4's five** (`CHA-04`): `FDS_AUDIT` §3/`US-AUD-002` (*Platform Admin exports audit log*), `FDS_INTEGRATION` §3 (*Platform Admin manages integration*), `FDS_ROLE_PERMISSION` (*Platform Admin manages platform-level permissions*), `FDS_SUBSCRIPTION_MODULE` `FR-SM-001`…`-004` (plan and module catalogue) — **at least nine acts.** Of these, **audit export of a tenant's records is a cross-tenant read** that this row forbids; the patch in §4 **removes it from the platform principal** (tenant audit export becomes a Tenant Owner act; the platform principal exports the *platform stream* only). Integration and permission management are platform-catalogue acts, in scope | `REP-004`, `BR-REP-001`; `FDS_AUDIT` §3, §6 |
 | Prohibited crossing | Reading, selecting, searching, reporting, inferring or writing any tenant business record; acting on more than one tenant in one act; holding a tenant role | `MTI-D-02` §4 rule 1; `MTI-29` |
-| Audit | Every act a `MTI-38` event in **platform** context with **target tenant as object**, actor, grant, **reason captured on every act** (today only `tenant.status_changed` captures reason — `C4-01` §4.1; extended to all five) | `FDS_TENANT` §10, widened `✎` |
+| Audit | Every act a `MTI-38` event in **platform** context with **target tenant as object**, actor, grant, **reason captured on every act** (today only `tenant.status_changed` captures reason — `C4-01` §4.1; extended to all nine) | `FDS_TENANT` §10, widened `✎` |
 | Break-glass / privileged | **Every platform act is privileged by definition** and evaluated by `CF-I-03` as a grant like any other (`D4` six fields). No suppression of any deny condition. Break-glass beyond this remains `G4` — a name, PMO staffing | `CF-I-03` §3.8, §3.14 |
 | Revocation | `CF-I-03R` full lifecycle; leaver → immediate; platform grants are the first population for `FOR CAUSE` sweeps because their reach is every tenant | `SA_CORR5_05` |
 | Downstream data contract | A platform act emits **no cross-module business handoff**. It emits a platform event consumed by tenant lifecycle, entitlement and audit only; `HF-CTX-*` do not apply (no business fact); a `PLATFORM` handoff to the platform's *own* accounting is `SA_CORR5_04` §5 | `SCOPE-AWARE EVERYWHERE` |
@@ -166,7 +165,7 @@ Legend: `✔` carried from a cited source · `✎` specified first here · `M` m
 | Artefact | Owner | Patch |
 |---|---|---|
 | `FDS_IAM.md` | SMEsPlus Product Team | **Redefine** the existing actor row *Platform Admin* (§3) under whichever `G2` resolution the `C4-D-02` review adopts; under R1 add §2 *In Scope* item **"Platform Principal identity domain (separate from tenant users)"**, `FR-IAM-011 Platform Principal Login` (*MFA required · grant required · session platform-scoped · audit recorded*) and `BR-IAM-007` *"Platform Principal มีสิทธิ์เฉพาะตาม platform grant และเข้าถึงข้อมูลธุรกิจของ Tenant ไม่ได้"* (candidate, UNVALIDATED); under R2 add the platform-organisation scope and the `BR-TEN-001` exception clause the model then needs |
-| `FDS_INTEGRATION.md` | same | §9 tables gain conceptual attributes *tenant, company scope, version, effective-from/-to* on `api_clients`/`api_keys` (conceptual, no types); `FR-INT-004` gains *"Attempt identity required on every retried presentation"* |
+| `FDS_INTEGRATION.md` | same | §9 tables gain conceptual attributes *tenant, company scope, version, effective-from/-to* on `api_clients`/`api_keys` (conceptual, no types); `FR-INT-001`/`-003` client presentations gain *"Attempt identity required on every presentation"*; `FR-INT-004` (outbound webhook) gains *"payload carries the event identity"* (`CHA-05`, `CHD-10`) |
 | `FDS_APPROVAL.md` | same | `BR-APR-005` *"Approver must hold authority in the request's company; the context boundary wins over segregation of duties"*; `FR-APR-002` acceptance gains *"Approval occurrence event recorded"* |
 | `FDS_SUBSCRIPTION.md`, `FDS_MODULE.md`, `FDS_SUBSCRIPTION_MODULE.md` | same | Audit events gain `reason` on every platform act |
 | `FDS_AUDIT.md` | same | `US-AUD-002` (*Platform Admin exports audit log*) → Tenant Owner for tenant records; the platform principal's `FR-AUD-004` is scoped to the **platform stream**; `BR-AUD-003` per `SA_CORR5_03` §4 (`CHA-04`) |
@@ -187,8 +186,8 @@ user input) · staff `G4` · decide the tax/accounting treatment of prepaid bala
    recorded and the decision routed to the `C4-D-02` review.** The first freeze of this file chose R1
    unilaterally; `CHA-03` showed the corpus's only written architecture is R2. The execution-context
    attributes are model-independent, which is why `G1` closes while `G2` does not.
-2. **Class 13's platform-vs-tenant split** has no prior statement in the wallet decisions and is the
-   first time the wallet is named as the platform's liability. If `SAAS_CELL/27`'s open item
+2. **Class 13's platform-vs-tenant split** has no prior statement in the wallet decisions; the wallet's
+   balance-sheet character is `HOLD` (`CHA-10`, `CHD-10`). If `SAAS_CELL/27`'s open item
    *"tax/accounting treatment of prepaid balances"* is later ruled otherwise, the handoff row changes.
 3. **The compensating control for class 14** is named, not designed — by the corpus's own routing to
    Thai user input. It is an execution-context closure, not a control-design closure.

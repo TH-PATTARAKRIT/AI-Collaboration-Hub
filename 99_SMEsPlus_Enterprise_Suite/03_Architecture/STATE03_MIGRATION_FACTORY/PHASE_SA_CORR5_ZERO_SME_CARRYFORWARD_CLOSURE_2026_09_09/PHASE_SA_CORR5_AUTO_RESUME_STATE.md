@@ -23,12 +23,12 @@ Maintained under master prompt `AUTO-C5-08`. **Checkpoint completion is NOT Boss
 | `CP-SA-C5-70` `MTI-05`/`-22`/`-33` | **`CLOSED (execution status)`** | `SA_CORR5_07` |
 | `CP-SA-C5-80` Compliance mainline | **`EXECUTED TO THE LIMIT OF AUTHORITY`** — `PMO AUTHORITY ACTION REQUIRED — EXACT PATCH READY` (PR #63) | `SA_CORR5_08` |
 | `CP-SA-C5-90` Vetoes reconciled | **`CLOSED (execution status)`** | `SA_CORR5_09` |
-| `CP-SA-C5-100` 22 scenarios by dimension | in progress | `SA_CORR5_10` |
-| `CP-SA-C5-110` Final re-challenge | pending freeze | `SA_CORR5_11` |
-| independence status | pending | `SA_CORR5_12` |
-| `CP-SA-C5-120` Evidence integrity | pending | `SA_CORR5_13` |
-| `CP-SA-C5-130` Zero-carry-forward gate | pending | `SA_CORR5_14` |
-| `CP-SA-C5-FINAL` Boss Final Gate Pack | pending | `SA_CORR5_15` |
+| `CP-SA-C5-100` 22 scenarios by dimension | **`CLOSED (execution status)`** — 10 / 0 / 12; `0 of 22 VERIFIED` | `SA_CORR5_10`, `10A` |
+| `CP-SA-C5-110` Final re-challenge | **`CLOSED (execution status)`** — 49 + 17 findings, all verified and applied | `SA_CORR5_11` |
+| independence status | **`PENDING STRUCTURALLY INDEPENDENT REVIEW`** | `SA_CORR5_12` |
+| `CP-SA-C5-120` Evidence integrity | **`CLOSED (execution status)`** | `SA_CORR5_13` |
+| `CP-SA-C5-130` Zero-carry-forward gate | **`FAIL — ON ONE PMO ACT (merge PR #63)`**; 0 SMEs Core, 0 document owner | `SA_CORR5_14` |
+| `CP-SA-C5-FINAL` Boss Final Gate Pack | **`PUBLISHED — PENDING BOSS`** — `RECOMMEND HOLD PHASE SA — ZERO-CARRYFORWARD GATE FAILED` (one PMO act) | `SA_CORR5_15` |
 
 ## 2. Frozen carry-forward — do not reset
 
@@ -51,14 +51,34 @@ emits `origin` for the HEAD alias; filter it or every per-branch loop double-cou
   retried by a resumer; the PMO act is to merge PR #63.**
 - A local worktree at the scratchpad path may exist for that branch; `git worktree prune` is safe.
 
-## 5. Results so far
+## 5. Results
 
-Element 15 adjudicated (5 positions adopted, 2 clauses originated) · `G1` 5/5 classes · `G3` 11-axis
-contract · `G5` 5 steps + 4 processes · `CF-I-03R` specified · 15 handoff corrections · `MTI-05` not
-contradicted · `MTI-22` register-level complete, content Boss-gated · `MTI-33` structure specified,
-labels Thai-panel · 6 vetoes: 0 discharged, none held by SMEs Core work · compliance: one PMO act.
+Element 15 adjudicated (15 positions, `E15-A1`, `XMC-C-A14`; `C-02` stays Boss's) · `G1` 5/5 classes,
+`G2` two-resolution contradiction for the `C4-D-02` review · `G3` 12-axis contract · `G5` 5 steps + 4
+processes · `CF-I-03R` specified · 16 handoff corrections, `SA15` 1 / 15 / 2 · `MTI-05` not contradicted
+(controlled anchor patch; row 17 on `CF-D-01`) · `MTI-22` register-level complete, content Boss-gated,
+inter-company path traced at data level · `MTI-33` 15 classes, labels Thai-panel (Boss commissions) ·
+production-overhead chain design gaps closed (`10A`) · 22 scenarios 10 / 0 / 12 by dimension, every gap
+a Boss election · 6 vetoes: 0 discharged, none held by SMEs Core work · compliance: exact patch, PR #63,
+one PMO act · re-challenge 49 + 17 findings applied, `C10-A1` withdrawn.
 
-## 6. Authority boundary
+## 6. Terminal state
+
+# `BOSS FINAL GATE PACK READY`
+
+`SA_CORR5_15_BOSS_FINAL_GATE_PACK.md` is published. **STOP.** Do not start the Pre-Test Matrix. The next
+acts belong to PMO (merge PR #63 — after which the recommendation converts to approve without a new
+round) and to Boss.
+
+**Do NOT** re-run the workstreams; **do NOT** re-decide `JT-04`, `C-02`, `XMC-D-01` or the platform-actor
+model at SMEs Core — this round did, and had to undo it; **do NOT** attempt a direct push to
+`origin/SMEsPlus`.
+
+## 7. Publication
+
+Publication commit: recorded below after the manifest freeze.
+
+## 8. Authority boundary
 
 NOT authorized: Pre-Test Matrix execution; Functional Design; database/API/UI design; application code;
 merge; release; deployment; Final `PASS`; any Boss approval; discharging any veto; **writing to

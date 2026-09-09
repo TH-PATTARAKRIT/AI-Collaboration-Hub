@@ -20,7 +20,8 @@ identifier across CORR2/3/4 text and located at their issuing text (`SA_CORR5_00
 **Pattern and exclusions, stated (`CHB-11`):** `[A-Z]{2,6}-V-[0-9]{2}` over HEAD returns the six plus
 `MNT-V-01` — a CORR3 *verdict* identifier in `SA_CORR3_04`, not a veto (excluded by reading); over all
 heads it also returns `DB-V-01`/`-02` as substrings of `AAS03-E2DB-V-01`…, P08 identifiers (excluded
-as substrings). Six is the veto population.
+as substrings) — and, once this paragraph exists, the pattern matches **its own documentation** here
+(`CHD-15`; the counting-command-validation rule). Six is the veto population.
 
 ---
 

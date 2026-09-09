@@ -12,7 +12,9 @@ Boss: **SOLE FINAL APPROVER**
 
 > **Three internal adversarial self-challengers, differently scoped and instructed to falsify, returned
 > `49` findings against the frozen first package (`7d0918ca`): `17` + `17` + `15`. After verification at
-> primary source, `46` were accepted in full or in part and `3` were refuted or narrowed. Five further
+> primary source, `46` were accepted in full, `3` were accepted in part with a narrowing stated, `0`
+> were refuted outright. A fourth, diff-scoped challenger then returned `17` second-order findings
+> against the corrections, all accepted (§5). Five further
 > defects were self-caught before the freeze.**
 >
 > **The largest correction reversed the package's own headline.** The first freeze reported the
@@ -22,7 +24,8 @@ Boss: **SOLE FINAL APPROVER**
 > **The honest figure is `10 / 0 / 12`, and the difference is one Boss item SMEs Core had decided in
 > Boss's place — exactly the inversion the master prompt's challenge list names.**
 
-**No CORR4 conclusion is overturned. Every CORR5 workstream conclusion survives; eight were corrected;
+**No CORR4 conclusion is overturned. Every CORR5 workstream conclusion survives; all eleven
+pre-existing workstream files were corrected (`CHD-12`);
 one (`C10-A1`) was withdrawn; one new file (`SA_CORR5_10A`) was written because a challenger showed
 three SMEs Core design gaps had been carried as a Boss item.**
 
@@ -39,7 +42,7 @@ three SMEs Core design gaps had been carried as a Boss item.**
 | Challenger C | Accounting · Inventory · Manufacturing/Purchase · Thai statutory · clean-room — files `07`, `10` |
 | Instruction | *"YOUR JOB IS TO FALSIFY, NOT CONFIRM. A challenge that finds nothing is a failed challenge."* Each was told the frozen commit, the primary-source paths on every relevant branch, and the master prompt's eighteen challenge classes |
 | Adoption rule | **Every finding re-verified against primary text before adoption** (§3 records what was checked); a finding is adopted, narrowed, or refuted with the evidence stated |
-| Classes covered | 18 of 18 master-prompt classes exercised by at least one challenger; the two the challengers reported as *tried, nothing found* are listed in §6 |
+| Classes covered | 18 of 18 master-prompt classes exercised by at least one challenger; the classes reported as *tried, nothing found* are marked in §4 |
 
 ---
 
@@ -65,9 +68,9 @@ Severity is the challenger's; disposition is this file's after verification.
 | `CHC-12` | MATERIAL | Three vendor field/module tokens leaked | clean-room rule | **ACCEPTED** — replaced by neutral descriptors | `SA_CORR5_07` |
 | `CHC-13` | MATERIAL | `C10-A3` (over-receipt default `0`) is a control-default election of the `XD1-P1` class; cited bases do not supply it | `SA_CORR3_00` §5.1 | **ACCEPTED** — row 5 `AU` → `B`, bundled with `B-1`/`B-2`, SMEs Core recommends refuse | `SA_CORR5_10` row 5, §5 |
 | `CHC-14` | MATERIAL | Row 13 `C` vs `SA17` *"Salvage undefined"*; a cost-consequence class is not a salvage object | R1 row 23; `R4-F-03` | **ACCEPTED** — `XMC-C-D7` originates the salvage object's semantics; value stays COGS residual | `SA_CORR5_10` §5 |
-| `CHC-15` | MATERIAL | The 57 open COGS unknowns are not consumed; the "dissolves" claim spans 3 of 59 identifiers | `18_UNKNOWN_BURNDOWN_REPORT`; `10_JT01` §4 | **ACCEPTED** — claim scoped to three identifiers; 54 carried as a named population with owner | `SA_CORR5_10` §3.1; `SA_CORR5_14` |
+| `CHC-15` | MATERIAL | The 57 open COGS unknowns are not consumed; the "dissolves" claim spans the three JT decisions | `18_UNKNOWN_BURNDOWN_REPORT`; `10_JT01` §4 | **ACCEPTED** — claim scoped to the three decisions; the 57 open unknowns carried as a named population with owner (`CHD-11` corrected a first "54") | `SA_CORR5_10` §3.1; `SA_CORR5_14` |
 | `CHC-16` | MINOR | §6 misattributed `D6` to the eight-row class and 16/17 to "existing specification" | `SA_CORR3_06` §4.3 | **ACCEPTED** | `SA_CORR5_10` §6 |
-| `CHC-17` | MINOR | Forward references to unwritten files; row 18's election in the wrong dimension | package state at `7d0918ca` | **ACCEPTED** — election moved to `OUT`; forward references now resolve (files 11–15 exist at publication) | `SA_CORR5_10` row 18 |
+| `CHC-17` | MINOR | Forward references to unwritten files; row 18's election in the wrong dimension | package state at `7d0918ca` | **ACCEPTED** — election moved to `OUT`; files 12–15 did not exist at the second freeze either (`CHD-01`) and exist at publication | `SA_CORR5_10` row 18 |
 
 ### 3.2 Challenger B — Governance / handoff / counts (`CHB-01`…`-17`)
 
@@ -77,7 +80,7 @@ Severity is the challenger's; disposition is this file's after verification.
 | **`CHB-02`** | HIGH | Instrument B's "positive control returns 1" is false (returns 0); B cannot see a heading-form claim | re-run: B = 0, C = 1, D = 4 on `111bfc41` | **ACCEPTED** — instruments C and D run over the 16 blobs and published (C = 0 all; D = 5 in `SA_CORR4_04`, quotations) | `SA_CORR5_08` §1 |
 | **`CHB-03`** | HIGH | `E2E-11`/`-12` kept `TRAVERSABLE` while the same package grades them Boss-gated on `JT-05`; the class table admits no route/value split | `SA15` §1 class table; `SA_CORR5_10` rows 8–9 | **ACCEPTED** — `WITH NAMED BREAK`; `SA15` = **1 / 15 / 2**; `SA15-F-01` rewritten | `SA15`/`SA17` controlled; `SA_CORR5_06` rows 3, 4, 10 |
 | `CHB-04` | MEDIUM | Namespace census: singletons are 15, not 14; the ✓ was false | re-derived per branch | **ACCEPTED** | `SA_CORR5_08` §1 |
-| `CHB-05` | MEDIUM | Forward references to files 11–15 at the freeze | package state | **ACCEPTED** — wording notes the forward reference; files now exist | `SA_CORR5_09` §3 |
+| `CHB-05` | MEDIUM | Forward references to files 11–15 at the freeze | package state | **ACCEPTED** — wording notes the forward reference; files exist at publication, not at either freeze (`CHD-01`) | `SA_CORR5_09` §3 |
 | **`CHB-06`** | MEDIUM | `C-02` "dissolved" — the CORR5 prompt is a commissioning prompt, not a Boss ruling; `C-02` owner *"Boss directly"* | R4 `07_L6` `:210`, `:222` | **ACCEPTED** (with `CHA-01`) — `C-02` stays an open Boss election; `00`/`01`/`10` aligned | `SA_CORR5_00` `C5-B-03`; `SA_CORR5_01` §11; `SA_CORR5_10` row 22 |
 | `CHB-07` | MEDIUM | `0 of 60` attributed to `SA_CORR4_06`, which says `0 of 52`; two different "60"s in the chain | `SA_CORR4_06` §6; `SA_CORR4_10` `:99`; `SA_CORR3_06` `:430` | **ACCEPTED** — citation and composition corrected | `SA_CORR5_00` §3 row 12 |
 | `CHB-08` | MEDIUM | `C5-B-02` omitted CORR3's lean to reading (ii) | `SA_CORR3_07` `:326-330` | **ACCEPTED** — lean quoted and argued against | `SA_CORR5_00`; `SA_CORR5_07` §1.2 |
@@ -86,7 +89,7 @@ Severity is the challenger's; disposition is this file's after verification.
 | `CHB-11` | LOW | Veto denominator holds only under undeclared exclusions (`MNT-V-01`, `DB-V-*` substrings) | `git grep -o` over HEAD/all heads | **ACCEPTED** — pattern and exclusions stated | `SA_CORR5_09` §1 |
 | `CHB-12` | LOW | Wording sweeps published as 0 return 2 and 3 raw | re-run | **ACCEPTED** — raw counts published beside the classified zero | `SA_CORR5_09` §3; `SA_CORR5_13` §6 |
 | `CHB-13` | LOW | Negative token is 0 only against the pre-package tree | re-run at HEAD | **ACCEPTED** — stated | `SA_CORR5_00` §2 |
-| `CHB-14` | LOW | `is_inventory` vendor token | clean-room | **ACCEPTED** (with `CHC-12`) | `SA_CORR5_07` |
+| `CHB-14` | LOW | a vendor movement-flag token | clean-room | **ACCEPTED** (with `CHC-12`; this file re-printed it and was scrubbed at `CHD-15`) | `SA_CORR5_07` |
 | `CHB-15` | LOW | `C5-B-01` mis-describes CORR4 (intra-package split, not superseded-file citation) | `SA_CORR4_06` §6 | **ACCEPTED** — restated | `SA_CORR5_00` §4 |
 | `CHB-16` | LOW | "7 runtime registers" not enumerable | `SA17` §2c | **ACCEPTED** — eight families enumerated | `SA17` controlled §2c; `SA_CORR5_06` §3 |
 | `CHB-17` | LOW | Checkpoint denominator is pre-action; post-action is `187 / 4 / 183 / 0` | re-measure | **ACCEPTED** — both stated | `SA_CORR5_08` §7 |
@@ -119,8 +122,8 @@ Severity is the challenger's; disposition is this file's after verification.
 | `CHC-15` (scope) | *"stranded architecture not consumed"* — the COGS unknowns are a research population, not architecture; accepted as *not consumed*, classified as carried research with owner |
 | `CHA-02` (count) | 318 vs this package's 327: the challenger excluded this branch; both figures published, neither changes the finding |
 
-**Tally:** 49 challenger findings · **46 accepted** (in full or with the narrowing stated) · **3 narrowed
-in part, 0 refuted outright** · **5 self-caught before freeze** (revocation vocabulary counts, the
+**Tally (re-derived from the rows, `CHD-12`):** 49 first-pass findings · **46 rows `ACCEPTED`** · **3 rows
+`PARTLY ACCEPTED` / narrowed** (`CHC-04`, `CHC-15` scope, `CHA-02` count) · **0 refuted outright** · **5 self-caught before freeze** (revocation vocabulary counts, the
 `tenant` control's case-sensitivity, the work-package name count, the mis-scoped instrument-B set, the
 scrap free-text field's shape) · **1 adjudication withdrawn** (`C10-A1`) · **1 new file** (`SA_CORR5_10A`)
 · **1 new controlled patch** (`04_CONTEXT_MATRIX_ANCHOR_COLUMN…`).
@@ -159,11 +162,35 @@ scrap free-text field's shape) · **1 adjudication withdrawn** (`C10-A1`) · **1
 
 ---
 
-## 5. Every correction re-challenged (`AUTO-C5-06`)
+## 5. Every correction re-challenged (`AUTO-C5-06`) — the diff-scoped pass (`CHD-01`…`-17`)
 
-The corrections were committed as a second freeze and a fourth challenger was scoped **to the diff
-only** (`SA_CORR5_12` §3 records its result and any second-order corrections). No correction in §3 is
-recorded as accepted without that pass having run over it.
+The corrections were committed as a second freeze (`78d1b3c6`) and a fourth challenger was scoped to
+the diff `7d0918ca..78d1b3c6` plus the two added files and this file. **It returned 17 second-order
+findings; all 17 were verified and applied before publication:**
+
+| ID | Sev | Finding (compressed) | Applied at |
+|---|---|---|---|
+| `CHD-01` | HIGH | "applied at" pointed to files that did not exist at the freeze; §5 asserted a pass that had not run | this file; `SA_CORR5_12` §3 |
+| `CHD-02` | HIGH | `SA_CORR5_10` §4.1 cell row printed 184/14/8 beside the correct derivation | `SA_CORR5_10` §4.1 → 185 / 13 / 9 / 0 |
+| `CHD-03` | HIGH | evidence-at-rest population: 4 distinct databases (not 5); the trace table's population misstated | `SA_CORR5_07` §2.3, §3.2 |
+| `CHD-04` | MEDIUM | `RC-03` cited from a colliding namespace | `SA_CORR5_10` row 19 |
+| `CHD-05` | MEDIUM | anchor rows 22/23 originate ancestors their bases do not supply | patch file, `SA_CORR5_07` §1.3 (`✎`) |
+| `CHD-06` | MEDIUM | row 8's basis (R1 §4.1) is voided by `CD-15` | patch file, `SA_CORR5_07` §1.2 |
+| `CHD-07` | MEDIUM | over-absorption cap adopted without its statutory `HOLD`; four items not three | `SA_CORR5_10A` |
+| `CHD-08` | MEDIUM | policy-versioning clause pre-empted open `CGS-U07`/`U08` | `SA_CORR5_01` §5.2 |
+| `CHD-09` | MEDIUM | tolerance default is not pre-existing; 8 elections with `C-02` | `SA_CORR5_10`, `SA_CORR5_14`, `SA_CORR5_15` |
+| `CHD-10` | MEDIUM | stale pre-correction text left in `SA_CORR5_02` | `SA_CORR5_02` |
+| `CHD-11` | MEDIUM | "54 carried" — the JTs are decisions above the 57 unknowns | `SA_CORR5_10` §3.1 |
+| `CHD-12` | MEDIUM | this file's tally and §6 pointer not derivable | this file |
+| `CHD-13` | LOW | counts without derivation (7 adopted; 9-row; 26 unchanged) | `SA_CORR5_01`, `SA_CORR5_07`, patch file |
+| `CHD-14` | LOW | `P13`'s IBPV *"Covered"* not located at source | `SA_CORR5_01` |
+| `CHD-15` | LOW | vendor token re-printed here; veto pattern self-matches | this file; `SA_CORR5_09` |
+| `CHD-16` | LOW | ruling path missing `BOSS_GATE/`; rule attribution; checkpoint name | `SA_CORR5_02`, `-03`, `-04`, `-08` |
+| `CHD-17` | LOW | `10A` generalises per-machine to machine-group without saying so | `SA_CORR5_10A` §7 |
+
+**No correction in §3 stands without this pass having run over it. No third pass was run over these
+seventeen; they are notation, count, citation and stale-text repairs, and one authority repair
+(`CHD-08`), and they are the residual exposure of this package.**
 
 ## 6. What the challenge did not reach
 
@@ -178,8 +205,8 @@ recorded as accepted without that pass having run over it.
 ## 7. Checkpoint
 
 > ## `CP-SA-C5-110 — SMEs CORE FINAL RE-CHALLENGE COMPLETE`
-> **3 challengers · 18 of 18 classes exercised · 49 findings, 46 accepted, 3 narrowed, 0 refuted
-> outright · 5 self-caught · 1 adjudication withdrawn · 1 file and 1 controlled patch added ·
-> 0 CORR4 conclusions overturned · 1 finding (`C5-11-F-01`).**
+> **4 challengers · 18 of 18 classes exercised · 49 first-pass findings (46 accepted, 3 narrowed, 0
+> refuted outright) + 17 second-pass findings (17 accepted) · 5 self-caught · 1 adjudication withdrawn ·
+> 1 file and 1 controlled patch added · 0 CORR4 conclusions overturned · 1 finding (`C5-11-F-01`).**
 
 No Evidence = No Progress. Never Skip Gate. Boss remains the sole Final Approver.

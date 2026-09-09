@@ -78,9 +78,10 @@ re-asked without material delta."*
 ### 3.1 The COGS unknown population is carried, not consumed
 
 `18_UNKNOWN_BURNDOWN_REPORT` (COGS Targeted Resolution): **59 unknowns, 57 open, 0 closed in three
-sessions.** This file re-measures **three identifiers** (`JT-01`, `-04`, `-05`) against a Boss ruling
-that post-dates the report. It does **not** consume the other 54 (`CGS-U*`, `SME-Q-*`, `TH-NEW-*`), which
-remain the **Account COGS track's** research population — a mix of documentation re-fetch (category 4),
+sessions.** This file re-measures the **three joint decisions** (`JT-01`, `-04`, `-05`) that sit *above* that
+population against a Boss ruling that post-dates the report. It does **not** consume the **57 open
+`CGS-U*` unknowns** themselves (`CHD-11`: the JTs are decisions the unknowns block, not members of the
+59), which remain the **Account COGS track's** research population — a mix of documentation re-fetch (category 4),
 Business-SME input, statutory `HOLD` and Boss election. **They are carried at `SA_CORR5_14` as a named
 open population with its owner, not dissolved.** (`CHC-15`)
 
@@ -115,7 +116,7 @@ convergence dimension, and rows 8/9 additionally `JT-05`.** `MTI-46`'s value hal
 | 16 | Manufacturing RM → WIP → FG | C | C | C | C | C | **B** | C | C | C | Y | GATED | **`SA MATERIAL GAP — EXACT GAP: Boss residue `POH-D-01`, `-02`, `-06` (`B-6`)`** | **corrected (`CHC-07`)**: the SMEs Core design gaps `POH-G-01` (pool, denominator, capture), `POH-G-02` (receiver) and `POH-G-04` (variance) are **closed at specification level in `SA_CORR5_10A`**; the remaining `B` is the six-item Boss residue of `SA_CORR3_03` §9 — *none of which is "normal capacity or actual hours"*; `JT-04` also attaches |
 | 17 | Manufacturing reversal / scrap / variance | C | C | C | C | C | **B** | C | C | C | Y | GATED | **`SA MATERIAL GAP — EXACT GAP: Boss residue `POH-D-01`, `-02`, `-06` (`B-6`)`** | variance owner, mechanism and destination specified (`SA_CORR5_10A` §5); normal/abnormal scrap classes; `POH-G-03` exclusion specified, build runtime |
 | 18 | Stockable vs consumable vs service routing | C | C | **B** | C | C | C | C | C | C | Y | GATED | **`SA MATERIAL GAP — EXACT GAP: Boss elections `XMC-D-02` (contract scope) and `XMC-D-01`/`C2-D-02` (dropship valuation facts)`** | **`XMC-C-D6`** (§5) states the tie-break **with the supplier→customer case carved out** to `XMC-D-01`/`C2-D-02` (`CHC-02`); the service leg's element-contract scope is `XMC-D-02`; the election moved to `OUT` (`CHC-17`) |
-| 19 | Period-end / cut-off | C | C | C | C | C | C·S | C | C | C | Y | WRITABLE | **`SA-SPEC COMPLETE / RUNTIME PROOF REQUIRED`** | **`XMC-C-A15`** (§5) period object; lock binds the entry (`ND-07`); **`RC-03`** (`CHC-09`): reconciliation posture is *at the closing boundary* under `Periodic` and *continuous* under `Perpetual` by definition — each run states its posture; `S`: statutory register content, and `A16`'s statutory interaction, `HOLD` |
+| 19 | Period-end / cut-off | C | C | C | C | C | C·S | C | C | C | Y | WRITABLE | **`SA-SPEC COMPLETE / RUNTIME PROOF REQUIRED`** | **`XMC-C-A15`** (§5) period object; lock binds the entry (`ND-07`); **`RC-03` of the Inventory V1 / R4 `RC-*` reconciliation family** (`07_INVENTORY_ACCOUNTING_CONTROL_IMPACT_V1` line 97; R4 `05_L4` line 122 — *not* the R1 `10` register's `RC-03`, a colliding identifier, `CHD-04`; `CHC-09`): reconciliation posture is *at the closing boundary* under `Periodic` and *continuous* under `Perpetual` by definition — each run states its posture; `S`: statutory register content, and `A16`'s statutory interaction, `HOLD` |
 | 20 | Historical migration across fiscal years | C | C | C | C | C | C | C | C | C | Y | WRITABLE | **`SA-SPEC COMPLETE / RUNTIME PROOF REQUIRED`** | **`XMC-C-A17`** (§5) provenance-reference semantics; `MTI-42`; `L10-01`…`-10` |
 | 21 | AI migration mapping + deterministic reconciliation | C | C | C | C | C | C | C | C | C | Y | WRITABLE | **`SA-SPEC COMPLETE / RUNTIME PROOF REQUIRED`** | element 14 as 20; per-company certification (`L10-07`); `A17`'s mapping-rule identity + version evidences the compliant act |
 | 22 | Retry / idempotency / replay | C | C | C | C | C | C | C | C | C | Y | WRITABLE | **`SA-SPEC COMPLETE / RUNTIME PROOF REQUIRED`** | element 15 — `SA_CORR5_01`; `RT-E15-01`…`-09`. **`C-02` (is idempotency gate-blocking) is a Boss severity election that stays open** (`CHA-01`/`CHB-06`); it does not change any dimension cell — the specification is complete whichever way Boss rules the severity, which is why the row is not `B` |
@@ -126,24 +127,22 @@ convergence dimension, and rows 8/9 additionally `JT-05`.** `MTI-46`'s value hal
 |---|---|---:|
 | **`SA-SPEC COMPLETE / RUNTIME PROOF REQUIRED`** | 7, 11, 12, 13, 14, 15, 19, 20, 21, 22 | **10** |
 | **`SA-SPEC COMPLETE / PRE-TEST READY`** | — | **0** *(no implementation exists)* |
-| **`SA MATERIAL GAP — EXACT GAP`** — every one a **Boss election that pre-dates this round** | 1, 2, 3, 4, 5, 6 (`JT-04`) · 8, 9 (`JT-05`) · 10 (`XD1-P1`) · 5 also (tolerance default) · 16, 17 (`B-6`) · 18 (`XMC-D-02`, `XMC-D-01`) | **12** |
+| **`SA MATERIAL GAP — EXACT GAP`** — every one a **Boss election**: six pre-date this round, one (the tolerance default) was originated by this round's own challenge and routed to Boss (`CHD-09`) | 1, 2, 3, 4, 5, 6 (`JT-04`) · 8, 9 (`JT-05`) · 10 (`XD1-P1`) · 5 also (tolerance default) · 16, 17 (`B-6`) · 18 (`XMC-D-02`, `XMC-D-01`) | **12** |
 | **Total** | | **22** ✓ |
 
 | Dimension cells (22 × 9 = 198) | `C` | `B` | `S` (inside a cell) | **`G`** |
 |---|---:|---:|---:|---:|
-| | **184** | **14** — rows 1–6 AC (6), 5 AU (1), 8–9 AC (2), 10 AU (1), 16–17 AC (2), 18 OUT (1), = 13 … plus row 5's second `B` counted once per cell → **14 cells: 1,2,3,4,5,6,8,9,16,17 AC (10) · 5,10 AU (2) · 18 OUT (1) · — total 13** | 8 — rows 1, 2, 3, 4, 5, 6 (inside `B`), 9 (inside `B`), 13, 19 → **9** | **0** |
+| | **185** | **13** — AC on rows 1, 2, 3, 4, 5, 6, 8, 9, 16, 17 (10) · AU on rows 5, 10 (2) · OUT on row 18 (1) | **9** markers — rows 1, 2, 3, 4, 5, 6, 9 (inside `B`), 13, 19 (inside `C`) | **0** |
 
-*(Re-derived cell by cell: `B` cells = AC on rows 1, 2, 3, 4, 5, 6, 8, 9, 16, 17 = 10; AU on rows 5, 10 =
-2; OUT on row 18 = 1 → **13**. `C` = 198 − 13 = **185**. `S` markers = rows 1, 2, 3, 4, 5, 6, 9, 13, 19 =
-**9**, seven of them inside a `B` cell. `G` = **0**. The line above the parenthetical is superseded by
-this re-derivation and is retained struck-through in spirit so the correction is visible: **185 / 13 /
-9 / 0**.)*
+*(Re-derived cell by cell; `C` = 198 − 13 = 185. A first version of this row printed 184 / 14 / 8 beside
+the correct derivation — `CHD-02`; the row now carries only the derived figures.)*
 
 > ### `C5-10-F-01` — corrected
 > **Material Phase SA gaps owned by SMEs Core / PMO / document owner across the 22: `0` — after
 > `SA_CORR5_10A` closed the three overhead design gaps and `XMC-C-D7` the salvage object.** Twelve
-> scenarios remain `SA MATERIAL GAP`, and **every one names a Boss election that pre-dates this round**
-> (`JT-04`, `JT-05`, `XD1-P1`, `B-6`, `XMC-D-02`/`XMC-D-01`, the tolerance default bundled with `B-1`/`B-2`).
+> scenarios remain `SA MATERIAL GAP`, and **every one names a Boss election** — six that pre-date this
+> round (`JT-04`, `JT-05`, `XD1-P1`, `B-6`, `XMC-D-02`/`XMC-D-01`) and one this round's challenge originated
+> and routed to Boss (the over-receipt tolerance default, bundled with `B-1`/`B-2`).
 > **The first freeze of this file reported 16 / 0 / 6; the honest figure after self-challenge is 10 / 0 /
 > 12, and the difference is one item — `JT-04` — that SMEs Core had decided in Boss's place.** `0 of 22`
 > are verified; all 22 require an implementation and an executed test. **What this file claims is that
@@ -181,7 +180,7 @@ attacked at `SA_CORR5_11`.
 | Context/authorization dimension | `SA CONTRACT COMPLETE — RUNTIME TEST REQUIRED` on 22 | unchanged, `G1`/`G3`/`G5` closed | unchanged |
 | "COGS gap el.4/7" | carried on 12 rows | dissolved | **`JT-04` Boss election on 8 rows (1–6, 16, 17); `JT-05` on 2; statutory `S` on 9 cells; `GAP-FS-07` traced at data level; 54 COGS unknowns carried** |
 | "design mechanism does not exist" on 8 rows (2, 7, 12, 13, 14, 16, 17, 19) | carried | — | **2 → `A15`/`A16`; 7 → `D5`; 19 → `A15`; 12, 13, 14 → existing specification + `D7`; 16, 17 → `SA_CORR5_10A` (design) + `B-6` (Boss)** (`CHC-16`) |
-| Boss elections in the 22 | 5 (8, 9, 10, 18, 22) | 4 | **7 distinct**: `JT-04`, `JT-05`, `XD1-P1`, tolerance default, `B-6`, `XMC-D-02`/`XMC-D-01` on 12 scenarios, plus **`C-02`** (severity, scenario 22, open but cell-neutral) — **all pre-existing, none new**; `UAE-29` ruled by `BD-ACC-01` |
+| Boss elections in the 22 | 5 (8, 9, 10, 18, 22) | 4 | **8 distinct**: `JT-04`, `JT-05`, `XD1-P1`, `B-6`, `XMC-D-02`/`XMC-D-01` (pre-existing), the **tolerance default (originated by this round's challenge, routed to Boss)**, on 12 scenarios, plus **`C-02`** (severity, scenario 22, open but cell-neutral) — `UAE-29` ruled by `BD-ACC-01` (`CHD-09`) |
 | `0 of 22 VERIFIED` | unchanged | unchanged | **unchanged** |
 
 ## 7. Residual
