@@ -160,11 +160,19 @@ file does not create one.**
 | 12 | **Reversal / correction reference** | A reversal is a **new** event whose basis includes the identity of the event it reverses, in the reversal role. Never mutation, never deletion; each discoverable from the other | ✔ | `XMC-C-A8`, `A9`; `MTI-39`, `MTI-40` |
 | 13 | **Audit trace reference** | The inspectable evidence reference — for context, the `HF-CTX-06` run; for authority, the `HF-CTX-11` run; **never a boolean** | ✔ | element 16; `MTI-50` |
 
-**Tally: 13 of 13 addressed — 9 `✔` · 3 `◐` · 1 `✎`.** Each element appears exactly once.
+**Tally: 13 of 13 addressed — `10 ✔` · `2 ◐` · `1 ✎`.** Each element appears exactly once, and the
+tally is **re-derived from the rows above rather than asserted**.
 
-**The three `◐` are honest and each names its blocker:** element 9 is specified and its control is
-unbuilt; element 11 is a responsibility with no carrier (`RISK-C02`); element 10's contract-version half
-is new here and reviewed by nobody outside this session.
+> **`C4-02-F-06`, self-caught.** This line first read *"9 `✔` · 3 `◐` · 1 `✎`"*. **It summed to 13 and
+> its distribution was wrong** — the total was right, which is precisely why a casual read passes it.
+> Found by re-deriving the tally mechanically from the table's own state column. **Recorded because the
+> programme's rule is that a total is an unverified claim about the rows beneath it, and this package's
+> own §5 tally, §3.1's, and every count in `SA_CORR4_06` were re-derived the same way after it.**
+
+**The two `◐` are honest and each names its blocker:** element **9** is specified and its control is
+**unbuilt**; element **11** is a responsibility with **no carrier** (`RISK-C02`).
+**The single `✎`** — element **10**, the contract semantic version — **is new here and reviewed by
+nobody outside this session**, and is named again at §7 as the first thing a challenger should attack.
 
 ### 3.2 What this contract deliberately does not specify
 
