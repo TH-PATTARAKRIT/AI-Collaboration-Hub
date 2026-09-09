@@ -14,18 +14,18 @@ Maintained under `AUTO-C3-09`. **Checkpoint completion is NOT Boss approval.**
 
 | Checkpoint | Status |
 |---|---|
-| `CP-SA-C3-00` Boss questions reclassified | `IN PROGRESS` |
-| `CP-SA-C3-10` Targeted deep studies complete or precisely bounded | `IN PROGRESS` — 6 studies executing |
+| `CP-SA-C3-00` Boss questions reclassified | **`CLOSED (execution status)`** |
+| `CP-SA-C3-10` Targeted deep studies complete or precisely bounded | **`CLOSED (execution status)`** — 6 studies |
 | `CP-SA-C3-20` Governance / standards corrections complete | **`CLOSED (execution status)`** — `SA_CORR3_05`, commit `a0629631` |
-| `CP-SA-C3-30` 22/22 joint cross-proof verification complete | `IN PROGRESS` |
-| `CP-SA-C3-40` 58-invariant proof register complete | `IN PROGRESS` |
-| `CP-SA-C3-50` Cross-module output/input contracts proven | `IN PROGRESS` |
-| `CP-SA-C3-60` Inventory / Manufacturing / Purchase routing reconciled | `IN PROGRESS` |
-| `CP-SA-C3-70` Accounting / Tax / Payment convergence reconciled | `IN PROGRESS` |
-| `CP-SA-C3-80` SMEs Core proof panel complete | `NOT STARTED` |
+| `CP-SA-C3-30` 22/22 joint cross-proof verification complete | **`CLOSED (execution status)`** |
+| `CP-SA-C3-40` 58-invariant proof register complete | **`CLOSED (execution status)`** |
+| `CP-SA-C3-50` Cross-module output/input contracts proven | **`CLOSED (execution status)`** |
+| `CP-SA-C3-60` Inventory / Manufacturing / Purchase routing reconciled | **`CLOSED (execution status)`** |
+| `CP-SA-C3-70` Accounting / Tax / Payment convergence reconciled | **`CLOSED (execution status)`** |
+| `CP-SA-C3-80` SMEs Core proof panel complete | **`CLOSED (execution status)`** |
 | `CP-SA-C3-90` Structural independence status verified | **`CLOSED (execution status)`** — `SA_CORR3_10`, commit `4e116834` |
-| `CP-SA-C3-95` Final evidence integrity verified | `NOT STARTED` |
-| `CP-SA-C3-FINAL` Boss Final Gate Pack published | `NOT STARTED` |
+| `CP-SA-C3-95` Final evidence integrity verified | **`CLOSED (execution status)`** |
+| `CP-SA-C3-FINAL` Boss Final Gate Pack published | **`PUBLISHED — PENDING BOSS`** |
 
 ## 2. Frozen carry-forward — do not reset
 
@@ -86,17 +86,36 @@ non-`.md`/`.txt`/`.csv` files.
 | Affirmative `PASS` verdicts in the active Phase SA package | **0** of 65 occurrences, each read individually |
 | New findings | `C3-G-01`…`C3-G-06`, `C3-I-01`, `C3-I-02`, `C3-IND-01`…`C3-IND-04` |
 
-## 5. NEXT EXACT ACTION
+## 5. Terminal state
 
-**Consume the nine executing study/register returns, reconciling each against primary text before
-adoption** — specifically apply `BD_ACC_01_PRIMARY.md` rules `R1`…`R6` to the `XD-01` and
-cross-module-contract returns, because `BD-ACC-01`'s primary text is materially richer than any
-CORR2 summary of it and names the owner CORR2 recorded as absent. Then write `SA_CORR3_00`
-(reclassification), `SA_CORR3_09` (proof panel), `SA_CORR3_11` (evidence integrity) and
-`SA_CORR3_12` (Boss gate pack).
+# `BOSS FINAL GATE PACK READY`
 
-**Do NOT** adopt any executor's conclusion without re-verifying it against source; every executor is
-same-model and is labelled `INTERNAL ADVERSARIAL SELF-CHALLENGE`.
+`SA_CORR3_12_BOSS_FINAL_GATE_PACK.md` is published. **STOP** (`AUTO-C3-12`). Do not start the Pre-Test
+Matrix. The next act belongs to Boss.
+
+**Recommendation carried to Boss:** `CONDITIONAL APPROVAL TO PHASE PRE-TEST MATRIX`, with four conditions
+precedent that are **all SMEs Core or PMO acts and none of which requires a Boss decision**.
+**`HOLD PHASE SA` is also fully supported, and `SA_CORR3_07` explicitly recommends it** — the pack says so
+rather than burying it.
+
+**Boss decisions requested: 5 material + 1 governance restatement + 1 appointment act + 3 minor.** Every one
+survived the §18 qualification test on all seven questions. **None is a research, design or governance gap —
+everything answerable at SMEs Core was executed in this package.**
+
+### 5.1 If a new prompt arrives, the highest-value next work is, in order
+
+1. **Execute the privileged-bypass path enumeration.** An **evidence act, not a build** — the only item on
+   element 10's critical path that can start before anything is built. **Three gating invariants are
+   unprovable until it exists.**
+2. **Add tenant + company to the emitting handoff payload.** Closes the **interface half** of element 10,
+   which is **independent of the invariant programme** and was unrecorded before this round.
+3. **Specify `CF-I-03`.** Until it exists, `MTI-43`'s second attestation is a reference to nothing.
+4. **Three bounded queries**, one each: `TV6-B-03`, `TV6-A-14`(c), `TV4-G-01`.
+
+**Do NOT** re-open `TVDR-04` or `TVDR-06` as research — both are executed. **Do NOT** re-ask `C2-D-03`,
+the compliance retraction, or the verdict-vocabulary question — all closed. **Do NOT** treat publishing the
+`BD-ACC-01` contract as having closed `H-01`, `H-02`, `H-03`, element 15, `JCP-03` or `AR-26`; it closes
+**none** of them, and does not bear on `H-02` at all.
 
 ## 6. Authority boundary
 
