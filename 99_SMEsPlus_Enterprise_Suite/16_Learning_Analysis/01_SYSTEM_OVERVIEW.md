@@ -212,12 +212,28 @@ Reporting & Dashboards
 
 ## 🔐 Compliance & Governance
 
-### **Standards Compliance**
-- ISO 27001 (Information Security)
-- ISO 9001 (Quality Management)
-- SOC 2 (Security & Availability)
-- GDPR (Data Protection)
-- Local regulations (Thailand)
+### **Standards Alignment — design targets, not compliance or certification claims**
+
+> **CORRECTION `C3-G-01` (2026-09-09).** The five lines below previously appeared under the heading
+> *"Standards Compliance"* as an unqualified assertion. That assertion is **RETRACTED**. It was a
+> claim of compliance unsupported by any conformance evidence or attestation, contrary to Boss
+> decision `03` (*"SMEsPlus MUST NOT self-declare that a customer is ISO/SOC/PDPA/GDPR compliant or
+> certified solely because the software contains supporting functions"*) and Boss decision `05` §10
+> (*"Standard Alignment belongs to the Function. Certification belongs to the Customer"*).
+> Retained below, relabelled, as **standards-alignment design targets**. Conformance status for
+> every item is `NOT ASSESSED`. Evidence: `SA_CORR3_05_GOVERNANCE_AND_STANDARDS_CORRECTION.md`.
+
+The following are **standards SMEsPlus aims to design controls in alignment with**. SMEsPlus makes
+no claim of compliance, conformance or certification against any of them, for itself or for any
+customer, and holds no attestation for any of them.
+
+| Standards-alignment design target | SMEsPlus conformance status | Certification/attestation held |
+|---|---|---|
+| ISO 27001 (Information Security) | `NOT ASSESSED` | None |
+| ISO 9001 (Quality Management) | `NOT ASSESSED` | None |
+| SOC 2 (Security & Availability) | `NOT ASSESSED` | None |
+| GDPR (Data Protection) | `NOT ASSESSED` | None |
+| Local regulations (Thailand) — statutory, **candidate / UNVALIDATED** | `HOLD / EVIDENCE REQUIRED` | None |
 
 ### **Governance Framework**
 - Architecture Review Gates (8 gates)
