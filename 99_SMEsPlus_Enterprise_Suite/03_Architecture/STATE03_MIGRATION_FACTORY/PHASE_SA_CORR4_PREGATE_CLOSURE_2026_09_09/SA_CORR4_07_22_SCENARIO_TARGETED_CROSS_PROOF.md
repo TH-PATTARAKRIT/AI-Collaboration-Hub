@@ -157,6 +157,64 @@ conflated with its population.
 3. **Nothing may be read as testing a cross-module join.** Element 15 is the join key and it does not
    exist.
 
+### 5.1a `C4-07-F-03` — the Pre-Test handoff baseline over-grades the one dimension that cannot be tested
+
+**Found while establishing §5.2's ordering against the existing Pre-Test baseline, and it is the most
+consequential finding in this file for the decision Boss is being asked to take.**
+
+`SA17_PRE_TEST_MATRIX_HANDOFF_BASELINE.md` — **the artefact that hands work to the phase under
+consideration** — grades scenario `E2E-15` *Correction / reversal / retry / duplicate*:
+
+> `TRAVERSABLE` · expected evidence *"idempotent retry; ordering-independent reconciliation"* ·
+> bounded risk carried: ***"Strongest established area"***
+
+`SA15_END_TO_END_SCENARIO_REGISTER.md` agrees and names its source:
+
+> `E2E-15` … `TRAVERSABLE` — *"strongest area: **idempotency and ordering-independence established
+> (`SA09`)**"*, and *"`E2E-02` … `E2E-11` … `E2E-12` and `E2E-15` … are the **only** end-to-end flows
+> that traverse without a named break."*
+
+**`SA09` has since been corrected to say the opposite, in its own text:**
+
+> `SA09_EXCEPTION_REVERSAL_MATRIX.md`, inline: *"**SUPERSEDED BY CORR2 — `SA_CORR2_09` §3** … and
+> **idempotency moves the other way** — graded `ESTABLISHED` here, **recorded absent in four Accounting
+> packages.**"*
+
+And the joint cross-proof's scenario 22 — **the same subject** — is `HOLD`, with `RISK-C02`
+`CARRIED / BLOCKING`, `UAE-29` `HOLD — BOSS DECISION REQUIRED — the root`, the only carrier in the
+estate *"table-global rather than tenant-scoped"*, and **`0 of 13,814` rows carrying a deduplication
+key**.
+
+**Measured, with a positive control:**
+
+| Document | `SUPERSEDED` blocks | cites `SA_CORR2_09` | cites `RISK-C02` | cites *"element 15"* |
+|---|---:|---:|---:|---:|
+| `SA09` *(positive control — carries the correction)* | **1** | — | — | — |
+| `SA15` | **2** — and **neither touches `E2E-15`**; both correct the *other* scenarios' distribution | **0** | **0** | **0** |
+| **`SA17`** | **0** | **0** | **0** | **0** |
+
+> **`C4-07-F-03`. The one scenario the Pre-Test handoff baseline grades as its strongest established
+> area is the one the joint cross-proof grades `HOLD` with its enabling object absent — and the
+> correction that reconciles them exists on the upstream document and propagated to neither
+> consumer.** `SA17` carries **no supersession block at all**.
+>
+> **This is the programme's recorded *a revision log is not a correction* defect, and `SA15`'s own
+> header documents that exact defect class three lines above the uncorrected row** — *"CORR1's `CH-05`
+> corrected the §4 table and not the header that summarises it — the same revision-log defect the
+> package documents elsewhere."*
+>
+> **Consequence, and it is a safety consequence, not a tidiness one.** A Pre-Test Matrix built from
+> `SA17` would schedule `E2E-15` as low-risk and expect *"idempotent retry"* as its evidence.
+> **That evidence cannot be produced, and the test would return clean** — the estate's only carrier
+> admits unlimited empty values, so a uniqueness check over it passes on every row. **A clean result
+> from a control that cannot fail is the programme's recorded
+> *control-that-cannot-detect-its-own-failure* class, and this is where it would land.**
+
+**Correction owner: the `SA15`/`SA17` owner, as a Phase SA act.** Not corrected here — **this session
+does not overwrite another artefact's disposition**, and `SA15`/`SA17` are Phase SA baseline documents
+whose amendment is their owner's act. **Carried to the Boss Final Gate as the first item the Pre-Test
+Matrix must not inherit uncorrected.**
+
 ### 5.2 What must be tested **first**, and why that order
 
 **In dependency order, not effort order:**
