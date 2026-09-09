@@ -247,6 +247,62 @@ reference deployment's accident."*
 
 **`3 honoured · 4 unaddressed · 2 partial · 3 property-only · 1 name` = 13.** ✓
 
+### 5.2 `C4-01-F-07` — the document that would resolve `G2` is written, complete, and on one unmerged branch
+
+**Found while establishing whether `G2` needs a design act. It may not.**
+
+`origin/claude/state-03-architecture-deliverables-su8cg6`, head `098798f7`, dated **2026-07-14** and
+**not merged into `SMEsPlus`**, carries a complete architecture package in
+`03_Architecture/STATE03_ARCHITECTURE_ACCELERATION/`:
+
+| Measure | Result |
+|---|---:|
+| Files in that folder **on the branch** | **23** |
+| Of those, existing on **exactly one** of the 185 branches | **20** |
+| Existing on **`origin/SMEsPlus`** | **3** — `README`, `AI_OWNER_ASSIGNMENT_MATRIX`, `STATE03_EVIDENCE_REGISTER` |
+
+**The 20 stranded deliverables are `ARC-WP-001` … `ARC-WP-013`** and their supporting registers —
+including `IDENTITY_ACCESS_ARCHITECTURE` (`ARC-WP-009`), `TENANT_COMPANY_BRANCH_MODEL` (`-002`),
+`MULTI_TENANT_DATA_ISOLATION_OPTIONS` (`-008`), `ENTERPRISE_CONTROL_LAYER` (`-004`),
+`INTEGRATION_EVENT_ARCHITECTURE` (`-010`), `SUBSCRIPTION_ENTITLEMENT_MODEL` (`-003`), a package
+SHA-256 manifest, and an automated validator reporting `ALL CHECKS PASSED (13/13)`.
+
+**And the register that would point at them is on mainline, saying they do not exist:**
+
+| `STATE03_EVIDENCE_REGISTER.md` | `origin/SMEsPlus` (blob `9569ceb7`) | the deliverables branch (blob `90351835`) |
+|---|---|---|
+| `ARC-WP` rows | **14** | **14** |
+| Rows whose `GitHub Evidence Path` reads **`Pending`** | **13** | **0** |
+| Rows carrying a real evidence path | 1 — the register itself | **14** |
+
+> **`C4-01-F-07`. The canonical, default, publicly-readable branch carries an evidence register
+> declaring 13 architecture deliverables `Pending` and `NOT VERIFIED`. All 13 are written, manifested
+> and validator-checked on one branch that has been unmerged since 2026-07-14 — together with the
+> corrected register that names them.** Every consumer that reads mainline correctly concludes the
+> architecture does not exist.
+
+**What this changes for `G2`, precisely — and what it does not.** `G2` is the contradiction between a
+cross-tenant `Platform Operator` and `BR-TEN-001`/`BR-IAM-003`. `ARC-WP-009` §12.4 names
+`Platform Operator` as one of six standard roles, §12.6 requires privileged access to be *"time-bound,
+MFA-enforced and fully audited"*, §12.5 states *"no permission grants cross-tenant access"*, §16 that
+*"no role or token can widen scope beyond the assigned tenant"*, and §20 records `R-009-01`
+*"cross-tenant privilege escalation via mis-scoped role — Severity: Critical."*
+
+> **That is a candidate resolution to `G2`, and it is not a resolution.** `ARC-WP-009` is
+> **`Version 0.1 · DRAFT · Approval Status: PREPARED FOR INDEPENDENT REVIEW / HOLD · Gate Status: HOLD
+> · Verification Status: NOT VERIFIED`**, its named reviewer's review has **never occurred**, and it
+> **does not itself reconcile §12.4's Platform Operator with `BR-TEN-001`** — it simply never cites
+> `BR-TEN-001`. **The contradiction survives even if the branch were merged tomorrow.**
+>
+> **But the remediation changes shape: `G2` is not "design an identity model". It is "adjudicate an
+> identity model that was written two months ago, never reviewed, and is invisible from the branch
+> everyone reads."** That is a **PMO/governance act plus an independent review**, not a design act,
+> and it is a materially cheaper and more honest instruction than the one this file would otherwise
+> have carried.
+
+**Not escalated as new.** `C4-D-02` already carries `G2`; this finding **re-scopes it** and is folded
+into it rather than raising a second escalation for one subject.
+
 ---
 
 ## 6. Residual attack surface carried from the existing registers
@@ -301,13 +357,11 @@ The four that bear directly on this enumeration, verbatim:
    `FDS_TEMPLATE.md`.** The five I did not open — `FDS_APPROVAL`, `FDS_DIVISION`, `FDS_NOTIFICATION`,
    `FDS_ROLE_PERMISSION`, `FDS_SUBSCRIPTION_MODULE` — **are a declared, bounded residual and the first
    thing a challenger should sweep.**
-4. **`IDENTITY_ACCESS_ARCHITECTURE.md` (ARC-WP-009) is the only consolidated IAM design in existence
-   and it sits on 1 of 185 branches**, at version `0.1`, `DRAFT`, `NOT VERIFIED`, `Gate Status: HOLD`,
-   never independently reviewed. Its §12.6 (*privileged access time-bound, MFA-enforced, fully
-   audited*), §12.4 (six standard roles including Platform Operator) and §17 (break-glass audited)
-   **are the only statements in the corpus that would resolve `C4-01-F-05`** — and **nothing on
-   mainline, and no Phase SA artefact, cites it.** Whether it is adopted is not my act; **that it is
-   invisible where it is needed is the finding.**
+4. **`ARC-WP-009` and its 19 sibling deliverables are stranded — `C4-01-F-07`.** I read `ARC-WP-009`,
+   `TENANT_COMPANY_BRANCH_MODEL` and `INTEGRATION_EVENT_ARCHITECTURE` in full. **I did not read the
+   other 17**, and one of them — `ENTERPRISE_CONTROL_LAYER` (`ARC-WP-004`), which `ARC-WP-009` names as
+   the owner of SoD — is the most likely to bear on classes 1, 2 and 9. **A declared, bounded residual,
+   and the second thing a challenger should sweep after §8.3's five `FDS` files.**
 5. **My unit is the path class, and a class is a judgement.** Splitting class 4 from class 5, or
    merging 6 with 11, would change the counts without changing the evidence. **The counts are
    therefore not the result; the per-class context columns are.**
@@ -328,20 +382,21 @@ coverage, its context columns and its exact gap.
 | # | Gap | Class |
 |---:|---|---|
 | **G1** | **Four path classes have no stated execution context at all** — platform operator, service account, internal service-to-service, wallet/prepaid | 1, 6, 11, 13 |
-| **G2** | **The canonical baseline contradicts itself** on whether a cross-tenant actor may exist, and provides no authentication path for the one it specifies | 1 |
+| **G2** | **The canonical baseline contradicts itself** on whether a cross-tenant actor may exist, and provides no authentication path for the one it specifies. **`C4-01-F-07`: a candidate resolution is written and unmerged, and does not itself close the contradiction** | 1 |
 | **G3** | **The canonical audit record carries 1 of `MTI-D-02`'s 4 axes** — no `company_id` | 10 |
 | **G4** | **Break-glass is a name with no design**, assigned as a future responsibility of an unstaffed role | 3 |
 | **G5** | **A Boss-approved cross-tenant metering pipeline and four financial background processes are unintegrated** with the execution-boundary invariant family | 12, 13 |
 
 **No `TARGETED VERY DEEP RESEARCH` is required.** Every gap above is a **specification** gap over
 evidence that is present and has been read — not an evidence-acquisition problem. **`G1`, `G3` and `G5`
-are closable by SMEs Core design acts. `G2` is a contradiction inside a Boss-owned canonical baseline
-and is escalated as `C4-D-02`. `G4` has a named future owner and is a PMO staffing item.**
+are closable by SMEs Core design acts. **`G2` is escalated as `C4-D-02`, and `C4-01-F-07` re-scopes it
+from a design act to a governance act plus an independent review.** `G4` has a named future owner and
+is a PMO staffing item.**
 
 ## 10. Checkpoint
 
 > ## `CP-SA-C4-10 — PRIVILEGED BYPASS ENUMERATED`
-> **13 path classes · 5 bounded gaps · 6 findings (`C4-01-F-01` … `-F-06`) · 2 instrument findings
+> **13 path classes · 5 bounded gaps · 7 findings (`C4-01-F-01` … `-F-07`) · 2 instrument findings
 > (`C4-I-01`, `C4-I-05`) · 1 escalation (`C4-D-02`).**
 > **`MTI-18`'s enumeration dependency is discharged. `MTI-18` is not proven and cannot be at Phase SA.**
 > **0 vetoes discharged. 0 invariants proven.**
