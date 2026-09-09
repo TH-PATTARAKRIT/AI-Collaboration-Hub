@@ -1,93 +1,93 @@
 # PHASE SA SMEs CORE — AUTO RESUME STATE
 
-Session / Continuation ID: `[SMEPLUS-26-09-10-ACC-PHASE-SA-SMECORE-CONT-001]`  
-Scope: **ACCOUNT PHASE SA ONLY**  
-Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`  
-Branch: `architecture/phase-sa-smes-core-final-scrub-2026-09-10-001`  
-Parent Final Boss Gate commit: `9d5bc2db4a6b62c4cd01a04388b5bad23e6f5306`
+Session / Continuation ID: `[SMEPLUS-26-09-10-ACC-PHASE-SA-SMECORE-CONT-001]`
+Scope: **ACCOUNT PHASE SA ONLY**
+Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`
+Branch: `architecture/phase-sa-smes-core-final-scrub-2026-09-10-001`
+Parent Final Boss Gate: `9d5bc2db4a6b62c4cd01a04388b5bad23e6f5306`
+Prior SC head consumed by this round: `25f727a956177097f41e21dcadf259590f210687`
+**Checkpoint completion is NOT Boss approval.**
 
-## Current authoritative state
+---
 
-`CP-SA-SC-00` through `CP-SA-SC-70` are executed and published.  
-Post-publication `SC-07` reconciliation is published at `c4949ec6bcb608ccc6a9b4dcb1a6fb5a400786ac`.
+## 1. Terminal state
 
-`SC-07` established, after primary-source verification:
+# `TERMINAL A — READY FOR BOSS PHASE SA FINAL DECISION`
 
-- `AR-F-01` CONFIRMED,
-- `AR-F-02` CONFIRMED,
-- decision population corrected `26 -> 24 -> 23`,
-- `F5 = 6`,
-- `F3` bounded verification complete,
-- `C2-D-02` closed,
-- 8/8 SMT family dispositions complete,
-- Reading A for `SMEPLUS-DR-EXIT-8C-001` narrowed to three contested clauses and no Phase SA precedent.
+Qualified at `SC-10` §13.1: it asserts the pack is ready for Boss's decision **and nothing else**.
+Not Phase SA closure · not an answer to `FG-F-06` · not structural independence · not Pre-Test
+authorisation · not a gate declared passed.
 
-## Boss routing ruling — CLOSED
+## 2. NEXT EXACT ACTION
 
-`BOSS-ROUTE-01 = CLOSED`
+**Await Boss's rulings on `SC-10` §11.**
 
-Boss ruled:
+> **If `FG-F-06 = READING A`, the correct first response is `B-7` alone** — appoint the
+> `Q-BOSS-02`-eligible independent challenger **before** ruling the 23 decisions, because `EC-07` is then
+> unsatisfied (`0 of 2`) and the decisions would be ruled inside a failed gate. **No amount of further
+> SMEs Core work can satisfy `EC-07`.**
 
-> **ROUTE = SC**
+Do **not** auto-continue. A separate post-decision prompt must consume Boss's explicit rulings.
 
-AR remains mandatory intake/evidence lineage:
+## 3. Checkpoint ladder
 
-- `afe664c6`
-- `b1f07939`
-- `AR-F-01`
-- `AR-F-02`
+| Checkpoint | Status |
+|---|---|
+| `CP-SA-SC-00` … `CP-SA-SC-70` | `CLOSED` at `2139088b` / `c4949ec6` — **not re-run this round** |
+| `CP-SA-SC-80` Boss route propagated, AR intake verified | **`CLOSED`** — `SC-08` |
+| `CP-SA-SC-90` `FG-F-06` re-check + SMT disposition | **`CLOSED`** — `SC-09` |
+| `CP-SA-SC-100` Boss Final Gate Delta Pack V2 | **`PUBLISHED — PENDING BOSS`** — `SC-10` |
+| `CP-SA-SC-FINAL2` | **`READY FOR BOSS PHASE SA FINAL DECISION`** |
 
-AR is not the canonical final pack. The SC continuation is canonical for this Phase SA closure line.
-Do not ask the routing question again absent material delta.
+## 4. Controlling figures — re-derived, not inherited
 
-## Immediate next executable checkpoint
+**23** Boss decisions in 8 families (`F5` = **6**), **5** acts, **1** scope clarification ·
+**6** vetoes in force, **0** discharged, **0** self-discharged · **Category 3 = 0** (SMEs Core 0, PMO 0,
+document owner 0) · structurally independent passes **0** · `EC-07` = **`0 of 2` if Reading A** ·
+targeted Very Deep Research re-entry **none required**.
 
-Start at:
+## 5. This round's findings
 
-`CP-SA-SC-80 — BOSS ROUTE RULING PROPAGATED AND FINAL AUTHORITY DELTA VERIFIED`
+`SC-F06-01` §2.4's referent is the step **§5 schedules at State level** — the same sequence-position test
+`SC-04` already applied to §2.3 and §5; survives on an **intent** reading only ·
+`SC-F06-02` §6 makes Boss designation the **antecedent** of the `/L99999.99999` label, so the label cannot
+prove the designation (`SC-V-01`: **0** hits, control **19**) ·
+`SC-F06-03` *phase* occurs **once** in the 257-line constitution, and §11's project-wide restatement says
+**STATE**.
 
-Authoritative Next Prompt:
+**All three narrow Reading A; none changes the disposition, which is
+`BOSS-ONLY SCOPE CLARIFICATION` either way.** The direction is declared and counter-tested at `SC-09` §6.
 
-`02_SMEPLUS_PHASE_SA_SMES_CORE_FINAL_AUTHORITY_DELTA_PROMPT.md`
+## 6. Frozen carry-forward — do not reset
 
-Execution is DELTA ONLY:
+`BOSS-ROUTE-01` **CLOSED — `ROUTE = SC`; AR = mandatory intake/evidence lineage** — not re-askable ·
+AR lineage `afe664c6` · `b1f07939` · `AR-F-01` (**23**, `F5` = 6 — never re-introduce **26** or **25**) ·
+`AR-F-02` (`SA_CORR3_07` applies **§9**, not §4 and not `EC-07` — the ground stays **withdrawn**) ·
+`BD-ACC-01`/`-02`/`-03A`/`-03B`, `MTI-D-01`/`-02`/`-03`, `Q-BOSS-02`, `BD-02`, `BD-04` **not re-askable** ·
+`C2-D-02` **closed** · `F3` dissent **resolved — upheld** · `E2E-04` re-grade **withdrawn** ·
+Phase S **conditionally closed**; targeted re-entry only, never a reset · Clean Room 100% ·
+`smeplus_*` namespace · **source is evidence, not design**.
 
-1. publish `SC-08_BOSS_ROUTE_RESOLUTION_AND_AR_INTAKE.md`,
-2. perform targeted corrected `FG-F-06` scope re-check + SMT disposition,
-3. publish `SC-09_FG_F06_FINAL_SCOPE_RECHECK.md`,
-4. publish `SC-10_BOSS_FINAL_GATE_DELTA_PACK_V2.md`,
-5. refresh manifest/readback and this auto-resume state,
-6. stop at `CP-SA-SC-FINAL2` if team authority is exhausted.
+## 7. Instrument controls in force
 
-Do not rerun SC-00 through SC-07 wholesale.
+Two-shape validation is **mandatory** for every load-bearing count, population, absence claim and
+ancestry/inclusion claim. Every zero needs a **positive control**. `git show --stat` abbreviates paths —
+use `--name-only`. Declare a count's **unit** on the same line as the number. Never read a labelled sweep
+whose labels are missing from some rows — re-run it in a different shape.
+A branch sweep across all ~190 remote refs **times out**; narrow the path set before sweeping.
 
-## Current gate posture
+## 8. Acts taken outside the package
 
-Phase SA remains **NOT CLOSED BY BOSS**.  
-Pre-Test Matrix is **NOT AUTHORIZED TO START**.  
-Functional Design is **NOT AUTHORIZED TO START**.  
-No implementation / merge / release / deployment / Production authorization exists.
+**None.** Nothing pushed to `SMEsPlus`. **Nothing written to the AR branch.** No AR artefact modified.
+`SC-01`, `SC-04`, `SC-06`, `SC-07` **unmodified** — prompt §4.2 forbids rewriting files whose checks pass.
+No veto discharged. No family reopened. No `PASS` declared.
 
-The remaining `FG-F-06` issue is a scope clarification of a Boss-approved constitution if, after the corrected SMT/authority re-check, no team-owned material evidence gap remains.
+## 9. Authority boundary
 
-## Frozen principles
+**NOT authorized:** answering `FG-F-06` · Pre-Test Matrix · Functional Design · physical DB/API/UI design ·
+application code · merge/release/deploy · Production · Final `PASS` · any Boss approval · discharging any
+veto · claiming structural independence · selecting this session's own challenger · self-closing Phase SA ·
+re-asking `BOSS-ROUTE-01` · switching the canonical route away from SC.
 
-- Phase S remains **conditionally closed**.
-- Clean Room 100%.
-- `SOURCE IS EVIDENCE, NOT DESIGN.`
-- `LEARN BEHAVIOR, NOT STRUCTURE.`
-- `TRANSFER BUSINESS MEANING, NOT APPLICATION ARCHITECTURE.`
-- SMEsPlus-owned persistent business tables use `smeplus_*`.
-- `BD-ACC-01`, `BD-ACC-02`, `BD-ACC-03A`, `BD-ACC-03B` are not re-askable absent material delta.
-- Boss must not be the first detector.
-- SMEs Core executes; SMT challenges first-line; Boss receives only genuinely Boss-owned decisions.
-- Boss is the sole Final Approver.
-
-## Stop boundary
-
-Do not start Pre-Test Matrix execution, Functional Design, physical DB/API/UI implementation design, application code, merge, release, deployment or Production.
-Do not self-discharge vetoes. Do not claim structural independent assurance. Do not self-close Phase SA.
-
-No Evidence = No Progress.  
-Never Skip Gate.  
-Exhaust Team Authority Before Boss Escalation.
+No Evidence = No Progress. Never Skip Gate. Exhaust Team Authority Before Boss Escalation.
+SMT must detect first. Boss is the sole Final Approver.
