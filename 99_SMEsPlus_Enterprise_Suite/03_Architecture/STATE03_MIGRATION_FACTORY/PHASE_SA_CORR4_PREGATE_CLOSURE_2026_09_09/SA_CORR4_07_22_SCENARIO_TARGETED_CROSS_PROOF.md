@@ -148,8 +148,14 @@ conflated with its population.
 ### 5.1 The three prohibitions the Pre-Test Matrix must carry verbatim
 
 1. **Nothing may be read as testing tenant isolation until an implementation exists.** `0 of 8`
-   isolation proofs, `0 of 52` negative access tests, `0 of 13` enforcement surfaces — *"because no
+   isolation proofs, `0 of 13` enforcement surfaces, and `0 of 52` negative access tests — *"because no
    implementation exists."*
+   **The unit of that last figure, stated exactly, because it is routinely quoted without it:** the
+   negative-access specification's own status line is `52 REJECTION CELLS + 8 SUBSTITUTION TESTS =
+   60 NEGATIVE CASES — 0 EXECUTABLE — 0 EXECUTED`. **`52` is the rejection-matrix half; the full
+   negative set is `60`, and the eight substitution tests `S-01`…`S-08` — the four-axis tests, run in
+   both directions on each adjacent pair — are the half that tests `CF-I-01`'s no-axis-substitutes
+   rule.** Both halves are at zero.
 2. **Nothing may be read as testing idempotency.** The carrier is *"table-global rather than
    tenant-scoped"*, and `0 of 13,814` rows in the production-scale database carry a deduplication key.
    **A test over that population returns clean and means nothing** — the programme's recorded
