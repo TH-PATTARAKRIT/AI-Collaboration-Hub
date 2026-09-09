@@ -62,7 +62,7 @@ Reproduced from the parent commit's own rows, not from a summary line.
 | Delta | Measurement | Bearing |
 |---|---|---|
 | Branch population 187 → **188** | three shapes | This session's control branch. No other branch created or deleted |
-| `origin/SMEsPlus` `27717bde` → **`784f60a2`** | `git log 27717bde..origin/SMEsPlus` | **one commit, one added file**: the `ERPPLUS-152` Core Resource Governance **new session prompt**. Not a Boss ruling — it is a session commissioning document whose own §0 records *"Final Approver: Boss only"* and *"Build / Team C / production authorization: NOT GRANTED"*. It mentions Phase SA **0** times |
+| `origin/SMEsPlus` `27717bde` → **`28de295d`** | `git log 27717bde..origin/SMEsPlus`, re-run at publication | **six commits, six added files**, all `ERPPLUS-152` Core Resource Governance: the new-session prompt and five `G0` registers. Not Boss rulings — the prompt's §0 records *"Final Approver: Boss only"*, *"Build / Team C / production authorization: NOT GRANTED"*, and it mentions Phase SA **0** times. **A first draft of this row said "one commit, one file" and was stale when written** (`CHF-16`) |
 | Compliance split | two shapes | `188 / 5 / 183 / 0` — §3 of `SA_FINAL_00` |
 | PR #63 | `gh` | still `OPEN` — `SA_FINAL_00` |
 | CORR5 package content | manifest | unchanged, 21 of 21 |
@@ -96,28 +96,41 @@ document register. The residual is therefore bounded, not open-ended.
 | `SA_CORR3_02` §12 row | Proposed by CORR3 | Applied by CORR4? | Applied by CORR5? | Applied here |
 |---|---|:---:|:---:|---|
 | `SA05` `BN-07` Kit / bundle → **`DETERMINED`** (*"the components carry the cost; the parent is not a valued object"*) | yes | no | no | **YES** — `SA_FINAL_04` §4 |
-| **`SA15` `E2E-07` → `TRAVERSABLE`** — *"both stated blockers now closed"* | yes | no | **no** — CORR5's controlled `SA15` still reads `NOT TRAVERSABLE` | **YES** |
+| **`SA15` `E2E-07` → `TRAVERSABLE`** — *"both stated blockers now closed"* | yes | no | **partly — and this is the correction to `FG-F-01`** (`CHF-05`): CORR5 **did** read `SA_CORR3_02`, applied its **costing-level** consequence by name, and **deliberately retained** the resolution-point blocker with a stated reason | **YES — as a reversal of a reasoned prior position, not the application of an overlooked one** |
 | `SA_CORR2_02` §3.4 `BN-07` residual → **`RESOLVED — NO BOSS DECISION REQUIRED`** | yes | no | no | **YES** — removes a Boss item that was never on the CORR5 list but was live in CORR2's register |
-| `SA_CORR2_06` `AR-25` → `RECONCILED` | yes | no | no | recorded, **non-material** — changes no dimension cell (row 18 cites `AR-26`) |
+| `SA_CORR2_06` `AR-25` → `RECONCILED` | yes | no | no | **applied** — `AR-25` is one of `E2E-07`'s three named blockers in the row this session re-grades, so it is **material to the E2E register** even though it changes no 22-scenario dimension cell (`CHF-17`: a first draft tested materiality only against the 22-scenario table and not against the register this session actually changed) |
 | `SA_CORR2_04` row 11 → `ADVANCED — DE-ESCALATED` (valuation half only) | yes | no | no | recorded, non-material |
 | `CORR-007B` §11 gaps 1–3 → `SUPERSEDED — EVIDENCE-BACKED` | yes | no | no | recorded, non-material (peer package) |
 | P01's kit-control re-run recommendation → `DISCHARGED` | yes | no | no | recorded, non-material (peer package) |
 | `C2-D-03` classification `D` → `A`, resolved | yes | **yes** | yes | already applied |
 
-**And the second instance, found by the same test applied to `E2E-04`:** CORR5's controlled `SA15`
-grades `E2E-04` `NOT TRAVERSABLE` on *"shortage→purchase trigger undetermined (`BN-04`, `TVDR-01`)"*.
-`SA_CORR2_03` re-graded **`BN-04` to `PARTIAL`** with the trigger evidenced, and `SA_CORR3_08`
-`XMC-F-03` established that the SMEsPlus-owned functional design carries the routing for `BN-04` under
-its own vocabulary — *"buy-on-reorder-point; **make-or-buy on demand**; … and the system resolves the
-movement chain from that choice"*. **The trigger is not undetermined. What remains is `C2-D-01`, a
-Boss confirmation of a stated design position** (*"Hard trigger, soft binding — Inventory does not know
-who will respond"*).
+**A second instance was attempted on `E2E-04` and this session's own challenge falsified it** (`CHF-02`,
+`CHF-03`, `CHF-04`). Three defects in one attempted re-grade, all recorded rather than quietly dropped:
 
-> **Class: the programme's recorded *a revision log is not a correction* / *stranded work* defect, at
-> its fourth consecutive occurrence, and this time inside the artefact that hands work to Pre-Test.**
-> CORR5 corrected `SA15`/`SA17` for the CORR2 consequences and for `E2E-15`; it did not sweep for the
-> CORR3 consequences. **Both instances are applied in this package** (`SA15`/`SA17` controlled **v2**),
-> and the effect is stated at `SA_FINAL_04`: **`NOT TRAVERSABLE` falls from 2 to 0.**
+1. **Wrong basis.** `SA_CORR3_02` §12 contains **no `E2E-04` row** (`git grep -c 'E2E-04'` over that file
+   → **0**). The re-grade was **originated by this session** and presented under a three-round-old
+   table's authority.
+2. **Wrong citation.** The *"Hard trigger, soft binding"* text is `SA_CORR2_02` §3.1, **not**
+   `SA_CORR2_03` §3.1 — a one-digit error that survives casual checking because the wrongly-cited
+   section supports a *different* re-grade (`E2E-08`).
+3. **A suppressed second clause, and it decides the grade.** The source sentence continues: *"…and the
+   target manufacturing state machine's shortage state exits **only on reservation completing, never on
+   procurement being raised.** A shortage can therefore be entered and never left by supply."* The same
+   register's §5 restates it as *"soft fulfiller binding, **and a shortage state with no supply exit**"*.
+   **`E2E-04` therefore remains `NOT TRAVERSABLE`**, and the routing *template* `XMC-F-03` supplies is a
+   different object from the state-machine *exit*.
+
+> **This is the programme's recorded *unmeasured second clause* defect, committed by this session, in
+> the file whose subject is other rounds failing to apply what they read.** It is left on the record in
+> full.
+
+> **Class, corrected by this session's own challenge (`CHF-05`):** for `E2E-07` this is a **reversal of a
+> reasoned prior position** — CORR5 read `SA_CORR3_02`, applied its costing-level consequence by name and
+> deliberately retained the resolution-point blocker; this session holds that the retained half was wrong
+> on `SA_CORR2_05` §4's evidence (*"components move, the kit does not. `IR-12` is `RECONCILED`"*), and
+> **Boss is therefore being asked to overrule a stated reason, not to notice an oversight.** For the six
+> other unapplied rows the *stranded work* class does hold. **The effect, corrected: `NOT TRAVERSABLE`
+> falls from 2 to 1** — `E2E-07` closes and `E2E-04` is retained (`SA_FINAL_04` §3).
 
 ---
 

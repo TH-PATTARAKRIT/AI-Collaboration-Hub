@@ -8,11 +8,11 @@
 > marks. Authority: `SA_FINAL_01` §5 (`FG-F-01`), master prompt §3 and §6.
 
 Status: **HOLD** — 15 mandated scenarios plus 3 added; **2** traversable end-to-end with no named break
-(E2E-02, E2E-07), **16** with a named break, **0** not traversable.
-`[FG]` *`E2E-07` → `TRAVERSABLE` and `E2E-04` → `TRAVERSABLE WITH NAMED BREAK`. Basis: `SA_CORR3_02` §12,
-a consequences table stated **"for their owners, not applied here"** three rounds ago and never applied —
-plus `SA_CORR2_03` §3.1 and `SA_CORR3_08` `XMC-F-03`. **No scenario in this register is now
-`NOT TRAVERSABLE`.***
+(E2E-02, E2E-07), **15** with a named break, **1** not traversable (E2E-04).
+`[FG]` *One re-grade is applied and one attempted re-grade is **withdrawn by this session's own challenge**:
+`E2E-07` → `TRAVERSABLE` (basis `SA_CORR3_02` §12, a consequences table stated "for their owners" and only
+partly applied by CORR5); `E2E-04` **remains `NOT TRAVERSABLE`** — a first draft of this file re-graded it
+and suppressed the second clause of its own source sentence (`CHF-03`). See §2.*
 
 ---
 
@@ -34,8 +34,8 @@ scenarios are `VERIFIED`, and no scenario here is verified.
 
 | Scenario | Was (CORR5 controlled) | **Now** | Basis, at primary text |
 |---|---|---|---|
-| **`E2E-07`** Kit / bundle | `NOT TRAVERSABLE` — *"component resolution point and costing level undetermined (BN-07, IR-12, AR-25)"* | **`TRAVERSABLE`** | `SA_CORR3_02` §12 proposes exactly this — **`SA15` `E2E-07`: `NOT TRAVERSABLE` → `TRAVERSABLE` — "both stated blockers now closed"**. Blocker 1, costing level: resolved by `SA_CORR3_02` (`C2-D-03` → **`A`, resolved, 0 Boss decisions**; *"the components carry the cost; the parent is not a valued object"*). Blocker 2, resolution point: `SA_CORR2_05` re-grades **`IR-12` → `RECONCILED — RESOLUTION POINT DETERMINED`**. `SA05` `BN-07` → **`DETERMINED`**; `SA_CORR2_02` §3.4 `BN-07` residual → **`RESOLVED — NO BOSS DECISION REQUIRED`** |
-| **`E2E-04`** Sales → Manufacture → RM shortage → Purchase → Production → Delivery | `NOT TRAVERSABLE` — *"shortage→purchase trigger undetermined (BN-04, TVDR-01)"* | **`TRAVERSABLE WITH NAMED BREAK`** | The trigger is **not** undetermined. `SA_CORR2_03` §3.1 re-grades **`BN-04` → `PARTIAL`** with ownership `FACT VERIFIED` and the reservation interaction evidenced; `SA_CORR3_08` `XMC-F-03` shows the SMEsPlus-owned functional design carries the routing under its own vocabulary — *"buy-on-reorder-point; **make-or-buy on demand**; … and the system resolves the movement chain from that choice"*. **The named break is `C2-D-01`** — Boss confirmation of the stated soft-binding position (`F4`) |
+| **`E2E-07`** Kit / bundle | `NOT TRAVERSABLE` — CORR5's controlled row reads *"costing level **resolved at `SA_CORR3_02`** (`C2-D-03`: 0 Boss decisions); the **resolution point** (`BN-07`, `IR-12`) remains the unrouted hop"*. **CORR5 read `SA_CORR3_02` and applied half of it, retaining the resolution-point blocker with a stated reason** (`CHF-05`) | **`TRAVERSABLE`** | **This is a reversal of a reasoned prior position, not the application of an overlooked one.** `SA_CORR3_02` §12 proposes exactly this — **`SA15` `E2E-07`: `NOT TRAVERSABLE` → `TRAVERSABLE` — "both stated blockers now closed"**. Blocker 1, costing level: resolved by `SA_CORR3_02` (`C2-D-03` → **`A`, resolved, 0 Boss decisions**; *"the components carry the cost; the parent is not a valued object"*). Blocker 2, resolution point: `SA_CORR2_05` re-grades **`IR-12` → `RECONCILED — RESOLUTION POINT DETERMINED`**. `SA05` `BN-07` → **`DETERMINED`**; `SA_CORR2_02` §3.4 `BN-07` residual → **`RESOLVED — NO BOSS DECISION REQUIRED`** |
+| **`E2E-04`** Sales → Manufacture → RM shortage → Purchase → Production → Delivery | `NOT TRAVERSABLE` — *"shortage→purchase trigger undetermined (`BN-04`, `TVDR-01`)"* | **`NOT TRAVERSABLE` — RETAINED, on a corrected ground** | **A first draft of this file re-graded this row and was falsified by its own source** (`CHF-03`). `SA_CORR2_02` §3.1 (**not** `SA_CORR2_03`, `CHF-04`) re-grades `BN-04` → **`PARTIAL`** and `XMC-F-03` shows the routing *template* exists (*"make-or-buy on demand"*) — **but the same source sentence continues:** *"the target manufacturing state machine's shortage state exits **only on reservation completing, never on procurement being raised.** **A shortage can therefore be entered and never left by supply.**"* §5 of that register restates it: *"soft fulfiller binding, **and a shortage state with no supply exit**"*. **On this register's own definition — *at least one hop cannot be routed at all on current evidence* — the shortage→supply hop is unrouted.** The break is `C2-D-01` **and** the missing supply exit, which CORR2 raised together in one cell as one decision. **`TVDR-01` is not a live blocker: CORR2 closed it** |
 
 > **Why this was missed for three rounds.** `SA_CORR3_02` §12 is headed *"Consequences carried to other
 > registers — **stated for their owners, not applied here**"*. CORR4 did not sweep it; CORR5 swept the
@@ -52,7 +52,7 @@ scenarios are `VERIFIED`, and no scenario here is verified.
 | E2E-01 | Customer → Sales → Stock → Delivery → AR → Payment → Bank → Accounting | `WITH NAMED BREAK` | price/credit → Boss `F2` (`TV6-BOSS-01`) and `TV6-BOSS-02`; cancellation gate → Boss `F2` (`XD1-P1`) |
 | E2E-02 | Purchase demand → Purchase → Receipt → AP → Payment → Bank → Accounting | **`TRAVERSABLE`** | approval internal logic open (A2); the flow routes |
 | E2E-03 | Sales → Manufacture → RM → Production → FG → Delivery → AR → Accounting | `WITH NAMED BREAK` | BOM/routing semantics thin; overhead → Boss `F5` |
-| **E2E-04** | Sales → Manufacture → RM shortage → Purchase → Receipt → Production → Delivery | **`WITH NAMED BREAK`** `[FG]` | *was `NOT TRAVERSABLE`.* Routing determined (`XMC-F-03`, *make-or-buy on demand*); `BN-04` `PARTIAL`. **Named break: `C2-D-01`, Boss confirmation of soft binding** (`F4`) |
+| **E2E-04** | Sales → Manufacture → RM shortage → Purchase → Receipt → Production → Delivery | **`NOT TRAVERSABLE`** | **Retained.** The routing *template* is determined (`XMC-F-03`, *make-or-buy on demand*) and `BN-04` is `PARTIAL` (`SA_CORR2_02` §3.1) — **but the same source sentence continues that the target manufacturing state machine's shortage state exits *"only on reservation completing, never on procurement being raised. A shortage can therefore be entered and never left by supply."*** The shortage→supply hop is unrouted. **Two-clause break: `C2-D-01` (soft-vs-hard binding) and the missing procurement exit — CORR2 raised both in one cell as one decision (`F4`).** `TVDR-01` is **not** a live blocker; CORR2 closed it. *A first draft of this file re-graded this row to `WITH NAMED BREAK` and suppressed the second clause; withdrawn by `CHF-03`* |
 | E2E-05 | Sales → Dropship → Purchase → Vendor-to-customer → AR/AP → Accounting | `WITH NAMED BREAK` `[CORR5]` | `H-02` movement→valuation hop `SEMANTICALLY INCOMPATIBLE — MEASURED`; `H-03` cost→revenue `NO IDENTITY`; Boss `F3` |
 | E2E-06 | Sales → MTO/Buy → Purchase → Receipt → Delivery → Accounting | `WITH NAMED BREAK` | order→purchase linkage and reservation semantics (`BN-06`) |
 | **E2E-07** | Sales → Kit → Component inventory → Delivery → Accounting | **`TRAVERSABLE`** `[FG]` | *was `NOT TRAVERSABLE`.* **Both stated blockers closed** — components carry the cost, the parent is not a valued object; resolution point `RECONCILED`. **No Boss decision required** |
@@ -73,20 +73,28 @@ scenarios are `VERIFIED`, and no scenario here is verified.
 | Class | Scenarios (enumerated) | Count |
 |---|---|---|
 | `TRAVERSABLE` | E2E-02, E2E-07 | **2** |
-| `TRAVERSABLE WITH NAMED BREAK` | E2E-01, E2E-03, E2E-04, E2E-05, E2E-06, E2E-08, E2E-09, E2E-10, E2E-11, E2E-12, E2E-13, E2E-14, E2E-15, E2E-16, E2E-17, E2E-18 | **16** |
-| `NOT TRAVERSABLE` | — | **0** |
+| `TRAVERSABLE WITH NAMED BREAK` | E2E-01, E2E-03, E2E-05, E2E-06, E2E-08, E2E-09, E2E-10, E2E-11, E2E-12, E2E-13, E2E-14, E2E-15, E2E-16, E2E-17, E2E-18 | **15** |
+| `NOT TRAVERSABLE` | E2E-04 | **1** |
 | **Total** | 15 mandated + 3 added | **18** |
 
-Check: **2 + 16 + 0 = 18**, and every identifier `E2E-01`…`E2E-18` appears exactly once above.
+Check: **2 + 15 + 1 = 18**, and every identifier `E2E-01`…`E2E-18` appears exactly once above.
+
+**Instrument note.** Counting `NOT TRAVERSABLE` by whole-file grep returns false positives from the
+*"was `NOT TRAVERSABLE`"* annotations; the tally above is derived from the **class column only**, on a
+second command shape. The counting-command-validation rule held again.
 
 ## 5. `SA15-F-01` — corrected again, and the finding is now sharper
 
 `[FG]` **Two scenarios traverse without a named break: `E2E-02` (purchase-to-pay) and `E2E-07`
-(kit/bundle). Neither is a forward sale.** Every remaining scenario carries a named break, and **eleven
-of the sixteen breaks are now a Boss election rather than a specification gap** (`E2E-01`, `-03`, `-04`,
-`-05`, `-11`, `-12`, `-13`, `-14`, `-17` and, for its severity, `-15`). **The register has moved from
-"the system cannot be shown to sell" to "the system's remaining ambiguity is policy, not design"** —
-which is the shape a phase should be in when it reaches a Final Gate.
+(kit/bundle). Neither is a forward sale.** Of the fifteen named breaks, **eight are a Boss election
+rather than a specification gap** — `E2E-01`, `-03`, `-05`, `-11`, `-12`, `-13`, `-17`, and `-15` for its
+severity — enumerated, not asserted (`CHF-12`). **`E2E-14`'s break is three `PARTIAL` items and statutory
+register content, not a Boss election** (`CHF-10`). And `E2E-04` remains untraversable on a structural
+ground its own source states.
+
+> **The honest movement is smaller than a first draft of this file claimed and it is still real: the
+> register goes from two untraversable scenarios to one, and the one that moved (`E2E-07`) moved all the
+> way to `TRAVERSABLE` with no Boss decision attached.**
 
 ## 6. `SA15-F-02` — unchanged
 
@@ -101,7 +109,7 @@ built.
 
 ---
 
-`SA15 — HOLD`. Two of eighteen end-to-end scenarios traverse without a named break; **none is
-untraversable**. **Zero are verified.**
+`SA15 — HOLD`. Two of eighteen end-to-end scenarios traverse without a named break; **one remains
+untraversable** (`E2E-04`, Boss-gated on `C2-D-01`). **Zero are verified.**
 
 Boss remains the sole Final Approver.

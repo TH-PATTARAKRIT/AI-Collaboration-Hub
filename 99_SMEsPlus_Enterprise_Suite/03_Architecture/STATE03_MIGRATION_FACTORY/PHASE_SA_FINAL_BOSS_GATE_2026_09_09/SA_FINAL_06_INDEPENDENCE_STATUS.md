@@ -13,8 +13,16 @@ Boss: **SOLE FINAL APPROVER**
 
 **Re-tested this session, not inherited.** `INDEPENDENT_REVIEW/` and `CHATGPT_AUDIT/` on `origin/SMEsPlus`
 contain reviews of the Accounting Core and Group A packages; **`0` of their files cite any Phase SA
-identifier** (`SA_CORR*`, `SA0*`, `SA1*`, `SA20`). No appointment has been made since CORR5 — the only
-mainline commit in the interval adds the `ERPPLUS-152` session prompt.
+identifier** (`SA_CORR*`, `SA0*`, `SA1*`, `SA20`). No appointment has been made since CORR5.
+
+### 2.1 A new "Independent Adversarial Challenge Report" landed on mainline — and it is not this one
+
+`ERPPLUS-152` published `06_G0_INDEPENDENT_ADVERSARIAL_CHALLENGE_REPORT.md` (`28de295d`). Stated
+factually and without adjudicating a peer session's governance: its **Review Scope is *"Parent baseline
+reconciliation only"*** for that session's own `G0`; it **covers no Phase SA artefact**; and it **does not
+cite `Q-BOSS-02`** or state model/agent separation. **It therefore changes nothing about Phase SA's
+independence status**, and it is recorded here so that a reader who sees the words *Independent
+Adversarial Challenge Report* on mainline does not take it for one.
 
 ---
 
@@ -53,7 +61,9 @@ Phase S closure instrument. It does not, by its own terms, gate Phase SA or Pre-
 ### 3.2 `SMEPLUS-DR-EXIT-8C-001` — **may**, and nobody has ever asked
 
 > **`FG-F-06` — a `BOSS APPROVED / PROJECT-WIDE MANDATORY` constitution with an exit rule that may bind
-> this very gate has never been cited by a single Phase SA artefact.**
+> this very gate has been cited by exactly one Phase SA artefact, which applied it to grade a Phase SA
+> package `PROVISIONAL / NON-CANONICAL` — and no Phase SA round has ever tested itself against its eight
+> criteria.**
 
 `SMEPLUS_VERY_DEEP_RESEARCH_8_CRITERIA_UNIVERSAL_EXIT_CONSTITUTION.md` — Constitution ID
 `SMEPLUS-DR-EXIT-8C-001`, **Status `BOSS APPROVED / PROJECT-WIDE MANDATORY`, Effective `2026-09-04`,
@@ -67,17 +77,36 @@ Scope `ALL MODULES / ALL STATES / ALL FUTURE VERY DEEP RESEARCH`, Research Depth
   finding class · new gating unknown · reopened tolerance-zero issue · new Gate-changing contradiction ·
   evidence-integrity failure."*
 
-**Measured:** the constitution is cited by the P01 and P05 Phase-S research packages. **It is cited by
-`0` Phase SA artefacts** — not by `SA00`…`SA20`, not by CORR1, CORR2, CORR3, CORR4 or CORR5, and not by
-any prior Boss Final Gate Pack. **Meanwhile every Phase SA master prompt, including this one, carries
-the control label `/L99999.99999`, which §6 of that constitution defines as the Very Deep Research
-operating depth.**
+**Measured, and a first draft of this section got it wrong** (`CHF-06`). Searching the constitution's
+**identifier** (`SMEPLUS-DR-EXIT-8C-001`) over all 188 heads returns **0** Phase SA hits; searching its
+**plain-language name** returns **1** — `SA_CORR3_07_INVARIANT_PROOF_REGISTER.md` §2.5:
+
+> *"`CF-V-01`, `CF-V-02` — **6 in force, 0 discharged.** **Under the 8-Criteria Exit Constitution the
+> whole conformance package is `PROVISIONAL / NON-CANONICAL`.** Nothing below alters any of these."*
+
+**That is a substantive application, not a passing mention: a Phase SA round used this constitution to
+grade a Phase SA package.** The corrected claim is therefore **"cited by 1 Phase SA artefact, and no
+Phase SA round has tested itself against the eight criteria"** — which is a weaker novelty claim and a
+**stronger** ground for Reading A. *(The defect is the programme's own declared-pattern-not-run class: an
+identifier-width pattern used to prove a claim about a concept. It is recorded because it occurred in
+the file that grades `EC-06` — see §3.2's self-assessment.)*
+
+**The citing population, corrected** (`CHF-07`): the constitution is carried and cited by **ten** Account
+research packages — `P01` through `P10`, including dedicated instruments such as `59_P05_EC07_CLEAN_PASS_
+REGISTER.md`, `31_P10_EC_RECONCILIATION.md` and `20_P10_FINAL_GATE_REPORT.md` — and by at least one
+Inventory design programme. **56 branch heads carry a citation.** It is the routine exit instrument of
+every Account Phase-S programme; **Phase SA is the exception.** Describing it as *"cited by P01 and P05"*
+made Phase SA's non-use look like a local oversight rather than the sole exception, which is the framing
+that favours Reading B.
+
+**Meanwhile every Phase SA master prompt, including this one, carries the control label
+`/L99999.99999`, which §6 of that constitution defines as the Very Deep Research operating depth.**
 
 #### The two readings, both defensible
 
 | | **Reading A — it binds** | **Reading B — it does not** |
 |---|---|---|
-| Ground | §2 applies it to *"every STATE before advancement"* and §4 to *"the next controlled phase"*; Phase SA → Pre-Test is a next controlled phase; every Phase SA prompt carries the `/L99999.99999` Very-Deep-Research label | Its subject is **Very Deep Research**, and the Boss closure act separates the two: Phase S was the research; Phase SA is *"synthesis; architecture; conceptual/domain design … **and controlled return to Very Deep Research where required**"* — language that treats Phase SA as **not itself** Very Deep Research. `EC-07`'s own trigger is *"Before **Final Research Gate**"*, and Phase SA's gate is an architecture gate |
+| Ground | **§2.4 applies it to *"Cross-Module and Whole-System State Integration Review"* — the clause that names what Phase SA actually is** (its own artefact directory is `PHASE_SA_CROSS_MODULE_ASSURANCE`, CORR2 is `CROSS_MODULE_RECHALLENGE`, `SA_CORR3_08` is `CROSS_MODULE_CONTRACT_PROOF`); **§5 mandates a State Integration Very Deep Review using the same eight criteria before advancement**; §2.3 applies it to *"every STATE before advancement"* and §4 to *"the next controlled phase"*; every Phase SA prompt carries the `/L99999.99999` label; **and `SA_CORR3_07` already applied it to a Phase SA package**. *(A first draft omitted §2.4 and §5 — the two clauses most on point — which is the same bias operating in the selection of grounds rather than in the choice: `CHF-09`.)* | Its subject is **Very Deep Research**, and the Boss closure act separates the two: Phase S was the research; Phase SA is *"synthesis; architecture; conceptual/domain design … **and controlled return to Very Deep Research where required**"* — language that treats Phase SA as **not itself** Very Deep Research. `EC-07`'s own trigger is *"Before **Final Research Gate**"*, and Phase SA's gate is an architecture gate |
 | Consequence | **`EC-07` FAILS** — Phase SA has had **zero** independent passes, not two consecutive clean ones. `B-7` becomes **gate-blocking**, not merely valuable, and the HOLD has a second and larger cause | The gate stands on `SA_FINAL_04`'s three categories, and `B-7` remains a valuable act that does not block Pre-Test entry |
 
 #### Disposition — and why this session does not choose
@@ -102,7 +131,7 @@ Offered so Boss is not choosing blind, and marked as **self-assessed, not indepe
 | `EC-03` Unknown Exhausted | likely **PASS** | every open item carries an owner and a category (`SA_FINAL_04`) |
 | `EC-04` Tolerance-Zero Closed | **UNTESTED** — the honest answer | `CF-I-03` `D3` (cross-tenant act) is `CRITICAL — TOLERANCE ZERO` and is **specified, not proven**. Whether "closed" means *specified* or *proven* is itself part of the same scope question |
 | `EC-05` Contradiction Resolution Complete | likely **PASS** | contradiction registers in every round; `G2` is the one live contradiction and it is dispositioned to the `C4-D-02` review |
-| `EC-06` Negative Claim Controlled | **PASS** | the programme's strongest area — declared patterns, positive and negative controls, synthetic injection, discriminating populations |
+| `EC-06` Negative Claim Controlled | **FAIL on this package's own evidence** | A first draft graded this **`PASS`** — the only criterion of the eight graded without a hedge, and the one the package rated itself highest on. **This session's own challenge then produced two `EC-06`-class failures inside this package**: the *"0 Phase SA artefacts cite it"* negative above, proved with a pattern narrower than the claim and no positive control (`CHF-06`), and the *"never applied"* negative about CORR5's behaviour, contradicted by CORR5's own row (`CHF-05`). **Both were on load-bearing claims.** `CHF-08` |
 | **`EC-07` Two Consecutive Clean Independent Passes** | **FAIL** | **zero independent passes.** And this session alone produced a new material finding class (`FG-F-01`) and a new gating unknown (`FG-F-06`), so even the internal record would not yet show two *clean* consecutive passes |
 | `EC-08` Final Knowledge Package Complete | likely **PASS** | every named artefact class exists; manifest, SHAs, Boss decision register, branch/commit/paths present |
 
@@ -125,16 +154,17 @@ Rebuild the evidence frame independently rather than inherit it (`C3-I-01` was f
 inherit). Open the primary-source branches by SHA. Re-execute `SA_CORR5_07` Appendix A against the
 reference dumps with `postgresql@18` tools. **Attack first:** the six clauses CORR5 originated
 (`XMC-C-A15`…`A17`, `D5`…`D7`), the overhead chain (`SA_CORR5_10A`), `E15-A1`/`XMC-C-A14`, the
-platform-actor question (`G2`), **and this session's two re-grades (`E2E-04`, `E2E-07`) — because they
-are the newest and were produced without any challenge pass over them until `SA_FINAL_07`.**
+platform-actor question (`G2`), **and this session's `E2E-07` re-grade — because it overrules a reasoned
+CORR5 position and the challenge that examined it was internal.** *(This session's other attempted
+re-grade, `E2E-04`, was withdrawn by that same challenge.)*
 
 ## 6. Result
 
 | | |
 |---|---|
 | Structurally independent Phase SA review | **none — not appointed, not performed, not claimed** |
-| Boss ruling making it a prerequisite to Pre-Test entry | **`Q-BOSS-02`: no** (Phase S-scoped) · **`SMEPLUS-DR-EXIT-8C-001`: undetermined — a Boss scope clarification, `FG-F-06`** |
-| Internal challenge productivity | 49 + 17 findings in CORR5; this session's pass at `SA_FINAL_07` |
+| Boss ruling making it a prerequisite to Pre-Test entry | **`Q-BOSS-02`: no** (Phase S-scoped) · **`SMEPLUS-DR-EXIT-8C-001`: undetermined — a Boss scope clarification, `FG-F-06`, and `SA_CORR3_07` has already applied it to a Phase SA package** |
+| Internal challenge productivity | 49 + 17 findings in CORR5; **19 in this session's pass** (`SA_FINAL_07`), including two that reversed this session's own conclusions |
 | Fabricated completion | **none** |
 
 No Evidence = No Progress. Never Skip Gate. Boss remains the sole Final Approver.

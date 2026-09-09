@@ -33,7 +33,8 @@ CORR5 `SA_CORR5_14` §2.3 presents **15 rows**. Decomposed to atomic decisions:
 | B11 | `TV6-BOSS-01` · `TV6-BOSS-02` = **2** |
 | B13 | `POH-D-03` · `POH-D-04` · `POH-D-05` = **3** |
 | B14 | `B-7` appointment · `C4-D-01` · `C4-D-02` · `AAS-V-02` discharge · Thai panel commissioning = **5** |
-| **Total candidates** | **33** |
+| less: `POH-D-06` **is** the three-restatement act and is not a seventh atom (§3 row 32) | **−1** |
+| **Total candidates** | **32** |
 
 **Instrument for Test A.** Every candidate identifier was searched across all **188** branch heads, and
 every hit falling in a file whose name or status marks it a Boss act (`*BOSS_RULING*`, `*BOSS_DECISION*`
@@ -82,13 +83,13 @@ only · `E` runtime/Pre-Test proof only · `F` genuine Boss authority.
 | 30 | **`AAS-V-02`** discharge | ✗ | ✗ | ✗ | ✗ | ✗ | **ACT** | Its stated condition (three rulings) **is satisfied**; R2 records *"CONDITION SATISFIED — NOT DISCHARGED … never reported as lifted"*. Discharge is the **issuer's** act ratified by Boss — a ratification, not an election. **Moved to the Acts list** |
 | 31 | **Thai user panel commissioning** | ✗ | ✗ | ✗ | ✗ | ✗ | **ACT** | `18_THAI_USER_VALIDATION_CHECKLIST` line 11: **"Boss to commission"**. No alternatives; it is a resourcing act |
 | 32 | **`POH-D-06`** *(counted at 21 as the veto-limb-2/blocker restatement)* | — | — | — | — | — | **merged into 19–21** | `POH-D-06` *is* the restatement request; listing it twice would duplicate |
-| 33 | **Prepaid-wallet balance-sheet character and tax treatment** | ✗ | ✗ | **YES** | ✗ | ✗ | **REMOVE — `C`** | §5 |
+| 32 | **Prepaid-wallet balance-sheet character and tax treatment** | ✗ | ✗ | ✗ | ✗ | ✗ | **`F` — KEEP, RELOCATED** | §4.1. **Corrected (`CHF-13`): the earlier `C` mark was wrong.** Nothing has been decided by PMO or anyone; `ERPPLUS-152`'s `03_G0` carry-forward register rules the *credit posture* and not the balance-sheet character. It is **genuine Boss authority that now sits at another Boss gate**, which is not one of master prompt §0's five removal tests |
 
 ---
 
 ## 4. Removals
 
-### 4.1 `REMOVE — PMO/GOVERNANCE OWNED · another Boss-authorized session now owns it`
+### 4.1 `RELOCATED — genuine Boss authority, now owned by another Boss gate`
 
 **Prepaid-wallet balance-sheet character and tax treatment.** CORR5 carried this as `B15` because
 `SAAS_CELL/27` lists it as an open item requiring *"accounting/tax review, and Boss Final Approval"*.
@@ -103,7 +104,10 @@ that genuinely require Boss judgment."*
 > **The question has an owner, a workstream, a deliverable and a Boss gate — all outside Phase SA.
 > Presenting it again in the Phase SA pack would be exactly the duplication this register exists to
 > remove.** It changes no Phase SA dimension cell (CORR5 marked it `HOLD` and the `G5` handoff shape is
-> specified without it), so Phase SA carries it as a **cross-session dependency**, not a decision.
+> specified without it), so Phase SA carries it as a **cross-session dependency**, not a Phase SA
+> decision. **It remains a genuine Boss decision — relocated, not removed** (`CHF-13`), and
+> `ERPPLUS-152`'s `03_G0` register confirms nothing has been decided: its `CF-12`…`CF-15` rule the
+> *credit posture* and the *non-reset* rule, not the balance-sheet character or the tax treatment.
 >
 > **Stated for the receiving session, not applied here:** `SA_CORR5_04` BP-1's handoff row and
 > `SA_CORR5_02` class 13 record the platform-side handoff shape under `BD-ACC-01` and leave the
@@ -129,8 +133,9 @@ as an **Acts list**, so that Boss is not asked to *decide* what he is being aske
 | **E** runtime / Pre-Test proof only | **0** | Every candidate's semantic is unsettled *by election*, not by absence of a build |
 
 > **`FG-F-03`. The CORR5 Boss list was already authority-clean on its merits; what it was not was
-> *structurally* clean.** Of 33 candidates, **0 were wrongly escalated on authority** and **6 were
-> wrongly *shaped*** — one owned by a newer session, five that are acts rather than decisions. **The
+> *structurally* clean.** Of 32 candidates, **0 were wrongly escalated on authority**, **1 was
+> double-counted** (`POH-D-06`), and **6 were wrongly *shaped*** — one relocated to a newer session's
+> Boss gate, five that are acts rather than decisions. **The
 > de-duplication this round achieves is structural and by consolidation (`SA_FINAL_03`), not by
 > discovering that SMEs Core should have decided something.** Recorded because the opposite result —
 > "we removed twelve items Boss never needed to see" — would have been the more flattering one, and it
@@ -142,10 +147,10 @@ as an **Acts list**, so that Boss is not asked to *decide* what he is being aske
 
 | | Count |
 |---|---:|
-| Atomic candidates tested | **33** |
-| Removed — owned by another Boss-authorized session | **1** |
+| Atomic candidates tested | **32** |
+| **Relocated** — genuine Boss authority, now owned by another Boss gate (`ERPPLUS-152`) | **1** |
 | Removed from the decision list — acts, not decisions | **5** |
-| **Surviving genuine Boss decisions** | **27** |
+| **Surviving genuine Boss decisions on the Phase SA list** | **26** |
 | Consolidated into families (`SA_FINAL_03`) | **8** |
 | New Boss decisions originated by this session | **0** |
 | Boss decisions **removed** because SMEs Core / PMO / evidence can resolve them | **0** — and §4.3 says why |
@@ -153,7 +158,8 @@ as an **Acts list**, so that Boss is not asked to *decide* what he is being aske
 ## 6. Checkpoint
 
 > ## `CP-SA-FG-20 — BOSS DECISION LIST AUTHORITY-CLEAN`
-> **33 candidates · 6 tests each · 27 survive · 1 removed to `ERPPLUS-152` · 5 re-shaped as acts ·
-> 0 already ruled · 0 new · 2 findings (`FG-F-02`, `FG-F-03`).**
+> **32 candidates · 6 tests each · 26 survive on the Phase SA list · 1 relocated to `ERPPLUS-152`'s Boss
+> gate · 5 re-shaped as acts · 0 already ruled · 0 new · 2 findings (`FG-F-02`, `FG-F-03`) · corrected by
+> `CHF-01` and `CHF-13`.**
 
 No Evidence = No Progress. Never Skip Gate. Boss remains the sole Final Approver.

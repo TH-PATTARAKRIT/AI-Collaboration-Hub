@@ -45,11 +45,11 @@ scenarios move down the priority order accordingly, because priority is driven b
 | 6 | **E2E-14** Month close → … → reporting | `WITH NAMED BREAK` | period object **specified** (`XMC-C-A15`); analytic data; statutory register content | closing position; statements | Three constituent items `PARTIAL` |
 | 7 | **E2E-17** Work order → breakdown → maintenance → resume | `WITH NAMED BREAK` | Boss `F5` (`BLK-08`) | downtime; cost destination | 9 of 12 routes close at SMEs Core |
 | 8 | **E2E-18** Project → source facts → analytic → derived view | `WITH NAMED BREAK` | derivation mechanism; reversal behaviour | derived view with no duplicate truth | **Traversed and found to duplicate financial truth three ways** |
-| 9 | **`[FG]` E2E-04** Sales → Manufacture → RM shortage → Purchase → Production | `WITH NAMED BREAK` | **Boss `F4` (`C2-D-01`) only** — routing determined, `BN-04` `PARTIAL` | linked demand chain; cost accumulation | *was priority 3 and `NOT TRAVERSABLE`.* Two modules must agree who raises supply — **the design position is soft binding and awaits Boss confirmation** |
+| 9 | **E2E-04** Sales → Manufacture → RM shortage → Purchase → Production | **`NOT TRAVERSABLE`** | **Boss `F4` (`C2-D-01`)** — the routing *template* exists (`XMC-F-03`) and `BN-04` is `PARTIAL`, **but the target manufacturing state machine has no exit from the shortage state on procurement being raised**, so the shortage→supply hop is unrouted | linked demand chain; cost accumulation | *A first draft of this baseline re-graded this row to `WITH NAMED BREAK` and moved it to priority 9; the re-grade was withdrawn by this session's own challenge (`CHF-03`). The priority position is left here rather than restored to 3, because the break is a Boss election and the rows above it are not — but Boss should know it is the one untraversable flow* |
 | 10 | **E2E-06** MTO / buy-to-order | `WITH NAMED BREAK` | order→purchase linkage and reservation semantics | linked documents | — |
 | 11 | **E2E-09** Purchase → capitalization → depreciation | `WITH NAMED BREAK` | Equipment-side semantics | asset register; schedule; disposal entry | Derecognition entry recorded as draft and deletable |
 | 12 | **E2E-10** Expense → approval → payable → payment | `WITH NAMED BREAK` | — | approval record **including that approval occurred** | `XD-03` |
-| 13 | **E2E-13** Scrap / by-product / variance | `WITH NAMED BREAK` | by-product valuation; Boss `F1` for the cost side | inventory adjustment with reason class; cost effect; **salvage as an inbound fact of a distinct product** (`XMC-C-D7`) | Reason classes specified; Thai labels unvalidated |
+| 13 | **E2E-13** Scrap / by-product / variance | `WITH NAMED BREAK` | by-product valuation; **Boss `F1` for the cost side** (`F1`'s own card omitted this scenario — `CHF-18`) | inventory adjustment with reason class; cost effect; **salvage as an inbound fact of a distinct product** (`XMC-C-D7`) | Reason classes specified; Thai labels unvalidated |
 | 14 | **E2E-11** Sales return | `WITH NAMED BREAK` | Boss `F1` (`JT-05`) | return movement; reversal event referencing the original | Value of the reversal undecided |
 | 15 | **E2E-12** Purchase return | `WITH NAMED BREAK` | Boss `F1` (`JT-05`) | as above | return basis `PENDING` |
 | 16 | **E2E-02** Purchase demand → … → Payment | **`TRAVERSABLE`** | — | full chain | Approval internal logic open (A2) |
@@ -84,10 +84,10 @@ be written**, and **may not be executed or read as passing** until built.
 
 | Boss family | Unblocks | Blocks Pre-Test **entry**? |
 |---|---|---|
-| `F1` `JT-04` / `JT-05` | expected accounting values on `E2E-01`, `-03`, `-11`, `-12`, `-13`; 22-scenario rows 1–6, 8, 9, 16, 17 | No |
+| `F1` `JT-04` / `JT-05` | expected accounting values on `E2E-01`, `-03`, `-11`, `-12`, **`-13`**; 22-scenario rows 1–6, 8, 9, 16, 17 | No |
 | `F2` control defaults | `E2E-01`; rows 5, 10 | No |
 | `F3` dropship | `E2E-05`; row 18 | No |
-| `F4` `XMC-D-02` / `C2-D-01` | `E2E-04`, `E2E-06`; row 18 | **`XMC-D-02` YES** — it sets how many boundaries the matrix must cover |
+| `F4` `XMC-D-02` / `C2-D-01` | **`E2E-04` — the one untraversable flow** ; `E2E-06`; row 18 | **`XMC-D-02` YES** — it sets how many boundaries the matrix must cover |
 | `F5` overhead | `E2E-03`, `-13`, `-17`; rows 16, 17 | No |
 | `F6` `MTI-D-04` … | row 15; `CF3-P-04` test data | **`MTI-D-04` YES** — the isolation suite's exception set |
 | `F7` `RC-D-01` … | every row's authorization dimension; `AUD-C-A5` | **`RC-D-01` YES** — the negative-access suite's axis denominator |
@@ -121,8 +121,7 @@ platform-owned class, never a tenant label.
 
 ## 6. Bounded risks handed to the next phase
 
-Business natures that cannot be routed — **`[FG]` none; `E2E-04` and `E2E-07` were the last two and are
-re-graded** · the isolation specification is unproven (58 invariants, **0 proven**) · **element 15 is
+Business natures that cannot be routed — **one: `E2E-04`**, on a Boss-gated structural ground (`CHF-03`); `E2E-07` is re-graded and closed · the isolation specification is unproven (58 invariants, **0 proven**) · **element 15 is
 specified and unproven** · fixed production overhead narrowed to Boss `F5` · the COGS residual is Boss
 `F1` plus statutory `HOLD`s · the evidence base is thin on the demand-and-supply front end · **this
 session's challenge is not independent** (`SA_FINAL_06`).

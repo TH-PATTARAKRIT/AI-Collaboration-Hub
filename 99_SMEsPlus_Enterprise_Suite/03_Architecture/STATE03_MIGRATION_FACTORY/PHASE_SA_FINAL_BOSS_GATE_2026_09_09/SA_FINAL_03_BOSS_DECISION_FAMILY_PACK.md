@@ -20,15 +20,20 @@ member decisions are the places that answer lands.
 | **`F2` Commercial control-default policy** | 3 | No — both branches are testable |
 | **`F3` Dropship valuation and cost landing** | 2 | No |
 | **`F4` Cross-module contract scope and supply binding** | 2 | **`XMC-D-02` yes** — it sets how many boundaries Pre-Test must cover |
-| **`F5` Manufacturing overhead governance** | 9 | No |
+| **`F5` Manufacturing overhead governance** | 8 | No |
 | **`F6` Cross-company visibility and commercial scope** | 4 | **`MTI-D-04` yes** — it supplies or withdraws the isolation suite's exception test data |
 | **`F7` Authorization axis and configurable-record scope** | 4 | **`RC-D-01` yes** — it fixes the axis set the negative-access suite enumerates |
 | **`F8` Idempotency severity** | 1 | No — but it sets Pre-Test **exit** criteria |
-| **Total** | **27** | 3 of 8 families carry an entry-gating member |
+| **Total** | **26** | 3 of 8 families carry an entry-gating member |
 
-**27 decisions from 33 candidates, presented as 8 questions.** CORR5 presented 15 rows; a reader had to
+**26 decisions from 32 candidates, presented as 8 questions.** CORR5 presented 15 rows; a reader had to
 reconstruct that `XD1-P1`, `TV6-BOSS-01` and the tolerance default are **one principle asked three
 times**, which is `F2`.
+
+*(A first draft of this table said `F5` = 9 and the total = 27, double-counting `POH-D-06`: the three
+restatement subjects **are** `POH-D-06`. Corrected by this session's own challenge, `CHF-01` — the
+count-unit-vs-population defect, committed inside the register whose subject is de-duplication.
+Non-`F5` families sum to 18; 18 + 8 = 26.)*
 
 ---
 
@@ -54,7 +59,7 @@ Each card carries the sixteen elements master prompt §4 requires.
 | **Effect on Accounting** | Determines the recognition role in the event identity basis (`XMC-C-A3` part 5) and the posting trigger |
 | **Effect on Tenant/Company** | None — identity is Tenant+Company bounded under either answer |
 | **Effect on Audit/Control** | `RC-03` reconciliation posture follows: *at the closing boundary* under `Periodic`, *continuous* under `Perpetual`. The audit contract carries both dates regardless (`AUD-C-B4`) |
-| **Affected E2E / cross-proof scenarios** | 22-scenario rows **1, 2, 3, 4, 5, 6, 16, 17** (`JT-04`) and **8, 9** (`JT-05`); `SA15` `E2E-01`, `-03`, `-11`, `-12` |
+| **Affected E2E / cross-proof scenarios** | 22-scenario rows **1, 2, 3, 4, 5, 6, 16, 17** (`JT-04`) and **8, 9** (`JT-05`); `SA15` `E2E-01`, `-03`, `-11`, `-12`, **`-13`** (the cost side of scrap/by-product — omitted from a first draft of this card, `CHF-18`) |
 | **Affected vetoes** | `AAS-V-03` (its COGS-gap condition), `MTI-46` value half |
 | **Required before Pre-Test starts?** | **No.** Test cases are writable now; **expected accounting values cannot be set** for the ten affected rows until ruled |
 | **Consequence of deferment** | Pre-Test proceeds on structure and context for all 22; ten rows carry `expected value pending`. **Deferring past Functional Design would force a costing rework, because the recognition role sits inside the immutable identity basis** |
@@ -116,15 +121,15 @@ Each card carries the sixteen elements master prompt §4 requires.
 | **The question, one sentence** | **Does the Boss-approved 16-element handoff contract govern every cross-module boundary or only Inventory → Accounting — and when a manufacturing shortage raises supply, is the fulfiller hard-bound or soft-bound?** |
 | **Why Boss authority** | `XMC-D-02`: the contract's scope is *"unambiguous at primary text — one boundary, one direction"*, so widening it **amends a Boss-approved control** — *"Nothing to research; something to decide"*. `C2-D-01`: `SA_CORR2_02` §6 assigns it *"SMEs Core design position → **Boss confirm**"* |
 | **Existing ruling context** | `03_BOSS_APPROVAL_…MINIMUM_HANDOFF_DATA_CONTRACT` §3 (the 16 elements) and §4 (the `PASS / VERIFIED` gate). **Eleven of twelve mandated handoffs currently have no element contract** |
-| **Evidence** | `C2-D-01` is **narrowed by existing evidence** (`SA_FINAL_02` #10): `BN-04` is re-graded **`PARTIAL`**, ownership is `FACT VERIFIED`, the routing template *"make-or-buy on demand"* exists in the SMEsPlus-owned design, and the target fact-ownership matrix already binds the fulfiller **softly** — *"Hard trigger, soft binding (Inventory does not know who will respond)"*. **Boss is confirming a stated position, not choosing in a vacuum** |
-| **Alternatives** | `XMC-D-02`: extend the one contract to all boundaries · give each boundary its own contract · leave it at one boundary and accept eleven uncontracted handoffs. `C2-D-01`: confirm **soft binding** · require **hard binding** to a named fulfiller |
+| **Evidence** | `C2-D-01` is **narrowed by existing evidence** (`SA_FINAL_02` #10): `BN-04` is re-graded **`PARTIAL`** by `SA_CORR2_02` §3.1, ownership is `FACT VERIFIED`, the routing template *"make-or-buy on demand"* exists in the SMEsPlus-owned design, and the target fact-ownership matrix already binds the fulfiller **softly** — *"Hard trigger, soft binding (Inventory does not know who will respond)"*. **But the same sentence continues:** *"the target manufacturing state machine's shortage state exits only on reservation completing, never on procurement being raised. **A shortage can therefore be entered and never left by supply.**"* **So Boss is confirming a stated position *and* deciding whether the state machine gains a procurement exit — and until then `E2E-04` is the one untraversable end-to-end flow** (`CHF-03`) |
+| **Alternatives** | `XMC-D-02`: extend the one contract to all boundaries · give each boundary its own contract · leave it at one boundary and accept eleven uncontracted handoffs. `C2-D-01`: confirm **soft binding** and add an explicit procurement exit to the shortage state · require **hard binding** to a named fulfiller · confirm soft binding and accept that a shortage exits only on reservation |
 | **SMEs Core recommendation** | `XMC-D-02` → **extend**, because `XMC-C-D2` makes a rule addressed to a receiver with no element capable of satisfying it *not a rule*. `C2-D-01` → **confirm soft binding**, as the target design already states |
 | **Dissent / challenge result** | None outstanding |
 | **Effect on Inventory** | `C2-D-01` sets whether a shortage creates an obligation on a named party |
 | **Effect on Accounting** | `XMC-D-02` sets how many boundaries must carry elements 1–16 |
 | **Effect on Tenant/Company** | Extending the contract extends `HF-CTX-01`/`-02` mandatory carriage to eleven more boundaries |
 | **Effect on Audit/Control** | Extending multiplies the attestation obligations (`HF-CTX-06`, `-11`) accordingly |
-| **Affected scenarios** | 22-scenario row **18**; `SA15` `E2E-04`, `E2E-06` |
+| **Affected scenarios** | 22-scenario row **18**; `SA15` **`E2E-04` — the one scenario that remains `NOT TRAVERSABLE`**, and `E2E-06` |
 | **Affected vetoes** | None directly |
 | **Required before Pre-Test starts?** | **`XMC-D-02` — YES.** It determines the Pre-Test Matrix's own scope: how many boundaries have an element contract to test against. `C2-D-01` — no |
 | **Consequence of deferment** | Pre-Test builds a matrix over one boundary and discovers eleven more later, which is a re-scope rather than an increment |
@@ -135,7 +140,7 @@ Each card carries the sixteen elements master prompt §4 requires.
 
 | | |
 |---|---|
-| **Decision IDs** | `BLK-07` restatement · `BLK-08` restatement · veto-limb-2 restatement (together `POH-D-06`/`B-6`) · `POH-D-01` · `POH-D-02` · `POH-D-03` · `POH-D-04` · `POH-D-05` · *(the three restatements are one act with three subjects)* |
+| **Decision IDs** | `POH-D-06` — the restatement act, covering `BLK-07`, `BLK-08` and veto limb 2 as its three subjects · `POH-D-01` · `POH-D-02` · `POH-D-03` · `POH-D-04` · `POH-D-05`. **Eight identifiers, six decisions; the three restatement subjects are one act** (`CHF-01`) |
 | **The question, one sentence** | **Restate or confirm `BLK-07`, `BLK-08` and veto limb 2 in the form the evidence now supports, and rule the four policy elections underneath them.** |
 | **Why Boss authority** | *"**Governance act.** A Boss-owned blocker can only be retired, restated or confirmed by Boss."* `POH-D-01` *modifies a standing Boss decision* (`BD-04`). `POH-D-02` *changes the charge itself* and has *unresearched tax consequences* |
 | **Existing ruling context** | `BD-02` — **the destination of unabsorbed overhead is already CLOSED by Boss**. `BD-04` — one allocation driver per configuration context, which `POH-D-01` proposes to depart from per cost class |
@@ -228,7 +233,9 @@ Each card carries the sixteen elements master prompt §4 requires.
 **`F2` is one principle asked three times. `F6` and `F7` are the Inventory programme's own open
 registers, already before Boss in that programme's decision package** — Phase SA inherits them and
 does **not** re-ask them as new; they appear here so that the Phase SA consequence of each is visible
-in one place. **Ruling `F2` and `F6` alone closes 5 of the 27 decisions and unblocks two vetoes.**
+in one place. **Ruling `F2` and `F6` alone closes 7 of the 26 decisions** — `F2`'s three and `F6`'s four,
+enumerated rather than asserted (`CHF-11`) — **and renders `AAS-V-03` vacuous and `CF-V-02`'s first limb
+closed, on the recommended branch of `MTI-D-04`** (`SA_FINAL_05`, `CHF-14`).
 
 ## 4. Boss ACTS requested — not decisions (`SA_FINAL_02` §4.2)
 
@@ -243,8 +250,9 @@ in one place. **Ruling `F2` and `F6` alone closes 5 of the 27 decisions and unbl
 ## 5. Checkpoint
 
 > ## `CP-SA-FG-30 — DECISION FAMILIES CONSOLIDATED`
-> **27 decisions in 8 families · 5 acts separated · 3 families carry a Pre-Test-entry-gating member
-> (`XMC-D-02`, `MTI-D-04`, `RC-D-01`) · 1 family (`F3`) carries a live unresolved dissent · 0 new
-> decisions originated.**
+> **26 decisions in 8 families · 5 acts separated · 1 decision relocated to another Boss gate ·
+> 3 families carry a Pre-Test-entry-gating member (`XMC-D-02`, `MTI-D-04`, `RC-D-01`) · 1 family (`F3`)
+> carries a live unresolved dissent · 0 new decisions originated · corrected by `CHF-01`, `CHF-03`,
+> `CHF-11`, `CHF-18`.**
 
 No Evidence = No Progress. Never Skip Gate. Boss remains the sole Final Approver.

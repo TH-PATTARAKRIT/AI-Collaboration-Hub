@@ -43,16 +43,24 @@ Carried from `SA15` final controlled **v2** (this package).
 
 | Category | Scenarios | n |
 |---|---|---:|
-| **1** | E2E-02, **E2E-07** | **2** |
-| **2** — the named break is a Boss election | E2E-01, E2E-03, **E2E-04**, E2E-05, E2E-11, E2E-12, E2E-13, E2E-14, E2E-15 *(severity)*, E2E-17 | **10** |
-| **1 with a non-Boss named break** — the break is an evidenced open item owned by a **later phase**, not by Phase SA | E2E-06 (order→purchase linkage), E2E-08 (no independent operational event exists to record), E2E-09 (Equipment-side semantics), E2E-10 (P05 terminal HOLD), E2E-16 (the Quality object), E2E-18 (derivation mechanism) | **6** |
+| **1** — specification complete, no named break | E2E-02, **E2E-07** | **2** |
+| **1 with a non-Boss named break** — an evidenced open item owned by a **later phase**, not by Phase SA | E2E-06 (order→purchase linkage), E2E-08 (no independent operational event exists to record), E2E-09 (Equipment-side semantics), E2E-10 (P05 terminal `HOLD`), **E2E-14** (three `PARTIAL` items and statutory register content — `CHF-10`), E2E-16 (the Quality object), E2E-18 (derivation mechanism) | **7** |
+| **2** — the named break is a Boss election | E2E-01, E2E-03, **E2E-04** *(`NOT TRAVERSABLE`, Boss-gated on `C2-D-01`)*, E2E-05, E2E-11, E2E-12, E2E-13, E2E-15 *(severity)*, E2E-17 | **9** |
 | **3** | — | **0** |
 | **Total** | | **18** ✓ |
 
-> **`FG-F-04`. Before this session the E2E register carried two `NOT TRAVERSABLE` scenarios, and neither
-> was a Phase SA gap — both were closed in the corpus and unapplied** (`SA_FINAL_01` §5). Applying them
-> takes the register to **zero untraversable scenarios**, which is the first time in the Phase SA chain
-> that every mandated end-to-end business flow has an evidenced route.
+**Category 1 total = 2 + 7 = 9 · Category 2 = 9 · Category 3 = 0.** `E2E-14` was classified Category 2 in
+a first draft with **no Boss family named anywhere in the package** — the dependency map at `SA17` §2d
+assigns it to none — and is corrected here (`CHF-10`).
+
+> **`FG-F-04`, corrected by this session's own challenge (`CHF-03`).** Before this session the E2E
+> register carried two `NOT TRAVERSABLE` scenarios. **One — `E2E-07` — was closed in the corpus and its
+> closure was retained by CORR5 with a reason this session overrules on evidence; it is applied and the
+> scenario is now `TRAVERSABLE` with no Boss decision attached.** The other — **`E2E-04` — was re-graded
+> by a first draft of this package and the re-grade was withdrawn**: the source sentence's second clause
+> states that *"a shortage can therefore be entered and never left by supply"*, which is precisely the
+> register's own definition of an unrouted hop. **The register goes from two untraversable scenarios to
+> one, not to zero, and the remaining one is Boss-gated, not a Phase SA gap.**
 
 ### 3.1 Why the six "non-Boss named break" rows are Category 1 and not Category 3
 
@@ -61,6 +69,7 @@ Each names an item that is **evidenced, owned and dated**, and none is an unreso
 
 | Scenario | The break | Why not Category 3 |
 |---|---|---|
+| **E2E-14** | `AR-20` close, `AR-21` analytic, `AR-22` tax all `PARTIAL`; statutory register content | Each is a **peer programme's recorded terminal state** carried into Phase SA, not a Phase SA specification act; the period object itself is specified (`XMC-C-A15`). Statutory register content is class **S**. `CHF-10` |
 | E2E-06 | order→purchase linkage and its reservation semantics (`BN-06`) | The chained-replenishment mechanism is the **same** one `BN-04` uses and is evidenced there; what is missing is the producing module's own design, which is Functional Design work (`C4-02-F-04`), explicitly forbidden to Phase SA |
 | E2E-08 | no independent operational event exists for a service | **Determined, not missing**: `SA_CORR2_03` §3.1 established the trigger is a human assertion and `XMC-C-C1`…`C6` specify the assertion event with its four mandatory carriers. The *absence of an operational event* is a property of services, not a gap |
 | E2E-09 | Equipment-side semantics; derecognition entry deletable | An evidenced **defect in the reference** and a P04 finding; the SMEsPlus position is the reversal/correction contract (`XMC-C-A8`/`A9`). Build-and-test |
@@ -107,11 +116,11 @@ Each names an item that is **evidenced, owned and dated**, and none is an unreso
 
 | Measure | Value |
 |---|---:|
-| Category 1 — specification complete, runtime proof required | **10** of 22 scenarios · **8** of 18 E2E |
-| Category 2 — Boss-gated | **12** of 22 · **10** of 18 |
+| Category 1 — specification complete, runtime proof required | **10** of 22 scenarios · **9** of 18 E2E |
+| Category 2 — Boss-gated | **12** of 22 · **9** of 18 |
 | **Category 3 — Phase SA material gap** | **1** — and it is the PMO governance act, not a specification gap |
 | Category 3 owned by SMEs Core / document owner | **0** |
-| `NOT TRAVERSABLE` end-to-end scenarios | **0** `[FG]` — was 2 |
+| `NOT TRAVERSABLE` end-to-end scenarios | **1** `[FG]` — was 2; `E2E-04`, Boss-gated on `C2-D-01` |
 | Scenarios verified | **0 of 22** — unchanged and unchangeable at Phase SA |
 
 > **Pre-Test entry is qualified on everything Phase SA owns, and disqualified on one governance act
@@ -121,7 +130,8 @@ Each names an item that is **evidenced, owned and dated**, and none is an unreso
 ## 7. Checkpoint
 
 > ## `CP-SA-FG-40 — PRE-TEST ENTRY QUALIFICATION COMPLETE`
-> **22 scenarios: 10 / 12 / 0 · 18 E2E scenarios: 8 / 10 / 0 · `0` untraversable · Category 3 = **1**,
-> the PMO act · Category 3 owned by SMEs Core or a document owner = **0** · 1 finding (`FG-F-04`).**
+> **22 scenarios: 10 / 12 / 0 · 18 E2E scenarios: 9 / 9 / 0 · `1` untraversable (Boss-gated) ·
+> Category 3 = **1**, the PMO act · Category 3 owned by SMEs Core or a document owner = **0** ·
+> 1 finding (`FG-F-04`, corrected) · corrected by `CHF-03` and `CHF-10`.**
 
 No Evidence = No Progress. Never Skip Gate. Boss remains the sole Final Approver.

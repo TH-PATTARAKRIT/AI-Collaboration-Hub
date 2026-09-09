@@ -1,6 +1,6 @@
 # SA_FINAL_00 — PMO MAINLINE CLOSURE VERIFICATION (PR #63)
 
-## CP-SA-FG-00 — PMO CLOSURE VERIFIED OR EXACTLY OPEN
+## CP-SA-FG-00 — PMO CLOSURE: EXACTLY OPEN (NOT CLOSED)
 
 Session: `[SMEPLUS-26-09-09-PHASE-SA-FINAL-BOSS-GATE-001]`
 Repository: `TH-PATTARAKRIT/AI-Collaboration-Hub`
@@ -81,13 +81,21 @@ Stated because a reader encountering an unmerged PR reasonably asks whether some
 
 ---
 
-## 5. Frame delta since CORR5 — one mainline commit, and it does not affect this verification
+## 5. Frame delta since CORR5 — mainline is live, and re-measured at publication
 
-`origin/SMEsPlus` moved `27717bde` → **`784f60a2`** (2026-09-09 21:07 +0700), adding exactly one file:
-`…/STATE03_MIGRATION_FACTORY/CORE_RESOURCE_GOVERNANCE/01_NEW_SESSION_PROMPT_SMEPLUS-26-09-09-CORE-RESOURCE-GOV-001.md`.
-It is a **new session prompt** (`ERPPLUS-152`), not a Boss ruling, and it does not touch the compliance
-file, the Phase SA package, or the PR's path. Its bearing on the Boss decision list is assessed at
-`SA_FINAL_02` §5 — it is material there, and immaterial here.
+`origin/SMEsPlus` moved `27717bde` → **`28de295d`** across **six commits adding six files**, all under
+`…/STATE03_MIGRATION_FACTORY/CORE_RESOURCE_GOVERNANCE/` — the `ERPPLUS-152` session's new-session prompt
+and its five `G0` registers (parent evidence, **Boss decision carry-forward**, contradiction and
+supersession, open assumptions, **independent adversarial challenge report**).
+
+**A first draft of this file recorded "one commit, one file" and was already stale when written**
+(`CHF-16`) — mainline advanced during this session. **None of the six touches the compliance file, the
+Phase SA package or the PR's path**, so this verification is unaffected; the two registers that could
+have affected it were read: `03_G0_BOSS_DECISION_CARRY_FORWARD_REGISTER.md` carries nineteen commercial
+carry-forward decisions (`CF-01`…`CF-19`) and **rules none of this package's 26 Boss items**, and
+`06_G0_INDEPENDENT_ADVERSARIAL_CHALLENGE_REPORT.md` is scoped to *"Parent baseline reconciliation only"*
+for `ERPPLUS-152`'s own `G0` and **covers no Phase SA artefact**. Bearing on the Boss list at
+`SA_FINAL_02` §4.1; bearing on independence at `SA_FINAL_06` §2.1.
 
 ---
 
@@ -119,10 +127,12 @@ reasoning stated and no cited authority — carried unchanged).
 1. **This verification is time-stamped.** If PR #63 is merged between this file's freeze and Boss
    reading the pack, §1's status is superseded by the completion test's result and by nothing else.
    `SA_FINAL_09` §2 states exactly which lines change and which do not.
-2. **`GAP-KC-01`** — the folder-level disposition of `16_Learning_Analysis` (archive, correct or
+2. **The mainline branch is live and moved twice during this session.** Any figure in this package that
+   describes it is true as at publication and must be re-measured, not inherited.
+3. **`GAP-KC-01`** — the folder-level disposition of `16_Learning_Analysis` (archive, correct or
    relabel) — remains open and PMO-owned, and is not re-escalated. Correcting the claim does not
    dispose of the folder.
-3. **The ~935 unread paths** of CORR4's 1,061-path broad compliance population are unchanged; the
+4. **The ~935 unread paths** of CORR4's 1,061-path broad compliance population are unchanged; the
    one-file class rests on instruments B, C and D, not on the broad sweep.
 
 ## 8. Checkpoint
