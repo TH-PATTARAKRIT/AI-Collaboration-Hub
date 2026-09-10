@@ -1,0 +1,286 @@
+[
+ {
+  "id": "FX-01",
+  "class": "TRUE POSITIVE",
+  "item": {
+   "kind": "MENU",
+   "identity": "stock.menu_stock_root",
+   "source_pointer": "stock/views/stock_menu_views.xml",
+   "observed_on": "BK12MAY26;iEVING"
+  },
+  "expected": "OBSERVED",
+  "why": "declared and present on a deployment"
+ },
+ {
+  "id": "FX-02",
+  "class": "TRUE NEGATIVE",
+  "item": {
+   "kind": "MENU",
+   "identity": "zz_fake.menu_nothing",
+   "source_pointer": "",
+   "observed_on": ""
+  },
+  "expected": "ABSENT",
+  "why": "declared nowhere, present nowhere"
+ },
+ {
+  "id": "FX-03",
+  "class": "FALSE POSITIVE TRAP",
+  "item": {
+   "kind": "FIELD",
+   "identity": "stock.move.value_not_real",
+   "source_pointer": "stock/models/stock_move.py:999999",
+   "observed_on": ""
+  },
+  "expected": "SOURCE_UNRESOLVED",
+  "why": "the pointer names a real file and an impossible line"
+ },
+ {
+  "id": "FX-04",
+  "class": "FALSE NEGATIVE TRAP",
+  "item": {
+   "kind": "BEHAVIOUR",
+   "identity": "stock.picking::action_cancel",
+   "source_pointer": "stock/models/stock_picking.py:1",
+   "observed_on": ""
+  },
+  "expected": "CANCEL_PATH",
+  "why": "an identifier whose token is separated by an underscore, which a word-boundary predicate cannot see"
+ },
+ {
+  "id": "FX-05",
+  "class": "MISSING DATA",
+  "item": {
+   "kind": "FIELD",
+   "identity": "stock.move.value",
+   "source_pointer": "",
+   "observed_on": "BK12MAY26"
+  },
+  "expected": "SOURCE_UNRESOLVED",
+  "why": "observed at runtime, no source pointer at all"
+ },
+ {
+  "id": "FX-06",
+  "class": "DUPLICATE ITEM",
+  "item": {
+   "kind": "FIELD",
+   "identity": "stock.move.value",
+   "source_pointer": "stock_account/models/stock_move.py:20",
+   "observed_on": "BK12MAY26"
+  },
+  "expected": "DUPLICATE_OF_FX05",
+  "why": "the same identity twice with different provenance"
+ },
+ {
+  "id": "FX-07",
+  "class": "INVALID N/A",
+  "item": {
+   "kind": "HANDOFF",
+   "identity": "account.account",
+   "na_reason": "the class carries no access-control surface of its own",
+   "observed_on": "BK12MAY26"
+  },
+  "expected": "NA_REJECTED",
+  "why": "a persistent model asserted to have no security surface"
+ },
+ {
+  "id": "FX-08",
+  "class": "HIDDEN FUNCTION",
+  "item": {
+   "kind": "MENU",
+   "identity": "stock.menu_hidden",
+   "gate": "base.group_no_one",
+   "observed_on": "BK12MAY26"
+  },
+  "expected": "IN_POPULATION",
+  "why": "hidden must never mean excluded"
+ },
+ {
+  "id": "FX-09",
+  "class": "DISABLED PRESENT",
+  "item": {
+   "kind": "CRON",
+   "identity": "stock.ir_cron_x",
+   "active": "f",
+   "observed_on": "BK12MAY26"
+  },
+  "expected": "IN_POPULATION",
+  "why": "disabled must never mean excluded"
+ },
+ {
+  "id": "FX-10",
+  "class": "OPTIONAL FUNCTION",
+  "item": {
+   "kind": "FIELD",
+   "identity": "stock.lot.expiration_date",
+   "module": "product_expiry",
+   "observed_on": ""
+  },
+  "expected": "IN_POPULATION",
+  "why": "optional and uninstalled must never mean excluded"
+ },
+ {
+  "id": "FX-11",
+  "class": "CONFIG OFF",
+  "item": {
+   "kind": "GATEDELEM",
+   "identity": "x#field[y]",
+   "gate": "stock.group_production_lot",
+   "gate_state": "off"
+  },
+  "expected": "IN_POPULATION",
+  "why": "a gate being off must never remove the element"
+ },
+ {
+  "id": "FX-12",
+  "class": "CONFIG ON",
+  "item": {
+   "kind": "GATEDELEM",
+   "identity": "x#field[y]",
+   "gate": "stock.group_production_lot",
+   "gate_state": "on"
+  },
+  "expected": "IN_POPULATION",
+  "why": "symmetric with FX-11"
+ },
+ {
+  "id": "FX-13",
+  "class": "CONFIG ALTERNATIVE",
+  "item": {
+   "kind": "SETTING",
+   "identity": "config.inventory_valuation",
+   "value": "real_time"
+  },
+  "expected": "IN_POPULATION",
+  "why": "an alternative value is a third state, not a second"
+ },
+ {
+  "id": "FX-14",
+  "class": "SECURITY RESTRICTED",
+  "item": {
+   "kind": "MODEL",
+   "identity": "stock.reference",
+   "grants": 1,
+   "rules": 0,
+   "observed_on": "BK12MAY26"
+  },
+  "expected": "IN_POPULATION",
+  "why": "restricted must never mean excluded"
+ },
+ {
+  "id": "FX-15",
+  "class": "STATE RESTRICTED",
+  "item": {
+   "kind": "BUTTON",
+   "identity": "v::action_x",
+   "invisible_unless_state": "done"
+  },
+  "expected": "IN_POPULATION",
+  "why": "state-gated must never mean excluded"
+ },
+ {
+  "id": "FX-16",
+  "class": "RUNTIME UNREACHABLE",
+  "item": {
+   "kind": "MENU",
+   "identity": "l10n_cl_edi_stock.menu_sii_chile",
+   "source_pointer": "l10n_cl_edi_stock/views/x.xml",
+   "observed_on": ""
+  },
+  "expected": "SOURCE_ONLY",
+  "why": "present in source, on no deployment"
+ },
+ {
+  "id": "FX-17",
+  "class": "SRC PRESENT/RT ABSENT",
+  "item": {
+   "kind": "VIEW",
+   "identity": "stock.view_never_installed",
+   "source_pointer": "stock/views/x.xml",
+   "observed_on": ""
+  },
+  "expected": "SOURCE_ONLY",
+  "why": "same shape, different kind"
+ },
+ {
+  "id": "FX-18",
+  "class": "RT PRESENT/SRC PATH DIFFERS",
+  "item": {
+   "kind": "FIELD",
+   "identity": "stock.picking.custom_x",
+   "source_pointer": "",
+   "observed_on": "iTEST02"
+  },
+  "expected": "RUNTIME_ONLY",
+  "why": "installed from a module with no source in the declared path set"
+ },
+ {
+  "id": "FX-19",
+  "class": "CROSS-MODULE OWNERSHIP",
+  "item": {
+   "kind": "FIELD",
+   "identity": "stock.picking.sale_id",
+   "module": "sale_stock",
+   "observed_on": "BK12MAY26"
+  },
+  "expected": "IN_POPULATION",
+  "why": "owned elsewhere, on a domain model \u2014 must not be excluded for ownership"
+ },
+ {
+  "id": "FX-20",
+  "class": "INHERITED MODEL",
+  "item": {
+   "kind": "MODEL_EXTENSION",
+   "identity": "product.product",
+   "module": "stock",
+   "source_pointer": "stock/models/product.py:1"
+  },
+  "expected": "IN_POPULATION",
+  "why": "an extension is surface"
+ },
+ {
+  "id": "FX-21",
+  "class": "MODULE EXTENSION",
+  "item": {
+   "kind": "FIELD",
+   "identity": "product.template.tracking",
+   "module": "stock",
+   "observed_on": "BK12MAY26"
+  },
+  "expected": "IN_POPULATION",
+  "why": "a field added by the domain to a foreign model"
+ },
+ {
+  "id": "FX-22",
+  "class": "SILENT FALLBACK",
+  "item": {
+   "kind": "BEHAVIOUR",
+   "identity": "stock.quant::_get_removal_strategy",
+   "fallback": "fifo"
+  },
+  "expected": "FALLBACK_FLAGGED",
+  "why": "a resolver that falls through must be visible, not silent"
+ },
+ {
+  "id": "FX-23",
+  "class": "CANCEL / REVERSE",
+  "item": {
+   "kind": "BEHAVIOUR",
+   "identity": "stock.picking::action_cancel"
+  },
+  "expected": "CANCEL_PATH",
+  "why": "the reverse of FX-04, as a plain case"
+ },
+ {
+  "id": "FX-24",
+  "class": "CONTRADICTORY EVIDENCE",
+  "item": {
+   "kind": "FIELD",
+   "identity": "stock.move.value",
+   "dim_state": "NOT_VERIFIED",
+   "rv_state": "RESEARCH_VERIFIED"
+  },
+  "expected": "CONTRADICTION",
+  "why": "a cell may not be not-verified and verified at once"
+ }
+]

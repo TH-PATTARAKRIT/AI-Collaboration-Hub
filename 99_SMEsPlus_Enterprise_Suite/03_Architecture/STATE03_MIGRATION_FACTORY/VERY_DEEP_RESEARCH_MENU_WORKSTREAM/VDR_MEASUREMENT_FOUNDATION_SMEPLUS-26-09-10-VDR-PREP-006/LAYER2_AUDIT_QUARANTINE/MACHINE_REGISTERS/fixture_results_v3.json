@@ -1,0 +1,218 @@
+[
+ {
+  "fixture": "FX-01",
+  "class": "TRUE POSITIVE",
+  "expected": "OBSERVED",
+  "got": "OBSERVED",
+  "pass": true,
+  "instrument": "INS-02",
+  "evidence": "2 deployment(s): BK12MAY26,iEVING"
+ },
+ {
+  "fixture": "FX-02",
+  "class": "TRUE NEGATIVE",
+  "expected": "ABSENT",
+  "got": "ABSENT",
+  "pass": true,
+  "instrument": "INS-02",
+  "evidence": "on no deployment"
+ },
+ {
+  "fixture": "FX-03",
+  "class": "FALSE POSITIVE TRAP",
+  "expected": "SOURCE_UNRESOLVED",
+  "got": "SOURCE_UNRESOLVED",
+  "pass": true,
+  "instrument": "INS-01",
+  "evidence": "line 999999 beyond end of file (2675 lines)"
+ },
+ {
+  "fixture": "FX-04",
+  "class": "FALSE NEGATIVE TRAP",
+  "expected": "CANCEL_PATH",
+  "got": "CANCEL_PATH",
+  "pass": true,
+  "instrument": "INS-05",
+  "evidence": "identifier token in ['cancel']"
+ },
+ {
+  "fixture": "FX-05",
+  "class": "MISSING DATA",
+  "expected": "SOURCE_UNRESOLVED",
+  "got": "SOURCE_UNRESOLVED",
+  "pass": true,
+  "instrument": "INS-01",
+  "evidence": "no pointer"
+ },
+ {
+  "fixture": "FX-06",
+  "class": "DUPLICATE ITEM",
+  "expected": "DUPLICATE_OF_FX-05",
+  "got": "DUPLICATE_OF_FX-05",
+  "pass": true,
+  "instrument": "INS-07",
+  "evidence": "identity already seen as FX-05"
+ },
+ {
+  "fixture": "FX-07",
+  "class": "INVALID N/A",
+  "expected": "NA_REJECTED",
+  "got": "NA_REJECTED",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "\u00a76-prohibited reason: \"no access-control surface of its own\""
+ },
+ {
+  "fixture": "FX-08",
+  "class": "HIDDEN FUNCTION",
+  "expected": "IN_POPULATION",
+  "got": "IN_POPULATION",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "no exclusion asserted"
+ },
+ {
+  "fixture": "FX-09",
+  "class": "DISABLED PRESENT",
+  "expected": "IN_POPULATION",
+  "got": "IN_POPULATION",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "no exclusion asserted"
+ },
+ {
+  "fixture": "FX-10",
+  "class": "OPTIONAL FUNCTION",
+  "expected": "IN_POPULATION",
+  "got": "IN_POPULATION",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "no exclusion asserted"
+ },
+ {
+  "fixture": "FX-11",
+  "class": "CONFIG OFF",
+  "expected": "IN_POPULATION",
+  "got": "IN_POPULATION",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "no exclusion asserted"
+ },
+ {
+  "fixture": "FX-12",
+  "class": "CONFIG ON",
+  "expected": "IN_POPULATION",
+  "got": "IN_POPULATION",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "no exclusion asserted"
+ },
+ {
+  "fixture": "FX-13",
+  "class": "CONFIG ALTERNATIVE",
+  "expected": "IN_POPULATION",
+  "got": "IN_POPULATION",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "no exclusion asserted"
+ },
+ {
+  "fixture": "FX-14",
+  "class": "SECURITY RESTRICTED",
+  "expected": "IN_POPULATION",
+  "got": "IN_POPULATION",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "no exclusion asserted"
+ },
+ {
+  "fixture": "FX-15",
+  "class": "STATE RESTRICTED",
+  "expected": "IN_POPULATION",
+  "got": "IN_POPULATION",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "no exclusion asserted"
+ },
+ {
+  "fixture": "FX-16",
+  "class": "RUNTIME UNREACHABLE",
+  "expected": "SOURCE_ONLY",
+  "got": "SOURCE_ONLY",
+  "pass": true,
+  "instrument": "INS-03",
+  "evidence": "source resolves, observed nowhere"
+ },
+ {
+  "fixture": "FX-17",
+  "class": "SRC PRESENT/RT ABSENT",
+  "expected": "SOURCE_ONLY",
+  "got": "SOURCE_ONLY",
+  "pass": true,
+  "instrument": "INS-03",
+  "evidence": "source resolves, observed nowhere"
+ },
+ {
+  "fixture": "FX-18",
+  "class": "RT PRESENT/SRC PATH DIFFERS",
+  "expected": "RUNTIME_ONLY",
+  "got": "RUNTIME_ONLY",
+  "pass": true,
+  "instrument": "INS-03",
+  "evidence": "observed, source does not resolve"
+ },
+ {
+  "fixture": "FX-19",
+  "class": "CROSS-MODULE OWNERSHIP",
+  "expected": "IN_POPULATION",
+  "got": "IN_POPULATION",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "no exclusion asserted"
+ },
+ {
+  "fixture": "FX-20",
+  "class": "INHERITED MODEL",
+  "expected": "IN_POPULATION",
+  "got": "IN_POPULATION",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "no exclusion asserted"
+ },
+ {
+  "fixture": "FX-21",
+  "class": "MODULE EXTENSION",
+  "expected": "IN_POPULATION",
+  "got": "IN_POPULATION",
+  "pass": true,
+  "instrument": "INS-04",
+  "evidence": "no exclusion asserted"
+ },
+ {
+  "fixture": "FX-22",
+  "class": "SILENT FALLBACK",
+  "expected": "FALLBACK_FLAGGED",
+  "got": "FALLBACK_FLAGGED",
+  "pass": true,
+  "instrument": "INS-06",
+  "evidence": "silent fallback to fifo"
+ },
+ {
+  "fixture": "FX-23",
+  "class": "CANCEL / REVERSE",
+  "expected": "CANCEL_PATH",
+  "got": "CANCEL_PATH",
+  "pass": true,
+  "instrument": "INS-05",
+  "evidence": "identifier token in ['cancel']"
+ },
+ {
+  "fixture": "FX-24",
+  "class": "CONTRADICTORY EVIDENCE",
+  "expected": "CONTRADICTION",
+  "got": "CONTRADICTION",
+  "pass": true,
+  "instrument": "INS-06",
+  "evidence": "not-verified and research-verified on the same cell"
+ }
+]

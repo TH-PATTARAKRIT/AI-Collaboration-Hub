@@ -1,0 +1,32 @@
+ENTITY KINDS BOTH METHODS CAN SEE — the only valid basis for an agreement rate
+   comparable entities        : 9170
+   BOTH          :   4537   49.5%
+   SOURCE ONLY   :   1850   20.2%
+   RUNTIME ONLY  :   2783   30.3%
+
+STRUCTURALLY SINGLE-METHOD KINDS — asymmetry by construction, not disagreement
+   BEHAVIOUR                            4096  visible only to SOURCE
+   MODEL_EXTENSION                       129  visible only to SOURCE
+   FIELD_ON_DOMAIN_MODEL_ANY_OWNER     11158  visible only to RUNTIME
+
+RECONCILIATION AGAINST THE PRIOR POPULATION
+   PREP-005 population rows                  : 5074
+   distinct prior identities                 : 4699
+   HOP-0 canonical entities                  : 24553
+   prior identities also in HOP-0            : 2897
+   prior identities NOT in HOP-0             : 1802
+   HOP-0 entities NOT in the prior population: 17429   <- newly discovered
+
+   newly discovered by kind:
+         9619  FIELD_ON_DOMAIN_MODEL_ANY_OWNER
+         4096  BEHAVIOUR
+         3382  FIELD
+         1490  DATA_RECORD
+          627  VIEW
+          406  ACCESS
+          126  MODEL
+          114  ACTION_WINDOW
+           58  CONSTRAINT
+           32  MODEL_EXTENSION
+           29  RECORD_RULE
+           19  ACTION_SERVER
