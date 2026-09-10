@@ -17,10 +17,10 @@ the audit trail, not a to-do list.
 
 Two classes are recorded and they are not the same thing:
 - **FRAMEWORK corrections (F-01..F-06, F-14..F-20)** — the method was wrong.
-- **INSTRUMENT corrections (F-07..F-13)** — the method was right and the tool could not execute it.
+- **INSTRUMENT corrections (F-07..F-13, F-22)** — the method was right and the tool could not execute it.
 
 The second class is recorded because a framework that reports only its method and not its tooling
-cannot be audited: **six of the seven instrument defects produced plausible, non-zero, internally
+cannot be audited: **seven of the eight instrument defects produced plausible, non-zero, internally
 consistent numbers.**
 
 ---
@@ -169,8 +169,16 @@ consistent numbers.**
 | `CORR-F-11` | Identifier resolved by string transform instead of lookup against the declared-object census | **12** row-level rules | **28** row-level rules | Second-shape count (I1) disagreeing |
 | `CORR-F-12` | Population file serialised a detail column by truncating serialised text | every long row unparseable downstream | 0 unparseable rows of 4,339 | Attempting to consume the package's own output |
 | `CORR-F-13` | Lifecycle-state extraction read keyword-form declarations only | 13 of 14 state vocabularies empty | 14 of 14 extracted | Noticing a field that must have values reporting none |
+| `CORR-F-22` | Method-body resolver returned the **first** definition found in walk order; the method was overridden in two modules | **2** menus reported as mutating data on open | **3** of a declared population of 8 | Reading the source by hand after the automated answer looked too clean |
 
-**All seven were found and repaired before the package was frozen.**
+**All eight were found and repaired before publication; seven before the package was frozen and
+`CORR-F-22` during the targeted delta round.**
+
+`CORR-F-22` deserves separate emphasis. Its false negative was **not** noisy — it was a clean, uniform,
+plausible "reads only" on the single most consequential row, produced by a resolver that had already
+succeeded on seven other rows. **An instrument that resolves a name to one definition is not a
+resolver in a system that permits overriding**, and no count it produces can be trusted without a
+definition census beside it.
 
 ---
 

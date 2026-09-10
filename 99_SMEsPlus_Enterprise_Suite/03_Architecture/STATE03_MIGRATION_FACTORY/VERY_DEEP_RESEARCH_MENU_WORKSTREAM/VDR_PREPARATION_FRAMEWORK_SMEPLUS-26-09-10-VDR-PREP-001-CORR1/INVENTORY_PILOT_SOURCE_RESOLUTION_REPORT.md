@@ -151,6 +151,28 @@ only remedy is a compensating entry.
 `GAP-INV-13` (**an access-grant census overstates the effective delete surface**, because guards live
 in code and override grants; 2 of 15 guards read, 13 unread).
 
+### SR-10 — RESOLVED — How many menus mutate data when opened?
+**Raised by:** Register 08 `HA-F-01` / `GAP-INV-08`. Two were found incidentally while resolving
+`SR-01`; the population was unknown.
+
+**LESA resolution route:** the population is not "all menus" and not "all actions". It is *every menu
+in the whole root whose action is a **server action** bound to an object this domain owns* — because
+only a server action can run code before rendering. That population is enumerable.
+
+**Executed:** population = **8** menus. All 8 resolved to a named entry method. Each method traced to
+depth 2 across **all** its definitions. **3 reach a writer** — physical counting, the location/quantity
+view, and **replenishment**, which creates and deletes replenishment-policy records on open.
+
+**Material delta:** `HA-F-01` rewritten from "2 located, population unknown" to "3 of a declared
+population of 8", and a third mutating menu discovered whose write is to **business policy records**,
+not derived rows.
+
+**Instrument note:** the first run of this census returned **2**. The replenishment menu's entry method
+is overridden in two modules, and the resolver returned the first definition in walk order — a
+153-character override that calls its parent — instead of the ~6,000-character implementation that does
+the writing. Recorded as `CORR-F-22`. **The false negative was clean, plausible, and on the most
+consequential row.**
+
 ---
 
 ## 3. Items routed to LESA and still OPEN
@@ -158,7 +180,6 @@ in code and override grants; 2 of 15 guards read, 13 unread).
 | ID | Unknown | Why it is not closed | Disposition |
 |----|---------|----------------------|-------------|
 | `GAP-INV-06` | Financial postings created in code without a stored reference | Requires call-graph tracing from the domain's methods into the accounting domain; not performed | `SOURCE RESOLUTION REQUIRED` — **size unmeasured** |
-| `GAP-INV-08` | The true population of menu-open side effects | Two were found by resolving seven menus; no systematic sweep of all 200 actions was run | `SOURCE RESOLUTION REQUIRED` — **floor of 2, not a census** |
 | `GAP-INV-13` | How much smaller the effective delete surface is than the granted one | 13 of 15 deletion guards unread | `SOURCE RESOLUTION REQUIRED` — **floor of 2, ceiling unmeasured** |
 | `GAP-INV-09` | All runtime / deployment evidence | No database server running; archive artefacts located but **not opened** | `HOLD` — this is the largest single bound on the package |
 

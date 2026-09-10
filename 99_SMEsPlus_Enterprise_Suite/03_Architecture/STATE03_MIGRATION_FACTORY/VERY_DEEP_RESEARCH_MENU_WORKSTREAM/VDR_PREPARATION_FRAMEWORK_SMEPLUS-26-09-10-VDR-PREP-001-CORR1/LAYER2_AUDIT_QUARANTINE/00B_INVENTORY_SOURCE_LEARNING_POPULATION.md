@@ -98,7 +98,8 @@ audited.
 |------------|------|-----------|
 | Conditional behaviour expressed in code | affects 1,540 of 4,339 items | size yes, content no |
 | Financial postings created without a stored reference | — | **no** |
-| Menu-open side effects | floor of 2 | **no** |
+| Effective delete surface vs granted delete surface (`GAP-INV-13`) | floor of 2 objects | **no** |
+| Menu-open side effects | **CLOSED** — population 8, mutating 3 (`SR-10`); residual bound is trace depth | **yes** |
 | Runtime / deployment reachability | affects **all** 4,339 | **no** — no database evidence established |
 
 A blind spot is only declared here if its size is stated or its size is explicitly stated to be

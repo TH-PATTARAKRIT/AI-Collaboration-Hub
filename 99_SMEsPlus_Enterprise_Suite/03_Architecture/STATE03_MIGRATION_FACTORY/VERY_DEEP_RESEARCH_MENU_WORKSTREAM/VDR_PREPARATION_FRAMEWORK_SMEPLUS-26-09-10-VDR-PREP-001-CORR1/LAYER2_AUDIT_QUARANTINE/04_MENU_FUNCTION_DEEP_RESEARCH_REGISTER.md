@@ -25,7 +25,7 @@ looks populated and is read downstream as "researched".
 | Actions (`ACTION`) | 200 | `S1` | default filters and contexts, and what population each really shows |
 | Views (`VIEW`) | 492 | `S1` | field-level editability by state and role; empty/warning/error states |
 | Constraints (`CONSTRAINT`) | 32 | `S1` | the business rule each expresses and its user-visible message |
-| Scheduled behaviour (`AUTOMATION`) | 26 | `S1`, 2 at `S4` | see Register 08 |
+| Scheduled behaviour (`AUTOMATION`) | 26 | `S1`; a separate 8-item side-effect population is at `S4` | see Register 08 |
 | **Total function-bearing Learning Items** | **1,795** | | |
 
 ### Control-type distribution (431 controls)
@@ -125,7 +125,7 @@ code-level guard.** An access-rights model derived from grants alone overstates 
 | `S1 SOURCE LOCATED` | 4,339 | 100% |
 | `S2 UI VERIFIED` | 0 | 0% |
 | `S3 CONFIG VERIFIED` | 633 gated elements + 237 toggles | partial, see Register 02 |
-| `S4 FUNCTION VERIFIED` | **25** — 14 state vocabularies · 2 menu-open side-effect routines (Reg 08 `HA-F-01`/`HA-F-02`) · 2 documents' reversibility (`SR-09`) · 7 toggle effect surfaces (`SR-08`) | **0.58%** |
+| `S4 FUNCTION VERIFIED` | **33** — 14 state vocabularies · 8 menu-open entry methods traced (`SR-10`) · 2 role-dependent projections (Reg 08 `HA-F-02`/`HA-F-03`) · 2 documents' reversibility (`SR-09`) · 7 toggle effect surfaces (`SR-08`) | **0.76%** |
 | `S5`–`S9` | 0 | 0% |
 
 **This is the Pilot's central number and it is not a failure — it is the correctly-measured distance

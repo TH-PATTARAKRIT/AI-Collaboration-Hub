@@ -35,7 +35,7 @@ may be read as one.
 | `GAP-INV-05` | 53 of 431 user-invocable controls do not declare their own type | 53 | OPEN |
 | `GAP-INV-06` | Financial postings created in code without a stored reference are invisible to the declared-field census | **size unmeasured** | OPEN |
 | `GAP-INV-07` | No segregation-of-duties mechanism on Inventory objects; upstream approval is out of boundary | — | OPEN — boundary question, see `BOSS-DEC-02` |
-| `GAP-INV-08` | Menu-open side effects: population is a **floor of 2**, no systematic search performed | **size unmeasured** | OPEN |
+| `GAP-INV-08` | The true population of menu-open side effects | population **8**, mutating **3** | **CLOSED** by `SR-10` — census over a declared population; residual bound is trace depth, stated |
 | `GAP-INV-09` | **Runtime evidence not established** — no live database; archive artefacts located but not opened | affects **every** finding | OPEN — see §5 |
 | `GAP-INV-10` | 10 persistent objects declare no company scope; each needs a disposition | 10 | OPEN |
 | `GAP-INV-11` | 141 persistence interceptions unclassified as business rule vs plumbing | 141 | OPEN — prerequisite to Functional Design |

@@ -23,7 +23,7 @@ not coverage.
 | Preparation Controls frozen | 5 / 5 | **100%** | Master List, Nine Registers, Coverage Rule, Challenge Checklist, Execution Order |
 | Nine Registers instantiated | 9 / 9 | **100%** | every record carries a Learning ID; **0 orphan records** |
 | Controls **exercised by the Pilot** | 5 / 5 | **100%** | each control produced at least one correction to itself |
-| Framework corrections incorporated before closure | 21 / 21 | **100%** | `VDR_FRAMEWORK_PILOT_CORRECTION_REGISTER.md` |
+| Framework corrections incorporated before closure | 22 / 22 | **100%** | `VDR_FRAMEWORK_PILOT_CORRECTION_REGISTER.md` |
 | **Preparation Framework Readiness** | — | **92%** | 8 points withheld: the framework has been exercised on **one** domain, by **one** producer, with **no runtime evidence**; see §4 |
 
 ### 2.2 Source Learning Population
@@ -44,10 +44,10 @@ not coverage.
 | **Menu (extra-application)** | 134 | 134 (100%) | 0 | **0%** |
 | **Configuration dependency** | 633 gated elements / 43 groups | 633 (100%) | 633 mechanism-verified | **100% of mechanism, 0% of consequence** |
 | **Feature Toggle** | 237 | 237 (100%) | 21 of 21 group-toggles resolved to an effect surface | **8.9%** |
-| **Function** | 1,795 function-bearing items | 1,795 (100%) | 25 | **1.4%** |
+| **Function** | 1,795 function-bearing items | 1,795 (100%) | 33 | **1.8%** |
 | **Object / Data** | 86 objects · 1,846 fields · 32 constraints | 100% | 0 | **0%** |
 | **Cross-Module** | 90 external objects, both directions | 90 (100%) | 0 | **0%** |
-| **Hidden Automation** | 350 automated behaviours + 2 located side effects | 350 (100%) | 2 | **0.6%** |
+| **Hidden Automation** | 350 automated behaviours; **8 menu-open side-effect candidates (census)** | 350 (100%) | 11 | **3.1%** |
 | **SaaS / Security** | 44 groups · 176 grants · 28 rules | 100% | 0 | **0%** |
 | **Edge / Reversal** | 86 objects | 2 (`SR-09`) | 2 | **2.3%** |
 | **SMEs Core Challenge closure** | 30 questions | 30 dispositioned | — | **100% dispositioned**, see §3 |
@@ -57,7 +57,7 @@ and are not added together.** Taking the strict reading — Learning Items at `S
 full population:
 
 ```
-Overall Verified Coverage  =  25 / 4,339  =  0.58%
+Overall Verified Coverage  =  33 / 4,339  =  0.76%
 ```
 
 ### 2.4 Critical Area coverage
@@ -88,7 +88,7 @@ Overall Verified Coverage  =  25 / 4,339  =  0.58%
 
 | Gate condition | Threshold | Actual | Result |
 |----------------|-----------|--------|--------|
-| Overall Verified Coverage | ≥ 95% | 0.58% | **FAIL** |
+| Overall Verified Coverage | ≥ 95% | 0.76% | **FAIL** |
 | Every Critical Area | 100% | 0 of 15 | **FAIL** |
 
 **Disposition: `HOLD`.** Under `VDR_COVERAGE_RULE.md` §6 the Critical Area condition alone is

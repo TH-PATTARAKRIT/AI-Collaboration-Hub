@@ -16,7 +16,7 @@ Four mechanisms were enumerated:
 | Stored computed values | 168 | AST field census |
 | Persistence interceptions (create / write / delete / copy) | 141 | AST method census |
 | Deletion guards | 15 | AST decorator census |
-| Menu-open side effects | **2 located** | targeted source resolution, see §3 |
+| Menu-open side effects | **3 of a population of 8** | full census, see `HA-F-01` |
 
 ---
 
@@ -59,21 +59,38 @@ recorded because reading an absent attribute as "inactive" would invert the find
 
 ## 3. Findings
 
-### HA-F-01 — Opening a menu mutates data (**CRITICAL**)
-The **physical counting** menu is bound to a server action which calls a method that, before returning
-any screen, **executes a maintenance routine over the on-hand quantity records**. The same routine runs
-when the **location / quantity** menu is opened.
+### HA-F-01 — Opening a menu mutates data — 3 menus of a population of 8 (**CRITICAL**)
 
-Two properties make this a first-order control finding:
+**Population (declared, not sampled):** every menu **in the whole root** whose action is a server
+action bound to an object this domain owns. **8 menus.** All 8 resolved to a named method; each
+method traced to depth 2 across **all** its definitions. **3 reach a writer.**
 
-1. **It is a write performed by a read.** A user who opens a report menu changes stored data. There is
-   no user action that names the mutation, no confirmation and no audit entry for it.
-2. **It is suppressible by an invisible switch.** The routine is skipped when a **system parameter** is
-   set. That parameter appears on **no configuration screen** — it is class C in Register 03 and is
-   settable only through the technical parameter table.
+| Menu | Object | What opening it does | Trace |
+|------|--------|----------------------|-------|
+| **Physical counting** | on-hand quantity | runs a maintenance routine over quantity records, which deletes zero-quantity records | `action_view_inventory` → `_quant_tasks` → `_unlink_zero_quants` |
+| **Location / quantity view** | on-hand quantity | same maintenance routine | `action_view_quants` → `_get_quants_action` → `_quant_tasks` |
+| **Replenishment** | replenishment rule | **creates and deletes replenishment rules.** Its own documentation states it *creates manual reorder rules for missing products in each warehouse* and *removes rules that have been replenished* | `action_open_orderpoints` → `_get_orderpoint_action` |
+
+Three properties make this a first-order control finding:
+
+1. **It is a write performed by a read.** A user who opens a report menu changes stored data. No user
+   action names the mutation, there is no confirmation, and there is no audit entry for it.
+2. **The replenishment case creates and destroys business configuration**, not just derived rows. A
+   replenishment rule is a policy record. Opening a menu writes policy.
+3. **Two of the three are suppressible by an invisible switch.** The quantity maintenance routine is
+   skipped when a **system parameter** is set. That parameter appears on **no configuration screen** —
+   it is class C in Register 03 and is settable only through the technical parameter table.
 
 **Disposition for SMEsPlus: `MUST NOT INHERIT`.** A read must not write. If a maintenance routine is
 required it must be an explicitly scheduled, audited job. Raised as `BOSS-DEC-08`.
+
+**Instrument note (`CORR-F-22`).** The first census of this population reported **2**, not 3. The
+replenishment menu was missed because its entry method is overridden in **two** modules and the
+resolver returned the first definition it found in walk order — a **153-character** override that
+calls its parent — instead of the **~6,000-character** implementation that does the writing.
+**A method-body resolver that returns one definition returns the wrong one whenever the method is
+overridden.** The false negative landed on the most consequential row in the table, and it was caught
+only by reading the source by hand.
 
 ### HA-F-02 — The same menu shows a different population depending on the user's role (**CRITICAL**)
 The counting menu's code sets a default filter *"only my counts"* when the user holds the operational
@@ -135,9 +152,13 @@ this is a design decision that must be taken deliberately. Raised as `BOSS-DEC-0
 | Stored computed values | 168 | 0 | 0% |
 | Persistence interceptions | 141 | 0 | 0% |
 | Deletion guards | 15 | 0 | 0% |
-| Menu-open side effects | 2 located | 2 | **the search was targeted, not exhaustive — the true population is unmeasured** |
+| Menu-open side effects | **8** (declared population) | 8 resolved, 3 mutate | **100% of the declared population** |
 
-**The last row is the register's own declared blind spot.** Two side effects were found by resolving
-seven server-action menus. **No systematic search for menu-open side effects across all 200 actions has
-been performed**, so the population is a **floor of 2**, not a census. Recorded as `GAP-INV-08` with its
-size explicitly unknown rather than implied to be 2.
+`GAP-INV-08` is **CLOSED**: the population is no longer a floor, it is a census over a declared
+population — every menu in the whole root bound to a server action on an owned object.
+
+**The residual bound, stated rather than implied:** the trace follows **2 hops** and detects writers by
+their call form. A writer reached at hop 3 or later, or reached through a dynamically-named call, would
+not be seen. **The result is therefore a lower bound of 3 within a population of 8 that is itself
+exact.** That is a materially stronger statement than "a floor of 2 in an unknown population", and it
+is the difference between a census and a sample.
