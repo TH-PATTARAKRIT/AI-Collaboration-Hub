@@ -52,7 +52,12 @@ YOU MUST NOT:
 
 Repository : TH-PATTARAKRIT/AI-Collaboration-Hub
 Branch     : architecture/account-phase-pretest-new-session-2026-09-10-001
-FROZEN SHA : <POST_RULING_SHA>          <-- read ONLY this commit
+FROZEN SHA : the branch HEAD at handoff, recorded in
+             PHASE_PRETEST_AUTO_RESUME_STATE.md and in the
+             closing report. Package content is frozen at
+             8af573f2 (01_..25_); the SHA-resolution commit
+             that follows changes ONLY this line.
+             Read ONLY the recorded HEAD.
 Manifest   : CORRECTIVE_CLOSURE_2026_09_10/
              24_PRETEST_POST_RULING_MANIFEST_SHA256.txt   (23 entries)
 
@@ -232,7 +237,7 @@ Falsify before Accept. Boss is the sole Final Approver.
 | | |
 |---|---|
 | Executed by this session | **NO — and it must not be** |
-| `<POST_RULING_SHA>` | substituted at publication — §2 of the closing report |
+| **The SHA self-reference limit** | **A document cannot contain the hash of the commit that contains it.** The package content is frozen at **`8af573f2`**; the commit that resolves this line changes **only this line**. The authoritative baseline is the **branch HEAD at handoff**, recorded in the resume state and the closing report. **Stated rather than fudged, because a baseline a reader must guess at is not frozen** |
 | Delivery | a **new clean session** of the appointed auditor, with the frozen SHA and the paths above |
 | **Not supplied to the auditor as evidence** | the executor's conclusions — **explicitly excluded by Boss's `B7′` ruling** |
 
