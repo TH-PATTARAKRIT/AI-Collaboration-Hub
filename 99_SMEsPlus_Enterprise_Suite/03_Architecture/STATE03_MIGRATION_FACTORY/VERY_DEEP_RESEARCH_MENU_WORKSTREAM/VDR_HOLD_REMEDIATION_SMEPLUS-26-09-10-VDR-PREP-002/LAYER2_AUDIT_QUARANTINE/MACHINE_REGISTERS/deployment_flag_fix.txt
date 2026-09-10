@@ -1,0 +1,19 @@
+union of installed modules across the three series-19 deployments: 519
+rows whose deployment flag CHANGED: 9
+   barcode.nomenclature               [barcodes              ] NOT INSTALLED ON ANY O -> INSTALLED
+   delivery.carrier                   [delivery              ] NOT INSTALLED ON ANY O -> INSTALLED
+   delivery.zip.prefix                [delivery              ] NOT INSTALLED ON ANY O -> INSTALLED
+   product.attribute                  [product               ] NOT INSTALLED ON ANY O -> INSTALLED
+   product.category                   [product               ] NOT INSTALLED ON ANY O -> INSTALLED
+   product.product                    [product               ] NOT INSTALLED ON ANY O -> INSTALLED
+   product.template                   [product               ] NOT INSTALLED ON ANY O -> INSTALLED
+   res.config.settings                [base                  ] NOT INSTALLED ON ANY O -> INSTALLED
+   uom.uom                            [uom                   ] NOT INSTALLED ON ANY O -> INSTALLED
+population rows whose module-level reachability changed: 6
+   4196  MODULE INSTALLED ON AN OBSERVED DEPLOYMENT
+    619  MODULE NOT INSTALLED ON ANY OBSERVED DEPLOYMENT
+    186  UNMEASURED — object-level reachability not observed
+     46  RUNTIME REACHABLE (2 of 2)
+     11  RUNTIME REACHABLE — ACTIVE AND HAS EXECUTED
+     10  OPTIONAL MODULE DEPENDENT — not installed on any observed deployment
+      6  RUNTIME REACHABLE (1 of 2)

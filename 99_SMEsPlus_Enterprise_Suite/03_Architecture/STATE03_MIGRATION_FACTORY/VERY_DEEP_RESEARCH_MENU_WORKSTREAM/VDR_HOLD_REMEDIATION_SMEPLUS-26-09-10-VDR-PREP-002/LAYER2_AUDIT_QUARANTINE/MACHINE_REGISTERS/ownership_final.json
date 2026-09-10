@@ -8,7 +8,8 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT",
+  "installed_on": []
  },
  {
   "model": "barcode.nomenclature",
@@ -19,7 +20,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "CONSUMING MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "confirm.stock.sms",
@@ -30,7 +36,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "delivery.carrier",
@@ -41,7 +52,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "CONSUMING MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "delivery.zip.prefix",
@@ -52,7 +68,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "CONSUMING MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "expiry.picking.confirmation",
@@ -63,7 +84,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "fsm.stock.tracking.line",
@@ -74,7 +100,10 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "TRIGGERING MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "iTEST02"
+  ]
  },
  {
   "model": "l10n_cl.dte.caf",
@@ -85,7 +114,8 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "OPTIONAL MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT",
+  "installed_on": []
  },
  {
   "model": "l10n_mx_edi.customs.document.type",
@@ -96,7 +126,8 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "OPTIONAL MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT",
+  "installed_on": []
  },
  {
   "model": "l10n_mx_edi.customs.regime",
@@ -107,7 +138,8 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "OPTIONAL MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT",
+  "installed_on": []
  },
  {
   "model": "l10n_pe_edi.vehicle",
@@ -118,7 +150,8 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "OPTIONAL MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT",
+  "installed_on": []
  },
  {
   "model": "l10n_tr.nilvera.trailer.plate",
@@ -129,7 +162,8 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "OPTIONAL MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT",
+  "installed_on": []
  },
  {
   "model": "lazada.order.item",
@@ -140,7 +174,11 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING"
+  ]
  },
  {
   "model": "lazada.shop",
@@ -151,7 +189,11 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING"
+  ]
  },
  {
   "model": "lot.label.layout",
@@ -162,7 +204,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.bom",
@@ -173,7 +220,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "TRIGGERING MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.bom.byproduct",
@@ -184,7 +236,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "TRIGGERING MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.bom.line",
@@ -195,7 +252,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "TRIGGERING MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.mps.forecast.details",
@@ -206,7 +268,10 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.mps.forecast.suggestion",
@@ -217,7 +282,10 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "TRIGGERING MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.product.forecast",
@@ -228,7 +296,10 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.production",
@@ -239,7 +310,12 @@
   "carries_quantity": true,
   "carries_financial": true,
   "ownership": "CROSS-MODULE CO-OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.production.group",
@@ -250,7 +326,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.production.schedule",
@@ -261,7 +342,10 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "CONSUMING MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.routing.workcenter",
@@ -272,7 +356,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.unbuild",
@@ -283,7 +372,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "TRIGGERING MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "mrp.workorder",
@@ -294,7 +388,12 @@
   "carries_quantity": false,
   "carries_financial": true,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "picking.label.type",
@@ -305,7 +404,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "pos.session",
@@ -316,7 +420,11 @@
   "carries_quantity": false,
   "carries_financial": true,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING"
+  ]
  },
  {
   "model": "product.attribute",
@@ -327,7 +435,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "CONSUMING MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "product.category",
@@ -338,7 +451,12 @@
   "carries_quantity": false,
   "carries_financial": true,
   "ownership": "CONSUMING MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "product.product",
@@ -349,7 +467,12 @@
   "carries_quantity": false,
   "carries_financial": true,
   "ownership": "CONSUMING MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "product.removal",
@@ -360,7 +483,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "product.replenish",
@@ -371,7 +499,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "product.template",
@@ -382,7 +515,12 @@
   "carries_quantity": false,
   "carries_financial": true,
   "ownership": "CONSUMING MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "product.value",
@@ -393,7 +531,12 @@
   "carries_quantity": false,
   "carries_financial": true,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "quality.check.wizard",
@@ -404,7 +547,10 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "iTEST02"
+  ]
  },
  {
   "model": "repair.order",
@@ -415,7 +561,10 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "TRIGGERING MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "iTEST02"
+  ]
  },
  {
   "model": "report.stock.label_lot_template_view",
@@ -426,7 +575,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "report.stock.label_product_product_view",
@@ -437,7 +591,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "report.stock.quantity",
@@ -448,7 +607,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "report.stock.report_reception",
@@ -459,7 +623,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "report.stock.report_stock_rule",
@@ -470,7 +639,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "res.config.settings",
@@ -481,7 +655,12 @@
   "carries_quantity": false,
   "carries_financial": true,
   "ownership": "CONSUMING MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "shopee.shop",
@@ -492,7 +671,11 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING"
+  ]
  },
  {
   "model": "stock.add.to.wave",
@@ -503,7 +686,10 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.backorder.confirmation",
@@ -514,7 +700,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.backorder.confirmation.line",
@@ -525,7 +716,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.forecasted_product_product",
@@ -536,7 +732,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.forecasted_product_template",
@@ -547,7 +748,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.inventory.adjustment.name",
@@ -558,7 +764,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.inventory.conflict",
@@ -569,7 +780,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.inventory.warning",
@@ -580,7 +796,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.landed.cost",
@@ -591,7 +812,12 @@
   "carries_quantity": false,
   "carries_financial": true,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.location",
@@ -602,7 +828,12 @@
   "carries_quantity": false,
   "carries_financial": true,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.lot",
@@ -613,7 +844,12 @@
   "carries_quantity": true,
   "carries_financial": true,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.move",
@@ -624,7 +860,12 @@
   "carries_quantity": true,
   "carries_financial": true,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.move.line",
@@ -635,7 +876,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.orderpoint.snooze",
@@ -646,7 +892,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.package",
@@ -657,7 +908,12 @@
   "carries_quantity": false,
   "carries_financial": true,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.package.destination",
@@ -668,7 +924,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.package.history",
@@ -679,7 +940,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.package.type",
@@ -690,7 +956,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.picking",
@@ -701,7 +972,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.picking.batch",
@@ -712,7 +988,10 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.picking.type",
@@ -723,7 +1002,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.put.in.pack",
@@ -734,7 +1018,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.putaway.rule",
@@ -745,7 +1034,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.quant",
@@ -756,7 +1050,12 @@
   "carries_quantity": true,
   "carries_financial": true,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.quant.relocate",
@@ -767,7 +1066,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.quantity.history",
@@ -778,7 +1082,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.reference",
@@ -789,7 +1098,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.replenish.mixin",
@@ -800,7 +1114,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.replenishment.info",
@@ -811,7 +1130,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.replenishment.option",
@@ -822,7 +1146,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.report",
@@ -833,7 +1162,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.request.count",
@@ -844,7 +1178,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.return.picking",
@@ -855,7 +1194,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.return.picking.line",
@@ -866,7 +1210,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.route",
@@ -877,7 +1226,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.rule",
@@ -888,7 +1242,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.rules.report",
@@ -899,7 +1258,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.scrap",
@@ -910,7 +1274,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.scrap.reason.tag",
@@ -921,7 +1290,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.storage.category",
@@ -932,7 +1306,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.storage.category.capacity",
@@ -943,7 +1322,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.traceability.report",
@@ -954,7 +1338,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.valuation.adjustment.lines",
@@ -965,7 +1354,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.warehouse",
@@ -976,7 +1370,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.warehouse.orderpoint",
@@ -987,7 +1386,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.warn.insufficient.qty",
@@ -998,7 +1402,12 @@
   "carries_quantity": true,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.warn.insufficient.qty.repair",
@@ -1009,7 +1418,10 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.warn.insufficient.qty.scrap",
@@ -1020,7 +1432,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock.warn.insufficient.qty.unbuild",
@@ -1031,7 +1448,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "DEPENDENT MODULE",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "stock_barcode.cancel.operation",
@@ -1042,7 +1464,12 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "PRIMARY OWNER",
-  "deployment": "INSTALLED"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  },
  {
   "model": "uom.uom",
@@ -1053,6 +1480,11 @@
   "carries_quantity": false,
   "carries_financial": false,
   "ownership": "CONSUMING MODULE",
-  "deployment": "NOT INSTALLED ON ANY OBSERVED DEPLOYMENT"
+  "deployment": "INSTALLED",
+  "installed_on": [
+   "BK12MAY26",
+   "iEVING",
+   "iTEST02"
+  ]
  }
 ]

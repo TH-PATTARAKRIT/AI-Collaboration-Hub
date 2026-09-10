@@ -66,7 +66,7 @@ whose unit is *this* package can distinguish **inherited** from **undefined**.
 
 | ID | Gap | Size | Status |
 |----|-----|------|--------|
-| **`GAP-INV-09B`** | **Transactional** reachability in the target generation | affects every behavioural finding | **OPEN** — no target-generation deployment carries stock |
+| **`GAP-INV-09B`** | **WITHDRAWN** — it asserted that no target-generation deployment carries stock. One does. Replaced by `GAP-INV-09C` | — | **WITHDRAWN** |
 | **`GAP-INV-17`** | The database artefact census was run **after** the deployments were chosen; 3 of 6 identities unexamined and a newer copy exists of both that were used | 3 of 6 identities; cloud storage unswept | **OPEN** |
 | **`GAP-INV-18`** | A reference object binds Inventory documents to point-of-sale, purchase and sales documents, has no controls, no validations and no behaviours, and is hidden behind a technical-only group | 1 object | **OPEN — Identity is a Critical Area** |
 | **`GAP-INV-19`** | The optional-function dimension is absent for the **32** menus that prior research covered | 32 menus | **OPEN — sized, not closed** |
@@ -75,10 +75,71 @@ whose unit is *this* package can distinguish **inherited** from **undefined**.
 
 | Family | Range | Defined in |
 |--------|-------|-----------|
-| `FO-F-01` … `FO-F-06` | 6 | `00B_FUNCTIONAL_OWNERSHIP_MATRIX.md` |
-| `RR-F-01` … `RR-F-06` | 6 | `00C_RUNTIME_REACHABILITY_MATRIX.md` |
+| `FO-F-01` … `FO-F-07` | 7 | `00B_FUNCTIONAL_OWNERSHIP_MATRIX.md` |
+| `RR-F-01` … `RR-F-09` | 9 | `00C_RUNTIME_REACHABILITY_MATRIX.md` |
 | `RC-F-01` … `RC-F-03` | 3 | `00D_PRIOR_RESEARCH_RECONCILIATION_MATRIX.md` |
 | `DR-F-01` … `DR-F-09` | 9 | `VDR_TARGETED_DELTA_RESEARCH_REPORT.md` |
+
+### Instrument corrections added by the re-challenge round
+
+| ID | Defect |
+|----|--------|
+| **`CORR-F-35`** | reachability and **use** were conflated; a fourth class `REACHABLE BUT UNUSED` is required — 40% of the object surface differs between them |
+| **`CORR-F-36`** | a many-to-many relation lives in a **join table**; a column check on the parent cannot see it and returns a false zero |
+| **`CORR-F-37`** | **a positive control drawn from the same vocabulary as the search term tests nothing.** It must be drawn from the corpus being searched. This single defect produced the round's largest retraction |
+| **`CORR-F-38`** | the population register carries **one ordinal status per row** and cannot represent three independent dimensions; any three-dimension count over it is zero by construction |
+| **`CORR-F-39`** | a **zero on one dimension beside a non-zero on another** is a contradiction, and no control was positioned to see it |
+| **`CORR-F-40`** | a proxy validated at one granularity is **not** validated at a finer one — the module-installation inference holds for menus and fails for fields |
+| **`CORR-F-41`** | a derived axis must publish **its token set and its scope**; executing the published wording literally disagreed on 11 of 96 rows |
+| **`CORR-F-42`** | a flag derived from a set-membership test must **name the set** — a research boundary is not a deployment |
+| **`CORR-F-43`** | an action comparison that reads only the domain cannot see **view overrides** |
+
+### Gaps added by the re-challenge round
+
+| ID | Gap | Status |
+|----|-----|--------|
+| **`GAP-INV-09C`** | transactional reachability in the target generation is **small-N** — one deployment, one configuration, no application server | OPEN |
+| **`GAP-INV-20`** | the accounting-link column moves 77.2% → 0.0% between two *earlier* generations and is governed by configuration; **not interpreted** | OPEN |
+| **`GAP-INV-21`** | the movement → accounting-entry link is **unobservable** in the target generation because every located deployment runs periodic valuation | OPEN |
+| **`GAP-INV-22`** | *"no prior conclusion is contradicted"* was a **floor over an unstated set**; no population, pattern or unit was declared for that sweep | OPEN |
+| **`CRITICAL-GAP-06`** | the reference object — **2nd most populated in the domain**, joining 91% of movements and 99.9% of sales orders, with no controls, no validations, no behaviours and no record rule, hidden behind a technical-only group, covered by no prior research | **OPEN — Identity is a Critical Area** |
+| **`BOSS-DEC-14`** | is the quantity axis scoped to the **owning module** or **cross-module**? The answer decides whether the product master is a co-owned Inventory subject or an upstream one | **OPEN — Boss** |
+
+### Individually-cited identifiers from other corpora
+
+Cited by name in this package, defined elsewhere. Listed individually so an identifier sweep whose
+unit is *this* package can tell **inherited** from **undefined**.
+
+| ID | What it is | Defined in |
+|----|-----------|-----------|
+| `INV-M21` | prior menu study — operation types | prior deep-research corpus |
+| `INV-M29` | prior menu study — the unit-of-measure **category** master, an object that does not exist in the target generation | " |
+| `INV-F-26` | the capability-switch function — the evidence that refuted this session's `RC-F-01` | " |
+| `INV-F-41` | the last function in the prior scope | " |
+| `GAP-MD-14` | the prior corpus's own open gap on switch-off guards and versioning | " |
+| `JT-12` | the last of the twelve joint accounting decisions | " |
+| `IV-05` | immutability of a completed movement fact | " |
+| `P-02` | corrections are new reversing facts, never edits | " |
+| `P-07` | Inventory emits facts; Accounting decides postings | " |
+| `MM-F-08` | a third-party module rewrites Inventory menu gates on install | prior VDR package |
+| `OD-F-07` | the valuation figure is a writable column whose audit log is deletable | " |
+| `RR-F-06` | retracted jointly with `RR-F-05` under a combined heading in `00C` | **this package** |
+
+### Identifier families inherited from the prior **deep-research** corpus
+
+The first version of this register declared inherited families from the prior *VDR* package only.
+Re-challenge found four further families cited here and declared nowhere. They come from a **third**
+corpus — the prior Inventory deep research — and are declared now:
+
+| Family | Range | Corpus |
+|--------|-------|--------|
+| `INV-M01` … `INV-M29` | 29 menus | prior deep-research corpus |
+| `INV-F-01` … `INV-F-41` | 41 functions | " |
+| `JT-01` … `JT-12` | 12 joint decisions | " |
+| `P-02`, `P-07`, `IV-05` | standing principles | " |
+
+The package's own identifier sweep was **blind to these prefixes** and could not have reported them —
+corrected in the sweep instrument.
 
 ## 5. Boss decisions this session supplies evidence for
 

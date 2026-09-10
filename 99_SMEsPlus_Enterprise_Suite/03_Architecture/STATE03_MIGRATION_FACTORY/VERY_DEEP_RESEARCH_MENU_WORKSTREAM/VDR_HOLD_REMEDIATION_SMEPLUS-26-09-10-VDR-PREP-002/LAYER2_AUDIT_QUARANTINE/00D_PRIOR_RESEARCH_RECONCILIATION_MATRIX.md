@@ -30,12 +30,12 @@ requires.
 |---|---:|
 | Prior R4 menus | 29 |
 | Current derived menu nodes | **62** |
-| Current nodes that map to a prior menu | **32** |
+| Current nodes that map to a prior menu | **29** — corrected from 32; three mapped nodes are grouping containers |
 | Current nodes with **no** prior coverage | **30** |
-| — of which grouping containers (no function) | 14 |
+| — of which grouping containers (no function) | **17** — corrected from 14 |
 | — of which **action-bearing and never in prior scope** | **16** |
 | — of those 16, **live on an observed deployment** | **10** |
-| Prior menus with no current counterpart | **1** (`INV-M14`, the valuation report) |
+| Prior menus with no current counterpart | **3** — corrected from 1: the valuation report, the product-packaging master and the unit-of-measure **category** master. The latter two study objects that do not exist in the target generation |
 
 ### The ten live, action-bearing menus prior research never covered
 
@@ -70,15 +70,41 @@ be called research-complete. The prior corpus was measured for each.
 | INPUT | 74 | 18 | *input* — 62 | yes |
 | OUTPUT | 232 | 22 | *output* — 113 | yes |
 
-### RC-F-01 — The prior corpus has a **complete** optional-function blind spot (**CRITICAL**)
-**Zero occurrences, across 5,193 lines, of feature toggle, optional module, optional function,
-conditional field, conditional menu or opt-in — and the word *toggle* itself appears zero times.**
-This is a controlled zero, not an instrument artefact: the same instrument returns 278 and 363 on the
-neighbouring classes.
+### RC-F-01 — **WITHDRAWN. THE ZERO WAS A TERM-LIST ARTEFACT.** (**CRITICAL RETRACTION**)
 
-The current Pilot measured **237 configuration toggles in five declared classes plus a sixth
-undeclared class**, and found that **7 of 21 group-toggles take effect outside the screen entirely**.
-**None of that surface exists in the prior research at all.**
+> **Published:** *"Zero occurrences, across 5,193 lines… None of that surface exists in the prior
+> research at all."* **This was false, and it was the premise of this register's headline.**
+
+The prior corpus discusses optional functions continuously — **in its own vocabulary, which the
+measurement's term list did not contain.** It calls them **capability switches**.
+
+| Term | Occurrences | Files (of 26) |
+|---|---:|---:|
+| *capability* | **56** | **17** |
+| *optional* | 48 | 11 |
+| *conditional* | 25 | 12 |
+| *capability switch* | 6 | 3 |
+| *visible only* · *Hidden unless* · *switched off* | 16 | 3 |
+
+It contains a **dedicated function** — *"Change a capability switch"* — with all eight process
+dimensions filled, including *"State transition: capability on ↔ off"*, *"Quantity impact: enabling
+traceability where untracked stock already exists leaves balances with no batch identity"* and
+*"Cost impact: enabling or disabling valuation changes whether value events are produced at all"*.
+It contains a **dedicated menu study of the switch panel** — *"Required fields: none; it is a switch
+panel"*, *"Optional fields: every capability switch"*, *"Visibility rules: switches reveal dependent
+switches; some cannot be turned off once data exists"* — rated **configuration risk HIGH**, with a
+named open gap against it.
+
+**The prior corpus's optional-function coverage is better than this session's own delta produced.**
+
+**Cause — this framework's own catalogued defect, committed by its author.** The measurement searched
+for the *current* vocabulary. **The positive control was the word `toggle`, drawn from the same wrong
+vocabulary, so it could not fire — and its silence was read as confirmation instead of as the warning
+it was.** Recorded as `CORR-F-37`: *a positive control drawn from the same vocabulary as the search
+term tests nothing; it must be drawn from the corpus being searched.*
+
+**Withdrawn with it:** `GAP-INV-19`, the `COMPLETE = 0` headline, and the stated delta on all
+`PARTIAL` rows.
 
 ### RC-F-02 — The prior corpus has no runtime dimension, and could not have had one
 21 weak hits and a **zero positive control**. Prior research is a source study throughout. This is not
@@ -105,16 +131,22 @@ dimension prior research actually covered well.
 
 | Status | Menus | Meaning |
 |--------|------:|---------|
-| `PARTIAL` | **32** | prior L1–L12 coverage exists; **optional-function and runtime dimensions absent** |
+| `PARTIAL` | **29** | prior L1–L12 coverage exists **including the optional dimension**; the **runtime** dimension is absent |
 | `MISSING` | **16** | action-bearing, never in prior scope — **10 of them live** |
-| `NOT APPLICABLE` | 14 | grouping containers, no function |
-| `COMPLETE` | **0** | **no menu satisfies PROCESS + CONFIGURATION + OPTIONAL FUNCTION** |
-| `OUTDATED` | 1 | `INV-M14` — see §5 |
+| `NOT APPLICABLE` | **17** | grouping containers, no function |
+| `COMPLETE` | **NOT DETERMINABLE** | the register carries **one ordinal status per row** and cannot represent three independent dimensions. The previous `0` was true of every possible content of the file — `CORR-F-38` |
+| `OUTDATED` | **3** | see §2 |
 | `CONTRADICTED` | **0** | no prior conclusion is contradicted by current evidence |
 | `UNVERIFIED` | see §5 | the valuation conclusions |
 
-**`COMPLETE` = 0 is the headline.** Not because prior work was poor, but because the standard changed:
-a third mandatory dimension was added that the prior corpus does not address anywhere.
+**The `COMPLETE = 0` headline is withdrawn on two independent grounds.** Its premise was false
+(`RC-F-01`), and it was **unfalsifiable by construction**: a register with one ordinal status per row
+cannot record an item satisfying three dimensions, so the zero was a property of the schema, not an
+observation about the domain.
+
+**What replaces it:** the prior corpus covers process, configuration **and** optional function for the
+29 menus in its scope. What it does not cover is **runtime reachability** — a dimension that did not
+exist as a control when it was written, and which this session has now measured.
 
 ---
 

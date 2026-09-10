@@ -100,10 +100,21 @@ Recorded at the point the re-challenge closes:
 
 | Item | Value |
 |------|-------|
-| R3 frozen SHA | see `SMES_CORE_RECHALLENGE_REPORT.md` §1 |
-| Working tree at freeze | verified clean over the package path |
-| Commits to the package path during R3 | **verified by `git log <frozen SHA>..HEAD -- <package path>`** |
-| Round validity | **CLEAN** if that command returns empty; **VOID** otherwise |
+| **R3 frozen SHA** | **`1d6238a5574ae8a07e1c7679be024cdeacc84940`** |
+| Working tree at freeze | **clean — 0 modified, 0 untracked over the package path** |
+| Commits to the package path during R3 | **0** — `git log <frozen SHA>..HEAD -- <package path>` returned empty |
+| Uncommitted changes during R3 | **0** |
+| Diff against the frozen SHA at round close | **0** |
+| **Round validity** | **CLEAN** |
+
+**Independently verified.** One reviewer ran the same three commands and reported the same result,
+correctly noting that the test only acquires force once re-run after a later commit — which it now has
+been.
+
+**The rule was tested by circumstance, not just asserted.** The producer found **ten** of its own
+defects while the round was open, two of them falsifying published claims. **None was applied until
+the round closed**; all were held in a file outside the package path. That is the discipline `GOV-01`
+broke, obeyed under pressure to break it again.
 
 ---
 
@@ -116,10 +127,10 @@ Recorded at the point the re-challenge closes:
 | A3 new clean frozen baseline established | **CLEAN** |
 | A4 no-modification-during-review rule | **CLEAN — now enforceable and mechanically verified** |
 | A5 invalidate-and-re-version rule | **CLEAN** |
-| A6 clean independent re-challenge conducted | see `SMES_CORE_RECHALLENGE_REPORT.md` |
+| A6 clean independent re-challenge conducted | **CLEAN** — 2 independent reviewers, 36 findings, freeze verified unbroken; see `SMES_CORE_RECHALLENGE_REPORT.md` |
 | A7 round register with invalidation reason | **CLEAN** |
 
-**Workstream A disposition: `CLEAN` for A1–A5 and A7.** A6 carries the disposition of the R3 round.
+**Workstream A disposition: `CLEAN` for A1–A7.** The R3 round was conducted against a package that was not touched while it was open, and that is verified mechanically rather than asserted.
 
 **The prior round remains invalidated and is recorded as such permanently.** `BOSS-DEC-13` — whether
 the whole Pilot must be re-challenged from a clean freeze rather than only its remediation — remains

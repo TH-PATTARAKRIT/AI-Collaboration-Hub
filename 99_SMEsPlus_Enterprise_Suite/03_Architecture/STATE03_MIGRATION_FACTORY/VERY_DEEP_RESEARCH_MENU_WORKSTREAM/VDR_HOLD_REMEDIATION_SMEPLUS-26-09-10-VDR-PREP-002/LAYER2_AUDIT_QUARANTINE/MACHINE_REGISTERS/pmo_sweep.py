@@ -15,10 +15,10 @@ def layer(p):
     if 'LAYER 1' in head: return 1
     return 0
 # ---- 1 IDENTIFIER (unit: identifier)
-IDPAT=re.compile(r'\b((?:MM|CD|FT|FN|OD|XM|SS|HA|EB|FO|RR|RC|DR)-F-\d{2}|GAP-INV-\d{2}[A-Z]?|CRITICAL-GAP-\d{2}|BOSS-DEC-\d{2}|CORR-F-\d{2}|SR-\d{2}|GOV-\d{2}|LI-INV-[A-Z]+-\d{4}|CORR-\d{3}[A-Z]?)\b')
+IDPAT=re.compile(r'\b((?:MM|CD|FT|FN|OD|XM|SS|HA|EB|FO|RR|RC|DR)-F-\d{2}|GAP-INV-\d{2}[A-Z]?|CRITICAL-GAP-\d{2}|BOSS-DEC-\d{2}|CORR-F-\d{2}|SR-\d{2}|GOV-\d{2}|INV-M\d{2}|INV-F-\d{2}|JT-\d{2}|IV-\d{2}|P-\d{2}|R4-F-\d{2}|GAP-MD-\d{2}|LI-INV-[A-Z]+-\d{4}|CORR-\d{3}[A-Z]?)\b')
 defined=collections.defaultdict(list); cited=collections.defaultdict(list)
 # A definition is: a heading, OR the first cell of a table row (with or without bold markers).
-DEFLINE=re.compile(r'^\s*(?:###+\s*|\|\s*(?:\*\*)?`?)((?:MM|CD|FT|FN|OD|XM|SS|HA|EB|FO|RR|RC|DR)-F-\d{2}|GAP-INV-\d{2}[A-Z]?|CRITICAL-GAP-\d{2}|BOSS-DEC-\d{2}|CORR-F-\d{2}|SR-\d{2}|GOV-\d{2})\b')
+DEFLINE=re.compile(r'^\s*(?:###+\s*|\|\s*(?:\*\*)?`?)((?:MM|CD|FT|FN|OD|XM|SS|HA|EB|FO|RR|RC|DR)-F-\d{2}|GAP-INV-\d{2}[A-Z]?|CRITICAL-GAP-\d{2}|BOSS-DEC-\d{2}|CORR-F-\d{2}|SR-\d{2}|GOV-\d{2}|INV-M\d{2}|INV-F-\d{2}|JT-\d{2}|GAP-MD-\d{2}|IV-\d{2}|P-\d{2}|R4-F-\d{2})\b')
 for p in md:
     for i,line in enumerate(open(p,encoding='utf-8',errors='replace'),1):
         m=DEFLINE.match(line)

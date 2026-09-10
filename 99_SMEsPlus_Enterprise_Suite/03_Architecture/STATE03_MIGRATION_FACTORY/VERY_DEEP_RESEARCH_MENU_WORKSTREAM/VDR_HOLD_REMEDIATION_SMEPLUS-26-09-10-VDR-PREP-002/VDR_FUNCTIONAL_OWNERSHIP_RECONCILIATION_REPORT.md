@@ -46,12 +46,15 @@ correct. **This workstream supplies the evidence the decision was missing.**
 | **Product / unit-of-measure** (5) | **OUT — they are the master-data subjects** `VDR-MD-03` / `VDR-MD-04` | consuming only; researching them here would duplicate an upstream subject |
 | **Localisation** (5) | **OUT of the baseline; re-admit per tenant** | installed on no observed deployment |
 | **Point-of-sale** (1) | **OUT** | one object, no quantity, no display |
-| **Sales channel, delivery, repair, quality, field service, barcode** (12) | **OUT as subjects, IN as handoff targets** | they trigger or consume; none owns Inventory behaviour |
+| **Sales channel, delivery, repair, quality, field service, barcode** (**11**) | **OUT as subjects, IN as handoff targets** | they trigger or consume; none owns Inventory behaviour |
 | **Platform** (1) | **BOUNDARY object** | extended by everyone |
 
 **Net effect if adopted:** the Inventory VDR population contracts from 96 objects to **61** — the 60
 owned plus the jointly-owned production order — and **35 objects become cross-module handoff targets
-with named owners** rather than research subjects.
+with named owners** rather than research subjects. (The cluster rows sum to 35: 13 manufacturing minus
+the co-owner, 5 product, 5 localisation, 1 point-of-sale, 11 across the six trigger/consume clusters,
+1 platform boundary object. The first version's row labels summed to 36 — an off-by-one in the
+labelling, not in the derivation.)
 
 ## 5. What this does **not** decide
 
@@ -68,7 +71,7 @@ with named owners** rather than research subjects.
 | Control | Status |
 |---------|--------|
 | Ownership class assigned to every applicable item | **COMPLETE — 96 of 96, 0 unresolved** |
-| Derivation reproducible by a second party | **yes** — dependency graph over 1,433 parsed manifests |
-| Material items resolved | **COMPLETE** |
+| Derivation reproducible by a second party | **yes for the primary-owner derivation** — independently re-derived with **0 disagreements on all 96 objects**. **No for the two supporting axes**: neither the quantity token set nor its module scope was published, and executing the published wording literally disagrees on 11 of 96 rows (`CORR-F-41`) |
+| Material items resolved | **COMPLETE** for ownership class; **the deployment column was withdrawn and recomputed** after re-challenge found 10 rows had never been tested (`FO-F-07`) |
 | `BOSS-DEC-02` | **OPEN — recommendation supplied** |
 | `BOSS-DEC-12` | **OPEN — live counter-example supplied** |

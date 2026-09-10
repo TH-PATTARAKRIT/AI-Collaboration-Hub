@@ -1,0 +1,8 @@
+=== SERIES-19 MENU REACHABILITY — THREE DEPLOYMENTS ===
+  iEVING       present 46/62 ( 74.2%)  domain modules  33/149  anomalies 0
+  iTEST02      present 52/62 ( 83.9%)  domain modules  69/149  anomalies 0
+  BK12MAY26    present 46/62 ( 74.2%)  domain modules  34/149  anomalies 0
+  ---> 186 menu observations, 0 anomalies
+  union 52/62 (83.9%)   intersection 46/62 (74.2%)
+  domain modules installed on at least one: 78/149 (52.3%)
+  never installed anywhere                : 71/149

@@ -9,9 +9,13 @@ Generation basis: series-19 source, corroborated on two series-19 deployments.
 ## 1. Selection rule — delta only, and only where justified
 
 Targeted VDR was run **only** on items classified `MISSING` by `00D` **and** `RUNTIME REACHABLE` by
-`00C`. That is **10 of 62 menus**. The 32 `PARTIAL` items were **not re-researched**: their process and
-configuration dimensions are covered by prior work, and re-running them would be repetition without
-material delta. The 6 `MISSING` items that are installed nowhere observed were **not researched**
+`00C`. That is **10 of 62 menus**. The **29** `PARTIAL` items were **not re-researched**: their process,
+configuration **and optional-function** dimensions are covered by prior work.
+
+> **The justification is stronger than first published.** This section originally claimed prior work
+> covered process and configuration but **not** optional function. **That was wrong** — `RC-F-01` is
+> withdrawn — and the prior corpus covers all three. The decision not to re-research them stands on
+> better ground than the reasoning first given for it. The 6 `MISSING` items that are installed nowhere observed were **not researched**
 either — they are optional-module dependent and out of the applicable baseline.
 
 Each of the 10 was studied across the required chain:
@@ -21,9 +25,12 @@ Each of the 10 was studied across the required chain:
 
 ## 2. Findings
 
-### DR-F-01 — Batch transfers and wave transfers are **one object with two filters**, not two functions (**MATERIAL**)
-Both menus resolve to the **same object**. They differ **only** by a boolean filter on the action's
-domain — one shows records where the wave flag is false, the other where it is true. They share:
+### DR-F-01 — CORRECTED — Batch and wave transfers are **one object with two projections** (**MATERIAL**)
+Both menus resolve to the **same object**. The published claim that they differ *"only by a boolean
+filter"* is **wrong**: verified independently, they differ by the domain boolean **plus a dedicated
+list and kanban view set plus a distinct action path** — three differences, not one. The instrument
+could not have seen the view overrides because it captured only the action's domain. `CORR-F-43`.
+**The design conclusion — two projections of one function — survives.** They share:
 one lifecycle (`draft · in progress · done · cancelled`), 58 fields, **28 controls**, 28 behaviours,
 one set of 10 gated elements.
 
@@ -39,8 +46,8 @@ cross-domain object whose scheduling attributes are owned elsewhere.
 
 ### DR-F-03 — The operation-type Overview is the richest configuration surface in the domain, and only its *configuration* twin was researched (**CRITICAL**)
 The Overview object declares **129 fields — 13 of them required**, **12 stored computed values**,
-**5 validation constraints**, **4 persistence interceptions**, and **48 gated elements across 11
-distinct security groups** — the highest gating density measured anywhere in the Pilot.
+**5 validation constraints**, **4 persistence interceptions**, and **48 gated elements across 10
+distinct security groups** (published as 11; a group and its negation were counted twice) — the highest gating density measured anywhere in the Pilot.
 It reaches **61 distinct external objects**.
 
 Prior research covered the *Operation Types configuration menu* (`INV-M21`) as `L2 COMPLETE`. It did
@@ -51,7 +58,32 @@ surface and is driven by the same object.
 > actually work in.** A configuration-screen study answers *what can be set*; it does not answer *what
 > the operator sees, in what order, filtered how, and with which controls enabled*.
 
-### DR-F-04 — A reference object links Inventory to Point-of-Sale, Purchase and Sales, and is hidden behind a technical group (**CRITICAL — Identity**)
+### DR-F-04 — CORRECTED AND STRENGTHENED — the reference object is the order-to-cash traceability spine (**CRITICAL — Identity**)
+
+**Two corrections.** It binds **four** domains, not three — the fourth being **manufacturing**, the
+very object `FO-F-03` names as the sole co-owner. And it was described from source declarations only;
+**measured in data on the transacted deployment it is far more important than the text implied**:
+
+| Link | Rows | Against | Density |
+|---|---:|---:|---|
+| reference ↔ **stock movement** | **13,163** | 14,441 movements | **91.1%** |
+| reference ↔ **sales order** | **6,661** | 6,665 sales orders | **99.94%** |
+| reference ↔ purchase order | 11 | 31 | 35.5% |
+| reference ↔ point-of-sale · production order | **0** | — | declared, unused |
+| the object itself | **11,852 rows** | — | **2nd most populated object in the domain** |
+
+**In data this object is the join between stock movements and sales orders** — essentially every sales
+order and nine in ten movements carry one. It is that deployment's order-to-cash traceability spine,
+and it has **no controls, no validations, no behaviours and no record rule**, reachable only through a
+menu gated to a **technical-only** group. **`GAP-INV-18` is promoted to `CRITICAL-GAP-06`.**
+
+**Method note:** the links are many-to-many and live in **join tables**. A first check looked for a
+reference column on the parent documents, found none, and would have recorded *"0% populated"*.
+**The relation type determines where the evidence lives.** `CORR-F-36`.
+
+The original text follows.
+
+#### (as published)
 A small object — 7 fields, **no controls, no behaviours, no constraints** — carries references to
 **point-of-sale orders, purchase orders and sales orders**. Its menu is gated to a **technical-only
 group**, so no ordinary user, and no menu-driven research, would ever see it.
@@ -72,7 +104,7 @@ exactly the optional-function class prior research has zero coverage of** (`00D`
 The production order — the one genuine cross-module co-owner (`00B` `FO-F-03`) — is reachable from
 within the Inventory application through a menu gated to the Inventory user and manager groups.
 It declares **115 fields, 9 required, 18 stored computed values, 61 controls, 66 behaviours including
-9 persistence interceptions**, and **40 gated elements across 18 security groups** — including groups
+9 persistence interceptions**, and **40 gated elements across 17 security groups** (published as 18; a group and its negation were counted twice) — including groups
 owned by **accounting, project, purchase and sales**.
 
 **Inventory users can reach and act on a manufacturing document from inside Inventory.** The ownership
@@ -86,11 +118,23 @@ view. Its object has 17 fields, 3 required, and **2 controls only (save, cancel)
 **A client-rendered screen cannot be studied from view declarations at all.** Any register whose
 population is view records is blind to it. Two of the 62 menus in this domain are client actions.
 
-### DR-F-08 — Delivery methods and postcode prefixes are displayed by Inventory and owned by Delivery
-Both menus sit in the Inventory application; both objects are `CONSUMING` in the ownership matrix.
-The carrier object reaches **46 distinct external objects**, including third-party shipping providers.
-**Inventory displays a configuration surface whose behaviour and lifecycle belong to another domain**
-— and one of the two is gated to a technical-only group.
+### DR-F-08 — WITHDRAWN AND REPLACED — the delivery objects were measured at zero by a scoping defect (**MATERIAL**)
+
+> **This finding was published on an object the extractor reported as having 0 fields, 0 required
+> fields, 0 controls and 0 behaviours — beside a count of 46 external edges. Nothing flagged the
+> contradiction.**
+
+The extractor scoped field collection to the **menu's** module, which only extends the object:
+
+| Object | Published | Actual |
+|---|---:|---:|
+| delivery carrier | 0 fields | **264 fields across 24 modules**, 17 required |
+| delivery postcode prefix | 0 fields | **1 field**, required |
+
+**The ownership conclusion survives** — both are `CONSUMING`, displayed by Inventory, owned by
+Delivery, one gated to a technical-only group. **Every quantitative statement about them is
+withdrawn.** `CORR-F-39`: *a zero on one dimension beside a non-zero on another is a contradiction,
+and no control was positioned to see it.*
 
 ### DR-F-09 — One Inventory menu performs a device-management action against **no object at all**
 The *Reset Linked Printers* menu is a **client action with no target object**, no fields, no controls
@@ -118,8 +162,8 @@ device or an external system rather than a data object.**
 | Reset linked printers | ungated | **yes** — device-integration install | none |
 
 **Six of the ten are optional-module dependent.** They exist only where the tenant installs the
-relevant module — and **five of the six are installed on at least one observed deployment**, so this
-is not a theoretical branch.
+relevant module — and **all six are installed on at least one observed deployment** (published as five; corrected on
+recount), so this is not a theoretical branch.
 
 ---
 
@@ -127,7 +171,7 @@ is not a theoretical branch.
 
 | Not covered | Why |
 |-------------|-----|
-| The 32 `PARTIAL` menus' optional-function dimension | prior research covers their process and configuration; the optional dimension is a **known, sized gap** (`00D` `RC-F-01`) and closing it for 32 menus is a research programme, not a delta |
+| The 29 `PARTIAL` menus' **runtime** dimension | prior research covers their process, configuration **and optional-function** dimensions; what it cannot cover is runtime reachability, which did not exist as a control when it was written |
 | Transactional behaviour of any of the 10 | no deployment carries on-hand quantity (`00C` `RR-F-04`) |
 | The 6 `MISSING` menus not installed anywhere | optional-module dependent, outside the applicable baseline |
 | The 134 extra-application menus | out of this session's control-area scope |

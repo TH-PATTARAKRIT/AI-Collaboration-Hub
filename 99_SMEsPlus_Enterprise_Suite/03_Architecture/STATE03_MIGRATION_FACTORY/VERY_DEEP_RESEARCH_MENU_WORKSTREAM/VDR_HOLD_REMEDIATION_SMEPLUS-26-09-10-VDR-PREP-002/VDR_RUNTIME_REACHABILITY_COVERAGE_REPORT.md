@@ -27,12 +27,13 @@ evidence for the inference but not proof of it.
 
 | Element class | Population | Observed | Reachable | Not reachable |
 |---------------|-----------:|---------:|----------:|--------------:|
-| Menus in the Inventory application | 62 | **62** | 52 (46 on both deployments, 6 on one) | 10 — optional-module dependent |
+| Menus in the Inventory application | 62 | **62** | 52 (46 on all three series-19 deployments, 6 on one) | 10 — optional-module dependent |
 | Scheduled jobs in the domain module set | 26 | **26** | **11 — all active, all with a real last-run timestamp** | 15 — module not installed |
 | | **88** | **88** | **63** | **25** |
 
 **Every one of the 11 reachable scheduled jobs has executed.** That is the strongest reachability
-statement in the package: not *could run* — *did run*.
+statement in the package: not *could run* — *did run*. Confirmed independently, with timestamps
+reproduced to the second.
 
 ## 3. Coverage by the prompt's dimensions
 
@@ -43,7 +44,7 @@ statement in the package: not *could run* — *did run*.
 | **Runtime Reachability Coverage (module-inferred)** | **96.3%** — 4,888 of 5,074 | classes A + B |
 | **Configuration Reachability Coverage** | **8.9%** — 21 of 237 toggles resolved to an effect surface; **0 of 237 observed as set or unset on a deployment** except one | only one configuration parameter was checked against deployment state |
 | **Optional Function Reachability** | **62.5%** — of the 16 optional-module-dependent surfaces identified, 10 were resolved against deployment installation state | |
-| **Transactional Reachability** | **0%** | no deployment in the target generation carries stock (`GAP-INV-09B`) |
+| **Transactional Reachability** | **small-N, not 0%** | one target-generation deployment carries **3,642 on-hand rows and 14,441 movements**. `GAP-INV-09B` as first published was **wrong** and is replaced by `GAP-INV-09C` |
 
 ## 4. What changed because reachability was measured
 
@@ -53,18 +54,21 @@ statement in the package: not *could run* — *did run*.
 | `HA-F-01` row 4 — the scheduler menu | `UNMEASURED` | **LIVE — active and executed on both deployments** |
 | valuation-closing job (`BOSS-DEC-12`) | `UNMEASURED` | **LIVE — active and executed on both**, and excluded from the domain by the mechanical rule |
 | localisation surfaces (10 menus, 5 objects) | in the population | **installed on no observed deployment — outside the applicable baseline** |
-| `OD-F-05` / `CRITICAL-GAP-01` — valuation object replaced | source-only | **confirmed in deployment schema and row-level data across two generations** (`00C` `RR-F-06`) |
+| `OD-F-05` / `CRITICAL-GAP-01` — valuation object replaced | source-only | **RE-STATED** — the ledger table is absent, but the per-movement value is present on the movement row. The stronger claim was **retracted** (`00C` `RR-F-05 / RR-F-06`) |
 
 ## 5. Declared limits
 
-1. **Three of six database identities were never examined**, and for the two used first, **a newer
-   copy of each exists that was not used** (`GAP-INV-17`). The census was run after the choice.
+1. **All five database identities are now examined**, but the census was run **after** the first two
+   were chosen, and for both a newer copy existed that was not used (`GAP-INV-17`). Two published
+   claims were false because artefacts listed in this package's own census were not opened.
 2. **Cloud-storage trees were not swept** — traversal stalls on placeholder files. Declared as an
    evidence-affecting exclusion.
 3. **No application server was run.** No UI execution, no controlled test transaction, no security
    response, no state-transition test.
-4. **The only transacted deployment is series 16**, three generations behind the target.
-5. **Class B is an inference, not an observation**, for 94.9% of items.
+4. **Three deployments are transacted — series 16, 18 and 19.** The target-generation one runs
+   **periodic** valuation, so the movement → accounting link is unobservable (`GAP-INV-21`).
+5. **Class B is an inference, not an observation**, for 94.9% of items — and re-challenge produced a
+   **counter-example** at field level, so 96.3% is an **upper bound** (`RR-F-09`).
 
 **None of these is closable by reading the artefacts already read.** Items 1 and 2 are closable by more
 sweeping; items 3–5 need a running instance in the target generation with real stock.

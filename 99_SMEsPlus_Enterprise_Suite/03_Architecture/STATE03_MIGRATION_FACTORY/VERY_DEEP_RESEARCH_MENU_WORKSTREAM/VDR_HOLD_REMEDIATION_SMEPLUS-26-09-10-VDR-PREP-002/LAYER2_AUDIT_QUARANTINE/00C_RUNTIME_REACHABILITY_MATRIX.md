@@ -41,22 +41,28 @@ had been killed mid-stream by a pipe that closed early. The defect was caught by
 comparing rows returned against rows in the source block. **Recorded as `CORR-F-32`, and it is the
 third time in this programme that a truncating pipe has produced a false negative.**
 
-## 3. Deployment profile
+## 3. Deployment profile — five deployments, three generations
 
-| | **E** | **T** |
-|---|---|---|
-| Platform generation | **19.0.1.3** | **19.0.1.3** |
-| Modules known / installed | 1,494 / **216** | 1,548 / **486** |
-| Domain modules installed (of 149) | **33 (22.1%)** | **69 (46.3%)** |
-| Inventory menus present (of 62) | **46 (74.2%)** | **52 (83.9%)** |
-| Menus absent **despite** their module being installed | **0** | **0** |
-| Scheduled jobs total / active | 56 / 50 | 76 / 66 |
-| On-hand quantity rows | **0** | **0** |
-| Stock movement rows | 0 | 48 |
+**Corrected after re-challenge.** The first version of this section reported **two** deployments and
+stated that neither carried stock. The artefact census named **five** database identities; **all five
+have now been examined**, and three of them are transacted.
 
-**The zero-anomaly result is the strongest single line in this table.** Every absent Inventory menu on
-both deployments is absent **because its module is not installed** — not one is missing for an
-unexplained reason. Menu presence is fully explained by module installation.
+| Ref | Generation | Modules installed | Domain modules (of 149) | Inventory menus (of 62) | Movements | On-hand rows |
+|-----|-----------|------------------:|------------------------:|------------------------:|----------:|-------------:|
+| `E` | 19.0.1.3 | 216 | 33 (22.1%) | **46 (74.2%)** | 0 | 0 |
+| `T` | 19.0.1.3 | 486 | 69 (46.3%) | **52 (83.9%)** | 48 | 0 |
+| **`B`** | **19.0.1.3** | 251 | 34 (22.8%) | **46 (74.2%)** | **14,441** | **3,642** |
+| `U` | **18.0.1.3** | 361 | 25 | not enumerated | **51,081** | **2,462** |
+| `S` | **16.0.1.3** | 190 | 13 | not enumerated | **103,949** | **27,196** |
+
+**Menus absent despite their module being installed: 0, on all three series-19 deployments.**
+**186 menu observations, 0 anomalies.** Independent re-challenge extended this test far beyond the 62
+Inventory menus — to every menu declared by every installed module — reaching **1,557 menu and 345
+action observations, still zero anomalies.**
+
+**The newer copies change nothing structural.** Re-challenge opened the newer copies of `E` and `T`
+that this session had not used: identical menu presence, identical suppression-parameter state, domain
+module sets within one module. They do carry a small number of completed, valued movements.
 
 ## 4. Reachability roll-up — menus
 
@@ -87,17 +93,20 @@ are active, and all 11 carry a last-run timestamp — they have executed.**
 
 ## 6. The findings that move from LATENT to LIVE
 
-### RR-F-01 — The write-by-read routine is **not suppressed** on either deployment (**CRITICAL**)
+### RR-F-01 — The write-by-read routine is **not suppressed** on ANY deployment (**CRITICAL — confirmed by re-challenge**)
 The system parameter said to suppress the quantity-maintenance routine is **absent from the parameter
-table on both deployments**. The routine therefore runs on every open of the physical-counting menu
-and the location/quantity menu, on both.
+table on all four deployment copies examined**, including a **transacted** one. Re-challenge confirmed
+the key is the correct one — it guards the routine at both call sites in source — and confirmed its
+absence with a positive control on a parameter that *is* present.
 
-**`HA-F-01` moves from `UNMEASURED` to `LIVE`.** It is not a theoretical source property.
+**`HA-F-01` moves from `UNMEASURED` to `LIVE`**, on a deployment carrying 3,642 on-hand rows and
+14,441 movements. It is not a theoretical source property.
 
-### RR-F-02 — The procurement scheduler has actually executed on both deployments (**CRITICAL**)
+### RR-F-02 — The procurement scheduler has actually executed on every deployment carrying it (**CRITICAL — confirmed**)
 The job behind the *Run Scheduler* menu — the one that runs as superuser, creates downstream purchase
 and manufacturing documents and commits in chunks — is **active and carries a real last-run timestamp
-on both deployments**. `HA-F-01` row 4 is `LIVE`.
+on all three series-19 deployments**, including the transacted one (last run 2026-08-03).
+Re-challenge reproduced every timestamp to the second. `HA-F-01` row 4 is `LIVE`.
 
 ### RR-F-03 — The valuation-closing job is live, and it is the object of an open eligibility question
 The inventory valuation closing job is active and has run on both. It is one of the 10 jobs the Pilot's
@@ -105,34 +114,91 @@ ownership filter **excluded** because it is declared on the company object rathe
 object — the question raised as `BOSS-DEC-12`. **It is live, it is inventory valuation, and the
 mechanical rule put it outside the domain.** The eligibility question is not academic.
 
-### RR-F-04 — Neither deployment has any on-hand quantity, and one has no movements at all
-On-hand rows: **0 and 0**. Movement rows: 0 and 48. **The Inventory domain is installed and configured
-on both deployments and effectively never transacted on either.**
+### RR-F-04 — CORRECTED — transactional reachability in the target generation is small-N, not zero
+The first version of this finding said *"neither deployment has any on-hand quantity"* and concluded
+that transactional reachability was unmeasurable. **Two of the deployments it was drawn from were
+indeed empty. Three others were not, and one of those three is in the target generation.**
 
-This bounds everything: **structural reachability is measured; transactional reachability is not.**
-Whether a movement-time behaviour fires correctly cannot be established from these artefacts, and no
-amount of further reading of them will change that. Recorded as `GAP-INV-09B`.
+| Deployment | generation | on-hand rows | movements | completed movements |
+|---|---|---:|---:|---:|
+| `E`, `T` | 19 | 0 | 0 / 48 | 0 |
+| **`B`** | **19** | **3,642** | **14,441** | **3,680** |
+| `U` | 18 | 2,462 | 51,081 | not enumerated |
+| `S` | 16 | 27,196 | 103,949 | 81,909 |
 
-### RR-F-05 — The series-19 valuation object exists, is heavily populated, and holds no movement values (**CRITICAL**)
-On deployment **T**, the object that replaced the series-18 valuation ledger holds **85,832 rows**.
-Every row is a **product price change**. Its movement reference is null on **all 85,832**, and its
-lot reference is null on all 85,832.
+**`GAP-INV-09B` as published is withdrawn.** Transactional reachability in the target generation is
+**measured on one deployment**, not unmeasurable. It remains **small-N** — one deployment, one
+configuration (periodic valuation), one company set — and no application server was run, so no
+controlled test transaction, security response or state-transition test exists. Recorded at that
+weight as `GAP-INV-09C`.
 
-**The series-18 ledger recorded a value per stock movement. Its series-19 replacement, as actually
-populated on a real deployment, records product price changes and carries no movement-level valuation
-at all.** The table for the series-18 object **does not exist** in this database.
+### RR-F-05 / RR-F-06 — **WITHDRAWN AND REPLACED.** The per-movement valuation chain did **not** disappear in series 19 (**CRITICAL RETRACTION**)
 
-This is runtime confirmation of `OD-F-05` and it makes `CRITICAL-GAP-01` materially stronger:
-the per-movement valuation history the prior programme's COGS work relied on **is not merely renamed —
-it is not being written**. Direct input to `BOSS-DEC-01`.
+> **This register published, as its most consequential finding and as the primary input to
+> `BOSS-DEC-01`, that the series-18 valuation ledger "is not merely renamed — it is not being
+> written", and that its replacement "carries no movement-level valuation at all".**
+> **Both statements are false.** Independent re-challenge falsified them and the producer verified the
+> falsification against a transacted target-generation deployment before accepting it.
+
+**What is actually true.** Per-movement valuation exists in series 19. It was **relocated from a
+separate append-only ledger table onto the movement row itself**:
+
+| | series 16 / 18 | **series 19** |
+|---|---|---|
+| Where the value lives | a dedicated ledger table, one row per valuation event | **columns on the movement row** — value, remaining quantity, remaining value, accounting-entry reference |
+| Ledger table present | yes | **no — correctly observed** |
+| Per-movement value present | yes | **YES — this register said no** |
+
+**Measured on the transacted series-19 deployment (14,441 movements, 3,680 completed):**
+
+| | value |
+|---|---|
+| completed movements carrying a **value** | **3,680 — 100.0%** |
+| completed movements carrying a **non-zero** value | 2,431 — 66.1% |
+| movements carrying an **accounting-entry** reference | **0 — 0.0%** |
+
+**Why the original claim was wrong, in two independent ways.**
+
+1. **The wrong object was identified as the replacement.** The object examined records *"the history of
+   manual update of a value"* — by its own source documentation. It is a price-change log, not the
+   valuation record. **The header of the movement extract committed in this package already carried
+   the value and accounting-reference columns, and it was not read.**
+2. **The comparison had no state basis and no configuration control.** A movement is valued when it
+   completes. The deployment the claim was measured on had **zero completed movements**. And the
+   accounting-link half is confounded by configuration, not generation: the transacted series-19
+   deployment runs **periodic** valuation on all 44 companies, under which **no movement creates an
+   accounting entry in any generation**. The series-16 comparator's 77.2% reflects *that* database's
+   real-time setting.
+
+### RR-F-07 — what survives, stated at its true weight (**MATERIAL**, not CRITICAL)
+
+The **structure** changed and that change is real and design-relevant:
+
+- an **append-only ledger with its own row identity** became **mutable columns on the transaction row**;
+- the value is a plain writable column with no change-tracking (prior package `OD-F-07`) — a concern
+  the relocation **strengthens**, because there is no longer a separate immutable record;
+- the accounting linkage is **not observable** on any deployment located here, because every located
+  series-19 deployment runs periodic valuation. **Whether the movement → posting link is populated
+  under real-time valuation in series 19 is UNMEASURED.**
+
+`CRITICAL-GAP-01` is **re-stated at this weight**: not *"the chain is gone"* but *"the chain moved from
+an append-only ledger to mutable transaction columns, and its accounting half is unmeasured in the
+target generation."* **`BOSS-DEC-01` must not be decided on the withdrawn claim.** Recorded as
+`GAP-INV-21`.
+
+### RR-F-08 — the earlier "no transacted target-generation deployment" bound is also false
+Two artefacts named in this package's own census, and not opened, are series-19 **and transacted** —
+one with 3,642 on-hand rows and 14,441 movements. Newer copies of the two deployments that *were*
+used also carry stock. **`GAP-INV-09B` as published is wrong**; transactional reachability in the
+target generation is **small-N, not zero**.
 
 ## 7. Declared limits of this evidence base
 
 | Limit | Status |
 |-------|--------|
-| Three deployments examined of **six** database identities located | census completed **after** the choice was made; 3 identities and all cloud storage remain unexamined — see §8 |
+| **All five** located database identities examined | the census was still run **after** the first two were chosen, and cloud storage remains unswept — see §8 |
 | No application server was run | no UI execution, no controlled test transaction, no security-response test |
-| No on-hand quantity on either deployment | transactional reachability **UNMEASURED** (`GAP-INV-09B`) |
+| Transactional evidence is **small-N** — one target-generation deployment, one configuration | `GAP-INV-09C` |
 | Element classes below the menu | field, view, button and behaviour reachability is **inferred from module installation**, not observed per element |
 | The two structurally-measured deployments are series 19; the only transacted one is series 16 | **no deployment provides transactional reachability for the target generation** |
 
@@ -146,7 +212,7 @@ census completed: enumerate files over 10 MB whose name matches a database-artef
 |---|---|
 | Candidates enumerated | **236** |
 | Verified database artefacts | **15** (2 of which are this session's own extraction output) |
-| **Distinct database identities** | **6** |
+| **Distinct database identities** | **5** |
 | Roots swept | the primary volume, the second volume, and six home sub-trees |
 | **Declared exclusion (evidence-affecting)** | cloud-storage trees — traversal stalls on placeholder files. **Not swept.** |
 
@@ -154,27 +220,53 @@ census completed: enumerate files over 10 MB whose name matches a database-artef
 
 | Identity | Newest artefact | Generation | Examined? |
 |----------|-----------------|-----------|-----------|
-| `E` | 2026-07-23 (24.9 MB) | — | **the 2026-03-31 copy was examined — an older one** |
-| `T` | 2026-07-14 (64.3 MB) | — | **the 2026-06-14 copy was examined — an older one** |
-| **`S`** | 2026-07-11 (155.4 MB — the largest artefact on the host) | **16.0.1.3** | **examined after the census, see §10** |
-| `U` | 2026-08-30 (45.6 MB) | not established | **no** |
-| `B` | 2026-08-03 (35.7 MB dump + 29.5 MB backup, marked `19.0+e`) | not established | **no** |
-| — | — | | |
+| `E` | 2026-07-23 | 19.0.1.3 | **yes** — the older copy was used first; re-challenge opened the newer one |
+| `T` | 2026-07-14 | 19.0.1.3 | **yes** — the older copy was used first; re-challenge opened the newer one |
+| `S` | 2026-07-11 (the largest artefact on the host) | **16.0.1.3** | **yes** — examined after the census |
+| `U` | 2026-08-30 | **18.0.1.3** | **yes** — examined after the census |
+| `B` | 2026-08-03 | **19.0.1.3, transacted** | **yes** — examined after the census; it falsified two published claims |
 
-> **Two of the two deployments first examined were chosen by convenience, and for both a newer copy
-> exists that was not used.** The census was run *after* the choice, not before it. The programme's
-> own rule — *rank the population before choosing* — was violated, and only running the census
-> exposed it. Recorded as `GAP-INV-17`, and the largest artefact turned out to change the picture
-> materially (§10).
+**The count was published as 6. It is 5** — the sixth row of the original table was blank, and the
+census's fifteen artefacts resolve to five database names once this session's own extraction output is
+excluded. Corrected after re-challenge.
 
-**Residual bound:** 3 of 6 identities remain unexamined, and cloud storage was not swept.
+> **Both deployments first examined were chosen by convenience, and for both a newer copy existed
+> that was not used.** The census was run *after* the choice, not before it. The programme's own rule
+> — *rank the population before choosing* — was violated.
+>
+> **The cost was not hypothetical.** The three artefacts left unopened contained a transacted
+> target-generation deployment, a transacted series-18 deployment, and newer copies carrying completed
+> valued movements. **Two published claims were false because those artefacts were listed and not
+> opened**, and both were caught by independent re-challenge rather than by the producer.
 
-## 9. What the two series-19 deployments could not measure
+**Residual bound:** all five identities are now examined; **cloud storage remains unswept**, and the
+ordering defect is historical fact. `GAP-INV-17` narrows but does not close.
 
-Both carry **zero on-hand quantity**. Structural reachability is measured; **transactional
-reachability is not** (`GAP-INV-09B`).
+## 9. What this evidence base still cannot measure
 
-## 10. The census's decisive find — a transacted deployment, in the wrong generation
+- **No application server was run.** No UI execution, no controlled test transaction, no security
+  response, no state-transition test. Everything here is read from data at rest.
+- **One configuration only.** Every located series-19 deployment runs **periodic** valuation, so the
+  movement → accounting-entry link is **unobservable** in the target generation (`GAP-INV-21`).
+- **Element-level observation covers 1.4% of the population**; the rest is module inference, and
+  re-challenge produced a **counter-example** to that inference (`RR-F-09`).
+
+### RR-F-09 — the module-installation inference is falsified at field level (**MATERIAL — found by re-challenge**)
+This register argued that module installation is a sound proxy because **186 menu observations across
+three deployments produced 0 anomalies** — extended by re-challenge to 1,557 menu and 345 action
+observations, still 0.
+
+**At field level the inference fails.** Re-challenge tested the population's 1,846 field items against
+each deployment's own field registry — a table this session never extracted — and found **one field
+whose module is installed and which is absent from the deployment**, on both the old and the new copy
+of that database, with a positive control on a sibling field that is present.
+
+**One counter-example is enough.** Class B is a **necessary condition, not a measurement**, and the
+96.3% figure is an **upper bound**. The zero-anomaly evidence was real but its unit — the menu — was
+too coarse to detect the failure. Recorded as `CORR-F-40`: *a proxy validated at one granularity is
+not validated at a finer one.*
+
+## 10. Cross-generation valuation evidence
 
 The largest artefact on the host, never examined before this census, is a **heavily transacted**
 Inventory deployment:
@@ -197,31 +289,21 @@ Two consequences, in opposite directions, both stated:
   Measurements taken on this deployment describe series 16 and must not be read as series-19
   behaviour — the error this programme has made before.
 
-### RR-F-06 — The per-movement valuation chain exists in series 16 and does not exist in series 19 (**CRITICAL**)
+### The three-generation valuation comparison — retained, with its interpretation withdrawn
 
-Measured on the series-16 transacted deployment against the series-19 deployment:
+| Generation | Movements | Ledger-table rows | Movement-linked | Accounting-linked |
+|---|---:|---:|---:|---:|
+| 16 (transacted) | 103,949 | **74,982** | **98.0%** | 77.2% |
+| 18 (transacted) | 51,081 | **47,801** | **94.0%** | 0.0% |
+| **19 (transacted)** | **14,441** | **table absent — value is on the movement row instead** | **100% of completed movements carry a value** | **0.0% — and the deployment runs periodic valuation** |
 
-| | series 16 (transacted) | series 19 (`T`) |
-|---|---|---|
-| Valuation-ledger table | **present** | **absent** |
-| Valuation rows | **74,982** | — |
-| Rows per stock movement | **0.72** | — |
-| Rows carrying a **stock-movement** reference | **73,511 — 98.0%** | — |
-| Rows carrying an **accounting-entry** reference | **57,863 — 77.2%** | — |
-| Rows carrying a value | 74,982 — 100% | — |
-| Replacement object rows | — | **85,832** |
-| …of which carry a **movement** reference | — | **0 — 0.0%** |
-| …content | — | product price changes |
+**The measurements are correct and were reproduced to the digit by re-challenge. The inference drawn
+from them was wrong — see `RR-F-05 / RR-F-06`.** Two columns cannot be read as a trend: the
+accounting-link column moves 77.2% → 0.0% between two *earlier* generations and is governed by a
+configuration setting, not by generation. Recorded as `GAP-INV-20`.
 
-> **In series 16 the domain maintains a per-movement valuation ledger, 98% of whose rows bind to a
-> stock movement and 77% to an accounting entry. In series 19 that ledger does not exist, and the
-> object that replaced it carries no movement binding at all on a real deployment.**
-
-This is the movement → value → posting audit chain, measured on both sides. Its disappearance is not a
-rename and not a source-reading artefact: **it is visible in the data of two real deployments.**
-
-`CRITICAL-GAP-01` is now supported by source evidence, deployment-schema evidence and **row-level
-population evidence across two generations.** It is the primary input to `BOSS-DEC-01`.
+Per completed movement rather than per movement, the series-16 ledger density is **0.92**, not 0.72 —
+cancelled movements are never valued and belong in neither numerator nor denominator.
 
 ## 11. Matrix — menus
 

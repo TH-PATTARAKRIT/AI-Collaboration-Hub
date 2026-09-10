@@ -30,10 +30,13 @@ menu-presence result that was entirely false.
 |-----|-----------|------------------:|------------------------:|----------------:|-------------:|
 | `iEVING` | 19.0.1.3 | 216 | 46 / 62 | 0 | 0 |
 | `iTEST02` | 19.0.1.3 | 486 | 52 / 62 | 48 | 0 |
+| **`BK12MAY26`** | **19.0.1.3** | 251 | 46 / 62 | **14,441** | **3,642** |
+| `idemo18` | **18.0.1.3** | 361 | not enumerated | **51,081** | **2,462** |
 | `iSMEs` | **16.0.1.3** | 190 | not enumerated | **103,949** | **27,196** |
 
 `database_artefact_census.txt` holds the artefact census: 236 candidates checked, 15 artefacts,
-**6 distinct database identities**, 3 examined.
+**5 distinct database identities — all five examined.** (Published first as 6 and 3; corrected after
+re-challenge.)
 
 ## Files
 
@@ -45,4 +48,5 @@ menu-presence result that was entirely false.
 | `prior_map.json` · `recon_status.json` · `prior_density3.txt` | Workstream D — scope mapping and the instrument-controlled dimension measurement |
 | `delta_evidence.txt` | targeted delta evidence for the ten unresearched live menus |
 | `coverage_recalc.txt` | the recalculated populations |
-| `runtime/<db>/*.csv` | the extracted deployment tables (files above 3 MB were not committed) |
+| `runtime/<db>/*.csv` | the extracted deployment tables. **Files above 3 MB are generally not committed; one exception is committed deliberately** — the series-16 valuation ledger, because it carries the load-bearing cross-generation evidence. Failed extractions are recorded as a README, never as a zero-byte or placeholder file |
+| `PENDING_SELF_CORRECTIONS.md` | the ten producer-found defects held **outside** the package while the re-challenge round was open, and applied only after it closed |
