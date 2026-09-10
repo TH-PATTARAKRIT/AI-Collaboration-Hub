@@ -26,14 +26,19 @@ Phase SA canonical evidence baseline:
 | `PT-06` Accounting + Inventory Convergence | `PT06_ACCOUNTING_INVENTORY_CONVERGENCE_MATRIX.md` | **COMPLETE — `CP-PT-06`** |
 | `PT-07` Mfg / Purchase / Dropship Challenge | `PT07_MFG_PURCHASE_DROPSHIP_CHALLENGE.md` | **COMPLETE — `CP-PT-07`** |
 | `PT-08` SaaS Boundary Matrix | `PT08_SAAS_BOUNDARY_MATRIX.md` | **COMPLETE — `CP-PT-08`** |
-| `PT-09` Exception / Recovery / Idempotency | `PT09_EXCEPTION_RECOVERY_IDEMPOTENCY_MATRIX.md` | **NEXT** |
-| `PT-10`…`PT-16` | — | NOT STARTED |
+| `PT-09` Exception / Recovery / Idempotency | `PT09_EXCEPTION_RECOVERY_IDEMPOTENCY_MATRIX.md` | **COMPLETE — `CP-PT-09`** |
+| `PT-10` Evidence Class + Runtime Boundary | `PT10_EVIDENCE_CLASS_AND_RUNTIME_BOUNDARY.md` | **NEXT** |
+| `PT-11`…`PT-16` | — | NOT STARTED |
 
 Current checkpoint:
-`PT-09 — Exception / Reversal / Recovery / Idempotency Matrix`
+`PT-10 — Test Evidence Classification + Runtime Boundary`
 
 Next required artifact:
-`PT09_EXCEPTION_RECOVERY_IDEMPOTENCY_MATRIX.md`
+`PT10_EVIDENCE_CLASS_AND_RUNTIME_BOUNDARY.md`
+
+## Pre-Test exit criteria (constituted at `PT-09`, awaiting Boss adoption at `PT-16`)
+
+`PTX-01`…`PTX-11` — `RT-E15-01`…`-09` written in verbatim per Boss `SC-BD-09` §8.1, plus `PTX-10` the deterministic-identity proof and `PTX-11` the `MTI-50` → `CF3-C-01`…`C-04` order gate. **None satisfied. All `PTE-3` or higher.**
 
 ## Canonical scenario population (fixed at `PT-01`)
 
@@ -63,6 +68,9 @@ Next required artifact:
 | `PT01-N-02` | — | Boss 22-scenario baseline `a1fc7cd6` is a **blob**, not a commit; `git log` on it returns silent empty. Pointer is VALID and stronger than a commit ref. | **DISARMED** — a commit-shaped check would manufacture a false finding |
 | `PT01-N-03` | MINOR | The `SMES_CORE_CONTINUATION` package cites `22`/`18` but contains `0` references to `SA15`/`SA17`; pointer resolves one level up. | OPEN — `PT-14` B-7 pack must name the registers explicitly |
 | `PT02-F-01` | **MATERIAL** | `X-07` backorder: the remainder-supply record has **no consumer at all** (`R-17`), failing the contract's `P5` clause. A produced output with nobody to receive it. | OPEN — `PT-04` must test `producer→∅` as a distinct failure class |
+| `PT09-F-01` | **MATERIAL — DISCHARGED** | Boss `SC-BD-09` §8.1 directed `RT-E15-01`…`-09` + the deterministic-identity proof be *"written into"* **Pre-Test exit criteria**; the Pre-Test prompt set has **`0`** references to exit criteria and **`0`** to `RT-E15` (positive control `23`). An unconsumed Boss instruction with no receiving artefact. | **DISCHARGED at `PT-09` §4** — `PTX-01`…`PTX-11` constituted. **`PT-16` presents for Boss adoption** |
+| `PT09-F-02` | **MATERIAL** | Correction-after-movement must become a **return**; the return's value basis is unruled (`JT-05`); reversal after **downstream consumption** has no representation. Three open items whose **composition** (ship → bill → return after close) is recorded nowhere. | OPEN — one composed row at `PT-12`; routed `PT-13`/B-7 |
+| `PT09-F-03` | MATERIAL | `H-07`: payment matching is *"not an entry"* and matching rows are **freely destructible across a closed period**, conflicting directly with `XMC-C-A8`/`PTX-03`'s *original unchanged byte-for-byte*. Cash-basis tax keys off it. | OPEN — routed `PT-13`/B-7 |
 | `PT08-F-01` | MATERIAL | A **Critical** tenant-isolation defect (company-dependent accounts resolved in the **user's** company, not the transaction's) carries *"nil measured reachability"* **only because both reference databases are single-company**. Severity must rank on the target architecture, not a deployment accident. | OPEN — `EC-04` boundaries 1 and 3 remain `0 of 3`; **not reduced** |
 | `PT08-F-02` | MATERIAL | **Two** lock-defeat paths, not one. Path 2 has **no bypass token — the control is simply not on that path — and leaves no record of any kind**. A remediation aimed at the token closes one and not the other. Caveat: **no lock has ever been exercised in this estate**; the matrix is source capability observed nowhere. | OPEN — carried with caveat on the row at `PT-12`; `ND-07` is the answering determination |
 | `PT07-F-01` | **MATERIAL** | The **standing manufacturing veto** (limb 1 `BLK-07`; limb 2 *"exactly one mechanism carries machine cost"*, **undischargeable in either direction as worded**) is **absent from the veto register's population of 6**: `0` hits for `BLK-07`/`BLK-08`/*manufactur*/*machine* in `SC-04` (positive control `3`). Neither member nor declared exclusion, while `SC-19` asserts *"vetoes remain 6"* in the same file. | **OPEN — AAS+ (issuer) / Boss.** `6` carried as reported; **population NOT established as complete**; renumbering is not SMEs Core's act. Routed `PT-11`/`PT-13`/B-7 |
