@@ -36,8 +36,20 @@ Phase SA canonical evidence baseline:
 | `PT-16` Boss Functional-Design Entry Gate | `PT16_BOSS_FUNCTIONAL_DESIGN_ENTRY_GATE_PACK.md` | **PUBLISHED — `RECOMMEND HOLD — MATERIAL PRE-TEST GAP`** |
 | `PT-17` Boss Single-Writer Confirmation | `PT17_BOSS_SINGLE_WRITER_CONFIRMATION.md` | **PUBLISHED — `CP-PT-17`; `PT00-F-03` CLOSED** |
 | **CORRECTIVE CLOSURE `01_`…`16_`** | `CORRECTIVE_CLOSURE_2026_09_10/` | **PUBLISHED — `HOLD PRE-TEST EXIT`** |
+| **BOSS RESOLUTION `17_`…`21_`** | `CORRECTIVE_CLOSURE_2026_09_10/` | **PUBLISHED — `READY FOR BOSS CONSOLIDATED RULING`** |
 
 Current checkpoint:
+`STOPPED AT CHECKPOINT F — BOSS CONSOLIDATED RULING AWAITED`
+
+**Boss items: `9`** (was 11; §17 review removed `B10′` — resolved as an Architecture determination — and `B5′` — carried PROVISIONAL). **`B1` expanded `4 → 6`.**
+**SMEs Core obligations open: `0`** — `CORE-01` was **already discharged** at `SC-14`/`SC-15`; `CORE-02` completed; `CORE-03` is AAS+ issuer authority.
+**External items: `13`**, of which `1` escalates into `B4′`.
+
+**MATERIAL SELF-CORRECTION (`17_` §1):** `PT-11`/`13_`/`16_` carried `RC-D-03`/`RC-D-04` as blocked by a SMEs Core obligation. **They were discharged at `SC-14`/`SC-15`, 23 minutes after `SC-11` created the obligation.** `PT-00` had it right (`6` ready and held); `PT-11` regressed it to `4`. Superseded-source citation — **third instance**.
+
+Next (after Boss ruling): `CHECKPOINT G` apply rulings → `22_` · `H` re-run affected controls · `I` post-ruling re-freeze → `23_`/`24_` · `J` independent B-7 new-session prompt → `25_`. **`172d7b9c` is Audit Lineage, NOT the B-7 baseline.**
+
+Superseded checkpoint line:
 `STOPPED AT PT-16 — GENUINE BOSS AUTHORITY GATE`
 
 Terminal recommendation (corrective round, supersedes `PT-16`'s wording):
