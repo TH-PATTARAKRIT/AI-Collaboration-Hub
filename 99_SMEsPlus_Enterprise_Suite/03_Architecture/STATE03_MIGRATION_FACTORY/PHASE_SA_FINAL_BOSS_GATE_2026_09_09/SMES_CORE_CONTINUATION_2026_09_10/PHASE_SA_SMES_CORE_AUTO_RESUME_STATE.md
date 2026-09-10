@@ -10,6 +10,49 @@ Prior SC head consumed by this round: `25f727a956177097f41e21dcadf259590f210687`
 
 ---
 
+> # AUTO RESUME — CURRENT (`SC-36`…`SC-46`, `SC-50`) · head `e2e3f3dc`
+>
+> **SINGLE-SESSION LOCK IN FORCE.** Only active Phase SA execution session. **`0` concurrent writers this
+> round — the first clean round of the session.**
+>
+> ## `TERMINAL C2 — GENUINE BOSS AUTHORITY INPUT REQUIRED`
+>
+> **NEXT ACTION — three irreducible Boss items, ideally in one act (`SC-50`):**
+> **A `SC-AUTH-02`** — ONE fresh prospective `FG-F-06` ruling (`A`/`B`/**`C`**/other). *Not* a tiebreak:
+> both old records were issued in mutual blindness, proven both directions.
+> **B `8C-CLARIFICATION-01`** — 7 clauses drafted at `SC-40` §7; removes nothing.
+> **C `B-7`** — appoint a `Q-BOSS-02`-eligible structurally independent challenger.
+>
+> **HEADLINE — `SC-D-02`:** `8C-001` **§5 names and locates BOTH eight-criteria gates** — the Module gate
+> after *Module Very Deep Research*, the State gate after the *State Integration Very Deep Review*.
+> **Neither is Phase SA → Pre-Test.** No round on either track had read §5 against the taxonomy question.
+> **`SC-F-17`:** the instrument defines `Module`, `Phase` and `State` **nowhere** — the §4/§11 clash is a
+> symptom; the undefined taxonomy is the cause.
+> **Reading C is NOT adopted** — one operative word must be read as subsumed, and it is the gate-opening
+> direction. **Its uncomfortable consequence is published:** it relocates an unmet obligation to Phase S's
+> already-granted conditional closure.
+>
+> **CLOSED THIS ROUND:** recovery control (`SC-36`) · 17/17 Terminal-C reproduction (`SC-37`) · collision
+> **quarantined, `0` data loss, dependency graph terminates** (`SC-38`) · `FG-F-06` re-derived from primary
+> text (`SC-39`) · harmonization + `8C-CLARIFICATION-01` (`SC-40`) · `EC-05` bounded (`SC-41`) · AAS+ chain
+> verified (`SC-42`) · `B-7` READY (`SC-43`) · population re-canonicalized (`SC-44`) · cross-module
+> re-proven (`SC-45`) · 20-class falsification (`SC-46`).
+>
+> **`EC-01`..`EC-08`:** `01`/`02`/`03` likely satisfied · **`04` `0 of 3`, closure point disputed** ·
+> **`05` OPEN — 2, both Boss-owned** · `06` `NOT FOUND IN SEARCHED SCOPE` · **`07` `0 of 2`, NOT OPENED —
+> 5 of 8 preconditions fail** · `08` satisfied, 2 named absences.
+>
+> **VETOES `6` in force · `0` discharged.** **DECISIONS `23`** — 16 substantive/**precondition pending**
+> (`SC-D-03` withdrew "controlling"), 6 ready and **held**, 1 (`POH-D-02`) **withheld**.
+> **CONTRADICTIONS `7`: 5 dispositioned, 2 Boss-owned.** **Phase SA specification gaps `0`.**
+>
+> **`0` of `48` peer artefacts modified · `0` force-pushes · Pre-Test not started · no `PASS` declared.**
+>
+> *Everything below is prior-round state, preserved as lineage.*
+
+---
+
+
 > # AUTO RESUME — CURRENT STATE (`SC-22`…`SC-35`, head `2cfb57eb`)
 >
 > **SINGLE-SESSION LOCK IN FORCE** (`05_` §0). This is the only active Phase SA execution session.
