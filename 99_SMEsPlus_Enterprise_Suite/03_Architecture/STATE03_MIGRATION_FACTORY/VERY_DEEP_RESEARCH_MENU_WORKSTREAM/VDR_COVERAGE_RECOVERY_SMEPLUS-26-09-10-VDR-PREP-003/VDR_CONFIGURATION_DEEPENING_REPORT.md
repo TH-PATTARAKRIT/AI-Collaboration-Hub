@@ -12,10 +12,10 @@ consequence determined.
 | Clause | Value |
 |--------|-------|
 | **POPULATION** | frozen `POPULATION_V3`, 5,074 items |
-| **ELIGIBILITY** | classes for which `CONFIGURATION` is applicable → **4,112** |
+| **ELIGIBILITY** | classes for which `CONFIGURATION` is applicable → **4,109** (R1: 4,112; three grouping containers corrected out by the container rule) |
 | **UNIT** | one element, and its gate — not one gate |
 | **PATTERN** | parsed declaration attributes across **twelve** element kinds, plus the settings census; **not** a `<button>`/`<field>` grep |
-| **COVERAGE ASSERTION** | 4,112 of 4,112 eligible items carry a recorded `CONFIG_CONDITION` — **100%** |
+| **COVERAGE ASSERTION** | 4,109 of 4,109 eligible items carry a recorded `CONFIG_CONDITION` — **100%**. *Qualified: 26 of those conditions are runtime-activation statements on automation rows, not configuration determinations, so the assertion is satisfied by the presence of a string in 26 cases (`CH-25`).* |
 | **POSITIVE CONTROL** | a synthetic gated element injected into the parse set was located and its gate resolved |
 
 > **Why the pattern width matters.** An earlier round read gating from `<button>` and `<field>` only
@@ -33,7 +33,12 @@ consequence determined.
 | Other recorded conditions | 26 | 0.6% |
 
 **Distinct gates in use: 48.** Gated elements by class: gate-bearing view elements 525 · buttons 72 ·
-extension menus 62 · menus 35 · fields 15.
+extension menus 62 · menus 35 · fields 15 — **709 in total.**
+
+> **On 633 versus 709.** Both appear in this report and they count different things: **633** is the
+> element count the widened instrument recovered *at the time of the correction below*; **709** is the
+> gated population in the frozen register. The R1 edition printed both without reconciling them
+> (`CH-31`). **709 is the figure of record.** 633 survives only inside the historical note in §1.
 
 ### The ten most-used gates
 
@@ -49,6 +54,10 @@ extension menus 62 · menus 35 · fields 15.
 | routing | 26 |
 | base user | 23 |
 | quality user | 21 |
+
+> **Independently re-derived during the challenge round: 48 gates, 709 gated elements, the class split
+> and all ten leading gates reproduce exactly.** This census is the one part of the package that survived
+> challenge unaltered.
 
 ## 3. Findings
 
@@ -91,8 +100,9 @@ reachability · what data is written · default value · validation applied · d
 downstream financial effect · reversibility of the switch · behaviour of records created while the
 setting was in the other state.
 
-**Only 7 items meet it** — seven settings whose full OFF/ON consequence was traced end to end. For the
-other 4,105, **the gate is known and the consequence is not.** Establishing the ninth axis in
+**Only 7 items meet it** — seven settings whose full OFF/ON consequence was traced end to end, and this
+is one of the three dimensions whose grade is a genuine per-item decision rather than a class label
+(`CH-03`). For the other 4,102, **the gate is known and the consequence is not.** Establishing the ninth axis in
 particular — what happens to records created under the opposite setting — requires controlled installs
 with the setting flipped, which this session did not perform and does not claim.
 

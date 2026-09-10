@@ -1,9 +1,24 @@
 # VDR_CRITICAL_AREA_COMPLETION_MATRIX.md
-# Fifteen Critical Areas — measured completion
+# Fifteen Critical Areas — measured completion · **register R2 (corrected)**
 
 Session `[SMEPLUS-26-09-10-VDR-PREP-003]` · Layer: **LAYER 1 — CLEAN-ROOM.**
-Denominators from the frozen population `POPULATION_V3` (5,074 items, 30,741 applicable cells).
-Grades per `VDR_COVERAGE_MEASUREMENT_SPEC.md` §4.
+Denominators from `POPULATION_V4` — 5,074 items, **30,906** applicable cells.
+Grades per `VDR_COVERAGE_MEASUREMENT_SPEC.md` §4; every cell that left a denominator is in
+`VDR_EXCLUSION_REGISTER.md`.
+
+> ### R2 correction notice — read before the table
+>
+> The R1 baseline of this file published **"1 of 15 Critical Areas at 100%"**. That result did not
+> survive independent challenge. It existed because 180 cells the specification's own rule table marks
+> applicable had been reclassified as `NA` after failing, and 90 of those were the runtime cells of the
+> four items that made up the only complete area (`CH-01`, `CH-04`).
+>
+> **All 180 cells are restored. The corrected result is 0 of 15.** Alongside it, four dimensions whose
+> grade never varied within a class have been retracted from RESEARCH-VERIFIED to DETERMINED (`CH-03`),
+> because a class label is not a depth measurement.
+>
+> **This round did not improve on PREP-002's 0 of 15.** The R1 figures are preserved in the git history
+> as audit lineage; they are not the figures of record.
 
 ---
 
@@ -12,119 +27,104 @@ Grades per `VDR_COVERAGE_MEASUREMENT_SPEC.md` §4.
 §10 of the commissioning prompt states: *"DO NOT invent the fifteenth category. Retrieve it from the
 canonical prior framework/evidence."*
 
-The fifteen were read verbatim from **`VDR_COVERAGE_RULE.md` §6** in the frozen PREP-001 package. The
-category that reads as "the fifteenth" is not a new one: **Identity and Immutability are two separate
-entries** in the canonical list, and earlier summaries had collapsed them into one line. No category
-was authored in this session.
+The fifteen were read from **`VDR_COVERAGE_RULE.md` §6** in the frozen PREP-001 package. What reads as
+"the fifteenth" is not new: **Identity and Immutability are two separate entries** there, and earlier
+summaries had collapsed them. Independently verified during the challenge round: the fifteen match
+**name-for-name and in identical order**. Nothing was authored here.
+
+**One modality was not carried and is restored:** the canonical heading reads *"Critical Areas
+(**minimum set**)"* — fifteen is a **floor**, and a domain may add to it. The Inventory domain has not
+been assessed for additions (`CH-27`).
 
 ## 2. Matrix
 
-`Pop` = items mapped to the area (an item may map to more than one). `Cells` = applicable dimension
-cells over those items. `Verified` = cells at **RESEARCH-VERIFIED**. `Unverified` = the remainder.
-`Coverage %` is the RESEARCH-VERIFIED cell ratio, per §4 of the measurement spec.
+`Pop` = items mapped to the area. `Cells` = applicable dimension cells over those items.
+`Verified` = cells at RESEARCH-VERIFIED. `Coverage %` is the RESEARCH-VERIFIED cell ratio.
 
-| # | Critical Area | Pop | Cells | Verified | Unverified | Determined % | **Coverage %** | Function-Complete items | Open Critical Gaps | Status |
-|---|---------------|----:|------:|---------:|-----------:|-------------:|---------------:|------------------------:|--------------------|--------|
-| 1 | Financial Posting | 16 | 118 | 49 | 69 | 100.0% | **41.5%** | 0 | `CRITICAL-GAP-01` | **INCOMPLETE** |
-| 2 | Stock Ownership | 46 | 322 | 138 | 184 | 100.0% | **42.9%** | 0 | `CRITICAL-GAP-04` | **INCOMPLETE** |
-| 3 | Stock Quantity | 26 | 182 | 78 | 104 | 100.0% | **42.9%** | 0 | — | **INCOMPLETE** |
-| 4 | Inventory Valuation | 12 | 90 | 37 | 53 | 100.0% | **41.1%** | 0 | `CRITICAL-GAP-01` | **INCOMPLETE** |
-| 5 | Security | 270 | 898 | 540 | 358 | 100.0% | **60.1%** | 0 | `CRITICAL-GAP-02`, `-03` | **INCOMPLETE** |
-| 6 | Tenant Isolation | **0** | 0 | 0 | 0 | n/a | **NOT COMPUTABLE** | 0 | — | **NO REFERENCE POPULATION** |
-| 7 | Company Isolation | 75 | 389 | 191 | 198 | 100.0% | **49.1%** | 0 | `CRITICAL-GAP-02`, `-04` | **INCOMPLETE** |
-| 8 | Approval Control | 9 | 63 | 27 | 36 | 100.0% | **42.9%** | 0 | — | **INCOMPLETE** |
-| 9 | Audit Trail | 32 | 224 | 96 | 128 | 100.0% | **42.9%** | 0 | `CRITICAL-GAP-03`, `-05` | **INCOMPLETE** |
-| 10 | Identity | 61 | 393 | 173 | 220 | 100.0% | **44.0%** | 0 | `CRITICAL-GAP-06` | **INCOMPLETE** |
-| 11 | Immutability | 47 | 186 | 79 | 107 | 100.0% | **42.5%** | 0 | `CRITICAL-GAP-05` | **INCOMPLETE** |
-| 12 | Period Close | 16 | 112 | 48 | 64 | 100.0% | **42.9%** | 0 | — | **INCOMPLETE** |
-| 13 | Reversal | 47 | 325 | 57 | 268 | 100.0% | **17.5%** | 0 | — | **INCOMPLETE — lowest** |
-| 14 | Data Integrity | 251 | 1,629 | 721 | 908 | 100.0% | **44.3%** | 0 | `CRITICAL-GAP-05` | **INCOMPLETE** |
-| 15 | Cross-Module Financial Handoff | 4 | 8 | 8 | 0 | 100.0% | **100.0%** | 4 | — | **COMPLETE** |
+| # | Critical Area | Pop | Cells | Verified | Unverified | Determined % | **Coverage %** | Open Critical Gaps | Status |
+|---|---------------|----:|------:|---------:|-----------:|-------------:|---------------:|--------------------|--------|
+| 1 | Financial Posting | 16 | 118 | 1 | 117 | 100.0% | **0.8%** | `CRITICAL-GAP-01` | **INCOMPLETE** |
+| 2 | Stock Ownership | 46 | 322 | 0 | 322 | 100.0% | **0.0%** | `CRITICAL-GAP-04` | **INCOMPLETE** |
+| 3 | Stock Quantity | 26 | 182 | 0 | 182 | 100.0% | **0.0%** | — | **INCOMPLETE** |
+| 4 | Inventory Valuation | 12 | 90 | 1 | 89 | 100.0% | **1.1%** | `CRITICAL-GAP-01` | **INCOMPLETE** |
+| 5 | Security | 270 | 898 | 0 | 898 | 100.0% | **0.0%** | `CRITICAL-GAP-02`, `-03` | **INCOMPLETE** |
+| 6 | Tenant Isolation | **0** | 0 | 0 | 0 | n/a | **NOT COMPUTABLE** | — | **NO REFERENCE POPULATION** |
+| 7 | Company Isolation | 75 | 389 | 0 | 389 | 100.0% | **0.0%** | `CRITICAL-GAP-02`, `-04` | **INCOMPLETE** |
+| 8 | Approval Control | 9 | 63 | 0 | 63 | 100.0% | **0.0%** | — | **INCOMPLETE** |
+| 9 | Audit Trail | 32 | 224 | 0 | 224 | 100.0% | **0.0%** | `CRITICAL-GAP-03`, `-05` | **INCOMPLETE** |
+| 10 | Identity | 61 | 393 | 1 | 392 | 100.0% | **0.3%** | `CRITICAL-GAP-06` | **INCOMPLETE** |
+| 11 | Immutability | 47 | 186 | 0 | 186 | 100.0% | **0.0%** | `CRITICAL-GAP-05` | **INCOMPLETE** |
+| 12 | Period Close | 16 | 112 | 0 | 112 | 100.0% | **0.0%** | — | **INCOMPLETE** |
+| 13 | Reversal | 47 | 335 | 0 | 335 | 100.0% | **0.0%** | — | **INCOMPLETE** |
+| 14 | Data Integrity | 251 | 1,629 | 0 | 1,629 | 100.0% | **0.0%** | `CRITICAL-GAP-05` | **INCOMPLETE** |
+| 15 | Cross-Module Financial Handoff | 4 | 12 | 0 | 12 | 66.7% | **0.0%** | — | **INCOMPLETE** |
 
-**Critical Areas at 100%: 1 of 15.** Required by §10: **15 of 15**. → **HOLD.**
+**Critical Areas at 100%: 0 of 15.** Required by §10: 15 of 15. → **HOLD.**
 
-Items mapped to at least one Critical Area: **912** (union; areas overlap).
+**Function-Complete (research-complete) items: 0, in every area including area 15.**
 
-## 3. What blocks each area — the unverified dimensions, named
+**Membership:** **737 distinct items** are mapped to at least one Critical Area; **912 area-memberships**
+in total, because 175 memberships are second or later mappings of an item already counted. The R1 text
+labelled 912 a union — it is the sum (`CH-08`).
 
-An area is below 100% because specific dimension cells are `DETERMINED` but not `RESEARCH-VERIFIED`.
-Ratios are verified/applicable within the area.
+## 3. Why every area is at or near zero
 
-| # | Area | Dimensions holding it below 100% |
-|---|------|----------------------------------|
-| 1 | Financial Posting | PROCESS 0/3 · CONFIGURATION 0/16 · OPTIONAL_FUNCTION 0/16 · RUNTIME 1/16 · SECURITY 0/16 · EDGE 0/3 |
-| 2 | Stock Ownership | CONFIGURATION 0/46 · OPTIONAL_FUNCTION 0/46 · RUNTIME 0/46 · SECURITY 0/46 |
-| 3 | Stock Quantity | CONFIGURATION 0/26 · OPTIONAL_FUNCTION 0/26 · RUNTIME 0/26 · SECURITY 0/26 |
-| 4 | Inventory Valuation | PROCESS 0/3 · CONFIGURATION 0/12 · OPTIONAL_FUNCTION 0/12 · RUNTIME 1/12 · SECURITY 0/12 · EDGE 0/3 |
-| 5 | Security | CONFIGURATION 0/44 · OPTIONAL_FUNCTION 0/44 · RUNTIME 0/270 |
-| 6 | Tenant Isolation | *no population to block* — see §4 |
-| 7 | Company Isolation | CONFIGURATION 0/41 · OPTIONAL_FUNCTION 0/41 · RUNTIME 0/75 · SECURITY 34/75 |
-| 8 | Approval Control | CONFIGURATION 0/9 · OPTIONAL_FUNCTION 0/9 · RUNTIME 0/9 · SECURITY 0/9 |
-| 9 | Audit Trail | CONFIGURATION 0/32 · OPTIONAL_FUNCTION 0/32 · RUNTIME 0/32 · SECURITY 0/32 |
-| 10 | Identity | CONFIGURATION 0/61 · OPTIONAL_FUNCTION 0/49 · RUNTIME 1/61 · SECURITY 0/49 · EDGE 0/1 |
-| 11 | Immutability | PROCESS 0/15 · RUNTIME 0/47 · DATA_MODEL 32/47 · CROSS_MODULE 0/15 · EDGE 0/15 |
-| 12 | Period Close | CONFIGURATION 0/16 · OPTIONAL_FUNCTION 0/16 · RUNTIME 0/16 · SECURITY 0/16 |
-| 13 | Reversal | PROCESS 2/37 · CONFIGURATION 0/47 · OPTIONAL_FUNCTION 0/47 · RUNTIME 0/47 · SECURITY 0/47 · **EDGE 2/47** |
-| 14 | Data Integrity | CONFIGURATION 0/219 · OPTIONAL_FUNCTION 0/219 · RUNTIME 0/251 · SECURITY 0/219 |
-| 15 | Cross-Module Financial Handoff | none |
+Under R1 the areas sat around 42%. Almost all of that was `SOURCE`, `DATA_MODEL`, `CROSS_MODULE` and
+`SECURITY` — four dimensions whose RESEARCH-VERIFIED grade **never varied within a class**, so every
+item of an eligible class received it and no item could fail. `SOURCE` alone was an unconditional
+literal supplying 53.5% of all verified cells. Those four are now graded **DETERMINED**, which is what
+they are.
 
-**One pattern accounts for almost all of it.** `CONFIGURATION`, `OPTIONAL_FUNCTION` and `RUNTIME` are
-near-zero in **thirteen of fourteen** populated areas. These three are exactly the dimensions whose
-RESEARCH-VERIFIED bar requires evidence this session did not produce at scale: the OFF-vs-ON
-consequence (§7), deactivation behaviour (§8), and **element-level runtime observation** rather than
-module-level reachability (§9). The areas are not failing independently; they are failing on three
-shared, named, measurable deficits.
+What remains verified is what a per-item predicate actually decided:
 
-Two area-specific deficits sit on top of that pattern:
+| Dimension | Research-verified | of applicable | What the grade required |
+|-----------|------------------:|--------------:|-------------------------|
+| `RUNTIME` | **77** | 5,071 | the element observed on a deployment — not its module inferred |
+| `CONFIGURATION` | **7** | 4,109 | the OFF-vs-ON consequence traced across nine axes |
+| `OPTIONAL_FUNCTION` | **7** | 4,097 | thirteen attributes including deactivation behaviour |
+| `PROCESS` · `SOURCE` · `DATA_MODEL` · `SECURITY` · `CROSS_MODULE` · `EDGE` | **0** | | see §4 |
+| **All cells** | **91** | **30,906** | **0.29%** |
 
-- **Reversal at 17.5%** is the lowest, and it is low on its own subject matter: `EDGE 2/47`. Of the 47
-  reversal elements, the reverse/cancel/return path is research-verified for **two**. An area named
-  Reversal that cannot evidence its own reversal path is the single most pointed result in this matrix.
-- **Immutability** shows `DATA_MODEL 32/47` — the 32 constraints are verified, the 15 behaviours are
-  not; and `PROCESS 0/15` means no immutability-enforcing behaviour has its twenty facets established.
+The three areas above zero are above it by a single runtime observation each.
 
-## 4. Tenant Isolation — a DETERMINED absence, not an unmeasured gap
+## 4. The six dimensions now at zero, and why
 
-Tenant Isolation is the one area with **zero population**, and the reason is a finding, not a
-shortfall in effort:
+| Dimension | R1 published | Why it is zero |
+|-----------|-------------:|----------------|
+| `SOURCE` | 5,074 (100%) | the predicate was `v='VERIFIED'` with no condition — it could not return anything else. 186 of its "reproducible pointers" resolve to no file; 2,159 carry no line (`CH-03`) |
+| `DATA_MODEL` | 1,986 (69.4%) | constant within every eligible class; the evidence field is empty on all 1,986 |
+| `CROSS_MODULE` | 2,032 (69.9%) | constant within every eligible class |
+| `SECURITY` | 270 (6.7%) | **inverted.** The 270 graded verified are the security objects themselves, with an empty condition field; the 3,788 items carrying the actual enumeration were graded not-verified. The Security area's population *is* the set that defined its own verified cells |
+| `EDGE` | 2 (0.17%) | a hand-written two-identity list, both rows with empty evidence (`CH-11`) |
+| `PROCESS` | 17 (1.15%) | none of the 17 carries a facet record; 10 sit at the register's lowest status; and the report declares nine of the twenty facets not covered at all, so "all twenty established" contradicts its own text (`CH-12`) |
 
-> **The reference system has no tenant concept.** Its isolation axis is company, not tenant. A census
-> across the frozen population found no element whose subject is a tenant boundary.
+## 5. Tenant Isolation — a DETERMINED absence, unchanged by the correction
 
-Under the measurement spec this is recorded as **DETERMINED = the condition is "none"**, with the
-evidence being the census itself. It is **not** `N/A`: §5 of the commissioning prompt is explicit that
-*"Unknown does not equal N/A"*, and this is neither — it is a measured zero.
+> **The reference system has no tenant concept.** Its isolation axis is company. A census across the
+> frozen population found no element whose subject is a tenant boundary.
 
-**Consequence for SMEsPlus, stated plainly:** SMEsPlus is specified as multi-tenant. Its most critical
-isolation axis therefore has **no reference population to learn from, compare against, or challenge**.
-Tenant isolation cannot be derived here; it must be designed, and it must be designed without the
-comparative evidence every other Critical Area enjoys. This is carried to the Boss as a decision input,
-not resolved by this session.
+Recorded as **DETERMINED = the condition is "none"**, evidenced by the census. Not `N/A`: §5 is explicit
+that *unknown does not equal N/A*, and this is neither — it is a measured zero.
 
-## 5. Open Critical Gaps, per §11 — individually, with current state
+**For SMEsPlus this is the most consequential single line in the matrix.** SMEsPlus is specified as
+multi-tenant; its most critical isolation axis has **no reference population to learn from, compare
+against, or challenge**. It cannot be derived here. It must be designed, without the comparative
+evidence every other Critical Area has. Carried to the Boss as a decision input.
 
-| Gap | Statement (current, post-PREP-002 correction) | Areas | State |
-|-----|-----------------------------------------------|-------|-------|
-| `CRITICAL-GAP-01` | The valuation object was replaced between the generation most prior research used and the target generation. **The stronger form was retracted**: the ledger table is absent, but the per-movement value **is present on the movement row** — 100% of 3,680 completed movements on a transacted target-generation deployment carry one. Re-stated at MATERIAL weight | 1, 4 | **OPEN** |
-| `CRITICAL-GAP-02` | Persistent objects with no row-level isolation: **13 of 47 (27.7%)** — re-stated *smaller*; the original 22 of 47 was wrong, and the four core movement objects it named as unisolated are in fact company-scoped | 5, 7 | **OPEN at corrected magnitude** |
-| `CRITICAL-GAP-03` | The counting screen applies a role-dependent record filter — as a **visible, removable search facet**, not a silent injection. Re-graded **CRITICAL → MATERIAL** | 5, 9 | **OPEN as MATERIAL** |
-| `CRITICAL-GAP-04` | **16** record rules admit company-less records, now including lot/serial numbers and movement lines; a shipped transit location is cross-company visible, cross-company editable and valued by no company | 2, 7 | **OPEN — strengthened** |
-| `CRITICAL-GAP-05` | Opening a menu mutates data in **4 of 9** cases; one runs the full procurement scheduler as superuser with intermediate commits; the maintenance routine runs raw SQL outside the object layer, table-wide and cross-company; the switch said to suppress it guards **2 of its 5** call sites and is itself undeclared. **Now LIVE on a transacted deployment** | 9, 11, 14 | **OPEN** |
-| `CRITICAL-GAP-06` | The reference object — 2nd most populated in the domain, joining **91% of movements and 99.9% of sales orders** — has no controls, no validations, no behaviours and no record rule, and is reachable only through a technical-only group. Covered by **no** prior research | 10 | **OPEN** |
+## 6. Open Critical Gaps
 
-**Six of six remain open.** §11 requires each to be closed individually with evidence. None met that bar
-in this session. Three moved — `-01` retracted-and-re-stated, `-02` corrected downward, `-03`
-re-graded — and every movement is recorded with its lineage preserved, per §17 of PREP-002.
+Six open, **zero closed** — see `VDR_OPEN_CRITICAL_GAP_CLOSURE_REGISTER.md`, which addresses each
+individually as §11 requires. Three moved during this session; movement is not closure.
 
-## 6. Challenge result
+## 7. Challenge result
 
-Left deliberately unfilled at the time of writing. Per §15 the review package is frozen before SMEs
-Core opens its challenge, and **`GOV-01` must not recur** — no mutation of this file while reviewers
-hold it. Challenge outcomes are recorded in `SMES_CORE_PREP003_CHALLENGE_REPORT.md` against the frozen
-SHA, and any correction they force invalidates this round and creates a new baseline rather than
-editing this table in place.
+**Round R1 challenged by three independent reviewers against frozen SHA `a146e004`; the package was not
+touched while they held it, verified by two independent units.** 56 findings returned, 36 adopted.
+Full disposition in `SMES_CORE_PREP003_CHALLENGE_REPORT.md`. **The challenge reduced this matrix's
+headline from 1 of 15 to 0 of 15.**
 
-## 7. Disposition contribution
+## 8. Disposition contribution
 
-§21 bars CONDITIONAL PASS while any Critical Area is below 100%. **Fourteen are.** This matrix
-contributes **HOLD**, and no reading of it supports anything else.
+§21 bars CONDITIONAL PASS while any Critical Area is below 100%. **Fourteen are below 100%, and one is
+not computable** — a distinction the R1 text collapsed (`CH-24`). This matrix contributes **HOLD**, and
+no reading of it supports anything else.

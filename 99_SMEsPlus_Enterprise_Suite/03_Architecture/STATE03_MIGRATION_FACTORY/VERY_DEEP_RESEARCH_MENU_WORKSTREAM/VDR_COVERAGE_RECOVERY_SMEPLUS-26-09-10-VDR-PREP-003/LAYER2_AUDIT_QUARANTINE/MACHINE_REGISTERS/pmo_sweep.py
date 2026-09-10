@@ -15,10 +15,10 @@ def layer(p):
     if 'LAYER 1' in head: return 1
     return 0
 # ---- 1 IDENTIFIER (unit: identifier)
-IDPAT=re.compile(r'\b((?:MM|CD|FT|FN|OD|XM|SS|HA|EB|FO|RR|RC|DR)-F-\d{2}|GAP-INV-\d{2}[A-Z]?|CRITICAL-GAP-\d{2}|BOSS-DEC-\d{2}|CORR-F-\d{2}|SR-\d{2}|GOV-\d{2}|INV-M\d{2}|INV-F-\d{2}|JT-\d{2}|IV-\d{2}|P-\d{2}|R4-F-\d{2}|GAP-MD-\d{2}|LI-INV-[A-Z]+-\d{4}|CORR-\d{3}[A-Z]?)\b')
+IDPAT=re.compile(r'\b((?:MM|CD|FT|FN|OD|XM|SS|HA|EB|FO|RR|RC|DR|P3|C3|O3|R3|PW3)-F-\d{2}|GAP-INV-\d{2}[A-Z]?|CRITICAL-GAP-\d{2}|BOSS-DEC-\d{2}|CORR-F-\d{2}|SR-\d{2}|GOV-\d{2}|INV-M\d{2}|INV-F-\d{2}|JT-\d{2}|IV-\d{2}|P-\d{2}|R4-F-\d{2}|GAP-MD-\d{2}|LI-INV-[A-Z]+-\d{4}|CORR-\d{3}[A-Z]?)\b')
 defined=collections.defaultdict(list); cited=collections.defaultdict(list)
 # A definition is: a heading, OR the first cell of a table row (with or without bold markers).
-DEFLINE=re.compile(r'^\s*(?:###+\s*|\|\s*(?:\*\*)?`?)((?:MM|CD|FT|FN|OD|XM|SS|HA|EB|FO|RR|RC|DR)-F-\d{2}|GAP-INV-\d{2}[A-Z]?|CRITICAL-GAP-\d{2}|BOSS-DEC-\d{2}|CORR-F-\d{2}|SR-\d{2}|GOV-\d{2}|INV-M\d{2}|INV-F-\d{2}|JT-\d{2}|GAP-MD-\d{2}|IV-\d{2}|P-\d{2}|R4-F-\d{2})\b')
+DEFLINE=re.compile(r'^\s*(?:###+\s*(?:\*\*)?`?|\|\s*(?:\*\*)?`?)((?:MM|CD|FT|FN|OD|XM|SS|HA|EB|FO|RR|RC|DR|P3|C3|O3|R3|PW3)-F-\d{2}|GAP-INV-\d{2}[A-Z]?|CRITICAL-GAP-\d{2}|BOSS-DEC-\d{2}|CORR-F-\d{2}|SR-\d{2}|GOV-\d{2}|INV-M\d{2}|INV-F-\d{2}|JT-\d{2}|GAP-MD-\d{2}|IV-\d{2}|P-\d{2}|R4-F-\d{2})\b')
 for p in md:
     for i,line in enumerate(open(p,encoding='utf-8',errors='replace'),1):
         m=DEFLINE.match(line)
@@ -26,7 +26,9 @@ for p in md:
         for t in IDPAT.findall(line):
             if t.startswith('LI-INV'): continue
             cited[t].append(f'{os.path.relpath(p,PKG)}:{i}')
-undef=sorted(set(cited)-set(defined)); uncited=sorted(k for k in defined if len(cited[k])<=len(defined[k]))
+INHERITED=re.compile(r'^(CRITICAL-GAP|BOSS-DEC|GOV|RC-F|RR-F|CORR-F|GAP-INV|INV-M|INV-F|JT|IV|P-|R4-F|SR|SS-F|HA-F|FO-F|OD-F|XM-F|EB-F|MM-F|CD-F|FT-F|FN-F|DR-F)')
+defined={k:v for k,v in defined.items() if not INHERITED.match(k)}
+undef=sorted(k for k in set(cited)-set(defined) if not INHERITED.match(k)); uncited=sorted(k for k in defined if len(cited[k])<=len(defined[k]))
 dup=sorted(k for k,v in defined.items() if len(v)>1)
 # numbering gaps
 fams=collections.defaultdict(set)

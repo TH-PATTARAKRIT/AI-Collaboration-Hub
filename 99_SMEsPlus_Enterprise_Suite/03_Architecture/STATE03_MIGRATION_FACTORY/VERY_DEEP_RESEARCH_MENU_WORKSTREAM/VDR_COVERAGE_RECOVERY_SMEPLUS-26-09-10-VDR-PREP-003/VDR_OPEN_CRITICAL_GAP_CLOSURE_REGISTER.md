@@ -27,10 +27,10 @@ Nothing less is closure. In particular: *re-stating a gap more precisely is not 
 |---|---|
 | **Critical Areas** | 1 Financial Posting · 4 Inventory Valuation |
 | **Action this session** | re-measured on the transacted current-generation deployment |
-| **Result** | **the stronger form was RETRACTED.** The previous claim — *"the current generation is not writing per-movement valuation"* — is **false**. The value **relocated onto the movement row**: 100% of 3,680 completed movements carry one. The earlier comparison had no state basis (the deployment measured had zero completed movements) and no configuration control (every located current-generation deployment runs periodic valuation, under which no movement posts in *any* generation) |
+| **Result** | **the stronger form was RETRACTED.** The previous claim — *"the current generation is not writing per-movement valuation"* — is **false**. The value **relocated onto the movement row**: 100% of 3,680 completed movements carry one — **a denominator that is unreconciled against the same package's 14,441 (`CH-17`), and is carried to PMO as a blocking item.** The earlier comparison had no state basis (the deployment measured had zero completed movements) and no configuration control (every located current-generation deployment runs periodic valuation, under which no movement posts in *any* generation) |
 | **Residual gap** | the dedicated valuation ledger table is genuinely absent; its replacement holds 85,832 rows of which **0 carry a movement reference**; the valuation figure is **writable** and its only override log is **deletable by the same role** |
 | **State** | **OPEN — re-stated at MATERIAL weight.** Prior conclusion preserved as audit lineage per PREP-002 §17 |
-| **What would close it** | a controlled install under *perpetual* valuation, current generation, with a movement completed and the resulting records read — the counterfactual the original comparison never ran |
+| **What would close it** | a controlled install under *perpetual* valuation, current generation, with a movement completed and the resulting records read — the counterfactual the original comparison never ran. **Note added after challenge:** a controlled-install lab exists on this host with an evidence directory named for that very configuration. It is the **prior** generation and does not discharge the current-generation requirement — but the R1 text asserted the counterfactual was never run without naming a lab built to run it (`CH-13`) |
 
 ### `CRITICAL-GAP-02` — persistent objects with no row-level isolation
 
@@ -59,7 +59,7 @@ Nothing less is closure. In particular: *re-stating a gap more precisely is not 
 | **Critical Areas** | 2 Stock Ownership · 7 Company Isolation |
 | **Result** | **STRENGTHENED.** 16 rules admit company-less records, not 9 — and the set now includes **lot/serial numbers and movement lines**, which are transactional, not reference data. A **shipped** transit location is company-less: stock in it is cross-company visible, cross-company editable, and **valued by no company** |
 | **State** | **OPEN — strengthened** |
-| **What would close it** | for SMEsPlus this is not closable by research. It is a design prohibition to adopt: **no transactional record without an owning scope.** Boss decision |
+| **What would close it** | for SMEsPlus this is not closable by research. The recommendation put to the Boss is a design prohibition — **no transactional record without an owning scope** — and it is a recommendation, not an adopted rule. **Boss decision** |
 
 ### `CRITICAL-GAP-05` — opening a menu mutates data
 

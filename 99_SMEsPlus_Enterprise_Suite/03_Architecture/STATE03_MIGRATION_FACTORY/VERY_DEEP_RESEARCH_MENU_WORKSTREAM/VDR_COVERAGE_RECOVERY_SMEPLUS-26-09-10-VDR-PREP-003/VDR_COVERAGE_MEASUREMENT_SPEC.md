@@ -2,7 +2,8 @@
 # Coverage Measurement Specification — the mathematics of every published percentage
 
 Session `[SMEPLUS-26-09-10-VDR-PREP-003]` · Layer: **LAYER 1 — CLEAN-ROOM.**
-Status: **FROZEN v1.0.** Supersedes the informal coverage arithmetic of PREP-001 and PREP-002.
+Status: **v2.0 — corrected after independent challenge.** Supersedes v1.0 and the informal coverage
+arithmetic of PREP-001 and PREP-002.
 
 ---
 
@@ -53,8 +54,13 @@ before measurement. `NA` is never assigned to an individual row, and **unknown i
 | GATEDELEM | – | ● | ● | ● | ● | – | ● | – | – |
 | HANDOFF | – | – | – | ● | ● | – | – | ● | – |
 
-**Total applicable dimension cells: 30,741** over 5,074 items. That is the denominator of every
+**Total applicable dimension cells: 30,906** over 5,074 items. That is the denominator of every
 cell-level percentage in this programme.
+
+> **v1.0 published 30,741, and that figure was wrong.** 180 cells this table marks applicable had been
+> reclassified as `NA` *after failing their grade*, taking both affected denominators down with them
+> (`CH-01`). All 180 are restored; 15 left by the container rule. The table above did not change — the
+> register was corrected to obey it. Full lineage in `VDR_EXCLUSION_REGISTER.md`.
 
 ## 4. TWO GRADES — and why they must never be merged
 
@@ -64,9 +70,14 @@ had drifted from *"meets the depth standard"* to *"the condition is established"
 
 | Grade | Means | Evidence required |
 |-------|-------|-------------------|
-| **DETERMINED** | the item's condition on that dimension is **established from evidence, including a determination of "none"** | a census that is instrument-validated (second shape, positive control, coverage assertion, zero re-test) and whose result is recorded per item |
+| **NOT DETERMINED** | the condition is **not** established — the honest value where an instrument could not reach | the failure recorded per item |
+| **DETERMINED** | the item's condition on that dimension is **established from evidence, including a determination of "none"** | a census that is instrument-validated (second shape, positive control drawn **from the corpus**, coverage assertion, zero re-test) and whose result is recorded per item |
 | **RESEARCH-VERIFIED** | the dimension meets the **depth standard** the commissioning prompt defines | §6's twenty process facets · §7's config OFF-vs-ON consequence across nine axes · §8's thirteen optional-function attributes including deactivation behaviour |
 
+> **`NOT_DETERMINED` must exist in the register, or `DETERMINED` is not a test.** v1.0 contained not one
+> `NOT_DETERMINED` cell in 30,741 — so `DETERMINED` was a synonym for *applicable*, and its 100.00% on
+> all nine dimensions was true by construction (`CH-01`). v2.0 carries 132 of them.
+>
 > **A determination of "none" is a result, not a gap — but it is not depth.** Knowing that an element
 > carries no configuration gate is real evidence; knowing what changes when a capability is switched
 > off is a different and much larger claim.
@@ -105,6 +116,8 @@ Using the weaker grade would report 100% and mean nothing.
 | Rule | Statement |
 |------|-----------|
 | **ELIGIBILITY** | every item in the frozen population is eligible for every dimension the rule table marks applicable |
+| **REGISTERED EXCLUSION ONLY** | a cell leaves a denominator **only** by the class rule table or by a row in `VDR_EXCLUSION_REGISTER.md`. A per-row `NA` that is in neither is a defect, not an exclusion |
+| **NO POST-HOC `NA`** | a cell may never be reclassified `NA` after it has been graded. The direction of that edit is always toward a better number |
 | **EXCLUSION** | an item leaves the applicable population only by an entry in the exclusion register, carrying **Learning ID · reason · evidence · reviewer · status**. No silent exclusion |
 | **`NA` is not exclusion** | an `NA` cell removes a *cell* from a dimension denominator, by the class rule table, with a recorded reason. The item stays in the population |
 | **Denominator stability** | once coverage calculation begins the denominator is frozen. A material change forces a **new population version**, recalculation of every affected metric, and preservation of the prior calculation |
@@ -116,7 +129,7 @@ Using the weaker grade would report 100% and mean nothing.
 | `PROCESS` | all twenty §6 facets determined, including calculation semantics, retry, and cancel/reverse/return semantics — **not** the eleven mechanically-derivable facets alone |
 | `CONFIGURATION` | the OFF-vs-ON consequence determined across §7's nine axes |
 | `OPTIONAL_FUNCTION` | §8's thirteen attributes, **including deactivation behaviour** |
-| `SOURCE` | a reproducible pointer with root and content-verified generation |
+| `SOURCE` | a reproducible pointer with root and content-verified generation — **resolvable to file *and* line**. v1.0 graded this by an unconditional literal that could not fail, and 186 of its pointers resolve to no file at all (`CH-03`) |
 | `RUNTIME` | **element observed** on a deployment — module installation alone is `DETERMINED`, not research-verified |
 | `DATA_MODEL` | the item's own declared type, attributes, relations and constraints |
 | `SECURITY` | the access grants and record rules that govern it, enumerated |
@@ -130,4 +143,8 @@ Using the weaker grade would report 100% and mean nothing.
 - No dimension marked `NA` without a reason recorded in the same row.
 - No denominator change after calculation begins without a new population version.
 - **No percentage may rise because a predicate was relaxed.** If a number improves, the evidence that
-  moved it must be identifiable.
+  moved it must be identifiable. **v1.0 breached this clause, in the document that states it.**
+- **A grade that never varies within a class is a class label, not a measurement**, and may not be
+  published as RESEARCH-VERIFIED. Four dimensions failed this test in v1.0 and are corrected (`CH-03`).
+- **A positive control must be drawn from the corpus being searched**, never from the searcher's
+  vocabulary, and must be able to fail the way the predicate fails.

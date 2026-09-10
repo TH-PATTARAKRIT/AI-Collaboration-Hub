@@ -12,6 +12,8 @@ leaving a dangling citation.
 
 | Family | Meaning | Defined in |
 |--------|---------|------------|
+| `CH-nn` | challenge findings, adopted | `SMES_CORE_PREP003_CHALLENGE_REPORT.md` |
+| `LESA-F-nn` | source-resolution findings | `LESA_PREP003_RESOLUTION_REPORT.md` |
 | `P3-F-nn` | process deepening findings | `VDR_PROCESS_DEEPENING_REPORT.md` |
 | `C3-F-nn` | configuration deepening findings | `VDR_CONFIGURATION_DEEPENING_REPORT.md` |
 | `O3-F-nn` | optional-function deepening findings | `VDR_OPTIONAL_FUNCTION_DEEPENING_REPORT.md` |
@@ -27,6 +29,9 @@ identifier would sever its audit lineage; this package cites them unchanged.
 |------------|---------|-----------|----------------------|
 | `CRITICAL-GAP-01` … `-06` | the six open critical gaps | PREP-001 register 09 / PREP-002 `00A` | **all six OPEN** |
 | `BOSS-DEC-01` | whether valuation conclusions must be re-derived before supporting a design | PREP-001 register 09 | **OPEN — Boss** |
+| **`BOSS-DEC-10`** | **whether the stop-at-one-hop boundary rule is adopted as the universal standard** | PREP-001 register 09 | **OPEN — Boss. The 5,074-item denominator under every number in this package rests on it, and PREP-002 classifies the rule as a PROVISIONAL RESEARCH CONTROL, explicitly not frozen as architecture.** Omitted from the R1 edition of this register (`CH-14`) |
+| `BOSS-DEC-12` | whether the functional-ownership eligibility rule becomes universal | PREP-001 register 09 | **OPEN — Boss** |
+| `BOSS-DEC-14` | is the quantity axis scoped to the owning module or cross-module | PREP-002 `00A` | **OPEN — Boss** |
 | `GOV-01` | the governance certification defect: committing into a package while challengers read it | PREP-001, self-reported | **CLOSED as a defect; standing as a rule** |
 | `RC-F-01` | the optional-function zero | PREP-002 `00D` §3 | **RETRACTED** — and its retraction is itself un-propagated (`PW3-F-01`) |
 | `RC-F-03` | prior-emphasis refinement | PREP-002 `00D` §3 | **carries the withdrawn zero** (`PW3-F-01`) |
