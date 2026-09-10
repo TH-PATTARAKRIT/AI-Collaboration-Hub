@@ -27,7 +27,18 @@ Session `[SMEPLUS-26-09-10-VDR-PREP-001-CORR1]` · **LAYER 2 — AUDIT QUARANTIN
 | **C** SYSTEM-PARAMETER | writes a system parameter read at runtime | 7 | 3.0% | the system-parameter table |
 | **D** PASS-THROUGH | stores onto another business object | 138 | 58.2% | company / warehouse / product / category |
 | **E** PLAIN or COMPUTED | held on the settings object, or derived | 30 | 12.7% | the settings object, or nowhere |
-| | **TOTAL** | **237** | 100% | |
+| | **TOTAL DECLARED** | **237** | 100% | |
+| **F** UNDECLARED RUNTIME PARAMETER | **read at run time from a string key with no field, no record and no declaration anywhere** | **not enumerable from declarations** | — | a parameter table, settable only by a technical user |
+
+**Class F was added after independent challenge (`CORR-F-24`).** It has no declared population — by
+construction, since its members have no declaration — so it cannot appear in the 237. **At least one
+member exists, and it is the switch that governs the Pilot's most severe control finding**
+(Register 08 `HA-F-10`/`HA-F-11`). Both this register and Register 08 had classified that switch as
+class C; it is not in class C and not in the 237 at all.
+
+**A toggle taxonomy built from declarations cannot enumerate the class whose defining property is
+having no declaration.** The honest treatment is a named class with an unmeasured population, not a
+silent omission.
 
 ## 3. Register
 
@@ -274,7 +285,7 @@ Session `[SMEPLUS-26-09-10-VDR-PREP-001-CORR1]` · **LAYER 2 — AUDIT QUARANTIN
 
 ## 4. Findings
 
-### FT-F-01 — A "feature toggle" is five different mechanisms wearing one costume (**CRITICAL**)
+### FT-F-01 — CORRECTED — a "feature toggle" is **six** different mechanisms wearing one costume (**CRITICAL**)
 They differ in **where state lives**, **who can change it**, **what audit exists**, **what company or
 tenant scope applies**, and **what happens when it is switched off after use**. A register — or a
 SMEsPlus design — that models one mechanism models 8.9% of the surface (class B) or 58.2% (class D),
@@ -290,16 +301,20 @@ Class D (58.2%) writes to a different object. Consequences that must be designed
 the setting's **company scope** is the storing object's scope; its **audit trail** is the storing
 object's; and two settings screens can disagree if the storing objects differ.
 
-### FT-F-04 — A system parameter can silently disable a data-mutating routine
-Class C includes at least one parameter that, when set, **suppresses a routine that otherwise runs as
-a side effect of opening a menu** (Register 08, `HA-F-01`). It appears on no settings screen.
-**A configuration surface that is invisible to the configuration UI is a control gap**, and it is one
-that would not appear in any menu-driven or settings-driven research.
+### FT-F-04 — CORRECTED — an **undeclared** parameter silently disables a data-mutating routine, and it is not class C
+A parameter exists which, when set, **suppresses a routine that otherwise runs as a side effect of
+opening a menu** (Register 08 `HA-F-01`).
 
-### FT-F-07 — A toggle's effect surface is not the screen (**CRITICAL for method**)
-Traced system-wide, 7 of the 21 group-toggles take effect **only** in printed/report templates (4) or
-in runtime code branches (3); one of the latter also reaches a boundary object. See Register 02
-`CD-F-03`. **"What does this switch do?" cannot be answered from screens.**
+> This register classified it as **class C**. **It is not.** It has no configuration-settings field,
+> no data record and no declaration of any kind anywhere in the root; it is not among the 7 class-C
+> rows and it is **not in the 237-row population**. It is the first known member of **class F**.
+> Found by independent challenge; recorded as `CORR-F-24`.
+
+Two further corrections to what was claimed of it:
+- It guards **2 of the 5** call sites of the routine it is supposed to suppress (Register 08
+  `HA-F-10`). Setting it therefore creates a **false assurance**.
+- Because it is undeclared, **no configuration screen, no upgrade path and no tenant administrator can
+  discover it**. That is the control gap, and it is larger than "invisible to the settings screen".
 
 ### FT-F-05 — The same toggle is declared by more than one module
 Several toggle field names are declared by two different modules. The declarations are not guaranteed
@@ -310,3 +325,8 @@ different declarations.
 R2 (series-18): **230–233** declarations across two independent comparators; R1 (series-19): **237**.
 Small in magnitude, but it demonstrates the rule: **a toggle register is valid only for the generation
 it was read from.**
+
+### FT-F-07 — A toggle's effect surface is not the screen (**CRITICAL for method**)
+Traced system-wide, 7 of the 21 group-toggles take effect **only** in printed/report templates (4) or
+in runtime code branches (3); one of the latter also reaches a boundary object. See Register 02
+`CD-F-03`. **"What does this switch do?" cannot be answered from screens.**

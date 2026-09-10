@@ -174,7 +174,11 @@ The whole system. **A domain has no natural relational boundary.** Therefore:
 > its complement. It is not a derivation, and it is not prose.**
 
 The Pilot's adopted rule — anchor + inheritance closure + menu-reachable + **one hop, stopped** +
-ownership split — is the standard. `Stop at one hop and publish the complement.`
+ownership split — is this session's **candidate standard**. Whether it becomes the universal standard
+is `BOSS-DEC-10` and is **open**. Independent challenge also established that the rule as first
+published was **circular in its sequencing** — the ownership test refers to the module cluster, which
+is derived from ownership. It is evaluable only as a fixpoint, and is now written that way
+(`CORR-F-30`).
 
 ---
 
@@ -198,6 +202,14 @@ The populated instance is:
 - `LAYER2_AUDIT_QUARANTINE/00B_INVENTORY_SOURCE_LEARNING_POPULATION.md` — derivation, counts, boundary
 - `LAYER2_AUDIT_QUARANTINE/MACHINE_REGISTERS/LEARNING_POPULATION.csv` — **4,339 Learning Items**, one row per item
 
-Class distribution: `FIELD` 1,846 · `BEHAVIOUR` 614 · `VIEW` 492 · `BUTTON` 431 · `SETTING` 237 ·
-`ACTION` 200 · `ACL` 176 · `MENUX` 134 · `MENU` 62 · `GROUP` 44 · `CONSTRAINT` 32 · `RULE` 28 ·
-`AUTOMATION` 26 · `SEQUENCE` 12 · `SYSPARAM` 5. **Critical: 2,042 (47.1%).**
+**Population v2, rebuilt after the independent challenge: 5,074 rows over 4,699 distinct identities.**
+Both figures are published because they are different measurements: a row is a **declaration site**,
+an identity is a **thing**. The v1 population (4,339) understated the surface and its rows carried no
+research state, no ownership class, no generation basis and no reachability — see
+`INVENTORY_PILOT_CHALLENGE_REPORT.md` §4.
+
+Class distribution (rows / distinct): `FIELD` 1,846/1,809 · `BEHAVIOUR` 614/502 · `GATEDELEM` 525/371 ·
+`VIEW` 493/493 · `BUTTON` 431/383 · `SETTING` 237/232 · `ACTION` 201/200 · `ACL` 180/178 ·
+`MENUX` 134/134 · `OBJECT` 96/96 · `HANDOFF` 90/90 · `MENU` 62/62 · `RULE` 46/46 · `GROUP` 44/34 ·
+`CONSTRAINT` 32/32 · `AUTOMATION` 26/26 · `SEQUENCE` 12/12 · `SYSPARAM` 5/5.
+**Critical: 2,461.**

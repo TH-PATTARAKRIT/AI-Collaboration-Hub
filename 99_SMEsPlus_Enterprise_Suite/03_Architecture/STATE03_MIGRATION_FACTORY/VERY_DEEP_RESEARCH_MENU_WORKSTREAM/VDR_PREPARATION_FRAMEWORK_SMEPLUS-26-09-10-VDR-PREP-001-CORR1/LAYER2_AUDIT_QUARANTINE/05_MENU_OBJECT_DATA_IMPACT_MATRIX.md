@@ -128,11 +128,19 @@ create 31 tables that should not exist**, and — more seriously — would miss 
 interactions currently have **no persistent record of having occurred**. Whether SMEsPlus should
 persist any of them is a design question, raised as `BOSS-DEC-05`.
 
-### OD-F-02 — 10 persistent objects declare no company scope (**CRITICAL — carried to Register 07**)
-Of 47 persistent objects, 10 declare no company field in this module set. Some are reference data where
-that is correct; at least one is a valuation-adjustment object where it is not obviously correct.
-Each requires an explicit disposition before any multi-company or multi-tenant design is frozen.
-**Not asserted as a defect — recorded as 10 undischarged dispositions.**
+### OD-F-02 — PARTLY CLOSED — 10 persistent objects declare no company scope, and one of them closes as a defect (**CRITICAL**)
+Of 47 persistent objects, 10 declare no company field. Nine remain **undischarged dispositions** —
+reference data where global scope may be correct.
+
+**The tenth closes as a defect.** Independent challenge followed the valuation-adjustment line object
+through every isolation layer: it declares **no company field**, carries **no row-level rule**, and its
+**parent document also carries no row-level rule** — the parent declares a required company but nothing
+filters on it. **The chain is unisolated at every level**, so there is no association for
+"isolation by association" to work through. Carried to Register 07 `SS-F-11`.
+
+The hedge in the original text — *"at least one is a valuation-adjustment object where it is not
+obviously correct"* — was correct and was left open when one query would have closed it.
+**A hedge is not a disposition.**
 
 ### OD-F-03 — 168 stored computed values (**CRITICAL**)
 168 fields are computed **and stored**. A stored computed value is a **cached derivation**: it can be
@@ -145,17 +153,46 @@ Out of 1,846 declared fields, 32 carry change tracking. **Audit is the exception
 Which Inventory fields require an immutable audit trail is a SMEsPlus decision that cannot be inherited;
 raised as `BOSS-DEC-06`.
 
-### OD-F-05 — The inventory valuation object was **replaced between generations** (**CRITICAL**)
-In series-18 the domain carries an append-only **valuation-layer ledger**, referenced by **72** source
-files. In series-19 that object **does not exist**: there are **0** declarations of it, and the 15
-remaining textual references are 14 test files plus one model file. It is replaced by a narrower object
-whose own documentation describes it as *"the history of manual update of a value"*, with current value
-carried on the movement itself.
+### OD-F-05 — CORRECTED — the inventory valuation object was **replaced between generations** (**CRITICAL**)
+**The substantive claim is confirmed; two counts attached to it are withdrawn.**
 
-**Consequence:** any Inventory-valuation or cost-of-goods finding in this programme that was derived
-from series-18 valuation-ledger behaviour is **generation-bounded and does not describe the target
-generation.** It must be re-derived before it can support a SMEsPlus design decision.
-Raised as `CRITICAL-GAP-01` and `BOSS-DEC-01`.
+**Confirmed, and reproduced independently by challenge:** series-18 declares an append-only
+**valuation-layer ledger**. Series-19 declares it **zero times**. It is replaced by a narrower object
+whose own source documentation describes it as *"the history of manual update of a value"*, with the
+current value carried **on the movement itself**.
+
+**Withdrawn:** the "72 referencing files" and "15 remaining references, 14 tests plus one model file"
+figures. Neither is reproducible: the referencing count varies from 64 to 90 with the pattern and the
+prune, and the *"one model file"* descriptor is wrong — the single non-test reference in series-19 is
+an **XML comment in a demo-data file**. Both parties reproduce the **declaration count**, and the claim
+now rests on that alone: **72-ish referencing files in one generation against 0 declarations in the
+other** is the wrong way to say it; **0 declarations against a declared object** is the right way.
+
+**Undeclared asymmetry, now declared:** only **134 of the 149 domain modules exist in the series-18
+comparator** — 15 are series-19-only. Any cross-generation count is a 149-module population against a
+134-module one unless explicitly intersected.
+
+**Also missed by the original census:** series-19 carries **two new valuation reporting objects** that
+this register's object census does not list, because both are abstract. They are the audit surface the
+removed ledger used to be, and they belong in the evidence for `CRITICAL-GAP-01`.
+
+**Consequence:** any Inventory-valuation or cost-of-goods finding in this programme derived from
+series-18 valuation-ledger behaviour is **generation-bounded and does not describe the target
+generation.** Raised as `CRITICAL-GAP-01` and `BOSS-DEC-01`.
+
+### OD-F-07 — In the target generation the valuation figure is writable and its audit log is deletable (**CRITICAL**) — *found by challenge*
+The series-18 ledger was append-only. In series-19:
+
+- the movement's value is a **plain writable stored column** — no compute, no change-tracking, no
+  constraint;
+- overriding it writes one row to the replacement object — **that row is the only record the override
+  happened**;
+- the inventory-manager role is granted **create, write and delete** on that object;
+- it carries **no row-level rule** and **no deletion guard**.
+
+**An inventory manager can overwrite a movement's valuation and then delete the only record that it was
+overwritten.** `OD-F-05` stops at "replaced by a narrower object". The narrower object *is* the audit
+trail, and it is unprotected. **This is the evidence `BOSS-DEC-01` needs and did not have.**
 
 ### OD-F-06 — Constraint count nearly doubles between generations
 R2 (series-18): 20 declared constraints. R1 (series-19): 32. Both comparators agree on 20.

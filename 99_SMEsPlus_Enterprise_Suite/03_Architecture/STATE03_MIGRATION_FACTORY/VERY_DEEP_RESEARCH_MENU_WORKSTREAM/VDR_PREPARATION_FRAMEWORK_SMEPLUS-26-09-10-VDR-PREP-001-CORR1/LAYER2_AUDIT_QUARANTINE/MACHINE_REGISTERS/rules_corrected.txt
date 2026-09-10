@@ -1,0 +1,25 @@
+CORRECTED ir.rule CENSUS — OWNED objects, whole root, BOTH declaration forms
+  rules on OWNED objects         : 46  (ref 29 / search 17 )
+  company-scoping rules          : 34
+  rules ADMITTING a null company : 16
+  distinct OWNED objects ruled   : 34
+  PERSISTENT OWNED with NO rule  : 13 of 47 (27.7%)
+    -> ['l10n_mx_edi.customs.document.type', 'l10n_mx_edi.customs.regime', 'l10n_tr.nilvera.trailer.plate', 'lazada.order.item', 'mrp.product.forecast', 'mrp.production.group', 'product.removal', 'stock.package.history', 'stock.package.type', 'stock.reference', 'stock.scrap.reason.tag', 'stock.storage.category.capacity', 'stock.valuation.adjustment.lines']
+
+OBJECTS WHOSE RULE ADMITS A NULL COMPANY:
+   amazon.account                 [ref   ] sale_amazon
+   l10n_pe_edi.vehicle            [ref   ] l10n_pe_edi_stock
+   lazada.shop                    [ref   ] sale_lazada
+   mrp.bom                        [search] mrp
+   mrp.bom.byproduct              [search] mrp
+   mrp.bom.line                   [search] mrp
+   mrp.routing.workcenter         [search] mrp
+   shopee.shop                    [ref   ] sale_shopee
+   stock.location                 [ref   ] stock
+   stock.lot                      [search] stock
+   stock.move.line                [search] stock
+   stock.package                  [ref   ] stock
+   stock.quant                    [ref   ] stock
+   stock.route                    [ref   ] stock
+   stock.rule                     [ref   ] stock
+   stock.storage.category         [ref   ] stock

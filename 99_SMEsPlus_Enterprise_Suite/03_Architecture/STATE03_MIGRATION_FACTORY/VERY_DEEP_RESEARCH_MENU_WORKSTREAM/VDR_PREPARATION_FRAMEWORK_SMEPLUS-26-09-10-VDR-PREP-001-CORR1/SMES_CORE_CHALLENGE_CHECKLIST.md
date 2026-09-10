@@ -38,7 +38,7 @@ be challenged.
 
 ---
 
-## 3. The 25 Mandatory Challenge Questions
+## 3. The 30 Mandatory Challenge Questions
 
 Each is answered per Learning Item or per bounded group of Learning Items, with a disposition and an
 evidence pointer.
@@ -84,7 +84,7 @@ evidence pointer.
 24. **Performance / scale issue?** Behaviour that is correct but not viable at tenant scale.
 25. **Whole-system contradiction?** Does this finding contradict another domain's frozen finding?
 
-### G. Mandatory additional classes (added by the Inventory Pilot — see CORR register)
+### G. Mandatory additional classes (added by the Inventory Pilot — see the correction register)
 26. **Instrument challenge.** For each published count: was the second-shape control run? the positive
     control? the coverage assertion? Was any zero re-tested?
 27. **Denominator challenge.** Are D1–D5 declared *and executed*? Was the population instrument the
@@ -111,12 +111,20 @@ evidence pointer.
 
 ---
 
-## 5. Recording Rule
-
 A revision log is **not** a correction. Every accepted finding must be edited into the register text
 itself, and the audit must be performed **by identifier over the whole population**, never by reading
 the disposition column. A `CORRECTED` marker over an unrepaired register is a false assurance about
 the entire review.
+
+### 31. Freeze integrity (added after the Pilot's own governance defect — `CORR-F-28`)
+Was the package committed and the working tree clean at the moment challenge opened, and did it stay
+that way until challenge closed? **A commit to the package during an open challenge voids that
+challenge.** This class exists because the Pilot's producer broke this rule inside an hour of writing
+it, and only the challengers' timestamps caught it.
+
+---
+
+## 6. Recording Rule
 
 Pre-commit sweep (four checks, **disjoint units**, last step before every commit):
 

@@ -1,0 +1,16 @@
+{"xmlid": "delivery_starshipit.ir_cron_starshipit_fetch_pending_prices", "module": "delivery_starshipit", "model": "stock.picking", "name": "Starshipit: Fetch Pending Shipping Prices", "file": "delivery_starshipit/data/ir_cron_data.xml"}
+{"xmlid": "l10n_ec_edi_stock.ir_cron_send_delivery_guides", "module": "l10n_ec_edi_stock", "model": "stock.picking", "name": "Send delivery guides to SRI", "file": "l10n_ec_edi_stock/data/cron_data.xml"}
+{"xmlid": "l10n_ke_edi_oscu_stock.ir_cron_send_stock_moves", "module": "l10n_ke_edi_oscu_stock", "model": "stock.move", "name": "KE eTIMS: Send Stock Operations", "file": "l10n_ke_edi_oscu_stock/data/ir_cron_data.xml"}
+{"xmlid": "l10n_uy_edi_stock.ir_cron_update_dgi_state_pickings", "module": "l10n_uy_edi_stock", "model": "stock.picking", "name": "UY: Update DGI State - Pickings", "file": "l10n_uy_edi_stock/data/ir_cron.xml"}
+{"xmlid": "mrp_mps.ir_cron_replenish_automated_mps", "module": "mrp_mps", "model": "mrp.production.schedule", "name": "MPS: replenish automated schedules", "file": "mrp_mps/data/ir_cron_data.xml"}
+{"xmlid": "sale_amazon.ir_cron_sync_amazon_orders", "module": "sale_amazon", "model": "amazon.account", "name": "Amazon: sync orders", "file": "sale_amazon/data/amazon_cron.xml"}
+{"xmlid": "sale_amazon.ir_cron_sync_amazon_pickings", "module": "sale_amazon", "model": "stock.picking", "name": "Amazon: sync delivery orders", "file": "sale_amazon/data/amazon_cron.xml"}
+{"xmlid": "sale_amazon.ir_cron_sync_amazon_inventory", "module": "sale_amazon", "model": "amazon.account", "name": "Amazon: sync available inventory", "file": "sale_amazon/data/amazon_cron.xml"}
+{"xmlid": "sale_amazon.ir_cron_sync_amazon_feeds", "module": "sale_amazon", "model": "amazon.account", "name": "Amazon: sync feeds", "file": "sale_amazon/data/amazon_cron.xml"}
+{"xmlid": "sale_lazada.ir_cron_sync_lazada_orders", "module": "sale_lazada", "model": "lazada.shop", "name": "Lazada: sync orders", "file": "sale_lazada/data/ir_cron.xml"}
+{"xmlid": "sale_lazada.ir_cron_sync_lazada_inventory", "module": "sale_lazada", "model": "lazada.shop", "name": "Lazada: sync inventory", "file": "sale_lazada/data/ir_cron.xml"}
+{"xmlid": "sale_shopee.ir_cron_sync_shopee_orders", "module": "sale_shopee", "model": "shopee.shop", "name": "Shopee: sync orders", "file": "sale_shopee/data/shopee_cron.xml"}
+{"xmlid": "sale_shopee.ir_cron_sync_shopee_pickings", "module": "sale_shopee", "model": "stock.picking", "name": "Shopee: sync shipping labels", "file": "sale_shopee/data/shopee_cron.xml"}
+{"xmlid": "sale_shopee.ir_cron_sync_shopee_inventory", "module": "sale_shopee", "model": "shopee.shop", "name": "Shopee: sync inventory", "file": "sale_shopee/data/shopee_cron.xml"}
+{"xmlid": "sale_shopee.ir_cron_sync_shopee_pickings_retry", "module": "sale_shopee", "model": "stock.picking", "name": "Shopee: retry sync shipping labels", "file": "sale_shopee/data/shopee_cron.xml"}
+{"xmlid": "stock.ir_cron_scheduler_action", "module": "stock", "model": "stock.rule", "name": "Procurement: run scheduler", "file": "stock/data/stock_sequence_data.xml"}

@@ -119,16 +119,24 @@ code-level guard.** An access-rights model derived from grants alone overstates 
 
 ## 5. Coverage state
 
-| Research state | Items | Share of 4,339 |
+| Research state | Items | Share of 5,074 |
 |----------------|------:|---------------:|
-| `S0 DISCOVERED` | 4,339 | 100% |
-| `S1 SOURCE LOCATED` | 4,339 | 100% |
-| `S2 UI VERIFIED` | 0 | 0% |
-| `S3 CONFIG VERIFIED` | 633 gated elements + 237 toggles | partial, see Register 02 |
-| `S4 FUNCTION VERIFIED` | **33** — 14 state vocabularies · 8 menu-open entry methods traced (`SR-10`) · 2 role-dependent projections (Reg 08 `HA-F-02`/`HA-F-03`) · 2 documents' reversibility (`SR-09`) · 7 toggle effect surfaces (`SR-08`) | **0.76%** |
+| `S1 SOURCE LOCATED` | 4,256 | 83.9% |
+| `S3 CONFIG VERIFIED` | 755 | 14.9% |
+| `S4 FUNCTION VERIFIED` | **63** | **1.24%** |
 | `S5`–`S9` | 0 | 0% |
+
+The 63 at `S4`: **46** row-level rules read in full · **9** menu entry methods traced (`SR-10`,
+challenge `B-04`) · **7** toggle effect surfaces resolved (`SR-08`) · **2** documents' reversibility
+established (`SR-09`) — with the 14 lifecycle-state vocabularies counted under their objects rather
+than separately, after challenge finding `C-11` showed the earlier numerator mixed units with its
+own denominator.
 
 **This is the Pilot's central number and it is not a failure — it is the correctly-measured distance
 between "we have a population" and "we have knowledge".** Prior programme rounds have reported high
-coverage against denominators that were author-chosen; this one reports 0.5% against a denominator
-that was derived, instrument-validated and published.
+coverage against denominators that were author-chosen. This one reports **1.24%** against a
+denominator that was derived by rule, instrument-validated, published as a set, and then **attacked by
+three independent reviewers who wrote their own instruments and corrected it eleven times.**
+
+> The figure went **up** after challenge — 0.46% → 1.24% — because the challenge closed gaps as well as
+> opening them. A correction round is not a penalty phase.

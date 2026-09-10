@@ -16,67 +16,70 @@ not coverage.
 
 ## 2. Coverage Dashboard
 
+**All figures below are post-challenge.** Where a figure moved, the pre-challenge value is shown so the
+movement is visible rather than silent.
+
 ### 2.1 Preparation Framework
 
 | Dimension | Numerator / Denominator | % | Note |
 |-----------|------------------------:|--:|------|
 | Preparation Controls frozen | 5 / 5 | **100%** | Master List, Nine Registers, Coverage Rule, Challenge Checklist, Execution Order |
-| Nine Registers instantiated | 9 / 9 | **100%** | every record carries a Learning ID; **0 orphan records** |
-| Controls **exercised by the Pilot** | 5 / 5 | **100%** | each control produced at least one correction to itself |
-| Framework corrections incorporated before closure | 22 / 22 | **100%** | `VDR_FRAMEWORK_PILOT_CORRECTION_REGISTER.md` |
-| **Preparation Framework Readiness** | — | **92%** | 8 points withheld: the framework has been exercised on **one** domain, by **one** producer, with **no runtime evidence**; see §4 |
+| Nine Registers instantiated | 9 / 9 | **100%** | |
+| Register rows that are population members | 9 / 9 | **100%** | was **3 / 9** — six registers held orphan rows until three classes were added (`C-04`) |
+| Framework corrections incorporated | 30 / 30 | **100%** | 15 method + 15 instrument; **8 of the 15 instrument defects came from challenge** |
+| Governance defects | **1 open** | — | `GOV-01` — the producer edited the package while frozen and under challenge |
+| **Preparation Framework Readiness** | — | **producer estimate: 70%** | **not a score, and not self-awarded.** See §4. Requires PMO and Boss adjudication |
 
 ### 2.2 Source Learning Population
 
 | Dimension | Numerator / Denominator | % |
 |-----------|------------------------:|--:|
-| Derivation steps executed and published | 8 / 8 | **100%** |
-| Instrument controls executed (I1–I4) | 4 / 4 | **100%** |
-| Learning Items with a reproducible evidence pointer (`S1`) | 4,339 / 4,339 | **100%** |
-| Learning Items with a generation basis | 4,339 / 4,339 | **100%** |
+| Derivation steps executed and published | 9 / 9 | **100%** |
+| Instrument controls executed | 4 / 4 | **100% executed** — 2 of the 4 did not do what was claimed of them (`00B` §4) |
+| Items with a reproducible evidence pointer | 5,074 / 5,074 | **100%** |
+| Items carrying root **and** generation basis | 5,074 / 5,074 | **100%** — was **0**, the column did not exist (`C-03`) |
+| Items carrying an ownership class | 5,074 / 5,074 | **100%** — was **0** (`C-20`) |
+| Items whose reachability is measured | **0 / 5,074** | **0%** — no runtime evidence base (`GAP-INV-09`) |
 | Boundary published as a set with its complement | yes | **100%** |
+| PATH SET published as an enumerated set | yes | **100%** — was a rule only, never a set (`C-05`) |
 
 ### 2.3 Research coverage, by dimension
 
 | Dimension | Population | `S1` located | `S4` verified | Verified % |
 |-----------|-----------:|-------------:|--------------:|-----------:|
-| **Menu** | 62 | 62 (100%) | 0 | **0%** |
+| **Menu** | 62 | 62 (100%) | 9 | **14.5%** |
 | **Menu (extra-application)** | 134 | 134 (100%) | 0 | **0%** |
-| **Configuration dependency** | 633 gated elements / 43 groups | 633 (100%) | 633 mechanism-verified | **100% of mechanism, 0% of consequence** |
+| **Configuration dependency** | 525 gated elements + 108 gated menus/rules = 633 · 43 groups | 633 (100%) | mechanism only | **100% of mechanism, 0% of consequence** |
 | **Feature Toggle** | 237 | 237 (100%) | 21 of 21 group-toggles resolved to an effect surface | **8.9%** |
-| **Function** | 1,795 function-bearing items | 1,795 (100%) | 33 | **1.8%** |
-| **Object / Data** | 86 objects · 1,846 fields · 32 constraints | 100% | 0 | **0%** |
+| **Function** | 1,833 function-bearing items | 1,833 (100%) | 63 | **3.4%** |
+| **Object / Data** | 96 objects · 1,846 fields · 32 constraints | 100% | 0 | **0%** |
 | **Cross-Module** | 90 external objects, both directions | 90 (100%) | 0 | **0%** |
-| **Hidden Automation** | 350 automated behaviours; **8 menu-open side-effect candidates (census)** | 350 (100%) | 11 | **3.1%** |
-| **SaaS / Security** | 44 groups · 176 grants · 28 rules | 100% | 0 | **0%** |
-| **Edge / Reversal** | 86 objects | 2 (`SR-09`) | 2 | **2.3%** |
-| **SMEs Core Challenge closure** | 30 questions | 30 dispositioned | — | **100% dispositioned**, see §3 |
-
-**The 25 function-verified items and the 633 mechanism-verified gated elements are not commensurable
-and are not added together.** Taking the strict reading — Learning Items at `S4` or higher over the
-full population:
+| **Hidden Automation** | 26 jobs + 168 stored derivations + 141 interceptions + 15 guards; **9 menu-open candidates** | 100% | 13 | **2.6%** |
+| **SaaS / Security** | 44 groups · 180 grants · 46 rules | 100% | 46 | **15.9%** |
+| **Edge / Reversal** | 96 objects | 2 | 2 | **2.1%** |
+| **SMEs Core Challenge closure** | 30 classes · 68 findings | all dispositioned | — | **100% dispositioned; 0% re-challenged** |
 
 ```
-Overall Verified Coverage  =  33 / 4,339  =  0.76%
+Overall Verified Coverage  =  63 / 5,074  =  1.24%
 ```
 
 ### 2.4 Critical Area coverage
 
 | Critical Area | Population established | Verified | 100%? |
 |---------------|------------------------|---------:|:-----:|
-| Financial Posting | partial — code-created postings unmeasured | 0 | **NO** |
+| Financial Posting | partial — code-created postings unmeasured (`GAP-INV-06`) | 0 | **NO** |
 | Stock Ownership | yes | 0 | **NO** |
 | Stock Quantity | yes | 0 | **NO** |
-| Inventory Valuation | **object replaced between generations** | 0 | **NO** |
-| Security | yes | 0 | **NO** |
+| Inventory Valuation | **object replaced between generations**; the replacement is writable and its audit log deletable | 0 | **NO** |
+| Security | yes — 44 / 180 / 46 / 633 | 46 rules | **NO** |
 | Tenant Isolation | **no reference population exists** | n/a | **NO** |
-| Company Isolation | yes | 0 | **NO** |
+| Company Isolation | yes — 34 scoping rules, **16** admitting null company, 13 objects with no rule, 1 unisolated valuation chain, 1 shipped cross-company location | 46 rules | **NO** |
 | Approval Control | yes — none on domain objects | 0 | **NO** |
 | Audit Trail | yes (32 tracked fields) | 0 | **NO** |
 | Identity | not opened | 0 | **NO** |
-| Immutability | partial — 15 guards, 2 read in full | 2 objects | **NO** |
+| Immutability | partial — 15 guards, 2 read | 2 | **NO** |
 | Period Close | not opened | 0 | **NO** |
-| Reversal | established for 2 of 86 objects (`SR-09`) | 2 objects | **NO** |
+| Reversal | established for 2 of 96 objects | 2 | **NO** |
 | Data Integrity | yes (32 constraints) | 0 | **NO** |
 | Cross-Module Financial Handoff | partial (`GAP-INV-06`) | 0 | **NO** |
 
@@ -88,7 +91,7 @@ Overall Verified Coverage  =  33 / 4,339  =  0.76%
 
 | Gate condition | Threshold | Actual | Result |
 |----------------|-----------|--------|--------|
-| Overall Verified Coverage | ≥ 95% | 0.76% | **FAIL** |
+| Overall Verified Coverage | ≥ 95% | 1.24% | **FAIL** |
 | Every Critical Area | 100% | 0 of 15 | **FAIL** |
 
 **Disposition: `HOLD`.** Under `VDR_COVERAGE_RULE.md` §6 the Critical Area condition alone is
@@ -96,26 +99,45 @@ decisive; the overall figure does not need to be argued.
 
 ---
 
-## 4. What this number means, and what it does not
+## 4. What these numbers mean, and what they do not
 
-This Pilot was commissioned to **stress-test the Framework**, not to complete Inventory research.
-It has done exactly that, and the coverage figure is the correct output of a correct measurement.
+This Pilot was commissioned to **stress-test the Framework**, not to complete Inventory research. It
+has done that, and the coverage figure is the correct output of a correct measurement — **after being
+corrected by independent challenge, twice, in both directions.**
 
-The figure is **not** comparable to coverage percentages published by earlier programme rounds,
-because those were computed against denominators that were author-chosen. **This denominator was
-derived by a published rule, validated by four instrument controls, and its boundary is published as a
-set with its complement.** A lower number against a real denominator is worth more than a higher number
-against an invented one — and the framework's first job is to make that difference visible.
+The figure is **not** comparable to coverage percentages published by earlier programme rounds against
+author-chosen denominators. This denominator was derived by a published rule over a published path set,
+and both were then **attacked by three reviewers who wrote their own instruments.** A low number
+against a denominator that survived that is worth more than a high number against one that was never
+tested.
 
-**The 8 points withheld from Preparation Framework Readiness are, specifically:**
+### The readiness estimate, and why it is 70% and not 92%
 
-| Withheld | Points | Why |
-|----------|-------:|-----|
-| Single-domain exercise | 3 | the framework has been tested on Inventory only; a second domain of different shape (a master-data subject, per the parent workstream's own priority order) would test different failure modes |
-| Runtime evidence absent | 3 | `GAP-INV-09` — no deployment evidence, so the framework's **reachability** dimension has never been executed at all |
-| Single-producer challenge | 2 | the independent challenge was run by a separate reviewer with a separate instrument, but within the same session; a peer-exchange control has not been applied |
+The producer's pre-challenge estimate was 92%. That figure was **self-awarded**, which challenge
+finding `C-08` correctly identifies as illegitimate: the producing party may not score its own work.
+The figure below is offered as an **estimate for PMO and Boss adjudication**, with its deductions
+itemised so they can be disputed line by line.
 
-**These three are stated as a target of 92%, not as a claim of 95–98%.** The prompt's target of
-95–98% preparation readiness is **not met**, and the shortfall is attributable to two conditions that
-this session cannot close by working harder — a second domain and a runtime evidence base — plus one
-that requires a party outside this session.
+| Deduction | Points | Why |
+|-----------|-------:|-----|
+| **Governance defect `GOV-01`** | **10** | The producer broke its own freeze rule within an hour of writing it. The first challenge round's certification chain is broken and cannot be repaired retroactively. A framework whose author does not follow it has not been demonstrated. |
+| **8 of 15 instrument defects were reachable only from outside** | **8** | The producer's own controls caught 7. Independent challenge caught 8 more, including one that **inverted a CRITICAL finding**. The instrument-control set as written is demonstrably not sufficient. |
+| **No re-challenge of the corrected package** | **5** | Corrections were applied and re-verified by the producer against source. That is not an independent pass. `SMES_CORE_CHALLENGE_CHECKLIST.md` §1 forbids the producer being the validating authority, and this line is that violation, declared. |
+| **Reachability has never been executed** | **4** | No runtime evidence base (`GAP-INV-09`). The dimension exists in the schema and carries one value — `UNMEASURED` — for all 5,074 items. |
+| **Single domain, single shape** | **3** | Exercised on Inventory only. A master-data or financial subject would test different failure modes. |
+| | **30** | |
+
+**Readiness estimate: 70%.** The prompt's target of 95–98% is **not met**, and three of the five
+deductions cannot be closed by this session working harder — they need a second independent pass, a
+runtime evidence base, and a second domain.
+
+### What the Pilot did establish
+
+The Framework's central claim survived its own stress test, and the evidence for it is the failure
+pattern itself. **Every one of the fifteen instrument defects had the same shape: a predicate that
+could not reach what the claim named.** Not one was a reasoning error, and not one was arithmetic —
+three reviewers reproduced the menu census, the set derivation and six element counts **to the digit**.
+
+That is a specific, transferable result: for SMEsPlus VDR, **the risk is not in the analysis, it is in
+the reach of the instrument**, and the only control that reliably detects it is a second party writing
+its own.

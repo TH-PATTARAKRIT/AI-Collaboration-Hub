@@ -134,7 +134,7 @@ targeted trace and changed a `SOURCE RESOLUTION REQUIRED` into a framework corre
 Access-control grants (176), actions (200), views (492 at record level), constraints (32),
 scheduled jobs (26) and behavioural overrides (614) carry **no** element-level gate. Their conditional
 behaviour, where it exists, is entirely in code. **Any claim that "configuration coverage is complete"
-based on element gating alone is false by construction for 1,540 of 4,339 Learning Items.**
+based on element gating alone is false by construction for 1,540+ of the 5,074 Learning Items.**
 
 ### CD-F-05 — Cross-domain groups gate Inventory surface
 Groups owned by the accounting, sales, purchase, project, helpdesk, quality, manufacturing,

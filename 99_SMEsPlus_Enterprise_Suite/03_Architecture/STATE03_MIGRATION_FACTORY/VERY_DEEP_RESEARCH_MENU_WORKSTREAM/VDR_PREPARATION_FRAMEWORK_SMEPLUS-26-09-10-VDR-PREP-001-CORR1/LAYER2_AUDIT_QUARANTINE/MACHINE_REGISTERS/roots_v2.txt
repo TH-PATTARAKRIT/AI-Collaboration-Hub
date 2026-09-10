@@ -1,0 +1,50 @@
+/Users/admin/Downloads/odoo-18.0.post20260605/odoo/addons
+/Users/admin/Downloads/odoo-19.0.post20260418/odoo/addons
+/Users/admin/Library/CloudStorage/GoogleDrive-scgl.thailand@gmail.com/My Drive/00 SOMCHART JABSUNG/SCG LEGACY/94 ODOO MODULE/ODOO 16/odoo-16.0/addons
+/Users/admin/Library/CloudStorage/GoogleDrive-scgl.thailand@gmail.com/My Drive/10 SCG LEGACY(THAILAND) CO.,LTD/00 PROJECT/ยกเลิกโครงการ/02 บริษัท มหาชัย มหาโชค/MASTER DATABASE/มหาโชค/Enterprise/addons
+/Users/admin/Library/CloudStorage/GoogleDrive-scgl.thailand@gmail.com/My Drive/10 SCG LEGACY(THAILAND) CO.,LTD/04 PROGRAMMER TEAM/07 PROGRAMMER/01 PURI/odoo 16/enterprise/addons
+/Users/admin/Library/CloudStorage/GoogleDrive-scgl.thailand@gmail.com/My Drive/10 SCG LEGACY(THAILAND) CO.,LTD/04 PROGRAMMER TEAM/07 PROGRAMMER/02 KITTIPHUT/odoov16/addons
+/Users/admin/Library/CloudStorage/GoogleDrive-scgl.thailand@gmail.com/My Drive/10 SCG LEGACY(THAILAND) CO.,LTD/04 PROGRAMMER TEAM/07 PROGRAMMER/02 KITTIPHUT/odoov16/enterprise/addons
+/Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/14 ODOO 14 ENTERPRISE/odoo-14.0+e.20230401/odoo/addons
+/Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/16 ODOO 16 ENTERPRISE/odoo-16.0+e.20230401/odoo/addons
+/Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/17 ODOO 17 ENTERPRISE/odoo-17.0+e.20240128-01/odoo/addons
+/Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/17 ODOO 17 ENTERPRISE/odoo-17.0+e.20240724/odoo/addons
+/Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/18 SMEsPlus 18 ENTERPRISE/18001 SOURCE CODE/April 25/odoo-18.0+e.20250403/odoo/addons
+/Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/18 SMEsPlus 18 ENTERPRISE/18001 SOURCE CODE/Dec 24/01 odoo-18.0+e.20241129/odoo/addons
+/Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/18 SMEsPlus 18 ENTERPRISE/18001 SOURCE CODE/odoo-18.0+e.20250202/odoo/addons
+/Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/18 SMEsPlus 18 ENTERPRISE/18001 SOURCE CODE/odoo-18.0+e.20250222/odoo/addons
+/Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/18 SMEsPlus 18 ENTERPRISE/18001 SOURCE CODE/odoo-18.0+e.20250608/odoo-18.0+e.20250608/odoo/addons
+/Users/admin/SMEsPlus/SMEsPlus18/01_base_community/addons
+/Users/admin/SMEsPlus/SMEsPlus19/SMEsPlus/odoo-19.0+e.20260417/odoo/addons
+/Users/admin/SMEsPlus/SMEsPlus19/SOURCE_CODE /addons_enterprise
+/Users/admin/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/02_enterprise/odoo-19.0+e.20260417/odoo/addons
+/Users/admin/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/04_Odoo to SMEsPlus/Odoo19 community to SMEsPlus/addons
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/18.0.1/odoo/addons
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/18.0.2_community_enterprise/odoo/addons
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/18.0.3_smeplus/odoo/addons
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/Odoo19_community/addons
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/enterprise/addons
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/odoo-18.0+e.20250608/odoo/addons
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/odoo-18.0.post20260605/odoo/addons
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/odoo-18_community/addons
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/SMEsPlus19/00_community/addons_community
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/SMEsPlus19/02_enterprise/addons
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/SMEsPlus19/96_combined/00_addons_community
+/Volumes/iMacSys/CLAUDE AI/MIGRATION/SMEsPlus19/96_combined/_unused_duplicate_build
+/Volumes/iMacSys/CLAUDE AI/SMEsPlus/SMEsPlus18/01_base_community/addons
+/Volumes/iMacSys/CLAUDE AI/SMEsPlus/SMEsPlus19/SMEsPlus/odoo-19.0+e.20260417/odoo/addons
+/Volumes/iMacSys/CLAUDE AI/SMEsPlus/SMEsPlus19/SOURCE_CODE /addons_enterprise
+/Volumes/iMacSys/CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/02_enterprise/odoo-19.0+e.20260417/odoo/addons
+/Volumes/iMacSys/CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/04_Odoo to SMEsPlus/Odoo19 community to SMEsPlus/addons
+/Volumes/iMacSys/CLAUDE AI/SMEsPlus18/odoo-18.0+e.20250608/odoo/addons
+/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/ODOO19/EXTRA ENTERPRISE/00_addons
+/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/ODOO19/addons
+/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo18/t8master/addons
+/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/addons
+/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo/addons
+/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/SMEsPlus19/SOURCE CODE /addons
+/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/SMEsPlus19/enterprise/addons
+/Volumes/iMacSys/ODOO/ODOO-COMMUNITY/SMEsPlus19/odoo-19.0+e.20260312/odoo/addons
+/Volumes/iMacSys/ODOO/SOURCE CODE/ODOO 18/odoo-18.0.post20260605/odoo/addons
+/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/ACCOUNT/01 ACCOUNT/STEP040301_SOURCE_INDEX/01_EXTRACTED/03_LEARNING
+/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/ACCOUNT/01 ACCOUNT/STEP040301_SOURCE_INDEX/01_EXTRACTED/04_BACKUP

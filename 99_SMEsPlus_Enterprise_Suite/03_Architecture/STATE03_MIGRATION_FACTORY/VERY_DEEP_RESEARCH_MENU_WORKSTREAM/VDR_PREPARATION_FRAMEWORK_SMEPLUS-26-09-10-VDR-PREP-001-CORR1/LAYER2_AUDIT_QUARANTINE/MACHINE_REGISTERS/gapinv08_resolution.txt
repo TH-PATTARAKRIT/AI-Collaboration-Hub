@@ -1,0 +1,18 @@
+POPULATION: menus (whole root) bound to a server action on an OWNED object: 8
+RESOLVED to a named method: 8 of 8
+WRITER REACHED within 2 hops: 3
+
+no writer within 2 hops  mrp_workorder.menu_mrp_workorder_production   [mrp.workorder]  method=action_mrp_workorder_dependencies  definitions_found=1
+no writer within 2 hops  mrp_workorder.menu_mrp_workorder_workcenter   [mrp.workorder]  method=action_mrp_workorder_dependencies  definitions_found=1
+no writer within 2 hops  stock.in_picking   [stock.picking]  method=get_action_picking_tree_incoming  definitions_found=1
+no writer within 2 hops  stock.int_picking   [stock.picking]  method=get_action_picking_tree_internal  definitions_found=1
+*** MUTATES ON OPEN ***  stock.menu_action_inventory_tree   [stock.quant]  method=action_view_inventory  definitions_found=1
+      action_view_inventory   (stock/models/stock_quant.py)
+      action_view_inventory() -> _quant_tasks   (stock/models/stock_quant.py)
+      action_view_inventory() -> _quant_tasks() -> _unlink_zero_quants   (stock/models/stock_quant.py)
+*** MUTATES ON OPEN ***  stock.menu_reordering_rules_replenish   [stock.warehouse.orderpoint]  method=action_open_orderpoints  definitions_found=1
+      action_open_orderpoints() -> _get_orderpoint_action   (stock/models/stock_orderpoint.py)
+*** MUTATES ON OPEN ***  stock.menu_valuation   [stock.quant]  method=action_view_quants  definitions_found=1
+      action_view_quants() -> _get_quants_action   (stock/models/stock_quant.py)
+      action_view_quants() -> _get_quants_action() -> _quant_tasks   (stock/models/stock_quant.py)
+no writer within 2 hops  stock.out_picking   [stock.picking]  method=get_action_picking_tree_outgoing  definitions_found=1

@@ -1,0 +1,34 @@
+=== HOP-2 SERVER-ACTION RESOLUTION — Inventory root menus ===
+targets: 7 | resolved: 3 | unresolved: 4
+
+  MENU        stock.in_picking
+  server act  stock.method_action_picking_tree_incoming   code: action = model.get_action_picking_tree_incoming()
+  python      stock/models/stock_picking.py :: get_action_picking_tree_incoming()
+  window act  stock.action_picking_tree_incoming
+  MODEL       stock.picking
+  domain      
+  context     {'contact_display': 'partner_address', 'restricted_picking_type_code': 'incoming', 'search_default_reception': 1}
+
+  MENU        stock.int_picking
+  server act  stock.method_action_picking_tree_internal   code: action = model.get_action_picking_tree_internal()
+  python      stock/models/stock_picking.py :: get_action_picking_tree_internal()
+  window act  stock.action_picking_tree_internal
+  MODEL       stock.picking
+  domain      
+  context     {'contact_display': 'partner_address', 'restricted_picking_type_code': 'internal', 'search_default_internal': 1}
+
+  MENU        stock.out_picking
+  server act  stock.method_action_picking_tree_outgoing   code: action = model.get_action_picking_tree_outgoing()
+  python      stock/models/stock_picking.py :: get_action_picking_tree_outgoing()
+  window act  stock.action_picking_tree_outgoing
+  MODEL       stock.picking
+  domain      
+  context     {'contact_display': 'partner_address', 'restricted_picking_type_code': 'outgoing', 'search_default_delivery': 1}
+
+  UNRESOLVED ('delivery_iot.iot_cached_printers_action', 'iot.action_iot_delete_linked_devices_menu', 'no method call', '')
+
+  UNRESOLVED ('stock.menu_action_inventory_tree', 'stock.action_view_inventory_tree', 'method action_view_inventory: no action xmlid literal within 900 chars', 'action = model.action_view_inventory()')
+
+  UNRESOLVED ('stock.menu_reordering_rules_replenish', 'stock.action_replenishment', 'method with_context: no action xmlid literal within 900 chars', 'action = model.with_context(\n                search_default_filter_to_reorder=True,\n                ')
+
+  UNRESOLVED ('stock.menu_valuation', 'stock.action_view_quants', 'method with_context: no action xmlid literal within 900 chars', 'action = model.with_context(\n                search_default_internal_loc=1,\n                always_s')

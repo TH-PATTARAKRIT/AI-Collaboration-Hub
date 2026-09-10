@@ -103,17 +103,23 @@ Full rows in `MACHINE_REGISTERS/F_menu.jsonl` and `MACHINE_REGISTERS/LEARNING_PO
 
 ## 3. Findings
 
-### MM-F-01 — 11.3% of the Inventory menu spine cannot be resolved by reading action records (**CRITICAL**)
-7 of 62 menus are bound to **server actions**, which carry no target-object field. The target,
-domain and context are computed in code at click time. The affected menus include the three primary
-operational entry points (inbound, outbound, internal movement), plus physical counting, replenishment
-and the location/quantity view.
+### MM-F-01 — CORRECTED — the menu spine cannot be resolved by reading action records, and one menu has no action record at all (**CRITICAL**)
+**9 of 62** menus (14.5%) cannot be resolved from an action record.
+
+- **6** are bound to **server actions**, which carry no target-object field: the target, domain and
+  context are computed in code at click time. Resolution requires **3 hops**.
+- **2** are bound to client actions.
+- **1** is bound to an action that **does not exist in source at all** — the platform materialises it
+  at install time from a scheduled-job record. It is invisible to any XML census, and it is the menu
+  that runs the procurement scheduler (Register 08 `HA-F-01`).
+
+> **This register previously published "7 of 62" and "all 7 are now resolved" — while its own table
+> carried one of those rows as `UNRESOLVED` with no target.** Both statements were wrong.
+> Found by independent challenge; recorded as `CORR-F-23`.
 
 **A menu→object map built from action records is structurally blind to exactly the menus that matter
-most.** Resolution requires **3 hops**: menu → server action → code method → window action.
-
-Resolved mechanically for 3 of 7; the remaining 4 required targeted source reading (Register 08,
-`HA-F-01`/`HA-F-02`). All 7 are now resolved. **See `INVENTORY_PILOT_SOURCE_RESOLUTION_REPORT.md`.**
+most** — and to one that has no record to read. All 9 are now resolved; the resolution route for each
+is in `INVENTORY_PILOT_SOURCE_RESOLUTION_REPORT.md`.
 
 ### MM-F-02 — 27.4% of the spine is a container, not a function
 17 of 62 nodes carry no action at all. They are grouping nodes. Counting them as "menus researched"
@@ -139,10 +145,29 @@ The Inventory module set contributes **134** further menu nodes that hang under 
 (class `MENUX`). Researching only the Inventory application root would miss 68.4% of the menu surface
 this domain is responsible for.
 
-### MM-F-07 — A duplicated menu-target identifier exists in the reference source
+### MM-F-07 — Duplicate identifiers exist in the reference source, and in this register's own machine output
 One server-action identifier is declared **twice in the same file** with two different names; the
-second silently supersedes the first. Recorded as an identifier-integrity hazard for any tool that
-assumes identifier uniqueness.
+second silently supersedes the first.
+
+**And the same class of defect is present in this register's own output.** The menu register holds
+**197 rows over 196 distinct identifiers** and the action register **201 over 200** — against this
+register's declared UNIT of *one node, one row*. The population builder de-duplicates; the shipped
+machine register does not, so **a reader counting the file disagrees with the document**. Found by two
+challengers independently. Both figures are now published side by side wherever either is cited.
+
+### MM-F-08 — A third-party module rewrites two Inventory menu gates at install time (**MATERIAL**) — *found by challenge*
+A delivery-integration module ships records that **overwrite the visibility gates of two Inventory
+menus** — emptying the gate on one (opening the Configuration menu to every user) and adding a gate to
+another. Nine such menu-overriding records exist across the whole root; **two target Inventory menus,
+both from that one module.**
+
+**Consequence for this register:** the `Visibility gate` column, `MM-F-03`'s 35 of 62, and Register 07
+`SS-F-06`'s group-governance census all report the **original declaration**, not the **effective**
+gate. Two of the 35 are stale whenever that module is installed.
+
+This is the same class as `MM-F-05` and `CD-F-05` — foreign modules shape the Inventory surface — and
+the register found the menu-**addition** case while missing the gate-**mutation** case. Recorded as
+`GAP-INV-15`: no census of effective-versus-declared gates has been run.
 
 ---
 
@@ -152,7 +177,7 @@ assumes identifier uniqueness.
 |------|------:|-------|
 | Menu nodes discovered (`S0`) | 62 | complete |
 | Source located (`S1`) | 62 | complete |
-| Target object resolved | 62 | complete (after 3-hop resolution) |
+| Target object resolved | 62 | complete — after 3-hop resolution for 6, client-action resolution for 2, and scheduled-job resolution for 1 |
 | Visibility gate identified (`S3` partial) | 62 | complete |
 | Function verified (`S4`) | 0 | **not started — this Pilot establishes the population, not the function** |
 
@@ -164,7 +189,7 @@ assumes identifier uniqueness.
 |-----------|--------:|--------:|--:|
 | Inventory root subtree nodes | 63 | 62 | −1 |
 | Whole-system menu nodes | 1,434 | 1,576 | +142 |
-| Menus contributed by the domain module set | 185 | 197 | +12 |
+| Menus contributed by the domain module set (rows / distinct) | 185 / 185 | 197 / **196** | +12 / +11 |
 
 Two independent series-18 comparators were run (one with an authoritative release marker, one without)
 and agree within 0–3 on every dimension. The delta is therefore a **generation** delta, not a root-scope

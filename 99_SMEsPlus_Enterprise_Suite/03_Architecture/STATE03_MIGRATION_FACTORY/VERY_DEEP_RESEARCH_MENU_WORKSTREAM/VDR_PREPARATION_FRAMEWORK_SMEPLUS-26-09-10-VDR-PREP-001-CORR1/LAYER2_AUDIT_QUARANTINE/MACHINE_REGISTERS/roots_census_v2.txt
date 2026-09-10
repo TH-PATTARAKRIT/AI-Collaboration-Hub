@@ -1,0 +1,55 @@
+ROOTS LOCATED: 50   series-19-idiom: 22   series-18-or-earlier-idiom: 28
+
+19    l10n=523  modules=1433  stockfiles=313  /Users/admin/SMEsPlus/SMEsPlus19/SMEsPlus/odoo-19.0+e.20260417/odoo/addons
+19    l10n=523  modules=1433  stockfiles=313  /Users/admin/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/02_enterprise/odoo-19.0+e.20260417/odoo/addons
+19    l10n=523  modules=1433  stockfiles=313  /Volumes/iMacSys/CLAUDE AI/SMEsPlus/SMEsPlus19/SMEsPlus/odoo-19.0+e.20260417/odoo/addons
+19    l10n=523  modules=1433  stockfiles=313  /Volumes/iMacSys/CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/02_enterprise/odoo-19.0+e.20260417/odoo/addons
+19    l10n=523  modules=1433  stockfiles=315  /Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/ACCOUNT/01 ACCOUNT/STEP040301_SOURCE_INDEX/01_EXTRACTED/04_BACKUP
+19    l10n=514  modules=1422  stockfiles=313  /Users/admin/SMEsPlus/SMEsPlus19/SOURCE_CODE /addons_enterprise
+19    l10n=514  modules=1422  stockfiles=313  /Volumes/iMacSys/CLAUDE AI/SMEsPlus/SMEsPlus19/SOURCE_CODE /addons_enterprise
+19    l10n=514  modules=1421  stockfiles=313  /Volumes/iMacSys/ODOO/ODOO-COMMUNITY/SMEsPlus19/SOURCE CODE /addons
+19    l10n=514  modules=1421  stockfiles=313  /Volumes/iMacSys/ODOO/ODOO-COMMUNITY/SMEsPlus19/odoo-19.0+e.20260312/odoo/addons
+19    l10n=514  modules=1420  stockfiles=313  /Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/enterprise/addons
+19    l10n=514  modules=1420  stockfiles=313  /Volumes/iMacSys/ODOO/ODOO-COMMUNITY/SMEsPlus19/enterprise/addons
+19    l10n=502  modules=1399  stockfiles=311  /Volumes/iMacSys/ODOO/ODOO-COMMUNITY/ODOO19/addons
+19    l10n=2    modules=804   stockfiles=315  /Volumes/iMacSys/CLAUDE AI/MIGRATION/SMEsPlus19/02_enterprise/addons
+19    l10n=2    modules=729   stockfiles=315  /Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/ACCOUNT/01 ACCOUNT/STEP040301_SOURCE_INDEX/01_EXTRACTED/03_LEARNING
+19    l10n=217  modules=673   stockfiles=313  /Users/admin/Downloads/odoo-19.0.post20260418/odoo/addons
+19    l10n=34   modules=474   stockfiles=400  /Users/admin/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/04_Odoo to SMEsPlus/Odoo19 community to SMEsPlus/addons
+19    l10n=34   modules=474   stockfiles=400  /Volumes/iMacSys/CLAUDE AI/SMEsPlus/SMEsPlus_19.0.20260418/SMEsPlus_19.0.20260418/04_Odoo to SMEsPlus/Odoo19 community to SMEsPlus/addons
+19    l10n=4    modules=393   stockfiles=367  /Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/Odoo19_community/addons
+19    l10n=4    modules=363   stockfiles=368  /Volumes/iMacSys/CLAUDE AI/MIGRATION/SMEsPlus19/00_community/addons_community
+19    l10n=4    modules=363   stockfiles=369  /Volumes/iMacSys/CLAUDE AI/MIGRATION/SMEsPlus19/96_combined/00_addons_community
+19    l10n=1    modules=360   stockfiles=315  /Volumes/iMacSys/CLAUDE AI/MIGRATION/SMEsPlus19/96_combined/_unused_duplicate_build
+19    l10n=2    modules=182   stockfiles=311  /Volumes/iMacSys/ODOO/ODOO-COMMUNITY/ODOO19/EXTRA ENTERPRISE/00_addons
+<=18  l10n=454  modules=1300  stockfiles=291  /Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/18 SMEsPlus 18 ENTERPRISE/18001 SOURCE CODE/odoo-18.0+e.20250608/odoo-18.0+e.20250608/odoo/addons
+<=18  l10n=445  modules=1288  stockfiles=293  /Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/18 SMEsPlus 18 ENTERPRISE/18001 SOURCE CODE/April 25/odoo-18.0+e.20250403/odoo/addons
+<=18  l10n=433  modules=1273  stockfiles=290  /Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/18 SMEsPlus 18 ENTERPRISE/18001 SOURCE CODE/odoo-18.0+e.20250222/odoo/addons
+<=18  l10n=433  modules=1273  stockfiles=290  /Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo18/t8master/addons
+<=18  l10n=425  modules=1260  stockfiles=290  /Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/18 SMEsPlus 18 ENTERPRISE/18001 SOURCE CODE/odoo-18.0+e.20250202/odoo/addons
+<=18  l10n=408  modules=1238  stockfiles=290  /Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/18 SMEsPlus 18 ENTERPRISE/18001 SOURCE CODE/Dec 24/01 odoo-18.0+e.20241129/odoo/addons
+<=18  l10n=361  modules=1147  stockfiles=283  /Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/17 ODOO 17 ENTERPRISE/odoo-17.0+e.20240724/odoo/addons
+<=18  l10n=299  modules=1075  stockfiles=288  /Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/17 ODOO 17 ENTERPRISE/odoo-17.0+e.20240128-01/odoo/addons
+<=18  l10n=253  modules=984   stockfiles=297  /Users/admin/Library/CloudStorage/GoogleDrive-scgl.thailand@gmail.com/My Drive/10 SCG LEGACY(THAILAND) CO.,LTD/00 PROJECT/ยกเลิกโครงการ/02 บริษัท มหาชัย มหาโชค/MASTER DATABASE/มหาโชค/Enterprise/addons
+<=18  l10n=227  modules=950   stockfiles=288  /Users/admin/Library/CloudStorage/GoogleDrive-scgl.thailand@gmail.com/My Drive/10 SCG LEGACY(THAILAND) CO.,LTD/04 PROGRAMMER TEAM/07 PROGRAMMER/01 PURI/odoo 16/enterprise/addons
+<=18  l10n=227  modules=950   stockfiles=288  /Users/admin/Library/CloudStorage/GoogleDrive-scgl.thailand@gmail.com/My Drive/10 SCG LEGACY(THAILAND) CO.,LTD/04 PROGRAMMER TEAM/07 PROGRAMMER/02 KITTIPHUT/odoov16/enterprise/addons
+<=18  l10n=227  modules=950   stockfiles=288  /Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/16 ODOO 16 ENTERPRISE/odoo-16.0+e.20230401/odoo/addons
+<=18  l10n=5    modules=804   stockfiles=295  /Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/18.0.1/odoo/addons
+<=18  l10n=5    modules=802   stockfiles=295  /Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/18.0.2_community_enterprise/odoo/addons
+<=18  l10n=6    modules=792   stockfiles=291  /Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/odoo-18.0+e.20250608/odoo/addons
+<=18  l10n=2    modules=790   stockfiles=291  /Volumes/iMacSys/CLAUDE AI/SMEsPlus18/odoo-18.0+e.20250608/odoo/addons
+<=18  l10n=187  modules=767   stockfiles=238  /Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/14 ODOO 14 ENTERPRISE/odoo-14.0+e.20230401/odoo/addons
+<=18  l10n=231  modules=682   stockfiles=293  /Users/admin/Downloads/odoo-18.0.post20260605/odoo/addons
+<=18  l10n=231  modules=682   stockfiles=293  /Volumes/iMacSys/ODOO/SOURCE CODE/ODOO 18/odoo-18.0.post20260605/odoo/addons
+<=18  l10n=196  modules=638   stockfiles=290  /Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/addons
+<=18  l10n=196  modules=636   stockfiles=344  /Volumes/iMacSys/ODOO/ODOO-COMMUNITY/Odoo18/t8master/smeplus-server/odoo/addons
+<=18  l10n=4    modules=498   stockfiles=295  /Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/18.0.3_smeplus/odoo/addons
+<=18  l10n=120  modules=464   stockfiles=343  /Users/admin/Library/CloudStorage/GoogleDrive-scgl.thailand@gmail.com/My Drive/10 SCG LEGACY(THAILAND) CO.,LTD/04 PROGRAMMER TEAM/07 PROGRAMMER/02 KITTIPHUT/odoov16/addons
+<=18  l10n=117  modules=461   stockfiles=289  /Users/admin/Library/CloudStorage/GoogleDrive-scgl.thailand@gmail.com/My Drive/00 SOMCHART JABSUNG/SCG LEGACY/94 ODOO MODULE/ODOO 16/odoo-16.0/addons
+<=18  l10n=4    modules=456   stockfiles=293  /Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/odoo-18.0.post20260605/odoo/addons
+<=18  l10n=3    modules=454   stockfiles=376  /Users/admin/SMEsPlus/SMEsPlus18/01_base_community/addons
+<=18  l10n=3    modules=454   stockfiles=376  /Volumes/iMacSys/CLAUDE AI/SMEsPlus/SMEsPlus18/01_base_community/addons
+<=18  l10n=4    modules=447   stockfiles=292  /Volumes/iMacSys/CLAUDE AI/MIGRATION/ODOO18/odoo-18_community/addons
+
+WIDEST <=18 : ('<=18', 454, 1300, 291, '/Users/admin/My Drive (jabsung.s@gmail.com)/00 SCG LEGACY(THAILAND) CO.,LTD/00 SOFTWARE/00 SW_SOURCE CODE/18 SMEsPlus 18 ENTERPRISE/18001 SOURCE CODE/odoo-18.0+e.20250608/odoo-18.0+e.20250608/odoo/addons')
+WIDEST 19   : ('19', 523, 1433, 313, '/Users/admin/SMEsPlus/SMEsPlus19/SMEsPlus/odoo-19.0+e.20260417/odoo/addons')

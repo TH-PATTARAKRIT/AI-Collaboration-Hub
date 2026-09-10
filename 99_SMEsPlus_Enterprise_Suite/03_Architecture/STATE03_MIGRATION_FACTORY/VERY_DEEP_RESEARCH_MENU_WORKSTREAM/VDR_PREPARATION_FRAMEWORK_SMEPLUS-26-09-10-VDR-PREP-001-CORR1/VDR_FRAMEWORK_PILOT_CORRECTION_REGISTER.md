@@ -17,7 +17,7 @@ the audit trail, not a to-do list.
 
 Two classes are recorded and they are not the same thing:
 - **FRAMEWORK corrections (F-01..F-06, F-14..F-20)** — the method was wrong.
-- **INSTRUMENT corrections (F-07..F-13, F-22)** — the method was right and the tool could not execute it.
+- **INSTRUMENT corrections (F-07..F-13, F-22..F-27)** — the method was right and the tool could not execute it.
 
 The second class is recorded because a framework that reports only its method and not its tooling
 cannot be audited: **seven of the eight instrument defects produced plausible, non-zero, internally
@@ -156,6 +156,38 @@ consistent numbers.**
 | **Impact** | Raises toggle→effect resolution for the Pilot from 66.7% to 100% and adds a permanently missing dimension |
 | **Effective** | v1.0 |
 
+### CORR-F-28 — The freeze was stated but not enforceable
+| | |
+|---|---|
+| **Original rule** | Step 6 PACKAGE FREEZE: "commit SHA recorded, manifest hashed, challenge opens against that identifier only" |
+| **Finding** | **The producer of this very Pilot broke the rule inside an hour of writing it**, committing twice to the package while three independent reviewers were reading it. Two reviewers caught it, independently, from file timestamps. |
+| **Why the original was wrong** | It described a state without giving anyone a way to test it. A rule with no check is a preference. |
+| **Correction** | The freeze is now testable and its violation is defined: the working tree must be **verified clean** at the moment challenge opens, and **any commit to the package before the challenge closes voids that challenge** and requires a re-freeze. Added to the challenge checklist as class **31, Freeze integrity**. |
+| **Evidence** | `INVENTORY_PILOT_CHALLENGE_REPORT.md` §2, `GOV-01`; challenge findings `A-01`, `C-01` |
+| **Impact** | Would have prevented this session's only governance defect |
+| **Effective** | v1.0 |
+
+### CORR-F-29 — A domain-scoped instrument cannot see who acts on the domain from outside
+| | |
+|---|---|
+| **Original rule** | Element classes are collected over the domain module set |
+| **Finding** | **A module can grant access to, restrict, or extend a domain object without declaring or inheriting it** — and is then structurally invisible. Whole-root re-run: access grants 176 → **180**, views 492 → **493**, rules 28 → **46**. Separately, four classes had **no eligibility test at all**: 10 of 26 scheduled jobs are bound to objects the domain does not own. |
+| **Why the original was wrong** | The producer had already made this exact correction for cross-module relations (`CORR-F-09`, "an inbound edge is declared by the other domain's module") **and did not carry it to the security and view classes.** A correction applied to one class and not to its siblings is half a correction. |
+| **Correction** | Security, view and automation classes are censused **system-wide** with an explicit eligibility test, and **ELIGIBILITY (D5) must be declared in every register's population table** — it was absent from all nine. |
+| **Evidence** | Challenge `A-04`, `A-09`; re-verified by the producer |
+| **Impact** | Corrects three published counts; makes the fifth denominator clause actually operative |
+| **Effective** | v1.0 |
+
+### CORR-F-30 — The ownership rule was circular as sequenced
+| | |
+|---|---|
+| **Original rule** | STEP 5 defines OWNED as "declaring modules lie wholly inside the inventory cluster"; STEP 6 derives the cluster **from** OWNED |
+| **Finding** | Evaluated as a fixpoint the partition reproduces exactly — all 10 boundary objects have a declaring module outside the set, no owned object does — **so the result is sound and the rule as written is not executable in the order published.** A reader following the published steps cannot reproduce it. |
+| **Correction** | The rule is stated as an explicit fixpoint with its seed, its iteration and its termination condition. |
+| **Evidence** | Challenge `A-13` |
+| **Impact** | A published derivation is either reproducible or it is a claim |
+| **Effective** | v1.0 |
+
 ---
 
 ## 3. Instrument corrections
@@ -169,16 +201,25 @@ consistent numbers.**
 | `CORR-F-11` | Identifier resolved by string transform instead of lookup against the declared-object census | **12** row-level rules | **28** row-level rules | Second-shape count (I1) disagreeing |
 | `CORR-F-12` | Population file serialised a detail column by truncating serialised text | every long row unparseable downstream | 0 unparseable rows of 4,339 | Attempting to consume the package's own output |
 | `CORR-F-13` | Lifecycle-state extraction read keyword-form declarations only | 13 of 14 state vocabularies empty | 14 of 14 extracted | Noticing a field that must have values reporting none |
-| `CORR-F-22` | Method-body resolver returned the **first** definition found in walk order; the method was overridden in two modules | **2** menus reported as mutating data on open | **3** of a declared population of 8 | Reading the source by hand after the automated answer looked too clean |
+| `CORR-F-22` | Method-body resolver returned the **first** definition found in walk order; the method was overridden in two modules | **2** menus reported as mutating data on open | **3**, then **4** | Reading the source by hand after the automated answer looked too clean |
+| `CORR-F-23` | A menu bound to an action the platform **materialises at install time** from a scheduled-job record was invisible to an XML action census | *"all 7 menus resolved"* published while the register's own table showed one `UNRESOLVED`; a 4th mutating menu missed | population **9**, mutating **4** | Independent challenge |
+| `CORR-F-24` | The toggle taxonomy had five mechanisms | the Pilot's most severe control finding was classified into a class it is **not in**; the switch has no declaration of any kind | a **sixth** mechanism: undeclared runtime parameter | Independent challenge |
+| `CORR-F-25` | A zero re-run in the **same class of query**, with no positive control available anywhere in the root | a zero presented as re-tested that **could only ever be zero** | restated with its true scope | Independent challenge |
+| `CORR-F-26` | A **syntactic** predicate counting a **semantic** claim | 9 null-company rules published; the register's own appendix printed a 10th | **16** | Independent challenge, twice |
+| `CORR-F-27` | The extractor read **one of two** declaration forms the platform accepts for a rule's target object | 28 rules for 46; **a CRITICAL finding inverted** — 22 of 47 objects reported unisolated when the true figure is 13 of 47, and four core movement objects were named as unisolated when they are scoped | 46 rules, 34 objects, 13 of 47 | Independent challenge |
 
-**All eight were found and repaired before publication; seven before the package was frozen and
-`CORR-F-22` during the targeted delta round.**
+**Fifteen instrument defects. The producer's own controls found seven; independent challenge found
+eight — including the only one that inverted a conclusion.**
 
-`CORR-F-22` deserves separate emphasis. Its false negative was **not** noisy — it was a clean, uniform,
-plausible "reads only" on the single most consequential row, produced by a resolver that had already
-succeeded on seven other rows. **An instrument that resolves a name to one definition is not a
-resolver in a system that permits overriding**, and no count it produces can be trusted without a
-definition census beside it.
+`CORR-F-27` deserves separate emphasis, and it is the Pilot's most important single result.
+The producer ran the mandatory second-shape control (I1) and **it agreed**. It agreed because the
+producer's second instrument shared the first one's accessor. An independent challenger, writing from
+scratch, **also reproduced the wrong number exactly** — and reported that exact agreement as a warning
+rather than as corroboration, then found the defect anyway.
+
+> **An exact match between two instruments that share a blind spot is corroboration of nothing.**
+> A second-shape control is only a control if the second shape differs *at the point where the first
+> one reaches the evidence* — not merely in its code.
 
 ---
 

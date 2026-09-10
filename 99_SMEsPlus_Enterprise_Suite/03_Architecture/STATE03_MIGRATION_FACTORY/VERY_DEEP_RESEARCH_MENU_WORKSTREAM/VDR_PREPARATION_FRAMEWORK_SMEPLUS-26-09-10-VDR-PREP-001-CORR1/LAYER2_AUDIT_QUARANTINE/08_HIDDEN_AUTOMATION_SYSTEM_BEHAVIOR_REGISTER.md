@@ -16,7 +16,7 @@ Four mechanisms were enumerated:
 | Stored computed values | 168 | AST field census |
 | Persistence interceptions (create / write / delete / copy) | 141 | AST method census |
 | Deletion guards | 15 | AST decorator census |
-| Menu-open side effects | **3 of a population of 8** | full census, see `HA-F-01` |
+| Menu-open side effects | **4 of a population of 9** | census, see `HA-F-01`; corrected twice, see `CORR-F-22`/`CORR-F-23` |
 
 ---
 
@@ -59,53 +59,118 @@ recorded because reading an absent attribute as "inactive" would invert the find
 
 ## 3. Findings
 
-### HA-F-01 — Opening a menu mutates data — 3 menus of a population of 8 (**CRITICAL**)
+### HA-F-01 — Opening a menu mutates data — 4 menus of a population of 9 (**CRITICAL**)
 
-**Population (declared, not sampled):** every menu **in the whole root** whose action is a server
-action bound to an object this domain owns. **8 menus.** All 8 resolved to a named method; each
-method traced to depth 2 across **all** its definitions. **3 reach a writer.**
+> **Corrected after independent challenge.** This finding was published as *"2 located, population
+> unknown"*, then corrected by the producer to *"3 of 8"*, and is corrected again here to **4 of 9**.
+> Both earlier figures were wrong, in the same direction, for two different instrument reasons
+> (`CORR-F-22`, `CORR-F-23`). The number moved every time it was checked by a different party.
 
-| Menu | Object | What opening it does | Trace |
-|------|--------|----------------------|-------|
-| **Physical counting** | on-hand quantity | runs a maintenance routine over quantity records, which deletes zero-quantity records | `action_view_inventory` → `_quant_tasks` → `_unlink_zero_quants` |
-| **Location / quantity view** | on-hand quantity | same maintenance routine | `action_view_quants` → `_get_quants_action` → `_quant_tasks` |
-| **Replenishment** | replenishment rule | **creates and deletes replenishment rules.** Its own documentation states it *creates manual reorder rules for missing products in each warehouse* and *removes rules that have been replenished* | `action_open_orderpoints` → `_get_orderpoint_action` |
+**Population (declared):** every menu **in the whole root** whose action is a server action bound to
+an object this domain owns, **plus** menus bound to a server action that the platform generates from a
+scheduled-job record rather than declaring in XML. **9 menus.** The ninth was invisible to the
+producer's action census because its action record does not exist in source — it is materialised at
+install time from a scheduled job. Found by challenge (`CORR-F-23`).
 
-Three properties make this a first-order control finding:
+| Menu | Object | What opening it does |
+|------|--------|----------------------|
+| **Physical counting** | on-hand quantity | runs a maintenance routine over quantity records |
+| **Location / quantity view** | on-hand quantity | the same maintenance routine |
+| **Replenishment** | replenishment rule | **creates and deletes replenishment-policy records.** Its own documentation states it *creates manual reorder rules for missing products in each warehouse* and *removes rules that have been replenished* |
+| **Run scheduler** | replenishment rule | **runs the full procurement scheduler as superuser**: confirms replenishment, creates downstream purchase and manufacturing orders, reserves stock, commits in chunks, and then runs the same quantity maintenance routine |
 
-1. **It is a write performed by a read.** A user who opens a report menu changes stored data. No user
-   action names the mutation, there is no confirmation, and there is no audit entry for it.
-2. **The replenishment case creates and destroys business configuration**, not just derived rows. A
-   replenishment rule is a policy record. Opening a menu writes policy.
-3. **Two of the three are suppressible by an invisible switch.** The quantity maintenance routine is
-   skipped when a **system parameter** is set. That parameter appears on **no configuration screen** —
-   it is class C in Register 03 and is settable only through the technical parameter table.
+Four properties make this a first-order control finding:
+
+1. **It is a write performed by a read.** No user action names the mutation, there is no confirmation,
+   and there is no audit entry for it.
+2. **Two of the four write business policy, not derived rows.** A replenishment rule is a policy
+   record. The fourth creates procurement documents in other domains.
+3. **The scheduler menu runs with elevated privilege and commits mid-transaction.** Its own source
+   comment states the functions are run as superuser to avoid inter-company and access-rights issues —
+   i.e. the privilege escalation is deliberate and documented, and a menu click invokes it.
+4. **The maintenance routine operates outside the ORM.** See `HA-F-09`.
 
 **Disposition for SMEsPlus: `MUST NOT INHERIT`.** A read must not write. If a maintenance routine is
-required it must be an explicitly scheduled, audited job. Raised as `BOSS-DEC-08`.
+required it must be an explicitly scheduled, audited job. `BOSS-DEC-08` remains **open and undecided**;
+the sentence above is this register's **candidate position**, not a decision.
 
-**Instrument note (`CORR-F-22`).** The first census of this population reported **2**, not 3. The
-replenishment menu was missed because its entry method is overridden in **two** modules and the
-resolver returned the first definition it found in walk order — a **153-character** override that
-calls its parent — instead of the **~6,000-character** implementation that does the writing.
-**A method-body resolver that returns one definition returns the wrong one whenever the method is
-overridden.** The false negative landed on the most consequential row in the table, and it was caught
-only by reading the source by hand.
+### HA-F-09 — The maintenance routine bypasses the ORM entirely (**CRITICAL**) — *found by challenge*
+The routine invoked by `HA-F-01`'s first two menus is composed of a merge step, a reservation-cleaning
+step and a zero-row removal step. The merge step issues a raw `UPDATE` followed by a raw `DELETE`
+against the quantity table, and the removal step issues a raw `SELECT` **with no company predicate**
+and then deletes with superuser privilege.
 
-### HA-F-02 — The same menu shows a different population depending on the user's role (**CRITICAL**)
-The counting menu's code sets a default filter *"only my counts"* when the user holds the operational
-inventory group **but not** the managerial one. **Two users, one menu, two different record sets, no
-visible filter difference.**
+Because these are executed as SQL rather than through the object layer:
 
-This is not access control — the records are readable — it is a **silent default projection**. For an
-audit-relevant function (physical counting) a projection that changes with role and is not surfaced to
-the user is a control weakness. Raised as `CRITICAL-GAP-03`.
+- **no access-control check applies**;
+- **no row-level rule applies**, so the statement is **not company-scoped**;
+- **no deletion guard and no change-tracking can fire** — there is no hook for them to fire on.
+
+The earlier text said there is *"no audit entry"* for the mutation. That understated it:
+**no audit mechanism could fire**, because the layer that would fire it is not involved.
+
+Both methods are model-level and are invoked from the menu path on an empty record set, so the
+narrowing that would restrict them to selected rows does not apply. **The statement operates on the
+whole table, across every company.**
+
+### HA-F-10 — The suppression parameter covers 2 of 5 call sites (**CRITICAL**) — *found by challenge*
+The routine has **five** non-test call sites. The system parameter guards **two** of them — the two
+menu paths. The other three run it unconditionally:
+
+| Call site | Guarded? |
+|-----------|----------|
+| physical-counting menu path | yes |
+| location/quantity menu path | yes |
+| **procurement scheduler** | **no** |
+| **package unpacking** | **no** |
+| **a statutory tax-report builder (one country localisation)** | **no** |
+
+The third is the most serious: a **statutory report that produces a filed return mutates and deletes
+quantity rows while building it**, with no guard.
+
+**Setting the parameter therefore creates a false assurance.** An administrator who sets it to stop
+reads from writing has stopped two of five, and the register previously described it as *the* switch.
+
+### HA-F-11 — The parameter is not in the toggle population at all (**CRITICAL for method**) — *found by challenge*
+`HA-F-01` and Register 03 `FT-F-04` both classified this parameter as a **class C system-parameter
+toggle**. It is not. It has **no configuration-settings field**, **no data record**, and **no
+declaration of any kind** anywhere in the root; it exists only as a string read at runtime. It is not
+among the 7 class-C rows and it is not in the 237-row toggle population.
+
+**It is a sixth mechanism the `FT-F-01` taxonomy does not have: an undeclared runtime parameter.**
+The taxonomy was incomplete by exactly the case this register calls its most severe control finding.
+Recorded as framework correction `CORR-F-24`; `FT-F-01` corrected in Register 03.
+
+### HA-F-02 — CORRECTED — the counting menu opens pre-filtered by role, as a visible facet
+The counting menu's code sets a default filter *"my counts"* when the user holds the operational
+inventory group **but not** the managerial one. Two users open one menu and see two different record
+sets.
+
+> **This finding was published as "no visible filter difference" and "no visible indication".
+> That was wrong**, and independent challenge falsified it. The mechanism is the platform's
+> *default search facet*: it renders in the search bar as a **labelled, removable chip**. The records
+> remain readable and the filter is one click from being cleared.
+
+**Corrected statement:** for a non-manager the counting screen opens **pre-filtered to the counts
+assigned to that user**, shown as a removable facet. It is a **default projection, not a silent one.**
+
+The design consequence survives the correction and the control consequence does not:
+- **Survives:** two users of an audit-relevant screen see different populations by default, and
+  nothing in the menu tells them the projection depends on their role. Anyone reading a count total
+  off this screen without clearing the facet reads a partial figure.
+- **Does not survive:** this is not concealment and not an access-control effect.
+
+`CRITICAL-GAP-03` is **re-graded from CRITICAL to MATERIAL**, because its severity rested entirely on
+the invisibility clause that has now been disproved.
 
 ### HA-F-03 — A menu's list may be editable or read-only depending on runtime role state
-The location/quantity menu resolves to a code path that chooses list editability from whether the user
-is in "inventory mode". **Whether a screen is editable is not a property of the screen.** Any Figma or
-Functional-Design artefact that specifies one editability state for this screen would be specifying
-one of at least two real behaviours.
+The location/quantity menu resolves to a code path that chooses between an editable and a read-only
+list according to whether the user is in "inventory mode" **and** holds the managerial group — and
+"inventory mode" is itself set for any holder of the operational group. **Whether a screen is editable
+is not a property of the screen.**
+
+Any Figma or Functional-Design artefact specifying one editability state for this screen would be
+specifying one of at least two real behaviours.
 
 ### HA-F-04 — 168 stored computed values are cached derivations (**CRITICAL**)
 Carried from Register 05 `OD-F-03`. Each is a value that reports read, that can disagree with its
@@ -133,14 +198,29 @@ R2 (series-18): 19–20 jobs across two independent comparators. R1 (series-19):
 The growth is concentrated in marketplace-integration jobs. **A background-behaviour inventory built on
 series-18 understates the target generation by roughly a third.**
 
-### HA-F-08 — No declarative automation-rule records exist in this domain, and the zero has been re-tested
-A search for platform automation-rule records across all 149 modules returns **0**, re-tested in a
-second form over the whole module set. **Scope: R1, the 149-module Inventory set, declarative records
-only.** It does **not** mean the domain has no automation — §1 counts 350 automated behaviours by other
-mechanisms. It means **none of them is declared as data; they are all code.**
+### HA-F-08 — CORRECTED — no module ships automation rules as data, and the zero carries no information
+A search for platform automation-rule records returns **0** across **all 1,433 modules** of the root,
+not merely the 149-module domain set.
 
-**Consequence:** a tenant administrator cannot see, audit or disable any of them. For a SaaS product
-this is a design decision that must be taken deliberately. Raised as `BOSS-DEC-09`.
+> **The register previously presented this as a re-tested zero and treated it as a domain property.
+> Independent challenge established that it is neither.** The re-test re-ran the same *class* of query,
+> which is not a second form; and **no positive control is available anywhere in the root**, because
+> automation rules are records users create at run time — no module ships any. **A source census of
+> this object can only ever return zero.**
+
+**Corrected statement, with its scope:** *no module in the root ships automation rules as declarative
+data.* That is a **platform** property, not a property of the Inventory domain. Under `GAP-INV-09`
+(no runtime evidence) this census **cannot distinguish** "the domain has none" from "a deployment has
+fifty".
+
+**The consequence clause survives on other evidence.** The claim that tenant administrators cannot
+see, audit or disable the domain's automated behaviour rests on the other four mechanisms —
+26 scheduled jobs, 168 stored computed values, 141 persistence interceptions and 15 deletion guards,
+all of which are code — and does not need this zero. `BOSS-DEC-09` stands.
+
+**Method lesson recorded as `CORR-F-25`: a zero re-test is only a control if the second form can
+distinguish the two hypotheses.** Re-running a query of the same class against the same evidence base
+is repetition, not corroboration.
 
 ---
 
@@ -152,13 +232,20 @@ this is a design decision that must be taken deliberately. Raised as `BOSS-DEC-0
 | Stored computed values | 168 | 0 | 0% |
 | Persistence interceptions | 141 | 0 | 0% |
 | Deletion guards | 15 | 0 | 0% |
-| Menu-open side effects | **8** (declared population) | 8 resolved, 3 mutate | **100% of the declared population** |
+| Menu-open side effects | **9** (declared population) | 9 resolved, 4 mutate | **100% of the declared population** |
+| Non-menu write-by-read entry points | **floor of 3** — product form, lot form, relocate wizard | 0 | **declared gap `GAP-INV-14`** |
 
 `GAP-INV-08` is **CLOSED**: the population is no longer a floor, it is a census over a declared
 population — every menu in the whole root bound to a server action on an owned object.
 
-**The residual bound, stated rather than implied:** the trace follows **2 hops** and detects writers by
-their call form. A writer reached at hop 3 or later, or reached through a dynamically-named call, would
-not be seen. **The result is therefore a lower bound of 3 within a population of 8 that is itself
-exact.** That is a materially stronger statement than "a floor of 2 in an unknown population", and it
-is the difference between a census and a sample.
+**The residual bounds, stated rather than implied:**
+
+1. The trace follows **2 hops** and detects writers by their call form. A writer reached at hop 3 or
+   later, or through a dynamically-named call, would not be seen.
+2. **The unit is the menu.** Independent challenge identified **three further entry points to the same
+   mutating routine that are not menus** — a control on the product form, a control on the lot form,
+   and a relocation wizard. **A blind spot declared in the unit *menu* does not cover them.**
+   Recorded as `GAP-INV-14`; the write-by-read surface is a floor of **4 menus plus 3 non-menu
+   entry points**, and no census of the non-menu unit has been run.
+
+**Declaring a blind spot in the wrong unit is the same defect as not declaring it.**

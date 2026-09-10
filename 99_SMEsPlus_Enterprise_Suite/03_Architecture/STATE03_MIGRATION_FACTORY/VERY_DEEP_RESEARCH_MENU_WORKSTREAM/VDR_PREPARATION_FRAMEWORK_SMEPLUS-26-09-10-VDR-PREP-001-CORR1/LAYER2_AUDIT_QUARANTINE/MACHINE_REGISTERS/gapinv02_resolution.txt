@@ -1,0 +1,98 @@
+GAP-INV-02 RESOLUTION — where the effect of each ungated toggle actually lives
+
+--- stock.group_stock_lot_print_gs1   (9 non-test references)
+        3  REPORT / PRINT template
+        2  XML other
+        1  group definition
+        1  CODE: other
+        1  the settings toggle declaration
+        1  XML element gate
+        CODE: other  ::  stock/models/res_config_settings.py:15
+        REPORT / PRINT template  ::  stock/report/report_lot_barcode.xml:24
+        REPORT / PRINT template  ::  stock/report/report_lot_barcode.xml:32
+        XML element gate  ::  stock/report/report_package_barcode.xml:169
+        REPORT / PRINT template  ::  stock/report/product_templates.xml:98
+        XML other  ::  stock/views/res_config_settings_views.xml:156
+
+--- stock.group_warning_stock   (5 non-test references)
+        1  group definition
+        1  CODE: runtime group test
+        1  the settings toggle declaration
+        1  XML element gate
+        1  XML other
+        CODE: runtime group test  ::  stock/models/stock_picking.py:1012
+        XML element gate  ::  stock/views/res_partner_views.xml:28
+        XML other  ::  stock/views/res_config_settings_views.xml:21
+
+--- mrp.group_unlocked_by_default   (8 non-test references)
+        3  CODE: other
+        2  CODE: runtime group test
+        1  group definition
+        1  the settings toggle declaration
+        1  XML other
+        CODE: other  ::  mrp/models/res_config_settings.py:38
+        CODE: other  ::  mrp/models/res_config_settings.py:39
+        CODE: other  ::  mrp/models/res_config_settings.py:41
+        CODE: runtime group test  ::  mrp/models/mrp_production.py:78
+        CODE: runtime group test  ::  mrp/models/mrp_production.py:731
+        XML other  ::  mrp/views/res_config_settings_views.xml:51
+
+--- sale_stock_renting.group_rental_stock_picking   (18 non-test references)
+        9  CODE: other
+        3  CODE: runtime group test
+        3  XML element gate
+        1  group definition
+        1  the settings toggle declaration
+        1  XML other
+        CODE: runtime group test  ::  sale_stock_renting/models/stock_warehouse.py:12
+        CODE: other  ::  sale_stock_renting/models/stock_warehouse.py:22
+        CODE: runtime group test  ::  sale_stock_renting/models/sale_order.py:24
+        CODE: other  ::  sale_stock_renting/models/sale_order_line.py:621
+        CODE: runtime group test  ::  sale_stock_renting/models/product_product.py:142
+        CODE: other  ::  sale_stock_renting/models/stock_move.py:20
+
+--- point_of_sale.group_pos_preset   (5 non-test references)
+        2  CODE: other
+        1  group definition
+        1  the settings toggle declaration
+        1  XML element gate
+        CODE: other  ::  pos_restaurant/models/pos_config.py:136
+        CODE: other  ::  point_of_sale/models/res_config_settings.py:159
+        XML element gate  ::  point_of_sale/views/pos_preset_view.xml:93
+
+--- stock_account.group_lot_on_invoice   (6 non-test references)
+        2  XML other
+        1  group definition
+        1  CODE: other
+        1  the settings toggle declaration
+        1  XML element gate
+        CODE: other  ::  stock_account/models/res_config_settings.py:9
+        XML element gate  ::  stock_account/views/report_invoice.xml:5
+        XML other  ::  stock_account/views/res_config_settings_views.xml:17
+        XML other  ::  stock_account/views/res_config_settings_views.xml:18
+
+--- product_expiry.group_expiry_date_on_delivery_slip   (8 non-test references)
+        3  CODE: other
+        2  XML other
+        1  group definition
+        1  the settings toggle declaration
+        1  XML element gate
+        CODE: other  ::  product_expiry/models/res_config_settings.py:10
+        CODE: other  ::  product_expiry/models/res_config_settings.py:16
+        CODE: other  ::  product_expiry/models/res_config_settings.py:27
+        XML element gate  ::  product_expiry/report/report_deliveryslip.xml:8
+        XML other  ::  product_expiry/views/res_config_settings_views.xml:9
+        XML other  ::  product_expiry/views/res_config_settings_views.xml:10
+
+--- stock.group_lot_on_delivery_slip   (14 non-test references)
+        5  CODE: other
+        4  XML other
+        3  XML element gate
+        1  group definition
+        1  the settings toggle declaration
+        XML element gate  ::  l10n_ec_edi_stock/views/report_delivery_guide.xml:157
+        XML element gate  ::  l10n_ec_edi_stock/views/report_delivery_guide.xml:169
+        CODE: other  ::  product_expiry/models/res_config_settings.py:13
+        CODE: other  ::  product_expiry/models/res_config_settings.py:14
+        CODE: other  ::  product_expiry/models/res_config_settings.py:15
+        XML other  ::  product_expiry/views/res_config_settings_views.xml:8
