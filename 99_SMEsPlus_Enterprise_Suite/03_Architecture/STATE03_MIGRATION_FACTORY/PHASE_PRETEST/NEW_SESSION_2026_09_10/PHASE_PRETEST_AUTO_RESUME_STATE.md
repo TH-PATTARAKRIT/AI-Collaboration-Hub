@@ -2,7 +2,7 @@
 
 Session: `[SMEPLUS-26-09-10-PHASE-PRETEST-NEWSESSION-001]`
 Branch: `architecture/account-phase-pretest-new-session-2026-09-10-001`
-Status: `IN EXECUTION`
+Status: `PT-00 → PT-16 EXECUTED · TERMINAL AT BOSS AUTHORITY GATE`
 
 Boss Pre-Test Entry Authorization:
 `d5ad78184a527d3c973e154efb07e2a85f0ef48e`
@@ -33,13 +33,17 @@ Phase SA canonical evidence baseline:
 | `PT-13` SMEs Core Falsification | `PT13_SMES_CORE_FALSIFICATION_REGISTER.md` | **COMPLETE — `CP-PT-13`** |
 | `PT-14` B-7 Independent Challenge | `PT14_B7_INDEPENDENT_CHALLENGE_REGISTER.md` | **ROUTED — `CP-PT-14` NOT REACHED** (independent evidence does not exist) |
 | `PT-15` Final Coverage / Evidence Integrity | `PT15_FINAL_COVERAGE_AND_EVIDENCE_INTEGRITY.md` | **COMPLETE — `CP-PT-15`** |
-| `PT-16` Boss Functional-Design Entry Gate | `PT16_BOSS_FUNCTIONAL_DESIGN_ENTRY_GATE_PACK.md` | **NEXT — TERMINAL** |
+| `PT-16` Boss Functional-Design Entry Gate | `PT16_BOSS_FUNCTIONAL_DESIGN_ENTRY_GATE_PACK.md` | **PUBLISHED — `RECOMMEND HOLD — MATERIAL PRE-TEST GAP`** |
 
 Current checkpoint:
-`PT-16 — Boss Functional-Design Entry Gate Pack` **(TERMINAL — Boss Authority Gate)**
+`STOPPED AT PT-16 — GENUINE BOSS AUTHORITY GATE`
 
-Next required artifact:
-`PT16_BOSS_FUNCTIONAL_DESIGN_ENTRY_GATE_PACK.md`
+Terminal recommendation:
+`RECOMMEND HOLD — MATERIAL PRE-TEST GAP` (5 counted items; two further HOLD conditions simultaneously true but not primary)
+
+Awaiting Boss on 8 items: Functional Design entry · `POH-D-01`/`-03`/`-04`/`-05` · veto count `6` or `7` · boundary-set adoption · `PT10-F-01` re-derivation · `PTX-01`…`-11` adoption · `AAS-V-02` ratification · `B-7` appointment.
+
+Package manifest: `PRETEST_PACKAGE_MANIFEST_SHA256.txt`, **`21` entries, `21 OK`**.
 
 ## B-7 state
 
