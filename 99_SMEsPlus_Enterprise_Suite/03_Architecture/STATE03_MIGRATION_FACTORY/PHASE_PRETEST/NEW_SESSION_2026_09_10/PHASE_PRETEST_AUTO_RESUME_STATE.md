@@ -25,14 +25,15 @@ Phase SA canonical evidence baseline:
 | `PT-05` Routing and Business-Nature Proof | `PT05_BUSINESS_NATURE_ROUTING_PROOF.md` | **COMPLETE — `CP-PT-05`** |
 | `PT-06` Accounting + Inventory Convergence | `PT06_ACCOUNTING_INVENTORY_CONVERGENCE_MATRIX.md` | **COMPLETE — `CP-PT-06`** |
 | `PT-07` Mfg / Purchase / Dropship Challenge | `PT07_MFG_PURCHASE_DROPSHIP_CHALLENGE.md` | **COMPLETE — `CP-PT-07`** |
-| `PT-08` SaaS Boundary Matrix | `PT08_SAAS_BOUNDARY_MATRIX.md` | **NEXT** |
-| `PT-09`…`PT-16` | — | NOT STARTED |
+| `PT-08` SaaS Boundary Matrix | `PT08_SAAS_BOUNDARY_MATRIX.md` | **COMPLETE — `CP-PT-08`** |
+| `PT-09` Exception / Recovery / Idempotency | `PT09_EXCEPTION_RECOVERY_IDEMPOTENCY_MATRIX.md` | **NEXT** |
+| `PT-10`…`PT-16` | — | NOT STARTED |
 
 Current checkpoint:
-`PT-08 — SaaS / Tenant / Company / Security Boundary Matrix`
+`PT-09 — Exception / Reversal / Recovery / Idempotency Matrix`
 
 Next required artifact:
-`PT08_SAAS_BOUNDARY_MATRIX.md`
+`PT09_EXCEPTION_RECOVERY_IDEMPOTENCY_MATRIX.md`
 
 ## Canonical scenario population (fixed at `PT-01`)
 
@@ -62,6 +63,8 @@ Next required artifact:
 | `PT01-N-02` | — | Boss 22-scenario baseline `a1fc7cd6` is a **blob**, not a commit; `git log` on it returns silent empty. Pointer is VALID and stronger than a commit ref. | **DISARMED** — a commit-shaped check would manufacture a false finding |
 | `PT01-N-03` | MINOR | The `SMES_CORE_CONTINUATION` package cites `22`/`18` but contains `0` references to `SA15`/`SA17`; pointer resolves one level up. | OPEN — `PT-14` B-7 pack must name the registers explicitly |
 | `PT02-F-01` | **MATERIAL** | `X-07` backorder: the remainder-supply record has **no consumer at all** (`R-17`), failing the contract's `P5` clause. A produced output with nobody to receive it. | OPEN — `PT-04` must test `producer→∅` as a distinct failure class |
+| `PT08-F-01` | MATERIAL | A **Critical** tenant-isolation defect (company-dependent accounts resolved in the **user's** company, not the transaction's) carries *"nil measured reachability"* **only because both reference databases are single-company**. Severity must rank on the target architecture, not a deployment accident. | OPEN — `EC-04` boundaries 1 and 3 remain `0 of 3`; **not reduced** |
+| `PT08-F-02` | MATERIAL | **Two** lock-defeat paths, not one. Path 2 has **no bypass token — the control is simply not on that path — and leaves no record of any kind**. A remediation aimed at the token closes one and not the other. Caveat: **no lock has ever been exercised in this estate**; the matrix is source capability observed nowhere. | OPEN — carried with caveat on the row at `PT-12`; `ND-07` is the answering determination |
 | `PT07-F-01` | **MATERIAL** | The **standing manufacturing veto** (limb 1 `BLK-07`; limb 2 *"exactly one mechanism carries machine cost"*, **undischargeable in either direction as worded**) is **absent from the veto register's population of 6**: `0` hits for `BLK-07`/`BLK-08`/*manufactur*/*machine* in `SC-04` (positive control `3`). Neither member nor declared exclusion, while `SC-19` asserts *"vetoes remain 6"* in the same file. | **OPEN — AAS+ (issuer) / Boss.** `6` carried as reported; **population NOT established as complete**; renumbering is not SMEs Core's act. Routed `PT-11`/`PT-13`/B-7 |
 | `PT07-F-02` | MATERIAL | Absorption denominator **RULED** (normal capacity, `SC-BD-06`) while the mechanism to apply it **does not exist** — `R-22 GAP` no injection path; limb 2 asks for uniqueness *"where the answer is zero"*. Three records agree the carrier is absent. | OPEN — `PT-12` carries it as `PTE-3` **+ NO MECHANISM**, not plain execution-dependence |
 | `PT07-F-03` | MATERIAL | The procurement/dropship route is reported as **holding** while the cross-module entry sits **beneath Purchase's control floor** (`XMC-H-03`), which `ND-03` forbids. `SC-45` drops the qualification. | OPEN — carried as a **control breach**, not a routing success |
