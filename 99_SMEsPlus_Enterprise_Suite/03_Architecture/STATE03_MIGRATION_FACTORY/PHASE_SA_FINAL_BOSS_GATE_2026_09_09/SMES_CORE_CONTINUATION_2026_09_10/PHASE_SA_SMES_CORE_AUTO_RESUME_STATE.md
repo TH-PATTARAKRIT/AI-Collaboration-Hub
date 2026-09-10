@@ -10,6 +10,30 @@ Prior SC head consumed by this round: `25f727a956177097f41e21dcadf259590f210687`
 
 ---
 
+> # ⚠ CONTRADICTION NOTICE — `FG-F-06` HAS TWO OPPOSED BOSS RULINGS
+>
+> | Record | Ruling | Effect |
+> |---|---|---|
+> | **`SC-BD-01`** | **`READING B` — does not bind** | opened the `F1`–`F8` gate. **Everything below rests on it, including `SC-BD-02`…`SC-BD-10` (16 rulings), `SC-11`, `SC-12` and the `04_` remediation prompt** |
+> | **`SC-CONTRA-01`** | **`READING A` — binds** | `EC-07` engaged at **`0 of 2`**; **`B-7` mandatory**; under it the 23 **were not yet rulable** |
+>
+> **Nothing below this banner is withdrawn, altered or endorsed by this notice — it is preserved exactly as
+> its authors wrote it, and no ruling record has been touched.** SMEs Core has **not** chosen between the
+> two rulings; choosing between two Boss rulings is Boss authority (`CF-D-01`).
+>
+> **Under `EC-05` this is an undispositioned material contradiction in prior canonical evidence; under
+> `EC-07` it is a Gate-changing contradiction, so no independent pass run while it stands can be clean.**
+>
+> **The open question, before any next action below:
+> which ruling governs — `SC-BD-01` or `SC-CONTRA-01`?**
+> See `SC-CONTRA-01` §8 · `SC-EC07-01` §4 · `SC-EC07-02` §5.1.
+>
+> **Independent of the route question, `SC-EC07-01` finds `EC-04` does NOT pass — `0 of 3` tolerance-zero
+> boundaries are evidence-closed — and no number of clean passes closes it.**
+
+---
+
+
 ## 1. Terminal state
 
 # `HOLD — MATERIAL SMEs CORE GAP REMAINS` · `TERMINAL D`
