@@ -31,14 +31,19 @@ Phase SA canonical evidence baseline:
 | `PT-11` Authority / Veto Dependency Register | `PT11_AUTHORITY_VETO_DEPENDENCY_REGISTER.md` | **COMPLETE — `CP-PT-11`** |
 | `PT-12` Canonical Pre-Test Matrix | `PT12_CANONICAL_PHASE_PRETEST_MATRIX.md` | **COMPLETE — `CP-PT-12`** |
 | `PT-13` SMEs Core Falsification | `PT13_SMES_CORE_FALSIFICATION_REGISTER.md` | **COMPLETE — `CP-PT-13`** |
-| `PT-14` B-7 Independent Challenge | `PT14_B7_INDEPENDENT_CHALLENGE_REGISTER.md` | **NEXT** |
-| `PT-15`, `PT-16` | — | NOT STARTED |
+| `PT-14` B-7 Independent Challenge | `PT14_B7_INDEPENDENT_CHALLENGE_REGISTER.md` | **ROUTED — `CP-PT-14` NOT REACHED** (independent evidence does not exist) |
+| `PT-15` Final Coverage / Evidence Integrity | `PT15_FINAL_COVERAGE_AND_EVIDENCE_INTEGRITY.md` | **NEXT** |
+| `PT-16` Boss Functional-Design Entry Gate | `PT16_BOSS_FUNCTIONAL_DESIGN_ENTRY_GATE_PACK.md` | NOT STARTED |
 
 Current checkpoint:
-`PT-14 — B-7 Structurally Independent Challenge`
+`PT-15 — Final Coverage / Evidence Integrity Sweep`
 
 Next required artifact:
-`PT14_B7_INDEPENDENT_CHALLENGE_REGISTER.md`
+`PT15_FINAL_COVERAGE_AND_EVIDENCE_INTEGRITY.md`
+
+## B-7 state
+
+`B-7 WAITING FOR ELIGIBLE INDEPENDENT EXECUTOR`. Baseline **frozen at `37f7d006`**; manifest `PRETEST_PACKAGE_MANIFEST_SHA256.txt`, `18` entries. `PT-14`/`-15`/`-16` are **outside** the freeze. `EC-07` `0 of 2`. `0` candidates named. **Independence not self-certified.** Top attack target nominated: **`PT10-F-01`** — the only finding that improves the picture.
 
 ## Authority state (fixed at `PT-11`)
 
