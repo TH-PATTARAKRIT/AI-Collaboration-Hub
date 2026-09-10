@@ -25,7 +25,7 @@ Date: `2026-09-10`
 | Manifest entries that failed to resolve | **`0`** |
 | Competing canonical Pre-Test writers across `193` remote branches | **`0`** — measured at `c7c43314`; branch advanced mid-checkpoint, see §9.1 |
 | **Material defects found in the inherited handoff** | **`1`** — `PT00-F-01` |
-| Minor / control defects found | **`2`** — `PT00-F-02`, `PT00-F-03` |
+| Minor / control defects found | **`2`** — `PT00-F-02` (open) · `PT00-F-03` (**CLOSED by Boss at `PT-17`**) |
 | Apparent contradictions tested and **refuted** | **`1`** — `PT00-N-01` |
 
 > **The intake did not merely confirm the handoff. It falsified one of its stated denominators.**
@@ -309,7 +309,7 @@ because the archive can only detect a second writer **after** it publishes.
 | | |
 |---|---|
 | Severity | **CONTROL RISK — not a present collision** |
-| Status | **OPEN — raised to Boss** |
+| Status | **CLOSED — BOSS CONFIRMED `2026-09-10`.** *"The currently designated Pre-Test control branch is the sole canonical writer … All other sessions, conversations, agents, and branches are non-canonical reviewers/readers unless explicitly authorized by Boss."* Recorded and the branch pinned by name at **`PT-17`** |
 | Boss action requested | confirm that **this branch is the sole canonical Pre-Test writer**, and that the ChatGPT venue is a **conversation record only**, not a parallel canonical executor |
 | Mitigation applied meanwhile | re-fetch and re-verify the branch head **immediately before every checkpoint publication**, and record any delta |
 | Jira control record | `ERPPLUS-155` (from `a556a7ca` §1) |

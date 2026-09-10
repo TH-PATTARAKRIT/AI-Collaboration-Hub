@@ -34,14 +34,15 @@ Phase SA canonical evidence baseline:
 | `PT-14` B-7 Independent Challenge | `PT14_B7_INDEPENDENT_CHALLENGE_REGISTER.md` | **ROUTED — `CP-PT-14` NOT REACHED** (independent evidence does not exist) |
 | `PT-15` Final Coverage / Evidence Integrity | `PT15_FINAL_COVERAGE_AND_EVIDENCE_INTEGRITY.md` | **COMPLETE — `CP-PT-15`** |
 | `PT-16` Boss Functional-Design Entry Gate | `PT16_BOSS_FUNCTIONAL_DESIGN_ENTRY_GATE_PACK.md` | **PUBLISHED — `RECOMMEND HOLD — MATERIAL PRE-TEST GAP`** |
+| `PT-17` Boss Single-Writer Confirmation | `PT17_BOSS_SINGLE_WRITER_CONFIRMATION.md` | **PUBLISHED — `CP-PT-17`; `PT00-F-03` CLOSED** |
 
 Current checkpoint:
 `STOPPED AT PT-16 — GENUINE BOSS AUTHORITY GATE`
 
 Terminal recommendation:
-`RECOMMEND HOLD — MATERIAL PRE-TEST GAP` (5 counted items; two further HOLD conditions simultaneously true but not primary)
+`RECOMMEND HOLD — MATERIAL PRE-TEST GAP` (5 counted items; two further HOLD conditions simultaneously true but not primary). **UNCHANGED by the `PT-17` confirmation.**
 
-Awaiting Boss on 8 items: Functional Design entry · `POH-D-01`/`-03`/`-04`/`-05` · veto count `6` or `7` · boundary-set adoption · `PT10-F-01` re-derivation · `PTX-01`…`-11` adoption · `AAS-V-02` ratification · `B-7` appointment.
+Awaiting Boss on 7 items (single-writer confirmation received and closed at `PT-17`): Functional Design entry · `POH-D-01`/`-03`/`-04`/`-05` · veto count `6` or `7` · boundary-set adoption · `PT10-F-01` re-derivation · `PTX-01`…`-11` adoption · `AAS-V-02` ratification · `B-7` appointment.
 
 Package manifest: `PRETEST_PACKAGE_MANIFEST_SHA256.txt`, **`21` entries, `21 OK`**.
 
@@ -125,7 +126,7 @@ Package manifest: `PRETEST_PACKAGE_MANIFEST_SHA256.txt`, **`21` entries, `21 OK`
 - 22 cross-module = `10/12/0`; 18 E2E = `9/9/0`.
 - SMEs Core-owned Phase SA specification gaps = `0`.
 
-Single-writer control: `ACTIVE WITH AN OPEN RISK` — swept over `193` remote branches at `c7c43314`, `0` competing canonical Pre-Test artifacts. **Branch advanced mid-checkpoint (`PT00-F-03`); a second execution venue is named for this session ID.** Mitigation: re-fetch and re-verify the branch head immediately before every checkpoint publication.
+Single-writer control: **`CONFIRMED BY BOSS 2026-09-10`** — the sole canonical writer for this session is the branch `architecture/account-phase-pretest-new-session-2026-09-10-001`, path `.../PHASE_PRETEST/NEW_SESSION_2026_09_10/`. All other sessions, conversations, agents and branches are **non-canonical reviewers/readers** unless explicitly authorized by Boss; **no competing Pre-Test artifact may be published to the canonical path** (`PT-17`). Sweep at confirmation: `1` of `193` branches, `0` competitors, `0` head drift. Residual control unchanged: the archive detects a publisher only **after** it publishes, so the head is re-verified immediately before every publication.
 Jira control record: `ERPPLUS-155`.
 Functional Design: `NOT AUTHORIZED`.
 Application implementation: `NOT AUTHORIZED`.
