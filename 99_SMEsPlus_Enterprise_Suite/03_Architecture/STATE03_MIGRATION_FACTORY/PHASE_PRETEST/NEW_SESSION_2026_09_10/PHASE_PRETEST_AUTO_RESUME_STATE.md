@@ -40,6 +40,28 @@ Phase SA canonical evidence baseline:
 | **BOSS RULING APPLIED `22_`…`25_`** | `CORRECTIVE_CLOSURE_2026_09_10/` | **PUBLISHED — `READY TO OPEN INDEPENDENT B-7 NEW SESSION`** |
 
 Current checkpoint:
+`STOPPED AT CHECKPOINT J — READY FOR B-7 ROUND 2 NEW CLEAN SESSION`
+
+**Boss ruling `R-D-01` received and applied (`14_`). Recovered canonical baseline frozen (`15_`). B-7 Round-2 prompt created, NOT executed (`17_`).**
+
+**`R-D-01` applied — PHASE PLACEMENT ONLY:** `EC-04` → **State Gate** · `EC-07` → **Module + State Gates** · `48`-item verification → **Build/Test Gate** · `E2E-04` `D`-limb → **FD Exit**, `I`-limb → **Build/Test**. **`0` evidence waived · `0` criteria satisfied · `0` runtime proof · `0` historical `FAIL`/`HOLD` rewritten.**
+
+**Exit denominator corrected: `7 satisfied / 13 applicable`** (was `7 / 17`). Arithmetic executed: **`0` of the `4` removed conditions were satisfied**, so the numerator was structurally incapable of rising. **`R-F-02`: the percentage rises `41.2 % → 53.8 %` while `0` obligations close — INSTRUMENT CORRECTION, NOT IMPROVEMENT.** Surviving FAIL: conditions `3`, `4`, `13`, `15`, `16`, `17`.
+
+**`R-F-03`:** `E2E-04`'s **`G`-limb re-grade act** would have been silently dropped by removing condition `11` wholesale — re-registered explicitly and still **OUTSTANDING** (SMT's, per `B8′`).
+
+**Recovery package: `RECOVERY_2026_09_10/01_`…`17_` + `16_` manifest — `15` entries, `15 OK`.**
+
+**Unchanged:** `EC-04` `0/3` · `EC-07` `0/2` · `0 PASS / 0 FAIL / 48 HOLD` · `E2E-04 NOT TRAVERSABLE` · `7` vetoes `0` discharged · `AAS-V-02` **NOT DISCHARGED** · `5` FD blockers · `4` SMEs Core obligations (`CORE-04` partial, `-05` held, `-06`, `-07` open) · `14` external items · **`HOLD PRE-TEST EXIT`** · **Functional Design NOT AUTHORIZED**.
+
+**Lineage preserved, nothing overwritten:** `c94839e8` (pre-B-7) · `5bd36d62` (B-7 Round-1 immutable, own channel, `0` canonical writes verified vs merge-base) · `8674f735` (wrong-session, PROCEDURALLY CONTAMINATED, purely additive, `15` artefacts dispositioned) · `94f23976` (recovery `01_`…`13_`) · **this commit = RECOVERED CANONICAL BASELINE, the ONLY authorized B-7 Round-2 input.**
+
+**Competing canonical writers: `0`** under the corrected instrument (`R-F-01` — measure writes vs merge-base, not path presence).
+
+---
+
+Superseded checkpoint line:
+Current checkpoint:
 `STOPPED AT CHECKPOINT G — READY FOR BOSS RECOVERY DECISION`
 
 **RECOVERY SESSION `[SMEPLUS-26-09-10-PHASE-PRETEST-RECOVERY-NEWSESSION-001]` — package `RECOVERY_2026_09_10/01_`…`13_` published.**
