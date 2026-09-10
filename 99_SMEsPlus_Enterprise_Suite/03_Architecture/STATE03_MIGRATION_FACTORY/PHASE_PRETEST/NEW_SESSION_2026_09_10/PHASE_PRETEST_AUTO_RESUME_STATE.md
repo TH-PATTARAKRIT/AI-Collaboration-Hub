@@ -54,7 +54,7 @@ Current checkpoint:
 
 **Unchanged:** `EC-04` `0/3` · `EC-07` `0/2` · `0 PASS / 0 FAIL / 48 HOLD` · `E2E-04 NOT TRAVERSABLE` · `7` vetoes `0` discharged · `AAS-V-02` **NOT DISCHARGED** · `5` FD blockers · `4` SMEs Core obligations (`CORE-04` partial, `-05` held, `-06`, `-07` open) · `14` external items · **`HOLD PRE-TEST EXIT`** · **Functional Design NOT AUTHORIZED**.
 
-**Lineage preserved, nothing overwritten:** `c94839e8` (pre-B-7) · `5bd36d62` (B-7 Round-1 immutable, own channel, `0` canonical writes verified vs merge-base) · `8674f735` (wrong-session, PROCEDURALLY CONTAMINATED, purely additive, `15` artefacts dispositioned) · `94f23976` (recovery `01_`…`13_`) · **this commit = RECOVERED CANONICAL BASELINE, the ONLY authorized B-7 Round-2 input.**
+**Lineage preserved, nothing overwritten:** `c94839e8` (pre-B-7) · `5bd36d62` (B-7 Round-1 immutable, own channel, `0` canonical writes verified vs merge-base) · `8674f735` (wrong-session, PROCEDURALLY CONTAMINATED, purely additive, `15` artefacts dispositioned) · `94f23976` (recovery `01_`…`13_`) · **RECOVERED CANONICAL BASELINE = `fec7c49b4ab3ccae4080eb9be205bfd1e308ca0e`** — the ONLY authorized B-7 Round-2 input. (Package content frozen at that commit; the SHA-pin commit that follows changes only this line.)
 
 **Competing canonical writers: `0`** under the corrected instrument (`R-F-01` — measure writes vs merge-base, not path presence).
 
