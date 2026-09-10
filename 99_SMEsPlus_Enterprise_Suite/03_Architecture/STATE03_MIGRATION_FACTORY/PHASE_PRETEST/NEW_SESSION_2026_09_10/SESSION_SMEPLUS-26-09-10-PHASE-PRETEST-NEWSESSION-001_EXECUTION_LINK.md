@@ -33,9 +33,11 @@ Jira:
 
 ## 2. ChatGPT Session URL
 
-`NOT RECORDED IN CURRENT GITHUB EVIDENCE — DO NOT INVENT`
+Canonical ChatGPT Session URL provided by Boss:
 
-The assistant does not receive the current browser conversation URL from the ChatGPT UI. When Boss provides the exact session URL, update this record and preserve the previous revision in Git history.
+https://chatgpt.com/g/g-p-6a2985c781e88191b2ca11661f1c2341-smesplus-enterprise-suite/c/6aa01b31-9358-83ec-a2de-495039346d9b
+
+This URL is the recorded ChatGPT conversation venue for this Phase Pre-Test New Session and is preserved for traceability together with the GitHub branch, prompt lineage, evidence commits and Jira control record.
 
 ## 3. Entry Authority
 
