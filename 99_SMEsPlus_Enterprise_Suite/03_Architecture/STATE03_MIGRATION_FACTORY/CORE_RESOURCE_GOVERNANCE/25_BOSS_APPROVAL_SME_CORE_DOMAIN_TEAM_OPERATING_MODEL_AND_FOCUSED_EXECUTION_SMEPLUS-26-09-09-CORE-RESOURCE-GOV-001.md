@@ -1,0 +1,117 @@
+# [SMEPLUS-26-09-09-CORE-RESOURCE-GOV-001]
+# BOSS APPROVAL — SMEs Core Domain-Team Operating Model & Focused Execution
+
+## Decision Status
+APPROVED BY BOSS
+
+## Boss Direction
+SMEs Core shall operate as a parent Core Engineering / Architecture Authority with multiple specialized sub-teams. Each sub-team owns a clearly bounded domain and executes independently within approved SMEsPlus governance, shared invariants, evidence requirements, and Gate controls.
+
+Boss explicitly confirms the working style of focusing one area at a time until the subject is sufficiently clear before expanding to the next area. The objective is not to centralize every decision into one undifferentiated Core team, but to divide responsibility by domain while preserving one coherent SMEsPlus architecture.
+
+Example already active:
+
+`SMEs Core -> SaaS Team -> SaaS Architecture / Resource Governance`
+
+The exact complete list and naming of future sub-teams is NOT frozen by this approval. Additional domain teams shall be introduced only when the scope requires a distinct responsibility boundary.
+
+## Approved Operating Principles
+
+### 1. Domain Ownership
+Each SMEs Core sub-team owns its assigned domain deeply and is accountable for producing evidence-backed recommendations in that domain.
+
+### 2. Independent Execution with Shared Governance
+Sub-teams may research, analyze, prototype, challenge and recommend autonomously, but they may not violate shared SMEsPlus invariants, skip Gates, or self-authorize Boss-reserved decisions.
+
+### 3. Focus One Area Until Clear
+Work should progress through focused architecture subjects rather than trying to solve the entire platform at once.
+
+`FOCUS -> UNDERSTAND -> PROVE -> CHALLENGE -> RECOMMEND -> DECIDE -> INTEGRATE`
+
+### 4. Architecture Proof Obligation
+Every material architecture candidate must define what must be proven before it can be recommended or frozen.
+
+`No Evidence = No Progress.`
+
+### 5. SMEs Core Recommendation Gate
+Sub-teams must not merely send options to Boss. They must compare credible alternatives, reconcile evidence and trade-offs, and provide an explicit SMEs Core recommendation, risks, unknowns, reversal path, and genuine Boss decision requirement.
+
+`SMEs Core recommends. Boss decides.`
+
+### 6. Architecture Lab as Evidence Factory
+Architecture Lab / prototype / load-test activity is used to answer defined hypotheses and Proof Obligations, not as an uncontrolled technology playground.
+
+`No Experiment without Hypothesis.`
+`No Hypothesis without Proof Obligation.`
+`No Architecture Decision without Evidence.`
+
+### 7. Independent Challenge
+The team or role that produces a design must not be the only authority validating it. Material designs require specialist review, independent challenge, correction where needed, and fresh re-challenge before Gate disposition.
+
+### 8. Evidence State Discipline
+Material claims and decisions must distinguish at least:
+
+- FACT
+- ASSUMPTION
+- HYPOTHESIS
+- CANDIDATE
+- VALIDATED
+- REJECTED
+- BOSS APPROVED
+- SUPERSEDED
+
+A repeated idea does not become a Fact or Decision merely because it has been discussed multiple times.
+
+### 9. Reversibility Classification
+Architecture decisions should identify whether they are Reversible, Expensive-to-Reverse, or Foundational / Hard-to-Reverse. Foundational decisions remain subject to Boss Final Approval.
+
+### 10. Cross-Team Reconciliation
+Independent domain ownership does not mean isolated architecture. Where a decision crosses SaaS, database, security, SRE, FinOps, billing, ERP domain, integration or other boundaries, the relevant sub-teams must reconcile interfaces, invariants, contradictions and handoffs before final recommendation.
+
+## Canonical SMEs Core Execution Pattern
+
+`Business Intent / Boss Direction`
+`-> Problem Definition`
+`-> Invariants / Constraints`
+`-> Hypothesis / Candidate Options`
+`-> Proof Obligations`
+`-> Research / Architecture Lab / Evidence`
+`-> Specialist Review`
+`-> Independent Challenge`
+`-> Correction`
+`-> Fresh Re-Challenge`
+`-> Sub-Team Recommendation`
+`-> SMEs Core Reconciliation`
+`-> Boss Decision where required`
+`-> ADR / Architecture Freeze`
+`-> Implementation Gate`
+
+## Focused-Team Model
+
+SMEs Core is the parent authority. Domain teams are specialized execution bodies.
+
+Illustrative pattern:
+
+`SMEs Core`
+`|- SaaS Team`
+`|- Database Team`
+`|- Platform / Infrastructure Team`
+`|- Security Team`
+`|- SRE / Performance Team`
+`|- FinOps / Cost Team`
+`|- Billing / Metering Team`
+`|- ERP Domain Teams`
+`|- Independent Audit / Challenge Team`
+
+The list above is illustrative, not a frozen organization chart. Team names, boundaries and activation sequence must follow actual work demand and avoid unnecessary organizational overhead.
+
+## Boss Working Method
+Boss may intentionally focus discussion on one subject at a time, for example SaaS Architecture, until the architecture is sufficiently understood and evidenced. This is the expected operating method, not a limitation. Other SMEs Core sub-teams continue according to their authorized scopes and Gate dependencies.
+
+## Governance Boundary
+This approval changes the SMEs Core operating model and decision discipline. It does NOT authorize source-code implementation, merge, deployment, production changes, database topology freeze, Kubernetes adoption, container-per-tenant, or any other mechanism that has not separately passed its required evidence and Gate process.
+
+Boss remains the sole Final Approver.
+
+## Governing Principle
+> Understand deeply. Prove objectively. Challenge independently. Recommend explicitly. Decide with traceability. Execute with control.
