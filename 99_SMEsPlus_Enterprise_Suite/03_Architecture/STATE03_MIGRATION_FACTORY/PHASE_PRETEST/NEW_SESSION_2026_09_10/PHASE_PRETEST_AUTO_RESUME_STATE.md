@@ -21,14 +21,15 @@ Phase SA canonical evidence baseline:
 | `PT-01` Canonical Scenario Population | `PT01_CANONICAL_SCENARIO_POPULATION.md` | **COMPLETE — `CP-PT-01`** |
 | `PT-02` Input Completeness Matrix | `PT02_INPUT_COMPLETENESS_MATRIX.md` | **COMPLETE — `CP-PT-02` = BOUNDED** |
 | `PT-03` Process Semantic and Control Matrix | `PT03_PROCESS_SEMANTIC_AND_CONTROL_MATRIX.md` | **COMPLETE — `CP-PT-03`** |
-| `PT-04` Output / Consumer Contract Matrix | `PT04_OUTPUT_CONSUMER_CONTRACT_MATRIX.md` | **NEXT** |
-| `PT-05`…`PT-16` | — | NOT STARTED |
+| `PT-04` Output / Consumer Contract Matrix | `PT04_OUTPUT_CONSUMER_CONTRACT_MATRIX.md` | **COMPLETE — `CP-PT-04` = INCOMPLETE, BOUNDED** |
+| `PT-05` Routing and Business-Nature Proof | `PT05_BUSINESS_NATURE_ROUTING_PROOF.md` | **NEXT** |
+| `PT-06`…`PT-16` | — | NOT STARTED |
 
 Current checkpoint:
-`PT-04 — Output / Consumer Contract Matrix`
+`PT-05 — Routing and Business-Nature Proof`
 
 Next required artifact:
-`PT04_OUTPUT_CONSUMER_CONTRACT_MATRIX.md`
+`PT05_BUSINESS_NATURE_ROUTING_PROOF.md`
 
 ## Canonical scenario population (fixed at `PT-01`)
 
@@ -56,6 +57,9 @@ Next required artifact:
 | `PT01-N-02` | — | Boss 22-scenario baseline `a1fc7cd6` is a **blob**, not a commit; `git log` on it returns silent empty. Pointer is VALID and stronger than a commit ref. | **DISARMED** — a commit-shaped check would manufacture a false finding |
 | `PT01-N-03` | MINOR | The `SMES_CORE_CONTINUATION` package cites `22`/`18` but contains `0` references to `SA15`/`SA17`; pointer resolves one level up. | OPEN — `PT-14` B-7 pack must name the registers explicitly |
 | `PT02-F-01` | **MATERIAL** | `X-07` backorder: the remainder-supply record has **no consumer at all** (`R-17`), failing the contract's `P5` clause. A produced output with nobody to receive it. | OPEN — `PT-04` must test `producer→∅` as a distinct failure class |
+| `PT04-F-01` | **MATERIAL** | Boss fixed the boundary denominator at `12` *"declared as a set"*; **the set is declared nowhere** (`0` boundary names in `SC-BD-02`, positive control `7`). Only 12-member list is in a **prompt** prefixed *"At minimum test"*. Registers use `18` and `10`. | **OPEN — Boss/PMO owned.** This session may not re-scope a ruled denominator. Routed `PT-11`/`PT-13`/B-7 |
+| `PT04-F-02` | **MATERIAL** | `HX-01`…`HX-31`, a 31-row SMEsPlus-owned cross-module handoff register, exists only on two `design/` branches; opened at CORR3, used at CORR4, **`0` citations in CORR5 and `0` in the package that produced the Pre-Test handoff**. Also carries an internal double-count (`HX-12` twice inside `TAX-HOLD`). | **OPEN.** Recommended as `PTE-1` candidate input at `PT-12`, explicitly **not** authority. Routed `PT-13`/B-7 |
+| `PT04-F-03` | **MATERIAL** | Missing consumers are **`4`** (`SA03`'s three + `XMC-H-09`), not the `1` the `SC-45` summary carries; the `XMC-H` and `SA03` registers were never reconciled. | OPEN — routed `PT-13`/B-7 |
 | `PT03-F-01` | **MATERIAL** | *"`MATERIAL PHASE-SA GAP = 0`"* is TRUE **only** under its ownership qualifier (*owned by SMEs Core / PMO / document owner*). `12 of 22` scenarios carry an exact named gap, every one a Boss election. `SC-45`'s six-way table prints the `0` without the qualifier. | **RECORDED.** Evidence correct; risk is in transmission. **Bare form PROHIBITED in every downstream citation by this session**; routed to `PT-13`/B-7 to test compliance |
 | `PT03-N-01` | — | `185 C + 13 B + 9 S = 207 ≠ 198` looks like an overcount. | **REFUTED** — `S` is an annotation *inside* a `C`/`B` cell, not a fourth partition. `185 + 13 = 198` ✔ |
 | `PT02-F-02` | ~~MATERIAL~~ | Element 15 **design** half claimed as an open specification gap. | **WITHDRAWN — DISPROVED BY PRIMARY TEXT by its own author.** `SA_CORR5_01` adjudicated the design (`15` positions over `327` paths) and supersedes the CORR4 sentence the finding rested on. Defect class: **superseded-source citation**. Element-15 carry-forward (*specified, not built, not verified*; no carrier; `C-02` open) **unchanged** |
