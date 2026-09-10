@@ -29,14 +29,15 @@ Phase SA canonical evidence baseline:
 | `PT-09` Exception / Recovery / Idempotency | `PT09_EXCEPTION_RECOVERY_IDEMPOTENCY_MATRIX.md` | **COMPLETE — `CP-PT-09`** |
 | `PT-10` Evidence Class + Runtime Boundary | `PT10_EVIDENCE_CLASS_AND_RUNTIME_BOUNDARY.md` | **COMPLETE — `CP-PT-10`** |
 | `PT-11` Authority / Veto Dependency Register | `PT11_AUTHORITY_VETO_DEPENDENCY_REGISTER.md` | **COMPLETE — `CP-PT-11`** |
-| `PT-12` Canonical Pre-Test Matrix | `PT12_CANONICAL_PHASE_PRETEST_MATRIX.md` | **NEXT** |
-| `PT-13`…`PT-16` | — | NOT STARTED |
+| `PT-12` Canonical Pre-Test Matrix | `PT12_CANONICAL_PHASE_PRETEST_MATRIX.md` | **COMPLETE — `CP-PT-12`** |
+| `PT-13` SMEs Core Falsification | `PT13_SMES_CORE_FALSIFICATION_REGISTER.md` | **NEXT** |
+| `PT-14`…`PT-16` | — | NOT STARTED |
 
 Current checkpoint:
-`PT-12 — Canonical Pre-Test Matrix`
+`PT-13 — SMEs Core Falsification`
 
 Next required artifact:
-`PT12_CANONICAL_PHASE_PRETEST_MATRIX.md`
+`PT13_SMES_CORE_FALSIFICATION_REGISTER.md`
 
 ## Authority state (fixed at `PT-11`)
 
@@ -53,7 +54,9 @@ Next required artifact:
 | A — Boss joint cross-proof `X-01`…`X-22` | Accounting x Inventory handoff case | `22` |
 | B — end-to-end `E2E-01`…`E2E-18` | end-to-end business flow | `18` |
 | C — Pre-Test additions `PT-S-01`…`PT-S-07` | coverage-closing scenario | `7` |
-| **TOTAL** | mixed, unit named per row | **`47`** |
+| **TOTAL at `PT-01`** | mixed, unit named per row | **`47`** |
+| `PT-C-01` composed row (added at `PT-12` from `PT09-F-02`) | composed scenario | `1` |
+| **TOTAL at `PT-12`** | | **`48`** |
 
 **A and B are different units and are never summed to `40`.**
 
