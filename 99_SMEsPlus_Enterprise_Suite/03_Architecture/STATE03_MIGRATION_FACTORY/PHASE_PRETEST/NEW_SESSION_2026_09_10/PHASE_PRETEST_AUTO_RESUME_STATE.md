@@ -28,14 +28,19 @@ Phase SA canonical evidence baseline:
 | `PT-08` SaaS Boundary Matrix | `PT08_SAAS_BOUNDARY_MATRIX.md` | **COMPLETE — `CP-PT-08`** |
 | `PT-09` Exception / Recovery / Idempotency | `PT09_EXCEPTION_RECOVERY_IDEMPOTENCY_MATRIX.md` | **COMPLETE — `CP-PT-09`** |
 | `PT-10` Evidence Class + Runtime Boundary | `PT10_EVIDENCE_CLASS_AND_RUNTIME_BOUNDARY.md` | **COMPLETE — `CP-PT-10`** |
-| `PT-11` Authority / Veto Dependency Register | `PT11_AUTHORITY_VETO_DEPENDENCY_REGISTER.md` | **NEXT** |
-| `PT-12`…`PT-16` | — | NOT STARTED |
+| `PT-11` Authority / Veto Dependency Register | `PT11_AUTHORITY_VETO_DEPENDENCY_REGISTER.md` | **COMPLETE — `CP-PT-11`** |
+| `PT-12` Canonical Pre-Test Matrix | `PT12_CANONICAL_PHASE_PRETEST_MATRIX.md` | **NEXT** |
+| `PT-13`…`PT-16` | — | NOT STARTED |
 
 Current checkpoint:
-`PT-11 — Boss / External / Veto Dependency Reconciliation`
+`PT-12 — Canonical Pre-Test Matrix`
 
 Next required artifact:
-`PT11_AUTHORITY_VETO_DEPENDENCY_REGISTER.md`
+`PT12_CANONICAL_PHASE_PRETEST_MATRIX.md`
+
+## Authority state (fixed at `PT-11`)
+
+`16 of 23` Boss decisions ruled · `7` open, of which **only `4` are presentable** (`POH-D-01`, `-03`, `-04`, `-05`). `POH-D-02` = `PTE-4` (statutory absent). `RC-D-03`/`RC-D-04` blocked by a **SMEs Core** obligation. `6` vetoes in force, `0` discharged; manufacturing-veto membership routed as a `6`-or-`7` question. `13` external-authority items. `9` ruling-obligations: `1` discharged (element 15 → exit criteria), `8` open.
 
 ## Pre-Test exit criteria (constituted at `PT-09`, awaiting Boss adoption at `PT-16`)
 
@@ -69,6 +74,7 @@ Next required artifact:
 | `PT01-N-02` | — | Boss 22-scenario baseline `a1fc7cd6` is a **blob**, not a commit; `git log` on it returns silent empty. Pointer is VALID and stronger than a commit ref. | **DISARMED** — a commit-shaped check would manufacture a false finding |
 | `PT01-N-03` | MINOR | The `SMES_CORE_CONTINUATION` package cites `22`/`18` but contains `0` references to `SA15`/`SA17`; pointer resolves one level up. | OPEN — `PT-14` B-7 pack must name the registers explicitly |
 | `PT02-F-01` | **MATERIAL** | `X-07` backorder: the remainder-supply record has **no consumer at all** (`R-17`), failing the contract's `P5` clause. A produced output with nobody to receive it. | OPEN — `PT-04` must test `producer→∅` as a distinct failure class |
+| `PT11-P-01` | PROPOSAL | SMEs Core **proposes** the enumerated `12` boundaries (CORR3 prompt §11, verbatim, 12 bullets counted), carrying both qualifications: the source is prefixed *"At minimum test:"* (a floor, not a closed set), and the working registers used `18` and `10`. | **AWAITING BOSS/PMO** at `PT-16` — adopt, name a different set, or rule which of `12`/`18`/`10` governs |
 | `PT10-F-01` | **MATERIAL — LARGEST OF THE SESSION** | The `10 WRITABLE / 12 GATED` split and `13 B` cells were measured **2026-09-09**; the decisions gating them were ruled **2026-09-10**. **At least `10 of 12` gated rows and `9 of 13` `B` cells now rest on RULED decisions** (`JT-04`, `JT-05`, `XD1-P1`, `XMC-D-02`, `XMC-D-01`). `SC-45` carries the pre-ruling split 3h after the ruling; `SC-11`'s 9 downstream obligations **do not include re-deriving the register**. Rows `16`/`17` (`B-6`) remain genuinely gated. | **OPEN — figures carried UNCHANGED; this session does NOT re-derive.** Owner: Phase SA / PMO on Boss authority. **This is the one finding that improves the picture — flagged to B-7 as the most likely to be accepted uncritically.** Routed `PT-11`/`PT-13`/B-7/`PT-16` |
 | `PT09-F-01` | **MATERIAL — DISCHARGED** | Boss `SC-BD-09` §8.1 directed `RT-E15-01`…`-09` + the deterministic-identity proof be *"written into"* **Pre-Test exit criteria**; the Pre-Test prompt set has **`0`** references to exit criteria and **`0`** to `RT-E15` (positive control `23`). An unconsumed Boss instruction with no receiving artefact. | **DISCHARGED at `PT-09` §4** — `PTX-01`…`PTX-11` constituted. **`PT-16` presents for Boss adoption** |
 | `PT09-F-02` | **MATERIAL** | Correction-after-movement must become a **return**; the return's value basis is unruled (`JT-05`); reversal after **downstream consumption** has no representation. Three open items whose **composition** (ship → bill → return after close) is recorded nowhere. | OPEN — one composed row at `PT-12`; routed `PT-13`/B-7 |
