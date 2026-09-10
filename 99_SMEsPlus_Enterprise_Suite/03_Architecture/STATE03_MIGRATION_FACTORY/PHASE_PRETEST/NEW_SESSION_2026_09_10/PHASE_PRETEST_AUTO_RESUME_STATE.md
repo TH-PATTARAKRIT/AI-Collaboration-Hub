@@ -22,14 +22,15 @@ Phase SA canonical evidence baseline:
 | `PT-02` Input Completeness Matrix | `PT02_INPUT_COMPLETENESS_MATRIX.md` | **COMPLETE — `CP-PT-02` = BOUNDED** |
 | `PT-03` Process Semantic and Control Matrix | `PT03_PROCESS_SEMANTIC_AND_CONTROL_MATRIX.md` | **COMPLETE — `CP-PT-03`** |
 | `PT-04` Output / Consumer Contract Matrix | `PT04_OUTPUT_CONSUMER_CONTRACT_MATRIX.md` | **COMPLETE — `CP-PT-04` = INCOMPLETE, BOUNDED** |
-| `PT-05` Routing and Business-Nature Proof | `PT05_BUSINESS_NATURE_ROUTING_PROOF.md` | **NEXT** |
-| `PT-06`…`PT-16` | — | NOT STARTED |
+| `PT-05` Routing and Business-Nature Proof | `PT05_BUSINESS_NATURE_ROUTING_PROOF.md` | **COMPLETE — `CP-PT-05`** |
+| `PT-06` Accounting + Inventory Convergence | `PT06_ACCOUNTING_INVENTORY_CONVERGENCE_MATRIX.md` | **NEXT** |
+| `PT-07`…`PT-16` | — | NOT STARTED |
 
 Current checkpoint:
-`PT-05 — Routing and Business-Nature Proof`
+`PT-06 — Accounting + Inventory Universal Convergence`
 
 Next required artifact:
-`PT05_BUSINESS_NATURE_ROUTING_PROOF.md`
+`PT06_ACCOUNTING_INVENTORY_CONVERGENCE_MATRIX.md`
 
 ## Canonical scenario population (fixed at `PT-01`)
 
@@ -41,6 +42,8 @@ Next required artifact:
 | **TOTAL** | mixed, unit named per row | **`47`** |
 
 **A and B are different units and are never summed to `40`.**
+
+**Routing basis (fixed at `PT-05`):** `BN-01`…`BN-18`, current status `1 EVIDENCED / 17 PARTIAL / 0 HOLD`; **`0 of 18` DETERMINED**. `SA05`'s status column is superseded and must not be quoted. `ND-01`…`ND-14` carried. **Routing rule set = Set A (`SA_CORR3_08` §4.1), not `SC-45`'s six.**
 
 **Input contract (fixed at `PT-02`):** Boss 16-element Minimum Handoff Data Contract, blob `b4c39831`, `BOSS APPROVED / EFFECTIVE`; boundary denominator **`12`** per `SC-BD-02`. **`9 of 16` elements supplied; `7` not; `3` (`10`, `14`, `15`) have no carrier.** Governing registers: `SA15`/`SA17` `FINAL_CONTROLLED_V2`; Boss baseline blob `a1fc7cd6` (Jira `ERPPLUS-140`).
 
@@ -57,6 +60,9 @@ Next required artifact:
 | `PT01-N-02` | — | Boss 22-scenario baseline `a1fc7cd6` is a **blob**, not a commit; `git log` on it returns silent empty. Pointer is VALID and stronger than a commit ref. | **DISARMED** — a commit-shaped check would manufacture a false finding |
 | `PT01-N-03` | MINOR | The `SMES_CORE_CONTINUATION` package cites `22`/`18` but contains `0` references to `SA15`/`SA17`; pointer resolves one level up. | OPEN — `PT-14` B-7 pack must name the registers explicitly |
 | `PT02-F-01` | **MATERIAL** | `X-07` backorder: the remainder-supply record has **no consumer at all** (`R-17`), failing the contract's `P5` clause. A produced output with nobody to receive it. | OPEN — `PT-04` must test `producer→∅` as a distinct failure class |
+| `PT05-F-01` | **MATERIAL** | **Two different "six routing rules" exist.** `SC-45`'s summary substitutes rule 6 — dropping *"routing follows Business Nature, not module name"* entirely — strips **3** material qualifications, and reports as HOLDS a rule whose tested result reads *"One defect found"*. Governing prompts list **five**. | **OPEN.** Correct statement: `0` rules hold unqualified. **Set A (`SA_CORR3_08` §4.1) governs `PT-12`.** Routed `PT-13`/B-7 |
+| `PT05-F-02` | **MATERIAL** | `E2E-07` — the single scenario that improved in the final register — cites `SA05` `BN-07 = DETERMINED`; `SA05` says `HOLD` and its status column is *"superseded and must not be quoted"*; consolidated status is `PARTIAL`; `DETERMINED` applies to **half one of two**. Half two carries a **silently-skipped** kit price-difference correction, absent from a row marked `none`. | **OPEN.** `0` re-grades; a bounded risk is attached at `PT-12`. Routed `PT-13`/B-7 |
+| `PT05-F-03` | MATERIAL | Flow enumeration **short by ≥1** (migration flows; positive control `11` files). Two registers each contradict their own checkpoint line (`13` vs `14`; `13/4/1` vs `14/3/1`), **unrepaired**. | OPEN — `PT-15` must audit the text, not the disposition table |
 | `PT04-F-01` | **MATERIAL** | Boss fixed the boundary denominator at `12` *"declared as a set"*; **the set is declared nowhere** (`0` boundary names in `SC-BD-02`, positive control `7`). Only 12-member list is in a **prompt** prefixed *"At minimum test"*. Registers use `18` and `10`. | **OPEN — Boss/PMO owned.** This session may not re-scope a ruled denominator. Routed `PT-11`/`PT-13`/B-7 |
 | `PT04-F-02` | **MATERIAL** | `HX-01`…`HX-31`, a 31-row SMEsPlus-owned cross-module handoff register, exists only on two `design/` branches; opened at CORR3, used at CORR4, **`0` citations in CORR5 and `0` in the package that produced the Pre-Test handoff**. Also carries an internal double-count (`HX-12` twice inside `TAX-HOLD`). | **OPEN.** Recommended as `PTE-1` candidate input at `PT-12`, explicitly **not** authority. Routed `PT-13`/B-7 |
 | `PT04-F-03` | **MATERIAL** | Missing consumers are **`4`** (`SA03`'s three + `XMC-H-09`), not the `1` the `SC-45` summary carries; the `XMC-H` and `SA03` registers were never reconciled. | OPEN — routed `PT-13`/B-7 |
