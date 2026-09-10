@@ -12,26 +12,27 @@ Prior SC head consumed by this round: `25f727a956177097f41e21dcadf259590f210687`
 
 ## 1. Terminal state
 
-# `BOSS FINAL DECISION GATE — IN PROGRESS`
+# `HOLD — MATERIAL SMEs CORE GAP REMAINS` · `TERMINAL D`
 
-**`FG-F-06` is RULED: `READING B — DOES NOT BIND THIS EXIT`** (`SC-BD-01`, 2026-09-10, head `6d08bcc5`).
-`F1`–`F8` are **presented and awaiting Boss rulings**. Phase SA is **NOT closed**; no veto discharged;
-structurally independent passes remain **0** and none is claimed.
+**Exact gap:** `RC-D-03` and `RC-D-04` carry **no SMEs Core recommendation** anywhere in the controlling
+package (`SC-BD-F-01`, two shapes, firing control). Boss cannot rule them until SMEs Core supplies one.
+**`READY FOR BOSS PHASE SA FINAL CLOSURE` is NOT claimed.** Phase SA is **NOT closed**.
 
 ## 2. NEXT EXACT ACTION
 
-**`FG-F-06` is answered — Reading B. Do not re-ask it.**
+1. **SMEs Core** — produce recommendations for **`RC-D-03`** (Private-Company escalation criteria) and
+   **`RC-D-04`** (mapping-layer ownership), with SMT disposition. **This clears Terminal D and returns
+   Category 3 to `0`.**
+2. **Boss** — rule the five open `F5` elections `POH-D-01`…`POH-D-05`. **`POH-D-02` should wait on the Thai
+   statutory input** (tax consequences unresearched; over-absorption cap strength undetermined) rather than
+   be ruled ahead of it.
+3. **AAS+** — concur on `POH-D-06`'s restatement; **Boss ratifies.** Boss's ruling alone did not complete it:
+   *"restating a veto limb is reserved to the veto's issuer and Boss."*
+4. Execute the four approved acts (`B-7`, `C4-D-01`, `C4-D-02`, Thai panel). **`AAS-V-02` ratification was
+   NOT selected** and returns to Boss at his choosing.
+5. Only then re-run `SC-12`.
 
-**Await Boss's rulings on `F1`–`F8`**, presented in the gate prompt §4 dependency order
-`F4 → F6 → F7 → F1 → F5 → F2 → F3 → F8`, then the five acts.
-
-Reading B means the 23 decisions **may be ruled without an independent gate first**. `B-7` is **not
-cancelled** — it remains a Boss act, valuable and blocking nothing (`SC-05` §2.5 recommends appointing it
-regardless, as the one act with no downside on either reading).
-
-On receipt of each ruling: publish a `SC-BD-nn` decision record **before** treating it as canonical
-(gate prompt §6.5), then refresh this file. After all rulings, publish `SC-11` propagation register and
-`SC-12` closure requalification, recomputing every count from evidence rather than inheriting it.
+**Do not** re-ask `FG-F-06`, `BOSS-ROUTE-01`, or any of the 16 ruled decisions.
 
 ## 3. Checkpoint ladder
 
@@ -41,18 +42,19 @@ On receipt of each ruling: publish a `SC-BD-nn` decision record **before** treat
 | `CP-SA-SC-80` Boss route propagated, AR intake verified | **`CLOSED`** — `SC-08` |
 | `CP-SA-SC-90` `FG-F-06` re-check + SMT disposition | **`CLOSED`** — `SC-09` |
 | `CP-SA-SC-100` Boss Final Gate Delta Pack V2 | **`PUBLISHED — PENDING BOSS`** — `SC-10` |
-| `CP-SA-SC-FINAL2` | **`REACHED`** — Boss gate opened |
+| `CP-SA-SC-FINAL2` | **`REACHED`** — Boss gate opened and executed |
 | **`FG-F-06`** | **`RULED — READING B`** · `SC-BD-01` |
-| `F1`–`F8` (23 decisions) | **`PRESENTED — AWAITING BOSS`** |
-| 5 Boss acts | **`PRESENTED — AWAITING BOSS`** |
-| `SC-11` propagation register | **`NOT YET DUE`** — after the rulings |
-| `SC-12` closure requalification | **`NOT YET DUE`** |
+| `F1`–`F8` | **`16 of 23 RULED`** · `SC-BD-02`…`SC-BD-09` · **7 open** |
+| 5 Boss acts | **`4 APPROVED, 1 HELD`** · `SC-BD-10` |
+| `SC-11` propagation register | **`PUBLISHED`** |
+| `SC-12` closure requalification | **`PUBLISHED — TERMINAL D`** |
 
 ## 4. Controlling figures — re-derived, not inherited
 
-**23** Boss decisions in 8 families (`F5` = **6**), **5** acts, **1** scope clarification ·
-**6** vetoes in force, **0** discharged, **0** self-discharged · **Category 3 = 0** (SMEs Core 0, PMO 0,
-document owner 0) · structurally independent passes **0** · `EC-07` **not engaged for this exit** — `FG-F-06` = Reading B (`SC-BD-01`) ·
+**23** Boss decisions in 8 families (`F5` = **6**) — **16 RULED, 7 OPEN** (`POH-D-01`…`-05`, `RC-D-03`,
+`RC-D-04`); validated three ways · **5** acts — **4 approved, 1 held** · `FG-F-06` **RULED — Reading B** ·
+**6** vetoes in force, **0** discharged, **0** self-discharged · **Category 3 = 1** — SMEs Core's own
+(`SC-BD-F-01`); PMO 0, document owner 0 · structurally independent passes **0** · `EC-07` **not engaged for this exit** — `FG-F-06` = Reading B (`SC-BD-01`) ·
 targeted Very Deep Research re-entry **none required**.
 
 ## 5. This round's findings
