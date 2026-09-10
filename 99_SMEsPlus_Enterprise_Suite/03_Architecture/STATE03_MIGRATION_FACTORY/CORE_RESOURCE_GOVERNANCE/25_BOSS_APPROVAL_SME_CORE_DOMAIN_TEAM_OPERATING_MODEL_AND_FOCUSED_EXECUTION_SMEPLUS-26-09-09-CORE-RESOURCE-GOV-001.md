@@ -119,3 +119,33 @@ Boss remains the sole Final Approver.
 Boss explicitly approved the Governing Principle above on 2026-09-10 as canonical SMEs Core operating doctrine. It is not merely explanatory wording. It shall guide SMEs Core and all domain sub-teams when researching, reviewing, recommending, deciding, recording and executing work under SMEsPlus governance.
 
 This governing principle does not override domain-specific evidence requirements, approved invariants, Gate controls, or Boss-reserved approvals. It also does not itself authorize any infrastructure mechanism, source-code implementation, merge, deployment or production action.
+
+## Phase Assurance & Evidence Handoff Model — EFFECTIVE IMMEDIATELY
+
+Boss explicitly approves immediate application of a common seven-control-block model across Phase SA -> Phase Pre-Matrix Test -> Phase C -> subsequent controlled phases, because SMEsPlus does not have a separate human middle-layer reviewer who can reliably inspect every deliverable before handoff.
+
+The purpose is to make the process itself provide independent assurance before work is handed to the next phase.
+
+Every applicable Phase MUST use the same seven control blocks:
+
+1. `Entrance Contract` — identify exactly what evidence, decisions, assumptions, risks and dependencies are received from the prior phase.
+2. `Proof Obligations` — define what must be proven before the phase may be considered ready to exit.
+3. `Evidence State` — distinguish FACT / ASSUMPTION / HYPOTHESIS / CANDIDATE / VALIDATED / REJECTED / BOSS APPROVED / SUPERSEDED and equivalent controlled states where required.
+4. `Independent Challenge` — the producing team may not be the sole validating authority for a material handoff.
+5. `Controlled Re-entry` — material gaps return only the affected scope to the appropriate prior phase or research step; do not reset completed verified work without material delta.
+6. `Exit Contract` — state what is PASS, CONDITIONAL, HOLD, OPEN, DEFERRED or otherwise not authorized to propagate.
+7. `Phase Handoff Gate` — the receiving phase may begin only when the required handoff evidence and Gate disposition are present.
+
+Canonical cross-phase pattern:
+
+`PHASE WORK -> EVIDENCE -> SPECIALIST REVIEW -> INDEPENDENT CHALLENGE -> CORRECTION IF REQUIRED -> FRESH RE-CHALLENGE -> EXIT CONTRACT -> PHASE HANDOFF GATE -> NEXT PHASE`
+
+The approved target is not to redesign Phase SA from zero. Phase SA is substantively aligned with this operating method and shall be normalized/formalized into the same contract. The main uplift is to make the discipline continuous across all phase transitions.
+
+This approval is effective immediately for new phase handoffs and for any currently active handoff not yet finally closed. Existing approved evidence remains valid and must not be discarded or repeated without material delta.
+
+`No Evidence = No Progress.`
+`Never Skip Gate.`
+`No repeated question without material delta.`
+
+This approval does not by itself reopen already Boss-closed decisions, authorize implementation, merge, deployment or production, or waive any existing domain-specific Gate. Boss remains the sole Final Approver.
