@@ -1,6 +1,8 @@
 # PT-08 — SaaS / TENANT / COMPANY / SECURITY BOUNDARY MATRIX
 
-## `CP-PT-08 — SAAS BOUNDARIES TESTABLE`
+## `CP-PT-08 — SAAS BOUNDARIES TESTABLE, NOT TESTED`
+
+*(master-prompt checkpoint name: `CP-PT-08 — SAAS BOUNDARIES TESTABLE`)*
 
 Session: `[SMEPLUS-26-09-10-PHASE-PRETEST-NEWSESSION-001]`
 Branch: `architecture/account-phase-pretest-new-session-2026-09-10-001` · head consumed `80cfe6e2`

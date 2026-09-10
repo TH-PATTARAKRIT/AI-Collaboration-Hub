@@ -1,6 +1,8 @@
 # PT-09 — EXCEPTION / REVERSAL / RECOVERY / IDEMPOTENCY MATRIX
 
-## `CP-PT-09 — FAILURE MODES COVERED`
+## `CP-PT-09 — FAILURE MODES COVERED, NONE PROVEN`
+
+*(master-prompt checkpoint name: `CP-PT-09 — FAILURE MODES COVERED`)*
 
 Session: `[SMEPLUS-26-09-10-PHASE-PRETEST-NEWSESSION-001]`
 Branch: `architecture/account-phase-pretest-new-session-2026-09-10-001` · head consumed `bcea9952`

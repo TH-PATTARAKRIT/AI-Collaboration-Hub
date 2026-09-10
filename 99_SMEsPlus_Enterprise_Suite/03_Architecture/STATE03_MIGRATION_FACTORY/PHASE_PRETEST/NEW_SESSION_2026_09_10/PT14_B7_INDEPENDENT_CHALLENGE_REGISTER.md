@@ -53,9 +53,9 @@ counted toward `EC-07`.**
 | | |
 |---|---|
 | Branch | `architecture/account-phase-pretest-new-session-2026-09-10-001` |
-| **Frozen at** | **`37f7d006`** — the `PT-13` publication |
+| **Frozen at** | **`37f7d006`** — the `PT-13` publication. **SUPERSEDED: `PT-15` corrected `7` checkpoint headers and `3` owner attributions inside the frozen path, so the baseline was RE-FROZEN at the `PT-15` commit. See `PT-15` §5. The manifest at `PT-15` is the one B-7 receives.** |
 | Path | `99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/PHASE_PRETEST/NEW_SESSION_2026_09_10/` |
-| Artefacts in scope | **`18`** — `PT-00`…`PT-13`, the two prompts, the resume state, the venue record |
+| Artefacts in scope | **`20` after the re-freeze** — `PT-00`…`PT-15`, the two prompts, the resume state, the venue record |
 | Manifest | `PRETEST_PACKAGE_MANIFEST_SHA256.txt` |
 
 ### 3.1 What is OUTSIDE the frozen baseline — stated, not left to be discovered

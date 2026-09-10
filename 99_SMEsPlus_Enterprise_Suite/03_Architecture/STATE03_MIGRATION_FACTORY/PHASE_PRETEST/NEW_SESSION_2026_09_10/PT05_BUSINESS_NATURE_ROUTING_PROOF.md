@@ -1,6 +1,8 @@
 # PT-05 — ROUTING AND BUSINESS-NATURE PROOF
 
-## `CP-PT-05 — ROUTING PROOF COMPLETE`
+## `CP-PT-05 — ROUTING PROOF COMPLETE, WITH THREE MATERIAL FINDINGS`
+
+*(master-prompt checkpoint name: `CP-PT-05 — ROUTING PROOF COMPLETE`)*
 
 Session: `[SMEPLUS-26-09-10-PHASE-PRETEST-NEWSESSION-001]`
 Branch: `architecture/account-phase-pretest-new-session-2026-09-10-001` · head consumed `2adf2682`

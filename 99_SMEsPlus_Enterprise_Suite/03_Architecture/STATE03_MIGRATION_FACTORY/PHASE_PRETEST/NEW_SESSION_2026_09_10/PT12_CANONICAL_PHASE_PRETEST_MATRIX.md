@@ -1,6 +1,8 @@
 # PT-12 — CANONICAL PHASE PRE-TEST MATRIX
 
-## `CP-PT-12 — PRE-TEST MATRIX COMPLETE`
+## `CP-PT-12 — PRE-TEST MATRIX COMPLETE: PRESENT AND POINTED, NOT PROVEN`
+
+*(master-prompt checkpoint name: `CP-PT-12 — PRE-TEST MATRIX COMPLETE`)*
 
 Session: `[SMEPLUS-26-09-10-PHASE-PRETEST-NEWSESSION-001]`
 Branch: `architecture/account-phase-pretest-new-session-2026-09-10-001` · head consumed `eb4e760b`
