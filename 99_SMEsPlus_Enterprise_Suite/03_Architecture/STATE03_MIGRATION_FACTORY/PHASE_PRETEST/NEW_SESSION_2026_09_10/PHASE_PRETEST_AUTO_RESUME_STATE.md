@@ -36,18 +36,21 @@ Phase SA canonical evidence baseline:
 | `PT-16` Boss Functional-Design Entry Gate | `PT16_BOSS_FUNCTIONAL_DESIGN_ENTRY_GATE_PACK.md` | **PUBLISHED — `RECOMMEND HOLD — MATERIAL PRE-TEST GAP`** |
 | `PT-17` Boss Single-Writer Confirmation | `PT17_BOSS_SINGLE_WRITER_CONFIRMATION.md` | **PUBLISHED — `CP-PT-17`; `PT00-F-03` CLOSED** |
 | **CORRECTIVE CLOSURE `01_`…`16_`** | `CORRECTIVE_CLOSURE_2026_09_10/` | **PUBLISHED — `HOLD PRE-TEST EXIT`** |
-| **BOSS RESOLUTION `17_`…`21_`** | `CORRECTIVE_CLOSURE_2026_09_10/` | **PUBLISHED — `READY FOR BOSS CONSOLIDATED RULING`** |
+| **BOSS RESOLUTION `17_`…`21_`** | `CORRECTIVE_CLOSURE_2026_09_10/` | **PUBLISHED** |
+| **BOSS RULING APPLIED `22_`…`25_`** | `CORRECTIVE_CLOSURE_2026_09_10/` | **PUBLISHED — `READY TO OPEN INDEPENDENT B-7 NEW SESSION`** |
 
 Current checkpoint:
-`STOPPED AT CHECKPOINT F — BOSS CONSOLIDATED RULING AWAITED`
+`STOPPED AT CHECKPOINT J — READY TO OPEN INDEPENDENT B-7 NEW SESSION`
 
-**Boss items: `9`** (was 11; §17 review removed `B10′` — resolved as an Architecture determination — and `B5′` — carried PROVISIONAL). **`B1` expanded `4 → 6`.**
-**SMEs Core obligations open: `0`** — `CORE-01` was **already discharged** at `SC-14`/`SC-15`; `CORE-02` completed; `CORE-03` is AAS+ issuer authority.
-**External items: `13`**, of which `1` escalates into `B4′`.
+**Boss consolidated ruling received and applied `2026-09-10` (`22_`).** All 11 items ruled; `B5′` deliberately left PROVISIONAL; `B10′` Architecture disposition accepted.
 
-**MATERIAL SELF-CORRECTION (`17_` §1):** `PT-11`/`13_`/`16_` carried `RC-D-03`/`RC-D-04` as blocked by a SMEs Core obligation. **They were discharged at `SC-14`/`SC-15`, 23 minutes after `SC-11` created the obligation.** `PT-00` had it right (`6` ready and held); `PT-11` regressed it to `4`. Superseded-source citation — **third instance**.
+**Post-ruling state:** exit conditions **`8 of 17`** (was 5) · FD blockers **`3`** (was 5) · open Boss decisions **`1`** (`POH-D-02`, Thai statutory, withheld) · vetoes **`7` canonical, `0` discharged** · **`EC-04` `0/3` · `EC-07` `0/2` · `0 of 48` verified · `E2E-04 NOT TRAVERSABLE` · `CP-PT-14` NOT REACHED** — all unchanged by ruling.
 
-Next (after Boss ruling): `CHECKPOINT G` apply rulings → `22_` · `H` re-run affected controls · `I` post-ruling re-freeze → `23_`/`24_` · `J` independent B-7 new-session prompt → `25_`. **`172d7b9c` is Audit Lineage, NOT the B-7 baseline.**
+**Denominators moved by ruling: `5`** — boundary set `→ 12` DECLARED · veto `6 → 7` · Boss decisions `7 → 1` · `IR 18 → 20` · `AR 29 → 30`. **Reconciled counts did NOT rise** (`IR 14/3/3`, `AR 15/14/1`).
+
+**New obligations created by the rulings: `4`** — `CORE-04` map `12 ↔ 18 ↔ 10` · `CORE-05` deterministic refusal rule · `CORE-06` `MF-01` counterpart account · `X-14` AAS+ issuer discharge act for `AAS-V-02`.
+
+**B-7:** appointee **Independent OpenAI GPT-5.6 Sol**, new clean session, different vendor. Prompt created at `25_`, **NOT executed**. Baseline **re-frozen post-ruling**; `172d7b9c` and `88003079` are Audit Lineage, not overwritten.
 
 Superseded checkpoint line:
 `STOPPED AT PT-16 — GENUINE BOSS AUTHORITY GATE`
