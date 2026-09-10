@@ -1,7 +1,7 @@
 # INVENTORY_PILOT_COVERAGE_REPORT.md
 # Inventory Pilot — Coverage Reconciliation
 
-Session `[SMEPLUS-26-09-10-VDR-PREP-001-CORR1]` · Layer 1 summary of Layer 2 measurement
+Session `[SMEPLUS-26-09-10-VDR-PREP-001-CORR1]` · **LAYER 1 — CLEAN-ROOM** summary of LAYER 2 measurement
 Rule applied: `VDR_COVERAGE_RULE.md` v1.0 · Generation basis: **R1 (series-19, content-verified)**
 
 ---
@@ -23,7 +23,7 @@ not coverage.
 | Preparation Controls frozen | 5 / 5 | **100%** | Master List, Nine Registers, Coverage Rule, Challenge Checklist, Execution Order |
 | Nine Registers instantiated | 9 / 9 | **100%** | every record carries a Learning ID; **0 orphan records** |
 | Controls **exercised by the Pilot** | 5 / 5 | **100%** | each control produced at least one correction to itself |
-| Framework corrections incorporated before closure | 13 / 13 | **100%** | `VDR_FRAMEWORK_PILOT_CORRECTION_REGISTER.md` |
+| Framework corrections incorporated before closure | 21 / 21 | **100%** | `VDR_FRAMEWORK_PILOT_CORRECTION_REGISTER.md` |
 | **Preparation Framework Readiness** | — | **92%** | 8 points withheld: the framework has been exercised on **one** domain, by **one** producer, with **no runtime evidence**; see §4 |
 
 ### 2.2 Source Learning Population
@@ -43,20 +43,21 @@ not coverage.
 | **Menu** | 62 | 62 (100%) | 0 | **0%** |
 | **Menu (extra-application)** | 134 | 134 (100%) | 0 | **0%** |
 | **Configuration dependency** | 633 gated elements / 43 groups | 633 (100%) | 633 mechanism-verified | **100% of mechanism, 0% of consequence** |
-| **Feature Toggle** | 237 | 237 (100%) | 14 of 21 group-toggles joined | **6.6%** |
-| **Function** | 1,795 function-bearing items | 1,795 (100%) | 20 | **1.1%** |
+| **Feature Toggle** | 237 | 237 (100%) | 21 of 21 group-toggles resolved to an effect surface | **8.9%** |
+| **Function** | 1,795 function-bearing items | 1,795 (100%) | 25 | **1.4%** |
 | **Object / Data** | 86 objects · 1,846 fields · 32 constraints | 100% | 0 | **0%** |
 | **Cross-Module** | 90 external objects, both directions | 90 (100%) | 0 | **0%** |
 | **Hidden Automation** | 350 automated behaviours + 2 located side effects | 350 (100%) | 2 | **0.6%** |
 | **SaaS / Security** | 44 groups · 176 grants · 28 rules | 100% | 0 | **0%** |
-| **Edge / Reversal** | not enumerated | 0 | 0 | **0% — dimension not opened** |
+| **Edge / Reversal** | 86 objects | 2 (`SR-09`) | 2 | **2.3%** |
 | **SMEs Core Challenge closure** | 30 questions | 30 dispositioned | — | **100% dispositioned**, see §3 |
 
-**Overall Verified Coverage = 20 + 633 verified-mechanism items are not commensurable and are not
-added.** Taking the strict reading — items at `S4` over the full population:
+**The 25 function-verified items and the 633 mechanism-verified gated elements are not commensurable
+and are not added together.** Taking the strict reading — Learning Items at `S4` or higher over the
+full population:
 
 ```
-Overall Verified Coverage  =  20 / 4,339  =  0.46%
+Overall Verified Coverage  =  25 / 4,339  =  0.58%
 ```
 
 ### 2.4 Critical Area coverage
@@ -73,9 +74,9 @@ Overall Verified Coverage  =  20 / 4,339  =  0.46%
 | Approval Control | yes — none on domain objects | 0 | **NO** |
 | Audit Trail | yes (32 tracked fields) | 0 | **NO** |
 | Identity | not opened | 0 | **NO** |
-| Immutability | partial (15 guards) | 0 | **NO** |
+| Immutability | partial — 15 guards, 2 read in full | 2 objects | **NO** |
 | Period Close | not opened | 0 | **NO** |
-| Reversal | partial (`GAP-INV-04`) | 0 | **NO** |
+| Reversal | established for 2 of 86 objects (`SR-09`) | 2 objects | **NO** |
 | Data Integrity | yes (32 constraints) | 0 | **NO** |
 | Cross-Module Financial Handoff | partial (`GAP-INV-06`) | 0 | **NO** |
 
@@ -87,7 +88,7 @@ Overall Verified Coverage  =  20 / 4,339  =  0.46%
 
 | Gate condition | Threshold | Actual | Result |
 |----------------|-----------|--------|--------|
-| Overall Verified Coverage | ≥ 95% | 0.46% | **FAIL** |
+| Overall Verified Coverage | ≥ 95% | 0.58% | **FAIL** |
 | Every Critical Area | 100% | 0 of 15 | **FAIL** |
 
 **Disposition: `HOLD`.** Under `VDR_COVERAGE_RULE.md` §6 the Critical Area condition alone is

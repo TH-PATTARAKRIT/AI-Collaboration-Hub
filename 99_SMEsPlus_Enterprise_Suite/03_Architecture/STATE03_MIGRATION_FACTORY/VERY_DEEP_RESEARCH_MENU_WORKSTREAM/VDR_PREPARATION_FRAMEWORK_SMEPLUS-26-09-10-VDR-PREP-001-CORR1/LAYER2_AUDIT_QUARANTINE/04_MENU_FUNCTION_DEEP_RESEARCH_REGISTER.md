@@ -25,7 +25,7 @@ looks populated and is read downstream as "researched".
 | Actions (`ACTION`) | 200 | `S1` | default filters and contexts, and what population each really shows |
 | Views (`VIEW`) | 492 | `S1` | field-level editability by state and role; empty/warning/error states |
 | Constraints (`CONSTRAINT`) | 32 | `S1` | the business rule each expresses and its user-visible message |
-| Scheduled behaviour (`AUTOMATION`) | 26 | `S1`, 6 at `S4` | see Register 08 |
+| Scheduled behaviour (`AUTOMATION`) | 26 | `S1`, 2 at `S4` | see Register 08 |
 | **Total function-bearing Learning Items** | **1,795** | | |
 
 ### Control-type distribution (431 controls)
@@ -37,7 +37,8 @@ looks populated and is read downstream as "researched".
 | **type not declared** | **53** | **defaults at runtime — the control's kind is not statically knowable** |
 | domain-specific | 2 | specialised event control |
 
-**FN-F-01 (finding):** 12.3% of user-invocable controls do not declare their own type. A control
+### FN-F-01 — 12.3% of user-invocable controls do not declare their own type
+12.3% of user-invocable controls do not declare their own type. A control
 inventory built from static declarations cannot say what 53 of 431 controls do without reading code.
 
 ---
@@ -54,7 +55,8 @@ inventory built from static declarations cannot say what 53 of 431 controls do w
 | deletion guards | 15 | what refuses to be deleted, and when |
 | scheduled entry points | 4 | |
 
-**FN-F-02 (finding, CRITICAL):** **141 persistence overrides** exist on 86 objects. Any SMEsPlus design
+### FN-F-02 — Persistence is intercepted in 141 places (**CRITICAL**)
+**141 persistence overrides** exist on 86 objects. Any SMEsPlus design
 that assumes "saving a record stores a record" is inheriting an assumption the reference system does
 not hold. Each of the 141 is a candidate hidden business rule and must be classified — *business rule*
 vs *technical plumbing* — before Functional Design, because only the first class carries into SMEsPlus.
@@ -80,14 +82,38 @@ vocabularies were extracted:
 | Repair document | 5 — draft · confirmed · under-repair · repaired · cancelled |
 | Forecast/report projections | 3 each — analytical, not lifecycle |
 
-**FN-F-03 (finding):** one lifecycle state is **not a literal** — it is derived from its parent
+### FN-F-03 — One lifecycle state is not owned by the object that displays it
+One lifecycle state is **not a literal** — it is derived from its parent
 document at runtime. **A state machine transcribed from declarations would give that object a state it
 does not independently own.** This is a design-relevant distinction (who owns the transition) and it
 is invisible to any register built from declared selections.
 
-**FN-F-04 (finding):** the write-off and teardown documents have **two** states — `draft` and `done` —
-and **no cancelled state**. Whether an incorrect write-off can be reversed at all is a
-`SOURCE RESOLUTION REQUIRED` item with direct valuation and audit consequences. Raised as `GAP-INV-04`.
+### FN-F-04 — RESOLVED — Two documents are absolutely terminal once completed (**CRITICAL**)
+The write-off and teardown documents declare **two** states — `draft` and `done` — and **no cancelled
+state**. The first draft of this finding recorded reversibility as *unknown*. It is now established,
+and the answer is stronger than "unknown":
+
+| Remedy | Available? | Evidence |
+|--------|-----------|----------|
+| Cancel the document | **No** — no cancelled state exists | state declaration |
+| Reverse the document | **No** — no reverse, undo or cancel method exists on either object | full method census of both objects |
+| Delete the document | **No** — a deletion guard on both objects refuses deletion once the state is `done` | deletion-guard method on each object |
+
+**A completed write-off or teardown is irreversible, uncancellable and undeletable.** The only remedy
+available to a user is a **compensating entry** — a second, independent document in the opposite
+direction.
+
+Two consequences for SMEsPlus, and they pull in opposite directions:
+- **Favourable:** this is genuine immutability, achieved by construction rather than by policy, on two
+  objects that move stock and value.
+- **Unfavourable:** the audit trail records the error permanently and shows **two events where the
+  business had one mistake**. Reconciliation, valuation and reporting must all be designed for that.
+
+Whether SMEsPlus adopts terminal-plus-compensation or reversal-with-linkage is `BOSS-DEC-11`.
+
+**Method note:** the deletion guard is invisible to an access-grant census. Register 07 `SS-F-04`
+counts 59 of 176 grants as permitting deletion; **at least two of those grants are overridden by a
+code-level guard.** An access-rights model derived from grants alone overstates what can be deleted.
 
 ---
 
@@ -99,7 +125,7 @@ and **no cancelled state**. Whether an incorrect write-off can be reversed at al
 | `S1 SOURCE LOCATED` | 4,339 | 100% |
 | `S2 UI VERIFIED` | 0 | 0% |
 | `S3 CONFIG VERIFIED` | 633 gated elements + 237 toggles | partial, see Register 02 |
-| `S4 FUNCTION VERIFIED` | 14 (the state vocabularies) + 6 (Register 08) | **0.5%** |
+| `S4 FUNCTION VERIFIED` | **25** — 14 state vocabularies · 2 menu-open side-effect routines (Reg 08 `HA-F-01`/`HA-F-02`) · 2 documents' reversibility (`SR-09`) · 7 toggle effect surfaces (`SR-08`) | **0.58%** |
 | `S5`–`S9` | 0 | 0% |
 
 **This is the Pilot's central number and it is not a failure — it is the correctly-measured distance

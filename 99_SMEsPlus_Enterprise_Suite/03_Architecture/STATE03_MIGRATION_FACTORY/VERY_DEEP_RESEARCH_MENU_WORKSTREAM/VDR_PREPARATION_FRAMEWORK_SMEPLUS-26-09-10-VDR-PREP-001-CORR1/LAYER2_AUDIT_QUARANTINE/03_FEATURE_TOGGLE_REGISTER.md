@@ -296,6 +296,11 @@ a side effect of opening a menu** (Register 08, `HA-F-01`). It appears on no set
 **A configuration surface that is invisible to the configuration UI is a control gap**, and it is one
 that would not appear in any menu-driven or settings-driven research.
 
+### FT-F-07 — A toggle's effect surface is not the screen (**CRITICAL for method**)
+Traced system-wide, 7 of the 21 group-toggles take effect **only** in printed/report templates (4) or
+in runtime code branches (3); one of the latter also reaches a boundary object. See Register 02
+`CD-F-03`. **"What does this switch do?" cannot be answered from screens.**
+
 ### FT-F-05 — The same toggle is declared by more than one module
 Several toggle field names are declared by two different modules. The declarations are not guaranteed
 identical. Recorded as an integrity hazard: a register keyed on toggle *name* would silently merge two

@@ -106,10 +106,29 @@ gating surface.
 One toggle (multi-location) alone controls **94 elements across 9 element kinds**, including 5 menu
 nodes. Turning one switch changes the Inventory application's shape more than any role does.
 
-### CD-F-03 — 7 toggles activate groups that gate nothing in this scope
-Their effect is expressed somewhere other than element-level gating — in code branches, report
-templates, or domains. **This is a `SOURCE RESOLUTION REQUIRED` item, not a "toggle does nothing"
-conclusion.** Recorded with that disposition; see `INVENTORY_PILOT_SOURCE_RESOLUTION_REPORT.md` §4.
+### CD-F-03 — RESOLVED — 7 toggles take effect outside the screen-element surface entirely (**CRITICAL for method**)
+Seven group-toggles activate groups that gate **no** screen element. A system-wide trace of every
+non-test reference to each group resolves all seven, and **none of them is inert**:
+
+| Effect surface | Toggles | What that means |
+|----------------|--------:|-----------------|
+| **Printed / report templates** — lot barcode label, delivery slip, customer invoice, country delivery guide | **4** | the toggle changes what is **printed**, not what is on screen |
+| **Runtime code tests** — a code branch asks at run time whether the user holds the group | **3** | the toggle changes **behaviour**, with no declarative trace anywhere |
+| | **7** | |
+
+One of the three runtime-code toggles **additionally** gates an element on the **partner** view — a
+boundary object, outside the owned set and therefore outside this register's element census. That is a
+second surface for an already-counted toggle, not an eighth toggle.
+
+**Method consequence:** a configuration-dependency register whose population is *screen elements* is
+structurally incapable of seeing 7 of 21 group-toggles. **Printed output and runtime code are effect
+surfaces in their own right and had no place in the original nine-register design.**
+Recorded as framework correction `CORR-F-21`; resolution evidence at
+`INVENTORY_PILOT_SOURCE_RESOLUTION_REPORT.md` `SR-08`.
+
+**The first draft of this finding said the effect was "expressed somewhere other than element-level
+gating" and left it open. That sentence was true, unfalsifiable and useless.** Resolving it took one
+targeted trace and changed a `SOURCE RESOLUTION REQUIRED` into a framework correction.
 
 ### CD-F-04 — Gating is invisible at the register level for whole classes of element
 Access-control grants (176), actions (200), views (492 at record level), constraints (32),
@@ -137,7 +156,7 @@ carried into Register 07.
 | Dimension | Population | Verified (`S3`) | Coverage |
 |-----------|-----------:|----------------:|---------:|
 | Gate → element join | 633 elements / 43 groups | 633 / 43 | **100% of the mechanism** |
-| Toggle → gate join | 21 group-toggles | 14 joined, 7 unresolved | **66.7%** |
+| Toggle → gate join | 21 group-toggles | 14 joined at element level + 7 resolved to non-element surfaces | **100%** |
 | Conditional behaviour expressed in code | not enumerated | 0 | **0% — declared gap** |
 
 The third row is the honest limit of this register. It is carried into the coverage dashboard as a

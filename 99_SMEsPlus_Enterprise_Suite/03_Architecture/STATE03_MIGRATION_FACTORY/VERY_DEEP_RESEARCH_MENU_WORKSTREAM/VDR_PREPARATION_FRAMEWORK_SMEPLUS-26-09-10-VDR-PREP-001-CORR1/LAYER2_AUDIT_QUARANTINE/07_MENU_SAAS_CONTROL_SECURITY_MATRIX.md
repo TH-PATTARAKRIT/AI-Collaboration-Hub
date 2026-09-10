@@ -72,6 +72,11 @@ assumed.** Recorded as 10 undischarged dispositions, not as 10 defects.
 these deletions must be impossible in SMEsPlus — as opposed to merely restricted — is an
 **immutability** decision. Raised as `BOSS-DEC-07`.
 
+**This count is an upper bound, not the effective permission.** Code-level deletion guards override
+grants: two were read in full and each refuses deletion of a completed document despite a grant that
+permits it (Register 04 `FN-F-04`). **The effective delete surface is smaller than 59 by an unmeasured
+amount.** Recorded as `GAP-INV-13`.
+
 ### SS-F-05 — Only 32 of 1,846 fields are change-tracked (1.7%)
 Carried from Register 05 `OD-F-04`. **The reference system's audit trail is opt-in and sparse.**
 An SMEsPlus audit design cannot be derived from it; it must be specified.
@@ -136,11 +141,12 @@ evidence that it fires.
 | Company Isolation | yes (17 scoping rules, 10 unscoped objects) | population only | **NOT 100%** |
 | Approval Control | yes — see `SS-F-09`; **no segregation-of-duties mechanism located** | 0 | **`GAP-INV-07`** |
 | Audit Trail | yes (32 tracked fields) | population only | **NOT 100%** |
-| Identity / Immutability | not measured | 0 | **declared gap** |
+| Identity / Immutability | partial — 15 deletion guards located, **2 read in full** (`SR-09`); identity not opened | 2 objects | **NOT 100%** |
 | Data Integrity | yes (32 constraints) | population only | **NOT 100%** |
 | Stock Ownership / Quantity / Valuation | population only; valuation object changed generation (`OD-F-05`) | 0 | **`CRITICAL-GAP-01`** |
 | Financial Posting / Cross-Module Financial Handoff | thin declared surface; code-created postings unmeasured (`XM-F-02`) | 0 | **`GAP-INV-06`** |
-| Period Close / Reversal | not measured in this domain | 0 | **declared gap** |
+| Period Close | not opened | 0 | **NOT 100%** |
+| Reversal | **established for 2 of 86 objects** — terminal by construction, no cancel / no reverse / deletion refused (`SR-09`) | 2 objects | **NOT 100%** |
 
 **No Critical Area is at 100%. Under `VDR_COVERAGE_RULE.md` §6 this alone forces `HOLD`,
 irrespective of any overall percentage.**
@@ -151,7 +157,7 @@ irrespective of any overall percentage.**
 
 | Learning ID | Record rule | Object | Restricted to groups | Domain | Module |
 |---|---|---|---|---|---|
-| LI-INV-RULE-0014 | Amazon Account multi-company | `amazon.account` | GLOBAL (all users) | `['|', ('company_id', '=', False),             ('company_id', 'in', company_ids)]` | sale_amazon |
+| LI-INV-RULE-0014 | Amazon Account multi-company | `amazon.account` | GLOBAL (all users) | `[' | ', ('company_id', '=', False),             ('company_id', 'in', company_ids)]` \| sale_amazon |
 | LI-INV-RULE-0001 | Vehicles PE | `l10n_pe_edi.vehicle` | GLOBAL (all users) | `[('company_id', 'in', company_ids + [False])]` | l10n_pe_edi_stock |
 | LI-INV-RULE-0015 | Lazada Shop multi-company | `lazada.shop` | GLOBAL (all users) | `[('company_id', 'in', company_ids + [False])]` | sale_lazada |
 | LI-INV-RULE-0004 | MRP BoMs Subcontractor | `mrp.bom` | [(4, ref('base.group_portal'))] | `[('id', 'in', user.partner_id.commercial_partner_id.bom_ids.ids)]` | mrp_subcontracting |
@@ -161,16 +167,16 @@ irrespective of any overall percentage.**
 | LI-INV-RULE-0013 | Point Of Sale Session | `pos.session` | GLOBAL (all users) | `[('config_id.company_id', 'in', company_ids)]` | point_of_sale |
 | LI-INV-RULE-0019 | report_stock_quantity_flow multi-company | `report.stock.quantity` | GLOBAL (all users) | `[('company_id', 'in', company_ids)]` | stock |
 | LI-INV-RULE-0016 | Shopee Shop multi-company | `shopee.shop` | GLOBAL (all users) | `[('company_id', 'in', company_ids + [False])]` | sale_shopee |
-| LI-INV-RULE-0008 | Stock Locations Subcontractor | `stock.location` | [(4, ref('base.group_portal'))] | `[             '|',                 '|',                     '|',                         '` | mrp_subcontracting |
+| LI-INV-RULE-0008 | Stock Locations Subcontractor | `stock.location` | [(4, ref('base.group_portal'))] | `[             ' | ',                 '\|',                     '\|',                         '` \| mrp_subcontracting |
 | LI-INV-RULE-0020 | Location multi-company | `stock.location` | GLOBAL (all users) | `[('company_id', 'in', company_ids + [False])]` | stock |
-| LI-INV-RULE-0009 | Stock Lot Subcontractor | `stock.lot` | [(4, ref('base.group_portal'))] | `[         '|',             '|',                 ('product_id', 'in', user.partner_id.comme` | mrp_subcontracting |
-| LI-INV-RULE-0011 | Stock Moves Subcontractor | `stock.move` | [(4, ref('base.group_portal'))] | `[         '|',              '|',                 ('production_id.subcontractor_id', '=', u` | mrp_subcontracting |
-| LI-INV-RULE-0010 | Stock Move Lines Subcontractor | `stock.move.line` | [(4, ref('base.group_portal'))] | `[         '|',              '|',                 ('move_id.production_id.subcontractor_id'` | mrp_subcontracting |
+| LI-INV-RULE-0009 | Stock Lot Subcontractor | `stock.lot` | [(4, ref('base.group_portal'))] | `[         ' | ',             '\|',                 ('product_id', 'in', user.partner_id.comme` \| mrp_subcontracting |
+| LI-INV-RULE-0011 | Stock Moves Subcontractor | `stock.move` | [(4, ref('base.group_portal'))] | `[         ' | ',              '\|',                 ('production_id.subcontractor_id', '=', u` \| mrp_subcontracting |
+| LI-INV-RULE-0010 | Stock Move Lines Subcontractor | `stock.move.line` | [(4, ref('base.group_portal'))] | `[         ' | ',              '\|',                 ('move_id.production_id.subcontractor_id'` \| mrp_subcontracting |
 | LI-INV-RULE-0022 | stock_package multi-company | `stock.package` | GLOBAL (all users) | `[('company_id', 'in', company_ids + [False])]` | stock |
 | LI-INV-RULE-0005 | Stock Pickings Subcontractor | `stock.picking` | [(4, ref('base.group_portal'))] | `[('partner_id.commercial_partner_id', '=', user.partner_id.commercial_partner_id.id)]` | mrp_subcontracting |
-| LI-INV-RULE-0017 | Portal Follower Transfers | `stock.picking` | [(4, ref('base.group_portal'))] | `['|', ('partner_id', '=', user.partner_id.id), ('sale_id.partner_id', '=', user.partner_id` | sale_stock |
+| LI-INV-RULE-0017 | Portal Follower Transfers | `stock.picking` | [(4, ref('base.group_portal'))] | `[' | ', ('partner_id', '=', user.partner_id.id), ('sale_id.partner_id', '=', user.partner_id` \| sale_stock |
 | LI-INV-RULE-0028 | stock.picking.batch multi-company | `stock.picking.batch` | GLOBAL (all users) | `[('company_id', 'in', company_ids)]` | stock_picking_batch |
-| LI-INV-RULE-0006 | Stock Picking Types Subcontractor | `stock.picking.type` | [(4, ref('base.group_portal'))] | `['|', ('id', 'in', user.partner_id.commercial_partner_id.picking_ids.picking_type_id.ids),` | mrp_subcontracting |
+| LI-INV-RULE-0006 | Stock Picking Types Subcontractor | `stock.picking.type` | [(4, ref('base.group_portal'))] | `[' | ', ('id', 'in', user.partner_id.commercial_partner_id.picking_ids.picking_type_id.ids),` \| mrp_subcontracting |
 | LI-INV-RULE-0023 | stock_quant multi-company | `stock.quant` | GLOBAL (all users) | `[('company_id', 'in', company_ids + [False])]` | stock |
 | LI-INV-RULE-0027 | Stock Report multi-company | `stock.report` | GLOBAL (all users) | `[('company_id', 'in', company_ids)]` | stock_enterprise |
 | LI-INV-RULE-0021 | stock_route multi-company | `stock.route` | GLOBAL (all users) | `[('company_id', 'in', company_ids + [False])]` | stock |

@@ -29,9 +29,9 @@ may be read as one.
 | ID | Gap | Size | State |
 |----|-----|------|-------|
 | `GAP-INV-01` | Function coverage stands at 0.5% of the derived population | 4,319 of 4,339 items below `S4` | OPEN — expected at this stage; recorded so it is not mistaken for coverage |
-| `GAP-INV-02` | 7 configuration toggles activate groups that gate nothing element-level; their effect is elsewhere | 7 of 21 | `SOURCE RESOLUTION REQUIRED` |
+| `GAP-INV-02` | 7 configuration toggles take effect outside the screen surface entirely | 7 of 21 | **CLOSED** by `SR-08` — resolved to printed templates (4) and runtime code (3); produced `CORR-F-21` |
 | `GAP-INV-03` | Conditional behaviour expressed in code, not in gating attributes, is unenumerated | affects 1,540 of 4,339 items | OPEN — **size known, content unmeasured** |
-| `GAP-INV-04` | The write-off and teardown documents have no cancelled state; reversibility unknown | 2 objects | `SOURCE RESOLUTION REQUIRED` |
+| `GAP-INV-04` | Reversibility of the write-off and teardown documents | 2 objects | **CLOSED** by `SR-09` — no cancel state, no reverse method, deletion refused once complete; produced `BOSS-DEC-11` and `GAP-INV-13` |
 | `GAP-INV-05` | 53 of 431 user-invocable controls do not declare their own type | 53 | OPEN |
 | `GAP-INV-06` | Financial postings created in code without a stored reference are invisible to the declared-field census | **size unmeasured** | OPEN |
 | `GAP-INV-07` | No segregation-of-duties mechanism on Inventory objects; upstream approval is out of boundary | — | OPEN — boundary question, see `BOSS-DEC-02` |
@@ -40,6 +40,7 @@ may be read as one.
 | `GAP-INV-10` | 10 persistent objects declare no company scope; each needs a disposition | 10 | OPEN |
 | `GAP-INV-11` | 141 persistence interceptions unclassified as business rule vs plumbing | 141 | OPEN — prerequisite to Functional Design |
 | `GAP-INV-12` | 168 stored computed values have no documented staleness policy | 168 | OPEN |
+| `GAP-INV-13` | Code-level deletion guards override access grants; the effective delete surface is smaller than the granted one | floor of 2 objects, **ceiling unmeasured** | OPEN |
 
 ## 4. Decisions reserved to Boss
 
@@ -55,6 +56,7 @@ may be read as one.
 | `BOSS-DEC-08` | Confirmation that **a read must never write** in SMEsPlus | The reference does the opposite on two audit-relevant menus | Reg 08 `HA-F-01` |
 | `BOSS-DEC-09` | Whether tenant administrators must be able to **see, audit and disable** automated behaviour (reference: 0 of ~350 are declarative) | SaaS operability and auditability | Reg 08 `HA-F-08` |
 | `BOSS-DEC-10` | Whether the Inventory Pilot's **stop-at-one-hop** boundary rule is adopted as the universal standard | Governs every future subject's denominator | `00_SOURCE_LEARNING_MASTER_LIST.md` §7 |
+| `BOSS-DEC-11` | Whether SMEsPlus adopts **terminal-plus-compensation** or **reversal-with-linkage** for stock write-off and teardown | Determines the audit trail's shape for two value-moving documents; the reference is terminal by construction | Reg 04 `FN-F-04` |
 
 ## 5. The bound that governs the whole register
 

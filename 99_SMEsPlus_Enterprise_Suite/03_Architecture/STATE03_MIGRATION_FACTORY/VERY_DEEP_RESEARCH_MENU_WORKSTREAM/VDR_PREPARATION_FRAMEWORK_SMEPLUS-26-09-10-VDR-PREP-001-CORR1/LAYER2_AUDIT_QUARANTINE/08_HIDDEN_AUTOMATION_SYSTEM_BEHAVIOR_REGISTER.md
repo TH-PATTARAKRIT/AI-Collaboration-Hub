@@ -103,7 +103,13 @@ because the first class must be re-expressed in SMEsPlus and the second must not
 ### HA-F-06 — 15 deletion guards define what cannot be deleted, and they are the only such statement
 There is no declarative immutability anywhere in the domain — 32 change-tracked fields
 (Register 05 `OD-F-04`) and 15 deletion guards are the entire enforced-permanence surface, against
-59 access rows that grant deletion (Register 07 `SS-F-04`). **Permanence is the exception.**
+59 access rows that grant deletion (Register 07 `SS-F-04`). **Permanence is the exception, and where
+it exists it is written in code, not declared.**
+
+Two of the 15 guards were read in full (Register 04 `FN-F-04`): each refuses deletion of a completed
+document, **overriding an access grant that says deletion is permitted.** The other 13 have not been
+read. **A permission model derived from access grants alone overstates what can actually be deleted,
+by an amount this Pilot has not measured** — a floor of 2 objects, an unknown ceiling.
 
 ### HA-F-07 — Scheduled-job population grows 30% between generations
 R2 (series-18): 19–20 jobs across two independent comparators. R1 (series-19): 26.
