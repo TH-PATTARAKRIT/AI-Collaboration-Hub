@@ -1,0 +1,19 @@
+CRITICAL AREA                           POP  CELLS    DET%    RV     RV%  blocking dims
+1 Financial Posting                      16    118  100.0%    63   53.4%  PROC 0/3; CONF 0/16; OPTI 0/16; SOUR 13/16; RUNT 15/16; DATA 0/16
+2 Stock Ownership                        46    322  100.0%   172   53.4%  CONF 0/46; OPTI 0/46; RUNT 44/46; DATA 0/46; CROS 36/46
+3 Stock Quantity                         26    182  100.0%   103   56.6%  CONF 0/26; OPTI 0/26; DATA 0/26; SECU 25/26
+4 Inventory Valuation                    12     90  100.0%    46   51.1%  PROC 0/3; CONF 0/12; OPTI 0/12; SOUR 9/12; DATA 0/12; SECU 10/12
+5 Security                              270    898  100.0%    87    9.7%  CONF 0/44; OPTI 0/44; SOUR 0/270; RUNT 87/270; SECU 0/270
+6 Tenant Isolation                        0      0     n/a     0     n/a  
+7 Company Isolation                      75    389  100.0%   184   47.3%  CONF 0/41; OPTI 0/41; SOUR 41/75; RUNT 71/75; DATA 0/41; SECU 41/75; C
+8 Approval Control                        9     63  100.0%    31   49.2%  CONF 0/9; OPTI 0/9; RUNT 4/9; DATA 0/9
+9 Audit Trail                            32    224  100.0%   118   52.7%  CONF 0/32; OPTI 0/32; RUNT 22/32; DATA 0/32
+10 Identity                              61    393  100.0%   198   50.4%  PROC 0/1; CONF 0/61; OPTI 0/49; SOUR 48/61; RUNT 54/61; DATA 0/61; CRO
+11 Immutability                          47    186  100.0%   121   65.1%  PROC 0/15; RUNT 29/47; DATA 15/47
+12 Period Close                          16    112  100.0%    61   54.5%  CONF 0/16; OPTI 0/16; RUNT 14/16; DATA 0/16; CROS 15/16
+13 Reversal                              47    335  100.0%    51   15.2%  PROC 0/47; CONF 0/47; OPTI 0/47; SOUR 0/47; RUNT 3/47; DATA 0/3; SECU 
+14 Data Integrity                       251   1629  100.0%   915   56.2%  CONF 0/219; OPTI 0/219; RUNT 234/251; DATA 0/251; SECU 215/219; CROS 2
+15 Cross-Module Financial Handoff         4     12  100.0%     4   33.3%  SOUR 0/4; CROS 0/4
+
+distinct items in >=1 Critical Area (UNION): 737 | area-memberships (SUM): 912
+Critical Areas at 100% RESEARCH-VERIFIED: 0 of 15

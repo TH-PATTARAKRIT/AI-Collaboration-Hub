@@ -1,0 +1,31 @@
+GATE                                     ELEM GRP/5 ELEMS/5  gate present but elements absent
+stock.group_stock_multi_locations          96     5       5  -
+uom.group_uom                              76     5       5  -
+stock.group_production_lot                 67     5       5  -
+stock.group_tracking_lot                   57     5       5  -
+base.group_no_one                          56     5       5  -
+stock.group_stock_manager                  34     5       5  -
+mrp.group_mrp_routings                     26     5       5  -
+base.group_user                            24     5       5  -
+stock.group_tracking_owner                 22     5       5  -
+quality.group_quality_user                 21     4       1  BK12MAY26,iEVING,idemo18_uat
+stock.group_stock_user                     19     5       5  -
+product.group_product_variant              17     5       5  -
+point_of_sale.group_pos_manager            14     2       2  -
+mrp.group_mrp_user                         10     5       5  -
+mrp.group_mrp_manager                       9     5       5  -
+stock.group_adv_location                    9     5       5  -
+point_of_sale.group_pos_user                6     2       2  -
+mrp_plm.group_plm_user                      6     1       1  -
+mrp_workorder.group_mrp_wo_shop_floor       5     4       4  -
+sales_team.group_sale_manager               5     5       2  iTEST02,iSMEs,idemo18_uat
+base.group_system                           4     5       5  -
+quality.group_quality_manager               4     4       1  BK12MAY26,iEVING,idemo18_uat
+mrp_plm.group_plm_manager                   2     1       1  -
+maintenance.group_equipment_manager         1     5       5  -
+point_of_sale.group_pos_preset              1     2       2  -
+product.group_product_pricelist             1     5       2  iTEST02,iSMEs,idemo18_uat
+
+gates discriminated                       : 26
+gates where presence is NOT SUFFICIENT    : 4   (group present, gated elements absent)
+gates where presence is NOT NECESSARY     : 0   (elements present, group absent)

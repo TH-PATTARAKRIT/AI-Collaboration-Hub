@@ -1,0 +1,24 @@
+CLASS            n    OBS       %  TIER      EVIDENCE ROUTE
+FIELD         1846   1589   86.1%  ELEMENT   own field record
+BEHAVIOUR      614    553   90.1%  MODULE    not an ORM record (Python method / system parameter defa
+GATEDELEM      525    504   96.0%  MODULE    view sub-element — no ORM record exists for it
+VIEW           493    429   87.0%  ELEMENT   own registry record
+BUTTON         431    368   85.4%  INDIRECT  parent view observed; button is a sub-element with no re
+SETTING        237    180   75.9%  ELEMENT   own settings-field record
+ACTION         201    187   93.0%  ELEMENT   own registry record
+ACL            180    174   96.7%  INDIRECT  governed model observed; ACL row not id-resolvable from 
+MENUX          134    110   82.1%  ELEMENT   own registry record
+OBJECT          96     90   93.8%  ELEMENT   model registered
+HANDOFF         90     79   87.8%  ELEMENT   model registered
+MENU            62     53   85.5%  ELEMENT   own registry record
+RULE            46     44   95.7%  ELEMENT   own registry record
+GROUP           44     43   97.7%  ELEMENT   own registry record
+CONSTRAINT      32     29   90.6%  ELEMENT   constraint record
+AUTOMATION      26     11   42.3%  ELEMENT   own registry record
+SEQUENCE        12     10   83.3%  ELEMENT   own registry record
+SYSPARAM         5      4   80.0%  MODULE    not an ORM record (Python method / system parameter defa
+
+ELEMENT   n= 3319  observed= 2854   86.0%
+INDIRECT  n=  611  observed=  542   88.7%
+MODULE    n= 1144  observed= 1061   92.7%
+TOTAL     n= 5074  observed= 4457   87.8%

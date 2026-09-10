@@ -1,0 +1,38 @@
+id,parent_id,create_uid,write_uid,name,complete_name,parent_path,product_properties_definition,create_date,write_date,property_account_income_categ_id,property_account_expense_categ_id,removal_strategy_id,packaging_reserve_method,property_valuation,property_cost_method,property_stock_journal,property_stock_valuation_account_id,property_price_difference_account_id,property_stock_account_production_cost_id,tiktok_category_id
+5,1,2,2,SANDALS,02 GOODS / SANDALS,1/5/,\N,2026-03-29 10:28:23.316768,2026-03-30 02:32:09.074142,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+24,1,2,2,APPAREL,02 GOODS / APPAREL,1/24/,\N,2026-03-29 10:29:43.008767,2026-04-29 08:14:12.035945,\N,\N,\N,partial,\N,\N,\N,\N,\N,\N,\N
+77,1,2,2,SHOES,02 GOODS / SHOES,1/77/,\N,2026-04-29 13:50:03.866266,2026-04-29 13:50:47.142502,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+1,\N,1,2,02 GOODS,02 GOODS,1/,\N,2026-03-18 05:03:51.572879,2026-07-20 08:47:56.927872,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+26,1,2,2,ACCESSORIES,02 GOODS / ACCESSORIES,1/26/,\N,2026-03-29 10:29:43.008767,2026-03-29 10:47:07.781217,\N,\N,\N,partial,\N,\N,\N,\N,\N,\N,\N
+27,1,2,2,GIFTS,02 GOODS / GIFTS,1/27/,\N,2026-03-29 10:29:43.008767,2026-03-29 10:47:07.781217,\N,\N,\N,partial,\N,\N,\N,\N,\N,\N,\N
+28,1,2,2,ASSETS,02 GOODS / ASSETS,1/28/,\N,2026-03-29 10:29:43.008767,2026-03-29 10:47:07.781217,\N,\N,\N,partial,\N,\N,\N,\N,\N,\N,\N
+29,1,2,2,PACKAGING,02 GOODS / PACKAGING,1/29/,\N,2026-03-29 10:29:43.008767,2026-03-29 10:47:07.781217,\N,\N,\N,partial,\N,\N,\N,\N,\N,\N,\N
+71,5,2,2,CHIKA,02 GOODS / SANDALS / CHIKA,1/5/71/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+30,5,2,2,ELITE,02 GOODS / SANDALS / ELITE,1/5/30/,\N,2026-03-29 10:42:54.084337,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+57,5,2,2,KIRION_KIDS,02 GOODS / SANDALS / KIRION_KIDS,1/5/57/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+60,5,2,2,MEKI,02 GOODS / SANDALS / MEKI,1/5/60/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+62,5,2,2,NIRUN,02 GOODS / SANDALS / NIRUN,1/5/62/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+63,5,2,2,TORANI,02 GOODS / SANDALS / TORANI,1/5/63/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+64,5,2,2,VARI_O,02 GOODS / SANDALS / VARI_O,1/5/64/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+65,5,2,2,VARI_S,02 GOODS / SANDALS / VARI_S,1/5/65/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+66,5,2,2,VARI_S1.0,02 GOODS / SANDALS / VARI_S1.0,1/5/66/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+67,5,2,2,VARI_V,02 GOODS / SANDALS / VARI_V,1/5/67/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+68,5,2,2,VARI_V1.0,02 GOODS / SANDALS / VARI_V1.0,1/5/68/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+69,5,2,2,VIX,02 GOODS / SANDALS / VIX,1/5/69/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+72,5,2,2,KABA,02 GOODS / SANDALS / KABA,1/5/72/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+73,5,2,2,ROBA,02 GOODS / SANDALS / ROBA,1/5/73/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+53,30,2,2,ELITE1.5,02 GOODS / SANDALS / ELITE / ELITE1.5,1/5/30/53/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+54,30,2,2,ELITE2.0,02 GOODS / SANDALS / ELITE / ELITE2.0,1/5/30/54/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+58,57,2,2,KIRION1.0,02 GOODS / SANDALS / KIRION_KIDS / KIRION1.0,1/5/57/58/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+59,57,2,2,KIRION1.5,02 GOODS / SANDALS / KIRION_KIDS / KIRION1.5,1/5/57/59/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+61,60,2,2,MEKI1.5,02 GOODS / SANDALS / MEKI / MEKI1.5,1/5/60/61/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+25,1,2,2,SNEAKERS,02 GOODS / SNEAKERS,1/25/,\N,2026-03-29 10:29:43.008767,2026-03-30 02:49:39.345035,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+4,\N,1,2,00 Deliveries,00 Deliveries,4/,\N,2026-03-18 12:25:34.329804,2026-03-30 03:08:09.858042,"{""1"": 212}","{""1"": 240}",\N,partial,\N,\N,\N,\N,\N,\N,\N
+2,\N,1,2,01 EXPENSES,01 EXPENSES,2/,\N,2026-03-18 05:03:51.572879,2026-03-30 03:08:56.068942,"{""1"": 214}","{""1"": 239}",\N,partial,\N,"{""1"": ""standard""}",\N,\N,\N,\N,\N
+3,\N,1,2,03 Services,03 Services,3/,\N,2026-03-18 05:03:51.572879,2026-03-30 03:11:35.90419,"{""1"": 241}","{""1"": 242}",\N,partial,\N,"{""1"": ""standard""}",\N,\N,\N,\N,\N
+56,55,2,2,JARIX1.5,02 GOODS / SANDALS / SNEAKERS / JARIX / JARIX1.5,1/5/76/55/56/,\N,2026-03-29 10:44:05.590523,2026-03-31 04:59:09.270841,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+55,76,2,2,JARIX,02 GOODS / SANDALS / SNEAKERS / JARIX,1/5/76/55/,\N,2026-03-29 10:44:05.590523,2026-03-31 04:59:09.270841,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+70,69,2,2,VIX_KY,02 GOODS / SANDALS / VIX / VIX_KY,1/5/69/70/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+74,5,2,2,UMA,02 GOODS / SANDALS / UMA,1/5/74/,\N,2026-03-29 10:44:05.590523,2026-03-30 02:42:24.461957,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N
+75,\N,1,1,Food,Food,75/,\N,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231,\N,\N,\N,partial,\N,\N,\N,\N,\N,\N,\N
+76,5,2,2,SNEAKERS,02 GOODS / SANDALS / SNEAKERS,1/5/76/,\N,2026-03-31 04:58:45.112648,2026-03-31 04:58:53.434644,\N,\N,\N,partial,"{""1"": ""real_time""}","{""1"": ""average""}",\N,\N,\N,\N,\N

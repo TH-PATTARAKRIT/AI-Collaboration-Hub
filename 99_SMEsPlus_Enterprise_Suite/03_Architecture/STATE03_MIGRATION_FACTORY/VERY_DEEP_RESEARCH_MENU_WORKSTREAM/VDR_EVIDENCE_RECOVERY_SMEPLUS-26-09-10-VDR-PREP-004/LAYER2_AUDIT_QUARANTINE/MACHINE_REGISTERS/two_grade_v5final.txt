@@ -1,0 +1,17 @@
+P4-R8: CONTAINER rule applied uniformly to 17 nodes (was 3 of 17)
+
+DIMENSION             APPLIC  DETERM    DET%  RES-VER     RV%
+PROCESS                 1547    1505  97.29%        0   0.00%
+CONFIGURATION           4095    4095 100.00%        7   0.17%
+OPTIONAL_FUNCTION       4083    4083 100.00%        7   0.17%
+SOURCE                  5074    5074 100.00%     2729  53.78%
+RUNTIME                 5074    5074 100.00%     2854  56.25%
+DATA_MODEL              2863    2863 100.00%      711  24.83%
+SECURITY                4058    4058 100.00%     2959  72.92%
+CROSS_MODULE            2909    2909 100.00%     2560  88.00%
+EDGE                    1167    1167 100.00%      151  12.94%
+ALL CELLS              30870   30828  99.86%    11978  38.80%
+
+DETERMINED-COMPLETE: 5032 of 5074
+RESEARCH-COMPLETE  : 0 of 5074
+verified-dims distribution: {0: 832, 1: 769, 2: 726, 3: 1237, 4: 1504, 5: 6}

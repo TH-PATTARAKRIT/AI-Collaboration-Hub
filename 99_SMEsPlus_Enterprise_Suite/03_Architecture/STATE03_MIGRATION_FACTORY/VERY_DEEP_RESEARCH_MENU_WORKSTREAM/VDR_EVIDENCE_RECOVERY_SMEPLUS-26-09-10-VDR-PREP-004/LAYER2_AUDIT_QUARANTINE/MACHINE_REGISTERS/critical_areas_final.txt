@@ -1,0 +1,18 @@
+CRITICAL AREA                           POP  CELLS    RV     RV%  blocking
+1 Financial Posting                      16    118    68   57.6%  PROC 0/3; CONF 0/16; OPTI 5/16; SOUR 13/16; RUNT 15/16; DATA 0/1
+2 Stock Ownership                        46    322   175   54.3%  CONF 0/46; OPTI 3/46; RUNT 44/46; DATA 0/46; CROS 36/46
+3 Stock Quantity                         26    182   107   58.8%  CONF 0/26; OPTI 4/26; DATA 0/26; SECU 25/26
+4 Inventory Valuation                    12     90    50   55.6%  PROC 0/3; CONF 2/12; OPTI 2/12; SOUR 9/12; DATA 0/12; SECU 10/12
+5 Security                              270    898    92   10.2%  CONF 0/44; OPTI 5/44; SOUR 0/270; RUNT 87/270; SECU 0/270
+6 Tenant Isolation                        0      0     0     n/a  
+7 Company Isolation                      75    389   187   48.1%  CONF 0/41; OPTI 3/41; SOUR 41/75; RUNT 71/75; DATA 0/41; SECU 41
+8 Approval Control                        9     63    31   49.2%  CONF 0/9; OPTI 0/9; RUNT 4/9; DATA 0/9
+9 Audit Trail                            32    224   124   55.4%  CONF 0/32; OPTI 6/32; RUNT 22/32; DATA 0/32
+10 Identity                              61    393   202   51.4%  PROC 0/1; CONF 0/61; OPTI 4/49; SOUR 48/61; RUNT 54/61; DATA 0/6
+11 Immutability                          47    186   121   65.1%  PROC 0/15; RUNT 29/47; DATA 15/47
+12 Period Close                          16    112    62   55.4%  CONF 0/16; OPTI 1/16; RUNT 14/16; DATA 0/16; CROS 15/16
+13 Reversal                              47    335    57   17.0%  PROC 0/47; CONF 2/47; OPTI 4/47; SOUR 0/47; RUNT 3/47; DATA 0/3;
+14 Data Integrity                       251   1629   939   57.6%  CONF 0/219; OPTI 24/219; RUNT 234/251; DATA 0/251; SECU 215/219;
+15 Cross-Module Financial Handoff         4     12     4   33.3%  SOUR 0/4; CROS 0/4
+
+union 737 | memberships 912 | at 100%: 0 of 15

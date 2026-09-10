@@ -1,0 +1,6 @@
+DEPLOYMENT     GEN  CATS  valuation config             MOVES   DONE  VALUED ACCT-LINKED
+BK12MAY26       19    37  {"1": "real_time"}=27, unset=10  14441   3680    3680           0
+iEVING          19    37  {"1": "real_time"}=28, unset=9     13      8       4           0
+iTEST02         19  3980  unset=3977, {"1": "periodic"}=3     55      2       2           0
+idemo18_uat     18   126  unset=126                   51081  46048       0           0
+iSMEs           16    30  ?=30                       103949  81909       0           0

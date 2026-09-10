@@ -1,0 +1,372 @@
+{
+ "BK12MAY26": {
+  "ir_config_parameter": {
+   "reason": "",
+   "retained": true,
+   "rows": 51,
+   "sha256": "f5d9d70484c799c134b334a9a376a5326c26f3d71ea2dd9dce510eeda9414406"
+  },
+  "ir_cron": {
+   "reason": "",
+   "retained": true,
+   "rows": 61,
+   "sha256": "376577c8eeb2928db8be284dbaf4c5d38d3a9128ad79308647fed3db2b047d98"
+  },
+  "ir_model_access": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 1296,
+   "sha256": "2fa028e9314ab4579a84703d35410572a88adbba9e5cfd4570573f15223d7703"
+  },
+  "ir_model_constraint": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 3549,
+   "sha256": "9d1baf614d3f43027993b981727bc654baef9260397db594d8c29dc6a35c4084"
+  },
+  "ir_model_data": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 62445,
+   "sha256": "8411815c86d006a89f53d0bc8085cf2efe056667c03e48f92d85bbc154ac7bb5"
+  },
+  "ir_model_fields": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 16009,
+   "sha256": "73e89653840181b4b1ec7d801a0510ae2d3c605906cdf5d7a46b1ae7b0eb76f3"
+  },
+  "ir_module_module": {
+   "reason": "",
+   "retained": true,
+   "rows": 1508,
+   "sha256": "12db32fd1b0950a21d9c78faf2cfb99e92f9a2e19ad7d7cec0593e8d23a6b0b9"
+  },
+  "ir_ui_menu": {
+   "reason": "",
+   "retained": true,
+   "rows": 603,
+   "sha256": "0408244449902369c5a11cf1ac450dcd7bc3a0f6e9e0f40efd79f9b18f170a96"
+  },
+  "product_category": {
+   "reason": "",
+   "retained": true,
+   "rows": 37,
+   "sha256": "be944aa4e2026d8ec6a305e94a4ec40ac13acee405178559651f6e0000237573"
+  },
+  "res_company": {
+   "reason": "",
+   "retained": true,
+   "rows": 44,
+   "sha256": "c14059072433c4ef25c91df5c4f0d69be52e20ee8b402162f4b99ce314b5383e"
+  },
+  "res_groups": {
+   "reason": "",
+   "retained": true,
+   "rows": 91,
+   "sha256": "d42d47dacfdcbccfd7de626408e44596922f951a73d83f22ec1df53682f44dff"
+  },
+  "stock_move": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 14441,
+   "sha256": "80bc43543aa41d95f2cef71479b31cb1323adf8371f6f81f972c92d1e3b44e73"
+  }
+ },
+ "iEVING": {
+  "ir_config_parameter": {
+   "reason": "",
+   "retained": true,
+   "rows": 51,
+   "sha256": "7aceb4cbb83d9126c5eab1e36f072d384fcef19376efd02020c4063e8de0e369"
+  },
+  "ir_cron": {
+   "reason": "",
+   "retained": true,
+   "rows": 57,
+   "sha256": "bf17097d15eb73b5e307a49cf7b1a70fd21bddf269a92cb376f3f8dbc69c68bc"
+  },
+  "ir_model_access": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 1233,
+   "sha256": "45ad41acefd51f185135a206255882f5c8d81829f7663ba172b4cc9bf58b9354"
+  },
+  "ir_model_constraint": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 3506,
+   "sha256": "27d2691a144c4ab498ef350d09ea77ab22aafb238e957ba81133988f2afd9d3d"
+  },
+  "ir_model_data": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 39985,
+   "sha256": "ae8b4c5fc5a12e40ba82758319de8a25a02e3031ef66786a442127480ea2d4af"
+  },
+  "ir_model_fields": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 15622,
+   "sha256": "2678b9242fa6f7ddd4fdaffea018ddbc5b976caa8be3814e839a25d01de9b66c"
+  },
+  "ir_module_module": {
+   "reason": "",
+   "retained": true,
+   "rows": 1504,
+   "sha256": "c4347e8f24c07a5cc697334c545bb2fad798e7dd840175b16dd5bca36d399338"
+  },
+  "ir_ui_menu": {
+   "reason": "",
+   "retained": true,
+   "rows": 580,
+   "sha256": "9f2135bf86f815cad2f1b190c5974f5a9245140e02b79d115a501145a59d1850"
+  },
+  "product_category": {
+   "reason": "",
+   "retained": true,
+   "rows": 37,
+   "sha256": "e24d3d4b730fc5e6ed70954c1bfa04b248f9b1b92eb9beccbf22f76029f38aad"
+  },
+  "res_company": {
+   "reason": "",
+   "retained": true,
+   "rows": 44,
+   "sha256": "a276110721b1e6ecffe4090b6a9d7f784b9aa02d0edc5de39484fb4b62f05b8f"
+  },
+  "res_groups": {
+   "reason": "",
+   "retained": true,
+   "rows": 90,
+   "sha256": "7d51bdfb72d4db195de272c6d2dbc9e8e4cf4423a6c62f64f74df9b14b3f1a19"
+  },
+  "stock_move": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 13,
+   "sha256": "2f3050c0c6fc48198c7e915a8d56e3c2aa901180f01de82dc60ef8ccf863eb00"
+  }
+ },
+ "iSMEs": {
+  "ir_config_parameter": {
+   "reason": "",
+   "retained": true,
+   "rows": 43,
+   "sha256": "7c4a1115afc0a09eb98869d8529f9efce55c95e988d186c818bd007ed6f097d4"
+  },
+  "ir_cron": {
+   "reason": "",
+   "retained": true,
+   "rows": 33,
+   "sha256": "5824cda40cd71e740f806c410e7cf0884dfe5ba718b28a536e1a5db10911b115"
+  },
+  "ir_model_access": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 1025,
+   "sha256": "9fc73b40036cf3507a2d4c1717c96ef5e77facd53ffc60bd6a5858cd30d2b33b"
+  },
+  "ir_model_constraint": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 2697,
+   "sha256": "fa1d3953eb7aa6bae282578c926f43ce8dbc39d4efd46cb84fd713dd1aa3132c"
+  },
+  "ir_model_data": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 107873,
+   "sha256": "2332877aff02024be65deb91a73a7c3059dc4eba88075b95316e2ca5509f1c27"
+  },
+  "ir_model_fields": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 11992,
+   "sha256": "2a363b682335a3c70735e25564dd8a7e669c972c743989068ad6941cd0a62831"
+  },
+  "ir_module_module": {
+   "reason": "",
+   "retained": true,
+   "rows": 1009,
+   "sha256": "0e24f0267e978abdff755392fe1a8f8af95edef26b0524c8617798640ba58102"
+  },
+  "ir_ui_menu": {
+   "reason": "",
+   "retained": true,
+   "rows": 472,
+   "sha256": "c66a56fee11bdb66505f609ab839b6df42b8a2d8207a493326c2ced46fb012dd"
+  },
+  "product_category": {
+   "reason": "",
+   "retained": true,
+   "rows": 30,
+   "sha256": "269fd60d56a79a6b92aeb8b0c68219ca6842b3c957d843c93d3ea5f85e91d186"
+  },
+  "res_company": {
+   "reason": "",
+   "retained": true,
+   "rows": 1,
+   "sha256": "cf1205fb82510dd95e120ffd672eb132f393356043a011c61ae7e66c3d178894"
+  },
+  "res_groups": {
+   "reason": "",
+   "retained": true,
+   "rows": 82,
+   "sha256": "bcc7def2643b38fb43620d758a0b0439a4add7537ec088127e5f43386ca27645"
+  },
+  "stock_move": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 103949,
+   "sha256": "61b9812f18db3e0447508a9dccfc5e288ba1be247ccde06019afabb012678da8"
+  }
+ },
+ "iTEST02": {
+  "ir_config_parameter": {
+   "reason": "",
+   "retained": true,
+   "rows": 72,
+   "sha256": "9b1bc5903755f62fa7ef1c19194e97becffd507a75e19e62cc7e73190ff3c8b3"
+  },
+  "ir_cron": {
+   "reason": "",
+   "retained": true,
+   "rows": 72,
+   "sha256": "31a5f6396e2dcdac452b9468ae205c9a6d1de0281d447d192a54cb74e5f36b9e"
+  },
+  "ir_model_access": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 1780,
+   "sha256": "292d97857dab475031faa23a7410b3c9187de483f3ea6aff437deafefeb47617"
+  },
+  "ir_model_constraint": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 5309,
+   "sha256": "7fcda304ef10a6c693c6d0388b9fa9fe3dfc7d92618763d5eb79a1d2a39bc7e6"
+  },
+  "ir_model_data": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 192054,
+   "sha256": "6939887b932c338e319a40e14ed80f14bab1e7464b5189409a29e3ac39fd8a72"
+  },
+  "ir_model_fields": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 23112,
+   "sha256": "59360b9679bce3e89e99420374356af533ad6d15265165ad51720ed1f6e8f0b1"
+  },
+  "ir_module_module": {
+   "reason": "",
+   "retained": true,
+   "rows": 1559,
+   "sha256": "93c3a35ccba68a55f43d12fffddfd546905d2826d5289e7d833baa46fdb33a59"
+  },
+  "ir_ui_menu": {
+   "reason": "",
+   "retained": true,
+   "rows": 958,
+   "sha256": "c4310a205765e8b31f60a73d943384d6ea2a62a5f162d45d53dc846d1164dcf7"
+  },
+  "product_category": {
+   "reason": "",
+   "retained": true,
+   "rows": 3980,
+   "sha256": "acf2c67e74c74781802a837f4994036fa11cde86fb337098d183a42df6f13e30"
+  },
+  "res_company": {
+   "reason": "",
+   "retained": true,
+   "rows": 1,
+   "sha256": "545b46db5b54a345bd8af8e52f97f0392bb1153e1101c6ef905b4f1e8861a922"
+  },
+  "res_groups": {
+   "reason": "",
+   "retained": true,
+   "rows": 150,
+   "sha256": "46c6410ad853a7bd3304df0f4bcee6ff07c020cc3aadc34e9c0d5b6967882a9c"
+  },
+  "stock_move": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 55,
+   "sha256": "157418ff4e9be0b5733022484a4b9ef8617dc085f8d6e1d1651a534517622eec"
+  }
+ },
+ "idemo18_uat": {
+  "ir_config_parameter": {
+   "reason": "",
+   "retained": true,
+   "rows": 56,
+   "sha256": "15160274ee5bae262d585fc93e13de4935791567e07e5ac96b10ccb036cdd9e5"
+  },
+  "ir_cron": {
+   "reason": "",
+   "retained": true,
+   "rows": 66,
+   "sha256": "298b9fbbf2df2d48f69941a70550a4c839c65d68d887075d30c7db75397fa0c7"
+  },
+  "ir_model_access": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 1698,
+   "sha256": "2b0e9c329619729a4048f33dfa03853ffc87bd2f663bb54b201018f456d368ad"
+  },
+  "ir_model_constraint": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 4505,
+   "sha256": "01d6861e534411a984edddcad4e4cf48b81a1efc5f7dbeeba442bd6e311af5d1"
+  },
+  "ir_model_data": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 225529,
+   "sha256": "305380aa1ab53ad694b148c5acacb6d0031951527cebc81f0133184cd86f4005"
+  },
+  "ir_model_fields": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 19431,
+   "sha256": "c1b23c343f9199d7ebbd30940dc3916bcaf0e2079b86d7b80f780bf0342e5eb3"
+  },
+  "ir_module_module": {
+   "reason": "",
+   "retained": true,
+   "rows": 1369,
+   "sha256": "d2f2e9fcd7ae1b4ae834bf5d2784d300625313a14114c762da5d5c74a643cb21"
+  },
+  "ir_ui_menu": {
+   "reason": "",
+   "retained": true,
+   "rows": 824,
+   "sha256": "6631d6ea60a227e935b9a5c8142c26bd0e63c9960b9ab79dd026af3b0a51958c"
+  },
+  "product_category": {
+   "reason": "",
+   "retained": true,
+   "rows": 126,
+   "sha256": "8bc8ac11b11ce45e221de534aeed212d915280e1e298f7c70677806a420e021c"
+  },
+  "res_company": {
+   "reason": "",
+   "retained": true,
+   "rows": 4,
+   "sha256": "4a03631f790c7099066a7a044599f377e5b88ba05a57432565beb84fd6db348a"
+  },
+  "res_groups": {
+   "reason": "",
+   "retained": true,
+   "rows": 139,
+   "sha256": "1057cc36e6c0216b09229ad0908773abccb8e80c62db21d2297db1f750b14bfe"
+  },
+  "stock_move": {
+   "reason": "omitted for size; regenerate with the published command against the named dump",
+   "retained": false,
+   "rows": 51081,
+   "sha256": "b890dad7586108ffca0b2ab8b4cae4a073d57ca7ee2af39683b6addffa85c87b"
+  }
+ }
+}

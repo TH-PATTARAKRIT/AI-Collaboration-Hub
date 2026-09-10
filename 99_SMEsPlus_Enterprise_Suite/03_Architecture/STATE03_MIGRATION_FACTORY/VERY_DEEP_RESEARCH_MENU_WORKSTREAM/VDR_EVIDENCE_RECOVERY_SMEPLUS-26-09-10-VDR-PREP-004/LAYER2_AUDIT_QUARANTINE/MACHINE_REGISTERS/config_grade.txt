@@ -1,0 +1,19 @@
+      702  gated — nine axes determined for its gate
+      237  is a switch — OFF/ON traced for 26 of 49; not all
+     3156  no element-level gate — condition is "none", OFF/ON does not arise
+
+distinct gates named by the register: 42   (LESA source census: 42 governing / 49 incl. switch-only)
+
+PROCESS               1547      0   0.00%
+CONFIGURATION         4095    709  17.31%
+OPTIONAL_FUNCTION     4083    913  22.36%
+SOURCE                5074   2729  53.78%
+RUNTIME               5074   2854  56.25%
+DATA_MODEL            2863    711  24.83%
+SECURITY              4058   2959  72.92%
+CROSS_MODULE          2909   2560  88.00%
+EDGE                  1167    151  12.94%
+ALL CELLS            30870  13586  44.01%
+
+RESEARCH-COMPLETE: 0 of 5074
+verified-dims dist: {0: 221, 1: 874, 2: 1060, 3: 1314, 4: 1375, 5: 230}

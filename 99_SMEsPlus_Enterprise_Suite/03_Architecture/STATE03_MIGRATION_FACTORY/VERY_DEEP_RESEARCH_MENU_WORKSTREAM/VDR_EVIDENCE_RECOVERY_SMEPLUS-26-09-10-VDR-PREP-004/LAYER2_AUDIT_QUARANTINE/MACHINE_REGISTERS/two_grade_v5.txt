@@ -1,0 +1,43 @@
+RULES APPLIED
+        3  P4-R1 container RUNTIME+SECURITY restored
+     2854  P4-R2 runtime ELEMENT observed
+      617  P4-R2 runtime determined ABSENT
+     1603  P4-R2 runtime indirect/module only
+     2959  P4-R3 security enumerated
+     2560  P4-R4 cross-module enumerated
+      711  P4-R5 data condition established
+      151  P4-R6 edge affirmative
+
+DIMENSION             APPLIC  DETERM    DET%  RES-VER     RV%
+PROCESS                 1561    1519  97.31%        0   0.00%
+CONFIGURATION           4109    4109 100.00%        7   0.17%
+OPTIONAL_FUNCTION       4097    4097 100.00%        7   0.17%
+SOURCE                  5074    5074 100.00%        0   0.00%
+RUNTIME                 5074    5074 100.00%     2854  56.25%
+DATA_MODEL              2863    2863 100.00%      711  24.83%
+SECURITY                4058    4058 100.00%     2959  72.92%
+CROSS_MODULE            2909    2909 100.00%     2560  88.00%
+EDGE                    1167    1167 100.00%      151  12.94%
+ALL CELLS              30912   30870  99.86%     9249  29.92%
+
+DETERMINED-COMPLETE: 5032 of 5074
+RESEARCH-COMPLETE  : 0 of 5074
+
+P4-R7 CONTROL: a corpus pointer resolves FILE+LINE; a fabricated pointer resolves NO FILE — the test can pass and can fail
+P4-R7 pointer resolution: {'FILE ONLY': 2159, 'FILE+LINE': 2729, 'NO FILE': 186}
+
+DIMENSION             APPLIC  DETERM    DET%  RES-VER     RV%
+PROCESS                 1561    1519  97.31%        0   0.00%
+CONFIGURATION           4109    4109 100.00%        7   0.17%
+OPTIONAL_FUNCTION       4097    4097 100.00%        7   0.17%
+SOURCE                  5074    5074 100.00%     2729  53.78%
+RUNTIME                 5074    5074 100.00%     2854  56.25%
+DATA_MODEL              2863    2863 100.00%      711  24.83%
+SECURITY                4058    4058 100.00%     2959  72.92%
+CROSS_MODULE            2909    2909 100.00%     2560  88.00%
+EDGE                    1167    1167 100.00%      151  12.94%
+ALL CELLS              30912   30870  99.86%    11978  38.75%
+
+DETERMINED-COMPLETE: 5032 of 5074
+RESEARCH-COMPLETE  : 0 of 5074
+items at >=7 of their applicable dimensions verified: 0

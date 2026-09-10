@@ -1,0 +1,29 @@
+GATE                                         ELEMS  group present on / elements present on   verdict
+stock.group_stock_multi_locations               96  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+uom.group_uom                                   76  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+stock.group_production_lot                      67  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+stock.group_tracking_lot                        57  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+base.group_no_one                               56  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+stock.group_stock_manager                       34  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+mrp.group_mrp_routings                          26  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+base.group_user                                 24  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+stock.group_tracking_owner                      22  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+quality.group_quality_user                      21  grp:4/5  elems:1/5  -> INSTALLATION-COUPLED — elements only where the gate is
+stock.group_stock_user                          19  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+product.group_product_variant                   17  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+point_of_sale.group_pos_manager                 14  grp:2/5  elems:2/5  -> INSTALLATION-COUPLED — elements only where the gate is
+mrp.group_mrp_user                              10  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+mrp.group_mrp_manager                            9  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+stock.group_adv_location                         9  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+point_of_sale.group_pos_user                     6  grp:2/5  elems:2/5  -> INSTALLATION-COUPLED — elements only where the gate is
+mrp_plm.group_plm_user                           6  grp:1/5  elems:1/5  -> INSTALLATION-COUPLED — elements only where the gate is
+mrp_workorder.group_mrp_wo_shop_floor            5  grp:4/5  elems:4/5  -> INSTALLATION-COUPLED — elements only where the gate is
+sales_team.group_sale_manager                    5  grp:5/5  elems:2/5  -> INSTALLATION-COUPLED — elements only where the gate is
+base.group_system                                4  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+quality.group_quality_manager                    4  grp:4/5  elems:1/5  -> INSTALLATION-COUPLED — elements only where the gate is
+mrp_plm.group_plm_manager                        2  grp:1/5  elems:1/5  -> INSTALLATION-COUPLED — elements only where the gate is
+maintenance.group_equipment_manager              1  grp:5/5  elems:5/5  -> INSTALLATION-COUPLED — elements only where the gate is
+point_of_sale.group_pos_preset                   1  grp:2/5  elems:2/5  -> INSTALLATION-COUPLED — elements only where the gate is
+product.group_product_pricelist                  1  grp:5/5  elems:2/5  -> INSTALLATION-COUPLED — elements only where the gate is
+
+verdicts: {'INSTALLATION-COUPLED': 26} | gates discriminated: 26

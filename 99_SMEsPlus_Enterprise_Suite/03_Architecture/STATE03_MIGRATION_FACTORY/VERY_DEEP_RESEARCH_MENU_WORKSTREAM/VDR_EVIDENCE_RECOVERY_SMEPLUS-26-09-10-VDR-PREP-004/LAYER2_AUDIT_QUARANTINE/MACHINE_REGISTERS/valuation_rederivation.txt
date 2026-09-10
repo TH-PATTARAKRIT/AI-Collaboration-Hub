@@ -1,0 +1,14 @@
+movement rows parsed: 14441
+columns present: True, is_in=True, is_out=True, account_move_id=True
+
+STATE BASIS — the whole point of the unreconciled denominator:
+      6336  assigned
+      3680  done
+      2294  confirmed
+      2131  cancel
+
+completed (state='done')      : 3680
+all movement rows              : 14441
+completed movements carrying a per-movement value : 3680  (100.0%)
+   of those, non-zero value                       : 2431
+completed movements linked to an accounting entry  : 0  (0.0%)

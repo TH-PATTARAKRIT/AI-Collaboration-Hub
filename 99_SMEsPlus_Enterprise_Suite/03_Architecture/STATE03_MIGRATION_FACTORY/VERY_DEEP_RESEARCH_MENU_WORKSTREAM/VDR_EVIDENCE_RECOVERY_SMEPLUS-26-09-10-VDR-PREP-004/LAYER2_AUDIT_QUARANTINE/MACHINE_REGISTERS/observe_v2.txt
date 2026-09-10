@@ -1,0 +1,30 @@
+BK12MAY26    imd=  62445 fields= 16009 models=  756 acl_xmlids= 1296 constraints= 3545 mods=251
+iEVING       imd=  39985 fields= 15622 models=  749 acl_xmlids= 1233 constraints= 3502 mods=232
+iSMEs        imd= 107873 fields= 11992 models=  507 acl_xmlids= 1025 constraints= 2696 mods=190
+iTEST02      imd= 192054 fields= 23112 models= 1035 acl_xmlids= 1782 constraints= 5308 mods=453
+idemo18_uat  imd= 225529 fields= 19431 models=  819 acl_xmlids= 1698 constraints= 4503 mods=361
+
+CLASS            n    OBS       %  EVIDENCE GRADE
+FIELD         1846   1589   86.1%  ELEMENT OBSERVED (own field record)
+BEHAVIOUR      614    553   90.1%  MODULE-LEVEL ONLY
+GATEDELEM      525    504   96.0%  MODULE-LEVEL ONLY
+VIEW           493    429   87.0%  ELEMENT OBSERVED (own registry record)
+BUTTON         431    368   85.4%  MODULE-LEVEL ONLY
+SETTING        237    179   75.5%  MODULE-LEVEL ONLY
+ACTION         201    187   93.0%  ELEMENT OBSERVED (own registry record)
+ACL            180    174   96.7%  INDIRECT (model present; ACL row not id-resolvable)
+MENUX          134    110   82.1%  ELEMENT OBSERVED (own registry record)
+OBJECT          96     90   93.8%  ELEMENT OBSERVED (model registered)
+HANDOFF         90     79   87.8%  ELEMENT OBSERVED (model registered)
+MENU            62     53   85.5%  ELEMENT OBSERVED (own registry record)
+RULE            46     44   95.7%  ELEMENT OBSERVED (own registry record)
+GROUP           44     43   97.7%  ELEMENT OBSERVED (own registry record)
+CONSTRAINT      32     29   90.6%  ELEMENT OBSERVED (constraint record)
+AUTOMATION      26     11   42.3%  ELEMENT OBSERVED (own registry record)
+SEQUENCE        12     10   83.3%  ELEMENT OBSERVED (own registry record)
+SYSPARAM         5      4   80.0%  MODULE-LEVEL ONLY
+
+ELEMENT   applicable= 3082  observed= 2674   86.8%
+INDIRECT  applicable=  180  observed=  174   96.7%
+MODULE    applicable= 1812  observed= 1608   88.7%
+TOTAL     applicable= 5074  observed= 4456   87.8%

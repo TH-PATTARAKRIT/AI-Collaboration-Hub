@@ -1,0 +1,7 @@
+       60  DEFECT: classed optional, no activation condition
+      302  capability route COVERED
+     3114  core, always available — not an optional subject
+      605  module route COVERED
+        2  other route, uncovered
+
+OPTIONAL_FUNCTION: 913 of 4083 = 22.36%   (was 7 = 0.17%)

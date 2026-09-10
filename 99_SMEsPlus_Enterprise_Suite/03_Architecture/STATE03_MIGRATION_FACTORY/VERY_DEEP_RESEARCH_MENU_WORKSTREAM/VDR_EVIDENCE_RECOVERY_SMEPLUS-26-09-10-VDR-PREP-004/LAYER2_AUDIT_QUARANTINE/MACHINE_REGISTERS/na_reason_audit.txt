@@ -1,0 +1,32 @@
+== every distinct NA reason in POPULATION_V4, by dimension ==
+
+PROCESS  (NA cells: 3513)
+    3510  the class is a declaration, not an invocable behaviour
+       3  grouping container — invokes nothing (kind=CONTAINER in its own detail field)
+
+CONFIGURATION  (NA cells: 965)
+     962  the class carries no configuration condition
+       3  grouping container — invokes nothing (kind=CONTAINER in its own detail field)
+
+OPTIONAL_FUNCTION  (NA cells: 977)
+     974  the class cannot be optionally activated independently of its module
+       3  grouping container — invokes nothing (kind=CONTAINER in its own detail field)
+
+RUNTIME  (NA cells: 3)
+       3  grouping container — invokes nothing (kind=CONTAINER in its own detail field)
+
+DATA_MODEL  (NA cells: 2211)
+    2211  the class holds no data of its own
+
+SECURITY  (NA cells: 1019)
+    1016  the class carries no access-control surface of its own
+       3  grouping container — invokes nothing (kind=CONTAINER in its own detail field)
+
+CROSS_MODULE  (NA cells: 2165)
+    2165  the class has no cross-boundary relation of its own
+
+EDGE  (NA cells: 3907)
+    3907  the class has no lifecycle and therefore no reverse/cancel/return path
+
+== items whose reachability says NOT INSTALLED / UNMEASURED ==
+[('MODULE INSTALLED ON AN OBSERVED DEPLOYMENT', 4196), ('MODULE NOT INSTALLED ON ANY OBSERVED DEPLOYMENT', 619), ('UNMEASURED — object-level reachability not observed', 186), ('RUNTIME REACHABLE (2 of 2)', 46), ('RUNTIME REACHABLE — ACTIVE AND HAS EXECUTED', 11), ('OPTIONAL MODULE DEPENDENT — not installed on any observed de', 10), ('RUNTIME REACHABLE (1 of 2)', 6)]

@@ -1,0 +1,15 @@
+models in the deployment field registry : 756
+owned objects (population)              : 96
+boundary objects already carried (HANDOFF): 90
+
+HOP 1  — objects directly related to an owned object : 83
+   of those already carried as HANDOFF               : 39
+   NOT carried                                       : 44
+
+HOP 2  — objects reachable only through a hop-1 object: 132
+FIXPOINT — full relational closure                    : 369 objects, depth 6
+
+COST OF EXTENDING THE BOUNDARY TO HOP 2:
+   population would grow from 96 owned objects to 272
+   a 2.8x increase in object population
+   full closure would be 3.8x — the degeneration the one-hop rule exists to prevent

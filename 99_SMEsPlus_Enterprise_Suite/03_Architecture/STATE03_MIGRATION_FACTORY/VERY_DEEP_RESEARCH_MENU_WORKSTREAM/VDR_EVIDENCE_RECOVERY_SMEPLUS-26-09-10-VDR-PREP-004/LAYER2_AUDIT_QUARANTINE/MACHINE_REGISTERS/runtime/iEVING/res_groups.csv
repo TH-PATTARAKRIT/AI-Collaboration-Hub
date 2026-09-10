@@ -1,0 +1,91 @@
+id,name,sequence,privilege_id,create_uid,write_uid,comment,share,create_date,write_date,api_key_duration
+2,"{""en_US"": ""Access Rights""}",\N,\N,1,1,\N,\N,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471,\N
+3,"{""en_US"": ""Bypass HTML Field Sanitize""}",\N,\N,1,1,\N,\N,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471,\N
+5,"{""en_US"": ""Multi Companies""}",\N,\N,1,1,\N,\N,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471,\N
+6,"{""en_US"": ""Multi Currencies""}",\N,\N,1,1,\N,\N,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471,\N
+7,"{""en_US"": ""Technical Features""}",\N,\N,1,1,\N,\N,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471,\N
+8,"{""en_US"": ""Allowed""}",\N,1,1,1,\N,\N,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471,\N
+9,"{""en_US"": ""Creation""}",\N,2,1,1,\N,\N,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471,\N
+89,"{""en_US"": ""User""}",\N,\N,1,1,\N,\N,2026-06-25 11:48:55.802964,2026-06-25 11:48:55.802964,\N
+12,"{""en_US"": ""Default access for new users""}",\N,\N,1,1,\N,\N,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471,\N
+23,"{""en_US"": ""User: All Documents""}",20,5,1,1,"{""en_US"": ""the user will have access to all records of everyone in the sales application.""}",\N,2026-03-18 05:03:54.972867,2026-03-29 06:22:38.196183,\N
+14,"{""en_US"": ""Manage Multiple Units of Measure""}",\N,\N,1,1,\N,\N,2026-03-18 05:03:33.014894,2026-03-18 05:03:33.014894,\N
+15,"{""en_US"": ""Canned Response Administrator""}",\N,3,1,1,\N,\N,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538,\N
+16,"{""en_US"": ""Mail Template Editor""}",\N,\N,1,1,\N,\N,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538,\N
+17,"{""en_US"": ""Receive notifications in Odoo""}",\N,\N,1,1,\N,\N,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538,\N
+4,"{""en_US"": ""Role / Administrator""}",\N,\N,1,1,"{""en_US"": ""Access to the settings to configure the apps""}",\N,2026-03-18 04:58:50.421471,2026-03-18 05:03:38.577538,\N
+24,"{""en_US"": ""Administrator""}",30,5,1,1,"{""en_US"": ""the user will have an access to the sales configuration as well as statistic reports.""}",\N,2026-03-18 05:03:54.972867,2026-03-29 06:22:38.196183,\N
+57,"{""en_US"": ""Display Serial & Lot Number on Invoices""}",\N,\N,1,1,\N,\N,2026-03-18 05:31:08.152547,2026-03-18 05:31:08.152547,\N
+25,"{""en_US"": ""Delivery Address""}",\N,\N,1,1,\N,\N,2026-03-18 05:04:07.882243,2026-03-29 06:22:49.558331,\N
+27,"{""en_US"": ""Invoicing""}",20,6,1,1,"{""en_US"": ""Invoices, payments and basic invoice reporting.""}",\N,2026-03-18 05:04:07.882243,2026-03-29 06:22:49.558331,\N
+31,"{""en_US"": ""Show Inalterability Features""}",\N,\N,1,1,\N,\N,2026-03-18 05:04:07.882243,2026-03-29 06:22:49.558331,\N
+32,"{""en_US"": ""Allow the cash rounding management""}",\N,\N,1,1,\N,\N,2026-03-18 05:04:07.882243,2026-03-29 06:22:49.558331,\N
+42,"{""en_US"": ""Show Lead Menu""}",\N,\N,1,1,\N,\N,2026-03-18 05:05:38.118228,2026-03-29 06:22:55.489688,\N
+43,"{""en_US"": ""Show Recurring Revenues Menu""}",\N,\N,1,1,\N,\N,2026-03-18 05:05:38.118228,2026-03-29 06:22:55.489688,\N
+35,"{""en_US"": ""Admin""}",10,8,1,1,\N,\N,2026-03-18 05:04:17.892116,2026-03-29 06:23:02.264041,\N
+47,"{""en_US"": ""Manage Multiple Warehouses""}",\N,\N,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-29 06:23:03.015949,\N
+48,"{""en_US"": ""Manage Lots / Serial Numbers""}",\N,\N,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-29 06:23:03.015949,\N
+49,"{""en_US"": ""Print GS1 Barcodes for Lot & Serial Numbers""}",\N,\N,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-29 06:23:03.015949,\N
+58,"{""en_US"": ""User""}",10,10,1,1,\N,\N,2026-03-18 05:32:08.430974,2026-03-29 06:23:22.248742,\N
+59,"{""en_US"": ""Administrator""}",20,10,1,1,\N,\N,2026-03-18 05:32:08.430974,2026-03-29 06:23:22.248742,\N
+60,"{""en_US"": ""A warning can be set on a product or a customer (Purchase)""}",\N,\N,1,1,\N,\N,2026-03-18 05:32:08.430974,2026-03-29 06:23:22.248742,\N
+61,"{""en_US"": ""Send an automatic reminder email to confirm delivery""}",\N,\N,1,1,\N,\N,2026-03-18 05:32:08.430974,2026-03-29 06:23:22.248742,\N
+37,"{""en_US"": ""Lock Confirmed Sales""}",\N,\N,1,1,\N,\N,2026-03-18 05:04:33.38448,2026-03-29 06:23:41.334943,\N
+38,"{""en_US"": ""Discount on lines""}",\N,\N,1,1,\N,\N,2026-03-18 05:04:33.38448,2026-03-29 06:23:41.334943,\N
+39,"{""en_US"": ""A warning can be set on a product or a customer (Sale)""}",\N,\N,1,1,\N,\N,2026-03-18 05:04:33.38448,2026-03-29 06:23:41.334943,\N
+40,"{""en_US"": ""Pro-forma Invoices""}",\N,\N,1,1,\N,\N,2026-03-18 05:04:33.38448,2026-03-29 06:23:41.334943,\N
+41,"{""en_US"": ""Quotation Templates""}",\N,\N,1,1,\N,\N,2026-03-18 05:04:39.706647,2026-03-29 06:23:51.561886,\N
+28,"{""en_US"": ""Invoicing & Banks""}",30,6,1,1,"{""en_US"": ""adds the accounting dashboard, bank management and follow-up reports.""}",\N,2026-03-18 05:04:07.882243,2026-03-29 06:24:40.849619,\N
+36,"{""en_US"": ""Allow to define fiscal years of more or less than a year""}",\N,\N,1,1,\N,\N,2026-03-18 05:04:19.213591,2026-03-29 06:24:40.849619,\N
+90,"{""en_US"": ""Settings""}",\N,\N,1,1,\N,\N,2026-06-25 11:48:55.802964,2026-06-25 11:48:55.802964,\N
+13,"{""en_US"": ""Technical Documentation""}",\N,\N,1,1,\N,\N,2026-03-18 04:59:17.90355,2026-03-29 06:22:13.641553,\N
+18,"{""en_US"": ""Analytic Accounting""}",\N,\N,1,1,\N,\N,2026-03-18 05:03:46.533969,2026-03-29 06:22:30.642764,\N
+19,"{""en_US"": ""Basic Pricelists""}",\N,\N,1,1,\N,\N,2026-03-18 05:03:51.572879,2026-03-29 06:22:36.495786,\N
+20,"{""en_US"": ""Manage Product Variants""}",\N,\N,1,1,\N,\N,2026-03-18 05:03:51.572879,2026-03-29 06:22:36.495786,\N
+21,"{""en_US"": ""Create""}",\N,4,1,1,\N,\N,2026-03-18 05:03:51.572879,2026-03-29 06:22:36.495786,\N
+22,"{""en_US"": ""User: Own Documents Only""}",10,5,1,1,"{""en_US"": ""the user will have access to his own data in the sales application.""}",\N,2026-03-18 05:03:54.972867,2026-03-29 06:22:38.196183,\N
+46,"{""en_US"": ""Manage Multiple Stock Locations""}",\N,\N,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-29 06:23:03.015949,\N
+50,"{""en_US"": ""Display Serial & Lot Number in Delivery Slips""}",\N,\N,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-29 06:23:03.015949,\N
+51,"{""en_US"": ""Manage Packages""}",\N,\N,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-29 06:23:03.015949,\N
+54,"{""en_US"": ""A warning can be set on a partner (Stock)""}",\N,\N,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-29 06:23:03.015949,\N
+55,"{""en_US"": ""Require a signature on your delivery orders""}",\N,\N,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-29 06:23:03.015949,\N
+56,"{""en_US"": ""Use Reception Report""}",\N,\N,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-29 06:23:03.015949,\N
+65,"{""en_US"": ""Team Approver""}",10,13,1,1,\N,\N,2026-03-18 05:33:47.704597,2026-03-29 06:23:17.433729,\N
+66,"{""en_US"": ""All Approver""}",20,13,1,1,\N,\N,2026-03-18 05:33:47.704597,2026-03-29 06:23:17.433729,\N
+67,"{""en_US"": ""Administrator""}",30,13,1,1,\N,\N,2026-03-18 05:33:47.704597,2026-03-29 06:23:17.433729,\N
+63,"{""en_US"": ""Officer: Manage all employees""}",10,12,1,1,"{""en_US"": ""The user will be able to create and edit employees.""}",\N,2026-03-18 05:33:40.052078,2026-03-29 06:23:19.896252,\N
+62,"{""en_US"": ""Equipment Manager""}",10,11,1,1,"{""en_US"": ""The user will be able to manage equipment.""}",\N,2026-03-18 05:32:49.623065,2026-03-29 06:22:33.53728,\N
+68,"{""en_US"": ""Viewer""}",10,14,1,1,\N,\N,2026-03-18 05:35:00.54713,2026-03-29 06:22:47.202223,\N
+69,"{""en_US"": ""Manager""}",20,14,1,1,\N,\N,2026-03-18 05:35:00.54713,2026-03-29 06:22:47.202223,\N
+33,"{""en_US"": ""Partial Purchase Deductibility""}",\N,\N,1,1,\N,\N,2026-03-18 05:04:07.882243,2026-03-29 06:22:49.558331,\N
+34,"{""en_US"": ""Validate bank account""}",\N,7,1,1,\N,\N,2026-03-18 05:04:07.882243,2026-03-29 06:22:49.558331,\N
+44,"{""en_US"": ""User""}",10,9,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-30 07:52:56.13228,\N
+45,"{""en_US"": ""Administrator""}",20,9,1,2,\N,\N,2026-03-18 05:30:58.653183,2026-03-31 04:15:33.84414,\N
+11,"{""en_US"": ""Role / Public""}",\N,\N,1,1,"{""en_US"": ""Public users have specific access rights (such as record rules and restricted menus).\\n                They usually do not belong to the usual Odoo groups.""}",\N,2026-03-18 04:58:50.421471,2026-04-01 04:52:07.614842,\N
+64,"{""en_US"": ""Administrator""}",20,12,1,1,"{""en_US"": ""The user will have access to the human resources configuration as well as statistic reports.""}",\N,2026-03-18 05:33:40.052078,2026-03-29 06:22:57.508173,\N
+52,"{""en_US"": ""Manage Push and Pull inventory flows""}",\N,\N,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-29 06:23:03.015949,\N
+53,"{""en_US"": ""Manage Different Stock Owners""}",\N,\N,1,1,\N,\N,2026-03-18 05:30:58.653183,2026-03-29 06:23:03.015949,\N
+26,"{""en_US"": ""Read-only""}",10,6,1,1,"{""en_US"": ""access to all the accounting data but in readonly mode, no actions allowed.""}",\N,2026-03-18 05:04:07.882243,2026-03-29 06:24:54.73921,\N
+29,"{""en_US"": ""Bookkeeper""}",40,6,1,1,"{""en_US"": ""access to all Accounting features, including reporting, asset management, analytic accounting, without configuration rights.""}",\N,2026-03-18 05:04:07.882243,2026-03-29 06:24:54.73921,\N
+30,"{""en_US"": ""Administrator""}",50,6,1,1,"{""en_US"": ""Full access, including configuration rights.""}",\N,2026-03-18 05:04:07.882243,2026-03-29 06:24:54.73921,\N
+70,"{""en_US"": ""Include expiration dates on delivery slip""}",\N,\N,1,1,\N,\N,2026-03-30 03:54:33.169893,2026-03-30 03:54:33.169893,\N
+71,"{""en_US"": ""User""}",10,15,1,1,\N,\N,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231,\N
+72,"{""en_US"": ""Administrator""}",20,15,1,1,\N,\N,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231,\N
+73,"{""en_US"": ""Preset Menu""}",30,\N,1,1,\N,\N,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231,\N
+74,"{""en_US"": ""User""}",10,16,1,1,\N,\N,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059,\N
+75,"{""en_US"": ""Administrator""}",20,16,1,1,"{""en_US"": ""Manage the manufacturing processes and generate reports on those processes.""}",\N,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059,\N
+76,"{""en_US"": ""Manage Work Order Operations""}",\N,\N,1,1,\N,\N,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059,\N
+77,"{""en_US"": ""Produce residual products""}",\N,\N,1,1,\N,\N,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059,\N
+78,"{""en_US"": ""Unlocked by default""}",\N,\N,1,1,\N,\N,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059,\N
+79,"{""en_US"": ""Use Reception Report with Manufacturing Orders""}",\N,\N,1,1,\N,\N,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059,\N
+80,"{""en_US"": ""Use Operation Dependencies""}",\N,\N,1,1,\N,\N,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059,\N
+81,"{""en_US"": ""User""}",10,17,1,1,"{""en_US"": ""The quality user uses the quality process""}",\N,2026-03-30 07:52:56.13228,2026-03-30 07:52:56.13228,\N
+82,"{""en_US"": ""Administrator""}",20,17,1,1,"{""en_US"": ""The quality manager manages the quality process""}",\N,2026-03-30 07:52:56.13228,2026-03-30 07:52:56.13228,\N
+83,"{""en_US"": ""Manage Work Order timer on Shop Floor""}",\N,\N,1,1,\N,\N,2026-03-30 07:53:00.318091,2026-03-30 07:53:00.318091,\N
+84,"{""en_US"": ""Manage your manufacturing orders from the shop floor display app""}",\N,\N,1,1,\N,\N,2026-03-30 07:53:00.318091,2026-03-30 07:53:00.318091,\N
+85,"{""en_US"": ""Restricted Editor""}",10,18,1,1,\N,\N,2026-04-01 04:52:07.614842,2026-04-01 04:52:07.614842,\N
+86,"{""en_US"": ""Editor and Designer""}",20,18,1,1,\N,\N,2026-04-01 04:52:07.614842,2026-04-01 04:52:07.614842,\N
+87,"{""en_US"": ""Public access to arbitrary exposed model""}",\N,\N,1,1,\N,\N,2026-04-01 04:52:07.614842,2026-04-01 04:52:07.614842,\N
+10,"{""en_US"": ""Role / Portal""}",\N,\N,1,1,"{""en_US"": ""Portal members have specific access rights (such as record rules and restricted menus).\\n                They usually do not belong to the usual Odoo groups.""}",\N,2026-03-18 04:58:50.421471,2026-04-01 04:52:07.614842,\N
+88,"{""en_US"": ""Multi-website""}",\N,\N,1,1,\N,\N,2026-04-01 04:52:07.614842,2026-04-01 04:52:07.614842,\N
+1,"{""en_US"": ""Role / User""}",\N,\N,\N,2,"{""en_US"": ""Access to the home menu""}",\N,\N,2026-04-29 15:54:55.003519,90
