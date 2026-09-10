@@ -214,3 +214,46 @@ This second-pass research MUST:
 - not self-authorize implementation, merge, deployment or production.
 
 Boss remains the sole Final Approver.
+
+## Boss Clarification — Functional Design May Proceed to Figma; Second-Pass Very Deep Research Is Verification / Gap-Fill, Not a General Figma Blocker
+
+Boss clarifies the intended sequencing and scope of the post-Functional-Design Very Deep Research.
+
+The primary objective is for `Functional Design` to reach its required Gate and, once that Gate passes, allow the Figma team to proceed with screen / interaction design and downstream UX work without waiting for the entire second-pass Very Deep Research cycle to finish.
+
+The second-pass Module-by-Module Very Deep Research is therefore a `Round 2 Verification / Gap-Fill Cycle`, not a default prerequisite that blocks Figma after Functional Design has already passed its required Gate.
+
+Its expected role is to:
+
+- re-verify the module after Functional Design exists;
+- collect missed details, secondary functions, supplementary controls and edge cases;
+- identify functions that should be added, reduced, refined or removed;
+- validate that the Functional Design remains materially correct;
+- feed controlled deltas back into Functional Design / Figma / downstream artifacts as necessary;
+- avoid unnecessary restart or rework where the delta does not materially affect the primary screen architecture or user workflow.
+
+Canonical parallel-flow intent:
+
+`EARLY DEEP RESEARCH / LEARNING`
+`-> PHASE SA / ARCHITECTURE SYNTHESIS`
+`-> FUNCTIONAL DESIGN GATE`
+`-> if PASS: FIGMA MAY PROCEED`
+`   + MODULE-BY-MODULE VERY DEEP RESEARCH ROUND 2 CONTINUES AS VERIFICATION / GAP-FILL`
+`-> CONTROLLED DELTA FEEDBACK TO FUNCTIONAL DESIGN / FIGMA WHEN NEEDED`
+`-> PRE-MATRIX / DOWNSTREAM READINESS GATE`
+`-> NEXT CONTROLLED PHASE`
+
+The default assumption is that Round 2 findings should have limited impact on the already-cleared primary UX structure and will usually result in controlled `ADD / REDUCE / REFINE / REMOVE` deltas rather than wholesale redesign.
+
+However, if Round 2 discovers a genuine `Material Delta` that invalidates a previously approved Functional Design invariant, primary workflow, control requirement, legal/accounting requirement, security boundary, data integrity rule, or other foundational behavior, the affected scope MUST enter Controlled Re-entry. Figma or downstream execution is blocked only for the materially affected scope, not automatically for the entire module or project.
+
+Therefore:
+
+`FUNCTIONAL DESIGN PASS -> FIGMA MAY PROCEED.`
+`ROUND 2 VERY DEEP RESEARCH = SECOND VERIFICATION / GAP-FILL.`
+`NON-MATERIAL DELTA -> CONTROLLED UPDATE, NO GENERAL RESET.`
+`MATERIAL DELTA -> CONTROLLED RE-ENTRY FOR AFFECTED SCOPE ONLY.`
+
+This clarification supersedes any interpretation that all post-Functional-Design Very Deep Research must finish before Figma may start.
+
+Existing Phase Assurance, Evidence Handoff, Independent Challenge, No Evidence = No Progress, Never Skip Gate, and Boss Final Approval rules remain in force.
