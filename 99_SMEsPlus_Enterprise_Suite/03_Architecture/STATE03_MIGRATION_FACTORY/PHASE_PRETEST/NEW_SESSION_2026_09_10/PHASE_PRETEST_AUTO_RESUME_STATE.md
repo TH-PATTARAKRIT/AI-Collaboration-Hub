@@ -24,14 +24,15 @@ Phase SA canonical evidence baseline:
 | `PT-04` Output / Consumer Contract Matrix | `PT04_OUTPUT_CONSUMER_CONTRACT_MATRIX.md` | **COMPLETE — `CP-PT-04` = INCOMPLETE, BOUNDED** |
 | `PT-05` Routing and Business-Nature Proof | `PT05_BUSINESS_NATURE_ROUTING_PROOF.md` | **COMPLETE — `CP-PT-05`** |
 | `PT-06` Accounting + Inventory Convergence | `PT06_ACCOUNTING_INVENTORY_CONVERGENCE_MATRIX.md` | **COMPLETE — `CP-PT-06`** |
-| `PT-07` Mfg / Purchase / Dropship Challenge | `PT07_MFG_PURCHASE_DROPSHIP_CHALLENGE.md` | **NEXT** |
-| `PT-08`…`PT-16` | — | NOT STARTED |
+| `PT-07` Mfg / Purchase / Dropship Challenge | `PT07_MFG_PURCHASE_DROPSHIP_CHALLENGE.md` | **COMPLETE — `CP-PT-07`** |
+| `PT-08` SaaS Boundary Matrix | `PT08_SAAS_BOUNDARY_MATRIX.md` | **NEXT** |
+| `PT-09`…`PT-16` | — | NOT STARTED |
 
 Current checkpoint:
-`PT-07 — Manufacturing / Purchase / Dropship Challenge`
+`PT-08 — SaaS / Tenant / Company / Security Boundary Matrix`
 
 Next required artifact:
-`PT07_MFG_PURCHASE_DROPSHIP_CHALLENGE.md`
+`PT08_SAAS_BOUNDARY_MATRIX.md`
 
 ## Canonical scenario population (fixed at `PT-01`)
 
@@ -61,6 +62,9 @@ Next required artifact:
 | `PT01-N-02` | — | Boss 22-scenario baseline `a1fc7cd6` is a **blob**, not a commit; `git log` on it returns silent empty. Pointer is VALID and stronger than a commit ref. | **DISARMED** — a commit-shaped check would manufacture a false finding |
 | `PT01-N-03` | MINOR | The `SMES_CORE_CONTINUATION` package cites `22`/`18` but contains `0` references to `SA15`/`SA17`; pointer resolves one level up. | OPEN — `PT-14` B-7 pack must name the registers explicitly |
 | `PT02-F-01` | **MATERIAL** | `X-07` backorder: the remainder-supply record has **no consumer at all** (`R-17`), failing the contract's `P5` clause. A produced output with nobody to receive it. | OPEN — `PT-04` must test `producer→∅` as a distinct failure class |
+| `PT07-F-01` | **MATERIAL** | The **standing manufacturing veto** (limb 1 `BLK-07`; limb 2 *"exactly one mechanism carries machine cost"*, **undischargeable in either direction as worded**) is **absent from the veto register's population of 6**: `0` hits for `BLK-07`/`BLK-08`/*manufactur*/*machine* in `SC-04` (positive control `3`). Neither member nor declared exclusion, while `SC-19` asserts *"vetoes remain 6"* in the same file. | **OPEN — AAS+ (issuer) / Boss.** `6` carried as reported; **population NOT established as complete**; renumbering is not SMEs Core's act. Routed `PT-11`/`PT-13`/B-7 |
+| `PT07-F-02` | MATERIAL | Absorption denominator **RULED** (normal capacity, `SC-BD-06`) while the mechanism to apply it **does not exist** — `R-22 GAP` no injection path; limb 2 asks for uniqueness *"where the answer is zero"*. Three records agree the carrier is absent. | OPEN — `PT-12` carries it as `PTE-3` **+ NO MECHANISM**, not plain execution-dependence |
+| `PT07-F-03` | MATERIAL | The procurement/dropship route is reported as **holding** while the cross-module entry sits **beneath Purchase's control floor** (`XMC-H-03`), which `ND-03` forbids. `SC-45` drops the qualification. | OPEN — carried as a **control breach**, not a routing success |
 | `PT06-F-01` | MATERIAL | `SA_CORR2_06` count table says `PARTIAL = 14`; its own prose and checkpoint line say `13`. Sibling `SA_CORR2_05` publishes `14/3/1` while its checkpoint line reads `13/4/1`. Both already published as `XMC-F-07`/`XMC-F-06`; **neither repaired**. | OPEN — source-text defect. `PT-15` must audit text by identifier, not disposition column |
 | `PT06-F-02` | MATERIAL | `ND-10` (Perpetual/Periodic timing) is a **SMEs Core recommendation, NOT Boss-approved**; one prior round decided it in Boss's place and withdrew (`C10-A1`). Its Boss item is attributed to **`JT-04`** in the CORR5 artefact and **`F1`** in `FINAL_CONTROLLED_V2`. | OPEN — `PT-12` states `ND-10` as recommendation only, naming both. Routed `PT-11`/`PT-13`/B-7 |
 | `PT05-F-01` | **MATERIAL** | **Two different "six routing rules" exist.** `SC-45`'s summary substitutes rule 6 — dropping *"routing follows Business Nature, not module name"* entirely — strips **3** material qualifications, and reports as HOLDS a rule whose tested result reads *"One defect found"*. Governing prompts list **five**. | **OPEN.** Correct statement: `0` rules hold unqualified. **Set A (`SA_CORR3_08` §4.1) governs `PT-12`.** Routed `PT-13`/B-7 |
