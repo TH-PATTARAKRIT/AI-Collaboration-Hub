@@ -1,0 +1,14 @@
+DIMENSION             APPLIC  DETERMINED    DET%  RESEARCH-VER     RV%
+PROCESS                 1474        1474 100.00%            17   1.15%
+CONFIGURATION           4112        4112 100.00%             7   0.17%
+OPTIONAL_FUNCTION       4100        4100 100.00%             7   0.17%
+SOURCE                  5074        5074 100.00%          5074 100.00%
+RUNTIME                 4984        4984 100.00%            90   1.81%
+DATA_MODEL              2863        2863 100.00%          1986  69.37%
+SECURITY                4058        4058 100.00%           270   6.65%
+CROSS_MODULE            2909        2909 100.00%          2032  69.85%
+EDGE                    1167        1167 100.00%             2   0.17%
+ALL CELLS              30741       30741 100.00%          9485  30.85%
+
+DETERMINED-COMPLETE items : 5074 of 5074 = 100.00%
+RESEARCH-COMPLETE items   : 90 of 5074 = 1.77%

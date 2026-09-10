@@ -1,0 +1,13 @@
+items: 400 | distinct (model,method): 319
+sample: [('amazon.account', 'None'), ('amazon.account', 'action_recover_order'), ('amazon.account', 'action_redirect_to_oauth_url'), ('amazon.account', 'action_reset_refresh_token'), ('amazon.account', 'action_sync_feeds_status')]
+positive control ('stock.picking', 'action_confirm') -> FOUND
+resolution: {'not located': 52, 'located': 348}
+
+PROCESS 1378/1564 = 88.11%   FUNCTION-COMPLETE 4772/5074 = 94.05%
+
+control-invoked method facets:
+  VALIDATION         NONE DETECTED=291 | RAISES UserError=56 | RAISES ValidationError=1
+  DATA_MUTATION      NO=301 | YES=47
+  STATE_TRANSITION   NONE=293 | READS state=38 | WRITES state=17
+  EXCEPTION          NOT HANDLED=341 | HANDLED=7
+  ERROR              NO=291 | YES=57

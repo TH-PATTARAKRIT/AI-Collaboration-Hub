@@ -1,0 +1,19 @@
+CRITICAL AREA                          POP    DET%     RV%   RC
+1 Financial Posting                     16  100.0%   41.5%    0
+10 Identity                             61  100.0%   44.0%    0
+11 Immutability                         47  100.0%   42.5%    0
+12 Period Close                         16  100.0%   42.9%    0
+13 Reversal                             47  100.0%   17.5%    0
+14 Data Integrity                      251  100.0%   44.3%    0
+15 Cross-Module Financial Handoff        4  100.0%  100.0%    4
+2 Stock Ownership                       46  100.0%   42.9%    0
+3 Stock Quantity                        26  100.0%   42.9%    0
+4 Inventory Valuation                   12  100.0%   41.1%    0
+5 Security                             270  100.0%   60.1%    0
+6 Tenant Isolation                       0     n/a     n/a    0   NO REFERENCE POPULATION
+7 Company Isolation                     75  100.0%   49.1%    0
+8 Approval Control                       9  100.0%   42.9%    0
+9 Audit Trail                           32  100.0%   42.9%    0
+
+total items mapped to a Critical Area: 912 (items may map to more than one)
+Critical Areas at 100% RESEARCH-VERIFIED: 1 of 15

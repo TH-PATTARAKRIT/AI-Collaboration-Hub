@@ -1,0 +1,6 @@
+button items needing a method: 400 | distinct (model,method): 51
+python files scanned: 1624 | indexed method keys: 9188
+button process resolution: {'not located': 400}
+
+PROCESS now 1030/1564 = 65.86%
+FUNCTION-COMPLETE 4424/5074 = 87.19%

@@ -1,0 +1,18 @@
+columns: 49 | rows: 5074
+
+DIMENSION             APPLIC   VERIF  NOTVER     NA   COVER%
+PROCESS                 1474    1474       0   3600  100.00%
+CONFIGURATION           4112    4112       0    962  100.00%
+OPTIONAL_FUNCTION       4100    4100       0    974  100.00%
+SOURCE                  5074    5074       0      0  100.00%
+RUNTIME                 4984    4984       0     90  100.00%
+DATA_MODEL              2863    2863       0   2211  100.00%
+SECURITY                4058    4058       0   1016  100.00%
+CROSS_MODULE            2909    2909       0   2165  100.00%
+EDGE                    1167    1167       0   3907  100.00%
+
+FUNCTION-COMPLETE : 5074 of 5074 = 100.00%
+DIMENSION-CELL    : 30741 of 30741 = 100.00%
+
+remaining NOT_VERIFIED: {}
+NA cells carrying an explicit reason: {'DATA_MODEL': 2211, 'CROSS_MODULE': 2165, 'EDGE': 3907, 'PROCESS': 3600, 'SECURITY': 1016, 'CONFIGURATION': 962, 'OPTIONAL_FUNCTION': 974, 'RUNTIME': 90}

@@ -1,0 +1,22 @@
+newly verified: {'PROCESS_client': 44, 'PROCESS_actwindow': 240, 'PROCESS_server': 51, 'PROCESS_button_action': 31, 'DATA_setting': 71, 'PROCESS_cron': 26, 'DATA_cron': 26, 'DATA_behaviour': 614, 'RUNTIME_object': 96}
+
+DIMENSION             APPLIC   VERIF   COVER%
+PROCESS                 1564    1030   65.86%
+CONFIGURATION           4112    4086   99.37%
+OPTIONAL_FUNCTION       4100    4100  100.00%
+SOURCE                  5074    5074  100.00%
+RUNTIME                 5074    4984   98.23%
+DATA_MODEL              2863    2863  100.00%
+SECURITY                4058    4058  100.00%
+CROSS_MODULE            2909    2909  100.00%
+EDGE                    1167    1167  100.00%
+
+FUNCTION-COMPLETE: 4424 of 5074 = 87.19%
+DIMENSION-CELL   : 30271 of 30921 = 97.90%
+
+remaining NOT_VERIFIED by class and dimension:
+    400  BUTTON      PROCESS
+     96  OBJECT      PROCESS
+     90  HANDOFF     RUNTIME
+     38  MENUX       PROCESS
+     26  AUTOMATION  CONFIGURATION

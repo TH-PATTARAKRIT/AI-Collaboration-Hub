@@ -1,0 +1,15 @@
+newly verified cells: {'SECURITY': 3079, 'PROCESS': 17, 'EDGE': 1165, 'CROSS_MODULE': 2560}
+
+DIMENSION             APPLIC   VERIF   COVER%
+PROCESS                 1564     638   40.79%
+CONFIGURATION           4112    4086   99.37%
+OPTIONAL_FUNCTION       4100    4100  100.00%
+SOURCE                  5074    5074  100.00%
+RUNTIME                 5074    4888   96.33%
+DATA_MODEL              2863    2152   75.17%
+SECURITY                4058    4058  100.00%
+CROSS_MODULE            2909    2909  100.00%
+EDGE                    1167    1167  100.00%
+
+FUNCTION-COMPLETE: 3373 of 5074 = 66.48%
+DIMENSION-CELL   : 29072 of 30921 = 94.02%
