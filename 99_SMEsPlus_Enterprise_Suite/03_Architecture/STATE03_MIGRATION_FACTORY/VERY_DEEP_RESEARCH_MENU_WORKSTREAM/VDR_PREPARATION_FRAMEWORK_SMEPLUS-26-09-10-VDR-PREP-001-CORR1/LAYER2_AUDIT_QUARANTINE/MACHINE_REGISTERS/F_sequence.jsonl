@@ -1,0 +1,12 @@
+{"xmlid": "delivery_dhl.dhl_commercial_invoice_seq", "module": "delivery_dhl", "name": "DHL Commercial Invoice", "code": "delivery_dhl.commercial_invoice", "prefix": "CI", "file": "delivery_dhl/data/delivery_dhl_data.xml", "test": false}
+{"xmlid": "delivery_dhl_rest.dhl_commercial_invoice_seq", "module": "delivery_dhl_rest", "name": "DHL Commercial Invoice", "code": "delivery_dhl_rest.commercial_invoice", "prefix": "CI", "file": "delivery_dhl_rest/data/delivery_dhl_data.xml", "test": false}
+{"xmlid": "mrp_plm.seq_eco", "module": "mrp_plm", "name": "Engineering Change Order", "code": "mrp.eco", "prefix": "ECO", "file": "mrp_plm/data/mrp_data.xml", "test": false}
+{"xmlid": "point_of_sale.seq_pos_session", "module": "point_of_sale", "name": "POS Session", "code": "pos.session", "prefix": "/", "file": "point_of_sale/views/point_of_sale_sequence.xml", "test": false}
+{"xmlid": "stock.sequence_mrp_op", "module": "stock", "name": "Stock orderpoint", "code": "stock.orderpoint", "prefix": "OP/", "file": "stock/data/stock_sequence_data.xml", "test": false}
+{"xmlid": "stock.seq_picking_internal", "module": "stock", "name": "Picking INT", "code": "stock.picking", "prefix": "INT/", "file": "stock/data/stock_sequence_data.xml", "test": false}
+{"xmlid": "stock.sequence_production_lots", "module": "stock", "name": "Serial Numbers", "code": "stock.lot.serial", "prefix": "", "file": "stock/data/stock_sequence_data.xml", "test": false}
+{"xmlid": "stock.seq_package", "module": "stock", "name": "Packages", "code": "stock.package", "prefix": "PACK", "file": "stock/data/stock_sequence_data.xml", "test": false}
+{"xmlid": "stock_barcode.epc_serial", "module": "stock_barcode", "name": "EPC Fake Serial", "code": "stock_barcode.epc.serial", "prefix": null, "file": "stock_barcode/data/data.xml", "test": false}
+{"xmlid": "stock_landed_costs.seq_stock_landed_costs", "module": "stock_landed_costs", "name": "Stock Landed Costs", "code": "stock.landed.cost", "prefix": "LC/%(year)s/", "file": "stock_landed_costs/data/stock_landed_cost_data.xml", "test": false}
+{"xmlid": "stock_picking_batch.seq_picking_batch", "module": "stock_picking_batch", "name": "Batch Transfer", "code": "picking.batch", "prefix": "BATCH/", "file": "stock_picking_batch/data/stock_picking_batch_data.xml", "test": false}
+{"xmlid": "stock_picking_batch.seq_picking_wave", "module": "stock_picking_batch", "name": "Wave Transfer", "code": "picking.wave", "prefix": "WAVE/", "file": "stock_picking_batch/data/stock_picking_batch_data.xml", "test": false}

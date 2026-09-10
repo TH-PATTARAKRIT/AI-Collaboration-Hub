@@ -1,0 +1,5 @@
+{"xmlid": "l10n_ke_edi_oscu_stock.move_io_start", "module": "l10n_ke_edi_oscu_stock", "key": "l10n_ke.start_stock_date", "value": "DateTime.now().strftime('%Y-%m-%d %H:%M:%S')", "file": "l10n_ke_edi_oscu_stock/data/ir_config_parameter.xml"}
+{"xmlid": "mrp_workorder.wo_shop_floor_maximum_card_count", "module": "mrp_workorder", "key": "mrp_workorder.wo_shop_floor_maximum_card_count", "value": "40", "file": "mrp_workorder/data/mrp_workorder_data.xml"}
+{"xmlid": "stock.barcode_separator", "module": "stock", "key": "stock.barcode_separator", "value": ",", "file": "stock/data/stock_data.xml"}
+{"xmlid": "stock_barcode.barcode_separator_regex", "module": "stock_barcode", "key": "stock_barcode.barcode_separator_regex", "value": "[;,]", "file": "stock_barcode/data/data.xml"}
+{"xmlid": "stock_barcode.barcode_rfid_batch_time", "module": "stock_barcode", "key": "stock_barcode.barcode_rfid_batch_time", "value": "1000", "file": "stock_barcode/data/data.xml"}

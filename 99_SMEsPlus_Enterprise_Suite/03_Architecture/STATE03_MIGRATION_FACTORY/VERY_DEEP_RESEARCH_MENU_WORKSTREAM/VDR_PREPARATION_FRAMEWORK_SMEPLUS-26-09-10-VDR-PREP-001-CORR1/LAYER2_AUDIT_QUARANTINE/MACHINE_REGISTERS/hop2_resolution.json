@@ -1,0 +1,35 @@
+[
+ {
+  "menu": "stock.in_picking",
+  "server_action": "stock.method_action_picking_tree_incoming",
+  "code": "action = model.get_action_picking_tree_incoming()",
+  "method": "get_action_picking_tree_incoming",
+  "py": "stock/models/stock_picking.py",
+  "window_action": "stock.action_picking_tree_incoming",
+  "model": "stock.picking",
+  "domain": "",
+  "context": "{'contact_display': 'partner_address', 'restricted_picking_type_code': 'incoming', 'search_default_reception': 1}"
+ },
+ {
+  "menu": "stock.int_picking",
+  "server_action": "stock.method_action_picking_tree_internal",
+  "code": "action = model.get_action_picking_tree_internal()",
+  "method": "get_action_picking_tree_internal",
+  "py": "stock/models/stock_picking.py",
+  "window_action": "stock.action_picking_tree_internal",
+  "model": "stock.picking",
+  "domain": "",
+  "context": "{'contact_display': 'partner_address', 'restricted_picking_type_code': 'internal', 'search_default_internal': 1}"
+ },
+ {
+  "menu": "stock.out_picking",
+  "server_action": "stock.method_action_picking_tree_outgoing",
+  "code": "action = model.get_action_picking_tree_outgoing()",
+  "method": "get_action_picking_tree_outgoing",
+  "py": "stock/models/stock_picking.py",
+  "window_action": "stock.action_picking_tree_outgoing",
+  "model": "stock.picking",
+  "domain": "",
+  "context": "{'contact_display': 'partner_address', 'restricted_picking_type_code': 'outgoing', 'search_default_delivery': 1}"
+ }
+]
