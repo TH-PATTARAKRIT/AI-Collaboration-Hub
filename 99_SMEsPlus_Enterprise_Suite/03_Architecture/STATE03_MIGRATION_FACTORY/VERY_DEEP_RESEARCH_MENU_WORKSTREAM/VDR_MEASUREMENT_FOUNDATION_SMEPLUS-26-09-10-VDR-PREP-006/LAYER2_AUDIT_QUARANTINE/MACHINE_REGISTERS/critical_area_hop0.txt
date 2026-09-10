@@ -1,0 +1,19 @@
+CRITICAL AREA                           PRIOR IN HOP-0  LOST
+1 Financial Posting                        16       16     0
+2 Stock Ownership                          46       45     1
+3 Stock Quantity                           26       25     1
+4 Inventory Valuation                      12       12     0
+5 Security                                270      252    18
+6 Tenant Isolation                          0        0     0
+7 Company Isolation                        75       73     2
+8 Approval Control                          9        9     0
+9 Audit Trail                              32       32     0
+10 Identity                                61       59     2
+11 Immutability                            47       47     0
+12 Period Close                            16       13     3
+13 Reversal                                47       46     1
+14 Data Integrity                         251      251     0
+15 Cross-Module Financial Handoff           4        4     0
+TOTAL                                     912      884    28
+
+prior Critical-Area memberships that survive into the reconstructed population: 96.9%

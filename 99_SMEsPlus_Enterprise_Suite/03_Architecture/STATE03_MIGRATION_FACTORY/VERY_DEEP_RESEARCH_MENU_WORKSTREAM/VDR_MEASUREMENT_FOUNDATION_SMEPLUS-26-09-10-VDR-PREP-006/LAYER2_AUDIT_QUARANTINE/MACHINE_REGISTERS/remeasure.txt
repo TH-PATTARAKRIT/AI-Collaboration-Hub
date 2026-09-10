@@ -1,0 +1,13 @@
+HOP-0 population: 24553
+
+INS-01 SOURCE PRESENCE       {'SOURCE_FILE_ONLY': 2871, 'SOURCE_UNRESOLVED': 13941, 'SOURCE_RESOLVED': 7741}
+   Source Presence Coverage  = 7741/24553 = 31.53%   (file AND line)
+   resolving to a file only  = 2871  (11.69%)
+
+INS-02 RUNTIME OBSERVATION   {'ABSENT': 6075, 'OBSERVED': 18478}
+   Runtime Observed Coverage = 18478/24553 = 75.26%
+
+INS-03 FOUR-WAY              {'SOURCE_ONLY': 6075, 'BOTH': 4537, 'RUNTIME_ONLY': 13941}
+
+INS-05 EDGE (behaviour/server/cron, n=4179)  {'NO_EDGE_PATH': 4043, 'REVERSE_PATH': 71, 'CANCEL_PATH': 65}
+   cancel or reverse path established = 136/4179 = 3.25%

@@ -1,0 +1,40 @@
+PRIOR POPULATION CLASSIFIED AGAINST THE NEW HOP-0
+     4148  PREVIOUSLY KNOWN
+            e.g. MENU:delivery_iot.iot_cached_printers_action
+            e.g. MENU:delivery_iot.iot_cached_printers_section
+            e.g. MENU:l10n_cl_edi_stock.menu_sii_chile
+            e.g. MENU:l10n_cl_edi_stock.menu_stock_l10n_cl_dte_caf
+      700  KIND NOT ENUMERATED BY THE NEW METHODS
+            e.g. SETTING:config.module_delivery_shiprocket
+            e.g. SETTING:config.l10n_pe_edi_stock_client_id
+            e.g. SETTING:config.l10n_pe_edi_stock_client_password
+            e.g. SETTING:config.l10n_pe_edi_stock_client_secret
+      215  OUT OF SCOPE UNDER THE NARROWER ANCHOR RULE
+            e.g. MENU:stock_enterprise.stock_dashboard_menuitem
+            e.g. MENUX:l10n_at_pos.menu_fiskaly_report_order_details
+            e.g. MENUX:l10n_at_pos.pos_fiskaly_reports
+            e.g. MENUX:l10n_de_pos_cert.menu_l10n_de_pos_dsfinvk_export
+       11  UNRESOLVED — in scope, not found
+            e.g. GROUP:base.default_user_group
+            e.g. GROUP:base.default_user_group
+            e.g. GROUP:base.default_user_group
+            e.g. GROUP:base.group_multi_company
+
+NEWLY DISCOVERED, by kind:
+     9619  FIELD_ON_DOMAIN_MODEL_ANY_OWNER
+     4096  BEHAVIOUR
+     3382  FIELD
+     1490  DATA_RECORD
+      627  VIEW
+      406  ACCESS
+      126  MODEL
+      114  ACTION_WINDOW
+       58  CONSTRAINT
+       32  MODEL_EXTENSION
+       29  RECORD_RULE
+       19  ACTION_SERVER
+       15  GROUP
+       14  ACTION_CLIENT
+       14  ACTION_REPORT
+       14  MENU
+        2  SEQUENCE
