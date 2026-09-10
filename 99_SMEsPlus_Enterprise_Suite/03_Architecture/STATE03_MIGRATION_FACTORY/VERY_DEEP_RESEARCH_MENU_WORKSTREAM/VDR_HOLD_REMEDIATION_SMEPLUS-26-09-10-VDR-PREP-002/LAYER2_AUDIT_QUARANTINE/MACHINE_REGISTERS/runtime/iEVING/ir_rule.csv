@@ -1,0 +1,311 @@
+id,model_id,create_uid,write_uid,name,domain_force,active,perm_read,perm_write,perm_create,perm_unlink,global,create_date,write_date
+1,101,1,1,res.users.log per user,"[('create_uid','=', user.id)]",t,f,t,t,t,t,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+2,90,1,1,res.partner company,"['|', '|', ('partner_share', '=', False), ('company_id', 'parent_of', company_ids), ('company_id', '=', False)]",t,t,t,t,t,t,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+3,90,1,1,res_partner: portal/public: read access on my commercial partner,"[('id', 'child_of', user.commercial_partner_id.id)]",t,t,f,f,f,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+4,36,1,1,Defaults: alter personal defaults,"[('user_id','=',user.id)]",t,f,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+5,36,1,1,Defaults: alter all defaults,"[(1,'=',1)]",t,f,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+6,14,1,1,ir.ui.view_custom rule,"[('user_id','=',user.id)]",t,t,t,t,t,t,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+7,93,1,1,Partner bank company rule,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+8,97,1,1,multi-company currency rate rule,"['|', ('company_id', 'parent_of', company_ids), ('company_id', '=', False)]",t,t,t,t,t,t,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+9,105,1,1,change user password rule,"[('create_uid', '=', user.id)]",t,t,t,t,t,t,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+10,35,1,1,ir.filters.admin.all.rights,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+11,35,1,1,ir.filter: owner or global,"[('user_ids','in',[False,user.id])]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+12,35,1,1,ir.filter: portal/public,"[('user_ids', 'in', user.ids)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+13,98,1,1,company rule portal,"[('id','in', company_ids)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+14,98,1,1,company rule employee,"[('id','in', company_ids)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+15,98,1,1,company rule public,"[('id','in', company_ids)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+16,98,1,1,company rule erp manager,"[(1,'=',1)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+17,103,1,1,users can only access their own id check,"[('create_uid', '=', user.id)]",t,t,t,t,t,t,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+18,102,1,1,user rule,"['|', ('share', '=', False), ('company_ids', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+19,102,1,1,portal user access,"[('commercial_partner_id', '=', user.commercial_partner_id.id)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+20,106,1,1,change own password,"[('create_uid', '=', user.id)]",t,t,t,t,t,t,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+21,110,1,1,Administrators can access all User Settings.,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+22,110,1,1,res.users.settings: access their own entries,"[('user_id', '=', user.id)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+23,107,1,1,Public users can't interact with keys at all,"[(0, '=', 1)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+24,107,1,1,Users can read and delete their own keys,"[('user_id', '=', user.id)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+25,107,1,1,Administrators can view user keys to revoke them,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+26,28,1,1,Users can modify or delete embedded actions that they have created or that are shared,"[('user_id', 'in', [user.id, False])]",t,f,t,f,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+27,28,1,1,Admins have all the rights on embedded actions,"[(1, '=', 1)]",t,f,t,f,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+28,113,1,1,Users can read only their own devices,"[('user_id', '=', user.id)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+29,113,1,1,Administrators can read all devices,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+30,112,1,1,Users can read only their own device logs,"[('user_id', '=', user.id)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+31,112,1,1,Administrators can read all device logs,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+32,75,1,1,properties.base.definition: system all access,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 04:58:50.421471,2026-03-18 04:58:50.421471
+33,127,1,1,res.users.settings.embedded.action: access their own entries,"[('user_setting_id.user_id', '=', user.id)]",t,t,t,t,t,f,2026-03-18 04:59:16.30462,2026-03-18 04:59:16.30462
+34,127,1,1,Administrators can access all User Settings embedded actions,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 04:59:16.30462,2026-03-18 04:59:16.30462
+39,140,1,1,Passkeys: Users can only access own Passkeys,"[('create_uid', '=', user.id)]",t,t,t,t,t,f,2026-03-18 04:59:23.283863,2026-03-18 04:59:23.283863
+40,141,1,1,Passkeys: Users can only modify their own Passkey creation requests,"[('create_uid', '=', user.id)]",t,t,t,t,t,f,2026-03-18 04:59:23.283863,2026-03-18 04:59:23.283863
+41,140,1,1,Passkeys: Admins can view and delete other peoples Passkeys,"[(1, '=', 1)]",t,t,f,f,t,f,2026-03-18 04:59:23.283863,2026-03-18 04:59:23.283863
+42,146,1,1,User IAP Account,"['|', ('company_ids', '=', False), ('company_ids', 'in', company_ids)]",t,t,t,t,t,f,2026-03-18 04:59:24.548725,2026-03-18 04:59:24.548725
+43,156,1,1,resource.calendar.leaves: employee reads own or global,"['|', ('resource_id', '=', False), ('resource_id.user_id', 'in', [False, user.id])]",t,t,f,f,f,f,2026-03-18 05:03:37.19095,2026-03-18 05:03:37.19095
+44,156,1,1,resource.calendar.leaves: employee modifies own,"[('resource_id', '!=', False), ('resource_id.user_id', 'in', [False, user.id])]",t,f,t,t,t,f,2026-03-18 05:03:37.19095,2026-03-18 05:03:37.19095
+45,156,1,1,resource.calendar.leaves: admin modifies global,"[('resource_id', '=', False)]",t,f,t,t,t,f,2026-03-18 05:03:37.19095,2026-03-18 05:03:37.19095
+46,158,1,1,resource.resource multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:03:37.19095,2026-03-18 05:03:37.19095
+47,156,1,1,resource.calendar.leaves: multi-company rule,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:03:37.19095,2026-03-18 05:03:37.19095
+48,228,1,1,discuss.channel: can access channels (as member or as group allowed),"\n                [\n                    ""|"",\n                        ""&"",\n                            (""channel_type"", ""!="", ""channel""),\n                            ""|"",\n                                (""is_member"", ""="", True),\n                                (""parent_channel_id.is_member"", ""="", True),\n                        ""&"",\n                            (""channel_type"", ""="", ""channel""),\n                            ""|"",\n                                (""group_public_id"", ""="", False),\n                                (""group_public_id"", ""in"", user.all_group_ids.ids),\n                ]\n            ",t,t,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+49,228,1,1,discuss.channel: admin full access,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+50,226,1,1,discuss.channel.member: access their own entries,"\n                [\n                    ('is_self', '=', True),\n                    ""|"",\n                        (""channel_id.channel_type"", ""!="", ""channel""),\n                        ""|"",\n                            (""channel_id.group_public_id"", ""="", False),\n                            (""channel_id.group_public_id"", ""in"", user.all_group_ids.ids),\n                ]\n            ",t,f,t,f,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+84,433,1,1,All Salesteam,"[(1,'=',1)]",t,t,t,t,t,f,2026-03-18 05:03:54.972867,2026-03-18 05:03:54.972867
+85,433,1,1,Sales Team multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:03:54.972867,2026-03-18 05:03:54.972867
+86,442,1,1,\n            Product fetch image wizard: access only your own wizard\n        ,"[('create_uid', '=', user.id)]",t,t,t,t,t,t,2026-03-18 05:03:57.390296,2026-03-18 05:03:57.390296
+88,458,1,1,Access providers in own companies only,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:02.10459,2026-03-18 05:04:02.10459
+51,226,1,1,discuss.channel.member: read members of accessible channels,"\n                [\n                    ""|"",\n                        ""&"",\n                            (""channel_id.channel_type"", ""!="", ""channel""),\n                            ""|"",\n                                (""channel_id.is_member"", ""="", True),\n                                (""channel_id.parent_channel_id.is_member"", ""="", True),\n                        ""&"",\n                            (""channel_id.channel_type"", ""="", ""channel""),\n                            ""|"",\n                                (""channel_id.group_public_id"", ""="", False),\n                                (""channel_id.group_public_id"", ""in"", user.all_group_ids.ids),\n                ]\n            ",t,t,f,f,f,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+52,226,1,1,discuss.channel.member: can join group restricted channels when group is matching,"\n                [\n                    ('is_self', '=', True),\n                    ('channel_id.channel_type', '=', 'channel'),\n                    '|',\n                        ('channel_id.group_public_id', '=', False),\n                        ('channel_id.group_public_id', 'in', user.all_group_ids.ids)\n                ]\n            ",t,f,f,t,f,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+70,204,1,1,Canned response: admin has all access on shared canned response,"[('is_shared', '=', True)]",t,t,t,f,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+35,130,1,1,Users can only access their own wizard,"[('user_id', '=', user.id)]",t,t,t,t,t,t,2026-03-18 04:59:18.001663,2026-03-29 06:22:13.751733
+36,128,1,1,Public users can't interact with keys at all,"[(0, '=', 1)]",t,t,t,t,t,f,2026-03-18 04:59:18.001663,2026-03-29 06:22:13.751733
+37,128,1,1,Users can read and delete their own keys,"[('user_id', '=', user.id)]",t,t,t,t,t,f,2026-03-18 04:59:18.001663,2026-03-29 06:22:13.751733
+38,128,1,1,Administrators can view user keys to revoke them,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 04:59:18.001663,2026-03-29 06:22:13.751733
+53,226,1,1,discuss.channel.member: internal users can invite others in group restricted channels when group is matching,"\n                [\n                    ('is_self', '=', False),\n                    ('channel_id.channel_type', '=', 'channel'),\n                    '|',\n                        ('channel_id.group_public_id', '=', False),\n                        ('channel_id.group_public_id', 'in', user.all_group_ids.ids)\n                ]\n            ",t,f,f,t,f,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+54,226,1,1,discuss.channel.member: internal users can invite others in channels they are member of,"\n                [\n                    ('is_self', '=', False),\n                    ('channel_id.channel_type', 'not in', ('channel', 'chat')),\n                    ('channel_id.is_member', '=', True)\n                ]\n            ",t,f,f,t,f,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+55,225,1,1,discuss.call.history: read call history of accessible channels,"\n                [\n                    ""|"",\n                        ""&"",\n                            (""channel_id.channel_type"", ""!="", ""channel""),\n                            ""|"",\n                                (""channel_id.is_member"", ""="", True),\n                                (""channel_id.parent_channel_id.is_member"", ""="", True),\n                        ""&"",\n                            (""channel_id.channel_type"", ""="", ""channel""),\n                            ""|"",\n                                (""channel_id.group_public_id"", ""="", False),\n                                (""channel_id.group_public_id"", ""in"", user.all_group_ids.ids),\n                ]\n            ",t,t,f,f,f,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+56,226,1,1,discuss.channel.member: admin can manipulate all entries,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+57,229,1,1,Discuss.gif.favorite: User access,"[('create_uid', '=', user.id)]",t,t,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+58,229,1,1,Discuss.gif.favorite: admin full access,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+59,181,1,1,mail.notifications: group_user: write its own entries,"[('res_partner_id', '=', user.partner_id.id)]",t,f,t,f,f,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+60,181,1,1,mail.notifications: group_portal: own entries,"['|', ('res_partner_id', '=', user.partner_id.id), ('author_id', '=', user.partner_id.id)]",t,t,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+61,193,1,1,mail.message.subtype: portal/public: read public subtypes,"[('internal', '=', False)]",t,t,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+62,183,1,1,mail.activity: user: write/unlink only (created or assigned),"['|', ('user_id', '=', user.id), ('create_uid', '=', user.id)]",t,f,t,f,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+63,184,1,1,Administrators can access all activity plans.,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+64,185,1,1,Administrators can access all activity plan templates.,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+65,238,1,1,Mail Compose Message Rule,"[('create_uid', '=', user.id)]",t,t,t,f,f,t,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+66,202,1,1,Employees can only modify templates they have created or been assigned,"['|', ('create_uid', '=', user.id), ('user_id', '=', user.id)]",t,f,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+67,202,1,1,Mail Template Editors - Edit All Templates,"[(1, '=', 1)]",t,f,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+68,206,1,1,res.users.settings.volumes: access their own entries,"[('user_setting_id.user_id', '=', user.id)]",t,t,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+69,206,1,1,Administrators can access all User Settings volumes.,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+71,204,1,1,Canned response: User read: own or in groups,"['|', ('create_uid', '=', user.id), ('group_ids', 'in', user.all_group_ids.ids)]",t,t,f,f,f,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+72,204,1,1,Canned response: User write/unlink: own only,"[('create_uid', '=', user.id)]",t,f,t,f,t,f,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+73,200,1,1,\N,"[('create_uid', '=', user.id)]",t,f,t,t,f,t,2026-03-18 05:03:38.577538,2026-03-18 05:03:38.577538
+74,386,1,1,Analytic multi company rule,"['|',('company_id','=',False),('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:03:46.533969,2026-03-18 05:03:46.533969
+75,388,1,1,Analytic line multi company rule,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:03:46.533969,2026-03-18 05:03:46.533969
+76,385,1,1,Analytic applicability multi company rule,"['|',('company_id','=',False),('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:03:46.533969,2026-03-18 05:03:46.533969
+77,390,1,1,Analytic distribution model multi company rule,"['|',('company_id','=',False),('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:03:46.533969,2026-03-18 05:03:46.533969
+78,406,1,1,Product multi-company," ['|', ('company_id', 'parent_of', company_ids), ('company_id', '=', False)]",t,t,t,t,t,t,2026-03-18 05:03:51.572879,2026-03-18 05:03:51.572879
+79,415,1,1,Product multi-company," ['|', ('company_id', 'parent_of', company_ids), ('company_id', '=', False)]",t,t,t,t,t,t,2026-03-18 05:03:51.572879,2026-03-18 05:03:51.572879
+80,416,1,1,product pricelist company rule," ['|', ('company_id', 'parent_of', company_ids), ('company_id', '=', False)]",t,t,t,t,t,t,2026-03-18 05:03:51.572879,2026-03-18 05:03:51.572879
+81,417,1,1,product pricelist item company rule," ['|', ('company_id', 'parent_of', company_ids), ('company_id', '=', False)]",t,t,t,t,t,t,2026-03-18 05:03:51.572879,2026-03-18 05:03:51.572879
+82,418,1,1,product supplierinfo company rule,"['|', ('company_id', '=', False), ('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:03:51.572879,2026-03-18 05:03:51.572879
+83,413,1,1,Product combo multi-company rule,"\n            ['|', ('company_id', '=', False), ('company_id', 'parent_of', company_ids)]\n        ",t,t,t,t,t,t,2026-03-18 05:03:51.572879,2026-03-18 05:03:51.572879
+89,460,1,1,Access transactions in own companies only,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:02.10459,2026-03-18 05:04:02.10459
+90,459,1,1,Users can access only their own tokens,"[('partner_id', '=', user.partner_id.id)]",t,t,t,t,t,f,2026-03-18 05:04:02.10459,2026-03-18 05:04:02.10459
+91,459,1,1,Access tokens in own companies only,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:02.10459,2026-03-18 05:04:02.10459
+92,461,1,1,Payment Capture Wizard,"[('create_uid', '=', user.id)]",t,t,t,t,t,t,2026-03-18 05:04:02.10459,2026-03-18 05:04:02.10459
+93,388,1,1,account.analytic.line.billing.user,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+94,388,1,1,account.analytic.line.readonly.user,"[(1, '=', 1)]",t,t,f,f,f,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+95,466,1,1,Account Entry,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+96,486,1,1,Entry lines,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+97,475,1,1,Multi-ledger multi-company,"['|', ('company_id', '=', False), ('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+98,476,1,1,Journal multi-company,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+99,471,1,1,Account multi-company,"[('company_ids', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+100,472,1,1,Account Group multi-company,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+101,479,1,1,Tax group multi-company,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+102,480,1,1,Tax multi-company,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+103,481,1,1,Tax Repartition multi-company,"['|',('company_id','=',False), ('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+104,517,1,1,Invoice Analysis multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+105,467,1,1,Account fiscal Mapping company rule,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+106,493,1,1,Account bank statement company rule,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+107,494,1,1,Account bank statement line company rule,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+108,483,1,1,Account reconcile model template company rule,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+87,446,1,1,SMS Template: system group granted all,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:03:57.809706,2026-03-29 06:22:43.268792
+109,482,1,1,Account reconcile model_line template company rule,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+110,490,1,1,Account payment company rule,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+111,484,1,1,Account payment term company rule,"['|', ('company_id', '=', False), ('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+112,466,1,1,All Journal Entries,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+113,486,1,1,All Journal Items,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+114,466,1,1,Portal Personal Account Invoices,"[('state', 'not in', ('cancel', 'draft')), ('move_type', 'in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')), ('partner_id','child_of',[user.commercial_partner_id.id])]",t,t,t,t,t,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+115,486,1,1,Portal Invoice Lines,"[('parent_state', 'not in', ('cancel', 'draft')), ('move_id.move_type', 'in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')), ('move_id.partner_id','child_of',[user.commercial_partner_id.id])]",t,t,t,t,t,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+116,466,1,1,Readonly Move,"[(1, '=', 1)]",t,t,f,f,f,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+117,486,1,1,Readonly Move Line,"[(1, '=', 1)]",t,t,f,f,f,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+118,466,1,1,Readonly Move,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+119,486,1,1,Readonly Move Line,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+120,511,1,1,Readonly Invoice Send and Print (single),"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+121,512,1,1,Readonly Invoice Send and Print (batch),"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+122,502,1,1,Report External Value multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+123,93,1,1,Billing: Allow accessing employee bank accounts,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:07.882243,2026-03-18 05:04:07.882243
+125,522,1,1,Dashboard multi-company,"[('company_ids', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:04:17.892116,2026-03-29 06:23:02.264041
+126,522,1,1,Spreadsheet dashboard: manager,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:17.892116,2026-03-29 06:23:02.264041
+127,523,1,1,spreadsheet.dashboard.share: create uid,"[('create_uid', '=', user.id)]",t,t,t,t,t,f,2026-03-18 05:04:17.892116,2026-03-29 06:23:02.264041
+128,459,1,1,Access every token,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:23.216988,2026-03-18 05:04:23.216988
+130,546,1,1,Account online link company rule,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:25.828127,2026-03-18 05:04:25.828127
+131,545,1,1,Online account company rule,"[('account_online_link_id.company_id','parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:25.828127,2026-03-18 05:04:25.828127
+129,526,1,1,Spreadsheet dashboard threads: groups,"['&', ('dashboard_id' ,'!=', False), ('dashboard_id.group_ids', 'in', user.all_group_ids.ids)]",t,t,t,t,t,f,2026-03-18 05:04:25.315763,2026-03-29 06:24:45.022884
+135,594,1,1,Sales Order multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+136,595,1,1,Sales Order Line multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+137,596,1,1,Sales Order Analysis multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+138,594,1,1,Portal Personal Quotations/Sales Orders,"[('partner_id','child_of',[user.commercial_partner_id.id])]",t,t,t,f,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+139,595,1,1,Portal Sales Orders Line,"[('order_id.partner_id','child_of',[user.commercial_partner_id.id])]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+140,594,1,1,Personal Orders,"['|',('user_id','=',user.id),('user_id','=',False)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+141,594,1,1,All Orders,"[(1,'=',1)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+142,596,1,1,Personal Orders Analysis,"['|',('user_id','=',user.id),('user_id','=',False)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+143,596,1,1,All Orders Analysis,"[(1,'=',1)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+144,595,1,1,Personal Order Lines,"['|',('salesman_id','=',user.id),('salesman_id','=',False)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+145,595,1,1,All Orders Lines,"[(1,'=',1)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+146,517,1,1,Personal Invoices Analysis,"['|', ('invoice_user_id', '=', user.id), ('invoice_user_id', '=', False)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+147,517,1,1,All Invoices Analysis,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+148,460,1,1,Access every payment transaction,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+149,459,1,1,Access every payment token,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+132,553,1,1,Account Returns multi-company,"[('company_ids', 'in', company_ids)]",t,t,f,f,f,t,2026-03-18 05:04:27.13783,2026-03-29 06:24:47.586321
+133,553,1,1,Account Returns multi-company,"['|', ('tax_unit_id.main_company_id', 'in', company_ids), ('company_id', 'in', company_ids)]",t,f,t,t,t,t,2026-03-18 05:04:27.13783,2026-03-29 06:24:47.586321
+134,554,1,1,Account Returns Check multi-company,"['|', ('return_id.tax_unit_id.main_company_id', 'in', company_ids), ('return_id.company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:27.13783,2026-03-29 06:24:47.586321
+124,522,1,1,Spreadsheet dashboard: groups,"[('group_ids', 'in', user.all_group_ids.ids)]",t,t,t,t,t,f,2026-03-18 05:04:17.892116,2026-03-29 06:23:02.264041
+150,466,1,1,Personal Invoices,"[('move_type', 'in', ('out_invoice', 'out_refund')), '|', ('invoice_user_id', '=', user.id), ('invoice_user_id', '=', False)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+151,466,1,1,All Invoices,"[('move_type', 'in', ('out_invoice', 'out_refund'))]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+152,486,1,1,Personal Invoice Lines,"[('move_id.move_type', 'in', ('out_invoice', 'out_refund')), '|', ('move_id.invoice_user_id', '=', user.id), ('move_id.invoice_user_id', '=', False)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+153,486,1,1,All Invoice Lines,"[('move_id.move_type', 'in', ('out_invoice', 'out_refund'))]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+154,511,1,1,Personal Invoice Send and Print (single mode),"[('move_id.move_type', 'in', ('out_invoice', 'out_refund')), '|', ('move_id.invoice_user_id', '=', user.id), ('move_id.invoice_user_id', '=', False)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+155,512,1,1,Personal Invoice Send and Print (batch mode),"[('move_ids.move_type', 'in', ('out_invoice', 'out_refund')), '|', ('move_ids.invoice_user_id', '=', user.id), ('move_ids.invoice_user_id', '=', False)]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+156,511,1,1,All Invoice Send and Print (single mode),"[('move_id.move_type', 'in', ('out_invoice', 'out_refund'))]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+157,512,1,1,All Invoice Send and Print (batch mode),"[('move_ids.move_type', 'in', ('out_invoice', 'out_refund'))]",t,t,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+158,599,1,1,Sales Advance Payment Invoice Rule,"[('create_uid', '=', user.id)]",t,t,t,t,t,t,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+159,597,1,1,Sales Mass Cancel Orders: access only your own wizard,"[('create_uid', '=', user.id)]",t,t,t,t,t,t,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+160,184,1,1,Manager can manage sale order plans,"[('res_model', '=', 'sale.order')]",t,f,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+161,185,1,1,Manager can manage sale order plan templates,"[('plan_id.res_model', '=', 'sale.order')]",t,f,t,t,t,f,2026-03-18 05:04:33.38448,2026-03-18 05:04:33.38448
+162,602,1,1,Account fiscal categories multi-country,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:04:37.425322,2026-03-18 05:04:37.425322
+163,604,1,1,Account Follow-up multi company rule,"['|',('company_id','=',False),('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:04:37.883567,2026-03-18 05:04:37.883567
+164,446,1,1,SMS Template: account manager CUD on partner templates,"[('model_id.model', '=', 'res.partner')]",t,f,t,t,t,f,2026-03-18 05:04:37.883567,2026-03-18 05:04:37.883567
+165,613,1,1,Quotation Template multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:04:39.706647,2026-03-18 05:04:39.706647
+191,660,1,1,Account Loan multi-company,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:16.035455,2026-03-29 06:25:03.365038
+167,616,1,1,Quotation document multi-company rule,"\n            ['|', ('company_id', '=', False), ('company_id', 'parent_of', company_ids)]\n        ",t,t,t,t,t,t,2026-03-18 05:04:41.349774,2026-03-18 05:04:41.349774
+168,618,1,1,Order Spreadsheet multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:04:42.983171,2026-03-18 05:04:42.983171
+169,618,1,1,Manager Order Spreadsheets,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:04:42.983171,2026-03-18 05:04:42.983171
+170,618,1,1,Order Spreadsheet Templates,"[('order_id','=',False)]",t,t,f,f,f,f,2026-03-18 05:04:42.983171,2026-03-18 05:04:42.983171
+171,618,1,1,Personal Order Spreadsheets,"[\n                ('order_id','!=',False),\n                '|',('order_id.user_id','=',user.id),('order_id.user_id','=',False)\n            ]",t,t,t,t,t,f,2026-03-18 05:04:42.983171,2026-03-18 05:04:42.983171
+172,618,1,1,All Orders Spreadsheets,"[('order_id','!=',False)]",t,t,t,t,t,f,2026-03-18 05:04:42.983171,2026-03-18 05:04:42.983171
+173,526,1,1,Sale order spreadsheet threads: groups,"[('sale_order_spreadsheet_id','!=',False)]",t,t,t,t,t,f,2026-03-18 05:04:42.983171,2026-03-18 05:04:42.983171
+174,526,1,1,Personal Order Spreadsheets Comments,"[\n                ('sale_order_spreadsheet_id','!=',False),\n                ('sale_order_spreadsheet_id.order_id','!=',False),\n                '|',('sale_order_spreadsheet_id.order_id.user_id','=',user.id),('sale_order_spreadsheet_id.order_id.user_id','=',False)\n            ]",t,t,t,t,t,f,2026-03-18 05:04:42.983171,2026-03-18 05:04:42.983171
+175,526,1,1,All Orders Spreadsheets Comments,"[('sale_order_spreadsheet_id','!=',False),('sale_order_spreadsheet_id.order_id','!=',False)]",t,t,t,t,t,f,2026-03-18 05:04:42.983171,2026-03-18 05:04:42.983171
+176,628,1,1,Own events,"[('partner_ids', 'in', user.partner_id.id)]",t,t,t,t,t,f,2026-03-18 05:05:32.057443,2026-03-18 05:05:32.057443
+177,628,1,1,All Calendar Event for employees,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:05:32.057443,2026-03-18 05:05:32.057443
+178,626,1,1,Own attendees,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:05:32.057443,2026-03-18 05:05:32.057443
+179,628,1,1,Private events,"['|', ('privacy', '!=', 'private'), '&', ('privacy', '=', 'private'), '|', ('user_id', '=', user.id), ('partner_ids', 'in', user.partner_id.id)]",t,f,t,t,t,t,2026-03-18 05:05:32.057443,2026-03-18 05:05:32.057443
+180,636,1,1,Personal Leads,"['|',('user_id','=',user.id),('user_id','=',False)]",t,t,t,t,t,f,2026-03-18 05:05:38.118228,2026-03-18 05:05:38.118228
+181,636,1,1,CRM Lead Multi-Company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:05:38.118228,2026-03-18 05:05:38.118228
+182,636,1,1,All Leads,"[(1,'=',1)]",t,t,t,t,t,f,2026-03-18 05:05:38.118228,2026-03-18 05:05:38.118228
+183,642,1,1,All Activities,"[(1,'=',1)]",t,t,t,t,t,f,2026-03-18 05:05:38.118228,2026-03-18 05:05:38.118228
+184,642,1,1,Personal Activities,"['|',('user_id','=',user.id),('user_id','=',False)]",t,t,t,t,t,f,2026-03-18 05:05:38.118228,2026-03-18 05:05:38.118228
+185,642,1,1,CRM Lead Multi-Company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:05:38.118228,2026-03-18 05:05:38.118228
+186,184,1,1,Manager can manage lead plans,"[('res_model', '=', 'crm.lead')]",t,f,t,t,t,f,2026-03-18 05:05:38.118228,2026-03-18 05:05:38.118228
+187,185,1,1,Manager can manage lead plan templates,"[('plan_id.res_model', '=', 'crm.lead')]",t,f,t,t,t,f,2026-03-18 05:05:38.118228,2026-03-18 05:05:38.118228
+188,446,1,1,SMS Template: sale manager CUD on opportunity / partner templates,"[('model_id.model', 'in', ('crm.lead', 'res.partner'))]",t,f,t,t,t,f,2026-03-18 05:05:41.444506,2026-03-18 05:05:41.444506
+189,654,1,1,Account Asset multi-company,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:08.496909,2026-03-18 05:30:08.496909
+190,655,1,1,Account Asset Group multi-company,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:08.496909,2026-03-18 05:30:08.496909
+192,661,1,1,Account Loan Line multi-company,"[('company_id', 'parent_of', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:16.035455,2026-03-29 06:25:03.365038
+193,677,1,1,stock_picking multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+194,676,1,1,Stock Operation Type multi-company,"[('company_id','in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+195,668,1,1,Stock Operation Type multi-company,"[('company_id','in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+166,446,1,1,SMS Template: sale manager CUD on sale orders,"[('model_id.model', 'in', ('sale.order', 'res.partner'))]",t,f,t,t,t,f,2026-03-18 05:04:40.388596,2026-03-29 06:23:52.899966
+196,675,1,1,Stock Production Lot multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+197,681,1,1,Warehouse multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+198,669,1,1,Location multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+199,671,1,1,stock_move multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+200,672,1,1,stock_move_line multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+201,678,1,1,stock_quant multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+202,674,1,1,stock_warehouse.orderpoint multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+203,673,1,1,product_pulled_flow multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+204,670,1,1,stock_route multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+205,686,1,1,stock_package multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+206,682,1,1,stock_scrap_company multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+207,691,1,1,report_stock_quantity_flow multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+208,687,1,1,stock_storage_category multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:30:58.653183,2026-03-18 05:30:58.653183
+209,719,1,1,Stock Average Cost Report multi-company,"[('company_id','in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:31:08.152547,2026-03-18 05:31:08.152547
+210,718,1,1,Product Value multi-company,"[('company_id','in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:31:08.152547,2026-03-18 05:31:08.152547
+211,722,1,1,Stock Report multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:31:12.999025,2026-03-18 05:31:12.999025
+212,446,1,1,SMS Template: stock manager CUD on stock picking templates,"[('model_id.model', '=', 'stock.picking')]",t,f,t,t,t,f,2026-03-18 05:31:13.45306,2026-03-18 05:31:13.45306
+213,677,1,1,Portal Follower Transfers,"['|', ('partner_id', '=', user.partner_id.id), ('sale_id.partner_id', '=', user.partner_id.id)]",t,t,t,t,t,f,2026-03-18 05:31:14.39974,2026-03-18 05:31:14.39974
+214,595,1,1,Stock User Sales Orders Line,"[(1, '=', 1)]",t,t,f,f,f,f,2026-03-18 05:31:14.39974,2026-03-18 05:31:14.39974
+215,726,1,1,Purchase Order multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:32:08.430974,2026-03-18 05:32:08.430974
+216,727,1,1,Purchase Order Line multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:32:08.430974,2026-03-18 05:32:08.430974
+217,726,1,1,Portal Purchase Orders,"[('partner_id', 'child_of', [user.commercial_partner_id.id])]",t,t,t,f,t,f,2026-03-18 05:32:08.430974,2026-03-18 05:32:08.430974
+218,486,1,1,Purchase User Account Move Line,"[('move_id.move_type', 'in', ('in_invoice', 'in_refund', 'in_receipt'))]",t,t,t,t,t,f,2026-03-18 05:32:08.430974,2026-03-18 05:32:08.430974
+219,466,1,1,Purchase User Account Move,"[('move_type', 'in', ('in_invoice', 'in_refund', 'in_receipt'))]",t,t,t,t,t,f,2026-03-18 05:32:08.430974,2026-03-18 05:32:08.430974
+220,727,1,1,Portal Purchase Order Lines,"[('order_id.partner_id','child_of',[user.commercial_partner_id.id])]",t,t,t,t,t,f,2026-03-18 05:32:08.430974,2026-03-18 05:32:08.430974
+221,729,1,1,Purchases & Bills Union multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:32:08.430974,2026-03-18 05:32:08.430974
+222,728,1,1,Purchase Order Report multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:32:08.430974,2026-03-18 05:32:08.430974
+223,737,1,1,Users are allowed to access their own maintenance requests,"['|', '|', ('owner_user_id', '=', user.id), ('message_partner_ids', 'in', [user.partner_id.id]), ('user_id', '=', user.id)]",t,t,t,t,t,f,2026-03-18 05:32:49.623065,2026-03-18 05:32:49.623065
+224,736,1,1,Users are allowed to access equipment they follow,"[('message_partner_ids', 'in', [user.partner_id.id])]",t,t,t,t,t,f,2026-03-18 05:32:49.623065,2026-03-18 05:32:49.623065
+225,737,1,1,Administrator of maintenance requests,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:32:49.623065,2026-03-18 05:32:49.623065
+226,736,1,1,Equipment administrator,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:32:49.623065,2026-03-18 05:32:49.623065
+227,737,1,1,Maintenance Request Multi-company rule,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:32:49.623065,2026-03-18 05:32:49.623065
+228,736,1,1,Maintenance Equipment Multi-company rule,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:32:49.623065,2026-03-18 05:32:49.623065
+229,738,1,1,Maintenance Team Multi-company rule,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:32:49.623065,2026-03-18 05:32:49.623065
+230,734,1,1,Maintenance Equipment Category Multi-company rule,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:32:49.623065,2026-03-18 05:32:49.623065
+231,743,1,1,Employee multi company rule,"['|', '|', '|',\n            ('company_id', 'in', company_ids + [False]),\n            ('parent_id.user_id', '=', user.id),\n            ('id', '=', user.employee_id.parent_id.id),\n            ('user_id', '=', user.id)\n        ]",t,t,t,t,t,t,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+232,747,1,1,Department multi company rule,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+233,746,1,1,Employee multi company rule,"['|', '|', '|',\n            ('company_id', 'in', company_ids + [False]),\n            ('parent_id.user_id', '=', user.id),\n            ('id', '=', user.employee_id.parent_id.id),\n            ('user_id', '=', user.id)\n        ]",t,t,t,t,t,t,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+234,740,1,1,Job multi company rule,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+235,93,1,1,HR: Prevent non HR officers from accessing employee bank accounts,"[('partner_id.employee_ids', '=', False)]",t,t,t,t,t,f,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+236,93,1,1,HR: Allow HR officers from accessing employee bank accounts,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+237,742,1,1,HR Contract Type: Multi Company,"['|', ('country_id', '=', False), ('country_id', 'in', user.env.companies.country_id.ids)]",t,t,t,t,t,t,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+238,184,1,1,Manager can edit employee plan,"[('res_model', '=', 'hr.employee')]",t,f,t,t,t,f,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+239,185,1,1,Manager can edit employee plan template,"[('plan_id.res_model', '=', 'hr.employee')]",t,f,t,t,t,f,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+240,748,1,1,Departure Reason: multi company,"[('country_code', 'in', user.env.companies.mapped('country_code') + [False])]",t,t,t,t,t,t,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+241,741,1,1,HR Contract: Contract Manager,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+242,741,1,1,HR Contract: Multi Company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+243,739,1,1,HR Payroll Structure Type: Multi Company,"['|', ('country_id', '=', False), ('country_id', 'in', user.env.companies.mapped('country_id').ids)]",t,t,t,t,t,t,2026-03-18 05:33:40.052078,2026-03-18 05:33:40.052078
+244,755,1,1,Manager Expense,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+288,924,1,1,Point Of Sale Config,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+245,755,1,1,Team Approver Expense,"['|', '|', '|', '|',\n                ('employee_id.user_id', '=', user.id),\n                ('employee_id.department_id.manager_id.user_id', '=', user.id),\n                ('employee_id', 'child_of', user.employee_ids.ids),\n                ('employee_id.expense_manager_id', '=', user.id),\n                ('manager_id', '=', user.id)]",t,t,t,t,t,f,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+246,755,1,1,Employee Expense,"[\n                '|', '&', ('employee_id.expense_manager_id', '=', user.id), ('state', 'in', ['draft', 'submitted', 'approved', 'refused']),\n                     '&', ('employee_id.user_id', '=', user.id), ('state', '=', 'draft')\n            ]",t,t,t,t,t,f,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+247,755,1,1,Employees can't modify an expense that is not in draft state,"[\n                '|', '&', ('employee_id.user_id', '=', user.id), ('state', '!=', 'draft'),\n                     '&', ('employee_id.expense_manager_id', '=', user.id), ('state', 'in', ['submitted', 'approved', 'refused'])\n            ]",t,t,f,f,f,f,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+248,755,1,1,Expense multi company rule,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+249,466,1,1,Expense Team Approver Account Move,"[('expense_ids', '!=', False)]",t,t,t,t,t,f,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+250,486,1,1,Expense Team Approver Account Move Line,"[('expense_id', '!=', False)]",t,t,t,t,t,f,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+251,759,1,1,Employee Expense Split,"[\n                ('expense_id.state', '=', 'draft'),\n                '|', ('expense_id.employee_id.user_id', '=', user.id), ('expense_id.manager_id', '=', user.id),\n            ]",t,t,t,t,t,f,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+252,759,1,1,Approver Expense Split,"[\n                ('expense_id.state', 'in', ['draft', 'submitted']),\n                ('expense_id.manager_id', 'in', [user.id, False])\n            ]",t,t,t,t,t,f,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+253,759,1,1,All approver Expense Split,"[\n                ('expense_id.state', 'in', ['draft', 'submitted']),\n                '|', ('expense_id.employee_id.user_id', '!=', user.id), ('expense_id.manager_id', 'in', [user.id, False])\n            ]",t,t,t,t,t,f,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+254,759,1,1,Manager Expense Split,"[('expense_id.state', 'in', ['draft', 'submitted'])]",t,t,t,t,t,f,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+255,759,1,1,Accountant Expense Split,"[('expense_id.state', 'in', ('draft', 'submitted', 'approved'))]",t,t,t,t,t,f,2026-03-18 05:33:47.704597,2026-03-18 05:33:47.704597
+256,761,1,1,homeworking: own,"[\n                ('employee_id', '=', user.employee_id.id)\n            ]",t,t,t,t,t,f,2026-03-18 05:33:50.439619,2026-03-18 05:33:50.439619
+257,761,1,1,homeworking: admin,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:33:50.439619,2026-03-18 05:33:50.439619
+258,762,1,1,Resume: employee: read all,"[(1, '=', 1)]",t,t,f,f,f,f,2026-03-18 05:33:52.086694,2026-03-18 05:33:52.086694
+259,762,1,1,Resume: HR user: all,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:33:52.086694,2026-03-18 05:33:52.086694
+260,762,1,1,Resume: employee: create/write/unlink own,"[('employee_id.user_id','=',user.id)]",t,f,t,t,t,f,2026-03-18 05:33:52.086694,2026-03-18 05:33:52.086694
+261,766,1,1,Employee skill: employee: read all,"[(1, '=', 1)]",t,t,f,f,f,f,2026-03-18 05:33:52.086694,2026-03-18 05:33:52.086694
+262,766,1,1,Employee skill: HR user: read all,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:33:52.086694,2026-03-18 05:33:52.086694
+263,766,1,1,Employee skill: employee: create/write/unlink own,"[('employee_id.user_id','=',user.id)]",t,f,t,t,t,f,2026-03-18 05:33:52.086694,2026-03-18 05:33:52.086694
+264,773,1,1,Employee Skill Report: HR user,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:33:52.086694,2026-03-18 05:33:52.086694
+265,773,1,1,Employee Skill Report: employee's manager,"[('has_department_manager_access', '=', True)]",t,t,t,t,t,f,2026-03-18 05:33:52.086694,2026-03-18 05:33:52.086694
+266,772,1,1,Employee Skill History Report: HR user,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:33:52.086694,2026-03-18 05:33:52.086694
+267,772,1,1,Employee Skill History Report: employee's manager,"[('employee_id', 'child_of', user.employee_ids.ids)]",t,t,t,t,t,f,2026-03-18 05:33:52.086694,2026-03-18 05:33:52.086694
+268,773,1,1,Employee Skill Report: Multi-Company Rule,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 05:33:52.086694,2026-03-18 05:33:52.086694
+269,775,1,1,homeworking wizard: own,"[\n                ('employee_id', '=', user.employee_id.id)\n            ]",t,t,t,t,t,f,2026-03-18 05:33:54.044392,2026-03-18 05:33:54.044392
+270,775,1,1,homeworking wizard: admin,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-18 05:33:54.044392,2026-03-18 05:33:54.044392
+275,791,1,1,Date Range Type multi-company,"\n            ['|',('company_id', 'in', company_ids),('company_id','=',False)]\n        ",t,t,t,t,t,t,2026-03-18 05:40:09.120152,2026-03-18 05:40:09.120152
+272,783,1,1,Withholding Tax Multi Company,"['|',('company_id','=',False),('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 05:36:15.400097,2026-03-29 06:25:00.756975
+273,784,1,1,Withholding Tax,"['|',('company_id','=',False),('company_id','in',company_ids)]",t,t,t,t,t,t,2026-03-18 05:37:55.299978,2026-03-18 05:37:55.299978
+274,785,1,1,Withholding Tax Line,"['|',('company_id','=',False),('company_id','in',company_ids)]",t,t,t,t,t,t,2026-03-18 05:37:55.299978,2026-03-18 05:37:55.299978
+276,792,1,1,Date Range multi-company,"\n            ['|',('company_id', 'in', company_ids),('company_id','=',False)]\n        ",t,t,t,t,t,t,2026-03-18 05:40:09.120152,2026-03-18 05:40:09.120152
+277,808,1,1,Delivery Carrier multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 12:25:34.329804,2026-03-18 12:25:34.329804
+278,813,1,1,Shopee Account multi-company,"['|', ('company_ids', '=', False), ('company_ids', 'in', company_ids)]",t,t,t,t,t,t,2026-03-18 12:25:37.400056,2026-03-18 12:25:37.400056
+279,815,1,1,Shopee Shop multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-18 12:25:37.400056,2026-03-18 12:25:37.400056
+271,779,1,1,Own transaction,"['|', ('seller_id', '=', user.partner_id.id), ('subscriber_id', '=', user.partner_id.id)]",t,t,t,t,t,f,2026-03-18 05:35:00.54713,2026-03-29 06:22:47.202223
+280,779,1,1,All transaction,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-29 06:22:47.202223,2026-03-29 06:22:47.202223
+281,916,1,1,stock_landed_cost multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-29 10:48:55.475382,2026-03-29 10:48:55.475382
+282,493,1,1,Point Of Sale Bank Statement Accountant,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+283,494,1,1,Point Of Sale Bank Statement Line POS User,"[('pos_session_id', '!=', False)]",t,t,t,t,t,f,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+284,494,1,1,Point Of Sale Bank Statement Line Accountant,"[(1, '=', 1)]",t,t,t,t,t,f,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+285,925,1,1,Point Of Sale Order,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+286,926,1,1,Point Of Sale Order Line,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+287,928,1,1,Point Of Sale Session,"[('config_id.company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+289,937,1,1,Point Of Sale Order Analysis multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+290,931,1,1,PoS Payment Method,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+291,930,1,1,PoS Payment,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+292,466,1,1,Invoice POS User,"[('pos_order_ids', '!=', False)]",t,t,t,t,t,f,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+293,486,1,1,Invoice Line POS User,"[('move_id.pos_order_ids', '!=', False)]",t,t,t,t,t,f,2026-03-30 06:57:43.846231,2026-03-30 06:57:43.846231
+294,947,1,1,Restricted Record: multi-company,"\n            [('company_id', 'in', company_ids)]\n        ",t,t,t,t,t,t,2026-03-30 06:57:50.713151,2026-03-30 06:57:50.713151
+295,433,1,1,POS Sales Team,"[(1,'=',1)]",t,t,t,t,t,f,2026-03-30 06:57:54.559419,2026-03-30 06:57:54.559419
+296,963,1,1,mrp_production multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059
+297,964,1,1,mrp_unbuild multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059
+298,956,1,1,mrp_workcenter multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059
+299,965,1,1,mrp_workorder multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059
+300,952,1,1,mrp_bom multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059
+301,953,1,1,mrp_bom_line multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059
+302,954,1,1,mrp_bom_byproduct multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059
+303,955,1,1,mrp_routing_workcenter multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059
+304,960,1,1,mrp_workcenter_productivity multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 07:52:50.018059,2026-03-30 07:52:50.018059
+305,985,1,1,Quality alert company rule,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 07:52:56.13228,2026-03-30 07:52:56.13228
+306,984,1,1,Quality check company rule,"['|', ('company_id', 'in', company_ids), ('point_id.company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 07:52:56.13228,2026-03-30 07:52:56.13228
+307,979,1,1,Control point company rule,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 07:52:56.13228,2026-03-30 07:52:56.13228
+308,980,1,1,Quality Team multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-30 07:52:56.13228,2026-03-30 07:52:56.13228
+309,991,1,1,MRP Report multi-company,"[('company_id', 'in', company_ids)]",t,t,t,t,t,t,2026-03-30 07:53:02.865557,2026-03-30 07:53:02.865557
+310,995,1,1,Lazada Shop multi-company,"[('company_id', 'in', company_ids + [False])]",t,t,t,t,t,t,2026-03-30 08:19:02.866343,2026-03-30 08:19:02.866343

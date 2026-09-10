@@ -1,0 +1,16 @@
+{"candidates_checked": 236, "database_artefacts": 15}
+PG_CUSTOM          155.4 MB  /Users/admin/Downloads/iSMEs_2026-07-11_05-03-27.dump  
+PG_CUSTOM           65.4 MB  /Users/admin/Downloads/ACCOUNT/01 ACCOUNT/iTEST02_2026-06-14_14-41-19.dump  
+PG_CUSTOM           65.4 MB  /Users/admin/Downloads/SOURCE CODE/iTEST02_2026-06-14_14-41-19.dump  
+PG_CUSTOM           65.4 MB  /Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/ACCOUNT/01 ACCOUNT/SOURCE CODE/iTEST02_2026-06-14_14-41-19.dump  
+PG_CUSTOM           65.4 MB  /Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/ACCOUNT/01 ACCOUNT/iTEST02_2026-06-14_14-41-19.dump  
+PG_CUSTOM           65.4 MB  /Volumes/iMacSys/VING/SOURCE CODE/iTEST02_2026-06-14_14-41-19.dump  
+PG_CUSTOM           64.3 MB  /Users/admin/Downloads/iTEST02_2026-07-14_16-34-51.dump  
+PG_PLAIN            62.5 MB  /Volumes/iMacSys/95_BHPRO_PROJECT/DOCUMENT/iEVING_2026-03-31_06-48-41/dump.sql  
+PG_CUSTOM           45.6 MB  /Users/admin/OCC_BACKUP/idemo18_uat_pre_scgl_occ_website_20260830_085432.dump  
+PG_CUSTOM           35.7 MB  /Users/admin/Downloads/BK12MAY26_2026-08-03_05-48-30.dump  
+APP_BACKUP_ZIP      29.5 MB  /Users/admin/Downloads/BK12MAY26_2026-08-03_11-28-04.zip  {"version": "19.0+e", "db_name": "BK12MAY26", "pg_version": "15.0"}
+PG_PLAIN            27.4 MB  /Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/VDR_PREP_PILOT_2026_09_10_EXECUTION/work2/rt/iTEST02/ir_model_data.sql  
+PG_CUSTOM           24.9 MB  /Users/admin/Downloads/iEVING_2026-07-23_10-31-06.dump  
+APP_BACKUP_ZIP      19.9 MB  /Users/admin/Downloads/iEVING_2026-03-30_02-30-18.zip  {"version": "19.0+e", "db_name": "iEVING", "pg_version": "15.0"}
+PG_PLAIN            13.3 MB  /Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/VDR_PREP_PILOT_2026_09_10_EXECUTION/work2/rt/iTEST02/product_value.sql  

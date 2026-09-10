@@ -1,0 +1,163 @@
+
+########## stock_picking_batch.stock_picking_batch_menu
+  module         : stock_picking_batch
+  action         : stock_picking_batch.stock_picking_batch_action  [ir.actions.act_window]  name=Batch Transfers
+  OBJECT         : stock.picking.batch   owned=True
+  menu gate      : none
+  action domain  : [('is_wave', '=', False)]
+  action context : {'search_default_draft': True, 'search_default_in_progress': True}
+  fields declared: 58   state field: yes
+  required fields: 3 ['name', 'company_id', 'state']
+  stored computed: 9 ['l10n_ro_edi_stock_state', 'l10n_ro_edi_stock_start_loc_type', 'l10n_ro_edi_stock_end_loc_type', 'vehicle_category_id', 'dock_id', 'driver_id']
+  controls       : 28  ['Send eTransport', 'Amend eTransport', 'Fetch Status', 'Fetch Status', 'Validate', 'Quality Checks', 'Allocation', 'Unbatch Transfer', 'Discard']
+  behaviours     : 28  crud_override=4 constrains=0 ondelete=1
+  gated elements : 10 {'quality.group_quality_user': 1, 'stock.group_reception_report': 2, 'base.group_multi_company': 2, 'stock.group_stock_multi_locations': 3, 'stock.group_tracking_lot': 2}
+  module toggles : 70 ['l10n_pe_edi_stock_client_id', 'l10n_pe_edi_stock_client_secret', 'l10n_pe_edi_stock_client_username', 'l10n_pe_edi_stock_client_password', 'module_stock_dropshipping', 'days_to_purchase']
+  cross-module   : 13 distinct -> ['l10n_ro_edi.document', 'fleet.vehicle', 'fleet.vehicle.model.category', 'res.partner', 'End Date', 'Description', 'res.users', 'res.company']
+
+########## stock_picking_batch.stock_picking_wave_menu
+  module         : stock_picking_batch
+  action         : stock_picking_batch.action_picking_tree_wave  [ir.actions.act_window]  name=Wave Transfers
+  OBJECT         : stock.picking.batch   owned=True
+  menu gate      : none
+  action domain  : [('is_wave', '=', True)]
+  action context : {'search_default_draft': True, 'search_default_in_progress': True}
+  fields declared: 58   state field: yes
+  required fields: 3 ['name', 'company_id', 'state']
+  stored computed: 9 ['l10n_ro_edi_stock_state', 'l10n_ro_edi_stock_start_loc_type', 'l10n_ro_edi_stock_end_loc_type', 'vehicle_category_id', 'dock_id', 'driver_id']
+  controls       : 28  ['Send eTransport', 'Amend eTransport', 'Fetch Status', 'Fetch Status', 'Validate', 'Quality Checks', 'Allocation', 'Unbatch Transfer', 'Discard']
+  behaviours     : 28  crud_override=4 constrains=0 ondelete=1
+  gated elements : 10 {'quality.group_quality_user': 1, 'stock.group_reception_report': 2, 'base.group_multi_company': 2, 'stock.group_stock_multi_locations': 3, 'stock.group_tracking_lot': 2}
+  module toggles : 70 ['l10n_pe_edi_stock_client_id', 'l10n_pe_edi_stock_client_secret', 'l10n_pe_edi_stock_client_username', 'l10n_pe_edi_stock_client_password', 'module_stock_dropshipping', 'days_to_purchase']
+  cross-module   : 13 distinct -> ['l10n_ro_edi.document', 'fleet.vehicle', 'fleet.vehicle.model.category', 'res.partner', 'End Date', 'Description', 'res.users', 'res.company']
+
+########## stock.menu_package
+  module         : stock
+  action         : stock.action_package_view  [ir.actions.act_window]  name=Packages
+  OBJECT         : stock.package   owned=True
+  menu gate      : stock.group_tracking_lot
+  action domain  : None
+  action context : {
+            'search_default_location': True,
+            'search_default_internal': True,
+            }
+  fields declared: 30   state field: no
+  required fields: 1 ['name']
+  stored computed: 3 ['complete_name', 'location_id', 'company_id']
+  controls       : 4  ['Unpack', 'Package Transfers', 'Put in Pack', 'Remove']
+  behaviours     : 7  crud_override=2 constrains=0 ondelete=0
+  gated elements : 11 {'stock.group_stock_multi_locations': 4, 'stock.group_tracking_owner': 1, 'base.group_multi_company': 3, 'stock.group_production_lot': 1, 'uom.group_uom': 2}
+  module toggles : 70 ['l10n_pe_edi_stock_client_id', 'l10n_pe_edi_stock_client_secret', 'l10n_pe_edi_stock_client_username', 'l10n_pe_edi_stock_client_password', 'module_stock_dropshipping', 'days_to_purchase']
+  cross-module   : 12 distinct -> ['account.move', 'Package Reference', 'Full Package Name', 'Package Name At Destination', 'Contents', 'res.company', 'res.partner', 'Package name is valid SSCC']
+
+########## stock.stock_picking_type_menu
+  module         : stock
+  action         : stock.stock_picking_type_action  [ir.actions.act_window]  name=Inventory Overview
+  OBJECT         : stock.picking.type   owned=True
+  menu gate      : none
+  action domain  : None
+  action context : None
+  fields declared: 129   state field: no
+  required fields: 13 ['name', 'sequence_code', 'default_location_src_id', 'default_location_dest_id', 'code', 'reservation_method', 'company_id', 'create_backorder']
+  stored computed: 12 ['l10n_ro_stock_movement_type', 'default_product_location_src_id', 'default_product_location_dest_id', 'default_remove_location_dest_id', 'default_recycle_location_dest_id', 'default_location_src_id']
+  controls       : 5  ['%(mrp_production_action_picking_deshboard)d', 'Workcenter Control Panel', 'get_repair_stock_picking_action_picking_type', 'get_action_picking_tree_ready', 'action_batch']
+  behaviours     : 14  crud_override=4 constrains=5 ondelete=0
+  gated elements : 48 {'stock.group_stock_multi_warehouses': 7, 'stock.group_production_lot': 10, 'mrp.group_mrp_reception_report': 3, 'mrp.group_mrp_routings': 2, 'analytic.group_analytic_accounting': 1, 'base.group_no_one': 2, 'base.group_multi_company': 2, '!base.group_multi_company': 1, 'stock.group_reception_report': 3, 'stock.group_tracking_lot': 6, 'stock.group_stock_multi_locations': 11}
+  module toggles : 70 ['l10n_pe_edi_stock_client_id', 'l10n_pe_edi_stock_client_secret', 'l10n_pe_edi_stock_client_username', 'l10n_pe_edi_stock_client_password', 'module_stock_dropshipping', 'days_to_purchase']
+  cross-module   : 61 distinct -> ['ir.sequence', 'iot.device', 'Auto Print Carrier Labels', 'Auto Print Export Documents', 'Carrier', 'Maximum weight', 'l10n_latam.document.type', 'Auto Print Done Production Order']
+
+########## mrp.mrp_operation_picking
+  module         : mrp
+  action         : mrp.action_picking_tree_mrp_operation  [ir.actions.act_window]  name=Manufacturings
+  OBJECT         : mrp.production   owned=True
+  menu gate      : stock.group_stock_manager,stock.group_stock_user
+  action domain  : 
+  action context : {'default_company_id': allowed_company_ids[0]}
+  fields declared: 115   state field: yes
+  required fields: 9 ['product_id', 'product_qty', 'product_uom_id', 'picking_type_id', 'location_src_id', 'location_dest_id', 'date_start', 'company_id']
+  stored computed: 18 ['product_id', 'product_qty', 'product_uom_id', 'product_uom_qty', 'picking_type_id', 'location_src_id']
+  controls       : 61  ['Plan', 'Check availability', 'Cancel', 'Produce', 'Produce All', 'Produce', 'Produce All', 'Confirm', 'Plan']
+  behaviours     : 66  crud_override=9 constrains=2 ondelete=2
+  gated elements : 40 {'uom.group_uom': 8, 'mrp.group_mrp_routings': 4, 'base.group_multi_company': 3, 'mrp.group_mrp_reception_report': 1, 'base.group_user': 1, 'stock.group_production_lot': 4, 'mrp.group_mrp_manager': 1, 'stock.group_stock_multi_locations': 5, 'mrp.group_mrp_byproducts': 1, '!stock.group_stock_multi_locations': 2, 'stock.group_stock_manager': 1, 'account.group_account_user': 1, 'mrp_plm.group_plm_user': 1, 'stock.group_stock_user': 1, 'mrp_workorder.group_mrp_wo_shop_floor': 1, 'project.group_project_user': 3, 'purchase.group_purchase_user': 1, 'sales_team.group_sale_salesman': 1}
+  module toggles : 18 ['group_mrp_byproducts', 'module_mrp_mps', 'module_mrp_plm', 'module_quality_control', 'module_quality_control_worksheet', 'module_mrp_subcontracting']
+  cross-module   : 48 distinct -> ['quality.check', 'product.product', 'product.template.attribute.value', 'uom.uom', 'Reference', 'Backorder Sequence', 'Source', 'mrp.workcenter']
+
+########## mrp_mps.stock_mrp_mps_report_menu
+  module         : mrp_mps
+  action         : mrp_mps.action_mrp_mps  [ir.actions.client]  name=Master Production Schedule
+  OBJECT         : mrp.production.schedule   owned=True
+  menu gate      : mrp.group_mrp_manager
+  action domain  : None
+  action context : None
+  fields declared: 17   state field: no
+  required fields: 3 ['product_id', 'warehouse_id', 'replenish_trigger']
+  stored computed: 2 ['route_id', 'supplier_id']
+  controls       : 2  ['Save', 'Cancel']
+  behaviours     : 6  crud_override=1 constrains=0 ondelete=0
+  gated elements : 3 {'stock.group_stock_multi_warehouses': 1, 'uom.group_uom': 2}
+  module toggles : 18 ['group_mrp_byproducts', 'module_mrp_mps', 'module_mrp_plm', 'module_quality_control', 'module_quality_control_worksheet', 'module_mrp_subcontracting']
+  cross-module   : 9 distinct -> ['res.company', 'product.product', 'product.template', 'product.category', 'uom.uom', 'Safety Stock Target', 'Minimum to Replenish', 'Sequence']
+
+########## stock.menu_stock_references
+  module         : stock
+  action         : stock.action_stock_reference  [ir.actions.act_window]  name=References
+  OBJECT         : stock.reference   owned=True
+  menu gate      : base.group_no_one
+  action domain  : None
+  action context : None
+  fields declared: 7   state field: no
+  required fields: 1 ['name']
+  stored computed: 0 []
+  controls       : 0  []
+  behaviours     : 0  crud_override=0 constrains=0 ondelete=0
+  gated elements : 0 {}
+  module toggles : 70 ['l10n_pe_edi_stock_client_id', 'l10n_pe_edi_stock_client_secret', 'l10n_pe_edi_stock_client_username', 'l10n_pe_edi_stock_client_password', 'module_stock_dropshipping', 'days_to_purchase']
+  cross-module   : 4 distinct -> ['pos.order', 'purchase.order', 'sale.order', 'Reference']
+
+########## stock_delivery.menu_action_delivery_carrier_form
+  module         : stock_delivery
+  action         : delivery.action_delivery_carrier_form  [ir.actions.act_window]  name=Delivery Methods
+  OBJECT         : delivery.carrier   owned=False
+  menu gate      : none
+  action domain  : None
+  action context : {'search_default_group_by_provider': True}
+  fields declared: 0   state field: no
+  required fields: 0 []
+  stored computed: 0 []
+  controls       : 0  []
+  behaviours     : 0  crud_override=0 constrains=0 ondelete=0
+  gated elements : 0 {}
+  module toggles : 1 ['module_delivery_shiprocket']
+  cross-module   : 46 distinct -> ['res.partner', 'res.country', 'product.tag', 'sendcloud.shipping.product', 'uom.uom', 'Delivery Method', 'Environment', 'Debug logging']
+
+########## stock_delivery.menu_delivery_zip_prefix
+  module         : stock_delivery
+  action         : delivery.action_delivery_zip_prefix_list  [ir.actions.act_window]  name=Zip Prefix
+  OBJECT         : delivery.zip.prefix   owned=False
+  menu gate      : base.group_no_one
+  action domain  : None
+  action context : None
+  fields declared: 0   state field: no
+  required fields: 0 []
+  stored computed: 0 []
+  controls       : 0  []
+  behaviours     : 0  crud_override=0 constrains=0 ondelete=0
+  gated elements : 0 {}
+  module toggles : 1 ['module_delivery_shiprocket']
+  cross-module   : 1 distinct -> ['Prefix']
+
+########## delivery_iot.iot_cached_printers_action
+  module         : delivery_iot
+  action         : iot.action_iot_delete_linked_devices_menu  [ir.actions.client]  name=reset.linked.printers
+  OBJECT         : (none)   owned=False
+  menu gate      : none
+  action domain  : None
+  action context : None
+  fields declared: 0   state field: no
+  required fields: 0 []
+  stored computed: 0 []
+  controls       : 0  []
+  behaviours     : 0  crud_override=0 constrains=0 ondelete=0
+  gated elements : 0 {}
+  module toggles : 0 []
+  cross-module   : 0 distinct -> []

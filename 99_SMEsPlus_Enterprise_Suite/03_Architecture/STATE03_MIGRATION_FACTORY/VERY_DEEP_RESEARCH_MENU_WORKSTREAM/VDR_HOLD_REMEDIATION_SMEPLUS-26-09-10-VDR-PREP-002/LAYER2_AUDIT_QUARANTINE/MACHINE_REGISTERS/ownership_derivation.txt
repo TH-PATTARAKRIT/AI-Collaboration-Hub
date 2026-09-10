@@ -1,0 +1,24 @@
+manifests parsed: 1433
+objects: 96 | primary resolved: 96 | UNRESOLVED: 0
+
+=== primary declaring module distribution ===
+   51  stock
+    9  mrp
+    4  mrp_mps
+    4  product
+    2  delivery
+    2  l10n_mx_edi_stock
+    2  sale_lazada
+    2  repair
+    2  stock_picking_batch
+    2  stock_landed_costs
+    1  sale_amazon
+    1  barcodes
+    1  stock_sms
+    1  product_expiry
+    1  industry_fsm_stock
+    1  l10n_cl_edi
+    1  l10n_pe_edi_stock
+    1  l10n_tr_nilvera_edispatch
+    1  point_of_sale
+    1  stock_account

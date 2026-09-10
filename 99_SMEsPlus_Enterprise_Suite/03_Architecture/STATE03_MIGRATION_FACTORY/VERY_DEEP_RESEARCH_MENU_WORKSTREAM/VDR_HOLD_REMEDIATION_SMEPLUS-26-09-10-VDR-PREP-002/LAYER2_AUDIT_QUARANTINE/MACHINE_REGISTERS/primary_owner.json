@@ -1,0 +1,689 @@
+{
+ "amazon.account": {
+  "primary": "sale_amazon",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "sale_amazon"
+  ]
+ },
+ "barcode.nomenclature": {
+  "primary": "barcodes",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "barcodes"
+  ]
+ },
+ "confirm.stock.sms": {
+  "primary": "stock_sms",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock_sms"
+  ]
+ },
+ "delivery.carrier": {
+  "primary": "delivery",
+  "how": "DEPENDENCY ROOT",
+  "declarers": [
+   "delivery",
+   "website_sale"
+  ]
+ },
+ "delivery.zip.prefix": {
+  "primary": "delivery",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "delivery"
+  ]
+ },
+ "expiry.picking.confirmation": {
+  "primary": "product_expiry",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "product_expiry"
+  ]
+ },
+ "fsm.stock.tracking.line": {
+  "primary": "industry_fsm_stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "industry_fsm_stock"
+  ]
+ },
+ "l10n_cl.dte.caf": {
+  "primary": "l10n_cl_edi",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "l10n_cl_edi"
+  ]
+ },
+ "l10n_mx_edi.customs.document.type": {
+  "primary": "l10n_mx_edi_stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "l10n_mx_edi_stock"
+  ]
+ },
+ "l10n_mx_edi.customs.regime": {
+  "primary": "l10n_mx_edi_stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "l10n_mx_edi_stock"
+  ]
+ },
+ "l10n_pe_edi.vehicle": {
+  "primary": "l10n_pe_edi_stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "l10n_pe_edi_stock"
+  ]
+ },
+ "l10n_tr.nilvera.trailer.plate": {
+  "primary": "l10n_tr_nilvera_edispatch",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "l10n_tr_nilvera_edispatch"
+  ]
+ },
+ "lazada.order.item": {
+  "primary": "sale_lazada",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "sale_lazada"
+  ]
+ },
+ "lazada.shop": {
+  "primary": "sale_lazada",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "sale_lazada"
+  ]
+ },
+ "lot.label.layout": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "mrp.bom": {
+  "primary": "mrp",
+  "how": "DEPENDENCY ROOT",
+  "declarers": [
+   "mrp",
+   "mrp_workorder"
+  ]
+ },
+ "mrp.bom.byproduct": {
+  "primary": "mrp",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "mrp"
+  ]
+ },
+ "mrp.bom.line": {
+  "primary": "mrp",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "mrp"
+  ]
+ },
+ "mrp.mps.forecast.details": {
+  "primary": "mrp_mps",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "mrp_mps"
+  ]
+ },
+ "mrp.mps.forecast.suggestion": {
+  "primary": "mrp_mps",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "mrp_mps"
+  ]
+ },
+ "mrp.product.forecast": {
+  "primary": "mrp_mps",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "mrp_mps"
+  ]
+ },
+ "mrp.production": {
+  "primary": "mrp",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "mrp"
+  ]
+ },
+ "mrp.production.group": {
+  "primary": "mrp",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "mrp"
+  ]
+ },
+ "mrp.production.schedule": {
+  "primary": "mrp_mps",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "mrp_mps"
+  ]
+ },
+ "mrp.routing.workcenter": {
+  "primary": "mrp",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "mrp"
+  ]
+ },
+ "mrp.unbuild": {
+  "primary": "mrp",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "mrp"
+  ]
+ },
+ "mrp.workorder": {
+  "primary": "mrp",
+  "how": "DEPENDENCY ROOT",
+  "declarers": [
+   "mrp",
+   "mrp_workorder"
+  ]
+ },
+ "picking.label.type": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "pos.session": {
+  "primary": "point_of_sale",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "point_of_sale"
+  ]
+ },
+ "product.attribute": {
+  "primary": "product",
+  "how": "DEPENDENCY ROOT",
+  "declarers": [
+   "point_of_sale",
+   "pos_enterprise",
+   "product"
+  ]
+ },
+ "product.category": {
+  "primary": "product",
+  "how": "DEPENDENCY ROOT",
+  "declarers": [
+   "point_of_sale",
+   "product"
+  ]
+ },
+ "product.product": {
+  "primary": "product",
+  "how": "DEPENDENCY ROOT",
+  "declarers": [
+   "documents_product",
+   "point_of_sale",
+   "product"
+  ]
+ },
+ "product.removal": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "product.replenish": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "product.template": {
+  "primary": "product",
+  "how": "DEPENDENCY ROOT",
+  "declarers": [
+   "documents_product",
+   "point_of_sale",
+   "product",
+   "website_sale"
+  ]
+ },
+ "product.value": {
+  "primary": "stock_account",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock_account"
+  ]
+ },
+ "quality.check.wizard": {
+  "primary": "quality_control",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "quality_control"
+  ]
+ },
+ "repair.order": {
+  "primary": "repair",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "repair"
+  ]
+ },
+ "report.stock.label_lot_template_view": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "report.stock.label_product_product_view": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "report.stock.quantity": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "report.stock.report_reception": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "report.stock.report_stock_rule": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "res.config.settings": {
+  "primary": "base",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "base"
+  ]
+ },
+ "shopee.shop": {
+  "primary": "sale_shopee",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "sale_shopee"
+  ]
+ },
+ "stock.add.to.wave": {
+  "primary": "stock_picking_batch",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock_picking_batch"
+  ]
+ },
+ "stock.backorder.confirmation": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.backorder.confirmation.line": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.forecasted_product_product": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.forecasted_product_template": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.inventory.adjustment.name": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.inventory.conflict": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.inventory.warning": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.landed.cost": {
+  "primary": "stock_landed_costs",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock_landed_costs"
+  ]
+ },
+ "stock.location": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.lot": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.move": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.move.line": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.orderpoint.snooze": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.package": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.package.destination": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.package.history": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.package.type": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.picking": {
+  "primary": "stock",
+  "how": "DEPENDENCY ROOT",
+  "declarers": [
+   "l10n_cl_edi_stock",
+   "stock"
+  ]
+ },
+ "stock.picking.batch": {
+  "primary": "stock_picking_batch",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock_picking_batch"
+  ]
+ },
+ "stock.picking.type": {
+  "primary": "stock",
+  "how": "DEPENDENCY ROOT",
+  "declarers": [
+   "point_of_sale",
+   "stock"
+  ]
+ },
+ "stock.put.in.pack": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.putaway.rule": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.quant": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.quant.relocate": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.quantity.history": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.reference": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.replenish.mixin": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.replenishment.info": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.replenishment.option": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.report": {
+  "primary": "stock_enterprise",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock_enterprise"
+  ]
+ },
+ "stock.request.count": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.return.picking": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.return.picking.line": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.route": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.rule": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.rules.report": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.scrap": {
+  "primary": "stock",
+  "how": "DEPENDENCY ROOT",
+  "declarers": [
+   "stock",
+   "stock_barcode"
+  ]
+ },
+ "stock.scrap.reason.tag": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.storage.category": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.storage.category.capacity": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.traceability.report": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.valuation.adjustment.lines": {
+  "primary": "stock_landed_costs",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock_landed_costs"
+  ]
+ },
+ "stock.warehouse": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.warehouse.orderpoint": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.warn.insufficient.qty": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.warn.insufficient.qty.repair": {
+  "primary": "repair",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "repair"
+  ]
+ },
+ "stock.warn.insufficient.qty.scrap": {
+  "primary": "stock",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock"
+  ]
+ },
+ "stock.warn.insufficient.qty.unbuild": {
+  "primary": "mrp",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "mrp"
+  ]
+ },
+ "stock_barcode.cancel.operation": {
+  "primary": "stock_barcode",
+  "how": "SOLE DECLARER",
+  "declarers": [
+   "stock_barcode"
+  ]
+ },
+ "uom.uom": {
+  "primary": "uom",
+  "how": "DEPENDENCY ROOT",
+  "declarers": [
+   "point_of_sale",
+   "uom"
+  ]
+ }
+}

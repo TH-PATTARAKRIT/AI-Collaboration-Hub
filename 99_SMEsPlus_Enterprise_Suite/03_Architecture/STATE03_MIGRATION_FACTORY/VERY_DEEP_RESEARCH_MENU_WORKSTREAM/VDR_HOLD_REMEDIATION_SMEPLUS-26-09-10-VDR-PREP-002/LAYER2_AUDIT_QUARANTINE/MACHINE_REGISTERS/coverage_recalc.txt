@@ -1,0 +1,32 @@
+=== §18 POPULATIONS ===
+  Total Source Population              : 5074
+  Non-Applicable Population            : 648   (containers 17 + unreachable-anywhere 635)
+  APPLICABLE Population                : 4426   (87.23% of total)
+  Source-Present Population            : 5074   (100.00%)
+  Runtime-Reachable (ELEMENT OBSERVED) : 63
+    -> element-observed reachable      : 63
+    -> module-inferred reachable       : 4190
+    -> unmeasured                      : 186
+  Configuration-Reachable Population   : 21 of 237 group-toggles resolved to an effect surface
+  Optional-Function Population         : 62   (group-toggles + module-installer toggles)
+
+=== VERIFIED POPULATIONS ===
+  Verified PROCESS population          : 63   (1.42% of applicable)
+  Verified CONFIGURATION population    : 755   (17.06% of applicable)
+  Verified OPTIONAL FUNCTION population: 21   (the group-toggles resolved to an effect surface)
+  RESEARCH-COMPLETE population         : 0   — requires PROCESS + CONFIG + OPTIONAL on the same item
+
+=== CRITICAL ===
+  Critical Population                  : 2461   (48.50%)
+  Critical Complete Population         : 0
+  Critical with measured reachability  : 2446   (99.39%)
+
+=== DIMENSION COVERAGE (applicable denominator) ===
+  MENU        pop    62  applicable    39  S4     7  17.95%
+  SETTING     pop   237  applicable   179  S4     6  3.35%
+  AUTOMATION  pop    26  applicable    11  S4     0  0.00%
+  OBJECT      pop    96  applicable    96  S4     0  0.00%
+  RULE        pop    46  applicable    43  S4    43  100.00%
+  ACL         pop   180  applicable   170  S4     0  0.00%
+  GATEDELEM   pop   525  applicable   504  S4     0  0.00%
+  HANDOFF     pop    90  applicable    90  S4     0  0.00%

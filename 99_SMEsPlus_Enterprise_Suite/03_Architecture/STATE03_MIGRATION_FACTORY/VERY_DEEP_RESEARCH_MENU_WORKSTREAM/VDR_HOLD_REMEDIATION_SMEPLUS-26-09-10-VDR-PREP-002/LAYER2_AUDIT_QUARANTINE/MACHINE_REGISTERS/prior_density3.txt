@@ -1,0 +1,13 @@
+CLASS            total hits  files hit   positive control  ctrl hits
+PROCESS                 278         22            trigger         57
+CONFIGURATION           363         24      configuration        148
+OPTIONAL FUNC             0          0             toggle          0
+RUNTIME REACH            21         10          installed          0
+INPUT                    74         18              input         62
+OUTPUT                  232         22             output        113
+
+=== the ratio that matters ===
+  INPUT 74  :  OUTPUT 232  :  PROCESS 278  :  CONFIGURATION 363  :  OPTIONAL 0  :  RUNTIME 21
+
+=== OPTIONAL-FUNCTION: every occurrence, with context ===
+   -> total strong optional-function occurrences: 0

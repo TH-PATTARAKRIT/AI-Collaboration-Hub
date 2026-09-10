@@ -1,0 +1,56 @@
+=== INVENTORY MENU REACHABILITY, 2 series-19 deployments ===
+  declared in source (R1)      : 62
+  present on BOTH              : 46 (74.2%)
+  present on AT LEAST ONE       : 52 (83.9%)
+  present on NEITHER            : 10 (16.1%)
+      never reachable here: l10n_cl_edi_stock.menu_sii_chile
+      never reachable here: l10n_cl_edi_stock.menu_stock_l10n_cl_dte_caf
+      never reachable here: l10n_mx_edi_stock.menu_stock_config_settings_mx
+      never reachable here: l10n_mx_edi_stock.menu_stock_mx_customs_document_type
+      never reachable here: l10n_mx_edi_stock.menu_stock_mx_customs_regime
+      never reachable here: l10n_pe_edi_stock.menu_stock_config_settings_pe
+      never reachable here: l10n_pe_edi_stock.menu_stock_pe_vehicles
+      never reachable here: l10n_tr_nilvera_edispatch.menu_l10n_tr_nilvera
+      never reachable here: l10n_tr_nilvera_edispatch.menu_l10n_tr_nilvera_trailer_plate
+      never reachable here: stock_dropshipping.dropship_picking
+
+=== DOMAIN MODULE INSTALLATION ===
+  declared domain module set   : 149
+  installed on at least one    : 78 (52.3%)
+  installed on NEITHER         : 71 (47.7%)
+
+=== SCHEDULED JOB REACHABILITY (26 domain crons) ===
+  mrp_mps.ir_cron_replenish_automated_mps                   
+      iEVING : ABSENT (module not installed)
+      iTEST02: PRESENT active=t lastcall=2026-06-13 14:55:21
+  pos_enterprise.preparation_display_delete_cron            
+      iEVING : PRESENT active=t lastcall=2026-03-31 03:01:19
+      iTEST02: ABSENT (module not installed)
+  sale_lazada.ir_cron_sync_lazada_inventory                 
+      iEVING : PRESENT active=t lastcall=2026-03-31 04:19:43
+      iTEST02: ABSENT (module not installed)
+  sale_lazada.ir_cron_sync_lazada_orders                    
+      iEVING : PRESENT active=t lastcall=2026-03-31 06:19:14
+      iTEST02: ABSENT (module not installed)
+  sale_shopee.ir_cron_sync_shopee_inventory                 
+      iEVING : PRESENT active=t lastcall=2026-03-31 06:24:14
+      iTEST02: ABSENT (module not installed)
+  sale_shopee.ir_cron_sync_shopee_orders                    
+      iEVING : PRESENT active=t lastcall=2026-03-31 06:24:13
+      iTEST02: ABSENT (module not installed)
+  sale_shopee.ir_cron_sync_shopee_pickings                  
+      iEVING : PRESENT active=t lastcall=2026-03-31 06:24:14
+      iTEST02: ABSENT (module not installed)
+  sale_shopee.ir_cron_sync_shopee_pickings_retry            
+      iEVING : PRESENT active=t lastcall=2026-03-18 12:26:29
+      iTEST02: ABSENT (module not installed)
+  stock.ir_cron_scheduler_action                            
+      iEVING : PRESENT active=t lastcall=2026-03-31 05:31:12
+      iTEST02: PRESENT active=t lastcall=2026-06-14 12:48:43
+  stock_account.ir_cron_post_stock_valuation                
+      iEVING : PRESENT active=t lastcall=2026-03-31 05:31:12
+      iTEST02: PRESENT active=t lastcall=2026-06-14 12:48:43
+  website_sale_stock.ir_cron_send_availability_email        
+      iEVING : ABSENT (module not installed)
+      iTEST02: PRESENT active=t lastcall=2026-06-14 14:29:54
+  -> present on at least one deployment: 11 of 26
