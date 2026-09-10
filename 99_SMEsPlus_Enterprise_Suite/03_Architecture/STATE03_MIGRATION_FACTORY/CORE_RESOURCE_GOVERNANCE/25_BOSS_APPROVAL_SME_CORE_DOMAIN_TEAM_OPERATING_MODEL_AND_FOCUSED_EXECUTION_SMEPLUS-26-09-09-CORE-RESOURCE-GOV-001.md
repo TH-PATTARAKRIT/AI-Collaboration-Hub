@@ -174,3 +174,43 @@ Canonical assurance rule:
 `NO PHASE HANDOFF WITHOUT INDEPENDENT ASSURANCE.`
 
 This reconfirmation is effective immediately and strengthens, but does not reset, the previously approved Phase Assurance & Evidence Handoff Model.
+
+## Boss Direction — Post-Functional-Design Module-by-Module Very Deep Research
+
+Boss explicitly states that SMEsPlus WILL perform a separate `Very Deep Research` cycle for each module again AFTER Functional Design has been produced.
+
+This is a planned second-pass evidence cycle, not a duplicate of the earlier learning/research phase and not a reset of verified work.
+
+Purpose:
+
+- use the Functional Design as a concrete hypothesis / target model to challenge;
+- verify each module against real process behavior, controls, edge cases, cross-module dependencies, data/identity rules, SaaS / multi-company implications, accounting impacts where relevant, reconciliation, migration, failure behavior and adversarial cases;
+- detect omissions, contradictions, over-simplifications and unsupported assumptions that may only become visible after Functional Design exists;
+- return only material deltas through Controlled Re-entry;
+- prevent downstream Matrix / Build / Test phases from inheriting an unchallenged Functional Design.
+
+The lifecycle therefore MUST preserve a distinct post-Functional-Design research assurance step before the relevant downstream design/build authorization.
+
+Canonical intent:
+
+`EARLY DEEP RESEARCH / LEARNING`
+`-> PHASE SA / ARCHITECTURE SYNTHESIS`
+`-> FUNCTIONAL DESIGN`
+`-> MODULE-BY-MODULE VERY DEEP RESEARCH AGAIN`
+`-> INDEPENDENT CHALLENGE / CORRECTION`
+`-> PRE-MATRIX / DOWNSTREAM READINESS GATE`
+`-> NEXT CONTROLLED PHASE`
+
+The exact naming, placement and sub-gate numbering of this second-pass research step may be normalized later, but its existence and purpose are now a Boss-directed lifecycle requirement.
+
+This second-pass research MUST:
+
+- build on prior verified evidence rather than restart from zero;
+- apply `No repeated question without material delta`;
+- preserve full evidence lineage between early research, Functional Design, second-pass findings and resulting corrections;
+- classify findings as CONFIRMED / MATERIAL DELTA / CONTRADICTION / GAP / DEFERRED / OUT OF SCOPE or equivalent controlled states;
+- trigger Controlled Re-entry only for affected scope;
+- require Independent Challenge before the module is considered ready for downstream handoff;
+- not self-authorize implementation, merge, deployment or production.
+
+Boss remains the sole Final Approver.
