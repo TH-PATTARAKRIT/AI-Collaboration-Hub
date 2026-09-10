@@ -22,6 +22,7 @@ Executing body: **SMEs CORE** · Boss: **SOLE FINAL APPROVER**
 | Scenarios of the 22 blocked on elements `4`/`7` | **`11 of 22`** — enumerated, not estimated |
 | `HOLD` rows in the 22-scenario register | **`22 of 22`** |
 | Material unknowns **resolvable by SMEs Core and therefore resolved or actioned here** | **`0`** — §6, each tested individually |
+| **Findings raised by this checkpoint and then DISPROVED by its own author** | **`1`** — `PT02-F-02`, withdrawn at §5.1 |
 | **`CP-PT-02` disposition** | **`BOUNDED`, not `COMPLETE`** — §7 |
 
 > **The checkpoint's allowed outcome is `INPUTS COMPLETE **OR** BOUNDED`. The honest one is `BOUNDED`.**
@@ -189,38 +190,71 @@ never-mode remainder cancellation leaves **no document trail**.
 **Consequence for `PT-04`:** the output/consumer matrix must test **producer→∅** as a distinct failure
 class, not only consumer→missing-input. **Carried forward.**
 
-## 5.1 `PT02-F-02` — element 15 is a SMEs Core design act that is open, and it is not execution-dependent
+## 5.1 `PT02-F-02` — RAISED, THEN **DISPROVED BY PRIMARY TEXT**, BY ITS OWN AUTHOR
 
-**`SC-58` §2 proved 8 obligation families execution-dependent using a stated discriminating test:**
-*could a competent architect discharge this by writing a document?*
+> ### `PT02-F-02` IS WITHDRAWN. The finding was wrong, and the reason it was wrong is instructive enough to publish in full rather than delete.
 
-**Applied to element 15, the answer splits, and the split is load-bearing:**
+### What was claimed
 
-| Object | Owner | Discharge by document? | State |
-|---|---|---|---|
-| **Designing the deterministic idempotency identity** | **SMEs Core** | **YES — it is a design act** | **OPEN** |
-| Proving duplicate prevention works | execution | **NO** — requires retrying an event | execution-dependent |
-| Ruling whether idempotency is gate-blocking | **Boss** | n/a | **OPEN** — `F8` |
+That element 15's **design** half — *"a design act"*, *"none has been designed"* — was an **open,
+current-scope SMEs Core specification obligation**, and therefore a candidate contradiction with
+`MATERIAL PHASE-SA GAP = 0` and a clause-5 dumping breach.
 
-**Primary text is explicit: *"a design act"*, *"none has been designed"*, and it was *"not commissioned in
-CORR4 and not one of the four conditions"*** (`SA_CORR4_07` §3).
+### What disproves it
 
-> **The design half of element 15 is a current-scope SMEs Core specification obligation, not a runtime
-> one.** `8C-CLARIFICATION-01` clause 5 forbids carrying a current-scope **specification** gap into
-> Pre-Test. **The execution half may lawfully be met later; the design half may not be.**
+**The quoted source was `SA_CORR4_07` §3 (CORR4). It is superseded on this exact claim by `SA_CORR5_01`
+(CORR5) — a later round whose entire subject is the adjudication of element 15's design.**
 
-**This is raised as a candidate contradiction with the `SC-58` condition-3 finding
-`MATERIAL PHASE-SA GAP = 0`.** It is **not** asserted as a disproof: `SC-58` §2 row 2 classified *element
-15 idempotency identity* execution-dependent on the **proof** clause, and this reading says the **design**
-clause was never separately dispositioned.
+`SA_CORR5_01_ELEMENT15_IDEMPOTENCY_ADJUDICATION.md`, `CP-SA-C5-10`, executed under `BD-ACC-01`'s express
+grant (*"Phase SA may design the technical representation independently"*), exercised **narrower than
+granted** — business-semantic clauses only, no identifier format, no schema, no generation scheme.
+
+**Its finding `C5-01-F-01` addresses the exact sentence this finding was built on, verbatim:**
+
+> *"The object the programme has recorded as **"does not exist"** and **"none has been designed"** exists
+> as a specified identity basis (`P2`), a Boss-ruled ownership model (`P1`), a consumer obligation (`P3`,
+> `P4`), a scoping half (`P5`), an act-level attempt-identity contract in a Team B design (`P13`) and an
+> adopted V1 design naming the attempt component (`P14`) — in seven documents that do not cite each other.
+> **What has never existed is one adjudicated statement** of which position governs which question…
+> **That is an adjudication … and this file is it.**"*
+
+**The design exists:** `XMC-C-A1`…`A13` specify the deterministic identity basis in **six parts** —
+tenant · company · owning source domain · business-fact occurrence as its owner identifies it ·
+recognition role · policy version in force at recognition — with exclusions (`A5`), retry (`A6`), replay
+(`A7`), reversal (`A8`), correction (`A9`), fail-closed scope (`A10`), consumer reliances (`A11`/`A12`)
+and namespace (`A13`). `SA_CORR5_01` located **`15` candidate positions** over `327` paths and adjudicated
+among them. **`22`-scenario row 22 is graded `SA-SPEC COMPLETE / RUNTIME PROOF REQUIRED` on that basis.**
+
+### Why the error happened — the defect is mine, and it is a known class
 
 | | |
 |---|---|
-| Status | **OPEN — MATERIAL, ROUTED TO `PT-13` FOR FALSIFICATION AND TO `PT-14` FOR B-7** |
-| Why not closed here | this session **authored neither** record; a self-serving reading either way is exactly what B-7 exists to test |
-| What would settle it | primary-text evidence that the **design** act was dispositioned as execution-dependent, or a Boss/PMO ruling that it is |
+| Defect class | **superseded-source citation.** `SA_CORR4_07` was read as current; `SA_CORR5_01` supersedes it on this claim |
+| What made it plausible | `SA17` (final, correct) says element 15 is ***"specified, not built, not verified"***. **`specified` = the design act is done; `not built` = the runtime half is open.** The two halves were **collapsed**, and CORR4's stale sentence was used to reinterpret `specified` as *not designed* |
+| What would have caught it sooner | asking **"is this the latest artefact on *this claim*"** — not on this topic, not in this package. **Supersession binds at claim level** |
+| What did catch it | following row 22's own pointer (`SA_CORR5_01`) instead of stopping at the summary that suited the finding |
 
----
+### What survives, and what does not
+
+| Claim | Verdict |
+|---|---|
+| Element 15's **design** half is an open SMEs Core specification gap | **DISPROVED** |
+| It is a clause-5 dumping breach | **DISPROVED** — falls with the above |
+| Candidate contradiction with `MATERIAL PHASE-SA GAP = 0` | **WITHDRAWN** |
+| Element 15 is **specified, not built, not verified** | **STANDS** — unchanged carry-forward |
+| The **runtime** half is execution-dependent and open | **STANDS** — `SC-58` §2 row 2 correct as written |
+| **`C-02`** — whether idempotency is **gate-blocking** — is an open **Boss severity election** | **STANDS** (`F8`) |
+| Element 15 has **no built carrier**; `0 of 13,814` rows carry a deduplication key | **STANDS** — §3 row 15 unchanged |
+
+**§3's element-15 row is NOT amended:** *"NOT SUPPLIED — NO CARRIER"* remains correct, because
+**`supplied` is the contract's three-conjunct standard — known, traceable AND evidence-backed — and a
+specification satisfies none of the three on its own.** The design existing does not make the element
+supplied. **The `9 / 4 / 3` element tallies in §3.1 are unchanged.**
+
+> **What this costs and what it buys.** The session loses a material finding it had already published.
+> It keeps the rule that produced it: **a negative about someone else's work is a claim, and it is
+> tested against the latest artefact on that claim before it is allowed to stand.** It was not, and one
+> round of following a pointer disproved it.
 
 ## 6. Material unknowns — which could SMEs Core still resolve?
 
@@ -232,17 +266,21 @@ before proceeding."*** **Each unknown was tested against the `SC-58` discriminat
 | el.`4`/`7` recognition point + cost basis | **NO** | **Boss election `F1`** (`JT-04`/`JT-05`) plus a statutory `HOLD`. Researching it further **cannot** produce the election |
 | el.`10` isolation proofs | **NO** | requires an implementation; `0 of 8`, `0 of 60`, `0 of 13` — a **run**, not a document |
 | el.`14` provenance reference | **NO — but note** | *"must be originated"* is a **design** act; it is **owned by element 14's Functional Design scope**, and originating it here would be **Functional Design, which is NOT AUTHORIZED** |
-| el.`15` **design** identity | **YES — and it is NOT resolved here** | **§5.1.** Resolving it would be a design act this phase does not authorize; **routed, not performed** |
+| el.`15` **design** identity | **N/A — ALREADY DONE** | **§5.1.** Adjudicated at `SA_CORR5_01` under `BD-ACC-01`'s grant. **Not an open unknown.** The runtime half remains execution-dependent |
 | el.`12` bridge item-matching | **NO** | a target-system structural fact already measured |
 | el.`13` corrected-entry link | **NO** | the link **does not exist**; creating it is design |
 | Thai statutory content (`PT-S-01`) | **NO** | **external authority** — `POH-D-02` withheld |
 | MTS/MTO discriminator, partial payment, event ordering | **NO** | `0` corpus evidence; originating them is **design** |
 
-> **`0` unknowns were resolvable-and-unresolved.** **`1`** (element 15 design) is resolvable **by SMEs
-> Core in principle** but **not in this phase**, because doing it would cross the Functional Design
-> boundary this session is forbidden to cross. **That tension is reported rather than resolved in either
-> direction**, because resolving it in the convenient direction — *"it's execution-dependent, carry on"* —
-> is precisely the dumping `8C-CLARIFICATION-01` clause 5 prohibits.
+> **`0` unknowns were resolvable-and-unresolved**, and the one candidate (element 15 design) turned out
+> **already adjudicated** at `SA_CORR5_01` — see §5.1, where this checkpoint's own finding is withdrawn.
+>
+> **The remaining unknowns are unresolvable *here* for three distinct reasons, and the distinction is
+> load-bearing:** Boss election (el.`4`/`7`), external authority (Thai statutory), or **because
+> originating the missing object would be Functional Design, which this session is NOT AUTHORIZED to
+> perform** (el.`13`, el.`14`, the MTS/MTO discriminator). **The third class is the one at risk of being
+> mistaken for a dumped gap; it is named here so `PT-13` and B-7 can test that reading rather than
+> inherit it.**
 
 ---
 
@@ -266,9 +304,10 @@ before proceeding."*** **Each unknown was tested against the `SC-58` discriminat
 > **`9 of 16` elements supplied, `7` not, and `3` of those have NO CARRIER (`10`, `14`, `15`)** ·
 > `22 of 22` scenarios at `HOLD`, `11` blocked on el.`4`/`7`, enumerated by command · `12 DEPENDENCY +
 > 10 STRUCTURAL = 22` ✔ · **`PT02-F-01`: `X-07` is a produced output with no consumer — a `P5` failure the
-> per-scenario view hides** · **`PT02-F-02`: element 15's DESIGN half may be a current-scope specification
-> obligation, raised as a candidate contradiction with `MATERIAL PHASE-SA GAP = 0` and routed to `PT-13`
-> and B-7 rather than settled by its own author** · `0` unknowns resolvable-and-unresolved · `0` values
+> per-scenario view hides** · **`PT02-F-02`: RAISED AND THEN DISPROVED BY ITS OWN AUTHOR** — element 15's design half is
+> **already adjudicated** (`SA_CORR5_01`, `15` positions over `327` paths); the finding rested on a
+> **superseded** CORR4 sentence. Withdrawn in full at §5.1, with the defect class named. **`0` element
+> tallies change** · `0` unknowns resolvable-and-unresolved · `0` values
 > inferred or fabricated.**
 >
 > **Disposition `BOUNDED`, NOT `COMPLETE`. `E2E-04` not re-graded. `0 of 22` verified.**

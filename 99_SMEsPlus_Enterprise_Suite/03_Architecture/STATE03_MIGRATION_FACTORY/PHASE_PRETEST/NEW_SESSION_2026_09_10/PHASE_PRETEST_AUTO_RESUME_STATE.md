@@ -55,7 +55,7 @@ Next required artifact:
 | `PT01-N-02` | — | Boss 22-scenario baseline `a1fc7cd6` is a **blob**, not a commit; `git log` on it returns silent empty. Pointer is VALID and stronger than a commit ref. | **DISARMED** — a commit-shaped check would manufacture a false finding |
 | `PT01-N-03` | MINOR | The `SMES_CORE_CONTINUATION` package cites `22`/`18` but contains `0` references to `SA15`/`SA17`; pointer resolves one level up. | OPEN — `PT-14` B-7 pack must name the registers explicitly |
 | `PT02-F-01` | **MATERIAL** | `X-07` backorder: the remainder-supply record has **no consumer at all** (`R-17`), failing the contract's `P5` clause. A produced output with nobody to receive it. | OPEN — `PT-04` must test `producer→∅` as a distinct failure class |
-| `PT02-F-02` | **MATERIAL** | Element 15's **design** half (*"a design act"*, *"none has been designed"*) may be a current-scope SMEs Core **specification** obligation, which `8C-CLARIFICATION-01` clause 5 forbids carrying into Pre-Test. Candidate contradiction with `MATERIAL PHASE-SA GAP = 0`. | **OPEN — routed to `PT-13` and B-7.** Not settled by this session: it authored neither record |
+| `PT02-F-02` | ~~MATERIAL~~ | Element 15 **design** half claimed as an open specification gap. | **WITHDRAWN — DISPROVED BY PRIMARY TEXT by its own author.** `SA_CORR5_01` adjudicated the design (`15` positions over `327` paths) and supersedes the CORR4 sentence the finding rested on. Defect class: **superseded-source citation**. Element-15 carry-forward (*specified, not built, not verified*; no carrier; `C-02` open) **unchanged** |
 
 ## Carry-forward controls — reproduced at primary text, none altered
 
