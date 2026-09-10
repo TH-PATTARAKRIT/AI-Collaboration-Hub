@@ -149,3 +149,28 @@ This approval is effective immediately for new phase handoffs and for any curren
 `No repeated question without material delta.`
 
 This approval does not by itself reopen already Boss-closed decisions, authorize implementation, merge, deployment or production, or waive any existing domain-specific Gate. Boss remains the sole Final Approver.
+
+## Boss Reconfirmation — Downstream Phase Clarity & Mandatory Gate Assurance
+
+Boss reconfirms and strengthens this Phase Assurance uplift with immediate effect.
+
+The reason for the Gate is not administrative ceremony. It is to prevent unresolved ambiguity, hidden assumptions, missing evidence, contradiction, or incomplete ownership from being propagated downstream. Teams working in later phases must receive a clear and bounded handoff so they do not need to reinterpret upstream intent or reconstruct missing evidence.
+
+Therefore every handoff Gate must answer, at minimum:
+
+- What is approved and safe to carry forward?
+- What remains conditional, open, deferred, blocked, or out of scope?
+- What evidence proves the handoff claims?
+- What assumptions remain and who owns them?
+- What must the receiving phase NOT reinterpret or silently change?
+- What condition requires Controlled Re-entry to an earlier phase?
+
+A downstream phase must not compensate for an upstream ambiguity by guessing, redesigning, or silently changing scope. If the handoff is not clear enough for the receiving team to execute without reinterpretation, the Gate is not ready to pass.
+
+Canonical assurance rule:
+
+`CLEAR HANDOFF BEFORE NEXT PHASE.`
+`NO DOWNSTREAM GUESSING.`
+`NO PHASE HANDOFF WITHOUT INDEPENDENT ASSURANCE.`
+
+This reconfirmation is effective immediately and strengthens, but does not reset, the previously approved Phase Assurance & Evidence Handoff Model.
