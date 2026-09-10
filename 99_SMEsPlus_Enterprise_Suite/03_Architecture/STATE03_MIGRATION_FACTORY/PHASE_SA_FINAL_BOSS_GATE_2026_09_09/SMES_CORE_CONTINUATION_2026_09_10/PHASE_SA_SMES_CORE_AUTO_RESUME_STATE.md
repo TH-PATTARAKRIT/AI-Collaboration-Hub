@@ -10,6 +10,51 @@ Prior SC head consumed by this round: `25f727a956177097f41e21dcadf259590f210687`
 
 ---
 
+> # AUTO RESUME — CURRENT STATE (`SC-22`…`SC-35`, head `2cfb57eb`)
+>
+> **SINGLE-SESSION LOCK IN FORCE** (`05_` §0). This is the only active Phase SA execution session.
+>
+> ## `TERMINAL C — GENUINE BOSS AUTHORITY DECISION REQUIRED`
+>
+> **EXACT NEXT ACTION — three Boss answers, ideally in one act:**
+>
+> 1. **`SC-AUTH-01`** — which record controls `FG-F-06`: **`SC-BD-01` (Reading B)** or
+>    **`SC-CONTRA-01` (Reading A)**, and the other's status. *If Reading A: also state what becomes of the
+>    16 rulings already recorded.*
+> 2. **`8C-BOUNDARY-01`** (`SC-26` §7) — which constitutional clause governs the advancement boundary:
+>    **§4 *"phase or State"*** or **§11 *"THE NEXT CONTROLLED STATE"***. **`8C-BOUNDARY-02`** only if §4.
+> 3. **`B-7`** — appoint a `Q-BOSS-02`-eligible structurally independent challenger.
+>
+> **CLOSED THIS ROUND:** single-session control (`SC-22`) · 12-of-12 Terminal-D reproduction (`SC-23`) ·
+> authority collision **exactly bounded** (`SC-24`) · `EC-04` deadlock **exactly bounded, `EC04-PATH-3`**
+> (`SC-26`) · `B-7` pack **READY, not activated** (`SC-27`) · `POH-D-06` authority path exact (`SC-28`) ·
+> population **canonicalized conditionally at `23`** (`SC-29`) · cross-module re-proven (`SC-30`) ·
+> 20-class falsification (`SC-31`) · final pack (`SC-35`).
+>
+> **OPEN AUTHORITY ITEMS:** `EC-05` — **2** contradictions, both Boss-owned · `EC-04` — `0 of 3`
+> tolerance-zero closed, applicability disputed **inside the instrument** · `EC-07` — **`0 of 2`, NOT
+> OPENED by instruction** · `AAS-V-02` ratification.
+>
+> **EXTERNAL:** AAS+ concurrence + limb-2 re-wording · Thai statutory (`TH-NEW-01/02`, `POH-D-02` tax,
+> cap strength) · Business SME (`SME-Q-02/03`).
+>
+> **`EC-01`..`EC-08`:** `01` `02` `03` likely satisfied · **`04` DOES NOT PASS** · **`05` OPEN** ·
+> `06` `NOT FOUND IN SEARCHED SCOPE` · **`07` `0 of 2`** · `08` satisfied with 2 named absences.
+>
+> **VETOES: `6` in force · `0` discharged · `0` self-discharged · `0` held by SMEs Core work.**
+>
+> **HEADLINE FINDING — `SC-F-15`:** the constitution contradicts itself on the advancement boundary.
+> **`phase` occurs exactly once in 257 lines; `state` occurs 22 times**, and §11 restates §4 without
+> `phase`. **This weakens Reading A's §4 ground — i.e. it cuts against the instruction this executor was
+> given — and is published for that reason.**
+>
+> **`0` of `21` peer artefacts modified. Pre-Test not started. Phase SA not closed. No `PASS` declared.**
+>
+> *Everything below is prior-round state, preserved as lineage.*
+
+---
+
+
 > # ⚠ CONTRADICTION NOTICE — `FG-F-06` HAS TWO OPPOSED BOSS RULINGS
 >
 > | Record | Ruling | Effect |
