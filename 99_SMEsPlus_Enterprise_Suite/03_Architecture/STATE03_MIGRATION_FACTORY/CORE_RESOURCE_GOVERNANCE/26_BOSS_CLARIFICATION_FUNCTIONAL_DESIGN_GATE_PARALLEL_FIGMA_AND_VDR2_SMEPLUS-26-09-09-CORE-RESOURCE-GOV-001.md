@@ -2,7 +2,7 @@
 # BOSS CLARIFICATION — Functional Design Gate Starts Parallel Figma + Very Deep Research #2
 
 ## Decision Status
-BOSS CLARIFICATION — EFFECTIVE IMMEDIATELY
+BOSS APPROVED — EFFECTIVE IMMEDIATELY
 
 ## Clarified Lifecycle Intent
 Boss clarifies that `Very Deep Research #2` belongs at the `FUNCTIONAL DESIGN GATE` transition as a second verification / gap-fill stream running in parallel with Figma work after Functional Design has passed its Gate.
@@ -85,5 +85,24 @@ Very Deep Research #2 then acts as the second-pass verification stream that clos
 `NO EVIDENCE = NO PROGRESS.`
 
 `NO REPEATED QUESTION WITHOUT MATERIAL DELTA.`
+
+## Boss Final Approval of the Canonical Rule
+
+Boss explicitly approves the Canonical Rules and operating sequence above.
+
+Boss rationale: a serious module-by-module second verification is expected to uncover many additional details, supplementary functions, controls, edge cases, and residual gaps that are difficult to detect during the first design pass. Therefore the project shall intentionally preserve Very Deep Research #2 as a structured second verification cycle rather than treat Functional Design as the end of learning.
+
+This approval means:
+
+- Functional Design may pass and release Figma work when its Gate criteria are satisfied;
+- Figma does not need to wait for Very Deep Research #2 to complete;
+- Very Deep Research #2 is expected to continue deeply, module by module, in parallel;
+- findings are fed back as controlled deltas;
+- non-material findings do not cause general redesign or reset;
+- material findings trigger Controlled Re-entry only for the affected scope;
+- evidence lineage from Phase SA and Phase Pre-Matrix Test must be preserved as the research agenda source;
+- later phases must receive only clear, verified, traceable handoffs.
+
+This is now an approved lifecycle rule under SMEs Core governance and is effective immediately.
 
 Boss remains the sole Final Approver.
