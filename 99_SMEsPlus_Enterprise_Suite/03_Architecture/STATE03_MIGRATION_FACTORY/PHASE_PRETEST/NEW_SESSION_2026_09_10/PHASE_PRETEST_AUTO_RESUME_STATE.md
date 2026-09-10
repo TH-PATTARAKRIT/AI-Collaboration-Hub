@@ -2,7 +2,7 @@
 
 Session: `[SMEPLUS-26-09-10-PHASE-PRETEST-NEWSESSION-001]`
 Branch: `architecture/account-phase-pretest-new-session-2026-09-10-001`
-Status: `AUTHORIZED / NOT YET EXECUTED`
+Status: `IN EXECUTION`
 
 Boss Pre-Test Entry Authorization:
 `d5ad78184a527d3c973e154efb07e2a85f0ef48e`
@@ -10,31 +10,55 @@ Boss Pre-Test Entry Authorization:
 Master Prompt baseline:
 `513dab9cec189e64247d70c58e7e6aa329ffb77c`
 
+Phase SA canonical evidence baseline:
+`8f1c9985dd2f44879d19ecb152d1717e7181dde1`
+
+## Checkpoint ledger
+
+| Checkpoint | Artifact | State |
+|---|---|---|
+| `PT-00` Authority + Lineage Intake | `PT00_AUTHORITY_AND_LINEAGE_INTAKE.md` | **COMPLETE — `CP-PT-00`** |
+| `PT-01` Canonical Scenario Population | `PT01_CANONICAL_SCENARIO_POPULATION.md` | **NEXT** |
+| `PT-02`…`PT-16` | — | NOT STARTED |
+
 Current checkpoint:
-`PT-00 — Authority + Lineage Intake`
+`PT-01 — Canonical Scenario Population`
 
 Next required artifact:
-`PT00_AUTHORITY_AND_LINEAGE_INTAKE.md`
+`PT01_CANONICAL_SCENARIO_POPULATION.md`
 
-Carry-forward controls:
-- Phase SA = READY FOR PRE-TEST internal transition only.
-- EC-04 = 0/3.
-- EC-07 = 0/2.
-- 6 vetoes active, 0 discharged.
-- B-7 independent execution outstanding.
-- AAS+ concurrence / limb-2 re-wording outstanding.
-- Manufacturing veto not lifted.
-- POH-D-02 waiting for Thai statutory evidence.
-- E2E-04 NOT TRAVERSABLE.
-- 0/22 scenarios runtime-verified.
+## Open findings raised by this session
 
-Single-writer control: `ACTIVE`.
+| ID | Severity | Summary | Status |
+|---|---|---|---|
+| `PT00-F-01` | **MATERIAL** | `SC-59` §1 double-subtracted the quarantine: in-scope blobs at `8f1c9985` are **`76`**, not `64`. Confirmed by a second instrument (manifest `75` + itself). | **CORRECTED HERE**; must be propagated to the B-7 pack at `PT-14`; Phase SA record correction is a Boss/PMO act |
+| `PT00-F-02` | MINOR | `SC-60` (Boss authorization) is not covered by `PACKAGE_MANIFEST_SHA256.txt`; manifest `79`, in-scope `81`. | RECORDED; compensating verbatim reproduction against `d5ad7818`; regenerate manifest at `PT-14` freeze |
+| `PT00-F-03` | **CONTROL RISK** | Branch advanced by two Boss commits (`11a6b004`, `a556a7ca`) mid-checkpoint; detected by rejected push, not by the sweep. Reconciled by **rebase**, `0` commits discarded, `0` force-push. `a556a7ca` names a **second execution venue (ChatGPT) for this same session ID**. `0` competing canonical artifacts exist (measured). | **OPEN — RAISED TO BOSS**: confirm this branch is the sole canonical Pre-Test writer |
+| `PT00-N-01` | — | `SC-50` line 51 appears to rule `FG-F-06 = A`; it is a ballot option label. Boss ruled **C** at `SC-51` §1. | **REFUTED — not a defect** |
+| `PT00-N-02` | — | Three different units (`12` scenarios / `7` decisions / `6` ready) must not be conflated. | DECLARED; binding on `PT-01`, `PT-11`, `PT-12` |
+
+## Carry-forward controls — reproduced at primary text, none altered
+
+- Phase SA = `READY FOR PRE-TEST` internal verification transition only.
+- `SC-AUTH-02 = Reading C`; `8C-CLARIFICATION-01 = APPROVED`.
+- `EC-04 = 0/3`. `EC-07 = 0/2`.
+- `6` vetoes in force, `0` discharged, `0` self-discharged.
+- B-7 `WAITING FOR ELIGIBLE INDEPENDENT EXECUTOR`; `0` candidates named; current executor **NOT ELIGIBLE**.
+- AAS+ concurrence / limb-2 re-wording outstanding; manufacturing veto **NOT lifted**.
+- Boss decisions: `7` open, `6` ready and held; `POH-D-02` withheld (Thai statutory evidence absent).
+- `E2E-04 = NOT TRAVERSABLE`, deliberately not re-graded.
+- `0 of 22` scenarios verified · `0 of 58` invariants proven · `0 of 18` contracts proven.
+- 22 cross-module = `10/12/0`; 18 E2E = `9/9/0`.
+- SMEs Core-owned Phase SA specification gaps = `0`.
+
+Single-writer control: `ACTIVE WITH AN OPEN RISK` — swept over `193` remote branches at `c7c43314`, `0` competing canonical Pre-Test artifacts. **Branch advanced mid-checkpoint (`PT00-F-03`); a second execution venue is named for this session ID.** Mitigation: re-fetch and re-verify the branch head immediately before every checkpoint publication.
+Jira control record: `ERPPLUS-155`.
 Functional Design: `NOT AUTHORIZED`.
 Application implementation: `NOT AUTHORIZED`.
 Release/deploy: `NOT AUTHORIZED`.
 
 Resume rule:
-Continue autonomously from the first incomplete checkpoint. Reproduce evidence before relying on prior status. If a material correction occurs, rerun affected downstream checkpoints. Stop only at a genuine authority boundary, B-7 external independent execution boundary, material contradiction, or PT-16 Boss Gate.
+Continue autonomously from the first incomplete checkpoint. Reproduce evidence before relying on prior status. If a material correction occurs, rerun affected downstream checkpoints. Stop only at a genuine authority boundary, the B-7 external independent execution boundary, a material contradiction, or the PT-16 Boss Gate.
 
 Doctrine:
 Truth over Pass. Evidence over Assumption. Falsify before Accept. Correct before Escalate. No Evidence = No Progress. Never Skip Gate. Boss is sole Final Approver.
