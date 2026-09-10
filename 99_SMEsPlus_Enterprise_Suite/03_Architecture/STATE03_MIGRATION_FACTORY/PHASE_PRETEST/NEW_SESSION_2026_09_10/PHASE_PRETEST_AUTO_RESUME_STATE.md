@@ -2,7 +2,7 @@
 
 Session: `[SMEPLUS-26-09-10-PHASE-PRETEST-NEWSESSION-001]`
 Branch: `architecture/account-phase-pretest-new-session-2026-09-10-001`
-Status: `PT-00 → PT-16 EXECUTED · TERMINAL AT BOSS AUTHORITY GATE`
+Status: `PT-00 → PT-17 EXECUTED · CORRECTIVE CLOSURE 01→16 EXECUTED · TERMINAL AT BOSS AUTHORITY GATE`
 
 Boss Pre-Test Entry Authorization:
 `d5ad78184a527d3c973e154efb07e2a85f0ef48e`
@@ -35,16 +35,23 @@ Phase SA canonical evidence baseline:
 | `PT-15` Final Coverage / Evidence Integrity | `PT15_FINAL_COVERAGE_AND_EVIDENCE_INTEGRITY.md` | **COMPLETE — `CP-PT-15`** |
 | `PT-16` Boss Functional-Design Entry Gate | `PT16_BOSS_FUNCTIONAL_DESIGN_ENTRY_GATE_PACK.md` | **PUBLISHED — `RECOMMEND HOLD — MATERIAL PRE-TEST GAP`** |
 | `PT-17` Boss Single-Writer Confirmation | `PT17_BOSS_SINGLE_WRITER_CONFIRMATION.md` | **PUBLISHED — `CP-PT-17`; `PT00-F-03` CLOSED** |
+| **CORRECTIVE CLOSURE `01_`…`16_`** | `CORRECTIVE_CLOSURE_2026_09_10/` | **PUBLISHED — `HOLD PRE-TEST EXIT`** |
 
 Current checkpoint:
 `STOPPED AT PT-16 — GENUINE BOSS AUTHORITY GATE`
 
-Terminal recommendation:
+Terminal recommendation (corrective round, supersedes `PT-16`'s wording):
+`HOLD PRE-TEST EXIT` — §19: `5 of 17` exit conditions satisfied, `12` fail. §18 answer: **NO**, 5 exact blockers.
+
+Superseded but preserved as lineage:
 `RECOMMEND HOLD — MATERIAL PRE-TEST GAP` (5 counted items; two further HOLD conditions simultaneously true but not primary). **UNCHANGED by the `PT-17` confirmation.**
 
-Awaiting Boss on 7 items (single-writer confirmation received and closed at `PT-17`): Functional Design entry · `POH-D-01`/`-03`/`-04`/`-05` · veto count `6` or `7` · boundary-set adoption · `PT10-F-01` re-derivation · `PTX-01`…`-11` adoption · `AAS-V-02` ratification · `B-7` appointment.
+Awaiting Boss on **11** items (`16_` §2) — `B4′` boundary set · `B3′` veto count · `CC-D-01` classification · `B1` four decisions · `B5′` adopt re-derived split · `B6` `PTX` adoption · `B2` `AAS-V-02` · `B7′` **name the B-7 appointee** · `B8′` `E2E-04` re-grade owner · `B9′` admit the migration class · `B10′` freeze-flag determination. Superseded 8-item list: Functional Design entry · `POH-D-01`/`-03`/`-04`/`-05` · veto count `6` or `7` · boundary-set adoption · `PT10-F-01` re-derivation · `PTX-01`…`-11` adoption · `AAS-V-02` ratification · `B-7` appointment.
 
-Package manifest: `PRETEST_PACKAGE_MANIFEST_SHA256.txt`, **`21` entries, `21 OK`**.
+Package manifest: `PRETEST_PACKAGE_MANIFEST_SHA256.txt`, **`22` entries**.
+Corrective manifest: `CORRECTIVE_CLOSURE_2026_09_10/CORRECTIVE_PACKAGE_MANIFEST_SHA256.txt`, **`16` entries, `16 OK`**; B-7 baseline frozen at **`172d7b9c`** (`01_`…`13_`), with `14_`/`15_`/`16_` declared outside the freeze.
+
+**Corrective-round key results:** gate split RE-DERIVED `10/12` → **`19 WRITABLE / 2 GATED / 1 NOT ESTABLISHED`** · 12-boundary set **`HOLD — CANONICAL SET NOT PROVABLE`** (`0` members enumerated by authority) · veto **`CLASS C`, count `7` recommended**, carried at `6` · `PTX` denominator **`11`, not `20`** · `EC-04` `0/3` and `EC-07` `0/2` **confirmed** · `E2E-04` **HOLD**, re-grade barred to this executor · `0 PASS / 0 FAIL / 48 HOLD` · `8 of 8` `PT-16` §11 items disposed · **`10` new findings `CC-F-01`…`CC-F-10`** · **`3` denominators refused rather than invented** · B-7 **NOT EXECUTED**, §22 stop recorded.
 
 ## B-7 state
 
