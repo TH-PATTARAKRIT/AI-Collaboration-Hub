@@ -55,6 +55,42 @@ channel. `0` writes to the challenged tree.** B-7 also ran a **positive control 
 
 > **The independence controls held. The procedural failure is downstream of B-7, not inside it.**
 
+### 2.3 `R-F-01` — the collision sweep was measuring the wrong thing
+
+**The sweep this programme has used since `PT-00` counts branches that CARRY a `PHASE_PRETEST` path:**
+
+```
+$ for b in <all remote branches>; do git ls-tree -r --name-only $b -- <PHASE_PRETEST path> | wc -l; done
+  origin/architecture/account-phase-pretest-new-session-2026-09-10-001 : 77 files
+  origin/audit/b7-independent-2026-09-10                               : 49 files
+  → "collision: 2 of 195"
+```
+
+**That reads as a second canonical writer. It is not one.**
+
+| Test | Result |
+|---|---|
+| merge-base of the two branches | **`c94839e8`** — B-7 branched from the frozen baseline |
+| Files B-7 **modified** in the `PHASE_PRETEST` path vs merge-base | **`0`** |
+| B-7's total change vs merge-base | **`1` file, `429` insertions** — its own verdict, in its own channel |
+
+> **A read-only descendant inherits the entire tree, so it will ALWAYS appear to "carry" the path.
+> Presence is not authorship.** The sweep's unit was **files present**; the claim it was used to support
+> was **writers active**. **`0` of `193` was correct only while no descendant branch existed; the moment
+> a lawful independent reviewer branched from the baseline, the same instrument reported a collision that
+> had not occurred.**
+
+**Corrected instrument, used from here:**
+
+```
+$ git diff --name-only $(git merge-base <branch> <canonical>) <branch> -- <PHASE_PRETEST path> | wc -l
+  → 0  = read-only, no collision
+```
+
+**Result under the corrected instrument: `1` writer — the canonical branch. `0` collisions.**
+
+---
+
 ---
 
 ## 3. Classification of `8674f735`
@@ -99,7 +135,7 @@ re-verified here rather than adopted.**
 | Verification | **`0 PASS · 0 FAIL · 48 HOLD`** |
 | `E2E-04` | **`NOT TRAVERSABLE`** |
 | Vetoes | **`7` canonical · `0` discharged** |
-| Writer collision | **`1` of `193` branches** |
+| Writer collision | **`0`** — `2` branches carry the path, `1` writes to it (`R-F-01`) |
 
 ---
 
