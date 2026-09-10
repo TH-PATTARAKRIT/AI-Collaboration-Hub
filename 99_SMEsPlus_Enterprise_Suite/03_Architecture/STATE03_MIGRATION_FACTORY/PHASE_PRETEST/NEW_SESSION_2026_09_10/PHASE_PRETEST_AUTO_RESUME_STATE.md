@@ -18,14 +18,26 @@ Phase SA canonical evidence baseline:
 | Checkpoint | Artifact | State |
 |---|---|---|
 | `PT-00` Authority + Lineage Intake | `PT00_AUTHORITY_AND_LINEAGE_INTAKE.md` | **COMPLETE — `CP-PT-00`** |
-| `PT-01` Canonical Scenario Population | `PT01_CANONICAL_SCENARIO_POPULATION.md` | **NEXT** |
-| `PT-02`…`PT-16` | — | NOT STARTED |
+| `PT-01` Canonical Scenario Population | `PT01_CANONICAL_SCENARIO_POPULATION.md` | **COMPLETE — `CP-PT-01`** |
+| `PT-02` Input Completeness Matrix | `PT02_INPUT_COMPLETENESS_MATRIX.md` | **NEXT** |
+| `PT-03`…`PT-16` | — | NOT STARTED |
 
 Current checkpoint:
-`PT-01 — Canonical Scenario Population`
+`PT-02 — Input Completeness Matrix`
 
 Next required artifact:
-`PT01_CANONICAL_SCENARIO_POPULATION.md`
+`PT02_INPUT_COMPLETENESS_MATRIX.md`
+
+## Canonical scenario population (fixed at `PT-01`)
+
+| Population | Unit | Count |
+|---|---|---:|
+| A — Boss joint cross-proof `X-01`…`X-22` | Accounting x Inventory handoff case | `22` |
+| B — end-to-end `E2E-01`…`E2E-18` | end-to-end business flow | `18` |
+| C — Pre-Test additions `PT-S-01`…`PT-S-07` | coverage-closing scenario | `7` |
+| **TOTAL** | mixed, unit named per row | **`47`** |
+
+**A and B are different units and are never summed to `40`.** Governing registers: `SA15`/`SA17` `FINAL_CONTROLLED_V2`; Boss baseline blob `a1fc7cd6` (Jira `ERPPLUS-140`).
 
 ## Open findings raised by this session
 
@@ -36,6 +48,9 @@ Next required artifact:
 | `PT00-F-03` | **CONTROL RISK** | Branch advanced by two Boss commits (`11a6b004`, `a556a7ca`) mid-checkpoint; detected by rejected push, not by the sweep. Reconciled by **rebase**, `0` commits discarded, `0` force-push. `a556a7ca` names a **second execution venue (ChatGPT) for this same session ID**. `0` competing canonical artifacts exist (measured). | **OPEN — RAISED TO BOSS**: confirm this branch is the sole canonical Pre-Test writer |
 | `PT00-N-01` | — | `SC-50` line 51 appears to rule `FG-F-06 = A`; it is a ballot option label. Boss ruled **C** at `SC-51` §1. | **REFUTED — not a defect** |
 | `PT00-N-02` | — | Three different units (`12` scenarios / `7` decisions / `6` ready) must not be conflated. | DECLARED; binding on `PT-01`, `PT-11`, `PT-12` |
+| `PT01-N-01` | — | `3` generations of `SA15`/`SA17`; canonical = `FINAL_CONTROLLED_V2`, chosen by supersession notice, not file date. | RESOLVED |
+| `PT01-N-02` | — | Boss 22-scenario baseline `a1fc7cd6` is a **blob**, not a commit; `git log` on it returns silent empty. Pointer is VALID and stronger than a commit ref. | **DISARMED** — a commit-shaped check would manufacture a false finding |
+| `PT01-N-03` | MINOR | The `SMES_CORE_CONTINUATION` package cites `22`/`18` but contains `0` references to `SA15`/`SA17`; pointer resolves one level up. | OPEN — `PT-14` B-7 pack must name the registers explicitly |
 
 ## Carry-forward controls — reproduced at primary text, none altered
 
