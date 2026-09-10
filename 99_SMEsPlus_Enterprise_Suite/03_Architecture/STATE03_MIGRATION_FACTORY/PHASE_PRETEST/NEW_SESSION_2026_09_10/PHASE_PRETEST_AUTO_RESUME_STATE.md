@@ -40,6 +40,26 @@ Phase SA canonical evidence baseline:
 | **BOSS RULING APPLIED `22_`…`25_`** | `CORRECTIVE_CLOSURE_2026_09_10/` | **PUBLISHED — `READY TO OPEN INDEPENDENT B-7 NEW SESSION`** |
 
 Current checkpoint:
+`STOPPED AT CHECKPOINT G — READY FOR BOSS RECOVERY DECISION`
+
+**RECOVERY SESSION `[SMEPLUS-26-09-10-PHASE-PRETEST-RECOVERY-NEWSESSION-001]` — package `RECOVERY_2026_09_10/01_`…`13_` published.**
+
+**Why stopped here:** §11 — *"If Boss decisions exist: STOP at READY FOR BOSS RECOVERY DECISION."* **`1` irreducible item exists (`R-D-01`).** The B-7 Round-2 prompt and the post-recovery freeze follow the ruling, per §11 and §12.
+
+**Lineage:** `c94839e8` (my handoff) → `5bd36d62` (B-7 Round 1, own channel `audit/b7-independent-2026-09-10`) → `8674f735` (wrong-session, **PROCEDURALLY CONTAMINATED / CONTENT PENDING**, purely additive: `2368` insertions, `0` deletions) → this recovery. **`0` history rewritten, `0` evidence deleted.**
+
+**Recovery results:** B-7 findings **`18 of 18` CONFIRMED, `0` disproved** · wrong-session artefacts **`15` classified** (`10` adopt · `2` adopt-with-correction · `2` supersede · `1` hold) · readiness **RE-DERIVED `18 WRITABLE / 4 GATED / 0 NOT ESTABLISHED`** (`3` cells changed, `2` against interest) · exit conditions **`7 of 17`** (down from the published `8`; true baseline was `3`, not `5`) · **`3` CIRCULAR GATE DEFECTS**, `4` conditions misplaced · `12 ↔ 18` crosswalk executed → **`4` gap-carrying handoffs outside the declared set** · `12 ↔ 10` **still underived by both parties** · `MF-03` re-classified **EXECUTION MODE** on sound ground · **`CC-F-11` universal clause DISPROVED** · **`AAS-V-02` NOT DISCHARGED**, `X-14` reversed from *"executed"* to `OUTSTANDING` · **FD blockers `3 → 5`**.
+
+**Boss decision awaited: `1` — `R-D-01`** (gate phase placement of `EC-04`, `EC-07`, the `48`-item verification, `E2E-04`'s `D`/`I` limbs). **It corrects the instrument and changes no verdict.**
+
+**Unchanged:** `EC-04` `0/3` · `EC-07` `0/2` · `0 PASS / 48 HOLD` · `E2E-04 NOT TRAVERSABLE` · `7` vetoes `0` discharged · **Functional Design NOT AUTHORIZED** · `HOLD PRE-TEST EXIT`.
+
+**B-7 Round 2 REQUIRED** — Round 1 challenged `c94839e8`, which this recovery supersedes. Prompt **not yet created** (§11).
+
+---
+
+Superseded checkpoint line:
+Current checkpoint:
 `STOPPED AT CHECKPOINT J — READY TO OPEN INDEPENDENT B-7 NEW SESSION`
 
 **Boss consolidated ruling received and applied `2026-09-10` (`22_`).** All 11 items ruled; `B5′` deliberately left PROVISIONAL; `B10′` Architecture disposition accepted.
