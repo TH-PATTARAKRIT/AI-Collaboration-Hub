@@ -113,5 +113,9 @@ This approval changes the SMEs Core operating model and decision discipline. It 
 
 Boss remains the sole Final Approver.
 
-## Governing Principle
+## Governing Principle — Explicitly Approved by Boss
 > Understand deeply. Prove objectively. Challenge independently. Recommend explicitly. Decide with traceability. Execute with control.
+
+Boss explicitly approved the Governing Principle above on 2026-09-10 as canonical SMEs Core operating doctrine. It is not merely explanatory wording. It shall guide SMEs Core and all domain sub-teams when researching, reviewing, recommending, deciding, recording and executing work under SMEsPlus governance.
+
+This governing principle does not override domain-specific evidence requirements, approved invariants, Gate controls, or Boss-reserved approvals. It also does not itself authorize any infrastructure mechanism, source-code implementation, merge, deployment or production action.
