@@ -161,3 +161,60 @@ Continue autonomously from the first incomplete checkpoint. Reproduce evidence b
 
 Doctrine:
 Truth over Pass. Evidence over Assumption. Falsify before Accept. Correct before Escalate. No Evidence = No Progress. Never Skip Gate. Boss is sole Final Approver.
+
+---
+
+# `CORR1` — B-7 RETURN INTAKE AND CANONICAL REMEDIATION — `2026-09-10`
+
+Session: `[SMEPLUS-26-09-10-PHASE-PRETEST-B7-RETURN-CORR1-001]`
+Baseline consumed: **`c94839e8`** — preserved as Audit Lineage, not overwritten.
+Artefacts added: **`26_`…`38_`** (incl. `32A_`) · manifest **`39_PRETEST_CORR1_MANIFEST_SHA256.txt`**,
+**`38` entries, population declared explicitly, verified `38 of 38` with a firing positive control.**
+
+**B-7 ROUND 1 INDEPENDENT EVIDENCE — IMMUTABLE POINTER, NOT ON THIS BRANCH:**
+branch `audit/b7-independent-2026-09-10` · commit **`5bd36d62fc3e4c105996dd5560871ba7c8caaae5`** ·
+blob **`81f9aa53f6a560495c253876ac2805e3392b38f3`** ·
+SHA-256 **`2de832a470d7951a109b588a35c342510e1e70682e1d89265c0cc4bce2c5f9dc`** · verdict **`HOLD`**.
+**`0` bytes of B-7 finding text were edited. `0` prior artefacts (`01_`…`25_`) were modified — the
+`24`-entry Round-1 manifest still verifies `24 of 24`.**
+
+## Superseding state — these figures replace the ones above
+
+- **Readiness split: `18 WRITABLE / 4 GATED / 0 NOT ESTABLISHED`** (`27_`). Supersedes `19/2/1` and
+  `10/12/0`. **`B5′` remains `NO RULING` — this is a derivation, not authority.**
+- **Exit conditions: `7 of 17`** (`7 of 14` Pre-Test-owned; `3` re-placed) (`31_`). Supersedes `8 of 17`
+  and `5 of 17`. **The recount went DOWN.**
+- **Vetoes: `7` canonical, `0` discharged** (`B3′`). Supersedes the `6` recorded above.
+- **Boss decisions open: `3`** — `POH-D-02` · **`SC-SMT-01`** · **`BOSS-CORR1-01`** (`34_` §2, `35_`).
+- **External-authority items: `14`**, Thai statutory **`5`** (`36_`).
+- **Boundary denominator: `12`, UNAMENDED.** `4` material handoffs (`XMC-H-13`/`-14`/`-17`/`-18`) fall
+  outside it — classified `C`, escalated as `BOSS-CORR1-01`. **`0` boundaries added by SMEs Core** (`28_`).
+- **`3` CIRCULAR GATE DEFECTS marked** (`32_`): condition `12` (`0/48`), condition `9` (`EC-04`), and
+  condition `11`'s target-model and runtime limbs. **`EC-01`…`EC-08` are owed at the 8-Criteria Exit
+  Gates, neither of which is Pre-Test exit** — `SC-40` answer B, `SC-54`, `SC-AUTH-02`.
+  **`0` evidence waived · `0` criteria marked `N/A` · `0` status upgraded.**
+- **`CC-F-01` WITHDRAWN** — the `3` `F2` members ARE enumerated (`SA_FINAL_03` §2; `SC-01` §2; `SC-29`;
+  `SC-38`; `SC-56`). Do not re-raise (`26_` §3.1).
+- **`CC-F-11` narrowed** — `Standard` and `Average` reach `MF-01`; **`FIFO` does not** (`CORR1-F-02`,
+  `CORE-07`). **`CORE-06` discharged at architecture level** (`29_` §6).
+- **`MF-03` = `B` EXECUTION MODE**, re-derived with `0` reference to any `PTX` control (`29_` §8).
+- **`B8′` STRUCTURE A VALID.** SMT is a specialist ROLE INSIDE SMEs Core, not a separate party;
+  the bar Boss imposed is a **certification** bar (`30_`). `10_` L86 corrected.
+- **`CORE-05` SPECIFIED** (`32A_`) — KIND × CATEGORY refusal rule, `6` codes, `0` silent fallbacks.
+
+## Unchanged, and not to be upgraded
+
+`EC-04 = 0/3` · `EC-07 = 0/2` — **B-7 Round 1 is an executed attempt, NOT a clean pass; `6` of its `12`
+attacks succeeded, and `EC-07` needs TWO consecutive clean passes** · `0 PASS · 0 FAIL · 48 HOLD` ·
+`0 of 11` `PTX` · `E2E-04 = NOT TRAVERSABLE`, **`0` re-grades performed** · **`AAS-V-02` NOT DISCHARGED**,
+`X-14` executed, `0` AAS+ issuer records against a `104`-file positive control · `0 of 22` verified ·
+`IR 14/20` · `AR 15/30` · Functional Design **NOT AUTHORIZED**.
+
+## Next exact action
+
+**Issue `38_PRETEST_B7_ROUND2_NEW_SESSION_PROMPT.md` to an eligible independent challenger in a NEW CLEAN
+SESSION** — not the canonical executor, no transcript or conclusion inheritance, read-only on the `CORR1`
+baseline. **`38_` is CREATED, NOT EXECUTED.**
+**Boss action awaiting in parallel and not blocking Round 2:** `BOSS-CORR1-01`, `SC-SMT-01`, `POH-D-02`.
+
+**Status: `HOLD PRE-TEST EXIT` · `READY FOR B-7 ROUND 2 NEW CLEAN SESSION`.**
