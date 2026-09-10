@@ -1,0 +1,15 @@
+EDGE: 1053 of 1167 = 90.23%   (was 0.00%; PREP-004 published 12.94% from an authored string)
+cancel/reverse combinations: {('cancel', 'reverse'): 175, ('no cancel', 'no reverse'): 784, ('cancel', 'no reverse'): 58, ('no cancel', 'reverse'): 36}
+
+PROCESS               1510   1337  88.54%
+CONFIGURATION         4058      0   0.00%
+OPTIONAL_FUNCTION     4046      0   0.00%
+SOURCE                5074   2729  53.78%
+RUNTIME               5074   2690  53.02%
+DATA_MODEL            2863      0   0.00%
+SECURITY              4058      0   0.00%
+CROSS_MODULE          2909      0   0.00%
+EDGE                  1167   1053  90.23%
+ALL CELLS            30759   7809  25.39%
+RESEARCH-COMPLETE: 0
+verified-dims dist: {0: 913, 1: 1138, 2: 2398, 3: 625}

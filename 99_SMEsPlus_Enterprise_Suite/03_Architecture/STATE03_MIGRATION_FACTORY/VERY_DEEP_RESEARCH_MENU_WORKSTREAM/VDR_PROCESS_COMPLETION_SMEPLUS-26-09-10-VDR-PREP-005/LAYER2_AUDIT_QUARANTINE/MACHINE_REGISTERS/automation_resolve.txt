@@ -1,0 +1,8 @@
+records read across 5 deployments: 1316
+control (model, method) drawn from the records: ('ir.actions.server', 'autogenerate_ranges') -> found: True
+
+items matched by METHOD NAME alone      : 180   <- over-counts
+items matched by MODEL **and** METHOD  : 34   <- the figure of record
+false-positive rate of the name-only shape: 81.1%
+
+[('NO AUTOMATION REFERENCE', 430), ("NAME APPEARS in an automation record but not alongside this item's model", 145), ('INVOKED BY A SERVER ACTION OR SCHEDULED JOB', 34), ('DECLARED A SCHEDULED ENTRY POINT; no deployment record invokes it', 5)]

@@ -1,0 +1,15 @@
+| 1 | Financial Posting | 16 | 118 | 100% | 0% | 0% | 75% | 0% | 0% | 100% | **26.3%** | `-01` | **INCOMPLETE** |
+| 2 | Stock Ownership | 46 | 322 | — | 0% | 0% | 96% | 0% | 0% | — | **28.0%** | `-04` | **INCOMPLETE** |
+| 3 | Stock Quantity | 26 | 182 | — | 0% | 0% | 92% | 0% | 0% | — | **27.5%** | — | **INCOMPLETE** |
+| 4 | Inventory Valuation | 12 | 90 | 100% | 0% | 0% | 58% | 0% | 0% | 100% | **24.4%** | `-01` | **INCOMPLETE** |
+| 5 | Security | 270 | 898 | — | 0% | 0% | 32% | 0% | — | — | **9.7%** | `-02` `-03` | **INCOMPLETE** |
+| 6 | Tenant Isolation | **0** | 0 | — | — | — | — | — | — | — | **NOT COMPUTABLE** | — | **NO REFERENCE POPULATION** |
+| 7 | Company Isolation | 75 | 389 | — | 0% | 0% | 95% | 0% | 0% | — | **28.8%** | `-02` `-04` | **INCOMPLETE** |
+| 8 | Approval Control | 9 | 63 | — | 0% | 0% | 44% | 0% | 0% | — | **20.6%** | — | **INCOMPLETE** |
+| 9 | Audit Trail | 32 | 224 | — | 0% | 0% | 69% | 0% | 0% | — | **24.1%** | `-03` `-05` | **INCOMPLETE** |
+| 10 | Identity | 61 | 393 | 100% | 0% | 0% | 87% | 0% | 0% | 100% | **26.2%** | `-06` | **INCOMPLETE** |
+| 11 | Immutability | 47 | 186 | 100% | — | — | 0% | — | 0% | 100% | **41.4%** | `-05` | **INCOMPLETE** |
+| 12 | Period Close | 16 | 112 | — | 0% | 0% | 88% | 0% | 0% | — | **26.8%** | — | **INCOMPLETE** |
+| 13 | Reversal | 47 | 335 | 81% | 0% | 0% | 0% | 0% | 0% | 81% | **22.7%** | — | **INCOMPLETE** |
+| 14 | Data Integrity | 251 | 1,629 | — | 0% | 0% | 80% | 0% | 0% | — | **27.7%** | `-05` | **INCOMPLETE** |
+| 15 | Cross-Module Financial Handoff | 4 | 12 | — | — | — | 100% | — | 0% | — | **33.3%** | — | **INCOMPLETE** |

@@ -1,0 +1,34 @@
+gates named by the population: 42
+
+BK12MAY26:  CONTROL direct-membership rows=165  implication rows=65  gates resolvable=38
+   gates with at least one DIRECT member: 16
+   of those, gates NO holder group implies  : 8   <- switch reads OFF, capability live
+      base.group_system: 13 direct member(s)
+      stock.group_stock_manager: 9 direct member(s)
+      sales_team.group_sale_manager: 9 direct member(s)
+      base.group_multi_company: 8 direct member(s)
+      point_of_sale.group_pos_manager: 7 direct member(s)
+      mrp.group_mrp_manager: 6 direct member(s)
+      quality.group_quality_manager: 5 direct member(s)
+      stock.group_stock_multi_warehouses: 1 direct member(s)
+
+iEVING:  CONTROL direct-membership rows=144  implication rows=66  gates resolvable=38
+   gates with at least one DIRECT member: 14
+   of those, gates NO holder group implies  : 7   <- switch reads OFF, capability live
+      base.group_system: 8 direct member(s)
+      stock.group_stock_manager: 8 direct member(s)
+      sales_team.group_sale_manager: 7 direct member(s)
+      mrp.group_mrp_manager: 6 direct member(s)
+      point_of_sale.group_pos_manager: 6 direct member(s)
+      quality.group_quality_manager: 5 direct member(s)
+      base.group_multi_company: 5 direct member(s)
+
+iTEST02:  CONTROL direct-membership rows=718  implication rows=136  gates resolvable=38
+   gates with at least one DIRECT member: 13
+   of those, gates NO holder group implies  : 6   <- switch reads OFF, capability live
+      base.group_system: 14 direct member(s)
+      stock.group_stock_manager: 13 direct member(s)
+      mrp.group_mrp_manager: 11 direct member(s)
+      mrp_plm.group_plm_manager: 7 direct member(s)
+      quality.group_quality_manager: 6 direct member(s)
+      sales_team.group_sale_manager: 5 direct member(s)

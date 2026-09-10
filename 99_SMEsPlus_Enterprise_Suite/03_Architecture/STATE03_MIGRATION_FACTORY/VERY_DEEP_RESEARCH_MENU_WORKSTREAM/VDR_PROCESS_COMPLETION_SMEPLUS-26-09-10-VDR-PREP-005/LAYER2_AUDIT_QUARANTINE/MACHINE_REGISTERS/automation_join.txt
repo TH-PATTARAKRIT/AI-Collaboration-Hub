@@ -1,0 +1,12 @@
+AUTOMATION items: 26
+  BK12MAY26: joined 10 of 26
+  iEVING: joined 9 of 26
+  iSMEs: joined 1 of 26
+  iTEST02: joined 3 of 26
+  idemo18_uat: joined 1 of 26
+
+AUTOMATION items resolved through the full join: 11 of 26
+   LI-INV-AUTOMATION-0011  on 2 deployment(s)  every 1 days  active=t  code[:70]='model._clean_preparation_data()'
+   LI-INV-AUTOMATION-0018  on 2 deployment(s)  every 4 hours  active=t  code[:70]='model._sync_inventory()'
+   LI-INV-AUTOMATION-0019  on 2 deployment(s)  every 60 minutes  active=f  code[:70]='model._sync_orders()'
+   LI-INV-AUTOMATION-0020  on 2 deployment(s)  every 15 minutes  active=t  code[:70]='model._sync_inventory()'

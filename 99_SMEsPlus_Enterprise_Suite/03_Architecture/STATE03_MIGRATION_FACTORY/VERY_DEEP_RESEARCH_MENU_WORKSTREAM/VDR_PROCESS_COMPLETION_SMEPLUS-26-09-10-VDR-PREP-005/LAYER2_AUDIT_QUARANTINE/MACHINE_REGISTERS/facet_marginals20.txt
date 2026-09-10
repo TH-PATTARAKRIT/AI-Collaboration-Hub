@@ -1,0 +1,22 @@
+behaviours with a parsed body: 614
+
+PROCESS-01 Entry Point              CALLED DIRECTLY 427 (69.5%) · DECORATED 187 (30.5%)
+PROCESS-02 Preconditions            NONE DETECTED 433 (70.5%) · single-record assertion 134 (21.8%) · entry guard 47 (7.7%)
+PROCESS-03 Input Validation         NONE DETECTED 494 (80.5%) · RAISES UserError 79 (12.9%) · RAISES ValidationError 40 (6.5%)
+PROCESS-04 Business Rules           NONE DETECTED 493 (80.3%) · conditional refusal 81 (13.2%) · declared constraint + conditional refusal 40 (6.5
+PROCESS-05 Decision Branches        0 234 (38.1%) · 1 189 (30.8%) · 2 89 (14.5%)
+PROCESS-06 Calculation Logic        NO CALCULATION 540 (87.9%) · ARITHMETIC 1 op(s) 39 (6.4%) · ARITHMETIC 2 op(s) 15 (2.4%)
+PROCESS-07 State Transition         NONE 516 (84.0%) · READS state 82 (13.4%) · WRITES state 16 (2.6%)
+PROCESS-08 Internal Actions         0 self-method call(s) 284 (46.3%) · 1 self-method call(s) 237 (38.6%) · 2 self-method call(s) 66 (10.7%)
+PROCESS-09 Data Read                NO EXPLICIT READ 383 (62.4%) · filtered 67 (10.9%) · browse 42 (6.8%)
+PROCESS-10 Data Write               NO WRITE 425 (69.2%) · WRITES via write 70 (11.4%) · WRITES via create 58 (9.4%)
+PROCESS-11 Automation               NO AUTOMATION REFERENCE 430 (70.0%) · NAME APPEARS in an automation record but not alongside this item's model
+PROCESS-12 Scheduler                NOT A SCHEDULED ENTRY POINT 609 (99.2%) · SCHEDULED ENTRY POINT 5 (0.8%)
+PROCESS-13 Cross-Module Trigger     NO BOUNDARY TRIGGER 583 (95.0%) · 1 boundary object(s) 26 (4.2%) · 2 boundary object(s) 5 (0.8%)
+PROCESS-14 Cross-Module Consumption IN-DOMAIN ONLY (0 model(s)) 412 (67.1%) · 1 external model(s) accessed 86 (14.0%) · IN-DOMAIN ONLY (1 model(s)
+PROCESS-15 Error Handling           NOT HANDLED 611 (99.5%) · 1 try block(s), 1 handler(s) 3 (0.5%)
+PROCESS-16 Failure Path             NO EXPLICIT FAILURE PATH 491 (80.0%) · 1 raise site(s) 93 (15.1%) · 2 raise site(s) 17 (2.8%)
+PROCESS-17 Retry / Recovery         NO RETRY OR RECOVERY PATH 609 (99.2%) · TRANSACTION CONTROL 3 (0.5%) · NAMED AS A RETRY PATH 2 (0.3%)
+PROCESS-18 Cancel                   NO CANCEL PATH 571 (93.0%) · IS A CANCEL PATH 28 (4.6%) · CALLS _do_unreserve 6 (1.0%)
+PROCESS-19 Reverse / Return         NO REVERSE/RETURN PATH 591 (96.3%) · IS A REVERSE/RETURN PATH 17 (2.8%) · CALLS action_unbuild 2 (0.3%)
+PROCESS-20 Output / Handoff         RETURNS A VALUE (1 site(s)) 341 (55.5%) · RETURNS NOTHING 136 (22.1%) · RETURNS AN ACTION 108 (17.6%)

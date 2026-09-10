@@ -1,0 +1,8 @@
+needing source resolution: 15
+source-resolved with a code body: 15 of 15
+   LI-INV-AUTOMATION-0001  1 hours  active=True  code='model._cron_starshipit_fetch_and_update_prices()'
+   LI-INV-AUTOMATION-0002  1 days  active=default  code='model._cron_l10n_br_send_nfce()'
+   LI-INV-AUTOMATION-0003  1 days  active=True  code='model._l10n_ec_cron_send_delivery_guide_to_sri()'
+   LI-INV-AUTOMATION-0004  12 months  active=default  code="model._automated_closing('annually')"
+   LI-INV-AUTOMATION-0005  1 days  active=default  code="model._automated_closing('daily')"
+unresolved: []
