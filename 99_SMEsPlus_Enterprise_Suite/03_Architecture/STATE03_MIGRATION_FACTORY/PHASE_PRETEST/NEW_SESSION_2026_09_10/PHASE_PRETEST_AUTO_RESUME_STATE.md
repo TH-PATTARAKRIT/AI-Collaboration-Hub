@@ -50,7 +50,9 @@ Current checkpoint:
 
 **New obligations created by the rulings: `4`** — `CORE-04` map `12 ↔ 18 ↔ 10` · `CORE-05` deterministic refusal rule · `CORE-06` `MF-01` counterpart account · `X-14` AAS+ issuer discharge act for `AAS-V-02`.
 
-**B-7:** appointee **Independent OpenAI GPT-5.6 Sol**, new clean session, different vendor. Prompt created at `25_`, **NOT executed**. Baseline **re-frozen post-ruling**; `172d7b9c` and `88003079` are Audit Lineage, not overwritten.
+**B-7:** appointee **Independent OpenAI GPT-5.6 Sol**, new clean session, different vendor. Prompt created at `25_`, **NOT executed**.
+
+**B-7 FROZEN BASELINE (authoritative): `bdb1d12c698f69b7cdce13a0c73c96706759e4bd`** — package content frozen at `8af573f2`; the SHA-resolution commit changed only the SHA line in `25_`. Baseline **re-frozen post-ruling**; `172d7b9c` and `88003079` are Audit Lineage, not overwritten.
 
 Superseded checkpoint line:
 `STOPPED AT PT-16 — GENUINE BOSS AUTHORITY GATE`
