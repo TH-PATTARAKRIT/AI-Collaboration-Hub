@@ -19,7 +19,7 @@ Executing body: **SMEs CORE** · Boss: **SOLE FINAL APPROVER**
 | Current nature status | **`1 EVIDENCED — DESIGN; NOT LIVE` · `17 PARTIAL` · `0 HOLD`** |
 | Natures at **`DETERMINED`** | **`0 of 18`** |
 | Nature-DNA determinations carried | **`14`** — `ND-01`…`ND-14` |
-| **Routing convergence rule sets found** | **`2` — and they are NOT the same six rules** (`PT05-F-01`) |
+| **Routing convergence rule sets found** | **`3` — CORR3's six (tested), the `06_` prompt's FIVE, and `SC-45`'s six** (`PT05-F-01`, corrected at `PT-13`) |
 | Rule qualifications present in the tested register and absent from the summary | **`3`** |
 | **Material findings** | **`3`** — `PT05-F-01`, `-F-02`, `-F-03` |
 | Self-corrections of this session's own prior output | **`1`** — §7 |
@@ -38,6 +38,21 @@ Executing body: **SMEs CORE** · Boss: **SOLE FINAL APPROVER**
 | 4 | Every material flow → Accounting semantic — "29 of 29 determined; 14 carry a named open element" | same — **HOLDS** ✔ carried |
 | 5 | One output may have multiple consumers; **a missing consumer is a defect** — **"*One defect found*: `XMC-H-09`"** | One output may feed multiple consumers — **HOLDS**, *"`XMC-H-09` remains the one recorded missing consumer"* |
 | 6 | **"Routing follows Business Nature, not module name — Holds. *The resolution rule is still undetermined*"** | **`INPUT → PROCESS → OUTPUT → DOWNSTREAM ROUTING → NEXT MODULE INPUT` closes — HOLDS at route level** |
+
+> ## ⚠ CORRECTED AT `PT-13` — READ THIS BEFORE §2's TABLE
+>
+> **The causal attribution below ("`SC-45` substitutes rule 6") is WRONG and was falsified by this
+> session's own `PT-13`.** The governing `06_` prompt for the `SC-45` round mandates **FIVE** convergence
+> rules — exactly `SC-45`'s rules 1–5. **`SC-45` followed its law and ADDED a sixth of its own; it never
+> held the Business-Nature rule to drop.**
+>
+> **The corrected finding is worse for the programme, not better:** *"routing follows Business Nature, not
+> module name"* was **lost at the PROMPT layer** between CORR3 and the `05_`/`06_` rounds — which removed
+> the obligation to test it from **every subsequent round**, while it remains the central doctrine of this
+> phase's master prompt §7.
+>
+> **Everything else in this finding stands unchanged:** the `3` stripped qualifications, rule 5's
+> *"One defect found"* reported as `HOLDS`, `0` rules holding unqualified, and Set A governing `PT-12`.
 
 ### The three defects this comparison exposes
 

@@ -30,14 +30,15 @@ Phase SA canonical evidence baseline:
 | `PT-10` Evidence Class + Runtime Boundary | `PT10_EVIDENCE_CLASS_AND_RUNTIME_BOUNDARY.md` | **COMPLETE — `CP-PT-10`** |
 | `PT-11` Authority / Veto Dependency Register | `PT11_AUTHORITY_VETO_DEPENDENCY_REGISTER.md` | **COMPLETE — `CP-PT-11`** |
 | `PT-12` Canonical Pre-Test Matrix | `PT12_CANONICAL_PHASE_PRETEST_MATRIX.md` | **COMPLETE — `CP-PT-12`** |
-| `PT-13` SMEs Core Falsification | `PT13_SMES_CORE_FALSIFICATION_REGISTER.md` | **NEXT** |
-| `PT-14`…`PT-16` | — | NOT STARTED |
+| `PT-13` SMEs Core Falsification | `PT13_SMES_CORE_FALSIFICATION_REGISTER.md` | **COMPLETE — `CP-PT-13`** |
+| `PT-14` B-7 Independent Challenge | `PT14_B7_INDEPENDENT_CHALLENGE_REGISTER.md` | **NEXT** |
+| `PT-15`, `PT-16` | — | NOT STARTED |
 
 Current checkpoint:
-`PT-13 — SMEs Core Falsification`
+`PT-14 — B-7 Structurally Independent Challenge`
 
 Next required artifact:
-`PT13_SMES_CORE_FALSIFICATION_REGISTER.md`
+`PT14_B7_INDEPENDENT_CHALLENGE_REGISTER.md`
 
 ## Authority state (fixed at `PT-11`)
 
@@ -89,7 +90,9 @@ Next required artifact:
 | `PT07-F-03` | MATERIAL | The procurement/dropship route is reported as **holding** while the cross-module entry sits **beneath Purchase's control floor** (`XMC-H-03`), which `ND-03` forbids. `SC-45` drops the qualification. | OPEN — carried as a **control breach**, not a routing success |
 | `PT06-F-01` | MATERIAL | `SA_CORR2_06` count table says `PARTIAL = 14`; its own prose and checkpoint line say `13`. Sibling `SA_CORR2_05` publishes `14/3/1` while its checkpoint line reads `13/4/1`. Both already published as `XMC-F-07`/`XMC-F-06`; **neither repaired**. | OPEN — source-text defect. `PT-15` must audit text by identifier, not disposition column |
 | `PT06-F-02` | MATERIAL | `ND-10` (Perpetual/Periodic timing) is a **SMEs Core recommendation, NOT Boss-approved**; one prior round decided it in Boss's place and withdrew (`C10-A1`). Its Boss item is attributed to **`JT-04`** in the CORR5 artefact and **`F1`** in `FINAL_CONTROLLED_V2`. | OPEN — `PT-12` states `ND-10` as recommendation only, naming both. Routed `PT-11`/`PT-13`/B-7 |
-| `PT05-F-01` | **MATERIAL** | **Two different "six routing rules" exist.** `SC-45`'s summary substitutes rule 6 — dropping *"routing follows Business Nature, not module name"* entirely — strips **3** material qualifications, and reports as HOLDS a rule whose tested result reads *"One defect found"*. Governing prompts list **five**. | **OPEN.** Correct statement: `0` rules hold unqualified. **Set A (`SA_CORR3_08` §4.1) governs `PT-12`.** Routed `PT-13`/B-7 |
+| `PT13-D-01` | DEFECT — **FIXED** | `PT11-P-01` was minted in the ledger and absent from every artefact. | **FIXED** — `PT-11` §6.1 now carries the identifier |
+| `PT13-D-02` | COMPLIANCE | Self-imposed `PT03-F-01` rule measured: `0` unqualified citations in `PT-04`…`PT-12`; `2` upstream in `PT-02` predating the rule. | **PUBLISHED, not retro-fixed** |
+| `PT05-F-01` | **MATERIAL — CORRECTED at `PT-13`** | **Three** rule sets, not two: CORR3's six (tested), the `06_` prompt's **FIVE**, and `SC-45`'s six. **`SC-45` followed its law and added one — it never held the Business-Nature rule to drop.** The doctrine was lost at the **PROMPT** layer. `SC-45`'s summary substitutes rule 6 — dropping *"routing follows Business Nature, not module name"* entirely — strips **3** material qualifications, and reports as HOLDS a rule whose tested result reads *"One defect found"*. Governing prompts list **five**. | **OPEN.** Correct statement: `0` rules hold unqualified. **Set A (`SA_CORR3_08` §4.1) governs `PT-12`.** Routed `PT-13`/B-7 |
 | `PT05-F-02` | **MATERIAL** | `E2E-07` — the single scenario that improved in the final register — cites `SA05` `BN-07 = DETERMINED`; `SA05` says `HOLD` and its status column is *"superseded and must not be quoted"*; consolidated status is `PARTIAL`; `DETERMINED` applies to **half one of two**. Half two carries a **silently-skipped** kit price-difference correction, absent from a row marked `none`. | **OPEN.** `0` re-grades; a bounded risk is attached at `PT-12`. Routed `PT-13`/B-7 |
 | `PT05-F-03` | MATERIAL | Flow enumeration **short by ≥1** (migration flows; positive control `11` files). Two registers each contradict their own checkpoint line (`13` vs `14`; `13/4/1` vs `14/3/1`), **unrepaired**. | OPEN — `PT-15` must audit the text, not the disposition table |
 | `PT04-F-01` | **MATERIAL** | Boss fixed the boundary denominator at `12` *"declared as a set"*; **the set is declared nowhere** (`0` boundary names in `SC-BD-02`, positive control `7`). Only 12-member list is in a **prompt** prefixed *"At minimum test"*. Registers use `18` and `10`. | **OPEN — Boss/PMO owned.** This session may not re-scope a ruled denominator. Routed `PT-11`/`PT-13`/B-7 |

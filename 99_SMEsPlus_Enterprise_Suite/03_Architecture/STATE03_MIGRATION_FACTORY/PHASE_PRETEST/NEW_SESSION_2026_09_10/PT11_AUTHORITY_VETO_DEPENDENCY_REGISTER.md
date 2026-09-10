@@ -124,7 +124,7 @@ is issuer authority.
 **`Correct before Escalate` is a doctrine, not a preference. Both of these could have been handed to Boss
 as gaps; neither needed to be.**
 
-### 6.1 The boundary set — **SMEs Core PROPOSES an enumeration**
+### 6.1 `PT11-P-01` — the boundary set: **SMEs Core PROPOSES an enumeration**
 
 `SC-BD-02` fixed the denominator at **`12` boundaries, *"declared as a set"***, and `SC-SMT-08` holds that
 **a boundary may propose; it may not declare.** `PT04-F-01` established the set is declared nowhere.
