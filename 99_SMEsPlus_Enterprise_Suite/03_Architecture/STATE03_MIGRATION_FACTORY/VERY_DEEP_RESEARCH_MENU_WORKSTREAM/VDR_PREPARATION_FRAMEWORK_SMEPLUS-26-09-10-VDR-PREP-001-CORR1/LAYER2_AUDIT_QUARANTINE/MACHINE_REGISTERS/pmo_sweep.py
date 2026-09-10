@@ -51,7 +51,9 @@ for p in md:
 # ---- 3 FILE (unit: file)
 manifest={}
 for p in sorted(files):
-    manifest[os.path.relpath(p,PKG)]=hashlib.sha256(open(p,'rb').read()).hexdigest()
+    rel=os.path.relpath(p,PKG)
+    if rel=='MANIFEST_SHA256.json': continue   # a manifest cannot hash itself
+    manifest[rel]=hashlib.sha256(open(p,'rb').read()).hexdigest()
 junk=[k for k in manifest if '__pycache__' in k or k.endswith('.pyc') or k.endswith('.DS_Store')]
 empty=[k for k in manifest if os.path.getsize(os.path.join(PKG,k))==0]
 # ---- 4 TOKEN (unit: file, counting vendor tokens)
