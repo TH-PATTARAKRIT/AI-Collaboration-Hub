@@ -36,25 +36,35 @@ Prior SC head consumed by this round: `25f727a956177097f41e21dcadf259590f210687`
 
 ## 1. Terminal state
 
-# `HOLD — MATERIAL SMEs CORE GAP REMAINS` · `TERMINAL D`
+# `HOLD — EXTERNAL AUTHORITY INPUT REQUIRED` · `TERMINAL D`
 
-**Exact gap:** `RC-D-03` and `RC-D-04` carry **no SMEs Core recommendation** anywhere in the controlling
-package (`SC-BD-F-01`, two shapes, firing control). Boss cannot rule them until SMEs Core supplies one.
-**`READY FOR BOSS PHASE SA FINAL CLOSURE` is NOT claimed.** Phase SA is **NOT closed**.
+**The SMEs Core gap is CLOSED.** `SC-BD-F-01` is discharged: `RC-D-03` and `RC-D-04` are now
+recommendation-complete (`SC-14`, `SC-15`) and challenge-complete (`SC-16`, 0 returns open).
+**Category 3 = `0`** (`SC-17`). **Prompt §12's Terminal A substantive condition is met** — the six
+remaining decisions are ready.
+
+**What blocks is authority input, not team work — two named items:**
+
+1. > ⚠ **`EC-05` is OPEN — two opposed Boss rulings on `FG-F-06` stand on this branch.**
+   > `SC-BD-01` = **READING B** (16 rulings rest on it) · `SC-CONTRA-01` = **READING A** (under which the
+   > gate was not open). Only Boss may disposition it (`CF-D-01`), and the constitution forbids leaving it
+   > *"merely as an unresolved difference of opinion."* **Boss should also say what becomes of the 16
+   > rulings** — SMEs Core does not presume them void and does not presume them safe.
+2. **AAS+ concurrence on `POH-D-06`** (`SC-19`) — issuer authority, outstanding. Boss's ruling alone did not
+   complete the restatement.
+
+**`SC-21` is PREPARED AND PRESENTED, NOT OPENED FOR RULING.** `FG-F-06` is **not** re-asked; only the
+disposition between two records is put.
 
 ## 2. NEXT EXACT ACTION
 
-1. **SMEs Core** — produce recommendations for **`RC-D-03`** (Private-Company escalation criteria) and
-   **`RC-D-04`** (mapping-layer ownership), with SMT disposition. **This clears Terminal D and returns
-   Category 3 to `0`.**
-2. **Boss** — rule the five open `F5` elections `POH-D-01`…`POH-D-05`. **`POH-D-02` should wait on the Thai
-   statutory input** (tax consequences unresearched; over-absorption cap strength undetermined) rather than
-   be ruled ahead of it.
-3. **AAS+** — concur on `POH-D-06`'s restatement; **Boss ratifies.** Boss's ruling alone did not complete it:
-   *"restating a veto limb is reserved to the veto's issuer and Boss."*
-4. Execute the four approved acts (`B-7`, `C4-D-01`, `C4-D-02`, Thai panel). **`AAS-V-02` ratification was
-   NOT selected** and returns to Boss at his choosing.
-5. Only then re-run `SC-12`.
+**On the `EC-05` disposition, rule the six ready decisions** — `RC-D-03`, `RC-D-04`, `POH-D-01`,
+`POH-D-03`, `POH-D-04`, `POH-D-05` — from `SC-21`. Publish one `SC-BD-nn` record each **before**
+propagation, then recompute totals, Category 3, veto state, Pre-Test entry and closure readiness.
+
+**`POH-D-02` stays outside the ruling interface** until Thai statutory evidence exists and is
+evidence-linked. **The Thai panel is commissioned, NOT convened — no result exists, and none may be
+fabricated or anticipated** (`SC-20` §3).
 
 **Do not** re-ask `FG-F-06`, `BOSS-ROUTE-01`, or any of the 16 ruled decisions.
 
@@ -71,14 +81,21 @@ package (`SC-BD-F-01`, two shapes, firing control). Boss cannot rule them until 
 | `F1`–`F8` | **`16 of 23 RULED`** · `SC-BD-02`…`SC-BD-09` · **7 open** |
 | 5 Boss acts | **`4 APPROVED, 1 HELD`** · `SC-BD-10` |
 | `SC-11` propagation register | **`PUBLISHED`** |
-| `SC-12` closure requalification | **`PUBLISHED — TERMINAL D`** |
+| `SC-12` closure requalification | **`PUBLISHED`** |
+| `CP-SA-SC-110` current state reproduced | **`CLOSED`** — `SC-13`; 11 of 12 items reproduce, item 1 does **not** |
+| `CP-SA-SC-120` `RC-D-03`/`-04` recommendations | **`CLOSED`** — `SC-14`, `SC-15` |
+| `CP-SA-SC-130` gap re-challenged | **`CLOSED`** — `SC-16`; 14 challenges, 6 accepted and corrected |
+| `CP-SA-SC-140` Category 3 requalified | **`CLOSED`** — `SC-17`; **Category 3 = 0** |
+| `CP-SA-SC-150` remaining Boss pack | **`READY — NOT OPENED`** — `SC-21` |
 
 ## 4. Controlling figures — re-derived, not inherited
 
-**23** Boss decisions in 8 families (`F5` = **6**) — **16 RULED, 7 OPEN** (`POH-D-01`…`-05`, `RC-D-03`,
-`RC-D-04`); validated three ways · **5** acts — **4 approved, 1 held** · `FG-F-06` **RULED — Reading B** ·
-**6** vetoes in force, **0** discharged, **0** self-discharged · **Category 3 = 1** — SMEs Core's own
-(`SC-BD-F-01`); PMO 0, document owner 0 · structurally independent passes **0** · `EC-07` **not engaged for this exit** — `FG-F-06` = Reading B (`SC-BD-01`) ·
+**23** Boss decisions in 8 families (`F5` = **6**) — **16 RULED, 7 OPEN**; **6 of the 7 now ready**,
+`POH-D-02` withheld on statutory evidence · **5** acts — 4 approved, **0 started, 0 complete** (`SC-20`) ·
+⚠ `FG-F-06` **CONTRADICTED** — `SC-BD-01` Reading B vs `SC-CONTRA-01` Reading A, `EC-05` **OPEN** ·
+**6** vetoes in force, **0** discharged · **`CF-V-02` limb 1 is NOT closed** (`SC-GAP-F-01` — three
+conditions, one met) · **Category 3 = 0** — `SC-BD-F-01` discharged · structurally independent passes
+**0** · `EC-07` **not engaged for this exit** — `FG-F-06` = Reading B (`SC-BD-01`) ·
 targeted Very Deep Research re-entry **none required**.
 
 ## 5. This round's findings
@@ -92,6 +109,26 @@ prove the designation (`SC-V-01`: **0** hits, control **19**) ·
 
 **All three narrow Reading A; none changes the disposition, which is
 `BOSS-ONLY SCOPE CLARIFICATION` either way.** The direction is declared and counter-tested at `SC-09` §6.
+
+## 5a. This round's findings
+
+**`SC-GAP-F-01`** — `SC-BD-03` §6 and `SC-06` L214 record `CF-V-02`'s *"first limb closes"* on `MTI-D-04`.
+**Overstated.** `SA_CORR5_09` L37 requires **three** conditions: *"`MTI-D-04` + `RC-D-04` ruled **and the
+mapping layer specified**"*. **Limb 1 is NOT closed** — a correction to this session's own record, and the
+reason `SC-15` had to *specify* the layer rather than dissolve it. Root cause: a consequence clause
+inherited without checking it against the veto's own release path.
+
+**`SC-CH-09`** — the drafting instinct to dissolve `RC-D-04` (as `F3` dissolved) was **reversed by
+challenge**; a dissolved `RC-D-04` leaves `CF-V-02` limb 1 permanently unliftable. Produced the
+`SPECIFIED — DORMANT — NO SUBJECT` status.
+
+**`SC-CH-02`** — `SC-14`'s first draft would have **breached `CF-I-08`**, which forbids authoring anything
+for the Private Company topology. Corrected by the pool-exit-condition distinction: an exit condition from
+the shared pool is a pool fact; topology behaviour is not authored.
+
+**Consequence of `SC-BD-03` no record stated:** with `MTI-D-04` ruled *no grant*, **Private Company
+escalation is now the only designed route** for a tenant exceeding the shared model — so `RC-D-03` is
+**more** load-bearing after that ruling, not less.
 
 ## 5b. `SC-ADDENDUM-A` consumed — two findings verified at primary source
 
