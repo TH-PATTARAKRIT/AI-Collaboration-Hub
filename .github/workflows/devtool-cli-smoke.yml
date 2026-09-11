@@ -1,0 +1,73 @@
+name: DEVTOOL CLI Smoke Test
+
+on:
+  push:
+    branches:
+      - control/devtool-validation-2026-09-11-001
+    paths:
+      - '.github/workflows/devtool-cli-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cli-smoke:
+    name: ${{ matrix.tool }} install-version-help
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        tool: [claude, codex, cursor, junie]
+    steps:
+      - name: Runtime baseline
+        run: |
+          set -euxo pipefail
+          uname -a
+          node --version || true
+          npm --version || true
+          git --version || true
+
+      - name: Install and verify candidate CLI
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p "$RUNNER_TEMP/devtool-evidence"
+          case "${{ matrix.tool }}" in
+            claude)
+              npm install -g @anthropic-ai/claude-code
+              command -v claude
+              claude --version | tee "$RUNNER_TEMP/devtool-evidence/version.txt"
+              claude --help | head -n 120 > "$RUNNER_TEMP/devtool-evidence/help.txt"
+              ;;
+            codex)
+              npm install -g @openai/codex
+              command -v codex
+              codex --version | tee "$RUNNER_TEMP/devtool-evidence/version.txt"
+              codex --help | head -n 120 > "$RUNNER_TEMP/devtool-evidence/help.txt"
+              ;;
+            cursor)
+              curl https://cursor.com/install -fsS | bash
+              export PATH="$HOME/.local/bin:$HOME/.cursor/bin:$PATH"
+              command -v agent
+              agent --version | tee "$RUNNER_TEMP/devtool-evidence/version.txt"
+              agent --help | head -n 120 > "$RUNNER_TEMP/devtool-evidence/help.txt"
+              ;;
+            junie)
+              curl -fsSL https://junie.jetbrains.com/install.sh | bash
+              export PATH="$HOME/.local/bin:$PATH"
+              command -v junie
+              junie --version | tee "$RUNNER_TEMP/devtool-evidence/version.txt"
+              junie --help | head -n 120 > "$RUNNER_TEMP/devtool-evidence/help.txt"
+              ;;
+          esac
+          printf 'tool=%s\ncommit=%s\nrun=%s\n' "${{ matrix.tool }}" "$GITHUB_SHA" "$GITHUB_RUN_ID" > "$RUNNER_TEMP/devtool-evidence/run-metadata.txt"
+
+      - name: Upload smoke evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: devtool-cli-smoke-${{ matrix.tool }}
+          path: ${{ runner.temp }}/devtool-evidence/
+          if-no-files-found: warn
