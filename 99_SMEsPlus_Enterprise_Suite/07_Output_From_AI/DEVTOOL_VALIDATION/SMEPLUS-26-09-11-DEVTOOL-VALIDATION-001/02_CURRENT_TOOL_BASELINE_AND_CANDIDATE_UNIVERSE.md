@@ -3,50 +3,68 @@
 Session: SMEPLUS-26-09-11-DEVTOOL-VALIDATION-001
 Status: ACTIVE — NOT FINAL FREEZE
 
-## Historical / Current Baseline
-Historical SMEsPlus evidence identifies ChatGPT as architecture/review/governance, Claude Code as engineering, GitHub as control, Jira as execution, Figma as design authority and Make as integration. This baseline is historical evidence only and does not confer automatic PASS.
+## Current/Historical Rule
+Prior SMEsPlus choices are learning/current/historical evidence only. They do not confer automatic PASS or canonical ownership.
 
-## Candidate Universe — Round 1
+Explicit correction from Boss:
+- Make = NOT IN OPERATIONAL USE / LEARNING & TEST REFERENCE ONLY.
+- Figma, Lovable and other previously chosen tools must be re-proven against current SMEsPlus missions.
+- VS Code remains REMOVED / NOT IN USE / EXCLUDED unless Boss reopens it.
 
-| Capability | Candidate(s) | Current Disposition |
+## Candidate Universe — Expanded by Mission
+| Mission | Candidate(s) | Current Disposition |
 |---|---|---|
-| Architecture / Research / Review | ChatGPT | INCUMBENT / RE-PROVE WHERE MATERIAL |
-| AI Coding Agent | Claude Code | INCUMBENT PRIMARY BASELINE / NOT FROZEN |
-| AI Coding Agent | OpenAI Codex | MAJOR CHALLENGER |
-| AI Coding Agent / Agent Host | Cursor | CHALLENGER |
-| AI Coding Agent / Agent Host | JetBrains Junie | NEW MATERIAL CHALLENGER — ADMITTED FOR EVIDENCE REVIEW |
-| Source Control | GitHub | STRONG CORE CANDIDATE |
-| CI/CD | GitHub Actions | STRONG CORE CANDIDATE |
-| PMO / Traceability | Jira | STRONG CORE CANDIDATE |
-| UI/UX / Design-to-Code | Figma | STRONG CORE CANDIDATE |
-| E2E / Runtime Evidence | Playwright | STRONG CORE CANDIDATE |
-| Integration Automation | Make | INCUMBENT BASELINE / NOT FROZEN |
-| Integration Automation | n8n | CHALLENGER |
-| IDE / Agent Host | VS Code | REMOVED / NOT IN USE / EXCLUDED |
+| Architecture / Research / Review | ChatGPT; Claude; structured docs-as-code | RE-PROVE BY MISSION |
+| Architecture modeling | Structurizr; Mermaid; PlantUML | ADMITTED FOR RESEARCH |
+| Process / BPMN | bpmn.io and compatible BPMN tooling | ADMITTED FOR RESEARCH |
+| API / Event contract | OpenAPI/Swagger; AsyncAPI | ADMITTED FOR RESEARCH |
+| Functional design / requirements | GitHub Markdown/YAML + Jira + AI review; specialist modeling tools where gap exists | ADMITTED / BENCHMARK BY STEP |
+| UI/UX | Figma | HISTORICAL STRONG CANDIDATE / RE-PROVE |
+| Design-to-code / prototype | Figma Dev Mode/MCP; Lovable; coding agents | MISSION-SPECIFIC CHALLENGERS |
+| AI coding | Claude Code; OpenAI Codex; Cursor; JetBrains Junie; GitHub Copilot; Factory Droid | ACTIVE COMPARATIVE SET |
+| Source / PR / CI | GitHub; GitHub Actions | STRONG CORE CANDIDATE |
+| PMO / traceability | Jira + GitHub evidence links | STRONG CORE CANDIDATE |
+| E2E / browser evidence | Playwright | STRONG CORE CANDIDATE / RE-PROVE |
+| Integration testing | Testcontainers | ADMITTED |
+| Contract testing | Pact | ADMITTED FOR APPLICABLE APIs |
+| Performance/load | Grafana k6 | ADMITTED |
+| Security dynamic testing | OWASP ZAP | ADMITTED |
+| Policy-as-code | Open Policy Agent | ADMITTED |
+| Secret file/GitOps control | SOPS + age/KMS | ADMITTED |
+| Central/dynamic secrets | OpenBao | CONDITIONAL CHALLENGER; complexity proof required |
+| Runtime IAM | Keycloak | CONDITIONAL CHALLENGER; operations/tenant model proof required |
+| AI/workflow durable orchestration | Temporal; Hatchet; Trigger.dev | ACTIVE RESEARCH SET |
+| Job queue | BullMQ | SPECIALIST CHALLENGER; not equivalent to durable workflow engine |
+| Integration automation | Make; n8n; direct API/webhook/native automation | REFERENCE/CHALLENGER — NO INCUMBENT WINNER |
+| Server OS | Debian 13; Ubuntu 26.04 LTS | FINALIST RESEARCH SET |
+| Runtime | Node.js 24 LTS baseline candidate; Node 26 Current for future evaluation | NODE 24 LTS PREFERRED RESEARCH BASELINE |
+| Database | PostgreSQL 18.x | STRONG OPEN-LICENSE CANDIDATE |
+| Messaging | NATS; RabbitMQ | MISSION BENCHMARK REQUIRED |
+| Cache | Valkey | OPEN-LICENSE CANDIDATE |
+| Reverse proxy / TLS | Caddy; NGINX | MISSION BENCHMARK REQUIRED |
+| Object storage | SeaweedFS; Ceph RGW; managed S3-compatible service where economics justify | BENCHMARK / TCO REQUIRED |
+| PostgreSQL backup | pgBackRest | STRONG CANDIDATE; restore drill mandatory |
+| Telemetry | OpenTelemetry | STRONG INSTRUMENTATION CANDIDATE |
+| Metrics/alerting | Prometheus + Alertmanager | STRONG CANDIDATE; not exact billing source |
+| Logs | Loki | CONDITIONAL; auth/tenant enforcement mandatory |
+| Dashboard | Grafana OSS | STRONG CANDIDATE subject to license/ops review |
+| Knowledge portal | GitHub canonical docs + Docusaurus derived view | ADMITTED |
+| Semantic retrieval | PostgreSQL + pgvector if material need proven | OPTIONAL / AVOID PREMATURE EXTRA DB |
+| Current context | GitHub machine-readable context + Jira active work; later AI EOS state store | DESIGN TARGET, NOT THIRD-PARTY TOOL WINNER |
 
-## Capability-Gap Admission Queue
-The following categories are OPEN for candidate search because the current baseline does not yet prove complete coverage:
-- SAST / Dependency / Secret / Supply-chain security
-- Performance / Load testing
-- Observability / distributed tracing
-- API contract / integration testing
-- Database engineering / migration review
-- AI agent policy / sandbox / audit hardening
+## Runtime Coding-Agent Evidence
+Neutral GitHub Actions CLI smoke has already verified install/version/help for Claude Code, Codex, Cursor and Junie. Remote authorized workstation checks further established:
+- Claude CLI available/authenticated, but B01 inference blocked by account credit balance; NOT SCORED.
+- Codex CLI available through npx and authenticated via supported user login; B01 read-only project benchmark produced a result with clean worktree; independent review still required.
+- Cursor Agent installed; authentication absent; benchmark blocked; NOT SCORED.
+- Junie 26.9.7 (3110.7) installed successfully; non-interactive auth smoke reports no authorization; benchmark blocked; NOT SCORED.
 
-Candidate admission rule: add a tool only when it closes a material capability gap or materially improves security, governance, cost, reliability or maintainability.
+Therefore no universal AI-coding winner is declared.
 
-## Runtime Availability Check — Current Execution Environment
-Verified in current runtime:
-- node: AVAILABLE
-- npm/npx: AVAILABLE
-- git: AVAILABLE
-- claude CLI: NOT FOUND
-- codex CLI: NOT FOUND
-- cursor CLI: NOT FOUND
-- junie CLI: NOT FOUND
-- gh CLI: NOT FOUND
-
-Therefore no AI coding candidate may be marked runtime-PASS from this environment yet. Documentation evidence and runtime evidence remain separate.
+## Candidate Admission Rule
+Admit a new tool only when it closes a material STATE/STEP mission gap or materially improves security, governance, reliability, portability, TCO or maintainability. Do not add tools merely because they are popular or feature-rich.
 
 ## Selection Rule
-No Predetermined Winner. Existing tool != automatic PASS. Boss preference != technical score. Vendor claim != runtime proof.
+Mission Fit + Constraint Fit + Runtime Evidence + Governance Fit + Sustainable TCO.
+Existing != Best. Paid != Better. Free != Better. New != Improvement.
+No Evidence = No Progress.
