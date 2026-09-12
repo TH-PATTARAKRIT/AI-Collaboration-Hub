@@ -1,0 +1,3 @@
+interface:
+  display_name: "SMEsPlus VDR Controller"
+  short_description: "Govern VDR evidence, coverage, challenge, and Boss gates"
