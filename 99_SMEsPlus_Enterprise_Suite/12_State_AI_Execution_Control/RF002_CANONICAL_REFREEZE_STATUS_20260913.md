@@ -4,7 +4,7 @@ Status Date: `2026-09-13 ICT`
 Candidate Version: `CFU-CORR3B-BPF-20260913-RF002`  
 Publication Class: `PUBLIC-SAFE GOVERNANCE STATUS`  
 Gate Status: `HOLD / NOT FORMALLY MEASURABLE`
-Status Revision: `RF002-CONTROL-HARDENING-003`
+Status Revision: `RF002-READ-ONLY-ACCESS-REQUEST-004`
 
 ## Current State
 
@@ -15,6 +15,7 @@ Status Revision: `RF002-CONTROL-HARDENING-003`
 - Proof execution, Coverage Reconciliation, Independent Challenge and Pre-Test have not run.
 - Exact-version review, frozen-membership and post-proof chronology controls have been hardened and technically revalidated.
 - One source-level Material Delta remains under impact review; it does not qualify as runtime, configuration or end-to-end proof.
+- A dedicated least-privilege read-only access request is prepared. Access is not granted and no Server Test change was performed.
 - Formal coverage remains `SUSPENDED`; no 96%, PASS, READY or Research Complete claim is authorized.
 
 ## Governance Rule
