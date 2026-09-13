@@ -4,7 +4,7 @@ Status Date: `2026-09-13 ICT`
 Candidate Version: `CFU-CORR3B-BPF-20260913-RF002`  
 Publication Class: `PUBLIC-SAFE GOVERNANCE STATUS`  
 Gate Status: `HOLD / NOT FORMALLY MEASURABLE`
-Status Revision: `RF002-READ-ONLY-ACCESS-REQUEST-004`
+Status Revision: `RF002-BPF120-SOURCE-RECOVERY-005`
 
 ## Current State
 
@@ -14,8 +14,8 @@ Status Revision: `RF002-READ-ONLY-ACCESS-REQUEST-004`
 - Formal Independent QA, PMO and Boss Re-Freeze are pending.
 - Proof execution, Coverage Reconciliation, Independent Challenge and Pre-Test have not run.
 - Exact-version review, frozen-membership and post-proof chronology controls have been hardened and technically revalidated.
-- One source-level Material Delta remains under impact review; it does not qualify as runtime, configuration or end-to-end proof.
-- A dedicated least-privilege read-only access request is prepared. Access is not granted and no Server Test change was performed.
+- One source-level Material Delta remains under impact review. Read-only recovery established the exact repository/ref/resolver and controlled diff; its PL01 identity impact is bounded for named review, while PL02-PL05 remain unproven.
+- Authorized read-only source recovery completed without a Server Test change or business transaction.
 - Formal coverage remains `SUSPENDED`; no 96%, PASS, READY or Research Complete claim is authorized.
 
 ## Governance Rule
