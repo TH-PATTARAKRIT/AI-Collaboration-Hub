@@ -166,6 +166,12 @@ async function main() {
   ]) {
     requireInteger(event[field], field, 0);
   }
+  requireStringArray(event.open_crq_ids, "open_crq_ids", /^CRQ-[A-Z0-9._-]+$/);
+  const openCrqCount =
+    event.critical_crq_count + event.high_crq_count + event.medium_crq_count + event.low_crq_count;
+  if (event.open_crq_ids.length !== openCrqCount) {
+    fail("open_crq_ids length must equal the sum of CRQ severity counts");
+  }
   if (!schema.properties.proof_layer.enum.includes(event.proof_layer)) fail("invalid proof_layer");
 
   if (event.parent_event_id !== null) requireBoundedString(event.parent_event_id, "parent_event_id", eventIdPattern);
@@ -181,6 +187,32 @@ async function main() {
   const expectedIdempotencyKey = `${event.batch_id}:${event.event_type}:${event.output_manifest_sha256}:${event.attempt}`;
   if (event.idempotency_key !== expectedIdempotencyKey) {
     fail("idempotency_key must be derived from batch_id, event_type, output_manifest_sha256 and attempt");
+  }
+
+  const crqFields = ["crq_ids", "crq_disposition"];
+  if (event.event_type === "A2_CRQ_OPENED") {
+    requireStringArray(event.crq_ids, "crq_ids", /^CRQ-[A-Z0-9._-]+$/, { minimumItems: 1 });
+    if (event.crq_ids.some((crqId) => !event.open_crq_ids.includes(crqId))) {
+      fail("A2_CRQ_OPENED crq_ids must be present in open_crq_ids");
+    }
+    if (event.crq_disposition !== "OPEN") fail("A2_CRQ_OPENED requires crq_disposition OPEN");
+  } else if (event.event_type === "A1_CRQ_RESPONSE_READY") {
+    requireStringArray(event.crq_ids, "crq_ids", /^CRQ-[A-Z0-9._-]+$/, { minimumItems: 1 });
+    if (event.crq_ids.some((crqId) => !event.open_crq_ids.includes(crqId))) {
+      fail("A1_CRQ_RESPONSE_READY crq_ids must remain present in open_crq_ids");
+    }
+    if (event.crq_disposition !== "ANSWERED_RESTRICTED") {
+      fail("A1_CRQ_RESPONSE_READY requires crq_disposition ANSWERED_RESTRICTED");
+    }
+  } else if (crqFields.some((field) => field in event)) {
+    fail("CRQ routing fields are allowed only for A2_CRQ_OPENED or A1_CRQ_RESPONSE_READY");
+  }
+
+  if (
+    event.event_type === "A2_REVIEW_READY" &&
+    (event.critical_crq_count !== 0 || event.high_crq_count !== 0 || event.blocking_dependencies.length !== 0)
+  ) {
+    fail("A2_REVIEW_READY requires zero Critical/High CRQs and no blocking dependencies");
   }
 
   const autoFields = ["source_batch_id", "target_batch_id"];

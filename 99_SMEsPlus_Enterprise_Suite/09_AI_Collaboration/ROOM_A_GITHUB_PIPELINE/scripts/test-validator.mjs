@@ -44,6 +44,56 @@ try {
     ["arbitrary-idempotency-text", { ...sample, idempotency_key: `${sample.batch_id}:model.method(field):1` }, false]
   ];
 
+  const a2Question = deriveIdempotency({
+    ...sample,
+    event_id: "EVT-EXAMPLE-A2-CRQ-0001",
+    event_type: "A2_CRQ_OPENED",
+    producer_role: "A2",
+    consumer_role: "A1",
+    parent_event_id: sample.event_id,
+    state: "ACTION_REQUIRED",
+    crq_ids: ["CRQ-EXAMPLE-HIGH-001"],
+    crq_disposition: "OPEN"
+  });
+  cases.push(["a2-question-to-a1", a2Question, true]);
+  const questionMissingIds = { ...a2Question };
+  delete questionMissingIds.crq_ids;
+  cases.push(["a2-question-missing-crq-ids", questionMissingIds, false]);
+
+  const a1Response = deriveIdempotency({
+    ...a2Question,
+    event_id: "EVT-EXAMPLE-A1-RESPONSE-0001",
+    event_type: "A1_CRQ_RESPONSE_READY",
+    producer_role: "A1",
+    consumer_role: "A2",
+    parent_event_id: a2Question.event_id,
+    state: "ANSWER_READY",
+    crq_disposition: "ANSWERED_RESTRICTED"
+  });
+  cases.push(["a1-response-to-a2", a1Response, true]);
+  cases.push(["a1-cannot-self-verify", { ...a1Response, crq_disposition: "VERIFIED" }, false]);
+
+  const a2ReviewReady = deriveIdempotency({
+    ...sample,
+    event_id: "EVT-EXAMPLE-A2-A3-0001",
+    event_type: "A2_REVIEW_READY",
+    producer_role: "A2",
+    consumer_role: "A3",
+    parent_event_id: a1Response.event_id,
+    state: "READY",
+    critical_crq_count: 0,
+    high_crq_count: 0,
+    open_crq_ids: [],
+    blocking_dependencies: []
+  });
+  cases.push(["a2-review-ready-after-verification", a2ReviewReady, true]);
+  cases.push(["a2-review-blocked-by-high-crq", { ...a2ReviewReady, high_crq_count: 1 }, false]);
+  cases.push([
+    "crq-fields-not-allowed-on-standard-handoff",
+    { ...sample, crq_ids: ["CRQ-EXAMPLE-HIGH-001"], crq_disposition: "OPEN" },
+    false
+  ]);
+
   const masterContinue = deriveIdempotency({
     ...sample,
     event_id: "EVT-EXAMPLE-MASTER-CONTINUE-0001",
@@ -53,6 +103,7 @@ try {
     parent_event_id: "EVT-EXAMPLE-A3-MASTER-0001",
     critical_crq_count: 0,
     high_crq_count: 0,
+    open_crq_ids: [],
     blocking_dependencies: [],
     source_batch_id: sample.batch_id,
     target_batch_id: "EXAMPLE-G01-002"

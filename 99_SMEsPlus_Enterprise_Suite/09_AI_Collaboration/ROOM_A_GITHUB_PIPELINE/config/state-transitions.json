@@ -1,5 +1,7 @@
 {
   "A1_HANDOFF_READY": {"producer": "A1", "consumer": "A2", "required_state": "READY"},
+  "A2_CRQ_OPENED": {"producer": "A2", "consumer": "A1", "required_state": "ACTION_REQUIRED"},
+  "A1_CRQ_RESPONSE_READY": {"producer": "A1", "consumer": "A2", "required_state": "ANSWER_READY"},
   "A2_REVIEW_READY": {"producer": "A2", "consumer": "A3", "required_state": "READY"},
   "A3_CHALLENGE_READY": {"producer": "A3", "consumer": "MASTER", "required_state": "READY"},
   "MASTER_RETURN_A1": {"producer": "MASTER", "consumer": "A1", "required_state": "READY"},

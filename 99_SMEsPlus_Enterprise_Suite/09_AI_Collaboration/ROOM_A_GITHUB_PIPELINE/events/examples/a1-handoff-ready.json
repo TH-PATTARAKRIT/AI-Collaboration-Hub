@@ -28,6 +28,9 @@
   "high_crq_count": 1,
   "medium_crq_count": 0,
   "low_crq_count": 0,
+  "open_crq_ids": [
+    "CRQ-EXAMPLE-HIGH-001"
+  ],
   "gap_count": 1,
   "runtime_required_count": 0,
   "blocking_dependencies": [

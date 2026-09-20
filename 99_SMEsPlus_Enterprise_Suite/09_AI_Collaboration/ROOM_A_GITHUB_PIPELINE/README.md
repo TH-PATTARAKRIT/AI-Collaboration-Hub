@@ -7,6 +7,7 @@ GitHub is the control plane for the ROOM A chain:
 ```text
 A1 research producer
   -> A2 functional QA
+      -> CRQ to A1 -> A1 response -> A2 re-verification
   -> A3 independent challenge
   -> MASTER RED TEAM disposition
   -> next A1 batch or bounded return/HOLD
@@ -55,15 +56,33 @@ Every handoff preflight uses `contracts/batch-event.schema.json` and `config/sta
 - producer/consumer transition compatibility;
 - 64-character lowercase SHA-256 fields;
 - assigned/received/module count equality and unique module IDs;
+- CRQ severity totals equal the explicit `open_crq_ids` set;
 - valid timestamps;
 - a parent event ID field for all events after A1, without claiming that the parent exists;
 - rejection of forbidden field names and source-specific content markers;
 - a deterministic idempotency-key format with no free text;
 - `MASTER_AUTO_CONTINUE` requires zero Critical/High CRQs, no blocking dependency, and distinct source/target batch IDs;
+- `A2_CRQ_OPENED` routes an opaque CRQ set to A1 and `A1_CRQ_RESPONSE_READY` returns evidence to A2;
+- an A1 response is `ANSWERED_RESTRICTED`, never automatic CRQ closure;
+- `A2_REVIEW_READY` requires zero Critical/High CRQs and no blocking dependency;
 - `HOLD` requires scope, reason code and finding IDs;
 - workflow-dispatch paths stay below the approved event directory.
 
 The validator does not provide durable replay protection, authenticated role binding, frozen-corpus membership, parent/hash-chain verification, attempt monotonicity or atomic compare-and-set. Those are mandatory controller controls before activation.
+
+## A2 to A1 controlled question loop
+
+```text
+A2 detects a question
+  -> A2_CRQ_OPENED / ACTION_REQUIRED
+  -> future Controller authenticates A2 and locks affected edges
+  -> A1 studies the restricted evidence
+  -> A1_CRQ_RESPONSE_READY / ANSWERED_RESTRICTED
+  -> A2 verifies semantics and evidence
+  -> reopen CRQ, issue HOLD, or emit A2_REVIEW_READY
+```
+
+GitHub receives only CRQ IDs, counts, opaque artifact IDs and hashes. Question text, answer text, source evidence and `path:line` remain in controlled ROOM A storage. A1 cannot mark its own answer `VERIFIED` or `CLOSED`; only A2 may proceed after re-verification, and Critical/High CRQs continue to block `A2_REVIEW_READY`.
 
 ## Role isolation
 

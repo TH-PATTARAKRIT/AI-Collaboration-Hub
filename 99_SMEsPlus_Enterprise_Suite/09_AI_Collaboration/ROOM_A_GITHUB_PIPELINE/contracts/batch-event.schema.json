@@ -30,6 +30,7 @@
     "high_crq_count",
     "medium_crq_count",
     "low_crq_count",
+    "open_crq_ids",
     "gap_count",
     "runtime_required_count",
     "blocking_dependencies",
@@ -43,6 +44,8 @@
       "type": "string",
       "enum": [
         "A1_HANDOFF_READY",
+        "A2_CRQ_OPENED",
+        "A1_CRQ_RESPONSE_READY",
         "A2_REVIEW_READY",
         "A3_CHALLENGE_READY",
         "MASTER_RETURN_A1",
@@ -75,17 +78,20 @@
     "high_crq_count": {"type": "integer", "minimum": 0},
     "medium_crq_count": {"type": "integer", "minimum": 0},
     "low_crq_count": {"type": "integer", "minimum": 0},
+    "open_crq_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^CRQ-[A-Z0-9._-]+$", "maxLength": 128}},
     "gap_count": {"type": "integer", "minimum": 0},
     "runtime_required_count": {"type": "integer", "minimum": 0},
     "blocking_dependencies": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z0-9._-]+$"}},
     "proof_layer": {"type": "string", "enum": ["STATIC_SOURCE_ONLY", "INFERENCE_DECLARED"]},
+    "crq_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^CRQ-[A-Z0-9._-]+$", "maxLength": 128}},
+    "crq_disposition": {"type": "string", "enum": ["OPEN", "ANSWERED_RESTRICTED"]},
     "source_batch_id": {"type": "string", "pattern": "^[A-Z0-9-]+$"},
     "target_batch_id": {"type": "string", "pattern": "^[A-Z0-9-]+$"},
     "hold_scope": {"type": "string", "enum": ["BATCH_LOCAL", "WAVE", "GLOBAL"]},
     "hold_reason_code": {"type": "string", "pattern": "^[A-Z0-9._-]+$", "maxLength": 128},
     "finding_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z0-9._-]+$", "maxLength": 128}},
     "created_at": {"type": "string", "format": "date-time"},
-    "state": {"type": "string", "enum": ["READY", "CLAIMED", "INPUT_VERIFIED", "PROCESSING", "OUTPUT_READY", "CONSUMED", "HOLD", "REJECTED"]}
+    "state": {"type": "string", "enum": ["READY", "ACTION_REQUIRED", "ANSWER_READY", "CLAIMED", "INPUT_VERIFIED", "PROCESSING", "OUTPUT_READY", "CONSUMED", "HOLD", "REJECTED"]}
   },
   "$defs": {
     "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
