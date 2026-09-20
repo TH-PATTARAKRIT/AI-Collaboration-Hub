@@ -1,0 +1,10 @@
+{
+  "A1_HANDOFF_READY": {"producer": "A1", "consumer": "A2", "required_state": "READY"},
+  "A2_REVIEW_READY": {"producer": "A2", "consumer": "A3", "required_state": "READY"},
+  "A3_CHALLENGE_READY": {"producer": "A3", "consumer": "MASTER", "required_state": "READY"},
+  "MASTER_RETURN_A1": {"producer": "MASTER", "consumer": "A1", "required_state": "READY"},
+  "MASTER_RETURN_A2": {"producer": "MASTER", "consumer": "A2", "required_state": "READY"},
+  "MASTER_RETURN_A3": {"producer": "MASTER", "consumer": "A3", "required_state": "READY"},
+  "MASTER_AUTO_CONTINUE": {"producer": "MASTER", "consumer": "A1", "required_state": "READY"},
+  "HOLD": {"producer": "CONTROLLER", "consumer": "CONTROLLER", "required_state": "HOLD"}
+}

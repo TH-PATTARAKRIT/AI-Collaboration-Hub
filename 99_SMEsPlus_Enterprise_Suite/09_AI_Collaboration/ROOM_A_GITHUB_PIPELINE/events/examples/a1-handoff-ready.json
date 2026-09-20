@@ -1,0 +1,39 @@
+{
+  "event_id": "EVT-EXAMPLE-A1-A2-0001",
+  "event_type": "A1_HANDOFF_READY",
+  "idempotency_key": "EXAMPLE-G01-001:A1_HANDOFF_READY:2222222222222222222222222222222222222222222222222222222222222222:1",
+  "batch_id": "EXAMPLE-G01-001",
+  "attempt": 1,
+  "authority_reference": "EXAMPLE-AUTHORITY-NON-EVIDENTIARY",
+  "execution_lineage_id": "EXAMPLE-A1-LINEAGE-001",
+  "producer_role": "A1",
+  "consumer_role": "A2",
+  "corpus_membership_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "module_ids": [
+    "EXAMPLE-M0001"
+  ],
+  "module_count": 1,
+  "assigned_module_count": 1,
+  "received_module_count": 1,
+  "input_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "output_manifest_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "handoff_artifact_id": "EXAMPLE-HANDOFF-A1-001",
+  "handoff_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+  "payload_manifest_artifact_id": "EXAMPLE-PAYLOAD-MANIFEST-001",
+  "parent_event_id": null,
+  "cfc_revisions": [
+    "EXAMPLE-CFC-001:r1"
+  ],
+  "critical_crq_count": 0,
+  "high_crq_count": 1,
+  "medium_crq_count": 0,
+  "low_crq_count": 0,
+  "gap_count": 1,
+  "runtime_required_count": 0,
+  "blocking_dependencies": [
+    "CRQ-EXAMPLE-HIGH-001"
+  ],
+  "proof_layer": "STATIC_SOURCE_ONLY",
+  "created_at": "2026-01-01T00:00:00Z",
+  "state": "READY"
+}
