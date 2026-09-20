@@ -46,8 +46,10 @@
         "A1_HANDOFF_READY",
         "A2_CRQ_OPENED",
         "A1_CRQ_RESPONSE_READY",
+        "A2_MIXED_DISPOSITION_READY",
         "A2_REVIEW_READY",
         "A3_CHALLENGE_READY",
+        "MASTER_ROUTE_A3",
         "MASTER_RETURN_A1",
         "MASTER_RETURN_A2",
         "MASTER_RETURN_A3",
@@ -85,6 +87,21 @@
     "proof_layer": {"type": "string", "enum": ["STATIC_SOURCE_ONLY", "INFERENCE_DECLARED"]},
     "crq_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^CRQ-[A-Z0-9._-]+$", "maxLength": 128}},
     "crq_disposition": {"type": "string", "enum": ["OPEN", "ANSWERED_RESTRICTED"]},
+    "capsule_routes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["cfc_id", "revision", "disposition", "next_role"],
+        "properties": {
+          "cfc_id": {"type": "string", "pattern": "^CAP-[A-Z0-9-]+$", "maxLength": 128},
+          "revision": {"type": "string", "pattern": "^r[1-9][0-9]*$"},
+          "disposition": {"type": "string", "enum": ["PASS_RECOMMENDATION", "CONDITIONAL_PASS_RECOMMENDATION", "REJECT_RETURN"]},
+          "next_role": {"type": "string", "enum": ["A1", "A3"]}
+        }
+      }
+    },
     "source_batch_id": {"type": "string", "pattern": "^[A-Z0-9-]+$"},
     "target_batch_id": {"type": "string", "pattern": "^[A-Z0-9-]+$"},
     "hold_scope": {"type": "string", "enum": ["BATCH_LOCAL", "WAVE", "GLOBAL"]},

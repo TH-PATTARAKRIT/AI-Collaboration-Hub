@@ -94,6 +94,100 @@ try {
     false
   ]);
 
+  const mixedDisposition = deriveIdempotency({
+    ...sample,
+    event_id: "EVT-EXAMPLE-A2-MIXED-0001",
+    event_type: "A2_MIXED_DISPOSITION_READY",
+    producer_role: "A2",
+    consumer_role: "MASTER",
+    parent_event_id: sample.event_id,
+    state: "ACTION_REQUIRED",
+    cfc_revisions: [
+      "CAP-FDN-IDENTITY-COMPANY:r1",
+      "CAP-FDN-CONTROL:r1",
+      "CAP-FDN-UNIT:r1"
+    ],
+    capsule_routes: [
+      {
+        cfc_id: "CAP-FDN-IDENTITY-COMPANY",
+        revision: "r1",
+        disposition: "CONDITIONAL_PASS_RECOMMENDATION",
+        next_role: "A3"
+      },
+      {
+        cfc_id: "CAP-FDN-CONTROL",
+        revision: "r1",
+        disposition: "CONDITIONAL_PASS_RECOMMENDATION",
+        next_role: "A3"
+      },
+      {
+        cfc_id: "CAP-FDN-UNIT",
+        revision: "r1",
+        disposition: "REJECT_RETURN",
+        next_role: "A1"
+      }
+    ]
+  });
+  cases.push(["a2-mixed-capsule-disposition", mixedDisposition, true]);
+  cases.push([
+    "mixed-disposition-without-return-route",
+    {
+      ...mixedDisposition,
+      cfc_revisions: mixedDisposition.cfc_revisions.slice(0, 2),
+      capsule_routes: mixedDisposition.capsule_routes.slice(0, 2)
+    },
+    false
+  ]);
+
+  const masterRouteA3 = deriveIdempotency({
+    ...mixedDisposition,
+    event_id: "EVT-EXAMPLE-MASTER-ROUTE-A3-0001",
+    event_type: "MASTER_ROUTE_A3",
+    producer_role: "MASTER",
+    consumer_role: "A3",
+    parent_event_id: mixedDisposition.event_id,
+    state: "READY",
+    critical_crq_count: 0,
+    high_crq_count: 0,
+    open_crq_ids: [],
+    blocking_dependencies: [],
+    cfc_revisions: mixedDisposition.cfc_revisions.slice(0, 2),
+    capsule_routes: mixedDisposition.capsule_routes.slice(0, 2)
+  });
+  cases.push(["master-routes-accepted-subset-to-a3", masterRouteA3, true]);
+  cases.push([
+    "master-route-a3-blocked-by-high-crq",
+    { ...masterRouteA3, high_crq_count: 1, open_crq_ids: ["CRQ-EXAMPLE-HIGH-001"] },
+    false
+  ]);
+  cases.push([
+    "master-route-a3-blocked-by-dependency",
+    { ...masterRouteA3, blocking_dependencies: ["DEP-EXAMPLE-001"] },
+    false
+  ]);
+
+  const masterReturnA1 = deriveIdempotency({
+    ...mixedDisposition,
+    event_id: "EVT-EXAMPLE-MASTER-RETURN-A1-0001",
+    event_type: "MASTER_RETURN_A1",
+    producer_role: "MASTER",
+    consumer_role: "A1",
+    parent_event_id: mixedDisposition.event_id,
+    state: "READY",
+    cfc_revisions: [mixedDisposition.cfc_revisions[2]],
+    capsule_routes: [mixedDisposition.capsule_routes[2]]
+  });
+  cases.push(["master-returns-rejected-subset-to-a1", masterReturnA1, true]);
+  cases.push([
+    "master-route-a3-cannot-carry-reject",
+    {
+      ...masterRouteA3,
+      cfc_revisions: [mixedDisposition.cfc_revisions[2]],
+      capsule_routes: [mixedDisposition.capsule_routes[2]]
+    },
+    false
+  ]);
+
   const masterContinue = deriveIdempotency({
     ...sample,
     event_id: "EVT-EXAMPLE-MASTER-CONTINUE-0001",

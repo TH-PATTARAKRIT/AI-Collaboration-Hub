@@ -65,6 +65,8 @@ Every handoff preflight uses `contracts/batch-event.schema.json` and `config/sta
 - `A2_CRQ_OPENED` routes an opaque CRQ set to A1 and `A1_CRQ_RESPONSE_READY` returns evidence to A2;
 - an A1 response is `ANSWERED_RESTRICTED`, never automatic CRQ closure;
 - `A2_REVIEW_READY` requires zero Critical/High CRQs and no blocking dependency;
+- `A2_MIXED_DISPOSITION_READY` goes to MASTER when capsules in one batch require different routes;
+- only MASTER may split that event into `MASTER_ROUTE_A3` and scoped `MASTER_RETURN_A1` events;
 - `HOLD` requires scope, reason code and finding IDs;
 - workflow-dispatch paths stay below the approved event directory.
 
@@ -83,6 +85,18 @@ A2 detects a question
 ```
 
 GitHub receives only CRQ IDs, counts, opaque artifact IDs and hashes. Question text, answer text, source evidence and `path:line` remain in controlled ROOM A storage. A1 cannot mark its own answer `VERIFIED` or `CLOSED`; only A2 may proceed after re-verification, and Critical/High CRQs continue to block `A2_REVIEW_READY`.
+
+## Mixed capsule disposition
+
+When one A2 batch contains both forwardable and rejected capsules, A2 must not emit a whole-batch `A2_REVIEW_READY`. It emits `A2_MIXED_DISPOSITION_READY` to MASTER with one source-neutral route row per CFC revision. MASTER then creates separate child events:
+
+```text
+A2_MIXED_DISPOSITION_READY
+  -> MASTER_ROUTE_A3      only PASS/CONDITIONAL_PASS capsule subset
+  -> MASTER_RETURN_A1     only REJECT_RETURN capsule subset
+```
+
+The route rows must reconcile exactly with `cfc_revisions`. `MASTER_ROUTE_A3` additionally requires zero Critical/High CRQs and no blocking dependencies in that subset. The structural preflight rejects a `REJECT_RETURN` row inside `MASTER_ROUTE_A3`, but it cannot prove that MASTER did not relabel the parent disposition. The private controller must compare the child routes with the stored A2 parent, require disjoint child subsets whose union equals the parent scope, prohibit reclassification, and preserve the overall batch HOLD while any rejected capsule or blocked dependency remains open. A2 cannot authorize the split itself.
 
 ## Role isolation
 

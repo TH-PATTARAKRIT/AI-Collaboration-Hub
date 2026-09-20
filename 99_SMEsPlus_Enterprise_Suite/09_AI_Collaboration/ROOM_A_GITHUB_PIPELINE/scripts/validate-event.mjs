@@ -73,6 +73,34 @@ function scanForbidden(value, trail = "event") {
   }
 }
 
+function requireCapsuleRoutes(value, event) {
+  if (!Array.isArray(value) || value.length === 0) fail("capsule_routes must be a non-empty array");
+  const allowedKeys = new Set(["cfc_id", "revision", "disposition", "next_role"]);
+  const allowedDispositions = new Set([
+    "PASS_RECOMMENDATION",
+    "CONDITIONAL_PASS_RECOMMENDATION",
+    "REJECT_RETURN"
+  ]);
+  const routeKeys = new Set();
+  for (const route of value) {
+    if (!route || Array.isArray(route) || typeof route !== "object") fail("capsule route must be an object");
+    if (Object.keys(route).some((key) => !allowedKeys.has(key)) || Object.keys(route).length !== allowedKeys.size) {
+      fail("capsule route fields must be exactly cfc_id, revision, disposition and next_role");
+    }
+    requireBoundedString(route.cfc_id, "capsule_routes.cfc_id", /^CAP-[A-Z0-9-]+$/);
+    requireBoundedString(route.revision, "capsule_routes.revision", /^r[1-9][0-9]*$/, 16);
+    if (!allowedDispositions.has(route.disposition)) fail("invalid capsule route disposition");
+    if (!new Set(["A1", "A3"]).has(route.next_role)) fail("invalid capsule route next_role");
+    const routeKey = `${route.cfc_id}:${route.revision}`;
+    if (routeKeys.has(routeKey)) fail("capsule_routes must not contain duplicate CFC revisions");
+    routeKeys.add(routeKey);
+  }
+  const cfcRevisionSet = new Set(event.cfc_revisions);
+  if (routeKeys.size !== cfcRevisionSet.size || [...routeKeys].some((value) => !cfcRevisionSet.has(value))) {
+    fail("capsule_routes must exactly match cfc_revisions");
+  }
+}
+
 async function parseJson(path) {
   return JSON.parse(await readFile(path, "utf8"));
 }
@@ -213,6 +241,46 @@ async function main() {
     (event.critical_crq_count !== 0 || event.high_crq_count !== 0 || event.blocking_dependencies.length !== 0)
   ) {
     fail("A2_REVIEW_READY requires zero Critical/High CRQs and no blocking dependencies");
+  }
+
+  const capsuleRouteEvents = new Set([
+    "A2_MIXED_DISPOSITION_READY",
+    "MASTER_ROUTE_A3",
+    "MASTER_RETURN_A1"
+  ]);
+  if (capsuleRouteEvents.has(event.event_type)) {
+    requireCapsuleRoutes(event.capsule_routes, event);
+    const roles = new Set(event.capsule_routes.map((route) => route.next_role));
+    if (event.event_type === "A2_MIXED_DISPOSITION_READY") {
+      if (roles.size !== 2 || !roles.has("A1") || !roles.has("A3")) {
+        fail("A2_MIXED_DISPOSITION_READY requires both A1-return and A3-forward routes");
+      }
+      for (const route of event.capsule_routes) {
+        if (route.next_role === "A1" && route.disposition !== "REJECT_RETURN") {
+          fail("A1 capsule routes require REJECT_RETURN");
+        }
+        if (route.next_role === "A3" && route.disposition === "REJECT_RETURN") {
+          fail("A3 capsule routes cannot use REJECT_RETURN");
+        }
+      }
+    }
+    if (event.event_type === "MASTER_ROUTE_A3") {
+      if ([...roles].some((role) => role !== "A3")) fail("MASTER_ROUTE_A3 may route only to A3");
+      if (event.capsule_routes.some((route) => route.disposition === "REJECT_RETURN")) {
+        fail("MASTER_ROUTE_A3 cannot include rejected capsules");
+      }
+      if (event.critical_crq_count !== 0 || event.high_crq_count !== 0 || event.blocking_dependencies.length !== 0) {
+        fail("MASTER_ROUTE_A3 requires zero Critical/High CRQs and no blocking dependencies in the routed subset");
+      }
+    }
+    if (event.event_type === "MASTER_RETURN_A1") {
+      if ([...roles].some((role) => role !== "A1")) fail("MASTER_RETURN_A1 may route only to A1");
+      if (event.capsule_routes.some((route) => route.disposition !== "REJECT_RETURN")) {
+        fail("MASTER_RETURN_A1 requires REJECT_RETURN for every capsule");
+      }
+    }
+  } else if ("capsule_routes" in event) {
+    fail("capsule_routes are allowed only for mixed or MASTER-scoped routing events");
   }
 
   const autoFields = ["source_batch_id", "target_batch_id"];
