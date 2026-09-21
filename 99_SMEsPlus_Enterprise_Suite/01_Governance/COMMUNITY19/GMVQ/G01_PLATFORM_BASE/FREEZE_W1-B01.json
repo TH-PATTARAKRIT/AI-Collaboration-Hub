@@ -1,0 +1,35 @@
+{
+  "batch_id": "W1-B01",
+  "frozen_at": "2026-09-22T03:59:45.443+07:00",
+  "authorization": "Boss APPROVE ALL / standing rolling-freeze authorization — 2026-09-22",
+  "modules": [
+    "base",
+    "mail",
+    "web"
+  ],
+  "module_count": 3,
+  "bank_files": {
+    "G01_BASE_GMVQ_MVQ_50_V1.00_DRAFT.md": "b242fa0e98aeedd12b5ae33aa9800a1831a795222052f87621960d4d9aed8777",
+    "G01_MAIL_GMVQ_MVQ_50_V1.00_DRAFT.md": "0d6d7fcc4d6fef3be30ee281ee7096e8fc1fdb9e94d96ff120d0f5e79a10bf7d",
+    "G01_WEB_GMVQ_MVQ_50_V1.00_DRAFT.md": "259839a2c0f265b9519d23bad3b25b8d74dd5a89b9410e01d3560e0a42fcd558",
+    "QUESTION_BANK_STANDARD_55_V2.00.md": "f6726f111932aecce4432daf3e412d0c9de3291fa45fa8908e9e89ee79cb540d"
+  },
+  "freeze_hash": "558ec88047aef5c8e7ea0e2675b1c43ef358ec29b172d6878068330f3fba7177",
+  "rules": {
+    "standard_questions": 55,
+    "module_specific_floor": 40,
+    "combined_floor": 95,
+    "floor_is": "Minimum Research Depth — not a completion percentage, not a Formal Coverage denominator",
+    "join_key": "MODULE + QID (Research Evidence Join Key only)",
+    "layer_tag_required": true,
+    "formal_coverage": "NOT AUTHORIZED until a Canonical Function-ID denominator is Boss-frozen"
+  },
+  "qa": {
+    "standard_55": "PASS — 55 unique STD QIDs and >=55 DISCONFIRM controls",
+    "base": "PASS — 50 MVQ, required fields present, unique QIDs",
+    "mail": "PASS — 50 MVQ, required fields present, unique QIDs",
+    "web": "PASS — 50 MVQ, required fields present, unique QIDs",
+    "review_type": "Controlled structural/testability lint under OVQDT; not a claim of independent research evidence"
+  },
+  "after_freeze": "Questions for this batch cannot change. A change invalidates every answer already filed against them."
+}
