@@ -1,0 +1,6 @@
+change_id	timestamp	item	change	impact
+CHG-001	2026-09-22T11:14:18+07:00	Option B	Recorded Boss operating direction and pre-model disposition.	Old S1/S2 cannot enter A2.
+CHG-002	2026-09-22T11:14:18+07:00	V7	Recorded PASS 8/8 as runtime component only.	C-V7-001 closed; A1 package gate unaffected.
+CHG-003	2026-09-22T11:14:18+07:00	Evidence integrity	Created external per-file manifests and canonical tree hashes for S1/S2 without modifying originals.	Immutable provenance established.
+CHG-004	2026-09-22T11:14:18+07:00	GMVQ	Created 47-row frozen-bank-aware crosswalk.	Pre-model gaps preserved as authoring/control inputs only.
+CHG-005	2026-09-22T11:14:18+07:00	Pipeline	Replaced free-form output contract with exact MODULE+QID A1/A2 contracts.	Future A1/A2 outputs become directly reconcilable.

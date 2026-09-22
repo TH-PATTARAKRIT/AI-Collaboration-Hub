@@ -1,0 +1,64 @@
+{
+  "schema": "C19-OPTION-B-VALIDATION-V1",
+  "generated_at": "2026-09-22T11:14:18+07:00",
+  "decision_id": "BDR-C19-PREMODEL-OPTION-B-20260922-001",
+  "checks": {
+    "standard_question_count": {
+      "expected": 55,
+      "actual": 55,
+      "status": "PASS"
+    },
+    "base_question_count": {
+      "expected": 50,
+      "actual": 50,
+      "status": "PASS"
+    },
+    "base_answer_row_universe": {
+      "expected": 105,
+      "actual": 105,
+      "status": "PASS"
+    },
+    "premodel_gap_rows": {
+      "expected": 47,
+      "actual": 47,
+      "status": "PASS"
+    },
+    "premodel_gap_unique": {
+      "expected": 47,
+      "actual": 47,
+      "status": "PASS"
+    },
+    "freeze_replay": {
+      "expected": 4,
+      "actual": 4,
+      "status": "PASS"
+    },
+    "s1_external_seal": {
+      "file_count": 31,
+      "tree_sha256": "1841ca5fc94ce935954476972e8ae4b65ac465a8db1438ad545c5195c2a1601a",
+      "status": "PASS"
+    },
+    "s2_external_seal": {
+      "file_count": 31,
+      "tree_sha256": "220c5e16ccf03e4a82f41ec927db0d1618a0c479b06caacc2cf9ee0c933d13e3",
+      "status": "PASS"
+    },
+    "old_a2_route": {
+      "expected": "PROHIBITED",
+      "actual": "PROHIBITED",
+      "status": "PASS"
+    },
+    "formal_coverage_claim": {
+      "expected": "NONE",
+      "actual": "NONE",
+      "status": "PASS"
+    }
+  },
+  "crosswalk_route_counts": {
+    "CONTROL-REMEDIATION": 10,
+    "MAP-TO-FROZEN-QIDS": 29,
+    "PROOF-LAYER-FOLLOWUP": 2,
+    "CHANGE-REQUEST-CANDIDATE": 6
+  },
+  "overall": "BUILD-VALIDATION-PASS / INDEPENDENT-REVIEW-PENDING"
+}

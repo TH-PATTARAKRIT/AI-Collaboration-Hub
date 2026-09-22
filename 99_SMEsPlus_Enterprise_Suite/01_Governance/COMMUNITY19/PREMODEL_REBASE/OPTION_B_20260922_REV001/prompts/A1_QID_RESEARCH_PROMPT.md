@@ -1,0 +1,3 @@
+# A1 QID Research Prompt — base / W1-B01
+
+Study only the V1.00-admitted LGPL-3 `base` source in the isolated read-only Community tree. Use the pinned frozen Standard 55 and base 50 banks. Produce exactly 105 rows in `01_ANSWER_REGISTER.tsv`, keyed by `MODULE=base + QID`. Do not read or reuse the pre-model S1/S2 packages. For each QID, answer in business language, attach actual evidence IDs, preserve five proof layers separately, and record NOT_APPLICABLE/NOT_OBSERVED/NOT_FOUND_IN_SOURCE only with the required reason and search performed. Do not copy source code or expose source-specific implementation in clean outputs. Seal with a valid SHA-256 manifest and return to the Controller only.

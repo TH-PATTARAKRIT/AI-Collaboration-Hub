@@ -1,0 +1,27 @@
+{
+  "schema": "C19-QID-BINDING-V1",
+  "decision_id": "BDR-C19-PREMODEL-OPTION-B-20260922-001",
+  "generated_at": "2026-09-22T11:14:18+07:00",
+  "research_module": "base",
+  "standard_freeze": {
+    "batch_id": "W1-STD",
+    "freeze_hash": "c64693eee3957388907637ad028ebdeea6fbeb19a093d1c459c5289f45f5c213",
+    "bank_file": "QUESTION_BANK_STANDARD_55_V2.00.md",
+    "bank_sha256": "f6726f111932aecce4432daf3e412d0c9de3291fa45fa8908e9e89ee79cb540d",
+    "question_count": 55
+  },
+  "module_freeze": {
+    "batch_id": "W1-B01",
+    "freeze_hash": "558ec88047aef5c8e7ea0e2675b1c43ef358ec29b172d6878068330f3fba7177",
+    "bank_file": "G01_BASE_GMVQ_MVQ_50_V1.00_DRAFT.md",
+    "bank_sha256": "b242fa0e98aeedd12b5ae33aa9800a1831a795222052f87621960d4d9aed8777",
+    "question_count": 50
+  },
+  "answer_row_universe": {
+    "join_key": "MODULE + QID",
+    "exact_rows_for_base": 105,
+    "formal_coverage_denominator": false,
+    "coverage_statement": "Minimum Research Depth evidence rows only; Formal Coverage NOT AUTHORIZED."
+  },
+  "premodel_use": "GMVQ authoring input and control correction only; never an answer or reconciliation credit."
+}

@@ -1,0 +1,30 @@
+{
+  "module": "digest",
+  "batch_id": "W1-B03",
+  "role": "A1",
+  "attempt": "001",
+  "expected_answer_rows": 95,
+  "clean_source_root": "/Volumes/iMacSys/SMEsPlus_COMMUNITY19_CLEAN_SOURCE_20260921/odoo-19.0.post20260921",
+  "source_module_root": "/Volumes/iMacSys/SMEsPlus_COMMUNITY19_CLEAN_SOURCE_20260921/odoo-19.0.post20260921/odoo/addons/digest",
+  "v1_register": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/01_ACTIVE/ROOM_A_COMMUNITY19_ZERO_ENTERPRISE_POLICY_20260922_REV002/registers/SMEsPlus_Odoo19_Community_Master_Register_V1.00.tsv",
+  "v1_manifest_sha256": "4e41053e52b9bc1186c1dcae615352fc041789d38a6f1e392dd24070a47a9ce5",
+  "licence": "LGPL-3",
+  "standard_bank": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/01_ACTIVE/AI-Collaboration-Hub-C19-OPTION-B/99_SMEsPlus_Enterprise_Suite/01_Governance/COMMUNITY19/GMVQ/G01_PLATFORM_BASE/QUESTION_BANK_STANDARD_55_V2.00.md",
+  "module_bank": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/01_ACTIVE/AI-Collaboration-Hub-C19-OPTION-B/99_SMEsPlus_Enterprise_Suite/01_Governance/COMMUNITY19/GMVQ/G01_PLATFORM_BASE/G01_DIGEST_GMVQ_MVQ_40_V1.00_DRAFT.md",
+  "standard_freeze": {
+    "file": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/01_ACTIVE/AI-Collaboration-Hub-C19-OPTION-B/99_SMEsPlus_Enterprise_Suite/01_Governance/COMMUNITY19/GMVQ/G01_PLATFORM_BASE/FREEZE_W1-STD.json",
+    "freeze_hash": "c64693eee3957388907637ad028ebdeea6fbeb19a093d1c459c5289f45f5c213"
+  },
+  "module_freeze": {
+    "file": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/01_ACTIVE/AI-Collaboration-Hub-C19-OPTION-B/99_SMEsPlus_Enterprise_Suite/01_Governance/COMMUNITY19/GMVQ/G01_PLATFORM_BASE/FREEZE_W1-B03.json",
+    "freeze_hash": "1247c218ba4e2e6a57e259427030f4350881da56a5a28c59901a20f8b2d3a5d3"
+  },
+  "output_dir": "/Volumes/iMacSys/SMEsPlus_COMMUNITY19_CLEAN_EXECUTION_20260922/QID_PIPELINE/W1-B03/digest/A1_ATT001",
+  "option_b_package": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/01_ACTIVE/ROOM_A_COMMUNITY19_PREMODEL_OPTION_B_REBASE_20260922_REV001",
+  "option_b_manifest_sha256": "bff596191c79c3543023d72ffba81683bf77109d26c077edb68e0a7884cd7449",
+  "worker_context_id": "CLAUDE-MAX|FRESH|ROOM-A|W1-B03|digest|A1|ATT001|20260922",
+  "old_premodel_paths_prohibited": [
+    "COMM-G01-B101-S1/A1_ATT001",
+    "COMM-G01-B101-S2/A1_ATT002"
+  ]
+}
