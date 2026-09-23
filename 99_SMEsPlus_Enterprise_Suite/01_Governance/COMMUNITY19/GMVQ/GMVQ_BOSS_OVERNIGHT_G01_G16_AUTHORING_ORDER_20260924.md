@@ -36,3 +36,10 @@ A group is AUTHORING COMPLETE only when:
 3. Produce a final G01-G16 overnight completion matrix with AUTHORING COMPLETE / QA COMPLETE / FROZEN / HOLD per group.
 
 **AI disposition at order creation:** EXECUTION AUTHORIZED / BOSS DECISION RECORDED FOR AUTHORING SCOPE ONLY.
+
+
+## Execution Tracking
+
+- Jira: `ERPPLUS-170` — `[SMEPLUS][GMVQ] Overnight Question Authoring G01-G16`
+- Jira status: `In Progress`
+- Execution mode: continuous overnight authoring under Boss standing authorization; no interim Boss interruption unless material blocker or final completion.
