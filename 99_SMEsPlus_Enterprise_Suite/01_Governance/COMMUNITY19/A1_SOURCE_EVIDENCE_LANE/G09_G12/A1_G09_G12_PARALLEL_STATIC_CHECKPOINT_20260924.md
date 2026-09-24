@@ -158,3 +158,14 @@ Disposition: A1 STATIC EXTRACTION STARTED / exact 20-module roster still open.
 - Re-anchor every public/static observation to the controlled Community19 source package when authoritative source access returns.
 
 Status: A1 WORK IN PROGRESS / CURRENT-SOURCE RE-ANCHOR PENDING / NO A2 AUTHORIZED.
+
+
+## 9. RED TEAM delta — 2026-09-25
+
+- Question Gate re-check: canonical GMVQ tree still has no governed G09/G10/G11/G12 bank or freeze; all four stations remain A1 -> WAIT QUESTION.
+- Authorized desktop source device is offline; exact row-level `GROUP_STRUCTURE_V2_CORE.tsv` re-anchor is still unavailable.
+- G09 public Odoo 19.0 manifest re-read: `crm` blob `60a06033b6cc92689bd72c0b1b26a5b3cb2039b1`; manifest confirms security/ACL, cron, lead conversion/merge/lost wizards, CRM UI/report surfaces and test assets.
+- G10 process anchor re-read: `account` manifest blob `f3e264e50c685374f3debb45b1d4fb5487b3c793`; confirms payment/reconciliation/reversal/resequence/secure-entry/lock-exception surfaces, service cron, post-init hook and test assets. This is process evidence only, not G10 ownership proof.
+- G11 candidate roster manifest re-read completed for event, event_booth, event_booth_sale, event_crm, event_crm_sale, event_product, event_sale and event_sms. Cross-module source bridges are confirmed; controlled eight-row roster certification remains pending.
+- G12 public Odoo 19.0 re-read: `project` manifest blob `d4892415899e07f3d9f037e93ff79eae36442c96`; `project_task.py` blob `6c5b91b9c672868c13acb391318bae6def6f6789`; confirms task states, hierarchy/dependencies, company-sensitive domains, portal/rating/activity/tracking surfaces and test/cron declarations.
+- No runtime reachability is inferred. No A2, Reconciliation, A3, MASTER or Formal Coverage was executed.
