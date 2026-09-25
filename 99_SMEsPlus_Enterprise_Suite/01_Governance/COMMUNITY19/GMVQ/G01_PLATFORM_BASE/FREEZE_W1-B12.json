@@ -1,0 +1,9 @@
+{
+  "batch_id": "W1-B12",
+  "module": "resource",
+  "bank_sha256": "2632ff345b758258f8c5b8537b502d1b1145dde3b0788ea57bcb4fbfd8c71d08",
+  "review_sha256": "a7dd19ac579d3433eb482855d307bdb1354d8d6665318694a00844cedd2a3395",
+  "freeze_hash": "6093bac9ca0d4f996f58079e4c05f5a0568876841ebf3409c2948a87d31c84bc",
+  "qa_status": "PASS",
+  "formal_coverage": "NOT AUTHORIZED"
+}
