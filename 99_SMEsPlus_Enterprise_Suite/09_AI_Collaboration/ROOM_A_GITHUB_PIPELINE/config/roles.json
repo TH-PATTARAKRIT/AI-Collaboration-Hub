@@ -1,0 +1,31 @@
+{
+  "pipeline_mode": "STRUCTURAL_PREFLIGHT_METADATA_ONLY",
+  "canonical_state_writer": "CONTROLLER",
+  "roles": {
+    "A1": {
+      "responsibility": "ROOM A research producer",
+      "integration": "NOT_CONFIGURED",
+      "may_review_own_output": false
+    },
+    "A2": {
+      "responsibility": "Functional QA and reconciliation reviewer",
+      "integration": "NOT_CONFIGURED",
+      "may_review_own_output": false
+    },
+    "A3": {
+      "responsibility": "Independent ROOM A challenge",
+      "integration": "NOT_CONFIGURED",
+      "may_review_own_output": false
+    },
+    "MASTER": {
+      "responsibility": "Disposition, bounded return, HOLD, or next-batch recommendation",
+      "integration": "NOT_CONFIGURED",
+      "may_review_own_output": false
+    },
+    "CONTROLLER": {
+      "responsibility": "Idempotent routing and canonical issue state mutation",
+      "integration": "NOT_CONFIGURED",
+      "may_grant_boss_approval": false
+    }
+  }
+}
