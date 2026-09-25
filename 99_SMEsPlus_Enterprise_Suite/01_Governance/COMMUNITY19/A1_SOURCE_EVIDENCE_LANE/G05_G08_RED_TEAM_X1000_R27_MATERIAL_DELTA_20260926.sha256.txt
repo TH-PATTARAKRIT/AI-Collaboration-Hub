@@ -1,1 +1,4 @@
-b5a42e66f7e0bff158c741432c1af10c578812132be677cd4a6f05751cb0bcc2  G05_G08_RED_TEAM_X1000_R27_GITHUB_MIN_20260926.md
+PERSISTENCE_INCOMPLETE
+Evidence-file write was blocked by connector safety checks; do not treat this branch as canonical R27 evidence.
+Local full-evidence SHA-256:
+1aa97d89ec7194af8776cd87ad28d50b5a04e3959a7c6df75d4393fefb01eab4  G05_G08_RED_TEAM_X1000_R27_20260926.md
