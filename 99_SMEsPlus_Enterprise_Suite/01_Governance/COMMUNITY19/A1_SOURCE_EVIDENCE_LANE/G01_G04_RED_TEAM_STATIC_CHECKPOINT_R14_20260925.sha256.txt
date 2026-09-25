@@ -1,0 +1,7 @@
+3c3f0bd038fffb2ddf11016c6c25ddcc96066c6124557967b03c0541becdf883  G01_G04_RED_TEAM_STATIC_CHECKPOINT_R14_20260925.md
+# GitHub evidence commit: 378fa19e370beaf9d294b545ea020e7e690f1aae
+# GitHub evidence blob: bb73969e7dc7579f82af99b899343dc09344552b
+# Upstream static anchor: odoo/odoo 19.0 @ 8d05257d83f9128953f580a066db67c48fcdb96f
+# Controlled roster pointer carried forward only: GROUP_STRUCTURE_V2_CORE.tsv sha256 203ff43e7844a734de5e9aaebb91529e46dd7998423d4d5772999ed0db9ff5bf
+# W1-B06 canonical replay: a01a5d7236cee621e4e1833a55d0423f90d23c268c4c587b7bfca562dac77035 != declared 58e86d15836770a20a79c18d8d776db57c6da09a9cea0de5114485184049fa94
+# W1-B07 canonical replay: 6533318143afe5a19d0483cddc4b5b84bf5f19e9e98478ffb21cd5001650774d != declared ea24b270cf375fc108735ca6e15d68500dd9b5cfb69e849bd2eb673a232d332e
