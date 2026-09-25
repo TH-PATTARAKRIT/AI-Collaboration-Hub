@@ -1,0 +1,3 @@
+8fbb0fb564d6f7fa9f181912271143a34b753f6a47dcdc7c1b83de7ce7a982d2  G09_G12_RED_TEAM_A1_DELTA_R20_20260925_1912.md
+# Upstream static anchor: odoo/odoo 19.0 @ 8d05257d83f9128953f580a066db67c48fcdb96f
+# Controlled roster pointer only: GROUP_STRUCTURE_V2_CORE.tsv sha256 203ff43e7844a734de5e9aaebb91529e46dd7998423d4d5772999ed0db9ff5bf
