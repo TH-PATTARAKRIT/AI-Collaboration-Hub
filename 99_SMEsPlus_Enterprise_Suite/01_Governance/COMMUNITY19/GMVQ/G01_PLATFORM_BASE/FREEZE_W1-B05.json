@@ -1,0 +1,12 @@
+{
+  "batch_id": "W1-B05",
+  "modules": ["web_tour"],
+  "module_count": 1,
+  "bank_files": {
+    "G01_WEB_TOUR_GMVQ_MVQ_40_V1.00_DRAFT.md": "fdc06e0b530f327b2eec9ffddd3abff4104d387acb43c2fade99344854986f37",
+    "QUESTION_BANK_STANDARD_55_V2.00.md": "f6726f111932aecce4432daf3e412d0c9de3291fa45fa8908e9e89ee79cb540d"
+  },
+  "freeze_hash": "cc81bc57f3686bfec5eda5fff354599e4d2ba5a9855078e9c2eaa13a6ca91bd3",
+  "review_artifact": "W1_B05_OVQDT_REVIEW_20260925.md",
+  "formal_coverage": "NOT AUTHORIZED"
+}
