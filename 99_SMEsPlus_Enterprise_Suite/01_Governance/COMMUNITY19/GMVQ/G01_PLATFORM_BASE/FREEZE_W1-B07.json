@@ -1,0 +1,24 @@
+{
+  "batch_id": "W1-B07",
+  "modules": [
+    "html_editor"
+  ],
+  "module_count": 1,
+  "bank_files": {
+    "G01_HTML_EDITOR_GMVQ_MVQ_40_V1.00_DRAFT.md": "a421e3177abd55333a3647ead363f5e29389223581755b76273cdb84106ba619",
+    "QUESTION_BANK_STANDARD_55_V2.00.md": "f6726f111932aecce4432daf3e412d0c9de3291fa45fa8908e9e89ee79cb540d"
+  },
+  "freeze_hash": "ea24b270cf375fc108735ca6e15d68500dd9b5cfb69e849bd2eb673a232d332e",
+  "freeze_hash_basis": "SHA-256(batch_id + LF + module + LF + bank_sha256 + LF + standard55_sha256 + LF + review_sha256 + LF)",
+  "review_artifact": "W1_B07_OVQDT_REVIEW_20260925.md",
+  "review_sha256": "3e16274e16cb65e6b58945346947873efe4a569f85927b3a8142c286e3966f9b",
+  "qa": {
+    "functional_review": "PASS",
+    "testability_negative_path": "PASS",
+    "saas_challenge": "PASS where applicable",
+    "adversarial_review": "PASS",
+    "duplicate_qid": "PASS",
+    "source_neutral_clean_room": "PASS"
+  },
+  "formal_coverage": "NOT AUTHORIZED"
+}
