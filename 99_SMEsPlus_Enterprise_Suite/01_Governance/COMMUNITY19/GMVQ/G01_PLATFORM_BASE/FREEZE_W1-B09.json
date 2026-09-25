@@ -1,0 +1,27 @@
+{
+  "batch_id": "W1-B09",
+  "frozen_at": "2026-09-25T16:27:29+07:00",
+  "authorization": "Boss-approved FAST LEARNING MODEL + standing OVQDT rolling-freeze authority",
+  "modules": [
+    "onboarding"
+  ],
+  "module_count": 1,
+  "bank_files": {
+    "G01_ONBOARDING_GMVQ_MVQ_40_V1.00_DRAFT.md": "5725a262ef3e82a8471eb9d9384dd250652c9fbee255aee5f09400aa7f439ae1",
+    "QUESTION_BANK_STANDARD_55_V2.00.md": "f6726f111932aecce4432daf3e412d0c9de3291fa45fa8908e9e89ee79cb540d"
+  },
+  "freeze_hash": "f9f506367dbf1196e6f668ba384a42f4174102513338d3a8b2dfcc0dfb665530",
+  "review_artifact": "W1_B09_OVQDT_REVIEW_20260925.md",
+  "review_sha256": "12af6d986ce86c9b9b7b255aa4926a811bb14ae08e9b7acbd3d19c744573dea7",
+  "qa": {
+    "functional_review": "PASS",
+    "testability_negative_path": "PASS",
+    "saas_challenge": "PASS",
+    "adversarial_review": "PASS",
+    "duplicate_qid": "PASS",
+    "source_neutral_clean_room": "PASS",
+    "structural_lint": "PASS",
+    "padding_review": "PASS"
+  },
+  "formal_coverage": "NOT AUTHORIZED"
+}
