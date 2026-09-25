@@ -1,0 +1,22 @@
+{
+  "batch_id": "W1-B08",
+  "modules": ["http_routing"],
+  "module_count": 1,
+  "bank_files": {
+    "G01_HTTP_ROUTING_GMVQ_MVQ_40_V1.00_DRAFT.md": "b5cecfd676a6534ee4abdf0892ef9de2fdd835bc07e66da3606fbc26d11844c0",
+    "QUESTION_BANK_STANDARD_55_V2.00.md": "f6726f111932aecce4432daf3e412d0c9de3291fa45fa8908e9e89ee79cb540d"
+  },
+  "freeze_hash": "b5402bab2164ac8314ed4e470e747fb846c1cc63500db688209131be1dda46a7",
+  "freeze_hash_basis": "batch, module, bank SHA-256, standard SHA-256, review SHA-256",
+  "review_artifact": "W1_B08_OVQDT_REVIEW_20260925.md",
+  "review_sha256": "bdd0eac50b25a1757b6bf479496552b90acc2f95991975df9f8f2ae7e7491582",
+  "qa": {
+    "functional_review": "PASS",
+    "testability_negative_path": "PASS",
+    "saas_challenge": "PASS where applicable",
+    "adversarial_review": "PASS",
+    "duplicate_qid": "PASS",
+    "source_neutral_clean_room": "PASS"
+  },
+  "formal_coverage": "NOT AUTHORIZED"
+}
