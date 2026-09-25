@@ -1,0 +1,37 @@
+{
+  "batch_id": "W1-B04",
+  "frozen_at": "2026-09-25T13:24:00+07:00",
+  "authorization": "Boss standing OVQDT authoring/QA/rolling-freeze authority — 2026-09-25",
+  "modules": [
+    "base_setup",
+    "base_sparse_field",
+    "google_recaptcha"
+  ],
+  "module_count": 3,
+  "bank_files": {
+    "G01_BASE_SETUP_GMVQ_MVQ_40_V1.00_DRAFT.md": "2161184604279f38a59f8e56db288f53d4e706d4ec85cb5ba2a224e883a26d62",
+    "G01_BASE_SPARSE_FIELD_GMVQ_MVQ_40_V1.00_DRAFT.md": "2e0e158431d3b32522092d3770f7028acd5d6c6c2616466f45468c5f977895c8",
+    "G01_GOOGLE_RECAPTCHA_GMVQ_MVQ_40_V1.00_DRAFT.md": "471e0323450c71223ac795ee859f004d1f5f8e0c8baac04a398b51f7c3bd7724",
+    "QUESTION_BANK_STANDARD_55_V2.00.md": "f6726f111932aecce4432daf3e412d0c9de3291fa45fa8908e9e89ee79cb540d"
+  },
+  "freeze_hash": "9e31f2d27dfb959e555cf8ff117d829969e8122fe5e5544bbaf737b6ddea0377",
+  "rules": {
+    "standard_questions": 55,
+    "module_specific_floor": 40,
+    "combined_floor": 95,
+    "floor_is": "Minimum Research Depth — not a completion percentage, not a Formal Coverage denominator",
+    "join_key": "MODULE + QID (Research Evidence Join Key only)",
+    "formal_coverage": "NOT AUTHORIZED until a Canonical Function-ID denominator is Boss-frozen"
+  },
+  "qa": {
+    "functional_review": "PASS",
+    "testability_negative_path": "PASS",
+    "saas_challenge": "PASS where applicable",
+    "adversarial_review": "PASS",
+    "duplicate_qid": "PASS",
+    "source_neutral_clean_room": "PASS",
+    "review_artifact": "W1_B04_OVQDT_REVIEW_20260925.md",
+    "review_type": "OVQDT controlled multi-role question-programme QA; not Independent Research Evidence certification"
+  },
+  "after_freeze": "Questions for this batch cannot change without invalidating answers filed against this freeze."
+}
