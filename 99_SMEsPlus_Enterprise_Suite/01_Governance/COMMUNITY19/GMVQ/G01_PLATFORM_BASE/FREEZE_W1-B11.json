@@ -1,1 +1,8 @@
-{"batch_id":"W1-B11"}
+{
+  "batch_id": "W1-B11",
+  "module": "privacy_lookup",
+  "bank_sha256": "a6327b89e17634339e73777377718bc93e40963163ecd1b2b6f05ee97e0bb694",
+  "review_sha256": "100b5f38258558cb51efa933c894d1730a520f05a501ef0a4788e588bd8e1db4",
+  "freeze_hash": "94852761617bd3fc7c38182d374f6e82f62b3f5701f59fe17355c3c295202ea5",
+  "qa_status": "PASS"
+}
