@@ -1,0 +1,27 @@
+{
+  "account.move": {
+    "reachable": true,
+    "count": 0,
+    "refusal": null
+  },
+  "account.journal": {
+    "reachable": true,
+    "count": 0,
+    "refusal": null
+  },
+  "stock.picking": {
+    "reachable": true,
+    "count": 0,
+    "refusal": null
+  },
+  "stock.move": {
+    "reachable": true,
+    "count": 0,
+    "refusal": null
+  },
+  "uom.uom": {
+    "reachable": true,
+    "count": 15,
+    "refusal": null
+  }
+}

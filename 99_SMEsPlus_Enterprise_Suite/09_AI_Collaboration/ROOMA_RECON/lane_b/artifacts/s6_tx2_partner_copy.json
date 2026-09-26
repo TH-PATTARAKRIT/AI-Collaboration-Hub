@@ -1,0 +1,20 @@
+{
+  "original_record": [
+    {
+      "id": 10,
+      "name": "ROOMB_TEST_OBS_PARTNER_20260926_013029",
+      "company_id": [
+        2,
+        "ROOMB_TEST"
+      ],
+      "email": "obs_test@roomb.local",
+      "phone": "+6629876543",
+      "active": false
+    }
+  ],
+  "error": "SCRUBBED_BY_RED_TEAM",
+  "error_class_only": "'>",
+  "scrub_note": "Original value was a server traceback containing reference-implementation source paths and source lines. Removed under Clean Room control. Lane B must never hold source.",
+  "original_sha256": "0c1afdad721b3ee5a863eaaf459e2e1d7cd8148e473f174139441483fe1e0676",
+  "scrubbed_at": "2026-09-25T18:38:56.242569+00:00"
+}

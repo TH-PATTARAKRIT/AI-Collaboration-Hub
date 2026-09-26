@@ -1,0 +1,45 @@
+{
+  "batch_id": "W1-STD",
+  "frozen_at": "2026-09-22T03:44:48+07:00",
+  "authorization": "Boss approve \u2014 2026-09-22, chat instruction 'approve' on freeze of STANDARD 55",
+  "modules": [
+    "auth_signup",
+    "base",
+    "base_automation",
+    "base_setup",
+    "base_sparse_field",
+    "bus",
+    "digest",
+    "google_recaptcha",
+    "html_builder",
+    "html_editor",
+    "http_routing",
+    "mail",
+    "onboarding",
+    "phone_validation",
+    "portal",
+    "privacy_lookup",
+    "resource",
+    "resource_mail",
+    "utm",
+    "web",
+    "web_hierarchy",
+    "web_tour",
+    "web_unsplash"
+  ],
+  "module_count": 23,
+  "bank_files": {
+    "QUESTION_BANK_STANDARD_55_V2.00.md": "f6726f111932aecce4432daf3e412d0c9de3291fa45fa8908e9e89ee79cb540d"
+  },
+  "freeze_hash": "c64693eee3957388907637ad028ebdeea6fbeb19a093d1c459c5289f45f5c213",
+  "rules": {
+    "standard_questions": 55,
+    "module_specific_floor": 40,
+    "combined_floor": 95,
+    "floor_is": "Minimum Research Depth \u2014 not a completion percentage, not a Formal Coverage denominator",
+    "join_key": "MODULE + QID (Research Evidence Join Key only)",
+    "layer_tag_required": true,
+    "formal_coverage": "NOT AUTHORIZED until a Canonical Function-ID denominator is Boss-frozen"
+  },
+  "after_freeze": "Questions for this batch cannot change. A change invalidates every answer already filed against them."
+}

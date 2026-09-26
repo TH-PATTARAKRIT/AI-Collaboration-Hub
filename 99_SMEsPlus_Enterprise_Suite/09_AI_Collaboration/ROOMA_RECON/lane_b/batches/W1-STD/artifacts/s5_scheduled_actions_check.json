@@ -1,0 +1,4 @@
+{
+  "status": "refused",
+  "message": "You are not allowed to access 'Scheduled Actions' (ir.cron) records."
+}

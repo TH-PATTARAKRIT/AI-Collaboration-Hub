@@ -1,0 +1,6 @@
+connected  https://t9c.smeplus.asia (iTest19C) uid=5
+menus      681 in the system  (full list - NOT filtered by this account's rights; RT-LANEB-017)
+leaves     492 screens to capture   (13 leaf menus open nothing)
+distinct   450 destinations   max depth 5
+tree hash  c5d68d14e4a59cb46fb448a8ad5cbfd6537c5cf9f159684d7d70eec6bb5dee7d
+written    /Users/admin/ROOMB_WORKSPACE/batches/W1-SCREENS/MENU_TREE.tsv

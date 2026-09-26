@@ -1,0 +1,184 @@
+{
+  "ts": "2026-09-26T02:48:18.120652+00:00",
+  "observer_uid": 5,
+  "db": "iTest19C",
+  "fields": {
+    "menu_groups": "group_ids",
+    "user_groups": "group_ids",
+    "group_implied": "all_implied_ids"
+  },
+  "actual_now": {
+    "menus": 681
+  },
+  "method_limit": "upper bound; action-model access not modelled",
+  "scenarios": [
+    {
+      "profile": "A  current 8 groups (as-is)",
+      "direct_groups": [
+        1,
+        23,
+        27,
+        29,
+        53,
+        75,
+        90,
+        120
+      ],
+      "direct_names": [
+        "Role / User",
+        "User: All Documents",
+        "Invoicing",
+        "Show Full Accounting Features",
+        "User",
+        "User",
+        "Officer: Manage all employees",
+        "ROOM B Observer (Lane B)"
+      ],
+      "effective_groups": 43,
+      "menus_visible_est": 201,
+      "leaf_screens_est": 129,
+      "top_level_sections": [
+        "Apps",
+        "CRM",
+        "Calendar",
+        "Contacts",
+        "Dashboards",
+        "Discuss",
+        "Employees",
+        "Events",
+        "Expenses",
+        "Inventory",
+        "Invoicing",
+        "Link Tracker",
+        "Maintenance",
+        "Purchase",
+        "Repairs",
+        "Sales",
+        "Tests",
+        "Time Off",
+        "To-do",
+        "Website"
+      ]
+    },
+    {
+      "profile": "B  minimal: Role/User + Lane B group only",
+      "direct_groups": [
+        1,
+        120
+      ],
+      "direct_names": [
+        "Role / User",
+        "ROOM B Observer (Lane B)"
+      ],
+      "effective_groups": 32,
+      "menus_visible_est": 89,
+      "leaf_screens_est": 54,
+      "top_level_sections": [
+        "Apps",
+        "Calendar",
+        "Contacts",
+        "Dashboards",
+        "Discuss",
+        "Employees",
+        "Expenses",
+        "Link Tracker",
+        "Maintenance",
+        "Sales",
+        "Tests",
+        "Time Off",
+        "To-do",
+        "Website"
+      ]
+    },
+    {
+      "profile": "C  business user: drop HR-Officer + Full-Accounting",
+      "direct_groups": [
+        1,
+        23,
+        27,
+        53,
+        75,
+        120
+      ],
+      "direct_names": [
+        "Role / User",
+        "User: All Documents",
+        "Invoicing",
+        "User",
+        "User",
+        "ROOM B Observer (Lane B)"
+      ],
+      "effective_groups": 38,
+      "menus_visible_est": 172,
+      "leaf_screens_est": 112,
+      "top_level_sections": [
+        "Apps",
+        "CRM",
+        "Calendar",
+        "Contacts",
+        "Dashboards",
+        "Discuss",
+        "Employees",
+        "Events",
+        "Expenses",
+        "Inventory",
+        "Invoicing",
+        "Link Tracker",
+        "Maintenance",
+        "Purchase",
+        "Repairs",
+        "Sales",
+        "Tests",
+        "Time Off",
+        "To-do",
+        "Website"
+      ]
+    },
+    {
+      "profile": "D  drop Full-Accounting only",
+      "direct_groups": [
+        1,
+        23,
+        27,
+        53,
+        75,
+        90,
+        120
+      ],
+      "direct_names": [
+        "Role / User",
+        "User: All Documents",
+        "Invoicing",
+        "User",
+        "User",
+        "Officer: Manage all employees",
+        "ROOM B Observer (Lane B)"
+      ],
+      "effective_groups": 40,
+      "menus_visible_est": 188,
+      "leaf_screens_est": 123,
+      "top_level_sections": [
+        "Apps",
+        "CRM",
+        "Calendar",
+        "Contacts",
+        "Dashboards",
+        "Discuss",
+        "Employees",
+        "Events",
+        "Expenses",
+        "Inventory",
+        "Invoicing",
+        "Link Tracker",
+        "Maintenance",
+        "Purchase",
+        "Repairs",
+        "Sales",
+        "Tests",
+        "Time Off",
+        "To-do",
+        "Website"
+      ]
+    }
+  ]
+}

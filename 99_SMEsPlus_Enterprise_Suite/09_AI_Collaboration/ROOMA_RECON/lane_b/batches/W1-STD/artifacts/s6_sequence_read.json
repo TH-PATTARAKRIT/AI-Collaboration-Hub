@@ -1,0 +1,85 @@
+{
+  "status": "ok",
+  "value": [
+    {
+      "id": 24,
+      "name": "Bank: Check Number Sequence",
+      "code": false,
+      "prefix": false,
+      "padding": 5,
+      "number_next": 1
+    },
+    {
+      "id": 26,
+      "name": "Batch Transfer",
+      "code": "picking.batch",
+      "prefix": "BATCH/",
+      "padding": 5,
+      "number_next": 1
+    },
+    {
+      "id": 33,
+      "name": "Blanket Order",
+      "code": "purchase.requisition.blanket.order",
+      "prefix": "BO",
+      "padding": 5,
+      "number_next": 1
+    },
+    {
+      "id": 31,
+      "name": "Dropship (My Company)",
+      "code": "stock.dropshipping",
+      "prefix": "DS/",
+      "padding": 5,
+      "number_next": 1
+    },
+    {
+      "id": 38,
+      "name": "Dropship (ROOMB_TEST)",
+      "code": "stock.dropshipping",
+      "prefix": "DS/",
+      "padding": 5,
+      "number_next": 1
+    },
+    {
+      "id": 32,
+      "name": "Dropship Subcontractor (My Company)",
+      "code": "mrp.subcontracting.dropshipping",
+      "prefix": "DSC/",
+      "padding": 5,
+      "number_next": 1
+    },
+    {
+      "id": 39,
+      "name": "Dropship Subcontractor (ROOMB_TEST)",
+      "code": "mrp.subcontracting.dropshipping",
+      "prefix": "DSC/",
+      "padding": 5,
+      "number_next": 1
+    },
+    {
+      "id": 25,
+      "name": "Expense invoice",
+      "code": "hr.expense.invoice",
+      "prefix": "EXP/",
+      "padding": 3,
+      "number_next": 1
+    },
+    {
+      "id": 2,
+      "name": "Group Payments Number Sequence",
+      "code": false,
+      "prefix": "GROUP/%(range_year)s/",
+      "padding": 5,
+      "number_next": 1
+    },
+    {
+      "id": 35,
+      "name": "Group Payments Number Sequence",
+      "code": false,
+      "prefix": "GROUP/%(range_year)s/",
+      "padding": 5,
+      "number_next": 1
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+section          leaves   ui   groups (not held) gating the hidden leaves  [count]
+Apps                  6    3   
+Attendances           9    0   Officer: Manage attendances [9], Attendances / Administrator [3], Attendances / Officer: Manage all attendances [1]
+CRM                  25   10   Sales / Administrator [25], Role / Administrator [1], Show Lead Menu [1], Show Recurring Revenues Menu [1]
+Calendar              3    1   Role / Administrator [2]
+Contacts             10    1   Contact / Creation [10], Sales / Administrator [9], Role / Administrator [9]
+Dashboards            3    3   
+Discuss               7    6   
+Employees            23    8   Employees / Administrator [23], Role / Administrator [1]
+Events               13    2   Events / User [11], Role / Administrator [1], Events / Administrator [1]
+Expenses              6    3   Role / Administrator [1], Expenses / Administrator [1]
+Fleet                14    0   Fleet / Officer: Manage all vehicles [14], Fleet / Administrator [10], Role / Administrator [1]
+Inventory            37   14   Inventory / Administrator [37], Role / Administrator [1]
+Invoicing            41   17   Accounting / Administrator [20], Analytic Accounting [4], Role / Administrator [1], Expenses / All Approver [1]
+Link Tracker          4    0   
+Live Chat            16    0   Live Chat / User [16], Live Chat / Administrator [8]
+Maintenance          10    7   Role / Administrator [1]
+Manufacturing        14    0   Manufacturing / Administrator [14], Manufacturing / User [14], Role / Administrator [1]
+Project              15    0   Project / Administrator [15], Project / User [15], Role / Administrator [1]
+Purchase             12    6   Purchase / Administrator [12], Role / Administrator [1]
+Recruitment          19    0   Recruitment / Interviewer [19], Recruitment / Officer: Manage all applicants [19], Recruitment / Administrator [2], Role / Administrator [1]
+Repairs               5    1   Inventory / Administrator [4]
+Sales                32    8   Sales / Administrator [24], Role / Administrator [5]
+Settings             95    0   Access Rights [95], Role / Administrator [95]
+Surveys               5    0   Surveys / User [5]
+Time Off             14    4   Time Off / Administrator [6], Time Off / Officer: Manage all requests [3], Time Off Responsible [2]
+Timesheets            9    0   Timesheets / User: own timesheets only [9], Timesheets / User: all timesheets [7], Role / Administrator [1]
+To-do                 1    1   
+Website              31   13   Role / Administrator [15], Website / Editor and Designer [8], Mail Group Administrator [1], Recruitment / Interviewer [1]
+eLearning            13    0   eLearning / Officer [13], eLearning / Manager [5], Role / Administrator [1]
+written: reports/RT-SEC-003_groups_needed.json

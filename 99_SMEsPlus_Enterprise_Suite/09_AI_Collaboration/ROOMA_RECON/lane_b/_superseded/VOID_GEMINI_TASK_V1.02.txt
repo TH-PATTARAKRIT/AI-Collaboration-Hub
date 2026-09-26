@@ -1,0 +1,5 @@
+VOID — SUPERSEDED BY GEMINI_TASK_V1.03.md (Boss-approved 2026-09-26 22:14)
+Stamped: 2026-09-26 22:14 Asia/Bangkok by RED TEAM (Lane B audit)
+File: _superseded/GEMINI_TASK_V1.02.md (content unchanged, moved only)
+sha256 at stamping: 98cd7e947ea83961f19fe904c4815a5797e156ffc2583cb09b7a68e7bbc4136e
+Reason: RT-LANEB-018 - bare `python3` resolved to an interpreter without playwright in Gemini's shell.

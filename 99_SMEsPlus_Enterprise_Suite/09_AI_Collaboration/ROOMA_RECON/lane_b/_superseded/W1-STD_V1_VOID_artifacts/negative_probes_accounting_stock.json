@@ -1,0 +1,7 @@
+{
+  "account.move": "Accessible (0 records) - belongs to extension module, not base",
+  "account.journal": "Accessible (0 records) - belongs to extension module, not base",
+  "stock.picking": "Accessible (0 records) - belongs to extension module, not base",
+  "stock.move": "Accessible (0 records) - belongs to extension module, not base",
+  "uom.uom": "Accessible (15 records) - belongs to extension module, not base"
+}

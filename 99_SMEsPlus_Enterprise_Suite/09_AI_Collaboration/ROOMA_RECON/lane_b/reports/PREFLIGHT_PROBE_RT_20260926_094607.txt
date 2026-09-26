@@ -1,0 +1,4 @@
+observer uid=5  iTest19C
+test records present: 8  [10, 11, 13, 14, 15, 16, 17, 18]
+method: has_access(records, 'unlink') -> True
+UNLINK_RIGHT: LIVE

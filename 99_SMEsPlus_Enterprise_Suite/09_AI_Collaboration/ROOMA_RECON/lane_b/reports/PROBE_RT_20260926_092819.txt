@@ -1,0 +1,17 @@
+observer uid=5  iTest19C
+
+  menus shown to the user        REACHABLE     681   yes
+  screens / windows              REFUSED         -   You are not allowed to access 'Action Window' (ir.actions.act_window) 
+  server actions                 REFUSED         -   You are not allowed to access 'Server Action' (ir.actions.server) reco
+  report outputs                 REACHABLE      79   yes
+  view layouts                   REFUSED         -   You are not allowed to access 'View' (ir.ui.view) records.
+  feature switches (settings)    REFUSED         -   You are not allowed to access 'Config Settings' (res.config.settings) 
+  field-level selections         REFUSED         -   You are not allowed to access 'Fields' (ir.model.fields) records.
+  record-level states            REFUSED         -   You are not allowed to access 'Fields Selection' (ir.model.fields.sele
+  groups the user may see        REACHABLE     112   yes
+  modules as the user sees them  REACHABLE     713   yes
+
+reachable 4 / 10   refused 6
+
+VERDICT: CENSUS PARTIAL - 6 surface(s) need a scoped read grant
+written: /Users/admin/ROOMB_WORKSPACE/ops/census_feasibility_result.json

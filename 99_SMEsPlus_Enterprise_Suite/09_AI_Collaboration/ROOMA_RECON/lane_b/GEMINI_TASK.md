@@ -1,0 +1,86 @@
+# LANE B — STAGE 2 : SCREEN CENSUS   (V1.03 — บอสอนุมัติ 2026-09-26 22:14 · supersedes V1.02)
+
+<!-- V1.03 (26 ก.ย. RED TEAM, RT-LANEB-018): V1.02 สั่ง `python3` เฉยๆ — ใน shell ของ Gemini resolve เป็น
+     /Library/Developer/CommandLineTools/usr/bin/python3 (3.9.6, ไม่มี playwright) ไม่ใช่ /usr/local/bin/python3
+     (3.14.0, playwright 1.62.0, chromium launch OK — ทดสอบ 26 ก.ย.). แก้: ใช้ interpreter แบบ absolute path.
+     Gemini ทำถูกต้องตามกฎทุกข้อ (หยุด ไม่ติดตั้ง รายงานครบ). ความผิดพลาดเป็นของ RED TEAM. -->
+
+<!-- V1.02 (26 ก.ย. 21:5x RED TEAM): census account roomb_census uid 6 ตาม BOSSDEC-003; เพิ่มค่า REACHED: excluded
+     (Settings · Website · eLearning · Live Chat · Link Tracker — script ข้ามเอง ไม่ต้องทำอะไร); ตัวเลข denominator 492/333 -->
+
+<!-- V1.01 (26 ก.ย. RED TEAM): (1) ตัดข้อ "ถ้า playwright ไม่มีให้รันตามที่มันบอก" ออก — Playwright 1.62.0 ติดตั้งแล้ว
+     และการ pip install แบบไม่ pin เวอร์ชันขัด §21.1; ถ้าไม่มีให้หยุดรายงาน (2) เพิ่ม field traceability
+     ให้ตรงกับ Charter V1.04 §5 (3) เพิ่มคำรับรอง 2 ข้อ + จำนวนไฟล์ที่เขียน  — เนื้อหาอื่นเหมือน V1.00 -->
+
+คุณคือ Lane B หน้าที่คือ **ตีความสิ่งที่ถูกเก็บมาแล้ว** ไม่ใช่ไปเก็บเอง
+
+การเก็บหน้าจอเป็นงานกลไก มีสคริปต์ทำให้แล้ว
+**ห้ามเขียน Playwright เอง ห้าม launch Chrome เอง ห้ามแก้ปัญหา browser เอง ห้ามติดตั้งอะไรทั้งสิ้น**
+
+---
+
+## ขั้นที่ 1 — รันคำสั่งนี้ คำสั่งเดียว
+
+```
+/usr/local/bin/python3 ~/ROOMB_WORKSPACE/collectors/census_screens.py 0 10
+```
+
+**ถ้าล้มเหลวด้วยเหตุใดก็ตาม — รวมทั้งข้อความว่า playwright ไม่มี — ให้หยุด รายงานข้อความผิดพลาดกลับมาทั้งหมด ห้ามแก้เอง ห้ามติดตั้งเอง**
+
+ห้ามรันคำสั่งอื่นใดนอกจากนี้ตลอดทั้งงาน
+
+---
+
+## ขั้นที่ 2 — ตีความ ไม่ต้องใช้คำสั่งใดๆ อีก
+
+อ่านไฟล์เหล่านี้ (อ่านอย่างเดียว):
+
+```
+~/ROOMB_WORKSPACE/batches/W1-SCREENS/SCREEN_RAW_0_10.json
+~/ROOMB_WORKSPACE/batches/W1-SCREENS/screens/*.png
+```
+
+เขียน `~/ROOMB_WORKSPACE/batches/W1-SCREENS/SCREEN_CENSUS.yaml` ตามนี้ (ตรงกับ Charter V1.04 §5):
+
+```yaml
+- MENU_ID: <จาก raw>
+  MENU_PATH: "<จาก raw ห้ามแก้>"
+  ROOT_SECTION: "<ส่วนแรกของ MENU_PATH>"
+  REACHED: yes | no | excluded      # excluded = script ข้ามตาม BOSSDEC-003 C/D คัดลอกตาม raw ห้ามเปิดเอง
+  SCREENSHOT: screens/<menu_id>.png
+  WHAT_THIS_SCREEN_IS_FOR: "<หน้านี้ให้ผู้ใช้ทำอะไร อธิบายเป็นภาษาธุรกิจ>"
+  ACTIONS_AVAILABLE: []    # ผู้ใช้ทำอะไรได้บ้างบนหน้านี้ ตามที่เห็น
+  INFORMATION_SHOWN: []    # หน้านี้แสดงข้อมูลอะไรให้ผู้ใช้
+  RECORD_COUNT: <จาก raw>
+  NOTE: "<เฉพาะเมื่อ REACHED: no — คัดลอก NOTE จาก raw ตรงๆ>"
+  CAPTURED_AT: <จาก raw>
+  OBSERVER_UID: 6
+  TREE_SHA256: c5d68d14e4a59cb46fb448a8ad5cbfd6537c5cf9f159684d7d70eec6bb5dee7d
+  INSTALLED_SET_HASH: 706e6df4008e0bac042a9821507ec0bc6868c4d9f98bcb93004a2535b1ca3c89
+  OBSERVED_BY: gemini-lane-b
+  STATUS: DRAFT
+```
+
+### กฎเหล็ก
+
+1. **ห้ามระบุว่าชิ้นส่วนใดมาจากโมดูลไหน** — หน้าจอเดียวประกอบจากหลายโมดูล การจะรู้ต้องอ่าน source ซึ่งคุณห้ามทำ
+2. `WHAT_THIS_SCREEN_IS_FOR` **ห้ามมีชื่อ model ชื่อ field ชื่อโมดูล ชื่อผลิตภัณฑ์** — ภาษาธุรกิจล้วน
+3. **ห้ามเติมสิ่งที่ไม่มีใน raw หรือในภาพ** ไม่มีให้ใส่ `[]`
+4. ห้ามใช้ความรู้เดิมเรื่อง ERP ห้ามค้นเว็บ ห้ามอ่าน source
+5. `REACHED: no` ไม่ใช่ความล้มเหลว การเดาต่างหากที่เป็น
+6. หน้าจอที่คิดว่าอยู่นอก scope ก็บันทึกตามปกติ — ใส่ `ROOT_SECTION` ไว้ คนอื่นเป็นผู้ตัด scope ทีหลัง
+
+---
+
+## ขั้นที่ 3 — รายงานกลับ
+
+1. เข้าได้กี่หน้า เข้าไม่ได้กี่หน้า ถูกข้าม (excluded) กี่หน้า — ตัวเลขล้วน ห้ามคิดเป็นเปอร์เซ็นต์ (ระบบทั้งหมด 492 · ในขอบเขต 333)
+2. คำสั่งทั้งหมดที่คุณรัน เรียงตามลำดับ **ห้ามย่อ** (ควรมีแค่ 1 คำสั่ง)
+3. ไฟล์ที่คุณเขียน (ควรมีแค่ SCREEN_CENSUS.yaml)
+4. MCP server / connector / tool ที่ session นี้เข้าถึงได้ ทั้งเปิดและปิด
+
+ปิดท้าย:
+> ข้าพเจ้าตีความจาก raw และภาพหน้าจอเท่านั้น ไม่ได้อ่าน source ไม่ได้ค้นเว็บ
+> ไม่ได้ใช้ความรู้เดิม และไม่ได้ระบุว่าสิ่งใดมาจากโมดูลใด
+
+**หยุดที่ 10 หน้า** รอคำสั่งรอบถัดไป

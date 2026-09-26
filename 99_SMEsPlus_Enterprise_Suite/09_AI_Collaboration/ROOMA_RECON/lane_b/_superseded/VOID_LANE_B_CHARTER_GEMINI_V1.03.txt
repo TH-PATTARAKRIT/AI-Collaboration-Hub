@@ -1,0 +1,6 @@
+VOID — SUPERSEDED BY LANE_B_CHARTER_GEMINI_V1.04.md
+Stamped: 2026-09-26 09:57 Asia/Bangkok by RED TEAM (Lane B audit)
+File: _superseded/LANE_B_CHARTER_GEMINI_V1.03.md  (content unchanged, moved only)
+sha256 at stamping: 560673670286d8a739652fa88905f938fe31e5b62b6c450e1551831e057ad007
+Reason: question model replaced by the census model (Boss decisions 26 Sep); self-test 1 wrong for this machine; surfaces untested.
+V1.04 status: PREPARED ONLY — awaiting Boss approval.

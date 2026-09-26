@@ -1,0 +1,4 @@
+load_menus[False]{}: OK  numeric menu entries (UI-visible to observer) = 163   root sections = 18
+  sections: Discuss, Calendar, To-do, Contacts, CRM, Sales, Dashboards, Invoicing, Website, Events, Purchase, Inventory, Maintenance, Repairs, Employees, Time Off, Expenses, Apps
+  UI-visible leaf menus with action = 0
+  written: reports/RT-SEC-003_ui_visible_observer.json

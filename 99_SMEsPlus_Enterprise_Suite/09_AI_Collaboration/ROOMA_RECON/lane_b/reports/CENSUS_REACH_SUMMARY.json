@@ -1,0 +1,107 @@
+{
+  "tree_sha256": "c5d68d14e4a59cb46fb448a8ad5cbfd6537c5cf9f159684d7d70eec6bb5dee7d",
+  "census_uid": 6,
+  "system_leaves": 492,
+  "inscope_leaves": 333,
+  "reach_all": 260,
+  "reach_inscope": 246,
+  "by_section": {
+    "Apps": [
+      3,
+      6
+    ],
+    "Attendances": [
+      8,
+      9
+    ],
+    "CRM": [
+      21,
+      25
+    ],
+    "Calendar": [
+      1,
+      3
+    ],
+    "Contacts": [
+      10,
+      10
+    ],
+    "Dashboards": [
+      3,
+      3
+    ],
+    "Discuss": [
+      6,
+      7
+    ],
+    "Employees": [
+      19,
+      23
+    ],
+    "Events": [
+      8,
+      13
+    ],
+    "Expenses": [
+      4,
+      6
+    ],
+    "Fleet": [
+      9,
+      14
+    ],
+    "Inventory": [
+      32,
+      37
+    ],
+    "Invoicing": [
+      23,
+      41
+    ],
+    "Maintenance": [
+      7,
+      10
+    ],
+    "Manufacturing": [
+      12,
+      14
+    ],
+    "Project": [
+      11,
+      15
+    ],
+    "Purchase": [
+      11,
+      12
+    ],
+    "Recruitment": [
+      2,
+      19
+    ],
+    "Repairs": [
+      4,
+      5
+    ],
+    "Sales": [
+      26,
+      32
+    ],
+    "Surveys": [
+      5,
+      5
+    ],
+    "Time Off": [
+      13,
+      14
+    ],
+    "Timesheets": [
+      7,
+      9
+    ],
+    "To-do": [
+      1,
+      1
+    ]
+  },
+  "excluded_but_visible": 14
+}
