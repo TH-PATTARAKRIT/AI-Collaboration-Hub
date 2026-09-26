@@ -1,3 +1,12 @@
+> **ARCHIVED — STALE STATUS DOCUMENT (2026-07-14).**
+> This is a historical infrastructure push guide from 2026-07-01 describing the initial
+> repository structure push ("2 commits", "11 folders"). Its "Ready to push / Ready for push"
+> status is **not** a build, release, or gate readiness signal and does **not** reflect current
+> project state. It is superseded for all status purposes by `CURRENT_GATE_STATUS.md`
+> (authoritative gate status: **HOLD — NEED EXECUTION EVIDENCE**). Retained for history only;
+> do not act on the push instructions below. No credentials or tokens should be created or used
+> based on this file.
+
 # 🚀 Ready to Push - GitHub Push Guide
 
 **Status:** 2 commits ready to push to GitHub  
