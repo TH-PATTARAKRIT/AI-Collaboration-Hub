@@ -132,18 +132,20 @@ When resolving message links originating from user-controlled message content, t
 - **GAP-G01-MAIL-INHERITANCE-001:** downstream modules may override `mail.thread` posting/access behavior; representative inheritors must be mapped before declaring mail-thread semantics complete.
 - **GAP-G01-WEB-PROXY-001:** generated HTTP security headers do not prove final deployed headers after reverse proxy / ingress layers.
 
-## 6. Independent challenge — R1
+## 6. Role-based challenge — R1 (NOT formal independent clearance)
 
-### Functional / SMEs Core challenge
+This section is a same-session multi-role challenge used to stress-test the packet before formal independent review. It is **not** the four-seat Independent RED TEAM question-review gate and must not be recorded as independent QID clearance.
+
+### Functional / SMEs Core role challenge
 PASS RECOMMENDATION for continued A1 study. Findings are platform/business-behavior relevant, but no end-user workflow completeness claim is made.
 
-### Technical / Architecture challenge
+### Technical / Architecture role challenge
 CONDITIONAL PASS RECOMMENDATION. Source pointers are reproducible and exact for the public upstream anchor, but local governed byte identity is unresolved.
 
-### SaaS / Security challenge
+### SaaS / Security role challenge
 CONDITIONAL PASS RECOMMENDATION. Company/user/message access controls expose high-value invariants; tenant isolation is not established by Odoo source and must not be inferred.
 
-### QA / Testability challenge
+### QA / Testability role challenge
 CONDITIONAL PASS RECOMMENDATION. Each finding yields concrete A2 targets, but runtime evidence is absent and Question Gate clearance is independent.
 
 ## 7. R1 disposition
