@@ -1,6 +1,6 @@
 # LANE B — OBSERVATION CHARTER (GEMINI) — CENSUS MODEL
 **Project:** SMEsPlus Enterprise Suite · ROOM A
-**Version:** V1.05 (PREPARED ONLY — awaiting Boss approval) · supersedes V1.04 (APPROVED 2026-09-26, content frozen — see `_superseded/`)
+**Version:** V1.05 — **APPROVED BY BOSS 2026-09-26** (Boss chat: "อนุมัติ", 21:58) · supersedes V1.04 (APPROVED 2026-09-26, content frozen — see `_superseded/`)
 **Date:** 2026-09-26 · Asia/Bangkok
 **Issued to:** Gemini (Lane B — Runtime Observer)
 **Supersedes:** V1.04 (VOID on approval of V1.05) · V1.03 · V1.02 · V1.01 · V1.00
