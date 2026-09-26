@@ -1,0 +1,54 @@
+name: Package SMEsPlus Claude Skill
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - claude/smesplus-execution-controller-skill
+    paths:
+      - '.claude/skills/smesplus-execution-controller/**'
+      - '.github/workflows/package-smesplus-claude-skill.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate skill structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          skill_dir='.claude/skills/smesplus-execution-controller'
+          test -f "$skill_dir/SKILL.md"
+          test -f "$skill_dir/agents/openai.yaml"
+          test -d "$skill_dir/references"
+          test -d "$skill_dir/templates"
+          grep -q '^name: smesplus-execution-controller$' "$skill_dir/SKILL.md"
+          grep -q '^description:' "$skill_dir/SKILL.md"
+
+      - name: Build skill.zip
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf dist
+          mkdir -p dist
+          cd .claude/skills
+          zip -r ../../dist/skill.zip smesplus-execution-controller
+          cd ../..
+          unzip -l dist/skill.zip
+          sha256sum dist/skill.zip | tee dist/skill.zip.sha256
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: smesplus-execution-controller-skill
+          path: |
+            dist/skill.zip
+            dist/skill.zip.sha256
+          if-no-files-found: error
+          retention-days: 30
