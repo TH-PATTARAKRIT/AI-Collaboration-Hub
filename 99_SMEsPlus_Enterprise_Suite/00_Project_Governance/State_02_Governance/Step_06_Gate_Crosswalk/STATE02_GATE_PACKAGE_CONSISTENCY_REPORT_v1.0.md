@@ -1,0 +1,211 @@
+# STATE02_GATE_PACKAGE_CONSISTENCY_REPORT_v1.0.md
+
+Session: SMEPLUS-26-07-13-GATE01
+State: 02 — Governance
+Step: 06 — Gate Crosswalk
+Prepared By: Claude AI (Responsible role only)
+Prepared At: 2026-07-13T17:03:12Z (UTC)
+Document Status: DRAFT — NOT CANONICAL
+Gate Status: HOLD — REVIEW AND VERIFICATION PENDING
+
+## 1. Purpose
+
+Cross-check that Gate IDs, counts, and evidence references are used
+consistently across every file in this package. This is a self-check by the
+preparer (Claude AI); it is not a substitute for the independent
+verification recorded (as PENDING) in `STATE02_GATE_VERIFICATION_RECORD_v1.0.md`.
+
+## 2. Gate ID Count Consistency
+
+| Check | Expected | Found | Result |
+|---|---|---|---|
+| Total Gate IDs in Inventory Register | 37 (GATE-001 to GATE-037) | 37 | CONSISTENT |
+| Total Gate IDs referenced in Alias and Model Crosswalk | Subset of 37, no new IDs introduced | All IDs referenced (GATE-003, 004, 012, 013, 018, 022–026, 024, 028, 030–032) trace to Inventory Register | CONSISTENT |
+| Total Gate IDs referenced in Dependency Matrix | Subset of 37 (only FOUND/ordered gates) | GATE-001–006, 010–013, 020, 029, 030, 031, 032 — all present in Inventory Register | CONSISTENT |
+| Total Gate IDs referenced in Circular Dependency Report | Same set as Dependency Matrix | Same set (GATE-001 chain, GATE-029, GATE-030, GATE-031, GATE-032) | CONSISTENT |
+| Total Gate IDs referenced in Authority Matrix | Subset of 37 | GATE-001–005, 010, 011, 013, 030, 031, plus explicit "NOT ASSIGNED" bucket listing 006–009, 012, 014–019, 021–028, 033–037 | CONSISTENT — every Gate ID from 001–037 appears in the Authority Matrix exactly once, either with an owner claim or in the NOT ASSIGNED bucket |
+| Sum of FOUND (12) + PARTIAL (20) + NOT FOUND (5) | 37 | 12 + 20 + 5 = 37 | CONSISTENT |
+| Gate-model count: Section 3 table row count in Crosswalk vs. prose references to "N models" throughout the package | Single consistent number | Table has 6 rows; a PR review comment found two prose instances in `STATE02_GATE_CROSSWALK_v1.0.md` reading "five" instead of "six" | **CORRECTED this commit** — both prose instances now read "six"; see `STATE02_GATE_VALIDATION_RESULTS_v1.0.md` CHECK-009 |
+| Row-derived classification totals (Inventory Register) vs. hand-written summary sentence | Summary sentence enumerates exactly the IDs counted in the total | A PR review comment found GATE-018 listed with a dual "PARTIAL / FOUND (instance)" Classification, making the FOUND summary sentence list 13 IDs against a stated total of 12 | **CORRECTED this commit** — GATE-018's Classification column is now the single value PARTIAL; instance-level nuance moved to the Exact Quote / Reference column; see CHECK-009 |
+
+## 3. Evidence ID Uniqueness
+
+All Evidence IDs in `STATE02_GATE_EVIDENCE_REGISTER_v1.0.md` (EV-G06-001
+through EV-G06-022) were checked for duplicates. Result: **22 unique Evidence
+IDs, no duplicates.** Mechanical re-check recorded in
+`STATE02_GATE_VALIDATION_RESULTS_v1.0.md` / `.json`.
+
+## 4. Document Status String Consistency
+
+Every file in this package was checked for the presence of the exact string
+`Document Status: DRAFT — NOT CANONICAL` in its header. Result: **present in
+all 17 files**, including this one. No file uses the strings `APPROVED`,
+`CANONICAL` (as a self-declared status of this package's own content), or a
+bare `PASS` as a governance verdict. The only "PASS" strings in this package
+appear either (a) inside quoted source-document text (e.g., `"PASS / HOLD /
+FAIL"` reproduced from `STATE_GATE_MATRIX.md`), or (b) as mechanical
+PASS/FAIL results for deterministic checks in
+`STATE02_GATE_VALIDATION_RESULTS_v1.0.md`, which the task brief explicitly
+permits ("that's not a governance approval").
+
+## 5. Version Consistency
+
+All files are internally labeled `v1.0` except
+`STATE02_GATE_CORRECTION_PLAN_v0.1.md`, which is deliberately `v0.1` per its
+own §1 explanation (starter/open-items list, not a completed register). This
+is an intentional, documented exception, not an inconsistency.
+
+## 6. No "See Previous Version" Placeholders
+
+Every file was checked for the strings "see previous version," "see prior
+version," "carried forward from v0." (as a placeholder rather than a
+substantive reference), and similar deferral language. Result: **none
+found.** Where this package refers to prior packages (Step 03, Step 04), it
+quotes their actual content rather than deferring to them as unread
+placeholders — this is a cross-reference, not a placeholder, since no Step
+06 v0.x ever existed to defer to.
+
+## 7. No Invented Human Decisions
+
+Every Reviewer, Verifier, and Boss Decision field across all 17 files was
+checked. Result: **every such field reads PENDING HUMAN REVIEW, PENDING
+EVIDENCE VERIFICATION, PENDING BOSS APPROVAL, PENDING, PENDING RECORD, or NOT
+ASSIGNED — no field contains a fabricated name, date, or decision.**
+
+## 8. Path Citation Consistency
+
+Every repository path cited in `STATE02_GATE_EVIDENCE_REGISTER_v1.0.md` and
+`STATE02_GATE_INVENTORY_REGISTER_v1.0.md` was checked against the mechanical
+`test -f` sweep recorded in `STATE02_GATE_VALIDATION_RESULTS_v1.0.md` /
+`.json`. Result: see that file for the row-by-row PASS/FAIL outcome.
+
+## 9. Residual Cross-File and PR Metadata Correction (second correction pass)
+
+The correction recorded in Section 2 (commit `0e900ee2b0483202e359e357f4aceb4630c47efb`)
+fixed the Crosswalk, Inventory Register, and their own supporting files, but
+did not sweep every other reference to the same two numbers. Two stale
+references were found and are corrected in this same commit as this
+section:
+
+| # | Where | Stale value | Corrected value | Type |
+|---|---|---|---|---|
+| 1 | `STATE02_GATE_BOSS_APPROVAL_RECORD_v1.0.md`, item BOSS-002 | "5 competing Gate models" | "6 identified Gate models" | Repository file |
+| 2 | PR #14 description (GitHub, not a repository file) | "five independent, non-reconciled Gate sequencing models" | "six identified, independently authored Gate sequencing models" | PR metadata |
+| 3 | PR #14 description (GitHub, not a repository file) | "Validation Results (8/8 mechanical checks PASS)" | "Validation Results (9/9 mechanical checks PASS)" | PR metadata |
+
+This package now distinguishes three separate consistency dimensions, since
+they were not previously tracked separately and that is what allowed items
+1–3 to slip past the first correction pass:
+
+- **Repository File Consistency** — every `.md`/`.json` file under
+  `Step_06_Gate_Crosswalk/`. Status: consistent as of this commit (see
+  Section 2 and item 1 above).
+- **PR Metadata Consistency** — the PR #14 title/description text on
+  GitHub, which is not a repository file and is not covered by any
+  in-repository grep sweep or `git diff`. Status: consistent as of this
+  commit (items 2–3 above), updated via a separate PR-description edit
+  alongside this commit.
+- **Governance Decision Status** — Reviewer, Verifier, and Boss Decision
+  fields. Status: unchanged, still 100% PENDING. Fixing stale numbers is a
+  mechanical correction, not a governance decision, and does not move any
+  of these fields.
+
+CHECK-010 in `STATE02_GATE_VALIDATION_RESULTS_v1.0.md` / `.json` is the new
+permanent mechanical check for dimension 1 and dimension 2 (to the extent a
+repository-side script can see PR text); it cannot verify GitHub PR state
+itself, so PR metadata correctness is asserted here as a manual step
+performed in the same work session as this commit, not machine-verified.
+
+## 10. Cross-Artifact 9/9-to-10/10 Count Alignment (third correction pass)
+
+The second correction pass (Section 9) added CHECK-010 as the tenth
+mechanical check, which meant the correct total was always 10/10, not 9/9.
+The `STATE02_GATE_VALIDATION_RESULTS_v1.0.md` commit written for that pass
+stated CHECK-010's own item 6 as "PR #14 description states six models and
+9/9 checks" — an off-by-one self-reference error, since CHECK-010 itself is
+one of the 10 checks being counted. This was caught and fixed directly in
+the repository file by a subsequent commit
+(`d0a04bce567fec874e8a55c7bff4eb87dffd5742`, authored outside this AI
+session). That fix touched only `STATE02_GATE_VALIDATION_RESULTS_v1.0.md`
+and left three other locations still saying "9/9":
+
+| # | Where | Stale value | Corrected value | Type |
+|---|---|---|---|---|
+| 1 | `STATE02_GATE_VALIDATION_RESULTS_v1.0.json`, CHECK-010 `expected`/`actual` | "9/9 checks" | "10/10 checks" | Repository file |
+| 2 | PR #14 description, "Corrections after review" section | "Validation Results (9/9 mechanical checks PASS)" | "Validation Results (10/10 mechanical checks PASS)" | PR metadata |
+| 3 | PR #14 description, Test plan checklist | "9/9 mechanical checks PASS" | "10/10 mechanical checks PASS" | PR metadata |
+
+All three are corrected in this same commit. The Section 9 historical table
+above is left as-is (it accurately records what commit `f94e5b4` actually
+did at the time), rather than rewritten to pretend the 9/9 value was never
+written — this report's own rule in Section 6 is not to defer to unread
+prior state, but a defect that genuinely occurred is recorded as history,
+not erased.
+
+## 11. Overall Consistency Result
+
+**No cross-file inconsistency remains in Gate ID usage, Evidence ID
+uniqueness, document status strings, or version labeling**, subject to the
+one documented and intentional exception in Section 5. Five defects across
+four correction passes are recorded, not hidden:
+
+1. FOUND-count/list mismatch (GATE-018 dual classification) — original
+   commit `0fd6423`, corrected in `0e900ee`.
+2. Five-vs-six model-count mismatch inside repository files — original
+   commit `0fd6423`, corrected in `0e900ee`.
+3. Residual five-vs-six and 8/8-vs-9/9 references in the Boss Approval
+   Record and PR #14 description, not caught by the `0e900ee` sweep because
+   that sweep did not check every file or PR metadata — corrected in
+   `f94e5b4`.
+4. 9/9-vs-10/10 off-by-one in CHECK-010's own item 6, introduced in
+   `f94e5b4`, partially fixed by `d0a04bc`, fully aligned across the JSON
+   sibling and PR #14 description in this commit.
+5. Evidence commit hash integrity (16 rows citing an unrelated commit, 1
+   row with no path-specific SHA) and independent graph count/check count
+   undercounted (4 vs. 5 graphs, 6 vs. 7 checks) — see Section 12,
+   corrected in this commit.
+
+This report does not retroactively describe any prior commit as having been
+fully consistent. Repository File Consistency and PR Metadata Consistency
+are both CONSISTENT as of this commit. Governance Decision Status remains
+100% PENDING and is unaffected by any of the five corrections above.
+
+## 12. Evidence Path-Level SHA and Graph Count Integrity Correction (fourth correction pass, 2026-07-14)
+
+A P0/P1 correction order dated 2026-07-14 found two independent defect
+classes that CHECK-001 through CHECK-010 did not catch, because those
+checks verify string/ID uniqueness and prose-vs-table consistency, not
+per-path commit-hash accuracy or edge/graph arithmetic:
+
+1. **Evidence commit hash integrity (P0).** 16 of the 22 Evidence Register
+   rows (EV-G06-002 through EV-G06-014, EV-G06-016 through EV-G06-018)
+   cited commit `da86bf1a40954cab86dd8c9181e271a4138f47f6` ("L99.99: add
+   SMEsPlus Claude FDS designer skill"), a commit that does not touch any
+   of those 16 files. A 17th row, EV-G06-019, cited no path-specific SHA
+   of its own and instead pointed the reader to EV-G06-020 (a different
+   file). All 22 rows were independently rerun with
+   `git log -1 --format=%H -- "<exact-path>"`; the 16 rows were corrected
+   to `7ae04a22f976a54a3e49d1454cb82420328ab5d7` (confirmed independently
+   per path, not by global substitution), and EV-G06-019 was assigned its
+   own SHA, `39c39fdb791ecb5aea072f7316cec710fc707d8c`. Full command output
+   is in `STATE02_GATE_SEARCH_EXECUTION_LOG_v1.0.md` Section 5.
+2. **Independent graph count (P1).** `STATE02_GATE_DEPENDENCY_MATRIX_v1.0.md`
+   and `STATE02_GATE_CIRCULAR_DEPENDENCY_REPORT_v1.0.md` stated 4
+   independent graphs, undercounting by omitting Dependency Set A itself
+   from the graph count while still including its 9 edges in the 34-edge
+   total. Corrected to 5 independent graphs (Set A, GATE-030, GATE-032,
+   GATE-031, GATE-029; 34 directed edges). The Circular Dependency Report's
+   stated check count (6) also did not match its own detailed checks once
+   a distinct self-loop check is counted; a Check 7 (Self-Loop Check) was
+   added and the total corrected to 7 (5 structural + 1 cross-graph + 1
+   self-loop).
+3. **AI review summary count.** The AI Governance Review Assistant had
+   previously reported "11 of 22 Evidence Records used the incorrect SHA"
+   in PR review commentary. The repository-derived count is 16 of 22
+   (plus EV-G06-019 separately lacking its own SHA) — corrected in the PR
+   #14 review thread and in `STATE02_GATE_CHANGELOG_v1.0.md`.
+
+`STATE02_GATE_VALIDATION_RESULTS_v1.0.md` / `.json` CHECK-011 is the new
+permanent mechanical check for this class of defect (path-level SHA
+accuracy and graph/check-count arithmetic). Mechanical validation is now
+**11 of 11 checks PASS**.
