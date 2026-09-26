@@ -1,0 +1,19 @@
+{
+  "ts": "2026-09-26T02:46:59.980105+00:00",
+  "t1_no_source_in_workspace": {
+    "scanned": "/Users/admin/ROOMB_WORKSPACE",
+    "hits": [],
+    "result": "PASS"
+  },
+  "t2_write_scope": {
+    "only_company_id": 2,
+    "result": "DECLARED"
+  },
+  "t3_baseline_expected": "706e6df4008e0bac042a9821507ec0bc6868c4d9f98bcb93004a2535b1ca3c89",
+  "t4_tooling": {
+    "note": "deterministic script; no MCP server, no connector, no web search, no filesystem access outside workspace",
+    "result": "DECLARED"
+  },
+  "t3_baseline_actual": "706e6df4008e0bac042a9821507ec0bc6868c4d9f98bcb93004a2535b1ca3c89",
+  "t3_result": "PASS"
+}

@@ -1,0 +1,164 @@
+LANE B RUN   2026-09-26 02:49
+
+──────── 1/5  grant scoped access (server)
+launcher : <REDACTED_PATH>
+config   : /etc/odoo19.conf
+run as   : odoo
+backup   : /root/ROOMA_BACKUP/laneb_grant_before_20260926_024915.json
+
+user->groups field detected: group_ids
+BEFORE_JSON_START
+BEFORE_JSON_START
+{
+{
+  "ts": "2026-09-25T19:49:18.826815",
+  "ts": "2026-09-25T19:49:18.826815",
+  "observer_uid": 5,
+  "observer_uid": 5,
+  "groups_field": "group_ids",
+  "groups_field": "group_ids",
+  "groups": [
+  "groups": [
+    {
+      "id": 23,
+      "name": "Sales / User: All Documents"
+    },
+    {
+      "id": 27,
+      "name": "Accounting / Invoicing"
+    },
+    {
+      "id": 75,
+      "name": "Purchase / User"
+    },
+    {
+      "id": 90,
+      "name": "Employees / Officer: Manage all employees"
+    },
+    {
+      "id": 53,
+      "name": "Inventory / User"
+    },
+    {
+      "id": 1,
+      "name": "Role / User"
+    },
+    {
+      "id": 29,
+      "name": "Show Full Accounting Features"
+    }
+  ],
+  "access": [
+    {
+      "id": 915,
+      "model": "res.partner",
+      "group": "Purchase / User",
+      "r": true,
+      "w": false,
+      "c": false,
+      "d": false
+    },
+    {
+      "id": 75,
+      "model": "res.partner",
+      "group": "Role / User",
+      "r": true,
+      "w": false,
+      "c": false,
+      "d": false
+    }
+  ]
+}
+BEFORE_JSON_END
+CREATED group id=120  'ROOM B Observer (Lane B)'
+observer uid=5 added to group 120
+  res.partner              CREATED rule id=2026  (read_unlink)
+  ir.actions.act_window    CREATED rule id=2027  (read)
+  res.config.settings      CREATED rule id=2028  (read)
+
+AFTER
+ROLLBACK_RULE_IDS=[2026, 2027, 2028]
+ROLLBACK_GROUP_ID=120
+
+full log : /root/ROOMA_BACKUP/laneb_grant_20260926_024915.log
+ROLLBACK : delete the rule ids printed above via the same odoo shell:
+           env['ir.model.access'].browse([...]).unlink(); env.cr.commit()
+     ok
+
+──────── 2/5  verify what the observer can now reach
+observer uid=5  iTest19C
+
+  menus shown to the user        REACHABLE     681   yes
+  screens / windows              REFUSED         -   You are not allowed to access 'Action Window' (ir.actions.act_window) 
+  server actions                 REFUSED         -   You are not allowed to access 'Server Action' (ir.actions.server) reco
+  report outputs                 REACHABLE      79   yes
+  view layouts                   REFUSED         -   You are not allowed to access 'View' (ir.ui.view) records.
+  feature switches (settings)    REFUSED         -   You are not allowed to access 'Config Settings' (res.config.settings) 
+  field-level selections         REFUSED         -   You are not allowed to access 'Fields' (ir.model.fields) records.
+  record-level states            REFUSED         -   You are not allowed to access 'Fields Selection' (ir.model.fields.sele
+  groups the user may see        REACHABLE     112   yes
+  modules as the user sees them  REACHABLE     713   yes
+
+reachable 4 / 10   refused 6
+
+VERDICT: CENSUS PARTIAL - 6 surface(s) need a scoped read grant
+written: /Users/admin/ROOMB_WORKSPACE/ops/census_feasibility_result.json
+
+──────── 3/5  menu tree census  (needs no grant)
+connected  https://t9c.smeplus.asia (iTest19C) uid=5
+menus      681 visible to this account
+leaves     492 screens to capture   (13 leaf menus open nothing)
+distinct   450 destinations   max depth 5
+tree hash  c5d68d14e4a59cb46fb448a8ad5cbfd6537c5cf9f159684d7d70eec6bb5dee7d
+written    /Users/admin/ROOMB_WORKSPACE/batches/W1-SCREENS/MENU_TREE.tsv
+
+top-level sections:
+     4 children   Apps
+     5 children   Attendances
+     5 children   CRM
+     2 children   Calendar
+     2 children   Contacts
+     3 children   Dashboards
+     4 children   Discuss
+     7 children   Employees
+     4 children   Events
+     3 children   Expenses
+     3 children   Fleet
+     5 children   Inventory
+     7 children   Invoicing
+     2 children   Link Tracker
+     6 children   Live Chat
+     6 children   Maintenance
+     5 children   Manufacturing
+     5 children   Project
+     4 children   Purchase
+     3 children   Recruitment
+     3 children   Repairs
+     5 children   Sales
+     7 children   Settings
+     3 children   Surveys
+     0 children   Tests
+     5 children   Time Off
+     4 children   Timesheets
+     0 children   To-do
+     3 children   Website
+     4 children   eLearning
+
+──────── 4/5  standard batch + test-record cleanup
+     SKIPPED - unlink right not in place yet.
+     Running it now would create 2 test records this cycle and every cycle,
+     with no way to remove them. Waiting for the grant instead.
+     test records still in the study database: 8  [10, 11, 13, 14, 15, 16, 17, 18]
+
+──────── 5/5  clean room check
+     CLEAN - no source path in any artifact
+
+════════ SUMMARY
+reachable surfaces : reachable 4 / 10
+menus              : menus 
+screens to capture : leaves     492
+baseline           : 
+test records       : cleanup
+
+full log: /Users/admin/ROOMB_WORKSPACE/RUN_REPORT.txt
+next: open Gemini and send one line ->  อ่าน ~/ROOMB_WORKSPACE/GEMINI_TASK.md แล้วทำตาม

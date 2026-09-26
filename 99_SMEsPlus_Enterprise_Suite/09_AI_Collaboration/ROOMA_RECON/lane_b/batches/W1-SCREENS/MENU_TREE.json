@@ -1,0 +1,6144 @@
+{
+  "collected_at": "2026-09-26T04:11:31.872510+00:00",
+  "server": "https://t9c.smeplus.asia",
+  "db": "iTest19C",
+  "observer_uid": 5,
+  "menus_total": 681,
+  "leaf_screens": 492,
+  "leaves_without_destination": 13,
+  "distinct_destinations": 450,
+  "max_depth": 5,
+  "tree_sha256": "c5d68d14e4a59cb46fb448a8ad5cbfd6537c5cf9f159684d7d70eec6bb5dee7d",
+  "note": "No menu element is attributed to a module. One screen is composed of several modules and that attribution would require reading source. menus_total is the FULL system menu list (ir.ui.menu.full_list) - the census denominator - not the set visible to this account (RT-LANEB-017, 26 Sep).",
+  "rows": [
+    {
+      "menu_id": 15,
+      "path": "Apps",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 500,
+      "children": 4
+    },
+    {
+      "menu_id": 55,
+      "path": "Apps / Apply Scheduled Upgrades",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,46",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 48,
+      "path": "Apps / Apps",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 5,
+      "children": 4
+    },
+    {
+      "menu_id": 49,
+      "path": "Apps / Apps / Main Apps",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,39",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 52,
+      "path": "Apps / Apps / Theme Store",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_url,41",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 50,
+      "path": "Apps / Apps / Theme Store",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 51,
+      "path": "Apps / Apps / Third-Party Apps",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_url,40",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 67,
+      "path": "Apps / Import Module",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,84",
+      "sequence": 100,
+      "children": 0
+    },
+    {
+      "menu_id": 53,
+      "path": "Apps / Update Apps List",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,43",
+      "sequence": 40,
+      "children": 0
+    },
+    {
+      "menu_id": 595,
+      "path": "Attendances",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 205,
+      "children": 5
+    },
+    {
+      "menu_id": 603,
+      "path": "Attendances / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 99,
+      "children": 3
+    },
+    {
+      "menu_id": 604,
+      "path": "Attendances / Configuration / Onboarding",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.server,912",
+      "sequence": 100,
+      "children": 0
+    },
+    {
+      "menu_id": 606,
+      "path": "Attendances / Configuration / Overtime Rulesets",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,922",
+      "sequence": 300,
+      "children": 0
+    },
+    {
+      "menu_id": 605,
+      "path": "Attendances / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,920",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 596,
+      "path": "Attendances / Kiosk Mode",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.server,918",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 602,
+      "path": "Attendances / Management",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,916",
+      "sequence": 6,
+      "children": 0
+    },
+    {
+      "menu_id": 599,
+      "path": "Attendances / Overview",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 5,
+      "children": 2
+    },
+    {
+      "menu_id": 600,
+      "path": "Attendances / Overview / Dashboard",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,914",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 601,
+      "path": "Attendances / Overview / Employees",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,818",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 597,
+      "path": "Attendances / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 15,
+      "children": 2
+    },
+    {
+      "menu_id": 598,
+      "path": "Attendances / Reporting / Attendances",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,915",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 643,
+      "path": "Attendances / Reporting / Time Off Ledger",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,982",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 203,
+      "path": "CRM",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 25,
+      "children": 5
+    },
+    {
+      "menu_id": 215,
+      "path": "CRM / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "ir.actions.server,315",
+      "sequence": 25,
+      "children": 9
+    },
+    {
+      "menu_id": 220,
+      "path": "CRM / Configuration / Activities",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 8,
+      "children": 2
+    },
+    {
+      "menu_id": 222,
+      "path": "CRM / Configuration / Activities / Activity Plans",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,336",
+      "sequence": 11,
+      "children": 0
+    },
+    {
+      "menu_id": 221,
+      "path": "CRM / Configuration / Activities / Activity Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,209",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 237,
+      "path": "CRM / Configuration / Lead Generation",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 2
+    },
+    {
+      "menu_id": 238,
+      "path": "CRM / Configuration / Lead Generation / Lead Mining Requests",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,357",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 709,
+      "path": "CRM / Configuration / Lead Generation / Visits to Leads Rules",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1090",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 688,
+      "path": "CRM / Configuration / Members",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 16,
+      "children": 2
+    },
+    {
+      "menu_id": 689,
+      "path": "CRM / Configuration / Members / Levels",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1061",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 711,
+      "path": "CRM / Configuration / Members / Partner Activations",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1094",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 217,
+      "path": "CRM / Configuration / Opportunities",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 224,
+      "path": "CRM / Configuration / Pipeline",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 15,
+      "children": 3
+    },
+    {
+      "menu_id": 227,
+      "path": "CRM / Configuration / Pipeline / Lost Reasons",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,324",
+      "sequence": 6,
+      "children": 0
+    },
+    {
+      "menu_id": 225,
+      "path": "CRM / Configuration / Pipeline / Stages",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,325",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 226,
+      "path": "CRM / Configuration / Pipeline / Tags",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,204",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 223,
+      "path": "CRM / Configuration / Recurring Plans",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,323",
+      "sequence": 12,
+      "children": 0
+    },
+    {
+      "menu_id": 218,
+      "path": "CRM / Configuration / Sales Teams",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,207",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 216,
+      "path": "CRM / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,337",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 219,
+      "path": "CRM / Configuration / Teams Members",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,208",
+      "sequence": 6,
+      "children": 0
+    },
+    {
+      "menu_id": 228,
+      "path": "CRM / Import & Synchronize",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 209,
+      "path": "CRM / Leads",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,329",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 210,
+      "path": "CRM / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 6
+    },
+    {
+      "menu_id": 214,
+      "path": "CRM / Reporting / Activities",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,338",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 211,
+      "path": "CRM / Reporting / Forecast",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.server,316",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 710,
+      "path": "CRM / Reporting / Lead Generation Views",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1091",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 213,
+      "path": "CRM / Reporting / Leads",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,341",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 712,
+      "path": "CRM / Reporting / Partnerships",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1095",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 212,
+      "path": "CRM / Reporting / Pipeline",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,340",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 204,
+      "path": "CRM / Sales",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 1,
+      "children": 5
+    },
+    {
+      "menu_id": 208,
+      "path": "CRM / Sales / Customers",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,55",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 206,
+      "path": "CRM / Sales / My Activities",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,330",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 205,
+      "path": "CRM / Sales / My Pipeline",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.server,315",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 276,
+      "path": "CRM / Sales / My Quotations",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,379",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 207,
+      "path": "CRM / Sales / Teams",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,206",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 121,
+      "path": "Calendar",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 2
+    },
+    {
+      "menu_id": 122,
+      "path": "Calendar / Calendar",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,167",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 123,
+      "path": "Calendar / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "ir.actions.act_window,167",
+      "sequence": 40,
+      "children": 2
+    },
+    {
+      "menu_id": 125,
+      "path": "Calendar / Configuration / Reminders",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,166",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 124,
+      "path": "Calendar / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,168",
+      "sequence": 45,
+      "children": 0
+    },
+    {
+      "menu_id": 129,
+      "path": "Contacts",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 2
+    },
+    {
+      "menu_id": 131,
+      "path": "Contacts / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 35,
+      "children": 5
+    },
+    {
+      "menu_id": 138,
+      "path": "Contacts / Configuration / Bank Accounts",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 6,
+      "children": 2
+    },
+    {
+      "menu_id": 140,
+      "path": "Contacts / Configuration / Bank Accounts / Bank Accounts",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,61",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 139,
+      "path": "Contacts / Configuration / Bank Accounts / Banks",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,60",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 132,
+      "path": "Contacts / Configuration / Contact Tags",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,58",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 133,
+      "path": "Contacts / Configuration / Industries",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,59",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 134,
+      "path": "Contacts / Configuration / Localization",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 5,
+      "children": 4
+    },
+    {
+      "menu_id": 735,
+      "path": "Contacts / Configuration / Localization / Cities",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1126",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 135,
+      "path": "Contacts / Configuration / Localization / Countries",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,62",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 136,
+      "path": "Contacts / Configuration / Localization / Country Group",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,63",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 137,
+      "path": "Contacts / Configuration / Localization / Fed. States",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,64",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 732,
+      "path": "Contacts / Configuration / Website Tags",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1119",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 130,
+      "path": "Contacts / Contacts",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,170",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 229,
+      "path": "Dashboards",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "ir.actions.client,348",
+      "sequence": 37,
+      "children": 3
+    },
+    {
+      "menu_id": 231,
+      "path": "Dashboards / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 150,
+      "children": 1
+    },
+    {
+      "menu_id": 232,
+      "path": "Dashboards / Configuration / Dashboards",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,349",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 230,
+      "path": "Dashboards / Dashboards",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.client,348",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 736,
+      "path": "Dashboards / My Dashboard",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1128",
+      "sequence": 100,
+      "children": 0
+    },
+    {
+      "menu_id": 83,
+      "path": "Discuss",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "ir.actions.client,124",
+      "sequence": 5,
+      "children": 4
+    },
+    {
+      "menu_id": 85,
+      "path": "Discuss / Channels",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,123",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 86,
+      "path": "Discuss / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 3,
+      "children": 4
+    },
+    {
+      "menu_id": 89,
+      "path": "Discuss / Configuration / Canned Responses",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,125",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 87,
+      "path": "Discuss / Configuration / Notifications",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.client,140",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 90,
+      "path": "Discuss / Configuration / Roles",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,126",
+      "sequence": 25,
+      "children": 0
+    },
+    {
+      "menu_id": 88,
+      "path": "Discuss / Configuration / Voice & Video",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.client,141",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 84,
+      "path": "Discuss / Discuss",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.client,124",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 119,
+      "path": "Discuss / Technical",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 1
+    },
+    {
+      "menu_id": 120,
+      "path": "Discuss / Technical / Call History",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,152",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 515,
+      "path": "Employees",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 185,
+      "children": 7
+    },
+    {
+      "menu_id": 521,
+      "path": "Employees / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 5
+    },
+    {
+      "menu_id": 544,
+      "path": "Employees / Configuration / Challenges",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 3
+    },
+    {
+      "menu_id": 545,
+      "path": "Employees / Configuration / Challenges / Badges",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,696",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 546,
+      "path": "Employees / Configuration / Challenges / Challenges",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,846",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 547,
+      "path": "Employees / Configuration / Challenges / Goals History",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,845",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 522,
+      "path": "Employees / Configuration / Employee",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 6
+    },
+    {
+      "menu_id": 526,
+      "path": "Employees / Configuration / Employee / Departure Reasons",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,810",
+      "sequence": 7,
+      "children": 0
+    },
+    {
+      "menu_id": 523,
+      "path": "Employees / Configuration / Employee / Onboarding / Offboarding",
+      "depth": 5,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,806",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 550,
+      "path": "Employees / Configuration / Employee / Skill Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,851",
+      "sequence": 7,
+      "children": 0
+    },
+    {
+      "menu_id": 527,
+      "path": "Employees / Configuration / Employee / Tags",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,814",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 524,
+      "path": "Employees / Configuration / Employee / Work Locations",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,825",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 525,
+      "path": "Employees / Configuration / Employee / Working Schedules",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,99",
+      "sequence": 6,
+      "children": 0
+    },
+    {
+      "menu_id": 528,
+      "path": "Employees / Configuration / Recruitment",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 3
+    },
+    {
+      "menu_id": 530,
+      "path": "Employees / Configuration / Recruitment / Contract Templates",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,809",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 531,
+      "path": "Employees / Configuration / Recruitment / Employment Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,811",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 529,
+      "path": "Employees / Configuration / Recruitment / Job Positions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,813",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 548,
+      "path": "Employees / Configuration / Resume",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 15,
+      "children": 1
+    },
+    {
+      "menu_id": 549,
+      "path": "Employees / Configuration / Resume / Sections",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,849",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 532,
+      "path": "Employees / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,826",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 520,
+      "path": "Employees / Departments",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,824",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 518,
+      "path": "Employees / Directory",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,815",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 517,
+      "path": "Employees / Employees",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,818",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 516,
+      "path": "Employees / Human Resources",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 552,
+      "path": "Employees / Learning",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 93,
+      "children": 3
+    },
+    {
+      "menu_id": 553,
+      "path": "Employees / Learning / Certifications",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,852",
+      "sequence": 94,
+      "children": 0
+    },
+    {
+      "menu_id": 557,
+      "path": "Employees / Learning / Courses",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 96,
+      "children": 2
+    },
+    {
+      "menu_id": 558,
+      "path": "Employees / Learning / Courses / Onsite",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,862",
+      "sequence": 98,
+      "children": 0
+    },
+    {
+      "menu_id": 677,
+      "path": "Employees / Learning / Courses / eLearning",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1031",
+      "sequence": 97,
+      "children": 0
+    },
+    {
+      "menu_id": 554,
+      "path": "Employees / Learning / Training Attendances",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,850",
+      "sequence": 95,
+      "children": 0
+    },
+    {
+      "menu_id": 519,
+      "path": "Employees / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 95,
+      "children": 1
+    },
+    {
+      "menu_id": 551,
+      "path": "Employees / Reporting / Skills",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 15,
+      "children": 2
+    },
+    {
+      "menu_id": 555,
+      "path": "Employees / Reporting / Skills / Certifications",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,856",
+      "sequence": 25,
+      "children": 0
+    },
+    {
+      "menu_id": 556,
+      "path": "Employees / Reporting / Skills / Skills Inventory",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,857",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 443,
+      "path": "Events",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 125,
+      "children": 4
+    },
+    {
+      "menu_id": 446,
+      "path": "Events / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 99,
+      "children": 9
+    },
+    {
+      "menu_id": 578,
+      "path": "Events / Configuration / Booth Categories",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,894",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 579,
+      "path": "Events / Configuration / Booths",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,896",
+      "sequence": 21,
+      "children": 0
+    },
+    {
+      "menu_id": 451,
+      "path": "Events / Configuration / Event Questions",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,736",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 448,
+      "path": "Events / Configuration / Event Stages",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,725",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 450,
+      "path": "Events / Configuration / Event Tags Categories",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,735",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 447,
+      "path": "Events / Configuration / Event Templates",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,722",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 474,
+      "path": "Events / Configuration / Lead Generation",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,764",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 449,
+      "path": "Events / Configuration / Mail Schedulers",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,714",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 454,
+      "path": "Events / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,734",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 444,
+      "path": "Events / Events",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,724",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 453,
+      "path": "Events / Registration Desk",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.client,723",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 445,
+      "path": "Events / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 50,
+      "children": 2
+    },
+    {
+      "menu_id": 452,
+      "path": "Events / Reporting / Attendees",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,719",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 492,
+      "path": "Events / Reporting / Revenues",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,779",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 533,
+      "path": "Expenses",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 230,
+      "children": 3
+    },
+    {
+      "menu_id": 539,
+      "path": "Expenses / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 3
+    },
+    {
+      "menu_id": 542,
+      "path": "Expenses / Configuration / Activity Types",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,840",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 540,
+      "path": "Expenses / Configuration / Expense Categories",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,833",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 543,
+      "path": "Expenses / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,843",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 534,
+      "path": "Expenses / My Expenses",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 1,
+      "children": 2
+    },
+    {
+      "menu_id": 536,
+      "path": "Expenses / My Expenses / Expenses to Process",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,835",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 535,
+      "path": "Expenses / My Expenses / My Expenses",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,834",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 537,
+      "path": "Expenses / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 4,
+      "children": 1
+    },
+    {
+      "menu_id": 538,
+      "path": "Expenses / Reporting / Expenses Analysis",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,836",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 494,
+      "path": "Fleet",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 220,
+      "children": 3
+    },
+    {
+      "menu_id": 495,
+      "path": "Fleet / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 5
+    },
+    {
+      "menu_id": 512,
+      "path": "Fleet / Configuration / Activity Types",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,800",
+      "sequence": 99,
+      "children": 0
+    },
+    {
+      "menu_id": 496,
+      "path": "Fleet / Configuration / Models",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 3
+    },
+    {
+      "menu_id": 499,
+      "path": "Fleet / Configuration / Models / Categories",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,790",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 497,
+      "path": "Fleet / Configuration / Models / Manufacturers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,789",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 498,
+      "path": "Fleet / Configuration / Models / Models",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,788",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 503,
+      "path": "Fleet / Configuration / Services",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 1
+    },
+    {
+      "menu_id": 504,
+      "path": "Fleet / Configuration / Services / Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,793",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 513,
+      "path": "Fleet / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,801",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 505,
+      "path": "Fleet / Configuration / Vehicle",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 30,
+      "children": 2
+    },
+    {
+      "menu_id": 506,
+      "path": "Fleet / Configuration / Vehicle / Status",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,794",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 507,
+      "path": "Fleet / Configuration / Vehicle / Tags",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,795",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 500,
+      "path": "Fleet / Fleet",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 2,
+      "children": 4
+    },
+    {
+      "menu_id": 508,
+      "path": "Fleet / Fleet / Contracts",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,797",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 501,
+      "path": "Fleet / Fleet / Fleet",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,791",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 502,
+      "path": "Fleet / Fleet / Odometers",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,792",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 509,
+      "path": "Fleet / Fleet / Services",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,798",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 510,
+      "path": "Fleet / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 99,
+      "children": 2
+    },
+    {
+      "menu_id": 511,
+      "path": "Fleet / Reporting / Costs",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,799",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 514,
+      "path": "Fleet / Reporting / Odometers",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,802",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 324,
+      "path": "Inventory",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 140,
+      "children": 5
+    },
+    {
+      "menu_id": 329,
+      "path": "Inventory / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 4
+    },
+    {
+      "menu_id": 361,
+      "path": "Inventory / Configuration / Delivery",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 50,
+      "children": 3
+    },
+    {
+      "menu_id": 678,
+      "path": "Inventory / Configuration / Delivery / Delivery Methods",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1010",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 362,
+      "path": "Inventory / Configuration / Delivery / Package Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,573",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 679,
+      "path": "Inventory / Configuration / Delivery / Zip Prefix",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1011",
+      "sequence": 100,
+      "children": 0
+    },
+    {
+      "menu_id": 331,
+      "path": "Inventory / Configuration / Products",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 4,
+      "children": 4
+    },
+    {
+      "menu_id": 334,
+      "path": "Inventory / Configuration / Products / Attributes",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,188",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 332,
+      "path": "Inventory / Configuration / Products / Barcode Nomenclatures",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,478",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 333,
+      "path": "Inventory / Configuration / Products / Categories",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,189",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 335,
+      "path": "Inventory / Configuration / Products / Units & Packagings",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,90",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 358,
+      "path": "Inventory / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,571",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 330,
+      "path": "Inventory / Configuration / Warehouse Management",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 1,
+      "children": 7
+    },
+    {
+      "menu_id": 354,
+      "path": "Inventory / Configuration / Warehouse Management / Locations",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,563",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 349,
+      "path": "Inventory / Configuration / Warehouse Management / Operations Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,552",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 338,
+      "path": "Inventory / Configuration / Warehouse Management / Putaway Rules",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,511",
+      "sequence": 8,
+      "children": 0
+    },
+    {
+      "menu_id": 355,
+      "path": "Inventory / Configuration / Warehouse Management / Routes",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,565",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 359,
+      "path": "Inventory / Configuration / Warehouse Management / Rules",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,572",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 357,
+      "path": "Inventory / Configuration / Warehouse Management / Storage Categories",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,569",
+      "sequence": 6,
+      "children": 0
+    },
+    {
+      "menu_id": 343,
+      "path": "Inventory / Configuration / Warehouse Management / Warehouses",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,523",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 325,
+      "path": "Inventory / Operations",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 2,
+      "children": 5
+    },
+    {
+      "menu_id": 327,
+      "path": "Inventory / Operations / Adjustments",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 3,
+      "children": 3
+    },
+    {
+      "menu_id": 690,
+      "path": "Inventory / Operations / Adjustments / Landed Costs",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1062",
+      "sequence": 115,
+      "children": 0
+    },
+    {
+      "menu_id": 341,
+      "path": "Inventory / Operations / Adjustments / Physical Inventory",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.server,517",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 340,
+      "path": "Inventory / Operations / Adjustments / Scrap",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,516",
+      "sequence": 99,
+      "children": 0
+    },
+    {
+      "menu_id": 639,
+      "path": "Inventory / Operations / Jobs",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 2,
+      "children": 2
+    },
+    {
+      "menu_id": 640,
+      "path": "Inventory / Operations / Jobs / Batch Transfers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,969",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 641,
+      "path": "Inventory / Operations / Jobs / Wave Transfers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,974",
+      "sequence": 31,
+      "children": 0
+    },
+    {
+      "menu_id": 328,
+      "path": "Inventory / Operations / Procurement",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 4,
+      "children": 2
+    },
+    {
+      "menu_id": 364,
+      "path": "Inventory / Operations / Procurement / References",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,577",
+      "sequence": 99,
+      "children": 0
+    },
+    {
+      "menu_id": 356,
+      "path": "Inventory / Operations / Procurement / Replenishment",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.server,568",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 360,
+      "path": "Inventory / Operations / Procurement: run scheduler",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.server,479",
+      "sequence": 135,
+      "children": 0
+    },
+    {
+      "menu_id": 326,
+      "path": "Inventory / Operations / Transfers",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 1,
+      "children": 5
+    },
+    {
+      "menu_id": 347,
+      "path": "Inventory / Operations / Transfers / Deliveries",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.server,539",
+      "sequence": 21,
+      "children": 0
+    },
+    {
+      "menu_id": 691,
+      "path": "Inventory / Operations / Transfers / Dropships",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1063",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 348,
+      "path": "Inventory / Operations / Transfers / Internal",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.server,540",
+      "sequence": 22,
+      "children": 0
+    },
+    {
+      "menu_id": 400,
+      "path": "Inventory / Operations / Transfers / Manufacturings",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,646",
+      "sequence": 25,
+      "children": 0
+    },
+    {
+      "menu_id": 346,
+      "path": "Inventory / Operations / Transfers / Receipts",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.server,538",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 350,
+      "path": "Inventory / Overview",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,553",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 336,
+      "path": "Inventory / Products",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 4,
+      "children": 4
+    },
+    {
+      "menu_id": 339,
+      "path": "Inventory / Products / Lots / Serial Numbers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,514",
+      "sequence": 101,
+      "children": 0
+    },
+    {
+      "menu_id": 363,
+      "path": "Inventory / Products / Packages",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,574",
+      "sequence": 102,
+      "children": 0
+    },
+    {
+      "menu_id": 352,
+      "path": "Inventory / Products / Product Variants",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,560",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 351,
+      "path": "Inventory / Products / Products",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,559",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 337,
+      "path": "Inventory / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 99,
+      "children": 4
+    },
+    {
+      "menu_id": 342,
+      "path": "Inventory / Reporting / Locations",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.server,518",
+      "sequence": 150,
+      "children": 0
+    },
+    {
+      "menu_id": 345,
+      "path": "Inventory / Reporting / Moves Analysis",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,526",
+      "sequence": 230,
+      "children": 0
+    },
+    {
+      "menu_id": 344,
+      "path": "Inventory / Reporting / Moves History",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,525",
+      "sequence": 200,
+      "children": 0
+    },
+    {
+      "menu_id": 353,
+      "path": "Inventory / Reporting / Stock",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,558",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 150,
+      "path": "Invoicing",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 55,
+      "children": 7
+    },
+    {
+      "menu_id": 164,
+      "path": "Invoicing / Accounting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 4,
+      "children": 2
+    },
+    {
+      "menu_id": 168,
+      "path": "Invoicing / Accounting / Closing",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 1
+    },
+    {
+      "menu_id": 201,
+      "path": "Invoicing / Accounting / Closing / Secure Entries",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,311",
+      "sequence": 80,
+      "children": 0
+    },
+    {
+      "menu_id": 165,
+      "path": "Invoicing / Accounting / Transactions",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 0,
+      "children": 2
+    },
+    {
+      "menu_id": 167,
+      "path": "Invoicing / Accounting / Transactions / Analytic Items",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,154",
+      "sequence": 31,
+      "children": 0
+    },
+    {
+      "menu_id": 166,
+      "path": "Invoicing / Accounting / Transactions / Journal Entries",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,265",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 180,
+      "path": "Invoicing / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 35,
+      "children": 5
+    },
+    {
+      "menu_id": 182,
+      "path": "Invoicing / Configuration / Accounting",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 9
+    },
+    {
+      "menu_id": 191,
+      "path": "Invoicing / Configuration / Accounting / Cash Roundings",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,299",
+      "sequence": 9,
+      "children": 0
+    },
+    {
+      "menu_id": 183,
+      "path": "Invoicing / Configuration / Accounting / Chart of Accounts",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,281",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 187,
+      "path": "Invoicing / Configuration / Accounting / Currencies",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,66",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 188,
+      "path": "Invoicing / Configuration / Accounting / Fiscal Positions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,304",
+      "sequence": 6,
+      "children": 0
+    },
+    {
+      "menu_id": 185,
+      "path": "Invoicing / Configuration / Accounting / Journals",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,283",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 189,
+      "path": "Invoicing / Configuration / Accounting / Multi-Ledger",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,284",
+      "sequence": 7,
+      "children": 0
+    },
+    {
+      "menu_id": 186,
+      "path": "Invoicing / Configuration / Accounting / Reporting",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 190,
+      "path": "Invoicing / Configuration / Accounting / Tax Groups",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,290",
+      "sequence": 8,
+      "children": 0
+    },
+    {
+      "menu_id": 184,
+      "path": "Invoicing / Configuration / Accounting / Taxes",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,289",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 197,
+      "path": "Invoicing / Configuration / Analytic Accounting",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 40,
+      "children": 3
+    },
+    {
+      "menu_id": 199,
+      "path": "Invoicing / Configuration / Analytic Accounting / Analytic Accounts",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,156",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 198,
+      "path": "Invoicing / Configuration / Analytic Accounting / Analytic Distribution Models",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,158",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 200,
+      "path": "Invoicing / Configuration / Analytic Accounting / Analytic Plans",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,157",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 192,
+      "path": "Invoicing / Configuration / Invoicing",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 4
+    },
+    {
+      "menu_id": 493,
+      "path": "Invoicing / Configuration / Invoicing / EDI Proxy Users",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,787",
+      "sequence": 11,
+      "children": 0
+    },
+    {
+      "menu_id": 194,
+      "path": "Invoicing / Configuration / Invoicing / Incoterms",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,310",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 193,
+      "path": "Invoicing / Configuration / Invoicing / Payment Terms",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,291",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 195,
+      "path": "Invoicing / Configuration / Invoicing / Product Categories",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,189",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 196,
+      "path": "Invoicing / Configuration / Online Payments",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 30,
+      "children": 4
+    },
+    {
+      "menu_id": 234,
+      "path": "Invoicing / Configuration / Online Payments / Payment Methods",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,230",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 233,
+      "path": "Invoicing / Configuration / Online Payments / Payment Providers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,229",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 235,
+      "path": "Invoicing / Configuration / Online Payments / Payment Tokens",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,233",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 236,
+      "path": "Invoicing / Configuration / Online Payments / Payment Transactions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,231",
+      "sequence": 25,
+      "children": 0
+    },
+    {
+      "menu_id": 181,
+      "path": "Invoicing / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,302",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 152,
+      "path": "Invoicing / Customers",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 2,
+      "children": 5
+    },
+    {
+      "menu_id": 154,
+      "path": "Invoicing / Customers / Credit Notes",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,269",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 157,
+      "path": "Invoicing / Customers / Customers",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,305",
+      "sequence": 110,
+      "children": 0
+    },
+    {
+      "menu_id": 153,
+      "path": "Invoicing / Customers / Invoices",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,268",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 155,
+      "path": "Invoicing / Customers / Payments",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,243",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 156,
+      "path": "Invoicing / Customers / Products",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,294",
+      "sequence": 100,
+      "children": 0
+    },
+    {
+      "menu_id": 151,
+      "path": "Invoicing / Dashboard",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,307",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 173,
+      "path": "Invoicing / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 5
+    },
+    {
+      "menu_id": 733,
+      "path": "Invoicing / Reporting / Accounting Tests",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1121",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 176,
+      "path": "Invoicing / Reporting / Management",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 5,
+      "children": 3
+    },
+    {
+      "menu_id": 178,
+      "path": "Invoicing / Reporting / Management / Analytic Report",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,296",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 177,
+      "path": "Invoicing / Reporting / Management / Invoice Analysis",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,298",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 692,
+      "path": "Invoicing / Reporting / Management / Product Margins…",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1065",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 174,
+      "path": "Invoicing / Reporting / Partner Reports",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 179,
+      "path": "Invoicing / Reporting / Statement Reports",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 175,
+      "path": "Invoicing / Reporting / Taxes & Fiscal",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 169,
+      "path": "Invoicing / Review",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 7,
+      "children": 2
+    },
+    {
+      "menu_id": 170,
+      "path": "Invoicing / Review / Control",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 1
+    },
+    {
+      "menu_id": 171,
+      "path": "Invoicing / Review / Control / Journal Items",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,264",
+      "sequence": 6,
+      "children": 0
+    },
+    {
+      "menu_id": 172,
+      "path": "Invoicing / Review / Logs",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 60,
+      "children": 1
+    },
+    {
+      "menu_id": 202,
+      "path": "Invoicing / Review / Logs / Audit Trail",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,312",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 158,
+      "path": "Invoicing / Vendors",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 3,
+      "children": 6
+    },
+    {
+      "menu_id": 159,
+      "path": "Invoicing / Vendors / Bills",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,271",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 541,
+      "path": "Invoicing / Vendors / Employee Expenses",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,837",
+      "sequence": 22,
+      "children": 0
+    },
+    {
+      "menu_id": 161,
+      "path": "Invoicing / Vendors / Payments",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,244",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 162,
+      "path": "Invoicing / Vendors / Products",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,295",
+      "sequence": 100,
+      "children": 0
+    },
+    {
+      "menu_id": 160,
+      "path": "Invoicing / Vendors / Refunds",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,272",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 163,
+      "path": "Invoicing / Vendors / Vendors",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,306",
+      "sequence": 200,
+      "children": 0
+    },
+    {
+      "menu_id": 78,
+      "path": "Link Tracker",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 270,
+      "children": 2
+    },
+    {
+      "menu_id": 442,
+      "path": "Link Tracker / Link Tracker",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,711",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 79,
+      "path": "Link Tracker / UTMs",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 99,
+      "children": 3
+    },
+    {
+      "menu_id": 80,
+      "path": "Link Tracker / UTMs / Campaigns",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,100",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 81,
+      "path": "Link Tracker / UTMs / Mediums",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,101",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 82,
+      "path": "Link Tracker / UTMs / Sources",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,102",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 580,
+      "path": "Live Chat",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 240,
+      "children": 6
+    },
+    {
+      "menu_id": 581,
+      "path": "Live Chat / Channels",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,903",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 586,
+      "path": "Live Chat / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 55,
+      "children": 4
+    },
+    {
+      "menu_id": 588,
+      "path": "Live Chat / Configuration / Canned Responses",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,125",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 589,
+      "path": "Live Chat / Configuration / Chatbots",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,898",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 591,
+      "path": "Live Chat / Configuration / Expertise",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,904",
+      "sequence": 25,
+      "children": 0
+    },
+    {
+      "menu_id": 590,
+      "path": "Live Chat / Configuration / Tags",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,902",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 585,
+      "path": "Live Chat / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 50,
+      "children": 2
+    },
+    {
+      "menu_id": 593,
+      "path": "Live Chat / Reporting / Agents",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,906",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 594,
+      "path": "Live Chat / Reporting / Sessions",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,907",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 582,
+      "path": "Live Chat / Sessions",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 2
+    },
+    {
+      "menu_id": 583,
+      "path": "Live Chat / Sessions / All Conversations",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,899",
+      "sequence": 25,
+      "children": 0
+    },
+    {
+      "menu_id": 584,
+      "path": "Live Chat / Sessions / Looking for Help",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,901",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 587,
+      "path": "Live Chat / Technical",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 75,
+      "children": 6
+    },
+    {
+      "menu_id": 635,
+      "path": "Live Chat / Technical / Escalated Sessions",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,965",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 592,
+      "path": "Live Chat / Technical / Member History",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,905",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 636,
+      "path": "Live Chat / Technical / Ongoing Call Sessions",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,966",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 634,
+      "path": "Live Chat / Technical / Ongoing Sessions",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,964",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 637,
+      "path": "Live Chat / Technical / Sessions Handled by Agent",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,967",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 638,
+      "path": "Live Chat / Technical / Sessions Handled by Bot",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,968",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 642,
+      "path": "Live Chat / Visitors",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,421",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 365,
+      "path": "Maintenance",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 160,
+      "children": 6
+    },
+    {
+      "menu_id": 376,
+      "path": "Maintenance / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 5
+    },
+    {
+      "menu_id": 380,
+      "path": "Maintenance / Configuration / Activity Types",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,597",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 378,
+      "path": "Maintenance / Configuration / Equipment Categories",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,593",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 379,
+      "path": "Maintenance / Configuration / Maintenance Stages",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,594",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 377,
+      "path": "Maintenance / Configuration / Maintenance Teams",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,595",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 381,
+      "path": "Maintenance / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,598",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 366,
+      "path": "Maintenance / Dashboard",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,596",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 370,
+      "path": "Maintenance / Equipment",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,591",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 367,
+      "path": "Maintenance / Maintenance",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 1,
+      "children": 2
+    },
+    {
+      "menu_id": 369,
+      "path": "Maintenance / Maintenance / Maintenance Calendar",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,589",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 368,
+      "path": "Maintenance / Maintenance / Maintenance Requests",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,585",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 371,
+      "path": "Maintenance / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 3,
+      "children": 2
+    },
+    {
+      "menu_id": 374,
+      "path": "Maintenance / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 1
+    },
+    {
+      "menu_id": 373,
+      "path": "Maintenance / Reporting / Losses Analysis",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 375,
+      "path": "Maintenance / Reporting / Maintenance Requests Analysis",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,590",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 372,
+      "path": "Maintenance / Reporting / Overall Equipment Effectiveness (OEE)",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 382,
+      "path": "Manufacturing",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 145,
+      "children": 5
+    },
+    {
+      "menu_id": 387,
+      "path": "Manufacturing / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 3
+    },
+    {
+      "menu_id": 397,
+      "path": "Manufacturing / Configuration / Operations",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,643",
+      "sequence": 100,
+      "children": 0
+    },
+    {
+      "menu_id": 402,
+      "path": "Manufacturing / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,650",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 391,
+      "path": "Manufacturing / Configuration / Work Centers",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,622",
+      "sequence": 90,
+      "children": 0
+    },
+    {
+      "menu_id": 383,
+      "path": "Manufacturing / Operations",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 4
+    },
+    {
+      "menu_id": 394,
+      "path": "Manufacturing / Operations / Manufacturing Orders",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,639",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 389,
+      "path": "Manufacturing / Operations / Scrap",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,516",
+      "sequence": 25,
+      "children": 0
+    },
+    {
+      "menu_id": 401,
+      "path": "Manufacturing / Operations / Unbuild Orders",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,649",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 395,
+      "path": "Manufacturing / Operations / Work Orders",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,613",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 384,
+      "path": "Manufacturing / Planning",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 15,
+      "children": 1
+    },
+    {
+      "menu_id": 390,
+      "path": "Manufacturing / Planning / Procurement: run scheduler",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.server,479",
+      "sequence": 135,
+      "children": 0
+    },
+    {
+      "menu_id": 385,
+      "path": "Manufacturing / Products",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 4
+    },
+    {
+      "menu_id": 393,
+      "path": "Manufacturing / Products / Bills of Materials",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,626",
+      "sequence": 13,
+      "children": 0
+    },
+    {
+      "menu_id": 388,
+      "path": "Manufacturing / Products / Lots/Serial Numbers",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,514",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 399,
+      "path": "Manufacturing / Products / Product Variants",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,645",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 398,
+      "path": "Manufacturing / Products / Products",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,644",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 386,
+      "path": "Manufacturing / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 25,
+      "children": 2
+    },
+    {
+      "menu_id": 392,
+      "path": "Manufacturing / Reporting / Overall Equipment Effectiveness",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,624",
+      "sequence": 12,
+      "children": 0
+    },
+    {
+      "menu_id": 396,
+      "path": "Manufacturing / Reporting / Work Orders",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,621",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 304,
+      "path": "Project",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 70,
+      "children": 5
+    },
+    {
+      "menu_id": 313,
+      "path": "Project / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 9
+    },
+    {
+      "menu_id": 322,
+      "path": "Project / Configuration / Activity Plans",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,465",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 321,
+      "path": "Project / Configuration / Activity Types",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,466",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 320,
+      "path": "Project / Configuration / Project Roles",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,461",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 317,
+      "path": "Project / Configuration / Project Stages",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,433",
+      "sequence": 9,
+      "children": 0
+    },
+    {
+      "menu_id": 315,
+      "path": "Project / Configuration / Projects",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,444",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 316,
+      "path": "Project / Configuration / Projects",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,443",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 314,
+      "path": "Project / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,464",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 319,
+      "path": "Project / Configuration / Tags",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,462",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 318,
+      "path": "Project / Configuration / Task Stages",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,436",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 305,
+      "path": "Project / Projects",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,441",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 306,
+      "path": "Project / Projects",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,442",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 310,
+      "path": "Project / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 99,
+      "children": 2
+    },
+    {
+      "menu_id": 312,
+      "path": "Project / Reporting / Customer Ratings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,431",
+      "sequence": 51,
+      "children": 0
+    },
+    {
+      "menu_id": 311,
+      "path": "Project / Reporting / Tasks Analysis",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,471",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 307,
+      "path": "Project / Tasks",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 2,
+      "children": 2
+    },
+    {
+      "menu_id": 309,
+      "path": "Project / Tasks / All Tasks",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,452",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 308,
+      "path": "Project / Tasks / My Tasks",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,451",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 403,
+      "path": "Purchase",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 135,
+      "children": 4
+    },
+    {
+      "menu_id": 406,
+      "path": "Purchase / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 3
+    },
+    {
+      "menu_id": 408,
+      "path": "Purchase / Configuration / Products",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 30,
+      "children": 3
+    },
+    {
+      "menu_id": 409,
+      "path": "Purchase / Configuration / Products / Attributes",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,188",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 410,
+      "path": "Purchase / Configuration / Products / Categories",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,189",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 411,
+      "path": "Purchase / Configuration / Products / Units & Packagings",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,90",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 417,
+      "path": "Purchase / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,673",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 407,
+      "path": "Purchase / Configuration / Vendor Pricelists",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,193",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 404,
+      "path": "Purchase / Orders",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 1,
+      "children": 4
+    },
+    {
+      "menu_id": 693,
+      "path": "Purchase / Orders / Purchase Agreements",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1068",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 416,
+      "path": "Purchase / Orders / Purchase Orders",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,665",
+      "sequence": 6,
+      "children": 0
+    },
+    {
+      "menu_id": 415,
+      "path": "Purchase / Orders / Requests for Quotation",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,664",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 405,
+      "path": "Purchase / Orders / Vendors",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,306",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 412,
+      "path": "Purchase / Products",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 5,
+      "children": 2
+    },
+    {
+      "menu_id": 414,
+      "path": "Purchase / Products / Product Variants",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,663",
+      "sequence": 21,
+      "children": 0
+    },
+    {
+      "menu_id": 413,
+      "path": "Purchase / Products / Products",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,662",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 418,
+      "path": "Purchase / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 99,
+      "children": 1
+    },
+    {
+      "menu_id": 419,
+      "path": "Purchase / Reporting / Purchase",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,676",
+      "sequence": 99,
+      "children": 0
+    },
+    {
+      "menu_id": 607,
+      "path": "Recruitment",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 210,
+      "children": 3
+    },
+    {
+      "menu_id": 608,
+      "path": "Recruitment / Applications",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 2,
+      "children": 4
+    },
+    {
+      "menu_id": 612,
+      "path": "Recruitment / Applications / All Applications",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,932",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 609,
+      "path": "Recruitment / Applications / By Job Positions",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,946",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 610,
+      "path": "Recruitment / Applications / By Job Positions",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,947",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 611,
+      "path": "Recruitment / Applications / By Talent Pools",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,939",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 615,
+      "path": "Recruitment / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 8
+    },
+    {
+      "menu_id": 629,
+      "path": "Recruitment / Configuration / Activities",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 40,
+      "children": 2
+    },
+    {
+      "menu_id": 631,
+      "path": "Recruitment / Configuration / Activities / Activity Plans",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,950",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 630,
+      "path": "Recruitment / Configuration / Activities / Activity Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,949",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 623,
+      "path": "Recruitment / Configuration / Applications",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 3
+    },
+    {
+      "menu_id": 624,
+      "path": "Recruitment / Configuration / Applications / Degrees",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,923",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 625,
+      "path": "Recruitment / Configuration / Applications / Refuse Reasons",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,928",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 626,
+      "path": "Recruitment / Configuration / Applications / Tags",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,927",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 627,
+      "path": "Recruitment / Configuration / Employees",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 30,
+      "children": 2
+    },
+    {
+      "menu_id": 628,
+      "path": "Recruitment / Configuration / Employees / Departments",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,941",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 644,
+      "path": "Recruitment / Configuration / Employees / Skill Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,851",
+      "sequence": 35,
+      "children": 0
+    },
+    {
+      "menu_id": 645,
+      "path": "Recruitment / Configuration / Interviews",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,992",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 632,
+      "path": "Recruitment / Configuration / Job Boards",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 50,
+      "children": 1
+    },
+    {
+      "menu_id": 633,
+      "path": "Recruitment / Configuration / Job Boards / Emails",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,948",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 617,
+      "path": "Recruitment / Configuration / Job Positions",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 2
+    },
+    {
+      "menu_id": 619,
+      "path": "Recruitment / Configuration / Job Positions / Employment Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,811",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 618,
+      "path": "Recruitment / Configuration / Job Positions / Stages",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,926",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 616,
+      "path": "Recruitment / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,940",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 620,
+      "path": "Recruitment / Configuration / UTMs",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 15,
+      "children": 2
+    },
+    {
+      "menu_id": 622,
+      "path": "Recruitment / Configuration / UTMs / Mediums",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,101",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 621,
+      "path": "Recruitment / Configuration / UTMs / Sources",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,102",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 613,
+      "path": "Recruitment / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 99,
+      "children": 1
+    },
+    {
+      "menu_id": 614,
+      "path": "Recruitment / Reporting / Recruitment Analysis",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,934",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 420,
+      "path": "Repairs",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 165,
+      "children": 3
+    },
+    {
+      "menu_id": 424,
+      "path": "Repairs / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 3
+    },
+    {
+      "menu_id": 426,
+      "path": "Repairs / Configuration / Product Variants",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,560",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 425,
+      "path": "Repairs / Configuration / Products",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,559",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 427,
+      "path": "Repairs / Configuration / Repair Orders Tags",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,688",
+      "sequence": 1000,
+      "children": 0
+    },
+    {
+      "menu_id": 421,
+      "path": "Repairs / Orders",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,684",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 422,
+      "path": "Repairs / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 15,
+      "children": 1
+    },
+    {
+      "menu_id": 423,
+      "path": "Repairs / Reporting / Repairs",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,685",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 239,
+      "path": "Sales",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 30,
+      "children": 5
+    },
+    {
+      "menu_id": 257,
+      "path": "Sales / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 50,
+      "children": 6
+    },
+    {
+      "menu_id": 273,
+      "path": "Sales / Configuration / Activities",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 55,
+      "children": 2
+    },
+    {
+      "menu_id": 275,
+      "path": "Sales / Configuration / Activities / Activity Plans",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,392",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 274,
+      "path": "Sales / Configuration / Activities / Activity Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,391",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 268,
+      "path": "Sales / Configuration / Online Payments",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 45,
+      "children": 4
+    },
+    {
+      "menu_id": 270,
+      "path": "Sales / Configuration / Online Payments / Payment Methods",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,230",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 269,
+      "path": "Sales / Configuration / Online Payments / Payment Providers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,229",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 271,
+      "path": "Sales / Configuration / Online Payments / Payment Tokens",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,233",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 272,
+      "path": "Sales / Configuration / Online Payments / Payment Transactions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,231",
+      "sequence": 40,
+      "children": 0
+    },
+    {
+      "menu_id": 262,
+      "path": "Sales / Configuration / Products",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 40,
+      "children": 5
+    },
+    {
+      "menu_id": 263,
+      "path": "Sales / Configuration / Products / Attributes",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,188",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 265,
+      "path": "Sales / Configuration / Products / Categories",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,189",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 264,
+      "path": "Sales / Configuration / Products / Combo Choices",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,190",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 266,
+      "path": "Sales / Configuration / Products / Product Tags",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,181",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 267,
+      "path": "Sales / Configuration / Products / Units & Packagings",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,90",
+      "sequence": 35,
+      "children": 0
+    },
+    {
+      "menu_id": 260,
+      "path": "Sales / Configuration / Sales Orders",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 30,
+      "children": 4
+    },
+    {
+      "menu_id": 658,
+      "path": "Sales / Configuration / Sales Orders / Delivery Methods",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1010",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 278,
+      "path": "Sales / Configuration / Sales Orders / Headers/Footers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,400",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 277,
+      "path": "Sales / Configuration / Sales Orders / Quotation Templates",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,397",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 261,
+      "path": "Sales / Configuration / Sales Orders / Tags",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,204",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 259,
+      "path": "Sales / Configuration / Sales Teams",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,207",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 258,
+      "path": "Sales / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,375",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 240,
+      "path": "Sales / Orders",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 4
+    },
+    {
+      "menu_id": 244,
+      "path": "Sales / Orders / Customers",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,305",
+      "sequence": 40,
+      "children": 0
+    },
+    {
+      "menu_id": 242,
+      "path": "Sales / Orders / Orders",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,377",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 241,
+      "path": "Sales / Orders / Quotations",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,378",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 243,
+      "path": "Sales / Orders / Sales Teams",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,205",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 248,
+      "path": "Sales / Products",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 30,
+      "children": 5
+    },
+    {
+      "menu_id": 660,
+      "path": "Sales / Products / Discount & Loyalty",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,962",
+      "sequence": 40,
+      "children": 0
+    },
+    {
+      "menu_id": 661,
+      "path": "Sales / Products / Gift cards & eWallet",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,963",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 251,
+      "path": "Sales / Products / Pricelists",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,191",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 250,
+      "path": "Sales / Products / Product Variants",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,185",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 249,
+      "path": "Sales / Products / Products",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,393",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 252,
+      "path": "Sales / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 40,
+      "children": 4
+    },
+    {
+      "menu_id": 256,
+      "path": "Sales / Reporting / Customers",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,365",
+      "sequence": 40,
+      "children": 0
+    },
+    {
+      "menu_id": 255,
+      "path": "Sales / Reporting / Products",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,364",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 253,
+      "path": "Sales / Reporting / Sales",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,362",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 254,
+      "path": "Sales / Reporting / Salespersons",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,363",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 245,
+      "path": "Sales / To Invoice",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 20,
+      "children": 2
+    },
+    {
+      "menu_id": 246,
+      "path": "Sales / To Invoice / Orders to Invoice",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,380",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 247,
+      "path": "Sales / To Invoice / Orders to Upsell",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,381",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 1,
+      "path": "Settings",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 550,
+      "children": 7
+    },
+    {
+      "menu_id": 2,
+      "path": "Settings / Custom Shortcuts",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 428,
+      "path": "Settings / Gamification Tools",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 6
+    },
+    {
+      "menu_id": 432,
+      "path": "Settings / Gamification Tools / Badges",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,696",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 429,
+      "path": "Settings / Gamification Tools / Challenges",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,700",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 431,
+      "path": "Settings / Gamification Tools / Goal Definitions",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,699",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 430,
+      "path": "Settings / Gamification Tools / Goals",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,697",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 434,
+      "path": "Settings / Gamification Tools / Karma Tracking",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,695",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 433,
+      "path": "Settings / Gamification Tools / Ranks",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,694",
+      "sequence": 40,
+      "children": 0
+    },
+    {
+      "menu_id": 68,
+      "path": "Settings / General Settings",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,85",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 7,
+      "path": "Settings / General Settings",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 8,
+      "path": "Settings / Technical",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 110,
+      "children": 16
+    },
+    {
+      "menu_id": 18,
+      "path": "Settings / Technical / Actions",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 5,
+      "children": 8
+    },
+    {
+      "menu_id": 19,
+      "path": "Settings / Technical / Actions / Actions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,6",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 22,
+      "path": "Settings / Technical / Actions / Client Actions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,9",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 25,
+      "path": "Settings / Technical / Actions / Configuration Wizards",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,12",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 24,
+      "path": "Settings / Technical / Actions / Embedded Actions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,11",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 20,
+      "path": "Settings / Technical / Actions / Reports",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,7",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 23,
+      "path": "Settings / Technical / Actions / Server Actions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,10",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 46,
+      "path": "Settings / Technical / Actions / User-defined Defaults",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,34",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 21,
+      "path": "Settings / Technical / Actions / Window Actions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,8",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 114,
+      "path": "Settings / Technical / Activities",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 2,
+      "children": 3
+    },
+    {
+      "menu_id": 115,
+      "path": "Settings / Technical / Activities / Activity Overview",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,128",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 117,
+      "path": "Settings / Technical / Activities / Activity Plans",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,131",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 116,
+      "path": "Settings / Technical / Activities / Activity Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,127",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 12,
+      "path": "Settings / Technical / Automation",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 3
+    },
+    {
+      "menu_id": 694,
+      "path": "Settings / Technical / Automation / Automation Rules",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1077",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 28,
+      "path": "Settings / Technical / Automation / Scheduled Actions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,16",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 29,
+      "path": "Settings / Technical / Automation / Scheduled Actions Triggers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,17",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 126,
+      "path": "Settings / Technical / Calendar",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 30,
+      "children": 2
+    },
+    {
+      "menu_id": 128,
+      "path": "Settings / Technical / Calendar / Calendar Alarm",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,166",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 127,
+      "path": "Settings / Technical / Calendar / Meeting Types",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,165",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 11,
+      "path": "Settings / Technical / Database Structure",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 10
+    },
+    {
+      "menu_id": 26,
+      "path": "Settings / Technical / Database Structure / Assets",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,14",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 40,
+      "path": "Settings / Technical / Database Structure / Attachments",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,27",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 17,
+      "path": "Settings / Technical / Database Structure / Decimal Accuracy",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,5",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 33,
+      "path": "Settings / Technical / Database Structure / Fields",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,21",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 34,
+      "path": "Settings / Technical / Database Structure / Fields Selection",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,22",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 47,
+      "path": "Settings / Technical / Database Structure / Logging",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,38",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 38,
+      "path": "Settings / Technical / Database Structure / ManyToMany Relations",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,25",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 37,
+      "path": "Settings / Technical / Database Structure / Model Constraints",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,24",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 32,
+      "path": "Settings / Technical / Database Structure / Models",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,20",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 57,
+      "path": "Settings / Technical / Database Structure / Profiling",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,52",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 99,
+      "path": "Settings / Technical / Discuss",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 1,
+      "children": 17
+    },
+    {
+      "menu_id": 106,
+      "path": "Settings / Technical / Discuss / Email Blacklist",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,151",
+      "sequence": 22,
+      "children": 0
+    },
+    {
+      "menu_id": 105,
+      "path": "Settings / Technical / Discuss / Followers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,116",
+      "sequence": 21,
+      "children": 0
+    },
+    {
+      "menu_id": 113,
+      "path": "Settings / Technical / Discuss / GIF favorite",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,121",
+      "sequence": 56,
+      "children": 0
+    },
+    {
+      "menu_id": 108,
+      "path": "Settings / Technical / Discuss / Guests",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,145",
+      "sequence": 51,
+      "children": 0
+    },
+    {
+      "menu_id": 110,
+      "path": "Settings / Technical / Discuss / ICE Servers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,117",
+      "sequence": 53,
+      "children": 0
+    },
+    {
+      "menu_id": 112,
+      "path": "Settings / Technical / Discuss / Link Previews",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,120",
+      "sequence": 55,
+      "children": 0
+    },
+    {
+      "menu_id": 683,
+      "path": "Settings / Technical / Discuss / Mail Groups",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1054",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 111,
+      "path": "Settings / Technical / Discuss / Message Reactions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,146",
+      "sequence": 54,
+      "children": 0
+    },
+    {
+      "menu_id": 100,
+      "path": "Settings / Technical / Discuss / Messages",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,112",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 684,
+      "path": "Settings / Technical / Discuss / Moderation Rules",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1053",
+      "sequence": 51,
+      "children": 0
+    },
+    {
+      "menu_id": 104,
+      "path": "Settings / Technical / Discuss / Notifications",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,111",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 109,
+      "path": "Settings / Technical / Discuss / RTC sessions",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,119",
+      "sequence": 52,
+      "children": 0
+    },
+    {
+      "menu_id": 303,
+      "path": "Settings / Technical / Discuss / Ratings",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,427",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 101,
+      "path": "Settings / Technical / Discuss / Scheduled Messages",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,113",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 102,
+      "path": "Settings / Technical / Discuss / Subtypes",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,109",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 103,
+      "path": "Settings / Technical / Discuss / Tracking Values",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,110",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 107,
+      "path": "Settings / Technical / Discuss / User Settings",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,148",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 10,
+      "path": "Settings / Technical / Email",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 3,
+      "children": 12
+    },
+    {
+      "menu_id": 93,
+      "path": "Settings / Technical / Email / Alias Domains",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,142",
+      "sequence": 12,
+      "children": 0
+    },
+    {
+      "menu_id": 92,
+      "path": "Settings / Technical / Email / Aliases",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,143",
+      "sequence": 11,
+      "children": 0
+    },
+    {
+      "menu_id": 96,
+      "path": "Settings / Technical / Email / Channels",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,122",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 97,
+      "path": "Settings / Technical / Email / Channels/Members",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,118",
+      "sequence": 21,
+      "children": 0
+    },
+    {
+      "menu_id": 148,
+      "path": "Settings / Technical / Email / Digest Emails",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,225",
+      "sequence": 80,
+      "children": 0
+    },
+    {
+      "menu_id": 149,
+      "path": "Settings / Technical / Email / Digest Tips",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,226",
+      "sequence": 81,
+      "children": 0
+    },
+    {
+      "menu_id": 95,
+      "path": "Settings / Technical / Email / Email Templates",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,149",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 91,
+      "path": "Settings / Technical / Email / Emails",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,114",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 94,
+      "path": "Settings / Technical / Email / Incoming Mail Servers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,108",
+      "sequence": 6,
+      "children": 0
+    },
+    {
+      "menu_id": 98,
+      "path": "Settings / Technical / Email / Mail Gateway Allowed",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,144",
+      "sequence": 22,
+      "children": 0
+    },
+    {
+      "menu_id": 31,
+      "path": "Settings / Technical / Email / Outgoing Mail Servers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,19",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 147,
+      "path": "Settings / Technical / Email / Snailmail Letters",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,223",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 70,
+      "path": "Settings / Technical / IAP",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 5,
+      "children": 2
+    },
+    {
+      "menu_id": 71,
+      "path": "Settings / Technical / IAP / IAP Accounts",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,89",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 682,
+      "path": "Settings / Technical / IAP / IAP Partners",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1045",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 14,
+      "path": "Settings / Technical / Parameters",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 24,
+      "children": 1
+    },
+    {
+      "menu_id": 27,
+      "path": "Settings / Technical / Parameters / System Parameters",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,15",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 141,
+      "path": "Settings / Technical / Phone / SMS",
+      "depth": 4,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 3,
+      "children": 3
+    },
+    {
+      "menu_id": 142,
+      "path": "Settings / Technical / Phone / SMS / Phone Blacklist",
+      "depth": 5,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,171",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 145,
+      "path": "Settings / Technical / Phone / SMS / SMS",
+      "depth": 5,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,219",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 146,
+      "path": "Settings / Technical / Phone / SMS / SMS Templates",
+      "depth": 5,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,221",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 143,
+      "path": "Settings / Technical / Privacy",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 26,
+      "children": 1
+    },
+    {
+      "menu_id": 144,
+      "path": "Settings / Technical / Privacy / Privacy Logs",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,176",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 64,
+      "path": "Settings / Technical / Reporting",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 15,
+      "children": 2
+    },
+    {
+      "menu_id": 65,
+      "path": "Settings / Technical / Reporting / Paper Format",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,76",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 66,
+      "path": "Settings / Technical / Reporting / Reports",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,77",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 74,
+      "path": "Settings / Technical / Resource",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 30,
+      "children": 3
+    },
+    {
+      "menu_id": 76,
+      "path": "Settings / Technical / Resource / Resource Time Off",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,95",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 77,
+      "path": "Settings / Technical / Resource / Resources",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,93",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 75,
+      "path": "Settings / Technical / Resource / Working Schedules",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,99",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 13,
+      "path": "Settings / Technical / Security",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 25,
+      "children": 3
+    },
+    {
+      "menu_id": 39,
+      "path": "Settings / Technical / Security / Access Rights",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,26",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 41,
+      "path": "Settings / Technical / Security / Record Rules",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,28",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 63,
+      "path": "Settings / Technical / Security / User Devices",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,74",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 35,
+      "path": "Settings / Technical / Sequences & Identifiers",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 21,
+      "children": 2
+    },
+    {
+      "menu_id": 36,
+      "path": "Settings / Technical / Sequences & Identifiers / External Identifiers",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,23",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 42,
+      "path": "Settings / Technical / Sequences & Identifiers / Sequences",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,29",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 9,
+      "path": "Settings / Technical / User Interface",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 7
+    },
+    {
+      "menu_id": 45,
+      "path": "Settings / Technical / User Interface / Customized Views",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,33",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 43,
+      "path": "Settings / Technical / User Interface / Menu Items",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,30",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 72,
+      "path": "Settings / Technical / User Interface / Onboardings",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,91",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 73,
+      "path": "Settings / Technical / User Interface / Onboardings Steps",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,92",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 69,
+      "path": "Settings / Technical / User Interface / Tours",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,86",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 30,
+      "path": "Settings / Technical / User Interface / User-defined Filters",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,18",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 44,
+      "path": "Settings / Technical / User Interface / Views",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,31",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 4,
+      "path": "Settings / Translations",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 2,
+      "children": 3
+    },
+    {
+      "menu_id": 5,
+      "path": "Settings / Translations / Application Terms",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 4,
+      "children": 1
+    },
+    {
+      "menu_id": 716,
+      "path": "Settings / Translations / Application Terms / Transifex Code Translations",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.server,1102",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 6,
+      "path": "Settings / Translations / Import / Export",
+      "depth": 4,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 3,
+      "children": 2
+    },
+    {
+      "menu_id": 56,
+      "path": "Settings / Translations / Import / Export / Export Translation",
+      "depth": 5,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,48",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 54,
+      "path": "Settings / Translations / Import / Export / Import Translation",
+      "depth": 5,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,45",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 59,
+      "path": "Settings / Translations / Languages",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,54",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 3,
+      "path": "Settings / Users & Companies",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 1,
+      "children": 5
+    },
+    {
+      "menu_id": 58,
+      "path": "Settings / Users & Companies / Companies",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,53",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 61,
+      "path": "Settings / Users & Companies / Groups",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,68",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 734,
+      "path": "Settings / Users & Companies / OAuth Providers",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1125",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 60,
+      "path": "Settings / Users & Companies / Privileges",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,67",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 62,
+      "path": "Settings / Users & Companies / Users",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,70",
+      "sequence": 0,
+      "children": 0
+    },
+    {
+      "menu_id": 435,
+      "path": "Surveys",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 130,
+      "children": 3
+    },
+    {
+      "menu_id": 438,
+      "path": "Surveys / Participants",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,706",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 436,
+      "path": "Surveys / Questions & Answers",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 90,
+      "children": 3
+    },
+    {
+      "menu_id": 441,
+      "path": "Surveys / Questions & Answers / Detailed Answers",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,707",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 439,
+      "path": "Surveys / Questions & Answers / Questions",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,708",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 440,
+      "path": "Surveys / Questions & Answers / Suggested Values",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,709",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 437,
+      "path": "Surveys / Surveys",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,705",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 16,
+      "path": "Tests",
+      "depth": 1,
+      "is_leaf": true,
+      "opens": "",
+      "sequence": 1000,
+      "children": 0
+    },
+    {
+      "menu_id": 559,
+      "path": "Time Off",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 225,
+      "children": 5
+    },
+    {
+      "menu_id": 572,
+      "path": "Time Off / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 5,
+      "children": 5
+    },
+    {
+      "menu_id": 574,
+      "path": "Time Off / Configuration / Accrual Plans",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,882",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 577,
+      "path": "Time Off / Configuration / Activity Types",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,884",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 576,
+      "path": "Time Off / Configuration / Mandatory Days",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,883",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 575,
+      "path": "Time Off / Configuration / Public Holidays",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,870",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 573,
+      "path": "Time Off / Configuration / Time Off Types",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,877",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 565,
+      "path": "Time Off / Management",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 3,
+      "children": 2
+    },
+    {
+      "menu_id": 567,
+      "path": "Time Off / Management / Allocations",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,881",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 566,
+      "path": "Time Off / Management / Time Off",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,874",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 560,
+      "path": "Time Off / My Time",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 1,
+      "children": 3
+    },
+    {
+      "menu_id": 561,
+      "path": "Time Off / My Time / Dashboard",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,871",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 563,
+      "path": "Time Off / My Time / My Allocations",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,878",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 562,
+      "path": "Time Off / My Time / My Time Off",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,873",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 564,
+      "path": "Time Off / Overview",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,888",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 568,
+      "path": "Time Off / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 4,
+      "children": 3
+    },
+    {
+      "menu_id": 571,
+      "path": "Time Off / Reporting / Balance",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.server,890",
+      "sequence": 4,
+      "children": 0
+    },
+    {
+      "menu_id": 569,
+      "path": "Time Off / Reporting / by Employee",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,876",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 570,
+      "path": "Time Off / Reporting / by Type",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,886",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 646,
+      "path": "Timesheets",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 75,
+      "children": 4
+    },
+    {
+      "menu_id": 656,
+      "path": "Timesheets / Configuration",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,999",
+      "sequence": 100,
+      "children": 0
+    },
+    {
+      "menu_id": 647,
+      "path": "Timesheets / My Timesheets",
+      "depth": 2,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,993",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 651,
+      "path": "Timesheets / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 99,
+      "children": 2
+    },
+    {
+      "menu_id": 652,
+      "path": "Timesheets / Reporting / Timesheets",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 4
+    },
+    {
+      "menu_id": 659,
+      "path": "Timesheets / Reporting / Timesheets / Attendance Analysis",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1012",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 681,
+      "path": "Timesheets / Reporting / Timesheets / By Billing Type",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1042",
+      "sequence": 40,
+      "children": 0
+    },
+    {
+      "menu_id": 653,
+      "path": "Timesheets / Reporting / Timesheets / By Employee",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1000",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 654,
+      "path": "Timesheets / Reporting / Timesheets / By Project",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1001",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 655,
+      "path": "Timesheets / Reporting / Timesheets / By Task",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1002",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 648,
+      "path": "Timesheets / Timesheets",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 5,
+      "children": 2
+    },
+    {
+      "menu_id": 650,
+      "path": "Timesheets / Timesheets / All Timesheets",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,996",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 649,
+      "path": "Timesheets / Timesheets / My Timesheets",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,993",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 323,
+      "path": "To-do",
+      "depth": 1,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,475",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 279,
+      "path": "Website",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 95,
+      "children": 3
+    },
+    {
+      "menu_id": 297,
+      "path": "Website / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 8
+    },
+    {
+      "menu_id": 299,
+      "path": "Website / Configuration / Apps",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,405",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 717,
+      "path": "Website / Configuration / Blog",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 100,
+      "children": 3
+    },
+    {
+      "menu_id": 718,
+      "path": "Website / Configuration / Blog / Blogs",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1104",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 720,
+      "path": "Website / Configuration / Blog / Tag Categories",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1106",
+      "sequence": 40,
+      "children": 0
+    },
+    {
+      "menu_id": 719,
+      "path": "Website / Configuration / Blog / Tags",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1105",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 722,
+      "path": "Website / Configuration / Forum",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 170,
+      "children": 5
+    },
+    {
+      "menu_id": 726,
+      "path": "Website / Configuration / Forum / Badges",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,696",
+      "sequence": 40,
+      "children": 0
+    },
+    {
+      "menu_id": 727,
+      "path": "Website / Configuration / Forum / Close Reasons",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1113",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 723,
+      "path": "Website / Configuration / Forum / Forums",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1115",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 724,
+      "path": "Website / Configuration / Forum / Ranks",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,694",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 725,
+      "path": "Website / Configuration / Forum / Tags",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1114",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 685,
+      "path": "Website / Configuration / Mailing Lists",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 200,
+      "children": 2
+    },
+    {
+      "menu_id": 686,
+      "path": "Website / Configuration / Mailing Lists / Mailing Lists",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1054",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 687,
+      "path": "Website / Configuration / Mailing Lists / Moderation Rules",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1053",
+      "sequence": 51,
+      "children": 0
+    },
+    {
+      "menu_id": 301,
+      "path": "Website / Configuration / Menus",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,408",
+      "sequence": 45,
+      "children": 0
+    },
+    {
+      "menu_id": 302,
+      "path": "Website / Configuration / Redirects",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,424",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 298,
+      "path": "Website / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,423",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 300,
+      "path": "Website / Configuration / Websites",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,407",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 289,
+      "path": "Website / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 30,
+      "children": 3
+    },
+    {
+      "menu_id": 291,
+      "path": "Website / Reporting / Analytics",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.server,413",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 296,
+      "path": "Website / Reporting / Page Views",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,422",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 295,
+      "path": "Website / Reporting / Visitors",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,421",
+      "sequence": 40,
+      "children": 0
+    },
+    {
+      "menu_id": 280,
+      "path": "Website / Site",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 10,
+      "children": 4
+    },
+    {
+      "menu_id": 283,
+      "path": "Website / Site / Content",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 30,
+      "children": 6
+    },
+    {
+      "menu_id": 721,
+      "path": "Website / Site / Content / Blog Posts",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1107",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 676,
+      "path": "Website / Site / Content / Courses",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1029",
+      "sequence": 50,
+      "children": 0
+    },
+    {
+      "menu_id": 728,
+      "path": "Website / Site / Content / Forum Posts",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1110",
+      "sequence": 80,
+      "children": 0
+    },
+    {
+      "menu_id": 657,
+      "path": "Website / Site / Content / Jobs",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1009",
+      "sequence": 70,
+      "children": 0
+    },
+    {
+      "menu_id": 293,
+      "path": "Website / Site / Content / Pages",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,417",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 292,
+      "path": "Website / Site / Content / Technical Pages",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,404",
+      "sequence": 90,
+      "children": 0
+    },
+    {
+      "menu_id": 281,
+      "path": "Website / Site / Homepage",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.client,410",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 282,
+      "path": "Website / Site / Menu Editor",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.client,410",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 284,
+      "path": "Website / Site / This page",
+      "depth": 3,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 40,
+      "children": 5
+    },
+    {
+      "menu_id": 288,
+      "path": "Website / Site / This page / Edit Menu",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.client,410",
+      "sequence": 40,
+      "children": 0
+    },
+    {
+      "menu_id": 287,
+      "path": "Website / Site / This page / HTML / CSS Editor",
+      "depth": 5,
+      "is_leaf": true,
+      "opens": "ir.actions.client,410",
+      "sequence": 30,
+      "children": 0
+    },
+    {
+      "menu_id": 489,
+      "path": "Website / Site / This page / Link Tracker",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.client,410",
+      "sequence": 25,
+      "children": 0
+    },
+    {
+      "menu_id": 286,
+      "path": "Website / Site / This page / Optimize SEO",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.client,410",
+      "sequence": 20,
+      "children": 0
+    },
+    {
+      "menu_id": 285,
+      "path": "Website / Site / This page / Properties",
+      "depth": 4,
+      "is_leaf": true,
+      "opens": "ir.actions.client,410",
+      "sequence": 10,
+      "children": 0
+    },
+    {
+      "menu_id": 662,
+      "path": "eLearning",
+      "depth": 1,
+      "is_leaf": false,
+      "opens": "ir.actions.act_window,1025",
+      "sequence": 100,
+      "children": 4
+    },
+    {
+      "menu_id": 665,
+      "path": "eLearning / Configuration",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 99,
+      "children": 3
+    },
+    {
+      "menu_id": 675,
+      "path": "eLearning / Configuration / Content Tags",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1020",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 674,
+      "path": "eLearning / Configuration / Course Groups",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1028",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 673,
+      "path": "eLearning / Configuration / Settings",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1015",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 663,
+      "path": "eLearning / Courses",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 1,
+      "children": 3
+    },
+    {
+      "menu_id": 680,
+      "path": "eLearning / Courses / Certifications",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1034",
+      "sequence": 3,
+      "children": 0
+    },
+    {
+      "menu_id": 667,
+      "path": "eLearning / Courses / Contents",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1021",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 666,
+      "path": "eLearning / Courses / Courses",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1025",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 737,
+      "path": "eLearning / Forum",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 2,
+      "children": 2
+    },
+    {
+      "menu_id": 738,
+      "path": "eLearning / Forum / Forums",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1132",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 739,
+      "path": "eLearning / Forum / Posts",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1133",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 664,
+      "path": "eLearning / Reporting",
+      "depth": 2,
+      "is_leaf": false,
+      "opens": "",
+      "sequence": 9,
+      "children": 5
+    },
+    {
+      "menu_id": 670,
+      "path": "eLearning / Reporting / Attendees",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1024",
+      "sequence": 5,
+      "children": 0
+    },
+    {
+      "menu_id": 669,
+      "path": "eLearning / Reporting / Contents",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1022",
+      "sequence": 2,
+      "children": 0
+    },
+    {
+      "menu_id": 668,
+      "path": "eLearning / Reporting / Courses",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1026",
+      "sequence": 1,
+      "children": 0
+    },
+    {
+      "menu_id": 672,
+      "path": "eLearning / Reporting / Quizzes",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1018",
+      "sequence": 15,
+      "children": 0
+    },
+    {
+      "menu_id": 671,
+      "path": "eLearning / Reporting / Reviews",
+      "depth": 3,
+      "is_leaf": true,
+      "opens": "ir.actions.act_window,1016",
+      "sequence": 10,
+      "children": 0
+    }
+  ]
+}

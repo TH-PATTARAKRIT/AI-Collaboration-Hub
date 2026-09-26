@@ -1,0 +1,78 @@
+{
+  "ts": "2026-09-25T19:49:20.974671+00:00",
+  "uid": 5,
+  "reachable": 4,
+  "refused": 6,
+  "rows": [
+    {
+      "surface": "menus shown to the user",
+      "model": "ir.ui.menu",
+      "status": "REACHABLE",
+      "count": 681,
+      "note": "yes"
+    },
+    {
+      "surface": "screens / windows",
+      "model": "ir.actions.act_window",
+      "status": "REFUSED",
+      "count": null,
+      "note": "You are not allowed to access 'Action Window' (ir.actions.act_window) "
+    },
+    {
+      "surface": "server actions",
+      "model": "ir.actions.server",
+      "status": "REFUSED",
+      "count": null,
+      "note": "You are not allowed to access 'Server Action' (ir.actions.server) reco"
+    },
+    {
+      "surface": "report outputs",
+      "model": "ir.actions.report",
+      "status": "REACHABLE",
+      "count": 79,
+      "note": "yes"
+    },
+    {
+      "surface": "view layouts",
+      "model": "ir.ui.view",
+      "status": "REFUSED",
+      "count": null,
+      "note": "You are not allowed to access 'View' (ir.ui.view) records."
+    },
+    {
+      "surface": "feature switches (settings)",
+      "model": "res.config.settings",
+      "status": "REFUSED",
+      "count": null,
+      "note": "You are not allowed to access 'Config Settings' (res.config.settings) "
+    },
+    {
+      "surface": "field-level selections",
+      "model": "ir.model.fields",
+      "status": "REFUSED",
+      "count": null,
+      "note": "You are not allowed to access 'Fields' (ir.model.fields) records."
+    },
+    {
+      "surface": "record-level states",
+      "model": "ir.model.fields.selection",
+      "status": "REFUSED",
+      "count": null,
+      "note": "You are not allowed to access 'Fields Selection' (ir.model.fields.sele"
+    },
+    {
+      "surface": "groups the user may see",
+      "model": "res.groups",
+      "status": "REACHABLE",
+      "count": 112,
+      "note": "yes"
+    },
+    {
+      "surface": "modules as the user sees them",
+      "model": "ir.module.module",
+      "status": "REACHABLE",
+      "count": 713,
+      "note": "yes"
+    }
+  ]
+}

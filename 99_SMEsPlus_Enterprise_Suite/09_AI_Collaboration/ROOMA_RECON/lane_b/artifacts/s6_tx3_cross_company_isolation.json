@@ -1,0 +1,4 @@
+{
+  "company_1_read_error": "<Fault 4: \"Uh-oh! Looks like you have stumbled upon some top-secret records.\\n\\nSorry, ROOM B Observer (Lane B) (id=5) doesn't have 'read' access to:\\n- Companies (res.company)\\n\\nIf you really, really need access, perhaps you can win over your friendly administrator with a batch of freshly baked cookies.\">",
+  "cross_company_create_error": "<Fault 4: \"Uh-oh! Looks like you have stumbled upon some top-secret records.\\n\\nSorry, ROOM B Observer (Lane B) (id=5) doesn't have 'create' access to:\\n- Contact (res.partner)\\n\\nIf you really, really need access, perhaps you can win over your friendly administrator with a batch of freshly baked cookies.\\n\\nThis seems to be a multi-company issue, but you do not have access to the proper company to access the record anyhow.\">"
+}

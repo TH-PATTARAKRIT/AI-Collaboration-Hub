@@ -1,0 +1,32 @@
+{
+  "res.partner": {
+    "reachable": true,
+    "count": 4,
+    "refusal": null
+  },
+  "res.company": {
+    "reachable": true,
+    "count": 1,
+    "refusal": null
+  },
+  "res.users": {
+    "reachable": true,
+    "count": 2,
+    "refusal": null
+  },
+  "ir.rule": {
+    "reachable": false,
+    "count": null,
+    "refusal": "You are not allowed to access 'Record Rule' (ir.rule) records."
+  },
+  "ir.model.access": {
+    "reachable": false,
+    "count": null,
+    "refusal": "You are not allowed to access 'Model Access' (ir.model.access) records."
+  },
+  "ir.cron": {
+    "reachable": false,
+    "count": null,
+    "refusal": "You are not allowed to access 'Scheduled Actions' (ir.cron) records."
+  }
+}

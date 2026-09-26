@@ -1,0 +1,8 @@
+group 1 read: (True, [{'id': 1, 'name': 'Role / User', 'privilege_id': False, 'display_name': 'Role / User'}])
+search name=User & privilege_id.name=Role: (True, [])
+search name=User (any privilege): (True, [{'id': 47, 'name': 'User', 'privilege_id': [10, 'Project']}, {'id': 68, 'name': 'User', 'privilege_id': [13, 'Manufacturing']}, {'id': 75, 'name': 'User', 'privilege_id': [14, 'Purchase']}, {'id': 82, 'name': 'User', 'privilege_id': [16, 'Events']}, {'id': 98, 'name': 'User', 'privilege_id': [23, 'Live Chat']}, {'id': 79, 'name': 'User', 'privilege_id': [15, 'Surveys']}, {'id': 53, 'name': 'User', 'privilege_id': [11, 'Inventory']}])
+privilege model fields: ['display_name', 'name', 'sequence', 'category_id']
+privilege search name=Role: (True, [])
+privilege ilike Role: (True, [])
+xmlid of group 1 (ir.model.data): (False, 'Contact your administrator to request access if necessary.')
+group 1 via context lang en_US: (True, [{'id': 1, 'name': 'Role / User', 'privilege_id': False}])

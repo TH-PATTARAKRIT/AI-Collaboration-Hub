@@ -1,0 +1,35 @@
+{
+  "created_partner_id": 10,
+  "before_update": [
+    {
+      "id": 10,
+      "name": "ROOMB_TEST_OBS_PARTNER_20260926_013029",
+      "company_id": [
+        2,
+        "ROOMB_TEST"
+      ],
+      "email": "obs_test@roomb.local",
+      "phone": "+6621234567",
+      "vat": "TH1234567890123",
+      "active": true,
+      "create_uid": [
+        5,
+        "ROOM B Observer (Lane B)"
+      ],
+      "create_date": "2026-09-25 18:30:29"
+    }
+  ],
+  "after_update_and_archive": [
+    {
+      "id": 10,
+      "name": "ROOMB_TEST_OBS_PARTNER_20260926_013029",
+      "phone": "+6629876543",
+      "active": false,
+      "write_uid": [
+        5,
+        "ROOM B Observer (Lane B)"
+      ],
+      "write_date": "2026-09-25 18:30:29"
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "status": "ok",
+  "value": {
+    "id": {
+      "readonly": true,
+      "required": false,
+      "string": "ID",
+      "type": "integer"
+    },
+    "display_name": {
+      "readonly": true,
+      "required": false,
+      "string": "Display Name",
+      "type": "char"
+    },
+    "name": {
+      "readonly": false,
+      "required": true,
+      "string": "Country Name",
+      "type": "char"
+    },
+    "code": {
+      "readonly": false,
+      "required": true,
+      "string": "Country Code",
+      "type": "char"
+    },
+    "address_format": {
+      "readonly": false,
+      "required": false,
+      "string": "Layout in Reports",
+      "type": "text"
+    },
+    "address_view_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Input View",
+      "type": "many2one"
+    },
+    "currency_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Currency",
+      "type": "many2one"
+    },
+    "image_url": {
+      "readonly": true,
+      "required": false,
+      "string": "Flag",
+      "type": "char"
+    },
+    "phone_code": {
+      "readonly": false,
+      "required": false,
+      "string": "Country Calling Code",
+      "type": "integer"
+    },
+    "country_group_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Country Groups",
+      "type": "many2many"
+    },
+    "country_group_codes": {
+      "readonly": true,
+      "required": false,
+      "string": "Country Group Codes",
+      "type": "json"
+    },
+    "state_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "States",
+      "type": "one2many"
+    },
+    "name_position": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "before",
+          "Before Address"
+        ],
+        [
+          "after",
+          "After Address"
+        ]
+      ],
+      "string": "Customer Name Position",
+      "type": "selection"
+    },
+    "vat_label": {
+      "readonly": false,
+      "required": false,
+      "string": "Vat Label",
+      "type": "char"
+    },
+    "state_required": {
+      "readonly": false,
+      "required": false,
+      "string": "State Required",
+      "type": "boolean"
+    },
+    "zip_required": {
+      "readonly": false,
+      "required": false,
+      "string": "Zip Required",
+      "type": "boolean"
+    },
+    "create_uid": {
+      "readonly": true,
+      "required": false,
+      "string": "Created by",
+      "type": "many2one"
+    },
+    "create_date": {
+      "readonly": true,
+      "required": false,
+      "string": "Created on",
+      "type": "datetime"
+    },
+    "write_uid": {
+      "readonly": true,
+      "required": false,
+      "string": "Last Updated by",
+      "type": "many2one"
+    },
+    "write_date": {
+      "readonly": true,
+      "required": false,
+      "string": "Last Updated on",
+      "type": "datetime"
+    },
+    "enforce_cities": {
+      "readonly": false,
+      "required": false,
+      "string": "Enforce Cities",
+      "type": "boolean"
+    },
+    "is_mercado_pago_supported_country": {
+      "readonly": true,
+      "required": false,
+      "string": "Is Mercado Pago Supported Country",
+      "type": "boolean"
+    },
+    "is_stripe_supported_country": {
+      "readonly": true,
+      "required": false,
+      "string": "Is Stripe Supported Country",
+      "type": "boolean"
+    },
+    "has_foreign_fiscal_position": {
+      "readonly": true,
+      "required": false,
+      "string": "Has Foreign Fiscal Position",
+      "type": "boolean"
+    }
+  }
+}

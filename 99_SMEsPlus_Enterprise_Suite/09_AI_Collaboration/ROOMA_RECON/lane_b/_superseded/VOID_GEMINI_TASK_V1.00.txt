@@ -1,0 +1,5 @@
+VOID — SUPERSEDED BY GEMINI_TASK_V1.01.md (Boss-approved 2026-09-26); live task file GEMINI_TASK.md will be re-issued as V1.02 once the census account (BOSSDEC-003) exists.
+Stamped: 2026-09-26 10:27 Asia/Bangkok by RED TEAM (Lane B audit)
+File: _superseded/GEMINI_TASK_V1.00.md (content unchanged, moved only)
+sha256 at stamping: dc2c1c78686cbe1ac6732a60a47ca9bdfd6d9b8ea01906eba2de3dbfcebe9d53
+Reason: unpinned pip-install fallback (§21.1); schema lacked traceability fields; superseded by Charter V1.04 §5.

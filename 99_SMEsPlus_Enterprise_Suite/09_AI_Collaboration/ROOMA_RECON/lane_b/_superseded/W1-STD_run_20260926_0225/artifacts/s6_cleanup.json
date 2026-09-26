@@ -1,0 +1,31 @@
+{
+  "created_this_run": [
+    17,
+    18
+  ],
+  "found_including_previous_runs": [
+    10,
+    11,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "unlink": {
+    "status": "refused",
+    "message": "You are not allowed to delete 'Contact' (res.partner) records."
+  },
+  "remaining_after_cleanup": [
+    10,
+    11,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "result": "RESIDUE_REMAINS"
+}
