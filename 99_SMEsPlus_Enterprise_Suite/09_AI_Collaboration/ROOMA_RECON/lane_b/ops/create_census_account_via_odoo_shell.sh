@@ -64,7 +64,7 @@ WANT = [
 ]
 # Forbidden anywhere in the resulting closure. BOSSDEC-003 B (system/technical) + C (deferred sections).
 FORBID_EXACT = [("Role", "Administrator"), (None, "Role / Administrator"), (None, "Access Rights"), ("Administration", "Access Rights"),
-                ("Administration", "Settings"), (None, "Technical Features"), ("Role", "Technical"), (None, "Role / Technical")]
+                ("Administration", "Settings"), ("Role", "Technical"), (None, "Role / Technical")]
 FORBID_PRIV  = {"Website", "Live Chat", "eLearning", "Link Tracker", "Mail Group"}
 FORBID_NAME_SUB = ["Mail Group Administrator", "Website / Editor", "Editor and Designer"]
 

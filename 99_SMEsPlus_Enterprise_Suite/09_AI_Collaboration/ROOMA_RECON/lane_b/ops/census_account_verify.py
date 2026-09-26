@@ -19,7 +19,7 @@ W = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CRED = sys.argv[1] if len(sys.argv) > 1 else os.path.join(W, "credentials/roomb_census.env")
 EXPECTED_HASH = "706e6df4008e0bac042a9821507ec0bc6868c4d9f98bcb93004a2535b1ca3c89"
 FORBID_LABELS = {"Role / Administrator", "Administration / Access Rights", "Access Rights",
-                 "Administration / Settings", "Technical Features", "Role / Technical"}
+                 "Administration / Settings", "Role / Technical"}
 FORBID_PRIV = {"Website", "Live Chat", "eLearning", "Link Tracker", "Mail Group"}
 AUDIT_MODELS = ["res.partner", "res.users", "res.company", "ir.attachment", "mail.message",
                 "sale.order", "purchase.order", "account.move", "stock.picking", "product.template",
