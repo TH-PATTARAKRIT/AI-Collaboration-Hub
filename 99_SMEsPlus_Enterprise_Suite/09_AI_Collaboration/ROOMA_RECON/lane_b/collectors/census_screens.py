@@ -30,8 +30,9 @@ try:
     from playwright.sync_api import sync_playwright
 except ImportError:
     sys.exit("ABORT: playwright is not installed for this python.\n"
-             f"  fix:  {sys.executable} -m pip install playwright\n"
-             f"        {sys.executable} -m playwright install chromium\n"
+             f"  interpreter used: {sys.executable}\n"
+             "  expected        : /usr/local/bin/python3 (playwright 1.62.0, tested 26 Sep)\n"
+             "  Do NOT install anything (Project Instructions §21.1). Stop and report to RED TEAM.\n"
              "  Nothing was changed.")
 
 env = {}
