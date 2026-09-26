@@ -40,3 +40,10 @@ No git commit/push (no branch, no Session ID) · no Jira update · no change to 
 ```
 Governance: session record only. Not Boss Final Approval. No gate closure, merge, release or STATE closure is claimed.
 ```
+
+## UPDATE 2026-09-26 11:35 — round 2 execution (see the Claude Project copy for the full record)
+- Item 2 DONE: RT-LANEB-017 fixed, tree hash reproduced; register `reports/RT_REGISTER_LANEB_20260926.md`.
+- Item 3 DONE: Charter V1.04 stamped APPROVED BY BOSS; GEMINI_TASK V1.01 approved; GEMINI_TASK V1.00 VOID (moved).
+- Item 1 PARTIAL: 4 scripts placed in `ops/`; `CENSUS_SETUP_RUN.sh` ran once at 11:08 and **ABORTED by design** (28/29 groups resolved; "Role / User" resolved 0 — the group's name is literally "Role / User" with no privilege). Nothing created, nothing committed, baseline MATCH before and after. FORBID list corrected. The remaining one-line fix in `ops/create_census_account_via_odoo_shell.sh` (WANT list: `("Role", "User")` -> `(None, "Role / User")`) could not be applied by the RED TEAM session (platform permission control) — left for Boss, then re-run `bash ops/CENSUS_SETUP_RUN.sh`.
+- Collectors switched to the two-account model + scope gate (`ops/apply_census_script_edits_v1.01.py`); originals in `_superseded/`; tree hash unchanged.
+- Item 4 DONE: branch `lane-b/intake-20260926-001` @ 449b3c74 (from origin/SMEsPlus 9f338b8e), pushed; draft PR #69 — no merge.

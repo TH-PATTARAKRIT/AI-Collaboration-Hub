@@ -43,19 +43,19 @@ URL = "https://t9c.smeplus.asia"
 # (privilege name or None, group name) - measured on 26 Sep from ir.ui.menu.group_ids gating the hidden
 # leaf screens (reports/RT-SEC-003_groups_needed.json). App-level only. BOSSDEC-003 B.
 WANT = [
-    ("Role", "User"),                                   # internal user - required to log in
+    (None, "Role / User"),                              # internal user - required to log in (probed 26 Sep 11:10: the group's name is literally "Role / User", no privilege)
     ("Sales", "Administrator"),
     ("Accounting", "Administrator"), (None, "Analytic Accounting"),
     ("Expenses", "Administrator"), ("Expenses", "All Approver"),
     ("Inventory", "Administrator"),
     ("Purchase", "Administrator"),
     ("Employees", "Administrator"),
-    ("Recruitment", "Administrator"), ("Recruitment", "Officer: Manage all applicants"), ("Recruitment", "Interviewer"),
+    ("Recruitment", "Interviewer"),                     # Officer/Administrator imply "Website / Restricted Editor" (probed 11:47) -> excluded, BOSSDEC-003 C
     ("Project", "Administrator"),
     ("Fleet", "Administrator"), ("Fleet", "Officer: Manage all vehicles"),
     ("Manufacturing", "Administrator"),
     ("Time Off", "Administrator"), ("Time Off", "Officer: Manage all requests"), (None, "Time Off Responsible"),
-    ("Events", "Administrator"),
+    ("Events", "User"),                                 # Administrator implies "Website / Restricted Editor" (probed 11:47) -> excluded, BOSSDEC-003 C
     ("Attendances", "Administrator"), ("Attendances", "Officer: Manage all attendances"), (None, "Officer: Manage attendances"),
     ("Timesheets", "User: all timesheets"), ("Timesheets", "User: own timesheets only"),
     ("Surveys", "User"),
