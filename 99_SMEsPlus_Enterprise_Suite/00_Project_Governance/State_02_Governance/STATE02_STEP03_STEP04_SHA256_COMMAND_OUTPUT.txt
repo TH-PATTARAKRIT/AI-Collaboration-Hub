@@ -1,0 +1,54 @@
+STATE02_STEP03_STEP04_SHA256_COMMAND_OUTPUT.txt
+Session: [SMEPLUS-26-07-14-003] State 02 — Step 05 Blocker Resolution (consolidation)
+Execution Branch: claude/step05-blocker-resolution-ip03en
+Base Commit (origin/SMEsPlus): 43c5d95bc438263d1573501fe22c7db7cae1ae6b
+Prepared By: Claude Code (Authorized GitHub Execution Agent — technical hash check only)
+
+This file supersedes the pre-consolidation command output (which recorded 3
+stale-manifest mismatches). After incorporating the PR #15 authority corrections
+and regenerating both package manifests from current bytes, sha256sum -c reports
+all entries OK (0 mismatches).
+
+---------------------------------------------------------------------
+$ (cd Step_03_Canonical_RACI && sha256sum -c PACKAGE_MANIFEST_SHA256_STATE02_STEP03_RACI.txt)
+---------------------------------------------------------------------
+STATE02_CANONICAL_RACI_v1.0.md: OK
+STATE02_RACI_CONFLICT_TO_CORRECTION_MATRIX_v1.0.md: OK
+STATE02_RACI_CORRECTION_REGISTER_v1.0.md: OK
+STATE02_RACI_EVIDENCE_REGISTER_v1.0.md: OK
+STATE02_RACI_REVIEW_RECORD_v1.0.md: OK
+STATE02_RACI_SECRETARY_REVIEW_AND_CORRECTION_RECORD_v1.0.md: OK
+STATE02_RACI_SOURCE_DOCUMENT_UPDATE_PLAN_v0.1.md: OK
+STATE02_RACI_EXECUTION_SUMMARY_v1.0.md: OK
+STATE02_RACI_VALIDATION_RECORD_v1.0.md: OK
+sha256sum: WARNING: 1 line is improperly formatted
+
+---------------------------------------------------------------------
+$ (cd Step_04_Ownerless_Execution_Control && sha256sum -c PACKAGE_MANIFEST_SHA256_STATE02_STEP04_OWNERLESS.txt)
+---------------------------------------------------------------------
+STATE02_OWNERLESS_EXECUTION_CONTROL_STANDARD_v1.0.md: OK
+STATE02_OWNERLESS_WORK_REGISTER_v1.0.md: OK
+STATE02_OWNER_REPLACEMENT_MATRIX_v1.0.md: OK
+STATE02_AI_EXECUTION_AUTHORITY_MATRIX_v1.0.md: OK
+STATE02_ESCALATION_AND_REPLACEMENT_RULE_v1.0.md: OK
+STATE02_OWNERLESS_EXECUTION_EVIDENCE_REGISTER_v1.0.md: OK
+STATE02_OWNERLESS_EXECUTION_REVIEW_RECORD_v1.0.md: OK
+STATE02_OWNERLESS_EXECUTION_VERIFICATION_RECORD_v1.0.md: OK
+STATE02_STEP04_EXECUTION_SUMMARY_v1.0.md: OK
+STATE02_STEP04_VALIDATION_RECORD_v1.0.md: OK
+CANONICALIZATION_RECORD_STATE02_STEP04_v1.0.md: OK
+validate_state02_step04.sh: OK
+sha256sum: WARNING: 1 line is improperly formatted
+
+Note: each 'improperly formatted' warning is the manifest's own SELF - HASH
+EXCLUDED line (self-exclusion by design), not a mismatch.
+
+---------------------------------------------------------------------
+Summary
+---------------------------------------------------------------------
+Step 03: 9 checked, 9 OK, 0 FAILED, 0 missing
+Step 04: 12 checked, 12 OK, 0 FAILED, 0 missing
+Total MATCH: 21 | Total MISMATCH: 0 | Total Missing: 0
+Overall: TECHNICAL HASH CHECK PASSED — INDEPENDENT VERIFICATION PENDING
+(Preparer self-check only; not independent verification. No manifest was silently
+ rewritten — regeneration is documented in STATE02_STEP03_STEP04_FINAL_HASH_RECONCILIATION_v1.0.md.)
