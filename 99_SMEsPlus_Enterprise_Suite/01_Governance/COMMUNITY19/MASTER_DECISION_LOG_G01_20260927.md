@@ -43,3 +43,17 @@ Authority: MASTER (Claude Code, Preparer/Executor). Boss remains Sole Final Appr
 - Clean (STATIC PASS, no residual): base_automation, bus, phone_validation, onboarding, web_unsplash (R2A/R2D).
 - Open: auth_signup — new residual R-ASGN-3 (MED, route A2/REC/PROOF): re-enumerate the auth_signup cross-module caller chain at the anchor only, per manifest edges actually fetched; the website_slides call-site conclusion itself still stands (verified via the real chain website_slides → portal_rating → portal → auth_signup) — only the false alternate chain needs retraction.
 - Pending: R2B (resource/resource_mail/recaptcha/sparse), R2C (web/mail) re-checks.
+
+## Addendum — 2026-09-27 (post-R2B A3 re-check)
+
+| ID | Decision | Basis | Effect |
+|---|---|---|---|
+| MD-11 | **Commit bundling caveat.** MASTER's own commit script batches several artifacts into one commit at whatever time the batch script runs, which is unrelated to each artifact's internal freeze/predeclare timestamps. Git commit time is NOT evidence of a stage's internal ordering — only each artifact's self-declared UTC timestamps and its own sha256 self-citation chain are. A3 re-checks must keep verifying ordering via the sha256 chain (as they have), not via git commit metadata. | A3 R2B re-check R2B-3 (3 addenda + 1 unrelated file landed in one commit; commit time postdates a self-declared internal begin-time) | No process change needed — this confirms the sha256-chain method already in use is the correct one; git commit timing is explicitly out of scope for stage-ordering evidence going forward. |
+
+R-3 (single-controller identity across remediation stages) stays an open, non-blocking process residual carried forward system-wide; it does not gate content acceptance where re-checks independently re-verify substance from the anchor.
+
+### R2 re-check running tally (2026-09-27), updated
+
+- Clean (STATIC PASS, no residual): base_automation, bus, phone_validation, onboarding, web_unsplash, base_sparse_field.
+- Open, non-blocking (LOW/MED, route noted, MASTER handoff still pending runtime only): auth_signup (R-ASGN-3), resource, resource_mail (R-3, R2B-3), google_recaptcha (R2B-1, R2B-2, R-3, R2B-3).
+- Pending: R2C (web/mail) re-check.
