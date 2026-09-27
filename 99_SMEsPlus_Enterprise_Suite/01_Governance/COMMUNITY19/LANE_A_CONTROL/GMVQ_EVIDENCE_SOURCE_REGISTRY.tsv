@@ -1,0 +1,9 @@
+source_id	source_type	ref	state	governance_role	use_for	must_not_assume
+SRC-01	CANONICAL_BRANCH	SMEsPlus	ACTIVE	Primary control/canonical surface	Current governed artifacts, merged evidence, control state	Absence here is not project-wide absence
+SRC-02	MERGED_PR	PR#70 / merge 618637e503ee4734b81dae030fdc2a9baafb2cc5	MERGED	Historical governed G01 pipeline evidence	G01 static/runtime/control lineage	Does not govern G02-G16 membership by itself
+SRC-03	CANDIDATE_PR	PR#71 / head 843e61713939461205c404514555b2bf57c6ed39	CLOSED_UNMERGED	Candidate GMVQ bank evidence	Existence of candidate module/question-bank artifacts across multiple G groups	Not canonical admission, not roster freeze
+SRC-04	WORKING_PR	PR#72 / head 6d931968754bafc8ac484e54eb682b7acaeacffb	OPEN_DRAFT	Current Claude Code working evidence	G11 Lane A Pass-1, remediation, supplementary evidence	Not canonical merely because current
+SRC-05	RECONCILIATION_PR	PR#73 / head f38a2f543fcddd60a01a7a817019905719996f4c	OPEN_DRAFT	Independent reconciliation evidence	Cross-check candidate roster vs existing GMVQ banks	Not final roster certification
+SRC-06	CONTROL_ARTIFACTS	A1_SOURCE_EVIDENCE_LANE/*	ACTIVE	Source/checkpoint/RED TEAM evidence	Roster anchors, static findings, historical candidate reconstruction	Path name does not itself prove gate admission
+SRC-07	LANE_A_CONTROL	LANE_A_CONTROL/* + LANE_A_TASKS/* + LANE_A_RESULTS/*	ACTIVE	Task dispatch/gate control	Task state, dispatch, evidence return, independent review	Task existence is not PASS
+SRC-08	FUTURE_DISCOVERED_SOURCE	Any PR/branch/artifact referenced by an active task or evidence pointer	DYNAMIC	Additional governed evidence surface	Must be added to inventory before absence conclusion	Do not ignore because not prelisted
