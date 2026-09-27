@@ -1,0 +1,2 @@
+task_id	group_scope	owner	status	objective	input_artifact	return_path	blocker	boss_authority
+LANE-A-ROSTER-247-001	G01-G16	Claude Code	IN_PROGRESS	Build/reconcile exact G01-G16 module master list for current 247-module study scope	GMVQ/GROUP_STRUCTURE_V2_CORE_CANDIDATE_20260928.tsv	LANE_A_RESULTS/LANE-A-ROSTER-247-001_RESULT.md	Controlled historical 299-row TSV unavailable; must use evidence-backed reconciliation only	Authorized by Boss
