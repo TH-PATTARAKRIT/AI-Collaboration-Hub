@@ -31,3 +31,15 @@ Authority: MASTER (Claude Code, Preparer/Executor). Boss remains Sole Final Appr
 - `base_setup`, `base`, `portal`: **A3 STATIC PASS — MASTER HANDOFF PENDING RUNTIME** (no residual defects).
 - `auth_signup`, `base_automation`: **A3 STATIC PASS WITH RESIDUAL DEFECTS** — R-ASGN-1/2, R-BAUT-1 (all LOW) → R2 cycle.
 - No A3 finding overturned an upstream verdict in this batch.
+
+## Addendum — 2026-09-27 (post-R2A A3 re-check)
+
+| ID | Decision | Basis | Effect |
+|---|---|---|---|
+| MD-10 | **Repeat MD-07 violation pattern.** A remediation addendum self-certified "MD-07 MET" while asserting an unfetched transitive dependency chain (`website_slides → website_mail → portal → auth_signup`) that does not exist at the anchor (`website_mail` depends only on `website`/`mail`). This is the second occurrence of this failure mode (first: B3a sign-up-link callers from a default-branch search). Self-certification of MD-07/MD-08 compliance in a rule-compliance table is NOT sufficient evidence of compliance; A3 re-check must independently re-fetch every manifest/dependency edge a remediation cites as its enumeration method, every time, not just spot-check. | A3 R2A re-check on auth_signup (R-ASGN-3, MED) | A3 re-check prompts must always include "independently re-fetch every manifest edge the addendum's enumeration method cites" as a named task, not an optional spot-check. |
+
+### R2 re-check running tally (2026-09-27)
+
+- Clean (STATIC PASS, no residual): base_automation, bus, phone_validation, onboarding, web_unsplash (R2A/R2D).
+- Open: auth_signup — new residual R-ASGN-3 (MED, route A2/REC/PROOF): re-enumerate the auth_signup cross-module caller chain at the anchor only, per manifest edges actually fetched; the website_slides call-site conclusion itself still stands (verified via the real chain website_slides → portal_rating → portal → auth_signup) — only the false alternate chain needs retraction.
+- Pending: R2B (resource/resource_mail/recaptcha/sparse), R2C (web/mail) re-checks.
