@@ -1,0 +1,50 @@
+# G01 PLATFORM_BASE — RUNTIME Execution Record — `base_sparse_field`
+
+Companion record to the sealed static Proof file `G01_BASE_SPARSE_FIELD_PROOF_20260927.md`. This file is **new**; the sealed file was not opened for writing and carries no edits from this pass.
+
+## 0. Header
+
+| Item | Value |
+|---|---|
+| Role | SMEsPlus RUNTIME PROOF EXECUTOR (local-device execution pass) |
+| Group / Module | G01 PLATFORM_BASE / `base_sparse_field` |
+| Execution pass timestamp (UTC) | 2026-09-27T18:21:14Z |
+| Sealed source file | `G01_BASE_SPARSE_FIELD_PROOF_20260927.md` |
+| Sealed file sha256 (computed this pass, before any action) | `94237a9c3ac336856c8adbe712b508ea4bf1c3c5c4fd4aab79856d18f83c4d64` |
+| Sealed file tamper check | `git status`/`git diff` on `G01_BASE_SPARSE_FIELD_PROOF_20260927.md` showed no local modifications relative to the committed HEAD immediately before this pass; the sealed file carries no self-referential sha256 field in its own header (its header records sha256 of upstream inputs/predeclaration artifacts only, not of the file itself), so git object identity against the committed history is used here as the substitute tamper-evidence check in place of a missing self-hash field. This is disclosed, not fabricated. |
+| Predeclared runtime cases in scope | 9 (see table below; all carried the sealed status NOT-EXECUTED) |
+| Runtime device required (as predeclared in the sealed file) | `THPATTARAKRIT-SOLUTION-SERVICE-2.local` |
+| Runtime device probe (this pass) | `getent hosts THPATTARAKRIT-SOLUTION-SERVICE-2.local` → rc=2 (name not resolvable); `curl` to port 8069 → could not resolve host. No network path exists from this execution container to that device. |
+| Local runtime substitute considered | Not attempted. Building a disposable Odoo database at the anchored source commit, with the target module and its dependencies installed, a controllable outgoing-mail capture sink, and named test users, is outside what a single unattended pass can responsibly stand up per module without deviating from the sealed preconditions (named device) or risking an approximated, non-equivalent result being reported as a runtime outcome. |
+| **Disposition (this pass)** | **RUNTIME_BLOCKED — all 9 predeclared runtime cases below.** No case executed, no result fabricated, no case-file content altered. |
+
+## 1. Integrity check (performed before any other action)
+
+1. `git pull` on branch `claude/awesome-gauss-jw1934` completed; working tree clean.
+2. `git status -- G01_BASE_SPARSE_FIELD_PROOF_20260927.md` and `git diff -- G01_BASE_SPARSE_FIELD_PROOF_20260927.md` both returned no changes against the committed HEAD — the sealed file was confirmed byte-identical to its last committed, sealed state before this pass touched anything.
+3. sha256 of `G01_BASE_SPARSE_FIELD_PROOF_20260927.md` as found on disk, this pass: `94237a9c3ac336856c8adbe712b508ea4bf1c3c5c4fd4aab79856d18f83c4d64` (recorded above; not compared to an in-file self-hash because none is declared in the sealed header — see the Header row above).
+4. Runtime device reachability probed per the sealed file's own precondition (`THPATTARAKRIT-SOLUTION-SERVICE-2.local`, port 8069) — confirmed still unreachable from this container.
+
+## 2. Case-by-case runtime execution outcome
+
+| Case | Sealed status | This-pass outcome | Reason |
+|---|---|---|---|
+| PC-SPRS-13 | NOT-EXECUTED (predeclared, sealed) | RUNTIME_BLOCKED | No runtime environment available in this execution container: named runtime device `THPATTARAKRIT-SOLUTION-SERVICE-2.local` unreachable (`getent hosts` rc=2, no DNS/route to host), and no disposable Odoo instance built from the anchored source commit, installed target module, live database, or controllable outgoing-mail capture sink was provisioned here — the sealed precondition for this case is not met. No result claimed; case remains open for a pass run from the named runtime device or an equivalent pre-provisioned runtime. |
+| PC-SPRS-14 | NOT-EXECUTED (predeclared, sealed) | RUNTIME_BLOCKED | No runtime environment available in this execution container: named runtime device `THPATTARAKRIT-SOLUTION-SERVICE-2.local` unreachable (`getent hosts` rc=2, no DNS/route to host), and no disposable Odoo instance built from the anchored source commit, installed target module, live database, or controllable outgoing-mail capture sink was provisioned here — the sealed precondition for this case is not met. No result claimed; case remains open for a pass run from the named runtime device or an equivalent pre-provisioned runtime. |
+| PC-SPRS-15 | NOT-EXECUTED (predeclared, sealed) | RUNTIME_BLOCKED | No runtime environment available in this execution container: named runtime device `THPATTARAKRIT-SOLUTION-SERVICE-2.local` unreachable (`getent hosts` rc=2, no DNS/route to host), and no disposable Odoo instance built from the anchored source commit, installed target module, live database, or controllable outgoing-mail capture sink was provisioned here — the sealed precondition for this case is not met. No result claimed; case remains open for a pass run from the named runtime device or an equivalent pre-provisioned runtime. |
+| PC-SPRS-16 | NOT-EXECUTED (predeclared, sealed) | RUNTIME_BLOCKED | No runtime environment available in this execution container: named runtime device `THPATTARAKRIT-SOLUTION-SERVICE-2.local` unreachable (`getent hosts` rc=2, no DNS/route to host), and no disposable Odoo instance built from the anchored source commit, installed target module, live database, or controllable outgoing-mail capture sink was provisioned here — the sealed precondition for this case is not met. No result claimed; case remains open for a pass run from the named runtime device or an equivalent pre-provisioned runtime. |
+| PC-SPRS-17 | NOT-EXECUTED (predeclared, sealed) | RUNTIME_BLOCKED | No runtime environment available in this execution container: named runtime device `THPATTARAKRIT-SOLUTION-SERVICE-2.local` unreachable (`getent hosts` rc=2, no DNS/route to host), and no disposable Odoo instance built from the anchored source commit, installed target module, live database, or controllable outgoing-mail capture sink was provisioned here — the sealed precondition for this case is not met. No result claimed; case remains open for a pass run from the named runtime device or an equivalent pre-provisioned runtime. |
+| PC-SPRS-18 | NOT-EXECUTED (predeclared, sealed) | RUNTIME_BLOCKED | No runtime environment available in this execution container: named runtime device `THPATTARAKRIT-SOLUTION-SERVICE-2.local` unreachable (`getent hosts` rc=2, no DNS/route to host), and no disposable Odoo instance built from the anchored source commit, installed target module, live database, or controllable outgoing-mail capture sink was provisioned here — the sealed precondition for this case is not met. No result claimed; case remains open for a pass run from the named runtime device or an equivalent pre-provisioned runtime. |
+| PC-SPRS-19 | NOT-EXECUTED (predeclared, sealed) | RUNTIME_BLOCKED | No runtime environment available in this execution container: named runtime device `THPATTARAKRIT-SOLUTION-SERVICE-2.local` unreachable (`getent hosts` rc=2, no DNS/route to host), and no disposable Odoo instance built from the anchored source commit, installed target module, live database, or controllable outgoing-mail capture sink was provisioned here — the sealed precondition for this case is not met. No result claimed; case remains open for a pass run from the named runtime device or an equivalent pre-provisioned runtime. |
+| PC-SPRS-20 | NOT-EXECUTED (predeclared, sealed) | RUNTIME_BLOCKED | No runtime environment available in this execution container: named runtime device `THPATTARAKRIT-SOLUTION-SERVICE-2.local` unreachable (`getent hosts` rc=2, no DNS/route to host), and no disposable Odoo instance built from the anchored source commit, installed target module, live database, or controllable outgoing-mail capture sink was provisioned here — the sealed precondition for this case is not met. No result claimed; case remains open for a pass run from the named runtime device or an equivalent pre-provisioned runtime. |
+| PC-SPRS-21 | NOT-EXECUTED (predeclared, sealed) | RUNTIME_BLOCKED | No runtime environment available in this execution container: named runtime device `THPATTARAKRIT-SOLUTION-SERVICE-2.local` unreachable (`getent hosts` rc=2, no DNS/route to host), and no disposable Odoo instance built from the anchored source commit, installed target module, live database, or controllable outgoing-mail capture sink was provisioned here — the sealed precondition for this case is not met. No result claimed; case remains open for a pass run from the named runtime device or an equivalent pre-provisioned runtime. |
+
+## 3. Nothing modified
+
+- `G01_BASE_SPARSE_FIELD_PROOF_20260927.md` (sealed static Proof) — **not edited**.
+- This file, `G01_BASE_SPARSE_FIELD_PROOF_20260927_RUNTIME_EXECUTED_20260927.md`, is newly created and contains only this pass's execution record.
+- No A1/A2/REC/A3 content was touched.
+
+## 4. Re-run instructions (unchanged from sealed file)
+
+Re-run each case above exactly as predeclared in `G01_BASE_SPARSE_FIELD_PROOF_20260927.md` §4 (or the equivalent runtime-cases section), from `THPATTARAKRIT-SOLUTION-SERVICE-2.local` or an equivalent pre-provisioned disposable Odoo runtime at the anchored source commit, once that device or an authorized substitute is reachable. This record does not alter or supersede the sealed case procedures, expected results, or fail conditions.
