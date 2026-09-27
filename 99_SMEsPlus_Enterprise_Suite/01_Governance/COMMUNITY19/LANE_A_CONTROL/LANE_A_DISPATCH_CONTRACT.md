@@ -63,3 +63,16 @@ Selection criteria, in order:
 - highest amount of executable evidence-backed work remaining.
 
 This standing authorization removes the need to wait idle for Boss or LANE A to manually issue every next G task. It does not weaken any gate.
+
+
+## Mandatory Cross-Branch Evidence Bridge
+
+Before any LANE A task concludes `NOT_FOUND`, `NO BANK`, `0 MODULE`, or absence-based HOLD, it MUST read:
+
+- `LANE_A_CONTROL/GMVQ_LANE_A_EVIDENCE_BRIDGE.md`
+
+This bridge requires checking both:
+- `SmEsPlus` canonical/control tree, and
+- PR #71 candidate evidence branch/path.
+
+Branch-local absence is not project-wide absence.

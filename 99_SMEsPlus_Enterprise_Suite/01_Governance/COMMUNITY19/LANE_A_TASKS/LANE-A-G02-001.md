@@ -17,6 +17,7 @@ Auto-Pickup Eligible: YES
 - GMVQ Question Bank check: `NOT_FOUND` (only `GMVQ/G01_PLATFORM_BASE/` exists)
 - Status is EVIDENCE_SUBMITTED, not ACCEPTED — this is a Lane A recommendation only.
 
+
 ## Objective
 Execute formal LANE A intake/reconciliation for G02 IDENTITY_ACCESS before any A1 admission.
 
@@ -28,6 +29,14 @@ Execute formal LANE A intake/reconciliation for G02 IDENTITY_ACCESS before any A
 - GMVQ/GROUP_STRUCTURE_V2_CORE_CANDIDATE_20260928_README.md
 - relevant A1_SOURCE_EVIDENCE_LANE evidence
 - existing GMVQ Question Banks and reconciliation artifacts
+
+## Mandatory evidence bridge
+Before any absence-based conclusion, read:
+- LANE_A_CONTROL/GMVQ_LANE_A_EVIDENCE_BRIDGE.md
+- PR #71 candidate branch/path defined by that bridge
+
+Do not report branch-local absence as project-wide absence.
+
 
 ## Required checks
 - recover/reconcile exact module technical names supported by evidence;
