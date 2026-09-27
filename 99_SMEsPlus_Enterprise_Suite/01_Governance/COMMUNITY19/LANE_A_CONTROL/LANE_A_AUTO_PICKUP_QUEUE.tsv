@@ -1,0 +1,15 @@
+group_id	group_name	readiness	priority	current_basis	auto_pickup_state	notes
+G02	IDENTITY_ACCESS	HIGH	1	11-name auth-family candidate reconstruction exists in evidence; governed count 11	ELIGIBLE	Lane A must verify exact membership and evidence; do not promote by assumption
+G03	MASTER_DATA	MEDIUM-HIGH	2	3 confirmed anchors and additional candidate/question-bank evidence exists	ELIGIBLE	Reconcile exact 11 without guessing
+G05	INVENTORY	MEDIUM-HIGH	3	stock anchor plus broader candidate/question-bank evidence exists	ELIGIBLE	Reconcile exact 14
+G06	MANUFACTURING	MEDIUM-HIGH	4	mrp anchor plus broader candidate/question-bank evidence exists	ELIGIBLE	Reconcile exact 12
+G07	PURCHASE	MEDIUM-HIGH	5	purchase anchor plus broader candidate/question-bank evidence exists	ELIGIBLE	Reconcile exact 9
+G08	SALES	MEDIUM	6	sale anchor plus broader candidate/question-bank evidence exists	ELIGIBLE	Reconcile exact 31
+G09	CRM	MEDIUM	7	crm anchor; current authored bank set historically partial	ELIGIBLE	Do not imply 11/11 until evidenced
+G12	PROJECT_SERVICES	MEDIUM	8	project anchor plus bridge candidates exist	ELIGIBLE	Reconcile exact 20
+G15	DASHBOARD_REPORT	MEDIUM	9	question-bank candidate work exists but merged roster evidence weak	ELIGIBLE_WITH_CAUTION	Lane A intake only
+G04	ACCOUNT_BASE	LOW	90	account ownership conflicts with G10	BLOCKED_PRIORITY	Resolve G04/G10 ownership boundary first
+G10	ACCOUNT_PROCESS	LOW	91	account ownership conflicts with G04	BLOCKED_PRIORITY	Resolve G04/G10 ownership boundary first
+G13	PEOPLE	LOW	92	source-trace leads only	BLOCKED_PRIORITY	Roster evidence insufficient
+G14	COLLABORATION	LOW	93	no credited roster membership	BLOCKED_PRIORITY	Roster evidence insufficient
+G16	TECHNICAL_INTEGRATION	LOW	94	historical 20->19 Material Delta unresolved	BLOCKED_PRIORITY	Do not auto-select before delta reconciliation
