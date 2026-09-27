@@ -1,10 +1,23 @@
 # LANE-A-G05-001
 
-Status: READY_FOR_EXECUTION
+Status: EVIDENCE_SUBMITTED
 Source Lane: LANE A
 Owner / Executor: Claude Code
 Boss Authority: AUTHORIZED
 Auto-Pickup Eligible: YES
+
+## Submission record (2026-09-28)
+
+- Result: `LANE_A_RESULTS/LANE-A-G05-001_RESULT.md`
+- Disposition returned: `LANE_A_HOLD_RECOMMENDATION` (1/14 governed modules CONFIRMED and Lane A
+  Pass-1 clean — `stock`, 59/59 blobs hash-verified, 0 failures; remaining 13/14 unresolved GAP)
+- Lane A Pass-1 evidence created: `A1_SOURCE_EVIDENCE_LANE/G05_LANE_A_PASS1/G05_STOCK_LANE_A_PASS1_20260928.md` (59 blobs)
+- GMVQ Question Bank check (multi-source, per `LANE_A_CONTROL/GMVQ_LANE_A_EVIDENCE_BRIDGE.md`):
+  canonical tree `NOT_FOUND`; PR #71 (closed/unmerged/self-disclaimed) `FOUND_CANDIDATE_UNMERGED`
+  (independently re-verified via `pull_request_read`) for `stock` plus 13 additional candidate
+  names with no roster-membership support; PR #73 (open draft reconciliation) independently
+  confirms `MATCH_CONFIRMED` for `stock`, no canonical overwrite/freeze implied
+- Status is EVIDENCE_SUBMITTED, not ACCEPTED — this is a Lane A recommendation only.
 
 ## Objective
 Execute formal LANE A intake/reconciliation for G05 INVENTORY before any A1 admission.
