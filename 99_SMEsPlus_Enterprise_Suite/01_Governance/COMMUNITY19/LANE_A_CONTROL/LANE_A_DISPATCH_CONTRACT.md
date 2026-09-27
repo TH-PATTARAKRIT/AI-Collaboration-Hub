@@ -40,3 +40,26 @@ READY_FOR_EXECUTION -> IN_PROGRESS -> EVIDENCE_SUBMITTED -> ACCEPTED
 - No Formal Coverage before Boss-frozen denominator.
 - No silent overwrite/delete of prior evidence.
 - No merge/freeze/final approval unless explicitly authorized.
+
+
+## Standing Auto-Pickup Authorization — Boss 2026-09-28
+
+When Claude Code completes its current governed task and there is no new explicit LANE A command waiting:
+
+1. Read `LANE_A_CONTROL/LANE_A_AUTO_PICKUP_QUEUE.tsv`.
+2. Select the highest-readiness G that is not already IN_PROGRESS, EVIDENCE_SUBMITTED, HOLD, or ACCEPTED.
+3. Record the selected G in `LANE_A_TASK_REGISTER.tsv` with `source=CLAUDE_CODE_AUTO_PICKUP` in the objective/notes of the task artifact.
+4. Execute only LANE A intake/reconciliation work for that G.
+5. Continue until `EVIDENCE_SUBMITTED`.
+6. Do not self-declare `LANE_A_PASS`, A1 admission, Boss approval, canonical freeze, or Formal Coverage.
+7. If the selected G becomes blocked, record the blocker and move to the next independently executable G.
+8. Never invent module membership to make a group count match.
+
+Selection criteria, in order:
+- exact or near-exact module-name evidence available;
+- existing governed/source evidence pointers available;
+- existing GMVQ Question Banks available;
+- no unresolved cross-group ownership conflict that prevents useful intake;
+- highest amount of executable evidence-backed work remaining.
+
+This standing authorization removes the need to wait idle for Boss or LANE A to manually issue every next G task. It does not weaken any gate.
