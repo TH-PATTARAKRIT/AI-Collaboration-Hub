@@ -76,7 +76,7 @@ Line numbers refer to the anchor blob. Evidence is paraphrased; no code is repro
 - **R1 (REC-12 / REC-09).** In the leave-interval batch (calendar : 537), the tz variable is reassigned inside the per-resource loop. When the caller passes no `tz`, the first resource's tz is reused for every later resource and leave in that call. The effect on leave clipping for mixed-tz resource sets is **not proven**. It is a runtime candidate, not a claim.
 - **R2 (REC-27).** The global-leave copy (calendar : 202–207) also fires when an existing calendar's company is changed: its global leaves are cleared and replaced by the new company's defaults. This is broader than "copied at creation".
 - **R3 (REC-19).** In interval generation (calendar : 355–365), a two-week row with no week type is indexed as week 0. Such rows are counted as first-week work while skipping the overlap check (PC-RSRC-06).
-- **R4 (Thailand).** Leave date defaults use the user tz, else the company calendar tz (leaves : 64–67). For Thai tenants whose users have no tz set, the company calendar tz decides the day boundary.
+- **R4 (Thailand).** The default leave end date (end-of-day fill) uses the user or context tz, else the company calendar tz (leaves : 64–67). For Thai tenants whose users have no tz set, the company calendar tz decides the day boundary.
 
 ## 4. Runtime cases — NOT-EXECUTED (device OFFLINE)
 
