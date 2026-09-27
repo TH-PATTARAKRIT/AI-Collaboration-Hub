@@ -53,9 +53,24 @@ draft candidate question bank for all 8 G11 modules, under
 `G11_EVENT_GMVQ_MVQ_62_V1.00_DRAFT.md`, `G11_EVENT_BOOTH_GMVQ_MVQ_50_V1.00_DRAFT.md`, one file
 per module, all suffixed `_DRAFT`).
 
-| Module | Question Bank status |
-|---|---|
-| event, event_booth, event_booth_sale, event_crm, event_crm_sale, event_product, event_sale, event_sms | `FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE` (all 8; PR #71, closed, unmerged, path prefix `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/`) |
+| Module | Question Bank existence | Artifact path (in PR #71) | Source PR | PR state | Merge state | Governance status |
+|---|---|---|---|---|---|---|
+| `event` | YES (candidate) | `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/G11_EVENTS/G11_EVENT_GMVQ_MVQ_62_V1.00_DRAFT.md` | #71 | closed | NOT merged | FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE |
+| `event_booth` | YES (candidate) | `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/G11_EVENTS/G11_EVENT_BOOTH_GMVQ_MVQ_50_V1.00_DRAFT.md` | #71 | closed | NOT merged | FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE |
+| `event_booth_sale` | YES (candidate) | `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/G11_EVENTS/G11_EVENT_BOOTH_SALE_GMVQ_MVQ_50_V1.00_DRAFT.md` | #71 | closed | NOT merged | FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE |
+| `event_crm` | YES (candidate) | `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/G11_EVENTS/G11_EVENT_CRM_GMVQ_MVQ_48_V1.00_DRAFT.md` | #71 | closed | NOT merged | FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE |
+| `event_crm_sale` | YES (candidate) | `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/G11_EVENTS/G11_EVENT_CRM_SALE_GMVQ_MVQ_48_V1.00_DRAFT.md` | #71 | closed | NOT merged | FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE |
+| `event_product` | YES (candidate) | `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/G11_EVENTS/G11_EVENT_PRODUCT_GMVQ_MVQ_50_V1.00_DRAFT.md` | #71 | closed | NOT merged | FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE |
+| `event_sale` | YES (candidate) | `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/G11_EVENTS/G11_EVENT_SALE_GMVQ_MVQ_50_V1.00_DRAFT.md` | #71 | closed | NOT merged | FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE |
+| `event_sms` | YES (candidate) | `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/G11_EVENTS/G11_EVENT_SMS_GMVQ_MVQ_48_V1.00_DRAFT.md` | #71 | closed | NOT merged | FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE |
+
+Governance boundary (explicit, per this remediation's own instruction): question bank
+existence above proves none of the following, and none of the following may be inferred from
+it — canonical roster membership, canonical GMVQ admission, downstream authorization, or
+Formal Coverage eligibility. G11's roster membership stays exactly what it already was
+(DERIVED, per MD-18) — this correction does not upgrade it, and the module name list itself
+was never in question (all 8 names are independently confirmed present and hash-verified via
+this task's own Lane A Pass-1 evidence, §1 above).
 
 This status is **evidence of question-authoring state only, not roster-membership evidence**
 (per this task's own instruction and MD-08) — a draft bank existing in a closed, unmerged PR
@@ -104,5 +119,32 @@ recorded as a separate, explicit governed step per this task's acceptance bounda
 ## 7. Commit SHA(s)
 
 Lane A Pass-1 evidence commits (already pushed to `claude/awesome-gauss-jw1934`):
-`346a749`, `bc81171`, `61b09df`, `b7eb854`, `94ad51d`. This RESULT file is committed
-separately; see the commit introducing it for its own SHA.
+`346a749`, `bc81171`, `61b09df`, `b7eb854`, `94ad51d`. Original RESULT submission commit:
+`0603fa44`. Remediation commit (§8 below): `943e82e1` (GMVQ evidence-state correction only)
+plus the commit introducing this expanded §8/table.
+
+## 8. Independent Review Remediation
+
+- **Defect identified:** PR #72 review comment (`5859366737`, author `scglegacy`, "Independent
+  Review") found that §3's original `NOT_FOUND` conclusion for GMVQ Question Bank availability
+  was incomplete.
+- **Root cause:** §3 originally checked only the canonical `GMVQ/` tree on
+  `SMEsPlus`/this working branch. It did not check other open or closed PRs for candidate
+  question-bank content, so it missed draft banks that exist only in a different, unmerged PR.
+- **Verification performed before correcting:** independently queried
+  `pull_request_read(method: get_files)` on PR #71 directly (not taken on the reviewer's word
+  alone) — confirmed all 8 `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/G11_EVENTS/*_DRAFT.md` paths
+  exist in that PR's file list, and independently confirmed PR #71's own state is `closed`,
+  `merged: false`.
+- **Corrected evidence:** §3 above, now with a full per-module table (existence, artifact path,
+  source PR, PR state, merge state, governance status) instead of a single aggregate
+  `NOT_FOUND` line.
+- **Affected statement:** the original §3 aggregate-`NOT_FOUND` line is superseded by the
+  `FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE` table; the original
+  wording is preserved in this file's git history (commit `0603fa44`), not deleted.
+- **Disposition after correction:** **`LANE_A_PASS_RECOMMENDATION` — unchanged.** This was the
+  only defect found; every other Lane A-scope check in §1–§5 remains satisfied. Per this
+  remediation's own allowed-outcome rule, a question-bank evidence-state correction with no
+  other defect does not by itself require downgrading to `LANE_A_REMEDIATION_REQUIRED` or
+  `LANE_A_HOLD_RECOMMENDATION`. G11's roster membership remains DERIVED (unchanged, MD-18); A1
+  admission is not self-approved by this remediation.
