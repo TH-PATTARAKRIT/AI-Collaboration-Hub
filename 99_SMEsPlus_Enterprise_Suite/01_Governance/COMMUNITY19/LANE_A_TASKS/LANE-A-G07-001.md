@@ -18,6 +18,13 @@ Execute formal LANE A intake/reconciliation for G07 PURCHASE before any A1 admis
 - relevant A1_SOURCE_EVIDENCE_LANE evidence
 - existing GMVQ Question Banks and reconciliation artifacts
 
+## Mandatory evidence bridge
+Before any absence-based conclusion, read:
+- LANE_A_CONTROL/GMVQ_LANE_A_EVIDENCE_BRIDGE.md
+- PR #71 candidate branch/path defined by that bridge
+
+Do not report branch-local absence as project-wide absence.
+
 ## Required checks
 - recover/reconcile exact module technical names supported by evidence;
 - verify evidence pointer for every named module;
