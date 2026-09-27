@@ -91,7 +91,7 @@ Evidence key (blob SHA-1 from Lane A; "V" = re-verified by an A1 spot-check, see
 ## 9. Spot-check log (A1 re-fetch from raw.githubusercontent.com at anchor commit; `git hash-object` compared)
 | # | Path | Recorded blob | Recomputed blob | Result | Claim(s) checked |
 |---|---|---|---|---|---|
-| S1 | addons/onboarding/models/onboarding_progress.py | 26dacc18…5474595 | 26dacc185dcd6533fc7212cf72021f5f06474595 | MATCH | C06–C08: render routine consolidates just_done→done; stored compute yields only not_done/done; closed override after consolidation; docstring references controller |
+| S1 | addons/onboarding/models/onboarding_progress.py | 26dacc18…6474595 | 26dacc185dcd6533fc7212cf72021f5f06474595 | MATCH | C06–C08: render routine consolidates just_done→done; stored compute yields only not_done/done; closed override after consolidation; docstring references controller |
 | S2 | addons/onboarding/models/onboarding_onboarding.py | 9ed728d6…2de0cb | 9ed728d6cbc8b6f45b090222c8b6f54a3f2de0cb | MATCH | C11–C13, C16: sticky per-company compute + comment; refresh deletes/recreates for current company; current = company or none; route comment |
 | S3 | addons/onboarding/security/ir.model.access.csv | f99bf429…b351cc | f99bf429ceb2f8b24b2d247afc4e3c3cf5b351cc | MATCH | C15: 12 rows; only `base.group_system` has 1,1,1,1; all/user rows 0,0,0,0 |
 | S4 | addons/onboarding/__init__.py | dc5e6b69…26b7b2 | dc5e6b693d19dcacd224b7ab27b26f75e66cb7b2 | MATCH | C16: imports models only |
