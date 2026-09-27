@@ -57,3 +57,16 @@ R-3 (single-controller identity across remediation stages) stays an open, non-bl
 - Clean (STATIC PASS, no residual): base_automation, bus, phone_validation, onboarding, web_unsplash, base_sparse_field.
 - Open, non-blocking (LOW/MED, route noted, MASTER handoff still pending runtime only): auth_signup (R-ASGN-3), resource, resource_mail (R-3, R2B-3), google_recaptcha (R2B-1, R2B-2, R-3, R2B-3).
 - Pending: R2C (web/mail) re-check.
+
+## Addendum — 2026-09-27 (post-R2C A3 re-check)
+
+| ID | Decision | Basis | Effect |
+|---|---|---|---|
+| MD-12 | **Rule 4/5 "disclosed rationalization" is not compliance.** A stage that runs its own predeclare+execute cycle before its own REC freeze, then writes a fresh "official" predeclaration afterward with outcomes already known, does NOT satisfy rules 4/5 — disclosure of the shortcut does not launder it, and it is a materially different case from an upstream stage's ordinary prior file read (which the B3B R1 recheck correctly excused). Applying disclosure-only leniency to one stage's premature predeclare-execute while requiring genuine independent re-derivation for an analogous ordering issue elsewhere in the same recheck is a double standard and is rejected. | A3 R2C re-check, RES-C1 (mail PROOF R2C) | `mail` stays STATIC PASS WITH RESIDUAL DEFECTS for this reason alone (substantive PASS results independently reproduced and not overturned). Requires a genuine re-run: freeze REC (or re-cite its existing sha256) BEFORE any new predeclare, predeclare blind (no prior execution of the same cases), then execute. Route to R3. |
+
+### R2 re-check final tally (2026-09-27) — all 4 batches (A/B/C/D) complete
+
+- **Clean, STATIC PASS, no residual (16):** digest, base, base_setup, portal, web_tour, http_routing, html_editor, privacy_lookup, utm, html_builder, web_hierarchy, base_automation, bus, phone_validation, onboarding, web_unsplash, web, base_sparse_field. (17, recount: digest/base/base_setup/portal/web_tour/http_routing/html_editor/privacy_lookup/utm/html_builder/web_hierarchy = 11 from A3-original; + base_automation/bus/phone_validation/onboarding/web_unsplash/web/base_sparse_field = 7 from R2 = 18 total clean of 23.)
+- **Open, non-blocking process residuals only (route noted, content not overturned):** auth_signup (R-ASGN-3), resource, resource_mail (R-3 process, R2B-3 commit-bundling — informational per MD-11), google_recaptcha (R2B-1, R2B-2, R-3, R2B-3).
+- **Open, needs a genuine re-run (R3):** mail (RES-C1 — rule 4/5 ordering must be redone for real, not just re-derived).
+- No module FAIL. No PASS result overturned by any re-check.
