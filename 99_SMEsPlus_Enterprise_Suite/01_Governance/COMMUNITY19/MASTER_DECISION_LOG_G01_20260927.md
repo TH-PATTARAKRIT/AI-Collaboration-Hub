@@ -17,3 +17,17 @@ Authority: MASTER (Claude Code, Preparer/Executor). Boss remains Sole Final Appr
 - RCAP/SPRS R-2 (MED): REC R1 written after Proof and citing Proof — rule 4 breach; remediation B3 series to re-freeze REC ordering.
 - RCAP/SPRS R-5: Lane A item 12 erratum to be issued by the Lane A owner (next Lane A cycle).
 - base_automation R1 residuals RD-1..RD-6 → remediation B3a.
+
+## Addendum — 2026-09-27 (post-B3a A3 re-check)
+
+| ID | Decision | Basis | Effect |
+|---|---|---|---|
+| MD-07 | **Evidence admissibility rule.** Only bytes fetched at the pinned source anchor (`odoo/odoo` 19.0 @ `8d05257d83f9128953f580a066db67c48fcdb96f`) and verified by `git hash-object` are admissible as SOURCE-STATIC evidence. Default-branch GitHub code search, code indexes, training recall and any unpinned listing are NOT admissible and may be used only to generate candidates that are then verified at the anchor. Any claim resting on unpinned evidence is classified `UNVERIFIED-AT-ANCHOR` and may not be consolidated. | A3 B3a re-check §3–§6: the sign-up-link caller list came from a default-branch code search; its `hr_employee` and `website_sale` candidates do not exist at the anchor, and two anchored callers were missing from the Proof table. | Cross-module caller enumeration must be redone at the anchor by following manifests and `__init__` imports. Applies to all stages and all G. |
+| MD-08 | Cross-module enumeration claims ("the only callers are …", "no caller exists") are inadmissible as completeness claims unless the enumeration method is stated and anchor-reproducible; otherwise record as bounded evidence ("these callers are confirmed") plus an explicit completeness gap. | Same finding | Prevents false-negative completeness claims (e.g., onboarding route owner, base_automation call sites). |
+| MD-09 | Runtime execution for base_automation R1, RCAP/SPRS R1 and B3a packs must be performed by an author that is neither the addenda controller nor the A3 re-checker of that pack. | MD-04 extended per A3 B3a §10 (A3's own cases were not blind) | Recorded for the runtime cycle, once a runtime environment exists. |
+
+### A3 B3a re-check outcome (2026-09-27)
+
+- `base_setup`, `base`, `portal`: **A3 STATIC PASS — MASTER HANDOFF PENDING RUNTIME** (no residual defects).
+- `auth_signup`, `base_automation`: **A3 STATIC PASS WITH RESIDUAL DEFECTS** — R-ASGN-1/2, R-BAUT-1 (all LOW) → R2 cycle.
+- No A3 finding overturned an upstream verdict in this batch.
