@@ -54,22 +54,22 @@ PC-WEB-D-nn refers to the proof delta. PC-WEB-nn refers to the base proof.
 | REC-WEB-D02 | X-WEB-02 | CONFIRMED-FROM-SOURCE, conditional | VERIFIED, plus AO-W2 precision (persistence is best-effort) | UNKNOWN_PENDING_PROOF | Agreement at source. The takeover depends on configuration and runtime. Supported by PC-WEB-15/16 PASS and PC-WEB-D-10 PASS | UNCORROBORATED | PC-WEB-D-10; runtime PC-WEB-03, PC-WEB-D-01 |
 | REC-WEB-D03 | CRQ-WEB-01 | CLOSED (answered by D01) | VERIFIED | MATCH | Agreement. The CRQ asked whether a server-side gate exists, and it does. Residuals REC-WEB-25/27/31 stay open in the base | UNCORROBORATED | PC-WEB-10 |
 | REC-WEB-D04 | CRQ-WEB-02 | NARROWED; the rate-limit residual stays open. Folds A1 G-D1-1 and A2 AO-W5 | VERIFIED. A2 found no limiter in five files; the only defence is the per-attempt hash cost | UNKNOWN_PENDING_PROOF | Both lines agree on the negative at source (PC-WEB-D-11 PASS, five files). A runtime case, PR-WD2, now exists. Proxy and deployment controls are outside source | UNCORROBORATED | PC-WEB-D-11; runtime PC-WEB-D-02 |
-| REC-WEB-D05 | CRQ-WEB-03 | Open, evidence strengthened (design decision) | VERIFIED | MATCH | The disposition is agreed. The underlying behaviour is REC-WEB-D02/D-29 (UNKNOWN_PENDING_PROOF) | UNCORROBORATED | — |
-| REC-WEB-D06 | CRQ-WEB-04 | Open, scope widened (GET, no CSRF) | VERIFIED | MATCH | The disposition is agreed. The underlying behaviour is REC-WEB-D33 (UNKNOWN_PENDING_PROOF) | UNCORROBORATED | — |
-| REC-WEB-D07 | CRQ-WEB-05 | Open, reconfirmed | VERIFIED | MATCH | The disposition is agreed. The underlying behaviour is REC-WEB-D39 | UNCORROBORATED | — |
+| REC-WEB-D05 | CRQ-WEB-03 | Open, evidence strengthened (design decision) | VERIFIED | MATCH | The disposition is agreed. The underlying behaviour is REC-WEB-D02/D26 (UNKNOWN_PENDING_PROOF) | UNCORROBORATED | — |
+| REC-WEB-D06 | CRQ-WEB-04 | Open, scope widened (GET, no CSRF) | VERIFIED | MATCH | The disposition is agreed. The underlying behaviour is REC-WEB-D30 (UNKNOWN_PENDING_PROOF) | UNCORROBORATED | — |
+| REC-WEB-D07 | CRQ-WEB-05 | Open, reconfirmed | VERIFIED | MATCH | The disposition is agreed. The underlying behaviour is REC-WEB-D36 | UNCORROBORATED | — |
 | REC-WEB-D08 | CRQ-WEB-06 | NARROWED; NG-3 and NG-5 open | VERIFIED | MATCH | Agreement. The residuals are REC-WEB-D44 (NG-3) and REC-WEB-D46 (NG-5) | UNCORROBORATED | — |
 | REC-WEB-D09 | CRQ-WEB-07 | CLOSED (D06) | VERIFIED | MATCH | Agreement. The list endpoint refuses when listing is off (base PC-WEB-16) | UNCORROBORATED | PC-WEB-16 |
 | — | CRQ-WEB-08 | Unchanged | OUT_OF_SCOPE | Carried, no delta | Base REC-WEB-19 stands | — | — |
 | REC-WEB-D10 | C05 | Controller absence stays HIGH; platform absence REFUTED | VERIFIED | MATCH | Agreement (PC-WEB-09/10) | UNCORROBORATED | PC-WEB-09, 10 |
 | REC-WEB-D11 | C10 | Service enforcement raised to HIGH (static) | VERIFIED | MATCH | Agreement (PC-WEB-16) | UNCORROBORATED | PC-WEB-16 |
-| REC-WEB-D12 | C11 | HIGH, extended (persisted; `list_db` gate) | VERIFIED; AO-W2 | MATCH (for the confidence change) | The confidence change is a static fact. The behaviour stays UNKNOWN_PENDING_PROOF under REC-WEB-D02/D-29 | UNCORROBORATED | PC-WEB-D-10 |
+| REC-WEB-D12 | C11 | HIGH, extended (persisted; `list_db` gate) | VERIFIED; AO-W2 | MATCH (for the confidence change) | The confidence change is a static fact. The behaviour stays UNKNOWN_PENDING_PROOF under REC-WEB-D02/D26 | UNCORROBORATED | PC-WEB-D-10 |
 | REC-WEB-D13 | C12 | Resolved, now HIGH | VERIFIED | MATCH | Agreement (PC-WEB-16) | UNCORROBORATED | PC-WEB-16 |
-| REC-WEB-D14 | C13 | HIGH, extended | VERIFIED | MATCH (for the confidence change) | Static agreement. The behaviour is REC-WEB-D33 | UNCORROBORATED | PC-WEB-17, PC-WEB-D-13 |
-| REC-WEB-D15 | C14 | HIGH, reconfirmed | VERIFIED | MATCH (for the confidence change) | Static agreement. The behaviour is REC-WEB-D39 | UNCORROBORATED | PC-WEB-19 |
+| REC-WEB-D14 | C13 | HIGH, extended | VERIFIED | MATCH (for the confidence change) | Static agreement. The behaviour is REC-WEB-D30 | UNCORROBORATED | PC-WEB-17, PC-WEB-D-13 |
+| REC-WEB-D15 | C14 | HIGH, reconfirmed | VERIFIED | MATCH (for the confidence change) | Static agreement. The behaviour is REC-WEB-D36 | UNCORROBORATED | PC-WEB-19 |
 | REC-WEB-D16 | C15 | Enforcement in `base` raised to HIGH (static) | VERIFIED | MATCH | A1 D1 now states the access ladder the way A2 reads it (PC-WEB-21 PASS). Effect on base REC-WEB-15: see section 4 | UNCORROBORATED | PC-WEB-21 |
 | REC-WEB-D17 | BR-2 → BR-2' | Superseded | VERIFIED | MATCH | Agreement with base A2 ("BR-2 contradicted") | UNCORROBORATED | PC-WEB-10, 12 |
 | REC-WEB-D18 | BR-3 → BR-3' | Refined | VERIFIED | MATCH | Agreement (PC-WEB-15/16) | UNCORROBORATED | PC-WEB-15, 16 |
-| REC-WEB-D19 | G-2, G-A1-2 CLOSED; G-3 CLOSED static with NG-1 residual; G-A1-1 NARROWED | as stated | VERIFIED | MATCH | Coherent with the verified claims. The residuals are REC-WEB-D43 (NG-1), D44 (NG-3) and D46 (NG-5) | NOT_APPLICABLE | — |
+| REC-WEB-D19 | G-2, G-A1-2 CLOSED; G-3 CLOSED static with NG-1 residual; G-A1-1 NARROWED | as stated | VERIFIED | MATCH | Coherent with the verified claims. The residuals are REC-WEB-D42 (NG-1), D44 (NG-3) and D46 (NG-5) | NOT_APPLICABLE | — |
 | — | G-1, G-A1-3, G-A1-4, G-5 | Unchanged | OUT_OF_SCOPE | Carried, no delta | Base REC-WEB-35/08/23/37 stand | — | — |
 
 ## 3. Reconciliation — D1 new claims and A2 D1 findings
@@ -90,14 +90,12 @@ PC-WEB-D-nn refers to the proof delta. PC-WEB-nn refers to the base proof.
 | REC-WEB-D29 | D10: dbfilter does not bound duplicate or drop; backup is bounded | HIGH | VERIFIED | UNKNOWN_PENDING_PROOF | Static agreement, re-confirmed (PC-WEB-D-12 PASS). The effect depends on the PostgreSQL role and configuration | UNCORROBORATED + runtime | PC-WEB-D-12; runtime PC-WEB-D-03 |
 | REC-WEB-D30 | D11: `/web/become` accepts GET, is outside CSRF, has no step-up and no audit | HIGH | VERIFIED; precision on cookie SameSite/Secure | UNKNOWN_PENDING_PROOF | Static agreement (PC-WEB-17, PC-WEB-D-13 PASS). Whether a cross-site switch happens depends on the browser | UNCORROBORATED + runtime | PC-WEB-D-13; runtime PC-WEB-05, PC-WEB-D-04 |
 | REC-WEB-D31 | D12: public content access ladder | HIGH | VERIFIED | MATCH | Agreement (PC-WEB-21) | NOT_APPLICABLE | PC-WEB-21 |
-| REC-WEB-D32 | D13: attachment content hook and read check | HIGH / MED | VERIFIED; omission AO-W4 | MATCH | Agreement. AO-W4 is separate (REC-WEB-D42) | NOT_APPLICABLE | PC-WEB-D-18 (hook), PC-WEB-D-20 |
+| REC-WEB-D32 | D13: attachment content hook and read check | HIGH / MED | VERIFIED; omission AO-W4 | MATCH | Agreement. AO-W4 is separate (REC-WEB-D40) | NOT_APPLICABLE | PC-WEB-D-18 (hook), PC-WEB-D-20 |
 | REC-WEB-D33 | D14: elevation passes the field-group check | MED | VERIFIED | MATCH | A2 read the region, so the item is no longer A1-unverified | NOT_APPLICABLE | — |
 | REC-WEB-D34 | D15: denial shows as not-found or a placeholder | MED | VERIFIED | MATCH | A2 read the region | UNCORROBORATED | — |
 | REC-WEB-D35 | D16: elevated asset lookup is constrained | MED | VERIFIED | MATCH | A2 read the region | NOT_APPLICABLE | — |
 | REC-WEB-D36 | D17: logo aliases use raw SQL, any origin and a caller-supplied company id | HIGH | VERIFIED; precision F-W2 (only companies with a logo can be enumerated) | UNKNOWN_PENDING_PROOF | Static agreement. F-W2 is re-confirmed at source (PC-WEB-D-14 PASS: a missing row and an empty logo give the same placeholder). The cross-origin effect is runtime. Folds F-W2 | UNCORROBORATED + runtime | PC-WEB-D-14; runtime PC-WEB-06, PC-WEB-D-05 |
 | REC-WEB-D37 | D18: the font route reads only from the module's fonts directory | MED | **PARTIAL**: containment is at the addons-path or root-path level. Folds F-W1 | **CONTRADICTION — OPEN** | A1 D1 (and Lane A PASS-2 F-21): fonts directory only. A2 D1: addons/root-path containment, so parent segments can reach other font-extension files. The proof re-read supports A2 (PC-WEB-D-16 PASS: the joined path is normalised, then contained only to addons or root paths; an absolute name also bypasses the fonts directory). Both statements are kept. The item stays OPEN because the originating side has not converged. Impact is low (font extensions only) | UNCORROBORATED | PC-WEB-D-16; runtime PC-WEB-D-07 |
-
-Numbering note: section 2 refers to behaviour items as "REC-WEB-D29/D33/D39" in shorthand. The canonical IDs are REC-WEB-D26 (D07), D30 (D11) and D36 (D17). This note governs where the two differ.
 
 ### 3.2 A2 D1 observations and D1 gaps (not already folded)
 
@@ -112,8 +110,6 @@ Numbering note: section 2 refers to behaviour items as "REC-WEB-D29/D33/D39" in 
 | REC-WEB-D44 | NG-3: other modules' content-hook overrides | PASS-2, A1 D1 | GAP | Not read | NOT_APPLICABLE | — |
 | REC-WEB-D45 | NG-4: translations, bundle, manifest, barcode and profiling public routes not deepened | PASS-2, A1 D1 | GAP | Overlaps base REC-WEB-23 (profiling, static PASS). The rest is unread | NOT_APPLICABLE | — |
 | REC-WEB-D46 | NG-5: minting and lifetime of the field-access token | PASS-2, A1 D1 | GAP | Not traced | NOT_APPLICABLE | — |
-
-The table IDs are canonical. Where section 2 prose cites "D43 (NG-1) / D44 (NG-3) / D46 (NG-5)", those map to D42, D44 and D46 here (NG-1 = D42). This note governs.
 
 ### 3.3 Folded items (recorded, not counted)
 
