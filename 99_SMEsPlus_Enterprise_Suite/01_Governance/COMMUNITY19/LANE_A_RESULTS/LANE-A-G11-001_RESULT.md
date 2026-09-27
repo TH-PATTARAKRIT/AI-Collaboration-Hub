@@ -43,15 +43,27 @@ and neither is asserted as part of the Community-scope G11 roster.
 
 ## 3. GMVQ Question Bank availability
 
-Checked `99_SMEsPlus_Enterprise_Suite/01_Governance/COMMUNITY19/GMVQ/` directly: only
-`GMVQ/G01_PLATFORM_BASE/` exists. **No `GMVQ/G11_EVENTS/` directory exists.**
+**Corrected 2026-09-28 per Independent Review (PR #72 comment 5859366737, verified before
+applying):** the original version of this section checked only the canonical `GMVQ/` tree on
+`SMEsPlus`/this branch and found no `GMVQ/G11_EVENTS/` directory there — true, but incomplete.
+Independently re-checked against `pull_request_read(get_files)` on PR #71
+(`TH-PATTARAKRIT/AI-Collaboration-Hub#71`, **closed, unmerged**): its file list does contain a
+draft candidate question bank for all 8 G11 modules, under
+`GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/G11_EVENTS/` (e.g.
+`G11_EVENT_GMVQ_MVQ_62_V1.00_DRAFT.md`, `G11_EVENT_BOOTH_GMVQ_MVQ_50_V1.00_DRAFT.md`, one file
+per module, all suffixed `_DRAFT`).
 
 | Module | Question Bank status |
 |---|---|
-| event, event_booth, event_booth_sale, event_crm, event_crm_sale, event_product, event_sale, event_sms | `NOT_FOUND` (all 8) |
+| event, event_booth, event_booth_sale, event_crm, event_crm_sale, event_product, event_sale, event_sms | `FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE` (all 8; PR #71, closed, unmerged, path prefix `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/`) |
 
-This is evidence of question-authoring state only, not roster-membership evidence (per this
-task's own instruction and MD-08).
+This status is **evidence of question-authoring state only, not roster-membership evidence**
+(per this task's own instruction and MD-08) — a draft bank existing in a closed, unmerged PR
+does not confirm G11's DERIVED membership, does not admit G11 to A1, and PR #71 itself is not
+treated as canonical or downstream-authorized (its own governance status, unchanged since it
+was closed, is CANDIDATE / ROSTER NOT VERIFIED / NOT FOR DOWNSTREAM CONSUMPTION). If/when PR
+#71's content — or an equivalent — is merged to the canonical `GMVQ/` tree, this status should
+be re-checked and updated accordingly.
 
 ## 4. Duplicate / cross-group conflict check
 

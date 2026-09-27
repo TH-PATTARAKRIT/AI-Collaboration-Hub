@@ -9,7 +9,7 @@ Boss Authority: AUTHORIZED
 
 - Result: `LANE_A_RESULTS/LANE-A-G11-001_RESULT.md`
 - Disposition returned: `LANE_A_PASS_RECOMMENDATION` (8/8 modules verified at anchor, hash-matched; 0 remediation items; membership remains DERIVED per MD-18, carried forward as a standing caveat, not a Lane A defect)
-- Question Bank check: `NOT_FOUND` for all 8 modules (no `GMVQ/G11_EVENTS/` exists)
+- Question Bank check: `FOUND_CANDIDATE_UNMERGED / NOT YET ADMITTED TO CANONICAL GMVQ TREE` for all 8 modules (draft banks exist in closed/unmerged PR #71 under `GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/G11_EVENTS/`; canonical `GMVQ/G11_EVENTS/` still does not exist) — corrected 2026-09-28 per Independent Review, PR #72 comment 5859366737
 - Excluded rows confirmed still excluded: `event_sale_iot`, `event_social` (OEEL-1)
 - One item flagged for A1's attention (not a Lane A blocker): `event_sale` grants `sales_team.group_sale_salesman` the `event.group_event_registration_desk` group via `implied_ids`
 - Commit SHA(s): Lane A Pass-1 evidence — `346a749`, `bc81171`, `61b09df`, `b7eb854`, `94ad51d`; this submission — see the commit introducing `LANE-A-G11-001_RESULT.md`
