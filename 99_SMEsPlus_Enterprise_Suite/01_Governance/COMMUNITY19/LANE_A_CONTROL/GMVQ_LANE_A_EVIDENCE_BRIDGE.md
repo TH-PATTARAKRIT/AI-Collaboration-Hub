@@ -1,67 +1,66 @@
-# GMVQ / LANE A Evidence Bridge
+# GMVQ / LANE A Multi-Source Evidence Bridge
 
 Status: ACTIVE
 Authority: Boss
-Purpose: Prevent false "NOT_FOUND" conclusions caused by reading only one branch/tree.
+Purpose: Prevent false project-wide absence conclusions caused by reading only one branch, PR, folder, or working tree.
 
-## Mandatory evidence surfaces
+## Mandatory source registry
 
-Every LANE A / GMVQ intake must inspect BOTH:
+Before any LANE A / GMVQ intake concludes that evidence, a module, or a Question Bank is absent, read:
 
-1. Canonical / control surface
-   - Branch: SMEsPlus
-   - Current governed files and control artifacts
+`LANE_A_CONTROL/GMVQ_EVIDENCE_SOURCE_REGISTRY.tsv`
 
-2. Candidate evidence surface
-   - PR #71
-   - Head branch: feature/ERPPLUS-170-gmvq-g01-g16-authoring-20260927
-   - Head commit: 843e61713939461205c404514555b2bf57c6ed39
-   - Candidate path:
-     99_SMEsPlus_Enterprise_Suite/01_Governance/COMMUNITY19/GMVQ_CANDIDATE_ROSTER_NOT_VERIFIED/
+The registry is authoritative for which evidence surfaces must be checked.
 
-## Interpretation rules
+## Core rule
 
-- "Not present on SMEsPlus" MUST NOT be reported as "does not exist" until PR #71 and other governed evidence surfaces have been checked.
-- Candidate Question Bank existence is a separate state from canonical admission.
-- Candidate module-name evidence is a separate state from canonical roster membership.
-- Closed/unmerged candidate PR evidence may be used as evidence-of-existence, but NOT as canonical membership, downstream authorization, or Formal Coverage proof.
+`NOT FOUND ON THIS BRANCH` is not equivalent to `NOT FOUND IN THE PROJECT`.
 
-## Mandatory evidence-state fields
+Every absence-based conclusion must search all applicable registered evidence surfaces.
 
-For every module/group, record separately:
+## Required search order
+
+1. Canonical/control branch: `SMEsPlus`
+2. Merged governed history relevant to the target
+3. Candidate PRs/branches containing the target G/module
+4. Active working PRs/branches
+5. Reconciliation PRs/artifacts
+6. A1 / RED TEAM / checkpoint evidence
+7. LANE A task/result/control artifacts
+8. Any additional evidence surface referenced by an evidence pointer or active task
+
+## Evidence-state separation
+
+For every module/group record separately:
 - canonical_tree_presence
+- merged_governed_evidence_presence
 - candidate_artifact_presence
 - candidate_question_bank_presence
+- working_branch_presence
+- reconciliation_evidence_presence
 - roster_membership_state
 - canonical_admission_state
 - lane_a_disposition
 - evidence_pointer
 
-## Known candidate-bank inventory from PR #71
+## Prohibited shortcut
 
-- G02: 11 candidate module banks
-- G03: 11 candidate module banks
-- G04: 9 candidate module banks
-- G05: 14 candidate module banks
-- G06: 12 candidate module banks
-- G07: 9 candidate module banks
-- G08: 31 unique candidate module banks
-- G09: 8 candidate module banks
-- G11: 8 candidate module banks
-- G12: 20 candidate module banks
-- G15: 11 candidate module banks
+Do not conclude `NOT_FOUND`, `NO BANK`, `0 MODULE`, or issue an absence-based HOLD after checking only one source surface.
 
-No candidate-bank set in PR #71 for G10, G13, G14, G16.
+## Governance interpretation
 
-This inventory is evidence-of-artifact presence only. It does not establish canonical roster membership.
+- Candidate evidence can prove that an artifact exists.
+- Candidate evidence does not automatically prove canonical membership.
+- Unmerged evidence can still be valid evidence-of-existence when its lineage is preserved.
+- A working PR does not become canonical merely because it is newer.
+- Reconciliation evidence does not become Boss approval.
+- File location does not itself prove Gate admission.
 
-## Required execution rule
+## Dynamic rule
 
-Before any `NOT_FOUND`, `NO BANK`, `0 MODULE`, or HOLD rationale based on absence:
-1. check SMEsPlus;
-2. check PR #71 candidate branch/path;
-3. check relevant A1/RED TEAM/reconciliation artifacts;
-4. only then classify the evidence state.
+This bridge is not hard-coded to PR #71.
+
+If a new PR, branch, task result, reconciliation package, or evidence pointer appears, it must be treated as an additional evidence surface when relevant. Add it to the registry or record it in the task-specific evidence inventory before final disposition.
 
 No Evidence = No Progress.
-No branch-local absence may be promoted to project-wide absence without this bridge check.
+No single-source absence may be promoted to project-wide absence.
