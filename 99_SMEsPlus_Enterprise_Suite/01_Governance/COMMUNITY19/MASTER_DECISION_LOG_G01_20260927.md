@@ -70,3 +70,13 @@ R-3 (single-controller identity across remediation stages) stays an open, non-bl
 - **Open, non-blocking process residuals only (route noted, content not overturned):** auth_signup (R-ASGN-3), resource, resource_mail (R-3 process, R2B-3 commit-bundling — informational per MD-11), google_recaptcha (R2B-1, R2B-2, R-3, R2B-3).
 - **Open, needs a genuine re-run (R3):** mail (RES-C1 — rule 4/5 ordering must be redone for real, not just re-derived).
 - No module FAIL. No PASS result overturned by any re-check.
+
+## Addendum — 2026-09-27 (post-R3 A3 re-check, mail)
+
+RES-C1 CLOSED — genuine cure verified independently by A3 (REC-basis hash match, predeclare-before-fetch mtime order confirmed, no undisclosed reconnaissance within the R3 cycle, all 4 cases re-derived a second time). `mail` residual status now carries only pre-existing, already-routed items (D03/K1/K4/K5 ordering residue → REC, informational; commit-subject naming → MASTER/IC, covered by MD-06/MD-11) — no new remediation owed for mail.
+
+### Final G01 tally after R1/R2/R3 (2026-09-27)
+
+- **Clean, STATIC PASS, no residual (19/23):** digest, base, base_setup, portal, web_tour, http_routing, html_editor, privacy_lookup, utm, html_builder, web_hierarchy, base_automation, bus, phone_validation, onboarding, web_unsplash, web, base_sparse_field, mail (RES-C1 closed; carries only already-routed, non-blocking process notes).
+- **Open, non-blocking (route noted, content not overturned, 4/23):** auth_signup (R-ASGN-3 MED — needs a real re-enumeration, not just documentation), resource, resource_mail (R-3 process-only), google_recaptcha (R2B-1 LOW citation fix, R2B-2 accepted-with-note, R-3 process-only).
+- **No module FAIL anywhere in the cycle.**
