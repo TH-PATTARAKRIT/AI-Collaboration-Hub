@@ -1,0 +1,18 @@
+group_id	module_technical_name	roster_confidence	question_bank_status	reconciliation_disposition	note
+G03	product	CONFIRMED	FOUND	MATCH_CONFIRMED	Candidate roster explicit G03 membership; GMVQ bank exists
+G03	uom	CONFIRMED	FOUND	MATCH_CONFIRMED	Candidate roster explicit G03 membership; GMVQ bank exists
+G03	analytic	CONFIRMED	FOUND	MATCH_CONFIRMED	Candidate roster explicit G03 membership; GMVQ bank exists
+G05	stock	CONFIRMED	FOUND	MATCH_CONFIRMED	Candidate roster explicit G05 membership; GMVQ bank exists
+G06	mrp	CONFIRMED	FOUND	MATCH_CONFIRMED	Candidate roster explicit G06 membership; GMVQ bank exists
+G07	purchase	CONFIRMED	FOUND	MATCH_CONFIRMED	Candidate roster explicit G07 membership; GMVQ bank exists
+G08	sale	CONFIRMED	FOUND	MATCH_CONFIRMED	Candidate roster explicit G08 membership; GMVQ bank exists
+G09	crm	CONFIRMED	FOUND	MATCH_CONFIRMED	Candidate roster explicit G09 membership; GMVQ bank exists
+G11	event	DERIVED	FOUND	MATCH_DERIVED	Full-count reconstruction only; not roster-certified
+G11	event_booth	DERIVED	FOUND	MATCH_DERIVED	Full-count reconstruction only; not roster-certified
+G11	event_booth_sale	DERIVED	FOUND	MATCH_DERIVED	Full-count reconstruction only; not roster-certified
+G11	event_crm	DERIVED	FOUND	MATCH_DERIVED	Full-count reconstruction only; not roster-certified
+G11	event_crm_sale	DERIVED	FOUND	MATCH_DERIVED	Full-count reconstruction only; not roster-certified
+G11	event_product	DERIVED	FOUND	MATCH_DERIVED	Full-count reconstruction only; not roster-certified
+G11	event_sale	DERIVED	FOUND	MATCH_DERIVED	Full-count reconstruction only; not roster-certified
+G11	event_sms	DERIVED	FOUND	MATCH_DERIVED	Full-count reconstruction only; not roster-certified
+G12	project	CONFIRMED	FOUND	MATCH_CONFIRMED	Candidate roster explicit G12 membership; GMVQ bank exists
