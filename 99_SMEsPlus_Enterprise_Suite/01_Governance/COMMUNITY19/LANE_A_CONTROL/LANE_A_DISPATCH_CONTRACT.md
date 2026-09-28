@@ -25,7 +25,8 @@ Do not delete or rewrite historical evidence.
 
 Do not require a LANE A task, READY_FOR_EXECUTION state, or Lane A acceptance before Claude Code starts otherwise authorized technical work.
 
-VDR Constitution gates remain mandatory.
+VDR Constitution gates remain mandatory:
+Proof Requirements -> governed execution -> Independent QA/A3 -> Coverage/Gate Recommendation -> Boss Decision.
 
 No Evidence = No Progress.
 Boss remains sole Final Approver.

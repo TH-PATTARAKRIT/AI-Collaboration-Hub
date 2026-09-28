@@ -8,7 +8,7 @@ Mode: DELTA-FIRST / EVIDENCE-FIRST / AUTO-CONTINUE
 
 LANE A is retired as an active dispatch/execution prerequisite.
 
-Historical LANE A artifacts remain read-only audit evidence and MUST NOT be deleted or rewritten.
+Historical LANE A artifacts remain read-only audit evidence and MUST NOT be deleted, rewritten, or used as a reason to wait.
 
 Claude Code is the active execution controller.
 
@@ -62,6 +62,15 @@ When current work completes:
 5. stop only when no valid work remains or a true Boss/architecture decision is required.
 
 No idle waiting for a dispatch layer.
+
+## G01 runtime
+
+Use:
+- `EXECUTION_CONTROL/G01_RUNTIME_REMOTE_QUEUE.tsv`
+- `EXECUTION_CONTROL/G01_RUNTIME_REMOTE_EXECUTION_BRIDGE.md`
+- `EXECUTION_CONTROL/G01_RUNTIME_REMOTE_WORKER_CONTRACT.md`
+
+The actionable runtime workload is all non-superseded, non-PASS cases including RETEST_REQUIRED INCONCLUSIVE cases.
 
 No Evidence = No Progress.
 Boss remains sole Final Approver.
