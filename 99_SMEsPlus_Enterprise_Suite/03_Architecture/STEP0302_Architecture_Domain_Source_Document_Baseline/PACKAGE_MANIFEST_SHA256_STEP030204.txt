@@ -1,0 +1,199 @@
+# STEP030204 Package Manifest with SHA256 Verification
+
+Prompt ID: SMEPLUS-26-07-17-001
+Status: MANIFEST VERIFICATION COMPLETE
+Control Level: /L99.99
+Effective Date: 2026-07-17
+Manifest Generation Date: 2026-07-17
+
+## Controlled Files Package (Eight Documents)
+
+The following eight files constitute the complete STEP030204 Architecture Domain Source-Document Baseline controlled package:
+
+---
+
+## File Manifest with SHA256 Hashes
+
+File: 14_STEP030204_SCOPE_CONFIRMATION.md
+Path: 99_SMEsPlus_Enterprise_Suite/03_Architecture/STEP0302_Architecture_Domain_Source_Document_Baseline/14_STEP030204_SCOPE_CONFIRMATION.md
+Size: 6.4 KB
+SHA256: 0f009cd8b3320f2b1e5d8fd9fd16c9b13433656b57ba20685f56d22acab49b5d
+Status: VERIFIED
+Purpose: Authoritative scope confirmation; authorization verification
+Content: Boss authorization, branch verification, scope constraints, gate status, deliverables, restrictions
+
+---
+
+File: 15_STEP030204_DOMAIN_SOURCE_DOCUMENT_INVENTORY.md
+Path: 99_SMEsPlus_Enterprise_Suite/03_Architecture/STEP0302_Architecture_Domain_Source_Document_Baseline/15_STEP030204_DOMAIN_SOURCE_DOCUMENT_INVENTORY.md
+Size: 14 KB
+SHA256: ad7e9adebe1ab8bceabefe4b0b1f72aee1ed5d08620e722fe5b2c9422e924073
+Status: VERIFIED
+Purpose: Authoritative source document catalog
+Content: 30 documents catalogued across 6 domains; version, owner, date, evidence status for each
+
+---
+
+File: 16_STEP030204_SOURCE_TO_DOMAIN_TRACEABILITY_MATRIX.md
+Path: 99_SMEsPlus_Enterprise_Suite/03_Architecture/STEP0302_Architecture_Domain_Source_Document_Baseline/16_STEP030204_SOURCE_TO_DOMAIN_TRACEABILITY_MATRIX.md
+Size: 13 KB
+SHA256: d20d7d56e627826193a97402f50c228a3cf665374be96f039a3e9d389c303ba0
+Status: VERIFIED
+Purpose: Source-to-domain traceability mapping
+Content: 39 document-to-domain mappings; 21 Strong + 11 Supporting + 7 Foundational; cross-domain dependency map
+
+---
+
+File: 17_STEP030204_ARCHITECTURE_BASELINE_GAP_REGISTER.md
+Path: 99_SMEsPlus_Enterprise_Suite/03_Architecture/STEP0302_Architecture_Domain_Source_Document_Baseline/17_STEP030204_ARCHITECTURE_BASELINE_GAP_REGISTER.md
+Size: 17 KB
+SHA256: ede2593f833790e6494c914174cb9249ae10084256d3e5d0c4adcd46a6ed716b
+Status: VERIFIED
+Purpose: Evidence gap inventory
+Content: 46 identified gaps (28 missing, 16 incomplete, 2 unverified); 8 critical gaps blocking progress; resolution sequencing
+
+---
+
+File: 18_STEP030204_CONFLICT_AND_ASSUMPTION_REGISTER.md
+Path: 99_SMEsPlus_Enterprise_Suite/03_Architecture/STEP0302_Architecture_Domain_Source_Document_Baseline/18_STEP030204_CONFLICT_AND_ASSUMPTION_REGISTER.md
+Size: 15 KB
+SHA256: 693b179e829f25c7cdbc2d227a295b636edaffefee9b4cef40dcc9e780630678
+Status: VERIFIED
+Purpose: Conflict and assumption inventory
+Content: 11 conflicts + 13 assumptions = 24 issues; 10 gate-blocking issues; resolution authority matrix
+
+---
+
+File: 19_STEP030204_OWNER_REVIEWER_AND_DECISION_REGISTER.md
+Path: 99_SMEsPlus_Enterprise_Suite/03_Architecture/STEP0302_Architecture_Domain_Source_Document_Baseline/19_STEP030204_OWNER_REVIEWER_AND_DECISION_REGISTER.md
+Size: 13 KB
+SHA256: 7424629ab3faf4d5c48413d08e2899e5b607aedf417203baf3ba6b679ca74ade
+Status: VERIFIED
+Purpose: Domain ownership and decision authority assignments
+Content: 6 primary owners + 6 supporting owners + 1 independent reviewer; 9 Boss decisions pending; approval workflow
+
+---
+
+File: 20_STEP030204_ARCHITECTURE_BASELINE_HANDOFF.md
+Path: 99_SMEsPlus_Enterprise_Suite/03_Architecture/STEP0302_Architecture_Domain_Source_Document_Baseline/20_STEP030204_ARCHITECTURE_BASELINE_HANDOFF.md
+Size: 14 KB
+SHA256: 044cb72da92d8ef68be692d7d82817bf2398728bfc3da49a9a8f5641a9ddfd47
+Status: VERIFIED
+Purpose: Handoff certification and readiness assessment
+Content: Completion status for 9 control documents; domain-by-domain findings; next steps; handoff certification
+
+---
+
+File: 21_STEP030204_EXECUTION_LOG.md
+Path: 99_SMEsPlus_Enterprise_Suite/03_Architecture/STEP0302_Architecture_Domain_Source_Document_Baseline/21_STEP030204_EXECUTION_LOG.md
+Size: 16 KB
+SHA256: 3f8451eb5a90f96beff661d152c20239bb5ca2a831149d1ecc1badcac423f3fa
+Status: VERIFIED
+Purpose: Session execution timeline and decision record
+Content: 10-phase execution timeline; key decisions made; critical findings; recommendations; session metrics
+
+---
+
+## Manifest Verification Summary
+
+Total Controlled Files: 8 (excluding manifest itself)
+Total Package Size: ~108 KB
+Total Document Count: 8 distinct documents
+Total SHA256 Hashes: 8 verified hashes
+
+Verification Status:
+✓ All 8 files present in directory
+✓ All 8 files have valid SHA256 hashes
+✓ All 8 files are readable and committed
+✓ No missing files detected
+✓ No duplicate files detected
+✓ No unexpected files detected (manifest excluded)
+✓ All hash mismatches: 0
+
+Manifest Verification Result: **ALL CHECKS PASS**
+- Missing files: 0
+- Duplicate files: 0
+- Unexpected files: 0
+- Hash mismatches: 0
+- **STATUS: MANIFEST VERIFICATION COMPLETE — 8/8 FILES VERIFIED**
+
+---
+
+## File Integrity Verification
+
+To verify manifest integrity, execute:
+
+```bash
+cd 99_SMEsPlus_Enterprise_Suite/03_Architecture/STEP0302_Architecture_Domain_Source_Document_Baseline
+sha256sum -c <<EOF
+0f009cd8b3320f2b1e5d8fd9fd16c9b13433656b57ba20685f56d22acab49b5d  14_STEP030204_SCOPE_CONFIRMATION.md
+ad7e9adebe1ab8bceabefe4b0b1f72aee1ed5d08620e722fe5b2c9422e924073  15_STEP030204_DOMAIN_SOURCE_DOCUMENT_INVENTORY.md
+d20d7d56e627826193a97402f50c228a3cf665374be96f039a3e9d389c303ba0  16_STEP030204_SOURCE_TO_DOMAIN_TRACEABILITY_MATRIX.md
+ede2593f833790e6494c914174cb9249ae10084256d3e5d0c4adcd46a6ed716b  17_STEP030204_ARCHITECTURE_BASELINE_GAP_REGISTER.md
+693b179e829f25c7cdbc2d227a295b636edaffefee9b4cef40dcc9e780630678  18_STEP030204_CONFLICT_AND_ASSUMPTION_REGISTER.md
+7424629ab3faf4d5c48413d08e2899e5b607aedf417203baf3ba6b679ca74ade  19_STEP030204_OWNER_REVIEWER_AND_DECISION_REGISTER.md
+044cb72da92d8ef68be692d7d82817bf2398728bfc3da49a9a8f5641a9ddfd47  20_STEP030204_ARCHITECTURE_BASELINE_HANDOFF.md
+3f8451eb5a90f96beff661d152c20239bb5ca2a831149d1ecc1badcac423f3fa  21_STEP030204_EXECUTION_LOG.md
+EOF
+```
+
+Expected Result:
+```
+14_STEP030204_SCOPE_CONFIRMATION.md: OK
+15_STEP030204_DOMAIN_SOURCE_DOCUMENT_INVENTORY.md: OK
+16_STEP030204_SOURCE_TO_DOMAIN_TRACEABILITY_MATRIX.md: OK
+17_STEP030204_ARCHITECTURE_BASELINE_GAP_REGISTER.md: OK
+18_STEP030204_CONFLICT_AND_ASSUMPTION_REGISTER.md: OK
+19_STEP030204_OWNER_REVIEWER_AND_DECISION_REGISTER.md: OK
+20_STEP030204_ARCHITECTURE_BASELINE_HANDOFF.md: OK
+21_STEP030204_EXECUTION_LOG.md: OK
+```
+
+---
+
+## Manifest Control Properties
+
+Manifest File Name: PACKAGE_MANIFEST_SHA256_STEP030204.txt
+Manifest Location: 99_SMEsPlus_Enterprise_Suite/03_Architecture/STEP0302_Architecture_Domain_Source_Document_Baseline/
+Manifest Generation Date: 2026-07-17
+Manifest Status: VERIFIED AND COMPLETE
+Manifest Authority: PMO / Architecture Lead (Claude Code execution)
+
+Manifest Exclusion Rule: The manifest file itself (PACKAGE_MANIFEST_SHA256_STEP030204.txt) is excluded from file list per STEP030204 requirements.
+
+---
+
+## Package Completeness Certification
+
+I certify that:
+
+1. ✓ All 8 controlled files are present in the STEP0302 baseline directory
+2. ✓ All 8 files are committed to branch `claude/step0302-architecture-baseline-bpdz5m`
+3. ✓ All 8 files have valid, unique SHA256 hashes
+4. ✓ No files are missing from the required package
+5. ✓ No duplicate files exist in the package
+6. ✓ No unexpected files are present (excluding manifest)
+7. ✓ Manifest verification shows 0 missing, 0 duplicate, 0 unexpected, 0 mismatch
+
+**PACKAGE STATUS: COMPLETE AND VERIFIED**
+
+---
+
+## Mandatory Statement
+
+STEP030204 begins the Boss-authorized substantive STEP0302 Architecture Domain Source-Document Baseline under PMO / Architecture Lead ownership and ChatGPT /L99.99 independent review. It preserves PR #33 as PR_ONLY evidence and does not pass any Gate or authorize Merge, Build, Release, Deploy, Migration, or Production.
+
+---
+
+## Control and Governance
+
+Manifest Document: PACKAGE_MANIFEST_SHA256_STEP030204.txt
+Status: MANIFEST VERIFICATION COMPLETE
+Owner: PMO / Architecture Lead
+Reviewer: To be assigned
+Approval: Pending Boss review
+Generated: 2026-07-17
+Commit: [TO BE RECORDED]
+
+**No Evidence = No Progress**
+**ห้ามข้าม Gate** (No Gate Crossing Without Authorization)
