@@ -6,6 +6,19 @@ Controller: Claude Code
 
 LANE A is retired from active execution.
 
+## Reference facts (for context, not a substitute for a session's own judgment)
+
+- Target environment `iTest19C` (`103.253.74.217`) is a Boss-confirmed test/staging instance, not
+  Production.
+- This file, `EXECUTION_CONTROL/G01_RUNTIME_REMOTE_EXECUTION_BRIDGE.md`, and
+  `EXECUTION_CONTROL/G01_RUNTIME_REMOTE_QUEUE.tsv` are the current control artifacts for this
+  worker role.
+- Boss's standing execution authorization for this workstream is recorded in
+  `CLAUDE_CODE_AUTONOMOUS_EXECUTION_CONTRACT.md`.
+
+Each session should still apply its own judgment and safety practices to what it actually executes
+— this file provides context, not a directive to skip a session's own safety checks.
+
 ## On reconnect
 
 1. Pull the active Claude Code branch and latest governed control artifacts.
