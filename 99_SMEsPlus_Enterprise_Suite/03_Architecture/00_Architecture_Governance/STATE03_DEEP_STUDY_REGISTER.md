@@ -23,7 +23,7 @@ Per Boss's Continuous Execution Order (2026-09-28), this register is updated cum
 | Gx1 | GRV-F01 | Receipt routing configuration | C3 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | `GOODS_RECEIPT_VALIDATION_PILOT/` | — |
 | Gx1 | GRV-F02 | Physical receipt execution | C2 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | Gx1 | GRV-F03 | Partial receipt / backorder handling | C2 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
-| Gx1 | GRV-F04 | Inventory valuation at receipt | **C1** | V5/floor V4 | V2 | Documentation | `GAP-GRV-01` (Black-box), **Evidence Conflict shared with GAP-SDV-01** | Complete, AWT plan extended | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: Gx2 surfaced a valuation-timing contradiction (see Gx2 SDV-F05) |
+| Gx1 | GRV-F04 | Inventory valuation at receipt | **C1** | V5/floor V4 | V2 | Documentation | `GAP-GRV-01` (Black-box), **Evidence Conflict, now 3 data points (with `SDV-F05`, `IAV-F03`)** | Complete, AWT plan extended | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: Gx2 then Gx4 both extended this contradiction |
 | Gx1 | GRV-F05 | Landed cost allocation | **C1** | V5/floor V4 | V2 | Documentation | `GAP-GRV-01` (Black-box) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | Gx1 | GRV-F06 | Three-way match / bill control policy | **C1** | V5/floor V4 | V2 | Documentation | `GAP-GRV-01` (Black-box) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | Gx1 | GRV-F07 | Reversal / return of received goods | C2 | V4/floor V3 | V2 | Documentation | `GAP-GRV-06` (narrowed — Targeted Validation Needed) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: closed via symmetry with Gx2 SDV-F06/F07 |
@@ -34,6 +34,12 @@ Per Boss's Continuous Execution Order (2026-09-28), this register is updated cum
 | Gx2 | SDV-F05 | COGS / valuation timing at delivery | **C1** | V5/floor V4 | V2 | Documentation | **`GAP-SDV-01` Evidence Conflict — top Deep Study priority** | Complete, contradiction logged | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: new — first appearance of the contradiction |
 | Gx2 | SDV-F06 | Return via Reverse Transfer (pre-invoice) | C2 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | Gx2 | SDV-F07 | Return via Credit Note (post-invoice) | **C1** | V5/floor V4 | V2 | Documentation | `GAP-SDV-05` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx4 | IAV-F01 | Physical count recording | C2 | V4/floor V3 | V2 | Documentation | `GAP-IAV-05` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | `INVENTORY_ADJUSTMENT_VALIDATION_PILOT/` | — |
+| Gx4 | IAV-F02 | Applying the adjustment | C2 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx4 | IAV-F03 | Financial posting timing | **C1** | V5/floor V4 | V2 | Documentation | **`GAP-IAV-01` — 3rd data point on the shared valuation-timing Evidence Conflict (with `GRV-F04`, `SDV-F05`)** | Complete, contradiction logged | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: new |
+| Gx4 | IAV-F04 | Scrap / Inventory Loss Account | **C1** | V5/floor V4 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx4 | IAV-F05 | Cycle count scheduling | C3 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx4 | IAV-F06 | Reversal of adjustment | C2 | V4/floor V3 | V0 | None yet | `GAP-IAV-02` | Not started | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 
 ## 3. Module Function Universe status
 
