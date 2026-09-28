@@ -1,10 +1,23 @@
 # LANE-A-G06-001
 
-Status: READY_FOR_EXECUTION
+Status: EVIDENCE_SUBMITTED
 Source Lane: LANE A
 Owner / Executor: Claude Code
 Boss Authority: AUTHORIZED
 Auto-Pickup Eligible: YES
+
+## Submission record (2026-09-28)
+
+- Result: `LANE_A_RESULTS/LANE-A-G06-001_RESULT.md`
+- Disposition returned: `LANE_A_HOLD_RECOMMENDATION` (1/12 governed modules CONFIRMED and Lane A
+  Pass-1 clean — `mrp`, 43/43 blobs hash-verified, 0 failures; remaining 11/12 unresolved GAP)
+- Lane A Pass-1 evidence created: `A1_SOURCE_EVIDENCE_LANE/G06_LANE_A_PASS1/G06_MRP_LANE_A_PASS1_20260928.md` (43 blobs)
+- GMVQ Question Bank check (multi-source, per `LANE_A_CONTROL/GMVQ_LANE_A_EVIDENCE_BRIDGE.md`):
+  canonical tree `NOT_FOUND`; PR #71 (closed/unmerged/self-disclaimed) `FOUND_CANDIDATE_UNMERGED`
+  (independently re-verified via `pull_request_read`) for `mrp` plus 11 additional candidate names
+  with no roster-membership support; PR #73 (open draft reconciliation) independently confirms
+  `MATCH_CONFIRMED` for `mrp`, no canonical overwrite/freeze implied
+- Status is EVIDENCE_SUBMITTED, not ACCEPTED — this is a Lane A recommendation only.
 
 ## Objective
 Execute formal LANE A intake/reconciliation for G06 MANUFACTURING before any A1 admission.
