@@ -4,7 +4,7 @@
 
 | ID | Gap | Impact | Status | Route to close |
 |---|---|---|---|---|
-| GAP-SDV-01 | **Evidence Conflict.** Two genuine Odoo 19 documentation sources disagree on when perpetual valuation posts a journal entry: at physical movement (the claim Gx1's `GRV-F04` recorded) vs. at invoice time via a Stock Variation buffer account (this Gx's finding, EV-SDV-04). | Directly affects the C1 valuation-timing claim in **both** Gx1 and Gx2; must not be relied on in either direction for any downstream design discussion. | **Evidence Conflict — highest-priority open item across Gx1+Gx2** | AWT (this pilot's `AWT_BACKLOG.md` and Gx1's, both updated) is the only way to resolve this; a further documentation pass could also help (e.g. checking whether the "invoice-timing" pages are describing a *specific* valuation sub-mode not covered by the generic page Gx1 used) but is unlikely to fully resolve it alone |
+| GAP-SDV-01 | **RESOLVED 2026-09-28 (Gx6), documentation-tier.** Was: Evidence Conflict between "posts at movement" (Gx1) and "posts at invoice" (this Gx). Gx6 found the full architecture: no entry at movement, entry at invoice time, month-end Stock Closing/accrual sweeps up anything uninvoiced by period end — see `../PERIOD_CUTOFF_VALIDATION_PILOT/06_BUSINESS_RULE_REGISTER.md` PCO-F03. This Gx's original finding (posts at invoice) was the accurate half of the picture; Gx1's original finding was the incomplete/generic half — reconciled, not contradictory. | No longer blocks downstream design discussion at documentation-tier confidence, though AWT still recommended for formal runtime confirmation. | **Resolved (documentation-tier, high confidence) — downgraded from Evidence Conflict** | AWT (shared capstone session, queued in Gx6's `AWT_BACKLOG.md`) for final runtime confirmation |
 | GAP-SDV-02 | Delivery-side backorder documentation reads as more automatic than Gx1's purchase-side, action-gated backorder description; not confirmed whether this is a real mechanical difference or documentation-emphasis difference | Cannot yet state with confidence that GRV-F03 and SDV-F03 are mechanically identical | **Targeted Validation Needed** | Direct page comparison once network access allows, or runtime confirmation |
 | GAP-SDV-03 | No documentation evidence gathered on multi-company/tenant scoping for delivery, invoicing-policy enforcement, or credit notes | Control Applicability Matrix records Company/Data Scope as `Unknown` | **Non-blocking** | Targeted documentation pass, or runtime observation |
 | GAP-SDV-04 | No documentation evidence on audit trail/event emission for delivery validation, return, or credit-note issuance | Control Applicability Matrix records Audit/Event as `Unknown` | **Non-blocking** | Documentation or runtime pass |
@@ -19,7 +19,7 @@
 
 ```
 GAPS OPEN                 : 6
-EVIDENCE CONFLICT (shared with Gx1) : 1 (GAP-SDV-01)
+RESOLVED (2026-09-28, Gx6) : 1 (GAP-SDV-01, was Evidence Conflict)
 TARGETED VALIDATION       : 1 (GAP-SDV-02)
 NON-BLOCKING              : 4 (GAP-SDV-03, 04, 05, 06)
 ```
