@@ -35,6 +35,10 @@ Per Boss's instruction, a full search of all repository branches (`git ls-remote
 
 **Disposition proposed to Boss**: this pilot treats GAP-GRV-02 as `Needs Reconciliation — evidence located, not proven current/final` rather than `Fail` or `location unclear`. The existence of a Reopen Program after CORR-005's delta-review challenge suggests CORR-005 may not be the final state — PMO should determine the *latest* authoritative Inventory Core Backbone disposition (possibly on one of the CORR-006/007a/007b/reopen branches) before any of this evidence is merged, cited as corroboration, or relied upon in Phase B. No content from any of these branches has been read, copied, or used to inform this pilot's `06_BUSINESS_RULE_REGISTER.md` — those claims remain sourced purely from Odoo 19 public documentation (`19_PROVENANCE_REGISTER.md`).
 
+### GAP-GRV-02 — UPDATE (2026-09-28, Boss order): full lineage reconciled
+
+Per Boss's direct order, the full lineage `DR-002 → CORR-005 → IDR-007 → CORR-006 → CORR-007A → CORR-007B → Reopen Program` was traced and reconciled — see `../INVENTORY_CORE_BACKBONE/03_LINEAGE_RECONCILIATION_DR002_TO_PRESENT.md`. Summary: the chain is coherent and carry-forward-eligible (6 rounds no-delta, 2 with a precision note, 1 — CORR-007B — partially revalidated because its `N-A12-01` evidence package contained a Clean-Room violation, `C-05`, that was found and remediated on that same branch but not yet independently re-audited). Recommended canonical candidate: `audit/inventory-reopen-2026-09-02-inv-reopen-001` @ `170af9ea7a5afd127abcaae0ffb40aaa1fa25d4d` (terminal status `COMPLETE — READY FOR INDEPENDENT REOPEN AUDIT`, Gate PASS not declared). **Status is now**: `Needs Reconciliation — lineage fully traced, one outstanding independent Clean-Room re-audit item, Boss merge/canonical-designation decision queued in `00_Architecture_Governance/STATE03_BOSS_GATE_QUEUE.md``. Still not used as content input to this pilot's own findings.
+
 ## Status summary
 
 ```

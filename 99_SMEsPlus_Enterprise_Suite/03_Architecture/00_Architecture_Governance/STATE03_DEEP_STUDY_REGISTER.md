@@ -8,34 +8,45 @@ STATE: STATE03 — Architecture & Knowledge Acquisition Deep Study
 Session: `SMEPLUS-26-09-28-STATE03-ARCH-KNOWLEDGE-REBASE-001`
 Boss: Sole Final Approver
 Control Level: /L99.99
-Status: `OPEN — PILOT ROUND 1`
+Status: `OPEN — CONTINUOUS EXECUTION (Boss order 2026-09-28)`
 
 ## 1. Purpose
 
 Master register for the STATE 03 Deep Study method (Master Prompt `STATE03_DEEP_STUDY_MASTER_PROMPT_FOR_CLAUDE_CODE.md`), per its §11 required output #1: Module/Function Universe, Criticality, actual/target Verification Accuracy (V), status, and owner. This register is additive to — and does not replace — the existing `STATE03_ENTERPRISE_MODULE_LEARNING_PRIORITY_MATRIX` (Wave/module priority) or the `STATE03_ACCOUNTING_INVENTORY_BACKBONE_EXECUTION_ROADMAP` (sequencing). No denominator is frozen; no completion percentage is claimed.
 
-## 2. Deep Study population (this round)
+## 2. Deep Study population (cumulative — Boss order 2026-09-28 §10 schema)
 
-| Function ID | Function | Criticality | Target V | Actual V | Status | Owner | Evidence location |
-|---|---|---|---|---|---|---|---|
-| GRV-F01 | Receipt routing configuration | C3 | V4/floor V3 | V2 | Targeted Validation Needed | Claude Code (Preparer) | `STATE03_MIGRATION_FACTORY/TEAM_A/06_DOMAIN_RESEARCH/GOODS_RECEIPT_VALIDATION_PILOT/` |
-| GRV-F02 | Physical receipt execution | C2 | V4/floor V3 | V2 | Targeted Validation Needed | Claude Code (Preparer) | same |
-| GRV-F03 | Partial receipt / backorder handling | C2 | V4/floor V3 | V2 | Targeted Validation Needed | Claude Code (Preparer) | same |
-| GRV-F04 | Inventory valuation at receipt | **C1** | V5/floor V4 | V2 | Blocking Unknown (Black-box/Unavailable, Boss-acknowledged) | Claude Code (Preparer) | same |
-| GRV-F05 | Landed cost allocation | **C1** | V5/floor V4 | V2 | Blocking Unknown (Black-box/Unavailable, Boss-acknowledged) | Claude Code (Preparer) | same |
-| GRV-F06 | Three-way match / bill control policy | **C1** | V5/floor V4 | V2 | Blocking Unknown (Black-box/Unavailable, Boss-acknowledged) | Claude Code (Preparer) | same |
-| GRV-F07 | Reversal / return of received goods | C2 | V4/floor V3 | V0 | Blocking Unknown (no evidence gathered yet) | Claude Code (Preparer) | same |
+Per Boss's Continuous Execution Order (2026-09-28), this register is updated cumulatively across all Gx units in one canonical table — no competing register is created. "Gx" = the 10 Accounting × Inventory Cross-Proof scenarios in `STATE03_ACCOUNTING_INVENTORY_BACKBONE_EXECUTION_ROADMAP.md` §Lane C, per the working interpretation posted to PR #74 and queued at `BGQ-05` in `STATE03_BOSS_GATE_QUEUE.md` (open to correction).
+
+| Gx | Function ID | Function | Criticality | Target V | Actual V | Evidence tier | Gap status | Research status | Audit status | PMO status | Gate status | Owner | Evidence path | Last Material Delta |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Gx1 | GRV-F01 | Receipt routing configuration | C3 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | `GOODS_RECEIPT_VALIDATION_PILOT/` | — |
+| Gx1 | GRV-F02 | Physical receipt execution | C2 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx1 | GRV-F03 | Partial receipt / backorder handling | C2 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx1 | GRV-F04 | Inventory valuation at receipt | **C1** | V5/floor V4 | V2 | Documentation | `GAP-GRV-01` (Black-box), **Evidence Conflict shared with GAP-SDV-01** | Complete, AWT plan extended | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: Gx2 surfaced a valuation-timing contradiction (see Gx2 SDV-F05) |
+| Gx1 | GRV-F05 | Landed cost allocation | **C1** | V5/floor V4 | V2 | Documentation | `GAP-GRV-01` (Black-box) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx1 | GRV-F06 | Three-way match / bill control policy | **C1** | V5/floor V4 | V2 | Documentation | `GAP-GRV-01` (Black-box) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx1 | GRV-F07 | Reversal / return of received goods | C2 | V4/floor V3 | V0 | None yet | `GAP-GRV-06` (Blocking Unknown — no evidence) | Not started | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx2 | SDV-F01 | Delivery routing configuration | C3 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | `SALES_DELIVERY_VALIDATION_PILOT/` | — |
+| Gx2 | SDV-F02 | Physical delivery execution | C2 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx2 | SDV-F03 | Partial delivery / backorder handling | C2 | V4/floor V3 | V2 | Documentation | `GAP-SDV-02` (Targeted Validation Needed) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx2 | SDV-F04 | Invoicing policy (ordered vs. delivered) | **C1** | V5/floor V4 | V2 | Documentation | `GAP-GRV-01`-class (Black-box) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx2 | SDV-F05 | COGS / valuation timing at delivery | **C1** | V5/floor V4 | V2 | Documentation | **`GAP-SDV-01` Evidence Conflict — top Deep Study priority** | Complete, contradiction logged | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: new — first appearance of the contradiction |
+| Gx2 | SDV-F06 | Return via Reverse Transfer (pre-invoice) | C2 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx2 | SDV-F07 | Return via Credit Note (post-invoice) | **C1** | V5/floor V4 | V2 | Documentation | `GAP-SDV-05` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 
 ## 3. Module Function Universe status
 
-`Catalog Status = OPEN / PILOT ONLY` — this round covers exactly one pilot (Goods Receipt Validation — Movement, Valuation, Financial-Control Effects) as directed by Master Prompt §8. No other module/function has been brought into this Deep Study register yet. Expansion beyond the pilot requires a Pilot Completion Report per Master Prompt §12 Phase B step 7, and is explicitly not authorized to begin (Phase C gate) until then.
+`Catalog Status = OPEN / CONTINUOUS` — per Boss's 2026-09-28 order, research continues through the remaining Gx population (scenarios 3–10 of the Backbone Roadmap Lane C list) without a stop-and-wait gate between units. Gx1 (Goods Receipt) and Gx2 (Sales Delivery) complete at documentation-tier; Gx3 onward in progress. No completion percentage is claimed; the Lane C list of 10 is the current denominator, itself not yet Boss-frozen as the final "Gx population" (`BGQ-05`).
 
 ## 4. Cross-references
 
-- Carry-forward/re-audit matrix: `TEAM_A/06_DOMAIN_RESEARCH/GOODS_RECEIPT_VALIDATION_PILOT/BASELINE_CARRY_FORWARD.md`
-- Evidence Gap Register: `TEAM_A/06_DOMAIN_RESEARCH/GOODS_RECEIPT_VALIDATION_PILOT/22_UNKNOWN_AND_GAPS.md`
-- Challenge Question Set Log: `TEAM_A/06_DOMAIN_RESEARCH/GOODS_RECEIPT_VALIDATION_PILOT/CHALLENGE_QUESTION_SET_LOG.md`
-- Governance-compliance open item (Pre-Prompt Independent Challenge Rule status for the governing Master Prompt): GAP-GRV-07 in the Gap Register above.
+- Carry-forward/re-audit matrices: `TEAM_A/06_DOMAIN_RESEARCH/GOODS_RECEIPT_VALIDATION_PILOT/BASELINE_CARRY_FORWARD.md`, `TEAM_A/06_DOMAIN_RESEARCH/SALES_DELIVERY_VALIDATION_PILOT/BASELINE_CARRY_FORWARD.md`
+- Evidence Gap Registers: each pilot's `22_UNKNOWN_AND_GAPS.md`
+- Challenge Question Set Logs: each pilot's `CHALLENGE_QUESTION_SET_LOG.md`
+- AWT Backlogs: each pilot's `AWT_BACKLOG.md`
+- Inventory Core Backbone full lineage reconciliation: `TEAM_A/06_DOMAIN_RESEARCH/INVENTORY_CORE_BACKBONE/03_LINEAGE_RECONCILIATION_DR002_TO_PRESENT.md`
+- Consolidated Boss-only decision queue: `STATE03_BOSS_GATE_QUEUE.md`
 
 ## 5. Authority boundary
 
