@@ -1,0 +1,70 @@
+name: ROOM A Pipeline Contract Validation
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/room-a-pipeline-validate.yml"
+      - "99_SMEsPlus_Enterprise_Suite/09_AI_Collaboration/ROOM_A_GITHUB_PIPELINE/**"
+  workflow_dispatch:
+    inputs:
+      event_path:
+        description: "Repository-relative path to a source-neutral event JSON"
+        required: true
+        default: "99_SMEsPlus_Enterprise_Suite/09_AI_Collaboration/ROOM_A_GITHUB_PIPELINE/events/examples/a1-handoff-ready.json"
+  repository_dispatch:
+    types: [room_a_batch_event]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: room-a-contract-${{ github.event.client_payload.batch_id || github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate source-neutral event contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out reviewed revision
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Validate committed examples
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          pipeline_root="99_SMEsPlus_Enterprise_Suite/09_AI_Collaboration/ROOM_A_GITHUB_PIPELINE"
+          while IFS= read -r -d '' event_file; do
+            node "$pipeline_root/scripts/validate-event.mjs" "$event_file"
+          done < <(find "$pipeline_root/events/examples" -type f -name '*.json' -print0)
+          node "$pipeline_root/scripts/test-validator.mjs"
+
+      - name: Validate selected event
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        env:
+          EVENT_PATH: ${{ inputs.event_path }}
+        run: |
+          set -euo pipefail
+          pipeline_root="99_SMEsPlus_Enterprise_Suite/09_AI_Collaboration/ROOM_A_GITHUB_PIPELINE"
+          node "$pipeline_root/scripts/validate-event.mjs" --root "$pipeline_root/events" "$EVENT_PATH"
+
+      - name: Materialize dispatch payload
+        if: github.event_name == 'repository_dispatch'
+        shell: bash
+        env:
+          EVENT_JSON: ${{ toJSON(github.event.client_payload) }}
+        run: |
+          set -euo pipefail
+          printf '%s' "$EVENT_JSON" > "$RUNNER_TEMP/room-a-event.json"
+
+      - name: Validate dispatch payload
+        if: github.event_name == 'repository_dispatch'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node "99_SMEsPlus_Enterprise_Suite/09_AI_Collaboration/ROOM_A_GITHUB_PIPELINE/scripts/validate-event.mjs" "$RUNNER_TEMP/room-a-event.json"

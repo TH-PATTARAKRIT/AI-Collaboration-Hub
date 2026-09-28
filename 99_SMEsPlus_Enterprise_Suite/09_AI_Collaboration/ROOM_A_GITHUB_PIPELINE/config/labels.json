@@ -1,0 +1,22 @@
+{
+  "labels": [
+    "room:room-a",
+    "stage:ready-a1",
+    "stage:a1-running",
+    "stage:ready-a2",
+    "stage:a2-running",
+    "stage:ready-a3",
+    "stage:a3-running",
+    "stage:ready-master",
+    "stage:master-running",
+    "state:accepted-internal",
+    "state:local-hold",
+    "state:dependency-hold",
+    "state:global-hold",
+    "severity:critical",
+    "severity:high",
+    "boss-decision-required"
+  ],
+  "mutation_policy": "CONTROLLER_ONLY",
+  "installation_status": "NOT_CONFIGURED"
+}
