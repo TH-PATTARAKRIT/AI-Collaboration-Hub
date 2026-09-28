@@ -1,0 +1,126 @@
+{
+  "id": {
+    "readonly": true,
+    "required": false,
+    "string": "ID",
+    "type": "integer"
+  },
+  "display_name": {
+    "readonly": true,
+    "required": false,
+    "string": "Display Name",
+    "type": "char"
+  },
+  "name": {
+    "readonly": false,
+    "required": true,
+    "string": "Name",
+    "type": "char"
+  },
+  "code": {
+    "readonly": false,
+    "required": false,
+    "string": "Sequence Code",
+    "type": "char"
+  },
+  "implementation": {
+    "readonly": false,
+    "required": true,
+    "selection": [
+      [
+        "standard",
+        "Standard"
+      ],
+      [
+        "no_gap",
+        "No gap"
+      ]
+    ],
+    "string": "Implementation",
+    "type": "selection"
+  },
+  "active": {
+    "readonly": false,
+    "required": false,
+    "string": "Active",
+    "type": "boolean"
+  },
+  "prefix": {
+    "readonly": false,
+    "required": false,
+    "string": "Prefix",
+    "type": "char"
+  },
+  "suffix": {
+    "readonly": false,
+    "required": false,
+    "string": "Suffix",
+    "type": "char"
+  },
+  "number_next": {
+    "readonly": false,
+    "required": true,
+    "string": "Next Number",
+    "type": "integer"
+  },
+  "number_next_actual": {
+    "readonly": false,
+    "required": false,
+    "string": "Actual Next Number",
+    "type": "integer"
+  },
+  "number_increment": {
+    "readonly": false,
+    "required": true,
+    "string": "Step",
+    "type": "integer"
+  },
+  "padding": {
+    "readonly": false,
+    "required": true,
+    "string": "Sequence Size",
+    "type": "integer"
+  },
+  "company_id": {
+    "readonly": false,
+    "required": false,
+    "string": "Company",
+    "type": "many2one"
+  },
+  "use_date_range": {
+    "readonly": false,
+    "required": false,
+    "string": "Use subsequences per date_range",
+    "type": "boolean"
+  },
+  "date_range_ids": {
+    "readonly": false,
+    "required": false,
+    "string": "Subsequences",
+    "type": "one2many"
+  },
+  "create_uid": {
+    "readonly": true,
+    "required": false,
+    "string": "Created by",
+    "type": "many2one"
+  },
+  "create_date": {
+    "readonly": true,
+    "required": false,
+    "string": "Created on",
+    "type": "datetime"
+  },
+  "write_uid": {
+    "readonly": true,
+    "required": false,
+    "string": "Last Updated by",
+    "type": "many2one"
+  },
+  "write_date": {
+    "readonly": true,
+    "required": false,
+    "string": "Last Updated on",
+    "type": "datetime"
+  }
+}

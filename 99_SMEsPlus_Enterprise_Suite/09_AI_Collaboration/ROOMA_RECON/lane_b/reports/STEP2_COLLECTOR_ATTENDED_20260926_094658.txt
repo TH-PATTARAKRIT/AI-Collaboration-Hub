@@ -1,0 +1,29 @@
+=== STEP 2 attended collector run 20260926_094658 (Boss-approved 1x, not looped) ===
+--- preserve previous batch (evidence, §21.3) ---
+copied batches/W1-STD -> _superseded/W1-STD_run_20260926_0225 (16 artifacts)
+--- pre-flight (live) ---
+observer uid=5  iTest19C
+test records present: 8  [10, 11, 13, 14, 15, 16, 17, 18]
+method: has_access(records, 'unlink') -> True
+UNLINK_RIGHT: LIVE
+preflight exit: 0
+--- collector V2, once ---
+connected  https://t9c.smeplus.asia (iTest19C) uid=5
+baseline   PASS  (299 modules)
+S2 metadata
+S4 access
+S5 scheduled
+S6 transactions
+probes
+cleanup
+cleanup    CLEAN
+done       16 artifacts -> /Users/admin/ROOMB_WORKSPACE/batches/W1-STD
+collector exit: 0
+--- verify manifest vs folder ---
+manifest lines NOT ok: 0
+manifest entries: 16  artifact files: 16
+--- clean room ---
+CLEAN - no source path in any artifact
+--- remaining test records (live, read-only) ---
+test records present: 0  []
+=== END ===

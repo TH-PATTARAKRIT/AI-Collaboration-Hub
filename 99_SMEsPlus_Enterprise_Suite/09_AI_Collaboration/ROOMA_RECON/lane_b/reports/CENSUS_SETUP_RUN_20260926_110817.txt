@@ -1,0 +1,81 @@
+CENSUS SETUP RUN   2026-09-26 11:08   (BOSSDEC-003 A/B/C/D - Boss approved 26 Sep)
+
+──────── 0/6  pre-conditions
+remote script sha256 : afd8e9070f880d7f
+INSTALLED MODULES : 299
+INSTALLED SET HASH: 706e6df4008e0bac042a9821507ec0bc6868c4d9f98bcb93004a2535b1ca3c89
+RESULT            : MATCH — the frozen baseline is intact.
+
+──────── 1/6  create roomb_census (server, odoo shell)  - §21.2 backup/before/apply inside the script
+launcher : <REDACTED_PATH>
+config   : /etc/odoo19.conf
+run as   : odoo
+backup   : /root/ROOMA_BACKUP/census_account_before_20260926_110819.json
+
+RESOLUTION
+  ok   id=24   Sales / Administrator
+  ok   id=30   Accounting / Administrator
+  ok   id=18   Analytic Accounting
+  ok   id=94   Expenses / Administrator
+  ok   id=93   Expenses / All Approver
+  ok   id=54   Inventory / Administrator
+  ok   id=76   Purchase / Administrator
+  ok   id=91   Employees / Administrator
+  ok   id=106  Recruitment / Administrator
+  ok   id=105  Recruitment / Officer: Manage all applicants
+  ok   id=104  Recruitment / Interviewer
+  ok   id=48   Project / Administrator
+  ok   id=89   Fleet / Administrator
+  ok   id=88   Fleet / Officer: Manage all vehicles
+  ok   id=69   Manufacturing / Administrator
+  ok   id=97   Time Off / Administrator
+  ok   id=96   Time Off / Officer: Manage all requests
+  ok   id=95   Time Off Responsible
+  ok   id=83   Events / Administrator
+  ok   id=103  Attendances / Administrator
+  ok   id=102  Attendances / Officer: Manage all attendances
+  ok   id=101  Officer: Manage attendances
+  ok   id=109  Timesheets / User: all timesheets
+  ok   id=108  Timesheets / User: own timesheets only
+  ok   id=79   Surveys / User
+  ok   id=9    Contact / Creation
+  ok   id=35   Show Lead Menu
+  ok   id=36   Show Recurring Revenues Menu
+ABORT: unresolved group(s) - nothing created:
+  Role / User: 0 match(es)
+no credentials file produced - the account was NOT created (see ABORT above)
+full log : /root/ROOMA_BACKUP/census_account_20260926_110819.log
+
+──────── 2/6  fetch credentials (0600, never printed)
+     SKIPPED - account not created (see step 1)
+
+──────── 3/6  server error-log window (read-only)
+<REDACTED_TRACE> (most recent call last):
+    raise TypeError("dictionary key must be string")
+TypeError: dictionary key must be string
+2026-09-26 02:50:46,286 4791 ERROR iTest19C odoo.http: Exception during request handling. 
+<REDACTED_TRACE> (most recent call last):
+IndexError: list index out of range
+2026-09-26 02:50:46,368 4791 ERROR iTest19C odoo.http: Exception during request handling. 
+<REDACTED_TRACE> (most recent call last):
+    raise TypeError("dictionary key must be string")
+TypeError: dictionary key must be string
+     log-window-check done
+
+──────── 4/6  verify roomb_census from the observer side (read-only)
+     SKIPPED - no credentials file
+
+──────── 5/6  baseline regression as roomb_observer (reference script)
+INSTALLED MODULES : 299
+INSTALLED SET HASH: 706e6df4008e0bac042a9821507ec0bc6868c4d9f98bcb93004a2535b1ca3c89
+RESULT            : MATCH — the frozen baseline is intact.
+
+──────── 6/6  clean-room scan of this report
+
+════════ SUMMARY
+created            : 0
+verify             : 
+ui reach (census)  : 
+baseline           : RESULT            : MATCH
+rollback           : archive the user via odoo shell (non-destructive) - see ROLLBACK line above
+report             : /Users/admin/ROOMB_WORKSPACE/reports/CENSUS_SETUP_RUN_20260926_110817.txt

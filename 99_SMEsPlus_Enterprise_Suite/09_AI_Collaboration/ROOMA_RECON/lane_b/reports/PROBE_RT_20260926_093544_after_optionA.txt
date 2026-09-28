@@ -1,0 +1,23 @@
+observer uid=5  iTest19C
+
+  menus shown to the user        REACHABLE     681   yes
+  screens / windows              REACHABLE     796   yes
+  server actions                 REFUSED         -   You are not allowed to access 'Server Action' (ir.actions.server) reco
+  report outputs                 REACHABLE      79   yes
+  view layouts                   REFUSED         -   You are not allowed to access 'View' (ir.ui.view) records.
+  feature switches (settings)    REACHABLE       0   metadata only
+  field-level selections         REFUSED         -   You are not allowed to access 'Fields' (ir.model.fields) records.
+  record-level states            REFUSED         -   You are not allowed to access 'Fields Selection' (ir.model.fields.sele
+  groups the user may see        REACHABLE     112   yes
+  modules as the user sees them  REACHABLE     713   yes
+
+reachable 6 / 10   refused 4
+
+VERDICT: CENSUS PARTIAL - 4 surface(s) need a scoped read grant
+written: /Users/admin/ROOMB_WORKSPACE/ops/census_feasibility_result.json
+DB                : iTest19C
+USER              : roomb_observer  (uid 5)
+INSTALLED MODULES : 299
+INSTALLED SET HASH: 706e6df4008e0bac042a9821507ec0bc6868c4d9f98bcb93004a2535b1ca3c89
+EXPECTED          : 706e6df4008e0bac042a9821507ec0bc6868c4d9f98bcb93004a2535b1ca3c89
+RESULT            : MATCH — the frozen baseline is intact.

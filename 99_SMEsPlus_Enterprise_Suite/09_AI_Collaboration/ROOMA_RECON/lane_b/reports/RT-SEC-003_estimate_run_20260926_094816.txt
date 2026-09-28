@@ -1,0 +1,16 @@
+observer uid=5  iTest19C
+fields: ir.ui.menu.group_ids  res.users.group_ids  res.groups.all_implied_ids
+direct groups (8): 1=Role / User, 23=User: All Documents, 27=Invoicing, 29=Show Full Accounting Features, 53=User, 75=User, 90=Officer: Manage all employees, 120=ROOM B Observer (Lane B)
+
+profile                                                  groups  eff  menus  leaves   sections
+A  current 8 groups (as-is)                                   8   43    201     129   20
+B  minimal: Role/User + Lane B group only                     2   32     89      54   14
+C  business user: drop HR-Officer + Full-Accounting           6   38    172     112   20
+D  drop Full-Accounting only                                  7   40    188     123   20
+
+B  loses sections: CRM, Events, Inventory, Invoicing, Purchase, Repairs
+C  loses sections: (none)
+D  loses sections: (none)
+
+NOTE: estimates are UPPER BOUNDS - action-model access filtering is not modelled (needs ir.model.access).
+written: /Users/admin/ROOMB_WORKSPACE/reports/RT-SEC-003_menu_impact_estimate.json

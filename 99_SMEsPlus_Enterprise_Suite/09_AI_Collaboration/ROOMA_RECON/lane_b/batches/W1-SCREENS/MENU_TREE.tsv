@@ -1,0 +1,682 @@
+menu_id	depth	is_leaf	children	opens	path
+15	1	0	4		Apps
+55	2	1	0	ir.actions.act_window,46	Apps / Apply Scheduled Upgrades
+48	2	0	4		Apps / Apps
+49	3	1	0	ir.actions.act_window,39	Apps / Apps / Main Apps
+52	3	1	0	ir.actions.act_url,41	Apps / Apps / Theme Store
+50	3	1	0		Apps / Apps / Theme Store
+51	3	1	0	ir.actions.act_url,40	Apps / Apps / Third-Party Apps
+67	2	1	0	ir.actions.act_window,84	Apps / Import Module
+53	2	1	0	ir.actions.act_window,43	Apps / Update Apps List
+595	1	0	5		Attendances
+603	2	0	3		Attendances / Configuration
+604	3	1	0	ir.actions.server,912	Attendances / Configuration / Onboarding
+606	3	1	0	ir.actions.act_window,922	Attendances / Configuration / Overtime Rulesets
+605	3	1	0	ir.actions.act_window,920	Attendances / Configuration / Settings
+596	2	1	0	ir.actions.server,918	Attendances / Kiosk Mode
+602	2	1	0	ir.actions.act_window,916	Attendances / Management
+599	2	0	2		Attendances / Overview
+600	3	1	0	ir.actions.act_window,914	Attendances / Overview / Dashboard
+601	3	1	0	ir.actions.act_window,818	Attendances / Overview / Employees
+597	2	0	2		Attendances / Reporting
+598	3	1	0	ir.actions.act_window,915	Attendances / Reporting / Attendances
+643	3	1	0	ir.actions.act_window,982	Attendances / Reporting / Time Off Ledger
+203	1	0	5		CRM
+215	2	0	9	ir.actions.server,315	CRM / Configuration
+220	3	0	2		CRM / Configuration / Activities
+222	4	1	0	ir.actions.act_window,336	CRM / Configuration / Activities / Activity Plans
+221	4	1	0	ir.actions.act_window,209	CRM / Configuration / Activities / Activity Types
+237	3	0	2		CRM / Configuration / Lead Generation
+238	4	1	0	ir.actions.act_window,357	CRM / Configuration / Lead Generation / Lead Mining Requests
+709	4	1	0	ir.actions.act_window,1090	CRM / Configuration / Lead Generation / Visits to Leads Rules
+688	3	0	2		CRM / Configuration / Members
+689	4	1	0	ir.actions.act_window,1061	CRM / Configuration / Members / Levels
+711	4	1	0	ir.actions.act_window,1094	CRM / Configuration / Members / Partner Activations
+217	3	1	0		CRM / Configuration / Opportunities
+224	3	0	3		CRM / Configuration / Pipeline
+227	4	1	0	ir.actions.act_window,324	CRM / Configuration / Pipeline / Lost Reasons
+225	4	1	0	ir.actions.act_window,325	CRM / Configuration / Pipeline / Stages
+226	4	1	0	ir.actions.act_window,204	CRM / Configuration / Pipeline / Tags
+223	3	1	0	ir.actions.act_window,323	CRM / Configuration / Recurring Plans
+218	3	1	0	ir.actions.act_window,207	CRM / Configuration / Sales Teams
+216	3	1	0	ir.actions.act_window,337	CRM / Configuration / Settings
+219	3	1	0	ir.actions.act_window,208	CRM / Configuration / Teams Members
+228	2	1	0		CRM / Import & Synchronize
+209	2	1	0	ir.actions.act_window,329	CRM / Leads
+210	2	0	6		CRM / Reporting
+214	3	1	0	ir.actions.act_window,338	CRM / Reporting / Activities
+211	3	1	0	ir.actions.server,316	CRM / Reporting / Forecast
+710	3	1	0	ir.actions.act_window,1091	CRM / Reporting / Lead Generation Views
+213	3	1	0	ir.actions.act_window,341	CRM / Reporting / Leads
+712	3	1	0	ir.actions.act_window,1095	CRM / Reporting / Partnerships
+212	3	1	0	ir.actions.act_window,340	CRM / Reporting / Pipeline
+204	2	0	5		CRM / Sales
+208	3	1	0	ir.actions.act_window,55	CRM / Sales / Customers
+206	3	1	0	ir.actions.act_window,330	CRM / Sales / My Activities
+205	3	1	0	ir.actions.server,315	CRM / Sales / My Pipeline
+276	3	1	0	ir.actions.act_window,379	CRM / Sales / My Quotations
+207	3	1	0	ir.actions.act_window,206	CRM / Sales / Teams
+121	1	0	2		Calendar
+122	2	1	0	ir.actions.act_window,167	Calendar / Calendar
+123	2	0	2	ir.actions.act_window,167	Calendar / Configuration
+125	3	1	0	ir.actions.act_window,166	Calendar / Configuration / Reminders
+124	3	1	0	ir.actions.act_window,168	Calendar / Configuration / Settings
+129	1	0	2		Contacts
+131	2	0	5		Contacts / Configuration
+138	3	0	2		Contacts / Configuration / Bank Accounts
+140	4	1	0	ir.actions.act_window,61	Contacts / Configuration / Bank Accounts / Bank Accounts
+139	4	1	0	ir.actions.act_window,60	Contacts / Configuration / Bank Accounts / Banks
+132	3	1	0	ir.actions.act_window,58	Contacts / Configuration / Contact Tags
+133	3	1	0	ir.actions.act_window,59	Contacts / Configuration / Industries
+134	3	0	4		Contacts / Configuration / Localization
+735	4	1	0	ir.actions.act_window,1126	Contacts / Configuration / Localization / Cities
+135	4	1	0	ir.actions.act_window,62	Contacts / Configuration / Localization / Countries
+136	4	1	0	ir.actions.act_window,63	Contacts / Configuration / Localization / Country Group
+137	4	1	0	ir.actions.act_window,64	Contacts / Configuration / Localization / Fed. States
+732	3	1	0	ir.actions.act_window,1119	Contacts / Configuration / Website Tags
+130	2	1	0	ir.actions.act_window,170	Contacts / Contacts
+229	1	0	3	ir.actions.client,348	Dashboards
+231	2	0	1		Dashboards / Configuration
+232	3	1	0	ir.actions.act_window,349	Dashboards / Configuration / Dashboards
+230	2	1	0	ir.actions.client,348	Dashboards / Dashboards
+736	2	1	0	ir.actions.act_window,1128	Dashboards / My Dashboard
+83	1	0	4	ir.actions.client,124	Discuss
+85	2	1	0	ir.actions.act_window,123	Discuss / Channels
+86	2	0	4		Discuss / Configuration
+89	3	1	0	ir.actions.act_window,125	Discuss / Configuration / Canned Responses
+87	3	1	0	ir.actions.client,140	Discuss / Configuration / Notifications
+90	3	1	0	ir.actions.act_window,126	Discuss / Configuration / Roles
+88	3	1	0	ir.actions.client,141	Discuss / Configuration / Voice & Video
+84	2	1	0	ir.actions.client,124	Discuss / Discuss
+119	2	0	1		Discuss / Technical
+120	3	1	0	ir.actions.act_window,152	Discuss / Technical / Call History
+515	1	0	7		Employees
+521	2	0	5		Employees / Configuration
+544	3	0	3		Employees / Configuration / Challenges
+545	4	1	0	ir.actions.act_window,696	Employees / Configuration / Challenges / Badges
+546	4	1	0	ir.actions.act_window,846	Employees / Configuration / Challenges / Challenges
+547	4	1	0	ir.actions.act_window,845	Employees / Configuration / Challenges / Goals History
+522	3	0	6		Employees / Configuration / Employee
+526	4	1	0	ir.actions.act_window,810	Employees / Configuration / Employee / Departure Reasons
+523	5	1	0	ir.actions.act_window,806	Employees / Configuration / Employee / Onboarding / Offboarding
+550	4	1	0	ir.actions.act_window,851	Employees / Configuration / Employee / Skill Types
+527	4	1	0	ir.actions.act_window,814	Employees / Configuration / Employee / Tags
+524	4	1	0	ir.actions.act_window,825	Employees / Configuration / Employee / Work Locations
+525	4	1	0	ir.actions.act_window,99	Employees / Configuration / Employee / Working Schedules
+528	3	0	3		Employees / Configuration / Recruitment
+530	4	1	0	ir.actions.act_window,809	Employees / Configuration / Recruitment / Contract Templates
+531	4	1	0	ir.actions.act_window,811	Employees / Configuration / Recruitment / Employment Types
+529	4	1	0	ir.actions.act_window,813	Employees / Configuration / Recruitment / Job Positions
+548	3	0	1		Employees / Configuration / Resume
+549	4	1	0	ir.actions.act_window,849	Employees / Configuration / Resume / Sections
+532	3	1	0	ir.actions.act_window,826	Employees / Configuration / Settings
+520	2	1	0	ir.actions.act_window,824	Employees / Departments
+518	2	1	0	ir.actions.act_window,815	Employees / Directory
+517	2	1	0	ir.actions.act_window,818	Employees / Employees
+516	2	1	0		Employees / Human Resources
+552	2	0	3		Employees / Learning
+553	3	1	0	ir.actions.act_window,852	Employees / Learning / Certifications
+557	3	0	2		Employees / Learning / Courses
+558	4	1	0	ir.actions.act_window,862	Employees / Learning / Courses / Onsite
+677	4	1	0	ir.actions.act_window,1031	Employees / Learning / Courses / eLearning
+554	3	1	0	ir.actions.act_window,850	Employees / Learning / Training Attendances
+519	2	0	1		Employees / Reporting
+551	3	0	2		Employees / Reporting / Skills
+555	4	1	0	ir.actions.act_window,856	Employees / Reporting / Skills / Certifications
+556	4	1	0	ir.actions.act_window,857	Employees / Reporting / Skills / Skills Inventory
+443	1	0	4		Events
+446	2	0	9		Events / Configuration
+578	3	1	0	ir.actions.act_window,894	Events / Configuration / Booth Categories
+579	3	1	0	ir.actions.act_window,896	Events / Configuration / Booths
+451	3	1	0	ir.actions.act_window,736	Events / Configuration / Event Questions
+448	3	1	0	ir.actions.act_window,725	Events / Configuration / Event Stages
+450	3	1	0	ir.actions.act_window,735	Events / Configuration / Event Tags Categories
+447	3	1	0	ir.actions.act_window,722	Events / Configuration / Event Templates
+474	3	1	0	ir.actions.act_window,764	Events / Configuration / Lead Generation
+449	3	1	0	ir.actions.act_window,714	Events / Configuration / Mail Schedulers
+454	3	1	0	ir.actions.act_window,734	Events / Configuration / Settings
+444	2	1	0	ir.actions.act_window,724	Events / Events
+453	2	1	0	ir.actions.client,723	Events / Registration Desk
+445	2	0	2		Events / Reporting
+452	3	1	0	ir.actions.act_window,719	Events / Reporting / Attendees
+492	3	1	0	ir.actions.act_window,779	Events / Reporting / Revenues
+533	1	0	3		Expenses
+539	2	0	3		Expenses / Configuration
+542	3	1	0	ir.actions.act_window,840	Expenses / Configuration / Activity Types
+540	3	1	0	ir.actions.act_window,833	Expenses / Configuration / Expense Categories
+543	3	1	0	ir.actions.act_window,843	Expenses / Configuration / Settings
+534	2	0	2		Expenses / My Expenses
+536	3	1	0	ir.actions.act_window,835	Expenses / My Expenses / Expenses to Process
+535	3	1	0	ir.actions.act_window,834	Expenses / My Expenses / My Expenses
+537	2	0	1		Expenses / Reporting
+538	3	1	0	ir.actions.act_window,836	Expenses / Reporting / Expenses Analysis
+494	1	0	3		Fleet
+495	2	0	5		Fleet / Configuration
+512	3	1	0	ir.actions.act_window,800	Fleet / Configuration / Activity Types
+496	3	0	3		Fleet / Configuration / Models
+499	4	1	0	ir.actions.act_window,790	Fleet / Configuration / Models / Categories
+497	4	1	0	ir.actions.act_window,789	Fleet / Configuration / Models / Manufacturers
+498	4	1	0	ir.actions.act_window,788	Fleet / Configuration / Models / Models
+503	3	0	1		Fleet / Configuration / Services
+504	4	1	0	ir.actions.act_window,793	Fleet / Configuration / Services / Types
+513	3	1	0	ir.actions.act_window,801	Fleet / Configuration / Settings
+505	3	0	2		Fleet / Configuration / Vehicle
+506	4	1	0	ir.actions.act_window,794	Fleet / Configuration / Vehicle / Status
+507	4	1	0	ir.actions.act_window,795	Fleet / Configuration / Vehicle / Tags
+500	2	0	4		Fleet / Fleet
+508	3	1	0	ir.actions.act_window,797	Fleet / Fleet / Contracts
+501	3	1	0	ir.actions.act_window,791	Fleet / Fleet / Fleet
+502	3	1	0	ir.actions.act_window,792	Fleet / Fleet / Odometers
+509	3	1	0	ir.actions.act_window,798	Fleet / Fleet / Services
+510	2	0	2		Fleet / Reporting
+511	3	1	0	ir.actions.act_window,799	Fleet / Reporting / Costs
+514	3	1	0	ir.actions.act_window,802	Fleet / Reporting / Odometers
+324	1	0	5		Inventory
+329	2	0	4		Inventory / Configuration
+361	3	0	3		Inventory / Configuration / Delivery
+678	4	1	0	ir.actions.act_window,1010	Inventory / Configuration / Delivery / Delivery Methods
+362	4	1	0	ir.actions.act_window,573	Inventory / Configuration / Delivery / Package Types
+679	4	1	0	ir.actions.act_window,1011	Inventory / Configuration / Delivery / Zip Prefix
+331	3	0	4		Inventory / Configuration / Products
+334	4	1	0	ir.actions.act_window,188	Inventory / Configuration / Products / Attributes
+332	4	1	0	ir.actions.act_window,478	Inventory / Configuration / Products / Barcode Nomenclatures
+333	4	1	0	ir.actions.act_window,189	Inventory / Configuration / Products / Categories
+335	4	1	0	ir.actions.act_window,90	Inventory / Configuration / Products / Units & Packagings
+358	3	1	0	ir.actions.act_window,571	Inventory / Configuration / Settings
+330	3	0	7		Inventory / Configuration / Warehouse Management
+354	4	1	0	ir.actions.act_window,563	Inventory / Configuration / Warehouse Management / Locations
+349	4	1	0	ir.actions.act_window,552	Inventory / Configuration / Warehouse Management / Operations Types
+338	4	1	0	ir.actions.act_window,511	Inventory / Configuration / Warehouse Management / Putaway Rules
+355	4	1	0	ir.actions.act_window,565	Inventory / Configuration / Warehouse Management / Routes
+359	4	1	0	ir.actions.act_window,572	Inventory / Configuration / Warehouse Management / Rules
+357	4	1	0	ir.actions.act_window,569	Inventory / Configuration / Warehouse Management / Storage Categories
+343	4	1	0	ir.actions.act_window,523	Inventory / Configuration / Warehouse Management / Warehouses
+325	2	0	5		Inventory / Operations
+327	3	0	3		Inventory / Operations / Adjustments
+690	4	1	0	ir.actions.act_window,1062	Inventory / Operations / Adjustments / Landed Costs
+341	4	1	0	ir.actions.server,517	Inventory / Operations / Adjustments / Physical Inventory
+340	4	1	0	ir.actions.act_window,516	Inventory / Operations / Adjustments / Scrap
+639	3	0	2		Inventory / Operations / Jobs
+640	4	1	0	ir.actions.act_window,969	Inventory / Operations / Jobs / Batch Transfers
+641	4	1	0	ir.actions.act_window,974	Inventory / Operations / Jobs / Wave Transfers
+328	3	0	2		Inventory / Operations / Procurement
+364	4	1	0	ir.actions.act_window,577	Inventory / Operations / Procurement / References
+356	4	1	0	ir.actions.server,568	Inventory / Operations / Procurement / Replenishment
+360	3	1	0	ir.actions.server,479	Inventory / Operations / Procurement: run scheduler
+326	3	0	5		Inventory / Operations / Transfers
+347	4	1	0	ir.actions.server,539	Inventory / Operations / Transfers / Deliveries
+691	4	1	0	ir.actions.act_window,1063	Inventory / Operations / Transfers / Dropships
+348	4	1	0	ir.actions.server,540	Inventory / Operations / Transfers / Internal
+400	4	1	0	ir.actions.act_window,646	Inventory / Operations / Transfers / Manufacturings
+346	4	1	0	ir.actions.server,538	Inventory / Operations / Transfers / Receipts
+350	2	1	0	ir.actions.act_window,553	Inventory / Overview
+336	2	0	4		Inventory / Products
+339	4	1	0	ir.actions.act_window,514	Inventory / Products / Lots / Serial Numbers
+363	3	1	0	ir.actions.act_window,574	Inventory / Products / Packages
+352	3	1	0	ir.actions.act_window,560	Inventory / Products / Product Variants
+351	3	1	0	ir.actions.act_window,559	Inventory / Products / Products
+337	2	0	4		Inventory / Reporting
+342	3	1	0	ir.actions.server,518	Inventory / Reporting / Locations
+345	3	1	0	ir.actions.act_window,526	Inventory / Reporting / Moves Analysis
+344	3	1	0	ir.actions.act_window,525	Inventory / Reporting / Moves History
+353	3	1	0	ir.actions.act_window,558	Inventory / Reporting / Stock
+150	1	0	7		Invoicing
+164	2	0	2		Invoicing / Accounting
+168	3	0	1		Invoicing / Accounting / Closing
+201	4	1	0	ir.actions.act_window,311	Invoicing / Accounting / Closing / Secure Entries
+165	3	0	2		Invoicing / Accounting / Transactions
+167	4	1	0	ir.actions.act_window,154	Invoicing / Accounting / Transactions / Analytic Items
+166	4	1	0	ir.actions.act_window,265	Invoicing / Accounting / Transactions / Journal Entries
+180	2	0	5		Invoicing / Configuration
+182	3	0	9		Invoicing / Configuration / Accounting
+191	4	1	0	ir.actions.act_window,299	Invoicing / Configuration / Accounting / Cash Roundings
+183	4	1	0	ir.actions.act_window,281	Invoicing / Configuration / Accounting / Chart of Accounts
+187	4	1	0	ir.actions.act_window,66	Invoicing / Configuration / Accounting / Currencies
+188	4	1	0	ir.actions.act_window,304	Invoicing / Configuration / Accounting / Fiscal Positions
+185	4	1	0	ir.actions.act_window,283	Invoicing / Configuration / Accounting / Journals
+189	4	1	0	ir.actions.act_window,284	Invoicing / Configuration / Accounting / Multi-Ledger
+186	4	1	0		Invoicing / Configuration / Accounting / Reporting
+190	4	1	0	ir.actions.act_window,290	Invoicing / Configuration / Accounting / Tax Groups
+184	4	1	0	ir.actions.act_window,289	Invoicing / Configuration / Accounting / Taxes
+197	3	0	3		Invoicing / Configuration / Analytic Accounting
+199	4	1	0	ir.actions.act_window,156	Invoicing / Configuration / Analytic Accounting / Analytic Accounts
+198	4	1	0	ir.actions.act_window,158	Invoicing / Configuration / Analytic Accounting / Analytic Distribution Models
+200	4	1	0	ir.actions.act_window,157	Invoicing / Configuration / Analytic Accounting / Analytic Plans
+192	3	0	4		Invoicing / Configuration / Invoicing
+493	4	1	0	ir.actions.act_window,787	Invoicing / Configuration / Invoicing / EDI Proxy Users
+194	4	1	0	ir.actions.act_window,310	Invoicing / Configuration / Invoicing / Incoterms
+193	4	1	0	ir.actions.act_window,291	Invoicing / Configuration / Invoicing / Payment Terms
+195	4	1	0	ir.actions.act_window,189	Invoicing / Configuration / Invoicing / Product Categories
+196	3	0	4		Invoicing / Configuration / Online Payments
+234	4	1	0	ir.actions.act_window,230	Invoicing / Configuration / Online Payments / Payment Methods
+233	4	1	0	ir.actions.act_window,229	Invoicing / Configuration / Online Payments / Payment Providers
+235	4	1	0	ir.actions.act_window,233	Invoicing / Configuration / Online Payments / Payment Tokens
+236	4	1	0	ir.actions.act_window,231	Invoicing / Configuration / Online Payments / Payment Transactions
+181	3	1	0	ir.actions.act_window,302	Invoicing / Configuration / Settings
+152	2	0	5		Invoicing / Customers
+154	3	1	0	ir.actions.act_window,269	Invoicing / Customers / Credit Notes
+157	3	1	0	ir.actions.act_window,305	Invoicing / Customers / Customers
+153	3	1	0	ir.actions.act_window,268	Invoicing / Customers / Invoices
+155	3	1	0	ir.actions.act_window,243	Invoicing / Customers / Payments
+156	3	1	0	ir.actions.act_window,294	Invoicing / Customers / Products
+151	2	1	0	ir.actions.act_window,307	Invoicing / Dashboard
+173	2	0	5		Invoicing / Reporting
+733	3	1	0	ir.actions.act_window,1121	Invoicing / Reporting / Accounting Tests
+176	3	0	3		Invoicing / Reporting / Management
+178	4	1	0	ir.actions.act_window,296	Invoicing / Reporting / Management / Analytic Report
+177	4	1	0	ir.actions.act_window,298	Invoicing / Reporting / Management / Invoice Analysis
+692	4	1	0	ir.actions.act_window,1065	Invoicing / Reporting / Management / Product Margins…
+174	3	1	0		Invoicing / Reporting / Partner Reports
+179	3	1	0		Invoicing / Reporting / Statement Reports
+175	3	1	0		Invoicing / Reporting / Taxes & Fiscal
+169	2	0	2		Invoicing / Review
+170	3	0	1		Invoicing / Review / Control
+171	4	1	0	ir.actions.act_window,264	Invoicing / Review / Control / Journal Items
+172	3	0	1		Invoicing / Review / Logs
+202	4	1	0	ir.actions.act_window,312	Invoicing / Review / Logs / Audit Trail
+158	2	0	6		Invoicing / Vendors
+159	3	1	0	ir.actions.act_window,271	Invoicing / Vendors / Bills
+541	3	1	0	ir.actions.act_window,837	Invoicing / Vendors / Employee Expenses
+161	3	1	0	ir.actions.act_window,244	Invoicing / Vendors / Payments
+162	3	1	0	ir.actions.act_window,295	Invoicing / Vendors / Products
+160	3	1	0	ir.actions.act_window,272	Invoicing / Vendors / Refunds
+163	3	1	0	ir.actions.act_window,306	Invoicing / Vendors / Vendors
+78	1	0	2		Link Tracker
+442	2	1	0	ir.actions.act_window,711	Link Tracker / Link Tracker
+79	2	0	3		Link Tracker / UTMs
+80	3	1	0	ir.actions.act_window,100	Link Tracker / UTMs / Campaigns
+81	3	1	0	ir.actions.act_window,101	Link Tracker / UTMs / Mediums
+82	3	1	0	ir.actions.act_window,102	Link Tracker / UTMs / Sources
+580	1	0	6		Live Chat
+581	2	1	0	ir.actions.act_window,903	Live Chat / Channels
+586	2	0	4		Live Chat / Configuration
+588	3	1	0	ir.actions.act_window,125	Live Chat / Configuration / Canned Responses
+589	3	1	0	ir.actions.act_window,898	Live Chat / Configuration / Chatbots
+591	3	1	0	ir.actions.act_window,904	Live Chat / Configuration / Expertise
+590	3	1	0	ir.actions.act_window,902	Live Chat / Configuration / Tags
+585	2	0	2		Live Chat / Reporting
+593	3	1	0	ir.actions.act_window,906	Live Chat / Reporting / Agents
+594	3	1	0	ir.actions.act_window,907	Live Chat / Reporting / Sessions
+582	2	0	2		Live Chat / Sessions
+583	3	1	0	ir.actions.act_window,899	Live Chat / Sessions / All Conversations
+584	3	1	0	ir.actions.act_window,901	Live Chat / Sessions / Looking for Help
+587	2	0	6		Live Chat / Technical
+635	3	1	0	ir.actions.act_window,965	Live Chat / Technical / Escalated Sessions
+592	3	1	0	ir.actions.act_window,905	Live Chat / Technical / Member History
+636	3	1	0	ir.actions.act_window,966	Live Chat / Technical / Ongoing Call Sessions
+634	3	1	0	ir.actions.act_window,964	Live Chat / Technical / Ongoing Sessions
+637	3	1	0	ir.actions.act_window,967	Live Chat / Technical / Sessions Handled by Agent
+638	3	1	0	ir.actions.act_window,968	Live Chat / Technical / Sessions Handled by Bot
+642	2	1	0	ir.actions.act_window,421	Live Chat / Visitors
+365	1	0	6		Maintenance
+376	2	0	5		Maintenance / Configuration
+380	3	1	0	ir.actions.act_window,597	Maintenance / Configuration / Activity Types
+378	3	1	0	ir.actions.act_window,593	Maintenance / Configuration / Equipment Categories
+379	3	1	0	ir.actions.act_window,594	Maintenance / Configuration / Maintenance Stages
+377	3	1	0	ir.actions.act_window,595	Maintenance / Configuration / Maintenance Teams
+381	3	1	0	ir.actions.act_window,598	Maintenance / Configuration / Settings
+366	2	1	0	ir.actions.act_window,596	Maintenance / Dashboard
+370	2	1	0	ir.actions.act_window,591	Maintenance / Equipment
+367	2	0	2		Maintenance / Maintenance
+369	3	1	0	ir.actions.act_window,589	Maintenance / Maintenance / Maintenance Calendar
+368	3	1	0	ir.actions.act_window,585	Maintenance / Maintenance / Maintenance Requests
+371	2	0	2		Maintenance / Reporting
+374	2	0	1		Maintenance / Reporting
+373	3	1	0		Maintenance / Reporting / Losses Analysis
+375	3	1	0	ir.actions.act_window,590	Maintenance / Reporting / Maintenance Requests Analysis
+372	3	1	0		Maintenance / Reporting / Overall Equipment Effectiveness (OEE)
+382	1	0	5		Manufacturing
+387	2	0	3		Manufacturing / Configuration
+397	3	1	0	ir.actions.act_window,643	Manufacturing / Configuration / Operations
+402	3	1	0	ir.actions.act_window,650	Manufacturing / Configuration / Settings
+391	3	1	0	ir.actions.act_window,622	Manufacturing / Configuration / Work Centers
+383	2	0	4		Manufacturing / Operations
+394	3	1	0	ir.actions.act_window,639	Manufacturing / Operations / Manufacturing Orders
+389	3	1	0	ir.actions.act_window,516	Manufacturing / Operations / Scrap
+401	3	1	0	ir.actions.act_window,649	Manufacturing / Operations / Unbuild Orders
+395	3	1	0	ir.actions.act_window,613	Manufacturing / Operations / Work Orders
+384	2	0	1		Manufacturing / Planning
+390	3	1	0	ir.actions.server,479	Manufacturing / Planning / Procurement: run scheduler
+385	2	0	4		Manufacturing / Products
+393	3	1	0	ir.actions.act_window,626	Manufacturing / Products / Bills of Materials
+388	3	1	0	ir.actions.act_window,514	Manufacturing / Products / Lots/Serial Numbers
+399	3	1	0	ir.actions.act_window,645	Manufacturing / Products / Product Variants
+398	3	1	0	ir.actions.act_window,644	Manufacturing / Products / Products
+386	2	0	2		Manufacturing / Reporting
+392	3	1	0	ir.actions.act_window,624	Manufacturing / Reporting / Overall Equipment Effectiveness
+396	3	1	0	ir.actions.act_window,621	Manufacturing / Reporting / Work Orders
+304	1	0	5		Project
+313	2	0	9		Project / Configuration
+322	3	1	0	ir.actions.act_window,465	Project / Configuration / Activity Plans
+321	3	1	0	ir.actions.act_window,466	Project / Configuration / Activity Types
+320	3	1	0	ir.actions.act_window,461	Project / Configuration / Project Roles
+317	3	1	0	ir.actions.act_window,433	Project / Configuration / Project Stages
+315	3	1	0	ir.actions.act_window,444	Project / Configuration / Projects
+316	3	1	0	ir.actions.act_window,443	Project / Configuration / Projects
+314	3	1	0	ir.actions.act_window,464	Project / Configuration / Settings
+319	3	1	0	ir.actions.act_window,462	Project / Configuration / Tags
+318	3	1	0	ir.actions.act_window,436	Project / Configuration / Task Stages
+305	2	1	0	ir.actions.act_window,441	Project / Projects
+306	2	1	0	ir.actions.act_window,442	Project / Projects
+310	2	0	2		Project / Reporting
+312	3	1	0	ir.actions.act_window,431	Project / Reporting / Customer Ratings
+311	3	1	0	ir.actions.act_window,471	Project / Reporting / Tasks Analysis
+307	2	0	2		Project / Tasks
+309	3	1	0	ir.actions.act_window,452	Project / Tasks / All Tasks
+308	3	1	0	ir.actions.act_window,451	Project / Tasks / My Tasks
+403	1	0	4		Purchase
+406	2	0	3		Purchase / Configuration
+408	3	0	3		Purchase / Configuration / Products
+409	4	1	0	ir.actions.act_window,188	Purchase / Configuration / Products / Attributes
+410	4	1	0	ir.actions.act_window,189	Purchase / Configuration / Products / Categories
+411	4	1	0	ir.actions.act_window,90	Purchase / Configuration / Products / Units & Packagings
+417	3	1	0	ir.actions.act_window,673	Purchase / Configuration / Settings
+407	3	1	0	ir.actions.act_window,193	Purchase / Configuration / Vendor Pricelists
+404	2	0	4		Purchase / Orders
+693	3	1	0	ir.actions.act_window,1068	Purchase / Orders / Purchase Agreements
+416	3	1	0	ir.actions.act_window,665	Purchase / Orders / Purchase Orders
+415	3	1	0	ir.actions.act_window,664	Purchase / Orders / Requests for Quotation
+405	3	1	0	ir.actions.act_window,306	Purchase / Orders / Vendors
+412	2	0	2		Purchase / Products
+414	3	1	0	ir.actions.act_window,663	Purchase / Products / Product Variants
+413	3	1	0	ir.actions.act_window,662	Purchase / Products / Products
+418	2	0	1		Purchase / Reporting
+419	3	1	0	ir.actions.act_window,676	Purchase / Reporting / Purchase
+607	1	0	3		Recruitment
+608	2	0	4		Recruitment / Applications
+612	3	1	0	ir.actions.act_window,932	Recruitment / Applications / All Applications
+609	3	1	0	ir.actions.act_window,946	Recruitment / Applications / By Job Positions
+610	3	1	0	ir.actions.act_window,947	Recruitment / Applications / By Job Positions
+611	3	1	0	ir.actions.act_window,939	Recruitment / Applications / By Talent Pools
+615	2	0	8		Recruitment / Configuration
+629	3	0	2		Recruitment / Configuration / Activities
+631	4	1	0	ir.actions.act_window,950	Recruitment / Configuration / Activities / Activity Plans
+630	4	1	0	ir.actions.act_window,949	Recruitment / Configuration / Activities / Activity Types
+623	3	0	3		Recruitment / Configuration / Applications
+624	4	1	0	ir.actions.act_window,923	Recruitment / Configuration / Applications / Degrees
+625	4	1	0	ir.actions.act_window,928	Recruitment / Configuration / Applications / Refuse Reasons
+626	4	1	0	ir.actions.act_window,927	Recruitment / Configuration / Applications / Tags
+627	3	0	2		Recruitment / Configuration / Employees
+628	4	1	0	ir.actions.act_window,941	Recruitment / Configuration / Employees / Departments
+644	4	1	0	ir.actions.act_window,851	Recruitment / Configuration / Employees / Skill Types
+645	3	1	0	ir.actions.act_window,992	Recruitment / Configuration / Interviews
+632	3	0	1		Recruitment / Configuration / Job Boards
+633	4	1	0	ir.actions.act_window,948	Recruitment / Configuration / Job Boards / Emails
+617	3	0	2		Recruitment / Configuration / Job Positions
+619	4	1	0	ir.actions.act_window,811	Recruitment / Configuration / Job Positions / Employment Types
+618	4	1	0	ir.actions.act_window,926	Recruitment / Configuration / Job Positions / Stages
+616	3	1	0	ir.actions.act_window,940	Recruitment / Configuration / Settings
+620	3	0	2		Recruitment / Configuration / UTMs
+622	4	1	0	ir.actions.act_window,101	Recruitment / Configuration / UTMs / Mediums
+621	4	1	0	ir.actions.act_window,102	Recruitment / Configuration / UTMs / Sources
+613	2	0	1		Recruitment / Reporting
+614	3	1	0	ir.actions.act_window,934	Recruitment / Reporting / Recruitment Analysis
+420	1	0	3		Repairs
+424	2	0	3		Repairs / Configuration
+426	3	1	0	ir.actions.act_window,560	Repairs / Configuration / Product Variants
+425	3	1	0	ir.actions.act_window,559	Repairs / Configuration / Products
+427	3	1	0	ir.actions.act_window,688	Repairs / Configuration / Repair Orders Tags
+421	2	1	0	ir.actions.act_window,684	Repairs / Orders
+422	2	0	1		Repairs / Reporting
+423	3	1	0	ir.actions.act_window,685	Repairs / Reporting / Repairs
+239	1	0	5		Sales
+257	2	0	6		Sales / Configuration
+273	3	0	2		Sales / Configuration / Activities
+275	4	1	0	ir.actions.act_window,392	Sales / Configuration / Activities / Activity Plans
+274	4	1	0	ir.actions.act_window,391	Sales / Configuration / Activities / Activity Types
+268	3	0	4		Sales / Configuration / Online Payments
+270	4	1	0	ir.actions.act_window,230	Sales / Configuration / Online Payments / Payment Methods
+269	4	1	0	ir.actions.act_window,229	Sales / Configuration / Online Payments / Payment Providers
+271	4	1	0	ir.actions.act_window,233	Sales / Configuration / Online Payments / Payment Tokens
+272	4	1	0	ir.actions.act_window,231	Sales / Configuration / Online Payments / Payment Transactions
+262	3	0	5		Sales / Configuration / Products
+263	4	1	0	ir.actions.act_window,188	Sales / Configuration / Products / Attributes
+265	4	1	0	ir.actions.act_window,189	Sales / Configuration / Products / Categories
+264	4	1	0	ir.actions.act_window,190	Sales / Configuration / Products / Combo Choices
+266	4	1	0	ir.actions.act_window,181	Sales / Configuration / Products / Product Tags
+267	4	1	0	ir.actions.act_window,90	Sales / Configuration / Products / Units & Packagings
+260	3	0	4		Sales / Configuration / Sales Orders
+658	4	1	0	ir.actions.act_window,1010	Sales / Configuration / Sales Orders / Delivery Methods
+278	4	1	0	ir.actions.act_window,400	Sales / Configuration / Sales Orders / Headers/Footers
+277	4	1	0	ir.actions.act_window,397	Sales / Configuration / Sales Orders / Quotation Templates
+261	4	1	0	ir.actions.act_window,204	Sales / Configuration / Sales Orders / Tags
+259	3	1	0	ir.actions.act_window,207	Sales / Configuration / Sales Teams
+258	3	1	0	ir.actions.act_window,375	Sales / Configuration / Settings
+240	2	0	4		Sales / Orders
+244	3	1	0	ir.actions.act_window,305	Sales / Orders / Customers
+242	3	1	0	ir.actions.act_window,377	Sales / Orders / Orders
+241	3	1	0	ir.actions.act_window,378	Sales / Orders / Quotations
+243	3	1	0	ir.actions.act_window,205	Sales / Orders / Sales Teams
+248	2	0	5		Sales / Products
+660	3	1	0	ir.actions.act_window,962	Sales / Products / Discount & Loyalty
+661	3	1	0	ir.actions.act_window,963	Sales / Products / Gift cards & eWallet
+251	3	1	0	ir.actions.act_window,191	Sales / Products / Pricelists
+250	3	1	0	ir.actions.act_window,185	Sales / Products / Product Variants
+249	3	1	0	ir.actions.act_window,393	Sales / Products / Products
+252	2	0	4		Sales / Reporting
+256	3	1	0	ir.actions.act_window,365	Sales / Reporting / Customers
+255	3	1	0	ir.actions.act_window,364	Sales / Reporting / Products
+253	3	1	0	ir.actions.act_window,362	Sales / Reporting / Sales
+254	3	1	0	ir.actions.act_window,363	Sales / Reporting / Salespersons
+245	2	0	2		Sales / To Invoice
+246	3	1	0	ir.actions.act_window,380	Sales / To Invoice / Orders to Invoice
+247	3	1	0	ir.actions.act_window,381	Sales / To Invoice / Orders to Upsell
+1	1	0	7		Settings
+2	2	1	0		Settings / Custom Shortcuts
+428	2	0	6		Settings / Gamification Tools
+432	3	1	0	ir.actions.act_window,696	Settings / Gamification Tools / Badges
+429	3	1	0	ir.actions.act_window,700	Settings / Gamification Tools / Challenges
+431	3	1	0	ir.actions.act_window,699	Settings / Gamification Tools / Goal Definitions
+430	3	1	0	ir.actions.act_window,697	Settings / Gamification Tools / Goals
+434	3	1	0	ir.actions.act_window,695	Settings / Gamification Tools / Karma Tracking
+433	3	1	0	ir.actions.act_window,694	Settings / Gamification Tools / Ranks
+68	2	1	0	ir.actions.act_window,85	Settings / General Settings
+7	2	1	0		Settings / General Settings
+8	2	0	16		Settings / Technical
+18	3	0	8		Settings / Technical / Actions
+19	4	1	0	ir.actions.act_window,6	Settings / Technical / Actions / Actions
+22	4	1	0	ir.actions.act_window,9	Settings / Technical / Actions / Client Actions
+25	4	1	0	ir.actions.act_window,12	Settings / Technical / Actions / Configuration Wizards
+24	4	1	0	ir.actions.act_window,11	Settings / Technical / Actions / Embedded Actions
+20	4	1	0	ir.actions.act_window,7	Settings / Technical / Actions / Reports
+23	4	1	0	ir.actions.act_window,10	Settings / Technical / Actions / Server Actions
+46	4	1	0	ir.actions.act_window,34	Settings / Technical / Actions / User-defined Defaults
+21	4	1	0	ir.actions.act_window,8	Settings / Technical / Actions / Window Actions
+114	3	0	3		Settings / Technical / Activities
+115	4	1	0	ir.actions.act_window,128	Settings / Technical / Activities / Activity Overview
+117	4	1	0	ir.actions.act_window,131	Settings / Technical / Activities / Activity Plans
+116	4	1	0	ir.actions.act_window,127	Settings / Technical / Activities / Activity Types
+12	3	0	3		Settings / Technical / Automation
+694	4	1	0	ir.actions.act_window,1077	Settings / Technical / Automation / Automation Rules
+28	4	1	0	ir.actions.act_window,16	Settings / Technical / Automation / Scheduled Actions
+29	4	1	0	ir.actions.act_window,17	Settings / Technical / Automation / Scheduled Actions Triggers
+126	3	0	2		Settings / Technical / Calendar
+128	4	1	0	ir.actions.act_window,166	Settings / Technical / Calendar / Calendar Alarm
+127	4	1	0	ir.actions.act_window,165	Settings / Technical / Calendar / Meeting Types
+11	3	0	10		Settings / Technical / Database Structure
+26	4	1	0	ir.actions.act_window,14	Settings / Technical / Database Structure / Assets
+40	4	1	0	ir.actions.act_window,27	Settings / Technical / Database Structure / Attachments
+17	4	1	0	ir.actions.act_window,5	Settings / Technical / Database Structure / Decimal Accuracy
+33	4	1	0	ir.actions.act_window,21	Settings / Technical / Database Structure / Fields
+34	4	1	0	ir.actions.act_window,22	Settings / Technical / Database Structure / Fields Selection
+47	4	1	0	ir.actions.act_window,38	Settings / Technical / Database Structure / Logging
+38	4	1	0	ir.actions.act_window,25	Settings / Technical / Database Structure / ManyToMany Relations
+37	4	1	0	ir.actions.act_window,24	Settings / Technical / Database Structure / Model Constraints
+32	4	1	0	ir.actions.act_window,20	Settings / Technical / Database Structure / Models
+57	4	1	0	ir.actions.act_window,52	Settings / Technical / Database Structure / Profiling
+99	3	0	17		Settings / Technical / Discuss
+106	4	1	0	ir.actions.act_window,151	Settings / Technical / Discuss / Email Blacklist
+105	4	1	0	ir.actions.act_window,116	Settings / Technical / Discuss / Followers
+113	4	1	0	ir.actions.act_window,121	Settings / Technical / Discuss / GIF favorite
+108	4	1	0	ir.actions.act_window,145	Settings / Technical / Discuss / Guests
+110	4	1	0	ir.actions.act_window,117	Settings / Technical / Discuss / ICE Servers
+112	4	1	0	ir.actions.act_window,120	Settings / Technical / Discuss / Link Previews
+683	4	1	0	ir.actions.act_window,1054	Settings / Technical / Discuss / Mail Groups
+111	4	1	0	ir.actions.act_window,146	Settings / Technical / Discuss / Message Reactions
+100	4	1	0	ir.actions.act_window,112	Settings / Technical / Discuss / Messages
+684	4	1	0	ir.actions.act_window,1053	Settings / Technical / Discuss / Moderation Rules
+104	4	1	0	ir.actions.act_window,111	Settings / Technical / Discuss / Notifications
+109	4	1	0	ir.actions.act_window,119	Settings / Technical / Discuss / RTC sessions
+303	4	1	0	ir.actions.act_window,427	Settings / Technical / Discuss / Ratings
+101	4	1	0	ir.actions.act_window,113	Settings / Technical / Discuss / Scheduled Messages
+102	4	1	0	ir.actions.act_window,109	Settings / Technical / Discuss / Subtypes
+103	4	1	0	ir.actions.act_window,110	Settings / Technical / Discuss / Tracking Values
+107	4	1	0	ir.actions.act_window,148	Settings / Technical / Discuss / User Settings
+10	3	0	12		Settings / Technical / Email
+93	4	1	0	ir.actions.act_window,142	Settings / Technical / Email / Alias Domains
+92	4	1	0	ir.actions.act_window,143	Settings / Technical / Email / Aliases
+96	4	1	0	ir.actions.act_window,122	Settings / Technical / Email / Channels
+97	4	1	0	ir.actions.act_window,118	Settings / Technical / Email / Channels/Members
+148	4	1	0	ir.actions.act_window,225	Settings / Technical / Email / Digest Emails
+149	4	1	0	ir.actions.act_window,226	Settings / Technical / Email / Digest Tips
+95	4	1	0	ir.actions.act_window,149	Settings / Technical / Email / Email Templates
+91	4	1	0	ir.actions.act_window,114	Settings / Technical / Email / Emails
+94	4	1	0	ir.actions.act_window,108	Settings / Technical / Email / Incoming Mail Servers
+98	4	1	0	ir.actions.act_window,144	Settings / Technical / Email / Mail Gateway Allowed
+31	4	1	0	ir.actions.act_window,19	Settings / Technical / Email / Outgoing Mail Servers
+147	4	1	0	ir.actions.act_window,223	Settings / Technical / Email / Snailmail Letters
+70	3	0	2		Settings / Technical / IAP
+71	4	1	0	ir.actions.act_window,89	Settings / Technical / IAP / IAP Accounts
+682	4	1	0	ir.actions.act_window,1045	Settings / Technical / IAP / IAP Partners
+14	3	0	1		Settings / Technical / Parameters
+27	4	1	0	ir.actions.act_window,15	Settings / Technical / Parameters / System Parameters
+141	4	0	3		Settings / Technical / Phone / SMS
+142	5	1	0	ir.actions.act_window,171	Settings / Technical / Phone / SMS / Phone Blacklist
+145	5	1	0	ir.actions.act_window,219	Settings / Technical / Phone / SMS / SMS
+146	5	1	0	ir.actions.act_window,221	Settings / Technical / Phone / SMS / SMS Templates
+143	3	0	1		Settings / Technical / Privacy
+144	4	1	0	ir.actions.act_window,176	Settings / Technical / Privacy / Privacy Logs
+64	3	0	2		Settings / Technical / Reporting
+65	4	1	0	ir.actions.act_window,76	Settings / Technical / Reporting / Paper Format
+66	4	1	0	ir.actions.act_window,77	Settings / Technical / Reporting / Reports
+74	3	0	3		Settings / Technical / Resource
+76	4	1	0	ir.actions.act_window,95	Settings / Technical / Resource / Resource Time Off
+77	4	1	0	ir.actions.act_window,93	Settings / Technical / Resource / Resources
+75	4	1	0	ir.actions.act_window,99	Settings / Technical / Resource / Working Schedules
+13	3	0	3		Settings / Technical / Security
+39	4	1	0	ir.actions.act_window,26	Settings / Technical / Security / Access Rights
+41	4	1	0	ir.actions.act_window,28	Settings / Technical / Security / Record Rules
+63	4	1	0	ir.actions.act_window,74	Settings / Technical / Security / User Devices
+35	3	0	2		Settings / Technical / Sequences & Identifiers
+36	4	1	0	ir.actions.act_window,23	Settings / Technical / Sequences & Identifiers / External Identifiers
+42	4	1	0	ir.actions.act_window,29	Settings / Technical / Sequences & Identifiers / Sequences
+9	3	0	7		Settings / Technical / User Interface
+45	4	1	0	ir.actions.act_window,33	Settings / Technical / User Interface / Customized Views
+43	4	1	0	ir.actions.act_window,30	Settings / Technical / User Interface / Menu Items
+72	4	1	0	ir.actions.act_window,91	Settings / Technical / User Interface / Onboardings
+73	4	1	0	ir.actions.act_window,92	Settings / Technical / User Interface / Onboardings Steps
+69	4	1	0	ir.actions.act_window,86	Settings / Technical / User Interface / Tours
+30	4	1	0	ir.actions.act_window,18	Settings / Technical / User Interface / User-defined Filters
+44	4	1	0	ir.actions.act_window,31	Settings / Technical / User Interface / Views
+4	2	0	3		Settings / Translations
+5	3	0	1		Settings / Translations / Application Terms
+716	4	1	0	ir.actions.server,1102	Settings / Translations / Application Terms / Transifex Code Translations
+6	4	0	2		Settings / Translations / Import / Export
+56	5	1	0	ir.actions.act_window,48	Settings / Translations / Import / Export / Export Translation
+54	5	1	0	ir.actions.act_window,45	Settings / Translations / Import / Export / Import Translation
+59	3	1	0	ir.actions.act_window,54	Settings / Translations / Languages
+3	2	0	5		Settings / Users & Companies
+58	3	1	0	ir.actions.act_window,53	Settings / Users & Companies / Companies
+61	3	1	0	ir.actions.act_window,68	Settings / Users & Companies / Groups
+734	3	1	0	ir.actions.act_window,1125	Settings / Users & Companies / OAuth Providers
+60	3	1	0	ir.actions.act_window,67	Settings / Users & Companies / Privileges
+62	3	1	0	ir.actions.act_window,70	Settings / Users & Companies / Users
+435	1	0	3		Surveys
+438	2	1	0	ir.actions.act_window,706	Surveys / Participants
+436	2	0	3		Surveys / Questions & Answers
+441	3	1	0	ir.actions.act_window,707	Surveys / Questions & Answers / Detailed Answers
+439	3	1	0	ir.actions.act_window,708	Surveys / Questions & Answers / Questions
+440	3	1	0	ir.actions.act_window,709	Surveys / Questions & Answers / Suggested Values
+437	2	1	0	ir.actions.act_window,705	Surveys / Surveys
+16	1	1	0		Tests
+559	1	0	5		Time Off
+572	2	0	5		Time Off / Configuration
+574	3	1	0	ir.actions.act_window,882	Time Off / Configuration / Accrual Plans
+577	3	1	0	ir.actions.act_window,884	Time Off / Configuration / Activity Types
+576	3	1	0	ir.actions.act_window,883	Time Off / Configuration / Mandatory Days
+575	3	1	0	ir.actions.act_window,870	Time Off / Configuration / Public Holidays
+573	3	1	0	ir.actions.act_window,877	Time Off / Configuration / Time Off Types
+565	2	0	2		Time Off / Management
+567	3	1	0	ir.actions.act_window,881	Time Off / Management / Allocations
+566	3	1	0	ir.actions.act_window,874	Time Off / Management / Time Off
+560	2	0	3		Time Off / My Time
+561	3	1	0	ir.actions.act_window,871	Time Off / My Time / Dashboard
+563	3	1	0	ir.actions.act_window,878	Time Off / My Time / My Allocations
+562	3	1	0	ir.actions.act_window,873	Time Off / My Time / My Time Off
+564	2	1	0	ir.actions.act_window,888	Time Off / Overview
+568	2	0	3		Time Off / Reporting
+571	3	1	0	ir.actions.server,890	Time Off / Reporting / Balance
+569	3	1	0	ir.actions.act_window,876	Time Off / Reporting / by Employee
+570	3	1	0	ir.actions.act_window,886	Time Off / Reporting / by Type
+646	1	0	4		Timesheets
+656	2	1	0	ir.actions.act_window,999	Timesheets / Configuration
+647	2	1	0	ir.actions.act_window,993	Timesheets / My Timesheets
+651	2	0	2		Timesheets / Reporting
+652	3	0	4		Timesheets / Reporting / Timesheets
+659	4	1	0	ir.actions.act_window,1012	Timesheets / Reporting / Timesheets / Attendance Analysis
+681	4	1	0	ir.actions.act_window,1042	Timesheets / Reporting / Timesheets / By Billing Type
+653	4	1	0	ir.actions.act_window,1000	Timesheets / Reporting / Timesheets / By Employee
+654	4	1	0	ir.actions.act_window,1001	Timesheets / Reporting / Timesheets / By Project
+655	4	1	0	ir.actions.act_window,1002	Timesheets / Reporting / Timesheets / By Task
+648	2	0	2		Timesheets / Timesheets
+650	3	1	0	ir.actions.act_window,996	Timesheets / Timesheets / All Timesheets
+649	3	1	0	ir.actions.act_window,993	Timesheets / Timesheets / My Timesheets
+323	1	1	0	ir.actions.act_window,475	To-do
+279	1	0	3		Website
+297	2	0	8		Website / Configuration
+299	3	1	0	ir.actions.act_window,405	Website / Configuration / Apps
+717	3	0	3		Website / Configuration / Blog
+718	4	1	0	ir.actions.act_window,1104	Website / Configuration / Blog / Blogs
+720	4	1	0	ir.actions.act_window,1106	Website / Configuration / Blog / Tag Categories
+719	4	1	0	ir.actions.act_window,1105	Website / Configuration / Blog / Tags
+722	3	0	5		Website / Configuration / Forum
+726	4	1	0	ir.actions.act_window,696	Website / Configuration / Forum / Badges
+727	4	1	0	ir.actions.act_window,1113	Website / Configuration / Forum / Close Reasons
+723	4	1	0	ir.actions.act_window,1115	Website / Configuration / Forum / Forums
+724	4	1	0	ir.actions.act_window,694	Website / Configuration / Forum / Ranks
+725	4	1	0	ir.actions.act_window,1114	Website / Configuration / Forum / Tags
+685	3	0	2		Website / Configuration / Mailing Lists
+686	4	1	0	ir.actions.act_window,1054	Website / Configuration / Mailing Lists / Mailing Lists
+687	4	1	0	ir.actions.act_window,1053	Website / Configuration / Mailing Lists / Moderation Rules
+301	3	1	0	ir.actions.act_window,408	Website / Configuration / Menus
+302	3	1	0	ir.actions.act_window,424	Website / Configuration / Redirects
+298	3	1	0	ir.actions.act_window,423	Website / Configuration / Settings
+300	3	1	0	ir.actions.act_window,407	Website / Configuration / Websites
+289	2	0	3		Website / Reporting
+291	3	1	0	ir.actions.server,413	Website / Reporting / Analytics
+296	3	1	0	ir.actions.act_window,422	Website / Reporting / Page Views
+295	3	1	0	ir.actions.act_window,421	Website / Reporting / Visitors
+280	2	0	4		Website / Site
+283	3	0	6		Website / Site / Content
+721	4	1	0	ir.actions.act_window,1107	Website / Site / Content / Blog Posts
+676	4	1	0	ir.actions.act_window,1029	Website / Site / Content / Courses
+728	4	1	0	ir.actions.act_window,1110	Website / Site / Content / Forum Posts
+657	4	1	0	ir.actions.act_window,1009	Website / Site / Content / Jobs
+293	4	1	0	ir.actions.act_window,417	Website / Site / Content / Pages
+292	4	1	0	ir.actions.act_window,404	Website / Site / Content / Technical Pages
+281	3	1	0	ir.actions.client,410	Website / Site / Homepage
+282	3	1	0	ir.actions.client,410	Website / Site / Menu Editor
+284	3	0	5		Website / Site / This page
+288	4	1	0	ir.actions.client,410	Website / Site / This page / Edit Menu
+287	5	1	0	ir.actions.client,410	Website / Site / This page / HTML / CSS Editor
+489	4	1	0	ir.actions.client,410	Website / Site / This page / Link Tracker
+286	4	1	0	ir.actions.client,410	Website / Site / This page / Optimize SEO
+285	4	1	0	ir.actions.client,410	Website / Site / This page / Properties
+662	1	0	4	ir.actions.act_window,1025	eLearning
+665	2	0	3		eLearning / Configuration
+675	3	1	0	ir.actions.act_window,1020	eLearning / Configuration / Content Tags
+674	3	1	0	ir.actions.act_window,1028	eLearning / Configuration / Course Groups
+673	3	1	0	ir.actions.act_window,1015	eLearning / Configuration / Settings
+663	2	0	3		eLearning / Courses
+680	3	1	0	ir.actions.act_window,1034	eLearning / Courses / Certifications
+667	3	1	0	ir.actions.act_window,1021	eLearning / Courses / Contents
+666	3	1	0	ir.actions.act_window,1025	eLearning / Courses / Courses
+737	2	0	2		eLearning / Forum
+738	3	1	0	ir.actions.act_window,1132	eLearning / Forum / Forums
+739	3	1	0	ir.actions.act_window,1133	eLearning / Forum / Posts
+664	2	0	5		eLearning / Reporting
+670	3	1	0	ir.actions.act_window,1024	eLearning / Reporting / Attendees
+669	3	1	0	ir.actions.act_window,1022	eLearning / Reporting / Contents
+668	3	1	0	ir.actions.act_window,1026	eLearning / Reporting / Courses
+672	3	1	0	ir.actions.act_window,1018	eLearning / Reporting / Quizzes
+671	3	1	0	ir.actions.act_window,1016	eLearning / Reporting / Reviews

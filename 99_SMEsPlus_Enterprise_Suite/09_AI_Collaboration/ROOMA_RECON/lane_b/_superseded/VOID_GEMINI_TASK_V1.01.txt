@@ -1,0 +1,4 @@
+VOID — SUPERSEDED BY GEMINI_TASK_V1.02.md (Boss-approved 2026-09-26)
+Stamped: 2026-09-26 21:58 Asia/Bangkok by RED TEAM (Lane B audit)
+File: _superseded/GEMINI_TASK_V1.01.md (content unchanged, moved only)
+sha256 at stamping: 694646ca8253cadd3da9cb871a5306ffe17ed960be91d07477ed67cf7a1025b6

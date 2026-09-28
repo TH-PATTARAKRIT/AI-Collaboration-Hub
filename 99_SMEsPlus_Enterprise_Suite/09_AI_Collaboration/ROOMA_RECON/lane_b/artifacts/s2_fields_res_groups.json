@@ -1,0 +1,278 @@
+{
+  "id": {
+    "readonly": true,
+    "required": false,
+    "string": "ID",
+    "type": "integer"
+  },
+  "display_name": {
+    "readonly": true,
+    "required": false,
+    "string": "Display Name",
+    "type": "char"
+  },
+  "name": {
+    "readonly": false,
+    "required": true,
+    "string": "Name",
+    "type": "char"
+  },
+  "user_ids": {
+    "readonly": false,
+    "required": false,
+    "string": "User",
+    "type": "many2many"
+  },
+  "all_user_ids": {
+    "readonly": false,
+    "required": false,
+    "string": "Users and implied users",
+    "type": "many2many"
+  },
+  "all_users_count": {
+    "readonly": true,
+    "required": false,
+    "string": "# Users",
+    "type": "integer"
+  },
+  "model_access": {
+    "readonly": false,
+    "required": false,
+    "string": "Access Controls",
+    "type": "one2many"
+  },
+  "rule_groups": {
+    "readonly": false,
+    "required": false,
+    "string": "Rules",
+    "type": "many2many"
+  },
+  "menu_access": {
+    "readonly": false,
+    "required": false,
+    "string": "Access Menu",
+    "type": "many2many"
+  },
+  "view_access": {
+    "readonly": false,
+    "required": false,
+    "string": "Views",
+    "type": "many2many"
+  },
+  "comment": {
+    "readonly": false,
+    "required": false,
+    "string": "Comment",
+    "type": "text"
+  },
+  "full_name": {
+    "readonly": true,
+    "required": false,
+    "string": "Group Name",
+    "type": "char"
+  },
+  "share": {
+    "readonly": false,
+    "required": false,
+    "string": "Share Group",
+    "type": "boolean"
+  },
+  "api_key_duration": {
+    "readonly": false,
+    "required": false,
+    "string": "API Keys maximum duration days",
+    "type": "float"
+  },
+  "sequence": {
+    "readonly": false,
+    "required": false,
+    "string": "Sequence",
+    "type": "integer"
+  },
+  "privilege_id": {
+    "readonly": false,
+    "required": false,
+    "string": "Privilege",
+    "type": "many2one"
+  },
+  "view_group_hierarchy": {
+    "readonly": true,
+    "required": false,
+    "string": "Technical field for default group setting",
+    "type": "json"
+  },
+  "implied_ids": {
+    "readonly": false,
+    "required": false,
+    "string": "Implied Groups",
+    "type": "many2many"
+  },
+  "all_implied_ids": {
+    "readonly": true,
+    "required": false,
+    "string": "Transitively Implied Groups",
+    "type": "many2many"
+  },
+  "implied_by_ids": {
+    "readonly": false,
+    "required": false,
+    "string": "Implying Groups",
+    "type": "many2many"
+  },
+  "all_implied_by_ids": {
+    "readonly": true,
+    "required": false,
+    "string": "Transitively Implying Groups",
+    "type": "many2many"
+  },
+  "disjoint_ids": {
+    "readonly": true,
+    "required": false,
+    "string": "Disjoint Groups",
+    "type": "many2many"
+  },
+  "create_uid": {
+    "readonly": true,
+    "required": false,
+    "string": "Created by",
+    "type": "many2one"
+  },
+  "create_date": {
+    "readonly": true,
+    "required": false,
+    "string": "Created on",
+    "type": "datetime"
+  },
+  "write_uid": {
+    "readonly": true,
+    "required": false,
+    "string": "Last Updated by",
+    "type": "many2one"
+  },
+  "write_date": {
+    "readonly": true,
+    "required": false,
+    "string": "Last Updated on",
+    "type": "datetime"
+  },
+  "lock_timeout": {
+    "readonly": false,
+    "required": false,
+    "string": "Session timeout",
+    "type": "integer"
+  },
+  "lock_timeout_mfa": {
+    "readonly": false,
+    "required": false,
+    "string": "Require MFA on session timeout",
+    "type": "boolean"
+  },
+  "lock_timeout_inactivity": {
+    "readonly": false,
+    "required": false,
+    "string": "Inactivity timeout",
+    "type": "integer"
+  },
+  "lock_timeout_inactivity_mfa": {
+    "readonly": false,
+    "required": false,
+    "string": "Require MFA on inactivity timeout",
+    "type": "boolean"
+  },
+  "has_lock_timeout": {
+    "readonly": false,
+    "required": false,
+    "string": "Has Lock Timeout",
+    "type": "boolean"
+  },
+  "lock_timeout_delay_unit": {
+    "readonly": false,
+    "required": false,
+    "selection": [
+      [
+        "minutes",
+        "minutes"
+      ],
+      [
+        "hours",
+        "hours"
+      ],
+      [
+        "days",
+        "days"
+      ]
+    ],
+    "string": "Lock Timeout Delay Unit",
+    "type": "selection"
+  },
+  "lock_timeout_delay_in_unit": {
+    "readonly": false,
+    "required": false,
+    "string": "Lock Timeout Delay In Unit",
+    "type": "integer"
+  },
+  "lock_timeout_2fa_selection": {
+    "readonly": false,
+    "required": false,
+    "selection": [
+      [
+        "without_2fa",
+        "Logout"
+      ],
+      [
+        "with_2fa",
+        "Logout with two-factor authentication"
+      ]
+    ],
+    "string": "Lock Timeout 2Fa Selection",
+    "type": "selection"
+  },
+  "has_lock_timeout_inactivity": {
+    "readonly": false,
+    "required": false,
+    "string": "Has Lock Timeout Inactivity",
+    "type": "boolean"
+  },
+  "lock_timeout_inactivity_delay_unit": {
+    "readonly": false,
+    "required": false,
+    "selection": [
+      [
+        "minutes",
+        "minutes"
+      ],
+      [
+        "hours",
+        "hours"
+      ],
+      [
+        "days",
+        "days"
+      ]
+    ],
+    "string": "Lock Timeout Inactivity Delay Unit",
+    "type": "selection"
+  },
+  "lock_timeout_inactivity_delay_in_unit": {
+    "readonly": false,
+    "required": false,
+    "string": "Lock Timeout Inactivity Delay In Unit",
+    "type": "integer"
+  },
+  "lock_timeout_inactivity_2fa_selection": {
+    "readonly": false,
+    "required": false,
+    "selection": [
+      [
+        "without_2fa",
+        "Screen lock"
+      ],
+      [
+        "with_2fa",
+        "Screen lock with two-factor authentication"
+      ]
+    ],
+    "string": "Lock Timeout Inactivity 2Fa Selection",
+    "type": "selection"
+  }
+}

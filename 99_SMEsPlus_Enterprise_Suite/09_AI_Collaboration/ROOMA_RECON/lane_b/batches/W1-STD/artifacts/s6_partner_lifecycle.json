@@ -1,0 +1,81 @@
+{
+  "write_scope_company_id": 2,
+  "create": {
+    "status": "ok",
+    "value": 19
+  },
+  "after_create": {
+    "status": "ok",
+    "value": [
+      {
+        "id": 19,
+        "name": "ROOMB_TEST_OBS_PARTNER_20260926_094701",
+        "company_id": [
+          2,
+          "ROOMB_TEST"
+        ],
+        "email": "obs_test@roomb.local",
+        "phone": "+6621234567",
+        "active": true,
+        "create_uid": [
+          5,
+          "ROOM B Observer (Lane B)"
+        ],
+        "create_date": "2026-09-26 02:47:01"
+      }
+    ]
+  },
+  "update": {
+    "status": "ok",
+    "value": true
+  },
+  "after_update": {
+    "status": "ok",
+    "value": [
+      {
+        "id": 19,
+        "phone": "+6629876543",
+        "write_uid": [
+          5,
+          "ROOM B Observer (Lane B)"
+        ],
+        "write_date": "2026-09-26 02:47:02"
+      }
+    ]
+  },
+  "archive": {
+    "status": "ok",
+    "value": true
+  },
+  "after_archive": {
+    "status": "ok",
+    "value": [
+      {
+        "id": 19,
+        "active": false
+      }
+    ]
+  },
+  "copy": {
+    "status": "ok",
+    "value": [
+      20
+    ]
+  },
+  "after_copy": {
+    "status": "ok",
+    "value": [
+      {
+        "id": 20,
+        "name": "ROOMB_TEST_OBS_PARTNER_20260926_094701_COPY",
+        "company_id": [
+          2,
+          "ROOMB_TEST"
+        ],
+        "email": "obs_test@roomb.local",
+        "phone": "+6629876543",
+        "active": false
+      }
+    ]
+  }
+}

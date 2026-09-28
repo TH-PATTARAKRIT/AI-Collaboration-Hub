@@ -1,0 +1,5 @@
+observer uid=5
+ir.ui.menu count WITH  ir.ui.menu.full_list : 681
+ir.ui.menu count WITHOUT (visibility applied): 681
+leaf screens (with action)  ALL: 492   VISIBLE to observer: 492
+load_menus: <Fault 1: '<REDACTED_TRACE> (most recent call last):\n  File "<REDACTED_PATH>

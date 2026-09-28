@@ -1,0 +1,2379 @@
+{
+  "status": "ok",
+  "value": {
+    "id": {
+      "readonly": true,
+      "required": false,
+      "string": "ID",
+      "type": "integer"
+    },
+    "display_name": {
+      "readonly": true,
+      "required": false,
+      "string": "Display Name",
+      "type": "char"
+    },
+    "message_is_follower": {
+      "readonly": true,
+      "required": false,
+      "string": "Is Follower",
+      "type": "boolean"
+    },
+    "message_follower_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Followers",
+      "type": "one2many"
+    },
+    "message_partner_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Followers (Partners)",
+      "type": "many2many"
+    },
+    "message_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Messages",
+      "type": "one2many"
+    },
+    "has_message": {
+      "readonly": true,
+      "required": false,
+      "string": "Has Message",
+      "type": "boolean"
+    },
+    "message_needaction": {
+      "readonly": true,
+      "required": false,
+      "string": "Action Needed",
+      "type": "boolean"
+    },
+    "message_needaction_counter": {
+      "readonly": true,
+      "required": false,
+      "string": "Number of Actions",
+      "type": "integer"
+    },
+    "message_has_error": {
+      "readonly": true,
+      "required": false,
+      "string": "Message Delivery error",
+      "type": "boolean"
+    },
+    "message_has_error_counter": {
+      "readonly": true,
+      "required": false,
+      "string": "Number of errors",
+      "type": "integer"
+    },
+    "message_attachment_count": {
+      "readonly": true,
+      "required": false,
+      "string": "Attachment Count",
+      "type": "integer"
+    },
+    "rating_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Ratings",
+      "type": "one2many"
+    },
+    "website_message_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Website Messages",
+      "type": "one2many"
+    },
+    "message_has_sms_error": {
+      "readonly": true,
+      "required": false,
+      "string": "SMS Delivery error",
+      "type": "boolean"
+    },
+    "name": {
+      "readonly": false,
+      "required": true,
+      "string": "Company Name",
+      "type": "char"
+    },
+    "active": {
+      "readonly": false,
+      "required": false,
+      "string": "Active",
+      "type": "boolean"
+    },
+    "sequence": {
+      "readonly": false,
+      "required": false,
+      "string": "Sequence",
+      "type": "integer"
+    },
+    "parent_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Parent Company",
+      "type": "many2one"
+    },
+    "child_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Branches",
+      "type": "one2many"
+    },
+    "all_child_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "All Child",
+      "type": "one2many"
+    },
+    "parent_path": {
+      "readonly": false,
+      "required": false,
+      "string": "Parent Path",
+      "type": "char"
+    },
+    "parent_ids": {
+      "readonly": true,
+      "required": false,
+      "string": "Parent",
+      "type": "many2many"
+    },
+    "root_id": {
+      "readonly": true,
+      "required": false,
+      "string": "Root",
+      "type": "many2one"
+    },
+    "partner_id": {
+      "readonly": false,
+      "required": true,
+      "string": "Partner",
+      "type": "many2one"
+    },
+    "report_header": {
+      "readonly": false,
+      "required": false,
+      "string": "Company Tagline",
+      "type": "html"
+    },
+    "report_footer": {
+      "readonly": false,
+      "required": false,
+      "string": "Report Footer",
+      "type": "html"
+    },
+    "company_details": {
+      "readonly": false,
+      "required": false,
+      "string": "Company Details",
+      "type": "html"
+    },
+    "is_company_details_empty": {
+      "readonly": true,
+      "required": false,
+      "string": "Is Company Details Empty",
+      "type": "boolean"
+    },
+    "logo": {
+      "readonly": false,
+      "required": false,
+      "string": "Company Logo",
+      "type": "binary"
+    },
+    "logo_web": {
+      "readonly": true,
+      "required": false,
+      "string": "Logo Web",
+      "type": "binary"
+    },
+    "uses_default_logo": {
+      "readonly": true,
+      "required": false,
+      "string": "Uses Default Logo",
+      "type": "boolean"
+    },
+    "currency_id": {
+      "readonly": false,
+      "required": true,
+      "string": "Currency",
+      "type": "many2one"
+    },
+    "user_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Accepted Users",
+      "type": "many2many"
+    },
+    "street": {
+      "readonly": false,
+      "required": false,
+      "string": "Street",
+      "type": "char"
+    },
+    "street2": {
+      "readonly": false,
+      "required": false,
+      "string": "Street2",
+      "type": "char"
+    },
+    "zip": {
+      "readonly": false,
+      "required": false,
+      "string": "Zip",
+      "type": "char"
+    },
+    "city": {
+      "readonly": false,
+      "required": false,
+      "string": "City",
+      "type": "char"
+    },
+    "state_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Fed. State",
+      "type": "many2one"
+    },
+    "bank_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Banks",
+      "type": "one2many"
+    },
+    "country_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Country",
+      "type": "many2one"
+    },
+    "country_code": {
+      "readonly": true,
+      "required": false,
+      "string": "Country Code",
+      "type": "char"
+    },
+    "email": {
+      "readonly": false,
+      "required": false,
+      "string": "Email",
+      "type": "char"
+    },
+    "phone": {
+      "readonly": false,
+      "required": false,
+      "string": "Phone",
+      "type": "char"
+    },
+    "website": {
+      "readonly": false,
+      "required": false,
+      "string": "Website Link",
+      "type": "char"
+    },
+    "vat": {
+      "readonly": false,
+      "required": false,
+      "string": "Tax ID",
+      "type": "char"
+    },
+    "company_registry": {
+      "readonly": false,
+      "required": false,
+      "string": "Company ID",
+      "type": "char"
+    },
+    "company_registry_placeholder": {
+      "readonly": true,
+      "required": false,
+      "string": "Company Registry Placeholder",
+      "type": "char"
+    },
+    "paperformat_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Paper format",
+      "type": "many2one"
+    },
+    "external_report_layout_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Document Template",
+      "type": "many2one"
+    },
+    "font": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "Lato",
+          "Lato"
+        ],
+        [
+          "Roboto",
+          "Roboto"
+        ],
+        [
+          "Open_Sans",
+          "Open Sans"
+        ],
+        [
+          "Montserrat",
+          "Montserrat"
+        ],
+        [
+          "Oswald",
+          "Oswald"
+        ],
+        [
+          "Raleway",
+          "Raleway"
+        ],
+        [
+          "Tajawal",
+          "Tajawal"
+        ],
+        [
+          "Fira_Mono",
+          "Fira Mono"
+        ]
+      ],
+      "string": "Font",
+      "type": "selection"
+    },
+    "primary_color": {
+      "readonly": false,
+      "required": false,
+      "string": "Primary Color",
+      "type": "char"
+    },
+    "secondary_color": {
+      "readonly": false,
+      "required": false,
+      "string": "Secondary Color",
+      "type": "char"
+    },
+    "color": {
+      "readonly": false,
+      "required": false,
+      "string": "Color",
+      "type": "integer"
+    },
+    "layout_background": {
+      "readonly": false,
+      "required": true,
+      "selection": [
+        [
+          "Blank",
+          "Blank"
+        ],
+        [
+          "Demo logo",
+          "Demo logo"
+        ],
+        [
+          "Custom",
+          "Custom"
+        ]
+      ],
+      "string": "Layout Background",
+      "type": "selection"
+    },
+    "layout_background_image": {
+      "readonly": false,
+      "required": false,
+      "string": "Background Image",
+      "type": "binary"
+    },
+    "uninstalled_l10n_module_ids": {
+      "readonly": true,
+      "required": false,
+      "string": "Uninstalled L10N Module",
+      "type": "many2many"
+    },
+    "create_uid": {
+      "readonly": true,
+      "required": false,
+      "string": "Created by",
+      "type": "many2one"
+    },
+    "create_date": {
+      "readonly": true,
+      "required": false,
+      "string": "Created on",
+      "type": "datetime"
+    },
+    "write_uid": {
+      "readonly": true,
+      "required": false,
+      "string": "Last Updated by",
+      "type": "many2one"
+    },
+    "write_date": {
+      "readonly": true,
+      "required": false,
+      "string": "Last Updated on",
+      "type": "datetime"
+    },
+    "social_twitter": {
+      "readonly": false,
+      "required": false,
+      "string": "X Account",
+      "type": "char"
+    },
+    "social_facebook": {
+      "readonly": false,
+      "required": false,
+      "string": "Facebook Account",
+      "type": "char"
+    },
+    "social_github": {
+      "readonly": false,
+      "required": false,
+      "string": "GitHub Account",
+      "type": "char"
+    },
+    "social_linkedin": {
+      "readonly": false,
+      "required": false,
+      "string": "LinkedIn Account",
+      "type": "char"
+    },
+    "social_youtube": {
+      "readonly": false,
+      "required": false,
+      "string": "Youtube Account",
+      "type": "char"
+    },
+    "social_instagram": {
+      "readonly": false,
+      "required": false,
+      "string": "Instagram Account",
+      "type": "char"
+    },
+    "social_tiktok": {
+      "readonly": false,
+      "required": false,
+      "string": "TikTok Account",
+      "type": "char"
+    },
+    "social_discord": {
+      "readonly": false,
+      "required": false,
+      "string": "Discord Account",
+      "type": "char"
+    },
+    "nomenclature_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Nomenclature",
+      "type": "many2one"
+    },
+    "resource_calendar_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Working Hours",
+      "type": "one2many"
+    },
+    "resource_calendar_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Default Working Hours",
+      "type": "many2one"
+    },
+    "alias_domain_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Email Domain",
+      "type": "many2one"
+    },
+    "bounce_email": {
+      "readonly": true,
+      "required": false,
+      "string": "Bounce Email",
+      "type": "char"
+    },
+    "bounce_formatted": {
+      "readonly": true,
+      "required": false,
+      "string": "Bounce",
+      "type": "char"
+    },
+    "catchall_email": {
+      "readonly": true,
+      "required": false,
+      "string": "Catchall Email",
+      "type": "char"
+    },
+    "catchall_formatted": {
+      "readonly": true,
+      "required": false,
+      "string": "Catchall",
+      "type": "char"
+    },
+    "default_from_email": {
+      "readonly": true,
+      "required": false,
+      "string": "Default From",
+      "type": "char"
+    },
+    "email_formatted": {
+      "readonly": true,
+      "required": false,
+      "string": "Formatted Email",
+      "type": "char"
+    },
+    "email_primary_color": {
+      "readonly": false,
+      "required": false,
+      "string": "Email Button Text",
+      "type": "char"
+    },
+    "email_secondary_color": {
+      "readonly": false,
+      "required": false,
+      "string": "Email Button Color",
+      "type": "char"
+    },
+    "iap_enrich_auto_done": {
+      "readonly": false,
+      "required": false,
+      "string": "Enrich Done",
+      "type": "boolean"
+    },
+    "snailmail_color": {
+      "readonly": false,
+      "required": false,
+      "string": "Snailmail Color",
+      "type": "boolean"
+    },
+    "snailmail_cover": {
+      "readonly": false,
+      "required": false,
+      "string": "Add a Cover Page",
+      "type": "boolean"
+    },
+    "snailmail_duplex": {
+      "readonly": false,
+      "required": false,
+      "string": "Both sides",
+      "type": "boolean"
+    },
+    "sms_provider": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "iap",
+          "Send via Odoo"
+        ],
+        [
+          "twilio",
+          "Send via Twilio"
+        ]
+      ],
+      "string": "SMS Provider",
+      "type": "selection"
+    },
+    "sms_twilio_number_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Numbers",
+      "type": "one2many"
+    },
+    "fiscalyear_last_day": {
+      "readonly": false,
+      "required": true,
+      "string": "Fiscalyear Last Day",
+      "type": "integer"
+    },
+    "fiscalyear_last_month": {
+      "readonly": false,
+      "required": true,
+      "selection": [
+        [
+          "1",
+          "January"
+        ],
+        [
+          "2",
+          "February"
+        ],
+        [
+          "3",
+          "March"
+        ],
+        [
+          "4",
+          "April"
+        ],
+        [
+          "5",
+          "May"
+        ],
+        [
+          "6",
+          "June"
+        ],
+        [
+          "7",
+          "July"
+        ],
+        [
+          "8",
+          "August"
+        ],
+        [
+          "9",
+          "September"
+        ],
+        [
+          "10",
+          "October"
+        ],
+        [
+          "11",
+          "November"
+        ],
+        [
+          "12",
+          "December"
+        ]
+      ],
+      "string": "Fiscalyear Last Month",
+      "type": "selection"
+    },
+    "fiscalyear_lock_date": {
+      "readonly": false,
+      "required": false,
+      "string": "Global Lock Date",
+      "type": "date"
+    },
+    "tax_lock_date": {
+      "readonly": false,
+      "required": false,
+      "string": "Tax Return Lock Date",
+      "type": "date"
+    },
+    "sale_lock_date": {
+      "readonly": false,
+      "required": false,
+      "string": "Sales Lock Date",
+      "type": "date"
+    },
+    "purchase_lock_date": {
+      "readonly": false,
+      "required": false,
+      "string": "Purchase Lock date",
+      "type": "date"
+    },
+    "hard_lock_date": {
+      "readonly": false,
+      "required": false,
+      "string": "Hard Lock Date",
+      "type": "date"
+    },
+    "user_fiscalyear_lock_date": {
+      "readonly": true,
+      "required": false,
+      "string": "User Fiscalyear Lock Date",
+      "type": "date"
+    },
+    "user_tax_lock_date": {
+      "readonly": true,
+      "required": false,
+      "string": "User Tax Lock Date",
+      "type": "date"
+    },
+    "user_sale_lock_date": {
+      "readonly": true,
+      "required": false,
+      "string": "User Sale Lock Date",
+      "type": "date"
+    },
+    "user_purchase_lock_date": {
+      "readonly": true,
+      "required": false,
+      "string": "User Purchase Lock Date",
+      "type": "date"
+    },
+    "user_hard_lock_date": {
+      "readonly": true,
+      "required": false,
+      "string": "User Hard Lock Date",
+      "type": "date"
+    },
+    "transfer_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Inter-Banks Transfer Account",
+      "type": "many2one"
+    },
+    "expects_chart_of_accounts": {
+      "readonly": false,
+      "required": false,
+      "string": "Expects a Chart of Accounts",
+      "type": "boolean"
+    },
+    "chart_template": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "generic_coa",
+          "Generic Chart of Accounts"
+        ],
+        [
+          "ae",
+          "🇦🇪 United Arab Emirates"
+        ],
+        [
+          "ar_ri",
+          "🇦🇷 Argentina - Argentine Generic Chart of Accounts for Registered Accountants"
+        ],
+        [
+          "ar_base",
+          "🇦🇷 Argentina - Generic Chart of Accounts Argentina Single Taxpayer / Basis"
+        ],
+        [
+          "ar_ex",
+          "🇦🇷 Argentina - Argentine Generic Chart of Accounts for Exempt Individuals"
+        ],
+        [
+          "at",
+          "🇦🇹 Austria"
+        ],
+        [
+          "au",
+          "🇦🇺 Australia"
+        ],
+        [
+          "bd",
+          "🇧🇩 Bangladesh"
+        ],
+        [
+          "be_comp",
+          "🇧🇪 Belgium - Companies"
+        ],
+        [
+          "be_asso",
+          "🇧🇪 Belgium - Associations and Foundations"
+        ],
+        [
+          "bf",
+          "🇧🇫 Burkina Faso - SYSCOHADA for Companies"
+        ],
+        [
+          "bf_syscebnl",
+          "🇧🇫 Burkina Faso - SYSCEBNL for Associations"
+        ],
+        [
+          "bg",
+          "🇧🇬 Bulgaria"
+        ],
+        [
+          "bh",
+          "🇧🇭 Bahrain"
+        ],
+        [
+          "bj",
+          "🇧🇯 Benin - SYSCOHADA for Companies"
+        ],
+        [
+          "bj_syscebnl",
+          "🇧🇯 Benin - SYSCEBNL for Associations"
+        ],
+        [
+          "bo",
+          "🇧🇴 Bolivia"
+        ],
+        [
+          "br",
+          "🇧🇷 Brazil"
+        ],
+        [
+          "ca_2023",
+          "🇨🇦 Canada"
+        ],
+        [
+          "cd",
+          "🇨🇩 Congo (DRC) - SYSCOHADA for Companies"
+        ],
+        [
+          "cd_syscebnl",
+          "🇨🇩 Congo (DRC) - SYSCEBNL for Associations"
+        ],
+        [
+          "cf",
+          "🇨🇫 Central African Republic - SYSCOHADA for Companies"
+        ],
+        [
+          "cf_syscebnl",
+          "🇨🇫 Central African Republic - SYSCEBNL for Associations"
+        ],
+        [
+          "cg",
+          "🇨🇬 Congo (Republic) - SYSCOHADA for Companies"
+        ],
+        [
+          "cg_syscebnl",
+          "🇨🇬 Congo (Republic) - SYSCEBNL for Associations"
+        ],
+        [
+          "ch",
+          "🇨🇭 Switzerland"
+        ],
+        [
+          "ci",
+          "🇨🇮 Côte d'Ivoire - SYSCOHADA for Companies"
+        ],
+        [
+          "ci_syscebnl",
+          "🇨🇮 Côte d'Ivoire - SYSCEBNL for Associations"
+        ],
+        [
+          "cl",
+          "🇨🇱 Chile"
+        ],
+        [
+          "cm",
+          "🇨🇲 Cameroon - SYSCOHADA for Companies"
+        ],
+        [
+          "cm_syscebnl",
+          "🇨🇲 Cameroon - SYSCEBNL for Associations"
+        ],
+        [
+          "cn",
+          "🇨🇳 China - Accounting Standards for Small Business Enterprises"
+        ],
+        [
+          "cn_large_bis",
+          "🇨🇳 China - Accounting Standards for Business Enterprises"
+        ],
+        [
+          "co",
+          "🇨🇴 Colombia"
+        ],
+        [
+          "cr",
+          "🇨🇷 Costa Rica"
+        ],
+        [
+          "cy",
+          "🇨🇾 Cyprus"
+        ],
+        [
+          "cz",
+          "🇨🇿 Czech Republic"
+        ],
+        [
+          "de_skr03",
+          "🇩🇪 Germany - German Chart of Accounts SKR03"
+        ],
+        [
+          "de_skr04",
+          "🇩🇪 Germany - German chart of accounts SKR04"
+        ],
+        [
+          "dk",
+          "🇩🇰 Denmark"
+        ],
+        [
+          "do",
+          "🇩🇴 Dominican Republic"
+        ],
+        [
+          "dz",
+          "🇩🇿 Algeria"
+        ],
+        [
+          "ec",
+          "🇪🇨 Ecuador"
+        ],
+        [
+          "ee",
+          "🇪🇪 Estonia"
+        ],
+        [
+          "eg",
+          "🇪🇬 Egypt"
+        ],
+        [
+          "es_pymes",
+          "🇪🇸 Spain - SMEs (2008)"
+        ],
+        [
+          "es_assec",
+          "🇪🇸 Spain - Non-profit entities (2008)"
+        ],
+        [
+          "es_canary_assoc",
+          "🇪🇸 Spain - Canary Islands - PGCE non-profit entities (2008)"
+        ],
+        [
+          "es_canary_full",
+          "🇪🇸 Spain - Canary Islands - Complete (2008)"
+        ],
+        [
+          "es_canary_pymes",
+          "🇪🇸 Spain - Canary Islands - SMEs (2008)"
+        ],
+        [
+          "es_coop_full",
+          "🇪🇸 Spain - Cooperatives - Complete (2008)"
+        ],
+        [
+          "es_coop_pymes",
+          "🇪🇸 Spain - Cooperatives - SMEs (2008)"
+        ],
+        [
+          "es_full",
+          "🇪🇸 Spain - Complete (2008)"
+        ],
+        [
+          "et",
+          "🇪🇹 Ethiopia"
+        ],
+        [
+          "fi",
+          "🇫🇮 Finland"
+        ],
+        [
+          "fr",
+          "🇫🇷 France"
+        ],
+        [
+          "gf",
+          "🇬🇫 French Guiana"
+        ],
+        [
+          "gp",
+          "🇬🇵 Guadeloupe"
+        ],
+        [
+          "mc",
+          "🇲🇨 Monaco"
+        ],
+        [
+          "mq",
+          "🇲🇶 Martinique"
+        ],
+        [
+          "re",
+          "🇷🇪 Réunion"
+        ],
+        [
+          "yt",
+          "🇾🇹 Mayotte"
+        ],
+        [
+          "ga",
+          "🇬🇦 Gabon - SYSCOHADA for Companies"
+        ],
+        [
+          "ga_syscebnl",
+          "🇬🇦 Gabon - SYSCEBNL for Associations"
+        ],
+        [
+          "ge",
+          "🇬🇪 Georgia - Georgian Chart of Accounts (IFRS)"
+        ],
+        [
+          "gn",
+          "🇬🇳 Guinea - SYSCOHADA for Companies"
+        ],
+        [
+          "gn_syscebnl",
+          "🇬🇳 Guinea - SYSCEBNL for Associations"
+        ],
+        [
+          "gq",
+          "🇬🇶 Equatorial Guinea - SYSCOHADA for Companies"
+        ],
+        [
+          "gq_syscebnl",
+          "🇬🇶 Equatorial Guinea - SYSCEBNL for Associations"
+        ],
+        [
+          "gr",
+          "🇬🇷 Greece"
+        ],
+        [
+          "gt",
+          "🇬🇹 Guatemala"
+        ],
+        [
+          "gw",
+          "🇬🇼 Guinea-Bissau - SYSCOHADA for Companies"
+        ],
+        [
+          "gw_syscebnl",
+          "🇬🇼 Guinea-Bissau - SYSCEBNL for Associations"
+        ],
+        [
+          "hk",
+          "🇭🇰 Hong Kong"
+        ],
+        [
+          "hn",
+          "🇭🇳 Honduras"
+        ],
+        [
+          "hr",
+          "🇭🇷 Croatia"
+        ],
+        [
+          "hr_kuna",
+          "🇭🇷 Croatia - RRIF-ov računski plan za poduzetnike"
+        ],
+        [
+          "hu",
+          "🇭🇺 Hungary"
+        ],
+        [
+          "id",
+          "🇮🇩 Indonesia"
+        ],
+        [
+          "ie",
+          "🇮🇪 Ireland"
+        ],
+        [
+          "il",
+          "🇮🇱 Israel"
+        ],
+        [
+          "in",
+          "🇮🇳 India"
+        ],
+        [
+          "iq",
+          "🇮🇶 Iraq"
+        ],
+        [
+          "it",
+          "🇮🇹 Italy"
+        ],
+        [
+          "jo_standard",
+          "🇯🇴 Jordan"
+        ],
+        [
+          "jp",
+          "🇯🇵 Japan"
+        ],
+        [
+          "ke",
+          "🇰🇪 Kenya"
+        ],
+        [
+          "kh",
+          "🇰🇭 Cambodia"
+        ],
+        [
+          "km",
+          "🇰🇲 Comoros - SYSCOHADA for Companies"
+        ],
+        [
+          "km_syscebnl",
+          "🇰🇲 Comoros - SYSCEBNL for Associations"
+        ],
+        [
+          "kr",
+          "🇰🇷 South Korea"
+        ],
+        [
+          "kw",
+          "🇰🇼 Kuwait"
+        ],
+        [
+          "kz",
+          "🇰🇿 Kazakhstan"
+        ],
+        [
+          "lb",
+          "🇱🇧 Lebanon"
+        ],
+        [
+          "lk",
+          "🇱🇰 Sri Lanka"
+        ],
+        [
+          "lt",
+          "🇱🇹 Lithuania"
+        ],
+        [
+          "lu",
+          "🇱🇺 Luxembourg"
+        ],
+        [
+          "lv",
+          "🇱🇻 Latvia"
+        ],
+        [
+          "ma",
+          "🇲🇦 Morocco"
+        ],
+        [
+          "ml",
+          "🇲🇱 Mali - SYSCOHADA for Companies"
+        ],
+        [
+          "ml_syscebnl",
+          "🇲🇱 Mali - SYSCEBNL for Associations"
+        ],
+        [
+          "mn",
+          "🇲🇳 Mongolia"
+        ],
+        [
+          "mr",
+          "🇲🇷 Mauritania"
+        ],
+        [
+          "mt",
+          "🇲🇹 Malta"
+        ],
+        [
+          "mu",
+          "🇲🇺 Mauritius"
+        ],
+        [
+          "mx",
+          "🇲🇽 Mexico"
+        ],
+        [
+          "my",
+          "🇲🇾 Malaysia"
+        ],
+        [
+          "mz",
+          "🇲🇿 Mozambique"
+        ],
+        [
+          "ne",
+          "🇳🇪 Niger - SYSCOHADA for Companies"
+        ],
+        [
+          "ne_syscebnl",
+          "🇳🇪 Niger - SYSCEBNL for Associations"
+        ],
+        [
+          "ng",
+          "🇳🇬 Nigeria"
+        ],
+        [
+          "nl",
+          "🇳🇱 Netherlands"
+        ],
+        [
+          "no",
+          "🇳🇴 Norway"
+        ],
+        [
+          "nz",
+          "🇳🇿 New Zealand"
+        ],
+        [
+          "om",
+          "🇴🇲 Oman"
+        ],
+        [
+          "pa",
+          "🇵🇦 Panama"
+        ],
+        [
+          "pe",
+          "🇵🇪 Peru"
+        ],
+        [
+          "ph",
+          "🇵🇭 Philippines"
+        ],
+        [
+          "pk",
+          "🇵🇰 Pakistan"
+        ],
+        [
+          "pl",
+          "🇵🇱 Poland"
+        ],
+        [
+          "pt",
+          "🇵🇹 Portugal"
+        ],
+        [
+          "qa",
+          "🇶🇦 Qatar"
+        ],
+        [
+          "ro",
+          "🇷🇴 Romania"
+        ],
+        [
+          "rs",
+          "🇷🇸 Serbia"
+        ],
+        [
+          "rw",
+          "🇷🇼 Rwanda"
+        ],
+        [
+          "sa",
+          "🇸🇦 Saudi Arabia"
+        ],
+        [
+          "se",
+          "🇸🇪 Sweden"
+        ],
+        [
+          "se_K2",
+          "🇸🇪 Sweden - Swedish BAS Chart of Account complete K2"
+        ],
+        [
+          "se_K3",
+          "🇸🇪 Sweden - Swedish BAS Chart of Account complete K3"
+        ],
+        [
+          "sg",
+          "🇸🇬 Singapore"
+        ],
+        [
+          "si",
+          "🇸🇮 Slovenia"
+        ],
+        [
+          "sk",
+          "🇸🇰 Slovakia"
+        ],
+        [
+          "sn",
+          "🇸🇳 Senegal - SYSCOHADA for Companies"
+        ],
+        [
+          "sn_syscebnl",
+          "🇸🇳 Senegal - SYSCEBNL for Associations"
+        ],
+        [
+          "syscebnl",
+          "SYSCEBNL"
+        ],
+        [
+          "syscohada",
+          "SYSCOHADA - Revised"
+        ],
+        [
+          "td",
+          "🇹🇩 Chad - SYSCOHADA for Companies"
+        ],
+        [
+          "td_syscebnl",
+          "🇹🇩 Chad - SYSCEBNL for Associations"
+        ],
+        [
+          "tg",
+          "🇹🇬 Togo - SYSCOHADA for Companies"
+        ],
+        [
+          "tg_syscebnl",
+          "🇹🇬 Togo - SYSCEBNL for Associations"
+        ],
+        [
+          "th",
+          "🇹🇭 Thailand"
+        ],
+        [
+          "tn",
+          "🇹🇳 Tunisia"
+        ],
+        [
+          "tr",
+          "🇹🇷 Türkiye"
+        ],
+        [
+          "tw",
+          "🇹🇼 Taiwan"
+        ],
+        [
+          "tz",
+          "🇹🇿 Tanzania"
+        ],
+        [
+          "ua_psbo",
+          "🇺🇦 Ukraine - IFRS Chart of Accounts"
+        ],
+        [
+          "ug",
+          "🇺🇬 Uganda - Uganda Generic Chart of Accounts"
+        ],
+        [
+          "uk",
+          "🇬🇧 United Kingdom"
+        ],
+        [
+          "xi",
+          "🇽🇮 Northern Ireland"
+        ],
+        [
+          "us",
+          "🇺🇸 United States"
+        ],
+        [
+          "uy",
+          "🇺🇾 Uruguay - Uruguayan Generic Chart of Accounts"
+        ],
+        [
+          "uz",
+          "🇺🇿 Uzbekistan"
+        ],
+        [
+          "ve",
+          "🇻🇪 Venezuela"
+        ],
+        [
+          "vn",
+          "🇻🇳 Vietnam"
+        ],
+        [
+          "za",
+          "🇿🇦 South Africa"
+        ],
+        [
+          "zm",
+          "🇿🇲 Zambia"
+        ]
+      ],
+      "string": "Chart Template",
+      "type": "selection"
+    },
+    "bank_account_code_prefix": {
+      "readonly": false,
+      "required": false,
+      "string": "Prefix of the bank accounts",
+      "type": "char"
+    },
+    "cash_account_code_prefix": {
+      "readonly": false,
+      "required": false,
+      "string": "Prefix of the cash accounts",
+      "type": "char"
+    },
+    "default_cash_difference_income_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Cash Difference Income",
+      "type": "many2one"
+    },
+    "default_cash_difference_expense_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Cash Difference Expense",
+      "type": "many2one"
+    },
+    "account_journal_suspense_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Journal Suspense Account",
+      "type": "many2one"
+    },
+    "account_journal_early_pay_discount_gain_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Cash Discount Write-Off Gain Account",
+      "type": "many2one"
+    },
+    "account_journal_early_pay_discount_loss_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Cash Discount Write-Off Loss Account",
+      "type": "many2one"
+    },
+    "transfer_account_code_prefix": {
+      "readonly": false,
+      "required": false,
+      "string": "Prefix of the transfer accounts",
+      "type": "char"
+    },
+    "account_sale_tax_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Default Sale Tax",
+      "type": "many2one"
+    },
+    "account_purchase_tax_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Default Purchase Tax",
+      "type": "many2one"
+    },
+    "account_purchase_receipt_fiscal_position_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Default Purchase Receipt Fiscal Position",
+      "type": "many2one"
+    },
+    "tax_calculation_rounding_method": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "round_globally",
+          "Round per Tax"
+        ],
+        [
+          "round_per_line",
+          "Round per Line"
+        ]
+      ],
+      "string": "Tax Calculation Rounding Method",
+      "type": "selection"
+    },
+    "currency_exchange_journal_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Exchange Gain or Loss Journal",
+      "type": "many2one"
+    },
+    "income_currency_exchange_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Gain Exchange Rate Account",
+      "type": "many2one"
+    },
+    "expense_currency_exchange_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Loss Exchange Rate Account",
+      "type": "many2one"
+    },
+    "anglo_saxon_accounting": {
+      "readonly": false,
+      "required": false,
+      "string": "Use anglo-saxon accounting",
+      "type": "boolean"
+    },
+    "bank_journal_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Bank Journals",
+      "type": "one2many"
+    },
+    "incoterm_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Default incoterm",
+      "type": "many2one"
+    },
+    "qr_code": {
+      "readonly": false,
+      "required": false,
+      "string": "Display QR-code on invoices",
+      "type": "boolean"
+    },
+    "link_qr_code": {
+      "readonly": false,
+      "required": false,
+      "string": "Display Link QR-code",
+      "type": "boolean"
+    },
+    "display_invoice_amount_total_words": {
+      "readonly": false,
+      "required": false,
+      "string": "Total amount of invoice in letters",
+      "type": "boolean"
+    },
+    "display_invoice_tax_company_currency": {
+      "readonly": false,
+      "required": false,
+      "string": "Taxes in company currency",
+      "type": "boolean"
+    },
+    "account_use_credit_limit": {
+      "readonly": false,
+      "required": false,
+      "string": "Sales Credit Limit",
+      "type": "boolean"
+    },
+    "batch_payment_sequence_id": {
+      "readonly": true,
+      "required": false,
+      "string": "Batch Payment Sequence",
+      "type": "many2one"
+    },
+    "account_opening_move_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Opening Journal Entry",
+      "type": "many2one"
+    },
+    "account_opening_journal_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Opening Journal",
+      "type": "many2one"
+    },
+    "account_opening_date": {
+      "readonly": false,
+      "required": false,
+      "string": "Opening Entry",
+      "type": "date"
+    },
+    "invoice_terms": {
+      "readonly": false,
+      "required": false,
+      "string": "Default Terms and Conditions",
+      "type": "html"
+    },
+    "terms_type": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "plain",
+          "Add a Note"
+        ],
+        [
+          "html",
+          "Add a link to a Web Page"
+        ]
+      ],
+      "string": "Terms & Conditions format",
+      "type": "selection"
+    },
+    "invoice_terms_html": {
+      "readonly": false,
+      "required": false,
+      "string": "Default Terms and Conditions as a Web page",
+      "type": "html"
+    },
+    "account_default_pos_receivable_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Default PoS Receivable Account",
+      "type": "many2one"
+    },
+    "expense_accrual_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Expense Accrual Account",
+      "type": "many2one"
+    },
+    "revenue_accrual_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Revenue Accrual Account",
+      "type": "many2one"
+    },
+    "automatic_entry_default_journal_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Automatic Entry Default Journal",
+      "type": "many2one"
+    },
+    "domestic_fiscal_position_id": {
+      "readonly": true,
+      "required": false,
+      "string": "Domestic Fiscal Position",
+      "type": "many2one"
+    },
+    "account_fiscal_country_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Fiscal Country",
+      "type": "many2one"
+    },
+    "account_fiscal_country_group_codes": {
+      "readonly": true,
+      "required": false,
+      "string": "Account Fiscal Country Group Codes",
+      "type": "json"
+    },
+    "account_enabled_tax_country_ids": {
+      "readonly": true,
+      "required": false,
+      "string": "l10n-used countries",
+      "type": "many2many"
+    },
+    "tax_exigibility": {
+      "readonly": false,
+      "required": false,
+      "string": "Use Cash Basis",
+      "type": "boolean"
+    },
+    "tax_cash_basis_journal_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Cash Basis Journal",
+      "type": "many2one"
+    },
+    "account_cash_basis_base_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Base Tax Received Account",
+      "type": "many2one"
+    },
+    "account_storno": {
+      "readonly": false,
+      "required": false,
+      "string": "Storno accounting",
+      "type": "boolean"
+    },
+    "display_account_storno": {
+      "readonly": true,
+      "required": false,
+      "string": "Display Account Storno",
+      "type": "boolean"
+    },
+    "fiscal_position_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Fiscal Position",
+      "type": "one2many"
+    },
+    "multi_vat_foreign_country_ids": {
+      "readonly": true,
+      "required": false,
+      "string": "Foreign VAT countries",
+      "type": "many2many"
+    },
+    "quick_edit_mode": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "out_invoices",
+          "Customer Invoices"
+        ],
+        [
+          "in_invoices",
+          "Vendor Bills"
+        ],
+        [
+          "out_and_in_invoices",
+          "Customer Invoices and Vendor Bills"
+        ]
+      ],
+      "string": "Quick encoding",
+      "type": "selection"
+    },
+    "account_discount_income_allocation_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Separate account for income discount",
+      "type": "many2one"
+    },
+    "account_discount_expense_allocation_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Separate account for expense discount",
+      "type": "many2one"
+    },
+    "restrictive_audit_trail": {
+      "readonly": false,
+      "required": false,
+      "string": "Restrictive Audit Trail",
+      "type": "boolean"
+    },
+    "force_restrictive_audit_trail": {
+      "readonly": true,
+      "required": false,
+      "string": "Force Audit Trail",
+      "type": "boolean"
+    },
+    "autopost_bills": {
+      "readonly": false,
+      "required": false,
+      "string": "Auto-validate bills",
+      "type": "boolean"
+    },
+    "account_price_include": {
+      "readonly": false,
+      "required": true,
+      "selection": [
+        [
+          "tax_included",
+          "Tax Included"
+        ],
+        [
+          "tax_excluded",
+          "Tax Excluded"
+        ]
+      ],
+      "string": "Default Sales Price Include",
+      "type": "selection"
+    },
+    "company_vat_placeholder": {
+      "readonly": true,
+      "required": false,
+      "string": "Company Vat Placeholder",
+      "type": "char"
+    },
+    "income_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Income Account",
+      "type": "many2one"
+    },
+    "expense_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Expense Account",
+      "type": "many2one"
+    },
+    "price_difference_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Price Difference Account",
+      "type": "many2one"
+    },
+    "hr_presence_control_email_amount": {
+      "readonly": false,
+      "required": false,
+      "string": "# emails to send",
+      "type": "integer"
+    },
+    "hr_presence_control_ip_list": {
+      "readonly": false,
+      "required": false,
+      "string": "Valid IP addresses",
+      "type": "char"
+    },
+    "employee_properties_definition": {
+      "readonly": false,
+      "required": false,
+      "string": "Employee Properties",
+      "type": "properties_definition"
+    },
+    "hr_presence_control_login": {
+      "readonly": false,
+      "required": false,
+      "string": "Based on user status in system",
+      "type": "boolean"
+    },
+    "hr_presence_control_email": {
+      "readonly": false,
+      "required": false,
+      "string": "Based on number of emails sent",
+      "type": "boolean"
+    },
+    "hr_presence_control_ip": {
+      "readonly": false,
+      "required": false,
+      "string": "Based on IP Address",
+      "type": "boolean"
+    },
+    "hr_presence_control_attendance": {
+      "readonly": false,
+      "required": false,
+      "string": "Based on attendances",
+      "type": "boolean"
+    },
+    "contract_expiration_notice_period": {
+      "readonly": false,
+      "required": false,
+      "string": "Contract Expiry Notice Period",
+      "type": "integer"
+    },
+    "work_permit_expiration_notice_period": {
+      "readonly": false,
+      "required": false,
+      "string": "Work Permit Expiry Notice Period",
+      "type": "integer"
+    },
+    "internal_transit_location_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Internal Transit Location",
+      "type": "many2one"
+    },
+    "stock_move_email_validation": {
+      "readonly": false,
+      "required": false,
+      "string": "Email Confirmation picking",
+      "type": "boolean"
+    },
+    "stock_mail_confirmation_template_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Email Template confirmation picking",
+      "type": "many2one"
+    },
+    "annual_inventory_month": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "1",
+          "January"
+        ],
+        [
+          "2",
+          "February"
+        ],
+        [
+          "3",
+          "March"
+        ],
+        [
+          "4",
+          "April"
+        ],
+        [
+          "5",
+          "May"
+        ],
+        [
+          "6",
+          "June"
+        ],
+        [
+          "7",
+          "July"
+        ],
+        [
+          "8",
+          "August"
+        ],
+        [
+          "9",
+          "September"
+        ],
+        [
+          "10",
+          "October"
+        ],
+        [
+          "11",
+          "November"
+        ],
+        [
+          "12",
+          "December"
+        ]
+      ],
+      "string": "Annual Inventory Month",
+      "type": "selection"
+    },
+    "annual_inventory_day": {
+      "readonly": false,
+      "required": false,
+      "string": "Day of the month",
+      "type": "integer"
+    },
+    "horizon_days": {
+      "readonly": false,
+      "required": true,
+      "string": "Replenishment Horizon",
+      "type": "float"
+    },
+    "stock_text_confirmation": {
+      "readonly": false,
+      "required": false,
+      "string": "Stock Text Confirmation",
+      "type": "boolean"
+    },
+    "stock_confirmation_type": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "sms",
+          "SMS"
+        ]
+      ],
+      "string": "Stock Confirmation Type",
+      "type": "selection"
+    },
+    "website_id": {
+      "readonly": true,
+      "required": false,
+      "string": "Website",
+      "type": "many2one"
+    },
+    "account_check_printing_layout": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "disabled",
+          "None"
+        ]
+      ],
+      "string": "Check Layout",
+      "type": "selection"
+    },
+    "account_check_printing_date_label": {
+      "readonly": false,
+      "required": false,
+      "string": "Print Date Label",
+      "type": "boolean"
+    },
+    "account_check_printing_multi_stub": {
+      "readonly": false,
+      "required": false,
+      "string": "Multi-Pages Check Stub",
+      "type": "boolean"
+    },
+    "account_check_printing_margin_top": {
+      "readonly": false,
+      "required": false,
+      "string": "Check Top Margin",
+      "type": "float"
+    },
+    "account_check_printing_margin_left": {
+      "readonly": false,
+      "required": false,
+      "string": "Check Left Margin",
+      "type": "float"
+    },
+    "account_check_printing_margin_right": {
+      "readonly": false,
+      "required": false,
+      "string": "Right Margin",
+      "type": "float"
+    },
+    "account_edi_proxy_client_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Account Edi Proxy Client",
+      "type": "one2many"
+    },
+    "vat_check_vies": {
+      "readonly": false,
+      "required": false,
+      "string": "Verify VAT Numbers",
+      "type": "boolean"
+    },
+    "overtime_company_threshold": {
+      "readonly": false,
+      "required": false,
+      "string": "Tolerance Time In Favor Of Company",
+      "type": "integer"
+    },
+    "overtime_employee_threshold": {
+      "readonly": false,
+      "required": false,
+      "string": "Tolerance Time In Favor Of Employee",
+      "type": "integer"
+    },
+    "hr_attendance_display_overtime": {
+      "readonly": false,
+      "required": false,
+      "string": "Display Extra Hours",
+      "type": "boolean"
+    },
+    "attendance_kiosk_mode": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "barcode",
+          "Barcode / RFID"
+        ],
+        [
+          "barcode_manual",
+          "Barcode / RFID and Manual Selection"
+        ],
+        [
+          "manual",
+          "Manual Selection"
+        ]
+      ],
+      "string": "Attendance Mode",
+      "type": "selection"
+    },
+    "attendance_barcode_source": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "scanner",
+          "Scanner"
+        ],
+        [
+          "front",
+          "Front Camera"
+        ],
+        [
+          "back",
+          "Back Camera"
+        ]
+      ],
+      "string": "Barcode Source",
+      "type": "selection"
+    },
+    "attendance_kiosk_delay": {
+      "readonly": false,
+      "required": false,
+      "string": "Attendance Kiosk Delay",
+      "type": "integer"
+    },
+    "attendance_kiosk_url": {
+      "readonly": true,
+      "required": false,
+      "string": "Attendance Kiosk Url",
+      "type": "char"
+    },
+    "attendance_kiosk_use_pin": {
+      "readonly": false,
+      "required": false,
+      "string": "Employee PIN Identification",
+      "type": "boolean"
+    },
+    "attendance_from_systray": {
+      "readonly": false,
+      "required": false,
+      "string": "Attendance From Systray",
+      "type": "boolean"
+    },
+    "attendance_overtime_validation": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "no_validation",
+          "Automatically Approved"
+        ],
+        [
+          "by_manager",
+          "Approved by Manager"
+        ]
+      ],
+      "string": "Extra Hours Validation",
+      "type": "selection"
+    },
+    "auto_check_out": {
+      "readonly": false,
+      "required": false,
+      "string": "Automatic Check Out",
+      "type": "boolean"
+    },
+    "auto_check_out_tolerance": {
+      "readonly": false,
+      "required": false,
+      "string": "Auto Check Out Tolerance",
+      "type": "float"
+    },
+    "absence_management": {
+      "readonly": false,
+      "required": false,
+      "string": "Absence Management",
+      "type": "boolean"
+    },
+    "attendance_device_tracking": {
+      "readonly": false,
+      "required": false,
+      "string": "Device & Location Tracking",
+      "type": "boolean"
+    },
+    "expense_journal_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Default Expense Journal",
+      "type": "many2one"
+    },
+    "company_expense_allowed_payment_method_line_ids": {
+      "readonly": false,
+      "required": false,
+      "string": "Payment methods available for expenses paid by company",
+      "type": "many2many"
+    },
+    "job_properties_definition": {
+      "readonly": false,
+      "required": false,
+      "string": "Job Properties",
+      "type": "properties_definition"
+    },
+    "withholding_tax_base_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Withholding Tax Base",
+      "type": "many2one"
+    },
+    "po_lock": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "edit",
+          "Allow to edit purchase orders"
+        ],
+        [
+          "lock",
+          "Confirmed purchase orders are not editable"
+        ]
+      ],
+      "string": "Purchase Order Modification",
+      "type": "selection"
+    },
+    "po_double_validation": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "one_step",
+          "Confirm purchase orders in one step"
+        ],
+        [
+          "two_step",
+          "Get 2 levels of approvals to confirm a purchase order"
+        ]
+      ],
+      "string": "Levels of Approvals",
+      "type": "selection"
+    },
+    "po_double_validation_amount": {
+      "readonly": false,
+      "required": false,
+      "string": "Double validation amount",
+      "type": "monetary"
+    },
+    "account_stock_journal_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Stock Journal",
+      "type": "many2one"
+    },
+    "account_stock_valuation_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Stock Valuation Account",
+      "type": "many2one"
+    },
+    "account_production_wip_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Production WIP Account",
+      "type": "many2one"
+    },
+    "account_production_wip_overhead_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Production WIP Overhead Account",
+      "type": "many2one"
+    },
+    "inventory_period": {
+      "readonly": false,
+      "required": true,
+      "selection": [
+        [
+          "manual",
+          "Manual"
+        ],
+        [
+          "daily",
+          "Daily"
+        ],
+        [
+          "monthly",
+          "Monthly"
+        ]
+      ],
+      "string": "Inventory Period",
+      "type": "selection"
+    },
+    "inventory_valuation": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "periodic",
+          "Periodic (at closing)"
+        ],
+        [
+          "real_time",
+          "Perpetual (at invoicing)"
+        ]
+      ],
+      "string": "Valuation",
+      "type": "selection"
+    },
+    "cost_method": {
+      "readonly": false,
+      "required": true,
+      "selection": [
+        [
+          "standard",
+          "Standard Price"
+        ],
+        [
+          "fifo",
+          "First In First Out (FIFO)"
+        ],
+        [
+          "average",
+          "Average Cost (AVCO)"
+        ]
+      ],
+      "string": "Cost Method",
+      "type": "selection"
+    },
+    "stock_sms_confirmation_template_id": {
+      "readonly": false,
+      "required": false,
+      "string": "SMS Template",
+      "type": "many2one"
+    },
+    "has_received_warning_stock_sms": {
+      "readonly": false,
+      "required": false,
+      "string": "Has Received Warning Stock Sms",
+      "type": "boolean"
+    },
+    "account_interco_clearing_journal_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Intercompany Clearing Journal",
+      "type": "many2one"
+    },
+    "account_interco_payable_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Intercompany Clearing Payable Account",
+      "type": "many2one"
+    },
+    "account_interco_receivable_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Intercompany Clearing Receivable Account",
+      "type": "many2one"
+    },
+    "hr_presence_last_compute_date": {
+      "readonly": false,
+      "required": false,
+      "string": "Hr Presence Last Compute Date",
+      "type": "datetime"
+    },
+    "project_time_mode_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Project Time Unit",
+      "type": "many2one"
+    },
+    "timesheet_encode_uom_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Timesheet Encoding Unit",
+      "type": "many2one"
+    },
+    "internal_project_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Internal Project",
+      "type": "many2one"
+    },
+    "subcontracting_location_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Subcontracting Location",
+      "type": "many2one"
+    },
+    "days_to_purchase": {
+      "readonly": false,
+      "required": false,
+      "string": "Days to Purchase",
+      "type": "float"
+    },
+    "portal_confirmation_sign": {
+      "readonly": false,
+      "required": false,
+      "string": "Online Signature",
+      "type": "boolean"
+    },
+    "portal_confirmation_pay": {
+      "readonly": false,
+      "required": false,
+      "string": "Online Payment",
+      "type": "boolean"
+    },
+    "prepayment_percent": {
+      "readonly": false,
+      "required": false,
+      "string": "Prepayment percentage",
+      "type": "float"
+    },
+    "quotation_validity_days": {
+      "readonly": false,
+      "required": false,
+      "string": "Default Quotation Validity",
+      "type": "integer"
+    },
+    "sale_discount_product_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Discount Product",
+      "type": "many2one"
+    },
+    "sale_onboarding_payment_method": {
+      "readonly": false,
+      "required": false,
+      "selection": [
+        [
+          "digital_signature",
+          "Sign online"
+        ],
+        [
+          "paypal",
+          "PayPal"
+        ],
+        [
+          "stripe",
+          "Stripe"
+        ],
+        [
+          "other",
+          "Pay with another payment provider"
+        ],
+        [
+          "manual",
+          "Manual Payment"
+        ]
+      ],
+      "string": "Sale onboarding selected payment method",
+      "type": "selection"
+    },
+    "downpayment_account_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Downpayment Account",
+      "type": "many2one"
+    },
+    "partnership_label": {
+      "readonly": false,
+      "required": false,
+      "string": "Partnership Label",
+      "type": "char"
+    },
+    "leave_timesheet_task_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Time Off Task",
+      "type": "many2one"
+    },
+    "sale_order_template_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Default Sale Template",
+      "type": "many2one"
+    },
+    "security_lead": {
+      "readonly": false,
+      "required": true,
+      "string": "Sales Safety Days",
+      "type": "float"
+    },
+    "lc_journal_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Lc Journal",
+      "type": "many2one"
+    },
+    "dropship_subcontractor_pick_type_id": {
+      "readonly": false,
+      "required": false,
+      "string": "Dropship Subcontractor Pick Type",
+      "type": "many2one"
+    }
+  }
+}

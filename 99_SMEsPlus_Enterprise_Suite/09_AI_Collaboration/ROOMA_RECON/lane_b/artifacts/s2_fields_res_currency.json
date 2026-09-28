@@ -1,0 +1,156 @@
+{
+  "id": {
+    "readonly": true,
+    "required": false,
+    "string": "ID",
+    "type": "integer"
+  },
+  "display_name": {
+    "readonly": true,
+    "required": false,
+    "string": "Display Name",
+    "type": "char"
+  },
+  "name": {
+    "readonly": false,
+    "required": true,
+    "string": "Currency",
+    "type": "char"
+  },
+  "iso_numeric": {
+    "readonly": false,
+    "required": false,
+    "string": "Currency numeric code.",
+    "type": "integer"
+  },
+  "full_name": {
+    "readonly": false,
+    "required": false,
+    "string": "Name",
+    "type": "char"
+  },
+  "symbol": {
+    "readonly": false,
+    "required": true,
+    "string": "Symbol",
+    "type": "char"
+  },
+  "rate": {
+    "readonly": true,
+    "required": false,
+    "string": "Current Rate",
+    "type": "float"
+  },
+  "inverse_rate": {
+    "readonly": true,
+    "required": false,
+    "string": "Inverse Rate",
+    "type": "float"
+  },
+  "rate_string": {
+    "readonly": true,
+    "required": false,
+    "string": "Rate String",
+    "type": "char"
+  },
+  "rate_ids": {
+    "readonly": false,
+    "required": false,
+    "string": "Rates",
+    "type": "one2many"
+  },
+  "rounding": {
+    "readonly": false,
+    "required": false,
+    "string": "Rounding Factor",
+    "type": "float"
+  },
+  "decimal_places": {
+    "readonly": true,
+    "required": false,
+    "string": "Decimal Places",
+    "type": "integer"
+  },
+  "active": {
+    "readonly": false,
+    "required": false,
+    "string": "Active",
+    "type": "boolean"
+  },
+  "position": {
+    "readonly": false,
+    "required": false,
+    "selection": [
+      [
+        "after",
+        "After Amount"
+      ],
+      [
+        "before",
+        "Before Amount"
+      ]
+    ],
+    "string": "Symbol Position",
+    "type": "selection"
+  },
+  "date": {
+    "readonly": true,
+    "required": false,
+    "string": "Date",
+    "type": "date"
+  },
+  "currency_unit_label": {
+    "readonly": false,
+    "required": false,
+    "string": "Currency Unit",
+    "type": "char"
+  },
+  "currency_subunit_label": {
+    "readonly": false,
+    "required": false,
+    "string": "Currency Subunit",
+    "type": "char"
+  },
+  "is_current_company_currency": {
+    "readonly": true,
+    "required": false,
+    "string": "Is Current Company Currency",
+    "type": "boolean"
+  },
+  "create_uid": {
+    "readonly": true,
+    "required": false,
+    "string": "Created by",
+    "type": "many2one"
+  },
+  "create_date": {
+    "readonly": true,
+    "required": false,
+    "string": "Created on",
+    "type": "datetime"
+  },
+  "write_uid": {
+    "readonly": true,
+    "required": false,
+    "string": "Last Updated by",
+    "type": "many2one"
+  },
+  "write_date": {
+    "readonly": true,
+    "required": false,
+    "string": "Last Updated on",
+    "type": "datetime"
+  },
+  "display_rounding_warning": {
+    "readonly": true,
+    "required": false,
+    "string": "Display Rounding Warning",
+    "type": "boolean"
+  },
+  "fiscal_country_codes": {
+    "readonly": false,
+    "required": false,
+    "string": "Fiscal Country Codes",
+    "type": "char"
+  }
+}

@@ -1,0 +1,156 @@
+CENSUS SETUP RUN   2026-09-26 21:54   (BOSSDEC-003 A/B/C/D - Boss approved 26 Sep)
+
+──────── 0/6  pre-conditions
+remote script sha256 : c0ff752b78704fc9
+INSTALLED MODULES : 299
+INSTALLED SET HASH: 706e6df4008e0bac042a9821507ec0bc6868c4d9f98bcb93004a2535b1ca3c89
+RESULT            : MATCH — the frozen baseline is intact.
+
+──────── 1/6  create roomb_census (server, odoo shell)  - §21.2 backup/before/apply inside the script
+launcher : <REDACTED_PATH>
+config   : /etc/odoo19.conf
+run as   : odoo
+backup   : /root/ROOMA_BACKUP/census_account_before_20260926_215415.json
+
+RESOLUTION
+  ok   id=1    Role / User
+  ok   id=24   Sales / Administrator
+  ok   id=30   Accounting / Administrator
+  ok   id=18   Analytic Accounting
+  ok   id=94   Expenses / Administrator
+  ok   id=93   Expenses / All Approver
+  ok   id=54   Inventory / Administrator
+  ok   id=76   Purchase / Administrator
+  ok   id=91   Employees / Administrator
+  ok   id=104  Recruitment / Interviewer
+  ok   id=48   Project / Administrator
+  ok   id=89   Fleet / Administrator
+  ok   id=88   Fleet / Officer: Manage all vehicles
+  ok   id=69   Manufacturing / Administrator
+  ok   id=97   Time Off / Administrator
+  ok   id=96   Time Off / Officer: Manage all requests
+  ok   id=95   Time Off Responsible
+  ok   id=82   Events / User
+  ok   id=103  Attendances / Administrator
+  ok   id=102  Attendances / Officer: Manage all attendances
+  ok   id=101  Officer: Manage attendances
+  ok   id=109  Timesheets / User: all timesheets
+  ok   id=108  Timesheets / User: own timesheets only
+  ok   id=79   Surveys / User
+  ok   id=9    Contact / Creation
+  ok   id=35   Show Lead Menu
+  ok   id=36   Show Recurring Revenues Menu
+closure: 69 groups after implication
+BEFORE_JSON_START
+BEFORE_JSON_END
+registry.clear_cache() ok
+registry.signal_changes() ok
+
+CREATED user uid=6 login=roomb_census company=2 direct_groups=27 all_groups=69
+AFTER_GROUPS_START
+  Sales / Administrator
+  Role / User
+  Multi Currencies
+  Technical Features
+  Manage Multiple Units of Measure
+  Canned Responses / Canned Response Administrator
+  Basic Pricelists
+  Manage Product Variants
+  Sales / User: Own Documents Only
+  Sales / User: All Documents
+  Delivery Address
+  Allow the cash rounding management
+  Lock Confirmed Sales
+  Discount on lines
+  A warning can be set on a product or a customer (Sale)
+  Pro-forma Invoices
+  Quotation Templates
+  Multi-website
+  Use Stages on Project
+  Manage Multiple Stock Locations
+  Manage Lots / Serial Numbers
+  Manage Packages
+  Manage Push and Pull inventory flows
+  Manage Different Stock Owners
+  A warning can be set on a partner (Stock)
+  Use Reception Report
+  Display Serial & Lot Number on Invoices
+  Manage Work Order Operations
+  Produce residual products
+  Unlocked by default
+  Use Reception Report with Manufacturing Orders
+  A warning can be set on a product or a customer (Purchase)
+  Send an automatic reminder email to confirm delivery
+  Events / Registration Desk
+  User: Read his own attendances
+  Display CV on application form
+  Project / Administrator
+  Project / User
+  Timesheets / User: own timesheets only
+  Timesheets / User: all timesheets
+  Manufacturing / Administrator
+  Inventory / User
+  Manufacturing / User
+  Accounting / Administrator
+  Accounting / Invoicing
+  Purchase / Administrator
+  Purchase / User
+  Employees / Administrator
+  Maintenance / Equipment Manager
+  Employees / Officer: Manage all employees
+  Time Off / Officer: Manage all requests
+  Time Off Responsible
+  Time Off / Administrator
+  Recruitment / Interviewer
+  Expenses / All Approver
+  Expenses / Team Approver
+  Expenses / Administrator
+  Attendances / Officer: Manage all attendances
+  Officer: Manage attendances
+  Attendances / Administrator
+  Fleet / Officer: Manage all vehicles
+  Fleet / Administrator
+  Events / User
+  Surveys / User
+  Contact / Creation
+  Inventory / Administrator
+  Analytic Accounting
+  Show Lead Menu
+  Show Recurring Revenues Menu
+AFTER_GROUPS_END
+ROLLBACK: env['res.users'].browse(6).write({'active': False}); env.cr.commit()   # archive, non-destructive
+credentials: /root/ROOMA_BACKUP/roomb_census.env (0600 root) - fetch with scp, never cat into a chat
+full log : /root/ROOMA_BACKUP/census_account_20260926_215415.log
+
+──────── 2/6  fetch credentials (0600, never printed)
+     fetched -> credentials/roomb_census.env (mode 600)
+
+──────── 3/6  server error-log window (read-only)
+     log-window-check done
+
+──────── 4/6  verify roomb_census from the observer side (read-only)
+account   roomb_census  uid=6  iTest19C
+groups    direct=26  effective=69  company=[2, 'ROOMB_TEST']
+forbidden NONE - PASS
+ui reach  menus=375  sections=25  leaf screens with action=260
+sections  Discuss, Calendar, To-do, Contacts, CRM, Sales, Dashboards, Invoicing, Project, Timesheets, Website, Events, Surveys, Purchase, Inventory, Manufacturing, Maintenance, Repairs, Employees, Attendances, Recruitment, Fleet, Time Off, Expenses, Apps
+baseline  MATCH  (299 modules)  706e6df4008e0bac…
+write-audit 0 records created/modified by this uid - PASS
+
+VERIFY: PASS
+written: /Users/admin/ROOMB_WORKSPACE/reports/CENSUS_ACCOUNT_VERIFY_20260926_215428.json
+
+──────── 5/6  baseline regression as roomb_observer (reference script)
+INSTALLED MODULES : 299
+INSTALLED SET HASH: 706e6df4008e0bac042a9821507ec0bc6868c4d9f98bcb93004a2535b1ca3c89
+RESULT            : MATCH — the frozen baseline is intact.
+
+──────── 6/6  clean-room scan of this report
+
+════════ SUMMARY
+created            : 1
+verify             : VERIFY: PASS
+ui reach (census)  : ui reach  menus=375  sections=25  leaf screens with action=260
+baseline           : RESULT            : MATCH
+rollback           : archive the user via odoo shell (non-destructive) - see ROLLBACK line above
+report             : /Users/admin/ROOMB_WORKSPACE/reports/CENSUS_SETUP_RUN_20260926_215413.txt

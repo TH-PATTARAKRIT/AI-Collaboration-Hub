@@ -1,0 +1,4 @@
+VOID — SUPERSEDED BY LANE_B_CHARTER_GEMINI_V1.05.md (Boss-approved 2026-09-26)
+Stamped: 2026-09-26 21:58 Asia/Bangkok by RED TEAM (Lane B audit)
+File: _superseded/LANE_B_CHARTER_GEMINI_V1.04.md (content unchanged, moved only)
+sha256 at stamping: c6215deb93f691b152f80cbf3f7eadad17f48a42faf5f688a5ae557981ec03f7

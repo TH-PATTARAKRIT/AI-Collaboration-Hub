@@ -1,0 +1,481 @@
+{
+  "Apps": {
+    "leaves_total": 6,
+    "leaves_ui_visible": 3,
+    "gating_groups": []
+  },
+  "Attendances": {
+    "leaves_total": 9,
+    "leaves_ui_visible": 0,
+    "gating_groups": [
+      {
+        "id": 101,
+        "name": "Officer: Manage attendances",
+        "leaves": 9
+      },
+      {
+        "id": 103,
+        "name": "Attendances / Administrator",
+        "leaves": 3
+      },
+      {
+        "id": 102,
+        "name": "Attendances / Officer: Manage all attendances",
+        "leaves": 1
+      }
+    ]
+  },
+  "CRM": {
+    "leaves_total": 25,
+    "leaves_ui_visible": 10,
+    "gating_groups": [
+      {
+        "id": 24,
+        "name": "Sales / Administrator",
+        "leaves": 25
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      },
+      {
+        "id": 35,
+        "name": "Show Lead Menu",
+        "leaves": 1
+      },
+      {
+        "id": 36,
+        "name": "Show Recurring Revenues Menu",
+        "leaves": 1
+      }
+    ]
+  },
+  "Calendar": {
+    "leaves_total": 3,
+    "leaves_ui_visible": 1,
+    "gating_groups": [
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 2
+      }
+    ]
+  },
+  "Contacts": {
+    "leaves_total": 10,
+    "leaves_ui_visible": 1,
+    "gating_groups": [
+      {
+        "id": 9,
+        "name": "Contact / Creation",
+        "leaves": 10
+      },
+      {
+        "id": 24,
+        "name": "Sales / Administrator",
+        "leaves": 9
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 9
+      }
+    ]
+  },
+  "Dashboards": {
+    "leaves_total": 3,
+    "leaves_ui_visible": 3,
+    "gating_groups": []
+  },
+  "Discuss": {
+    "leaves_total": 7,
+    "leaves_ui_visible": 6,
+    "gating_groups": []
+  },
+  "Employees": {
+    "leaves_total": 23,
+    "leaves_ui_visible": 8,
+    "gating_groups": [
+      {
+        "id": 91,
+        "name": "Employees / Administrator",
+        "leaves": 23
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      }
+    ]
+  },
+  "Events": {
+    "leaves_total": 13,
+    "leaves_ui_visible": 2,
+    "gating_groups": [
+      {
+        "id": 82,
+        "name": "Events / User",
+        "leaves": 11
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      },
+      {
+        "id": 83,
+        "name": "Events / Administrator",
+        "leaves": 1
+      }
+    ]
+  },
+  "Expenses": {
+    "leaves_total": 6,
+    "leaves_ui_visible": 3,
+    "gating_groups": [
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      },
+      {
+        "id": 94,
+        "name": "Expenses / Administrator",
+        "leaves": 1
+      }
+    ]
+  },
+  "Fleet": {
+    "leaves_total": 14,
+    "leaves_ui_visible": 0,
+    "gating_groups": [
+      {
+        "id": 88,
+        "name": "Fleet / Officer: Manage all vehicles",
+        "leaves": 14
+      },
+      {
+        "id": 89,
+        "name": "Fleet / Administrator",
+        "leaves": 10
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      }
+    ]
+  },
+  "Inventory": {
+    "leaves_total": 37,
+    "leaves_ui_visible": 14,
+    "gating_groups": [
+      {
+        "id": 54,
+        "name": "Inventory / Administrator",
+        "leaves": 37
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      }
+    ]
+  },
+  "Invoicing": {
+    "leaves_total": 41,
+    "leaves_ui_visible": 17,
+    "gating_groups": [
+      {
+        "id": 30,
+        "name": "Accounting / Administrator",
+        "leaves": 20
+      },
+      {
+        "id": 18,
+        "name": "Analytic Accounting",
+        "leaves": 4
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      },
+      {
+        "id": 93,
+        "name": "Expenses / All Approver",
+        "leaves": 1
+      },
+      {
+        "id": 31,
+        "name": "Show Inalterability Features",
+        "leaves": 1
+      }
+    ]
+  },
+  "Link Tracker": {
+    "leaves_total": 4,
+    "leaves_ui_visible": 0,
+    "gating_groups": []
+  },
+  "Live Chat": {
+    "leaves_total": 16,
+    "leaves_ui_visible": 0,
+    "gating_groups": [
+      {
+        "id": 98,
+        "name": "Live Chat / User",
+        "leaves": 16
+      },
+      {
+        "id": 99,
+        "name": "Live Chat / Administrator",
+        "leaves": 8
+      }
+    ]
+  },
+  "Maintenance": {
+    "leaves_total": 10,
+    "leaves_ui_visible": 7,
+    "gating_groups": [
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      }
+    ]
+  },
+  "Manufacturing": {
+    "leaves_total": 14,
+    "leaves_ui_visible": 0,
+    "gating_groups": [
+      {
+        "id": 69,
+        "name": "Manufacturing / Administrator",
+        "leaves": 14
+      },
+      {
+        "id": 68,
+        "name": "Manufacturing / User",
+        "leaves": 14
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      }
+    ]
+  },
+  "Project": {
+    "leaves_total": 15,
+    "leaves_ui_visible": 0,
+    "gating_groups": [
+      {
+        "id": 48,
+        "name": "Project / Administrator",
+        "leaves": 15
+      },
+      {
+        "id": 47,
+        "name": "Project / User",
+        "leaves": 15
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      }
+    ]
+  },
+  "Purchase": {
+    "leaves_total": 12,
+    "leaves_ui_visible": 6,
+    "gating_groups": [
+      {
+        "id": 76,
+        "name": "Purchase / Administrator",
+        "leaves": 12
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      }
+    ]
+  },
+  "Recruitment": {
+    "leaves_total": 19,
+    "leaves_ui_visible": 0,
+    "gating_groups": [
+      {
+        "id": 104,
+        "name": "Recruitment / Interviewer",
+        "leaves": 19
+      },
+      {
+        "id": 105,
+        "name": "Recruitment / Officer: Manage all applicants",
+        "leaves": 19
+      },
+      {
+        "id": 106,
+        "name": "Recruitment / Administrator",
+        "leaves": 2
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      }
+    ]
+  },
+  "Repairs": {
+    "leaves_total": 5,
+    "leaves_ui_visible": 1,
+    "gating_groups": [
+      {
+        "id": 54,
+        "name": "Inventory / Administrator",
+        "leaves": 4
+      }
+    ]
+  },
+  "Sales": {
+    "leaves_total": 32,
+    "leaves_ui_visible": 8,
+    "gating_groups": [
+      {
+        "id": 24,
+        "name": "Sales / Administrator",
+        "leaves": 24
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 5
+      }
+    ]
+  },
+  "Settings": {
+    "leaves_total": 95,
+    "leaves_ui_visible": 0,
+    "gating_groups": [
+      {
+        "id": 2,
+        "name": "Access Rights",
+        "leaves": 95
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 95
+      }
+    ]
+  },
+  "Surveys": {
+    "leaves_total": 5,
+    "leaves_ui_visible": 0,
+    "gating_groups": [
+      {
+        "id": 79,
+        "name": "Surveys / User",
+        "leaves": 5
+      }
+    ]
+  },
+  "Time Off": {
+    "leaves_total": 14,
+    "leaves_ui_visible": 4,
+    "gating_groups": [
+      {
+        "id": 97,
+        "name": "Time Off / Administrator",
+        "leaves": 6
+      },
+      {
+        "id": 96,
+        "name": "Time Off / Officer: Manage all requests",
+        "leaves": 3
+      },
+      {
+        "id": 95,
+        "name": "Time Off Responsible",
+        "leaves": 2
+      }
+    ]
+  },
+  "Timesheets": {
+    "leaves_total": 9,
+    "leaves_ui_visible": 0,
+    "gating_groups": [
+      {
+        "id": 108,
+        "name": "Timesheets / User: own timesheets only",
+        "leaves": 9
+      },
+      {
+        "id": 109,
+        "name": "Timesheets / User: all timesheets",
+        "leaves": 7
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      }
+    ]
+  },
+  "To-do": {
+    "leaves_total": 1,
+    "leaves_ui_visible": 1,
+    "gating_groups": []
+  },
+  "Website": {
+    "leaves_total": 31,
+    "leaves_ui_visible": 13,
+    "gating_groups": [
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 15
+      },
+      {
+        "id": 44,
+        "name": "Website / Editor and Designer",
+        "leaves": 8
+      },
+      {
+        "id": 113,
+        "name": "Mail Group Administrator",
+        "leaves": 1
+      },
+      {
+        "id": 104,
+        "name": "Recruitment / Interviewer",
+        "leaves": 1
+      }
+    ]
+  },
+  "eLearning": {
+    "leaves_total": 13,
+    "leaves_ui_visible": 0,
+    "gating_groups": [
+      {
+        "id": 111,
+        "name": "eLearning / Officer",
+        "leaves": 13
+      },
+      {
+        "id": 112,
+        "name": "eLearning / Manager",
+        "leaves": 5
+      },
+      {
+        "id": 4,
+        "name": "Role / Administrator",
+        "leaves": 1
+      }
+    ]
+  }
+}

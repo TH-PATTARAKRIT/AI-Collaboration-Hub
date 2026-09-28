@@ -1,0 +1,26 @@
+{
+  "res.partner": {
+    "status": "allowed",
+    "count": 4
+  },
+  "res.company": {
+    "status": "allowed",
+    "count": 1
+  },
+  "res.users": {
+    "status": "allowed",
+    "count": 2
+  },
+  "ir.rule": {
+    "status": "denied",
+    "error": "You are not allowed to access 'Record Rule' (ir.rule) records."
+  },
+  "ir.model.access": {
+    "status": "denied",
+    "error": "You are not allowed to access 'Model Access' (ir.model.access) records."
+  },
+  "ir.cron": {
+    "status": "denied",
+    "error": "You are not allowed to access 'Scheduled Actions' (ir.cron) records."
+  }
+}

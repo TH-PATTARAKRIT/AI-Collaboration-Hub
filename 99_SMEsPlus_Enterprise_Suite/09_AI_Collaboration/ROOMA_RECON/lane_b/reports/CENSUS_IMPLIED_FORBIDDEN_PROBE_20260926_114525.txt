@@ -1,0 +1,77 @@
+forbidden ids: {2: 'Access Rights', 4: 'Role / Administrator', 7: 'Technical Features', 43: 'Website / Restricted Editor', 44: 'Website / Editor and Designer'}
+
+WANT groups whose closure contains a forbidden group:
+  1    Role / User                                   -> ['Technical Features']
+  24   Sales / Administrator                         -> ['Technical Features']
+  30   Accounting / Administrator                    -> ['Technical Features']
+  94   Expenses / Administrator                      -> ['Technical Features']
+  93   Expenses / All Approver                       -> ['Technical Features']
+  54   Inventory / Administrator                     -> ['Technical Features']
+  76   Purchase / Administrator                      -> ['Technical Features']
+  91   Employees / Administrator                     -> ['Technical Features']
+  106  Recruitment / Administrator                   -> ['Technical Features', 'Website / Restricted Editor']
+  105  Recruitment / Officer: Manage all applicants  -> ['Technical Features', 'Website / Restricted Editor']
+  104  Recruitment / Interviewer                     -> ['Technical Features']
+  48   Project / Administrator                       -> ['Technical Features']
+  89   Fleet / Administrator                         -> ['Technical Features']
+  88   Fleet / Officer: Manage all vehicles          -> ['Technical Features']
+  69   Manufacturing / Administrator                 -> ['Technical Features']
+  97   Time Off / Administrator                      -> ['Technical Features']
+  96   Time Off / Officer: Manage all requests       -> ['Technical Features']
+  95   Time Off Responsible                          -> ['Technical Features']
+  83   Events / Administrator                        -> ['Technical Features', 'Website / Restricted Editor']
+  109  Timesheets / User: all timesheets             -> ['Technical Features']
+  108  Timesheets / User: own timesheets only        -> ['Technical Features']
+
+direct implied_ids chains for the culprits:
+  Role / User: direct implied = ['A warning can be set on a partner (Stock)', 'A warning can be set on a product or a customer (Purchase)', 'A warning can be set on a product or a customer (Sale)', 'Allow the cash rounding management', 'Basic Pricelists', 'Delivery Address', 'Discount on lines', 'Display CV on application form', 'Display Serial & Lot Number on Invoices', 'Lock Confirmed Sales', 'Manage Different Stock Owners', 'Manage Lots / Serial Numbers', 'Manage Multiple Stock Locations', 'Manage Multiple Units of Measure', 'Manage Packages', 'Manage Product Variants', 'Manage Push and Pull inventory flows', 'Manage Work Order Operations', 'Multi Currencies', 'Multi-website', 'Pro-forma Invoices', 'Produce residual products', 'Quotation Templates', 'Send an automatic reminder email to confirm delivery', 'Technical Features', 'Unlocked by default', 'Use Reception Report', 'Use Reception Report with Manufacturing Orders', 'Use Stages on Project', 'User: Read his own attendances']
+  Sales / Administrator: direct implied = ['Sales / User: All Documents', 'Canned Responses / Canned Response Administrator']
+  Accounting / Administrator: direct implied = ['Accounting / Invoicing']
+  Expenses / Administrator: direct implied = ['Expenses / All Approver']
+  Expenses / All Approver: direct implied = ['Expenses / Team Approver']
+  Inventory / Administrator: direct implied = ['Inventory / User']
+  Purchase / Administrator: direct implied = ['Purchase / User']
+  Employees / Administrator: direct implied = ['Employees / Officer: Manage all employees']
+  Recruitment / Administrator: direct implied = ['Recruitment / Officer: Manage all applicants']
+  Recruitment / Officer: Manage all applicants: direct implied = ['Recruitment / Interviewer', 'Website / Restricted Editor']
+  Recruitment / Interviewer: direct implied = ['Role / User']
+  Project / Administrator: direct implied = ['Project / User', 'Timesheets / User: all timesheets', 'Canned Responses / Canned Response Administrator']
+  Fleet / Administrator: direct implied = ['Fleet / Officer: Manage all vehicles']
+  Fleet / Officer: Manage all vehicles: direct implied = ['Role / User']
+  Manufacturing / Administrator: direct implied = ['Manufacturing / User']
+  Time Off / Administrator: direct implied = ['Time Off / Officer: Manage all requests']
+  Time Off / Officer: Manage all requests: direct implied = ['Employees / Officer: Manage all employees', 'Time Off Responsible']
+  Time Off Responsible: direct implied = ['Role / User']
+  Events / Administrator: direct implied = ['Events / User', 'Website / Restricted Editor']
+  Timesheets / User: all timesheets: direct implied = ['Timesheets / User: own timesheets only']
+  Timesheets / User: own timesheets only: direct implied = ['Role / User']
+
+same-privilege alternatives (lower level) and whether they are clean:
+  Sales / User: Own Documents Only                   clean=False  closure=33
+  Sales / User: All Documents                        clean=False  closure=34
+  Accounting / Invoicing                             clean=False  closure=32
+  Expenses / Team Approver                           clean=False  closure=32
+  Expenses / All Approver                            clean=False  closure=33
+  Expenses / Team Approver                           clean=False  closure=32
+  Expenses / Administrator                           clean=False  closure=34
+  Inventory / User                                   clean=False  closure=32
+  Purchase / User                                    clean=False  closure=32
+  Employees / Officer: Manage all employees          clean=False  closure=33
+  Recruitment / Interviewer                          clean=False  closure=32
+  Recruitment / Officer: Manage all applicants       clean=False  closure=34
+  Recruitment / Interviewer                          clean=False  closure=32
+  Recruitment / Administrator                        clean=False  closure=35
+  Recruitment / Officer: Manage all applicants       clean=False  closure=34
+  Recruitment / Administrator                        clean=False  closure=35
+  Project / User                                     clean=False  closure=32
+  Fleet / Officer: Manage all vehicles               clean=False  closure=32
+  Fleet / Administrator                              clean=False  closure=33
+  Manufacturing / User                               clean=False  closure=33
+  Time Off / Officer: Manage all requests            clean=False  closure=35
+  Time Off / Administrator                           clean=False  closure=36
+  Events / Registration Desk                         clean=False  closure=32
+  Events / User                                      clean=False  closure=33
+  Timesheets / User: own timesheets only             clean=False  closure=32
+  Timesheets / Administrator                         clean=False  closure=36
+  Timesheets / User: all timesheets                  clean=False  closure=33
+  Timesheets / Administrator                         clean=False  closure=36

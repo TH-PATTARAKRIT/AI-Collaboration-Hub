@@ -1,0 +1,380 @@
+module: base
+layer: BASE
+records:
+  - QID: STD-Q01
+    BUSINESS_STATEMENT: "ระบบให้บริการบันทึกและจัดการวงจรชีวิตข้อมูลผู้ติดต่อและคู่ค้าทางธุรกิจ รวมถึงการสร้าง ปรับปรุงข้อมูลติดต่อ การระงับการใช้งานชั่วคราว และการทำสำเนาข้อมูล"
+    OBSERVED_DETAIL: "ในไฟล์ s6_partner_lifecycle.json แสดงผลการทำงานวงจรชีวิตข้อมูลของ res.partner โดยสามารถดำเนินการ create (สร้าง record ใหม่ id 13), update ข้อมูลหมายเลขโทรศัพท์, archive (กำหนดค่า active เป็น false) และ copy (สร้าง record ใหม่ id 14 ต่อท้ายชื่อด้วย _COPY)"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_partner_lifecycle.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q02
+    BUSINESS_STATEMENT: "ผู้ใช้งานทั่วไปที่ได้รับมอบหมายสิทธิ์สามารถเข้าถึงและจัดการข้อมูลผู้ติดต่อ ข้อมูลหน่วยงาน และข้อมูลผู้ใช้ได้ แต่ถูกจำกัดสิทธิ์ไม่ให้ลบข้อมูลผู้ติดต่อ และไม่สามารถเข้าถึงกฎความปลอดภัยขั้นสูง สิทธิ์การเข้าถึงโมเดล หรือรายการกำหนดการทำงานอัตโนมัติของระบบได้"
+    OBSERVED_DETAIL: "ใน s4_access_rules_check.json ผู้ใช้รหัส 5 (ROOM B Observer) สามารถเข้าถึง res.partner, res.company, res.users ได้ แต่ถูกปฏิเสธการเข้าถึง ir.rule, ir.model.access, ir.cron และใน s6_cleanup.json การ unlink บน res.partner ถูกปฏิเสธ"
+    SURFACE: S4
+    EVIDENCE_ARTIFACT: "s4_access_rules_check.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q03
+    BUSINESS_STATEMENT: "ระบบรองรับการเรียกสั่งการและทำรายการผ่านช่องทางการเชื่อมต่อภายนอกเพื่อสร้างและแก้ไขข้อมูล แต่ช่องทางการทำงานอัตโนมัติตามกำหนดเวลาถูกบล็อกด้วยการจำกัดสิทธิ์ และไม่พบหลักฐานยืนยันเส้นทางการทำงานผ่านหน้าจอผู้ใช้งานในชุดข้อมูลทดสอบ"
+    OBSERVED_DETAIL: "ใน s6_tx3_cross_company_isolation.json และ s6_partner_lifecycle.json พบการเรียกทำรายการผ่าน RPC ภายนอก (มีโครงสร้างข้อผิดพลาดแบบ Fault) ขณะที่ใน s5_scheduled_actions_check.json การเข้าถึง ir.cron ถูกปฏิเสธ (refused) ส่วนหน้าจอ UI ไม่ปรากฏใน artifacts"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_tx3_cross_company_isolation.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q04
+    BUSINESS_STATEMENT: "ระบบทำการสร้างและแก้ไขระเบียนข้อมูลผู้ติดต่อ โดยบันทึกชื่อ ข้อมูลติดต่อ หมายเลขโทรศัพท์ อีเมล สถานะการเปิดใช้งาน และการผูกโยงกับหน่วยงาน รวมถึงการสร้างระเบียนสำเนาใหม่เมื่อมีการสั่งทำสำเนา"
+    OBSERVED_DETAIL: "ใน s6_partner_lifecycle.json แสดงการสร้างระเบียน res.partner ใหม่ (id 13) พร้อมข้อมูล name, company_id, email, phone, active, create_uid, create_date และการแก้ไขฟิลด์ phone และ active และการ copy ได้ระเบียนใหม่ (id 14)"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_partner_lifecycle.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q05
+    BUSINESS_STATEMENT: "การสร้างข้อมูลหน่วยงานหลักจำเป็นต้องระบุชื่อหน่วยงาน ข้อมูลคู่ค้าที่เกี่ยวข้อง สกุลเงินหลัก วันสิ้นสุดรอบปีบัญชี และเดือนสิ้นสุดรอบปีบัญชี สำหรับข้อมูลผู้ใช้จำเป็นต้องระบุชื่อเข้าสู่ระบบ ผู้ติดต่อที่ผูกพัน และหน่วยงานที่สังกัด"
+    OBSERVED_DETAIL: "ใน s2_fields_res_company.json ระบุฟิลด์ required: true ได้แก่ name, partner_id, currency_id, fiscalyear_last_day, fiscalyear_last_month และใน s2_fields_res_users.json ระบุฟิลด์ required: true ได้แก่ login, partner_id, company_id, notification_type"
+    SURFACE: S2
+    EVIDENCE_ARTIFACT: "s2_fields_res_company.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q06
+    BUSINESS_STATEMENT: "ข้อมูลในระดับนี้ไม่มีขั้นตอนสถานะเอกสารเหมือนเอกสารธุรกรรม แต่มีสถานะของบัญชีผู้ใช้งาน ได้แก่ สถานะได้รับเชิญ และสถานะยืนยันเปิดใช้งานแล้ว ส่วนข้อมูลผู้ติดต่อมีสถานะเปิดใช้งานและสถานะถูกระงับหรือจัดเก็บ"
+    OBSERVED_DETAIL: "ใน s2_fields_res_users.json ฟิลด์ state มีค่าทางเทคนิคเป็น 'new' (Invited) และ 'active' (Confirmed) ส่วนใน s2_fields_res_partner.json และ s6_partner_lifecycle.json มีฟิลด์ active (boolean) แสดงสถานะเปิดใช้งาน (true) หรือระงับ/จัดเก็บ (false)"
+    SURFACE: S2
+    EVIDENCE_ARTIFACT: "s2_fields_res_users.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q07
+    BUSINESS_STATEMENT: "การเปลี่ยนสถานะเกิดจากการกระทำโดยตรงของผู้ใช้งานที่ได้รับอนุญาตผ่านคำสั่งแก้ไขข้อมูล โดยระบบบันทึกตัวตนของผู้ทำรายการและวันเวลาที่แก้ไข ไม่พบหลักฐานการเปลี่ยนสถานะโดยอัตโนมัติจากเงื่อนไขเวลาหรือจากเอกสารอื่น"
+    OBSERVED_DETAIL: "ใน s6_partner_lifecycle.json และ s6_tx1_partner_lifecycle.json การเปลี่ยนค่า active เป็น false เกิดจากการเรียกคำสั่ง update โดยระบบบันทึก write_uid เป็น [5, 'ROOM B Observer (Lane B)'] และ write_date ทันที"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_partner_lifecycle.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q08
+    BUSINESS_STATEMENT: "ระบบมีกฎการตรวจสอบความปลอดภัยที่บล็อกการอ่านข้อมูลของหน่วยงานอื่น บล็อกการสร้างข้อมูลในหน่วยงานที่ตนไม่มีสิทธิ์ และบล็อกการลบข้อมูลผู้ติดต่อ โดยเมื่อถูกบล็อก ระบบจะปฏิเสธการทำรายการและส่งข้อความแจ้งเตือนข้อผิดพลาดเรื่องการจำกัดสิทธิ์เข้าถึงข้อมูล"
+    OBSERVED_DETAIL: "ใน s6_tx3_cross_company_isolation.json การสร้างข้อมูลข้ามบริษัทถูกบล็อกด้วย Fault 4: 'doesn't have create access to Contact (res.partner)... multi-company issue' และการอ่านบริษัทอื่นถูกบล็อกด้วย Fault 4 แจ้งไม่มี read access บน res.company; ใน s6_cleanup.json การ unlink บน res.partner ถูกปฏิเสธด้วยข้อความ 'You are not allowed to delete Contact (res.partner) records.'"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_tx3_cross_company_isolation.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q09
+    RESULT: NOT_OBSERVED
+    NOTE: "ไม่พบข้อมูลการทดสอบกรณีการทำงานล้มเหลวระหว่างทางของการทำรายการหลายขั้นตอน (partial failure rollback) ในไฟล์ s6_partner_lifecycle.json, s6_tx1_partner_lifecycle.json, s6_tx2_partner_copy.json หรือ s6_tx3_cross_company_isolation.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q10
+    RESULT: NOT_OBSERVED
+    NOTE: "ไม่พบการทดสอบการส่งคำขอซ้ำซ้อนพร้อมกันจากผู้ใช้สองคน (concurrency) หรือการป้องกันคำขอซ้ำซ้อนในไฟล์ s6_partner_lifecycle.json, s6_tx1_partner_lifecycle.json หรือ s6_cleanup.json (พบเพียงการ copy ที่สร้างระเบียนใหม่ต่อท้าย _COPY)"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q11
+    BUSINESS_STATEMENT: "การดำเนินงานเกี่ยวกับข้อมูลพื้นฐานและข้อมูลผู้ติดต่อในส่วนนี้ไม่มีข้อกำหนดหรือขั้นตอนที่ต้องรอการอนุมัติ รายการสามารถดำเนินการและมีผลได้ทันทีโดยผู้ใช้งานที่มีสิทธิ์"
+    OBSERVED_DETAIL: "ใน s6_partner_lifecycle.json การ create, update, archive และ copy ทำงานสำเร็จทันที (status: ok) โดยไม่มีฟิลด์หรือเงื่อนไขการอนุมัติ และใน s2_fields_res_partner.json ไม่มีฟิลด์เกี่ยวข้องกับ approval workflow"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_partner_lifecycle.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q12
+    RESULT: NOT_OBSERVED
+    NOTE: "ไม่พบกลไกหรือกระบวนการขออนุมัติ (approval workflow) ในโมดูลนี้ตามที่ตรวจสอบใน s2_fields_res_partner.json, s6_partner_lifecycle.json และ negative_probes_accounting_stock.json จึงไม่สามารถสังเกตการแยกการอนุมัติออกจากการปฏิบัติการได้"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q13
+    BUSINESS_STATEMENT: "ผู้ใช้งานที่ล็อกอินและส่งคำสั่งเข้าสู่ระบบเป็นผู้ดำเนินการโดยตรง และระบบจะบันทึกตัวตนของผู้ใช้งานนั้นเป็นผู้ทำรายการทันทีโดยไม่มีขั้นตอนการอนุมัติแยกต่างหาก"
+    OBSERVED_DETAIL: "ใน s6_partner_lifecycle.json และ s6_tx1_partner_lifecycle.json ระบบบันทึก create_uid และ write_uid เป็น [5, 'ROOM B Observer (Lane B)'] ซึ่งเป็นผู้สั่งการทำรายการโดยตรง"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_partner_lifecycle.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q14
+    BUSINESS_STATEMENT: "การทำงานในระดับข้อมูลพื้นฐานนี้ไม่มีเหตุการณ์ใดที่ส่งผลให้เกิดการลงบันทึกรายการทางบัญชี เนื่องจากการบันทึกบัญชีเป็นหน้าที่ของส่วนขยายระบบงานบัญชีที่อยู่นอกเหนือขอบเขตโมดูลนี้"
+    OBSERVED_DETAIL: "ใน negative_probes_accounting_stock.json และ probe_reachability.json ระบุว่า account.move และ account.journal มี count เป็น 0 และมีหมายเหตุกำกับว่า belongs to extension module, not base"
+    SURFACE: S4
+    EVIDENCE_ARTIFACT: "negative_probes_accounting_stock.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q15
+    BUSINESS_STATEMENT: "ไม่มีการสร้างรายการสมุดรายวันบัญชีใดๆ จากการทำงานในส่วนนี้"
+    OBSERVED_DETAIL: "ใน negative_probes_accounting_stock.json ตรวจสอบ account.move พบว่า count: 0 (Accessible - belongs to extension module, not base)"
+    SURFACE: S4
+    EVIDENCE_ARTIFACT: "negative_probes_accounting_stock.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q16
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน negative_probes_accounting_stock.json และ probe_reachability.json ไม่พบข้อมูลการลงรายการเดบิต/เครดิต เนื่องจาก account.move มี 0 records และเป็นโมดูลส่วนขยาย"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q17
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน negative_probes_accounting_stock.json และ probe_reachability.json ไม่พบข้อมูลวันที่ลงบัญชี (posting date) หรือวันที่เอกสารทางบัญชีในโมดูล base"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q18
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน s2_fields_res_company.json พบฟิลด์ fiscalyear_lock_date, tax_lock_date, hard_lock_date แต่ใน negative_probes_accounting_stock.json ไม่มีรายการบัญชี (account.move มี 0 records) จึงไม่พบการทดสอบเชิงปฏิบัติการเกี่ยวกับการลงรายการย้อนหลังในงวดที่ปิด"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q19
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน negative_probes_accounting_stock.json และ probe_reachability.json ไม่พบรายการบัญชีหรือกระบวนการกลับรายการบัญชี (reversal) ในโมดูล base"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q20
+    BUSINESS_STATEMENT: "ข้อมูลสามารถแก้ไขเปลี่ยนแปลงรายละเอียดได้ตลอดเวลา และสามารถยกเลิกการใช้งานได้โดยการจัดเก็บเข้ากรุหรือปิดสถานะการใช้งาน แต่ระบบไม่อนุญาตให้ผู้ใช้ทั่วไปลบข้อมูลทิ้งอย่างถาวร"
+    OBSERVED_DETAIL: "ใน s6_partner_lifecycle.json แสดงการ update แก้ไขข้อมูลเบอร์โทรศัพท์สำเร็จ และการ archive โดยเปลี่ยน active เป็น false สำเร็จ ขณะที่ใน s6_cleanup.json คำสั่ง unlink บน res.partner ถูกปฏิเสธ (refused)"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_partner_lifecycle.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q21
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน negative_probes_accounting_stock.json และ probe_reachability.json ไม่พบข้อมูลหรือโครงสร้างการกระทบยอด (reconciliation) ในโมดูล base"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q22
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน negative_probes_accounting_stock.json และ probe_reachability.json ไม่พบผลกระทบต่อรายงานทางการเงิน เนื่องจากไม่มีการบันทึกรายการบัญชีในโมดูล base"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q23
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน s6_tx1_partner_lifecycle.json พบเพียงการจัดเก็บหมายเลขประจำตัวผู้เสียภาษี (vat) แต่ไม่พบการคำนวณฐานภาษีหรืออัตราภาษีมูลค่าเพิ่มใน artifacts ใดๆ"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q24
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน negative_probes_accounting_stock.json, s2_fields_res_partner.json และ probe_reachability.json ไม่พบข้อมูลหรือการคำนวณภาษีหัก ณ ที่จ่าย (Withholding Tax)"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q25
+    BUSINESS_STATEMENT: "ระบบมีโครงสร้างรองรับการกำหนดอัตราแลกเปลี่ยนสกุลเงินตามวันที่ การแปลงอัตราแลกเปลี่ยนแบบผกผัน ปัจจัยการปัดเศษ และจำนวนทศนิยม รวมถึงการกำหนดสกุลเงินหลักประจำแต่ละหน่วยงาน แต่ไม่พบหลักฐานการคำนวณแปลงค่าเงินในธุรกรรมจริง"
+    OBSERVED_DETAIL: "ใน s2_fields_res_currency.json มีฟิลด์ rate, inverse_rate, rate_ids, rounding, decimal_places, date และใน s2_fields_res_company.json มีฟิลด์ currency_id (required: true) แต่ไม่มีธุรกรรมการแปลงค่าเงินใน S6"
+    SURFACE: S2
+    EVIDENCE_ARTIFACT: "s2_fields_res_currency.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q26
+    BUSINESS_STATEMENT: "ระบบสร้างลำดับเอกสารอัตโนมัติโดยรองรับทั้งแบบมาตรฐานและแบบต่อเนื่องไม่มีช่องว่าง สามารถกำหนดคำนำหน้า คำต่อท้าย การเติมศูนย์ตามจำนวนหลัก ขั้นการนับเพิ่ม ลำดับถัดไป และสามารถแบ่งลำดับเอกสารตามช่วงวันที่หรือแยกตามแต่ละหน่วยงานได้"
+    OBSERVED_DETAIL: "ใน s2_fields_ir_sequence.json มีฟิลด์ implementation (standard / no_gap), prefix, suffix, padding, number_next, number_increment, company_id, use_date_range และใน s6_sequence_read.json พบลำดับเอกสารที่มีการแยกตามบริษัทและลำดับทั่วไป"
+    SURFACE: S2
+    EVIDENCE_ARTIFACT: "s2_fields_ir_sequence.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q27
+    BUSINESS_STATEMENT: "ข้อมูลถูกจัดสรรให้อยู่ภายใต้ขอบเขตของหน่วยงานหรือสาขา โดยผู้ใช้งานจะถูกผูกเข้ากับหน่วยงานหลักและหน่วยงานที่ได้รับอนุญาต ระบบจะบังคับใช้ขอบเขตนี้อย่างเคร่งครัดที่ระดับความปลอดภัยของระบบ และปฏิเสธการเข้าถึงหรือสร้างข้อมูลในหน่วยงานที่ตนไม่มีสิทธิ์"
+    OBSERVED_DETAIL: "ใน s2_fields_res_company.json มีโครงสร้าง parent_id และ child_ids (Branches), ใน s2_fields_res_users.json มี company_id และ company_ids, และใน s6_tx3_cross_company_isolation.json ถูกบล็อกด้วย Fault 4 ระบุ multi-company issue เมื่อพยายามเข้าถึงหรือสร้างข้อมูลข้าม company_id"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_tx3_cross_company_isolation.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q28
+    BUSINESS_STATEMENT: "ผู้ใช้งานในหน่วยงานหนึ่งไม่สามารถมองเห็น เข้าถึง หรือสร้างข้อมูลข้ามไปยังหน่วยงานอื่นที่ตนไม่ได้รับอนุญาตได้ โดยการเรียกอ่านหรือเขียนข้อมูลข้ามหน่วยงานจะถูกระบบบล็อกทันทีและแจ้งข้อผิดพลาดสิทธิ์การเข้าถึง"
+    OBSERVED_DETAIL: "ใน s6_tx3_cross_company_isolation.json ผู้ใช้ id 5 (สังกัด company 2) ถูกบล็อกการอ่าน company 1 ด้วย Fault 4 (doesn't have 'read' access to res.company) และถูกบล็อกการสร้างข้อมูลด้วย Fault 4 (doesn't have 'create' access to res.partner... multi-company issue) และใน s4_access_rules_check.json พบ res.company เพียง 1 record"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_tx3_cross_company_isolation.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q29
+    BUSINESS_STATEMENT: "การเข้าถึงข้อมูลถูกควบคุมด้วยสิทธิ์การเข้าถึงระดับโครงสร้างข้อมูลและกฎระดับระเบียนข้อมูล โดยแบ่งแยกสิทธิ์ตามกลุ่มผู้ใช้งาน และควบคุมการอ่าน การเขียน การสร้าง และการลบแยกจากกัน"
+    OBSERVED_DETAIL: "ใน s2_fields_res_groups.json มีฟิลด์ model_access และ rule_groups ควบคุมสิทธิ์ และใน s4_access_rules_check.json แสดงการมีอยู่ของ ir.rule และ ir.model.access และใน s6_cleanup.json คำสั่ง unlink บน res.partner ถูกบล็อกด้วยข้อจำกัดสิทธิ์"
+    SURFACE: S2
+    EVIDENCE_ARTIFACT: "s2_fields_res_groups.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q30
+    BUSINESS_STATEMENT: "ระบบบันทึกร่องรอยการตรวจสอบโดยอัตโนมัติ ประกอบด้วยตัวตนของผู้สร้าง วันเวลาที่สร้าง ตัวตนของผู้แก้ไขล่าสุด และวันเวลาที่แก้ไขล่าสุด โดยข้อมูลร่องรอยเหล่านี้ถูกตั้งค่าเป็นแบบอ่านได้อย่างเดียวเพื่อป้องกันไม่ให้มีการดัดแปลงแก้ไขได้"
+    OBSERVED_DETAIL: "ใน s2_fields_res_partner.json มีฟิลด์ create_uid, create_date, write_uid, write_date ซึ่งมีสถานะ readonly: true ทั้งหมด และใน s6_partner_lifecycle.json มีการบันทึกค่าผู้ใช้ [5, 'ROOM B Observer (Lane B)'] และเวลาอัตโนมัติเมื่อเกิดการสร้างและแก้ไข"
+    SURFACE: S2
+    EVIDENCE_ARTIFACT: "s2_fields_res_partner.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q31
+    BUSINESS_STATEMENT: "โมดูลนี้ไม่มีการสร้าง บริโภค สำรอง หรือเคลื่อนย้ายสินค้าทางกายภาพใดๆ การเคลื่อนย้ายสินค้าเป็นหน้าที่ของส่วนขยายระบบงานคลังสินค้า"
+    OBSERVED_DETAIL: "ใน negative_probes_accounting_stock.json และ probe_reachability.json พบว่า stock.picking และ stock.move มี count เป็น 0 และมีข้อความกำกับว่า belongs to extension module, not base"
+    SURFACE: S4
+    EVIDENCE_ARTIFACT: "negative_probes_accounting_stock.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q32
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน negative_probes_accounting_stock.json และ probe_reachability.json ไม่พบข้อมูลการเคลื่อนย้ายสินค้าในโมดูล base (stock.move มี 0 records และเป็นของ extension module)"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q33
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน negative_probes_accounting_stock.json ไม่พบการเชื่อมโยงระหว่างสินค้าคงคลังและบัญชี เนื่องจากทั้ง stock.move และ account.move มี 0 records และเป็นส่วนขยายภายนอก"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q34
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน negative_probes_accounting_stock.json และ probe_reachability.json ไม่พบข้อมูลการควบคุมสต็อกสินค้าหรือการจัดการสินค้าติดลบในโมดูล base"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q35
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน negative_probes_accounting_stock.json และ probe_reachability.json พบ uom.uom 15 records แต่ระบุว่า belongs to extension module, not base จึงไม่มีการคำนวณแปลงหน่วยวัดในโมดูล base"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q36
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน s6_tx3_cross_company_isolation.json และ artifacts ทั้งหมด พบเพียงการทดสอบการเข้าถึงโดยตรง ไม่มีการทดสอบการท่องความสัมพันธ์ทางอ้อม (indirect relationship traversal) ข้ามขอบเขตองค์กร"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q37
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน artifacts ทั้งหมด ไม่พบการทดสอบ UI search, autocomplete, recent items หรือ reference picker ว่ามีการรั่วไหลของข้อมูลจากบริบทอื่นหรือไม่"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q38
+    BUSINESS_STATEMENT: "การนับจำนวนระเบียนข้อมูลจะถูกจำกัดอยู่เฉพาะข้อมูลที่บริบทของผู้ใช้งานมีสิทธิ์เข้าถึง โดยไม่นับรวมหรือรั่วไหลข้อมูลจำนวนรวมจากหน่วยงานอื่นที่ถูกจำกัดสิทธิ์"
+    OBSERVED_DETAIL: "ใน s4_access_rules_check.json การตรวจนับ res.company ส่งคืนค่า count: 1 สำหรับผู้ใช้งานที่สังกัด company 2 แม้ในระบบจะมี company 1 อยู่ด้วยตามที่ปรากฏใน s6_tx3_cross_company_isolation.json ก็ตาม"
+    SURFACE: S4
+    EVIDENCE_ARTIFACT: "s4_access_rules_check.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q39
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน s2_fields_ir_attachment.json พบฟิลด์ company_id, res_model, res_id แต่ไม่มีการทดสอบเชิงปฏิบัติการ (S6) เกี่ยวกับการเข้าถึงหรือดาวน์โหลดไฟล์แนบข้ามขอบเขตองค์กร"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q40
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน self_test.json และ artifacts การทดสอบ S6 ทั้งหมด มีการทำงานภายใต้บริบทเดียว (company_id: 2) ไม่มีการทดสอบหลายหน้าต่างหรือหลายบริบทคู่ขนาน (parallel context)"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q41
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน artifacts ทั้งหมด ไม่พบการทดสอบการสลับบริบทระหว่างที่มีงานค้างอยู่ (context switch with work in progress)"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q42
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน s4_access_rules_check.json และ artifacts ทั้งหมด ไม่พบการทดสอบการเปลี่ยนแปลงสิทธิ์ (grant/revoke) ระหว่างการทำงานเพื่อดูผลการอัปเดตสิทธิ์และการแคช"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q43
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน artifacts ทั้งหมด ไม่พบการทดสอบกรณี session หมดอายุหรือคำขอหมดเวลา (timeout/interrupted operation) ระหว่างทำรายการ"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q44
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน artifacts ทั้งหมด ไม่พบการทดสอบการแก้ไขข้อมูลขัดแย้งกันในเวลาเดียวกัน (concurrent and conflicting changes)"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q45
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน s5_scheduled_actions_check.json และ s4_access_rules_check.json พบว่า Scheduled Actions (ir.cron) ถูกปฏิเสธการเข้าถึง (refused) ทำให้ไม่สามารถตรวจสอบการทำงานอัตโนมัติได้"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q46
+    BUSINESS_STATEMENT: "ค่าเริ่มต้นของหน่วยงานในระเบียนที่สร้างขึ้นใหม่จะถูกกำหนดให้อยู่ในขอบเขตของหน่วยงานที่กำลังใช้งานอยู่โดยอัตโนมัติ และระบบป้องกันไม่ให้เกิดการปนเปื้อนหรือการกำหนดค่าข้ามไปยังหน่วยงานอื่นที่ไม่มีสิทธิ์"
+    OBSERVED_DETAIL: "ใน s6_partner_lifecycle.json เมื่อสร้างระเบียนใหม่ (id 13) และระเบียนสำเนา (id 14) ภายใต้ขอบเขต company_id: 2 ค่า company_id ที่ได้รับคือ [2, 'ROOMB_TEST'] และใน s6_tx3_cross_company_isolation.json ปฏิเสธการสร้างข้อมูลข้ามบริษัท"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_partner_lifecycle.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q47
+    BUSINESS_STATEMENT: "การทำสำเนาระเบียนข้อมูลจะสร้างระเบียนใหม่โดยมีข้อความต่อท้ายชื่อเพื่อระบุว่าเป็นสำเนา โดยคงการผูกโยงกับหน่วยงานเดิมที่ได้รับอนุญาต แต่สถานะการระงับการใช้งานจะถูกคัดลอกตามไปด้วยโดยไม่ได้รีเซ็ตกลับเป็นสถานะปกติ"
+    OBSERVED_DETAIL: "ใน s6_partner_lifecycle.json การ copy ระเบียน id 13 (ซึ่งมี active: false) สร้างระเบียนใหม่ id 14 โดยตั้งชื่อลงท้ายด้วย _COPY และคงค่า company_id เป็น [2, 'ROOMB_TEST'] และคงค่า active เป็น false ตามต้นฉบับ"
+    SURFACE: S6
+    EVIDENCE_ARTIFACT: "s6_partner_lifecycle.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q48
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน s6_cleanup.json และ s6_partner_lifecycle.json พบการบันทึกสถานะ active: false และการบล็อก unlink แต่ไม่มีการทดสอบการเข้าถึงผ่านความสัมพันธ์หรือระเบียนลูกที่ตกค้าง (usable orphan references)"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q49
+    BUSINESS_STATEMENT: "ระบบมีโครงสร้างแยกความรับผิดชอบข้อมูลอย่างชัดเจน โดยข้อมูลอ้างอิงส่วนกลาง เช่น ประเทศ ภาษา และสกุลเงิน จะไม่มีการผูกมัดกับหน่วยงานใดหน่วยงานหนึ่ง ทำให้ทุกหน่วยงานมองเห็นและใช้งานร่วมกันได้ ขณะที่ข้อมูลคู่ค้าและลำดับเอกสารสามารถกำหนดได้ว่าจะเป็นข้อมูลเฉพาะหน่วยงานหรือเป็นข้อมูลส่วนกลางที่ใช้งานร่วมกัน"
+    OBSERVED_DETAIL: "ใน s2_fields_res_country.json, s2_fields_res_currency.json, s2_fields_res_lang.json ไม่มีฟิลด์ company_id (เป็นข้อมูลส่วนกลาง global/shared); ใน s2_fields_ir_sequence.json และ s2_fields_res_partner.json ฟิลด์ company_id มี required: false ทำให้สามารถแชร์หรือระบุเจาะจงหน่วยงานได้ ดังที่เห็นใน s6_sequence_read.json ที่มีทั้งลำดับทั่วไปและลำดับเฉพาะบริษัท"
+    SURFACE: S2
+    EVIDENCE_ARTIFACT: "s2_fields_ir_sequence.json"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q50
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน s2_fields_res_users.json และ s2_fields_res_partner.json พบฟิลด์ tz และ tz_offset และพบการเก็บเวลา create_date ใน s6_partner_lifecycle.json แต่ไม่มีการทดสอบเปรียบเทียบการลงวันที่เอกสารทางธุรกิจระหว่างผู้ใช้ต่างเขตเวลา (time zone boundary test)"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q51
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน s2_fields_res_users.json และ s2_fields_res_partner.json พบโครงสร้างฟิลด์การแจ้งเตือนและผู้ติดตาม แต่ไม่มีการทดสอบการส่งการแจ้งเตือนจริงหรือการตัดสิทธิ์ผู้รับตามสิทธิ์ความปลอดภัยใน artifacts"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q52
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน s5_scheduled_actions_check.json และ s4_access_rules_check.json พบว่า Scheduled Actions (ir.cron) ถูกปฏิเสธการเข้าถึง จึงไม่สามารถตรวจสอบร่องรอยการระบุตัวตนของการทำงานอัตโนมัติได้"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q53
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน artifacts ทั้งหมด ไม่พบการทดสอบการสำรองข้อมูล กู้คืน ซ่อมแซม หรือการย้ายระบบ (out-of-band data operations/restore/migration)"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q54
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน artifacts ทั้งหมด พบเพียงการทดสอบผ่านช่องทาง API/script เท่านั้น (เช่น ใน s6_tx3_cross_company_isolation.json และ s6_cleanup.json) ไม่มีการทดสอบเปรียบเทียบกับช่องทางอื่น เช่น หน้าจอ UI การนำเข้าไฟล์ (import) หรือการประมวลผลกลุ่ม (bulk)"
+    LAYER: BASE
+    STATUS: DRAFT
+
+  - QID: STD-Q55
+    RESULT: NOT_OBSERVED
+    NOTE: "ตรวจสอบใน artifacts ทั้งหมด ไม่พบการทดสอบภาวะการทำงานหนัก การส่งข้อมูลผิดพลาดซ้ำ หรือการแย่งชิงทรัพยากรระหว่างผู้เช่าระบบ (noisy neighbour/stress testing)"
+    LAYER: BASE
+    STATUS: DRAFT

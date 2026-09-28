@@ -1,0 +1,134 @@
+launcher : <REDACTED_PATH>
+config   : /etc/odoo19.conf
+run as   : odoo
+backup   : /root/ROOMA_BACKUP/laneb_grant_before_20260926_093545.json
+
+user->groups field detected: group_ids
+BEFORE_JSON_START
+BEFORE_JSON_START
+{
+{
+  "ts": "2026-09-26T02:35:48.928161",
+  "ts": "2026-09-26T02:35:48.928161",
+  "observer_uid": 5,
+  "observer_uid": 5,
+  "groups_field": "group_ids",
+  "groups_field": "group_ids",
+  "groups": [
+  "groups": [
+    {
+      "id": 23,
+      "name": "Sales / User: All Documents"
+    },
+    {
+      "id": 27,
+      "name": "Accounting / Invoicing"
+    },
+    {
+      "id": 75,
+      "name": "Purchase / User"
+    },
+    {
+      "id": 90,
+      "name": "Employees / Officer: Manage all employees"
+    },
+    {
+      "id": 53,
+      "name": "Inventory / User"
+    },
+    {
+      "id": 120,
+      "name": "ROOM B Observer (Lane B)"
+    },
+    {
+      "id": 1,
+      "name": "Role / User"
+    },
+    {
+      "id": 29,
+      "name": "Show Full Accounting Features"
+    }
+  ],
+  "access": [
+    {
+      "id": 915,
+      "model": "res.partner",
+      "group": "Purchase / User",
+      "r": true,
+      "w": false,
+      "c": false,
+      "d": false
+    },
+    {
+      "id": 2026,
+      "model": "res.partner",
+      "group": "ROOM B Observer (Lane B)",
+      "r": true,
+      "w": false,
+      "c": false,
+      "d": true
+    },
+    {
+      "id": 75,
+      "model": "res.partner",
+      "group": "Role / User",
+      "r": true,
+      "w": false,
+      "c": false,
+      "d": false
+    },
+    {
+      "id": 2027,
+      "model": "ir.actions.act_window",
+      "group": "ROOM B Observer (Lane B)",
+      "r": true,
+      "w": false,
+      "c": false,
+      "d": false
+    },
+    {
+      "id": 2028,
+      "model": "res.config.settings",
+      "group": "ROOM B Observer (Lane B)",
+      "r": true,
+      "w": false,
+      "c": false,
+      "d": false
+    }
+  ]
+}
+BEFORE_JSON_END
+group already exists id=120  'ROOM B Observer (Lane B)'
+observer uid=5 already in group 120
+  res.partner              rule already exists id=2026 - skipped
+  ir.actions.act_window    rule already exists id=2027 - skipped
+  res.config.settings      rule already exists id=2028 - skipped
+registry.clear_cache() ok
+registry.signal_changes() ok
+registry.clear_caches() n/a (AttributeError)
+ir.model.access cache cleared
+
+AFTER
+  res.partner              id=2026 r1w0c0d1
+  ir.actions.act_window    id=2027 r1w0c0d0
+  res.config.settings      id=2028 r1w0c0d0
+ROLLBACK_RULE_IDS=[]
+ROLLBACK_GROUP_ID=pre-existing, do not delete
+
+full log : /root/ROOMA_BACKUP/laneb_grant_20260926_093545.log
+ROLLBACK : delete the rule ids printed above via the same odoo shell:
+           env['ir.model.access'].browse([...]).unlink(); env.cr.commit()
+logfile: /var/log/odoo19/odoo.log
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+Mute this logger: --log-handler odoo.addons.rpc.controllers.xmlrpc:ERROR
+log-window-check done

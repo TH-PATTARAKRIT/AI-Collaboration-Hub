@@ -1,0 +1,4 @@
+load_web_menus[False]{}: not usable -> TypeError: IrUiMenu.load_web_menus() missing 1 required positional argument: 'debug'
+load_menus[False]{}: not usable -> TypeError: dictionary key must be string
+load_web_menus[]{'debug': False}: not usable -> IndexError: list index out of range
+load_menus[]{'debug': False}: not usable -> TypeError: dictionary key must be string
