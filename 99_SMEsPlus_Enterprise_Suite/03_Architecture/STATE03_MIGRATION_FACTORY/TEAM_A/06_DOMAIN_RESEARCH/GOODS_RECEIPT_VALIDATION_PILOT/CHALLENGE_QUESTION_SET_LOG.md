@@ -13,9 +13,11 @@ Used only as a Challenge Question Source per Master Prompt §9: `question → fu
 | CQS-GRV-05 | Once a FIFO-valued receipt is posted, is its unit value permanently fixed? | "FIFO valuation is immutable once posted" | **Contradicted** | Documentation describes an explicit "Adjust Valuation" action for FIFO/AVCO incoming moves (EV-GRV-04/05 synthesis). |
 | CQS-GRV-06 | Does every receipt automatically reconcile to Accounting in real time? | "Every stock movement always creates an immediate journal entry" | **Conditional** | Entirely dependent on the Automatic (perpetual) vs Manual (periodic) valuation configuration; documentation states manual/periodic is the *default* (EV-GRV-05). Design implication: do not assume real-time GL posting as the baseline case. |
 
+| CQS-GRV-07 | Does returning goods to a vendor use a distinct, purchase-specific mechanism from the sales-side customer return? | "Purchase-side returns have their own dedicated documented workflow" | **Contradicted** | Odoo documentation has no page dedicated to vendor returns distinct from the sales-side "Returns and refunds" page — the same generic Reverse Transfer mechanism applies to receipts as to deliveries, mirrored by Vendor Refund/Credit Note instead of Customer Credit Note (EV-GRV-10/11/12). |
+
 ## Status
 
-`CLOSED (documentation-tier)`: CQS-GRV-01, 03, 05 — clear, cited, no residual doubt at this evidence tier.
+`CLOSED (documentation-tier)`: CQS-GRV-01, 03, 05, 07 — clear, cited, no residual doubt at this evidence tier.
 `OPEN (Targeted Validation Needed)`: CQS-GRV-02, 04, 06 — documentation gives a directional answer but the precise mechanical boundary needs Source or Runtime evidence before it can be relied on in any downstream design discussion.
 
-No round cap applied. Further questions may be added on Material Delta (e.g. once GRV-F07 reversal evidence is obtained).
+No round cap applied. Further questions may be added on Material Delta (e.g. GRV-F07's own remaining UNKNOWNs — purchase-matching interaction with returns, refund-amount derivation).

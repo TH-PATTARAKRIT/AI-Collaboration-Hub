@@ -98,5 +98,15 @@ Evidence tier for every row below: **Documentation Evidence** (Odoo 19 official 
 
 ### GRV-F07 — Reversal / return of received goods
 
-- **WHAT / WHY / BUSINESS RULE / STATE / DATA CONCEPT / CONTROL / DEPENDENCY / EVENT / RISK**: Not evidenced this round — no documentation page for this function was retrieved.
-- **UNKNOWN**: Entire function is `SOURCE/RUNTIME/DOCUMENTATION VERIFICATION REQUIRED`. Criticality (C2) was assigned in `04_FUNCTION_REGISTER.md` by architectural inference only (Backbone Roadmap Lane C scenario #3), not by evidence gathered this round. See GAP-GRV-07.
+> **Evidence added 2026-09-28 (continuous execution, closing the documentation half of `GAP-GRV-06`).** Odoo's documentation does not have a page dedicated to "return goods to vendor" distinct from the sales-side one — the mechanism is the same generic **Reverse Transfer** applied to a validated receipt instead of a validated delivery, mirrored on the financial side by a **Vendor Refund / Vendor Credit Note** instead of a Customer Credit Note. This symmetry with `SALES_DELIVERY_VALIDATION_PILOT` SDV-F06/F07 is itself the finding.
+
+- **WHAT**: Before a vendor bill is validated for the returned quantity, a return to the vendor is processed via Reverse Transfer on the original receipt. After a vendor bill has been validated, the bill cannot be edited — a Vendor Refund / Vendor Credit Note is the documented instrument for the financial correction.
+- **WHY**: Same rationale as the sales-side mirror: once a financial document is validated it must not be silently edited, so a dedicated reversal instrument exists for both directions of trade.
+- **BUSINESS RULE**: A credit/debit note is documented as "the only legal method for canceling, refunding, or modifying a validated invoice" — stated in the customer-invoice context, structurally symmetric with the vendor-bill side, where the vendor bill's own "Credit Note" button and the "Vendors → Refunds" list are the documented equivalent instrument.
+- **STATE**: Validated receipt (pre-bill) → Reverse Transfer → validated → PO's received-quantity reduced. Validated receipt + validated bill (post-bill) → Reverse Transfer (stock) + Vendor Refund/Credit Note (financial), both required.
+- **DATA CONCEPT**: Symmetric with `SDV-F06`/`SDV-F07` — two separate instruments (one Stock Truth, one Financial Truth), not a single combined "undo."
+- **CONTROL**: The financial correction instrument (Vendor Refund/Credit Note) is distinct from, and does not by itself imply, the stock-level reversal — both must be done for a post-bill return.
+- **DEPENDENCY**: Depends on `GRV-F02` (the original receipt) and, for the post-bill case, `GRV-F06` (three-way match / bill control) having already run.
+- **EVENT**: "Return validated" (stock) + "Vendor refund/credit note issued" (financial, post-bill case only).
+- **RISK**: A design providing only inventory-level reversal for post-bill vendor returns would be incomplete, exactly as flagged for the sales side in `SDV-F07`.
+- **UNKNOWN**: Whether "Purchase matching" (the OCR-digitized-bill-to-PO matching feature documented for ordinary vendor bills) plays any role in reconciling a returned quantity against a partially-matched bill — not evidenced this round; whether the vendor refund amount auto-derives from the original bill/valuation or requires manual entry (mirrors `GAP-SDV-05`) — `SOURCE/RUNTIME VERIFICATION REQUIRED`.

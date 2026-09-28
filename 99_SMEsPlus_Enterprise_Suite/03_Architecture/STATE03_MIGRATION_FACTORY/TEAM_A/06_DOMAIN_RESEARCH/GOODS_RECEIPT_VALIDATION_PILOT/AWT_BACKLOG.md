@@ -77,18 +77,25 @@ Per Boss's order §6: for every function requiring later Atomic White-box Trace,
 
 ### GRV-F07 — Reversal / return of received goods
 
-- **Criticality**: C2 (architecture-inferred; documentation evidence still pending — see GAP-GRV-06)
-- **Hypothesis to verify**: Not yet formed — this function has no documentation-tier finding yet to convert into an AWT hypothesis. To be completed once GAP-GRV-06 closes.
-- **Required environment / configuration prerequisite / runtime action / expected observable result / cross-module observation / accounting/stock effect / reversal scenario / evidence required**: `NOT YET REACHED` — placeholder rows to be filled after the documentation pass.
-- **Target V**: V4 (floor V3) | **Current V**: V0 | **Missing proof**: Everything — documentation pass first, then AWT plan.
+- **Criticality**: C2 (now evidence-supported per `06_BUSINESS_RULE_REGISTER.md`, see GAP-GRV-06 update)
+- **Hypothesis to verify**: A pre-bill vendor return uses Reverse Transfer alone; a post-bill vendor return additionally requires a Vendor Refund/Credit Note, symmetric with SDV-F06/F07's sales-side pattern.
+- **Required environment**: Same as GRV-F02, plus a validated receipt with a subsequently validated vendor bill (post-bill test case) and one without (pre-bill test case).
+- **Configuration prerequisite**: None beyond having both receipt states available.
+- **Runtime action**: Attempt Reverse-Transfer-only return on each; for the post-bill case, additionally issue a Vendor Refund/Credit Note and observe whether the stock-only attempt was actually insufficient as documentation predicts.
+- **Expected observable result**: Pre-bill case resolves fully via Reverse Transfer; post-bill case requires the Vendor Refund/Credit Note step.
+- **Cross-module observation**: Compare directly against Gx2's SDV-F06/F07 AWT results — run in the same session for comparability; also check whether the Purchase Matching smart button surfaces the returned quantity against the original bill.
+- **Accounting/stock effect**: Stock reversal (both cases) + financial reversal (post-bill case).
+- **Reversal scenario**: This function *is* the reversal scenario for GRV-F02.
+- **Evidence required**: Step-by-step record of both paths; whether refund amount auto-populates.
+- **Target V**: V4 (floor V3) | **Current V**: V2 | **Missing proof**: Full runtime walkthrough of both paths, and the Purchase Matching interaction.
 
 ---
 
 ## Backlog status
 
 ```
-FUNCTIONS WITH AWT PLAN PREPARED : 5 (GRV-F02, F03, F04, F05, F06)
-FUNCTIONS AWAITING DOCUMENTATION FIRST : 1 (GRV-F07)
+FUNCTIONS WITH AWT PLAN PREPARED : 6 (GRV-F02, F03, F04, F05, F06, F07)
+FUNCTIONS AWAITING DOCUMENTATION FIRST : 0
 FUNCTIONS NOT REQUIRING AWT (C3, config-only) : 1 (GRV-F01 — configuration surface, no runtime ambiguity to resolve beyond what documentation already states)
 ```
 

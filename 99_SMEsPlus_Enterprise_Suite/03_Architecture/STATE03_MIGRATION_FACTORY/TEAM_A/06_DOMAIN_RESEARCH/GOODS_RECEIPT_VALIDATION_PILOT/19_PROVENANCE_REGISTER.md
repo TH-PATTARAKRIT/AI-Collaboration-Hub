@@ -15,6 +15,10 @@ All entries below are **public vendor documentation URLs**, retrieved via WebSea
 | EV-GRV-07 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/purchase/manage_deals/control_bills.html` | GRV-F06 (bill control policies, 3-way matching) |
 | EV-GRV-08 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/purchase/manage_deals/manage.html` | GRV-F06 (manage vendor bills) |
 | EV-GRV-09 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/workflows/manufacturing_backorders.html` | GRV-F03 (backorder concept, adjacent manufacturing domain — analogy only, not directly cited as inventory-receipt evidence) |
+| EV-GRV-10 | `https://www.odoo.com/documentation/19.0/applications/sales/sales/products_prices/returns.html` | GRV-F07 (Reverse Transfer mechanism, generic — same page Gx2 used for the sales-side mirror, cited here for the receipt-side application) |
+| EV-GRV-11 | `https://www.odoo.com/documentation/19.0/applications/finance/accounting/customer_invoices/credit_notes.html` | GRV-F07 ("credit/debit note is the only legal method" for modifying a validated invoice — generic principle, applied here to the vendor-bill mirror) |
+| EV-GRV-12 | `https://www.odoo.com/documentation/19.0/applications/finance/accounting/vendor_bills.html` | GRV-F07 (Vendor Refund / Credit Note recording, "Credit Note" button on a vendor bill, "Vendors → Refunds" list) |
+| EV-GRV-13 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/purchase/manage_deals/manage.html` | GRV-F07 (Purchase matching smart button, OCR-digitized-bill-to-PO matching — open UNKNOWN on its role in returns) |
 
 ## Retrieval method disclosure
 
