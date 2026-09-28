@@ -1,16 +1,27 @@
 # PACKAGE_MANIFEST_SHA256_STATE02_STEP03_RACI.txt
 # Session: SMEPLUS-26-07-13-007
 # Repository: TH-PATTARAKRIT/AI-Collaboration-Hub
-# Target Branch: SMEsPlus | Intake Branch: claude/state-02-step-03-04-sn0sr1
-# Reference Base Commit: 5454d2afb2efb4d5f2def0a744981b812b843982
-# Generated: 2026-07-13T16:25:58Z by Claude AI (Responsible role only)
+# Target Branch: SMEsPlus
+# Original Package Commit: 3f9c4d86f04331fe9f32c7badac4b1f3d4bc0fc8
+# PR #13 Merge Commit: 1598a04723651240e11860f3eec1a316569af6e9
+# Regenerated: 2026-07-14T05:27:32Z by Claude AI (Responsible role only — preparer regeneration)
+# Reason for regeneration (v1.0 -> v1.1): STATE02_RACI_REVIEW_RECORD_v1.0.md and
+#   STATE02_RACI_EVIDENCE_REGISTER_v1.0.md were legitimately updated after intake
+#   (Review Record completed by human commit db57fa1 with ChatGPT L99 CONFIRMED
+#   decisions; Evidence Register updated this order to record confirmed Commit SHAs).
+#   Full byte-for-byte recomputation: see STATE02_STEP03_STEP04_FULL_SHA256_RECOMPUTATION_v1.0.md.
+# Independent Reviewer: ChatGPT L99 — REVIEW RESULT: CONFIRMED (13/13 decisions, commit db57fa1)
+# Independent Evidence Verifier: ChatGPT L99 — PARTIALLY VERIFIED
+#   (STATE02_OWNERLESS_EXECUTION_VERIFICATION_RECORD_v1.0.md); this v1.1 manifest itself
+#   has not yet been independently re-reviewed.
 # Coverage: 9 STEP 03 files (this manifest listed as SELF - HASH EXCLUDED)
+# Gate: HOLD — full closure evidence and Boss final approval pending
 #
 48c4c8b45ed1b9f8abfc57db3d5fb2698f6b2b639481d0e44da8584f8e2d2b88  STATE02_CANONICAL_RACI_v1.0.md
 38cd1fdcedee7d3af4f628a9f9799d5e81a8af3de7b1e7ef9b125710f5580eeb  STATE02_RACI_CONFLICT_TO_CORRECTION_MATRIX_v1.0.md
 8ac9002ce813de007f545606999db01b39d1b599973e81af5d39874b84cbd01c  STATE02_RACI_CORRECTION_REGISTER_v1.0.md
-128d269b701103ea5bdaff2d27ec8c839e7478418263a67252af436456d1f626  STATE02_RACI_EVIDENCE_REGISTER_v1.0.md
-bd0d503dfcde84086d1490a88a15abbc2cbacb65164c1151fd40450c52fdb17d  STATE02_RACI_REVIEW_RECORD_v1.0.md
+3275740ac1a720af7fa4e97839ae5f6167e928c0fa58343fefcc71acb6a2dd54  STATE02_RACI_EVIDENCE_REGISTER_v1.0.md
+587a1fb4a9a9260727cbf0fbd992e64961290d3ba60e020bf6fa149298f7977f  STATE02_RACI_REVIEW_RECORD_v1.0.md
 e6250f0c9bbfa02d5dc838dbcec93385b50ce7c2ef752cda0dc63c15839aa599  STATE02_RACI_SOURCE_DOCUMENT_UPDATE_PLAN_v0.1.md
 4599b400a1f5ffa3d24562cd037eea9e13d1ed21c6015840f9798992324d1bc4  STATE02_RACI_EXECUTION_SUMMARY_v1.0.md
 096b4964c1827491018c7e2b924862ceee09b575ce5207216798cd2787a66ce4  STATE02_RACI_VALIDATION_RECORD_v1.0.md
