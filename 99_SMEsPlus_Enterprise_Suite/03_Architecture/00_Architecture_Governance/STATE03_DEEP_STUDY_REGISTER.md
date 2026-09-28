@@ -40,10 +40,14 @@ Per Boss's Continuous Execution Order (2026-09-28), this register is updated cum
 | Gx4 | IAV-F04 | Scrap / Inventory Loss Account | **C1** | V5/floor V4 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | Gx4 | IAV-F05 | Cycle count scheduling | C3 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | Gx4 | IAV-F06 | Reversal of adjustment | C2 | V4/floor V3 | V0 | None yet | `GAP-IAV-02` | Not started | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx5 | PDT-F01 | Per-shipment invoicing alignment (sales) | **C1** | V5/floor V4 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | `PARTIAL_FULFILLMENT_TIMING_PILOT/` | — |
+| Gx5 | PDT-F02 | Per-receipt billing alignment (purchase) | **C1** | V5/floor V4 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx5 | PDT-F03 | Bill-before-receipt anomaly | **C1** | V5/floor V4 | **V1 (community-tier, explicitly flagged)** | Community-reported | **`GAP-PDT-01` — extends `GAP-GRV-06`/`CQS-GRV-04`** | Complete, lower-tier evidence disclosed | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: new, corroborates Gx1 |
+| Gx5 | PDT-F04 | Cross-shipment reconciliation | C2 | V4/floor V3 | V2 | Documentation | `GAP-PDT-02` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 
 ## 3. Module Function Universe status
 
-`Catalog Status = OPEN / CONTINUOUS` — per Boss's 2026-09-28 order, research continues through the remaining Gx population (scenarios 3–10 of the Backbone Roadmap Lane C list) without a stop-and-wait gate between units. Gx1 (Goods Receipt) and Gx2 (Sales Delivery) complete at documentation-tier; Gx3 onward in progress. No completion percentage is claimed; the Lane C list of 10 is the current denominator, itself not yet Boss-frozen as the final "Gx population" (`BGQ-05`).
+`Catalog Status = OPEN / CONTINUOUS` — per Boss's 2026-09-28 order, research continues through the remaining Gx population without a stop-and-wait gate between units. Complete at documentation-tier: Gx1 (Goods Receipt), Gx2 (Sales Delivery), Gx4 (Inventory Adjustment), Gx5 (Partial Fulfillment Timing); Gx3 (Return/Reversal) folded into Gx1's `GRV-F07` rather than a separate pilot. Gx6 onward in progress. No completion percentage is claimed; the Lane C list of 10 is the current denominator, itself not yet Boss-frozen as the final "Gx population" (`BGQ-05`).
 
 ## 4. Cross-references
 
