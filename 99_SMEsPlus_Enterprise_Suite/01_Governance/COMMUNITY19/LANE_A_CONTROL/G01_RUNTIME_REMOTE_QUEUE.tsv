@@ -1,0 +1,2 @@
+job_id	case_scope	module	execution_class	target_environment	status	priority	return_path	blocker	notes
+G01-RUNTIME-REMOTE-BOOTSTRAP	RECONCILE_NEXT_BATCH	G01	CONTROL	iTest19C	READY_FOR_REMOTE	1	A1_SOURCE_EVIDENCE_LANE/G01_RUNTIME_REMOTE_RESULTS/	AUTHORIZED_MAC_CURRENTLY_OFFLINE	Remote worker should first verify connectivity, auth path, and available tooling; then execute next scoped jobs generated from Runtime Case Register
