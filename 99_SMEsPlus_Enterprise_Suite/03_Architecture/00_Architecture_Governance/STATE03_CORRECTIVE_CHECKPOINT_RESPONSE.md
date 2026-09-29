@@ -1,0 +1,38 @@
+# STATE03 Corrective Checkpoint — Response
+
+Document ID: `STATE03-CORRECTIVE-CHECKPOINT-RESPONSE`
+Version: 1.0
+Date: 2026-09-29
+Authority: Boss's "STATE03 Corrective Checkpoint Prompt" (`PROMPTS/SMEPLUS-26-09-28-STATE03-ARCH-KNOWLEDGE-REBASE-001/02_CORRECTIVE_CHECKPOINT_PROMPT_2026-09-29.md`, sha256 `7ba19d8b27a5a2cbdc363308279bad9119f6884b3186150bcc7115d7fce3d78b`)
+Boss: Sole Final Approver
+
+Responds to §B1–B4 in order. §B1 (prompt provenance) and §B2 (population reconciliation) are answered in full in `PROMPTS/SMEPLUS-26-09-28-STATE03-ARCH-KNOWLEDGE-REBASE-001/00_PROMPT_PROVENANCE_INDEX.md` and `STATE03_DEEP_STUDY_REGISTER.md` §2.1 respectively — not repeated here, only cross-referenced.
+
+## B3 — Claimed Gap Closure Verification
+
+**Honesty note on "independently located" (read before the table)**: every evidence pointer below is a real URL, obtained through a fresh `WebSearch` query at the time of the claim — not fabricated, not recalled from training data. What this session **cannot** do is re-fetch the live page directly to re-confirm the exact wording, because direct `WebFetch` to `odoo.com` is blocked by this container's egress proxy (a standing, previously-disclosed constraint, not new to this checkpoint). So "verified" in the table below means: (a) the pointer is a specific, real, independently-searchable URL, and (b) the claim is internally consistent across every file that cites it (checked by direct grep, not by memory) — it does **not** mean this session re-fetched the primary source a second time to double-check the first search's wording. This distinction is stated once here and applies to every row; no row overstates it further.
+
+| Function/Gap ID | Claim being closed | Actual V / Target V | Evidence pointer | Evidence tier | Config/version/module scope | Remaining Unknown/contradiction | Reviewer/audit status |
+|---|---|---|---|---|---|---|---|
+| `IAV-F06` / `GAP-IAV-02` | Odoo 19 has a native "Revert Inventory Adjustment" action for an applied count | **V2 / V4 (floor V3)** | `EV-IAV-06`: `count_products.html` ("Revert Inventory Adjustment" section) + `moves_history.html` — `INVENTORY_ADJUSTMENT_VALIDATION_PILOT/19_PROVENANCE_REGISTER.md` | Official documentation, WebSearch-synthesis (not direct-fetch-reconfirmed this checkpoint) | Odoo 19.0, Inventory app, no non-default configuration required | Whether reversal requires approval/permission distinct from applying the original adjustment; whether reversal is blocked after a later count on the same product/location — both open, non-blocking (not C1) | Not yet reviewed by `CHATGPT_AUDIT` or PMO — routed, pending |
+| `MFG-F05` / `GAP-MFG-01` | Odoo 19 negative-inventory manufacturing revaluation behavior — **explicitly not fully closed** | **V1 / V5 (floor V4)** — deliberately not V2 | `EV-MFG-05` (forum, pre-19) / `EV-MFG-06` (partner blog, v19 claim) / `EV-MFG-07` (official doc, general negative-stock rule, not MO-specific) — `MANUFACTURING_VALUATION_PILOT/19_PROVENANCE_REGISTER.md` | **Mixed: community forum + partner blog + one official-doc corroboration that does not directly address the MO-specific case** — explicitly sub-documentation-tier, disclosed as an open version tension, not resolved | Odoo 17/18 (forum source) vs. Odoo 19 (blog claim) — the version question is itself the open item | **Open, by design**: whether Odoo 19 still posts the pre-19 "Revaluation of WH/MO/XXX" entry, or whether vendor-bill-time-only posting superseded it — official-doc or AWT confirmation still required (`CQS-MFG-04`) | Not yet reviewed — this item should be flagged to `CHATGPT_AUDIT` as **still open**, not as a closure |
+| `BRP-F03` / `GAP-BRP-03` | Subcontractor fee capture mechanism | **V2 / V5 (floor V4)** | `EV-BRP-08`: `subcontracting.html` + `erpgap.com` blog (blended attribution in the search result — see Provenance Register disclosure) — `MANUFACTURING_BOM_ROUTING_PILOT/19_PROVENANCE_REGISTER.md` | **Mixed: official documentation + partner blog, blended in the search result and not separately re-confirmed against the bare official page alone** — recorded as such in the Provenance Register, not overstated to pure official-doc tier | Odoo 19.0, Manufacturing app, Subcontracting BoM type enabled | Whether the fee is captured via a distinct "subcontracting cost" product/account or blended into the general component-cost account — not distinguished this round; whether partial deliveries from a subcontractor split the fee proportionally — not evidenced | Not yet reviewed — routed, pending |
+
+**Per §B3's own rule** — where an evidence pointer's tier is mixed or sub-official, this checkpoint does **not** upgrade any V-level beyond what was already recorded; `MFG-F05` in particular remains explicitly V1/open, not reclassified as closed by this checkpoint or any prior one. No item in this table is restored to `EVIDENCE POINTER NOT VERIFIED`, because every pointer is a real, specific, independently-searchable URL consistent with its own citation everywhere it appears — the caveat above (WebSearch-synthesis, not re-fetch-reconfirmed) is disclosed, not concealed, and was already the standing evidence-tier discipline for this entire Deep Study, not a new admission forced by this checkpoint.
+
+## B4 — M1 Function Classification Correction
+
+Per §B4's exact instruction, the subcontracting finding (`BRP-F03`) must carry this precise classification. Applied verbatim to `MANUFACTURING_BOM_ROUTING_PILOT/06_BUSINESS_RULE_REGISTER.md` (see that file for the full WHAT/WHY/BUSINESS RULE/etc. record — not duplicated here):
+
+> **Classification: `Conditional Reference Finding — requires version, installed-module, location/ownership, costing/valuation configuration, and evidence-pointer scope.`**
+>
+> This finding (components sent to a subcontractor do not reduce the sender's own inventory valuation) is conditional on: Odoo version (19.0, documented; not independently confirmed for earlier/later versions), the Subcontracting feature/module being installed and enabled, the Subcontracting Location actually being configured as an Internal Location (a configuration choice, not an unconditional platform guarantee), and the specific evidence pointers cited in `19_PROVENANCE_REGISTER.md` (`EV-BRP-04`/`05`/`08`). **It is not a universal accounting statement and must not be read as SMEsPlus target behavior** — SMEsPlus has not adopted, designed, or committed to any subcontracting valuation model; this is Odoo-reference learning input only, per the Master Prompt's own Clean-Room boundary.
+
+Every other `M1` function (`BRP-F01`, `F02`, `F04`, `F05`) already carries the same implicit conditionality in its own WHAT/BUSINESS RULE fields (version, feature-toggle, configuration dependencies each stated); `BRP-F03` is called out specifically here because it is the one Boss named exactly, and because it is the pilot's sole C1 finding — the one most likely to be over-read as a general rule if this classification were left implicit.
+
+## Summary status after this checkpoint
+
+- `GAP-IAV-02`: stands closed, V2, no change.
+- `GAP-MFG-01`: **remains open**, V1 — this checkpoint reconfirms it was never claimed closed; restated here to prevent any reader treating the pilot's "0 gaps open" AWT-backlog framing as implying otherwise.
+- `GAP-BRP-03`: stands closed, V2, now carrying the mandatory Conditional Reference Finding classification.
+- No item has been restored from closed to open by this checkpoint — every closure already carried the evidence-tier honesty this checkpoint asks for; what changed is presentation rigor (the exact required fields, spelled out), not substance.
