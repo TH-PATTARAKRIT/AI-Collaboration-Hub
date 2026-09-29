@@ -387,3 +387,41 @@
 - source-map ตาม §5.1 สำหรับโมดูลใน 300 ที่ยังไม่ได้ทำ (ทั้งหมด 300 ยังไม่ครบตามมาตรฐาน)
 - ตรวจเชิงลึก: `purchase_request` state flow, `stock_picking_reference_no`, `scgl_account_tax_return`, `smesplus_tax_period_date` (record rule/IAM), โมดูล license ปิด → ระดับ manifest เท่านั้น
 - ตรวจสอบ hash ของ register ที่ไม่ตรงกับ manifest (R1)
+
+---
+
+## R7. Corrections to R1.1 (append-only correction)
+- ตัวเลข "Function/Gap ที่มีรายการ Delta 15 ตัว" ใน R1.1 **ให้แก้เป็น:** รายการ Delta แบบเต็ม D-01…D-14 = 14 รายการ (D-15 เป็นหมายเหตุ ไม่นับเป็น Function/Gap) + R3 (4 โมดูล), R4 (MCT-01), R8/R9 ด้านล่าง
+- ในรายการ "โมดูลใน 300 ที่อ่านแล้วบางส่วน" ให้ **ตัด `uom` และ `analytic` ออก** (ไม่ได้อ่านโค้ดของสองโมดูลนี้จริง — อ้างถึงเพียงผ่านโมดูลอื่น) → จำนวนที่อ่านจริงเฉพาะจุดตัดสินใจ = **17**
+
+## R8. GAP-MCT-02 — กลไก record-rule ระดับ warehouse (source-static lead)
+| Field | รายละเอียด |
+|---|---|
+| Existing ID / prior claim | `GAP-MCT-02` (`MCT-F05`) — ไม่มีเอกสารทางการเรื่องกลไกจำกัดผู้ใช้ตาม warehouse (มีแต่หลักฐานชุมชน/marketplace) |
+| Module / classification | `stock`, `stock_account` — Odoo Community Core (อยู่ใน 300) |
+| Finding | กฎความปลอดภัยของ `stock` ที่พบทั้งหมดเป็นแบบ **แยกตามบริษัท** (เงื่อนไข company ∈ บริษัทที่อนุญาต ; บางโมเดลอนุญาตค่าว่าง = ใช้ร่วม) ครอบคลุม picking, operation type, warehouse, location, move, move line, quant, Reordering Rule, scrap ฯลฯ ; กลุ่ม "Manage Multiple Warehouses/Locations" เป็นตัวเปิดฟีเจอร์ **ไม่ใช่กลไกจำกัดสิทธิ์รายผู้ใช้–รายคลัง** ; **ไม่พบ** กฎที่จำกัดผู้ใช้ให้เห็นเฉพาะ warehouse ของตนใน `stock` (`ABSENCE`) ⇒ กลไกที่หลักฐานชุมชนกล่าวถึง (ถ้ามี) **ไม่อยู่ในแกน Community ของ revision นี้** — น่าจะมาจากโมดูลเสริม (ยังไม่ระบุ) |
+| Pointer | `RESTRICTED:Odoo Community/…/odoo/addons/stock/security/stock_security.xml:10-70 (groups), 72-135+ (company rules)` · `stock/models/stock_warehouse.py:331` (การจัดการกลุ่ม multi-warehouse) · `stock_account/security/*.xml` (rule ของ `product.value` และรายงานต้นทุนเฉลี่ย แยกตามบริษัท) |
+| Extension / override | ยังไม่ได้สแกนโมดูล custom ที่เพิ่มกฎ warehouse (สแกนก่อนหน้าดูเฉพาะ `_inherit` ของโมเดลหลัก ไม่ครอบคลุมไฟล์ security XML) → **UNKNOWN — EVIDENCE INSUFFICIENT** ว่า deployment จริงมีกฎ warehouse หรือไม่ |
+| Schema-only | ไม่มีหลักฐานจาก schema ที่ตอบเรื่องนี้ได้ (กฎอยู่ในข้อมูล) — ไม่ได้ตรวจ |
+| 3-dimension | Business: การแยกข้อมูลข้ามบริษัทเป็นแนวป้องกันหลัก ; การแยกภายในบริษัทตามคลังต้องพึ่งการตั้งค่า/ส่วนเสริม · Data: warehouse/location ผูก company และเป็นหน่วยแยกข้อมูล · Source: record rule แบบ company เป็นหลัก |
+| V-level | ไม่กำหนด |
+| Neutral outcome | แกน Community ให้การแยกข้อมูลระดับบริษัท ไม่ให้การจำกัดสิทธิ์ระดับคลังต่อผู้ใช้ ; ถ้าองค์กรต้องการ ต้องมาจากส่วนขยายหรือการออกแบบสิทธิ์ (ต้องระบุแหล่งที่มา) |
+| Follow-up | สแกน security XML ของโมดูล custom ที่ license เปิด ; ตรวจ deployment จริง |
+
+## R9. GAP-RCN-01 / GAP-RCN-02 (source-static lead)
+| Field | GAP-RCN-01 | GAP-RCN-02 |
+|---|---|---|
+| Prior claim | ลิงก์ stock move → journal entry มีสำหรับธุรกรรมทั่วไปหรือเฉพาะกรณีย้อนหลัง? | การติดตามต้นทุนรายล็อตใช้ได้กับ AVCO ไหม (ไม่ใช่เฉพาะ FIFO)? |
+| Module / classification | `stock_account`, `account` — Community Core | `stock_account` — Community Core |
+| Finding | stock move มีตัวอ้างอิงไปยังรายการบัญชีที่ตนสร้าง ตั้งค่าทุกครั้งที่ระบบสร้างรายการบัญชีระดับ move (ไม่มีเงื่อนไขเฉพาะการย้อนหลัง ; บริบทวันที่บังคับ `force_period_date` เป็นเพียงตัวกำหนดวันที่) ; **จำกัดเฉพาะ move ที่เกิดรายการระดับ move** (เงื่อนไขบัญชีที่ location) — รายการที่เกิดจากบิล/ใบแจ้งหนี้เชื่อมผ่านบรรทัดคำสั่งซื้อและบรรทัด COGS (อ้างอิงต้นทางบรรทัด) ไม่ใช่ลิงก์เดียวกัน (`INFER`) | การตีมูลค่าแยกล็อต (เมื่อเปิดใช้ตามสินค้า) รองรับทั้ง Standard, Average และ FIFO ในตัวคำนวณมูลค่าล็อต ; ต้นทุนล็อตอัปเดตตามวิธีต้นทุนของสินค้า ; ขาออกของสินค้าที่ตีมูลค่าแยกล็อตใช้ต้นทุนของล็อต |
+| Pointer | `RESTRICTED:…/stock_account/models/stock_move.py:51,193-216` · `stock_account/models/account_move.py:8` · `stock_account/models/account_move_line.py:7-11` | `RESTRICTED:…/stock_account/models/stock_lot.py:9-48,60-108` · `stock_account/models/stock_move.py:328-347` |
+| Extension / override | ไม่พบโมดูล license เปิดที่ inherit `stock.move`/`account.move` ในส่วนนี้ (ยกเว้นตัวจัดการวันที่ picking ของ `cr_effective_date_entries` ที่ใช้โมเดลไม่ตรงรุ่น) | ไม่พบ override ; OPL-1 ตรวจไม่ได้ |
+| Schema-only | ผลเป็นกลาง: มีโครงสร้างอ้างอิง move→รายการบัญชี ; มีโครงสร้างมูลค่าแยกล็อต — ไม่ระบุรายละเอียด | เช่นเดียวกัน |
+| V-level | ไม่กำหนด | ไม่กำหนด |
+| Limitation / UNKNOWN | ไม่ได้ตรวจข้อความ audit ที่ผู้ใช้เห็น ; ไม่ได้รัน | ไม่ได้ตรวจคุณภาพตัวเลข AVCO รายล็อตกับกรณีบิลมาทีหลัง — **UNKNOWN — EVIDENCE INSUFFICIENT** |
+| Neutral outcome | ร่องรอยจากการเคลื่อนไหวสต็อกไปยังรายการบัญชีมีสำหรับรายการระดับ move ทั่วไป ไม่ผูกกับกรณีย้อนหลัง แต่ไม่ครอบคลุมรายการที่เกิดจากเอกสารการเงิน | ต้นทุนรายล็อตไม่จำกัดเฉพาะ FIFO ในแกน Community |
+| Follow-up | runtime: ตรวจ audit trail ปลายทาง ; ทดสอบล็อต AVCO กับบิลมาทีหลัง | เช่นเดียวกัน |
+
+## R10. งานที่กำลังทำ / ยังไม่ทำ (ตาม §8 contract — ใช้จำนวนจริง)
+- **กำลังทำ:** ไล่คิว `GAP-PDT-01/02` → `GAP-SDV-02/05` → `GAP-IAV-*` → `GAP-GRV-*` ; ตรวจ security XML ของโมดูล custom license เปิด ; ตรวจ `purchase_request` state flow
+- **ยังไม่ทำ:** source-map ตามมาตรฐาน §5.1 ครบสำหรับโมดูลใน 300 (0 จาก 300 ครบมาตรฐาน) ; ตรวจโมดูล Third-party Black-box/OEEL/ไม่ระบุ license (ระดับ manifest เท่านั้น) ; ยืนยัน hash ของ register ; Runtime validation ทุกรายการ
