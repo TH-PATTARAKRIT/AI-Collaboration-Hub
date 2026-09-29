@@ -311,3 +311,79 @@
 1. ✅ `GAP-PCO-01` ถึง checkpoint (D-07)
 2. ✅ Manifest/provenance inventory รอบที่ 1 สำหรับ Accounting/Inventory/MRP/lock/valuation (ที่ license เปิด) — ยังค้าง: ตรวจ override เชิงลึกของ `purchase_request` (เอกสารที่สร้าง), `scgl_account_reconcile`/`scgl_account_tax_return` (reconciliation/ภาษี), `bh_parent_company` (multi-company / record rules), `stock_picking_reference_no`, `bh_purchase_receipt_all` (การรับสินค้า)
 3. ต่อไป: ไล่โมดูล custom ตาม dependency/risk (ลำดับ: multi-company → reconciliation → receipts/pickings → tax period) ; ผลของ `GAP-MCT-01/02`, `GAP-RCN-01/02` จะทำหลังข้อ 2
+
+---
+---
+
+# ROUND 2 — Append (2026-09-30) — Prompt: STATE03_ODOO19_SOURCE_DUMP_CONTINUATION_AND_REMEDIATION
+
+**Status ของทุกรายการในส่วนนี้:** `CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` · ไม่ใช่ runtime proof / Gate PASS / gap closure / STATE03 complete / FDS authorization · Community-core = `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`
+**Actual V-level:** session นี้ **ไม่กำหนด V-level เอง** — หลักฐานทั้งหมดเป็น source-static/schema-only (ไม่มี runtime) จึงไม่สามารถอ้างว่าถึง floor ของ C1 (V4 จาก target V5) หรือของฟังก์ชันอื่น (V3 จาก target V4) ; การกำหนด V-level เป็นของ session หลัก
+
+## R0. Remediation log (ดำเนินการแล้ว — commit `30bc0101`, แยกจากงานวิจัย)
+- Banner `STATUS CORRECTION` เพิ่มใน **10 ไฟล์** (`SRC_*` 8 ไฟล์ + `STATE03_DB_SCHEMA_*` 2 ไฟล์) — **แก้ตัวเลข §6 ด้านบนที่ระบุ 12 ไฟล์ ให้เป็น 10 ไฟล์** ; ข้อความเดิมคงไว้
+- `STATE03_DB_SCHEMA_SOURCE_CROSSCHECK_*` ลดรูปเป็น data-minimized (ลบ: รายชื่อตารางนอก Community, นิยาม constraint, ข้อความ query, คำอธิบายตาราง/คอลัมน์) ; แถว "Schema-only" ในเอกสารนี้ทำให้เป็นผลเป็นกลาง ; **เนื้อหาเดิมยังอยู่ใน Git history** (ไม่ได้เขียนประวัติใหม่/ไม่ force-push/ไม่อ้างว่าลบล้างได้) — ยังต้องผ่าน Independent Clean-Room review
+- ผลค้นรูปแบบ schema ใน working tree ส่วนอื่น: มีการกล่าวถึงวิธี/ผลระดับสรุปในเอกสารของ session ก่อนหน้า (DOMAIN_01 database registers, source registry, session archive ฯลฯ) — **บันทึกไว้ ไม่ได้แก้** (ไม่ใช่ผลงาน session นี้ ; ให้ session หลักตัดสินว่าต้อง remediate หรือไม่)
+- หมายเหตุ: ไฟล์ Handoff นี้ถูกแก้ (ไม่ใช่ append-only) **เฉพาะใน commit remediation** เพื่อลดรายละเอียด schema ; ตั้งแต่ R1 เป็นต้นไปเป็น append-only
+
+## R1. Provenance ของ 300-module register (authorized scope)
+| รายการ | ค่า |
+|---|---|
+| Artifact ที่อ่าน | `SMEsPlus_Odoo19_Community_Master_Register_V1.00.xlsx` — อ่านเฉพาะชีตรายการโมดูลระดับ metadata (`technical_name`, กลุ่ม, dependency) ; ไม่ได้นำเนื้อหาออกจากเครื่อง |
+| **ความไม่ตรงของ hash** | sha256 ของไฟล์บนดิสก์ = `790bcd2a46a0b849…` แต่ manifest ใน repo (`…_SHA256.txt`) ระบุ `76aa648b39ccb71a…` → **ไฟล์บนดิสก์ไม่ตรงกับ baseline ที่บันทึกไว้** (แก้ไขภายหลัง? — ต้องให้ session หลักยืนยัน) ; ใช้รายการโมดูลเป็นข้อมูลอ้างอิงชั่วคราว ไม่ถือเป็น denominator |
+| ผลตรวจ (นับจริง ไม่ใช่เปอร์เซ็นต์ความคืบหน้า) | CURRENT-PHASE = 300 แถว (ตรงกับ manifest) ; ทั้ง 300 โมดูล **มีอยู่ใน source Community** ; license ทั้งหมด LGPL-3 ; `direct_dependencies` ของทั้ง 300 อยู่ภายใน 300 (ไม่พบ dependency ภายนอกชุด 300) ; สถานะ mapping ในทะเบียน: MAPPED-CANDIDATE 269, BOSS-SCOPE-REVIEW-THEME 29, BOSS-DECISION-PENDING 2 |
+| Restricted annex | รายการโมดูล/กลุ่มเก็บ **นอก repo** ที่ `RESTRICTED-LOCAL:~/STATE03_RESTRICTED_LOCAL/register300.json` (ไม่ commit) |
+
+### R1.1 สถานะ Module/Function (report Module ก่อน Function — นับจริง)
+| ชั้น | นับจริง | รายละเอียด |
+|---|---|---|
+| โมดูลใน 300 ที่ session นี้ **อ่าน source แล้วบางส่วน** (เฉพาะจุดตัดสินใจของ Function ที่ระบุ ไม่ใช่ deep-study ครบโมดูล) | 19 | `account`, `analytic`, `product`, `uom`, `stock`, `stock_account`, `stock_landed_costs`, `mrp`, `mrp_account`, `mrp_landed_costs`, `mrp_subcontracting`, `mrp_subcontracting_account`, `mrp_subcontracting_purchase`, `mrp_subcontracting_dropshipping`, `purchase`, `purchase_stock`, `sale`, `sale_stock`, `l10n_th` |
+| โมดูลใน 300 ที่ **ยังไม่ได้ทำ source-map ตามมาตรฐาน §5.1** | 281 (=300−19) โดย 19 ข้างต้นก็ยัง **ไม่ครบ §5.1 เช่นกัน** | ต้องทำต่อ |
+| Discovered supporting modules (นอก 300 denominator) | 0 | ทุกโมดูล Community ที่แตะอยู่ใน 300 |
+| โมดูล Company Extra/Custom / Customer-authorized Custom / Third-party Source-readable ที่เปิดถึงระดับโค้ดจุดเฉพาะ | 10 | `account_lock_date_update`, `base_accounting_kit`, `smesplus_account`, `scgl_account_deferred`, `cr_effective_date_entries`, `purchase_request`, `scgl_account_reconcile`, `bh_parent_company`, `bh_purchase_receipt_all` + `smesplus_tax_period_date`/`scgl_tax_period_date` (ระดับโครงสร้าง) |
+| Function/Gap ที่มีรายการ Delta | 15 ตัว (D-01…D-14 + D-15 หมายเหตุ) + R2–R6 ด้านล่าง | ไม่มีตัวใดปิดสมบูรณ์ |
+> ใช้สำหรับรายงานเท่านั้น — ไม่ใช่ coverage/ความคืบหน้าเชิงเปอร์เซ็นต์
+
+## R2. Re-qualification ของข้อสรุปเดิม (§4.3) — ถือเป็น research lead
+| # | ข้อสรุปเดิม | การตรวจซ้ำ (pointer) | สถานะหลัง requalify |
+|---|---|---|---|
+| Q1 | GAP-PCO-01 (hard/soft lock, date-shifting) | ตรวจซ้ำโดยตรงกับ source วันนี้: `RESTRICTED:Odoo Community/…/odoo/addons/account/models/company.py:51-112,552-606,642-700`; `account/models/account_move.py:2823-2840,3826-3829,5700-5706,6714-6750`; `account/models/account_lock_exception.py` | **Lead ที่ตรวจซ้ำแล้ว (SRC-STATIC)** ; version/module set: `19.0.post20260921` + overlay ที่ระบุใน D-07 ; **UNKNOWN — EVIDENCE INSUFFICIENT**: พฤติกรรมของ Enterprise lock wizard, ผู้ override ใน OPL-1/ไม่ระบุ license, การเลื่อนวันที่ของรายการกลับรายการ ; runtime required |
+| Q2 | GAP-MFG-01 / GAP-PCO-02 (valuation timing, Stock Closing) | pointers ใน D-06 (ตรวจซ้ำในรอบนี้ 3 จุด: ไม่มีรายการบัญชีตอน move ถ้าไม่มีบัญชีที่ location ; บรรทัดบิลซื้อ storable ตั้งบัญชีสต็อกโดยตรง ; Stock Closing manual/cron) | **Lead** — ข้อความ "การรับ/ส่งกับ Supplier/Customer ไม่ลงบัญชีตอน move" เป็น `INFER` เพราะขึ้นกับการตั้งค่า location/หมวดสินค้า/ส่วนขยาย ; **ห้ามสรุปเป็นกฎสากล** ; **UNKNOWN — EVIDENCE INSUFFICIENT** สำหรับพฤติกรรมเมื่อมี OPL-1 ที่ depends `stock_account` |
+| Q3 | GAP-BRP-09 (By-Product cost share) | pointers ใน D-01 | **Lead** — ตัวเลขตาม unit test ของ Odoo (SRC+TEST) แต่ "% = 0 ⇒ มูลค่า 0" เป็น `INFER` ; Unbuild/Subcontract **UNKNOWN — EVIDENCE INSUFFICIENT** |
+| Q4 | การมี/ไม่มี `stock.valuation.layer` ใน Odoo 19 | ค้นทั้ง `odoo/` (py/xml/csv) : **ไม่มีคำนิยามโมเดล** ; พบการกล่าวถึงเพียง 2 จุด (ความเห็นใน demo data ของ `mrp_account` และความเห็นใน test ของ `stock_account`) ; ไม่มี migration script ใน `odoo/upgrade*`/addons ที่อ้างถึง ; มีโมเดลมูลค่าสินค้าใหม่ใน `stock_account/models/product_value.py:14` | **SRC-STATIC เฉพาะ revision `19.0.post20260921`** : ไม่มีโมเดลนี้ใน revision นี้ ; **ไม่ใช่ข้อสรุปเรื่อง "Odoo 19 ทุก revision"** ; ฐานทดสอบ (2026-06-14) ไม่พบโครงสร้างชื่อเดียวกัน — แต่ผลจาก schema ไม่พิสูจน์ ; **UNKNOWN**: revision ก่อน 2026-09-21 |
+| Q5 | ข้อสรุปที่อิงการ "ไม่พบตาราง/คอลัมน์" | ทุกข้อที่อิง `ABSENCE`/schema ถูกติดป้ายในแต่ละ D-xx | **ห้ามใช้เป็นหลักฐานว่าไม่มีโมดูล/ไม่มีผล** |
+| Q6 | ข้อสรุปที่ว่าโมดูล custom "ไม่ override" พฤติกรรมหลัก | ขอบเขต: 117 โมดูล license เปิด (สแกนเฉพาะ `_inherit` ของโมเดลหลัก + ชื่อเมธอด) ; **สแกนด้วยรูปแบบข้อความ ไม่ใช่การวิเคราะห์ MRO** ; 41 โมดูลไม่ได้อ่านโค้ด | **Lead** — "ไม่พบ override" ≠ "ไม่มี override" |
+
+## R3. Effective override — 4 โมดูลที่ระบุใน §7.3
+| โมดูล / ประเภท / license | สิ่งที่ทำ (เป็นกลาง) | ผลต่อ core behavior | Pointer |
+|---|---|---|---|
+| `purchase_request` — Third-party Source-readable (OCA/ForgeFlow, LGPL-3) ; depends รวม `smesplus_widget`, `odoo19_uom_ext`, `hr`, `project` | เพิ่มโมเดลใบขอซื้อ ; **`stock.rule._run_buy` ถูก override: ถ้าสินค้ามีเครื่องหมายใช้ใบขอซื้อ ขั้นตอน "buy" จากการจัดหา (รวมจาก Reordering Rule) จะสร้าง Purchase Request แทน RFQ โดยตรง** ; ใบขอซื้อมีสถานะ draft/to_approve/approved ; `_quantity_in_progress` ของ Reordering Rule นับปริมาณในใบขอซื้อที่ยังไม่แปลงเป็น PO ; `stock.picking/_action_done` และ `stock.move.line/_action_done` จัดสรรปริมาณที่รับเข้ากับใบขอซื้อ | **มีผลต่อ GAP-BRP-07** : มี "จุดพัก/อนุมัติ" ก่อนเป็น RFQ ได้ **เมื่อเปิดใช้ต่อสินค้า** ; ไม่ได้เปลี่ยนการคำนวณมูลค่าสต็อก | `RESTRICTED:addons_Extramodule/addons/purchase_request/models/stock_rule.py:47-97` · `…/orderpoint.py` · `…/stock_picking.py:35-` · `…/stock_move_line.py:115-` (manifest hash `9fe183e179afa913`) |
+| `scgl_account_reconcile` — Customer-authorized Custom (SCG Legacy, LGPL-3) ; depends `account` | เพิ่มปุ่มกระทบยอดรายการที่เลือก/อัตโนมัติ (จับคู่ยอดตรงข้ามภายใน บัญชี+คู่ค้า+สกุลเงิน เดียวกัน แล้วเรียก `reconcile()` ของ core) | **ไม่ override เมธอดของ core** ; ใช้กลไก reconcile เดิม ; ไม่ข้ามคู่ค้า | `RESTRICTED:Extra_Module_scgl/scgl_account_reconcile/models/account_move_line.py:1-60` (hash `ca6cd509b7c712ae`) |
+| `bh_parent_company` — Customer-authorized Custom (BHPRO, LGPL-3) | โมเดลกลุ่มลูกค้า "บริษัทแม่/แบรนด์" ผูกกับ partner และ sale order ; **ไม่ใช่กลไก multi-company ของ Odoo** ; มี record rule แบบ multi-company มาตรฐานของตัวเอง ; ตั้งกลุ่ม Manager ให้ผู้ใช้ระบบ/admin ผ่านข้อมูลโมดูล | ไม่แตะบัญชี/สต็อก ; กระทบเฉพาะการกรองลูกค้าและรายงานขาย | `RESTRICTED:addons_Extramodule/addons/bh_parent_company/models/*.py`, `…/security/bh_parent_company_security.xml` (hash `18c6500d7ce8b83e`) |
+| `bh_purchase_receipt_all` — Customer-authorized Custom (SCGL, LGPL-3) | ปุ่มแสดงใบรับสินค้าทั้งหมดของ PO รวม backorder แบบเรียกซ้ำ (อ่านอย่างเดียว) | ไม่ override พฤติกรรมของ core | `RESTRICTED:addons_Extramodule/addons/bh_purchase_receipt_all/models/purchase_order.py:1-74` |
+
+**อัปเดต D-11 (GAP-BRP-07):** ข้อสรุปเดิม (เกตอยู่ที่การยืนยันเอกสารร่าง) ยังเป็นจริงสำหรับแกน Community ; **ถ้า `purchase_request` ติดตั้งและสินค้าเปิดใช้ ใบขอซื้อคือจุดอนุมัติเพิ่ม** (ฐานทดสอบมีร่องรอยการติดตั้งโมดูลนี้) ⇒ ผลของ BRP-07 ต้องรายงานเป็น *CONDITIONAL* ; เกี่ยวข้อง 3-dimension: Business (คำขอ→อนุมัติ→PO), Data (ใบขอซื้อเป็นออบเจกต์คั่นกลางระหว่างความต้องการกับ PO), Source (override จุดเดียวที่ขั้นตอน buy) ; **Required follow-up:** ตรวจ `purchase_request.state` flow และสิทธิ์ผู้อนุมัติ (ยังไม่ได้อ่าน)
+
+## R4. GAP-MCT-01 (Inter-company valuation) — source-static lead
+| Field | รายละเอียด |
+|---|---|
+| Existing ID / prior claim | `GAP-MCT-01` — ไม่มีเอกสารว่าการ sync stock move ข้ามบริษัทคำนวณมูลค่าอิสระหรือคัดลอก |
+| Module / classification | `stock`, `stock_account`, `product` — Odoo Community Core (ทั้งหมดอยู่ใน 300) |
+| Finding | (1) ไม่พบโมดูล inter-company rules (ที่สร้าง SO/PO/transfer คู่กันข้ามบริษัท) ใน source Community ที่มี — **กลไก "sync" เองอยู่นอก source ชุดนี้** (`ABSENCE`; ฐานทดสอบ/โมดูลนอก Community อาจมี — ไม่ทราบ) (2) มีเพียงสถานที่ "Inter-company transit" (ประเภท transit, ไม่ผูกบริษัท, ปิดใช้งานเป็นค่าเริ่มต้น) (3) การตีความ in/out ของมูลค่า: สถานที่ต้องผูกบริษัทและเป็น internal/transit จึงนับเป็นในบริษัท ; transit ที่ไม่ผูกบริษัทถือเป็นภายนอก ⇒ การส่งออก/รับเข้าของแต่ละบริษัทถูกตีค่า **ในบริบทบริษัทตนเอง** (4) ต้นทุนสินค้า (`standard_price`) เป็นค่าตามบริษัท ⇒ ไม่มีกลไกคัดลอกมูลค่าระหว่างบริษัทใน `_get_value_data` (`INFER`) |
+| Pointer | `RESTRICTED:…/stock/data/stock_data.xml:34-39` · `stock/models/stock_location.py:203-205,466-476` · `stock_account/models/stock_location.py:36-41` · `stock_account/models/stock_move.py:363-448,585-595` · `product/models/product_product.py:62-66` |
+| Extension / override | ไม่พบโมดูล custom (license เปิด) ที่ inherit `stock.location`/`stock.move` valuation ; OPL-1/ไม่ระบุ license ตรวจไม่ได้ |
+| Schema-only | ผลเป็นกลาง: โครงสร้างต้นทุนแยกตามบริษัทเป็นแบบเก็บภายในแถว (ดู R0/F4) — ไม่ระบุรายละเอียด |
+| 3-dimension | Business: การโอนขายระหว่างบริษัทในกลุ่มแต่ละฝั่งบันทึกต้นทุนของตนเอง · Data: ไม่มีออบเจกต์ "มูลค่าที่ใช้ร่วม" ข้ามบริษัทใน Community · Source: การประเมินค่าใช้ `with_company` และ `standard_price` ตามบริษัท |
+| V-level | ไม่กำหนด (source-static เท่านั้น) |
+| Limitation | ไม่ได้ตรวจกรณี PO/SO คู่ (ถ้ามีโมดูลที่สร้าง) ที่ทำให้ `_get_value_from_quotation` ให้ราคาข้ามบริษัท ; ไม่ได้รัน |
+| Neutral outcome | ในแกน Community มูลค่าสต็อกของแต่ละบริษัทถูกคำนวณอิสระตามต้นทุนของบริษัทนั้น ; กลไกการซิงก์เอกสารข้ามบริษัทไม่อยู่ในชุด source ที่มี |
+| Follow-up | runtime: ส่งของข้ามบริษัทแล้วเปรียบเทียบมูลค่าออก/เข้า ; ยืนยันโมดูลซิงก์ที่ใช้จริง |
+
+## R5. GAP-MCT-02 (record-rule mechanics ระดับ warehouse) — ยังไม่ทำ
+บันทึกเป็น **ยังไม่ได้ทำ** ในรอบนี้ (ต่อคิว).
+
+## R6. คิวคงเหลือ (ตาม §7)
+- ทำต่อ: `GAP-MCT-02`, `GAP-RCN-01/02`, `GAP-PDT-01/02`, `GAP-SDV-02/05`, `GAP-IAV-*`, `GAP-GRV-*` ตามลำดับเสี่ยง/dependency
+- source-map ตาม §5.1 สำหรับโมดูลใน 300 ที่ยังไม่ได้ทำ (ทั้งหมด 300 ยังไม่ครบตามมาตรฐาน)
+- ตรวจเชิงลึก: `purchase_request` state flow, `stock_picking_reference_no`, `scgl_account_tax_return`, `smesplus_tax_period_date` (record rule/IAM), โมดูล license ปิด → ระดับ manifest เท่านั้น
+- ตรวจสอบ hash ของ register ที่ไม่ตรงกับ manifest (R1)
