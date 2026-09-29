@@ -1,7 +1,7 @@
 # STATE03 Deep Study Register
 
 Document ID: `STATE03-DEEP-STUDY-REGISTER`
-Version: 0.7
+Version: 0.8
 Date: 2026-09-29
 Project: SMEsPlus ENTERPRISE SUITE
 STATE: STATE03 — Architecture & Knowledge Acquisition Deep Study
@@ -22,18 +22,24 @@ Per Boss's Continuous Execution Order (2026-09-28), this register is updated cum
 >
 > **NAMING CLARIFICATION**: this Deep Study's Lane C work is Team A, documentation-tier, Odoo-19-reference-behavior research only — it is a *different artifact* from `STATE03_ACCOUNTING_INVENTORY_BACKBONE_EXECUTION_ROADMAP.md`'s own "LANE C — Accounting x Inventory Cross-Proof — MANDATORY BACKBONE GATE," which is a target-design-tier proof still `HOLD` pending `COA-G08` closure per Boss's 2026-09-02 directive. The near-identical name is a real risk of confusion; see `STATE03_NEXT_PROMPT_FIRST_CHECKPOINT.md` §3. This Deep Study's Lane C does not satisfy, close, or bypass that Backbone Gate hold.
 
-## 2.1 Function-ID Population Reconciliation (row-level, per Boss's "STATE03 Corrective Checkpoint Prompt" §B2, 2026-09-29)
+## 2.1 Population Lineage — Lane C Baseline (frozen) vs. M1 Expansion Ledger (separate)
 
-The earlier §2 correction note (46/45) was, per Boss's own ruling, "ambiguous and cannot support a completion statement" without a row-level disposition table. This section supplies exactly that — every registered Function ID, individually dispositioned, not a per-Gx summary.
+> **MANDATORY LINEAGE CORRECTION (2026-09-29, per Boss's "STATE03 Population Lineage Correction & Autonomous Continuation" prompt)**: the row-level reconciliation this section previously reported (2026-09-29, first and second passes) merged the Lane C baseline and the `M1` expansion into one combined 55-row/54-unique population. Boss ruled this must **not** be done: "the B2 reconciliation population and M1 expansion population must remain separate," and M1 functions must not be added to the Lane C total "merely because they are now recorded in the master register." **This section is restructured below into three separate, clearly labeled parts — §2.1 Lane C Baseline (frozen), §2.2 M1 Expansion Ledger, §2.3 Current Research Register Total (diagnostic only)** — per that instruction. No prior figure is deleted; the full 55-row disposition table is retained below (now sub-divided by its own module-column boundary, which already existed), and this note documents the correction rather than silently rewriting history.
 
-**Summary counts** (required to be reported separately, per §B2):
+### 2.1 Lane C Baseline Population Reconciliation — FROZEN, versioned (per Boss's "STATE03 Corrective Checkpoint Prompt" §B2, 2026-09-29; scope restricted to Lane C only, per the lineage correction above)
 
-1. **Raw source rows**: 55 (every row in every pilot's own `04_FUNCTION_REGISTER.md`, counted directly from source, not from this master register) — was 51 as of 2026-09-29 morning; `M1` grew from 5 to 9 functions (`BRP-F06`–`F09` added, same-day follow-on pass)
-2. **Unique applicable Function IDs**: 54
+Version: 1.0 (frozen 2026-09-29). **Do not add `M1` or any future module's functions to this baseline** — a future module gets its own expansion ledger (§2.2 pattern), never a retroactive edit to this section's counts.
+
+The earlier §2 correction note (46/45) was, per Boss's own ruling, "ambiguous and cannot support a completion statement" without a row-level disposition table. This section supplies exactly that for Lane C **only** (`Gx1`–`Gx10`, rows 1–46 below) — every registered Function ID, individually dispositioned, not a per-Gx summary.
+
+**Summary counts — Lane C baseline only** (required to be reported separately, per §B2 and the lineage-correction prompt):
+
+1. **Raw source rows**: 46 (every row in every Lane C pilot's own `04_FUNCTION_REGISTER.md`, counted directly from source, not from this master register)
+2. **Unique applicable Function IDs**: 45
 3. **Overlap/duplicate rows**: 0 (no Function ID appears in more than one pilot's `04_FUNCTION_REGISTER.md`, and no ID appears twice within one pilot's own register)
 4. **Excluded rows and rationale**: 1 — `RCN-F04` (Bank Reconciliation), classified `C4 (Not Applicable)` in both `RECONCILIATION_PROVENANCE_PILOT/04_FUNCTION_REGISTER.md` and this master register; it is a terminology/scope note (Odoo has no "Bank Reconciliation" module distinct from its Accounting app's own reconciliation tooling), not a researched Function — excluded from the applicable-population count, retained in the raw count for full traceability.
 
-**Row-level disposition table** (all 55 raw rows):
+**Row-level disposition table — Lane C rows 1–46 (frozen population, `M1` rows 47–55 moved to §2.2 below)**:
 
 | # | Source row / pilot | Function ID | Module / group | Disposition | Reason | Evidence pointer |
 |---|---|---|---|---|---|---|
@@ -83,20 +89,53 @@ The earlier §2 correction note (46/45) was, per Boss's own ruling, "ambiguous a
 | 44 | `RECONCILIATION_PROVENANCE_PILOT` | `RCN-F02` | Gx10 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `RECONCILIATION_PROVENANCE_PILOT/04_FUNCTION_REGISTER.md` row 2; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=Gx10) |
 | 45 | `RECONCILIATION_PROVENANCE_PILOT` | `RCN-F03` | Gx10 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `RECONCILIATION_PROVENANCE_PILOT/04_FUNCTION_REGISTER.md` row 3; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=Gx10) |
 | 46 | `RECONCILIATION_PROVENANCE_PILOT` | `RCN-F04` | Gx10 | **excluded** | C4 / Not Applicable -- Bank Reconciliation terminology note only; not a researched Function, no research population entry | `RECONCILIATION_PROVENANCE_PILOT/04_FUNCTION_REGISTER.md` row 4; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=Gx10) |
-| 47 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F01` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 1; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
-| 48 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F02` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 2; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
-| 49 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F03` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 3; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
-| 50 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F04` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 4; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
-| 51 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F05` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 5; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
-| 52 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F06` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 6; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
-| 53 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F07` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 7; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
-| 54 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F08` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 8; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
-| 55 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F09` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 9; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
-
 
 **Method**: each row's Function ID was independently counted directly from the named pilot's own `04_FUNCTION_REGISTER.md` (the primary source), then cross-checked against this master register's §2 table below for a 1:1 match. No row was asserted from memory or from a prior chat summary.
 
-**Status**: this reconciliation is now `COMPLETE` for the 55 rows/54-applicable population as it stands on 2026-09-29 (updated same day: `M1` grew from 5 to 9 functions in a same-day follow-on pass — `BRP-F06`–`F09` added). It is not a frozen denominator — `BGQ-05` (whether Lane C is "the full authorized Gx population") remains open, and further modules (`M2`, `M3`, ...) will each add their own rows here, each independently reconciled the same way before being counted into any total. **This entire reconciliation remains `CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION`** per Boss's ruling — see `STATE03_CORRECTIVE_CHECKPOINT_RESPONSE.md`.
+**Status**: this Lane C baseline reconciliation is `COMPLETE` and **frozen** at 46 raw / 45 unique applicable / 1 excluded. It is not a Boss-frozen denominator for "the full authorized Gx population" (`BGQ-05` remains open on that separate question) — but it **is** frozen as *this section's own* baseline: no future module's rows are added here. **This reconciliation remains `CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION`** per Boss's ruling — see `STATE03_CORRECTIVE_CHECKPOINT_RESPONSE.md`.
+
+### 2.2 M1 Expansion Ledger — separate from the Lane C baseline (per the lineage-correction prompt, 2026-09-29)
+
+`M1` = `MANUFACTURING_BOM_ROUTING_PILOT`, the first Next-Prompt expansion module (Wave 5, Manufacturing/MRP) — **never merged into the Lane C baseline in §2.1 above.** Tracked here as its own ledger, with its own population, growth history, and per-function scope rationale.
+
+**M1 population summary**:
+
+- **M1 initial selected functions** (2026-09-29, first pass): 5 — `BRP-F01`–`F05`
+- **M1 follow-on functions** (2026-09-29, same-day continuation pass, per Boss's "continue automatically" order): 4 — `BRP-F06`–`F09`
+- **Unique M1 Function IDs**: 9 (0 overlap with the Lane C baseline or within M1 itself — checked directly)
+- **M1 excluded rows**: 0
+
+**Row-level disposition table (M1 only, rows 47–55 of the combined raw count — see §2.3 for the composition formula)**:
+
+| # | Source row / pilot | Function ID | Wave | Why in M1 scope (evidence) | Research status | Evidence tier/V | Open gap |
+|---|---|---|---|---|---|---|---|
+| 47 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F01` | Initial | Learning Priority Matrix Wave 5 (Manufacturing/MRP); BoM Type is the structural router Gx7 (`MFG-F01`/`F02`) already assumed but never characterized | Complete | V2 | `GAP-BRP-01` (non-blocking) |
+| 48 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F02` | Initial | Same Wave 5; identified as `BRP-F01`'s non-default branch requiring separate valuation characterization | Complete | V2 | `GAP-BRP-02` (non-blocking) |
+| 49 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F03` | Initial | Same Wave 5; C1 financial-control surface, the outsourced-production analog of Gx7's WIP/valuation model | Complete; `Conditional Reference Finding` | V2 | `GAP-BRP-03` resolved (documentation-tier) |
+| 50 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F04` | Initial | Same Wave 5; direct cost input to Gx7's `MFG-F04` (MO cost computation), previously treated as black-box | Complete | V2 | `GAP-BRP-04` (non-blocking) |
+| 51 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F05` | Initial | Same Wave 5; the other cost input (operation duration) to `MFG-F04` | Complete | V2 | `GAP-BRP-05` (non-blocking) |
+| 52 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F06` | Follow-on | Boss's continue-automatically order; adjacent replenishment function within the same Wave 5/module — no new universe declared | Complete; `Configuration-scoped reference constraint` | V2 | `GAP-BRP-07` (non-blocking) |
+| 53 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F07` | Follow-on | Same; found explicitly mutually exclusive with `BRP-F06` — a genuine business-rule contradiction risk surfaced | Complete; `Configuration-scoped reference constraint` | V2 | `GAP-BRP-08` (non-blocking) |
+| 54 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F08` | Follow-on | Same; second C1 open half in this pilot (By-Products cost allocation), structurally identical to `BRP-F03`'s original gap | Complete; C1 open (`Conditional/Unknown`) | V2 (function); **`GAP-BRP-09` itself V1** | `GAP-BRP-09` — Open/Conditional, priority |
+| 55 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F09` | Follow-on | Same; multi-level BOM confirms every other M1 function compounds recursively at each nesting level | Complete | V2 | `GAP-BRP-10` (non-blocking) |
+
+**Status**: M1 expansion ledger `COMPLETE` for 9/9 currently-selected functions as of 2026-09-29. Not "Manufacturing complete" — quality-checkpoint integration and dropshipping-manufacturing interaction remain explicitly out of scope this round (`01_EXECUTIVE_RESEARCH_SUMMARY.md` §Scope discipline), candidates for a further follow-on pass. **This ledger remains `CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION`.**
+
+### 2.3 Current Research Register Total (diagnostic inventory only)
+
+`Current Research Register Total — version 1.1 / 2026-09-29 — diagnostic inventory only; not Lane C population, not a frozen denominator, and not Formal Coverage.`
+
+**Composition formula**:
+
+| Component | Raw rows | Unique applicable | Excluded |
+|---|---|---|---|
+| Lane C baseline (§2.1, frozen) | 46 | 45 | 1 (`RCN-F04`) |
+| M1 expansion ledger (§2.2) | 9 | 9 | 0 |
+| **Total** | **55** | **54** | **1** |
+
+Overlap between Lane C and M1: **0** (checked directly — no Function ID is shared between the two). This total is a diagnostic sum only; it must **not** be cited as "Lane C completion count," must not be read as a Boss-frozen denominator (`BGQ-05` remains open, separately, on whether Lane C's own 10 scenarios are "the full authorized Gx population"), and does not constitute Formal Coverage of any kind. Use `PENDING DENOMINATOR` / `N/A — DENOMINATOR NOT VALIDATED` wherever a percentage or completion claim might otherwise be inferred from this total.
+
+**Prior report note (dated reconciliation, not a silent rewrite)**: this register's own v0.7 (2026-09-29, earlier same day) reported a single merged "55 rows = 54 unique + 1 excluded" population without the Lane C/M1 separation above. That figure is arithmetically consistent with the composition formula here (46+9=55, 45+9=54) — nothing is retracted — but its *presentation* conflated two populations Boss's lineage-correction prompt requires kept separate. This v0.8 restructuring is the correction; the prior wording is superseded, not deleted (visible in this file's git history).
 
 
 | Gx | Function ID | Function | Criticality | Target V | Actual V | Evidence tier | Gap status | Research status | Audit status | PMO status | Gate status | Owner | Evidence path | Last Material Delta |
@@ -154,10 +193,10 @@ The earlier §2 correction note (46/45) was, per Boss's own ruling, "ambiguous a
 | M1 | BRP-F05 | Routing Operations / Work Orders | C2 | V4/floor V3 | V2 | Documentation | `GAP-BRP-05` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | M1 | BRP-F06 | Reordering Rules | C2 | V4/floor V3 | V2 | Documentation | `GAP-BRP-07` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: added, follow-on pass |
 | M1 | BRP-F07 | Master Production Schedule | C3 | V4/floor V3 | V2 | Documentation | `GAP-BRP-08` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: mutually exclusive with BRP-F06 per product — genuine business-rule contradiction found |
-| M1 | BRP-F08 | By-Products | **C1** | V5/floor V4 | V2 | Documentation | `GAP-BRP-09` (priority — cost-allocation method open) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: second open C1 half in this pilot, same shape as BRP-F03's original gap |
+| M1 | BRP-F08 | By-Products | **C1** | V5/floor V4 | V2 (function/config existence); `GAP-BRP-09` itself remains **V1** | Documentation (function) / Third-party-listing + pre-19 forum (gap) | `GAP-BRP-09` **Open/Conditional** — candidate default found 2026-09-29 (zero-allocation-to-by-product), sub-documentation-tier, not officially confirmed for Odoo 19.0 | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: second open C1 half in this pilot, same shape as BRP-F03's original gap; 2026-09-29 later: candidate default disclosed, still Open/Conditional, not Resolved |
 | M1 | BRP-F09 | Multi-level BOM | C2 | V4/floor V3 | V2 | Documentation | `GAP-BRP-10` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: confirms every other M1 function compounds recursively at each BOM level |
 
-**Population note**: `M1` (not `Gx`) denotes the first Next-Prompt expansion module (Manufacturing/MRP, Wave 5) — deliberately distinct notation from Lane C's `Gx1`–`Gx10`, per the naming-discipline in `STATE03_NEXT_PROMPT_FIRST_CHECKPOINT.md` §3. Running total: **55 registered Function IDs (54 applicable, excluding `RCN-F04`)** — 46/45 from Lane C plus 9 from `M1` (5 original + 4 same-day follow-on: `BRP-F06` Reordering Rules, `BRP-F07` Master Production Schedule, `BRP-F08` By-Products, `BRP-F09` Multi-level BOM).
+**Population note**: `M1` (not `Gx`) denotes the first Next-Prompt expansion module (Manufacturing/MRP, Wave 5) — deliberately distinct notation from Lane C's `Gx1`–`Gx10`, per the naming-discipline in `STATE03_NEXT_PROMPT_FIRST_CHECKPOINT.md` §3. Per the Population Lineage Correction (§2.3), Lane C (46/45) and `M1` (9/9) are tracked as **separate populations**; their sum (55/54) is a diagnostic total only, not a Lane C count and not a frozen denominator — see §2.3 for the exact required labeling.
 
 ## 3. Module Function Universe status
 
@@ -174,6 +213,10 @@ The earlier §2 correction note (46/45) was, per Boss's own ruling, "ambiguous a
 ### 3.2 Autonomous execution update (2026-09-29, per Boss's Autonomous Decision Framework + Continue-Automatically order)
 
 Two previously-open, non-Boss-gated gaps closed this cycle without waiting: `GAP-IAV-02` (`IAV-F06`, resolved to documentation-tier V2 — Odoo 19's native "Revert Inventory Adjustment" action) and `GAP-MFG-01` (`MFG-F05`, partially resolved to V1 — a genuine Odoo-version tension found and disclosed, not silently resolved). Neither changes any Boss Gate Queue item; both are recorded per the standing carry-forward/no-silent-rewrite discipline. Progress reporting for this register now follows `STATE03_PROGRESS_REPORTING_CONSTITUTION.md` v1.0 going forward.
+
+### 3.3 Next-READY module selection (2026-09-29, per Boss's "STATE03 Population Lineage Correction & Autonomous Continuation" §1)
+
+`M2` = `QUALITY_CONTROL_PILOT` selected and research **commenced** (not complete) — Wave 5 "Quality," direct continuity from `M1`'s own flagged out-of-scope item ("quality-checkpoint integration with manufacturing"). 3 functions drafted (`QCP-F01`–`F03`), 2 gaps opened (`GAP-QCP-01`/`02`), both official-documentation-tier (V2). **Not added to any population total** (Lane C baseline or the `M1` ledger) until its own row-level reconciliation is complete, per the same discipline `M1` itself followed at its first checkpoint. Readiness evidence: `QUALITY_CONTROL_PILOT/00_DOMAIN_INDEX.md` §Readiness evidence.
 
 ## 4. Cross-references
 

@@ -1,7 +1,7 @@
 # STATE03 Corrective Checkpoint — Response
 
 Document ID: `STATE03-CORRECTIVE-CHECKPOINT-RESPONSE`
-Version: 2.1
+Version: 2.2
 Date: 2026-09-29
 Authority: Boss's "STATE03 Corrective Checkpoint Prompt" (`PROMPTS/SMEPLUS-26-09-28-STATE03-ARCH-KNOWLEDGE-REBASE-001/02_CORRECTIVE_CHECKPOINT_PROMPT_2026-09-29.md`, sha256 `7ba19d8b27a5a2cbdc363308279bad9119f6884b3186150bcc7115d7fce3d78b`)
 Boss: Sole Final Approver
@@ -113,3 +113,7 @@ Per Boss's instruction: "Black-box/Unavailable" must not be used as a blanket ex
 ## v2.1 self-reconciliation note (2026-09-29, later same day)
 
 B2 and B4 above were originally written against the 51-row/5-`M1`-function population, before the same-day `M1` follow-on pass (`BRP-F06`–`F09`) was completed. Both sections have now been regenerated against the current 55-row/54-unique/9-`M1`-function population (matching `STATE03_DEEP_STUDY_REGISTER.md` §2.1). No figure in this checkpoint was left silently stale; this note documents the correction rather than rewriting history without a trace. This is a self-check, not independent verification — the `CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` status above still applies in full.
+
+## v2.2 note — superseded by the Population Lineage Correction (2026-09-29, later still)
+
+Per Boss's subsequent "STATE03 Population Lineage Correction & Autonomous Continuation" prompt: the B2 table above (and the v2.1 note directly above) present a single **merged** Lane C + `M1` population (55 rows / 54 unique). Boss ruled this must not be done — the Lane C baseline and the `M1` expansion ledger must be reported **separately**, and their sum is a diagnostic total only, never a substitute for either population on its own. The canonical, corrected structure now lives in `STATE03_DEEP_STUDY_REGISTER.md` §2.1 (Lane C baseline, frozen at 46/45), §2.2 (`M1` expansion ledger, 9/9), and §2.3 (`Current Research Register Total`, the exact-labeled 55/54 diagnostic sum). This document's own B2/B4 figures are **not retracted** (they are arithmetically consistent with the corrected structure) but are superseded in presentation by that register section — read §2.1–§2.3 there as the current source of truth for population reporting, not this document's B2 table in isolation.

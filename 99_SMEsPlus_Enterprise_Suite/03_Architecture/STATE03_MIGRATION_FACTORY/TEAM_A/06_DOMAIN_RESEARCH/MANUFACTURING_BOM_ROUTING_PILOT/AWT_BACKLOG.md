@@ -20,7 +20,8 @@
 - **Runtime action**: Complete an MO producing both primary good and by-product; inspect the valuation/cost breakdown for each.
 - **Expected observable result**: A discoverable, consistent allocation rule between the two output products.
 - **Evidence required**: Cost/valuation figures for both the primary good and the by-product from the same MO.
-- **Target V**: V5 (floor V4) | **Current V**: V2 | **Missing proof**: `GAP-BRP-09` — the allocation method specifically.
+- **Target V**: V5 (floor V4) | **Current V**: **V1** (candidate default disclosed 2026-09-29 — `EV-BRP-13`/`EV-BRP-14`, third-party listing + pre-19 forum, not official-doc-confirmed for Odoo 19.0; not upgraded to V2) | **Missing proof**: `GAP-BRP-09` — Odoo-19-specific confirmation of the allocation method, and whether it matches the disclosed candidate default (zero-allocation-to-by-product).
+- **Negative-case AWT scenario (documentation-tier design, added 2026-09-29)**: configure a BoM where the By-Product's own standalone market value exceeds the primary finished good's; complete an MO; inspect whether the by-product enters stock at zero/unset cost and whether the primary good absorbs 100% of production cost — this is the specific edge case the candidate default would predict, and the one most likely to surface a real financial-control problem if confirmed.
 
 ### BRP-F01 / F02 / F04 / F05 / F06 / F07 / F09
 

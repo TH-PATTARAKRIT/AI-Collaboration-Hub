@@ -10,6 +10,8 @@ TEAM_A completed documentation-tier research across 10 Backbone Roadmap Lane C s
 
 **Update (2026-09-29, later same day)** — scope now also includes: `STATE03_CORRECTIVE_CHECKPOINT_RESPONSE.md` (B1–B5, prompt provenance, row-level population reconciliation, gap-closure re-verification, Black-box/Unavailable accessibility evidence) and the new `MANUFACTURING_BOM_ROUTING_PILOT` module (`M1`, 9 functions, not part of Lane C's own 46 — see the naming-discipline note in `STATE03_NEXT_PROMPT_FIRST_CHECKPOINT.md` §3). Everything in this request remains `CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` per Boss's explicit ruling — this audit is exactly how that verification is meant to happen.
 
+**Update (2026-09-29, later still)** — per Boss's "STATE03 Population Lineage Correction & Autonomous Continuation" prompt, please also independently check: `STATE03_DEEP_STUDY_REGISTER.md` §2.1–§2.3 (Lane C baseline 46/45 vs. `M1` expansion ledger 9/9, kept separate, with the diagnostic-only `Current Research Register Total` 55/54); `GAP-BRP-09`'s full C1 record (target V5, actual V1, still `Open/Conditional` — please specifically check that this was not silently upgraded); and the new `QUALITY_CONTROL_PILOT` (`M2`) first pass, which is explicitly `IN PROGRESS` and not yet counted into any population.
+
 ## Where to start
 
 Read, in order:

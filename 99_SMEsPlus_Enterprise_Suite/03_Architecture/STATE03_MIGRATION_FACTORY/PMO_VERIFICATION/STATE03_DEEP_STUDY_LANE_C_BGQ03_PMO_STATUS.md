@@ -29,3 +29,14 @@ Still `HOLD — awaiting CHATGPT_AUDIT output`; status unchanged, but scope now 
 - `STATE03_DEEP_STUDY_REGISTER.md` §2.1 — row-level Function-ID reconciliation (55 raw / 54 unique applicable / 1 excluded), superseding the earlier per-Gx summary.
 
 PMO can already confirm (ahead of the audit): no Team B/C, merge, release, or deployment action taken or implied anywhere in this batch; `GAP-MFG-01` correctly still recorded `Open/Conditional`, not upgraded; `BRP-F03` correctly carries its mandated `Conditional Reference Finding` classification directly on the function record, not only in a side document. No unsupported status upgrade found in this batch either.
+
+## Update (2026-09-29, later still) — Population Lineage Correction batch
+
+Per Boss's "STATE03 Population Lineage Correction & Autonomous Continuation" prompt, scope now also covers:
+
+- `STATE03_DEEP_STUDY_REGISTER.md` §2.1/§2.2/§2.3 — restructured to keep the Lane C baseline (46/45, frozen) and the `M1` expansion ledger (9/9) **separate**, with a `Current Research Register Total` (55/54) explicitly labeled diagnostic-only, not a frozen denominator, not Formal Coverage. PMO confirms the exact required label text is present verbatim and the composition formula is arithmetically consistent with both source populations.
+- `GAP-BRP-09` (`BRP-F08` By-Products cost allocation) — full C1 record added (target V5, actual V1, evidence pointer `EV-BRP-13`/`14`, config/version scope, business/control risk) per §3's exact field requirement. Status correctly remains `Open/Conditional`, not Resolved — the new evidence (third-party listing + pre-19 forum) is explicitly disclosed as sub-documentation-tier, not upgraded to V2.
+- `BRP-F06`/`BRP-F07` now carry the mandated `Configuration-scoped reference constraint` classification — correctly not generalized into a universal business rule or target-design decision.
+- `QUALITY_CONTROL_PILOT` (`M2`) — new module, research commenced, explicitly marked `IN PROGRESS`, not counted into any population total. No premature completion claim found.
+
+PMO confirms: no Formal Coverage, Gate PASS, "STATE03 Complete," or Functional Design authorization claimed anywhere in this batch. Still `HOLD — awaiting CHATGPT_AUDIT output` on `BGQ-03` itself; this batch is additional scope for the same eventual independent review, not a new decision request.

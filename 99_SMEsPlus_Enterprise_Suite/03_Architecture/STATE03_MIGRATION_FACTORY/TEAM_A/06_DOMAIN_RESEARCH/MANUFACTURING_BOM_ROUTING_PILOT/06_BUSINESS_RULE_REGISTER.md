@@ -73,6 +73,8 @@
 
 ### BRP-F06 — Reordering Rules (min/max automatic replenishment)
 
+> **CLASSIFICATION (per Boss's "STATE03 Population Lineage Correction & Autonomous Continuation" §3, 2026-09-29): `Configuration-scoped reference constraint — Odoo 19.0, Inventory app, Replenishment configuration only. Not a universal business rule; not a target-design decision.`**
+
 - **WHAT**: A Reordering Rule keeps a product's forecasted stock above a minimum threshold without exceeding a maximum, by specifying min/max quantities; when set to automatic, Odoo generates a new supply order (purchase or manufacturing) itself, when set to manual, Odoo instead suggests the order on a replenishment report for a person to confirm.
 - **WHY**: Immediate, ongoing replenishment needs a rule-based trigger rather than someone watching stock levels manually.
 - **BUSINESS RULE**: Automatic vs. manual is a per-rule setting, not a global one — different products can use different modes.
@@ -84,6 +86,8 @@
 - **UNKNOWN**: Whether automatic mode has any approval/authorization gate before order creation, or is fully unattended — `SOURCE/RUNTIME VERIFICATION REQUIRED`, non-blocking.
 
 ### BRP-F07 — Master Production Schedule (long-term manual demand-driven planning)
+
+> **CLASSIFICATION (per Boss's "STATE03 Population Lineage Correction & Autonomous Continuation" §3, 2026-09-29): `Configuration-scoped reference constraint — Odoo 19.0, Manufacturing app, MPS/Planning feature enabled. Not a universal business rule; not a target-design decision.`** The `BRP-F06`/`BRP-F07` mutual-exclusivity warning below is Odoo's own documented guidance for its own feature pair — it is disclosed as reference input for SMEsPlus's own future replenishment/planning design, not adopted or assumed as SMEsPlus's rule.
 
 - **WHAT**: The MPS plans longer-term replenishment against a manually-adjustable demand forecast, intended for products/components with long lead times or seasonal variability — distinct from the immediate, threshold-driven mechanics of `BRP-F06`.
 - **WHY**: Some supply decisions need to be made well ahead of an actual stock shortfall (long lead-time components, seasonal demand), which a simple min/max threshold cannot anticipate.
@@ -107,6 +111,12 @@
 - **EVENT**: "By-product produced" — a stock-entry event alongside the primary good's own completion event.
 - **RISK**: **Material, financial-control-adjacent** — how cost is allocated across primary output and by-product(s) directly affects the recorded unit cost of the main product; an unevidenced allocation method here is exactly the kind of "documented as configured, not confirmed as enforced" gap this Deep Study exists to surface.
 - **UNKNOWN**: The precise cost-allocation method between primary product and by-product(s) (proportional value, a fixed by-product valuation with the remainder to the primary good, or something else) — not evidenced this round; **`TARGETED VALIDATION NEEDED`**.
+
+> **CLASSIFICATION (per Boss's "STATE03 Population Lineage Correction & Autonomous Continuation" §3, 2026-09-29): `Conditional / Unknown — requires version, module, and configuration scope; not a universal accounting statement and not SMEsPlus target behavior.`** This finding is Odoo-reference learning input only, per the Master Prompt's Clean-Room boundary — SMEsPlus has not adopted, designed, or committed to any by-product cost-allocation model.
+
+> **PARTIAL EVIDENCE UPDATE (2026-09-29, same day, targeted follow-on search per Boss's instruction to continue documentation/source/configuration analysis on this C1 gap now)**: A candidate default disposition was found — "by default, no material cost is allocated to the by-products manufactured, therefore full production cost is charged to the main finished good" (`EV-BRP-13`, third-party marketplace listing; `EV-BRP-14`, pre-19/V12 community forum, independently corroborating). **This is explicitly not officially confirmed**: the official `mo_costs.html` documentation page (`EV-BRP-11`'s own source, re-queried this round) does not itself state a by-product cost-allocation rule. Actual V remains **V1** (third-party-listing + pre-19-forum corroboration, not official documentation, not Odoo-19-version-confirmed) — **not upgraded to V2**. `GAP-BRP-09` therefore moves from "no candidate found" to "candidate default disclosed, sub-documentation-tier, `Open/Conditional`" — it does **not** move to Resolved.
+>
+> **Negative-case design (documentation-tier only, no runtime access)**: if this candidate default holds, the negative/edge case worth testing at AWT is — a BoM with a By-Product whose own market value **exceeds** the primary finished good's (e.g., a valuable co-product mislabeled as a "by-product" for BoM-configuration convenience): under a "zero-allocation-to-by-product" default, the primary good's unit cost would be inflated by the *entire* production cost while the more valuable by-product enters stock at zero or unset cost — a real, discoverable financial-misstatement risk if the by-product/co-product distinction is not made deliberately. This scenario is designed now, at documentation-tier, as a target for future AWT runtime confirmation (`BGQ-04`) — not executed, not claimed as observed.
 
 ### BRP-F09 — Multi-level BOM (nested sub-assemblies)
 
