@@ -15,7 +15,7 @@ Per Master Prompt §10: sanitized companion to `06_BUSINESS_RULE_REGISTER.md`. B
 - **Control**: This is a coarse-grained, "can touch this kind of business object at all" control — a separate, finer-grained mechanism (which specific records, not just which kind) is a distinct concept not covered by this finding.
 - **Dependency**: Interacts with, but is structurally independent from, a separate company/tenant-scoping boundary (already characterized elsewhere in this Deep Study) — the two can both apply to the same access decision at once.
 - **Risk**: Because access is purely additive, granting a broad permission bundle to solve one narrow need creates a standing over-permission that cannot be narrowed by any other assignment — only removing the over-broad grant fixes it.
-- **Unknown**: The precise interaction between this coarse-grained, kind-of-object access boundary and a separate, specific-records boundary when both apply to the same decision — not evidenced this pass.
+- **Unknown → Resolved**: the coarse-grained, kind-of-object boundary and the separate, specific-records boundary compose as: a records boundary that applies to everyone acts as an absolute filter no permission-bundle membership can override; a records boundary that only applies to specific bundles combines permissively among those bundles. A company/tenant-scoping boundary is normally implemented as the first (absolute) kind — it cannot be bypassed by any permission-bundle grant.
 
 ## Clean-Room compliance statement
 

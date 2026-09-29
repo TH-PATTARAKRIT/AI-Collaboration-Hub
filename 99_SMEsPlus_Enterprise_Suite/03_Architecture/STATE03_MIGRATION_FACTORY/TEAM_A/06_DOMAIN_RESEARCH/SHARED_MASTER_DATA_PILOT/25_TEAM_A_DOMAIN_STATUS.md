@@ -7,7 +7,7 @@
 | SMD-F01 Party/Contact | C2 | V4/floor V3 | V2 (this pilot); source-tier Carry-forward reference exists | **Carry-forward** — primary evidence is `GROUP_01_SALES_INVENTORY_PURCHASE`'s `PTY-*` series, not this pilot |
 | SMD-F02 Product Template/Variant | **C1** | V5/floor V4 | V2 (this pilot); source-tier Carry-forward reference exists | **Carry-forward** — `GAP-SMD-02` resolved by reference (`PRD-09`/`10`) |
 | SMD-F03 UoM Category/Conversion | **C1** | V5/floor V4 | V2 (this pilot); source-tier Carry-forward reference exists | **Carry-forward** — `GAP-SMD-03` resolved by reference (`UOM-07`); `GAP-SMD-05` disclosed tension (Category-model terminology vs. actual schema) left open |
-| SMD-F04 Access Rights/Groups | **C1** | V5/floor V4 | V2 | **This pilot's own primary contribution** — confirmed not covered by the Carry-forward track. `GAP-SMD-04` (interaction with Multi-Company Record Rules) open |
+| SMD-F04 Access Rights/Groups | **C1** | V5/floor V4 | V2 | **This pilot's own primary contribution** — confirmed not covered by the Carry-forward track. `GAP-SMD-04` (interaction with Multi-Company Record Rules) **resolved at documentation tier, 2026-09-29** (`EV-SMD-05`) |
 
 ## M3 SELECTED-SLICE CHECKPOINT — CLOSED (2026-09-29, per Boss's "STATE03 M3 Shared Master Then Sales Delta Continuation" instruction)
 
