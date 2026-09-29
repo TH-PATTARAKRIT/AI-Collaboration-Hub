@@ -1,7 +1,7 @@
 # STATE03 Deep Study Register
 
 Document ID: `STATE03-DEEP-STUDY-REGISTER`
-Version: 0.2
+Version: 0.3
 Date: 2026-09-29
 Project: SMEsPlus ENTERPRISE SUITE
 STATE: STATE03 — Architecture & Knowledge Acquisition Deep Study
@@ -39,7 +39,7 @@ Per Boss's Continuous Execution Order (2026-09-28), this register is updated cum
 | Gx4 | IAV-F03 | Financial posting timing | **C1** | V5/floor V4 | V2 | Documentation | `GAP-IAV-01` **Material Finding — Independently Unverified** (was: "RESOLVED by Gx6" — reconciled as consistent, not contradictory; downgraded 2026-09-29 per Boss ruling) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: status downgraded, routed to CHATGPT_AUDIT — see `STATE03_VALUATION_TIMING_CROSS_GX_CONTRADICTION_MATRIX.md` |
 | Gx4 | IAV-F04 | Scrap / Inventory Loss Account | **C1** | V5/floor V4 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | Gx4 | IAV-F05 | Cycle count scheduling | C3 | V4/floor V3 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
-| Gx4 | IAV-F06 | Reversal of adjustment | C2 | V4/floor V3 | V0 | None yet | `GAP-IAV-02` | Not started | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx4 | IAV-F06 | Reversal of adjustment | C2 | V4/floor V3 | V2 | Documentation | `GAP-IAV-02` resolved 2026-09-29 — native "Revert Inventory Adjustment" action confirmed | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: closed at documentation-tier |
 | Gx5 | PDT-F01 | Per-shipment invoicing alignment (sales) | **C1** | V5/floor V4 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | `PARTIAL_FULFILLMENT_TIMING_PILOT/` | — |
 | Gx5 | PDT-F02 | Per-receipt billing alignment (purchase) | **C1** | V5/floor V4 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | Gx5 | PDT-F03 | Bill-before-receipt anomaly | **C1** | V5/floor V4 | **V1 (community-tier, explicitly flagged)** | Community-reported | **`GAP-PDT-01` — extends `GAP-GRV-06`/`CQS-GRV-04`** | Complete, lower-tier evidence disclosed | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: new, corroborates Gx1 |
@@ -52,7 +52,7 @@ Per Boss's Continuous Execution Order (2026-09-28), this register is updated cum
 | Gx7 | MFG-F02 | Finished goods completion | **C1** | V5/floor V4 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: confirms/generalizes Gx6 rule; 2026-09-29: that rule downgraded to **Material Finding — Independently Unverified** |
 | Gx7 | MFG-F03 | Manual interim WIP posting | C2 | V4/floor V3 | V2 | Documentation | `GAP-MFG-05` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | Gx7 | MFG-F04 | MO cost computation | C2 | V4/floor V3 | V2 | Documentation | `GAP-MFG-04` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
-| Gx7 | MFG-F05 | Negative-inventory revaluation | **C1 (provisional)** | V5/floor V4 | V0 | None yet | `GAP-MFG-01` | Not started | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| Gx7 | MFG-F05 | Negative-inventory revaluation | **C1 (provisional)** | V5/floor V4 | V1 | Community/blog | `GAP-MFG-01` partially resolved — version tension (pre-19 vs. Odoo 19) disclosed, not resolved | Complete, lower-tier evidence disclosed | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: thread opened, version tension found — additional (unverified) evidence for the same valuation-timing Material Finding, not a new resolution |
 | Gx8 | RTG-F01 | Product Type × Track Inventory | C2 | V4/floor V3 | V2 | Documentation | `GAP-RTG-01` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | `PRODUCT_ROUTING_VALIDATION_PILOT/` | 2026-09-28: clarifies the Roadmap's own 3-type framing is 2 orthogonal fields |
 | Gx8 | RTG-F02 | Consumable expense timing | **C1** | V5/floor V4 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | Gx8 | RTG-F03 | Storable/COGS expense timing | **C1** | V5/floor V4 | V2 | Documentation | — | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: 4th independent confirmation of Gx6 rule; 2026-09-29: that rule downgraded to **Material Finding — Independently Unverified** |
@@ -77,6 +77,10 @@ Per Boss's Continuous Execution Order (2026-09-28), this register is updated cum
 - **Valuation-timing finding** (Gx1/Gx2/Gx4/Gx6/Gx7/Gx8 — `GRV-F04`, `SDV-F05`, `IAV-F03`, `PCO-F03`, `MFG-F01`/`F02`, `RTG-F03`): downgraded from "Resolved (documentation-tier, high confidence)" to **`Material Finding — Independently Unverified`** across every affected row and pilot file. Full chain: `STATE03_VALUATION_TIMING_CROSS_GX_CONTRADICTION_MATRIX.md`.
 - **`BGQ-02`/`BGQ-01` sequencing**: Boss ruled `BGQ-02` (Clean-Room remediation independent re-audit) as Priority 1, strictly ahead of `BGQ-01` (canonical branch disposition). See `STATE03_BOSS_GATE_QUEUE.md` §1.1.
 - **Research does not stop for the pending audit.** Non-Gate-blocked work (evidence reconciliation, provenance hardening, gap cleanup, AWT backlog, contradiction matrix, CHATGPT_AUDIT/PMO_VERIFICATION preparation, this register's own maintenance) continues automatically per Boss's standing order.
+
+### 3.2 Autonomous execution update (2026-09-29, per Boss's Autonomous Decision Framework + Continue-Automatically order)
+
+Two previously-open, non-Boss-gated gaps closed this cycle without waiting: `GAP-IAV-02` (`IAV-F06`, resolved to documentation-tier V2 — Odoo 19's native "Revert Inventory Adjustment" action) and `GAP-MFG-01` (`MFG-F05`, partially resolved to V1 — a genuine Odoo-version tension found and disclosed, not silently resolved). Neither changes any Boss Gate Queue item; both are recorded per the standing carry-forward/no-silent-rewrite discipline. Progress reporting for this register now follows `STATE03_PROGRESS_REPORTING_CONSTITUTION.md` v1.0 going forward.
 
 ## 4. Cross-references
 

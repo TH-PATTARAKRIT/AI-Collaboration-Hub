@@ -39,6 +39,10 @@ None of Steps 1–6 have reached AWT (runtime) confirmation — every one remain
 
 Not: `Resolved`, not: `Canonical Architecture Truth`, not: usable as a frozen input to TEAM_B design until `CHATGPT_AUDIT` (or another independent reviewer) confirms it, or Boss otherwise accepts it.
 
+## 4.1 Related but distinct evidence found since (2026-09-29) — not part of the resolved chain, not self-confirming it further
+
+While closing an unrelated documentation gap (`GAP-MFG-01`, `MFG-F05` — negative-inventory revaluation during a manufacturing order), this session found two sub-official-tier sources (a forum thread, pre-Odoo-19; an Odoo-partner blog, Odoo 19) that **disagree on Odoo version**: the older-version source describes an automatic "Revaluation of WH/MO/XXX (negative inventory)" journal entry; the Odoo 19 blog states raw-material cost is booked only at vendor-bill time, with no such automatic entry in 19. If the Odoo 19 reading holds, it would be consistent with (not contradicting) Step 4's reconciliation — but this is explicitly **not** treated as a further self-confirmation of the chain above. It is recorded here only as related evidence for `CHATGPT_AUDIT` to weigh alongside the main chain, at a lower evidence tier (V1, not V2) than Steps 1–6. Full detail: `MANUFACTURING_VALUATION_PILOT/06_BUSINESS_RULE_REGISTER.md` MFG-F05.
+
 ## 5. What would close this
 
 Per `STATE03_BOSS_GATE_QUEUE.md` `BGQ-03` and the CHATGPT_AUDIT package (`STATE03_CHATGPT_AUDIT_PACKAGE_BGQ03.md`):

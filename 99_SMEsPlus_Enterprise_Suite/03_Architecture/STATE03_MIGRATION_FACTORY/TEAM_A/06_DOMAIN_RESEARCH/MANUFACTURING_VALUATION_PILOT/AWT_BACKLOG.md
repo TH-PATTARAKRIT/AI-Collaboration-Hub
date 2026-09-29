@@ -15,14 +15,19 @@
 - **Evidence required**: Journal entries at consumption and completion.
 - **Target V**: V5 (floor V4) | **Current V**: V2 | **Missing proof**: Runtime confirmation.
 
-### MFG-F05 — Negative-inventory revaluation (documentation pass needed first)
+### MFG-F05 — Negative-inventory revaluation (documentation pass partial, version tension open)
 
-- Not ready for an AWT hypothesis — `GAP-MFG-01` must close first.
+- **Hypothesis to verify — two competing versions, must be disambiguated, not assumed**: (a) pre-19: negative-inventory MO consumption later triggers a "Revaluation of WH/MO/XXX" journal entry once real cost is known; (b) Odoo 19: no such automatic entry — cost is booked only at vendor-bill posting.
+- **Required environment**: Odoo 19 specifically (not 17/18) — a BOM whose component goes negative on-hand during an MO, then is later replenished.
+- **Runtime action**: Confirm an MO consuming a negative-on-hand component; replenish the component via a vendor bill; check Journal Entries for any "Revaluation of WH/MO/XXX" entry.
+- **Expected observable result**: If (b) is correct, no such entry appears — cost is fully captured at vendor-bill time instead. If (a) still holds in 19, the entry appears as described.
+- **Evidence required**: Journal Entries across the full sequence (negative consumption → replenishment/bill).
+- **Target V**: V5 (floor V4) | **Current V**: V1 | **Missing proof**: Full runtime confirmation — this is now the single highest-value AWT case in this pilot, since it directly bears on whether the cross-Gx valuation-timing Material Finding needs a negative-inventory exception.
 
 ## Backlog status
 
 ```
-FUNCTIONS WITH AWT PLAN PREPARED : 4 (MFG-F01, F02, F03, F04)
-FUNCTIONS AWAITING DOCUMENTATION FIRST : 1 (MFG-F05)
+FUNCTIONS WITH AWT PLAN PREPARED : 5 (MFG-F01, F02, F03, F04, F05)
+FUNCTIONS AWAITING DOCUMENTATION FIRST : 0
 CAPSTONE SESSION NOW SPANS : Gx1, Gx2, Gx4, Gx5, Gx6, Gx7
 ```

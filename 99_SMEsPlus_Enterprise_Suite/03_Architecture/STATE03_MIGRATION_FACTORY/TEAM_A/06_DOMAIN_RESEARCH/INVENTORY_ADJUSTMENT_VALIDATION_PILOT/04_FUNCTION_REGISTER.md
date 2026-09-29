@@ -9,4 +9,4 @@
 | IAV-F03 | Financial posting of the adjustment | Whether/when the quantity delta creates a GL entry | **C1** | Third data point on the recurring valuation-timing question (`GAP-IAV-01`). |
 | IAV-F04 | Scrap / Inventory Loss location + Loss Account | Scrapping goods to a dedicated loss location with its own account | **C1** | Distinct, dedicated financial-control surface, separate from ordinary adjustment. |
 | IAV-F05 | Cycle count scheduling (Inventory Frequency) | Per-location automatic scheduling of the next count date | **C3** | Configuration/scheduling only, no direct financial or quantity effect. |
-| IAV-F06 | Reversal / correction of an applied adjustment | Undoing or correcting a previously applied count | **C2** | Mirrors the reversal theme from Gx1/Gx2; not yet evidenced this round (see Gap Register). |
+| IAV-F06 | Reversal / correction of an applied adjustment | Undoing or correcting a previously applied count via the native "Revert Inventory Adjustment" action | **C2** | Mirrors the reversal theme from Gx1/Gx2; resolved documentation-tier 2026-09-29 (see Business Rule Register / Gap Register). |

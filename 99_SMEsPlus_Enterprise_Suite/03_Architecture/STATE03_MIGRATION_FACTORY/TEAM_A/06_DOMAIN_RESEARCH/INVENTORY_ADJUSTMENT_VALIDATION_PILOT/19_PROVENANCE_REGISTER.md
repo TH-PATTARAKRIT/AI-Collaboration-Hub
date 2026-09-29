@@ -11,6 +11,7 @@ Retrieved via `WebSearch` (search-engine-mediated; direct fetch blocked, same as
 | EV-IAV-03 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/inventory/warehouses_storage/inventory_management/scrap_inventory.html` | IAV-F04 (scrap inventory mechanism) |
 | EV-IAV-04 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/inventory/warehouses_storage/inventory_management/cycle_counts.html` | IAV-F05 (cycle counts, Inventory Frequency, annual default date) |
 | EV-IAV-05 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/barcode/operations/adjustments.html` | IAV-F01/F02 (barcode-based adjustment, not detailed this round) |
+| EV-IAV-06 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/inventory/warehouses_storage/inventory_management/count_products.html` (revisited 2026-09-29, "Revert Inventory Adjustment" section) + `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/inventory/warehouses_storage/reporting/moves_history.html` | IAV-F06 (reversal mechanism, `GAP-IAV-02` closure) |
 
 ## Clean-room boundary
 

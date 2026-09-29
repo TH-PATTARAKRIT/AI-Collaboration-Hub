@@ -25,13 +25,22 @@
 - **Evidence required**: Journal entries and P&L report snapshots under both configurations.
 - **Target V**: V5 (floor V4) | **Current V**: V2 | **Missing proof**: Full runtime confirmation.
 
-### IAV-F01 / F02 / F05 / F06
+### IAV-F01 / F02 / F05
 
-Lower priority — F01/F02/F05 follow the same AWT shape as other Gx's routing/execution/config functions; F06 has no documentation-tier hypothesis yet (`GAP-IAV-02`) and needs a documentation pass before an AWT plan can be written.
+Lower priority — follow the same AWT shape as other Gx's routing/execution/config functions.
+
+### IAV-F06 — Revert Inventory Adjustment (documentation pass complete 2026-09-29)
+
+- **Hypothesis to verify**: Selecting the checkbox + Actions → "Revert Inventory Adjustment" undoes the quantity-on-hand impact of an applied count and adds a new Moves History line with `[reverted]` in its Reference column, without deleting the original line.
+- **Required environment**: Same base environment, plus one already-applied inventory adjustment to revert.
+- **Runtime action**: Apply a count, revert it, inspect Moves History for both lines and the quantity-on-hand delta.
+- **Expected observable result**: Two Moves History lines (original + `[reverted]`); quantity-on-hand net effect is zero.
+- **Evidence required**: Moves History report screenshot/export showing both lines; quantity-on-hand before/after.
+- **Target V**: V4 (floor V3) | **Current V**: V2 | **Missing proof**: Full runtime confirmation; whether reversal is blocked after a later count on the same product/location.
 
 ## Backlog status
 
 ```
-FUNCTIONS WITH AWT PLAN PREPARED : 2 detailed (IAV-F03, IAV-F04) + 3 lower-priority (F01/F02/F05)
-FUNCTIONS AWAITING DOCUMENTATION FIRST : 1 (IAV-F06)
+FUNCTIONS WITH AWT PLAN PREPARED : 3 detailed (IAV-F03, IAV-F04, IAV-F06) + 3 lower-priority (F01/F02/F05)
+FUNCTIONS AWAITING DOCUMENTATION FIRST : 0
 ```

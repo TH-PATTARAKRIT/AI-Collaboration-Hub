@@ -8,8 +8,10 @@
 | CQS-MFG-02 | Does manufacturing conserve total inventory value (component value out = finished good value in)? | Assumed: yes, conservation | **Contradicted** | Documentation explicitly states finished goods "usually raise total inventory value" via added labor/operations cost. |
 | CQS-MFG-03 | Is WIP interim posting automatic for any multi-day MO? | Assumed: automatic if MO spans a period | **Contradicted** | Documented as a manual, optional per-MO action — not automatically triggered by elapsed time or period boundaries. |
 
+| CQS-MFG-04 | Does Odoo 19 still post the pre-19 "Revaluation of WH/MO/XXX (negative inventory)" entry for negative-inventory MO consumption, or has this been superseded by vendor-bill-time-only posting? | Carried forward from `GAP-MFG-01` | **Open — Version Tension, Not Resolved** | Forum thread (pre-19) and Odoo-partner blog (v19) disagree; no official Odoo 19 documentation page found this round confirming either reading. See `06_BUSINESS_RULE_REGISTER.md` MFG-F05, `19_PROVENANCE_REGISTER.md` EV-MFG-05/06. |
+
 ## Status
 
 `CLOSED (documentation-tier)`: CQS-MFG-01 (reconciled, not merely contradicted), CQS-MFG-02, CQS-MFG-03.
 
-No round cap. `MFG-F05` (negative-inventory revaluation) has no challenge question yet — needs a documentation pass before one can be formed.
+`OPEN (Version Tension, sub-documentation-tier evidence only)`: CQS-MFG-04 — `MFG-F05` now has a formed challenge question (2026-09-29) but not a documentation-tier answer; official-doc or AWT confirmation still required.

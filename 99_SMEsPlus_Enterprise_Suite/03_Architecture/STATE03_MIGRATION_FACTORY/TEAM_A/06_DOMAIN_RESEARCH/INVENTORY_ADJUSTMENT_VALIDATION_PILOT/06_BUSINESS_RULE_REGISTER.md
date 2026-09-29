@@ -71,5 +71,17 @@
 
 ### IAV-F06 — Reversal / correction of an applied adjustment
 
-- **WHAT / WHY / BUSINESS RULE / STATE / DATA CONCEPT / CONTROL / DEPENDENCY / EVENT / RISK**: Not evidenced this round — no documentation page specifically addressing "undo an applied inventory adjustment" was retrieved.
-- **UNKNOWN**: Entire function is `DOCUMENTATION/SOURCE/RUNTIME VERIFICATION REQUIRED`. The most direct available finding is inference: since an adjustment is itself just a quantity-setting action, a correction would presumably be a second inventory adjustment recording the corrected quantity — but this is not documented as a distinct "reversal" mechanism the way Reverse Transfer / Credit Note are for receipts/deliveries. Recorded as an open gap, not assumed.
+> **RESOLUTION UPDATE (2026-09-29)**: `GAP-IAV-02` closed at documentation-tier (V2). Odoo 19 official documentation (`inventory_management/count_products.html`, corroborated by the companion `reporting/moves_history.html` page, both via WebSearch synthesis — direct WebFetch to odoo.com blocked in this container, same constraint as the rest of this Deep Study) describes a distinct, native **"Revert Inventory Adjustment"** action.
+
+- **WHAT**: To reverse an already-applied inventory adjustment: select the checkbox at the far side of the line for the desired product (in the Inventory Adjustments list), open the **Actions** menu, and click **Revert Inventory Adjustment**.
+- **WHY**: Lets a mis-applied count be undone without manually calculating and re-entering an offsetting quantity by hand.
+- **BUSINESS RULE**: This is a distinct, named mechanism — not simply "make another adjustment" as previously inferred. It is closer in spirit to Reverse Transfer (Gx2 `SDV-F06`) than to a Credit Note: it produces an explicit reversal record rather than a freeform correction.
+- **STATE**: Applied adjustment → (select + Actions → Revert Inventory Adjustment) → reversed; the original quantity-on-hand impact is undone.
+- **DATA CONCEPT**: The reversal is itself recorded as a further Moves History line, not a deletion of the original line.
+- **CONTROL**: No confirmation-step detail found this round (unlike the Apply-All precaution noted for `IAV-F02`) — worth a targeted follow-up, not assumed either way.
+- **DEPENDENCY**: Reads from the same Moves History report that `IAV-F01`'s physical count recording writes to.
+- **EVENT**: "Inventory adjustment reverted."
+- **RISK**: Low, now that a native mechanism is confirmed — the previously-open risk (no way to undo a mis-applied count except a second manual adjustment, doubling audit-trail noise) is resolved.
+- **UNKNOWN**: Whether reversal requires any approval/permission distinct from applying the original adjustment; whether reversal is blocked once a later count on the same product/location has since been applied (a plausible ordering constraint, not documented) — `SOURCE/RUNTIME VERIFICATION REQUIRED`, not blocking (this function is not C1).
+
+**Moves History behavior** (documentation-tier, same source): after a revert, the original line is **not removed** from the Moves History report — a new line is added with **`[reverted]`** appended to its Reference column. This preserves both the original count and the correction as separate, auditable entries — consistent with this Deep Study's own carry-forward/no-silent-rewrite discipline (a useful parallel, not claimed as a designed analogy by Odoo).
