@@ -1,7 +1,7 @@
 # STATE03 Deep Study Register
 
 Document ID: `STATE03-DEEP-STUDY-REGISTER`
-Version: 0.4
+Version: 0.5
 Date: 2026-09-29
 Project: SMEsPlus ENTERPRISE SUITE
 STATE: STATE03 — Architecture & Knowledge Acquisition Deep Study
@@ -70,6 +70,13 @@ Per Boss's Continuous Execution Order (2026-09-28), this register is updated cum
 | Gx10 | RCN-F02 | Backdating audit trail (dual chatter) | **C1** | V5/floor V4 | V2 | Documentation | `GAP-RCN-01` (priority) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-28: clearest Stock↔Financial cross-link found |
 | Gx10 | RCN-F03 | Cost/valuation origin tracking | **C1** | V5/floor V4 | V2 | Documentation | `GAP-RCN-02` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | Gx10 | RCN-F04 | Bank Reconciliation | C4 (Not Applicable) | N/A | N/A | N/A | — | Complete (terminology note only) | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| M1 | BRP-F01 | BOM Type selection (Manufacture/Kit/Subcontracting) | **C1** | V5/floor V4 | V2 | Documentation | `GAP-BRP-01` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | `MANUFACTURING_BOM_ROUTING_PILOT/` | 2026-09-29: first Next-Prompt expansion module (not a Gx unit) |
+| M1 | BRP-F02 | Kit BOM (components-only) | C2 | V4/floor V3 | V2 | Documentation | `GAP-BRP-02` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| M1 | BRP-F03 | Subcontracting BOM | **C1** | V5/floor V4 | V2 | Documentation | `GAP-BRP-03` (priority — subcontractor fee capture) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: subcontracting-location valuation non-impact rule, the pilot's key finding |
+| M1 | BRP-F04 | Work Center configuration | C2 | V4/floor V3 | V2 | Documentation | `GAP-BRP-04` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| M1 | BRP-F05 | Routing Operations / Work Orders | C2 | V4/floor V3 | V2 | Documentation | `GAP-BRP-05` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+
+**Population note**: `M1` (not `Gx`) denotes the first Next-Prompt expansion module (Manufacturing/MRP, Wave 5) — deliberately distinct notation from Lane C's `Gx1`–`Gx10`, per the naming-discipline in `STATE03_NEXT_PROMPT_FIRST_CHECKPOINT.md` §3. Running total: **51 registered Function IDs (50 applicable, excluding `RCN-F04`)** — 46/45 from Lane C plus 5 from `M1`.
 
 ## 3. Module Function Universe status
 
