@@ -5,7 +5,7 @@
 ### MFG-F01 / MFG-F02 — join the shared cross-Gx capstone session
 
 - **Criticality**: C1
-- **Hypothesis to verify**: Consumption and completion post automatically under Automated valuation, unconditionally (no invoice dependency, unlike receipts/deliveries).
+- **Hypothesis to verify, refined 2026-09-30 (source-code tier, `EV-MFG-SRC-01`/`02`)**: Consumption and completion post automatically under Automated valuation **only if the Production location's Stock Valuation Account (and/or the category's) is actually configured** — source confirms this is silently skipped, not blocked or defaulted, when unset. The original "unconditional" framing is now known to be incomplete; the runtime test itself is unchanged (confirm an MO under both a configured and an unconfigured Production location, and observe the silent-skip behavior specifically).
 - **Required environment**: Same as the Gx1/2/4/5/6 combined session, plus Manufacturing app, a simple one-level BOM, Production location with WIP account configured.
 - **Runtime action**: Confirm an MO, consume components, mark Done; check Journal Entries at each step.
 - **Expected observable result**: Entry at consumption (component valuation → WIP), entry at completion (WIP + labor → finished good) — both immediate, no invoice needed.

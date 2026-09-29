@@ -13,7 +13,7 @@
 - **DEPENDENCY**: Feeds MFG-F02.
 - **EVENT**: "Component consumed, value moved to WIP."
 - **RISK**: If the Production location's Production Account is unconfigured, WIP posting may not occur correctly — not evidenced in detail, but implied by the configuration requirement being explicit.
-- **UNKNOWN**: Exact behavior if Production Account is unset — blocked, defaulted, or silently skipped — `SOURCE/RUNTIME VERIFICATION REQUIRED`.
+- **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, `EV-MFG-SRC-02`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`**: Community-core source shows a silent skip — no journal entry, no error, no warning — if the Production location's Stock Valuation Account is unset (or the category is Manual valuation), while the stock-level quantity/value ledger continues to update normally (an undetected GL-vs-subledger gap). No Thai localization chart-of-accounts template sets a Production-location account by default. Labor postings follow the identical silent-skip rule. Source/schema proof, not runtime proof; custom/third-party extensions affecting Accounting/MRP have not yet been manifest-reviewed for overrides. Proposed by a separate Source/Dump Deep Research Worker session — not treated as closed; see `22_UNKNOWN_AND_GAPS.md`.
 
 ### MFG-F02 — Finished goods completion → valuation transfer
 
@@ -26,20 +26,20 @@
 - **DEPENDENCY**: Depends on MFG-F01 and MFG-F04 (cost computation).
 - **EVENT**: "MO Done, finished good valued."
 - **RISK**: A design assuming manufacturing conserves total inventory value (in = out) would be wrong — value genuinely increases through labor/operations cost.
-- **UNKNOWN**: Exact treatment of a *partially* completed MO's finished-good valuation (if any goods are produced before full MO completion) — not evidenced this round.
+- **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, `EV-MFG-SRC-02`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`**: Community-core source shows each partial-completion/backorder round costed independently at that round's own actual consumption (materials actually used that round, at their own costing method) + that round's own Work Center cost + a per-round share of Extra Unit Cost (copied forward to the backorder MO) — Odoo's own bundled tests confirm different per-unit costs across rounds when component lot costs differ. Labor cost posts once only, at final MO closure, tests confirm no duplication across backorder rounds. Residual: exact split of a Work Order's logged hours across rounds not evidenced (medium, non-blocking). Source/schema proof, not runtime proof; not treated as closed.
 
 ### MFG-F03 — Manual interim WIP posting/reversal
 
 - **WHAT**: For manufacturing that spans a reporting boundary, users can manually trigger a "Post WIP Accounting Entry" reflecting the real cost of components/work-centers/labor already incurred at that point, and later reverse it.
 - **WHY**: An MO that takes weeks might otherwise show zero WIP value on an interim balance sheet if the only automatic postings happen at consumption-start and completion-end.
 - **BUSINESS RULE**: This is explicitly a **manual, optional** action distinct from the automatic MFG-F01/F02 postings — not triggered automatically at any interim milestone.
-- **STATE**: MO in progress → manual Post WIP action → interim WIP value on the books → (implied) reversed once the MO actually completes and MFG-F02's real transfer occurs, to avoid double-counting.
+- **STATE**: MO in progress → manual Post WIP action → interim WIP value on the books → **reversal fires on a user-set date, not on MO completion** — see corrected UNKNOWN below.
 - **DATA CONCEPT**: A postable-and-reversible interim entry, analogous in spirit to Gx6's period-close accrual (self-cancelling), but manually triggered per-MO rather than automatically at period boundaries.
 - **CONTROL**: Requires the same WIP/WIP-Overhead account configuration as MFG-F01/F02.
 - **DEPENDENCY**: Independent of, but must reconcile with, MFG-F01/F02's automatic postings.
 - **EVENT**: "Interim WIP entry posted" / "reversed."
 - **RISK**: If a business relies on this manual action but forgets to trigger it, interim financial statements would understate WIP value for long-running orders — an operational-discipline risk, not a system gap.
-- **UNKNOWN**: Whether reversal is itself manual or automatic upon MO completion — `SOURCE/RUNTIME VERIFICATION REQUIRED`.
+- **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, `EV-MFG-SRC-02`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET` — wording correction proposed, not a closure**: Community-core source shows the WIP entry and its reversal created together, in one action — the reversal is dated by whatever date the user sets (default: the next day), enforced to be after the posting date, and is **not tied to MO completion**: closing the MO later neither cancels nor reverses the WIP entry (linked for display only). A reversal date set later than the MO's actual close date creates a temporary double-count window — a process-discipline risk, not a system defect. Component values in the WIP entry are computed at current standard cost × quantity picked to date (not the actual move value); the system enforces Debit = Credit before posting. Source/schema proof, not runtime proof.
 
 ### MFG-F04 — MO cost computation
 
@@ -50,7 +50,7 @@
 - **DEPENDENCY**: Feeds MFG-F02.
 - **EVENT**: N/A — a computation, not an event.
 - **RISK**: An incorrect or stale BOM/work-center cost rate would misvalue every finished good produced under it.
-- **UNKNOWN**: Work-center cost-rate mechanics (per-hour, per-unit, overhead allocation) — not evidenced this round.
+- **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, `EV-MFG-SRC-02`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`**: Community-core source shows a single flat Cost-per-hour per Work Center, no shift/overtime variants. Rate is snapshotted onto the Work Order at completion, test-confirmed no retroactive re-costing of closed MOs. Each Operation independently chooses actual-vs-expected duration. No separate "Overhead rate" exists in Community — only the MO's own Extra Unit Cost field and a distinct WIP Overhead account (MFG-F03's mechanism only). No per-employee cost field found in this source (help text references it; the field itself is outside Community, not reviewed this round). Source/schema proof, not runtime proof.
 
 ### MFG-F05 — Negative-inventory / revaluation entries during an MO
 
@@ -64,3 +64,5 @@
 - **UNKNOWN**: Whether Odoo 19 truly dropped the automatic revaluation entry, or whether it still exists for some negative-inventory paths (e.g., non-automated valuation categories) and only changed for the automated/FIFO-Average path the blog source describes — `DOCUMENTATION/SOURCE/RUNTIME VERIFICATION REQUIRED`, not assumed either way. Criticality remains **C1 (provisional)** pending this resolution, per the Function Register's own caveat.
 
 > **ADDENDUM (2026-09-29, further search this round)**: official Odoo 19 documentation (`inventory_valuation/operations_valuation.html`) confirms a *general* negative-stock rule: when stock goes negative (e.g., a sale before its receipt is recorded), Odoo values the outbound move at the product's last known cost, and the resulting negative stock value is included in the **Stock Variation** account in the Accounting app. This corroborates the "no separate named revaluation entry, value flows through the ordinary financial-transaction-time posting" reading — but it describes the general/delivery-side case, not specifically the manufacturing-order consumption scenario the forum thread names (`WH/MO/XXX`). **Not upgraded to V2** — still short of directly confirming or denying the MO-specific entry. Source added to `19_PROVENANCE_REGISTER.md` (`EV-MFG-07`).
+
+> **ADDENDUM 2 — `SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, `EV-MFG-SRC-01`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`**: a separate Source/Dump Deep Research Worker (Boss's own local Claude Code session, read-only against `odoo-19.0.post20260921`) found negative-inventory consumption is valued at the latest-known cost with no stop, and found no code implementing a distinctly-named "Revaluation of …" journal entry for the manufacturing-consumption case — an absence finding (lower confidence than a positive one), consistent with, not proof of, the blog's claim. The same pass traced the incoming-move valuation priority order (manual adjustment → bill/invoice → MO cost → PO/landed cost → return move → standard cost) and flagged its own highest-priority residual: what happens when a vendor bill arrives after a stock move is already `done` (`R-M4`, C1) — not traced this round. **`GAP-MFG-01` remains Open/Conditional** — source/schema proof is not runtime proof, and custom/third-party extensions have not yet been manifest-reviewed. Full detail: `SRC_GAP-MFG-01_VALUATION_TIMING_SOURCE_CHECK_BUSINESS_SUMMARY.md`.
