@@ -13,6 +13,7 @@ Retrieved via `WebSearch` (search-engine-mediated; direct fetch blocked, same as
 | EV-BRP-05 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/subcontracting/subcontracting_basic.html` | Official documentation | BRP-F03 (Subcontracting Location = Internal Location, valuation non-impact rule — the pilot's key finding) |
 | EV-BRP-06 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/using_work_centers.html` | Official documentation | BRP-F04 (Work Center: Cost per hour, Allowed Employees) |
 | EV-BRP-07 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/basic_setup/mo_costs.html` (revisited, cross-referenced with Gx7's `EV-MFG-02`) | Official documentation | BRP-F05 (Routing Operations required on a work order; expected duration) |
+| EV-BRP-08 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/subcontracting.html` (revisited) + `https://www.erpgap.com/blog/odoo-19-stock-valuation-use-cases/` | **Mixed: official documentation + Odoo-partner blog** (search-result attribution blended the two this round; not separately re-confirmed against the bare official page alone) | BRP-F03 (`GAP-BRP-03` closure — subcontractor fee capture via vendor-bill posting, Finished Goods Valuation Account debit) |
 
 ## Clean-room boundary
 

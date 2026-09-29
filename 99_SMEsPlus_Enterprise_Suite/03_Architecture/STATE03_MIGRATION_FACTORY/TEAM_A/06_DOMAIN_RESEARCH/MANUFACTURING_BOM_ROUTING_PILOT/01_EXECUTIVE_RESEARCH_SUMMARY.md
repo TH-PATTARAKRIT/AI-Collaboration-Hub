@@ -4,7 +4,7 @@
 
 ## Material finding — a real financial-control surface: the Subcontracting Location's type
 
-The clearest, most consequential finding this round is `BRP-F03`: Odoo 19 keeps outsourced-production components inside your own inventory valuation by modeling the subcontractor's premises as an **Internal Location**, not an external/Customer-type one. This is a genuine configuration-dependent financial-control point — if a Subcontracting Location were ever set up as external, sending components to a subcontractor would incorrectly drop them from stock valuation, understating the balance sheet for the entire outsourced-production window. Criticality: **C1**.
+The clearest, most consequential finding this round is `BRP-F03`: Odoo 19 keeps outsourced-production components inside your own inventory valuation by modeling the subcontractor's premises as an **Internal Location**, not an external/Customer-type one. This is a genuine configuration-dependent financial-control point — if a Subcontracting Location were ever set up as external, sending components to a subcontractor would incorrectly drop them from stock valuation, understating the balance sheet for the entire outsourced-production window. Criticality: **C1**. The other half of this function — how the subcontractor's own fee is captured — closed the same day: the vendor bill for the subcontracting service, once posted, debits the Finished Goods Valuation Account, folding component cost + fee into one figure at vendor-bill time (consistent with, not a further self-confirmation of, the Boss-flagged valuation-timing Material Finding).
 
 ## Structural finding — BoM Type is the router, not a detail
 
