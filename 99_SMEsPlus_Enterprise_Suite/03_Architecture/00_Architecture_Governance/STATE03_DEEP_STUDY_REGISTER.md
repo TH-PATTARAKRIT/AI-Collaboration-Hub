@@ -1,7 +1,7 @@
 # STATE03 Deep Study Register
 
 Document ID: `STATE03-DEEP-STUDY-REGISTER`
-Version: 0.9
+Version: 0.10 (not "1.0" — this register is not complete; version numbering is sequential-edit tracking only)
 Date: 2026-09-29
 Project: SMEsPlus ENTERPRISE SUITE
 STATE: STATE03 — Architecture & Knowledge Acquisition Deep Study
@@ -224,7 +224,15 @@ Two previously-open, non-Boss-gated gaps closed this cycle without waiting: `GAP
 
 Research priority reorders to the product-core sequence Boss specified: (1) Shared Master Data, (2) Sales, (3) Purchase, (4) Inventory, (5) Accounting, (6) O2C/P2P cross-module reconciliation, (7) Manufacturing/other optional domains (last, resumes `M2` when reached).
 
-**`M3` = `SHARED_MASTER_DATA_PILOT` selected and research commenced** (Wave 1, priority #1) — Party/Contact, Product Template/Variant, UoM Category/Conversion, Access Rights/Groups (Role boundary). 4 functions drafted (`SMD-F01`–`F04`), 4 gaps opened (`GAP-SMD-01`–`04`, 1 flagged Targeted Validation — `GAP-SMD-02` feeds back into Gx8's own `RTG-F01`). **Scope-collision check performed and documented** (`SHARED_MASTER_DATA_PILOT/00_DOMAIN_INDEX.md` §Scope-collision check): `DOMAIN_01_ACCOUNTING_CORE` and `GROUP_01_SALES_INVENTORY_PURCHASE` are confirmed to be **separate, differently-authorized, pre-existing research tracks** (different sessions, different branches, live source/DB access this session does not have) — neither is resumed, restarted, or duplicated by this module. **Not added to any population total** until its own row-level reconciliation is complete.
+**`M3` = `SHARED_MASTER_DATA_PILOT` selected and research commenced** (Wave 1, priority #1) — Party/Contact, Product Template/Variant, UoM Category/Conversion, Access Rights/Groups (Role boundary). 4 functions drafted (`SMD-F01`–`F04`). **Scope-collision check performed and documented** (`SHARED_MASTER_DATA_PILOT/00_DOMAIN_INDEX.md` §Scope-collision check): `DOMAIN_01_ACCOUNTING_CORE` and `GROUP_01_SALES_INVENTORY_PURCHASE` are confirmed to be **separate, differently-authorized, pre-existing research tracks** (different sessions, different branches, live source/DB access this session does not have) — neither is resumed, restarted, or duplicated by this module. **Not added to any population total** until its own row-level reconciliation is complete. **Superseded by §3.5 below** — a deeper, same-day scope-collision read found direct overlap on 3 of these 4 functions.
+
+### 3.5 M3 checkpoint (corrected) + Sales/Purchase/Inventory/O2C delta intake (2026-09-29, same day, per Boss's "STATE03 M3 Shared Master Then Sales Delta Continuation")
+
+**Self-correction**: the §3.4 scope-collision check verified no colliding file existed on this session's own branch, but had not yet read `GROUP_01_SALES_INVENTORY_PURCHASE`'s actual content on its own branch (`claude/group-a-sales-inventory-purchase-dr002`, read-only via `git fetch`/`git show`, never checked out or merged). That branch's Phase 1 (`01_SHARED_MASTER_DEPENDENCY_MAP.md`) already covers `SMD-F01` (Party), `SMD-F02` (Product Template/Variant), and `SMD-F03` (UoM) at source-code+DB tier — strictly higher than this pilot's own WebSearch-documentation tier (V2). Those three are reclassified **Carry-forward**, not this session's own primary evidence (retained for traceability, not deleted). **Only `SMD-F04` (Access Rights/Groups) is confirmed genuinely new** — not present anywhere in that track's own 12-concept Phase 1 rollup. `GAP-SMD-02` and `GAP-SMD-03` closed **by reference** (not independently re-derived); a new disclosed tension (`GAP-SMD-05`, UoM "Category" terminology vs. actual no-`uom.category`-model schema) was found and left open, not resolved either way. Full detail: `SHARED_MASTER_DATA_PILOT/25_TEAM_A_DOMAIN_STATUS.md`.
+
+**Sales/Purchase/Inventory/O2C-P2P delta intake**: per Boss's §2 instruction, performed before touching Sales. Full detail and evidence-ID-level pointers: `STATE03_SALES_DELTA_INTAKE.md`. Finding: **Sales, Purchase, Inventory, and O2C/P2P (4 of Boss's 6 core-module priorities) are fully Carry-forward** from that same track's Phases 2–5, at source-code+DB tier (several test-confirmed) — **0 new Function-IDs added** to this register for any of them. Accounting (priority #5) is separately covered by `DOMAIN_01_ACCOUNTING_CORE`, its own track/gate, not duplicated or re-checked in line-level detail this round.
+
+**Net effect on this register's own population**: only `SMD-F04` is a genuinely new Function-ID from this entire M3-then-Sales cycle. It is **not yet added to §2's main table or any population count** — pending its own row-level reconciliation pass, per the same discipline every prior module followed before being counted.
 
 ## 4. Cross-references
 
@@ -237,6 +245,7 @@ Research priority reorders to the product-core sequence Boss specified: (1) Shar
 - 9 Veto Council self-pass challenge (Preliminary/Internal, not Independent PASS): `00_PRE_PROMPT_9VETO_CHALLENGE_STATE03_DEEP_STUDY_MASTER_PROMPT.md`
 - Valuation-timing cross-Gx contradiction matrix (Material Finding — Independently Unverified): `STATE03_VALUATION_TIMING_CROSS_GX_CONTRADICTION_MATRIX.md`
 - CHATGPT_AUDIT independent re-audit package (`BGQ-03`): `STATE03_CHATGPT_AUDIT_PACKAGE_BGQ03.md`
+- Sales/Purchase/Inventory/O2C-P2P cross-workstream delta intake (Carry-forward finding): `STATE03_SALES_DELTA_INTAKE.md`
 
 ## 5. Authority boundary
 

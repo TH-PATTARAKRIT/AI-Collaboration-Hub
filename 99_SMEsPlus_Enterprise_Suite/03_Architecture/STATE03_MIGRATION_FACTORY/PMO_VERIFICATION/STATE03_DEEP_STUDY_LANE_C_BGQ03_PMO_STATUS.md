@@ -49,3 +49,11 @@ Per Boss's "STATE03 M1 Close Then Core Module Priority" instruction:
 - `M2` (`QUALITY_CONTROL_PILOT`) correctly marked `PAUSED/DEFERRED`, not discarded and not silently abandoned.
 - `M3` (`SHARED_MASTER_DATA_PILOT`) started per the new priority order (#1: Shared Master Data). PMO confirms the mandatory scope-collision check was performed and documented before starting: `DOMAIN_01_ACCOUNTING_CORE` and `GROUP_01_SALES_INVENTORY_PURCHASE` (two separate, pre-existing, differently-authorized research tracks — different sessions, branches, and access levels) are correctly identified as **not** to be resumed or duplicated by this session. No restart or duplicate framework/register/universe/denominator found in this batch.
 - No Formal Coverage, Gate PASS, or STATE04 authorization claimed. Still `HOLD — awaiting CHATGPT_AUDIT output` on `BGQ-03`.
+
+## Update (2026-09-29, later still) — M3 corrected checkpoint + Sales/Purchase/Inventory/O2C delta intake
+
+Per Boss's "STATE03 M3 Shared Master Then Sales Delta Continuation" instruction:
+
+- `M3` (`SHARED_MASTER_DATA_PILOT`) self-corrected same-day: read `GROUP_01_SALES_INVENTORY_PURCHASE`'s actual branch content (read-only, not merged) and found 3 of 4 `SMD` functions already covered at source-code+DB tier. PMO confirms this was handled transparently — reclassified Carry-forward, not deleted, not silently rewritten — and that only `SMD-F04` (Access Rights/Groups) is claimed as this session's own new contribution, correctly.
+- Sales/Purchase/Inventory/O2C-P2P delta intake performed before touching any of them (`STATE03_SALES_DELTA_INTAKE.md`). PMO confirms **0 new Function-IDs were added** for any of these 4 core-module priorities — all classified Carry-forward with evidence-ID pointers, no competing register created, no restart of the referenced track.
+- No Formal Coverage, Gate PASS, or STATE04/Functional-Design authorization claimed anywhere in this batch.

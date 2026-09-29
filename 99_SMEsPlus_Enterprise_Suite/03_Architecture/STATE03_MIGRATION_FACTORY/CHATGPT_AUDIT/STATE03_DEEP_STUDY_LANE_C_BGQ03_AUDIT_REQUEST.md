@@ -14,6 +14,8 @@ TEAM_A completed documentation-tier research across 10 Backbone Roadmap Lane C s
 
 **Update (2026-09-29, later still)** — per Boss's "STATE03 M1 Close Then Core Module Priority" instruction: `M1` reached a slice checkpoint (not Manufacturing-complete — `GAP-BRP-09`/`GAP-MFG-01` remain Open/Conditional); `M2` is now `PAUSED/DEFERRED`; the new `SHARED_MASTER_DATA_PILOT` (`M3`) is the active priority module. Please also independently check `M3`'s own scope-collision analysis (`SHARED_MASTER_DATA_PILOT/00_DOMAIN_INDEX.md` §Scope-collision check) — specifically, that `DOMAIN_01_ACCOUNTING_CORE` and `GROUP_01_SALES_INVENTORY_PURCHASE` were correctly identified as separate, pre-existing, differently-authorized tracks and not resumed or duplicated.
 
+**Update (2026-09-29, later still)** — per Boss's "STATE03 M3 Shared Master Then Sales Delta Continuation" instruction: please also independently check (1) `M3`'s own same-day self-correction (`SHARED_MASTER_DATA_PILOT/25_TEAM_A_DOMAIN_STATUS.md`) — 3 of 4 `SMD` functions reclassified Carry-forward from `GROUP_01_SALES_INVENTORY_PURCHASE`'s actual (read-only-fetched) branch content, only `SMD-F04` claimed as new; and (2) `STATE03_SALES_DELTA_INTAKE.md` — the finding that Sales/Purchase/Inventory/O2C-P2P are all Carry-forward, 0 new Function-IDs added, with evidence-ID-level pointers into that other track's own files. Please specifically verify no competing Sales/Purchase/Inventory register was created and that the Carry-forward classification is not being used to silently avoid necessary independent research.
+
 ## Where to start
 
 Read, in order:
