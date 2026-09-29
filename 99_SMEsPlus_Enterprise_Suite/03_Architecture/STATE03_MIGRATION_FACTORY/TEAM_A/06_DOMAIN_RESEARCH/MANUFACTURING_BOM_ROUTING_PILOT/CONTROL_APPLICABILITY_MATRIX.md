@@ -11,4 +11,4 @@
 | Tenant / Company / Data Scope | **Unknown** | Not evidenced this round. |
 | Audit / Event | **Partially evidenced** | Work Order start/completion are documented as trackable events; no broader audit-trail behavior evidenced. |
 | Automation / Integration | **Applicable** | Work Center/Routing cost computation feeding `MFG-F04` is a documented cross-function automation; BoM Type routing is itself a configuration-driven automation branch point. |
-| Cross-module effects | **Applicable** | This entire pilot is Manufacturing/MRP feeding Gx7's Inventory↔Accounting boundary — a direct extension of Lane C's own Backbone Roadmap concern, at the structural (not valuation-timing) layer. |
+| Cross-module effects | **Applicable** | This entire pilot is Manufacturing/MRP feeding Gx7's Inventory↔Accounting boundary — a direct extension of Lane C's own Backbone Roadmap concern, at the structural (not valuation-timing) layer. `BRP-F06`/`F07` additionally cross into Purchase (auto-generated purchase orders); `BRP-F09` cascades every other function's applicability down a BOM tree. |

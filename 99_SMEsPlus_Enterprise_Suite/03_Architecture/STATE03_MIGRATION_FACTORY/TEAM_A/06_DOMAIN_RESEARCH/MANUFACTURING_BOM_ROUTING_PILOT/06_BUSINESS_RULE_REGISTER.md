@@ -70,3 +70,53 @@
 - **EVENT**: "Work Order started/completed" per Operation — time-tracking events feeding cost, distinct from Gx7's stock-valuation posting events.
 - **RISK**: An under- or over-estimated expected duration misprices the operations-cost component of every MO using that routing, compounding with any `BRP-F04` rate error.
 - **UNKNOWN**: Behavior of a BoM with Work Orders *disabled* (does routing/operations simply not exist, or is there a simpler single-step cost model?) and whether actual-vs-expected duration variance is tracked/reported — both `SOURCE/RUNTIME VERIFICATION REQUIRED`, non-blocking.
+
+### BRP-F06 — Reordering Rules (min/max automatic replenishment)
+
+- **WHAT**: A Reordering Rule keeps a product's forecasted stock above a minimum threshold without exceeding a maximum, by specifying min/max quantities; when set to automatic, Odoo generates a new supply order (purchase or manufacturing) itself, when set to manual, Odoo instead suggests the order on a replenishment report for a person to confirm.
+- **WHY**: Immediate, ongoing replenishment needs a rule-based trigger rather than someone watching stock levels manually.
+- **BUSINESS RULE**: Automatic vs. manual is a per-rule setting, not a global one — different products can use different modes.
+- **STATE**: Forecasted stock crosses below minimum → (automatic: order generated immediately) or (manual: order surfaced on the replenishment report, awaiting confirmation).
+- **DATA CONCEPT**: The rule is a per-product(-location) record — min/max is not a product-master-level field, it is scoped to where replenishment applies.
+- **DEPENDENCY**: Directly conflicts with `BRP-F07` (Master Production Schedule) if both are applied to the same product — see BRP-F07's own BUSINESS RULE.
+- **EVENT**: "Reordering rule triggered" → supply-order creation or suggestion, not itself a financial posting — the resulting document's own posting timing (already characterized elsewhere in this Deep Study, e.g. Gx1's `GRV` functions for the resulting purchase) applies from there.
+- **RISK**: A misconfigured min/max either starves operations (too low) or ties up working capital in excess stock (too high) — a business-tuning risk, not a structural one.
+- **UNKNOWN**: Whether automatic mode has any approval/authorization gate before order creation, or is fully unattended — `SOURCE/RUNTIME VERIFICATION REQUIRED`, non-blocking.
+
+### BRP-F07 — Master Production Schedule (long-term manual demand-driven planning)
+
+- **WHAT**: The MPS plans longer-term replenishment against a manually-adjustable demand forecast, intended for products/components with long lead times or seasonal variability — distinct from the immediate, threshold-driven mechanics of `BRP-F06`.
+- **WHY**: Some supply decisions need to be made well ahead of an actual stock shortfall (long lead-time components, seasonal demand), which a simple min/max threshold cannot anticipate.
+- **BUSINESS RULE**: **Explicit incompatibility with `BRP-F06`** — the documentation states Reordering Rules should not be applied to products already on the MPS, because doing so creates inaccurate forecasts and unnecessary replenishment orders. A product uses one mechanism or the other, not both.
+- **STATE**: Forecast entered/adjusted manually → MPS displays planned vs. actual → replenishment is driven by the plan, not an automatic threshold-cross event.
+- **DATA CONCEPT**: A planning/forecast record layered over a product, not a transactional document itself.
+- **CONTROL**: Manual by nature — the documentation frames MPS as relying on human-adjusted forecasts, not automation.
+- **DEPENDENCY**: Mutually exclusive with `BRP-F06` per product; otherwise independent of this pilot's other functions.
+- **EVENT**: No automatic event — MPS is a display/planning surface, not itself a trigger.
+- **RISK**: Low direct financial/stock risk (no automatic action), but applying it to the wrong product class (short lead-time, stable demand) wastes the planning effort `BRP-F06` would have handled automatically.
+- **UNKNOWN**: Whether MPS forecasts feed any other automated process besides guiding a human's own manual order placement — `SOURCE/RUNTIME VERIFICATION REQUIRED`, non-blocking (not C1).
+
+### BRP-F08 — By-Products (secondary output tracked via BOM)
+
+- **WHAT**: A BoM can declare one or more By-Products — additional output products created alongside the primary finished good — once the By-Products setting is enabled; each by-product entry specifies a quantity and, optionally, which routing Operation produces it.
+- **WHY**: Some production processes genuinely yield more than one usable output (e.g., a cutting process yielding both a primary piece and a usable offcut); the system needs to track and value both, not just the primary good.
+- **BUSINESS RULE**: By-Products requires an explicit feature toggle (Manufacturing → Configuration → Settings) before the By-products tab becomes available on a BoM — same feature-gating pattern as Subcontracting (`BRP-F03`) and Work Orders (`BRP-F05`).
+- **STATE**: MO confirmed/completed → primary finished good produced → declared by-product quantities also enter stock, at the Operation named (if any).
+- **DATA CONCEPT**: A by-product is a distinct product record with its own stock/valuation identity — it is not a scrap or waste record, it is trackable inventory.
+- **DEPENDENCY**: Directly interacts with the overall MO cost figure (`MFG-F04`, Gx7) — if total production cost must now be allocated across primary good *and* by-product(s), this changes what "the" cost of the primary good means.
+- **EVENT**: "By-product produced" — a stock-entry event alongside the primary good's own completion event.
+- **RISK**: **Material, financial-control-adjacent** — how cost is allocated across primary output and by-product(s) directly affects the recorded unit cost of the main product; an unevidenced allocation method here is exactly the kind of "documented as configured, not confirmed as enforced" gap this Deep Study exists to surface.
+- **UNKNOWN**: The precise cost-allocation method between primary product and by-product(s) (proportional value, a fixed by-product valuation with the remainder to the primary good, or something else) — not evidenced this round; **`TARGETED VALIDATION NEEDED`**.
+
+### BRP-F09 — Multi-level BOM (nested sub-assemblies)
+
+- **WHAT**: A BoM's component can itself be a manufactured product with its own BoM (a sub-assembly/semifinished product); Odoo resolves this recursively — confirming a manufacturing order for the top-level product can generate manufacturing or purchase orders for every sub-assembly down the chain.
+- **WHY**: Real products are frequently built from sub-assemblies that are themselves built (not just purchased), and the system needs to plan/cost/track that whole chain, not just one level.
+- **BUSINESS RULE**: Multilevel BoMs are recommended specifically when a sub-assembly is reused across multiple finished products (build the shared sub-assembly's BoM once, reference it from many parents), rather than duplicating the sub-assembly's structure inside every parent BoM.
+- **STATE**: Top-level MO confirmed → system resolves the BOM tree → generates the necessary downstream supply documents (further MOs for manufactured sub-components, purchase orders for purchased ones) at each level.
+- **DATA CONCEPT**: A recursive parent-child structure — a BoM's component list can itself point to another BoM, not just to a "flat" purchasable/stockable item.
+- **CONTROL**: A BOM Overview / hierarchy view is documented as letting a user expand or collapse sub-assembly levels for inspection.
+- **DEPENDENCY**: **Compounds every other function in this pilot at each level** — `BRP-F01`'s type routing, `BRP-F03`'s subcontracting rule, `BRP-F04`/`F05`'s cost/routing inputs, and `BRP-F08`'s by-product allocation can each apply independently at every level of the tree, not just at the top.
+- **EVENT**: "Top-level MO confirmed" → cascading document-generation events down the BOM tree.
+- **RISK**: Compounding — an error at any single level (wrong BOM type, misconfigured work center, unevidenced by-product allocation) propagates upward into every product that consumes that sub-assembly, not just the immediate parent.
+- **UNKNOWN**: Whether cost changes at a lower level automatically re-cost already-completed higher-level MOs, or only affect future ones — not evidenced this round; `SOURCE/RUNTIME VERIFICATION REQUIRED`.

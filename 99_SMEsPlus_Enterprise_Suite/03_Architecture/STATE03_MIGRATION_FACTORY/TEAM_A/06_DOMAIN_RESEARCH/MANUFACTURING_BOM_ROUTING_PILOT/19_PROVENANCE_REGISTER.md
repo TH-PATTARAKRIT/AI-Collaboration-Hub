@@ -14,6 +14,10 @@ Retrieved via `WebSearch` (search-engine-mediated; direct fetch blocked, same as
 | EV-BRP-06 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/using_work_centers.html` | Official documentation | BRP-F04 (Work Center: Cost per hour, Allowed Employees) |
 | EV-BRP-07 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/basic_setup/mo_costs.html` (revisited, cross-referenced with Gx7's `EV-MFG-02`) | Official documentation | BRP-F05 (Routing Operations required on a work order; expected duration) |
 | EV-BRP-08 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/subcontracting.html` (revisited) + `https://www.erpgap.com/blog/odoo-19-stock-valuation-use-cases/` | **Mixed: official documentation + Odoo-partner blog** (search-result attribution blended the two this round; not separately re-confirmed against the bare official page alone) | BRP-F03 (`GAP-BRP-03` closure — subcontractor fee capture via vendor-bill posting, Finished Goods Valuation Account debit) |
+| EV-BRP-09 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/inventory/warehouses_storage/replenishment/reordering_rules.html` | Official documentation | BRP-F06 (min/max, automatic vs. manual replenishment) |
+| EV-BRP-10 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/workflows/use_mps.html` | Official documentation | BRP-F07 (MPS scope, explicit incompatibility with Reordering Rules) |
+| EV-BRP-11 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/workflows/byproducts.html` | Official documentation | BRP-F08 (By-Products feature toggle, BOM tab, Produced in Operation field) |
+| EV-BRP-12 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/sub_assemblies.html` | Official documentation | BRP-F09 (multilevel BOM, recursive resolution, BOM Overview hierarchy) |
 
 ## Clean-room boundary
 

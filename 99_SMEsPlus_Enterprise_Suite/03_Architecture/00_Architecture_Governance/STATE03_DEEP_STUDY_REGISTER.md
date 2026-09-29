@@ -1,7 +1,7 @@
 # STATE03 Deep Study Register
 
 Document ID: `STATE03-DEEP-STUDY-REGISTER`
-Version: 0.6
+Version: 0.7
 Date: 2026-09-29
 Project: SMEsPlus ENTERPRISE SUITE
 STATE: STATE03 — Architecture & Knowledge Acquisition Deep Study
@@ -28,12 +28,12 @@ The earlier §2 correction note (46/45) was, per Boss's own ruling, "ambiguous a
 
 **Summary counts** (required to be reported separately, per §B2):
 
-1. **Raw source rows**: 51 (every row in every pilot's own `04_FUNCTION_REGISTER.md`, counted directly from source, not from this master register)
-2. **Unique applicable Function IDs**: 50
+1. **Raw source rows**: 55 (every row in every pilot's own `04_FUNCTION_REGISTER.md`, counted directly from source, not from this master register) — was 51 as of 2026-09-29 morning; `M1` grew from 5 to 9 functions (`BRP-F06`–`F09` added, same-day follow-on pass)
+2. **Unique applicable Function IDs**: 54
 3. **Overlap/duplicate rows**: 0 (no Function ID appears in more than one pilot's `04_FUNCTION_REGISTER.md`, and no ID appears twice within one pilot's own register)
 4. **Excluded rows and rationale**: 1 — `RCN-F04` (Bank Reconciliation), classified `C4 (Not Applicable)` in both `RECONCILIATION_PROVENANCE_PILOT/04_FUNCTION_REGISTER.md` and this master register; it is a terminology/scope note (Odoo has no "Bank Reconciliation" module distinct from its Accounting app's own reconciliation tooling), not a researched Function — excluded from the applicable-population count, retained in the raw count for full traceability.
 
-**Row-level disposition table** (all 51 raw rows):
+**Row-level disposition table** (all 55 raw rows):
 
 | # | Source row / pilot | Function ID | Module / group | Disposition | Reason | Evidence pointer |
 |---|---|---|---|---|---|---|
@@ -88,11 +88,15 @@ The earlier §2 correction note (46/45) was, per Boss's own ruling, "ambiguous a
 | 49 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F03` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 3; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
 | 50 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F04` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 4; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
 | 51 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F05` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 5; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
+| 52 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F06` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 6; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
+| 53 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F07` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 7; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
+| 54 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F08` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 8; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
+| 55 | `MANUFACTURING_BOM_ROUTING_PILOT` | `BRP-F09` | M1 | **unique** | 1:1 match between pilot's own 04_FUNCTION_REGISTER.md and master STATE03_DEEP_STUDY_REGISTER.md; no other pilot registers this ID | `MANUFACTURING_BOM_ROUTING_PILOT/04_FUNCTION_REGISTER.md` row 9; `STATE03_DEEP_STUDY_REGISTER.md` §2 row (Gx/Group=M1) |
 
 
 **Method**: each row's Function ID was independently counted directly from the named pilot's own `04_FUNCTION_REGISTER.md` (the primary source), then cross-checked against this master register's §2 table below for a 1:1 match. No row was asserted from memory or from a prior chat summary.
 
-**Status**: this reconciliation is now `COMPLETE` for the 51 rows/50-applicable population as it stands on 2026-09-29. It is not a frozen denominator — `BGQ-05` (whether Lane C is "the full authorized Gx population") remains open, and further modules (`M2`, `M3`, ...) will each add their own rows here, each independently reconciled the same way before being counted into any total.
+**Status**: this reconciliation is now `COMPLETE` for the 55 rows/54-applicable population as it stands on 2026-09-29 (updated same day: `M1` grew from 5 to 9 functions in a same-day follow-on pass — `BRP-F06`–`F09` added). It is not a frozen denominator — `BGQ-05` (whether Lane C is "the full authorized Gx population") remains open, and further modules (`M2`, `M3`, ...) will each add their own rows here, each independently reconciled the same way before being counted into any total. **This entire reconciliation remains `CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION`** per Boss's ruling — see `STATE03_CORRECTIVE_CHECKPOINT_RESPONSE.md`.
 
 
 | Gx | Function ID | Function | Criticality | Target V | Actual V | Evidence tier | Gap status | Research status | Audit status | PMO status | Gate status | Owner | Evidence path | Last Material Delta |
@@ -148,8 +152,12 @@ The earlier §2 correction note (46/45) was, per Boss's own ruling, "ambiguous a
 | M1 | BRP-F03 | Subcontracting BOM | **C1** | V5/floor V4 | V2 | Documentation | `GAP-BRP-03` resolved same day — fee captured via vendor-bill posting | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: subcontracting-location valuation non-impact rule (key finding) + fee-capture mechanism, both resolved |
 | M1 | BRP-F04 | Work Center configuration | C2 | V4/floor V3 | V2 | Documentation | `GAP-BRP-04` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
 | M1 | BRP-F05 | Routing Operations / Work Orders | C2 | V4/floor V3 | V2 | Documentation | `GAP-BRP-05` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | — |
+| M1 | BRP-F06 | Reordering Rules | C2 | V4/floor V3 | V2 | Documentation | `GAP-BRP-07` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: added, follow-on pass |
+| M1 | BRP-F07 | Master Production Schedule | C3 | V4/floor V3 | V2 | Documentation | `GAP-BRP-08` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: mutually exclusive with BRP-F06 per product — genuine business-rule contradiction found |
+| M1 | BRP-F08 | By-Products | **C1** | V5/floor V4 | V2 | Documentation | `GAP-BRP-09` (priority — cost-allocation method open) | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: second open C1 half in this pilot, same shape as BRP-F03's original gap |
+| M1 | BRP-F09 | Multi-level BOM | C2 | V4/floor V3 | V2 | Documentation | `GAP-BRP-10` | Complete | Not started | Not started | Not started | Claude Code (Preparer) | same | 2026-09-29: confirms every other M1 function compounds recursively at each BOM level |
 
-**Population note**: `M1` (not `Gx`) denotes the first Next-Prompt expansion module (Manufacturing/MRP, Wave 5) — deliberately distinct notation from Lane C's `Gx1`–`Gx10`, per the naming-discipline in `STATE03_NEXT_PROMPT_FIRST_CHECKPOINT.md` §3. Running total: **51 registered Function IDs (50 applicable, excluding `RCN-F04`)** — 46/45 from Lane C plus 5 from `M1`.
+**Population note**: `M1` (not `Gx`) denotes the first Next-Prompt expansion module (Manufacturing/MRP, Wave 5) — deliberately distinct notation from Lane C's `Gx1`–`Gx10`, per the naming-discipline in `STATE03_NEXT_PROMPT_FIRST_CHECKPOINT.md` §3. Running total: **55 registered Function IDs (54 applicable, excluding `RCN-F04`)** — 46/45 from Lane C plus 9 from `M1` (5 original + 4 same-day follow-on: `BRP-F06` Reordering Rules, `BRP-F07` Master Production Schedule, `BRP-F08` By-Products, `BRP-F09` Multi-level BOM).
 
 ## 3. Module Function Universe status
 

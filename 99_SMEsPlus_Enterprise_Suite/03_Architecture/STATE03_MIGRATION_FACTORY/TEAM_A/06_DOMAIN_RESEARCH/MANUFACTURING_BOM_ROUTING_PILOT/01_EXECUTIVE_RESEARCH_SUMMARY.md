@@ -16,9 +16,13 @@ The clearest, most consequential finding this round is `BRP-F03`: Odoo 19 keeps 
 
 `BRP-F04` (Work Center Cost per hour) and `BRP-F05` (Routing Operations, expected duration) are the two inputs that combine into the operations-cost component Gx7's `MFG-F04` already treats as a black-box input ("component cost + operations cost, per BOM"). This pilot opens that box: operations cost = Σ(Work Center Cost per hour × Operation expected duration) — not independently confirmed against Odoo's actual computation formula, recorded as `SOURCE/RUNTIME VERIFICATION REQUIRED`.
 
+## Follow-on pass (2026-09-29, same day): Reordering Rules, MPS, By-Products, Multi-level BOM
+
+Per Boss's instruction to continue this module automatically, 4 further functions were added: `BRP-F06` (Reordering Rules) and `BRP-F07` (Master Production Schedule) — found to be **explicitly mutually exclusive per product**, a genuine business-rule contradiction the documentation itself warns against combining; `BRP-F08` (By-Products) — a second C1 finding, structurally identical in shape to `BRP-F03`'s open half: a real value-allocation question (this time between primary and secondary output) not yet evidenced; `BRP-F09` (Multi-level BOM) — confirms recursive resolution and flags that every other function in this pilot compounds at each level of a nested structure.
+
 ## Scope discipline
 
-5 functions researched (`BRP-F01`–`F05`), all at documentation-tier (V2), 0 at V0/V1 this round — a deliberately proportional first pass rather than an exhaustive MRP/BOM catalog. Not researched this round, explicitly out of scope: Master Production Schedule / reordering rules, byproducts, quality-checkpoint integration, multi-level BOM explosion mechanics beyond what BRP-F01 already covers. These remain candidates for a follow-on pass, not silently declared complete.
+9 functions researched (`BRP-F01`–`F09`), all at documentation-tier (V2), 0 at V0/V1. Not researched this round, explicitly out of scope: quality-checkpoint integration with manufacturing, dropshipping-manufacturing interaction. These remain candidates for a further follow-on pass, not silently declared complete.
 
 ## Status
 

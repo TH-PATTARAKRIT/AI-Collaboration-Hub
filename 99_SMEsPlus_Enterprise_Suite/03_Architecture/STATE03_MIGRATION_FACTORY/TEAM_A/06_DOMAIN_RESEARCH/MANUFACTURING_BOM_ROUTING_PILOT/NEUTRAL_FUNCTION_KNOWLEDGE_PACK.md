@@ -56,6 +56,41 @@ Per Master Prompt §10: this is the sanitized companion to `06_BUSINESS_RULE_REG
 - **Risk**: An inaccurate expected duration misprices every build using that sequence, compounding with any resource-rate error.
 - **Unknown**: Behavior when step sequencing is not used at all; whether actual-versus-expected duration is tracked.
 
+### BRP-F06 — Threshold-driven replenishment
+
+- **Business purpose**: Keep forecasted stock within a set band without a person watching levels manually.
+- **Business rule**: A minimum/maximum band is defined per product; when set to automatic, crossing the minimum creates a new supply document itself; when set to manual, it is only suggested for a person to confirm.
+- **Neutral state**: Stock forecast crosses minimum → order generated or suggested.
+- **Dependency**: Mutually exclusive with BRP-F07 on the same product.
+- **Risk**: Misconfigured thresholds either starve operations or tie up capital in excess stock.
+- **Unknown**: Whether automatic generation carries any approval gate.
+
+### BRP-F07 — Long-term demand-driven planning
+
+- **Business purpose**: Plan supply well ahead of an actual shortfall for products with long lead times or variable demand, where a simple threshold cannot anticipate the need.
+- **Business rule**: Relies on a manually adjusted forecast rather than automatic triggers; must not be combined with BRP-F06 on the same product.
+- **Neutral state**: Forecast entered/adjusted → plan guides (but does not itself automatically execute) supply decisions.
+- **Risk**: Applying it to the wrong product class wastes planning effort that automatic replenishment would have handled.
+- **Unknown**: Whether the forecast feeds any other automated process.
+
+### BRP-F08 — Secondary production output
+
+- **Business purpose**: Track and value output produced alongside the primary good from the same production process.
+- **Business rule**: A secondary output is declared, trackable inventory with its own stock/valuation identity — not a disposal or waste record.
+- **Neutral state**: Production completes → primary good and secondary output both enter stock.
+- **Dependency**: Interacts with overall production-cost computation — cost must be allocated across more than one output.
+- **Risk**: **Material** — the allocation method between primary and secondary output directly affects the recorded unit cost of the main product.
+- **Unknown**: The precise allocation method between primary and secondary output.
+
+### BRP-F09 — Nested production structures
+
+- **Business purpose**: Support products built from components that are themselves built (not simply purchased), reflecting real multi-stage production.
+- **Business rule**: A shared sub-assembly's structure is defined once and referenced by every parent that uses it, rather than duplicated; confirming the top-level build automatically resolves and generates the necessary documents down the whole chain.
+- **Neutral state**: Top-level build confirmed → system resolves the structure recursively → downstream production/procurement documents generated at each level.
+- **Dependency**: Every other function in this pack can apply independently at each level of the structure, compounding.
+- **Risk**: An error at any single level propagates upward into every product that depends on it.
+- **Unknown**: Whether a cost change at a lower level re-costs already-completed higher-level production, or only future production.
+
 ## Clean-Room compliance statement
 
 No source code, method name, table/field name, ORM relationship, physical schema, UI element, or menu path appears above. No SMEsPlus target design, schema, workflow, or architecture decision is implied or authorized by this pack. This pack is Odoo-reference learning input only, per the Master Prompt's Clean-Room boundary (§10), and is not itself eligible for STATE04 use until STATE04 is separately authorized.
