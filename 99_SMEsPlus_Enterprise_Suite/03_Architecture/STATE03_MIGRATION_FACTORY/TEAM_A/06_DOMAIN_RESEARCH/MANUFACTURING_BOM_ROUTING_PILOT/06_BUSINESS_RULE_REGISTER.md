@@ -15,6 +15,8 @@
 - **RISK**: Choosing the wrong type is a structural error, not a cost-detail error — e.g., modeling a bundled-for-sale product as "Manufacture this product" would create unnecessary Manufacturing Orders and WIP postings for something that should just pass component value through directly.
 - **UNKNOWN**: Whether the BoM Type can be changed after the BoM is already in use by open Manufacturing/Sales Orders, or whether it locks — `SOURCE/RUNTIME VERIFICATION REQUIRED`.
 
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, Handoff `D-08`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`.** No lock/constraint found; only a UI warning on editing an in-use Kit's structure. Test-confirmed: switching a BoM to Kit after a delivery was already validated causes the *next* Validate to explode into components. BoM Type is not among the fields flagging an MO as outdated. Effect on an already-Confirmed MO not evidenced. **Not a closure.**
+
 ### BRP-F02 — Kit BOM (components-only, no Manufacturing Order)
 
 - **WHAT**: A Kit BoM lists components under the Components tab; no Operations/routing configuration is needed or expected, since a Kit does not go through a Manufacturing Order — it is a sales-side bundling of components sold together as one product line.
@@ -27,6 +29,8 @@
 - **EVENT**: "Kit delivered" → component-level stock moves only; no kit-level financial posting.
 - **RISK**: Low for valuation (value simply passes through); the real risk is process — treating a Kit as manufactured would introduce unneeded MO/WIP machinery for something that structurally has none.
 - **UNKNOWN**: Whether a Kit can *also* have manufacturing operations configured (a hybrid case, for e.g. light assembly before shipping) and if so how valuation then behaves — the documentation this round distinguishes "sell-only" Kits but does not fully characterize a manufactured-Kit hybrid — `SOURCE/RUNTIME VERIFICATION REQUIRED`.
+
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, Handoff `D-09`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`.** No constraint bars Operations on a Kit BoM. Sold/delivered directly, a Kit still just explodes into components (Operations unused, test-confirmed). Used as a component of a manufactured parent, the Kit's own Operations become Work Orders of the parent MO (test-confirmed). The Kit product itself always carries zero stock value regardless. **Not a closure.**
 
 ### BRP-F03 — Subcontracting BOM (outsourced production)
 
@@ -58,6 +62,8 @@
 - **RISK**: Misconfigured or stale Cost per hour silently misvalues every future MO through that Work Center — a slow-to-notice, cumulative risk rather than a single transactional error.
 - **UNKNOWN**: Whether Cost per hour supports time-based variation (e.g., shift differentials, overtime rates) or is a single flat figure — not evidenced this round; `SOURCE/RUNTIME VERIFICATION REQUIRED`, non-blocking (not C1 on its own).
 
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, Handoff `D-04`, shared with Gx7's `GAP-MFG-04`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`.** Community source: a single flat Cost-per-hour, no shift/OT variant; the rate is snapshotted onto the Work Order at completion (test-confirmed no retroactive re-costing if the rate later changes). Schema-only cross-check confirms an employee-cost-per-Work-Order table exists in the actual test database with no matching Community source — a non-Community concern. **Not a closure.**
+
 ### BRP-F05 — Routing Operations / Work Orders (per-BOM operation steps)
 
 - **WHAT**: Routing is defined through **Operations** entries directly on a BoM (not a separate "Routing" master record in the documentation surfaced this round) — each Operation names a step, the Work Center where it happens, and an expected duration in minutes.
@@ -70,6 +76,8 @@
 - **EVENT**: "Work Order started/completed" per Operation — time-tracking events feeding cost, distinct from Gx7's stock-valuation posting events.
 - **RISK**: An under- or over-estimated expected duration misprices the operations-cost component of every MO using that routing, compounding with any `BRP-F04` rate error.
 - **UNKNOWN**: Behavior of a BoM with Work Orders *disabled* (does routing/operations simply not exist, or is there a simpler single-step cost model?) and whether actual-vs-expected duration variance is tracked/reported — both `SOURCE/RUNTIME VERIFICATION REQUIRED`, non-blocking.
+
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, Handoff `D-10`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`.** A BoM with no Operations has no Work Order and no labor-cost component at all — absent, not a simplified single-step model. `duration`/`duration_expected`/`duration_percent` fields exist on the Work Order (schema-confirmed) but no journal-entry-level posting of the variance itself was found (absence finding, not proof of non-existence). An MO closed with zero logged time falls back to the expected duration. **Not a closure.**
 
 ### BRP-F06 — Reordering Rules (min/max automatic replenishment)
 
@@ -85,6 +93,8 @@
 - **RISK**: A misconfigured min/max either starves operations (too low) or ties up working capital in excess stock (too high) — a business-tuning risk, not a structural one.
 - **UNKNOWN**: Whether automatic mode has any approval/authorization gate before order creation, or is fully unattended — `SOURCE/RUNTIME VERIFICATION REQUIRED`, non-blocking.
 
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, Handoff `D-11`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`.** Automatic mode runs on a daily scheduled action under the system user, no approval gate before the document is created — but the document created is itself a **draft** (RFQ), not auto-confirmed. A failure surfaces as an activity/notification, not a hard stop. **Conditional specifically on `purchase_request` (OCA)** — confirmed installed in the test database, inherits `stock.warehouse.orderpoint`/`stock.rule`, and its effect on the created document's status has not yet been traced. **Not a closure.**
+
 ### BRP-F07 — Master Production Schedule (long-term manual demand-driven planning)
 
 > **CLASSIFICATION (per Boss's "STATE03 Population Lineage Correction & Autonomous Continuation" §3, 2026-09-29): `Configuration-scoped reference constraint — Odoo 19.0, Manufacturing app, MPS/Planning feature enabled. Not a universal business rule; not a target-design decision.`** The `BRP-F06`/`BRP-F07` mutual-exclusivity warning below is Odoo's own documented guidance for its own feature pair — it is disclosed as reference input for SMEsPlus's own future replenishment/planning design, not adopted or assumed as SMEsPlus's rule.
@@ -99,6 +109,8 @@
 - **EVENT**: No automatic event — MPS is a display/planning surface, not itself a trigger.
 - **RISK**: Low direct financial/stock risk (no automatic action), but applying it to the wrong product class (short lead-time, stable demand) wastes the planning effort `BRP-F06` would have handled automatically.
 - **UNKNOWN**: Whether MPS forecasts feed any other automated process besides guiding a human's own manual order placement — `SOURCE/RUNTIME VERIFICATION REQUIRED`, non-blocking (not C1).
+
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, Handoff `D-12`) — scope boundary, not an answer.** MPS has **no module in Odoo 19 Community source** (an absence finding from direct code search); only a residual `mrp`/`stock_rule.py` hook recognizing an "MPS" origin string. The schema-only cross-check independently confirms MPS **is genuinely installed** in the actual `iTEST02` test database — this question cannot be answered from the Community source available to this research; it needs the actual installed MPS module's own source (Enterprise or otherwise), license-checked first. **Reclassified from non-blocking** — the feature is confirmed live in the real environment, not merely theoretical.
 
 ### BRP-F08 — By-Products (secondary output tracked via BOM)
 
@@ -118,6 +130,8 @@
 >
 > **Negative-case design (documentation-tier only, no runtime access)**: if this candidate default holds, the negative/edge case worth testing at AWT is — a BoM with a By-Product whose own market value **exceeds** the primary finished good's (e.g., a valuable co-product mislabeled as a "by-product" for BoM-configuration convenience): under a "zero-allocation-to-by-product" default, the primary good's unit cost would be inflated by the *entire* production cost while the more valuable by-product enters stock at zero or unset cost — a real, discoverable financial-misstatement risk if the by-product/co-product distinction is not made deliberately. This scenario is designed now, at documentation-tier, as a target for future AWT runtime confirmation (`BGQ-04`) — not executed, not claimed as observed.
 
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, `STATE03_SOURCE_DUMP_EVIDENCE_DELTA_HANDOFF.md` `D-01`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET` — materially refines and partially contradicts the candidate default above; this is NOT a closure.** Community source (`SRC+TEST`, Odoo's own bundled unit tests) confirms a per-By-Product-line, user-set **Cost Share (%)** field — not automatically computed from market value, quantity, or weight. At each production/backorder round: total production cost (materials actually consumed + Work Center time + Extra Unit Cost × qty produced) splits as By-Product = total × (%÷100) ÷ qty, primary good = total × (1 − Σ%) ÷ qty; **the shares are not required to sum to 100.** The earlier-reported "no allocation by default" (`EV-BRP-13`/`14`) is now understood as **the unwarned consequence of Cost Share left at 0%, not a hard system rule** — leaving it unset still produces the originally-hypothesized risk (primary good absorbs 100% of cost, By-Product enters at zero value), just as a configuration outcome rather than an unconditional default. Costing-method interactions confirmed by Odoo's own tests: FIFO/AVCO on both sides splits cleanly per the % rule with no value loss; a **Standard-costed By-Product alongside a FIFO-costed primary good** can post an inconsistent total (the residual lands on the Production location's own account — inferred from posting rules, not directly test-observed); a **Standard-costed primary good ignores Cost Share entirely** (ordinary Standard-cost behavior). Landed Cost by design skips a By-Product whose % is 0 (with its own test). **Schema-only confirms `cost_share` exists on both the BoM By-Product line and the stock move as an unconstrained numeric column — no database-level CHECK enforces "≥0" or "Σ≤100"; both rules are application-layer only**, so a direct-SQL BoM import bypasses them. **Residual, not answered by this finding**: Unbuild reversal of an MO with a By-Product (the relevant Odoo test itself is commented out — no evidence either way), By-Product cost allocation under Subcontracting, post-close Cost Share edits, and Lot-valuated By-Products. **Migration implication**: every existing By-Product BoM line must carry an explicit Cost Share value on data load, or stock valuation misstates on the very first post-migration production run. Manifest/dependency review found no override of `_cal_price`/`_check_byproducts` in license-open custom/third-party modules; the OPL-1-licensed modules depending on `mrp`/`stock` could not be code-reviewed.
+
 ### BRP-F09 — Multi-level BOM (nested sub-assemblies)
 
 - **WHAT**: A BoM's component can itself be a manufactured product with its own BoM (a sub-assembly/semifinished product); Odoo resolves this recursively — confirming a manufacturing order for the top-level product can generate manufacturing or purchase orders for every sub-assembly down the chain.
@@ -130,3 +144,5 @@
 - **EVENT**: "Top-level MO confirmed" → cascading document-generation events down the BOM tree.
 - **RISK**: Compounding — an error at any single level (wrong BOM type, misconfigured work center, unevidenced by-product allocation) propagates upward into every product that consumes that sub-assembly, not just the immediate parent.
 - **UNKNOWN**: Whether cost changes at a lower level automatically re-cost already-completed higher-level MOs, or only affect future ones — not evidenced this round; `SOURCE/RUNTIME VERIFICATION REQUIRED`.
+
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, Handoff `D-13`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`.** A completed stock move's value is a stored figure (schema-confirmed: `stock_move.value` is a plain column, not computed live), not recalculated retroactively. Changing a Standard cost (not FIFO) posts a current-dated revaluation entry affecting on-hand value going forward, not past completed moves; Landed Cost can still add value onto an already-completed move; the "compute price from BoM" action uses the *current* standard price, not a historical one. Whether a vendor bill posted after the fact re-triggers `_set_value` on already-completed moves was not traced. **Not a closure.**

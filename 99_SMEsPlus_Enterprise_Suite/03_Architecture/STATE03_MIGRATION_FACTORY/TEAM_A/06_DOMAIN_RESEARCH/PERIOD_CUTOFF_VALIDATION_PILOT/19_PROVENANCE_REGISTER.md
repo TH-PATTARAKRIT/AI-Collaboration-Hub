@@ -10,6 +10,13 @@ Retrieved via `WebSearch` on **2026-09-28**; same egress constraint as all prior
 | EV-PCO-02 | `https://www.odoo.com/documentation/19.0/applications/finance/accounting/get_started/inventory_valuation.html` | **PCO-F03 (THE resolving finding — month-end Stock Closing, accrual entries, "no longer creates journal entries upon physical receipt/delivery")** |
 | EV-PCO-03 | `https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/inventory/inventory_valuation/cheat_sheet.html` | PCO-F03 (cross-referenced with Gx1 EV-GRV-04, Gx2 EV-SDV-05) |
 
+| EV-PCO-SRC-01 | Odoo 19.0.post20260921 Community source, read-only, `account`/`stock_account` modules + license-open overlay modules `account_lock_date_update`/`base_accounting_kit` (exact file+line in `STATE03_SOURCE_DUMP_EVIDENCE_DELTA_HANDOFF.md` `D-07`) | **Source-code-tier**, retrieved 2026-09-30 by Boss's own local Claude Code session, incorporated here by this session (never read directly by it) | `GAP-PCO-01` corroborating (not closing) evidence — lock-type composition, Hard Lock irreversibility, absence of DB-level enforcement |
+| EV-PCO-SRC-02 | Same source tree, `stock_account`/`account` Stock Closing + Accrued Orders wizard modules (exact file+line in `STATE03_SOURCE_DUMP_EVIDENCE_DELTA_HANDOFF.md` `D-06`) | **Source-code-tier**, same provenance as `EV-PCO-SRC-01` | `GAP-PCO-02` corroborating evidence — manual/cron trigger modes, Stock Closing vs. Accrued Orders/WIP distinction |
+
 ## Note on evidence convergence
 
 EV-PCO-02 is the same URL as Gx2's EV-SDV-04 (`.../accounting/get_started/inventory_valuation.html`). The Gx6 search surfaced a more complete synthesis of that same page's content than the Gx2 search did — this is a real instance of "researching the same evidence source twice can still yield Material Delta" (fuller synthesis, not new content) — recorded per Master Prompt discipline, not treated as circular.
+
+## Evidence-tier disclosure (source/dump round, 2026-09-30)
+
+`EV-PCO-SRC-01`/`02` are source-code-tier — strictly higher confidence than V1/V2 for what they directly evidence, but this session did not read the source itself (relayed via a separate local session's own Clean-Room-scoped work, consolidated in `STATE03_SOURCE_DUMP_EVIDENCE_DELTA_HANDOFF.md`) and the DB-schema cross-check found the actual test/pilot database extends beyond vanilla Community (~696 non-Community tables) — these findings describe Community-core-plus-two-reviewed-overlay-modules behavior, not necessarily the full behavior of any live/customized deployment. `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET` applies.

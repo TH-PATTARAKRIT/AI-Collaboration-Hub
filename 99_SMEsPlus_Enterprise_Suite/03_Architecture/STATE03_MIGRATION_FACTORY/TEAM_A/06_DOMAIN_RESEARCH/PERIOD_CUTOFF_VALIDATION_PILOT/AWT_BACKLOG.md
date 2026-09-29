@@ -18,12 +18,12 @@
 
 ### PCO-F01 — Lock Dates
 
-- **Hypothesis to verify**: A Hard Lock genuinely blocks entry creation/modification before its date, with no override found.
+- **Hypothesis to verify, refined 2026-09-30 (source-code tier, Handoff `D-07`)**: A Hard Lock genuinely blocks entry creation/modification before its date via a `UserError`, with no override found in source; a *new* entry dated inside a lock window is instead silently rolled forward to the first open day at create/post time (a second, distinct path from the hard block — both need runtime confirmation of exactly when each fires).
 - **Required environment**: Same, plus a Hard Lock date set in the past relative to a test entry.
-- **Runtime action**: Attempt to create/modify an entry dated before the Hard Lock.
-- **Expected observable result**: Blocked, with no visible override option.
-- **Evidence required**: UI/error behavior.
-- **Target V**: V5 (floor V4) | **Current V**: V2 | **Missing proof**: Confirmation of "no override," and what happens if a genuine correction is needed after Hard Lock.
+- **Runtime action**: Attempt to create/modify an entry dated before the Hard Lock; separately, attempt to create a fresh entry dated inside the lock window and observe whether it is blocked or silently date-shifted.
+- **Expected observable result**: Blocked, with no visible override option — or, for the second case, an unexpected date auto-shift the user did not request.
+- **Evidence required**: UI/error behavior for both paths.
+- **Target V**: V5 (floor V4) | **Current V**: V2 | **Missing proof**: Confirmation of "no override," which path fires when, and what happens if a genuine correction is needed after Hard Lock.
 
 ## Backlog status
 

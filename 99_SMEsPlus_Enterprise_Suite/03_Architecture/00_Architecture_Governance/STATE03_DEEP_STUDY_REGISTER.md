@@ -236,6 +236,18 @@ Research priority reorders to the product-core sequence Boss specified: (1) Shar
 
 **Net effect on this register's own population**: only `SMD-F04` is a genuinely new Function-ID from this entire M3-then-Sales cycle. It is **not yet added to §2's main table or any population count** — pending its own row-level reconciliation pass, per the same discipline every prior module followed before being counted.
 
+### 3.6 Source/Dump role-separation governance applied (2026-09-30) — round 2 reconciliation
+
+Boss issued a formal role-separation instruction (2026-09-30): the local Claude Code session on Boss's own Mac is a **Source/Dump Deep Research Worker** only (read-only source/manifest/schema-only-dump study; may propose findings; must not edit any canonical register, close any gap, or touch FDS/Target Design); this session remains the **STATE03 Integration/Architecture Knowledge Owner** (reconciles proposed findings into canonical registers, decides wording, never declares closure on source/schema evidence alone). Mandated status label for every individual source/dump finding: `SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION`, plus `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET` on every Community-core finding. Banned wording: "ปิด gap" (gap closed), "source-tier final," "Resolved (source-code tier)."
+
+**This session's own self-correction**: an earlier pass this same day had integrated `MANUFACTURING_VALUATION_PILOT`'s `GAP-MFG-02..05` using the now-banned "Resolved (source-code tier)" wording — corrected the same turn (commit `c79ec34d`) before this round began.
+
+**Round 2 (this update)**: the local worker delivered a consolidated `TEAM_A/04_EVIDENCE_PACKS/STATE03_SOURCE_DUMP_EVIDENCE_DELTA_HANDOFF.md` (already in the mandated format, unprompted by this session — the worker adopted the schema on its own initiative) covering: a manifest/provenance inventory of 158 unique custom/third-party modules (license-gated: 117 reviewable, 41 not); an override-risk pass against core Accounting/Inventory/MRP/lock-date/valuation models (no override of the specific methods this Deep Study's findings depend on was found in license-open modules; several OPL-1/unlicensed modules could not be reviewed); and 15 per-Function/Gap deltas (`D-01` through `D-13`, plus 2 cross-cutting items `D-14`/`D-15`) spanning `GAP-BRP-09`, `GAP-BRP-01/02/04/05/07/08/10`, `GAP-MFG-01..05`, and `GAP-PCO-01` (brought to its own natural checkpoint, per Boss's queued instruction). All reconciled into `MANUFACTURING_BOM_ROUTING_PILOT`, `MANUFACTURING_VALUATION_PILOT`, and `PERIOD_CUTOFF_VALIDATION_PILOT`'s own `06_BUSINESS_RULE_REGISTER.md`/`22_UNKNOWN_AND_GAPS.md`/`19_PROVENANCE_REGISTER.md`/`AWT_BACKLOG.md`/`25_TEAM_A_DOMAIN_STATUS.md`, and into `STATE03_VALUATION_TIMING_CROSS_GX_CONTRADICTION_MATRIX.md` §4.3 — **no gap declared closed**; the most material single finding (`GAP-BRP-09`) refines and partially contradicts, but does not close, the 2026-09-29 candidate default (a "Cost Share %" mechanism was found; the prior "no allocation by default" reading is now understood as the unwarned consequence of that field being left at 0%, not a hard rule).
+
+**Two items intentionally not resolved by this session, escalated instead**:
+1. `D-14`/`D-15` (schema-only cross-cutting controls; version/scope boundary observations not tied to an existing Gap-ID, e.g. a module version-number mismatch, a compatibility risk in `cr_effective_date_entries`) — recorded in place at each relevant pilot's cross-reference section rather than minted as new Gap-IDs this round, since the Handoff itself asks this session to decide whether/how to bind them; revisit if a future round needs them as first-class gaps.
+2. **`BGQ-06` (new, this round)** — the local worker flagged that one already-pushed evidence file (`STATE03_DB_SCHEMA_SOURCE_CROSSCHECK_EVIDENCE.md`, on `claude/local-odoo-source-research`) may contain DDL-like content (a ~337-table appendix, `account_move_line` CHECK-constraint text) exceeding the "no schema DDL" Clean-Room rule. This session has **not** altered that file or rewritten any branch history — both are irreversible/high-risk actions outside this session's own authority. Queued at `STATE03_BOSS_GATE_QUEUE.md` `BGQ-06` for Boss's decision.
+
 ## 4. Cross-references
 
 - Carry-forward/re-audit matrices: `TEAM_A/06_DOMAIN_RESEARCH/GOODS_RECEIPT_VALIDATION_PILOT/BASELINE_CARRY_FORWARD.md`, `TEAM_A/06_DOMAIN_RESEARCH/SALES_DELIVERY_VALIDATION_PILOT/BASELINE_CARRY_FORWARD.md`
@@ -248,6 +260,7 @@ Research priority reorders to the product-core sequence Boss specified: (1) Shar
 - Valuation-timing cross-Gx contradiction matrix (Material Finding — Independently Unverified): `STATE03_VALUATION_TIMING_CROSS_GX_CONTRADICTION_MATRIX.md`
 - CHATGPT_AUDIT independent re-audit package (`BGQ-03`): `STATE03_CHATGPT_AUDIT_PACKAGE_BGQ03.md`
 - Sales/Purchase/Inventory/O2C-P2P cross-workstream delta intake (Carry-forward finding): `STATE03_SALES_DELTA_INTAKE.md`
+- Consolidated Source/Dump Deep Research Worker handoff (2026-09-30, round 1): `TEAM_A/04_EVIDENCE_PACKS/STATE03_SOURCE_DUMP_EVIDENCE_DELTA_HANDOFF.md` (on `claude/local-odoo-source-research`, not yet merged/checked out — cited by reference, per §3.6)
 
 ## 5. Authority boundary
 
