@@ -2,7 +2,7 @@
 
 > **STATUS:** CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION · source revision `19.0.post20260921` · **MODULE-LIST HASH MISMATCH — PENDING BASELINE RECONCILIATION** (module list from on-disk register; not a confirmed denominator) · not runtime proof · Community-core finding = CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET
 
-**Trace level:** S1-STATIC-EXTRACT (candidate; behavior semantics not yet traced)
+**Trace level:** S2-CANDIDATE (delegated trace note in section 10; not independently verified)
 
 ## 1. Identity / classification / provenance
 | Field | Value |
@@ -26,7 +26,7 @@
 ## 3. Capabilities / functions
 - Manifest category / summary: Theme/Creative / Design, Fine Art, Artwork, Creative, Creativity, Galleries, Trends, Shows, Magazines, Blogs
 - Inventory of user-facing artifacts (counts): menu items 0, views 0, window actions 0, server actions 0, reports 0, mail templates 0, scheduled jobs 0, wizards 0, web routes 0
-- Core/optional/conditional behavior and business meaning of each capability: `UNKNOWN — EVIDENCE INSUFFICIENT` (not yet traced)
+- Core/optional/conditional behavior and business meaning of each capability: see section 10
 
 ## 4. Business objects (neutral names) and configuration
 - Objects introduced (0): —
@@ -44,12 +44,27 @@
 - Security: groups declared 0 (—); record rules 0 (of which company-scoped by text 0); access rows 0
 
 ## 7. Cross-module handoffs
-- Derived from dependents that extend this module's objects (section 5) and from declared dependencies (section 2). Business meaning: `UNKNOWN — EVIDENCE INSUFFICIENT` (not yet traced).
+- Derived from dependents that extend this module's objects (section 5) and from declared dependencies (section 2). Business meaning of each handoff: see section 10.
 
 ## 8. Schema-only confirmation
 - Module-specific schema check: **NOT PERFORMED** for this module in this round (general schema findings are in the DB-schema documents; absence of a structure is not proof of absence of a module or its effect).
 
 ## 9. Evidence level / V-level / Unknowns
 - Actual V-level: **not assigned by this session** (static source evidence only; no runtime).
-- Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; behavioral semantics of this module (S1 only).
+- Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; residual unknowns listed in section 10.
+
+## 10. Trace note (S2 candidate)
+> Authored by a delegated read-only research sub-agent; **CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION**. Automated check: 12 of 12 source pointers resolve to an existing file and in-range line (0 unresolved) — this checks pointer existence only, not that each line supports its claim. Limited spot verification by the session only. Treat as a research lead.
+
+# theme_avantgarde — Revision 19.0.post20260921
+- Purpose: Odoo website theme, fine-art/magazine/blog creative look; manifest summary: "Design, Fine Art, Artwork, Creative, Creativity, Galleries, Trends, Shows, Magazines, Blogs". Category `Theme/Creative`, version 2.0.0, sequence 150.
+- Dependencies: `theme_common` (`theme_avantgarde/__manifest__.py:52`); auto_install none; application false.
+- Models: one abstract model extending `theme.utils` (`theme_avantgarde/models/theme_avantgarde.py:4`), method `_theme_avantgarde_post_copy` (`:7`) toggles website views/assets when the theme is applied (calls: enable_view x4); no fields, no persisted business tables.
+- Security / access / rules / groups: no (skeleton `access`, `rules`, `groups` empty; `security/` dir absent). Automation (cron/server actions/controllers): no (skeleton `crons`, `controllers` empty; no `controllers/` dir).
+- Data: no `views/snippets/` files; presentation overrides are in `views/customizations.xml`; 49 QWeb templates, 100 `theme.ir.attachment` image records, 4 `<asset>` entries in `data/ir_asset.xml` (2 inactive legacy); data files: data/generate_primary_template.xml, data/ir_asset.xml, views/images_library.xml, views/customizations.xml, views/new_page_template.xml. Executes `ir.module.module._generate_primary_snippet_templates` at install (`data/generate_primary_template.xml`).
+- Manifest theme keys: `images_preview_theme`, `configurator_snippets`, `configurator_snippets_addons` (soft hook to `website_sale`, not a dependency), `theme_customizations`, `assets` (editor tour `static/src/js/tour.js`) — presentation/config metadata only.
+- SCSS: main.scss, primary_variables.scss, secondary_variables.scss.
+- Note: `theme_avantgarde/static/src/js/avantgarde.editor.js` is a 0-byte file and is not referenced by the manifest (seen in directory listing / `__manifest__.py`).
+- Business objects / business-meaning data: none found in module (grep for cron/access/rule/group/automation/partner/product/blog/menu/page records in xml/py/csv returned no matches beyond prose text).
+- UNKNOWN — EVIDENCE INSUFFICIENT: rendered visual output, image binary contents, translation (`i18n/*.po`) content, runtime effect on a live website.
 

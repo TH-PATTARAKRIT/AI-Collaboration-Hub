@@ -2,7 +2,7 @@
 
 > **STATUS:** CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION · source revision `19.0.post20260921` · **MODULE-LIST HASH MISMATCH — PENDING BASELINE RECONCILIATION** (module list from on-disk register; not a confirmed denominator) · not runtime proof · Community-core finding = CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET
 
-**Trace level:** S1-STATIC-EXTRACT (candidate; behavior semantics not yet traced)
+**Trace level:** S2-CANDIDATE (delegated trace note in section 10; not independently verified)
 
 ## 1. Identity / classification / provenance
 | Field | Value |
@@ -26,7 +26,7 @@
 ## 3. Capabilities / functions
 - Manifest category / summary: Sales/Sales / —
 - Inventory of user-facing artifacts (counts): menu items 0, views 0, window actions 0, server actions 0, reports 0, mail templates 0, scheduled jobs 0, wizards 0, web routes 0
-- Core/optional/conditional behavior and business meaning of each capability: `UNKNOWN — EVIDENCE INSUFFICIENT` (not yet traced)
+- Core/optional/conditional behavior and business meaning of each capability: see section 10
 
 ## 4. Business objects (neutral names) and configuration
 - Objects introduced (0): —
@@ -44,12 +44,49 @@
 - Security: groups declared 0 (—); record rules 0 (of which company-scoped by text 0); access rows 0
 
 ## 7. Cross-module handoffs
-- Derived from dependents that extend this module's objects (section 5) and from declared dependencies (section 2). Business meaning: `UNKNOWN — EVIDENCE INSUFFICIENT` (not yet traced).
+- Derived from dependents that extend this module's objects (section 5) and from declared dependencies (section 2). Business meaning of each handoff: see section 10.
 
 ## 8. Schema-only confirmation
 - Module-specific schema check: **NOT PERFORMED** for this module in this round (general schema findings are in the DB-schema documents; absence of a structure is not proof of absence of a module or its effect).
 
 ## 9. Evidence level / V-level / Unknowns
 - Actual V-level: **not assigned by this session** (static source evidence only; no runtime).
-- Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; behavioral semantics of this module (S1 only).
+- Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; residual unknowns listed in section 10.
+
+## 10. Trace note (S2 candidate)
+> Authored by a delegated read-only research sub-agent; **CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION**. Automated check: 8 of 8 source pointers resolve to an existing file and in-range line (0 unresolved) — this checks pointer existence only, not that each line supports its claim. Limited spot verification by the session only. Treat as a research lead.
+
+# Source Map trace note — sale_mrp_margin
+Source revision: 19.0.post20260921 | Module: "Sale Mrp Margin" (sale_mrp_margin/__manifest__.py:3) | depends: sale_mrp, sale_stock_margin (:7) | NOT auto_install (key absent) | LGPL-3 (:9)
+Basis: static reading of manifest and the single test file (no models, views, data or security in this module).
+
+## A. Capabilities and optionality
+- A1. Declared purpose: "Handle BoM prices to compute sale margin". sale_mrp_margin/__manifest__.py:6
+- A2. The module contains no Python models; the whole effect is that installing it pulls in both parents, so kit/BoM cost behaviour of sale_mrp and actual-cost behaviour of sale_stock_margin work together. sale_mrp_margin/__manifest__.py:7; file list shows only tests. UNKNOWN — EVIDENCE INSUFFICIENT on whether any extra behaviour is intended beyond dependency wiring (nothing in the module beyond tests).
+- A3. Optional (not auto-installed), unlike sale_stock_margin and sale_mrp.
+
+## B. Objects, relationships, lifecycle (TEST-derived; behaviour lives in parent modules)
+- B1. Kit line cost equals the sum of component costs times BoM quantities, including nested kits (component_a kit inside super kit = 2 x 3 x component_b cost); available on the draft order after computing BoM cost on the products, and unchanged on confirmation. (TEST) sale_mrp_margin/tests/test_sale_mrp_flow.py:12-53
+- B2. Kit cost recalculated after receipt validation for average-cost products. (TEST) test_sale_mrp_flow.py:55-137
+- B3. Kits with BoM-line cost share and multi-quantity BoMs are handled. (TEST) test_sale_mrp_flow.py:139-224 (names/docstring only)
+- B4. Dropshipped kits: cost uses supplier purchase prices of the exploded components (per-component PO lines), with or without cost share, once the receipt is validated; before that the kit standard price. (TEST) test_sale_mrp_flow.py:226-281
+- B5. Made-to-order manufactured product with average cost: manufacturing moves are ignored for the sales line cost; only the outgoing delivery move counts (cost stays at delivery value, not averaged with the MO). (TEST) test_sale_mrp_flow.py:283-332
+- B6. Source of the mechanism: kit-aware unit price of moves in sale_mrp/models/stock_move.py:16-36 feeding the delivery-cost average in stock_account/models/stock_move.py:699-711, consumed by sale_stock_margin/models/sale_order_line.py:21.
+
+## C. Validations, security, multi-company
+- C1. None in this module. Tests are tagged post_install and not at_install. sale_mrp_margin/tests/test_sale_mrp_flow.py:8
+- C2. Tests skip the dropship case if stock_dropshipping is not installed. test_sale_mrp_flow.py:233-236 (indicates the dropship path is conditional on that module)
+
+## D. Handoffs
+- D1. Cost valuation owner: stock_account; kit explosion owner: mrp/sale_mrp; margin arithmetic owner: sale_margin; delivery cost refinement owner: sale_stock_margin. No accounting/purchase/analytic logic in this module.
+
+## E. Configuration that changes outcomes (from test setup)
+- E1. Product category costing method (average/FIFO/standard). test_sale_mrp_flow.py:33,236-238,283-300
+- E2. BoM type kit vs manufacture, MTO route, dropship route, supplier price, BoM-line cost share. test_sale_mrp_flow.py:226-281
+
+## F. Effective extension path (modules)
+- Depended on by: none (grep of manifests). Extends behaviour of sale_mrp, sale_stock_margin.
+
+## G. Not verified
+- UNKNOWN — EVIDENCE INSUFFICIENT: any runtime effect of this module in isolation (no code); tests 3 and 4 only skimmed by name.
 

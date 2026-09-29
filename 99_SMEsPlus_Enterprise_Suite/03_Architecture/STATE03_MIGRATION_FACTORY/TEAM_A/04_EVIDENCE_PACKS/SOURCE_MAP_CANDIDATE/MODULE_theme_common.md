@@ -2,7 +2,7 @@
 
 > **STATUS:** CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION · source revision `19.0.post20260921` · **MODULE-LIST HASH MISMATCH — PENDING BASELINE RECONCILIATION** (module list from on-disk register; not a confirmed denominator) · not runtime proof · Community-core finding = CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET
 
-**Trace level:** S1-STATIC-EXTRACT (candidate; behavior semantics not yet traced)
+**Trace level:** S2-CANDIDATE (delegated trace note in section 10; not independently verified)
 
 ## 1. Identity / classification / provenance
 | Field | Value |
@@ -26,7 +26,7 @@
 ## 3. Capabilities / functions
 - Manifest category / summary: Hidden / Snippets Library
 - Inventory of user-facing artifacts (counts): menu items 0, views 0, window actions 0, server actions 0, reports 0, mail templates 0, scheduled jobs 0, wizards 0, web routes 0
-- Core/optional/conditional behavior and business meaning of each capability: `UNKNOWN — EVIDENCE INSUFFICIENT` (not yet traced)
+- Core/optional/conditional behavior and business meaning of each capability: see section 10
 
 ## 4. Business objects (neutral names) and configuration
 - Objects introduced (0): —
@@ -44,12 +44,25 @@
 - Security: groups declared 0 (—); record rules 0 (of which company-scoped by text 0); access rows 0
 
 ## 7. Cross-module handoffs
-- Derived from dependents that extend this module's objects (section 5) and from declared dependencies (section 2). Business meaning: `UNKNOWN — EVIDENCE INSUFFICIENT` (not yet traced).
+- Derived from dependents that extend this module's objects (section 5) and from declared dependencies (section 2). Business meaning of each handoff: see section 10.
 
 ## 8. Schema-only confirmation
 - Module-specific schema check: **NOT PERFORMED** for this module in this round (general schema findings are in the DB-schema documents; absence of a structure is not proof of absence of a module or its effect).
 
 ## 9. Evidence level / V-level / Unknowns
 - Actual V-level: **not assigned by this session** (static source evidence only; no runtime).
-- Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; behavioral semantics of this module (S1 only).
+- Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; residual unknowns listed in section 10.
+
+## 10. Trace note (S2 candidate)
+> Authored by a delegated read-only research sub-agent; **CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION**. Automated check: 7 of 8 source pointers resolve to an existing file and in-range line (1 unresolved) — this checks pointer existence only, not that each line supports its claim. Limited spot verification by the session only. Treat as a research lead.
+
+# theme_common — Revision 19.0.post20260921
+- Purpose: hidden shared "Snippets Library" for themes (legacy `old_snippets` SCSS/JS, fonts/mixins SCSS, header preheader JS); manifest `theme_common/__manifest__.py:1-17`. Category Hidden, version 1.1.
+- Dependencies: `website` (`theme_common/__manifest__.py:7`). Required by 24 of the 27 feature themes (not by theme_buzzy, theme_cobalt, theme_paptic, which depend directly on `website`; nor by theme_default).
+- Models: yes, one abstract `theme.utils` extension (`theme_common/models/theme_common.py:4`); `_theme_common_post_copy` (`:7-15`) disables 7 optional colour-variable assets on theme switch. No fields, no tables.
+- Security / rules / groups / crons / controllers: no (skeleton lists empty).
+- Data: manifest loads `data/data.xml` (empty `<odoo>` element, `:1-3`) and 3 stub view files under `views/old_snippets/` (comment-only, 6 lines each). `data/ir_asset.xml` (59 `theme.ir.asset` records) is NOT listed in the manifest and is flagged as dead code in its own header comment (`theme_common/data/ir_asset.xml:4-9`).
+- Static: 32 `static/src/old_snippets/*` folders (SCSS, 3 small JS), `static/src/scss/` (compat/mixins/fonts/options), `static/src/js/preheader.js:6` (patches header affix widget), `static/lib/YTPlayer/jquery.mb.YTPlayer.js` (third-party library).
+- Business objects / business-meaning data: none.
+- UNKNOWN — EVIDENCE INSUFFICIENT: whether any downstream production database still references the dead asset records; rendered output.
 

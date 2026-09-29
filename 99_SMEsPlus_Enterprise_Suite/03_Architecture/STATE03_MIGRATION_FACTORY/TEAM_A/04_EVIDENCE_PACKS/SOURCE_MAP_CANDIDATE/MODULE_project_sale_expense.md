@@ -2,7 +2,7 @@
 
 > **STATUS:** CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION · source revision `19.0.post20260921` · **MODULE-LIST HASH MISMATCH — PENDING BASELINE RECONCILIATION** (module list from on-disk register; not a confirmed denominator) · not runtime proof · Community-core finding = CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET
 
-**Trace level:** S1-STATIC-EXTRACT (candidate; behavior semantics not yet traced)
+**Trace level:** S2-CANDIDATE (delegated trace note in section 10; not independently verified)
 
 ## 1. Identity / classification / provenance
 | Field | Value |
@@ -26,7 +26,7 @@
 ## 3. Capabilities / functions
 - Manifest category / summary: Services/Project / —
 - Inventory of user-facing artifacts (counts): menu items 0, views 0, window actions 0, server actions 0, reports 0, mail templates 0, scheduled jobs 0, wizards 0, web routes 0
-- Core/optional/conditional behavior and business meaning of each capability: `UNKNOWN — EVIDENCE INSUFFICIENT` (not yet traced)
+- Core/optional/conditional behavior and business meaning of each capability: see section 10
 
 ## 4. Business objects (neutral names) and configuration
 - Objects introduced (0): —
@@ -44,12 +44,44 @@
 - Security: groups declared 0 (—); record rules 0 (of which company-scoped by text 0); access rows 0
 
 ## 7. Cross-module handoffs
-- Derived from dependents that extend this module's objects (section 5) and from declared dependencies (section 2). Business meaning: `UNKNOWN — EVIDENCE INSUFFICIENT` (not yet traced).
+- Derived from dependents that extend this module's objects (section 5) and from declared dependencies (section 2). Business meaning of each handoff: see section 10.
 
 ## 8. Schema-only confirmation
 - Module-specific schema check: **NOT PERFORMED** for this module in this round (general schema findings are in the DB-schema documents; absence of a structure is not proof of absence of a module or its effect).
 
 ## 9. Evidence level / V-level / Unknowns
 - Actual V-level: **not assigned by this session** (static source evidence only; no runtime).
-- Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; behavioral semantics of this module (S1 only).
+- Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; residual unknowns listed in section 10.
+
+## 10. Trace note (S2 candidate)
+> Authored by a delegated read-only research sub-agent; **CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION**. Automated check: 20 of 20 source pointers resolve to an existing file and in-range line (0 unresolved) — this checks pointer existence only, not that each line supports its claim. Limited spot verification by the session only. Treat as a research lead.
+
+# Source Map trace note: project_sale_expense (Odoo 19 Community, revision 19.0.post20260921)
+## A. Capabilities; core / optional / conditional
+- Adds full traceability of re-invoiced expenses to the project profitability report. project_sale_expense/__manifest__.py:6
+- Conditional bridge: auto-installs when sale_project, sale_expense and project_hr_expense are installed. project_sale_expense/__manifest__.py:11-12
+## B. Business objects and lifecycle
+- Objects touched: expense, journal item (move line), project. project_sale_expense/models/__init__.py:3-5
+- Expense linked to a sale order: its cost distribution is merged with the order's project distribution when analytic plans differ; if both use the same plan, the project's one wins. project_sale_expense/models/hr_expense.py:9-37; (TEST) project_sale_expense/tests/test_project_sale_expense.py:35-106
+- Not applied when the expense is created from the project overview (project in context). project_sale_expense/models/hr_expense.py:11
+- On posting an expense without distribution whose order has a project, the project's analytic account is created if absent and used. project_sale_expense/models/hr_expense.py:39-50
+- Posted / in-payment / paid expenses tied to project accounts are grouped by order, product, currency and reported as cost; the re-invoiced part (expense-type order lines on confirmed orders, same product) is reported as revenue (invoiced / to invoice). project_sale_expense/models/project_project.py:12-88
+## C. Validations, automation, security, multi-company
+- Expense-generated move lines find their sale order from the expense first, otherwise from the project's analytic accounts. project_sale_expense/models/account_move_line.py:9-17
+- Expense drill-down action only for users in the expense team-approver group; order-line amounts read in elevated mode. project_sale_expense/models/project_project.py:23,34
+- Amounts converted to the project currency using the project's company. project_sale_expense/models/project_project.py:32,57-58. Company scoping of expenses beyond this: UNKNOWN — EVIDENCE INSUFFICIENT
+- (TEST) Company-paid expense: project distribution stays on the expense (P&L) line only, not on outstanding/tax lines. project_sale_expense/tests/test_expense_analytics.py:9-53
+- (TEST) Order project without analytic account stays without one after confirmation of an ordinary sale. project_sale_expense/tests/test_project_sale_expense.py:11-33
+## D. Accounting / inventory / analytic handoffs
+- Expense posting and payment: hr_expense; re-invoice order line creation: sale_expense (expense mapping sale_expense/models/account_move_line.py:22-26, line values :36-49); project mapping of move lines to orders: sale_project (sale_project/models/account_move_line.py:35). Analytic accounts: analytic. This module only adjusts distribution and reporting.
+- Expense invoice lines are excluded from other profitability sections to avoid double counting. project_sale_expense/models/project_project.py:90-101; base rule project_hr_expense/models/project_project.py:60-67
+- Inventory: none.
+## E. Configuration
+- Product expense re-invoice policy (sales price / cost) on the expense product decides whether re-invoicing applies. sale_expense/models/account_move_line.py:13-20
+- Expense sale order field and order's project/analytic account. project_sale_expense/models/hr_expense.py:14
+## F. Extension path
+- _inherit: account.move.line, hr.expense, project.project (project_sale_expense/models/*.py). Overrides the profitability expense section of project_hr_expense (project_hr_expense/models/project_project.py:70). Dependents: none in tree.
+## G. Not verified
+- Reimbursement/payment state effects on revenue side: UNKNOWN — EVIDENCE INSUFFICIENT
+- Behaviour with multiple expenses per order and mixed currencies beyond code above: UNKNOWN — EVIDENCE INSUFFICIENT
 
