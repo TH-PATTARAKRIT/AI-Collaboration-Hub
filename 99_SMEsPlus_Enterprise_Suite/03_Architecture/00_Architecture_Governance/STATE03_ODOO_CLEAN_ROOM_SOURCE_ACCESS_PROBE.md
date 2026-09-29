@@ -39,6 +39,17 @@ $ df -h   # full output checked — only this container's own ext4 root, squashf
 
 Per §2's own rule — "Do not substitute WebSearch for source/dump proof and do not claim a source-study result" — this session did **not** fall back to WebSearch for `SMD-F04`, `GAP-SMD-04`, or `GAP-SMD-05` under this prompt's authority. Any further WebSearch-tier work on those items would need to happen under this Deep Study's own separate, already-standing documentation-tier method (the same one used for `M1`–`M3`), not represented as satisfying this Clean-Room Source & Dump prompt.
 
+## Boss confirmation (2026-09-29, same day)
+
+Boss ran `ls` directly on their own Mac terminal and confirmed the path is real and populated:
+
+```
+admin@THPATTARAKRIT-SOLUTION-SERVICE-2 AI-Collaboration-Hub % ls "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19"
+SMEsPlus  SMEsPlus_Odoo19_Community_Master_Register_V1.00.xlsx  SOURCE_CODE  iTEST02_2026-06-14_14-41-19 (1).dump
+```
+
+**This does not change the access-unavailable finding above.** This session's own cloud container is still structurally unable to reach that path — Boss's confirmation proves the data exists and is mounted on Boss's own machine, not that this session can read it. The `SOURCE_CODE` folder and the `.dump` file are almost certainly too large to move via chat upload; the practical path is local execution (below), not file transfer.
+
 ## Path forward (for Boss)
 
 This specific source-and-dump study needs to run somewhere that can actually reach `/Volumes/iMacSys/...` — that is Boss's own computer, not this cloud session. Two ways to carry it forward:
