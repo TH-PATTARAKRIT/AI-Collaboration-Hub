@@ -276,6 +276,23 @@ The local worker began the queued "source-map §5.1 for the 300-register modules
 
 Both reconciled into the relevant pilots' `06_BUSINESS_RULE_REGISTER.md`, `22_UNKNOWN_AND_GAPS.md`, `19_PROVENANCE_REGISTER.md`, and `AWT_BACKLOG.md`. **Neither closes any gap.** This session will continue sampling targeted, STATE03-relevant modules (`stock`, `stock_account`, `mrp`, `purchase_stock`, `sale_stock`, etc.) as time allows rather than committing to exhaustive 300-module review, which is disproportionate to this session's own integration mandate.
 
+### 3.9 STATE03 Source Research Maturity Ladder (adopted 2026-09-30 — worker-authored, Boss-confirmed, one level added)
+
+Following Boss's challenge on the true depth of the round-3 source-map batch (§3.8), the Source/Dump Deep Research Worker proposed its own honest 5-level maturity ladder for what "Deep Research" actually requires, self-assessed its own current position on it, and Boss confirmed the ladder with one addition. This is now the standing model for describing evidence maturity on this workstream — separate from, and not a replacement for, the V0–V5 evidence-tier ladder used elsewhere in STATE03 (V-tiers describe *how the evidence was obtained*; this ladder describes *how far a given module/Function has been carried through the research-to-integration pipeline*).
+
+| Level | What it means | Owner | Status as of 2026-09-30 |
+|---|---|---|---|
+| L1 — Structure | Module, dependencies, objects, extensions, rule/cron counts (automated extraction) | Source/Dump Deep Research Worker | 300/300 (the current-phase slice — see §3.8's denominator caveat) |
+| L2 — Trace note | Business meaning, state lifecycle, gating conditions, handoffs, with pointers | Worker (sub-agent-authored this round; pointer-existence auto-checked only, not content-verified) | 300/300 nominally, but **not yet a valid design basis** per the worker's own disclosure — sub-agent output, spot-verified only |
+| L3 — Deep Study | Function-level: 3-dimension impact (business/data/technical) per Function-ID, with contradictions and Unknowns named | Worker | ~21 Gap-IDs done, concentrated in cost/production/lock-period/multi-company clusters only |
+| **L3.5 — Canonical Integration & Clean-Room Sanitization (new, Boss-confirmed 2026-09-30)** | **Reconcile the worker's L3 findings into STATE03's canonical Function/Gap registers under the mandated status vocabulary; strip to a Neutral Knowledge Pack (no vendor code/schema/identifiers) before any finding is usable outside the Restricted Evidence Annex; assign no V-level and declare no closure** | **This session (STATE03 Integration/Architecture Knowledge Owner)** | **Ongoing — this is the step this session has been performing all along (rounds 1–3, §3.6–3.8); now named explicitly as its own rung so the pipeline is complete end to end** |
+| L4 — Independent review | A different person or session re-derives or challenges the L3/L3.5 conclusions | Not this session, not the worker — an independent reviewer (`CHATGPT_AUDIT` or equivalent) | Not yet done |
+| L5 — Runtime | Actual execution against a live Odoo 19 instance confirms the conclusion | Requires `BGQ-04` (authorized AWT environment) | Not yet done |
+
+**Governance note**: L3.5 does not change any authority already established — this session still does not assign V-levels, still does not declare any gap closed on L3/L3.5 evidence alone, and still routes to `CHATGPT_AUDIT`/Boss for anything requiring L4. It formalizes, rather than expands, this session's existing mandate.
+
+**Effect on the worker's own plan**: none — the worker's own next step (integrate custom/third-party modules against the already-studied core modules, in separate `STATE03_CUSTOM_MODULE_*` files so as not to mix with Community results, then continue L3 Deep Study by dependency/risk order) stands as proposed. Boss's direction was to defer to the worker's own plan rather than override it with a scope-narrowing redirect this session had drafted but did not send.
+
 ## 4. Cross-references
 
 - Carry-forward/re-audit matrices: `TEAM_A/06_DOMAIN_RESEARCH/GOODS_RECEIPT_VALIDATION_PILOT/BASELINE_CARRY_FORWARD.md`, `TEAM_A/06_DOMAIN_RESEARCH/SALES_DELIVERY_VALIDATION_PILOT/BASELINE_CARRY_FORWARD.md`
