@@ -54,7 +54,7 @@
 - Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; residual unknowns listed in section 10.
 
 ## 10. Trace note (S2 candidate)
-> Authored by a delegated read-only research sub-agent; **CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION**. Automated check: 37 of 41 source pointers resolve to an existing file and in-range line (4 unresolved) — this checks pointer existence only, not that each line supports its claim. Limited spot verification by the session only. Treat as a research lead.
+> Authored by a delegated read-only research sub-agent; **CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION**. Automated check: 40 of 41 source pointers resolve to an existing file and in-range line (1 unresolved) — this checks pointer existence only, not that each line supports its claim. Limited spot verification by the session only. Treat as a research lead.
 
 # Source Map trace note: website_links (Link Tracker)
 
@@ -67,9 +67,9 @@ Skeleton used for orientation: sourcemap/website_links.json. Pointers are `modul
 - Core: choose a custom short code for an existing tracked link (website_links/controller/main.py:23-30).
 - Core: "recent links" lists ordered as newest, most clicked, or recently used (website_links/controller/main.py:32-34; link_tracker/models/link_tracker.py:296-305).
 - Core: a per-link statistics page reachable by appending "+" to the short URL, plus a "Statistics" button on the tracker form (website_links/controller/main.py:36-46; website_links/models/link_tracker.py:11-17; website_links/views/link_tracker_views.xml:8-10).
-- Core: short URL host is the current website's domain, or the company's website domain when they differ (website_links/models/link_tracker.py:19-25); (TEST) (website_links/tests/test_link_tracker.py:42-70).
+- Core: short URL host is the current website's domain, or the company's website domain when they differ (website_links/models/link_tracker.py:19-25); (TEST) (website_links/tests/test_link_tracker.py:42-66).
 - Menu "Link Tracker" under the current-page website menu (website_links/views/link_tracker_views.xml:14-18).
-- Redirect for visitors is owned by link_tracker: permanent redirect to the target with UTM markers added, one click record per non-bot visit (link_tracker/controller/main.py:12-24).
+- Redirect for visitors is owned by link_tracker: permanent redirect to the target with UTM markers added, one click record per non-bot visit (link_tracker/controller/main.py:12-23).
 
 ## B. Business objects, relationships, lifecycle
 - Link tracker (target URL, title, label, campaign, medium, source, click count) -> codes (one or more short codes) -> clicks (IP, country, campaign) (link_tracker/models/link_tracker.py:31-53, 317-322, 345-356).
@@ -80,7 +80,7 @@ Skeleton used for orientation: sourcemap/website_links.json. Pointers are `modul
 - Target URL is mandatory; links starting with `?` or `#` are refused; URL is normalised; page title auto-filled from the target page when empty (link_tracker/models/link_tracker.py:38, 192-206).
 - Uniqueness: the combination URL + campaign + medium + source + label must be unique, else a user error listing the duplicates (link_tracker/models/link_tracker.py:154-190). Website page uses "search or create" so an existing identical link is reused (website_links/controller/main.py:13; link_tracker/models/link_tracker.py:224-273).
 - UTM cookies never pre-fill a new tracker (link_tracker/models/link_tracker.py:208-211).
-- Redirect route is public; bots are not counted (link_tracker/controller/main.py:12-16). Unknown code returns not-found (link_tracker/controller/main.py:19-22). Redirection is external-capable (`local=False`) (link_tracker/controller/main.py:24).
+- Redirect route is public; bots are not counted (link_tracker/controller/main.py:12-16). Unknown code returns not-found (link_tracker/controller/main.py:21-22). Redirection is external-capable (`local=False`) (link_tracker/controller/main.py:23).
 - (TEST) direct code redirect returns permanent redirect without language prefix; language alias path redirects first to the language path (website_links/tests/test_controller.py:30-48).
 - Management pages/routes require a logged-in user (`auth='user'`) (website_links/controller/main.py:9,15,23,32,36). Creation buttons depend on create right (website_links/controller/main.py:18-19, 42).
 - Access: website designers get full rights on link trackers, codes and clicks (website_links/security/ir.model.access.csv:2-4); base link_tracker grants internal users read-only and system admins full rights, public none (link_tracker/security/ir.model.access.csv:2-10). Result: an internal user without designer rights can read but not create trackers from the website page (website_links/controller/main.py:18-19).

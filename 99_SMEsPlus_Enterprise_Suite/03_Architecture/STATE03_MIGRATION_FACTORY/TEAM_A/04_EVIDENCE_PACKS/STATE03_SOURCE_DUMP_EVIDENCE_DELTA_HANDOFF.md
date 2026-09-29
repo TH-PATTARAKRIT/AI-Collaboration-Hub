@@ -425,3 +425,72 @@
 ## R10. งานที่กำลังทำ / ยังไม่ทำ (ตาม §8 contract — ใช้จำนวนจริง)
 - **กำลังทำ:** ไล่คิว `GAP-PDT-01/02` → `GAP-SDV-02/05` → `GAP-IAV-*` → `GAP-GRV-*` ; ตรวจ security XML ของโมดูล custom license เปิด ; ตรวจ `purchase_request` state flow
 - **ยังไม่ทำ:** source-map ตามมาตรฐาน §5.1 ครบสำหรับโมดูลใน 300 (0 จาก 300 ครบมาตรฐาน) ; ตรวจโมดูล Third-party Black-box/OEEL/ไม่ระบุ license (ระดับ manifest เท่านั้น) ; ยืนยัน hash ของ register ; Runtime validation ทุกรายการ
+
+---
+
+# ROUND 3 — Append (2026-09-30) — Directive: "read the 300 modules first" (module-list hash mismatch, source-map ordering)
+
+**Status ของทุกรายการ:** `CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` · source revision `19.0.post20260921` · Community-core = `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET` · ไม่ใช่ runtime proof · ไม่มี V-level ที่กำหนดโดย session นี้ · ไม่ประกาศ Formal Coverage / Gate PASS / gap closure
+
+## S0. Integrity Gap ของรายการโมดูล
+`MODULE-LIST HASH MISMATCH — PENDING BASELINE RECONCILIATION` : sha256 ของไฟล์ทะเบียนบนดิสก์ (`790bcd2a…`) ≠ ค่าใน `…_SHA256.txt` (`76aa648b…`) → **Material Integrity Gap** ; 300 โมดูลนี้ **ไม่ถูกเรียกว่า "ยืนยันแล้ว"** และ **ไม่ใช้เป็น denominator / Formal Coverage** ; ใช้เป็น *candidate list* เพื่อทำ source map ต่อเท่านั้น ; ทุก record ใน `SOURCE_MAP_CANDIDATE/` ติดป้ายนี้ ; provenance การเปิดไฟล์ (อ่านเฉพาะชีตรายการโมดูล = ข้อมูลควบคุมขอบเขต ไม่ใช่ dump business data) บันทึกใน R1
+
+## S1. R0 ส่งต่อให้ `STATE03_BUSINESS PROCESS`
+รายการ R0 (ผลค้นรูปแบบ schema ในเอกสารของ session ก่อนหน้า) **ไม่ถูก remediate โดย session นี้** ตามคำสั่ง — เป็นรายการส่งต่อให้ `STATE03_BUSINESS PROCESS` ตรวจและตัดสินใจเอง
+
+## S2. Source Map — ผลจริง (นับ ไม่ใช่เปอร์เซ็นต์ความคืบหน้า)
+| รายการ | จำนวนจริง | หมายเหตุ |
+|---|---|---|
+| ระเบียนโครงสร้างอัตโนมัติ (S1-STATIC-EXTRACT) ของโมดูลในทะเบียน on-disk | 300 / 300 | สกัดด้วยเครื่องมืออ่าน AST/XML แบบ static ; ไม่ใช่ความหมายเชิงธุรกิจ |
+| ระเบียนที่มี trace note (S2-CANDIDATE) | 300 / 300 | เขียนโดย sub-agent อ่านอย่างเดียว 37 ตัว ; ไม่ได้ตรวจอิสระ |
+| Source Map **Complete** | **0** | **ไม่ประกาศ** — รายการ §5.1 ข้อ 8 (schema-only ระดับโมดูล) ยังไม่ทำและข้อ 9 (V-level) ยังไม่กำหนดในทุกโมดูล ; trace note ยังเป็น candidate |
+| ชี้ตำแหน่ง (pointer) ในโน้ต | 11,364 | ตรวจอัตโนมัติ: 11,229 ชี้ไปยังไฟล์ที่มีจริงและบรรทัดอยู่ในช่วง (135 ไม่ผ่าน) — **ตรวจเพียงการมีอยู่ ไม่ใช่ว่าบรรทัดสนับสนุนข้อความ** |
+| การสุ่มตรวจโดย session | 22 คู่ (ข้อความ–บรรทัดต้นทาง) สุ่ม + 9 ข้อความเชิงควบคุมตรวจเป็นรายข้อ | 22/22 สอดคล้องระดับหัวข้อ (ชี้ที่นิยามที่เกี่ยวข้อง) ; ไม่ใช่การยืนยันความหมายทุกข้อความ |
+| เครื่องหมาย `UNKNOWN — EVIDENCE INSUFFICIENT` ในโน้ต | 1,155 | ส่วนใหญ่คือขอบเขตที่ไม่ได้อ่าน/ไม่ยืนยัน |
+| ข้อความที่อ้างจาก test `(TEST)` | 742 | |
+| โมดูลนอก 300 ที่ trace ต่อ (`DISCOVERED SUPPORTING MODULE — OUTSIDE 300-MODULE DENOMINATOR`) | 0 | dependency ของโมดูลที่ trace อยู่ในชุด on-disk ทั้งหมด ; มีโฟลเดอร์ `theme_test_custo` ใน tree ที่ไม่อยู่ในทะเบียน (ไม่ได้ trace) |
+
+**ข้อจำกัดของ sub-agent notes:** ไม่ได้ทดสอบ/รัน ; การสแกนส่วนขยายใช้ `_inherit` แบบ text ไม่ใช่ MRO ; บางโน้ตอ่านเฉพาะชื่อ test ไม่ใช่เนื้อหา (ระบุในโน้ตนั้น) ; skeleton ถูกเขียนทับระหว่างที่เอเจนต์บางตัวอ่าน (เอเจนต์รายงาน 0 ไบต์ชั่วคราว — ตรวจแล้วปัจจุบันครบ 692 ไฟล์)
+
+**ตำแหน่งไฟล์:** `SOURCE_MAP_CANDIDATE/00_INDEX.md` + `MODULE_<name>.md` (300 ไฟล์) ; ข้อมูลดิบ/ไฟล์ trace/เครื่องมือเก็บ `RESTRICTED-LOCAL:~/STATE03_RESTRICTED_LOCAL/` (ไม่ commit)
+
+## S3. Function / Gap Deep Study (รายงานแยกจาก Source Map)
+Gap-ID ที่มี delta ใน Handoff ทั้งหมด (21 ราย): BRP-01, 02, 04, 05, 07, 08, 09, 10 · MFG-01, 02, 03, 04, 05 · PCO-01, 02 · MCT-01, 02 · RCN-01, 02 · QCP-02 (ขอบเขตโมดูลเท่านั้น) · D01-13 (บางส่วน) — **ไม่มีรายการใดปิดสมบูรณ์** ; งาน Deep Study เพิ่ม **พักไว้** ตามคำสั่ง จนกว่า module map ของกลุ่มนั้นครบ
+
+## S4. การแก้/ปรับข้อความรอบก่อน (append-only correction)
+1. **R4 / GAP-MCT-01:** ข้อความ "location Inter-company transit ปิดใช้งานเป็นค่าเริ่มต้น" ต้องอ่านร่วมกับ: ตอนสร้างบริษัทใหม่ ระบบเปิดใช้ location นี้ และถ้าผู้ใช้อยู่ในกลุ่ม multi-company ระบบตั้งให้ partner ของบริษัทอื่นใช้ location นี้เป็นทั้งปลายทางลูกค้าและต้นทางผู้ขาย (`RESTRICTED:stock/models/res_company.py:181-208` — session ตรวจซ้ำเอง) ⇒ การซื้อ/ขายข้ามบริษัทในกลุ่มวิ่งผ่าน transit นี้โดยปริยายในการตั้งค่านั้น ; ข้อสรุปเรื่องมูลค่าอิสระต่อบริษัทยังเป็น `INFER`
+2. **S1 record ของ `mrp_account`** : ข้อความ "ไม่มีโมดูลขยายวัตถุของโมดูลนี้" ถูกแก้ทุก record ให้ระบุ "dependency ≠ extension" (พบจากการตรวจของเอเจนต์ `stock_account`/`mrp_account`)
+3. **D-06 (valuation timing) — watch-points จากเอเจนต์อิสระ (ไม่ได้รับผลเดิมของ session นี้):** (ก) การรับ/ส่งกับ Supplier/Customer ไม่สร้างรายการบัญชีตอน move ถ้าไม่มีบัญชีที่ location (ตรงกัน) (ข) รายการผลิตใช้บัญชีของ location ผลิต ไม่ใช่ "Production Account" ระดับหมวดสินค้า (ค) ต้นทุน Work Center ไม่เข้าต้นทุนสินค้าสำเร็จรูปแบบ Standard — **ข้อความ D-04/D-06 เดิมที่ขัดกับสามข้อนี้ให้ใช้ข้อความนี้แทน**
+
+## S5. ข้อสังเกตเชิงควบคุมจาก source map (research leads — ไม่ใช่พฤติกรรม universal ของ Odoo 19)
+> ทุกข้อ: revision `19.0.post20260921`, โมดูลใน on-disk register, extension/override status = "ไม่พบ override ในโมดูล license เปิดที่สแกน ; OPL-1/ไม่ระบุ license ตรวจไม่ได้ ; Enterprise ไม่มีโค้ด", limitation = static เท่านั้น
+| # | ข้อสังเกต | Pointer (ตรวจซ้ำโดย session) | ข้อควรระวัง |
+|---|---|---|---|
+| L1 | ฝั่งขาย: ไม่มีขั้นอนุมัติ/ไม่บล็อกวงเงินเครดิตตอนยืนยัน ; mass-cancel และการปฏิเสธจาก portal เรียกการยกเลิกภายในที่ข้ามการตรวจล็อกของฟอร์ม | `RESTRICTED:sale/wizard/mass_cancel_orders.py:32`, `sale/controllers/portal.py:376`, `sale/models/sale_order.py:1326-1334` | ควบคุมบางส่วนอยู่ชั้น UI ; ผลต่อองค์กรที่ใช้ตัวช่วยเหล่านี้ |
+| L2 | ฝั่งซื้อ: การอนุมัติขึ้นกับการตั้งค่าบริษัท (ขั้นเดียว/สองขั้น + วงเงิน) ; ผู้ไม่มีสิทธิ์กดอนุมัติจะไม่เกิดผลและไม่มีข้อความผิดพลาด | `RESTRICTED:purchase/models/purchase_order.py:615-619,1251-1259` | มี `purchase_request` (OCA) เป็นชั้นอนุมัติเพิ่มเมื่อติดตั้ง (R3) |
+| L3 | การผลิต: การ "บล็อก" การบริโภคแบบยืดหยุ่นบังคับที่หน้าจอ ฝั่ง server ไม่ตรวจกลุ่ม | `RESTRICTED:mrp/wizard/mrp_consumption_warning.py:32-35` | |
+| L4 | บัญชี: กฎผู้ตรวจทาน (`_is_user_able_to_review`) และสถานะ "in payment" เป็น hook ที่ Community คืนค่าเริ่มต้นและออกแบบให้ถูก override โดยโมดูล accountant (Enterprise) | `RESTRICTED:account/models/account_move.py:7014-7016,7367-7372` | ผลจริง **ขึ้นกับโมดูล accountant ที่ติดตั้ง** (`smesplus_account` depends `account_accountant`) → CONDITIONAL อย่างยิ่ง |
+| L5 | ล็อกงวด (สรุปจาก PCO-01 + ตรวจอิสระโดยเอเจนต์ `account`): โพสต์ในช่วงล็อก = เลื่อนวัน ; แก้/ลบรายการที่โพสต์แล้วในช่วงล็อก = error ; hard lock ไม่มี exception ; ความไม่แก้ไขได้ (hash) เป็นรายสมุดรายวัน | `RESTRICTED:account/models/account_move.py:5702-5706,3947-3956`, `account/models/company.py:569-576` | ช่องทางข้าม: `account_update_tax_tags` (OCA) แก้ผ่านฐานข้อมูลตรง (ตามรายงานเอเจนต์ — ยังไม่ตรวจซ้ำ) |
+| L6 | multi-company/IAM: กฎระดับแถวรวม global แบบ AND แล้วกลุ่มแบบ OR ; กฎบริษัทใน `base` ครอบคลุมเฉพาะบางออบเจกต์ (partner, ธนาคาร partner, อัตราแลกเปลี่ยน, บริษัท, ผู้ใช้) — sequence/attachment ไม่มีกฎบริษัทใน `base` | `RESTRICTED:base/models/ir_rule.py:113-172` (ตรวจซ้ำบางส่วน) | รายละเอียดการแยกข้อมูลข้ามบริษัทของเลขที่เอกสารยังเป็น `UNKNOWN — EVIDENCE INSUFFICIENT` |
+| L7 | แรงงาน/ต้นทุน subcontract: BoM แบบ subcontract ห้ามมี operations/by-product ; ค่าจ้างมาจากบิล → PO → ราคาใบรับ ; กฎ portal 13 ข้อ/สิทธิ์ 17 ข้อ ไม่มี company | `RESTRICTED:mrp_subcontracting/models/mrp_bom.py:24-27` (ตรวจซ้ำ) | By-Product ที่เพิ่มด้วยมือใน production ที่รัน = UNKNOWN |
+| L8 | Landed cost: เฉพาะ FIFO/average ; ยกเลิก/ลบไม่ได้หลัง post ; เพิ่มมูลค่าเข้า move ที่มีอยู่ | ตามโน้ต `stock_landed_costs` (ตรวจ pointer อัตโนมัติ) | ไม่ได้ตรวจซ้ำรายบรรทัด |
+| L9 | ธีมเว็บไซต์ทั้ง 29 ไม่มีพฤติกรรมเชิงธุรกิจ (ไม่มี model/สิทธิ์/cron/ข้อมูลธุรกิจ) | `_themes_common` (ข้อมูลใน restricted) | โมดูลตัวแทน 3+ ตัวเท่านั้นที่เปิดโค้ดลึก |
+
+## S6. Provenance ข้อสังเกตใน tree ต้นทาง (ส่งให้ session หลัก)
+- มีไฟล์เอกสาร `STATE03_SMD_SOURCE_VERIFICATION_FINDINGS.md` อยู่ใน root ของ `addons` ใน tree ต้นทาง Community (ไม่ใช่โค้ด Odoo) — **ไม่ได้เปิดอ่าน** เพื่อรักษาความเป็นอิสระ ; เสนอให้ session หลักตรวจที่มา
+- โฟลเดอร์ `theme_test_custo` อยู่ใน `addons` แต่ไม่อยู่ในทะเบียน 300 (ไม่ได้ trace)
+- `l10n_account_withholding_tax_pos` เอเจนต์รายงานว่าไม่ได้อ่าน
+
+## S7. Custom / third-party — ผลกระทบที่เพิ่มขึ้นในรอบนี้
+- `purchase_request` (R3) : ใบขอซื้อคั่นระหว่าง Reordering Rule กับ RFQ เมื่อสินค้าเปิดใช้ → BRP-07 = CONDITIONAL
+- `smesplus_account` / OPL-1 modules ที่ depends `stock_account`/`mrp` : ยังตรวจไม่ได้ (คงสถานะ §2)
+- ลำดับถัดไปตามคำสั่ง (7): (1) 17 โมดูลแรก ทำ source-map trace แล้ว (candidate) → (2) 300 โมดูล candidate แล้ว → (3) custom/third-party impact trace ตามสิทธิ์ (ต่อ: `stock_picking_reference_no`, `scgl_account_tax_return`, `smesplus_tax_period_date`, security XML ของโมดูล custom) → (4) Function/Gap deep study ตาม risk (ต่อ: `GAP-PDT-01/02`, `GAP-SDV-02/05`, `GAP-IAV-*`, `GAP-GRV-*`, `GAP-D01-04`)
+
+## S8. สรุปรายงาน (รูปแบบที่กำหนด)
+**สิ่งที่เสร็จแล้ว**
+- Module/Function : ระเบียน candidate 300/300 (S1 + trace note) ; Source Map Complete = 0 ; Gap-ID ที่มี delta = 21 (ไม่มีรายการปิด)
+- remediation §4 (banner 10 ไฟล์, data-minimization) ; hash mismatch บันทึกเป็น Material Integrity Gap ; R0 ส่งต่อ BUSINESS PROCESS
+**สิ่งที่กำลังทำ**
+- custom/third-party impact trace ตามสิทธิ์ ; ตรวจ pointer เชิงเนื้อหาของ trace note (ตรวจแล้ว 31 จาก 11,364)
+**สิ่งที่ยังไม่ทำ**
+- §5.1 ข้อ 8 (schema-only ระดับโมดูล) และข้อ 9 (V-level) ทุกโมดูล ; Independent verification ; runtime validation ; Deep Study ที่เหลือ ; ตรวจโมดูล custom ที่ license ปิดเกินระดับ manifest ไม่ได้

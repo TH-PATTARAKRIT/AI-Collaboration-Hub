@@ -59,13 +59,11 @@
 # Source Map trace note — sms_twilio
 Source revision: 19.0.post20260921 | Module: "Twilio SMS" (sms_twilio/__manifest__.py:2) | LGPL-3 (:22) | category Hidden/Tools (:5)
 Basis: static reading of all models, tools, controller, wizard, security, views; tests by title only.
-
 ## A. Capabilities and optionality
 - A1. Lets a company send text messages through its own Twilio account instead of the Odoo-operated (IAP) SMS service. sms_twilio/__manifest__.py:6-10; sms_twilio/models/res_company.py:12-19,24-28
 - A2. Optional add-on: depends only on sms; no auto_install key (sms itself is auto_install). sms_twilio/__manifest__.py:11-13; sms/__manifest__.py:45
 - A3. Conditional on a per-company choice "Send via Odoo" (default) or "Send via Twilio". sms_twilio/models/res_company.py:12-19. With the Twilio choice the standard "buy credits" widget is hidden. sms_twilio/views/res_config_settings_views.xml:10-20
 - A4. Includes: sender-number pool per company with country-based sender selection; delivery-status callback endpoint; test-message and number-reload wizard; failure categories for Twilio errors. sms_twilio/models/sms_twilio_number.py:4-20; sms_twilio/tools/sms_twilio.py:10-21; sms_twilio/controllers/controllers.py:33-64; sms_twilio/wizard/sms_twilio_account_manage.py:23-99
-
 ## B. Objects and lifecycle
 - B1. New object "Twilio number" (company, sequence, number, country). Belongs to one company, removed when the company is removed. sms_twilio/models/sms_twilio_number.py:9-15
 - B2. Transient "Twilio connection wizard" mirrors the company's provider/SID/token/numbers fields. sms_twilio/wizard/sms_twilio_account_manage.py:12-21
@@ -73,7 +71,6 @@ Basis: static reading of all models, tools, controller, wizard, security, views;
 - B4. Lifecycle of one message: queued in Odoo -> grouped by owning company -> sent one by one to Twilio (state "sent" and Twilio message id on success, otherwise a mapped failure state) -> Twilio calls back with later status -> tracker updated and the outgoing record marked for deletion. sms_twilio/models/sms_sms.py:57-72; sms_twilio/tools/sms_api.py:41-78; sms_twilio/controllers/controllers.py:50-62
 - B5. Twilio status to Odoo state mapping: queued/accepted/scheduled -> outgoing; sending/receiving -> processing; sent/received -> pending; delivered -> sent; canceled -> canceled; failed/undelivered -> error. sms_twilio/controllers/controllers.py:9-26
 - B6. Twilio error codes mapped to delivery-failure categories (account suspended -> expired; unreachable/unknown handset -> invalid destination; blocked/carrier violation -> rejected; landline -> not allowed; unknown -> not delivered). sms_twilio/models/sms_tracker.py:3-12
-
 ## C. Validations, automation, security, external service
 - C1. Account SID must be 34 characters, start with "AC", and be alphanumeric after the prefix; checked before every send and before reloading numbers. sms_twilio/models/res_company.py:30-36; sms_twilio/tools/sms_api.py:22; sms_twilio/wizard/sms_twilio_account_manage.py:25
 - C2. Credential fields (SID, auth token) readable only by the system-administrator group at field level. sms_twilio/models/res_company.py:20-21. Sender-number and wizard models: full access for system administrators only (wizard cannot delete). sms_twilio/security/ir.model.access.csv:2-3
@@ -87,23 +84,19 @@ Basis: static reading of all models, tools, controller, wizard, security, views;
 - C10. Neutralization (database copy) replaces every company's Twilio auth token with a dummy value. sms_twilio/data/neutralize.sql:1-2
 - C11. Wizard "reload numbers" deletes the company's existing number list and re-creates it from the Twilio account's incoming numbers. sms_twilio/wizard/sms_twilio_account_manage.py:39-62. "Send test" sends a real message through the normal path. :74-99
 - C12. Failure-type compatibility code silently refreshes selection values on read (stable-branch workaround with removal note). sms_twilio/models/sms_sms.py:29-52; sms_twilio/models/mail_notification.py:19-45
-
 ## D. Handoffs
 - D1. SMS framework (queue, send loop, composer, tracker, base API, settings block): sms. sms/models/sms_sms.py:99-135,163-179,233; sms/models/res_company.py:9-12
 - D2. Phone country detection: phone_validation. sms_twilio/tools/sms_twilio.py:7,14
 - D3. Message-level company field: mail. mail/models/mail_message.py:117
 - D4. Consumers of the SMS framework that will use Twilio transparently (no code change): modules that queue SMS through sms (e.g. calendar_sms, event_sms, crm_sms, sale_sms, stock_sms, project_sms trace notes exist) — the routing is by company, not by module. sms_twilio/models/sms_sms.py:57-72
 - D5. Only test-only modules name sms_twilio in their manifests: test_mass_mailing, test_mail_sms. (grep of manifests)
-
 ## E. Configuration that changes outcomes
 - E1. Company setting "SMS Provider" (default Odoo service). sms_twilio/models/res_company.py:18; sms_twilio/models/res_config_settings.py:7
 - E2. Account SID, auth token, sender numbers (with countries). sms_twilio/models/res_company.py:20-22
 - E3. System parameter for Twilio batch size (default 10). sms_twilio/models/sms_sms.py:80
 - E4. Company base URL must be reachable from the internet for status callbacks. sms_twilio/tools/sms_twilio.py:25
-
 ## F. Extension path
 - sms (framework), sms_twilio (this provider), phone_validation, mail. Other provider-style modules: UNKNOWN — EVIDENCE INSUFFICIENT (none found by grep of "twilio" outside this module and test modules).
-
 ## G. Not verified
 - UNKNOWN — EVIDENCE INSUFFICIENT: encryption of the auth token at rest (plain character field, sms_twilio/models/res_company.py:21).
 - UNKNOWN — EVIDENCE INSUFFICIENT: how inbound (received) SMS are handled; only outbound status callbacks exist here.

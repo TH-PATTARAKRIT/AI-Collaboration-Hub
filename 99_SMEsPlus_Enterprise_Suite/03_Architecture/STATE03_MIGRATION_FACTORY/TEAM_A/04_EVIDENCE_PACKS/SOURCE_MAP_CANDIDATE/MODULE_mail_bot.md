@@ -54,7 +54,7 @@
 - Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; residual unknowns listed in section 10.
 
 ## 10. Trace note (S2 candidate)
-> Authored by a delegated read-only research sub-agent; **CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION**. Automated check: 28 of 28 source pointers resolve to an existing file and in-range line (0 unresolved) — this checks pointer existence only, not that each line supports its claim. Limited spot verification by the session only. Treat as a research lead.
+> Authored by a delegated read-only research sub-agent; **CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION**. Automated check: 30 of 30 source pointers resolve to an existing file and in-range line (0 unresolved) — this checks pointer existence only, not that each line supports its claim. Limited spot verification by the session only. Treat as a research lead.
 
 # Source Map trace note — mail_bot
 Source revision: 19.0.post20260921 | Module: "OdooBot" v1.2, category Productivity/Discuss, LGPL-3 (mail_bot/__manifest__.py:5-7,23). Basis: static reading; no tests, no security files in this module.
@@ -92,10 +92,10 @@ Source revision: 19.0.post20260921 | Module: "OdooBot" v1.2, category Productivi
 - E2. Bot's only global off-switch found is uninstalling the module: UNKNOWN — EVIDENCE INSUFFICIENT for any system-wide setting.
 
 ## F. Extension path
-- Modules that inherit mail.bot or call its logic: UNKNOWN — EVIDENCE INSUFFICIENT (not searched beyond this module).
+- mail_bot_hr (depends on mail_bot and hr) and test_mail_full reference mail_bot: mail_bot_hr/__manifest__.py:9; test_mail_full/__manifest__.py:15. What mail_bot_hr adds: UNKNOWN — EVIDENCE INSUFFICIENT.
 
 ## G. Not verified
 - UNKNOWN — EVIDENCE INSUFFICIENT: front-end behaviour (only one stylesheet asset registered, mail_bot/__manifest__.py:17-21).
 - UNKNOWN — EVIDENCE INSUFFICIENT: behaviour for multi-company or guest users.
-- UNKNOWN — EVIDENCE INSUFFICIENT: whether other Community modules extend the tour steps.
+- UNKNOWN — EVIDENCE INSUFFICIENT: whether mail_bot_hr or other Community modules extend the tour steps.
 

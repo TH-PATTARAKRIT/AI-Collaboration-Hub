@@ -59,19 +59,16 @@
 # Source Map trace note — cloud_storage_migration
 Source revision: 19.0.post20260921 | Module: "Cloud Storage Migration" (cloud_storage_migration/__manifest__.py:4) | LGPL-3 (:17)
 Basis: static reading of models, cron/seed data, access file, settings view; two setting tests by title.
-
 ## A. Capabilities and optionality
 - A1. Moves existing locally stored attachment files to the configured cloud provider in the background, per selected business model. cloud_storage_migration/__manifest__.py:5; cloud_storage_migration/models/ir_attachment.py:24-44,46-186
 - A2. Optional add-on (no auto_install); depends only on cloud_storage, and needs a provider module (cloud_storage_azure or cloud_storage_google) to be usable. cloud_storage_migration/__manifest__.py:8; cloud_storage_migration/models/ir_attachment.py:54-55
 - A3. Not automatic: the cron is seeded with a next run about 9999 days ahead and a 9999-month interval; it is intended to be triggered manually from the settings screen ("Cron Job" button). cloud_storage_migration/data/ir_cron.xml:10-12; cloud_storage_migration/views/res_config_settings.xml:22-27
 - A4. Provides a read-only report of stored binary attachments per business model (count, total and largest size, split into message attachments and all attachments) plus flags showing which models are scheduled. cloud_storage_migration/models/cloud_storage_migration_report.py:9-28,30-66,82-92
-
 ## B. Objects and lifecycle
 - B1. New reporting model (database view, no stored rows): cloud.storage.migration.report. cloud_storage_migration/models/cloud_storage_migration_report.py:9-13. Counts only local binary attachments linked to a record, excluding field-bound ones. :56-60
 - B2. Per-attachment lifecycle: local file -> address generated -> file streamed to provider using the provider's upload link -> record switched to cloud type and local content dropped. cloud_storage_migration/models/ir_attachment.py:24-44
 - B3. Progress is a "last processed attachment id" cursor kept in a system parameter compared with a "highest attachment id at start" parameter, shown as a progress bar. cloud_storage_migration/models/cloud_storage_migration_report.py:94-98; cloud_storage_migration/data/data.xml:26-30
 - B4. Selection of what to migrate: two comma-separated model-name lists ("message attachments only" and "all attachments"), edited as tags on the settings screen. cloud_storage_migration/models/res_config_settings.py:13-34,42-62; cloud_storage_migration/views/res_config_settings.xml:38-46
-
 ## C. Validations, automation, security, external service
 - C1. Preconditions raised as errors: no provider configured; no model selected. cloud_storage_migration/models/ir_attachment.py:54-55,66-67
 - C2. Eligibility filter (all must hold): local binary with stored file and no URL; linked to a record; not field-bound; model in selected list (message-list models additionally require the attachment be attached to a message); model not in cloud_storage's unsupported list; size between minimum file size and max file size; created more than 7 days ago; not used by a Documents record when that app exists. cloud_storage_migration/models/ir_attachment.py:100-145
@@ -82,21 +79,17 @@ Basis: static reading of models, cron/seed data, access file, settings view; two
 - C7. No record rules or company scoping in this module; the attachment query is not company-filtered. cloud_storage_migration/models/ir_attachment.py:108-131
 - C8. External-service implication: the server itself reads local files and pushes them to the provider (bandwidth/credentials of the server); the provider's credentials belong to the provider module. cloud_storage_migration/models/ir_attachment.py:30-37
 - C9. Tests (TEST): removing a model from the tag lists updates the stored setting. cloud_storage_migration/tests/test_res_config_settings.py:29,45
-
 ## D. Handoffs
 - D1. Provider settings, upload-link generation, unsupported-model list: cloud_storage, cloud_storage_azure, cloud_storage_google. cloud_storage/models/ir_attachment.py:125-132; cloud_storage_azure/models/ir_attachment.py:114-128; cloud_storage_google/models/ir_attachment.py:79-88
 - D2. Documents app (not in this addons list) is honoured through an existence check, no direct dependency. cloud_storage_migration/models/ir_attachment.py:100-105
 - D3. Reverse move (cloud to local) is owned by cloud_storage. cloud_storage/models/ir_attachment.py:50-67
-
 ## E. Configuration defaults that change outcomes
 - E1. Seeded once (no-update): max file size 1,000,000,000 bytes; max batch total 1,000,000,000 bytes; both model lists empty; cursor 0. cloud_storage_migration/data/data.xml:4-30
 - E2. Code fallbacks if parameters missing: max file 10^9, max batch 10^10 (10 GB, differs from the 1 GB seed). cloud_storage_migration/models/ir_attachment.py:60-61
 - E3. Minimum size uses cloud_storage's parameter (default 20 MB). cloud_storage_migration/models/ir_attachment.py:15,59
 - E4. Other parameters are reachable through the "Parameters" button. cloud_storage_migration/models/res_config_settings.py:64-79
-
 ## F. Extension path
 - cloud_storage, cloud_storage_azure, cloud_storage_google (provider hooks). No other Community module names cloud_storage in a manifest.
-
 ## G. Not verified
 - UNKNOWN — EVIDENCE INSUFFICIENT: whether recent (under 7 days) attachments are ever migrated by another path.
 - UNKNOWN — EVIDENCE INSUFFICIENT: behaviour when the provider is switched mid-migration beyond the module's own instruction (cloud_storage/models/res_config_settings.py:11-16).

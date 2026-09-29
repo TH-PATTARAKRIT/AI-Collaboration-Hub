@@ -74,7 +74,9 @@ Objects introduced here that are extended by other modules (module names only):
 - Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; residual unknowns listed in section 10.
 
 ## 10. Trace note (S2 candidate)
-> Authored by a delegated read-only research sub-agent; **CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION**. Automated check: 3 of 60 source pointers resolve to an existing file and in-range line (57 unresolved) — this checks pointer existence only, not that each line supports its claim. Limited spot verification by the session only. Treat as a research lead.
+> Authored by a delegated read-only research sub-agent; **CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION**. Automated check: 59 of 60 source pointers resolve to an existing file and in-range line (1 unresolved) — this checks pointer existence only, not that each line supports its claim. Limited spot verification by the session only. Treat as a research lead.
+
+> Pointer alias legend for this note: `B/` = `odoo/addons/base/`; `O/` = `odoo/orm/` (relative to the Odoo Community source root).
 
 # Source Map trace note - module `base`
 

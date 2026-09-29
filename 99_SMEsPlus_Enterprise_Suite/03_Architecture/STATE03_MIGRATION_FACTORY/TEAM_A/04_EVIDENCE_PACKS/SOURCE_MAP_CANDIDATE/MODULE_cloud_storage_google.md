@@ -59,7 +59,6 @@
 # Source Map trace note — cloud_storage_google
 Source revision: 19.0.post20260921 | Module: "Cloud Storage Google" (cloud_storage_google/__manifest__.py:4) | LGPL-3 (:25)
 Basis: static reading of models, utils, settings view, neutralize script, uninstall hook, test titles.
-
 ## A. Capabilities and optionality
 - A1. Adds Google Cloud Storage as a selectable provider for new chatter/web-client attachments. cloud_storage_google/__manifest__.py:5; cloud_storage_google/models/res_config_settings.py:25
 - A2. Optional (no auto_install); depends on cloud_storage; requires the external Python library google-auth. cloud_storage_google/__manifest__.py:8,12-17
@@ -67,13 +66,11 @@ Basis: static reading of models, utils, settings view, neutralize script, uninst
 - A4. Direct browser-to-bucket upload through a signed PUT link; reading through a signed GET link (redirect). cloud_storage_google/models/ir_attachment.py:63-88; cloud_storage/models/ir_attachment.py:24-34
 - A5. Small backend style file only. cloud_storage_google/__manifest__.py:18-22; cloud_storage_google/static/src/scss/cloud_storage_google.scss:1
 - A6. Ships an offline script for removing unused blobs (not part of the running application). cloud_storage_google/utils/cleanup_cloud_storage_google.py:1
-
 ## B. Objects and lifecycle
 - B1. No new model; extends attachment and settings wizard (attachment type "cloud storage" is owned by cloud_storage). cloud_storage_google/models/ir_attachment.py:31-32; cloud_storage/models/ir_attachment.py:19-22
 - B2. Blob address = bucket name + unique path (attachment id / random id / file name). cloud_storage_google/models/ir_attachment.py:44-46; cloud_storage/models/ir_attachment.py:69-75
 - B3. Stored address must match the Google pattern (storage.googleapis.com/bucket/blob) else validation error. cloud_storage_google/models/ir_attachment.py:33-42
 - B4. Lifecycle same as generic cloud attachment: flagged after creation, content cleared, browser uploads, later reads by signed link. cloud_storage/models/ir_attachment.py:36-48
-
 ## C. Validations, automation, security, external service
 - C1. Credentials: a Google service-account key in JSON is uploaded as a file on the settings screen and stored as text in a system parameter together with the bucket name. cloud_storage_google/models/res_config_settings.py:27-40,49-53; cloud_storage_google/views/settings.xml:14-20
 - C2. Configuration is treated as incomplete unless both bucket and key are present; base module then refuses to enable. cloud_storage_google/models/res_config_settings.py:98-106; cloud_storage/models/res_config_settings.py:77-79
@@ -85,19 +82,15 @@ Basis: static reading of models, utils, settings view, neutralize script, uninst
 - C8. Uninstall removes bucket and key parameters; neutralization deletes the same two parameters. cloud_storage_google/__init__.py:11-14; cloud_storage_google/data/neutralize.sql:1-4; (TEST) cloud_storage_google/tests/test_cloud_storage_google.py:61-67
 - C9. No security groups, record rules or company scoping defined in this module. cloud_storage_google/__manifest__.py:9-11
 - C10. Observation: the failure message for the read-permission check builds its text from the upload response rather than the read response. cloud_storage_google/models/res_config_settings.py:76. Practical effect — UNKNOWN — EVIDENCE INSUFFICIENT.
-
 ## D. Handoffs
 - D1. Provider-neutral engine (settings block, min file size, session info, upload endpoint, unsupported models): cloud_storage. cloud_storage/models/ir_http.py:8-16; cloud_storage/controllers/attachment.py:9-32
 - D2. Bulk move of existing local files: cloud_storage_migration. cloud_storage_migration/models/ir_attachment.py:24-44
 - D3. Signed-link tests (TEST): cloud_storage_google/tests/test_cloud_storage_google.py:37; upload endpoint test (TEST): cloud_storage_google/tests/test_cloud_storage_google_attachment_controller.py:12
-
 ## E. Configuration
 - E1. Provider = google; bucket name; service-account key file; minimum file size (default 20,000,000 bytes). cloud_storage_google/models/res_config_settings.py:27-40; cloud_storage/models/res_config_settings.py:6,28-37
 - E2. Changing bucket while old blobs exist requires the service account to keep access to the old bucket (module instruction). cloud_storage_google/models/res_config_settings.py:18-22
-
 ## F. Extension path
 - cloud_storage (base), cloud_storage_google, cloud_storage_azure, cloud_storage_migration.
-
 ## G. Not verified
 - UNKNOWN — EVIDENCE INSUFFICIENT: which groups can view or edit the service-account key text on the settings screen; whether the key is masked.
 - UNKNOWN — EVIDENCE INSUFFICIENT: whether wildcard-origin CORS is acceptable for a given deployment (policy decision, not shown in source).

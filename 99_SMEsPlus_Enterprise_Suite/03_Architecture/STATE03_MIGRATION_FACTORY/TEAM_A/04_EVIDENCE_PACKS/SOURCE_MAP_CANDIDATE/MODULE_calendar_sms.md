@@ -59,18 +59,15 @@
 # Source Map trace note — calendar_sms
 Source revision: 19.0.post20260921 | Module: "Calendar - SMS" (calendar_sms/__manifest__.py:5) | LGPL-3 (:17)
 Basis: static reading of all models, views, data; tests by title.
-
 ## A. Capabilities and optionality
 - A1. Adds text-message reminders to calendar events and a manual "send SMS to attendees" action. calendar_sms/__manifest__.py:7; calendar_sms/models/calendar_alarm_manager.py:11-24; calendar_sms/models/calendar_event.py:28-43
 - A2. Bridge module: auto_install, depends on calendar and sms, so it appears automatically when both are installed. calendar_sms/__manifest__.py:10,15
 - A3. Conditional: reminders are sent only for alarms whose type is "SMS Text Message"; e-mail/notification alarms are handled by calendar unchanged. calendar_sms/models/calendar_alarm.py:10-12; calendar_sms/models/calendar_alarm_manager.py:14-15
-
 ## B. Objects and lifecycle
 - B1. No new model. Adds an alarm type "SMS" and an SMS-template link to the reminder definition (calendar.alarm); adds reminder-sending and manual-send behaviour to the event. calendar_sms/models/calendar_alarm.py:8-17; calendar_sms/models/calendar_event.py:8-43
 - B2. Template choice: an SMS-type alarm without a template gets the shipped default template "Calendar Event: Reminder"; non-SMS alarms have the link cleared. The link is required on the form when type is SMS. calendar_sms/models/calendar_alarm.py:19-25; calendar_sms/views/calendar_views.xml:10; calendar_sms/data/sms_data.xml:4-8
 - B3. Lifecycle: the scheduled reminder job (owned by calendar) runs -> after e-mail/notification alarms, this module selects events due for SMS alarms -> sends SMS -> re-arms recurring-event alarms. calendar/data/calendar_cron.xml:5-9; calendar_sms/models/calendar_alarm_manager.py:14-24; calendar/models/calendar_event.py:1249-1265
 - B4. Removing the SMS alarm type falls back to the default alarm type. calendar_sms/models/calendar_alarm.py:12
-
 ## C. Validations, automation, security, external service
 - C1. Recipients: event participants who have a valid sanitized phone number and have not declined; the event's responsible user is excluded unless the alarm has "Notify Responsible" on. calendar_sms/models/calendar_event.py:12-20; (TEST) calendar_sms/tests/test_calendar_sms.py:102-106
 - C2. Text used: alarm's SMS template, else a fallback sentence with event name and display time. calendar_sms/models/calendar_event.py:21-26
@@ -80,19 +77,15 @@ Basis: static reading of all models, views, data; tests by title.
 - C6. Test (TEST): two events with 1-hour and 24-hour alarms send exactly the matching template to the matching partners. calendar_sms/tests/test_calendar_sms.py:108-123
 - C7. Security groups, record rules, access files: none added by this module (no security data in manifest). calendar_sms/__manifest__.py:11-14
 - C8. External-service implication: delivery uses whatever SMS provider the sending company has configured in sms (Odoo credit service or another provider such as sms_twilio); credit or credentials problems appear as SMS failures, not calendar errors. calendar_sms/models/calendar_event.py:21-26; sms_twilio/models/sms_sms.py:57-72
-
 ## D. Handoffs
 - D1. Calendar events, alarms, reminder job, attendee states: calendar. calendar/models/calendar_alarm_manager.py:143,182; calendar/models/calendar_alarm.py:14,29
 - D2. Sending, templates, composer, provider selection and failure tracking: sms. calendar_sms/models/calendar_event.py:21,34; calendar_sms/data/sms_data.xml:4
 - D3. Phone sanitization used to filter recipients: partner phone fields (owner: phone_validation via sms chain). calendar_sms/models/calendar_event.py:17 — owner file not read; UNKNOWN — EVIDENCE INSUFFICIENT for exact owner file.
-
 ## E. Configuration that changes outcomes
 - E1. Per reminder: type SMS, timing, "Notify Responsible", chosen SMS template. calendar/models/calendar_alarm.py:29; calendar_sms/models/calendar_alarm.py:13-17
 - E2. The shipped template text can be edited without code (loaded once; not overwritten on update). calendar_sms/data/sms_data.xml:3
-
 ## F. Extension path
 - calendar (base object), sms (delivery), calendar_sms (bridge). Further overriders of the reminder job: UNKNOWN — EVIDENCE INSUFFICIENT (not searched).
-
 ## G. Not verified
 - UNKNOWN — EVIDENCE INSUFFICIENT: what happens to attendees without a phone number (they are skipped silently by the filter; no notification found in this module).
 - UNKNOWN — EVIDENCE INSUFFICIENT: timezone used in the shipped template beyond the expression referencing the partner's timezone (calendar_sms/data/sms_data.xml:7).

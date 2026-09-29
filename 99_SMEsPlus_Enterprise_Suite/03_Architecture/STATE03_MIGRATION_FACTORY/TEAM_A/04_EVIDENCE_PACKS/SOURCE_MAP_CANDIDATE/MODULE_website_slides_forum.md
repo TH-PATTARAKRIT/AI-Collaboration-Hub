@@ -2,7 +2,7 @@
 
 > **STATUS:** CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION · source revision `19.0.post20260921` · **MODULE-LIST HASH MISMATCH — PENDING BASELINE RECONCILIATION** (module list from on-disk register; not a confirmed denominator) · not runtime proof · Community-core finding = CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET
 
-**Trace level:** S1-STATIC-EXTRACT (candidate; behavior semantics not yet traced)
+**Trace level:** S2-CANDIDATE (delegated trace note in section 10; not independently verified)
 
 ## 1. Identity / classification / provenance
 | Field | Value |
@@ -26,7 +26,7 @@
 ## 3. Capabilities / functions
 - Manifest category / summary: Website/eLearning / Allows to link forum on a course
 - Inventory of user-facing artifacts (counts): menu items 3, views 5, window actions 2, server actions 0, reports 0, mail templates 0, scheduled jobs 0, wizards 0, web routes 0
-- Core/optional/conditional behavior and business meaning of each capability: `UNKNOWN — EVIDENCE INSUFFICIENT` (not yet traced)
+- Core/optional/conditional behavior and business meaning of each capability: see section 10
 
 ## 4. Business objects (neutral names) and configuration
 - Objects introduced (0): —
@@ -44,12 +44,55 @@
 - Security: groups declared 0 (—); record rules 9 (of which company-scoped by text 0); access rows 1
 
 ## 7. Cross-module handoffs
-- Derived from dependents that extend this module's objects (section 5) and from declared dependencies (section 2). Business meaning: `UNKNOWN — EVIDENCE INSUFFICIENT` (not yet traced).
+- Derived from dependents that extend this module's objects (section 5) and from declared dependencies (section 2). Business meaning of each handoff: see section 10.
 
 ## 8. Schema-only confirmation
 - Module-specific schema check: **NOT PERFORMED** for this module in this round (general schema findings are in the DB-schema documents; absence of a structure is not proof of absence of a module or its effect).
 
 ## 9. Evidence level / V-level / Unknowns
 - Actual V-level: **not assigned by this session** (static source evidence only; no runtime).
-- Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; behavioral semantics of this module (S1 only).
+- Unknown / limitation: effective installed extension set; closed-license extensions; runtime configuration; residual unknowns listed in section 10.
+
+## 10. Trace note (S2 candidate)
+> Authored by a delegated read-only research sub-agent; **CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION**. Automated check: 24 of 25 source pointers resolve to an existing file and in-range line (1 unresolved) — this checks pointer existence only, not that each line supports its claim. Limited spot verification by the session only. Treat as a research lead.
+
+# Source Map trace note: website_slides_forum (Forum on Courses)
+
+Source revision: `19.0.post20260921` (Odoo 19 Community, read-only study; neutral business language; no code copied).
+Skeleton used for orientation: sourcemap/website_slides_forum.json. Pointers are `module/path:LINE`; (TEST) = derived from module tests. Manifest summary: a course can be linked to a forum; forum and course profiles are grouped (website_slides_forum/__manifest__.py:8-9).
+
+## A. Capabilities / functions
+- Conditional: depends on website_slides and website_forum with `auto_install` (website_slides_forum/__manifest__.py:10-13, 28). Also switchable from the eLearning settings screen through a "Forum" toggle (website_slides/models/res_config_settings.py:12; website_slides/views/res_config_settings_views.xml:21).
+- Core: a course gets an optional "Course Forum" (one forum per course, one course per forum) and a "Forum Posts" stat button that opens the forum's posts (website_slides_forum/models/slide_channel.py:10-27; website_slides_forum/views/slide_channel_views.xml:8-19).
+- Core: forums linked to a course show the course, take the course's visibility, and inherit the course image when the forum has none (website_slides_forum/models/forum_forum.py:10-26; website_slides_forum/views/forum_forum_views.xml:8-23).
+- Core: forum list page splits regular forums from course forums and shows a course badge; breadcrumb root replaced; "Forum" links added in course header and fullscreen slide view (website_slides_forum/views/forum_forum_templates.xml:4-50; website_slides_forum/views/website_slides_templates.xml:3-20).
+- Core: profile page opened from a course carries the course's forum context so forum and course stats are grouped (website_slides_forum/controllers/main.py:8-24).
+- Backend menus: eLearning > Forum > Forums / Posts (website_slides_forum/views/website_slides_menu_views.xml:3-16); builder option for the forum page (website_slides_forum/static/src/website_builder/slides_forum_page_option_plugin.js).
+
+## B. Business objects, relationships, lifecycle
+- Course (slide.channel, owned by website_slides) -> forum (forum.forum, owned by website_forum); forum knows its course through the reverse link (website_slides_forum/models/slide_channel.py:10; website_slides_forum/models/forum_forum.py:10-11).
+- Linking lifecycle: when a forum is attached to a course, its own privacy value is cleared so course visibility governs; when a course is switched to another forum, the previously linked forum becomes private and restricted to the eLearning officer group (website_slides_forum/models/slide_channel.py:29-46).
+- Demo courses linked to forums exist as demo data (website_slides_forum/data/slide_channel_demo.xml).
+
+## C. Validations, automation, security, multi-company
+- A forum can belong to at most one course (website_slides_forum/models/slide_channel.py:13-16).
+- Access rows: eLearning officers get read/write/create (no delete) on forums (website_slides_forum/security/ir.model.access.csv:2).
+- Record rules add course-based access to forums, posts and tags: public users see only forums of published public-visibility courses; signed-in users additionally see courses with "signed-in" visibility and courses they are members of; eLearning officers see all (website_slides_forum/security/website_slides_forum_security.xml:3-27, 29-53, 55-79). These rules sit next to the forum module's own privacy rules for the same groups; the combined effective result for a given user: UNKNOWN — EVIDENCE INSUFFICIENT.
+- Course visibility, membership and publication decide forum reach; no company or website scoping rule of its own.
+- No automated tests in this module.
+
+## D. Handoffs to other modules
+- website_slides (owner of courses, visibility, membership, officer group, eLearning menu, settings toggle) and website_forum (owner of forum, posts, tags, karma). website_profile supplies profile hooks used in the controller (website_slides_forum/controllers/main.py:13-24).
+
+## E. Configuration / defaults that change outcomes
+- Which forum a course uses: field on the course form (domain limits to forums not linked to another course) (website_slides_forum/views/slide_channel_views.xml:17-19).
+- Forum privacy fields are hidden and driven by the course when linked (website_slides_forum/views/forum_forum_views.xml:13-20).
+- Two optional templates ("split regular forums and courses", "replace breadcrumb root") are active by default and can be switched off in customisation (website_slides_forum/views/forum_forum_templates.xml:4, 18).
+
+## F. Effective extension path (module names only)
+- forum.forum extended only by website_slides_forum in this tree; slide.channel extended by: hr_skills_slides, mass_mailing_slides, website_sale_slides, website_slides_forum, website_slides_survey. Controller WebsiteSlides subclassed here.
+
+## G. Not verified
+- Karma awarded for course participation vs. forum activity: UNKNOWN — EVIDENCE INSUFFICIENT.
+- Behaviour when a linked course is archived or unpublished with existing posts: UNKNOWN — EVIDENCE INSUFFICIENT.
 

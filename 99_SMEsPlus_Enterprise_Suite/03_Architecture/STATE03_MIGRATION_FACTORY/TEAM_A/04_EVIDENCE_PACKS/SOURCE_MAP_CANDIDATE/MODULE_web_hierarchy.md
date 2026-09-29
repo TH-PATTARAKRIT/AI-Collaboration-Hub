@@ -62,7 +62,7 @@ Source revision: 19.0.post20260921 | Module: "Web Hierarchy" (web_hierarchy/__ma
 ## A. Capabilities and optionality
 - A1. Adds a new screen type, "Hierarchy", which draws records as an organisation chart (tree of cards linked by a parent/child relation); intended for structures such as the employee organisation chart. web_hierarchy/__manifest__.py:9-14
 - A2. Any list-of-records screen definition can declare this type; the view supports a card template ("hierarchy-box"), fields, optional icon, and flags for create/edit/delete, drag-and-drop and default order. web_hierarchy/models/ir_ui_view.py:7-20; web_hierarchy/static/src/hierarchy_arch_parser.js:28-56,68-70
-- A3. Drag-and-drop (when the view enables it) re-parents a record by writing its parent field, i.e. an ordinary edit under the user's normal rights. web_hierarchy/static/src/hierarchy_model.js:1013-1024; web_hierarchy/static/src/hierarchy_arch_parser.js:50-52
+- A3. Drag-and-drop (when the view enables it) re-parents a record by writing its parent field, i.e. an ordinary edit under the user's normal rights. web_hierarchy/static/src/hierarchy_model.js:1022-1027; web_hierarchy/static/src/hierarchy_arch_parser.js:50-52
 - A4. Server support: every model gains a read method returning the searched records with their parent (and siblings/children when a single record is selected), with child ids attached if no explicit child field is defined. web_hierarchy/models/models.py:6-41
 - A5. "Hierarchy" is registered as an allowed view mode of window actions and shown with a small icon in the view switcher. web_hierarchy/models/ir_actions.py:6-9; web_hierarchy/models/ir_ui_view.py:26,56-57
 - A6. Optionality: not auto_install, not an application; depends on web; installed only when another module depends on it. web_hierarchy/__manifest__.py:15. Direct dependents (manifest scan): hr_org_chart only (auto_install on that side).
@@ -75,7 +75,7 @@ Source revision: 19.0.post20260921 | Module: "Web Hierarchy" (web_hierarchy/__ma
 ## C. Validations, security, automation
 - C1. Definition-time validation: only field entries and one templates block are allowed inside a hierarchy view; only whitelisted attributes are accepted; otherwise the view definition is rejected with an error. web_hierarchy/models/ir_ui_view.py:31-54
 - C2. The view is treated as template-based (qweb) for validation purposes. web_hierarchy/models/ir_ui_view.py:28-29
-- C3. Missing card template raises a client error. web_hierarchy/static/src/hierarchy_arch_parser.js:68-70
+- C3. Missing card template raises a client error. web_hierarchy/static/src/hierarchy_arch_parser.js:70
 - C4. Security: no groups, rules, or access rows; read goes through the normal search and record-read path, so the caller's access rights and record rules apply to displayed records (the module calls search and web_read as the current user, not elevated). web_hierarchy/models/models.py:13,36; skeleton: groups, rules, access none.
 - C5. No company scoping of its own; the domain in the action and standard rules decide what appears. UNKNOWN — EVIDENCE INSUFFICIENT for any company filter default (none in module).
 - C6. No audit: re-parenting is a normal write, so only whatever tracking the target model has records it (e.g., chatter on the model) — not verified for hr models.

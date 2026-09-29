@@ -59,20 +59,17 @@
 # Source Map trace note — cloud_storage_azure
 Source revision: 19.0.post20260921 | Module: "Cloud Storage Azure" (cloud_storage_azure/__manifest__.py:4) | LGPL-3 (:14)
 Basis: static reading of models, utils, settings view, neutralize script, uninstall hook, and test file names/titles.
-
 ## A. Capabilities and optionality
 - A1. Adds Microsoft Azure Blob Storage as one selectable provider for storing new chatter/web-client attachments outside the database and local file store. cloud_storage_azure/__manifest__.py:5; cloud_storage_azure/models/res_config_settings.py:23
 - A2. Optional add-on (not auto_install, not an application); depends only on the provider-neutral module cloud_storage. cloud_storage_azure/__manifest__.py:8
 - A3. Conditional behaviour: every override acts only when the stored provider setting equals "azure"; otherwise it defers to the next provider. cloud_storage_azure/models/ir_attachment.py:91,97,115; cloud_storage_azure/models/res_config_settings.py:47,60,85
 - A4. Files are uploaded by the user's browser directly to Azure using a short-lived signed link issued by Odoo; downloads are served by redirecting the reader to a short-lived signed read link. cloud_storage_azure/models/ir_attachment.py:96-128; cloud_storage/models/ir_attachment.py:24-34
 - A5. Ships an offline clean-up script (not part of the running application) that lists blobs, compares them with Odoo attachment URLs and deletes unused ones. cloud_storage_azure/utils/cleanup_cloud_storage_azure.py:10-31
-
 ## B. Objects and lifecycle
 - B1. No new business model. Extends the attachment record (owner of the type "cloud storage": cloud_storage) and the settings wizard. cloud_storage_azure/models/ir_attachment.py:62-63; cloud_storage_azure/models/res_config_settings.py:21; cloud_storage/models/ir_attachment.py:19-22
 - B2. Lifecycle of one attachment: created normally -> flagged as cloud attachment (content cleared, type switched, blob address stored) -> browser uploads to Azure -> later reads use signed read links. cloud_storage/models/ir_attachment.py:36-48; cloud_storage/controllers/attachment.py:12-32
 - B3. Blob address is built from account name, container name and a unique path "attachment id / random id / file name". cloud_storage_azure/models/ir_attachment.py:79-83; cloud_storage/models/ir_attachment.py:69-75
 - B4. Stored address must match the Azure pattern (account 3-24 lowercase letters/digits; container 3-63 lowercase letters/digits/hyphens, no leading hyphen; blob path); otherwise a validation error is raised on use. cloud_storage_azure/models/ir_attachment.py:65-77; (TEST) cloud_storage_azure/tests/test_cloud_storage_azure.py:167-214
-
 ## C. Validations, automation, security, external service
 - C1. Saving settings with the provider chosen but any of the five Azure values missing yields an empty configuration, which the base module rejects ("configure before enabling"). cloud_storage_azure/models/res_config_settings.py:49-56; cloud_storage/models/res_config_settings.py:77-79
 - C2. On saving changed credentials the module performs a live self-test: uploads an empty test blob, then reads it back; each failure raises a validation error with Azure's response text. cloud_storage_azure/models/res_config_settings.py:58-82; cloud_storage/models/res_config_settings.py:80-81
@@ -85,19 +82,15 @@ Basis: static reading of models, utils, settings view, neutralize script, uninst
 - C9. Database neutralization (test/copy of a production database) deletes the five credential parameters so a copy cannot reach the production container. cloud_storage_azure/data/neutralize.sql:1-7
 - C10. Security groups / record rules / company scoping: none defined by this module (no security folder in manifest). cloud_storage_azure/__manifest__.py:9-11. Settings screen access follows the general settings wizard (owner: base_setup) — UNKNOWN — EVIDENCE INSUFFICIENT for the exact group.
 - C11. Observation: in the non-Azure branch of the configuration getter the parent method is returned without being called. cloud_storage_azure/models/res_config_settings.py:48. Effect when another provider is active — UNKNOWN — EVIDENCE INSUFFICIENT.
-
 ## D. Handoffs
 - D1. Provider-neutral engine (attachment type, upload endpoint, min file size, unsupported-model list, settings block): cloud_storage. cloud_storage/models/ir_attachment.py:19-48,125-132; cloud_storage/controllers/attachment.py:9-32; cloud_storage/models/res_config_settings.py:22-37
 - D2. Bulk move of existing local files: cloud_storage_migration (uses the upload link this module issues). cloud_storage_migration/models/ir_attachment.py:31-32
 - D3. Outgoing email conversion of cloud attachments into links: (TEST) cloud_storage_azure/tests/test_cloud_storage_azure.py:325-330 (mail module owns the conversion; code not read) — UNKNOWN — EVIDENCE INSUFFICIENT for the owning file.
-
 ## E. Configuration that changes outcomes
 - E1. Provider selection (must be "azure"); five Azure values; minimum file size (default 20,000,000 bytes) below which the browser keeps using normal storage. cloud_storage/models/res_config_settings.py:6,22-37; cloud_storage/models/ir_http.py:12-16
 - E2. Changing account or container while old blobs are in use requires the app registration to keep access to the old containers (stated in the module's own instructions). cloud_storage_azure/models/res_config_settings.py:12-16
-
 ## F. Extension path
 - Modules extending attachment cloud behaviour: cloud_storage (base), cloud_storage_azure, cloud_storage_google, cloud_storage_migration. (grep of "cloud_storage" in manifests found only these four.)
-
 ## G. Not verified
 - UNKNOWN — EVIDENCE INSUFFICIENT: which user groups may open the settings screen and edit credentials.
 - UNKNOWN — EVIDENCE INSUFFICIENT: encryption/masking of the client secret in the parameter store or UI (field is a plain text field, cloud_storage_azure/views/settings.xml:23-24; no masking option seen).
