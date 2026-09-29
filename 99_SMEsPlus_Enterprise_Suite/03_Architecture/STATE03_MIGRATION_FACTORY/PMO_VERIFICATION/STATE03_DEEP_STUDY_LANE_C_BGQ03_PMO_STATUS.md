@@ -40,3 +40,12 @@ Per Boss's "STATE03 Population Lineage Correction & Autonomous Continuation" pro
 - `QUALITY_CONTROL_PILOT` (`M2`) — new module, research commenced, explicitly marked `IN PROGRESS`, not counted into any population total. No premature completion claim found.
 
 PMO confirms: no Formal Coverage, Gate PASS, "STATE03 Complete," or Functional Design authorization claimed anywhere in this batch. Still `HOLD — awaiting CHATGPT_AUDIT output` on `BGQ-03` itself; this batch is additional scope for the same eventual independent review, not a new decision request.
+
+## Update (2026-09-29, later still) — M1 checkpoint closure + priority reorder to core modules
+
+Per Boss's "STATE03 M1 Close Then Core Module Priority" instruction:
+
+- `M1` reaches its own slice checkpoint (`MANUFACTURING_BOM_ROUTING_PILOT/25_TEAM_A_DOMAIN_STATUS.md`). PMO confirms this is correctly labeled a checkpoint, not a Manufacturing-complete claim — `GAP-BRP-09` and `GAP-MFG-01` remain Open/Conditional.
+- `M2` (`QUALITY_CONTROL_PILOT`) correctly marked `PAUSED/DEFERRED`, not discarded and not silently abandoned.
+- `M3` (`SHARED_MASTER_DATA_PILOT`) started per the new priority order (#1: Shared Master Data). PMO confirms the mandatory scope-collision check was performed and documented before starting: `DOMAIN_01_ACCOUNTING_CORE` and `GROUP_01_SALES_INVENTORY_PURCHASE` (two separate, pre-existing, differently-authorized research tracks — different sessions, branches, and access levels) are correctly identified as **not** to be resumed or duplicated by this session. No restart or duplicate framework/register/universe/denominator found in this batch.
+- No Formal Coverage, Gate PASS, or STATE04 authorization claimed. Still `HOLD — awaiting CHATGPT_AUDIT output` on `BGQ-03`.

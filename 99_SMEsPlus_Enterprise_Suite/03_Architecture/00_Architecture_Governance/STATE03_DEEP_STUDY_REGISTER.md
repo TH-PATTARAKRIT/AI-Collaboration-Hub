@@ -1,7 +1,7 @@
 # STATE03 Deep Study Register
 
 Document ID: `STATE03-DEEP-STUDY-REGISTER`
-Version: 0.8
+Version: 0.9
 Date: 2026-09-29
 Project: SMEsPlus ENTERPRISE SUITE
 STATE: STATE03 — Architecture & Knowledge Acquisition Deep Study
@@ -216,7 +216,15 @@ Two previously-open, non-Boss-gated gaps closed this cycle without waiting: `GAP
 
 ### 3.3 Next-READY module selection (2026-09-29, per Boss's "STATE03 Population Lineage Correction & Autonomous Continuation" §1)
 
-`M2` = `QUALITY_CONTROL_PILOT` selected and research **commenced** (not complete) — Wave 5 "Quality," direct continuity from `M1`'s own flagged out-of-scope item ("quality-checkpoint integration with manufacturing"). 3 functions drafted (`QCP-F01`–`F03`), 2 gaps opened (`GAP-QCP-01`/`02`), both official-documentation-tier (V2). **Not added to any population total** (Lane C baseline or the `M1` ledger) until its own row-level reconciliation is complete, per the same discipline `M1` itself followed at its first checkpoint. Readiness evidence: `QUALITY_CONTROL_PILOT/00_DOMAIN_INDEX.md` §Readiness evidence.
+`M2` = `QUALITY_CONTROL_PILOT` selected and research **commenced** (not complete) — Wave 5 "Quality," direct continuity from `M1`'s own flagged out-of-scope item ("quality-checkpoint integration with manufacturing"). 3 functions drafted (`QCP-F01`–`F03`), `GAP-QCP-01` resolved (documentation-tier), `GAP-QCP-02` open. Both official-documentation-tier (V2). **Not added to any population total** (Lane C baseline or the `M1` ledger) until its own row-level reconciliation is complete, per the same discipline `M1` itself followed at its first checkpoint. Readiness evidence: `QUALITY_CONTROL_PILOT/00_DOMAIN_INDEX.md` §Readiness evidence. **Superseded by §3.4 below — now paused.**
+
+### 3.4 M1 checkpoint closure + priority reorder (2026-09-29, per Boss's "STATE03 M1 Close Then Core Module Priority" instruction)
+
+`M1` (`MANUFACTURING_BOM_ROUTING_PILOT`) reaches its own slice checkpoint: `MANUFACTURING_BOM_ROUTING_PILOT/25_TEAM_A_DOMAIN_STATUS.md` §"M1 SLICE CHECKPOINT — CLOSED". Not a claim that Manufacturing is complete — `GAP-BRP-09` and `GAP-MFG-01` (Gx7) both remain Open/Conditional. Per Boss's explicit instruction, **no further Manufacturing scope is added** beyond this slice; `M2` (`QUALITY_CONTROL_PILOT`) is **paused/deferred**, not discarded (`QUALITY_CONTROL_PILOT/00_DOMAIN_INDEX.md` §PAUSED/DEFERRED).
+
+Research priority reorders to the product-core sequence Boss specified: (1) Shared Master Data, (2) Sales, (3) Purchase, (4) Inventory, (5) Accounting, (6) O2C/P2P cross-module reconciliation, (7) Manufacturing/other optional domains (last, resumes `M2` when reached).
+
+**`M3` = `SHARED_MASTER_DATA_PILOT` selected and research commenced** (Wave 1, priority #1) — Party/Contact, Product Template/Variant, UoM Category/Conversion, Access Rights/Groups (Role boundary). 4 functions drafted (`SMD-F01`–`F04`), 4 gaps opened (`GAP-SMD-01`–`04`, 1 flagged Targeted Validation — `GAP-SMD-02` feeds back into Gx8's own `RTG-F01`). **Scope-collision check performed and documented** (`SHARED_MASTER_DATA_PILOT/00_DOMAIN_INDEX.md` §Scope-collision check): `DOMAIN_01_ACCOUNTING_CORE` and `GROUP_01_SALES_INVENTORY_PURCHASE` are confirmed to be **separate, differently-authorized, pre-existing research tracks** (different sessions, different branches, live source/DB access this session does not have) — neither is resumed, restarted, or duplicated by this module. **Not added to any population total** until its own row-level reconciliation is complete.
 
 ## 4. Cross-references
 

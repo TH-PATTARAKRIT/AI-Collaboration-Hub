@@ -12,6 +12,8 @@ TEAM_A completed documentation-tier research across 10 Backbone Roadmap Lane C s
 
 **Update (2026-09-29, later still)** — per Boss's "STATE03 Population Lineage Correction & Autonomous Continuation" prompt, please also independently check: `STATE03_DEEP_STUDY_REGISTER.md` §2.1–§2.3 (Lane C baseline 46/45 vs. `M1` expansion ledger 9/9, kept separate, with the diagnostic-only `Current Research Register Total` 55/54); `GAP-BRP-09`'s full C1 record (target V5, actual V1, still `Open/Conditional` — please specifically check that this was not silently upgraded); and the new `QUALITY_CONTROL_PILOT` (`M2`) first pass, which is explicitly `IN PROGRESS` and not yet counted into any population.
 
+**Update (2026-09-29, later still)** — per Boss's "STATE03 M1 Close Then Core Module Priority" instruction: `M1` reached a slice checkpoint (not Manufacturing-complete — `GAP-BRP-09`/`GAP-MFG-01` remain Open/Conditional); `M2` is now `PAUSED/DEFERRED`; the new `SHARED_MASTER_DATA_PILOT` (`M3`) is the active priority module. Please also independently check `M3`'s own scope-collision analysis (`SHARED_MASTER_DATA_PILOT/00_DOMAIN_INDEX.md` §Scope-collision check) — specifically, that `DOMAIN_01_ACCOUNTING_CORE` and `GROUP_01_SALES_INVENTORY_PURCHASE` were correctly identified as separate, pre-existing, differently-authorized tracks and not resumed or duplicated.
+
 ## Where to start
 
 Read, in order:

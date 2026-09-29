@@ -17,3 +17,7 @@ Module: `M2` — Quality (Wave 5 — Operations, item 4, per `STATE03_ENTERPRISE
 ## Status
 
 `IN PROGRESS` — this is a documentation-tier first pass, not a completed pilot. Not added to any population total (Lane C baseline or any expansion ledger) until its own row-level reconciliation is complete, per the same discipline applied to `M1`'s first checkpoint. Not a Gate PASS, not Team B design input, not STATE03 completion.
+
+## PAUSED / DEFERRED (2026-09-29, per Boss's "STATE03 M1 Close Then Core Module Priority" instruction)
+
+This module is Manufacturing-adjacent (Wave 5), which the newer, more specific Boss instruction places **last** in priority order (item 7 of 7), behind Shared Master Data, Sales, Purchase, Inventory, Accounting, and O2C/P2P. The work already done here (3 functions, `GAP-QCP-01` resolved) is retained, not discarded — but no further expansion of this module happens until the higher-priority core-module queue is worked through. Next module actively researched: `SHARED_MASTER_DATA_PILOT` (`M3`).
