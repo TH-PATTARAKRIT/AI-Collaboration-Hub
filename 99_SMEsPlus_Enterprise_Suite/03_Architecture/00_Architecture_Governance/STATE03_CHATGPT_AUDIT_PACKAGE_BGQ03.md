@@ -60,6 +60,8 @@ Two distinct questions:
 
    **Audit task, revised**: do not re-derive this from zero — independently verify (or challenge) this session's specific git-based claims above, which you can check yourself the same way (`git log`, `git show`, `git merge-base --is-ancestor`) if you have repository access. If your own check disagrees with any claim above — the diff content, the tip match, or the ancestry check — say so plainly; that would be a materially different finding from what TEAM_A recorded.
 
+   **Update (2026-09-29, later same day)**: Boss has since ruled on `BGQ-02` directly — "อนุมัติ BGQ-02 ตามข้อเสนอ" — accepting the above as sufficient and closing `BGQ-02`. This item is **no longer open for your disposition recommendation**; Boss decided it directly rather than waiting on this audit. You may still independently verify the underlying git claims for your own confidence and flag disagreement if you find one (that would be a new finding, not a re-litigation of a closed Gate item), but do not withhold or condition your overall `BGQ-03` audit output on this item — it is closed and out of scope for readiness disposition.
+
 ### 2.5 Unresolved contradiction / unsupported certainty
 
 Scan for any place TEAM_A stated a finding with more confidence than its evidence tier supports. Known candidates already self-flagged (verify, don't just accept):

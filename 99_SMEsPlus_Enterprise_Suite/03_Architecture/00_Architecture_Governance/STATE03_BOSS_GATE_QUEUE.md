@@ -1,7 +1,7 @@
 # STATE03 Boss Gate Queue
 
 Document ID: `STATE03-BOSS-GATE-QUEUE`
-Version: 0.3
+Version: 0.4
 Date: 2026-09-29
 Project: SMEsPlus ENTERPRISE SUITE
 STATE: STATE03 — Architecture & Knowledge Acquisition Deep Study
@@ -29,12 +29,16 @@ Applied below per item. Per Boss's rule 10/11: each Category-4 item carries a Re
 
 **No canonical branch selection before `BGQ-02` passes independent audit.** This overrides any earlier reading of BGQ-01/BGQ-02 as independently orderable.
 
+### 1.1.1 BGQ-02 ruled (Boss, 2026-09-29, second ruling this date)
+
+Boss: **"อนุมัติ BGQ-02 ตามข้อเสนอ (ยอมรับ containment ปี 2026-09-02 เป็นเพียงพอ, ปลด BGQ-01 ต่อได้)"** — Approved per §2.2's Recommended Decision: the 2026-09-02 containment posture is accepted as sufficient; `BGQ-02` is **CLOSED**. The sequencing block on `BGQ-01` is lifted — `BGQ-01` is now open for its own (separate, not-yet-made) Boss decision. See §2.2 for the closure record and §2.3 for `BGQ-01`'s own ready-to-decide recommendation.
+
 ## 2. Queue (ordered by Boss-set priority, not by ID)
 
 | Priority | ID | Item | Category | Why it needs Boss (not PMO/research) | Raised | Status |
 |---|---|---|---|---|---|---|
-| **1** | BGQ-02 | Clean-Room `C-05` history-containment disposition (not "conduct a re-audit" — see §2.2, that part is already done) | **4 — TRUE BOSS-ONLY** (Zero-Tolerance disposition) | Zero-Tolerance clean-room conflict class; Boss's own 2026-09-02 ruling left this as `HOLD` pending Boss | 2026-09-28 (resurfaced); underlying item dates to 2026-09-02 | **MATERIALLY DE-RISKED (this session, 2026-09-29) — see §2.2.** Open — Boss-only, blocks BGQ-01, but narrower and closer to resolution than previously recorded |
-| 2 (blocked by 1) | BGQ-01 | Inventory Core Backbone canonical designation / merge authorization: designate `audit/inventory-reopen-2026-09-02-inv-reopen-001` @ `170af9ea7a5afd127abcaae0ffb40aaa1fa25d4d` as canonical carry-forward evidence (by reference or by merge) for the Inventory Core Backbone domain | **4 — TRUE BOSS-ONLY** (Canonical Authority) | Merge/canonical-designation authorization is explicitly Boss-only; touches a domain (Inventory) with its own pre-existing, still-open Evidence Gate | 2026-09-28 | **WAITING FOR BGQ-02 RESULT (Boss ruling 2026-09-29).** Must not be decided before BGQ-02 closes. |
+| — | BGQ-02 | Clean-Room `C-05` history-containment disposition | **4 — TRUE BOSS-ONLY** (Zero-Tolerance disposition) | Zero-Tolerance clean-room conflict class; Boss's own 2026-09-02 ruling left this as `HOLD` pending Boss | 2026-09-28 (resurfaced); underlying item dates to 2026-09-02 | **✅ CLOSED — APPROVED (Boss ruling 2026-09-29, §1.1.1).** Recommended Decision at §2.2 accepted as-is. No further action. |
+| **1** | BGQ-01 | Inventory Core Backbone canonical designation / merge authorization: designate `audit/inventory-reopen-2026-09-02-inv-reopen-001` @ `170af9ea7a5afd127abcaae0ffb40aaa1fa25d4d` as canonical carry-forward evidence (by reference or by merge) for the Inventory Core Backbone domain | **4 — TRUE BOSS-ONLY** (Canonical Authority) | Merge/canonical-designation authorization is explicitly Boss-only; touches a domain (Inventory) with its own pre-existing, still-open Evidence Gate | 2026-09-28 | **UNBLOCKED — OPEN FOR BOSS DECISION (2026-09-29).** Sequencing block lifted now that BGQ-02 is closed. Ready-to-decide recommendation at §2.3 — not yet ruled. |
 | — | BGQ-03 | 9 Veto Council + 9 Special Team Pre-Prompt Independent Challenge for the STATE03 Deep Study Master Prompt itself (`GAP-GRV-07`) | **2 — INDEPENDENT AUDIT DECISION** (not currently Boss-blocked) | `STATE03_PLUS_PRE_PROMPT_INDEPENDENT_CHALLENGE_RULE.md` v2.0 nominally requires this; Boss ruled the Master Prompt stands as a Direct Order, challenge to run in parallel | 2026-09-28 | **SELF-PASS COMPLETE / INDEPENDENT AUDIT PENDING.** Routed to `CHATGPT_AUDIT` per `STATE03_CHATGPT_AUDIT_PACKAGE_BGQ03.md`. Waiting on the human-operated ChatGPT session, not on Claude or Boss; nothing further for Claude to execute here until it returns. |
 | — | BGQ-04 | Authorized isolated Odoo 19 Community runtime/source environment for AWT (Atomic White-box Trace) | **4 — TRUE BOSS-ONLY** (outside this container's provisioning authority) | Environment provisioning/authorization is outside this container's own authority; blocks every C1 function's V-target from V2 to V4/V5 | 2026-09-28 (`GAP-GRV-01`) | Open — AWT Backlog prepared per function (Category 1, already executing) so no research is repeated once granted |
 | — | BGQ-05 | Interpretation of "Gx" for continuous execution: proceeding on the reading that "Gx" = the 10 Accounting × Inventory Cross-Proof scenarios in `STATE03_ACCOUNTING_INVENTORY_BACKBONE_EXECUTION_ROADMAP.md` §Lane C | **1 — CLAUDE EXECUTION DECISION** (reclassified 2026-09-29 — this is exactly the "which Gx to continue next when sequence already exists" case the Autonomous Decision Framework §5/§10 says must not sit in this queue as a Boss wait) | Not Boss-only; posted transparently for correction if Boss disagrees | 2026-09-28 | **Not a live Boss Gate item — proceeding.** Kept here only as a standing disclosure, not a blocker; remove once Boss silently or explicitly confirms by continued silence past a reasonable review window. |
@@ -55,6 +59,20 @@ Applied below per item. Per Boss's rule 10/11: each Category-4 item carries a Re
 **Risk**: Low either way — the exposure is already contained by branch isolation (not by any action pending here), and Boss already excluded the only remedies that would change that. The main residual risk is reputational/compliance (an old commit with vendor code technically exists in repo storage), not development contamination (no clean SMEsPlus artifact reads from it).
 
 **What continues meanwhile (no Boss wait needed)**: `BGQ-01`'s evidence-lineage prep, `CHATGPT_AUDIT` package refresh with this new evidence (done — see `STATE03_CHATGPT_AUDIT_PACKAGE_BGQ03.md` §2.4.2), and all other Category 1/2/3 work below.
+
+**CLOSURE (Boss ruling 2026-09-29, §1.1.1)**: Recommended Decision above **approved as-is, verbatim**. `BGQ-02` is closed. No further remediation, re-audit, or history action is required. This does not retroactively grant Gate PASS, Team B/C authorization, or any merge — it closes only the specific question this item posed (is the existing 2026-09-02 containment sufficient).
+
+### 2.3 BGQ-01 — Recommended Decision, ready to decide (per Autonomous Decision Framework §11)
+
+**Recommended Decision**: Designate `audit/inventory-reopen-2026-09-02-inv-reopen-001` @ `170af9ea7a5afd127abcaae0ffb40aaa1fa25d4d` as the canonical carry-forward evidence for the Inventory Core Backbone domain **by reference, not by merge** — i.e., this Deep Study and any future STATE03/04 work may cite and build on it as the authoritative prior-round synthesis, without merging the branch into `SMEsPlus` or any release path.
+
+**Evidence** (full detail: `INVENTORY_CORE_BACKBONE/03_LINEAGE_RECONCILIATION_DR002_TO_PRESENT.md` §F): the REOPEN branch is the most current, most complete synthesis of the entire `DR-002 → CORR-005 → IDR-007 → CORR-006 → CORR-007A → CORR-007B` lineage, built by independently re-verifying (not assuming) everything before it across all nine 9-Veto-Council mandates. Its own Session Link Register already states: `INVENTORY FULL REOPEN DEEP REVALIDATION COMPLETE — READY FOR INDEPENDENT REOPEN AUDIT`; Gate PASS **not** declared; Team B/C/Development **not** authorized.
+
+**Alternative**: designate it *by merge* instead of by reference — functionally similar for citation purposes, but merge is an irreversible/high-risk action per the Autonomous Decision Framework and gains nothing this domain doesn't already have by reference; not recommended without a specific reason to merge now.
+
+**Risk**: Low for by-reference (fully reversible, no repository history change). Merge would be higher-risk for no evident benefit at this stage.
+
+**What this does NOT do**: does not authorize Team B, Team C, Development, or any Gate PASS for Inventory Core Backbone — those remain separately gated. Does not affect `BGQ-04` (AWT/runtime environment), which stays open.
 
 ## 2.1 What is NOT gated (continues automatically, no Boss wait)
 
