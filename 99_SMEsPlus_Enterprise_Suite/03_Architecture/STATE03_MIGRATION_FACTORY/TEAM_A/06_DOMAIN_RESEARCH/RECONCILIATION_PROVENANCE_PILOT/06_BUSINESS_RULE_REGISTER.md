@@ -28,6 +28,8 @@
 - **RISK**: If this dual-chatter link only exists for the backdating *feature* specifically, then ordinary transfers may lack an equivalently visible cross-link, even though one presumably exists internally (a journal entry must reference *some* originating stock move to have been created at all) — this is an important nuance not to over-generalize from.
 - **UNKNOWN**: Whether the underlying stock-move-to-journal-entry reference exists and is inspectable for *every* transaction, or whether the chatter mirroring is a backdating-specific enhancement layered on top of a reference that already existed but was previously less visible — not evidenced this round.
 
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, Handoff round 2 `R9`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET` — source-static lead.** A stock move carries a reference to the journal entry it creates, set every time a move-level accounting entry is created — not conditioned on backdating specifically. **Scope limit**: this is confirmed only for entries created at the move level; entries created from a vendor-bill/customer-invoice line reference their own originating order line instead, a distinct mechanism not confirmed to be the same reference (`INFER`). So a real reference exists for the ordinary case this function describes, but this is not a confirmation that *every* stock↔financial link in the system shares one mechanism. **Not a closure.**
+
 ### RCN-F03 — Cost/valuation origin tracking
 
 - **WHAT**: Clicking a product's Total Value (in the valuation report) shows all incoming quantities together with each one's remaining quantity and valuation.
@@ -40,6 +42,8 @@
 - **EVENT**: N/A — a standing ledger structure, not a discrete event.
 - **RISK**: None new — this strengthens confidence in, rather than contradicts, prior findings.
 - **UNKNOWN**: Whether this same per-lot tracking exists under AVCO (which conceptually blends cost, unlike FIFO) or is FIFO-specific — not evidenced this round.
+
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, Handoff round 2 `R9`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`.** Per-lot valuation (when enabled on a product) supports Standard, Average (AVCO), and FIFO in the lot-cost computation itself — not FIFO-specific. Lot cost updates per the product's own costing method; an outgoing move of a lot-valuated product uses that specific lot's cost. **Answers the gap affirmatively for Community core**: AVCO is not excluded. **Not a closure** — behavior against a late-arriving vendor bill not traced.
 
 ### RCN-F04 — Bank Reconciliation (explicitly Not Applicable to this scenario)
 

@@ -27,6 +27,8 @@
 - **RISK**: A design assuming multi-company always means strict isolation would miss this deliberate, configurable crossing mechanism — the two concepts (tenant isolation and inter-company automation) coexist by design, not by contradiction.
 - **UNKNOWN**: Whether the auto-created counterpart's valuation/costing is independently computed in the receiving company, or copied from the originating company — not evidenced this round; directly relevant to the whole valuation-timing thread.
 
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, Handoff round 2 `R4`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET` — source-static lead, not runtime-confirmed.** No inter-company-rules module (creating paired SO/PO/transfer documents across companies) was found in the Community source read (absence finding). Product cost (`standard_price`) is per-company; no cross-company value-copy mechanism was found in `_get_value_data` (`INFER`). This function's own automation (the sync feature this gap is about) was not itself traced to Community source — it may live outside Community. **Not a closure.**
+
 ### MCT-F03 — Shared vs. per-company Chart of Accounts
 
 - **WHAT**: Each company can have its own Chart of Accounts, or accounts can be shared across companies.
@@ -57,3 +59,5 @@
 - **EVENT**: N/A.
 - **RISK**: A design assuming "assign this user to this warehouse" is a simple native field, the way "assign this warehouse to this company" is, would be wrong — this is a materially different (and materially harder) configuration task.
 - **UNKNOWN**: Exact native record-rule model behind this (is there a documented `stock.warehouse` security pattern, or is it entirely bespoke per-installation) — official documentation for this specific gap was not found this round, only forum/marketplace corroboration.
+
+> **`SOURCE/DUMP FINDING — CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` (2026-09-30, Handoff round 2 `R8`), `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET` — source-static lead.** Every stock-module security rule found (picking, operation type, warehouse, location, move, move line, quant, Reordering Rule, scrap) is scoped at the company level, not the warehouse level. "Manage Multiple Warehouses/Locations" only enables the feature, it does not restrict a user to one warehouse. **This confirms, at Community-source tier, the absence** the original forum/marketplace-tier finding described — no native per-user, per-warehouse restriction was found. Custom-module security XML was not scanned this round (the prior scan covered only `_inherit` of core models). **Not a closure.**
