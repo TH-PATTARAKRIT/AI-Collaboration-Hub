@@ -1,7 +1,7 @@
 # STATE03 Corrective Checkpoint — Response
 
 Document ID: `STATE03-CORRECTIVE-CHECKPOINT-RESPONSE`
-Version: 2.0
+Version: 2.1
 Date: 2026-09-29
 Authority: Boss's "STATE03 Corrective Checkpoint Prompt" (`PROMPTS/SMEPLUS-26-09-28-STATE03-ARCH-KNOWLEDGE-REBASE-001/02_CORRECTIVE_CHECKPOINT_PROMPT_2026-09-29.md`, sha256 `7ba19d8b27a5a2cbdc363308279bad9119f6884b3186150bcc7115d7fce3d78b`)
 Boss: Sole Final Approver
@@ -29,11 +29,12 @@ All four were added to the repository in the same commit, `e2efbab3` (`git log` 
 |---|---|---|---|---|
 | `42` | PR #74 title/body (original), and this session's own chat reports through 2026-09-29 morning | "Lane C functions, total" | **Incorrect** | Uncorrected arithmetic-carry error — set early, never recomputed as pilots grew (`MANUFACTURING_VALUATION_PILOT` grew to 5 after `MFG-F05` was added; `MULTICOMPANY_ISOLATION_PILOT` already stood at 5) |
 | `46` total / `45` applicable | `STATE03_NEXT_PROMPT_FIRST_CHECKPOINT.md` §1, 2026-09-29 (first correction) | Lane C only (9 pilots, `Gx1`–`Gx10`) | **Correct for that scope**, but Boss ruled it "ambiguous and cannot support a completion statement" because it was a per-Gx summary, not a row-level disposition table | Verified by counting each pilot's own `04_FUNCTION_REGISTER.md`; the counts were right, the *presentation* wasn't rigorous enough |
-| `51` rows = `50` unique + `1` excluded | `STATE03_DEEP_STUDY_REGISTER.md` §2.1, 2026-09-29 (row-level reconciliation, this checkpoint) | Lane C (46 rows: 45 unique + 1 excluded) **+** `M1` (5 rows, all unique) | **Current, row-level, per-Function-ID** | Full disposition table built: every one of the 51 raw rows individually classified `unique` or `excluded`, with reason and evidence pointer per row |
+| `51` rows = `50` unique + `1` excluded | `STATE03_DEEP_STUDY_REGISTER.md` §2.1, 2026-09-29 morning (row-level reconciliation, first pass of this checkpoint) | Lane C (46 rows: 45 unique + 1 excluded) **+** `M1` (5 rows, all unique — `BRP-F01`–`F05` only) | **Correct for that scope**, superseded same day when `M1` grew | Full disposition table built at that point; every one of the 51 raw rows individually classified `unique` or `excluded`, with reason and evidence pointer per row |
+| `55` rows = `54` unique + `1` excluded | `STATE03_DEEP_STUDY_REGISTER.md` §2.1, 2026-09-29 later same day (regenerated after the `M1` follow-on pass) | Lane C (46 rows: 45 unique + 1 excluded) **+** `M1` (9 rows, all unique — `BRP-F01`–`F09`, `F06`–`F09` added same-day) | **Current, row-level, per-Function-ID** | Table regenerated in full (not patched) after `BRP-F06`–`F09` were added; all 55 raw rows re-classified `unique` or `excluded` |
 
-**Overlap Function-IDs found: none.** Every one of the 51 Function IDs appears in exactly one pilot's `04_FUNCTION_REGISTER.md` and nowhere else — checked directly, not assumed.
+**Overlap Function-IDs found: none.** Every one of the 55 Function IDs appears in exactly one pilot's `04_FUNCTION_REGISTER.md` and nowhere else — checked directly, not assumed.
 
-**Excluded Function-ID: `RCN-F04`** (Bank Reconciliation) — classified `C4 (Not Applicable)` because Odoo has no distinct "Bank Reconciliation module" separate from its Accounting app's own reconciliation tooling; this ID is a terminology/scope note, not a researched Function, and was never counted toward the applicable population at any point (it was excluded consistently in all three reported figures above — the change across `42`→`46/45`→`51/50` is not because `RCN-F04`'s treatment changed, but because the *raw* count grew and the *presentation rigor* increased).
+**Excluded Function-ID: `RCN-F04`** (Bank Reconciliation) — classified `C4 (Not Applicable)` because Odoo has no distinct "Bank Reconciliation module" separate from its Accounting app's own reconciliation tooling; this ID is a terminology/scope note, not a researched Function, and was never counted toward the applicable population at any point (it was excluded consistently in all four reported figures above — the change across `42`→`46/45`→`51/50`→`55/54` is not because `RCN-F04`'s treatment changed, but because the *raw* count grew each time — `M1` first added, then `M1` itself expanded — and the *presentation rigor* increased).
 
 ## B3 — Claimed Gap Closure Verification
 
@@ -59,7 +60,9 @@ Per §B4's exact instruction, the subcontracting finding (`BRP-F03`) must carry 
 
 Every other `M1` function (`BRP-F01`, `F02`, `F04`, `F05`) already carries the same implicit conditionality in its own WHAT/BUSINESS RULE fields (version, feature-toggle, configuration dependencies each stated); `BRP-F03` is called out specifically here because it is the one Boss named exactly, and because it is the pilot's sole C1 finding — the one most likely to be over-read as a general rule if this classification were left implicit.
 
-### B4 (continued) — full per-function detail, all 5 `M1` Function IDs
+### B4 (continued) — full per-function detail, all 9 `M1` Function IDs
+
+Original 5 (`BRP-F01`–`F05`) plus the same-day follow-on pass (`BRP-F06`–`F09`, added after Boss's instruction to continue the module automatically — see `01_EXECUTIVE_RESEARCH_SUMMARY.md` "Follow-on pass").
 
 | Function ID | Capability / purpose | Criticality | Evidence (tier) | Actual V / Target V | Configuration/version scope | Unknown/Gap |
 |---|---|---|---|---|---|---|
@@ -68,6 +71,10 @@ Every other `M1` function (`BRP-F01`, `F02`, `F04`, `F05`) already carries the s
 | `BRP-F03` | Subcontracting BoM — components sent to subcontractor retain sender's own valuation (Internal Location); fee captured via vendor-bill posting | **C1 — `Conditional Reference Finding`, see classification above** | `EV-BRP-04`, `EV-BRP-05` (official doc, location/valuation rule) + `EV-BRP-08` (mixed, fee-capture mechanism) | V2 / V5 (floor V4) | Odoo 19.0, Manufacturing app, Subcontracting feature enabled, Subcontracting Location configured as Internal | None remaining beyond the disclosed evidence-tier caveat (fee-capture source is mixed-tier, not pure official-doc) |
 | `BRP-F04` | Work Center — Cost per hour, Allowed Employees; required input to a routing operation | C2 | `EV-BRP-06` (official doc) | V2 / V4 (floor V3) | Odoo 19.0, Manufacturing app, Work Orders feature enabled | `GAP-BRP-04`: whether Cost per hour supports time-based variation — non-blocking |
 | `BRP-F05` | Routing Operations — per-BoM steps, each tied to a Work Center with expected duration | C2 | `EV-BRP-07` (official doc, cross-referenced with Gx7's `EV-MFG-02`) | V2 / V4 (floor V3) | Odoo 19.0, Manufacturing app, Work Orders feature enabled | `GAP-BRP-05`: behavior with Work Orders disabled; actual-vs-expected duration tracking — non-blocking |
+| `BRP-F06` | Reordering Rules — min/max replenishment, automatic or manual, per product/location | C2 | `EV-BRP-09` (official doc) | V2 / V4 (floor V3) | Odoo 19.0, Inventory app, Replenishment configured per product | `GAP-BRP-07`: interaction with multi-warehouse routes not evidenced — non-blocking |
+| `BRP-F07` | Master Production Schedule — forecast-driven planning, explicitly documented as mutually exclusive with Reordering Rules per product | C3 | `EV-BRP-10` (official doc, states the mutual-exclusivity warning directly) | V2 / V4 (floor V3) | Odoo 19.0, Manufacturing app, Planning feature enabled | `GAP-BRP-08`: what happens if both are misconfigured on the same product simultaneously — not evidenced, flagged as a genuine business-rule contradiction risk |
+| `BRP-F08` | By-Products — secondary output from a Manufacturing Order alongside the primary product | **C1 — open, second half unresolved** | `EV-BRP-11` (official doc, existence + toggle only) | V2 / V5 (floor V4) | Odoo 19.0, Manufacturing app, By-Products feature enabled, per-BoM tab | `GAP-BRP-09` (priority): cost-allocation method between primary and secondary output not evidenced — structurally identical open question to `BRP-F03`'s original gap, not yet closed |
+| `BRP-F09` | Multi-level BOM — sub-assembly components reference their own BoM, resolved recursively | C2 | `EV-BRP-12` (official doc) | V2 / V4 (floor V3) | Odoo 19.0, Manufacturing app, no additional feature toggle beyond BoM itself | `GAP-BRP-10`: confirms every other `M1` function compounds at each nesting level — not independently confirmed against Odoo's actual recursive-resolution algorithm |
 
 **Sanitized Function Knowledge Pack**: produced as a separate deliverable, per the Master Prompt §10/§11 requirement that a Neutral Function Knowledge Pack be a distinct artifact from the Restricted Reference Evidence Annex (the 12-artifact pilot files, which retain evidence pointers/URLs and are research-only access). See `MANUFACTURING_BOM_ROUTING_PILOT/NEUTRAL_FUNCTION_KNOWLEDGE_PACK.md` — business purpose/rule/state/exception/data/control/dependency/risk/Unknown only, no evidence URLs, no Odoo menu paths, no field-level identifiers beyond what is necessary to describe the business concept itself.
 
@@ -102,3 +109,7 @@ Per Boss's instruction: "Black-box/Unavailable" must not be used as a blanket ex
 - `GAP-MFG-01`: **remains open**, V1 — this checkpoint reconfirms it was never claimed closed; restated here to prevent any reader treating the pilot's "0 gaps open" AWT-backlog framing as implying otherwise.
 - `GAP-BRP-03`: stands closed, V2, now carrying the mandatory Conditional Reference Finding classification.
 - No item has been restored from closed to open by this checkpoint — every closure already carried the evidence-tier honesty this checkpoint asks for; what changed is presentation rigor (the exact required fields, spelled out), not substance.
+
+## v2.1 self-reconciliation note (2026-09-29, later same day)
+
+B2 and B4 above were originally written against the 51-row/5-`M1`-function population, before the same-day `M1` follow-on pass (`BRP-F06`–`F09`) was completed. Both sections have now been regenerated against the current 55-row/54-unique/9-`M1`-function population (matching `STATE03_DEEP_STUDY_REGISTER.md` §2.1). No figure in this checkpoint was left silently stale; this note documents the correction rather than rewriting history without a trace. This is a self-check, not independent verification — the `CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` status above still applies in full.
