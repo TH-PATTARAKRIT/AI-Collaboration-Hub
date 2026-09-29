@@ -1,7 +1,7 @@
 # STATE03 Deep Study Register
 
 Document ID: `STATE03-DEEP-STUDY-REGISTER`
-Version: 0.3
+Version: 0.4
 Date: 2026-09-29
 Project: SMEsPlus ENTERPRISE SUITE
 STATE: STATE03 — Architecture & Knowledge Acquisition Deep Study
@@ -16,7 +16,11 @@ Master register for the STATE 03 Deep Study method (Master Prompt `STATE03_DEEP_
 
 ## 2. Deep Study population (cumulative — Boss order 2026-09-28 §10 schema)
 
-Per Boss's Continuous Execution Order (2026-09-28), this register is updated cumulatively across all Gx units in one canonical table — no competing register is created. "Gx" = the 10 Accounting × Inventory Cross-Proof scenarios in `STATE03_ACCOUNTING_INVENTORY_BACKBONE_EXECUTION_ROADMAP.md` §Lane C, per the working interpretation posted to PR #74 and queued at `BGQ-05` in `STATE03_BOSS_GATE_QUEUE.md` (open to correction).
+Per Boss's Continuous Execution Order (2026-09-28), this register is updated cumulatively across all Gx units in one canonical table — no competing register is created. "Gx" = the 10 Odoo 19 reference-behavior scenarios in `STATE03_ACCOUNTING_INVENTORY_BACKBONE_EXECUTION_ROADMAP.md` §Lane C, per the working interpretation posted to PR #74 and queued at `BGQ-05` in `STATE03_BOSS_GATE_QUEUE.md` (open to correction).
+
+> **POPULATION CORRECTION (2026-09-29, per Boss's "STATE03 Next Prompt" reconciliation order)**: the previously reported total of **42 functions was an uncorrected arithmetic-carry error**, never recomputed as pilots grew. The verified total, cross-checked 1:1 between every pilot's own `04_FUNCTION_REGISTER.md` and this table, is **46 registered Function IDs (45 applicable, excluding `RCN-F04` which is C4/Not Applicable)**. Full reconciliation: `STATE03_NEXT_PROMPT_FIRST_CHECKPOINT.md` §1. No Function was fabricated, hidden, or double-counted — this is a correction of a repeated-but-never-recomputed figure, not a scope change.
+>
+> **NAMING CLARIFICATION**: this Deep Study's Lane C work is Team A, documentation-tier, Odoo-19-reference-behavior research only — it is a *different artifact* from `STATE03_ACCOUNTING_INVENTORY_BACKBONE_EXECUTION_ROADMAP.md`'s own "LANE C — Accounting x Inventory Cross-Proof — MANDATORY BACKBONE GATE," which is a target-design-tier proof still `HOLD` pending `COA-G08` closure per Boss's 2026-09-02 directive. The near-identical name is a real risk of confusion; see `STATE03_NEXT_PROMPT_FIRST_CHECKPOINT.md` §3. This Deep Study's Lane C does not satisfy, close, or bypass that Backbone Gate hold.
 
 | Gx | Function ID | Function | Criticality | Target V | Actual V | Evidence tier | Gap status | Research status | Audit status | PMO status | Gate status | Owner | Evidence path | Last Material Delta |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
