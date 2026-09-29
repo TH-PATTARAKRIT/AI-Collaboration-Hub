@@ -18,12 +18,12 @@
 
 ### PCO-F01 — Lock Dates
 
-- **Hypothesis to verify, refined 2026-09-30 (source-code tier, Handoff `D-07`)**: A Hard Lock genuinely blocks entry creation/modification before its date via a `UserError`, with no override found in source; a *new* entry dated inside a lock window is instead silently rolled forward to the first open day at create/post time (a second, distinct path from the hard block — both need runtime confirmation of exactly when each fires).
-- **Required environment**: Same, plus a Hard Lock date set in the past relative to a test entry.
-- **Runtime action**: Attempt to create/modify an entry dated before the Hard Lock; separately, attempt to create a fresh entry dated inside the lock window and observe whether it is blocked or silently date-shifted.
-- **Expected observable result**: Blocked, with no visible override option — or, for the second case, an unexpected date auto-shift the user did not request.
-- **Evidence required**: UI/error behavior for both paths.
-- **Target V**: V5 (floor V4) | **Current V**: V2 | **Missing proof**: Confirmation of "no override," which path fires when, and what happens if a genuine correction is needed after Hard Lock.
+- **Hypothesis to verify, refined 2026-09-30 (source-code tier, Handoff `D-07`; further refined same day, `MODULE_account.md` S2-CANDIDATE independent re-trace)**: A Hard Lock genuinely blocks *editing* of a posted entry via a `UserError`, TEST-confirmed to have no exception/override of any kind; a *new* entry dated inside a lock window is instead silently rolled forward to the first open day at `_post` time — this is now understood as the actual per-post mechanism, not an unreconciled second path. **New, higher-priority sub-hypotheses**: (a) the `bypass_lock_check` context flag, if reachable from any UI action or installed module, would defeat the entire lock model — its reachability needs runtime/code-path confirmation before anything else in this backlog item; (b) lock dates are evaluated up the parent-company chain (Hard Lock = max across the chain) — needs confirmation in a real multi-company hierarchy; (c) Community's "only accountant may edit validated entries" rule resolves to "anyone" — confirm whether any installed module (Enterprise or custom) actually restricts this in practice.
+- **Required environment**: Same, plus a Hard Lock date set in the past relative to a test entry; a parent/child company pair for (b); at least two user roles for (c).
+- **Runtime action**: Attempt to create/modify an entry dated before the Hard Lock; separately, create a fresh entry dated inside the lock window and observe the silent date-shift; search the codebase/UI for any caller of `bypass_lock_check`; set a Hard Lock on a parent company and confirm it constrains the child; attempt to edit a "checked"/validated entry as a non-accountant user.
+- **Expected observable result**: Blocked with no override for editing; an unexpected date auto-shift for new entries in the window; `bypass_lock_check` either unreachable (confirms the control is sound) or reachable from somewhere (a real finding); lock inheriting down to the child company; edit permission either genuinely open to "anyone" (confirms the Community gap) or restricted by an installed extension.
+- **Evidence required**: UI/error behavior for all five sub-cases; a `bypass_lock_check` caller trace if runtime access allows a codebase-wide search instead.
+- **Target V**: V5 (floor V4) | **Current V**: V2 | **Missing proof**: All of the above — `bypass_lock_check`'s reachability is now the single highest-priority item in this backlog entry.
 
 ## Backlog status
 
