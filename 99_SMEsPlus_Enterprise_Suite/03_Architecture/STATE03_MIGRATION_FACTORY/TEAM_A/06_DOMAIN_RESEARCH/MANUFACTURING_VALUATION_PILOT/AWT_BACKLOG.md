@@ -15,6 +15,13 @@
 - **Evidence required**: Journal entries at consumption and completion.
 - **Target V**: V5 (floor V4) | **Current V**: V2 | **Missing proof**: Runtime confirmation.
 
+### MFG-F01/F02/F03 — new risk items added 2026-09-30 (source-code tier, `EV-MFG-SRC-03`)
+
+- **Standard-cost labour balance (new, C1-adjacent)**: for a Standard-costed finished product, source shows the labour-posting entry has no offsetting entry anywhere in the flow — the debit to the Production location account accumulates permanently. **Runtime action**: run an MO for a Standard-costed finished good to completion; confirm no entry ever clears the Production-location debit; compare against an Average/FIFO-costed product in the same session, where the finished-move entry is expected to offset it.
+- **WIP wizard cost-mismatch (new)**: the WIP wizard's "WIP - Component Value" line uses the product's *current* cost at the time the wizard runs, not the components' actual consumption-time value. **Runtime action**: consume a component, change its cost (e.g. post a new FIFO layer or change Standard price), then run the WIP wizard — confirm whether the WIP line reflects the new (mismatched) cost rather than the original consumption value.
+- **Cross-company MO evaluation (new, joins `MULTICOMPANY_ISOLATION_PILOT`'s capstone item)**: confirm an MO's labour/cost calculation uses the order's own company regardless of the acting user's current company; separately, run the WIP wizard against an order in a different company than the current user and observe which company's accounts/currency are used.
+- **Target V**: V5 (floor V4) | **Current V**: V2 (source-code-tier lead, not runtime) | **Missing proof**: All three, none previously in this backlog.
+
 ### MFG-F05 — Negative-inventory revaluation (documentation pass partial, version tension open)
 
 - **Hypothesis to verify — two competing versions, must be disambiguated, not assumed**: (a) pre-19: negative-inventory MO consumption later triggers a "Revaluation of WH/MO/XXX" journal entry once real cost is known; (b) Odoo 19: no such automatic entry — cost is booked only at vendor-bill posting.
