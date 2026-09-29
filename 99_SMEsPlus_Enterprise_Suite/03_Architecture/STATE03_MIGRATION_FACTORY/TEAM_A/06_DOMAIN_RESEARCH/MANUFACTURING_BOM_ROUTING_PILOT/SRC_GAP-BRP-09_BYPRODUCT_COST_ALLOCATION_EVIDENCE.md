@@ -99,7 +99,7 @@
 
 - ถ้า `location_id.valuation_account_id` มี (ต้นทางเป็น location ที่มีบัญชี — เช่น Production location): **Dr `stock_valuation` (ของสินค้า) / Cr บัญชีของ location** ด้วย `_get_aml_value()` = `self.value` (บรรทัด 249-250)
 - ทิศตรงข้ามสำหรับ move ออก
-- ⇒ การลงบัญชีอิง `value` ของ move ตัวต่อตัว; ไม่มีการลงบัญชีระดับ MO ที่ "ปรับสมดุล" ผลต่างระหว่างต้นทุนที่บริโภคกับมูลค่าผลผลิต ⇒ ผลต่างใดๆ ค้างในบัญชีของ Production location (`property_stock_production` — เช่นเดียวกับ Labour ที่ `mrp_account/models/mrp_production.py:101-139` `_post_labour` ตั้งใจให้ค้างที่บัญชี Production: ดู help text `mrp_account/models/product.py:118-122`)
+- ⇒ การลงบัญชีอิง `value` ของ move ตัวต่อตัว; ไม่มีการลงบัญชีระดับ MO ที่ "ปรับสมดุล" ผลต่างระหว่างต้นทุนที่บริโภคกับมูลค่าผลผลิต ⇒ ผลต่างใดๆ ระหว่างต้นทุนที่บริโภค (Dr บัญชี Production) กับมูลค่าผลผลิตที่รับเข้า (Cr บัญชี Production) จะค้างสุทธิอยู่ในบัญชีของ Production location (`property_stock_production`) — สำหรับกรณีปกติ (ต้นทุนแบ่งครบ) บัญชีนี้หักลบเป็นศูนย์ โดย Labour ก็ถูกบันทึก Dr บัญชี Production / Cr บัญชีค่าใช้จ่าย ที่ `mrp_account/models/mrp_production.py:101-139` (`_post_labour`) ดังนั้นต้นทุนแรงงานเข้าไปอยู่ในมูลค่าสินค้าสำเร็จรูป
 - **สถานะ:** inference จากการอ่านโค้ด ไม่ได้รัน
 
 ## EV-SRC-BRP09-08 — Landed Cost ตัด By-Product ที่ cost_share = 0
