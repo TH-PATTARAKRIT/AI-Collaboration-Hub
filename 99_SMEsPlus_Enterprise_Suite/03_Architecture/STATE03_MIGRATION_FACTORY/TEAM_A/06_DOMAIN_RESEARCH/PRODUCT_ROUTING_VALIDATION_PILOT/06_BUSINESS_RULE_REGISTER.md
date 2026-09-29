@@ -30,6 +30,8 @@
 
 ### RTG-F03 — Storable/COGS expense timing
 
+> **STATUS DOWNGRADE (2026-09-29, Boss ruling).** "Independent" below refers to an independent *documentation source*, not an independent *reviewer* — this row was still authored by the same TEAM_A session as Gx2/Gx6. The underlying Gx6 resolution remains `Material Finding — Independently Unverified` pending `CHATGPT_AUDIT`. See `00_Architecture_Governance/STATE03_VALUATION_TIMING_CROSS_GX_CONTRADICTION_MATRIX.md`.
+
 - **WHAT**: A Goods product with Track Inventory on is expensed (as COGS) when the customer invoice is posted, confirming Gx2's `SDV-F05` finding via an independent, more doctrinally precise source.
 - **WHY**: The product sits on the balance sheet as an inventory asset from receipt until sale, at which point its cost is released to the income statement as COGS.
 - **BUSINESS RULE**: Direct documentation quote: "storable goods are expensed when the customer invoice is posted." This is the textbook Anglo-Saxon accounting model.

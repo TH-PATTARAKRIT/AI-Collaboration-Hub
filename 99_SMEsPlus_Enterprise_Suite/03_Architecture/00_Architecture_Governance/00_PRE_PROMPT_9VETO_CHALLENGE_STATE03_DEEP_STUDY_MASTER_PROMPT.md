@@ -11,6 +11,8 @@ Governing standard: `STATE03_PLUS_PRE_PROMPT_INDEPENDENT_CHALLENGE_RULE.md` v2.0
 Boss: Sole Final Approver
 Mode: DELTA-FIRST — this is the **first** formal challenge execution against this Master Prompt; no prior Challenge Continuity Ledger exists for it, so this record establishes it rather than reopening it.
 
+**Evidentiary status of this document: `Preliminary / Internal Challenge Evidence`.** Per Boss's explicit ruling (2026-09-29): this record is *not* an Independent Challenge PASS and must never be relabeled as one. It stands as internal first-pass evidence only, pending `CHATGPT_AUDIT` independent re-audit. `BGQ-03` remains open until that independent audit returns a disposition.
+
 ---
 
 ## 0. Governance disclosure — read this before the findings below
@@ -194,12 +196,13 @@ Readiness Status: HOLD (for formal BGQ-03 closure only; does NOT put the underly
 Boss Exception / Override: NONE recorded yet — Boss's 2026-09-28 ruling ("Master Prompt stands as Direct Order, challenge runs in parallel") is the standing authorization for the Lane C research to have proceeded without waiting for this document
 ```
 
-## 8. Recommendation to Boss
+## 8. Boss Decision (2026-09-29) — supersedes §8's original open recommendation
 
-1. Treat this document as **partial** closure of `BGQ-03`: the mechanical first-pass challenge has now been executed (previously it was entirely outstanding), but full closure per the Charter's independence intent needs one of:
-   - Boss explicitly accepts this self-administered pass as sufficient given the interim Direct Order already in force (fastest path, Boss's call to make); or
-   - Route this document through `CHATGPT_AUDIT` for independent ratification, consistent with the existing Migration Factory control chain Boss already designated as primary.
-2. `BGQ-02` (Clean-Room re-audit of `C-05`) is the most material open item this challenge surfaced/restated — it is Zero-Tolerance class and Boss-only; recommend prioritizing it ahead of `BGQ-01`'s merge/canonical decision, since a canonical designation should probably not be finalized before its own remediation is independently confirmed clean.
-3. `BGQ-01`, `BGQ-04`, `BGQ-05` are unaffected by this challenge; no new recommendation beyond what `STATE03_BOSS_GATE_QUEUE.md` already states.
+Boss ruled directly on this document's own recommendation:
+
+1. **This self-pass does NOT close `BGQ-03`.** It stands as `Preliminary / Internal Challenge Evidence` only. `BGQ-03` remains `SELF-PASS COMPLETE / INDEPENDENT AUDIT PENDING` until `CHATGPT_AUDIT` independently re-audits: Master Prompt governance compliance; the 9 Veto Council findings in this document; the valuation-timing reconciliation specifically (Gx1/Gx2/Gx4/Gx6/Gx7/Gx8); the Clean-Room boundary; unresolved contradiction/unsupported certainty; Actual V vs. evidence tier; and C1/Zero-Tolerance controls. See the CHATGPT_AUDIT package (§9) prepared per this ruling.
+2. **`BGQ-02` is Priority 1**, ahead of `BGQ-01`. Explicit sequencing: `Clean-Room remediation independent re-audit` → `evidence lineage confirmation` → `canonical branch disposition`. No canonical branch selection before `BGQ-02` passes independent audit.
+3. **The valuation-timing finding (Council 04) is downgraded** from "resolved, high confidence" language to `Material Finding — Independently Unverified` across all six affected pilots, until `CHATGPT_AUDIT` confirms it. See `STATE03_VALUATION_TIMING_CROSS_GX_CONTRADICTION_MATRIX.md`.
+4. **STATE03 research does not stop for this audit.** Non-Gate-blocked work (evidence reconciliation, provenance hardening, gap cleanup, AWT backlog, contradiction matrix, CHATGPT_AUDIT package prep, PMO verification prep, register maintenance) continues in parallel and automatically, without waiting on Boss between ordinary units. Only Boss-only Gates, canonical freeze, merge/release/deployment, irreversible actions, governance waivers, and unresolved Zero-Tolerance conflicts stop for Boss.
 
 No Team B, Team C, Production, Release, or deployment authorization is created by this document. Boss remains Sole Final Approver.

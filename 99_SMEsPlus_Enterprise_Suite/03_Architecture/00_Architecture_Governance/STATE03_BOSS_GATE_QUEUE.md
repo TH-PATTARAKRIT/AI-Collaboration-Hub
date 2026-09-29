@@ -1,8 +1,8 @@
 # STATE03 Boss Gate Queue
 
 Document ID: `STATE03-BOSS-GATE-QUEUE`
-Version: 0.1
-Date: 2026-09-28
+Version: 0.2
+Date: 2026-09-29
 Project: SMEsPlus ENTERPRISE SUITE
 STATE: STATE03 — Architecture & Knowledge Acquisition Deep Study
 Control Level: /L99.99
@@ -12,15 +12,25 @@ Boss: Sole Final Approver
 
 Per Boss's Continuous Execution Order (2026-09-28, §8): a single consolidated queue of matters that genuinely require Boss's own authority, so that ordinary research, gap-recording, and reconciliation work never has to stop and ask. Everything **not** on this list is either already decided, or does not need Boss's decision to continue. This register is updated cumulatively, alongside `STATE03_DEEP_STUDY_REGISTER.md`.
 
-## 2. Queue
+## 1.1 Explicit sequencing ruling (Boss, 2026-09-29)
 
-| ID | Item | Why it needs Boss (not PMO/research) | Raised | Status |
-|---|---|---|---|---|
-| BGQ-01 | Inventory Core Backbone canonical designation / merge authorization: designate `audit/inventory-reopen-2026-09-02-inv-reopen-001` @ `170af9ea7a5afd127abcaae0ffb40aaa1fa25d4d` as canonical carry-forward evidence (by reference or by merge) for the Inventory Core Backbone domain | Merge/canonical-designation authorization is explicitly Boss-only; touches a domain (Inventory) with its own pre-existing, still-open Evidence Gate | 2026-09-28 | Open |
-| BGQ-02 | Independent Clean-Room re-audit of the CORR-007B remediation (item `C-05`: verbatim vendor source-code reproduction found in `N-A12-01` evidence files 08/09, since rewritten) | Zero-Tolerance clean-room conflict class; the branch's own Session Link Register names this as required before any Team B/C reliance | 2026-09-28 (discovered during lineage reconciliation; not new — pre-existing open item surfaced) | Open |
-| BGQ-03 | 9 Veto Council + 9 Special Team Pre-Prompt Independent Challenge for the STATE03 Deep Study Master Prompt itself (`GAP-GRV-07`) | `STATE03_PLUS_PRE_PROMPT_INDEPENDENT_CHALLENGE_RULE.md` v2.0 nominally requires this before any STATE03 executable prompt; Boss ruled the Master Prompt stands as a Direct Order for now, with the challenge to run in parallel | 2026-09-28 | **Partially executed 2026-09-29** — self-administered first-pass challenge complete, see `00_PRE_PROMPT_9VETO_CHALLENGE_STATE03_DEEP_STUDY_MASTER_PROMPT.md`. Being self-administered, it cannot by itself fully satisfy the Charter's independence requirement; Open pending Boss's choice: (a) accept self-pass as sufficient, or (b) route through CHATGPT_AUDIT for independent ratification. Surfaced one new priority recommendation: treat `BGQ-02` ahead of `BGQ-01`. |
-| BGQ-04 | Authorized isolated Odoo 19 Community runtime/source environment for AWT (Atomic White-box Trace) | Environment provisioning/authorization is outside this container's own authority; blocks every C1 function's V-target from V2 to V4/V5 | 2026-09-28 (`GAP-GRV-01`) | Open — AWT Backlog prepared per function so no research is repeated once granted |
-| BGQ-05 | Confirm interpretation of "Gx" for continuous execution: this workstream is proceeding on the reading that "Gx" = the 10 Accounting × Inventory Cross-Proof scenarios in `STATE03_ACCOUNTING_INVENTORY_BACKBONE_EXECUTION_ROADMAP.md` §Lane C (scenario 1 = Goods Receipt Validation pilot, scenario 2 = Sales Delivery, in progress) | A wrong reading would misdirect continuous research effort at scale; posted transparently on PR #74 for correction | 2026-09-28 | Open, non-blocking (proceeding on stated interpretation per "do not stop between units") |
+`Clean-Room remediation independent re-audit (BGQ-02)` → `evidence lineage confirmation` → `canonical branch disposition (BGQ-01)`.
+
+**No canonical branch selection before `BGQ-02` passes independent audit.** This overrides any earlier reading of BGQ-01/BGQ-02 as independently orderable.
+
+## 2. Queue (ordered by Boss-set priority, not by ID)
+
+| Priority | ID | Item | Why it needs Boss (not PMO/research) | Raised | Status |
+|---|---|---|---|---|---|
+| **1** | BGQ-02 | Independent Clean-Room re-audit of the CORR-007B remediation (item `C-05`: verbatim vendor source-code reproduction found in `N-A12-01` evidence files 08/09, since rewritten) | Zero-Tolerance clean-room conflict class; the branch's own Session Link Register names this as required before any Team B/C reliance | 2026-09-28 (discovered during lineage reconciliation; not new — pre-existing open item surfaced) | **PRIORITY 1 (Boss ruling 2026-09-29).** Open — Boss-only, blocks BGQ-01 |
+| 2 (blocked by 1) | BGQ-01 | Inventory Core Backbone canonical designation / merge authorization: designate `audit/inventory-reopen-2026-09-02-inv-reopen-001` @ `170af9ea7a5afd127abcaae0ffb40aaa1fa25d4d` as canonical carry-forward evidence (by reference or by merge) for the Inventory Core Backbone domain | Merge/canonical-designation authorization is explicitly Boss-only; touches a domain (Inventory) with its own pre-existing, still-open Evidence Gate | 2026-09-28 | **WAITING FOR BGQ-02 RESULT (Boss ruling 2026-09-29).** Must not be decided before BGQ-02's independent audit returns and evidence lineage is reconfirmed against it. |
+| — | BGQ-03 | 9 Veto Council + 9 Special Team Pre-Prompt Independent Challenge for the STATE03 Deep Study Master Prompt itself (`GAP-GRV-07`) | `STATE03_PLUS_PRE_PROMPT_INDEPENDENT_CHALLENGE_RULE.md` v2.0 nominally requires this before any STATE03 executable prompt; Boss ruled the Master Prompt stands as a Direct Order for now, with the challenge to run in parallel | 2026-09-28 | **SELF-PASS COMPLETE / INDEPENDENT AUDIT PENDING (Boss ruling 2026-09-29).** Self-administered first-pass challenge complete — see `00_PRE_PROMPT_9VETO_CHALLENGE_STATE03_DEEP_STUDY_MASTER_PROMPT.md`, explicitly labeled `Preliminary / Internal Challenge Evidence`, NOT an Independent Challenge PASS. Routed to `CHATGPT_AUDIT` per the package at `STATE03_CHATGPT_AUDIT_PACKAGE_BGQ03.md`. Does not close until that independent audit returns. |
+| — | BGQ-04 | Authorized isolated Odoo 19 Community runtime/source environment for AWT (Atomic White-box Trace) | Environment provisioning/authorization is outside this container's own authority; blocks every C1 function's V-target from V2 to V4/V5 | 2026-09-28 (`GAP-GRV-01`) | Open — AWT Backlog prepared per function so no research is repeated once granted |
+| — | BGQ-05 | Confirm interpretation of "Gx" for continuous execution: this workstream is proceeding on the reading that "Gx" = the 10 Accounting × Inventory Cross-Proof scenarios in `STATE03_ACCOUNTING_INVENTORY_BACKBONE_EXECUTION_ROADMAP.md` §Lane C (scenario 1 = Goods Receipt Validation pilot, scenario 2 = Sales Delivery, in progress) | A wrong reading would misdirect continuous research effort at scale; posted transparently on PR #74 for correction | 2026-09-28 | Open, non-blocking (proceeding on stated interpretation per "do not stop between units") |
+
+## 2.1 What is NOT gated (continues automatically, no Boss wait)
+
+Per Boss's 2026-09-29 ruling: evidence reconciliation, provenance hardening, gap cleanup, AWT backlog preparation, the cross-Gx contradiction matrix, `CHATGPT_AUDIT` package preparation, PMO verification preparation, and `STATE03_DEEP_STUDY_REGISTER.md` maintenance all continue in parallel, automatically, without waiting on Boss between ordinary units. Only these stop for Boss: a Boss-only Gate; canonical freeze; merge/release/deployment; an irreversible action; a governance waiver; an unresolved Zero-Tolerance conflict.
 
 ## 3. Not queued here (decided / does not need Boss)
 
