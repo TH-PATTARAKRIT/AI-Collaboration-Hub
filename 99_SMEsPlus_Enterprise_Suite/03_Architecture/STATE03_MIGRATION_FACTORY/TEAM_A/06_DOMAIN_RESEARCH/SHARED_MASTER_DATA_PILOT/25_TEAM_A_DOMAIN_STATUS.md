@@ -4,7 +4,7 @@
 
 | Function | Criticality | Target V | Actual V | Status |
 |---|---|---|---|---|
-| SMD-F01 Party/Contact | C2 | V4/floor V3 | V2 (this pilot); source-tier Carry-forward reference exists | **Carry-forward** — primary evidence is `GROUP_01_SALES_INVENTORY_PURCHASE`'s `PTY-*` series, not this pilot |
+| SMD-F01 Party/Contact | C2 | V4/floor V3 | V2 (this pilot); source-tier Carry-forward reference exists | **Carry-forward** for the model itself — primary evidence is `GROUP_01_SALES_INVENTORY_PURCHASE`'s `PTY-*` series. `GAP-SMD-01` **resolved by this pilot's own WebSearch** (`EV-SMD-07`, 2026-09-29) |
 | SMD-F02 Product Template/Variant | **C1** | V5/floor V4 | V2 (this pilot); source-tier Carry-forward reference exists | **Carry-forward** — `GAP-SMD-02` resolved by reference (`PRD-09`/`10`) |
 | SMD-F03 UoM Category/Conversion | **C1** | V5/floor V4 | V2 (this pilot); source-tier Carry-forward reference exists; `GAP-SMD-05` now source-verified | **Carry-forward** — `GAP-SMD-03` resolved by reference (`UOM-07`); `GAP-SMD-05` **resolved 2026-09-30** via direct source-code verification (`EV-SMD-06`) — no `uom.category` model in actual Odoo 19 Community source, confirmed independently of `GROUP_01`'s DB-schema finding |
 | SMD-F04 Access Rights/Groups | **C1** | V5/floor V4 | V2 → source-code-tier for the composition rule (2026-09-30) | **This pilot's own primary contribution** — confirmed not covered by the Carry-forward track. `GAP-SMD-04` resolved at documentation tier 2026-09-29 (`EV-SMD-05`), **refined at source-code tier 2026-09-30** (`EV-SMD-06`, `base`/`sale` sample): composition confirmed; superuser/`sudo()` bypass of record rules newly discovered and added to the AWT backlog |
@@ -19,7 +19,7 @@
 
 Boss provisioned direct, read-only access to the actual Odoo 19.0.post20260921 Community source (previously unavailable to this cloud session — see `STATE03_ODOO_CLEAN_ROOM_SOURCE_ACCESS_PROBE.md`) via a separate local Claude Code session running on Boss's own Mac. This cloud session never read the source directly; it received only business-language findings plus file+line evidence pointers, relayed by Boss, which is what this pilot's own files now cite as `EV-SMD-06`. Clean-Room scope was enforced by both the local session's own instructions and by Boss personally confirming the excluded folders (`addons_Extramodule`, `Extra_Module_scgl`, `addons_smeplus`, and others) before work began — none were opened.
 
-Result: `GAP-SMD-05` closed (no `uom.category` model exists); `GAP-SMD-04` refined (composition rule confirmed for a `base`/`sale` sample, not exhaustive; a materially important new finding — superuser/`sudo()` execution bypasses record rules entirely — added to `06_BUSINESS_RULE_REGISTER.md` and the AWT backlog). No open items remain in this pilot except `GAP-SMD-01` (non-blocking).
+Result: `GAP-SMD-05` closed (no `uom.category` model exists); `GAP-SMD-04` refined (composition rule confirmed for a `base`/`sale` sample, not exhaustive; a materially important new finding — superuser/`sudo()` execution bypasses record rules entirely — added to `06_BUSINESS_RULE_REGISTER.md` and the AWT backlog). `GAP-SMD-01` separately closed the same day via ordinary WebSearch (`EV-SMD-07`) — no open items remain in this pilot.
 
 ## Next action
 
