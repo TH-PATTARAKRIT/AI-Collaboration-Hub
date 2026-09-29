@@ -1,3 +1,5 @@
+> **STATUS CORRECTION — The source/schema finding is CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION. It is not runtime proof, Gate PASS, final gap closure, or STATE03 completion. Refer to STATE03_SOURCE_DUMP_EVIDENCE_DELTA_HANDOFF for the current qualified disposition.**
+
 > Domain: MANUFACTURING_BOM_ROUTING_PILOT | Source-code research result | **ส่วนที่ 2 — Evidence (file + line)**
 > คู่กับ: `SRC_GAP-BRP-09_BYPRODUCT_COST_ALLOCATION_BUSINESS_SUMMARY.md`
 

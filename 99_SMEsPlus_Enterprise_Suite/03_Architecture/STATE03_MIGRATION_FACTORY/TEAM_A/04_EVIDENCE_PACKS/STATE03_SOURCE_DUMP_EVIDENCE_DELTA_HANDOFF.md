@@ -63,15 +63,15 @@
 | `purchase_request` (OCA; hash `9fe183e179afa913`) | LGPL-3 | stock.move/line/picking/rule/warehouse.orderpoint | `stock.picking._action_done`, `stock.move.line._action_done` | เกี่ยวข้อง BRP-07 (เพิ่มเส้นทาง Reordering→ใบขอซื้อ) ; **ไม่ได้ตรวจเชิงลึกว่าสร้างเอกสารสถานะใด** |
 | `cr_effective_date_entries` (SuitePark; hash `2026ab6dabc062d1`) | AGPL-3 | stock.picking | wizard เปลี่ยน "วันที่มีผล" ของ picking: reset-to-draft + โพสต์ใหม่รายการบัญชี, เปลี่ยนวันที่ move/move line, **อ้างโมเดล `stock.valuation.layer` และฟิลด์ `stock_move_id` ที่ไม่มีใน Odoo 19** (ตามโครงสร้างฐานและ source) | **ความเสี่ยง (SRC-STATIC):** ออกแบบสำหรับ Odoo รุ่นเก่ากว่า ; ทางที่อ้างโมเดลไม่มีอยู่จะล้มเหลวเมื่อรันบน 19 ; และเป็นช่องทาง "เปลี่ยนวันที่ย้อนหลัง" ที่ต้องพิจารณาร่วม lock date/Stock Closing |
 | `scgl_tax_period_date` / `smesplus_tax_period_date` (hash `d0b42916cef1b3bf` / `c577a7002f4465df`) | LGPL-3 | account.move/line | `account.move.create` (ตั้งค่างวดภาษี) | ไม่พบการแตะ lock ; ไม่ได้ตรวจเชิงลึก |
-| `bh_parent_company` (hash `18c6500d7ce8b83e`) | LGPL-3 | (multi-company / partner) | — | **มีร่องรอยในฐาน** (คอลัมน์ `bh_parent_company_code` บน partner) ; เกี่ยวข้อง multi-company ; ยังไม่ได้ตรวจ record rule |
-| `account_fiscal_year` (OCA) / `om_fiscal_year` (Odoo Mates) | AGPL-3 / LGPL-3 | res.company | — | ปีบัญชี ; ไม่แตะ lock ; ฐานมีตาราง `account_fiscal_year` (ไม่ระบุได้ว่ามาจากโมดูลใด) |
+| `bh_parent_company` (hash `18c6500d7ce8b83e`) | LGPL-3 | (multi-company / partner) | — | **มีร่องรอยในฐานทดสอบ** (ผลเป็นกลาง ไม่ระบุโครงสร้าง) ; เกี่ยวข้อง multi-company ; ยังไม่ได้ตรวจ record rule |
+| `account_fiscal_year` (OCA) / `om_fiscal_year` (Odoo Mates) | AGPL-3 / LGPL-3 | res.company | — | ปีบัญชี ; ไม่แตะ lock ; ฐานทดสอบมีโครงสร้างปีบัญชี (ไม่ระบุได้ว่ามาจากโมดูลใด) |
 
 **ไม่พบ override** (ในโมดูลที่ license เปิด) ของ: `_cal_price`, `_set_value`, `_get_value_data`, `_should_create_account_move`, `_get_account_move_line_vals`, `action_close_stock_valuation`, `_compute_bom_price`, `_check_byproducts`, `_check_fiscal_lock_dates`, `_get_lock_date_violations`, `_get_accounting_date`, และไม่พบโมดูลที่ inherit `mrp.production`, `mrp.bom`, `mrp.bom.byproduct`, `mrp.workorder`, `mrp.workcenter`, `stock.landed.cost` (`ABSENCE` — จำกัดเฉพาะโมดูลที่อ่านได้)
 
-### 2.2 ร่องรอยการติดตั้งจาก schema (iTEST02, 2026-06-14) — SCHEMA-ONLY
-- **มีร่องรอย:** `bh_parent_company`, `purchase_request`, `l10n_th_withholding_tax` (ตารางภาษีหัก ณ ที่จ่าย)
-- **ไม่พบร่องรอย** (ไม่มีตาราง/คอลัมน์ที่มีคำนำหน้า `smesp*`/`scgl*` และไม่มีตารางของ wizard `cr_effective_date_entries` และไม่มีฟิลด์ FX ของ `base_accounting_kit`) : โมดูลบัญชี `smesplus_*`, `scgl_*`, `cr_effective_date_entries`, `base_accounting_kit` — **ณ วัน dump** ; โมดูลที่ไม่เพิ่มตาราง/คอลัมน์ตรวจไม่ได้ด้วยวิธีนี้
-- ⚠️ ชุดโมดูลที่ติดตั้งจริงอยู่ในข้อมูล (ไม่ได้ดึง) → **ไม่สามารถยืนยัน "effective installed extension set" จาก schema ได้** ; ข้อสรุปทุกข้อจึง `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`
+### 2.2 ร่องรอยการติดตั้งจาก schema (iTEST02, 2026-06-14) — SCHEMA-ONLY (data-minimized)
+- **มีร่องรอยของโมดูล custom/third-party บางตัว** (ระบุได้เฉพาะระดับ: โมดูลผู้ปกครองบริษัท `bh_parent_company`, ใบขอซื้อ `purchase_request`, ภาษีหัก ณ ที่จ่าย) — ไม่ระบุชื่อตาราง/คอลัมน์
+- **ไม่พบร่องรอย ณ วัน dump** ของโมดูลบัญชี `smesplus_*`, `scgl_*`, `cr_effective_date_entries`, `base_accounting_kit` — **การไม่พบไม่พิสูจน์ว่าโมดูลไม่ได้ติดตั้งหรือไม่มีผลพฤติกรรม** (โมดูลที่ไม่เพิ่มโครงสร้างตรวจไม่ได้)
+- ⚠️ ชุดโมดูลที่ติดตั้งจริงอยู่ในข้อมูล (ไม่ได้ดึง) → ไม่สามารถยืนยัน effective installed extension set ; ข้อสรุปทุกข้อจึง `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`
 
 ---
 
@@ -88,7 +88,7 @@
 | Classification | Community |
 | Provenance / pointer | `RESTRICTED:Odoo Community/…/odoo/addons/mrp_account/models/mrp_production.py:57-94`, `mrp_account/models/product.py:63-99`, `mrp/models/mrp_bom.py:198-210,871-874`, `mrp/models/mrp_production.py:979-985`, `mrp_landed_costs/models/stock_landed_cost.py:23-28` ; ไฟล์: `MANUFACTURING_BOM_ROUTING_PILOT/SRC_GAP-BRP-09_*` |
 | Manifest / override | ไม่พบ override ของ `_cal_price`/`_check_byproducts` ในโมดูล license เปิด ; OPL-1 (`19_bhpro_master_data`, `import_bridge_axis`) ตรวจไม่ได้ |
-| Schema-only | ยืนยัน: คอลัมน์ `cost_share` มีที่ By-Product ของ BoM และ stock move (numeric ไม่กำหนด precision) ; **ไม่มี CHECK ที่ฐานข้อมูลสำหรับ `cost_share`** ⇒ กฎอยู่ที่แอป |
+| Schema-only | ผลเป็นกลาง: โครงสร้างในฐานทดสอบสอดคล้องกับสิ่งที่ source ระบุเรื่องอัตราส่วนต้นทุนผลผลิตรอง ; **ไม่พบตัวควบคุมระดับฐานข้อมูลสำหรับกฎของอัตราส่วนนี้** ⇒ กฎอยู่ที่ชั้นแอป (ไม่ระบุชื่อตาราง/คอลัมน์ตามกติกา data-minimization) |
 | Actual evidence level | `SRC+TEST` (test ของ Odoo ยืนยันตัวเลข ยกเว้นกรณี % = 0 → มูลค่า 0 เป็น `INFER`) + `SCHEMA` |
 | Contradiction / limitation | ขัดกับ candidate default เดิมในแง่ "เป็นกฎของระบบ" (ผลที่ % = 0 ตรงกับข้อความเดิม) ; ไม่ได้รัน ; Unbuild/Subcontract/แก้ % หลังปิด ยังไม่ทราบ |
 | Required runtime validation | AWT: MO มี By-Product (FIFO/AVCO/Standard ผสม, % = 0, Σ% < 100), backorder, unbuild |
@@ -103,7 +103,7 @@
 | Classification | Community |
 | Pointer | `RESTRICTED:…/stock_account/models/stock_move.py:193-215,659-666` · `stock_account/models/stock_location.py:11-14` · `stock_account/views/stock_location_views.xml:10-15` · `mrp_account/models/mrp_production.py:101-105` · `l10n_th/models/template_th.py:8-45` ; ไฟล์: `MANUFACTURING_VALUATION_PILOT/SRC_GAPS_MFG-02-03-04-05_*` |
 | Manifest / override | ไม่พบ override ของ `_should_create_account_move`/`_create_account_move` ในโมดูล license เปิด |
-| Schema-only | ยืนยัน: คอลัมน์ `valuation_account_id` บน location ; (ค่าตั้งจริงอยู่ในข้อมูล — ไม่ได้ตรวจ) |
+| Schema-only | ผลเป็นกลาง: มีโครงสร้างรองรับการผูกบัญชีกับพื้นที่จัดเก็บ ; ค่าตั้งจริงอยู่ในข้อมูล — ไม่ได้ตรวจ |
 | Evidence level | `SRC-STATIC` + `INFER` (การแยก subledger–GL) + `SCHEMA` |
 | Limitation | "ไม่มี default ใน source" ≠ "ฐานลูกค้าไม่ได้ตั้ง" ; ไม่ได้รัน |
 | Runtime validation | ผลิต MO โดยไม่ตั้งบัญชี ตรวจว่ามี/ไม่มีรายการบัญชี |
@@ -118,7 +118,7 @@
 | Classification | Community |
 | Pointer | `RESTRICTED:…/mrp/models/mrp_production.py:1907-1955,1938-1947` · `mrp_account/models/mrp_production.py:57-99,141-144` · `mrp_account/tests/test_valuation_operation.py:13-47` · `mrp_account/tests/test_mrp_account.py:603-648` |
 | Manifest / override | ไม่พบ override `_post_inventory`/`_cal_price` ในโมดูล license เปิด ; `mrp_subcontracting_account` (Community) ปรับ `_cal_price` สำหรับ subcontract |
-| Schema-only | ยืนยัน: คอลัมน์ `extra_cost` บน MO |
+| Schema-only | ผลเป็นกลาง: โครงสร้างสอดคล้องกับ source เรื่องต้นทุนเพิ่มต่อหน่วยระดับคำสั่งผลิต |
 | Evidence level | `SRC+TEST` |
 | Limitation | การแบ่งเวลา Work Order ระหว่าง MO เดิม/Backorder ยังไม่ทราบ |
 | Runtime validation | ผลิตบางส่วนหลายรอบพร้อม Work Order และตรวจต้นทุนต่อรอบ |
@@ -133,7 +133,7 @@
 | Classification | Community |
 | Pointer | `RESTRICTED:…/mrp/models/mrp_workcenter.py:41-43` · `mrp/models/mrp_workorder.py:124-130,638-654,729,900-902` · `mrp/models/mrp_routing.py:60-64,134-136` · `mrp_account/models/mrp_production.py:110-139` · `mrp_account/tests/test_mrp_account.py:576-588` |
 | Manifest / override | ไม่พบโมดูล license เปิดที่ inherit `mrp.workcenter`/`mrp.workorder` ; ฐานมีโครงสร้างต้นทุนพนักงานของโมดูลนอก Community (ตารางพนักงานต่อ Work Order) ที่ตรวจโค้ดไม่ได้ |
-| Schema-only | ยืนยัน: คอลัมน์ `costs_hour`, `cost_mode` ที่ Work Order ; `costs_hour`, `expense_account_id` ที่ Work Center ; **ไม่มีคอลัมน์อัตรากะ/OT** ; มีตารางพนักงานต่อ Work Order (ไม่ใช่ Community) |
+| Schema-only | ผลเป็นกลาง: โครงสร้างสอดคล้องกับ source เรื่องอัตราต้นทุนและโหมดคิดต้นทุน ; **ไม่พบโครงสร้างอัตราแยกตามกะ/ล่วงเวลาในฐานทดสอบ** ; พบโครงสร้างต้นทุนพนักงานจากโมดูลนอก Community |
 | Evidence level | `SRC+TEST` + `SCHEMA` |
 | Contradiction / limitation | ฐานทดสอบมีโครงสร้างต้นทุนพนักงานจากโมดูลนอก Community ⇒ "ไม่มีต้นทุนพนักงาน" เป็นจริงเฉพาะ Community |
 | Runtime validation | ตรวจการคิดต้นทุนเมื่อมีโมดูลพนักงานร่วม |
@@ -148,7 +148,7 @@
 | Classification | Community |
 | Pointer | `RESTRICTED:…/mrp_account/wizard/mrp_wip_accounting.py:46-146` · `mrp_account/tests/test_mrp_account.py:360-510` |
 | Manifest / override | ไม่พบโมดูล license เปิดที่ inherit ตัวช่วย WIP |
-| Schema-only | ยืนยัน: มีตารางตัวช่วย WIP และตารางเชื่อม WIP–MO ; บริษัทมีบัญชี WIP/Overhead |
+| Schema-only | ผลเป็นกลาง: มีโครงสร้างรองรับตัวช่วย WIP และการผูก WIP กับคำสั่งผลิต ; บริษัทมีการตั้งค่าบัญชี WIP |
 | Evidence level | `SRC+TEST` + `SCHEMA` |
 | Contradiction | ขัดกับข้อความ "(implied) reversed once the MO actually completes" ใน `MFG-F03` |
 | Runtime validation | โพสต์ WIP → ปิด MO ก่อน/หลังวันย้อน ตรวจการนับซ้ำ |
@@ -163,7 +163,7 @@
 | Classification | Community (บริษัทลูกค้าอาจตั้งค่าเพิ่มเอง) |
 | Pointer | `RESTRICTED:…/stock_account/data/stock_account_data.xml:4-18` · `stock_account/models/res_company.py:19-36,49-135,137-150,238-272` · `stock_account/models/account_move.py:29-44,68-161` · `stock_account/models/account_move_line.py:13-35` · `stock_account/models/stock_move.py:177-250,292-448,659-666` · `purchase_stock/models/stock_move.py:157-243` · `account/wizard/accrued_orders.py:378-389` ; ไฟล์: `MANUFACTURING_VALUATION_PILOT/SRC_GAP-MFG-01_*` |
 | Manifest / override | ไม่พบ override เมธอดหลักของ valuation ในโมดูล license เปิด ; **`cr_effective_date_entries` (จัดการวันที่ picking ย้อนหลังและอ้างโมเดลรุ่นเก่า)** เป็นช่องทางที่อาจกระทบจังหวะ ; โมดูล OPL-1 ที่ depends `stock_account` (`d_tiktok_shop_connector`, `19_bhpro_master_data`) ตรวจไม่ได้ |
-| Schema-only | ยืนยัน: ไม่มีตารางชั้นมูลค่ารุ่นเก่า มีตารางมูลค่าสินค้าและคอลัมน์ `value` บน stock move ; บริษัทมี `inventory_period`, `inventory_valuation`, `cost_method` ; หมวดสินค้าเก็บ `property_valuation`/`property_cost_method` เป็น jsonb ; **ไม่มี trigger ระดับฐานข้อมูล** |
+| Schema-only | ผลเป็นกลาง: ไม่พบโครงสร้างของแบบจำลองมูลค่ารุ่นเก่าแบบแยกชั้น ; พบโครงสร้างมูลค่าที่เก็บระดับรายการเคลื่อนไหว ; บริษัทมีการตั้งค่ารอบปิดสต็อก/โหมดมูลค่า/วิธีต้นทุน ; **ไม่พบ trigger ที่ผู้ใช้สร้าง** — **ต้อง requalify (§R) ; การไม่พบโครงสร้างไม่พิสูจน์การไม่มีอยู่** |
 | Evidence level | `SRC-STATIC` + `INFER` (Step 1/3 และการแยกชั้น) + `SCHEMA` — ไม่ใช่ runtime |
 | Contradiction / limitation | Step 1 ขัดกับ source (ไม่ใช่แค่ไม่ครบ) ; Step 3 มีเงื่อนไขบัญชี Loss Account ; Step 4 เรื่อง "self-reversing" ใช้กับ Accrued Orders/WIP ไม่ใช่ Stock Closing ; เอกสารนี้ **ไม่เปลี่ยนสถานะ Independently Unverified** |
 | Required runtime validation | AWT: รับสินค้าจาก Supplier ก่อน/หลังบิล, ส่งสินค้าก่อน/หลัง invoice, ปรับสต็อกมี/ไม่มี Loss Account, Stock Closing ทั้ง Manual/Cron |
@@ -178,7 +178,7 @@
 | Classification | Community + Third-party overlay |
 | Pointer | `RESTRICTED:…/account/models/company.py:51-112,552-606,642-700` · `account/models/account_move.py:2823-2840,3826-3829,5700-5706,6714-6750` · `account/models/account_lock_exception.py:1-120,115-118` · `account/wizard/account_move_reversal.py:17,93-106` ; overlay: `RESTRICTED:Extra_Module_scgl/_REQUIRED_OCA_DEPENDS/account_lock_date_update/models/res_company.py`, `…/wizards/account_update_lock_date.py:49-82` ; `RESTRICTED:addons_Extramodule/base_accounting_kit-19.0.3.3.1/base_accounting_kit/models/res_company.py:80-123` |
 | Manifest / override | `account_lock_date_update` (OCA, AGPL-3, depends `account`) — wizard เท่านั้น ; `base_accounting_kit` (Cybrosys, LGPL-3) — `_validate_locks` เพิ่มการตรวจซ้ำ ไม่ลดความเข้ม ; **ไม่พบโมดูล license เปิดที่ override `_check_fiscal_lock_dates`/`_get_lock_date_violations`/`_get_accounting_date`** ; Enterprise ฐานมีตารางตัวช่วยเปลี่ยน lock date (ไม่มีโค้ดใน tree) ; OPL-1/ไม่ระบุ license ที่ depends `account` ตรวจไม่ได้ |
-| Schema-only | ยืนยัน: บริษัทมีคอลัมน์ lock date (ตรวจชื่อ) ; **`account_move` ไม่มี CHECK constraint** ; `account_move_line` มี CHECK 4 ข้อ ; ไม่มี trigger ⇒ **lock date ไม่ได้บังคับที่ฐานข้อมูล — บังคับที่แอปเท่านั้น** ⇒ การนำเข้าด้วย SQL ตรงข้าม lock ได้ |
+| Schema-only | ผลเป็นกลาง: บริษัทมีการตั้งค่า lock date ; การควบคุมความถูกต้องระดับฐานข้อมูลของหัวรายการบัญชีไม่พบ ; ไม่พบ trigger ⇒ การล็อกงวดอยู่ที่ชั้นแอป ; การนำเข้าข้ามชั้นแอปอาจข้ามการล็อก (ยังไม่ทดสอบ) |
 | Evidence level | `SRC-STATIC` (ไม่มี test ที่อ่านในรอบนี้) + `SCHEMA` |
 | Contradiction / limitation | ยังไม่ยืนยัน: วันที่กลับรายการที่อยู่ในช่วงล็อกถูกเลื่อนอัตโนมัติหรือถูกปฏิเสธ (มีทั้งเส้นทางเลื่อนตอนโพสต์และ `UserError` ตอนแก้) ; กลไก hash/inalterable กับ lock ; การทำงานของ wizard ของ Enterprise ; ผลต่อ subledger (Stock Closing) |
 | Required runtime validation | ตั้ง Hard Lock → พยายามแก้/กลับรายการ/โพสต์ย้อนหลัง → สังเกต `UserError` หรือการเลื่อนวันที่ ; ตรวจกับโมดูลที่ติดตั้งจริง |
@@ -193,7 +193,7 @@
 | Classification | Community |
 | Pointer | `RESTRICTED:…/mrp/models/mrp_bom.py:26-29,212-221,268-275,487-515` · `mrp/models/stock_move.py:376-407` · `mrp_account/tests/test_mrp_account.py:169-207` ; ไฟล์: `MANUFACTURING_BOM_ROUTING_PILOT/SRC_GAPS_BRP-01-02-04-05-07-08-10_*` |
 | Manifest / override | ไม่พบโมดูล license เปิดที่ inherit `mrp.bom` |
-| Schema-only | ยืนยัน: `mrp_bom.type` เป็นคอลัมน์ธรรมดา ไม่มี CHECK ชนิด |
+| Schema-only | ผลเป็นกลาง: ชนิด BoM ไม่มีตัวควบคุมระดับฐานข้อมูล |
 | Evidence level | `SRC+TEST` + `SCHEMA` |
 | Limitation | ผลต่อ MO ที่ Confirm แล้วยังไม่ทราบ |
 | Runtime validation | สลับชนิดขณะมี SO/DO/MO เปิด |
@@ -208,7 +208,7 @@
 | Classification | Community |
 | Pointer | `RESTRICTED:…/mrp/models/mrp_production.py:606-661,1347-1348` · `mrp/tests/test_bom.py:2872-2917` · `mrp_account/models/product.py:101-112` |
 | Manifest / override | ไม่พบโมดูล license เปิดที่ inherit `mrp.bom`/`mrp.production` |
-| Schema-only | ไม่มี CHECK เชื่อม type–operations |
+| Schema-only | ผลเป็นกลาง: ไม่พบตัวควบคุมระดับฐานข้อมูลที่เชื่อมชนิด BoM กับขั้นตอนผลิต |
 | Evidence level | `SRC+TEST` |
 | Runtime validation | Kit ที่มี Operations ทั้งกรณีขายตรงและเป็นส่วนประกอบ |
 | Proposed disposition | มี finding รอตรวจอิสระ |
@@ -222,7 +222,7 @@
 | Classification | Community |
 | Pointer | `RESTRICTED:…/mrp/models/mrp_workorder.py:347-355,940-945` · `mrp/models/mrp_production.py:1938-1947` |
 | Manifest / override | ไม่พบ override ; **ฐานมีตารางของ Work Order ขั้นสูง (นอก Community)** |
-| Schema-only | ยืนยัน: คอลัมน์ `duration`, `duration_expected`, `duration_percent` |
+| Schema-only | ผลเป็นกลาง: โครงสร้างสอดคล้องกับ source เรื่องเวลาคาดหมาย/จริง/ส่วนต่าง |
 | Evidence level | `SRC-STATIC` + `ABSENCE` + `SCHEMA` |
 | Neutral conclusion | ส่วนต่างเวลาเป็นข้อมูลรายงานระดับ Work Order ไม่ใช่รายการบัญชี ; ถ้าไม่บันทึกเวลาจริง ระบบใช้เวลาคาดหมาย |
 
@@ -234,7 +234,7 @@
 | Classification | Community + Third-party overlay (`purchase_request` ขยายเส้นทางจัดหา) |
 | Pointer | `RESTRICTED:…/stock/models/stock_orderpoint.py:31-32,712-793` · `stock/data/stock_sequence_data.xml:45-56` · `mrp/models/stock_rule.py:35-38,117-121` · `purchase/models/purchase_order.py:111` · `stock/security/ir.model.access.csv:19-20` |
 | Manifest / override | `purchase_request` (OCA) inherit `stock.warehouse.orderpoint`/`stock.rule` — **ยังไม่ได้ตรวจว่าเปลี่ยนสถานะเอกสารที่สร้าง** ; ฐานมีร่องรอยการติดตั้ง |
-| Schema-only | ยืนยัน: `trigger`, `snoozed_until` บน Reordering Rule ; UNIQUE (สินค้า, location, บริษัท) |
+| Schema-only | ผลเป็นกลาง: โครงสร้างรองรับโหมดทริกเกอร์และการเลื่อนของ Reordering Rule ; มีข้อจำกัดความไม่ซ้ำระดับฐานข้อมูล ; ผลนี้ **CONDITIONAL ต่อ `purchase_request`** |
 | Evidence level | `SRC-STATIC` + `SCHEMA` |
 | Limitation | เงื่อนไขนี้ **CONDITIONAL ต่อ `purchase_request`** ที่ติดตั้งในฐาน |
 | Neutral conclusion | เกตของการจัดหาอัตโนมัติอยู่ที่การยืนยันเอกสารร่าง ไม่ใช่ก่อนสร้าง |
@@ -247,7 +247,7 @@
 | Classification | ไม่ใช่ Community (Enterprise หรือแหล่งอื่น — ไม่มีโค้ดใน tree ; ไม่ได้ยืนยันที่มา) |
 | Pointer | `RESTRICTED:…/mrp/models/stock_rule.py:90` ; รายการโมดูลระดับ `odoo/addons` (`ABSENCE`) |
 | Manifest / override | ไม่มี manifest ใน tree |
-| Schema-only | ยืนยัน: มีตาราง MPS, Quality (point/check/alert), ECO |
+| Schema-only | ผลเป็นกลาง: พบโครงสร้างของพื้นที่วางแผนผลิต/PLM/คุณภาพในฐานทดสอบ (ไม่ระบุชื่อ) |
 | Evidence level | `ABSENCE` + `SCHEMA` |
 | Neutral conclusion | ตอบไม่ได้จาก source ที่มี ; ต้องระบุแหล่งและ license ของโมดูลก่อนวิจัยต่อ |
 
@@ -259,7 +259,7 @@
 | Classification | Community |
 | Pointer | `RESTRICTED:…/stock_account/models/stock_move.py:24-26,292-357,439` · `stock_account/models/product.py:286-336` · `mrp_account/models/product.py:44-99` |
 | Manifest / override | ไม่พบ override `_set_value`/`_change_standard_price` |
-| Schema-only | ยืนยัน: `stock_move.value` คอลัมน์เก็บค่า (ไม่ใช่ compute) ; มีตารางมูลค่าสินค้า |
+| Schema-only | ผลเป็นกลาง: มูลค่ารายการเคลื่อนไหวถูกเก็บเป็นค่าที่บันทึก (ไม่ใช่ค่าคำนวณสด) ตามโครงสร้าง ; มีโครงสร้างมูลค่าสินค้า — **ต้อง requalify (§R)** |
 | Evidence level | `SRC-STATIC` + `SCHEMA` ; ยังไม่ตรวจกรณี vendor bill มีผลย้อน (`_set_value` ถูกเรียกซ้ำหลังบิล) |
 | Neutral conclusion | ต้นทุนใหม่มีผลกับการผลิตที่จะเกิดในอนาคตและมูลค่าคงเหลือ ไม่ใช่การคำนวณย้อนคำสั่งผลิตที่เสร็จ |
 
@@ -267,10 +267,10 @@
 | Field | รายละเอียด |
 |---|---|
 | Prior claim | D01-13 `account_move` CHECK constraints ไม่ได้ enumerate ; D01-11 Σdebit=Σcredit ยังไม่ยืนยันที่ระดับข้อมูล |
-| Finding | `account_move` ไม่มี CHECK ; `account_move_line` มี CHECK 4 ข้อ (เดบิต×เครดิต=0 ฯลฯ) ; **ไม่มี trigger ผู้ใช้สร้าง** ⇒ การสมดุลของรายการไม่ได้บังคับที่ฐานข้อมูล ; ค่าตั้งตามบริษัทของหมวดสินค้าเก็บเป็น jsonb ไม่ใช้ `ir_property` ; ไม่มี CHECK/UNIQUE เกี่ยวกับ `cost_share` |
+| Finding | การควบคุมความถูกต้องระดับฐานข้อมูลมีเฉพาะระดับบรรทัดรายการบัญชี ไม่พบระดับหัวรายการ ; **ไม่พบ trigger ที่ผู้ใช้สร้าง** ⇒ การสมดุลของรายการไม่ได้บังคับที่ฐานข้อมูล ; ค่าตั้งตามบริษัทของหมวดสินค้าถูกเก็บภายในแถวเดียวกัน (ไม่ใช่ตารางแยก) ; ไม่พบตัวควบคุมระดับฐานข้อมูลของกฎอัตราส่วนต้นทุนผลผลิตรอง |
 | Classification | Community schema (ณ ฐาน iTEST02) |
-| Evidence pointer | `RESTRICTED-SCHEMA:iTEST02 dump sha256 d67fff6d…` · ผล query = เมตาดาต้า (ชื่อ constraint/ชนิดคอลัมน์) — ไม่ได้ commit DDL |
-| Schema-only status | ยืนยันแล้ว (metadata เท่านั้น) — **ข้อมูลจริงไม่ได้ตรวจ** ⇒ D01-11 (data-level balance) ยังไม่ตอบ |
+| Evidence pointer | `RESTRICTED-SCHEMA:iTEST02 dump sha256 d67fff6d…` · ผลเป็นเมตาดาต้าเท่านั้น — ไม่ commit DDL/ชื่อโครงสร้าง |
+| Schema-only status | ผลเป็นกลาง (เมตาดาต้าเท่านั้น) — ข้อมูลจริงไม่ได้ตรวจ ⇒ D01-11 (data-level balance) ยังไม่ตอบ |
 | Limitation | dump (2026-06-14) เก่ากว่า source (`post20260921`) ; ผลเป็นของฐานนี้ ไม่ใช่ของ Odoo ทุกฐาน |
 | Neutral conclusion | การควบคุมความถูกต้องของรายการบัญชีและกฎ % ผลผลิตรองอยู่ที่ชั้นแอป ไม่ใช่ฐานข้อมูล → นำเข้าข้อมูลต้องผ่านชั้นแอปหรือมีการตรวจสมดุลแยกต่างหาก |
 
@@ -305,8 +305,7 @@
 
 **ให้ถือถ้อยคำในเอกสารนี้ (§0–§5) เป็นฉบับที่ใช้แทน** ; ข้อเสนอสถานะ "Resolved/ปิด" ในไฟล์เหล่านั้นให้ถือเป็นโมฆะ.
 
-**ข้อยกเว้นที่ต้องแจ้ง (ต้องให้ Boss/session หลักตัดสิน):**
-ไฟล์ `STATE03_DB_SCHEMA_SOURCE_CROSSCHECK_EVIDENCE.md` (ถูก push แล้ว) มี (ก) ภาคผนวกรายชื่อตารางที่ไม่ตรง Community 337 ชื่อ และ (ข) ข้อความนิยาม CHECK constraint ของ `account_move_line` ซึ่งเป็น **ข้อมูลโครงสร้างระดับ DDL-like** และอาจเกินกติกา "ไม่ commit schema DDL" ; รวมถึงชื่อคอลัมน์/ตารางจำนวนมากในตารางสรุป ; ข้อมูลอยู่ใน git history ของ branch แล้ว ; **เสนอ:** ลบภาคผนวกและนิยาม constraint ออกจากไฟล์ (หรือย้ายไปเป็น restricted-local) — ยังไม่ทำจนกว่าจะได้รับคำสั่ง (กติกา: อัปเดตเฉพาะไฟล์นี้)
+**สถานะ remediation (2026-09-30, commit แยก):** banner `STATUS CORRECTION` ถูกเพิ่มในไฟล์ `SRC_*` และ `STATE03_DB_SCHEMA_*` ทั้ง 12 ไฟล์ (คงข้อความเดิม) ; `STATE03_DB_SCHEMA_SOURCE_CROSSCHECK_*` ถูกลดรูปเป็น data-minimized (ลบรายชื่อตารางนอก Community, นิยาม constraint, ข้อความ query และคำอธิบายตาราง/คอลัมน์ออกจาก working tree) ; รายละเอียด "Schema-only" ในเอกสารนี้ถูกทำให้เป็นผลแบบเป็นกลาง. **เนื้อหาเดิมยังอยู่ในประวัติ Git ของ branch นี้** (ไม่ได้เขียนประวัติใหม่/ไม่ force-push) และยังต้องผ่าน Independent Clean-Room review. ผลค้นรูปแบบ schema ใน working tree ส่วนอื่นที่ไม่ใช่ผลงานของ session นี้ (เอกสารของ session ก่อนหน้า เช่น DOMAIN_01 database registers) พบเป็นการกล่าวถึงวิธี/ผลระดับสรุป — **บันทึกไว้ ไม่ได้แก้** เพื่อให้ session หลักตัดสิน
 
 ## 7. คิวถัดไป (ตามที่กำหนด)
 1. ✅ `GAP-PCO-01` ถึง checkpoint (D-07)

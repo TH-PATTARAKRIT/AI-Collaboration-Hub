@@ -1,3 +1,5 @@
+> **STATUS CORRECTION — The source/schema finding is CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION. It is not runtime proof, Gate PASS, final gap closure, or STATE03 completion. Refer to STATE03_SOURCE_DUMP_EVIDENCE_DELTA_HANDOFF for the current qualified disposition.**
+
 > Domain: MANUFACTURING_VALUATION_PILOT (Gx7) — เชื่อมกับ PERIOD_CUTOFF_VALIDATION_PILOT (`GAP-PCO-02`) | Source-code research result | **ส่วนที่ 1 — สรุปภาษาธุรกิจ (ไม่มี source code ดิบ)**
 > คู่กับ: `SRC_GAP-MFG-01_VALUATION_TIMING_SOURCE_CHECK_EVIDENCE.md`
 > เกี่ยวข้องกับ: `00_Architecture_Governance/STATE03_VALUATION_TIMING_CROSS_GX_CONTRADICTION_MATRIX.md` (`Material Finding — Independently Unverified`)

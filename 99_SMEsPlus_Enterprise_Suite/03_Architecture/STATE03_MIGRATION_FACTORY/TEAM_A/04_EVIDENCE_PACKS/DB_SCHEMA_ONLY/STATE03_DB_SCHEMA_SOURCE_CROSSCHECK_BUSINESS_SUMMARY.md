@@ -1,61 +1,17 @@
-> **SCHEMA-ONLY — ไม่มีข้อมูลจริง (no row data) ในเอกสารนี้หรือในฐานข้อมูลชั่วคราวที่ใช้**
-> ส่วนที่ 1 — สรุปภาษาธุรกิจ | คู่กับ: `STATE03_DB_SCHEMA_SOURCE_CROSSCHECK_EVIDENCE.md`
+> **STATUS CORRECTION — The source/schema finding is CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION. It is not runtime proof, Gate PASS, final gap closure, or STATE03 completion. Refer to STATE03_SOURCE_DUMP_EVIDENCE_DELTA_HANDOFF for the current qualified disposition.**
 
-# STATE03 DB Schema — เทียบโครงสร้างฐานข้อมูล (dump) กับ source code Odoo 19 Community
+> **SCHEMA-ONLY — ไม่มีข้อมูลจริง (no row data)** | ส่วนที่ 1 — สรุปภาษาธุรกิจ (data-minimized) | คู่กับ: `STATE03_DB_SCHEMA_SOURCE_CROSSCHECK_EVIDENCE.md`
 
-## 0. วิธีทำและหลักประกันเรื่องข้อมูล
+# STATE03 DB Schema — สรุปเทียบโครงสร้างฐานข้อมูล (dump) กับ source Odoo 19
 
-| หัวข้อ | รายละเอียด |
-|---|---|
-| ไฟล์ dump | `iTEST02_2026-06-14_14-41-19 (1).dump` (ฐานข้อมูลชื่อ `iTEST02`, ทำเมื่อ 2026-06-14, PostgreSQL 18.4) |
-| การ restore | `pg_restore --schema-only --no-owner --no-privileges` เข้า PostgreSQL 18 ชั่วคราวที่เปิดเฉพาะเครื่องนี้ (localhost) ฐานชื่อ `state03_schema_scratch` |
-| ข้อมูลแถว | **ไม่มีการ restore ข้อมูล** — ยืนยันด้วยสถิติเมตาดาต้าว่าจำนวนแถวรวมของทุกตารางเป็น 0 ; **ไม่ได้รัน `SELECT` ใดๆ บนตารางธุรกิจ** (คำสั่งที่ใช้ทั้งหมดอ่านจาก `information_schema` / `pg_catalog` เท่านั้น) |
-| ความต่างจากคำสั่ง | ใช้ PostgreSQL 18 client เพราะ dump ทำจาก pg_dump 18 (client 16 ของเครื่องอ่านไม่ได้) และเปิด server ส่วนตัวแทนการใช้ server กลางของเครื่อง เพื่อไม่กระทบข้อมูลอื่น |
-| ข้อผิดพลาดที่พบตอน restore | 22 รายการ ทั้งหมดเกี่ยวกับตาราง `ai_embedding` (ต้องใช้ส่วนขยาย `pgvector` ที่ไม่ได้ติดตั้ง) — ไม่กระทบตารางอื่น (1,394 ตารางถูกสร้างครบ) |
-| การทำความสะอาด | หยุด server ส่วนตัว, ลบฐาน `state03_schema_scratch` และโฟลเดอร์ข้อมูลชั่วคราวเมื่อจบงาน |
+**Remediation note:** เวอร์ชันก่อนหน้าของไฟล์นี้ในประวัติ Git มีรายละเอียดโครงสร้างเกินกติกา ; ถูกลบออกจาก working tree ปัจจุบันแล้ว (ประวัติ Git ไม่ได้ถูกเขียนใหม่ และยังอยู่ภายใต้การทบทวน Clean-Room แบบอิสระ). รายละเอียด provenance/hash/ผลแบบเป็นกลางอยู่ในไฟล์ Evidence คู่กัน.
 
-## 1. ข้อค้นพบหลัก
+## ผลโดยสรุป (เป็นกลาง / ยังรอการตรวจอิสระ)
+1. **หลักฐานโครงสร้างสอดคล้องกับ source รุ่น 19** ในภาพรวมของการเก็บมูลค่าสต็อก (ต้อง requalify — ดู Handoff §R)
+2. **การควบคุมสำคัญของรายการบัญชีและกฎบางข้อของการผลิต (เช่น อัตราส่วนต้นทุนผลผลิตรอง, การสมดุลของรายการ, การล็อกงวด) อยู่ที่ชั้นแอปพลิเคชัน ไม่ใช่ฐานข้อมูล** → การนำเข้าข้อมูลที่ข้ามชั้นแอปต้องมีการตรวจแยกต่างหาก
+3. **ฐานทดสอบมีโครงสร้างจากโมดูลนอก Community จำนวนมาก** ⇒ ผลวิจัยจาก source Community เป็นผลของแกนกลางเท่านั้น (`CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET`)
+4. ผลกระทบต่อ `GAP-BRP-08` (MPS) และ `GAP-QCP-02` (Quality): มีโครงสร้างของพื้นที่การทำงานเหล่านี้ในฐานทดสอบ แต่ไม่มีโค้ดใน Community → ต้องระบุที่มา/license ก่อนศึกษา
 
-### 1.1 ฐานข้อมูลนี้ตรงกับสถาปัตยกรรม Odoo 19 (ไม่ใช่เวอร์ชันเก่า)
-- **ไม่มีตาราง `stock_valuation_layer`** (โมเดลชั้นมูลค่าของเวอร์ชันเก่า) และ **มีตาราง `product_value`** พร้อมคอลัมน์ `value` บน `stock_move` — ตรงกับกลไกที่พบใน source (มูลค่าเก็บที่ stock move)
-- **มีคอลัมน์ `cost_share`** ที่ By-Product ของ BoM และของ stock move (ตรงกับ `GAP-BRP-09`)
-- **มี `inventory_period`, `inventory_valuation`, `cost_method`** ที่บริษัท (ตรงกับ Stock Closing / ค่า default ที่พบใน source) และ `account_production_wip_account_id` / `..._overhead_account_id`
-- **มี `valuation_account_id` ที่ stock location** และ `cost_mode`, `costs_hour` ที่ Work Order / Work Center (ตรงกับ `GAP-MFG-02/04`)
-
-### 1.2 ⚠️ ฐานข้อมูล iTEST02 ติดตั้งโมดูลนอก Community จำนวนมาก
-ตาราง 1,394 ตาราง แต่ **ตรงกับโมเดลใน source Community ได้เพียง ~698 ตาราง** (อีก ~696 ตารางไม่พบใน Community — ในนั้น ~359 เป็นตารางเชื่อมหลายต่อหลาย ส่วนที่เหลือ 337 เป็นตารางหลัก/ตัวช่วย) กลุ่มที่เห็นชัด (ดูรายการในไฟล์ Evidence):
-
-| กลุ่ม | ตัวอย่างตาราง (ชื่อตารางเท่านั้น) | นัย |
-|---|---|---|
-| **MPS / วางแผนผลิต / PLM** | `mrp_production_schedule`, `mrp_mps_forecast_*`, `mrp_eco*` | **ตอบ `GAP-BRP-08`:** MPS *ถูกติดตั้งจริง* ในฐานนี้ — แต่โค้ดไม่อยู่ใน Community ⇒ ต้องมีแหล่งโค้ดอื่นเพื่อวิจัยต่อ |
-| **Quality** | `quality_check`, `quality_point`, `quality_alert*` | **`GAP-QCP-02`/QC pilot:** โมดูล Quality ถูกติดตั้ง แต่โค้ดไม่อยู่ใน Community |
-| **บัญชีขั้นสูง** | `account_asset*`, `account_loan*`, `account_return*`, `account_report_budget*`, `account_followup*`, `account_online_*`, `account_multicurrency_revaluation_wizard`, `account_fiscal_year` | **เกี่ยวข้อง `GAP-D01-01`:** ฟีเจอร์บัญชีขั้นสูงมีอยู่จริงในฐานนี้ |
-| **ภาษีหัก ณ ที่จ่าย/ปรับแต่งไทย** | `account_withholding_tax`, `withholding*`, `account_payment_deduction` | ต้องสอบทาน license/ที่มาโมดูลก่อนวิจัยโค้ด |
-| **โมดูลชุมชน/ภายนอก** | `purchase_request*` (ใบขอซื้อ), `jasper*`, `dropbox_*` | ต้องตรวจ license ก่อนอ่านโค้ด |
-| **Studio (ตารางที่ผู้ใช้สร้างเอง)** | `x_master_operation`, `x_7_11_tag`, `x_res_partner_line_*`, `x_project_task_worksheet_template_1` | โมเดลที่สร้างผ่านเครื่องมือปรับแต่ง — **ไม่มี source ในโฟลเดอร์ใด** |
-| **โมดูลอื่นนอกขอบเขตการผลิต/บัญชี** | HR ~49, Sign ~18, Documents ~13, Helpdesk ~11, Appointment ~10, Planning ~8, ESG ~8, AI ~6 ฯลฯ | ฐานทดสอบนี้เป็นชุดที่มีหลายโมดูลเกินขอบเขต Community |
-
-> ข้อจำกัด: "ตรงกับ Community" คำนวณจากการจับคู่ชื่อโมเดล (`_name`, `_table`, ตารางเชื่อม) ด้วยสคริปต์อ่าน source — เป็นการประมาณ ไม่ใช่การพิสูจน์ ; ตารางที่ไม่ตรงอาจมาจาก Enterprise, โมดูลชุมชน หรือโมดูลที่พัฒนาเอง (ยังไม่ได้แยก — ต้องเปิด `__manifest__.py` ของโมดูลใน `addons_*` ตามข้อกำหนด license ในงานถัดไป)
-
-### 1.3 ผลต่อสิ่งที่เคยสรุปไว้ก่อนหน้า
-- **`GAP-BRP-08` (MPS):** เดิมสรุปว่า "ไม่อยู่ใน Community" — **ยังถูกต้อง** และเพิ่มว่า **ฐานทดสอบมี MPS ติดตั้งอยู่** ⇒ ปรับสถานะเป็น "MPS อยู่นอก Community แต่ใช้จริงในสภาพแวดล้อมทดสอบ — ต้องระบุแหล่งโค้ด"
-- **`GAP-D01-01`:** ฟีเจอร์บัญชี Enterprise **มีตารางยืนยัน** (ไม่ใช่แค่ไม่เห็น) แต่พฤติกรรมยังศึกษาจาก source ไม่ได้
-- **ผลวิจัยที่ผ่านมา (BRP/MFG/Valuation timing):** ทั้งหมดเป็นของ *แกนกลาง Community* ; ฐานทดสอบที่ใช้งานจริงมีชั้นโมดูลเพิ่มเติม ควรถือว่า **พฤติกรรมจริงอาจถูกขยายโดยโมดูลเหล่านั้น** (เช่น Work Order ของ Enterprise, Quality gate) — ยังไม่ทราบ
-
-### 1.4 การควบคุมระดับฐานข้อมูล (สำคัญต่อ Migration)
-1. **ไม่มี trigger** ใดๆ ที่ผู้ใช้สร้างในฐานข้อมูล → **การบังคับ Debit = Credit ไม่ได้อยู่ที่ระดับฐานข้อมูล** (อยู่ที่ชั้นแอปพลิเคชัน) ⇒ การนำเข้าด้วย SQL ตรงอาจสร้างรายการไม่สมดุลได้โดยไม่มีอะไรขวาง (เสริม `GAP-D01-11`)
-2. **ตาราง `account_move` (หัวรายการ) ไม่มี CHECK constraint** ⇒ ตอบ `GAP-D01-13` (ในฐานทดสอบนี้)
-3. **`account_move_line` มี CHECK 4 ข้อ** (ห้ามมีทั้งเดบิตและเครดิตพร้อมกัน, ต้องมีบัญชีเว้นแต่แถวส่วน/โน้ต, เครื่องหมาย balance ต้องสอดคล้อง amount_currency, แถวส่วน/โน้ตต้องเป็นศูนย์)
-4. **`cost_share` ของ By-Product ไม่มี CHECK ที่ฐานข้อมูล** — กฎ "ไม่ติดลบและรวมไม่เกิน 100" อยู่ที่แอปพลิเคชันเท่านั้น (ดู `GAP-BRP-09`) ⇒ นำเข้า BoM ด้วย SQL/ข้ามตัวตรวจ จะไม่ถูกจับ
-5. **ตาราง BoM/MO มี CHECK เฉพาะ `product_qty > 0`** และ MO ชื่อไม่ซ้ำต่อบริษัท ; Reordering Rule ห้ามซ้ำต่อ (สินค้า, location, บริษัท)
-6. **ค่าตั้งของหมวดสินค้าเก็บเป็นคอลัมน์ JSON ตามบริษัท** (เช่น `property_valuation`, `property_cost_method`) — **ไม่มีตาราง `ir_property`** ⇒ การย้ายข้อมูลต้องรักษารูปแบบ "ค่าแยกตามบริษัท" นี้
-7. **`stock_move.cost_share`, `mrp_bom_byproduct.cost_share` เป็น numeric ไม่กำหนดความละเอียด** ; ทศนิยม 2 ตำแหน่งที่ source ระบุเป็นเรื่องการปัดเศษในแอป ไม่ใช่ชนิดคอลัมน์
-
-## 2. ข้อจำกัดและ Residual
-
-| # | รายการ |
-|---|---|
-| S1 | เวอร์ชันของ dump (2026-06-14) เก่ากว่า source (`19.0.post20260921`) — ความต่างเล็กน้อยของคอลัมน์อาจมาจากการอัปเดตเวอร์ชัน ไม่ใช่ความผิดปกติ |
-| S2 | ไม่ได้เทียบระดับคอลัมน์ทั้งฐาน (เทียบเฉพาะโมเดลที่เกี่ยวกับ `GAP-BRP/MFG`) — เสนอทำเทียบทั้งหมดในรอบถัดไปโดยแยกโมดูล |
-| S3 | ตารางที่ไม่ตรง Community (696) ยังไม่ได้ระบุที่มาโมดูล — ขั้นถัดไป: อ่าน manifest ของ `addons_Extramodule` / `addons_smeplus` / `Extra_Module_scgl` เพื่อเทียบ และตรวจ license ก่อนอ่านโค้ด |
-| S4 | ไม่มีข้อมูลแถว ⇒ ตอบไม่ได้: รายชื่อโมดูลที่ติดตั้งจริง (อยู่ในตารางข้อมูล), ค่าตั้ง, ทศนิยมของ decimal precision (`GAP-D01-04` ต้องใช้ข้อมูล) |
+## ข้อจำกัด
+- dump เดียว ณ 2026-06-14 ; ไม่มีข้อมูลแถว ; ไม่ใช่ runtime proof ; ไม่ใช่การปิด gap
+- การไม่พบตาราง/คอลัมน์ไม่พิสูจน์ว่าโมดูลไม่มีอยู่หรือไม่มีผลพฤติกรรม
