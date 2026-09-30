@@ -24,6 +24,19 @@ Purpose: **Flag findings that are actionable regardless of STATE03's own researc
 
 **Recommended immediate action (for whoever owns the actual runtime environment(s), not a STATE03 research task)**: confirm whether this module is installed anywhere reachable from outside a trusted network; if so, restrict or disable the affected route(s) until a token/auth check can be added, independent of STATE03's own schedule.
 
+### 1.1 Boss ruling (2026-09-30)
+
+Boss confirmed directly: **`scgl_jasper_api` is not in use** and authorized removing it ("เราไม่ใช้งาน ตัดออกได้เลย"). This resolves the single biggest open unknown in §1 above (installed/reachable status) — Boss's own knowledge of the actual business system is the authoritative answer here, not something this research could determine on its own.
+
+**What this session can and cannot do about it**: this cloud session has no access to any live Odoo environment, and no filesystem access to Boss's own Mac beyond what the separate local Source/Dump Deep Research Worker session has already read and relayed (read-only, Clean-Room). Actually removing the module is therefore **outside what either Claude session can execute from here** — it requires action on the real environment(s) that hold it. This document is updated to record the decision; the removal action itself is Boss's (or his ops team's) to carry out.
+
+**Recommended concrete steps for whoever executes the removal** (not performed by this session):
+1. If `scgl_jasper_api` was ever installed in any Odoo database (not just present as a folder), uninstall it properly through Odoo first (Apps → the module → Uninstall) rather than only deleting the source folder — a bare file deletion can leave orphaned records/menu entries and, in the worst case, break on next upgrade.
+2. Then remove the module folder (`addons_Extramodule/addons/scgl_jasper_api`) from every addons path that carries it, including any of the working copies the source/dump research has been reading from (per this Advisory's own provenance, at least the machine used for STATE03's Clean-Room study).
+3. If any external JasperReports server configuration still points at either of this module's two routes, update or remove that configuration too, since the routes themselves going away is what actually closes the exposure.
+
+**Status of this item**: Boss-ruled `NOT IN USE — REMOVAL AUTHORIZED`, execution pending (owner: Boss / his ops team, not this session or the research worker).
+
 ## 2. Other control-bypass findings from the same round (lower urgency, still worth owner attention)
 
 | Module | License / class | Finding |
