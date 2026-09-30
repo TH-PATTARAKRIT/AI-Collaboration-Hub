@@ -494,3 +494,76 @@ Gap-ID ที่มี delta ใน Handoff ทั้งหมด (21 ราย)
 - custom/third-party impact trace ตามสิทธิ์ ; ตรวจ pointer เชิงเนื้อหาของ trace note (ตรวจแล้ว 31 จาก 11,364)
 **สิ่งที่ยังไม่ทำ**
 - §5.1 ข้อ 8 (schema-only ระดับโมดูล) และข้อ 9 (V-level) ทุกโมดูล ; Independent verification ; runtime validation ; Deep Study ที่เหลือ ; ตรวจโมดูล custom ที่ license ปิดเกินระดับ manifest ไม่ได้
+
+---
+
+# ROUND 4 — Append (2026-09-30) — Prompt: STATE03_ODOO19_ULTRA_DEEP_L1_L5_CONTINUATION (first capability/status report)
+
+**Status:** `CLAUDE-REPORTED / PENDING INDEPENDENT VERIFICATION` · revision `19.0.post20260921` · Community-core = `CONDITIONAL ON EFFECTIVE INSTALLED EXTENSION SET` · no Formal Coverage / Gate PASS / gap closure / STATE03 Complete / FDS authorization claimed.
+
+## T0. Execution incident (record)
+Delegated (sub-agent) work was interrupted twice by the account **monthly spend limit** (HTTP 429): 16 agents failed in the first wave and 8 more in the retry. One small probe succeeded in between, so the limit is intermittent/at the boundary. **Effect:** all L1 content-check agents (6) and all L2+L3 function agents (8) were lost; only partial files survived (below). **Decision:** no further delegated launches until the spend limit is raised/reset (a user/administrator action) — repeated retries only burn quota. Work continues directly by the main worker where cheap.
+
+## T1. Preflight (L0) — result
+| Item | Result |
+|---|---|
+| Source revision | `19.0.post20260921` (from package metadata; the tree is not a git checkout, so no commit hash exists) |
+| Manifest / licence | Manifest sha256 (first 16 chars) recorded in every `SOURCE_MAP_CANDIDATE/MODULE_*.md`; all 300 register modules LGPL-3 per manifest |
+| `OEEL-1` | No `OEEL-1` manifest found among the 158 custom/third-party manifests inspected (licences seen: LGPL-3, AGPL-3, GPL-3, OPL-1, "Other proprietary", none). Enterprise code is not in the tree. Nothing under `OEEL-1` was opened |
+| Module list provenance | **MODULE-LIST HASH MISMATCH — PENDING BASELINE RECONCILIATION** (unchanged) |
+| Dump | schema-only, sha256 recorded (see §1) ; both restores cleaned up |
+| Module business boundary | stated per module in the source-map records |
+
+## T2. What is executable now / not executable (with blocker class)
+| Activity | Executable now? | Constraint / blocker class |
+|---|---|---|
+| L1 module map (structure) | Yes — automated extraction done for 300 + 117 custom | — |
+| L1 content-check | Only by direct reading by the main worker (slow) | **tooling/quota**: delegated verifiers were cut by the spend limit |
+| L2 function trace | Yes, directly (limited throughput) | quota for parallel delegates |
+| L3 eight-lens study | Yes, directly, function by function | quota for parallel delegates; L3 needs ≥1 function per session-hour of reading |
+| L4 independent challenge | **No** | **independent review**: requires a reviewer/session other than the author; delegated agents of this session are not independent |
+| L5 runtime / AWT | **No** | **runtime/configuration + rights**: no isolated Odoo runtime is provisioned or authorized; this host has Python 3.14 (Odoo 19 targets an earlier Python) and none of the Odoo Python dependencies installed; creating one means installing packages and building an environment, which is not authorized |
+| Schema-only dump study | Yes (temporary local database, no row queries) | schema-only limit: cannot show installed module set or configuration values |
+| Closed-licence custom modules (41) | Manifest/metadata only | **rights/provenance** |
+
+## T3. Actual status (no inferred status)
+| Scope | Status | Count (provenance = on-disk register, hash mismatch) |
+|---|---|---|
+| Community register modules — L1 | `L1-CANDIDATE` (automated inventory + sub-agent trace note; content-check incomplete) | 300 |
+| Community register modules — `L1 COMPLETE` | — | **0** |
+| Content-check of a trace note (adversarial re-verification) | done for **1** note (`mrp`) before interruption: authoritative tally ≈ 87 claims: 60 supported, 16 partially supported, 2 not supported, 9 pointer-broken (the checker's summary table says 62 — its two tallies disagree). Pointer-existence check on all notes: 11,229 of 11,364 resolve. | 1 of 17 first-batch notes |
+| Function-level L2 | `L2-CANDIDATE` for the ~21 Gap-IDs already in the Handoff (source-static, by the main worker, no independent check). Three interrupted L2+L3 drafts survive as **incomplete** restricted files (lock dates PCO-F01/F04 ≈ 53 lines; sales invoicing/COGS group ≈ 58 lines; multi-company MCT group ≈ 25 lines) — not usable as L2/L3 until completed and content-checked. The other five drafts are stubs only. | 0 `L2 COMPLETE` |
+| `L3 COMPLETE` / `L4 COMPLETE` / `L5 COMPLETE` | none | 0 / 0 / 0 |
+| Custom / third-party (licence-readable) | study notes exist (`L1-CANDIDATE`, not content-checked) | 117 (folder `CUSTOM_MODULE_STUDY/`) ; 41 metadata-only |
+
+**Evidence class / max V by position:** L1-CANDIDATE → at most V2 on the maps; existing function findings are V-level *not assigned by this worker* (source/schema only, no L4/L5). Floor for C1 (V4) is **not** met by any function; every C1 function remains `GAP — REQUIRED V4/V5 / ACTUAL below V4`.
+
+## T4. First batch and first functions to advance
+- **First L1 dependency/risk batch:** the 17 core modules (`account`, `stock`, `stock_account`, `stock_landed_costs`, `mrp`, `mrp_account`, `mrp_landed_costs`, `mrp_subcontracting` + 3 bridges, `purchase`, `purchase_stock`, `sale`, `sale_stock`, `product`, `l10n_th`).
+- **First Function-IDs advancing L2→L3:** `PCO-F01/F04` (lock dates; partial draft), `SDV-F04/F05/F07 + RTG-F02/F03 + PDT-F01` (sales invoicing/COGS; partial draft), `MCT-F01/F02/F03/F05` (multi-company; partial draft). Not started beyond stub: `PCO-F03 + IAV-F03/F04`, `MFG-F01/F02/F04/F05`, `BRP-F08/F03/F01/F02`, `GRV-F06 + PDT-F02/F03/F04`, `GRV-F02/F03/F04/F05/F07 + IAV`.
+
+## T5. Custom / third-party modules mapped onto the core modules studied
+New folder `CUSTOM_MODULE_STUDY/` (separate from Community results; each note carries the confirmed manifest licence): per-module notes (117) and `STATE03_CUSTOM_MODULE_IMPACT_ON_CORE_MAP.md`. `DISCOVERED RELATED MODULE — RESEARCHED FOR EFFECTIVE BEHAVIOR`: these are extensions reached from core-module traces (origin: the core modules' extension-path sections), classified Company Extra/Custom, Customer-authorized Custom or Third-party; whether scope review is recommended is for `STATE03_BUSINESS PROCESS`.
+
+Core module → custom overlays (text-scan extension; presence ≠ installed). Function-ID = the existing register ID the overlay bears on.
+| Core module (function) | Overlay → effect (leads, `CLAUDE-REPORTED`) |
+|---|---|
+| `account` (PCO-F01 lock dates) | `account_lock_date_update`, `om_fiscal_year`, `base_accounting_kit`: extra wizards that write company lock dates with elevated rights (core validation still runs); `om_fiscal_year` carries a dead lock-check method (core 19 uses a different name); `scgl_account_deferred`, `scgl_account_tax_return`: post extra entries, do not read or set lock dates, dates are moved by core |
+| `account` (posting/cancel) | `scgl_advance_expense_request`/`smesplus_advance_expense_request`: write cancel state directly on vendor bills, skipping core cancel steps; `account_asset_management`: forced deletion of posted entries via a context flag that skips sequence-gap and audit-trail guards |
+| `account` (accountant hooks) | Community hooks for reviewer rights and "in payment" state are meant to be overridden by the Enterprise accountant module; `smesplus_account` depends on it but is an incomplete skeleton on disk |
+| `purchase` (GRV-F06, approvals) | `purchase_request_level_approve_po`: multi-level PO approval whose last step calls core approve directly (skips core confirmation checks and amount-based double validation); `purchase_request_level_approve`: four approval settings saved but never read; `purchase_request` (OCA): request state flow, approver from the requester's employee record, no self-approval check found |
+| `purchase` (advance payment) | `scgl_purchase_advance_payment`/`smesplus_purchase_advance_payment`: create a draft vendor bill for an advance (default account is an expense account), replace the core bill-matching button, run with elevated rights; older-API constructs flagged |
+| `sale` (SDV-F04, confirmation) | `sale_order_level_approve`: blocks confirmation for everyone except superuser (also affects portal auto-confirmation); `base_accounting_kit`: blocks invoice posting/SO confirmation when customer balance reaches a set amount; `product_brand_sale`: replaces core invoice creation with an older copy |
+| `stock`/`stock_account` (valuation dates) | `cr_effective_date_entries`: rewrites picking/move/valuation dates and re-posts entries; references models that Odoo 19 does not have |
+| `base`/IAM/multi-company | `scgl_jasper_api`: public routes reading whitelisted records with no token check and a shared token embedded in source (value not recorded); `scgl_report_viewer`/`scgl_account_reports`: raw-query reports bypassing record rules; `om_recurring_payments`, `om_account_followup`, `l10n_th_withholding_tax_report`: missing/partial company scoping |
+| Thai localisation (`l10n_th`) | OCA withholding-tax modules depend on a report handler module absent from Community; several Thai add-ons use constructs removed in 19 |
+| Odoo 19 compatibility (general) | Many overlays use old-style uniqueness declarations that 19 ignores, removed fields/methods, or an 17/18 version string: those rules/controls silently do not run |
+
+## T6. Process deviations to disclose
+Delegates opened (via search) `MODULES.csv` (non-module file), an OCA manifest and two module folders outside their assignment; content not used. One earlier-round statement of mine ("custom agents 9 of 9 done") was wrong and was corrected at the time (one module note was missing; now 117/117 present).
+
+## T7. Next actions (in order; pending quota unless noted)
+1. (direct) Complete PCO-F01/F04 L2/L3 from the surviving draft and re-verify against source.
+2. (direct) Content-check the remaining 16 first-batch notes, starting with `account`, `stock_account`, `purchase`, `sale`.
+3. (delegated, after quota is restored) Re-launch the 8 L2+L3 function studies and the L1 content-checks with incremental file writes.
+4. L4 and L5 remain blocked as stated in T2.
