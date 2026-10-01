@@ -4,7 +4,7 @@
 
 ## 1. Batch received (PR #74, 2026-10-01, notification comments by `scglegacy`)
 
-16 Atomic Boundaries exist in the packet commit `3fec382c` (`04_HANDOFF_PACKETS/`): `B00`, `B01`, `B02`, `U01`–`U13`. **PR #74 notification comments were posted for 10 of the 16** (`B00`, `B01`, `B02`, `U01`–`U09`); `U10`–`U13` exist in the same commit, pass mechanical-integrity (below), but have **no corresponding PR comment yet** — flagged as an open question for DeepSeek/Boss, not treated as an Evidence Integrity Gap against the content itself (the content is present and hash-clean).
+16 Atomic Boundaries exist in the packet commit `3fec382c` (`04_HANDOFF_PACKETS/`): `B00`, `B01`, `B02`, `U01`–`U13`. Notification comments for all 16 are now posted on PR #74 (`B00`–`B02`, `U01`–`U09` arrived first; `U10`–`U13` arrived a few minutes later in the same posting run — a timing lag, not an omission).
 
 ## 2. Mechanical Integrity — full batch (16/16 boundaries)
 
@@ -30,16 +30,16 @@ Format note (not a gap, a difference in intake format): DeepSeek's packets do no
 | U03 | Mail/audit foundation | 0 | 59 | Mechanical only — queued (highest non-contradiction C1 count among notified boundaries; priority) |
 | U04 | Sales order | 1 | — | Mechanical only — queued |
 | **U05** | **Sales invoicing/delivery** | **2** | **81** | **Semantic spot-check done — see §5 below** |
-| U06 | Purchase order | 3 | 7 | Mechanical only — queued (highest contradiction count among notified boundaries; priority) |
+| U06 | Purchase order | 3 | 7 | Mechanical only — queued |
 | U07 | Purchase receiving | 2 | 72 | Mechanical only — queued |
-| U08 | Stock transfers | 6 | 3 | Mechanical only — queued (highest contradiction count overall; priority) |
+| U08 | Stock transfers | 6 | 3 | Mechanical only — queued |
 | U09 | Stock quants/lots/adjustments | 2 | 24 | Mechanical only — queued |
-| U10 | Stock valuation | — | — | Not yet notified on PR; mechanical pass only |
-| U11 | Account entry lifecycle | — | — | Not yet notified on PR; mechanical pass only |
-| U12 | Account payment reconcile | — | — | Not yet notified on PR; mechanical pass only |
-| U13 | Account tax/chart/localization | — | — | Not yet notified on PR; mechanical pass only |
+| **U10** | **Stock valuation & landed costs** | **7** | **140** | **Mechanical only — queued, TOP PRIORITY (highest contradiction count AND highest C1-bound claim count in the whole batch; squarely in STATE03's existing valuation-timing/COGS contradiction thread)** |
+| U11 | Account entry lifecycle, lock dates | 4 | 77 | Mechanical only — queued (2nd-highest C1-bound claim count; ties to the existing `bypass_lock_check`/lock-date residual-risk thread) |
+| U12 | Payments & reconciliation | 2 | 0 | Mechanical only — queued (highest runtime/AWT-required count: 32) |
+| U13 | Tax/chart/currency/l10n_th/e-invoicing | 2 | 6 | Mechanical only — queued |
 
-No boundary has completed 100% semantic verification of its C1-bound claims yet. Per the mandated risk order, `U06` and `U08` (highest contradiction counts) and `U03`/`U05`/`U07` (highest C1-bound claim counts) are next.
+No boundary has completed 100% semantic verification of its C1-bound claims yet. **Risk order, updated now the full batch is notified**: `U10` (140 C1-bound claims, 7 contradictions — top priority) → `U05` (done) → `U11` (77 C1) → `U07` (72 C1) → `U03` (59 C1) → `U09` (24 C1) → remainder by contradiction/RT count.
 
 ## 5. U05 (Sales invoicing/delivery) — first semantic spot-check
 
