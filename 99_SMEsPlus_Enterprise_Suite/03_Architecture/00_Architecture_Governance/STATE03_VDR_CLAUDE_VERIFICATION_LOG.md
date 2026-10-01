@@ -41,6 +41,8 @@ Format note (not a gap, a difference in intake format): DeepSeek's packets do no
 
 No boundary has completed 100% semantic verification of its C1-bound claims yet. **Risk order, updated now the full batch is notified**: `U10` (140 C1-bound claims, 7 contradictions — top priority) → `U05` (done) → `U11` (77 C1) → `U07` (72 C1) → `U03` (59 C1) → `U09` (24 C1) → remainder by contradiction/RT count.
 
+**`U19` (out-of-sequence boundary, received 2026-10-01 at a later packet commit `bde3962b`)**: scope `website_community` (public website/mail/blog/forum/livechat/events/newsletter surface). 0 contradictions, 0 C1-bound claims (no existing Function-ID matches a public-website capability — DeepSeek itself flagged every claim `FUNCTION MAPPING REQUIRED`), 13 runtime-required. Despite 0 C1-bound claims, this boundary's content raised **security-relevant findings** escalated out of normal queue order — see §6.
+
 ## 5. U05 (Sales invoicing/delivery) — first semantic spot-check
 
 Both of U05's flagged contradictions read, cross-checked against `02_NEUTRAL_KNOWLEDGE/U05_sales_invoicing_delivery_NEUTRAL.md` for internal consistency and Clean-Room compliance:
@@ -50,6 +52,10 @@ Both of U05's flagged contradictions read, cross-checked against `02_NEUTRAL_KNO
 
 **Verification status assigned**: `CONDITIONALLY VERIFIED CANDIDATE` for both claims — internally consistent (restricted claim ↔ neutral statement ↔ packet-level count all agree), Clean-Room compliant, and the claim is plausible on its face, but **this session has no access to the actual Odoo 19 source tree or the restored database** (that access belongs to DeepSeek's local environment only, per Clean-Room/repository-isolation rules) and so cannot independently re-derive the cited source pointer itself. Full confirmation remains `RUNTIME/AWT REQUIRED` or a job for an independent reviewer (`CHATGPT_AUDIT`) with its own source access. Not `CLAUDE-VERIFIED CANDIDATE` — that status is reserved for claims this session can mechanically confirm itself (e.g. the hash-integrity results in §2).
 
-## 6. What this log is not
+## 6. U19 (website_community) — security findings escalated out of queue order
+
+Mechanical integrity: both files hash-match at content commit `e4a14969`. Clean-Room: not yet scanned (queued). Despite carrying 0 C1-bound claims (no existing Function-ID applies — a public-website domain does not yet exist in the canonical Function-ID index), the technical evidence contains a dense cluster of public-route security findings in **Odoo 19 Community-core** modules (`website`, `mail`, `mail_group`, `rating`, `html_editor`, `im_livechat`) — not a custom module this time. Per the same escalation precedent as `STATE03_SECURITY_ADVISORY_2026-09-30.md` (which covered custom modules only), a separate advisory was written rather than waiting behind the normal C1/contradiction-ordered queue: `STATE03_SECURITY_ADVISORY_2026-10-01_COMMUNITY_CORE_WEBSITE.md`. Headline items: (1) `google_recaptcha` is installed with no secret key configured, so every `captcha=`-gated public route in this unit currently passes unconditionally — a single configuration gap that silently defeats bot/abuse protection across multiple routes at once; (2) the generic website-form-to-record endpoint is public, CSRF-exempt by design for anonymous sessions, and (given finding 1) effectively uncaptcha'd, while creating records with elevated rights; (3) a public link-preview route fetches an arbitrary caller-supplied URL server-side with no private-address/scheme filtering shown — an SSRF-shaped code path. Full list, including lower-severity items, in the advisory. Not yet reconciled into any pilot's Gap Register — no existing domain covers public-website capabilities (see advisory §6); flagged as a scope question for Boss/PMO (does STATE03 need a public-website/community Gx, or is this out of SMEsPlus's current scope entirely).
+
+## 7. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
