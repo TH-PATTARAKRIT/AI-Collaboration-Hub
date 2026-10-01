@@ -274,6 +274,19 @@ Mechanical integrity: both files hash-match. 562 claims (mostly `OBSERVATION`, 4
 
 **Classification**: `ACCEPTED`. No correction needed — this is the template other boundaries' gap registers should follow.
 
+## 22. TXA1 (Thai Tax Core — tax engine, VAT classes, price-inclusion/rounding/currency)
+
+Mechanical integrity: both files hash-match. 338 claims, 123 neutral, 0 contradictions, 7 RT, 4 C1-bound (`GRV-F04`×1, `PCO-F01`×3). 85-function candidate catalogue, 71 business rules.
+
+**Spot-checked** (CAP-TXA1-01 generic tax engine, the native-gap candidate table, cross-checked against §20's `TXS`). Excellent discipline: the file header states its own separation rule plainly ("asserts no Thai statutory requirement; every Thai treatment is tagged `STATUTORY CHECK PENDING (TXS)`") and follows it throughout — a stronger, earlier-stated version of the same discipline `U24` needed a correction for.
+
+**Cross-reference check against `TXS` performed by this session** (not done by DeepSeek, since `TXA1`'s content commit predates `TXS`'s full statement table being available to it): of the 5 `NATIVE GAP / EXTENSION REQUIRED` candidates, two are now directly **substantiated** by `TXS`'s own statutory statements, strengthening them from "candidate pending check" to "statutory need confirmed, Community gap confirmed":
+- **`TXA1-F55`** (withholding tax chosen by payee type — company/individual/foreign) — confirmed: `TXS` S13-04/S13-05 show PND 3 (individual), PND 53 (juristic), PND 54 (foreign) are genuinely distinct statutory forms with different rate tables; Community has no fiscal-position or partner-type-driven selection, only manual tax-record choice (`U24` already found this too).
+- **`TXA1-F64`** (automatic exchange-rate feed) — confirmed: `TXS` S12-01 shows the conversion-method choice (commercial-bank rate or BOT daily reference rate) is a **statutory choice that must then be applied consistently** (Ministry of Finance proclamation under Sec. 9) — this is not just an operational convenience, Community's lack of a rate-provider mechanism (already found in `U25`) means the consistent-method requirement would need to be enforced by configuration discipline alone, with no system support.
+The other three (`F28` tax-closing/settlement, `F52` non-claimable input VAT as a distinct treatment, `F65` taxable-supply-date stub) remain genuinely pending — `TXS`'s S04 (non-claimable input VAT categories, Sec. 82/5) and S05 (time of supply) sections exist and are relevant, but this session has not yet done the detailed line-by-line cross-check for those three; flagged as queued, not rejected.
+
+**Classification**: `ACCEPTED` at the static-evidence tier; RT items correctly routed. No correction needed — if anything, this boundary is the model for how `U24`'s gap register should have read from the start.
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
