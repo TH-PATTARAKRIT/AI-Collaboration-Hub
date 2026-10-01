@@ -1,0 +1,320 @@
+[
+ {
+  "id": "GRV-F01",
+  "fn": "Receipt routing configuration (single/multi-step)",
+  "crit": "C3",
+  "domain": "GOODS_RECEIPT_VALIDATION_PILOT"
+ },
+ {
+  "id": "GRV-F02",
+  "fn": "Physical receipt execution (move to stock)",
+  "crit": "C2",
+  "domain": "GOODS_RECEIPT_VALIDATION_PILOT"
+ },
+ {
+  "id": "GRV-F03",
+  "fn": "Partial receipt / backorder handling",
+  "crit": "C2",
+  "domain": "GOODS_RECEIPT_VALIDATION_PILOT"
+ },
+ {
+  "id": "GRV-F04",
+  "fn": "Inventory valuation at receipt (perpetual vs periodic; costing method)",
+  "crit": "C1",
+  "domain": "GOODS_RECEIPT_VALIDATION_PILOT"
+ },
+ {
+  "id": "GRV-F05",
+  "fn": "Landed cost allocation onto received goods",
+  "crit": "C1",
+  "domain": "GOODS_RECEIPT_VALIDATION_PILOT"
+ },
+ {
+  "id": "GRV-F06",
+  "fn": "Three-way match / bill control policy",
+  "crit": "C1",
+  "domain": "GOODS_RECEIPT_VALIDATION_PILOT"
+ },
+ {
+  "id": "GRV-F07",
+  "fn": "Reversal / return of received goods",
+  "crit": "C2",
+  "domain": "GOODS_RECEIPT_VALIDATION_PILOT"
+ },
+ {
+  "id": "IAV-F01",
+  "fn": "Physical count recording",
+  "crit": "C2",
+  "domain": "INVENTORY_ADJUSTMENT_VALIDATION_PILOT"
+ },
+ {
+  "id": "IAV-F02",
+  "fn": "Applying the adjustment (single / Apply All with reason)",
+  "crit": "C2",
+  "domain": "INVENTORY_ADJUSTMENT_VALIDATION_PILOT"
+ },
+ {
+  "id": "IAV-F03",
+  "fn": "Financial posting of the adjustment",
+  "crit": "C1",
+  "domain": "INVENTORY_ADJUSTMENT_VALIDATION_PILOT"
+ },
+ {
+  "id": "IAV-F04",
+  "fn": "Scrap / Inventory Loss location + Loss Account",
+  "crit": "C1",
+  "domain": "INVENTORY_ADJUSTMENT_VALIDATION_PILOT"
+ },
+ {
+  "id": "IAV-F05",
+  "fn": "Cycle count scheduling (Inventory Frequency)",
+  "crit": "C3",
+  "domain": "INVENTORY_ADJUSTMENT_VALIDATION_PILOT"
+ },
+ {
+  "id": "IAV-F06",
+  "fn": "Reversal / correction of an applied adjustment",
+  "crit": "C2",
+  "domain": "INVENTORY_ADJUSTMENT_VALIDATION_PILOT"
+ },
+ {
+  "id": "BRP-F01",
+  "fn": "BOM Type selection (Manufacture / Kit / Subcontracting)",
+  "crit": "C1",
+  "domain": "MANUFACTURING_BOM_ROUTING_PILOT"
+ },
+ {
+  "id": "BRP-F02",
+  "fn": "Kit BOM (components-only, no Manufacturing Order)",
+  "crit": "C2",
+  "domain": "MANUFACTURING_BOM_ROUTING_PILOT"
+ },
+ {
+  "id": "BRP-F03",
+  "fn": "Subcontracting BOM (outsourced production)",
+  "crit": "C1",
+  "domain": "MANUFACTURING_BOM_ROUTING_PILOT"
+ },
+ {
+  "id": "BRP-F04",
+  "fn": "Work Center configuration (Cost per hour, Allowed Employees)",
+  "crit": "C2",
+  "domain": "MANUFACTURING_BOM_ROUTING_PILOT"
+ },
+ {
+  "id": "BRP-F05",
+  "fn": "Routing Operations / Work Orders (per-BOM operation steps)",
+  "crit": "C2",
+  "domain": "MANUFACTURING_BOM_ROUTING_PILOT"
+ },
+ {
+  "id": "BRP-F06",
+  "fn": "Reordering Rules (min/max automatic replenishment)",
+  "crit": "C2",
+  "domain": "MANUFACTURING_BOM_ROUTING_PILOT"
+ },
+ {
+  "id": "BRP-F07",
+  "fn": "Master Production Schedule (long-term manual demand-driven planning)",
+  "crit": "C3",
+  "domain": "MANUFACTURING_BOM_ROUTING_PILOT"
+ },
+ {
+  "id": "BRP-F08",
+  "fn": "By-Products (secondary output tracked via BOM)",
+  "crit": "C1",
+  "domain": "MANUFACTURING_BOM_ROUTING_PILOT"
+ },
+ {
+  "id": "BRP-F09",
+  "fn": "Multi-level BOM (nested sub-assemblies)",
+  "crit": "C2",
+  "domain": "MANUFACTURING_BOM_ROUTING_PILOT"
+ },
+ {
+  "id": "MFG-F01",
+  "fn": "Raw material consumption \u2192 WIP transfer",
+  "crit": "C1",
+  "domain": "MANUFACTURING_VALUATION_PILOT"
+ },
+ {
+  "id": "MFG-F02",
+  "fn": "Finished goods completion \u2192 valuation transfer",
+  "crit": "C1",
+  "domain": "MANUFACTURING_VALUATION_PILOT"
+ },
+ {
+  "id": "MFG-F03",
+  "fn": "Manual interim WIP posting/reversal",
+  "crit": "C2",
+  "domain": "MANUFACTURING_VALUATION_PILOT"
+ },
+ {
+  "id": "MFG-F04",
+  "fn": "MO cost computation",
+  "crit": "C2",
+  "domain": "MANUFACTURING_VALUATION_PILOT"
+ },
+ {
+  "id": "MCT-F01",
+  "fn": "Warehouse-company binding",
+  "crit": "C1",
+  "domain": "MULTICOMPANY_ISOLATION_PILOT"
+ },
+ {
+  "id": "MCT-F02",
+  "fn": "Inter-company transaction automation",
+  "crit": "C1",
+  "domain": "MULTICOMPANY_ISOLATION_PILOT"
+ },
+ {
+  "id": "MCT-F03",
+  "fn": "Shared vs. per-company Chart of Accounts",
+  "crit": "C2",
+  "domain": "MULTICOMPANY_ISOLATION_PILOT"
+ },
+ {
+  "id": "MCT-F04",
+  "fn": "Consolidation reporting",
+  "crit": "C2",
+  "domain": "MULTICOMPANY_ISOLATION_PILOT"
+ },
+ {
+  "id": "MCT-F05",
+  "fn": "Warehouse-level user access control",
+  "crit": "C1",
+  "domain": "MULTICOMPANY_ISOLATION_PILOT"
+ },
+ {
+  "id": "PDT-F01",
+  "fn": "Per-shipment invoicing alignment (sales)",
+  "crit": "C1",
+  "domain": "PARTIAL_FULFILLMENT_TIMING_PILOT"
+ },
+ {
+  "id": "PDT-F02",
+  "fn": "Per-receipt billing alignment (purchase)",
+  "crit": "C1",
+  "domain": "PARTIAL_FULFILLMENT_TIMING_PILOT"
+ },
+ {
+  "id": "PDT-F03",
+  "fn": "Bill-before-receipt anomaly",
+  "crit": "C1",
+  "domain": "PARTIAL_FULFILLMENT_TIMING_PILOT"
+ },
+ {
+  "id": "PDT-F04",
+  "fn": "Cross-shipment quantity/bill reconciliation",
+  "crit": "C2",
+  "domain": "PARTIAL_FULFILLMENT_TIMING_PILOT"
+ },
+ {
+  "id": "PCO-F01",
+  "fn": "Lock Dates (Everything / Purchase / Sales / Tax / Fiscal Year, Hard Lock)",
+  "crit": "C1",
+  "domain": "PERIOD_CUTOFF_VALIDATION_PILOT"
+ },
+ {
+  "id": "PCO-F02",
+  "fn": "Fiscal Year / Period configuration",
+  "crit": "C3",
+  "domain": "PERIOD_CUTOFF_VALIDATION_PILOT"
+ },
+ {
+  "id": "PCO-F03",
+  "fn": "Month-end Stock Closing + accrual entries",
+  "crit": "C1",
+  "domain": "PERIOD_CUTOFF_VALIDATION_PILOT"
+ },
+ {
+  "id": "PCO-F04",
+  "fn": "Physical-date vs. recorded-date cut-off consistency",
+  "crit": "C1",
+  "domain": "PERIOD_CUTOFF_VALIDATION_PILOT"
+ },
+ {
+  "id": "RTG-F01",
+  "fn": "Product Type \u00d7 Track Inventory classification",
+  "crit": "C2",
+  "domain": "PRODUCT_ROUTING_VALIDATION_PILOT"
+ },
+ {
+  "id": "RTG-F02",
+  "fn": "Consumable expense timing",
+  "crit": "C1",
+  "domain": "PRODUCT_ROUTING_VALIDATION_PILOT"
+ },
+ {
+  "id": "RTG-F03",
+  "fn": "Storable/COGS expense timing",
+  "crit": "C1",
+  "domain": "PRODUCT_ROUTING_VALIDATION_PILOT"
+ },
+ {
+  "id": "RTG-F04",
+  "fn": "Service routing",
+  "crit": "C2",
+  "domain": "PRODUCT_ROUTING_VALIDATION_PILOT"
+ },
+ {
+  "id": "RCN-F01",
+  "fn": "Stock Moves History / Stock Report",
+  "crit": "C2",
+  "domain": "RECONCILIATION_PROVENANCE_PILOT"
+ },
+ {
+  "id": "RCN-F02",
+  "fn": "Backdating audit trail (dual chatter)",
+  "crit": "C1",
+  "domain": "RECONCILIATION_PROVENANCE_PILOT"
+ },
+ {
+  "id": "RCN-F03",
+  "fn": "Cost/valuation origin tracking",
+  "crit": "C1",
+  "domain": "RECONCILIATION_PROVENANCE_PILOT"
+ },
+ {
+  "id": "SDV-F01",
+  "fn": "Delivery routing configuration (1/2/3-step)",
+  "crit": "C3",
+  "domain": "SALES_DELIVERY_VALIDATION_PILOT"
+ },
+ {
+  "id": "SDV-F02",
+  "fn": "Physical delivery execution (move to customer)",
+  "crit": "C2",
+  "domain": "SALES_DELIVERY_VALIDATION_PILOT"
+ },
+ {
+  "id": "SDV-F03",
+  "fn": "Partial delivery / backorder handling",
+  "crit": "C2",
+  "domain": "SALES_DELIVERY_VALIDATION_PILOT"
+ },
+ {
+  "id": "SDV-F04",
+  "fn": "Invoicing policy (ordered vs. delivered quantities)",
+  "crit": "C1",
+  "domain": "SALES_DELIVERY_VALIDATION_PILOT"
+ },
+ {
+  "id": "SDV-F05",
+  "fn": "COGS / valuation timing at delivery",
+  "crit": "C1",
+  "domain": "SALES_DELIVERY_VALIDATION_PILOT"
+ },
+ {
+  "id": "SDV-F06",
+  "fn": "Return via Reverse Transfer (pre-invoice)",
+  "crit": "C2",
+  "domain": "SALES_DELIVERY_VALIDATION_PILOT"
+ },
+ {
+  "id": "SDV-F07",
+  "fn": "Return after invoicing, via Credit Note",
+  "crit": "C1",
+  "domain": "SALES_DELIVERY_VALIDATION_PILOT"
+ }
+]

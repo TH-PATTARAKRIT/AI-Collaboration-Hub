@@ -567,3 +567,14 @@ Delegates opened (via search) `MODULES.csv` (non-module file), an OCA manifest a
 2. (direct) Content-check the remaining 16 first-batch notes, starting with `account`, `stock_account`, `purchase`, `sale`.
 3. (delegated, after quota is restored) Re-launch the 8 L2+L3 function studies and the L1 content-checks with incremental file writes.
 4. L4 and L5 remain blocked as stated in T2.
+
+
+# ROUND 5 — Append (2026-10-01) — Prompt: STATE03_ODOO19_COMMUNITY_VERY_DEEP_RESEARCH (L0–L3, DEEPSEEK PRIMARY EXECUTION)
+
+**Status:** `DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION` · source revision `19.0.post20260921` · Community only · no V-level, Module/Function Complete, coverage figure, denominator freeze, Gate PASS or Clean-Room approval claimed.
+
+## U0. B00 checkpoint reconciliation (see `VERY_DEEP_RESEARCH_L0_L3/00_CONTROL/B00_CHECKPOINT_RECONCILIATION.md`)
+- **Material delta:** DB baseline is now `iTest19C_2026-09-21` (full backup, 356 installed Community modules, near-empty transactional data) instead of the schema-only `iTEST02_2026-06-14`. `DB_SCHEMA_ONLY/` is retained as *pre-delta baseline — re-audit required*.
+- **Module universe:** source 692 · register CURRENT/NEXT/EVIDENCE 300/108/284 (content-consistent with source; hash mismatch unchanged) · dump-installed 356 (279 CURRENT, 38 NEXT, 39 EVIDENCE-ONLY) · 21 CURRENT modules not installed in the dump · runtime export (6) shows 254 installed (contradiction with the dump, recorded). No denominator is frozen.
+- **Restore contract:** private PostgreSQL 18.6 cluster, Unix-socket only, 0 restore errors; cleanup pending at end of DB phase.
+- **Interrupted L2/L3 drafts invalidated for reuse; function studies are redone from source.**
