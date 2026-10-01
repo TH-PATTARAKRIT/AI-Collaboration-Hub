@@ -39,14 +39,14 @@ For each of the 356 installed modules: (a) enumerate the data records the module
 | Area | Observation |
 |---|---|
 | Scale / data character | 1 company, 4 users, 7 partners; **no** journal entries, sales/purchase orders, transfers, stock moves; demo data **not** loaded (flag false for all 356 modules); 1 language, 2 active currencies |
-| Company accounting | chart template `th`; **perpetual-valuation accounting flag is OFF** (`anglo_saxon_accounting` = false); fiscal year end 31 Dec; tax rounding method "round globally"; prices tax-excluded; hard-lock/period-lock dates are fields on the company record |
+| Company accounting | chart template `th`; **inventory valuation mode = periodic** (company valuation-mode field `inventory_valuation` = periodic; closing period = manual) and the separate anglo-saxon accounting flag = false  *(CORRECTED 2026-10-02 after U10 source verification — the earlier text wrongly equated the anglo-saxon flag with the perpetual-valuation switch)*; fiscal year end 31 Dec; tax rounding method "round globally"; prices tax-excluded; hard-lock/period-lock dates are fields on the company record |
 | Chart / accounting seeds | 147 accounts, 18 taxes, 7 journals |
 | Inventory seeds | 1 warehouse, 15 locations, 16 operation types, 5 product categories, 16 product templates |
 | Access model | 119 groups, 2,010 access-control entries, 544 record rules (162 global), 729 menus |
 | Automation | 54 scheduled jobs (47 active), 168 server actions, **0** automated-action rules, 62 mail templates, 34 sequences |
 | Core-chain scheduled jobs present (CONFIG: interval; active flag) | accounting auto-post of dated draft entries (daily, active) · automatic invoice sending (daily, active) · purchase reminders (daily, active) · procurement scheduler (daily, active) · inventory-valuation closing (daily, active) · automatic-invoicing send (daily, **inactive**) · sales pending e-mails (daily, **inactive**) |
 
-**Implications for research:** (1) behavior that depends on valuation mode is CONDITIONAL on the perpetual-valuation setting, which is OFF in this database; the ON-path must be traced from source and marked RUNTIME/AWT REQUIRED. (2) Multi-company findings are source-only (single company here). (3) Anything needing posted transactions cannot be reconciled against this dump.
+**Implications for research:** (1) behavior that depends on valuation mode is CONDITIONAL on the perpetual-valuation setting, (valuation mode) which is periodic in this database; the ON-path must be traced from source and marked RUNTIME/AWT REQUIRED. (2) Multi-company findings are source-only (single company here). (3) Anything needing posted transactions cannot be reconciled against this dump.
 
 ## 4. Contradictions / unknowns raised in B01
 | ID | Statement | Class |
@@ -55,4 +55,4 @@ For each of the 356 installed modules: (a) enumerate the data records the module
 | B01-U02 | Runtime export (6) lists 254 installed vs 356 in the dump | CONTRADICTION across runtime snapshots; dump treated as authority for this DB only |
 | B01-U03 | 21 CURRENT-phase modules are not installed in the dump | UNKNOWN (configuration context) |
 | B01-U04 | Dynamic/install-time generators (website, chart loader, warehouse seed) are not enumerated by the static scan | OPEN; traced inside the owning batches |
-| B01-U05 | Inventory-valuation closing job is active while the perpetual-valuation flag is off | OBSERVATION; semantic meaning to be traced in B04 |
+| B01-U05 | Inventory-valuation closing job is active while the company is periodic/manual | RESOLVED by U10: job only processes companies whose closing period is daily/monthly, so nothing is processed here (RT for ON-path) |
