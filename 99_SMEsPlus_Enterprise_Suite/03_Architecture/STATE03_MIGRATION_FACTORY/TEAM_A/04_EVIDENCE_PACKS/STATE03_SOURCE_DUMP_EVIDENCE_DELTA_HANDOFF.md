@@ -578,3 +578,26 @@ Delegates opened (via search) `MODULES.csv` (non-module file), an OCA manifest a
 - **Module universe:** source 692 · register CURRENT/NEXT/EVIDENCE 300/108/284 (content-consistent with source; hash mismatch unchanged) · dump-installed 356 (279 CURRENT, 38 NEXT, 39 EVIDENCE-ONLY) · 21 CURRENT modules not installed in the dump · runtime export (6) shows 254 installed (contradiction with the dump, recorded). No denominator is frozen.
 - **Restore contract:** private PostgreSQL 18.6 cluster, Unix-socket only, 0 restore errors; cleanup pending at end of DB phase.
 - **Interrupted L2/L3 drafts invalidated for reuse; function studies are redone from source.**
+
+
+# ROUND 6 — Append (2026-10-02) — Very Deep Research L0–L3 execution status (DEEPSEEK PRIMARY; Claude Code harness)
+
+**Status:** `DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION` · source revision `19.0.post20260921` · dump `iTest19C_2026-09-21` · no V-level, Module/Function Complete, coverage percentage, denominator freeze or Gate PASS asserted. **FORMAL COVERAGE = N/A until canonical denominator validation.**
+
+## V0. What exists (counts are actual)
+| Item | Count / state |
+|---|---|
+| Control boundaries | B00 (reconciliation), B01 (Source↔DB), B02 (test/theme classification) |
+| Module-level units | U01–U28 (U29 running), chain units C01 (O2C), C02 (P2P) |
+| Thai Tax Core lane | TXA1, TXA2, TXC, TXS (+ TXS-R1 supplement), assembled completion artifacts in `VERY_DEEP_RESEARCH_L0_L3/07_THAI_TAX_CORE/` |
+| Indexed claims (unit + correction files) | 13,648 (restricted layer) with separate neutral layer; every unit passes the pointer/anchor/neutral-leak gate |
+| Correction loop | 20 correction requests (CR-001…CR-020); 18 correction packets + lineage packets; verifier accepted the processed set (see PR #74); requests and supersession index in `VERY_DEEP_RESEARCH_L0_L3/05_CORRECTION_LOOP/` |
+| AWT backlog (runtime-only items; not inferred) | 704 RT-flagged claims (78 bound to C1 Function-IDs) in `06_AWT_BACKLOG/` |
+| Scope | Thailand accounting localization in scope; 227 non-Thai `l10n_*` = FUTURE OPTIONAL COUNTRY PACK (manifest/boundary only; excluded from the current Applicable Business Denominator); multi-currency, foreign customer/vendor, international transactions in scope; en_US canonical / th_TH translation layer (`00_CONTROL/SCOPE_RULE_THAILAND_ONLY.md`, Corrections 2–3) |
+| Installed-module evidence presence | 272 of 356 installed modules have ≥1 claim pointer; of the remainder 65 are test/theme modules (classified in B02) and 21 residual bridge/dashboard modules are being studied in U29 (`00_CONTROL/EVIDENCE_PRESENCE_BY_MODULE.tsv`). This is an evidence-presence list, **not** a coverage figure |
+
+## V1. Findings that change earlier statements (all recorded as correction packets; originals untouched)
+Valuation mode vs anglo-saxon flag (B01-R1) · return eligibility of sales-linked transfers (U08-R1) · "in payment" not reachable in Community and invoice-cancel does not cancel settling payments (U11-R1) · valuation hook map with no callers (U10-R1) · posting inside a locked period re-dates, not refuses (U10-R2, corroborated by an independent earlier lineage per the verifier) · inert overrides and bill-reset valuation (U07-R1) · invoice delivery date and abnormal-document warning default (U11-R2) · country-pack boundary profile recount (SCOPE-R1) · gap-register label (U24-R1).
+
+## V2. Open items
+Thai statutory: Sec. 70 rate basis (CONFLICT), 1% e-withholding rate for 2026–27, post-2027 VAT rate, mandatory e-Tax adoption date, representative-office and ownership-keyed rules — `UNKNOWN — STATUTORY SOURCE REQUIRED` / UNVERIFIED in the statutory register. Source: register hash mismatch; stray non-source file in the read-only tree (SP-01); 21 CURRENT modules not installed in the dump are source-only. Runtime: AWT backlog. Environment: the isolated restore cluster is still running for DELTA research; **cleanup (stop cluster, delete data directory and socket directory) is pending until the correction loop quiesces** and will be recorded in the final checkpoint.
