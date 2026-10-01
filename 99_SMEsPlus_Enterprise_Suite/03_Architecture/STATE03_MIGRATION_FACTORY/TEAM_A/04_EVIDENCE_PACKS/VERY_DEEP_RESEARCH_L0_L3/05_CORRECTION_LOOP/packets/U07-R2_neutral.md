@@ -1,0 +1,23 @@
+# Correction packet U07-R2 — NEUTRAL KNOWLEDGE
+
+> DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION. Neutral layer for Odoo 19 Community: no vendor structure. Supplements the neutral statements of the purchase receiving unit; supersedes nothing.
+
+## Bill-based value of a received item
+
+- **WHAT:** When an item received against a purchase order line is valued, the system first tries to take its value from the posted vendor bills of that order line, and only for the part of the quantity not covered by bills does it fall back to production, order price, return value or product cost, in that priority. [N-U07R2-001]
+- **BUSINESS RULE:** The value sources are tried in a fixed priority: manual adjustment, vendor bills, production, order price, original movement for returns, product cost. The valuation result is stored as the value of the incoming movement; no quantity is written by it. [N-U07R2-002]
+- **BUSINESS RULE:** The billed quantity used is the net of posted bills minus posted vendor refunds up to the as-at date. If the net is not positive, bills are not used. [N-U07R2-003]
+- **BUSINESS RULE:** Before bills are applied to a movement, the quantity already absorbed by earlier movements of the same order line and product (earlier date, or same date and earlier creation) is deducted: earlier receipts and drop shipments add to the absorbed quantity. [N-U07R2-004]
+- **RISK:** For earlier outgoing movements (for example a return to the vendor that belongs to the same order line) the source writes a subtraction of a negated quantity, which is an addition. An earlier outgoing movement therefore increases the absorbed quantity just like an earlier receipt, which reduces or removes the bill-priced share of a later receipt, whereas a plain subtraction would increase what remains. Whether this is intended is not documented and the numeric effect is not confirmed. [N-U07R2-005]
+- **BUSINESS RULE:** If the net billed quantity does not exceed the absorbed quantity, bills are not used for that movement; otherwise value and quantity are scaled by the remaining share and capped to the movement quantity, with a description naming the bills. [N-U07R2-006]
+- **DEPENDENCY:** Return-to-vendor movements can carry the order line, because the link is copied or set when a transfer linked to an order moves goods to or from the vendor; so they can reach the absorbed-quantity calculation. This is not confirmed in practice. [N-U07R2-007]
+- **BUSINESS RULE:** The received quantity of an order line is independent of this valuation. It is the sum of done movements, minus returns that count, with exceptions for drop-ship returns and for movements that do not count as received; the condition that skips movements combines two tests whose precedence makes it read as "return of a purchase return without refund, or movement that does not count". Because the received quantity does not use the bill-based valuation, the double negation has no effect on it; the effect per movement kind is not confirmed. [N-U07R2-008]
+- **CONSTRAINT:** The allocation of billed quantity is per movement, not per lot or serial number; lot-valued products are not treated separately in this step. [N-U07R2-009]
+
+## Link from a lot to purchase orders
+
+- **WHAT:** A lot or serial number can show the purchase orders it was received on. The link is not stored: it is derived each time it is read. [N-U07R2-010]
+- **BUSINESS RULE:** For each lot, the done movement lines of that lot are examined; a line counts when its transfer starts in a vendor or transit location and its movement belongs to an order line. The orders found are collected per lot together with their number. [N-U07R2-011]
+- **RISK:** The link covers the receipt side only. Returns to the vendor and movements without a transfer are not counted, a lot that is later returned stays linked, one lot name used in several receipts links all their orders, and drop-shipped lines are linked as well. This is not confirmed by execution. [N-U07R2-012]
+- **BUSINESS RULE:** The lot form shows a Purchases button with the number of linked orders when the lot is saved and the number is above zero; it opens the list of those orders with creation disabled. Warehouse users have read-only access to purchase orders and their lines, so they can see the link without purchase rights. [N-U07R2-013]
+- **UNKNOWN:** The intention behind the sign handling for outgoing movements, the numeric effect on value, whether returns reach the calculation, the effect of the skip condition for received quantity, and reverse traceability from an order to its lots are not settled and require runtime confirmation or belong to the lot and valuation units. The restored configuration holds no lots or movements. [N-U07R2-014]
