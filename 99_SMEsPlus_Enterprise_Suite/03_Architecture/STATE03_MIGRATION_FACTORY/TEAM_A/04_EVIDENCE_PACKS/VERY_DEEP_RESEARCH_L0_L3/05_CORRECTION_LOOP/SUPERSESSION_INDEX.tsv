@@ -14,3 +14,4 @@ B01 §2.1/§3/B01-U05 original wording (commit 1c7a8e8e)	SUPERSEDED	B01-R1	CR-01
 B02 §1 theme row	SUPERSEDED	B02-R1	CR-012
 Scope label 'FOREIGN LOCALIZATION / OUT OF SMEsPlus BUSINESS SCOPE' (v1 scope files, quarantine files)	SUPERSEDED	Scope Correction 3 (SCOPE_CLASSIFICATION_V2_COUNTRY_PACKS_692.tsv)	BOSS SCOPE DELTA 2026-10-02
 Country-pack boundary profile columns archetype/template_data_files/core_accounting_models_extended and Correction-3 text '119 extend core accounting models'	SUPERSEDED	SCOPE-R1 (authoritative: U27 tables T1-T4)	CR-018 (raised by U27 recount)
+VDR-U11-C191 / N-U11-095 and U11 dim-5 abnormal-warning default (C018 context)	SUPERSEDED-IN-PART	U11-R2	CR-019
