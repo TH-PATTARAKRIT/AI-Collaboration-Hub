@@ -8,8 +8,14 @@
 | GAP-SDV-02 | Delivery-side backorder documentation reads as more automatic than Gx1's purchase-side, action-gated backorder description; not confirmed whether this is a real mechanical difference or documentation-emphasis difference | Cannot yet state with confidence that GRV-F03 and SDV-F03 are mechanically identical | **Targeted Validation Needed** | Direct page comparison once network access allows, or runtime confirmation |
 | GAP-SDV-03 | No documentation evidence gathered on multi-company/tenant scoping for delivery, invoicing-policy enforcement, or credit notes | Control Applicability Matrix records Company/Data Scope as `Unknown` | **Non-blocking** | Targeted documentation pass, or runtime observation |
 | GAP-SDV-04 | No documentation evidence on audit trail/event emission for delivery validation, return, or credit-note issuance | Control Applicability Matrix records Audit/Event as `Unknown` | **Non-blocking** | Documentation or runtime pass |
-| GAP-SDV-05 | Credit Note amount derivation (automatic vs. manual) not evidenced | SDV-F07 UNKNOWN field | **Non-blocking** | Documentation or runtime pass |
+| GAP-SDV-05 | Credit Note amount derivation (automatic vs. manual) not evidenced | SDV-F07 UNKNOWN field | **`CONDITIONALLY VERIFIED CANDIDATE` (2026-10-01/02) — see below** | Documentation or runtime pass (still recommended for final confirmation) |
 | GAP-SDV-06 | Same network/egress constraint as Gx1 (`GAP-GRV-08`) — all citations are search-synthesis, not verbatim reads | Slightly lower confidence tier on every claim | **Non-blocking** (disclosed in `19_PROVENANCE_REGISTER.md`) | Same as Gx1 |
+
+## GAP-SDV-05 update (2026-10-01/02) — DeepSeek Atomic Boundary `U05`, `STATE03 BUSINESS PROCESS VERIFICATION AND INTEGRATION CONTROLLER` reconciliation
+
+DeepSeek (Primary Source/Dump Research Worker, separate `STATE03_Odoo19 Deep Research` session) delivered Atomic Boundary `U05` (sales invoicing/delivery) via PR #74, and this session verified it for mechanical integrity (file-hash match, Clean-Room compliance of the neutral-knowledge layer) and internal consistency. A static code-trace finding, bound to this Function-ID (`SDV-F07`): a credit note's effect on billed quantity is **not** restricted to credit notes generated from the sales order itself, contrary to an in-code comment claiming otherwise — a credit note created directly from an invoice still reduces the order line's billed quantity (and can make the order propose re-billing already-credited goods), because the reversal keeps the order-line link regardless of how the credit note was created. DeepSeek itself flagged this as a code-vs-comment contradiction (`VDR-U05-C146`), not an settled fact.
+
+**Status assigned**: `CONDITIONALLY VERIFIED CANDIDATE`, not `CLAUDE-VERIFIED CANDIDATE` — this session confirmed the finding is internally consistent (restricted-evidence claim ↔ neutral-knowledge statement ↔ packet-level counts all agree) and Clean-Room compliant, but has no access to the actual Odoo 19 source tree or restored database itself (that access is DeepSeek's local environment only) and so cannot independently re-derive the cited source pointer. Full detail: `00_Architecture_Governance/STATE03_VDR_CLAUDE_VERIFICATION_LOG.md` §5. **Not a closure** — AWT/runtime confirmation or independent (`CHATGPT_AUDIT`) re-derivation from source is still the route to final confirmation.
 
 ## Cross-Gx action taken
 
@@ -21,5 +27,6 @@
 GAPS OPEN                 : 6
 RESOLVED (2026-09-28, Gx6) : 1 (GAP-SDV-01, was Evidence Conflict)
 TARGETED VALIDATION       : 1 (GAP-SDV-02)
-NON-BLOCKING              : 4 (GAP-SDV-03, 04, 05, 06)
+CONDITIONALLY VERIFIED CANDIDATE (2026-10-01/02, DeepSeek U05 + Claude verification) : 1 (GAP-SDV-05)
+NON-BLOCKING              : 3 (GAP-SDV-03, 04, 06)
 ```
