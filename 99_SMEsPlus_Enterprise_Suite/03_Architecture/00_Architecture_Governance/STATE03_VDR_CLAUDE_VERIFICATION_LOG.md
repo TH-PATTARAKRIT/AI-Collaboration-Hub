@@ -151,6 +151,7 @@ Every correction request raised in `CORRECTION_REQUISITS.md` (16 total, `CR-001`
 | CR-016 | Material | multi | Runtime-only items from cross-unit audits | — (routed, not a correction) | **RECORDED IN AWT BACKLOG** | Correctly routed — DeepSeek did not infer runtime behavior, per the Standing Instruction's item 7 rule |
 | CR-017 | Normal | U24 | Gap-register terminology: use `NATIVE GAP / EXTENSION REQUIRED` per Boss's exact wording, not `NOT PRESENT IN COMMUNITY SOURCE` | — (pending) | **RAISED 2026-10-02, pending DeepSeek** | Relabeling only — underlying research (8-item Thai statutory-output gap register, §15) is sound and needs no re-research |
 | CR-018 | Normal (denominator-adjacent) | multi (control files) | `COUNTRY_PACK_BOUNDARY_PROFILE_227.tsv` heuristic columns unreliable (archetype name-prefix misclassification, template-file miscount, unreproducible core-model-extension count) | `SCOPE-R1` | **PROCESSED (2026-10-02), self-raised by DeepSeek via `U27`'s recount** | `ACCEPTED` — see §19; 227-pack classification itself confirmed unaffected |
+| CR-019 | Material | U11 | `delivery_date` stub claim conflated with `taxable_supply_date` stub; abnormal-document-warning default context | `U11-R2` | **PROCESSED (2026-10-02), self-raised by DeepSeek via `TXA2`'s cross-check** | `ACCEPTED` — see §23 |
 
 **Count check (updated 2026-10-02, all three "in progress" items now resolved)**: 16 requests → 13 distinct resolution packets (`B01-R1`, `B02-R1`, `C01-R1`, `U04-R1`, `U06-R1`, `U07-R1`, `U07-R2`, `U08-R1`, `U10-R1`, `U10-R2`, `U10-R3`, `U11-R1`, `U12-R1` — two packets each resolve two CRs: `C01-R1` for CR-007/CR-010, `U11-R1` for CR-002/CR-005) + 1 routed to AWT (`CR-016`) = 16/16 accounted for, **all now `PROCESSED`/`ACCEPTED` or correctly routed — zero still `IN PROGRESS`**, matching Boss's required closure-matrix shape exactly.
 
@@ -286,6 +287,26 @@ Mechanical integrity: both files hash-match. 338 claims, 123 neutral, 0 contradi
 The other three (`F28` tax-closing/settlement, `F52` non-claimable input VAT as a distinct treatment, `F65` taxable-supply-date stub) remain genuinely pending — `TXS`'s S04 (non-claimable input VAT categories, Sec. 82/5) and S05 (time of supply) sections exist and are relevant, but this session has not yet done the detailed line-by-line cross-check for those three; flagged as queued, not rejected.
 
 **Classification**: `ACCEPTED` at the static-evidence tier; RT items correctly routed. No correction needed — if anything, this boundary is the model for how `U24`'s gap register should have read from the start.
+
+## 23. TXA2 (Thai Tax Core — tax documents, dates, period/lock, reversal) + U11-R2 (CR-019)
+
+Mechanical integrity: both `TXA2` files hash-match at content commit `4de853a3`. 328 claims, 133 neutral, 2 contradictions (both are confirmations/extensions of already-known corrections, not new unresolved conflicts — see below), 23 RT, **121 C1-bound** (`PCO-F01`×43, `PCO-F04`×29, `SDV-F07`×20, `PDT-F01`×13, plus `GRV-F04`/`MCT-F02`/`MCT-F03`/`PCO-F02`/`PCO-F03`/`RCN-F02`/`SDV-F05`) — a very heavily C1-bound boundary.
+
+**Spot-checked in depth** (CAP-TXA2-03 lock dates/cut-off, CAP-TXA2-04 correction of posted tax documents). Both contradictions:
+- `VDR-TXA2-C005`: reconfirms `U11-R1`'s already-accepted finding that `in_payment` is unreachable in Community — a third confirmation of the same fact, not new.
+- `VDR-TXA2-C061`: **triggered `U11-R2`/`CR-019`** — `sale_stock` (installed) actually fills `account.move.delivery_date` (latest effective-date of linked orders, draft invoices only) via a stub `U11` had claimed had no Community source. This is the correction packet reviewed below.
+
+**Material findings worth carrying forward**:
+- **Third independent confirmation of the lock-date date-shift mechanism** (`GAP-PCO-01`): "draft entry dated in lock → posted with shifted date" — now confirmed by the original 2026-09-30 source worker, `U10-R2`, and now `TXA2` independently. Strengthens the evidence tier further; does not close the gap (still `RUNTIME/AWT_REQUIRED` for the exact per-lock-type outcome).
+- **The tax lock is not set automatically despite help text implying otherwise** ("the tax lock is NOT set automatically (help text overpromises)") — a documentation-vs-behavior mismatch inside Odoo's own UI, worth noting as a configuration-discipline risk (an administrator could believe closing a VAT period auto-locks it when it does not).
+- **Reset-to-draft on a paid document appears unguarded** (flagged `INFERENCE`, not confirmed) — consistent in shape with the existing audit-trail-bypass thread (`GAP-PCO-01`'s `account_asset_management`/`scgl_advance_expense_request` findings from the earlier custom-module round) but this time in **core** Community code, not a third-party module. Worth flagging for whoever eventually examines posted-document integrity controls in depth; not independently confirmed by this session this round.
+- **No native "replacement document" concept** linking a re-issued document to the one it replaces — only credit note / debit note / duplicate exist. Relevant to the open statutory question (flagged `UNKNOWN`, correctly not asserted) of whether Thai practice needs a cancel-and-reissue cross-reference beyond those two mechanisms.
+
+### U11-R2 (CR-019, Material) — re-verified
+
+Read in full. Corrects `VDR-U11-C191` precisely: the **taxable-supply-date** stub remains genuinely empty in Community with no Thai pack implementation (original claim correct for that field) — but the separate **delivery_date** stub is filled by the installed `sale_stock` module (claim was wrong to say "no Community source" for delivery_date specifically; the two fields were conflated in the original). Also corrects `U11`'s abnormal-document-warning context: the wizard is skipped only for *programmatic* posting callers — the actual UI Post/Confirm buttons pass the opposite flag, so the warning is active for normal user-driven posting. Internally consistent, FACT-level pointers, UNKNOWN/RT correctly flagged for the remaining open question (whether delivery_date feeds any tax-point/lock/accounting-date decision beyond display — none found, but not execution-confirmed).
+
+**Classification**: `ACCEPTED` for both `TXA2` and `U11-R2`. No further correction needed.
 
 ## 9. What this log is not
 
