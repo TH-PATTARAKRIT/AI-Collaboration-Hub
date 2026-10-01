@@ -189,6 +189,30 @@ Mechanical integrity: both files hash-match at content commit `60f40461`. 260 cl
 
 **Classification**: all static findings `ACCEPTED`; the 12 RT items correctly routed `RUNTIME/AWT_REQUIRED`; the self-identified CONTRA is resolved (not `CONTRADICTION_UNRESOLVED`); the terminology gap is `CORRECTION_REQUIRED · Normal` (`CR-017`). Not yet reconciled into any pilot's Gap Register — Thailand-localization capabilities still have no dedicated Function-ID domain (same open question as `U19`/`U20`).
 
+## 16. U26 (language & translation mechanism) — direct answer to Boss's standing i18n design constraint
+
+Mechanical integrity: both files hash-match at content commit `401f828c`. 251 claims (+ a separate framework-core table, `CORE-U26-K###`, for files outside `odoo/addons` not covered by the automated pointer/anchor checker — DeepSeek discloses this gap itself and reports it was anchor-checked by a separate script), 0 contradictions, 0 C1-bound, 12 RT.
+
+**Spot-checked in depth** (CAP-U26-01/02/03/07/09, the sections bearing most directly on Boss's "English canonical, Thai translation layer with stable keys, no hard-coded Thai UI text" design constraint — §3.16/§3.18/§3.19). Internally consistent, properly hedged throughout, and explicit that this unit "studies a design constraint comparison only: no design is proposed."
+
+**Material finding for whoever designs the actual i18n architecture (not acted on here — observation only)**: Odoo's own code-level (Python/JS) translation mechanism uses **the English source sentence itself as the lookup key** — there is no symbolic/stable-key abstraction for code-level terms. DeepSeek's own state diagram names the consequence plainly: `translated -> orphaned [English wording edited; old msgid no longer matches]`. This is a genuine mismatch with Boss's stated "stable translation keys" principle **as a property of Odoo's native mechanism** — if SMEsPlus's own future system needs true decoupled stable keys, that is a design choice to make at the FDS/architecture stage, not something Odoo's Community source already provides. Data-level translatable fields are better off: a closer-to-stable identifier (external id/xmlid + field name) is used by the import/export tooling, though still not a universal cross-cutting key system.
+
+**Favorable finding**: the "no hard-coded Thai UI text" principle is **already well-matched by Community practice** — the mechanical Thai-script scan found **zero** Thai-script literals in non-test Python source; the only Thai text outside `.po` translation files is locale/reference data (77 Thai province names with no English equivalent — necessary native data, not a UI-string violation; a language self-name; a currency symbol character) plus demo data. Document (invoice) language is already cleanly separated from UI/session language — printed documents follow the **partner's** language, not the viewer's.
+
+**Classification**: `ACCEPTED` at the static-evidence tier (no RT dependency for the core architectural findings above — they are direct code reads, not inferences); the 12 RT items (Thai-locale rendering, amount-in-words library support, load/memory impact) correctly routed `RUNTIME/AWT_REQUIRED`. No correction needed.
+
+## 17. U25 (multi-currency, foreign customer/vendor, international transactions)
+
+Mechanical integrity: both files hash-match at content commit `6e31d186`. 299 claims, 1 contradiction (a refinement — U01's prior claim omitted an ACL row, self-corrected, not a real conflict), 25 RT, 0 C1-bound.
+
+**Spot-checked** (CAP-U25-01/02, currency catalogue/rate model and document-currency-date chain). Internally consistent, properly hedged. Headline findings worth carrying forward:
+- **A missing exchange rate silently falls back to 1.0** — no error, no warning (`_get_rates` COALESCE). The studied DB has 2 active currencies (THB, USD) and **zero rate rows** — any USD document in this configuration would convert at 1:1 silently. Worth flagging as a genuine operational risk for a Thailand-based multi-currency deployment, not a code defect — the behavior is by design, but silent.
+- **No automatic rate provider, revaluation, consolidation, or customs/Intrastat module exists in Community** (confirmed by search, not inference).
+- **Document rates are not inherited down the chain** — order rate, invoice rate, receipt-valuation rate, bill rate and payment rate are each computed independently at their own date — consistent with, and now generalizes, the `U10-R3` finding that accrual amounts convert at "today's rate" rather than a fixed reference date.
+- Thai chart seeds exchange gain/loss accounts (421300/621200) and an EXCH journal, but no fiscal position and an unused PND 54 (foreign-payee withholding) account — consistent with `U24`'s own finding that foreign-payee withholding is not modelled.
+
+**Classification**: `ACCEPTED` at the static-evidence tier; RT items (numeric conversion outcomes, rate-precedence edge cases) correctly routed. No correction needed.
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
