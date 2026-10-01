@@ -149,6 +149,7 @@ Every correction request raised in `CORRECTION_REQUISITS.md` (16 total, `CR-001`
 | CR-014 | Normal | U07 | Double-negative condition; lot-to-PO link | U07-R2 | **PROCESSED (2026-10-02)** | `ACCEPTED` — see §14 |
 | CR-015 | C1 | U10 | Accrued-orders wizard (PCO-F03 accrual half) | U10-R3 | **PROCESSED (2026-10-02)** | `ACCEPTED` — full read, see §14; reconciled into `GAP-PCO-02`/`GAP-PCO-03` |
 | CR-016 | Material | multi | Runtime-only items from cross-unit audits | — (routed, not a correction) | **RECORDED IN AWT BACKLOG** | Correctly routed — DeepSeek did not infer runtime behavior, per the Standing Instruction's item 7 rule |
+| CR-017 | Normal | U24 | Gap-register terminology: use `NATIVE GAP / EXTENSION REQUIRED` per Boss's exact wording, not `NOT PRESENT IN COMMUNITY SOURCE` | — (pending) | **RAISED 2026-10-02, pending DeepSeek** | Relabeling only — underlying research (8-item Thai statutory-output gap register, §15) is sound and needs no re-research |
 
 **Count check (updated 2026-10-02, all three "in progress" items now resolved)**: 16 requests → 13 distinct resolution packets (`B01-R1`, `B02-R1`, `C01-R1`, `U04-R1`, `U06-R1`, `U07-R1`, `U07-R2`, `U08-R1`, `U10-R1`, `U10-R2`, `U10-R3`, `U11-R1`, `U12-R1` — two packets each resolve two CRs: `C01-R1` for CR-007/CR-010, `U11-R1` for CR-002/CR-005) + 1 routed to AWT (`CR-016`) = 16/16 accounted for, **all now `PROCESSED`/`ACCEPTED` or correctly routed — zero still `IN PROGRESS`**, matching Boss's required closure-matrix shape exactly.
 
@@ -171,6 +172,22 @@ This three-axis format is **more precise than, and supersedes the blending in, t
 - **`U07-R2`** (CR-014, Normal, read in full through the ten-dimension table): the `other_candidates_qty -= -move._get_valued_qty()` double-negation at `purchase_stock/models/stock_move.py:196` evaluates as an **addition** — an earlier outgoing move (e.g. a vendor return on the same order line) increases the quantity treated as already bill-covered, shrinking the remaining billed quantity available to a later move's valuation. DeepSeek correctly declines to infer whether this is intended (`UNKNOWN`/RT). No effect on received quantity (separate, non-calling code path). The lot-to-PO link is receipt-side-only, not stored, not lot-of-done-move-aware for returns, and the studied DB has no lots to cross-check. **`ACCEPTED`**.
 
 Correction Closure Matrix (§12) updated: **0 correction requests remain `IN PROGRESS` — all 16 have a terminal disposition** (13 processed/accepted across 10+3 packets, 1 routed to AWT backlog — see §12's updated count-check line).
+
+## 15. U24 (Thailand localization) — first Thai Tax Core boundary, full semantic review
+
+Mechanical integrity: both files hash-match at content commit `60f40461`. 260 claims, 136 neutral statements, 1 contradiction (self-identified against the unit's own brief, not a prior file — resolved, see below), 12 RT, 5 C1-bound (`PCO-F01`).
+
+**Read in full.** Strong compliance with the §3.18 discipline throughout: every section keeps "what `l10n_th` implements" separate from "statutory conformity UNKNOWN" / "legal needs UNKNOWN" — no claim asserts Thai law is satisfied. Key findings:
+- Thai tax set (18 taxes: 6 VAT, 8 purchase WHT → PND53, 4 sale WHT) is implemented as ordinary document-time negative-percentage taxes, not the payment-time withholding mechanism (`l10n_account_withholding_tax`, present but uninstalled and unused by the Thai set) — confirmed consistent with `U13`/`U23`.
+- Tax-invoice title ("Tax Invoice") is fixed by **company fiscal country**, not UI/partner language — only the surrounding text follows partner language. A DELTA correction to `U13`'s earlier prose (title replacement applies to posted customer invoices only; credit notes/drafts/cancelled/Commercial Invoice keep standard titles) — self-identified, not contradicted.
+- PromptPay/EMV QR: THB-only, static-account credit-transfer style, no payment/reconciliation linkage, no Thailand-specific reference tag.
+- **Self-identified CONTRA, resolved**: the unit brief expected "amount in words" to be a Thai gap; a generic facility exists in Community (company switch + DB flag already on) — only the Thai-language rendering itself is `UNKNOWN`/RT (depends on `num2words` library support, not read). Correctly caveated, not asserted either way.
+- `CAP-U24-08` registers 8 absent-from-Community-source Thai statutory outputs (VAT return/filing forms, WHT certificates/PND1/2/54 filing, e-Tax invoice/e-Receipt format, abbreviated/combined invoice + seller-branch + mandatory-field enforcement, Buddhist-era year printing, Thai-language amount-in-words, input-VAT proration/foreign-payee WHT/Thai financial-statement formats, tax periodicity/closing) — each stated as a negative search, explicitly not a legal-requirement assertion.
+- `CAP-U24-09`: mechanical, manifest-only country-pack boundary table for all 227 non-Thai `l10n_*` modules, correctly labelled `FUTURE OPTIONAL COUNTRY PACK` throughout, no accounting rule of any foreign pack read — compliant with the scope delta.
+
+**One terminology-compliance correction requested (`CR-017`, Normal, posted to PR #74)**: Boss's "Continue U24–U28 automatically" order specifies the exact label `NATIVE GAP / EXTENSION REQUIRED` for a Thai-required function Community doesn't natively support. `CAP-U24-08`'s 8-item register instead uses `NOT PRESENT IN COMMUNITY SOURCE` throughout. The underlying research is sound and needs no re-research — this is a relabeling-only request, not a substantive finding to re-derive.
+
+**Classification**: all static findings `ACCEPTED`; the 12 RT items correctly routed `RUNTIME/AWT_REQUIRED`; the self-identified CONTRA is resolved (not `CONTRADICTION_UNRESOLVED`); the terminology gap is `CORRECTION_REQUIRED · Normal` (`CR-017`). Not yet reconciled into any pilot's Gap Register — Thailand-localization capabilities still have no dedicated Function-ID domain (same open question as `U19`/`U20`).
 
 ## 9. What this log is not
 
