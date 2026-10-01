@@ -335,6 +335,19 @@ Resolves this session's own `CR-017` request (§15). DeepSeek relabelled all 10 
 
 **Classification**: `ACCEPTED`. This is the correction-loop working exactly as designed — a Normal-priority terminology request came back not just relabelled but substantively strengthened with real statutory cross-references. No further correction needed. DeepSeek also acknowledged and resolved the `CR-017` numbering collision on its own initiative (tracking this item as `CR-020` on its side) — good process hygiene.
 
+## 27. U29 (residual bridge modules, 21 modules) + Handoff Round 6 programme-status note
+
+Mechanical integrity: both `U29` files hash-match at content commit `a27ef573`. 410 claims, 232 neutral, 0 contradictions, 0 C1-bound, 19 RT — a lower-stakes sweep boundary (outside the Thai Tax Core priority lane; DeepSeek correctly continuing non-blocked residual research per the Standing Instruction while the statutory-lane follow-ups land).
+
+**Spot-checked** (CAP-U29-01 kit-margin bridge, CAP-U29-02 expiry-aware forecast, CAP-U29-03 dispatch/fleet). Two findings worth a light flag, both already correctly held at `RT`/`UNKNOWN` rather than asserted as defects:
+- `sale_stock_product_expiry`: when **any** line in a quantity-forecast batch has an expiring product, the free-quantity figure for **every** product in that batch is overwritten with a fresh today-only read — a display-only computation (no stock movement affected), but the batch-wide scope of the overwrite is worth a second look if it's ever found to produce a wrong number for a non-expiring product sharing a batch with an expiring one.
+- `stock_fleet`: rewrites a stock move's source/destination location to the dispatch dock **with no filter on move state** — could in principle touch an already-`done` move, not just draft/confirmed ones. DeepSeek correctly declines to assert this is reachable or wrong, flags `RT`/`UNKNOWN`.
+Also notes, accurately: `sale_mrp_margin` is a pure marker module with no runtime code of its own (manifest + tests only) — real behavior lives entirely in `sale_margin`/`sale_stock_margin`/`sale_mrp`/`mrp_account`.
+
+**Classification**: `ACCEPTED`. No correction needed.
+
+**Handoff Round 6 (programme-status bookkeeping, not a semantic claim set)**: regenerated `EVIDENCE_PRESENCE_BY_MODULE.tsv` (272/356 installed modules have ≥1 claim pointer; explicitly labelled "not a coverage figure") and `AWT_BACKLOG_INDEX.tsv` (now 704 RT-flagged claims, 78 C1-bound — up from the ~528 noted earlier in this log, consistent with continued research volume, not a surprise). Programme summary confirms: 13,648 indexed claims total, 20 correction requests (`CR-001`–`CR-020`) with 18 packets processed, all consistent with what this session has independently verified across §10–§26. No new semantic claim requiring its own verification pass — recorded for completeness only.
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
