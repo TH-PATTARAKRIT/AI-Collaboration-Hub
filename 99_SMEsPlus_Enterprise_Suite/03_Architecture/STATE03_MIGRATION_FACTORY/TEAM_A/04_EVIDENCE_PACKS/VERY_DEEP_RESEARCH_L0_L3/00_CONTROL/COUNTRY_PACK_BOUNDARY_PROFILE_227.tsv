@@ -1,0 +1,228 @@
+module	depends_count	auto_install	has_post_init_hook	has_uninstall_hook	data_files	template_data_files	models_new	models_extended	core_acc_models_extended	tests_py	archetype
+l10n_ae	2	True	False	False	5	0	0	2	1	0	base country pack
+l10n_ae_pos	2	True	False	False	0	0	0	0	0	0	pos
+l10n_anz_ubl_pint	1	False	False	True	0	0	1	2	2	2	other extension
+l10n_ar	3	True	False	False	25	0	1	19	7	4	base country pack
+l10n_ar_pos	2	True	False	False	1	1	2	3	1	3	pos
+l10n_ar_stock	2	True	False	False	4	0	0	2	0	2	stock/sale/purchase/website bridge
+l10n_ar_website_sale	2	True	False	False	2	1	0	3	1	2	stock/sale/purchase/website bridge
+l10n_ar_withholding	2	False	True	False	10	0	4	9	5	2	other extension
+l10n_at	5	True	False	False	3	0	0	2	1	0	base country pack
+l10n_au	1	True	False	False	19	0	0	6	4	0	base country pack
+l10n_bd	1	True	False	False	3	0	0	1	0	0	base country pack
+l10n_be	4	True	False	False	3	0	0	8	4	0	base country pack
+l10n_be_pos_restaurant	2	True	True	False	0	0	0	2	0	0	pos
+l10n_be_pos_sale	2	True	False	False	0	0	0	1	0	2	pos
+l10n_bf	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_bg	2	True	False	False	1	0	0	1	0	0	base country pack
+l10n_bg_ledger	1	True	False	False	2	0	0	2	2	0	other extension
+l10n_bh	2	True	False	False	3	0	0	1	0	0	base country pack
+l10n_bj	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_bo	1	True	False	False	1	0	0	1	0	0	base country pack
+l10n_br	5	True	False	False	15	0	1	11	6	3	base country pack
+l10n_br_sales	2	True	False	False	3	0	0	1	0	0	other extension
+l10n_br_website_sale	2	True	True	False	1	1	0	1	0	0	stock/sale/purchase/website bridge
+l10n_ca	2	True	False	False	5	0	0	4	2	0	base country pack
+l10n_cd	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_cf	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_cg	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_ch	4	True	True	False	8	0	2	8	3	5	base country pack
+l10n_ch_pos	2	True	False	False	0	0	0	1	0	3	pos
+l10n_ci	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_cl	6	True	False	False	20	0	0	12	5	2	base country pack
+l10n_cm	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_cn	2	True	False	False	3	0	0	4	1	0	base country pack
+l10n_cn_city	2	False	False	False	2	0	0	0	0	0	other extension
+l10n_co	3	True	False	False	2	0	0	2	0	0	base country pack
+l10n_co_pos	2	True	False	False	0	0	0	1	0	0	pos
+l10n_cr	1	True	False	False	0	0	0	1	0	0	base country pack
+l10n_cy	3	True	False	False	2	0	0	1	0	0	base country pack
+l10n_cz	4	True	False	False	8	0	1	4	2	2	base country pack
+l10n_de	5	True	True	False	4	0	0	11	7	3	base country pack
+l10n_din5008	1	True	False	False	5	0	0	4	1	0	base country pack
+l10n_din5008_expense	2	True	False	False	1	0	0	0	0	0	other extension
+l10n_din5008_purchase	2	True	False	False	1	0	0	0	0	0	stock/sale/purchase/website bridge
+l10n_din5008_repair	2	True	False	False	2	0	0	1	0	0	other extension
+l10n_din5008_sale	2	True	False	False	2	0	0	0	0	0	stock/sale/purchase/website bridge
+l10n_din5008_stock	2	True	False	False	2	0	0	0	0	0	stock/sale/purchase/website bridge
+l10n_dk	4	True	False	False	5	0	1	3	3	0	base country pack
+l10n_dk_fik	1	True	False	False	1	0	0	2	2	0	other extension
+l10n_dk_nemhandel	3	True	True	True	8	0	2	9	4	4	other extension
+l10n_dk_nemhandel_response	1	True	False	False	5	0	2	3	2	0	other extension
+l10n_dk_oioubl	2	True	False	True	0	0	1	2	2	2	other extension
+l10n_do	2	True	False	False	1	0	0	1	0	0	base country pack
+l10n_dz	2	True	False	False	1	0	0	1	0	0	base country pack
+l10n_ec	6	True	False	False	13	0	1	9	6	2	base country pack
+l10n_ec_sale	2	True	False	False	3	0	0	2	0	2	stock/sale/purchase/website bridge
+l10n_ec_stock	2	True	True	False	0	0	0	1	0	0	stock/sale/purchase/website bridge
+l10n_ee	2	True	False	False	2	0	0	3	2	0	base country pack
+l10n_eg	1	True	False	False	2	0	0	2	1	0	base country pack
+l10n_eg_edi_eta	2	False	False	False	14	0	3	10	5	3	edi
+l10n_es	4	True	False	False	21	0	0	16	4	0	base country pack
+l10n_es_edi_facturae	2	True	True	True	12	0	1	10	4	2	edi
+l10n_es_edi_sii	3	False	False	False	4	0	0	7	2	5	edi
+l10n_es_edi_tbai	2	False	False	False	11	2	1	7	3	9	edi
+l10n_es_edi_tbai_pos	2	True	False	False	1	0	0	3	1	4	edi
+l10n_es_edi_verifactu	2	False	True	False	10	0	1	9	4	4	edi
+l10n_es_edi_verifactu_pos	2	True	False	False	2	0	0	5	2	3	edi
+l10n_es_pos	2	False	False	False	2	0	0	5	2	3	pos
+l10n_et	1	True	False	False	1	0	0	1	0	0	base country pack
+l10n_eu_oss	1	False	False	True	1	0	0	2	1	2	other extension
+l10n_fi	4	True	False	False	4	0	0	4	3	3	base country pack
+l10n_fi_sale	2	True	False	False	0	0	0	1	0	0	stock/sale/purchase/website bridge
+l10n_fr	1	False	False	False	3	0	0	2	2	0	base country pack
+l10n_fr_account	5	True	True	False	7	0	1	11	3	3	other extension
+l10n_fr_facturx_chorus_pro	3	False	False	False	2	0	0	2	1	4	other extension
+l10n_fr_hr_holidays	1	True	False	False	1	0	0	3	1	2	payroll/hr
+l10n_fr_hr_work_entry_holidays	2	True	False	False	0	0	0	2	0	2	payroll/hr
+l10n_fr_pdp	4	True	True	True	13	0	7	15	5	8	other extension
+l10n_fr_pdp_pos	2	True	False	False	0	0	0	2	2	2	pos
+l10n_fr_pos_cert	2	True	True	False	8	0	2	6	2	5	pos
+l10n_ga	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_gcc_invoice	1	False	True	False	2	0	0	5	3	0	other extension
+l10n_gcc_invoice_stock_account	2	True	False	False	1	0	0	0	0	0	stock/sale/purchase/website bridge
+l10n_gcc_pos	2	True	False	False	1	0	0	2	0	2	pos
+l10n_ge	1	False	False	False	1	0	0	1	0	0	base country pack
+l10n_gf	2	True	False	False	0	0	0	0	0	0	base country pack
+l10n_gn	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_gp	2	True	False	False	0	0	0	0	0	0	base country pack
+l10n_gq	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_gr	4	True	False	False	1	0	0	1	0	0	base country pack
+l10n_gr_edi	1	True	False	False	11	1	2	10	7	2	edi
+l10n_gr_edi_e_invoo	2	True	False	False	2	0	0	5	2	2	edi
+l10n_gt	2	True	False	False	0	0	0	1	0	0	base country pack
+l10n_gw	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_hk	2	True	False	False	2	0	0	2	0	2	base country pack
+l10n_hn	2	True	False	False	0	0	0	1	0	0	base country pack
+l10n_hr	2	True	False	False	2	0	0	1	0	0	payroll/hr
+l10n_hr_edi	3	False	True	False	13	0	5	11	7	5	edi
+l10n_hr_kuna	1	False	False	False	1	0	0	1	0	0	payroll/hr
+l10n_hu	2	True	False	False	2	0	0	3	2	0	base country pack
+l10n_hu_edi	3	True	True	False	17	2	2	11	5	7	edi
+l10n_hu_edi_receive	1	False	False	False	4	1	1	2	2	4	edi
+l10n_id	3	True	False	False	4	0	1	3	1	3	base country pack
+l10n_id_efaktur_coretax	1	True	False	False	14	0	3	5	4	3	other extension
+l10n_id_pos	2	True	False	False	0	0	0	3	0	2	pos
+l10n_ie	4	True	False	False	2	0	0	3	1	0	base country pack
+l10n_il	1	True	False	False	2	0	0	1	0	0	base country pack
+l10n_in	5	True	True	False	34	0	4	16	10	10	base country pack
+l10n_in_edi	2	False	False	False	5	0	1	7	4	2	edi
+l10n_in_ewaybill	1	False	False	False	10	0	3	5	2	2	other extension
+l10n_in_ewaybill_irn	2	True	False	False	2	0	0	1	0	2	other extension
+l10n_in_ewaybill_stock	2	True	False	False	5	0	0	3	0	2	stock/sale/purchase/website bridge
+l10n_in_hr_holidays	1	True	False	False	5	0	1	3	0	3	payroll/hr
+l10n_in_pos	2	True	False	False	4	0	0	12	6	7	pos
+l10n_in_purchase_stock	2	True	False	False	0	0	0	3	1	0	stock/sale/purchase/website bridge
+l10n_in_sale	2	True	False	False	1	0	0	2	0	2	stock/sale/purchase/website bridge
+l10n_in_sale_stock	3	True	False	False	0	0	0	3	1	0	stock/sale/purchase/website bridge
+l10n_in_stock	3	True	False	False	1	0	0	2	0	0	stock/sale/purchase/website bridge
+l10n_iq	1	True	False	False	0	0	0	1	0	0	base country pack
+l10n_it	4	True	False	False	11	0	0	4	2	0	base country pack
+l10n_it_edi	3	True	True	True	13	0	2	9	4	13	edi
+l10n_it_edi_doi	2	False	True	False	8	0	1	7	5	3	edi
+l10n_it_edi_sale	2	True	False	False	1	0	0	1	0	2	edi
+l10n_it_stock_ddt	3	True	True	False	4	0	0	3	1	3	stock/sale/purchase/website bridge
+l10n_jo	1	True	False	False	1	0	0	1	0	0	base country pack
+l10n_jo_edi	2	True	True	False	3	0	1	6	3	5	edi
+l10n_jo_edi_pos	2	True	False	False	3	0	1	5	2	5	edi
+l10n_jp	1	True	False	False	1	0	0	1	0	0	base country pack
+l10n_jp_ubl_pint	1	False	False	True	0	0	1	2	2	2	other extension
+l10n_ke	1	True	False	False	7	0	1	4	3	0	base country pack
+l10n_ke_edi_tremol	1	False	False	False	4	0	0	6	3	3	edi
+l10n_kh	2	False	False	False	3	0	0	2	0	0	base country pack
+l10n_km	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_kr	1	True	False	False	3	0	0	1	0	0	base country pack
+l10n_kw	2	True	False	False	0	0	0	1	0	0	base country pack
+l10n_kz	1	True	False	False	1	0	0	1	0	0	base country pack
+l10n_latam_base	2	False	True	False	6	0	1	2	2	0	other extension
+l10n_latam_check	2	False	False	False	8	0	3	7	4	4	other extension
+l10n_latam_invoice_document	2	False	False	False	8	0	1	8	4	0	other extension
+l10n_lb_account	1	True	False	False	1	0	0	1	0	0	other extension
+l10n_lk	2	True	False	False	2	0	0	1	0	0	base country pack
+l10n_lk_invoice	1	True	False	False	3	0	0	4	3	2	other extension
+l10n_lt	2	True	False	False	4	0	0	3	2	0	base country pack
+l10n_lu	4	True	True	False	6	0	0	1	0	0	base country pack
+l10n_lv	3	True	False	False	2	0	0	1	0	0	base country pack
+l10n_ma	2	True	False	False	3	0	0	4	2	0	base country pack
+l10n_mc	2	True	False	False	0	0	0	0	0	0	base country pack
+l10n_ml	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_mn	1	True	False	False	2	0	0	1	0	0	base country pack
+l10n_mq	2	True	False	False	0	0	0	0	0	0	base country pack
+l10n_mr	2	False	False	False	1	0	0	1	0	0	base country pack
+l10n_mt	3	True	False	False	2	0	0	1	0	0	base country pack
+l10n_mt_pos	1	True	False	False	3	0	1	0	0	0	pos
+l10n_mu_account	1	True	False	False	2	0	0	3	1	0	other extension
+l10n_mx	1	True	True	False	9	0	0	8	4	3	base country pack
+l10n_my	2	True	False	False	3	0	0	2	1	0	base country pack
+l10n_my_edi	3	False	False	False	16	0	5	9	6	3	edi
+l10n_my_edi_pos	2	True	False	False	4	0	0	4	0	2	edi
+l10n_my_ubl_pint	1	False	False	True	3	0	1	4	3	2	other extension
+l10n_mz	2	True	False	False	1	0	0	1	0	0	base country pack
+l10n_ne	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_ng	2	True	False	False	2	0	0	1	0	0	base country pack
+l10n_nl	4	True	False	False	4	0	0	4	2	0	base country pack
+l10n_no	4	True	True	False	4	0	0	6	5	0	base country pack
+l10n_nz	1	True	False	False	5	0	0	4	3	0	base country pack
+l10n_om	2	True	False	False	2	0	0	1	0	0	base country pack
+l10n_pa	1	True	False	False	0	0	0	1	0	0	base country pack
+l10n_pe	6	True	False	False	10	0	1	9	4	0	base country pack
+l10n_pe_pos	2	True	False	False	2	1	3	3	1	2	pos
+l10n_ph	3	True	False	False	11	0	1	6	5	3	base country pack
+l10n_pk	1	True	False	False	2	0	0	2	0	0	base country pack
+l10n_pl	4	True	True	False	8	0	1	6	4	2	base country pack
+l10n_pl_bank_verification	1	True	False	False	3	0	1	2	1	3	other extension
+l10n_pl_edi	2	True	False	False	5	0	0	6	4	2	edi
+l10n_pl_edi_jst	2	True	False	False	2	0	0	2	2	2	edi
+l10n_pt	4	True	False	False	1	0	0	3	2	2	base country pack
+l10n_qa	2	True	False	False	0	0	0	1	0	0	base country pack
+l10n_re	2	True	False	False	0	0	0	0	0	0	base country pack
+l10n_ro	3	True	False	False	3	0	0	2	1	0	base country pack
+l10n_ro_cpv_code	1	False	False	False	3	0	1	2	1	2	other extension
+l10n_ro_edi	2	True	False	True	4	0	2	6	3	4	edi
+l10n_ro_edi_stock	3	False	False	False	5	1	0	3	0	4	edi
+l10n_ro_edi_stock_batch	2	True	False	False	2	0	0	3	0	2	edi
+l10n_rs	2	True	False	False	4	0	0	2	1	0	base country pack
+l10n_rs_edi	2	True	False	False	3	0	1	6	3	2	edi
+l10n_rw	1	True	False	False	2	0	0	1	0	0	base country pack
+l10n_sa	3	True	False	False	9	0	0	5	1	2	base country pack
+l10n_sa_edi	5	False	True	False	13	0	2	13	6	4	edi
+l10n_sa_edi_pos	2	False	False	False	0	0	0	6	2	2	edi
+l10n_sa_pos	2	True	False	False	0	0	0	2	0	2	pos
+l10n_sa_withholding_tax	2	True	False	False	0	0	0	0	0	0	other extension
+l10n_se	3	True	False	False	5	0	0	7	4	0	base country pack
+l10n_sg	2	True	True	False	6	0	1	4	3	3	base country pack
+l10n_sg_ubl_pint	1	False	False	True	0	0	1	3	3	2	other extension
+l10n_si	3	True	False	False	6	0	0	3	2	2	base country pack
+l10n_sk	3	True	False	False	5	0	0	4	2	0	base country pack
+l10n_sn	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_syscohada	1	False	False	False	1	0	0	2	0	0	base country pack
+l10n_td	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_test_pos_qr_payment	6	False	False	False	0	0	0	0	0	3	pos
+l10n_tg	2	True	False	False	1	0	0	2	0	0	base country pack
+l10n_tn	1	True	False	False	1	0	0	1	0	0	base country pack
+l10n_tr	1	True	False	False	1	0	0	5	3	2	base country pack
+l10n_tr_nilvera	2	False	True	True	4	0	2	4	3	0	other extension
+l10n_tr_nilvera_base_vat	2	True	False	False	0	0	0	1	1	0	other extension
+l10n_tr_nilvera_edispatch	3	False	False	False	5	0	1	3	1	2	other extension
+l10n_tr_nilvera_einvoice	2	True	False	False	3	0	2	3	2	5	other extension
+l10n_tr_nilvera_einvoice_extended	2	True	True	False	12	0	2	11	6	2	other extension
+l10n_tw	2	True	False	False	6	0	0	1	0	0	base country pack
+l10n_tw_edi_ecpay	2	False	False	True	7	0	2	8	5	2	edi
+l10n_tw_edi_ecpay_pos	2	True	False	False	2	0	0	4	1	3	edi
+l10n_tw_edi_ecpay_website_sale	2	True	True	False	3	1	0	2	1	3	edi
+l10n_tz_account	1	True	False	False	2	0	0	1	0	0	other extension
+l10n_ua	1	True	False	False	1	0	0	1	0	0	base country pack
+l10n_ug	1	True	False	False	1	0	0	1	0	0	base country pack
+l10n_uk	3	True	False	False	3	0	0	2	0	0	base country pack
+l10n_us	1	False	False	False	2	0	0	1	0	0	base country pack
+l10n_us_account	2	True	False	False	3	0	0	2	0	0	other extension
+l10n_uy	3	True	False	False	6	0	0	8	4	3	base country pack
+l10n_uy_pos	2	True	False	False	0	0	0	0	0	0	pos
+l10n_uz	2	False	False	False	5	0	0	2	1	0	base country pack
+l10n_ve	1	True	False	False	0	0	0	1	0	0	base country pack
+l10n_vn	3	True	False	False	3	0	0	3	1	2	base country pack
+l10n_vn_edi_viettel	1	False	False	True	7	0	3	6	3	2	edi
+l10n_vn_edi_viettel_pos	2	True	False	False	4	0	0	7	3	3	edi
+l10n_yt	2	True	False	False	0	0	0	0	0	0	base country pack
+l10n_za	2	True	False	False	2	0	0	1	0	0	base country pack
+l10n_zm_account	1	True	False	False	2	0	0	2	1	0	other extension

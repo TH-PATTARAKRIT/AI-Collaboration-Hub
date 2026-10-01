@@ -1,0 +1,693 @@
+module	register_phase	installed_in_dump	scope_class_v2	l10n_dependencies	core_accounting_models_extended
+account	CURRENT	Y	GENERIC		
+account_add_gln	CURRENT	Y	GENERIC		
+account_check_printing	CURRENT	Y	GENERIC		
+account_debit_note	CURRENT	N	GENERIC		
+account_edi	CURRENT	Y	GENERIC		
+account_edi_proxy_client	CURRENT	Y	GENERIC		
+account_edi_ubl_cii	CURRENT	Y	GENERIC		
+account_fleet	CURRENT	Y	GENERIC		
+account_payment	CURRENT	Y	GENERIC		
+account_payment_interco	CURRENT	Y	GENERIC		
+account_peppol	EVIDENCE-ONLY	N	GENERIC		
+account_peppol_advanced_fields	EVIDENCE-ONLY	Y	GENERIC		
+account_peppol_response	EVIDENCE-ONLY	N	GENERIC		
+account_qr_code_emv	CURRENT	Y	GENERIC		
+account_qr_code_sepa	EVIDENCE-ONLY	Y	GENERIC		
+account_tax_python	CURRENT	N	GENERIC		
+account_test	CURRENT	N	GENERIC		
+account_update_tax_tags	CURRENT	N	GENERIC		
+analytic	CURRENT	Y	GENERIC		
+api_doc	CURRENT	Y	GENERIC		
+attachment_indexation	CURRENT	Y	GENERIC		
+auth_ldap	CURRENT	N	GENERIC		
+auth_oauth	CURRENT	N	GENERIC		
+auth_passkey	CURRENT	Y	GENERIC		
+auth_passkey_portal	CURRENT	Y	GENERIC		
+auth_password_policy	CURRENT	N	GENERIC		
+auth_password_policy_portal	CURRENT	N	GENERIC		
+auth_password_policy_signup	CURRENT	N	GENERIC		
+auth_signup	CURRENT	Y	GENERIC		
+auth_timeout	CURRENT	N	GENERIC		
+auth_totp	CURRENT	Y	GENERIC		
+auth_totp_mail	CURRENT	Y	GENERIC		
+auth_totp_portal	CURRENT	Y	GENERIC		
+barcodes	CURRENT	Y	GENERIC		
+barcodes_gs1_nomenclature	CURRENT	Y	GENERIC		
+base	CURRENT	Y	GENERIC		
+base_address_extended	CURRENT	N	GENERIC		
+base_automation	CURRENT	Y	GENERIC		
+base_geolocalize	CURRENT	Y	GENERIC		
+base_iban	CURRENT	Y	GENERIC		
+base_import	CURRENT	Y	GENERIC		
+base_import_module	CURRENT	Y	GENERIC		
+base_install_request	CURRENT	Y	GENERIC		
+base_setup	CURRENT	Y	GENERIC		
+base_sparse_field	CURRENT	N	GENERIC		
+base_vat	CURRENT	N	GENERIC		
+board	CURRENT	N	GENERIC		
+bus	CURRENT	Y	GENERIC		
+calendar	CURRENT	Y	GENERIC		
+calendar_sms	CURRENT	Y	GENERIC		
+certificate	CURRENT	Y	GENERIC		
+cloud_storage	CURRENT	N	GENERIC		
+cloud_storage_azure	CURRENT	N	GENERIC		
+cloud_storage_google	CURRENT	N	GENERIC		
+cloud_storage_migration	CURRENT	N	GENERIC		
+contacts	CURRENT	Y	GENERIC		
+crm	CURRENT	Y	GENERIC		
+crm_iap_enrich	CURRENT	Y	GENERIC		
+crm_iap_mine	CURRENT	Y	GENERIC		
+crm_livechat	CURRENT	Y	GENERIC		
+crm_mail_plugin	CURRENT	Y	GENERIC		
+crm_sms	CURRENT	Y	GENERIC		
+data_recycle	NEXT	N	GENERIC		
+delivery	CURRENT	Y	GENERIC		
+delivery_mondialrelay	EVIDENCE-ONLY	Y	GENERIC		
+delivery_stock_picking_batch	CURRENT	Y	GENERIC		
+digest	CURRENT	Y	GENERIC		
+event	CURRENT	Y	GENERIC		
+event_booth	CURRENT	Y	GENERIC		
+event_booth_sale	CURRENT	Y	GENERIC		
+event_crm	CURRENT	Y	GENERIC		
+event_crm_sale	CURRENT	Y	GENERIC		
+event_product	CURRENT	Y	GENERIC		
+event_sale	CURRENT	Y	GENERIC		
+event_sms	CURRENT	Y	GENERIC		
+fleet	CURRENT	Y	GENERIC		
+gamification	CURRENT	Y	GENERIC		
+gamification_sale_crm	CURRENT	Y	GENERIC		
+google_account	CURRENT	Y	GENERIC		
+google_address_autocomplete	CURRENT	Y	GENERIC		
+google_calendar	CURRENT	Y	GENERIC		
+google_gmail	CURRENT	Y	GENERIC		
+google_recaptcha	CURRENT	Y	GENERIC		
+hr	CURRENT	Y	GENERIC		
+hr_attendance	CURRENT	Y	GENERIC		
+hr_calendar	CURRENT	Y	GENERIC		
+hr_expense	CURRENT	Y	GENERIC		
+hr_fleet	CURRENT	Y	GENERIC		
+hr_gamification	CURRENT	Y	GENERIC		
+hr_holidays	CURRENT	Y	GENERIC		
+hr_holidays_attendance	CURRENT	Y	GENERIC		
+hr_holidays_homeworking	CURRENT	Y	GENERIC		
+hr_homeworking	CURRENT	Y	GENERIC		
+hr_homeworking_calendar	CURRENT	Y	GENERIC		
+hr_hourly_cost	CURRENT	Y	GENERIC		
+hr_livechat	CURRENT	Y	GENERIC		
+hr_maintenance	CURRENT	Y	GENERIC		
+hr_org_chart	CURRENT	Y	GENERIC		
+hr_presence	CURRENT	Y	GENERIC		
+hr_recruitment	CURRENT	Y	GENERIC		
+hr_recruitment_skills	CURRENT	Y	GENERIC		
+hr_recruitment_sms	CURRENT	Y	GENERIC		
+hr_recruitment_survey	CURRENT	Y	GENERIC		
+hr_skills	CURRENT	Y	GENERIC		
+hr_skills_event	CURRENT	Y	GENERIC		
+hr_skills_slides	CURRENT	Y	GENERIC		
+hr_skills_survey	CURRENT	Y	GENERIC		
+hr_timesheet	CURRENT	Y	GENERIC		
+hr_timesheet_attendance	CURRENT	Y	GENERIC		
+hr_work_entry	CURRENT	Y	GENERIC		
+hr_work_entry_holidays	CURRENT	Y	GENERIC		
+html_builder	CURRENT	Y	GENERIC		
+html_editor	CURRENT	Y	GENERIC		
+http_routing	CURRENT	Y	GENERIC		
+iap	CURRENT	Y	GENERIC		
+iap_crm	CURRENT	Y	GENERIC		
+iap_mail	CURRENT	Y	GENERIC		
+im_livechat	CURRENT	Y	GENERIC		
+iot_base	NEXT	N	GENERIC		
+iot_box_image	NEXT	N	GENERIC		
+iot_drivers	NEXT	N	GENERIC		
+l10n_account_edi_ubl_cii_tests	EVIDENCE-ONLY	N	GENERIC (l10n-prefixed mechanism; not country-specific)	l10n_fr_account;l10n_be;l10n_de;l10n_nl;l10n_au	
+l10n_account_withholding_tax	CURRENT	N	GENERIC (l10n-prefixed mechanism; not country-specific)		
+l10n_account_withholding_tax_pos	NEXT	N	GENERIC (l10n-prefixed mechanism; not country-specific)	l10n_account_withholding_tax	
+l10n_ae	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gcc_invoice	account.move
+l10n_ae_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gcc_pos;l10n_ae	
+l10n_anz_ubl_pint	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;res.partner
+l10n_ar	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_latam_invoice_document;l10n_latam_base	account.fiscal.position;account.journal;account.move;account.move.line;account.tax.group;res.company;res.partner
+l10n_ar_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ar	res.partner
+l10n_ar_stock	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ar	
+l10n_ar_website_sale	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ar	product.template
+l10n_ar_withholding	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ar;l10n_latam_check	account.move;account.payment;account.tax;res.company;res.partner
+l10n_at	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_din5008	account.journal
+l10n_au	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;account.payment;res.company;res.partner
+l10n_bd	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_be	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal;account.move;account.tax;res.partner
+l10n_be_pos_restaurant	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_be	
+l10n_be_pos_sale	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_be	
+l10n_bf	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_bg	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_bg_ledger	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_bg	account.journal;account.move
+l10n_bh	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gcc_invoice	
+l10n_bj	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_bo	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_br	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_latam_base;l10n_latam_invoice_document	account.fiscal.position;account.journal;account.move;account.tax;res.company;res.partner
+l10n_br_sales	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_br	
+l10n_br_website_sale	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_br	
+l10n_ca	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		res.company;res.partner
+l10n_cd	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_cf	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_cg	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_ch	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_din5008	account.journal;account.move;account.payment
+l10n_ch_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ch	
+l10n_ci	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_cl	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_latam_base;l10n_latam_invoice_document	account.move;account.move.line;account.tax;res.company;res.partner
+l10n_cm	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_cn	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move
+l10n_cn_city	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_cn	
+l10n_co	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_latam_base	
+l10n_co_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_co	
+l10n_cr	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_cy	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_cz	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;res.company
+l10n_de	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_din5008	account.account;account.journal;account.move;account.tax;product.template;res.company;res.partner
+l10n_din5008	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		res.company
+l10n_din5008_expense	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_din5008	
+l10n_din5008_purchase	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_din5008	
+l10n_din5008_repair	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_din5008	
+l10n_din5008_sale	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_din5008	
+l10n_din5008_stock	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_din5008	
+l10n_dk	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.account;account.journal;res.partner
+l10n_dk_fik	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_dk	account.journal;account.move
+l10n_dk_nemhandel	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_dk	account.journal;account.move;res.company;res.partner
+l10n_dk_nemhandel_response	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_dk_nemhandel	account.move;res.partner
+l10n_dk_oioubl	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_dk	account.move;res.partner
+l10n_do	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_dz	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_ec	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_latam_invoice_document;l10n_latam_base	account.journal;account.move;account.tax;account.tax.group;res.company;res.partner
+l10n_ec_sale	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ec	
+l10n_ec_stock	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ec	
+l10n_ee	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.tax;res.company
+l10n_eg	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.tax
+l10n_eg_edi_eta	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_eg	account.journal;account.move;product.template;res.company;res.partner
+l10n_es	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;account.tax;res.company;res.partner
+l10n_es_edi_facturae	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_es	account.move;account.tax;res.company;res.partner
+l10n_es_edi_sii	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_es	account.move;res.company
+l10n_es_edi_tbai	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_es	account.move;account.move.line;res.company
+l10n_es_edi_tbai_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_es_edi_tbai	res.company
+l10n_es_edi_verifactu	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_es	account.move;account.tax;res.company;res.partner
+l10n_es_edi_verifactu_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_es_edi_verifactu	account.move;res.company
+l10n_es_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_es	account.move;res.company
+l10n_et	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_eu_oss	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		res.company
+l10n_fi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal;account.move;res.partner
+l10n_fi_sale	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fi	
+l10n_fr	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		res.company;res.partner
+l10n_fr_account	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr	account.move;res.company;res.partner
+l10n_fr_facturx_chorus_pro	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr_account	account.move
+l10n_fr_hr_holidays	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		res.company
+l10n_fr_hr_work_entry_holidays	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr_hr_holidays	
+l10n_fr_pdp	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr_account	account.journal;account.move;account.tax;res.company;res.partner
+l10n_fr_pdp_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr_pdp	account.move;res.company
+l10n_fr_pos_cert	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr_account	account.fiscal.position;res.company
+l10n_ga	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_gcc_invoice	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;account.move.line;res.company
+l10n_gcc_invoice_stock_account	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gcc_invoice	
+l10n_gcc_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gcc_invoice	
+l10n_ge	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_gf	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr_account	
+l10n_gn	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_gp	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr_account	
+l10n_gq	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_gr	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_gr_edi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gr	account.fiscal.position;account.move;account.move.line;account.tax;product.template;res.company;res.partner
+l10n_gr_edi_e_invoo	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gr_edi	account.move;res.company
+l10n_gt	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_gw	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_hk	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_hn	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_hr	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_hr_edi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_hr	account.journal;account.move;account.move.line;account.tax;product.template;res.company;res.partner
+l10n_hr_kuna	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_hu	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;res.partner
+l10n_hu_edi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_hu	account.move;account.tax;product.template;res.company;res.partner
+l10n_hu_edi_receive	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_hu_edi	account.move;res.company
+l10n_id	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move
+l10n_id_efaktur_coretax	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_id	account.move;account.move.line;product.template;res.partner
+l10n_id_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_id	
+l10n_ie	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal
+l10n_il	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_in	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.account;account.journal;account.move;account.move.line;account.payment;account.report;account.tax;product.template;res.company;res.partner
+l10n_in_edi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_in	account.move;account.move.line;res.company;res.partner
+l10n_in_ewaybill	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_in	account.move;res.company
+l10n_in_ewaybill_irn	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_in_ewaybill;l10n_in_edi	
+l10n_in_ewaybill_stock	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_in_stock;l10n_in_ewaybill	
+l10n_in_hr_holidays	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_in_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_in	account.move;account.move.line;account.tax;product.template;res.company;res.partner
+l10n_in_purchase_stock	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_in_stock	account.move
+l10n_in_sale	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_in	
+l10n_in_sale_stock	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_in_sale;l10n_in_stock	account.move
+l10n_in_stock	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_in	
+l10n_iq	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_it	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;account.tax
+l10n_it_edi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_it	account.move;account.tax;res.company;res.partner
+l10n_it_edi_doi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_it_edi	account.fiscal.position;account.move;account.tax;res.company;res.partner
+l10n_it_edi_sale	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_it_edi	
+l10n_it_stock_ddt	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_it_edi	account.move
+l10n_jo	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_jo_edi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_jo	account.move;account.tax;res.company
+l10n_jo_edi_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_jo_edi	account.move;res.company
+l10n_jp	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_jp_ubl_pint	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;res.partner
+l10n_ke	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;account.tax;res.company
+l10n_ke_edi_tremol	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ke	account.move;res.company;res.partner
+l10n_kh	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_account_withholding_tax	
+l10n_km	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_kr	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_kw	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gcc_invoice	
+l10n_kz	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_latam_base	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		res.company;res.partner
+l10n_latam_check	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal;account.move;account.move.line;account.payment
+l10n_latam_invoice_document	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal;account.move;account.move.line;res.company
+l10n_lb_account	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_lk	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_account_withholding_tax	
+l10n_lk_invoice	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_lk	account.move;res.company;res.partner
+l10n_lt	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal;account.tax
+l10n_lu	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_lv	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_ma	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal;res.partner
+l10n_mc	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr_account	
+l10n_ml	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_mn	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_mq	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr_account	
+l10n_mr	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_mt	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_mt_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_mu_account	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move
+l10n_mx	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.account;account.move.line;account.tax;res.company
+l10n_my	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		product.template
+l10n_my_edi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_my;l10n_my_ubl_pint	account.move;account.move.line;account.tax;product.template;res.company;res.partner
+l10n_my_edi_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_my_edi	
+l10n_my_ubl_pint	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;res.company;res.partner
+l10n_mz	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_ne	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_ng	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_nl	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal;res.company
+l10n_no	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal;account.move;account.tax;res.company;res.partner
+l10n_nz	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;account.payment;res.partner
+l10n_om	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gcc_invoice	
+l10n_pa	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_pe	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_latam_base;l10n_latam_invoice_document	account.move;account.tax;res.company;res.partner
+l10n_pe_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_pe	res.partner
+l10n_ph	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_account_withholding_tax	account.move;account.payment;account.tax;res.company;res.partner
+l10n_pk	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_pl	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;product.template;res.company;res.partner
+l10n_pl_bank_verification	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_pl	account.payment
+l10n_pl_edi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_pl	account.journal;account.move;res.company;res.partner
+l10n_pl_edi_jst	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_pl;l10n_pl_edi	account.move;res.partner
+l10n_pt	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.account;account.tax
+l10n_qa	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gcc_invoice	
+l10n_re	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr_account	
+l10n_ro	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		res.partner
+l10n_ro_cpv_code	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ro_edi	product.template
+l10n_ro_edi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ro	account.move;res.company;res.partner
+l10n_ro_edi_stock	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ro_edi	
+l10n_ro_edi_stock_batch	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_ro_edi_stock	
+l10n_rs	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move
+l10n_rs_edi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_rs	account.move;res.company;res.partner
+l10n_rw	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_sa	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gcc_invoice	account.move
+l10n_sa_edi	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_sa	account.journal;account.move;account.move.line;account.tax;res.company;res.partner
+l10n_sa_edi_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_sa_pos;l10n_sa_edi	account.move;res.company
+l10n_sa_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_gcc_pos;l10n_sa	
+l10n_sa_withholding_tax	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_account_withholding_tax;l10n_sa	
+l10n_se	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal;account.move;res.company;res.partner
+l10n_sg	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;res.company;res.partner
+l10n_sg_ubl_pint	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;account.tax;res.partner
+l10n_si	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal;account.move
+l10n_sk	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move;res.company
+l10n_sn	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_syscohada	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_td	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_test_pos_qr_payment	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_be;l10n_ch;l10n_hk;l10n_br	
+l10n_tg	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_syscohada	
+l10n_th	CURRENT	Y	THAI-LOCALIZATION		
+l10n_tn	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_tr	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.journal;account.move.line;product.template
+l10n_tr_nilvera	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_tr	account.journal;res.company;res.partner
+l10n_tr_nilvera_base_vat	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_tr_nilvera	res.partner
+l10n_tr_nilvera_edispatch	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_tr_nilvera	res.partner
+l10n_tr_nilvera_einvoice	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_tr_nilvera	account.journal;account.move
+l10n_tr_nilvera_einvoice_extended	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_tr_nilvera_einvoice	account.move;account.move.line;account.tax;product.template;res.company;res.partner
+l10n_tw	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_tw_edi_ecpay	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_tw	account.move;account.move.line;account.tax;res.company;res.partner
+l10n_tw_edi_ecpay_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_tw_edi_ecpay	account.tax
+l10n_tw_edi_ecpay_website_sale	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_tw_edi_ecpay	res.partner
+l10n_tz_account	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_ua	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_ug	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_uk	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_us	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_us_account	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_us	
+l10n_uy	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_latam_invoice_document;l10n_latam_base	account.move;account.tax;res.company;res.partner
+l10n_uy_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_uy	
+l10n_uz	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		res.partner
+l10n_ve	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_vn	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move
+l10n_vn_edi_viettel	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_vn	account.move;res.company;res.partner
+l10n_vn_edi_viettel_pos	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_vn_edi_viettel	account.move;res.company;res.partner
+l10n_yt	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)	l10n_fr_account	
+l10n_za	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		
+l10n_zm_account	EVIDENCE-ONLY	N	FUTURE OPTIONAL COUNTRY PACK (excluded from current Applicable Business Denominator)		account.move
+link_tracker	CURRENT	Y	GENERIC		
+loyalty	CURRENT	Y	GENERIC		
+lunch	NEXT	N	GENERIC		
+mail	CURRENT	Y	GENERIC		
+mail_bot	CURRENT	Y	GENERIC		
+mail_bot_hr	CURRENT	Y	GENERIC		
+mail_group	CURRENT	Y	GENERIC		
+mail_plugin	CURRENT	Y	GENERIC		
+maintenance	CURRENT	Y	GENERIC		
+marketing_card	NEXT	Y	GENERIC		
+mass_mailing	NEXT	Y	GENERIC		
+mass_mailing_crm	NEXT	Y	GENERIC		
+mass_mailing_crm_sms	NEXT	Y	GENERIC		
+mass_mailing_event	NEXT	Y	GENERIC		
+mass_mailing_event_sms	NEXT	Y	GENERIC		
+mass_mailing_event_track	NEXT	N	GENERIC		
+mass_mailing_event_track_sms	NEXT	N	GENERIC		
+mass_mailing_sale	NEXT	Y	GENERIC		
+mass_mailing_sale_sms	NEXT	Y	GENERIC		
+mass_mailing_slides	NEXT	Y	GENERIC		
+mass_mailing_sms	NEXT	Y	GENERIC		
+mass_mailing_themes	NEXT	Y	GENERIC		
+microsoft_account	CURRENT	Y	GENERIC		
+microsoft_calendar	CURRENT	Y	GENERIC		
+microsoft_outlook	CURRENT	Y	GENERIC		
+mrp	CURRENT	Y	GENERIC		
+mrp_account	CURRENT	Y	GENERIC		
+mrp_landed_costs	CURRENT	Y	GENERIC		
+mrp_product_expiry	CURRENT	Y	GENERIC		
+mrp_repair	CURRENT	Y	GENERIC		
+mrp_subcontracting	CURRENT	Y	GENERIC		
+mrp_subcontracting_account	CURRENT	Y	GENERIC		
+mrp_subcontracting_dropshipping	CURRENT	Y	GENERIC		
+mrp_subcontracting_landed_costs	CURRENT	Y	GENERIC		
+mrp_subcontracting_purchase	CURRENT	Y	GENERIC		
+mrp_subcontracting_repair	CURRENT	Y	GENERIC		
+onboarding	CURRENT	Y	GENERIC		
+partner_autocomplete	CURRENT	Y	GENERIC		
+partnership	CURRENT	Y	GENERIC		
+payment	CURRENT	Y	GENERIC		
+payment_adyen	NEXT	Y	GENERIC		
+payment_aps	NEXT	Y	GENERIC		
+payment_asiapay	NEXT	Y	GENERIC		
+payment_authorize	NEXT	Y	GENERIC		
+payment_buckaroo	NEXT	Y	GENERIC		
+payment_custom	CURRENT	Y	GENERIC		
+payment_demo	NEXT	Y	GENERIC		
+payment_dpo	NEXT	Y	GENERIC		
+payment_ecpay	NEXT	Y	GENERIC		
+payment_flutterwave	NEXT	Y	GENERIC		
+payment_iyzico	NEXT	Y	GENERIC		
+payment_mercado_pago	NEXT	Y	GENERIC		
+payment_mollie	NEXT	Y	GENERIC		
+payment_nuvei	NEXT	Y	GENERIC		
+payment_paymob	NEXT	Y	GENERIC		
+payment_paypal	NEXT	Y	GENERIC		
+payment_payu	NEXT	Y	GENERIC		
+payment_razorpay	NEXT	Y	GENERIC		
+payment_redsys	NEXT	Y	GENERIC		
+payment_stripe	NEXT	Y	GENERIC		
+payment_toss_payments	NEXT	Y	GENERIC		
+payment_worldline	NEXT	Y	GENERIC		
+payment_xendit	NEXT	Y	GENERIC		
+phone_validation	CURRENT	Y	GENERIC		
+point_of_sale	NEXT	N	GENERIC		
+portal	CURRENT	Y	GENERIC		
+portal_rating	CURRENT	Y	GENERIC		
+pos_account_tax_python	NEXT	N	GENERIC		
+pos_adyen	NEXT	N	GENERIC		
+pos_cashdro	NEXT	N	GENERIC		
+pos_cashmatic	NEXT	N	GENERIC		
+pos_discount	NEXT	N	GENERIC		
+pos_dpopay	NEXT	N	GENERIC		
+pos_edi_ubl	NEXT	N	GENERIC		
+pos_event	NEXT	N	GENERIC		
+pos_event_sale	NEXT	N	GENERIC		
+pos_glory_cash	NEXT	N	GENERIC		
+pos_hr	NEXT	N	GENERIC		
+pos_hr_restaurant	NEXT	N	GENERIC		
+pos_imin	NEXT	N	GENERIC		
+pos_loyalty	NEXT	N	GENERIC		
+pos_mercado_pago	EVIDENCE-ONLY	N	GENERIC		
+pos_mollie	EVIDENCE-ONLY	N	GENERIC		
+pos_mrp	NEXT	N	GENERIC		
+pos_online_payment	NEXT	N	GENERIC		
+pos_online_payment_self_order	NEXT	N	GENERIC		
+pos_pine_labs	EVIDENCE-ONLY	N	GENERIC		
+pos_qfpay	EVIDENCE-ONLY	N	GENERIC		
+pos_razorpay	EVIDENCE-ONLY	N	GENERIC		
+pos_repair	NEXT	N	GENERIC		
+pos_restaurant	NEXT	N	GENERIC		
+pos_restaurant_adyen	NEXT	N	GENERIC		
+pos_restaurant_loyalty	NEXT	N	GENERIC		
+pos_restaurant_stripe	NEXT	N	GENERIC		
+pos_safaricom	NEXT	N	GENERIC		
+pos_sale	NEXT	N	GENERIC		
+pos_sale_loyalty	NEXT	N	GENERIC		
+pos_sale_margin	NEXT	N	GENERIC		
+pos_self_order	NEXT	N	GENERIC		
+pos_self_order_adyen	NEXT	N	GENERIC		
+pos_self_order_pine_labs	EVIDENCE-ONLY	N	GENERIC		
+pos_self_order_qfpay	EVIDENCE-ONLY	N	GENERIC		
+pos_self_order_razorpay	EVIDENCE-ONLY	N	GENERIC		
+pos_self_order_sale	NEXT	N	GENERIC		
+pos_self_order_stripe	NEXT	N	GENERIC		
+pos_self_order_viva_com	NEXT	N	GENERIC		
+pos_sms	NEXT	N	GENERIC		
+pos_stripe	NEXT	N	GENERIC		
+pos_viva_com	NEXT	N	GENERIC		
+privacy_lookup	CURRENT	Y	GENERIC		
+product	CURRENT	Y	GENERIC		
+product_email_template	CURRENT	Y	GENERIC		
+product_expiry	CURRENT	Y	GENERIC		
+product_margin	CURRENT	Y	GENERIC		
+product_matrix	CURRENT	Y	GENERIC		
+project	CURRENT	Y	GENERIC		
+project_account	CURRENT	Y	GENERIC		
+project_hr_expense	CURRENT	Y	GENERIC		
+project_hr_skills	CURRENT	Y	GENERIC		
+project_mail_plugin	CURRENT	Y	GENERIC		
+project_mrp	CURRENT	Y	GENERIC		
+project_mrp_account	CURRENT	Y	GENERIC		
+project_mrp_sale	CURRENT	Y	GENERIC		
+project_mrp_stock_landed_costs	CURRENT	Y	GENERIC		
+project_purchase	CURRENT	Y	GENERIC		
+project_purchase_stock	CURRENT	Y	GENERIC		
+project_sale_expense	CURRENT	Y	GENERIC		
+project_sms	CURRENT	Y	GENERIC		
+project_stock	CURRENT	Y	GENERIC		
+project_stock_account	CURRENT	Y	GENERIC		
+project_stock_landed_costs	CURRENT	Y	GENERIC		
+project_timesheet_holidays	CURRENT	Y	GENERIC		
+project_todo	CURRENT	Y	GENERIC		
+purchase	CURRENT	Y	GENERIC		
+purchase_edi_ubl_bis3	CURRENT	Y	GENERIC		
+purchase_mrp	CURRENT	Y	GENERIC		
+purchase_product_matrix	CURRENT	Y	GENERIC		
+purchase_repair	CURRENT	Y	GENERIC		
+purchase_requisition	CURRENT	Y	GENERIC		
+purchase_requisition_sale	CURRENT	Y	GENERIC		
+purchase_requisition_stock	CURRENT	Y	GENERIC		
+purchase_stock	CURRENT	Y	GENERIC		
+rating	CURRENT	Y	GENERIC		
+repair	CURRENT	Y	GENERIC		
+resource	CURRENT	Y	GENERIC		
+resource_mail	CURRENT	Y	GENERIC		
+rpc	CURRENT	Y	GENERIC		
+sale	CURRENT	Y	GENERIC		
+sale_crm	CURRENT	Y	GENERIC		
+sale_edi_ubl	CURRENT	Y	GENERIC		
+sale_expense	CURRENT	Y	GENERIC		
+sale_expense_margin	CURRENT	Y	GENERIC		
+sale_gelato	CURRENT	Y	GENERIC		
+sale_gelato_stock	CURRENT	Y	GENERIC		
+sale_loyalty	CURRENT	Y	GENERIC		
+sale_loyalty_delivery	CURRENT	Y	GENERIC		
+sale_management	CURRENT	Y	GENERIC		
+sale_margin	CURRENT	Y	GENERIC		
+sale_mrp	CURRENT	Y	GENERIC		
+sale_mrp_margin	CURRENT	Y	GENERIC		
+sale_pdf_quote_builder	CURRENT	Y	GENERIC		
+sale_product_matrix	CURRENT	Y	GENERIC		
+sale_project	CURRENT	Y	GENERIC		
+sale_project_stock	CURRENT	Y	GENERIC		
+sale_project_stock_account	CURRENT	Y	GENERIC		
+sale_purchase	CURRENT	Y	GENERIC		
+sale_purchase_project	CURRENT	Y	GENERIC		
+sale_purchase_stock	CURRENT	Y	GENERIC		
+sale_service	CURRENT	Y	GENERIC		
+sale_sms	CURRENT	Y	GENERIC		
+sale_stock	CURRENT	Y	GENERIC		
+sale_stock_margin	CURRENT	Y	GENERIC		
+sale_stock_product_expiry	CURRENT	Y	GENERIC		
+sale_timesheet	CURRENT	Y	GENERIC		
+sale_timesheet_margin	CURRENT	Y	GENERIC		
+sales_team	CURRENT	Y	GENERIC		
+sms	CURRENT	Y	GENERIC		
+sms_twilio	CURRENT	Y	GENERIC		
+snailmail	CURRENT	Y	GENERIC		
+snailmail_account	CURRENT	Y	GENERIC		
+social_media	CURRENT	Y	GENERIC		
+spreadsheet	CURRENT	Y	GENERIC		
+spreadsheet_account	CURRENT	Y	GENERIC		
+spreadsheet_dashboard	CURRENT	Y	GENERIC		
+spreadsheet_dashboard_account	CURRENT	Y	GENERIC		
+spreadsheet_dashboard_event_sale	CURRENT	Y	GENERIC		
+spreadsheet_dashboard_hr_expense	CURRENT	Y	GENERIC		
+spreadsheet_dashboard_hr_timesheet	CURRENT	Y	GENERIC		
+spreadsheet_dashboard_im_livechat	CURRENT	Y	GENERIC		
+spreadsheet_dashboard_pos_hr	NEXT	N	GENERIC		
+spreadsheet_dashboard_pos_restaurant	NEXT	N	GENERIC		
+spreadsheet_dashboard_sale	CURRENT	Y	GENERIC		
+spreadsheet_dashboard_sale_timesheet	CURRENT	Y	GENERIC		
+spreadsheet_dashboard_stock_account	CURRENT	Y	GENERIC		
+spreadsheet_dashboard_website_sale	NEXT	N	GENERIC		
+spreadsheet_dashboard_website_sale_slides	NEXT	N	GENERIC		
+stock	CURRENT	Y	GENERIC		
+stock_account	CURRENT	Y	GENERIC		
+stock_delivery	CURRENT	Y	GENERIC		
+stock_dropshipping	CURRENT	Y	GENERIC		
+stock_fleet	CURRENT	Y	GENERIC		
+stock_landed_costs	CURRENT	Y	GENERIC		
+stock_maintenance	CURRENT	Y	GENERIC		
+stock_picking_batch	CURRENT	Y	GENERIC		
+stock_sms	CURRENT	Y	GENERIC		
+survey	CURRENT	Y	GENERIC		
+survey_crm	CURRENT	Y	GENERIC		
+test_access_rights	EVIDENCE-ONLY	Y	GENERIC		
+test_action_bindings	EVIDENCE-ONLY	Y	GENERIC		
+test_assetsbundle	EVIDENCE-ONLY	Y	GENERIC		
+test_auth_custom	EVIDENCE-ONLY	Y	GENERIC		
+test_base_automation	EVIDENCE-ONLY	Y	GENERIC		
+test_convert	EVIDENCE-ONLY	Y	GENERIC		
+test_converter	EVIDENCE-ONLY	Y	GENERIC		
+test_crm_full	EVIDENCE-ONLY	Y	GENERIC		
+test_data_module	EVIDENCE-ONLY	Y	GENERIC		
+test_data_module_install	EVIDENCE-ONLY	Y	GENERIC		
+test_discuss_full	EVIDENCE-ONLY	N	GENERIC		
+test_event_full	EVIDENCE-ONLY	N	GENERIC		
+test_html_field_history	EVIDENCE-ONLY	Y	GENERIC		
+test_http	EVIDENCE-ONLY	Y	GENERIC		
+test_import_export	EVIDENCE-ONLY	Y	GENERIC		
+test_inherit	EVIDENCE-ONLY	Y	GENERIC		
+test_inherit_depends	EVIDENCE-ONLY	Y	GENERIC		
+test_inherits	EVIDENCE-ONLY	Y	GENERIC		
+test_inherits_depends	EVIDENCE-ONLY	Y	GENERIC		
+test_lint	EVIDENCE-ONLY	Y	GENERIC		
+test_mail	EVIDENCE-ONLY	Y	GENERIC		
+test_mail_full	EVIDENCE-ONLY	N	GENERIC		
+test_mail_sms	EVIDENCE-ONLY	Y	GENERIC		
+test_main_flows	EVIDENCE-ONLY	Y	GENERIC		
+test_mass_mailing	EVIDENCE-ONLY	N	GENERIC		
+test_mimetypes	EVIDENCE-ONLY	Y	GENERIC		
+test_orm	EVIDENCE-ONLY	Y	GENERIC		
+test_read_group	EVIDENCE-ONLY	Y	GENERIC		
+test_resource	EVIDENCE-ONLY	Y	GENERIC		
+test_rpc	EVIDENCE-ONLY	Y	GENERIC		
+test_sale_product_configurators	EVIDENCE-ONLY	Y	GENERIC		
+test_sale_purchase_edi_ubl	EVIDENCE-ONLY	Y	GENERIC		
+test_search_panel	EVIDENCE-ONLY	Y	GENERIC		
+test_spreadsheet	EVIDENCE-ONLY	Y	GENERIC		
+test_testing_utilities	EVIDENCE-ONLY	Y	GENERIC		
+test_themes	EVIDENCE-ONLY	Y	GENERIC		
+test_translation_import	EVIDENCE-ONLY	Y	GENERIC		
+test_uninstall	EVIDENCE-ONLY	Y	GENERIC		
+test_website	EVIDENCE-ONLY	Y	GENERIC		
+test_website_modules	EVIDENCE-ONLY	N	GENERIC		
+test_website_slides_full	EVIDENCE-ONLY	N	GENERIC		
+theme_anelusia	CURRENT	Y	GENERIC		
+theme_artists	CURRENT	Y	GENERIC		
+theme_avantgarde	CURRENT	Y	GENERIC		
+theme_aviato	CURRENT	Y	GENERIC		
+theme_beauty	CURRENT	Y	GENERIC		
+theme_bewise	CURRENT	Y	GENERIC		
+theme_bistro	CURRENT	Y	GENERIC		
+theme_bookstore	CURRENT	Y	GENERIC		
+theme_buzzy	CURRENT	Y	GENERIC		
+theme_clean	CURRENT	Y	GENERIC		
+theme_cobalt	CURRENT	Y	GENERIC		
+theme_common	CURRENT	Y	GENERIC		
+theme_default	CURRENT	Y	GENERIC		
+theme_enark	CURRENT	Y	GENERIC		
+theme_graphene	CURRENT	Y	GENERIC		
+theme_kea	CURRENT	Y	GENERIC		
+theme_kiddo	CURRENT	Y	GENERIC		
+theme_loftspace	CURRENT	Y	GENERIC		
+theme_monglia	CURRENT	Y	GENERIC		
+theme_nano	CURRENT	Y	GENERIC		
+theme_notes	CURRENT	Y	GENERIC		
+theme_odoo_experts	CURRENT	Y	GENERIC		
+theme_orchid	CURRENT	Y	GENERIC		
+theme_paptic	CURRENT	Y	GENERIC		
+theme_real_estate	CURRENT	Y	GENERIC		
+theme_test_custo	EVIDENCE-ONLY	Y	GENERIC		
+theme_treehouse	CURRENT	Y	GENERIC		
+theme_vehicle	CURRENT	Y	GENERIC		
+theme_yes	CURRENT	Y	GENERIC		
+theme_zap	CURRENT	Y	GENERIC		
+transifex	CURRENT	Y	GENERIC		
+uom	CURRENT	Y	GENERIC		
+utm	CURRENT	Y	GENERIC		
+web	CURRENT	Y	GENERIC		
+web_hierarchy	CURRENT	Y	GENERIC		
+web_tour	CURRENT	Y	GENERIC		
+web_unsplash	CURRENT	Y	GENERIC		
+website	CURRENT	Y	GENERIC		
+website_blog	CURRENT	Y	GENERIC		
+website_cf_turnstile	CURRENT	N	GENERIC		
+website_crm	CURRENT	Y	GENERIC		
+website_crm_iap_reveal	CURRENT	Y	GENERIC		
+website_crm_livechat	CURRENT	Y	GENERIC		
+website_crm_partner_assign	CURRENT	Y	GENERIC		
+website_crm_sms	CURRENT	Y	GENERIC		
+website_customer	CURRENT	Y	GENERIC		
+website_event	NEXT	Y	GENERIC		
+website_event_booth	NEXT	Y	GENERIC		
+website_event_booth_exhibitor	NEXT	N	GENERIC		
+website_event_booth_sale	NEXT	N	GENERIC		
+website_event_booth_sale_exhibitor	NEXT	N	GENERIC		
+website_event_crm	NEXT	Y	GENERIC		
+website_event_exhibitor	NEXT	N	GENERIC		
+website_event_sale	NEXT	N	GENERIC		
+website_event_track	NEXT	N	GENERIC		
+website_event_track_live	NEXT	N	GENERIC		
+website_event_track_live_quiz	NEXT	N	GENERIC		
+website_event_track_quiz	NEXT	N	GENERIC		
+website_forum	CURRENT	Y	GENERIC		
+website_google_map	CURRENT	Y	GENERIC		
+website_hr_recruitment	CURRENT	Y	GENERIC		
+website_hr_recruitment_livechat	CURRENT	Y	GENERIC		
+website_links	CURRENT	Y	GENERIC		
+website_livechat	CURRENT	Y	GENERIC		
+website_mail	CURRENT	Y	GENERIC		
+website_mail_group	CURRENT	Y	GENERIC		
+website_mass_mailing	NEXT	Y	GENERIC		
+website_mass_mailing_sms	NEXT	Y	GENERIC		
+website_partner	CURRENT	Y	GENERIC		
+website_payment	CURRENT	Y	GENERIC		
+website_profile	CURRENT	Y	GENERIC		
+website_project	CURRENT	Y	GENERIC		
+website_sale	NEXT	N	GENERIC		
+website_sale_autocomplete	NEXT	N	GENERIC		
+website_sale_collect	NEXT	N	GENERIC		
+website_sale_collect_wishlist	NEXT	N	GENERIC		
+website_sale_comparison	NEXT	N	GENERIC		
+website_sale_comparison_wishlist	NEXT	N	GENERIC		
+website_sale_gelato	NEXT	N	GENERIC		
+website_sale_loyalty	NEXT	N	GENERIC		
+website_sale_mass_mailing	NEXT	N	GENERIC		
+website_sale_mondialrelay	EVIDENCE-ONLY	N	GENERIC		
+website_sale_mrp	NEXT	N	GENERIC		
+website_sale_slides	NEXT	N	GENERIC		
+website_sale_stock	NEXT	N	GENERIC		
+website_sale_stock_wishlist	NEXT	N	GENERIC		
+website_sale_wishlist	NEXT	N	GENERIC		
+website_slides	CURRENT	Y	GENERIC		
+website_slides_forum	CURRENT	N	GENERIC		
+website_slides_survey	CURRENT	Y	GENERIC		
+website_sms	CURRENT	Y	GENERIC		
+website_timesheet	CURRENT	Y	GENERIC		
