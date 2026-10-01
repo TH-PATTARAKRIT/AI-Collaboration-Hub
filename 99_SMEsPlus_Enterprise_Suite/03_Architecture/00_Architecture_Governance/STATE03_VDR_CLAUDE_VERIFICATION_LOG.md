@@ -89,6 +89,20 @@ Per Boss's "STATE03 Standing Instruction — Automatic Correction & Evidence Com
 
 Per Boss's "Accounting Localization Scope = Thailand Only" order (`STATE03_DEEP_STUDY_REGISTER.md` §3.15): `U13`'s nine-foreign-country "DISCOVERED SUPPORTING MODULES" list (`l10n_sa_edi`, `l10n_es_edi_sii`, `l10n_eg_edi_eta`, `l10n_pl_edi`, `l10n_dk_nemhandel`, `l10n_tr_nilvera`, `l10n_fr_pdp`, `l10n_hr_edi`, `l10n_it_edi`) is reclassified `FOREIGN LOCALIZATION / OUT OF SMEsPlus BUSINESS SCOPE` — DeepSeek itself only found these by grep and did not open them beyond that, so no rule-level research exists to strike; nothing else in evidence collected to date touches a non-Thai jurisdiction's accounting rules. Not counted toward the Applicable SMEsPlus denominator. Posted to PR #74 so DeepSeek applies the Thailand-only filter prospectively to any future accounting/localization boundary.
 
+## 8.3 Third wave (2026-10-02) — U14, U15, C02 (branch advanced `8e6535e8` → `a793d15b`)
+
+Mechanical integrity: all 3 boundaries' Restricted + Neutral files hash-match at their own declared content commits (6/6 real files MATCH; the only "MISMATCH" lines are the known harmless counts-table grep artifact, same as every prior run).
+
+| Boundary | Scope | Claims | Contradictions | C1-bound | Status |
+|---|---|---|---|---|---|
+| U14 | Manufacturing core (mrp: BoM, work centers, MO lifecycle, reservation, backorders, scrap/unbuild, replenishment) | 536 | **8** | 27 (`BRP-F01`, `BRP-F03`, `BRP-F08`, `MFG-F01`, `MFG-F02`) | Mechanical only — queued, **flagged §8.4 below** |
+| U15 | Manufacturing accounting, subcontracting, landed costs on MO, repair | 355 | 5 | **168** (`BRP-F01`, `BRP-F03`, `BRP-F08`, `GRV-F05`, `MFG-F01`, `MFG-F02`) | Mechanical only — queued, **flagged §8.4 below, 2nd-highest C1 count of the whole program to date** |
+| C02 | Procure-to-Pay end-to-end chain (RFQ→receipt→bill→payment) + consistency audit of U06/U07/U08/U10/U11/U12 | 310 | 6 | 62 (`GRV-F04/05/06`, `PCO-F01/03/04`, `PDT-F02/03`, `RCN-F03`) | Mechanical only — queued, **joint top priority with C01/U10 — DeepSeek's own notification states "correction requests to follow"** |
+
+## 8.4 Material Delta flag — U14/U15 contradict already-"Complete" canonical Gx7/M1 entries
+
+`U14` (8 contradictions: `VDR-U14-C002/C037/C077/C469/C470/C471/C493/C499`) and `U15` (5 contradictions: `VDR-U15-C020/C046/C052/C068/C084`) both bind claims to Function-IDs this register's own `STATE03_DEEP_STUDY_REGISTER.md` §2/§2.2 already records as **Research status: Complete** — `MFG-F01`, `MFG-F02` (Gx7, Manufacturing Valuation Pilot) and `BRP-F01`, `BRP-F03`, `BRP-F08` (M1, Manufacturing BOM Routing Pilot). This is the same shape of finding as the existing valuation-timing cross-Gx contradiction thread (`STATE03_VALUATION_TIMING_CROSS_GX_CONTRADICTION_MATRIX.md`): **not yet semantically reviewed by this session** (contradiction claim rows not yet read), so no status change is made to any Gx7/M1 Function-ID here — flagged only, per the §3.13 Standing Instruction's priority-escalation rule for material contradiction. Queued as joint top priority alongside `C01`/`C02`/`U10` for the next semantic-review pass. `BRP-F08` (By-Products) is already an **Open/Conditional** gap (`GAP-BRP-09`) even before this — these new contradictions may bear directly on closing or further complicating it.
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
