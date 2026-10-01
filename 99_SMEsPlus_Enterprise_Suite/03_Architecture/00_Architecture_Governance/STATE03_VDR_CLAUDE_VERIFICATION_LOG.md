@@ -117,6 +117,16 @@ Mechanical integrity: all 3 boundaries' Restricted + Neutral files hash-match at
 
 **Still open, not yet resolved by DeepSeek** (per `CORRECTION_REQUESTS.md`): `CR-013` (U06-R1), `CR-014` (U07-R2), `CR-015` (U10-R3) — marked `IN PROGRESS (worker)`; `CR-016` — runtime items correctly routed straight to `06_AWT_BACKLOG/` rather than treated as corrections, per the Standing Instruction's "DeepSeek must not infer runtime behavior" rule.
 
+## 11. Scope-rule mechanical application + localization-architecture research started (2026-10-02)
+
+DeepSeek applied the Thailand-only scope rule mechanically across the full 692-module source population (`SCOPE_CLASSIFICATION_THAILAND_ONLY_692.tsv`, `FOREIGN_LOCALIZATION_EVIDENCE_QUARANTINE.tsv`, commits `3b0d7774`/`ae5a19d3`): 1 Thailand (`l10n_th`), 461 generic, 3 generic l10n-prefixed mechanisms, 227 foreign localization — all evidence-only, none installed/current-phase, so no change to any current-phase module population. 5 preserved claims pointing into foreign modules re-labelled, not deleted. Then re-labelled, per §3.17, to `FUTURE OPTIONAL COUNTRY PACK` (`SCOPE_CLASSIFICATION_V2_COUNTRY_PACKS_692.tsv`, `COUNTRY_PACK_BOUNDARY_PROFILE_227.tsv`, commit `6ecd29c6`) — old files preserved, v2 added, lineage intact. **Not independently re-verified in detail this round** (bulk mechanical classification of 692 rows is exactly the kind of work the §3.12 cost rule reserves for DeepSeek, not Sonnet-bulk-reading) — spot-check queued if a specific row is later disputed.
+
+New boundaries started under the Approved Scope Delta: `U24` (Thailand localization), `U25` (multi-currency & international transactions), `U26` (language/translation mechanism — UI language vs. statutory-document presentation), `U27` (localization-framework architecture — "neutral CANDIDATE sketch only," per DeepSeek's own wording, consistent with this session's §3.17 reading that this is evidence/neutral-knowledge research, not Functional Design), `U28` (Thai entity structures — foreign-owned Thai companies, subsidiaries of foreign groups, foreign branches/representative/regional offices). None yet received as completed Atomic Handoffs — queued.
+
+**Two open items flagged to Boss (not decided by this session)**:
+1. Does the Thailand-only scope rule extend to non-`l10n_`-prefixed region-specific modules (the Peppol e-invoicing family, SEPA QR, country-specific payment gateways already seen in `U20`)? DeepSeek flagged this itself, unresolved.
+2. **DeepSeek's own disclosed limit, important**: Thai statutory/legal requirements (actual Thai Revenue Department VAT/WHT rules, statutory document requirements) are explicitly **not asserted** — DeepSeek can only read how Odoo's `l10n_th` *implements* a given rule in code, not independently confirm that implementation is correct against actual Thai law. Status `UNKNOWN — STATUTORY SOURCE REQUIRED` until Boss/PMO supplies an authoritative source. This is a genuine evidence-tier ceiling, not a research gap DeepSeek can close by reading more source.
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
