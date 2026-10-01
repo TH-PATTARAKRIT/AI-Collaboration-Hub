@@ -1,0 +1,11 @@
+Boundary	foreign_l10n_modules_mentioned_in_text
+U05	l10n_ec_sale;l10n_in_sale;l10n_it_edi_doi;l10n_it_edi_sale;l10n_tw_edi_ecpay_website_sale
+U10	l10n_de;l10n_mx;l10n_nl
+U11	l10n_fr_pos_cert;l10n_my_edi;l10n_vn_edi_viettel
+U12	l10n_ar_withholding;l10n_latam_check
+U13	l10n_dk_nemhandel;l10n_eg_edi_eta;l10n_es_edi_sii;l10n_fr_pdp;l10n_hr_edi;l10n_it_edi;l10n_pl_edi;l10n_sa_edi;l10n_sa_edi_pos;l10n_tr_nilvera
+U15	l10n_din5008_repair
+U16	l10n_din5008_expense;l10n_fr_account
+U21	l10n_es_edi_facturae;l10n_es_edi_sii;l10n_es_edi_tbai;l10n_es_edi_verifactu;l10n_pl_edi;l10n_sa_edi
+U22	l10n_it_edi
+U23	l10n_co;l10n_ec;l10n_hu_edi;l10n_in;l10n_it_edi;l10n_kh;l10n_latam_invoice_document;l10n_lk;l10n_pe;l10n_ph;l10n_sa;l10n_sa_withholding_tax
