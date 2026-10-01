@@ -26,3 +26,4 @@ RV-024	U23	VDR-U23-C495;VDR-U23-C507	ACCEPTED	auto_install true; module uninstal
 RV-025	U23	VDR-U23-C180	ACCEPTED	raw SQL deletes tag relations (source read)	Claude Code (harness, spot-check; not independent)
 RV-026	U23	VDR-U23-C221;VDR-U23-C222;VDR-U23-C224	ACCEPTED	ldap:// URI with optional StartTLS (source read)	Claude Code (harness, spot-check; not independent)
 RV-027	C01	VDR-C01-C100;VDR-C01-C239	ACCEPTED	return rule extended to sale-linked transfers (source read) — finding F01 CONFIRMED	Claude Code (harness, spot-check; not independent)
+RV-028	TXS	S02-02;S01-01	ACCEPTED	VAT reduced-rate decree reproduced from the Gazette PDF (pages read as images); Sec. 80 text read on rd.go.th	Claude Code (harness, spot-check; not independent)
