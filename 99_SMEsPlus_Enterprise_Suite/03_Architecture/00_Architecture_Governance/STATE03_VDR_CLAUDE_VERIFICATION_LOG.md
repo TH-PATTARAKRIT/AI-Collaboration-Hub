@@ -127,6 +127,41 @@ New boundaries started under the Approved Scope Delta: `U24` (Thailand localizat
 1. Does the Thailand-only scope rule extend to non-`l10n_`-prefixed region-specific modules (the Peppol e-invoicing family, SEPA QR, country-specific payment gateways already seen in `U20`)? DeepSeek flagged this itself, unresolved.
 2. **DeepSeek's own disclosed limit, important**: Thai statutory/legal requirements (actual Thai Revenue Department VAT/WHT rules, statutory document requirements) are explicitly **not asserted** — DeepSeek can only read how Odoo's `l10n_th` *implements* a given rule in code, not independently confirm that implementation is correct against actual Thai law. Status `UNKNOWN — STATUTORY SOURCE REQUIRED` until Boss/PMO supplies an authoritative source. This is a genuine evidence-tier ceiling, not a research gap DeepSeek can close by reading more source.
 
+## 12. Correction Closure Matrix (16 requests → 10 resolution packets), per Boss order item 6
+
+Every correction request raised in `CORRECTION_REQUISITS.md` (16 total, `CR-001`–`CR-016`) carries an explicit disposition below — none left unaccounted.
+
+| CR | Priority | Boundary | Subject | Resolution packet | Disposition | This session's classification |
+|---|---|---|---|---|---|---|
+| CR-001 | Material | U08 | Return eligibility (done vs. sale-linked) | U08-R1 | PROCESSED | `ACCEPTED` (full read, §10) |
+| CR-002 | Material | U11 | `in_payment` state reachability | U11-R1 | PROCESSED | `ACCEPTED` (full read, §10) |
+| CR-003 | Normal | U12 | Enabled-provider row ownership | U12-R1 | PROCESSED | `ACCEPTED` (metadata-level, §10) |
+| CR-004 | C1 | U10 | COGS-timing hook map (inert hooks) | U10-R1 | PROCESSED | `ACCEPTED` (full read, §10) |
+| CR-005 | Material | U11 | Invoice-cancel effect on settling payments | U11-R1 | PROCESSED (same packet as CR-002) | `ACCEPTED` (full read, §10) |
+| CR-006 | Normal | U04 | Order-line margin cost-source branch | U04-R1 | PROCESSED | `ACCEPTED` (metadata-level, §10) |
+| CR-007 | C1 | C01 | Reservation timing at order confirmation | C01-R1 | PROCESSED | `ACCEPTED` (metadata-level, §10) — additive research (`NEEDS_MORE_EVIDENCE` closed), not a correction of an error |
+| CR-008 | C1 | U10 | Lock-date posting shift vs. refusal | U10-R2 | PROCESSED | `ACCEPTED` (full read, §10) — cross-referenced to `GAP-PCO-01`, see §13 |
+| CR-009 | Material | U07 | Inert receipt/return extension methods; bill-reset valuation | U07-R1 | PROCESSED | `ACCEPTED` (metadata-level, §10) |
+| CR-010 | C1 | C01/U08/U11 | Transfer date-done lock-period cross-reference gap | C01-R1 | PROCESSED (same packet as CR-007) | `ACCEPTED` (metadata-level, §10) |
+| CR-011 | Material | B01 | Control-document wording (valuation-flag/chart-count) | B01-R1 | PROCESSED | `ACCEPTED` (metadata-level, §10); self-disclosed lineage note (pre-standing-instruction in-place edits) accepted as-is |
+| CR-012 | Normal | B02 | Control-document theme-row wording | B02-R1 | PROCESSED | `ACCEPTED` (metadata-level, §10) |
+| CR-013 | Normal | U06 | Bill-creation entry points, posting role, vendor-price-lookup ownership | U06-R1 | **IN PROGRESS (worker)** | Not yet resolvable — no packet to verify |
+| CR-014 | Normal | U07 | Double-negative condition; lot-to-PO link | U07-R2 | **IN PROGRESS (worker)** | Not yet resolvable — no packet to verify |
+| CR-015 | C1 | U10 | Accrued-orders wizard (PCO-F03 accrual half) | U10-R3 | **IN PROGRESS (worker)** | Not yet resolvable — no packet to verify; highest-priority of the three still open (C1, ties to the existing period-cutoff accrual thread) |
+| CR-016 | Material | multi | Runtime-only items from cross-unit audits | — (routed, not a correction) | **RECORDED IN AWT BACKLOG** | Correctly routed — DeepSeek did not infer runtime behavior, per the Standing Instruction's item 7 rule |
+
+**Count check**: 16 requests → 10 distinct resolution packets (`B01-R1`, `B02-R1`, `C01-R1`, `U04-R1`, `U07-R1`, `U08-R1`, `U10-R1`, `U10-R2`, `U11-R1`, `U12-R1` — two packets each resolve two CRs: `C01-R1` for CR-007/CR-010, `U11-R1` for CR-002/CR-005) + 3 still in progress + 1 routed to AWT = 16/16 accounted for, matching Boss's required closure-matrix shape exactly.
+
+## 13. GAP-PCO-01 reclassification (per Boss order item 5)
+
+Per explicit Boss instruction, `GAP-PCO-01`'s lock-date dimension is reclassified along three separate axes (replacing a single blended status with one that keeps evidence-tier, runtime-tier, and gap-open/closed status visually distinct — applied to `PERIOD_CUTOFF_VALIDATION_PILOT/22_UNKNOWN_AND_GAPS.md` and cross-referenced here):
+
+- **SOURCE/DUMP = INDEPENDENTLY CORROBORATED** — the lock-date date-shift mechanism (posting inside a locked period moves the date to the first open date rather than refusing it) is now static-evidence-confirmed from **two separate research lineages** (the 2026-09-30 source/dump worker, and 2026-10-02 DeepSeek `U10-R2`) reaching the same conclusion independently. This is a genuine strengthening of the evidence tier for this specific sub-finding.
+- **RUNTIME/AWT = UNVERIFIED** — neither lineage has executed against a live/restored-and-running Odoo 19 instance; the exact date chosen per lock type, its effect on sequence numbering, and period-report interaction remain unconfirmed (`CR-016`/AWT backlog carries this item).
+- **GAP = OPEN** — `GAP-PCO-01` is **not closed**. `bypass_lock_check`'s reachability/exposure, `account_accountant`'s actual installed/active state, the `account_update_tax_tags` lead, and the custom-module audit-trail bypasses (`account_asset_management`, `scgl_advance_expense_request`) remain `UNKNOWN — EVIDENCE INSUFFICIENT` exactly as before — this reclassification narrows and strengthens one sub-finding within the gap, it does not resolve the gap as a whole.
+
+This three-axis format is **more precise than, and supersedes the blending in, the single `Material Finding — Independently Unverified` label** previously used for the lock-date sub-finding specifically — it does not change the status of the broader valuation-timing chain (`GRV-F04`/`SDV-F05`/`IAV-F03`/`PCO-F03`), which remains `Material Finding — Independently Unverified` pending `CHATGPT_AUDIT` exactly as Boss ruled 2026-09-29.
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
