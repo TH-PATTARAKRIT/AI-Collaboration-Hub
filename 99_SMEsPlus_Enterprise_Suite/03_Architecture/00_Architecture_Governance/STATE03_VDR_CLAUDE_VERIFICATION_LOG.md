@@ -85,6 +85,10 @@ Per Boss's "STATE03 Standing Instruction — Automatic Correction & Evidence Com
 
 **Updated risk order**: `C01` (7 contradictions, cross-cutting O2C chain) and `U10` (140 C1-bound claims, 7 contradictions) are now joint top priority → `U21` (security-adjacent, 2 contradictions) → `U11` (77 C1) → `U07` (72 C1) → `U03` (59 C1) → `U09` (24 C1) → remainder by contradiction/RT count. `U16`/`U17`/`U18`/`U22`/`U23` have no contradictions or C1-bound claims flagged at the packet-summary level and are lower priority pending their own semantic pass.
 
+## 8.2 Scope ruling (2026-10-02) — accounting localization = Thailand only
+
+Per Boss's "Accounting Localization Scope = Thailand Only" order (`STATE03_DEEP_STUDY_REGISTER.md` §3.15): `U13`'s nine-foreign-country "DISCOVERED SUPPORTING MODULES" list (`l10n_sa_edi`, `l10n_es_edi_sii`, `l10n_eg_edi_eta`, `l10n_pl_edi`, `l10n_dk_nemhandel`, `l10n_tr_nilvera`, `l10n_fr_pdp`, `l10n_hr_edi`, `l10n_it_edi`) is reclassified `FOREIGN LOCALIZATION / OUT OF SMEsPlus BUSINESS SCOPE` — DeepSeek itself only found these by grep and did not open them beyond that, so no rule-level research exists to strike; nothing else in evidence collected to date touches a non-Thai jurisdiction's accounting rules. Not counted toward the Applicable SMEsPlus denominator. Posted to PR #74 so DeepSeek applies the Thailand-only filter prospectively to any future accounting/localization boundary.
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
