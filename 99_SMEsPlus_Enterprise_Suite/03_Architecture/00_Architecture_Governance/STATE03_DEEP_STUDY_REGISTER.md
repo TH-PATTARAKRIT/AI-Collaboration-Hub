@@ -363,6 +363,19 @@ Boss ruled: **accounting-localization research scope is Thailand only.** Full L0
 
 `ACCOUNTING LOCALIZATION SCOPE = THAILAND ONLY` · `FOREIGN LOCALIZATION MODULES = OUT OF SMEsPlus BUSINESS SCOPE, NOT IN DENOMINATOR` · `EXISTING EVIDENCE = PRESERVED, RECLASSIFIED, NOT DELETED` · `BOSS = SOLE FINAL APPROVER`
 
+### 3.16 Scope and language correction (2026-10-02, Boss order "Scope and Language Correction") — clarifies §3.15, does not reverse it
+
+Boss issued a clarifying correction to §3.15, drawing a line §3.15's own wording already implied but did not spell out explicitly — recorded here so it is not misread (by this session, by DeepSeek reading PR #74, or by any later stage):
+
+- **In scope, generic cross-border transaction capability (not "foreign localization")**: multi-currency, foreign customer/vendor master data and transactions, and international transactions generally are **applicable / in scope** — these are generic Odoo Community engine capabilities (the currency/rounding, partner, and cross-border-transaction mechanics already named in §3.15's "generic core" clause), not country-specific accounting-rule localization. §3.15's restriction was always aimed at *foreign-country localization modules* (`l10n_xx` chart-of-accounts/tax-rule packages for other jurisdictions) — not at the generic engine's ability to transact in other currencies or with foreign counterparties. **No evidence collected so far was mis-scoped under this distinction** (nothing has yet been excluded as "foreign" that should have been in scope); this is a proactive clarification, not a correction of an error.
+- **Thailand accounting localization**: in scope (unchanged from §3.15).
+- **Non-Thai accounting localization**: out of business scope (unchanged from §3.15).
+- **System language/i18n architecture principle (forward-looking, for FDS/build stages — not acted on in STATE03 itself, which does not produce Functional Design per §3.12)**: canonical and default system language is **English (en_US)**; Thai (`th_TH`) is to be implemented as a **translation layer using stable translation keys** — Thai UI text must never be hard-coded into source. Recorded here for continuity into whichever later stage designs the i18n architecture; no action taken in STATE03 research itself (no code is written at this stage).
+
+**Relay**: posted to PR #74 so DeepSeek's forward research treats multi-currency/foreign-partner/international-transaction capability as in-scope generic-engine research, distinct from the still-excluded foreign-localization-module category.
+
+`MULTI-CURRENCY = IN SCOPE` · `FOREIGN CUSTOMER/VENDOR = IN SCOPE` · `INTERNATIONAL TRANSACTION = IN SCOPE` · `THAILAND LOCALIZATION = IN SCOPE` · `NON-THAI LOCALIZATION = OUT OF SCOPE` · `DEFAULT LANGUAGE = EN_US, THAI = TRANSLATION LAYER (KEYS, NOT HARD-CODED)` · `BOSS = SOLE FINAL APPROVER`
+
 ## 4. Cross-references
 
 - Carry-forward/re-audit matrices: `TEAM_A/06_DOMAIN_RESEARCH/GOODS_RECEIPT_VALIDATION_PILOT/BASELINE_CARRY_FORWARD.md`, `TEAM_A/06_DOMAIN_RESEARCH/SALES_DELIVERY_VALIDATION_PILOT/BASELINE_CARRY_FORWARD.md`
