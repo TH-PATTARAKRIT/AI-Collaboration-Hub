@@ -1,6 +1,6 @@
 # Correction packet SCOPE-R1 — country-pack boundary profile (controller's mechanical file)
 
-> **DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION.** Request CR-018 · CORRECTION_REQUIRED · Normal (denominator-adjacent, so reviewer attention requested) · raised by unit U27's recount (content `c0…` see packet HP_U27) · original: `00_CONTROL/COUNTRY_PACK_BOUNDARY_PROFILE_227.tsv`, `SCOPE_CLASSIFICATION_V2_COUNTRY_PACKS_692.tsv`, scope-rule Correction 3 and its PR notification (commit `6ecd29c6`). Originals unchanged.
+> **DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION.** Request CR-018 · CORRECTION_REQUIRED · Normal (denominator-adjacent, so reviewer attention requested) · raised by unit U27's recount (U27 content `e357e8f2`, packet HP_U27 `9626de5b`) · original: `00_CONTROL/COUNTRY_PACK_BOUNDARY_PROFILE_227.tsv`, `SCOPE_CLASSIFICATION_V2_COUNTRY_PACKS_692.tsv`, scope-rule Correction 3 and its PR notification (commit `6ecd29c6`). Originals unchanged.
 
 | Superseded statement / column | Status | Corrected value (source) | Basis |
 |---|---|---|---|
