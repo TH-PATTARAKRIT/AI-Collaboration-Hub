@@ -1,0 +1,52 @@
+{
+  "unit_id": "U111",
+  "title": "account_budget — budget control",
+  "priority": "P2",
+  "research_date": "2026-10-02",
+  "researcher": "Claude Sonnet 4.6 (third-pass deep research agent)",
+  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+
+  "module_presence": {
+    "present_in_community_19": false,
+    "determination_method": "direct filesystem check",
+    "addons_path": "odoo-19.0.post20260921/odoo/addons",
+    "total_modules_checked": 693,
+    "budget_modules_found": 0,
+    "classification": "Enterprise-only in Odoo 19"
+  },
+
+  "claims_summary": {
+    "total_claims": 5,
+    "c1_source_proven": 5,
+    "awt_runtime_needed": 0,
+    "classes_used": ["GUARD", "ASSIGN"]
+  },
+
+  "output_files": {
+    "restricted_evidence": "01_RESTRICTED_TECHNICAL_EVIDENCE/U111_account_budget.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U111_account_budget_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U111_handoff_packet.json"
+  },
+
+  "scope_findings": {
+    "crossovered_budget_model": "ABSENT",
+    "budget_line_model": "ABSENT",
+    "account_budget_post_positions": "ABSENT",
+    "planned_vs_actual_comparison": "ABSENT",
+    "fiscal_year_date_range_handling": "ABSENT"
+  },
+
+  "migration_implication": "Budget control must be sourced from Enterprise or third-party; Community 19 source tree cannot provide this feature area",
+
+  "gate_check": {
+    "todo_tbd_fabricat_empty": 0,
+    "neutral_leak_tokens": 0,
+    "result": "PASS"
+  },
+
+  "next_steps": [
+    "Confirm with Enterprise team whether account_budget is present in OEEL-1 source",
+    "If customer requires budget control on Community: evaluate OCA account_budget community module",
+    "Mark U111 as Enterprise-boundary item in migration gap register"
+  ]
+}
