@@ -1,0 +1,96 @@
+{
+  "unit": "U176",
+  "title": "pos.payment.method — POS Payment Method Types, Session Close Accounting L3",
+  "gap_id": "G11",
+  "priority": "P1",
+  "status": "GATE-PASS",
+  "marker": "CLAUDE-VERIFIED / SOURCE-READ",
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "research_agent": "Claude Sonnet 4.6 (third-pass deep research)",
+  "research_date": "2026-10-02",
+  "module_path": "addons/point_of_sale",
+  "claim_count": 30,
+  "modules_covered": [
+    "point_of_sale",
+    "l10n_th"
+  ],
+  "files_researched": [
+    "addons/point_of_sale/models/pos_payment_method.py",
+    "addons/point_of_sale/models/pos_payment.py",
+    "addons/point_of_sale/models/pos_session.py",
+    "addons/point_of_sale/models/account_bank_statement.py",
+    "addons/l10n_th/__manifest__.py",
+    "addons/l10n_th/models/res_bank.py"
+  ],
+  "models_introduced": [],
+  "models_extended": [
+    "pos.payment.method",
+    "pos.payment",
+    "pos.session",
+    "account.bank.statement.line",
+    "res.partner.bank"
+  ],
+  "key_findings": {
+    "type_field": "computed from journal_id.type: cash/bank=journal type, else=pay_later",
+    "terminal_selection_community": "_get_payment_terminal_selection() returns [] — no terminals in Community",
+    "qr_code_support": "payment_method_type='qr_code' with bank journal + bank_account_id; uses res.partner.bank.build_qr_code_base64()",
+    "session_statement_id": "DOES NOT EXIST — pos.session has statement_line_ids (One2many) not statement_id; each line has pos_session_id M2O back-link",
+    "cash_close_path": "account.bank.statement.line per payment in cash journal; counterpart = POS intermediary receivable or customer receivable (split)",
+    "bank_close_path": "account.payment per payment_method (combine) or per payment+partner (split); outstanding_account_id → receivable_account",
+    "get_receivable_account": "payment_method.receivable_account_id OR company.account_default_pos_receivable_account_id",
+    "cash_difference": "_post_statement_difference() → journal.profit_account_id (surplus) or journal.loss_account_id (shortfall)",
+    "split_transactions": "field labelled 'Identify Customer'; splits journal entries per customer; cash=statement line per partner; bank=account.payment per partner",
+    "pay_later_path": "receivable lines in move_id only; no statement lines, no account.payment; excluded for invoiced orders",
+    "thai_l10n_pos_interaction": "l10n_th does NOT extend pos.payment.method; Thai QR works through standard qr_code type + Thai bank account proxy (ewallet_id/merchant_tax_id/mobile)",
+    "write_guard": "all fields except sequence are locked when open_session_ids is non-empty"
+  },
+  "awt_items": [
+    {
+      "id": "AWT-U176-01",
+      "description": "Verify runtime QR code generation in POS session: confirm get_qr_code() is called from the OWL frontend at payment time and the generated base64 QR is displayed to the customer",
+      "reason": "QR display and polling logic is in JavaScript/OWL layer; Python source only covers server-side generation"
+    },
+    {
+      "id": "AWT-U176-02",
+      "description": "Verify cash difference posting at session close: confirm profit/loss statement line appears in the accounting journal entry and reconciles correctly against the cash register",
+      "reason": "Profit/loss account assignment depends on journal configuration; runtime reconciliation requires a live session test"
+    }
+  ],
+  "output_files": {
+    "vdr_claims": "01_RESTRICTED_TECHNICAL_EVIDENCE/U176_pos_payment_method.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U176_pos_payment_method_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U176_handoff_packet.json"
+  },
+  "function_ids": [
+    "SCHEMA-PM-TYPE-COMPUTE: type computed from journal_id.type cash/bank/pay_later",
+    "SCHEMA-PM-JOURNAL: journal_id cash or bank only; auto-set outstanding on bank select",
+    "SCHEMA-PM-COMPANY: company_id default env.company; config company constraint",
+    "SCHEMA-PM-OUTSTANDING: outstanding_account_id bank transit account ondelete=restrict",
+    "SCHEMA-PM-RECEIVABLE: receivable_account_id optional intermediary override reconcilable receivable",
+    "SCHEMA-PM-SPLIT: split_transactions Identify Customer per-customer journal entries",
+    "SCHEMA-PM-IS-CASH: is_cash_count stored compute type==cash",
+    "GUARD-PM-CASH-SINGLE-SHOP: one cash method per pos.config constraint",
+    "GUARD-PM-WRITE-OPEN-SESSION: all fields except sequence locked during open session",
+    "SCHEMA-PM-TERMINAL: use_payment_terminal Selection empty in Community",
+    "SCHEMA-PM-QR: payment_method_type none/terminal/qr_code; qr_code requires bank+bank_account",
+    "FLOW-PM-QR-GENERATE: get_qr_code delegates to bank_account_id.build_qr_code_base64",
+    "SCHEMA-PAYMENT-FIELDS: pos_order_id+amount+payment_method_id+payment_date+session_id+is_change",
+    "SCHEMA-PAYMENT-CARD-FIELDS: card_type/brand/no/cardholder/ref_no/authcode/issuer/mode/txn_id/status/ticket",
+    "SCHEMA-PAYMENT-ACCOUNT-MOVE: account_move_id M2O btree_not_null for split invoiced payments",
+    "FLOW-SESSION-CLOSE-ENTRY: _create_account_move creates session move in config journal",
+    "FLOW-ACCUMULATE-AMOUNTS: 6 buckets split/combine x cash/bank/pay_later",
+    "FLOW-CASH-STATEMENT-LINES: account.bank.statement.line per cash payment; counterpart=intermediary or customer receivable",
+    "FLOW-BANK-PAYMENT-MOVES: account.payment combine=per-method+outstanding; split=per-partner+customer receivable",
+    "FLOW-GET-RECEIVABLE-ACCOUNT: payment_method.receivable_account_id or company default POS receivable",
+    "FLOW-VALIDATE-SESSION: orchestrates close: accumulate→create entries→post difference→post move→reconcile",
+    "FLOW-CASH-DIFFERENCE: _post_statement_difference profit_account_id or loss_account_id",
+    "FLOW-CASH-DIFFERENCE-REGISTER: cash_register_difference = balance_end_real - balance_end",
+    "FLOW-RECONCILE-LINES: _reconcile_plan cash statement+receivable; bank payment+receivable; invoice receivable pairs",
+    "ARCH-SESSION-STATEMENT-LINES: no statement_id on session; account.bank.statement.line has pos_session_id M2O",
+    "ARCH-PAY-LATER: receivable lines only; no statement; no account.payment; invoiced excluded",
+    "ARCH-BANK-DIFF-SPLIT-PM: split bank methods get separate diff move at close",
+    "ARCH-THAI-QR-LOCALIZATION: l10n_th extends res.partner.bank for PromptPay EMV QR tag 29 THB-only",
+    "ARCH-THAI-L10N-NO-POS-EXTEND: l10n_th depends account only; no pos.payment.method extension",
+    "FLOW-ACTION-CLOSING-CONTROL: state→closing_control; no-cash-control→skip to close; rescue→total cash; validate"
+  ]
+}

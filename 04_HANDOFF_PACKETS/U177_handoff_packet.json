@@ -1,0 +1,74 @@
+{
+  "unit": "U177",
+  "title": "pos_loyalty — Loyalty Program and Coupon Integration with POS",
+  "priority": "P2",
+  "group": "G11",
+  "status": "GATE-PASS",
+  "marker": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "research_agent": "Claude Sonnet 4.6 (STATE03 VDR worker)",
+  "research_date": "2026-10-02",
+  "module_path": "addons/pos_loyalty",
+  "claim_count": 28,
+  "modules_covered": [
+    "pos_loyalty",
+    "loyalty",
+    "point_of_sale"
+  ],
+  "files_researched": [
+    "addons/pos_loyalty/__manifest__.py",
+    "addons/pos_loyalty/models/loyalty_program.py",
+    "addons/pos_loyalty/models/loyalty_card.py",
+    "addons/pos_loyalty/models/loyalty_reward.py",
+    "addons/pos_loyalty/models/loyalty_rule.py",
+    "addons/pos_loyalty/models/pos_order.py",
+    "addons/pos_loyalty/models/pos_order_line.py",
+    "addons/pos_loyalty/models/pos_config.py",
+    "addons/pos_loyalty/models/pos_session.py",
+    "addons/pos_loyalty/models/res_partner.py",
+    "addons/loyalty/models/loyalty_program.py",
+    "addons/sale_loyalty/models/loyalty_program.py"
+  ],
+  "models_introduced": [],
+  "models_extended": [
+    "loyalty.program",
+    "loyalty.card",
+    "loyalty.reward",
+    "loyalty.rule",
+    "pos.order",
+    "pos.order.line",
+    "pos.config",
+    "pos.session",
+    "res.partner"
+  ],
+  "key_findings": {
+    "module_auto_install": true,
+    "dependencies": ["loyalty", "point_of_sale"],
+    "trigger_values": ["auto", "with_code"],
+    "program_type_values": ["coupons", "gift_card", "loyalty", "promotion", "ewallet", "promo_code", "buy_x_get_y", "next_order_coupons"],
+    "shared_model_with_sale_loyalty": "Both pos_loyalty and sale_loyalty inherit from the same loyalty.program in the loyalty base module — single shared table",
+    "program_filter_conditions": ["pos_ok=True", "pos_config_ids match or global", "date_from/to", "pricelist match or unset", "currency_id match", "usage limit"],
+    "loyalty_card_load_at_session": false,
+    "loyalty_card_load_method": "on-demand via use_coupon_code and get_gift_card_status",
+    "point_accumulation_method": "confirm_coupon_programs() after order write",
+    "duplicate_card_prevention": "_check_existing_loyalty_cards merges onto existing card for same partner+program",
+    "reward_unlink_guard": "archives instead of deletes when pos.order.line references exist",
+    "gift_card_session_validation": ["exactly 1 rule", "1 point per currency", "exactly 1 reward", "1 currency per point discount", "mail_template_id required", "pos_report_print_id required"],
+    "nominative_coupon_updates_returned": true,
+    "portal_visible_loaded_to_pos": true,
+    "company_scope": "company_id on base loyalty.program; pos_loyalty enforces currency_id match",
+    "ilike_rewrite": "reward_product_domain ilike conditions rewritten to 'in' with pre-resolved IDs for POS JS"
+  },
+  "awt_items": [
+    {
+      "id": "AWT-U177-01",
+      "description": "Verify POS JavaScript/OWL implementation of reward application: how _get_reward_line_values equivalent logic works client-side for discount and product rewards",
+      "reason": "Reward line creation at POS is handled in JavaScript — the Python layer does not have a _get_reward_line_values method in pos_loyalty; the base loyalty module has this in Python but it is not called from POS order flow"
+    },
+    {
+      "id": "AWT-U177-02",
+      "description": "Verify portal balance display: confirm loyalty_card_dialog.xml renders customer point balance in the web portal context and that portal_visible=True correctly gates the display",
+      "reason": "Portal rendering is in JavaScript/XML front-end assets; Python source confirms the field exists and is loaded to POS but portal rendering logic is in static assets"
+    }
+  ]
+}
