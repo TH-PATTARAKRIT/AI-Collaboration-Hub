@@ -1,0 +1,62 @@
+{
+  "unit": "U153",
+  "title": "maintenance — equipment maintenance requests L3 depth",
+  "status": "PRESENT",
+  "g_group": "G07-adjacent",
+  "priority": "P2",
+  "claim_count": 22,
+  "gate": "PASS",
+  "module_path": "odoo/addons/maintenance",
+  "key_models": [
+    "maintenance.stage",
+    "maintenance.equipment.category",
+    "maintenance.mixin",
+    "maintenance.equipment",
+    "maintenance.request",
+    "maintenance.team"
+  ],
+  "depends": ["mail"],
+  "mrp_maintenance_present": false,
+  "accounting_integration": false,
+  "cron_jobs": false,
+  "preventive_recurrence_mechanism": "write() override copies request on stage-done transition using repeat_interval/repeat_unit/repeat_type/repeat_until fields",
+  "security_groups": [
+    "base.group_user (implied — no dedicated user group)",
+    "maintenance.group_equipment_manager"
+  ],
+  "default_stages": [
+    {"name": "New Request", "sequence": 1, "fold": false, "done": false},
+    {"name": "In Progress", "sequence": 2, "fold": false, "done": false},
+    {"name": "Repaired", "sequence": 3, "fold": true, "done": true},
+    {"name": "Scrap", "sequence": 4, "fold": true, "done": true}
+  ],
+  "evidence_files": {
+    "technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U153_maintenance.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U153_maintenance_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U153_handoff_packet.json"
+  },
+  "key_pointers": [
+    "maintenance/__manifest__.py:10",
+    "maintenance/models/maintenance.py:13-21",
+    "maintenance/models/maintenance.py:69-107",
+    "maintenance/models/maintenance.py:110-178",
+    "maintenance/models/maintenance.py:182-401",
+    "maintenance/models/maintenance.py:227",
+    "maintenance/models/maintenance.py:244-256",
+    "maintenance/models/maintenance.py:329-362",
+    "maintenance/models/maintenance.py:404-455",
+    "maintenance/security/maintenance.xml:9-71",
+    "maintenance/security/ir.model.access.csv:1-11",
+    "maintenance/data/maintenance_data.xml:6-27",
+    "maintenance/data/mail_message_subtype_data.xml",
+    "maintenance/data/mail_activity_type_data.xml"
+  ],
+  "notable_absences": [
+    "No ir.cron record in any data file (removed vs older versions)",
+    "No account.move or journal entry creation",
+    "mrp_maintenance module absent from Community 19.0",
+    "No _compute_next_maintenance() on equipment (period-based scheduling moved to request-level recurrence fields)"
+  ],
+  "research_date": "2026-10-02",
+  "researcher": "DeepSeek Worker STATE03 U153"
+}
