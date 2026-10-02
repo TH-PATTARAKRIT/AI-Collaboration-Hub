@@ -1,0 +1,99 @@
+{
+  "unit": "U167",
+  "module": "base_vat",
+  "group": "G02",
+  "priority": "P1",
+  "scope": "Thailand",
+  "date": "2026-10-02",
+  "status": "COMPLETE",
+  "claim_count": 20,
+  "th_relevant_claims": 14,
+  "gate_file": "02_NEUTRAL_KNOWLEDGE/U167_base_vat_NEUTRAL.md",
+
+  "module_facts": {
+    "name": "VAT Number Validation",
+    "version": "2.0",
+    "license": "LGPL-3",
+    "depends": ["account"],
+    "author": "Odoo S.A.",
+    "models": ["res.partner", "res.company", "res.config.settings", "res.country"]
+  },
+
+  "thai_vat_facts": {
+    "country_code": "TH",
+    "tax_id_name": "Tax Identification Number (TIN)",
+    "digits": 13,
+    "format_plain": "XXXXXXXXXXXXX",
+    "format_hyphenated": "X-XXXX-XXXXX-XX-X",
+    "reference_example": "1234545678781",
+    "validation_method": "check_vat_th",
+    "validation_library": "stdnum.th.tin.is_valid",
+    "validation_file": "base_vat/models/res_partner.py",
+    "validation_line": 894,
+    "format_method": null,
+    "format_note": "No format_vat_th() exists; hyphenated input may be stored as-entered",
+    "vies_applicable": false,
+    "test_function": "test_vat_th",
+    "test_file": "base_vat/tests/test_vat_numbers.py",
+    "test_line": 234,
+    "valid_test_values": ["1234545678781", "1-2345-45678-78-1", "0-99-4-000-61772-1"],
+    "invalid_test_values": ["1234545678782", "1-2345-45678-78-2", "0-99-4-000-61772-2", "X-99-4-000-61772-1"]
+  },
+
+  "l10n_th_integration": {
+    "depends_on_base_vat": false,
+    "overrides_vat_validation": false,
+    "extends_vat_validation": false,
+    "finding": "l10n_th has no dependency on base_vat and no VAT/TIN validation code. Thai TIN validation is fully owned by base_vat."
+  },
+
+  "validation_architecture": {
+    "entry_point": "_run_vat_checks(country, vat, partner_name, validation)",
+    "dispatcher": "_check_vat_number(country_code, vat_number)",
+    "dispatch_priority": ["check_vat_<cc> model method", "stdnum.get_cc_module(cc, vat).is_valid", "True (no validation)"],
+    "error_type": "ValidationError",
+    "error_mode_write": "error (raises ValidationError)",
+    "error_mode_onchange": "False (no error, format only)",
+    "bypass_context_key": "no_vat_validation",
+    "vies_fields": ["vies_valid (Boolean, stored)", "perform_vies_validation (Boolean, computed)"],
+    "vies_applicable_to_th": false
+  },
+
+  "company_model": {
+    "new_field": "vat_check_vies",
+    "field_type": "Boolean",
+    "purpose": "Enable EU VIES online validation",
+    "th_impact": "None — VIES does not apply to Thai TINs"
+  },
+
+  "risk_flags": [
+    {
+      "id": "RF-U167-01",
+      "severity": "LOW",
+      "description": "No format_vat_th() method exists. Users entering hyphenated Thai TINs (e.g., 1-2345-45678-78-1) will have them stored with hyphens. This may cause matching issues in downstream processes expecting plain 13-digit format.",
+      "recommendation": "Verify stdnum th.tin.compact() behaviour; consider adding format_vat_th() to normalize to plain 13-digit format."
+    },
+    {
+      "id": "RF-U167-02",
+      "severity": "LOW",
+      "description": "The no_vat_validation context key completely bypasses Thai TIN validation. EDI/API integrations that set this flag will allow any string as a Thai TIN.",
+      "recommendation": "Ensure API integration specifications for Thailand explicitly prohibit use of no_vat_validation where TIN accuracy is required."
+    }
+  ],
+
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U167_base_vat.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U167_base_vat_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U167_handoff_packet.json"
+  },
+
+  "source_files_read": [
+    "odoo/addons/base_vat/__manifest__.py",
+    "odoo/addons/base_vat/models/res_partner.py",
+    "odoo/addons/base_vat/models/res_company.py",
+    "odoo/addons/base_vat/models/res_config_settings.py",
+    "odoo/addons/base_vat/models/res_country.py",
+    "odoo/addons/base_vat/tests/test_vat_numbers.py",
+    "odoo/addons/l10n_th/__manifest__.py"
+  ]
+}
