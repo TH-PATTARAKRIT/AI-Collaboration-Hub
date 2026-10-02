@@ -1,7 +1,7 @@
 {
   "unit": "U206",
   "module": "hr_attendance",
-  "sha": "PENDING_COMMIT",
+  "sha": "75333077",
   "claim_count": 20,
   "gate": "GREEN",
   "research_date": "2026-10-02",
