@@ -1,0 +1,58 @@
+{
+  "unit": "U109",
+  "title": "account.analytic.plan — multi-plan hierarchy deep",
+  "priority": "P1",
+  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "gap_prior": "NOT_PROVEN — analytic plan hierarchy never studied at L3 in prior passes",
+  "claim_count": 42,
+  "evidence_files": {
+    "vdr_claims": "01_RESTRICTED_TECHNICAL_EVIDENCE/U109_analytic_plan.md",
+    "neutral_layer": "02_NEUTRAL_KNOWLEDGE/U109_analytic_plan_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U109_handoff_packet.json"
+  },
+  "source_files_read": [
+    "analytic/models/analytic_plan.py",
+    "analytic/models/analytic_mixin.py",
+    "analytic/models/analytic_account.py",
+    "analytic/models/analytic_line.py",
+    "analytic/models/analytic_distribution_model.py",
+    "analytic/models/ir_config_parameter.py",
+    "analytic/models/res_config_settings.py",
+    "sale/models/analytic.py",
+    "sale/models/sale_order.py (lines 1065-1193)",
+    "sale/models/sale_order_line.py (lines 1570-1594)",
+    "purchase/models/analytic_account.py",
+    "purchase/models/analytic_applicability.py",
+    "purchase/models/purchase_order.py (lines 625-638)",
+    "purchase/models/purchase_order_line.py (lines 745-753)",
+    "hr_timesheet/models/analytic_applicability.py",
+    "stock_account/models/analytic_account.py",
+    "stock_account/models/stock_move.py (lines 250-657)",
+    "mrp_account/models/mrp_workcenter.py"
+  ],
+  "key_findings": [
+    "account.analytic.plan uses Odoo _parent_store with parent_path column for efficient subtree queries",
+    "root_id is computed by splitting parent_path on '/' and taking the first segment as integer",
+    "Project plan uses fixed column name 'account_id'; all other root plans use dynamically created 'x_plan{id}_id' columns",
+    "Sub-plans create non-stored related fields for grouping by hierarchy depth rather than stored columns",
+    "analytic_distribution is a JSON field: keys are comma-separated account ID strings, values are percentages",
+    "_validate_distribution only fires when context flag 'validate_analytic' is True; sums per root plan and compares to 100 using Percentage Analytic decimal precision",
+    "Sale module calls _validate_analytic_distribution on order lines at both send-quotation and confirm-order stages",
+    "Purchase module calls _validate_analytic_distribution at button_confirm stage",
+    "stock_account adds rounding-correction algorithm (_calculate_distribution_amount) to prevent cumulative float drift across multiple analytic lines",
+    "mrp_account makes work centre model inherit analytic.mixin so labour cost distribution is available on work centres",
+    "default_applicability is company_dependent allowing per-company plan applicability configuration",
+    "Business domain applicability extensions: sale_order (sale), purchase_order (purchase), timesheet (hr_timesheet)"
+  ],
+  "awt_items": [
+    "Confirm validate_analytic context flag is set on account.move.line write/post in account module (runtime needed)",
+    "Confirm mrp_workorder analytic line creation path through _perform_analytic_distribution (runtime needed)"
+  ],
+  "cross_module_coverage": {
+    "sale": "business domain + validate_analytic_distribution at quotation send and order confirm",
+    "purchase": "business domain + validate_analytic_distribution at button_confirm",
+    "hr_timesheet": "business domain only; validation path not confirmed at L3",
+    "stock_account": "_perform_analytic_distribution + rounding-correction on stock moves",
+    "mrp_account": "analytic.mixin on mrp.workcenter; distribution used in work order cost booking"
+  }
+}
