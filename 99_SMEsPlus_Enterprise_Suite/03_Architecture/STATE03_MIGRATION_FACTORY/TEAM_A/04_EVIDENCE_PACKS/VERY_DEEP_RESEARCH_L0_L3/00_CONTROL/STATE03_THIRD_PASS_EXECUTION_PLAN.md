@@ -48,8 +48,8 @@ Units selected per directive:
 | U119 | l10n_th_pnd — Thai personal income tax / PND if present | P0 | Yes (TH) | NOT_STUDIED | PND withholding, ภ.ง.ด.1/3/53, vendor WHT deduction at payment | Done c809cc4b (l10n_th_pnd+l10n_th_withholding_tax ABSENT; 12 WHT templates in l10n_th, PND3/PND53 reports, 5 gaps documented) |
 
 | U120 | account — multi-company intercompany journal + shared COA (GAP-002/GAP-018) | P0 | Yes | NOT_PROVEN | shared_chart_of_accounts, company_id domain, intercompany automation | Done e24b9f94 (GAP-002 OPEN: account_inter_company_rules ABSENT; GAP-018 PARTIAL: company_ids M2M sharing) |
-| U121 | stock — warehouse-company binding + inventory isolation (GAP-003) | P0 | Yes | NOT_PROVEN | warehouse.company_id ir.rule, cross-company stock move prevention | Running |
-| U122 | account — credit note return immutability (GAP-028) | P1 | Yes | NOT_PROVEN | _reverse_move, credit note partial reconciliation, return stock accounting | Queued |
+| U121 | stock — warehouse-company binding + inventory isolation (GAP-003) | P0 | Yes | NOT_PROVEN | warehouse.company_id ir.rule, cross-company stock move prevention | Done 3f5e52ab (GAP-003 PARTIAL: binding+14 ir.rules proven; inter-company PO/SO automation ABSENT) |
+| U122 | account — credit note return immutability (GAP-028) | P1 | Yes | NOT_PROVEN | _reverse_move, credit note partial reconciliation, return stock accounting | Running |
 | U123 | account — year-end FX adjustment close (GAP-048) | P1 | Yes | NOT_PROVEN | _get_adjustment_entry at fiscal year close, unrealized FX balance | Queued |
 | U124 | account — tax report period lock (GAP-027) | P1 | Yes | NOT_PROVEN | account.tax.report lock_date logic, tax_lock_date enforcement | Queued |
 
