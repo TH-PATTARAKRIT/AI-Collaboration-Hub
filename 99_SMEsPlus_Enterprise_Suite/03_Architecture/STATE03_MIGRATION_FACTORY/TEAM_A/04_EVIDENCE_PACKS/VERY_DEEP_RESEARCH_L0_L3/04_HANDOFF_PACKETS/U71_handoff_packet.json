@@ -1,0 +1,30 @@
+{
+  "unit": "U71",
+  "scope": "Multi-company record isolation, ir.rule audit, allowed_company_ids, intercompany automation",
+  "function_ids_targeted": [
+    "MCT-F01",
+    "MCT-F02",
+    "MCT-F05"
+  ],
+  "evidence_file": "01_RESTRICTED_TECHNICAL_EVIDENCE/U71_multicompany_isolation.md",
+  "neutral_file": "02_NEUTRAL_KNOWLEDGE/U71_multicompany_isolation_NEUTRAL.md",
+  "claim_count": 36,
+  "gate_exit_code": 0,
+  "key_findings": {
+    "MCT-F01_warehouse_company_id_required": true,
+    "MCT-F02_intercompany_community_present": false,
+    "MCT-F05_allowed_company_ids_cache_key": "base/models/ir_rule.py:78",
+    "ir_rule_count_stock": 16,
+    "ir_rule_count_account_with_company_domain": 18,
+    "ir_rule_count_sale_with_company_domain": 3,
+    "ir_rule_count_purchase_with_company_domain": 4,
+    "sudo_bypass_documented_instances": 2,
+    "stock_valuation_layer_absent_in_community": true,
+    "account_journal_uses_parent_of_hierarchy": true
+  },
+  "predecessor_units": [
+    "U21",
+    "U28"
+  ],
+  "date": "2026-10-02"
+}
