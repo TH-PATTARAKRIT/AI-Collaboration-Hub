@@ -1,7 +1,7 @@
 {
   "unit": "U205",
   "module": "res_partner",
-  "sha": "PENDING_COMMIT",
+  "sha": "812d6978",
   "claim_count": 22,
   "gate": "GREEN",
   "addons_scoped": ["base", "account", "base_vat"],
