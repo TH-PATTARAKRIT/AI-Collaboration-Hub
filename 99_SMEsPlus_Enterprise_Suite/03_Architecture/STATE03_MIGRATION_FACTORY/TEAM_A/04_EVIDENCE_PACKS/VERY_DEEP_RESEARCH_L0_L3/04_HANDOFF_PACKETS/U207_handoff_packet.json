@@ -1,0 +1,64 @@
+{
+  "unit": "U207",
+  "module": "calendar",
+  "sha": "LOCAL",
+  "claim_count": 20,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "id": "MF-U207-01",
+      "severity": "BREAKING",
+      "description": "calendar.alarm alarm_type field: 'sms' value absent in v19 (only 'notification' and 'email' present). Legacy SMS alarm records must be remapped before migration.",
+      "pointer": "calendar/models/calendar_alarm.py:14-16"
+    },
+    {
+      "id": "MF-U207-02",
+      "severity": "BREAKING",
+      "description": "recurrent_id field on calendar.event is absent in v19. Recurrence linkage uses recurrence_id (FK to calendar.recurrence) and follow_recurrence boolean. Any migration relying on recurrent_id must adapt.",
+      "pointer": "calendar/models/calendar_event.py — field not declared"
+    },
+    {
+      "id": "MF-U207-03",
+      "severity": "NOTABLE",
+      "description": "do_confirm() method on calendar.attendee is absent in v19. Acceptance is handled by do_accept(). Any migration scripts or third-party code calling do_confirm() will fail.",
+      "pointer": "calendar/models/calendar_attendee.py — method not present"
+    },
+    {
+      "id": "MF-U207-04",
+      "severity": "NOTABLE",
+      "description": "calendar.alarm field was named 'type' in some older versions; in v19 it is named 'alarm_type'. ORM field references and domain filters must use alarm_type.",
+      "pointer": "calendar/models/calendar_alarm.py:14"
+    },
+    {
+      "id": "MF-U207-05",
+      "severity": "INFO",
+      "description": "Google Calendar sync fields (google_event_id, google_internal_event_id, etc.) are not present on Community calendar.event. They exist only in enterprise/third-party modules. No _get_events_from_google_internal_event_id() method in Community.",
+      "pointer": "calendar/models/calendar_event.py — no google fields"
+    },
+    {
+      "id": "MF-U207-06",
+      "severity": "INFO",
+      "description": "recurrence_update field on calendar.event is store=False (non-persisted Selection). Must not be assumed to exist in DB column.",
+      "pointer": "calendar/models/calendar_event.py:221-226"
+    }
+  ],
+  "key_findings": {
+    "calendar_event_model": "calendar.event inherits mail.thread; key fields: name (required Char), start/stop (required Datetime, tracking), allday (Boolean), privacy (public/private/confidential), show_as (free/busy, default busy), activity_ids (One2many to mail.activity via calendar_event_id)",
+    "attendee_model": "calendar.attendee states: needsAction/accepted/declined/tentative; do_accept() and do_decline() post chatter messages with subtype_invitation; no do_confirm() in v19; organizer auto-accepted on create",
+    "alarm_model": "calendar.alarm alarm_type = notification|email only (no SMS in v19); duration_minutes computed field; email alarms use mail_template_id; notification alarms trigger calendar_alarm_manager._notify_next_alarm()",
+    "recurrence": "calendar.recurrence holds rrule (stored Char), MAX_RECURRENT_EVENT=720, max_recurrence_years config param (default 15); _get_rrule() uses dateutil; no recurrent_id field in v19; recurrence linkage via recurrence_id FK + follow_recurrence bool",
+    "activity_integration": "mail.activity.calendar_event_id (cascading FK); activity deadline change shifts event start; event name/start/user changes sync to activities via _sync_activities(); MailActivityMixin adds activity_calendar_event_id computed field",
+    "privacy_multicompany": "privacy=private hides event name as Busy for non-participants; effective_privacy falls back to user calendar_default_privacy; no company_id on Community calendar.event; _get_default_privacy_domain() for domain-level filtering",
+    "google_sync": "Not present in Community; extension hooks (_get_remove_sync_id_values, _get_update_future_events_values, _check_values_to_sync) return empty by default",
+    "ics_export": "_get_ics_file() generates iCal using vobject; includes RRULE, VALARM blocks, ATTENDEE, ORGANIZER fields"
+  },
+  "source_files_read": [
+    "calendar/models/calendar_event.py",
+    "calendar/models/calendar_attendee.py",
+    "calendar/models/calendar_alarm.py",
+    "calendar/models/calendar_alarm_manager.py",
+    "calendar/models/calendar_recurrence.py",
+    "calendar/models/mail_activity.py",
+    "calendar/models/mail_activity_mixin.py"
+  ]
+}
