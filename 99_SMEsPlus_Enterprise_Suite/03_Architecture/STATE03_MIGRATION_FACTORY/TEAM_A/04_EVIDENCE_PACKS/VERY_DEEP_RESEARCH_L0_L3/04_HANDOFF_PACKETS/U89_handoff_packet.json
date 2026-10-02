@@ -1,0 +1,50 @@
+{
+  "unit": "U89",
+  "title": "Website eCommerce Full Flow (Cart→Checkout→Payment→sale.order→Delivery)",
+  "phase": "Second-Pass Depth Closure — P2 Supporting Domains",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "gate_result": "PASS",
+  "claim_count": 63,
+  "neutral_row_count": 63,
+  "claim_errors": 0,
+  "neutral_leak_tokens": 0,
+  "modules_covered": [
+    "website_sale",
+    "payment",
+    "sale",
+    "sale_stock",
+    "website"
+  ],
+  "function_ids": [
+    "U89-F01", "U89-F02", "U89-F03", "U89-F04", "U89-F05",
+    "U89-F06", "U89-F07", "U89-F08", "U89-F09", "U89-F10",
+    "U89-F11", "U89-F12", "U89-F13", "U89-F14", "U89-F15",
+    "U89-F16", "U89-F17", "U89-F18", "U89-F19", "U89-F20",
+    "U89-F21", "U89-F22", "U89-F23", "U89-F24", "U89-F25",
+    "U89-F26", "U89-F27", "U89-F28"
+  ],
+  "key_findings": {
+    "cart_model": "The eCommerce cart IS a sale.order (not a separate model). website_sale extends sale.order with website_id (Many2one to website). A cart is a sale.order in state=draft with website_id set.",
+    "cart_creation": "website._create_cart() creates the sale.order with SUPERUSER_ID and stores the id in request.session['sale_order_id'] (CART_SESSION_CACHE_KEY). _prepare_sale_order_values() populates company_id, partner_id, fiscal_position_id, pricelist_id, team_id, website_id.",
+    "cart_session_link": "Cart is linked to session via CART_SESSION_CACHE_KEY='sale_order_id'. _get_and_cache_current_cart() retrieves, validates (state=draft, no processed tx, same website), and caches. Logged-in users also get abandoned cart resurrection (search by partner_id+website_id+state=draft).",
+    "visitor_cart_link": "website.visitor model tracks page/product views but does NOT directly link to cart. Cart-to-visitor association is session-based only.",
+    "checkout_flow": "3 steps: (1) /shop/checkout — address + delivery selection; (2) /shop/address — address form; (3) /shop/payment — payment provider selection. Checkout controller: shop_checkout() at GET /shop/checkout. Delivery methods fetched via _get_delivery_methods() (website_published=True + company domain + carrier availability filter), applied via _set_delivery_method().",
+    "guest_checkout": "Controlled by website.account_on_checkout (Selection: optional/disabled/mandatory). If mandatory AND user is public → redirect to /web/login. Otherwise public users (guests) can checkout freely. Guest cart: partner_id == website public user partner.",
+    "payment_transaction_states": "6 states: draft → pending → authorized → done (Confirmed) → [cancel/error]. _set_done() allows from draft/pending/authorized/error. _set_canceled() only from draft/pending/authorized. Each transition resets is_post_processed=False.",
+    "payment_to_SO_confirm_chain": "_post_process() (sale module override): for state=done → _check_amount_and_confirm_order() → if exactly one linked SO, state in draft/sent, not requiring signature, _is_confirmation_amount_reached() → quotation.action_confirm(send_email=True). action_confirm() writes state='sale', date_order=now() via _prepare_confirmation_values(), then calls _action_confirm().",
+    "delivery_trigger": "sale_stock._action_confirm() calls order_line._action_launch_stock_rule() which creates procurements and calls stock.rule.run(procurements). This creates stock.picking and stock.move records. Newly created pickings are immediately confirmed via picking.action_confirm() to trigger scheduler.",
+    "email_confirmation": "_send_order_confirmation_mail() is called from action_confirm() when context send_email=True. Template resolution: website.confirmation_email_template_id if set, else sale module default template.",
+    "product_publishing": "product.template inherits website.published.multi.mixin. is_published (stored Boolean) is the real flag. website_published (computed) = is_published AND (no website_id OR website_id matches context). Unscoped products appear on all websites when published.",
+    "pricelist_mechanism": "Pricelist stored in session under PRICELIST_SESSION_CACHE_KEY. Cart created with pricelist_id from request.pricelist. _compute_pricelist_id() override applies GeoIP country_code for eCommerce carts. Visitor can explicitly select a pricelist (PRICELIST_SELECTED_SESSION_CACHE_KEY).",
+    "bundled_payment_providers": "Community 19 bundles: payment_custom, payment_demo, payment_paypal, payment_stripe, payment_adyen, payment_mollie, payment_razorpay, payment_authorize, payment_buckaroo, payment_dpo, payment_ecpay, payment_flutterwave, payment_iyzico, payment_mercado_pago, payment_nuvei, payment_paymob, payment_payu, payment_redsys, payment_toss_payments, payment_worldline, payment_xendit, payment_aps, payment_asiapay.",
+    "automatic_invoice": "Controlled by ir.config_parameter 'sale.automatic_invoice'. When True: done tx triggers _invoice_sale_orders(). Fully paid → final invoice via _create_invoices(); partially paid → downpayment invoice via _generate_downpayment_invoices().",
+    "zero_amount_order": "No tx created for zero-amount orders. /shop/payment/validate calls _check_cart_is_ready_to_be_paid() then _validate_order() which calls action_confirm(send_email=True) directly.",
+    "cron_post_processing": "_cron_post_process() retries is_post_processed=False transactions within last 4 days, handling cases where the client redirect did not complete."
+  },
+  "predecessor_units": ["U65", "U19"],
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U89_website_ecommerce_flow.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U89_website_ecommerce_flow_NEUTRAL.md"
+  }
+}
