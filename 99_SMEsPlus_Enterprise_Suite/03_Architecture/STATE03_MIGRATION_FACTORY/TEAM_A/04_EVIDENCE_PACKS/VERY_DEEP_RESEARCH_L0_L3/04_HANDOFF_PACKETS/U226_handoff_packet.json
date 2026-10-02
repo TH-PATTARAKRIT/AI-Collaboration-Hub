@@ -1,0 +1,55 @@
+{
+  "unit": "U226",
+  "module": "stock_picking",
+  "sha": "96fe35c33865",
+  "claim_count": 24,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "flag": "PROCUREMENT_GROUP_REMOVED",
+      "severity": "BREAKING",
+      "description": "The procurement.group model no longer exists in Odoo 19 Community. Any migration code referencing group_id FK or procurement.group must be rewritten to use stock.reference via reference_ids Many2many on stock.move.",
+      "evidence": "stock/models/stock_picking.py:590-591 + grep of all stock models — no procurement.group _name found"
+    },
+    {
+      "flag": "REFERENCE_IDS_REPLACES_GROUP_ID",
+      "severity": "BREAKING",
+      "description": "stock.picking.reference_ids is a Many2many to stock.reference (related from move_ids.reference_ids). Old group_id field on stock.picking is absent. Migration must map group_id references to reference_ids.",
+      "evidence": "stock/models/stock_picking.py:590-591; stock/models/stock_reference.py:4-15"
+    },
+    {
+      "flag": "IMMEDIATE_TRANSFER_REMOVED",
+      "severity": "BREAKING",
+      "description": "The immediate_transfer Boolean field and _check_immediate() method on stock.picking are absent in v19. Immediate-transfer wizard flow removed. button_validate() now auto-copies demand to done quantity for zero-quantity moves on draft pickings (lines 1424-1426).",
+      "evidence": "stock/models/stock_picking.py:1420-1480 — no immediate_transfer or _check_immediate present"
+    },
+    {
+      "flag": "SHOW_VALIDATE_REMOVED",
+      "severity": "MEDIUM",
+      "description": "_compute_show_validate() and show_validate computed field removed from stock.picking in v19. Validate button visibility handled via XML view conditions. Any ORM references to show_validate will fail.",
+      "evidence": "stock/models/stock_picking.py — full file grep returns no match for show_validate"
+    },
+    {
+      "flag": "BACKORDER_POLICY_ON_TYPE",
+      "severity": "NOTE",
+      "description": "Backorder creation policy (ask/always/never) is on stock.picking.type.create_backorder (line 133), not on stock.picking itself. Migration must ensure picking types carry this setting.",
+      "evidence": "stock/models/stock_picking.py:133-139; :1441-1448; :1555-1568"
+    }
+  ],
+  "key_findings": {
+    "state_machine": "6 states (draft/waiting/confirmed/assigned/done/cancel) all computed from move states; partially_available move state maps to assigned picking state",
+    "validate_chain": "button_validate → _pre_action_done_hook → _check_backorder → _action_generate_backorder_wizard OR _action_done → writes date_done",
+    "backorder_creation": "_create_backorder copies picking and re-links remaining moves; backorder_id FK set at creation; if reservation_method=at_confirm backorder is immediately reserved",
+    "date_done": "Written by _action_done at fields.Datetime.now() (line 1281); also propagated from picking.write if date_done is set manually on a done picking",
+    "reference_ids": "Many2many to stock.reference via move_ids.reference_ids — replaces procurement.group entirely; stock.reference has name char and move_ids M2M",
+    "procurement_group": "REMOVED — model not found anywhere in stock addon v19",
+    "immediate_transfer": "REMOVED — no field or method; zero-demand moves handled inline in button_validate",
+    "scheduled_date": "Computed from move dates: min for direct shipping policy, max for one/all-at-once policy",
+    "action_assign": "Auto-confirms draft before reserving; sorts moves by priority desc, deadline, date; calls stock.move._action_assign()",
+    "post_incoming_trigger": "_trigger_assign() called after incoming/internal _action_done to cascade reservation downstream"
+  },
+  "source_file": "odoo/addons/stock/models/stock_picking.py",
+  "source_version": "odoo-19.0.post20260921",
+  "lines_total": 2170,
+  "research_date": "2026-10-02"
+}
