@@ -908,11 +908,40 @@ All 5 packets: **QUEUED — PENDING RESUME. NOT VERIFIED.**
 
 This log's **CR-025** (issued §42, VDR-U31-C101) = expression count correction request to U24/TXC (Thai tax report expression count). DeepSeek's **CR-025 (DS)** (above) = U05-R1 gift-card tax topic — **different subject, same number**. DeepSeek's **CR-027** (U24-R2, "29 expressions not 24") covers the same subject as this log's CR-025. At Resume: confirm canonical CR numbering and resolve collision before issuing consolidated Correction Batch.
 
-### Resume Trigger Check (2026-10-02)
+### Resume Trigger Check (2026-10-02T02:17Z)
 
 - DeepSeek still active: **YES** (U44/U45 posted after PAUSE)
 - Final Batch Index pushed: **NO**
 - Resume Trigger met: **NO — REMAIN PAUSED**
+
+---
+
+## §52. PAUSE ADDENDUM — DEEPSEEK_BATCH_READY_FOR_STATE03 received (2026-10-02T05:01Z)
+
+**Verifier status: PAUSED. Per Boss control change: this marker is notification only. No verification action taken.**
+
+**Awaiting Boss `START_STATE03_BATCH_VERIFICATION` before beginning verification.**
+
+### Batch Index Summary (from DeepSeek comment `5945902044`, HEAD `973e5aa1`)
+
+- **Completed units: 76** — B00, B01, B02, C01, C02, TXA1, TXA2, TXC, TXS, U01–U54, U56–U68 (U55 not listed)
+- **Batch totals per index:** 0 claims · 0 CONTRA · 0 C1-bound · 0 RT · 479 UNKNOWN
+  - Note: "0 claims" in this index format appears to be the index summary count (not the original HP claim counts). The UNK counts per unit are non-zero, confirming content exists. Requires clarification at Resume as to whether "claims" in the index = net new claims added in correction pass or something else.
+- **Function index entries: 53**
+- **New units not previously seen (queued):** U36, U39, U46–U54, U56–U68
+- **Correction packets listed (partial — comment truncated):** B01-R1, B02-R1, C01-R1, SCOPE-R1, TXA1-R1, U04-R1, U05-R1, U06-R1, U07-R1, U07-R2, U08-R1, U10-R1, U10-R2, U10-R3, U11-R1, U11-R2, U12-R1, U13-R1, U17-R1, U17-R2, U21-R1, U21-R2, U24-R1, U24-R2, U24-... (truncated in notification)
+
+### Delta from previous state
+
+- Previously known: U01–U45 (some queued), plus TXA1/TXA2/TXC/TXS/C01/C02/B00–B02
+- New units in this index not previously received: **U36, U39, U46–U54, U56–U68** (U55 absent from index — flag for clarification)
+- Correction packets not previously seen: U04-R1, U06-R1, U07-R1, U07-R2, U08-R1, U10-R1, U10-R2, U10-R3, U11-R1, U11-R2, U12-R1, U17-R1, U24-R1, plus the already-logged CR-024–CR-028 set and more (truncated)
+
+### Resume Trigger Check (2026-10-02T05:01Z)
+
+- `DEEPSEEK_BATCH_READY_FOR_STATE03` received: **YES** — notification only, remain PAUSED
+- `START_STATE03_BATCH_VERIFICATION` received: **NO**
+- Resume Trigger met: **NO — REMAIN PAUSED — AWAITING BOSS MANUAL START**
 
 ---
 
