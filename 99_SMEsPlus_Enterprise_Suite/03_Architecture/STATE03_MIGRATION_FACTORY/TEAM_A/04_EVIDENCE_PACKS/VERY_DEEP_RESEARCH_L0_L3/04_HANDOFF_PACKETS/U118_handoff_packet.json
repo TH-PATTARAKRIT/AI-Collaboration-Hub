@@ -1,0 +1,26 @@
+{
+  "unit": "U118",
+  "title": "account — Deferred Revenue/Expense",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "modules": ["account"],
+  "function_ids": ["ACR-F01", "ACR-F02"],
+  "l_levels": ["L3", "L4"],
+  "proof_layers": ["P1", "P3"],
+  "claim_count": 7,
+  "c1_count": 7,
+  "absent": true,
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "key_findings": {
+    "module_absent": "No account_deferred standalone module in Odoo 19 Community",
+    "model_absent": "No account.deferred ORM model class exists in Community source",
+    "automation_absent": "No amortization schedule computation or automated periodic journal entry generation in Community",
+    "account_types": "account/models/account_account.py lines 44-70 — account_type selection has no dedicated deferred revenue or deferred expense types; closest are asset_current, asset_prepayments, liability_current",
+    "test_only_reference": "account/tests/common.py lines 365-372 — only reference to deferred account slots is in test helper setup using generic account types as placeholders for payment method configuration",
+    "enterprise_gap": "Full deferred revenue/expense management with amortization schedules and automated periodic entries is Enterprise-only in Odoo 19"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U118_account_deferred.md",
+    "02_NEUTRAL_KNOWLEDGE/U118_account_deferred_NEUTRAL.md"
+  ]
+}
