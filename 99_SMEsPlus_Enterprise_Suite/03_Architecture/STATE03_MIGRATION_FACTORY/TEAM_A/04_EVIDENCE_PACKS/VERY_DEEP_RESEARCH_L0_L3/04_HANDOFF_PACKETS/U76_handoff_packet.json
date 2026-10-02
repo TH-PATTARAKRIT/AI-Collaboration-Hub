@@ -1,0 +1,57 @@
+{
+  "unit": "U76",
+  "phase": "Second-Pass Depth Closure — P1 Core Business",
+  "capability_dimension": "Full Order-to-Cash chain (L5/L11)",
+  "date": "2026-10-02",
+  "gate_result": "PASS (exit 0, claim-checks=0, neutral-leak-tokens=0)",
+  "claim_count": 50,
+  "c1_count": 50,
+  "awt_count": 0,
+  "new_function_ids": [
+    "NEW:U76-F01",
+    "NEW:U76-F02",
+    "NEW:U76-F03",
+    "NEW:U76-F04",
+    "NEW:U76-F05",
+    "NEW:U76-F06",
+    "NEW:U76-F07",
+    "NEW:U76-F08",
+    "NEW:U76-F09",
+    "NEW:U76-F10",
+    "NEW:U76-F11",
+    "NEW:U76-F12",
+    "NEW:U76-F13",
+    "NEW:U76-F14",
+    "NEW:U76-F15",
+    "NEW:U76-F16",
+    "NEW:U76-F17",
+    "NEW:U76-F18",
+    "NEW:U76-F19",
+    "NEW:U76-F20"
+  ],
+  "l_levels": ["L4", "L5", "L11"],
+  "proof_layers": ["P4", "P5"],
+  "predecessor_units": ["C01", "U04", "U05", "U72"],
+  "modules_covered": [
+    "sale",
+    "sale_stock",
+    "stock",
+    "stock_account",
+    "account",
+    "account (wizard/account_payment_register)"
+  ],
+  "key_findings": {
+    "so_confirm": "action_confirm sets state=sale; sale_stock._action_confirm calls _action_launch_stock_rule which creates stock.picking via stock.rule.run; NO account.move created at confirm.",
+    "delivery_validate": "button_validate -> _action_done (picking) -> stock_account._action_done: freeze values, super(), create_account_move with company stock journal, immediately post. Entry: DR customer-location valuation_account_id (COGS) / CR product categ stock_valuation_account_id.",
+    "cogs_account": "COGS account is the destination (customer) location's valuation_account_id. Stock valuation account is categ_id.property_stock_valuation_account_id. Same accounts for standard-cost and AVCO; only monetary value differs.",
+    "invoice_create": "_create_invoices -> _prepare_invoice (move_type=out_invoice, default sale journal) -> _create_account_invoices (sudo). Line revenue account from product income account. AR line from partner.property_account_receivable_id.",
+    "invoice_post": "action_post -> _post(soft=False) -> state=posted, posted_before=True.",
+    "payment_register": "action_create_payments -> _create_payments -> _init_payments + _post_payments + _reconcile_payments. Payment entry: DR outstanding_account_id (payment method line account) / CR destination_account_id (receivable).",
+    "reconcile": "_reconcile_payments calls reconcile() on (payment_lines + invoice_lines) for matching account. Creates account.partial.reconcile records. If fully matched: creates account.full.reconcile. invoice.line_ids(receivable).reconciled=True, amount_residual=0.",
+    "state_machine": "delivery_status='full' when all pickings done/cancel. invoice_status='invoiced' when all SO lines invoiced. No single O2C completion method; three independent computed fields."
+  },
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U76_order_to_cash_chain.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U76_order_to_cash_chain_NEUTRAL.md"
+  }
+}
