@@ -1,0 +1,194 @@
+{
+  "unit": "U231",
+  "module": "product_template",
+  "sha": "a6a814f94a7f",
+  "sha_basis": "First 12 hex of the SHA-256 of product/models/product_template.py as read (not a git hash)",
+  "claim_count": 26,
+  "gate": "GREEN",
+  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "migration_flags": [
+    {
+      "flag": "TYPE_PRODUCT_REMOVED",
+      "severity": "HIGH",
+      "description": "The type selection on product.template offers only consu, service and combo; there is no 'product' value (verified here). The task scope states that storable goods used a dedicated type value in the baseline (not verified in this tree).",
+      "evidence": "product/models/product_template.py:54-65"
+    },
+    {
+      "flag": "COMBO_TYPE_ADDED",
+      "severity": "MEDIUM",
+      "description": "The type selection includes a combo value and the template carries a combo_ids many-to-many. Two Python constraints require a combo to hold at least one choice and, when it is sellable, only sellable products. A form-view onchange on the type field refuses to switch a template that has attributes, or that is already a combo item, to combo and turns the purchasable flag off; that handler is not a constraint. Writing a non-combo type clears the combo choices (all verified here). The task scope states that earlier releases lacked the combo type (not verified here).",
+      "evidence": "product/models/product_template.py:61-70, product/models/product_template.py:459-472, product/models/product_template.py:489-507, product/models/product_template.py:603-605"
+    },
+    {
+      "flag": "DETAILED_TYPE_ABSENT",
+      "severity": "HIGH",
+      "description": "No reference to detailed_type exists in py, xml, js, csv, json, html or scss files of any addon; the name survives only in stale .po translation catalogs (verified by search). The task scope states that the field existed in the baseline (not verified here).",
+      "evidence": "product/models/product_template.py:54-65"
+    },
+    {
+      "flag": "IS_STORABLE_IN_STOCK_MODULE",
+      "severity": "HIGH",
+      "description": "is_storable is declared only by the stock addon: stored compute, writable, default false, precomputed, change-tracked; the compute resets it to false when type is not consu. The task scope states that the stock meaning lived in the type field in the baseline (not verified here).",
+      "evidence": "stock/models/product.py:839-841, stock/models/product.py:911-913"
+    },
+    {
+      "flag": "IS_STORABLE_ENABLE_TRIGGERS_RESET_INVENTORY",
+      "severity": "HIGH",
+      "description": "A template write that turns is_storable on for templates that had it off cleans reservations and then runs _reset_inventory. That method builds a per-product, per-location ledger from done move lines that touch internal or transit locations, subtracts the on-hand quantity that quants already hold, creates quants whose quantity equals the remainder and whose counted quantity is zero (zero remainders are skipped), and then applies the inventory adjustment on them. Template create does not run this rebuild, so ORM-level writes of the flag onto existing templates are not side-effect free.",
+      "evidence": "stock/models/product.py:1115-1160, stock/models/product.py:1162-1202, stock/models/stock_quant.py:1141-1175"
+    },
+    {
+      "flag": "TRACKING_IN_STOCK_MODULE",
+      "severity": "MEDIUM",
+      "description": "tracking is declared only by the stock addon, default none, with an in-code comment about migration; its compute resets it to none when is_storable is false. The task scope states that tracking existed on goods in the baseline (not verified here).",
+      "evidence": "stock/models/product.py:856-862, stock/models/product.py:1094-1096"
+    },
+    {
+      "flag": "UOM_PO_ID_ABSENT",
+      "severity": "HIGH",
+      "description": "No uom_po_id field exists in any addon code file; the template carries one uom_id plus uom_ids (Packagings). The task scope states that a separate purchase unit existed in the baseline (not verified here).",
+      "evidence": "product/models/product_template.py:118-123"
+    },
+    {
+      "flag": "UOM_CATEGORY_REMOVED",
+      "severity": "HIGH",
+      "description": "uom.uom has no category_id and no uom_type, and no uom.category model exists in this tree; units chain through relative_uom_id and relative_factor, and factor is a stored recursive compute. The task scope states that units were grouped by category with a type per unit in the baseline (not verified here).",
+      "evidence": "uom/models/uom_uom.py:18-22, uom/models/uom_uom.py:36-49, uom/models/uom_uom.py:62-75, uom/models/uom_uom.py:97-101"
+    },
+    {
+      "flag": "UOM_ROUNDING_COMPUTED_SHARED",
+      "severity": "MEDIUM",
+      "description": "rounding is a non-stored compute derived from one shared decimal precision (Product Unit), not a per-unit stored value. The task scope states that rounding was a per-unit stored value in the baseline (not verified here).",
+      "evidence": "uom/models/uom_uom.py:39, uom/models/uom_uom.py:62-67"
+    },
+    {
+      "flag": "UOM_CONVERSION_NO_CATEGORY_GUARD",
+      "severity": "MEDIUM",
+      "description": "_compute_quantity multiplies by the absolute factor of the source unit, divides by that of the target unit and rounds; no common-category check is made and raise_if_failure is accepted but unused. The task scope states that conversions were refused across categories in the baseline (not verified here).",
+      "evidence": "uom/models/uom_uom.py:147-176"
+    },
+    {
+      "flag": "UOM_RATIO_CHANGE_GUARDED",
+      "severity": "MEDIUM",
+      "description": "When a write actually changes factor, relative_factor or relative_uom_id of a unit, the stock addon raises a UserError if an open stock move (state not cancel or done) or an open stock move line (state not cancel or done) uses that unit, or if a non-zero stock quant belongs to a product whose template base unit is that unit. Writes that leave those values unchanged are not blocked.",
+      "evidence": "stock/models/product.py:1373-1404"
+    },
+    {
+      "flag": "UOM_SYSTEM_UNITS_PROTECTED",
+      "severity": "MEDIUM",
+      "description": "Units that carry an ir.model.data row in module uom, other than hour, dozen and pack of six, cannot be deleted through ORM unlink (archive instead; the delete guard is skipped at uninstall), and a UI warning appears on relative_factor edits once the unit is older than one day; the timesheet addon adds the hour unit to the protected set.",
+      "evidence": "uom/models/uom_uom.py:24-32, uom/models/uom_uom.py:79-112, uom/models/uom_uom.py:205-216, hr_timesheet/models/uom_uom.py:10-17"
+    },
+    {
+      "flag": "UOM_IDS_PACKAGINGS_AND_PRODUCT_UOM_NEW",
+      "severity": "MEDIUM",
+      "description": "uom_ids (labelled Packagings) is a many-to-many of units on the template, and the product.uom model records a required, indexed, database-unique barcode per product and unit. A fixed-string search for the model name product.packaging over py, xml, js and csv files is empty. The task scope states that packagings were a separate model in the baseline (not verified here).",
+      "evidence": "product/models/product_template.py:122, product/models/product_uom.py:8-26"
+    },
+    {
+      "flag": "UOM_CHANGE_ON_PRODUCT_GUARDED",
+      "severity": "MEDIUM",
+      "description": "Changing uom_id on a template runs _update_uom on the variants of the changed templates (six definitions: base, stock, purchase, sale, mrp, repair). The overrides read the usage records of their own addon and raise one shared error when a record uses a unit other than the previous base unit; otherwise they rewrite the records to the new unit. The template write sets the context flag skip_uom_conversion for that call; stock move, stock move line and purchase order line code read it to skip checks and recomputes that a unit change would otherwise trigger.",
+      "evidence": "product/models/product_template.py:585-589, product/models/product_product.py:1197-1200, stock/models/product.py:784-808, purchase/models/product.py:117-132, sale/models/product_product.py:101-114, mrp/models/product.py:452-489, repair/models/product.py:34-47, stock/models/stock_move.py:853, stock/models/stock_move_line.py:454, purchase/models/purchase_order_line.py:422"
+    },
+    {
+      "flag": "TAX_FIELDS_NAMES_UNCHANGED",
+      "severity": "INFO",
+      "description": "taxes_id and supplier_taxes_id are declared by the account addon as plain many-to-many fields (two separate relation tables, filtered by tax use) and are not company-dependent. The task scope states that the same names existed in the baseline (not verified here).",
+      "evidence": "account/models/product.py:40-52"
+    },
+    {
+      "flag": "VALUATION_COST_METHOD_COMPUTED_FROM_CATEGORY",
+      "severity": "MEDIUM",
+      "description": "On the template, cost_method and valuation are non-stored computes taken from company-dependent properties of the product category, falling back to the company-level costing and inventory-valuation settings when the category property is empty (stock_account addon).",
+      "evidence": "stock_account/models/product.py:14-30, stock_account/models/product.py:42-79, stock_account/models/product.py:725-755"
+    },
+    {
+      "flag": "POLICY_FIELDS_IN_SALE_PURCHASE",
+      "severity": "MEDIUM",
+      "description": "invoice_policy, expense_policy and service_type are declared on the template by the sale addon, and purchase_method by the purchase addon; the product addon declares none of them. The project and timesheet addons extend the service_type selection.",
+      "evidence": "sale/models/product_template.py:14-47, purchase/models/product.py:14-29, sale_project/models/product_template.py:45-47, sale_timesheet/models/product_template.py:17-19"
+    },
+    {
+      "flag": "STANDARD_PRICE_COMPANY_DEPENDENT_ON_VARIANT",
+      "severity": "NOTE",
+      "description": "standard_price is company-dependent on the variant; the template field is a non-stored proxy computed from the single variant, with an inverse. How the ORM stores the company-dependent value is not claimed here.",
+      "evidence": "product/models/product_product.py:62-68, product/models/product_template.py:100-106, product/models/product_template.py:310-321"
+    },
+    {
+      "flag": "BARCODE_PYTHON_CONSTRAINT_COMPANY_SCOPED",
+      "severity": "MEDIUM",
+      "description": "No database unique constraint exists on the variant barcode; uniqueness is a Python constraint scoped by company. The product.uom barcode does have a database unique constraint.",
+      "evidence": "product/models/product_product.py:282-290, product/models/product_uom.py:18"
+    },
+    {
+      "flag": "DEFAULT_CODE_NO_UNIQUENESS",
+      "severity": "INFO",
+      "description": "No constraint enforces uniqueness of default_code; only onchange warnings exist on the template and the variant.",
+      "evidence": "product/models/product_template.py:422-435, product/models/product_product.py:407-420"
+    },
+    {
+      "flag": "SERVICE_TRACKING_VALUES_FROM_ADDONS",
+      "severity": "INFO",
+      "description": "The product addon declares service_tracking with only the value no; further values come from selection_add extensions in six other addons.",
+      "evidence": "product/models/product_template.py:71-80"
+    }
+  ],
+  "key_findings": {
+    "type_selection": "consu, service, combo; required; default consu; no 'product' value (product/models/product_template.py:54-65)",
+    "storable_goods": "In this tree storable goods are type consu with is_storable true; the older single storable type value is a task-scope baseline, not verified here",
+    "detailed_type": "Absent from py, xml, js, csv, json, html and scss files of every addon; present only in stale .po translation catalogs",
+    "is_storable": "Declared only in stock/models/product.py:839-841; stored writable compute, default false; resets true to false when type is not consu (stock/models/product.py:911-913)",
+    "is_storable_enable": "Template write turning the flag on from off runs _clean_reservations then _reset_inventory (stock/models/product.py:1149-1160, stock/models/product.py:1162-1202); template create does not (stock/models/product.py:1115-1127)",
+    "is_storable_consumers": "Reservation bypass (stock/models/stock_move.py:1967-1970) and the stock accounting entry gate (stock_account/models/stock_move.py:659-667, which also needs valuation real_time) both test the flag",
+    "tracking": "Declared only in stock/models/product.py:856-862; default none; compute resets to none when is_storable is false (stock/models/product.py:1094-1096); no decorated constraint on tracking or is_storable in a single-line decorator search",
+    "quant_checks": "Decorated stock.quant constraints are check_product_id, check_location_id and check_lot_id (stock/models/stock_quant.py:582-585, stock/models/stock_quant.py:605-615); check_quantity is not decorated and runs through the stock.move quantity check (stock/models/stock_move.py:2242-2247)",
+    "uom_id": "Required, change-tracked, default through a cached helper to the standard Unit record (product/models/product_template.py:118-121, product/models/product_template.py:33-36)",
+    "uom_po_id": "No purchase-unit field in any addon code file; uom_ids (Packagings) and the product.uom model exist instead (product/models/product_template.py:122, product/models/product_uom.py:8-26)",
+    "uom_model": "uom.uom has no category_id, no uom_type and no uom.category model; relative_factor and relative_uom_id define a unit chain, factor is a stored recursive compute, rounding is a non-stored compute from the Product Unit precision (uom/models/uom_uom.py:36-49, uom/models/uom_uom.py:62-75)",
+    "uom_conversion": "_compute_quantity multiplies by the source factor, divides by the target factor and rounds; no category check; raise_if_failure unused (uom/models/uom_uom.py:147-176)",
+    "uom_change_guards": "Template write calls _update_uom with skip_uom_conversion=True before super().write (product/models/product_template.py:585-589); account constraint on posted lines (account/models/product.py:131-150); stock write guard on unit ratio fields (stock/models/product.py:1373-1404)",
+    "prices_and_category": "standard_price is company-dependent on the variant with a non-stored template proxy (product/models/product_product.py:62-68); list_price on the template (product/models/product_template.py:94-99) and lst_price on the variant as list_price plus attribute price extras (product/models/product_product.py:323-335); categ_id is an optional many-to-one to product.category (product/models/product_template.py:81-86)",
+    "taxes": "taxes_id and supplier_taxes_id declared in the account addon, plain many-to-many, not company-dependent (account/models/product.py:40-52)",
+    "flags_and_codes": "sale_ok, purchase_ok and active default true (product/models/product_template.py:116-117, product/models/product_template.py:129); barcode uniqueness is a company-scoped Python constraint on the variant, no database unique (product/models/product_product.py:282-290); default_code has no uniqueness constraint",
+    "policy_fields": "invoice_policy, expense_policy, service_type in the sale addon; purchase_method in the purchase addon; service_tracking in the product addon with value no plus six selection_add extensions in other addons",
+    "propagation": "Six fields are mirrored between template and variant: barcode, default_code, standard_price, volume, weight, product_properties (product/models/product_template.py:509-511); archive and unarchive cascade (product/models/product_template.py:585-593, product/models/product_product.py:696-710)",
+    "search_limits": "Absence statements apply to py, xml, js, csv, json, html and scss files of every addon in this source tree; decorator searches match single-line decorators only; comparisons with earlier releases come from the task scope and were not re-derived from earlier source"
+  },
+  "source_file": "odoo/addons/product/models/product_template.py",
+  "source_version": "odoo-19.0.post20260921",
+  "lines_total": 1598,
+  "source_files": [
+    { "path": "account/models/product.py", "lines": 558, "sha_prefix": "c86b3e9b9af6" },
+    { "path": "event_booth_sale/models/product_template.py", "lines": 43, "sha_prefix": "56fb457c5f2b" },
+    { "path": "event_product/models/product_template.py", "lines": 12, "sha_prefix": "e1d98e3af85c" },
+    { "path": "hr_timesheet/models/uom_uom.py", "lines": 20, "sha_prefix": "30d1d50240a5" },
+    { "path": "mrp/models/product.py", "lines": 489, "sha_prefix": "39f1e0e2eea4" },
+    { "path": "partnership/models/product_template.py", "lines": 16, "sha_prefix": "d0be61a73b5a" },
+    { "path": "product/models/product_category.py", "lines": 69, "sha_prefix": "eb003c337d40" },
+    { "path": "product/models/product_product.py", "lines": 1200, "sha_prefix": "d1502c13c231" },
+    { "path": "product/models/product_template.py", "lines": 1598, "sha_prefix": "a6a814f94a7f" },
+    { "path": "product/models/product_uom.py", "lines": 32, "sha_prefix": "551d39d709a8" },
+    { "path": "product/models/uom_uom.py", "lines": 30, "sha_prefix": "9e624ba69e6e" },
+    { "path": "purchase/models/product.py", "lines": 154, "sha_prefix": "7d79d7f8e9fa" },
+    { "path": "repair/models/product.py", "lines": 57, "sha_prefix": "29ccfae330ab" },
+    { "path": "sale/models/product_product.py", "lines": 134, "sha_prefix": "52f5a72ff6b8" },
+    { "path": "sale/models/product_template.py", "lines": 311, "sha_prefix": "39823da27e2e" },
+    { "path": "sale/wizard/res_config_settings.py", "lines": 133, "sha_prefix": "061be68a904e" },
+    { "path": "sale_project/models/product_template.py", "lines": 153, "sha_prefix": "ce9dbe206ec6" },
+    { "path": "sale_stock/models/product_template.py", "lines": 18, "sha_prefix": "ae011640e21f" },
+    { "path": "sale_timesheet/models/product_template.py", "lines": 110, "sha_prefix": "290673088d93" },
+    { "path": "stock/models/product.py", "lines": 1418, "sha_prefix": "aa1a0c5c1be9" },
+    { "path": "stock/models/stock_move.py", "lines": 2833, "sha_prefix": "af624e7a0155" },
+    { "path": "stock/models/stock_move_line.py", "lines": 1244, "sha_prefix": "bdab636fdc5e" },
+    { "path": "stock/models/stock_quant.py", "lines": 1567, "sha_prefix": "6d894fea4095" },
+    { "path": "stock_account/models/account_move_line.py", "lines": 95, "sha_prefix": "99f81b90ced0" },
+    { "path": "stock_account/models/product.py", "lines": 787, "sha_prefix": "b1baa31df981" },
+    { "path": "stock_account/models/stock_move.py", "lines": 718, "sha_prefix": "c7950b0328a3" },
+    { "path": "uom/models/uom_uom.py", "lines": 230, "sha_prefix": "360db3a98217" },
+    { "path": "website_sale_slides/models/product_template.py", "lines": 24, "sha_prefix": "9864af53be33" },
+    { "path": "website_sale_stock/models/product_template.py", "lines": 135, "sha_prefix": "7b937b5da5ab" }
+  ],
+  "research_date": "2026-10-02",
+  "researcher": "STATE03 VDR Worker Agent"
+}
