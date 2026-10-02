@@ -1,0 +1,56 @@
+{
+  "unit": "U103",
+  "title": "Multi-Currency Accounting",
+  "phase": "Third-Pass — P1",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "session": "ODOO 19 COMMUNITY DEEP RESEARCH",
+  "l_levels": ["L3", "L7"],
+  "proof_layers": ["P2", "P3"],
+  "priority": "P1",
+  "modules": ["account", "base"],
+  "marker": "DEEPSEEK-REPORTED / CLAUDE VERIFIED",
+
+  "function_ids": {
+    "U103-FX01": "account.move.line foreign currency fields (amount_currency, currency_id, company_currency_id, currency_rate, balance/debit/credit denomination)",
+    "U103-FX02": "account.move invoice-level currency rate fields (invoice_currency_rate, expected_currency_rate, _compute_invoice_currency_rate)",
+    "U103-FX03": "Exchange-difference entry linkage fields (exchange_diff_partial_ids on account.move; exchange_move_ids on account.move.line; exchange_move_id on account.partial.reconcile)",
+    "U103-FX04": "Exchange journal and account selection helpers (_get_exchange_journal, _get_exchange_account; company-level fields currency_exchange_journal_id, income_currency_exchange_account_id, expense_currency_exchange_account_id)",
+    "U103-FX05": "Exchange difference entry creation (_prepare_exchange_difference_move_vals, _create_exchange_difference_moves)",
+    "U103-FX06": "Exchange difference computation during reconciliation (_prepare_reconciliation_single_partial no_exchange_difference context guard)",
+    "U103-FX07": "Partial reconcile unlink cascade (exchange_move_id reversal/deletion on account.partial.reconcile.unlink)",
+    "U103-FX08": "Currency conversion utilities on res.currency (_get_conversion_rate, _convert)",
+    "U103-FX09": "account.payment multi-currency line construction (_prepare_move_lines_per_type liquidity balance via _convert; counterpart mirroring)",
+    "U103-FX10": "amount_residual / amount_residual_currency computation (SQL aggregation from account.partial.reconcile)",
+    "U103-FX11": "account.automatic.entry.wizard scope (no unrealized FX revaluation in community account module)"
+  },
+
+  "claim_count": 30,
+  "claim_id_range": ["U103-001", "U103-030"],
+
+  "key_findings": [
+    "amount_currency (account_move_line.py:142) is the foreign-currency amount field; balance/debit/credit are always in company currency.",
+    "currency_rate is non-stored on account.move.line; for invoices it reads invoice_currency_rate from the parent move, otherwise calls res.currency._get_conversion_rate at move date.",
+    "Exchange difference entries are created by _create_exchange_difference_moves (account_move_line.py:3088) during reconciliation, linked via account.partial.reconcile.exchange_move_id (account_partial_reconcile.py:24).",
+    "FX P&L routing: positive residual → company.expense_currency_exchange_account_id (loss); negative → income_currency_exchange_account_id (gain). Company-level journal: currency_exchange_journal_id.",
+    "The account module has NO unrealized FX revaluation wizard. account.automatic.entry.wizard only covers change_period and change_account. FX differences are realised at reconciliation time only.",
+    "Reversal of a partial reconciliation automatically reverses or deletes the exchange difference entry (account_partial_reconcile.py:119).",
+    "res.currency._get_conversion_rate (res_currency.py:273) resolves rates against the root company for multi-branch support.",
+    "account.payment uses currency_id._convert() at payment date to set liquidity balance; counterpart mirrors exactly; rate difference resolved via exchange difference at reconciliation."
+  ],
+
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U103_multicurrency_accounting.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U103_multicurrency_accounting_NEUTRAL.md"
+  },
+
+  "gate": {
+    "script": "/tmp/vdr_check_u103.py",
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0,
+    "result": "PASS"
+  },
+
+  "predecessor_units": ["U11", "U81"],
+  "notes": "No unrealized FX revaluation module exists in community edition. DeepSeek claim of 'account_current_assets_move' or 'account.revaluation' wizard is NOT confirmed — no such file or class found in the addons tree."
+}

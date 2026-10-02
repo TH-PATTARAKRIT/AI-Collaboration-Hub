@@ -1,0 +1,36 @@
+# U103 Neutral Knowledge — Multi-Currency Accounting
+## DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION
+> NEUTRAL LAYER — no source paths, no class/method names, no file extensions, no snake_case, no backticks
+
+| NR-ID | Statement |
+|---|---|
+| NR-U103-001 | Each accounting journal item carries a dedicated monetary field for the transaction amount expressed in the item's foreign currency, separate from the company-currency balance fields. |
+| NR-U103-002 | Each accounting journal item has a required foreign-currency reference field that inherits from the parent document's currency for invoice-type entries; for plain journal entries it defaults to the company's own currency. |
+| NR-U103-003 | Each accounting journal item stores a read-only reference to the company's functional currency, used as the denomination for all balance, debit, and credit monetary fields. |
+| NR-U103-004 | The debit, credit, and balance monetary fields on a journal item are all denominated in the company's functional currency, regardless of the document's transaction currency. |
+| NR-U103-005 | A database-level constraint enforces that the foreign-currency amount and the company-currency balance on a journal item always carry the same algebraic sign. |
+| NR-U103-006 | Each journal item has a computed, non-stored exchange rate field representing the conversion factor from the company currency to the document currency. |
+| NR-U103-007 | For invoice-type entries the line-level exchange rate is taken from the parent document's stored invoice rate; for non-invoice entries it is looked up from the currency rate table using the move's accounting date. |
+| NR-U103-008 | The foreign-currency amount on a journal item is computed as the company-currency balance multiplied by the exchange rate; when the document and company currencies are the same and the entry is not an invoice, the foreign-currency amount is forced to equal the balance exactly. |
+| NR-U103-009 | An invoice document stores a dedicated exchange-rate field at the document level, computed at invoice date and user-editable; this single rate is used for all lines of the invoice. |
+| NR-U103-010 | The document-level exchange rate field is only populated for invoice-type documents; plain journal entries do not inherit this field. |
+| NR-U103-011 | An exchange-difference journal entry carries a one-to-many link back to the partial reconciliation records that caused it to be created, enabling traceability from the entry to its source matching. |
+| NR-U103-012 | A journal item exposes a computed list of all exchange-difference entries that were generated in connection with any of its partial reconciliations, accessible from both the debit and credit sides. |
+| NR-U103-013 | The list of exchange-difference entries visible on a journal item is assembled by collecting the exchange-difference move reference from each of the item's matched partial reconciliation records. |
+| NR-U103-014 | Each partial reconciliation record carries a reference to the exchange-difference journal entry that was created specifically for that reconciliation pair; the column is indexed for efficient reverse lookup. |
+| NR-U103-015 | The selection of the journal used to post exchange-difference entries is delegated to a company-level configuration field called the "Exchange Gain or Loss Journal." |
+| NR-U103-016 | The selection of the profit-and-loss account for an exchange difference depends solely on the sign of the residual amount to be corrected: a positive residual routes to the loss account, a negative residual routes to the gain account. |
+| NR-U103-017 | Three company-level settings govern exchange-difference accounting: the exchange gain-or-loss journal, the gain account (restricted to income-type accounts), and the loss account (restricted to expense-type accounts). |
+| NR-U103-018 | When two journal items are partially reconciled and a rate difference exists, the system builds an exchange-difference entry valued at the residual company-currency amount, dated at the later of the two lines' dates, posted to the configured exchange journal. |
+| NR-U103-019 | Each exchange-difference entry consists of pairs of journal lines: one line on the original receivable or payable account to eliminate the residual, and one offsetting line on the configured foreign-exchange gain or loss account. |
+| NR-U103-020 | Exchange-difference entries are created with a special context flag that prevents them from recursively triggering further exchange-difference calculations; they are immediately posted when both source lines are already in posted state. |
+| NR-U103-021 | If the required exchange-difference configuration accounts or journal are absent, the system raises a user-visible error message identifying the missing setting and directing the user to company configuration. |
+| NR-U103-022 | The exchange-difference computation step during reconciliation can be suppressed by passing a specific context key, which is used internally when reconciling the exchange-difference entry itself to avoid infinite loops. |
+| NR-U103-023 | The "post immediately" flag on an exchange-difference entry is determined at the moment of partial reconciliation creation: it is True only when both the debit line's parent entry and the credit line's parent entry are already in posted state. |
+| NR-U103-024 | When a partial reconciliation is deleted, any associated exchange-difference entry is automatically reversed (if already posted) or deleted (if still in draft), with the reversal date adjusted to respect accounting lock dates. |
+| NR-U103-025 | The core currency conversion function resolves rates against the root company (to support multi-branch setups), returns exactly 1 for same-currency conversions, and determines the applicable rate from the rate table using the supplied accounting date. |
+| NR-U103-026 | The amount conversion helper on the currency model multiplies the source amount by the conversion rate and optionally rounds the result to the target currency's decimal precision; it returns zero without calling the rate function when the input amount is falsy. |
+| NR-U103-027 | When a payment is created in a foreign currency, the company-currency balance of the bank liquidity line is computed by converting the payment amount at the rate applicable on the payment date. |
+| NR-U103-028 | The outstanding receivable or payable counterpart line of a payment mirrors the liquidity line's balance exactly; any residual arising from a rate difference between the payment date and the invoice date is resolved through the exchange-difference mechanism at reconciliation time, not at payment creation time. |
+| NR-U103-029 | The remaining open amount on a journal item (in both company currency and foreign currency) is computed by aggregating the matched amounts from all partial reconciliation records linked to that item, then subtracting from the original balance and foreign-currency amount respectively. |
+| NR-U103-030 | The standard community edition of the accounting module does not include a dedicated batch revaluation wizard for unrealized foreign-exchange differences; the only tool for period-end adjustments is a general accrual or account-transfer wizard, and exchange differences are recognised as realized amounts only at reconciliation time. |
