@@ -1,0 +1,92 @@
+{
+  "unit": "U182",
+  "module": "lunch",
+  "group": "G09",
+  "priority": "P2",
+  "status_before": "NOT_STUDIED",
+  "status_after": "COMPLETE",
+  "odoo_version": "19.0.post20260921",
+  "edition": "Community",
+  "research_depth": "L3",
+  "claim_count": 20,
+  "gate_code": "PASS",
+  "researcher": "DeepSeek-STATE03-U182",
+  "timestamp_utc": "2026-10-02",
+
+  "key_finding": "lunch.order is a single-line model (no separate lunch.order.line); wallet debit occurs at ordered state via a SQL UNION view (lunch.cashmove.report); no accounting integration; no auto_confirm; no _confirm_many(); each supplier and alert owns a dedicated ir.cron.",
+
+  "models_studied": [
+    "lunch.order",
+    "lunch.cashmove",
+    "lunch.cashmove.report",
+    "lunch.supplier",
+    "lunch.product",
+    "lunch.product.category",
+    "lunch.alert",
+    "lunch.location",
+    "lunch.topping"
+  ],
+
+  "absence_confirmed": [
+    "_confirm_many() method",
+    "auto_confirm field",
+    "lunch.order.line model",
+    "account.move integration"
+  ],
+
+  "migration_risks": [
+    {
+      "risk_id": "R1",
+      "severity": "HIGH",
+      "description": "lunch.cashmove.report is a SQL view (UNION). Must be recreated in target DB; not migrated as a regular table."
+    },
+    {
+      "risk_id": "R2",
+      "severity": "HIGH",
+      "description": "Each lunch.supplier and lunch.alert creates a dedicated ir.cron. Migrating suppliers/alerts without recreating crons breaks email and notification flows."
+    },
+    {
+      "risk_id": "R3",
+      "severity": "HIGH",
+      "description": "lunch.order has no separate line model. Integrations expecting lunch.order.line will fail. Quantity is on lunch.order directly."
+    },
+    {
+      "risk_id": "R4",
+      "severity": "HIGH",
+      "description": "lunch.supplier.company_id is a stored related from partner_id.company_id. Setting company on supplier requires setting it on the linked res.partner."
+    },
+    {
+      "risk_id": "R5",
+      "severity": "MEDIUM",
+      "description": "Wallet debit is at ordered state (not confirmed). Wallet balance includes in-flight (ordered, not yet confirmed) orders. Custom reports must query the SQL view or replicate the UNION logic."
+    },
+    {
+      "risk_id": "R6",
+      "severity": "MEDIUM",
+      "description": "Order merge logic (deduplication on create/write) is in Python, not SQL constraints. Bulk import bypassing ORM may create duplicate lines."
+    }
+  ],
+
+  "evidence_files": {
+    "restricted": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/01_RESTRICTED_TECHNICAL_EVIDENCE/U182_lunch.md",
+    "neutral": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/02_NEUTRAL_KNOWLEDGE/U182_lunch_NEUTRAL.md",
+    "handoff": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/04_HANDOFF_PACKETS/U182_handoff_packet.json"
+  },
+
+  "source_files_read": [
+    "models/lunch_order.py",
+    "models/lunch_cashmove.py",
+    "models/lunch_supplier.py",
+    "models/lunch_product.py",
+    "models/lunch_product_category.py",
+    "models/lunch_alert.py",
+    "models/lunch_location.py",
+    "models/lunch_topping.py",
+    "models/res_company.py",
+    "models/res_config_settings.py",
+    "models/res_users.py",
+    "report/lunch_cashmove_report.py",
+    "security/ir.model.access.csv",
+    "security/lunch_security.xml"
+  ]
+}
