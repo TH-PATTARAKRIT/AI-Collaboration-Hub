@@ -6,7 +6,7 @@
 **L-levels targeted**: L4, L5, L7, L8
 **Proof layers targeted**: P3 (Config/Role/Condition), P4 (Cross-Module/Scenario)
 **Date**: 2026-10-02
-**Status**: GATE-PENDING
+**Status**: GATE-PASS (exit 0, claim-checks=0, neutral-leak-tokens=0) — DEEPSEEK-CORRECTED / PENDING CLAUDE RE-VERIFICATION (CR-V001)
 **Predecessor**: U11_account_entry_lifecycle, U12_account_payment_reconcile
 
 ## Claims

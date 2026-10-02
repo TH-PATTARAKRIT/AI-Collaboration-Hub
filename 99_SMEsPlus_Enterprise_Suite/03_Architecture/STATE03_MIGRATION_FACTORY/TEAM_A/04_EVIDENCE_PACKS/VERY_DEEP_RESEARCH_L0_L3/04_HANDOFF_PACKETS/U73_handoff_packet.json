@@ -2,7 +2,7 @@
   "unit": "U73",
   "phase": "SECOND-PASS DEPTH CLOSURE — P0 CRITICAL",
   "date": "2026-10-02",
-  "status": "GATE-PENDING",
+  "status": "GATE-PASS",
   "capability_dimension": "Audit trail immutability (RCN-F02/RCN-F03)",
   "predecessor_unit": "U70",
   "modules_covered": ["account"],
@@ -64,5 +64,6 @@
     "01_RESTRICTED_TECHNICAL_EVIDENCE/U73_audit_trail_immutability.md",
     "02_NEUTRAL_KNOWLEDGE/U73_audit_trail_immutability_NEUTRAL.md"
   ],
-  "gate_result": "GATE-PENDING — no V-levels, no Formal Coverage, no Boss approval assigned per session constraints"
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0) — no V-levels, no Formal Coverage, no Boss approval assigned per session constraints",
+  "correction_note": "DEEPSEEK-CORRECTED / PENDING CLAUDE RE-VERIFICATION (CR-V002) — status and gate_result fields updated from GATE-PENDING to GATE-PASS to reflect actual gate exit code 0"
 }

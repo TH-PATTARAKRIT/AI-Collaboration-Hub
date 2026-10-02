@@ -1,0 +1,49 @@
+{
+  "unit": "U78",
+  "phase": "SECOND-PASS DEPTH CLOSURE — P1 CORE BUSINESS",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "capability_dimension": "MRP Full MO Lifecycle (L3/L4/L5/L7) — BOM→confirm→consume→produce→close + WIP/FG account entries + subcontracting",
+  "predecessor_units": ["U14", "U15", "U72"],
+  "modules_covered": ["mrp", "mrp_account", "mrp_subcontracting", "mrp_subcontracting_account", "stock_account"],
+  "function_ids_targeted": ["BRP-F01", "BRP-F08", "MFG-F01", "MFG-F02"],
+  "l_levels_targeted": ["L3", "L4", "L5", "L7"],
+  "proof_layers_targeted": ["P2", "P3", "P4"],
+  "claim_count": 45,
+  "c1_count": 40,
+  "awt_count": 0,
+  "th_count": 0,
+  "new_function_ids": [],
+  "key_findings": {
+    "mo_state_machine": "draft → confirmed (action_confirm) → progress → to_close → done (button_mark_done); cancel also available",
+    "action_confirm": "mrp/models/mrp_production.py:1625 — collects move_raw_ids and move_finished_ids, calls _adjust_procure_method, then _action_confirm on all moves; sets state='confirmed' for draft MOs",
+    "button_mark_done": "mrp/models/mrp_production.py:2219 — calls pre_button_mark_done, optionally _split_productions, then _post_inventory on backorder and non-backorder sets, then state='done'",
+    "post_inventory": "mrp/models/mrp_production.py:1907 — calls _action_done on raw moves, calls _cal_price on each order, then calls _action_done on finished moves",
+    "cal_price_base": "mrp/models/mrp_production.py:1903 — base mrp._cal_price is a no-op; overridden in mrp_account",
+    "cal_price_mrp_account": "mrp_account/models/mrp_production.py:57 — sums component move values + workcenter costs + extra_cost; sets FG move price_unit",
+    "cal_price_standard_cost_guard": "mrp_account/models/mrp_production.py:90 — standard-cost products use product.standard_price regardless of actual consumed cost",
+    "cal_price_avco_fifo": "mrp_account/models/mrp_production.py:93 — price_unit = total_cost * (1 - byproduct_share%) / qty_produced",
+    "account_entry_flow": "stock_account/models/stock_move.py:177 — _action_done: set value on out-moves, super(), set value on in-moves, _create_account_move on all done moves",
+    "component_entry": "DR production_location.valuation_account_id (WIP) / CR product.stock_valuation_account",
+    "finished_goods_entry": "DR product.stock_valuation_account / CR production_location.valuation_account_id (WIP)",
+    "labour_entry": "_post_labour at mrp_account/models/mrp_production.py:101 — DR production_location.valuation_account_id / CR workcenter.expense_account_id",
+    "wip_condition": "WIP accounting entries only created when production_location.valuation_account_id is configured",
+    "wip_accounting_wizard": "mrp_account/wizard/mrp_wip_accounting.py — only applies to MOs in confirmed/progress/to_close states; creates DR WIP / CR Stock Valuation + Overhead with auto-reversal",
+    "standard_cost_variance": "No explicit variance account in Community — FG price_unit = standard_price, no variance journal entry",
+    "subcontracting_mo_creation": "_action_confirm at mrp_subcontracting/models/stock_move.py:143 — receipt move matching subcontract BOM sets is_subcontract=True, calls _subcontracted_produce to create linked MO",
+    "subcontracting_account": "mrp_subcontracting_account overrides _cal_price: sets extra_cost from bill/quotation value before calling super()"
+  },
+  "source_pointers": {
+    "mrp_production_py": "mrp/models/mrp_production.py",
+    "mrp_account_production_py": "mrp_account/models/mrp_production.py",
+    "stock_account_move_py": "stock_account/models/stock_move.py",
+    "mrp_subcontracting_move_py": "mrp_subcontracting/models/stock_move.py",
+    "mrp_wip_accounting_py": "mrp_account/wizard/mrp_wip_accounting.py"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U78_mrp_mo_lifecycle.md",
+    "02_NEUTRAL_KNOWLEDGE/U78_mrp_mo_lifecycle_NEUTRAL.md"
+  ],
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0) — no V-levels, no Formal Coverage, no Boss approval assigned per session constraints",
+  "correction_note": "DEEPSEEK-CORRECTED / PENDING CLAUDE RE-VERIFICATION (CR-V003) — HP JSON was missing; created from evidence file U78_mrp_mo_lifecycle.md (SHA b9c44b0b)"
+}

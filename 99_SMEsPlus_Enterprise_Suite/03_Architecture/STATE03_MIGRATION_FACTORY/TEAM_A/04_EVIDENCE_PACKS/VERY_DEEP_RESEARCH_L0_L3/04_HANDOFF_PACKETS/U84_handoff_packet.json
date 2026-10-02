@@ -32,5 +32,6 @@
     "01_RESTRICTED_TECHNICAL_EVIDENCE/U84_cogs_timing_delivery.md",
     "02_NEUTRAL_KNOWLEDGE/U84_cogs_timing_delivery_NEUTRAL.md"
   ],
-  "gate_script": "/tmp/vdr_check_u84.py"
+  "gate_script": "/tmp/vdr_check_u84.py",
+  "correction_note": "DEEPSEEK-CORRECTED / PENDING CLAUDE RE-VERIFICATION (CR-V004) — file renamed from HP_U84.md to U84_handoff_packet.json to match convention; content unchanged"
 }
