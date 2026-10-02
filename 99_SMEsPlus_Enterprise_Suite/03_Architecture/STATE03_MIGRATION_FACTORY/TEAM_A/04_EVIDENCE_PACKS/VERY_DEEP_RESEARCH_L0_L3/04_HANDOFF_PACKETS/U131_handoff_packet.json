@@ -3,8 +3,17 @@
   "title": "Function-ID Mapping G10-G16 — GAP-034",
   "phase": "Fourth-Pass — F-ID Mapping",
   "date": "2026-10-02",
-  "status": "GATE-PASS",
-  "marker": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "status": "GATE-FAIL",
+  "marker": "DEEPSEEK-CORRECTED / PENDING STATE03 RE-VERIFICATION",
+  "b02_correction": {
+    "package": "CR-DS-U100-U200-VERIFIED-B02",
+    "defects": ["DEFECT-B (CPM-03 open gate PENDING)"],
+    "gate_command": "python3 ~/STATE03_RESTRICTED_LOCAL/tools/vdr_check.py 01_RESTRICTED_TECHNICAL_EVIDENCE/U131_fid_mapping_g10_g16.md 02_NEUTRAL_KNOWLEDGE/U131_fid_mapping_g10_g16_NEUTRAL.md",
+    "gate_output": ["claims=30 supported_pointer_and_anchor=0 unknown_class=0 neutral_ids=0", "FAIL claim-checks=60 neutral-leak-tokens=125"],
+    "gate_exit_code": 1,
+    "note": "Actual canonical gate FAILs: all 30 claims use class C1 (not FACT/OBSERVATION/INFERENCE/UNKNOWN) and pointers to handoff packets instead of module-relative source lines; neutral file contains technical tokens. Prior status GATE-PASS was not backed by the actual gate. Recorded as GATE-FAIL; no GATE-PASS manufactured.",
+    "b02_prior": {"status": "GATE-PASS", "marker": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION", "gate_result": "PENDING"}
+  },
   "session": "STATE03 ODOO 19 COMMUNITY DEEP RESEARCH",
   "flags": ["GAP-034", "P2"],
   "gap_closed": "GAP-034",
@@ -69,7 +78,7 @@
     "POS-F02: POS payment provider extensions — Mercado Pago, Mollie, Razorpay (U68)"
   ],
   "claim_count": 30,
-  "gate_result": "PENDING",
+  "gate_result": "FAIL (claim-checks=60, neutral-leak-tokens=125)",
   "gate_script": "/private/tmp/vdr_check_u131.py",
   "evidence_files": {
     "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U131_fid_mapping_g10_g16.md",
