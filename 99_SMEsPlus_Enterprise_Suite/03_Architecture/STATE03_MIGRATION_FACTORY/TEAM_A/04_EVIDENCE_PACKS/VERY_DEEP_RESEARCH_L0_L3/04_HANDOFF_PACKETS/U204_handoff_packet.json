@@ -1,0 +1,100 @@
+{
+  "unit": "U204",
+  "module": "account_move_line",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 26,
+  "gate": "GREEN",
+  "research_date": "2026-10-02",
+  "primary_source": "account/models/account_move_line.py",
+  "supporting_sources": [
+    "account/models/account_partial_reconcile.py",
+    "account/models/account_full_reconcile.py",
+    "account/models/account_move.py"
+  ],
+  "migration_flags": [
+    {
+      "id": "MF-U204-01",
+      "severity": "BREAKING",
+      "field": "analytic_account_id",
+      "status": "REMOVED",
+      "note": "Field does not exist on account.move.line in v19. Was a Many2one FK to account.analytic.account in v16 and earlier. Must be transformed into analytic_distribution JSON."
+    },
+    {
+      "id": "MF-U204-02",
+      "severity": "BREAKING",
+      "field": "analytic_tag_ids",
+      "status": "REMOVED",
+      "note": "M2M field to account.analytic.tag does not exist on account.move.line in v19. Must be merged into analytic_distribution JSON structure."
+    },
+    {
+      "id": "MF-U204-03",
+      "severity": "IMPORTANT",
+      "field": "analytic_distribution",
+      "status": "CANONICAL",
+      "note": "JSON field via analytic.mixin. Keys are comma-separated analytic account IDs (strings), values are percentage floats. Example: {\"123\": 60.0, \"456,789\": 40.0}. Must sum to 100 per plan when analytic plans require mandatory allocation."
+    },
+    {
+      "id": "MF-U204-04",
+      "severity": "IMPORTANT",
+      "field": "balance",
+      "status": "PRIMARY_MASTER",
+      "note": "In v19, balance is the stored primary field. debit and credit are computed from balance. Bulk migration writes should target balance directly. debit = max(balance,0), credit = max(-balance,0) when is_storno=False."
+    },
+    {
+      "id": "MF-U204-05",
+      "severity": "IMPORTANT",
+      "field": "tax_line_id",
+      "status": "DERIVED_ONLY",
+      "note": "tax_line_id is a related-stored field derived from tax_repartition_line_id.tax_id. Do not write tax_line_id directly; write tax_repartition_line_id instead."
+    },
+    {
+      "id": "MF-U204-06",
+      "severity": "INFORMATIONAL",
+      "field": "move_type",
+      "status": "NON_STORED_RELATED",
+      "note": "move_type on account.move.line is a non-stored related field to move_id.move_type. It is NOT in the account_move_line DB table. Domain filters using move_type will JOIN to account_move."
+    }
+  ],
+  "key_findings": {
+    "debit_credit_model": "balance is stored master (Monetary, company currency, tracking=True); debit and credit are computed — debit = balance if balance > 0 else 0, credit = -balance if balance < 0 else 0. DB constraint enforces credit * debit = 0.",
+    "amount_currency": "amount_currency stored in line currency (currency_id). Sign must match balance. When currency_id == company currency, amount_currency == balance enforced.",
+    "reconciliation_flow": "reconcile() -> _reconcile_plan([self]) -> _reconcile_plan_with_sync() -> creates account.partial.reconcile bulk, exchange diff moves, cash basis moves if needed, then account.full.reconcile when all lines fully matched.",
+    "partial_reconcile_amounts": "account.partial.reconcile.amount (company currency, always positive), debit_amount_currency (debit line currency, always positive), credit_amount_currency (credit line currency, always positive).",
+    "full_reconcile_trigger": "account.full.reconcile created when all amls in a matching group have zero residual in both company and foreign currency. Created via direct SQL INSERT for performance.",
+    "matching_number": "Char field: 'P<N>' for partial, '<N>' (decimal) for full (= full_reconcile_id), 'I<x>' for import-pending. DB constraint validates format regex ^((P?\\d+)|(I.+))$.",
+    "analytic_distribution_v19": "JSON field via analytic.mixin. Replaces analytic_account_id (FK) and analytic_tag_ids (M2M) which are ABSENT in v19. Inverse triggers analytic line recreation on posted lines.",
+    "tax_fields": "tax_ids (M2M) on base/product lines; tax_repartition_line_id (M2O to account.tax.repartition.line) on tax amount lines; tax_line_id derived from repartition line; tax_base_amount stored in company currency.",
+    "price_fields": "price_subtotal and price_total computed via tax engine, expressed in invoice currency_id (not company currency). price_unit is computed from product pricelist, stored, writable.",
+    "move_type_on_line": "Non-stored related field to move_id.move_type. Not in DB table account_move_line.",
+    "storno_accounting": "is_storno=True inverts debit/credit computation. Controlled by company_id.account_storno. Applies to refunds when company storno is enabled.",
+    "display_type": "13-value selection controlling line role. Section/subsection/note lines are exempt from accounting constraints. Tax lines have display_type='tax'. Payment term lines have display_type='payment_term'."
+  },
+  "file_pointers": {
+    "model_definition": "account/models/account_move_line.py:20-26",
+    "debit_credit_fields": "account/models/account_move_line.py:116-131",
+    "compute_debit_credit": "account/models/account_move_line.py:747-754",
+    "amount_currency_field": "account/models/account_move_line.py:142-145",
+    "constraint_credit_debit": "account/models/account_move_line.py:483-485",
+    "constraint_currency_sign": "account/models/account_move_line.py:487-490",
+    "tax_ids_field": "account/models/account_move_line.py:195-205",
+    "tax_repartition_line_id_field": "account/models/account_move_line.py:227-233",
+    "tax_line_id_field": "account/models/account_move_line.py:212-217",
+    "amount_residual_compute": "account/models/account_move_line.py:815-880",
+    "full_reconcile_id_field": "account/models/account_move_line.py:259-265",
+    "matched_debit_ids_field": "account/models/account_move_line.py:266-270",
+    "matched_credit_ids_field": "account/models/account_move_line.py:272-277",
+    "matching_number_field": "account/models/account_move_line.py:304-310",
+    "reconcile_method": "account/models/account_move_line.py:3142-3144",
+    "reconcile_plan_with_sync": "account/models/account_move_line.py:2821-2989",
+    "full_reconcile_creation": "account/models/account_move_line.py:2966",
+    "remove_move_reconcile": "account/models/account_move_line.py:3146-3148",
+    "analytic_distribution_field": "account/models/account_move_line.py:438-440",
+    "analytic_inverse": "account/models/account_move_line.py:1441-1458",
+    "analytic_validate": "account/models/account_move_line.py:3188-3219",
+    "price_subtotal_total_compute": "account/models/account_move_line.py:915-932",
+    "partial_reconcile_model": "account/models/account_partial_reconcile.py:10-68",
+    "full_reconcile_model": "account/models/account_full_reconcile.py:5-61",
+    "move_type_on_move": "account/models/account_move.py:143-160",
+    "move_type_on_line": "account/models/account_move_line.py:91"
+  }
+}
