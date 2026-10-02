@@ -205,8 +205,8 @@
 | U77 | purchase→stock→account full P2P chain | G07/G08/G04 CANDIDATE | P1 | No | C02, U06, U07 | 54 claims; NO acct entry at receipt; only vendor bill post creates entry | Restricted+Neutral evidence, handoff packet | Done 975500d1 |
 | U78 | mrp full MO lifecycle (BOM→consume→produce→close) | G09 CANDIDATE | P1 | Yes | U14, U15 | MO create→consume→produce→close→account | Restricted+Neutral evidence, handoff packet | Done b9c44b0b |
 | U79 | account.move full lifecycle (unposted→posted→reconciled) | G04 CANDIDATE | P1 | Yes | U11, U12 | Entry lifecycle deep dive L4/L7/L11 | Restricted+Neutral evidence, handoff packet | Done b6486c83 |
-| U80 | stock_account perpetual AVCO/FIFO deep (SVL recomputation) | G08 CANDIDATE | P1 | Yes | U10, U72 | AVCO/FIFO recompute on return, scrap valuation | Restricted+Neutral evidence, handoff packet | Running |
-| U81 | account_payment + bank reconciliation full workflow | G04/G05 CANDIDATE | P1 | No | U12, U33 | Payment wizard, bank statement, suspense clear | Restricted+Neutral evidence, handoff packet | Queued |
+| U80 | stock_account perpetual AVCO/FIFO deep (SVL recomputation) | G08 CANDIDATE | P1 | Yes | U10, U72 | AVCO/FIFO recompute on return, scrap valuation | Restricted+Neutral evidence, handoff packet | Done bdf8d16f |
+| U81 | account_payment + bank reconciliation full workflow | G04/G05 CANDIDATE | P1 | No | U12, U33 | Payment wizard, bank statement, suspense clear | Restricted+Neutral evidence, handoff packet | Running |
 | U82 | account_edi_ubl_cii + account_peppol EDI full flow | G04 CANDIDATE | P1 | No | U27, U48 | XML generation, PEPPOL proxy, response state machine | Restricted+Neutral evidence, handoff packet | Queued |
 | U83 | mrp_subcontracting + purchase subcontracting flow | G09/G07 CANDIDATE | P1 | No | U15, U07 | BOM→PO→receipt→auto-send→FG return→account | Restricted+Neutral evidence, handoff packet | Queued |
 | U84 | sale_stock + stock_account COGS timing at delivery | G06/G08/G04 CANDIDATE | P1 | Yes | U05, U10 | Delivery validate→SVL→account.move timing | Restricted+Neutral evidence, handoff packet | Queued |
