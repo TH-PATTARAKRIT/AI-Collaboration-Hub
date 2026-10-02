@@ -54,7 +54,8 @@ Units selected per directive:
 | U124 | account — tax report period lock (GAP-027) | P1 | Yes | NOT_PROVEN | account.tax.report lock_date logic, tax_lock_date enforcement | Done 7323dbc4 (GAP-027 PARTIAL: tax_lock_date ORM enforcement C1; auto-advance on closing post ABSENT — Enterprise-only) |
 | U125 | sale_subscription — Community presence check (GAP-049/Rank-12) | P2 | No | NOT_STUDIED | sale.subscription model, recurring invoice generation, contract renewal if present | Done fca31a3d (ABSENT — Enterprise-only; zero recurring billing in Community) |
 | U126 | account — bank reconciliation statement backend (GAP-021/Rank-13) | P1 | Yes | PARTIAL | account.bank.statement.line auto-match Python backend, manual reconciliation wizard | Done eaa6652d (GAP-021 PARTIAL: Python backend C1; JS auto-match widget excluded; import ABSENT) |
-| U127 | payment — provider webhook chain source-only (GAP-015/GAP-041/Rank-14) | P2 | No | PARTIAL | payment provider webhook chain, Stripe/Mollie source, _process_notification | Running |
+| U127 | payment — provider webhook chain source-only (GAP-015/GAP-041/Rank-14) | P2 | No | PARTIAL | payment provider webhook chain, Stripe/Mollie source, _process_notification | Done 72dea18e (GAP-015 PARTIAL: 26 modules/18+ providers C1; GAP-041 PARTIAL: SO confirm+auto-invoice chain C1; AWT for live webhook) |
+| U128 | mrp_plm / mrp_workcenter — ECO presence check (Rank-15) | P2 | No | NOT_STUDIED | ECO model, workcenter capacity, BOM versioning if present | Running |
 
 ---
 
