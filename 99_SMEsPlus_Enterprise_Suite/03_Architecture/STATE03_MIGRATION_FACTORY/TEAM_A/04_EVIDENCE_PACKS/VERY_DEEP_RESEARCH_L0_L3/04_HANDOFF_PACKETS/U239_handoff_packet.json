@@ -1,0 +1,129 @@
+{
+  "unit": "U239",
+  "module": "account_reconcile_engine",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 26,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "flag": "RECONCILE_RETURNS_NONE",
+      "severity": "MEDIUM",
+      "description": "reconcile() delegates to the plan method and returns None. Callers written against an older return shape (summary dictionary) must not read a return value.",
+      "source": "account/models/account_move_line.py:3142-3144; account/models/account_move_line.py:2796-2819"
+    },
+    {
+      "flag": "MATCHING_NUMBER_FORMAT_AND_AUTOPREFIX",
+      "severity": "HIGH",
+      "description": "matching_number is a Char: decimal string of the full reconcile id, P plus the smallest partial id for partial groups, I plus text for imports. A truthy value not starting with I is auto-prefixed with I unless context skip_matching_number_check is set. Most constraint breaches raise a plain Exception rather than ValidationError.",
+      "source": "account/models/account_move_line.py:304-310; account/models/account_move_line.py:1593-1610; account/models/account_move_line.py:1705-1710"
+    },
+    {
+      "flag": "MATCHING_NUMBER_RAW_SQL_BYPASSES_CONSTRAINT",
+      "severity": "MEDIUM",
+      "description": "The engine writes matching_number with a raw SQL UPDATE, so the Python constraint is not exercised on the engine path (inference, not run). Migration tooling that writes the field through the ORM will be sanitised and checked differently.",
+      "source": "account/models/account_partial_reconcile.py:227-235; account/models/account_partial_reconcile.py:193-238"
+    },
+    {
+      "flag": "EXCHANGE_DIFFERENCE_PER_PARTIAL",
+      "severity": "HIGH",
+      "description": "The exchange-difference entry is built per partial reconcile, not when a group becomes fully reconciled. The builder docstring still describes the older full-reconcile-time behaviour. Linking the entry to its partial uses a first-match heuristic.",
+      "source": "account/models/account_move_line.py:2440-2510; account/models/account_move_line.py:2876-2891; account/models/account_move_line.py:3001-3002"
+    },
+    {
+      "flag": "FULL_RECONCILE_HAS_NO_NAME_OR_EXCHANGE_LINK",
+      "severity": "MEDIUM",
+      "description": "account.full.reconcile has only partial_reconcile_ids and reconciled_line_ids; no name, sequence, exchange move, date or company field. Data migrated from versions that carry such fields has no target here.",
+      "source": "account/models/account_full_reconcile.py:5-10; account/models/account_full_reconcile.py:12-45"
+    },
+    {
+      "flag": "TO_RECONCILE_UNUSED",
+      "severity": "LOW",
+      "description": "The exchange move builder returns a to_reconcile entry that no Community code consumes; the exchange line is reconciled through the inverse of the reconciled-lines relation instead.",
+      "source": "account/models/account_move_line.py:3008-3008; account/models/account_move_line.py:3083-3085; account/models/account_move_line.py:1468-1472"
+    },
+    {
+      "flag": "CABA_ROUNDING_BLOCK_DEAD",
+      "severity": "LOW",
+      "description": "The cash-basis rounding block at the end of the sync worker reads keys that no batch dictionary sets, so it is unreachable.",
+      "source": "account/models/account_move_line.py:2968-2987; account/models/account_move_line.py:2935-2938"
+    },
+    {
+      "flag": "CHECK_RECONCILIATION_NO_CALLER",
+      "severity": "LOW",
+      "description": "_check_reconciliation has no caller anywhere in Community.",
+      "source": "account/models/account_move_line.py:1545-1550"
+    },
+    {
+      "flag": "UNLINK_OR_REVERSE_NO_CALLER",
+      "severity": "LOW",
+      "description": "_unlink_or_reverse has no application caller in Community; only a test refers to it.",
+      "source": "account/models/account_move.py:5551-5567"
+    },
+    {
+      "flag": "STRING_TAX_EXIGIBILITY_TH_TEMPLATE",
+      "severity": "LOW",
+      "description": "The Thai chart template sets tax_exigibility as the string True rather than a boolean. The Thai tax data has no on-payment taxes, so the cash-basis collector returns None by default.",
+      "source": "l10n_th/models/template_th.py:41-41; account/models/account_move.py:4177-4178"
+    },
+    {
+      "flag": "UNRECONCILE_NO_LOCK_CHECK_IN_REMOVE",
+      "severity": "MEDIUM",
+      "description": "remove_move_reconcile performs no lock-date, state or rights check of its own. Lock handling is only in the partial unlink (reversal date shift) and in journal item write and unlink.",
+      "source": "account/models/account_move_line.py:3146-3148; account/models/account_partial_reconcile.py:138-148; account/models/account_move_line.py:1879-1885"
+    },
+    {
+      "flag": "EXCHANGE_MOVE_LINK_FIRST_MATCH_HEURISTIC",
+      "severity": "MEDIUM",
+      "description": "The exchange move is attached to a partial by taking the first unused exchange move whose lines reconcile one of the partial's lines. With partials sharing lines the pairing may not match the originating partial (runtime check pending).",
+      "source": "account/models/account_move_line.py:2880-2891"
+    }
+  ],
+  "key_findings": {
+    "engine_shape": "reconcile() -> _reconcile_plan -> _optimize_reconciliation_plan -> _reconcile_plan_with_sync; partials are bulk-created once per call, then exchange entries, cash-basis entries, full reconcile records and the paid hook follow (account/models/account_move_line.py:2821-2989)",
+    "partial_model": "account.partial.reconcile holds debit and credit journal item links, company-currency amount and two currency amounts, full_reconcile_id, exchange_move_id and draft_caba_move_vals (account/models/account_partial_reconcile.py:10-56)",
+    "full_model": "account.full.reconcile has only partial_reconcile_ids and reconciled_line_ids; create and unlink use raw SQL and refresh matching numbers (account/models/account_full_reconcile.py:5-60)",
+    "matching_number": "decimal full reconcile id, P plus smallest partial id for partial graphs, I plus text for imports; updated by raw SQL after a graph merge (account/models/account_partial_reconcile.py:193-238)",
+    "residual": "stored computes from raw SQL aggregates over partials; reconciled when both residuals are zero (account/models/account_move_line.py:813-880)",
+    "exchange_difference": "built per partial, posted always exigible on company income or expense exchange accounts via the company exchange journal, suppressed by contexts no_exchange_difference and no_exchange_difference_no_recursive (account/models/account_move_line.py:2440-2510; account/models/account_move_line.py:2999-3140)",
+    "unreconcile": "remove_move_reconcile unlinks partials; the partial unlink reverses or unlinks exchange and cash-basis entries, shifting reversal dates past locks, removes full reconcile records and resets payment state (account/models/account_partial_reconcile.py:105-154)",
+    "access": "account user group has full rights on both models; salesman and purchase user read partials only; no record rules found (account/security/ir.model.access.csv:97-102)",
+    "thai_defaults": "Thai template sets exchange gain account 421300 and loss account 621200 and the cash-basis company flag; no on-payment taxes in Thai tax data (l10n_th/models/template_th.py:28-41)",
+    "thai_extension": "ABSENT: l10n_th has no engine override and no reconcile call",
+    "scheduled": "no cron references in the engine files",
+    "evidence_limits": "static source reading only; no live database consulted; foreign-key actions inferred from ORM defaults",
+    "function_mapping": "FUNCTION MAPPING REQUIRED: no existing function id matches; 26 new ids proposed in the neutral companion"
+  },
+  "source_files_verified": [
+    "account/models/account_partial_reconcile.py (732 lines, SHA-256 49dcf877...)",
+    "account/models/account_full_reconcile.py (60 lines, SHA-256 2a39c964...)",
+    "account/models/account_move_line.py (3833 lines, SHA-256 75e3077b...)",
+    "account/models/account_move.py (7489 lines, SHA-256 bc88290b...)",
+    "account/models/company.py (1157 lines, SHA-256 52244ff1...)",
+    "account/models/account_account.py (1658 lines, SHA-256 75ad6073...)",
+    "account/models/account_journal.py",
+    "account/models/account_bank_statement_line.py",
+    "account/models/chart_template.py",
+    "account/security/ir.model.access.csv (146 lines, SHA-256 4d2520a2...)",
+    "account/wizard/account_payment_register.py (grep and cited lines)",
+    "account/wizard/account_automatic_entry_wizard.py (grep and cited lines)",
+    "l10n_th/models/template_th.py (43 lines, SHA-256 6560e295...)",
+    "l10n_th/data/template/account.account-th.csv",
+    "l10n_th/data/template/account.tax-th.csv (header and grep)",
+    "l10n_th/models/account_move.py",
+    "l10n_th/tests/test_l10n_th_emv_qr.py (grep only)",
+    "l10n_th (directory listing)",
+    "sale/models/account_move.py",
+    "sale/models/sale_order.py",
+    "sale/security/ir.model.access.csv (grep only)",
+    "sale_stock/security/ir.model.access.csv (grep only)",
+    "purchase/security/ir.model.access.csv (grep only)",
+    "purchase_stock/models/account_invoice.py (grep only)",
+    "stock_account/models/account_move.py (grep only)",
+    "point_of_sale/models/pos_session.py (grep only)",
+    "point_of_sale/models/pos_order.py (grep only)",
+    "pos_online_payment/models/pos_session.py (grep only)",
+    "account_payment/models/payment_transaction.py (grep only)",
+    "account_payment_interco/models/account_move.py (grep only)",
+    "odoo/orm/fields_relational.py"
+  ]
+}
