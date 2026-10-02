@@ -1,0 +1,30 @@
+{
+  "unit": "U152",
+  "title": "account_followup — AR dunning/follow-up chain L3",
+  "status": "ABSENT",
+  "research_date": "2026-10-02",
+  "module": "account_followup",
+  "module_present": false,
+  "license_class": "OEEL-1 (Enterprise only)",
+  "community_version": "19.0.post20260921",
+  "claims_total": 7,
+  "claims_absent": 7,
+  "claims_c1": 0,
+  "gap_severity": "HIGH",
+  "key_finding": "account_followup is an Enterprise-only module. The entire AR dunning chain — follow-up level configuration, automated overdue detection via cron, dunning letter generation, and reconciliation-triggered flag clearing — is absent from Community 19.0. No partial implementation exists.",
+  "gaps": [
+    "account.followup.line model (delay_days, send_email, manual_action) — ABSENT",
+    "Overdue invoice detection cron — ABSENT",
+    "Follow-up level assignment on account.move.line — ABSENT",
+    "Dunning letter QWeb report — ABSENT",
+    "Reconciliation integration to clear dunning flag — ABSENT"
+  ],
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U152_account_followup.md",
+    "02_NEUTRAL_KNOWLEDGE/U152_account_followup_NEUTRAL.md",
+    "04_HANDOFF_PACKETS/U152_handoff_packet.json"
+  ],
+  "gate_script": "/private/tmp/vdr_check_u152.py",
+  "gate_exit_code": null,
+  "sha": null
+}
