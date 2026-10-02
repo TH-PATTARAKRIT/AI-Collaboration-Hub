@@ -40,8 +40,8 @@ Units selected per directive:
 | U111 | account_budget — budget control (if Community) | P2 | No | NOT_STUDIED | crossovered.budget, budget.line, account.budget.post | Done 1d439378 (ABSENT — Enterprise-only) |
 | U112 | product.template → product.product — attribute/variant explosion | P2 | No | NOT_PROVEN | product.template.attribute.value, _create_variant_ids, price extra | Done 2e66928b |
 | U113 | mail — chatter + mail.activity deep (notification/reminder chain) | P2 | No | NOT_PROVEN | mail.activity lifecycle, mail.thread.mix, scheduled actions | Done 4967378c |
-| U114 | account — journal locking + sequence integrity | P2 | Yes | NOT_PROVEN | Journal sequence.mixin, _get_last_sequence, SEQUENCE GAP detection | Running |
-| U115 | stock_account — WIP account entries from mrp_account close | P1 | Yes | NOT_PROVEN | mrp_account WIP journal, _get_production_account, finished goods posting | Queued |
+| U114 | account — journal locking + sequence integrity | P2 | Yes | NOT_PROVEN | Journal sequence.mixin, _get_last_sequence, SEQUENCE GAP detection | Done b5816952 |
+| U115 | stock_account — WIP account entries from mrp_account close | P1 | Yes | NOT_PROVEN | mrp_account WIP journal, _get_production_account, finished goods posting | Queued — HOLD per BOSS_OFFHOURS_CONDITIONAL_ALLOW_STATE03 |
 | U116 | purchase_requisition — if present in Community | P2 | No | NOT_STUDIED | purchase.requisition model, tender workflow, PO from requisition | Queued |
 | U117 | digest — KPI digest cron + ir.actions.server pattern | P2 | No | NOT_STUDIED | digest.digest, _compute_kpis, mail cron | Queued |
 | U118 | account — deferred revenue/expense (account_deferred) | P1 | No | NOT_STUDIED | account.deferred model, amortization schedule, account.move generation | Queued |
