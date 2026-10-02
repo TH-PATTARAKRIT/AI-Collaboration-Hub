@@ -1,0 +1,75 @@
+{
+  "unit": "U203",
+  "module": "stock_rule_route",
+  "sha": "PENDING",
+  "claim_count": 25,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "id": "FLAG-1",
+      "severity": "BREAKING",
+      "summary": "procurement.group replaced by stock.reference",
+      "detail": "The procurement.group model is gone in v19. stock.move now uses reference_ids (Many2many to stock.reference) instead of group_id (Many2one to procurement.group). Any custom code using env['procurement.group'] or move.group_id will fail.",
+      "evidence": "stock_move.py:141-142; stock_reference.py:1-15"
+    },
+    {
+      "id": "FLAG-2",
+      "severity": "BREAKING",
+      "summary": "stock.route.packaging_ids field removed",
+      "detail": "The packaging_ids Many2many field formerly on stock.route is absent from the v19 StockRoute model. Stale i18n translations (e.g. stock/i18n/es_CL.po:5167) confirm it existed before. The v19 equivalent is route_ids on stock.package.type (stock_package_type.py:39) plus package_type_selectable Boolean on stock.route.",
+      "evidence": "stock_location.py:517-595 (absence); stock_package_type.py:39; i18n PO files"
+    },
+    {
+      "id": "FLAG-3",
+      "severity": "INFO",
+      "summary": "routing_id absent from stock module",
+      "detail": "No routing_id field exists anywhere in the stock addon Python files. The pattern matches the mrp.bom routing_id removal. Stock rules do not carry a routing_id reference in v19.",
+      "evidence": "grep across stock/models/*.py returns zero results"
+    },
+    {
+      "id": "FLAG-4",
+      "severity": "NEW-v19",
+      "summary": "location_dest_from_rule Boolean added to stock.rule",
+      "detail": "New field in v19. When True, the destination location on the created transfer is taken from the rule's location_dest_id rather than the picking type's default. Used by warehouse resupply rule creation.",
+      "evidence": "stock_rule.py:72-75; stock_warehouse.py:727"
+    },
+    {
+      "id": "FLAG-5",
+      "severity": "NEW-v19",
+      "summary": "push_domain Char field added to stock.rule",
+      "detail": "New field in v19. Allows conditional push rules via a domain expression evaluated against the incoming move. If the move does not match, that push rule is skipped and the next candidate is evaluated.",
+      "evidence": "stock_rule.py:111; stock_move.py:1237-1242"
+    },
+    {
+      "id": "FLAG-6",
+      "severity": "NEW-v19",
+      "summary": "procurement_values Json field added to stock.move",
+      "detail": "New non-stored Json field on stock.move that carries serialized procurement context (BaseModel IDs, dates) through the move chain for downstream rule application.",
+      "evidence": "stock_move.py:140; stock_rule.py:389-410"
+    },
+    {
+      "id": "FLAG-7",
+      "severity": "INFO",
+      "summary": "propagation_stock_picking_id does not exist in v19 stock community",
+      "detail": "The field propagation_stock_picking_id referenced in research scope does not exist anywhere in the v19 stock community addon. It may be an Enterprise-only field or was removed in an earlier version.",
+      "evidence": "grep across stock/models/*.py returns zero results"
+    }
+  ],
+  "key_findings": {
+    "push_chain": "_push_apply() on stock.move calls _get_push_rule() then _run_push() per move after state='done'; push rules with auto='transparent' overwrite destination in place and recurse; auto='manual' creates a successor move via copy with procure_method='make_to_order'",
+    "pull_chain": "_run_pull() builds stock.move values via _get_stock_move_values() storing procurement location as location_final_id, then creates and confirms moves by company batch",
+    "route_priority": "Route lookup priority: explicit route_ids > package type routes > product+category routes > warehouse routes; within tier sorted by (route_sequence, sequence) ascending; location hierarchy walked upward on miss",
+    "procurement_group_change": "v19 replaces procurement.group with stock.reference; moves use reference_ids Many2many instead of group_id Many2one — BREAKING change for any integration",
+    "packaging_ids_removed": "stock.route.packaging_ids absent from v19 Python model; replaced by route_ids on stock.package.type",
+    "mts_else_mto_handling": "_run_pull() immediately downgrades mts_else_mto to make_to_stock; no base-stock forecast check at rule execution time",
+    "cancel_propagation": "propagate_cancel on rule defaults False; on move defaults True; cancellation only cascades forward if ALL sibling origin moves are also cancelled"
+  },
+  "primary_files": [
+    "odoo/addons/stock/models/stock_rule.py",
+    "odoo/addons/stock/models/stock_move.py",
+    "odoo/addons/stock/models/stock_location.py",
+    "odoo/addons/stock/models/stock_warehouse.py",
+    "odoo/addons/stock/models/stock_reference.py",
+    "odoo/addons/stock/models/stock_package_type.py"
+  ]
+}
