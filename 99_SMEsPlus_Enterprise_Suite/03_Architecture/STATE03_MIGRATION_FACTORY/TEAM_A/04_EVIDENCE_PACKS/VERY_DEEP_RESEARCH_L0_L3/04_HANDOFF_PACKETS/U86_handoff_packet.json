@@ -1,0 +1,63 @@
+{
+  "unit": "U86",
+  "title": "CRM Lead Full Pipeline",
+  "phase": "Second-Pass Depth Closure — P2 Supporting Domains",
+  "capability_dimension": "CRM lead full pipeline (lead→opportunity→sale.order)",
+  "priority": "P2",
+  "l_levels": ["L4", "L5"],
+  "proof_layers": ["P4"],
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "gate_result": {
+    "claim_checks_errors": 0,
+    "neutral_leak_tokens": 0,
+    "result": "GATE-PASS"
+  },
+  "claim_count": 51,
+  "neutral_row_count": 33,
+  "modules_covered": ["crm", "sale_crm"],
+  "source_files_read": [
+    "crm/models/crm_lead.py",
+    "crm/models/crm_stage.py",
+    "sale_crm/models/crm_lead.py",
+    "sale_crm/models/sale_order.py"
+  ],
+  "function_ids": [
+    "U86-F01", "U86-F02", "U86-F03", "U86-F04", "U86-F05",
+    "U86-F06", "U86-F07", "U86-F08", "U86-F09", "U86-F10",
+    "U86-F11", "U86-F12", "U86-F13", "U86-F14", "U86-F15",
+    "U86-F16", "U86-F17", "U86-F18", "U86-F19", "U86-F20",
+    "U86-F21", "U86-F22"
+  ],
+  "key_findings": {
+    "lead_state_machine": {
+      "type_field": "Selection ['lead', 'opportunity'] on crm.lead line 123",
+      "won_status": "Computed Selection ['won','lost','pending'] from active+probability+stage_id.is_won line 613",
+      "won_condition": "probability==100 AND stage_id.is_won==True",
+      "lost_condition": "active==False AND probability==0",
+      "action_set_won": "Finds nearest won stage by sequence; writes stage_id + probability=100 (line 1127)",
+      "action_set_lost": "Calls action_archive() + writes probability=0, automated_probability=0 (line 1121)"
+    },
+    "lead_to_opportunity_conversion": {
+      "method": "convert_opportunity() line 1850 calls _convert_opportunity_data()",
+      "sets": "type='opportunity', date_conversion=now()",
+      "guard": "Skips if not active or won_status=='won'"
+    },
+    "crm_to_sale_order_linkage": {
+      "module": "sale_crm",
+      "link_field_on_sale_order": "opportunity_id Many2one crm.lead (sale_crm/models/sale_order.py line 10)",
+      "link_field_on_lead": "order_ids One2many sale.order via opportunity_id (sale_crm/models/crm_lead.py line 13)",
+      "quotation_creation": "action_new_quotation() passes default_opportunity_id, partner, UTM fields as context",
+      "revenue_sync": "SaleOrder.action_confirm() calls _update_revenues_from_so() to update expected_revenue when SO amount > current value"
+    },
+    "analytic_account": "NOT PRESENT in Community — no analytic_account_id on crm.lead or sale.order in crm/sale_crm modules",
+    "lead_scoring": "Naive Bayes PLS via _pls_get_naive_bayes_probabilities(); fields configurable via ir.config_parameter 'crm.pls_fields'; frequency table crm_lead_scoring_frequency updated on won/lost transitions",
+    "sale_crm_module_presence": "Confirmed present at addons/sale_crm/; contains models/crm_lead.py and models/sale_order.py"
+  },
+  "predecessors": ["U18", "U38"],
+  "output_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U86_crm_lead_pipeline.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U86_crm_lead_pipeline_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U86_handoff_packet.json"
+  }
+}
