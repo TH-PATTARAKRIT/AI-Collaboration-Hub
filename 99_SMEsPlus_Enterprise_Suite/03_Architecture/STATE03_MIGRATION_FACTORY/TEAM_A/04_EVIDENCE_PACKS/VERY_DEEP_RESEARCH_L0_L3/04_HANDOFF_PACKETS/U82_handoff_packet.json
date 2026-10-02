@@ -1,0 +1,60 @@
+{
+  "unit": "U82",
+  "title": "EDI/UBL/PEPPOL Full Send/Receive Flow",
+  "phase": "Second-Pass Depth Closure — P1 Core Business",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "l_levels": ["L3", "L4"],
+  "proof_layers": ["P2", "P4"],
+  "predecessors": ["U27", "U48"],
+  "modules_confirmed_community_lgpl3": [
+    "account_edi",
+    "account_edi_ubl_cii",
+    "account_peppol",
+    "account_edi_proxy_client"
+  ],
+  "additional_modules_present": [
+    "account_peppol_advanced_fields",
+    "account_peppol_response",
+    "l10n_account_edi_ubl_cii_tests"
+  ],
+  "claim_count": 50,
+  "neutral_rows": 50,
+  "gate_result": {
+    "claim_checks_errors": 0,
+    "neutral_leak_tokens": 0,
+    "verdict": "GATE-PASS"
+  },
+  "new_function_ids": [
+    "U82-F01", "U82-F02", "U82-F03", "U82-F04", "U82-F05",
+    "U82-F06", "U82-F07", "U82-F08", "U82-F09", "U82-F10",
+    "U82-F11", "U82-F12", "U82-F13", "U82-F14", "U82-F15",
+    "U82-F16"
+  ],
+  "key_findings": {
+    "edi_formats_registered": [
+      "ubl_bis3 (PEPPOL BIS Billing 3.0)",
+      "facturx / zugferd (CII D16B)",
+      "xrechnung (German UBL)",
+      "nlcius (Dutch)",
+      "ubl_a_nz (Australia/NZ)",
+      "ubl_sg (Singapore)",
+      "efff (Belgian)",
+      "ubl_20 / ubl_21 (base abstract)"
+    ],
+    "ubl_generation_method": "_export_invoice() on account.edi.xml.ubl_20 (and subclasses); returns (UTF-8 XML bytes, set of errors)",
+    "xml_trigger": "Triggered in account.move.send._hook_invoice_document_before_pdf_report_render() during Send & Print flow; stored in ubl_cii_xml_file binary field on account.move",
+    "peppol_proxy_endpoint_prod": "https://peppol.api.odoo.com",
+    "peppol_send_flow": "_call_web_service_after_invoice_pdf_render() groups invoices by edi_user, calls _send_peppol_documents() which POSTs to /api/peppol/1/send_document; sets peppol_move_state=processing on success",
+    "peppol_state_machine": "ready -> to_send -> processing -> done (or error); incoming invoices arrive as processing state",
+    "incoming_processing": "Cron polls /api/peppol/1/get_all_documents (direction=incoming); decrypts RSA+Fernet; creates account.move as in_invoice; ACKs via /api/peppol/1/ack",
+    "edi_document_states": "to_send, sent, to_cancel, cancelled",
+    "proxy_auth": "JSON-RPC 2.0 with HMAC-signed refresh token (rotates every 24h) or asymmetric RSA fallback for resync",
+    "community_vs_enterprise": "All EDI/PEPPOL modules are LGPL-3 Community; PEPPOL proxy backend is Odoo IAP service (requires subscription) but client code is open source"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U82_edi_ubl_peppol_flow.md",
+    "02_NEUTRAL_KNOWLEDGE/U82_edi_ubl_peppol_flow_NEUTRAL.md"
+  ],
+  "gate_script": "/tmp/vdr_check_u82.py"
+}
