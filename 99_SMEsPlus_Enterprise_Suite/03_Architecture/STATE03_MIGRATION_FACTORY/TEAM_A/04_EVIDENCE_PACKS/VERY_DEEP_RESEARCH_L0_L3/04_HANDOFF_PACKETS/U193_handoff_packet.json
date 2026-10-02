@@ -1,0 +1,186 @@
+{
+  "unit": "U193",
+  "module": "stock_barcode",
+  "group": "G06",
+  "priority": "P2",
+  "status": "COMPLETE",
+  "gate_code": "PASS-L3",
+  "claims_count": 22,
+  "research_date": "2026-10-02",
+  "source_path": "/Volumes/iMacSys/CLAUDE AI/SMEsPlus/SMEsPlus19/SOURCE_CODE /01_ADDONS_COMMUNITY/addons/stock_barcode",
+  "secondary_source_path": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons/barcodes_gs1_nomenclature",
+  "license": "OEEL-1",
+  "key_finding": "stock_barcode is a full-screen barcode client action supporting receipt/delivery/internal/inventory picking types; scan dispatch is a step-state machine (source→product→lot→destination) with GS1-128 multi-AI parsing via barcodes_gs1_nomenclature; lot auto-creation is conditional on picking type use_create_lots/use_existing_lots flags; no dependency on stock_picking_wave.",
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U193_stock_barcode.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U193_stock_barcode_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U193_handoff_packet.json"
+  },
+  "claims": [
+    {
+      "id": "C01",
+      "scope": "Module",
+      "category": "Dependency",
+      "confidence": "HIGH",
+      "summary": "Depends on barcodes, stock, web_tour only. No wave/batch dependency."
+    },
+    {
+      "id": "C02",
+      "scope": "Model",
+      "category": "Field Design",
+      "confidence": "HIGH",
+      "summary": "StockMoveLine adds product_barcode (related), location_processed (bool), dummy_id (virtual key)."
+    },
+    {
+      "id": "C03",
+      "scope": "Model",
+      "category": "Client Action",
+      "confidence": "HIGH",
+      "summary": "_get_client_action() builds fullscreen ir.actions.client dict; use_form_handler system param reverts to form view."
+    },
+    {
+      "id": "C04",
+      "scope": "Model",
+      "category": "State Serialization",
+      "confidence": "HIGH",
+      "summary": "get_barcode_view_state() serializes picking + lines + group flags + type settings in one RPC call."
+    },
+    {
+      "id": "C05",
+      "scope": "Model",
+      "category": "Scan Dispatch",
+      "confidence": "HIGH",
+      "summary": "on_barcode_scanned() resolves: product → packaging → source package → dest package → dest location; or GS1 typed parse."
+    },
+    {
+      "id": "C06",
+      "scope": "Model",
+      "category": "Quantity Logic",
+      "confidence": "HIGH",
+      "summary": "_check_product() increments qty_done or creates new move line with qty_done=0 for tracked products."
+    },
+    {
+      "id": "C07",
+      "scope": "Model",
+      "category": "Line Splitting",
+      "confidence": "HIGH",
+      "summary": "_check_destination_location() splits lines when qty_done < product_uom_qty to preserve unfulfilled reservation."
+    },
+    {
+      "id": "C08",
+      "scope": "Model",
+      "category": "Picking Types",
+      "confidence": "HIGH",
+      "summary": "Barcode kanban domain: code in (incoming, outgoing, internal). All three types are supported."
+    },
+    {
+      "id": "C09",
+      "scope": "Controller",
+      "category": "Route",
+      "confidence": "HIGH",
+      "summary": "/scan_from_main_menu tries: open existing picking → open new picking by type → open new internal by location."
+    },
+    {
+      "id": "C10",
+      "scope": "Controller",
+      "category": "Read/Write",
+      "confidence": "HIGH",
+      "summary": "/get_set_barcode_view_state combines write + state read in one call; company from cids cookie."
+    },
+    {
+      "id": "C11",
+      "scope": "Model",
+      "category": "Cache Preload",
+      "confidence": "HIGH",
+      "summary": "get_all_products_by_barcode() returns up to 10k products + packaging entries keyed by barcode string."
+    },
+    {
+      "id": "C12",
+      "scope": "Model",
+      "category": "Lot Info Fetch",
+      "confidence": "HIGH",
+      "summary": "read_product_and_package() fetches product fields and quant-based package/owner for lot lines."
+    },
+    {
+      "id": "C13",
+      "scope": "Model",
+      "category": "Cache Preload",
+      "confidence": "HIGH",
+      "summary": "get_all_locations_by_barcode() returns barcode→location dict with parent_path for JS child-of checks."
+    },
+    {
+      "id": "C14",
+      "scope": "Wizard",
+      "category": "Lot Scan",
+      "confidence": "HIGH",
+      "summary": "stock_barcode.lot wizard handles lot scan events; duplicate serial scan raises UserError."
+    },
+    {
+      "id": "C15",
+      "scope": "Wizard",
+      "category": "Lot Creation",
+      "confidence": "HIGH",
+      "summary": "validate_lot() calls get_lot_or_create() when use_existing_lots=True; otherwise stores lot_name string. Auto-creation confirmed."
+    },
+    {
+      "id": "C16",
+      "scope": "GS1",
+      "category": "AI Rules",
+      "confidence": "HIGH",
+      "summary": "AI01=GTIN/product(14-digit identifier), AI10=lot(alpha,20char), AI17=expiry(YYMMDD date), AI37=quantity(integer)."
+    },
+    {
+      "id": "C17",
+      "scope": "GS1",
+      "category": "Parsing",
+      "confidence": "HIGH",
+      "summary": "gs1_decompose_extended() iterates rules sequentially, returns all AIs as ordered list from a single composite scan."
+    },
+    {
+      "id": "C18",
+      "scope": "JS",
+      "category": "State Machine",
+      "confidence": "HIGH",
+      "summary": "Scan step machine: source→product→lot→destination. Steps auto-registered by _step_ prefix. Steps bypassed per mode."
+    },
+    {
+      "id": "C19",
+      "scope": "JS",
+      "category": "Mode Mapping",
+      "confidence": "HIGH",
+      "summary": "PickingClientAction maps picking_type_code: incoming=receipt(skip src scan), outgoing=delivery(skip dest scan), else=internal."
+    },
+    {
+      "id": "C20",
+      "scope": "JS",
+      "category": "Quantity Model",
+      "confidence": "HIGH",
+      "summary": "Each scan increments qty_done directly. Commit on O-BTN.validate (button_validate). Immediate-transfer flag from server state."
+    },
+    {
+      "id": "C21",
+      "scope": "Model",
+      "category": "Inventory Adj",
+      "confidence": "HIGH",
+      "summary": "stock.inventory has dedicated barcode client action; serializes theoretical_qty per line for comparison against scan counts."
+    },
+    {
+      "id": "C22",
+      "scope": "Config",
+      "category": "Settings",
+      "confidence": "HIGH",
+      "summary": "Settings: nomenclature_id (GS1 toggle), keyboard shortcuts group (all users), keyboard_layout (deprecated)."
+    }
+  ],
+  "migration_risk_flags": [
+    "stock.inventory model removed in Odoo v16+ — inventory client action requires adaptation to stock.quant",
+    "immediate_transfer field semantics changed in v16+",
+    "product_packaging barcode path in on_barcode_scanned must survive packaging model changes",
+    "lot_name string vs lot_id M2O dual path in validate_lot must be preserved in any port",
+    "barcodes.barcode_events_mixin must exist in target version for on_barcode_scanned server-side dispatch"
+  ],
+  "dependencies_confirmed": ["barcodes", "stock", "web_tour"],
+  "dependencies_absent": ["stock_picking_wave", "stock_picking_batch", "mrp"],
+  "picking_types_supported": ["incoming", "outgoing", "internal"],
+  "gs1_ais_confirmed": ["01 (product/GTIN)", "10 (lot/batch)", "17 (expiry date)", "37 (quantity count)"]
+}
