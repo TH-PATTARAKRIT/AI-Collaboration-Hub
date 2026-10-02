@@ -1,8 +1,18 @@
 {
-  "unit_id": "U106",
+  "unit": "U106",
   "title": "stock — replenishment (orderpoint, procurement rule, make-to-order)",
   "priority": "P1",
-  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "status": "GATE-FAIL",
+  "marker": "DEEPSEEK-CORRECTED / PENDING STATE03 RE-VERIFICATION",
+  "b02_correction": {
+    "package": "CR-DS-U100-U200-VERIFIED-B02",
+    "defects": ["DEFECT-A (CPM-01 unit_id key)", "DEFECT-B (CPM-03 open gate PENDING)"],
+    "gate_command": "python3 ~/STATE03_RESTRICTED_LOCAL/tools/vdr_check.py 01_RESTRICTED_TECHNICAL_EVIDENCE/U106_stock_replenishment.md 02_NEUTRAL_KNOWLEDGE/U106_stock_replenishment_NEUTRAL.md",
+    "gate_output": ["claims=0 supported_pointer_and_anchor=0 unknown_class=0 neutral_ids=0", "FAIL claim-checks=0 neutral-leak-tokens=0"],
+    "gate_exit_code": 0,
+    "note": "Actual canonical gate FAILs: 0 canonical VDR-U106-C### claims. Recorded as GATE-FAIL; no GATE-PASS manufactured.",
+    "b02_prior": {"key": "unit_id", "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION", "gate_result": "PENDING"}
+  },
   "pass": "third-pass-deep-research",
   "research_date": "2026-10-02",
   "researcher": "Claude Sonnet 4.6",
@@ -68,5 +78,5 @@
     "handoff_packet": "04_HANDOFF_PACKETS/U106_handoff_packet.json"
   },
   "gate_script": "/private/tmp/vdr_check_u106.py",
-  "gate_result": "PENDING"
+  "gate_result": "FAIL (claim-checks=0, neutral-leak-tokens=0)"
 }
