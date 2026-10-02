@@ -1,0 +1,69 @@
+{
+  "unit_id": "U110",
+  "title": "stock — lot/serial traceability + account impact",
+  "priority": "P1",
+  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "gate_result": "PENDING",
+  "produced_by": "Claude Sonnet 4.6 — third-pass deep research agent",
+  "produced_at": "2026-10-02",
+  "claim_count": 43,
+  "source_files_read": [
+    "stock/models/stock_lot.py",
+    "stock/models/stock_quant.py",
+    "stock/models/stock_move_line.py",
+    "stock/models/stock_move.py",
+    "stock/models/product.py",
+    "stock/models/product_strategy.py",
+    "product_expiry/models/production_lot.py",
+    "product_expiry/models/stock_quant.py",
+    "stock_account/models/stock_lot.py",
+    "stock_account/models/product.py",
+    "stock_account/models/stock_move.py",
+    "stock_account/models/stock_move_line.py",
+    "stock_account/models/account_move_line.py"
+  ],
+  "key_findings": {
+    "lot_model": "stock.lot at stock/models/stock_lot.py:25 — inherits mail.thread and mail.activity.mixin",
+    "tracking_field": "product.template.tracking at stock/models/product.py:856 — three values: serial, lot, none",
+    "quant_lot_field": "stock.quant.lot_id at stock/models/stock_quant.py:64 — indexed Many2one with ondelete restrict",
+    "removal_strategy_resolver": "stock_quant._get_removal_strategy at stock/models/stock_quant.py:618 — category then location tree then fifo fallback",
+    "fifo_order": "in_date ASC, id — stock/models/stock_quant.py:743",
+    "fefo_order": "product_expiry override — removal_date, in_date, id — product_expiry/models/stock_quant.py:27",
+    "fefo_zero_avail": "expired quants forced to available_quantity=0 — product_expiry/models/stock_quant.py:36",
+    "serial_qty_guard": "stock_move_line._onchange_quantity blocks qty != 1 for serial — stock/models/stock_move_line.py:248",
+    "lot_valuated_flag": "product_template.lot_valuated at stock_account/models/product.py:31 — per-lot cost tracking",
+    "per_lot_std_price": "stock.lot.standard_price at stock_account/models/stock_lot.py:13 — company-dependent monetary field",
+    "out_move_lot_value": "stock_move._set_value uses lot.standard_price per line — stock_account/models/stock_move.py:340",
+    "lot_required_in_guard": "incoming move raises UserError if any move line lacks lot_id when lot_valuated — stock_account/models/stock_move.py:317",
+    "fifo_stack_lot_filter": "product._run_fifo_get_stack filters moves by move_line_ids.lot_id — stock_account/models/product.py:605",
+    "avco_lot_filter": "product._run_average_batch filters by move_line_ids.lot_id — stock_account/models/product.py:422",
+    "lot_change_triggers_revaluation": "lot_id in valuation_fields list — stock_account/models/stock_move_line.py:19",
+    "account_move_line_no_lot": "account.move.line has no lot_id field in stock_account — confirmed by source inspection (AWT for runtime)"
+  },
+  "awt_items": [
+    {
+      "claim_id": "U110-C43",
+      "question": "Does any accounting journal entry line in stock_account or account modules carry a direct lot_id field?",
+      "evidence": "Source inspection of stock_account/models/account_move_line.py and account/models/account_move_line.py found no lot_id field. AWT needed for runtime confirmation that no extended module adds this.",
+      "runtime_check": "SELECT column_name FROM information_schema.columns WHERE table_name='account_move_line' AND column_name='lot_id'"
+    }
+  ],
+  "output_files": {
+    "vdr_claims": "01_RESTRICTED_TECHNICAL_EVIDENCE/U110_lot_serial_traceability.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U110_lot_serial_traceability_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U110_handoff_packet.json"
+  },
+  "scope_coverage": {
+    "stock_lot_model": "PROVEN — C01 to C05, C38 to C42",
+    "tracking_field": "PROVEN — C02, C03",
+    "fefo_removal_strategy": "PROVEN — C13 to C16",
+    "fifo_lifo_strategies": "PROVEN — C10, C11, C12",
+    "quant_lot_tracking": "PROVEN — C06 to C09, C17 to C19",
+    "move_line_lot_tracking": "PROVEN — C20 to C24",
+    "lot_valuated_flag": "PROVEN — C25, C26",
+    "fifo_avco_per_lot": "PROVEN — C27, C28, C33, C34",
+    "per_lot_std_price": "PROVEN — C29, C30, C32, C36",
+    "valuation_guard": "PROVEN — C31, C37",
+    "account_move_line_lot": "AWT — C43"
+  }
+}
