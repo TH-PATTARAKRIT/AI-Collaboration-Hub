@@ -1,0 +1,131 @@
+{
+  "unit": "U79",
+  "session": "STATE03-ODOO19-COMMUNITY-DEEP-RESEARCH",
+  "phase": "SECOND-PASS DEPTH CLOSURE — P1 CORE BUSINESS",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "predecessor_units": ["U11", "U12", "U70", "U73"],
+  "capability_dimension": "account.move full lifecycle (unposted→posted→reconciled→closed)",
+  "l_levels": ["L4", "L7", "L8", "L11"],
+  "proof_layers": ["P2", "P3", "P4"],
+  "function_ids": {
+    "targeted": ["PCO-F01", "RCN-F02", "RCN-F03"],
+    "new": ["NEW:U79-F01", "NEW:U79-F02", "NEW:U79-F03", "NEW:U79-F04", "NEW:U79-F05", "NEW:U79-F06", "NEW:U79-F07", "NEW:U79-F08"]
+  },
+  "new_function_id_descriptions": {
+    "NEW:U79-F01": "Lock date enforcement: _check_fiscal_lock_dates, _check_tax_lock_date, _get_lock_date_protected_fields; write() trigger conditions",
+    "NEW:U79-F02": "Hash chain: MAX_HASH_VERSION, inalterable_hash, restrict_mode_hash_table, _get_integrity_hash_fields, _calculate_hashes (SHA-256 chained), _hash_moves, _get_move_hash_domain",
+    "NEW:U79-F03": "TYPE_REVERSE_MAP constant: move type mapping for reversals",
+    "NEW:U79-F04": "Auto-post scheduling: soft=True behaviour, future-dated moves deferred to scheduler",
+    "NEW:U79-F05": "Restrictive audit trail: posted_before + restrictive_audit_trail deletion guard",
+    "NEW:U79-F06": "Sequence integrity guard: posted_before + journal change prevention",
+    "NEW:U79-F07": "Posted move readonly field list: invoice_line_ids, line_ids, invoice_date, date, partner_id, invoice_payment_term_id, currency_id, fiscal_position_id, invoice_cash_rounding_id",
+    "NEW:U79-F08": "remove_move_reconcile: unlink partials cascade to full reconcile, CABA/exchange reversal, payment state reset"
+  },
+  "gate_result": {
+    "tool": "/tmp/vdr_check_u79.py",
+    "claims": 52,
+    "claim_check_failures": 0,
+    "neutral_leak_tokens": 0,
+    "outcome": "GATE-PASS"
+  },
+  "key_findings": {
+    "state_machine": {
+      "states": ["draft", "posted", "cancel"],
+      "payment_states": ["not_paid", "in_payment", "paid", "partial", "reversed", "blocked", "invoicing_legacy"],
+      "state_field_line": "account/models/account_move.py:130",
+      "no_other_states_in_v19": true
+    },
+    "action_post_chain": {
+      "entry_point": "action_post() line 6180",
+      "delegates_to": "_post(soft=False) line 6198",
+      "key_steps": [
+        "access check group_account_invoice (5583)",
+        "validation loop: partner, amount, journal, currency, accounts (5591-5683)",
+        "lock date date adjustment via _get_violated_lock_dates (5704-5706)",
+        "analytic line creation (5709)",
+        "recurring copy trigger (5713)",
+        "batch write state=posted, posted_before=True (5757-5760)",
+        "_hash_moves() triggered from write() when state=posted (4004-4006)",
+        "_reconcile_reversed_moves for reversal auto-reconcile (5775)",
+        "_reconcile_marked for import-marked lines (5776)"
+      ]
+    },
+    "button_draft": {
+      "line": 6269,
+      "guards": [
+        "state must be cancel or posted (6270)",
+        "need_cancel_request must be False (6272)",
+        "_check_draftable: no exchange_move, no CABA, no inalterable_hash (6348-6373)"
+      ],
+      "hash_blocks_reset": true
+    },
+    "button_cancel": {
+      "line": 6384,
+      "flow": "posted→button_draft→draft→remove_reconcile+cancel_payments+state=cancel"
+    },
+    "lock_date_enforcement": {
+      "_check_fiscal_lock_dates_line": "account/models/account_move.py:2823",
+      "_check_tax_lock_date_line": "account/models/account_move_line.py:1526",
+      "triggers_in_write": [
+        "posted AND (name changed OR date changed) → 3946-3951",
+        "state leaving posted → 3954-3956",
+        "after write if date or state in vals → 3999-4002"
+      ],
+      "in_post": "date adjusted before state change (5702-5706)"
+    },
+    "hash_chain": {
+      "MAX_HASH_VERSION": 4,
+      "algorithm": "SHA-256 chained",
+      "stored_format_v4": "$4$<hex>",
+      "field_line": "account/models/account_move.py:355",
+      "integrity_hash_fields_v4": ["name", "date", "journal_id", "company_id"],
+      "line_fields_included": true,
+      "requires_restrict_mode_hash_table": true,
+      "triggered_by_write_state_posted": "line 4004-4006",
+      "blocks_draft_reset": true,
+      "blocks_field_modification": true
+    },
+    "posted_before": {
+      "set_at": "first _post() write, line 5759",
+      "never_reset": true,
+      "used_in_guards": ["journal change (3930)", "audit trail deletion (4071)", "write lock (3993)"]
+    },
+    "reconciliation": {
+      "partial_reconcile_model": "account.partial.reconcile",
+      "full_reconcile_model": "account.full.reconcile",
+      "reconcile_method": "account.move.line.reconcile() line 3142 → _reconcile_plan([self])",
+      "matched_debit_ids": "One2many → account.partial.reconcile via credit_move_id (line 266)",
+      "matched_credit_ids": "One2many → account.partial.reconcile via debit_move_id (line 272)",
+      "reconciled_field": "stored Boolean, True when amount_residual=0 AND amount_residual_currency=0 (line 258)",
+      "full_reconcile_created_at": "_reconcile_plan_with_sync line 2966",
+      "no_reconcile_state_on_move": true,
+      "payment_state_derived_from_reconciliation": true
+    },
+    "reversal": {
+      "reversed_entry_id_field": "line 629, Many2one to account.move",
+      "reversal_move_ids": "line 637, One2many inverse",
+      "_reverse_moves_line": 5495,
+      "auto_reconcile_when_cancel_true": true,
+      "_reconcile_reversed_moves_line": 5474,
+      "draft_reverse_auto_reconciles_on_post": "line 5775"
+    },
+    "sequence": {
+      "name_field_is_sequence": true,
+      "assigned_at_post": true,
+      "not_reversible_after_post_without_clearing_name": "write() guard lines 3936-3943",
+      "posted_before_blocks_journal_change": "line 3930-3935"
+    }
+  },
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U79_account_move_lifecycle.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U79_account_move_lifecycle_NEUTRAL.md"
+  },
+  "c1_claim_count": 52,
+  "total_claim_count": 52,
+  "primary_source_files": [
+    "account/models/account_move.py",
+    "account/models/account_move_line.py",
+    "account/models/account_partial_reconcile.py"
+  ]
+}
