@@ -1,0 +1,54 @@
+# U194 — website_slides: Neutral Knowledge Reference
+**Unit:** U194 | **Module:** website_slides (eLearning)
+**Depth:** L3 | **Date:** 2026-10-02
+
+---
+
+## VDR Claims Table — 9-Column Format
+
+| # | Claim ID | Area | Claim Statement | Source Model / File | Evidence Type | Confidence | SME Risk | Migration Notes |
+|---|----------|------|-----------------|---------------------|---------------|------------|----------|-----------------|
+| 1 | U194-C01 | Data Model | The course container record carries a channel-type setting that distinguishes between interactive training and passive documentation; training allows rated comments by default, documentation does not | slide.channel / slide_channel.py L66–69, L357–361 | Field definition + compute | HIGH | LOW | Migrating courses must preserve channel_type; documentation courses should have allow_comment=False set correctly |
+| 2 | U194-C02 | Data Model | The visibility setting on a course has four levels: visible to everyone, visible only to signed-in users, visible only to enrolled attendees, and visible to anyone holding the private link | slide.channel / slide_channel.py L136–142 | Field definition | HIGH | LOW | Existing custom access layers must be re-mapped to these four values; 'link' visibility uses an access_token UUID |
+| 3 | U194-C03 | Data Model | When visibility is restricted to enrolled attendees only, the enroll policy is automatically forced to invitation-only; a database constraint prevents the combination of member-only visibility with open enrollment | slide.channel / slide_channel.py L203–210 | SQL constraint + compute | HIGH | MEDIUM | Migration data must satisfy the constraint; open-enrollment courses cannot have member-only visibility |
+| 4 | U194-C04 | Data Model | Individual lessons are classified by content category (image, article, document, video, quiz) and then by a finer computed subtype that distinguishes PDF from spreadsheet from presentation and YouTube from Google Drive from Vimeo video | slide.slide / slide_slide.py L88–130 | Field definitions | HIGH | LOW | Source system content types must be mapped to these categories; subtype is computed and need not be migrated directly |
+| 5 | U194-C05 | Data Model | Each lesson carries a duration expressed in decimal hours; this value is stored and summed to produce the total estimated course duration shown on the course page | slide.slide / slide_slide.py L59 | Field definition | HIGH | LOW | Duration values from legacy systems should be converted to decimal hours before import |
+| 6 | U194-C06 | Enrollment | Enrollment is recorded as a three-way join record linking a course, a partner, and a status; the status progresses through invited, joined, ongoing, and completed states and is never deleted on unenrollment but archived instead, preserving the learner's progress history | slide.channel.partner / slide_channel_partner.py L5–42 | Model definition | HIGH | MEDIUM | Archived records must be handled carefully on re-import; unenrolling does not clear completion data |
+| 7 | U194-C07 | Enrollment | The enrollment action handles four cases in a single pass: creating new join records for new partners, unarchiving previously-left partners, upgrading invited-status partners to joined, and subscribing all newly-joined partners to new-content notifications from the course chatter | slide.channel / slide_channel.py L694–758 | Method logic | HIGH | LOW | Bulk import of historical enrollments should use _action_add_members or direct SQL with care for chatter subscriptions |
+| 8 | U194-C08 | Enrollment | Automatic enrollment of entire security groups is supported through a many-to-many relationship between courses and Odoo user groups; when the group membership changes or the field is written, all group members are enrolled | slide.channel / slide_channel.py L135, L769–771 | Field + method | HIGH | MEDIUM | Groups used for auto-enrollment must exist before course data is imported |
+| 9 | U194-C09 | Completion | Per-slide completion is recorded as a boolean flag on the slide-partner record together with a vote and a quiz-attempts counter; changes to the completed flag trigger a cascade recompute of the overall course completion percentage | slide.slide.partner / slide_slide_partner.py L17, L29–55 | Field definitions + write hook | HIGH | LOW | Historical completion data requires both slide_slide_partner and slide_channel_partner records to be consistent |
+| 10 | U194-C10 | Completion | The course completion percentage is derived by counting the number of completed, published, and active slides for the partner and dividing by the total published active slides in the course; the result is rounded to the nearest integer | slide.channel.partner / slide_channel_partner.py L88–131 | Method logic | HIGH | LOW | Total-slides denominator changes when slides are published or archived, potentially retroactively changing completion % |
+| 11 | U194-C11 | Completion | The member status on the enrollment record is set automatically to 'ongoing' when completion is between 1 and 99 percent, 'joined' when at zero, and 'completed' when the percentage reaches 100; the completed status is only reached when the count of completed slides meets or exceeds the total slide count | slide.channel.partner / slide_channel_partner.py L110–131 | Method logic | HIGH | LOW | Status is fully derived; migration should import raw completed_slides_count and let the system recompute |
+| 12 | U194-C12 | Completion | On reaching 100% completion, the system sends a configurable email using the course's completion notification template and, if configured, triggers karma gain for the learner | slide.channel.partner / slide_channel_partner.py L133–138, L161–183, L185–241 | Method logic | HIGH | MEDIUM | Completion emails will fire for every record reaching 100% at import time unless the completed_template_id is unset or a context flag is used |
+| 13 | U194-C13 | Gamification | Two karma-generation fields exist on the course: one for finishing the course (default 10 points) and one for posting a rated review (default 5 points); both can be configured per course | slide.channel / slide_channel.py L183–184 | Field definitions | HIGH | LOW | Karma history cannot be directly migrated; legacy point systems require manual mapping |
+| 14 | U194-C14 | Gamification | Quiz slides carry four karma-reward tiers that decrease with each successive attempt (default 10, 7, 5, 2); the reward is awarded on quiz completion and reversed if the learner later marks the quiz as uncompleted | slide.slide / slide_slide.py L79–82, L878–914 | Field definitions + method | HIGH | LOW | Quiz attempt history (quiz_attempts_count) must be imported to correctly calculate future reward tiers |
+| 15 | U194-C15 | Certification | Certification slides are added by a separate addon (website_slides_survey) and link to a survey record; they cannot be manually marked as completed and can only be completed by passing the linked survey | website_slides_survey / slide_slide.py L49–68, L75–79 | Selection extension + constraint | HIGH | MEDIUM | Certification functionality requires website_slides_survey to be installed; base module alone does not support certifications |
+| 16 | U194-C16 | Certification | A boolean flag on the enrollment record records whether the partner passed the certification assessment for that course; this is set by propagation from the survey scoring result and drives the certified-attendees count on the course | website_slides_survey / slide_channel.py L13–14 + slide_slide.py L30–42 | Field + method | HIGH | MEDIUM | Certification success flag must be set independently of completion percentage; a course can be 100% complete without being certified |
+| 17 | U194-C17 | Multi-website | A course channel inherits multi-website mixin support, giving each channel a website_id foreign key; all slides in the channel inherit the same website scope through a related field; the website model registers the course listing route and plugs into website full-text search | slide.channel / slide_channel.py L27–31; website.py | Mixin inheritance + website.py | HIGH | LOW | Multi-website deployments must assign website_id on channels before publication; leaving it null makes the channel visible on all websites |
+| 18 | U194-C18 | Access Control | Upload rights on documentation courses are controlled by a many-to-many to user groups; on training courses, only the responsible user and eLearning Managers can publish; karma thresholds independently gate review, comment, and vote actions for enrolled learners | slide.channel / slide_channel.py L143–146, L375–403, L440–452 | Field + computed methods | HIGH | MEDIUM | Upload and publish rights must be reconfigured for each course during migration; group membership drives auto-enrollment independently |
+
+---
+
+## Plain-Language Summary for Business Stakeholders
+
+The eLearning module (website_slides) provides a complete self-service learning platform within the Odoo website. Courses are containers that collect lessons of different types — videos, PDFs, images, written articles, quizzes, and (with the survey add-on) certifications. Access to a course can be open to the public, restricted to signed-in users, limited to enrolled learners, or shared via a private link.
+
+Learners enroll in a course and progress through lessons. The system tracks completion at the individual lesson level and aggregates this into an overall course percentage. Once a learner finishes all lessons, they receive a completion email and earn gamification points. Quiz lessons award additional points on a decreasing scale per attempt, encouraging learners to succeed quickly. Reviews of the course also earn points.
+
+For high-stakes learning, the certification add-on links a lesson to a survey/exam. A learner only completes a certification lesson by passing the exam; they cannot self-mark it as done. The result is separately tracked as a "certified" flag on the enrollment record.
+
+Courses support multi-website publishing: each course can be assigned to one website or made available across all. Security groups can be linked to a course so that all members of that group are automatically enrolled. All of this access logic is configurable per course without code changes.
+
+---
+
+## Key Integration Points
+
+| Integration | Mechanism |
+|-------------|-----------|
+| Gamification | `res.users._add_karma()` / `_add_karma_batch()` |
+| Email notifications | `mail.template` send_mail + `mail.mail` sudo create |
+| Certifications | `survey.survey` / `survey.user_input` (website_slides_survey) |
+| Website search | `website.searchable.mixin` + `_search_get_detail()` |
+| Rating/review | `rating.mixin` + `mail.message` with rating value |
+| Access request | `mail.activity` with `request_partner_id` |
+| Chatter follows | `message_subscribe()` on `slide.channel` |

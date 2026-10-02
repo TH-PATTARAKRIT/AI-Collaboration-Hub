@@ -1,0 +1,186 @@
+{
+  "unit_id": "U194",
+  "module": "website_slides",
+  "human_name": "eLearning",
+  "version": "2.7",
+  "status": "COMPLETE",
+  "depth": "L3",
+  "groups": ["G12", "G14"],
+  "priority": "P2",
+  "research_date": "2026-10-02",
+  "source_path": "odoo/addons/website_slides",
+  "extension_module": "website_slides_survey",
+  "claims_count": 18,
+  "gate_code": "GREEN",
+  "key_finding": "slide.channel enrollment uses a 4-state status (invited/joined/ongoing/completed) on slide.channel.partner; completion % is computed from slide.slide.partner.completed flags against total published active slides; certification requires website_slides_survey add-on and links to survey.survey",
+
+  "core_models": [
+    {
+      "model": "slide.channel",
+      "table": "slide_channel",
+      "description": "Course container; holds channel_type, visibility, enroll policy, karma thresholds, prerequisite chains",
+      "key_fields": [
+        {"field": "channel_type", "type": "selection", "values": ["training", "documentation"], "default": "training"},
+        {"field": "visibility", "type": "selection", "values": ["public", "connected", "members", "link"], "default": "public"},
+        {"field": "enroll", "type": "selection", "values": ["public", "invite"], "default": "public"},
+        {"field": "karma_gen_channel_finish", "type": "integer", "default": 10},
+        {"field": "karma_gen_channel_rank", "type": "integer", "default": 5},
+        {"field": "website_id", "type": "many2one", "target": "website", "note": "inherited from website.published.multi.mixin"}
+      ],
+      "constraints": [
+        "visibility='members' => enroll='invite' (SQL CHECK + compute)",
+        "unique access_token per channel"
+      ]
+    },
+    {
+      "model": "slide.slide",
+      "table": "slide_slide",
+      "description": "Individual lesson; classified by slide_category and computed slide_type; tracks completion_time",
+      "key_fields": [
+        {"field": "slide_category", "type": "selection", "values": ["infographic", "article", "document", "video", "quiz"], "note": "certification added by website_slides_survey"},
+        {"field": "slide_type", "type": "selection", "values": ["image", "article", "quiz", "pdf", "sheet", "doc", "slides", "youtube_video", "google_drive_video", "vimeo_video"], "stored": true, "computed": true},
+        {"field": "completion_time", "type": "float", "stored": true, "unit": "hours"},
+        {"field": "can_self_mark_completed", "type": "boolean", "computed": true, "note": "False for quiz/certification slides"},
+        {"field": "quiz_first_attempt_reward", "type": "integer", "default": 10},
+        {"field": "is_category", "type": "boolean", "note": "True = section header, not content"}
+      ]
+    },
+    {
+      "model": "slide.channel.partner",
+      "table": "slide_channel_partner",
+      "description": "Enrollment join table; stores per-partner completion state",
+      "key_fields": [
+        {"field": "member_status", "type": "selection", "values": ["invited", "joined", "ongoing", "completed"]},
+        {"field": "completion", "type": "integer", "range": "0-100", "stored": true},
+        {"field": "completed_slides_count", "type": "integer", "stored": true},
+        {"field": "active", "type": "boolean", "note": "False = left course (soft delete)"},
+        {"field": "survey_certification_success", "type": "boolean", "note": "added by website_slides_survey", "stored": true}
+      ],
+      "constraints": [
+        "unique(channel_id, partner_id)",
+        "0 <= completion <= 100"
+      ]
+    },
+    {
+      "model": "slide.slide.partner",
+      "table": "slide_slide_partner",
+      "description": "Per-slide completion and vote tracking",
+      "key_fields": [
+        {"field": "completed", "type": "boolean"},
+        {"field": "vote", "type": "integer", "values": [-1, 0, 1]},
+        {"field": "quiz_attempts_count", "type": "integer"}
+      ],
+      "constraints": [
+        "unique(slide_id, partner_id)",
+        "vote IN (-1, 0, 1)"
+      ]
+    }
+  ],
+
+  "enrollment_mechanism": {
+    "method": "_action_add_members",
+    "file": "models/slide_channel.py",
+    "modes": [
+      {
+        "mode": "joined",
+        "description": "Full enrollment: creates/unarchives channel.partner, upgrades invited→joined, subscribes to chatter"
+      },
+      {
+        "mode": "invited",
+        "description": "Invitation only: creates channel.partner with invited status, no chatter subscription, no slide access"
+      }
+    ],
+    "auto_enroll": "enroll_group_ids many2many triggers _add_groups_members() on write",
+    "leave": "_remove_membership() archives record; karma retained; chatter unsubscribed"
+  },
+
+  "completion_algorithm": {
+    "trigger": "slide.slide.partner.completed field change → _recompute_completion() cascade",
+    "formula": "completion = round(100.0 * completed_slides_count / total_slides)",
+    "denominator": "count of published=True AND active=True slides in channel (total_slides stored on slide.channel)",
+    "status_thresholds": {
+      "100": "completed",
+      "1-99": "ongoing",
+      "0": "joined"
+    },
+    "on_complete": ["_post_completion_update_hook (karma)", "_send_completed_mail"]
+  },
+
+  "certification_extension": {
+    "module": "website_slides_survey",
+    "adds_slide_category": "certification",
+    "requires": "survey_id (Many2one survey.survey) mandatory on certification slides",
+    "cannot_self_mark": true,
+    "completion_source": "survey.user_input.scoring_success propagates to slide.slide.partner.survey_scoring_success → completed=True",
+    "channel_flag": "slide.channel.partner.survey_certification_success",
+    "url_generation": "_generate_certification_url() on slide.slide"
+  },
+
+  "karma_fields": {
+    "course_finish": {"field": "karma_gen_channel_finish", "default": 10, "trigger": "course 100% complete"},
+    "course_rank": {"field": "karma_gen_channel_rank", "default": 5, "trigger": "review posted"},
+    "quiz_rewards": {"first": 10, "second": 7, "third": 5, "fourth_plus": 2},
+    "action_thresholds": {
+      "karma_review": 10,
+      "karma_slide_comment": 3,
+      "karma_slide_vote": 3
+    }
+  },
+
+  "multi_website": {
+    "mixin": "website.published.multi.mixin",
+    "website_id_on_channel": "inherited from mixin",
+    "website_id_on_slide": "related field -> channel_id.website_id (read-only)",
+    "scope": "channel scoped to one website or all if website_id is null"
+  },
+
+  "access_control": {
+    "visibility_options": ["public", "connected", "members", "link"],
+    "enroll_options": ["public", "invite"],
+    "groups": {
+      "officer": "website_slides.group_website_slides_officer",
+      "manager": "website_slides.group_website_slides_manager"
+    },
+    "upload_group_ids": "many2many res.groups; members can upload to documentation courses",
+    "invitation_expiry_gc": "invited records with 0 completion and age > 3 months are auto-deleted"
+  },
+
+  "migration_risks": [
+    {
+      "risk": "MEDIUM",
+      "area": "Completion emails",
+      "note": "Importing historical enrollment data with completion=100 will trigger completion emails unless completed_template_id is cleared or context flag used"
+    },
+    {
+      "risk": "MEDIUM",
+      "area": "Visibility/enroll constraint",
+      "note": "Data with visibility=members must have enroll=invite; SQL constraint will reject otherwise"
+    },
+    {
+      "risk": "MEDIUM",
+      "area": "Certification add-on",
+      "note": "Certification slides require website_slides_survey installed; base module alone cannot represent certifications"
+    },
+    {
+      "risk": "MEDIUM",
+      "area": "Group auto-enrollment",
+      "note": "enroll_group_ids triggers enrollment on write; groups must exist before importing courses with this field set"
+    },
+    {
+      "risk": "LOW",
+      "area": "Karma history",
+      "note": "Karma points earned in old system cannot be migrated 1:1; new gamification configuration applies going forward"
+    },
+    {
+      "risk": "LOW",
+      "area": "Slide_type computed",
+      "note": "slide_type is stored/computed; migrating raw data should set slide_category and URL; slide_type recomputes automatically"
+    }
+  ],
+
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U194_website_slides.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U194_website_slides_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U194_handoff_packet.json"
+  }
+}
