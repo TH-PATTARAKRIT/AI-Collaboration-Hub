@@ -1,0 +1,82 @@
+{
+  "unit": "U130",
+  "title": "Semantic spot-check — claim verification vs source (GAP-024/GAP-045)",
+  "date": "2026-10-02",
+  "worker": "DeepSeek U130",
+  "gaps": ["GAP-024", "GAP-045"],
+  "status": "COMPLETE",
+  "gate": {
+    "script": "/private/tmp/vdr_check_u130.py",
+    "exit_code": 0,
+    "claim_checks": 25,
+    "neutral_leak_tokens": 0
+  },
+  "checks_summary": {
+    "total": 25,
+    "C1": 25,
+    "PARTIAL": 0,
+    "FAIL": 0
+  },
+  "units_checked": [
+    {
+      "unit": "U14",
+      "file": "U14_mrp_core.md",
+      "size_bytes": 261418,
+      "claims_checked": 5,
+      "C1": 5,
+      "PARTIAL": 0,
+      "FAIL": 0,
+      "claim_ids": ["SC-U14-1","SC-U14-2","SC-U14-3","SC-U14-4","SC-U14-5"]
+    },
+    {
+      "unit": "U08",
+      "file": "U08_stock_transfers.md",
+      "size_bytes": 224396,
+      "claims_checked": 5,
+      "C1": 5,
+      "PARTIAL": 0,
+      "FAIL": 0,
+      "claim_ids": ["SC-U08-1","SC-U08-2","SC-U08-3","SC-U08-4","SC-U08-5"]
+    },
+    {
+      "unit": "U05",
+      "file": "U05_sales_invoicing_delivery.md",
+      "size_bytes": 178407,
+      "claims_checked": 5,
+      "C1": 5,
+      "PARTIAL": 0,
+      "FAIL": 0,
+      "claim_ids": ["SC-U05-1","SC-U05-2","SC-U05-3","SC-U05-4","SC-U05-5"]
+    },
+    {
+      "unit": "U11",
+      "file": "U11_account_entry_lifecycle.md",
+      "size_bytes": 177164,
+      "claims_checked": 5,
+      "C1": 5,
+      "PARTIAL": 0,
+      "FAIL": 0,
+      "claim_ids": ["SC-U11-1","SC-U11-2","SC-U11-3","SC-U11-4","SC-U11-5"]
+    },
+    {
+      "unit": "U07",
+      "file": "U07_purchase_receiving.md",
+      "size_bytes": 151441,
+      "claims_checked": 5,
+      "C1": 5,
+      "PARTIAL": 0,
+      "FAIL": 0,
+      "claim_ids": ["SC-U07-1","SC-U07-2","SC-U07-3","SC-U07-4","SC-U07-5"]
+    }
+  ],
+  "key_finding": "All 25 sampled pointers resolve to real source lines with matching anchor text and accurate technical statements. The one documented CONTRA (VDR-U11-C005: action_post uses hard-mode not soft-mode) is correctly self-flagged in the original evidence and confirmed by source. No fabricated or wrong pointers detected across GAP-024/GAP-045 sampled evidence.",
+  "gap_assessment": {
+    "GAP-024": "PARTIAL — mechanical evidence for U01–U46 is high quality based on 5-unit sample; no FAIL or fabrication detected; formal close requires full coverage of all 46 units",
+    "GAP-045": "NOT SAMPLED — U47–U68 units were not in the 5 largest target files; this spot-check covers GAP-024 units only; separate verification needed for GAP-045"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U130_semantic_spot_check.md",
+    "02_NEUTRAL_KNOWLEDGE/U130_semantic_spot_check_NEUTRAL.md",
+    "04_HANDOFF_PACKETS/U130_handoff_packet.json"
+  ]
+}
