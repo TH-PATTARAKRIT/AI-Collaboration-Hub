@@ -1,0 +1,64 @@
+{
+  "unit": "U214",
+  "module": "ir_rule",
+  "source_file": "odoo/addons/base/models/ir_rule.py",
+  "sha": "bab57d9acc6c06cb3b6b3fbdd8932864dafe860a9bfba877dd33ddd59eb99b1c",
+  "odoo_version": "19.0.post20260921",
+  "claim_count": 20,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "id": "MF-01",
+      "area": "Domain object API",
+      "description": "v19 uses odoo.fields.Domain class objects (Domain.AND, Domain.OR, Domain.TRUE, Domain.optimize) throughout ir_rule.py instead of raw Python lists. Code integrating with ir.rule must be updated to produce and consume Domain objects.",
+      "pointer": "ir_rule.py:7,154,164,172,173"
+    },
+    {
+      "id": "MF-02",
+      "area": "Domain optimize call",
+      "description": "The assembled domain is passed through Domain.optimize(model) before return. This may change the shape of domains compared to v16/v17 where no optimization step existed, affecting downstream domain consumers.",
+      "pointer": "ir_rule.py:173"
+    },
+    {
+      "id": "MF-03",
+      "area": "Inherits domain via any operator",
+      "description": "Parent model rules for delegation-inherited models are wrapped using Domain(field, 'any', sub_domain). The 'any' operator is a v17+ domain extension. Custom models using _inherits must verify this operator is supported in their target environment.",
+      "pointer": "ir_rule.py:150"
+    },
+    {
+      "id": "MF-04",
+      "area": "SQL object parameterized queries",
+      "description": "_get_rules uses odoo.tools.SQL object for query construction rather than raw string formatting. Patches or overrides touching _get_rules must use SQL() not string interpolation.",
+      "pointer": "ir_rule.py:8,123-132"
+    },
+    {
+      "id": "MF-05",
+      "area": "_allow_sudo_commands = False",
+      "description": "The class-level _allow_sudo_commands = False attribute on ir.rule is present in v19. This restricts elevated-privilege ORM commands on rule records themselves. Custom code that previously modified ir.rule records via sudo() may need review.",
+      "pointer": "ir_rule.py:20"
+    },
+    {
+      "id": "MF-06",
+      "area": "Registry cache API",
+      "description": "Cache invalidation uses self.env.registry.clear_cache() (v17+ API). Code from v15/v16 using self.pool.clear_caches() is incompatible and must be updated.",
+      "pointer": "ir_rule.py:187,195,205"
+    }
+  ],
+  "key_findings": {
+    "sudo_bypass": "CONFIRMED UNCONDITIONAL — _get_rules() returns empty recordset when self.env.su is True (line 120-121); no ir.rule domains are applied to any model query executed under sudo()",
+    "global_rule_logic": "Global rules (no groups) are AND-ed together; each one can independently block access",
+    "group_rule_logic": "Group rules for the same or different groups are OR-ed; the combined OR must pass to grant access; then AND-ed with global rules",
+    "eval_context_vars": "Only three variables available in domain expressions: user (with empty context), company_ids (list), company_id (int)",
+    "cache_key": "Domain cache keyed on (uid, su, model_name, mode, tuple(allowed_company_ids))",
+    "cache_invalidation": "Full registry cache cleared on any create/write/unlink of ir.rule records",
+    "multicompany_pattern": "Standard pattern: [('company_id', 'in', company_ids)] using company_ids from _eval_context; error detection is string-match based",
+    "inherits_support": "Parent model rules propagated to child via Domain(delegation_field, 'any', parent_domain) — treated as global domains",
+    "access_error_rule_names": "Failing rule names shown only to users with base.group_no_one AND classified as internal users (debug mode gate)",
+    "domain_validation": "Domains validated at save time via safe_eval + Domain.validate; ValidationError raised on failure"
+  },
+  "files_produced": [
+    "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/01_RESTRICTED_TECHNICAL_EVIDENCE/U214_ir_rule.md",
+    "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/02_NEUTRAL_KNOWLEDGE/U214_ir_rule_NEUTRAL.md",
+    "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/04_HANDOFF_PACKETS/U214_handoff_packet.json"
+  ]
+}
