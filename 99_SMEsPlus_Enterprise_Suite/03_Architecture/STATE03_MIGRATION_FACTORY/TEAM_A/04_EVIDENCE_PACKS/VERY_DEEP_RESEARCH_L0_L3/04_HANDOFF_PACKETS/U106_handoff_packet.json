@@ -1,0 +1,72 @@
+{
+  "unit_id": "U106",
+  "title": "stock — replenishment (orderpoint, procurement rule, make-to-order)",
+  "priority": "P1",
+  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "pass": "third-pass-deep-research",
+  "research_date": "2026-10-02",
+  "researcher": "Claude Sonnet 4.6",
+  "gap_addressed": "stock.warehouse.orderpoint never studied at L3 in prior passes",
+  "scope": [
+    "stock.warehouse.orderpoint model",
+    "_run_scheduler_tasks",
+    "MTO route and rule creation",
+    "procurement.group / stock.rule.run",
+    "stock.rule action dispatch"
+  ],
+  "source_files_read": [
+    "stock/models/stock_orderpoint.py",
+    "stock/models/stock_rule.py",
+    "stock/models/stock_warehouse.py",
+    "stock/models/stock_replenish_mixin.py"
+  ],
+  "claim_count": 45,
+  "claim_ids": [
+    "C-U106-001","C-U106-002","C-U106-003","C-U106-004","C-U106-005",
+    "C-U106-006","C-U106-007","C-U106-008","C-U106-009","C-U106-010",
+    "C-U106-011","C-U106-012","C-U106-013","C-U106-014","C-U106-015",
+    "C-U106-016","C-U106-017","C-U106-018","C-U106-019","C-U106-020",
+    "C-U106-021","C-U106-022","C-U106-023","C-U106-024","C-U106-025",
+    "C-U106-026","C-U106-027","C-U106-028","C-U106-029","C-U106-030",
+    "C-U106-031","C-U106-032","C-U106-033","C-U106-034","C-U106-035",
+    "C-U106-036","C-U106-037","C-U106-038","C-U106-039","C-U106-040",
+    "C-U106-041","C-U106-042","C-U106-043","C-U106-044","C-U106-045"
+  ],
+  "class_breakdown": {
+    "SCHEMA": 14,
+    "CALC": 5,
+    "FLOW": 13,
+    "CALL": 7,
+    "GUARD": 4,
+    "ASSIGN": 1,
+    "CONFIG": 4,
+    "OVERRIDE": 1
+  },
+  "flags_breakdown": {
+    "C1": 45,
+    "AWT": 0
+  },
+  "key_findings": [
+    "stock.warehouse.orderpoint model is defined in stock/models/stock_orderpoint.py at line 21, NOT in stock_warehouse_orderpoint.py (file was renamed in v19)",
+    "The scheduler entry point is stock.rule.run_scheduler (line 734 in stock_rule.py), which delegates to _run_scheduler_tasks",
+    "Orderpoint scheduler domain restricts to trigger='auto' and active products only (stock_rule.py:747)",
+    "Quantity-to-order formula: max(product_min_qty, product_max_qty) - qty_forecast_with_visibility (stock_orderpoint.py:474)",
+    "MTO route is a global shared route (stock.route_warehouse0_mto) created/linked via _find_or_create_global_route in stock_warehouse.py:462",
+    "MTO pull rule has procure_method='make_to_order' and action='pull' (stock_warehouse.py:457,459)",
+    "Pull rule creates stock.move records via sudo with immediate _action_confirm() triggering chained rules (stock_rule.py:315-317)",
+    "rule-action dispatch is dynamic: handler method name constructed as _run_{action} (stock_rule.py:496-498)",
+    "pull_push action always resolved to 'pull' for procurement dispatch (stock_rule.py:489)",
+    "_quantity_in_progress() is an override point returning 0 in base; purchase module overrides to return pending PO quantities",
+    "Snoozed orderpoints: only manual-trigger rules can be snoozed; auto-trigger rules must be archived instead",
+    "mts_else_mto: initial move created with make_to_stock; availability checked at assignment stage (stock_rule.py:305-307)"
+  ],
+  "awt_items": [],
+  "open_questions": [],
+  "output_files": {
+    "vdr_claims": "01_RESTRICTED_TECHNICAL_EVIDENCE/U106_stock_replenishment.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U106_stock_replenishment_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U106_handoff_packet.json"
+  },
+  "gate_script": "/private/tmp/vdr_check_u106.py",
+  "gate_result": "PENDING"
+}
