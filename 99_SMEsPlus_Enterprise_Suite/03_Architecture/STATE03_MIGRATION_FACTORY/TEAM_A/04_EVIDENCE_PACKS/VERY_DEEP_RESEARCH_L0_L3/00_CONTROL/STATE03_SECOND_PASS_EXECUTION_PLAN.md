@@ -217,8 +217,8 @@
 | U89 | website_sale full eCommerce (cart→checkout→payment→SO) | G13 CANDIDATE | P2 | No | U65, U19 | Website cart→checkout→payment→confirmed SO→delivery | Restricted+Neutral evidence, handoff packet | Done 3ec55574 |
 | U90 | mass_mailing + event + crm marketing chain | G11/G13 CANDIDATE | P2 | No | U18, U42, U62 | Mailing→event→CRM lead→conversion | Restricted+Neutral evidence, handoff packet | Done 9eeab40f |
 | U91 | hr_expense + project_sale_expense (expense→invoice) | G12 CANDIDATE | P2 | No | U16, U87 | Expense submit→approve→post→invoice customer | Restricted+Neutral evidence, handoff packet | Done e77e84a5 |
-| U92 | website_blog + website_forum + website_slides | G13 CANDIDATE | P2 | No | U19, U60 | Content platform UI/UX, access control, SEO | Restricted+Neutral evidence, handoff packet | Running |
-| U93 | stock_picking_batch + delivery batch picking | G08 CANDIDATE | P2 | No | U57, U08 | Batch transfer create→scan→validate→auto-close | Restricted+Neutral evidence, handoff packet | Queued |
+| U92 | website_blog + website_forum + website_slides | G13 CANDIDATE | P2 | No | U19, U60 | Content platform UI/UX, access control, SEO | Restricted+Neutral evidence, handoff packet | Done db650e65 |
+| U93 | stock_picking_batch + delivery batch picking | G08 CANDIDATE | P2 | No | U57, U08 | Batch transfer create→scan→validate→auto-close | Restricted+Neutral evidence, handoff packet | Running |
 | U94 | payment providers (Stripe/PayPal) webhook delivery | G14 CANDIDATE | P2 | No | U20, U63 | Provider webhook→transaction state→account.move | Restricted+Neutral evidence, handoff packet | Queued |
 | U95 | U55 RECOVERY — identify+study missing evidence unit | MAPPING REQUIRED | P0 | Unknown | U54, U56 | Determine U55 module scope, produce full L1-L3 evidence | Restricted+Neutral evidence, handoff packet | Queued |
 | U96 | stock_landed_costs + mrp_landed_costs (GRV-F05) | G08/G09 CANDIDATE | P1 | Yes | U07, U10 | Landed cost allocation→SVL update→account.move | Restricted+Neutral evidence, handoff packet | Queued |
