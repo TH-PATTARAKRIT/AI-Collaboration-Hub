@@ -209,8 +209,8 @@
 | U81 | account_payment + bank reconciliation full workflow | G04/G05 CANDIDATE | P1 | No | U12, U33 | Payment wizard, bank statement, suspense clear | Restricted+Neutral evidence, handoff packet | Done 7cb2a5f2 |
 | U82 | account_edi_ubl_cii + account_peppol EDI full flow | G04 CANDIDATE | P1 | No | U27, U48 | XML generation, PEPPOL proxy, response state machine | Restricted+Neutral evidence, handoff packet | Done cfde150b |
 | U83 | mrp_subcontracting + purchase subcontracting flow | G09/G07 CANDIDATE | P1 | No | U15, U07 | BOM→PO→receipt→auto-send→FG return→account | Restricted+Neutral evidence, handoff packet | Done ff7def70 |
-| U84 | sale_stock + stock_account COGS timing at delivery | G06/G08/G04 CANDIDATE | P1 | Yes | U05, U10 | Delivery validate→SVL→account.move timing | Restricted+Neutral evidence, handoff packet | Running |
-| U85 | point_of_sale — session open/close/reconcile | G10 CANDIDATE | P1 | No | U64 | POS session lifecycle→account.move generation | Restricted+Neutral evidence, handoff packet | Queued |
+| U84 | sale_stock + stock_account COGS timing at delivery | G06/G08/G04 CANDIDATE | P1 | Yes | U05, U10 | Delivery validate→SVL→account.move timing | Restricted+Neutral evidence, handoff packet | Done d4cb63c1 |
+| U85 | point_of_sale — session open/close/reconcile | G10 CANDIDATE | P1 | No | U64 | POS session lifecycle→account.move generation | Restricted+Neutral evidence, handoff packet | Running |
 | U86 | crm.lead full pipeline (lead→opportunity→SO) | G11 CANDIDATE | P2 | No | U18, U38 | CRM lead→qualify→win→SO→analytic | Restricted+Neutral evidence, handoff packet | Queued |
 | U87 | project + hr_timesheet + analytic (time-cost chain) | G12 CANDIDATE | P2 | No | U16, U46 | Timesheet→analytic posting→expense→invoice | Restricted+Neutral evidence, handoff packet | Queued |
 | U88 | hr.leave + hr.work_entry + payroll prep | G12 CANDIDATE | P2 | No | U17, U39, U40 | Leave→approval→work entry→payroll impact | Restricted+Neutral evidence, handoff packet | Queued |
