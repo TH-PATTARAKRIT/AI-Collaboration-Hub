@@ -1,0 +1,48 @@
+{
+  "unit": "U221",
+  "module": "sale_order",
+  "sha": "c2e51afe8919f3de53ad6504477a01fbebf4bb58cfd56836aa65d001a1734514",
+  "claim_count": 22,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "flag": "ANALYTIC_ACCOUNT_ID_ABSENT",
+      "severity": "BREAKING",
+      "detail": "sale.order.line has no analytic_account_id field in v19. Any v16/v17 migration that maps analytic_account_id must be rewritten to populate analytic_distribution (Json).",
+      "pointer": "sale/models/sale_order_line.py:14 (_inherit analytic.mixin)"
+    },
+    {
+      "flag": "INVOICE_STATUS_NO_NOT_NO_NEED",
+      "severity": "DATA",
+      "detail": "The nothing-to-invoice selection value is 'no', not 'no_need'. Any domain filter or Python comparison using 'no_need' will silently miss records.",
+      "pointer": "sale/models/sale_order.py:19-24"
+    },
+    {
+      "flag": "STATE_DONE_ABSENT",
+      "severity": "BREAKING",
+      "detail": "There is no 'done' state in v19 Community. Any code that checks state=='done' or writes state='done' will fail. The equivalent is state='sale' with locked=True.",
+      "pointer": "sale/models/sale_order.py:26-31"
+    },
+    {
+      "flag": "DATE_ORDER_OVERWRITTEN_ON_CONFIRM",
+      "severity": "DATA",
+      "detail": "_prepare_confirmation_values() always sets date_order=now() on confirmation, overwriting the original quotation creation date.",
+      "pointer": "sale/models/sale_order.py:1220-1231"
+    },
+    {
+      "flag": "_ACTION_CONFIRM_EMPTY_IN_BASE",
+      "severity": "INFO",
+      "detail": "_action_confirm() has no body in the base sale module. Downstream logic (stock moves, POs) lives in sale_stock and purchase_stock. Do not assume procurement documents are created from base sale.",
+      "pointer": "sale/models/sale_order.py:1233-1237"
+    }
+  ],
+  "key_findings": {
+    "state_machine": "Four states: draft→sent→sale→cancel. No done. Confirmation sets state=sale and date_order=now() atomically.",
+    "invoice_status": "Four values: no/to invoice/invoiced/upselling. Computed from aggregate of line statuses. Only sale-state orders can be non-no. Value is 'no' not 'no_need'.",
+    "commitment_date": "Manual datetime field (Delivery Date in UI). Non-computed. expected_date is computed as min(date_order+customer_lead) across consumable lines but NOT stored.",
+    "analytic_distribution": "Json field from analytic.mixin inheritance. analytic_account_id does NOT exist on sale.order.line in v19. Auto-populated from distribution model rules.",
+    "qty_delivered_method": "Base sale: manual or analytic only. stock_moves added by sale_stock. timesheet added by sale_timesheet.",
+    "create_invoices": "Grouping by company+partner+shipping+currency+fiscal_position. Created in sudo. Down-payments placed at invoice end. Negative-total moves switched to refund when final=True.",
+    "multi_company": "_check_company_auto=True + explicit constraint on order line products. Sequence namespaced per company."
+  }
+}
