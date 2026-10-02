@@ -1,0 +1,76 @@
+{
+  "unit": "U208",
+  "module": "mail_template",
+  "sha": "919991db70691f4e0d2a529502428fc2a33bb60b15b7e33c209fcd98cc5a8d95",
+  "claim_count": 20,
+  "gate": "GREEN",
+  "source_file": "odoo/addons/mail/models/mail_template.py",
+  "source_lines": 828,
+  "secondary_sources": [
+    "odoo/addons/mail/models/mail_render_mixin.py",
+    "odoo/addons/mail/models/mail_mail.py"
+  ],
+  "migration_flags": [
+    {
+      "flag": "REPORT-M2M",
+      "severity": "HIGH",
+      "description": "report_template_ids is Many2many in v19 (relation: mail_template_ir_actions_report_rel). In v16/v17 this was a Many2one field named report_template_id. Migration must convert single FK to M2M join table.",
+      "pointer": "mail/models/mail_template.py:79-84"
+    },
+    {
+      "flag": "SEND-MAIL-BATCH-NEW",
+      "severity": "MEDIUM",
+      "description": "send_mail_batch() is a new v19 public API. v16/v17 had no batch send method on mail.template. Callers relying on looped send_mail() calls can now use the batch version for performance.",
+      "pointer": "mail/models/mail_template.py:699-807"
+    },
+    {
+      "flag": "TEMPLATE-CATEGORY-NEW",
+      "severity": "LOW",
+      "description": "template_category is a new computed Selection field (base_template/hidden_template/custom_template) not present in v16/v17. Dependent views or domain filters may need adjustment.",
+      "pointer": "mail/models/mail_template.py:44-48"
+    },
+    {
+      "flag": "USER-OWNER-FIELD-NEW",
+      "severity": "LOW",
+      "description": "user_id (Owner) Many2one field is new in v19 on mail.template. Affects access control and ordering (_order includes user_id).",
+      "pointer": "mail/models/mail_template.py:55"
+    },
+    {
+      "flag": "USE-DEFAULT-TO-PRESENT",
+      "severity": "INFO",
+      "description": "use_default_to field is confirmed present in v19 (default=True). No removal occurred. Migration concern is default behavior change risk only.",
+      "pointer": "mail/models/mail_template.py:57-62"
+    },
+    {
+      "flag": "MAIL-SERVER-ID-PRESENT",
+      "severity": "INFO",
+      "description": "mail_server_id Many2one to ir.mail_server is confirmed present in v19 with index='btree_not_null'. No change from v16/v17 pattern.",
+      "pointer": "mail/models/mail_template.py:87-89"
+    },
+    {
+      "flag": "SCHEDULED-DATE-CHAR",
+      "severity": "INFO",
+      "description": "scheduled_date on mail.template remains a Char field (dynamic expression). mail.mail.scheduled_date is Datetime. Parsing via _parse_scheduled_datetime() normalizes to naive UTC. Unchanged from v16/v17.",
+      "pointer": "mail/models/mail_template.py:90"
+    },
+    {
+      "flag": "SAFE-REGEX-RENDER-PATH",
+      "severity": "INFO",
+      "description": "v19 introduces an optimization: templates with only safe object.field.subfield expressions use a regex renderer (no eval). This changes render performance profile but not functional output.",
+      "pointer": "mail/models/mail_render_mixin.py:361-363"
+    }
+  ],
+  "key_findings": {
+    "model": "ir.mail.template inherits mail.render.mixin and template.reset.mixin; _unrestricted_rendering=True with group-based unsafe-expression guard",
+    "dynamic_fields": "9 fields rendered at send time: body_html (QWeb), subject/email_from/email_to/email_cc/reply_to/partner_to/scheduled_date/lang (inline_template)",
+    "eval_context": "object (record), user, env, ctx, format_date, format_datetime, format_time, format_amount, format_duration, format_addr, is_html_empty, slug, plus template_env_globals",
+    "render_chain": "_generate_template() calls _classify_per_lang() then per-lang: _render_field, _generate_template_recipients, _generate_template_scheduled_date, _generate_template_static_values, _generate_template_attachments",
+    "recipients": "use_default_to=True delegates to _message_get_default_recipients(); False renders email_to/email_cc/partner_to dynamically; partner_to IDs validated via exists()",
+    "attachments": "Static attachment_ids (IDs copied directly) + dynamic report_template_ids (Many2many, rendered per record via ir.actions.report, base64-encoded)",
+    "send_path": "send_mail() -> send_mail_batch() -> _generate_template() per chunk -> mail.mail.sudo().create(batch) -> optional force_send",
+    "mail_state_machine": "outgoing(default) -> sent/exception/cancel; _send() preemptively writes exception before SMTP attempt, overwrites to sent on success",
+    "auto_delete": "mail.mail records with auto_delete=True (default) are permanently unlinked after successful send via _postprocess_sent_message()",
+    "scheduled_queue": "process_email_queue() fetches outgoing mails with scheduled_date<=utcnow or scheduled_date=False; batch size configurable via mail.mail.queue.batch.size"
+  },
+  "critical_migration_item": "report_template_id (Many2one) in v16/v17 became report_template_ids (Many2many) in v19 — requires data migration of join table and view/code updates"
+}
