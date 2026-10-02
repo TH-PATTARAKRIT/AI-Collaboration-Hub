@@ -1,0 +1,44 @@
+{
+  "unit": "U129",
+  "title": "website_sale — wishlist/loyalty/gift_card cross-module chain (GAP-026 depth)",
+  "group": "G12",
+  "priority": "P1",
+  "gap": "GAP-026",
+  "date": "2026-10-02",
+  "researcher": "Claude Sonnet 4.6",
+  "claims_count": 28,
+  "claims_c1": 27,
+  "claims_c2": 1,
+  "claims_awt": 0,
+  "gap_status": "PARTIAL",
+  "gap_note": "GAP-026 depth extended: wishlist, loyalty, gift card (via loyalty program_type), and delivery integration chains fully mapped; no standalone website_gift_card module exists in Community — gift cards handled via sale_loyalty with program_type=gift_card in website_sale_loyalty",
+  "modules_covered": [
+    "website_sale",
+    "website_sale_wishlist",
+    "website_sale_loyalty",
+    "sale_loyalty"
+  ],
+  "l1_l12_summary": {
+    "L1": "C1 — All 4 modules: manifests read, deps verified (website_sale→sale+delivery+website_payment; wishlist→website_sale auto_install; loyalty_ecom→website_sale+sale_loyalty auto_install; sale_loyalty→sale+loyalty auto_install)",
+    "L2": "C1 — Key model fields: website_id/cart_quantity/website_order_line on sale.order; product.wishlist with session/partner dual mode; ecommerce_ok/disabled_auto_rewards on loyalty models",
+    "L3": "C1 — Cart lifecycle (session→abandoned cart→payment lock); wishlist (session→login merge); coupon (pending_coupon_code session→_try_pending_coupon→_try_apply_code→_apply_program_reward→auto_apply_rewards)",
+    "L4": "C1 — ir.http._frontend_pre_dispatch lazy-injects request.cart/fiscal_position/pricelist; coupon chain through 4 layers; delivery↔loyalty bidirectional; domain substitution for eCommerce context",
+    "L5": "C1 — 10+ routes in website_sale; 4 in wishlist; 3+ in loyalty; views files confirmed in manifests",
+    "L6": "C1 — product_template_public rule; wishlist own-record rule; ecommerce_access gate; sudo escalation pattern; nominative program block for public users",
+    "L7": "C2 — ecommerce_ok per program; website_id per program; ecommerce_access; cart_abandoned_delay; account_on_checkout; ICP website_sale_coupon.abandonned_coupon_validity",
+    "L8": "C1 — disabled_auto_rewards M2M; cart_recovery_email_sent; autovacuum on wishlist (5 weeks) and loyalty coupons (ICP days)",
+    "L9": "C1 — amount_delivery tax toggle; gift card SOL price-include tax extraction; discount line merge for display; free shipping excluded from delivery base",
+    "L10": "C1 — Hourly cron _send_abandoned_cart_email; autovacuum _gc_sessions (wishlist); autovacuum _gc_abandoned_coupons (loyalty)",
+    "L11": "C1 — 8 jsonrpc/http endpoints in website_sale; 4 in wishlist; 3 in loyalty; all auth=public with sudo escalation where needed",
+    "L12": "C1 — Lazy request.cart/fiscal_position/pricelist; 9 session keys documented; FOR UPDATE NOWAIT concurrency lock on loyalty_program; cart_quantity sync after auto_apply_rewards"
+  },
+  "key_finding": "website_sale_loyalty replaces the standard sale_ok program domain with ecommerce_ok when an order has a website_id, adds website isolation, and introduces a pre-payment guard that recalculates rewards and blocks transactions where the total changed — creating a tightly coupled delivery↔loyalty↔payment validation chain absent from plain sales orders",
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U129_website_sale_cross_module.md",
+    "02_NEUTRAL_KNOWLEDGE/U129_website_sale_cross_module_NEUTRAL.md",
+    "04_HANDOFF_PACKETS/U129_handoff_packet.json"
+  ],
+  "exclusion_boundary_respected": true,
+  "no_fabrication": true,
+  "community_only": true
+}
