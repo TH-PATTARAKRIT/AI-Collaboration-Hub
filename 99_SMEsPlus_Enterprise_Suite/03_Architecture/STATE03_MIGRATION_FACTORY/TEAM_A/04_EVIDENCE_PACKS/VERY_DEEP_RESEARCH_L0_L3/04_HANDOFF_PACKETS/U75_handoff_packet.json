@@ -1,0 +1,468 @@
+{
+  "unit": "U75",
+  "phase": "Second-Pass Depth Closure — P0 Critical",
+  "capability_dimension": "Period cutoff / accrued orders (PCO-F03/PCO-F04)",
+  "date": "2026-10-02",
+  "gate_result": "PASS (exit 0, claim-checks=0, neutral-leak-tokens=0)",
+  "claim_count": 34,
+  "c1_count": 33,
+  "awt_count": 1,
+  "new_function_ids": [
+    "NEW:U75-F01",
+    "NEW:U75-F02"
+  ],
+  "function_ids_covered": [
+    "NEW:U75-F01",
+    "PCO-F03",
+    "PCO-F04",
+    "NEW:U75-F02"
+  ],
+  "l_levels": [
+    "L3",
+    "L7",
+    "L11"
+  ],
+  "proof_layers": [
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "predecessor_units": [
+    "U33",
+    "U10",
+    "U72"
+  ],
+  "key_findings": {
+    "accrued_orders_wizard": {
+      "file": "account/wizard/accrued_orders.py",
+      "model": "account.accrued.orders.wizard",
+      "trigger": "manual only (no scheduled action)",
+      "auto_reverse": true,
+      "reversal_date_default": "date + 1 day",
+      "counterpart_account_purchase": "liability_current type (user-selected)",
+      "counterpart_account_sale": "asset_current type (user-selected)",
+      "line_account_purchase": "product expense account (get_product_accounts)",
+      "line_account_sale": "product income account (get_product_accounts)",
+      "perpetual_purchase_override": "stock_variation_account overrides expense account for perpetual storable products",
+      "both_moves_posted_immediately": true
+    },
+    "stock_gr_ir": {
+      "no_separate_stock_input_account_in_community": true,
+      "continental_default": "No GR/IR interim clearing; anglo_saxon_accounting=False by default",
+      "anglo_saxon_mode": "price_difference_account used only when company.anglo_saxon_accounting=True AND cost_method=standard",
+      "location_valuation_account": "StockLocation.valuation_account_id provides location-based interim account mechanism",
+      "cogs_on_customer_invoice": "stock_valuation credited, expense debited at invoice posting time (perpetual)"
+    },
+    "period_close": {
+      "account_period_model_exists": false,
+      "period_control": "Lock dates on res.company: fiscalyear_lock_date, tax_lock_date, sale_lock_date, purchase_lock_date, hard_lock_date",
+      "hard_lock_date_irreversible": true,
+      "no_account_closing_module": true,
+      "secure_entries_wizard": "account.secure.entries.wizard provides cryptographic hashing of journal chains"
+    },
+    "scheduled_actions": {
+      "account_module_crons": [
+        "ir_cron_auto_post_draft_entry (daily, posts auto_post entries)",
+        "ir_cron_account_move_send (daily, sends invoices)"
+      ],
+      "stock_account_crons": [
+        "ir_cron_post_stock_valuation (daily, calls _cron_post_stock_valuation)"
+      ],
+      "accrued_orders_cron": null,
+      "period_close_cron": null
+    },
+    "stock_valuation_closing": {
+      "method": "action_close_stock_valuation on res.company",
+      "cron_method": "_cron_post_stock_valuation",
+      "periods": "daily and last-day-of-month for monthly companies",
+      "inventory_period_field": "manual / daily / monthly on res.company",
+      "last_closing_tracked_via": "ir.config_parameter key {company_id}.stock_valuation_closing_ids",
+      "journal": "account_stock_journal_id on res.company",
+      "three_sub_calculations": [
+        "_get_location_valuation_vals (location reclassification)",
+        "_get_stock_valuation_account_vals (stock vs accounting delta)",
+        "_get_continental_realtime_variation_vals (continental perpetual period variation)"
+      ]
+    }
+  },
+  "evidence_files": {
+    "restricted": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/01_ACTIVE/AI-Collaboration-Hub-STATE03-DEEPSEEK/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/01_RESTRICTED_TECHNICAL_EVIDENCE/U75_period_cutoff_accrued_orders.md",
+    "neutral": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/01_ACTIVE/AI-Collaboration-Hub-STATE03-DEEPSEEK/99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/02_NEUTRAL_KNOWLEDGE/U75_period_cutoff_accrued_orders_NEUTRAL.md"
+  },
+  "claims": [
+    {
+      "claim_id": "U75-001",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:12",
+      "anchor": "AccountAccruedOrdersWizard",
+      "class": "DEF",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "The accrued-orders wizard class is `AccountAccruedOrdersWizard` (transient model `account.accrued.orders.wizard`). The file is `accrued_orders.py`, not `account_accrued_orders_wizard.py`.",
+      "neutral_ref": "NR-U75-001"
+    },
+    {
+      "claim_id": "U75-002",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:36",
+      "anchor": "reversal_date = fields.Date",
+      "class": "DEF",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "Field `reversal_date` is declared on the wizard; its default compute sets it to `date + 1 day`. This enables automatic reversal creation at post time.",
+      "neutral_ref": "NR-U75-002"
+    },
+    {
+      "claim_id": "U75-003",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:67",
+      "anchor": "def _compute_reversal_date",
+      "class": "CALC",
+      "condition": "reversal_date <= date",
+      "flags": "C1",
+      "statement": "`_compute_reversal_date` sets `reversal_date = date + relativedelta(days=1)` whenever the existing reversal_date is not posterior to the accrual date. Enforces reversal date must be after entry date.",
+      "neutral_ref": "NR-U75-003"
+    },
+    {
+      "claim_id": "U75-004",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:48",
+      "anchor": "account_id = fields.Many2one",
+      "class": "DEF",
+      "condition": "is_purchase",
+      "flags": "C1",
+      "statement": "For purchase orders the accrual account domain is `account_type = 'liability_current'`; for sale orders it is `account_type = 'asset_current'`. The counterpart account is user-selected but domain-restricted by order type.",
+      "neutral_ref": "NR-U75-004"
+    },
+    {
+      "claim_id": "U75-005",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:102",
+      "anchor": "def _get_computed_account",
+      "class": "CALC",
+      "condition": "is_purchase=True",
+      "flags": "C1",
+      "statement": "For purchase lines the per-line account is the product `expense` account (from `get_product_accounts`). For sale lines it is the product `income` account. Fiscal position is applied via `fiscal_pos` parameter.",
+      "neutral_ref": "NR-U75-005"
+    },
+    {
+      "claim_id": "U75-006",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:195",
+      "anchor": "stock_variation_account if stock",
+      "class": "FLOW",
+      "condition": "perpetual + purchase",
+      "flags": "C1",
+      "statement": "For purchase lines with storable products under perpetual valuation, `stock_variation_account` overrides the expense account as the line-level debit/credit account, capturing the GR/IR accrual on the variation account rather than P&L.",
+      "neutral_ref": "NR-U75-006"
+    },
+    {
+      "claim_id": "U75-007",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:328",
+      "anchor": "-total_balance, 0.0, self.acc",
+      "class": "CALC",
+      "condition": "total_balance != 0",
+      "flags": "C1",
+      "statement": "The single counterpart line (debit or credit of `self.account_id`) is created only when `total_balance != 0` (company-currency precision). It carries the sum of all line balances negated, ensuring the accrual entry is balanced.",
+      "neutral_ref": "NR-U75-007"
+    },
+    {
+      "claim_id": "U75-008",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:378",
+      "anchor": "def create_entries",
+      "class": "FLOW",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`create_entries` (the wizard action button) creates the accrual entry, posts it immediately via `_post()`, then creates and posts the reversal via `_reverse_moves()` with the user-supplied `reversal_date`. Both moves are posted in the same call.",
+      "neutral_ref": "NR-U75-008"
+    },
+    {
+      "claim_id": "U75-009",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:386",
+      "anchor": "move._reverse_moves(default_val",
+      "class": "CALL",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`_reverse_moves` is called with `default_values_list` containing `ref='Reversal of: %s'` and `date=self.reversal_date`. The reversal is immediately posted (`reverse_move._post()`), making the two-move accrual/reversal pair fully automated.",
+      "neutral_ref": "NR-U75-009"
+    },
+    {
+      "claim_id": "U75-010",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:380",
+      "anchor": "if self.reversal_date <= self",
+      "class": "GUARD",
+      "condition": "reversal_date <= date",
+      "flags": "C1",
+      "statement": "A `UserError` is raised when `reversal_date <= date`, preventing invalid accrual/reversal date ordering before any entry is created.",
+      "neutral_ref": "NR-U75-010"
+    },
+    {
+      "claim_id": "U75-011",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:183",
+      "anchor": "price_unit_discounted",
+      "class": "CALC",
+      "condition": "is_purchase=True",
+      "flags": "AWT",
+      "statement": "For purchase lines: `price_unit` is `price_unit_discounted`. When `quantity_to_invoice >= 1`, the price unit is recalculated from posted invoice lines and received values to correct for partial billing.",
+      "neutral_ref": "NR-U75-011"
+    },
+    {
+      "claim_id": "U75-012",
+      "function_id": "PCO-F03",
+      "pointer": "account/wizard/accrued_orders.py:402",
+      "anchor": "def _get_product_expense_and",
+      "class": "DEF",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "The base implementation of `_get_product_expense_and_stock_var_accounts` returns `(False, False)`. Stock-specific override (in `stock_account`) is expected to return expense and stock-variation accounts for perpetual-valuation products.",
+      "neutral_ref": "NR-U75-012"
+    },
+    {
+      "claim_id": "U75-013",
+      "function_id": "PCO-F04",
+      "pointer": "account/models/company.py:76",
+      "anchor": "fiscalyear_lock_date = fields",
+      "class": "DEF",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`fiscalyear_lock_date` (Global Lock Date) is a `fields.Date` on `res.company` (inherited by `account`). Any entry with `date <= fiscalyear_lock_date` is blocked or postponed to a later date per journal sequence.",
+      "neutral_ref": "NR-U75-013"
+    },
+    {
+      "claim_id": "U75-014",
+      "function_id": "PCO-F04",
+      "pointer": "account/models/company.py:97",
+      "anchor": "hard_lock_date = fields.Date(",
+      "class": "DEF",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`hard_lock_date` (Hard Lock Date) is irreversible and cannot be unlocked by exceptions. Entries dated on or before this date cannot be added or modified under any circumstance.",
+      "neutral_ref": "NR-U75-014"
+    },
+    {
+      "claim_id": "U75-015",
+      "function_id": "PCO-F04",
+      "pointer": "account/models/company.py:87",
+      "anchor": "sale_lock_date = fields.Date(",
+      "class": "DEF",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`sale_lock_date` and `purchase_lock_date` are separate per-journal-type soft lock dates on `res.company`, restricting sales and purchase journals independently.",
+      "neutral_ref": "NR-U75-015"
+    },
+    {
+      "claim_id": "U75-016",
+      "function_id": "PCO-F04",
+      "pointer": "account/models/account_move.py:2823",
+      "anchor": "def _check_fiscal_lock_dates",
+      "class": "GUARD",
+      "condition": "date <= lock_date",
+      "flags": "C1",
+      "statement": "`_check_fiscal_lock_dates` is called on write and post operations. It calls `_get_lock_date_violations` checking all applicable lock dates for the move's journal type and raises `UserError` with formatted lock date info when any lock is violated.",
+      "neutral_ref": "NR-U75-016"
+    },
+    {
+      "claim_id": "U75-017",
+      "function_id": "PCO-F04",
+      "pointer": "account/models/account_move.py:2828",
+      "anchor": "violated_lock_dates = move.co",
+      "class": "CALL",
+      "condition": "on write/post",
+      "flags": "C1",
+      "statement": "The method passes `fiscalyear=True, sale=(journal.type=='sale'), purchase=(journal.type=='purchase'), tax=False, hard=True` — lock checking is scoped per journal type at enforcement time.",
+      "neutral_ref": "NR-U75-017"
+    },
+    {
+      "claim_id": "U75-018",
+      "function_id": "NEW:U75-F01",
+      "pointer": "stock_account/models/res_company.py:49",
+      "anchor": "def action_close_stock_valuat",
+      "class": "DEF",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`action_close_stock_valuation` on `res.company` is the month-end stock close entry point. It calls `_action_close_stock_valuation`, creates an `account.move` with ref `'Stock Closing'` using `account_stock_journal_id`, and posts it when `auto_post=True`.",
+      "neutral_ref": "NR-U75-018"
+    },
+    {
+      "claim_id": "U75-019",
+      "function_id": "NEW:U75-F01",
+      "pointer": "stock_account/models/res_company.py:119",
+      "anchor": "def _action_close_stock_valua",
+      "class": "FLOW",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`_action_close_stock_valuation` builds journal item value lists by calling three methods: `_get_location_valuation_vals` (location reclassification), `_get_stock_valuation_account_vals` (stock vs accounting delta), and `_get_continental_realtime_variation_vals` (continental perpetual variation).",
+      "neutral_ref": "NR-U75-019"
+    },
+    {
+      "claim_id": "U75-020",
+      "function_id": "NEW:U75-F01",
+      "pointer": "stock_account/models/res_company.py:138",
+      "anchor": "def _cron_post_stock_valuation",
+      "class": "DEF",
+      "condition": "daily/monthly",
+      "flags": "C1",
+      "statement": "`_cron_post_stock_valuation` is the scheduled action method. It runs daily and adds `'monthly'` period on the last day of the month. It searches companies with `inventory_period in ['daily', 'monthly']` and calls `action_close_stock_valuation(auto_post=True)` per company.",
+      "neutral_ref": "NR-U75-020"
+    },
+    {
+      "claim_id": "U75-021",
+      "function_id": "NEW:U75-F01",
+      "pointer": "stock_account/data/stock_account_data.xml:7",
+      "anchor": "ir_cron_post_stock_valuatio",
+      "class": "TRIGGER",
+      "condition": "daily cron",
+      "flags": "C1",
+      "statement": "The `ir.cron` record `ir_cron_post_stock_valuation` is defined as `interval_number=1`, `interval_type=days`, active, model `res.company`, executing `model._cron_post_stock_valuation()`. This is the only stock-valuation-related scheduled action.",
+      "neutral_ref": "NR-U75-021"
+    },
+    {
+      "claim_id": "U75-022",
+      "function_id": "NEW:U75-F01",
+      "pointer": "stock_account/models/res_company.py:342",
+      "anchor": "def _get_last_closing_date",
+      "class": "DEF",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`_get_last_closing_date` reads the last up-to-10 closing `account.move` IDs from `ir.config_parameter` key `{company_id}.stock_valuation_closing_ids`. It finds the most recent posted closing move and returns its date, enabling range-based delta computation between closings.",
+      "neutral_ref": "NR-U75-022"
+    },
+    {
+      "claim_id": "U75-023",
+      "function_id": "NEW:U75-F01",
+      "pointer": "stock_account/models/res_company.py:53",
+      "anchor": "if at_date and last_closing_da",
+      "class": "GUARD",
+      "condition": "at_date < last_closing_date",
+      "flags": "C1",
+      "statement": "A `UserError` is raised when `at_date` is earlier than the last closing date, preventing insertion of closing entries that would break the temporal order of stock closing sequence.",
+      "neutral_ref": "NR-U75-023"
+    },
+    {
+      "claim_id": "U75-024",
+      "function_id": "PCO-F03",
+      "pointer": "stock_account/models/account_move.py:68",
+      "anchor": "def _stock_account_prepare_re",
+      "class": "DEF",
+      "condition": "is_sale + real_time",
+      "flags": "C1",
+      "statement": "`_stock_account_prepare_realtime_out_lines_vals` generates COGS journal items (display_type='cogs') for customer invoices of perpetual-valuation products. It uses `accounts['stock_valuation']` as the credit account and `accounts['expense']` as the debit account for the COGS pair.",
+      "neutral_ref": "NR-U75-024"
+    },
+    {
+      "claim_id": "U75-025",
+      "function_id": "PCO-F03",
+      "pointer": "stock_account/models/account_move.py:29",
+      "anchor": "def _post(self, soft=True):",
+      "class": "OVERRIDE",
+      "condition": "is_sale + real_time",
+      "flags": "C1",
+      "statement": "`AccountMove._post` is overridden in `stock_account`: it calls `_stock_account_prepare_realtime_out_lines_vals` before `super()._post()` to inject COGS lines at invoice posting time. This is the perpetual valuation trigger for outgoing goods.",
+      "neutral_ref": "NR-U75-025"
+    },
+    {
+      "claim_id": "U75-026",
+      "function_id": "PCO-F03",
+      "pointer": "purchase_stock/models/account_invoice.py:12",
+      "anchor": "def _stock_account_prepare_an",
+      "class": "DEF",
+      "condition": "in_invoice + anglo_saxon",
+      "flags": "C1",
+      "statement": "`_stock_account_prepare_anglo_saxon_in_lines_vals` creates price-difference journal items (display_type='cogs') for vendor bills only when `company.anglo_saxon_accounting=True` AND product `cost_method='standard'`. These lines debit a price-difference account and credit the invoice line account.",
+      "neutral_ref": "NR-U75-026"
+    },
+    {
+      "claim_id": "U75-027",
+      "function_id": "PCO-F03",
+      "pointer": "purchase_stock/models/account_invoice.py:37",
+      "anchor": "not move.company_id.anglo_saxo",
+      "class": "GUARD",
+      "condition": "anglo_saxon=False",
+      "flags": "C1",
+      "statement": "The anglo-Saxon price-difference lines are skipped entirely when `company.anglo_saxon_accounting` is False (the Community default). This means no GR/IR interim clearing account is generated in the standard continental setup.",
+      "neutral_ref": "NR-U75-027"
+    },
+    {
+      "claim_id": "U75-028",
+      "function_id": "NEW:U75-F02",
+      "pointer": "stock_account/models/stock_location.py:11",
+      "anchor": "valuation_account_id = fields",
+      "class": "DEF",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`StockLocation.valuation_account_id` is an optional `account.account` field on stock locations. When set, movements into/from that location generate reclassification entries at stock closing (periodic) or immediately (real-time via `_get_account_move_line_vals`).",
+      "neutral_ref": "NR-U75-028"
+    },
+    {
+      "claim_id": "U75-029",
+      "function_id": "NEW:U75-F02",
+      "pointer": "stock_account/models/stock_move.py:229",
+      "anchor": "def _get_account_move_line_val",
+      "class": "DEF",
+      "condition": "location.valuation_account_id",
+      "flags": "C1",
+      "statement": "`_get_account_move_line_vals` uses `location_id.valuation_account_id` as the credit account (with `stock_valuation` as debit) when source location has a valuation account; otherwise uses `location_dest_id.valuation_account_id` as debit (with `stock_valuation` as credit). This is the location-based interim account mechanism.",
+      "neutral_ref": "NR-U75-029"
+    },
+    {
+      "claim_id": "U75-030",
+      "function_id": "PCO-F04",
+      "pointer": "account/wizard/account_secure_entries_wizard.py:8",
+      "anchor": "AccountSecureEntriesWizard",
+      "class": "DEF",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`AccountSecureEntriesWizard` (transient model `account.secure.entries.wizard`) provides period-close hashing. It finds all unhashed posted entries before `hash_date` and calls `_hash_moves(force_hash=True)` to cryptographically secure journal chains. This is the Community period-close mechanism beyond lock dates.",
+      "neutral_ref": "NR-U75-030"
+    },
+    {
+      "claim_id": "U75-031",
+      "function_id": "PCO-F04",
+      "pointer": "account/data/service_cron.xml:3",
+      "anchor": "ir_cron_auto_post_draft_entry",
+      "class": "TRIGGER",
+      "condition": "daily",
+      "flags": "C1",
+      "statement": "The cron `ir_cron_auto_post_draft_entry` runs daily at 02:00, posting all draft entries with `auto_post` enabled and accounting date up to today. This is the only account-module cron. There is no period-close or accrual-specific cron in the `account` module.",
+      "neutral_ref": "NR-U75-031"
+    },
+    {
+      "claim_id": "U75-032",
+      "function_id": "PCO-F04",
+      "pointer": "account/models/company.py:57",
+      "anchor": "SOFT_LOCK_DATE_FIELDS = [",
+      "class": "CONST",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`SOFT_LOCK_DATE_FIELDS` constant lists four soft lock date fields: `fiscalyear_lock_date`, `tax_lock_date`, `sale_lock_date`, `purchase_lock_date`. There is no `account.period` model in Odoo 19 Community; period control is entirely via lock dates on `res.company`.",
+      "neutral_ref": "NR-U75-032"
+    },
+    {
+      "claim_id": "U75-033",
+      "function_id": "NEW:U75-F01",
+      "pointer": "stock_account/models/res_company.py:274",
+      "anchor": "def _get_continental_realtime",
+      "class": "DEF",
+      "condition": "continental+perpetual",
+      "flags": "C1",
+      "statement": "`_get_continental_realtime_variation_vals` computes the stock variation over a fiscal year period for continental perpetual valuation. It compares current accounting value vs accounting value at fiscal year start (`compute_fiscalyear_dates`) and posts the net variation between `variation_acc` and `expense_acc`.",
+      "neutral_ref": "NR-U75-033"
+    },
+    {
+      "claim_id": "U75-034",
+      "function_id": "NEW:U75-F01",
+      "pointer": "stock_account/models/res_company.py:19",
+      "anchor": "inventory_period = fields.Sele",
+      "class": "DEF",
+      "condition": "always",
+      "flags": "C1",
+      "statement": "`inventory_period` on `res.company` has selections `'manual'`, `'daily'`, `'monthly'`. The cron only processes companies with `inventory_period in ['daily', 'monthly']`; companies set to `'manual'` require explicit user action to close stock valuation.",
+      "neutral_ref": "NR-U75-034"
+    }
+  ]
+}
