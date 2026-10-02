@@ -1,0 +1,69 @@
+{
+  "unit": "U210",
+  "module": "product_supplierinfo",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 21,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "flag": "discount_field_added",
+      "description": "discount (Float) field added to product.supplierinfo in v17+; drives price_discounted computed field; not present in v16",
+      "impact": "HIGH",
+      "action": "Verify source v16 schema; add discount column in migration script if upgrading from v16"
+    },
+    {
+      "flag": "price_discounted_computed_field",
+      "description": "price_discounted is a new computed field (price * UoM_factor * (1 - discount/100)); _select_seller now sorts by this instead of raw price",
+      "impact": "MEDIUM",
+      "action": "No DB migration needed (computed+not-stored); verify no custom code depends on price-only sort"
+    },
+    {
+      "flag": "_select_seller_ordered_by_param",
+      "description": "_select_seller gains 'ordered_by' parameter defaulting to 'price_discounted'; callers passing keyword args by position may break",
+      "impact": "MEDIUM",
+      "action": "Audit all custom code calling _select_seller; ensure keyword args used"
+    },
+    {
+      "flag": "selected_seller_id_on_po_line",
+      "description": "purchase.order.line gains selected_seller_id (computed Many2one to product.supplierinfo); acts as bridge for price/date computation",
+      "impact": "LOW",
+      "action": "No DB column (not stored); no migration needed"
+    },
+    {
+      "flag": "technical_price_unit_on_po_line",
+      "description": "purchase.order.line gains technical_price_unit (Float); guards against overwriting manually-set prices; new column",
+      "impact": "MEDIUM",
+      "action": "Add column in migration; backfill with price_unit value for existing PO lines"
+    },
+    {
+      "flag": "_compute_price_unit_and_date_planned_and_name_merged",
+      "description": "In v16/v17 price_unit, date_planned, and name were computed by separate methods; merged into one in v19",
+      "impact": "MEDIUM",
+      "action": "Remove any custom overrides of the old separate compute methods; override the merged method instead"
+    },
+    {
+      "flag": "product_uom_id_computed_stored",
+      "description": "product.supplierinfo.product_uom_id is now a computed+stored field defaulting to product UoM; previously a simple stored field",
+      "impact": "LOW",
+      "action": "Verify existing records have product_uom_id populated; recompute if migrating from v16"
+    },
+    {
+      "flag": "no_name_field",
+      "description": "product.supplierinfo has no 'name' field in v19; vendor identity is split into product_name and product_code; check if v16 had a name field",
+      "impact": "HIGH",
+      "action": "Confirm v16 schema; if 'name' was used map to product_name or product_code in data migration"
+    }
+  ],
+  "key_findings": {
+    "model_location": "product/models/product_supplierinfo.py (base model), purchase/models/product.py (purchase inherit)",
+    "field_count": 17,
+    "primary_sort": "sequence ASC, min_qty DESC, price ASC, id ASC",
+    "selection_algorithm": "_select_seller on product.product: filter by date/partner/qty/variant, group by partner, sort by price_discounted converted to company currency",
+    "currency_conversion": "seller.currency_id._convert to PO currency_id at order date; applied in _compute_price_unit_and_date_planned_and_name and _prepare_purchase_order_line",
+    "delay_mapping": "_get_date_planned: date_order + relativedelta(days=seller.delay)",
+    "multi_company": "company_id on supplierinfo + check_company on partner_id; purchase override reads company from params order_id",
+    "discount_in_v19": "discount field present; price_discounted = price * uom_factor * (1 - discount/100); discount propagated to PO line",
+    "variant_level": "product_id field enables variant-specific pricing; None means template-level (all variants)",
+    "no_select_seller_on_template": "_select_seller lives on product.product, not product.template; template seller_ids has depends_context company"
+  }
+}
