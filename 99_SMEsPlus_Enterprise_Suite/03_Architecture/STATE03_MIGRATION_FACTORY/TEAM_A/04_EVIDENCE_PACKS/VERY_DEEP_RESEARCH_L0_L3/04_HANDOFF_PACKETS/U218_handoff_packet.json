@@ -1,0 +1,70 @@
+{
+  "unit": "U218",
+  "module": "account_account",
+  "sha": "75ad6073152c2419558703e5760eb2b93db33ab3cb758dfee258418acc921c11",
+  "source_path": "odoo/addons/account/models/account_account.py",
+  "source_lines": 1658,
+  "claim_count": 22,
+  "gate": "GREEN",
+  "research_date": "2026-10-02",
+  "migration_flags": [
+    {
+      "flag": "USER_TYPE_ID_REMOVED",
+      "severity": "CRITICAL",
+      "description": "user_type_id Many2One to account.account.type was removed in v17. account_type is now a direct selection field on account.account with 19 values. No intermediate account type model exists in v19.",
+      "action": "Remove any reference to user_type_id; map to account_type selection value directly."
+    },
+    {
+      "flag": "COMPANY_ID_TO_COMPANY_IDS",
+      "severity": "CRITICAL",
+      "description": "company_id Many2One was replaced by company_ids Many2Many in v17. One account record can now belong to multiple companies (shared COA). asset_cash type accounts are blocked from multi-company sharing.",
+      "action": "Migrate company_id=X to company_ids=[(6,0,[X])]. Check for cash accounts; ensure they remain single-company."
+    },
+    {
+      "flag": "DEPRECATED_TO_ACTIVE",
+      "severity": "CRITICAL",
+      "description": "The deprecated boolean field was removed in v17+. Active=False is the v19 way to archive/deprecate an account. Line 1075 contains a legacy write-guard referencing 'deprecated' but no such field is formally defined in v19.",
+      "action": "Map deprecated=True -> active=False. Remove any deprecated field references from migration scripts."
+    },
+    {
+      "flag": "CODE_COMPANY_DEPENDENT",
+      "severity": "HIGH",
+      "description": "code is now a computed field backed by code_store which is company_dependent=True (JSONB per root company). Accounts can have different codes per company. Code uniqueness is enforced across parent/child company hierarchy.",
+      "action": "Ensure migration preserves per-company codes via code_mapping_ids or code_store JSONB. Do not treat code as a simple varchar."
+    },
+    {
+      "flag": "ASSET_CASH_NOT_SHAREABLE",
+      "severity": "MEDIUM",
+      "description": "Bank and cash accounts (account_type=asset_cash) cannot be shared between companies. Constraint _check_company_consistency at line 280 raises ValidationError if attempted.",
+      "action": "Ensure each bank/cash account is assigned to exactly one company in company_ids."
+    },
+    {
+      "flag": "RECONCILE_AUTO_COMPUTED",
+      "severity": "MEDIUM",
+      "description": "reconcile is precomputed from account_type. asset_receivable and liability_payable are forced reconcile=True. off_balance, income, expense, equity, asset_cash, liability_credit_card are forced reconcile=False. Other asset/liability types are user-controlled.",
+      "action": "Do not hardcode reconcile on import for auto-managed types; let the compute run."
+    },
+    {
+      "flag": "OPENING_BALANCE_PRECOMMIT",
+      "severity": "LOW",
+      "description": "opening_debit and opening_credit use a precommit batch callback for bulk import. Direct writes to these computed fields are staged and applied together at end of transaction.",
+      "action": "Use the inverse fields (opening_debit/opening_credit) for import; do not write directly to journal items."
+    }
+  ],
+  "key_findings": {
+    "account_type_values": 19,
+    "account_type_groups": ["asset (6)", "liability (4)", "equity (2)", "income (2)", "expense (4)", "off_balance (1)"],
+    "company_relationship": "Many2Many (company_ids) — shared COA across company hierarchy",
+    "code_storage": "company_dependent JSONB (code_store field)",
+    "reconcile_auto_types": ["asset_receivable=True", "liability_payable=True", "income=False", "expense=False", "equity=False", "asset_cash=False", "liability_credit_card=False", "off_balance=False"],
+    "deprecated_field_status": "REMOVED in v17; replaced by active=False; legacy check at line 1075 is dead code",
+    "user_type_id_status": "REMOVED in v17; direct selection replaces M2O to account.account.type",
+    "name_search_behavior": "Filters by move_type context; suggests partner-frequent accounts; digit-in-term bypasses type filter",
+    "group_id_mechanism": "SQL prefix-range match against account.group; longest match wins; non-stored computed",
+    "tax_ids_junction_table": "account_account_tax_default_rel",
+    "off_balance_restrictions": "Cannot reconcile, cannot have taxes",
+    "opening_balance_source": "company.account_opening_move_id journal entry lines"
+  },
+  "source_evidence_file": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/01_RESTRICTED_TECHNICAL_EVIDENCE/U218_account_account.md",
+  "neutral_knowledge_file": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/02_NEUTRAL_KNOWLEDGE/U218_account_account_NEUTRAL.md"
+}
