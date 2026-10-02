@@ -1,0 +1,62 @@
+{
+  "unit": "U224",
+  "module": "account_tax",
+  "sha": "1d149b925dfc",
+  "source_file": "odoo/addons/account/models/account_tax.py",
+  "source_lines": 5382,
+  "claim_count": 25,
+  "gate": "GREEN",
+  "researched": "2026-10-02",
+  "migration_flags": [
+    {
+      "flag": "PRICE-INCLUDE-COMPUTED",
+      "severity": "BREAKING",
+      "description": "price_include is now a computed (non-stored) field derived from price_include_override + company_price_include. Any migration code that directly writes to price_include will fail. Must write to price_include_override instead.",
+      "pointer": "account_tax.py:137-140, 322-329"
+    },
+    {
+      "flag": "NEW-PRICE-INCLUDE-OVERRIDE",
+      "severity": "NEW-V19",
+      "description": "New field price_include_override (selection: tax_included / tax_excluded) is the per-tax control. When not set, company_price_include (res.company.account_price_include) governs. Migration must populate this field for all existing taxes.",
+      "pointer": "account_tax.py:142-147"
+    },
+    {
+      "flag": "CODE-AMOUNT-TYPE-REMOVED",
+      "severity": "MIGRATION",
+      "description": "amount_type='code' (Python-formula tax) is removed from the selection list in v19. The string 'code' still appears in _can_be_discounted (line 3159) as a guard. Any source-system taxes with amount_type='code' must be manually re-implemented.",
+      "pointer": "account_tax.py:84-85, 3159"
+    },
+    {
+      "flag": "TAG-IDS-ON-REPARTITION-LINE",
+      "severity": "MIGRATION",
+      "description": "Tax-grid tags (tag_ids) live on account.tax.repartition.line, NOT on account.tax. Migration code that reads tags from the tax record must be updated to read from repartition lines. Applies to both invoice and refund repartition lines.",
+      "pointer": "account_tax.py:5336"
+    },
+    {
+      "flag": "HAS-NEGATIVE-FACTOR-FIELD",
+      "severity": "NEW-V19",
+      "description": "New computed field has_negative_factor on account.tax. When True, the computation engine creates a parallel reverse-charge counter-entry. This is the mechanism for WHT / reverse-charge taxes with factor < 0 on a repartition line.",
+      "pointer": "account_tax.py:214, 505-509"
+    },
+    {
+      "flag": "REPARTITION-LINE-DOCUMENT-TYPE",
+      "severity": "STABLE",
+      "description": "repartition_line_ids (all lines) plus invoice_repartition_line_ids and refund_repartition_line_ids (filtered views) are available. Lines use document_type discriminator ('invoice'/'refund'). Migration should use repartition_line_ids for bulk writes.",
+      "pointer": "account_tax.py:175-196"
+    },
+    {
+      "flag": "VALIDATION-FACTOR-SUM",
+      "severity": "STABLE",
+      "description": "Positive tax-type factors must sum to exactly 100%. If any negative factor exists, negative factors must sum to exactly -100%. Both constraints enforced at save time.",
+      "pointer": "account_tax.py:588-594"
+    }
+  ],
+  "key_findings": {
+    "computation_engine": "Three-pass: (1) fixed taxes reversed, (2) price-included percent/division reversed, (3) price-excluded forward. Coordinated via _get_tax_details which also handles extra_base_for_tax and extra_base_for_base propagation.",
+    "price_include_extraction": "Percent price-included: raw_base * (1/(1+sum_rates)) * rate. Division price-included: raw_base * rate. Batch-level sum used for percent extraction factor.",
+    "include_base_amount": "When True, tax amount propagates forward as extra_base_for_tax/extra_base_for_base to subsequent is_base_affected taxes.",
+    "reverse_charge_wht": "has_negative_factor=True forces price_include=False for the tax and creates a parallel reverse_charge_taxes_data entry with negated amount. Positive-factor repartition lines go to normal entry; negative-factor lines go to counter-entry.",
+    "compute_all": "Legacy API at line 4975. Context key force_price_include maps to special_mode total_included/total_excluded. handle_price_include=False maps to total_excluded. Returns per-repartition-line entries in taxes list.",
+    "repartition_lines": "factor_percent stored at (16,12) precision. factor=factor_percent/100. use_in_tax_closing auto-computed from account type. _get_aml_target_tax_account redirects to CABA transition account for on-payment taxes."
+  }
+}

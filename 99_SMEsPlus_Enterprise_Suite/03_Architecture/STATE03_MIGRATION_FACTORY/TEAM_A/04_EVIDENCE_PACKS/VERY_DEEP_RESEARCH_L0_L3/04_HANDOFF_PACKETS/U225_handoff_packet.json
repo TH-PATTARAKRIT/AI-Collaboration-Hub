@@ -1,0 +1,70 @@
+{
+  "unit": "U225",
+  "module": "purchase_order",
+  "sha": "eace3e4e961951e7caaa1ab5c0834d73365b40b606c0d8d4205ebf81f451a030",
+  "source_file": "odoo/addons/purchase/models/purchase_order.py",
+  "supplementary_files": [
+    "odoo/addons/purchase/models/purchase_order_line.py",
+    "odoo/addons/purchase_stock/models/purchase_order.py",
+    "odoo/addons/purchase/models/account_invoice.py",
+    "odoo/addons/purchase/models/res_company.py"
+  ],
+  "claim_count": 22,
+  "gate": "GREEN",
+  "research_date": "2026-10-02",
+  "migration_flags": [
+    {
+      "flag_id": "MF-U225-01",
+      "severity": "BREAKING",
+      "description": "analytic_account_id is ABSENT on purchase.order.line in v19. Field replaced by analytic_distribution JSON dict via analytic.mixin. Migration must convert legacy single-account FK to JSON distribution format {account_id_str: percentage}.",
+      "pointer": "purchase/models/purchase_order_line.py:16"
+    },
+    {
+      "flag_id": "MF-U225-02",
+      "severity": "BREAKING",
+      "description": "No 'done' state on purchase.order in v19 Community base module. Any code or migration assertion checking for state='done' will silently fail. Terminal confirmed state is 'purchase'.",
+      "pointer": "purchase/models/purchase_order.py:105-111"
+    },
+    {
+      "flag_id": "MF-U225-03",
+      "severity": "EXTENSION-DEPENDENCY",
+      "description": "receipt_status field (pending/partial/full) is defined in purchase_stock extension, not base purchase. SMEsPlus must confirm purchase_stock is installed before any code references receipt_status.",
+      "pointer": "purchase_stock/models/purchase_order.py:35-42"
+    },
+    {
+      "flag_id": "MF-U225-04",
+      "severity": "EXTENSION-DEPENDENCY",
+      "description": "effective_date (arrival date) is defined in purchase_stock extension. Base purchase module has no such field. Three-date semantics (date_order, date_approve, effective_date) span two modules.",
+      "pointer": "purchase_stock/models/purchase_order.py:32-33"
+    },
+    {
+      "flag_id": "MF-U225-05",
+      "severity": "BEHAVIORAL",
+      "description": "invoice_status is 'no' for all orders not in state 'purchase'. Pre-confirmation billing status checks always return 'no' regardless of bill activity. Migration data checks must exclude non-purchase-state orders.",
+      "pointer": "purchase/models/purchase_order.py:50-51"
+    },
+    {
+      "flag_id": "MF-U225-06",
+      "severity": "BEHAVIORAL",
+      "description": "partner_ref (vendor reference) is NOT propagated to vendor bill ref or origin. Bill origin receives the internal PO name. Any migration expecting partner_ref on the bill must add this logic explicitly.",
+      "pointer": "purchase/models/purchase_order.py:940"
+    },
+    {
+      "flag_id": "MF-U225-07",
+      "severity": "BEHAVIORAL",
+      "description": "purchase.group_purchase_manager unconditionally bypasses the po_double_validation_amount threshold. Migrated user group assignments must preserve this bypass or approval flows will break for manager users.",
+      "pointer": "purchase/models/purchase_order.py:1260"
+    }
+  ],
+  "key_findings": {
+    "state_machine": "Five states: draft/sent/to approve/purchase/cancel; no 'done' in v19 Community; button_confirm routes to immediate approval or 'to approve' intermediary based on _approval_allowed()",
+    "invoice_status": "Computed in base purchase module; 'no' unless state=purchase; three values: no/to invoice/invoiced; qty_to_invoice drives status and is purchase_method-dependent (ordered vs received)",
+    "receipt_status": "Defined in purchase_stock extension ONLY; three values: pending/partial/full; driven by picking states not by move quantities",
+    "is_shipped": "Boolean in purchase_stock; True when all pickings are done or cancel; False if no pickings",
+    "effective_date": "In purchase_stock; earliest done-picking date_done excluding supplier-return destinations",
+    "bill_creation": "action_create_invoice groups by vendor+currency; sets invoice_origin=PO.name; qty_to_invoice determines line quantities; negative total auto-converts to refund",
+    "analytic_migration": "analytic_account_id ABSENT; analytic_distribution JSON via analytic.mixin; _validate_analytic_distribution called in button_confirm",
+    "approval_flow": "one_step bypasses threshold; two_step checks amount vs po_double_validation_amount; group_purchase_manager always bypasses",
+    "partner_ref": "Vendor's own reference number; used as secondary matching key for EDI/OCR bill matching; not propagated to bill header"
+  }
+}

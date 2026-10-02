@@ -1,0 +1,66 @@
+{
+  "unit": "U229",
+  "module": "res_currency",
+  "sha": "4cbd38884786",
+  "claim_count": 20,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "flag": "RATE-DIRECTION-UNCHANGED",
+      "description": "The stored rate field direction in res.currency.rate.rate is unchanged from v16/v17. It represents units of the foreign currency per 1 unit of the reference base currency. No migration conversion needed for rate values.",
+      "pointer": "base/models/res_currency.py:355-360",
+      "severity": "INFO"
+    },
+    {
+      "flag": "COMPANY-RATE-NEW-COMPUTED-FIELD",
+      "description": "v19 introduces company_rate and inverse_company_rate as computed+inverse fields on res.currency.rate. These replace direct editing of the raw rate field in the UI. Migration scripts writing to rate records should use the raw rate field, not company_rate.",
+      "pointer": "base/models/res_currency.py:361-374",
+      "severity": "MEDIUM"
+    },
+    {
+      "flag": "BRANCH-COMPANY-RATE-RESTRICTION",
+      "description": "Rate records can only be created for root companies, not branch/child companies. A validation constraint enforces this. Any migrated rate data with company_id pointing to a branch company will fail validation.",
+      "pointer": "base/models/res_currency.py:473-477",
+      "severity": "HIGH"
+    },
+    {
+      "flag": "ACCOUNT-ROUNDING-PROTECTION",
+      "description": "The account module blocks increasing the rounding factor (reducing decimal places) on currencies already used in accounting entries. Migration must not reduce decimal precision for currencies with existing journal entries.",
+      "pointer": "account/models/res_currency.py:26-33",
+      "severity": "HIGH"
+    },
+    {
+      "flag": "UNIQUE-RATE-PER-DAY-CONSTRAINT",
+      "description": "DB unique constraint (name, currency_id, company_id) prevents duplicate rate entries for the same date. Migration data deduplication required before insert.",
+      "pointer": "base/models/res_currency.py:379-382",
+      "severity": "HIGH"
+    }
+  ],
+  "key_findings": {
+    "rate_formula": "to_amount = from_amount * (raw_rate(to_currency) / raw_rate(from_currency))",
+    "rate_lookup_fallback": "Latest rate on or before date -> oldest rate -> 1.0",
+    "rate_storage_direction": "Units of foreign currency per 1 unit of reference base (unchanged from v16/v17)",
+    "rounding_method": "tools.float_round(amount, precision_rounding=currency.rounding)",
+    "decimal_places_formula": "ceil(log10(1/rounding)) when 0 < rounding < 1, else 0",
+    "thb_specifics": "rounding=0.01, decimal_places=2, position=after, no special overrides in Community",
+    "multi_company": "Rates always on root_id company; branch companies forbidden from having rates",
+    "base_currency_rate": "Defaults to 1.0 via COALESCE fallback in _get_rates()",
+    "account_extension_adds": "Rounding change protection + temporary currency table for historical/average/current reporting rates",
+    "new_in_v19": "company_rate, inverse_company_rate computed+inverse fields on res.currency.rate; rate_string display field on res.currency"
+  },
+  "source_files": [
+    {
+      "path": "base/models/res_currency.py",
+      "lines": 508,
+      "sha_prefix": "4cbd38884786"
+    },
+    {
+      "path": "account/models/res_currency.py",
+      "lines": 321,
+      "note": "account module extension"
+    }
+  ],
+  "research_date": "2026-10-02",
+  "researcher": "STATE03 VDR Worker Agent",
+  "gate_rationale": "All claims grounded in directly read source lines. No fabrication. Both source files fully examined. Migration flags identified with pointers."
+}
