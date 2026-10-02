@@ -1,0 +1,227 @@
+{"unit":"U235","module":"res_users_groups","sha":"PENDING_COMMIT","claim_count":26,"gate":"GREEN",
+  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "research_date": "2026-10-03",
+  "research_started": "2026-10-02",
+  "researcher": "STATE03 VDR Worker U235",
+  "migration_flags": [
+    {
+      "flag": "GROUPS_ID_RENAMED_GROUP_IDS",
+      "severity": "HIGH",
+      "description": "The explicit membership field on res.users is group_ids in v19 and the inverse on res.groups is user_ids. The v17 names groups_id and users are INFERENCE from prior knowledge because v17 source is absent. Whole-word groups_id survives only in a stale JS test mock (lines 694, 700, 708). Custom code, domains, XML records and external RPC clients using the old names must be rewritten.",
+      "pointer": "base/models/res_users.py:257; base/models/res_groups.py:17; web/static/tests/_framework/mock_server/mock_server.js:694",
+      "action": "Search all custom code, views, data files, domains and RPC payloads for the old field names and map them to group_ids, user_ids, all_group_ids and all_user_ids."
+    },
+    {
+      "flag": "ALL_GROUP_IDS_EFFECTIVE_MEMBERSHIP",
+      "severity": "MEDIUM",
+      "description": "all_group_ids is a non-stored computed field that expands the explicit groups through the implication closure, with a search method on the closure. Logic that expected implied groups to be materialised inside the explicit field (v17 behaviour, INFERENCE) must read all_group_ids or use the has_group helpers.",
+      "pointer": "base/models/res_users.py:446-452",
+      "action": "Review every read of the explicit membership field that was intended to mean effective membership."
+    },
+    {
+      "flag": "TRANS_IMPLIED_IDS_REPLACED",
+      "severity": "MEDIUM",
+      "description": "No trans_implied_ids field exists in v19. Transitive closure is exposed through all_implied_ids and all_implied_by_ids, which are reflexive (include the group itself) and computed from set definitions. The old transitive field name is INFERENCE from prior knowledge.",
+      "pointer": "base/models/res_groups.py:69-77; base/models/res_groups.py:245-250",
+      "action": "Replace uses of the old transitive field and account for the reflexive result when counting implied groups."
+    },
+    {
+      "flag": "GROUP_CATEGORY_ID_REPLACED_BY_PRIVILEGE",
+      "severity": "HIGH",
+      "description": "res.groups has no category_id in v19. Classification goes through privilege_id to the new res.groups.privilege model, which carries a category_id to the module category. Group display name uses the privilege name as prefix. v17 category_id on groups is INFERENCE.",
+      "pointer": "base/models/res_groups.py:36; base/models/res_groups_privilege.py:5-14; base/models/ir_module.py:86",
+      "action": "Remap data files and custom groups that set the category on a group to a privilege record, and re-check any unique-name assumptions (name is unique per privilege)."
+    },
+    {
+      "flag": "SEL_GROUPS_IN_GROUP_REMOVED",
+      "severity": "HIGH",
+      "description": "Dynamic selection and boolean pseudo-fields per group (sel_groups_* and in_group_*, v17 behaviour is INFERENCE) were not found by grep of the v19 base module. The user form instead uses a role Selection, a structured view_group_hierarchy Json field and a web widget bound to group_ids. Custom views or RPC code referencing the pseudo-fields will break.",
+      "pointer": "NONE - absence finding",
+      "action": "Replace pseudo-field usage with group_ids writes or the role field; check custom user form inheritance against the access rights page of the user form."
+    },
+    {
+      "flag": "MODULE_CATEGORY_EXCLUSIVE_INSTALL_ONLY",
+      "severity": "LOW",
+      "description": "The exclusive flag on module categories only gates module installation (conflict error). It no longer implies single-choice group selection semantics in the user form, which now relies on the privilege and widget model.",
+      "pointer": "base/models/ir_module.py:458-468",
+      "action": "Do not infer group exclusivity from the exclusive category flag; use disjoint_ids and the user type constraints."
+    },
+    {
+      "flag": "DEFAULT_USER_TEMPLATE_REPLACED",
+      "severity": "MEDIUM",
+      "description": "No base.default_user template record exists in v19 (v17 template-user mechanism is INFERENCE). Default groups come from the employee group plus the implied list of the record base.default_user_group, which is inside a noupdate block. Portal signup copies a different template user named by a system parameter.",
+      "pointer": "base/models/res_users.py:203-212; auth_signup/models/res_users.py:111-129; base/security/base_groups.xml:113-117",
+      "action": "Move any customisation of default new-user access onto the default access group record and re-verify signup template configuration."
+    },
+    {
+      "flag": "CHECK_CREDENTIALS_SIGNATURE",
+      "severity": "HIGH",
+      "description": "The credential hook is _check_credentials(credential, env) and returns an auth-info dict (auth_method, mfa). The registry hook warns when a legacy check_credentials method is still defined. Overrides in TOTP and passkey modules follow the same signature. Custom authentication overrides written for the old signature (INFERENCE for v17) will not be called or will break the returned structure.",
+      "pointer": "base/models/res_users.py:312-402; base/models/res_users.py:1309-1311; auth_totp/models/res_users.py:74-96; auth_passkey/models/res_users.py:49-73",
+      "action": "Port custom overrides to the new signature and return the auth-info dict; test interactive and non-interactive (RPC) paths."
+    },
+    {
+      "flag": "HAS_GROUP_RESTRICTED_CALLERS",
+      "severity": "MEDIUM",
+      "description": "has_group on another user raises an access error unless the environment is elevated, the target is the current user, or the caller is an employee. The technical feature group only counts as held in debug mode. Portal or public code paths calling has_group on arbitrary users must elevate or use the private variant.",
+      "pointer": "base/models/res_users.py:1075-1082",
+      "action": "Review portal and website code calling has_group for other users."
+    },
+    {
+      "flag": "PROGRAMMATIC_API_KEYS_GATED",
+      "severity": "MEDIUM",
+      "description": "Programmatic API key creation is gated by a system parameter and a per-user key count limit (default 10); system users are exempt from the gate. The interactive key wizard is limited to internal users, and the portal addon adds a further parameter controlling API keys for portal users.",
+      "pointer": "base/models/res_users.py:1620-1634; base/models/res_users.py:1665-1670; base/models/res_users.py:1834-1836; portal/models/res_users_apikeys_description.py:11-20",
+      "action": "Confirm parameter values in the target database before relying on RPC key generation."
+    },
+    {
+      "flag": "API_KEY_DURATION_BY_GROUP",
+      "severity": "MEDIUM",
+      "description": "Maximum API key lifetime is derived from the longest api_key_duration among the groups of the environment user (effective groups), with a one day fallback; system users bypass the limit. Group data therefore controls key expiry policy. Seeded duration for the employee role group is 90 days.",
+      "pointer": "base/models/res_users.py:1581-1585; base/models/res_groups.py:32-33; base/security/base_groups.xml:45",
+      "action": "Audit custom groups for api_key_duration and expect expiry rejections for longer requested durations."
+    },
+    {
+      "flag": "MFA_HOOKS_AND_AUTH_INFO",
+      "severity": "LOW",
+      "description": "Multi-factor selection uses _mfa_type and _mfa_url hooks overridden by the TOTP module, and the auth-info dict carries an mfa value that passkey sets to skip. Passkey internals belong to unit U108.",
+      "pointer": "base/models/res_users.py:1313-1319; auth_totp/models/res_users.py:47-59",
+      "action": "Review custom login flows for the new auth-info dict and MFA hooks."
+    },
+    {
+      "flag": "USER_SETTINGS_INTERNAL_ONLY",
+      "severity": "LOW",
+      "description": "res.users.settings records are created during user creation only for internal users; portal or public users get a settings record lazily through the find-or-create helper.",
+      "pointer": "base/models/res_users.py:583; base/models/res_users_settings.py:24-29",
+      "action": "Do not assume a settings record exists for every user."
+    },
+    {
+      "flag": "ENV_IS_ADMIN_IS_SYSTEM",
+      "severity": "INFO",
+      "description": "is_superuser, is_admin and is_system on the environment are methods in v19. Environment construction for uid 1 forces elevated mode, and changing the user resets the elevated flag unless the new user is uid 1.",
+      "pointer": "orm/environments.py:64-67; orm/environments.py:178-190",
+      "action": "Check custom code that read these as properties or relied on elevated mode surviving a user switch."
+    },
+    {
+      "flag": "ALLOW_SUDO_COMMANDS_FALSE",
+      "severity": "MEDIUM",
+      "description": "res.users, res.groups, res.users.apikeys, ir.module.category and many ir models set the flag that disables elevated x2many commands. Relational command writes targeting these comodels run with the transaction default user rather than the elevated environment. Exact scenarios where behaviour differs from v17 are RT/UNKNOWN.",
+      "pointer": "base/models/res_users.py:167; base/models/res_groups.py:13; orm/fields_relational.py:772-777",
+      "action": "Test x2many command writes on groups and users from elevated server code, notably module install scripts and wizards."
+    },
+    {
+      "flag": "ALL_USER_IDS_INVERSE_REFUSES_IMPLIED_REMOVAL",
+      "severity": "LOW",
+      "description": "Writing the effective user list of a group adds users to the explicit list and refuses removal of users who hold the group only through implication, with an error naming the group and users.",
+      "pointer": "base/models/res_groups.py:228-240",
+      "action": "Handle the error in bulk membership tools; remove the user from the implying group instead."
+    },
+    {
+      "flag": "ADMIN_CONSTRAINT_BYPASS_DURING_BASE_LOAD",
+      "severity": "LOW",
+      "description": "The at-least-one-administrator constraint is skipped while the registry has no initialising modules recorded, so it is only enforced after module load state is populated.",
+      "pointer": "base/models/res_users.py:550-555",
+      "action": "Do not rely on the constraint inside data scripts executed during base initialisation."
+    },
+    {
+      "flag": "MAIL_NOTIFICATION_TYPE_CHECK",
+      "severity": "MEDIUM",
+      "description": "A database CHECK requires non-email notification types only for non-share users; the compute depends on share and effective groups and unlinks the inbox group when a user becomes portal. Group changes can therefore trigger writes to notification type.",
+      "pointer": "mail/models/res_users.py:70-73; mail/models/res_users.py:92-95",
+      "action": "Account for the extra writes and the CHECK when converting users between internal and portal."
+    },
+    {
+      "flag": "GROUP_NO_ONE_IMPLIED_BY_GROUP_USER",
+      "severity": "MEDIUM",
+      "description": "The technical features group is implied by both the employee and system role groups through implied_by_ids, yet has_group only reports it as held in debug mode.",
+      "pointer": "base/security/base_groups.xml:58; base/models/res_users.py:1081-1082",
+      "action": "Do not use has_group on the technical features group to infer persistent membership."
+    },
+    {
+      "flag": "GROUP_DISPLAY_NAME_USES_PRIVILEGE",
+      "severity": "LOW",
+      "description": "Group full_name (also the record name) is formed from the privilege name and group name; groups without a privilege show only the name. Name-search code matching the old category-prefixed display name (INFERENCE) needs review.",
+      "pointer": "base/models/res_groups.py:121-129",
+      "action": "Review name_search and reporting code depending on displayed group names."
+    },
+    {
+      "flag": "ROLE_SELECTION",
+      "severity": "LOW",
+      "description": "res.users has a role Selection field (user or administrator) derived from group membership with an onchange; it is unrelated to the mail res.role model.",
+      "pointer": "base/models/res_users.py:272",
+      "action": "Avoid confusing the role field with mail roles or group name prefixes."
+    },
+    {
+      "flag": "STALE_GROUPS_ID_IN_WEB_TEST_MOCK",
+      "severity": "INFO",
+      "description": "The web JS test mock server still references groups_id; this is a stale test artefact, not a runtime model field.",
+      "pointer": "web/static/tests/_framework/mock_server/mock_server.js:694",
+      "action": "None for migration of server code; avoid copying the mock logic."
+    },
+    {
+      "flag": "STALE_CATEGORY_ID_COMMENT",
+      "severity": "INFO",
+      "description": "A comment in the base groups data file says a category field on groups is set elsewhere, but no such field exists on the v19 group model. Documentation contradiction only.",
+      "pointer": "base/security/base_groups.xml:23",
+      "action": "Do not follow the comment when writing group data."
+    },
+    {
+      "flag": "LOGIN_COOLDOWN_DOC_MISMATCH",
+      "severity": "INFO",
+      "description": "The docstring of the login assertion helper says throttling is by login, but the code keys failures by the remote address of the HTTP request. The failure registry is per worker process.",
+      "pointer": "base/models/res_users.py:1252; base/models/res_users.py:1219-1222",
+      "action": "Treat remote address as the cooldown key and expect per-worker counting when sizing the cooldown parameters."
+    },
+    {
+      "flag": "FEATURE_FLAGS_DRIVEN_BY_SUPERUSER_MEMBERSHIP",
+      "severity": "LOW",
+      "description": "The group helper that reports whether a feature group is enabled checks the membership of the superuser record, so settings-driven feature flags are effectively the membership of uid 1.",
+      "pointer": "base/models/res_groups.py:378-380",
+      "action": "Preserve uid 1 membership of feature groups when migrating or rebuilding the user table."
+    }
+  ],
+  "key_findings": {
+    "membership_field": "res.users.group_ids (explicit, relation table res_groups_users_rel) plus non-stored all_group_ids (explicit groups with implied closure); inverse on res.groups is user_ids with computed all_user_ids and an inverse that refuses removal of implied membership. No groups_id field in v19 server code.",
+    "who_may_write_membership": "group_ids is absent from the self-writable field list, so a user cannot change own groups through the self path; others are governed by ACL (see U222). Writing group_ids clears access caches. x2many commands on res.users and res.groups ignore elevated environments (_allow_sudo_commands False).",
+    "implication_model": "res.groups.implied_ids (direct, table res_groups_implied_rel) with reflexive all_implied_ids and all_implied_by_ids computed from SetDefinitions cached under the groups cache; disjoint_ids derived from user type groups. _apply_group and _remove_group edit implied_ids for settings fields.",
+    "classification_model": "New res.groups.privilege model (name, description, placeholder, sequence, category_id, group_ids) referenced by res.groups.privilege_id; module category exclusive flag affects installation only; no category_id on res.groups; no sel_groups or in_group pseudo-fields (grep-based absence finding).",
+    "user_types": "Employee, portal and public type groups are mutually disjoint, enforced both from the user side and from the group side; share is a stored computed boolean (true when the user lacks the employee group in effective groups). The user form has no explicit type selector; default new users get the employee group plus configurable default groups.",
+    "base_group_chain": "System role implies access rights group which implies the employee role group; system role also implies the sanitize override group; technical features group is implied by employee and system roles; multi-company group has no XML implication and is kept in sync by the multi-company user mixin.",
+    "multi_company": "company_id (default company) and company_ids (allowed companies via res_company_users_rel); constraint requires company_id within company_ids for active users; record rules are covered by U214.",
+    "credentials": "_check_credentials(credential, env) verifies hashed password via passlib context with pbkdf2_sha512 and a minimum of 600000 rounds, upgrading hashes on login; non-interactive RPC path accepts API keys with scope; check_identity requires a recent re-authentication within a ten minute window.",
+    "api_keys": "res.users.apikeys is a non-auto model; keys are random hex stored as hash with an index prefix; expiry bounded by the longest api_key_duration among user groups; programmatic generation gated by a system parameter and a per-user limit; scope null matches any scope.",
+    "superuser_semantics": "SUPERUSER_ID is 1; Environment construction for uid 1 forces elevated mode; is_admin on the environment is elevated or access-rights group membership; _is_system, _is_admin, _is_superuser, _is_internal, _is_portal and _is_public are record-level helpers.",
+    "default_creation_and_signup": "_default_groups returns the employee group plus the implied list of the default access group record; signup copies a template user named by the system parameter for template portal user, activating the copy; the portal wizard grants the portal group and removes the public group.",
+    "runtime_dependent_items": "System parameters (signup invitation scope, API key limits and gates, login cooldown, password policy minimum length, hashing rounds), the actual contents of the default access group and the template portal user, and exact behaviour of x2many commands with disabled elevated commands require a restored database or runtime test. Static reading only."
+  },
+  "source_files_verified": [
+    "base/models/res_users.py (membership, credentials, API keys, superuser helpers, multi-company)",
+    "base/models/res_groups.py (implication, disjoint, full name)",
+    "base/models/res_groups_privilege.py",
+    "base/models/res_users_settings.py",
+    "base/models/res_users_deletion.py",
+    "base/models/ir_module.py (category, privilege_ids, exclusive)",
+    "base/models/res_config.py (settings group fields)",
+    "base/models/res_company.py (public user lookup, user_ids)",
+    "base/security/base_groups.xml",
+    "base/data/base_data.sql",
+    "base/views/res_users_views.xml",
+    "base/views/res_groups_views.xml",
+    "base_setup/models/res_config_settings.py (default user groups opener)",
+    "auth_password_policy/models/res_users.py",
+    "auth_password_policy/models/res_config_settings.py",
+    "auth_signup/models/res_users.py",
+    "auth_totp/models/res_users.py (pointer only)",
+    "auth_passkey/models/res_users.py (pointer only; owner U108)",
+    "portal/wizard/portal_wizard.py",
+    "portal/models/res_users_apikeys_description.py",
+    "mail/models/res_users.py",
+    "orm/environments.py",
+    "orm/utils.py",
+    "orm/fields_relational.py",
+    "orm/models.py",
+    "tools/set_expression.py",
+    "web/static/src/webclient/res_user_group_ids_field/res_user_group_ids_field.js",
+    "web/static/tests/_framework/mock_server/mock_server.js"
+  ]
+}
