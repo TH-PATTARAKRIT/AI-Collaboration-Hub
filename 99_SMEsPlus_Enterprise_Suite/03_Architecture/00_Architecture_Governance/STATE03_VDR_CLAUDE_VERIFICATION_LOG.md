@@ -868,6 +868,40 @@ On resume:
 
 ---
 
+## §51. PAUSE ADDENDUM — Notifications received while paused (2026-10-02)
+
+**Verifier status: PAUSED. No verification action taken. This section is documentation-maintenance only.**
+
+### Events received after PAUSE CHECKPOINT commit `355f0a5b`
+
+**DeepSeek correction packets CR-024 to CR-028** (commit `43672f4b`, branch `claude/local-odoo-source-research`):
+
+| DeepSeek CR | Packet | Boundary | Classification | Subject |
+|---|---|---|---|---|
+| CR-024 | U21-R1 | U21 | CORRECTION_REQUIRED · Material | Certificate adapter loads pem_key with password=None; stored PEM is encrypted when key record has password |
+| CR-025 (DS) | U05-R1 | U05 | CORRECTION_REQUIRED · Normal | Seeded gift-card product carries 7% tax; tax-strip override covers discount products only |
+| CR-026 | U17-R2 | U17 | CORRECTION_REQUIRED · Material | Gamification end-of-period Datetime vs Date string mismatch; periodic challenge rewards never trigger |
+| CR-027 | U24-R2 | U24 | CORRECTION_REQUIRED · Normal | Thai tax report has 29 expressions in DB (24 direct XML + 5 shortcut fields), not 24 |
+| CR-028 | U21-R2 | U21 | CORRECTION_REQUIRED · Normal | E-mailed TOTP code window is 1–2 hours, not 1–3 hours |
+
+All 5 packets: **QUEUED — PENDING RESUME. NOT VERIFIED.**
+
+**U44 Atomic Boundary** (content `965bfe00`, packet `bd53b7ee`): 193 claims, 68 C1-bound, 25 RT, 0 CONTRA, 1 UNKNOWN. **QUEUED — PENDING RESUME. NOT VERIFIED.**
+
+**U45 Atomic Boundary** (content `f54bd587`, packet `58848879`): 238 claims, 0 C1-bound, 21 RT, 0 CONTRA, 5 UNKNOWN. **QUEUED — PENDING RESUME. NOT VERIFIED.**
+
+### CR Numbering Conflict — MUST RESOLVE AT RESUME
+
+This log's **CR-025** (issued §42, VDR-U31-C101) = expression count correction request to U24/TXC (Thai tax report expression count). DeepSeek's **CR-025 (DS)** (above) = U05-R1 gift-card tax topic — **different subject, same number**. DeepSeek's **CR-027** (U24-R2, "29 expressions not 24") covers the same subject as this log's CR-025. At Resume: confirm canonical CR numbering and resolve collision before issuing consolidated Correction Batch.
+
+### Resume Trigger Check (2026-10-02)
+
+- DeepSeek still active: **YES** (U44/U45 posted after PAUSE)
+- Final Batch Index pushed: **NO**
+- Resume Trigger met: **NO — REMAIN PAUSED**
+
+---
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
