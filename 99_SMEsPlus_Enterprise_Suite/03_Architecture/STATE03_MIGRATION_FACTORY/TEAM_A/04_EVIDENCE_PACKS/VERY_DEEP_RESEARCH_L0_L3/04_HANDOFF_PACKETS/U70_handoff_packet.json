@@ -1,0 +1,12 @@
+{
+  "unit": "U70",
+  "scope": "account lock date enforcement audit trail immutability sequence lock",
+  "timestamp": "2026-10-02T06:21:38.004598+00:00",
+  "evidence_file": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/01_RESTRICTED_TECHNICAL_EVIDENCE/U70_account_lock_audit_depth.md",
+  "evidence_sha256": "a11ae69bb073417679141a660d89fa9c035c7d578555b3e2a7e4ee038caf5b52",
+  "neutral_file": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/02_NEUTRAL_KNOWLEDGE/U70_account_lock_audit_depth_NEUTRAL.md",
+  "neutral_sha256": "de8f9a831013b5dc1a84d957a356321db61e61015c12aac4aea71fd0ebd733b6",
+  "claim_count": 76,
+  "gate_result": "exit_0_claim-checks=0_neutral-leak-tokens=0",
+  "status": "GATE-PASSED"
+}
