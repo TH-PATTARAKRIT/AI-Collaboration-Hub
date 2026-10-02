@@ -1,0 +1,26 @@
+{
+  "unit": "U115",
+  "title": "stock_account — WIP Account Entries from mrp_account Close",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "modules": ["mrp_account", "stock_account", "mrp"],
+  "function_ids": ["MFG-F02", "MFG-F03", "INV-F04"],
+  "l_levels": ["L3", "L4", "L7"],
+  "proof_layers": ["P1", "P3", "P4"],
+  "claim_count": 52,
+  "c1_count": 50,
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "key_findings": {
+    "cal_price_override": "mrp_account/models/mrp_production.py:57 — _cal_price sets finished goods price_unit from total_cost (components + workcenter + extra); AVCO/FIFO uses actual cost, standard uses product.standard_price",
+    "post_labour_guard": "mrp_account/models/mrp_production.py:104 — labour journal entry requires product.valuation == 'real_time' AND production_location.valuation_account_id; skipped silently if either absent",
+    "workcenter_expense_override": "mrp_account/models/mrp_workcenter.py:13 — expense_account_id on workcenter overrides product expense account for labour DR leg",
+    "wip_wizard_auto_reversal": "mrp_account/wizard/mrp_wip_accounting.py:142 — _reverse_moves posted immediately on confirm; reversal_date defaults to date+1 day; both entry and reversal carry wip_production_ids linkage",
+    "wip_account_fields": "stock_account/models/res_company.py:16-17 — account_production_wip_account_id and account_production_wip_overhead_account_id are company-level check_company fields; must be configured per company",
+    "component_entry_direction": "stock_account/models/stock_move.py:229-249 — _get_account_move_line_vals: if source location has valuation_account_id then DR stock_valuation CR location_account; else DR location_account CR stock_valuation",
+    "should_create_guard": "stock_account/models/stock_move.py:659-667 — _should_create_account_move requires is_storable, is_valued, valued location present, non-zero qty, real_time valuation"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U115_stock_account_wip.md",
+    "02_NEUTRAL_KNOWLEDGE/U115_stock_account_wip_NEUTRAL.md"
+  ]
+}
