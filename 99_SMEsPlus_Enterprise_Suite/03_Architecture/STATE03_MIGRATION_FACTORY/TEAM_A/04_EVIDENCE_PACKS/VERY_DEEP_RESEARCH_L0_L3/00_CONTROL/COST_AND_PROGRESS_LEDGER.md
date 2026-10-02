@@ -4,9 +4,9 @@
 
 | Metric | Value |
 |---|---|
-| Completed delegated research workers | 37 |
-| Cumulative worker tokens (reported) | 20,924,568 |
-| Cumulative worker tool requests (reported) | 5,089 |
+| Completed delegated research workers | 47 |
+| Cumulative worker tokens (reported) | 24,033,386 (+ U47–U63 fix/gate pass session — tokens not separately metered) |
+| Cumulative worker tool requests (reported) | 5,713+ |
 | Workers running at last update | see `NEXT_ATOMIC_UNIT_QUEUE.tsv` and PR #74 notifications |
 | Claude-accepted units / packets (evidenced in verifier log) | listed below |
 
@@ -68,3 +68,29 @@ Units whose log entry shows only mechanical hash-integrity intake (pending confi
 | TXA2 | 703,097 | 184 |
 | TXC | 406,635 | 111 |
 | TXS-R1 | 572,359 | 172 |
+| U36 | 607,651 | 119 |
+| U39 | 594,774 | 133 |
+| U34 | 634,994 | 102 |
+| U41 | 608,156 | 123 |
+| U30 | 663,243 | 147 |
+| U42 | — | — |
+| U43 | — | — |
+| U44 | — | — |
+| U45 | — | — |
+| U46 | — | — |
+| U47 | — | 150 |
+| U48 | — | 121 |
+| U49 | — | — |
+| U50 | — | 155 |
+| U51 | — | 105 |
+| U52 | — | 155 |
+| U53 | — | 125 |
+| U54 | — | 130 |
+| U56 | — | 125 |
+| U57 | — | 160 |
+| U58 | — | 150 |
+| U59 | — | 105 |
+| U60 | — | 105 |
+| U61 | — | 130 |
+| U62 | — | 152 |
+| U63 | — | 145 |
