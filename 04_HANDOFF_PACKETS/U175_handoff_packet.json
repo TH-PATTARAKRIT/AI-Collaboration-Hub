@@ -1,0 +1,43 @@
+{
+  "unit": "U175",
+  "title": "mrp.bom — Bill of Materials routing, operations, byproducts L3",
+  "gap_id": "G07-P1",
+  "priority": "P1",
+  "status": "GATE-PASS",
+  "marker": "SOURCE-VERIFIED (Claude Sonnet 4.6 direct source read)",
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "research_agent": "Claude Sonnet 4.6 (STATE03 VDR continuous manifest)",
+  "research_date": "2026-10-02",
+  "module_path": "addons/mrp",
+  "claim_count": 30,
+  "modules_covered": [
+    "mrp"
+  ],
+  "files_researched": [
+    "addons/mrp/models/mrp_bom.py",
+    "addons/mrp/models/mrp_routing.py",
+    "addons/mrp/models/mrp_production.py",
+    "addons/mrp/models/stock_move.py",
+    "addons/mrp/models/product.py",
+    "addons/mrp/security/mrp_security.xml"
+  ],
+  "models_covered": [
+    "mrp.bom",
+    "mrp.bom.line",
+    "mrp.bom.byproduct",
+    "mrp.routing.workcenter"
+  ],
+  "key_findings": [
+    "mrp.bom.type has exactly two values in Community 19: normal and phantom (Kit); no separate 'kit' key",
+    "No routing_id field in Odoo 19 Community; mrp.routing.workcenter records are owned directly by the BOM via bom_id",
+    "mrp.bom.byproduct exists in Community 19 with cost_share (5,2 precision); total cost share must not exceed 100",
+    "mrp.routing.workcenter.blocked_by_operation_ids enables operation-level sequencing when allow_operation_dependencies=True on the BOM",
+    "Kit (phantom) BOM explosion on stock.move cancels the original product move and replaces it with component moves",
+    "_bom_find() prefers variant-specific BOMs over template BOMs; ordered by sequence, product_id, id",
+    "BOM versioning / mrp_plm is absent from Community 19 source tree",
+    "mrp.bom.line.product_qty allows zero (optional components); SQL constraint is >= 0 not > 0",
+    "operation_id on bom.line and bom.byproduct both restricted to operations on the same BOM via allowed_operation_ids relay",
+    "consumption field default is 'warning'; batch_size feature is opt-in via enable_batch_size Boolean"
+  ],
+  "scope_gaps": []
+}
