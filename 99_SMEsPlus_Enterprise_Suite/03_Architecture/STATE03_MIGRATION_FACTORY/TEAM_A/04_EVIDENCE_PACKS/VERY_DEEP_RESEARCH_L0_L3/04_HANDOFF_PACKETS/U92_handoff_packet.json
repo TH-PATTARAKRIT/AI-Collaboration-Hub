@@ -1,0 +1,52 @@
+{
+  "unit": "U92",
+  "title": "Website Content Platform — Blog, Forum, Slide Channels",
+  "phase": "Second-Pass Depth Closure — P2 Supporting Domains",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "predecessors": ["U19", "U60"],
+  "modules_covered": [
+    "website_blog",
+    "website_forum",
+    "website_slides"
+  ],
+  "claim_count": 36,
+  "function_ids": [
+    "U92-F01",
+    "U92-F02",
+    "U92-F03",
+    "U92-F04",
+    "U92-F05",
+    "U92-F06",
+    "U92-F07",
+    "U92-F08",
+    "U92-F09",
+    "U92-F10",
+    "U92-F11",
+    "U92-F12"
+  ],
+  "gate_result": {
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0,
+    "gate": "PASS"
+  },
+  "key_findings": {
+    "blog_post_model": "blog.post inherits website.published.multi.mixin (is_published field), website.seo.metadata (og: tags). website_id is a related stored field via blog_id.website_id — not a direct FK on the post. visits is readonly integer (no direct increment — read-only). tag_ids is Many2many to blog.tag.",
+    "blog_seo": "_default_website_meta sets og:type=article, article:published_time, article:modified_time, article:tag from tag_ids.mapped('name'). Access to unpublished posts is gated by website.group_website_designer group; public visitors only see posts where post_date <= now.",
+    "forum_post_states": "forum.post.state has 5 values: active, pending, close, offensive, flagged. A post below karma_post (default 100) is auto-set to pending on create. Moderators (karma >= karma_moderate=1000) can validate, refuse, or mark offensive. Marking offensive sets active=False.",
+    "forum_karma_system": "Karma is generated on events: question asked (+2), question upvoted (+5/-2), answer upvoted (+10/-2), answer accepted (+15 to answerer, +2 to acceptor), flagged as spam/offensive (-100, x10 for first posts). Action thresholds are per-forum configurable fields with documented defaults. can_ask/can_edit/can_close etc. are computed fields comparing user.karma to forum thresholds.",
+    "forum_vote_model": "forum.post.vote has unique constraint (post_id, user_id). Vote values: 1, -1, 0. Non-admin cannot forge vote owner. Voting for own post raises UserError. Toggling a -1 vote allows upvoting without meeting upvote karma threshold (and vice versa).",
+    "slide_channel_model": "slide.channel (description='Course') has channel_type (training/documentation), visibility (public/connected/members/link), enroll (public/invite). DB constraint enforces: visibility=members requires enroll=invite. is_visible is computed per user context.",
+    "slide_access_control": "can_publish requires can_upload AND (user is channel responsible OR slides_manager group). channel_type=documentation disables allow_comment by default. slide.is_preview=True allows public access to an individual slide bypassing enrollment.",
+    "slide_completion_certification": "slide.channel.partner tracks member_status: invited/joined/ongoing/completed. Completing the course awards karma_gen_channel_finish=10 karma. Quiz slides award karma that degrades with each attempt: first=10, second=7, third=5, subsequent=2. No built-in certificate PDF model found in base website_slides Community module."
+  },
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U92_website_content_platform.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U92_website_content_platform_NEUTRAL.md"
+  },
+  "open_questions": [
+    "No certificate/PDF generation model found in website_slides Community; certification may require website_slides_survey integration.",
+    "blog.post.visits field is readonly — the increment mechanism was not traced in this unit; likely done via HTTP controller using sql.increment_fields_skiplock pattern (same as forum.post.views).",
+    "forum.forum.privacy field (public/connected/private + authorized_group_id) provides forum-level access control beyond karma; not deeply traced here."
+  ]
+}
