@@ -1,0 +1,27 @@
+{
+  "unit": "U122",
+  "title": "account — Credit Note Return Immutability",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "gap_ids": ["GAP-028"],
+  "modules": ["account"],
+  "function_ids": ["SDV-F07", "PCO-F01"],
+  "l_levels": ["L3", "L7", "L8"],
+  "proof_layers": ["P1", "P3", "P4"],
+  "claim_count": 48,
+  "c1_count": 48,
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "gap_status": {"GAP-028": "CLOSED"},
+  "key_findings": {
+    "reversal_type_map": "TYPE_REVERSE_MAP at account/models/account_move.py:59-67 maps invoice types to their credit note equivalents bidirectionally",
+    "reversed_entry_id_bidirectional": "reversed_entry_id (account/models/account_move.py:629) is readonly Many2one on credit note; reversal_move_ids (line 637) is One2many on original — bidirectional link confirmed",
+    "hash_immutability": "_check_draftable at account/models/account_move.py:6372 raises UserError if inalterable_hash is set, and show_reset_to_draft_button (line 1966-1968) is hidden when hash present — hash-locked credit notes are permanently immutable",
+    "partial_reconcile_model": "account.partial.reconcile at account/models/account_partial_reconcile.py:10-24 carries debit_move_id, credit_move_id, full_reconcile_id, exchange_move_id; unlink cascade reverses COGS and exchange diff entries",
+    "sale_stock_return_link": "sale_stock/models/account_move.py:26 traverses reversed_entry_id.invoice_line_ids.sale_line_ids.move_ids for return stock move COGS valuation",
+    "hash_chain": "_hash_moves at account/models/account_move.py:4625 computes SHA-256 chain per journal/sequence-prefix; _calculate_hashes at line 4771 uses previous hash; hashing triggered by write() at line 4006 on state=posted transition"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U122_credit_note_return.md",
+    "02_NEUTRAL_KNOWLEDGE/U122_credit_note_return_NEUTRAL.md"
+  ]
+}
