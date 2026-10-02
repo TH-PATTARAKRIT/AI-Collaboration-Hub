@@ -203,8 +203,8 @@
 | U75 | account + stock_account — period cutoff / accrued orders (PCO-F03/PCO-F04) | G04/G08 CANDIDATE | P0 | Yes | U33, U10 | Accrued wizard auto-reverses; no GR/IR by default; stock cron daily/monthly | Restricted+Neutral evidence, handoff packet | Done bdc59706 |
 | U76 | sale→stock→account full O2C chain | G06/G08/G04 CANDIDATE | P1 | No | C01, U04, U05 | Full chain traced; 20 new F-IDs; COGS DR/CR confirmed; auto-reconcile | Restricted+Neutral evidence, handoff packet | Done bf927a87 |
 | U77 | purchase→stock→account full P2P chain | G07/G08/G04 CANDIDATE | P1 | No | C02, U06, U07 | 54 claims; NO acct entry at receipt; only vendor bill post creates entry | Restricted+Neutral evidence, handoff packet | Done 975500d1 |
-| U78 | mrp full MO lifecycle (BOM→consume→produce→close) | G09 CANDIDATE | P1 | Yes | U14, U15 | MO create→consume→produce→close→account | Restricted+Neutral evidence, handoff packet | Running |
-| U79 | account.move full lifecycle (unposted→posted→reconciled) | G04 CANDIDATE | P1 | Yes | U11, U12 | Entry lifecycle deep dive L4/L7/L11 | Restricted+Neutral evidence, handoff packet | Queued |
+| U78 | mrp full MO lifecycle (BOM→consume→produce→close) | G09 CANDIDATE | P1 | Yes | U14, U15 | MO create→consume→produce→close→account | Restricted+Neutral evidence, handoff packet | Done b9c44b0b |
+| U79 | account.move full lifecycle (unposted→posted→reconciled) | G04 CANDIDATE | P1 | Yes | U11, U12 | Entry lifecycle deep dive L4/L7/L11 | Restricted+Neutral evidence, handoff packet | Running |
 | U80 | stock_account perpetual AVCO/FIFO deep (SVL recomputation) | G08 CANDIDATE | P1 | Yes | U10, U72 | AVCO/FIFO recompute on return, scrap valuation | Restricted+Neutral evidence, handoff packet | Queued |
 | U81 | account_payment + bank reconciliation full workflow | G04/G05 CANDIDATE | P1 | No | U12, U33 | Payment wizard, bank statement, suspense clear | Restricted+Neutral evidence, handoff packet | Queued |
 | U82 | account_edi_ubl_cii + account_peppol EDI full flow | G04 CANDIDATE | P1 | No | U27, U48 | XML generation, PEPPOL proxy, response state machine | Restricted+Neutral evidence, handoff packet | Queued |
