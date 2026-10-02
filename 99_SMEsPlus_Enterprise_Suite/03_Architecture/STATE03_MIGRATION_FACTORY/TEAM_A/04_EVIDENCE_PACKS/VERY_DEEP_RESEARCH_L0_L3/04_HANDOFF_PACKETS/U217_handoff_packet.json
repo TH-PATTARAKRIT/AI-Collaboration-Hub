@@ -1,0 +1,68 @@
+{
+  "unit": "U217",
+  "module": "stock_location",
+  "sha": "3150838412eb5fab47e548aff1817974c43e4650fad8d990dd6483517ab957f9",
+  "claim_count": 20,
+  "gate": "GREEN",
+  "source_path": "stock/models/stock_location.py",
+  "secondary_source_path": "stock_account/models/stock_location.py",
+  "odoo_version": "19.0.post20260921",
+  "migration_flags": [
+    {
+      "flag": "no_own_usage_type",
+      "severity": "HIGH",
+      "detail": "The 'own' usage type does not exist in v19 community. Exactly 7 usage values: supplier, view, internal, customer, inventory, production, transit. Any migration data containing usage='own' must be remapped."
+    },
+    {
+      "flag": "no_scrap_location_boolean",
+      "severity": "HIGH",
+      "detail": "There is no scrap_location boolean field on stock.location in v19. Scrap locations are identified exclusively by usage='inventory'. Migration logic relying on a boolean flag will fail silently."
+    },
+    {
+      "flag": "no_return_location_boolean",
+      "severity": "MEDIUM",
+      "detail": "No return_location boolean field exists in v19 community stock module. Return flows are handled at picking type level, not location level."
+    },
+    {
+      "flag": "no_pos_location_id",
+      "severity": "LOW",
+      "detail": "pos_location_id is not present on stock.location in v19 community. POS location linkage is managed within the POS module separately."
+    },
+    {
+      "flag": "valuation_account_id_in_extension",
+      "severity": "MEDIUM",
+      "detail": "valuation_account_id lives in stock_account/models/stock_location.py (the stock_account extension), not in the base stock module. It is absent if stock_account is not installed."
+    },
+    {
+      "flag": "transit_does_not_bypass_reservation",
+      "severity": "HIGH",
+      "detail": "should_bypass_reservation() returns True only for supplier, customer, inventory, production. Transit returns False — transit locations CAN hold reserved quantities. Migration must not treat transit as virtual for reservation bypass."
+    },
+    {
+      "flag": "company_id_immutable_after_create",
+      "severity": "MEDIUM",
+      "detail": "write() blocks company_id changes after creation. Migration must assign company_id at create time; post-create reassignment requires archive + recreate."
+    },
+    {
+      "flag": "view_type_resets_complete_name",
+      "severity": "MEDIUM",
+      "detail": "Locations with usage='view' do NOT inherit parent complete_name; they reset the path to their own name. This is a boundary condition in hierarchy display and name-based matching during migration."
+    }
+  ],
+  "key_findings": {
+    "usage_values_v19": ["supplier", "view", "internal", "customer", "inventory", "production", "transit"],
+    "scrap_pattern": "usage='inventory', no boolean field, per-company via res.company._create_scrap_location()",
+    "global_locations_xmlids": [
+      "stock.stock_location_suppliers (supplier, company_id=False)",
+      "stock.stock_location_customers (customer, company_id=False)",
+      "stock.stock_location_inter_company (transit, company_id=False)"
+    ],
+    "bypass_reservation_types": ["supplier", "customer", "inventory", "production"],
+    "valued_location_condition": "company_id is set AND usage in ['internal', 'transit']",
+    "putaway_fallback": "first child internal location when usage='view' and no rule matches",
+    "complete_name_boundary": "usage='view' resets complete_name to location.name only",
+    "barcode_uniqueness": "unique per company (barcode, company_id constraint)",
+    "hierarchy_mechanism": "_parent_store=True with parent_path; _child_of() uses startswith(parent_path)",
+    "summary": "v19 stock.location has 7 usage types; no own/scrap booleans; transit locations hold reservations; valuation in stock_account extension; view type is a complete_name boundary; company is immutable post-create"
+  }
+}
