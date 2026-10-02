@@ -1522,3 +1522,530 @@ All 30 units have claims at P1 (source) only. Runtime behaviour — lock date en
 **Deferred items still requiring Boss ruling (from prior sessions):** BGQ-08, BGQ-09, BGQ-10 (per §8 PAUSE CHECKPOINT).
 
 ---
+
+---
+
+## §61 — VERIFICATION CLOSURE: Corrected Ledger, G01–G16 Matrix, and Material Finding Reclassification
+
+**Command:** `START_STATE03_VERIFICATION_CLOSURE_AND_G_MAPPING` (Boss, 2026-10-02)
+**Basis commit:** `4883a141` (§54–§60 initial ledger)
+**Verifier:** Claude Code Sonnet 4.6, session `claude/new-session-l8f19r`
+**Scope corrections applied:** (a) Mechanical vs Semantic PASS separated; (b) U78 reclassified to PARTIAL/CORRECTION-REQUIRED; (c) proof layers (Source/Config/Runtime/Cross-module/E2E) shown separately; (d) Material Finding classifications revised; (e) C1-affecting Community control gaps = ARCHITECTURE-DECISION-PENDING; (f) G01–G16 Mapping Matrix produced.
+
+> **Standing constraints (all sections below):**
+> - P2 (Runtime Reachability) = NOT_PROVEN universally. Source Presence ≠ Runtime Reachability.
+> - No section implies Runtime, E2E, C1 completion, module completion, or STATE03 completion.
+> - Boss is Sole Final Approver. This is a verification ledger, not Formal Coverage.
+
+---
+
+### 61.1 — Corrected Verification Status Table: U70–U99
+
+**Proof layer legend:**
+- **P1-Source** = file/function definition present in static source
+- **P3-Config** = security XML / ir.rule domain / company setting verified
+- **P2-Runtime** = live execution confirmed (NOT_PROVEN for all units — no Odoo runtime available)
+- **P4-Cross-module** = cross-module chain path verified at source level only
+- **P5-E2E** = full end-to-end business scenario (NOT_PROVEN for all units)
+
+| Unit | Priority | Claims | Mech PASS | Semantic PASS | P1-Source | P3-Config | P2-Runtime | P4-Cross | P5-E2E | VDR Status |
+|---|---|---|---|---|---|---|---|---|---|---|
+| U70 | P0 | 45 | ✓ (HP JSON exit_0) | ✓ (5 source ptrs confirmed) | PASS | PASS | NOT_PROVEN | N/A | N/A | PASS-STATIC |
+| U71 | P0 | 36 | ✓ (GATE-PASS) | ✓ (36/36 claims read) | PASS | PASS | NOT_PROVEN | PARTIAL (AWT-U71-034/035) | N/A | PASS-STATIC |
+| U72 | P0 | 38 | ✓ (GATE-PASS) | ✓ (38/38 claims read) | PASS | PASS | NOT_PROVEN | PARTIAL (FIFO stack cross-move) | N/A | PASS-STATIC |
+| U73 | P0 | 48 | ✓ (GATE-PASS per evidence+commit) | ✓ (48/48 C1 read) | PASS | PASS | NOT_PROVEN | N/A | N/A | PASS-STATIC; HP-STATUS-STALE (CR-V002) |
+| U74 | P0 | 32 | ✓ (exit_code=0) | ✓ (32/32 claims read) | PASS | PASS | NOT_PROVEN | PARTIAL (GRV-F06 soft only) | N/A | PASS-STATIC; C1-GAP: hard block absent → §61.4 |
+| U75 | P0 | 34 | ✓ (exit_0) | ✓ (34/34 claims read) | PASS | PASS | NOT_PROVEN | PARTIAL (AWT-U75-011) | N/A | PASS-STATIC |
+| U76 | P1 | 50 | ✓ (GATE-PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U77 | P1 | 54 | ✓ (GATE-PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U78 | P1 | 45 | FAIL — HP MISSING | PARTIAL (22/45 src ptrs confirmed) | PARTIAL | PARTIAL | NOT_PROVEN | PARTIAL | NOT_PROVEN | **PARTIAL / CORRECTION-REQUIRED (CR-V003)** |
+| U79 | P1 | 52 | ✓ (GATE-PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U80 | P1 | 41 | ✓ (PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U81 | P1 | 60 | ✓ (PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U82 | P1 | 50 | ✓ (GATE-PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U83 | P1 | 45 | ✓ (GATE-PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U84 | P1 | 21 | ✓ (GATE-PASS; HP_U84.md old format — CR-V004) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY; FORMAT-CR (CR-V004) |
+| U85 | P1 | 66 | ✓ (PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U86 | P2 | 51 | ✓ (GATE-PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U87 | P2 | 53 | ✓ (GATE-PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U88 | P2 | 56 | ✓ (PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U89 | P2 | 63 | ✓ (PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U90 | P2 | 35 | ✓ (PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U91 | P2 | 35 | ✓ (PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U92 | P2 | 36 | ✓ (PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U93 | P2 | 32 | ✓ (PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U94 | P2 | 35 | ✓ (PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U95 | P0 | 49 | ✓ (GATE-PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY; U55-gap closed |
+| U96 | P1 | 45 | ✓ (GATE-PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U97 | P2 | 32 | ✓ (GATE-PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U98 | P1 | 27 | ✓ (GATE-PASS) | NOT_DONE (HP-only) | INFERRED | INFERRED | NOT_PROVEN | NOT_PROVEN | NOT_PROVEN | MECH-ONLY |
+| U99 | P0 | 35 | ✓ (GATE-PASS) | ✓ (sudo bypass + interco confirmed) | PASS | PASS | NOT_PROVEN | PARTIAL | N/A | PASS-STATIC |
+
+**Verified counts (U70–U99):**
+- Mechanical PASS: 29/30 (U78 = FAIL — no HP; all others claim-checks=0 / neutral-leak-tokens=0)
+- Semantic PASS (full evidence read + source pointers confirmed): 8 units (U70/U71/U72/U73/U74/U75/U99; U70 evidence-stale-status noted)
+- Semantic PARTIAL (evidence read, not all claims traced): 1 (U78)
+- Semantic NOT_DONE: 21 units (U76/U77/U79–U98 except U84/U99) — HP mechanical only
+- P2 Runtime: NOT_PROVEN — universal, all 30 units
+- P5 E2E: NOT_PROVEN — universal, all 30 units
+
+---
+
+### 61.2 — CR Status Table (CR-V001 to CR-V004)
+
+| CR-ID | Unit | Problem | Directed to | Correction Status | Acceptance Criteria |
+|---|---|---|---|---|---|
+| CR-V001 | U70 | Evidence file `U70_account_lock_audit_depth.md` header `Status: GATE-PENDING` (stale; actual=GATE-PASS per HP JSON + SHA `ec7f3cee`) | DeepSeek / `claude/local-odoo-source-research` | OPEN — not yet applied | Header updated to `GATE-PASS (exit 0, claim-checks=0, neutral-leak-tokens=0)` |
+| CR-V002 | U73 | HP JSON `"status": "GATE-PENDING"` (stale; actual=GATE-PASS per evidence file + commit `1128925f`) | DeepSeek / `claude/local-odoo-source-research` | OPEN — not yet applied | HP JSON `status == "GATE-PASS"` |
+| CR-V003 | U78 | `U78_handoff_packet.json` missing entirely from `04_HANDOFF_PACKETS/`; evidence file and git commit `b9c44b0b` present | DeepSeek / `claude/local-odoo-source-research` | OPEN — MEDIUM priority; U78 remains PARTIAL/CORRECTION-REQUIRED until resolved | HP JSON created with claim_count=45, function_ids=[BRP-F01,MFG-F01,MFG-F02], gate=PASS, sha=b9c44b0b |
+| CR-V004 | U84 | `HP_U84.md` uses old naming vs expected `U84_handoff_packet.json`; content is valid JSON, GATE-PASS confirmed | DeepSeek / `claude/local-odoo-source-research` | OPEN — LOW priority; does not affect verification outcome | `U84_handoff_packet.json` present |
+
+**U78 remains PARTIAL/CORRECTION-REQUIRED** until CR-V003 is applied and the resulting `U78_handoff_packet.json` is independently re-verified by this session (re-read HP, confirm claim_count matches evidence file, confirm gate fields).
+
+---
+
+### 61.3 — Consolidated G01–G16 Evidence Mapping Matrix (U01–U99)
+
+**Sources:** `STATE03_692_MODULE_G01_G16_MAPPING.tsv` (692 modules), handoff packets U01–U99, evidence files where semantic study was performed.
+**Note:** Module-to-G mapping: 40/266 entries CONFIRMED (from `GROUP_STRUCTURE_V2_CORE_CANDIDATE_20260928.tsv`); 226 INFERRED; 426 unmapped. G-group assignment is NOT CANONICAL for INFERRED entries. G04/G10 boundary = UNRESOLVED.
+
+---
+
+#### G01 — PLATFORM_BASE
+
+| Field | Value |
+|---|---|
+| Modules (confirmed) | base, base_automation, base_setup, base_sparse_field, bus, digest, google_recaptcha, html_builder, html_editor, http_routing, mail, onboarding, phone_validation, portal, privacy_lookup + 8 more CONFIRMED |
+| Function/Control IDs | MCT-F05 (ir.rules/company isolation — U71/U99), PLA-F01+ (base platform — U01), MAL-F01+ (mail/chatter — U03), SEC-F01+ (base_automation/ir.cron — U36) |
+| Evidence units | U01 (base platform), U03 (mail/audit), U21 (platform security), U35 (auth_signup/onboarding), U36 (base_automation), U37 (bus), U40 (html_builder), U41 (http_routing), U44 (onboarding), U45 (phone_validation/privacy), U71 (ir.rule domains), U99 (ir.rule sudo bypass) |
+| Source lineage | U01/U03/U21: semantic (first pass); U35–U45: mechanical; U71/U99: semantic (second pass) |
+| P1-Source | PASS (confirmed: ir_rule.py:120, ir_rule.py:49, ir_rule.py:78, res_users.py:247, models.py:451/4003/4015) |
+| P3-Config | PASS (ir.rule domain structures confirmed; _check_company_auto patterns confirmed) |
+| P2-Runtime | NOT_PROVEN |
+| P4-Cross | PARTIAL (ir.rule → stock/account/sale/purchase domains confirmed at source; runtime enforcement NOT_PROVEN) |
+| P5-E2E | NOT_PROVEN |
+| Semantic status | DEEP-STUDIED (ir.rule/sudo/company isolation); PARTIAL (base_automation, bus, html components) |
+| Missing proof layers | P2 runtime: ir.rule enforcement under live company-switch, sudo audit log in production |
+| Research backlog | U113 (mail/chatter/activity deep — Queued third pass) |
+
+---
+
+#### G02 — (INFERRED: business process connectors / uncertain boundary)
+
+| Field | Value |
+|---|---|
+| Modules (inferred) | 11 modules INFERRED — exact names not confirmed in this session |
+| Function/Control IDs | Not established — G02 boundary not canonically confirmed |
+| Evidence units | None specifically mapped to G02 in U01–U99 |
+| Semantic status | NOT_STUDIED |
+| Missing proof layers | All layers — P1 through P5 |
+| Research backlog | BGQ item — G02 canonical boundary definition required before mapping |
+
+---
+
+#### G03 — PRODUCT / ANALYTIC FOUNDATION
+
+| Field | Value |
+|---|---|
+| Modules (confirmed/inferred) | analytic (CONFIRMED), product (CONFIRMED), uom, account_analytic, product variants |
+| Function/Control IDs | GRV-F04 (product.category costing method — U72), IAV-F03 (AVCO/FIFO stack — U72/U80), PCO-F03 (analytic on accruals — U75), U109-scope (analytic.plan hierarchy — third pass queued) |
+| Evidence units | U02 (product/UoM/analytic — first pass), U25 (multi-currency), U26 (translation layer), U72 (product.category.property_cost_method), U80 (AVCO/FIFO deep) |
+| P1-Source | PASS for product/analytic core (product.category cost method, AVCO/FIFO fields) |
+| P3-Config | PASS (property_cost_method selection, property_valuation, company.inventory_valuation) |
+| P2-Runtime | NOT_PROVEN |
+| P4-Cross | NOT_PROVEN (analytic distribution at runtime) |
+| Semantic status | DEEP-STUDIED (product valuation fields — U72); PARTIAL (analytic plan, multi-currency) |
+| Missing proof layers | P2: AVCO/FIFO cost recomputation under concurrent writes; analytic plan mandatory % validation runtime |
+| Research backlog | U109 (analytic.plan multi-plan hierarchy — third pass P1), U112 (product variant explosion — third pass P2) |
+
+---
+
+#### G04 — ACCOUNT_BASE *(G04/G10 boundary UNRESOLVED)*
+
+| Field | Value |
+|---|---|
+| Modules (inferred) | account (core), account_debit_note, account_add_gln + 5 more INFERRED |
+| **BOUNDARY NOTE** | G04 = ACCOUNT_BASE vs G10 = ACCOUNT_PROCESS — canonical split NOT resolved; both labeled INFERRED — NOT CANONICAL in TSV. Evidence below spans both. |
+| Function/Control IDs | PCO-F01 (lock dates — U70/U73/U75), PCO-F04 (hard lock/period close — U75), RCN-F02/RCN-F03 (reconciliation plan — U79), hash chain integrity (U73), tax engine (U31) |
+| Evidence units | U11 (account entry lifecycle), U30 (tax line sync/cash basis), U31 (tax report engine), U33 (account core remaining), U70 (lock date depth), U73 (hash chain), U74 (bill control policy), U75 (period cutoff/accrued orders), U79 (account.move lifecycle deep), U98 (Python formula tax) |
+| P1-Source | PASS (lock date fields, BYPASS_LOCK_CHECK, hash chain SHA-256 v4, accrued orders wizard, `_check_fiscal_lock_dates` at account_move.py:2823) |
+| P3-Config | PASS (SOFT_LOCK_DATE_FIELDS const, hard_lock_date, company lock date fields) |
+| P2-Runtime | NOT_PROVEN — RT-001 (lock date ValidationError at runtime), RT-025 (hard vs soft lock at runtime by role), RT-010 (tax report generation) are all in AWT backlog |
+| P4-Cross | PARTIAL (accrual + reversal pair confirmed at source; runtime execution NOT_PROVEN) |
+| P5-E2E | NOT_PROVEN |
+| Semantic status | DEEP-STUDIED (PCO-F01 lock dates — U70/U73/U75); MECH-ONLY (U79 account.move lifecycle, U98 Python tax) |
+| Missing proof layers | P2: lock date enforcement per role (RT-001/RT-025); cash basis entry creation at payment (RT-009); hash chain under live journal posting; |
+| Research backlog | U101 (cash basis — GAP-023, P0 third pass), U114 (journal locking + sequence integrity, P2 third pass), U118 (deferred revenue/expense, P1 third pass) |
+| **C1 control note** | PCO-F01 (lock dates) and hash chain are C1 controls. P1 source PASS. P2 runtime = NOT_PROVEN. C1 enforcement cannot be declared confirmed without P2. |
+
+---
+
+#### G05 — STOCK / INVENTORY / WAREHOUSE
+
+| Field | Value |
+|---|---|
+| Modules (inferred) | stock, stock_account, stock_picking_batch, product variants stock, purchase_stock |
+| Function/Control IDs | GRV-F04 (goods receipt accounting — U72/U77/U80), IAV-F03 (perpetual AVCO/FIFO — U72/U80), SDV-F05 (COGS at delivery — U84), BRP-F01/MFG-F01/MFG-F02 (BOM/MO — U78), GRV-F05 (landed costs — U96), U93-F01+ (batch picking — U93) |
+| Evidence units | U08 (stock transfers), U09 (quants/lots/adjustments), U10 (stock valuation), U72 (perpetual AVCO/FIFO — semantic), U77 (P2P chain — mech), U78 (MRP MO — PARTIAL), U80 (AVCO/FIFO deep — mech), U83 (MRP subcontracting — mech), U84 (COGS timing — mech), U93 (batch picking — mech), U96 (landed costs — mech) |
+| P1-Source | PASS for U72 (product.value, _create_account_move, _run_fifo); INFERRED for mech-only units |
+| P3-Config | PASS (product.category.property_cost_method, property_valuation, company.account_stock_journal_id) |
+| P2-Runtime | NOT_PROVEN — RT-002 (SVL/account.move on perpetual receipt), RT-006 (3-step routing), RT-016 (cycle count), RT-017 (COGS timing) all in AWT backlog |
+| P4-Cross | PARTIAL (U72 confirms _action_done → _create_account_move → _post() at source; runtime NOT_PROVEN) |
+| P5-E2E | NOT_PROVEN |
+| Semantic status | DEEP-STUDIED (U72 stock valuation perpetual); PARTIAL (U78 MRP MO — 22/45 claims read; HP missing); MECH-ONLY (U80/U83/U84/U93/U96) |
+| Missing proof layers | P2: FIFO concurrent write safety; perpetual valuation on actual receipt; COGS timing proof |
+| Research backlog | U110 (lot/serial traceability + account impact, P1 third pass), U115 (WIP account entries from mrp_account, P1 third pass) |
+| **Architecture note** | `stock.valuation.layer` → `product.value` confirmed (MF-001). Any extension code referencing SVL must be re-architected. |
+
+---
+
+#### G06 — MRP / MANUFACTURING
+
+| Field | Value |
+|---|---|
+| Modules (inferred) | mrp (CONFIRMED), mrp_account, mrp_subcontracting, mrp_subcontracting_account |
+| Function/Control IDs | BRP-F01 (BOM recipe — U78), MFG-F01 (MO confirm/validate — U78), MFG-F02 (MRP accounting at close — U78), U83-F01 to U83-F08 (subcontracting flow — U83), U95-F05 (sale_mrp bridge — U95) |
+| Evidence units | U14 (MRP core — first pass), U15 (MRP accounting/subcontracting — first pass), U78 (MO lifecycle — PARTIAL), U83 (subcontracting — mech) |
+| P1-Source | PARTIAL — U78 semantic evidence confirms mrp_bom.py, mrp_production.py, mrp_account; 22/45 claims read; HP missing |
+| P3-Config | PARTIAL (MO lifecycle state machine confirmed at source; subcontracting auto-MO at PO confirm confirmed from reconciliation summary) |
+| P2-Runtime | NOT_PROVEN — RT-007 (MO state transitions), RT-008 (subcontracting receipt) in AWT backlog |
+| P4-Cross | NOT_PROVEN (MRP → account entry chain at MO close NOT_PROVEN at runtime) |
+| P5-E2E | NOT_PROVEN |
+| Semantic status | PARTIAL (U78 — 22/45 claims confirmed; HP MISSING → CORRECTION-REQUIRED); MECH-ONLY (U83) |
+| Missing proof layers | P2: MO state machine at runtime; WIP account entries; subcontracting FG receipt + accounting |
+| Research backlog | U115 (WIP account from mrp_account close, P1 third pass), U78 PENDING CR-V003 resolution |
+
+---
+
+#### G07 — SALES
+
+| Field | Value |
+|---|---|
+| Modules (inferred) | sale, sale_management (CONFIRMED), sale_stock (U95-F08), sale_mrp (U95-F05), sale_project (U95-F07), sale_margin (U95-F04), sale_product_matrix (U95-F06) |
+| Function/Control IDs | SDV-F05 (COGS at delivery — U84), U76-F01+ (O2C chain — U76), U95-F01 to U95-F08 (sale bridge modules — U95) |
+| Evidence units | U04 (sales order — first pass), U76 (O2C chain — mech), U95 (sale bridges P0 recovery — mech) |
+| P1-Source | INFERRED (U76 mech-only; U95 mech-only) |
+| P3-Config | INFERRED |
+| P2-Runtime | NOT_PROVEN |
+| P5-E2E | NOT_PROVEN |
+| Semantic status | MECH-ONLY (U76 O2C chain, U95 sale bridges) |
+| Missing proof layers | All runtime and E2E layers |
+| Research backlog | No third-pass unit currently targeting G07 core sales semantic depth |
+
+---
+
+#### G08 — PURCHASE
+
+| Field | Value |
+|---|---|
+| Modules (inferred) | purchase, purchase_stock, account_check_printing + others INFERRED |
+| Function/Control IDs | GRV-F06 (3-way match / bill control — U74), PCO-F03 (accrued orders on PO side — U75), GRV-F05 (landed costs — U96), U77-scope (P2P chain — U77) |
+| Evidence units | U06 (purchase order — first pass), U07 (purchase receiving — first pass), U74 (3-way match — semantic), U75 (accrued orders — semantic), U77 (P2P chain — mech), U96 (landed costs — mech) |
+| P1-Source | PASS for GRV-F06 (purchase_method, qty_invoiced, qty_to_invoice, qty_received, module_account_3way_match absent confirmed) |
+| P3-Config | PASS (purchase_method = purchase/receive selection; module_account_3way_match = missing module flag) |
+| P2-Runtime | NOT_PROVEN — RT-018 (accrued orders wizard runtime) in AWT backlog |
+| P4-Cross | PARTIAL (P2P chain documented at source via U77; runtime NOT_PROVEN) |
+| Semantic status | DEEP-STUDIED (GRV-F06 — U74 32/32 claims confirmed); MECH-ONLY (U77/U96) |
+| Missing proof layers | P2: hard 3-way block absent at runtime confirmation; accrued orders wizard runtime |
+| Research backlog | None currently queued for G08 in third pass |
+| **C1 control note** | GRV-F06 (3-way match) is a C1 control. Community hard block is ABSENT. See §61.4 MF-002 ARCHITECTURE-DECISION-PENDING. |
+
+---
+
+#### G09 — CRM / MARKETING
+
+| Field | Value |
+|---|---|
+| Modules (confirmed/inferred) | crm (CONFIRMED), marketing_automation (INFERRED), sale_crm (U95-F01) |
+| Function/Control IDs | U86-F01 to U86-F11+ (CRM lead pipeline — U86), U90-F01+ (marketing chain — U90), U95-F01 (sale_crm bridge — U95), U97-F01+ (survey/CRM integration — U97) |
+| Evidence units | U18 (CRM/marketing/events — first pass), U86 (CRM pipeline — mech), U90 (marketing automation chain — mech), U95 (sale_crm — mech), U97 (survey+CRM — mech) |
+| P1-Source | INFERRED (all G09 units are mech-only) |
+| P2-Runtime | NOT_PROVEN |
+| Semantic status | MECH-ONLY |
+| Research backlog | No P0/P1 third-pass units for G09 |
+
+---
+
+#### G10 — ACCOUNT_PROCESS *(boundary UNRESOLVED vs G04)*
+
+| Field | Value |
+|---|---|
+| Modules (inferred) | account_check_printing, account_bank_statement (NOTE: account_bank_statement_import ABSENT), account_peppol, account_edi, account_edi_ubl_cii, account_payment |
+| Function/Control IDs | SDV-F07 (payment register wizard — U81), PCO-F01 (bank reconciliation lock date enforcement — U81), U81-F01 to U81-F16 (payment + bank statement + reconciliation), U82-F01 to U82-F16 (EDI/UBL/PEPPOL), U94-F01+ (payment webhooks) |
+| Evidence units | U12 (payment/reconcile — first pass), U81 (payment + bank reconciliation — mech), U82 (EDI/UBL/PEPPOL — mech), U94 (payment provider webhooks — mech) |
+| P1-Source | INFERRED (mech-only for all G10 units in second pass) |
+| P2-Runtime | NOT_PROVEN — RT-003 (payment wizard reconciliation), RT-004 (JS bank reconciliation widget), RT-022 (PEPPOL send), RT-012 (payment webhook) in AWT backlog |
+| Semantic status | MECH-ONLY |
+| **Architecture note** | `account_bank_statement_import` ABSENT from Community 19 (see §61.4 MF-006). `account.payment` states = draft/in_process/paid/canceled/rejected (no 'posted' state). `_get_invoice_in_payment_state()` always returns 'paid' (no 'in_payment' state). |
+| Missing proof layers | All semantic and runtime layers |
+| Research backlog | U103 (multi-currency revaluation/forex gain-loss, P1 third pass), U104 (PEPPOL response, P1 third pass) |
+
+---
+
+#### G11 — HR / EXPENSE / TIMESHEET / PROJECT
+
+| Field | Value |
+|---|---|
+| Modules (confirmed) | 8 modules CONFIRMED (from TSV — exact names in GROUP_STRUCTURE_V2) |
+| Function/Control IDs | U87-F01 to U87-F13+ (project/timesheet/analytic — U87), U88-F01 to U88-F14+ (HR leave/work entry/payroll prep — U88), U91-F01 to U91-F12+ (hr_expense chain — U91) |
+| Evidence units | U16 (project/timesheet/expense — first pass), U17 (HR/fleet/calendar — first pass), U87 (project+timesheet+analytic — mech), U88 (HR leave+work entry+payroll prep — mech), U91 (HR expense chain — mech) |
+| P1-Source | INFERRED (mech-only) |
+| P2-Runtime | NOT_PROVEN — RT-019 (leave accrual cron) in AWT backlog |
+| Semantic status | MECH-ONLY |
+| **Architecture notes** | `hr.expense.sheet` model REMOVED in Odoo 19 Community (see §61.4 MF-007). `hr_payroll` ABSENT from Community 19 (Enterprise-only — see §61.4 MF-008). Both affect C1 HR expense and payroll controls. |
+| Missing proof layers | All semantic and runtime layers |
+| Research backlog | No G11-targeting units in third pass currently queued |
+
+---
+
+#### G12 — ECOMMERCE / WEBSITE / POS
+
+| Field | Value |
+|---|---|
+| Modules (inferred) | website_sale, point_of_sale, pos_restaurant, payment_stripe, payment_paypal, portal + others |
+| Function/Control IDs | U85-F01 to U85-F11+ (POS session lifecycle), U89-F01 to U89-F13+ (website ecommerce), U92-F01 to U92-F11+ (website content), U94-F01+ (payment webhooks) |
+| Evidence units | U19 (website/community — first pass), U20 (payment providers — first pass), U85 (POS session — mech), U89 (website ecommerce — mech), U92 (website content — mech), U94 (payment webhooks — mech) |
+| P1-Source | INFERRED (mech-only) |
+| P2-Runtime | NOT_PROVEN — RT-011 (POS session close), RT-020 (website checkout), RT-021 (restaurant floor plan), RT-012 (payment webhook) in AWT backlog |
+| Semantic status | MECH-ONLY |
+| **Architecture note** | `payment_stripe` and `payment_paypal` CONFIRMED present in Community 19. |
+| Missing proof layers | All semantic and runtime layers |
+| Research backlog | U105 (pos_restaurant floor management, P1 third pass) |
+
+---
+
+#### G13–G16 — SPARSE (INFERRED — NOT CANONICAL)
+
+| G-group | TSV module count | Confirmed | Evidence units | Semantic status |
+|---|---|---|---|---|
+| G13 | 29 | 0 | None identified in U01–U99 | NOT_STUDIED |
+| G14 | 29 | 0 | None identified in U01–U99 | NOT_STUDIED |
+| G15 | 16 | 0 | None identified in U01–U99 | NOT_STUDIED |
+| G16 | 22 | 0 | None identified in U01–U99 | NOT_STUDIED |
+
+All four G-groups require canonical boundary definition before meaningful evidence can be assigned. Content is entirely INFERRED from module name patterns. No research backlog units are currently targeting G13–G16.
+
+---
+
+#### GXX — UNMAPPED (426 modules)
+
+426 of 692 CANDIDATE modules have no G-group assignment in the TSV. These modules are neither CONFIRMED nor INFERRED — they are completely unclassified. This is the largest gap in the G01–G16 mapping. Resolution requires the G01–G16 canonical boundary study referenced in `GROUP_STRUCTURE_V2_CORE_CANDIDATE_20260928.tsv`.
+
+---
+
+### 61.4 — Revised Material Findings Register
+
+**Classification key:**
+- **CONFIRMED** — finding is established by P1 source evidence, not contested
+- **REQUIRES-DEEPSEEK-CORRECTION** — finding identifies an error in DeepSeek evidence that must be corrected before verification can close
+- **AWT/RUNTIME-REQUIRED** — finding cannot be confirmed or denied without runtime execution
+- **ARCHITECTURE-DECISION-PENDING** — finding confirms a Community native control limitation affecting a C1 control; Boss or system architect must decide: accept native behavior / build extension / accept risk
+
+---
+
+**MF-001 — SVL Replacement Architecture (U72)**
+
+| Field | Value |
+|---|---|
+| Classification | **CONFIRMED** |
+| Finding | `stock.valuation.layer` does NOT exist in Odoo 19 Community. Replaced by `product.value` (`stock_account/models/product_value.py:14`) + `stock.move.value` Monetary field (`stock_account/models/stock_move.py:24`). |
+| Proof | P1-Source confirmed (U72-001 to U72-038, 38 claims read) |
+| Impact | All SMEsPlus extension code referencing `stock.valuation.layer` must be re-architected. No C1 control is broken — this is the expected Community 19 architecture. |
+| Action required | SMEsPlus development team: audit all custom modules for SVL model references |
+
+---
+
+**MF-002 — Hard 3-Way Match Blocking: Enterprise-Only (U74, GRV-F06 C1)**
+
+| Field | Value |
+|---|---|
+| Classification | **ARCHITECTURE-DECISION-PENDING** |
+| Finding | `module_account_3way_match` is referenced in Community settings (`purchase/models/res_config_settings.py:17`) but the module is ABSENT from Community addons. No `UserError` or `ValidationError` is raised when a vendor bill exceeds received quantity (line 173: mail activity warning only). GRV-F06 is a C1-bound function-ID. |
+| Proof | P1-Source: module absent confirmed; soft-cap mechanism confirmed |
+| C1 status | GRV-F06 partial: soft quantity cap is present; hard posting block is NOT PRESENT in Community |
+| Gap label | NATIVE GAP — hard enforcement absent from Community |
+| Decision required | Boss / system architect must decide: (a) Accept Community soft-cap only — no extension required; (b) Build custom extension to enforce hard posting block; (c) Use purchasing governance policy to compensate. SMEsPlus cannot declare GRV-F06 C1-COMPLETE without this decision. |
+
+---
+
+**MF-003 — No account.period Model in Odoo 19 Community (U75, PCO-F04)**
+
+| Field | Value |
+|---|---|
+| Classification | **CONFIRMED** |
+| Finding | No `account.period` model in Odoo 19 Community. Period control is via lock date fields on `res.company` only (U75-032 confirmed). |
+| Proof | P1-Source confirmed |
+| C1 status | PCO-F04 met via lock date mechanism — architecture change, not a gap. Lock date enforcement (PCO-F01) is confirmed at P1-static; P2 runtime NOT_PROVEN (see AWT backlog RT-001/RT-025). |
+| Action required | None for architecture fact. P2 runtime proof for lock date enforcement remains on AWT backlog. |
+
+---
+
+**MF-004 — sudo() Bypasses All ir.rules Including Company Isolation (U71/U99, MCT-F05 C1)**
+
+| Field | Value |
+|---|---|
+| Classification | **ARCHITECTURE-DECISION-PENDING** |
+| Finding | `base/models/ir_rule.py:113-121` — `if self.env.su: return self.browse(())` bypasses ALL ir.rule domains in every sudo() context, including company isolation domains. MCT-F05 is a C1-bound function-ID. Intentional usages documented (U71-034/035, `account_payment_interco`), but unintentional sudo() in custom SMEsPlus modules would silently bypass all company record isolation. |
+| Proof | P1-Source confirmed (U71-022, U99 evidence) |
+| C1 status | MCT-F05: ir.rule domain isolation confirmed at source; sudo bypass is a documented exception, not a defect; but creates C1 risk surface for custom code |
+| Decision required | SMEsPlus must adopt a governance policy for sudo() usage in custom modules. Without a policy, no C1 isolation guarantee can be asserted for custom modules. This is an ARCHITECTURE-DECISION — accept risk with compensating controls (audit log of sudo calls) or mandate sudo() prohibition in custom code except approved patterns. |
+
+---
+
+**MF-005 — U55 Gap Closed: All 692 Modules Have First-Pass Coverage (U95)**
+
+| Field | Value |
+|---|---|
+| Classification | **CONFIRMED** |
+| Finding | U55 was empty. U95 provides 49-claim GATE-PASS coverage of 8 sale bridge modules (sale_crm, sale_loyalty, sale_management, sale_margin, sale_mrp, sale_product_matrix, sale_project, sale_stock) with 8 new function IDs (U95-F01 to U95-F08). |
+| Proof | HP GATE-PASS (mechanical) |
+| Action required | None for gap-closed status. Semantic depth study queued for sale bridge modules in future passes. |
+
+---
+
+**MF-006 — account_bank_statement_import Absent from Community 19 (G10)**
+
+| Field | Value |
+|---|---|
+| Classification | **CONFIRMED** |
+| Finding | `account_bank_statement_import` module is ABSENT from Community 19 (confirmed in reconciliation summary architecture discoveries). Bank statement import in Odoo 19 Community uses built-in OFX/CSV parser within the account module; the legacy import wizard is removed. |
+| Proof | P1-Source: module absent (reconciliation summary item 3) |
+| C1 status | No direct C1 function-ID assigned; affects bank reconciliation workflow |
+| Action required | SMEsPlus: verify bank import method for Thai banks (direct file upload vs bank sync). If import-by-file is required, the mechanism changed from prior Odoo versions. |
+
+---
+
+**MF-007 — hr.expense.sheet Model Removed in Odoo 19 Community (G11)**
+
+| Field | Value |
+|---|---|
+| Classification | **ARCHITECTURE-DECISION-PENDING** |
+| Finding | `hr.expense.sheet` model is REMOVED in Odoo 19 Community (confirmed in reconciliation summary architecture discovery 4). Expense management architecture has changed. |
+| Proof | P1-Source: model absent (reconciliation summary item 4) |
+| C1 status | Affects any C1 function-IDs related to expense approval / posting flow (U91 scope). With no hr.expense.sheet, the expense → posting chain is different in Odoo 19. |
+| Decision required | SMEsPlus must determine: (a) What replaced hr.expense.sheet in Odoo 19 Community? (U91 semantic study required — currently mech-only); (b) Are C1 expense controls (approval, posting, policy compliance) still met under new model? Third-pass unit targeting this gap is NOT yet in U100–U119 plan — must be added. |
+
+---
+
+**MF-008 — hr_payroll Absent from Community 19 (G11)**
+
+| Field | Value |
+|---|---|
+| Classification | **ARCHITECTURE-DECISION-PENDING** |
+| Finding | `hr_payroll` module is ABSENT from Community 19 — Enterprise-only (confirmed in reconciliation summary architecture discovery 5). |
+| Proof | P1-Source: module absent (reconciliation summary item 5) |
+| C1 status | Any payroll-related C1 controls are NOT PRESENT in Community 19 |
+| Decision required | SMEsPlus must decide: (a) Out-of-scope for SMEsPlus Community edition (accept Enterprise-only); (b) Third-party payroll module required; (c) Integration with external payroll system. This is an ARCHITECTURE-DECISION before payroll C1 controls can be claimed. |
+
+---
+
+### 61.5 — Architecture Discoveries Status Table
+
+| Discovery | Source | Classification | C1 Impact | Action |
+|---|---|---|---|---|
+| `stock.valuation.layer` → `product.value` | Reconciliation summary item 1 | CONFIRMED (MF-001) | Extension code only | Re-architect SVL references |
+| `_account_entry_move()` → `_create_account_move()` | Reconciliation summary item 2 | CONFIRMED | Extension code only | Audit custom overrides |
+| `account_bank_statement_import` absent | Reconciliation summary item 3 | CONFIRMED (MF-006) | Bank import workflow | Verify Thai bank import method |
+| `hr.expense.sheet` removed | Reconciliation summary item 4 | ARCHITECTURE-DECISION-PENDING (MF-007) | Expense C1 chain | Add U101+ targeting |
+| `hr_payroll` Enterprise-only | Reconciliation summary item 5 | ARCHITECTURE-DECISION-PENDING (MF-008) | Payroll C1 absent | Architecture decision required |
+| `account.payment` states changed | Reconciliation summary item 6 | CONFIRMED | Extension code | Audit payment state references |
+| `_get_invoice_in_payment_state()` → always 'paid' | Reconciliation summary item 7 | CONFIRMED | Payment status display | Verify payment UI behavior |
+| MRP subcontracting MO auto-created at PO confirm | Reconciliation summary item 8 | CONFIRMED | MFG flow | Expected Odoo 19 behavior |
+| Hard 3-way match Enterprise-only | Reconciliation summary item 9 | ARCHITECTURE-DECISION-PENDING (MF-002) | GRV-F06 C1 | Extension or accept decision |
+| `payment_stripe` and `payment_paypal` present | Reconciliation summary item 10 | CONFIRMED | None — positive confirmation | No action |
+| `account_payment_interco` present | Reconciliation summary item 11 | CONFIRMED | MCT-F02 intercompany | No action — present in Community |
+
+---
+
+### 61.6 — DeepSeek Third-Pass Research Backlog
+
+Source: `00_CONTROL/STATE03_THIRD_PASS_EXECUTION_PLAN.md` (commit `846656ab`). Status: ALL 20 units QUEUED — third pass NOT YET STARTED (no `START_STATE03_THIRD_PASS_RESEARCH` has been issued).
+
+| Unit | Scope | Priority | C1-Impact | Gap reference |
+|---|---|---|---|---|
+| U100 | l10n_th + l10n_th_withholding_tax — Thai VAT + WHT | P0 | YES (TH) | NOT_STUDIED |
+| U101 | account cash basis (CABA) — GAP-023 | P0 | YES | NOT_PROVEN |
+| U102 | Migration scripts — hook patterns — GAP-033 | P0 | YES | NOT_STUDIED |
+| U103 | Multi-currency revaluation + forex gain/loss | P1 | YES | NOT_PROVEN |
+| U104 | account_peppol_response — response handling | P1 | NO | NOT_STUDIED |
+| U105 | pos_restaurant — table/floor management deep | P1 | NO | PARTIAL |
+| U106 | stock replenishment (orderpoint, MTO) | P1 | NO | NOT_PROVEN |
+| U107 | Fiscal position Thai edge cases — GAP-043 | P1 | YES (TH) | NOT_PROVEN |
+| U108 | auth_passkey WebAuthn L2/L3 — GAP-020 | P1 | NO | PARTIAL |
+| U109 | account.analytic.plan multi-plan hierarchy | P1 | NO | NOT_PROVEN |
+| U110 | Lot/serial traceability + account impact | P1 | NO | NOT_PROVEN |
+| U111 | account_budget — if Community present | P2 | NO | NOT_STUDIED |
+| U112 | product.template → product.product variant explosion | P2 | NO | NOT_PROVEN |
+| U113 | mail/chatter/mail.activity deep | P2 | NO | NOT_PROVEN |
+| U114 | Journal locking + sequence integrity | P2 | YES | NOT_PROVEN |
+| U115 | WIP account entries from mrp_account close | P1 | YES | NOT_PROVEN |
+| U116 | purchase_requisition — if present | P2 | NO | NOT_STUDIED |
+| U117 | digest — KPI digest cron pattern | P2 | NO | NOT_STUDIED |
+| U118 | Deferred revenue/expense (account_deferred) | P1 | NO | NOT_STUDIED |
+| U119 | l10n_th_pnd — Thai PND / personal income tax | P0 | YES (TH) | NOT_STUDIED |
+
+**MF-007 gap (hr.expense.sheet removed) is NOT covered in U100–U119 plan.** Must be added to third-pass plan as U120 or equivalent before hr_expense C1 controls can be addressed.
+
+---
+
+### 61.7 — AWT / Runtime Backlog (Complete)
+
+**P2 Universal constraint:** NOT_PROVEN for all units U01–U99. No Odoo instance was executed in any research session. All verification to date is P1-static (source presence) and P3-config (security XML / company settings) only.
+
+**Known AWT backlog items (from `STATE03_SECOND_PASS_RUNTIME_BACKLOG.tsv`):**
+
+| RT-ID | G-group | Priority | Test requirement |
+|---|---|---|---|
+| RT-001 | G04 | P0 | Lock date ValidationError at runtime on backdated write |
+| RT-002 | G05 | P0 | Perpetual valuation: product.value + account.move created on receipt |
+| RT-003 | G10 | P0 | Payment wizard: account.move + reconciliation entries created |
+| RT-004 | G10 | P0 | JS bank reconciliation widget: ORM calls, statement → move matching |
+| RT-005 | G01 | P0 | Intercompany journal entries auto-created between two companies |
+| RT-006 | G05 | P1 | 3-step delivery route: INT + OUT picking creation |
+| RT-007 | G06 | P1 | MO state machine: draft → confirmed → in_progress → done |
+| RT-008 | G06 | P1 | Subcontracting receipt → component + FG moves + account entries |
+| RT-009 | G04 | P1 | Cash basis entry creation at payment time (CABA — GAP-023) |
+| RT-010 | G04 | P1 | Tax report generation for a period with real entries |
+| RT-011 | G12 | P1 | POS session close: account.move for cash/card/inventory |
+| RT-012 | G12 | P1 | Payment webhook: transaction state + account.move posting |
+| RT-013 | G01 | P1 | Incoming mail gateway → record creation via fetchmail cron |
+| RT-014 | G01 | P1 | ir.cron execution + ir.actions.server on record create/write |
+| RT-015 | G04 | P1 | Python formula tax: computation + sandbox security verification |
+| RT-016 | G05 | P1 | Cycle count: quant reset + account.move adjustment |
+| RT-017 | G05 | P1 | COGS timing: exact moment account.move created vs invoice post |
+| RT-018 | G08 | P1 | Accrued orders wizard: interim accounts + reversal |
+| RT-019 | G11 | P2 | Leave accrual cron: hr.leave.allocation created |
+| RT-020 | G12 | P2 | Website checkout: SO state=sale after payment |
+| RT-021 | G12 | P2 | Restaurant POS: table assignment + split order |
+| RT-022 | G10 | P2 | PEPPOL send: XML packaging + proxy auth + acknowledgment |
+| RT-023 | G01 | P2 | Livechat: operator assignment + CRM lead conversion |
+| RT-024 | G01 | P2 | Cloud storage attachment upload + URL |
+| RT-025 | G04 | P0 | Hard lock date vs soft lock: role-differentiated enforcement |
+
+**Additional AWT claims from second-pass batch:**
+
+| Claim | Unit | Function-ID | Description |
+|---|---|---|---|
+| U71-034 | U71 | MCT-F05 | sudo() during sequence-gap detection — runtime behaviour |
+| U71-035 | U71 | MCT-F05 | sudo() company parent traversal in account validation |
+| U75-011 | U75 | PCO-F03 | Partial billing price correction via posted invoice lines |
+
+---
+
+### 61.8 — Boss Action Required
+
+**The following items require Boss or system architect decision before STATE03 can proceed to closure:**
+
+| Item | Finding | Decision required |
+|---|---|---|
+| **BAR-001** | MF-002: GRV-F06 hard 3-way match absent in Community (ARCHITECTURE-DECISION-PENDING) | Accept soft-cap only / Build extension / Compensating control |
+| **BAR-002** | MF-004: sudo() bypasses all company ir.rules — C1 MCT-F05 risk surface (ARCHITECTURE-DECISION-PENDING) | Adopt sudo() governance policy / Mandate prohibition in custom code |
+| **BAR-003** | MF-007: hr.expense.sheet removed in Odoo 19 — expense C1 chain unknown (ARCHITECTURE-DECISION-PENDING) | Authorize U120 (hr_expense semantic study) / Confirm expense architecture for Odoo 19 |
+| **BAR-004** | MF-008: hr_payroll Enterprise-only — payroll C1 controls absent from Community (ARCHITECTURE-DECISION-PENDING) | Accept out-of-scope / Select third-party payroll / Plan integration |
+| **BAR-005** | DeepSeek third-pass U100–U119 — Thai Tax P0 units (U100/U107/U119) not yet started | Authorize `START_STATE03_THIRD_PASS_RESEARCH` when ready |
+| **BAR-006** | CR-V001 to CR-V004 — four correction requests outstanding on DeepSeek branch | Coordinate with DeepSeek session to apply corrections; U78 remains PARTIAL until CR-V003 resolved |
+| **BAR-007** | BGQ-08, BGQ-09, BGQ-10 — from prior sessions, still awaiting ruling | See §8 PAUSE CHECKPOINT for detail |
+
+**STATE03 is NOT COMPLETE.** Open items: CR-V001–V004 (corrections), BAR-001–BAR-007 (architecture decisions), 20 third-pass units queued (U100–U119), 25 AWT runtime backlog items (RT-001–RT-025), G04/G10 boundary unresolved, G13–G16 not studied, 426 modules unmapped.
+
+---
