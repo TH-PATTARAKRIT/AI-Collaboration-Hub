@@ -1,0 +1,68 @@
+{
+  "unit": "U80",
+  "title": "Stock Valuation AVCO/FIFO Deep",
+  "phase": "Second-Pass Depth Closure — P1 Core Business",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "predecessor_units": ["U10", "U72"],
+  "function_ids": ["GRV-F04", "IAV-F03", "PCO-F03"],
+  "l_levels": ["L3", "L7", "L8"],
+  "proof_layers": ["P2", "P3"],
+  "claim_count": 41,
+  "c1_count": 41,
+  "awt_count": 0,
+  "gate_result": {
+    "claim_check_failures": 0,
+    "neutral_leak_tokens": 0,
+    "verdict": "PASS"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U80_stock_valuation_avco_fifo.md",
+    "02_NEUTRAL_KNOWLEDGE/U80_stock_valuation_avco_fifo_NEUTRAL.md"
+  ],
+  "key_findings": {
+    "product_value_model": {
+      "file": "stock_account/models/product_value.py",
+      "confirmed": true,
+      "fields": ["product_id", "lot_id", "move_id", "value (Monetary)", "company_id", "currency_id", "date", "user_id", "description"],
+      "note": "No quantity field. Value field stores global move value OR new standard price per unit. Created per-move for adjustments or per-product for price changes."
+    },
+    "avco_formula": {
+      "incremental_path": "new_avg_cost = (previous_qty * old_price + added_value) / new_total_qty",
+      "incremental_file": "stock_account/models/product.py:669",
+      "full_recompute": "_run_average_batch(force_recompute=True) iterates all is_in/is_out moves chronologically",
+      "return_handling": "_get_value_from_returns() uses origin_move.value * qty / origin_qty — no retroactive recomputation"
+    },
+    "fifo_stack": {
+      "method": "_run_fifo_get_stack at product.py:583",
+      "mechanism": "Queries is_in moves ordered date desc, reverses to get oldest-first, stack size = qty_available",
+      "negative_stock": "If qty exhausted, shortfall valued at last_move.value / last_move.quantity (line 578)",
+      "remaining_qty": "Computed on stock.move (not product.value), dynamically derived"
+    },
+    "scrap_accounting": {
+      "flow": "do_scrap → _create_scrap_move (dest=scrap_location, usage=inventory) → _action_done(is_scrap=True)",
+      "entry": "DR scrap_location.valuation_account_id (expense) / CR product stock_valuation account",
+      "avco_scrap_price": "Current standard price at validation time",
+      "fifo_scrap_price": "Oldest available FIFO layer cost (same as regular delivery)"
+    },
+    "account_move_generation": {
+      "_create_account_move": "stock_account/models/stock_move.py:193",
+      "_should_create_account_move": "stock_account/models/stock_move.py:659",
+      "conditions": "is_storable AND is_valued AND valuation_account_id on location AND qty>0 AND valuation=='real_time'",
+      "receipt_dr_cr": "DR stock_valuation / CR source_location.valuation_account_id (GR-IR)",
+      "delivery_dr_cr": "DR dest_location.valuation_account_id (COGS) / CR stock_valuation",
+      "return_dr_cr": "DR stock_valuation / CR source_location.valuation_account_id (reversal of delivery)"
+    },
+    "perpetual_flag": {
+      "field": "product.categ.property_valuation = 'real_time' (company-dependent)",
+      "checked_in": "_should_create_account_move() line 667: self.product_id.valuation == 'real_time'"
+    }
+  },
+  "modules_read": [
+    "stock_account/models/product_value.py",
+    "stock_account/models/stock_move.py",
+    "stock_account/models/product.py",
+    "stock_account/models/stock_location.py",
+    "stock/models/stock_scrap.py"
+  ]
+}
