@@ -1,0 +1,70 @@
+{
+  "unit": "U99",
+  "title": "Multi-Company Record Rule Audit — ir.rule Isolation, sudo() Bypass, Intercompany Module",
+  "phase": "Second-Pass Depth Closure — P0 Critical",
+  "l_levels": ["L7", "L9"],
+  "proof_layers": ["P3", "P5"],
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "predecessors": ["U71", "U21"],
+  "claim_count": 35,
+  "function_ids": [
+    "U99-F01", "U99-F02", "U99-F03", "U99-F04", "U99-F05",
+    "U99-F06", "U99-F07", "U99-F08", "U99-F09", "U99-F10",
+    "U99-F11", "U99-F12", "U99-F13", "U99-F14", "U99-F15",
+    "U99-F16", "U99-F17"
+  ],
+  "key_findings": {
+    "company_domain_pattern": {
+      "strict_in": "[('company_id', 'in', company_ids)] — used by account.move, account.move.line, account.payment, stock.picking, purchase.order, sale.order",
+      "parent_of": "[('company_id', 'parent_of', company_ids)] — used by account.journal, account.fiscal.position, tax, account.group; supports company hierarchy visibility",
+      "plus_false": "company_ids + [False] — used by bank.statement, stock.lot, stock.location, purchase.bill.union; null-company records visible to all",
+      "erp_manager_bypass": "(1,'=',1) on res.company for ERP manager group — unrestricted cross-company company record visibility"
+    },
+    "allowed_company_ids_mechanism": {
+      "context_key": "allowed_company_ids in request context (set by web client on each RPC call, confirmed in web/controllers/json.py:243)",
+      "eval_injection": "_eval_context() injects company_ids = env.companies.ids derived from context['allowed_company_ids']",
+      "cache_key": "_compute_domain_keys() returns ['allowed_company_ids'] — company switch invalidates cached domains",
+      "sudo_bypass_of_validation": "In sudo mode env.company and env.companies skip AccessError validation on company IDs, allowing access to any company"
+    },
+    "sudo_effect_on_company_rules": {
+      "mechanism": "_get_rules() returns self.browse(()) (empty) when env.su=True (ir_rule.py:120-121)",
+      "effect": "ALL ir.rules bypassed including company isolation — total bypass, not partial",
+      "documented_warning": "sudo() docstring explicitly warns: 'possibly mixing records that are meant to be isolated (e.g. records from different companies)'",
+      "cache_separation": "Cached domain computed separately for su=True (empty) and su=False (real domain)"
+    },
+    "intercompany_module": {
+      "module": "account_payment_interco",
+      "present_in_community_19": true,
+      "license": "LGPL-3",
+      "mechanism": "_post() uses moves.sudo()._interco_filter_moves() — intentional sudo to cross company boundaries",
+      "with_company_pattern": "with_company(payment.company_id) switches company context for cross-company clearing entry creation",
+      "configuration": "3 fields on res.company: clearing journal, payable account, receivable account — must be configured per company"
+    }
+  },
+  "source_pointers_verified": [
+    "base/models/ir_rule.py:20,38-51,49,76-78,113-121,120-121,136-139,233",
+    "odoo/orm/models.py:5967-5991",
+    "odoo/orm/environments.py:81,130-148,178-190,215-243,245-283,266",
+    "base/security/base_security.xml:12-20,56-60,104-132,140-145",
+    "account/security/account_security.xml:128-132,134-138,146-150,152-156,194-198,218-222",
+    "stock/security/stock_security.xml:72-76,90-94,96-100,102-106",
+    "purchase/security/purchase_security.xml:40-44,81-85",
+    "sale/security/ir_rules.xml:7-9,13-14",
+    "account_payment_interco/__manifest__.py:1-13",
+    "account_payment_interco/models/account_move.py:30-37,57-59",
+    "account_payment_interco/models/res_company.py:8-26",
+    "account/models/account_move.py:3069,4688-4689"
+  ],
+  "output_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U99_multicompany_record_rule_audit.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U99_multicompany_record_rule_audit_NEUTRAL.md",
+    "gate_script": "/tmp/vdr_check_u99.py"
+  },
+  "gate_result": {
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0,
+    "result": "GATE-PASS"
+  },
+  "batch_note": "FINAL UNIT of batch. Controller session handles batch completion after receiving this SHA."
+}
