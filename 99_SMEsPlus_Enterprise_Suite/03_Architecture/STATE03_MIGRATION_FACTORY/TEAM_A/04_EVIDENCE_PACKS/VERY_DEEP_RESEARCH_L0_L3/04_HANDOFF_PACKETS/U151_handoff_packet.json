@@ -1,0 +1,64 @@
+{
+  "unit": "U151",
+  "title": "sale_timesheet — service billing chain SO→timesheet→invoice L3 depth",
+  "groups": ["G05", "G09", "G14"],
+  "priority": "P1",
+  "status": "COMPLETE",
+  "module_present": true,
+  "module_path": "sale_timesheet",
+  "total_claims": 24,
+  "c1_claims": 24,
+  "absent_claims": 0,
+  "gap_claims": 0,
+  "gate_status": "PASS",
+  "billing_types_found": [
+    "billable_time",
+    "billable_fixed",
+    "billable_milestones",
+    "billable_manual",
+    "non_billable",
+    "timesheet_revenues",
+    "service_revenues",
+    "other_revenues",
+    "other_costs"
+  ],
+  "service_policies_found": [
+    "delivered_timesheet",
+    "ordered_prepaid"
+  ],
+  "project_pricing_types_found": [
+    "task_rate",
+    "fixed_rate",
+    "employee_rate"
+  ],
+  "key_finding": "The delivery-timesheet billing chain is fully implemented: SOL qty_delivered_method is overridden to 'timesheet' for products with service_type='timesheet' and invoice_policy='delivery'; delivered quantity aggregates unit_amount from analytic lines; invoice creation stamps timesheet_invoice_id on qualifying entries; posted invoices lock the timesheet from modification; credit notes and modify-reversals restore the billable state.",
+  "chain_steps": [
+    "1. Product: service_policy=delivered_timesheet sets invoice_policy=delivery + service_type=timesheet",
+    "2. SOL: _compute_qty_delivered_method sets qty_delivered_method='timesheet' for non-expense service+timesheet products",
+    "3. Timesheet: employee logs hours; so_line auto-computed via _timesheet_determine_sale_line() per pricing_type",
+    "4. Delivered qty: _prepare_qty_delivered() aggregates unit_amount from analytic lines with project and matching so_line",
+    "5. Invoice: _create_invoices() calls _link_timesheets_to_invoice() to stamp timesheet_invoice_id",
+    "6. Lock: invoiced timesheets cannot be modified or deleted; credit note posting clears the lock"
+  ],
+  "files_read": [
+    "sale_timesheet/__manifest__.py",
+    "sale_timesheet/models/sale_order_line.py",
+    "sale_timesheet/models/hr_timesheet.py",
+    "sale_timesheet/models/account_move.py",
+    "sale_timesheet/models/account_move_line.py",
+    "sale_timesheet/models/account_move_reversal.py",
+    "sale_timesheet/models/sale_order.py",
+    "sale_timesheet/models/product_template.py",
+    "sale_timesheet/models/product_product.py",
+    "sale_timesheet/models/project_project.py",
+    "sale_timesheet/models/project_sale_line_employee_map.py",
+    "hr_timesheet/models/hr_timesheet.py"
+  ],
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U151_sale_timesheet_billing.md",
+    "02_NEUTRAL_KNOWLEDGE/U151_sale_timesheet_billing_NEUTRAL.md",
+    "04_HANDOFF_PACKETS/U151_handoff_packet.json"
+  ],
+  "generated_by": "DeepSeek STATE03 VDR worker",
+  "timestamp": "2026-10-02"
+}
