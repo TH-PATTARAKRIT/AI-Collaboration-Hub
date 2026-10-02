@@ -1,0 +1,69 @@
+{
+  "unit_id": "U127",
+  "title": "payment — provider webhook chain source-only",
+  "g_group": "G03/G15",
+  "priority": "P2",
+  "gaps": ["GAP-015", "GAP-041"],
+  "produced": "2026-10-02",
+  "branch": "claude/local-odoo-source-research",
+  "worker": "DeepSeek-STATE03-U127",
+  "claim_count": 29,
+  "claim_summary": {
+    "C1": 29,
+    "AWT": 8,
+    "TH_relevant": 2,
+    "ABSENT": 0
+  },
+  "gap_findings": {
+    "GAP-015": {
+      "status": "PARTIAL",
+      "finding": "Community includes 26 payment-related modules with 18+ distinct provider webhook implementations all sharing the uniform _process/_apply_updates/_set_done framework; source fully documented; AWT for live webhook delivery and signature verification"
+    },
+    "GAP-041": {
+      "status": "PARTIAL",
+      "finding": "Full source chain documented: payment.transaction._post_process (sale override) confirms SO via _check_amount_and_confirm_order and creates invoices via _invoice_sale_orders when sale.automatic_invoice=True; AWT for runtime timing and partial payment edge cases"
+    }
+  },
+  "key_finding": "The Community payment webhook chain uses a strict layered override pattern: base _process calls provider-overridden _apply_updates which calls _set_done/_set_pending/etc; account_payment then overrides _post_process to create account.payment and reconcile; sale overrides _post_process to confirm orders and auto-invoice; all 18+ providers follow this exact pattern",
+  "awt_items": [
+    "Live webhook receipt and HTTP 200 acknowledgement under provider load",
+    "Stripe HMAC-SHA256 signature validation with real webhook secret",
+    "Xendit x-callback-token header verification with live provider",
+    "account.payment creation and invoice reconciliation in live database",
+    "Sale order confirmation timing relative to payment state transitions",
+    "Async invoice sending cron activation on sale.automatic_invoice",
+    "PayPal notification origin verification API call",
+    "Post-processing cron 4-day retry on missed browser callbacks"
+  ],
+  "th_relevance": [
+    "payment_xendit: Southeast Asia provider with FPX support; webhook at /payment/xendit/webhook; TH-adjacent deployment relevance",
+    "THB (Thai Baht) in CURRENCY_MINOR_UNITS with 2 decimal places in payment/const.py:484"
+  ],
+  "provider_list": [
+    "payment_adyen", "payment_aps", "payment_asiapay", "payment_authorize",
+    "payment_buckaroo", "payment_custom", "payment_demo", "payment_dpo",
+    "payment_ecpay", "payment_flutterwave", "payment_iyzico", "payment_mercado_pago",
+    "payment_mollie", "payment_nuvei", "payment_paymob", "payment_paypal",
+    "payment_payu", "payment_razorpay", "payment_redsys", "payment_stripe",
+    "payment_toss_payments", "payment_worldline", "payment_xendit"
+  ],
+  "key_files": [
+    "payment/models/payment_provider.py",
+    "payment/models/payment_transaction.py",
+    "payment/controllers/portal.py",
+    "payment/controllers/post_processing.py",
+    "account_payment/models/payment_transaction.py",
+    "sale/models/payment_transaction.py",
+    "payment_stripe/controllers/main.py",
+    "payment_stripe/models/payment_transaction.py",
+    "payment_xendit/controllers/main.py",
+    "payment_xendit/models/payment_transaction.py",
+    "payment_paypal/controllers/main.py",
+    "website_payment/models/payment_transaction.py"
+  ],
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U127_payment_webhook_chain.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U127_payment_webhook_chain_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U127_handoff_packet.json"
+  }
+}
