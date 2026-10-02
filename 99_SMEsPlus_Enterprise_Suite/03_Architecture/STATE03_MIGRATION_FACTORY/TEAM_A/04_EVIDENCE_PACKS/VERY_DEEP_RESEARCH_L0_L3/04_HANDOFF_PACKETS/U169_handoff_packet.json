@@ -1,0 +1,166 @@
+{
+  "unit_id": "U169",
+  "module": "stock",
+  "description": "Physical inventory count and quant adjustment — inline count on stock.quant, correcting moves via inventory loss location",
+  "group": "G06/G01",
+  "priority": "P1",
+  "status": "PRESENT",
+  "odoo_version": "19.0.post20260921",
+  "module_version": "0.1",
+  "research_date": "2026-10-02",
+  "researcher": "DeepSeek Worker (STATE03 VDR)",
+
+  "manifest": {
+    "category": "Inventory/Inventory",
+    "depends": ["stock"],
+    "valuation_overlay": "stock_account",
+    "no_separate_inventory_model": true,
+    "abolished_models": ["stock.inventory", "stock.inventory.line"]
+  },
+
+  "core_mechanism": {
+    "description": "Physical inventory count is inline on stock.quant via inventory_mode context flag. No session/order document.",
+    "initiation": "action_view_inventory() opens editable list; _set_view_context() sets inventory_mode=True for stock users",
+    "no_action_start_inventory": "The _action_start_inventory() method referenced in some research prompts does NOT exist in Odoo 19 Community",
+    "domain": "[('location_id.usage', 'in', ['internal','transit'])]"
+  },
+
+  "models": {
+    "stock.quant": {
+      "description": "Core stock record; carries all inventory count fields inline",
+      "key_inventory_fields": {
+        "inventory_quantity": "Float('Counted') — user-entered physical count. Editable only in inventory_mode.",
+        "inventory_diff_quantity": "Float('Difference', computed+stored) = inventory_quantity - quantity when inventory_quantity_set else 0",
+        "inventory_quantity_set": "Boolean(stored) — True when user has entered a count. Cleared after apply.",
+        "is_outdated": "Boolean(computed) — True if quantity changed (real move) while inventory_quantity_set=True",
+        "inventory_date": "Date(computed+stored) — next scheduled count date from cyclic/annual config",
+        "last_count_date": "Date(computed) — date of last done stock.move.line with is_inventory=True for this quant",
+        "cyclic_inventory_frequency": "Integer(related from location) — count rotation interval in days",
+        "user_id": "Many2one res.users — person assigned to count this quant",
+        "accounting_date": "Date (stock_account only) — override accounting period for JE"
+      },
+      "key_methods": {
+        "action_view_inventory": "Opens Physical Inventory screen; entry point for count workflow",
+        "action_set_inventory_quantity": "Marks quants for counting; pre-fills inventory_quantity=quantity; warns if already set",
+        "action_apply_inventory": "Checks for outdated quants; if clean calls _apply_inventory(); clears inventory_quantity_set",
+        "action_apply_all": "Batch-apply all flagged quants via stock.inventory.adjustment.name wizard",
+        "action_clear_inventory_quantity": "Resets inventory_quantity=0, inventory_diff_quantity=0, inventory_quantity_set=False",
+        "action_set_inventory_quantity_zero": "Sets count to zero; in inventory_report_mode applies immediately",
+        "_apply_inventory": "Core: creates stock.move per quant (is_inventory=True), calls _action_done(), updates dates",
+        "_get_inventory_move_values": "Builds move dict: location pair, qty, lot_id, package_id, is_inventory=True",
+        "_is_inventory_mode": "Guard: context.inventory_mode AND user in stock.group_stock_user",
+        "_set_view_context": "Sets inventory_mode=True for stock users before opening inventory view"
+      }
+    },
+
+    "stock.location": {
+      "description": "Location model with inventory loss usage type and cycle count config",
+      "usage_inventory": {
+        "value": "inventory",
+        "label": "Inventory Loss",
+        "help": "Virtual location serving as counterpart for physical inventory corrections",
+        "should_bypass_reservation": true
+      },
+      "cycle_count_fields": {
+        "cyclic_inventory_frequency": "Integer — rotation period in days (0=disabled)",
+        "next_inventory_date": "Date(computed+stored) — last_inventory_date + frequency",
+        "last_inventory_date": "Date — updated by _apply_inventory() on each apply"
+      }
+    },
+
+    "product.template": {
+      "property_stock_inventory": "Many2one stock.location (company_dependent, usage='inventory') — per-product override of inventory loss location"
+    },
+
+    "res.company": {
+      "annual_inventory_month": "Selection (1-12, default '12') — company-wide annual count month",
+      "annual_inventory_day": "Integer (default 31) — day of month for annual count",
+      "_create_inventory_loss_location": "Creates per-company inventory loss location and sets ir.default for property_stock_inventory"
+    }
+  },
+
+  "move_flow": {
+    "description": "stock.move created by _apply_inventory()",
+    "positive_diff": {
+      "source": "property_stock_inventory (usage='inventory', virtual)",
+      "dest": "quant.location_id (internal/transit, physical)",
+      "interpretation": "Surplus — stock arrives from virtual adjustment location"
+    },
+    "negative_diff": {
+      "source": "quant.location_id (internal/transit)",
+      "dest": "property_stock_inventory (usage='inventory', virtual)",
+      "interpretation": "Shrinkage — stock leaves to virtual adjustment location"
+    },
+    "move_flags": {
+      "is_inventory": true,
+      "picked": true,
+      "state": "confirmed (set before _action_done())"
+    },
+    "immediate_validation": "moves.with_context(ignore_dest_packages=True)._action_done() called immediately"
+  },
+
+  "valuation_overlay": {
+    "module": "stock_account",
+    "quant_override": {
+      "file": "stock_account/models/stock_quant.py",
+      "_apply_inventory": "Groups quants by accounting_date; passes force_period_date for cross-period JE",
+      "_get_inventory_move_values": "Adds inventory_name '[Accounted on {date}]' when force_period_date set"
+    },
+    "move_override": {
+      "file": "stock_account/models/stock_move.py",
+      "_action_done": "Calls _set_value() for is_in/is_out; calls _create_account_move()",
+      "_should_create_account_move": "True only if: is_storable AND is_valued AND location has valuation_account_id AND qty!=0 AND valuation=real_time",
+      "_get_account_move_line_vals": "If location_id.valuation_account_id: Dr stock_valuation / Cr location.valuation_account_id. Else: Dr location_dest_id.valuation_account_id / Cr stock_valuation"
+    },
+    "je_condition": "inventory loss location must have valuation_account_id set (typically stock adjustment expense account from COA)",
+    "stock_valuation_account": "product._get_product_accounts()['stock_valuation'] = categ.property_stock_valuation_account_id or company.account_stock_valuation_id"
+  },
+
+  "conflict_resolution": {
+    "wizard": "stock.inventory.conflict",
+    "trigger": "is_outdated quants detected in action_apply_inventory()",
+    "context": "default_quant_ids, default_quant_to_fix_ids",
+    "target": "new (dialog)"
+  },
+
+  "cycle_count": {
+    "no_cron": true,
+    "mechanism": "inventory_date field on quant shows next due date; user filters by overdue in Physical Inventory view",
+    "location_frequency": "cyclic_inventory_frequency on stock.location (days)",
+    "company_annual": "annual_inventory_month + annual_inventory_day on res.company",
+    "date_logic": "_get_next_inventory_date() returns min(cyclic date, annual date)"
+  },
+
+  "security": {
+    "group_stock_user": "Can enter counts and apply inventory (inventory_mode)",
+    "group_stock_manager": "Can manually delete quants (triggers _apply_inventory with qty=0)"
+  },
+
+  "claim_count": 22,
+  "claim_ids": [
+    "U169-C01", "U169-C02", "U169-C03", "U169-C04", "U169-C05",
+    "U169-C06", "U169-C07", "U169-C08", "U169-C09", "U169-C10",
+    "U169-C11", "U169-C12", "U169-C13", "U169-C14", "U169-C15",
+    "U169-C16", "U169-C17", "U169-C18", "U169-C19", "U169-C20",
+    "U169-C21", "U169-C22"
+  ],
+
+  "migration_flags": [
+    "BREAKING: stock.inventory and stock.inventory.line models abolished (Odoo 16+). Full redesign required from Odoo 14.",
+    "BREAKING: _action_start_inventory() does NOT exist in Odoo 19. Use action_view_inventory() / inventory_mode context.",
+    "BREAKING: inventory_quantity_count field does NOT exist. Use search([('inventory_quantity_set','=',True)]).",
+    "INFORMATIONAL: accounting_date on stock.quant is stock_account module only — not present in pure stock install.",
+    "INFORMATIONAL: JE for inventory adjustments requires valuation_account_id on the inventory loss location.",
+    "INFORMATIONAL: No automatic cron for cycle counts — only date reminders on quant.inventory_date.",
+    "NEW_FEATURE: accounting_date per quant allows per-record period override (new vs older Odoo versions)."
+  ],
+
+  "evidence_files": {
+    "technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U169_stock_inventory.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U169_stock_inventory_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U169_handoff_packet.json"
+  },
+
+  "gate_result": "PASS",
+  "gate_code": "G06-U169-PASS"
+}

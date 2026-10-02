@@ -1,0 +1,42 @@
+{
+  "unit": "U178",
+  "title": "survey — Survey Creation, Response Lifecycle, Scoring, and Email/Portal Delivery",
+  "group": "G14",
+  "priority": "P2",
+  "status": "COMPLETE",
+  "date": "2026-10-02",
+  "module": "survey",
+  "source_base": "odoo-19.0.post20260921/odoo/addons/survey",
+  "files_studied": [
+    "survey/models/survey_survey.py",
+    "survey/models/survey_question.py",
+    "survey/models/survey_user_input.py",
+    "survey/wizard/survey_invite.py",
+    "survey/controllers/main.py"
+  ],
+  "claims_count": 28,
+  "gate_code": "GATE-PASS",
+  "key_finding": "survey.survey has no lifecycle state field — it uses active boolean; session_state (ready/in_progress) covers live-session control; scoring_success threshold comparison is scoring_percentage >= scoring_success_min (default 80%); _mark_done() is the unified completion handler for state, certification email, and badge award.",
+  "neutral_ref_file": "02_NEUTRAL_KNOWLEDGE/U178_survey_NEUTRAL.md",
+  "evidence_file": "01_RESTRICTED_TECHNICAL_EVIDENCE/U178_survey.md",
+  "claim_ids": [
+    "U178-C01","U178-C02","U178-C03","U178-C04","U178-C05",
+    "U178-C06","U178-C07","U178-C08","U178-C09","U178-C10",
+    "U178-C11","U178-C12","U178-C13","U178-C14","U178-C15",
+    "U178-C16","U178-C17","U178-C18","U178-C19","U178-C20",
+    "U178-C21","U178-C22","U178-C23","U178-C24","U178-C25",
+    "U178-C26","U178-C27","U178-C28"
+  ],
+  "scope_coverage": {
+    "survey_survey_model_state_access_mode_scoring_certification": "C01,C02,C03,C04,C05",
+    "survey_question_question_type_mandatory": "C06,C07,C08",
+    "survey_user_input_state_partner_token": "C09,C10",
+    "survey_user_input_line_answer_storage": "C11,C12",
+    "survey_invite_wizard_token_email": "C15,C16",
+    "scoring_get_score_certification_pass_fail_badge": "C13,C14,C23",
+    "portal_access_unauthenticated_token_url": "C17,C18",
+    "mark_done_state_done_badge_award": "C19,C20",
+    "chatter_mail_thread_completion_notification": "C21,C22",
+    "answer_distribution_statistics": "C24,C25"
+  }
+}
