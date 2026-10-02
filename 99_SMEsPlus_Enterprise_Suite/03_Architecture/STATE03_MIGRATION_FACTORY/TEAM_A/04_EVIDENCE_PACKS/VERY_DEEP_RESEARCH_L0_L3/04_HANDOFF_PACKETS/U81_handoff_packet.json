@@ -1,0 +1,78 @@
+{
+  "unit": "U81",
+  "title": "Payment Registration and Bank Reconciliation Full Workflow",
+  "date": "2026-10-02",
+  "phase": "Second-Pass Depth Closure — P1 Core Business",
+  "gate_result": "PASS",
+  "gate_check_script": "/tmp/vdr_check_u81.py",
+  "gate_metrics": {
+    "claim_checks_failed": 0,
+    "neutral_leak_tokens": 0,
+    "total_claims": 60
+  },
+  "predecessor_units": ["U12", "U33", "U79"],
+  "l_levels": ["L4", "L5", "L11"],
+  "proof_layers": ["P2", "P3", "P4"],
+  "function_ids_covered": [
+    "SDV-F07",
+    "PCO-F01",
+    "U81-F01",
+    "U81-F02",
+    "U81-F03",
+    "U81-F04",
+    "U81-F05",
+    "U81-F06",
+    "U81-F07",
+    "U81-F08",
+    "U81-F09",
+    "U81-F10",
+    "U81-F11",
+    "U81-F12",
+    "U81-F13",
+    "U81-F14",
+    "U81-F15",
+    "U81-F16"
+  ],
+  "new_function_ids": [
+    {"id": "U81-F01", "description": "Payment registration wizard: action_create_payments → _init_payments → _post_payments → _reconcile_payments chain"},
+    {"id": "U81-F02", "description": "Wizard _create_payment_vals_from_wizard: builds payment dict including destination_account_id from invoice line"},
+    {"id": "U81-F03", "description": "account.payment model: state (draft/in_process/paid/canceled/rejected), move_id link, outstanding_account_id, destination_account_id"},
+    {"id": "U81-F04", "description": "account.payment.method.line: links payment method to journal; payment_account_id determines outstanding/in-transit account"},
+    {"id": "U81-F05", "description": "account.bank.statement: still exists in Odoo 19 Community; groups statement lines with balance_start/end"},
+    {"id": "U81-F06", "description": "account.bank.statement.line: _inherits account.move; move is auto-posted on create; payment_ids tracks auto-generated payments"},
+    {"id": "U81-F07", "description": "Suspense account: journal.suspense_account_id; initial counterpart for unreconciled bank statement lines"},
+    {"id": "U81-F08", "description": "_prepare_move_line_default_vals on statement line: creates liquidity line (bank account) + suspense line"},
+    {"id": "U81-F09", "description": "action_undo_reconciliation: remove_move_reconcile + unlink auto-generated payments + reset to default lines"},
+    {"id": "U81-F10", "description": "_compute_payment_state on account.move: SQL-based computation of not_paid/partial/paid/reversed states"},
+    {"id": "U81-F11", "description": "Payment is_matched: True when liquidity lines residual is zero (bank statement reconciled against outstanding account)"},
+    {"id": "U81-F12", "description": "Payment journal entry structure: liquidity line on outstanding_account_id, counterpart on destination_account_id"},
+    {"id": "U81-F13", "description": "account.move.line.reconcile() → _reconcile_plan([self]): standard entry point confirmed (from U79)"},
+    {"id": "U81-F14", "description": "_reconcile_payments: iterates per account, combining payment counterpart lines + invoice lines, calls reconcile()"},
+    {"id": "U81-F15", "description": "_get_default_amls_matching_domain: domain for bank reconciliation matching candidates"},
+    {"id": "U81-F16", "description": "_synchronize_to_moves: keeps statement line fields in sync with underlying journal entry on write"}
+  ],
+  "key_findings": [
+    "account_bank_statement_import module does NOT exist in Odoo 19 Community addons — import is in-module",
+    "account.payment.state has 5 values: draft, in_process, paid, canceled, rejected (no 'posted')",
+    "account.payment.action_post() sets state to 'in_process' (bank) or 'paid' (cash) — not 'posted'",
+    "Community: _get_invoice_in_payment_state() always returns 'paid' — no in_payment invoice state in Community",
+    "Bank statement line uses _inherits on account.move — is a delegation-inherited journal entry",
+    "Suspense account = journal.suspense_account_id; initial counterpart line on all unreconciled statement lines",
+    "Payment → invoice reconciliation: _reconcile_payments calls (payment_counterpart_lines + invoice_lines).reconcile()",
+    "Bank statement matching clears suspense line → replaces with outstanding account line → reconcile() → payment.is_matched=True → payment.state='paid'",
+    "Invoice payment_state computed via SQL using account_partial_reconcile + all_payments_matched boolean aggregate"
+  ],
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U81_payment_bank_reconciliation.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U81_payment_bank_reconciliation_NEUTRAL.md"
+  },
+  "primary_source_files": [
+    "account/wizard/account_payment_register.py",
+    "account/models/account_payment.py",
+    "account/models/account_payment_method.py",
+    "account/models/account_bank_statement.py",
+    "account/models/account_bank_statement_line.py",
+    "account/models/account_move.py",
+    "account/models/account_move_line.py"
+  ]
+}
