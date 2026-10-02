@@ -1,0 +1,693 @@
+module_name	G_group	notes
+account	G01	Core Accounting
+account_debit_note	G01	Core Accounting
+account_fleet	G01	Core Accounting
+account_tax_python	G01	Core Accounting
+account_test	G01	Core Accounting
+account_update_tax_tags	G01	Core Accounting
+analytic	G01	Core Accounting
+base_vat	G02	Tax & Fiscal — tax/fiscal/vat keyword
+l10n_account_withholding_tax	G02	Tax & Fiscal — tax/fiscal/vat keyword
+l10n_account_withholding_tax_pos	G02	Tax & Fiscal — tax/fiscal/vat keyword
+l10n_id_efaktur_coretax	G02	Tax & Fiscal — tax/fiscal/vat keyword
+l10n_sa_withholding_tax	G02	Tax & Fiscal — tax/fiscal/vat keyword
+l10n_th	G02	Tax & Fiscal — l10n_th* Thai fiscal/tax (P0)
+l10n_tr_nilvera_base_vat	G02	Tax & Fiscal — tax/fiscal/vat keyword
+account_add_gln	G03	Banking & Reconciliation — payment/check/QR/IBAN
+account_check_printing	G03	Banking & Reconciliation — payment/check/QR/IBAN
+account_payment	G03	Banking & Reconciliation — payment/check/QR/IBAN
+account_payment_interco	G03	Banking & Reconciliation — payment/check/QR/IBAN
+account_qr_code_emv	G03	Banking & Reconciliation — payment/check/QR/IBAN
+account_qr_code_sepa	G03	Banking & Reconciliation — payment/check/QR/IBAN
+base_iban	G03	Banking & Reconciliation — payment/check/QR/IBAN
+account_edi	G04	Invoicing & Credit — EDI/PEPPOL/UBL exchange
+account_edi_proxy_client	G04	Invoicing & Credit — EDI/PEPPOL/UBL exchange
+account_edi_ubl_cii	G04	Invoicing & Credit — EDI/PEPPOL/UBL exchange
+account_peppol	G04	Invoicing & Credit — EDI/PEPPOL/UBL exchange
+account_peppol_advanced_fields	G04	Invoicing & Credit — EDI/PEPPOL/UBL exchange
+account_peppol_response	G04	Invoicing & Credit — EDI/PEPPOL/UBL exchange
+snailmail_account	G04	Invoicing & Credit — EDI/PEPPOL/UBL exchange
+loyalty	G05	Sales — loyalty program
+sale	G05	Sales
+sale_crm	G05	Sales
+sale_edi_ubl	G05	Sales
+sale_expense	G05	Sales
+sale_expense_margin	G05	Sales
+sale_gelato	G05	Sales
+sale_gelato_stock	G05	Sales
+sale_loyalty	G05	Sales
+sale_loyalty_delivery	G05	Sales
+sale_management	G05	Sales
+sale_margin	G05	Sales
+sale_mrp	G05	Sales
+sale_mrp_margin	G05	Sales
+sale_pdf_quote_builder	G05	Sales
+sale_product_matrix	G05	Sales
+sale_project	G05	Sales
+sale_project_stock	G05	Sales
+sale_project_stock_account	G05	Sales
+sale_purchase	G05	Sales
+sale_purchase_project	G05	Sales
+sale_purchase_stock	G05	Sales
+sale_service	G05	Sales
+sale_sms	G05	Sales
+sale_stock	G05	Sales
+sale_stock_margin	G05	Sales
+sale_stock_product_expiry	G05	Sales
+sale_timesheet	G05	Sales
+sale_timesheet_margin	G05	Sales
+sales_team	G05	Sales
+delivery	G06	Inventory & Stock
+delivery_mondialrelay	G06	Inventory & Stock
+delivery_stock_picking_batch	G06	Inventory & Stock
+stock	G06	Inventory & Stock
+stock_account	G06	Inventory & Stock
+stock_delivery	G06	Inventory & Stock
+stock_dropshipping	G06	Inventory & Stock
+stock_fleet	G06	Inventory & Stock
+stock_landed_costs	G06	Inventory & Stock
+stock_maintenance	G06	Inventory & Stock
+stock_picking_batch	G06	Inventory & Stock
+stock_sms	G06	Inventory & Stock
+mrp	G07	Manufacturing/Repair
+mrp_account	G07	Manufacturing/Repair
+mrp_landed_costs	G07	Manufacturing/Repair
+mrp_product_expiry	G07	Manufacturing/Repair
+mrp_repair	G07	Manufacturing/Repair
+mrp_subcontracting	G07	Manufacturing/Repair
+mrp_subcontracting_account	G07	Manufacturing/Repair
+mrp_subcontracting_dropshipping	G07	Manufacturing/Repair
+mrp_subcontracting_landed_costs	G07	Manufacturing/Repair
+mrp_subcontracting_purchase	G07	Manufacturing/Repair
+mrp_subcontracting_repair	G07	Manufacturing/Repair
+repair	G07	Manufacturing/Repair
+purchase	G08	Purchase
+purchase_edi_ubl_bis3	G08	Purchase
+purchase_mrp	G08	Purchase
+purchase_product_matrix	G08	Purchase
+purchase_repair	G08	Purchase
+purchase_requisition	G08	Purchase
+purchase_requisition_sale	G08	Purchase
+purchase_requisition_stock	G08	Purchase
+purchase_stock	G08	Purchase
+fleet	G09	HR & Payroll / Fleet
+hr	G09	HR & Payroll / Fleet
+hr_attendance	G09	HR & Payroll / Fleet
+hr_calendar	G09	HR & Payroll / Fleet
+hr_expense	G09	HR & Payroll / Fleet
+hr_fleet	G09	HR & Payroll / Fleet
+hr_gamification	G09	HR & Payroll / Fleet
+hr_holidays	G09	HR & Payroll / Fleet
+hr_holidays_attendance	G09	HR & Payroll / Fleet
+hr_holidays_homeworking	G09	HR & Payroll / Fleet
+hr_homeworking	G09	HR & Payroll / Fleet
+hr_homeworking_calendar	G09	HR & Payroll / Fleet
+hr_hourly_cost	G09	HR & Payroll / Fleet
+hr_livechat	G09	HR & Payroll / Fleet
+hr_maintenance	G09	HR & Payroll / Fleet
+hr_org_chart	G09	HR & Payroll / Fleet
+hr_presence	G09	HR & Payroll / Fleet
+hr_recruitment	G09	HR & Payroll / Fleet
+hr_recruitment_skills	G09	HR & Payroll / Fleet
+hr_recruitment_sms	G09	HR & Payroll / Fleet
+hr_recruitment_survey	G09	HR & Payroll / Fleet
+hr_skills	G09	HR & Payroll / Fleet
+hr_skills_event	G09	HR & Payroll / Fleet
+hr_skills_slides	G09	HR & Payroll / Fleet
+hr_skills_survey	G09	HR & Payroll / Fleet
+hr_timesheet	G09	HR & Payroll / Fleet
+hr_timesheet_attendance	G09	HR & Payroll / Fleet
+hr_work_entry	G09	HR & Payroll / Fleet
+hr_work_entry_holidays	G09	HR & Payroll / Fleet
+lunch	G09	HR & Payroll / Fleet
+project	G10	Project & Timesheets
+project_account	G10	Project & Timesheets
+project_hr_expense	G10	Project & Timesheets
+project_hr_skills	G10	Project & Timesheets
+project_mail_plugin	G10	Project & Timesheets
+project_mrp	G10	Project & Timesheets
+project_mrp_account	G10	Project & Timesheets
+project_mrp_sale	G10	Project & Timesheets
+project_mrp_stock_landed_costs	G10	Project & Timesheets
+project_purchase	G10	Project & Timesheets
+project_purchase_stock	G10	Project & Timesheets
+project_sale_expense	G10	Project & Timesheets
+project_sms	G10	Project & Timesheets
+project_stock	G10	Project & Timesheets
+project_stock_account	G10	Project & Timesheets
+project_stock_landed_costs	G10	Project & Timesheets
+project_timesheet_holidays	G10	Project & Timesheets
+project_todo	G10	Project & Timesheets
+point_of_sale	G11	Point of Sale
+pos_account_tax_python	G11	Point of Sale
+pos_adyen	G11	Point of Sale
+pos_cashdro	G11	Point of Sale
+pos_cashmatic	G11	Point of Sale
+pos_discount	G11	Point of Sale
+pos_dpopay	G11	Point of Sale
+pos_edi_ubl	G11	Point of Sale
+pos_event	G11	Point of Sale
+pos_event_sale	G11	Point of Sale
+pos_glory_cash	G11	Point of Sale
+pos_hr	G11	Point of Sale
+pos_hr_restaurant	G11	Point of Sale
+pos_imin	G11	Point of Sale
+pos_loyalty	G11	Point of Sale
+pos_mercado_pago	G11	Point of Sale
+pos_mollie	G11	Point of Sale
+pos_mrp	G11	Point of Sale
+pos_online_payment	G11	Point of Sale
+pos_online_payment_self_order	G11	Point of Sale
+pos_pine_labs	G11	Point of Sale
+pos_qfpay	G11	Point of Sale
+pos_razorpay	G11	Point of Sale
+pos_repair	G11	Point of Sale
+pos_restaurant	G11	Point of Sale
+pos_restaurant_adyen	G11	Point of Sale
+pos_restaurant_loyalty	G11	Point of Sale
+pos_restaurant_stripe	G11	Point of Sale
+pos_safaricom	G11	Point of Sale
+pos_sale	G11	Point of Sale
+pos_sale_loyalty	G11	Point of Sale
+pos_sale_margin	G11	Point of Sale
+pos_self_order	G11	Point of Sale
+pos_self_order_adyen	G11	Point of Sale
+pos_self_order_pine_labs	G11	Point of Sale
+pos_self_order_qfpay	G11	Point of Sale
+pos_self_order_razorpay	G11	Point of Sale
+pos_self_order_sale	G11	Point of Sale
+pos_self_order_stripe	G11	Point of Sale
+pos_self_order_viva_com	G11	Point of Sale
+pos_sms	G11	Point of Sale
+pos_stripe	G11	Point of Sale
+pos_viva_com	G11	Point of Sale
+website	G12	Website & eCommerce
+website_blog	G12	Website & eCommerce
+website_cf_turnstile	G12	Website & eCommerce
+website_crm	G12	Website & eCommerce
+website_crm_iap_reveal	G12	Website & eCommerce
+website_crm_livechat	G12	Website & eCommerce
+website_crm_partner_assign	G12	Website & eCommerce
+website_crm_sms	G12	Website & eCommerce
+website_customer	G12	Website & eCommerce
+website_event	G12	Website & eCommerce
+website_event_booth	G12	Website & eCommerce
+website_event_booth_exhibitor	G12	Website & eCommerce
+website_event_booth_sale	G12	Website & eCommerce
+website_event_booth_sale_exhibitor	G12	Website & eCommerce
+website_event_crm	G12	Website & eCommerce
+website_event_exhibitor	G12	Website & eCommerce
+website_event_sale	G12	Website & eCommerce
+website_event_track	G12	Website & eCommerce
+website_event_track_live	G12	Website & eCommerce
+website_event_track_live_quiz	G12	Website & eCommerce
+website_event_track_quiz	G12	Website & eCommerce
+website_forum	G12	Website & eCommerce
+website_google_map	G12	Website & eCommerce
+website_hr_recruitment	G12	Website & eCommerce
+website_hr_recruitment_livechat	G12	Website & eCommerce
+website_links	G12	Website & eCommerce
+website_livechat	G12	Website & eCommerce
+website_mail	G12	Website & eCommerce
+website_mail_group	G12	Website & eCommerce
+website_mass_mailing	G12	Website & eCommerce
+website_mass_mailing_sms	G12	Website & eCommerce
+website_partner	G12	Website & eCommerce
+website_payment	G12	Website & eCommerce
+website_profile	G12	Website & eCommerce
+website_project	G12	Website & eCommerce
+website_sale	G12	Website & eCommerce
+website_sale_autocomplete	G12	Website & eCommerce
+website_sale_collect	G12	Website & eCommerce
+website_sale_collect_wishlist	G12	Website & eCommerce
+website_sale_comparison	G12	Website & eCommerce
+website_sale_comparison_wishlist	G12	Website & eCommerce
+website_sale_gelato	G12	Website & eCommerce
+website_sale_loyalty	G12	Website & eCommerce
+website_sale_mass_mailing	G12	Website & eCommerce
+website_sale_mondialrelay	G12	Website & eCommerce
+website_sale_mrp	G12	Website & eCommerce
+website_sale_slides	G12	Website & eCommerce
+website_sale_stock	G12	Website & eCommerce
+website_sale_stock_wishlist	G12	Website & eCommerce
+website_sale_wishlist	G12	Website & eCommerce
+website_slides	G12	Website & eCommerce
+website_slides_forum	G12	Website & eCommerce
+website_slides_survey	G12	Website & eCommerce
+website_sms	G12	Website & eCommerce
+website_timesheet	G12	Website & eCommerce
+bus	G13	Messaging & Discuss / Calendar
+calendar	G13	Messaging & Discuss / Calendar
+calendar_sms	G13	Messaging & Discuss / Calendar
+im_livechat	G13	Messaging & Discuss / Calendar
+mail	G13	Messaging & Discuss / Calendar
+mail_bot	G13	Messaging & Discuss / Calendar
+mail_bot_hr	G13	Messaging & Discuss / Calendar
+mail_group	G13	Messaging & Discuss / Calendar
+mail_plugin	G13	Messaging & Discuss / Calendar
+marketing_card	G13	Messaging / Marketing
+mass_mailing	G13	Messaging & Discuss / Calendar
+mass_mailing_crm	G13	Messaging & Discuss / Calendar
+mass_mailing_crm_sms	G13	Messaging & Discuss / Calendar
+mass_mailing_event	G13	Messaging & Discuss / Calendar
+mass_mailing_event_sms	G13	Messaging & Discuss / Calendar
+mass_mailing_event_track	G13	Messaging & Discuss / Calendar
+mass_mailing_event_track_sms	G13	Messaging & Discuss / Calendar
+mass_mailing_sale	G13	Messaging & Discuss / Calendar
+mass_mailing_sale_sms	G13	Messaging & Discuss / Calendar
+mass_mailing_slides	G13	Messaging & Discuss / Calendar
+mass_mailing_sms	G13	Messaging & Discuss / Calendar
+mass_mailing_themes	G13	Messaging & Discuss / Calendar
+sms	G13	Messaging & Discuss / Calendar
+sms_twilio	G13	Messaging & Discuss / Calendar
+snailmail	G13	Messaging & Discuss / Calendar
+social_media	G13	Messaging & Discuss / Calendar
+board	G14	Reporting & Analytics
+digest	G14	Reporting & Analytics
+spreadsheet	G14	Reporting & Analytics
+spreadsheet_account	G14	Reporting & Analytics
+spreadsheet_dashboard	G14	Reporting & Analytics
+spreadsheet_dashboard_account	G14	Reporting & Analytics
+spreadsheet_dashboard_event_sale	G14	Reporting & Analytics
+spreadsheet_dashboard_hr_expense	G14	Reporting & Analytics
+spreadsheet_dashboard_hr_timesheet	G14	Reporting & Analytics
+spreadsheet_dashboard_im_livechat	G14	Reporting & Analytics
+spreadsheet_dashboard_pos_hr	G14	Reporting & Analytics
+spreadsheet_dashboard_pos_restaurant	G14	Reporting & Analytics
+spreadsheet_dashboard_sale	G14	Reporting & Analytics
+spreadsheet_dashboard_sale_timesheet	G14	Reporting & Analytics
+spreadsheet_dashboard_stock_account	G14	Reporting & Analytics
+spreadsheet_dashboard_website_sale	G14	Reporting & Analytics
+spreadsheet_dashboard_website_sale_slides	G14	Reporting & Analytics
+api_doc	G15	Base & Technical
+attachment_indexation	G15	Base & Technical
+auth_ldap	G15	Base & Technical — auth_* prefix
+auth_oauth	G15	Base & Technical — auth_* prefix
+auth_passkey	G15	Base & Technical — auth_* prefix
+auth_passkey_portal	G15	Base & Technical — auth_* prefix
+auth_password_policy	G15	Base & Technical — auth_* prefix
+auth_password_policy_portal	G15	Base & Technical — auth_* prefix
+auth_password_policy_signup	G15	Base & Technical — auth_* prefix
+auth_signup	G15	Base & Technical — auth_* prefix
+auth_timeout	G15	Base & Technical — auth_* prefix
+auth_totp	G15	Base & Technical — auth_* prefix
+auth_totp_mail	G15	Base & Technical — auth_* prefix
+auth_totp_portal	G15	Base & Technical — auth_* prefix
+barcodes	G15	Base & Technical — barcodes* prefix
+barcodes_gs1_nomenclature	G15	Base & Technical — barcodes* prefix
+base	G15	Base & Technical
+base_address_extended	G15	Base & Technical — base_* prefix
+base_automation	G15	Base & Technical — base_* prefix
+base_geolocalize	G15	Base & Technical — base_* prefix
+base_import	G15	Base & Technical — base_* prefix
+base_import_module	G15	Base & Technical — base_* prefix
+base_install_request	G15	Base & Technical — base_* prefix
+base_setup	G15	Base & Technical — base_* prefix
+base_sparse_field	G15	Base & Technical — base_* prefix
+certificate	G15	Base & Technical
+cloud_storage	G15	Base & Technical — cloud_storage* prefix
+cloud_storage_azure	G15	Base & Technical — cloud_storage* prefix
+cloud_storage_google	G15	Base & Technical — cloud_storage* prefix
+cloud_storage_migration	G15	Base & Technical — cloud_storage* prefix
+contacts	G15	Base & Technical
+crm	G15	Base & Technical
+crm_iap_enrich	G15	Base & Technical — crm_* prefix
+crm_iap_mine	G15	Base & Technical — crm_* prefix
+crm_livechat	G15	Base & Technical — crm_* prefix
+crm_mail_plugin	G15	Base & Technical — crm_* prefix
+crm_sms	G15	Base & Technical — crm_* prefix
+data_recycle	G15	Base & Technical
+event	G15	Base & Technical
+event_booth	G15	Base & Technical — event_* prefix
+event_booth_sale	G15	Base & Technical — event_* prefix
+event_crm	G15	Base & Technical — event_* prefix
+event_crm_sale	G15	Base & Technical — event_* prefix
+event_product	G15	Base & Technical — event_* prefix
+event_sale	G15	Base & Technical — event_* prefix
+event_sms	G15	Base & Technical — event_* prefix
+gamification	G15	Base & Technical
+gamification_sale_crm	G15	Base & Technical — gamification_* prefix
+google_account	G15	Base & Technical
+google_address_autocomplete	G15	Base & Technical
+google_calendar	G15	Base & Technical
+google_gmail	G15	Base & Technical
+google_recaptcha	G15	Base & Technical
+html_builder	G15	Base & Technical — html_* prefix
+html_editor	G15	Base & Technical — html_* prefix
+http_routing	G15	Base & Technical — http_* prefix
+iap	G15	Base & Technical — iap* prefix
+iap_crm	G15	Base & Technical — iap* prefix
+iap_mail	G15	Base & Technical — iap* prefix
+iot_base	G15	Base & Technical — iot_* prefix
+iot_box_image	G15	Base & Technical — iot_* prefix
+iot_drivers	G15	Base & Technical — iot_* prefix
+link_tracker	G15	Base & Technical (straggler)
+maintenance	G15	Base & Technical (straggler)
+microsoft_account	G15	Base & Technical — microsoft_* prefix
+microsoft_calendar	G15	Base & Technical — microsoft_* prefix
+microsoft_outlook	G15	Base & Technical — microsoft_* prefix
+onboarding	G15	Base & Technical
+partner_autocomplete	G15	Base & Technical
+partnership	G15	Base & Technical (straggler)
+payment	G15	Base & Technical
+payment_adyen	G15	Base & Technical — payment_* prefix
+payment_aps	G15	Base & Technical — payment_* prefix
+payment_asiapay	G15	Base & Technical — payment_* prefix
+payment_authorize	G15	Base & Technical — payment_* prefix
+payment_buckaroo	G15	Base & Technical — payment_* prefix
+payment_custom	G15	Base & Technical — payment_* prefix
+payment_demo	G15	Base & Technical — payment_* prefix
+payment_dpo	G15	Base & Technical — payment_* prefix
+payment_ecpay	G15	Base & Technical — payment_* prefix
+payment_flutterwave	G15	Base & Technical — payment_* prefix
+payment_iyzico	G15	Base & Technical — payment_* prefix
+payment_mercado_pago	G15	Base & Technical — payment_* prefix
+payment_mollie	G15	Base & Technical — payment_* prefix
+payment_nuvei	G15	Base & Technical — payment_* prefix
+payment_paymob	G15	Base & Technical — payment_* prefix
+payment_paypal	G15	Base & Technical — payment_* prefix
+payment_payu	G15	Base & Technical — payment_* prefix
+payment_razorpay	G15	Base & Technical — payment_* prefix
+payment_redsys	G15	Base & Technical — payment_* prefix
+payment_stripe	G15	Base & Technical — payment_* prefix
+payment_toss_payments	G15	Base & Technical — payment_* prefix
+payment_worldline	G15	Base & Technical — payment_* prefix
+payment_xendit	G15	Base & Technical — payment_* prefix
+phone_validation	G15	Base & Technical
+portal	G15	Base & Technical
+portal_rating	G15	Base & Technical (straggler)
+privacy_lookup	G15	Base & Technical (straggler)
+product	G15	Base & Technical
+product_email_template	G15	Base & Technical — product_* prefix
+product_expiry	G15	Base & Technical — product_* prefix
+product_margin	G15	Base & Technical — product_* prefix
+product_matrix	G15	Base & Technical — product_* prefix
+rating	G15	Base & Technical
+resource	G15	Base & Technical — resource* prefix
+resource_mail	G15	Base & Technical — resource* prefix
+rpc	G15	Base & Technical
+survey	G15	Base & Technical
+survey_crm	G15	Base & Technical — survey_* prefix
+transifex	G15	Base & Technical
+uom	G15	Base & Technical
+utm	G15	Base & Technical
+web	G15	Base & Technical — web* prefix
+web_hierarchy	G15	Base & Technical — web* prefix
+web_tour	G15	Base & Technical — web* prefix
+web_unsplash	G15	Base & Technical — web* prefix
+l10n_account_edi_ubl_cii_tests	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ae	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ae_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_anz_ubl_pint	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ar	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ar_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ar_stock	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ar_website_sale	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ar_withholding	G16	Localization — l10n_* (non-Thai country pack)
+l10n_at	G16	Localization — l10n_* (non-Thai country pack)
+l10n_au	G16	Localization — l10n_* (non-Thai country pack)
+l10n_bd	G16	Localization — l10n_* (non-Thai country pack)
+l10n_be	G16	Localization — l10n_* (non-Thai country pack)
+l10n_be_pos_restaurant	G16	Localization — l10n_* (non-Thai country pack)
+l10n_be_pos_sale	G16	Localization — l10n_* (non-Thai country pack)
+l10n_bf	G16	Localization — l10n_* (non-Thai country pack)
+l10n_bg	G16	Localization — l10n_* (non-Thai country pack)
+l10n_bg_ledger	G16	Localization — l10n_* (non-Thai country pack)
+l10n_bh	G16	Localization — l10n_* (non-Thai country pack)
+l10n_bj	G16	Localization — l10n_* (non-Thai country pack)
+l10n_bo	G16	Localization — l10n_* (non-Thai country pack)
+l10n_br	G16	Localization — l10n_* (non-Thai country pack)
+l10n_br_sales	G16	Localization — l10n_* (non-Thai country pack)
+l10n_br_website_sale	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ca	G16	Localization — l10n_* (non-Thai country pack)
+l10n_cd	G16	Localization — l10n_* (non-Thai country pack)
+l10n_cf	G16	Localization — l10n_* (non-Thai country pack)
+l10n_cg	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ch	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ch_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ci	G16	Localization — l10n_* (non-Thai country pack)
+l10n_cl	G16	Localization — l10n_* (non-Thai country pack)
+l10n_cm	G16	Localization — l10n_* (non-Thai country pack)
+l10n_cn	G16	Localization — l10n_* (non-Thai country pack)
+l10n_cn_city	G16	Localization — l10n_* (non-Thai country pack)
+l10n_co	G16	Localization — l10n_* (non-Thai country pack)
+l10n_co_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_cr	G16	Localization — l10n_* (non-Thai country pack)
+l10n_cy	G16	Localization — l10n_* (non-Thai country pack)
+l10n_cz	G16	Localization — l10n_* (non-Thai country pack)
+l10n_de	G16	Localization — l10n_* (non-Thai country pack)
+l10n_din5008	G16	Localization — l10n_* (non-Thai country pack)
+l10n_din5008_expense	G16	Localization — l10n_* (non-Thai country pack)
+l10n_din5008_purchase	G16	Localization — l10n_* (non-Thai country pack)
+l10n_din5008_repair	G16	Localization — l10n_* (non-Thai country pack)
+l10n_din5008_sale	G16	Localization — l10n_* (non-Thai country pack)
+l10n_din5008_stock	G16	Localization — l10n_* (non-Thai country pack)
+l10n_dk	G16	Localization — l10n_* (non-Thai country pack)
+l10n_dk_fik	G16	Localization — l10n_* (non-Thai country pack)
+l10n_dk_nemhandel	G16	Localization — l10n_* (non-Thai country pack)
+l10n_dk_nemhandel_response	G16	Localization — l10n_* (non-Thai country pack)
+l10n_dk_oioubl	G16	Localization — l10n_* (non-Thai country pack)
+l10n_do	G16	Localization — l10n_* (non-Thai country pack)
+l10n_dz	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ec	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ec_sale	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ec_stock	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ee	G16	Localization — l10n_* (non-Thai country pack)
+l10n_eg	G16	Localization — l10n_* (non-Thai country pack)
+l10n_eg_edi_eta	G16	Localization — l10n_* (non-Thai country pack)
+l10n_es	G16	Localization — l10n_* (non-Thai country pack)
+l10n_es_edi_facturae	G16	Localization — l10n_* (non-Thai country pack)
+l10n_es_edi_sii	G16	Localization — l10n_* (non-Thai country pack)
+l10n_es_edi_tbai	G16	Localization — l10n_* (non-Thai country pack)
+l10n_es_edi_tbai_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_es_edi_verifactu	G16	Localization — l10n_* (non-Thai country pack)
+l10n_es_edi_verifactu_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_es_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_et	G16	Localization — l10n_* (non-Thai country pack)
+l10n_eu_oss	G16	Localization — l10n_* (non-Thai country pack)
+l10n_fi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_fi_sale	G16	Localization — l10n_* (non-Thai country pack)
+l10n_fr	G16	Localization — l10n_* (non-Thai country pack)
+l10n_fr_account	G16	Localization — l10n_* (non-Thai country pack)
+l10n_fr_facturx_chorus_pro	G16	Localization — l10n_* (non-Thai country pack)
+l10n_fr_hr_holidays	G16	Localization — l10n_* (non-Thai country pack)
+l10n_fr_hr_work_entry_holidays	G16	Localization — l10n_* (non-Thai country pack)
+l10n_fr_pdp	G16	Localization — l10n_* (non-Thai country pack)
+l10n_fr_pdp_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_fr_pos_cert	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ga	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gcc_invoice	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gcc_invoice_stock_account	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gcc_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ge	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gf	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gn	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gp	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gq	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gr	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gr_edi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gr_edi_e_invoo	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gt	G16	Localization — l10n_* (non-Thai country pack)
+l10n_gw	G16	Localization — l10n_* (non-Thai country pack)
+l10n_hk	G16	Localization — l10n_* (non-Thai country pack)
+l10n_hn	G16	Localization — l10n_* (non-Thai country pack)
+l10n_hr	G16	Localization — l10n_* (non-Thai country pack)
+l10n_hr_edi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_hr_kuna	G16	Localization — l10n_* (non-Thai country pack)
+l10n_hu	G16	Localization — l10n_* (non-Thai country pack)
+l10n_hu_edi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_hu_edi_receive	G16	Localization — l10n_* (non-Thai country pack)
+l10n_id	G16	Localization — l10n_* (non-Thai country pack)
+l10n_id_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ie	G16	Localization — l10n_* (non-Thai country pack)
+l10n_il	G16	Localization — l10n_* (non-Thai country pack)
+l10n_in	G16	Localization — l10n_* (non-Thai country pack)
+l10n_in_edi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_in_ewaybill	G16	Localization — l10n_* (non-Thai country pack)
+l10n_in_ewaybill_irn	G16	Localization — l10n_* (non-Thai country pack)
+l10n_in_ewaybill_stock	G16	Localization — l10n_* (non-Thai country pack)
+l10n_in_hr_holidays	G16	Localization — l10n_* (non-Thai country pack)
+l10n_in_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_in_purchase_stock	G16	Localization — l10n_* (non-Thai country pack)
+l10n_in_sale	G16	Localization — l10n_* (non-Thai country pack)
+l10n_in_sale_stock	G16	Localization — l10n_* (non-Thai country pack)
+l10n_in_stock	G16	Localization — l10n_* (non-Thai country pack)
+l10n_iq	G16	Localization — l10n_* (non-Thai country pack)
+l10n_it	G16	Localization — l10n_* (non-Thai country pack)
+l10n_it_edi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_it_edi_doi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_it_edi_sale	G16	Localization — l10n_* (non-Thai country pack)
+l10n_it_stock_ddt	G16	Localization — l10n_* (non-Thai country pack)
+l10n_jo	G16	Localization — l10n_* (non-Thai country pack)
+l10n_jo_edi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_jo_edi_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_jp	G16	Localization — l10n_* (non-Thai country pack)
+l10n_jp_ubl_pint	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ke	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ke_edi_tremol	G16	Localization — l10n_* (non-Thai country pack)
+l10n_kh	G16	Localization — l10n_* (non-Thai country pack)
+l10n_km	G16	Localization — l10n_* (non-Thai country pack)
+l10n_kr	G16	Localization — l10n_* (non-Thai country pack)
+l10n_kw	G16	Localization — l10n_* (non-Thai country pack)
+l10n_kz	G16	Localization — l10n_* (non-Thai country pack)
+l10n_latam_base	G16	Localization — l10n_* (non-Thai country pack)
+l10n_latam_check	G16	Localization — l10n_* (non-Thai country pack)
+l10n_latam_invoice_document	G16	Localization — l10n_* (non-Thai country pack)
+l10n_lb_account	G16	Localization — l10n_* (non-Thai country pack)
+l10n_lk	G16	Localization — l10n_* (non-Thai country pack)
+l10n_lk_invoice	G16	Localization — l10n_* (non-Thai country pack)
+l10n_lt	G16	Localization — l10n_* (non-Thai country pack)
+l10n_lu	G16	Localization — l10n_* (non-Thai country pack)
+l10n_lv	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ma	G16	Localization — l10n_* (non-Thai country pack)
+l10n_mc	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ml	G16	Localization — l10n_* (non-Thai country pack)
+l10n_mn	G16	Localization — l10n_* (non-Thai country pack)
+l10n_mq	G16	Localization — l10n_* (non-Thai country pack)
+l10n_mr	G16	Localization — l10n_* (non-Thai country pack)
+l10n_mt	G16	Localization — l10n_* (non-Thai country pack)
+l10n_mt_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_mu_account	G16	Localization — l10n_* (non-Thai country pack)
+l10n_mx	G16	Localization — l10n_* (non-Thai country pack)
+l10n_my	G16	Localization — l10n_* (non-Thai country pack)
+l10n_my_edi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_my_edi_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_my_ubl_pint	G16	Localization — l10n_* (non-Thai country pack)
+l10n_mz	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ne	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ng	G16	Localization — l10n_* (non-Thai country pack)
+l10n_nl	G16	Localization — l10n_* (non-Thai country pack)
+l10n_no	G16	Localization — l10n_* (non-Thai country pack)
+l10n_nz	G16	Localization — l10n_* (non-Thai country pack)
+l10n_om	G16	Localization — l10n_* (non-Thai country pack)
+l10n_pa	G16	Localization — l10n_* (non-Thai country pack)
+l10n_pe	G16	Localization — l10n_* (non-Thai country pack)
+l10n_pe_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ph	G16	Localization — l10n_* (non-Thai country pack)
+l10n_pk	G16	Localization — l10n_* (non-Thai country pack)
+l10n_pl	G16	Localization — l10n_* (non-Thai country pack)
+l10n_pl_bank_verification	G16	Localization — l10n_* (non-Thai country pack)
+l10n_pl_edi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_pl_edi_jst	G16	Localization — l10n_* (non-Thai country pack)
+l10n_pt	G16	Localization — l10n_* (non-Thai country pack)
+l10n_qa	G16	Localization — l10n_* (non-Thai country pack)
+l10n_re	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ro	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ro_cpv_code	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ro_edi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ro_edi_stock	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ro_edi_stock_batch	G16	Localization — l10n_* (non-Thai country pack)
+l10n_rs	G16	Localization — l10n_* (non-Thai country pack)
+l10n_rs_edi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_rw	G16	Localization — l10n_* (non-Thai country pack)
+l10n_sa	G16	Localization — l10n_* (non-Thai country pack)
+l10n_sa_edi	G16	Localization — l10n_* (non-Thai country pack)
+l10n_sa_edi_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_sa_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_se	G16	Localization — l10n_* (non-Thai country pack)
+l10n_sg	G16	Localization — l10n_* (non-Thai country pack)
+l10n_sg_ubl_pint	G16	Localization — l10n_* (non-Thai country pack)
+l10n_si	G16	Localization — l10n_* (non-Thai country pack)
+l10n_sk	G16	Localization — l10n_* (non-Thai country pack)
+l10n_sn	G16	Localization — l10n_* (non-Thai country pack)
+l10n_syscohada	G16	Localization — l10n_* (non-Thai country pack)
+l10n_td	G16	Localization — l10n_* (non-Thai country pack)
+l10n_test_pos_qr_payment	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tg	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tn	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tr	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tr_nilvera	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tr_nilvera_edispatch	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tr_nilvera_einvoice	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tr_nilvera_einvoice_extended	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tw	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tw_edi_ecpay	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tw_edi_ecpay_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tw_edi_ecpay_website_sale	G16	Localization — l10n_* (non-Thai country pack)
+l10n_tz_account	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ua	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ug	G16	Localization — l10n_* (non-Thai country pack)
+l10n_uk	G16	Localization — l10n_* (non-Thai country pack)
+l10n_us	G16	Localization — l10n_* (non-Thai country pack)
+l10n_us_account	G16	Localization — l10n_* (non-Thai country pack)
+l10n_uy	G16	Localization — l10n_* (non-Thai country pack)
+l10n_uy_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_uz	G16	Localization — l10n_* (non-Thai country pack)
+l10n_ve	G16	Localization — l10n_* (non-Thai country pack)
+l10n_vn	G16	Localization — l10n_* (non-Thai country pack)
+l10n_vn_edi_viettel	G16	Localization — l10n_* (non-Thai country pack)
+l10n_vn_edi_viettel_pos	G16	Localization — l10n_* (non-Thai country pack)
+l10n_yt	G16	Localization — l10n_* (non-Thai country pack)
+l10n_za	G16	Localization — l10n_* (non-Thai country pack)
+l10n_zm_account	G16	Localization — l10n_* (non-Thai country pack)
+test_access_rights	G16	Other — test_*/theme_* (test/theme modules)
+test_action_bindings	G16	Other — test_*/theme_* (test/theme modules)
+test_assetsbundle	G16	Other — test_*/theme_* (test/theme modules)
+test_auth_custom	G16	Other — test_*/theme_* (test/theme modules)
+test_base_automation	G16	Other — test_*/theme_* (test/theme modules)
+test_convert	G16	Other — test_*/theme_* (test/theme modules)
+test_converter	G16	Other — test_*/theme_* (test/theme modules)
+test_crm_full	G16	Other — test_*/theme_* (test/theme modules)
+test_data_module	G16	Other — test_*/theme_* (test/theme modules)
+test_data_module_install	G16	Other — test_*/theme_* (test/theme modules)
+test_discuss_full	G16	Other — test_*/theme_* (test/theme modules)
+test_event_full	G16	Other — test_*/theme_* (test/theme modules)
+test_html_field_history	G16	Other — test_*/theme_* (test/theme modules)
+test_http	G16	Other — test_*/theme_* (test/theme modules)
+test_import_export	G16	Other — test_*/theme_* (test/theme modules)
+test_inherit	G16	Other — test_*/theme_* (test/theme modules)
+test_inherit_depends	G16	Other — test_*/theme_* (test/theme modules)
+test_inherits	G16	Other — test_*/theme_* (test/theme modules)
+test_inherits_depends	G16	Other — test_*/theme_* (test/theme modules)
+test_lint	G16	Other — test_*/theme_* (test/theme modules)
+test_mail	G16	Other — test_*/theme_* (test/theme modules)
+test_mail_full	G16	Other — test_*/theme_* (test/theme modules)
+test_mail_sms	G16	Other — test_*/theme_* (test/theme modules)
+test_main_flows	G16	Other — test_*/theme_* (test/theme modules)
+test_mass_mailing	G16	Other — test_*/theme_* (test/theme modules)
+test_mimetypes	G16	Other — test_*/theme_* (test/theme modules)
+test_orm	G16	Other — test_*/theme_* (test/theme modules)
+test_read_group	G16	Other — test_*/theme_* (test/theme modules)
+test_resource	G16	Other — test_*/theme_* (test/theme modules)
+test_rpc	G16	Other — test_*/theme_* (test/theme modules)
+test_sale_product_configurators	G16	Other — test_*/theme_* (test/theme modules)
+test_sale_purchase_edi_ubl	G16	Other — test_*/theme_* (test/theme modules)
+test_search_panel	G16	Other — test_*/theme_* (test/theme modules)
+test_spreadsheet	G16	Other — test_*/theme_* (test/theme modules)
+test_testing_utilities	G16	Other — test_*/theme_* (test/theme modules)
+test_themes	G16	Other — test_*/theme_* (test/theme modules)
+test_translation_import	G16	Other — test_*/theme_* (test/theme modules)
+test_uninstall	G16	Other — test_*/theme_* (test/theme modules)
+test_website	G16	Other — test_*/theme_* (test/theme modules)
+test_website_modules	G16	Other — test_*/theme_* (test/theme modules)
+test_website_slides_full	G16	Other — test_*/theme_* (test/theme modules)
+theme_anelusia	G16	Other — test_*/theme_* (test/theme modules)
+theme_artists	G16	Other — test_*/theme_* (test/theme modules)
+theme_avantgarde	G16	Other — test_*/theme_* (test/theme modules)
+theme_aviato	G16	Other — test_*/theme_* (test/theme modules)
+theme_beauty	G16	Other — test_*/theme_* (test/theme modules)
+theme_bewise	G16	Other — test_*/theme_* (test/theme modules)
+theme_bistro	G16	Other — test_*/theme_* (test/theme modules)
+theme_bookstore	G16	Other — test_*/theme_* (test/theme modules)
+theme_buzzy	G16	Other — test_*/theme_* (test/theme modules)
+theme_clean	G16	Other — test_*/theme_* (test/theme modules)
+theme_cobalt	G16	Other — test_*/theme_* (test/theme modules)
+theme_common	G16	Other — test_*/theme_* (test/theme modules)
+theme_default	G16	Other — test_*/theme_* (test/theme modules)
+theme_enark	G16	Other — test_*/theme_* (test/theme modules)
+theme_graphene	G16	Other — test_*/theme_* (test/theme modules)
+theme_kea	G16	Other — test_*/theme_* (test/theme modules)
+theme_kiddo	G16	Other — test_*/theme_* (test/theme modules)
+theme_loftspace	G16	Other — test_*/theme_* (test/theme modules)
+theme_monglia	G16	Other — test_*/theme_* (test/theme modules)
+theme_nano	G16	Other — test_*/theme_* (test/theme modules)
+theme_notes	G16	Other — test_*/theme_* (test/theme modules)
+theme_odoo_experts	G16	Other — test_*/theme_* (test/theme modules)
+theme_orchid	G16	Other — test_*/theme_* (test/theme modules)
+theme_paptic	G16	Other — test_*/theme_* (test/theme modules)
+theme_real_estate	G16	Other — test_*/theme_* (test/theme modules)
+theme_test_custo	G16	Other — test_*/theme_* (test/theme modules)
+theme_treehouse	G16	Other — test_*/theme_* (test/theme modules)
+theme_vehicle	G16	Other — test_*/theme_* (test/theme modules)
+theme_yes	G16	Other — test_*/theme_* (test/theme modules)
+theme_zap	G16	Other — test_*/theme_* (test/theme modules)
