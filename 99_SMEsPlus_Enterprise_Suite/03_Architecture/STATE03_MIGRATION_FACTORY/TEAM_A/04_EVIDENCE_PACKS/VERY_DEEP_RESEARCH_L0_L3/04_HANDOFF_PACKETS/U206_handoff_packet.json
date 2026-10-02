@@ -1,0 +1,96 @@
+{
+  "unit": "U206",
+  "module": "hr_attendance",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 20,
+  "gate": "GREEN",
+  "research_date": "2026-10-02",
+  "source_version": "odoo-19.0.post20260921",
+  "migration_flags": [
+    {
+      "id": "MF-1",
+      "severity": "BREAKING",
+      "summary": "hr.attendance.overtime model (v16/v17) fully replaced by hr.attendance.overtime.line + hr.attendance.overtime.ruleset + hr.attendance.overtime.rule models in v19",
+      "pointer": "hr_attendance/models/hr_attendance_overtime.py:6"
+    },
+    {
+      "id": "MF-2",
+      "severity": "FIELD_REMOVED",
+      "summary": "out_reason_id field is NOT present in Community v19 hr.attendance model",
+      "pointer": "hr_attendance/models/hr_attendance.py (absent)"
+    },
+    {
+      "id": "MF-3",
+      "severity": "FIELD_REMOVED",
+      "summary": "hr_attendance_reason_ids field is NOT present in Community v19 hr.attendance model",
+      "pointer": "hr_attendance/models/hr_attendance.py (absent)"
+    },
+    {
+      "id": "MF-4",
+      "severity": "DEPRECATED",
+      "summary": "overtime_company_threshold and overtime_employee_threshold on res.company are marked TODO Remove in master — legacy from previous overtime architecture",
+      "pointer": "hr_attendance/models/res_company.py:17–19"
+    },
+    {
+      "id": "MF-5",
+      "severity": "FIELD_EXTENDED",
+      "summary": "in_mode and out_mode selection fields gained new values: technical and auto_check_out (out_mode only)",
+      "pointer": "hr_attendance/models/hr_attendance.py:61–79"
+    },
+    {
+      "id": "MF-6",
+      "severity": "NEW_CONCEPT",
+      "summary": "hr.version gains ruleset_id field linking contract version to overtime ruleset — new concept in v19",
+      "pointer": "hr_attendance/models/hr_version.py:17–23"
+    },
+    {
+      "id": "MF-7",
+      "severity": "NEW_FEATURE",
+      "summary": "absence_management company flag + _cron_absence_detection: creates technical attendance for absent employees to generate negative overtime (new in v19)",
+      "pointer": "hr_attendance/models/hr_attendance.py:660–697"
+    },
+    {
+      "id": "MF-8",
+      "severity": "CONSTRAINT_INACTIVE",
+      "summary": "GIST exclusion constraint preventing overlapping overtime lines is commented out — not DB-enforced in v19",
+      "pointer": "hr_attendance/models/hr_attendance_overtime.py:48–55"
+    },
+    {
+      "id": "MF-9",
+      "severity": "FIELD_CHANGE",
+      "summary": "date field on hr.attendance is computed+stored+precomputed, derived from check_in in employee timezone; was not precomputed in earlier versions",
+      "pointer": "hr_attendance/models/hr_attendance.py:48"
+    },
+    {
+      "id": "MF-10",
+      "severity": "ARCHITECTURE",
+      "summary": "Overtime recalculation is fully event-driven on attendance create/write/unlink — no scheduled batch computation",
+      "pointer": "hr_attendance/models/hr_attendance.py:370–395"
+    }
+  ],
+  "key_findings": {
+    "main_model": "hr.attendance (_name at hr_attendance.py:28)",
+    "worked_hours_formula": "sum_intervals(check_in..check_out interval minus lunch intervals for fixed calendar; raw duration for flexible calendar)",
+    "open_attendance": "check_out = NULL means checked-in; max 1 open record per employee enforced by _check_validity constraint; auto-closed by cron when auto_check_out=True on company",
+    "overtime_models": "hr.attendance.overtime.line (per-session lines), hr.attendance.overtime.ruleset (rule groupings), hr.attendance.overtime.rule (quantity or timing triggers)",
+    "overtime_link": "linked_overtime_ids Many2many on attendance via matching time_start=check_in and employee_id",
+    "kiosk_mechanism": "Public URL with company UUID token; barcode/RFID matching employee.barcode; optional PIN via company.attendance_kiosk_use_pin; no hr.attendance.kiosk model",
+    "multi_company": "No direct company_id on hr.attendance; derived via employee_id.company_id",
+    "absence_detection": "_cron_absence_detection creates 1-second technical attendances to generate negative overtime for absent employees (company flag required)",
+    "no_reason_fields": "hr_attendance_reason_ids and out_reason_id NOT present in Community v19",
+    "version_ruleset_link": "hr.version.ruleset_id links contract version to overtime rules; employee.ruleset_id is a related field through active version"
+  },
+  "files_read": [
+    "hr_attendance/models/hr_attendance.py (742 lines)",
+    "hr_attendance/models/hr_attendance_overtime.py (119 lines)",
+    "hr_attendance/models/hr_attendance_overtime_rule.py (808 lines)",
+    "hr_attendance/models/hr_attendance_overtime_ruleset.py (52 lines)",
+    "hr_attendance/models/hr_employee.py (378 lines)",
+    "hr_attendance/models/hr_employee_public.py (33 lines)",
+    "hr_attendance/models/hr_version.py (51 lines)",
+    "hr_attendance/models/res_company.py (111 lines)",
+    "hr_attendance/models/res_config_settings.py (54 lines)",
+    "hr_attendance/controllers/main.py (239+ lines)",
+    "hr_attendance/__manifest__.py (99 lines)"
+  ]
+}
