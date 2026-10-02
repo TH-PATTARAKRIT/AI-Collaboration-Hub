@@ -855,13 +855,15 @@ Confirmed by static read: Thai zero-rated (0%) and exempt VAT both export as cat
 - G04/G10 boundary (ACCOUNT_BASE vs ACCOUNT_PROCESS): **UNRESOLVED**.
 - New G-ID updates from this batch: G11 now has U38 assigned (§47 above).
 
-### Resume trigger (UPDATED 2026-10-02 per Boss)
+### Resume trigger (UPDATED 2026-10-02 per Boss — MANUAL START REQUIRED)
 
-**Exact marker required on PR #74:**
-```
-DEEPSEEK_BATCH_READY_FOR_STATE03
-```
-Resume fires **only** when a PR #74 event begins with that exact string. All other PR #74 events (commits, comments, per-U notifications) are ignored while paused.
+| Marker | Meaning | Action |
+|---|---|---|
+| `DEEPSEEK_BATCH_READY_FOR_STATE03` | DeepSeek batch complete — notification only | Acknowledge receipt; **remain PAUSED** |
+| `START_STATE03_BATCH_VERIFICATION` | Boss manual start order | **Begin verification immediately** |
+
+Resume verification **only** when Boss issues `START_STATE03_BATCH_VERIFICATION`.  
+Receiving `DEEPSEEK_BATCH_READY_FOR_STATE03` does NOT trigger verification.
 
 **While paused — prohibited:**
 - Polling PR #74
