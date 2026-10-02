@@ -1,0 +1,50 @@
+{
+  "unit": "U93",
+  "title": "Batch Picking Workflow",
+  "phase": "Second-Pass Depth Closure — P2 Supporting Domains",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "l_levels": ["L3", "L4"],
+  "proof_layers": ["P2", "P4"],
+  "predecessors": ["U57", "U08"],
+  "modules_researched": ["stock_picking_batch"],
+  "source_files_read": [
+    "stock_picking_batch/models/stock_picking_batch.py",
+    "stock_picking_batch/models/stock_picking.py",
+    "stock_picking_batch/models/stock_move.py",
+    "stock_picking_batch/models/stock_move_line.py",
+    "stock_picking_batch/models/stock_warehouse.py",
+    "stock_picking_batch/wizard/stock_picking_to_batch.py",
+    "stock_picking_batch/wizard/stock_add_to_wave.py",
+    "stock_picking_batch/security/ir.model.access.csv",
+    "stock_picking_batch/security/stock_picking_batch_security.xml",
+    "stock_picking_batch/__manifest__.py"
+  ],
+  "claim_count": 32,
+  "function_ids": [
+    "U93-F01", "U93-F02", "U93-F03", "U93-F04", "U93-F05",
+    "U93-F06", "U93-F07", "U93-F08", "U93-F09", "U93-F10",
+    "U93-F11", "U93-F12", "U93-F13", "U93-F14", "U93-F15",
+    "U93-F16", "U93-F17"
+  ],
+  "gate_result": {
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0,
+    "verdict": "PASS"
+  },
+  "output_files": {
+    "restricted_evidence": "01_RESTRICTED_TECHNICAL_EVIDENCE/U93_batch_picking_workflow.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U93_batch_picking_workflow_NEUTRAL.md",
+    "gate_script": "/tmp/vdr_check_u93.py"
+  },
+  "key_findings": {
+    "model": "stock.picking.batch with state=[draft,in_progress,done,cancel] computed from picking_ids.state",
+    "lifecycle": "draft → action_confirm (in_progress) → action_done (delegates to button_validate on pickings) → done (auto-computed when all pickings done/cancel)",
+    "batch_validation": "action_done calls pickings.with_context(skip_sanity_check=True).button_validate(); no separate batch _action_done; individual picking validate is the mechanism",
+    "backorder_handling": "backorders are collected in button_validate override and submitted to _find_auto_batch for re-batching; picking removed from batch if validated independently with remaining incomplete siblings",
+    "wave_picking": "is_wave Boolean on stock.picking.batch; _add_to_wave splits pickings by move lines; _auto_wave runs after stock reservation",
+    "auto_batch": "_find_auto_batch triggered on action_confirm and after stock assignment; respects batch_max_lines/batch_max_pickings; batch_auto_confirm=True by default",
+    "cross_module": "module depends only on stock; warehouse defaults auto_batch=True+batch_group_by_partner=True for incoming/outgoing; no delivery module cross-dependency in Community",
+    "security": "stock.group_stock_user has full CRUD on stock.picking.batch; multi-company ir.rule restricts to allowed companies"
+  }
+}
