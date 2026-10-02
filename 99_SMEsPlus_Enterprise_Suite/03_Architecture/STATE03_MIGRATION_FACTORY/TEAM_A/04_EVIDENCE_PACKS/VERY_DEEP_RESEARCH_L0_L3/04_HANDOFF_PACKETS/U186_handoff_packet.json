@@ -1,0 +1,138 @@
+{
+  "unit_id": "U186",
+  "module": "stock_picking_wave",
+  "actual_module_path": "stock_picking_batch",
+  "group": "G06",
+  "priority": "P2",
+  "status": "STUDIED",
+  "evidence_date": "2026-10-02",
+  "odoo_version": "19.0.post20260921",
+  "edition": "Community",
+
+  "architecture_finding": {
+    "summary": "No standalone stock_picking_wave module in Odoo 19.0 Community. Wave transfers are stock.picking.batch records with is_wave=True, implemented entirely within stock_picking_batch.",
+    "model": "stock.picking.batch",
+    "wave_discriminator_field": "is_wave",
+    "wave_discriminator_type": "Boolean"
+  },
+
+  "key_source_files": [
+    "odoo/addons/stock_picking_batch/models/stock_picking_batch.py",
+    "odoo/addons/stock_picking_batch/models/stock_picking.py",
+    "odoo/addons/stock_picking_batch/models/stock_move.py",
+    "odoo/addons/stock_picking_batch/models/stock_move_line.py",
+    "odoo/addons/stock_picking_batch/wizard/stock_add_to_wave.py",
+    "odoo/addons/stock_picking_batch/data/stock_picking_batch_data.xml",
+    "odoo/addons/stock_picking_batch/security/stock_picking_batch_security.xml"
+  ],
+
+  "model_fields": {
+    "name": "Char — auto-named via ir.sequence (WAVE/ prefix for waves)",
+    "is_wave": "Boolean — True for wave transfers, False for batch transfers",
+    "state": "Selection [draft, in_progress, done, cancel] — stored, computed",
+    "picking_ids": "One2many(stock.picking, batch_id) — member transfers",
+    "picking_type_id": "Many2one(stock.picking.type) — operation type",
+    "company_id": "Many2one(res.company) — required, readonly, default env.company",
+    "user_id": "Many2one(res.users) — responsible, propagated to pickings",
+    "move_ids": "One2many (computed) — aggregated moves from all pickings",
+    "move_line_ids": "One2many (computed, inversed) — aggregated move lines"
+  },
+
+  "state_machine": {
+    "transitions": {
+      "draft_to_in_progress": "action_confirm() — confirms all member pickings",
+      "any_to_done": "_compute_state(): all pickings in (cancel, done) with ≥1 done",
+      "any_to_cancel": "_compute_state(): all pickings cancelled; OR action_cancel() explicit",
+      "in_progress_to_cancel": "action_cancel() — also unlinks all picking_ids"
+    },
+    "note": "Records already in done or cancel are excluded from _compute_state() recomputation"
+  },
+
+  "wave_creation": {
+    "manual_method": "StockMoveLine._add_to_wave(wave=False, description=False)",
+    "manual_wizard": "stock.add.to.wave transient model; wizard calls line_ids._add_to_wave(wave_id)",
+    "picking_split": "If partial lines selected from a picking, source picking is split via copy_data + move._split(qty)",
+    "whole_picking": "If all lines of a picking selected, picking linked directly via Command.link",
+    "auto_confirm": "batch_auto_confirm on picking_type triggers wave.action_confirm() after adding lines"
+  },
+
+  "auto_wave": {
+    "trigger": "StockMove._action_assign() -> self.move_line_ids._auto_wave()",
+    "also_triggered_from": "StockPicking.button_validate() for backorder lines",
+    "eligibility_method": "StockMoveLine._is_auto_waveable()",
+    "eligibility_conditions": [
+      "picking_id is set",
+      "picking.state == 'assigned' (or context skip_auto_waveable=True)",
+      "quantity non-zero",
+      "not already in a wave (batch_id.is_wave == False)",
+      "picking_type.auto_batch == True AND at least one wave grouping key enabled",
+      "if wave_group_by_category: product.categ_id in wave_category_ids"
+    ],
+    "grouping_keys": {
+      "wave_group_by_product": "Group by identical product",
+      "wave_group_by_category": "Group by product category (filtered by wave_category_ids)",
+      "wave_group_by_location": "Group by nearest ancestor wave location (from wave_location_ids)"
+    },
+    "flow": [
+      "1. Filter batchable lines via _is_auto_waveable()",
+      "2. _auto_wave_lines_into_existing_waves(): match to open waves respecting grouping keys and size limits",
+      "3. _auto_wave_lines_into_new_waves(): create new waves for unmatched lines, sort by (picking_id, move_id) to minimize splits"
+    ]
+  },
+
+  "validation": {
+    "method": "action_done()",
+    "behaviour": [
+      "Filters non-done, non-cancelled pickings",
+      "Detaches empty/waiting pickings from wave (does not cancel them)",
+      "Runs _sanity_check(separate_pickings=False) across all pickings",
+      "Calls pickings.button_validate() with skip_sanity_check=True",
+      "Context batches_to_validate prevents re-targeting current wave during backorder auto-wave"
+    ]
+  },
+
+  "assign_action": {
+    "method": "action_assign()",
+    "behaviour": "Calls picking_ids.action_assign() on all member pickings; this propagates to _action_assign() on moves, which triggers _auto_wave() on resulting move lines"
+  },
+
+  "naming_sequence": {
+    "sequence_code": "picking.wave",
+    "prefix": "WAVE/",
+    "name_format": "{sequence_prefix}/{picking_type.sequence_code}/{sequence_number}"
+  },
+
+  "multi_company": {
+    "field": "company_id (required, readonly, default env.company)",
+    "security_rule": "[('company_id', 'in', company_ids)]",
+    "check_company_fields": ["picking_ids", "user_id", "picking_type_id"]
+  },
+
+  "batch_vs_wave": {
+    "same_model": true,
+    "differentiator": "is_wave Boolean",
+    "auto_batch_trigger": "On picking confirmation (_find_auto_batch)",
+    "auto_wave_trigger": "On move line assignment (_auto_wave)",
+    "merge_restriction": "Batch and wave records cannot be merged with each other (UserError in action_merge)",
+    "picking_granularity": {
+      "batch": "Whole pickings only",
+      "wave": "Move-line level (can split pickings)"
+    }
+  },
+
+  "barcode_integration": {
+    "community": "Not present",
+    "enterprise": "Available (stock_barcode module — not in this source tree)"
+  },
+
+  "claims_count": 19,
+  "gate_code": "G06-U186-PASS",
+
+  "migration_notes": {
+    "risk_level": "MEDIUM",
+    "key_risk": "Picking split logic in _add_to_wave() creates new pickings on partial line selection; customisations that assume 1-to-1 picking-to-wave must account for this",
+    "enterprise_gap": "Barcode wave scanning not available in Community; any workflow relying on barcode wave validation requires Enterprise or custom module",
+    "auto_wave_dependency": "Auto-wave fires only when stock.picking.type.auto_batch=True AND wave grouping keys configured; must configure operation types correctly post-migration",
+    "no_separate_model": "Any code referencing a hypothetical stock.picking.wave model will fail; correct model is stock.picking.batch with is_wave=True domain filter"
+  }
+}
