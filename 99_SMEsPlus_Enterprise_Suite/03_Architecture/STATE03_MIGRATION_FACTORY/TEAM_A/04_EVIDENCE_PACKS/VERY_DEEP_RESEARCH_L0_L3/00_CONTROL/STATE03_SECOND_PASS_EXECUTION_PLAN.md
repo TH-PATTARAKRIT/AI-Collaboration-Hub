@@ -196,8 +196,8 @@
 | Unit | Module / Capability Scope | G01–G16 Mapping | Priority | C1 Impact | Dependency | Research Focus | Expected Outputs | Status |
 |------|--------------------------|-----------------|----------|-----------|------------|----------------|-----------------|--------|
 | U70 | account — lock date enforcement (PCO-F01) | G04 CANDIDATE | P0 | Yes | U11, U33 | Lock date write guard, group ACL, hash chain | Restricted+Neutral evidence, handoff packet | Done ec7f3cee |
-| U71 | account/stock/sale/purchase — multi-company isolation (MCT-F01/F02/F05) | G04/G06/G07/G08 CANDIDATE | P0 | Yes | U28, U21 | ir.rule company_id domains, intercompany journal | Restricted+Neutral evidence, handoff packet | Running |
-| U72 | stock_account + stock.valuation.layer — perpetual valuation (GRV-F04/IAV-F03/PCO-F03) | G08 CANDIDATE | P0 | Yes | U10, U07 | SVL creation, AVCO/FIFO with perpetual ON | Restricted+Neutral evidence, handoff packet | Queued |
+| U71 | account/stock/sale/purchase — multi-company isolation (MCT-F01/F02/F05) | G04/G06/G07/G08 CANDIDATE | P0 | Yes | U28, U21 | ir.rule company_id domains, intercompany journal | Restricted+Neutral evidence, handoff packet | Done 0865e1b8 |
+| U72 | stock_account + stock.valuation.layer — perpetual valuation (GRV-F04/IAV-F03/PCO-F03) | G08 CANDIDATE | P0 | Yes | U10, U07 | SVL creation, AVCO/FIFO with perpetual ON | Restricted+Neutral evidence, handoff packet | Running |
 | U73 | account — audit trail immutability (RCN-F02/RCN-F03) | G04 CANDIDATE | P0 | Yes | U11, U10 | Posted entry lock, hash chain, backdating constraint | Restricted+Neutral evidence, handoff packet | Queued |
 | U74 | purchase/stock/account — three-way match / bill control (GRV-F06) | G07/G08/G04 CANDIDATE | P0 | Yes | U07, U12 | qty_billed vs qty_received enforcement | Restricted+Neutral evidence, handoff packet | Queued |
 | U75 | account + stock_account — period cutoff / accrued orders (PCO-F03/PCO-F04) | G04/G08 CANDIDATE | P0 | Yes | U33, U10 | Accrued-orders wizard, interim account posting | Restricted+Neutral evidence, handoff packet | Queued |
