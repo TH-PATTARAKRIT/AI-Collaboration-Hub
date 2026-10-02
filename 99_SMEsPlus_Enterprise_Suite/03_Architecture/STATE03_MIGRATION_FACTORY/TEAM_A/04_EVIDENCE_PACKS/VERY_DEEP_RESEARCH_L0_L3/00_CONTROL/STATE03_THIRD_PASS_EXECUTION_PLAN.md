@@ -56,7 +56,19 @@ Units selected per directive:
 | U126 | account — bank reconciliation statement backend (GAP-021/Rank-13) | P1 | Yes | PARTIAL | account.bank.statement.line auto-match Python backend, manual reconciliation wizard | Done eaa6652d (GAP-021 PARTIAL: Python backend C1; JS auto-match widget excluded; import ABSENT) |
 | U127 | payment — provider webhook chain source-only (GAP-015/GAP-041/Rank-14) | P2 | No | PARTIAL | payment provider webhook chain, Stripe/Mollie source, _process_notification | Done 72dea18e (GAP-015 PARTIAL: 26 modules/18+ providers C1; GAP-041 PARTIAL: SO confirm+auto-invoice chain C1; AWT for live webhook) |
 | U128 | mrp_plm / mrp_workcenter — ECO presence check (Rank-15) | P2 | No | NOT_STUDIED | ECO model, workcenter capacity, BOM versioning if present | Done 4f60911c (mrp_plm ABSENT — Enterprise-only; workcenter capacity/OEE/scheduling C1) |
-| U129 | website_sale — payment GAP-026 residual (Rank-16) | P1 | No | PARTIAL | wishlist→cart→payment→SO confirm chain, website_sale_loyalty cross-module | Running |
+## Continuous Manifest Queue — Batch 1 (U129–U138)
+> Operating mode: 10 concurrent workers. Coordinator integrates sequentially. Applied 2026-10-02. Continuous manifest queue active from U139 onward — no batch-stop behavior.
+
+| U129 | website_sale — deeper cross-module chain (GAP-026 depth/wishlist/loyalty) | P1 | No | PARTIAL | wishlist→loyalty→gift_card→cart→payment→SO confirm cross-module | Running |
+| U130 | Semantic spot-check — U01–U46 + U47–U68 claim verification (GAP-024/GAP-045) | P1 | Moderate | Semantic | 10 random C1 claims per 5 high-risk units verified against source line refs | Running |
+| U131 | F-ID mapping — G10–G16 capability-to-Function-ID (GAP-034) | P2 | No | F-ID | Map each U47–U68 capability to existing Function-IDs or propose new ones | Running |
+| U132 | stock — 3-step routing AWT-prep source study (GAP-030) | P2 | No | AWT-prep | INT→OUT route creation, picking_type_id chain, AWT test plan document | Running |
+| U133 | mail — gateway incoming email AWT-prep (GAP-039) | P2 | No | AWT-prep | mail.alias routing, message_process source, AWT test plan document | Running |
+| U134 | l10n_th WHT PND form L3 deep (GAP-046 P0 TH) | P0 | Yes (TH) | NOT_PROVEN | PND-1/3/53 form generation wizard, WHT certificate, vendor deduction at payment | Running |
+| U135 | account_payment_interco — intercompany journal L3 deep (GAP-002 extension) | P0 | Yes | PARTIAL | account_payment_interco module models, intercompany journal entry creation chain | Running |
+| U136 | account_reconcile_model — rule engine deep (GAP-021 Python extension) | P1 | Yes | PARTIAL | account.reconcile.model rule types, _apply_rules, writeoff/invoice-match logic | Running |
+| U137 | payment_xendit — Thai payment provider deep (source evidence U127, TH-adjacent) | P2 | Yes (TH) | NOT_STUDIED | Xendit FPX webhook, x-callback-token verification, THB decimal handling | Running |
+| U138 | account_tax_group / tax repartition — Thai WHT/VAT computation (GAP-046 sub) | P0 | Yes (TH) | PARTIAL | account.tax.group, account.tax.repartition.line, WHT deduction mechanics | Running |
 
 ---
 

@@ -1,0 +1,64 @@
+{
+  "unit": "U135",
+  "title": "account_payment_interco — intercompany journal deep L3 (GAP-002 extension)",
+  "gap": "GAP-002",
+  "g_group": "G01",
+  "priority": "P0",
+  "date": "2026-10-02",
+  "researcher": "Claude Sonnet 4.6",
+  "module_present": true,
+  "module_path": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons/account_payment_interco",
+  "license": "LGPL-3",
+  "depends": ["account_payment"],
+  "enterprise_dependency": false,
+  "gap_status": "PARTIAL",
+  "gap_summary": "Module provides automatic two-way journal entry creation and reconciliation on invoice post via provider-based payment flow only; no reversal propagation; no manual-payment coverage; config must be set on both companies",
+  "claims_count": 26,
+  "claims_by_class": {
+    "C1": 21,
+    "C2": 1,
+    "C3": 2,
+    "ABSENT": 2
+  },
+  "claims_by_flag": {
+    "C1": 21,
+    "AWT": 2,
+    "GAP": 3
+  },
+  "layer_applicability": {
+    "L1": "APPLICABLE — LGPL-3 Community module, depends on account_payment only",
+    "L2": "APPLICABLE — 3 company config fields, settings relay, 2 new methods + 1 override",
+    "L3": "APPLICABLE — trigger on invoice _post, two-phase journal creation, automatic reconciliation",
+    "L4": "APPLICABLE — sudo + with_company cross-company ORM calls, _seek_for_lines dependency",
+    "L5": "APPLICABLE — settings view only, gated on multi-company group",
+    "L6": "APPLICABLE — sudo used, with_company used, no dedicated ir.rule in module",
+    "L7": "APPLICABLE — 3 per-company accounts + clearing journal required on both companies",
+    "L8": "NOT APPLICABLE — no reversal logic in module, gap identified",
+    "L9": "APPLICABLE — two-entry double-sided posting pattern documented",
+    "L10": "NOT APPLICABLE — synchronous only, no cron/queue",
+    "L11": "NOT APPLICABLE — no controllers or API endpoints",
+    "L12": "APPLICABLE — AWT tests defined in test file"
+  },
+  "key_findings": [
+    "Trigger is invoice _post (not payment post) — workflow fires when invoice is confirmed with a cross-company payment already linked",
+    "Two journal entries are created: (1) clearing entry in PAYMENT company against interco payable/receivable, (2) settlement entry in INVOICE company against interco receivable/payable",
+    "Both legs are automatically reconciled against the original AR/AP and payment outstanding lines",
+    "Only transaction-based (provider) payments are covered — manual payments are excluded",
+    "No reversal propagation — this is a gap for MCT-F02",
+    "sudo() + with_company() pattern used throughout — no dedicated ir.rule",
+    "Multi-currency: payment currency used for clearing leg, company currency for settlement leg",
+    "Silent fail if config missing — no error raised, no warning"
+  ],
+  "awt_evidence_needed": [
+    "Search posted journal entry in payment company with memo reference",
+    "Search posted journal entry in invoice company with Interco Settlement prefix",
+    "Confirm invoice payment_state = paid",
+    "Confirm counterpart lines reconciled = True",
+    "Confirm payment outstanding lines reconciled = True"
+  ],
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U135_account_payment_interco.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U135_account_payment_interco_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U135_handoff_packet.json"
+  }
+}
