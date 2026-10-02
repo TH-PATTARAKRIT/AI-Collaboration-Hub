@@ -1,0 +1,45 @@
+{
+  "unit": "U72",
+  "scope": "Stock valuation perpetual AVCO/FIFO: product.value model (SVL replacement), AVCO/FIFO cost computation, account.move generation from stock moves, perpetual vs periodic distinction",
+  "function_ids_targeted": [
+    "GRV-F04",
+    "IAV-F03",
+    "PCO-F03",
+    "NEW:U72-F01"
+  ],
+  "evidence_file": "01_RESTRICTED_TECHNICAL_EVIDENCE/U72_stock_valuation_perpetual.md",
+  "neutral_file": "02_NEUTRAL_KNOWLEDGE/U72_stock_valuation_perpetual_NEUTRAL.md",
+  "claim_count": 38,
+  "gate_exit_code": 0,
+  "key_findings": {
+    "svl_model_present": false,
+    "svl_replacement_model": "product.value (stock_account/models/product_value.py)",
+    "move_value_field": "stock.move.value (stock_account/models/stock_move.py:24)",
+    "perpetual_flag_field": "product.valuation == 'real_time' (computed from categ_id.property_valuation or company.inventory_valuation)",
+    "property_valuation_location": "stock_account/models/product.py:731 (ProductCategory)",
+    "company_inventory_valuation_default": "periodic",
+    "account_entry_trigger": "_action_done -> _create_account_move (stock_account/models/stock_move.py:187,193)",
+    "journal_config_field": "res.company.account_stock_journal_id (res_company.py:12)",
+    "avco_recompute_trigger": "_update_standard_price() called after _action_done on incoming moves",
+    "avco_fast_path_formula": "(previous_qty * standard_price + added_value) / qty_available",
+    "fifo_layer_mechanism": "stock.move records with is_in=True; _run_fifo_get_stack walks date-desc, reverses for FIFO order",
+    "fifo_no_separate_table": true,
+    "cogs_on_delivery": "account_move._post() -> _stock_account_prepare_realtime_out_lines_vals() adds COGS lines to customer invoice",
+    "receipt_accounting": "account_move_line._compute_account_id sets purchase line to stock_valuation for real_time products",
+    "stock_input_interim_account_absent": true,
+    "pco_f03_reconciliation": "vendor bill DR stock_valuation directly; no stock input interim transit account in Odoo 19 Community",
+    "cost_method_change_blocked": false,
+    "cost_method_change_action": "_update_standard_price() called on affected products"
+  },
+  "new_function_ids": [
+    "NEW:U72-F01 \u2014 product.value model (SVL replacement, price history and move value override)"
+  ],
+  "c1_claim_count": 34,
+  "awt_claim_count": 0,
+  "predecessor_units": [
+    "U09",
+    "U10",
+    "U71"
+  ],
+  "date": "2026-10-02"
+}
