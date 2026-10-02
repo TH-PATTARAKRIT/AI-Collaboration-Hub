@@ -1,0 +1,191 @@
+{
+  "unit": "U166",
+  "title": "website — Base Website/CMS Module",
+  "group": "G12",
+  "priority": "P2",
+  "level": "L3",
+  "source": "Odoo Community 19.0.post20260921",
+  "source_path": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons/website",
+  "completed": "2026-10-02",
+  "claims_count": 22,
+  "gate_status": "PASS",
+  "gate_code": "G12-U166-PASS",
+  "evidence_files": {
+    "technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U166_website.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U166_website_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U166_handoff_packet.json"
+  },
+  "key_finding": "Community edition fully supports multiple websites per database behind a feature-group toggle; each website has isolated routing maps, domain-based resolution, and website-scoped publication states.",
+  "module_identity": {
+    "name": "Website",
+    "technical_name": "website",
+    "category": "Website/Website",
+    "version": "1.0",
+    "license": "LGPL-3",
+    "application": true,
+    "depends": ["digest", "web", "html_editor", "http_routing", "portal", "social_media", "auth_signup", "mail", "google_recaptcha", "utm", "html_builder"],
+    "external_python": ["geoip2"]
+  },
+  "models_researched": [
+    {
+      "name": "website",
+      "file": "models/website.py",
+      "description": "Core website record: domain, company, languages, CDN, social, menu, public user",
+      "key_fields": ["name", "domain", "company_id", "language_ids", "default_lang_id", "theme_id", "user_id", "menu_id", "homepage_url", "robots_txt", "cookies_bar", "cdn_activated"],
+      "constraints": ["unique(domain)"]
+    },
+    {
+      "name": "ir.http",
+      "file": "models/ir_http.py",
+      "description": "Inherits base ir.http; adds website routing, URL rewrites, _serve_page(), visitor tracking",
+      "key_methods": ["routing_map", "_match", "_generate_routing_rules", "_serve_page", "_serve_fallback", "_register_website_track", "_auth_method_public", "_url_for"]
+    },
+    {
+      "name": "website.page",
+      "file": "models/website_page.py",
+      "description": "CMS page record; delegates template to ir.ui.view via _inherits",
+      "key_fields": ["url", "view_id", "website_id", "website_indexed", "date_publish", "is_visible", "is_homepage"],
+      "cache_duration_seconds": 3600
+    },
+    {
+      "name": "website.menu",
+      "file": "models/website_menu.py",
+      "description": "Navigation menu tree; supports mega menus, group-based visibility, multi-website labelling",
+      "key_fields": ["name", "url", "page_id", "website_id", "parent_id", "child_id", "group_ids", "is_mega_menu", "mega_menu_content"]
+    },
+    {
+      "name": "website.visitor",
+      "file": "models/website_visitor.py",
+      "description": "Visitor tracking; anonymous SHA1 token or partner_id; tracks page visits",
+      "key_fields": ["access_token", "website_id", "partner_id", "country_id", "visit_count", "website_track_ids", "last_connection_datetime"]
+    },
+    {
+      "name": "website.track",
+      "file": "models/website_visitor.py",
+      "description": "Per-visit page tracking record with 30-minute dedup window",
+      "key_fields": ["visitor_id", "page_id", "url", "visit_datetime"]
+    },
+    {
+      "name": "website.seo.metadata",
+      "file": "models/mixins.py",
+      "description": "Abstract SEO mixin: meta title/description/keywords, seo_name for slug override, OG/Twitter card generation",
+      "key_fields": ["website_meta_title", "website_meta_description", "website_meta_keywords", "website_meta_og_img", "seo_name", "is_seo_optimized"]
+    },
+    {
+      "name": "website.multi.mixin",
+      "file": "models/mixins.py",
+      "description": "Abstract mixin giving any model a website_id for multi-website scoping",
+      "key_fields": ["website_id"],
+      "key_methods": ["can_access_from_current_website"]
+    },
+    {
+      "name": "website.published.mixin",
+      "file": "models/mixins.py",
+      "description": "Abstract mixin for publishable records: is_published, can_publish, website_url",
+      "key_fields": ["is_published", "website_published", "can_publish", "website_url"]
+    },
+    {
+      "name": "website.published.multi.mixin",
+      "file": "models/mixins.py",
+      "description": "Combines published + multi mixins; website_published is website-contextual",
+      "notes": "is_published stays true at DB level; website_published is computed per current website context"
+    }
+  ],
+  "controllers_researched": [
+    {
+      "class": "Website",
+      "file": "controllers/main.py",
+      "inherits": "portal.controllers.web.Home",
+      "key_routes": [
+        {"path": "/", "auth": "public", "website": true, "description": "Homepage with 5-stage fallback"},
+        {"path": "/website/force/<website_id>", "auth": "user", "description": "Switch active website in session"}
+      ]
+    }
+  ],
+  "multi_website": {
+    "supported_in_community": true,
+    "gate": "website.group_multi_website security group",
+    "gate_config_field": "res.config.settings.group_multi_website",
+    "activation": "Automatic when second website record is created",
+    "domain_isolation": true,
+    "routing_isolation": true,
+    "publication_isolation": true,
+    "menu_isolation": true
+  },
+  "seo_capabilities": {
+    "meta_title": true,
+    "meta_description": true,
+    "meta_keywords": true,
+    "opengraph": true,
+    "twitter_card": true,
+    "seo_name_slug_override": true,
+    "website_indexed_flag": true,
+    "robots_txt_per_website": true
+  },
+  "visitor_tracking": {
+    "model": "website.visitor",
+    "tracking_model": "website.track",
+    "anonymous_token_method": "SHA1(remote_addr + user_agent + session_id)[:32]",
+    "authenticated_token_method": "partner_id",
+    "dedup_window_minutes": 30,
+    "bot_exclusion": true,
+    "geoip_country": true,
+    "cron_cleanup": true,
+    "new_visit_gap_hours": 8
+  },
+  "migration_risks": [
+    {
+      "risk": "MEDIUM",
+      "area": "Domain uniqueness",
+      "detail": "website.domain has a unique constraint. Cloning or importing website records requires explicit domain deconfliction."
+    },
+    {
+      "risk": "HIGH",
+      "area": "Company binding",
+      "detail": "website.company_id is required. Multi-company migrations must pre-assign company records before website records can be created or restored."
+    },
+    {
+      "risk": "HIGH",
+      "area": "Multi-website group auto-activation",
+      "detail": "Creating a second website record automatically implies website.group_multi_website for all website designer users. This may surface UI elements the customer has not configured for."
+    },
+    {
+      "risk": "HIGH",
+      "area": "Website-contextual publication state",
+      "detail": "Records with is_published=True may appear unpublished when accessed in a different website context. Post-migration validation must verify publication per website scope, not just at DB level."
+    },
+    {
+      "risk": "HIGH",
+      "area": "Per-website routing caches",
+      "detail": "_get_current_website_id is ormcache'd by domain_name+fallback. After migration, caches must be invalidated to pick up new domain-to-website mappings."
+    },
+    {
+      "risk": "MEDIUM",
+      "area": "Visitor tracking data volume",
+      "detail": "website.visitor and website.track can be large tables. Cron _cron_unlink_old_visitors hard-deletes (not archives) old records. Migration should plan for table size and decide whether historical visitor data is needed."
+    },
+    {
+      "risk": "LOW",
+      "area": "Mega menu HTML",
+      "detail": "mega_menu_content is stored as raw HTML without sanitisation. Content migration must preserve HTML verbatim; any re-rendering or sanitisation will corrupt the menus."
+    },
+    {
+      "risk": "LOW",
+      "area": "URL rewrite rules are website-scoped",
+      "detail": "website.rewrite records have an optional website_id. Rules without a website_id apply to all websites. Migration must audit which rules need website assignment."
+    }
+  ],
+  "dependencies_chain": {
+    "digest": "digest statistics mixin",
+    "web": "base web framework",
+    "html_editor": "rich text editor",
+    "http_routing": "URL routing base",
+    "portal": "portal access and views",
+    "social_media": "social links model on res.company",
+    "auth_signup": "public user self-registration",
+    "mail": "messaging and followers",
+    "google_recaptcha": "CAPTCHA protection for forms",
+    "utm": "UTM campaign tracking",
+    "html_builder": "drag-and-drop block builder"
+  }
+}

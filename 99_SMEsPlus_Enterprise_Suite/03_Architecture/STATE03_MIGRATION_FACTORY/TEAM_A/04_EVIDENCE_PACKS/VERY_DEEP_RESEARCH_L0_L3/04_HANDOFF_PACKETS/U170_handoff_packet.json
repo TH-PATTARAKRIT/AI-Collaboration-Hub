@@ -1,0 +1,106 @@
+{
+  "unit_id": "U170",
+  "unit_title": "Stock Put-Away Rules — Warehouse Location Assignment",
+  "group": "G06",
+  "priority": "P2",
+  "prior_status": "NOT_STUDIED",
+  "new_status": "STUDIED",
+  "odoo_version": "19.0.post20260921",
+  "edition": "Community",
+  "research_level": "L3",
+  "completed_by": "DeepSeek-STATE03-Worker",
+  "completion_date": "2026-10-02",
+
+  "primary_model": "stock.putaway.rule",
+  "primary_file": "odoo/addons/stock/models/product_strategy.py",
+
+  "related_models": [
+    "stock.location",
+    "stock.storage.category",
+    "stock.storage.category.capacity",
+    "stock.move.line",
+    "stock.package",
+    "stock.package.type",
+    "product.category"
+  ],
+
+  "source_files": [
+    "odoo/addons/stock/models/product_strategy.py",
+    "odoo/addons/stock/models/stock_location.py",
+    "odoo/addons/stock/models/stock_move_line.py",
+    "odoo/addons/stock/models/stock_storage_category.py",
+    "odoo/addons/stock/models/stock_package.py"
+  ],
+
+  "key_fields": {
+    "stock.putaway.rule": {
+      "location_in_id": "Many2one(stock.location) — arrival location, required, indexed",
+      "location_out_id": "Many2one(stock.location) — destination sub-location, required, domain=child_of location_in_id",
+      "product_id": "Many2one(product.product) — optional product filter, check_company",
+      "category_id": "Many2one(product.category) — optional category filter",
+      "sequence": "Integer — priority order (ascending, lower wins in tie-break)",
+      "company_id": "Many2one(res.company) — required, locked after creation",
+      "package_type_ids": "Many2many(stock.package.type) — optional package type filter",
+      "storage_category_id": "Many2one(stock.storage.category) — computed from sublocation mode",
+      "active": "Boolean — soft-delete flag",
+      "sublocation": "Selection(no/last_used/closest_location)"
+    },
+    "stock.location": {
+      "putaway_rule_ids": "One2many(stock.putaway.rule, location_in_id) — inverse of location_in_id",
+      "storage_category_id": "Many2one(stock.storage.category) — capacity constraint gate"
+    },
+    "stock.storage.category": {
+      "max_weight": "Float — maximum weight in warehouse weight UOM",
+      "allow_new_product": "Selection(empty/same/mixed) — product-mix policy",
+      "product_capacity_ids": "computed One2many — per-product quantity limits",
+      "package_capacity_ids": "computed One2many — per-package-type count limits",
+      "company_id": "Many2one(res.company) — optional, shared if empty"
+    }
+  },
+
+  "rule_resolution_priority": [
+    "1. package_type_ids match (highest)",
+    "2. product_id exact match",
+    "3. category_id exact match (not a parent)",
+    "4. category_id parent match",
+    "5. fallback: original destination location"
+  ],
+
+  "sequence_role": "Tie-breaker within same specificity tier; lower integer = processed first; _order = 'sequence,product_id'",
+
+  "capacity_check_method": "_check_can_be_used() on stock.location",
+  "capacity_checks": [
+    "allow_new_product=empty: reject if any positive quant",
+    "allow_new_product=same: reject if different product already stored or incoming",
+    "max_weight: forecast_weight + incoming weight must not exceed max_weight",
+    "product_capacity: location_qty + quantity must not exceed product_capacity.quantity",
+    "package_capacity: location package count must not exceed package_capacity.quantity"
+  ],
+
+  "putaway_application_method": "_apply_putaway_strategy() on stock.move.line",
+  "putaway_bypass_context_key": "avoid_putaway_rules",
+
+  "multi_company": {
+    "company_locked_after_create": true,
+    "check_company_auto": true,
+    "storage_category_can_be_shared": true
+  },
+
+  "package_type_integration": {
+    "field": "package_type_ids (Many2many on stock.putaway.rule)",
+    "consolidation_logic": "In _get_putaway_location(), existing quants with same package_type in child locations are preferred before empty locations",
+    "package_source": "package.package_type_id or packaging.package_type_id"
+  },
+
+  "claims_count": 18,
+  "gate_result": "PASS",
+  "gate_code": "G06-U170-PASS",
+
+  "key_finding": "Put-away rule selection is a two-step process: (1) Python re-sort by specificity (package-type > product > exact-category > parent-category) overrides DB sequence order; (2) capacity gate via _check_can_be_used() filters by storage category weight/quantity/mix constraints before location is confirmed.",
+
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U170_stock_putaway.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U170_stock_putaway_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U170_handoff_packet.json"
+  }
+}
