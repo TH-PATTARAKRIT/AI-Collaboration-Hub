@@ -1,0 +1,96 @@
+{
+  "unit": "U205",
+  "module": "res_partner",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 22,
+  "gate": "GREEN",
+  "addons_scoped": ["base", "account", "base_vat"],
+  "source_files": [
+    "base/models/res_partner.py",
+    "base/models/res_bank.py",
+    "account/models/partner.py",
+    "account/models/res_partner_bank.py",
+    "base_vat/models/res_partner.py"
+  ],
+  "migration_flags": [
+    {
+      "flag": "TYPE_PRIVATE_REMOVED",
+      "description": "The 'private' address type (5th selection option in v16/v17) is absent from v19. Selection values are now: contact, invoice, delivery, other (4 values).",
+      "evidence": "base/models/res_partner.py:254-259",
+      "impact": "Any v16/v17 records with type='private' will require migration mapping to an alternative type. HR module integrations that relied on private type need to be reviewed."
+    },
+    {
+      "flag": "TITLE_FIELD_REMOVED",
+      "description": "The 'title' field (res.partner.title many2one, providing Mr/Ms/Dr salutations) is absent from base/models/res_partner.py in v19. Zero matches found in full file scan.",
+      "evidence": "base/models/res_partner.py — full scan returned 0 occurrences of 'title'",
+      "impact": "Title data from v16/v17 res.partner.title has no direct destination field. Salutation data must be mapped or stored elsewhere."
+    },
+    {
+      "flag": "MOBILE_FIELD_REMOVED_FROM_BASE",
+      "description": "The 'mobile' field is absent from base/models/res_partner.py in v19. Zero matches found in full file scan.",
+      "evidence": "base/models/res_partner.py — full scan returned 0 occurrences of 'mobile'",
+      "impact": "Mobile number data migration path must be verified; the field may exist in a separate module (e.g. phone_validation)."
+    },
+    {
+      "flag": "CREDIT_DEBIT_ACCOUNT_ONLY",
+      "description": "credit and debit monetary fields are defined only in account/models/partner.py (lines 516-540). They are NOT present in the base model and are computed from account.move.line SQL aggregation.",
+      "evidence": "account/models/partner.py:516, 537",
+      "impact": "Integrations that read credit/debit without account module will fail. These fields require account module to be installed."
+    },
+    {
+      "flag": "BARCODE_COMPANY_DEPENDENT",
+      "description": "The barcode field is company_dependent=True in v19 (base/models/res_partner.py:309), meaning it has per-company values. In v16 it may have been a plain Char field.",
+      "evidence": "base/models/res_partner.py:309",
+      "impact": "Barcode data migration must account for the company-dependent storage mechanism (ir.property or jsonb column depending on ORM version)."
+    }
+  ],
+  "key_findings": {
+    "commercial_partner_id": {
+      "compute_method": "_compute_commercial_partner",
+      "file": "base/models/res_partner.py",
+      "lines": "514-520",
+      "rule": "is_company=True OR parent_id=False → self; else parent.commercial_partner_id",
+      "stored": true,
+      "recursive": true
+    },
+    "address_type_values_v19": ["contact", "invoice", "delivery", "other"],
+    "address_type_values_v16_v17": ["contact", "invoice", "delivery", "other", "private"],
+    "vat_thai": {
+      "validator": "check_vat_th",
+      "file": "base_vat/models/res_partner.py",
+      "lines": "894-896",
+      "library": "stdnum.util.get_cc_module('th', 'tin').is_valid",
+      "reference_format": "1234545678781",
+      "digits": 13
+    },
+    "accounting_partner": {
+      "method": "_find_accounting_partner",
+      "file": "account/models/partner.py",
+      "line": 710,
+      "returns": "partner.commercial_partner_id"
+    },
+    "bank_ids": {
+      "type": "One2many",
+      "comodel": "res.partner.bank",
+      "inverse_field": "partner_id",
+      "file": "base/models/res_partner.py",
+      "line": 245,
+      "holder_domain": "['|', ('is_company','=',True), ('parent_id','=',False)]"
+    },
+    "fields_sync_directions": [
+      "UPSTREAM: commercial_fields from parent to child when parent_id changes",
+      "UPSTREAM: address fields from parent to contact-type child",
+      "TO_PARENT: address from contact-type child to parent",
+      "TO_PARENT: synced commercial fields (vat) from child to parent",
+      "DOWNSTREAM: commercial_fields from commercial_entity to non-company children",
+      "DOWNSTREAM: address fields from parent to contact-type children"
+    ],
+    "company_scoping": {
+      "field": "company_id",
+      "file": "base/models/res_partner.py",
+      "line": 285,
+      "propagation": "company_id change in write() cascades to all child_ids (line 911)",
+      "check_company_auto": true
+    }
+  }
+}
