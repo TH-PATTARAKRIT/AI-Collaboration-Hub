@@ -1,0 +1,69 @@
+{
+  "unit": "U102",
+  "title": "Migration Scripts — Hook Patterns (L3/L10) — P0 GAP-033",
+  "phase": "Third-Pass",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "session": "ODOO 19 COMMUNITY DEEP RESEARCH",
+  "gate_result": {
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0,
+    "claim_count": 32,
+    "gate_script": "/tmp/vdr_check_u102.py",
+    "result": "PASS"
+  },
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U102_migration_scripts.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U102_migration_scripts_NEUTRAL.md"
+  },
+  "function_ids": [
+    "U102-F01", "U102-F02", "U102-F03", "U102-F04", "U102-F05",
+    "U102-F06", "U102-F07", "U102-F08", "U102-F09", "U102-F10",
+    "U102-F11", "U102-F12", "U102-F13", "U102-F14", "U102-F15",
+    "U102-F16", "U102-F17", "U102-F18", "U102-F19", "U102-F20",
+    "U102-F21", "U102-F22", "U102-F23", "U102-F24", "U102-F25",
+    "U102-F26", "U102-F27", "U102-F28", "U102-F29", "U102-F30",
+    "U102-F31", "U102-F32"
+  ],
+  "claim_ids": [
+    "U102-001", "U102-002", "U102-003", "U102-004", "U102-005",
+    "U102-006", "U102-007", "U102-008", "U102-009", "U102-010",
+    "U102-011", "U102-012", "U102-013", "U102-014", "U102-015",
+    "U102-016", "U102-017", "U102-018", "U102-019", "U102-020",
+    "U102-021", "U102-022", "U102-023", "U102-024", "U102-025",
+    "U102-026", "U102-027", "U102-028", "U102-029", "U102-030",
+    "U102-031", "U102-032"
+  ],
+  "key_findings": {
+    "migration_naming_convention": "migrations/<version>/<stage>-<description>.py where version is X.Y or X.Y.Z or server.X.Y.Z (e.g. 9.0.1.2, 1.4, 17.0.1.1) and stage is pre|post|end",
+    "migrate_signature": "migrate(cr, version) — positional args; also accepts (_cr, _version)",
+    "stages": ["pre (before module data load)", "post (after module init)", "end (after all modules settled)"],
+    "alternative_dir": "upgrades/ is treated identically to migrations/ for script discovery",
+    "sql_patterns": [
+      "Direct cr.execute() with parameterised SQL for UPDATE/DELETE/ALTER TABLE",
+      "information_schema.columns column existence check",
+      "REGEXP_REPLACE on jsonb columns cast to text",
+      "ALTER TABLE ... ADD COLUMN via env.cr.execute() in init hooks"
+    ],
+    "util_functions": [
+      "odoo.tools.sql.column_exists(cr, tablename, columnname)",
+      "odoo.tools.sql.rename_column(cr, tablename, col1, col2)",
+      "odoo.tools.sql.drop_constraint(cr, tablename, constraintname)",
+      "odoo.tools.sql.add_foreign_key(cr, t1, c1, t2, c2, ondelete)"
+    ],
+    "init_hook_patterns": [
+      "pre_init_hook(env) — declared in __manifest__ 'pre_init_hook'",
+      "post_init_hook(env) — declared in __manifest__ 'post_init_hook'",
+      "uninstall_hook(env) — declared in __manifest__ 'uninstall_hook'"
+    ],
+    "modules_with_migrations_dir": ["analytic", "hr_expense", "project", "purchase", "website_hr_recruitment", "l10n_*"],
+    "modules_with_upgrades_dir": ["project", "hr_holidays", "project_sms", "hr_timesheet_attendance", "point_of_sale", "l10n_es"],
+    "core_modules_without_migration_dir": ["account", "stock", "mrp", "sale", "hr"],
+    "odoo_upgrade_namespace": "Empty placeholder in Community source (odoo/upgrade/.gitkeep); used by Enterprise/OpenUpgrade",
+    "openupgrade_patterns": "Not present in this 19.0 Community source"
+  },
+  "l_levels_covered": ["L3", "L10"],
+  "proof_layers": ["P1"],
+  "predecessor": null,
+  "next_unit": null
+}
