@@ -1,0 +1,32 @@
+{
+  "unit": "U119",
+  "title": "l10n_th_pnd / WHT — Thai PND + Withholding Tax Deep",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "modules": ["l10n_th"],
+  "modules_absent": ["l10n_th_pnd", "l10n_th_withholding_tax"],
+  "function_ids": ["THX-F01", "THX-F02", "THX-F03"],
+  "l_levels": ["L3", "L4"],
+  "proof_layers": ["P1", "P3"],
+  "claim_count": 45,
+  "c1_count": 40,
+  "gap_count": 5,
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "key_findings": {
+    "pnd_module_absent": "l10n_th_pnd module is absent from Community addons; no dedicated PND module exists",
+    "wht_module_absent": "l10n_th_withholding_tax module is absent from Community addons; no account.withholding.tax model",
+    "wht_via_account_tax": "WHT implemented as standard account.tax records (negative percent) for 1/2/3/5 percent across PND3 and PND53 income types — see addons/l10n_th/data/template/account.tax-th.csv lines 26-73",
+    "pnd3_report_defined": "PND3 statutory report defined as account.report with Total Income / Total Remittance / Surcharge / Total lines — see addons/l10n_th/data/account_tax_report_data.xml lines 291-353",
+    "pnd53_report_defined": "PND53 statutory report defined as account.report with matching structure — see addons/l10n_th/data/account_tax_report_data.xml lines 227-289",
+    "wht_accounts_present": "Five WHT liability accounts (PND1 213300, PND3 213301, PND53 213302, PND54 213303, WHT Payable 213500) and two WHT asset accounts (WHT Creditable 114300, WHT Receivable 114401) — see addons/l10n_th/data/template/account.account-th.csv",
+    "certificate_absent": "No WHT certificate PDF template in l10n_th views — vendor withholding certificate generation is absent from Community",
+    "pnd54_report_absent": "PND54 account exists (213303) but no PND54 report definition — overseas payment WHT reporting unsupported",
+    "payment_automation_absent": "No payment-level WHT deduction wizard or account.payment override — WHT must be applied manually on bills"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U119_l10n_th_pnd_wht.md",
+    "02_NEUTRAL_KNOWLEDGE/U119_l10n_th_pnd_wht_NEUTRAL.md"
+  ],
+  "predecessor_units": ["U100", "U107"],
+  "note": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION"
+}
