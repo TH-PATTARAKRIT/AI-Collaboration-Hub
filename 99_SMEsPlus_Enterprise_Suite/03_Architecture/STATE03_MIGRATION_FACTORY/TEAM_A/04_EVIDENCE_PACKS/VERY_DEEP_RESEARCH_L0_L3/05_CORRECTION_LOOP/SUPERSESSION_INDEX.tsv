@@ -18,3 +18,4 @@ VDR-U11-C191 / N-U11-095 and U11 dim-5 abnormal-warning default (C018 context)	S
 TXS statements S11-06, S12-04, S12-05, S13-07 (CONFLICT) and 13 further statements upgraded; N-TXS-016 wording (issuer items) corrected	SUPERSEDED-IN-PART	TXS-R1 (07_THAI_TAX_CORE)	CR-017
 U24 CAP-U24-08 gap-register label NOT PRESENT IN COMMUNITY SOURCE on VDR-U24-C104, C140, C207, C208, C209, C210, C212, C214, C215, C242	SUPERSEDED-IN-PART (label)	U24-R1	CR-020 (verifier-numbered CR-017)
 VDR-U17-C399 / N-U17 statement and U17 finding 'assignation log end date never set by code'	SUPERSEDED-IN-PART	U17-R1	CR-021
+VDR-U13-C441 / N-U13-286 (import tax-correction tolerance) and qualification of VDR-U13-C430	SUPERSEDED-IN-PART	U13-R1	CR-022
