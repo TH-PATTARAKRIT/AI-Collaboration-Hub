@@ -674,6 +674,200 @@ All 7 C1-bound claims relate to lock-date enforcement — PCO-F01 scope (Process
 
 **Classification**: `ACCEPTED (static tier)` — `account` module, Thai Tax Core dynamic-sync layer. PARTIAL flags on F15/F16 (cash-basis mechanism native, no on-payment Thai taxes), F21 (fiscal-position effect needs explicit action), F22 (FX rate date/source gap). 4 `NATIVE GAP / EXTENSION REQUIRED candidates` (NG-1 through NG-4) surfaced; require TXS statutory validation before final status. No Boss action needed at this intake stage; NG-4 and NG-1 are priority items for the Thai Tax Core AWT backlog.
 
+## 42. U31 (Thai Tax Core: tax report engine and tax grid tags) — semantic highlights + PAUSE CHECKPOINT intake
+
+**Unit**: U31, `tax_report_engine_tags`, Thai Tax Core lane. G-ID: `G04|G10` (account, boundary unresolved).
+**Commits**: content `31224332`, packet `b67231fd`. Mechanical gate: PASS.
+**Coverage**: 270 claims (FACT 203, OBSERVATION 21, INFERENCE 32, UNKNOWN 14); 135 neutral statements; 1 CONTRA; 7 C1-bound (PCO-F01); 21 RT; 10 capabilities.
+**Function-IDs**: PCO-F01×7 (tax lock claims), PCO-F02×7 (return period/date scope); 256 claims FUNCTION MAPPING REQUIRED.
+
+> **NOTE**: Full semantic review paused by Boss's CONTROLLED PAUSE instruction (2026-10-02). Sections below record findings from CONTRA investigation and NATIVE GAP identification already completed before the pause; remaining semantic review (C1-bound claims, RT items, native-gap completeness) deferred to Resume.
+
+### CONTRA VDR-U31-C101 — expression count correction (CR-025 issued)
+
+**Finding**: U24 section 10 and TXC reconciliation table stated "24 expressions + 5 generic (from account module)". U31's direct DB reconciliation finds **29 Thai expressions** (24 with explicit data identifiers + 5 shortcut-generated via `aggregation_formula` on 5 Thai line records) — there are **zero generic/account-module expressions**; the 5 generated ones are Thai. This is a correction to U24 and TXC's description of the Thai report structure.
+
+**Classification of correction**: NARROWING — U24/TXC's business-rule statement about the Thai report definitions is not overturned (same 3 reports, 24 lines, 29 total expressions), but the "5 generic" label was incorrect. The 5 are Thai shortcut-generated, not from the generic account module.
+
+**Action**: Correction request CR-025 issued via PR #74 comment this entry. U24 and TXC both need a footnote: "The 5 shortcut-generated expressions are Thai (generated from Thai line records), not generic account-module expressions."
+
+### NATIVE GAP (Major): No tax report execution engine in Community
+
+**CAP-U31-03 finding** (confirmed by static search, not RT): The Thai VAT/WHT report definitions exist as structured data (3 reports, 24 lines, 29 expressions, 13 tax-grid tags, 10 distribution-line tag assignments), but **there is no report viewer, no computation engine, no export mechanism, and no filing hook in the Community `account` module**. What exists: a viewer lookup hook stub; a settings upgrade prompt for a "dynamic-reports module" that is neither in the Community tree nor the DB; empty menu containers. The engine is expected from a package outside Community (VDR-U31-C083 — a foreign pack extends `account.report` with a viewer hook whose base method is not defined in Community). The tax-details query helper is only used by tests; an exigible-lines domain has no caller.
+
+**Business impact**: A Thai entity running pure Community cannot run, view, export or file its VAT return or WHT returns through the Odoo tax-report mechanism, despite the report definitions being present. This is the largest single NATIVE GAP confirmed by this session's Thai Tax Core review.
+
+**Classification**: `NATIVE GAP / EXTENSION REQUIRED` — NOT a PARTIAL (the execution engine is entirely absent, not partially present). Statutory references: S09 (monthly VAT return), S13 (WHT return forms), S15 (tax certificates) from TXS. **No Boss action needed at this intake stage** (it is a finding, not a Hard Blocker for verification workflow). Recorded for the AWT backlog and SMEsPlus localization scope.
+
+### Classification (intake stage)
+`ACCEPTED (static tier — partial intake only, pre-pause)`. Full semantic review and C1-bound/RT/native-gap completeness deferred to Resume. CONTRA CR-025 issued. Major NATIVE GAP identified and recorded.
+
+## 43. U32 (taxed flows — other paths: bank reconciliation, expenses, landed costs, e-invoice, discounts, loyalty, fiscal position, uninstalled add-ons) — semantic highlights + PAUSE CHECKPOINT intake
+
+**Unit**: U32, `taxed_flows_other_paths`, Thai Tax Core lane. G-ID: `G04|G10` + `G07` (purchase expense/landed costs) + `G08` (sales loyalty/discount) — multi-domain.
+**Commits**: content `4d17ae85`, packet `8d0634ba`. Mechanical gate: PASS.
+**Coverage**: 225 claims (FACT 176, OBSERVATION 12, INFERENCE 25, UNKNOWN 12); 114 neutral statements; 1 CONTRA; 14 C1-bound (GRV-F05×13, PCO-F01×1); 26 RT; 10 capabilities.
+**Function-IDs**: GRV-F05×13 (receivables/payables/reconciliation), MFG-F03×2, PCO-F01×1.
+
+> **NOTE**: Full semantic review paused by Boss's CONTROLLED PAUSE instruction. Sections below record findings from CONTRA investigation already completed; C1-bound (GRV-F05) review and RT/native-gap completeness deferred to Resume.
+
+### CONTRA VDR-U32-C146 — U05-C019 narrowing (dump-specific)
+
+**Finding**: U05-C019 claimed "loyalty discount products are created without taxes." U32's DB reconciliation narrows this: the **seeded gift-card reward product in the dump carries the 7% sale tax** (it was created before the order-loyalty module was installed; the order-loyalty data file strips taxes only from trigger products, not from the earlier-seeded reward product). The code behavior VDR-U32-C141 holds for products created **while order-loyalty is installed**. Effect: gift-card sale is untaxed but redemption line is taxed — an asymmetry in the configured dump (PARTIAL — depends on module install order).
+
+**Classification**: ACCEPTED as a NARROWING of U05-C019. U05-C019 is not overturned for new products; the dump-specific behavior is a configuration-order artifact. No change to U05's ACCEPTED status; a footnote to U05-C019 is sufficient.
+
+### Thai e-invoice mapping (CAP-U32-04, from U32 section 6)
+
+Confirmed by static read: Thai zero-rated (0%) and exempt VAT both export as category `E` (exempt) in UBL/CII — they are **not distinguishable from each other** in the exported format. Thai withholding taxes export as negative-percent values with sign reversal, outside line categories, netted from the inclusive total. These are relevant to the ETDA/RD e-Tax Invoice conformance gap noted in §38 (U34). Recorded; full native-gap analysis deferred to Resume.
+
+### C1-bound (GRV-F05 × 13): deferred to Resume
+
+13 GRV-F05 claims relate to receivables/payables reconciliation flows as they intersect taxed paths (bank reconciliation, fiscal-position application at order/bill/expense hand-offs). These require cross-checking against U12 (payments/reconciliation, mechanical-only intake). Deferred per pause instruction.
+
+### Classification (intake stage)
+`ACCEPTED (static tier — partial intake only, pre-pause)`. CONTRA VDR-U32-C146 accepted as narrowing. Full C1-bound/RT/native-gap review deferred to Resume.
+
+## 44. U33 (account_core_remaining — auto-send, dunning, analytic, budget, assets, sequence, journal closing, bank feeds, lock-date wizards) — mechanical intake
+
+**Commits**: content `ec50b3e3`, packet `38586df1`. Mechanical gate: PASS. Single-module (account), compliant with one-module-per-unit rule.
+**Coverage**: 510 claims (FACT 467, OBSERVATION 14, INFERENCE 16, UNKNOWN 13); 295 neutral statements; 0 CONTRA; 0 C1-bound; 13 RT; 0 Function-IDs referenced.
+**Note**: No CONTRA and no C1-bound claims is a positive indicator for this intake; the 510 claims cover the remaining `account` module areas not covered by U30–U32. Semantic review queued for Resume.
+**Classification**: `MECHANICAL ONLY (hash-integrity)`.
+
+## 45. U35 (auth_barcodes_small_platform — auth family, barcodes, analytic account UI, phone_validation, digest, UTM, privacy_lookup, base_sparse_field, onboarding, base_setup) — mechanical intake
+
+**Commits**: content `eed3d153`, packet `4732ec15`. Mechanical gate: PASS. Multi-module (10 modules), grandfathered per CR-021.
+**Coverage**: 392 claims (FACT 320, OBSERVATION 13, INFERENCE 50, UNKNOWN 9); 212 neutral statements; 2 CONTRA; 0 C1-bound; 16 RT; 0 Function-IDs referenced.
+**Note**: 2 CONTRA claims — identities not yet read; will be investigated at Resume. `privacy_lookup` module (Thai PDPA data-subject lookup relevance flagged in §40 crosswalk) is in scope for this unit.
+**G01 modules in scope**: base_sparse_field, onboarding, base_setup, phone_validation, digest, utm, privacy_lookup (all G01 exact roster members).
+**Classification**: `MECHANICAL ONLY (hash-integrity)`. CONTRA claims flagged for Resume.
+
+## 46. U37 (base_family_bus_calendar_cloud — base, bus, calendar, google_account, base_automation, base_setup, resource, resource_mail, utm, digest, web_tour, portal, phone_validation) — mechanical intake
+
+**Commits**: content `638ea932`, packet `8050ac52`. Mechanical gate: PASS. Multi-module (13 modules), grandfathered per CR-021.
+**Coverage**: 472 claims (FACT 449, OBSERVATION 6, INFERENCE 7, UNKNOWN 10); 112 neutral statements; 1 CONTRA; 0 C1-bound; 11 RT; 0 Function-IDs referenced.
+**Note**: 1 CONTRA claim — identity not yet read; flagged for Resume. Multiple G01 exact-roster modules in scope (base, bus, base_automation, base_setup, resource, resource_mail, utm, digest, web_tour, portal, phone_validation). This unit's findings directly feed G01's A1 static-intake review.
+**G01 overlap**: 11/13 modules are G01 exact-roster members; google_account and calendar are G02-adjacent (identity/access).
+**Classification**: `MECHANICAL ONLY (hash-integrity)`. CONTRA claim flagged for Resume.
+
+## 47. U38 (crm_event_fleet_gamification_google_account — CRM, events, fleet, gamification, google services) — mechanical intake
+
+**Commits**: content `7408562a`, packet `75e27428`. Mechanical gate: PASS. Multi-module (19 modules per original queue), grandfathered per CR-021.
+**Coverage**: 505 claims (FACT 428, OBSERVATION 20, INFERENCE 46, UNKNOWN 11); 501 neutral statements; 1 CONTRA; 0 C1-bound; 24 RT; 0 Function-IDs referenced.
+**Note**: 1 CONTRA claim — not yet read; flagged for Resume. crm → G09, event* → G11, fleet → G13 (via hr_fleet), gamification → cross-group. G11 modules (event family) first appear in a DeepSeek unit here — previously listed as NOT STUDIED in §40 crosswalk. G11 crosswalk status updates to: DeepSeek unit assigned (U38).
+**Classification**: `MECHANICAL ONLY (hash-integrity)`. CONTRA claim flagged for Resume. G11 crosswalk updated.
+
+## 48. U40 (hr_family_html_editor — hr_expense, hr_holidays, hr_recruitment, hr_work_entry, hr_contract, html_editor server-side deep, 22 modules total) — mechanical intake
+
+**Commits**: content `344777f2`, packet `d2944687`. Mechanical gate: PASS. Multi-module (22 modules), grandfathered per CR-021.
+**Coverage**: 686 claims (FACT 635, OBSERVATION 21, INFERENCE 20, UNKNOWN 10); 185 neutral statements; 0 CONTRA; 0 C1-bound; **56 RT** (highest RT count of any unit so far); 0 Function-IDs referenced.
+**Note**: No CONTRA, no C1-bound. The 56 RT items are unusually high — consistent with the breadth of HR process paths that require runtime execution to validate (leave approval chains, expense reimbursement flows, recruitment state machines, html_editor rendering). G13 modules (hr_expense, hr_holidays, hr_recruitment, hr_work_entry, hr_contract) dominate.
+**Classification**: `MECHANICAL ONLY (hash-integrity)`. RT items queued for AWT; semantic review deferred to Resume.
+
+## 49. U42 (mail_remaining — mail module remaining areas: discuss, channels, scheduling, guest access, SMS, reactions, starred/pinned/translation features) — mechanical intake
+
+**Commits**: content `4b1acb4d`, packet `0f253a81`. Mechanical gate: PASS. Single-module (mail), compliant with one-module-per-unit rule. G01 exact-roster module.
+**Coverage**: 411 claims (FACT 372, OBSERVATION 12, INFERENCE 20, UNKNOWN 7); 227 neutral statements; 0 CONTRA; 0 C1-bound; 26 RT; 0 Function-IDs referenced.
+**Note**: No CONTRA, no C1-bound. G01 module with 411 claims covering mail's remaining areas. The `im_livechat` retention gap noted in §39 (U41) may have overlap with this unit's coverage of channel/guest lifecycle — to be cross-checked at Resume.
+**G01 crosswalk update**: `mail` module now has U03 (mechanical) + U42 (mechanical) assigned. Full G01 mail coverage pending semantic review of both.
+**Classification**: `MECHANICAL ONLY (hash-integrity)`.
+
+## 50. U43 (mail_family_maintenance_microsoft — mail_activity_plan, mail_bot, mail_group, mail_resend, maintenance, microsoft_calendar, microsoft_outlook) — mechanical intake
+
+**Commits**: content `28b2af3e`, packet `41633212`. Mechanical gate: PASS. Multi-module (7 modules), grandfathered per CR-021.
+**Coverage**: 156 claims (FACT 149, OBSERVATION 1, INFERENCE 6, UNKNOWN 0); 120 neutral statements; 1 CONTRA; 0 C1-bound; 11 RT; 0 Function-IDs referenced.
+**Note**: 1 CONTRA claim, 0 UNKNOWN (unusually clean — 100% pointer+anchor supported). CONTRA identity not yet read; flagged for Resume. `maintenance` module may be G16 (TECHNICAL_INTEGRATION) or G14 (COLLABORATION) — G-ID assignment pending GROUP_STRUCTURE_V2_CORE.tsv read. Microsoft calendar/Outlook are G01-adjacent integration bridges.
+**Classification**: `MECHANICAL ONLY (hash-integrity)`. CONTRA claim flagged for Resume.
+
+---
+
+## PAUSE CHECKPOINT (2026-10-02 — Boss CONTROLLED PAUSE instruction)
+
+> **STATUS: STATE03 VERIFIER = PAUSED — WAITING FOR DEEPSEEK BATCH COMPLETION**
+> Issued per Boss instruction: pause at next safe atomic boundary; resume only when DeepSeek confirms all authorized U-units are terminal and Final Batch Index is pushed.
+
+### Last fully accepted boundary
+- **U30** — `account` Thai Tax Core dynamic-sync — `ACCEPTED (static tier)` — commit `ea9af153` — §41
+
+### Current HEAD (this session's branch)
+- Branch: `claude/new-session-l8f19r`
+- This commit: to be set by the commit containing this checkpoint
+
+### Last DeepSeek handoff received
+- **U43** — `mail_family_maintenance_microsoft` — packet commit `41633212` — §50
+
+### Unfinished verification queue (as of pause)
+
+| Unit | Status | Priority | Action needed on Resume |
+|---|---|---|---|
+| U31 | Semantic partial (CONTRA resolved, NATIVE GAP identified) | HIGH (Thai Tax Core) | Complete C1-bound (PCO-F01×7, PCO-F02×7), RT, native-gap completeness |
+| U32 | Semantic partial (CONTRA resolved, GRV-F05 deferred) | HIGH (Thai Tax Core) | Complete C1-bound (GRV-F05×13), RT, native-gap completeness |
+| U33 | Mechanical only | MEDIUM (account core remaining, 510 claims) | Semantic review |
+| U34 | Mechanical only — `account_edi_ubl_cii` PARTIAL | MEDIUM (Thai EAS/ETDA gap) | Semantic read of template bodies, Thai EAS mapping |
+| U35 | Mechanical only — 2 CONTRA unread | MEDIUM | Read CONTRA claims, semantic review; privacy_lookup PDPA note |
+| U37 | Mechanical only — 1 CONTRA unread | MEDIUM | Read CONTRA claim, semantic review |
+| U38 | Mechanical only — 1 CONTRA unread | MEDIUM | Read CONTRA claim, semantic review; G11 update |
+| U40 | Mechanical only — 56 RT | MEDIUM | Semantic review; AWT for 56 RT |
+| U41 | Mechanical only — im_livechat retention gap | MEDIUM | Semantic review; Thai PDPA cross-check |
+| U42 | Mechanical only | LOW-MEDIUM | Semantic review; mail retention cross-check with U41 |
+| U43 | Mechanical only — 1 CONTRA unread | MEDIUM | Read CONTRA claim |
+| U44–U59 | Not yet received | — | Await DeepSeek batch completion |
+| Original batch (U01-U04, U06-U18 excl. U19, U21-U23, C01, C02) | Mechanical only | BACKLOG | Semantic review on Resume |
+
+### Open corrections/contradictions requiring action
+
+| ID | Subject | Status |
+|---|---|---|
+| CR-025 (this log) | VDR-U31-C101: U24/TXC expression count ("5 generic" → "5 Thai shortcut-generated") | Correction issued to PR #74; DeepSeek to acknowledge |
+| VDR-U32-C146 | U05-C019 narrowing (gift-card reward product in dump carries 7% — dump-specific) | ACCEPTED as narrowing; no separate CR needed |
+| VDR-U35-C??? | 2 CONTRA in U35 — IDs not yet read | Deferred to Resume |
+| VDR-U37-C??? | 1 CONTRA in U37 — ID not yet read | Deferred to Resume |
+| VDR-U38-C??? | 1 CONTRA in U38 — ID not yet read | Deferred to Resume |
+| VDR-U43-C??? | 1 CONTRA in U43 — ID not yet read | Deferred to Resume |
+| BGQ-10 | Pacing decision: one-module-per-unit rule for remaining ~461 modules | Open — awaiting Boss ruling |
+| BGQ-08 | Provenance of STATE03_SMD_SOURCE_VERIFICATION_FINDINGS.md | Open — awaiting Boss ruling |
+
+### Open C1-bound claims (not fully reviewed)
+
+| Unit | Count | Function-ID | Status |
+|---|---|---|---|
+| U31 | 7 | PCO-F01 (tax lock) | Deferred to Resume |
+| U31 | 7 | PCO-F02 (fiscal year/period) | Deferred to Resume |
+| U32 | 13 | GRV-F05 (reconciliation) | Deferred to Resume |
+| U32 | 1 | PCO-F01 | Deferred to Resume |
+
+### Thai Tax Core native-gap candidates (status as of pause)
+
+| NG-ID | Unit | Finding | Status |
+|---|---|---|---|
+| NG-1 | U30 | CABA switch on, 0 on-payment Thai taxes | Confirmed static; TXS validation pending |
+| NG-2 | U30 | FX rate source gap — buying rate (S12-03/S12-04) not implemented | Confirmed static; TXS confirmed |
+| NG-3 | U30 | Rounding algorithm vs S12-08: UNKNOWN — RT required | RT |
+| NG-4 | U30 | Zero-rated/exempt VAT in WHT 1% group (template data defect) | Confirmed static |
+| NG-5 | U31 | NO TAX REPORT ENGINE in Community — definitions exist but unexecutable | Confirmed static; MAJOR |
+| NG-6 | U32 | Zero-rated and exempt VAT not distinguishable in UBL/CII export (both category E) | Confirmed static |
+
+### G01-G16 crosswalk status (as of pause)
+
+- §40 initial partial map committed; G01 (23 modules) fully mapped; G11 (8 modules) partially mapped (U38 confirmed, semantic pending).
+- `GROUP_STRUCTURE_V2_CORE.tsv` row-level read: **NOT DONE** — required to complete G02-G10, G12-G16 crosswalk.
+- G04/G10 boundary (ACCOUNT_BASE vs ACCOUNT_PROCESS): **UNRESOLVED**.
+- New G-ID updates from this batch: G11 now has U38 assigned (§47 above).
+
+### Resume instructions (per Boss)
+
+On resume:
+1. Run DELTA-FIRST.
+2. Verify the completed DeepSeek batch continuously without waiting between units.
+3. Produce one consolidated Correction Batch.
+4. Send corrections to DeepSeek once.
+5. After DeepSeek correction batch: one final closure verification.
+6. No Formal Coverage without a frozen denominator.
+7. Opus escalation allowed only for C1, Material Contradiction, Zero-Tolerance, Clean-Room, or Module Closure.
+
+---
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
