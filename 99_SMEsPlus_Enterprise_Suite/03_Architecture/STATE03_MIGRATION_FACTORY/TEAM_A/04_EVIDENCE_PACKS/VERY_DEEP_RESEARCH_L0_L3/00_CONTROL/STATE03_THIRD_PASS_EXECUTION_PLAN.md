@@ -59,16 +59,124 @@ Units selected per directive:
 ## Continuous Manifest Queue — Batch 1 (U129–U138)
 > Operating mode: 10 concurrent workers. Coordinator integrates sequentially. Applied 2026-10-02. Continuous manifest queue active from U139 onward — no batch-stop behavior.
 
-| U129 | website_sale — deeper cross-module chain (GAP-026 depth/wishlist/loyalty) | P1 | No | PARTIAL | wishlist→loyalty→gift_card→cart→payment→SO confirm cross-module | Running |
-| U130 | Semantic spot-check — U01–U46 + U47–U68 claim verification (GAP-024/GAP-045) | P1 | Moderate | Semantic | 10 random C1 claims per 5 high-risk units verified against source line refs | Running |
-| U131 | F-ID mapping — G10–G16 capability-to-Function-ID (GAP-034) | P2 | No | F-ID | Map each U47–U68 capability to existing Function-IDs or propose new ones | Running |
-| U132 | stock — 3-step routing AWT-prep source study (GAP-030) | P2 | No | AWT-prep | INT→OUT route creation, picking_type_id chain, AWT test plan document | Running |
-| U133 | mail — gateway incoming email AWT-prep (GAP-039) | P2 | No | AWT-prep | mail.alias routing, message_process source, AWT test plan document | Running |
-| U134 | l10n_th WHT PND form L3 deep (GAP-046 P0 TH) | P0 | Yes (TH) | NOT_PROVEN | PND-1/3/53 form generation wizard, WHT certificate, vendor deduction at payment | Running |
-| U135 | account_payment_interco — intercompany journal L3 deep (GAP-002 extension) | P0 | Yes | PARTIAL | account_payment_interco module models, intercompany journal entry creation chain | Running |
-| U136 | account_reconcile_model — rule engine deep (GAP-021 Python extension) | P1 | Yes | PARTIAL | account.reconcile.model rule types, _apply_rules, writeoff/invoice-match logic | Running |
-| U137 | payment_xendit — Thai payment provider deep (source evidence U127, TH-adjacent) | P2 | Yes (TH) | NOT_STUDIED | Xendit FPX webhook, x-callback-token verification, THB decimal handling | Running |
-| U138 | account_tax_group / tax repartition — Thai WHT/VAT computation (GAP-046 sub) | P0 | Yes (TH) | PARTIAL | account.tax.group, account.tax.repartition.line, WHT deduction mechanics | Running |
+| U129 | website_sale — deeper cross-module chain (GAP-026 depth/wishlist/loyalty) | P1 | No | PARTIAL | wishlist→loyalty→gift_card→cart→payment→SO confirm cross-module | Done 1eccfc7b (28 claims) |
+| U130 | Semantic spot-check — U01–U46 + U47–U68 claim verification (GAP-024/GAP-045) | P1 | Moderate | Semantic | 10 random C1 claims per 5 high-risk units verified against source line refs | Done 886f3582 (evidence) + 4cd5d27c (neutral, packet); spot-check, 25 claim checks (5 groups × 5) |
+| U131 | F-ID mapping — G10–G16 capability-to-Function-ID (GAP-034) | P2 | No | F-ID | Map each U47–U68 capability to existing Function-IDs or propose new ones | Done 4cd5d27c (evidence, neutral) + 1eccfc7b (packet) (30 claims) |
+| U132 | stock — 3-step routing AWT-prep source study (GAP-030) | P2 | No | AWT-prep | INT→OUT route creation, picking_type_id chain, AWT test plan document | Done c864cc16 (evidence) + b9353bd6 (neutral, packet) (19 claims) |
+| U133 | mail — gateway incoming email AWT-prep (GAP-039) | P2 | No | AWT-prep | mail.alias routing, message_process source, AWT test plan document | Done 7bc2b70e (22 claims) |
+| U134 | l10n_th WHT PND form L3 deep (GAP-046 P0 TH) | P0 | Yes (TH) | NOT_PROVEN | PND-1/3/53 form generation wizard, WHT certificate, vendor deduction at payment | Done 886f3582 (30 claims) |
+| U135 | account_payment_interco — intercompany journal L3 deep (GAP-002 extension) | P0 | Yes | PARTIAL | account_payment_interco module models, intercompany journal entry creation chain | Done 3c513351 (26 claims) |
+| U136 | account_reconcile_model — rule engine deep (GAP-021 Python extension) | P1 | Yes | PARTIAL | account.reconcile.model rule types, _apply_rules, writeoff/invoice-match logic | Done 4cd5d27c (25 claims) |
+| U137 | payment_xendit — Thai payment provider deep (source evidence U127, TH-adjacent) | P2 | Yes (TH) | NOT_STUDIED | Xendit FPX webhook, x-callback-token verification, THB decimal handling | Done a8655629 (26 claims) |
+| U138 | account_tax_group / tax repartition — Thai WHT/VAT computation (GAP-046 sub) | P0 | Yes (TH) | PARTIAL | account.tax.group, account.tax.repartition.line, WHT deduction mechanics | Done b9353bd6 (30 claims) |
+
+> Coordinator register catch-up (2026-10-02, origin tip d5e4d91e): U129–U138 above moved from Running to Done, and U139–U230 are recorded below. Commit SHAs are the git first-add commits of each unit's evidence (E), neutral (N) and packet (P) files, read from git history — not from the packet `sha` field, which is worker-written and may hold a source-file hash prefix or PENDING_COMMIT (e.g., U228, U229). Claim counts are the worker-reported counts in each unit's packet. Mixed commits (several units in one commit) are preserved as made, not rewritten. All commits listed are on origin/claude/local-odoo-source-research (REMOTE EVIDENCE READY). This register records presence and provenance only — NOT a verification result, NOT Gate PASS, NOT Formal Coverage, NOT Module Complete.
+
+## Continuous Manifest Queue — Completed Units U139–U230
+> DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION. No evidence files for U172–U179 were found in the three evidence sub-folders at origin tip. "with Uxxx" = the unit shares the commit with that unit. "absent per packet" = the unit's own packet reports the module as not present in the Community source tree.
+
+| Unit | Topic (evidence file name) | Claims | Commit | Notes |
+|------|----------------------------|--------|--------|-------|
+| U139 | tax_lock_depth | 23 | E+N 08bf2b95; P 1cc9747a | with U140 |
+| U140 | hr_leave | 25 | E+N 08bf2b95; P 1cc9747a | with U139 |
+| U141 | semantic_spot_check_u47_u68 | spot-check: 5 groups × 5 claims verified | 549dbe0d | with U149 |
+| U142 | project | 28 | c874839b | |
+| U143 | crm | 27 | 6f9a8c37 | |
+| U144 | account_asset | 5 | 9f1a7be7 | absent per packet |
+| U145 | hr_attendance | 32 | 313df880 | |
+| U146 | hr_core | 22 | b58bd08c | with U148 |
+| U147 | hr_timesheet | 25 | 771547bc | |
+| U148 | account_reports | 25 | b58bd08c | with U146 |
+| U149 | account_coa_isolation | 22 | 549dbe0d | with U141 |
+| U150 | purchase_stock_p2p | 25 | ac002e88 | with U156, U160 |
+| U151 | sale_timesheet_billing | 24 | 681585dc | |
+| U152 | account_followup | 7 | 39b6119b | absent per packet (7 of 7 claims absent) |
+| U153 | maintenance | 22 | 4138cdbf | |
+| U154 | stock_scrap | 22 | 0ed782eb | |
+| U155 | mrp_workorder | 22 | 12dc98f0 | |
+| U156 | fleet | 20 | ac002e88 | with U150, U160 |
+| U157 | bank_stmt_import | 21 | 1bdf9c2b | |
+| U158 | quality_control | 15 | 59b610d9 | absent per packet (15 of 15 claims absent) |
+| U159 | account_cash_rounding | 20 | aee0f35b | |
+| U160 | helpdesk | 7 | ac002e88 | absent per packet; with U150, U156 |
+| U161 | stock_dropshipping | 25 | 80f7cbae | with U162, U163 |
+| U162 | purchase_mrp | 25 | 80f7cbae | with U161, U163 |
+| U163 | account_move_send | 22 | 80f7cbae | with U161, U162 |
+| U164 | sale_purchase | 18 | 93bbbafe | |
+| U165 | product_expiry | 20 | 00d4f1ca | |
+| U166 | website | 22 | fe9af8e4 | with U170 |
+| U167 | base_vat | 20 | 9de3f5f4 | |
+| U168 | hr_recruitment | 22 | bd0e910a | |
+| U169 | stock_inventory | 22 | fe8aeeed | |
+| U170 | stock_putaway | 18 | fe9af8e4 | with U166 |
+| U171 | product_pricelist | 22 | c80b3318 | |
+| U180 | im_livechat | 20 | 146dda8b | with U183 |
+| U181 | event | 11 | 83391b5d | |
+| U182 | lunch | 20 | E 4dc5274a; N 61e21dbf; P 80aefa7d | evidence file is in the commit shared with U184 |
+| U183 | note | 15 | 146dda8b | absent per packet; with U180 |
+| U184 | mail_bot | 15 | 4dc5274a | commit also holds the U182 evidence file |
+| U185 | website_sale_loyalty | 24 | 8ec0685a | |
+| U186 | stock_picking_wave | 19 | d4221e3a | commit also holds the U187 evidence file |
+| U187 | utm | 9 | E d4221e3a; N+P 11444d10 | evidence file is in the commit shared with U186; neutral and packet with U190, U191 |
+| U188 | repair | 21 | c7effb35 | |
+| U189 | account_payment | 22 | e3b77651 | |
+| U190 | res_partner_bank | 19 | 11444d10 | with U187 (neutral, packet), U191 |
+| U191 | gamification | 15 | 11444d10 | with U187 (neutral, packet), U190 |
+| U192 | product_category_accounts | 22 | d77d9374 | |
+| U193 | stock_barcode | 22 | ec9f452d | |
+| U194 | website_slides | 18 | cc7a9532 | |
+| U195 | account_journal | 22 | 822b8ada | with U196 |
+| U196 | crm | 25 | 822b8ada | with U195 |
+| U197 | hr_holidays | 23 | d8a0915a | |
+| U198 | hr_timesheet | 21 | ef4c023b | packet SHA follow-up caea4585 |
+| U199 | fleet | 20 | ccfea033 | packet SHA follow-up 9d4fe08e |
+| U200 | base_automation | 22 | d3155f17 | packet SHA follow-up cce96a4d |
+| U201 | sale_margin | 20 | 6dacbd78 | packet SHA follow-up 0766ce5a |
+| U202 | hr_employee | 25 | f0cf5e10 | packet SHA follow-up c803a6b9 |
+| U203 | stock_rule_route | 25 | b549f8f3 | |
+| U204 | account_move_line | 26 | 3b2232e1 | packet SHA follow-up e30099cf |
+| U205 | res_partner | 22 | 812d6978 | packet SHA follow-up ef23702d |
+| U206 | hr_attendance | 20 | 75333077 | packet SHA follow-up 8a72d192 |
+| U207 | calendar | 20 | e2a54616 | |
+| U208 | mail_template | 20 | 022f4718 | |
+| U209 | stock_scrap | 19 | 49f5b669 | |
+| U210 | product_supplierinfo | 21 | 2a0de681 | packet SHA follow-up 10569041 |
+| U211 | mrp_workcenter | 22 | 498b7871 | |
+| U212 | account_payment_term | 22 | 230d69b1 | |
+| U213 | stock_warehouse | 25 | 555efc66 | |
+| U214 | ir_rule | 20 | 5b704d4d | |
+| U215 | purchase_order_line | 22 | 97593ab6 | |
+| U216 | mrp_production | 24 | 3d6e5c04 | |
+| U217 | stock_location | 20 | d36063ef | |
+| U218 | account_account | 22 | 498c4ba3 | |
+| U219 | stock_move_line | 20 | d7ae34c1 | |
+| U220 | res_company | 22 | 6db2deb6 | packet SHA follow-up 8479517f |
+| U221 | sale_order | 22 | c49abbf4 | |
+| U222 | ir_model_access | 20 | c7c03956 | with U223 |
+| U223 | product_pricelist | 24 | c7c03956 | with U222 |
+| U224 | account_tax | 25 | 0c2d35ab | with U225, U229 |
+| U225 | purchase_order | 22 | 0c2d35ab | with U224, U229 |
+| U226 | stock_picking | 24 | fa29c417 | |
+| U227 | account_analytic | 25 | 210ba2e6 | |
+| U228 | stock_quant | 22 | d82093b5 | |
+| U229 | res_currency | 20 | 0c2d35ab | with U224, U225 |
+| U230 | hr_version | 23 | d5e4d91e | |
+
+## Continuous Manifest Queue — Running (as of this update)
+> Dispatched 2026-10-02 by the coordinator; 10 concurrent workers; each worker writes only its own three U-specific files. Not yet committed or registered.
+
+| Unit | Scope (dispatch label) | Status |
+|------|------------------------|--------|
+| U231 | product.template — type / is_storable / tracking | Running |
+| U232 | stock_account — valuation / product.value | Running |
+| U233 | sale.order.line — quantities / invoicing | Running |
+| U234 | stock.move — state / reservation | Running |
+| U235 | res.users / res.groups — privilege | Running |
+| U236 | uom.uom / packaging | Running |
+| U237 | mrp.bom — bom_line / byproduct | Running |
+| U238 | account.move — header / fields / post | Running |
+| U239 | partial / full reconcile engine | Running |
+| U240 | module / data lifecycle — xmlid | Running |
 
 ---
 

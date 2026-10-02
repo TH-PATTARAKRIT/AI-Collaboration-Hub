@@ -4,10 +4,10 @@
 
 | Metric | Value |
 |---|---|
-| Completed delegated research workers | 112 |
+| Completed delegated research workers | 112 as recorded at an earlier boundary (the per-worker table below lists 128 entries through U128); plus 94 evidence-bearing units U129–U171 and U180–U230 registered 2026-10-02 (see `STATE03_THIRD_PASS_EXECUTION_PLAN.md`). The earlier 112 and the 128 listed rows are not reconciled here; no combined total is asserted. |
 | Cumulative worker tokens (reported) | 24,033,386 (+ U47–U63 fix/gate pass session — tokens not separately metered) |
 | Cumulative worker tool requests (reported) | 5,713+ |
-| Workers running at last update | see `NEXT_ATOMIC_UNIT_QUEUE.tsv` and PR #74 notifications |
+| Workers running at last update | 10 running at this update (U231–U240); live status: `STATE03_THIRD_PASS_EXECUTION_PLAN.md` |
 | Claude-accepted units / packets (evidenced in verifier log) | listed below |
 
 ## Claude-accepted (as evidenced in `STATE03_VDR_CLAUDE_VERIFICATION_LOG.md` §10–§28)
@@ -159,3 +159,4 @@ Units whose log entry shows only mechanical hash-integrity intake (pending confi
 | U126 | COST TELEMETRY NOT VERIFIED | 51 |
 | U127 | COST TELEMETRY NOT VERIFIED | 58 |
 | U128 | COST TELEMETRY NOT VERIFIED | 29 |
+| U129–U171, U180–U230 (94 evidence-bearing units; see `STATE03_THIRD_PASS_EXECUTION_PLAN.md`) | COST TELEMETRY NOT VERIFIED | not recorded |
