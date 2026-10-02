@@ -1,0 +1,97 @@
+{
+  "unit": "U220",
+  "module": "res_company",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 22,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "id": "MF-220-01",
+      "severity": "CRITICAL",
+      "area": "stock_accounts",
+      "summary": "account_stock_expense_id and account_stock_income_id are NOT on res.company in v19. account_stock_expense_id lives on account.account (stock_account/models/account_account.py:10). account_stock_income_id does not exist in v19 community at all.",
+      "pointer": "stock_account/models/account_account.py:10"
+    },
+    {
+      "id": "MF-220-02",
+      "severity": "CRITICAL",
+      "area": "hierarchy",
+      "summary": "parent_id cannot be changed after company creation. write() raises UserError on any attempt. Migration must set the company hierarchy correctly at create time only.",
+      "pointer": "base/models/res_company.py:356-358"
+    },
+    {
+      "id": "MF-220-03",
+      "severity": "CRITICAL",
+      "area": "currency",
+      "summary": "Currency change is blocked by the account module once any journal entry lines exist for the root company or its branches.",
+      "pointer": "account/models/company.py:757-759"
+    },
+    {
+      "id": "MF-220-04",
+      "severity": "HIGH",
+      "area": "hard_lock_date",
+      "summary": "hard_lock_date is a new field in v19 (not present in v16/v17). It is irreversible once set — cannot be removed or decreased. Migration must not populate this field unless explicitly intended.",
+      "pointer": "account/models/company.py:97-102"
+    },
+    {
+      "id": "MF-220-05",
+      "severity": "MEDIUM",
+      "area": "storno",
+      "summary": "account_storno is auto-computed from account_fiscal_country_id. Thailand is not in STORNO_MANDATORY_COUNTRIES (BA,CN,CZ,HR,PL,RO,RS,RU,SI,SK,UA). Thai companies have storno off by default.",
+      "pointer": "account/models/company.py:451-453"
+    },
+    {
+      "id": "MF-220-06",
+      "severity": "INFO",
+      "area": "paperformat",
+      "summary": "paperformat_id remains on base/models/res_company.py:87 in v19. It was NOT moved to a different location.",
+      "pointer": "base/models/res_company.py:87"
+    },
+    {
+      "id": "MF-220-07",
+      "severity": "INFO",
+      "area": "report_footer",
+      "summary": "report_footer (Html field) remains on base/models/res_company.py:59 in v19. It was NOT removed.",
+      "pointer": "base/models/res_company.py:59"
+    },
+    {
+      "id": "MF-220-08",
+      "severity": "HIGH",
+      "area": "lock_exceptions",
+      "summary": "New account.lock_exception model in v19 enables per-user soft lock date overrides. user_*_lock_date computed fields are context-dependent and exception-aware. Migration data that relied on simple lock_date fields must account for this new exception mechanism.",
+      "pointer": "account/models/company.py:607-640"
+    },
+    {
+      "id": "MF-220-09",
+      "severity": "HIGH",
+      "area": "thai_localization",
+      "summary": "Thai l10n chart template sets tax_exigibility=True (cash basis) automatically when loaded. Thai companies have cash basis enabled as a default. Also sets 12 other company account defaults.",
+      "pointer": "l10n_th/models/template_th.py:19-43"
+    },
+    {
+      "id": "MF-220-10",
+      "severity": "LOW",
+      "area": "deprecated",
+      "summary": "_check_tax_return_configuration is deprecated (no-op stub, marked for removal in master). Do not call from migration code.",
+      "pointer": "account/models/company.py:1150-1157"
+    }
+  ],
+  "key_findings": {
+    "name_delegation": "company.name is a stored relational proxy to partner_id.name; base/models/res_company.py:48",
+    "currency_root_delegate": "currency_id is root-delegated in base; account adds fiscalyear_last_day, fiscalyear_last_month, account_storno, tax_exigibility as root-delegated; base/models/res_company.py:111-119 + account/models/company.py:311-317",
+    "hierarchy_immutable": "parent_id write-protected after creation; base/models/res_company.py:356-358",
+    "lock_dates": "5 lock date fields (4 soft + 1 hard-irreversible); per-user exception mechanism via account.lock_exception; account/models/company.py:57-67,607-640",
+    "stock_accounts_location": "account_stock_valuation_id on res.company (stock_account); account_stock_expense_id on account.account NOT res.company; account_stock_income_id absent in v19",
+    "thai_defaults": "12 company fields set by Thai chart template; cash basis (tax_exigibility) enabled; l10n_th/models/template_th.py:19-43",
+    "currency_guard": "Currency change blocked once journal items exist; account/models/company.py:757-759"
+  },
+  "source_files_read": [
+    "base/models/res_company.py (lines 1-522)",
+    "account/models/company.py (lines 1-1158)",
+    "stock_account/models/res_company.py (lines 1-378)",
+    "stock_account/models/account_account.py (lines 1-13)",
+    "l10n_th/models/template_th.py (lines 1-43)",
+    "l10n_th/models/res_partner.py (lines 1-19)",
+    "base/models/res_users.py (lines 169-173, 244-248, 501-509)"
+  ]
+}
