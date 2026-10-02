@@ -1,0 +1,96 @@
+{
+  "unit": "U100",
+  "title": "Thai Tax Localization — l10n_th",
+  "phase": "Third-Pass — P0 Thai Tax",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "marker": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "session": "STATE03 ODOO 19 COMMUNITY DEEP RESEARCH",
+  "flags": ["TH", "P0"],
+  "l_levels": ["L1", "L2", "L3"],
+  "proof_layers": ["P1", "P3"],
+  "predecessor_units": ["U24", "U13"],
+  "modules_present": {
+    "l10n_th": true,
+    "l10n_th_withholding_tax": false,
+    "l10n_th_wht": false
+  },
+  "module_findings": {
+    "l10n_th": {
+      "manifest_name": "Thailand - Accounting",
+      "version": "2.0",
+      "depends": ["account_qr_code_emv", "account"],
+      "auto_install": ["account"],
+      "post_init_hook": "_preserve_tag_on_taxes",
+      "code_digits": 6,
+      "default_sale_tax": "tax_output_vat (7%)",
+      "default_purchase_tax": "tax_input_vat (7%)",
+      "tax_exigibility": true
+    }
+  },
+  "tax_groups": [
+    {"id": "tax_group_1", "name": "WHT 1%", "payable_acct": "l10n_th_account_213500", "receivable_acct": "l10n_th_account_114401"},
+    {"id": "tax_group_2", "name": "WHT 2%", "payable_acct": "l10n_th_account_213500", "receivable_acct": "l10n_th_account_114401"},
+    {"id": "tax_group_3", "name": "WHT 3%", "payable_acct": "l10n_th_account_213500", "receivable_acct": "l10n_th_account_114401"},
+    {"id": "tax_group_5", "name": "WHT 5%", "payable_acct": "l10n_th_account_213500", "receivable_acct": "l10n_th_account_114401"},
+    {"id": "tax_group_vat_7", "name": "VAT 7%", "payable_acct": "l10n_th_account_213400", "receivable_acct": "l10n_th_account_114400"}
+  ],
+  "vat_templates": [
+    {"id": "tax_input_vat", "rate": "7%", "use": "purchase", "description": "Input VAT 7% (standard)"},
+    {"id": "tax_output_vat", "rate": "7%", "use": "sale", "description": "Output VAT 7% (standard)"},
+    {"id": "tax_input_vat_0", "rate": "0%", "use": "purchase", "description": "Input VAT 0% (zero-rated)"},
+    {"id": "tax_output_vat_0", "rate": "0%", "use": "sale", "description": "Output VAT 0% (zero-rated / export)"},
+    {"id": "tax_input_vat_exempted", "rate": "0% EXEMPT", "use": "purchase", "description": "Input VAT Exempted"},
+    {"id": "tax_output_vat_exempted", "rate": "0% EXEMPT", "use": "sale", "description": "Output VAT Exempted"}
+  ],
+  "wht_templates": {
+    "pnd53_corporate": [
+      {"id": "tax_wht_co_1", "rate": "-1%", "category": "Transportation", "account": "l10n_th_account_213302"},
+      {"id": "tax_wht_co_2", "rate": "-2%", "category": "Advertising", "account": "l10n_th_account_213302"},
+      {"id": "tax_wht_co_3", "rate": "-3%", "category": "Service", "account": "l10n_th_account_213302"},
+      {"id": "tax_wht_co_5", "rate": "-5%", "category": "Rental", "account": "l10n_th_account_213302"}
+    ],
+    "pnd3_personal": [
+      {"id": "tax_wht_pers_1", "rate": "-1%", "category": "Transportation", "account": "l10n_th_account_213301"},
+      {"id": "tax_wht_pers_2", "rate": "-2%", "category": "Advertising", "account": "l10n_th_account_213301"},
+      {"id": "tax_wht_pers_3", "rate": "-3%", "category": "Service", "account": "l10n_th_account_213301"},
+      {"id": "tax_wht_pers_5", "rate": "-5%", "category": "Rental", "account": "l10n_th_account_213301"}
+    ],
+    "wht_income_receivable": [
+      {"id": "tax_wht_income_1", "rate": "-1%", "category": "Transportation", "account": "l10n_th_account_114300"},
+      {"id": "tax_wht_income_2", "rate": "-2%", "category": "Advertising", "account": "l10n_th_account_114300"},
+      {"id": "tax_wht_income_3", "rate": "-3%", "category": "Service", "account": "l10n_th_account_114300"},
+      {"id": "tax_wht_income_5", "rate": "-5%", "category": "Rental", "account": "l10n_th_account_114300"}
+    ]
+  },
+  "tax_reports": [
+    {"id": "tax_report", "name": "Tax Report (PP.30 equivalent)", "type": "VAT"},
+    {"id": "tax_report_pnd53", "name": "PND53 (ภ.ง.ด.53) — Corporate WHT", "type": "WHT"},
+    {"id": "tax_report_pnd3", "name": "PND3 (ภ.ง.ด.3) — Personal WHT", "type": "WHT"}
+  ],
+  "wht_mechanism": "Standard account.tax with negative percentage amounts. No custom account.withhold model. No separate l10n_th_withholding_tax module.",
+  "pnd_forms_supported": ["PND3", "PND53"],
+  "pnd_forms_absent": ["PND1 (payroll WHT — handled by payroll module)"],
+  "function_ids": [
+    "U100-F01: manifest / module config",
+    "U100-F02: tax group definitions",
+    "U100-F03: VAT tax templates",
+    "U100-F04: WHT corporate (PND53) templates",
+    "U100-F05: WHT personal (PND3) templates",
+    "U100-F06: WHT income receivable templates",
+    "U100-F07: chart of accounts template",
+    "U100-F08: tax reports (VAT, PND3, PND53)",
+    "U100-F09: VAT report aggregation formulas",
+    "U100-F10: invoice report routing",
+    "U100-F11: partner branch name",
+    "U100-F12: QR code proxy validation"
+  ],
+  "claim_count": 40,
+  "gate_result": "PASS",
+  "gate_script": "/tmp/vdr_check_u100.py",
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U100_thai_tax_localization.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U100_thai_tax_localization_NEUTRAL.md"
+  },
+  "commit_note": "To be populated after git commit"
+}
