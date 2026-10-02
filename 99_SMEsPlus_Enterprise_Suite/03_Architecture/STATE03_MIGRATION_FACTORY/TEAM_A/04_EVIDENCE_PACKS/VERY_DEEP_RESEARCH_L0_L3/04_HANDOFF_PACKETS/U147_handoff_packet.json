@@ -1,0 +1,56 @@
+{
+  "unit_id": "U147",
+  "title": "hr_timesheet — project timesheet analytic line deep L3",
+  "group": "G09/G10",
+  "priority": "P2",
+  "status": "COMPLETE",
+  "claim_count": 25,
+  "gate_exit_code": 0,
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U147_hr_timesheet.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U147_hr_timesheet_NEUTRAL.md"
+  },
+  "key_findings": [
+    {
+      "finding": "Timesheets ARE analytic lines",
+      "detail": "The hr_timesheet module extends account.analytic.line via _inherit. Timesheets share the account_analytic_line table. The technical discriminator is project_id IS NOT NULL (as confirmed in the timesheets.analysis.report SQL view WHERE clause at report/timesheets_analysis_report.py:70)."
+    },
+    {
+      "finding": "No journal entries created by core module",
+      "detail": "hr_timesheet does not create account.move records. Monetary amount on the analytic line (amount = -(unit_amount * hourly_cost)) is computed but stays in the analytic layer only. Accounting entries arise only when sale_timesheet invoices the timesheet."
+    },
+    {
+      "finding": "Analytic account mandatory for timesheet projects",
+      "detail": "project.project._check_allow_timesheet constrains allow_timesheets=True to require account_id. Auto-creation of analytic account occurs on project create at project_project.py:132-140."
+    },
+    {
+      "finding": "Three-tier security model",
+      "detail": "group_hr_timesheet_user (own records only), group_hr_timesheet_approver (all records), group_timesheet_manager (admin+HR). Portal access disabled by default; enabled via project collaborator sharing toggle."
+    },
+    {
+      "finding": "sale_timesheet adds so_line and timesheet_invoice_id",
+      "detail": "Billable timesheet bridge fields so_line (Many2one to sale.order.line) and timesheet_invoice_id (Many2one to account.move) are added by sale_timesheet module, not core hr_timesheet."
+    },
+    {
+      "finding": "No cron in community module",
+      "detail": "Reminder flags (reminder_user_allow, reminder_allow) exist in res.config.settings but no ir.cron record is defined in the community hr_timesheet module."
+    }
+  ],
+  "dependencies": ["hr", "hr_hourly_cost", "analytic", "project", "uom"],
+  "related_modules": ["sale_timesheet", "hr_timesheet_attendance", "project_timesheet_holidays"],
+  "source_files_read": [
+    "hr_timesheet/__manifest__.py",
+    "hr_timesheet/models/hr_timesheet.py",
+    "hr_timesheet/models/project_project.py",
+    "hr_timesheet/models/project_task.py",
+    "hr_timesheet/models/analytic_applicability.py",
+    "hr_timesheet/models/res_config_settings.py",
+    "hr_timesheet/models/project_collaborator.py",
+    "hr_timesheet/security/hr_timesheet_security.xml",
+    "hr_timesheet/report/timesheets_analysis_report.py",
+    "hr_timesheet/data/hr_timesheet_data.xml",
+    "hr_timesheet/data/digest_data.xml",
+    "hr_timesheet_attendance/__manifest__.py",
+    "sale_timesheet/models/hr_timesheet.py (lines 25-104)"
+  ]
+}
