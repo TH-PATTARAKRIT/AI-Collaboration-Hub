@@ -1,0 +1,77 @@
+{
+  "unit": "U197",
+  "module": "hr_holidays",
+  "module_version": "1.6",
+  "odoo_build": "19.0.post20260921",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 23,
+  "gate": "GREEN",
+  "research_date": "2026-10-02",
+  "migration_flags": [
+    {
+      "flag": "NO_DRAFT_STATE",
+      "severity": "HIGH",
+      "detail": "hr.leave has no 'draft' state in v19. Default is 'confirm'. Any v16/v17 records in draft state must be migrated to confirm before import.",
+      "pointer": "models/hr_leave.py:129-135"
+    },
+    {
+      "flag": "DATE_FIELDS_COMPUTED",
+      "severity": "HIGH",
+      "detail": "date_from and date_to on hr.leave are fully computed from request_date_from / request_date_to. Direct writes to date_from/date_to are rejected. Migration ETL must populate request_date_from / request_date_to instead.",
+      "pointer": "models/hr_leave.py:172-213, 462-498"
+    },
+    {
+      "flag": "ALLOWS_NEGATIVE_NEW_COLUMN",
+      "severity": "MEDIUM",
+      "detail": "hr.leave.type gains two new columns: allows_negative (Boolean) and max_allowed_negative (Integer). These do not exist in v16. Migration must set defaults (allows_negative=False, max_allowed_negative=0).",
+      "pointer": "models/hr_leave_type.py:125-128"
+    },
+    {
+      "flag": "ALLOCATION_TYPE_READONLY",
+      "severity": "MEDIUM",
+      "detail": "allocation_type on hr.leave.allocation is readonly=True after creation. Migration must set 'regular' or 'accrual' correctly on import; it cannot be corrected afterwards via UI.",
+      "pointer": "models/hr_leave_allocation.py:119-122"
+    },
+    {
+      "flag": "HR_LEAVE_REPORT_EXISTS",
+      "severity": "LOW",
+      "detail": "hr.leave.report is still present as a SQL view in v19. It was NOT removed. No migration action required for the model itself.",
+      "pointer": "report/hr_leave_report.py:5-32"
+    },
+    {
+      "flag": "ACCRUAL_PLAN_CAN_BE_CARRYOVER",
+      "severity": "LOW",
+      "detail": "can_be_carryover field on hr.leave.accrual.plan and hr.leave.accrual.level controls carry-over behaviour. New in this version family; check if prior accrual plan records need this set.",
+      "pointer": "models/hr_leave_accrual_plan.py:39"
+    }
+  ],
+  "key_findings": {
+    "state_machine": "5 states on hr.leave: confirm (default), refuse, validate1, validate, cancel. No draft. Allocation has 4: confirm, refuse, validate1, validate.",
+    "approval_chain": "leave_validation_type on hr.leave.type drives flow: no_validation | hr | manager | both. 'both' uses validate1 intermediate step. Officers (group_hr_holidays_user) have full access; leave_manager_id on employee grants targeted access.",
+    "balance_computation": "_compute_leaves delegates to employee._get_consumed_leaves() which aggregates approved allocations and pending+approved leaves per allocation into virtual_remaining_leaves / max_leaves.",
+    "balance_enforcement": "_check_validity() called on create/write. Blocks if no allocation exists. Allows overdraft up to max_allowed_negative when allows_negative=True on leave type.",
+    "allocation_types": "2 types: regular (fixed grant) and accrual (via hr.leave.accrual.plan with multi-level schedule, 7 frequency options, carry-over and cap support).",
+    "date_naming": "v19 uses request_date_from/request_date_to as input (Date); date_from/date_to are computed Datetime stored fields. No holiday_date_from/holiday_date_to naming found in source.",
+    "multicompany": "company_id on hr.leave derived from employee.company_id. hr.leave.type.company_id optional; when set restricts access. Accrual plan company derived from leave type company.",
+    "hr_leave_report": "Still present as SQL view combining allocations and leave requests; uses date_from/date_to column names."
+  },
+  "models_verified": [
+    "hr.leave",
+    "hr.leave.allocation",
+    "hr.leave.type",
+    "hr.leave.accrual.plan",
+    "hr.leave.accrual.level",
+    "hr.leave.report"
+  ],
+  "files_read": [
+    "models/hr_leave.py",
+    "models/hr_leave_allocation.py",
+    "models/hr_leave_type.py",
+    "models/hr_leave_accrual_plan.py",
+    "models/hr_leave_accrual_plan_level.py",
+    "models/hr_employee.py",
+    "report/hr_leave_report.py",
+    "upgrades/1.6/pre-migrate.py",
+    "__manifest__.py"
+  ]
+}
