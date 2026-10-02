@@ -1,0 +1,43 @@
+{
+  "unit": "U139",
+  "title": "account — tax report period lock depth closure (GAP-027)",
+  "g_group": "G01",
+  "priority": "P1",
+  "gap": "GAP-027",
+  "status": "CLOSED",
+  "date": "2026-10-02",
+  "researcher": "Claude Sonnet 4.6",
+  "claims_total": 23,
+  "claims_c1": 22,
+  "claims_c2": 1,
+  "claims_awt": 0,
+  "gate_exit_code": 0,
+  "gate_result": "claim-checks=0, neutral-leak-tokens=0",
+  "gap_finding": "CLOSED — _check_tax_lock_date() is enforced at 7 distinct call sites covering create, write (pre and post), unlink on move lines, write on move (3 locations), and the bank statement unreconcile subpath; no security group bypass exists within the enforcement function itself",
+  "key_finding": "_post() silently advances the accounting date past a tax-locked period rather than raising a UserError; the hard block only fires on create/write/unlink of already-posted lines, meaning entry creation is date-auto-adjusted while post-posting mutations are hard-blocked",
+  "prior_unit": "U124",
+  "prior_finding": "U124 proved _check_tax_lock_date() ORM enforcement; U139 closes by mapping all 7 enforcement call sites, confirming no group bypass, confirming sentinel-only bypass, confirming _post auto-advance vs hard-block distinction, and confirming no cron auto-advance exists",
+  "evidence_files": {
+    "technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U139_tax_lock_depth.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U139_tax_lock_depth_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U139_handoff_packet.json"
+  },
+  "key_source_refs": {
+    "enforcement_function": "account/models/account_move_line.py:1526-1543",
+    "affect_tax_report_gate": "account/models/account_move_line.py:1522-1524",
+    "create_enforcement": "account/models/account_move_line.py:1794-1795",
+    "write_pre_enforcement": "account/models/account_move_line.py:1856-1888",
+    "write_post_enforcement": "account/models/account_move_line.py:1924-1925",
+    "unlink_enforcement": "account/models/account_move_line.py:2001-2004",
+    "move_write_enforcement_1": "account/models/account_move.py:3945-3956",
+    "move_write_enforcement_2": "account/models/account_move.py:3997-4002",
+    "post_auto_advance": "account/models/account_move.py:5702-5706",
+    "button_draft_no_direct_check": "account/models/account_move.py:6269-6284",
+    "violation_resolver": "account/models/company.py:675-710",
+    "exception_model": "account/models/account_lock_exception.py:51-61",
+    "exception_revoke_group_check": "account/models/account_lock_exception.py:236",
+    "acl_exception_create": "account/security/ir.model.access.csv:19",
+    "no_cron_for_tax_lock": "account/data/service_cron.xml",
+    "soft_lock_constant": "account/models/company.py:57-62"
+  }
+}

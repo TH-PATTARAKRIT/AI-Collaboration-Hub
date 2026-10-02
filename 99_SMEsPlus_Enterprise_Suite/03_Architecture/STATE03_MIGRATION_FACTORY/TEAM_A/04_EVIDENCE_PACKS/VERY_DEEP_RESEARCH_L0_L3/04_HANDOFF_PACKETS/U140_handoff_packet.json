@@ -1,0 +1,52 @@
+{
+  "unit_id": "U140",
+  "title": "hr_leave — absence/leave management deep L3",
+  "group": "G09",
+  "priority": "P2",
+  "date": "2026-10-02",
+  "odoo_version": "19.0.post20260921",
+  "module_technical_name": "hr_holidays",
+  "module_display_name": "Time Off",
+  "module_path": "odoo/addons/hr_holidays",
+  "gate_status": "PASS",
+  "gate_exit_code": 0,
+  "claim_count": 25,
+  "c1_claims": 25,
+  "awt_claims": 0,
+  "absent_claims": 0,
+  "key_findings": [
+    "Module is named hr_holidays internally (not hr_leave); user-facing name is Time Off",
+    "Leave request state machine has NO draft state — records created directly in confirm state",
+    "Dual-approval path uses intermediate validate1 state with first_approver_id tracking",
+    "Auto-approval triggered at record creation when validation_type == no_validation",
+    "No payroll/accounting integration in Community — only work entry bridge via hr_work_entry_holidays (auto-install)",
+    "hr_work_entry_holidays replaces attendance work entries with leave work entries on approval and restores them on refusal",
+    "Two daily cron jobs: one for accrual computation, one for cancelling leaves that exceed accrual balance",
+    "Three security groups: Time Off Responsible, Officer (manage all), Administrator",
+    "Officers cannot self-approve leaves; only Administrator role can approve own requests",
+    "Leave type has negative balance cap feature (allows_negative + max_allowed_negative)"
+  ],
+  "dependencies": ["hr", "calendar", "resource"],
+  "bridge_module": "hr_work_entry_holidays",
+  "bridge_auto_install": true,
+  "accounting_impact_community": "ABSENT",
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U140_hr_leave.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U140_hr_leave_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U140_handoff_packet.json"
+  },
+  "source_files_read": [
+    "hr_holidays/__manifest__.py",
+    "hr_holidays/models/hr_leave_type.py",
+    "hr_holidays/models/hr_leave.py",
+    "hr_holidays/models/hr_leave_allocation.py",
+    "hr_holidays/models/hr_leave_accrual_plan.py",
+    "hr_holidays/models/hr_leave_accrual_plan_level.py",
+    "hr_holidays/models/hr_leave_mandatory_day.py",
+    "hr_holidays/security/hr_holidays_security.xml",
+    "hr_holidays/data/ir_cron_data.xml",
+    "hr_holidays/report/hr_leave_report.py",
+    "hr_work_entry_holidays/__manifest__.py",
+    "hr_work_entry_holidays/models/hr_leave.py"
+  ]
+}
