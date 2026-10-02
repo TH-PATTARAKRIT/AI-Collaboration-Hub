@@ -51,7 +51,8 @@ Units selected per directive:
 | U121 | stock — warehouse-company binding + inventory isolation (GAP-003) | P0 | Yes | NOT_PROVEN | warehouse.company_id ir.rule, cross-company stock move prevention | Done 3f5e52ab (GAP-003 PARTIAL: binding+14 ir.rules proven; inter-company PO/SO automation ABSENT) |
 | U122 | account — credit note return immutability (GAP-028) | P1 | Yes | NOT_PROVEN | _reverse_move, credit note partial reconciliation, return stock accounting | Done 65065ebc (GAP-028 CLOSED) |
 | U123 | account — year-end FX adjustment close (GAP-048) | P1 | Yes | NOT_PROVEN | _get_adjustment_entry at fiscal year close, unrealized FX balance | Done 862ab1fe (GAP-048 PARTIAL: exchange diff at reconcile proven; unrealized FX wizard ABSENT) |
-| U124 | account — tax report period lock (GAP-027) | P1 | Yes | NOT_PROVEN | account.tax.report lock_date logic, tax_lock_date enforcement | Running |
+| U124 | account — tax report period lock (GAP-027) | P1 | Yes | NOT_PROVEN | account.tax.report lock_date logic, tax_lock_date enforcement | Done 7323dbc4 (GAP-027 PARTIAL: tax_lock_date ORM enforcement C1; auto-advance on closing post ABSENT — Enterprise-only) |
+| U125 | sale_subscription — Community presence check (GAP-049/Rank-12) | P2 | No | NOT_STUDIED | sale.subscription model, recurring invoice generation, contract renewal if present | Running |
 
 ---
 
