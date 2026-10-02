@@ -211,8 +211,8 @@
 | U83 | mrp_subcontracting + purchase subcontracting flow | G09/G07 CANDIDATE | P1 | No | U15, U07 | BOM→PO→receipt→auto-send→FG return→account | Restricted+Neutral evidence, handoff packet | Done ff7def70 |
 | U84 | sale_stock + stock_account COGS timing at delivery | G06/G08/G04 CANDIDATE | P1 | Yes | U05, U10 | Delivery validate→SVL→account.move timing | Restricted+Neutral evidence, handoff packet | Done d4cb63c1 |
 | U85 | point_of_sale — session open/close/reconcile | G10 CANDIDATE | P1 | No | U64 | POS session lifecycle→account.move generation | Restricted+Neutral evidence, handoff packet | Done 8c17f79b |
-| U86 | crm.lead full pipeline (lead→opportunity→SO) | G11 CANDIDATE | P2 | No | U18, U38 | CRM lead→qualify→win→SO→analytic | Restricted+Neutral evidence, handoff packet | Running |
-| U87 | project + hr_timesheet + analytic (time-cost chain) | G12 CANDIDATE | P2 | No | U16, U46 | Timesheet→analytic posting→expense→invoice | Restricted+Neutral evidence, handoff packet | Queued |
+| U86 | crm.lead full pipeline (lead→opportunity→SO) | G11 CANDIDATE | P2 | No | U18, U38 | CRM lead→qualify→win→SO→analytic | Restricted+Neutral evidence, handoff packet | Done a976e473 |
+| U87 | project + hr_timesheet + analytic (time-cost chain) | G12 CANDIDATE | P2 | No | U16, U46 | Timesheet→analytic posting→expense→invoice | Restricted+Neutral evidence, handoff packet | Running |
 | U88 | hr.leave + hr.work_entry + payroll prep | G12 CANDIDATE | P2 | No | U17, U39, U40 | Leave→approval→work entry→payroll impact | Restricted+Neutral evidence, handoff packet | Queued |
 | U89 | website_sale full eCommerce (cart→checkout→payment→SO) | G13 CANDIDATE | P2 | No | U65, U19 | Website cart→checkout→payment→confirmed SO→delivery | Restricted+Neutral evidence, handoff packet | Queued |
 | U90 | mass_mailing + event + crm marketing chain | G11/G13 CANDIDATE | P2 | No | U18, U42, U62 | Mailing→event→CRM lead→conversion | Restricted+Neutral evidence, handoff packet | Queued |
