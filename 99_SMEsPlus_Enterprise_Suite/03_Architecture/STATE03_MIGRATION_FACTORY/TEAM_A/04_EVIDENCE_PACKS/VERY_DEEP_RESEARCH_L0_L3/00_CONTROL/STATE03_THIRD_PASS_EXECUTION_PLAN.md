@@ -45,7 +45,13 @@ Units selected per directive:
 | U116 | purchase_requisition — if present in Community | P2 | No | NOT_STUDIED | purchase.requisition model, tender workflow, PO from requisition | Done ac2cc851 (PRESENT — blanket_order + purchase_template) |
 | U117 | digest — KPI digest cron + ir.actions.server pattern | P2 | No | NOT_STUDIED | digest.digest, _compute_kpis, mail cron | Done e7560a48 |
 | U118 | account — deferred revenue/expense (account_deferred) | P1 | No | NOT_STUDIED | account.deferred model, amortization schedule, account.move generation | Done 3d054777 (ABSENT — Enterprise-only) |
-| U119 | l10n_th_pnd — Thai personal income tax / PND if present | P0 | Yes (TH) | NOT_STUDIED | PND withholding, ภ.ง.ด.1/3/53, vendor WHT deduction at payment | Running |
+| U119 | l10n_th_pnd — Thai personal income tax / PND if present | P0 | Yes (TH) | NOT_STUDIED | PND withholding, ภ.ง.ด.1/3/53, vendor WHT deduction at payment | Done c809cc4b (l10n_th_pnd+l10n_th_withholding_tax ABSENT; 12 WHT templates in l10n_th, PND3/PND53 reports, 5 gaps documented) |
+
+| U120 | account — multi-company intercompany journal + shared COA (GAP-002/GAP-018) | P0 | Yes | NOT_PROVEN | shared_chart_of_accounts, company_id domain, intercompany automation | Running |
+| U121 | stock — warehouse-company binding + inventory isolation (GAP-003) | P0 | Yes | NOT_PROVEN | warehouse.company_id ir.rule, cross-company stock move prevention | Queued |
+| U122 | account — credit note return immutability (GAP-028) | P1 | Yes | NOT_PROVEN | _reverse_move, credit note partial reconciliation, return stock accounting | Queued |
+| U123 | account — year-end FX adjustment close (GAP-048) | P1 | Yes | NOT_PROVEN | _get_adjustment_entry at fiscal year close, unrealized FX balance | Queued |
+| U124 | account — tax report period lock (GAP-027) | P1 | Yes | NOT_PROVEN | account.tax.report lock_date logic, tax_lock_date enforcement | Queued |
 
 ---
 
