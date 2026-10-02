@@ -1,0 +1,88 @@
+{
+  "unit": "U74",
+  "phase": "Second-Pass Depth Closure \u2014 P0 Critical",
+  "capability_dimension": "GRV-F06 \u2014 Three-way match / bill control",
+  "date": "2026-10-02",
+  "gate_result": {
+    "exit_code": 0,
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0
+  },
+  "claim_count": 32,
+  "c1_count": 20,
+  "awt_count": 0,
+  "new_function_ids": [
+    "NEW:U74-F01",
+    "NEW:U74-F02"
+  ],
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U74_three_way_match.md",
+    "02_NEUTRAL_KNOWLEDGE/U74_three_way_match_NEUTRAL.md"
+  ],
+  "key_findings": {
+    "purchase_method": {
+      "field": "product.template.purchase_method",
+      "pointer": "purchase/models/product.py:14",
+      "values": {
+        "purchase": "On ordered quantities \u2014 qty_to_invoice = product_qty - qty_invoiced",
+        "receive": "On received quantities \u2014 qty_to_invoice = qty_received - qty_invoiced (three-way cap)"
+      },
+      "service_forced": "Service products forced to 'purchase' at _compute_purchase_method:27",
+      "default_fallback": "'receive' if no IR default set (product.py:24)"
+    },
+    "qty_invoiced": {
+      "field": "purchase.order.line.qty_invoiced",
+      "pointer": "purchase/models/purchase_order_line.py:66",
+      "includes_draft": true,
+      "excludes": [
+        "cancel"
+      ],
+      "in_invoice": "adds quantity",
+      "in_refund": "subtracts quantity"
+    },
+    "qty_received": {
+      "field": "purchase.order.line.qty_received",
+      "pointer": "purchase/models/purchase_order_line.py:72",
+      "stock_moves_method": "purchase_stock/models/purchase_order_line.py:41 \u2014 consu products use stock_moves",
+      "trigger": "purchase_stock/models/purchase_order_line.py:51 \u2014 depends on move_ids.state/product_uom/quantity",
+      "done_only": true,
+      "purchase_line_id_fk": "purchase_stock/models/stock_move.py:15"
+    },
+    "invoice_status": {
+      "field": "purchase.order.invoice_status",
+      "pointer": "purchase/models/purchase_order.py:127",
+      "values": {
+        "no": "non-purchase state OR all qty_to_invoice zero and no bills",
+        "to invoice": "any line has nonzero qty_to_invoice",
+        "invoiced": "all qty_to_invoice zero AND invoice_ids present"
+      }
+    },
+    "blocking_mechanism": {
+      "community_hard_block": false,
+      "mechanism": "Soft \u2014 qty_to_invoice caps bill line qty on creation; no ValidationError on post",
+      "activity_warning": "purchase_stock/models/purchase_order_line.py:173 \u2014 activity when product_qty < qty_invoiced",
+      "enterprise_module": "module_account_3way_match referenced in settings but absent from Community addons"
+    },
+    "cross_module_chain": {
+      "stock_move_to_pol": "stock.move.purchase_line_id \u2192 purchase.order.line (purchase_stock/models/stock_move.py:15)",
+      "pol_to_moves": "purchase.order.line.move_ids \u2192 stock.move (purchase_stock/models/purchase_order_line.py:28)",
+      "qty_received_update": "_prepare_qty_received sums done moves for stock_moves method"
+    }
+  },
+  "predecessor_units": [
+    "U07",
+    "U12"
+  ],
+  "modules_read": [
+    "purchase/models/purchase_order_line.py",
+    "purchase/models/purchase_order.py",
+    "purchase/models/product.py",
+    "purchase/models/res_config_settings.py",
+    "purchase/models/res_company.py",
+    "purchase/models/account_invoice.py",
+    "purchase_stock/models/purchase_order_line.py",
+    "purchase_stock/models/stock_move.py",
+    "purchase_stock/models/account_invoice.py",
+    "purchase_stock/models/account_move_line.py"
+  ]
+}
