@@ -1,0 +1,85 @@
+{
+  "unit": "U105",
+  "title": "pos_restaurant — table/floor management deep (GAP-038)",
+  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "priority": "P1",
+  "gap_id": "GAP-038",
+  "gap_prior_state": "PARTIAL — prior evidence exists but table management not deeply studied",
+  "research_agent": "Claude Sonnet 4.6 (third-pass deep research)",
+  "research_date": "2026-10-02",
+  "module_path": "pos_restaurant",
+  "addons_root": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons",
+  "kitchen_display_module_present": false,
+  "kitchen_display_note": "No pos_kitchen_display module found under the Community addons root. Kitchen integration is handled through the preparation send flow in pos_restaurant itself (sendOrderInPreparation / preparation printer) with no separate kitchen display Community module.",
+  "claim_count": 55,
+  "source_files_read": [
+    "pos_restaurant/models/pos_restaurant.py",
+    "pos_restaurant/models/restaurant_order_course.py",
+    "pos_restaurant/models/pos_order.py",
+    "pos_restaurant/models/pos_order_line.py",
+    "pos_restaurant/models/pos_config.py",
+    "pos_restaurant/models/pos_session.py",
+    "pos_restaurant/models/pos_payment.py",
+    "pos_restaurant/models/pos_preset.py",
+    "pos_restaurant/models/res_config_settings.py",
+    "pos_restaurant/static/src/app/models/restaurant_table.js",
+    "pos_restaurant/static/src/app/models/restaurant_order_course.js",
+    "pos_restaurant/static/src/app/models/pos_order.js",
+    "pos_restaurant/static/src/app/screens/floor_screen/floor_screen.js",
+    "pos_restaurant/static/src/app/screens/split_bill_screen/split_bill_screen.js",
+    "pos_restaurant/static/src/app/services/pos_store.js",
+    "pos_restaurant/static/src/app/utils/order_change.js",
+    "pos_restaurant/static/src/app/utils/devices_synchronisation.js",
+    "pos_restaurant/static/src/app/components/order_course/order_course.js",
+    "pos_restaurant/__manifest__.py"
+  ],
+  "scope_coverage": {
+    "floor_plan_schema": "COVERED — 10 claims (U105-001 to U105-010), all server-side Python",
+    "table_schema": "COVERED — 7 claims (U105-011 to U105-017), server-side Python",
+    "order_table_link": "COVERED — 4 claims (U105-018 to U105-021), server-side Python",
+    "course_ordering_schema": "COVERED — 8 claims (U105-022 to U105-029), server-side Python",
+    "config_schema": "COVERED — 6 claims (U105-030 to U105-035), server-side Python",
+    "client_table_model": "COVERED — 4 claims (U105-034 to U105-037), JS",
+    "floor_editor_js": "COVERED — 3 claims (U105-038 to U105-040), JS",
+    "split_order_js": "COVERED — 3 claims (U105-041 to U105-043), JS",
+    "course_ordering_js": "COVERED — 7 claims (U105-044 to U105-051), JS",
+    "kitchen_display": "NOT_PRESENT — no separate Community kitchen display module; preparation printing handled via sendOrderInPreparation (AWT)"
+  },
+  "key_findings": [
+    "RestaurantFloor (restaurant.floor) and RestaurantTable (restaurant.table) both inherit pos.load.mixin and are added to session load list in PosSession._load_pos_data_models when module_pos_restaurant is active.",
+    "RestaurantTable supports self-referential parent_id for physical table merging. Merged child tables derive their screen coordinates from the parent rather than storing them independently.",
+    "PosOrder gains table_id (btree_not_null partial index), customer_count, and course_ids. _get_open_order is overridden to prevent duplicate orders when concurrent waiters hit the same table.",
+    "RestaurantOrderCourse carries fired bool + fired_date auto-stamp, uuid (uuid4), index, and one-to-many line_ids. create/write overrides auto-stamp fired_date.",
+    "PosOrderLine gains nullable course_id (ondelete='set null'). Deleting a course releases its lines without cascading.",
+    "Bill splitting preserves course structure: split lines are placed into matching-index courses in the new order. A 26-part alphabetic suffix limit applies.",
+    "Course firing auto-fires the first unfired course on sendOrderInPreparation. addCourse assigns existing lines to the first course and creates a second empty course for new items.",
+    "Device synchronisation patch resolves concurrent waiter conflicts by merging duplicate table orders client-side.",
+    "Receipt/preparation ticket grouping is patched to use course index+name as group header instead of product category.",
+    "No Community pos_kitchen_display module found. Kitchen integration is limited to preparation printer dispatch. AWT observation needed for kitchen display runtime behavior."
+  ],
+  "awt_items": [
+    {
+      "id": "AWT-U105-01",
+      "description": "Verify runtime behavior of sendOrderInPreparation with a kitchen printer configured — confirm preparation ticket format with course groupings",
+      "pointer": "pos_restaurant/static/src/app/services/pos_store.js:109",
+      "reason": "Python-side preparation send calls the preparation tool; actual printer protocol and kitchen display integration require a running session"
+    },
+    {
+      "id": "AWT-U105-02",
+      "description": "Confirm deactivate_floor RPC error message text visible to client after draft order block",
+      "pointer": "pos_restaurant/models/pos_restaurant.py:79",
+      "reason": "UserError is raised server-side; client rendering of the alert dialog message requires UI observation"
+    },
+    {
+      "id": "AWT-U105-03",
+      "description": "Observe floor background image rendering behavior — confirm base64 round-trip and canvas scaling with a real image upload",
+      "pointer": "pos_restaurant/static/src/app/screens/floor_screen/floor_screen.js:1054",
+      "reason": "Image URL extraction and floor_background_image field encoding require a live browser session"
+    }
+  ],
+  "output_files": {
+    "vdr_claims": "01_RESTRICTED_TECHNICAL_EVIDENCE/U105_pos_restaurant.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U105_pos_restaurant_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U105_handoff_packet.json"
+  }
+}
