@@ -1,0 +1,68 @@
+{
+  "unit": "U73",
+  "phase": "SECOND-PASS DEPTH CLOSURE — P0 CRITICAL",
+  "date": "2026-10-02",
+  "status": "GATE-PENDING",
+  "capability_dimension": "Audit trail immutability (RCN-F02/RCN-F03)",
+  "predecessor_unit": "U70",
+  "modules_covered": ["account"],
+  "function_ids_targeted": ["RCN-F02", "RCN-F03", "PCO-F01"],
+  "l_levels_targeted": ["L7", "L8", "L11"],
+  "proof_layers_targeted": ["P2", "P3", "P5"],
+  "claim_count": 48,
+  "c1_count": 48,
+  "awt_count": 0,
+  "th_count": 0,
+  "new_function_ids": [],
+  "key_findings": {
+    "hash_algorithm": {
+      "max_hash_version": 4,
+      "move_fields_v4": ["name", "date", "journal_id", "company_id"],
+      "line_fields_v4": ["name", "debit", "credit", "account_id", "partner_id"],
+      "algorithm": "SHA-256(prev_hash_raw + json.dumps(values, sort_keys=True, ensure_ascii=True))",
+      "stored_format_v4": "$4$<sha256hex>",
+      "monetary_serialisation": "float_repr(value, currency.decimal_places) for hash_version >= 3",
+      "relational_serialisation": "integer ID",
+      "chain_scope": "per (journal_id, sequence_prefix), ordered by sequence_number",
+      "chain_break_prevention": "restrict_mode_hash_table irreversible once entries hashed"
+    },
+    "write_guard_immutable_fields": {
+      "when_inalterable_hash_set": ["name", "date", "journal_id", "company_id", "line.name", "line.debit", "line.credit", "line.account_id", "line.partner_id"],
+      "when_state_posted": ["invoice_line_ids", "line_ids", "invoice_date", "date", "partner_id", "invoice_payment_term_id", "currency_id", "fiscal_position_id", "invoice_cash_rounding_id"],
+      "journal_change_block": "blocked if posted_before=True unless name reset to / or empty"
+    },
+    "button_draft_analysis": {
+      "completely_blocked_if": ["inalterable_hash is set", "tax_cash_basis_rec_id or tax_cash_basis_origin_move_id set (CABA entry)", "referenced as exchange_move_id in partial reconcile"],
+      "survives_draft": ["posted_before", "name (sequence number)", "inalterable_hash", "all line data"],
+      "lost_on_draft": ["state → draft", "sending_data → False", "analytic_line_ids (unlinked)", "invoice_pdf_report_file attachment (detached for sale docs)"]
+    },
+    "sequence_lock": {
+      "posted_before": "set True on first post via _post(), never reset",
+      "name_tracking": "tracking=True, survives button_draft",
+      "journal_change_guard": "posted_before=True blocks journal_id change unless name reset"
+    },
+    "caba_interaction": {
+      "cannot_unlink_posted": true,
+      "cannot_draft": true,
+      "dual_detection_fields": ["tax_cash_basis_rec_id", "tax_cash_basis_origin_move_id"],
+      "auto_posted_on_reconciliation": true
+    },
+    "backdating_chatter": {
+      "mechanism": "Standard Odoo field tracking on date (tracking=True line 128), state (tracking=True line 140), name (tracking=True line 113)",
+      "fiscal_lock_check_on_date_change": "write() calls _check_fiscal_lock_dates() when name or date modified on posted move",
+      "hash_secured_chatter": "_hash_moves() posts 'This journal entry has been secured.' message per entry"
+    },
+    "account_audit_log_module": "ABSENT — not present in Community edition addons"
+  },
+  "source_pointers": {
+    "account_move_py": "account/models/account_move.py",
+    "account_move_line_py": "account/models/account_move_line.py",
+    "account_journal_py": "account/models/account_journal.py",
+    "company_py": "account/models/company.py"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U73_audit_trail_immutability.md",
+    "02_NEUTRAL_KNOWLEDGE/U73_audit_trail_immutability_NEUTRAL.md"
+  ],
+  "gate_result": "GATE-PENDING — no V-levels, no Formal Coverage, no Boss approval assigned per session constraints"
+}
