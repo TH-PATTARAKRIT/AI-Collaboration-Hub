@@ -1,0 +1,107 @@
+{
+  "unit_id": "U112",
+  "title": "product.template to product.product — attribute/variant explosion",
+  "priority": "P2",
+  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "research_date": "2026-10-02",
+  "odoo_version": "19.0.post20260921",
+  "source_tree": "Community only — addons/product/models/",
+  "claim_count": 50,
+  "files_read": [
+    "product/models/product_attribute.py",
+    "product/models/product_attribute_value.py",
+    "product/models/product_template_attribute_line.py",
+    "product/models/product_template_attribute_value.py",
+    "product/models/product_template.py",
+    "product/models/product_product.py"
+  ],
+  "output_files": {
+    "vdr_claims": "01_RESTRICTED_TECHNICAL_EVIDENCE/U112_product_variant.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U112_product_variant_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U112_handoff_packet.json"
+  },
+  "key_findings": {
+    "create_variant_modes": {
+      "always": {
+        "behaviour": "All combinations pre-generated via itertools.product Cartesian product when ptal is saved",
+        "pointer": "product/models/product_template.py:817",
+        "trigger": "_create_variant_ids called from ptal.create/write or template.create/write"
+      },
+      "dynamic": {
+        "behaviour": "No pre-generation; variant created on-demand by _create_product_variant when added to a sales order",
+        "pointer": "product/models/product_template.py:814",
+        "trigger": "has_dynamic_attributes() returns True, pre-generation loop is skipped"
+      },
+      "no_variant": {
+        "behaviour": "Attribute excluded from Cartesian product; ptav exists but no product.product is generated for that dimension",
+        "pointer": "product/models/product_template.py:781",
+        "trigger": "lines_without_no_variants filters before itertools.product call"
+      },
+      "single_value_optimisation": {
+        "behaviour": "Single-value lines are written directly onto existing variants rather than triggering full regeneration",
+        "pointer": "product/models/product_template.py:790"
+      }
+    },
+    "variant_creation_trigger_chain": [
+      "ptal.create or ptal.write calls _update_product_template_attribute_values (product_template_attribute_line.py:113,156)",
+      "_update_product_template_attribute_values creates/activates/unlinks ptav records",
+      "_update_product_template_attribute_values calls template._create_variant_ids (product_template_attribute_line.py:255)",
+      "_create_variant_ids computes Cartesian product, creates Product.create(variants_to_create), calls _unlink_or_archive on surplus"
+    ],
+    "price_extra_flow": {
+      "global_default": "product.attribute.value.default_extra_price (product_attribute_value.py:35)",
+      "ptav_seeding": "_update_product_template_attribute_values sets price_extra from pav.default_extra_price (product_template_attribute_line.py:244)",
+      "variant_sum": "product.product.price_extra = sum of ptav.price_extra (product_product.py:321)",
+      "lst_price": "lst_price = list_price + price_extra (product_product.py:335)"
+    },
+    "combination_indices": {
+      "field": "product.product.combination_indices (product_product.py:59)",
+      "computation": "_ids2str() returns sorted comma-joined ptav IDs (product_template_attribute_value.py:167)",
+      "lookup": "_get_variant_id_for_combination uses Domain on combination_indices field (product_template.py:1269)",
+      "uniqueness": "partial unique index on (product_tmpl_id, combination_indices) WHERE active IS TRUE (product_product.py:121)"
+    },
+    "archived_variant_behaviour": {
+      "non_dynamic": "archived variant makes combination impossible (_is_combination_possible returns False at line 1167)",
+      "dynamic": "archived variant also makes combination impossible at line 1163; _create_product_variant can reactivate if combination is still possible (line 1226)",
+      "rebuild": "_unlink_or_archive tries delete then archive (product_product.py:750)"
+    },
+    "variant_limit": {
+      "param": "product.dynamic_variant_limit",
+      "default": 1000,
+      "pointer": "product/models/product_template.py:828"
+    },
+    "exclusion_rules": {
+      "model": "product.template.attribute.exclusion via exclude_for on ptav",
+      "trigger": "ptav.write with exclude_for calls _create_variant_ids (product_template_attribute_value.py:115)",
+      "filter": "_filter_combinations_impossible_by_config checks combination_ids & combination_excluded_ids (product_template.py:1107-1110)"
+    },
+    "no_variant_on_physical_record": {
+      "pointer": "product/models/product_template.py:1242",
+      "note": "combination._without_no_variant_attributes().ids used when creating variant — no_variant ptav IDs never stored on product.product"
+    }
+  },
+  "awt_items": [
+    {
+      "id": "AWT-U112-01",
+      "description": "Verify that _create_variant_ids is called after every ptal write in a live Odoo session with always-mode attribute",
+      "reason": "runtime observation needed to confirm context flag interactions"
+    },
+    {
+      "id": "AWT-U112-02",
+      "description": "Verify price_extra sum on variant record when multiple attributes each carry non-zero extra prices",
+      "reason": "runtime observation to confirm summing behaviour across multi-attribute combinations"
+    },
+    {
+      "id": "AWT-U112-03",
+      "description": "Verify that no_variant ptav IDs are absent from combination_indices on a saved variant",
+      "reason": "database-level verification of filtering behaviour"
+    }
+  ],
+  "migration_risk_notes": [
+    "Variant limit (default 1000) may block migration of products with many attribute combinations; verify or raise the limit before migrating product templates",
+    "Changing create_variant mode after initial use is blocked; any mode changes must happen before products are created in the target instance",
+    "Archived variants are not deleted; they accumulate in product_product and may inflate record counts in the migrated database",
+    "combination_indices is a stored computed field; it must be recomputed after any bulk import of product_variant_combination rows",
+    "The partial unique index on combination_indices WHERE active IS TRUE means duplicate active variants for the same combination will cause constraint violations on bulk import"
+  ]
+}
