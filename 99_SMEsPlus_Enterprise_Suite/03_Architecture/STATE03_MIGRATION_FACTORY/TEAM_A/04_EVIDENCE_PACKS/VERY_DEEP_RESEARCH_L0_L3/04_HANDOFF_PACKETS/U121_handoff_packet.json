@@ -1,0 +1,26 @@
+{
+  "unit": "U121",
+  "title": "stock — Warehouse-Company Binding + Inventory Isolation",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "gap_ids": ["GAP-003"],
+  "modules": ["stock"],
+  "function_ids": ["MCT-F05", "INV-F01"],
+  "l_levels": ["L3", "L4", "L9"],
+  "proof_layers": ["P1", "P3", "P4"],
+  "claim_count": 50,
+  "c1_count": 50,
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "gap_status": {"GAP-003": "PARTIAL"},
+  "key_findings": {
+    "warehouse_company_binding": "stock/models/stock_warehouse.py:37-40 — company_id required, readonly, immutable; write() guard at line 187-190 raises UserError on company change",
+    "record_rule_isolation": "stock/security/stock_security.xml:72-166 — 14 ir.rule records covering warehouse, picking, picking_type, move, move_line, quant, location, lot, orderpoint, rule, route, package, scrap, report, storage_category",
+    "quant_company_derivation": "stock/models/stock_quant.py:56 — company_id related to location_id.company_id, making quant isolation a consequence of location ownership",
+    "transit_infrastructure": "stock/models/res_company.py:53-66 and stock/data/stock_data.xml:34-39 — per-company internal transit location + global inter-company transit location (no company_id), both initially inactive",
+    "gap_partial_reason": "Community provides warehouse-company binding and all isolation record rules. Cross-company automated order generation (account_inter_company_rules) is Enterprise-only; Community has only transit location infrastructure"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U121_stock_warehouse_company.md",
+    "02_NEUTRAL_KNOWLEDGE/U121_stock_warehouse_company_NEUTRAL.md"
+  ]
+}
