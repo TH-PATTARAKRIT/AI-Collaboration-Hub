@@ -1,0 +1,43 @@
+{
+  "atomic_boundary_id": "U95",
+  "source_revision": "19.0.post20260921",
+  "db_baseline": "iTest19C_2026-09-21",
+  "packet_generated": "2026-10-02",
+  "phase": "Second-Pass P0 Critical Recovery",
+  "scope": "U55 gap recovery — core sale integration bridge modules",
+  "modules": [
+    "sale_crm",
+    "sale_loyalty",
+    "sale_management",
+    "sale_margin",
+    "sale_mrp",
+    "sale_product_matrix",
+    "sale_project",
+    "sale_stock"
+  ],
+  "gap_identification": "No modules were assigned to U55 in the G01-G16 mapping TSV. The unit was skipped by the original DeepSeek research pass. The logical gap between U54 (payment/product remaining) and U56 (sale communication/spreadsheet) consists of the eight core sale-integration bridge modules identified above.",
+  "mechanical_gate": "GATE-PASS",
+  "gate_output": "claims=49 claim-checks=0 neutral-leak-tokens=0",
+  "function_ids_new": [
+    "U95-F01 (sale_crm — opportunity-to-quotation bridge)",
+    "U95-F02 (sale_loyalty — loyalty programs on sales orders)",
+    "U95-F03 (sale_management — quotation templates / Sales application)",
+    "U95-F04 (sale_margin — margin profitability on order lines and headers)",
+    "U95-F05 (sale_mrp — production order linkage from sale lines)",
+    "U95-F06 (sale_product_matrix — variant grid entry on sales orders)",
+    "U95-F07 (sale_project — task/project generation from service lines)",
+    "U95-F08 (sale_stock — delivery workflow integration with warehouses)"
+  ],
+  "files": {
+    "restricted_evidence": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/01_RESTRICTED_TECHNICAL_EVIDENCE/U95_u55_recovery.md",
+    "neutral_knowledge": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/02_NEUTRAL_KNOWLEDGE/U95_u55_recovery_NEUTRAL.md"
+  },
+  "counts": {
+    "claims": 49,
+    "neutral_statements": 49,
+    "l_levels": "L1, L2, L3",
+    "proof_layers": "P1"
+  },
+  "predecessors": ["U54", "U56"],
+  "branch": "claude/local-odoo-source-research"
+}
