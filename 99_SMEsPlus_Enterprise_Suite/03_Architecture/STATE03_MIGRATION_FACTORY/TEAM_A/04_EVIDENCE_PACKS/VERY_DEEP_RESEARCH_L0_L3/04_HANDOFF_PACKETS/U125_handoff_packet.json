@@ -1,0 +1,49 @@
+{
+  "unit_id": "U125",
+  "title": "sale_subscription Community presence check + depth study",
+  "g_group": "G05",
+  "priority": "P2",
+  "gap_id": "GAP-049",
+  "gap_rank": 12,
+  "research_date": "2026-10-02",
+  "researcher": "DeepSeek Worker (Claude Sonnet 4.6)",
+  "presence": "ABSENT",
+  "odoo_version": "19.0.post20260921",
+  "edition": "Community",
+  "claims_count": 7,
+  "claims_absent": 6,
+  "claims_c1": 1,
+  "gate_exit_code": 0,
+  "gap_status": "OPEN",
+  "key_finding": "sale_subscription is Enterprise-only in Odoo v19. Community has zero subscription/recurrence fields on sale.order or sale.order.line. No adjacent modules (sale_temporal, sale_renting, product_rental) present. Only trace is a developer comment in product_template.py:273-276 confirming the module is an Enterprise extension override. GAP-049 remains fully open.",
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U125_sale_subscription.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U125_sale_subscription_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U125_handoff_packet.json"
+  },
+  "source_pointers": [
+    {
+      "path": "odoo/addons/sale_subscription",
+      "finding": "directory absent",
+      "claim_ids": ["U125-C01", "U125-N01"]
+    },
+    {
+      "path": "odoo/addons/sale/models/sale_order.py",
+      "finding": "zero subscription/recurrence field matches",
+      "claim_ids": ["U125-C03", "U125-N03"]
+    },
+    {
+      "path": "odoo/addons/sale/models/sale_order_line.py",
+      "finding": "zero subscription/recurrence field matches",
+      "claim_ids": ["U125-C04", "U125-N04"]
+    },
+    {
+      "path": "odoo/addons/sale/models/product_template.py",
+      "lines": "273-276",
+      "finding": "developer comment references sale_subscription as Enterprise extension",
+      "claim_ids": ["U125-C05", "U125-N05"]
+    }
+  ],
+  "migration_risk_note": "C1-adjacent risk confirmed open. SaaS clients requiring recurring subscription invoicing must use Enterprise edition, a vetted Community add-on, or custom development. No partial Community workaround exists in v19.",
+  "next_action_for_gate": "Claude Gate: review ABSENT claim set, confirm GAP-049 classification, consider escalation to C1-Risk register"
+}
