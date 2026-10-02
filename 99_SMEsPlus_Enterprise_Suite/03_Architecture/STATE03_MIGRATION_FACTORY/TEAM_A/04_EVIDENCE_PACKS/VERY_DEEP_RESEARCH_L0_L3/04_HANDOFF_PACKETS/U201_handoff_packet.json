@@ -1,0 +1,81 @@
+{
+  "unit": "U201",
+  "module": "sale_margin",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 20,
+  "gate": "GREEN",
+  "research_date": "2026-10-02",
+  "odoo_version": "19.0.post20260921",
+  "migration_flags": [
+    {
+      "flag": "PRECOMPUTE_ON_ALL_THREE_FIELDS",
+      "severity": "INFO",
+      "detail": "margin, margin_percent, and purchase_price all carry precompute=True. Migration scripts must not bypass ORM create to avoid missing precompute triggers.",
+      "pointer": "sale_margin/models/sale_order_line.py:12,14,17"
+    },
+    {
+      "flag": "COPY_FALSE_PURCHASE_PRICE",
+      "severity": "MIGRATION-CRITICAL",
+      "detail": "purchase_price has copy=False. When migrating historical SO lines, do NOT bulk-copy purchase_price from old DB; instead allow recomputation from current standard_price, or explicitly set the migrated value with a dedicated script step.",
+      "pointer": "sale_margin/models/sale_order_line.py:17"
+    },
+    {
+      "flag": "MIN_DISPLAY_DIGITS_PRODUCT_PRICE",
+      "severity": "INFO",
+      "detail": "margin and purchase_price reference decimal precision record 'Product Price'. Confirm this precision record exists in target v19 database after migration.",
+      "pointer": "sale_margin/models/sale_order_line.py:11,16"
+    },
+    {
+      "flag": "AGGREGATOR_AVG_ON_MARGIN_PERCENT",
+      "severity": "INFO",
+      "detail": "sale.order.margin_percent uses aggregator='avg' (v17+ ORM attribute replacing group_operator). Confirm ORM version compatibility in target deployment.",
+      "pointer": "sale_margin/models/sale_order.py:12"
+    },
+    {
+      "flag": "MARGIN_MONETARY_NOT_FLOAT",
+      "severity": "INFO",
+      "detail": "sale.order.margin is fields.Monetary (not Float). If upgrading from a version where it was Float, the currency_id linkage must be correctly populated.",
+      "pointer": "sale_margin/models/sale_order.py:10"
+    },
+    {
+      "flag": "NO_PO_WRITEBACK_TO_PURCHASE_PRICE",
+      "severity": "INFO",
+      "detail": "sale_purchase module does not write PO price back to sale.order.line.purchase_price. Any assumption that SO margin reflects actual PO cost is incorrect. AVCO/FIFO actual COGS may diverge from displayed margin.",
+      "pointer": "sale_purchase/models/sale_order_line.py (no purchase_price reference)"
+    },
+    {
+      "flag": "SNAPSHOT_COST_NOT_REALTIME",
+      "severity": "FUNCTIONAL-RISK",
+      "detail": "purchase_price is a snapshot of standard_price at line creation time. For AVCO products, margin on historical orders does not reflect post-creation cost changes. This is by design but must be communicated to users.",
+      "pointer": "sale_margin/models/sale_order_line.py:20-36"
+    }
+  ],
+  "key_findings": {
+    "margin_formula": "line.margin = line.price_subtotal - (line.purchase_price * line.product_uom_qty)",
+    "margin_percent_formula": "line.margin_percent = line.margin / line.price_subtotal (0 if price_subtotal is 0)",
+    "purchase_price_source": "product.standard_price, UoM-converted then currency-converted to SO currency at order date_order",
+    "purchase_price_editability": "readonly=False allows manual override; copy=False triggers recompute from current product cost on SO copy",
+    "order_margin_aggregation": "sum of line margins (Python mapped or SQL _read_group depending on onchange vs batch path)",
+    "order_margin_percent": "order.margin / order.amount_untaxed (NOT average of line percentages)",
+    "multi_currency": "cost_currency_id = product company currency; converted to SO currency via res.currency._convert with date_order and round=False",
+    "avco_fifo_behaviour": "purchase_price is snapshot of standard_price; AVCO auto-updates standard_price but historical SO lines retain their snapshot; FIFO uses standard_price not actual COGS layers",
+    "sale_purchase_interaction": "no purchase_price writeback from PO to SO line",
+    "thai_thb": "no Thai-specific logic; THB handled by standard currency conversion mechanism",
+    "delivery_line_branch": "special branch for qty_delivered>0 and product_uom_qty==0 uses price_unit*qty_delivered as revenue base",
+    "report_margin": "sale.report adds margin field normalised to reporting currency via currency_rate division and account_currency_table multiplication"
+  },
+  "source_files_read": [
+    "sale_margin/models/sale_order_line.py",
+    "sale_margin/models/sale_order.py",
+    "sale_margin/models/__init__.py",
+    "sale_margin/__manifest__.py",
+    "sale_margin/report/sale_report.py",
+    "sale_margin/tests/test_sale_margin.py",
+    "sale_margin/views/sale_order_views.xml",
+    "sale/models/sale_order_line.py (lines 1755-1776, 854-866)",
+    "sale/report/sale_report.py (lines 169-178)",
+    "product/models/product_product.py (lines 62-68)",
+    "product/models/product_template.py (lines 90-91, 264-267)",
+    "sale_purchase/models/sale_order_line.py"
+  ]
+}
