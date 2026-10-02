@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "unit": "U108",
+  "title": "auth_passkey — WebAuthn registration/auth flow L2/L3 (GAP-020)",
+  "gap": "GAP-020",
+  "priority": "P1",
+  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "research_date": "2026-10-02",
+  "agent": "Claude Sonnet 4.6",
+  "module": "auth_passkey",
+  "module_version": "1.1",
+  "odoo_version": "19.0.post20260921",
+  "source_root": "auth_passkey",
+  "claim_count": 50,
+  "c1_count": 50,
+  "awt_count": 0,
+  "output_files": {
+    "restricted_evidence": "01_RESTRICTED_TECHNICAL_EVIDENCE/U108_auth_passkey.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U108_auth_passkey_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U108_handoff_packet.json"
+  },
+  "key_source_files": [
+    "auth_passkey/__manifest__.py",
+    "auth_passkey/models/auth_passkey_key.py",
+    "auth_passkey/models/res_users.py",
+    "auth_passkey/models/res_users_identitycheck.py",
+    "auth_passkey/controllers/main.py",
+    "auth_passkey/mobile_utils.py",
+    "auth_passkey/security/security.xml",
+    "auth_passkey/security/ir.model.access.csv",
+    "auth_passkey/_vendor/webauthn/registration/generate_registration_options.py",
+    "auth_passkey/_vendor/webauthn/registration/verify_registration_response.py",
+    "auth_passkey/_vendor/webauthn/authentication/generate_authentication_options.py",
+    "auth_passkey/_vendor/webauthn/authentication/verify_authentication_response.py",
+    "auth_passkey/_vendor/webauthn/helpers/generate_challenge.py"
+  ],
+  "models_covered": [
+    "auth.passkey.key",
+    "auth.passkey.key.create",
+    "res.users (extension)",
+    "res.users.identitycheck (extension)"
+  ],
+  "key_findings": [
+    "Module auto-installs when base_setup and web dependencies are present",
+    "Passkey model stores credential_identifier, public_key, sign_count all restricted to base.group_system",
+    "Registration challenge: resident_key=REQUIRED, user_verification=REQUIRED — discoverable credentials only",
+    "Authentication challenge generated at /auth/passkey/start-auth (public route, no auth required)",
+    "WebAuthn challenges are 64 random bytes (secrets.token_bytes), consumed via session.pop() — single-use",
+    "Authentication bypasses MFA: _check_credentials returns mfa='skip' on success",
+    "Login resolution uses raw SQL JOIN between passkey table and users table on credential identifier",
+    "Public key stored via direct SQL UPDATE bypassing ORM field access control",
+    "Session token includes aggregated passkey key IDs — any passkey change invalidates all sessions",
+    "Three-tier record security: user rule (own records only), admin rule (read+delete all), ERP manager ACL",
+    "Deletion requires check_identity decorator + runtime owner check; blocked for cross-user attempts",
+    "Identity check dialog defaults to webauthn when user has passkeys; graceful fallback to password",
+    "Android integration: .well-known/assetlinks.json served at public endpoint for com.odoo.mobile",
+    "Vendored webauthn library enforces UV flag check and monotonic counter check internally",
+    "Attestation conveyance defaults to NONE — no attestation required from authenticator"
+  ],
+  "security_groups_covered": [
+    "base.group_system (field-level restriction on credential_identifier, public_key, sign_count)",
+    "base.group_user (model ACL: read+write; record rule: own records only)",
+    "base.group_portal (model ACL: read+write; record rule: own records only)",
+    "base.group_erp_manager (model ACL: read+write+delete; record rule: read+delete all)"
+  ],
+  "gap_resolution": {
+    "passkey_crud": "COVERED — auth.passkey.key and auth.passkey.key.create models fully evidenced",
+    "challenge_response": "COVERED — _start_registration, _start_auth, _verify_registration_options, _verify_auth fully evidenced",
+    "security_group_gate": "COVERED — three-layer security: field groups, record rules, model ACL all evidenced",
+    "res_users_integration": "COVERED — _login override, _check_credentials override, session token extension fully evidenced"
+  },
+  "next_steps": [
+    "Runtime verification: confirm MFA skip behavior in live Odoo instance (AWT not required for static evidence)",
+    "Test coverage review: auth_passkey/tests/test_passkey_demo.py not deeply analyzed — optionally extend evidence",
+    "Frontend mapping: static/src/interactions not analyzed — JS side of challenge/response flow out of scope for L3"
+  ]
+}
