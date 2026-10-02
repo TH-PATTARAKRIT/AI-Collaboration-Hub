@@ -414,6 +414,14 @@ The 23 non-compliant units frequently bundle **unrelated families** in one job c
 
 **Classification**: `CORRECTION_REQUIRED`, correction posted, **not a Hard Blocker** — does not stop `U33` or any accepted work; routed per the Standing Instruction's automatic-correction-loop (no individual Boss approval needed for the correction itself, but the resourcing tradeoff it exposes is surfaced to Boss directly, per §12 of the governing instructions).
 
+## 33. U36 (base — remaining areas: registry/lifecycle, views, QWeb/assets, HTTP, reports, mail servers, filters/exports, actions/menus, countries/languages/partners, model registry) — mechanical intake
+
+**Mechanical check**: content commit `75e9c22a` (2 files, `U36_base_remaining.md` + `_NEUTRAL.md`, 1,126 lines) and packet commit `9427f9af` (`HP_U36.md`) both confirmed present on `claude/local-odoo-source-research`. `U36` is single-module (`base`) per `NEXT_ATOMIC_UNIT_QUEUE.tsv` — complies with the one-module-per-unit rule (one of the 4 compliant units already noted in §32).
+
+**Reported by DeepSeek**: 349 claims, 0 contradictions, 0 C1-bound, 11 `UNKNOWN`, 14 `Runtime/AWT-required`; `base` module assessed `PARTIAL` by the unit itself (ir_qweb/assetsbundle/ir_model internals, base view layouts, web client JS left unread). **Security-relevant note flagged by the unit, not yet by this session**: export and report routes show no server-side group/ACL check in the lines read — tagged `INFERENCE`/`RT`, i.e. not confirmed without runtime access, consistent with the standing AWT backlog treatment used for `U19`'s earlier escalation. Queued for semantic review at the same priority as other security-relevant findings; not elevated to a Hard Blocker on this intake alone since it is explicitly unconfirmed (RT-required) by DeepSeek's own labeling, and `base` export/report group-check behavior is exactly the class of thing L4/L5 runtime confirmation exists to resolve.
+
+**Classification**: `MECHANICAL ONLY (hash-integrity)` — semantic review and the security-relevant export/report finding remain queued, routed per the Standing Instruction's correction/verification loop; no Boss action needed at this intake stage.
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
