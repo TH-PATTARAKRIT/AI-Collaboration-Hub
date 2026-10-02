@@ -1,0 +1,65 @@
+{
+  "unit": "U85",
+  "title": "POS Session Lifecycle (open/close/reconcile → account.move generation)",
+  "date": "2026-10-02",
+  "phase": "Second-Pass Depth Closure — P1 Core Business",
+  "predecessor": "U64",
+  "status": "GATE-PASS",
+  "l_levels": ["L3", "L4", "L5", "L7"],
+  "proof_layers": ["P2", "P3", "P4"],
+  "modules": ["point_of_sale"],
+  "files_read": [
+    "point_of_sale/models/pos_session.py",
+    "point_of_sale/models/pos_order.py",
+    "point_of_sale/models/pos_payment_method.py",
+    "point_of_sale/models/pos_config.py"
+  ],
+  "claim_count": 66,
+  "neutral_row_count": 40,
+  "function_ids": [
+    "U85-F01", "U85-F02", "U85-F03", "U85-F04", "U85-F05",
+    "U85-F06", "U85-F07", "U85-F08", "U85-F09", "U85-F10",
+    "U85-F11", "U85-F12", "U85-F13", "U85-F14", "U85-F15",
+    "U85-F16", "U85-F17", "U85-F18", "U85-F19", "U85-F20",
+    "U85-F21", "U85-F22", "U85-F23", "U85-F24", "U85-F25",
+    "U85-F26", "U85-F27", "U85-F28", "U85-F29", "U85-F30",
+    "U85-F31", "U85-F32"
+  ],
+  "gate_result": {
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0,
+    "verdict": "PASS"
+  },
+  "key_findings": {
+    "session_state_machine": {
+      "states": ["opening_control", "opened", "closing_control", "closed"],
+      "open_transition": "set_opening_control / _set_opening_control_data writes state=opened",
+      "close_transition": "action_pos_session_closing_control writes state=closing_control; _validate_session writes state=closed",
+      "bypass": "If cash_control=False, closing_control is bypassed; session goes directly to close"
+    },
+    "account_move_creation_timing": "Single account.move created at session close in _create_account_move, NOT per-order. Per-order invoice created only if to_invoice=True via _generate_pos_order_invoice.",
+    "session_move_journal": "pos.config.journal_id (type general or sale)",
+    "invoice_journal": "pos.config.invoice_journal_id (type sale)",
+    "cash_control": {
+      "cash_difference": "_post_statement_difference creates account.bank.statement.line using cash journal loss_account_id or profit_account_id",
+      "cash_register_difference": "Computed as cash_register_balance_end_real minus cash_register_balance_end (theoretical)"
+    },
+    "multi_payment_method": {
+      "supported": true,
+      "cash_type": "is_cash_count=True; payments create cash statement lines and cash receivable lines in session move",
+      "bank_type": "Payments create account.payment records via _create_bank_payment_moves; routed through outstanding_account_id",
+      "pay_later_type": "Creates pay-later receivable lines in session move"
+    },
+    "inventory_cogs_impact": {
+      "stock_picking_real_time": "Created per-order in _create_order_picking if update_stock_at_closing=False",
+      "stock_picking_batch": "Created at session close in _create_picking_at_end_of_session if update_stock_at_closing=True",
+      "cogs_in_session_move": "Included for storable products with valuation=real_time; uses product expense and stock_valuation accounts from _get_product_accounts"
+    },
+    "reconciliation": "After session move is posted, _reconcile_account_move_lines reconciles cash receivables, bank payment receivables, and invoice receivables in one plan pass (no_cash_basis=True)"
+  },
+  "output_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U85_pos_session_lifecycle.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U85_pos_session_lifecycle_NEUTRAL.md",
+    "gate_script": "/tmp/vdr_check_u85.py"
+  }
+}
