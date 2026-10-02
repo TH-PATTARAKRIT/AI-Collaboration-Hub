@@ -620,6 +620,60 @@ The 23 non-compliant units frequently bundle **unrelated families** in one job c
 
 **Classification**: `CROSSWALK INITIAL MAP — PARTIAL COVERAGE`. G01 fully mapped; G02-G16 anchor-only. Crosswalk will be maintained and updated as each new G-group roster is confirmed and each new DeepSeek unit is accepted.
 
+## 41. U30 (`account` — Thai Tax Core: dynamic-line sync, tax-item generation, rounding, cash-basis, multi-currency) — full semantic review, non-duplication confirmed, 4 native-gap candidates
+
+**Unit**: U30, `tax_line_sync_totals_cashbasis`, Thai Tax Core lane. G-ID: `G04|G10` (account, boundary unresolved per crosswalk §40).
+**Commits**: content `fde16ab9`, packet `a0a9d17b`. Mechanical gate: PASS.
+**Coverage**: 356 claims (FACT 325, OBSERVATION 12, INFERENCE 15, UNKNOWN 4); 137 neutral statements; 1 CONTRA; 7 C1-bound (all PCO-F01); 11 RT; 9 capabilities (CAP-U30-01 to CAP-U30-09); 24 cataloged functions.
+**Modules read**: `account` (account_move.py, account_move_line.py, account_tax.py, account_partial_reconcile.py, account_payment_term.py, account_cash_rounding.py, company.py, chart_template.py, views, security, report data), `base` (res_currency.py rates), plus override scans of `hr_expense`, `account_edi_ubl_cii`, `l10n_th`, `sale`, `purchase`. Not read: report engine, JavaScript mirror beyond signatures, rate-feed modules, landed-cost/manufacturing entries.
+
+### Non-duplication check against TXA1/TXA2/TXC
+
+**Confirmed non-duplicate by design layer**:
+- TXA1/TXA2/TXC: Tax engine *configuration* (what taxes exist, rates, deductibility, chart seeding, l10n_th template at a business-rule level, credit-note/reversal outcomes, cancellation/reset mechanics).
+- U30: The *dynamic synchronisation engine* itself — which derived items exist, when each is recomputed (CAP-U30-01 framework), how the snapshot-compare-diff-persist cycle works (CAP-U30-03), rounding algorithm internals (CAP-U30-04), cash-basis entry creation path (CAP-U30-07), payment-term item derivation (CAP-U30-02), multi-currency rate interplay (CAP-U30-09).
+
+These are different abstraction layers. U30 explicitly re-reads lines already cited in TXA1/TXA2/TXC for claims marked "re-read of the earlier claim" (VDR-U30-C032 aligns with U10-R2; VDR-U30-C354 aligns with VDR-U13-C082) — there is **no duplicate claim** in the sense of asserting the same thing independently, only explicit cross-references deepening earlier claims.
+
+The 6 "refinements (not CONTRA)" listed in U30's CONTRA register are all correctly classified: they add mechanical depth to existing claims without overturning them.
+
+### Single CONTRA: VDR-U30-C094 (already processed)
+
+VDR-U30-C094 is the claim that triggered TXA1-R1 (§37): document-level partner and invoice-date snapshots are taken for drafts but not compared by any later branch — only currency, type and rate trigger recomputation. **This CONTRA was fully processed and accepted as TXA1-R1 (§37)**. No new action needed; noted for completeness.
+
+### C1-bound claims (7, all PCO-F01)
+
+All 7 C1-bound claims relate to lock-date enforcement — PCO-F01 scope (Process Control / lock dates). The claims (VDR-U30-C030, C031, C032, C039, C041, C042, C043) are FACT-class, sourced from `account_move.py:3946-4002` and `account_move_line.py:1526-3490`. Internally consistent with U11's earlier lock-date findings. All reviewed — no discrepancy with previously accepted U11/U10-R2 claims. **ACCEPTED** at this tier.
+
+### Native-gap candidates (4)
+
+> These are candidates per the standing `NATIVE GAP / EXTENSION REQUIRED` labeling rule — statutory validation against TXS is required before final classification. Statutory basis stated; code evidence given.
+
+| NG-ID | Finding | Claim IDs | Statutory link | Evidence | Status |
+|---|---|---|---|---|---|
+| NG-1 | Thai template enables the cash-basis (CABA) switch (`company.tax_exigibility = True`) but **none of the 18 seeded Thai taxes is configured as on-payment** (`exigibility='on_payment'`). The CABA machinery is live but dormant; if a Thai tax authority rule requires cash-basis VAT, the Community template does not configure it. | VDR-U30-C237, C238 | TXS pending — on-payment VAT requirement not yet confirmed for Thai statutory context | Static: `l10n_th/models/template_th.py:41` (switch on); DB: 18 taxes, 0 on-payment | **NATIVE GAP / EXTENSION REQUIRED candidate** |
+| NG-2 | Foreign-currency VAT base rate lookup: Community uses only the invoice-date rate from `res.currency.rate`. The Thai statutory rule for FX conversion (S12-03/S12-04 — buying rate per TXS-R1) is not implemented; rate table has zero rows in the dump. | VDR-U30-C308, C310, C316, C318 | S12-03, S12-04 (TXS-R1 confirmed: buying rate, not mid-market) | `account_move.py`: invoice_currency_rate path; `res_currency.py:_get_conversion_rate` | **NATIVE GAP / EXTENSION REQUIRED candidate (PARTIAL for F22)** |
+| NG-3 | Agreement of the global-rounding algorithm with Thai statutory rounding rule (S12-08, per TXS-R1 rounding row) is **UNKNOWN** — not resolvable from static source alone; requires execution with THB documents against the statutory benchmark. | VDR-U30-C163 | S12-08 (TXS-R1) | UNKNOWN — RT required | **UNKNOWN — STATUTORY SOURCE REQUIRED (RT)** |
+| NG-4 | Thai template leaves `tax_group_id` empty for zero-rated and exempt VAT taxes. The engine's default rule assigns a tax without a group to the **first tax group of its country** — in the Thai dump, that is the WHT 1% group. Result: zero-rated/exempt VAT bases appear under the "WHT 1%" group name in the on-screen and printed totals summary. This is a template-data defect confirmed by static read and aligns with VDR-U13-C082. | VDR-U30-C352, C353, C354, C355 | TXS pending — statutory presentation of zero-rated/exempt VAT totals | `account_tax.py:2823-2831`; template data; DB: 18 taxes, no group on zero-rated/exempt | **NATIVE GAP / EXTENSION REQUIRED candidate (CONFIRMED by static read)** |
+
+### Additional Thai-specific live risks (not new escalations, lower severity)
+
+- **U30-BR54**: Thai template turns cash-basis switch ON while no Thai tax is on-payment — creates a silent configuration mismatch. If any on-payment tax is added later (by customisation or via a future l10n_th update), the CABA path activates with the existing journal configuration. Risk is bounded to the known CABA journal (EXCH set; dedicated CABA journal set per DB query); not a data-loss risk at current configuration, but a configuration-trap risk. Queued for AWT; not escalated beyond NATIVE GAP candidate.
+- **U30-BR42**: Same mechanism as NG-4 from a different angle — the default-group-assignment rule is not Thai-specific but the Thai template's template data activates it. Confirmed at the claim level; adds to NG-4.
+
+### RT items
+
+11 RT claims, all reviewed. No new escalation needed. Three runtime items of note:
+1. VDR-U30-C328: numeric consistency of FX documents (rate, rounding item rate, tax item balances) — requires execution with loaded rate rows (zero rows in dump).
+2. VDR-U30-C286: tax report exigibility treatment for Thai cash-basis entries — requires report engine (not in Community) or execution.
+3. VDR-U30-C274: rounding auto-reconciliation tail reads keys that no Community code sets — the CABA path may have a dead branch (RT to confirm).
+
+### Function-catalog summary
+
+24 functions cataloged (U30-F01 to U30-F24). All 9 capabilities flagged `FUNCTION MAPPING REQUIRED` — the existing Function-ID index has no entry for tax-line synchronisation, totals or cash basis. This is expected: the G01-G16 governance system has not yet established a GMVQ question bank for G04/G10 (ACCOUNT_BASE/ACCOUNT_PROCESS), so no canonical Function-IDs exist to map against. Recorded as a crosswalk gap; does not affect classification.
+
+**Classification**: `ACCEPTED (static tier)` — `account` module, Thai Tax Core dynamic-sync layer. PARTIAL flags on F15/F16 (cash-basis mechanism native, no on-payment Thai taxes), F21 (fiscal-position effect needs explicit action), F22 (FX rate date/source gap). 4 `NATIVE GAP / EXTENSION REQUIRED candidates` (NG-1 through NG-4) surfaced; require TXS statutory validation before final status. No Boss action needed at this intake stage; NG-4 and NG-1 are priority items for the Thai Tax Core AWT backlog.
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
