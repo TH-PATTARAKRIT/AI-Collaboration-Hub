@@ -1,0 +1,52 @@
+{
+  "unit": "U83",
+  "title": "MRP Subcontracting + Purchase Cross-Module Flow",
+  "phase": "Second-Pass Depth Closure — P1 Core Business",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "gate_result": {
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0,
+    "claim_count": 45,
+    "nr_count": 45,
+    "gate_script": "/tmp/vdr_check_u83.py"
+  },
+  "modules_researched": [
+    "mrp_subcontracting",
+    "mrp_subcontracting_account",
+    "mrp_subcontracting_purchase",
+    "mrp_subcontracting_dropshipping"
+  ],
+  "function_ids": [
+    "U83-F01",
+    "U83-F02",
+    "U83-F03",
+    "U83-F04",
+    "U83-F05",
+    "U83-F06",
+    "U83-F07",
+    "U83-F08"
+  ],
+  "key_findings": {
+    "bom_subcontractor_field": "mrp.bom.subcontractor_ids is a Many2many to res.partner (junction mrp_bom_subcontractor); identifies authorised subcontractors per BOM",
+    "mo_creation_trigger": "MO is created in StockMove._action_confirm (called when PO is confirmed and receipt move is confirmed); NOT deferred to receipt validation",
+    "mo_creation_mechanism": "StockPicking._subcontracted_produce creates mrp.production records in bulk per company, then immediately calls action_confirm() and action_assign()",
+    "subcontracting_location": "MO uses partner.property_stock_subcontractor (company-dependent, usage=internal) as both src and dest; falls back to company.subcontracting_location_id",
+    "component_resupply": "stock.warehouse.subcontracting_to_resupply=True (default) enables pull rules from lot_stock_id to subcontract location via subcontracting_resupply_type_id (code=internal, seq=RES); route=route_resupply_subcontractor_mto",
+    "receipt_to_mo_completion": "StockPicking._action_done calls _get_subcontract_production().sudo().button_mark_done(); MO auto-closed on receipt validation",
+    "mo_picking_type": "Subcontract MO uses warehouse.subcontracting_type_id (code=mrp_operation, seq=SBC), not the incoming receipt type",
+    "skip_consumption": "pre_button_mark_done adds skip_consumption=True context for subcontract MOs; bypasses component consumption checks",
+    "bypass_reservation": "is_subcontract=True moves bypass warehouse reservation (_should_bypass_reservation returns True)",
+    "extra_cost_account": "mrp_subcontracting_account._cal_price sets extra_cost from bill (_get_value_from_account_move) + PO (_get_value_from_quotation) divided by quantity; _get_aml_value subtracts extra_cost from FG AML to avoid double-count (AVCO/FIFO only)",
+    "standard_cost_path": "account_move_line._get_price_unit_val_dif_and_relevant_qty adds component MO raw move values to price variance for standard cost reconciliation",
+    "mrp_subcontracting_purchase_presence": "EXISTS; adds resupply picking count on PO, source PO navigation on resupply picking, po_to_notify context, lead day computation (max vendor/mfg delay + DTP)",
+    "dropshipping_subcontracting": "mrp_subcontracting_dropshipping EXISTS in Community; stock_rule._prepare_purchase_order sets partner to subcontractor when destination is subcontracting location; purchase.py auto-sets dest_address_id from location.subcontractor_ids"
+  },
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U83_mrp_subcontracting_flow.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U83_mrp_subcontracting_flow_NEUTRAL.md"
+  },
+  "predecessor_units": ["U15", "U07", "U78"],
+  "l_levels": ["L3", "L4", "L7"],
+  "proof_layers": ["P3", "P4"]
+}
