@@ -1,0 +1,107 @@
+{
+  "unit": "U105",
+  "title": "pos_restaurant — Floor/Table Management + Course Ordering",
+  "gap_id": "GAP-038",
+  "priority": "P1",
+  "status": "GATE-PASS",
+  "marker": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "research_agent": "Claude Sonnet 4.6 (third-pass deep research)",
+  "research_date": "2026-10-02",
+  "module_path": "addons/pos_restaurant",
+  "claim_count": 35,
+  "modules_covered": [
+    "pos_restaurant",
+    "point_of_sale"
+  ],
+  "files_researched": [
+    "addons/pos_restaurant/models/pos_restaurant.py",
+    "addons/pos_restaurant/models/pos_order.py",
+    "addons/pos_restaurant/models/pos_config.py",
+    "addons/pos_restaurant/models/pos_session.py",
+    "addons/pos_restaurant/models/restaurant_order_course.py",
+    "addons/pos_restaurant/models/pos_order_line.py"
+  ],
+  "models_introduced": [
+    "restaurant.floor",
+    "restaurant.table",
+    "restaurant.order.course"
+  ],
+  "models_extended": [
+    "pos.order",
+    "pos.order.line",
+    "pos.config",
+    "pos.session"
+  ],
+  "key_findings": {
+    "floor_order": "sequence, name",
+    "floor_config_domain": "[('module_pos_restaurant', '=', True)]",
+    "table_shape_values": ["square", "round"],
+    "table_geometry_fields": ["position_h", "position_v", "width", "height"],
+    "default_floor_table_size_px": "130x130",
+    "default_floor_table_position": "100/100",
+    "course_fired_date": "auto-set idempotent on create/write when fired=True",
+    "course_uuid": "uuid4, copy=False",
+    "split_bill_layer": "JS/OWL frontend only — no Python server method",
+    "course_persistence": "fully persisted in Python — not transient",
+    "pos_preset_new_in": "Odoo 19",
+    "pos_load_mixin_models": ["restaurant.floor", "restaurant.table", "restaurant.order.course"],
+    "guard_active_session_blocks": ["floor unlink", "floor write (pos_config_ids/active)", "table unlink"],
+    "default_screen_options": ["tables", "register"],
+    "open_order_recovery_domain": "UUID match OR (table_id + draft + config_id)"
+  },
+  "awt_items": [
+    {
+      "id": "AWT-U105-01",
+      "description": "Verify JS/OWL split-order implementation: confirm new order creation from line subset and that iface_splitbill correctly gates the UI feature",
+      "reason": "Bill splitting is implemented exclusively in JavaScript/OWL layer — not verifiable from Python source alone"
+    },
+    {
+      "id": "AWT-U105-02",
+      "description": "Verify pos.preset integration at runtime: confirm takeIn/takeOut/delivery preset assignment on restaurant config creation in Odoo 19",
+      "reason": "pos.preset is new in Odoo 19; onboarding flow involves create hooks and group_pos_preset inference not fully traceable from static source"
+    }
+  ],
+  "output_files": {
+    "vdr_claims": "01_RESTRICTED_TECHNICAL_EVIDENCE/U105_pos_restaurant.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U105_pos_restaurant_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U105_handoff_packet.json"
+  },
+  "function_ids": [
+    "SCHEMA-FLOOR-MODEL: restaurant.floor model definition with pos.load.mixin",
+    "SCHEMA-FLOOR-CONFIG: pos_config_ids Many2many with module_pos_restaurant domain",
+    "SCHEMA-FLOOR-TABLES: table_ids One2many back-reference via floor_id",
+    "SCHEMA-FLOOR-VISUAL: background_image/background_color/sequence visual fields",
+    "GUARD-FLOOR-UNLINK: _unlink_except_active_pos_session on floor delete",
+    "GUARD-FLOOR-WRITE: write() guard on pos_config_ids/active during active session",
+    "FLOW-FLOOR-SYNC-UI: sync_from_ui creates floor from OWL frontend",
+    "FLOW-FLOOR-DEACTIVATE: deactivate_floor checks draft orders before setting active=False",
+    "SCHEMA-TABLE-MODEL: restaurant.table with floor_id btree_not_null + shape selection",
+    "SCHEMA-TABLE-GEOMETRY: position_h/position_v/width/height Float canvas fields",
+    "SCHEMA-TABLE-META: seats/color/parent_id(self)/active fields",
+    "FLOW-TABLE-DISPLAY-NAME: _compute_display_name f-string floor+table_number",
+    "FLOW-TABLE-POS-LOAD: _load_pos_data_domain active+floor_id filter",
+    "GUARD-TABLE-DRAFT-CHECK: are_orders_still_in_draft pre-delete guard",
+    "GUARD-TABLE-UNLINK: _unlink_except_active_pos_session on table delete",
+    "FLOW-TABLE-SET-PARENT: set_parent_id with cycle detection via _has_cycle",
+    "SCHEMA-ORDER-TABLE: pos.order extension — table_id/customer_count/course_ids",
+    "FLOW-ORDER-OPEN-DOMAIN: _get_open_order UUID or (table+draft+config) domain",
+    "FLOW-ORDER-READ-POS: read_pos_data appends restaurant.order.course to payload",
+    "SCHEMA-CONFIG-FIELDS: iface_splitbill/iface_printbill/floor_ids/set_tip_after_payment/default_screen",
+    "CONFIG-CREATE-DEFAULTS: iface_printbill=True, show_product_images=False on restaurant create",
+    "CONFIG-WRITE-TOGGLE: floor_ids cleared on module_pos_restaurant=False; _setup_default_floor on enable",
+    "FLOW-DEFAULT-FLOOR: _setup_default_floor creates 1 floor + table 130x130 at 100/100",
+    "GUARD-CONFIG-FORBIDDEN: floor_ids in _get_forbidden_change_fields",
+    "FLOW-SESSION-LOAD-MODELS: restaurant.floor/table/course appended when module_pos_restaurant=True",
+    "FLOW-PREP-CHANGE-TRACK: _set_last_order_preparation_change JSON serialisation",
+    "SCHEMA-COURSE-MODEL: restaurant.order.course with fired/fired_date/uuid/index/order_id/line_ids",
+    "FLOW-COURSE-FIRE-TIMESTAMP: auto-set fired_date idempotent on create/write",
+    "FLOW-COURSE-LOAD-FIELDS: uuid/fired/order_id/line_ids/index/write_date payload fields",
+    "SCHEMA-ORDERLINE-COURSE: pos.order.line course_id M2O ondelete=set null btree_not_null",
+    "ARCH-SPLIT-BILL-JS: iface_splitbill is config-only — split operation is JS/OWL only",
+    "ARCH-COURSE-PERSISTED: restaurant.order.course is fully Python-persisted not transient",
+    "SCHEMA-COURSE-LOAD-DOMAIN: courses scoped to already-loaded orders in session payload",
+    "ARCH-PRESET-INTEGRATION: pos.preset new Odoo 19 — use_presets/default_preset_id/available_preset_ids",
+    "ARCH-POS-LOAD-MIXIN: restaurant.floor + restaurant.table implement pos.load.mixin protocol"
+  ]
+}
