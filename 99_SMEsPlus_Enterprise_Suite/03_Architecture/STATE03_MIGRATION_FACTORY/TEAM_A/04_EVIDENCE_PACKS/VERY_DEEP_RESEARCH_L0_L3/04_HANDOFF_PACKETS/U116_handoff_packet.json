@@ -1,0 +1,39 @@
+{
+  "unit": "U116",
+  "title": "purchase_requisition — Community Presence Check",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "modules": ["purchase_requisition"],
+  "function_ids": ["PUR-F001", "PUR-F002", "PUR-F003", "PUR-F004", "PUR-F005"],
+  "l_levels": ["L3"],
+  "proof_layers": ["P1", "P3"],
+  "claim_count": 48,
+  "c1_count": 43,
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "absent": false,
+  "key_findings": {
+    "presence": "PRESENT in Odoo 19 Community (LGPL-3)",
+    "display_name": "Purchase Agreements",
+    "agreement_types": ["blanket_order", "purchase_template"],
+    "state_machine": ["draft", "confirmed", "done", "cancel"],
+    "blanket_order_creates_supplier_info": true,
+    "alternative_po_feature": "Enabled via group_purchase_alternatives config setting",
+    "tender_comparison_criteria": ["lowest total price", "lowest unit price", "earliest delivery date"],
+    "sequences": {"blanket_order": "BO prefix", "purchase_template": "PT prefix"},
+    "multi_company": "record rules on purchase.requisition and purchase.requisition.line",
+    "access": "purchase.group_purchase_user = full CRUD; purchase.group_purchase_manager = read-only",
+    "key_models": [
+      "purchase.requisition",
+      "purchase.requisition.line",
+      "purchase.order.group"
+    ],
+    "key_wizards": [
+      "purchase.requisition.create.alternative",
+      "purchase.requisition.alternative.warning"
+    ]
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U116_purchase_requisition.md",
+    "02_NEUTRAL_KNOWLEDGE/U116_purchase_requisition_NEUTRAL.md"
+  ]
+}
