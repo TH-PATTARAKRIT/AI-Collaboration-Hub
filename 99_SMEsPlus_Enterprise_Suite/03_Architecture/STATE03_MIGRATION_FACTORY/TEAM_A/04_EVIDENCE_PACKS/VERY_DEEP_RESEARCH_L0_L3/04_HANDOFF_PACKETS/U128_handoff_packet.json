@@ -1,0 +1,54 @@
+{
+  "unit_id": "U128",
+  "title": "mrp_plm / mrp_workcenter — ECO presence check + workcenter capacity depth",
+  "g_group": "G07",
+  "priority": "P2",
+  "research_date": "2026-10-02",
+  "researcher": "DeepSeek Worker (Claude Sonnet 4.6)",
+  "branch": "claude/local-odoo-source-research",
+
+  "mrp_plm_status": "ABSENT",
+  "mrp_plm_note": "Module directory /odoo/addons/mrp_plm does not exist in Odoo Community 19.0.post20260921. ECO workflow, BOM versioning, and PLM approval stages are Enterprise-only.",
+
+  "claim_summary": {
+    "total": 25,
+    "C1": 20,
+    "ABSENT": 5,
+    "C2": 0,
+    "C3": 0
+  },
+
+  "key_findings": [
+    "mrp_plm is ABSENT from Community — no ECO model, no BOM versioning, no PLM approval stages",
+    "mrp.workcenter fully present inside mrp module; capacity scheduling via _get_first_available_slot covers 700-day horizon with forward/backward modes",
+    "OEE computed as productive_time * 100 / (productive_time + blocked_time) over trailing 30 days",
+    "Duration formula: setup + cleanup + ceil(qty/capacity) * time_cycle * 100 / time_efficiency",
+    "Product-specific parallel capacity via mrp.workcenter.capacity model with per-product setup/cleanup overrides",
+    "Alternative workcenter dispatch via self-referential many2many relation",
+    "Routing operation dependency graph (blocked_by_operation_ids) prevents cyclic operation chains"
+  ],
+
+  "source_files_read": [
+    "mrp/models/mrp_workcenter.py",
+    "mrp/models/mrp_workorder.py (lines 1-900)",
+    "mrp/models/mrp_routing.py (lines 1-155)"
+  ],
+
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U128_mrp_plm_workcenter.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U128_mrp_plm_workcenter_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U128_handoff_packet.json"
+  },
+
+  "gate_script": "/private/tmp/vdr_check_u128.py",
+
+  "migration_risk": "HIGH for mrp_plm — ECO capability requires Enterprise or custom build. LOW for workcenter capacity — Community provides full scheduling and OEE tracking.",
+
+  "thai_locale_relevance": "No Thai-specific fields identified in workcenter or PLM models. TH flag not applicable to this unit.",
+
+  "awt_items": [],
+
+  "gaps": [
+    "GAP-U128-01: mrp_plm (ECO/BOM versioning/PLM approval) — entirely absent from Community; requires Enterprise or custom module for SMEsPlus manufacturing change management"
+  ]
+}
