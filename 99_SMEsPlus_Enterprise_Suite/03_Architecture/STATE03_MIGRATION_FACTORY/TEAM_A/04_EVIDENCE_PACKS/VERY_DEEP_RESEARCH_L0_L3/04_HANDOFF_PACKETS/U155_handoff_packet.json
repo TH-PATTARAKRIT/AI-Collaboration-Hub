@@ -63,5 +63,16 @@
   },
 
   "gate_script": "/private/tmp/vdr_check_u155.py",
-  "gate_result": "PENDING"
+  "status": "GATE-FAIL",
+  "marker": "DEEPSEEK-CORRECTED / PENDING STATE03 RE-VERIFICATION",
+  "gate_result": "FAIL (claim-checks=0, neutral-leak-tokens=9)",
+  "b02_correction": {
+    "package": "CR-DS-U100-U200-VERIFIED-B02",
+    "defects": ["DEFECT-B (CPM-03 open gate PENDING)"],
+    "gate_command": "python3 ~/STATE03_RESTRICTED_LOCAL/tools/vdr_check.py 01_RESTRICTED_TECHNICAL_EVIDENCE/U155_mrp_workorder.md 02_NEUTRAL_KNOWLEDGE/U155_mrp_workorder_NEUTRAL.md",
+    "gate_output": ["claims=0 supported_pointer_and_anchor=0 unknown_class=0 neutral_ids=0", "FAIL claim-checks=0 neutral-leak-tokens=9"],
+    "gate_exit_code": 1,
+    "note": "Actual canonical gate FAILs: 0 canonical VDR-U155-C### claims; 9 technical tokens in the neutral file. Recorded as GATE-FAIL; no GATE-PASS manufactured.",
+    "b02_prior": {"status": "<absent>", "gate_result": "PENDING"}
+  }
 }
