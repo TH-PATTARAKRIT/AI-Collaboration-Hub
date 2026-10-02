@@ -27,8 +27,8 @@ Units selected per directive:
 | U100 | l10n_th + l10n_th_withholding_tax — Thai VAT + WHT | P0 | Yes (TH) | NOT_STUDIED | Thai VAT 7%, WHT rates, tax report, ภ.ง.ด. form types | Done 7303819e |
 | U101 | account — cash basis accounting (GAP-023) | P0 | Yes | NOT_PROVEN | tax_cash_basis_journal_id, _get_cash_basis_lines, cash basis move creation | Done 66d12714 |
 | U102 | Migration scripts — hook patterns across modules (GAP-033) | P0 | Yes | NOT_STUDIED | migrations/ folders, pre/post migrate hooks, field rename/merge patterns | Done 5e594e8e |
-| U103 | account — multi-currency revaluation + forex gain/loss | P1 | Yes | NOT_PROVEN | currency_id on account.move.line, _get_adjustment_entry, unrealized FX | Running |
-| U104 | account_peppol_response — response handling (GAP-040) | P1 | No | NOT_STUDIED | PEPPOL response XML parsing, document status update, error handling | Queued |
+| U103 | account — multi-currency revaluation + forex gain/loss | P1 | Yes | NOT_PROVEN | currency_id on account.move.line, _get_adjustment_entry, unrealized FX | Done 6f2d1594 |
+| U104 | account_peppol_response — response handling (GAP-040) | P1 | No | NOT_STUDIED | PEPPOL response XML parsing, document status update, error handling | Running |
 | U105 | pos_restaurant — table/floor management deep (GAP-038) | P1 | No | PARTIAL | floor.plan, restaurant.table, split order, course ordering | Queued |
 | U106 | stock — replenishment (orderpoint, procurement rule, make-to-order) | P1 | No | NOT_PROVEN | stock.warehouse.orderpoint, _run_scheduler, route MTO vs reorder | Queued |
 | U107 | account — fiscal position Thai edge cases (GAP-043) | P1 | Yes (TH) | NOT_PROVEN | map_tax for Thai VAT 0%/7%, fiscal.position.template, intra-company | Queued |
