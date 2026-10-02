@@ -1,0 +1,92 @@
+{
+  "unit": "U202",
+  "module": "hr_employee",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 25,
+  "gate": "GREEN",
+  "research_date": "2026-10-02",
+  "odoo_version": "19.0.post20260921",
+  "addons_examined": ["hr", "resource"],
+  "migration_flags": [
+    {
+      "id": "MIG-01",
+      "severity": "CRITICAL",
+      "description": "hr.contract model from v16/v17 replaced by hr.version in v19. All contract fields (wage, contract_date_start, contract_date_end, structure_type_id, contract_type_id) now live on hr.version. Migration must map hr.contract records to hr.version records with date_version set from the contract start date.",
+      "source_files": ["hr/models/hr_version.py:34-200"]
+    },
+    {
+      "id": "MIG-02",
+      "severity": "HIGH",
+      "description": "address_home_id (Many2one to res.partner for employee home address) is ABSENT in v19. Replaced by discrete private address fields on hr.version: private_street, private_street2, private_city, private_zip, private_state_id, private_country_id. Migration must decompose the old partner record into these fields.",
+      "source_files": ["hr/models/hr_version.py:87-97"]
+    },
+    {
+      "id": "MIG-03",
+      "severity": "HIGH",
+      "description": "resource.calendar.attendance no longer has date_from and date_to fields. In v16/v17 attendance lines could be date-bounded; in v19 they are purely weekday-based. Any date-ranged attendance exceptions must be migrated to resource.calendar.leaves records.",
+      "source_files": ["resource/models/resource_calendar_attendance.py:1-133"]
+    },
+    {
+      "id": "MIG-04",
+      "severity": "MEDIUM",
+      "description": "resource_calendar_id on hr.employee is non-stored in v19 (related to version_id.resource_calendar_id, store=False). Direct SQL queries on hr_employee.resource_calendar_id will fail. Must join through hr_version via current_version_id. The resource.resource.calendar_id is still the operational field used by scheduling.",
+      "source_files": ["hr/models/hr_employee.py:87"]
+    },
+    {
+      "id": "MIG-05",
+      "severity": "MEDIUM",
+      "description": "Fields job_id, department_id, address_id now reside on hr.version, not hr.employee. They are accessible on hr.employee via _inherits delegation but are stored in the hr_version table. Direct SQL on hr_employee will not find these columns.",
+      "source_files": ["hr/models/hr_version.py:127-143"]
+    },
+    {
+      "id": "MIG-06",
+      "severity": "MEDIUM",
+      "description": "hr.employee.public is a SQL VIEW (CREATE OR REPLACE VIEW) joining hr_employee and hr_version on current_version_id. It is not a physical table. Any migration touching hr.employee.public must account for this view definition being rebuilt on module update.",
+      "source_files": ["hr/models/hr_employee_public.py:194-202"]
+    },
+    {
+      "id": "MIG-07",
+      "severity": "LOW",
+      "description": "toggle_active() is not overridden on hr.employee. Use action_archive() / action_unarchive() which perform additional cleanup (clearing manager/coach references, opening departure wizard, clearing departure fields on restore).",
+      "source_files": ["hr/models/hr_employee.py:1499-1536"]
+    }
+  ],
+  "key_findings": {
+    "architecture": "hr.employee uses dual inheritance: _inherit=['resource.mixin',...] for mixin-based field injection PLUS _inherits={'hr.version':'version_id'} for SQL delegation. This means the employee table itself is relatively thin; most operational fields are stored on hr_version.",
+    "versioning": "Every employee must have at least one hr.version record. The current_version_id stored computed field selects the most recent version with date_version <= today. Multiple versions model contract changes over time without creating new employee records.",
+    "resource_calendar_flow": "Schedule path: hr.version.resource_calendar_id (stored, group_hr_user) -> hr.employee.resource_calendar_id (related, non-stored) -> resource.resource.calendar_id (operational). The _inverse_resource_calendar_id synchronises the resource layer when the current version's calendar changes.",
+    "active_flag": "hr.employee.active is stored but delegated to resource.resource.active. Archiving either one archives both. The action_archive() method also clears parent_id/coach_id on related employees.",
+    "public_view": "hr.employee.public exposes safe fields without requiring hr.group_hr_user. It is a SQL VIEW and therefore read-only. The ORM hack in fetch()/search_fetch() copies cache from the public model for unprivileged access to hr.employee.",
+    "work_schedule": "resource.calendar has schedule_type (fixed/flexible), two_weeks_calendar support, and duration_based attendance. Attendance lines encode weekday + hour range + day period + week type. Date-ranged exceptions use resource.calendar.leaves.",
+    "batch_computation": "_get_work_days_data_batch() in resource.mixin groups resources by calendar, calls _work_intervals_batch() for all at once, then converts resource IDs back to employee IDs - O(calendars) database calls not O(employees).",
+    "multicompany": "Multi-company rule for hr.employee allows cross-company visibility for manager/managee relationships. Company change on an existing employee triggers a warning but is not blocked.",
+    "private_info_tab": "Private information (home address, national ID, marital status, passport, etc.) all live on hr.version with groups='hr.group_hr_user'. The old address_home_id Many2one has been fully replaced by discrete fields."
+  },
+  "model_summary": {
+    "hr.employee": {
+      "table": "hr_employee",
+      "order": "name, id",
+      "key_fields_on_table": ["id", "name", "resource_id", "user_id", "active", "company_id", "parent_id", "coach_id", "current_version_id", "work_contact_id", "work_phone", "work_email", "mobile_phone", "barcode", "color"],
+      "fields_on_hr_version_via_inherits": ["resource_calendar_id", "job_id", "job_title", "department_id", "address_id", "work_location_id", "contract_date_start", "contract_date_end", "wage", "structure_type_id", "contract_type_id", "private_*", "identification_id", "ssnid", "passport_id"]
+    },
+    "hr.version": {
+      "table": "hr_version",
+      "order": "date_version",
+      "key_fields": ["employee_id", "date_version", "resource_calendar_id", "job_id", "department_id", "address_id", "contract_date_start", "contract_date_end", "wage", "is_flexible", "is_fully_flexible"]
+    },
+    "hr.employee.public": {
+      "table": "hr_employee_public",
+      "type": "SQL_VIEW",
+      "source": "JOIN hr_employee + hr_version ON current_version_id"
+    },
+    "resource.calendar": {
+      "table": "resource_calendar",
+      "key_fields": ["name", "company_id", "schedule_type", "flexible_hours", "duration_based", "two_weeks_calendar", "hours_per_day", "hours_per_week", "tz"]
+    },
+    "resource.calendar.attendance": {
+      "table": "resource_calendar_attendance",
+      "key_fields": ["calendar_id", "dayofweek", "hour_from", "hour_to", "day_period", "week_type", "duration_hours", "duration_days"],
+      "removed_fields": ["date_from", "date_to"]
+    }
+  }
+}
