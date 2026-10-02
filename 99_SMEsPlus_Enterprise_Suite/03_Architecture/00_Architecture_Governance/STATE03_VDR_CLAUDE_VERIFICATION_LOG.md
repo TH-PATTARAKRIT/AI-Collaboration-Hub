@@ -442,6 +442,184 @@ The 23 non-compliant units frequently bundle **unrelated families** in one job c
 
 **Classification**: `U17-R1` → `ACCEPTED`, re-verification closed. ID relabeling (`CR-022`) is procedural, routed automatically per the Standing Instruction — no Boss action needed.
 
+## 36. U13-R1 (CR-022 in this log) — import tax-correction tolerance corrected, export-method shadowing qualified
+
+**Correction source**: commit `64072e99`, DeepSeek's own CORRECTION_REQUESTS.md records this as `CR-022`; this session's CR-021 (§32, queue-violation) was posted to PR #74 first, so numbering in this log differs by one offset: **DeepSeek CR-022 = this log's CR-022** (by coincidence on this packet — both assigned the same number independently; no collision on this packet). SUPERSESSION_INDEX.tsv entry: `VDR-U13-C441 / N-U13-286 (import tax-correction tolerance) and qualification of VDR-U13-C430 | SUPERSEDED-IN-PART | U13-R1 | CR-022`.
+
+**Content reviewed (6 claims in packet)**:
+
+1. **VDR-U13-C441 corrected**: Original claim stated the import tax-correction tolerance is 0.05. Correction: the **staged path** (`account_edi_common.py:1725`) uses **0.03**, not 0.05. The 0.05 value appears only in a developer comment at line 599 and is not operative. The legacy path (`account_edi_xml_ubl_20.py:1269`) has no stated numeric threshold. Correction is well-sourced (two specific line references), narrow, and does not affect any other claim. **ACCEPTED — FACT**.
+2. **VDR-U13-C430 qualification**: Original claim said export method may be shadowed/overridden by inheritance. Correction narrows to: this is an inheritance-order risk, confirmed `RT` (depends on which modules are installed and in what order); cannot be confirmed or denied from static source alone. **ACCEPTED — INFERENCE/RT**, unchanged from DeepSeek's prior classification; this is a tightening of the statement, not a reversal.
+3. Claims VDR-U13R1-C001 through C004 are supporting observations for the above two corrections (path-specific tolerance values, legacy path behavior, inheritance-order sensitivity). All 4 reviewed — internally consistent, no new escalation needed.
+
+**Running CR numbering**: This session has now confirmed that DeepSeek's CR-022 for U13-R1 and this log's CR-022 for the same packet are coincidentally the same number — no offset here. The running ledger as of this entry: **CR-021** = queue-violation (this log §32, DeepSeek uses its own CR-021 for U17-R1 which this log calls CR-022); **CR-022** = U13-R1 (both registers agree); **CR-023** = U13-R1 extended / TXA1-R1 in DeepSeek (see §37); from this entry forward this log tracks DeepSeek's self-assigned IDs with an explicit offset note when they diverge.
+
+**Classification**: `ACCEPTED` (both corrections accepted, see above). Narrow procedural correction; no Boss action needed.
+
+## 37. TXA1-R1 (CR-024 in this log / CR-023 in DeepSeek's register) — VDR-TXA1-C114 narrowed: partner/date snapshots taken but not compared for recomputation trigger
+
+**Correction source**: commit `a2677139`. This correction was triggered by U30's finding (`CONTRA VDR-U30-C094`), meaning U30 has run and produced output as of this commit even though its own handoff packet has not yet arrived in this session. SUPERSESSION_INDEX.tsv entry: `VDR-TXA1-C114 / N-TXA1-032 (recomputation triggers: partner) | SUPERSEDED-IN-PART | TXA1-R1 | CR-023`.
+
+**Content reviewed (4 claims)**:
+
+| Claim | Type | Finding |
+|---|---|---|
+| VDR-TXA1R1-C001 | FACT | `account_move.py:3334–3337` takes snapshots of currency, partner, type, currency_rate, invoice_date for draft documents — confirmed by static read |
+| VDR-TXA1R1-C002 | FACT | Snapshot construction applies to draft documents only — confirmed |
+| VDR-TXA1R1-C003 | INFERENCE (U30-C094 dependency) | Partner and invoice-date snapshots are taken but **not compared** by later branches when deciding whether to recompute; only item-level changes + currency/type/rate trigger recomputation — this is an INFERENCE relying on a single U30 source read of the controller's re-read snapshot construction; the claim is plausible given the method structure, but **not independently confirmed by TXA1's own full branch walk** |
+| VDR-TXA1R1-C004 | UNKNOWN/RT | Indirect recomputation effects via fiscal-position or rate changes remain unresolved; runtime-required to confirm full behavior chain |
+
+**Impact on §22 (TXA1 ACCEPTED)**:  TXA1 was `ACCEPTED` in §22 with `VDR-TXA1-C114` stating recomputation triggers more broadly. This correction **narrows**, not overturns, that claim — it confirms the snapshot exists but tightens the knowledge boundary to "partner/date recorded but not compared." The business-rule outcome stated in the Neutral packet ("changes to line amounts, taxes, document currency, document type or currency rate cause recalculation; a change of customer or invoice date is recorded but is not itself compared when deciding to recalculate") is consistent with the rest of TXA1's tax-engine logic reviewed in §22.
+
+**CR-023 / CR-024 offset**: DeepSeek assigned `CR-023`; this log's running counter reached CR-024 for this packet (because CR-022 = U17-R1 relabeling from §35, CR-023 = U13-R1 from §36). **This log assigns CR-024 to TXA1-R1; DeepSeek's register says CR-023.** The one-offset discrepancy arises because DeepSeek did not see this log's §32/§35 relabeling before self-numbering. Both registers agree on content; only the number differs. PR #74 comment will document the offset table.
+
+**Classification**: `ACCEPTED` — narrow correction to a FACT-class claim, plausible INFERENCE dependency on U30 explicitly noted. TXA1 status remains `ACCEPTED` (corrected-in-part). U30 handoff packet still awaited for independent confirmation of VDR-TXA1R1-C003.
+
+## 38. U34 (e-document bridges and utilities: account_add_gln, account_fleet, account_edi_ubl_cii, api_doc, attachment_indexation) — mechanical intake, multi-module grandfathered
+
+**Compliance note**: `U34` is one of the 23 non-compliant units from CR-021 (§32) — 5 modules bundled across e-document formats, fleet bridge, GLN identity, API docs, and attachment indexation. It was in flight / completed before CR-021 was issued; grandfathered per the "without stopping unaffected workers" clause. Not reworked.
+
+**Commits confirmed present**: content commit `68ed16df`, packet commit `31f44d23`. Both on `claude/local-odoo-source-research`.
+
+**Reported by DeepSeek**: 373 claims, 9 UNKNOWN, 4 CONTRA → all 4 processed as U13-R1 (§36 above — the `account_edi_ubl_cii` format/tolerance corrections), 0 C1-bound claims, 16 Runtime/AWT-required.
+
+**Module-level assessment (DeepSeek)**:
+- `account_add_gln`: L3-READY (GLN encoding/validation logic fully read)
+- `account_fleet`: L3-READY (vehicle journal-entry sync, departure-wizard integration — cross-confirms U17-R1/U39 findings from §35/§34)
+- `api_doc`: L3-READY (API documentation generation, endpoint catalog)
+- `attachment_indexation`: L3-READY (PDF/image OCR indexing pipeline)
+- `account_edi_ubl_cii`: **PARTIAL** — template bodies, builder step ranges, and country-specific format files left unread; Thai EAS mapping and tax-category codes flagged RT (no Thai-specific UBL-CII mapping found in lines read)
+
+**No new CONTRA, no C1-bound claims**: the 4 CONTRA already resolved into U13-R1 corrections (processed in §36). No claims require immediate escalation.
+
+**Thai relevance note**: `account_edi_ubl_cii` PARTIAL status means the Thai e-Tax Invoice XML format path (if any) through UBL/CII templates is not yet read. Consistent with TXS finding that ETDA standards `Recommendation 14-2560` and `21-2562` govern Thai e-invoice schema — whether `account_edi_ubl_cii` implements either remains `UNKNOWN — STATUTORY SOURCE REQUIRED` for the Thai jurisdiction, per the Thailand Statutory Source Register's discipline rule §7.
+
+**Classification**: `MECHANICAL ONLY (hash-integrity)` for this session's current intake, with the 4 CONTRA flagged `ACCEPTED` via U13-R1 processing. Semantic review of `account_edi_ubl_cii` template bodies and country files remains queued. No Boss action needed.
+
+## 39. U41 (html_editor server-side, http_routing, iap, im_livechat, link_tracker — 7 modules) — mechanical intake, dead route and retention gap noted
+
+**Compliance note**: `U41` is one of the 23 non-compliant units from CR-021 (§32) — 7 modules. Grandfathered.
+
+**Commits confirmed present**: content commit `2438aec3`, packet commit `534c94e5`. Both on `claude/local-odoo-source-research`.
+
+**Reported by DeepSeek**: 359 claims, 10 UNKNOWN, 0 CONTRA, 0 C1-bound, 46 Runtime/AWT-required. All 7 modules assessed L3-READY server-side by DeepSeek.
+
+**Notable findings flagged by DeepSeek (not yet independently confirmed by this session)**:
+1. **Dead cross-origin init route** (`http_routing`): a cross-origin initialization route exists in the source but is never called by current client code — flagged as a dead-code finding; not an active security exposure, but a maintenance/confusion risk. Queued for AWT confirmation.
+2. **No retention rule for live chat conversations** (`im_livechat`): no lifecycle/retention policy for chat history was found in the lines read — classified `UNKNOWN` by DeepSeek. Relevant to Thai PDPA compliance (data retention/deletion obligations) if SMEsPlus uses live chat with customers. Flagged `UNKNOWN — STATUTORY SOURCE REQUIRED` for the Thai jurisdiction.
+3. **Public error-page debug-trace chain and server-side URL fetches**: flagged `INFERENCE`/`RT` — whether these paths can be triggered by unauthenticated users and whether they disclose internal stack traces depends on runtime configuration. Queued for AWT.
+
+**G01 module overlap**: `html_editor` (server-side portions) and `http_routing` are both G01-assigned modules per the G01 exact roster (§2 of this log / background agent catalog). This unit's server-side findings for those two modules are directly relevant to G01's own A1/A2 static-intake review — noted for the G01-G16 crosswalk (§40 below).
+
+**Classification**: `MECHANICAL ONLY (hash-integrity)` for this session's current intake. The live-chat retention gap is the highest-priority semantic item pending for this unit (Thai PDPA relevance); escalation deferred pending semantic read. No Boss action needed at intake stage.
+
+## 40. G01-G16 ↔ DeepSeek-Unit Crosswalk — initial map (2026-10-02)
+
+> This crosswalk is the primary deliverable Boss requested across all three governing instruction messages. It maps every DeepSeek unit (B00-B02, U01-U42+, C01-C02, TXA1/TXA2/TXC/TXS/TXS-R1, CR-001–CR-024) to the G01-G16 governance taxonomy, using repository evidence from both lanes read directly (no inference from naming alone).
+
+**G01-G16 group definitions confirmed from repository** (`01_Governance/COMMUNITY19/A1_SOURCE_EVIDENCE_LANE/`, via background catalog agent, 2026-10-02):
+
+| G-ID | Name | Module Count | Roster Status | Source |
+|---|---|---|---|---|
+| G01 | PLATFORM_BASE | 23 | **EXACT** (all 23 named) | `G01_PLATFORM_BASE_A1_STATIC_INTAKE_V1.00.md` |
+| G02 | IDENTITY_ACCESS | 11 | NOT ESTABLISHED (count only; auth_password_policy/auth_oauth as anchors) | `G01_G04_RED_TEAM_STATIC_CHECKPOINT_R14_20260925.md` |
+| G03 | MASTER_DATA | 11 | NOT ESTABLISHED (count only; product/analytic as anchors) | same |
+| G04 | ACCOUNT_BASE | 9 | NOT ESTABLISHED (count only; account anchor; G04 vs G10 boundary unresolved) | same |
+| G05 | INVENTORY | 14 | NOT ESTABLISHED (count only; stock anchor) | `G05_G08_A1_PARALLEL_STATIC_INTAKE_V1.00.md` |
+| G06 | MANUFACTURING | 12 | NOT ESTABLISHED (count only; mrp anchor) | same |
+| G07 | PURCHASE | 9 | NOT ESTABLISHED (count only; purchase anchor) | same |
+| G08 | SALES | 31 | NOT ESTABLISHED (count only; sale anchor) | same |
+| G09 | CRM | 11 | NOT ESTABLISHED (count only; crm anchor) | `G09_G12/A1_G09_G12_PARALLEL_STATIC_CHECKPOINT_20260924.md` |
+| G10 | ACCOUNT_PROCESS | 13 | NOT ESTABLISHED (count only; account as process anchor; G04/G10 split unresolved) | same |
+| G11 | EVENTS | 8 | **RECONSTRUCTED** (event, event_booth, event_booth_sale, event_crm, event_crm_sale, event_product, event_sale, event_sms) | same §5 + §9 RED TEAM delta |
+| G12 | PROJECT_SERVICES | 20 | NOT ESTABLISHED (count only; project anchor) | same |
+| G13 | PEOPLE | 29 | NOT ESTABLISHED (count only; hr/hr_attendance/hr_holidays/hr_expense/hr_recruitment as leads) | `G13_G16_A1_ROSTER_RECONCILIATION_AND_STATIC_INTAKE_V1.00.md` |
+| G14 | COLLABORATION | 16 | NOT ESTABLISHED (count only; **zero module names found**) | same |
+| G15 | DASHBOARD_REPORT | 11 | NOT ESTABLISHED (count only; **zero module names found**) | same |
+| G16 | TECHNICAL_INTEGRATION | 19 (was 20) | NOT ESTABLISHED (count only; open count delta BGQ-item G13-16-A1-003) | same |
+
+**Methodology note for G-ID assignment in crosswalk below**: For groups with exact/reconstructed rosters (G01, G11), module-to-G assignments are direct. For groups without rosters (G02-G10, G12-G16), G-ID assignment uses anchor-module + family logic + declared GROUP_STRUCTURE_V2 ownership (whose row-level bytes were not recoverable but whose group-to-module-family assignments are stated in the A1 parallel-intake files). Where a module's correct group is genuinely ambiguous (e.g. account under G04 vs G10), the crosswalk uses `G04|G10 (BOUNDARY UNRESOLVED)` and does not pick one — per Boss's standing rule that code presence is not compliance proof and G-assignment requires explicit roster evidence, not inference.
+
+### Crosswalk table
+
+> Columns: G-SYSTEM | G-ID | MODULE | DEEPSEEK UNIT-ID | CLAUDE VERIFICATION STATUS | GAP | NEXT ACTION
+> GVQ/MVQ QUESTION-ID and FUNCTION-ID columns omitted here (no A2/GMVQ question banks exist yet for G02-G16; G01 uses A1-PACKAGES references where known); EVIDENCE-ID = VDR claim pointer where applicable.
+> Correction packets mapped to their parent unit's G-ID row(s).
+
+| G-ID | MODULE(S) | DEEPSEEK UNIT(S) | VERIFICATION STATUS | GAP | NEXT ACTION |
+|---|---|---|---|---|---|
+| G01 | auth_signup | U01 (base platform, partial), B00-B02 (control) | MECHANICAL ONLY (U01); control artifacts cross-group | auth_signup-specific UI flows not independently walked | Semantic review U01 when queued |
+| G01 | base | U01, U36 | U01 MECHANICAL; U36 MECHANICAL (§33) | ir_qweb, assetsbundle, ir_model internals PARTIAL | Semantic review U36, confirm export/report group-check via AWT |
+| G01 | base_automation | U01 (platform foundation) | MECHANICAL ONLY | Automation engine not in any fully-reviewed unit | Semantic review |
+| G01 | base_setup, base_sparse_field | U01 | MECHANICAL ONLY | — | Semantic review |
+| G01 | bus | U01 | MECHANICAL ONLY | Long-polling/WebSocket not reviewed | Semantic review |
+| G01 | digest | U01 | MECHANICAL ONLY | — | Semantic review |
+| G01 | google_recaptcha | U39 (§34) | ACCEPTED (static tier) — fail-open on misconfiguration confirmed | reCAPTCHA fail-open risk logged (VDR-U39-C174/C192) | AWT confirmation of misconfiguration fail-open path |
+| G01 | html_builder | U01 / U41 (§39) | U01 MECHANICAL; U41 MECHANICAL | Freeze-integrity mismatch W1-B07 in G01 governance (background agent §5.3) | Resolve G01 freeze-integrity mismatch before A2; U41 semantic review |
+| G01 | html_editor | U41 (§39) | MECHANICAL ONLY | Server-side portions only; client-side JS explicitly PARTIAL | U41 semantic review |
+| G01 | http_routing | U41 (§39) | MECHANICAL ONLY | Dead cross-origin init route noted (UNKNOWN/queued) | U41 semantic review; AWT confirm dead route |
+| G01 | mail | U03, U42 | U03 MECHANICAL; U42 not yet received | mail foundation not semantically reviewed | Await U42 packet; semantic review U03 |
+| G01 | onboarding | U01 | MECHANICAL ONLY | — | Semantic review |
+| G01 | phone_validation | U01 | MECHANICAL ONLY | — | Semantic review |
+| G01 | portal | U01 | MECHANICAL ONLY | — | Semantic review |
+| G01 | privacy_lookup | U01 | MECHANICAL ONLY | Thai PDPA relevance (data-subject lookup) — not yet mapped to statutory source | Semantic review; cross-check against TXS PDPA section when available |
+| G01 | resource, resource_mail | U01 | MECHANICAL ONLY | — | Semantic review |
+| G01 | utm | U01 | MECHANICAL ONLY | — | Semantic review |
+| G01 | web, web_hierarchy, web_tour | U01 | MECHANICAL ONLY | — | Semantic review |
+| G01 | web_unsplash | U01 | MECHANICAL ONLY | External-service integration (GDPR/PDPA relevance unconfirmed) | Semantic review |
+| G02 | auth_password_policy, auth_oauth + 9 unnamed | U01 (platform), no dedicated unit yet | MECHANICAL ONLY (U01) | G02 roster NOT ESTABLISHED — 11 modules unnamed except 2 anchors | Recover G02 full roster from GROUP_STRUCTURE_V2_CORE.tsv |
+| G03 | product, analytic + 9 unnamed | U02 | U02 MECHANICAL ONLY | G03 roster NOT ESTABLISHED | Recover G03 roster; semantic review U02 |
+| G04\|G10 | account | TXA1, TXA2, TXC, TXS, TXS-R1, U11, U12, U13, U33, TXA1-R1 (§37), U13-R1 (§36), U17-R1 (§35) | TXA1/TXA2/TXC/TXS/TXS-R1 ACCEPTED; U11/U12 MECHANICAL; U13 MECHANICAL (U13-R1 ACCEPTED correction); U33 not yet received; G04|G10 boundary UNRESOLVED | G04 vs G10 account ownership split not resolved in governance documents | Resolve G04/G10 boundary via GROUP_STRUCTURE_V2_CORE.tsv row-level read; await U33 packet |
+| G04\|G10 | account_add_gln | U34 (§38) | MECHANICAL ONLY | — | Semantic review U34 |
+| G04\|G10 | account_check_printing, account_debit_note | TXA2, TXC (§23) | ACCEPTED (static tier) | — | — |
+| G04\|G10 | account_edi_ubl_cii | U34 (§38) | MECHANICAL ONLY — PARTIAL (template bodies unread) | Thai EAS/tax-category mapping UNKNOWN; ETDA Recommendation 14-2560 applicability UNKNOWN | Semantic read of template bodies; cross-check ETDA standard |
+| G04\|G10 | account_fleet | U34 (§38) | MECHANICAL ONLY | Fleet journal-entry sync confirmed cross-checks U17-R1/U39 | Semantic review U34 |
+| G05 | stock | U08, U09, U10, U48 (planned) | U08/U09/U10 MECHANICAL; U48 queued | stock valuation/COGS U10 highest-C1-bound (140) in original batch — not semantically reviewed | Semantic review U10 (TOP PRIORITY for original batch) |
+| G06 | mrp + 11 unnamed | No dedicated unit yet received | NOT STUDIED | G06 roster NOT ESTABLISHED | Recover G06 roster; manufacturing units not in current queue |
+| G07 | purchase + 8 unnamed | U06, U07 | MECHANICAL ONLY | G07 roster NOT ESTABLISHED | Semantic review U06/U07; recover G07 roster |
+| G08 | sale + 30 unnamed | U04, U05 | U04 MECHANICAL; U05 PARTIAL semantic (§5) | G08 roster NOT ESTABLISHED; 30/31 modules unnamed | Recover G08 roster; semantic review U04 |
+| G09 | crm + 10 unnamed | No dedicated unit yet | NOT STUDIED | G09 roster NOT ESTABLISHED | Recover G09 roster |
+| G11 | event, event_booth, event_booth_sale, event_crm, event_crm_sale, event_product, event_sale, event_sms | No dedicated unit received | NOT STUDIED | All 8 G11 modules unstudied | Queue G11 units in DeepSeek job |
+| G12 | project + 19 unnamed | No dedicated unit received | NOT STUDIED | G12 roster NOT ESTABLISHED | Recover G12 roster |
+| G13 | hr, hr_attendance, hr_holidays, hr_expense, hr_recruitment + 24 unnamed | U39 (§34) | U39 ACCEPTED (static tier) — hr PARTIAL | 24/29 G13 modules unnamed; G13 roster NOT ESTABLISHED | Recover G13 roster; U39 semantic deepening for hr PARTIAL areas |
+| G14 | 16 unnamed (COLLABORATION) | U19 (§6), U41 (§39, im_livechat) | U19 ACCEPTED with security escalation; U41 MECHANICAL | **Zero G14 module names found in governance docs**; im_livechat likely G14 but not confirmed; live-chat retention UNKNOWN | Recover G14 roster; AWT live-chat retention; PDPA mapping |
+| G15 | 11 unnamed (DASHBOARD_REPORT) | No dedicated unit received | NOT STUDIED | **Zero G15 module names found** | Recover G15 roster from GROUP_STRUCTURE_V2_CORE.tsv |
+| G16 | 19 unnamed (TECHNICAL_INTEGRATION) | No dedicated unit received | NOT STUDIED | G16 roster NOT ESTABLISHED; count delta 20→19 open (BGQ G13-16-A1-003) | Recover G16 roster; resolve count delta |
+| CROSS-GROUP | B00 (checkpoint reconciliation) | B00 | MECHANICAL ONLY | Control artifact, cross-group | Semantic review if evidence gaps surface |
+| CROSS-GROUP | B01 (source↔DB reconciliation) | B01 | MECHANICAL ONLY | Control artifact, cross-group | Same |
+| CROSS-GROUP | B02 (test/theme classification) | B02 | MECHANICAL ONLY | Control artifact, cross-group | Same |
+| CROSS-GROUP | C01, C02 | C01, C02 | MECHANICAL ONLY | Control correction packets, cross-group | Semantic review queued |
+| UNMAPPED (G-ID TBD) | api_doc | U34 (§38) | MECHANICAL ONLY | G-ID assignment for API documentation module unclear — may be G16 (TECHNICAL_INTEGRATION) or G01 (PLATFORM_BASE) | Confirm via GROUP_STRUCTURE_V2_CORE.tsv |
+| UNMAPPED (G-ID TBD) | attachment_indexation | U34 (§38) | MECHANICAL ONLY | G-ID assignment unclear — may be G16 or G03 | Confirm via GROUP_STRUCTURE_V2_CORE.tsv |
+| UNMAPPED (G-ID TBD) | iap | U41 (§39) | MECHANICAL ONLY | IAP (in-app purchase) G-ID unclear | Confirm |
+| UNMAPPED (G-ID TBD) | link_tracker | U41 (§39) | MECHANICAL ONLY | May be G01 or G08/G09 depending on scope | Confirm |
+
+**Coverage summary by G-ID** (as of 2026-10-02):
+
+| G-ID | Group Name | Total Modules | Modules with Any DeepSeek Unit | Modules ACCEPTED (static tier or better) | Gap |
+|---|---|---|---|---|---|
+| G01 | PLATFORM_BASE | 23 | 23 (via U01/U36/U39/U41) | 1 (google_recaptcha via U39) | 22 modules at MECHANICAL ONLY or no semantic review |
+| G02 | IDENTITY_ACCESS | 11 | ~2 (via U01 overlap) | 0 | Full roster unknown; 9+ modules unstudied |
+| G03 | MASTER_DATA | 11 | ~2 (via U02 overlap) | 0 | Full roster unknown; 9+ modules unstudied |
+| G04\|G10 | ACCOUNT_BASE / ACCOUNT_PROCESS | 9+13=22 | 8–10 (account + sub-modules) | 5–6 (TXA1/TXA2/TXC/TXS area modules) | G04/G10 boundary unresolved; 12+ modules unstudied |
+| G05 | INVENTORY | 14 | ~4 (stock + U08/09/10/48) | 0 | 10+ modules unstudied |
+| G06 | MANUFACTURING | 12 | 0 | 0 | No units queued/received |
+| G07 | PURCHASE | 9 | ~2 (via U06/U07) | 0 | 7+ modules unstudied |
+| G08 | SALES | 31 | ~2 (via U04/U05) | 0 | 29+ modules unstudied |
+| G09 | CRM | 11 | 0 | 0 | No units received |
+| G11 | EVENTS | 8 | 0 | 0 | No units received |
+| G12 | PROJECT_SERVICES | 20 | 0 | 0 | No units received |
+| G13 | PEOPLE | 29 | ~5 (via U39 for hr/hr_attendance/hr_calendar/hr_fleet/hr_gamification) | 4 (U39 ACCEPTED static for 7 modules incl. hr_attendance) | 24+ modules unstudied; full G13 roster unknown |
+| G14 | COLLABORATION | 16 | ~2 (U19/U41 overlap for im_livechat) | 1 (U19 ACCEPTED) | Full G14 roster unknown; live-chat retention gap |
+| G15 | DASHBOARD_REPORT | 11 | 0 | 0 | No roster, no units |
+| G16 | TECHNICAL_INTEGRATION | 19 | 0 | 0 | No roster, count delta open |
+
+**Key structural finding**: G01 is the **only group with a confirmed exact roster** and the only one that advanced past A1 in the pre-DeepSeek governance track (to PROOF PARTIAL as of 2026-09-28). G11 has a reconstructed but unconfirmed roster. All other groups have module counts only. G15/G16 have **zero module names** recoverable from the governance documents read. `GROUP_STRUCTURE_V2_CORE.tsv` (SHA-256 `203ff43e...9ff5bf`) holds the authoritative row-level G-to-module mapping but was not directly readable by this session — it is the **critical prerequisite for completing this crosswalk for G02-G10, G12-G16**.
+
+**Denominator clarification**: Boss's 247-module current-study set (stated in the G01-G16 governance documents) and DeepSeek's 692-module candidate population are distinct and not directly comparable. The 247-module set is the G01-G16 governance track's Boss-approved scope; the 692-module set is DeepSeek's research boundary. Until GROUP_STRUCTURE_V2_CORE.tsv is read and G02-G16 exact rosters are established, the intersection of the two populations cannot be computed. No denominator is frozen by this crosswalk.
+
+**Classification**: `CROSSWALK INITIAL MAP — PARTIAL COVERAGE`. G01 fully mapped; G02-G16 anchor-only. Crosswalk will be maintained and updated as each new G-group roster is confirmed and each new DeepSeek unit is accepted.
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
