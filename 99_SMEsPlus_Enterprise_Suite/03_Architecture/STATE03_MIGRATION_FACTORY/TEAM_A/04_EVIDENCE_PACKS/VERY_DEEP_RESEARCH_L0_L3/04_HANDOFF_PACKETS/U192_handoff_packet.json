@@ -1,0 +1,205 @@
+{
+  "unit_id": "U192",
+  "title": "product.category accounting property accounts — income/expense/COGS/stock valuation account chain L3",
+  "group": ["G01", "G06"],
+  "priority": "P1",
+  "status": "COMPLETE",
+  "research_date": "2026-10-02",
+  "odoo_version": "19.0.post20260921",
+  "claims_count": 22,
+  "gate_code": "PASS",
+
+  "source_files_read": [
+    {
+      "path": "odoo/addons/account/models/product.py",
+      "lines": "1-559",
+      "key_symbols": ["ProductCategory", "ProductTemplate._get_product_accounts", "ProductTemplate._get_category_account", "ProductTemplate.get_product_accounts", "ProductProduct._get_product_accounts"]
+    },
+    {
+      "path": "odoo/addons/stock_account/models/product.py",
+      "lines": "1-787",
+      "key_symbols": ["ProductTemplate._get_product_accounts", "ProductTemplate.get_product_accounts", "ProductCategory", "property_stock_valuation_account_id", "property_stock_journal", "property_price_difference_account_id", "property_cost_method", "property_valuation"]
+    },
+    {
+      "path": "odoo/addons/stock_account/models/account_account.py",
+      "lines": "1-13",
+      "key_symbols": ["account_stock_variation_id", "account_stock_expense_id"]
+    },
+    {
+      "path": "odoo/addons/stock/models/product.py",
+      "lines": "1303-1331",
+      "key_symbols": ["ProductCategory.removal_strategy_id"]
+    },
+    {
+      "path": "odoo/addons/account/models/company.py",
+      "lines": "282-295, 1145-1148",
+      "key_symbols": ["income_account_id", "expense_account_id", "_set_category_defaults"]
+    },
+    {
+      "path": "odoo/orm/fields.py",
+      "lines": "794-801",
+      "key_symbols": ["get_company_dependent_fallback"]
+    }
+  ],
+
+  "key_fields": {
+    "product.category (account module)": {
+      "property_account_income_categ_id": {
+        "type": "Many2one('account.account')",
+        "company_dependent": true,
+        "ondelete": "restrict",
+        "tracking": true,
+        "purpose": "Income account used when validating a customer invoice"
+      },
+      "property_account_expense_categ_id": {
+        "type": "Many2one('account.account')",
+        "company_dependent": true,
+        "ondelete": "restrict",
+        "tracking": true,
+        "purpose": "Expense/COGS account; in Anglo-Saxon perpetual mode recognised at customer invoice"
+      }
+    },
+    "product.template (account module)": {
+      "property_account_income_id": {
+        "type": "Many2one('account.account')",
+        "company_dependent": true,
+        "ondelete": "restrict",
+        "purpose": "Product-level income override; leave empty to use category"
+      },
+      "property_account_expense_id": {
+        "type": "Many2one('account.account')",
+        "company_dependent": true,
+        "ondelete": "restrict",
+        "purpose": "Product-level expense override; leave empty to use category"
+      }
+    },
+    "product.category (stock_account module)": {
+      "property_valuation": {
+        "type": "Selection [periodic, real_time]",
+        "company_dependent": true,
+        "purpose": "Inventory valuation mode (periodic or perpetual)"
+      },
+      "property_cost_method": {
+        "type": "Selection [standard, fifo, average]",
+        "company_dependent": true,
+        "purpose": "Costing method for products in this category"
+      },
+      "property_stock_journal": {
+        "type": "Many2one('account.journal')",
+        "company_dependent": true,
+        "purpose": "Journal for automated stock accounting entries"
+      },
+      "property_stock_valuation_account_id": {
+        "type": "Many2one('account.account')",
+        "company_dependent": true,
+        "ondelete": "restrict",
+        "check_company": true,
+        "purpose": "Balance-sheet stock asset account"
+      },
+      "property_price_difference_account_id": {
+        "type": "Many2one('account.account')",
+        "company_dependent": true,
+        "ondelete": "restrict",
+        "check_company": true,
+        "purpose": "Price variance account (standard cost only)"
+      },
+      "account_stock_variation_id": {
+        "type": "Many2one('account.account')",
+        "company_dependent": false,
+        "derived": "related to property_stock_valuation_account_id.account_stock_variation_id",
+        "purpose": "Inventory variation account for periodic closing"
+      }
+    },
+    "product.category (stock module - NOT stock_account)": {
+      "removal_strategy_id": {
+        "type": "Many2one('product.removal')",
+        "company_dependent": false,
+        "tracking": true,
+        "purpose": "Force removal strategy (FIFO/LIFO/FEFO/closest/least packages) regardless of location"
+      }
+    }
+  },
+
+  "account_resolution_chain": {
+    "income": [
+      "product.template.property_account_income_id",
+      "_get_category_account('property_account_income_categ_id') [walks categ_id→parent_id]",
+      "res.company.income_account_id"
+    ],
+    "expense_cogs": [
+      "product.template.property_account_expense_id",
+      "_get_category_account('property_account_expense_categ_id') [walks categ_id→parent_id]",
+      "res.company.expense_account_id"
+    ],
+    "stock_valuation": [
+      "product.category.property_stock_valuation_account_id",
+      "ir.default fallback (get_company_dependent_fallback)",
+      "res.company.account_stock_valuation_id"
+    ],
+    "stock_variation": [
+      "accounts['stock_valuation'].account_stock_variation_id [derived from account.account]"
+    ],
+    "stock_journal": [
+      "product.category.property_stock_journal",
+      "ir.default fallback (get_company_dependent_fallback)",
+      "res.company.account_stock_journal_id"
+    ]
+  },
+
+  "category_tree_inheritance": {
+    "method": "_get_category_account(field_name)",
+    "logic": "Iterative walk: categ = self.categ_id; while categ: if categ[field_name]: return it; categ = categ.parent_id",
+    "note": "Parent accounts are NOT copied to children; they are consulted dynamically. Stock account fields do NOT use this walk — only income/expense use it."
+  },
+
+  "v19_schema_changes_vs_v16": {
+    "removed_fields": [
+      "product.category.property_stock_account_input_categ_id",
+      "product.category.property_stock_account_output_categ_id"
+    ],
+    "storage_change": "company_dependent fields now use ir.default (not ir.property). get_company_dependent_fallback() reads ir.default via superuser+company context.",
+    "new_stock_variation": "account.account.account_stock_variation_id — linked on the account record, not set on product.category"
+  },
+
+  "l10n_th_status": {
+    "product_category_accounts_preconfigured": false,
+    "demo_data_sets_category_accounts": false,
+    "comment": "l10n_th provides only COA, taxes, and tax groups. Category account setup is manual or via company income/expense account propagation."
+  },
+
+  "migration_risk_flags": [
+    {
+      "code": "MR-U192-01",
+      "severity": "CRITICAL",
+      "description": "ir.property is replaced by ir.default in v19 for company_dependent fields. Migration scripts must target ir.default table with (model='product.category', field_name, company_id)."
+    },
+    {
+      "code": "MR-U192-02",
+      "severity": "CRITICAL",
+      "description": "property_stock_account_input_categ_id and property_stock_account_output_categ_id do not exist in v19. Data from these fields must be mapped to property_stock_valuation_account_id and the new variation account structure."
+    },
+    {
+      "code": "MR-U192-03",
+      "severity": "HIGH",
+      "description": "Anglo-Saxon perpetual mode changes when the expense/COGS account is hit (at customer invoice, not vendor bill). Thai companies using this mode need correct category expense account pointing to COGS, not general expense."
+    },
+    {
+      "code": "MR-U192-04",
+      "severity": "HIGH",
+      "description": "Three-tier income/expense resolution means missing category configuration silently falls through to company default. All leaf categories must be audited post-migration."
+    },
+    {
+      "code": "MR-U192-05",
+      "severity": "MEDIUM",
+      "description": "l10n_th has no pre-configured product category accounts. Thai chart of accounts codes must be manually mapped to categories or set at company level before go-live."
+    }
+  ],
+
+  "files_produced": {
+    "technical_evidence": "01_RESTRICTED_TECHNICAL_EVIDENCE/U192_product_category_accounts.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U192_product_category_accounts_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U192_handoff_packet.json"
+  },
+
+  "key_one_liner": "product.category income/expense accounts resolved product→category-tree→company via _get_category_account(); v19 drops input/output categ fields, uses single stock_valuation_account + variation account; storage backend changed from ir.property to ir.default."
+}
