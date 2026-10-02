@@ -1,7 +1,7 @@
 {
   "unit": "U199",
   "module": "fleet",
-  "sha": "PENDING_COMMIT",
+  "sha": "ccfea033",
   "claim_count": 20,
   "gate": "GREEN",
   "migration_flags": [
