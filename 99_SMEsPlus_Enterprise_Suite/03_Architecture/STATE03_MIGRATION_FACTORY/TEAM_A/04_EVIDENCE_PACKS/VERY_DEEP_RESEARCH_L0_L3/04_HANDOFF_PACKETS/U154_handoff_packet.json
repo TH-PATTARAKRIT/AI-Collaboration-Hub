@@ -1,0 +1,85 @@
+{
+  "unit": "U154",
+  "title": "stock — scrapping flow and SVL/valuation impact L3 depth",
+  "g_group": "G06/G01",
+  "priority": "P1",
+  "status": "GATE-PASS",
+  "claim_count": 22,
+  "date_completed": "2026-10-02",
+  "source_commit": "pending",
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U154_stock_scrap.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U154_stock_scrap_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U154_handoff_packet.json"
+  },
+  "key_findings": [
+    {
+      "id": "KF-001",
+      "title": "No SVL model in Odoo 19",
+      "description": "stock.valuation.layer does not exist in Odoo 19. Inventory value is stored as the 'value' Monetary field on stock.move (stock_account/models/stock_move.py:24). Manual adjustment audit history is product.value model."
+    },
+    {
+      "id": "KF-002",
+      "title": "Scrap uses usage=inventory not scrap_location boolean",
+      "description": "There is no scrap_location Boolean field on stock.location in Odoo 19. Scrap destinations are identified by usage='inventory' (Inventory Loss type). See stock_scrap.py:43-46."
+    },
+    {
+      "id": "KF-003",
+      "title": "Scrap is classified as outgoing by _is_out()",
+      "description": "_is_out() returns True because source (internal) is valued and destination (inventory-loss) is not valued per _should_be_valued(). See stock_account/models/stock_move.py:575-583 and stock_account/models/stock_location.py:36-41."
+    },
+    {
+      "id": "KF-004",
+      "title": "AVCO/Standard valuation: standard_price x qty",
+      "description": "For non-FIFO products: move.value = product.standard_price * move._get_valued_qty(). See stock_account/models/stock_move.py:351."
+    },
+    {
+      "id": "KF-005",
+      "title": "FIFO valuation: consumes oldest in-move cost layers",
+      "description": "_run_fifo() in product.py:540-581 builds a stack of oldest in-moves (ordered date desc, reversed) and pops from front (oldest first), consuming proportional value from each receipt."
+    },
+    {
+      "id": "KF-006",
+      "title": "Journal entry: Credit stock_valuation, Debit scrap expense",
+      "description": "_get_account_move_line_vals() at stock_account/models/stock_move.py:229-249: credit = product stock_valuation account; debit = scrap_location.valuation_account_id. Confirmed by test at test_stockvaluation.py:2843-2846."
+    },
+    {
+      "id": "KF-007",
+      "title": "Account move requires real_time valuation and valuation_account on location",
+      "description": "_should_create_account_move() requires product.is_storable, is_valued, (location_dest_id.valuation_account_id or location_id.valuation_account_id), non-zero qty, product.valuation=='real_time'."
+    },
+    {
+      "id": "KF-008",
+      "title": "No backorder for scrap",
+      "description": "In stock_move.py:2305-2308: if self.env.context.get('is_scrap'): return moves — backorder branch is entirely skipped. do_scrap() passes is_scrap=True context."
+    },
+    {
+      "id": "KF-009",
+      "title": "Scrap is irreversible through standard UI",
+      "description": "_unlink_except_done() at stock_scrap.py:120-123 raises UserError for done scraps. No cancel or reverse method exists on stock.scrap."
+    },
+    {
+      "id": "KF-010",
+      "title": "Multi-company isolation enforced in scrap location computation",
+      "description": "_compute_scrap_location_id() at stock_scrap.py:88-98 filters by company_id. location_id field has check_company=True. Prevents cross-company scrap."
+    }
+  ],
+  "primary_source_files": [
+    "stock/models/stock_scrap.py",
+    "stock/models/stock_move.py",
+    "stock/models/stock_location.py",
+    "stock_account/models/stock_move.py",
+    "stock_account/models/stock_location.py",
+    "stock_account/models/product.py",
+    "stock_account/models/product_value.py",
+    "stock_account/tests/test_stockvaluation.py"
+  ],
+  "gap_resolved": "scrap valuation NOT_STUDIED",
+  "notes": [
+    "Odoo 19 architectural change: SVL removed, value on stock.move directly.",
+    "Scrap accounting requires scrap_location.valuation_account_id to be set.",
+    "FIFO scrap value pulled from _run_fifo() product method, consuming oldest layers.",
+    "do_scrap() is the canonical method; action_validate() is the UI entry point.",
+    "No cancel state exists on stock.scrap; done scraps are permanent."
+  ]
+}
