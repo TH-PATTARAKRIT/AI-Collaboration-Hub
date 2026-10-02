@@ -1,0 +1,82 @@
+{
+  "unit": "U173",
+  "title": "res.currency — Multi-Currency Rate Management and Conversion Chain",
+  "gap_id": "G01",
+  "priority": "P1",
+  "status": "GATE-PASS",
+  "marker": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "research_agent": "Claude Sonnet 4.6 (third-pass deep research)",
+  "research_date": "2026-10-02",
+  "module_path": "addons/base/models/res_currency.py + addons/account/models/account_move.py + addons/account/models/company.py",
+  "claim_count": 25,
+  "modules_covered": [
+    "base",
+    "account"
+  ],
+  "files_researched": [
+    "addons/base/models/res_currency.py",
+    "addons/base/data/res_currency_data.xml",
+    "odoo/tools/float_utils.py",
+    "addons/account/models/account_move.py",
+    "addons/account/models/company.py"
+  ],
+  "models_introduced": [],
+  "models_covered": [
+    "res.currency",
+    "res.currency.rate",
+    "account.move",
+    "res.company"
+  ],
+  "key_findings": {
+    "rounding_default": "0.01 (cent-precision); constraint: rounding > 0",
+    "decimal_places_formula": "ceil(log10(1/rounding)) when 0 < rounding < 1; else 0",
+    "rate_name_type": "Date field (not string); unique per (name, currency_id, company_id)",
+    "rate_fallback_chain": "COALESCE(latest_on_or_before_date, earliest_available, 1.0)",
+    "rounding_method": "HALF-UP (away from zero) with epsilon IEEE-754 correction",
+    "multi_company": "rates always stored on root company; branches cannot create own rates",
+    "THB_rounding": "0.01 standard (2 decimal places), active=False by default",
+    "exchange_journal": "res.company.currency_exchange_journal_id type=general",
+    "currency_id_priority": "statement_line.foreign_currency_id → journal.currency_id → existing → company",
+    "always_tax_exigible": "True when not invoice and no cash-basis tax values pending"
+  },
+  "awt_items": [
+    {
+      "id": "AWT-U173-01",
+      "description": "Verify _get_rates SQL execution at runtime: confirm COALESCE fallback returns 1.0 when no rate is seeded for a currency, and that branch-company lookup correctly resolves to root-company rates",
+      "reason": "SQL subquery with dynamic SQL objects requires runtime verification to confirm correct rate row is selected under multi-company branch scenarios"
+    }
+  ],
+  "output_files": {
+    "vdr_claims": "01_RESTRICTED_TECHNICAL_EVIDENCE/U173_res_currency.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U173_res_currency_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U173_handoff_packet.json"
+  },
+  "function_ids": [
+    "SCHEMA-CURRENCY-NAME: name Char(3) required unique ISO 4217",
+    "SCHEMA-CURRENCY-SYMBOL: symbol Char required; position before/after default=after",
+    "SCHEMA-CURRENCY-ROUNDING: rounding Float(12,6) default=0.01 constraint>0",
+    "SCHEMA-CURRENCY-DECIMAL-PLACES: decimal_places stored computed from rounding",
+    "FLOW-DECIMAL-PLACES-FORMULA: ceil(log10(1/rounding)) when 0<rounding<1 else 0",
+    "SCHEMA-RATE-NAME: name Date required indexed default=today unique(name,currency_id,company_id)",
+    "SCHEMA-RATE-VALUE: rate Float digits=0 'Technical Rate' constraint>0",
+    "SCHEMA-RATE-COMPANY: company_id M2O default=env.company.root_id nullable",
+    "GUARD-RATE-MAIN-COMPANY: ValidationError if company_id.parent_id set",
+    "FLOW-GET-RATES-QUERY: primary=latest<=date order by company_id,name DESC LIMIT 1",
+    "FLOW-GET-RATES-COALESCE: COALESCE(primary, fallback, 1.0)",
+    "FLOW-COMPUTE-CURRENT-RATE: rate=currency_rate/to_currency_rate; inverse=1/rate",
+    "FLOW-GET-CONVERSION-RATE: resolves root_id then reads inverse_rate via context",
+    "FLOW-CONVERT: from_amount * _get_conversion_rate; optional round(to_currency)",
+    "FLOW-ROUND: tools.float_round(amount, precision_rounding=rounding) HALF-UP",
+    "FLOW-FLOAT-ROUND-HALF-UP: epsilon=2**(log2(abs(v))-50) before round()",
+    "SCHEMA-CURRENCY-INVERSE-RATE: inverse_rate computed readonly Float digits=0",
+    "SCHEMA-RATE-COMPANY-RATE: company_rate computed/inversed user-facing display",
+    "FLOW-MULTI-COMPANY-ROOT: company always resolved to root_id before rate lookup",
+    "CONFIG-THB-ROUNDING: THB rounding=0.01 active=False symbol=฿",
+    "FLOW-TOGGLE-MULTI-CURRENCY: group_multi_currency auto on/off by active count",
+    "FLOW-VIEW-RATE-LABELS: _get_view relabels rate columns with company currency name",
+    "SCHEMA-ACCOUNT-MOVE-CURRENCY: currency_id required computed priority chain",
+    "CONFIG-EXCHANGE-JOURNAL: currency_exchange_journal_id type=general on res.company",
+    "FLOW-ALWAYS-TAX-EXIGIBLE: True when not invoice and no cash-basis tax values"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "unit": "U174",
+  "title": "project — Milestone, Project Type, Rating, Personal Stages L3",
+  "gap_id": "G10-P2",
+  "priority": "P2",
+  "status": "GATE-PASS",
+  "marker": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "research_agent": "Claude Sonnet 4.6 (STATE03 VDR continuous manifest)",
+  "research_date": "2026-10-02",
+  "module_path": "addons/project",
+  "claim_count": 30,
+  "modules_covered": [
+    "project"
+  ],
+  "files_researched": [
+    "addons/project/models/project_project.py",
+    "addons/project/models/project_milestone.py",
+    "addons/project/models/project_task.py",
+    "addons/project/models/project_task_type.py",
+    "addons/project/models/project_task_stage_personal.py",
+    "addons/project/models/project_task_recurrence.py",
+    "addons/project/models/project_update.py"
+  ],
+  "models_covered": [
+    "project.project",
+    "project.milestone",
+    "project.task",
+    "project.task.type",
+    "project.task.stage.personal",
+    "project.task.recurrence",
+    "project.update"
+  ],
+  "key_findings": [
+    "privacy_visibility has 4 choices (followers/invited_users/employees/portal); default='portal'",
+    "Personal stages use the same project.task.type model as project stages; mutually exclusive via user_id/project_ids constraint",
+    "project.task.stage.personal is a junction model backed by project_task_user_rel table",
+    "CLOSED_STATES = {1_done, 1_canceled} — exactly two closed states",
+    "No closed_date field in base project module; date_last_stage_update tracks stage/state changes",
+    "project.task does NOT inherit analytic.plan.fields.mixin; analytic_distribution exists only on project.project",
+    "project.task.recurrence model exists with repeat_interval/unit/type/until",
+    "project.update has 5 statuses: on_track/at_risk/off_track/on_hold/done (no to_define)",
+    "stage sequence defaults to 1 (not 10)"
+  ],
+  "scope_gaps": [
+    "analytic_distribution on tasks provided by external module (not in base project)"
+  ]
+}
