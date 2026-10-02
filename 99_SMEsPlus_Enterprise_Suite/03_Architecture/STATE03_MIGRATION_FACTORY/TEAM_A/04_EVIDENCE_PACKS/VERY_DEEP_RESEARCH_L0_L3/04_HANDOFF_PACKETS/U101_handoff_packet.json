@@ -1,0 +1,63 @@
+{
+  "unit": "U101",
+  "title": "Cash Basis Accounting",
+  "phase": "Third-Pass P0 GAP-023 Close",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "session_marker": "DEEPSEEK-REPORTED / CLAUDE-VERIFIED",
+  "l_levels": ["L3", "L7"],
+  "proof_layers": ["P2", "P3"],
+  "modules": ["account"],
+  "predecessor_units": ["U11", "U100"],
+  "claim_count": 29,
+  "neutral_nr_count": 29,
+  "gate_result": {
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0,
+    "result": "PASS"
+  },
+  "function_ids": {
+    "U101-F00": "Structural — absence of account_tax_cash_basis module",
+    "U101-F01": "account.tax — tax_exigibility and hide_tax_exigibility fields",
+    "U101-F02": "account.tax — cash_basis_transition_account_id field and constraint",
+    "U101-F03": "res.company / res.config.settings — tax_exigibility, tax_cash_basis_journal_id, account_cash_basis_base_account_id",
+    "U101-F04": "account.move — tax_cash_basis_rec_id, tax_cash_basis_origin_move_id, tax_cash_basis_created_move_ids, always_tax_exigible",
+    "U101-F05": "account.move._compute_always_tax_exigible",
+    "U101-F06": "account.move._collect_tax_cash_basis_values",
+    "U101-F07": "account.partial.reconcile._collect_tax_cash_basis_values",
+    "U101-F08": "account.partial.reconcile._create_tax_cash_basis_moves",
+    "U101-F09": "account.partial.reconcile._prepare_cash_basis_base_line_vals and _prepare_cash_basis_tax_line_vals",
+    "U101-F10": "account.partial.reconcile._prepare_cash_basis_counterpart_tax_line_vals",
+    "U101-F11": "account.move.line._reconcile_plan — is_cash_basis_needed trigger",
+    "U101-F12": "account.partial.reconcile.unlink — CABA reversal on undo",
+    "U101-F13": "account.move.button_draft — CABA reset-to-draft guard",
+    "U101-F14": "account.move.line._get_tax_exigible_domain",
+    "U101-F15": "account.partial.reconcile._get_draft_caba_move_vals / _set_draft_caba_move_vals"
+  },
+  "key_findings": {
+    "tax_exigibility_values": "'on_invoice' (default, accrual) and 'on_payment' (cash basis/CABA)",
+    "company_master_switch": "res.company.tax_exigibility Boolean — must be True for CABA processing to activate",
+    "cash_basis_journal": "res.company.tax_cash_basis_journal_id — required; UserError raised if absent when CABA entry needed",
+    "transition_account": "account.tax.cash_basis_transition_account_id — must be reconcilable; holds tax between invoice posting and payment",
+    "caba_move_creation_trigger": "account.move.line._reconcile_plan calls is_cash_basis_needed() then account.partial.reconcile._create_tax_cash_basis_moves()",
+    "caba_move_fields": "tax_cash_basis_rec_id (links to partial.reconcile), tax_cash_basis_origin_move_id (links to source invoice)",
+    "reconciliation_method": "After CABA entries are created, transition account lines are reconciled against counterpart lines to clear the deferred balance",
+    "reversal_on_undo": "account.partial.reconcile.unlink() searches and reverses all CABA entries linked to the deleted partial",
+    "no_separate_module": "No account_tax_cash_basis module exists; all logic is in the account module"
+  },
+  "source_pointers": {
+    "account_tax.py": "account/models/account_tax.py lines 162-174, 267-275, 5373-5382",
+    "company.py": "account/models/company.py lines 219-230",
+    "res_config_settings.py": "account/models/res_config_settings.py lines 100-114, 269-283",
+    "account_move.py": "account/models/account_move.py lines 270-291, 1013-1020, 4124-4191, 5744-5752, 6038-6046, 6365-6371",
+    "account_partial_reconcile.py": "account/models/account_partial_reconcile.py lines 28, 105-117, 244-362, 364-468, 534-732",
+    "account_move_line.py": "account/models/account_move_line.py lines 212-234, 2893-2902, 3456-3473"
+  },
+  "files_created": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U101_cash_basis_accounting.md",
+    "02_NEUTRAL_KNOWLEDGE/U101_cash_basis_accounting_NEUTRAL.md",
+    "04_HANDOFF_PACKETS/U101_handoff_packet.json"
+  ],
+  "gate_script": "/tmp/vdr_check_u101.py",
+  "next_unit": "Next P0 gap or as directed by STATE03 master gate controller"
+}
