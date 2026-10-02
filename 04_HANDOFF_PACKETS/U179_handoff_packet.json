@@ -1,0 +1,57 @@
+{
+  "unit": "U179",
+  "title": "account_qr_code_emv — Thai PromptPay / EMV QR Code Generation on Invoices",
+  "priority": "P1",
+  "group": "G02",
+  "status": "GATE-PASS",
+  "marker": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "research_agent": "Claude Sonnet 4.6 (STATE03 VDR worker)",
+  "research_date": "2026-10-02",
+  "module_path": "addons/account_qr_code_emv",
+  "claim_count": 18,
+  "modules_covered": [
+    "account_qr_code_emv",
+    "l10n_th"
+  ],
+  "files_researched": [
+    "addons/account_qr_code_emv/__manifest__.py",
+    "addons/account_qr_code_emv/const.py",
+    "addons/account_qr_code_emv/models/res_bank.py",
+    "addons/account_qr_code_emv/views/res_bank_views.xml",
+    "addons/l10n_th/__manifest__.py",
+    "addons/l10n_th/models/res_bank.py",
+    "addons/l10n_th/models/account_move.py",
+    "addons/l10n_th/views/report_invoice.xml",
+    "addons/l10n_th/tests/test_l10n_th_emv_qr.py",
+    "addons/account/models/res_partner_bank.py",
+    "addons/account/models/account_move.py",
+    "addons/account/models/company.py",
+    "addons/account/models/res_config_settings.py",
+    "addons/account/views/report_invoice.xml"
+  ],
+  "models_introduced": [],
+  "models_extended": [
+    "res.partner.bank"
+  ],
+  "key_findings": {
+    "emv_tag_structure": "TLV serialization: 2-digit tag + 2-digit length + value; CRC-16/CCITT-FALSE appended as tag 63 with 4-hex-digit checksum",
+    "qr_payload_tags": "00=payload format, 01=initiation method (12=dynamic), 29=TH merchant account info, 52=MCC, 53=currency, 54=amount, 58=country, 59=merchant name (max 25), 60=city (max 15), 62=additional data",
+    "promptpay_aid": "A000000677010111",
+    "promptpay_proxy_types": {"mobile": 1, "merchant_tax_id": 2, "ewallet_id": 3},
+    "mobile_encoding": "leading 0 replaced with 66 (TH country code), zero-padded to 13 digits",
+    "currency_tag53": "THB maps to numeric code 764; resolved dynamically from CURRENCY_MAPPING dict in const.py",
+    "merchant_account_tag": "Tag 29 for Thailand",
+    "amount_tag54_zero_omit": true,
+    "merchant_name_max": 25,
+    "merchant_city_max": 15,
+    "qr_image_size": "128x128 PNG via ir.actions.report.barcode(), base64 data URI in invoice PDF",
+    "display_toggle": "res.company.qr_code Boolean; no per-journal toggle; suppressed if amount_residual == 0",
+    "l10n_th_dependency": "l10n_th declares account_qr_code_emv as first dependency; auto_install=['account']",
+    "currency_restriction_th": "Only THB allowed for Thai EMV QR; other currencies raise UserError",
+    "include_reference": "opt-in Boolean on res.partner.bank; populates tag 62 if True; base _get_additional_data_field returns None (no TH override)",
+    "qr_method_priority": 30,
+    "test_vector": "00020101021229370016A0000006770101110113006681070406052040000530376454031005802TH5914company_1_data6008Thailand63048B76"
+  },
+  "awt_items": []
+}

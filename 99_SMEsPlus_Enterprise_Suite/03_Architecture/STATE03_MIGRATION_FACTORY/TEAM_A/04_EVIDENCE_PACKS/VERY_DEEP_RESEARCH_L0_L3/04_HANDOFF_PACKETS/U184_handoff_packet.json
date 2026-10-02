@@ -1,0 +1,154 @@
+{
+  "unit": "U184",
+  "module": "mail_bot",
+  "display_name": "OdooBot (mail_bot)",
+  "group": "G13",
+  "priority": "P3",
+  "prior_status": "NOT_STUDIED",
+  "new_status": "STUDIED",
+  "odoo_version": "19.0.post20260921",
+  "edition": "Community",
+  "research_date": "2026-10-02",
+  "researcher": "DeepSeek STATE03 Worker",
+
+  "module_metadata": {
+    "technical_name": "mail_bot",
+    "version": "1.2",
+    "category": "Productivity/Discuss",
+    "depends": ["mail"],
+    "auto_install": true,
+    "license": "LGPL-3"
+  },
+
+  "key_models": [
+    {
+      "model": "mail.bot",
+      "type": "AbstractModel",
+      "description": "Stateless dispatcher for OdooBot logic. No stored fields. No mail.thread or mail.channel inheritance.",
+      "source": "mail_bot/models/mail_bot.py"
+    },
+    {
+      "model": "res.users",
+      "type": "Extension (_inherit)",
+      "description": "Adds odoobot_state (Selection, 8 values) and odoobot_failed (Boolean) fields.",
+      "source": "mail_bot/models/res_users.py"
+    },
+    {
+      "model": "discuss.channel",
+      "type": "Extension (_inherit)",
+      "description": "Adds _message_post_after_hook and execute_command_help hooks to invoke mail.bot._apply_logic.",
+      "source": "mail_bot/models/discuss_channel.py"
+    }
+  ],
+
+  "odoobot_identity": {
+    "external_id": "base.partner_root",
+    "user_external_id": "base.user_root",
+    "partner_name": "System",
+    "partner_email": "odoobot@example.com",
+    "partner_active": false,
+    "runtime_lookup": "self.env['ir.model.data']._xmlid_to_res_id('base.partner_root')",
+    "dedicated_bot_flag": false,
+    "note": "OdooBot reuses the system/root partner. No separate res.users record with a bot flag."
+  },
+
+  "odoobot_state_field": {
+    "model": "res.users",
+    "field_name": "odoobot_state",
+    "field_type": "Selection",
+    "required": false,
+    "readonly": true,
+    "values": [
+      {"value": "not_initialized", "label": "Not initialized"},
+      {"value": "onboarding_emoji", "label": "Onboarding emoji"},
+      {"value": "onboarding_attachement", "label": "Onboarding attachment"},
+      {"value": "onboarding_command", "label": "Onboarding command"},
+      {"value": "onboarding_ping", "label": "Onboarding ping"},
+      {"value": "onboarding_canned", "label": "Onboarding canned"},
+      {"value": "idle", "label": "Idle"},
+      {"value": "disabled", "label": "Disabled"}
+    ],
+    "note": "Value 'onboarding_attachement' has one-t spelling — exact value in source. NULL/False is treated as not_initialized in logic.",
+    "companion_field": "odoobot_failed (Boolean, readonly)"
+  },
+
+  "onboarding_init": {
+    "trigger": "_on_webclient_bootstrap on res.users",
+    "condition": "self._is_internal() and self.odoobot_state in [False, 'not_initialized']",
+    "action": "_init_odoobot()",
+    "channel_method": "discuss.channel._get_or_create_chat([odoobot_id, user.partner_id.id])",
+    "first_message": "Hello,\\nOdoo's chat helps employees collaborate efficiently. I'm here to help you discover its features.\\nTry to send me an emoji :)",
+    "post_flags": {"silent": true, "message_type": "comment", "subtype_xmlid": "mail.mt_comment"},
+    "state_after_init": "onboarding_emoji"
+  },
+
+  "onboarding_steps": [
+    {
+      "from_state": "onboarding_emoji",
+      "trigger": "body contains emoji (unicode range check)",
+      "next_state": "onboarding_command",
+      "feature_taught": "Emoji input",
+      "failure_response": "Not exactly. To continue the tour, send an emoji: type :) and press enter."
+    },
+    {
+      "from_state": "onboarding_command",
+      "trigger": "command == 'help' (user typed /help)",
+      "next_state": "onboarding_ping",
+      "feature_taught": "Slash command /help",
+      "failure_response": "Not sure what you are doing. Please, type / and wait for the propositions. Select help and press enter."
+    },
+    {
+      "from_state": "onboarding_ping",
+      "trigger": "odoobot partner_id in values['partner_ids']",
+      "next_state": "onboarding_attachement",
+      "feature_taught": "@mention ping",
+      "failure_response": "Sorry, I am not listening. To get someone's attention, ping him. Write @OdooBot and select me."
+    },
+    {
+      "from_state": "onboarding_attachement",
+      "trigger": "values.get('attachment_ids') is non-empty",
+      "next_state": "onboarding_canned",
+      "feature_taught": "File attachment",
+      "side_effect": "Creates mail.canned.response({'source': 'Thanks', 'substitution': 'Thanks for your feedback. Goodbye!'})",
+      "failure_response": "To send an attachment, click on the paperclip icon and select a file."
+    },
+    {
+      "from_state": "onboarding_canned",
+      "trigger": "context.get('canned_response_ids') is non-empty",
+      "next_state": "idle",
+      "feature_taught": ":: canned responses",
+      "side_effect": "Deletes the temporary mail.canned.response created in previous step",
+      "returns_list": true,
+      "message_count": 2
+    }
+  ],
+
+  "tour_restart": {
+    "condition": "odoobot_state in (False, 'idle', 'not_initialized') and 'start the tour' in body",
+    "action": "Set odoobot_state = 'onboarding_emoji'",
+    "response": "To start, try to send me an emoji :)"
+  },
+
+  "hooks": [
+    {
+      "hook": "discuss.channel._message_post_after_hook",
+      "trigger": "Every message_post in any channel",
+      "calls": "mail.bot._apply_logic(channel, msg_vals)"
+    },
+    {
+      "hook": "discuss.channel.execute_command_help",
+      "trigger": "/help slash command",
+      "calls": "mail.bot._apply_logic(channel, kwargs, command='help')"
+    }
+  ],
+
+  "active_channel_scope": {
+    "channel_type": "chat",
+    "condition": "OdooBot (base.partner_root) must be in channel.channel_member_ids.partner_id",
+    "group_channels": "ignored unless OdooBot explicitly pinged (not implemented in base)"
+  },
+
+  "claims_count": 15,
+  "gate_code": "PASS-L3",
+  "key_finding": "mail_bot is a stateless AbstractModel that hooks into discuss.channel post-message events; OdooBot reuses base.partner_root (not a dedicated bot user); per-user onboarding state is tracked in res.users.odoobot_state with 8 selection values across a 5-step linear feature-discovery sequence."
+}
