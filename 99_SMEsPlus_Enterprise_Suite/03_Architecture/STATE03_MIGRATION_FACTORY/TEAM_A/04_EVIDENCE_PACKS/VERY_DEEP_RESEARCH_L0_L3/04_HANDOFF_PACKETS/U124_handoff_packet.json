@@ -1,0 +1,57 @@
+{
+  "unit_id": "U124",
+  "title": "account — tax report period lock (GAP-027)",
+  "g_group": "G01",
+  "priority": "P1",
+  "analyst": "DeepSeek Worker",
+  "research_date": "2026-10-02",
+  "gap_id": "GAP-027",
+  "gap_title": "tax_lock_date enforcement — L7 not proven",
+  "gap_status": "PARTIAL",
+  "gap_finding": "Core tax period lock date enforcement is fully proven at C1 level in Community. Automatic advancement of the lock date on tax closing entry post is ABSENT in Community (Enterprise-only).",
+  "claims_total": 21,
+  "claims_c1": 20,
+  "claims_absent": 1,
+  "claims_awt": 0,
+  "c1_material_risk": "Tax period lock — regulatory compliance; prevents re-export risk",
+  "key_finding": "tax_lock_date field on res.company is enforced at ORM layer on all journal entry line create/write/unlink operations via _check_tax_lock_date(); per-user exceptions via account.lock_exception are supported in Community; auto-set on tax closing entry post is absent in Community.",
+  "files_investigated": [
+    "account/models/company.py",
+    "account/models/account_move.py",
+    "account/models/account_move_line.py",
+    "account/models/account_lock_exception.py",
+    "point_of_sale/models/res_company.py",
+    "account_update_tax_tags/wizard/account_update_tax_tags_wizard.py"
+  ],
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U124_account_tax_period_lock.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U124_account_tax_period_lock_NEUTRAL.md"
+  },
+  "thai_relevance": "TH — Tax period lock enforcement applies to all jurisdictions including Thailand. Thai VAT compliance benefits from the lock preventing retroactive changes to filed periods. Community deployments must manually advance the lock date after filing.",
+  "absent_components": [
+    {
+      "id": "U124-C19",
+      "description": "Auto-advance of tax_lock_date when tax closing entry is posted — implemented in Enterprise module account_tax_report, not present in Community account module"
+    }
+  ],
+  "lock_date_types_in_community": [
+    "fiscalyear_lock_date (Global)",
+    "tax_lock_date (Tax Return)",
+    "sale_lock_date (Sales)",
+    "purchase_lock_date (Purchase)",
+    "hard_lock_date (Hard, irreversible)"
+  ],
+  "enforcement_trigger_points": [
+    "account.move.line.create — post-create check",
+    "account.move.line.write — pre and post-write check",
+    "account.move.line.unlink — pre-unlink check",
+    "account.move.write — when date, name, or state changes on posted move",
+    "account.move.write — after ORM write on all posted moves"
+  ],
+  "exception_support": {
+    "model": "account.lock_exception",
+    "supports_tax_lock_date": true,
+    "per_user": true,
+    "with_expiry": true
+  }
+}
