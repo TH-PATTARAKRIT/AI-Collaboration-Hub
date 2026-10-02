@@ -1,0 +1,38 @@
+{
+  "unit": "U158",
+  "title": "quality_control — quality checks on manufacturing/receipts L3",
+  "status": "ABSENT",
+  "research_date": "2026-10-02",
+  "module": "quality_control",
+  "alternate_modules_checked": ["quality", "quality_mrp"],
+  "module_present": false,
+  "license_class": "OEEL-1 (Enterprise only)",
+  "community_version": "19.0.post20260921",
+  "claims_total": 15,
+  "claims_absent": 15,
+  "claims_c1": 0,
+  "gap_severity": "HIGH",
+  "key_finding": "quality_control, quality, and quality_mrp are all absent from Odoo Community 19.0.post20260921. Quality control is an Enterprise-only capability. The entire lifecycle — check point definition, automatic check creation on manufacturing orders and stock receipts, pass/fail and quantitative measurement recording, corrective action alerts, and confirmation blocking on failure — is implemented exclusively in Enterprise modules.",
+  "gaps": [
+    "quality_control directory — ABSENT",
+    "quality directory — ABSENT",
+    "quality_mrp directory — ABSENT",
+    "quality.point model (picking_type_id, product_id, test_type, measure_on) — ABSENT",
+    "quality.check model (lot_id, picking_id, workorder_id, measure, norm, tolerance_min, tolerance_max) — ABSENT",
+    "quality.alert model for corrective action tracking — ABSENT",
+    "Automatic check creation on MO confirmation or receipt validation — ABSENT",
+    "Confirmation blocking on failed quality check — ABSENT",
+    "check_ids field on stock.picking — ABSENT",
+    "Quality check integration with mrp work order steps — ABSENT",
+    "Pass/fail qualitative test type — ABSENT",
+    "Quantitative measure test type with norm and tolerance — ABSENT",
+    "quality_user and quality_manager security groups — ABSENT"
+  ],
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U158_quality_control.md",
+    "02_NEUTRAL_KNOWLEDGE/U158_quality_control_NEUTRAL.md",
+    "04_HANDOFF_PACKETS/U158_handoff_packet.json"
+  ],
+  "gate_script": "/private/tmp/vdr_check_u158.py",
+  "gate_exit_code": 0
+}
