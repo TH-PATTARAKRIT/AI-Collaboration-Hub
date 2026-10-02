@@ -1,0 +1,41 @@
+{
+  "unit": "U88",
+  "title": "HR Leave + Work Entry + Payroll Prep Chain",
+  "phase": "Second-Pass Depth Closure — P2 Supporting Domains",
+  "date": "2026-10-02",
+  "status": "GATE-PENDING",
+  "gate_result": "PASS",
+  "claim_count": 56,
+  "neutral_row_count": 56,
+  "claim_errors": 0,
+  "neutral_leak_tokens": 0,
+  "modules_covered": [
+    "hr_holidays",
+    "hr_work_entry",
+    "hr_work_entry_holidays"
+  ],
+  "module_absent": "hr_payroll (Enterprise-only — not present in Community 19)",
+  "function_ids": [
+    "U88-F01", "U88-F02", "U88-F03", "U88-F04", "U88-F05",
+    "U88-F06", "U88-F07", "U88-F08", "U88-F09", "U88-F10",
+    "U88-F11", "U88-F12", "U88-F13", "U88-F14", "U88-F15",
+    "U88-F16", "U88-F17", "U88-F18", "U88-F19", "U88-F20",
+    "U88-F21", "U88-F22", "U88-F23", "U88-F24"
+  ],
+  "key_findings": {
+    "leave_state_machine": "5 states: confirm (default), validate1, validate, refuse, cancel. No draft state. confirm is entry point for all new requests.",
+    "action_validate_flow": "_action_validate writes state=validate then calls _validate_leave_request which calls _create_resource_leave creating resource.calendar.leaves. In hr_work_entry_holidays, _validate_leave_request override additionally calls _cancel_work_entry_conflict to create leave work entries and archive overlapping attendance entries.",
+    "action_refuse_flow": "action_refuse writes state=refuse and archives meeting. Resource calendar leave removal is handled by write() interceptor detecting validated_leaves with state change away from validate. hr_work_entry_holidays override also calls _regen_work_entries to archive leave WEs and recreate attendance WEs.",
+    "work_entry_generation": "Triggered by hr.employee.generate_work_entries or cron _cron_generate_missing_work_entries (daily, batches 100 versions per run, covers current+next month). Reads resource.calendar.leaves to split attendance intervals into attendance vs absence work entries.",
+    "conflict_detection": "SQL CTE in _mark_conflicting_work_entries: employee-date groups where SUM(duration) > 24 or <= 0 set to conflict state. Also: leaves outside schedule, already-validated days.",
+    "hr_work_entry_type": "Fields: code (payroll code used by salary rules), is_leave (Boolean, mutually exclusive with is_work), amount_rate (pay multiplier, default 1.0), external_code.",
+    "hr_leave_type_fields": "leave_validation_type (no_validation/hr/manager/both), requires_allocation (Boolean, default True), time_type (leave/other), request_unit (day/half_day/hour), work_entry_type_id (added by hr_work_entry_holidays).",
+    "allocation_balance": "hr.leave.allocation.leaves_taken computed from _get_consumed_leaves on employee; virtual_remaining_leaves = max_leaves - leaves_taken - virtual_leaves_taken. Each validated leave reduces available balance.",
+    "community_payroll_boundary": "hr_payroll absent from Community 19. work_entry state=validated ('In Payslip') is the Community-side payroll boundary. No hr.payslip, hr.salary.rule in Community."
+  },
+  "predecessor_units": ["U17", "U39", "U40"],
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U88_hr_leave_work_entry_payroll.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U88_hr_leave_work_entry_payroll_NEUTRAL.md"
+  }
+}
