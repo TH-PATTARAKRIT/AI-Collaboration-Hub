@@ -1,0 +1,68 @@
+{
+  "unit": "U132",
+  "title": "stock — 3-step routing AWT-prep + source deep (GAP-030)",
+  "g_group": "G06",
+  "priority": "P2",
+  "gap": "GAP-030",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "gate_exit": 0,
+  "claims_total": 19,
+  "claims_c1": 16,
+  "claims_awt": 3,
+  "gap_status": "AWT-READY",
+  "gap_finding": "Three-step inbound (Supplier->Input->QC->Stock) and outbound (Stock->Pack->Output->Customer) routing logic is fully source-proven; runtime sequential execution of push-chained transfers is NOT_PROVEN and requires AWT verification on a live instance.",
+  "l1_applicability": "APPLICABLE — manifest declares stock v1.1 depending on product, barcodes_gs1_nomenclature, digest",
+  "l2_applicability": "APPLICABLE — reception_steps, delivery_steps selection fields; wh_qc_stock_loc_id, qc_type_id, store_type_id relation fields on stock.warehouse",
+  "l3_applicability": "APPLICABLE — _create_or_update_route builds route and rules from get_rules_dict; state chain Supplier->Input->QC->Stock defined at lines 777-780",
+  "l4_applicability": "APPLICABLE — _run_push (stock_rule.py:222) and _push_apply (stock_move.py:1214) are the cross-model chain mechanism",
+  "l5_applicability": "APPLICABLE — stock_warehouse_views.xml:38-41 exposes reception_steps/delivery_steps radio widgets gated by group_adv_location",
+  "l6_applicability": "APPLICABLE — group_adv_location security group (stock_security.xml:50-52); multi-company record rules on stock.warehouse, stock.rule, stock.route",
+  "l7_applicability": "APPLICABLE — Multi-Step Routes toggle (res_config_settings.py:23-25) must be enabled; implied_group=stock.group_adv_location prerequisite",
+  "l8_applicability": "APPLICABLE — first rule make_to_stock, subsequent make_to_order (stock_warehouse.py:834); last rule propagate_cancel forced False (line 851)",
+  "l9_applicability": "N/A — no accounting postings in routing logic",
+  "l10_applicability": "APPLICABLE — _run_scheduler_tasks (stock_rule.py:693) triggers procurement and reservation via cron",
+  "l11_applicability": "APPLICABLE — Procurement NamedTuple (stock_rule.py:31) is the public procurement API entry point",
+  "l12_applicability": "AWT-REQUIRED — GAP-030 runtime execution of 3-step sequences not proven; 3 AWT claims defined",
+  "key_finding": "The 3-step routing chain is fully declarative in source: get_rules_dict at stock_warehouse.py:777-788 defines all Routing objects; _get_rule_values at line 834 enforces make_to_order chaining; _push_apply at stock_move.py:1214 and _run_push at stock_rule.py:222 execute the chain at runtime. The chain is AWT-READY: 3 test scenarios cover inbound sequence, outbound sequence, and cancel boundary.",
+  "awt_test_plans": [
+    {
+      "id": "AWT-01",
+      "claim": "U132-C17-AWT",
+      "title": "Three-Step Inbound Execution",
+      "steps": "Enable Multi-Step Routes; set warehouse inbound to three-step; create and validate receipt; confirm QC transfer auto-created; validate QC; confirm Storage transfer auto-created; validate Storage; confirm product at stock location"
+    },
+    {
+      "id": "AWT-02",
+      "claim": "U132-C18-AWT",
+      "title": "Three-Step Outbound Execution",
+      "steps": "Enable Multi-Step Routes; set warehouse outbound to three-step; confirm delivery order; verify PICK created; validate PICK; verify PACK created; validate PACK; verify OUT delivery fires; validate OUT; confirm delivery done"
+    },
+    {
+      "id": "AWT-03",
+      "claim": "U132-C19-AWT",
+      "title": "Cancel Propagation Boundary",
+      "steps": "Follow AWT-01 through QC transfer creation; cancel QC; confirm Storage is cancelled; confirm no downstream customer-facing move is cancelled"
+    }
+  ],
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U132_stock_3step_routing.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U132_stock_3step_routing_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U132_handoff_packet.json"
+  },
+  "key_source_pointers": [
+    "stock/models/stock_warehouse.py:56-61 — reception_steps field",
+    "stock/models/stock_warehouse.py:62-67 — delivery_steps field",
+    "stock/models/stock_warehouse.py:777-780 — three_steps inbound Routing list",
+    "stock/models/stock_warehouse.py:785-788 — pick_pack_ship outbound Routing list",
+    "stock/models/stock_warehouse.py:823-852 — _get_rule_values procure_method + cancel chain",
+    "stock/models/stock_warehouse.py:946-947 — _update_location_reception QC location activation",
+    "stock/models/stock_warehouse.py:980-988 — _get_picking_type_update_values QC/Store type activation",
+    "stock/models/stock_rule.py:222-254 — _run_push push move creation",
+    "stock/models/stock_rule.py:668-678 — _get_push_rule location-tree lookup",
+    "stock/models/stock_move.py:1214-1264 — _push_apply post-confirm chain trigger",
+    "stock/models/res_config_settings.py:23-25 — group_stock_adv_location L7 prerequisite",
+    "stock/views/stock_warehouse_views.xml:38-41 — warehouse form radio widgets",
+    "stock/security/stock_security.xml:50-52 — group_adv_location security group"
+  ]
+}

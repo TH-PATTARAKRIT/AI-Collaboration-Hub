@@ -1,0 +1,96 @@
+{
+  "unit": "U138",
+  "title": "account_tax_group / tax repartition — Thai WHT/VAT computation mechanics (GAP-046 sub-scope)",
+  "gap": "GAP-046",
+  "priority": "P0",
+  "g_group": "G02/G01",
+  "status": "COMPLETE",
+  "claim_count": 30,
+  "claims_c1": 30,
+  "claims_th_flagged": 30,
+  "gate_status": "PENDING_RUN",
+  "primary_source": "account/models/account_tax.py",
+  "source_tree_root": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons",
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U138_account_tax_group_repartition.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U138_account_tax_group_repartition_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U138_handoff_packet.json"
+  },
+  "applicability_matrix": {
+    "L1_manifest": true,
+    "L2_models_fields_ORM": true,
+    "L3_workflow_state": true,
+    "L4_cross_module": true,
+    "L5_views": false,
+    "L6_access": false,
+    "L7_config": true,
+    "L8_immutability": true,
+    "L9_accounting_postings": true,
+    "L10_cron": false,
+    "L11_API": true,
+    "L12_runtime_AWT": false
+  },
+  "key_findings": [
+    {
+      "id": "KF-01",
+      "finding": "compute_all at account_tax.py:4975 is the canonical public API returning all amounts and account references needed for PND form population",
+      "gap_relevance": "GAP-046 PND generation must call or replicate compute_all output"
+    },
+    {
+      "id": "KF-02",
+      "finding": "Thai WHT is standard Odoo percent tax with type_tax_use=none, tax_exigibility=on_payment, and a current-liability account on the repartition tax line",
+      "gap_relevance": "No custom WHT computation engine is required; standard config suffices"
+    },
+    {
+      "id": "KF-03",
+      "finding": "Cash basis (on_payment) WHT uses cash_basis_transition_account_id as intermediate; final WHT Payable posting occurs at payment reconciliation via CABA",
+      "gap_relevance": "PND form population must read amounts from payment/CABA entries, not invoice entries"
+    },
+    {
+      "id": "KF-04",
+      "finding": "use_in_tax_closing on repartition lines auto-computed: true for tax-type lines with non-income/expense accounts; controls tax period close participation",
+      "gap_relevance": "WHT repartition lines with liability accounts will participate in tax closing by default"
+    },
+    {
+      "id": "KF-05",
+      "finding": "Thai VAT 7% price-included: extraction formula is base = gross / 1.07, tax = gross - base = gross * 0.07/1.07",
+      "gap_relevance": "PND forms typically report WHT base as the net amount before VAT; computation confirmed at line 1097-1115"
+    }
+  ],
+  "gap_046_assessment": {
+    "status": "PARTIAL",
+    "detail": "Core tax computation mechanics are fully present in standard Odoo Community. The compute_all API provides all data (base, tax amounts, account_ids, repartition_line_ids, tax_exigibility) needed for PND form generation. GAP-046 requires a custom module to extract these values from posted journal entries and format them into Thai Revenue Department PND 1, PND 3, and PND 53 forms. The computation foundation exists; the reporting extraction layer does not."
+  },
+  "accounting_posting_pattern_wht": {
+    "description": "Thai vendor invoice with 3% WHT (price-excluded) and 7% VAT (price-included)",
+    "at_invoice": [
+      "DR Expense account (gross amount incl. VAT, the price entered)",
+      "CR Accounts Payable (net = gross - WHT amount)",
+      "DR Input VAT transition account OR Input VAT account",
+      "CR WHT Payable current liability account (3% of base before VAT)"
+    ],
+    "at_payment_caba": [
+      "DR Accounts Payable",
+      "CR Cash/Bank",
+      "CABA reconciliation moves tax from transition to final account"
+    ],
+    "key_account_source": "repartition line account_id at account_tax.py:5331-5335"
+  },
+  "model_summary": {
+    "account.tax.group": {
+      "key_fields": ["name", "sequence", "tax_payable_account_id", "tax_receivable_account_id", "advance_tax_payment_account_id", "country_id"],
+      "source_lines": "25-68"
+    },
+    "account.tax": {
+      "key_fields": ["type_tax_use", "amount_type", "amount", "price_include", "tax_exigibility", "cash_basis_transition_account_id", "include_base_amount", "is_base_affected", "invoice_repartition_line_ids", "refund_repartition_line_ids"],
+      "source_lines": "71-5313"
+    },
+    "account.tax.repartition.line": {
+      "key_fields": ["factor_percent", "factor", "repartition_type", "document_type", "account_id", "tag_ids", "use_in_tax_closing"],
+      "source_lines": "5314-5383"
+    }
+  },
+  "created_by": "DeepSeek Worker U138",
+  "created_at": "2026-10-02",
+  "odoo_version": "19.0.post20260921"
+}
