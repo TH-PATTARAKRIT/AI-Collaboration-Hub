@@ -1,0 +1,106 @@
+{
+  "unit": "U142",
+  "title": "project — project/task/stage management deep L3",
+  "gap": "no existing L3 evidence",
+  "priority": "P2",
+  "g_group": "G10",
+  "status": "COMPLETE",
+  "claim_count": 28,
+  "claims_c1": 28,
+  "gate_status": "GATE-PASS",
+  "gate_output": "claim-checks=0, neutral-leak-tokens=0",
+  "primary_source": "project/models/project_project.py, project/models/project_task.py, project/models/project_task_type.py",
+  "source_tree_root": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons",
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U142_project.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U142_project_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U142_handoff_packet.json"
+  },
+  "applicability_matrix": {
+    "L1_manifest": true,
+    "L2_models_fields_ORM": true,
+    "L3_workflow_state": true,
+    "L4_cross_module": true,
+    "L5_views": false,
+    "L6_access_privacy": true,
+    "L7_config": true,
+    "L8_immutability": true,
+    "L9_analytic_account": true,
+    "L10_cron": true,
+    "L11_reports": true,
+    "L12_runtime_AWT": false
+  },
+  "key_findings": [
+    {
+      "id": "KF-01",
+      "finding": "Task closure is determined by the task state field (values 1_done and 1_canceled via the CLOSED_STATES dict at project_task.py:84-87), NOT by any is_closed field on the stage model; project.task.type has no is_closed field",
+      "migration_relevance": "Any migration logic checking stage-level closure must reference the task state field, not a stage attribute"
+    },
+    {
+      "id": "KF-02",
+      "finding": "Task state is a 6-value computed+stored Selection driven partly by dependency blocking: when any depend_on_ids task is open, the blocked task is automatically set to 04_waiting_normal; state and stage are orthogonal",
+      "migration_relevance": "Migration must preserve both stage_id and state independently; the state machine will re-compute state from dependencies post-migration"
+    },
+    {
+      "id": "KF-03",
+      "finding": "The base project module defines account_id on project.project (optional, no auto-creation); auto-creation of the analytic account only happens when hr_timesheet is installed and allow_timesheets is enabled",
+      "migration_relevance": "Migrated projects from systems with timesheets must include account_id; projects without timesheets may have null account_id"
+    },
+    {
+      "id": "KF-04",
+      "finding": "Task stages (project.task.type) are shared across projects via a Many2many; a stage can belong to multiple projects simultaneously; the domain on task stage_id is [project_ids = project_id]",
+      "migration_relevance": "Stage migration must handle the M2M relation; creating duplicate stages per project would diverge from community behaviour"
+    },
+    {
+      "id": "KF-05",
+      "finding": "The Burndown Chart reconstructs history from mail_message and mail_tracking_value audit trail using a CTE with generate_series; it requires stage-change tracking messages to be present in the mail log",
+      "migration_relevance": "If mail tracking messages are not migrated, burndown chart will show only current state without history"
+    }
+  ],
+  "capabilities": [
+    "CAP-U142-01: Project container and privacy visibility",
+    "CAP-U142-02: Task model fields and state machine",
+    "CAP-U142-03: Task dependencies and blocking",
+    "CAP-U142-04: Task stages (shared, fold, rotting, rating)",
+    "CAP-U142-05: Recurring tasks",
+    "CAP-U142-06: Milestones",
+    "CAP-U142-07: Analytic account and timesheets (cross-module)",
+    "CAP-U142-08: Scheduled rating dispatch",
+    "CAP-U142-09: Built-in reports (task analysis and burndown chart)"
+  ],
+  "model_summary": {
+    "project.project": {
+      "key_fields": ["name", "privacy_visibility", "company_id", "partner_id", "account_id", "stage_id", "type_ids", "allow_task_dependencies", "allow_milestones", "allow_recurring_tasks", "last_update_status"],
+      "source_lines": "project/models/project_project.py:90-183"
+    },
+    "project.task": {
+      "key_fields": ["name", "description", "state", "stage_id", "user_ids", "date_deadline", "tag_ids", "priority", "depend_on_ids", "dependent_ids", "recurring_task", "recurrence_id", "milestone_id"],
+      "source_lines": "project/models/project_task.py:151-330"
+    },
+    "project.task.type": {
+      "key_fields": ["name", "sequence", "project_ids", "fold", "rotting_threshold_days", "auto_validation_state", "rating_active", "rating_status", "user_id"],
+      "source_lines": "project/models/project_task_type.py:23-79"
+    },
+    "project.task.recurrence": {
+      "key_fields": ["task_ids", "repeat_interval", "repeat_unit", "repeat_type", "repeat_until"],
+      "source_lines": "project/models/project_task_recurrence.py:10-65"
+    },
+    "project.project.stage": {
+      "key_fields": ["name", "sequence", "fold", "company_id", "mail_template_id"],
+      "source_lines": "project/models/project_project_stage.py:13-21"
+    },
+    "project.milestone": {
+      "key_fields": ["name", "project_id", "deadline", "is_reached", "reached_date"],
+      "source_lines": "project/models/project_milestone.py:21-35"
+    }
+  },
+  "cross_module_notes": {
+    "hr_timesheet": "Adds allow_timesheets, timesheet_ids, effective_hours, progress, overtime, remaining_hours to project and task; auto-creates analytic account when timesheets enabled",
+    "analytic": "Provides account.analytic.account model; project inherits analytic.plan.fields.mixin",
+    "portal": "Provides portal.mixin for access URL and portal access; project access at /my/projects/{id}",
+    "rating": "Provides rating.mixin; periodic rating dispatched by daily cron on project.task.type"
+  },
+  "created_by": "DeepSeek Worker U142",
+  "created_at": "2026-10-02",
+  "odoo_version": "19.0.post20260921"
+}
