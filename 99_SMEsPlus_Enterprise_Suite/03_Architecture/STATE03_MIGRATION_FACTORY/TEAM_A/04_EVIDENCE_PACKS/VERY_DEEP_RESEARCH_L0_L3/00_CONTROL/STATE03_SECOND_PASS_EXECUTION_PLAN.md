@@ -186,3 +186,42 @@
 ---
 
 *This plan is a DIAGNOSTIC artifact. It does not constitute Gate PASS, Formal Coverage measurement, V-level assignment, or Boss Approval.*
+
+---
+
+## Live Status Table — U70–U99 (Updated 2026-10-02)
+
+> Last updated by: Claude session (continuous batch execution)
+
+| Unit | Module / Capability Scope | G01–G16 Mapping | Priority | C1 Impact | Dependency | Research Focus | Expected Outputs | Status |
+|------|--------------------------|-----------------|----------|-----------|------------|----------------|-----------------|--------|
+| U70 | account — lock date enforcement (PCO-F01) | G04 CANDIDATE | P0 | Yes | U11, U33 | Lock date write guard, group ACL, hash chain | Restricted+Neutral evidence, handoff packet | Running |
+| U71 | account/stock/sale/purchase — multi-company isolation (MCT-F01/F02/F05) | G04/G06/G07/G08 CANDIDATE | P0 | Yes | U28, U21 | ir.rule company_id domains, intercompany journal | Restricted+Neutral evidence, handoff packet | Queued |
+| U72 | stock_account + stock.valuation.layer — perpetual valuation (GRV-F04/IAV-F03/PCO-F03) | G08 CANDIDATE | P0 | Yes | U10, U07 | SVL creation, AVCO/FIFO with perpetual ON | Restricted+Neutral evidence, handoff packet | Queued |
+| U73 | account — audit trail immutability (RCN-F02/RCN-F03) | G04 CANDIDATE | P0 | Yes | U11, U10 | Posted entry lock, hash chain, backdating constraint | Restricted+Neutral evidence, handoff packet | Queued |
+| U74 | purchase/stock/account — three-way match / bill control (GRV-F06) | G07/G08/G04 CANDIDATE | P0 | Yes | U07, U12 | qty_billed vs qty_received enforcement | Restricted+Neutral evidence, handoff packet | Queued |
+| U75 | account + stock_account — period cutoff / accrued orders (PCO-F03/PCO-F04) | G04/G08 CANDIDATE | P0 | Yes | U33, U10 | Accrued-orders wizard, interim account posting | Restricted+Neutral evidence, handoff packet | Queued |
+| U76 | sale→stock→account full O2C chain | G06/G08/G04 CANDIDATE | P1 | No | C01, U04, U05 | SO→picking→invoice→payment→reconcile L5/L11 | Restricted+Neutral evidence, handoff packet | Queued |
+| U77 | purchase→stock→account full P2P chain | G07/G08/G04 CANDIDATE | P1 | No | C02, U06, U07 | PO→receipt→bill→payment→reconcile L5/L11 | Restricted+Neutral evidence, handoff packet | Queued |
+| U78 | mrp full MO lifecycle (BOM→consume→produce→close) | G09 CANDIDATE | P1 | Yes | U14, U15 | MO create→consume→produce→close→account | Restricted+Neutral evidence, handoff packet | Queued |
+| U79 | account.move full lifecycle (unposted→posted→reconciled) | G04 CANDIDATE | P1 | Yes | U11, U12 | Entry lifecycle deep dive L4/L7/L11 | Restricted+Neutral evidence, handoff packet | Queued |
+| U80 | stock_account perpetual AVCO/FIFO deep (SVL recomputation) | G08 CANDIDATE | P1 | Yes | U10, U72 | AVCO/FIFO recompute on return, scrap valuation | Restricted+Neutral evidence, handoff packet | Queued |
+| U81 | account_payment + bank reconciliation full workflow | G04/G05 CANDIDATE | P1 | No | U12, U33 | Payment wizard, bank statement, suspense clear | Restricted+Neutral evidence, handoff packet | Queued |
+| U82 | account_edi_ubl_cii + account_peppol EDI full flow | G04 CANDIDATE | P1 | No | U27, U48 | XML generation, PEPPOL proxy, response state machine | Restricted+Neutral evidence, handoff packet | Queued |
+| U83 | mrp_subcontracting + purchase subcontracting flow | G09/G07 CANDIDATE | P1 | No | U15, U07 | BOM→PO→receipt→auto-send→FG return→account | Restricted+Neutral evidence, handoff packet | Queued |
+| U84 | sale_stock + stock_account COGS timing at delivery | G06/G08/G04 CANDIDATE | P1 | Yes | U05, U10 | Delivery validate→SVL→account.move timing | Restricted+Neutral evidence, handoff packet | Queued |
+| U85 | point_of_sale — session open/close/reconcile | G10 CANDIDATE | P1 | No | U64 | POS session lifecycle→account.move generation | Restricted+Neutral evidence, handoff packet | Queued |
+| U86 | crm.lead full pipeline (lead→opportunity→SO) | G11 CANDIDATE | P2 | No | U18, U38 | CRM lead→qualify→win→SO→analytic | Restricted+Neutral evidence, handoff packet | Queued |
+| U87 | project + hr_timesheet + analytic (time-cost chain) | G12 CANDIDATE | P2 | No | U16, U46 | Timesheet→analytic posting→expense→invoice | Restricted+Neutral evidence, handoff packet | Queued |
+| U88 | hr.leave + hr.work_entry + payroll prep | G12 CANDIDATE | P2 | No | U17, U39, U40 | Leave→approval→work entry→payroll impact | Restricted+Neutral evidence, handoff packet | Queued |
+| U89 | website_sale full eCommerce (cart→checkout→payment→SO) | G13 CANDIDATE | P2 | No | U65, U19 | Website cart→checkout→payment→confirmed SO→delivery | Restricted+Neutral evidence, handoff packet | Queued |
+| U90 | mass_mailing + event + crm marketing chain | G11/G13 CANDIDATE | P2 | No | U18, U42, U62 | Mailing→event→CRM lead→conversion | Restricted+Neutral evidence, handoff packet | Queued |
+| U91 | hr_expense + project_sale_expense (expense→invoice) | G12 CANDIDATE | P2 | No | U16, U87 | Expense submit→approve→post→invoice customer | Restricted+Neutral evidence, handoff packet | Queued |
+| U92 | website_blog + website_forum + website_slides | G13 CANDIDATE | P2 | No | U19, U60 | Content platform UI/UX, access control, SEO | Restricted+Neutral evidence, handoff packet | Queued |
+| U93 | stock_picking_batch + delivery batch picking | G08 CANDIDATE | P2 | No | U57, U08 | Batch transfer create→scan→validate→auto-close | Restricted+Neutral evidence, handoff packet | Queued |
+| U94 | payment providers (Stripe/PayPal) webhook delivery | G14 CANDIDATE | P2 | No | U20, U63 | Provider webhook→transaction state→account.move | Restricted+Neutral evidence, handoff packet | Queued |
+| U95 | U55 RECOVERY — identify+study missing evidence unit | MAPPING REQUIRED | P0 | Unknown | U54, U56 | Determine U55 module scope, produce full L1-L3 evidence | Restricted+Neutral evidence, handoff packet | Queued |
+| U96 | stock_landed_costs + mrp_landed_costs (GRV-F05) | G08/G09 CANDIDATE | P1 | Yes | U07, U10 | Landed cost allocation→SVL update→account.move | Restricted+Neutral evidence, handoff packet | Queued |
+| U97 | survey + survey_crm integration | G12 CANDIDATE | P2 | No | U46, U58 | Survey→share→collect→CRM/HR integration | Restricted+Neutral evidence, handoff packet | Queued |
+| U98 | account_tax_python (Python formula tax) + tax tag update | G04 CANDIDATE | P1 | Yes | U13, U32 | Python formula eval, injection risk, rounding, tag update | Restricted+Neutral evidence, handoff packet | Queued |
+| U99 | multi-company record rule audit (all modules) | G01/G04/G06–G09 | P0 | Yes | U71, U21 | ir.rule scan all company_id domains, sudo() bypass | Restricted+Neutral evidence, handoff packet | Queued |
