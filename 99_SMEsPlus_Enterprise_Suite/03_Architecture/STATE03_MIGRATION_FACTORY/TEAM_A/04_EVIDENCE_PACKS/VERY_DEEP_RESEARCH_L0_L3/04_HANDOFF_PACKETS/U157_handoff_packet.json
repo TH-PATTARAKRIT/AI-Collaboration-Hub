@@ -1,5 +1,16 @@
 {
-  "unit_id": "U157",
+  "unit": "U157",
+  "status": "GATE-FAIL",
+  "marker": "DEEPSEEK-CORRECTED / PENDING STATE03 RE-VERIFICATION",
+  "b02_correction": {
+    "package": "CR-DS-U100-U200-VERIFIED-B02",
+    "defects": ["DEFECT-A (CPM-01 unit_id key)", "DEFECT-C (CPM-03 malformed gate_result)"],
+    "gate_command": "python3 ~/STATE03_RESTRICTED_LOCAL/tools/vdr_check.py 01_RESTRICTED_TECHNICAL_EVIDENCE/U157_bank_stmt_import.md 02_NEUTRAL_KNOWLEDGE/U157_bank_stmt_import_NEUTRAL.md",
+    "gate_output": ["claims=0 supported_pointer_and_anchor=0 unknown_class=0 neutral_ids=0", "FAIL claim-checks=0 neutral-leak-tokens=0"],
+    "gate_exit_code": 0,
+    "note": "Actual canonical gate FAILs: 0 canonical VDR-U157-C### claims. Prior gate_result GATE-PASS was not backed by the actual gate. Recorded as GATE-FAIL; no GATE-PASS manufactured.",
+    "b02_prior": {"key": "unit_id", "status": "<absent>", "gate_result": "GATE-PASS"}
+  },
   "title": "account_bank_statement_import — OFX/CSV/CAMT import chain L3",
   "g_group": "G01",
   "priority": "P1",
@@ -7,7 +18,7 @@
   "research_date": "2026-10-02",
   "verdict": "ABSENT",
   "claim_count": 21,
-  "gate_result": "GATE-PASS",
+  "gate_result": "FAIL (claim-checks=0, neutral-leak-tokens=0)",
   "source_tree": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons",
 
   "presence_check": {
