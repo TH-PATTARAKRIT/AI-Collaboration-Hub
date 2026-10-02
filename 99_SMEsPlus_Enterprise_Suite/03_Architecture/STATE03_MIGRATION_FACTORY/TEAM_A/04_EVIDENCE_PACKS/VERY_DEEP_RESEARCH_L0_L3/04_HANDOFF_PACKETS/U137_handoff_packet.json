@@ -1,0 +1,83 @@
+{
+  "unit": "U137",
+  "title": "payment_xendit — Thai-adjacent payment provider deep study",
+  "group": "G15/G03",
+  "priority": "P2",
+  "date": "2026-10-02",
+  "status": "COMPLETE",
+  "module_presence": "PRESENT",
+  "module_path": "odoo/addons/payment_xendit",
+  "odoo_version": "19.0.post20260921",
+
+  "summary": {
+    "total_claims": 26,
+    "c1_claims": 19,
+    "awt_claims": 7,
+    "th_flagged_claims": 10,
+    "layers_covered": ["L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9", "L11", "L12"],
+    "layers_absent": ["L10"]
+  },
+
+  "key_thai_findings": {
+    "thb_supported": true,
+    "thb_decimal_places": 0,
+    "thb_rounding_method": "DOWN (truncate to integer baht)",
+    "thai_payment_methods": ["promptpay", "linepay", "shopeepay"],
+    "thai_bank_channels": {
+      "scb": "DD_SCB_MB",
+      "krungthai_bank": "DD_KTB_MB",
+      "bangkok_bank": "DD_BBL_MB"
+    },
+    "th_locale_file_present": true,
+    "manifest_summary_mismatch": "Manifest says Indonesian and Philippines only; const.py contains full Thai support"
+  },
+
+  "architecture": {
+    "card_flow": "direct (browser SDK tokenization + optional 3DS iframe + server-side charge RPC)",
+    "non_card_flow": "redirect to gateway-hosted invoice page (v2/invoices API)",
+    "webhook_auth": "x-callback-token header compared via constant-time equality",
+    "accounting_postings": "entirely inherited from parent payment module; no xendit-specific override",
+    "tokenization_support": true,
+    "recurring_3ds_suppression": "is_recurring=True flag on charge payload for token reuse"
+  },
+
+  "credential_fields": {
+    "public_key": "xendit_public_key — groups base.group_system, copy=False",
+    "secret_key": "xendit_secret_key — groups base.group_system, copy=False",
+    "webhook_token": "xendit_webhook_token — groups base.group_system, copy=False"
+  },
+
+  "supported_currencies": ["IDR", "MYR", "PHP", "SGD", "THB", "USD", "VND"],
+
+  "default_payment_methods": {
+    "id": ["card", "dana", "ovo", "qris"],
+    "my": ["fpx", "touch_n_go"],
+    "th": ["promptpay", "linepay", "shopeepay"],
+    "vn": ["appota", "zalopay", "vnptwallet"],
+    "sg": ["paynow"],
+    "card_brands": ["visa", "mastercard", "jcb", "amex"]
+  },
+
+  "api_endpoints": {
+    "webhook": "/payment/xendit/webhook",
+    "return": "/payment/xendit/return",
+    "card_payment": "/payment/xendit/payment"
+  },
+
+  "awt_test_steps": [
+    "POST to webhook URL with valid payment data — verify _process called once",
+    "Call token verification with stored webhook token — verify no Forbidden raised",
+    "GET return URL with success=true and valid access token — verify state transitions draft to pending",
+    "Apply PAID status payment data to transaction — verify state becomes done",
+    "Verify zero-decimal rounding: amount 1000.50 rounds to 1000 for IDR/THB-equivalent currency"
+  ],
+
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U137_payment_xendit.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U137_payment_xendit_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U137_handoff_packet.json"
+  },
+
+  "gate_script": "/private/tmp/vdr_check_u137.py",
+  "branch": "claude/local-odoo-source-research"
+}
