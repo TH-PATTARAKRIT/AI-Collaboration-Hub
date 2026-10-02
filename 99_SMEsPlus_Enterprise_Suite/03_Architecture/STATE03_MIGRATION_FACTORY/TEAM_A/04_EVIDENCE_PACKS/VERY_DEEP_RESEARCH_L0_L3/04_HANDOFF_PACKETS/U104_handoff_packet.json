@@ -1,0 +1,78 @@
+{
+  "unit_id": "U104",
+  "title": "account_peppol_response — PEPPOL response handling",
+  "gap_id": "GAP-040",
+  "priority": "P1",
+  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "research_agent": "Claude Sonnet 4.6 (third-pass deep research)",
+  "research_date": "2026-10-02",
+  "module_path": "account_peppol_response",
+  "module_auto_install": true,
+  "depends": ["account_peppol"],
+  "post_init_hook": "_account_peppol_response_post_init",
+  "uninstall_hook": "_account_peppol_response_uninstall",
+  "claim_count": 35,
+  "files_researched": [
+    "account_peppol_response/models/account_peppol_response.py",
+    "account_peppol_response/models/account_move.py",
+    "account_peppol_response/models/account_edi_proxy_user.py",
+    "account_peppol_response/models/account_peppol_clarification.py",
+    "account_peppol_response/models/res_company.py",
+    "account_peppol_response/models/res_partner.py",
+    "account_peppol_response/wizard/peppol_rejection_wizard.py",
+    "account_peppol_response/__manifest__.py",
+    "account_peppol_response/__init__.py",
+    "account_peppol_response/data/peppol_clarification_data.xml",
+    "account_peppol_response/data/cron.xml"
+  ],
+  "models_introduced": [
+    "account.peppol.response",
+    "account.peppol.clarification",
+    "account.peppol.rejection.wizard"
+  ],
+  "models_extended": [
+    "account.move",
+    "account_edi_proxy_client.user",
+    "res.company",
+    "res.partner"
+  ],
+  "key_findings": {
+    "response_codes": ["AB", "IP", "UQ", "CA", "RE", "AP", "PD"],
+    "response_states": ["processing", "done", "error", "not_serviced"],
+    "xml_document_type": "ApplicationResponse",
+    "xml_response_code_xpath": "DocumentResponse/{*}Response/{*}ResponseCode",
+    "clarification_list_ids": ["OPStatusReason", "OPStatusAction"],
+    "proxy_endpoint": "1/send_response",
+    "status_check_endpoint": "2/get_services",
+    "peppol_document_type_urn": "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##urn:fdc:peppol.eu:poacc:trns:invoice_response:3::2.1",
+    "error_codes": {
+      "702": "Request not ready — silent retry",
+      "207": "Not serviced — terminal not_serviced state"
+    },
+    "auto_behaviours": {
+      "on_post": "Sends AP (approval) response automatically",
+      "on_cancel": "Opens rejection wizard",
+      "on_receive": "Sends AB (acknowledgement) response automatically"
+    },
+    "cron_retry_hours": 4,
+    "clarification_reasons_count": 13,
+    "clarification_actions_count": 7
+  },
+  "awt_items": [
+    {
+      "id": "AWT-U104-01",
+      "description": "Confirm the proxy endpoint path segment for send_response resolves correctly at runtime against the actual IAP proxy URL base",
+      "reason": "Endpoint resolution depends on _get_peppol_proxy_endpoint which concatenates a base URL — not verifiable from source alone"
+    },
+    {
+      "id": "AWT-U104-02",
+      "description": "Verify that duplicate UUID detection correctly prevents double-processing of the same ApplicationResponse message in high-throughput scenarios",
+      "reason": "Race condition in set union of duplicate UUIDs requires runtime observation"
+    }
+  ],
+  "output_files": {
+    "vdr_claims": "01_RESTRICTED_TECHNICAL_EVIDENCE/U104_peppol_response.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U104_peppol_response_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U104_handoff_packet.json"
+  }
+}
