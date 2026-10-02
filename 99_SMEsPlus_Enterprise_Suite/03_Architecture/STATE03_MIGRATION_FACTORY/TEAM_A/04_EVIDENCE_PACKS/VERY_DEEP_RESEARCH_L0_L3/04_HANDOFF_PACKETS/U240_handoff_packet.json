@@ -1,0 +1,130 @@
+{
+  "unit": "U240",
+  "module": "module_data_lifecycle",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 26,
+  "gate": "GREEN",
+  "research_date": "2026-10-03",
+  "migration_flags": [
+    {
+      "flag": "NOUPDATE_STORED_ONLY_ON_INSERT",
+      "severity": "HIGH",
+      "description": "OBSERVED: the xmlid upsert writes noupdate only on first INSERT and never changes it on conflict; the loader skips writes in update mode using the stored flag, and the converter applies a second, independent container-level gate. Customer-modified views, record rules, mail templates and chart-template records rely on this. PRIOR-VERSION-KNOWLEDGE: the same two-layer design existed earlier; not re-verified here.",
+      "source": "base/models/ir_model.py:2442-2450; odoo/orm/models.py:5178-5179; odoo/tools/convert.py:360"
+    },
+    {
+      "flag": "NO_DATE_INIT_DATE_UPDATE_ON_MODEL_DATA",
+      "severity": "MEDIUM",
+      "description": "OBSERVED: ir.model.data declares no date_init or date_update fields, only ORM create/write dates. PRIOR-VERSION-KNOWLEDGE: earlier releases carried date_init and date_update; the release that dropped them is UNKNOWN - EVIDENCE INSUFFICIENT. Any SQL or export relying on those columns must be re-checked.",
+      "source": "base/models/ir_model.py:2242-2264, 2446"
+    },
+    {
+      "flag": "NOUPDATE_CONTAINER_ONLY",
+      "severity": "MEDIUM",
+      "description": "OBSERVED: noupdate is accepted only on odoo/data/openerp containers; record elements accept id, forcecreate and model only; forcecreate matters only inside the noupdate-update gate, the foreign-prefix branch and unresolved references.",
+      "source": "odoo/import_xml.rng:143-157, 268-276; odoo/tools/convert.py:377-379, 386-390, 426-429, 605"
+    },
+    {
+      "flag": "PROCESS_END_SKIPS_NOUPDATE",
+      "severity": "MEDIUM",
+      "description": "OBSERVED: end-of-load cleanup deletes records of non-noupdate xmlids that were not reloaded; noupdate xmlids of records no longer shipped survive as orphans; uninstall ignores the flag and removes all xmlid records of the module.",
+      "source": "base/models/ir_model.py:2657-2660, 2490"
+    },
+    {
+      "flag": "XMLID_RENAME_HELPER_ABSENT",
+      "severity": "MEDIUM",
+      "description": "OBSERVED: no xmlid rename helper in odoo/orm, odoo/modules, odoo/tools or base models (only DB column rename and a category-rename comment); __export__ and __import__ pseudo-modules are present. Renamed xmlids therefore need migration scripts (U102).",
+      "source": "odoo/tools/sql.py:377; odoo/modules/db.py:141; odoo/orm/models.py:617, 915, 5204"
+    },
+    {
+      "flag": "DEPRECATIONS_SINCE_19",
+      "severity": "LOW",
+      "description": "OBSERVED: load_manifest, get_modules_with_version, convert_file kind argument, init_xml manifest key and Registry.manage_changes are deprecated since 19.0; zero Community manifests use init_xml.",
+      "source": "odoo/modules/module.py:399-401, 544-547; odoo/tools/convert.py:680-685; odoo/modules/loading.py:51-52; odoo/orm/registry.py:1182-1190"
+    },
+    {
+      "flag": "DECLARATIVE_CONSTRAINTS",
+      "severity": "LOW",
+      "description": "OBSERVED: ir.model.data and ir.module.module declare constraints with models.UniqueIndex, models.Index and models.Constraint. PRIOR-VERSION-KNOWLEDGE: earlier releases used _sql_constraints lists; customisations overriding those lists must be rewritten.",
+      "source": "base/models/ir_model.py:2252-2254, 1878; base/models/ir_module.py:328-331"
+    },
+    {
+      "flag": "VERSION_FIELD_LABEL_INVERSION",
+      "severity": "LOW",
+      "description": "OBSERVED: ir.module.module installed_version is labelled Latest Version and holds the on-disk version, latest_version is labelled Installed Version and holds the database version, per the source comment.",
+      "source": "base/models/ir_module.py:285-290; odoo/modules/module_graph.py:155"
+    },
+    {
+      "flag": "NEW_MODULE_FIELDS_AND_KEYS",
+      "severity": "LOW",
+      "description": "OBSERVED: fields country_ids, has_iap, icon_flag, to_buy, dependency auto_install_required, category privilege_ids; manifest keys countries, external_dependencies, bootstrap, cloc_exclude, kpi_providers present in defaults. PRIOR-VERSION-KNOWLEDGE: not all existed in v16 or v17; which release added each is UNKNOWN - EVIDENCE INSUFFICIENT.",
+      "source": "base/models/ir_module.py:86, 297, 324-326, 1017-1020; odoo/modules/module.py:56-96"
+    },
+    {
+      "flag": "WEB_COLUMN_WITHOUT_ORM_FIELD",
+      "severity": "LOW",
+      "description": "OBSERVED: the web column exists in bootstrap SQL and the manifest defaults but ir.module.module has no ORM field web; no Community manifest sets web.",
+      "source": "base/data/base_data.sql:63; odoo/modules/db.py:59, 65; odoo/modules/module.py:94"
+    },
+    {
+      "flag": "BOOTSTRAP_IGNORES_COUNTRIES",
+      "severity": "MEDIUM",
+      "description": "OBSERVED: fresh-database auto-install SQL does not evaluate the countries key while button_install requires a matching company country; empty-list auto_install would diverge between the two paths (RT; zero Community manifests use it). l10n_th uses auto_install ['account'] with countries ['th'].",
+      "source": "odoo/modules/db.py:95-107; base/models/ir_module.py:418-422; l10n_th/__manifest__.py:5, 20"
+    },
+    {
+      "flag": "THAI_POST_INIT_PRESERVES_TAGS",
+      "severity": "MEDIUM",
+      "description": "OBSERVED: l10n_th declares only a post_init_hook that flips noupdate to true on its account tag xmlids; pre_init_hook, uninstall_hook and post_load are ABSENT; chart templates are written by the account chart-template loader with noupdate true under account.<company_id>_<xmlid> names, not by manifest data.",
+      "source": "l10n_th/__manifest__.py:28; l10n_th/__init__.py:4-6; account/models/chart_template.py:46-50, 692-697, 1226-1230"
+    },
+    {
+      "flag": "DEMO_FLAG_TRUE_WITHOUT_DEMO_FILES",
+      "severity": "LOW",
+      "description": "OBSERVED: load_demo returns True also for modules without demo files, so the demo flag is true whenever demo is installable and loading did not fail; demo files are loaded with noupdate true.",
+      "source": "odoo/modules/loading.py:59, 70-74; odoo/modules/module_graph.py:201-203"
+    },
+    {
+      "flag": "DATA_MODE_INIT_VS_UPDATE",
+      "severity": "HIGH",
+      "description": "OBSERVED: install and reinit load data in init mode, upgrade in update mode, so noupdate protection applies only on upgrade; an install over an existing module database re-writes records even when flagged noupdate.",
+      "source": "odoo/modules/loading.py:217, 223-224"
+    }
+  ],
+  "key_findings": {
+    "module_states": "uninstallable, uninstalled, installed, to upgrade, to remove, to install (ir_module.py:140-147)",
+    "module_fields_notes": "installed_version and latest_version labels are swapped; license selection has ten values; no ORM web field",
+    "dependency_state": "derived only from linked module state, unknown when module missing (ir_module.py:1039-1042)",
+    "xmlid_unique_key": "unique index on (module, name); index on (model, res_id); no date_init/date_update (ir_model.py:2252-2254)",
+    "xmlid_lookup": "cached _xmlid_lookup raises ValueError when no row or empty res_id; env.ref also tests existence (ir_model.py:2281-2292; environments.py:166-175)",
+    "create_update_skip_rule": "update mode skips write when stored noupdate is true; init mode rewrites; missing target row deleted and recreated (models.py:5167-5182)",
+    "converter_noupdate": "container-level only; record gate only in update mode; forcecreate default true (convert.py:360-379, 605)",
+    "load_order_per_module": "pre-migrate, load package/post_load, pre_init_hook (install), models/schema, data, demo, post-migrate, translations, post_init_hook (install), view validation (upgrade), state installed (loading.py:159-273)",
+    "end_cleanup": "_process_end removes non-noupdate xmlids not reloaded in this run, only when modules were updated (ir_model.py:2657-2660; loading.py:513, 523)",
+    "uninstall_order": "data, copied views, constraints, selections, fields, relations, models, xmlid rows (ir_model.py:2582-2635)",
+    "hooks": "post_load fn() once per process; pre_init_hook/post_init_hook/uninstall_hook fn(env); prevalence 0/6/94/62 of 692 manifests (scripted scan)",
+    "l10n_th": "depends account_qr_code_emv and account; auto_install ['account']; countries ['th']; post_init_hook _preserve_tag_on_taxes only (l10n_th/__manifest__.py:3-29)",
+    "chart_template": "records written with noupdate True via _load_records, names account.<company_id>_<xmlid> (chart_template.py:688-698, 1226-1230)",
+    "registry_reload": "immediate runner, upgrade wizard, force_demo, uninstall recursion, signaling mismatch (ir_module.py:638; loading.py:553-555; registry.py:1112-1115)",
+    "xmlid_rename_helper": "ABSENT within grep scope; __export__ and __import__ present"
+  },
+  "source_files_verified": [
+    "odoo/modules/loading.py",
+    "odoo/modules/module.py",
+    "odoo/modules/db.py",
+    "odoo/modules/module_graph.py",
+    "odoo/modules/migration.py",
+    "odoo/orm/registry.py",
+    "odoo/orm/models.py",
+    "odoo/tools/convert.py",
+    "odoo/import_xml.rng",
+    "odoo/addons/base/models/ir_module.py",
+    "odoo/addons/base/models/ir_model.py",
+    "odoo/addons/base/models/ir_ui_view.py",
+    "odoo/addons/account/models/chart_template.py",
+    "odoo/addons/account/models/ir_module.py",
+    "odoo/addons/l10n_th/__manifest__.py",
+    "odoo/addons/l10n_th/__init__.py",
+    "odoo/addons/l10n_th/models/template_th.py"
+  ]
+}
