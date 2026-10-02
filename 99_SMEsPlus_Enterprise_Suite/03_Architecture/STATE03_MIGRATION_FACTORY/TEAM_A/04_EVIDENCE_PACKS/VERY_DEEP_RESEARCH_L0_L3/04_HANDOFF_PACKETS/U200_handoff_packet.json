@@ -1,0 +1,115 @@
+{
+  "unit": "U200",
+  "module": "base_automation",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 22,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "id": "MF-U200-01",
+      "type": "ADDED",
+      "item": "on_webhook trigger",
+      "pointer": "base_automation/models/base_automation.py:196",
+      "description": "New trigger value 'on_webhook' enabling HTTP webhook-based automation execution with configurable record getter and optional audit logging"
+    },
+    {
+      "id": "MF-U200-02",
+      "type": "ADDED",
+      "item": "on_message_received / on_message_sent triggers",
+      "pointer": "base_automation/models/base_automation.py:120,193-194",
+      "description": "Formal mail message event triggers: on_message_received fires when author is portal/external partner, on_message_sent fires for internal users"
+    },
+    {
+      "id": "MF-U200-03",
+      "type": "ADDED",
+      "item": "on_archive / on_unarchive triggers",
+      "pointer": "base_automation/models/base_automation.py:181-182",
+      "description": "Dedicated archive/unarchive triggers replacing generic write detection on the active field"
+    },
+    {
+      "id": "MF-U200-04",
+      "type": "ADDED",
+      "item": "on_time_created / on_time_updated TIME_TRIGGERS",
+      "pointer": "base_automation/models/base_automation.py:125-128",
+      "description": "Two new time-based triggers: on_time_created uses create_date, on_time_updated uses write_date as the reference date field"
+    },
+    {
+      "id": "MF-U200-05",
+      "type": "ADDED",
+      "item": "object_copy (Duplicate Record) ir.actions.server state",
+      "pointer": "base/models/ir_actions.py:615",
+      "description": "New server action type allowing duplication of a specified record with optional field linking"
+    },
+    {
+      "id": "MF-U200-06",
+      "type": "ADDED",
+      "item": "webhook ir.actions.server state",
+      "pointer": "base/models/ir_actions.py:617",
+      "description": "New server action type that POSTs a JSON payload to an external URL after commit; uses postcommit hook with 1-second timeout"
+    },
+    {
+      "id": "MF-U200-07",
+      "type": "ADDED",
+      "item": "remove_followers ir.actions.server state",
+      "pointer": "mail/models/ir_actions_server.py:30",
+      "description": "New mail action type for removing specific or dynamically-resolved followers from a record"
+    },
+    {
+      "id": "MF-U200-08",
+      "type": "RENAMED",
+      "item": "action_ids -> action_server_ids",
+      "pointer": "base_automation/models/base_automation.py:153",
+      "description": "The actions One2many field is now named action_server_ids; keyed via base_automation_id FK on ir.actions.server; replaces legacy action_ids pattern"
+    },
+    {
+      "id": "MF-U200-09",
+      "type": "DEPRECATED",
+      "item": "on_write trigger",
+      "pointer": "base_automation/models/base_automation.py:184",
+      "description": "on_write trigger is deprecated; comment in source says 'use on_create_or_write instead'; still functional but should be migrated"
+    },
+    {
+      "id": "MF-U200-10",
+      "type": "DEPRECATED",
+      "item": "_check() method",
+      "pointer": "base_automation/models/base_automation.py:1098-1102",
+      "description": "Decorated @api.deprecated('Since 19.0, use _cron_process_time_based_automations'); replaced by _cron_process_time_based_actions()"
+    },
+    {
+      "id": "MF-U200-11",
+      "type": "ADDED",
+      "item": "ir.cron._commit_progress() in cron loop",
+      "pointer": "base_automation/models/base_automation.py:1217",
+      "description": "Time-based automation cron now calls _commit_progress() after each automation, enabling partial progress commits on long-running cron jobs"
+    }
+  ],
+  "key_findings": {
+    "trigger_count": 18,
+    "trigger_values": [
+      "on_create", "on_write", "on_create_or_write",
+      "on_stage_set", "on_user_set", "on_tag_set", "on_state_set", "on_priority_set",
+      "on_archive", "on_unarchive", "on_unlink", "on_change",
+      "on_time", "on_time_created", "on_time_updated",
+      "on_message_received", "on_message_sent", "on_webhook"
+    ],
+    "server_action_states_base": ["object_write", "object_create", "object_copy", "code", "webhook", "multi"],
+    "server_action_states_mail": ["next_activity", "mail_post", "followers", "remove_followers"],
+    "server_action_states_sms": ["sms"],
+    "process_idempotency": "__action_done context dict prevents recursive/duplicate execution",
+    "filter_semantics": "filter_pre_domain evaluated before write; filter_domain evaluated after write; both use safe_eval with domain-only eval context",
+    "eval_context_variables": ["env", "model", "record", "records", "uid", "user", "time", "datetime", "dateutil", "timezone", "UserError", "log", "_logger", "json (code+webhook)", "payload (webhook)"],
+    "cron_mechanism": "Single shared ir.cron record; auto-activated when TIME_TRIGGERS rules exist; frequency = min(max(1, min_delay//10), 240) minutes",
+    "action_server_ids": "One2many to ir.actions.server via base_automation_id FK; all actions must share the rule model; executed sequentially in _process()",
+    "hook_registration": "ORM methods create/write/_compute_field_value/unlink/message_post patched at registry load via _register_hook()",
+    "new_in_v19": ["on_webhook trigger", "object_copy state", "webhook state", "remove_followers state", "on_time_created", "on_time_updated", "on_archive", "on_unarchive", "_commit_progress integration"],
+    "deprecated_in_v19": ["on_write trigger (use on_create_or_write)", "_check() method (use _cron_process_time_based_actions)"]
+  },
+  "primary_files": [
+    "base_automation/models/base_automation.py",
+    "base_automation/models/ir_actions_server.py",
+    "base/models/ir_actions.py",
+    "mail/models/ir_actions_server.py",
+    "sms/models/ir_actions_server.py",
+    "base_automation/data/base_automation_data.xml"
+  ]
+}
