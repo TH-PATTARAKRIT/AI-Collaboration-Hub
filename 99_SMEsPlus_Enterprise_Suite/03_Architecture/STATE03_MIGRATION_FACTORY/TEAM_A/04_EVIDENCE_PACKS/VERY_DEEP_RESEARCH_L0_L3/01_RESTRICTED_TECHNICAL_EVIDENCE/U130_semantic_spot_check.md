@@ -1,0 +1,71 @@
+# U130 Semantic Spot-Check — GAP-024 / GAP-045
+
+**Unit:** U130  
+**Title:** Semantic spot-check — claim verification vs source  
+**Gaps:** GAP-024 (U01–U46 mechanical), GAP-045 (U47–U68 mechanical)  
+**Purpose:** Verify a representative sample of prior evidence claims directly against source — confirm pointers are real and statements are accurate.  
+**Date:** 2026-10-02  
+**Worker:** DeepSeek U130  
+
+---
+
+## Selection Rationale
+
+Five target units selected by evidence-file size (most claims to spot-check):
+
+| Unit | File | Size |
+|------|------|------|
+| U14 | U14_mrp_core.md | 261,418 bytes |
+| U08 | U08_stock_transfers.md | 224,396 bytes |
+| U05 | U05_sales_invoicing_delivery.md | 178,407 bytes |
+| U11 | U11_account_entry_lifecycle.md | 177,164 bytes |
+| U07 | U07_purchase_receiving.md | 151,441 bytes |
+
+Five claims selected per unit = **25 total checks**.
+
+---
+
+## VDR Claims Table
+
+| Claim-ID | Function-ID | Pointer | Anchor | Class | Condition | Flags | Technical statement | Neutral-ref |
+|---|---|---|---|---|---|---|---|---|
+| SC-U14-1 | CAP-U14-01 | mrp/models/mrp_bom.py:14 | _name = 'mrp.bom' | C1 | always | SEMANTIC | Source line 14 confirms _name = 'mrp.bom'; lines 16–20 confirm mail.thread inheritance, _order = "sequence, id", and _check_company_auto = True — all matching the original claim VDR-U14-C001. | Verification that the bill of materials model declaration at the stated line number matches the claimed model name and mixin list. |
+| SC-U14-2 | BRP-F01 | mrp/models/mrp_bom.py:27 | type = fields.Selection | C1 | always | SEMANTIC | Source lines 27–30 define the type selection with two values: normal (Manufacture this product) and phantom (Kit), default normal, required=True — confirming original claim VDR-U14-C002. Pointer line 27 is where the field definition begins; anchor text on line 28. | Verification that the bill of materials type field at the stated line offers exactly two selection values as claimed, without the subcontracting option. |
+| SC-U14-3 | CAP-U14-01 | mrp/models/mrp_bom.py:70 | consumption = fields.Selection | C1 | always | SEMANTIC | Source lines 70–82 confirm the consumption field has three values flexible/warning/strict (displayed as Allowed/Allowed with warning/Blocked), default 'warning', required=True, string 'Flexible Consumption' at line 80. Pointer in original claim states line 81 (required=True); anchor is at line 80 but field spans 70–82; statement is fully accurate. | Verification that the consumption flexibility field on the bill of materials model contains exactly the three stated selection values with the stated default. |
+| SC-U14-4 | CAP-U14-01 | mrp/models/mrp_bom.py:147 | would create a cycle | C1 | always | SEMANTIC | Source lines 132–149 confirm _check_bom_cycle is a constrains method on active/product_id/product_tmpl_id/bom_line_ids; it raises ValidationError with message containing "would create a cycle" (exact text at line 148) when a component equals a finished product. | Verification that the cycle-detection constraint on the bill of materials model raises an error at the stated line with the claimed anchor text. |
+| SC-U14-5 | BRP-F08 | mrp/views/mrp_bom_views.xml:150 | groups="mrp.group_mrp_byproducts" | C1 | always | SEMANTIC | Source line 150 contains groups="mrp.group_mrp_byproducts" on the By-products page element (page starting at line 147 with name="by_products"); visibility is restricted to that group, confirming original claim VDR-U14-C028. | Verification that the by-products tab on the bill of materials form view is gated by the stated security group at the stated line. |
+| SC-U08-1 | GRV-F01 | stock/models/stock_warehouse.py:57 | Receive and Store (1 step) | C1 | always | SEMANTIC | Source lines 56–61 confirm reception_steps field starts at line 56 with selection value at line 57: ('one_step', 'Receive and Store (1 step)'), two_steps and three_steps at lines 58–59, default 'one_step', required=True. All elements of VDR-U08-C001 confirmed. | Verification that the warehouse incoming-shipment steps field declares the one-step option at the stated line with the stated label. |
+| SC-U08-2 | GRV-F01 | stock/models/stock_warehouse.py:773 | 'one_step' | C1 | always | SEMANTIC | Source line 773 shows 'one_step': [self.Routing(supplier_loc, warehouse.lot_stock_id, warehouse.in_type_id, 'pull')] — a single pull routing from the supplier location to the warehouse stock location via the incoming picking type. Confirms VDR-U08-C003. | Verification that the one-step reception rule dictionary entry at the stated line describes a single pull routing as claimed. |
+| SC-U08-3 | GRV-F01 | stock/models/stock_warehouse.py:652 | 'active': reception_steps != 'one_step' | C1 | always | SEMANTIC | Source line 652 confirms 'active': reception_steps != 'one_step' for the Input location; line 658 confirms 'active': reception_steps == 'three_steps' for Quality Control. Both sub-claims of VDR-U08-C015 confirmed. | Verification that the warehouse location activation conditions for input and quality-control locations match the stated step-configuration logic at the stated lines. |
+| SC-U08-4 | GRV-F01 | stock/data/stock_data.xml:42 | id="route_warehouse0_mto" | C1 | always | SEMANTIC | Source lines 42–48 confirm: record id route_warehouse0_mto, model stock.route, name 'Replenish on Order (MTO)', company_id empty, active False, sequence 5, product_categ_selectable True — all five properties claimed in VDR-U08-C021. | Verification that the global make-to-order route data record at the stated line carries the exact properties claimed. |
+| SC-U08-5 | GRV-F01 | stock/models/stock_rule.py:610 | product_id.categ_id.total_route_ids | C1 | always | SEMANTIC | Source line 610 confirms extract_rule is called with product_id.route_ids | product_id.categ_id.total_route_ids as the third candidate set (after procurement-values routes at line 605 and packaging routes at line 608); warehouse routes are the fourth candidate at line 612. Confirms VDR-U08-C024 precedence order. | Verification that the stock rule resolution function tries product and category routes as the third candidate before warehouse routes, at the stated line. |
+| SC-U05-1 | SDV-F04 | sale/models/product_template.py:35 | invoice_policy = fields.Selection | C1 | sale installed | SEMANTIC | Source lines 35–47 confirm invoice_policy is a two-value Selection field with 'order' (Ordered quantities) and 'delivery' (Delivered quantities). Confirms VDR-U05-C001. | Verification that the invoicing-policy field on the product template model is a two-value selection with the stated option codes at the stated line. |
+| SC-U05-2 | SDV-F04 | sale/models/sale_order_line.py:1069 | invoice_policy == 'order' | C1 | sale installed | SEMANTIC | Source line 1069 confirms: elif line.product_id.invoice_policy == 'order': line.qty_to_invoice = line.product_uom_qty - line.qty_invoiced; the else branch at line 1072 uses qty_delivered - qty_invoiced. Confirms VDR-U05-C006. | Verification that the quantity-to-invoice computation branches correctly on the invoicing policy at the stated line, assigning ordered or delivered quantity as claimed. |
+| SC-U05-3 | SDV-F04 | sale/models/sale_order_line.py:1055 | no trigger product_id.invoice_policy | C1 | sale installed | SEMANTIC | Source line 1055 contains the comment "# no trigger product_id.invoice_policy to avoid retroactively changing SO"; line 1056 confirms the depends list is qty_invoiced, qty_delivered, product_uom_qty, state. Confirms VDR-U05-C008. | Verification that the quantity-to-invoice compute method carries the stated comment explaining deliberate omission of the product policy from the dependency list. |
+| SC-U05-4 | SDV-F04 | sale_stock/models/sale_order_line.py:239 | line.invoice_status == 'no' | C1 | sale_stock installed | SEMANTIC | Source lines 237–246 confirm the exact logic: state == 'sale', invoice_status == 'no', product type in consu/product, invoice_policy == 'delivery', move_ids present, all moves done/cancel with at least one done, non-zero qty_delivered — result is invoice_status = 'invoiced'. Confirms VDR-U05-C013. | Verification that the sale-stock override of invoice-status computation sets partially delivered goods lines to invoiced under the exact stated conditions at the stated line. |
+| SC-U05-5 | SDV-F04 | sale/wizard/res_config_settings.py:125 | default_invoice_policy != 'order' | C1 | sale installed | SEMANTIC | Source line 125 confirms: if self.default_invoice_policy != 'order': followed by line 126 setting ir.config_parameter sale.automatic_invoice to False. Confirms VDR-U05-C016. | Verification that the sales settings save method disables automatic invoicing whenever the default policy is not order-based, at the stated line. |
+| SC-U11-1 | FN-01 | account/models/account_move.py:133 | ('posted', 'Posted') | C1 | always | SEMANTIC | Source lines 130–142 confirm state selection has exactly three values (draft, posted, cancel); required=True, readonly=True, copy=False, default='draft'. All elements of VDR-U11-C001 confirmed. | Verification that the journal entry state field is a three-value selection with the exact properties claimed at the stated line. |
+| SC-U11-2 | FN-01 | account/models/account_move.py:6198 | self._post(soft=False) | C1 | always | SEMANTIC,CONTRA | Source line 6198 confirms self._post(soft=False) — hard posting. This is flagged CONTRA in original claim VDR-U11-C005 because FN-01 register stated soft=True; the source confirms action_post always calls with soft=False (hard), not soft=True. CONTRA is correctly documented in the original claim. | Verification that the user-facing post action explicitly passes the hard-mode flag at the stated line, confirming the CONTRA finding in the original evidence. |
+| SC-U11-3 | FN-01 | account/models/account_move.py:5569 | def _post(self, soft=True) | C1 | always | SEMANTIC | Source line 5569 confirms def _post(self, soft=True); lines 5578–5580 confirm the docstring: soft=True means future-dated documents are not immediately posted but queued for auto-posting. Confirms VDR-U11-C006. | Verification that the internal post method signature defaults to soft mode and the docstring matches the claimed behavior at the stated line. |
+| SC-U11-4 | FN-01 | account/models/account_move.py:5652 | must be in draft | C1 | always | SEMANTIC | Source line 5652 tests state in ['posted', 'cancel']; line 5653 adds message "must be in draft" to validation_msgs. Pointer line 5652 is accurate (condition); anchor text appears on line 5653 inside the translated string. Confirms VDR-U11-C008. | Verification that the posting validation rejects already-posted or cancelled entries with the stated message beginning at the stated line. |
+| SC-U11-5 | FN-01 | account/models/account_move.py:5654 | Even magicians | C1 | always | SEMANTIC | Source lines 5654–5655 confirm: if not move.line_ids.filtered(lambda line: line.display_type not in ('line_section', 'line_subsection', 'line_note')): validation_msgs.add(_("Even magicians can't post nothing!")). Confirms VDR-U11-C009. | Verification that the posting validation rejects entries with only display-type lines using the stated message at the stated line. |
+| SC-U07-1 | GRV-F01 | purchase_stock/models/purchase_order.py:179 | def button_approve | C1 | always | SEMANTIC | Source lines 179–182 confirm: button_approve calls super().button_approve(force=force) at line 180 then self._create_picking() at line 181 — receipt creation is triggered after approval. Confirms VDR-U07-C001 (pointer range 179–182). | Verification that the purchase order approval override in the stock module calls picking creation after the base approval step at the stated line range. |
+| SC-U07-2 | GRV-F01 | purchase_stock/models/purchase_order.py:379 | po.state == 'purchase' | C1 | always | SEMANTIC | Source line 379 confirms: for order in self.filtered(lambda po: po.state == 'purchase'): — only approved orders are processed. Confirms VDR-U07-C002. | Verification that the picking creation loop filters for orders in the approved state at the stated line, skipping pending-approval orders. |
+| SC-U07-3 | GRV-F01 | purchase_stock/models/purchase_order.py:380 | product.type == 'consu' | C1 | always | SEMANTIC | Source line 380 confirms: if any(product.type == 'consu' for product in order.order_line.product_id): — receipt created only when at least one goods product is present. Confirms VDR-U07-C005. | Verification that the picking creation guard at the stated line requires at least one storable product on the order before creating a receipt. |
+| SC-U07-4 | GRV-F01 | purchase_stock/models/purchase_order.py:386 | StockPicking.with_user(SUPERUSER_ID).create(res) | C1 | always | SEMANTIC | Source line 386 confirms: picking = StockPicking.with_user(SUPERUSER_ID).create(res) — the new receipt is created under the system superuser. Pointer in original claim states 384–388; the critical line is 386. Confirms VDR-U07-C008. | Verification that a new receipt picking is created under the superuser context at the stated line as claimed. |
+| SC-U07-5 | GRV-F01 | purchase_stock/models/purchase_order.py:363 | You must set a Vendor Location | C1 | always | SEMANTIC | Source lines 363–364 confirm: if not self.partner_id.property_stock_supplier.id: raise UserError(_("You must set a Vendor Location for this partner %s", self.partner_id.name)). Confirms VDR-U07-C016. | Verification that the picking preparation method raises an error with the stated message when the vendor supplier location is missing, at the stated line. |
+
+---
+
+## Summary
+
+| Unit | Checks | C1 | PARTIAL | FAIL |
+|------|--------|-----|---------|------|
+| U14 | 5 | 5 | 0 | 0 |
+| U08 | 5 | 5 | 0 | 0 |
+| U05 | 5 | 5 | 0 | 0 |
+| U11 | 5 | 5 | 0 | 0 |
+| U07 | 5 | 5 | 0 | 0 |
+| **Total** | **25** | **25** | **0** | **0** |
+
+**Key finding:** All 25 sampled pointers resolve to real source lines and the claimed anchor text and technical statements are accurate. The one documented CONTRA (VDR-U11-C005 on `_post(soft=False)`) is correctly self-flagged in the original evidence — the source confirms the CONTRA is real. No fabricated or wrong pointers detected. GAP-024 and GAP-045 mechanical evidence quality is HIGH for the sampled units.
