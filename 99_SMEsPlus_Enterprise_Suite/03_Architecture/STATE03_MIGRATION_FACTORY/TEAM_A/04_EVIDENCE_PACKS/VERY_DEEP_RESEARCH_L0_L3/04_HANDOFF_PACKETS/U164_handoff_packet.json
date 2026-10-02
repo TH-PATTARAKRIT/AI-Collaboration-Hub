@@ -1,0 +1,76 @@
+{
+  "unit": "U164",
+  "module": "sale_purchase",
+  "status": "PRESENT",
+  "g_group": ["G05", "G08"],
+  "priority": "P1",
+  "researcher": "DeepSeek STATE03 Worker",
+  "date": "2026-10-02",
+  "odoo_version": "19.0.post20260921",
+  "claim_count": 18,
+  "gate_result": "PASS",
+  "key_finding": "sale_purchase auto-generates PO lines from service SO lines on confirmation via purchase_order_line.sale_line_id FK; no wizard; physical replenishment is out-of-scope",
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U164_sale_purchase.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U164_sale_purchase_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U164_handoff_packet.json"
+  },
+  "source_files_read": [
+    "sale_purchase/__manifest__.py",
+    "sale_purchase/models/product_template.py",
+    "sale_purchase/models/sale_order.py",
+    "sale_purchase/models/sale_order_line.py",
+    "sale_purchase/models/purchase_order.py",
+    "sale_purchase/views/sale_order_views.xml"
+  ],
+  "key_fields": {
+    "purchase.order.line.sale_line_id": "Many2one → sale.order.line; btree_not_null index; canonical SO→PO link",
+    "purchase.order.line.sale_order_id": "related via sale_line_id.order_id; derived SO header ref",
+    "sale.order.line.purchase_line_ids": "One2many → purchase.order.line inverse of sale_line_id",
+    "sale.order.line.purchase_line_count": "Integer computed via _read_group; used as gate condition",
+    "sale.order.purchase_order_count": "Integer computed via order_line.purchase_line_ids.order_id; groups=purchase.group_purchase_user",
+    "purchase.order.sale_order_count": "Integer computed; groups=sales_team.group_sale_salesman",
+    "purchase.order.has_sale_order": "Boolean technical field; same compute as sale_order_count",
+    "product.template.service_to_purchase": "Boolean; company_dependent; triggers entire flow"
+  },
+  "key_methods": {
+    "sale.order._action_confirm": "Overrides base; calls order_line.sudo()._purchase_service_generation()",
+    "sale.order.line._purchase_service_generation": "Idempotent entry point; checks service_to_purchase and purchase_line_count==0",
+    "sale.order.line._purchase_service_create": "Core PO/PO-line creation; matches or creates PO; returns sale_line_purchase_map",
+    "sale.order.line._match_or_create_purchase_order": "Reuses existing draft PO for same partner/company/SO",
+    "sale.order.line._purchase_increase_ordered_qty": "Updates draft PO qty or creates new PO line for delta",
+    "sale.order.line._purchase_decrease_ordered_qty": "Schedules activity warning on PO; no auto-reduction",
+    "sale.order._activity_cancel_on_purchase": "On SO cancel: warns PO",
+    "purchase.order._activity_cancel_on_sale": "On PO cancel: warns SO",
+    "purchase.order._compute_dest_address_id": "Copies shipping address from SO to PO when single destination"
+  },
+  "scope_note": "This module covers service outsourcing ONLY. Physical product make-to-order replenishment (stock routes/orderpoints) is handled by sale_stock/purchase_stock — outside this module.",
+  "wizard_present": false,
+  "manual_link_mechanism": "NONE — all SO→PO links are system-generated automatically",
+  "migration_risks": [
+    "company_dependent field service_to_purchase must be migrated per-company",
+    "sale_line_id FK on purchase.order.line must be preserved with data integrity check",
+    "purchase_line_ids One2many inverse must be re-verified after migration",
+    "access group references (purchase.group_purchase_user, sales_team.group_sale_salesman) must exist in target"
+  ],
+  "claims": [
+    {"id": "C1", "claim": "auto_install when sale+purchase present", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C2", "claim": "service_to_purchase flag on product triggers auto-PO", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C3", "claim": "flag is company_dependent", "confidence": "HIGH", "migration_risk": "MEDIUM"},
+    {"id": "C4", "claim": "SO confirmation calls _purchase_service_generation on all lines", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C5", "claim": "guard: purchase_line_count==0 prevents duplicate PO lines", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C6", "claim": "purchase.order.line.sale_line_id is the canonical FK link", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C7", "claim": "sale_order_line.purchase_line_ids is the inverse One2many", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C8", "claim": "purchase_line_count computed via _read_group for efficiency", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C9", "claim": "SO header has purchase_order_count smart button (purchase users only)", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C10", "claim": "PO header has sale_order_count and has_sale_order fields", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C11", "claim": "system reuses existing draft PO for same supplier+SO before creating new", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C12", "claim": "SO line qty increase updates draft PO qty or creates supplemental PO line", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C13", "claim": "SO line qty decrease schedules activity warning; no auto PO reduction", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C14", "claim": "SO cancellation schedules warning on generated POs", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C15", "claim": "PO cancellation schedules warning on originating SOs", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C16", "claim": "new SO line on confirmed SO fires PO generation immediately at create", "confidence": "HIGH", "migration_risk": "LOW"},
+    {"id": "C17", "claim": "PO inherits shipping address from SO when single destination", "confidence": "MEDIUM", "migration_risk": "LOW"},
+    {"id": "C18", "claim": "no wizard for manual SO→PO linking exists in this module", "confidence": "HIGH", "migration_risk": "LOW"}
+  ]
+}
