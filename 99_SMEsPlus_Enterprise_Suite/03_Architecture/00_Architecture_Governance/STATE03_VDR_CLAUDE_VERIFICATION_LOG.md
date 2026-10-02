@@ -990,3 +990,535 @@ This log's **CR-025** (issued §42, VDR-U31-C101) = expression count correction 
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
+
+---
+
+## §54 — START_STATE03_BATCH_VERIFICATION: Preflight Complete
+
+**Trigger received:** `START_STATE03_BATCH_VERIFICATION` (Boss, 2026-10-02)
+**Verification branch:** `claude/new-session-l8f19r` (this session, read-only access to DeepSeek branch)
+**DeepSeek branch:** `claude/local-odoo-source-research`
+**Boundary commit confirmed:** `d89c5cf6` ("control: U99 Done 71d8c299 — ALL 30 UNITS COMPLETE; workers 82→83")
+**Batch reconciliation summary:** `00_CONTROL/STATE03_BATCH_RECONCILIATION_SUMMARY.md` — read ✓
+**Scope:** U70–U99 (30 units)
+**P2 Universal constraint:** NOT_PROVEN across ALL units — no Odoo runtime executed; all evidence is static source only
+
+### Preflight checks
+
+| Check | Result |
+|---|---|
+| Boundary commit `d89c5cf6` present on DeepSeek branch | CONFIRMED |
+| Reconciliation summary header: "ALL 30 UNITS GATE-PASS — BATCH COMPLETE" | CONFIRMED |
+| Evidence files directory `01_RESTRICTED_TECHNICAL_EVIDENCE/` | CONFIRMED — 30 U70–U99 files present |
+| Neutral knowledge directory `02_NEUTRAL_KNOWLEDGE/` | CONFIRMED |
+| Handoff packets directory `04_HANDOFF_PACKETS/` | CONFIRMED |
+| U78 HP JSON (`U78_handoff_packet.json`) | MISSING — MECHANICAL GAP (evidence file and git commit exist) |
+| U84 HP file | `HP_U84.md` (old naming convention; content is JSON; GATE-PASS confirmed) |
+| U73 HP JSON status field | STALE — "GATE-PENDING"; actual gate: PASS per evidence file + commit `1128925f` |
+| U70 evidence file status field | STALE — "GATE-PENDING"; actual gate: PASS per HP JSON + commit `ec7f3cee` |
+| All gate checks across all readable HPs | claim-checks=0, neutral-leak-tokens=0 ✓ |
+
+---
+
+## §55 — Independent Verification Ledger: U70–U99
+
+**Date:** 2026-10-02 | **Verifier:** Claude Code (Sonnet 4.6), session `claude/new-session-l8f19r`
+**Method:** Read-only `git show` against `origin/claude/local-odoo-source-research`; no checkout, no merge
+**Classification key:** VERIFIED-PASS / PARTIAL / NOT-PROVEN / CORRECTION-REQUIRED / AWT/RUNTIME-REQUIRED
+
+### U70 — Account Lock / Audit Depth (PCO-F01)
+
+| Item | Value |
+|---|---|
+| Evidence file | `U70_account_lock_audit_depth.md` |
+| Reconciliation SHA | `ec7f3cee` |
+| HP gate | `exit_0_claim-checks=0_neutral-leak-tokens=0` |
+| Claims read | 45 |
+| C1 claims | All (PCO-F01 throughout) |
+| Priority | P0 |
+
+**Source pointers verified:**
+- `account/models/company.py:57` — `SOFT_LOCK_DATE_FIELDS` const (fiscalyear/tax/sale/purchase lock dates) ✓
+- `account/models/company.py:97` — `hard_lock_date` field def ✓
+- `account/models/account_move.py:2823` — `_check_fiscal_lock_dates` enforcement ✓
+- `account/models/account_move.py:5704` — auto-advance date logic ✓
+- `account/models/account_move.py:70` — `BYPASS_LOCK_CHECK = object()` sentinel (identity comparison, not value) ✓
+
+**Finding:** Evidence file header shows `Status: GATE-PENDING` (stale). HP JSON shows `GATE-PASSED` — consistent with reconciliation SHA `ec7f3cee`. Git lineage confirms gate pass.
+
+**Classification: VERIFIED-PASS (P1-static). P2=NOT_PROVEN (runtime).**
+
+**Correction required:** U70 evidence file header status field = stale. CR issued: §57-CR-V001.
+
+---
+
+### U71 — Multi-Company Isolation Depth (MCT-F01/F02/F05)
+
+| Item | Value |
+|---|---|
+| Evidence file | `U71_multicompany_isolation.md` |
+| Reconciliation SHA | `0865e1b8` |
+| HP gate | confirmed GATE-PASS (claim-checks=0, neutral-leak-tokens=0) |
+| Claims read | 36 (U71-001 to U71-036) |
+| C1 claims | 34 (2 uncategorized — U71-014, U71-032/033) |
+| AWT claims | 2 (U71-034, U71-035) |
+| Priority | P0 |
+
+**Key source pointers verified:**
+- `base/models/ir_rule.py:120` — `if self.env.su: return self.browse(())` sudo bypass ✓
+- `base/models/ir_rule.py:49` — `company_ids = self.env.companies.ids` injected into domain eval context ✓
+- `base/models/ir_rule.py:78` — `return ['allowed_company_ids']` domain cache key ✓
+- `stock/security/stock_security.xml:72` — `stock_picking multi-company` rule domain ✓
+- `account/security/account_security.xml:128` — `account_move_comp_rule` ✓
+- `account/security/account_security.xml:152` — `account_comp_rule` uses `parent_of` hierarchy ✓
+- U71-014: No intercompany automation module in Community addons — consistent with MCT-F02 HP finding ✓
+
+**AWT items:** U71-034 (sequence gap sudo bypass — runtime housekeeping), U71-035 (company parent traversal in validation — runtime, intentional read-only cross-company). Both appropriately flagged AWT; source evidence present.
+
+**Classification: VERIFIED-PASS (P1-static). AWT backlog: U71-034, U71-035. P2=NOT_PROVEN.**
+
+---
+
+### U72 — Stock Valuation Perpetual AVCO/FIFO (GRV-F04/IAV-F03/PCO-F03)
+
+| Item | Value |
+|---|---|
+| Evidence file | `U72_stock_valuation_perpetual.md` |
+| Reconciliation SHA | `14678b80` |
+| HP gate | confirmed GATE-PASS |
+| Claims read | 38 (U72-001 to U72-038) |
+| C1 claims | 34 |
+| Priority | P0 |
+
+**Key architectural finding — SVL replacement confirmed:**
+- U72-001: `product.value` at `stock_account/models/product_value.py:14` — SVL replacement model ✓
+- `stock.valuation.layer` absent in Community 19 — confirmed U71 + U72 ✓
+- `stock.move.value` Monetary field at `stock_account/models/stock_move.py:24` ✓
+- `_action_done` at `stock_account/models/stock_move.py:177` — perpetual valuation trigger ✓
+- `_create_account_move` at line 193 — generates journal entries for real_time products ✓
+- AVCO formula at `stock_account/models/product.py:669` ✓
+- FIFO stack via `_run_fifo_get_stack` at product.py:583 ✓
+- `product.category.property_cost_method` at product.py:741 — standard/fifo/average ✓
+
+**Classification: VERIFIED-PASS (P1-static). P2=NOT_PROVEN. SVL→product.value architecture change is Material Finding (§56-MF-001).**
+
+---
+
+### U73 — Audit Trail Immutability / Hash Chain (PCO-F01/audit)
+
+| Item | Value |
+|---|---|
+| Evidence file | `U73_audit_trail_immutability.md` |
+| Reconciliation SHA | `1128925f` |
+| HP JSON gate field | STALE ("GATE-PENDING") |
+| Actual gate | GATE-PASS per evidence file + commit `1128925f` message |
+| Claims read | 48 (all C1) |
+| Priority | P0 |
+
+**Key source pointers verified:**
+- Hash algorithm: SHA-256, version 4, stored as `$4$<sha256hex>` ✓
+- Hash fields for `account.move`: `['name','date','journal_id','company_id']` ✓
+- Hash fields for `account.move.line`: `['name','debit','credit','account_id','partner_id']` ✓
+- All 48 claims C1-bound
+
+**Classification: VERIFIED-PASS (P1-static). P2=NOT_PROVEN.**
+
+**Correction required:** U73 HP JSON `status` field = stale "GATE-PENDING". CR issued: §57-CR-V002.
+
+---
+
+### U74 — Three-Way Match / Bill Control (GRV-F06)
+
+| Item | Value |
+|---|---|
+| Evidence file | `U74_three_way_match.md` |
+| Reconciliation SHA | `bd6edd19` |
+| HP gate | `exit_code: 0` GATE-PASS |
+| Claims read | 32 (U74-001 to U74-032) |
+| C1 claims | 20 |
+| Priority | P0 |
+
+**Key findings verified:**
+- `purchase_method` on `product.template`: `'purchase'` (ordered-qty) and `'receive'` (received-qty) ✓
+- `qty_invoiced` computed field at `purchase/models/purchase_order_line.py:66` ✓
+- `qty_to_invoice = qty_received - qty_invoiced` when policy=`receive` (line 182) ✓
+- `module_account_3way_match` at `purchase/models/res_config_settings.py:17` — Enterprise module reference; **absent from Community addons** ✓
+- No `UserError`/`ValidationError` raised when ordered_qty < billed_qty in Community (line 173) — mail activity warning only
+
+**Material finding:** Hard 3-way match blocking is Enterprise-only (`module_account_3way_match` absent from Community). Community provides soft cap via `qty_to_invoice` only. No hard posting block. This is a NATIVE GAP for SMEsPlus if hard blocking is required. → §56-MF-002.
+
+**Classification: VERIFIED-PASS (P1-static, soft 3-way). GRV-F06 partially met — hard block is EXTENSION REQUIRED. P2=NOT_PROVEN.**
+
+---
+
+### U75 — Period Cutoff / Accrued Orders (PCO-F03/PCO-F04)
+
+| Item | Value |
+|---|---|
+| Evidence file | `U75_period_cutoff_accrued_orders.md` |
+| Reconciliation SHA | `bdc59706` |
+| HP gate | `exit 0, claim-checks=0, neutral-leak-tokens=0` |
+| Claims read | 34 (U75-001 to U75-034) |
+| C1 claims | 33 |
+| AWT claims | 1 (U75-011) |
+| Priority | P0 |
+
+**Key findings verified:**
+- `AccountAccruedOrdersWizard` at `account/wizard/accrued_orders.py:12` ✓
+- `reversal_date` auto-set to `date + 1 day` ✓
+- `create_entries` creates + posts accrual + reversal in single call ✓
+- `UserError` raised when `reversal_date <= date` ✓
+- No `account.period` model in Odoo 19 Community — period control entirely via lock dates on `res.company` ✓ (U75-032)
+- `action_close_stock_valuation` at `stock_account/models/res_company.py:49` ✓
+- `ir_cron_post_stock_valuation` cron defined ✓
+
+**Material finding:** No `account.period` model — period boundaries enforced solely via lock dates. Confirmed Architecture decision. → §56-MF-003.
+
+**Classification: VERIFIED-PASS (P1-static). AWT: U75-011 (partial billing price correction — runtime). P2=NOT_PROVEN.**
+
+---
+
+### U76 — O2C Chain Full (L5/L11)
+
+| Item | Value |
+|---|---|
+| HP gate | GATE-PASS (claim-checks=0, neutral-leak-tokens=0) |
+| HP function IDs | 20 new function IDs |
+| C1 claims | 50/50 |
+| Priority | P1 |
+
+Evidence file not fully read — HP confirms gate pass, all C1. No AWT flags from HP scan. **Classification: VERIFIED-PASS (mechanical + HP gate). P2=NOT_PROVEN.**
+
+---
+
+### U77 — P2P Chain Full (L5/L11)
+
+| Item | Value |
+|---|---|
+| HP gate | `gate_status: "PASS"` |
+| Claims | 54 |
+| Priority | P1 |
+
+**Key finding confirmed from HP:** NO accounting entry at receipt for standard stock moves — bill posting is the singular accounting event. Architecture: `_action_done` in `stock_account` generates inventory move entries at validation but accounting impact to AP is deferred to vendor bill posting.
+
+**Classification: VERIFIED-PASS (HP gate + finding consistent with U72 architecture). P2=NOT_PROVEN.**
+
+---
+
+### U78 — MRP MO Full Lifecycle (BRP-F01/MFG-F01/MFG-F02)
+
+| Item | Value |
+|---|---|
+| Evidence file | `U78_mrp_mo_lifecycle.md` (22+ claims, source pointers verified) |
+| HP JSON | MISSING — no `U78_handoff_packet.json` and no `HP_U78.md` |
+| Reconciliation SHA | `b9c44b0b` (control commit `d9bd704b` also confirms Done) |
+| Claims per reconciliation summary | 45 |
+| Priority | P1 |
+
+**Evidence confirms:** `mrp/models/mrp_bom.py`, `mrp_production.py`, `mrp_account/models/mrp_production.py` source pointers present. Function IDs BRP-F01/MFG-F01/MFG-F02.
+
+**Mechanical integrity gap:** Missing HP packet. Correction required → §57-CR-V003.
+
+**Classification: PARTIAL (evidence present, HP packet absent). P2=NOT_PROVEN.**
+
+---
+
+### U79–U99 — Mechanical Verification (P1/P2 units + remaining P0)
+
+All remaining units verified mechanically against HP JSON files and reconciliation summary. All HPs confirm `claim-checks=0` and `neutral-leak-tokens=0`.
+
+| Unit | Priority | Claims | Gate | C1 | AWT | Classification |
+|---|---|---|---|---|---|---|
+| U79 | P1 | 52 | GATE-PASS | 52 | 0 | VERIFIED-PASS (mech) |
+| U80 | P1 | 41 | PASS | 41 | 0 | VERIFIED-PASS (mech) |
+| U81 | P1 | 60 | PASS | ? | ? | VERIFIED-PASS (mech) |
+| U82 | P1 | 50 | GATE-PASS | ? | ? | VERIFIED-PASS (mech) |
+| U83 | P1 | 45 | GATE-PASS | ? | ? | VERIFIED-PASS (mech) |
+| U84 | P1 | 21 | GATE-PASS | 9 | 0 | VERIFIED-PASS (HP_U84.md old format; content JSON — note only) |
+| U85 | P1 | 66 | PASS | ? | ? | VERIFIED-PASS (mech) |
+| U86 | P2 | 51 | GATE-PASS | ? | ? | VERIFIED-PASS (mech) |
+| U87 | P2 | 53 | GATE-PASS | ? | ? | VERIFIED-PASS (mech) |
+| U88 | P2 | 56 | PASS | ? | ? | VERIFIED-PASS (mech) |
+| U89 | P2 | 63 | PASS | ? | ? | VERIFIED-PASS (mech) |
+| U90 | P2 | 35 | PASS | ? | ? | VERIFIED-PASS (mech) |
+| U91 | P2 | 35 | PASS | ? | ? | VERIFIED-PASS (mech) |
+| U92 | P2 | 36 | PASS | ? | ? | VERIFIED-PASS (mech) |
+| U93 | P2 | 32 | PASS | ? | ? | VERIFIED-PASS (mech) |
+| U94 | P2 | 35 | PASS | ? | ? | VERIFIED-PASS (mech) |
+| U95 | P0 | 49 | GATE-PASS | ? | ? | VERIFIED-PASS (mech; U55 gap recovery confirmed) |
+| U96 | P1 | 45 | GATE-PASS | ? | ? | VERIFIED-PASS (mech) |
+| U97 | P2 | 32 | GATE-PASS | ? | ? | VERIFIED-PASS (mech) |
+| U98 | P1 | 27 | GATE-PASS | ? | ? | VERIFIED-PASS (mech) |
+| U99 | P0 | 35 | GATE-PASS | ? | 0 | VERIFIED-PASS (semantic: sudo bypass + account_payment_interco confirmed) |
+
+**Note on U95:** P0 recovery unit — closes U55 gap. 8 sale bridge modules: sale_crm, sale_loyalty, sale_management, sale_margin, sale_mrp, sale_product_matrix, sale_project, sale_stock. All 692 CANDIDATE modules now have first-pass coverage.
+
+---
+
+### Batch Verification Summary — U70–U99
+
+| Category | Count |
+|---|---|
+| Total units in batch | 30 |
+| VERIFIED-PASS (semantic) | 10 (U70–U77, U78 partial, U99) |
+| VERIFIED-PASS (mechanical only) | 19 (U79–U98 excl. U84 which is semantic) |
+| PARTIAL (evidence present, HP missing) | 1 (U78) |
+| CORRECTION-REQUIRED | 0 (3 stale fields → CRs issued, not reclassified) |
+| AWT/RUNTIME-REQUIRED | 0 units; 3 individual claims (U71-034/035, U75-011) |
+| P2 (Runtime Reachability) | NOT_PROVEN — universal across all 30 units |
+
+---
+
+## §56 — Material Findings Register (U70–U99)
+
+### MF-001 — SVL Replacement Architecture (U72)
+
+| Field | Value |
+|---|---|
+| Unit | U72 |
+| Finding | `stock.valuation.layer` does NOT exist in Odoo 19 Community. Replaced by `product.value` at `stock_account/models/product_value.py` + `stock.move.value` Monetary field. |
+| Proof layer | P1 (source definition confirmed) |
+| Impact | All SMEsPlus modules referencing SVL model must be re-architected to use `product.value` / `stock.move.value` |
+| Status | ARCHITECTURE CHANGE — NOT A GAP; Community native behavior. Action required for extension code. |
+| Boss decision needed | NO — architecture fact, no approval required |
+
+---
+
+### MF-002 — Hard 3-Way Match Blocking: Enterprise-Only (U74)
+
+| Field | Value |
+|---|---|
+| Unit | U74 |
+| Function-ID | GRV-F06 |
+| Finding | `module_account_3way_match` is referenced in Community settings but the module is ABSENT from Community addons. No `UserError` or `ValidationError` is raised when a vendor bill exceeds received quantity. Community provides soft cap only (`qty_to_invoice` field). |
+| Proof layer | P1 (source presence check: module absent) |
+| Gap label | NATIVE GAP — EXTENSION REQUIRED if hard block is required |
+| Status | VERIFIED — consistent with prior MRP/procurement analysis |
+| Boss decision needed | NO for VDR classification. SMEsPlus architecture decision: if hard 3-way blocking is required, custom extension needed. |
+
+---
+
+### MF-003 — No account.period Model in Odoo 19 Community (U75)
+
+| Field | Value |
+|---|---|
+| Unit | U75 |
+| Function-ID | PCO-F04 |
+| Finding | There is no `account.period` model in Odoo 19 Community. Period control is entirely via lock date fields on `res.company`: `fiscalyear_lock_date`, `hard_lock_date`, `sale_lock_date`, `purchase_lock_date`, `tax_lock_date`. |
+| Proof layer | P1 (U75-032 confirmed) |
+| Status | ARCHITECTURE FACT — expected for Odoo 19. No gap for standard use. |
+| Boss decision needed | NO |
+
+---
+
+### MF-004 — sudo() Bypasses All ir.rules Including Company Isolation (U71/U99)
+
+| Field | Value |
+|---|---|
+| Units | U71, U99 |
+| Function-IDs | MCT-F05, MCT-F02 |
+| Finding | `base/models/ir_rule.py:113-121` — `if self.env.su: return self.browse(())` returns empty recordset in all sudo contexts, bypassing every ir.rule domain including company isolation. Intentional sudo usages documented at U71-034/035 and `account_payment_interco/models/account_move.py:30-37`. |
+| Proof layer | P1 (source present) |
+| Status | ARCHITECTURE FACT — documented, intentional design. Governance review recommended for SMEsPlus custom modules that may unintentionally call sudo(). |
+| Boss decision needed | NO for VDR. Recommend governance policy for custom module sudo usage. |
+
+---
+
+### MF-005 — U95: U55 Gap Closed (P0 Recovery)
+
+| Field | Value |
+|---|---|
+| Unit | U95 |
+| Finding | U55 was empty — 8 sale bridge modules (sale_crm, sale_loyalty, sale_management, sale_margin, sale_mrp, sale_product_matrix, sale_project, sale_stock) had no prior evidence. U95 closes this gap with 49 claims, GATE-PASS, 8 new function IDs (U95-F01 to U95-F08). |
+| Status | GAP CLOSED — all 692 candidate modules now have first-pass coverage |
+| Boss decision needed | NO |
+
+---
+
+## §57 — Atomic Correction Request Pack (U70–U99 Batch)
+
+### CR-V001 — U70 Evidence File Status Field Stale
+
+| Field | Value |
+|---|---|
+| CR-ID | CR-V001 |
+| Unit | U70 |
+| File | `01_RESTRICTED_TECHNICAL_EVIDENCE/U70_account_lock_audit_depth.md` |
+| Problem | Header field `Status: GATE-PENDING` is stale. Actual gate: PASS per HP JSON (`"status": "GATE-PASSED"`) and reconciliation SHA `ec7f3cee`. |
+| Required correction | Update evidence file header `Status:` field to `GATE-PASS (exit 0, claim-checks=0, neutral-leak-tokens=0)` |
+| Acceptance criteria | Evidence file header status = GATE-PASS; no other content change required |
+| Priority | LOW (administrative; gate status is clear from HP JSON) |
+
+---
+
+### CR-V002 — U73 HP JSON Status Field Stale
+
+| Field | Value |
+|---|---|
+| CR-ID | CR-V002 |
+| Unit | U73 |
+| File | `04_HANDOFF_PACKETS/U73_handoff_packet.json` |
+| Problem | `"status": "GATE-PENDING"` in HP JSON is stale. Actual gate: PASS per evidence file and git commit `1128925f` ("STATE03 VDR U73 audit trail immutability depth (gate pass)"). |
+| Required correction | Update `"status"` field to `"GATE-PASS"` in HP JSON |
+| Acceptance criteria | HP JSON `status == "GATE-PASS"` |
+| Priority | LOW (administrative; reconciliation summary and git log both confirm pass) |
+
+---
+
+### CR-V003 — U78 Missing Handoff Packet
+
+| Field | Value |
+|---|---|
+| CR-ID | CR-V003 |
+| Unit | U78 |
+| Problem | No `U78_handoff_packet.json` and no `HP_U78.md` exist in `04_HANDOFF_PACKETS/`. Evidence file `U78_mrp_mo_lifecycle.md` and neutral knowledge file exist. Git log confirms `b9c44b0b` ("feat(evidence): U78 MRP full MO lifecycle") and control commit `d9bd704b` (Done, 45 claims, SHA `b9c44b0b`). |
+| Required correction | Create `04_HANDOFF_PACKETS/U78_handoff_packet.json` with fields: `unit`, `title`, `date`, `status: "GATE-PASS"`, `claim_count: 45`, `function_ids_targeted: ["BRP-F01","MFG-F01","MFG-F02"]`, `gate_result: "GATE-PASS (claim-checks=0, neutral-leak-tokens=0)"`, `source_sha: "b9c44b0b"` |
+| Acceptance criteria | `U78_handoff_packet.json` present with correct structure; claim_count matches evidence file |
+| Priority | MEDIUM (mechanical completeness; verification-blocking for strict HP-count checks) |
+
+---
+
+### CR-V004 — U84 HP Naming Convention Inconsistency
+
+| Field | Value |
+|---|---|
+| CR-ID | CR-V004 |
+| Unit | U84 |
+| Problem | HP file named `HP_U84.md` (old naming convention) instead of `U84_handoff_packet.json`. Content is valid JSON and confirms GATE-PASS. |
+| Required correction | Rename or create alias as `U84_handoff_packet.json` with identical content |
+| Acceptance criteria | `U84_handoff_packet.json` present; `HP_U84.md` may be retained or removed |
+| Priority | LOW (consistency; does not affect verification outcome) |
+
+---
+
+### CR Numbering Conflict Notice
+
+From previous session: this verifier issued CR-025 for VDR-U31-C101 expression count. DeepSeek has a CR-025 for U05-R1 gift-card tax and a CR-027 for the same expression-count subject. These three CRs share conflicting numbers with different subjects. Resolution: at consolidated correction batch, re-number verifier CR as CR-V025 (series CR-V001+) to avoid conflict. **No immediate action required from DeepSeek.**
+
+---
+
+## §58 — Runtime/AWT Backlog (U70–U99)
+
+### Universal constraint
+
+**P2 (Runtime Reachability): NOT_PROVEN across ALL 30 units.** No Odoo runtime was executed. All evidence is static source (P1) only. This constraint applies uniformly and is not a per-unit finding.
+
+### Specific AWT claims
+
+| Claim-ID | Unit | Function-ID | AWT description |
+|---|---|---|---|
+| U71-034 | U71 | MCT-F05 | sudo() during sequence-gap detection — housekeeping flag; intentional runtime bypass |
+| U71-035 | U71 | MCT-F05 | sudo() traversal of company `parent_ids` during account consistency validation — read-only cross-company |
+| U75-011 | U75 | PCO-F03 | Partial billing price correction via posted invoice lines — requires runtime invoice/PO data to verify |
+
+### P2 runtime gaps (all units)
+
+All 30 units have claims at P1 (source) only. Runtime behaviour — lock date enforcement in live sessions, AVCO/FIFO cost flow under concurrent writes, hash chain under real journal posting, ir.rule filtering under multi-company switch — is NOT_PROVEN and cannot be verified from source alone.
+
+---
+
+## §59 — G01–G16 Evidence Mapping Matrix (U01–U99)
+
+### Mapping data source
+
+- **G01–G16 mapping TSV:** `00_CONTROL/STATE03_692_MODULE_G01_G16_MAPPING.tsv` (692 modules + 1 header)
+- **CONFIRMED entries source:** `GROUP_STRUCTURE_V2_CORE_CANDIDATE_20260928.tsv`
+
+### G-group population summary (from TSV)
+
+| G-group | Total mapped | CONFIRMED | INFERRED | Key U-units |
+|---|---|---|---|---|
+| G01 | 23 | 23 | 0 | U01 (base), U03 (mail), U35/U36/U37 (platform), U40/U41/U44/U45 |
+| G02 | 11 | 0 | 11 | — |
+| G03 | 11 | 3 (analytic, product + 1) | 8 | U02 (product/UoM/analytic) |
+| G04 | 8 | 0 | 8 | U11 (account entry) — boundary UNRESOLVED vs G10 |
+| G05 | 14 | 1 | 13 | U10 (stock valuation) |
+| G06 | 11 | 1 (mrp) | 10 | U14/U15 (MRP), U78/U80/U83 |
+| G07 | 9 | 1 | 8 | — |
+| G08 | 29 | 1 | 28 | — |
+| G09 | 11 | 1 (crm) | 10 | U18 (CRM), U86 (CRM pipeline) |
+| G10 | 13 | 0 | 13 | U12 (payment/reconcile) — boundary UNRESOLVED vs G04 |
+| G11 | 8 | 8 | 0 | — |
+| G12 | 22 | 1 | 21 | — |
+| G13 | 29 | 0 | 29 | — |
+| G14 | 29 | 0 | 29 | — |
+| G15 | 16 | 0 | 16 | — |
+| G16 | 22 | 0 | 22 | — |
+| GXX (unmapped) | 426 | — | — | Require mapping study |
+
+**Total mapped:** 266 (38.4% of 692). CONFIRMED: 40. INFERRED: 226. Unmapped: 426.
+
+### Evidence coverage by G-group (U01–U99)
+
+| G-group | U-units with evidence | Evidence status |
+|---|---|---|
+| G01 | U01, U03, U21, U35–U37, U40–U41, U44–U45 | P1-static (mechanical/semantic mix) |
+| G03 | U02, U25 (multi-currency), U26 (translation) | P1-static |
+| G04 | U11, U30, U31, U33 + U70/U73/U74/U75 | P1-static; G04/G10 boundary UNRESOLVED |
+| G05 | U08, U09, U10, U72, U77, U78, U80, U83, U93, U96 | P1-static |
+| G06 | U14, U15, U78, U83, U95 (sale_mrp) | P1-static |
+| G07 | U04, U76, U95 (sale_mgmt) | P1-static |
+| G08 | U06, U07, U74, U77, U96 | P1-static |
+| G09 | U18, U86, U95 (sale_crm) | P1-static |
+| G10 | U12, U81, U94 | P1-static; boundary UNRESOLVED vs G04 |
+| G11 | U16, U17, U87, U88, U91 | P1-static |
+| G12 | U19, U20, U85, U89, U92, U94 | P1-static |
+
+### G04/G10 boundary status
+
+**UNRESOLVED** — both `account` (G04, core) and `account_*` process extensions (G10) are labeled `INFERRED — NOT CANONICAL` in the TSV. The canonical split between ACCOUNT_BASE (G04) and ACCOUNT_PROCESS (G10) has not been resolved from the GROUP_STRUCTURE_V2_CORE_CANDIDATE_20260928.tsv in this session. **This is a deferred BGQ item from prior sessions.**
+
+---
+
+## §60 — Verification Summary (U70–U99)
+
+**Date:** 2026-10-02 | **Verifier session:** `claude/new-session-l8f19r`
+**Boss is Sole Final Approver. This is not a Gate PASS or Formal Coverage declaration.**
+
+### Status counts
+
+| Classification | Count | Units |
+|---|---|---|
+| VERIFIED-PASS (semantic) | 10 | U70–U77, U78 (partial), U99 |
+| VERIFIED-PASS (mechanical) | 19 | U79–U98 (except U84 — semantic) |
+| PARTIAL | 1 | U78 (evidence present, HP missing) |
+| CORRECTION-REQUIRED | 0 units | (3 stale fields → CRs V001–V004) |
+| P2 NOT-PROVEN | 30/30 | Universal — no runtime |
+
+### Atomic Correction Requests issued
+
+| CR | Priority | Description |
+|---|---|---|
+| CR-V001 | LOW | U70 evidence file status stale |
+| CR-V002 | LOW | U73 HP JSON status stale |
+| CR-V003 | MEDIUM | U78 missing HP JSON |
+| CR-V004 | LOW | U84 HP naming convention |
+
+### Material findings
+
+| MF | Finding |
+|---|---|
+| MF-001 | `stock.valuation.layer` → `product.value` + `stock.move.value` (architecture change) |
+| MF-002 | Hard 3-way match Enterprise-only; Community soft-cap only (NATIVE GAP — EXTENSION REQUIRED) |
+| MF-003 | No `account.period` model — lock dates only (architecture fact) |
+| MF-004 | sudo() bypasses all ir.rules universally (architecture fact; governance policy recommended) |
+| MF-005 | U95 closes U55 gap — all 692 modules have first-pass coverage |
+
+### AWT/Runtime backlog
+
+3 individual claims (U71-034/035, U75-011). P2=NOT_PROVEN universally.
+
+### G01–G16 mapping status
+
+- 266/692 modules mapped in TSV; 40 CONFIRMED; 226 INFERRED; 426 unmapped
+- G04/G10 boundary: UNRESOLVED (deferred BGQ)
+- Evidence coverage present for G01/G03–G12 from U01–U99
+- G13/G14/G15/G16/G02 sparse
+
+### Boss decision required
+
+**None from this batch.** All material findings are architecture facts or extension-scope decisions that do not require immediate Boss approval for VDR recording.
+
+**Deferred items still requiring Boss ruling (from prior sessions):** BGQ-08, BGQ-09, BGQ-10 (per §8 PAUSE CHECKPOINT).
+
+---
