@@ -1,0 +1,75 @@
+{
+  "unit": "U209",
+  "module": "stock_scrap",
+  "sha": "6c4dce9644e0bd2e0d891b7a6bfedc8e7b968c57",
+  "claim_count": 19,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "id": "MF-U209-01",
+      "severity": "BREAKING",
+      "title": "move_id renamed to move_ids (Many2one → One2many)",
+      "description": "In v16/v17 stock.scrap had move_id as Many2one(stock.move). In v19 this is move_ids One2many with scrap_id foreign key on stock.move. Any custom code or migration scripts referencing scrap.move_id must be updated to scrap.move_ids[0] or equivalent.",
+      "source": "stock/models/stock_scrap.py:37"
+    },
+    {
+      "id": "MF-U209-02",
+      "severity": "BREAKING",
+      "title": "stock.valuation.layer (SVL) model absent in v19",
+      "description": "In v16/v17, scrapping a product created a stock.valuation.layer record. In v19, no SVL model exists. Valuation is stored as 'value' field (Monetary) directly on stock.move. Any custom code, reports, or migrations reading/writing stock.valuation.layer will fail.",
+      "source": "stock_account/models/stock_move.py:24-26"
+    },
+    {
+      "id": "MF-U209-03",
+      "severity": "NEW",
+      "title": "should_replenish field added in v19",
+      "description": "New Boolean field on stock.scrap triggers automatic procurement rule execution after scrap. Not present in v16/v17. Migration must handle the column addition.",
+      "source": "stock/models/stock_scrap.py:55"
+    },
+    {
+      "id": "MF-U209-04",
+      "severity": "NEW",
+      "title": "scrap_reason_tag_ids and stock.scrap.reason.tag model added in v19",
+      "description": "New Many2many relation to a new model stock.scrap.reason.tag. Migration must create the new model table and the M2M relation table.",
+      "source": "stock/models/stock_scrap.py:56-59,237-250"
+    },
+    {
+      "id": "MF-U209-05",
+      "severity": "CONFIG",
+      "title": "Accounting entry requires valuation_account_id on scrap location",
+      "description": "No accounting entry is created unless the scrap destination location has valuation_account_id set. This replaces the v16/v17 product-category-based scrap account. Customers must configure the scrap location account after migration.",
+      "source": "stock_account/models/stock_move.py:659-667; stock_account/models/stock_location.py:11-14"
+    },
+    {
+      "id": "MF-U209-06",
+      "severity": "INFO",
+      "title": "date_done and origin fields retained in v19",
+      "description": "Both date_done (Datetime) and origin (Char) fields exist on stock.scrap in v19. No migration action needed for these fields.",
+      "source": "stock/models/stock_scrap.py:20,54"
+    }
+  ],
+  "key_findings": {
+    "action_validate_flow": "action_validate() → do_scrap() → _create_scrap_move() → _prepare_move_values() → move._action_done(is_scrap=True); backorder suppressed by context flag",
+    "accounting_entry_path": "move._action_done() calls _set_value() (out move) then _create_account_move(); entry: CR stock_valuation_account, DR scrap_location.valuation_account_id; conditional on real_time valuation and non-zero quantity",
+    "valuation_engine": "No SVL in v19; value stored on stock.move.value; FIFO via _run_fifo(), AVCO/Standard via standard_price * qty",
+    "scrap_account_resolution": "No _get_scrap_account() method; loss account set directly on stock.location.valuation_account_id of the scrap location",
+    "mrp_integration": "mrp/models/stock_scrap.py adds production_id, workorder_id, bom_id; _prepare_move_values override routes to production_id or raw_material_production_id",
+    "no_undo_mechanism": "No return or reversal action for done scraps; _unlink_except_done prevents deletion",
+    "move_ids_change": "Critical: move_ids is One2many in v19 (was move_id Many2one in v16/v17)"
+  },
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U209_stock_scrap.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U209_stock_scrap_NEUTRAL.md"
+  },
+  "sources_read": [
+    "odoo/addons/stock/models/stock_scrap.py",
+    "odoo/addons/stock_account/models/stock_move.py",
+    "odoo/addons/stock_account/models/stock_location.py",
+    "odoo/addons/stock_account/models/product.py",
+    "odoo/addons/stock_account/models/res_company.py",
+    "odoo/addons/stock/models/stock_move.py (scrap-relevant lines)",
+    "odoo/addons/mrp/models/stock_scrap.py",
+    "odoo/addons/stock/models/product.py (is_storable lines)",
+    "odoo/addons/stock_account/tests/test_stockvaluation.py (scrap tests)"
+  ]
+}
