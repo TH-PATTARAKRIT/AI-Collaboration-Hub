@@ -1,0 +1,79 @@
+{
+  "unit": "U133",
+  "title": "mail — gateway incoming email AWT-prep (GAP-039)",
+  "group": "G13",
+  "priority": "P2",
+  "gap": "GAP-039",
+  "status": "AWT-READY",
+  "date": "2026-10-02",
+  "researcher": "DeepSeek Worker U133 (Claude Sonnet 4.6)",
+  "claims_total": 22,
+  "claims_c1": 19,
+  "claims_awt": 3,
+  "gate_exit": 0,
+  "gate_check": {
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0
+  },
+  "l_matrix": {
+    "L1": "PRESENT — mail/__manifest__.py:63 — depends base,base_setup,bus,web_tour,html_editor; fetchmail,alias,gateway_allowed views registered",
+    "L2": "PRESENT — mail.alias (mail_alias.py:19), mail.alias.domain (mail_alias_domain.py:9), fetchmail.server (fetchmail.py:89), mail.gateway.allowed (mail_gateway_allowed.py:8), ir.mail_server (base/models/ir_mail_server.py:126 extended by mail/models/ir_mail_server.py)",
+    "L3": "PRESENT — message_process:1438 → message_route:1122 → _routing_check_route:847 → _message_route_process:1343 full workflow documented",
+    "L4": "PRESENT — base (ir.mail_server, res.partner, ir.model), base_setup (SMTP config UI); mail extends ir.mail_server with owner_user_id",
+    "L5": "PRESENT — fetchmail_views.xml, mail_alias_views.xml, mail_alias_domain_views.xml, mail_gateway_allowed_views.xml",
+    "L6": "PRESENT — ir.mail_server._allow_sudo_commands=False; smtp_user/smtp_pass groups=base.group_system",
+    "L7": "PRESENT — mail.alias.domain record + fetchmail.server state=done required; mailgate script deployment for MTA pipe; system params documented",
+    "L8": "PRESENT — alias_status lifecycle: not_tested → valid (success) or invalid (config error bounce)",
+    "L9": "N/A — no accounting or stock postings",
+    "L10": "PRESENT — ir_cron_mail_gateway_action (5-minute interval, auto-toggled); _fetch_mails:245 cron entry; per-message commit",
+    "L11": "PRESENT — XML-RPC mail.thread.message_process called by odoo-mailgate.py:87; cron _fetch_mails context-gated",
+    "L12": "AWT-READY — 3 AWT test plans defined (IMAP poll, MTA pipe, contact-security); C3 claims C133-AWT1/2/3"
+  },
+  "key_finding": "Full gateway pipeline source-proven: IMAP/POP polling via fetchmail.server → message_process entry point → three-step routing (reply/alias/fallback) → _routing_check_route alias_contact enforcement → _message_route_process record creation. MTA pipe path via odoo-mailgate.py XML-RPC also proven. All three AWT paths (IMAP poll, MTA pipe, contact-security) require runtime execution to close GAP-039.",
+  "source_paths": {
+    "mail_alias": "mail/models/mail_alias.py",
+    "mail_alias_domain": "mail/models/mail_alias_domain.py",
+    "fetchmail": "mail/models/fetchmail.py",
+    "mail_thread": "mail/models/mail_thread.py",
+    "mail_gateway_allowed": "mail/models/mail_gateway_allowed.py",
+    "ir_mail_server_base": "base/models/ir_mail_server.py",
+    "ir_mail_server_mail": "mail/models/ir_mail_server.py",
+    "models_alias_error": "mail/models/models.py",
+    "cron_data": "mail/data/ir_cron_data.xml",
+    "mailgate_script": "mail/static/scripts/odoo-mailgate.py"
+  },
+  "awt_plans": [
+    {
+      "id": "AWT-1",
+      "claim": "C133-AWT1",
+      "title": "IMAP/POP polling path",
+      "steps": [
+        "Create fetchmail.server with IMAP credentials pointing to test mailbox; confirm login; verify state=done",
+        "Send RFC2822 email from external client to the test mailbox address",
+        "Trigger _fetch_mails manually or wait 5-minute cron cycle",
+        "Verify: new mail.message created under correct model/thread_id; alias_status=valid on matched alias"
+      ]
+    },
+    {
+      "id": "AWT-2",
+      "claim": "C133-AWT2",
+      "title": "MTA pipe (odoo-mailgate.py) path",
+      "steps": [
+        "Configure postfix/sendmail alias pipe to odoo-mailgate.py with correct --host/--port/-d/-u/-p args",
+        "Send RFC2822 email to alias address (e.g. support@example.com)",
+        "Verify: script exits 0; new mail.message / record created in Odoo"
+      ]
+    },
+    {
+      "id": "AWT-3",
+      "claim": "C133-AWT3",
+      "title": "alias_contact enforcement (followers)",
+      "steps": [
+        "Set alias_contact=followers on a mail.alias; send email from non-follower address",
+        "Verify: bounce email returned to sender; alias_status unchanged (not config error); record NOT created",
+        "Set alias_contact=partners; send email from unknown address (no res.partner match)",
+        "Verify: bounce returned; record not created"
+      ]
+    }
+  ]
+}
