@@ -422,6 +422,26 @@ The 23 non-compliant units frequently bundle **unrelated families** in one job c
 
 **Classification**: `MECHANICAL ONLY (hash-integrity)` — semantic review and the security-relevant export/report finding remain queued, routed per the Standing Instruction's correction/verification loop; no Boss action needed at this intake stage.
 
+## 34. U39 (HR core, attendance/overtime, calendar/fleet/gamification bridges, Google calendar/Gmail/reCAPTCHA) — full semantic review, security finding escalated out of queue order
+
+**Compliance note**: `U39` is one of the 23 multi-module units flagged non-compliant by CR-021 in §32 (8 modules: `google_calendar`, `google_gmail`, `google_recaptcha`, `hr`, `hr_attendance`, `hr_calendar`, `hr_fleet`, `hr_gamification`). It was already in flight when CR-021 was raised; accepted as grandfathered per CR-021's own "without stopping unaffected workers" instruction — not reworked.
+
+**Security finding, confirmed by static read (not RT-tagged)**: the `hr_attendance` kiosk employee-data route (`VDR-U39-C406`) "needs only the kiosk key and an employee id of that company, with no PIN or badge check, and returns name, avatar, hours and overtime balances, so the key acts as a bearer secret for that data." This is confirmed from source reading, not inferred/runtime-pending (no `RT` tag on this claim, unlike most other findings in this unit). Scope: within one company (not a cross-tenant leak); the kiosk key is designed for a low-trust shared physical terminal, so using it alone — with no PIN/badge check — to pull any employee's name/photo/hours/overtime balance by ID, with the related listing route's page size uncapped, is a genuine information-disclosure-class finding, same severity class as `U19`'s escalation in §6. **This session escalates it out of queue order**, per that precedent, rather than leaving it to wait in the ordinary review queue.
+
+**Second finding, same unit**: `google_recaptcha` — the restored database has the enable flag on but no site/secret keys configured, and the code's behavior in that state is to silently skip the check rather than error (`VDR-U39-C174`/`C192`) — a fail-open-on-misconfiguration design issue, lower severity than the kiosk finding (requires a specific misconfiguration state, does not by itself leak data) but recorded for the same reason: protection the business believes is active may not be.
+
+**Other findings reviewed, no escalation needed**: `CONTRA` with `U17-C399` on vehicle-assignment end-dating (processed as `U17-R1`, see §35); dead first-generation overtime engine; manager-ruleset record rule stored globally with no group (access-control looseness, lower severity, same family as the kiosk finding — queued, not escalated, since it governs rule-set administration rather than employee PII;) Gmail broker edition-check gap and state-HMAC binding gap — both tagged `RT`, correctly left for AWT/L4.
+
+**Classification**: `ACCEPTED (static tier)` for the 7 L3-ready modules + `hr` `PARTIAL`, consistent with the unit's own self-assessment. The kiosk-key finding is `SECURITY ESCALATION — CONFIRMED BY STATIC READ`, carried into the AWT backlog as a priority item and reported to Boss directly this entry (not held for routine cadence), per the same standing applied to `U19`.
+
+## 35. U17-R1 (CR-021, DeepSeek-numbered) — re-verification + a second CR-021 ID collision
+
+`U39`'s cross-check corrected `U17-C399` ("assignation log end date never set by code"): the fleet-bridge employee-departure wizard does write the departure date as the end date of the employee's open vehicle-assignment logs; `U17`'s original search covered model directories only and missed the wizard. Packet `U17-R1` (commit `690c89e9`, 4 claims) reviewed — correction is narrow, well-sourced, and consistent with `U39`'s CAP-U39-10 departure-flow read (§34). Reassignment outside the departure flow correctly stays `UNKNOWN`/`RT`.
+
+**ID collision**: DeepSeek's own `CORRECTION_REQUESTS.md` now records this as `CR-021` — the same ID this session assigned (in §32 of this log, and in the PR #74 comment posted earlier this session) to the `NEXT_ATOMIC_UNIT_QUEUE.tsv` one-module-per-unit violation. Same collision pattern as the earlier `CR-017` case (§25/§26), which was resolved by relabeling the later-assigned one. This session's `CR-021` (queue violation) was posted to PR #74 first; DeepSeek's correction-loop file assigned its own `CR-021` independently (sequential numbering in its own register, not seeing the PR comment). **Resolution**: this session's `CR-021` (queue violation) keeps the number; DeepSeek's `U17-R1` correction is relabeled `CR-022` in this log and requested via PR #74 comment this entry. No content changes either way — relabeling only.
+
+**Classification**: `U17-R1` → `ACCEPTED`, re-verification closed. ID relabeling (`CR-022`) is procedural, routed automatically per the Standing Instruction — no Boss action needed.
+
 ## 9. What this log is not
 
 Not a Gate PASS, not Formal Coverage, not a canonical denominator, not Final Approved, not a V-Level assignment. `N/A — DENOMINATOR NOT VALIDATED` applies to any implied percentage. Boss remains Sole Final Approver.
