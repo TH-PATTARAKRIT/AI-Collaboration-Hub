@@ -1,0 +1,129 @@
+{
+  "unit_id": "U159",
+  "title": "account_cash_rounding — invoice cash rounding L3 (Thai-relevant)",
+  "research_date": "2026-10-02",
+  "researcher": "DeepSeek STATE03 Worker",
+  "status": "GATE-PASS",
+  "claim_count": 20,
+  "group": "G01/G02",
+  "priority": "P1",
+  "gap_tag": "NOT_STUDIED",
+
+  "module_location": {
+    "type": "BUILT_IN",
+    "note": "No standalone account_cash_rounding addons directory. Logic embedded in account module.",
+    "primary_model_file": "account/models/account_cash_rounding.py",
+    "integration_file": "account/models/account_move.py",
+    "line_model_file": "account/models/account_move_line.py",
+    "payment_term_file": "account/models/account_payment_term.py",
+    "tax_display_file": "account/models/account_tax.py",
+    "settings_file": "account/models/res_config_settings.py",
+    "security_file": "account/security/account_security.xml",
+    "view_file": "account/views/account_move_views.xml"
+  },
+
+  "key_model": {
+    "name": "account.cash.rounding",
+    "pointer": "account/models/account_cash_rounding.py:15",
+    "fields": {
+      "rounding": "Float, precision step, default 0.01, must be > 0",
+      "strategy": "Selection: add_invoice_line | biggest_tax",
+      "rounding_method": "Selection: UP | DOWN | HALF-UP (default HALF-UP)",
+      "profit_account_id": "Many2one account.account, company_dependent",
+      "loss_account_id": "Many2one account.account, company_dependent"
+    },
+    "methods": {
+      "round": "account_cash_rounding.py:51 — wraps float_round with configured precision and method",
+      "compute_difference": "account_cash_rounding.py:59 — currency.round(amount) then self.round(amount)-amount then currency.round(diff)"
+    }
+  },
+
+  "invoice_integration": {
+    "field_on_move": "invoice_cash_rounding_id Many2one at account_move.py:717",
+    "feature_gate": "account.group_cash_rounding security group; enabled via res.config.settings.group_cash_rounding:80",
+    "form_view_gating": "account_move_views.xml:1555 — visible only with group, read-only after draft",
+    "onchange_warning": "account_move.py:2768 — warns if add_invoice_line strategy and no profit_account_id"
+  },
+
+  "rounding_line_lifecycle": {
+    "_recompute_cash_rounding_lines": "account_move.py:3076 — orchestrator, called from _sync_rounding_lines context manager at 3248",
+    "_compute_cash_rounding_inner": "account_move.py:3090 — inner function: calls compute_difference, converts balance if multi-currency",
+    "_apply_cash_rounding_inner": "account_move.py:3104 — inner function: builds rounding_line_vals, branches on strategy",
+    "display_type": "account_move_line.py:339 — 'rounding' is a named selection value",
+    "sequence": "account_move_line.py:909 — sequence 11000 (after tax=10000, before payment_term=12000)",
+    "create_or_update": "account_move.py:3154-3158 — write() if existing, create() otherwise",
+    "removal_conditions": "no invoice_cash_rounding_id, or diff is zero, or strategy changed"
+  },
+
+  "strategy_details": {
+    "add_invoice_line": {
+      "pointer": "account_move.py:3141",
+      "account_selection": "loss_account_id if diff_balance > 0 (rounding up), else profit_account_id",
+      "tax_ids": "Command.clear() — no taxes on the line",
+      "amount_total_bucket": "untaxed (no tax_repartition_line_id)",
+      "th_suitability": "PREFERRED — creates visible line on Thai tax invoice"
+    },
+    "biggest_tax": {
+      "pointer": "account_move.py:3123",
+      "account_selection": "account_id of the tax line with highest abs(balance)",
+      "tax_attributes": "copies tax_repartition_line_id, tax_tag_ids, tax_ids from that tax line",
+      "amount_total_bucket": "tax (has tax_repartition_line_id)",
+      "th_suitability": "POSSIBLE — adjusts VAT silently; less transparent for Thai RD invoices"
+    }
+  },
+
+  "fiscal_position_interaction": {
+    "result": "NONE",
+    "pointer": "account_cash_rounding.py (full file) — no fiscal_position field or reference",
+    "note": "Fiscal positions cannot remap the rounding account. Accounts are configured per-company on the rounding record."
+  },
+
+  "payment_reconciliation": {
+    "payment_model_cash_rounding": "ABSENT — account_payment.py has no cash_rounding reference",
+    "payment_term_integration": {
+      "pointer": "account_payment_term.py:171,242-249",
+      "note": "_compute_terms() accepts cash_rounding parameter and applies compute_difference() to each instalment's foreign amount; payment term lines are cash-rounded for consistency with invoice total"
+    },
+    "amount_total_includes_rounding": "Yes — _compute_amount() at account_move.py:1196-1224 includes rounding line in total"
+  },
+
+  "thai_billing_analysis": {
+    "whole_baht_rounding_feasibility": "CONFIRMED — set rounding=1.00 in account.cash.rounding record",
+    "recommended_strategy": "add_invoice_line — visible separate line on invoice",
+    "accounts_required": "profit_account_id and loss_account_id must be mapped to Thai chart of accounts",
+    "fiscal_position_remap": "NOT POSSIBLE — no FP interaction",
+    "feature_activation": "Enable Cash Rounding in Accounting > Settings",
+    "thb_decimal_context": "THB has 2 decimal digits standard but Thai invoices round to whole baht; rounding=1.00 achieves this regardless of currency rounding precision"
+  },
+
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U159_account_cash_rounding.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U159_account_cash_rounding_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U159_handoff_packet.json"
+  },
+
+  "gate_script": "/private/tmp/vdr_check_u159.py",
+
+  "claims_summary": [
+    "U159-C01: account.cash.rounding model fields (rounding, strategy, rounding_method, profit/loss accounts)",
+    "U159-C02: validate_rounding constraint (rounding > 0)",
+    "U159-C03: round() method delegates to float_round",
+    "U159-C04: compute_difference() two-step: currency then cash rounding",
+    "U159-C05: invoice_cash_rounding_id Many2one on account.move",
+    "U159-C06: res.config.settings toggle for cash rounding feature",
+    "U159-C07: account.group_cash_rounding security group",
+    "U159-C08: form view field gating by security group and draft state",
+    "U159-C09: onchange warning when profit_account missing",
+    "U159-C10: _recompute_cash_rounding_lines() orchestrator",
+    "U159-C11: inner _compute_cash_rounding() with multi-currency handling",
+    "U159-C12: biggest_tax strategy — adjusts largest tax line",
+    "U159-C13: add_invoice_line strategy — profit/loss account selection",
+    "U159-C14: create-or-update pattern for rounding line",
+    "U159-C15: display_type='rounding' selection value",
+    "U159-C16: sequence 11000 for rounding lines",
+    "U159-C17: amount_total always includes rounding delta",
+    "U159-C18: payment term integration — instalments also cash-rounded",
+    "U159-C19: ABSENT — fiscal position has no effect on rounding account",
+    "U159-C20: whole-baht rounding via rounding=1.00 is supported"
+  ]
+}
