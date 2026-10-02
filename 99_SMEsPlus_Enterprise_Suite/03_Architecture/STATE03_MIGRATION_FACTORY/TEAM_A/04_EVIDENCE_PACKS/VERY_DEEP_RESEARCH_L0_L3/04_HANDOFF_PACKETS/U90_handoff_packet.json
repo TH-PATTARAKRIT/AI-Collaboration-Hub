@@ -1,0 +1,113 @@
+{
+  "unit": "U90",
+  "title": "Mass Mailing + Event + CRM Marketing Chain",
+  "phase": "Second-Pass Depth Closure — P2 Supporting Domains",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "l_levels": ["L3", "L4"],
+  "proof_layers": ["P4"],
+  "predecessors": ["U18", "U42", "U62"],
+  "modules_researched": [
+    "mass_mailing",
+    "event",
+    "event_crm"
+  ],
+  "modules_absent": [
+    {
+      "name": "marketing_automation",
+      "reason": "Enterprise-only — directory not present in Community source tree"
+    }
+  ],
+  "function_ids": [
+    "U90-F01",
+    "U90-F02",
+    "U90-F03",
+    "U90-F04",
+    "U90-F05",
+    "U90-F06",
+    "U90-F07",
+    "U90-F08",
+    "U90-F09",
+    "U90-F10",
+    "U90-F11",
+    "U90-F12",
+    "U90-F13"
+  ],
+  "claim_count": 35,
+  "gate_result": {
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0,
+    "verdict": "PASS"
+  },
+  "key_findings": {
+    "mailing_state_machine": {
+      "states": ["draft", "in_queue", "sending", "done"],
+      "transitions": {
+        "draft_to_in_queue": "action_put_in_queue — writes state=in_queue, triggers cron",
+        "in_queue_to_sending": "_process_mass_mailing_queue cron — sets state=sending when recipients remain",
+        "sending_to_done": "_action_send_mail — writes state=done after composer completes",
+        "any_to_draft": "action_cancel — resets to draft, clears schedule"
+      },
+      "cron_method": "_process_mass_mailing_queue",
+      "pointer": "mass_mailing/models/mailing.py:1179"
+    },
+    "mailing_mailing_fields": {
+      "mailing_type_community": "mail (Email only)",
+      "contact_list_ids": "Many2many to mailing.list",
+      "utm_fields": ["campaign_id (utm.campaign)", "medium_id (utm.medium)", "source_id (via utm.source.mixin)"],
+      "trace_link": "mailing_trace_ids One2many to mailing.trace"
+    },
+    "mailing_trace_model": {
+      "purpose": "Per-recipient delivery statistics stored separately from mail.mail",
+      "trace_status_values": ["outgoing", "process", "pending", "sent", "open", "reply", "bounce", "error", "cancel"],
+      "utm_inherited": "medium_id, source_id, campaign_id as related from parent mailing",
+      "click_tracking": "links_click_ids One2many to link.tracker.click"
+    },
+    "event_registration_states": ["draft (Unconfirmed)", "open (Registered)", "done (Attended)", "cancel (Cancelled)"],
+    "event_event_status": "Uses stage_id + kanban_state; no single state field",
+    "event_crm_lead_creation": {
+      "module_present": true,
+      "mechanism": "event.lead.rule configures automated crm.lead creation",
+      "triggers": ["create", "confirm (state=open)", "done (state=done)"],
+      "basis": ["attendee (one lead per registration)", "order (one lead per batch)"],
+      "utm_propagation": "utm_campaign_id/utm_source_id/utm_medium_id copied from registration to lead.campaign_id/source_id/medium_id",
+      "guard": "event_lead_rule_skip context key disables rules during import"
+    },
+    "marketing_automation_community_boundary": "ABSENT — Enterprise-only module, not present in Community source tree",
+    "utm_chain_summary": "mailing.mailing (utm.source.mixin) → mailing.trace (related utm fields) → link.tracker.click; event.registration (utm_* fields) → crm.lead (campaign_id/source_id/medium_id)"
+  },
+  "output_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U90_marketing_chain.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U90_marketing_chain_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U90_handoff_packet.json"
+  },
+  "source_pointers_verified": [
+    "mass_mailing/models/mailing.py:38",
+    "mass_mailing/models/mailing.py:129",
+    "mass_mailing/models/mailing.py:142",
+    "mass_mailing/models/mailing.py:177",
+    "mass_mailing/models/mailing.py:212",
+    "mass_mailing/models/mailing.py:662",
+    "mass_mailing/models/mailing.py:1099",
+    "mass_mailing/models/mailing.py:1147",
+    "mass_mailing/models/mailing.py:1179",
+    "mass_mailing/models/mailing.py:1188",
+    "mass_mailing/models/mailing_trace.py:54",
+    "mass_mailing/models/mailing_trace.py:87",
+    "mass_mailing/models/mailing_trace.py:115",
+    "event/models/event_event.py:33",
+    "event/models/event_event.py:101",
+    "event/models/event_registration.py:13",
+    "event/models/event_registration.py:45",
+    "event/models/event_registration.py:69",
+    "event/models/event_ticket.py:8",
+    "event_crm/models/event_registration.py:14",
+    "event_crm/models/event_registration.py:26",
+    "event_crm/models/event_registration.py:65",
+    "event_crm/models/event_lead_rule.py:67",
+    "event_crm/models/event_lead_rule.py:77",
+    "event_crm/models/event_lead_rule.py:82",
+    "event_crm/models/event_lead_rule.py:196",
+    "event_crm/models/crm_lead.py:10"
+  ]
+}
