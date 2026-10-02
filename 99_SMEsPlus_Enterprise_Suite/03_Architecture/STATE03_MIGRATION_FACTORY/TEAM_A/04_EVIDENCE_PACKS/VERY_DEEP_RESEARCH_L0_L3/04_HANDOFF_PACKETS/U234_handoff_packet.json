@@ -1,0 +1,101 @@
+{
+  "unit":"U234",
+  "module":"stock_move",
+  "sha":"PENDING_COMMIT",
+  "claim_count":26,
+  "gate":"GREEN",
+  "migration_flags":[
+    {
+      "flag":"GROUP_ID_REPLACED_BY_REFERENCE_IDS",
+      "severity":"HIGH",
+      "description":"stock.move has no group_id field in this tree (grep over stock_move.py returned no lines). reference_ids, a Many2many to stock.reference over stock_reference_move_rel, is used for picking assignment keys, procurement values and orderpoint triggers. The _assign_picking docstring still says procurement group. Code or data that read the procurement group of a move must be remapped. Earlier-version behaviour is baseline knowledge, not verifiable here.",
+      "source":"stock/models/stock_move.py:141-142; stock/models/stock_move.py:1527-1583; stock/models/stock_reference.py:4-15"
+    },
+    {
+      "flag":"UNIFIED_QUANTITY_FIELD",
+      "severity":"HIGH",
+      "description":"The move carries a single quantity field computed as the sum of move-line quantities (round=False) and serving as reserved and done quantity. No quantity_done or reserved_availability field exists; the product_qty inverse raises a UserError. Stale comments remain at L2059 and L2405.",
+      "source":"stock/models/stock_move.py:171-172; stock/models/stock_move.py:411-441; stock/models/stock_move.py:485-490"
+    },
+    {
+      "flag":"PICKED_FLAG_DRIVES_DONE",
+      "severity":"MEDIUM",
+      "description":"picked is a stored compute with inverse; _action_done validates only picked moves with positive quantity (or inventory adjustments) and removes unpicked move lines of picked moves.",
+      "source":"stock/models/stock_move.py:121-124; stock/models/stock_move.py:2258-2269; stock/models/stock_move.py:281-291"
+    },
+    {
+      "flag":"LOCATION_FINAL_ID_VS_DEST",
+      "severity":"MEDIUM",
+      "description":"location_final_id is stored and writable with no compute and no copy attribute (so it is copied by split and duplication); location_dest_id is a computed intermediate destination that is replaced by the final location when the final location lies inside it. Procurement writes the final location. Both are merge keys.",
+      "source":"stock/models/stock_move.py:85-90; stock/models/stock_move.py:224-244; stock/models/stock_move.py:1281-1293; stock/models/stock_rule.py:365"
+    },
+    {
+      "flag":"TO_REFUND_DECLARED_IN_STOCK_ACCOUNT",
+      "severity":"MEDIUM",
+      "description":"to_refund (copy=True, default=True) is declared in stock_account, while stock/models/stock_rule.py writes it for negative procurement quantities without a module guard and sale_stock carries it in _get_custom_move_fields. Installations without stock_account are a risk to verify.",
+      "source":"stock_account/models/stock_move.py:20-22; stock/models/stock_rule.py:355-356; sale_stock/models/stock.py:178-181"
+    },
+    {
+      "flag":"MTS_ELSE_MTO_RULE_ONLY",
+      "severity":"MEDIUM",
+      "description":"mts_else_mto exists only on the rule; the move stores make_to_stock or make_to_order. _run_pull maps the rule value, _action_confirm uses it to choose confirmed plus a procurement request, and _adjust_procure_method falls back to make_to_stock for any other rule value.",
+      "source":"stock/models/stock_rule.py:305-310; stock/models/stock_move.py:1707-1710; stock/models/stock_move.py:2604-2607"
+    },
+    {
+      "flag":"ALLOWED_UOM_IDS_NO_CATEGORY_CHECK",
+      "severity":"MEDIUM",
+      "description":"allowed_uom_ids (product unit, packaging units, supplier price list units) drives the product_uom domain; stock_move.py declares no unit-category field and no constraint of any kind. Data that relied on a unit-category constraint on the move must be re-validated.",
+      "source":"stock/models/stock_move.py:66-70; stock/models/stock_move.py:202-205"
+    },
+    {
+      "flag":"EXTRA_MOVE_ROUTINE_ORPHANED",
+      "severity":"LOW",
+      "description":"purchase_stock overrides _prepare_extra_move_vals and calls the parent, but this tree has no base definition, no _create_extra_move and no caller. The additional flag remains.",
+      "source":"purchase_stock/models/stock_move.py:99-102; stock/models/stock_move.py:178"
+    },
+    {
+      "flag":"RESERVATION_TIMING_BY_PICKING_TYPE",
+      "severity":"LOW",
+      "description":"Reservation timing is controlled by reservation_date and the picking-type reservation_method (at_confirm, manual, by_date); _trigger_assign honours the system parameter stock.picking_no_auto_reserve. Forecast fields are not read by _action_assign.",
+      "source":"stock/models/stock_move.py:730-739; stock/models/stock_move.py:1972-1973; stock/models/stock_move.py:2633-2654"
+    },
+    {
+      "flag":"OWNER_AND_RETURN_FIELD_NAMES",
+      "severity":"INFO",
+      "description":"restrict_partner_id is the owner restriction (no owner_id field on the move); returns use origin_returned_move_id and returned_move_ids (no return_line_ids). The state selection has seven values while the help text lists five.",
+      "source":"stock/models/stock_move.py:163-165; stock/models/stock_move.py:155-158; stock/models/stock_move.py:107-120"
+    },
+    {
+      "flag":"ADJUST_PROCURE_METHOD_CALLERS",
+      "severity":"INFO",
+      "description":"_adjust_procure_method has callers only in mrp and repair code and one test; no base stock code calls it.",
+      "source":"stock/models/stock_move.py:2572-2607; mrp/models/mrp_production.py:1505"
+    },
+    {
+      "flag":"DOCSTRING_AND_DEAD_CODE_NOTES",
+      "severity":"INFO",
+      "description":"_compute_quantity docstring describes rounding while the code uses round=False; quants_cache in _action_assign is never read again in stock_move.py; _create_backorder compares at Product Unit digits.",
+      "source":"stock/models/stock_move.py:413-420; stock/models/stock_move.py:2073-2074; stock/models/stock_move.py:2328-2329"
+    }
+  ],
+  "key_findings":{
+    "state_machine":"state is a stored read-only Selection with seven values (help lists five). _action_confirm picks waiting (chained or make_to_order) or confirmed; _action_assign and _recompute_state write assigned or partially_available; _action_done writes state done and date in one write for picked moves; _action_cancel writes cancel and propagates through move_dest_ids and move_orig_ids.",
+    "reservation":"_action_assign has a bypass branch, an unchained branch (quant reservation in non-strict mode at the source location) and a chained branch (strict reservation limited to quantities delivered by finished origin moves and not taken by siblings). _trigger_assign re-reserves waiting moves when stock arrives, ordered by priority, date and id.",
+    "procure_method":"Two stored values (make_to_stock, make_to_order); mts_else_mto exists only on the rule. A make_to_order move passes itself as destination move in its procurement values so the rule-created move is chained in front of it.",
+    "backorder_split":"_create_backorder compares quantity with demand at Product Unit digits and hands the missing quantity to _split, which copies the move through copy_data; new moves are confirmed without merge and without procurement.",
+    "merge":"Merge compatibility is a fixed distinct-field list including location_final_id and restrict_partner_id; sale_stock, purchase_stock and mrp add their own keys.",
+    "v19_relations":"No group_id; reference_ids Many2many to stock.reference; location_final_id stored and writable; to_refund declared in stock_account.",
+    "extensions":"32 files extend stock.move; fields were inventoried only for mrp, sale_stock, purchase_stock and stock_account (pointer only)."
+  },
+  "source_files_verified":[
+    "stock/models/stock_move.py (SHA-256 af624e7a0155fd31f38098d163d345a1ee068544ed3505879305ad1e62762a78)",
+    "stock/models/stock_rule.py",
+    "stock/models/stock_picking.py",
+    "stock/models/stock_quant.py",
+    "stock/models/stock_reference.py",
+    "mrp/models/stock_move.py",
+    "sale_stock/models/stock.py",
+    "purchase_stock/models/stock_move.py",
+    "stock_account/models/stock_move.py"
+  ]
+}
