@@ -1,0 +1,48 @@
+{
+  "unit": "U87",
+  "title": "Project + Timesheet + Analytic Time-Cost Chain",
+  "phase": "Second-Pass Depth Closure — P2 Supporting Domains",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "l_levels": ["L4", "L11"],
+  "proof_layers": ["P4", "P5"],
+  "predecessors": ["U16", "U46"],
+  "modules_examined": [
+    "analytic",
+    "hr_timesheet",
+    "hr_hourly_cost",
+    "project",
+    "sale_timesheet"
+  ],
+  "claim_count": 53,
+  "function_ids": [
+    "U87-F01", "U87-F02", "U87-F03", "U87-F04", "U87-F05",
+    "U87-F06", "U87-F07", "U87-F08", "U87-F09", "U87-F10",
+    "U87-F11", "U87-F12", "U87-F13", "U87-F14", "U87-F15",
+    "U87-F16", "U87-F17", "U87-F18", "U87-F19", "U87-F20",
+    "U87-F21", "U87-F22"
+  ],
+  "key_findings": {
+    "timesheet_model": "account.analytic.line (defined in analytic addon, extended by hr_timesheet)",
+    "timesheet_fields": "unit_amount (hours), amount (cost, negative), date, name, project_id, task_id, employee_id, account_id (from analytic plan mixin), milestone_id (related)",
+    "analytic_plan_structure": "account.analytic.plan hierarchy; project plan identified by ir.config_parameter 'analytic.project_plan'; project plan → column 'account_id'; other plans → dynamic columns 'x_plan{id}_id'",
+    "project_analytic_linkage": "project.project.account_id (Many2one to account.analytic.account); auto-created on project create when allow_timesheets=True and no account_id provided",
+    "cost_computation": "amount = -(unit_amount × employee.hourly_cost); triggered on changes to unit_amount, employee_id, account_id; employee.hourly_cost from hr_hourly_cost addon; converted from employee currency to account currency",
+    "sale_timesheet_presence": "sale_timesheet module present in Community; adds so_line, timesheet_invoice_type, timesheet_invoice_id to analytic lines; three pricing types: task_rate, fixed_rate, employee_rate",
+    "invoice_trigger": "qty_delivered_method='timesheet' on SOL for service products with service_type=timesheet; SOL qty_delivered aggregated from timesheet unit_amount; invoice created from sale order via standard SO invoicing flow",
+    "milestone_billing": "project.milestone model present in Community; billing type 'billable_milestones' recognized in sale_timesheet via product service_type='milestones'; no separate automated invoice trigger from milestone reach found—milestone marking is a flag (is_reached Boolean)",
+    "no_hr_expense_project_integration_found": "hr_expense integration with project not confirmed in examined modules; not in scope for Community sale_timesheet chain"
+  },
+  "source_pointers": {
+    "analytic_line_def": "analytic/models/analytic_line.py:163",
+    "timesheet_create": "hr_timesheet/models/hr_timesheet.py:219",
+    "cost_calc": "hr_timesheet/models/hr_timesheet.py:473-476",
+    "auto_create_aa": "hr_timesheet/models/project_project.py:132-140",
+    "so_line_compute": "sale_timesheet/models/hr_timesheet.py:79-82",
+    "determine_sale_line": "sale_timesheet/models/hr_timesheet.py:117-144",
+    "analytic_plan_column": "analytic/models/analytic_plan.py:115-121",
+    "hourly_cost_field": "hr_hourly_cost/models/hr_employee.py:9",
+    "milestone_model": "project/models/project_milestone.py:12"
+  },
+  "gate_script": "/tmp/vdr_check_u87.py"
+}
