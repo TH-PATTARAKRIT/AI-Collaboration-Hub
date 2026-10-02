@@ -1,7 +1,7 @@
 {
   "unit": "U201",
   "module": "sale_margin",
-  "sha": "PENDING_COMMIT",
+  "sha": "6dacbd7867b713a6950ea3d727c77c8dbd6b225f",
   "claim_count": 20,
   "gate": "GREEN",
   "research_date": "2026-10-02",
