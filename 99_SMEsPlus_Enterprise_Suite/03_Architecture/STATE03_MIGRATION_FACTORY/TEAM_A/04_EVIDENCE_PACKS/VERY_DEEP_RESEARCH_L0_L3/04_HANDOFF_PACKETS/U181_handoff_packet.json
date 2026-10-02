@@ -1,0 +1,99 @@
+{
+  "unit": "U181",
+  "title": "event — event management, registration, ticketing, communication chain",
+  "group": "G14",
+  "priority": "P2",
+  "status": "COMPLETE",
+  "research_date": "2026-10-02",
+  "researcher": "DeepSeek STATE03 Worker",
+  "odoo_version": "19.0.post20260921",
+  "source_module": "odoo/addons/event",
+  "claims_count": 11,
+  "gate_code": "G-OK-WITH-DEVIATIONS",
+  "deviations": [
+    {
+      "scope_claim": "mail_template_id on event.stage",
+      "actual": "No mail_template_id on event.stage in Odoo 19. Communication configured via event.mail model with template_ref Reference field and interval_type selection.",
+      "impact": "HIGH — confirmation email setup must use event.mail scheduler, not stage configuration"
+    },
+    {
+      "scope_claim": "pipe_funnel on event.stage",
+      "actual": "Field is named 'fold' (Folded in Kanban). Separate 'pipe_end' flag marks end-of-life stages.",
+      "impact": "LOW — naming difference only"
+    },
+    {
+      "scope_claim": "event.event._close_registration()",
+      "actual": "Method does not exist. Registration done state set via action_set_done(). _gc_mark_events_done() @autovacuum moves ended events to pipe_end stage.",
+      "impact": "MEDIUM — no hook point on registration close; must use write override or constraint"
+    },
+    {
+      "scope_claim": "website_published on event.event",
+      "actual": "Not in base event module. Added by website_event addon at website_event/models/event_event.py:52.",
+      "impact": "MEDIUM — requires website_event addon installation for online publishing"
+    },
+    {
+      "scope_claim": "ticket price in base event module",
+      "actual": "No price field in base event module. Price added by event_sale addon.",
+      "impact": "MEDIUM — paid events require event_sale dependency"
+    }
+  ],
+  "key_models": [
+    {
+      "model": "event.event",
+      "file": "event/models/event_event.py",
+      "key_fields": ["date_begin", "date_end", "stage_id", "organizer_id", "company_id", "seats_max", "seats_limited", "seats_available", "seats_taken", "event_ticket_ids", "event_mail_ids", "is_multi_slots", "kanban_state"]
+    },
+    {
+      "model": "event.registration",
+      "file": "event/models/event_registration.py",
+      "key_fields": ["event_id", "partner_id", "state", "barcode", "event_ticket_id", "event_slot_id", "date_closed"],
+      "state_machine": ["draft", "open", "done", "cancel"]
+    },
+    {
+      "model": "event.event.ticket",
+      "file": "event/models/event_ticket.py",
+      "key_fields": ["event_id", "name", "seats_max", "seats_available", "start_sale_datetime", "end_sale_datetime", "sale_available", "is_sold_out"],
+      "note": "Inherits event.type.ticket. No price in base module."
+    },
+    {
+      "model": "event.stage",
+      "file": "event/models/event_stage.py",
+      "key_fields": ["name", "sequence", "fold", "pipe_end"],
+      "note": "No mail_template_id. fold=Folded in Kanban. pipe_end=End Stage."
+    },
+    {
+      "model": "event.mail",
+      "file": "event/models/event_mail.py",
+      "key_fields": ["event_id", "interval_type", "interval_nbr", "interval_unit", "template_ref", "scheduled_date", "mail_done"],
+      "interval_types": ["after_sub", "before_event", "after_event_start", "after_event", "before_event_end"]
+    },
+    {
+      "model": "event.tag",
+      "file": "event/models/event_tag.py",
+      "key_fields": ["name", "sequence", "category_id", "color"]
+    },
+    {
+      "model": "event.tag.category",
+      "file": "event/models/event_tag.py",
+      "key_fields": ["name", "sequence", "tag_ids"]
+    }
+  ],
+  "communication_chain": {
+    "trigger_after_registration": "event.mail with interval_type=after_sub; _update_mail_schedulers() on registration create/write triggers immediate execution or cron",
+    "trigger_event_based": "event_mail_scheduler cron → schedule_communications() → execute() → _execute_event_based()",
+    "template_resolution": "template_ref Reference field on event.mail points to mail.template",
+    "author_resolution": ["organizer_id.email", "company.email", "user.email", "base.user_root"]
+  },
+  "capacity_chain": {
+    "event_level": "seats_max Integer; seats_available = seats_max - (seats_reserved + seats_used) when seats_max > 0",
+    "ticket_level": "event.event.ticket.seats_max; same formula per ticket",
+    "enforcement": "_check_seats_availability @api.constrains on event.registration for state in (open, done)",
+    "overflow_method": "event.event._verify_seats_availability() raises ValidationError",
+    "multi_slot": "_get_seats_availability() checks slot+ticket combinations for multi-slot events"
+  },
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U181_event.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U181_event_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U181_handoff_packet.json"
+  }
+}
