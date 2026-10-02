@@ -1,0 +1,50 @@
+{
+  "unit": "U96",
+  "title": "Landed Costs Allocation",
+  "phase": "Second-Pass Depth Closure — P1 Core Business",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "modules": ["stock_landed_costs", "mrp_landed_costs"],
+  "l_levels": ["L3", "L4", "L7"],
+  "proof_layers": ["P2", "P4"],
+  "predecessor_units": ["U07", "U10"],
+  "claim_count": 45,
+  "gate_result": {
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0,
+    "result": "GATE-PASS"
+  },
+  "function_ids": [
+    "U96-F01", "U96-F02", "U96-F03", "U96-F04", "U96-F05",
+    "U96-F06", "U96-F07", "U96-F08", "U96-F09", "U96-F10",
+    "U96-F11", "U96-F12", "U96-F13"
+  ],
+  "key_findings": {
+    "splitting_methods": [
+      "equal — uniform distribution across move count",
+      "by_quantity — proportional to product quantity",
+      "by_current_cost_price — proportional to former_cost",
+      "by_weight — proportional to product weight * qty",
+      "by_volume — proportional to product volume * qty"
+    ],
+    "svl_update_path": "button_validate -> _create_accounting_entries per adj line -> account.move created and posted -> cost.valuation_adjustment_lines.move_id._set_value() triggers SVL recalculation",
+    "account_move_generation": "Single account.move (type=entry) created per landed cost; debit=stock_valuation account, credit=cost_line expense account; amount prorated by remaining_qty/quantity; only created for real_time valuation products",
+    "state_guard": "_check_can_validate raises UserError if state != 'draft'; done/cancelled records cannot be re-validated",
+    "mrp_extension": "mrp_landed_costs adds target_model='manufacturing' and mrp_production_ids Many2many; _get_targeted_move_ids includes MO finished-goods moves, excludes by-product moves with cost_share=False",
+    "vendor_bill_link": "vendor_bill_id on stock.landed.cost; is_landed_costs_line flag on account.move.line; PO line _prepare_account_move_line propagates flag from product.landed_cost_ok",
+    "rounding": "HALF-UP rounding applied per valuation line; rounding_diff added to last line to ensure exact total match"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U96_landed_costs.md",
+    "02_NEUTRAL_KNOWLEDGE/U96_landed_costs_NEUTRAL.md"
+  ],
+  "source_files_read": [
+    "stock_landed_costs/models/stock_landed_cost.py",
+    "stock_landed_costs/models/account_move.py",
+    "stock_landed_costs/models/stock_move.py",
+    "stock_landed_costs/models/purchase.py",
+    "stock_landed_costs/models/product.py",
+    "stock_landed_costs/models/res_company.py",
+    "mrp_landed_costs/models/stock_landed_cost.py"
+  ]
+}

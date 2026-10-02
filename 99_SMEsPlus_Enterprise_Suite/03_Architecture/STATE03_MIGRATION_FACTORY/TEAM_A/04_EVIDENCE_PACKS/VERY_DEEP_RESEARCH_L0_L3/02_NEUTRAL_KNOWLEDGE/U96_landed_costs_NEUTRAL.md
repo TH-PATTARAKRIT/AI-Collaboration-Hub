@@ -1,0 +1,18 @@
+# U96 Neutral Knowledge — Landed Costs
+> NEUTRAL LAYER — no source paths, no class/method names, no file extensions, no snake_case, no backticks
+
+| NR-ID | Statement |
+|---|---|
+| NR-U96-001 | The landed cost allocation module defines five cost-splitting strategies: uniform distribution, distribution by transfer quantity, distribution by current inventory value, distribution by product weight, and distribution by product volume. |
+| NR-U96-002 | A landed cost record links to one or more warehouse transfers, carries a list of cost-type line items, a list of computed valuation adjustments (one per product move per cost line), a status (draft / posted / cancelled), a generated journal entry reference, and an optional vendor bill reference. |
+| NR-U96-003 | Validation is blocked unless the landed cost is in draft status; attempting to validate an already-posted or cancelled record raises an error immediately, preventing double-posting. |
+| NR-U96-004 | The validation workflow proceeds in sequence: verify draft status, compute adjustment lines if absent, verify that cost-line totals match adjustment-line totals, build accounting entries for each real-time-valued product move, create and post a single journal entry for the entire landed cost batch, then mark the record as posted and trigger inventory value recalculation on the source moves. |
+| NR-U96-005 | Cost distribution is calculated in a two-pass loop: first, totals (quantity, weight, volume, former cost, line count) are accumulated across all valuation lines; second, each cost line's price is allocated to every valuation line according to the chosen splitting strategy with a rounding correction applied to the last line. |
+| NR-U96-006 | The accounting entry for each adjustment line debits the stock valuation account and credits the landed cost expense account; the amount is prorated by the ratio of remaining stock quantity to original move quantity to account for goods that have already been sold or consumed. Negative landed costs reverse the debit/credit direction. |
+| NR-U96-007 | Each valuation adjustment line records the original inventory value, the allocated additional cost, the resulting new value, plus the physical attributes (quantity, weight, volume) used in the splitting calculation. |
+| NR-U96-008 | Vendor bill lines identified as landed cost lines can automatically generate a landed cost record; the bill and the landed cost record maintain a two-way reference so users can navigate from either direction. |
+| NR-U96-009 | When a purchase order line is converted to a vendor bill line, the flag marking it as a landed cost line is automatically propagated based on the product's landed-cost designation. |
+| NR-U96-010 | Each warehouse move can query the additional value contributed by validated landed costs, and the stock valuation report includes this extra value in the move's total cost, with attribution to the originating vendor bill when one exists. |
+| NR-U96-011 | A product template can be designated as a landed cost product; such products also carry a default splitting method that is applied automatically when they appear on a landed cost line. |
+| NR-U96-012 | Companies can configure a dedicated accounting journal for landed cost entries; if none is configured the system falls back to the standard inventory journal. |
+| NR-U96-013 | A companion module extends the landed cost mechanism to manufacturing orders by adding a manufacturing-order target option and a many-to-many link to production records; the targeted moves are the finished-goods moves from those orders, excluding by-product moves that carry no cost share. |
