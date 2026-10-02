@@ -214,8 +214,8 @@
 | U86 | crm.lead full pipeline (lead→opportunity→SO) | G11 CANDIDATE | P2 | No | U18, U38 | CRM lead→qualify→win→SO→analytic | Restricted+Neutral evidence, handoff packet | Done a976e473 |
 | U87 | project + hr_timesheet + analytic (time-cost chain) | G12 CANDIDATE | P2 | No | U16, U46 | Timesheet→analytic posting→expense→invoice | Restricted+Neutral evidence, handoff packet | Done 14282d11 |
 | U88 | hr.leave + hr.work_entry + payroll prep | G12 CANDIDATE | P2 | No | U17, U39, U40 | Leave→approval→work entry→payroll impact | Restricted+Neutral evidence, handoff packet | Done 4225babd |
-| U89 | website_sale full eCommerce (cart→checkout→payment→SO) | G13 CANDIDATE | P2 | No | U65, U19 | Website cart→checkout→payment→confirmed SO→delivery | Restricted+Neutral evidence, handoff packet | Running |
-| U90 | mass_mailing + event + crm marketing chain | G11/G13 CANDIDATE | P2 | No | U18, U42, U62 | Mailing→event→CRM lead→conversion | Restricted+Neutral evidence, handoff packet | Queued |
+| U89 | website_sale full eCommerce (cart→checkout→payment→SO) | G13 CANDIDATE | P2 | No | U65, U19 | Website cart→checkout→payment→confirmed SO→delivery | Restricted+Neutral evidence, handoff packet | Done 3ec55574 |
+| U90 | mass_mailing + event + crm marketing chain | G11/G13 CANDIDATE | P2 | No | U18, U42, U62 | Mailing→event→CRM lead→conversion | Restricted+Neutral evidence, handoff packet | Running |
 | U91 | hr_expense + project_sale_expense (expense→invoice) | G12 CANDIDATE | P2 | No | U16, U87 | Expense submit→approve→post→invoice customer | Restricted+Neutral evidence, handoff packet | Queued |
 | U92 | website_blog + website_forum + website_slides | G13 CANDIDATE | P2 | No | U19, U60 | Content platform UI/UX, access control, SEO | Restricted+Neutral evidence, handoff packet | Queued |
 | U93 | stock_picking_batch + delivery batch picking | G08 CANDIDATE | P2 | No | U57, U08 | Batch transfer create→scan→validate→auto-close | Restricted+Neutral evidence, handoff packet | Queued |
