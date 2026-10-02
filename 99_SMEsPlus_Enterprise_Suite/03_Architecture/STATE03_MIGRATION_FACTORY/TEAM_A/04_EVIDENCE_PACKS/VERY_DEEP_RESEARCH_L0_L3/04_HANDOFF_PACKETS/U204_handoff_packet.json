@@ -1,7 +1,7 @@
 {
   "unit": "U204",
   "module": "account_move_line",
-  "sha": "PENDING_COMMIT",
+  "sha": "3b2232e1",
   "claim_count": 26,
   "gate": "GREEN",
   "research_date": "2026-10-02",
