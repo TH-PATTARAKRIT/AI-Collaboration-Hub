@@ -1,0 +1,65 @@
+{
+  "unit": "U223",
+  "module": "product_pricelist",
+  "sha": "6b815101ef0a086f140945ec4076e02d2f8b7a0dfc44fc6cf289663050bb1f40",
+  "claim_count": 24,
+  "gate": "GREEN",
+  "research_date": "2026-10-02",
+  "source_files": [
+    "product/models/product_pricelist.py",
+    "product/models/product_pricelist_item.py",
+    "product/models/res_partner.py",
+    "point_of_sale/models/pos_config.py"
+  ],
+  "migration_flags": [
+    {
+      "flag": "PRICELIST_VERSION_MODEL_REMOVED",
+      "severity": "BREAKING",
+      "description": "product.pricelist.version model does not exist in v19 Community. Was present in v13/v14. Time-based scoping now handled via date_start/date_end on product.pricelist.item records. Migration scripts must transform version records into date-ranged item records.",
+      "affected_versions": ["v13", "v14"]
+    },
+    {
+      "flag": "DISCOUNT_POLICY_FIELD_REMOVED",
+      "severity": "BREAKING",
+      "description": "discount_policy field (values: 'without_discount' / 'discount') on product.pricelist is NOT present in v19 Community. The field controlled whether pricelist discounts absorbed into price_unit or shown as SO line discount. Databases from v14/v15 carrying this field must handle its absence.",
+      "affected_versions": ["v13", "v14", "v15"]
+    },
+    {
+      "flag": "SPECIFIC_PROPERTY_PRICELIST_BACKING_FIELD",
+      "severity": "INFO",
+      "description": "property_product_pricelist on res.partner is now a computed field backed by specific_property_product_pricelist (company_dependent=True stored field). Old ir.property records for res.partner.property_product_pricelist may need to be migrated to the new company-dependent field.",
+      "affected_versions": ["v13", "v14", "v15", "v16"]
+    }
+  ],
+  "key_findings": {
+    "model_structure": "product.pricelist inherits mail.thread+mail.activity.mixin; ordered sequence,id,name; currency_id required defaults to company currency; no discount_policy field in v19",
+    "item_applied_on": "4 scopes: 3_global, 2_product_category, 1_product, 0_product_variant; numeric prefix encodes sort priority (variant=most specific evaluated first)",
+    "item_compute_price": "3 methods: fixed (fixed_price field), percentage (percent_price % of base), formula (price_discount % + price_round + price_surcharge + min/max margin clamps)",
+    "item_base": "3 options: list_price (product.currency_id), standard_price (product.cost_currency_id), pricelist (base_pricelist_id.currency_id with recursive call)",
+    "rule_sort_order": "_order='applied_on, min_quantity desc, categ_id desc, id desc'; first-match semantics in _compute_price_rule loop with break on first applicable rule",
+    "date_filtering": "date_start and date_end are Datetime fields on item; domain uses <= (start) and >= (end) making both bounds inclusive; filtered at ORM query level in _get_applicable_rules",
+    "currency_conversion": "_compute_base_price converts src_currency to pricelist currency via res.currency._convert(price, currency, company, date, round=False) when currencies differ",
+    "partner_pricelist_assignment": "priority: 1) specific_property_product_pricelist (partner-level company-dependent), 2) country group match, 3) ir.config_parameter fallback, 4) first active pricelist; feature gate returns empty if group_product_pricelist disabled",
+    "pos_integration": "pos.config has pricelist_id + available_pricelist_ids + use_pricelist; constraint enforces all available pricelists must share company currency; pos.order carries pricelist_id",
+    "recursion_guard": "DFS constraint _check_pricelist_recursion prevents circular chains when base='pricelist'; unlink guard prevents deleting a pricelist used as base_pricelist_id in other pricelists",
+    "version_model": "product.pricelist.version: DOES NOT EXIST in v19 Community; confirmed by absence of any Python file or class reference across entire addon tree",
+    "discount_policy": "discount_policy: DOES NOT EXIST in v19 Community product_pricelist.py or product_pricelist_item.py; confirmed by grep across all community addons returning no results"
+  },
+  "pointers": {
+    "_compute_price_rule": "product/models/product_pricelist.py:169-236",
+    "_get_applicable_rules_domain": "product/models/product_pricelist.py:248-264",
+    "_is_applicable_for": "product/models/product_pricelist_item.py:526-568",
+    "_compute_price": "product/models/product_pricelist_item.py:570-626",
+    "_compute_base_price": "product/models/product_pricelist_item.py:628-659",
+    "_compute_price_before_discount": "product/models/product_pricelist_item.py:661-684",
+    "_get_partner_pricelist_multi": "product/models/product_pricelist.py:334-375",
+    "_get_country_pricelist_multi": "product/models/product_pricelist.py:288-330",
+    "property_product_pricelist": "product/models/res_partner.py:14-45",
+    "pos_pricelist_fields": "point_of_sale/models/pos_config.py:139-153",
+    "pos_currency_constraint": "point_of_sale/models/pos_config.py:494-495",
+    "item_order": "product/models/product_pricelist_item.py:11",
+    "applied_on_field": "product/models/product_pricelist_item.py:51-61",
+    "compute_price_field": "product/models/product_pricelist_item.py:106-114",
+    "base_field": "product/models/product_pricelist_item.py:91-103"
+  }
+}

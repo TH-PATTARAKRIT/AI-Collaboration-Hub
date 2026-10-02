@@ -1,0 +1,76 @@
+{
+  "unit": "U222",
+  "module": "ir_model_access",
+  "sha": "1f5bdf77a7e1953e4a6e7470add7dab96dab3514",
+  "source_file": "odoo/addons/base/models/ir_model.py",
+  "source_lines": "2080-2223",
+  "secondary_sources": [
+    "odoo/orm/models.py:4106-4199",
+    "odoo/addons/base/models/ir_rule.py:15-280"
+  ],
+  "claim_count": 20,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "flag": "GLOBAL_ACL_DEPRECATED",
+      "severity": "HIGH",
+      "description": "Creating ir.model.access records with no group_id (global access) now emits a deprecation warning in v19. All access-granting ACL records must specify a group.",
+      "pointer": "ir_model.py:2209-2214",
+      "action": "Audit all data files (CSV/XML) and custom modules for ir.model.access records without group_id. Assign a specific group to each."
+    },
+    {
+      "flag": "CHECK_ACCESS_RIGHTS_DEPRECATED",
+      "severity": "MEDIUM",
+      "description": "check_access_rights() method on BaseModel is deprecated since v18.0. In v19 it delegates to check_access() or has_access().",
+      "pointer": "orm/models.py:4167-4179",
+      "action": "Replace all calls to check_access_rights(operation, raise_exception=True) with check_access(operation) and check_access_rights(operation, raise_exception=False) with has_access(operation)."
+    },
+    {
+      "flag": "CHECK_ACCESS_RULE_DEPRECATED",
+      "severity": "MEDIUM",
+      "description": "check_access_rule() method on BaseModel is deprecated since v18.0. In v19 it delegates to check_access().",
+      "pointer": "orm/models.py:4181-4189",
+      "action": "Replace all calls to check_access_rule(operation) with check_access(operation)."
+    },
+    {
+      "flag": "FILTER_ACCESS_RULES_DEPRECATED",
+      "severity": "LOW",
+      "description": "_filter_access_rules() and _filter_access_rules_python() are deprecated since v18.0. Use _filtered_access() instead.",
+      "pointer": "orm/models.py:4191-4198",
+      "action": "Replace _filter_access_rules(operation) with _filtered_access(operation)."
+    },
+    {
+      "flag": "RES_GROUPS_PRIVILEGE_NEW",
+      "severity": "INFO",
+      "description": "v19 introduces a res_groups_privilege table (privilege categories for groups). group_names_with_access() now left-joins this table for group name prefixes.",
+      "pointer": "ir_model.py:2109",
+      "action": "No immediate migration required but be aware group name display format may change for groups with privilege categories."
+    }
+  ],
+  "key_findings": {
+    "acl_check_algorithm": "check() at ir_model.py:2163 — superuser bypass first (env.su), then delegates to _get_allowed_models() cached per uid+mode; OR logic across all matching ACL records via GROUP BY in SQL",
+    "superuser_bypass": "env.su=True bypasses ACL in IrModelAccess.check() (line 2164) and bypasses record rules in IrRule._get_rules() (line 120); complete ORM security bypass",
+    "global_vs_group_acl": "_get_allowed_models SQL: a.group_id IS NULL OR a.group_id IN user_groups; _get_access_groups: any null group_id returns universe expression",
+    "two_stage_check": "_check_access in orm/models.py:4141 — (1) model-level ACL via IrModelAccess.check(), (2) record-level via IrRule._compute_domain(); ACL must pass before rules are evaluated",
+    "caching": "_get_allowed_models cached per uid+mode; _get_access_groups cached per model+mode in stable registry cache; both cleared on any ACL CRUD via call_cache_clearing_methods()",
+    "deprecated_methods": "check_access_rights(), check_access_rule(), _filter_access_rules() all deprecated since v18.0; new unified API is check_access() / has_access() / _filtered_access()",
+    "allow_sudo_commands": "_allow_sudo_commands=False on IrModelAccess (line 2084) blocks sudo-elevated writes to the ACL table itself",
+    "rule_domain_logic": "ir.rule: global rules AND-ed, group rules OR-ed within group set then AND-ed with globals; superuser gets empty ruleset"
+  },
+  "class_location": "ir_model.py:2080",
+  "class_name": "IrModelAccess",
+  "odoo_model_name": "ir.model.access",
+  "db_table": "ir_model_access",
+  "fields": {
+    "name": "Char, required, indexed — ACL record label",
+    "active": "Boolean, default=True — soft-disable without deleting",
+    "model_id": "Many2one ir.model, required, indexed, ondelete=cascade",
+    "group_id": "Many2one res.groups, optional, indexed, ondelete=restrict — null means global",
+    "perm_read": "Boolean — read permission",
+    "perm_write": "Boolean — write permission",
+    "perm_create": "Boolean — create permission",
+    "perm_unlink": "Boolean — delete permission"
+  },
+  "research_date": "2026-10-02",
+  "researcher": "STATE03 VDR Worker U222"
+}
