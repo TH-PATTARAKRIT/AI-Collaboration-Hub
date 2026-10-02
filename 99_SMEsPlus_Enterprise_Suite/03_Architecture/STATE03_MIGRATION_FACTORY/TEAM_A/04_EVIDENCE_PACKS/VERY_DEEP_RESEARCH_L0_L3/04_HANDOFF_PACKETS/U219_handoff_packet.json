@@ -1,0 +1,71 @@
+{
+  "unit": "U219",
+  "module": "stock_move_line",
+  "source_file": "odoo/addons/stock/models/stock_move_line.py",
+  "sha": "bdab636fdc5ef1377242ec66c25a3a48a1aafcbd2da3859f5a55ba838733cf88",
+  "source_lines": 1244,
+  "odoo_version": "19.0.post20260921",
+  "research_date": "2026-10-02",
+  "claim_count": 20,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "flag": "QTY_DONE_RENAMED",
+      "severity": "BREAKING",
+      "description": "Field qty_done on stock.move.line does not exist in Odoo 19. Use 'quantity' instead.",
+      "old_name": "qty_done",
+      "new_name": "quantity",
+      "pointer": "stock/models/stock_move_line.py:37"
+    },
+    {
+      "flag": "RESERVED_QTY_RENAMED",
+      "severity": "BREAKING",
+      "description": "Field product_uom_qty (reserved quantity) on stock.move.line does not exist in Odoo 19. The reserved quantity is now unified with done quantity as 'quantity'. The stored computed 'quantity_product_uom' gives the value in product base UoM.",
+      "old_name": "product_uom_qty / reserved_uom_qty (on move line)",
+      "new_name": "quantity",
+      "pointer": "stock/models/stock_move_line.py:37-42"
+    },
+    {
+      "flag": "PROCUREMENT_GROUP_REFERENCE",
+      "severity": "BREAKING",
+      "description": "stock.move no longer has group_id (Many2one procurement.group). It now has reference_ids (Many2many stock.reference). stock.move.line only has a derived Char 'reference' field, never a direct relational group link.",
+      "old_name": "group_id (stock.move)",
+      "new_name": "reference_ids (stock.move) / reference (stock.move.line char)",
+      "pointer": "stock/models/stock_move_line.py:89, stock/models/stock_reference.py:4-15"
+    },
+    {
+      "flag": "PACKAGE_HISTORY_NEW",
+      "severity": "INFO",
+      "description": "New field package_history_id (Many2one stock.package.history) tracks package movement snapshot. Not present before Odoo 16.",
+      "pointer": "stock/models/stock_move_line.py:58"
+    },
+    {
+      "flag": "PICKED_FIELD_NEW",
+      "severity": "INFO",
+      "description": "New Boolean field 'picked' (stored computed, writable) tracks whether the line has been physically picked. Not present before Odoo 16.",
+      "pointer": "stock/models/stock_move_line.py:43"
+    }
+  ],
+  "key_findings": {
+    "model_name": "stock.move.line",
+    "quantity_field": "Single 'quantity' field replaces both qty_done and product_uom_qty (reserved) from Odoo 15; quantity_product_uom is stored computed in base UoM",
+    "lot_auto_creation": "_action_done resolves lot_name to lot_id by searching existing lots; creates new stock.lot via _create_and_assign_production_lot when use_create_lots=True and lot not found",
+    "package_src_dest": "package_id=source package at location_id; result_package_id=destination package at location_dest_id; result_package_id drives putaway and quant attribution",
+    "action_done_flow": "1-validate rounding+lot, 2-resolve lot_name to lot_id, 3-batch create new lots, 4-delete zero-qty lines, 5-create package history, 6-move quants (unreserve+deduct src+credit dest), 7-apply pkg dest, 8-stamp date=now()",
+    "date_field": "Set at creation; auto-updated on picked transition and on quantity increase when picked; stamped to now() after all quants moved in _action_done",
+    "aggregation": "_get_aggregated_product_quantities groups by product+name+description+uom+packaging_uom (ignores lots); accumulates backorder ordered quantities; returns qty_ordered from move.product_uom_qty",
+    "owner_id": "Partner owning the inventory; passed to all quant reservation and availability operations; supports 3PL ownership scenarios",
+    "state": "Related (stored) from move_id.state - no independent state on the line",
+    "reference": "Move line has only Char 'reference' related to move_id.reference; reference_ids Many2many stock.reference is on stock.move only"
+  },
+  "claims_by_category": {
+    "FIELD": 11,
+    "BEHAVIOR": 6,
+    "MIGRATION": 3
+  },
+  "source_integrity": {
+    "no_enterprise_files": true,
+    "no_fabrication": true,
+    "all_pointers_verified": true
+  }
+}
