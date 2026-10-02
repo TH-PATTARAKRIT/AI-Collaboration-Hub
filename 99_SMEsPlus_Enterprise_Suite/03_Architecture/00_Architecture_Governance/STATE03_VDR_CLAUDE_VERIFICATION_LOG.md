@@ -855,11 +855,23 @@ Confirmed by static read: Thai zero-rated (0%) and exempt VAT both export as cat
 - G04/G10 boundary (ACCOUNT_BASE vs ACCOUNT_PROCESS): **UNRESOLVED**.
 - New G-ID updates from this batch: G11 now has U38 assigned (§47 above).
 
-### Resume instructions (per Boss)
+### Resume trigger (UPDATED 2026-10-02 per Boss)
 
-On resume:
+**Exact marker required on PR #74:**
+```
+DEEPSEEK_BATCH_READY_FOR_STATE03
+```
+Resume fires **only** when a PR #74 event begins with that exact string. All other PR #74 events (commits, comments, per-U notifications) are ignored while paused.
+
+**While paused — prohibited:**
+- Polling PR #74
+- Reacting to ordinary commits, comments, or per-U notifications
+- Starting background agents
+
+### On resume (per Boss)
+
 1. Run DELTA-FIRST.
-2. Verify the completed DeepSeek batch continuously without waiting between units.
+2. Verify the entire submitted batch continuously without waiting between units.
 3. Produce one consolidated Correction Batch.
 4. Send corrections to DeepSeek once.
 5. After DeepSeek correction batch: one final closure verification.
