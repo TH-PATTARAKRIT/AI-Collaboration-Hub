@@ -4,7 +4,7 @@
 
 | Metric | Value |
 |---|---|
-| Completed delegated research workers | 105 |
+| Completed delegated research workers | 106 |
 | Cumulative worker tokens (reported) | 24,033,386 (+ U47–U63 fix/gate pass session — tokens not separately metered) |
 | Cumulative worker tool requests (reported) | 5,713+ |
 | Workers running at last update | see `NEXT_ATOMIC_UNIT_QUEUE.tsv` and PR #74 notifications |
@@ -152,3 +152,4 @@ Units whose log entry shows only mechanical hash-integrity intake (pending confi
 | U119 | COST TELEMETRY NOT VERIFIED | 36 |
 | U120 | COST TELEMETRY NOT VERIFIED | 55 |
 | U121 | COST TELEMETRY NOT VERIFIED | 37 |
+| U122 | COST TELEMETRY NOT VERIFIED | 45 |
