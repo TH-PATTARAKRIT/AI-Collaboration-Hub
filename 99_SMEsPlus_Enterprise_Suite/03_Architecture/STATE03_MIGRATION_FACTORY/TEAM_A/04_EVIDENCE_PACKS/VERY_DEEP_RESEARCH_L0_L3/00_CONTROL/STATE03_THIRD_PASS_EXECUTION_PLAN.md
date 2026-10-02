@@ -44,8 +44,8 @@ Units selected per directive:
 | U115 | stock_account — WIP account entries from mrp_account close | P1 | Yes | NOT_PROVEN | mrp_account WIP journal, _get_production_account, finished goods posting | Done f8c004b2 |
 | U116 | purchase_requisition — if present in Community | P2 | No | NOT_STUDIED | purchase.requisition model, tender workflow, PO from requisition | Done ac2cc851 (PRESENT — blanket_order + purchase_template) |
 | U117 | digest — KPI digest cron + ir.actions.server pattern | P2 | No | NOT_STUDIED | digest.digest, _compute_kpis, mail cron | Done e7560a48 |
-| U118 | account — deferred revenue/expense (account_deferred) | P1 | No | NOT_STUDIED | account.deferred model, amortization schedule, account.move generation | Running |
-| U119 | l10n_th_pnd — Thai personal income tax / PND if present | P0 | Yes (TH) | NOT_STUDIED | PND withholding, ภ.ง.ด.1/3/53, vendor WHT deduction at payment | Queued |
+| U118 | account — deferred revenue/expense (account_deferred) | P1 | No | NOT_STUDIED | account.deferred model, amortization schedule, account.move generation | Done 3d054777 (ABSENT — Enterprise-only) |
+| U119 | l10n_th_pnd — Thai personal income tax / PND if present | P0 | Yes (TH) | NOT_STUDIED | PND withholding, ภ.ง.ด.1/3/53, vendor WHT deduction at payment | Running |
 
 ---
 
