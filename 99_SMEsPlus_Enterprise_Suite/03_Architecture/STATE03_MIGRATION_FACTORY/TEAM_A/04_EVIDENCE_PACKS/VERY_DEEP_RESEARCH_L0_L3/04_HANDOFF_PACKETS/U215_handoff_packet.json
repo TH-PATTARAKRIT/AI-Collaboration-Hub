@@ -1,0 +1,66 @@
+{
+  "unit": "U215",
+  "module": "purchase_order_line",
+  "sha": "4bba13d6759802a57b771e1d52c094ceb7e114691949d205b491efc8cf343f2f",
+  "claim_count": 22,
+  "gate": "GREEN",
+  "source_path": "addons/purchase/models/purchase_order_line.py",
+  "aux_source_path": "addons/purchase_stock/models/purchase_order_line.py",
+  "research_date": "2026-10-02",
+  "migration_flags": [
+    {
+      "flag_id": "MF-001",
+      "severity": "BREAKING",
+      "description": "analytic_account_id field is ABSENT in v19 community purchase.order.line; replaced by analytic_distribution JSON field (from analytic.mixin). Migration must map single account ID to JSON dict e.g. {\"<id>\": 100.0}."
+    },
+    {
+      "flag_id": "MF-002",
+      "severity": "INFORMATIONAL",
+      "description": "product_packaging_id and product_packaging_qty are referenced in purchase i18n files (en_AU.po:1695,1700) but are NOT defined in any Python source file of the community purchase module in v19. These fields appear absent from v19 community code."
+    },
+    {
+      "flag_id": "MF-003",
+      "severity": "BREAKING",
+      "description": "taxes_id field was renamed to tax_ids in v19. The relation table is now account_tax_purchase_order_line_rel. Any scripts referencing taxes_id must be updated."
+    },
+    {
+      "flag_id": "MF-004",
+      "severity": "BEHAVIORAL",
+      "description": "qty_to_invoice is forced to zero when order state is not 'purchase'. This affects any reporting or billing logic that reads this field on draft/cancelled orders."
+    },
+    {
+      "flag_id": "MF-005",
+      "severity": "BEHAVIORAL",
+      "description": "qty_received_method has two possible values in base ('manual') and three with purchase_stock ('manual', 'stock_moves', False). Service products always use 'manual'; storable consumable products use 'stock_moves' when purchase_stock is installed."
+    }
+  ],
+  "key_findings": {
+    "bill_control": "purchase_method on product.template ('purchase'=on_order, 'receive'=on_delivery) controls whether qty_to_invoice is based on product_qty or qty_received; service products always default to 'purchase'",
+    "qty_invoiced": "Sum of linked account.move.line quantities (in_invoice adds, in_refund subtracts) via _prepare_qty_invoiced(); excludes cancelled moves",
+    "qty_received": "For service: manual field; for storable with purchase_stock: sum of done stock.move quantities on move_ids filtered by product_id",
+    "date_planned": "Computed as order.date_order + supplierinfo.delay days; falls back to today if no order date; stored and manually overridable",
+    "analytic_distribution": "JSON field from analytic.mixin; auto-populated from account.analytic.distribution.model rules; propagated to bill lines via _related_analytic_distribution()",
+    "analytic_account_id": "ABSENT in v19 — this is the single most critical migration flag",
+    "prepare_account_move_line": "Creates bill line dict with qty_to_invoice as quantity (negated for refunds), price_unit converted to bill currency, tax_ids, and purchase_line_id back-reference",
+    "tax_ids_resolution": "From product.supplier_taxes_id filtered by company then mapped through fiscal_position_id.map_tax()"
+  },
+  "covered_topics": [
+    "product_id field with purchase_ok domain",
+    "product_qty and product_uom_qty computation",
+    "price_unit compute from selected_seller_id",
+    "price_subtotal via AccountTax._add_tax_details_in_base_line()",
+    "qty_received_method selection and override by purchase_stock",
+    "qty_received manual vs stock_moves computation",
+    "qty_invoiced via invoice_lines sum with in_invoice/in_refund handling",
+    "qty_to_invoice purchase_method branching and state guard",
+    "invoice_status on purchase.order (no/to invoice/invoiced)",
+    "date_planned from supplierinfo.delay",
+    "analytic_distribution JSON field from analytic.mixin",
+    "_compute_analytic_distribution using distribution model rules",
+    "analytic distribution propagation to bill lines",
+    "_prepare_account_move_line() bill line creation",
+    "tax_ids resolution from supplier_taxes_id via fiscal position",
+    "product_packaging_id absence confirmation",
+    "analytic_account_id absence confirmation (migration breaking)"
+  ]
+}
