@@ -1,0 +1,61 @@
+{
+  "unit_id": "U156",
+  "title": "fleet — vehicle management L3 depth",
+  "status": "PRESENT",
+  "gate": "PASS",
+  "claim_count": 20,
+  "researched_at": "2026-10-02T00:00:00Z",
+  "source_root": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons/fleet",
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U156_fleet.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U156_fleet_NEUTRAL.md"
+  },
+  "key_models": [
+    "fleet.vehicle",
+    "fleet.vehicle.model",
+    "fleet.vehicle.model.brand",
+    "fleet.vehicle.model.category",
+    "fleet.vehicle.state",
+    "fleet.vehicle.odometer",
+    "fleet.vehicle.log.contract",
+    "fleet.vehicle.log.services",
+    "fleet.vehicle.assignation.log",
+    "fleet.service.type",
+    "fleet.vehicle.cost.report",
+    "fleet.vehicle.tag"
+  ],
+  "dependencies": ["base", "mail"],
+  "standalone": true,
+  "accounting_link": false,
+  "accounting_note": "No account.move or account.analytic.line in community fleet; fleet_account bridge module required",
+  "security_groups": ["fleet_group_user", "fleet_group_manager"],
+  "cron_jobs": [
+    {
+      "xml_id": "ir_cron_contract_costs_generator",
+      "frequency": "daily",
+      "method": "fleet.vehicle.log.contract.run_scheduler"
+    }
+  ],
+  "claims_summary": [
+    {"id": "U156-C01", "class": "PRESENT", "topic": "Manifest dependencies — base + mail only, standalone"},
+    {"id": "U156-C02", "class": "PRESENT", "topic": "Fleet declared as top-level application"},
+    {"id": "U156-C03", "class": "PRESENT", "topic": "fleet.vehicle model with mail + activity + avatar mixins"},
+    {"id": "U156-C04", "class": "PRESENT", "topic": "model_id (required), driver_id, future_driver_id, state_id fields"},
+    {"id": "U156-C05", "class": "PRESENT", "topic": "Configurable state via fleet.vehicle.state, default new_request"},
+    {"id": "U156-C06", "class": "PRESENT", "topic": "Computed odometer float backed by fleet.vehicle.odometer log"},
+    {"id": "U156-C07", "class": "PRESENT", "topic": "odometer_unit Selection: kilometers or miles, default kilometers"},
+    {"id": "U156-C08", "class": "PRESENT", "topic": "fleet.vehicle.odometer model — date, value, vehicle_id, driver_id"},
+    {"id": "U156-C09", "class": "PRESENT", "topic": "_get_odometer resolves last reading by max value not date"},
+    {"id": "U156-C10", "class": "PRESENT", "topic": "fleet.vehicle.log.contract — start/expiry dates, amount, state lifecycle"},
+    {"id": "U156-C11", "class": "PRESENT", "topic": "_compute_days_left returns integer days to expiry; -1 if closed"},
+    {"id": "U156-C12", "class": "PRESENT", "topic": "cost_frequency: no/daily/weekly/monthly/yearly; cost_generated monetary"},
+    {"id": "U156-C13", "class": "PRESENT", "topic": "Daily cron ir_cron_contract_costs_generator calls run_scheduler"},
+    {"id": "U156-C14", "class": "PRESENT", "topic": "scheduler_manage_contract_expiration: alert window, activity posting, state transitions"},
+    {"id": "U156-C15", "class": "PRESENT", "topic": "fleet.vehicle.log.services — amount, date, service_type_id, state (New/Running/Done/Cancelled)"},
+    {"id": "U156-C16", "class": "PRESENT", "topic": "_set_odometer on service log creates fleet.vehicle.odometer; UserError if zero"},
+    {"id": "U156-C17", "class": "PRESENT", "topic": "fleet.vehicle.cost.report SQL view (_auto=False) — service+contract costs monthly"},
+    {"id": "U156-C18", "class": "PRESENT", "topic": "Daily-cost proration: cost_generated * days_in_month_within_contract_window"},
+    {"id": "U156-C19", "class": "PRESENT", "topic": "Security: fleet_group_user (Officer) + fleet_group_manager (Administrator); multi-company rules"},
+    {"id": "U156-C20", "class": "ABSENT-FEATURE", "topic": "No account.move/analytic link in community — fleet_account bridge required"}
+  ]
+}

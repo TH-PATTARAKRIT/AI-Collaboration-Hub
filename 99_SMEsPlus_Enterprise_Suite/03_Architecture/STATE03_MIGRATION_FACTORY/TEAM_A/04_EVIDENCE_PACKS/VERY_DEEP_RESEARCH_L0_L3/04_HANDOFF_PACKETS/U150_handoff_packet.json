@@ -1,0 +1,41 @@
+{
+  "unit": "U150",
+  "title": "purchase_stock — procure-to-pay stock receipt chain L3 depth",
+  "g_group": ["G08", "G06", "G01"],
+  "priority": "P1",
+  "gap_ref": "GAP-009",
+  "status": "COMPLETE",
+  "gate": "PASS",
+  "gate_exit_code": 0,
+  "claims_total": 25,
+  "claims_c1": 25,
+  "claims_absent": 0,
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U150_purchase_stock_p2p.md",
+    "02_NEUTRAL_KNOWLEDGE/U150_purchase_stock_p2p_NEUTRAL.md",
+    "04_HANDOFF_PACKETS/U150_handoff_packet.json"
+  ],
+  "gate_script": "/private/tmp/vdr_check_u150.py",
+  "key_finding": "The complete P2P chain is proven at source level: button_approve() in purchase_stock overrides the base at line 179 and is the single entry point that calls _create_picking(); _action_done() in stock_account at line 177 both values the movement and posts the SVL journal entry atomically; qty_received_method is changed from 'manual' to 'stock_moves' for consumable products by the override at purchase_stock/models/purchase_order_line.py:37, making receipt quantities automatic; and AP reconciliation closes the loop via account.move.line.reconcile() creating account.partial.reconcile records.",
+  "chain_summary": [
+    "PO confirm → button_approve() [purchase_stock override L179] → _create_picking() [L377]",
+    "_create_picking() → _prepare_picking() + order_line._create_stock_moves() → moves._action_confirm() + _action_assign()",
+    "Receipt validate → _action_done() [stock_account L177] → _set_value() + _create_account_move() [L193] → SVL posted",
+    "qty_received computed from done moves [purchase_stock/purchase_order_line.py:37]",
+    "invoice_status = 'to invoice' computed via _get_invoiced() [purchase/purchase_order.py:47]",
+    "action_create_invoice() [purchase/purchase_order.py:760] → draft in_invoice account.move",
+    "action_post() / _post() [account/account_move.py:5569] → state=posted",
+    "AP payment → destination_account_id = property_account_payable_id [account/account_payment.py:630]",
+    "account.move.line.reconcile() [account/account_move_line.py:3142] → account.partial.reconcile"
+  ],
+  "source_modules": [
+    "purchase",
+    "purchase_stock",
+    "stock",
+    "stock_account",
+    "account",
+    "account_payment"
+  ],
+  "read_date": "2026-10-02",
+  "model": "claude-sonnet-4-6"
+}
