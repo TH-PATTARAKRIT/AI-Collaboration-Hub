@@ -1,0 +1,220 @@
+{
+  "unit_id": "U168",
+  "module": "hr_recruitment",
+  "description": "Hiring and applicant workflow — recruitment pipeline management",
+  "group": "G09",
+  "priority": "P2",
+  "status": "PRESENT",
+  "odoo_version": "19.0.post20260921",
+  "module_version": "1.1",
+  "research_date": "2026-10-02",
+  "researcher": "DeepSeek Worker (STATE03 VDR)",
+
+  "manifest": {
+    "category": "Human Resources/Recruitment",
+    "depends": ["hr", "calendar", "utm", "attachment_indexation", "web_tour", "digest"],
+    "application": true,
+    "license": "LGPL-3",
+    "payroll_integration": false,
+    "analytic_integration": false
+  },
+
+  "models": {
+    "hr.applicant": {
+      "description": "Core applicant/candidate record",
+      "inherits": [
+        "mail.thread.cc",
+        "mail.thread.main.attachment",
+        "mail.thread.blacklist",
+        "mail.thread.phone",
+        "mail.activity.mixin",
+        "utm.mixin",
+        "mail.tracking.duration.mixin"
+      ],
+      "rec_name": "partner_name",
+      "order": "priority desc, sequence, id desc",
+      "track_duration_field": "stage_id",
+      "mailing_enabled": true,
+      "key_fields": {
+        "partner_name": "Char — candidate display name, primary identifier",
+        "job_id": "Many2one hr.job — drives stage/department/user_id computations",
+        "stage_id": "Many2one hr.recruitment.stage — computed, domain scoped to job, group_expand",
+        "priority": "Selection 0-3 (Normal/Good/Very Good/Excellent), default 0",
+        "kanban_state": "Selection normal/done/waiting/blocked, reset on stage change",
+        "refuse_reason_id": "Many2one hr.applicant.refuse.reason, tracked",
+        "meeting_ids": "One2many calendar.event via applicant_id",
+        "employee_id": "Many2one hr.employee — linked after conversion",
+        "application_status": "Computed: ongoing/hired/refused/archived",
+        "date_closed": "Datetime — auto-set when entering hired_stage",
+        "salary_proposed": "Float avg, officer-only",
+        "salary_expected": "Float avg, officer-only",
+        "talent_pool_ids": "Many2many hr.talent.pool (Odoo 19 new)",
+        "pool_applicant_id": "Many2one self — canonical talent record link (Odoo 19 new)",
+        "linkedin_profile": "Char, indexed btree_not_null",
+        "interviewer_ids": "Many2many res.users — notified on assignment",
+        "refuse_date": "Datetime — set on refusal",
+        "applicant_properties": "Properties — definition from job_id"
+      },
+      "key_methods": {
+        "create_employee_from_applicant": "Creates hr.employee from accepted applicant; copies attachments; populates job/dept/email/phone",
+        "archive_applicant": "Opens applicant.get.refuse.reason wizard",
+        "reset_applicant": "Reinserts into first pipeline stage, clears refuse_reason_id",
+        "action_create_meeting": "Opens calendar.event form pre-linked to applicant",
+        "message_new": "Email gateway handler — parses sender, detects job platforms, sets initial stage",
+        "_read_group_stage_ids": "Kanban group expansion — shows global + job-specific stages"
+      }
+    },
+
+    "hr.recruitment.stage": {
+      "description": "Pipeline stages for recruitment",
+      "order": "sequence",
+      "key_fields": {
+        "name": "Char required, translate",
+        "job_ids": "Many2many hr.job — empty = global stage, set = job-specific stage",
+        "hired_stage": "Boolean — triggers date_closed auto-set and no_of_recruitment decrement",
+        "template_id": "Many2one mail.template — auto-email on stage entry",
+        "fold": "Boolean — folded in kanban when empty",
+        "rotting_threshold_days": "Integer — days before applicant becomes stale (0=disabled)",
+        "legend_blocked": "Char — kanban Blocked state label",
+        "legend_waiting": "Char — kanban Waiting state label",
+        "legend_done": "Char — kanban Ready for Next Stage label",
+        "legend_normal": "Char — kanban In Progress label"
+      },
+      "stage_scoping": "Stages with job_ids=False are global; stages with job_ids set appear only for those jobs. _read_group_stage_ids enforces this in kanban."
+    },
+
+    "hr.job": {
+      "description": "Job position — extended by hr_recruitment module",
+      "base_module_fields": {
+        "no_of_recruitment": "Integer 'Target' — expected new hires, must be >= 0",
+        "no_of_employee": "Computed — current employee count in this job"
+      },
+      "recruitment_added_fields": {
+        "no_of_hired_employee": "Computed stored — count of applicants with date_closed set",
+        "application_ids": "One2many hr.applicant",
+        "application_count": "Computed — active applications count",
+        "open_application_count": "Computed — applications not in hired stage",
+        "alias_id": "mail.alias.mixin — job email alias for application intake",
+        "interviewer_ids": "Many2many res.users — job-level interviewers",
+        "industry_id": "Many2one res.partner.industry",
+        "expected_degree": "Many2one hr.recruitment.degree"
+      },
+      "note_odoo19": "The legacy state field ('open'/'recruit') is NOT present in Odoo 19 Community. Job openness is inferred from no_of_recruitment target and application counts."
+    },
+
+    "hr.applicant.refuse.reason": {
+      "description": "Configurable refusal reason codes",
+      "order": "sequence",
+      "fields": {
+        "name": "Char required, translate",
+        "template_id": "Many2one mail.template domain model=hr.applicant — refusal email template",
+        "sequence": "Integer default 10",
+        "active": "Boolean default True"
+      }
+    },
+
+    "hr.talent.pool": {
+      "description": "Named candidate pools for future hiring (NEW Odoo 19)",
+      "inherits": ["mail.thread"],
+      "fields": {
+        "name": "Char required, translate",
+        "company_id": "Many2one res.company",
+        "pool_manager": "Many2one res.users",
+        "talent_ids": "Many2many hr.applicant",
+        "no_of_talents": "Computed Integer",
+        "description": "Html",
+        "categ_ids": "Many2many hr.applicant.category"
+      }
+    },
+
+    "hr.recruitment.degree": {
+      "description": "Education degree levels (e.g. Bachelor, Master)",
+      "used_on": "hr.applicant.type_id"
+    },
+
+    "hr.job.platform": {
+      "description": "Known job board email addresses with regex patterns for applicant name extraction",
+      "used_in": "hr.applicant.message_new() — detects platform emails and extracts candidate name from subject"
+    },
+
+    "calendar.event": {
+      "description": "Extended to add applicant_id FK",
+      "added_field": "applicant_id = Many2one('hr.applicant', ondelete='set null', btree_not_null index)",
+      "behaviour": "Default_get routes to applicant context. Attachments copied from applicant when creating meeting. is_highlighted computed when viewing calendar from applicant."
+    }
+  },
+
+  "security": {
+    "groups": [
+      {
+        "xml_id": "hr_recruitment.group_hr_recruitment_interviewer",
+        "name": "Interviewer",
+        "sequence": 10,
+        "access": "Read own assigned applicants only (job_id.interviewer_ids or applicant.interviewer_ids). No create/unlink. Can refuse applicants and schedule meetings."
+      },
+      {
+        "xml_id": "hr_recruitment.group_hr_recruitment_user",
+        "name": "Officer: Manage all applicants",
+        "sequence": 20,
+        "access": "Full CRUD on all applicants. Implies Interviewer."
+      },
+      {
+        "xml_id": "hr_recruitment.group_hr_recruitment_manager",
+        "name": "Administrator",
+        "sequence": 30,
+        "access": "All Officer rights plus manage activity plans for applicants. Admin and root users included by default."
+      }
+    ],
+    "notable_rules": [
+      "Interviewer ir.rule: domain filters to jobs/applicants where user is in interviewer_ids",
+      "Officer ir.rule: unrestricted domain (1=1)",
+      "Multi-company rule: applicants scoped to user's allowed companies"
+    ]
+  },
+
+  "wizards": [
+    {
+      "model": "applicant.get.refuse.reason",
+      "description": "Refuse applicant(s) with optional email notification. Supports bulk duplicate refusal.",
+      "key_action": "action_refuse_reason_apply() — sets refuse_reason_id, active=False, refuse_date on all applicant_ids (and optionally duplicate_applicant_ids)"
+    },
+    {
+      "model": "applicant.send.mail",
+      "description": "Send ad-hoc email to applicant(s)"
+    },
+    {
+      "model": "talent.pool.add.applicants",
+      "description": "Add one or more applicants to a talent pool"
+    },
+    {
+      "model": "job.add.applicants",
+      "description": "Create applications from talent pool entries for a specific job"
+    }
+  ],
+
+  "claim_count": 22,
+  "claim_ids": [
+    "U168-C01", "U168-C02", "U168-C03", "U168-C04", "U168-C05",
+    "U168-C06", "U168-C07", "U168-C08", "U168-C09", "U168-C10",
+    "U168-C11", "U168-C12", "U168-C13", "U168-C14", "U168-C15",
+    "U168-C16", "U168-C17", "U168-C18", "U168-C19", "U168-C20",
+    "U168-C21", "U168-C22"
+  ],
+
+  "migration_flags": [
+    "BREAKING: hr.job.state field (open/recruit) removed in Odoo 19",
+    "BREAKING: Employee creation method renamed to create_employee_from_applicant()",
+    "NEW_FEATURE: hr.talent.pool and pool_applicant_id (Odoo 19)",
+    "NEW_FEATURE: kanban_state 'waiting' value added",
+    "INFORMATIONAL: No payroll/analytic integration in Community edition"
+  ],
+
+  "evidence_files": {
+    "technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U168_hr_recruitment.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U168_hr_recruitment_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U168_handoff_packet.json"
+  },
+
+  "gate_result": "PASS",
+  "gate_code": "G09-U168-PASS"
+}
