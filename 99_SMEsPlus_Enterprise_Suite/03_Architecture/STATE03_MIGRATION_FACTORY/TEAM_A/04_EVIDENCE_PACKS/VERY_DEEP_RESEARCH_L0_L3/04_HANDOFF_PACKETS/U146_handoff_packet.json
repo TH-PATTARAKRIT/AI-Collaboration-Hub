@@ -1,0 +1,60 @@
+{
+  "unit": "U146",
+  "title": "hr — employee/contract/department deep L3",
+  "group": "G09",
+  "priority": "P2",
+  "date": "2026-10-02",
+  "claims_count": 22,
+  "gate_status": "PENDING",
+  "key_finding": "hr_contract does NOT exist as a standalone community module in Odoo 19 — contract data is integrated into hr as hr.version (versioned snapshots per employee, replacing the old hr.contract model). Migration plans that reference a separate hr_contract module must be revised.",
+  "source_files_read": [
+    "hr/__manifest__.py",
+    "hr/models/hr_employee.py",
+    "hr/models/hr_employee_public.py",
+    "hr/models/hr_department.py",
+    "hr/models/hr_job.py",
+    "hr/models/hr_version.py",
+    "hr/models/hr_contract_type.py",
+    "hr/models/hr_mixin.py",
+    "hr/security/hr_security.xml"
+  ],
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U146_hr_core.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U146_hr_core_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U146_handoff_packet.json"
+  },
+  "claims_summary": {
+    "C1": 21,
+    "C2": 0,
+    "C3": 0,
+    "ABSENT": 1
+  },
+  "migration_alerts": [
+    {
+      "alert_id": "U146-A001",
+      "severity": "HIGH",
+      "message": "hr.contract model does not exist in Odoo 19 Community. It has been superseded by hr.version. Any data migration script referencing hr.contract must be repointed to hr.version.",
+      "affected_fields": ["contract_date_start", "contract_date_end", "wage", "trial_date_end", "contract_type_id", "structure_type_id"]
+    },
+    {
+      "alert_id": "U146-A002",
+      "severity": "MEDIUM",
+      "message": "group_hr_manager_all_accounts does not exist in the community module. Only group_hr_user and group_hr_manager are defined. Any permission mapping referencing the third group must be reconciled.",
+      "affected_fields": ["security_groups"]
+    },
+    {
+      "alert_id": "U146-A003",
+      "severity": "LOW",
+      "message": "analytic_account_id is ABSENT on hr.employee in community. Cost centre linkage requires Enterprise or a bridge module (e.g. hr_payroll_account). SMEsPlus must confirm whether this feature is needed and whether an Enterprise licence covers it.",
+      "affected_fields": ["analytic_account_id"]
+    },
+    {
+      "alert_id": "U146-A004",
+      "severity": "MEDIUM",
+      "message": "hr.employee.active is a stored relation to resource_id.active. Archiving must go through action_archive (not a direct write to active=False) to trigger the departure wizard and clear manager/coach back-references correctly.",
+      "affected_fields": ["active"]
+    }
+  ],
+  "odoo_version": "19.0.post20260921",
+  "scope": "community_only"
+}

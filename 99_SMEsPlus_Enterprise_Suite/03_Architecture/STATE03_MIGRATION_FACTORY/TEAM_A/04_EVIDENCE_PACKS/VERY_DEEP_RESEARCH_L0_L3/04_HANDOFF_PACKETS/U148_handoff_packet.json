@@ -1,0 +1,58 @@
+{
+  "unit": "U148",
+  "title": "account_reports — financial reporting engine deep L3",
+  "group": "G01",
+  "priority": "P1",
+  "date": "2026-10-02",
+  "status": "COMPLETE",
+  "gate": "PASS",
+  "gate_exit_code": 0,
+  "claim_count": 25,
+  "module_presence": "ABSENT",
+  "engine_location": "account/models/account_report.py",
+  "key_finding": "account_reports is an Enterprise-only addon; the Community edition ships the full report-engine framework (models, computation engines, carryover, cross-report aggregation) but provides only the Generic Tax Report as a data record. P&L and Balance Sheet are Enterprise data records.",
+  "models": [
+    "account.report",
+    "account.report.line",
+    "account.report.expression",
+    "account.report.column",
+    "account.report.external.value"
+  ],
+  "computation_engines": [
+    "domain",
+    "tax_tags",
+    "aggregation",
+    "account_codes",
+    "external",
+    "custom"
+  ],
+  "community_reports_data": [
+    "generic_tax_report",
+    "generic_tax_report_account_tax",
+    "generic_tax_report_tax_account"
+  ],
+  "enterprise_only_reports": [
+    "Profit and Loss",
+    "Balance Sheet",
+    "General Ledger",
+    "Audit Trail",
+    "Partner Ledger",
+    "Aged Receivable",
+    "Aged Payable"
+  ],
+  "carryover_convention": {
+    "source_label_prefix": "_carryover_",
+    "target_label_prefix": "_applied_carryover_"
+  },
+  "tax_closing_field": {
+    "model": "account.tax.repartition.line",
+    "field": "use_in_tax_closing",
+    "pointer": "account/models/account_tax.py:5341"
+  },
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U148_account_reports.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U148_account_reports_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U148_handoff_packet.json"
+  },
+  "gate_script": "/private/tmp/vdr_check_u148.py"
+}
