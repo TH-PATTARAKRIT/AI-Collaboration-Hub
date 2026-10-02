@@ -1,0 +1,74 @@
+{
+  "unit": "U97",
+  "title": "Survey + CRM Integration (L3/L4)",
+  "phase": "Second-Pass Depth Closure — P2 Supporting Domains",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "modules": ["survey", "survey_crm"],
+  "l_levels": ["L3", "L4"],
+  "proof_layers": ["P4"],
+  "predecessors": ["U46", "U58"],
+  "claim_count": 32,
+  "function_ids": [
+    "U97-F01",
+    "U97-F02",
+    "U97-F03",
+    "U97-F04",
+    "U97-F05",
+    "U97-F06",
+    "U97-F07",
+    "U97-F08"
+  ],
+  "key_findings": {
+    "survey_model": {
+      "name": "survey.survey",
+      "survey_type_values": ["survey", "live_session", "assessment", "custom"],
+      "access_mode_values": ["public", "token"],
+      "scoring_type_values": [
+        "no_scoring",
+        "scoring_with_answers_after_page",
+        "scoring_with_answers",
+        "scoring_without_answers"
+      ],
+      "users_login_required": "Boolean; forces authentication regardless of access_mode",
+      "note": "No 'state' field on survey.survey itself; state lives on user_input"
+    },
+    "user_input_model": {
+      "name": "survey.user_input",
+      "states": ["new", "in_progress", "done"],
+      "note": "No 'invalidated' state exists in Odoo 19 community",
+      "mark_done_method": "_mark_done()",
+      "mark_in_progress_method": "_mark_in_progress()"
+    },
+    "access_control": {
+      "token_based": "access_mode='token' restricts to invited users only",
+      "login_required": "users_login_required Boolean enforces authentication",
+      "authentication_mode": "access_mode='authentication' requires user or partner",
+      "internal_mode": "access_mode='internal' requires internal employee"
+    },
+    "crm_integration": {
+      "mechanism": "Extension of survey.survey and survey.user_input (not a new model)",
+      "lead_trigger_field": "survey.question.answer.generate_lead Boolean",
+      "lead_creation_hook": "_mark_done() override in survey_crm calls _create_leads_from_generative_answers()",
+      "live_session_hook": "action_end_session() override on survey.survey",
+      "lead_type": "opportunity (not raw lead)",
+      "excluded_survey_type": "assessment",
+      "back_reference": "crm.lead.origin_survey_id Many2one to survey.survey"
+    }
+  },
+  "source_files_read": [
+    "survey/models/survey_survey.py",
+    "survey/models/survey_user_input.py",
+    "survey/models/ir_http.py",
+    "survey_crm/models/survey_survey.py",
+    "survey_crm/models/survey_user_input.py",
+    "survey_crm/models/survey_question.py",
+    "survey_crm/models/survey_question_answer.py",
+    "survey_crm/models/crm_lead.py"
+  ],
+  "gate_script": "/tmp/vdr_check_u97.py",
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U97_survey_crm_integration.md",
+    "02_NEUTRAL_KNOWLEDGE/U97_survey_crm_integration_NEUTRAL.md"
+  ]
+}
