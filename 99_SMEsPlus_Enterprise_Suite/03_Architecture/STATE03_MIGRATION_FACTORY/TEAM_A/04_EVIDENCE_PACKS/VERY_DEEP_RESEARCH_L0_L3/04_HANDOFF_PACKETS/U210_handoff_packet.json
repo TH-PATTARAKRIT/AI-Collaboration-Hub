@@ -1,7 +1,7 @@
 {
   "unit": "U210",
   "module": "product_supplierinfo",
-  "sha": "PENDING_COMMIT",
+  "sha": "2a0de68143730e5a4aee43e4fda38b5bd6ca5e72",
   "claim_count": 21,
   "gate": "GREEN",
   "migration_flags": [
