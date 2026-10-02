@@ -1,0 +1,29 @@
+{
+  "unit": "U123",
+  "title": "account — Year-End FX Adjustment Close",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "gap_ids": ["GAP-048"],
+  "modules": ["account"],
+  "function_ids": ["MCT-F04", "PCO-F01"],
+  "l_levels": ["L3", "L4"],
+  "proof_layers": ["P1", "P3"],
+  "claim_count": 40,
+  "c1_count": 40,
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "gap_status": {
+    "GAP-048": "PARTIAL"
+  },
+  "key_findings": {
+    "exchange_difference_mechanism": "_create_exchange_difference_moves and _prepare_exchange_difference_move_vals PRESENT in account/models/account_move_line.py:3088 and :2999 — FX difference resolved automatically at reconciliation time",
+    "exchange_move_id_link": "exchange_move_id on AccountPartialReconcile PRESENT at account/models/account_partial_reconcile.py:24 — each partial reconciliation links to its exchange entry",
+    "company_fx_config": "currency_exchange_journal_id, income_currency_exchange_account_id, expense_currency_exchange_account_id on ResCompany at account/models/company.py:133-143 — three required config fields",
+    "unrealized_revaluation_wizard": "ABSENT — no unrealized FX revaluation wizard found anywhere in account module wizard directory; confirmed Enterprise-only feature (per U103)",
+    "_get_adjustment_entry": "ABSENT — method not present anywhere in Community account module",
+    "year_end_close": "No year-end FX close wizard; only period lock dates and secure-entries hash wizard exist; no P&L closing journal entry wizard in Community"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U123_fx_yearend_adjustment.md",
+    "02_NEUTRAL_KNOWLEDGE/U123_fx_yearend_adjustment_NEUTRAL.md"
+  ]
+}
