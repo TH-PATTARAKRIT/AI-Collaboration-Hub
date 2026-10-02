@@ -1,0 +1,52 @@
+{
+  "unit": "U77",
+  "title": "Full Procure-to-Pay Chain",
+  "phase": "Second-Pass Depth Closure \u2014 P1 Core Business",
+  "date": "2026-10-02",
+  "gate_status": "PASS",
+  "claim_count": 54,
+  "neutral_ref_count": 28,
+  "l_levels": [
+    "L4",
+    "L5",
+    "L11"
+  ],
+  "proof_layers": [
+    "P4",
+    "P5"
+  ],
+  "capability_dimension": "Full Procure-to-Pay chain (L5/L11)",
+  "modules_covered": [
+    "purchase",
+    "purchase_stock",
+    "stock",
+    "stock_account",
+    "account",
+    "account_payment"
+  ],
+  "chain_steps": [
+    "PO confirm (button_confirm \u2192 button_approve, state='purchase')",
+    "Receipt created (_create_picking via purchase_stock override)",
+    "Receipt validate (_action_done: _set_value at PO price, no account.move for standard receipt)",
+    "Vendor bill create (action_create_invoice \u2192 account.move move_type=in_invoice)",
+    "Vendor bill post (_post: DR stock_valuation, CR payable; SVL updated to billed amount)",
+    "Anglo-Saxon adjustment (optional: DR price_diff, CR stock_valuation when bill_price != standard_cost)",
+    "Payment register (_post_payments then _reconcile_payments)",
+    "Payment journal entry (DR payable, CR bank/outstanding)",
+    "Reconcile (reconcile() on payable lines: amount_residual=0, bill state='paid')",
+    "PO fully billed (invoice_status='invoiced' when qty_to_invoice=0 for all lines)"
+  ],
+  "key_architectural_notes": [
+    "NO accounting entry at receipt for standard supplier\u2192stock moves in Odoo 19. The valuation_account_id guard in _should_create_account_move() prevents entry when neither source (supplier) nor dest (internal stock) location has valuation_account_id set.",
+    "Bill posting is the singular accounting event: DR stock_valuation + CR payable created at _post().",
+    "SVL value update: after bill post, _set_value() on linked incoming moves updates move.value from PO price to actual billed amount.",
+    "Anglo-Saxon accounting (optional): _stock_account_prepare_anglo_saxon_in_lines_vals() adds price difference lines when company.anglo_saxon_accounting=True and product cost_method=standard.",
+    "Payment reconciliation: wizard._post_payments() then _reconcile_payments() matches payable AMls on both sides."
+  ],
+  "evidence_file": "01_RESTRICTED_TECHNICAL_EVIDENCE/U77_procure_to_pay_chain.md",
+  "neutral_file": "02_NEUTRAL_KNOWLEDGE/U77_procure_to_pay_chain_NEUTRAL.md",
+  "gate_script": "/tmp/vdr_check_u77.py",
+  "gate_result": "PASS (exit 0, claims=54, claim-check-failures=0, neutral-leak-tokens=0)",
+  "branch": "claude/local-odoo-source-research",
+  "odoo_source_root": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons"
+}
