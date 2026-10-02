@@ -1,0 +1,69 @@
+u_unit	primary_modules	P1_source_structural	P2_runtime_reachability	P3_config_role_condition	P4_cross_module_scenario	P5_reconciliation_adversarial	gap_notes
+U01	base	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS via kernel/ORM dependency graph; P2 NOT_PROVEN — no Odoo runtime executed; P3 UNKNOWN — ACL rules found in source, not confirmed against live DB beyond restored config
+U02	product,uom,analytic	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS via sale/purchase/stock dependency tracing; analytic distribution cross-module traced; P2 NOT_PROVEN
+U03	mail,audit,automation	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS via mail integration across accounts/sales/stock; audit log chatter tracing; P3 UNKNOWN — mail server config not runtime verified
+U04	sale.order confirm	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS via C01 order-to-cash chain; stock move creation cross-module traced; P3 UNKNOWN — group_sale_order_confirm role not runtime verified
+U05	sale + delivery + invoice	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS via C01 chain; invoicing policy SDV-F04 cross-module partially proven; P2 NOT_PROVEN — COGS posting runtime not confirmed
+U06	purchase.order confirm	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS via C02 procure-to-pay chain; bill generation cross-module traced; P3 UNKNOWN — purchase lock date not runtime verified
+U07	purchase + receipt + valuation	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS via C02 chain; GRV-F04 valuation routing source traced; P2 NOT_PROVEN — perpetual valuation flag OFF in restored DB
+U08	stock.picking,stock.move	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS via C01/C02 chains; multi-step routing source traced; P2 NOT_PROVEN — physical transfer execution not runtime verified
+U09	stock.quant,lot,serial	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	P4 GAP — adjustment financial posting requires account module traced but not fully verified; P3 UNKNOWN — lot access rules not confirmed
+U10	stock.valuation.layer,AVCO,FIFO	PASS	NOT_PROVEN	NOT_PROVEN	PASS	NOT_PROVEN	P3 NOT_PROVEN — perpetual valuation config OFF in restored DB; P4 PASS via account_move generation cross-module trace; P2 NOT_PROVEN
+U11	account.move lifecycle	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — account.move/journal.entry cross-module triggers sourced; PCO-F04 physical-date P3 UNKNOWN
+U12	account payment + reconcile	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS via C01/C02 payment close steps; payment register wizard P2 NOT_PROVEN; SDV-F07 credit note P3 UNKNOWN
+U13	account.tax,chart_of_accounts	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — tax group/fiscal position cross-module sourced; P2 NOT_PROVEN — tax computation runtime not verified; P3 UNKNOWN
+U14	mrp.bom,mrp.production	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — BOM/MO to stock move cross-module traced; P2 NOT_PROVEN — MO state transitions not runtime verified; P3 UNKNOWN
+U15	mrp_account,mrp_subcontracting	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — subcontracting receipt/invoice cross-module traced; P2 NOT_PROVEN — account posting at MO close not runtime verified
+U16	project,hr_timesheet,hr_expense	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — timesheet→account_analytic cross-module traced; expense validation cross-module traced; P2 NOT_PROVEN
+U17	hr.employee,fleet,calendar	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — leave/holiday account integration traced; fleet log cross-module traced; P3 UNKNOWN — hr ACL rules not runtime verified
+U18	crm.lead,mass_mailing,event	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — CRM lead-to-sale conversion cross-module traced; P2 NOT_PROVEN — email campaign delivery not runtime verified
+U19	website,portal,im_livechat	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	P4 GAP — website/portal integration with account/sale cross-module GAP; livechat CRM integration P4 GAP; P2 NOT_PROVEN
+U20	payment (all providers)	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	CLAUDE_VERIFIED; P4 PASS — payment→account.move cross-module proven; webhook delivery P2 NOT_PROVEN; P3 UNKNOWN — provider config per-company not runtime verified
+U21	auth_passkey,security,acl	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	P4 GAP — MCT-F05 warehouse access cross-module proof incomplete; P3 UNKNOWN — record rules confirmed in source/DB but not runtime enforced
+U22	core_bridges (edi_proxy,api_doc)	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	P4 GAP — EDI proxy chain to account cross-module not fully traced; cloud_storage API P2 NOT_PROVEN
+U23	not-installed modules	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	P1 PASS — source studied; P4 GAP — not installed so cross-module triggers cannot be confirmed; P2 NOT_PROVEN
+U24	l10n_th,account_qr_code_emv	PASS	NOT_PROVEN	NOT_PROVEN	PASS	NOT_PROVEN	CLAUDE_VERIFIED; P4 PASS — Thai WHT cross-module account traced; P3 NOT_PROVEN — WHT config paths require Thai company setup not in restored DB
+U25	multicurrency,account_peppol	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	CLAUDE_VERIFIED; P4 PASS — currency revaluation→account.move traced; P3 UNKNOWN — multi-currency per-company config not runtime verified
+U26	ir.translation,l10n_latam	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	CLAUDE_VERIFIED; P4 PASS — translation framework cross-module interaction traced; P2 NOT_PROVEN — language switch runtime not verified
+U27	account_peppol,edi_ubl_cii,localization	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	CLAUDE_VERIFIED; P4 PASS — PEPPOL/UBL→account.edi chain traced; P2 NOT_PROVEN — EDI sending not runtime verified
+U28	l10n_th + intercompany	PASS	NOT_PROVEN	NOT_PROVEN	PASS	NOT_PROVEN	CLAUDE_VERIFIED; P4 PASS — intercompany account.move flow sourced; P3 NOT_PROVEN — requires multi-company setup not in restored DB (single-company)
+U29	residual bridges	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	CLAUDE_VERIFIED; P4 PASS — bridge modules traced to primary modules; P3 UNKNOWN
+U30	tax_line,cash_basis,totals	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — cash basis journal entry cross-module traced; P2 NOT_PROVEN — cash basis execution runtime not verified
+U31	account.tax.report	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	P4 GAP — tax report engine integration with fiscal positions cross-module not fully proven; P2 NOT_PROVEN
+U32	taxed flows (vendor,POS,special)	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — POS/vendor bill tax application cross-module traced; L6 edge cases P3 UNKNOWN
+U33	account core remaining (large)	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — bank reconciliation widget→account.move cross-module traced; P2 NOT_PROVEN — JS reconciliation widget P2 NOT_PROVEN
+U34	account_edi,account_fleet,api_doc	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — EDI document→account.move cross-module traced; fleet cost allocation traced
+U35	auth_signup,barcodes,base_setup	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — signup flow→mail→portal cross-module traced; barcode GS1 cross-module traced
+U36	base_automation,data_recycle	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — automation rules cross-module triggers sourced; P2 NOT_PROVEN — scheduled action execution not runtime verified
+U37	base_family,bus,calendar,cloud	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — bus→livechat cross-module traced; cloud storage→ir.attachment traced
+U38	crm,event,fleet,gamification,google	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — CRM/event/fleet/google sync cross-module traced; Google OAuth P2 NOT_PROVEN
+U39	hr,google_calendar,google_gmail	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — hr.leave→calendar cross-module traced; google calendar sync P2 NOT_PROVEN
+U40	hr_family,html_editor	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — hr.work_entry→payslip cross-module traced; html_editor→website/mail cross-module traced
+U41	html_builder,http,iap,livechat	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — IAP credits→SMS/email cross-module traced; P2 NOT_PROVEN — IAP credit deduction runtime not verified
+U42	mail_remaining,mail_group	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — mail.group→mail.message cross-module traced; P2 NOT_PROVEN — email gateway delivery not runtime verified
+U43	mail_bot,maintenance,microsoft	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	P4 GAP — microsoft calendar sync cross-module integration incomplete; maintenance→purchase cross-module GAP
+U44	mrp_bridges,onboarding,partner	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	P4 GAP — partner autocomplete external API P2/P4 NOT_PROVEN; onboarding→sale/account cross-module partial
+U45	payment_ext,phone,portal,privacy,product	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	P4 GAP — privacy lookup→sale/partner cross-module not fully traced; P3 UNKNOWN
+U46	project_purchase,resource,survey	PASS	NOT_PROVEN	UNKNOWN	PASS	NOT_PROVEN	P4 PASS — project→account analytic cross-module deeply traced; resource scheduling cross-module traced
+U47	account_remaining	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — low claim count; cross-module integration not traced
+U48	account_edi_ubl_cii (depth)	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — UBL/CII format mapping cross-module integration at breadth only
+U49	auth_remaining	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — TOTP auth cross-module not traced
+U50	base_remaining2	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — breadth only
+U51	crm_event_hr_bridges	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — bridge modules at breadth
+U52	mail_remaining2	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — breadth only
+U53	mail_bridges,mrp_family	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — breadth only
+U54	payment_product_remaining	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — breadth only
+U55	MISSING	MISSING	MISSING	MISSING	MISSING	MISSING	EVIDENCE FILE MISSING — no source pointers exist for this unit; all five proof layers absent
+U56	sale_bridges,sms,snailmail,spreadsheet	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — breadth only
+U57	stock_remaining	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — stock_picking_batch P2 NOT_PROVEN
+U58	stock_account,survey,utm	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — stock_account integration at breadth
+U59	web_framework,bridges	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — breadth only
+U60	website_core,extensions	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — breadth only
+U61	website_portal,bridges	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — breadth only
+U62	peppol,iot,lunch,mailing,payment	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — heterogeneous batch; IoT P2 NOT_PROVEN
+U63	payment_providers_batch2	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — webhook delivery P2 NOT_PROVEN
+U64	point_of_sale (core)	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — POS session close→account.move cross-module NOT_PROVEN; P2 NOT_PROVEN
+U65	website_sale,event	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — breadth only
+U66	iot,pos_restaurant,mailing	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — IoT hardware runtime P2 NOT_PROVEN
+U67	pos_providers,website_extensions	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — breadth only
+U68	pos_peppol_relay	PASS	NOT_PROVEN	UNKNOWN	GAP	NOT_PROVEN	GATE_PASS_ONLY; P4 GAP — relay/PEPPOL at breadth

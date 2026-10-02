@@ -1,0 +1,69 @@
+u_unit	primary_modules	L1	L2	L3	L4	L5	L6	L7	L8	L9	L10	L11	L12	depth_notes
+U01	base (platform kernel)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	UNKNOWN	476 claims; MECHANICAL_ONLY; base ORM/models well studied; L4 PASS via cross-module dependency tracing; L5+ source-only insufficient
+U02	product,uom,analytic	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	UNKNOWN	494 claims; MECHANICAL_ONLY; product/UOM/analytic studied; L4 PASS via sale/purchase/stock dependencies; multi-company analytic GAP
+U03	mail,audit_log,base_automation	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	UNKNOWN	300 claims; MECHANICAL_ONLY; mail engine, audit trail studied; L4 PASS via mail integration across modules; L7 audit trail incomplete
+U04	sale_order (confirm flow)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	458 claims; MECHANICAL_ONLY; C01 chain provides L4 partial; order-to-cash L5 GAP; lock/confirm constraints L7 partially proven
+U05	sale + delivery + invoicing	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	477 claims; MECHANICAL_ONLY; C01 supplemental extends L4; invoicing policy SDV-F04 L4 partial; COGS timing P2 NOT_PROVEN
+U06	purchase_order (confirm)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	339 claims; MECHANICAL_ONLY; C02 chain extends L4; GRV-F06 three-way match L4 partial
+U07	purchase + receipt + valuation	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	373 claims; MECHANICAL_ONLY; C02 provides L4; GRV-F04/F05 valuation L7 GAP; PDT-F02/F03 L6 not proven
+U08	stock transfers (all types)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	UNKNOWN	597 claims; MECHANICAL_ONLY; high claim count; inter-warehouse moves L4 partial; multi-company stock GAP
+U09	stock.quant,lot,serial,adjustment	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	UNKNOWN	333 claims; MECHANICAL_ONLY; IAV-F01–F04 partially covered; IAV-F03/F04 P2 NOT_PROVEN
+U10	stock valuation (SVL,AVCO,FIFO)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	365 claims; MECHANICAL_ONLY; perpetual flag OFF in test DB; AVCO/FIFO source traced; L11 NOT_PROVEN
+U11	account.move lifecycle	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	420 claims; MECHANICAL_ONLY; PCO-F04 L7 UNKNOWN; RCN-F02 backdating L8 GAP
+U12	account payment + reconcile	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	446 claims; MECHANICAL_ONLY; payment register wizard P2 NOT_PROVEN; SDV-F07 credit note L6 GAP
+U13	account.tax,chart_of_accounts,fiscal	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	484 claims; MECHANICAL_ONLY; tax grid / tag architecture studied; runtime tax computation P2 NOT_PROVEN
+U14	mrp.bom,mrp.production (core MO)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	536 claims; MECHANICAL_ONLY; BRP-F01/F08/F09 studied; MFG-F01/F02 source traced but P2 NOT_PROVEN
+U15	mrp_account,subcontracting	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	355 claims; MECHANICAL_ONLY; BRP-F03 subcontracting source traced; account integration P4 partial
+U16	project,hr_timesheet,hr_expense	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	449 claims; MECHANICAL_ONLY; project/timesheet flow studied; expense integration L4 partial
+U17	hr,fleet,calendar	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	499 claims; MECHANICAL_ONLY; hr.employee,fleet,calendar studied; L7 ACL partially proven
+U18	crm,mass_mailing,event	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	470 claims; MECHANICAL_ONLY; CRM lead pipeline studied; event registration L4 partial
+U19	website,portal,im_livechat	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	305 claims; MECHANICAL_ONLY; website rendering pipeline studied; livechat P2 NOT_PROVEN
+U20	payment providers (all)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	NOT_PROVEN	348 claims; CLAUDE_VERIFIED; payment provider architecture proven; webhook P2 NOT_PROVEN; L12 NOT_PROVEN (no adversarial run)
+U21	auth_passkey,security,acl	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	519 claims; MECHANICAL_ONLY; auth architecture studied; MCT-F05 warehouse ACL L7 incomplete
+U22	core bridges (edi_proxy,api_doc)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	546 claims; MECHANICAL_ONLY; bridge architecture studied; cloud connectivity P2 NOT_PROVEN
+U23	not-installed modules (auth,account ext)	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	508 claims; MECHANICAL_ONLY; modules not installed — L4 GAP by definition; source-only evidence
+U24	l10n_th,account_qr_code_emv	PASS	PASS	PASS	PASS	GAP	GAP	NOT_PROVEN	GAP	GAP	GAP	NOT_PROVEN	NOT_PROVEN	260 claims; CLAUDE_VERIFIED; Thai chart of accounts, WHT structure proven; runtime L7 NOT_PROVEN
+U25	multicurrency,account_peppol	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	NOT_PROVEN	299 claims; CLAUDE_VERIFIED; currency revaluation source traced; multi-company GAP
+U26	base_lang,ir.translation,l10n_latam	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	NOT_PROVEN	251 claims; CLAUDE_VERIFIED; translation framework studied; runtime language switch P2 NOT_PROVEN
+U27	account_peppol,edi_ubl_cii,l10n localization	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	NOT_PROVEN	285 claims; CLAUDE_VERIFIED; PEPPOL/UBL structure studied; EDI runtime NOT_PROVEN
+U28	l10n_th + intercompany account	PASS	PASS	PASS	PASS	GAP	GAP	NOT_PROVEN	GAP	NOT_PROVEN	GAP	NOT_PROVEN	NOT_PROVEN	296 claims; CLAUDE_VERIFIED; MCT-F02 intercompany studied but single-company DB only; L9 NOT_PROVEN
+U29	residual bridges (account,sale,stock)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	NOT_PROVEN	410 claims; CLAUDE_VERIFIED; bridge modules studied; L5+ GAP
+U30	tax_line_sync,cash_basis,totals	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	356 claims; MECHANICAL_ONLY; cash basis accounting source traced; runtime P2 NOT_PROVEN
+U31	tax_report,account.tax.report	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	270 claims; MECHANICAL_ONLY; tax reporting tags studied; runtime report generation P2 NOT_PROVEN
+U32	taxed_flows (vendor bill,POS,special)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	225 claims; MECHANICAL_ONLY; special tax flows source traced; L6 edge cases GAP
+U33	account core remaining (large module)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	510 claims; MECHANICAL_ONLY; account.move balance checks studied; bank recon widget P2 NOT_PROVEN
+U34	account_edi,account_fleet,api_doc	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	373 claims; MECHANICAL_ONLY; EDI document lifecycle studied; runtime EDI send P2 NOT_PROVEN
+U35	auth_signup,barcodes,base_setup	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	392 claims; MECHANICAL_ONLY; auth/signup flow studied; barcode parsing studied
+U36	base remaining (base_automation,data_recycle)	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	349 claims; MECHANICAL_ONLY; automation rules source traced; scheduled action execution P2 NOT_PROVEN
+U37	base_family,bus,calendar,cloud_storage	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	472 claims; MECHANICAL_ONLY; bus/longpolling studied; cloud storage API studied
+U38	crm,event,fleet,gamification,google	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	505 claims; MECHANICAL_ONLY; gamification studied; google integration P2 NOT_PROVEN
+U39	hr,google_calendar,google_gmail	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	549 claims; MECHANICAL_ONLY; HR Google sync studied; OAuth flows P2 NOT_PROVEN
+U40	hr_family,html_editor	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	686 claims; MECHANICAL_ONLY; highest claim count single unit; html_editor deeply studied
+U41	html_builder,http_routing,iap,im_livechat	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	359 claims; MECHANICAL_ONLY; IAP credit system source traced; livechat P2 NOT_PROVEN
+U42	mail (remaining),mail_group	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	411 claims; MECHANICAL_ONLY; mail thread management studied; notification delivery P2 NOT_PROVEN
+U43	mail_bot,maintenance,microsoft	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	156 claims; MECHANICAL_ONLY; lower claim count; microsoft OAuth P2 NOT_PROVEN; L3 partial
+U44	mrp_bridges,onboarding,partner_autocomplete	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	193 claims; MECHANICAL_ONLY; lower claim count; partner autocomplete API P2 NOT_PROVEN
+U45	payment_ext,phone_validation,portal,privacy,product	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	238 claims; MECHANICAL_ONLY; portal access studied; payment provider config partially studied
+U46	project_purchase,resource,survey	PASS	PASS	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	1198 claims; MECHANICAL_ONLY; highest single-unit claim count; project/resource/survey deeply studied; L4 PASS via inter-module tracing
+U47	account remaining (account_add_gln etc.)	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	150 claims; GATE_PASS_ONLY; low claim count; L3 GAP likely; DEEPSEEK-reported
+U48	account_edi_ubl_cii (deep)	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	121 claims; GATE_PASS_ONLY; UBL/CII format mapping GAP; L3 depth uncertain
+U49	auth_remaining (auth_totp etc.)	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	100 claims; GATE_PASS_ONLY; TOTP/passkey auth studied at breadth only
+U50	base_remaining2	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	155 claims; GATE_PASS_ONLY; base utility modules at breadth
+U51	crm_event_hr_bridges	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	105 claims; GATE_PASS_ONLY; CRM/event/HR bridge modules at breadth
+U52	mail_remaining2	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	155 claims; GATE_PASS_ONLY; mail gateway/alias remaining at breadth
+U53	mail_bridges,mrp_family	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	125 claims; GATE_PASS_ONLY; mail plugin / mrp bridge at breadth
+U54	payment_product_remaining	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	130 claims; GATE_PASS_ONLY; payment product bridge at breadth
+U55	MISSING	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	EVIDENCE FILE MISSING — no restricted or neutral file exists — all levels unknown
+U56	sale_bridges,sms,snailmail,social,spreadsheet	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	125 claims; GATE_PASS_ONLY; sale/sms bridges at breadth; spreadsheet at breadth
+U57	stock_remaining (stock_picking_batch etc.)	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	160 claims; GATE_PASS_ONLY; stock remaining at breadth; batch picking P2 NOT_PROVEN
+U58	stock_account,survey,utm	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	150 claims; GATE_PASS_ONLY; stock_account integration at breadth
+U59	web_framework,bridges	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	105 claims; GATE_PASS_ONLY; web framework bridges at breadth
+U60	website_core,extensions	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	105 claims; GATE_PASS_ONLY; website core extensions at breadth
+U61	website_portal_bridges	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	130 claims; GATE_PASS_ONLY; website portal at breadth
+U62	peppol,iot,lunch,mailing,payment_providers	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	152 claims; GATE_PASS_ONLY; heterogeneous batch at breadth
+U63	payment_providers_batch2	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	145 claims; GATE_PASS_ONLY; payment providers at breadth; webhook P2 NOT_PROVEN
+U64	pos_core (point_of_sale)	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	80 claims; GATE_PASS_ONLY; POS session lifecycle at breadth; closing reconciliation P2 NOT_PROVEN
+U65	website_sale,event	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	125 claims; GATE_PASS_ONLY; website_sale at breadth
+U66	iot,pos_restaurant,mailing	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	88 claims; GATE_PASS_ONLY; IoT/restaurant POS at breadth; IoT runtime NOT_PROVEN
+U67	pos_providers,website_extensions	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	105 claims; GATE_PASS_ONLY; POS payment providers at breadth
+U68	pos_providers_peppol_relay	PASS	PASS	GAP	GAP	GAP	GAP	GAP	GAP	GAP	GAP	NOT_PROVEN	UNKNOWN	91 claims; GATE_PASS_ONLY; PEPPOL/POS relay at breadth
