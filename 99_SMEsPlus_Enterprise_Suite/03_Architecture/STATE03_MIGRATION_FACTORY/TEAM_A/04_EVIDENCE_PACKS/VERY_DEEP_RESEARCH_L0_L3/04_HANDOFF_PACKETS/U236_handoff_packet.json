@@ -1,0 +1,226 @@
+{
+  "unit": "U236",
+  "module": "uom_uom_packaging",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 24,
+  "gate": "GREEN",
+  "status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "migration_flags": [
+    {
+      "flag": "UOM_CATEGORY_REMOVED",
+      "severity": "HIGH",
+      "description": "uom.uom in v19 defines no category_id field and no uom.category model is used by the unit model; domains and constraints that relied on a shared category must be rewritten. Only a leftover translation entry (uom/i18n/is.po) still names the old field. The v16/v17 side of this statement is UNVERIFIED-FROM-SOURCE.",
+      "source": "uom/models/uom_uom.py:17-49; uom/i18n/is.po:64-68"
+    },
+    {
+      "flag": "UOM_TYPE_REMOVED",
+      "severity": "HIGH",
+      "description": "The bigger/smaller/reference uom_type selection no longer exists; a unit is a node in a tree and a root is simply a unit with no relative_uom_id.",
+      "source": "uom/models/uom_uom.py:17-49; uom/i18n/is.po:54-62"
+    },
+    {
+      "flag": "FACTOR_INV_REMOVED",
+      "severity": "HIGH",
+      "description": "The factor_inv (Bigger Ratio) field is absent in v19; the Contains ratio (relative_factor) on a parent-linked unit replaces it. Direction of the ratio is inverted relative to older versions (v19 side verified, older side UNVERIFIED-FROM-SOURCE), so data migration must recompute rather than copy.",
+      "source": "uom/models/uom_uom.py:17-49; uom/i18n/is.po:54-62"
+    },
+    {
+      "flag": "RELATIVE_UOM_TREE_ADDED",
+      "severity": "HIGH",
+      "description": "New parent field relative_uom_id (_parent_name) with ondelete cascade, related_uom_ids (inverse One2many), and relative_factor default 1; units form a tree rather than category lists.",
+      "source": "uom/models/uom_uom.py:17-49"
+    },
+    {
+      "flag": "FACTOR_STORED_RECURSIVE_ABSOLUTE",
+      "severity": "HIGH",
+      "description": "factor is a stored recursive compute equal to relative_factor times the parent's factor (or relative_factor for a root); any code that wrote factor directly must write relative_factor and relative_uom_id instead.",
+      "source": "uom/models/uom_uom.py:69-75"
+    },
+    {
+      "flag": "FACTOR_DIRECTION_NOTE",
+      "severity": "HIGH",
+      "description": "_compute_quantity multiplies by the source factor and divides by the target factor; a custom conversion copied from an older release must be re-derived against this direction.",
+      "source": "uom/models/uom_uom.py:147-176"
+    },
+    {
+      "flag": "ROUNDING_GLOBAL_COMPUTED_NONSTORED",
+      "severity": "MEDIUM",
+      "description": "rounding is a non-stored compute equal to 10 to the negative Product Unit decimal precision; per-unit rounding values no longer exist and the two-digit shipped setting gives 0.01 for every unit.",
+      "source": "uom/models/uom_uom.py:62-67; uom/data/uom_data.xml:5-191"
+    },
+    {
+      "flag": "ROUNDING_METHODS_FIVE",
+      "severity": "LOW",
+      "description": "float_utils supports five rounding methods; _compute_quantity defaults to UP while _check_qty defaults to HALF-UP.",
+      "source": "uom/models/uom_uom.py:147-194; odoo/tools/float_utils.py"
+    },
+    {
+      "flag": "RAISE_IF_FAILURE_UNUSED",
+      "severity": "MEDIUM",
+      "description": "The raise_if_failure parameter of _compute_quantity is accepted but never read, its docstring still mentions categories, and seven callers pass it as False; code that relied on an error for incompatible units no longer gets one.",
+      "source": "uom/models/uom_uom.py:153-161"
+    },
+    {
+      "flag": "UNRELATED_TREE_SILENT_CONVERSION",
+      "severity": "HIGH",
+      "description": "Converting between units that belong to different root trees yields a number silently; _has_common_reference exists as an opt-in check with 14 call sites and must be called explicitly where a guard is needed.",
+      "source": "uom/models/uom_uom.py:147-176"
+    },
+    {
+      "flag": "SAME_UNIT_STILL_ROUNDED",
+      "severity": "LOW",
+      "description": "Identical source and target units skip scaling but are still rounded when rounding is requested.",
+      "source": "uom/models/uom_uom.py:147-176"
+    },
+    {
+      "flag": "CHECK_QTY_SINGLE_CONSUMER",
+      "severity": "LOW",
+      "description": "_check_qty (round to whole packagings) has one production caller, the full-packaging reservation in stock.quant.",
+      "source": "uom/models/uom_uom.py:178-194; stock/models/stock_quant.py:851-853"
+    },
+    {
+      "flag": "PRODUCT_PACKAGING_MODEL_REMOVED",
+      "severity": "HIGH",
+      "description": "No addon code defines product.packaging in this release; only leftover translation entries name it. Packaging is expressed by additional units (product.template.uom_ids) plus product.uom barcode link records. The older-version model behaviour is UNVERIFIED-FROM-SOURCE.",
+      "source": "purchase/i18n/en_AU.po:1782; product/models/product_uom.py:8-16"
+    },
+    {
+      "flag": "PURCHASE_LINE_PACKAGING_FIELDS_ABSENT",
+      "severity": "MEDIUM",
+      "description": "purchase.order.line defines neither a packaging selection field nor a packaging quantity field; only leftover translation entries name them.",
+      "source": "purchase/i18n/en_AU.po:1695-1700"
+    },
+    {
+      "flag": "PRODUCT_UOM_BARCODE_LINK",
+      "severity": "HIGH",
+      "description": "New model product.uom links unit, product variant, required barcode and company; barcode is unique in the database and also refused when already used by a product.",
+      "source": "product/models/product_uom.py:8-26"
+    },
+    {
+      "flag": "PACKAGING_QTY_ON_SHARED_UNIT",
+      "severity": "HIGH",
+      "description": "A packaging is a unit with a relative factor shared by every product that lists it; per-product packaging sizes of older versions have no direct equivalent and must be mapped to units plus barcode links.",
+      "source": "product/models/product_uom.py:8-16; uom/models/uom_uom.py:17-49"
+    },
+    {
+      "flag": "TEMPLATE_UOM_IDS_PACKAGINGS",
+      "severity": "MEDIUM",
+      "description": "product.template carries uom_ids labelled Packagings holding the additional units for a product.",
+      "source": "product/models/product_template.py:118-122"
+    },
+    {
+      "flag": "MOVE_PACKAGING_UOM_FIELDS",
+      "severity": "MEDIUM",
+      "description": "stock.move stores packaging_uom_id and packaging_uom_qty (precomputed); sale_stock, purchase_stock, mrp, sale_mrp and purchase_mrp override the compute.",
+      "source": "stock/models/stock_move.py:741-750"
+    },
+    {
+      "flag": "PACKAGE_TYPE_ROUTE_SELECTION",
+      "severity": "MEDIUM",
+      "description": "Route selection consults packaging_uom_id.package_type_id.route_ids after explicit routes and before product, category and warehouse routes.",
+      "source": "stock/models/stock_rule.py:550-563"
+    },
+    {
+      "flag": "PUTAWAY_PACKAGE_TYPE_FROM_PACKAGING_UOM",
+      "severity": "LOW",
+      "description": "Put-away selection uses the package type of the package, else the one attached to the packaging unit.",
+      "source": "stock/models/stock_location.py:297-311"
+    },
+    {
+      "flag": "ORDERPOINT_REPLENISHMENT_UOM",
+      "severity": "MEDIUM",
+      "description": "stock.warehouse.orderpoint carries replenishment_uom_id and rounds the order quantity up to a whole multiple via _get_multiple_rounded_qty; the alternative unit hook is overridden by mrp and purchase_stock.",
+      "source": "stock/models/stock_orderpoint.py:807-814"
+    },
+    {
+      "flag": "ALLOWED_UOM_IDS_DOMAIN_PATTERN",
+      "severity": "MEDIUM",
+      "description": "Line models compute allowed_uom_ids from the base unit plus additional units (and seller units where relevant) instead of a category domain; custom domains on uom_id that filter by category must be replaced.",
+      "source": "sale/models/sale_order_line.py:539-542"
+    },
+    {
+      "flag": "STOCK_RATIO_WRITE_LOCK",
+      "severity": "MEDIUM",
+      "description": "A change to relative_factor, factor or relative_uom_id is refused when open moves or move lines use the unit or when non-zero stock exists for products with that base unit.",
+      "source": "stock/models/product.py:1373-1404"
+    },
+    {
+      "flag": "DONE_MOVE_UOM_CHANGE_ERROR",
+      "severity": "LOW",
+      "description": "Changing the unit on a done stock move raises an error unless the skip_uom_conversion context key is set.",
+      "source": "stock/models/stock_move.py:853-854"
+    },
+    {
+      "flag": "UPDATE_UOM_GUARD",
+      "severity": "MEDIUM",
+      "description": "Changing the product unit passes a guard chain across base, sale, purchase, mrp, repair and stock modules; bulk unit changes in migration scripts must account for each guard.",
+      "source": "product/models/product_product.py:1197-1200; stock/models/product.py:784-808"
+    },
+    {
+      "flag": "PROTECTED_UOM_RULE",
+      "severity": "LOW",
+      "description": "Shipped units other than hour, dozen and pack_6 are protected by _unprotected_uom_xml_ids; hr_timesheet protects hour.",
+      "source": "uom/models/uom_uom.py:24-32"
+    },
+    {
+      "flag": "FIELD_NAMING_SPLIT",
+      "severity": "MEDIUM",
+      "description": "stock.move, stock.warehouse.orderpoint and repair.order use product_uom; most other models use uom_id or product_uom_id; product.template uses a third form. Integrations need a per-model map.",
+      "source": "stock/models/stock_move.py:67-70"
+    },
+    {
+      "flag": "POS_PACKAGING_BARCODE_VIA_PRODUCT_UOM",
+      "severity": "MEDIUM",
+      "description": "Point of sale loads product.uom records and resolves scanned packaging barcodes through them.",
+      "source": "point_of_sale/models/product_uom.py:5-16"
+    },
+    {
+      "flag": "UOM_ACL_BREADTH_NO_IR_RULE",
+      "severity": "LOW",
+      "description": "uom.uom has 9 ACL rows across 7 CSV files and product.uom has 2 rows; no ir.rule restricts either model.",
+      "source": "uom/security/ir.model.access.csv:2-3"
+    },
+    {
+      "flag": "L10N_TH_UOM_DATA_ABSENT",
+      "severity": "LOW",
+      "description": "l10n_th ships no unit-of-measure data; Thai unit names and conversions must come from custom data.",
+      "source": "l10n_th/__manifest__.py:21-24"
+    },
+    {
+      "flag": "LEGACY_CATEGORY_WORDING_REMAINS",
+      "severity": "LOW",
+      "description": "Some docstrings and translation files still use category wording although the field no longer exists; wording alone is not evidence of a category model.",
+      "source": "uom/models/uom_uom.py:153-161; uom/i18n/is.po:7"
+    }
+  ],
+  "key_findings": {
+    "reference_unit_tree": "uom.uom is a tree via relative_uom_id with relative_factor (Contains); no category and no type selection; root requires ratio exactly 1",
+    "absolute_factor_stored": "factor is a stored recursive compute: relative_factor times parent factor",
+    "global_rounding": "rounding is non-stored and equals 10 to the negative Product Unit decimal precision for all units",
+    "conversion": "_compute_quantity multiplies by source factor, divides by target factor, rounds UP by default; raise_if_failure is never read; unrelated trees convert silently",
+    "packaging_replacement": "No product.packaging model; packaging is additional units (uom_ids) plus product.uom barcode links plus stock.move packaging_uom_id and packaging_uom_qty",
+    "routing_and_replenishment": "package_type_id on units steers route selection; orderpoint replenishment_uom_id rounds order quantity up to a multiple",
+    "reservation": "Category packaging_reserve_method full uses _check_qty with DOWN rounding at stock/models/stock_quant.py:851-853",
+    "field_naming": "product_uom on stock.move, orderpoint and repair; suffixed names elsewhere; template uses a third form",
+    "write_lock": "stock blocks ratio or reference changes while open moves or stock use the unit",
+    "thai_localization": "l10n_th ships no UoM data",
+    "older_version_side": "v16 and v17 statements are UNVERIFIED-FROM-SOURCE; only the v19 side was read"
+  },
+  "source_files_verified": [
+    "uom/models/uom_uom.py (SHA-256 360db3a982171a655d686eecdf929f93fca43749e5b7a92a49356bc345042d2b)",
+    "product/models/product_uom.py (SHA-256 551d39d709a8131d43c1c3f0c7c7f16061ae6178952ef205a8997994bfaa4ead)",
+    "product/models/uom_uom.py",
+    "stock/models/product.py",
+    "stock/models/stock_move.py",
+    "stock/models/stock_rule.py",
+    "stock/models/stock_orderpoint.py",
+    "stock/models/stock_quant.py",
+    "sale/models/sale_order_line.py",
+    "uom/data/uom_data.xml",
+    "uom/security/ir.model.access.csv",
+    "l10n_th/__manifest__.py",
+    "uom/i18n/is.po",
+    "purchase/i18n/en_AU.po",
+    "odoo/tools/float_utils.py"
+  ]
+}
