@@ -1,0 +1,55 @@
+{
+  "unit": "U94",
+  "title": "Payment Provider Webhook → Transaction State → Account Move",
+  "phase": "Second-Pass Depth Closure — P2 Supporting Domains",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "l_levels": ["L3", "L8"],
+  "proof_layers": ["P2", "P3"],
+  "predecessors": ["U20", "U63"],
+  "modules_covered": ["payment", "account_payment", "payment_stripe", "payment_paypal"],
+  "claim_count": 35,
+  "function_ids": [
+    "U94-F01", "U94-F02", "U94-F03", "U94-F04", "U94-F05",
+    "U94-F06", "U94-F07", "U94-F08", "U94-F09", "U94-F10",
+    "U94-F11", "U94-F12", "U94-F13", "U94-F14", "U94-F15",
+    "U94-F16", "U94-F17", "U94-F18", "U94-F19", "U94-F20",
+    "U94-F21", "U94-F22", "U94-F23", "U94-F24", "U94-F25",
+    "U94-F26", "U94-F27", "U94-F28", "U94-F29", "U94-F30",
+    "U94-F31", "U94-F32", "U94-F33", "U94-F34", "U94-F35"
+  ],
+  "gate_result": {
+    "claim_checks": 0,
+    "neutral_leak_tokens": 0,
+    "verdict": "PASS"
+  },
+  "key_findings": {
+    "transaction_states": ["draft", "pending", "authorized", "done", "cancel", "error"],
+    "core_entry_point": "payment.transaction._process(provider_code, payment_data)",
+    "state_setters": ["_set_pending", "_set_authorized", "_set_done", "_set_canceled", "_set_error"],
+    "post_processing_trigger": "_post_process() overridden in account_payment; called from /payment/status/poll (browser) and _cron_post_process (cron)",
+    "account_move_creation_path": "_post_process → _create_payment → account.payment.create() → payment.action_post()",
+    "payment_to_invoice_link": "payment_id (Many2one account.payment), invoice_ids (Many2many account.move)",
+    "reconciliation": "(payment.move_id.line_ids + invoices.line_ids).filtered(...).reconcile()",
+    "stripe_webhook_url": "/payment/stripe/webhook",
+    "stripe_done_status": "succeeded",
+    "paypal_webhook_url": "/payment/paypal/webhook/",
+    "stripe_present_in_community": true,
+    "paypal_present_in_community": true
+  },
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U94_payment_webhook_transaction.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U94_payment_webhook_transaction_NEUTRAL.md"
+  },
+  "source_files_read": [
+    "payment/models/payment_transaction.py",
+    "account_payment/models/payment_transaction.py",
+    "payment_stripe/controllers/main.py",
+    "payment_stripe/models/payment_transaction.py",
+    "payment_stripe/const.py",
+    "payment_paypal/controllers/main.py",
+    "payment_paypal/models/payment_transaction.py",
+    "payment/controllers/post_processing.py",
+    "payment/controllers/portal.py"
+  ]
+}
