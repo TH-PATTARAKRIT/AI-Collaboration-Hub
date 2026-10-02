@@ -2,7 +2,7 @@
 """STATE03 VDR read-only Unit runner.
 
 Usage:
-    python3 tools/vdr_unit_runner.py U139
+    python3 -B tools/vdr_unit_runner.py U139
 
 Contract:
   * The Unit ID (U followed by 3-4 digits) is the only variable input.
@@ -11,9 +11,12 @@ Contract:
   * Read-only: no file writes, deletes, redirects, commits, pushes or network.
   * Output is a single JSON document on stdout.
   * The only gate invoked is the portable repository gate:
-        tools/vdr_check.py --read-only <restricted> <neutral>
+        tools/vdr_check.py --read-only <restricted> <neutral> <packet>
     If that gate is absent or the Unit's evidence cannot be resolved, the
     result is NOT PROVEN with the exact blocker. A PASS is never inferred.
+  * The runner is a transport/control tool, not a gate. While the gate reports
+    accepted=false, the result is the gate's formal_result
+    ("NOT PROVEN / NON-FORMAL"); the candidate verdict is shown separately.
 """
 import json
 import os
@@ -26,16 +29,17 @@ sys.dont_write_bytecode = True
 REPO = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 VDR_REL = ("99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/"
            "TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3")
+FIXTURE_REL = "tools/vdr_gate_fixtures"
 GATE_REL = "tools/vdr_check.py"
-# Canonical VDR root first; repository root holds the legacy evidence dirs.
-APPROVED_ROOTS = (VDR_REL, "")
+# Canonical VDR root first; repository root holds the legacy evidence dirs;
+# the synthetic gate fixtures (U9001+) live last.
+APPROVED_ROOTS = (VDR_REL, "", FIXTURE_REL)
 RESTRICTED_DIR = "01_RESTRICTED_TECHNICAL_EVIDENCE"
 NEUTRAL_DIR = "02_NEUTRAL_KNOWLEDGE"
 PACKET_DIR = "04_HANDOFF_PACKETS"
 MARKER = "DEEPSEEK-CORRECTED / PENDING STATE03 RE-VERIFICATION"
 UNIT_RE = re.compile(r"^U\d{3,4}$")
 EVIDENCE_RE = re.compile(r"^(%s|%s)/(U\d{3,4}[^/]*\.md)$" % (RESTRICTED_DIR, NEUTRAL_DIR))
-GATE_LINE2_RE = re.compile(r"^(PASS|FAIL) claim-checks=(\d+) neutral-leak-tokens=(\d+)$")
 
 
 def absolute(rel):
@@ -86,6 +90,11 @@ def resolve_evidence(unit, packet, root_rel):
     return found
 
 
+def emit(out):
+    print(json.dumps(out, indent=2, ensure_ascii=False))
+    return 0
+
+
 def main(argv):
     if len(argv) != 2 or not UNIT_RE.match(argv[1]):
         print(json.dumps({"error": "usage: vdr_unit_runner.py U###", "argv": argv[1:]}))
@@ -93,6 +102,7 @@ def main(argv):
     unit = argv[1]
     out = {
         "runner": "tools/vdr_unit_runner.py",
+        "runner_role": "transport/control only — not a gate",
         "unit": unit,
         "approved_roots": [r or "." for r in APPROVED_ROOTS],
         "blockers": [],
@@ -116,8 +126,6 @@ def main(argv):
                 "status": packet.get("status"),
                 "marker": packet.get("marker"),
                 "gate_result": packet.get("gate_result"),
-                "recorded_gate_output": (packet.get("b02_correction") or {}).get("gate_output")
-                                        or packet.get("gate_output"),
             })
         except (ValueError, OSError) as exc:
             packet_info.update({"json_valid": False, "error": str(exc)})
@@ -144,12 +152,13 @@ def main(argv):
 
     if out["blockers"]:
         out["result"] = "NOT PROVEN"
-        print(json.dumps(out, indent=2, ensure_ascii=False))
-        return 0
+        return emit(out)
 
     restricted, neutral = sorted(found[RESTRICTED_DIR])[0], sorted(found[NEUTRAL_DIR])[0]
-    argv_gate = [sys.executable, "-B", gate_path, "--read-only", restricted, neutral]
-    gate["argv"] = ["python3", "-B", GATE_REL, "--read-only", rel(restricted), rel(neutral)]
+    argv_gate = [sys.executable, "-B", gate_path, "--read-only",
+                 rel(restricted), rel(neutral), rel(packet_path)]
+    gate["argv"] = ["python3", "-B", GATE_REL, "--read-only",
+                    rel(restricted), rel(neutral), rel(packet_path)]
     env = {"PATH": os.environ.get("PATH", ""), "PYTHONDONTWRITEBYTECODE": "1", "LC_ALL": "C.UTF-8"}
     try:
         proc = subprocess.run(argv_gate, cwd=REPO, env=env, stdin=subprocess.DEVNULL,
@@ -158,38 +167,40 @@ def main(argv):
         gate["error"] = str(exc)
         out["blockers"].append("gate execution failed")
         out["result"] = "NOT PROVEN"
-        print(json.dumps(out, indent=2, ensure_ascii=False))
-        return 0
+        return emit(out)
 
-    lines = [ln.rstrip() for ln in proc.stdout.splitlines() if ln.strip()]
-    gate.update({
-        "exit_code": proc.returncode,
-        "gate_output": lines[:2],
-        "detail_lines": lines[2:],
-        "stderr": proc.stderr.strip() or None,
-    })
-    verdict = GATE_LINE2_RE.match(lines[1].strip()) if len(lines) >= 2 else None
-    if not verdict:
-        out["blockers"].append("gate output line 2 not in canonical form")
+    gate["exit_code"] = proc.returncode
+    gate["stderr"] = proc.stderr.strip() or None
+    try:
+        report = json.loads(proc.stdout)
+    except ValueError:
+        gate["stdout"] = proc.stdout
+        out["blockers"].append("gate output is not a JSON document")
         out["result"] = "NOT PROVEN"
-        print(json.dumps(out, indent=2, ensure_ascii=False))
-        return 0
+        return emit(out)
+    gate["report"] = report
 
-    expect_status = "GATE-PASS" if verdict.group(1) == "PASS" else "GATE-FAIL"
-    expect_gate_result = "%s (claim-checks=%s, neutral-leak-tokens=%s)" % verdict.groups()
-    out["packet_checks"] = {
+    accepted = report.get("accepted") is True
+    if accepted:
+        verdict = report.get("candidate_verdict")
+        expect_status = {"PASS": "GATE-PASS", "FAIL": "GATE-FAIL"}.get(verdict, "NOT PROVEN")
+        expect_gate_result = report.get("candidate_gate_result")
+    else:
+        expect_status, expect_gate_result = "NOT PROVEN", "NOT PROVEN"
+    checks = {
         "unit_key": packet.get("unit") == unit,
         "no_unit_id_key": "unit_id" not in packet,
         "status_matches_gate": packet.get("status") == expect_status,
         "gate_result_matches_gate": packet.get("gate_result") == expect_gate_result,
-        "marker": packet.get("marker") == MARKER,
-        "recorded_gate_output_verbatim": packet_info.get("recorded_gate_output") == lines[:2],
     }
+    if "b02_correction" in packet:
+        checks["marker"] = packet.get("marker") == MARKER
+    out["packet_checks"] = checks
     out["expected"] = {"status": expect_status, "gate_result": expect_gate_result}
-    out["packet_consistent"] = all(out["packet_checks"].values())
-    out["result"] = expect_status
-    print(json.dumps(out, indent=2, ensure_ascii=False))
-    return 0
+    out["packet_consistent"] = all(checks.values())
+    out["candidate_verdict"] = report.get("candidate_verdict")
+    out["result"] = report.get("formal_result") or "NOT PROVEN"
+    return emit(out)
 
 
 if __name__ == "__main__":

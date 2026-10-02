@@ -1,0 +1,11 @@
+{
+  "unit": "U9003",
+  "fixture": "SYNTHETIC GATE FIXTURE — zero canonical claims; expected candidate verdict FAIL",
+  "status": "NOT PROVEN",
+  "gate_result": "NOT PROVEN",
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U9003_fixture_zero_claims.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U9003_fixture_zero_claims_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U9003_handoff_packet.json"
+  }
+}

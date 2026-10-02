@@ -1,0 +1,11 @@
+{
+  "unit_id": "U9002",
+  "fixture": "SYNTHETIC GATE FIXTURE — intentionally invalid; expected candidate verdict FAIL",
+  "status": "PENDING",
+  "gate_result": "GATE-PASS",
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U9002_fixture_invalid.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U9002_fixture_invalid_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U9002_handoff_packet.json"
+  }
+}

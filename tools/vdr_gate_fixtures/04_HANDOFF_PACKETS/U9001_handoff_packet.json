@@ -1,0 +1,11 @@
+{
+  "unit": "U9001",
+  "fixture": "SYNTHETIC GATE FIXTURE — known-valid; expected candidate verdict PASS",
+  "status": "NOT PROVEN",
+  "gate_result": "NOT PROVEN",
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U9001_fixture_valid.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U9001_fixture_valid_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U9001_handoff_packet.json"
+  }
+}
