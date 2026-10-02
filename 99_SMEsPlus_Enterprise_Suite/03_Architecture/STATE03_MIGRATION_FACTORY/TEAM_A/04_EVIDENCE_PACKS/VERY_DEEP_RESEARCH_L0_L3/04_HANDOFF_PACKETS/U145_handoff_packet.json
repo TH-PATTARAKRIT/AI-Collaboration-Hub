@@ -1,0 +1,60 @@
+{
+  "unit_id": "U145",
+  "title": "hr_attendance — timekeeping/check-in/check-out deep L3",
+  "group": "G09",
+  "priority": "P2",
+  "status": "COMPLETE",
+  "claims_count": 32,
+  "gate": "PENDING_SCRIPT_RUN",
+  "key_finding": "Overtime computation (hr.attendance.overtime.line, hr.attendance.overtime.ruleset, hr.attendance.overtime.rule) is fully present in Odoo 19 Community — not Enterprise-only. The module ships two cron jobs for auto-checkout and absence detection, a four-level security group hierarchy, kiosk PIN protection, and worked-hours calculation that deducts lunch breaks for fixed-schedule employees.",
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U145_hr_attendance.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U145_hr_attendance_NEUTRAL.md"
+  },
+  "source_files_read": [
+    "hr_attendance/__manifest__.py",
+    "hr_attendance/models/hr_attendance.py",
+    "hr_attendance/models/hr_employee.py",
+    "hr_attendance/models/hr_attendance_overtime.py",
+    "hr_attendance/models/hr_attendance_overtime_ruleset.py",
+    "hr_attendance/models/hr_attendance_overtime_rule.py (partial)",
+    "hr_attendance/models/res_company.py",
+    "hr_attendance/models/res_config_settings.py",
+    "hr_attendance/controllers/main.py",
+    "hr_attendance/security/hr_attendance_security.xml",
+    "hr_attendance/security/ir.model.access.csv",
+    "hr_attendance/data/hr_attendance_data.xml"
+  ],
+  "cross_module_findings": {
+    "overtime_in_community": true,
+    "separate_hr_attendance_overtime_module": "NOT PRESENT — overtime is bundled in hr_attendance itself",
+    "enterprise_only_features": "None identified in community source",
+    "barcodes_dependency": "hr_attendance depends on barcodes module for RFID/badge scanning",
+    "base_geolocalize_dependency": "Used for IP-to-location and GPS reverse geocoding on attendance events"
+  },
+  "security_summary": {
+    "group_count": 4,
+    "groups": [
+      "group_hr_attendance_own_reader: all internal users (implied by base.group_user)",
+      "group_hr_attendance_officer: manage assigned employees",
+      "group_hr_attendance_user: manage all employees",
+      "group_hr_attendance_manager: administrator, implies user"
+    ],
+    "kiosk_pin_optional": true,
+    "kiosk_token_type": "UUID hex per company"
+  },
+  "cron_jobs": [
+    {
+      "name": "Attendance: Automatically check-out employees",
+      "interval": "4 hours",
+      "method": "_cron_auto_check_out",
+      "condition": "company.auto_check_out=True"
+    },
+    {
+      "name": "Attendance: Detect Absences for employees",
+      "interval": "4 hours",
+      "method": "_cron_absence_detection",
+      "condition": "company.absence_management=True"
+    }
+  ]
+}
