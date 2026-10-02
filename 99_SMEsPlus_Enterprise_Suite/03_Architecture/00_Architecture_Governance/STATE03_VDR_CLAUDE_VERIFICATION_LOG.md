@@ -2392,3 +2392,103 @@ P2 Runtime: NOT_PROVEN universally
 P5 E2E: NOT_PROVEN universally
 ```
 
+---
+
+### 63.9 — Reconciliation Amendment: CR-DS-U100-U200-VERIFIED-B02 Supersedes B01
+
+**Trigger:** `STATE03_RECONCILE_U100_U200_CRITERIA_REPORT_AND_AMEND_CORRECTION` (Boss, 2026-10-02)  
+**Evidence basis:** File-level reads of U172–U179 (legacy paths), U135, U150, U151, U104, U106  
+**Date:** 2026-10-02
+
+#### Findings Leading to B02 Supersession
+
+**B01 Error 1 — INTAKE-PASS count:** B01 stated "13 INTAKE-PASS" (U100–U104, U113–U123). Actual: **16 units in that set, plus U132 and U154 (LOW notes, INTAKE-PASS per §62.2 precedent), plus U172–U177 + U179 (legacy path, GATE-PASS) = 25 INTAKE-PASS total.**
+
+**B01 Error 2 — DEFECT-D (missing U172–U179):** B01 classified as CONFIRMED DEFECT. Evidence read confirms: **All 8 units exist in legacy root path** (`04_HANDOFF_PACKETS/UXX_handoff_packet.json` + supporting evidence packs). U172–U177, U179 = GATE-PASS → INTAKE-PASS. U178 = status COMPLETE (not GATE-PASS) → NOT VERIFIED. **DEFECT-D WITHDRAWN ENTIRELY.**
+
+**B01 Error 3 — Unproven Boss decisions BD-001, BD-002, BD-003:** All resolved by file reads.
+- **BD-001** (U172–U179 gap): WITHDRAWN — units present in legacy paths.
+- **BD-002** (U150/U151 neutral leak): WITHDRAWN — neutral-ref text is clean prose; no leakage confirmed.
+- **BD-003** (U135 verbatim source): WITHDRAWN — code observation in restricted evidence is ADR-0006-permitted; neutral tier clean.
+
+**B01 Non-issue — U106 local-path:** Alleged macOS `/Volumes/...` paths. Evidence read shows: **all paths are relative** (e.g., `stock/models/stock_orderpoint.py:23`). No local paths. Issue DISPROVED (not a defect).
+
+#### Corrected Unit Disposition Totals (101 exact)
+
+| Classification | B01 (incorrect) | B02 (correct) | Details |
+|---|---|---|---|
+| INTAKE-PASS | 13 | **25** | U100–U104 (5), U113–U123 (11), U132 (1, LOW), U154 (1, LOW), U172–U177 (6, legacy), U179 (1, legacy) |
+| PARTIAL | (not listed) | **29** | 26 units with DEFECT-A (unit_id key) + 3 units with DEFECT-C (malformed gate_result); U157 counted once |
+| FAIL | (not listed) | **5** | U106, U107, U110, U131, U155 (DEFECT-B: open gate PENDING) |
+| NOT VERIFIED | (not listed) | **42** | All remaining, including U178 (legacy, status COMPLETE, not gate-passed) |
+| VERIFIED PASS | 0 | 0 | Awaiting BAR-008 authorization |
+| N/A | 0 | 0 | N/A |
+| **TOTAL** | ~60–70 (ambiguous) | **101** | Exact reconciliation |
+
+#### Defects — Status After B02
+
+| Defect | B01 Count | B02 Status | Details |
+|---|---|---|---|
+| DEFECT-A (unit_id key) | 28 | ✅ CONFIRMED — unchanged | 28 units require rename unit_id → unit; same fixes as B01 |
+| DEFECT-B (open gate PENDING) | 5 | ✅ CONFIRMED — unchanged | 5 units require gate resolution; same fixes as B01 |
+| DEFECT-C (malformed gate_result) | 4 | ✅ CONFIRMED — unchanged | 4 units require gate_result fix; same fixes as B01 |
+| DEFECT-D (missing HP files) | 8 (U172–U179) | **WITHDRAWN** | All 8 exist in legacy root path; no correction needed |
+
+#### Boss Decisions — Status After B02
+
+| Item | B01 Status | B02 Status | Reason |
+|---|---|---|---|
+| BD-001 (U172–U179 gap) | Boss decision required | **WITHDRAWN** | Evidence read: units in legacy paths; no gap |
+| BD-002 (U150/U151 neutral leak) | Boss decision required | **WITHDRAWN** | Evidence read: neutral-ref text clean; no leakage |
+| BD-003 (U135 verbatim source) | Boss decision required | **WITHDRAWN** | Evidence read: observation permitted by ADR-0006; neutral tier clean |
+| BD-004 (NOT-GATE-PASS milestone) | (not in B01) | **RETAINED** | Genuine process decision: Boss to confirm whether DeepSeek continues autonomously or sets deadline for ~42 in-progress units |
+
+#### Correction Package Update
+
+**B02 supersedes B01 entirely.**
+- File: `CR-DS-U100-U200-VERIFIED-B02.md` (same governance directory)
+- DeepSeek must act **ONLY on B02**; B01 is invalidated.
+- Corrections are identical (DEFECT-A/B/C); DEFECT-D is withdrawn; three Boss decisions withdrawn.
+
+#### CR Status Register — Updated
+
+| CR | Unit | Issue | Status after §63.9 |
+|---|---|---|---|
+| CR-V001–CR-V004 | U70–U84 | Second-pass corrections | VERIFIED-CLOSED |
+| CR-V005 | U104 | HP schema | VERIFIED-CLOSED (§63.2) |
+| **CR-DS-U100-U200-VERIFIED-B01** | U106–U200 | Initial correction package | **SUPERSEDED by B02** |
+| **CR-DS-U100-U200-VERIFIED-B02** | U106–U200 (net ~38 unique units) | Reconciled correction package | **OPEN → DeepSeek** (autonomous) |
+
+#### BAR Register — Updated
+
+| Item | Status after §63.9 |
+|---|---|
+| BAR-010 (BD-001) | **CLOSED** — WITHDRAWN; evidence resolves gap |
+| BAR-011 (BD-002) | **CLOSED** — WITHDRAWN; evidence resolves neutral-leak claim |
+| BAR-012 (BD-003) | **CLOSED** — WITHDRAWN; evidence resolves verbatim-source claim |
+| BAR-013 (BD-004) | **OPEN** — RETAINED; genuine process decision |
+
+#### Final STATE03 Status (post B02)
+
+```
+STATE03_U100_U200_REPORT_RECONCILED
+STATE03_AUTOMATION_PAUSE_BOSS_GATED
+
+Active correction packages outstanding:
+  CR-DS-U100-U200-VERIFIED-B02 → DeepSeek (~38 units, autonomous)
+
+Verifier INTAKE-PASS count (corrected canonical criteria):
+  Second-pass (U70–U99): 30/30 MECHANICAL-PASS (29/30 SEMANTIC-PASS)
+  Third-pass (U100–U200): 25 INTAKE-PASS (U100–U104, U113–U123, U132, U154, U172–U177, U179)
+                          42 NOT-GATE-PASS (in progress)
+                          29 PARTIAL (schema fixable)
+                          5  FAIL (open gate PENDING)
+
+Open BARs: 7 (BAR-001–BAR-004, BAR-007–BAR-008, BAR-013)
+P2 Runtime: NOT_PROVEN universally
+P5 E2E: NOT_PROVEN universally
+
+CR-DS-B02 ready for DeepSeek autonomous corrections (DEFECT-A/B/C only; DEFECT-D withdrawn)
+BD-004 decision pending (NOT-GATE-PASS milestone for ~42 units)
+```
+
