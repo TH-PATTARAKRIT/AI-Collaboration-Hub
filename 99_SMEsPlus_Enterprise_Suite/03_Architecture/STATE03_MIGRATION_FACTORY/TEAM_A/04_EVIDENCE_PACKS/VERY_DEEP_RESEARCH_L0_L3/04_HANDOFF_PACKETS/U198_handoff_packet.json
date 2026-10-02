@@ -1,0 +1,97 @@
+{
+  "unit": "U198",
+  "module": "hr_timesheet",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 21,
+  "gate": "GREEN",
+  "odoo_version": "19.0.post20260921",
+  "edition": "Community",
+  "research_date": "2026-10-02",
+  "primary_files": [
+    "hr_timesheet/models/hr_timesheet.py",
+    "hr_timesheet/models/project_project.py",
+    "hr_timesheet/models/project_task.py",
+    "hr_timesheet/models/res_company.py",
+    "hr_timesheet/models/res_config_settings.py",
+    "hr_timesheet/models/hr_employee.py",
+    "hr_timesheet/models/analytic_applicability.py",
+    "analytic/models/analytic_line.py",
+    "analytic/models/analytic_account.py",
+    "project/models/project_project.py",
+    "project/models/project_task.py",
+    "hr_hourly_cost/models/hr_employee.py"
+  ],
+  "migration_flags": [
+    {
+      "flag": "SHEET_ID_REMOVED",
+      "severity": "HIGH",
+      "description": "In Enterprise v16, hr_timesheet_sheet added a sheet_id Many2one field to account.analytic.line for grouping timesheets into approval sheets. This field does NOT exist in Community v19. Any migration from Enterprise v16 with timesheet sheet data must handle this field removal.",
+      "field": "account.analytic.line.sheet_id",
+      "action": "Drop field from migration source, migrate timesheet lines individually without sheet grouping"
+    },
+    {
+      "flag": "PLANNED_HOURS_RENAMED",
+      "severity": "HIGH",
+      "description": "The field planned_hours on project.task (v16) is now allocated_hours in v19. This affects computed fields, views, reports, and any direct SQL or ORM references.",
+      "old_field": "project.task.planned_hours",
+      "new_field": "project.task.allocated_hours",
+      "action": "Rename all references from planned_hours to allocated_hours in migration scripts and custom code"
+    },
+    {
+      "flag": "ACCOUNT_ID_NOT_ANALYTIC_ACCOUNT_ID",
+      "severity": "MEDIUM",
+      "description": "The analytic account field on project.project has always been account_id (not analytic_account_id). However, older custom modules or documentation may reference analytic_account_id. Confirm all ORM calls use account_id.",
+      "field": "project.project.account_id",
+      "action": "Audit custom code for any reference to project.analytic_account_id and rename to account_id"
+    },
+    {
+      "flag": "NO_TIMESHEET_APPROVAL_COMMUNITY",
+      "severity": "HIGH",
+      "description": "Community v19 has no timesheet approval workflow. The _is_readonly() method always returns False. No state field (draft/confirmed/done) exists on account.analytic.line in Community. Customers migrating from Enterprise with approval workflows will lose this functionality.",
+      "action": "Document loss of timesheet approval for customers; consider third-party modules or custom workflow"
+    },
+    {
+      "flag": "TIMESHEET_ENCODE_UOM_ON_COMPANY",
+      "severity": "LOW",
+      "description": "timesheet_encode_uom_id is a field on res.company (defaulting to hours). Migrations must ensure this is properly set per company. The setting is exposed in res.config.settings via inverse methods.",
+      "field": "res.company.timesheet_encode_uom_id",
+      "action": "Verify company-level UOM setting after migration; default is hours"
+    },
+    {
+      "flag": "CROSS_COMPANY_TIMESHEETS_BLOCKED",
+      "severity": "HIGH",
+      "description": "The _timesheet_postprocess_values method raises ValidationError if the timesheet's company, analytic account companies, task company, and project company are not all the same. Multi-company timesheet data from v16 where records span companies must be cleaned before import.",
+      "action": "Pre-migration: audit all timesheet lines for company consistency; align task, project, and analytic accounts to same company"
+    },
+    {
+      "flag": "HOURLY_COST_MODULE_DEPENDENCY",
+      "severity": "LOW",
+      "description": "The hourly_cost field on hr.employee is defined in the separate hr_hourly_cost module, which is a declared dependency of hr_timesheet. Any migration must ensure hr_hourly_cost is installed. The _hourly_cost() method returns 0.0 if no cost is set — this is valid and results in zero-cost timesheet entries.",
+      "field": "hr.employee.hourly_cost",
+      "source_module": "hr_hourly_cost",
+      "action": "Ensure hr_hourly_cost is installed; set employee hourly costs after migration if cost tracking is required"
+    }
+  ],
+  "key_findings": {
+    "analytic_line_extension": "hr_timesheet extends account.analytic.line with employee_id, task_id, project_id, department_id, manager_id, encoding_uom_id, readonly_timesheet, and milestone_id fields. The field account_id (primary analytic account) is inherited from analytic.plan.fields.mixin.",
+    "timesheet_postprocess_chain": "On create/write of a timesheet with project_id, the system calls _timesheet_postprocess() which calls _timesheet_postprocess_values() to compute amount = -(unit_amount * employee.hourly_cost) with currency conversion to account currency.",
+    "analytic_account_copying": "_timesheet_preprocess_get_accounts() copies all analytic plan field values from the project to the timesheet line; mandatory plan fields not set on the project raise ValidationError.",
+    "task_effective_hours": "project.task.effective_hours is stored, computed from sum of timesheet_ids.unit_amount via _read_group. remaining_hours = allocated_hours - effective_hours - subtask_effective_hours.",
+    "project_analytic_account": "project.project.account_id is the primary analytic account (field name is account_id). allow_timesheets is computed from presence of account_id. Auto-creation of analytic account occurs on project create when allow_timesheets=True.",
+    "no_approval_flow": "Community v19 has no timesheet approval/validation flow. _is_readonly() always returns False. No sheet_id, no state field.",
+    "company_id_derivation": "company_id on account.analytic.line comes from task.company_id OR project.company_id at creation. Cross-company writes are blocked during postprocess.",
+    "uom_handling": "product_uom_id defaults to company.project_time_mode_id (hours by default). The encoding UOM (hours vs days) is controlled by company.timesheet_encode_uom_id."
+  },
+  "scope_coverage": {
+    "account_analytic_line_fields": "COVERED - all hr_timesheet-specific fields documented with line refs",
+    "timesheet_postprocess_chain": "COVERED - full create/write/_timesheet_postprocess/_timesheet_postprocess_values chain",
+    "task_computed_fields": "COVERED - effective_hours, remaining_hours, progress, overtime, subtask_effective_hours",
+    "project_analytic_account": "COVERED - account_id, allow_timesheets, auto-creation logic",
+    "timesheet_approval_flow": "COVERED - confirmed absent in Community 19",
+    "employee_timesheet_link": "COVERED - employee_id field, hourly_cost source",
+    "multi_company": "COVERED - company derivation and cross-company block",
+    "migration_flags": "COVERED - 7 flags documented",
+    "timesheet_manager_id": "COVERED - does not exist in Community 19",
+    "get_timesheet_cost": "COVERED - equivalent is _hourly_cost(), _get_timesheet_cost() does not exist"
+  }
+}
