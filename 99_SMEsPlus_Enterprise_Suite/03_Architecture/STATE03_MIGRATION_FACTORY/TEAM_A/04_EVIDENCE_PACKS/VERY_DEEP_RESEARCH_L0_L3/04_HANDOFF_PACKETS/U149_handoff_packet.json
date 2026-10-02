@@ -1,0 +1,38 @@
+{
+  "unit": "U149",
+  "title": "account — shared COA isolation L3 depth (GAP-018)",
+  "gap": "GAP-018",
+  "group": "G01",
+  "priority": "P1",
+  "date": "2026-10-02",
+  "status": "COMPLETE",
+  "gap_resolution": "CLOSED",
+  "gap_finding": "Runtime per-company COA isolation IS enforced at posting time in AccountMove._post via intersection of account company_ids with move company ancestor set; posting is refused for cross-company account violations. Prior NOT_PROVEN status resolved.",
+  "key_finding": "account_move.py line 5673-5679 contains the definitive runtime isolation check: mismatched_accounts = accounts whose company_ids have no intersection with the move's company ancestry chain; UserError raised on mismatch.",
+  "claims_total": 22,
+  "claims_c1": 20,
+  "claims_absent_gap": 2,
+  "secondary_gaps": [
+    "C-019: draft-state entries carry no line-level cross-company account check",
+    "C-021: posting-only enforcement window — draft saves with mismatched accounts are silent"
+  ],
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U149_account_coa_isolation.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U149_account_coa_isolation_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U149_handoff_packet.json"
+  },
+  "key_pointers": [
+    "account/models/account_account.py:25 — _check_company_domain = check_companies_domain_parent_of",
+    "account/models/account_account.py:40 — code_store company_dependent=True",
+    "account/models/account_account.py:97-99 — company_ids Many2many required",
+    "account/models/account_account.py:280-281 — asset_cash sharing hard block",
+    "account/models/account_account.py:269-288 — _check_company_consistency constraint",
+    "account/security/account_security.xml:152-156 — ir.rule domain: parent_of on company_ids",
+    "account/models/account_move.py:5673-5679 — _post isolation check (primary enforcement)",
+    "account/models/account_move.py:892-895 — _compute_company_id: move derives company from journal",
+    "account/models/account_move_line.py:1478-1494 — _check_constrains_account_id_journal_id: NO cross-company check",
+    "odoo/orm/models.py:188-203 — check_companies_domain_parent_of definition",
+    "base/models/res_company.py:130-133 — parent_ids includes self",
+    "analytic/models/analytic_account.py:16-17 — analytic uses single company_id not Many2many"
+  ]
+}

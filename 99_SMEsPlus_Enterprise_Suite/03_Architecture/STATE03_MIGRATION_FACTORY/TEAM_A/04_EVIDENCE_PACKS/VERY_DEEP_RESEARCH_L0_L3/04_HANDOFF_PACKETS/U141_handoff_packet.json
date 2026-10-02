@@ -1,0 +1,80 @@
+{
+  "unit": "U141",
+  "title": "Semantic spot-check U47-U68 GAP-045",
+  "date": "2026-10-02",
+  "status": "COMPLETE",
+  "gap_addressed": "GAP-045",
+  "gap_status": "CLOSED",
+  "source_revision": "19.0.post20260921",
+  "verification_summary": {
+    "total_checks": 25,
+    "c1_confirmed": 25,
+    "partial": 0,
+    "fail": 0,
+    "gate_exit": 0
+  },
+  "files_sampled": [
+    {
+      "unit": "U47",
+      "file": "U47_account_remaining.md",
+      "size_bytes": 78105,
+      "claims_verified": 5,
+      "result": "ALL C1"
+    },
+    {
+      "unit": "U50",
+      "file": "U50_base_remaining.md",
+      "size_bytes": 68537,
+      "claims_verified": 5,
+      "result": "ALL C1"
+    },
+    {
+      "unit": "U57",
+      "file": "U57_stock_remaining.md",
+      "size_bytes": 73548,
+      "claims_verified": 5,
+      "result": "ALL C1"
+    },
+    {
+      "unit": "U62",
+      "file": "U62_peppol_iot_lunch_mailing_payment_providers.md",
+      "size_bytes": 74952,
+      "claims_verified": 5,
+      "result": "ALL C1"
+    },
+    {
+      "unit": "U64",
+      "file": "U64_pos_core.md",
+      "size_bytes": 44592,
+      "claims_verified": 5,
+      "result": "ALL C1"
+    }
+  ],
+  "source_files_verified": [
+    "account/models/account_bank_statement_line.py",
+    "account/models/res_currency.py",
+    "account/wizard/accrued_orders.py",
+    "base/models/ir_module.py",
+    "base/models/ir_ui_view.py",
+    "base/models/ir_qweb.py",
+    "stock/models/stock_lot.py",
+    "stock/models/stock_rule.py",
+    "stock_picking_batch/models/stock_picking_batch.py",
+    "stock/models/stock_scrap.py",
+    "account_peppol/models/res_company.py",
+    "account_peppol/tools/peppol_iap_connector.py",
+    "account_peppol/models/account_edi_proxy_user.py",
+    "account_peppol/models/account_move.py",
+    "point_of_sale/models/pos_session.py"
+  ],
+  "key_finding": "All 25 sampled pointers in the U47-U68 range are source-verified C1. No fabricated claims, no wrong line numbers, no missing anchors. GAP-045 is CLOSED — the U47-U68 evidence base is of equivalent quality to U01-U46 (previously verified by U130).",
+  "evidence_paths": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U141_semantic_spot_check_u47_u68.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U141_semantic_spot_check_u47_u68_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U141_handoff_packet.json"
+  },
+  "gate_script": "/private/tmp/vdr_check_u141.py",
+  "predecessor_unit": "U130",
+  "predecessor_gap": "GAP-024 (U01-U46 verified)",
+  "next_suggested_action": "GAP-045 closed. Evidence range U01-U68 now fully spot-checked. Proceed with remaining unit coverage or integration testing."
+}
