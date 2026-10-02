@@ -1,0 +1,32 @@
+# U98 Neutral Knowledge — Python Formula Tax
+> NEUTRAL LAYER — no source paths, no class/method names, no file extensions, no snake_case, no backticks
+
+| NR-ID | Statement |
+|---|---|
+| NR-U98-001 | A text field on the tax configuration record stores the user-authored calculation expression. A default placeholder formula representing 10% of the unit price ships with the module. |
+| NR-U98-002 | The tax configuration record's calculation-type selector gains a new option ("Custom Formula") that activates the formula-entry field. |
+| NR-U98-003 | The module uses the framework's sandboxed evaluation function rather than Python's native unrestricted evaluation function. |
+| NR-U98-004 | Formula execution passes the expression string together with a context dictionary of primitive values into the sandboxed evaluator; no raw Python evaluation function is called directly. |
+| NR-U98-005 | The evaluation context provided to the formula contains exactly five named values: unit price, quantity, a product data dictionary, a unit-of-measure data dictionary, and the tax base amount. No environment object, ORM reference, or database cursor is present in the context. |
+| NR-U98-006 | Before the formula is evaluated, the context dictionary is serialized to JSON and immediately deserialized back to a plain Python dictionary. This strips all non-serializable Python objects and raises a validation error if any non-primitive values remain, guaranteeing the context contains only numbers and dictionaries. |
+| NR-U98-007 | Only two mathematical helper functions (minimum and maximum) are permitted in a formula. Any other function call triggers a validation error at save time. |
+| NR-U98-008 | Variable access within a formula is restricted to five specific named identifiers. Any other identifier — including names that would reference system utilities, import machinery, or the ORM — triggers a validation error. |
+| NR-U98-009 | Formula parsing enforces a strict whitelist of permitted abstract syntax tree node types, permitting only arithmetic expressions, comparisons, boolean logic, function calls from the approved list, and numeric or null constants. All other language constructs (imports, assignments, function definitions, lambdas, loops, conditionals as statements) are rejected. |
+| NR-U98-010 | Literal constant values in a formula are restricted to integers, floating-point numbers, and null. String literals, byte strings, and other constant types are rejected, blocking string-based injection attempts. |
+| NR-U98-011 | At validation time, any identifier that is not in the approved five-name set raises a validation error, explicitly blocking names associated with the operating system, subprocesses, file access, reflection, or the Odoo environment. |
+| NR-U98-012 | The abstract syntax tree node type check rejects every construct not on the whitelist, including import statements, attribute access chains, assignment targets, loop bodies, and exception handlers. |
+| NR-U98-013 | Formula parsing uses single-expression mode, which by language definition rejects any input containing multiple statements; multi-line code or statement sequences cannot be stored as a formula. |
+| NR-U98-014 | A pre-processing transformation step rewrites dot-notation property access on the product and unit-of-measure values into dictionary key access, and records which field names are referenced. Only those field names are fetched and included in the serialized context. |
+| NR-U98-015 | Dictionary subscript access on the product and unit-of-measure context values is permitted only with string-constant keys in read-only context; all other subscript forms are rejected. |
+| NR-U98-016 | A database-constraint decorator ensures the formula is validated and normalized on every write to the tax record's type or formula fields, preventing malformed or non-compliant formulas from being persisted. |
+| NR-U98-017 | At runtime, before the formula expression is evaluated, the stored formula is re-validated and re-normalized a second time, providing an independent execution-time safety check independent of the earlier save-time check. |
+| NR-U98-018 | The sandboxed evaluator's bytecode validation layer explicitly prohibits opcodes that implement module imports and attribute mutation, providing a second independent barrier below the abstract-syntax-tree layer. |
+| NR-U98-019 | The sandboxed evaluator inspects the compiled code object's name table and raises an error for any name containing double underscores, blocking access to Python special attributes such as class hierarchy traversal, global namespace access, and code object inspection. |
+| NR-U98-020 | The sandboxed evaluator replaces the standard built-in namespace with a controlled whitelist; functions such as open, exec, compile, getattr, and setattr are absent, preventing file access, code execution, and reflection. |
+| NR-U98-021 | The import function in the controlled built-in namespace is a mock that only allows modules already imported at server startup from a hardcoded list; all other import requests raise an error. |
+| NR-U98-022 | The ability to write the formula field on a tax record is restricted by role-based access control to the Account Manager security group; standard users and accountants cannot modify tax formulas. |
+| NR-U98-023 | A transient (wizard) record type provides a dedicated workflow for re-synchronizing tax-grid tag assignments on existing journal entries after a tax configuration change. |
+| NR-U98-024 | The wizard's confirmation action validates that no child tax participates in multiple parent-tax groups (which would make the tag update ambiguous) and then triggers the bulk update operation. |
+| NR-U98-025 | The bulk tag update executes as a single database operation using a common-table-expression query that identifies affected journal line records, removes their current tag relationships, and inserts fresh relationships derived from the current repartition-line configuration, scoped to a specified company and starting date. |
+| NR-U98-026 | The tag-update wizard record type is accessible only to users in the Account Manager security group; ordinary users and accountants cannot invoke the wizard. |
+| NR-U98-027 | Within a formula expression, variable names can only be read; assignment to or deletion of any identifier is rejected at the abstract-syntax-tree validation stage, preventing any modification of the evaluation context. |

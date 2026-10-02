@@ -1,0 +1,64 @@
+{
+  "unit": "U98",
+  "title": "Python Formula Tax — account_tax_python + account_update_tax_tags",
+  "phase": "Second-Pass Depth Closure — P1 Core / Adversarial",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "predecessors": ["U13", "U32"],
+  "modules": ["account_tax_python", "account_update_tax_tags"],
+  "l_levels": ["L3", "L7", "L12"],
+  "proof_layers": ["P2", "P3"],
+  "claim_count": 27,
+  "neutral_leak_count": 0,
+  "gate_script": "/tmp/vdr_check_u98.py",
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U98_python_tax_formula.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U98_python_tax_formula_NEUTRAL.md"
+  },
+  "function_ids": [
+    "U98-F01",
+    "U98-F02",
+    "U98-F03",
+    "U98-F04",
+    "U98-F05",
+    "U98-F06",
+    "U98-F07",
+    "U98-F08",
+    "U98-F09",
+    "U98-F10",
+    "U98-F11"
+  ],
+  "key_findings": {
+    "formula_field": "account_tax_python/models/account_tax.py:19 — fields.Text named 'formula', default 'price_unit * 0.10'",
+    "eval_mechanism": "safe_eval() from odoo.tools.safe_eval — NOT raw eval(). Called at account_tax_python/models/account_tax.py:112.",
+    "context_variables": ["price_unit", "quantity", "product (dict, JSON-serialized)", "uom (dict, JSON-serialized)", "base"],
+    "context_isolation": "Context dict round-tripped through json.loads(json.dumps(...)) before safe_eval, stripping all ORM objects and env references.",
+    "self_env_accessible": false,
+    "orm_accessible_via_formula": false,
+    "ast_layer": {
+      "file": "account_tax_python/tools/formula_utils.py",
+      "node_whitelist": "_NODE_WHITELIST — arithmetic, comparisons, bool ops, min/max calls, product/uom subscript, numeric/None constants only",
+      "allowed_names": ["price_unit", "quantity", "base", "product", "uom"],
+      "allowed_funcs": ["min", "max"],
+      "allowed_constants": ["int", "float", "None"],
+      "parse_mode": "ast.parse(formula, mode='eval') — single expression only"
+    },
+    "safe_eval_layer": {
+      "file": "odoo/tools/safe_eval.py",
+      "opcode_blacklist": "IMPORT_STAR, IMPORT_NAME, IMPORT_FROM, STORE_ATTR, DELETE_ATTR, STORE_GLOBAL, DELETE_GLOBAL",
+      "dunder_block": "assert_no_dunder_name blocks any co_names entry containing '__'",
+      "builtins_replacement": "_BUILTINS dict — excludes open, exec, compile, getattr, setattr, __import__ (mocked)",
+      "mock_import": "Only allows _strptime, math, time"
+    },
+    "who_can_write_formula": "account.group_account_manager only (ir.model.access.csv line 77 in account module)",
+    "l12_adversarial_verdict": "RCE via formula is blocked by 3 independent layers: (1) AST node+name whitelist, (2) safe_eval opcode blacklist + dunder guard, (3) JSON context serialization. Residual risk: authorized Account Manager can craft formulas that produce incorrect tax amounts on future invoices (data integrity, not code execution).",
+    "tax_tag_wizard": {
+      "model": "account.update.tax.tags.wizard (TransientModel)",
+      "access": "account.group_account_manager only",
+      "mechanism": "Single raw SQL CTE: deletes then re-inserts account_account_tag_account_move_line_rel rows for all affected journal lines from date_from, scoped to company_id",
+      "fields_updated": "account_account_tag_account_move_line_rel junction table (between account.move.line and account.account.tag)"
+    }
+  },
+  "open_items": [],
+  "next_recommended_units": []
+}
