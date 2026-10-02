@@ -1,0 +1,55 @@
+{
+  "unit": "U228",
+  "module": "stock_quant",
+  "sha": "6d894fea409598074a04d8ca805d7d4f974b5b34357e0ce915ec58d492a19362",
+  "claim_count": 22,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "flag": "NO_SVL_FILE_V19",
+      "severity": "HIGH",
+      "description": "stock.valuation.layer model file (stock_valuation_layer.py) does not exist in v19 stock_account/models/ directory. The old SVL model has been replaced by stock.move value fields and the new product.value model for manual correction history. Any custom code querying stock.valuation.layer directly must be verified and rewritten.",
+      "source": "stock_account/models/ directory listing"
+    },
+    {
+      "flag": "NEW_MODEL_PRODUCT_VALUE",
+      "severity": "MEDIUM",
+      "description": "New model product.value (stock_account/models/product_value.py) tracks history of manual standard-price changes, lot-price changes, and move-value modifications. This replaces the historical manual-correction tracking approach of prior versions. Integrations using SVL revaluation wizards must be remapped.",
+      "source": "stock_account/models/product_value.py:4-13"
+    },
+    {
+      "flag": "TRY_LOCK_FOR_UPDATE_V19",
+      "severity": "LOW",
+      "description": "In v19, _update_available_quantity uses try_lock_for_update(allow_referencing=True, limit=1) which maps to SELECT FOR NO KEY UPDATE SKIP LOCKED. This is a v19 ORM method (odoo/orm/models.py:5605). Custom modules implementing their own quant quantity logic must adopt this pattern for concurrency safety.",
+      "source": "stock/models/stock_quant.py:1082; odoo/orm/models.py:5605-5635"
+    },
+    {
+      "flag": "NO_NEGATIVE_QUANT_ID_FIELD",
+      "severity": "LOW",
+      "description": "There is no negative_quant_id field in v19 stock.quant. Negative quantities are tracked in-memory during reservation via a defaultdict in _get_reserve_quantity and via direct write of negative quantity values into quant records. Migration from prior versions that relied on negative_quant_id must remove that dependency.",
+      "source": "stock/models/stock_quant.py:886-889, 1087"
+    },
+    {
+      "flag": "IS_INVENTORY_FLAG_NOT_ROUTE",
+      "severity": "LOW",
+      "description": "Inventory adjustment moves in v19 are distinguished by is_inventory=True Boolean field on stock.move, not by a dedicated inventory_adjustment route. Code checking for inventory adjustments via route filtering must switch to is_inventory field check.",
+      "source": "stock/models/stock_quant.py:1274"
+    }
+  ],
+  "key_findings": {
+    "core_mechanism": "_update_available_quantity uses strict=True gather + FOR NO KEY UPDATE SKIP LOCKED row locking + MIN(in_date) aggregation + create-on-miss pattern with deduplication via _merge_quants",
+    "available_quantity_formula": "quantity - reserved_quantity (computed, non-stored); forced to 0 if lot removal_date <= now when product_expiry installed",
+    "removal_strategy": "FIFO default via in_date ASC; FEFO via removal_date ASC then in_date; LIFO via in_date DESC; source priority: product_category > location_tree > default fifo",
+    "inventory_adjustment": "_apply_inventory creates stock.move with is_inventory=True picked=True then calls _action_done(); outdated quants trigger stock.inventory.conflict wizard before applying",
+    "strict_vs_loose": "strict=True: exact location/lot/package/owner = match; strict=False: location child_of, lot may include False — strict used for actual quantity writes, non-strict for availability checks",
+    "svl_status": "stock.valuation.layer model file absent in v19 stock_account; valuation now via stock.move.value + product.value history model; quant value field is computed from product.total_value proportional to quant quantity"
+  },
+  "source_files_verified": [
+    "stock/models/stock_quant.py (SHA-256 6d894fea...)",
+    "stock_account/models/stock_quant.py",
+    "stock_account/models/product_value.py",
+    "product_expiry/models/stock_quant.py",
+    "stock/models/stock_location.py (should_bypass_reservation)",
+    "odoo/orm/models.py (try_lock_for_update)"
+  ]
+}
