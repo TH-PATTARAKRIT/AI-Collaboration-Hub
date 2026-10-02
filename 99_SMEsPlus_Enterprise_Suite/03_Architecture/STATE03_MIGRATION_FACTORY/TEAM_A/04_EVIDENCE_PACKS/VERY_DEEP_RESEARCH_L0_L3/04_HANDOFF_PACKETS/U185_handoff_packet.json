@@ -1,0 +1,176 @@
+{
+  "unit_id": "U185",
+  "module": "website_sale_loyalty",
+  "group": "G12",
+  "priority": "P2",
+  "status": "PRESENT",
+  "research_level": "L3",
+  "date": "2026-10-02",
+  "odoo_version": "19.0.post20260921",
+  "edition": "Community",
+  "source_path": "odoo/addons/website_sale_loyalty",
+  "claim_count": 24,
+  "gate_code": "PASS-L3",
+  "key_finding": "website_sale_loyalty is the sole eCommerce loyalty integration module; coupon submission routes through /shop/pricelist -> _try_apply_code() with session-based error/success feedback; no pos_loyalty dependency; gift cards, eWallet, coupons, and loyalty all unified in this single module.",
+
+  "dependencies": {
+    "declared": ["website_sale", "website_links", "sale_loyalty"],
+    "auto_install_trigger": ["website_sale", "sale_loyalty"],
+    "no_dependency_on": ["pos_loyalty", "pos_coupon", "website_sale_gift_card"]
+  },
+
+  "controllers": {
+    "main_py": {
+      "class": "WebsiteSale",
+      "inherits": "website_sale.controllers.main.WebsiteSale",
+      "routes": [
+        {
+          "method": "pricelist",
+          "path": "/shop/pricelist (override)",
+          "purpose": "Coupon code form submission; calls order._try_apply_code(promo); session-based error/success storage"
+        },
+        {
+          "method": "activate_coupon",
+          "path": "/coupon/<string:code>",
+          "auth": "public",
+          "purpose": "Shareable coupon link handler; stores pending_coupon_code in session; applies immediately if cart exists"
+        },
+        {
+          "method": "claim_reward",
+          "path": "/shop/claimreward",
+          "auth": "public",
+          "purpose": "Customer explicitly claims a displayed reward; posts reward_id and coupon code"
+        }
+      ]
+    },
+    "cart_py": {
+      "class": "Cart",
+      "routes": [
+        {
+          "method": "cart",
+          "path": "/shop/cart (override)",
+          "purpose": "Triggers _update_programs_and_rewards and _auto_apply_rewards on every cart page load"
+        },
+        {
+          "method": "wallet_top_up",
+          "path": "/wallet/top_up",
+          "auth": "user",
+          "purpose": "eWallet top-up: adds trigger product to cart"
+        }
+      ]
+    },
+    "payment_py": {
+      "class": "PaymentPortal",
+      "purpose": "Re-evaluates rewards before transaction finalization; raises ValidationError if order total changed"
+    },
+    "delivery_py": {
+      "class": "WebsiteSaleLoyaltyDelivery",
+      "purpose": "Adds shipping discount and per-discount-reward amounts to delivery summary JSON for JS live update"
+    },
+    "portal_py": {
+      "class": "CustomerPortalLoyalty",
+      "purpose": "Adds published trigger products to loyalty card portal history values"
+    }
+  },
+
+  "models": {
+    "sale_order": {
+      "new_fields": [
+        "disabled_auto_rewards (Many2many loyalty.reward) — tracks customer-dismissed auto rewards"
+      ],
+      "key_methods": [
+        "_get_program_domain() — replaces sale_ok with ecommerce_ok for website orders",
+        "_try_pending_coupon() — applies session-stored pending coupon code",
+        "_auto_apply_rewards() — auto-applies single-reward non-nominative claimable rewards",
+        "_compute_website_order_line() — merges discount lines per program for visual display",
+        "_get_claimable_and_showable_rewards() — extends claimable with partner's existing cards",
+        "_gc_abandoned_coupons() — autovacuum cleanup of abandoned cart coupons (default 4 days)",
+        "_allow_nominative_programs() — blocks nominative programs for public users",
+        "get_promo_code_error() / get_promo_code_success_message() — session-based feedback read/pop"
+      ]
+    },
+    "loyalty_program": {
+      "new_fields": ["ecommerce_ok (Boolean, default True)", "show_non_published_product_warning (computed)"],
+      "mixins": ["website.multi.mixin"]
+    },
+    "loyalty_rule": {
+      "constraints": "_constrains_code() — enforces per-website code uniqueness; blocks collision with loyalty.card codes"
+    },
+    "loyalty_card": {
+      "new_methods": ["action_coupon_share() — opens coupon.share wizard for specific card"]
+    },
+    "sale_order_line": {
+      "overrides": [
+        "_show_in_cart() — hides discount reward lines (replaced by merged visual lines)",
+        "_is_reorder_allowed() — reward lines cannot be reordered",
+        "unlink() — registers deleted reward in disabled_auto_rewards",
+        "_is_sellable() — reward lines not sellable (except free-product type)"
+      ]
+    }
+  },
+
+  "validation_logic": {
+    "method": "sale_order._try_apply_code(code)",
+    "source_module": "sale_loyalty",
+    "source_file": "sale_loyalty/models/sale_order.py:1455",
+    "returns": {
+      "not_found_invalid": "{'error': 'This code is invalid (%s).', 'not_found': True}",
+      "expired": "{'error': 'This coupon is expired.'}",
+      "already_used": "{'error': 'This coupon has already been used.'}",
+      "already_applied": "{'error': 'This promo code is already applied.'}",
+      "wrong_program_type": "{'error': 'This program cannot be applied with code.'}",
+      "usage_limit": "{'error': 'This code is expired (%s).'}",
+      "success": "{loyalty.card: loyalty.reward_recordset}"
+    },
+    "concurrency_guard": "FOR UPDATE NOWAIT on loyalty_program row in PostgreSQL"
+  },
+
+  "gift_card_balance": {
+    "method": "_get_real_points_for_coupon(coupon)",
+    "formula": "coupon.points + pending_earned_points - applied_reward_points_cost",
+    "display": "coupon._format_points(balance) called in QWeb template",
+    "separate_module": false,
+    "note": "No website_sale_gift_card module exists; gift cards handled within website_sale_loyalty"
+  },
+
+  "error_feedback": {
+    "mechanism": "session-based for pricelist route; URL query param for activate_coupon route",
+    "session_keys": ["error_promo_code", "successful_code", "pending_coupon_code"],
+    "url_params": ["coupon_error", "coupon_error_type", "notify_coupon"],
+    "frontend": "CouponToaster JS interaction converts hidden divs to browser notifications (success/danger/warning)"
+  },
+
+  "templates": {
+    "coupon_form_extension": "sale_coupon_result — updates placeholder text",
+    "reward_panel": "modify_code_form — injects error/success alerts + claimable rewards loop with claim forms",
+    "layout_extension": "layout — injects hidden coupon message divs for JS toaster",
+    "payment_confirmation": "website_sale_purchased_gift_card — shows purchased gift card codes with copy button"
+  },
+
+  "javascript": {
+    "checkout_js": "Patches Checkout._updateCartSummary to update shipping/discount amounts from delivery JSON",
+    "coupon_toaster_js": "CouponToaster interaction: converts hidden divs to notification toasts",
+    "gift_card_copy_js": "GiftCardCopy: clipboard copy of gift card codes on confirmation page"
+  },
+
+  "wizard": {
+    "model": "coupon.share",
+    "purpose": "Generates shareable coupon URLs; optionally creates short link via link.tracker",
+    "url_pattern": "{base_url}/coupon/{code}?r={redirect}",
+    "constraints": ["Programs must require a code", "Website scope must match", "Coupon programs need explicit coupon"]
+  },
+
+  "no_pos_coupling": true,
+  "no_separate_gift_card_module": true,
+  "payment_guard": true,
+  "session_based_feedback": true,
+  "pending_coupon_mechanism": true,
+  "abandoned_cart_gc": true,
+  "per_website_scoping": true,
+
+  "evidence_files": {
+    "technical": "VERY_DEEP_RESEARCH_L0_L3/01_RESTRICTED_TECHNICAL_EVIDENCE/U185_website_sale_loyalty.md",
+    "neutral": "VERY_DEEP_RESEARCH_L0_L3/02_NEUTRAL_KNOWLEDGE/U185_website_sale_loyalty_NEUTRAL.md",
+    "handoff": "VERY_DEEP_RESEARCH_L0_L3/04_HANDOFF_PACKETS/U185_handoff_packet.json"
+  }
+}
