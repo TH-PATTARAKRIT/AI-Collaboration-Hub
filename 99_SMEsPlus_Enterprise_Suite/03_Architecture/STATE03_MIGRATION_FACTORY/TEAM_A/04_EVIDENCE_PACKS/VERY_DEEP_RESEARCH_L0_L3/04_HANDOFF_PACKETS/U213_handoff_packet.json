@@ -1,0 +1,100 @@
+{
+  "unit": "U213",
+  "module": "stock_warehouse",
+  "source_file": "odoo/addons/stock/models/stock_warehouse.py",
+  "sha": "11acf902d663ccd2dabee8d51978d92c732dd837a183928f704945c03ea224f8",
+  "source_lines": 1164,
+  "odoo_version": "19.0.post20260921",
+  "claim_count": 25,
+  "gate": "GREEN",
+  "research_date": "2026-10-02",
+  "migration_flags": [
+    {
+      "id": "MF-01",
+      "severity": "HIGH",
+      "title": "Three new picking type fields: qc_type_id, store_type_id, xdock_type_id",
+      "detail": "V19 introduces dedicated picking types for quality-control (lines 78, 1040-1049), storage (lines 79, 1050-1058), and cross-dock (lines 80, 1070-1080) operations. These are separate Many2one fields on stock.warehouse, replacing moves previously handled by the generic internal transfer type. Migration must create these picking types and populate the new warehouse fields.",
+      "affected_lines": "78-80, 978-996, 998-1081"
+    },
+    {
+      "id": "MF-02",
+      "severity": "MEDIUM",
+      "title": "models.Constraint replaces legacy _sql_constraints syntax",
+      "detail": "Lines 91-98 use models.Constraint(...) for warehouse name and code uniqueness per company. Scripts checking for _sql_constraints must be updated to detect the new constraint API.",
+      "affected_lines": "91-98"
+    },
+    {
+      "id": "MF-03",
+      "severity": "MEDIUM",
+      "title": "xdock_type_id has cross-conditional activation logic",
+      "detail": "Cross-dock picking type active state depends on BOTH reception_steps != one_step AND delivery_steps != ship_only (line 993). This compound condition is new in v19. Existing warehouses upgraded with single-step in either direction will have cross-dock deactivated.",
+      "affected_lines": "993"
+    },
+    {
+      "id": "MF-04",
+      "severity": "MEDIUM",
+      "title": "_get_receive_rules_dict / _get_receive_routes_values pattern for extending modules",
+      "detail": "New methods at lines 793-807 and 582-616 provide alternate route/rule data without the initial pull rule for modules (e.g. purchase) that add MTO-triggered receiving. Modules extending stock must migrate from get_rules_dict/_get_routes_values to these variants for purchase flows.",
+      "affected_lines": "582-616, 793-807"
+    },
+    {
+      "id": "MF-05",
+      "severity": "LOW",
+      "title": "External inter-company transit location silently skipped if not found",
+      "detail": "create_resupply_routes (line 712) silently skips a supplier warehouse if the transit location is missing. Cross-company setups must verify stock.stock_location_inter_company exists before configuring resupply.",
+      "affected_lines": "711-712"
+    },
+    {
+      "id": "MF-06",
+      "severity": "LOW",
+      "title": "reception_route_id and delivery_route_id carry ondelete=restrict",
+      "detail": "Lines 81-82 set ondelete='restrict' on both route fields. Migrations that attempt to delete routes still referenced by warehouses will receive a database integrity error. Routes must be unlinked from warehouses before deletion.",
+      "affected_lines": "81-82"
+    },
+    {
+      "id": "MF-07",
+      "severity": "LOW",
+      "title": "_default_name counts archived warehouses for numbering",
+      "detail": "Line 32 uses active_test=False when counting warehouses for default name generation. Restored databases with archived warehouses will see higher-than-expected default numbering.",
+      "affected_lines": "32"
+    }
+  ],
+  "key_findings": {
+    "company_binding": "company_id is readonly at field level and protected in write() with UserError; _check_company_auto=True enforces domain filtering on all check_company=True relational fields; name and code constraints are scoped per-company",
+    "step_change_cascade": "Changing reception_steps or delivery_steps triggers: location active toggling, resupply MTO rule adjustment (only when crossing ship_only boundary), picking type activation/deactivation, route name update, and full rule archive-and-recreate cycle",
+    "route_creation": "_get_routes_values returns reception_route_id and delivery_route_id configurations; _create_or_update_route archives old rules and calls _find_existing_rule_or_create to reactivate or create rules; warehouse_selectable routes are added to route_ids M2M",
+    "mto_rule": "mto_pull_id is the MTO pull rule on the global Replenish on Order route; its source, destination and picking type are derived from the delivery_steps routing and updated whenever delivery_steps changes",
+    "resupply_wh_ids": "Resupply route changes are computed as a before/after diff; removed suppliers archive routes, added suppliers unarchive existing or create new inter-warehouse routes; cross-company resupply requires external transit location and sets route company to empty",
+    "v19_new_picking_types": "qc_type_id, store_type_id, and xdock_type_id are new dedicated picking type fields on stock.warehouse in v19; these replace generic internal transfers for quality-control, putaway-to-stock, and cross-dock operations",
+    "rule_proc_method": "First rule in every route always uses make_to_stock; all subsequent chained rules use make_to_order",
+    "get_rules_dict": "Returns Routing namedtuples per step per warehouse; two_steps reception uses store_type_id for push; three_steps reception uses qc_type_id then store_type_id; pick_pack_ship delivery uses pick_type_id pull then pack_type_id push then out_type_id push"
+  },
+  "coverage_map": {
+    "model_fields": "lines 35-98",
+    "create_override": "lines 113-163",
+    "write_override": "lines 186-315",
+    "_get_locations_values": "lines 634-675",
+    "_create_or_update_sequences_and_picking_types": "lines 351-394",
+    "_get_picking_type_update_values": "lines 956-996",
+    "_get_picking_type_create_values": "lines 998-1081",
+    "_get_routes_values": "lines 526-580",
+    "_create_or_update_route": "lines 473-524",
+    "_find_existing_rule_or_create": "lines 618-632",
+    "_create_or_update_global_routes_rules": "lines 396-410",
+    "_generate_global_route_rules_values": "lines 444-471",
+    "_find_or_create_global_route": "lines 412-425",
+    "get_rules_dict": "lines 766-791",
+    "_get_receive_rules_dict": "lines 793-807",
+    "_get_receive_routes_values": "lines 582-616",
+    "_get_rule_values": "lines 823-852",
+    "create_resupply_routes": "lines 702-737",
+    "_get_inter_warehouse_route_values": "lines 809-818",
+    "_update_reception_delivery_resupply": "lines 863-869",
+    "_check_delivery_resupply": "lines 871-916",
+    "_check_multiwarehouse_group": "lines 322-337",
+    "_get_input_output_locations": "lines 742-744",
+    "_get_transit_locations": "lines 746-747",
+    "_update_location_reception": "lines 945-947",
+    "_update_location_delivery": "lines 949-951"
+  }
+}
