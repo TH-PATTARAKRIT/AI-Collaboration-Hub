@@ -1,7 +1,7 @@
 {
   "unit": "U200",
   "module": "base_automation",
-  "sha": "PENDING_COMMIT",
+  "sha": "d3155f17",
   "claim_count": 22,
   "gate": "GREEN",
   "migration_flags": [
