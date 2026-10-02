@@ -1,0 +1,105 @@
+{
+  "unit": "U188",
+  "title": "Repair Order Lifecycle, Parts Consumption, Invoicing Integration",
+  "group": "G07",
+  "priority": "P2",
+  "level": "L3",
+  "status": "COMPLETE",
+  "date": "2026-10-02",
+  "worker": "DeepSeek-STATE03",
+  "source_module": "odoo/addons/repair",
+  "odoo_version": "19.0.post20260921",
+  "claims_count": 21,
+  "gate_code": "G-GREEN",
+  "key_finding": "repair.line model removed in Odoo 19; parts now as stock.move rows with repair_line_type (add/remove/recycle); invoice_method also removed, invoicing is via Sale Order bridge",
+  "breaking_changes": [
+    {
+      "change": "No repair.line model",
+      "impact": "Migration must re-map legacy repair.line rows to stock.move with repair_line_type and repair_id"
+    },
+    {
+      "change": "No invoice_method field on repair.order",
+      "impact": "Invoicing now requires a Sale Order; direct repair invoicing no longer available"
+    }
+  ],
+  "state_machine": {
+    "states": ["draft", "confirmed", "under_repair", "done", "cancel"],
+    "key_methods": {
+      "confirm": "_action_repair_confirm",
+      "start": "action_repair_start",
+      "end": "action_repair_end",
+      "done": "action_repair_done",
+      "cancel": "action_repair_cancel",
+      "cancel_to_draft": "action_repair_cancel_draft"
+    }
+  },
+  "parts_model": {
+    "model": "stock.move",
+    "link_field": "repair_id",
+    "type_field": "repair_line_type",
+    "types": {
+      "add": {
+        "description": "Component consumed during repair",
+        "src_location": "repair.location_id (WH stock)",
+        "dest_location": "repair.location_dest_id (production virtual)"
+      },
+      "remove": {
+        "description": "Part extracted from repaired product",
+        "src_location": "repair.location_dest_id (production virtual)",
+        "dest_location": "repair.parts_location_id (inventory loss / scrap)"
+      },
+      "recycle": {
+        "description": "Extracted part returned to usable stock",
+        "src_location": "repair.location_dest_id (production virtual)",
+        "dest_location": "repair.recycle_location_id (WH stock)"
+      }
+    }
+  },
+  "invoicing": {
+    "method": "Sale Order bridge via _create_sale_order()",
+    "under_warranty_effect": "Sets price_unit=0 on all add-type SO lines; enforced at toggle and at SO line creation",
+    "qty_delivered_sync": "SaleOrderLine._prepare_qty_delivered() checks done repair moves for qty_delivered update"
+  },
+  "lot_tracking": {
+    "field": "repair.order.lot_id",
+    "required_for_completion": true,
+    "condition": "product.tracking != none",
+    "error": "ValidationError raised if lot_id missing at action_repair_done()",
+    "auto_populate": "From picking_id.move_ids.lot_ids when exactly one lot present"
+  },
+  "multi_company": {
+    "field": "repair.order.company_id",
+    "readonly": true,
+    "check_company_auto": true,
+    "picking_type_scoped": true
+  },
+  "stock_valuation": {
+    "double_posting_guard": "account_move_line._eligible_for_stock_account() blocked for add-type repair moves already having account_move_id",
+    "is_consuming": "stock.move._is_consuming() returns True for add-type repair moves"
+  },
+  "mto_support": {
+    "rule": "repair_mto_pull_id on stock.warehouse",
+    "procure_method": "make_to_order",
+    "route": "Replenish on Order (MTO)"
+  },
+  "files_read": [
+    "repair/models/repair.py",
+    "repair/models/stock_move.py",
+    "repair/models/stock_move_line.py",
+    "repair/models/account_move_line.py",
+    "repair/models/sale_order.py",
+    "repair/models/stock_lot.py",
+    "repair/models/stock_picking.py",
+    "repair/models/stock_warehouse.py",
+    "repair/models/product.py"
+  ],
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U188_repair.md",
+    "02_NEUTRAL_KNOWLEDGE/U188_repair_NEUTRAL.md",
+    "04_HANDOFF_PACKETS/U188_handoff_packet.json"
+  ],
+  "next_units_suggested": [
+    "U189 (if stock valuation / COGS deep-dive needed)",
+    "U190 (if sale-repair integration or sale_project module needed)"
+  ]
+}
