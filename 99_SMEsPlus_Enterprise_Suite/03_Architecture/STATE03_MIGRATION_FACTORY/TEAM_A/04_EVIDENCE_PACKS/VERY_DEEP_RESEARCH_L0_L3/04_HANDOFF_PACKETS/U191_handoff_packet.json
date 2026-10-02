@@ -1,0 +1,53 @@
+{
+  "unit": "U191",
+  "title": "Gamification — Challenge / Goal / Badge Award System",
+  "group": "G14",
+  "priority": "P3",
+  "prior_status": "NOT_STUDIED",
+  "new_status": "COMPLETE",
+  "research_level": "L3",
+  "odoo_version": "19.0.post20260921",
+  "edition": "Community",
+  "source_addon": "odoo/addons/gamification",
+  "models_studied": [
+    "gamification.challenge",
+    "gamification.goal",
+    "gamification.badge",
+    "gamification.badge.user",
+    "gamification.goal.definition",
+    "gamification.challenge.line"
+  ],
+  "cross_module_references": [
+    "survey.user_input._mark_done()",
+    "mail.presence (presence-join in _update_all)"
+  ],
+  "claims_count": 15,
+  "gate_code": "GREEN",
+  "gate_rationale": "All 9 research scope items answered from source code; no fabrication; 15 claims with HIGH confidence; no ambiguities requiring escalation.",
+  "key_finding": "Challenges are cross-company (no company_id); goals are multicompany-isolated via IR rule on user company; survey certification triggers _cron_update() synchronously on completion; batch mode is an alternate high-performance query path requiring three co-migrated fields.",
+  "output_files": {
+    "technical_evidence": "01_RESTRICTED_TECHNICAL_EVIDENCE/U191_gamification.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U191_gamification_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U191_handoff_packet.json"
+  },
+  "research_scope_coverage": {
+    "challenge_fields_period_visibility_reward_domain": "COMPLETE — C01, C02, C03, C04 (gamification_challenge.py lines 88-117)",
+    "goal_fields_challenge_user_current_target_completeness_state": "COMPLETE — C05 (gamification_goal.py lines 24-44, 77-89)",
+    "badge_name_description_rule_max_challenge_ids": "COMPLETE — C08 (gamification_badge.py lines 27-52)",
+    "badge_user_award_pathway": "COMPLETE — C13 (gamification_badge_user.py lines 15-59)",
+    "cron_update_scheduled_action": "COMPLETE — C07, C12 (gamification_challenge.py lines 232-313)",
+    "survey_mark_done_to_badge_grant": "COMPLETE — C09 (survey/models/survey_user_input.py lines 236-266)",
+    "goal_definition_computation_modes_and_domain": "COMPLETE — C06 (gamification_goal_definition.py lines 25-56)",
+    "company_scope_challenges": "COMPLETE — C10 (no company_id field; security/gamification_security.xml)",
+    "check_challenge_reward_winner_logic": "COMPLETE — C11 (gamification_challenge.py lines 654-802)"
+  },
+  "migration_risk_flags": [
+    "No company_id on gamification.challenge — cross-company by design",
+    "mail.presence table dependency in _update_all() activity gate",
+    "Survey integration calls _cron_update(commit=False) synchronously",
+    "Batch mode requires three fields to migrate together: batch_mode, batch_distinctive_field, batch_user_expression",
+    "Four reward badge FKs per challenge: reward_id, reward_first_id, reward_second_id, reward_third_id"
+  ],
+  "researcher": "DeepSeek Worker — U191",
+  "timestamp_utc": "2026-10-02"
+}

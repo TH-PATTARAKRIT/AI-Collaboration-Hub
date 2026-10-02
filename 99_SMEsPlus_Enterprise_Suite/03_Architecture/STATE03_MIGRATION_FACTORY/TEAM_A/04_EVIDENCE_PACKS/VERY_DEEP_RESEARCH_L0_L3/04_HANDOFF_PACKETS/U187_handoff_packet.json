@@ -1,0 +1,206 @@
+{
+  "unit_id": "U187",
+  "model_slug": "utm",
+  "title": "UTM Campaign/Source/Medium Tracking Fields and sale.order Linkage",
+  "group": "G15",
+  "priority": "P3",
+  "status": "STUDIED",
+  "evidence_level": "L3",
+  "date_completed": "2026-10-02",
+  "source_base": "odoo-19.0.post20260921/odoo/addons",
+  "gate_result": "PASS",
+  "claims_count": 9,
+  "key_finding": "UTM mixin injects campaign_id/source_id/medium_id onto sale.order, crm.lead, hr.applicant, link.tracker, and account.move (via sale addon); cookies capture URL params for 31 days; all UTM records are cross-company shared with no revenue fields in core module.",
+  "models": {
+    "utm.campaign": {
+      "file": "utm/models/utm_campaign.py",
+      "fields": {
+        "name": "Char — computed unique identifier slug from title, UNIQUE constraint",
+        "title": "Char — human-readable display name (_rec_name)",
+        "user_id": "Many2one(res.users) — Responsible",
+        "stage_id": "Many2one(utm.stage) — required, ondelete=restrict",
+        "tag_ids": "Many2many(utm.tag) via utm_tag_rel",
+        "is_auto_campaign": "Boolean — True when auto-created from URL param",
+        "color": "Integer — kanban colour index",
+        "active": "Boolean — default True"
+      },
+      "company_scoped": false,
+      "notes": "No company_id. Stage cannot be deleted while campaigns reference it."
+    },
+    "utm.source": {
+      "file": "utm/models/utm_source.py",
+      "fields": {
+        "name": "Char — UNIQUE constraint"
+      },
+      "company_scoped": false,
+      "seeded_records": ["Search engine","Lead Recall","Newsletter","Facebook","X","LinkedIn","Monster","Glassdoor","Craigslist","Referral"],
+      "notes": "Referral cannot be deleted. UtmSourceMixin abstract model auto-creates sources for email/social posts."
+    },
+    "utm.medium": {
+      "file": "utm/models/utm_medium.py",
+      "fields": {
+        "name": "Char — plain text, no _compute_name, UNIQUE constraint",
+        "active": "Boolean"
+      },
+      "company_scoped": false,
+      "seeded_records": ["Website","Phone","Direct","Email","Banner","X","Facebook","LinkedIn","Television","Google Adwords"],
+      "protected_mediums": ["Email","Direct","Website","X","Facebook","LinkedIn"],
+      "notes": "No _compute_name(). Name is plain Char. _fetch_or_create_utm_medium() helper for programmatic create."
+    },
+    "utm.stage": {
+      "file": "utm/models/utm_stage.py",
+      "fields": {
+        "name": "Char — translate=True",
+        "sequence": "Integer — default 1"
+      },
+      "company_scoped": false,
+      "default_stage": "New (sequence=10, always-install data)",
+      "notes": "Always-install (not demo). ACL: regular users read-only."
+    },
+    "utm.tag": {
+      "file": "utm/models/utm_tag.py",
+      "fields": {
+        "name": "Char — unique",
+        "color": "Integer — random 1-11 default"
+      },
+      "company_scoped": false,
+      "notes": "ACL: regular users read-only. Linked to campaigns via utm_tag_rel M2M."
+    },
+    "utm.mixin": {
+      "file": "utm/models/utm_mixin.py",
+      "type": "AbstractModel",
+      "fields": {
+        "campaign_id": "Many2one(utm.campaign) — index=btree_not_null",
+        "source_id": "Many2one(utm.source) — index=btree_not_null",
+        "medium_id": "Many2one(utm.medium) — index=btree_not_null"
+      },
+      "tracking_fields": [
+        ["utm_campaign", "campaign_id", "odoo_utm_campaign"],
+        ["utm_source", "source_id", "odoo_utm_source"],
+        ["utm_medium", "medium_id", "odoo_utm_medium"]
+      ],
+      "notes": "default_get() skips salesman group (sales_team.group_sale_salesman). Reads cookies to pre-populate fields. _find_or_create_record() auto-creates UTM lookups."
+    }
+  },
+  "consumer_models": {
+    "sale.order": {
+      "addon": "sale",
+      "file": "sale/models/sale_order.py",
+      "inherit_line": 36,
+      "field_overrides": "campaign_id/medium_id/source_id all ondelete='set null'",
+      "invoice_propagation": "UTM triplet copied to account.move at _prepare_invoice() (lines 1433-1435)"
+    },
+    "account.move": {
+      "addon": "sale",
+      "file": "sale/models/account_move.py",
+      "inherit_line": 8,
+      "notes": "UTM on account.move is installed by sale addon, NOT base account addon. UTM preserved on _reverse_moves() (credit notes)."
+    },
+    "crm.lead": {
+      "addon": "crm",
+      "file": "crm/models/crm_lead.py",
+      "inherit_line": 92,
+      "field_overrides": "campaign_id/medium_id/source_id all ondelete='set null'"
+    },
+    "hr.applicant": {
+      "addon": "hr_recruitment",
+      "file": "hr_recruitment/models/hr_applicant.py",
+      "inherit_line": 32
+    },
+    "link.tracker": {
+      "addon": "link_tracker",
+      "file": "link_tracker/models/link_tracker.py",
+      "inherit_line": 35,
+      "field_overrides": "campaign_id/medium_id/source_id all ondelete='set null'"
+    }
+  },
+  "website_integration": {
+    "file": "utm/models/ir_http.py",
+    "mechanism": "_post_dispatch -> _set_utm",
+    "cookie_ttl_seconds": 2678400,
+    "cookie_ttl_days": 31,
+    "cookie_type": "optional",
+    "cookie_domain": "request.httprequest.host",
+    "url_params_captured": ["utm_campaign", "utm_source", "utm_medium"]
+  },
+  "revenue_fields": {
+    "present": false,
+    "notes": "No revenue/amount/turnover field on any UTM model in Community. Attribution via account.move UTM fields requires external BI aggregation."
+  },
+  "company_scope": {
+    "scoped": false,
+    "notes": "All UTM models (campaign, source, medium, stage, tag) have no company_id. Shared across all companies in multi-company deployments."
+  },
+  "acl_summary": {
+    "utm.campaign": {"group_user": "RWC", "group_system": "RWCD"},
+    "utm.medium": {"group_user": "RWC", "group_system": "RWCD"},
+    "utm.source": {"group_user": "RWC", "group_system": "RWCD"},
+    "utm.stage": {"group_user": "R", "group_system": "RWCD"},
+    "utm.tag": {"group_user": "R", "group_system": "RWCD"}
+  },
+  "claims": [
+    {
+      "id": "U187-C01",
+      "topic": "utm.campaign fields",
+      "claim": "utm.campaign stores two name fields (computed slug identifier + human-readable title), owner, stage, colour, tags, auto-flag, and active status.",
+      "gate": "PASS",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U187-C02",
+      "topic": "utm.mixin fields",
+      "claim": "utm.mixin adds campaign_id, source_id, medium_id (all btree_not_null indexed Many2one) to consumer models.",
+      "gate": "PASS",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U187-C03",
+      "topic": "utm.mixin default population",
+      "claim": "default_get() reads browser cookies to auto-populate UTM fields; skips salesman group; auto-creates lookup records from string values.",
+      "gate": "PASS",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U187-C04",
+      "topic": "URL param to cookie mapping",
+      "claim": "ir.http._post_dispatch captures utm_campaign/source/medium URL params as 31-day optional cookies per request.",
+      "gate": "PASS",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U187-C05",
+      "topic": "sale.order UTM linkage",
+      "claim": "sale.order inherits utm.mixin with set-null override; UTM triplet propagates to account.move during _prepare_invoice().",
+      "gate": "PASS",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U187-C06",
+      "topic": "Consumer model coverage",
+      "claim": "Five Community models use utm.mixin: sale.order, account.move (via sale addon), crm.lead, hr.applicant, link.tracker.",
+      "gate": "PASS",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U187-C07",
+      "topic": "utm.stage lifecycle",
+      "claim": "utm.stage has name and sequence; one always-install default stage 'New'; stage deletion blocked by campaigns; kanban shows all stages.",
+      "gate": "PASS",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U187-C08",
+      "topic": "No revenue fields",
+      "claim": "Core UTM module has no revenue/amount fields; attribution only through account.move UTM fields via sale addon.",
+      "gate": "PASS",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U187-C09",
+      "topic": "Company scope, medium name, tags",
+      "claim": "All UTM models are cross-company shared (no company_id); utm.medium.name is a plain Char (no _compute_name); utm.campaign has tag_ids M2M to utm.tag.",
+      "gate": "PASS",
+      "confidence": "HIGH"
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "unit": "U190",
+  "model": "res.partner.bank",
+  "group": "G03",
+  "priority": "P1",
+  "status": "STUDIED",
+  "researcher": "DeepSeek STATE03 VDR Worker",
+  "date": "2026-10-02",
+  "odoo_version": "19.0.post20260921",
+  "edition": "Community",
+  "claim_count": 19,
+  "gate_code": "GREEN",
+  "key_finding": "res.partner.bank is partner-scoped not company-scoped; company derived from partner; uniqueness is per-partner not global; Thai PromptPay uses account_qr_code_emv proxy_type/value extended by l10n_th; no l10n_th_bank_branch in Community 19; payment.provider is a separate model.",
+
+  "source_files_verified": [
+    "odoo/addons/base/models/res_bank.py",
+    "odoo/addons/base_iban/models/res_partner_bank.py",
+    "odoo/addons/account/models/res_partner_bank.py",
+    "odoo/addons/account/models/account_journal.py",
+    "odoo/addons/account_qr_code_emv/models/res_bank.py",
+    "odoo/addons/l10n_th/models/res_bank.py"
+  ],
+
+  "claims": [
+    {
+      "id": "U190-C01",
+      "layer": "L0",
+      "topic": "res.bank model",
+      "statement": "res.bank is the bank-institution registry with fields: name (required), bic, country, active, email, phone, address. It is separate from res.partner.bank.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C02",
+      "layer": "L0",
+      "topic": "BIC storage and normalization",
+      "statement": "BIC/SWIFT is stored on res.bank (not res.partner.bank), is indexed, and is force-uppercased on every create and write operation.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C03",
+      "layer": "L0",
+      "topic": "res.partner.bank core fields",
+      "statement": "Core fields: acc_number (required Char), sanitized_acc_number (stored computed), partner_id (required Many2one to res.partner), bank_id (optional Many2one to res.bank), company_id (stored related from partner_id.company_id, read-only).",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C04",
+      "layer": "L0",
+      "topic": "sanitized_acc_number computation",
+      "statement": "sanitized_acc_number strips all non-word characters (spaces, dashes, dots, etc.) and uppercases the result. It is stored and used for the uniqueness constraint and acc_number search.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C05",
+      "layer": "L1",
+      "topic": "sanitize_account_number function",
+      "statement": "Module-level function sanitize_account_number() applies re.sub(r'\\W+', '', acc_number).upper(). Called in _compute_sanitized_acc_number, _search_acc_number, and _sanitize_vals.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C06",
+      "layer": "L1",
+      "topic": "_unique_number constraint",
+      "statement": "SQL UNIQUE constraint on (sanitized_acc_number, partner_id). The same canonical account number may exist for different partners. Constraint is NOT globally unique.",
+      "confidence": "HIGH",
+      "sql_constraint_name": "_unique_number"
+    },
+    {
+      "id": "U190-C07",
+      "layer": "L1",
+      "topic": "_compute_acc_type",
+      "statement": "acc_type is a non-stored computed Selection field. Value is determined at runtime by retrieve_acc_type(acc_number). Base implementation always returns 'bank'. base_iban overrides to attempt IBAN validation and return 'iban' on success.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C08",
+      "layer": "L2",
+      "topic": "IBAN validation algorithm",
+      "statement": "validate_iban() in base_iban: (1) normalizes input, (2) checks 2-char country prefix against _map_iban_template dict, (3) checks length and alphanumeric regex vs template, (4) performs mod-97 check on rearranged string. Thailand (TH) is absent from the template map.",
+      "confidence": "HIGH",
+      "source": "base_iban/models/res_partner_bank.py:68-85"
+    },
+    {
+      "id": "U190-C09",
+      "layer": "L2",
+      "topic": "IBAN auto-format on save",
+      "statement": "On create/write, if acc_number passes IBAN validation it is silently reformatted to groups-of-4 format via pretty_iban(normalize_iban(...)). Original spacing/formatting not preserved.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C10",
+      "layer": "L2",
+      "topic": "_get_supported_account_types extension",
+      "statement": "base_iban extends _get_supported_account_types() via super() chain to add ('iban', 'IBAN') alongside base ('bank', 'Normal'). Additional localization modules may add further types.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C11",
+      "layer": "L1",
+      "topic": "company_id derivation",
+      "statement": "company_id is a stored related field from partner_id.company_id and is readonly. Bank accounts are not directly scoped to a company; they follow their partner's company. Multi-company isolation is enforced through the journal constraint.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C12",
+      "layer": "L2",
+      "topic": "journal_id constraint",
+      "statement": "account module adds journal_id One2many (domain type=bank). A constraint in account/res_partner_bank raises ValidationError if len(bank.journal_id) > 1. One bank account may link to at most one journal.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C13",
+      "layer": "L2",
+      "topic": "account_journal.bank_account_id constraint",
+      "statement": "account.journal.bank_account_id is Many2one to res.partner.bank. Constraint at line 586-594: (1) bank_account_id.company_id must match journal.company_id; (2) bank_account_id.partner_id must equal journal.company_id.partner_id.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C14",
+      "layer": "L1",
+      "topic": "soft-delete via unlink override",
+      "statement": "base/res_bank.py overrides unlink() to call action_archive() and return reload action. active field (default True) supports archive/restore. Records are never hard-deleted from the base model.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C15",
+      "layer": "L2",
+      "topic": "archive guard on create",
+      "statement": "account/res_partner_bank.py create() raises UserError if an inactive (archived) bank account already exists for the same partner + acc_number combination, preventing duplicate-key violations.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C16",
+      "layer": "L2",
+      "topic": "allow_out_payment trust and lock",
+      "statement": "allow_out_payment defaults False. Enabling requires group account.group_validate_bank_account or base.group_system. Once trusted, acc_number, sanitized_acc_number, partner_id, and acc_type are locked from modification.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "U190-C17",
+      "layer": "L3",
+      "topic": "EMV QR proxy_type base definition",
+      "statement": "account_qr_code_emv module defines proxy_type = Selection([('none','None')]) and proxy_value = Char on res.partner.bank. This is the base for all country-specific QR proxy extensions including Thai PromptPay.",
+      "confidence": "HIGH",
+      "source": "account_qr_code_emv/models/res_bank.py:15-17"
+    },
+    {
+      "id": "U190-C18",
+      "layer": "L3",
+      "topic": "Thai PromptPay proxy types",
+      "statement": "l10n_th extends proxy_type with: ('ewallet_id','Ewallet ID'), ('merchant_tax_id','Merchant Tax ID'), ('mobile','Mobile Number'). QR payload encoded as EMV tag-29 with AID A000000677010111 per Thailand BOT PromptPay spec.",
+      "confidence": "HIGH",
+      "source": "l10n_th/models/res_bank.py:11-53"
+    },
+    {
+      "id": "U190-C19",
+      "layer": "L3",
+      "topic": "Thai proxy validation rules",
+      "statement": "merchant_tax_id must match ^[0-9]{13}$; mobile must match ^[0-9]{10}$. QR limited to THB. Mobile encoding: leading '0' replaced by '66', zero-padded to 13 chars. Validated on create+write via @api.constrains.",
+      "confidence": "HIGH",
+      "source": "l10n_th/models/res_bank.py:16-26, 47"
+    }
+  ],
+
+  "migration_flags": [
+    {
+      "flag": "IMPORT_ALLOW_OUT_PAYMENT",
+      "severity": "HIGH",
+      "description": "allow_out_payment defaults False on import. All migrated bank accounts will be untrusted and blocked from outgoing payments until manually trusted by an authorized user."
+    },
+    {
+      "flag": "NO_L10N_TH_BANK_BRANCH_IN_COMMUNITY19",
+      "severity": "MEDIUM",
+      "description": "No l10n_th_bank_branch field exists in Community 19. Thai bank branch data from legacy systems has no native target field. Custom field or notes field required."
+    },
+    {
+      "flag": "COMPANY_ID_READONLY",
+      "severity": "MEDIUM",
+      "description": "company_id on res.partner.bank cannot be set directly during import. It derives from partner_id.company_id. Company alignment must be achieved by assigning the correct company to the partner first."
+    },
+    {
+      "flag": "UNIQUENESS_PER_PARTNER",
+      "severity": "HIGH",
+      "description": "Uniqueness constraint is (sanitized_acc_number, partner_id) not global. Same account number for different partners is allowed. Migration must deduplicate within each partner's account list."
+    },
+    {
+      "flag": "ACCOUNT_QR_CODE_EMV_DEPENDENCY",
+      "severity": "HIGH",
+      "description": "l10n_th PromptPay fields depend on account_qr_code_emv being installed. Verify module installation order in migration plan."
+    }
+  ],
+
+  "open_questions": [
+    {
+      "q": "Does the customer's legacy system store branch codes per Thai bank account? If so, a custom field (e.g. x_bank_branch) is needed in Community 19.",
+      "impact": "Schema delta if yes"
+    },
+    {
+      "q": "Are any existing bank accounts in the legacy system linked to companies as account holders (not individual partners)? The journal constraint requires partner_id == company.partner_id for journal-linked accounts.",
+      "impact": "Journal setup validation required"
+    }
+  ],
+
+  "files": {
+    "evidence": "01_RESTRICTED_TECHNICAL_EVIDENCE/U190_res_partner_bank.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U190_res_partner_bank_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U190_handoff_packet.json"
+  }
+}
