@@ -1,0 +1,85 @@
+{
+  "unit": "U107",
+  "title": "account — fiscal position Thai edge cases (GAP-043)",
+  "gap_id": "GAP-043",
+  "priority": "P1/TH",
+  "status": "EVIDENCE_GATHERED",
+  "all_content_status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "claim_count": 37,
+  "gate_result": "PENDING",
+
+  "evidence_files": {
+    "technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U107_fiscal_position_thai.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U107_fiscal_position_thai_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U107_handoff_packet.json"
+  },
+
+  "source_files_read": [
+    "account/models/partner.py",
+    "account/models/account_move.py",
+    "account/models/account_move_line.py",
+    "account/models/account_tax.py",
+    "account/models/company.py",
+    "account/models/product.py",
+    "l10n_th/models/template_th.py",
+    "l10n_th/models/account_move.py",
+    "l10n_th/data/template/account.tax-th.csv",
+    "l10n_th/data/template/account.tax.group-th.csv"
+  ],
+
+  "key_findings": {
+    "map_tax_algorithm": "Three-branch logic: (1) empty fiscal position → passthrough; (2) fiscal position with no tax_ids → filter to taxes with no fiscal_position_ids; (3) fiscal position with tax_ids → use tax_map dict keyed src→[dest], fallback to original tax id",
+    "tax_map_build": "Computed field: iterates dest taxes, for each dest tax iterates dest.original_tax_ids to build src_id→[dest_id] reverse index",
+    "auto_detection_priority": "Three tiers: receipt override (company field) > manual partner assignment (property_account_position_id) > auto-detect by geo/VAT",
+    "auto_detection_validators": "Five validators: VAT required, zip range, state membership, country match, country group membership",
+    "l10n_th_fiscal_positions": "NONE — Thai template ships zero fiscal position records; all tax rows have empty fiscal_position_ids column",
+    "l10n_th_vat_rates": "7% standard (tax_input_vat/tax_output_vat), 0% zero-rate (tax_input_vat_0/tax_output_vat_0), 0% EXEMPT (tax_input_vat_exempted/tax_output_vat_exempted)",
+    "l10n_th_wht": "4 WHT rates at 1/2/3/5% for both company (PND53) and personal (PND3) payers, with separate receivable accounts; WHT taxes not linked to any fiscal position",
+    "intra_company_fpos": "No Thai intra-company fiscal position defined; EU-specific VAT prefix matching logic exists but has no Thai equivalent",
+    "critical_edge_case": "Empty tax_ids on a fiscal position (NR-05) strips all taxes with any fiscal_position_ids assigned — potential trap for Thai export position configuration"
+  },
+
+  "thai_deployment_gaps": [
+    {
+      "gap": "No export (0% VAT) fiscal position template",
+      "risk": "Must configure 7%→0% tax substitution mapping manually; omitting this leaves export invoices at 7%",
+      "awt_needed": false
+    },
+    {
+      "gap": "No fiscal position for VAT-exempt transactions",
+      "risk": "Must configure 7%→EXEMPT tax substitution manually",
+      "awt_needed": false
+    },
+    {
+      "gap": "WHT + VAT fiscal position interaction undefined",
+      "risk": "If an export fiscal position strips VAT but partner also has WHT, the WHT behavior under fiscal position must be tested at runtime",
+      "awt_needed": true
+    },
+    {
+      "gap": "No intra-company fiscal position template",
+      "risk": "Multi-entity Thai deployments must design and test intra-company position from scratch",
+      "awt_needed": true
+    },
+    {
+      "gap": "Empty-mapping filter behavior on draft fiscal position",
+      "risk": "A fiscal position with no rules silently removes all non-domestic taxes; administrators may create empty positions expecting no effect",
+      "awt_needed": true
+    }
+  ],
+
+  "awaiting_runtime_verification": [
+    "U107-AWT-01: WHT tax behaviour when fiscal position is applied (coexistence of WHT and 0% VAT on same invoice)",
+    "U107-AWT-02: Auto-detection result when Thai partner has VAT number vs when no VAT number (vat_required gate)",
+    "U107-AWT-03: Intra-company transaction fiscal position selection with multiple Thai entities",
+    "U107-AWT-04: Empty fiscal position (no tax_ids) applied to invoice containing both VAT and WHT taxes"
+  ],
+
+  "metadata": {
+    "produced_by": "Claude Sonnet 4.6 (third-pass deep research agent)",
+    "research_depth": "L1-L4",
+    "source_tree_access": "READ-ONLY community addons",
+    "fabrication_check": "No fabricated pointers — all line numbers verified by direct file read",
+    "community_only": true,
+    "timestamp": "2026-10-02"
+  }
+}
