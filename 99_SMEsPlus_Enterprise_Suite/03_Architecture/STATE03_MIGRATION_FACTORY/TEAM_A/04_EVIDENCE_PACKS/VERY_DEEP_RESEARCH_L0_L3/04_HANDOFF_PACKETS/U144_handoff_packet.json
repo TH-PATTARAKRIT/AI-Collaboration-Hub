@@ -1,0 +1,77 @@
+{
+  "unit": "U144",
+  "title": "account_asset — fixed asset depreciation deep L3 (Community presence check)",
+  "group": "G01",
+  "priority": "P1",
+  "research_date": "2026-10-02",
+  "verdict": "ABSENT",
+  "claims_count": 5,
+  "gate_result": "PASS",
+  "module_path_checked": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons/account_asset",
+  "presence": false,
+  "key_finding": "account_asset is an Enterprise-only module; it is completely absent from the Odoo 19.0 Community source tree. Fixed asset depreciation, the depreciation board computation, depreciation journal entry generation, and asset disposal workflows are all unavailable in Community.",
+  "c1_risk": true,
+  "c1_risk_description": "Fixed asset accounting capability is fully absent from Community. Any migration requiring PP&E schedule management, accumulated depreciation tracking, or asset disposal accounting must either license Enterprise, source a third-party community module, or accept manual journal-entry-only workarounds.",
+  "claims": [
+    {
+      "claim_id": "U144-C001",
+      "function_id": "MODULE_PRESENCE",
+      "pointer": "addons/account_asset — directory",
+      "anchor": "n/a",
+      "class": "ABSENT",
+      "condition": "Community 19.0.post20260921",
+      "flags": ["GAP"],
+      "technical_statement": "The account_asset module directory does not exist in the Odoo 19 Community source tree under odoo/addons.",
+      "neutral_ref": "Fixed asset depreciation is not shipped as part of the standard community accounting suite"
+    },
+    {
+      "claim_id": "U144-C002",
+      "function_id": "ASSET_MODEL",
+      "pointer": "addons/account_asset/models/account_asset.py",
+      "anchor": "n/a",
+      "class": "ABSENT",
+      "condition": "Community 19.0.post20260921",
+      "flags": ["GAP"],
+      "technical_statement": "No account.asset ORM model exists in Community; the asset record, depreciation method fields, and state machine are absent.",
+      "neutral_ref": "The data model for tracking individual depreciable assets does not exist in the community edition"
+    },
+    {
+      "claim_id": "U144-C003",
+      "function_id": "DEPRECIATION_BOARD",
+      "pointer": "addons/account_asset/models/account_asset.py — board computation method",
+      "anchor": "n/a",
+      "class": "ABSENT",
+      "condition": "Community 19.0.post20260921",
+      "flags": ["GAP"],
+      "technical_statement": "No depreciation board computation function (linear or degressive monthly/annual schedule) exists in Community source.",
+      "neutral_ref": "Automated generation of depreciation schedule entries over an asset lifespan is not available in the community build"
+    },
+    {
+      "claim_id": "U144-C004",
+      "function_id": "JOURNAL_ENTRY_GEN",
+      "pointer": "addons/account_asset/models/account_move.py",
+      "anchor": "n/a",
+      "class": "ABSENT",
+      "condition": "Community 19.0.post20260921",
+      "flags": ["GAP"],
+      "technical_statement": "No account_asset extension of account.move exists; the debit Depreciation Expense / credit Accumulated Depreciation journal entry creation logic is absent.",
+      "neutral_ref": "The mechanism that posts periodic depreciation charges as double-entry journal lines does not exist in community"
+    },
+    {
+      "claim_id": "U144-C005",
+      "function_id": "ASSET_DISPOSAL",
+      "pointer": "addons/account_asset/models/account_asset.py — disposal method",
+      "anchor": "n/a",
+      "class": "ABSENT",
+      "condition": "Community 19.0.post20260921",
+      "flags": ["GAP"],
+      "technical_statement": "No asset disposal/write-off method exists in Community; final disposal entry computation, gain/loss on disposal, and asset closure workflow are absent.",
+      "neutral_ref": "The workflow and accounting entries for removing a depreciated asset from the balance sheet are not present in community"
+    }
+  ],
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U144_account_asset.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U144_account_asset_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U144_handoff_packet.json"
+  }
+}
