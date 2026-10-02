@@ -4,8 +4,10 @@
 
 **Produced by:** Main controller session
 **Date:** 2026-10-02
-**Basis:** START_STATE03_THIRD_PASS_RESEARCH directive
+**Basis:** START_STATE03_THIRD_PASS_RESEARCH directive; updated per MANDATORY_NEXT_PLAN_REPORTING_EFFECTIVE_NOW (2026-10-02)
 **Scope:** U100–U119+ targeting Partial/Not-Proven/C1 gaps from gap register and second-pass residuals
+
+**Reporting format (mandatory from U105 onwards):** Every unit completion report must include: (1) Current Status, (2) Next Plan, (3) Queue Visibility (next 5 units), (4) Blockers. Continue automatically after gate pass — stop only for real blocker or explicit Boss instruction.
 
 ---
 
