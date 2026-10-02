@@ -1,0 +1,58 @@
+{
+  "unit_id": "U165",
+  "module": "product_expiry",
+  "group": "G06",
+  "priority": "P2",
+  "research_date": "2026-10-02",
+  "module_status": "PRESENT",
+  "research_level": "L3",
+  "claims_count": 20,
+  "gate_code": "GREEN",
+  "key_finding": "Full 4-date-dimension lot expiry tracking (expiration, best-before, removal, alert) with FEFO removal strategy, scheduler-driven alert activities, soft-block on expired-lot shipments via confirmation wizard, GS1 barcode integration, and automatic expiry date population at receipt.",
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U165_product_expiry.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U165_product_expiry_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U165_handoff_packet.json"
+  },
+  "source_files_read": [
+    "odoo/addons/product_expiry/__manifest__.py",
+    "odoo/addons/product_expiry/models/production_lot.py",
+    "odoo/addons/product_expiry/models/product_product.py",
+    "odoo/addons/product_expiry/models/stock_move.py",
+    "odoo/addons/product_expiry/models/stock_move_line.py",
+    "odoo/addons/product_expiry/models/stock_picking.py",
+    "odoo/addons/product_expiry/models/stock_quant.py",
+    "odoo/addons/product_expiry/models/stock_rule.py",
+    "odoo/addons/product_expiry/models/res_config_settings.py",
+    "odoo/addons/product_expiry/wizard/confirm_expiry.py",
+    "odoo/addons/product_expiry/data/product_expiry_data.xml"
+  ],
+  "claims_summary": [
+    {"id": "C01", "topic": "Module depends solely on stock", "confidence": "HIGH"},
+    {"id": "C02", "topic": "use_expiration_date gate flag on product.template; forced False when tracking removed", "confidence": "HIGH"},
+    {"id": "C03", "topic": "Four integer offset fields on product.template for all date dimensions", "confidence": "HIGH"},
+    {"id": "C04", "topic": "stock.lot gains four stored datetime fields: expiration_date, use_date, removal_date, alert_date", "confidence": "HIGH"},
+    {"id": "C05", "topic": "expiration_date auto-set on lot creation as now() + expiration_time", "confidence": "HIGH"},
+    {"id": "C06", "topic": "Derived dates recalculated on expiration_date change using delta or template offsets", "confidence": "HIGH"},
+    {"id": "C07", "topic": "product_expiry_alert flag becomes True when expiration_date <= now()", "confidence": "HIGH"},
+    {"id": "C08", "topic": "stock.move.line carries stored expiration_date and removal_date propagated from lot or auto-computed", "confidence": "HIGH"},
+    {"id": "C09", "topic": "Receipt auto-populates expiration_date on move lines from scheduled_date + expiration_time", "confidence": "HIGH"},
+    {"id": "C10", "topic": "Picking validation intercepted; expired lots trigger confirmation wizard", "confidence": "HIGH"},
+    {"id": "C11", "topic": "Expired-lot check is a soft block; user may proceed or strip expired lines", "confidence": "HIGH"},
+    {"id": "C12", "topic": "Scheduler hook in stock.rule calls _alert_date_exceeded() during replenishment scheduler", "confidence": "HIGH"},
+    {"id": "C13", "topic": "Alert activities assigned to product responsible user; product_expiry_reminded prevents repeats", "confidence": "HIGH"},
+    {"id": "C14", "topic": "FEFO orders quants by removal_date asc, then in_date, then id", "confidence": "HIGH"},
+    {"id": "C15", "topic": "FEFO product.removal record seeded by module data XML", "confidence": "HIGH"},
+    {"id": "C16", "topic": "Quants past removal_date report available_quantity = 0", "confidence": "HIGH"},
+    {"id": "C17", "topic": "Reservation passes with_expiration date context to exclude past-removal quants", "confidence": "HIGH"},
+    {"id": "C18", "topic": "GS1 barcode includes AI 17 (expiry) and AI 15 (best-before) when expiry tracking enabled", "confidence": "HIGH"},
+    {"id": "C19", "topic": "Enabling lot tracking in settings auto-activates product_expiry module", "confidence": "HIGH"},
+    {"id": "C20", "topic": "Lot display name optionally shows --Expired-- or --Expire on <date>-- suffix", "confidence": "HIGH"}
+  ],
+  "architectural_notes": {
+    "blocking_behaviour": "SOFT BLOCK — validation intercepted but user can override via wizard; skip_expired context flag bypasses re-check",
+    "fefo_integration": "removal_date field drives FEFO sort order in _get_removal_strategy_order; zero available_quantity for past-removal quants",
+    "scheduler_integration": "Plugged into stock.rule._run_scheduler_tasks(); one-shot activity scheduling with product_expiry_reminded flag",
+    "no_hard_cron": "No standalone ir.cron record; uses stock replenishment scheduler pipeline via stock.rule hook"
+  }
+}
