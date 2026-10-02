@@ -1,0 +1,54 @@
+{
+  "unit": "U212",
+  "module": "account_payment_term",
+  "sha": "9a7bc9c1cec9a76c3046311d8c10a4df92d80de6e90215a9b3b459aa700e12c5",
+  "claim_count": 22,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "flag": "NEW-v16-EARLY-DISCOUNT",
+      "severity": "ADDITIVE",
+      "fields": ["early_discount", "discount_percentage", "discount_days", "early_pay_discount_computation"],
+      "description": "Early payment discount feature introduced in v16. Fields absent in v14/v15. Migration: set early_discount=False for all existing payment term records; no data loss."
+    },
+    {
+      "flag": "BREAKING-VALUE-BALANCE-REMOVED",
+      "severity": "DATA-TRANSFORM",
+      "fields": ["account.payment.term.line.value"],
+      "description": "The 'balance' option was removed from the value selection in v16+. In v19 only 'percent' and 'fixed' exist. The last line is implicitly the balance. Any v14/v15 line with value='balance' must be converted to value='percent' with value_amount=100."
+    },
+    {
+      "flag": "CHANGE-DELAY-TYPE-RESTRUCTURED",
+      "severity": "DATA-TRANSFORM",
+      "fields": ["account.payment.term.line.delay_type", "account.payment.term.line.days_next_month"],
+      "description": "Old integer day_of_the_month field replaced by delay_type selection 'days_end_of_month_on_the' plus days_next_month Char field. Migration scripts must map legacy day_of_the_month values to the new structure."
+    },
+    {
+      "flag": "MULTI-CO-SHARED-TERMS",
+      "severity": "INFO",
+      "fields": ["account.payment.term.company_id"],
+      "description": "company_id is optional. Blank terms are shared globally. Parent-of domain enforced. Cross-company invoice use automatically resolves currency from invoicing company."
+    },
+    {
+      "flag": "COUNTRY-DRIVEN-DISCOUNT-COMPUTATION",
+      "severity": "INFO",
+      "fields": ["early_pay_discount_computation"],
+      "description": "Stored computed field. Auto-set from company country: BE->mixed, NL->excluded, all others->included. No manual migration needed; recompute will set correct values."
+    }
+  ],
+  "key_findings": {
+    "models": ["account.payment.term", "account.payment.term.line"],
+    "source_file": "odoo/addons/account/models/account_payment_term.py",
+    "installment_engine": "_compute_terms() iterates line_ids, rounds each non-balance line in both currencies, assigns full residual to last line; early discount pre-computed separately with country-specific tax treatment (included/excluded/mixed)",
+    "due_date_logic": "_get_due_date() on term line: four delay_type modes using relativedelta and date_utils.end_of(); result propagated to account.move.line.date_maturity via _compute_needed_terms()",
+    "early_discount_computation_modes": {
+      "included": "discount_balance = round(total * (1 - pct)) — tax portion discounted",
+      "excluded": "discount_balance = round(total - untaxed * pct) — only untaxed base discounted",
+      "mixed": "same formula as excluded but discount applied always upon invoice posting"
+    },
+    "validation": "_check_lines() requires percent lines sum to 100.0 at Payment Terms decimal precision; early_discount requires exactly one line, discount_percentage>0, discount_days>0",
+    "currency_rounding": "Each non-balance line rounded via currency.round(); cash_rounding.compute_difference() applied if configured; balance line absorbs all residual — no net rounding error",
+    "move_integration": "account.move._compute_needed_terms() calls payment term _compute_terms() on invoice date change; each output line creates frozendict key with date_maturity, discount_date; stored on display_type='payment_term' move lines",
+    "v19_confirmed_present": ["early_discount", "discount_percentage", "discount_days", "early_pay_discount_computation", "discount_date", "discount_balance", "discount_amount_currency on move lines"]
+  }
+}
