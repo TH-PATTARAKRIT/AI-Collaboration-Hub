@@ -1,0 +1,73 @@
+{
+  "unit": "U162",
+  "title": "purchase_mrp — buy route MRP→PO replenishment chain L3",
+  "group": "G07/G08",
+  "priority": "P1",
+  "module_status": "PRESENT",
+  "module_path": "purchase_mrp",
+  "claim_count": 25,
+  "claim_ids": [
+    "U162-C01","U162-C02","U162-C03","U162-C04","U162-C05",
+    "U162-C06","U162-C07","U162-C08","U162-C09","U162-C10",
+    "U162-C11","U162-C12","U162-C13","U162-C14","U162-C15",
+    "U162-C16","U162-C17","U162-C18","U162-C19","U162-C20",
+    "U162-C21","U162-C22","U162-C23","U162-C24","U162-C25"
+  ],
+  "key_finding": "MRP→PO chain: action_confirm triggers _trigger_scheduler → _procure_orderpoint_confirm → stock.rule.run → _run_buy creates draft PO with SUPERUSER; POL.move_dest_ids links the PO line back to MO raw component moves; on PO receipt validation, _action_done iterates move_dest_ids and calls _action_assign, automatically reserving components for the MO.",
+  "evidence_files": {
+    "technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U162_purchase_mrp.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U162_purchase_mrp_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U162_handoff_packet.json"
+  },
+  "primary_source_files": [
+    "purchase_mrp/__manifest__.py",
+    "purchase_mrp/models/mrp_production.py",
+    "purchase_mrp/models/stock_rule.py",
+    "purchase_mrp/models/purchase.py",
+    "purchase_mrp/models/stock_move.py",
+    "purchase_mrp/models/mrp_bom.py",
+    "purchase_stock/models/stock.py",
+    "purchase_stock/models/stock_rule.py",
+    "purchase_stock/models/stock_move.py",
+    "purchase_stock/models/purchase_order_line.py",
+    "mrp/models/mrp_production.py",
+    "stock/models/stock_rule.py",
+    "stock/models/stock_orderpoint.py",
+    "stock/models/stock_move.py"
+  ],
+  "call_chain": {
+    "scheduler_path": "run_scheduler [stock/models/stock_rule.py:734] → _run_scheduler_tasks [693] → _procure_orderpoint_confirm [stock/models/stock_orderpoint.py:712] → stock.rule.run [purchase_stock/models/stock_rule.py:46] → _run_buy [59] → purchase.order.create [115] → purchase.order.line.create [165]",
+    "mo_confirm_path": "mrp.production.action_confirm [mrp/models/mrp_production.py:1625] → _adjust_procure_method [stock/models/stock_move.py:2572] → _action_confirm → _trigger_scheduler [2609] → _procure_orderpoint_confirm",
+    "receipt_path": "stock.picking._action_done [purchase_stock/models/stock.py:40] → stock.move._action_done [stock/models/stock_move.py:2249] → move_dest_ids._action_assign [2303]"
+  },
+  "neutral_refs": {
+    "REF-U162-N01": "Auto-install dependency declaration",
+    "REF-U162-N02": "Purchase order counter on manufacturing order",
+    "REF-U162-N03": "Counter recomputation trigger",
+    "REF-U162-N04": "PO lookup via component move chain",
+    "REF-U162-N05": "Document iteration via created purchase lines",
+    "REF-U162-N06": "Merge preserves purchase line links",
+    "REF-U162-N07": "Manufacturing order counter on purchase order",
+    "REF-U162-N08": "MO lookup via destination move chain",
+    "REF-U162-N09": "Vendor-not-found notification to MO owner",
+    "REF-U162-N10": "Warehouse buy pull rule reference",
+    "REF-U162-N11": "Buy pull rule configuration",
+    "REF-U162-N12": "PO consolidation and creation logic",
+    "REF-U162-N13": "Supplier resolution and fallback",
+    "REF-U162-N14": "PO consolidation domain",
+    "REF-U162-N15": "PO header creation as SUPERUSER",
+    "REF-U162-N16": "POL downstream move many-to-many",
+    "REF-U162-N17": "move_dest_ids written during POL creation",
+    "REF-U162-N18": "Stock move created purchase line back-reference",
+    "REF-U162-N19": "MO confirm adjusts procure method and triggers scheduler",
+    "REF-U162-N20": "Explicit scheduler trigger after MO confirm",
+    "REF-U162-N21": "Default make-to-stock on raw component moves",
+    "REF-U162-N22": "Scheduler top-level entry point",
+    "REF-U162-N23": "Scheduler task runner chain",
+    "REF-U162-N24": "Orderpoint confirmation creates procurements",
+    "REF-U162-N25": "PO receipt done triggers MO component reservation"
+  },
+  "research_timestamp": "2026-10-02",
+  "researcher": "DeepSeek-U162",
+  "odoo_version": "19.0.post20260921"
+}

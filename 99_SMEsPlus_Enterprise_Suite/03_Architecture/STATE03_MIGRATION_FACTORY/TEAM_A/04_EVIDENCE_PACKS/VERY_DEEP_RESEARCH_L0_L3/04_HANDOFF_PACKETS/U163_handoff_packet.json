@@ -1,0 +1,83 @@
+{
+  "unit": "U163",
+  "title": "account_move_send — invoice email/PDF dispatch chain L3",
+  "group": "G01/G13",
+  "priority": "P1",
+  "module_status": "BUILT-IN",
+  "built_in_addon": "account",
+  "odoo_version": "19.0.post20260921",
+  "research_depth": "L3",
+  "claim_count": 22,
+  "gate": "PASS",
+  "evidence_files": {
+    "technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U163_account_move_send.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U163_account_move_send_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U163_handoff_packet.json"
+  },
+  "key_finding": "account_move_send is BUILT-IN to the account addon; dispatch chain is orchestrated by abstract model account.move.send with two wizard transients for single-sync and batch-async sending",
+  "source_files_read": [
+    "account/models/account_move_send.py",
+    "account/models/account_move.py",
+    "account/wizard/account_move_send_wizard.py",
+    "account/wizard/account_move_send_batch_wizard.py",
+    "account/views/account_report.xml",
+    "account/__manifest__.py",
+    "account/security/ir.model.access.csv"
+  ],
+  "key_line_references": {
+    "action_send_and_print_on_move": "account/models/account_move.py:6121",
+    "abstract_model_class": "account/models/account_move_send.py:13",
+    "generate_and_send_invoices": "account/models/account_move_send.py:816",
+    "prepare_invoice_pdf_report": "account/models/account_move_send.py:407",
+    "link_invoice_documents": "account/models/account_move_send.py:464",
+    "send_mail": "account/models/account_move_send.py:555",
+    "send_mails": "account/models/account_move_send.py:657",
+    "hook_if_success": "account/models/account_move_send.py:497",
+    "hook_if_errors": "account/models/account_move_send.py:485",
+    "get_mail_template": "account/models/account_move.py:6415",
+    "get_report_base_filename": "account/models/account_move.py:6453",
+    "cron_account_move_send": "account/models/account_move.py:6496",
+    "notify_get_recipients_groups_portal": "account/models/account_move.py:6428",
+    "batch_wizard_action_send_and_print": "account/wizard/account_move_send_batch_wizard.py:80",
+    "single_wizard_action_send_and_print": "account/wizard/account_move_send_wizard.py:391",
+    "pdf_report_action_xml": "account/views/account_report.xml:5"
+  },
+  "email_templates": {
+    "invoice": "account.email_template_edi_invoice",
+    "credit_note": "account.email_template_edi_credit_note",
+    "self_billing_invoice": "account.email_template_edi_self_billing_invoice",
+    "self_billing_credit_note": "account.email_template_edi_self_billing_credit_note"
+  },
+  "pdf_reports": {
+    "default_with_payments": "account.report_invoice_with_payments",
+    "without_payments": "account.report_invoice",
+    "report_action_xmlid": "account.account_invoices"
+  },
+  "cron_xmlid": "account.ir_cron_account_move_send",
+  "batch_size_param": "account.pdf_generation_batch",
+  "batch_size_default": 80,
+  "cron_default_job_count": 10,
+  "portal_access": true,
+  "portal_token_field": "access_token",
+  "edi_base_community": "NONE — _get_all_extra_edis() returns {} in base",
+  "thai_localisation_override": false,
+  "async_queue_field": "sending_data",
+  "is_move_sent_field": "is_move_sent",
+  "fallback_proforma_pdf": true,
+  "extension_hooks": [
+    "_hook_invoice_document_before_pdf_report_render",
+    "_hook_invoice_document_after_pdf_report_render",
+    "_call_web_service_before_invoice_pdf_render",
+    "_call_web_service_after_invoice_pdf_render"
+  ],
+  "migration_risks": [
+    "Scheduled job must be active post-migration for batch sending to function",
+    "Partner invoice_sending_method and invoice_template_pdf_report_id preferences must survive migration",
+    "Four email templates must all be present",
+    "access_token field on account.move must survive migration for portal links",
+    "invoice_pdf_report_file binary field must survive migration",
+    "account.pdf_generation_batch system param should be tuned for production volume"
+  ],
+  "timestamp": "2026-10-02T00:00:00Z",
+  "author": "U163 DeepSeek research worker"
+}
