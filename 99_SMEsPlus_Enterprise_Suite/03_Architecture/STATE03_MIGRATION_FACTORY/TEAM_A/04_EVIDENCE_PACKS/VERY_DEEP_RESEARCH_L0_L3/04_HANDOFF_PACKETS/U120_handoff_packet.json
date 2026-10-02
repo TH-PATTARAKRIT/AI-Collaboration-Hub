@@ -1,0 +1,29 @@
+{
+  "unit": "U120",
+  "title": "account — Multi-Company Intercompany Journal + Shared COA",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "gap_ids": ["GAP-002", "GAP-018"],
+  "modules": ["account"],
+  "function_ids": ["MCT-F02", "MCT-F03"],
+  "l_levels": ["L3", "L4", "L9"],
+  "proof_layers": ["P1", "P3", "P4"],
+  "claim_count": 48,
+  "c1_count": 48,
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "key_findings": {
+    "account_inter_company_rules_presence": "ABSENT — module directory not found in Community addons; automated intercompany invoice/bill creation is Enterprise-only",
+    "shared_coa_mechanism": "account.account uses company_ids Many2many (account_account.py:97); accounts can be shared across companies, but Bank/Cash accounts are blocked from sharing (account_account.py:280-281)",
+    "subsidiary_coa_inheritance": "Subsidiaries inherit parent account records rather than receiving copies; chart_template.py:228-231 limits subsidiary load to res.company data only; chart_template.py:908-910 assigns parent account pointers",
+    "journal_company_enforcement": "Journals are strictly per-company (account_journal.py:172); _check_company_auto=True on account.move (account_move.py:79) validates all check_company fields automatically",
+    "balance_check_per_company": "_check_balanced SQL joins to company currency for decimal precision (account_move.py:2810-2821) — no cross-company aggregation",
+    "suspense_account_per_company": "company.account_journal_suspense_account_id (company.py:122) inherited by all bank/cash/credit journals (account_journal.py:515-516)",
+    "intercompany_automation_absent": "Full scan of account/models/ finds no _create_intercompany, auto_invoice, auto_bill or mirror-document creation methods — manual entry only",
+    "gap_002_verdict": "OPEN — no automated intercompany journal mechanism in Community",
+    "gap_018_verdict": "PARTIAL — account sharing via company_ids Many2many and subsidiary inheritance is present, but lacks Enterprise governance layer"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U120_multicompany_intercompany.md",
+    "02_NEUTRAL_KNOWLEDGE/U120_multicompany_intercompany_NEUTRAL.md"
+  ]
+}
