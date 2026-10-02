@@ -2247,3 +2247,148 @@ Verifier semantic verification of third-pass units: NOT STARTED (pending BAR-008
 P2 Runtime: NOT_PROVEN universally
 P5 E2E: NOT_PROVEN universally
 
+---
+
+## §63 — Criteria Proof Audit + Correction Package CR-DS-U100-U200-VERIFIED-B01
+
+**Trigger:** `START_STATE03_AUDIT_CRITERIA_PROOF_AND_CORRECTION_RELEASE` (Boss, 2026-10-02)  
+**Authorization constraints:** No new schema; no retroactive policy; no non-canonical criteria; no cloud-incompatibility defects; historical commits not rewritten; source-code copying not inferred without proof; macOS paths in restricted evidence not flagged.  
+**Scope:** U100–U200 HP files on DeepSeek branch `origin/claude/local-odoo-source-research`  
+**Full correction package:** `00_Architecture_Office/ADR/../CR-DS-U100-U200-VERIFIED-B01.md` (same governance directory)  
+**Date:** 2026-10-02
+
+---
+
+### 63.1 — Criteria Proof Matrix Summary
+
+All prior audit criteria evaluated against VDR §62.4 (the ONLY canonical HP schema definition, lines 2144–2193) and the empirical U70–U99 HP corpus.
+
+| Rule ID | Criterion | Verdict |
+|---------|-----------|---------|
+| CPM-01 | `unit` key required (not `unit_id`) | **CANONICAL — CRITICAL** |
+| CPM-02 | `status: "GATE-PASS"` required | **CANONICAL — CRITICAL** |
+| CPM-03 | `gate_result` = PASS variant (not "PENDING", not malformed) | **CANONICAL — CRITICAL** (absent = LOW per §62.2 precedent) |
+| CPM-04 | `function_ids_targeted` | CANONICAL — MEDIUM only |
+| CPM-05 | `modules_covered` | CANONICAL — MEDIUM only |
+| CPM-06 | `commit_sha` / `source_sha` | **NOT CANONICAL — REJECTED** (absent from ALL U70–U109 without flag) |
+| CPM-07 | `marker` | **NOT CANONICAL — REJECTED** (absent from all U70–U75 without flag) |
+| CPM-08 | macOS `/Volumes/...` paths in restricted evidence | **NOT CANONICAL — REJECTED** (Boss override explicit) |
+| CPM-09 | Neutral-leak-tokens in neutral evidence files | **UNPROVEN** (requires file-level proof per Boss instruction) |
+| CPM-10 | Legacy root path evidence as defect | **UNPROVEN** (no canonical migration rule confirmed) |
+| CPM-11 | Non-atomic commits | **UNPROVEN** (no canonical atomic unit definition found) |
+| CPM-12 | Verbatim source code in evidence | **UNPROVEN** (requires file-level proof per Boss instruction) |
+| CPM-13 | Exact `gate_result` phrase required | **NOT CANONICAL** (abbreviated "PASS" accepted §62.2) |
+
+---
+
+### 63.2 — CR-V005 Status Correction
+
+U104 HP on DeepSeek branch NOW reads: `"unit": "U104"`, `"status": "GATE-PASS"`, `"gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)"`. All three CRITICAL criteria from §62.4 are met.
+
+**CR-V005 status: OPEN → VERIFIED-CLOSED** (DeepSeek corrected since §62 was written)
+
+U104 verifier status updated: **INTAKE-PASS** (semantic verification still PENDING BAR-008).
+
+---
+
+### 63.3 — U100–U200 Re-Evaluation Results (Canonical Criteria Only)
+
+| Classification | Count | Units |
+|---------------|-------|-------|
+| ✅ INTAKE-PASS (all CRITICAL criteria met) | 13 | U100–U104, U113–U123 (U104 upgraded per §63.2) |
+| ⚠ LOW note (GATE-PASS, gate_result absent) | 3 | U132, U154, U159 (U103 already recorded §62.2) |
+| 🔵 IN-PROGRESS (pending gate-pass) | ~5 | U105, U108, U109 + others with DEEPSEEK-REPORTED status |
+| ⬜ NOT-GATE-PASS (research incomplete, no open gate) | ~43 | U129–U138, U141–U142, U144, U146, U148–U153, U158, U161–U167, U180–U182, U184, U188–U191, U193, U197–U200 |
+| ❌ CONFIRMED DEFECT-A (`unit_id` key) | 28 | U106, U110–U112, U124–U128, U140, U143, U145, U147, U156–U157, U159, U165, U168–U171, U185–U187, U192, U194–U196 |
+| ❌ CONFIRMED DEFECT-B (open gate "PENDING") | 5 | U106, U107, U110, U131, U155 |
+| ❌ CONFIRMED DEFECT-C (malformed gate_result) | 4 | U139, U157, U160, U183 |
+| ❌ CONFIRMED DEFECT-D (HP file missing) | 8 | U172–U179 |
+| BOSS DECISION REQUIRED | 4 items | BD-001 (U172–U179 gap), BD-002 (neutral-leak U150/U151), BD-003 (source code U135), BD-004 (NOT-GATE-PASS milestone) |
+
+**Unique units requiring correction: ~38** (DEFECT-A/B/C/D with overlap removed)
+
+---
+
+### 63.4 — Prior Audit Finding Re-Classification
+
+| Prior Finding Type | Canonical Verdict |
+|-------------------|-------------------|
+| `unit_id` key defects | ✅ CONFIRMED DEFECT (CPM-01) |
+| Open gate `gate_result: "PENDING"` | ✅ CONFIRMED DEFECT (CPM-03) |
+| Malformed gate_result | ✅ CONFIRMED DEFECT (CPM-03) |
+| Missing HP files U172–U179 | ✅ CONFIRMED DEFECT |
+| `status ≠ "GATE-PASS"` on in-progress units | ❌ REJECTED — NOT CANONICAL CRITERION (in-progress, not yet gate-passed) |
+| `commit_sha` absent | ❌ REJECTED — NON-CANONICAL CRITERION (CPM-06) |
+| `marker` absent | ❌ REJECTED — NON-CANONICAL CRITERION (CPM-07) |
+| macOS paths in evidence | ❌ REJECTED — NON-CANONICAL + BOSS OVERRIDE (CPM-08) |
+| Exact gate_result phrase | ❌ REJECTED — NON-CANONICAL (CPM-13) |
+| Neutral-leak tokens (U150/U151) | ⚠ NOT PROVEN — withdrawn pending file-level proof |
+| Non-atomic commits | ⚠ NOT PROVEN — no canonical definition found |
+| Verbatim source code (U135) | ⚠ NOT PROVEN — withdrawn pending file-level proof |
+
+---
+
+### 63.5 — Correction Package Dispatch
+
+Correction package **CR-DS-U100-U200-VERIFIED-B01** has been created at:
+`99_SMEsPlus_Enterprise_Suite/03_Architecture/00_Architecture_Office/ADR/../CR-DS-U100-U200-VERIFIED-B01.md`
+
+**Directed to:** DeepSeek (branch `claude/local-odoo-source-research`)  
+**Contains:** DEFECT-A (28 units, rename unit_id→unit) + DEFECT-B (5 units, resolve open gates) + DEFECT-C (4 units, fix malformed gate_result) + DEFECT-D (8 units, create missing HPs or provide OUT_OF_SCOPE stubs)  
+**Autonomous:** DeepSeek applies all CONFIRMED DEFECT corrections without Boss approval  
+**Boss-gated:** BD-001 through BD-004 require Boss ruling before further action
+
+---
+
+### 63.6 — Updated CR Status Register
+
+| CR | Unit | Issue | Priority | Status after §63 |
+|---|---|---|---|---|
+| CR-V001 | U70 | Evidence file GATE-PENDING | LOW | VERIFIED-CLOSED (§62.1) |
+| CR-V002 | U73 | HP status GATE-PENDING | LOW | VERIFIED-CLOSED (§62.1) |
+| CR-V003 | U78 | HP missing | MEDIUM | VERIFIED-CLOSED (§62.1) |
+| CR-V004 | U84 | HP wrong filename | LOW | VERIFIED-CLOSED (§62.1) |
+| CR-V005 | U104 | HP schema non-conformant | MEDIUM | **VERIFIED-CLOSED** (§63.2 — DeepSeek self-corrected) |
+| **CR-DS-U100-U200-VERIFIED-B01** | U106–U200 (38 units) | Schema defects (unit_id, open gates, malformed gate_result, missing HPs) | HIGH | **OPEN → DeepSeek** |
+
+---
+
+### 63.7 — Updated BAR Register
+
+| Item | Status after §63 |
+|------|-----------------|
+| BAR-001 | GRV-F06 hard 3-way match decision | **OPEN** |
+| BAR-002 | sudo() governance policy | **OPEN** |
+| BAR-003 | U120 hr.expense.sheet study | **OPEN** |
+| BAR-004 | hr_payroll architecture | **OPEN** |
+| BAR-007 | BGQ-08/09/10 rulings | **OPEN** |
+| BAR-008 | Authorize third-pass semantic verification | **OPEN** (U100–U113 eligible when INTAKE-PASS; U114–U123 intake not yet done) |
+| BAR-009 | CR-V005 coordination | **CLOSED** (CR-V005 VERIFIED-CLOSED per §63.2) |
+| **BAR-010** | BD-001: U172–U179 missing HP gap ruling | **NEW — OPEN** |
+| **BAR-011** | BD-002: Neutral-leak proof authorization for U150/U151 | **NEW — OPEN** |
+| **BAR-012** | BD-003: Verbatim source proof authorization for U135 | **NEW — OPEN** |
+| **BAR-013** | BD-004: NOT-GATE-PASS milestone for ~43 in-progress units | **NEW — OPEN** |
+
+---
+
+### 63.8 — STATE03 Status Snapshot (post §63)
+
+```
+STATE03_AUDIT_CRITERIA_PROOF_COMPLETE
+STATE03_AUTOMATION_PAUSE_BOSS_GATED
+
+Active correction packages outstanding:
+  CR-DS-U100-U200-VERIFIED-B01 → DeepSeek (38 units, autonomous)
+
+Verifier INTAKE-PASS count (canonical criteria):
+  Second-pass (U70–U99): 30/30 MECHANICAL-PASS (29/30 SEMANTIC-PASS)
+  Third-pass (U100–U200): 13 INTAKE-PASS (U100–U104, U113–U123)
+                          ~43 NOT-GATE-PASS (in progress)
+                          ~38 CONFIRMED DEFECT (pending CR-DS fix)
+                          8   MISSING HP (U172–U179)
+
+Open BARs: 10 (BAR-001–BAR-004, BAR-007–BAR-008, BAR-010–BAR-013)
+P2 Runtime: NOT_PROVEN universally
+P5 E2E: NOT_PROVEN universally
+```
+
