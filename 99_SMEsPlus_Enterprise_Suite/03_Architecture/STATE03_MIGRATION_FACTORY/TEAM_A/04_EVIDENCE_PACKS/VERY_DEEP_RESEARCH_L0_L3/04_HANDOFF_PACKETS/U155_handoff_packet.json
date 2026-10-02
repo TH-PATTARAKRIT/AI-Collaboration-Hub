@@ -1,0 +1,67 @@
+{
+  "unit": "U155",
+  "title": "mrp_workorder — Detailed Workorders",
+  "group": "G07",
+  "priority": "P2",
+  "date": "2026-10-02",
+  "researcher": "DeepSeek Worker — STATE03 VDR",
+  "odoo_version": "19.0.post20260921 Community (LGPL-3)",
+
+  "presence_status": {
+    "standalone_addon_mrp_workorder": "ABSENT",
+    "addon_directory_checked": "odoo/addons/mrp_workorder",
+    "functionality_location": "PRESENT — embedded in odoo/addons/mrp/models/mrp_workorder.py",
+    "model_name": "mrp.workorder",
+    "model_file_lines": 959
+  },
+
+  "claim_count": 22,
+  "claim_ids": [
+    "C01","C02","C03","C04","C05","C06","C07","C08","C09","C10","C11",
+    "C12","C13","C14","C15","C16","C17","C18","C19","C20","C21","C22"
+  ],
+
+  "key_pointers": {
+    "model_declaration": "mrp/models/mrp_workorder.py:15",
+    "workcenter_field": "mrp/models/mrp_workorder.py:35-37",
+    "state_machine": "mrp/models/mrp_workorder.py:66-73",
+    "time_ids": "mrp/models/mrp_workorder.py:118-119",
+    "button_start": "mrp/models/mrp_workorder.py:656-703",
+    "button_finish": "mrp/models/mrp_workorder.py:705-736",
+    "prepare_timeline_vals": "mrp/models/mrp_workorder.py:876-895",
+    "productivity_model": "mrp/models/mrp_workcenter.py:505",
+    "close_timer": "mrp/models/mrp_workcenter.py:594-610",
+    "mo_blocking_check": "mrp/models/mrp_production.py:594",
+    "compute_workorder_ids": "mrp/models/mrp_production.py:606-660",
+    "link_workorders_and_moves": "mrp/models/mrp_production.py:1669-1696",
+    "plan_workorder": "mrp/models/mrp_workorder.py:582-636",
+    "get_duration_expected": "mrp/models/mrp_workorder.py:811-836",
+    "conflict_detection_sql": "mrp/models/mrp_workorder.py:838-862"
+  },
+
+  "state_machine_states": ["blocked", "ready", "progress", "done", "cancel"],
+
+  "findings": [
+    "Standalone mrp_workorder addon is absent; Community 19 bundles the mrp.workorder model inside the mrp addon",
+    "The mrp addon manifest (LGPL-3) has no dependency on a separate mrp_workorder package",
+    "State machine has 5 states: blocked/ready/progress/done/cancel; default is ready",
+    "Time tracking uses mrp.workcenter.productivity One2many; button_start opens a timer, button_finish/end_all closes it",
+    "Productivity records classified as productive (duration <= expected) or performance loss (overrun)",
+    "MO _compute_state transitions to to_close only when ALL workorders are done or cancel",
+    "BOM operations drive workorder creation via _compute_workorder_ids() during draft state",
+    "_link_workorders_and_moves() builds sequential chain or dependency graph from operation blocked_by links",
+    "_plan_workorder() picks the earliest-available workcenter slot considering alternatives",
+    "No quality_control integration found in Community mrp; quality steps are an Enterprise mrp_workorder feature",
+    "Cyclic dependency validation in _check_no_cyclic_dependencies via _has_cycle()",
+    "qty_ready propagates progressively through dependency chain enabling flow production"
+  ],
+
+  "evidence_files": {
+    "technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U155_mrp_workorder.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U155_mrp_workorder_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U155_handoff_packet.json"
+  },
+
+  "gate_script": "/private/tmp/vdr_check_u155.py",
+  "gate_result": "PENDING"
+}
