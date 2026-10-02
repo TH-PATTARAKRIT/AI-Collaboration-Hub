@@ -1,0 +1,72 @@
+{
+  "unit": "U211",
+  "module": "mrp_workcenter",
+  "research_date": "2026-10-02",
+  "sha": {
+    "mrp_workcenter_py": "1e68a9ce1b7f3196cf83bc233ebf5380e66b64acdb8c55c44cd1c697a009daeb",
+    "mrp_routing_py": "39e560647e5a12c1cb313bd04d6dd793d28a15e45fdc5a1d061d6e9392c44019",
+    "mrp_workorder_py": "32b6d06e0de87c5a32a0b4018a0a32dc6f9365f0719a1153a8857848cbe60701"
+  },
+  "claim_count": 22,
+  "gate": "GREEN",
+  "migration_flags": [
+    {
+      "flag": "MRP_ROUTING_MODEL_REMOVED",
+      "severity": "BREAKING",
+      "description": "mrp.routing standalone model is absent in v19. No class declaring _name='mrp.routing' exists anywhere in addons/mrp/. The shared routing concept (one routing reused by many BOMs) has been eliminated.",
+      "pointer": "addons/mrp/models/ — grep returned no results for class MrpRouting or _name = 'mrp.routing'"
+    },
+    {
+      "flag": "ROUTING_ID_REMOVED_FROM_BOM_AND_PRODUCTION",
+      "severity": "BREAKING",
+      "description": "Fields routing_id on mrp.bom and mrp.production are absent in v19. grep on both model files returns no results.",
+      "pointer": "mrp_bom.py — no routing_id; mrp_production.py — no routing_id"
+    },
+    {
+      "flag": "MRP_ROUTING_WORKCENTER_BOM_DIRECT_FK",
+      "severity": "BREAKING",
+      "description": "mrp.routing.workcenter now has bom_id as a required Many2one with ondelete='cascade' directly to mrp.bom. The model retains its technical name but is no longer a child of mrp.routing.",
+      "pointer": "mrp_routing.py:23-25"
+    },
+    {
+      "flag": "CAPACITY_SCALAR_REPLACED_BY_CAPACITY_IDS",
+      "severity": "BREAKING",
+      "description": "No simple capacity = Float field exists on mrp.workcenter. Replaced by capacity_ids = One2many to mrp.workcenter.capacity which supports per-product, per-UOM capacity with per-product setup/cleanup overrides.",
+      "pointer": "mrp_workcenter.py:78-79, 613-646"
+    },
+    {
+      "flag": "TAG_IDS_NEW",
+      "severity": "NEW_FEATURE",
+      "description": "tag_ids = Many2many('mrp.workcenter.tag') added to mrp.workcenter. The tag model is defined in the same file with a unique name constraint and a random color index.",
+      "pointer": "mrp_workcenter.py:77, 440-454"
+    },
+    {
+      "flag": "WORKORDER_SCHEDULING_VIA_LEAVE_ID",
+      "severity": "STABLE",
+      "description": "Work order scheduling creates resource.calendar.leaves records with time_type='other' on the work center calendar. date_start and date_finished on mrp.workorder are computed from leave_id.date_from/date_to.",
+      "pointer": "mrp_workorder.py:74-77, 286-296"
+    }
+  ],
+  "key_findings": {
+    "routing_architecture": "mrp.routing model removed; mrp.routing.workcenter now has required bom_id with cascade; operations are direct children of mrp.bom via operation_ids One2many",
+    "capacity_model": "Per-product capacity via mrp.workcenter.capacity; _get_capacity() resolves priority: exact product+uom > no-product+unit > no-product+product-uom > default",
+    "oee_formula": "oee = productive_time * 100.0 / (productive_time + blocked_time); based on last-month closed productivity logs",
+    "workcenter_load": "Sum of duration_expected (minutes) for workorders in states blocked/ready/progress",
+    "duration_expected_formula": "setup + cleanup + ceil(qty/capacity) * time_cycle * 100 / time_efficiency",
+    "workorder_state_machine": "5 states: blocked/ready/progress/done/cancel; blocked<->ready driven by qty_ready>0; leave_id creates calendar slot on workcenter",
+    "workorder_creation": "_compute_workorder_ids on mrp.production explodes BOM then iterates bom.operation_ids; each operation creates one workorder with state=ready",
+    "tag_ids": "New many-to-many tag field on mrp.workcenter; tag model with name unique constraint and color index 1-11"
+  },
+  "files_read": [
+    "addons/mrp/models/mrp_workcenter.py",
+    "addons/mrp/models/mrp_routing.py",
+    "addons/mrp/models/mrp_workorder.py",
+    "addons/mrp/models/mrp_bom.py (lines 1-100, grep)",
+    "addons/mrp/models/mrp_production.py (grep + lines 606-660)"
+  ],
+  "output_files": {
+    "restricted_evidence": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/01_RESTRICTED_TECHNICAL_EVIDENCE/U211_mrp_workcenter.md",
+    "neutral_knowledge": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/02_NEUTRAL_KNOWLEDGE/U211_mrp_workcenter_NEUTRAL.md",
+    "handoff_packet": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/04_HANDOFF_PACKETS/U211_handoff_packet.json"
+  }
+}
