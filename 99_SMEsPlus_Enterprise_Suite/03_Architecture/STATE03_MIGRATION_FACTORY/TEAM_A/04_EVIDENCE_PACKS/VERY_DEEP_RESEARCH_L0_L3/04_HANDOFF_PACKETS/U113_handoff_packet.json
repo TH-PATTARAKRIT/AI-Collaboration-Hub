@@ -1,0 +1,25 @@
+{
+  "unit": "U113",
+  "title": "mail — Chatter + mail.activity Deep",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "modules": ["mail"],
+  "function_ids": ["MSG-F01", "MSG-F02", "MSG-F03", "MSG-F04"],
+  "l_levels": ["L3", "L4", "L7"],
+  "proof_layers": ["P1", "P3", "P4"],
+  "claim_count": 50,
+  "c1_count": 50,
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "key_findings": {
+    "activity_lifecycle": "mail.activity archiving model: completed activities are archived (active=False) not deleted; date_done stamped on archive; mail/models/mail_activity.py:595",
+    "notification_routing": "_notify_thread branches on scheduled_date: creates mail.message.schedule for future delivery, else dispatches immediately via inbox (bus), email (queue), and web push; mail/models/mail_thread.py:3279",
+    "bus_badge_counter": "All create/write/unlink operations on mail.activity send mail.activity/updated bus events with count_diff to update the user badge in real time; mail/models/mail_activity.py:308",
+    "scheduled_actions": "No dedicated activity reminder cron; email queue cron hourly (batch 1000); notification GC cron monthly (180 days); mail/data/ir_cron_data.xml:4,31",
+    "subtype_system": "Three core subtypes: mt_comment (public, sequence=0), mt_note (internal, sequence=100), mt_activities (internal, sequence=90); completion messages post with mt_activities; mail/data/mail_message_subtype_data.xml:5",
+    "chaining_types": "mail.activity.type.chaining_type: 'suggest' recommends next types, 'trigger' auto-creates next activity on completion; mutually exclusive with respective type fields; mail/models/mail_activity_type.py:56"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U113_mail_chatter_activity.md",
+    "02_NEUTRAL_KNOWLEDGE/U113_mail_chatter_activity_NEUTRAL.md"
+  ]
+}
