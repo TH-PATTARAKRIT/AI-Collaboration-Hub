@@ -37,8 +37,8 @@ Units selected per directive:
 | U108 | auth_passkey — WebAuthn registration/auth flow L2/L3 (GAP-020) | P1 | No | PARTIAL | WebAuthn controllers, passkey CRUD, security group gate | Done e903ae5b |
 | U109 | account.analytic.plan — multi-plan hierarchy deep | P1 | No | NOT_PROVEN | analytic.plan tree, mandatory % validation, cross-module distribution | Done 2d57e3c6 |
 | U110 | stock — lot/serial traceability + account impact | P1 | No | NOT_PROVEN | stock.lot FIFO/AVCO interaction, lot-level valuation, removal strategy | Done 74d7ffa5 |
-| U111 | account_budget — budget control (if Community) | P2 | No | NOT_STUDIED | crossovered.budget, budget.line, account.budget.post | Running |
-| U112 | product.template → product.product — attribute/variant explosion | P2 | No | NOT_PROVEN | product.template.attribute.value, _create_variant_ids, price extra | Queued |
+| U111 | account_budget — budget control (if Community) | P2 | No | NOT_STUDIED | crossovered.budget, budget.line, account.budget.post | Done 1d439378 (ABSENT — Enterprise-only) |
+| U112 | product.template → product.product — attribute/variant explosion | P2 | No | NOT_PROVEN | product.template.attribute.value, _create_variant_ids, price extra | Running |
 | U113 | mail — chatter + mail.activity deep (notification/reminder chain) | P2 | No | NOT_PROVEN | mail.activity lifecycle, mail.thread.mix, scheduled actions | Queued |
 | U114 | account — journal locking + sequence integrity | P2 | Yes | NOT_PROVEN | Journal sequence.mixin, _get_last_sequence, SEQUENCE GAP detection | Queued |
 | U115 | stock_account — WIP account entries from mrp_account close | P1 | Yes | NOT_PROVEN | mrp_account WIP journal, _get_production_account, finished goods posting | Queued |
