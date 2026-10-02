@@ -1,0 +1,66 @@
+{
+  "unit": "U199",
+  "module": "fleet",
+  "sha": "PENDING_COMMIT",
+  "claim_count": 20,
+  "gate": "GREEN",
+  "migration_flags": [
+    "fleet.vehicle.cost model DOES NOT EXIST in v19 — cost tracking split into fleet.vehicle.log.services (service costs) and fleet.vehicle.log.contract (contract costs)",
+    "acquisition_date field name in v19 (NOT acqui_date as in older versions)",
+    "drive_type field NEW on fleet.vehicle.model: fwd/awd/rwd/4wd selection (fleet/models/fleet_vehicle_model.py:66-71)",
+    "vehicle_properties_definition (PropertiesDefinition) NEW on fleet.vehicle.model — requires migration of any custom properties",
+    "vehicle_properties (Properties) field NEW on fleet.vehicle linked to model definition",
+    "vehicle_range + range_unit fields NEW on both fleet.vehicle.model and fleet.vehicle",
+    "fleet_vehicle_state_waiting_list is DEMO-ONLY data — not installed in production; code references it with raise_if_not_found=False",
+    "fleet.vehicle.log.services.state is a 4-value selection (new/running/done/cancelled) — new explicit lifecycle in v19",
+    "_get_odometer uses order='value desc' — returns MAX recorded value, NOT most recent date",
+    "fleet.service.type unifies contract and service type in a single model with category discriminator"
+  ],
+  "key_findings": {
+    "models_present": [
+      "fleet.vehicle",
+      "fleet.vehicle.model",
+      "fleet.vehicle.model.brand",
+      "fleet.vehicle.model.category",
+      "fleet.vehicle.state",
+      "fleet.vehicle.odometer",
+      "fleet.vehicle.log.services",
+      "fleet.vehicle.log.contract",
+      "fleet.vehicle.assignation.log",
+      "fleet.vehicle.tag",
+      "fleet.service.type"
+    ],
+    "models_absent": [
+      "fleet.vehicle.cost",
+      "fleet.service"
+    ],
+    "vehicle_key_fields": {
+      "model_id": "Many2one fleet.vehicle.model — required — fleet_vehicle.py:61",
+      "driver_id": "Many2one res.partner — tracked — fleet_vehicle.py:59",
+      "state_id": "Many2one fleet.vehicle.state — free-form, no code transitions — fleet_vehicle.py:78",
+      "acquisition_date": "Date — Registration Date — fleet_vehicle.py:73",
+      "odometer": "Float computed — max value from odometer log — fleet_vehicle.py:90",
+      "company_id": "Many2one res.company — multi-company — fleet_vehicle.py:45",
+      "license_plate": "Char tracked — fleet_vehicle.py:52"
+    },
+    "cost_tracking": {
+      "service_model": "fleet.vehicle.log.services — fleet/models/fleet_vehicle_log_services.py",
+      "service_type_field": "service_type_id → fleet.service.type (category=service)",
+      "contract_model": "fleet.vehicle.log.contract — fleet/models/fleet_vehicle_log_contract.py",
+      "contract_type_field": "cost_subtype_id → fleet.service.type (category=contract)",
+      "recurring_cost_field": "cost_generated + cost_frequency on fleet.vehicle.log.contract"
+    },
+    "vehicle_states_seeded": [
+      "New Request (seq 4) — noupdate=1",
+      "To Order (seq 5) — noupdate=1",
+      "Registered (seq 7) — noupdate=1",
+      "Downgraded (seq 8) — noupdate=1",
+      "Ordered (seq 6) — demo only",
+      "Reserve (seq 9) — demo only",
+      "Waiting List (seq 10) — demo only"
+    ],
+    "odometer_pattern": "fleet.vehicle._get_odometer searches fleet.vehicle.odometer order='value desc' limit=1 — returns highest value stored",
+    "multi_company": "company_id on vehicle, log.services, log.contract; check_company on contract.vehicle_id and vehicle.future_driver_id",
+    "contract_cron": "daily cron run_scheduler(): promotes futur→open, open→expired; schedules renewal activities within delay_alert_contract days (default 30)"
+  }
+}
