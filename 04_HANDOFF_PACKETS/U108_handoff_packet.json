@@ -1,0 +1,107 @@
+{
+  "unit": "U108",
+  "title": "auth_passkey — WebAuthn Registration/Authentication Flow",
+  "gap_id": "GAP-020",
+  "priority": "P1",
+  "status": "GATE-PASS",
+  "marker": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "research_agent": "Claude Sonnet 4.6 (third-pass deep research)",
+  "research_date": "2026-10-02",
+  "module_path": "addons/auth_passkey",
+  "claim_count": 40,
+  "modules_covered": [
+    "auth_passkey"
+  ],
+  "files_researched": [
+    "addons/auth_passkey/__manifest__.py",
+    "addons/auth_passkey/controllers/main.py",
+    "addons/auth_passkey/models/auth_passkey_key.py",
+    "addons/auth_passkey/models/res_users.py",
+    "addons/auth_passkey/mobile_utils.py",
+    "addons/auth_passkey/security/security.xml",
+    "addons/auth_passkey/security/ir.model.access.csv"
+  ],
+  "models_introduced": [
+    "auth.passkey.key",
+    "auth.passkey.key.create"
+  ],
+  "models_extended": [
+    "res.users"
+  ],
+  "key_findings": {
+    "auto_install": true,
+    "mfa_skip": "unconditional — mfa='skip' returned on successful passkey auth",
+    "challenge_storage": "request.session['webauthn_challenge'] — single-use pop",
+    "public_key_storage": "raw SQL read/write bypassing groups='base.group_system' restriction",
+    "rp_id_source": "url_parse(get_base_url()).host",
+    "user_verification": "REQUIRED (both auth and registration)",
+    "resident_key": "REQUIRED (registration)",
+    "sign_count_anti_replay": true,
+    "session_token_invalidation": "passkey set change triggers immediate recompute",
+    "android_origins": "android:apk-key-hash:<sha256> for com.odoo.mobile",
+    "check_identity_gates": ["action_create_passkey", "action_delete_passkey", "make_key"],
+    "vendored_library": "addons/auth_passkey/_vendor/webauthn/",
+    "admin_can_unlink_all": true,
+    "credential_params_injection": "CREDENTIAL_PARAMS.append('webauthn_response') at import"
+  },
+  "awt_items": [
+    {
+      "id": "AWT-U108-01",
+      "description": "Verify full registration flow end-to-end: confirm @check_identity challenge dialog appears, WebAuthn browser API called, credential written via raw SQL, session token recomputed",
+      "reason": "Frontend JS (simplewebauthn.js) and browser WebAuthn API interaction not verifiable from Python source alone"
+    },
+    {
+      "id": "AWT-U108-02",
+      "description": "Verify MFA skip at runtime: confirm passkey login does not trigger TOTP/email MFA even when 2FA is configured for the user",
+      "reason": "mfa='skip' return value interaction with MFA enforcement requires runtime verification"
+    }
+  ],
+  "output_files": {
+    "vdr_claims": "01_RESTRICTED_TECHNICAL_EVIDENCE/U108_auth_passkey.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U108_auth_passkey_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U108_handoff_packet.json"
+  },
+  "function_ids": [
+    "MODULE-MANIFEST: auth_passkey v1.1 auto-install depends base_setup+web",
+    "ARCH-MFA-SKIP-DOC: manifest documents unconditional MFA skip",
+    "FLOW-PARAM-INJECT: CREDENTIAL_PARAMS.append('webauthn_response') at import",
+    "ROUTE-START-AUTH: /auth/passkey/start-auth jsonrpc public",
+    "FLOW-AUTH-DELEGATE: controller delegates to auth.passkey.key._start_auth()",
+    "ROUTE-ASSETLINKS: /.well-known/assetlinks.json for Android Digital Asset Links",
+    "SCHEMA-KEY-MODEL: auth.passkey.key _order=id desc",
+    "SCHEMA-KEY-NAME: name Char required no-group-restriction",
+    "SCHEMA-CREDENTIAL-ID: credential_identifier Char groups=base.group_system",
+    "SCHEMA-PUBLIC-KEY: public_key Char groups=base.group_system compute+raw-SQL",
+    "SCHEMA-SIGN-COUNT: sign_count Integer groups=base.group_system anti-replay",
+    "GUARD-UNIQUE-CRED: UNIQUE(credential_identifier) DB constraint",
+    "FLOW-PUBLIC-KEY-READ: _compute_public_key raw SQL bypasses ORM groups restriction",
+    "FLOW-SESSION-CHALLENGE: _get_session_challenge pop single-use AccessDenied if absent",
+    "FLOW-START-AUTH: _start_auth generate_authentication_options user_verification=REQUIRED",
+    "FLOW-VERIFY-AUTH-ORIGINS: expected_origins web+APK require_user_verification=True",
+    "FLOW-VERIFY-AUTH-RETURN: returns new_sign_count",
+    "FLOW-START-REG: _start_registration resident_key=REQUIRED user_verification=REQUIRED",
+    "FLOW-VERIFY-REG: _verify_registration_options returns credential_id+credential_public_key",
+    "GUARD-DELETE-IDENTITY: action_delete_passkey @check_identity gate",
+    "GUARD-DELETE-OWNERSHIP: create_uid check silent-deny non-owner delete",
+    "FLOW-DELETE-TOKEN-REGEN: session token recomputed after passkey deletion",
+    "GUARD-CREATE-IDENTITY: make_key @check_identity gate",
+    "FLOW-CREATE-RAW-SQL: public key written via SQL UPDATE bypassing ORM",
+    "FLOW-CREATE-TOKEN-REGEN: session token recomputed after passkey creation",
+    "SCHEMA-USERS-O2M: res.users auth_passkey_key_ids O2M via create_uid SELF_READABLE",
+    "GUARD-ACTION-CREATE-IDENTITY: action_create_passkey @check_identity + _start_registration",
+    "FLOW-LOGIN-HOOK: _login intercepts webauthn type SQL JOIN credential_identifier→login",
+    "GUARD-LOGIN-UNKNOWN-KEY: AccessDenied('Unknown passkey') if no credential found",
+    "FLOW-CHECK-CREDENTIALS: _check_credentials intercepts webauthn sudo search _verify_auth",
+    "FLOW-SIGN-COUNT-UPDATE: passkey.sign_count = new_sign_count after verify",
+    "FLOW-MFA-SKIP-RETURN: return {'auth_method':'passkey','mfa':'skip'}",
+    "GUARD-INVALID-AUTH-RESPONSE: InvalidAuthenticationResponse → AccessDenied from None",
+    "FLOW-SESSION-TOKEN-INVALIDATION: auth_passkey_key_ids in token fields ARRAY_AGG LEFT JOIN",
+    "GUARD-ROW-SECURITY-USER: create_uid=user.id domain group_portal+group_user",
+    "GUARD-ROW-SECURITY-ADMIN: group_erp_manager read+unlink all write=0 create=0",
+    "ACL-KEY-USER: group_user read+write no-create no-unlink on auth.passkey.key",
+    "ACL-KEY-CREATE: group_user full CRUD on auth.passkey.key.create transient",
+    "ARCH-MOBILE-CERT: hard-coded SHA-256 fingerprint for com.odoo.mobile",
+    "ARCH-APK-KEY-HASHES: android:apk-key-hash:<b64url> expected_origins"
+  ]
+}
