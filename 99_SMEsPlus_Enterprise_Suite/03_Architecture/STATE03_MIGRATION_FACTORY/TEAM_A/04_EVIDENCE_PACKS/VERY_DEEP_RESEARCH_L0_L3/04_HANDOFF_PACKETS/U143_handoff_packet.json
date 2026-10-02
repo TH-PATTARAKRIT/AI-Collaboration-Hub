@@ -1,0 +1,37 @@
+{
+  "unit_id": "U143",
+  "title": "crm — CRM pipeline/lead/opportunity/stage deep L3",
+  "group": "G05/G10",
+  "priority": "P2",
+  "status": "COMPLETE",
+  "claim_count": 27,
+  "gate_result": "PASS",
+  "analyst": "DeepSeek research worker",
+  "source_base": "odoo-19.0.post20260921 Community",
+  "files_written": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U143_crm.md",
+    "02_NEUTRAL_KNOWLEDGE/U143_crm_NEUTRAL.md",
+    "04_HANDOFF_PACKETS/U143_handoff_packet.json"
+  ],
+  "key_finding": "CRM leads have zero accounting effect; expected_revenue is a pipeline forecast field only. The won/lost state machine is driven by stage.is_won + probability + active flags. Lead-to-opportunity conversion (type change + date_conversion) is separate from any sale.order creation. PLS (Naive Bayes) drives automated_probability but user can override. Personal lead record rule restricts salesperson visibility to own or unassigned leads.",
+  "primary_sources": [
+    "crm/models/crm_lead.py",
+    "crm/models/crm_stage.py",
+    "crm/models/crm_team.py",
+    "crm/models/crm_team_member.py",
+    "crm/models/mail_activity.py",
+    "crm/security/crm_security.xml",
+    "crm/security/ir.model.access.csv",
+    "crm/report/crm_activity_report.py",
+    "sale_crm/models/sale_order.py",
+    "sale_crm/models/crm_lead.py",
+    "crm/__manifest__.py"
+  ],
+  "gap_addressed": "no existing L3 evidence for CRM pipeline/lead/opportunity/stage",
+  "cross_module_links": [
+    "sale_crm: opportunity_id on sale.order, revenue sync on confirm",
+    "calendar: calendar_event_ids on crm.lead via opportunity_id",
+    "mail: activity.mixin, thread.cc, thread.blacklist, thread.phone",
+    "sales_team: group_sale_salesman, group_sale_manager, group_sale_salesman_all_leads"
+  ]
+}
