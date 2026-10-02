@@ -1,0 +1,68 @@
+{
+  "unit_id": "U195",
+  "unit_title": "account.journal — journal type architecture, sequence, lock, bank/cash controls",
+  "group": "G01",
+  "priority": "P1",
+  "status": "COMPLETE",
+  "depth": "L3",
+  "odoo_version": "19.0.post20260921",
+  "edition": "Community",
+  "produced": "2026-10-02",
+  "source_files": [
+    "odoo/addons/account/models/account_journal.py",
+    "odoo/addons/account/models/sequence_mixin.py",
+    "odoo/addons/account/models/account_move.py",
+    "odoo/addons/account/tests/common.py"
+  ],
+  "claim_count": 22,
+  "gate_code": "G01-U195-PASS",
+  "output_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U195_account_journal.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U195_account_journal_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U195_handoff_packet.json"
+  },
+  "key_finding": "Odoo 19 Community adds a distinct 'credit' journal type for credit cards (code prefix CCD); account_control_ids was removed from account.journal core — field exists only as a test-dynamically-created custom field (x_account_control_ids); hash chain (restrict_mode_hash_table) uses SHA-256 chaining stored in inalterable_hash and cannot be disabled once hashed entries exist.",
+  "migration_risk_summary": {
+    "HIGH": [
+      "account_control_ids removed from Community core — custom module required for journal-level account restriction",
+      "restrict_mode_hash_table cannot be disabled once hashed entries exist — carry hash state carefully",
+      "company_id is immutable once entries exist — multi-company journal provisioning must be done pre-go-live"
+    ],
+    "MEDIUM": [
+      "New 'credit' type requires re-typing existing credit-card bank journals",
+      "refund_sequence state must be preserved during journal migration",
+      "suspense_account_id must be of type asset_current in CoA",
+      "Alias domain required for mail-to-invoice feature on sale/purchase journals",
+      "Hash version upgraded to v4 — integrity report must handle multi-version chains"
+    ],
+    "LOW": [
+      "Code auto-generation logic unchanged for sale/purchase/cash/bank/general",
+      "sequence.mixin concurrency behavior unchanged",
+      "profit_account_id / loss_account_id auto-filled from company defaults"
+    ]
+  },
+  "claims_index": [
+    {"id": "U195-C01", "topic": "type field six values", "confidence": "HIGH"},
+    {"id": "U195-C02", "topic": "code auto-generation prefixes", "confidence": "HIGH"},
+    {"id": "U195-C03", "topic": "code uniqueness per company", "confidence": "HIGH"},
+    {"id": "U195-C04", "topic": "sequence.mixin stored columns", "confidence": "HIGH"},
+    {"id": "U195-C05", "topic": "sequence regex hierarchy", "confidence": "HIGH"},
+    {"id": "U195-C06", "topic": "sequence_override_regex", "confidence": "HIGH"},
+    {"id": "U195-C07", "topic": "refund_sequence dedicated series", "confidence": "HIGH"},
+    {"id": "U195-C08", "topic": "payment_sequence dedicated series", "confidence": "HIGH"},
+    {"id": "U195-C09", "topic": "restrict_mode_hash_table enables chain", "confidence": "HIGH"},
+    {"id": "U195-C10", "topic": "inalterable_hash stored value", "confidence": "HIGH"},
+    {"id": "U195-C11", "topic": "bank_account_id ownership constraint", "confidence": "HIGH"},
+    {"id": "U195-C12", "topic": "bank_statements_source extensible", "confidence": "HIGH"},
+    {"id": "U195-C13", "topic": "suspense_account_id pending reconciliation", "confidence": "HIGH"},
+    {"id": "U195-C14", "topic": "profit/loss account cash difference", "confidence": "HIGH"},
+    {"id": "U195-C15", "topic": "account_control_ids removed in v19", "confidence": "HIGH"},
+    {"id": "U195-C16", "topic": "alias_id email-to-invoice", "confidence": "HIGH"},
+    {"id": "U195-C17", "topic": "company_id strict isolation", "confidence": "HIGH"},
+    {"id": "U195-C18", "topic": "payment method lines bank/cash/credit only", "confidence": "HIGH"},
+    {"id": "U195-C19", "topic": "is_self_billing per-partner sequence", "confidence": "HIGH"},
+    {"id": "U195-C20", "topic": "archiving blocked by draft entries", "confidence": "HIGH"},
+    {"id": "U195-C21", "topic": "non_deductible_account_id private share", "confidence": "HIGH"},
+    {"id": "U195-C22", "topic": "sequence concurrency DB-level locking", "confidence": "HIGH"}
+  ]
+}

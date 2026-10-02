@@ -1,0 +1,107 @@
+{
+  "unit_id": "U196",
+  "module": "crm",
+  "group": "G05",
+  "priority": "P1",
+  "study_level": "L3",
+  "status": "COMPLETE",
+  "prepared_date": "2026-10-02",
+  "odoo_version": "19.0.post20260921",
+  "gate_code": "PASS",
+  "claims_count": 25,
+  "key_finding": "crm.lead single-model discriminates lead vs opportunity via 'type' field; PLS uses internal Naive Bayes on team-scoped frequency table (no IAP gate); won=probability 100+is_won stage; lost=archived+probability 0; round-robin assignment via cron or manual; date_closed set by write override not direct set",
+
+  "source_files": [
+    "crm/models/crm_lead.py",
+    "crm/models/crm_stage.py",
+    "crm/models/crm_team.py",
+    "sales_team/models/crm_team.py"
+  ],
+
+  "evidence_files": {
+    "technical": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/01_RESTRICTED_TECHNICAL_EVIDENCE/U196_crm.md",
+    "neutral": "99_SMEsPlus_Enterprise_Suite/03_Architecture/STATE03_MIGRATION_FACTORY/TEAM_A/04_EVIDENCE_PACKS/VERY_DEEP_RESEARCH_L0_L3/02_NEUTRAL_KNOWLEDGE/U196_crm_NEUTRAL.md"
+  },
+
+  "critical_claims": {
+    "U196-C04": {
+      "topic": "Won/Lost status",
+      "summary": "won_status derived from active+probability+stage.is_won; not a direct state machine",
+      "migration_risk": "MEDIUM"
+    },
+    "U196-C07": {
+      "topic": "date_closed management",
+      "summary": "Set by write() override when probability>=100 or active=False; cleared when probability>0",
+      "migration_risk": "MEDIUM"
+    },
+    "U196-C08": {
+      "topic": "PLS — Naive Bayes",
+      "summary": "Internal NBC on crm.lead.scoring.frequency table; no external IAP call; zero-frequency smoothed by +0.1",
+      "migration_risk": "LOW"
+    },
+    "U196-C10": {
+      "topic": "PLS frequency table rebuild",
+      "summary": "Must rebuild frequency table post-migration from historical won/lost data for PLS to work",
+      "migration_risk": "MEDIUM"
+    },
+    "U196-C18": {
+      "topic": "Assignment modes",
+      "summary": "System parameter crm.lead.auto.assignment toggles rule-based vs manual assignment",
+      "migration_risk": "MEDIUM"
+    },
+    "U196-C22": {
+      "topic": "Multi-company team scope",
+      "summary": "Team company_id scopes members and cascades to lead company_id; must map correctly",
+      "migration_risk": "MEDIUM"
+    },
+    "U196-C24": {
+      "topic": "Won stage probability constraint",
+      "summary": "DB constraint: probability must be 100 in is_won stage; data migration must comply",
+      "migration_risk": "LOW"
+    }
+  },
+
+  "model_map": {
+    "crm.lead": {
+      "table": "crm_lead",
+      "key_fields": ["type", "stage_id", "probability", "automated_probability", "won_status", "lost_reason_id", "active", "date_closed", "expected_revenue", "prorated_revenue", "priority", "team_id", "user_id", "company_id"]
+    },
+    "crm.stage": {
+      "table": "crm_stage",
+      "key_fields": ["name", "sequence", "is_won", "team_ids", "fold", "rotting_threshold_days"]
+    },
+    "crm.team": {
+      "table": "crm_team",
+      "key_fields": ["use_leads", "use_opportunities", "alias_id", "assignment_max", "assignment_domain", "assignment_optout", "company_id"]
+    },
+    "crm.lead.scoring.frequency": {
+      "table": "crm_lead_scoring_frequency",
+      "key_fields": ["team_id", "variable", "value", "won_count", "lost_count"]
+    }
+  },
+
+  "pls_config_parameters": {
+    "crm.pls_fields": "Comma-separated list of crm.lead field names used in probability calculation",
+    "crm.pls_start_date": "Earliest date for training data (ISO date string)",
+    "crm.lead.auto.assignment": "Activates rule-based lead assignment (boolean string)"
+  },
+
+  "won_lost_mechanics": {
+    "action_set_won": "Finds nearest won stage by sequence proximity, writes stage_id + probability=100, unarchives",
+    "action_set_lost": "Archives lead (active=False) + probability=0; accepts lost_reason_id via kwargs",
+    "action_restore": "Unarchives + resets probability to automated_probability value",
+    "date_closed_rule": "Set when probability>=100 OR active=False; cleared when probability>0 AND active=True"
+  },
+
+  "assignment_round_robin": {
+    "manual_batch": "_handle_salesmen_assignment(): lead_ids[idx::steps] pattern",
+    "cron_assign": "_assign_and_convert_leads(): sorts by (quota, random) desc; preferred domain leads first; then fill"
+  },
+
+  "email_alias": {
+    "model_target": "crm.lead",
+    "type_default": "'lead' if use_leads AND group_use_lead else 'opportunity'",
+    "team_id_default": "Automatically set to the team owning the alias",
+    "message_new_note": "Suppresses gateway user as responsible; maps subject->name, from->email_from"
+  }
+}
