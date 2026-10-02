@@ -1,0 +1,24 @@
+{
+  "unit": "U114",
+  "title": "account — Journal Locking + Sequence Integrity",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "modules": ["account"],
+  "function_ids": ["PCO-F01", "PCO-F02", "PCO-F03"],
+  "l_levels": ["L3", "L7", "L8"],
+  "proof_layers": ["P1", "P3", "P4"],
+  "claim_count": 50,
+  "c1_count": 50,
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "key_findings": {
+    "sequence_mixin_architecture": "SequenceMixin at account/models/sequence_mixin.py:17 is an AbstractModel providing per-journal sequence numbering with PostgreSQL-level exclusive lock acquisition via _locked_increment at line 355, using a transaction-scoped cache to minimise savepoint overhead.",
+    "lock_date_types": "Five lock date fields exist on res.company (account/models/company.py:57-102): fiscalyear_lock_date (global), tax_lock_date (auto-set on tax close), sale_lock_date, purchase_lock_date, and hard_lock_date (irreversible). Effective lock date per journal computed by _get_user_fiscal_lock_date at company.py:642.",
+    "lock_date_enforcement": "_check_fiscal_lock_dates at account_move.py:2823 is called from write() at lines 3950, 3955, 4001 — covering date/name change on posted entries, reset-to-draft transitions, and post-write state checks. Bypassed only via BYPASS_LOCK_CHECK sentinel.",
+    "hash_chain_sequence_dependency": "_get_chains_to_hash at account_move.py:4727 raises UserError on sequence gap (line 4761) before hash computation; gap check logic at _get_chain_info line 4705 uses arithmetic: first + difference != last. Hash includes sequence name (versions 2-4) per _get_integrity_hash_fields at line 4592.",
+    "gap_detection": "_update_sequence_made_gap at account_move.py:5820 queries up to 2 adjacent records per direction in the same journal+prefix scope; check_around at line 5832 flags a gap when sequence_number != previous.sequence_number + 1 or when a draft follows a posted entry."
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U114_journal_locking_sequence.md",
+    "02_NEUTRAL_KNOWLEDGE/U114_journal_locking_sequence_NEUTRAL.md"
+  ]
+}
