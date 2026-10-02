@@ -1,0 +1,44 @@
+{
+  "unit_id": "U126",
+  "title": "account — bank reconciliation statement backend (GAP-021)",
+  "g_group": "G01",
+  "priority": "P1",
+  "gap": "GAP-021",
+  "gap_status": "PARTIAL",
+  "gap_finding": "Python backend fully documented (34 claims); JS auto-match scoring widget excluded per C1 Material Risk definition; bank statement file import ABSENT from Community",
+  "claims_total": 34,
+  "claims_c1": 32,
+  "claims_absent": 2,
+  "claims_awt": 1,
+  "key_finding": "Every bank statement line IS an account.move via _inherits delegation; unreconciled transactions park on a journal suspense account; reconciliation replaces suspense line with matched counterpart via account.partial.reconcile graph; no Python-side auto-match scoring exists in Community — that logic lives entirely in the JS bank reconciliation widget",
+  "files_read": [
+    "account/models/account_bank_statement.py",
+    "account/models/account_bank_statement_line.py",
+    "account/models/account_reconcile_model.py",
+    "account/models/account_partial_reconcile.py",
+    "account/models/account_full_reconcile.py",
+    "account/models/account_move_line.py",
+    "account/models/account_journal.py"
+  ],
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U126_account_bank_reconciliation.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U126_account_bank_reconciliation_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U126_handoff_packet.json"
+  },
+  "gate_script": "/private/tmp/vdr_check_u126.py",
+  "notable_absent": [
+    "Bank statement file import (OFX/CAMT/MT940/CSV) — not in Community addons",
+    "Python auto-match scoring algorithm — implemented in JS bank reconciliation widget only"
+  ],
+  "notable_c1": [
+    "account.bank.statement.line _inherits account.move at line 13",
+    "Suspense account pattern: liquidity+suspense line pair created at line 629",
+    "_seek_for_lines() dispatches into liquidity/suspense/other at line 686",
+    "SQL LAG window function for statement validity at account_bank_statement.py:242",
+    "_reconcile_plan() orchestrates partial creation, exchange diff, CABA at account_move_line.py:2797",
+    "Graph-based matching_number assignment at account_partial_reconcile.py:194",
+    "account.reconcile.model trigger field controls auto vs manual reconciliation at line 110"
+  ],
+  "thai_locale_relevant": false,
+  "th_notes": "No Thai-locale-specific reconciliation logic found in Community; Thai-specific bank formats would require external modules"
+}
