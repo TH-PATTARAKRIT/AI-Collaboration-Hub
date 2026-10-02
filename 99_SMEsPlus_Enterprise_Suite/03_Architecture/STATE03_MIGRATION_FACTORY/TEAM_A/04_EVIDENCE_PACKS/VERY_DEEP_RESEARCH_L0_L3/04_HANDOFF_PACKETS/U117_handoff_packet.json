@@ -1,0 +1,25 @@
+{
+  "unit": "U117",
+  "title": "digest — KPI Digest Cron + ir.actions.server Pattern",
+  "date": "2026-10-02",
+  "status": "GATE-PASS",
+  "modules": ["digest", "crm", "sale_management", "account", "project", "hr_recruitment", "point_of_sale", "website_sale", "im_livechat"],
+  "function_ids": ["RPT-F01", "RPT-F02"],
+  "l_levels": ["L3", "L4"],
+  "proof_layers": ["P1", "P3", "P4"],
+  "claim_count": 50,
+  "c1_count": 50,
+  "gate_result": "PASS (claim-checks=0, neutral-leak-tokens=0)",
+  "key_findings": {
+    "cron_mechanism": "ir.cron record at digest/data/ir_cron_data.xml:3 runs daily as base.user_root calling model._cron_send_digest_email(); searches for digests with next_run_date <= today and state=activated",
+    "kpi_field_pattern": "Each KPI uses paired fields: boolean toggle (kpi_*) + computed value (kpi_*_value); _get_kpi_fields() at digest/models/digest.py:440 auto-discovers all enabled KPIs by prefix",
+    "cross_module_extension": "8 modules extend digest.digest via _inherit; each adds kpi_* boolean + value field; AccessError on value compute silently skips metric for that user",
+    "three_period_display": "_compute_kpis at digest/models/digest.py:246 computes Last 24h/7d/30d columns with margin % vs equivalent prior period; localized to company timezone",
+    "subscriber_management": "action_subscribe/unsubscribe at digest/models/digest.py:103-119 use sudo for speed; new users auto-subscribed via ResUsers.create at digest/models/res_users.py:9 when config param set",
+    "unsubscribe_security": "HMAC token (tools.hmac, key digest-unsubscribe) at digest/models/digest.py:234; List-Unsubscribe RFC 8058 headers set at digest/models/digest.py:214-217"
+  },
+  "evidence_files": [
+    "01_RESTRICTED_TECHNICAL_EVIDENCE/U117_digest_kpi_cron.md",
+    "02_NEUTRAL_KNOWLEDGE/U117_digest_kpi_cron_NEUTRAL.md"
+  ]
+}
