@@ -3,10 +3,20 @@
   "title": "account — fiscal position Thai edge cases (GAP-043)",
   "gap_id": "GAP-043",
   "priority": "P1/TH",
-  "status": "EVIDENCE_GATHERED",
+  "status": "GATE-FAIL",
+  "marker": "DEEPSEEK-CORRECTED / PENDING STATE03 RE-VERIFICATION",
   "all_content_status": "DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION",
   "claim_count": 37,
-  "gate_result": "PENDING",
+  "gate_result": "FAIL (claim-checks=0, neutral-leak-tokens=0)",
+  "b02_correction": {
+    "package": "CR-DS-U100-U200-VERIFIED-B02",
+    "defects": ["DEFECT-B (CPM-03 open gate PENDING)"],
+    "gate_command": "python3 ~/STATE03_RESTRICTED_LOCAL/tools/vdr_check.py 01_RESTRICTED_TECHNICAL_EVIDENCE/U107_fiscal_position_thai.md 02_NEUTRAL_KNOWLEDGE/U107_fiscal_position_thai_NEUTRAL.md",
+    "gate_output": ["claims=0 supported_pointer_and_anchor=0 unknown_class=0 neutral_ids=0", "FAIL claim-checks=0 neutral-leak-tokens=0"],
+    "gate_exit_code": 0,
+    "note": "Actual canonical gate FAILs: 0 canonical VDR-U107-C### claims. Recorded as GATE-FAIL; no GATE-PASS manufactured.",
+    "b02_prior": {"status": "EVIDENCE_GATHERED", "gate_result": "PENDING"}
+  },
 
   "evidence_files": {
     "technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U107_fiscal_position_thai.md",
