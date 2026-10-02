@@ -1,0 +1,238 @@
+{
+  "unit": "U180",
+  "module": "im_livechat",
+  "group": "G13",
+  "priority": "P2",
+  "status_before": "NOT_STUDIED",
+  "status_after": "STUDIED",
+  "odoo_version": "19.0.post20260921",
+  "evidence_date": "2026-10-02",
+  "researcher": "DeepSeek STATE03 Worker",
+
+  "source_files_read": [
+    "models/im_livechat_channel.py",
+    "models/discuss_channel.py",
+    "models/discuss_channel_member.py",
+    "models/im_livechat_channel_member_history.py",
+    "models/chatbot_script.py",
+    "models/chatbot_script_step.py",
+    "models/res_users.py",
+    "controllers/main.py"
+  ],
+
+  "models": {
+    "im_livechat.channel": {
+      "table": "im_livechat_channel",
+      "description": "Master configuration record: agents, rules, session limits, branding",
+      "key_fields": [
+        "name",
+        "user_ids (M2M res.users via im_livechat_channel_im_user)",
+        "available_operator_ids (computed)",
+        "rule_ids (One2many im_livechat.channel.rule)",
+        "max_sessions_mode",
+        "max_sessions",
+        "block_assignment_during_call"
+      ],
+      "no_website_id": true,
+      "inherits": ["rating.parent.mixin"]
+    },
+    "im_livechat.channel.rule": {
+      "table": "im_livechat_channel_rule",
+      "description": "URL-regex rules per channel; attach chatbot scripts and control button visibility",
+      "key_fields": [
+        "regex_url",
+        "action (display_button/display_button_and_text/auto_popup/hide_button)",
+        "chatbot_script_id (Many2one chatbot.script)",
+        "chatbot_enabled_condition (always/only_if_no_operator/only_if_operator)",
+        "country_ids (M2M res.country)",
+        "sequence"
+      ]
+    },
+    "discuss.channel (livechat extension)": {
+      "table": "discuss_channel",
+      "description": "Each livechat conversation as a messaging channel with livechat fields",
+      "livechat_fields": [
+        "channel_type = 'livechat'",
+        "livechat_channel_id (Many2one im_livechat.channel)",
+        "livechat_operator_id (Many2one res.partner, NOT NULL)",
+        "livechat_end_dt (Datetime, NULL=open)",
+        "livechat_status (in_progress/waiting/need_help, NULL when closed)",
+        "livechat_failure (no_answer/no_agent/no_failure)",
+        "livechat_outcome (computed: escalated/no_answer/no_agent/no_failure)",
+        "livechat_is_escalated (Boolean, stored)",
+        "chatbot_current_step_id (Many2one chatbot.script.step)",
+        "livechat_lang_id",
+        "country_id",
+        "duration (Float, hours)"
+      ],
+      "db_constraints": [
+        "livechat_operator_id NOT NULL when channel_type=livechat",
+        "livechat_end_dt IS NULL OR livechat_status IS NULL"
+      ],
+      "indexes": [
+        "(livechat_end_dt) WHERE livechat_end_dt IS NULL",
+        "(livechat_failure) WHERE livechat_failure IN ('no_answer','no_agent')",
+        "(livechat_is_escalated) WHERE livechat_is_escalated IS TRUE",
+        "(channel_type, create_date) WHERE channel_type = 'livechat'"
+      ]
+    },
+    "im_livechat.channel.member.history": {
+      "table": "im_livechat_channel_member_history",
+      "description": "Per-member audit trail for each livechat session; used for reporting",
+      "key_fields": [
+        "member_id (discuss.channel.member)",
+        "channel_id",
+        "partner_id or guest_id (XOR)",
+        "livechat_member_type (agent/visitor/bot)",
+        "chatbot_script_id",
+        "response_time_hour",
+        "message_count",
+        "session_duration_hour",
+        "rating_id"
+      ],
+      "unique_constraints": [
+        "UNIQUE(member_id)",
+        "UNIQUE(channel_id, partner_id) WHERE partner_id IS NOT NULL",
+        "UNIQUE(channel_id, guest_id) WHERE guest_id IS NOT NULL"
+      ]
+    },
+    "chatbot.script": {
+      "table": "chatbot_script",
+      "description": "Bot script configuration; one inactive res.partner auto-created per script",
+      "key_fields": [
+        "title",
+        "operator_partner_id (Many2one res.partner, active=False)",
+        "script_step_ids",
+        "active"
+      ]
+    },
+    "chatbot.script.step": {
+      "table": "chatbot_script_step",
+      "description": "Individual step in a chatbot script",
+      "step_types": [
+        "text",
+        "question_selection",
+        "question_email",
+        "question_phone",
+        "forward_operator",
+        "free_input_single",
+        "free_input_multi"
+      ],
+      "key_fields": [
+        "chatbot_script_id",
+        "step_type",
+        "message (Html)",
+        "answer_ids (One2many chatbot.script.answer)",
+        "triggering_answer_ids (Many2many chatbot.script.answer)",
+        "sequence",
+        "operator_expertise_ids (for forward_operator)"
+      ]
+    },
+    "chatbot.message": {
+      "table": "chatbot_message",
+      "description": "Junction between mail.message and chatbot step; stores visitor raw answer",
+      "key_fields": [
+        "discuss_channel_id",
+        "mail_message_id",
+        "script_step_id",
+        "user_raw_answer",
+        "user_script_answer_id",
+        "user_raw_script_answer_id"
+      ]
+    }
+  },
+
+  "operator_selection": {
+    "algorithm": "8-tier preference cascade with random choice among equally-qualified candidates",
+    "tiers": [
+      "same_language AND all_expertises",
+      "same_language AND one_expertise",
+      "same_language",
+      "same_country AND all_expertises",
+      "same_country AND one_expertise",
+      "same_country",
+      "all_expertises",
+      "one_expertise"
+    ],
+    "buffer_time_seconds": 120,
+    "previous_operator_sticky": true,
+    "active_session_window_minutes": 30,
+    "availability_window_minutes": 15,
+    "is_round_robin": false,
+    "uses_random_choice": true
+  },
+
+  "session_lifecycle": {
+    "creation": "POST /im_livechat/get_session (auth=public); discuss.channel created with livechat_operator_id",
+    "operator_notification": "channel._broadcast([livechat_operator_id.id]) → bus push to operator's browser",
+    "close_explicit": "_close_livechat_session() sets livechat_end_dt, posts notification message",
+    "close_on_last_operator_leave": "_action_unfollow() checks member_count==1",
+    "gc_empty_sessions_hours": 1,
+    "gc_bot_only_sessions_days": 1,
+    "gc_unpinned_sessions_days": 1
+  },
+
+  "visitor_identity": {
+    "anonymous": "mail.guest — created on first contact, identified by signed cookie",
+    "authenticated": "res.partner via res.users",
+    "dedicated_visitor_model": false,
+    "cookie_signing": true
+  },
+
+  "chatbot_handover": {
+    "trigger": "step_type = forward_operator",
+    "operator_selection": "same algorithm as direct chat, with optional expertise filter per step",
+    "on_success": "bot removed from channel, human added, livechat_operator_id updated, channel renamed, human notified via bus",
+    "on_failure": "livechat_failure = 'no_agent' set; bot continues"
+  },
+
+  "multi_website": {
+    "supported_community": false,
+    "website_id_on_channel": false,
+    "note": "Enterprise feature only"
+  },
+
+  "crm_integration": {
+    "in_module": false,
+    "bridge_module": "im_livechat_crm (separate addon)",
+    "helper_available": "_chatbot_prepare_customer_values() extracts email/phone from bot messages"
+  },
+
+  "claims_count": 20,
+  "gate_result": "PASS",
+  "gate_code": "G13-U180-PASS",
+
+  "migration_risks": [
+    {
+      "risk": "Chatbot scripts have associated inactive res.partner records that must migrate",
+      "severity": "MEDIUM",
+      "mitigation": "Include active=False partners in export scope"
+    },
+    {
+      "risk": "Session history (chatbot.message, im_livechat.channel.member.history) must migrate alongside discuss.channel records",
+      "severity": "MEDIUM",
+      "mitigation": "Migrate related tables in dependency order"
+    },
+    {
+      "risk": "Real-time bus/websocket infrastructure must be validated post-migration",
+      "severity": "MEDIUM",
+      "mitigation": "Test new chat notification flow end-to-end after data migration"
+    },
+    {
+      "risk": "CRM lead creation from chatbot requires im_livechat_crm bridge; confirm if in scope",
+      "severity": "MEDIUM",
+      "mitigation": "Check module list; add to migration scope if required"
+    },
+    {
+      "risk": "Multi-website channel scoping unavailable in Community",
+      "severity": "LOW",
+      "mitigation": "Use URL regex rules per page/domain as workaround"
+    }
+  ],
+
+  "evidence_files": {
+    "restricted": "01_RESTRICTED_TECHNICAL_EVIDENCE/U180_im_livechat.md",
+    "neutral": "02_NEUTRAL_KNOWLEDGE/U180_im_livechat_NEUTRAL.md",
+    "handoff": "04_HANDOFF_PACKETS/U180_handoff_packet.json"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "unit": "U183",
+  "module": "note",
+  "description": "Internal note-taking model, stage, activity integration",
+  "group": "G14",
+  "priority": "P3",
+  "prior_status": "NOT_STUDIED",
+  "research_level": "L3",
+  "research_date": "2026-10-02",
+  "researcher": "DeepSeek Worker — STATE03 VDR Manifest",
+
+  "gate_result": {
+    "code": "NOTFOUND-ENT-MODULE",
+    "label": "Module absent from Community 19 — Enterprise-only",
+    "disposition": "BLOCKED_ENTERPRISE",
+    "migration_gap": true,
+    "gap_severity": "HIGH",
+    "gap_description": "Standalone note.note / note.stage / note.tag models do not exist in Odoo Community 19. Feature was moved to Enterprise in Odoo 17+. No note module present in source tree (confirmed: 693 addons scanned). Not installed in iTest19C database."
+  },
+
+  "module_presence": {
+    "in_community_19": false,
+    "in_itest19c_db": false,
+    "addons_dir_scanned": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons",
+    "addons_count": 693,
+    "note_dir_found": false,
+    "enterprise_only_since": "Odoo 17"
+  },
+
+  "claims_summary": {
+    "total": 15,
+    "confirmed": 7,
+    "refuted": 3,
+    "blocked_module_absent": 5,
+    "confidence": "HIGH on all confirmed/refuted claims"
+  },
+
+  "community_equivalent": {
+    "model": "mail.activity",
+    "source_file": "odoo/addons/mail/models/mail_activity.py",
+    "key_fields": {
+      "note": "Html (sanitize_style=True) — free-text note body",
+      "date_done": "Date computed on archive (active=False) — line 136-143",
+      "user_id": "Many2one res.users, personal assignment",
+      "state": "Selection: overdue/today/planned/done — computed",
+      "date_deadline": "Date, required",
+      "activity_type_id": "Many2one mail.activity.type"
+    },
+    "done_mechanism": "Archive activity (active=False) triggers _compute_date_done(); sets date_done = now()",
+    "personal_scope": true,
+    "company_scoped": false,
+    "chatter_enabled": false,
+    "note_is_the_chatter_element": true
+  },
+
+  "mail_thread_note_integration": {
+    "mt_note_subtype": "mail.mt_note",
+    "internal_only": true,
+    "portal_access": false,
+    "methods": [
+      "_message_log() — posts internal note (mt_note subtype)",
+      "_message_log_batch() — bulk internal note",
+      "message_post_with_source() — general post, defaults to mt_note"
+    ],
+    "source_file": "odoo/addons/mail/models/mail_thread.py",
+    "relevant_lines": [1396, 2305, 2616, 2697, 2821, 2950]
+  },
+
+  "activity_type_note_category": {
+    "has_dedicated_note_category": false,
+    "community_categories": ["default", "upload_file", "phonecall"],
+    "default_note_field": "Html on mail.activity.type (pre-fills activity.note on type selection)",
+    "source_file": "odoo/addons/mail/models/mail_activity_type.py",
+    "lines": "68-76"
+  },
+
+  "enterprise_gap": {
+    "missing_models": ["note.note", "note.stage", "note.tag"],
+    "missing_features": [
+      "Standalone personal note app (kanban)",
+      "Personal kanban stages (note.stage, per user_id)",
+      "Note color coding (integer color field)",
+      "Note tag categorization (note.tag Many2many)",
+      "note.note date_done field (mark as done)",
+      "note.note mail.thread inheritance (chatter on note records)",
+      "_mark_note_as_done() method",
+      "Portal access to notes (not applicable — notes are personal)"
+    ],
+    "clean_room_candidate": true,
+    "scgl_module_exists": false,
+    "recommended_action": "Design clean-room note module for SMEsPlus 19 Community if required"
+  },
+
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U183_note.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U183_note_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U183_handoff_packet.json"
+  },
+
+  "key_finding": "note module is Enterprise-only in Odoo 19; Community provides mail.activity (note field, user-scoped, date_done on archive) and mail.thread mt_note subtype for internal chatter notes — standalone note app is a confirmed Enterprise-Community feature gap"
+}
