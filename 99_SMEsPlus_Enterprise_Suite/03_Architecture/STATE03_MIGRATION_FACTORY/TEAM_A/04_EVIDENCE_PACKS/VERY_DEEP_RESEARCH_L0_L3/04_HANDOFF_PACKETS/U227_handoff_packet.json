@@ -1,0 +1,87 @@
+{
+  "unit": "U227",
+  "module": "account_analytic",
+  "sha": "933289b91f279391",
+  "claim_count": 25,
+  "gate": "GREEN",
+  "odoo_version": "19.0.post20260921",
+  "edition": "Community",
+  "source_files": [
+    "analytic/models/analytic_account.py",
+    "analytic/models/analytic_plan.py",
+    "analytic/models/analytic_mixin.py",
+    "analytic/models/analytic_line.py",
+    "analytic/models/analytic_distribution_model.py",
+    "account/models/account_move_line.py"
+  ],
+  "migration_flags": [
+    {
+      "flag": "ANALYTIC_ACCOUNT_ID_REMOVED",
+      "severity": "BREAKING",
+      "description": "account.move.line.analytic_account_id (Many2one to account.analytic.account) was removed in v16. Absent from v19. Replaced by analytic_distribution JSON field.",
+      "action": "Migrate all references from analytic_account_id to analytic_distribution {'account_id': 100} format."
+    },
+    {
+      "flag": "ANALYTIC_TAG_IDS_REMOVED",
+      "severity": "BREAKING",
+      "description": "analytic_tag_ids (Many2many) and the account.analytic.tag model were removed in v16. Entirely absent from v19.",
+      "action": "Remove all references to analytic_tag_ids and account.analytic.tag. Tag-based distribution logic must be reimplemented via analytic_distribution JSON."
+    },
+    {
+      "flag": "ANALYTIC_ACCOUNT_PARENT_ID_REMOVED",
+      "severity": "BREAKING",
+      "description": "account.analytic.account.parent_id (hierarchical chart-of-accounts style) was removed in v16. Accounts are now flat; hierarchy lives on account.analytic.plan via parent_id + _parent_store.",
+      "action": "Remove customisations relying on account.analytic.account parent_id. Implement plan hierarchy on account.analytic.plan instead."
+    },
+    {
+      "flag": "DYNAMIC_PLAN_COLUMNS",
+      "severity": "MIGRATION-REQUIRED",
+      "description": "account.analytic.line no longer has a fixed set of analytic columns. Each root plan creates a dynamic ir.model.fields entry (x_plan{id}_id). The project plan maps to the fixed account_id column.",
+      "action": "Any customisation or report referencing fixed analytic columns other than account_id must be updated to use _column_name() resolution or the analytic_distribution JSON on move lines."
+    },
+    {
+      "flag": "VALIDATE_ANALYTIC_CONTEXT_REQUIRED",
+      "severity": "BEHAVIOUR",
+      "description": "_validate_distribution() in analytic.mixin only fires when validate_analytic=True is in the ORM context. It is NOT triggered on every write. account.move.line._validate_analytic_distribution() calls it at posting time.",
+      "action": "Custom models that use analytic.mixin must explicitly set validate_analytic=True in context when performing mandatory validation."
+    }
+  ],
+  "key_findings": {
+    "account_structure": "account.analytic.account is FLAT (no parent_id). Hierarchy is on account.analytic.plan via _parent_store.",
+    "plan_column_mechanism": "_strict_column_name() returns 'account_id' for project plan, 'x_plan{id}_id' for others. _sync_plan_column() creates ir.model.fields dynamically.",
+    "distribution_format": "JSON dict where keys are string account IDs (comma-separated for multi-plan combined entries) and values are float percentages.",
+    "mandatory_validation": "_validate_distribution() checks each mandatory plan sums to 100% using float_compare with decimal.precision 'Percentage Analytic'. Only fires when validate_analytic context is True.",
+    "analytic_line_creation": "_create_analytic_lines() on account.move.line called at posting: validates then creates one account.analytic.line per distribution entry per move line.",
+    "plan_domain": "_get_plan_domain() returns [('plan_id', 'child_of', plan.id)] — includes accounts from all descendant plans.",
+    "applicability_scoring": "Plan applicability resolved by score: 0.5 base + 1.0 for business_domain match. Company match alone cannot override a domain-specific rule.",
+    "migration_critical": "analytic_account_id (Many2one), analytic_tag_ids (Many2many), and account.analytic.tag model ALL removed in v16. Version 19 has none of these.",
+    "distribution_model": "account.analytic.distribution.model auto-prefills analytic_distribution on new documents based on partner/partner_category/company matching."
+  },
+  "claims_index": {
+    "U227-C01": "account.analytic.account model definition and ordering",
+    "U227-C02": "account.analytic.account core fields: name, code, active, plan_id, company_id, partner_id",
+    "U227-C03": "MIGRATION-FLAG: no parent_id on account — flat structure",
+    "U227-C04": "root_plan_id stored computed field for fast grouping",
+    "U227-C05": "write() migrates analytic line columns on plan change",
+    "U227-C06": "account.analytic.plan _parent_store hierarchy with path indexing",
+    "U227-C07": "plan parent_id with cascade delete and anti-cycle domain",
+    "U227-C08": "complete_name recursive slash-separated path, stored",
+    "U227-C09": "default_applicability company-dependent selection field",
+    "U227-C10": "_column_name() / _strict_column_name() dynamic column resolution",
+    "U227-C11": "_sync_plan_column() dynamic ir.model.fields creation",
+    "U227-C12": "get_relevant_plans() filtering by account existence and applicability",
+    "U227-C13": "_get_applicability() scoring algorithm",
+    "U227-C14": "analytic_distribution JSON field definition on analytic.mixin",
+    "U227-C15": "Distribution key format: comma-separated account IDs",
+    "U227-C16": "GIN index on distribution JSON for fast containment queries",
+    "U227-C17": "_validate_distribution() mandatory 100% check",
+    "U227-C18": "_sanitize_values() float precision normalisation on save",
+    "U227-C19": "_get_plan_domain() child-of plan domain for account selection",
+    "U227-C20": "account.analytic.line inherits analytic.plan.fields.mixin",
+    "U227-C21": "analytic.line fields: name, date, amount, unit_amount, category",
+    "U227-C22": "account.move.line._validate_analytic_distribution() at posting",
+    "U227-C23": "account.move.line._create_analytic_lines() called at posting",
+    "U227-C24": "_prepare_analytic_lines() / _prepare_analytic_distribution_line() rounding",
+    "U227-C25": "MIGRATION-FLAG: analytic_account_id and analytic_tag_ids removed in v16+"
+  }
+}
