@@ -1,0 +1,69 @@
+{
+  "unit_id": "U157",
+  "title": "account_bank_statement_import — OFX/CSV/CAMT import chain L3",
+  "g_group": "G01",
+  "priority": "P1",
+  "gap_id": "GAP-021",
+  "research_date": "2026-10-02",
+  "verdict": "ABSENT",
+  "claim_count": 21,
+  "gate_result": "GATE-PASS",
+  "source_tree": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons",
+
+  "presence_check": {
+    "account_bank_statement_import": "ABSENT",
+    "account_bank_statement_import_ofx": "ABSENT",
+    "account_bank_statement_import_csv": "ABSENT",
+    "account_bank_statement_import_camt": "ABSENT",
+    "thai_bank_import": "ABSENT"
+  },
+
+  "community_evidence_found": {
+    "account_bank_statement_model": {
+      "path": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons/account/models/account_bank_statement.py",
+      "class": "AccountBankStatement",
+      "line": 10,
+      "notes": "Header model present; carries reference, balance_start, balance_end_real, line_ids"
+    },
+    "account_bank_statement_line_model": {
+      "path": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons/account/models/account_bank_statement_line.py",
+      "class": "AccountBankStatementLine",
+      "line": 11,
+      "notes": "Inherits account.move via _inherits; has partner_name, transaction_type, account_number, transaction_details, is_reconciled fields"
+    },
+    "account_document_import_mixin": {
+      "path": "/Volumes/iMacSys/SMEsPlus ENTERPRISE SUITE/02_SOURCE_CODE/SMEsPlus19/SOURCE_CODE/Odoo Community/odoo-19.0.post20260921/odoo/addons/account/models/account_document_import_mixin.py",
+      "class": "AccountDocumentImportMixin",
+      "line": 126,
+      "notes": "Generic document import framework; _get_edi_decoder returns None in base; not wired to bank statement import"
+    }
+  },
+
+  "absent_components": [
+    "File upload wizard (account.bank.statement.import wizard model)",
+    "_import_file() method",
+    "_parse_file() method returning (currency_code, account_number, stmts_vals)",
+    "Format detection via file extension / MIME / magic bytes",
+    "OFX parser",
+    "CSV parser for bank statements",
+    "CAMT/ISO-20022 XML parser",
+    "Thai bank format parser",
+    "Post-import reconciliation trigger",
+    "account.bank.statement.line bulk creation from parsed data"
+  ],
+
+  "migration_risk": "HIGH",
+  "migration_notes": "The complete file-import chain is absent. SMEsPlus must source this from OCA account_statement_import family, Odoo Enterprise modules, or custom development. The data models (account.bank.statement, account.bank.statement.line) are present and ready to receive data once an import mechanism is provided.",
+
+  "evidence_files": {
+    "restricted_technical": "01_RESTRICTED_TECHNICAL_EVIDENCE/U157_bank_stmt_import.md",
+    "neutral_knowledge": "02_NEUTRAL_KNOWLEDGE/U157_bank_stmt_import_NEUTRAL.md",
+    "handoff_packet": "04_HANDOFF_PACKETS/U157_handoff_packet.json"
+  },
+
+  "claims_summary": {
+    "C1": 16,
+    "ABSENT": 5,
+    "total": 21
+  }
+}
