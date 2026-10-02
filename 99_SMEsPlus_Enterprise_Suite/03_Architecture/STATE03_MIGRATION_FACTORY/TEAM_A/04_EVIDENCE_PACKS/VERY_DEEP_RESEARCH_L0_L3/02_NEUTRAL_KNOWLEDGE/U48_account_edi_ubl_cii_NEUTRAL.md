@@ -1,0 +1,47 @@
+# U48 neutral knowledge — electronic invoice interchange: UBL, CII, GLN routing
+
+> Neutral knowledge layer. DEEPSEEK-REPORTED / PENDING CLAUDE VERIFICATION.
+> Unit: U48 | Modules: account add gln, account edi ubl cii
+> Date: 2026-10-02
+
+---
+
+[N-U48-001] An electronic invoice standard defines which data fields must be present in a structured digital message, how monetary amounts are encoded, and what identification codes are required for buyer, seller, and line items. These standards allow businesses to exchange invoices automatically without rekeying data.
+
+[N-U48-002] A Global Location Number is a thirteen-digit identifier issued under the GS1 standard that uniquely identifies a physical or legal location anywhere in the world. In electronic invoicing, a Global Location Number on a delivery address allows routing networks to identify precisely where goods were shipped, and some electronic invoice formats require this number when the delivery address differs from the buyer address.
+
+[N-U48-003] The Universal Business Language format defines electronic invoices using extensible markup language with a fixed set of named elements. An invoice in this format contains a header section describing both parties, a tax summary section, and one or more detail lines each describing a product or service sold. Different regional variants of this format exist — some are used for European public procurement, some for specific countries — and they share the same core structure while adding country-specific rules or required fields.
+
+[N-U48-004] Cross Industry Invoice is a structured electronic invoice format developed under United Nations trade facilitation standards. It uses a different arrangement of elements than Universal Business Language but carries the same essential information. Factur-X is a French and German variant that embeds a Cross Industry Invoice document inside a portable document file, so the invoice is both human-readable and machine-readable from a single attachment. The date format used in this standard writes dates as an eight-digit number with year, month, and day in sequence.
+
+[N-U48-005] An invoice currency code identifies the monetary unit in which all amounts on the invoice are expressed, using the three-letter international currency standard. A separate tax currency code may optionally be included when the country in which the seller operates requires tax amounts to be reported in the national currency even if the invoice is issued in a different currency.
+
+[N-U48-006] A Peppol endpoint is an electronic address used by the Peppol network to deliver invoices between organisations. It consists of two parts: an address scheme code that identifies the type of identifier being used (such as a national company registration number, a tax identification number, or an email address), and the identifier value itself. Each country connected to the Peppol network has one or more approved scheme codes that businesses in that country use to register their electronic delivery addresses.
+
+[N-U48-007] When a business receives an electronic invoice, its accounting system attempts to match the sender information in the invoice to an existing contact record. The matching procedure tries several approaches in turn: first it looks for a contact with the same tax identification number, then for one registered under the same Peppol network address, then by email address, then by telephone number, and finally by name. If no match is found and the invoice contains a name and a tax number, a new contact is created automatically.
+
+[N-U48-008] Every line on an electronic invoice must be associated with a tax category. Standard categories include the regular rate applicable in most transactions, a zero rate for exports or specially exempt goods, a reverse charge category where the buyer rather than the seller accounts for the tax, and various exemption categories for different legal situations. The appropriate category is determined first by any manual setting on the tax record, then by the countries of the buyer and seller, and finally by whether the transaction crosses international borders within a regional economic area.
+
+[N-U48-009] When an electronic invoice is received, the amounts shown on each line must be reconstructed from the structured data. The net price per unit, the gross price per unit, a price reduction amount, a base quantity used for pricing, and the billed quantity are combined according to a standard formula to produce the line total. This formula is specified in the electronic invoicing documentation and must be followed precisely to avoid rounding differences.
+
+[N-U48-010] The Peppol Business Interoperability Specification Billing version three is the pan-European standard for electronic invoices exchanged through the Peppol network. Norway uses this specification without any additions. The same specification is used across all countries connected to the Peppol network that do not have a specific national profile. A the record-billing variant of this specification exists for situations where the buyer issues the invoice on behalf of the seller.
+
+[N-U48-011] Thailand does not have a pre-configured mapping in the electronic invoice routing module. Thai businesses wishing to use international electronic invoice standards would need a custom extension to define the appropriate national identifier scheme and to register the Thai invoice format in the system. The standard tax category codes used by this framework — specifically the code for a regular tax rate and the code for zero-rated exports — are compatible with Thai value added tax rules where the standard rate is seven percent and export transactions are rated at zero percent.
+
+[N-U48-012] Fixed-amount tax charges — such as environmental levies, recycling fees, or excise duties expressed as a fixed amount per unit — are treated differently from percentage-based taxes in electronic invoice formats. Rather than appearing in the tax summary, they are reported as charges on the relevant invoice line. This distinction is important because international standards permit only percentage-based tax categories in the formal tax section of the document.
+
+[N-U48-013] An electronic invoice document may contain embedded attachments, such as a portable document file version of the same invoice or supporting documentation. The receiving system extracts these attachments from the structured data and stores them alongside the invoice. Supported attachment types include portable document files, spreadsheet files in open and Microsoft formats, and common image formats.
+
+[N-U48-014] Units of measure in electronic invoices are expressed using codes from the United Nations Economic Commission for Europe Recommendation 20 list. Common codes include the piece or unit code for countable items, kilogram for weight, litre for volume, and kilowatt-hour for energy. If the system does not recognise the unit of measure on an invoice line, it defaults to the piece code.
+
+[N-U48-015] The export of an electronic invoice is triggered by the format setting on the customer contact record. The system first checks whether the customer has manually chosen a format; if not, it suggests a format based on the customer's country. For countries not covered by any configured format, no electronic invoice is generated. The invoice is always prepared using the language of the partner contact rather than the system language.
+
+[N-U48-016] A deferred billing period, also called an invoicing period, may be recorded on individual invoice lines to indicate that the service was delivered over a range of dates rather than on a single day. This period is captured as a start date and an end date on the line and is included in the electronic invoice in the line-level settlement section.
+
+[N-U48-017] When a credit note or cancellation invoice is received, the system determines the correct document type by reading the type code in the document header. If the code indicates a credit note, the sign of all quantities is treated as already reversed. If the code indicates an invoice but the total amount is negative, the document is converted to a credit note and the quantities are reversed automatically.
+
+[N-U48-018] The French government procurement portal known as Chorus Pro has a specific electronic address registered on the Peppol network. When an invoice is addressed to this portal, the system applies additional rules specific to French public procurement, including specific reference fields for contracts and purchase orders.
+
+[N-U48-019] An invoice generated by a buyer on behalf of a seller, known as a the record-billed invoice, requires a different customisation identifier in the electronic format than a standard seller-generated invoice. The purchasing system is responsible for correctly classifying the document so that the receiving party knows whether the invoice was created by the supplier or by the buyer.
+
+[N-U48-020] The tax scheme identifier in an electronic invoice distinguishes between value added tax systems and goods and services tax systems. The code used for value added tax is applied in European and most Asian contexts, while the goods and services tax code is used for countries including Australia, New Zealand, India, Singapore, Malaysia, and several others. Thailand uses value added tax and would therefore use the value added tax scheme identifier.
